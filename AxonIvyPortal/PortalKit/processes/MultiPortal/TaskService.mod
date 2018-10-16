@@ -307,6 +307,8 @@ Te0 @PushWFArc f320 '' #zField
 Te0 @PushWFArc f321 '' #zField
 Te0 @PushWFArc f322 '' #zField
 Te0 @PushWFArc f323 '' #zField
+Te0 @StartSub f220 '' #zField
+Te0 @PushWFArc f221 '' #zField
 >Proto Te0 Te0 TaskService #zField
 Te0 f3 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f3 1347 995 26 26 14 0 #rect
@@ -3911,6 +3913,36 @@ Te0 f323 3827 181 1374 880 #arcP
 Te0 f323 1 3712 181 #addKink
 Te0 f323 2 3712 880 #addKink
 Te0 f323 2 0.3593429158110883 0 0 #arcLabel
+Te0 f220 inParamDecl '<java.lang.String jsonQuery,java.lang.String userName,java.lang.String apps,java.lang.Long serverId> param;' #txt
+Te0 f220 inParamTable 'out.apps=param.#apps is initialized ? param.apps.split("=~=") : new List<String>();
+out.hasNoSelectedApp=(param.#apps is initialized ? param.apps.split("=~=") : new List<String>()).isEmpty();
+out.jsonQuery=param.jsonQuery;
+out.server.id=param.serverId;
+out.userName=param.userName;
+' #txt
+Te0 f220 outParamDecl '<java.util.List<ch.ivy.ws.addon.CategoryData> categories,List<ch.ivy.ws.addon.WsException> errors> result;
+' #txt
+Te0 f220 outParamTable 'result.categories=in.categories;
+result.errors=in.errors;
+' #txt
+Te0 f220 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
+' #txt
+Te0 f220 callSignature findCategories(String,String,String,Long) #txt
+Te0 f220 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f220 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>findCategories(String,String,String,Long)</name>
+        <nameStyle>41,5,7
+</nameStyle>
+        <desc>This is called via java API</desc>
+    </language>
+</elementInfo>
+' #txt
+Te0 f220 1906 74 26 26 -50 -39 #rect
+Te0 f220 @|StartSubIcon #fIcon
+Te0 f221 expr out #txt
+Te0 f221 1906 91 1842 120 #arcP
 >Proto Te0 .type ch.ivyteam.wf.processes.TaskServiceData #txt
 >Proto Te0 .processKind CALLABLE_SUB #txt
 >Proto Te0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -4287,3 +4319,5 @@ Te0 f307 mainOut f311 tail #connect
 Te0 f311 head f300 mainIn #connect
 Te0 f302 out f323 tail #connect
 Te0 f323 head f148 in #connect
+Te0 f220 mainOut f221 tail #connect
+Te0 f221 head f115 mainIn #connect
