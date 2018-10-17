@@ -1,4 +1,4 @@
-co: name={EXPIRY_TIME} description={} changed={2018-10-11 04:52:03 CEST} changedby={ttthai} visualorder={0} guid={1664212246859A01} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={FINISHED_TIME} description={} changed={2018-10-17 12:19:26 CEST} changedby={ttthai} visualorder={0} guid={1664212246859A01} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={16642188DCE8B4C9} datatype={} isdefault={false} langid={de} description={} validfrom={2018-10-05 04:39:43 CEST} validto={} changed={2018-10-05 04:39:57 CEST} changedby={ttthai} properties={} id={}
 val: guid={16642188FE78651C} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-10-05 04:39:41 CEST} validto={} changed={2018-10-05 04:39:57 CEST} changedby={ttthai} properties={} id={}
 val: guid={166421224698404D} datatype={} isdefault={true} langid={en} description={} validfrom={2018-10-05 04:32:57 CEST} validto={} changed={2018-10-05 04:39:57 CEST} changedby={ttthai} properties={} id={}

@@ -111,7 +111,7 @@
 								<para>
 									<itemizedlist>
 										<listitem>
-											<para>In case you has new columns, override method <code>getDefaultColumns</code> of the extended class from CaseLazyDataModel to display checkboxes in Config columns panel and display/hide sortFields (see the methods' Javadoc comments)</para>
+											<para>In case you have new columns, override method <code>getDefaultColumns</code> of the extended class from CaseLazyDataModel to display checkboxes in Config columns panel and display/hide sortFields (see the methods' Javadoc comments)</para>
 										</listitem>
 										<listitem>
 											<para>To add cms for checkboxes's label, add new entries to folder <code>/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/</code> in <code>PortalStyle</code> or override method <code>getColumnLabel</code>(see the methods' Javadoc comments)</para>
@@ -120,8 +120,8 @@
                                             <para>In <code>caseListHeader</code> section, use <code>CaseColumnHeader</code> component</para>
                                         </listitem>
 										<listitem>
-											<para>In <code>caseHeader</code> section, use <code>CaseCustomField</code> component for each additional columns. This component will handle display/hide new columns on case list.</para>
-                                            <para>Currently, CaseCustomField only supports text field. If you want to create your own component, remember to add rendered="#{caseView.dataModel.isSelectedColumn('YOUR_CUSTOM_COLUMN')}" </para>
+											<para>In <code>caseHeader</code> section, use <code>CaseCustomField</code> component for each additional column. This component will handle display/hide new columns on case list.</para>
+                                            <para>Currently, CaseCustomField only supports text field. If you want to create your own component, remember to add <code>rendered="#{caseView.dataModel.isSelectedColumn('YOUR_CUSTOM_COLUMN')}"</code></para>
 											<para>
 												For example: Show custom field <code>customer name</code> which stored in <code>case.customVarCharField1</code>
 												<para>

@@ -71,7 +71,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
 
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
-  private List<String> portalDefaultColumns = Arrays.asList("NAME", "ID", "CREATOR", "CREATION_TIME", "EXPIRY_TIME", "STATE");
+  private List<String> portalDefaultColumns = Arrays.asList("NAME", "ID", "CREATOR", "CREATION_TIME", "FINISHED_TIME", "STATE");
   private List<String> portalRequiredColumns = Arrays.asList("NAME");
 
   private boolean isAutoHideColumns;
@@ -567,7 +567,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
    * <p>
    * <b>Example: </b> <code><pre>
    * 
-   * return Arrays.asList("NAME", "ID" , "CREATOR", "CREATION_TIME", "EXPIRY_TIME", "customVarcharField5", "customVarcharField1");
+   * return Arrays.asList("NAME", "ID" , "CREATOR", "CREATION_TIME", "FINISHED_TIME", "customVarcharField5", "customVarcharField1");
    * 
    * </pre></code> This list is the list of sortFields in CaseColumnHeader Portal component when you use it to add new
    * column headers also the list of checkboxes in config columns panel
