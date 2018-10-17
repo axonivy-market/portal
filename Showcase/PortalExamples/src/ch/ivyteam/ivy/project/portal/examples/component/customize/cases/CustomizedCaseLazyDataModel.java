@@ -52,7 +52,7 @@ public class CustomizedCaseLazyDataModel extends CaseLazyDataModel {
 	
 	@Override
 	protected List<String> getDefaultColumns() {
-	  return Arrays.asList("NAME", "ID", "CREATOR", "CREATION_TIME", "EXPIRY_TIME", "STATE", CUSTOM_VARCHAR_FIELD1, CUSTOM_TIMESTAMP_FIELD1);
+	  return Arrays.asList("NAME", "ID", "CREATOR", "CREATION_TIME", "EXPIRY_TIME", CUSTOM_VARCHAR_FIELD1, CUSTOM_TIMESTAMP_FIELD1);
 	}
 	
 	@Override
