@@ -8,6 +8,8 @@ import java.util.Locale;
 import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.time.StopWatch;
+
 import ch.ivy.ws.addon.WSException;
 import ch.ivy.ws.addon.bo.WebStartableServiceResult;
 import ch.ivy.ws.addon.transformer.IvyWebStartableTransformer;
@@ -34,7 +36,9 @@ public class WebStartableServiceImpl extends AbstractService implements IWebStar
         @Override
         public WebStartableServiceResult call() throws Exception {
 
+          StopWatch watch = StopWatch.createStarted();
           List<IApplication> applications = getAllApplications();
+          Ivy.log().debug("Finish get all applications after {0} miliseconds", watch.getTime());
           List<IvyWebStartable> starts = new ArrayList<>();
 
           Ivy.session().setContentLocale(new Locale(language));
@@ -46,6 +50,7 @@ public class WebStartableServiceImpl extends AbstractService implements IWebStar
           }
           WebStartableServiceResult result = new WebStartableServiceResult();
           result.setWebStartables(starts);
+          Ivy.log().debug("Finish findWebStartablesByCriteria after {0} miliseconds", watch.getTime());
           return result;
         }
 
@@ -60,15 +65,18 @@ public class WebStartableServiceImpl extends AbstractService implements IWebStar
     List<IvyWebStartable> starts = new ArrayList<>();
     IWorkflowSession workflowSession = null;
     try {
+      StopWatch watch = StopWatch.createStarted();
       workflowSession = getWorkflowSession(searchCriteria, application);
       if (!workflowSession.isSessionUserUnknown()) {
         List<IWebStartable> webStartables = getAllWebStartableFromWorkflow(workflowSession);
+        Ivy.log().debug("Finish getAllWebStartableFromWorkflow method of application {0} in {1} miliseconds", application.getName(), watch.getTime());
         if (searchCriteria.hasKeyword()) {
           starts.addAll(getWebStartableMatchKeyword(searchCriteria, isUrlBuiltFromSystemProperties, webStartables));
         } else {
           starts.addAll(IvyWebStartableTransformer.transform(webStartables, isUrlBuiltFromSystemProperties));
         }
       }
+      Ivy.log().debug("Finish getWebStartables method of application {0} in {1} miliseconds", application.getName(), watch.getTime());
     } finally {
       if (workflowSession != null && !workflowSession.isSessionUserSystemUser()) {
         ISecurityContext securityContext = application.getSecurityContext();
