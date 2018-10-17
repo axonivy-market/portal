@@ -102,6 +102,38 @@
 							</para>
 						</listitem>
 						<listitem>
+							<para>Default caseList supports user to config display/hide column
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/CaseWidget/CaseColumnsConfiguration.png" />
+									</imageobject>
+								</mediaobject>
+								<para>
+									<itemizedlist>
+										<listitem>
+											<para>In case you has new columns, override method <code>getDefaultColumns</code> of the extended class from CaseLazyDataModel to display checkboxes in Config columns panel and display/hide sortFields (see the methods' Javadoc comments)</para>
+										</listitem>
+										<listitem>
+											<para>To add cms for checkboxes's label, add new entries to folder <code>/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/</code> in <code>PortalStyle</code> or override method <code>getColumnLabel</code>(see the methods' Javadoc comments)</para>
+										</listitem>
+                                        <listitem>
+                                            <para>In <code>caseListHeader</code> section, use <code>CaseColumnHeader</code> component</para>
+                                        </listitem>
+										<listitem>
+											<para>In <code>caseHeader</code> section, use <code>CaseCustomField</code> component for each additional columns. This component will handle display/hide new columns on case list.</para>
+                                            <para>Currently, CaseCustomField only supports text field. If you want to create your own component, remember to add rendered="#{caseView.dataModel.isSelectedColumn('YOUR_CUSTOM_COLUMN')}" </para>
+											<para>
+												For example: Show custom field <code>customer name</code> which stored in <code>case.customVarCharField1</code>
+												<para>
+													<code>&lt;ic:ch.ivy.addon.portalkit.component.cases.column.CaseCustomField id="case-customer-name-component" panelGroupId="customVarCharField1-column-case-header-panel" componentId="customVarCharField1-column-case-header-text" column="customVarCharField1" dataModel="#{caseView.dataModel}" labelValue="#{case.customVarCharField1}" /&gt;</code>
+												</para>
+											</para>
+										</listitem>
+									</itemizedlist>
+								</para>
+							</para>
+						</listitem>
+						<listitem>
 							<para>
 								Use Axon.ivy Override to override the <code>InitializeCaseDataModel</code> callable and initialize data model by your customized one.
 							</para>
