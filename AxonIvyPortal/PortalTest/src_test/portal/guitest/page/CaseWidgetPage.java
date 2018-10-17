@@ -13,7 +13,12 @@ public class CaseWidgetPage extends TemplatePage {
 	private static final String CASE_ITEM_LIST_SELECTOR = "li[class='ui-datascroller-item']";
 	private static final String CASE_NAME_CSS_SELECTOR = "span[class*='case-header-name-cell']";
 	private static final String CASE_PAGE_LOCATION = "//*[contains(@id,'case-view')]";
-
+	private static final String COLUMNS_BUTTON_CSS_SELECTOR = "button[id$='config-columns']";
+	private static final String SELECT_ITEM_XPATH = "//*[@id=\"case-widget:case-columns-configuration:select-columns-form:columns-checkbox\"]/tbody/tr[%s]/td/div/div[2]";
+	private static final String APPLY_BUTTON_CSS_SELECTOR = "button[id$='update-command']";
+	private static final String CANCEL_BUTTON_CSS_SELECTOR = "button[id$='cancel-command']";
+	private static final String DEFAULT_COLUMNS_XPATH = "//*[@id=\"case-widget:case-columns-configuration:select-columns-form:default-columns\"]/div[2]"; 
+	
 	public CaseWidgetPage() {
 		this("case-widget");
 	}
@@ -113,6 +118,16 @@ public class CaseWidgetPage extends TemplatePage {
 		List<WebElement> caseNameElements = findListElementsByClassName("case-header-name-cell");
 		return caseNameElements.stream().anyMatch(caseNameElement -> name.equals(caseNameElement.getText()));
 	}
+	
+	public boolean isCaseListColumnExist(String columnHeaderText) {
+    WebElement taskListHeader = findElementById(caseWidgetId + ":widget-column-header");
+    for (WebElement column : taskListHeader.findElements(By.tagName("a"))) {
+      if (columnHeaderText.equals(column.getText())) {
+        return true;
+      }
+    }
+    return false;
+  }
 
 
 	public void openAdvancedFilter(String filterName, String filterIdName) {
@@ -186,5 +201,30 @@ public class CaseWidgetPage extends TemplatePage {
     WebElement caseTitleElement = findElementById("case-widget:case-widget-title");
     String title = caseTitleElement.getText();
     return Integer.parseInt(title.substring(title.lastIndexOf("(") + 1, title.length() -1));
+  }
+  
+  public void clickColumnsButton() {
+    WebElement columnsButton = findElementByCssSelector(COLUMNS_BUTTON_CSS_SELECTOR);
+    columnsButton.click();
+  }
+  
+  public void clickColumnCheckbox(int columnIndex) {
+    WebElement columnCheckbox = findElementByXpath(String.format(SELECT_ITEM_XPATH, columnIndex));
+    columnCheckbox.click();
+  }
+  
+  public void clickDefaultCheckbox() {
+    WebElement columnCheckbox = findElementByXpath(DEFAULT_COLUMNS_XPATH);
+    columnCheckbox.click();
+  }
+  
+  public void clickApplyButton() {
+    WebElement applyButton = findDisplayedElementBySelector(APPLY_BUTTON_CSS_SELECTOR);
+    applyButton.click();
+  }
+  
+  public void clickCancelButton() {
+    WebElement applyButton = findElementByCssSelector(CANCEL_BUTTON_CSS_SELECTOR);
+    applyButton.click();
   }
 }

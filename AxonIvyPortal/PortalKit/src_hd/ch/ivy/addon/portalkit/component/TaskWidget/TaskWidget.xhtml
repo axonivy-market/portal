@@ -110,7 +110,7 @@
                         value="#{taskFilterData.filterName}" global="false"
                         actionListener="#{logic.applyFilter(taskFilterData)}"
                         update="#{cc.clientId}:advanced-filter-container #{cc.clientId}:task-widget-header #{cc.clientId}:filter-add-form #{cc.clientId}:filter-selection-container #{cc.clientId}:task-view-container"
-                        oncomplete="taskWidget.setUpScrollbar(); taskWidget.setupHeader()" />
+                        oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
                       <p:tooltip id="user-definied-filter-tooltip" for="user-definied-filter"
                         value="#{taskFilterData.filterName}" trackMouse="true" />
                       <p:commandLink id="delete-user-definied-filter-command"
@@ -198,7 +198,7 @@
         <h:panelGroup rendered="#{!data.dataModel.compactMode}">
           <f:event listener="#{data.dataModel.initColumnsConfiguration()}" type="preRenderComponent" />
           <cc:renderFacet name="taskListHeader" />
-          <ic:ch.ivy.addon.portalkit.component.ColumnsConfiguration
+          <ic:ch.ivy.addon.portalkit.component.ColumnsConfiguration id="task-columns-configuration"
             updatedComponent="#{cc.clientId}:task-view-container #{cc.clientId}:task-widget-sort-menu"
             dataModel="#{data.dataModel}" oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()"/>
         </h:panelGroup>

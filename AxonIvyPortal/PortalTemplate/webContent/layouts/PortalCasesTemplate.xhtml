@@ -57,7 +57,7 @@
 							      rendered="#{caseView.dataModel.isSelectedColumn('CREATION_TIME')}" value="#{case.startTimestamp}"
 							      styleClass="#{caseView.dataModel.isAutoHideColumns()?'js-create-cell':''}" />
 							  <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-expiry-date-cell" 
-								  rendered="#{caseView.dataModel.isSelectedColumn('EXPIRY_TIME')}" value="#{case.endTimestamp}"
+								  rendered="#{caseView.dataModel.isSelectedColumn('FINISHED_TIME')}" value="#{case.endTimestamp}"
 							      styleClass="#{caseView.dataModel.isAutoHideColumns()?'js-finish-cell':''}"  />
 							  <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState componentId="case-state-cell" case="#{case}" dataModel="#{caseView.getDataModel()}"/>
 							</ui:fragment>

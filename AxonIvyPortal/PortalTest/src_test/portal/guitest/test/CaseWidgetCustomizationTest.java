@@ -14,6 +14,12 @@ public class CaseWidgetCustomizationTest extends BaseTest {
 
 	private static final String CREATE_CASES_FOR_CASE_LIST_CUSTOMIZATION =
 			"portalExamples/162511D2577DBA88/createCasesForCaseListCustomization.ivp";
+	private static final String CUSTOMER_NAME_CASE_LIST_HEADER_ID = 
+	    "case-widget:customVarCharField1-column-case-list-header:customVarCharField1-column-case-list-header";
+	private static final String CUSTOMER_NAME_HEADER_TEXT_ID = 
+	    "case-widget:case-list-scroller:0:case-item:case-customer-name-component:customVarCharField1-column-case-header-text";
+	private static final String STATE_COLUMN_HEADER = "State";
+  private static final String CUSTOMER_NAME_COLUMN_HEADER = "Customer name";
 
 	@Override
 	@Before
@@ -24,16 +30,47 @@ public class CaseWidgetCustomizationTest extends BaseTest {
 		LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
 		loginPage.login();
 	}
+	
+	@Test
+	public void testShowHideCustomColumnsInCaseWidget() {
+	  MainMenuPage mainMenuPage = new MainMenuPage();
+	  CaseWidgetPage caseWidgetPage = mainMenuPage.selectCaseMenu();
+	  caseWidgetPage.waitAjaxIndicatorDisappear();
+	  caseWidgetPage.sortCaseListByColumn(CUSTOMER_NAME_CASE_LIST_HEADER_ID);
+	  assertFalse(caseWidgetPage.isCaseListColumnExist(STATE_COLUMN_HEADER));
+    assertTrue(caseWidgetPage.isCaseListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
+    assertTrue("CustomVarcharField10".equals(caseWidgetPage.getCaseListCustomCellValue(CUSTOMER_NAME_HEADER_TEXT_ID)));
+	}
+	
+	@Test
+	public void testEnableAndDisableColumnsInCaseWidget() {
+	  MainMenuPage mainMenuPage = new MainMenuPage();
+    CaseWidgetPage caseWidgetPage = mainMenuPage.selectCaseMenu();
+    caseWidgetPage.waitAjaxIndicatorDisappear();
+    assertTrue(caseWidgetPage.isCaseListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
+    caseWidgetPage.clickColumnsButton();
+    caseWidgetPage.clickDefaultCheckbox();
+    caseWidgetPage.waitAjaxIndicatorDisappear();
+    caseWidgetPage.clickColumnCheckbox(6);
+    caseWidgetPage.clickApplyButton();
+    caseWidgetPage.waitAjaxIndicatorDisappear();
+    assertFalse(caseWidgetPage.isCaseListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
+    caseWidgetPage.clickColumnsButton();
+    caseWidgetPage.clickColumnCheckbox(6);
+    caseWidgetPage.clickApplyButton();
+    caseWidgetPage.waitAjaxIndicatorDisappear();
+    assertTrue(caseWidgetPage.isCaseListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
+	}
 
 	@Test
-	public void testSortCustomColumnsInTaskListPage() {
+	public void testSortCustomColumnsInCaseListPage() {
 		MainMenuPage mainMenuPage = new MainMenuPage();
 		CaseWidgetPage caseWidgetPage = mainMenuPage.selectCaseMenu();
 		caseWidgetPage.waitAjaxIndicatorDisappear();
 		caseWidgetPage
-				.sortCaseListByColumn("case-widget:customVarCharField1-column-case-list-header:customVarCharField1-column-case-list-header");
+				.sortCaseListByColumn(CUSTOMER_NAME_CASE_LIST_HEADER_ID);
 		assertTrue("CustomVarcharField10"
 				.equals(caseWidgetPage
-						.getCaseListCustomCellValue("case-widget:case-list-scroller:0:case-item:case-customer-name-component:customVarCharField1-column-case-header-text")));
+						.getCaseListCustomCellValue(CUSTOMER_NAME_HEADER_TEXT_ID)));
 	}
 }
