@@ -30,8 +30,11 @@ import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.util.Dates;
+import ch.ivy.addon.portalkit.util.RoleUtils;
 import ch.ivy.ws.addon.PortalCaseCustomVarField;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.IRole;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
@@ -271,6 +274,11 @@ public class StatisticChartQueryUtils {
     if (filter.getIsAllRolesSelected()) {
       subTaskFilterForRoles.or().activatorName().isEqual(Ivy.session().getSessionUser().getMemberName()); //include current user
       subTaskFilterForRoles.or().activatorName().isNotLike("#%%"); //include roles only, activatorName start with # is user
+      ISecurityContext securityContext = Ivy.request().getApplication().getSecurityContext();
+      List<String> technicalRolesName = securityContext.getRoles().stream().filter(role -> role.getProperty(RoleUtils.HIDE) != null).map(IRole::getMemberName).collect(Collectors.toList());
+      if (!CollectionUtils.isEmpty(technicalRolesName)) {
+        technicalRolesName.forEach(roleName -> subTaskFilterForRoles.and().activatorName().isNotEqual(roleName)); //exclude technical role
+      }
     } else {
       if (CollectionUtils.isNotEmpty(filter.getSelectedRoles())) {
         filter.getSelectedRoles().forEach(role -> subTaskFilterForRoles.or().activatorName().isEqual(role));
