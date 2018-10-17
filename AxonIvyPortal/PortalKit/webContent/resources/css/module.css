@@ -1552,6 +1552,10 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   transition: none;
 }
 
+.config-columns-footer {
+  margin-top: 5px;
+}
+
 /********************************** END ADVANCED FILTER WIDGET **********************************/
 
 /********************************** START CASE ITEM **********************************/

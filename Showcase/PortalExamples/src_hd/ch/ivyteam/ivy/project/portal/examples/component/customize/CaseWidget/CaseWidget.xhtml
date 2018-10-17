@@ -30,9 +30,9 @@
 			    styleClass="TexAlCenter case-list-header-cell #{caseView.dataModel.isAutoHideColumns()?'js-create-column-header':''}" 
 				sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}" dataModel="#{caseView.dataModel}" />
 
-			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="mofified-date-column-header" componentToBeUpdated="" sortedField="EXPIRY_TIME"
+			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="mofified-date-column-header" componentToBeUpdated="" sortedField="FINISHED_TIME"
 				styleClass="TexAlCenter case-list-header-cell #{caseView.dataModel.isAutoHideColumns()?'js-expiry-column-header':''}" 
-				sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/EXPIRY_TIME')}" dataModel="#{caseView.dataModel}" />
+				sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME')}" dataModel="#{caseView.dataModel}" />
 
 			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="state-column-header" styleClass="case-list-header-cell TexAlCenter" componentToBeUpdated="" sortedField="STATE"
 				sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" dataModel="#{caseView.dataModel}" />
@@ -55,7 +55,7 @@
 			    styleClass="#{caseView.dataModel.isAutoHideColumns()?'hidden-sm':''}" />
 			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-creation-date-cell" rendered="#{caseView.dataModel.isSelectedColumn('CREATION_TIME')}" 
 				value="#{case.startTimestamp}" styleClass="#{caseView.dataModel.isAutoHideColumns()?'js-create-cell':''}" />
-			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-expiry-date-cell" rendered="#{caseView.dataModel.isSelectedColumn('EXPIRY_TIME')}" 
+			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-expiry-date-cell" rendered="#{caseView.dataModel.isSelectedColumn('FINISHED_TIME')}" 
 				value="#{case.endTimestamp}" styleClass="#{caseView.dataModel.isAutoHideColumns()?'js-finish-cell':''}" />
 			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseState componentId="case-state-cell" case="#{case}" dataModel="#{caseView.getDataModel()}" />
 

@@ -25,6 +25,8 @@ public class CaseWidgetTest extends BaseTest {
   private static final String INVESTMENT_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME = "Investment Request";
   private static final String LEAVE_REQUEST_DEFAULT_CASE_DETAILS_PAGE_CASE_NAME = "Leave Request for Default Additional Case Details";
   private static final String LEAVE_REQUEST_CASE_NAME = "Leave Request";
+  private static final String CREATED_COLUMN_HEADER = "Created";
+  private static final String STATE_COLUMN_HEADER = "State";
   
   private HomePage homePage;
   private MainMenuPage mainMenuPage;
@@ -101,6 +103,31 @@ public class CaseWidgetTest extends BaseTest {
   public void testOpenCustomizationAdditionalCaseDetailsPage() throws Exception {
     openAdditionalCaseDetailsPage(createTestingCaseUrlForCustomizationAdditionalCaseDetails, INVESTMENT_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME);
     validateAdditionalCaseDetailsPage(6, "Apartment A");
+  }
+  
+  @Test
+  public void testEnableAndDisableColumnsInCaseWidget() {
+    initHomePage(TestAccount.DEMO_USER);
+    mainMenuPage = homePage.openMainMenu();
+    casePage = mainMenuPage.selectCaseMenu();
+    casePage.waitAjaxIndicatorDisappear();
+    assertTrue(casePage.isCaseListColumnExist(CREATED_COLUMN_HEADER));
+    assertTrue(casePage.isCaseListColumnExist(STATE_COLUMN_HEADER));
+    casePage.clickColumnsButton();
+    casePage.clickDefaultCheckbox();
+    casePage.waitAjaxIndicatorDisappear();
+    casePage.clickColumnCheckbox(4);
+    casePage.clickApplyButton();
+    casePage.waitAjaxIndicatorDisappear();
+    assertFalse(casePage.isCaseListColumnExist(CREATED_COLUMN_HEADER));
+    assertTrue(casePage.isCaseListColumnExist(STATE_COLUMN_HEADER));
+    casePage.clickColumnsButton();
+    casePage.clickColumnCheckbox(4);
+    casePage.clickColumnCheckbox(6);
+    casePage.clickApplyButton();
+    casePage.waitAjaxIndicatorDisappear();
+    assertTrue(casePage.isCaseListColumnExist(CREATED_COLUMN_HEADER));
+    assertFalse(casePage.isCaseListColumnExist(STATE_COLUMN_HEADER));
   }
   
   private void openAdditionalCaseDetailsPage(String initDataUrl, String caseName){
