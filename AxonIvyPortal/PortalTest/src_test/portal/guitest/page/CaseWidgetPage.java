@@ -216,11 +216,13 @@ public class CaseWidgetPage extends TemplatePage {
   public void clickDefaultCheckbox() {
     WebElement columnCheckbox = findElementByXpath(DEFAULT_COLUMNS_XPATH);
     columnCheckbox.click();
+    waitAjaxIndicatorDisappear();
   }
   
   public void clickApplyButton() {
     WebElement applyButton = findDisplayedElementBySelector(APPLY_BUTTON_CSS_SELECTOR);
     applyButton.click();
+    waitAjaxIndicatorDisappear();
   }
   
   public void clickCancelButton() {
