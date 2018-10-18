@@ -92,11 +92,7 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public AddNewProcessDialog openNewProcessDialog() {
-    if (isEmptyFavoriteProcesses()) {
-      click(getEmptyMessageLink());
-    } else {
-      click(findChildElementByCssSelector(processWidget, "[id$='show-adding-dialog-commmand']"));
-    }
+    click(findChildElementByCssSelector(processWidget, "[id$='show-adding-dialog-commmand']"));
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
     return new AddNewProcessDialog();
   }

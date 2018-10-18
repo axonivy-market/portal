@@ -42,7 +42,7 @@
 			<h:form rendered="#{processWidgetBean.compactMode}"
 				styleClass="js-compact-mode-element process-button-position process-action-button process-widget-action-form">
 				<h:panelGroup layout="block"
-					rendered="#{not processWidgetBean.editMode and (not empty processWidgetBean.userProcesses)}">
+					rendered="#{not processWidgetBean.editMode}">
 					<p:commandLink id="show-adding-dialog-commmand"
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addNewProcess')}"
 						actionListener="#{processWidgetBean.addNewUserProcess(cc.clientId)}"
@@ -51,11 +51,13 @@
 					<p:commandLink id="editing-switch-command"
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editProcesses')}"
 						actionListener="#{processWidgetBean.switchEditMode}"
+						rendered="#{not empty processWidgetBean.userProcesses}"
 						update="@form #{cc.clientId}:process-list #{cc.clientId}:header #{p:component('process-link')}" />
 					<p:spacer width="10" />
 					<p:commandLink id="name-sort-command" styleClass="name-sort-command"
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/sortByName')}"
 						actionListener="#{processWidgetBean.sortUserProcessList(processWidgetBean.userProcesses)}"
+						rendered="#{not empty processWidgetBean.userProcesses}"
 						update="@form #{cc.clientId}:process-list" />
 				</h:panelGroup>
 
@@ -87,12 +89,6 @@
 				<p>
 					<h:outputText id="empty-process-message"
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/noFavoriteProcess')}" />
-				</p>
-				<p>
-					#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addProcessMessage/messagePrefix')}
-					<p:commandLink id="add-new-process-message" actionListener="#{processWidgetBean.addNewUserProcess(cc.clientId)}"
-						update="#{cc.clientId}:add-new-process-dialog" oncomplete="PF('add-new-process-dialog').show()">
-						<b>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addProcessMessage/messageSuffix')}</b>?</p:commandLink>
 				</p>
 			</h:panelGroup>
 			<ui:fragment id="user-favorite-process-list" rendered="#{processWidgetBean.compactMode}">
