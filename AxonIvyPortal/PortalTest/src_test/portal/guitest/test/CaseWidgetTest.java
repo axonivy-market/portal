@@ -110,22 +110,18 @@ public class CaseWidgetTest extends BaseTest {
     initHomePage(TestAccount.DEMO_USER);
     mainMenuPage = homePage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
-    casePage.waitAjaxIndicatorDisappear();
     assertTrue(casePage.isCaseListColumnExist(CREATED_COLUMN_HEADER));
     assertTrue(casePage.isCaseListColumnExist(STATE_COLUMN_HEADER));
     casePage.clickColumnsButton();
     casePage.clickDefaultCheckbox();
-    casePage.waitAjaxIndicatorDisappear();
     casePage.clickColumnCheckbox(4);
     casePage.clickApplyButton();
-    casePage.waitAjaxIndicatorDisappear();
     assertFalse(casePage.isCaseListColumnExist(CREATED_COLUMN_HEADER));
     assertTrue(casePage.isCaseListColumnExist(STATE_COLUMN_HEADER));
     casePage.clickColumnsButton();
     casePage.clickColumnCheckbox(4);
     casePage.clickColumnCheckbox(6);
     casePage.clickApplyButton();
-    casePage.waitAjaxIndicatorDisappear();
     assertTrue(casePage.isCaseListColumnExist(CREATED_COLUMN_HEADER));
     assertFalse(casePage.isCaseListColumnExist(STATE_COLUMN_HEADER));
   }
