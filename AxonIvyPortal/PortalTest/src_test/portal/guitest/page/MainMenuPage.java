@@ -140,6 +140,7 @@ public class MainMenuPage extends TemplatePage {
 
   public CaseWidgetPage selectCaseMenu() {
     findElementByCssSelector("a.left-sidebar-sub-menu-item:nth-of-type(" + CASE_MENU_ICON_POSITION + ")").click();
+    waitAjaxIndicatorDisappear();
     return new CaseWidgetPage();
   }
 

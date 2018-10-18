@@ -19,7 +19,7 @@
 			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="name-desc-column-header" styleClass="case-list-header-cell case-list-name-desc-header-cell" componentToBeUpdated=""
 				sortedField="NAME" sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/NAME')}" dataModel="#{caseView.dataModel}" />
 
-			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="id-column-header" styleClass="TexAlCenter case-list-header-cell" componentToBeUpdated="" sortedField="ID" sortable="true"
+			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="id-column-header" styleClass="TexAlCenter case-list-header-cell js-id-column-header" componentToBeUpdated="" sortedField="ID" sortable="true"
 				value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" dataModel="#{caseView.dataModel}" />
 
 			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="creator-column-header" componentToBeUpdated="" sortedField="CREATOR" sortable="true"
@@ -62,12 +62,10 @@
 			<!-- New field -->
 			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseCustomField id="case-customer-name-component" panelGroupId="customVarCharField1-column-case-header-panel" 
 				componentId="customVarCharField1-column-case-header-text" column="customVarCharField1" dataModel="#{caseView.dataModel}" labelValue="#{case.customVarCharField1}" />
-			<h:panelGroup styleClass="customized-case-header-column">
-				<h:outputText value="#{case.customTimestampField1}" styleClass="case-header-end-time-cell case-header-default-cell customized-case-header-column"
-					rendered="#{caseView.dataModel.isSelectedColumn('customTimestampField1')}" >
-					<f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
-				</h:outputText>
-			</h:panelGroup>
+			<h:outputText value="#{case.customTimestampField1}" styleClass="TexAlCenter case-header-end-time-cell customized-case-header-column"
+				rendered="#{caseView.dataModel.isSelectedColumn('customTimestampField1')}" >
+				<f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+			</h:outputText>
 		</ui:define>
 
 		<ui:define name="caseBody">
