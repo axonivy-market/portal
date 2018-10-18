@@ -126,7 +126,6 @@ var MainMenu = {
 
   highlightFirstLevelMenu : function() {
     var firstLevelMenu = MainMenu.getFirstLevelMenuBasedOnPageUrl();
-    MainMenu.displaySecondLevelMenu(firstLevelMenu);
     var $activeFirstLevelMenu = $('div.ivy-active .left-sidebar-sub-menu-name').filter(function(index) {
       if (firstLevelMenu) {
         return (firstLevelMenu.indexOf($(this).text()) > -1);
@@ -141,12 +140,6 @@ var MainMenu = {
       if (pageUrl.indexOf(MainMenu.urlToFirstLevelMenu[i][0]) > -1) {
         return MainMenu.urlToFirstLevelMenu[i][1];
       }
-    }
-  },
-
-  displaySecondLevelMenu : function(firstLevelMenu) {
-    if (firstLevelMenu == null || ("Tasks" !== firstLevelMenu[0] && "Cases" !== firstLevelMenu[0])) {
-      $('.second-level-menu').addClass('hide');
     }
   },
 
