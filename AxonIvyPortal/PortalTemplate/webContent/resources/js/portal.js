@@ -97,7 +97,7 @@ var MainMenu = {
   urlToFirstLevelMenu : [["Processes.xhtml", ["Processes", "Prozesse", "Processus"]],
       ["PortalTasks.xhtml", ["Tasks", "Aufgaben", "Tâches"]], ["PortalCases.xhtml", ["Cases", "Vorgänge", "Dossiers"]],
       ["PortalDashBoard.xhtml", ["Statistics", "Statistiken", "Statistiques"]], ["TaskAnalysis.xhtml", ["Statistics", "Statistiken", "Statistiques"]],
-      ["TaskWidget.xhtml", ["Tasks", "Aufgaben", "Tâches"]]],
+      ["TaskWidget.xhtml", ["Tasks", "Aufgaben", "Tâches"]], ["CaseWidget.xhtml", ["Cases", "Vorgänge", "Dossiers"]]],
 
   init : function(responsiveToolkit) {
     this.highlightFirstLevelMenu();
