@@ -61,9 +61,15 @@ function CaseListToolKit() {
       } else {
         $(caseSortMenu).show();
       }
+      
       $.each(caseSortMenu.children('a'), function(i, header) {
         var cell = $(caseEntry).children().get(i);
         $(header).outerWidth($(cell).outerWidth());
+      });
+     
+      $.each(caseSortMenu.children('.js-unsortable-header-cell'), function(i, header) {
+          var cell = $(caseEntry).children().get(i);
+          $(header).outerWidth($(cell).outerWidth());
       });
     },
     

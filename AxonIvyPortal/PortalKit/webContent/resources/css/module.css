@@ -3100,6 +3100,10 @@ a.task-details-document-add-link {
   margin: 0 22px 0 23px;
 }
 
+_:-ms-input-placeholder, :root .case-details > * {
+  margin-left: 0;
+}
+
 .case-details-item {
   flex: 1;
   display: inline-block;
