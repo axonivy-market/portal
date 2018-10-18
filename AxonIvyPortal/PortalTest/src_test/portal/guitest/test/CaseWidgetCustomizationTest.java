@@ -35,7 +35,6 @@ public class CaseWidgetCustomizationTest extends BaseTest {
 	public void testShowHideCustomColumnsInCaseWidget() {
 	  MainMenuPage mainMenuPage = new MainMenuPage();
 	  CaseWidgetPage caseWidgetPage = mainMenuPage.selectCaseMenu();
-	  caseWidgetPage.waitAjaxIndicatorDisappear();
 	  caseWidgetPage.sortCaseListByColumn(CUSTOMER_NAME_CASE_LIST_HEADER_ID);
 	  assertFalse(caseWidgetPage.isCaseListColumnExist(STATE_COLUMN_HEADER));
     assertTrue(caseWidgetPage.isCaseListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
@@ -46,19 +45,15 @@ public class CaseWidgetCustomizationTest extends BaseTest {
 	public void testEnableAndDisableColumnsInCaseWidget() {
 	  MainMenuPage mainMenuPage = new MainMenuPage();
     CaseWidgetPage caseWidgetPage = mainMenuPage.selectCaseMenu();
-    caseWidgetPage.waitAjaxIndicatorDisappear();
     assertTrue(caseWidgetPage.isCaseListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
     caseWidgetPage.clickColumnsButton();
     caseWidgetPage.clickDefaultCheckbox();
-    caseWidgetPage.waitAjaxIndicatorDisappear();
     caseWidgetPage.clickColumnCheckbox(6);
     caseWidgetPage.clickApplyButton();
-    caseWidgetPage.waitAjaxIndicatorDisappear();
     assertFalse(caseWidgetPage.isCaseListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
     caseWidgetPage.clickColumnsButton();
     caseWidgetPage.clickColumnCheckbox(6);
     caseWidgetPage.clickApplyButton();
-    caseWidgetPage.waitAjaxIndicatorDisappear();
     assertTrue(caseWidgetPage.isCaseListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
 	}
 
@@ -66,7 +61,6 @@ public class CaseWidgetCustomizationTest extends BaseTest {
 	public void testSortCustomColumnsInCaseListPage() {
 		MainMenuPage mainMenuPage = new MainMenuPage();
 		CaseWidgetPage caseWidgetPage = mainMenuPage.selectCaseMenu();
-		caseWidgetPage.waitAjaxIndicatorDisappear();
 		caseWidgetPage
 				.sortCaseListByColumn(CUSTOMER_NAME_CASE_LIST_HEADER_ID);
 		assertTrue("CustomVarcharField10"
