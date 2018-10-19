@@ -115,7 +115,8 @@ public class TaskQueryService {
 
     try {
       long idKeyword = Long.parseLong(keyword);
-      filterByKeywordQuery.where().or().taskId().isEqual(idKeyword);
+      String containingIdKeyword = String.format("%%%d%%", idKeyword);
+      filterByKeywordQuery.where().or().taskId().isLike(containingIdKeyword);
     } catch (NumberFormatException e) {
       // do nothing
     }
