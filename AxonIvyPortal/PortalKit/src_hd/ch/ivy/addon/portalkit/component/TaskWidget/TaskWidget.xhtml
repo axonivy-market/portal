@@ -200,7 +200,8 @@
           <cc:renderFacet name="taskListHeader" />
           <ic:ch.ivy.addon.portalkit.component.ColumnsConfiguration id="task-columns-configuration"
             updatedComponent="#{cc.clientId}:task-view-container #{cc.clientId}:task-widget-sort-menu"
-            dataModel="#{data.dataModel}" oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()"/>
+            dataModel="#{data.dataModel}" oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()"
+            configButtonId="task-config-button" overlayPanelId="task-config-columns-panel" />
         </h:panelGroup>
       </h:panelGroup>
 
