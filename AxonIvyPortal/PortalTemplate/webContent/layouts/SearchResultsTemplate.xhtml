@@ -126,30 +126,37 @@
             <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-results" hideWidgetHeader="true"
               dataModel="#{dataModel.caseDataModel}" hideCaseFilter="true" listHeaderStyleClass="case-in-search">
               <f:facet name="caseListHeader">
-                <ui:fragment rendered="#{useOverrideListHeader}">
+                <ui:fragment rendered="#{useCaseOverrideListHeader}">
                   <ui:insert name="caseListHeader" />
                 </ui:fragment>
 
-                <ui:fragment rendered="#{not useOverrideListHeader}">
+                <ui:fragment rendered="#{not useCaseOverrideListHeader}">
                   <ic:ch.ivy.addon.portalkit.component.CaseListHeader id="case-list-header"
                     dataModel="#{dataModel.caseDataModel}" />
                 </ui:fragment>
               </f:facet>
               <f:facet name="caseHeader">
-                <div class="case-header-name-desc-cell">
-                  <ic:ch.ivy.addon.portalkit.component.cases.column.CaseName id="case-name-component" caseNameId="case-header-name-cell" caseDescriptionId="description-cell"
-                    case="#{case}" dataModel="#{dataModel.caseDataModel}" />
-                </div>
-                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseId componentId="case-id-cell" case="#{case}" dataModel="#{dataModel.caseDataModel}" />
-                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCreator componentId="case-creator-cell" case="#{case}" dataModel="#{dataModel.caseDataModel}" 
-                  styleClass="#{caseView.dataModel.isAutoHideColumns()? 'hidden-sm':''}" />
-                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-creation-date-cell" 
-                  rendered="#{dataModel.caseDataModel.isSelectedColumn('CREATION_TIME')}" value="#{case.startTimestamp}"
-                  styleClass="#{dataModel.caseDataModel.isAutoHideColumns()?'js-create-cell':''}" />
-                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-expiry-date-cell" 
-                  rendered="#{dataModel.caseDataModel.isSelectedColumn('FINISHED_TIME')}" value="#{case.endTimestamp}"
-                  styleClass="#{dataModel.caseDataModel.isAutoHideColumns()?'js-finish-cell':''}"  />
-                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState componentId="case-state-cell" case="#{case}" dataModel="#{dataModel.caseDataModel}"/>
+              	<ui:fragment rendered="#{useCaseOverrideHeader}">
+                  <ui:insert name="caseHeader">
+                  </ui:insert>
+                </ui:fragment>
+                
+                <ui:fragment rendered="#{not useCaseOverrideHeader}">
+	                <div class="case-header-name-desc-cell">
+	                  <ic:ch.ivy.addon.portalkit.component.cases.column.CaseName id="case-name-component" caseNameId="case-header-name-cell" caseDescriptionId="description-cell"
+	                    case="#{case}" dataModel="#{dataModel.caseDataModel}" />
+	                </div>
+	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseId componentId="case-id-cell" case="#{case}" dataModel="#{dataModel.caseDataModel}" />
+	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCreator componentId="case-creator-cell" case="#{case}" dataModel="#{dataModel.caseDataModel}" 
+	                  styleClass="#{caseView.dataModel.isAutoHideColumns()? 'hidden-sm':''}" />
+	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-creation-date-cell" 
+	                  rendered="#{dataModel.caseDataModel.isSelectedColumn('CREATION_TIME')}" value="#{case.startTimestamp}"
+	                  styleClass="#{dataModel.caseDataModel.isAutoHideColumns()?'js-create-cell':''}" />
+	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-expiry-date-cell" 
+	                  rendered="#{dataModel.caseDataModel.isSelectedColumn('FINISHED_TIME')}" value="#{case.endTimestamp}"
+	                  styleClass="#{dataModel.caseDataModel.isAutoHideColumns()?'js-finish-cell':''}"  />
+	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState componentId="case-state-cell" case="#{case}" dataModel="#{dataModel.caseDataModel}"/>
+              	</ui:fragment>
               </f:facet>
               <f:facet name="caseBody">
                 <ui:fragment rendered="#{not useCaseOverrideBody}">

@@ -6,12 +6,14 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
+import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
 import ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.data.persistence.IIvyEntityManager;
 import ch.ivyteam.ivy.process.data.persistence.IIvyQuery;
 import ch.ivyteam.ivy.project.portal.examples.Employee;
+import ch.ivyteam.ivy.project.portal.examples.component.customize.cases.CustomizedCaseLazyDataModel;
 
 public class CustomizedSearchResultsDataModel extends SearchResultsDataModel {
 
@@ -37,6 +39,11 @@ public class CustomizedSearchResultsDataModel extends SearchResultsDataModel {
   @Override
   protected TaskLazyDataModel initTaskDataModel() {
     return new CustomizedTaskLazyDataModel(TASK_WIDGET_COMPONENT_ID);
+  }
+  
+  @Override
+  protected CaseLazyDataModel initCaseDataModel() {
+    return new CustomizedCaseLazyDataModel(CASE_WIDGET_COMPONENT_ID);
   }
   
   private boolean filterEmployeeByName(Employee employee) {
