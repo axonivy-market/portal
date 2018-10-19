@@ -8,6 +8,8 @@
 	<ui:composition template="/layouts/SearchResultsTemplate.xhtml">
 		<ui:param name="useTaskOverrideListHeader" value="true" />
 		<ui:param name="useTaskOverrideHeader" value="true" />
+		<ui:param name="useCaseOverrideListHeader" value="true" />
+		<ui:param name="useCaseOverrideHeader" value="true" />
 		<c:set var="dataModel" value="#{data.dataModel}" />
 
 		<ui:define name="taskListHeader">
@@ -45,6 +47,59 @@
 				labelValue="#{task.customVarCharField5}" />
 			<h:outputText id="shipment-date" styleClass="TexAlCenter custom-datetime" value="#{task.customTimestampField1}"
 				rendered="#{dataModel.taskDataModel.isSelectedColumn('customTimestampField1')}">
+				<f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+			</h:outputText>
+		</ui:define>
+		
+		<ui:define name="caseListHeader">
+			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="name-desc-column-header" styleClass="case-list-header-cell case-list-name-desc-header-cell" componentToBeUpdated=""
+				sortedField="NAME" sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/NAME')}" dataModel="#{dataModel.caseDataModel}" />
+
+			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="id-column-header" styleClass="TexAlCenter case-list-header-cell #{dataModel.caseDataModel.isAutoHideColumns()?'js-id-column-header':''}" 
+				componentToBeUpdated="" sortedField="ID" sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" dataModel="#{dataModel.caseDataModel}" />
+
+			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="creator-column-header" componentToBeUpdated="" sortedField="CREATOR" sortable="true"
+			    styleClass="case-list-header-cell #{dataModel.caseDataModel.isAutoHideColumns()?'js-creator-column-header':''}"
+				value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" dataModel="#{dataModel.caseDataModel}" />
+
+			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="created-date-column-header" componentToBeUpdated="" sortedField="CREATION_TIME"
+			    styleClass="TexAlCenter case-list-header-cell #{dataModel.caseDataModel.isAutoHideColumns()?'js-create-column-header':''}" 
+				sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}" dataModel="#{dataModel.caseDataModel}" />
+
+			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="mofified-date-column-header" componentToBeUpdated="" sortedField="FINISHED_TIME"
+				styleClass="TexAlCenter case-list-header-cell #{dataModel.caseDataModel.isAutoHideColumns()?'js-expiry-column-header':''}" 
+				sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME')}" dataModel="#{dataModel.caseDataModel}" />
+
+			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="state-column-header" styleClass="case-list-header-cell TexAlCenter" componentToBeUpdated="" sortedField="STATE"
+				sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" dataModel="#{dataModel.caseDataModel}" />
+
+			<!-- New field -->
+			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customVarCharField1-column-case-list-header" styleClass="case-list-header-cell TexAlCenter customized-case-header-column"
+				componentToBeUpdated="" sortedField="customVarCharField1" sortable="true" value="#{ivy.cms.co('/DefaultColumns/caseList/customVarcharField1')}" dataModel="#{dataModel.caseDataModel}" />
+			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customTimestampField1-column-case-list-header" styleClass="case-list-header-cell TexAlCenter customized-case-header-column"
+				componentToBeUpdated="" sortedField="customTimestampField1" sortable="true" value="#{ivy.cms.co('/DefaultColumns/caseList/customTimestampField1')}" dataModel="#{dataModel.caseDataModel}" />
+		</ui:define>
+		
+		<ui:define name="caseHeader">
+            <div class="case-header-name-desc-cell">
+				<ic:ch.ivy.addon.portalkit.component.cases.column.CaseName case="#{case}" caseNameId="case-header-name-cell" caseDescriptionId="description-cell"
+				  initialActive="#{case.id eq caseView.getAutoSelectCaseId().id() and case.server.id eq caseView.getAutoSelectCaseId().serverId()}" 
+				  dataModel="#{dataModel.caseDataModel}" />
+			</div>
+			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseId componentId="case-id-cell" case="#{case}" dataModel="#{dataModel.caseDataModel}" />
+			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseCreator componentId="case-creator-cell" case="#{case}" dataModel="#{dataModel.caseDataModel}" 
+			    styleClass="#{dataModel.caseDataModel.isAutoHideColumns()?'hidden-sm':''}" />
+			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-creation-date-cell" rendered="#{dataModel.caseDataModel.isSelectedColumn('CREATION_TIME')}" 
+				value="#{case.startTimestamp}" styleClass="#{dataModel.caseDataModel.isAutoHideColumns()?'js-create-cell':''}" />
+			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-expiry-date-cell" rendered="#{dataModel.caseDataModel.isSelectedColumn('FINISHED_TIME')}" 
+				value="#{case.endTimestamp}" styleClass="#{dataModel.caseDataModel.isAutoHideColumns()?'js-finish-cell':''}" />
+			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseState componentId="case-state-cell" case="#{case}" dataModel="#{dataModel.caseDataModel}" />
+
+			<!-- New field -->
+			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseCustomField id="case-customer-name-component" panelGroupId="customVarCharField1-column-case-header-panel" 
+				componentId="customVarCharField1-column-case-header-text" column="customVarCharField1" dataModel="#{dataModel.caseDataModel}" labelValue="#{case.customVarCharField1}" />
+			<h:outputText value="#{case.customTimestampField1}" styleClass="TexAlCenter case-header-end-time-cell customized-case-header-column"
+				rendered="#{dataModel.caseDataModel.isSelectedColumn('customTimestampField1')}" >
 				<f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
 			</h:outputText>
 		</ui:define>
