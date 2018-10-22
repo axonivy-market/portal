@@ -13,7 +13,7 @@ public class CaseWidgetPage extends TemplatePage {
 	private static final String CASE_ITEM_LIST_SELECTOR = "li[class='ui-datascroller-item']";
 	private static final String CASE_NAME_CSS_SELECTOR = "span[class*='case-header-name-cell']";
 	private static final String CASE_PAGE_LOCATION = "//*[contains(@id,'case-view')]";
-	private static final String COLUMNS_BUTTON_CSS_SELECTOR = "button[id$='config-columns']";
+	private static final String COLUMNS_BUTTON_CSS_SELECTOR = "button[id$='case-config-button']";
 	private static final String SELECT_ITEM_XPATH = "//*[@id=\"case-widget:case-columns-configuration:select-columns-form:columns-checkbox\"]/tbody/tr[%s]/td/div/div[2]";
 	private static final String APPLY_BUTTON_CSS_SELECTOR = "button[id$='update-command']";
 	private static final String CANCEL_BUTTON_CSS_SELECTOR = "button[id$='cancel-command']";
