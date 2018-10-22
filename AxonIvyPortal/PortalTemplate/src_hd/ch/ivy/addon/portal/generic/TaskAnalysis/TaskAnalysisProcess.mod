@@ -90,7 +90,7 @@ import ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel;
 	
 	String pageTitle = ivy.cms.co("/Labels/Task");	
 	String noTaskMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskWarning/taskNotFound");
-	out.taskView = TaskAnalysisView.create().dataModel(dataModel).pageTitle(pageTitle).hideTaskFilter(false).showHeaderToolbar(false).noTaskFoundMessage(noTaskMessage).chunkSize(10).createNewTaskView();
+	out.taskView = TaskAnalysisView.create().dataModel(dataModel).pageTitle(pageTitle).hideTaskFilter(false).showHeaderToolbar(false).noTaskFoundMessage(noTaskMessage).chunkSize(20).createNewTaskView();
 ' #txt
 Ts0 f6 type ch.ivy.addon.portal.generic.TaskAnalysis.TaskAnalysisData #txt
 Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
