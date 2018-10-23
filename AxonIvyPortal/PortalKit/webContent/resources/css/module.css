@@ -1363,7 +1363,6 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 }
 
 .task-widget .ui-widget.ui-button.filter-add-button {
-  width: 8em;
   min-width: 10px;
   margin-top: auto;
   margin-bottom: auto;
@@ -1371,7 +1370,6 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 } 
 
 .case-widget-container .ui-widget.ui-button.filter-add-button {
-  width: 8em;
   min-width: 10px;
   margin-top: auto;
   margin-left: auto;
@@ -5002,6 +5000,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .config-columns-button {
   margin-left: auto;
+  width: 9em;
 }
 
 .config-checkbox-container {
