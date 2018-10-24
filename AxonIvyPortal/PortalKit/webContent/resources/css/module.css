@@ -5000,6 +5000,9 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .config-columns-button {
   margin-left: auto;
+}
+
+.config-columns-button button.filter-add-button {
   width: 9em;
 }
 
