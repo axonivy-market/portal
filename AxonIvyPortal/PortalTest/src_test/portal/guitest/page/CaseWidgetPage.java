@@ -31,6 +31,16 @@ public class CaseWidgetPage extends TemplatePage {
 	protected String getLoadedLocator() {
 		return CASE_PAGE_LOCATION;
 	}
+	
+	public void openSideStepPopup(int index) {
+	  click(By.id("case-widget:case-list-scroller:" + index + ":case-item:case-side-steps-menu"));
+	  waitAjaxIndicatorDisappear();
+	}
+	
+	public int countSideStepItems(int index) {
+	  WebElement sideStepPanel = findElementById("case-widget:case-list-scroller:" + index + ":case-item:side-steps-panel");
+    return sideStepPanel.findElements(By.tagName("a")).size();
+	}
 
 	public WebElement selectCaseItem(int index) {
 		String caseItemId = String.format(caseWidgetId + ":case-list-scroller:%s:case-item", index);
