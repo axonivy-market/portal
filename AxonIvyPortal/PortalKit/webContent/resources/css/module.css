@@ -1811,6 +1811,7 @@ a.case-details-document-add-link {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .case-header-name-desc-cell .case-header-name-cell {
@@ -1888,17 +1889,13 @@ a.case-details-document-add-link {
 }
 
 .case-header-action-cell {
-  flex: 0 0 100px;
+  flex: 0 0 150px;
   text-align: right;
 }
 
 .case-header-action-cell .action-icon {
   display: block;
   font-size: 1.5rem;
-}
-
-.case-header-action-cell .case-destroy-command {
-  font-size: 1.2rem;
 }
 
 .case-header-action-cell .action-cell-container {
@@ -1941,8 +1938,21 @@ a.case-details-document-add-link {
   font-size: 1.2rem;
 }
 
+.case-header-action-cell .case-command:not(:last-child) {
+  margin-right: 10px;
+}
+
 .case-command {
-  width: 80px;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.case-command.side-step {
+  top: 1.5rem;
+  right: 10px;
+  position: absolute;
 }
 
 .case-description-inplace {
