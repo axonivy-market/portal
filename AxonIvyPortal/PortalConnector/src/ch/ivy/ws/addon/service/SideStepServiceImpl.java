@@ -77,14 +77,17 @@ public class SideStepServiceImpl extends AbstractService implements ISideStepSer
     return caseMapService.findStartableSideSteps();
   }
 
-  public boolean hasSideSteps(ICase wfCase, boolean isAdhocIncluded) {
+  public boolean hasSideSteps(ICase wfCase, boolean isAdhocIncluded, IUser user) {
     if (isAdhocIncluded) {
       IvySideStep adhocSideStep = createAdhocSideStep(wfCase, false);
       if (adhocSideStep != null) {
         return true;
       }
     }
-    return false;
+    ICaseMapService caseMapService =
+        ICaseMapService.get().getCaseMapService(wfCase.getBusinessCase(), user.getUserToken());
+    List<IStartableSideStep> sideSteps = caseMapService.findStartableSideSteps();
+    return sideSteps.size() > 0;
   }
 
   /**
