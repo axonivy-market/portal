@@ -86,7 +86,7 @@ Cs0 f36 outParameterDecl '<> result;
 Cs0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name></name>
+        <name>collectSideSteps(RemoteCase)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -104,6 +104,7 @@ Cs0 f39 actionTable 'out=in;
 Cs0 f39 actionCode 'import ch.ivy.ws.addon.SideStepSearchCriteria;
 in.sideStepSearchCriteria.setCaseId(in.remoteCase.getId());
 in.sideStepSearchCriteria.setInvolvedUsername(ivy.session.getSessionUserName());
+in.sideStepSearchCriteria.setAdhocExcluded(true);
 ' #txt
 Cs0 f39 type ch.ivy.addon.portalkit.component.CaseItem.CaseItemData #txt
 Cs0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
