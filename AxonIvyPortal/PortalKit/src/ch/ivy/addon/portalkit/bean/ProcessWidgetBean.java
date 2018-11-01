@@ -78,6 +78,9 @@ public class ProcessWidgetBean implements Serializable, Converter {
       defaultUserProcesses = findDefaultProcessUserCanStart();
     }
     userProcesses = findUserProcessBaseOnUIMode(compactMode);
+    userProcesses.stream().filter(userProcess -> !AwesomeIcon.exists(userProcess.getIcon())).forEach(this::updateNotExistedIcons);
+    expressProcesses = userProcesses.stream().filter(this::isExpressWorkflow).collect(Collectors.toList());
+    userProcesses.removeAll(expressProcesses);
     if(!compactMode) {
         userProcessByAlphabet = groupUserProcessByAlphabetIndex(userProcesses);
     }
@@ -87,10 +90,6 @@ public class ProcessWidgetBean implements Serializable, Converter {
     } catch (Exception e) {
       Ivy.log().error(e);
     }
-    
-    userProcesses.stream().filter(userProcess -> !AwesomeIcon.exists(userProcess.getIcon())).forEach(this::updateNotExistedIcons);
-    expressProcesses = userProcesses.stream().filter(this::isExpressWorkflow).collect(Collectors.toList());
-    userProcesses.removeAll(expressProcesses);
   }
   
   private Map<String, List<UserProcess>> groupUserProcessByAlphabetIndex(List<UserProcess> userProcesses) {
