@@ -34,7 +34,7 @@ public class CaseWidgetPage extends TemplatePage {
 	
 	public void openSideStepPopup(int index) {
 	  click(By.id("case-widget:case-list-scroller:" + index + ":case-item:case-side-steps-menu"));
-	  waitAjaxIndicatorDisappear();
+	  waitForElementDisplayed(By.id("case-widget:case-list-scroller:" + index + ":case-item:side-steps-panel"), true);
 	}
 	
 	public int countSideStepItems(int index) {
