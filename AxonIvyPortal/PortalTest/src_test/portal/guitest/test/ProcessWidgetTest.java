@@ -178,6 +178,34 @@ public class ProcessWidgetTest extends BaseTest {
     assertNotEquals(processWidget.getProcess(CASE_MAP_LEAVES), null);
   }
 
+  @Test
+  public void testDefaultIconOfANewFavoriteProcess() {
+    processWidget = homePage.getProcessWidget();
+    AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
+    assertTrue(addNewProcessDialog.isDefaultIcon());
+
+  }
+
+  @Test
+  public void testSearchAnExistedIcon() {
+    processWidget = homePage.getProcessWidget();
+    AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
+    addNewProcessDialog.clickChangeIconButton();
+    addNewProcessDialog.inputSearchedIconName("area chart");
+    assertEquals(1, addNewProcessDialog.getDisplayedIconAmount());
+
+  }
+
+  @Test
+  public void testSearchANonExistedIcon() {
+    processWidget = homePage.getProcessWidget();
+    AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
+    addNewProcessDialog.clickChangeIconButton();
+    addNewProcessDialog.inputSearchedIconName("chart1");
+    assertEquals(0, addNewProcessDialog.getDisplayedIconAmount());
+
+  }
+
   private void createExternalTestProcess(String processName, String processLink) {
     AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
     processWidget.selectProcessTypeExternal();

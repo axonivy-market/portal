@@ -29,6 +29,7 @@ import ch.ivy.addon.portalkit.bo.RemoteWebStartable;
 import ch.ivy.addon.portalkit.comparator.UserProcessIndexComparator;
 import ch.ivy.addon.portalkit.enums.Protocol;
 import ch.ivy.addon.portalkit.jsf.Attrs;
+import ch.ivy.addon.portalkit.masterdata.AwesomeIcon;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
@@ -53,6 +54,7 @@ public class ProcessWidgetBean implements Serializable, Converter {
   private UserProcess editingProcess;
   private List<UserProcess> userProcesses;
   private List<UserProcess> defaultUserProcesses;
+  private List<UserProcess> expressProcesses;
   private boolean compactMode;
   private boolean editMode;
   private String userName;
@@ -85,6 +87,10 @@ public class ProcessWidgetBean implements Serializable, Converter {
     } catch (Exception e) {
       Ivy.log().error(e);
     }
+    
+    userProcesses.stream().filter(userProcess -> !AwesomeIcon.exists(userProcess.getIcon())).forEach(this::updateNotExistedIcons);
+    expressProcesses = userProcesses.stream().filter(this::isExpressWorkflow).collect(Collectors.toList());
+    userProcesses.removeAll(expressProcesses);
   }
   
   private Map<String, List<UserProcess>> groupUserProcessByAlphabetIndex(List<UserProcess> userProcesses) {
@@ -188,6 +194,11 @@ public class ProcessWidgetBean implements Serializable, Converter {
     editingProcess.setIndex(userProcesses.size());
     editingProcess = userProcessService.save(editingProcess);
     userProcesses.add(editingProcess);
+  }
+
+  private void updateNotExistedIcons(UserProcess userProcess) {
+    userProcess.setIcon(AwesomeIcon.DEFAULT_ICON);
+    userProcessService.save(userProcess);
   }
 
   private void correctProcessLink() {
@@ -308,6 +319,10 @@ public class ProcessWidgetBean implements Serializable, Converter {
   public List<UserProcess> getUserProcesses() {
     return userProcesses;
   }
+  
+  public List<UserProcess> getExpressProcesses() {
+    return expressProcesses;
+  }
 
   public boolean isCompactMode() {
     return compactMode;
@@ -384,7 +399,7 @@ public class ProcessWidgetBean implements Serializable, Converter {
     ExpressServiceRegistry.getTaskDefinitionService().deleteByProcessId(workflowId);
     ExpressServiceRegistry.getFormElementService().deleteByProcessId(workflowId);
 
-    userProcesses.remove(editingProcess);
+    expressProcesses.remove(editingProcess);
   }
 
   public String getCreateExpessWorkflowLink() throws Exception {
@@ -438,6 +453,10 @@ public class ProcessWidgetBean implements Serializable, Converter {
     this.userProcesses = userProcesses;
   }
 
+  public void setExpressProcesses(List<UserProcess> expressProcesses) {
+    this.expressProcesses = expressProcesses;
+  }
+  
   @Override
   public Object getAsObject(FacesContext context, UIComponent component, String value) {
     if (value.isEmpty()) {

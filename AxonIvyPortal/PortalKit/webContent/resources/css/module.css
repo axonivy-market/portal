@@ -2065,6 +2065,15 @@ a.case-details-document-add-link {
   padding-right: 15px;
 }
 
+.process-start-list .process-start-list-item-icon {
+  padding-left: 5px;
+  width: 1%;
+}
+	
+.process-start-list .process-start-list-item-name {
+  padding-left: 3%;
+}
+
 .process-start-list-item:hover .process-start-list-item-icon,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-icon {
   opacity: 1;
@@ -4987,4 +4996,25 @@ margin-top
 .ui-inplace .ui-inplace-editor .ui-button.ui-inplace-cancel .ui-icon-close:before {
   font-family: 'FontAwesome' !important;
   content: '\f00d';
+}
+/*********** SEARCH ICON ***********/
+.search-icon-name-container {
+  width: 100%;
+  display: inline-block;
+  position: relative;
+}
+
+.ui-inputfield.search-icon-input {
+  display: block;
+  margin: 5px 10px 20px 0;
+  width: 300px;
+}
+
+.search-icon-name-container .filter-widget-icon {
+  top: 25%;
+  right: 12px;
+} 
+
+.search-icon-input::-ms-clear {
+  display: none;
 }

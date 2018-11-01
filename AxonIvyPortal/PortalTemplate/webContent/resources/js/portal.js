@@ -300,3 +300,16 @@ if (!String.prototype.endsWith) {
     return this.indexOf(suffix, this.length - suffix.length) !== -1;
   };
 }
+
+function searchIconByName(element) {
+  var keyword = element.value.toLowerCase();
+  var icons = $(".icon-selection-dialog-selecting-icon");
+  for (i = 0; i < icons.length; i++) {
+    var icon = icons[i].innerHTML;
+    if (icon.indexOf(keyword) > -1 || icon.split("-").join(" ").indexOf(keyword) > -1) {
+      icons[i].style.display= "";
+    } else {
+	  icons[i].style.display= "none";
+    }
+  }
+}

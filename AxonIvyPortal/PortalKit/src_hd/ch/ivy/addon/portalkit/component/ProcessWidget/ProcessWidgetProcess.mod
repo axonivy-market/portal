@@ -555,7 +555,6 @@ if (!StringUtils.isEmpty(expressStartLink)) {
 			String startLink = processStartCollector.findExpressWorkflowStartLink() + "?workflowID=" + wf.id;
 		  	userProcess.setLink(startLink);
 		  	userProcess.setDefaultProcess(false);
-			userProcess.setIcon("fa-code-fork");
 			userProcess.setWorkflowId(wf.id);
 			userProcess.setDescription(wf.processDescription);
 		  	in.processes.add(userProcess);

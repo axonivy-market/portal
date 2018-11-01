@@ -103,12 +103,14 @@
 							rendered="#{not processWidgetBean.editMode and isExternalProcess}"
 							styleClass="external-process-item #{cc.attrs.processCardStyle} " style="#{cc.attrs.processCardStyleClass}">
 							<ui:include src="ProcessItem.xhtml">
+								<ui:param name="renderIcon" value="true"></ui:param>
 								<ui:param name="processType" value="external-process-item" />
 							</ui:include>
 						</p:link>
 						<p:commandLink id="process-item" actionListener="#{logic.startProcess(process.link)}" target="_self"
 							styleClass="process-item" rendered="#{not processWidgetBean.editMode and !isExternalProcess}">
 							<ui:include src="ProcessItem.xhtml">
+								<ui:param name="renderIcon" value="true"></ui:param>
 								<ui:param name="processType" value="process-item" />
 							</ui:include>
 						</p:commandLink>
@@ -153,39 +155,63 @@
 				</h:form>
 			</ui:fragment>
 			<ui:fragment id="full-process-list" rendered="#{!processWidgetBean.compactMode}">
-				<ui:repeat id="process-group-alphabet" var="entryProcess" value="#{processWidgetBean.userProcessByAlphabet.entrySet().toArray()}">
+				<p:fieldset id="express-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/expressWorkflowGroupTitle')}" toggleable="true" styleClass="process-group js-process-index-group" rendered="#{not empty processWidgetBean.expressProcesses}">
+                  <h:panelGroup id="express-process-container" layout="block" styleClass="process-start-list">
+                    <ui:repeat var="process" value="#{processWidgetBean.expressProcesses}">
+                      <h:form id="express-process-item-form"
+                        styleClass="#{cc.attrs.processCardStyle} process-start-list-item-wrapper js-process-start-list-item process-start-list-item express-workflow #{process.link eq cc.attrs.highlightedProcessStartLink ? 'highlighted-item' : ''}"
+                        style="#{cc.attrs.processCardStyleClass}" rendered="#{!processWidgetBean.editMode}">
+                        <p:commandLink id="process-item" actionListener="#{logic.startProcess(process.link)}" target="_self"
+                          styleClass="process-item">
+                          <ui:include src="ProcessItem.xhtml">
+                          	<ui:param name="renderIcon" value="false"></ui:param>
+                            <ui:param name="processType" value="process-item" />
+                          </ui:include>
+                        </p:commandLink>
+                        <h:panelGroup>
+                          <ui:include src="ProcessItemActions.xhtml">
+                            <ui:param name="processType" value="process" />
+                            <ui:param name="canShowExpressActions" value="true" />
+                          </ui:include>
+                        </h:panelGroup>
+                      </h:form>
+                   	</ui:repeat>
+                  </h:panelGroup>
+               </p:fieldset>
+               <ui:repeat id="process-group-alphabet" var="entryProcess" value="#{processWidgetBean.userProcessByAlphabet.entrySet().toArray()}">
 					<p:fieldset id="alphabet-process-index-fieldset" legend="#{entryProcess.key eq 'SPECIAL_CHARACTER'? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/specialCharacterGroup') : entryProcess.key}" toggleable="true" styleClass="process-group js-process-index-group">
-						<h:panelGroup id="process-group-container" layout="block" styleClass="process-start-list">
-							<ui:repeat id="process-item" varStatus="status" var="process" value="#{entryProcess.value}">
-								<c:set var="isExpressWorkflow" value="#{processWidgetBean.isExpressWorkflow(process)}" />
-								<c:set var="isExternalProcess"
-									value="#{!(fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}" />
-								<h:form id="process-item-form"
-									styleClass="#{cc.attrs.processCardStyle} process-start-list-item-wrapper js-process-start-list-item process-start-list-item #{process.link eq cc.attrs.highlightedProcessStartLink ? 'highlighted-item' : ''} #{isExpressWorkflow ? 'express-workflow' : ''}"
-									style="#{cc.attrs.processCardStyleClass}" rendered="#{!processWidgetBean.editMode}">
-									<p:link id="external-process-item" href="#{process.link}" target="_blank" rendered="#{isExternalProcess}"
-										styleClass="external-process-item #{cc.attrs.processCardStyle} process-start-list-item-wrapper js-process-start-list-item"
-										style="#{cc.attrs.processCardStyleClass}">
-										<ui:include src="ProcessItem.xhtml">
-											<ui:param name="processType" value="external-process-item" />
-										</ui:include>
-									</p:link>
-									<p:commandLink id="process-item" actionListener="#{logic.startProcess(process.link)}" target="_self"
-										styleClass="process-item" rendered="#{!isExternalProcess}">
-										<ui:include src="ProcessItem.xhtml">
-											<ui:param name="processType" value="process-item" />
-										</ui:include>
-									</p:commandLink>
-									<h:panelGroup>
-										<ui:include src="ProcessItemActions.xhtml">
-											<ui:param name="processType" value="#{isExternalProcess ? 'external-process' : 'process'}" />
-											<ui:param name="canShowExpressActions" value="#{isExpressWorkflow}" />
-										</ui:include>
-									</h:panelGroup>
-								</h:form>
-							</ui:repeat>
-						</h:panelGroup>
-					</p:fieldset>
+	                  <h:panelGroup id="none-express-process-container" layout="block" styleClass="process-start-list">
+	                  <ui:repeat id="none-express-processes" varStatus="status" var="process" value="#{entryProcess.value}">
+						<c:set var="isExternalProcess"
+								value="#{!(fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}" />
+						<h:form id="process-item-form"
+							styleClass="#{cc.attrs.processCardStyle} process-start-list-item-wrapper js-process-start-list-item process-start-list-item #{process.link eq cc.attrs.highlightedProcessStartLink ? 'highlighted-item' : ''}"
+							style="#{cc.attrs.processCardStyleClass}" rendered="#{!processWidgetBean.editMode}">
+							<p:link id="external-process-item" href="#{process.link}" target="_blank" rendered="#{isExternalProcess}"
+								styleClass="external-process-item #{cc.attrs.processCardStyle} process-start-list-item-wrapper js-process-start-list-item"
+								style="#{cc.attrs.processCardStyleClass}">
+								<ui:include src="ProcessItem.xhtml">
+									<ui:param name="renderIcon" value="false"></ui:param>
+									<ui:param name="processType" value="external-process-item" />
+								</ui:include>
+							</p:link>
+							<p:commandLink id="process-item" actionListener="#{logic.startProcess(process.link)}" target="_self"
+								styleClass="process-item" rendered="#{!isExternalProcess}">
+								<ui:include src="ProcessItem.xhtml">
+									<ui:param name="renderIcon" value="false"></ui:param>
+									<ui:param name="processType" value="process-item" />
+								</ui:include>
+							</p:commandLink>
+							<h:panelGroup>
+								<ui:include src="ProcessItemActions.xhtml">
+									<ui:param name="processType" value="#{isExternalProcess ? 'external-process' : 'process'}" />
+									<ui:param name="canShowExpressActions" value="#{isExpressWorkflow}" />
+								</ui:include>
+							</h:panelGroup>
+						</h:form>
+						</ui:repeat>
+	                  </h:panelGroup>
+	                </p:fieldset>
 				</ui:repeat>
 			</ui:fragment>
 		</h:panelGroup>
@@ -215,12 +241,14 @@
 						styleClass="external-process-item #{cc.attrs.processCardStyle} process-start-list-item-wrapper js-process-start-list-item"
 						style="#{cc.attrs.processCardStyleClass}">
 						<ui:include src="ProcessItem.xhtml">
+							<ui:param name="renderIcon" value="true"></ui:param>
 							<ui:param name="processType" value="external-process-item" />
 						</ui:include>
 					</p:link>
 					<p:commandLink id="process-item" actionListener="#{logic.startProcess(process.link)}" target="_self"
 						styleClass="process-item" rendered="#{!isExternalProcess}">
 						<ui:include src="ProcessItem.xhtml">
+							<ui:param name="renderIcon" value="true"></ui:param>
 							<ui:param name="processType" value="process-item" />
 						</ui:include>
 					</p:commandLink>
