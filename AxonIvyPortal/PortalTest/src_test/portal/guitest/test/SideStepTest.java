@@ -64,6 +64,7 @@ public class SideStepTest extends BaseTest {
     assertEquals(taskWidgetPage.getNameOfTaskAt(0), TASK_NAME);
   }
   
+  @Test
   public void testSideStepInCaseList() {
     HomePage homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
