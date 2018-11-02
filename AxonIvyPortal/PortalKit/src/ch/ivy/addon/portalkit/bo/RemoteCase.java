@@ -731,7 +731,7 @@ public class RemoteCase {
     this.canUploadDeleteDocument = canUploadDeleteDocument;
   }
 
-  public boolean isHasSideSteps() {
+  public boolean getHasSideSteps() {
     return hasSideSteps;
   }
 
