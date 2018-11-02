@@ -5334,3 +5334,26 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 .search-icon-input::-ms-clear {
   display: none;
 }
+
+/*********** MOBILE ***********/
+.mobile-logout-item {
+  font-size: 2.5rem;
+}
+
+.mobile-menu {
+  height: 2.5rem;
+  border-style: solid;
+  border-width: 1px 0 1px 0;
+  display: flex;
+}
+
+.mobile-menu-item {
+  flex-basis: 100%;
+  font-size: 1.5rem;
+  color: black !important;
+}
+
+a.mobile-menu-item:not(:last-child) {
+  border-style: solid;
+  border-width: 0 1px 0 0;
+}
