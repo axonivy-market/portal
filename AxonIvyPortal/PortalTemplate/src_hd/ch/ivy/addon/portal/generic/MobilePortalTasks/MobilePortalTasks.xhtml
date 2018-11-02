@@ -4,7 +4,8 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile"
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:body>
-  <ui:composition template="/layouts/MobileBasicTemplate.xhtml">
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:param name="currentPage" value="#{navigatorBean.taskPage}" />
   </ui:composition>
 </h:body>
 </html>
