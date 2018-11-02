@@ -2596,17 +2596,32 @@ a.compact-task-start-link:hover {
   margin-right: 20px;
 }
 
-.task-start-info-header, .task-start-info-footer {
+.task-start-info-header {
   font-size: 1.2rem;
-  color: rgba(0,0,0,.3);
+  font-weight: bold;
+  color: rgba(0,0,0,1);
   display: block;
+}
+
+.task-start-info-content, .task-start-info-footer {
+  font-size: 1.2rem;
+  color: rgba(0,0,0,1);
+  display: inline-block;
+  width: 100%;
+}
+
+.task-start-info-task-state {
+	float: left;
+	box-sizing: border-box;
+ 	width: 30%;
+}
+
+.task-start-info-task-date {
+	box-sizing: border-box;
 }
 
 .task-start-info-content {
   margin: .4rem 0;
-  font-size: 1.2rem;
-  color: rgba(0,0,0,1);
-  display: block;
 }
 
 .task-start-info {
