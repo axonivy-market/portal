@@ -27,6 +27,7 @@
   <c:set var="active" value="#{caseWidgetBean.expandedCaseId == -1 and cc.attrs.initialActive}" />
   <c:set var="expanded" value="#{caseItem.id eq caseWidgetBean.expandedCaseId or active}" />
   <c:set var="alwaysShowDetails" value="#{cc.attrs.alwaysShowDetails}" />
+  <c:set var="renderDestroyAction" value="#{case.canDestroy and case.state ne 'DONE' and cc.attrs.canDestroyCase}" />
 
   <div id="#{cc.clientId}"
     class="js-case-item case-list-item #{expanded ? 'case-list-item-expanded show-case-details-mode' : ''} case-list-item-position #{cc.attrs.itemStyleClass} ">
@@ -48,7 +49,7 @@
       <h:panelGroup layout="block" styleClass="case-header-action-cell" rendered="#{cc.attrs.enableCaseAction}">
         <h:panelGroup layout="block" styleClass="action-cell-container">
           <p:commandLink id="destroy-case"
-            rendered="#{case.canDestroy and case.state ne 'DONE' and cc.attrs.canDestroyCase}"
+            rendered="#{renderDestroyAction}"
             update="#{cc.attrs.update}" actionListener="#{caseWidgetBean.setSelectedCase(case)}"
             styleClass="case-destroy-command case-command" process="@this" oncomplete="#{cc.attrs.onDestroyComplete}">
             <span class="action-icon fa fa-remove" />
@@ -56,7 +57,7 @@
           </p:commandLink>
 
           <p:commandLink id="case-side-steps-menu" onstart="event.stopPropagation();"
-            styleClass="case-command side-step #{not case.hasSideSteps ? 'u-invisibility' : ''}" 
+            styleClass="case-command side-step #{not renderDestroyAction ? 'no-label' : ''} #{not case.hasSideSteps ? 'u-invisibility' : ''}" 
             global="false" actionListener="#{logic.collectSideSteps(case)}"
             oncomplete="PF('side-steps-panel-#{rowIndex}').loadContents();">
             <span class="action-icon tmi-ellipsis-v side-step-icon" />
