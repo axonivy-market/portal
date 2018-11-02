@@ -5353,7 +5353,16 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   color: black !important;
 }
 
-a.mobile-menu-item:not(:last-child) {
+a.mobile-menu-item.mobile-task-menu-item {
   border-style: solid;
   border-width: 0 1px 0 0;
+}
+
+a.mobile-menu-item.mobile-process-menu-item {
+  border-style: solid;
+  border-width: 0;
+}
+
+.task #mobile-menu .mobile-task-menu-item, .process #mobile-menu .mobile-process-menu-item {
+  border-bottom-width: 2px;
 }
