@@ -64,6 +64,11 @@
 					<link xlink:href="http://developer.axonivy.com/doc/latest/EngineGuideHtml/administration.html#administration-deployment">project deployment</link>
 					.
 				</para>
+				<important>
+                  <itemizedlist>
+                    <listitem>Portal Connector is already part of Ivy engine, only import it to your designer, NEVER install it to your application on Ivy engine. Doing it causes malfunction and unexpected behavior.</listitem>                    
+                  </itemizedlist>
+                </important>
 			</para>
 		</sect2>
 		<sect2>
