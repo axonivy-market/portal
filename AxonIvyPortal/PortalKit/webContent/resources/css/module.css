@@ -1955,6 +1955,10 @@ a.case-details-document-add-link {
   position: absolute;
 }
 
+.case-command.side-step.no-label {
+  top: 2rem;
+}
+
 .case-description-inplace {
   width: 100%;
 }
