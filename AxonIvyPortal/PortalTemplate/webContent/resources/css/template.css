@@ -697,8 +697,24 @@
 	width: 270px;
 }
 
+@media (max-width: 1023px) {
+  .topbar-container {
+    padding-top: 0 !important;
+    height: auto !important;
+  }
+  
+  #top-menu {
+    width: auto;
+    opacity: inherit;
+    display: inherit;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: inherit;
+  }
+}
+
 /* Small screen */
-@media ( max-width : 1365px) {
+@media ( min-width : 1024px) and ( max-width : 1365px) {
 	.dashboard-container, .simple-container {
 		width: 880px;
 		padding-left: 40px;
