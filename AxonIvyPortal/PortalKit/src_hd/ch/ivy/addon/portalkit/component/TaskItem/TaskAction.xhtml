@@ -41,8 +41,7 @@
         <h:outputText rendered="#{data.isShowTaskButtonLabels}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/openRequest')}" />
       </p:commandLink>
-      <p:commandLink id="task-side-steps-menu" onstart="event.stopPropagation();" global="false"
-        styleClass="task-command side-step #{not task.hasMoreActions ? 'u-invisibility' : ''} #{data.isShowTaskButtonLabels? 'side-step-position' : ''}" 
+      <p:commandLink id="task-side-steps-menu" onstart="event.stopPropagation();" styleClass="task-command side-step #{data.isShowTaskButtonLabels? 'side-step-position' : ''}" global="false" disabled="#{not task.hasMoreActions}"
         actionListener="#{logic.collectSideSteps(task)}" oncomplete="PF('side-steps-panel-#{rowIndex}').loadContents();">
       	 <span class="action-icon tmi-ellipsis-v side-step-icon" />
       </p:commandLink>
@@ -55,8 +54,8 @@
         </ui:repeat>
       </p:overlayPanel>
       
-   	  <p:tooltip for="task-side-steps-menu" styleClass="task-command-tooltip" rendered="#{task.hasMoreActions}"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" />
+   	  <p:tooltip for="task-side-steps-menu" styleClass="task-command-tooltip" 
+        value="#{task.hasMoreActions ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more'): ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/noMoreActions')}" />
     </div>
   </div>
 </ui:composition>

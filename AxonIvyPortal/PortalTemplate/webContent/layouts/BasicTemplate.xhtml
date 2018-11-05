@@ -67,50 +67,42 @@
         listener="#{facesContext.externalContext.response.setHeader('Cache-Control', 'no-cache, no-store')}" />
       <f:event listener="#{menuStateBean.initMenuState(menuState)}" type="preRenderView" />
 
-      <ui:fragment rendered="#{deviceBean.mobile}">
-        <div class="topbar-container #{currentPage}">
-          <ui:include src="/layouts/includes/mobileTopbar.xhtml" />
+      <div class="topbar-container">
+        <ui:include src="/layouts/includes/topbar.xhtml">
+          <ui:param name="isWorkingOnATask" value="#{isWorkingOnATask}" />
+          <ui:param name="isNotRequiredLogin" value="#{isNotRequiredLogin}" />
+          <ui:param name="hasMainMenu" value="#{empty hasMainMenu ? true : hasMainMenu}" />
+          <ui:param name="showGlobalSearch" value="#{empty portalValidationBean.errorMessages}" />
+          <ui:param name="enablesChat" value="#{enablesChat}" />
+        </ui:include>
+        <div class="color-header">
+          <div class="first-header-bar" />
+          <div class="second-header-bar" />
+          <div class="third-header-bar" />
         </div>
-      </ui:fragment>
+      </div>
 
-      <ui:fragment rendered="#{not deviceBean.mobile}">
-        <div class="topbar-container">
-          <ui:include src="/layouts/includes/topbar.xhtml">
-            <ui:param name="isWorkingOnATask" value="#{isWorkingOnATask}" />
-            <ui:param name="isNotRequiredLogin" value="#{isNotRequiredLogin}" />
-            <ui:param name="hasMainMenu" value="#{empty hasMainMenu ? true : hasMainMenu}" />
-            <ui:param name="showGlobalSearch" value="#{empty portalValidationBean.errorMessages}" />
-            <ui:param name="enablesChat" value="#{enablesChat}" />
-          </ui:include>
-          <div class="color-header">
-            <div class="first-header-bar" />
-            <div class="second-header-bar" />
-            <div class="third-header-bar" />
-          </div>
+
+      <div class="left-sidebar-container u-invisibility" id="left-menu">
+        <h:outputText id="output-menu-state-info" value="#{menuStateBean.menuState}" styleClass="hide" />
+        <div id="app-menu-panel"
+          class="left-sidebar js-left-sidebar u-shadow-effect left-sidebar-color left-sidebar-animation">
+          <c:choose>
+            <c:when test="#{isNotRequiredLogin}">
+              <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu
+                onClickTaskMenuItemCallback="SecondLevelMenu.show(true);" startMethod="StartNotRequiredLogin"
+                id="user-menu-without-login" />
+            </c:when>
+            <c:otherwise>
+              <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu menuState="#{menuState}"
+                onClickTaskMenuItemCallback="SecondLevelMenu.show(true);" isWorkingOnATask="#{isWorkingOnATask}"
+                id="user-menu-required-login" />
+            </c:otherwise>
+          </c:choose>
         </div>
-  
-  
-        <div class="left-sidebar-container u-invisibility #{currentPage}" id="left-menu">
-          <h:outputText id="output-menu-state-info" value="#{menuStateBean.menuState}" styleClass="hide" />
-          <div id="app-menu-panel"
-            class="left-sidebar js-left-sidebar u-shadow-effect left-sidebar-color left-sidebar-animation">
-            <c:choose>
-              <c:when test="#{isNotRequiredLogin}">
-                <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu
-                  onClickTaskMenuItemCallback="SecondLevelMenu.show(true);" startMethod="StartNotRequiredLogin"
-                  id="user-menu-without-login" />
-              </c:when>
-              <c:otherwise>
-                <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu menuState="#{menuState}"
-                  onClickTaskMenuItemCallback="SecondLevelMenu.show(true);" isWorkingOnATask="#{isWorkingOnATask}"
-                  id="user-menu-required-login" />
-              </c:otherwise>
-            </c:choose>
-          </div>
-  
-          <ui:insert name="secondLevelMenu" />
-        </div>
-      </ui:fragment>
+
+        <ui:insert name="secondLevelMenu" />
+      </div>
 
       <ui:fragment rendered="#{empty portalValidationBean.errorMessages}">
         <div class="container #{showMainArea eq true ? '' : 'u-invisibility'}" id="main-area-panel">
@@ -145,19 +137,16 @@
   <ic:ch.ivy.addon.portalkit.component.GlobalAjaxStatus id="ajax-indicator" />
 
   <ui:insert name="css" />
-  
-  <ui:fragment rendered="#{not deviceBean.mobile}">
-    <ui:insert name="footer">
-      <script type="text/javascript">
-        $(function() {
-          var simpleLargeScreen = new SimpleLargeScreen();
-          var simpleMediumScreen = new SimpleMediumScreen();
-          var simpleSmallScreen = new SimpleSmallScreen();
-          var responsiveToolkit = ResponsiveToolkit(simpleLargeScreen, simpleMediumScreen, simpleSmallScreen);
-          Portal.init(responsiveToolkit);
-        });
-      </script>
-    </ui:insert>
-  </ui:fragment>
+  <ui:insert name="footer">
+    <script type="text/javascript">
+      $(function() {
+        var simpleLargeScreen = new SimpleLargeScreen();
+        var simpleMediumScreen = new SimpleMediumScreen();
+        var simpleSmallScreen = new SimpleSmallScreen();
+        var responsiveToolkit = ResponsiveToolkit(simpleLargeScreen, simpleMediumScreen, simpleSmallScreen);
+        Portal.init(responsiveToolkit);
+      });
+    </script>
+  </ui:insert>
 </h:body>
 </html>

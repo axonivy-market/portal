@@ -89,7 +89,6 @@ public class RemoteCase {
   private boolean canChangeName;
   private boolean isBusinessCase;
   private boolean canUploadDeleteDocument;
-  private boolean hasSideSteps;
   
   private String serverUrl;
 
@@ -729,14 +728,6 @@ public class RemoteCase {
 
   public void setCanUploadDeleteDocument(boolean canUploadDeleteDocument) {
     this.canUploadDeleteDocument = canUploadDeleteDocument;
-  }
-
-  public boolean getHasSideSteps() {
-    return hasSideSteps;
-  }
-
-  public void setHasSideSteps(boolean hasSideSteps) {
-    this.hasSideSteps = hasSideSteps;
   }
 
   public String getCategoryName() {

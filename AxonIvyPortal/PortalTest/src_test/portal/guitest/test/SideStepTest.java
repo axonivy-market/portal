@@ -7,10 +7,8 @@ import org.junit.Test;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdhocPage;
-import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
-import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 
@@ -62,15 +60,5 @@ public class SideStepTest extends BaseTest {
     taskWidgetPage = adhocPage.send();
     assertTrue(taskWidgetPage.countTasks() == 1);
     assertEquals(taskWidgetPage.getNameOfTaskAt(0), TASK_NAME);
-  }
-  
-  @Test
-  public void testSideStepInCaseList() {
-    HomePage homePage = new HomePage();
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
-    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
-    casePage.openSideStepPopup(0);
-    int sideSteps = casePage.countSideStepItems(0);
-    assertEquals(2, sideSteps);
   }
 }
