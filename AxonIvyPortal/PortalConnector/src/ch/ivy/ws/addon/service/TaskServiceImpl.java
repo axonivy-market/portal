@@ -339,17 +339,12 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   }
 
   private boolean hasMoreActions(ITask task, String userName) {
-    boolean isOpenTask = Stream.of(SUSPENDED, RESUMED, PARKED).anyMatch(state -> state.equals(task.getState()));
-    if (!isOpenTask) {
-      return false;
-    }
-    
     boolean isAdmin = SessionUtil.doesUserHavePermission(task.getApplication(), userName, IPermission.TASK_READ_ALL);
+    boolean isOpenTask = Stream.of(SUSPENDED, RESUMED, PARKED).anyMatch(state -> state.equals(task.getState()));
     boolean canUserResumeTask = canUserResumeTask(userName, task);
-    boolean isAdhocIncluded = isAdmin || canUserResumeTask;
-    IUser user = findUser(userName, task);
+    boolean isAdhocIncluded = (isAdmin && isOpenTask) || canUserResumeTask;
     SideStepServiceImpl sideStepService = new SideStepServiceImpl();
-    return sideStepService.hasSideSteps(task.getCase(), isAdhocIncluded, user);
+    return sideStepService.hasSideSteps(task.getCase(), isAdhocIncluded);
   }
 
   @Override

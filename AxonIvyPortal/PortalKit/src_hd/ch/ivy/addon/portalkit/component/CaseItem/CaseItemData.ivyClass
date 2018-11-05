@@ -4,7 +4,3 @@ remoteCase ch.ivy.addon.portalkit.bo.RemoteCase #field
 remoteCase PERSISTENT #fieldModifier
 ivyCase ch.ivy.ws.addon.IvyCase #field
 ivyCase PERSISTENT #fieldModifier
-sideStepSearchCriteria ch.ivy.ws.addon.SideStepSearchCriteria #field
-sideStepSearchCriteria PERSISTENT #fieldModifier
-sideSteps java.util.List<ch.ivy.addon.portalkit.bo.RemoteSideStep> #field
-sideSteps PERSISTENT #fieldModifier

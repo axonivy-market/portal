@@ -100,7 +100,6 @@ public class RemoteCaseMapper {
     result.setBusinessCase(ivyCase.getIsBusinessCase());
     result.setServerUrl(ivyCase.getServerUrl());
     result.setCanUploadDeleteDocument(ivyCase.getCanUploadDeleteDocument());
-    result.setHasSideSteps(ivyCase.getHasSideSteps());
 
     result.setCategoryName(ivyCase.getCategoryName());
     result.setCategoryPath(ivyCase.getCategoryPath());
