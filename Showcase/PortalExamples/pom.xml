@@ -18,7 +18,7 @@
   </distributionManagement>
   <properties>
     <ivy.engine.version>7.0.0</ivy.engine.version>
-    <build.plugin.version>7.2.0-SNAPSHOT</build.plugin.version>
+    <build.plugin.version>7.2.0</build.plugin.version>
     <scm.revision>${GIT_COMMIT}</scm.revision>
   </properties>
   <dependencies>
