@@ -72,18 +72,47 @@ Ps0 f4 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskListCallback.PortalTask
 ' #txt
 Ps0 f4 actionTable 'out=in;
 ' #txt
-Ps0 f4 actionCode 'import javax.faces.context.FacesContext;
-FacesContext.getCurrentInstance().getExternalContext().redirect(java.net.URLDecoder.decode(in.callbackUrl, "UTF-8"));' #txt
+Ps0 f4 actionCode 'import org.apache.commons.lang3.StringUtils;
+import javax.faces.context.ExternalContext;
+import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import ch.ivyteam.ivy.request.OpenRedirectVulnerabilityUtil;
+import java.net.URLDecoder;
+
+HttpServletRequest request = null;
+ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+if (context != null){
+	request = context.getRequest() as HttpServletRequest;
+}
+
+String url = URLDecoder.decode(in.callbackUrl, "UTF-8");
+
+if (request != null && StringUtils.isNotBlank(url) && OpenRedirectVulnerabilityUtil.isValid(url, request)){
+	context.redirect(url);
+} else {
+	PortalNavigator navigator = new PortalNavigator();
+	navigator.navigateToPortalHome();
+}' #txt
 Ps0 f4 type ch.ivy.addon.portal.generic.PortalTaskListCallback.PortalTaskListCallbackData #txt
-Ps0 f4 168 138 112 44 0 -8 #rect
+Ps0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>check url and redirect</name>
+        <nameStyle>22
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f4 160 138 128 44 -58 -8 #rect
 Ps0 f4 @|StepIcon #fIcon
 Ps0 f5 expr out #txt
-Ps0 f5 109 160 168 160 #arcP
+Ps0 f5 109 160 160 160 #arcP
 Ps0 f6 type ch.ivy.addon.portal.generic.PortalTaskListCallback.PortalTaskListCallbackData #txt
 Ps0 f6 339 147 26 26 0 12 #rect
 Ps0 f6 @|RichDialogProcessEndIcon #fIcon
 Ps0 f7 expr out #txt
-Ps0 f7 280 160 339 160 #arcP
+Ps0 f7 288 160 339 160 #arcP
 >Proto Ps0 .type ch.ivy.addon.portal.generic.PortalTaskListCallback.PortalTaskListCallbackData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect

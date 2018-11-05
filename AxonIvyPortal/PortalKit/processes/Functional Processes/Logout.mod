@@ -47,7 +47,7 @@ Lt0 f3 actionCode 'if (in.isTaskReserve) {
 	ivy.session.parkTask(ivy.task);
 }
 ivy.session.logoutSessionUser();
-ivy.session.getSecurityContext().destroySession(ivy.session.getIdentifier());' #txt
+' #txt
 Lt0 f3 security system #txt
 Lt0 f3 type ch.ivy.add.portalkit.LogoutData #txt
 Lt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

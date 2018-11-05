@@ -105,6 +105,10 @@ public final class PortalNavigator {
   public void navigateToPortalStatistic() throws Exception {
     navigateByKeyword("startPortalStatistic.ivp", PORTAL_STATISTIC);
   }
+  
+  public void navigateToPortalHome() throws Exception {
+    navigateByKeyword("PortalStart.ivp", PORTAL_PROCESS_START_NAME);
+  }
 
   private void navigateByKeyword(String keyword, String defaultFriendlyRequestPath) throws Exception {
     String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword(keyword);
