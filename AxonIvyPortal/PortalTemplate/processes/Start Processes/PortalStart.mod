@@ -101,13 +101,13 @@ Pt0 @Alternative f42 '' #zField
 Pt0 @PushWFArc f88 '' #zField
 Pt0 @PushWFArc f89 '' #zField
 Pt0 @RichDialog f90 '' #zField
-Pt0 @GridStep f92 '' #zField
-Pt0 @PushWFArc f93 '' #zField
 Pt0 @Alternative f94 '' #zField
-Pt0 @PushWFArc f95 '' #zField
 Pt0 @PushWFArc f91 '' #zField
 Pt0 @RichDialog f96 '' #zField
 Pt0 @PushWFArc f97 '' #zField
+Pt0 @CallSub f81 '' #zField
+Pt0 @PushWFArc f83 '' #zField
+Pt0 @PushWFArc f85 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Pt0 f0 outLink PortalStart.ivp #txt
 Pt0 f0 type ch.ivy.addon.portal.generic.PortalStartData #txt
@@ -1342,32 +1342,6 @@ Pt0 f90 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f90 968 330 112 44 -40 -8 #rect
 Pt0 f90 @|RichDialogIcon #fIcon
-Pt0 f92 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
-' #txt
-Pt0 f92 actionTable 'out=in;
-' #txt
-Pt0 f92 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pt0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Get default start link</name>
-    </language>
-</elementInfo>
-' #txt
-Pt0 f92 744 234 112 44 -53 -8 #rect
-Pt0 f92 @|StepIcon #fIcon
-Pt0 f93 expr in #txt
-Pt0 f93 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>YES</name>
-        <nameStyle>3
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Pt0 f93 800 176 800 234 #arcP
-Pt0 f93 0 0.46551724137931033 -18 0 #arcLabel
 Pt0 f94 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f94 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1378,9 +1352,8 @@ Pt0 f94 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f94 784 336 32 32 -72 -20 #rect
 Pt0 f94 @|AlternativeIcon #fIcon
-Pt0 f95 expr out #txt
-Pt0 f95 800 278 800 336 #arcP
 Pt0 f91 expr in #txt
+Pt0 f91 outCond 'in.defaultMobilePage == ch.ivy.addon.portalkit.enums.MenuKind.TASK' #txt
 Pt0 f91 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1394,7 +1367,7 @@ Pt0 f91 816 352 968 352 #arcP
 Pt0 f91 0 0.39473684210526316 0 -13 #arcLabel
 Pt0 f96 targetWindow NEW #txt
 Pt0 f96 targetDisplay TOP #txt
-Pt0 f96 richDialogId ch.ivy.addon.portal.generic.MobilePortalTasks #txt
+Pt0 f96 richDialogId ch.ivy.addon.portal.generic.MobilePortalProcesses #txt
 Pt0 f96 startMethod start() #txt
 Pt0 f96 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f96 requestActionDecl '<> param;' #txt
@@ -1427,6 +1400,39 @@ Pt0 f97 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f97 800 368 968 448 #arcP
 Pt0 f97 1 800 448 #addKink
 Pt0 f97 1 0.44642857142857145 0 -13 #arcLabel
+Pt0 f81 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f81 processCall 'Functional Processes/MobileDefaultPage:call()' #txt
+Pt0 f81 doCall true #txt
+Pt0 f81 requestActionDecl '<> param;
+' #txt
+Pt0 f81 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
+' #txt
+Pt0 f81 responseMappingAction 'out=in;
+out.defaultMobilePage=result.page;
+' #txt
+Pt0 f81 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>MobileDefaultPage</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f81 744 234 112 44 -52 -8 #rect
+Pt0 f81 @|CallSubIcon #fIcon
+Pt0 f83 expr in #txt
+Pt0 f83 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>YES</name>
+        <nameStyle>3
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f83 800 176 800 234 #arcP
+Pt0 f83 0 0.46551724137931033 -18 0 #arcLabel
+Pt0 f85 expr out #txt
+Pt0 f85 800 278 800 336 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1515,11 +1521,11 @@ Pt0 f86 mainOut f88 tail #connect
 Pt0 f88 head f42 in #connect
 Pt0 f42 out f89 tail #connect
 Pt0 f89 head f41 in #connect
-Pt0 f42 out f93 tail #connect
-Pt0 f93 head f92 mainIn #connect
-Pt0 f92 mainOut f95 tail #connect
-Pt0 f95 head f94 in #connect
 Pt0 f94 out f91 tail #connect
 Pt0 f91 head f90 mainIn #connect
 Pt0 f94 out f97 tail #connect
 Pt0 f97 head f96 mainIn #connect
+Pt0 f42 out f83 tail #connect
+Pt0 f83 head f81 mainIn #connect
+Pt0 f81 mainOut f85 tail #connect
+Pt0 f85 head f94 in #connect
