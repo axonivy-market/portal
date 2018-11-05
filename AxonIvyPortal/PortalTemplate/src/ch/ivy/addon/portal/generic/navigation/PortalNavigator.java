@@ -110,6 +110,10 @@ public final class PortalNavigator {
     navigateByKeyword("startPortalStatistic.ivp", PORTAL_STATISTIC);
   }
   
+  public void navigateToPortalHome() throws Exception {
+    navigateByKeyword("PortalStart.ivp", PORTAL_PROCESS_START_NAME);
+  }
+  
   public void navigateToMobilePortalProcess() throws MalformedURLException {
     navigate(PORTAL_PROCESS, StringUtils.EMPTY);
   }

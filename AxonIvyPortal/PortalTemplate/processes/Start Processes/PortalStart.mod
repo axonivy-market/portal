@@ -23,11 +23,9 @@ Pt0 @PushWFArc f7 '' #zField
 Pt0 @GridStep f3 '' #zField
 Pt0 @Alternative f30 '' #zField
 Pt0 @RichDialog f33 '' #zField
-Pt0 @EndTask f27 '' #zField
 Pt0 @StartRequest f10 '' #zField
 Pt0 @GridStep f11 '' #zField
 Pt0 @PushWFArc f34 '' #zField
-Pt0 @PushWFArc f29 '' #zField
 Pt0 @PushWFArc f15 '' #zField
 Pt0 @CallSub f12 '' #zField
 Pt0 @GridStep f22 '' #zField
@@ -58,7 +56,6 @@ Pt0 @PushWFArc f50 '' #zField
 Pt0 @StartRequest f28 '' #zField
 Pt0 @PushWFArc f46 '' #zField
 Pt0 @StartRequest f31 '' #zField
-Pt0 @PushWFArc f47 '' #zField
 Pt0 @GridStep f52 '' #zField
 Pt0 @PushWFArc f53 '' #zField
 Pt0 @PushWFArc f56 '' #zField
@@ -108,6 +105,11 @@ Pt0 @PushWFArc f97 '' #zField
 Pt0 @CallSub f81 '' #zField
 Pt0 @PushWFArc f83 '' #zField
 Pt0 @PushWFArc f85 '' #zField
+Pt0 @GridStep f92 '' #zField
+Pt0 @GridStep f93 '' #zField
+Pt0 @PushWFArc f95 '' #zField
+Pt0 @PushWFArc f98 '' #zField
+Pt0 @PushWFArc f47 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Pt0 f0 outLink PortalStart.ivp #txt
 Pt0 f0 type ch.ivy.addon.portal.generic.PortalStartData #txt
@@ -147,7 +149,7 @@ Pt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f0 @C|.responsibility Everybody #txt
-Pt0 f0 53 147 26 26 -31 17 #rect
+Pt0 f0 51 147 26 26 -31 17 #rect
 Pt0 f0 @|StartRequestIcon #fIcon
 Pt0 f20 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
@@ -207,7 +209,7 @@ Pt0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f25 @C|.responsibility Everybody #txt
-Pt0 f25 51 241 30 30 -49 15 #rect
+Pt0 f25 49 241 30 30 -49 15 #rect
 Pt0 f25 @|StartRequestIcon #fIcon
 Pt0 f2 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
@@ -246,18 +248,18 @@ list''s configuration</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f2 148 234 128 44 -44 -16 #rect
+Pt0 f2 152 234 128 44 -44 -16 #rect
 Pt0 f2 @|StepIcon #fIcon
 Pt0 f1 expr out #txt
-Pt0 f1 81 256 148 256 #arcP
+Pt0 f1 79 256 152 256 #arcP
 Pt0 f4 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f4 544 144 32 32 0 16 #rect
 Pt0 f4 @|AlternativeIcon #fIcon
 Pt0 f5 expr out #txt
 Pt0 f5 456 160 544 160 #arcP
 Pt0 f7 expr out #txt
-Pt0 f7 276 256 549 165 #arcP
-Pt0 f7 1 320 256 #addKink
+Pt0 f7 280 256 555 171 #arcP
+Pt0 f7 1 512 256 #addKink
 Pt0 f7 0 0.7634111543228898 0 0 #arcLabel
 Pt0 f3 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
@@ -287,7 +289,7 @@ Pt0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f30 368 433 32 32 27 -7 #rect
+Pt0 f30 544 433 32 32 27 -7 #rect
 Pt0 f30 @|AlternativeIcon #fIcon
 Pt0 f33 targetWindow NEW #txt
 Pt0 f33 targetDisplay TOP #txt
@@ -314,11 +316,8 @@ callbackUrl</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f33 328 555 112 44 -30 -16 #rect
+Pt0 f33 504 523 112 44 -30 -16 #rect
 Pt0 f33 @|RichDialogIcon #fIcon
-Pt0 f27 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pt0 f27 501 562 30 30 0 15 #rect
-Pt0 f27 @|EndIcon #fIcon
 Pt0 f10 outLink DefaultEndPage.ivp #txt
 Pt0 f10 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f10 inParamDecl '<java.lang.Number endedTaskId> param;' #txt
@@ -349,7 +348,7 @@ Pt0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f10 @C|.responsibility Everybody #txt
-Pt0 f10 53 436 26 26 -46 17 #rect
+Pt0 f10 51 436 26 26 -46 17 #rect
 Pt0 f10 @|StartRequestIcon #fIcon
 Pt0 f11 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
@@ -390,7 +389,7 @@ Pt0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f11 156 427 112 44 -47 -8 #rect
+Pt0 f11 160 427 112 44 -47 -8 #rect
 Pt0 f11 @|StepIcon #fIcon
 Pt0 f34 expr in #txt
 Pt0 f34 outCond 'org.apache.commons.lang3.StringUtils.isNotBlank(in.#callbackUrl)' #txt
@@ -403,13 +402,10 @@ Pt0 f34 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f34 384 465 384 555 #arcP
-Pt0 f34 0 0.3793103448275862 13 -1 #arcLabel
-Pt0 f29 expr out #txt
-Pt0 f29 440 577 501 577 #arcP
-Pt0 f29 0 0.2732919254658385 -1 -8 #arcLabel
+Pt0 f34 560 465 560 523 #arcP
+Pt0 f34 0 0.3793103448275862 14 3 #arcLabel
 Pt0 f15 expr in #txt
-Pt0 f15 390 439 554 170 #arcP
+Pt0 f15 560 433 560 176 #arcP
 Pt0 f15 0 0.4763694877411137 0 0 #arcLabel
 Pt0 f12 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f12 processCall 'Functional Processes/OpenPortalTasks:useView(ch.ivy.addon.portal.generic.view.TaskView)' #txt
@@ -429,7 +425,7 @@ Pt0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f12 1852 520 104 48 -46 -6 #rect
+Pt0 f12 1900 424 104 48 -46 -6 #rect
 Pt0 f12 @|CallSubIcon #fIcon
 Pt0 f22 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
@@ -450,7 +446,7 @@ list''s configuration</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f22 1678 148 36 24 20 -2 #rect
+Pt0 f22 1688 136 112 48 -45 -17 #rect
 Pt0 f22 @|StepIcon #fIcon
 Pt0 f13 targetWindow NEW:card: #txt
 Pt0 f13 targetDisplay TOP #txt
@@ -477,7 +473,7 @@ Pt0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f13 1844 136 120 48 -45 -8 #rect
+Pt0 f13 1892 136 120 48 -45 -8 #rect
 Pt0 f13 @|RichDialogIcon #fIcon
 Pt0 f17 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
@@ -508,7 +504,7 @@ Pt0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f17 1852 392 104 48 -46 -4 #rect
+Pt0 f17 1900 328 104 48 -46 -4 #rect
 Pt0 f17 @|StepIcon #fIcon
 Pt0 f18 targetWindow NEW:card: #txt
 Pt0 f18 targetDisplay TOP #txt
@@ -538,7 +534,7 @@ Pt0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f18 1648 264 96 48 -22 -8 #rect
+Pt0 f18 1696 232 96 48 -22 -8 #rect
 Pt0 f18 @|RichDialogIcon #fIcon
 Pt0 f19 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
@@ -596,7 +592,7 @@ Pt0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f19 1632 516 128 56 -43 -16 #rect
+Pt0 f19 1680 420 128 56 -43 -16 #rect
 Pt0 f19 @|StepIcon #fIcon
 Pt0 f21 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f21 1458 146 28 28 14 0 #rect
@@ -621,13 +617,13 @@ Pt0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f23 2056 392 112 48 -49 -12 #rect
+Pt0 f23 2056 328 112 48 -49 -12 #rect
 Pt0 f23 @|CallSubIcon #fIcon
 Pt0 f24 expr out #txt
-Pt0 f24 1714 160 1844 160 #arcP
+Pt0 f24 1800 160 1892 160 #arcP
 Pt0 f24 0 0.37297345905809204 -1 -17 #arcLabel
 Pt0 f26 expr out #txt
-Pt0 f26 1956 416 2056 416 #arcP
+Pt0 f26 2004 352 2056 352 #arcP
 Pt0 f32 expr in #txt
 Pt0 f32 outCond 'java.util.Objects.equals(ch.ivy.addon.portal.generic.navigation.PortalPage.HOME_PAGE, in.#portalPage) || java.util.Objects.isNull(in.#portalPage)' #txt
 Pt0 f32 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -639,7 +635,7 @@ Pt0 f32 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f32 1486 160 1678 160 #arcP
+Pt0 f32 1486 160 1688 160 #arcP
 Pt0 f32 0 0.32167832167832167 0 -9 #arcLabel
 Pt0 f36 expr in #txt
 Pt0 f36 outCond 'java.util.Objects.equals(ch.ivy.addon.portal.generic.navigation.PortalPage.ERROR_PAGE, in.#portalPage) ' #txt
@@ -652,11 +648,11 @@ Pt0 f36 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f36 1472 174 1648 288 #arcP
-Pt0 f36 1 1472 288 #addKink
+Pt0 f36 1478 168 1696 256 #arcP
+Pt0 f36 1 1536 256 #addKink
 Pt0 f36 1 0.37012987012987014 0 -13 #arcLabel
 Pt0 f39 expr out #txt
-Pt0 f39 1760 544 1852 544 #arcP
+Pt0 f39 1808 448 1900 448 #arcP
 Pt0 f39 0 0.7418894103244236 0 0 #arcLabel
 Pt0 f9 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f9 processCall 'Functional Processes/InitializeTaskDataModel:call()' #txt
@@ -677,10 +673,10 @@ Pt0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f9 984 138 144 44 -65 -8 #rect
+Pt0 f9 976 138 144 44 -65 -8 #rect
 Pt0 f9 @|CallSubIcon #fIcon
 Pt0 f8 expr out #txt
-Pt0 f8 1128 160 1176 160 #arcP
+Pt0 f8 1120 160 1176 160 #arcP
 Pt0 f41 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -705,7 +701,7 @@ Pt0 f35 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f35 912 160 984 160 #arcP
+Pt0 f35 912 160 976 160 #arcP
 Pt0 f35 0 0.4305555555555556 0 -10 #arcLabel
 Pt0 f43 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f43 1360 144 32 32 0 16 #rect
@@ -747,7 +743,7 @@ Pt0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f6 1624 394 144 44 -66 -8 #rect
+Pt0 f6 1672 330 144 44 -66 -8 #rect
 Pt0 f6 @|CallSubIcon #fIcon
 Pt0 f16 expr in #txt
 Pt0 f16 outCond 'java.util.Objects.equals(ch.ivy.addon.portal.generic.navigation.PortalPage.CASE_DETAIL_FROM_TASK, in.#portalPage)' #txt
@@ -760,16 +756,16 @@ Pt0 f16 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f16 1472 174 1624 416 #arcP
-Pt0 f16 1 1472 416 #addKink
-Pt0 f16 0 0.9563894205126596 98 5 #arcLabel
+Pt0 f16 1476 171 1672 352 #arcP
+Pt0 f16 1 1536 352 #addKink
+Pt0 f16 0 1.0 51 13 #arcLabel
 Pt0 f38 expr out #txt
-Pt0 f38 1768 416 1852 416 #arcP
+Pt0 f38 1816 352 1900 352 #arcP
 Pt0 f38 0 0.5114942528735632 0 -12 #arcLabel
 Pt0 f48 expr out #txt
-Pt0 f48 79 449 156 449 #arcP
+Pt0 f48 77 449 160 449 #arcP
 Pt0 f50 expr out #txt
-Pt0 f50 268 449 368 449 #arcP
+Pt0 f50 272 449 544 449 #arcP
 Pt0 f28 outLink DefaultApplicationHomePage.ivp #txt
 Pt0 f28 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f28 inParamDecl '<> param;' #txt
@@ -832,12 +828,8 @@ Pt0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f31 @C|.responsibility Everybody #txt
-Pt0 f31 50 337 30 30 -45 18 #rect
+Pt0 f31 49 337 30 30 -45 18 #rect
 Pt0 f31 @|StartRequestIcon #fIcon
-Pt0 f47 expr out #txt
-Pt0 f47 80 352 378 439 #arcP
-Pt0 f47 1 320 352 #addKink
-Pt0 f47 0 0.7210285984301413 0 0 #arcLabel
 Pt0 f52 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f52 actionTable 'out=in;
@@ -863,7 +855,7 @@ Pt0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f52 1648 642 112 44 -46 -8 #rect
+Pt0 f52 1688 522 112 44 -46 -8 #rect
 Pt0 f52 @|StepIcon #fIcon
 Pt0 f53 expr in #txt
 Pt0 f53 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -875,8 +867,8 @@ Pt0 f53 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f53 1472 174 1648 664 #arcP
-Pt0 f53 1 1472 664 #addKink
+Pt0 f53 1472 174 1688 544 #arcP
+Pt0 f53 1 1472 544 #addKink
 Pt0 f53 1 0.39520958083832336 0 -11 #arcLabel
 Pt0 f56 expr in #txt
 Pt0 f56 outCond 'java.util.Objects.equals(ch.ivy.addon.portal.generic.navigation.PortalPage.LINK_TO_TASK, in.#portalPage)' #txt
@@ -889,8 +881,8 @@ Pt0 f56 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f56 1472 174 1632 544 #arcP
-Pt0 f56 1 1472 544 #addKink
+Pt0 f56 1473 173 1680 448 #arcP
+Pt0 f56 1 1504 448 #addKink
 Pt0 f56 1 0.5125 0 -13 #arcLabel
 Pt0 f37 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f37 processCall 'Functional Processes/OpenPortalSearch:call(ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel,Number)' #txt
@@ -911,17 +903,18 @@ Pt0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f37 1824 642 112 44 -50 -8 #rect
+Pt0 f37 1896 522 112 44 -50 -8 #rect
 Pt0 f37 @|CallSubIcon #fIcon
 Pt0 f49 expr out #txt
-Pt0 f49 1760 664 1824 664 #arcP
+Pt0 f49 1800 544 1896 544 #arcP
 Pt0 f51 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f51 actionTable 'out=in;
 ' #txt
 Pt0 f51 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
-SecurityServiceUtils.setSessionAttribute(SessionAttribute.PORTAL_START_PMV_ID.toString(), ivy.task.getProcessModelVersion().getId());' #txt
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.PORTAL_START_PMV_ID.toString(), ivy.task.getProcessModelVersion().getId());
+' #txt
 Pt0 f51 security system #txt
 Pt0 f51 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -932,14 +925,14 @@ pmv </name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f51 128 138 128 44 -43 -16 #rect
+Pt0 f51 152 138 128 44 -43 -16 #rect
 Pt0 f51 @|StepIcon #fIcon
 Pt0 f54 expr out #txt
-Pt0 f54 79 160 128 160 #arcP
+Pt0 f54 77 160 152 160 #arcP
 Pt0 f14 expr out #txt
-Pt0 f14 256 160 312 160 #arcP
+Pt0 f14 280 160 312 160 #arcP
 Pt0 f57 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pt0 f57 747 670 30 30 0 15 #rect
+Pt0 f57 789 626 30 30 0 15 #rect
 Pt0 f57 @|EndIcon #fIcon
 Pt0 f63 outLink startPortalTask.ivp #txt
 Pt0 f63 type ch.ivy.addon.portal.generic.PortalTaskData #txt
@@ -967,7 +960,7 @@ Pt0 f63 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f63 @C|.responsibility Everybody #txt
-Pt0 f63 55 779 30 30 -50 17 #rect
+Pt0 f63 49 721 30 30 -50 17 #rect
 Pt0 f63 @|StartRequestIcon #fIcon
 Pt0 f70 outLink startPortalStatistic.ivp #txt
 Pt0 f70 type ch.ivy.addon.portal.generic.PortalStartData #txt
@@ -995,7 +988,7 @@ Pt0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f70 @C|.responsibility Everybody #txt
-Pt0 f70 55 878 30 30 -58 17 #rect
+Pt0 f70 49 818 30 30 -58 17 #rect
 Pt0 f70 @|StartRequestIcon #fIcon
 Pt0 f55 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f55 processCall 'Functional Processes/OpenPortalCases:useView(ch.ivy.addon.portal.generic.view.CaseView)' #txt
@@ -1017,10 +1010,10 @@ Pt0 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f55 514 661 112 48 -49 -12 #rect
+Pt0 f55 504 617 112 48 -49 -12 #rect
 Pt0 f55 @|CallSubIcon #fIcon
 Pt0 f64 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pt0 f64 743 779 30 30 0 15 #rect
+Pt0 f64 789 721 30 30 0 15 #rect
 Pt0 f64 @|EndIcon #fIcon
 Pt0 f76 outLink startPortalProcess.ivp #txt
 Pt0 f76 type ch.ivy.addon.portal.generic.PortalStartData #txt
@@ -1048,10 +1041,10 @@ Pt0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f76 @C|.responsibility Everybody #txt
-Pt0 f76 55 973 30 30 -60 17 #rect
+Pt0 f76 49 913 30 30 -60 17 #rect
 Pt0 f76 @|StartRequestIcon #fIcon
 Pt0 f68 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pt0 f68 354 878 30 30 0 15 #rect
+Pt0 f68 354 818 30 30 0 15 #rect
 Pt0 f68 @|EndIcon #fIcon
 Pt0 f69 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
@@ -1071,13 +1064,14 @@ Pt0 f69 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f69 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>build data model, task view</name>
-        <nameStyle>27,7
+        <name>build data model &#xD;
+and task view</name>
+        <nameStyle>32,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f69 351 782 36 24 -65 15 #rect
+Pt0 f69 312 712 112 48 -39 -16 #rect
 Pt0 f69 @|StepIcon #fIcon
 Pt0 f58 outLink startPortalCase.ivp #txt
 Pt0 f58 type ch.ivy.addon.portal.generic.PortalCaseData #txt
@@ -1105,7 +1099,7 @@ Pt0 f58 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f58 @C|.responsibility Everybody #txt
-Pt0 f58 55 670 30 30 -52 17 #rect
+Pt0 f58 49 626 30 30 -52 17 #rect
 Pt0 f58 @|StartRequestIcon #fIcon
 Pt0 f84 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f84 processCall 'Functional Processes/OpenPortalTasks:useView(ch.ivy.addon.portal.generic.view.TaskView)' #txt
@@ -1127,7 +1121,7 @@ Pt0 f84 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f84 518 774 104 40 -48 -12 #rect
+Pt0 f84 508 716 104 40 -48 -12 #rect
 Pt0 f84 @|CallSubIcon #fIcon
 Pt0 f82 targetWindow NEW:card: #txt
 Pt0 f82 targetDisplay TOP #txt
@@ -1154,7 +1148,7 @@ Pt0 f82 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f82 156 871 112 44 -21 -8 #rect
+Pt0 f82 156 811 112 44 -21 -8 #rect
 Pt0 f82 @|RichDialogIcon #fIcon
 Pt0 f74 targetWindow NEW:card: #txt
 Pt0 f74 targetDisplay TOP #txt
@@ -1181,10 +1175,10 @@ Pt0 f74 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f74 176 968 72 40 -22 -8 #rect
+Pt0 f74 164 908 104 40 -22 -8 #rect
 Pt0 f74 @|RichDialogIcon #fIcon
 Pt0 f75 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pt0 f75 354 973 30 30 0 15 #rect
+Pt0 f75 354 913 30 30 0 15 #rect
 Pt0 f75 @|EndIcon #fIcon
 Pt0 f73 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f73 processCall 'Functional Processes/InitializeTaskDataModel:call()' #txt
@@ -1205,7 +1199,7 @@ Pt0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f73 156 772 112 44 -40 -8 #rect
+Pt0 f73 156 714 112 44 -40 -8 #rect
 Pt0 f73 @|CallSubIcon #fIcon
 Pt0 f59 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
@@ -1223,13 +1217,14 @@ Pt0 f59 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f59 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>build data model, case view</name>
-        <nameStyle>27,7
+        <name>build data model&#xD;
+and case view</name>
+        <nameStyle>31,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f59 351 673 36 24 -63 17 #rect
+Pt0 f59 304 618 128 44 -43 -16 #rect
 Pt0 f59 @|StepIcon #fIcon
 Pt0 f62 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f62 processCall 'Functional Processes/InitializeCaseDataModel:call()' #txt
@@ -1251,32 +1246,32 @@ data model</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f62 156 663 112 44 -38 -20 #rect
+Pt0 f62 156 619 112 44 -38 -20 #rect
 Pt0 f62 @|CallSubIcon #fIcon
 Pt0 f60 expr out #txt
-Pt0 f60 387 685 514 685 #arcP
+Pt0 f60 432 640 504 641 #arcP
 Pt0 f61 expr out #txt
-Pt0 f61 268 685 351 685 #arcP
+Pt0 f61 268 641 304 640 #arcP
 Pt0 f65 expr out #txt
-Pt0 f65 622 794 743 794 #arcP
+Pt0 f65 612 736 789 736 #arcP
 Pt0 f66 expr out #txt
-Pt0 f66 626 685 747 685 #arcP
+Pt0 f66 616 641 789 641 #arcP
 Pt0 f72 expr out #txt
-Pt0 f72 268 893 354 893 #arcP
+Pt0 f72 268 833 354 833 #arcP
 Pt0 f67 expr out #txt
-Pt0 f67 387 794 518 794 #arcP
+Pt0 f67 424 736 508 736 #arcP
 Pt0 f71 expr out #txt
-Pt0 f71 85 685 156 685 #arcP
+Pt0 f71 79 641 156 641 #arcP
 Pt0 f77 expr out #txt
-Pt0 f77 85 794 156 794 #arcP
+Pt0 f77 79 736 156 736 #arcP
 Pt0 f118 expr out #txt
-Pt0 f118 268 794 351 794 #arcP
+Pt0 f118 268 736 312 736 #arcP
 Pt0 f78 expr out #txt
-Pt0 f78 85 893 156 893 #arcP
+Pt0 f78 79 833 156 833 #arcP
 Pt0 f79 expr out #txt
-Pt0 f79 85 988 176 988 #arcP
+Pt0 f79 79 928 164 928 #arcP
 Pt0 f80 expr out #txt
-Pt0 f80 248 988 354 988 #arcP
+Pt0 f80 268 928 354 928 #arcP
 Pt0 f86 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f86 actionTable 'out=in;
@@ -1340,7 +1335,7 @@ Pt0 f90 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f90 968 330 112 44 -40 -8 #rect
+Pt0 f90 992 330 112 44 -40 -8 #rect
 Pt0 f90 @|RichDialogIcon #fIcon
 Pt0 f94 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f94 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1363,7 +1358,7 @@ Pt0 f91 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f91 816 352 968 352 #arcP
+Pt0 f91 816 352 992 352 #arcP
 Pt0 f91 0 0.39473684210526316 0 -13 #arcLabel
 Pt0 f96 targetWindow NEW #txt
 Pt0 f96 targetDisplay TOP #txt
@@ -1385,7 +1380,7 @@ Pt0 f96 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f96 968 426 112 44 -51 -8 #rect
+Pt0 f96 992 426 112 44 -51 -8 #rect
 Pt0 f96 @|RichDialogIcon #fIcon
 Pt0 f97 expr in #txt
 Pt0 f97 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1397,7 +1392,7 @@ Pt0 f97 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f97 800 368 968 448 #arcP
+Pt0 f97 800 368 992 448 #arcP
 Pt0 f97 1 800 448 #addKink
 Pt0 f97 1 0.44642857142857145 0 -13 #arcLabel
 Pt0 f81 type ch.ivy.addon.portal.generic.PortalStartData #txt
@@ -1433,6 +1428,62 @@ Pt0 f83 800 176 800 234 #arcP
 Pt0 f83 0 0.46551724137931033 -18 0 #arcLabel
 Pt0 f85 expr out #txt
 Pt0 f85 800 278 800 336 #arcP
+Pt0 f92 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
+' #txt
+Pt0 f92 actionTable 'out=in;
+' #txt
+Pt0 f92 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.PORTAL_START_PMV_ID.toString(), ivy.task.getProcessModelVersion().getId());
+' #txt
+Pt0 f92 security system #txt
+Pt0 f92 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>store portal start &#xD;
+pmv </name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f92 152 330 128 44 -43 -16 #rect
+Pt0 f92 @|StepIcon #fIcon
+Pt0 f93 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
+' #txt
+Pt0 f93 actionTable 'out=in;
+' #txt
+Pt0 f93 actionCode 'import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import org.apache.commons.lang3.StringUtils;
+import ch.ivyteam.ivy.workflow.StandardProcessType;
+
+String defaultEndPage = ivy.wf.getStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES);
+
+if (StringUtils.isBlank(defaultEndPage)) {
+	ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES, PortalLibrary.PORTAL_TEMPLATE.getValue());
+}' #txt
+Pt0 f93 security system #txt
+Pt0 f93 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f93 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Set default end page 
+to Portal</name>
+        <nameStyle>31,5
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f93 312 330 144 44 -53 -16 #rect
+Pt0 f93 @|StepIcon #fIcon
+Pt0 f95 expr out #txt
+Pt0 f95 280 352 312 352 #arcP
+Pt0 f98 expr out #txt
+Pt0 f98 79 352 152 352 #arcP
+Pt0 f98 0 0.5022241929816383 0 0 #arcLabel
+Pt0 f47 expr out #txt
+Pt0 f47 456 352 555 438 #arcP
+Pt0 f47 1 512 352 #addKink
+Pt0 f47 0 0.9638478923705887 0 0 #arcLabel
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1445,8 +1496,6 @@ Pt0 f2 mainOut f7 tail #connect
 Pt0 f7 head f4 in #connect
 Pt0 f30 out f34 tail #connect
 Pt0 f34 head f33 mainIn #connect
-Pt0 f33 mainOut f29 tail #connect
-Pt0 f29 head f27 mainIn #connect
 Pt0 f30 out f15 tail #connect
 Pt0 f15 head f4 in #connect
 Pt0 f21 out f36 tail #connect
@@ -1479,8 +1528,6 @@ Pt0 f11 mainOut f50 tail #connect
 Pt0 f50 head f30 in #connect
 Pt0 f28 mainOut f46 tail #connect
 Pt0 f46 head f4 in #connect
-Pt0 f31 mainOut f47 tail #connect
-Pt0 f47 head f30 in #connect
 Pt0 f53 head f52 mainIn #connect
 Pt0 f21 out f56 tail #connect
 Pt0 f56 head f19 mainIn #connect
@@ -1529,3 +1576,9 @@ Pt0 f42 out f83 tail #connect
 Pt0 f83 head f81 mainIn #connect
 Pt0 f81 mainOut f85 tail #connect
 Pt0 f85 head f94 in #connect
+Pt0 f92 mainOut f95 tail #connect
+Pt0 f95 head f93 mainIn #connect
+Pt0 f31 mainOut f98 tail #connect
+Pt0 f98 head f92 mainIn #connect
+Pt0 f93 mainOut f47 tail #connect
+Pt0 f47 head f30 in #connect
