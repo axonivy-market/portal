@@ -683,11 +683,18 @@ function DashboardMediumScreen() {
 	function updateDashboard() {
 		var $mainMenu = $('.js-left-sidebar');
 		var $dashboard = $('.js-dashboard-default-widget-container');
+		var $dashboardThirdCol = $('.js-dashboard-main-content-3rd-col');
+		var thirdCol = {
+		    marginValWhenMenuOpen : 20,
+		    marginValWhenMenuClose : 45
+		}
 
 		if ($mainMenu.hasClass('in')) {
 		  $dashboard.animate({marginLeft : firstCol.marginValWhenMainMenuOpen}, animateDuration);
+		  $dashboardThirdCol.animate({marginLeft : thirdCol.marginValWhenMenuOpen}, animateDuration);
 		} else {
 			$dashboard.animate({marginLeft : firstCol.marginValWhenMainMenuClose}, animateDuration);
+			$dashboardThirdCol.animate({marginLeft : thirdCol.marginValWhenMenuClose}, animateDuration);
 		}
 	}
 }
