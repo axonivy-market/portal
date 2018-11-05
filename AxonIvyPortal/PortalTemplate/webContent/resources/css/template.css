@@ -697,7 +697,7 @@
 	width: 270px;
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 991.98px) {
   .topbar-container {
     padding-top: 0 !important;
     height: auto !important;
@@ -714,7 +714,7 @@
 }
 
 /* Small screen */
-@media ( min-width : 1024px) and ( max-width : 1365px) {
+@media ( min-width : 992px) and ( max-width : 1365px) {
 	.dashboard-container, .simple-container {
 		width: 880px;
 		padding-left: 40px;
