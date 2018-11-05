@@ -304,7 +304,6 @@
           <xs:element minOccurs="0" name="customVarCharField5" type="xs:string"></xs:element>
           <xs:element minOccurs="0" name="description" type="xs:string"></xs:element>
           <xs:element minOccurs="0" name="endTimestamp" type="xs:dateTime"></xs:element>
-          <xs:element minOccurs="0" name="hasSideSteps" type="xs:boolean"></xs:element>
           <xs:element minOccurs="0" name="id" type="xs:long"></xs:element>
           <xs:element minOccurs="0" name="isBusinessCase" type="xs:boolean"></xs:element>
           <xs:element maxOccurs="unbounded" minOccurs="0" name="ivyNotes" nillable="true" type="tns:ivyNote"></xs:element>

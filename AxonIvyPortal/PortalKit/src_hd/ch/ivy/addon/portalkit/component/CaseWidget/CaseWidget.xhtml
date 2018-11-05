@@ -161,7 +161,7 @@
           lazy="true" mode="inline" rowIndexVar="rowIndex" styleClass="js-case-list">
           <ic:ch.ivy.addon.portalkit.component.CaseItem caseItem="#{case}" id="case-item"
             initialActive="#{case.id eq cc.attrs.autoSelectCaseId.id() and case.server.id eq cc.attrs.autoSelectCaseId.serverId()}"
-            onDestroyComplete="PF('destroy-case-dialog').show()" rowIndex="#{rowIndex}"
+            onDestroyComplete="PF('destroy-case-dialog').show()"
             expandCallback="caseWidget.setUpScrollbar();caseWidget.setupHeader();"
             itemStyleClass="#{rowIndex % 2 == 0 ? 'case-even-row' : 'case-odd-row'}">
             <cc:insertFacet name="caseHeader" />
@@ -239,7 +239,7 @@
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" widgetVar="destroy-case-dialog"
     appendTo="@(body)" severity="alert">
     <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
-      actionListener="#{logic.destroyCase(caseWidgetBean.selectedCase)}" styleClass=""
+      actionListener="#{logic.destroyCase(caseWidgetBean.deletingCase)}" styleClass=""
       oncomplete="caseWidget.setUpScrollbar();caseWidget.setupHeader();PF('destroy-case-dialog').hide()"
       update="case-list" />
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
