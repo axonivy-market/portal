@@ -757,17 +757,22 @@
 		margin-right: 15px;
 		max-width: none;
 	}
-	.dashboard-main-content-1st-col, .dashboard-main-content-3rd-col {
-		width: 26%;
+	.dashboard-main-content-1st-col {
+		width: 25%;
 	}
 	.dashboard-main-content-2nd-col {
-		width: auto;
+		width: 43%;
 	}
 	.dashboard-main-content-3rd-col {
 		display: block;
 	}
 	.hidden-md {
+		width: 23%;
 		display: none !important;
+	}
+	
+	.widget-header-filter-input.ui-inputfield {
+		width: 168px !important;	
 	}
 }
 
