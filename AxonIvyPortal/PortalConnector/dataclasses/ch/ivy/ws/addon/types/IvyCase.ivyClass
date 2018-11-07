@@ -59,3 +59,4 @@ serverUrl String #field
 canUploadDeleteDocument Boolean #field
 categoryName String #field
 categoryPath String #field
+hasSideSteps Boolean #field
