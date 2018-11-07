@@ -2601,31 +2601,52 @@ a.compact-task-start-link:hover {
 }
 
 .task-start-info-header {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: rgba(0,0,0,1);
+  font-size: 1.3rem;
+  color: rgba(0,0,0,.3);
   display: block;
 }
 
 .task-start-info-content, .task-start-info-footer {
-  font-size: 1.2rem;
   color: rgba(0,0,0,1);
-  display: inline-block;
   width: 100%;
 }
 
-.task-start-info-task-state {
-	float: left;
-	box-sizing: border-box;
- 	width: 30%;
-}
-
-.task-start-info-task-date {
-	box-sizing: border-box;
+.task-start-info-footer {
+  display: inline-block;
 }
 
 .task-start-info-content {
   margin: .4rem 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.task-start-info-footer, .task-start-info-task-date {
+  font-size: 1.3rem;
+}
+
+.task-start-info-task-name {
+  font-size: 1.4rem;
+  font-weight: bold;
+  flex-basis: 70%;
+  flex: 1 0;
+}
+
+.task-start-info-task-date {
+  
+  flex-basis: auto;
+  flex: 0 0 1;
+  box-sizing: border-box;
+  margin-left: 10px;
+  padding-top: 1px;
+}
+
+.task-start-info-task-description, .task-start-info-task-name {
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+  display: inline-block;
 }
 
 .task-start-info {
