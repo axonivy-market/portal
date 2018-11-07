@@ -739,19 +739,12 @@ function DashboardMediumScreen() {
 	function updateDashboard() {
 		var $mainMenu = $('.js-left-sidebar');
 		var $dashboard = $('.js-dashboard-default-widget-container');
-
 		if ($mainMenu.hasClass('in')) {
 		   $dashboard.animate({marginLeft : firstCol.marginValWhenMainMenuOpen}, animateDuration);
 		} else {
 			$dashboard.animate({marginLeft : firstCol.marginValWhenMainMenuClose}, animateDuration);
 		}
-		
-		hideTaskIdAndState();
 	}
-	
-	function hideTaskIdAndState() {
-      $(".js-task-start-info-task-state").remove();
-    }
 }
 
 function DashboardSmallScreen(){
@@ -771,10 +764,6 @@ function DashboardSmallScreen(){
 	  updateDashboard();
 	}
 	
-	function hideTaskIdAndState() {
-      $(".js-task-start-info-task-state").remove();
-    }
-	
 	function moveStatisticsToFirstCol() {
 		   $('.js-dashboard-main-content-1st-col').append($('.js-statistic-widget'));
 		   $('.js-dashboard-main-content-3rd-col').addClass('u-hidden');
@@ -785,7 +774,6 @@ function DashboardSmallScreen(){
 	    var $dashboardFirstCol = $('.js-dashboard-main-content-1st-col');
 	    var $dashboardSecondCol = $('.js-dashboard-main-content-2nd-col');
 	    moveStatisticsToFirstCol();
-	    hideTaskIdAndState();
 	    if ($mainMenu.hasClass('in')) {
 	      // Open main menu
 	      $dashboardFirstCol.animate({
