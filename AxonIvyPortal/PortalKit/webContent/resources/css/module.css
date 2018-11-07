@@ -1811,6 +1811,7 @@ a.case-details-document-add-link {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .case-header-name-desc-cell .case-header-name-cell {
@@ -1888,17 +1889,13 @@ a.case-details-document-add-link {
 }
 
 .case-header-action-cell {
-  flex: 0 0 100px;
+  flex: 0 0 150px;
   text-align: right;
 }
 
 .case-header-action-cell .action-icon {
   display: block;
   font-size: 1.5rem;
-}
-
-.case-header-action-cell .case-destroy-command {
-  font-size: 1.2rem;
 }
 
 .case-header-action-cell .action-cell-container {
@@ -1941,8 +1938,25 @@ a.case-details-document-add-link {
   font-size: 1.2rem;
 }
 
+.case-header-action-cell .case-command:not(:last-child) {
+  margin-right: 10px;
+}
+
 .case-command {
-  width: 80px;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.case-command.side-step {
+  top: 1.5rem;
+  right: 10px;
+  position: absolute;
+}
+
+.case-command.side-step.no-label {
+  top: 2rem;
 }
 
 .case-description-inplace {
@@ -2586,17 +2600,32 @@ a.compact-task-start-link:hover {
   margin-right: 20px;
 }
 
-.task-start-info-header, .task-start-info-footer {
+.task-start-info-header {
   font-size: 1.2rem;
-  color: rgba(0,0,0,.3);
+  font-weight: bold;
+  color: rgba(0,0,0,1);
   display: block;
+}
+
+.task-start-info-content, .task-start-info-footer {
+  font-size: 1.2rem;
+  color: rgba(0,0,0,1);
+  display: inline-block;
+  width: 100%;
+}
+
+.task-start-info-task-state {
+	float: left;
+	box-sizing: border-box;
+ 	width: 30%;
+}
+
+.task-start-info-task-date {
+	box-sizing: border-box;
 }
 
 .task-start-info-content {
   margin: .4rem 0;
-  font-size: 1.2rem;
-  color: rgba(0,0,0,1);
-  display: block;
 }
 
 .task-start-info {
@@ -5323,4 +5352,32 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .search-icon-input::-ms-clear {
   display: none;
+}
+
+/*********** MOBILE ***********/
+.mobile-logout-item {
+  font-size: 2.5rem;
+}
+
+.mobile-menu {
+  height: 2.5rem;
+  border-style: solid;
+  border-width: 1px 0 1px 0;
+  display: flex;
+}
+
+.mobile-menu-item {
+  flex-basis: 100%;
+  font-size: 1.5rem;
+  color: black !important;
+}
+
+a.mobile-menu-item.mobile-task-menu-item {
+  border-style: solid;
+  border-width: 0 1px 0 0;
+}
+
+a.mobile-menu-item.mobile-process-menu-item {
+  border-style: solid;
+  border-width: 0;
 }
