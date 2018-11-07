@@ -6,6 +6,7 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.concurrent.Callable;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.ws.addon.WSException;
@@ -77,14 +78,22 @@ public class SideStepServiceImpl extends AbstractService implements ISideStepSer
     return caseMapService.findStartableSideSteps();
   }
 
-  public boolean hasSideSteps(ICase wfCase, boolean isAdhocIncluded) {
+  public boolean hasSideSteps(ICase wfCase, boolean isAdhocIncluded, IUser user) {
+    if (wfCase == null) {
+      return false;
+    }
+    
     if (isAdhocIncluded) {
       IvySideStep adhocSideStep = createAdhocSideStep(wfCase, false);
       if (adhocSideStep != null) {
         return true;
       }
     }
-    return false;
+    
+    ICaseMapService caseMapService =
+        ICaseMapService.get().getCaseMapService(wfCase.getBusinessCase(), user.getUserToken());
+    List<IStartableSideStep> sideSteps = caseMapService.findStartableSideSteps();
+    return CollectionUtils.isNotEmpty(sideSteps);
   }
 
   /**
