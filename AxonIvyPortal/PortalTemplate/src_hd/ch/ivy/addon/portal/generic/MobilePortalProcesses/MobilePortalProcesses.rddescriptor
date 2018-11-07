@@ -1,23 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
-    <method>
-        <name>collectSideSteps</name>
-        <description></description>
-        <inputParameter>
-            <name>remoteCase</name>
-            <description></description>
-            <parameterType>ch.ivy.addon.portalkit.bo.RemoteCase</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
     <startMethod>
         <name>start</name>
-        <description>Default dialog start method.</description>
+        <description></description>
     </startMethod>
     <property>
         <name>guid</name>
-        <value>15306A68308BDE1D</value>
+        <value>166E19046B7E9954</value>
         <readOnly>true</readOnly>
     </property>
     <property>

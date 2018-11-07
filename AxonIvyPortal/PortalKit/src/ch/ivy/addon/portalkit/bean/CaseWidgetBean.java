@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.util.Arrays;
@@ -8,10 +9,12 @@ import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.RemoteCase;
+import ch.ivy.addon.portalkit.bo.RemoteSideStep;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
@@ -35,7 +38,7 @@ public class CaseWidgetBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
   private Long expandedCaseId;
-  private RemoteCase deletingCase;
+  private RemoteCase selectedCase;
 
   public CaseWidgetBean() {
     expandedCaseId = -1L;
@@ -53,12 +56,12 @@ public class CaseWidgetBean implements Serializable {
     }
   }
 
-  public RemoteCase getDeletingCase() {
-    return deletingCase;
+  public RemoteCase getSelectedCase() {
+    return selectedCase;
   }
 
-  public void setDeletingCase(RemoteCase deletingCase) {
-    this.deletingCase = deletingCase;
+  public void setSelectedCase(RemoteCase selectedCase) {
+    this.selectedCase = selectedCase;
   }
 
   public boolean isDeleteFilterEnabledFor(CaseFilterData filterData) {
@@ -101,4 +104,10 @@ public class CaseWidgetBean implements Serializable {
   public boolean isHiddenCase(RemoteCase remoteCase) {
     return remoteCase.getAdditionalProperty(HIDE) != null;
   }
+  
+  public void navigateToSideStep(RemoteSideStep sideStep) throws IOException {
+    String url = sideStep.getStartLink().getAbsoluteEncoded();
+    FacesContext.getCurrentInstance().getExternalContext().redirect(url);
+  }
+  
 }

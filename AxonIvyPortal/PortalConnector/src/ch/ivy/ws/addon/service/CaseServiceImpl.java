@@ -496,6 +496,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
         for (ICase iCase : cases) {
           IvyCase ivyCase = transformToIvyCase(iCase);
           checkPermission(caseSearchCriteria, iCase, ivyCase);
+          ivyCase.setHasSideSteps(hasSideSteps(iCase, caseSearchCriteria.getInvolvedUsername()));
           ivyCases.add(ivyCase);
         }
 
@@ -504,6 +505,16 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     } catch (Exception e) {
       throw new WSException(10002, e);
     }
+  }
+
+  private boolean hasSideSteps(ICase iCase, String involvedUsername) {
+    IUser user = findUser(involvedUsername, iCase);
+    SideStepServiceImpl sideStepService = new SideStepServiceImpl();
+    return sideStepService.hasSideSteps(iCase, false, user);
+  }
+  
+  private IUser findUser(String userName, ICase iCase) {
+    return iCase.getApplication().getSecurityContext().findUser(userName);
   }
 
   private void checkPermission(CaseSearchCriteria caseSearchCriteria, ICase iCase, IvyCase ivyCase) {
