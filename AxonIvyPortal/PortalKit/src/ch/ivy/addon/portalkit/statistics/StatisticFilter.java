@@ -38,7 +38,7 @@ public class StatisticFilter {
   private Date createdDateTo;
 
   @JsonIgnore
-  private List<String> caseCategories = new ArrayList<>();
+  private List<CategoryData> caseCategories = new ArrayList<>();
   private List<String> selectedCaseCategories = new ArrayList<>();
 
   @JsonIgnore
@@ -107,13 +107,20 @@ public class StatisticFilter {
 
     Map<String, Object> response = IvyAdapterService.startSubProcess("findCaseCategories(String)", params,
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
-    this.caseCategories = ((List<CategoryData>) response.get("result")).stream().map(CategoryData::getPath).collect(Collectors.toList());
-    this.caseCategories = caseCategories.stream().distinct()
-        .collect(Collectors.toList());
-    caseCategories.add(StringUtils.EMPTY);
-    this.selectedCaseCategories = new ArrayList<>(this.caseCategories);
+
+    this.caseCategories = ((List<CategoryData>) response.get("result")).stream().distinct().collect(Collectors.toList());
+    caseCategories.add(initEmptyCategory());
+    this.selectedCaseCategories = new ArrayList<>(this.caseCategories.stream().map(CategoryData::getRawPath).collect(Collectors.toList()));
+
     this.timePeriodSelection = StatisticTimePeriodSelection.CUSTOM;
     this.allTimePeriodSelection = Arrays.asList(StatisticTimePeriodSelection.CUSTOM, StatisticTimePeriodSelection.LAST_WEEK, StatisticTimePeriodSelection.LAST_MONTH, StatisticTimePeriodSelection.LAST_6_MONTH);
+  }
+
+  private CategoryData initEmptyCategory() {
+	  CategoryData result = new CategoryData();
+	  result.setPath(StringUtils.EMPTY);
+	  result.setRawPath(StringUtils.EMPTY);
+	  return result;
   }
 
   public Date getCreatedDateFrom() {
@@ -132,11 +139,11 @@ public class StatisticFilter {
     this.createdDateTo = createdDateTo;
   }
 
-  public List<String> getCaseCategories() {
+  public List<CategoryData> getCaseCategories() {
     return caseCategories;
   }
 
-  public void setCaseCategories(List<String> caseCategories) {
+  public void setCaseCategories(List<CategoryData> caseCategories) {
     this.caseCategories = caseCategories;
   }
 

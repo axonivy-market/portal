@@ -54,8 +54,8 @@
           <p:scrollPanel mode="native" rendered="#{not empty filter.caseCategories}" styleClass="statistic-filter-container scrollable">
             <p:selectManyCheckbox id="categories"
               value="#{filter.selectedCaseCategories}" layout="grid" columns="1">
-              <f:selectItems value="#{filter.caseCategories}" var="category" itemValue="#{category}"
-                itemLabel="#{category == '' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory') : category}" />
+              <f:selectItems value="#{filter.caseCategories}" var="category" itemValue="#{category.rawPath}"
+                itemLabel="#{category.rawPath == '' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory') : category.path}" />
               <p:ajax update="@([id$='chart-management-form']) @form" listener="#{cc.attrs.updateListener}" />
             </p:selectManyCheckbox>
           </p:scrollPanel>
