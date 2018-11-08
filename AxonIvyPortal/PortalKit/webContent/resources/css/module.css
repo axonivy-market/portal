@@ -4083,12 +4083,12 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 /* Medium screen */
 @media (min-width: 1366px) and (max-width: 1919px) {
   .statistic-carousel {
-    width: 30rem;
+    width: 28rem !important;
     text-align: center;
   }
 
   .compact-mode .jqplot-target {
-    width: 28rem;
+    width: 26rem;
   }
 }
 
