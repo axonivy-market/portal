@@ -1,5 +1,6 @@
 package ch.ivy.addon.portal.generic.bean;
 
+import javax.annotation.PreDestroy;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -11,6 +12,11 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class DeviceBean {
 
   public boolean isMobile() {
-    return DeviceDetector.instance().isMobile(Ivy.session().getIdentifier());
+    return DeviceDetector.instance().isMobile(Ivy.session().getHttpSessionIdentifier());
+  }
+  
+  @PreDestroy
+  public void destroy() {
+    DeviceDetector.instance().removeVersionState(Ivy.session().getHttpSessionIdentifier());
   }
 }
