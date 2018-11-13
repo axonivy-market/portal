@@ -706,8 +706,9 @@ Pt0 f68 346 986 30 30 0 15 #rect
 Pt0 f68 @|EndIcon #fIcon
 Pt0 f0 outLink PortalStart.ivp #txt
 Pt0 f0 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pt0 f0 inParamDecl '<java.lang.String parameters,java.lang.String portalNavigator> param;' #txt
-Pt0 f0 inParamTable 'out.parameters=param.parameters;
+Pt0 f0 inParamDecl '<java.lang.Boolean isMobile,java.lang.String parameters,java.lang.String portalNavigator> param;' #txt
+Pt0 f0 inParamTable 'out.isMobile=param.#isMobile is initialized ? param.isMobile : null;
+out.parameters=param.parameters;
 out.portalPage=param.parameters.isEmpty() ? ch.ivy.addon.portal.generic.navigation.PortalPage.HOME_PAGE : ch.ivy.addon.portal.generic.navigation.PortalPage.valueOf(param.portalNavigator);
 ' #txt
 Pt0 f0 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
@@ -715,7 +716,7 @@ Pt0 f0 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 Pt0 f0 guid 166EC37F67BF7A5D #txt
 Pt0 f0 requestEnabled true #txt
 Pt0 f0 triggerEnabled false #txt
-Pt0 f0 callSignature PortalStart(String,String) #txt
+Pt0 f0 callSignature PortalStart(Boolean,String,String) #txt
 Pt0 f0 persist false #txt
 Pt0 f0 startName <%=ivy.cms.co("/Processes/portalHome")%> #txt
 Pt0 f0 taskData 'TaskTriggered.DESC=<%\=ivy.cms.co("/Processes/Cases/PortalInternalProcess/PortalInternalProcessDescription")%>
@@ -1233,7 +1234,10 @@ Pt0 f86 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 Pt0 f86 actionTable 'out=in;
 ' #txt
 Pt0 f86 actionCode 'import ch.ivy.addon.portal.generic.common.DeviceDetector;
-out.isMobile = DeviceDetector.newInstance().isMobile();' #txt
+
+if (!in.#isMobile is initialized) {
+	out.isMobile = DeviceDetector.instance().isMobile(ivy.session.getIdentifier());
+}' #txt
 Pt0 f86 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f86 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
