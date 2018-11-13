@@ -162,7 +162,9 @@
   
   <ui:fragment rendered="#{deviceBean.mobile}">
     <div class="mobile-footer">
-      <p:commandLink actionListener="#{userMenuBean.switchDesktopOrMobileVersion(false)}">Switch to desktop version</p:commandLink>
+      <p:commandLink actionListener="#{userMenuBean.switchDesktopOrMobileVersion(false)}">
+        #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/switchToDesktopVersion')}
+      </p:commandLink>
     </div>
   </ui:fragment>
 </h:body>
