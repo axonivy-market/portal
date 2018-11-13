@@ -1,5 +1,6 @@
 package ch.ivy.addon.portal.generic.common;
 
+// NOSONAR
 public class UAgentInfo {
   // User-Agent and Accept HTTP request headers
 

@@ -33,7 +33,7 @@ public class DeviceDetector {
       String userAgent = httpRequest.getHttpServletRequest().getHeader("User-Agent");
       String httpAccept = httpRequest.getHttpServletRequest().getHeader("Accept");
       UAgentInfo agentInfo = new UAgentInfo(userAgent, httpAccept);
-      return agentInfo.detectTierIphone();
+      return agentInfo.detectMobileQuick();
     }
     return false;
   }
