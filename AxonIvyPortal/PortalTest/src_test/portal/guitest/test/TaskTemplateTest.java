@@ -2,6 +2,7 @@ package portal.guitest.test;
 
 import java.util.concurrent.TimeUnit;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -87,10 +88,10 @@ public class TaskTemplateTest extends BaseTest {
     TaskTemplatePage taskTemplatePage = startATask();
     taskTemplatePage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
-    HomePage homePage = dialogPage.leaveTask();
-    TaskWidgetPage taskWidget = homePage.getTaskWidget();
-    String state = taskWidget.getStateInCompactMode(0);
-    assertEquals("OPEN", state);
+    dialogPage.leaveTask();
+    TaskWidgetPage taskWidget = new TaskWidgetPage();
+    taskWidget.expand();
+    assertTrue(taskWidget.isTaskStateDone(0));
   }
   
   @Test
@@ -98,10 +99,10 @@ public class TaskTemplateTest extends BaseTest {
     TaskTemplatePage taskTemplatePage = startATask();
     taskTemplatePage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
-    HomePage homePage = dialogPage.reserveTask();
-    TaskWidgetPage taskWidget = homePage.getTaskWidget();
-    String state = taskWidget.getStateInCompactMode(0);
-    assertEquals("RESERVED", state);
+    dialogPage.reserveTask();
+    TaskWidgetPage taskWidget = new TaskWidgetPage();
+    taskWidget.expand();
+    Assert.assertTrue(taskWidget.isTaskStateReserved(0));
   }
 
   private TaskTemplatePage startATask() {
