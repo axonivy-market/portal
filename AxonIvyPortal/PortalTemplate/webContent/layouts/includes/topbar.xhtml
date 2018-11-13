@@ -70,6 +70,9 @@
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/info')}"
               onclick="PF('project-info-dialog').show()" /></li>
 
+          <li><p:commandLink actionListener="#{userMenuBean.switchDesktopOrMobileVersion(true)}">Switch to mobile version</p:commandLink>
+          </li>
+          
           <li><ic:ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting id="logout-setting" isWorkingOnATask="#{isWorkingOnATask}" />
           </li>
         </ul></li>

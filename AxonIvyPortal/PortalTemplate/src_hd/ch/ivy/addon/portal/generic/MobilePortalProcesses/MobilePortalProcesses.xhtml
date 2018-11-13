@@ -6,6 +6,10 @@
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="currentPage" value="#{navigatorBean.processPage}" />
+    
+    <ui:define name="pageContent">
+      Process List
+    </ui:define>
   </ui:composition>
 </h:body>
 </html>
