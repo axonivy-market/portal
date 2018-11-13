@@ -1236,7 +1236,7 @@ Pt0 f86 actionTable 'out=in;
 Pt0 f86 actionCode 'import ch.ivy.addon.portal.generic.common.DeviceDetector;
 
 if (!in.#isMobile is initialized) {
-	out.isMobile = DeviceDetector.instance().isMobile(ivy.session.getIdentifier());
+	out.isMobile = DeviceDetector.instance().isMobile(ivy.session.getHttpSessionIdentifier());
 }' #txt
 Pt0 f86 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f86 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
