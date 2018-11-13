@@ -123,7 +123,7 @@ public class UserMenuBean implements Serializable {
     String url = String.format("%s?isMobile=%s", getHomePageURL(), isMobile);
     FacesContext context = FacesContext.getCurrentInstance();
     context.getExternalContext().redirect(url);
-    DeviceDetector.instance().updateVersionState(Ivy.session().getIdentifier(), isMobile);
+    DeviceDetector.instance().updateVersionState(Ivy.session().getHttpSessionIdentifier(), isMobile);
   }
 
   public void resetTaskAndNavigateToHomePage() throws IOException {
