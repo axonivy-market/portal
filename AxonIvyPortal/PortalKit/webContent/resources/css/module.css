@@ -2601,12 +2601,12 @@ a.compact-task-start-link:hover {
 }
 
 .task-start-info-header {
-  font-size: 1.3rem;
-  color: rgba(0,0,0,.3);
-  display: block;
+  font-size: 1.4rem;
+  font-weight: bold;
+  display: flex;
 }
 
-.task-start-info-content, .task-start-info-footer {
+.task-start-info-header, .task-start-info-content, .task-start-info-footer {
   color: rgba(0,0,0,1);
   width: 100%;
 }
@@ -2617,28 +2617,20 @@ a.compact-task-start-link:hover {
 
 .task-start-info-content {
   margin: .4rem 0;
-  display: flex;
-  flex-wrap: wrap;
 }
 
-.task-start-info-footer, .task-start-info-task-date {
-  font-size: 1.3rem;
+.task-start-info-footer, .task-start-info-content {
+  font-size: 1.2rem;
 }
 
 .task-start-info-task-name {
-  font-size: 1.4rem;
-  font-weight: bold;
-  flex-basis: 70%;
-  flex: 1 0;
+  
+  flex: 0 1 auto;
 }
 
-.task-start-info-task-date {
-  
-  flex-basis: auto;
-  flex: 0 0 1;
-  box-sizing: border-box;
-  margin-left: 10px;
-  padding-top: 1px;
+.task-start-info-task-id {
+  margin-left: 5px;
+  flex: 0 0 auto;
 }
 
 .task-start-info-task-description, .task-start-info-task-name {
@@ -4083,12 +4075,12 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 /* Medium screen */
 @media (min-width: 1366px) and (max-width: 1919px) {
   .statistic-carousel {
-    width: 30rem;
+    width: 28rem !important;
     text-align: center;
   }
 
   .compact-mode .jqplot-target {
-    width: 28rem;
+    width: 26rem;
   }
 }
 
