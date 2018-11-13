@@ -10,21 +10,27 @@
     <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority priority="#{task.priority}" id="task-start-priority" 
       dataModel="#{dataModel}" />
     <div class="task-start-info">
-      <h:outputText id="task-start-task-id" value="##{task.id}" styleClass="task-start-info-header" />
-      <h:panelGroup layout="block" styleClass="task-start-info-content">
-        <h:outputText id="task-start-task-name" styleClass="u-truncate-text task-start-info-task-name"
+    <h:panelGroup layout="block" styleClass="task-start-info-header">
+      <h:outputText id="task-start-task-name" styleClass="task-start-info-task-name"
           value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}" />
-        <p:tooltip for="task-start-task-name" value="#{task.name}" trackMouse="true" rendered="#{not empty task.name}"/>
-        <h:panelGroup styleClass="task-start-info-task-date" >
-          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/expired')}: "
-            rendered="#{task.expiryTimestamp ne null}" />
-          <h:outputText value="#{task.expiryTimestamp}">
-            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
-          </h:outputText>
-        </h:panelGroup>
-      </h:panelGroup> 
-      <h:outputText id="task-start-task-description" value="#{task.description}" styleClass="task-start-info-footer task-start-info-task-description"/>
-      <p:tooltip for="task-start-task-description" value="#{task.description}" trackMouse="true" rendered="#{not empty task.description}" />
+      <p:tooltip for="task-start-task-name" value="#{task.name}" trackMouse="true" rendered="#{not empty task.name}"/>
+      <h:outputText id="task-start-task-id" value="(##{task.id})" styleClass="task-start-info-task-id"/>
+    </h:panelGroup>
+    <h:panelGroup layout="block" styleClass="task-start-info-content">
+      <h:panelGroup styleClass="task-start-info-task-date" >
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/created')}: " />
+        <h:outputText value="#{task.startTimestamp}">
+          <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+        </h:outputText>
+        <h:outputText value=" / #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/expired')}: "
+          rendered="#{task.expiryTimestamp ne null}" />
+        <h:outputText value="#{task.expiryTimestamp}">
+          <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+        </h:outputText>
+      </h:panelGroup>
+    </h:panelGroup> 
+    <h:outputText id="task-start-task-description" value="#{task.description}" styleClass="task-start-info-footer task-start-info-task-description"/>
+    <p:tooltip for="task-start-task-description" value="#{task.description}" trackMouse="true" rendered="#{not empty task.description}" />
     </div>
     <h:panelGroup id="open-task-icon" class="action-icon tmi-chevorn-right icon-compact-mode" />
     <p:tooltip for="open-task-icon"
