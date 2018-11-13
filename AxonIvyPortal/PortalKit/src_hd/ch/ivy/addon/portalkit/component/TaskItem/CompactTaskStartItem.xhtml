@@ -29,7 +29,8 @@
     </h:panelGroup> 
     <h:outputText id="task-start-task-description" value="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.description)}" 
       styleClass="task-start-info-footer task-start-info-task-description"/>
-    <p:tooltip for="task-start-task-description" value="#{task.description}" trackMouse="true" rendered="#{not empty task.description}" />
+    <p:tooltip for="task-start-task-description" value="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.description)}" 
+      trackMouse="true" rendered="#{not empty task.description}" />
     </div>
     <h:panelGroup id="open-task-icon" class="action-icon tmi-chevorn-right icon-compact-mode" />
     <p:tooltip for="open-task-icon"
