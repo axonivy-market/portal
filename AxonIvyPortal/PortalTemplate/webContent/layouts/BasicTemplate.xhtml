@@ -113,7 +113,7 @@
       </ui:fragment>
 
       <ui:fragment rendered="#{empty portalValidationBean.errorMessages}">
-        <div class="container #{showMainArea eq true ? '' : 'u-invisibility'}" id="main-area-panel">
+        <div class="container #{showMainArea eq true or deviceBean.mobile ? '' : 'u-invisibility'} #{deviceBean.mobile ? 'mobile-container' : ''}" id="main-area-panel">
           <ui:insert name="pageContent">
             <div class="simple-container js-simple-container #{simpleContainerClass}">
               <div class="js-simple-main-col #{simpleMainColClass}">
@@ -158,6 +158,12 @@
         });
       </script>
     </ui:insert>
+  </ui:fragment>
+  
+  <ui:fragment rendered="#{deviceBean.mobile}">
+    <div class="mobile-footer">
+      <p:commandLink actionListener="#{userMenuBean.switchDesktopOrMobileVersion(false)}">Switch to desktop version</p:commandLink>
+    </div>
   </ui:fragment>
 </h:body>
 </html>

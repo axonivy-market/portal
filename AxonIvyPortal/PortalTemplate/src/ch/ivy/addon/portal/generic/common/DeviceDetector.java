@@ -1,6 +1,7 @@
 package ch.ivy.addon.portal.generic.common;
 
-import java.awt.Toolkit;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -9,19 +10,27 @@ import ch.ivyteam.ivy.request.IHttpRequest;
 
 public class DeviceDetector {
 
-  private static final int TABLET_WIDTH = 992;
+  private static DeviceDetector instance = new DeviceDetector();
+  private Map<Integer, Boolean> versionStateBySessionId = new HashMap<>();
 
-  public static DeviceDetector newInstance() {
-    return new DeviceDetector();
+  public static DeviceDetector instance() {
+    return instance;
   }
-  
-  public boolean isMobile() {
+
+  public void updateVersionState(int sessionId, Boolean isSwitchedToMobile) {
+    versionStateBySessionId.put(sessionId, isSwitchedToMobile);
+  }
+
+  public boolean isMobile(int sessionId) {
+    if (versionStateBySessionId.get(sessionId) != null) {
+      return versionStateBySessionId.get(sessionId).booleanValue();
+    }
+
     if (Ivy.request() instanceof IHttpRequest) {
-        IHttpRequest httpRequest = (IHttpRequest) Ivy.request();
-        boolean isMobileMode = StringUtils.containsIgnoreCase(httpRequest.getHttpServletRequest().getHeader("User-Agent"), "mobile");
-        boolean isLessThanTabletResolution = Toolkit.getDefaultToolkit().getScreenSize().getWidth() < TABLET_WIDTH;
-        return isMobileMode && isLessThanTabletResolution;
+      IHttpRequest httpRequest = (IHttpRequest) Ivy.request();
+      return StringUtils.containsIgnoreCase(httpRequest.getHttpServletRequest().getHeader("User-Agent"), "mobile");
     }
     return false;
   }
+
 }

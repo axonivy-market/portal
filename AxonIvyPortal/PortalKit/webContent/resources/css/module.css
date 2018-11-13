@@ -5394,3 +5394,17 @@ a.mobile-menu-item.mobile-process-menu-item {
   border-style: solid;
   border-width: 0;
 }
+
+.mobile-footer {
+  text-align: center;
+  background-color: darkgrey;
+  line-height: 16px;
+}
+
+.mobile-footer .ui-commandlink {
+  color: black !important;
+}
+
+.mobile-container {
+  height: auto;
+}
