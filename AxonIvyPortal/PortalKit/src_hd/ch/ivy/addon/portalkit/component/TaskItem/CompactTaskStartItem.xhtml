@@ -17,7 +17,6 @@
       <h:outputText id="task-start-task-id" value="(##{task.id})" styleClass="task-start-info-task-id"/>
     </h:panelGroup>
     <h:panelGroup layout="block" styleClass="task-start-info-content">
-      <h:panelGroup styleClass="task-start-info-task-date" >
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/created')}: " />
         <h:outputText value="#{task.startTimestamp}">
           <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
@@ -27,9 +26,9 @@
         <h:outputText value="#{task.expiryTimestamp}">
           <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
         </h:outputText>
-      </h:panelGroup>
     </h:panelGroup> 
-    <h:outputText id="task-start-task-description" value="#{task.description}" styleClass="task-start-info-footer task-start-info-task-description"/>
+    <h:outputText id="task-start-task-description" value="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.description)}" 
+      styleClass="task-start-info-footer task-start-info-task-description"/>
     <p:tooltip for="task-start-task-description" value="#{task.description}" trackMouse="true" rendered="#{not empty task.description}" />
     </div>
     <h:panelGroup id="open-task-icon" class="action-icon tmi-chevorn-right icon-compact-mode" />
