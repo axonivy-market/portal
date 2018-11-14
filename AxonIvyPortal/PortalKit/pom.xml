@@ -6,20 +6,9 @@
   <artifactId>portalKit</artifactId>
   <version>7.0.0.0-SNAPSHOT</version>
   <packaging>iar</packaging>
-  <distributionManagement>
-    <repository>
-      <id>axonivy-releases-repo</id>
-      <url>https://repo.axonivy.io/artifactory/ext-release-local/</url>
-    </repository>
-    <snapshotRepository>
-      <id>axonivy-snapshots-repo</id>
-      <url>https://repo.axonivy.io/artifactory/ext-snapshot-local/</url>
-    </snapshotRepository>
-  </distributionManagement>
+  
   <properties>
-    <ivy.engine.version>7.0.0</ivy.engine.version>
-    <scm.revision>${GIT_COMMIT}</scm.revision>
-    <build.plugin.version>7.2.0-SNAPSHOT</build.plugin.version>
+    <build.plugin.version>7.2.0</build.plugin.version>
   </properties>
   <dependencies>
     <dependency>
@@ -39,45 +28,8 @@
       <version>3.15</version>
     </dependency>
   </dependencies>
-  <repositories>
-      <repository>
-          <id>central-maven</id>
-          	<url>http://central.maven.org/maven2</url>
-          <releases>
-              <enabled>true</enabled>
-          </releases>
-          <snapshots>
-              <enabled>true</enabled>
-          </snapshots>
-      </repository>
-  </repositories>
   <build>
-    <sourceDirectory>${basedir}/src/</sourceDirectory>
-    <outputDirectory>${basedir}/classes</outputDirectory>
-    <directory>${basedir}/target</directory>
     <plugins>
-      <plugin>
-        <artifactId>maven-antrun-plugin</artifactId>
-        <version>1.4</version>
-        <executions>
-          <execution>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>run</goal>
-            </goals>
-            <configuration>
-              <tasks>
-                <delete>
-                  <fileset dir="${basedir}">
-                    <include name="scm-revision-*.txt" />
-                  </fileset>
-                </delete>
-                <touch file="${basedir}/scm-revision-${scm.revision}.txt" />
-              </tasks>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
       <plugin>
         <groupId>com.axonivy.ivy.ci</groupId>
         <artifactId>project-build-plugin</artifactId>
