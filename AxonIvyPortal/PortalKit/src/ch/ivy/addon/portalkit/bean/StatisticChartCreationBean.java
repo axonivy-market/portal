@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.bean;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -18,6 +19,7 @@ import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
 import ch.ivy.addon.portalkit.statistics.StatisticFilter;
 import ch.ivy.ws.addon.CaseStateStatistic;
+import ch.ivy.ws.addon.CategoryData;
 import ch.ivy.ws.addon.ElapsedTimeStatistic;
 import ch.ivy.ws.addon.ExpiryStatistic;
 import ch.ivy.ws.addon.PortalCaseCustomVarField;
@@ -192,7 +194,7 @@ public class StatisticChartCreationBean implements Serializable {
   public void updateCaseCategoriesCheckboxes(StatisticFilter filter) {
     List<String> selectedCaseCategories = filter.getSelectedCaseCategories();
     if (filter.getIsAllCategoriesSelected()) {
-      for (String category : filter.getCaseCategories()) {
+      for (String category : filter.getCaseCategories().stream().map(CategoryData::getRawPath).collect(Collectors.toList())) {
         addToListIfNotExist(selectedCaseCategories, category);
       }
     } else {
