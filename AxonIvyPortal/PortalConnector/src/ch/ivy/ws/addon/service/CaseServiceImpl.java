@@ -496,7 +496,9 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
         for (ICase iCase : cases) {
           IvyCase ivyCase = transformToIvyCase(iCase);
           checkPermission(caseSearchCriteria, iCase, ivyCase);
-          ivyCase.setHasSideSteps(hasSideSteps(iCase, caseSearchCriteria.getInvolvedUsername()));
+          if (caseSearchCriteria.hasInvolvedUsername()) {
+            ivyCase.setHasSideSteps(hasSideSteps(iCase, caseSearchCriteria.getInvolvedUsername()));
+          }
           ivyCases.add(ivyCase);
         }
 

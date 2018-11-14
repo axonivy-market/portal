@@ -31,6 +31,7 @@ import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivy.addon.portalkit.util.RoleUtils;
+import ch.ivy.ws.addon.CategoryData;
 import ch.ivy.ws.addon.PortalCaseCustomVarField;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
@@ -370,8 +371,8 @@ public class StatisticChartQueryUtils {
     ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForSelectedCaseCategories =
         subCaseQueryForSelectedCaseCategories.where();
     if (selectedCaseCategories.isEmpty()) {
-      List<String> caseCategories = Optional.ofNullable(filter.getCaseCategories()).orElse(new ArrayList<>());
-      caseCategories.forEach(category -> subCaseFilterForSelectedCaseCategories.and().category().isNotEqual(category));
+      List<CategoryData> caseCategories = Optional.ofNullable(filter.getCaseCategories()).orElse(new ArrayList<>());
+      caseCategories.stream().map(CategoryData::getRawPath).forEach(category -> subCaseFilterForSelectedCaseCategories.and().category().isNotEqual(category));
     } else {
       selectedCaseCategories.forEach(category -> subCaseFilterForSelectedCaseCategories.or().category().isEqual(category));
     }
