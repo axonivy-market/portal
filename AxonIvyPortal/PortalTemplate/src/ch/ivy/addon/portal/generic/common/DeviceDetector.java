@@ -24,18 +24,33 @@ public class DeviceDetector {
   }
 
   public boolean isMobile(String sessionId) {
+    if (isDesktop()) {
+      return false;
+    }
+    
     if (versionStateBySessionId.get(sessionId) != null) {
       return versionStateBySessionId.get(sessionId).booleanValue();
     }
 
     if (Ivy.request() instanceof IHttpRequest) {
-      IHttpRequest httpRequest = (IHttpRequest) Ivy.request();
-      String userAgent = httpRequest.getHttpServletRequest().getHeader("User-Agent");
-      String httpAccept = httpRequest.getHttpServletRequest().getHeader("Accept");
-      UAgentInfo agentInfo = new UAgentInfo(userAgent, httpAccept);
+      UAgentInfo agentInfo = agentInfo();
       return agentInfo.detectMobileQuick();
     }
     return false;
   }
 
+  public boolean isDesktop() {
+    if (Ivy.request() instanceof IHttpRequest) {
+      UAgentInfo agentInfo = agentInfo();
+      return !agentInfo.detectMobileQuick() && !agentInfo.detectTierTablet();
+    }
+    return false;
+  }
+
+  private UAgentInfo agentInfo() {
+    IHttpRequest httpRequest = (IHttpRequest) Ivy.request();
+    String userAgent = httpRequest.getHttpServletRequest().getHeader("User-Agent");
+    String httpAccept = httpRequest.getHttpServletRequest().getHeader("Accept");
+    return new UAgentInfo(userAgent, httpAccept);
+  }
 }
