@@ -1,6 +1,5 @@
 package ch.ivy.addon.portal.generic.common;
 
-// NOSONAR
 public class UAgentInfo {
   // User-Agent and Accept HTTP request headers
 
@@ -8,127 +7,127 @@ public class UAgentInfo {
   private String httpAccept = "";
 
   // Let's store values for quickly accessing the same info multiple times.
-  public boolean initCompleted = false;
-  public boolean isWebkit = false; // Stores the result of DetectWebkit()
-  public boolean isMobilePhone = false; // Stores the result of DetectMobileQuick()
-  public boolean isIphone = false; // Stores the result of DetectIphone()
-  public boolean isAndroid = false; // Stores the result of DetectAndroid()
-  public boolean isAndroidPhone = false; // Stores the result of DetectAndroidPhone()
-  public boolean isTierTablet = false; // Stores the result of DetectTierTablet()
-  public boolean isTierIphone = false; // Stores the result of DetectTierIphone()
-  public boolean isTierRichCss = false; // Stores the result of DetectTierRichCss()
-  public boolean isTierGenericMobile = false; // Stores the result of DetectTierOtherPhones()
+  private boolean initCompleted = false;
+  private boolean isWebkit = false; // Stores the result of DetectWebkit()
+  private boolean isMobilePhone = false; // Stores the result of DetectMobileQuick()
+  private boolean isIphone = false; // Stores the result of DetectIphone()
+  private boolean isAndroid = false; // Stores the result of DetectAndroid()
+  private boolean isAndroidPhone = false; // Stores the result of DetectAndroidPhone()
+  private boolean isTierTablet = false; // Stores the result of DetectTierTablet()
+  private boolean isTierIphone = false; // Stores the result of DetectTierIphone()
+  private boolean isTierRichCss = false; // Stores the result of DetectTierRichCss()
+  private boolean isTierGenericMobile = false; // Stores the result of DetectTierOtherPhones()
 
   // Initialize some initial smartphone string variables.
-  public static final String engineWebKit = "webkit";
+  public static final String ENGINE_WEBKIT = "webkit";
 
-  public static final String deviceIphone = "iphone";
-  public static final String deviceIpod = "ipod";
-  public static final String deviceIpad = "ipad";
-  public static final String deviceMacPpc = "macintosh"; // Used for disambiguation
+  public static final String DEVICE_IPHONE = "iphone";
+  public static final String DEVICE_IPOD = "ipod";
+  public static final String DEVICE_IPAD = "ipad";
+  public static final String DEVICE_MAC_PPC = "macintosh"; // Used for disambiguation
 
-  public static final String deviceAndroid = "android";
-  public static final String deviceGoogleTV = "googletv";
+  public static final String DEVICE_ANDROID = "android";
+  public static final String DEVICE_GOOGLE_TV = "googletv";
 
-  public static final String deviceWinPhone7 = "windows phone os 7";
-  public static final String deviceWinPhone8 = "windows phone 8";
-  public static final String deviceWinPhone10 = "windows phone 10";
-  public static final String deviceWinMob = "windows ce";
-  public static final String deviceWindows = "windows";
-  public static final String deviceIeMob = "iemobile";
-  public static final String devicePpc = "ppc"; // Stands for PocketPC
-  public static final String enginePie = "wm5 pie"; // An old Windows Mobile
+  public static final String DEVICE_WINPHONE_7 = "windows phone os 7";
+  public static final String DEVICE_WINPHONE_8 = "windows phone 8";
+  public static final String DEVICE_WINPHONE_10 = "windows phone 10";
+  public static final String DEVICE_WINMOB = "windows ce";
+  public static final String DEVICE_WINDOWS = "windows";
+  public static final String DEVICE_IE_MOB = "iemobile";
+  public static final String DEVICE_PPC = "ppc"; // Stands for PocketPC
+  public static final String ENGINE_PIE = "wm5 pie"; // An old Windows Mobile
 
-  public static final String deviceBB = "blackberry";
-  public static final String deviceBB10 = "bb10"; // For the new BB 10 OS
-  public static final String vndRIM = "vnd.rim"; // Detectable when BB devices emulate IE or Firefox
-  public static final String deviceBBStorm = "blackberry95"; // Storm 1 and 2
-  public static final String deviceBBBold = "blackberry97"; // Bold 97x0 (non-touch)
-  public static final String deviceBBBoldTouch = "blackberry 99"; // Bold 99x0 (touchscreen)
-  public static final String deviceBBTour = "blackberry96"; // Tour
-  public static final String deviceBBCurve = "blackberry89"; // Curve 2
-  public static final String deviceBBCurveTouch = "blackberry 938"; // Curve Touch 9380
-  public static final String deviceBBTorch = "blackberry 98"; // Torch
-  public static final String deviceBBPlaybook = "playbook"; // PlayBook tablet
+  public static final String DEVICE_BB = "blackberry";
+  public static final String DEVICE_BB_10 = "bb10"; // For the new BB 10 OS
+  public static final String VND_RIM = "vnd.rim"; // Detectable when BB devices emulate IE or Firefox
+  public static final String DEVICE_BB_STORM = "blackberry95"; // Storm 1 and 2
+  public static final String DEVICE_BB_BOLD = "blackberry97"; // Bold 97x0 (non-touch)
+  public static final String DEVICE_BB_BOLD_TOUCH = "blackberry 99"; // Bold 99x0 (touchscreen)
+  public static final String DEVICE_BB_TOUR = "blackberry96"; // Tour
+  public static final String DEVICE_BB_CURVE = "blackberry89"; // Curve 2
+  public static final String DEVICE_BB_CURVE_TOUCH = "blackberry 938"; // Curve Touch 9380
+  public static final String DEVICE_BB_TORCH = "blackberry 98"; // Torch
+  public static final String DEVICE_BB_PLAYBOOK = "playbook"; // PlayBook tablet
 
-  public static final String deviceSymbian = "symbian";
-  public static final String deviceS60 = "series60";
-  public static final String deviceS70 = "series70";
-  public static final String deviceS80 = "series80";
-  public static final String deviceS90 = "series90";
+  public static final String DEVICE_SYMBIAN = "symbian";
+  public static final String DEVICE_S60 = "series60";
+  public static final String DEVICE_S70 = "series70";
+  public static final String DEVICE_S80 = "series80";
+  public static final String DEVICE_S90 = "series90";
 
-  public static final String devicePalm = "palm";
-  public static final String deviceWebOS = "webos"; // For Palm devices
-  public static final String deviceWebOStv = "web0s"; // For LG TVs
-  public static final String deviceWebOShp = "hpwos"; // For HP's line of WebOS devices
+  public static final String DEVICE_Palm = "palm";
+  public static final String DEVICE_WEB_OS = "webos"; // For Palm devices
+  public static final String DEVICE_WEB_OS_TV = "web0s"; // For LG TVs
+  public static final String DEVICE_WEB_OS_HP = "hpwos"; // For HP's line of WebOS devices
 
-  public static final String deviceNuvifone = "nuvifone"; // Garmin Nuvifone
-  public static final String deviceBada = "bada"; // Samsung's Bada OS
-  public static final String deviceTizen = "tizen"; // Tizen OS
-  public static final String deviceMeego = "meego"; // Meego OS
-  public static final String deviceSailfish = "sailfish"; // Sailfish OS
-  public static final String deviceUbuntu = "ubuntu"; // Ubuntu Mobile OS
+  public static final String DEVICE_NUVIFONE = "nuvifone"; // Garmin Nuvifone
+  public static final String DEVICE_BADA = "bada"; // Samsung's Bada OS
+  public static final String DEVICE_TIZEN = "tizen"; // Tizen OS
+  public static final String DEVICE_MEEGO = "meego"; // Meego OS
+  public static final String DEVICE_SAILFISH = "sailfish"; // Sailfish OS
+  public static final String DEVICE_UBUNTU = "ubuntu"; // Ubuntu Mobile OS
 
-  public static final String deviceKindle = "kindle"; // Amazon Kindle, eInk one
-  public static final String engineSilk = "silk-accelerated"; // Amazon's accelerated Silk browser for Kindle Fire
+  public static final String DEVICE_KINDLE = "kindle"; // Amazon Kindle, eInk one
+  public static final String ENGINE_SILK = "silk-accelerated"; // Amazon's accelerated Silk browser for Kindle Fire
 
-  public static final String engineBlazer = "blazer"; // Old Palm
-  public static final String engineXiino = "xiino"; // Another old Palm
+  public static final String DEVICE_BLAZER = "blazer"; // Old Palm
+  public static final String DEVICE_XIINO = "xiino"; // Another old Palm
 
   // Initialize variables for mobile-specific content.
-  public static final String vndwap = "vnd.wap";
-  public static final String wml = "wml";
+  public static final String VND_WAP = "vnd.wap";
+  public static final String WML = "wml";
 
   // Initialize variables for other random devices and mobile browsers.
-  public static final String deviceTablet = "tablet"; // Generic term for slate and tablet devices
-  public static final String deviceBrew = "brew";
-  public static final String deviceDanger = "danger";
-  public static final String deviceHiptop = "hiptop";
-  public static final String devicePlaystation = "playstation";
-  public static final String devicePlaystationVita = "vita";
-  public static final String deviceNintendoDs = "nitro";
-  public static final String deviceNintendo = "nintendo";
-  public static final String deviceWii = "wii";
-  public static final String deviceXbox = "xbox";
-  public static final String deviceArchos = "archos";
+  public static final String DEVICE_TABLET = "tablet"; // Generic term for slate and tablet devices
+  public static final String DEVICE_BREW = "brew";
+  public static final String DEVICE_DANGER = "danger";
+  public static final String DEVICE_HIPTOP = "hiptop";
+  public static final String DEVICE_PLAYSTATION = "playstation";
+  public static final String DEVICE_PLAYSTATION_VITA = "vita";
+  public static final String DEVICE_NINTENTDO_DS = "nitro";
+  public static final String DEVICE_NINTENDO = "nintendo";
+  public static final String DEVICE_WII = "wii";
+  public static final String DEVICE_XBOX = "xbox";
+  public static final String DEVICE_ARCHOS = "archos";
 
-  public static final String engineFirefox = "firefox"; // For Firefox OS
-  public static final String engineOpera = "opera"; // Popular browser
-  public static final String engineNetfront = "netfront"; // Common embedded OS browser
-  public static final String engineUpBrowser = "up.browser"; // common on some phones
-  public static final String engineOpenWeb = "openweb"; // Transcoding by OpenWave server
-  public static final String deviceMidp = "midp"; // a mobile Java technology
-  public static final String uplink = "up.link";
-  public static final String engineTelecaQ = "teleca q"; // a modern feature phone browser
-  public static final String devicePda = "pda"; // some devices report themselves as PDAs
-  public static final String mini = "mini"; // Some mobile browsers put "mini" in their names.
-  public static final String mobile = "mobile"; // Some mobile browsers put "mobile" in their user agent strings.
-  public static final String mobi = "mobi"; // Some mobile browsers put "mobi" in their user agent strings.
+  public static final String ENGINE_FIREFOX = "firefox"; // For Firefox OS
+  public static final String ENGINE_OPERA = "opera"; // Popular browser
+  public static final String ENGINE_NETFRONT = "netfront"; // Common embedded OS browser
+  public static final String ENGINE_UP_BROWSER = "up.browser"; // common on some phones
+  public static final String ENGINE_OPENWEB = "openweb"; // Transcoding by OpenWave server
+  public static final String DEVICE_MIDP = "midp"; // a mobile Java technology
+  public static final String UPLINK = "up.link";
+  public static final String ENGINE_TELECA_Q = "teleca q"; // a modern feature phone browser
+  public static final String DEVICE_PDA = "pda"; // some devices report themselves as PDAs
+  public static final String MINI = "mini"; // Some mobile browsers put "mini" in their names.
+  public static final String MOBILE = "mobile"; // Some mobile browsers put "mobile" in their user agent strings.
+  public static final String MOBI = "mobi"; // Some mobile browsers put "mobi" in their user agent strings.
 
   // Smart TV strings
-  public static final String smartTV1 = "smart-tv"; // Samsung Tizen smart TVs
-  public static final String smartTV2 = "smarttv"; // LG WebOS smart TVs
+  public static final String SMART_TV1 = "smart-tv"; // Samsung Tizen smart TVs
+  public static final String SMART_TV2 = "smarttv"; // LG WebOS smart TVs
 
   // Use Maemo, Tablet, and Linux to test for Nokia"s Internet Tablets.
-  public static final String maemo = "maemo";
-  public static final String linux = "linux";
-  public static final String qtembedded = "qt embedded"; // for Sony Mylo
-  public static final String mylocom2 = "com2"; // for Sony Mylo also
+  public static final String MAEMO = "maemo";
+  public static final String LINUX = "linux";
+  public static final String QT_EMBEDDED = "qt embedded"; // for Sony Mylo
+  public static final String MYLOCOM2 = "com2"; // for Sony Mylo also
 
   // In some UserAgents, the only clue is the manufacturer.
-  public static final String manuSonyEricsson = "sonyericsson";
-  public static final String manuericsson = "ericsson";
-  public static final String manuSamsung1 = "sec-sgh";
-  public static final String manuSony = "sony";
-  public static final String manuHtc = "htc"; // Popular Android and WinMo manufacturer
+  public static final String MANU_SONY_ERICSSON = "sonyericsson";
+  public static final String MANU_ERICSSON = "ericsson";
+  public static final String MANU_SAMSUNG1 = "sec-sgh";
+  public static final String MANU_SONY = "sony";
+  public static final String MANU_HTC = "htc"; // Popular Android and WinMo manufacturer
 
   // In some UserAgents, the only clue is the operator.
-  public static final String svcDocomo = "docomo";
-  public static final String svcKddi = "kddi";
-  public static final String svcVodafone = "vodafone";
+  public static final String SVC_DOCOMO = "docomo";
+  public static final String SVC_KDDI = "kddi";
+  public static final String SVC_VODAFONE = "vodafone";
 
   // Disambiguation strings.
-  public static final String disUpdate = "update"; // pda vs. update
+  public static final String DIS_UPDATE = "update"; // pda vs. update
 
 
   /**
@@ -241,10 +240,7 @@ public class UAgentInfo {
    */
   public boolean detectIphone() {
     // The iPad and iPod touch say they're an iPhone! So let's disambiguate.
-    if (userAgent.indexOf(deviceIphone) != -1 && !detectIpad() && !detectIpod()) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(DEVICE_IPHONE) != -1 && !detectIpad() && !detectIpod();
   }
 
   /**
@@ -253,10 +249,7 @@ public class UAgentInfo {
    * @return detection of an iPod Touch
    */
   public boolean detectIpod() {
-    if (userAgent.indexOf(deviceIpod) != -1) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(DEVICE_IPOD) != -1;
   }
 
   /**
@@ -265,10 +258,7 @@ public class UAgentInfo {
    * @return detection of an iPad
    */
   public boolean detectIpad() {
-    if (userAgent.indexOf(deviceIpad) != -1 && detectWebkit()) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(DEVICE_IPAD) != -1 && detectWebkit();
   }
 
   /**
@@ -278,10 +268,7 @@ public class UAgentInfo {
    */
   public boolean detectIphoneOrIpod() {
     // We repeat the searches here because some iPods may report themselves as an iPhone, which would be okay.
-    if (userAgent.indexOf(deviceIphone) != -1 || userAgent.indexOf(deviceIpod) != -1) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(DEVICE_IPHONE) != -1 || userAgent.indexOf(DEVICE_IPOD) != -1;
   }
 
   /**
@@ -290,10 +277,7 @@ public class UAgentInfo {
    * @return detection of an Apple iOS device
    */
   public boolean detectIos() {
-    if (detectIphoneOrIpod() || detectIpad()) {
-      return true;
-    }
-    return false;
+    return detectIphoneOrIpod() || detectIpad();
   }
 
 
@@ -303,10 +287,7 @@ public class UAgentInfo {
    * @return detection of an Android device
    */
   public boolean detectAndroid() {
-    if ((userAgent.indexOf(deviceAndroid) != -1) || detectGoogleTV())
-      return true;
-
-    return false;
+    return userAgent.indexOf(DEVICE_ANDROID) != -1 || detectGoogleTV();
   }
 
   /**
@@ -322,14 +303,11 @@ public class UAgentInfo {
       return false;
 
     // If it's Android and has 'mobile' in it, Google says it's a phone.
-    if (userAgent.indexOf(mobile) != -1)
+    if (userAgent.indexOf(MOBILE) != -1)
       return true;
 
     // Special check for Android devices with Opera Mobile/Mini. They should report here.
-    if (detectOperaMobile())
-      return true;
-
-    return false;
+    return detectOperaMobile();
   }
 
   /**
@@ -348,10 +326,7 @@ public class UAgentInfo {
       return false;
 
     // Otherwise, if it's Android and does NOT have 'mobile' in it, Google says it's a tablet.
-    if ((userAgent.indexOf(mobile) > -1))
-      return false;
-    else
-      return true;
+    return userAgent.indexOf(MOBILE) > -1;
   }
 
   /**
@@ -360,10 +335,7 @@ public class UAgentInfo {
    * @return detection of an Android WebKit browser
    */
   public boolean detectAndroidWebKit() {
-    if (detectAndroid() && detectWebkit()) {
-      return true;
-    }
-    return false;
+    return detectAndroid() && detectWebkit();
   }
 
   /**
@@ -372,10 +344,7 @@ public class UAgentInfo {
    * @return detection of GoogleTV
    */
   public boolean detectGoogleTV() {
-    if (userAgent.indexOf(deviceGoogleTV) != -1) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(DEVICE_GOOGLE_TV) != -1;
   }
 
   /**
@@ -384,10 +353,7 @@ public class UAgentInfo {
    * @return detection of a WebKit browser
    */
   public boolean detectWebkit() {
-    if (userAgent.indexOf(engineWebKit) != -1) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(ENGINE_WEBKIT) != -1;
   }
 
   /**
@@ -397,10 +363,7 @@ public class UAgentInfo {
    */
   public boolean detectS60OssBrowser() {
     // First, test for WebKit, then make sure it's either Symbian or S60.
-    if (detectWebkit() && (userAgent.indexOf(deviceSymbian) != -1 || userAgent.indexOf(deviceS60) != -1)) {
-      return true;
-    }
-    return false;
+    return detectWebkit() && (userAgent.indexOf(DEVICE_SYMBIAN) != -1 || userAgent.indexOf(DEVICE_S60) != -1);
   }
 
   /**
@@ -411,9 +374,9 @@ public class UAgentInfo {
    * @return detection of SymbianOS
    */
   public boolean detectSymbianOS() {
-    if (userAgent.indexOf(deviceSymbian) != -1 || userAgent.indexOf(deviceS60) != -1
-        || userAgent.indexOf(deviceS70) != -1 || userAgent.indexOf(deviceS80) != -1
-        || userAgent.indexOf(deviceS90) != -1) {
+    if (userAgent.indexOf(DEVICE_SYMBIAN) != -1 || userAgent.indexOf(DEVICE_S60) != -1
+        || userAgent.indexOf(DEVICE_S70) != -1 || userAgent.indexOf(DEVICE_S80) != -1
+        || userAgent.indexOf(DEVICE_S90) != -1) {
       return true;
     }
     return false;
@@ -425,10 +388,7 @@ public class UAgentInfo {
    * @return detection of Windows Phone 7.x OR 8
    */
   public boolean detectWindowsPhone() {
-    if (detectWindowsPhone7() || detectWindowsPhone8() || detectWindowsPhone10()) {
-      return true;
-    }
-    return false;
+    return detectWindowsPhone7() || detectWindowsPhone8() || detectWindowsPhone10();
   }
 
   /**
@@ -437,10 +397,7 @@ public class UAgentInfo {
    * @return detection of Windows Phone 7
    */
   public boolean detectWindowsPhone7() {
-    if (userAgent.indexOf(deviceWinPhone7) != -1) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(DEVICE_WINPHONE_7) != -1;
   }
 
   /**
@@ -449,10 +406,7 @@ public class UAgentInfo {
    * @return detection of Windows Phone 8
    */
   public boolean detectWindowsPhone8() {
-    if (userAgent.indexOf(deviceWinPhone8) != -1) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(DEVICE_WINPHONE_8) != -1;
   }
 
   /**
@@ -461,10 +415,7 @@ public class UAgentInfo {
    * @return detection of Windows Phone 10
    */
   public boolean detectWindowsPhone10() {
-    if (userAgent.indexOf(deviceWinPhone10) != -1) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(DEVICE_WINPHONE_10) != -1;
   }
 
   /**
@@ -480,18 +431,15 @@ public class UAgentInfo {
     // Most devices use 'Windows CE', but some report 'iemobile'
     // and some older ones report as 'PIE' for Pocket IE.
     // We also look for instances of HTC and Windows for many of their WinMo devices.
-    if (userAgent.indexOf(deviceWinMob) != -1 || userAgent.indexOf(deviceWinMob) != -1
-        || userAgent.indexOf(deviceIeMob) != -1 || userAgent.indexOf(enginePie) != -1
-        || (userAgent.indexOf(manuHtc) != -1 && userAgent.indexOf(deviceWindows) != -1)
-        || (detectWapWml() && userAgent.indexOf(deviceWindows) != -1)) {
+    if (userAgent.indexOf(DEVICE_WINMOB) != -1 || userAgent.indexOf(DEVICE_WINMOB) != -1
+        || userAgent.indexOf(DEVICE_IE_MOB) != -1 || userAgent.indexOf(ENGINE_PIE) != -1
+        || (userAgent.indexOf(MANU_HTC) != -1 && userAgent.indexOf(DEVICE_WINDOWS) != -1)
+        || (detectWapWml() && userAgent.indexOf(DEVICE_WINDOWS) != -1)) {
       return true;
     }
 
     // Test for Windows Mobile PPC but not old Macintosh PowerPC.
-    if (userAgent.indexOf(devicePpc) != -1 && !(userAgent.indexOf(deviceMacPpc) != -1))
-      return true;
-
-    return false;
+    return userAgent.indexOf(DEVICE_PPC) != -1 && !(userAgent.indexOf(DEVICE_MAC_PPC) != -1);
   }
 
   /**
@@ -500,13 +448,10 @@ public class UAgentInfo {
    * @return detection of Blackberry
    */
   public boolean detectBlackBerry() {
-    if (userAgent.indexOf(deviceBB) != -1 || httpAccept.indexOf(vndRIM) != -1)
+    if (userAgent.indexOf(DEVICE_BB) != -1 || httpAccept.indexOf(VND_RIM) != -1)
       return true;
 
-    if (detectBlackBerry10Phone())
-      return true;
-
-    return false;
+    return detectBlackBerry10Phone();
   }
 
   /**
@@ -515,10 +460,7 @@ public class UAgentInfo {
    * @return detection of a Blackberry 10 device
    */
   public boolean detectBlackBerry10Phone() {
-    if (userAgent.indexOf(deviceBB10) != -1 && userAgent.indexOf(mobile) != -1) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(DEVICE_BB_10) != -1 && userAgent.indexOf(MOBILE) != -1;
   }
 
   /**
@@ -527,10 +469,7 @@ public class UAgentInfo {
    * @return detection of a Blackberry Tablet
    */
   public boolean detectBlackBerryTablet() {
-    if (userAgent.indexOf(deviceBBPlaybook) != -1) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(DEVICE_BB_PLAYBOOK) != -1;
   }
 
   /**
@@ -540,10 +479,7 @@ public class UAgentInfo {
    * @return detection of a Blackberry device with WebKit browser
    */
   public boolean detectBlackBerryWebKit() {
-    if (detectBlackBerry() && userAgent.indexOf(engineWebKit) != -1) {
-      return true;
-    }
-    return false;
+    return detectBlackBerry() && userAgent.indexOf(ENGINE_WEBKIT) != -1;
   }
 
   /**
@@ -553,8 +489,8 @@ public class UAgentInfo {
    * @return detection of a Blackberry touchscreen device
    */
   public boolean detectBlackBerryTouch() {
-    if (detectBlackBerry() && (userAgent.indexOf(deviceBBStorm) != -1 || userAgent.indexOf(deviceBBTorch) != -1
-        || userAgent.indexOf(deviceBBBoldTouch) != -1 || userAgent.indexOf(deviceBBCurveTouch) != -1)) {
+    if (detectBlackBerry() && (userAgent.indexOf(DEVICE_BB_STORM) != -1 || userAgent.indexOf(DEVICE_BB_TORCH) != -1
+        || userAgent.indexOf(DEVICE_BB_BOLD_TOUCH) != -1 || userAgent.indexOf(DEVICE_BB_CURVE_TOUCH) != -1)) {
       return true;
     }
     return false;
@@ -571,8 +507,8 @@ public class UAgentInfo {
     if (detectBlackBerryWebKit())
       return false;
     if (detectBlackBerry()) {
-      if (detectBlackBerryTouch() || userAgent.indexOf(deviceBBBold) != -1 || userAgent.indexOf(deviceBBTour) != -1
-          || userAgent.indexOf(deviceBBCurve) != -1) {
+      if (detectBlackBerryTouch() || userAgent.indexOf(DEVICE_BB_BOLD) != -1 || userAgent.indexOf(DEVICE_BB_TOUR) != -1
+          || userAgent.indexOf(DEVICE_BB_CURVE) != -1) {
         return true;
       } else {
         return false;
@@ -608,8 +544,8 @@ public class UAgentInfo {
    */
   public boolean detectPalmOS() {
     // Most devices nowadays report as 'Palm', but some older ones reported as Blazer or Xiino.
-    if (userAgent.indexOf(devicePalm) != -1 || userAgent.indexOf(engineBlazer) != -1
-        || userAgent.indexOf(engineXiino) != -1) {
+    if (userAgent.indexOf(DEVICE_Palm) != -1 || userAgent.indexOf(DEVICE_BLAZER) != -1
+        || userAgent.indexOf(DEVICE_XIINO) != -1) {
       // Make sure it's not WebOS first
       if (detectPalmWebOS()) {
         return false;
@@ -626,10 +562,7 @@ public class UAgentInfo {
    * @return detection of a Palm WebOS device
    */
   public boolean detectPalmWebOS() {
-    if (userAgent.indexOf(deviceWebOS) != -1) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(DEVICE_WEB_OS) != -1;
   }
 
   /**
@@ -638,10 +571,7 @@ public class UAgentInfo {
    * @return detection of an HP WebOS tablet
    */
   public boolean detectWebOSTablet() {
-    if (userAgent.indexOf(deviceWebOShp) != -1 && userAgent.indexOf(deviceTablet) != -1) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(DEVICE_WEB_OS_HP) != -1 && userAgent.indexOf(DEVICE_TABLET) != -1;
   }
 
   /**
@@ -650,10 +580,7 @@ public class UAgentInfo {
    * @return detection of a WebOS smart TV
    */
   public boolean detectWebOSTV() {
-    if (userAgent.indexOf(deviceWebOStv) != -1 && userAgent.indexOf(smartTV2) != -1) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(DEVICE_WEB_OS_TV) != -1 && userAgent.indexOf(SMART_TV2) != -1;
   }
 
   /**
@@ -662,10 +589,7 @@ public class UAgentInfo {
    * @return detection of an Opera browser for a mobile device
    */
   public boolean detectOperaMobile() {
-    if (userAgent.indexOf(engineOpera) != -1 && (userAgent.indexOf(mini) != -1 || userAgent.indexOf(mobi) != -1)) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(ENGINE_OPERA) != -1 && (userAgent.indexOf(MINI) != -1 || userAgent.indexOf(MOBI) != -1);
   }
 
   /**
@@ -675,10 +599,7 @@ public class UAgentInfo {
    * @return detection of a Kindle
    */
   public boolean detectKindle() {
-    if (userAgent.indexOf(deviceKindle) != -1 && !detectAndroid()) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(DEVICE_KINDLE) != -1 && !detectAndroid();
   }
 
   /**
@@ -687,10 +608,7 @@ public class UAgentInfo {
    * @return detection of an Amazon Kindle Fire in Silk mode.
    */
   public boolean detectAmazonSilk() {
-    if (userAgent.indexOf(engineSilk) != -1) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(ENGINE_SILK) != -1;
   }
 
   /**
@@ -699,10 +617,7 @@ public class UAgentInfo {
    * @return detection of a Garmin Nuvifone
    */
   public boolean detectGarminNuvifone() {
-    if (userAgent.indexOf(deviceNuvifone) != -1) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(DEVICE_NUVIFONE) != -1;
   }
 
   /**
@@ -711,10 +626,7 @@ public class UAgentInfo {
    * @return detection of a Bada device
    */
   public boolean detectBada() {
-    if (userAgent.indexOf(deviceBada) != -1) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(DEVICE_BADA) != -1;
   }
 
   /**
@@ -723,10 +635,7 @@ public class UAgentInfo {
    * @return detection of a Tizen device
    */
   public boolean detectTizen() {
-    if (userAgent.indexOf(deviceTizen) != -1 && userAgent.indexOf(mobile) != -1) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(DEVICE_TIZEN) != -1 && userAgent.indexOf(MOBILE) != -1;
   }
 
   /**
@@ -735,10 +644,7 @@ public class UAgentInfo {
    * @return detection of a Tizen smart TV
    */
   public boolean detectTizenTV() {
-    if (userAgent.indexOf(deviceTizen) != -1 && userAgent.indexOf(smartTV1) != -1) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(DEVICE_TIZEN) != -1 && userAgent.indexOf(SMART_TV1) != -1;
   }
 
   /**
@@ -747,10 +653,7 @@ public class UAgentInfo {
    * @return detection of a Meego device
    */
   public boolean detectMeego() {
-    if (userAgent.indexOf(deviceMeego) != -1) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(DEVICE_MEEGO) != -1;
   }
 
   /**
@@ -759,10 +662,7 @@ public class UAgentInfo {
    * @return detection of a Meego phone
    */
   public boolean detectMeegoPhone() {
-    if (userAgent.indexOf(deviceMeego) != -1 && userAgent.indexOf(mobi) != -1) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(DEVICE_MEEGO) != -1 && userAgent.indexOf(MOBI) != -1;
   }
 
   /**
@@ -771,10 +671,7 @@ public class UAgentInfo {
    * @return detection of a Firefox OS mobile device
    */
   public boolean detectFirefoxOS() {
-    if (detectFirefoxOSPhone() || detectFirefoxOSTablet())
-      return true;
-
-    return false;
+    return detectFirefoxOSPhone() || detectFirefoxOSTablet();
   }
 
   /**
@@ -787,10 +684,7 @@ public class UAgentInfo {
     if (detectIos() || detectAndroid() || detectSailfish())
       return false;
 
-    if ((userAgent.indexOf(engineFirefox) != -1) && (userAgent.indexOf(mobile) != -1))
-      return true;
-
-    return false;
+    return (userAgent.indexOf(ENGINE_FIREFOX) != -1) && (userAgent.indexOf(MOBILE) != -1);
   }
 
   /**
@@ -803,10 +697,7 @@ public class UAgentInfo {
     if (detectIos() || detectAndroid() || detectSailfish())
       return false;
 
-    if ((userAgent.indexOf(engineFirefox) != -1) && (userAgent.indexOf(deviceTablet) != -1))
-      return true;
-
-    return false;
+    return (userAgent.indexOf(ENGINE_FIREFOX) != -1) && (userAgent.indexOf(DEVICE_TABLET) != -1);
   }
 
   /**
@@ -815,10 +706,7 @@ public class UAgentInfo {
    * @return detection of a Sailfish device
    */
   public boolean detectSailfish() {
-    if (userAgent.indexOf(deviceSailfish) != -1) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(DEVICE_SAILFISH) != -1;
   }
 
   /**
@@ -827,10 +715,7 @@ public class UAgentInfo {
    * @return detection of a Sailfish phone
    */
   public boolean detectSailfishPhone() {
-    if (detectSailfish() && (userAgent.indexOf(mobile) != -1))
-      return true;
-
-    return false;
+    return detectSailfish() && (userAgent.indexOf(MOBILE) != -1);
   }
 
   /**
@@ -839,10 +724,7 @@ public class UAgentInfo {
    * @return detection of an Ubuntu Mobile OS mobile device
    */
   public boolean detectUbuntu() {
-    if (detectUbuntuPhone() || detectUbuntuTablet())
-      return true;
-
-    return false;
+    return detectUbuntuPhone() || detectUbuntuTablet();
   }
 
   /**
@@ -851,10 +733,7 @@ public class UAgentInfo {
    * @return detection of an Ubuntu Mobile OS phone
    */
   public boolean detectUbuntuPhone() {
-    if ((userAgent.indexOf(deviceUbuntu) != -1) && (userAgent.indexOf(mobile) != -1))
-      return true;
-
-    return false;
+    return (userAgent.indexOf(DEVICE_UBUNTU) != -1) && (userAgent.indexOf(MOBILE) != -1);
   }
 
   /**
@@ -863,10 +742,7 @@ public class UAgentInfo {
    * @return detection of an Ubuntu Mobile OS tablet
    */
   public boolean detectUbuntuTablet() {
-    if ((userAgent.indexOf(deviceUbuntu) != -1) && (userAgent.indexOf(deviceTablet) != -1))
-      return true;
-
-    return false;
+    return (userAgent.indexOf(DEVICE_UBUNTU) != -1) && (userAgent.indexOf(DEVICE_TABLET) != -1);
   }
 
 
@@ -876,10 +752,7 @@ public class UAgentInfo {
    * @return detection of a Danger Hiptop
    */
   public boolean detectDangerHiptop() {
-    if (userAgent.indexOf(deviceDanger) != -1 || userAgent.indexOf(deviceHiptop) != -1) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(DEVICE_DANGER) != -1 || userAgent.indexOf(DEVICE_HIPTOP) != -1;
   }
 
   /**
@@ -888,11 +761,7 @@ public class UAgentInfo {
    * @return detection of a Sony Mylo device
    */
   public boolean detectSonyMylo() {
-    if (userAgent.indexOf(manuSony) != -1
-        && (userAgent.indexOf(qtembedded) != -1 || userAgent.indexOf(mylocom2) != -1)) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(MANU_SONY) != -1 && (userAgent.indexOf(QT_EMBEDDED) != -1 || userAgent.indexOf(MYLOCOM2) != -1);
   }
 
   /**
@@ -901,9 +770,9 @@ public class UAgentInfo {
    * @return detection of a Maemo OS tablet
    */
   public boolean detectMaemoTablet() {
-    if (userAgent.indexOf(maemo) != -1) {
+    if (userAgent.indexOf(MAEMO) != -1) {
       return true;
-    } else if (userAgent.indexOf(linux) != -1 && userAgent.indexOf(deviceTablet) != -1 && !detectWebOSTablet()
+    } else if (userAgent.indexOf(LINUX) != -1 && userAgent.indexOf(DEVICE_TABLET) != -1 && !detectWebOSTablet()
         && !detectAndroid()) {
       return true;
     }
@@ -916,10 +785,7 @@ public class UAgentInfo {
    * @return detection of an Archos media player
    */
   public boolean detectArchos() {
-    if (userAgent.indexOf(deviceArchos) != -1) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(DEVICE_ARCHOS) != -1;
   }
 
   /**
@@ -928,10 +794,7 @@ public class UAgentInfo {
    * @return detection of any Game Console
    */
   public boolean detectGameConsole() {
-    if (detectSonyPlaystation() || detectNintendo() || detectXbox()) {
-      return true;
-    }
-    return false;
+    return detectSonyPlaystation() || detectNintendo() || detectXbox();
   }
 
   /**
@@ -940,10 +803,7 @@ public class UAgentInfo {
    * @return detection of Sony Playstation
    */
   public boolean detectSonyPlaystation() {
-    if (userAgent.indexOf(devicePlaystation) != -1) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(DEVICE_PLAYSTATION) != -1;
   }
 
   /**
@@ -953,10 +813,7 @@ public class UAgentInfo {
    * @return detection of a handheld gaming device
    */
   public boolean detectGamingHandheld() {
-    if ((userAgent.indexOf(devicePlaystation) != -1) && (userAgent.indexOf(devicePlaystationVita) != -1)) {
-      return true;
-    }
-    return false;
+    return (userAgent.indexOf(DEVICE_PLAYSTATION) != -1) && (userAgent.indexOf(DEVICE_PLAYSTATION_VITA) != -1);
   }
 
   /**
@@ -965,11 +822,8 @@ public class UAgentInfo {
    * @return detection of Nintendo
    */
   public boolean detectNintendo() {
-    if (userAgent.indexOf(deviceNintendo) != -1 || userAgent.indexOf(deviceWii) != -1
-        || userAgent.indexOf(deviceNintendoDs) != -1) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(DEVICE_NINTENDO) != -1 || userAgent.indexOf(DEVICE_WII) != -1
+        || userAgent.indexOf(DEVICE_NINTENTDO_DS) != -1;
   }
 
   /**
@@ -978,10 +832,7 @@ public class UAgentInfo {
    * @return detection of Xbox
    */
   public boolean detectXbox() {
-    if (userAgent.indexOf(deviceXbox) != -1) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(DEVICE_XBOX) != -1;
   }
 
   /**
@@ -990,10 +841,7 @@ public class UAgentInfo {
    * @return detection of a Brew device
    */
   public boolean detectBrewDevice() {
-    if (userAgent.indexOf(deviceBrew) != -1) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(DEVICE_BREW) != -1;
   }
 
   /**
@@ -1002,10 +850,7 @@ public class UAgentInfo {
    * @return detection of a WAP- or WML-capable device
    */
   public boolean detectWapWml() {
-    if (httpAccept.indexOf(vndwap) != -1 || httpAccept.indexOf(wml) != -1) {
-      return true;
-    }
-    return false;
+    return httpAccept.indexOf(VND_WAP) != -1 || httpAccept.indexOf(WML) != -1;
   }
 
   /**
@@ -1014,10 +859,7 @@ public class UAgentInfo {
    * @return detection of a MIDP mobile Java-capable device
    */
   public boolean detectMidpCapable() {
-    if (userAgent.indexOf(deviceMidp) != -1 || httpAccept.indexOf(deviceMidp) != -1) {
-      return true;
-    }
-    return false;
+    return userAgent.indexOf(DEVICE_MIDP) != -1 || httpAccept.indexOf(DEVICE_MIDP) != -1;
   }
 
 
@@ -1054,7 +896,7 @@ public class UAgentInfo {
     }
 
     // Catch-all for many mobile devices
-    if (userAgent.indexOf(mobile) != -1) {
+    if (userAgent.indexOf(MOBILE) != -1) {
       return true;
     }
 
@@ -1071,11 +913,7 @@ public class UAgentInfo {
       return true;
     }
 
-    if ((userAgent.indexOf(engineNetfront) != -1) || (userAgent.indexOf(engineUpBrowser) != -1)) {
-      return true;
-    }
-
-    return false;
+    return (userAgent.indexOf(ENGINE_NETFRONT) != -1) || (userAgent.indexOf(ENGINE_UP_BROWSER) != -1);
   }
 
   /**
@@ -1094,16 +932,16 @@ public class UAgentInfo {
       return true;
     }
 
-    if ((userAgent.indexOf(devicePda) != -1) && (userAgent.indexOf(disUpdate) < 0)) // no index found
+    if ((userAgent.indexOf(DEVICE_PDA) != -1) && (userAgent.indexOf(DIS_UPDATE) < 0)) // no index found
     {
       return true;
     }
 
     // Detect older phones from certain manufacturers and operators.
-    if ((userAgent.indexOf(uplink) != -1) || (userAgent.indexOf(engineOpenWeb) != -1)
-        || (userAgent.indexOf(manuSamsung1) != -1) || (userAgent.indexOf(manuSonyEricsson) != -1)
-        || (userAgent.indexOf(manuericsson) != -1) || (userAgent.indexOf(svcDocomo) != -1)
-        || (userAgent.indexOf(svcKddi) != -1) || (userAgent.indexOf(svcVodafone) != -1)) {
+    if ((userAgent.indexOf(UPLINK) != -1) || (userAgent.indexOf(ENGINE_OPENWEB) != -1)
+        || (userAgent.indexOf(MANU_SAMSUNG1) != -1) || (userAgent.indexOf(MANU_SONY_ERICSSON) != -1)
+        || (userAgent.indexOf(MANU_ERICSSON) != -1) || (userAgent.indexOf(SVC_DOCOMO) != -1)
+        || (userAgent.indexOf(SVC_KDDI) != -1) || (userAgent.indexOf(SVC_VODAFONE) != -1)) {
       return true;
     }
 
@@ -1121,11 +959,8 @@ public class UAgentInfo {
    * @return detection of any device in the Tablet Tier
    */
   public boolean detectTierTablet() {
-    if (detectIpad() || detectAndroidTablet() || detectBlackBerryTablet() || detectFirefoxOSTablet()
-        || detectUbuntuTablet() || detectWebOSTablet()) {
-      return true;
-    }
-    return false;
+    return detectIpad() || detectAndroidTablet() || detectBlackBerryTablet() || detectFirefoxOSTablet()
+        || detectUbuntuTablet() || detectWebOSTablet();
   }
 
   /**
@@ -1135,12 +970,9 @@ public class UAgentInfo {
    * @return detection of any device in the iPhone/Android/Windows Phone/BlackBerry/WebOS Tier
    */
   public boolean detectTierIphone() {
-    if (detectIphoneOrIpod() || detectAndroidPhone() || detectWindowsPhone() || detectBlackBerry10Phone()
+    return detectIphoneOrIpod() || detectAndroidPhone() || detectWindowsPhone() || detectBlackBerry10Phone()
         || (detectBlackBerryWebKit() && detectBlackBerryTouch()) || detectPalmWebOS() || detectBada() || detectTizen()
-        || detectFirefoxOSPhone() || detectSailfishPhone() || detectUbuntuPhone() || detectGamingHandheld()) {
-      return true;
-    }
-    return false;
+        || detectFirefoxOSPhone() || detectSailfishPhone() || detectUbuntuPhone() || detectGamingHandheld();
   }
 
   /**
@@ -1163,7 +995,7 @@ public class UAgentInfo {
         // Note: 'High' BlackBerry devices ONLY
         // Older Windows 'Mobile' isn't good enough for iPhone Tier.
         if (detectWebkit() || detectS60OssBrowser() || detectBlackBerryHigh() || detectWindowsMobile()
-            || userAgent.indexOf(engineTelecaQ) != -1) {
+            || userAgent.indexOf(ENGINE_TELECA_Q) != -1) {
           result = true;
         } // if detectWebkit()
       } // if !detectTierIphone()
@@ -1179,9 +1011,26 @@ public class UAgentInfo {
    */
   public boolean detectTierOtherPhones() {
     // Exclude devices in the other 2 categories
-    if (detectMobileLong() && !detectTierIphone() && !detectTierRichCss()) {
-      return true;
-    }
-    return false;
+    return detectMobileLong() && !detectTierIphone() && !detectTierRichCss();
+  }
+
+  public boolean isInitCompleted() {
+    return initCompleted;
+  }
+
+  public boolean isWebkit() {
+    return isWebkit;
+  }
+
+  public boolean isMobilePhone() {
+    return isMobilePhone;
+  }
+
+  public boolean isAndroid() {
+    return isAndroid;
+  }
+
+  public boolean isAndroidPhone() {
+    return isAndroidPhone;
   }
 }
