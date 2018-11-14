@@ -2587,10 +2587,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   z-index: 1;
 }
 
-.task-start-list-item:hover .task-start-info-content {
-  font-family: "robotomedium";
-}
-
 a.compact-task-start-link:hover {
   text-decoration: none;
 }
@@ -2624,7 +2620,6 @@ a.compact-task-start-link:hover {
 }
 
 .task-start-info-task-name {
-  
   flex: 0 1 auto;
 }
 
@@ -5393,4 +5388,18 @@ a.mobile-menu-item.mobile-task-menu-item {
 a.mobile-menu-item.mobile-process-menu-item {
   border-style: solid;
   border-width: 0;
+}
+
+.mobile-footer {
+  text-align: center;
+  background-color: darkgrey;
+  line-height: 16px;
+}
+
+.mobile-footer .ui-commandlink {
+  color: black !important;
+}
+
+.mobile-container {
+  height: auto;
 }

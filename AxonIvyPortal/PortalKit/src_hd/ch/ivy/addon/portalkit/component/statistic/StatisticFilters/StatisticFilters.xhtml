@@ -85,8 +85,8 @@
           </p:selectBooleanCheckbox>
           <p:selectManyCheckbox id="categories" disabled="#{filter.isAllCategoriesSelected}"
             value="#{filter.selectedCaseCategories}" layout="grid" columns="1">
-            <f:selectItems value="#{filter.caseCategories}" var="category" itemValue="#{category}"
-              itemLabel="#{category == '' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory') : category}" />
+            <f:selectItems value="#{filter.caseCategories}" var="category" itemValue="#{category.rawPath}"
+              itemLabel="#{category.rawPath == '' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory') : category.path}" />
             <p:ajax global="false" />
           </p:selectManyCheckbox>
         </p:scrollPanel>
