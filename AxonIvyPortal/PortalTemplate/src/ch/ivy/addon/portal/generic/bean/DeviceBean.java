@@ -15,6 +15,10 @@ public class DeviceBean {
     return DeviceDetector.instance().isMobile(Ivy.session().getHttpSessionIdentifier());
   }
   
+  public boolean isDesktop() {
+    return DeviceDetector.instance().isDesktop();
+  }
+  
   @PreDestroy
   public void destroy() {
     DeviceDetector.instance().removeVersionState(Ivy.session().getHttpSessionIdentifier());
