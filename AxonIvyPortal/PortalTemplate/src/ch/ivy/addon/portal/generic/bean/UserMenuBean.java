@@ -15,6 +15,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.context.RequestContext;
 
+import ch.ivy.addon.portal.generic.common.DeviceDetector;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
@@ -116,6 +117,13 @@ public class UserMenuBean implements Serializable {
     } else {
       navigateToHomePage();
     }
+  }
+  
+  public void switchDesktopOrMobileVersion(boolean isMobile) throws IOException {
+    String url = String.format("%s?isMobile=%s", getHomePageURL(), isMobile);
+    FacesContext context = FacesContext.getCurrentInstance();
+    context.getExternalContext().redirect(url);
+    DeviceDetector.instance().updateVersionState(Ivy.session().getHttpSessionIdentifier(), isMobile);
   }
 
   public void resetTaskAndNavigateToHomePage() throws IOException {
