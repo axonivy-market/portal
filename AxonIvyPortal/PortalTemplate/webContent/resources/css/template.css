@@ -763,10 +763,6 @@
 	.dashboard-main-content-2nd-col {
 		width: 43%;
 	}
-	.dashboard-main-content-3rd-col {
-		width: 23%;
-		display: block;
-	}
 	.hidden-md {
 		display: none !important;
 	}

@@ -17,8 +17,8 @@
 	</snapshotRepository>
   </distributionManagement>
   <properties>
-		<scm.revision>${GIT_COMMIT}</scm.revision>
-	<ivy.engine.version>7.0.0</ivy.engine.version>
+	<scm.revision>${GIT_COMMIT}</scm.revision>
+	<ivy.engine.version>7.0.9</ivy.engine.version>
     <build.plugin.version>7.0.1</build.plugin.version>
   </properties>
   <dependencies>
