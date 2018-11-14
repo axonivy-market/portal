@@ -1,57 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>ch.ivyteam.ivy.project.portal</groupId>
-  <artifactId>axonIvyExpress</artifactId>
-  <version>7.0.0.0-SNAPSHOT</version>
-  <packaging>iar</packaging>
-  <properties>
-	<scm.revision>${GIT_COMMIT}</scm.revision>
-	<ivy.engine.version>7.0.9</ivy.engine.version>
-    <build.plugin.version>7.0.1</build.plugin.version>
-  </properties>
-  <dependencies>
-    <dependency>
-      <groupId>ch.ivyteam.ivy.project.portal</groupId>
-      <artifactId>portalTemplate</artifactId>
-      <version>7.0.0.0-SNAPSHOT</version>
-      <type>iar</type>
-    </dependency>
-  </dependencies>
-  <build>
-	  <sourceDirectory>${basedir}/src/</sourceDirectory>
-	  <directory>${basedir}/target</directory>
-	  <outputDirectory>${basedir}/classes</outputDirectory>
-	  <plugins>
-			<plugin>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<version>1.4</version>
-				<executions>
-					<execution>
-						<phase>process-resources</phase>
-						<configuration>
-							<tasks>
-								<delete>
-									<fileset dir="${basedir}">
-										<include name="scm-revision-*.txt" />
-									</fileset>
-								</delete>
-								<touch file="${basedir}/scm-revision-${scm.revision}.txt" />
-							</tasks>
-						</configuration>
-						<goals>
-							<goal>run</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>ch.ivyteam.ivy.project.portal</groupId>
+	<artifactId>axonIvyExpress</artifactId>
+	<version>7.0.0.0-SNAPSHOT</version>
+	<packaging>iar</packaging>
+	<properties>
+		<ivy.engine.version>7.0.9</ivy.engine.version>
+		<build.plugin.version>7.0.1</build.plugin.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>ch.ivyteam.ivy.project.portal</groupId>
+			<artifactId>portalTemplate</artifactId>
+			<version>7.0.0.0-SNAPSHOT</version>
+			<type>iar</type>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
 			<plugin>
 				<groupId>com.axonivy.ivy.ci</groupId>
 				<artifactId>project-build-plugin</artifactId>
 				<version>${build.plugin.version}</version>
-				<extensions>true</extensions>
+				<extensions>true</extensions>			
 			</plugin>
-	  </plugins>
-  </build>
+		</plugins>
+	</build>
 </project>

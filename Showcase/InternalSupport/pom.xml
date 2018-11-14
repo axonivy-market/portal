@@ -24,7 +24,7 @@
         <groupId>com.axonivy.ivy.ci</groupId>
         <artifactId>project-build-plugin</artifactId>
         <version>${build.plugin.version}</version>
-        <extensions>true</extensions>
+		<extensions>true</extensions>
       </plugin>
     </plugins>
   </build>

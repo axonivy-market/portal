@@ -1,69 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>ch.ivyteam.ivy.project.portal</groupId>
-  <artifactId>portalStyle</artifactId>
-  <version>7.0.0.0-SNAPSHOT</version>
-  <packaging>iar</packaging>
-  
-  <properties>
-	<scm.revision>${GIT_COMMIT}</scm.revision>
-	<ivy.engine.version>7.0.9</ivy.engine.version>
-    <resources.directory.css>${resources.directory}/css</resources.directory.css>
-    <resources.directory.less>${resources.directory}/less/</resources.directory.less>
-    <resources.directory>${project.basedir}/webContent/resources</resources.directory>
-    <build.plugin.version>7.0.1</build.plugin.version>
-  </properties>
-  <build>
-  	<sourceDirectory>${basedir}/src/</sourceDirectory>
-	<directory>${basedir}/target</directory>
-	<outputDirectory>${basedir}/classes</outputDirectory>
-	
-    <plugins>
-      <plugin>
-		<artifactId>maven-antrun-plugin</artifactId>
-		<version>1.4</version>
-		<executions>
-			<execution>
-				<phase>process-resources</phase>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>ch.ivyteam.ivy.project.portal</groupId>
+	<artifactId>portalStyle</artifactId>
+	<version>7.0.0.0-SNAPSHOT</version>
+	<packaging>iar</packaging>
+
+	<properties>
+		<ivy.engine.version>7.0.9</ivy.engine.version>
+		<build.plugin.version>7.0.1</build.plugin.version>
+		<resources.directory.css>${resources.directory}/css</resources.directory.css>
+		<resources.directory.less>${resources.directory}/less/</resources.directory.less>
+		<resources.directory>${project.basedir}/webContent/resources</resources.directory>
+	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.axonivy.ivy.ci</groupId>
+				<artifactId>project-build-plugin</artifactId>
+				<version>${build.plugin.version}</version>
+				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+				<groupId>org.lesscss</groupId>
+				<artifactId>lesscss-maven-plugin</artifactId>
+				<version>1.7.0.1.1</version>
 				<configuration>
-							<tasks>
-								<delete>
-									<fileset dir="${basedir}">
-										<include name="scm-revision-*.txt" />
-									</fileset>
-								</delete>
-								<touch file="${basedir}/scm-revision-${scm.revision}.txt" />
-							</tasks>
+					<sourceDirectory>${resources.directory.less}</sourceDirectory>
+					<outputDirectory>${resources.directory.css}</outputDirectory>
+					<outputFileFormat>theme.min.css</outputFileFormat>
+					<includes>
+						<include>theme.less</include>
+					</includes>
+					<force>true</force>
+					<compress>true</compress>
 				</configuration>
-				<goals>
-					<goal>run</goal>
-				</goals>
-			</execution>
-		</executions>
-      </plugin>
-      <plugin>
-		<groupId>com.axonivy.ivy.ci</groupId>
-		<artifactId>project-build-plugin</artifactId>
-		<version>${build.plugin.version}</version>
-		<extensions>true</extensions>
-      </plugin>
-      <plugin>
-        <groupId>org.lesscss</groupId>
-        <artifactId>lesscss-maven-plugin</artifactId>
-        <version>1.7.0.1.1</version>
-        <configuration>
-          <sourceDirectory>${resources.directory.less}</sourceDirectory>
-          <outputDirectory>${resources.directory.css}</outputDirectory>
-          <outputFileFormat>theme.min.css</outputFileFormat>
-          <includes>
-            <include>theme.less</include>
-          </includes>
-          <force>true</force>
-          <compress>true</compress>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+			</plugin>
+		</plugins>
+	</build>
 </project>

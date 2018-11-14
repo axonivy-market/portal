@@ -8,7 +8,8 @@
   <packaging>iar</packaging>
   <properties>
 	<powermock.version>1.6.6</powermock.version>
-	<ivy.engine.version>7.0.0</ivy.engine.version>
+	<ivy.engine.version>7.0.9</ivy.engine.version>
+	<build.plugin.version>7.0.1</build.plugin.version>
   </properties>
   <dependencies>
     <dependency>
@@ -59,12 +60,8 @@
       <plugin>
         <groupId>com.axonivy.ivy.ci</groupId>
         <artifactId>project-build-plugin</artifactId>
-        <version>7.0.0</version>
+        <version>${build.plugin.version}</version>
         <extensions>true</extensions>
-        <configuration>					
-			<engineDirectory>${settings.localRepository}/.cache/ivy/${ivy.engine.version}</engineDirectory>										
-			<encoding>UTF-8</encoding>
-		</configuration>
       </plugin>
       <!-- for GUI test -->
       <plugin>
