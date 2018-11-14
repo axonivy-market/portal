@@ -5363,6 +5363,11 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 
 /*********** MOBILE ***********/
+.mobile-logo {
+  height: 30px;
+  margin: 5px 0;
+}
+
 .mobile-logout-item {
   font-size: 2.5rem;
 }
@@ -5392,7 +5397,7 @@ a.mobile-menu-item.mobile-process-menu-item {
 
 .mobile-footer {
   text-align: center;
-  background-color: darkgrey;
+  background-color: lightgrey;
   line-height: 16px;
 }
 
