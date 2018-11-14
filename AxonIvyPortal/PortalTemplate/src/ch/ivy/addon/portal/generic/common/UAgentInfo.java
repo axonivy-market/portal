@@ -56,7 +56,7 @@ public class UAgentInfo {
   public static final String DEVICE_S80 = "series80";
   public static final String DEVICE_S90 = "series90";
 
-  public static final String DEVICE_Palm = "palm";
+  public static final String DEVICE_PALM = "palm";
   public static final String DEVICE_WEB_OS = "webos"; // For Palm devices
   public static final String DEVICE_WEB_OS_TV = "web0s"; // For LG TVs
   public static final String DEVICE_WEB_OS_HP = "hpwos"; // For HP's line of WebOS devices
@@ -374,12 +374,9 @@ public class UAgentInfo {
    * @return detection of SymbianOS
    */
   public boolean detectSymbianOS() {
-    if (userAgent.indexOf(DEVICE_SYMBIAN) != -1 || userAgent.indexOf(DEVICE_S60) != -1
+    return userAgent.indexOf(DEVICE_SYMBIAN) != -1 || userAgent.indexOf(DEVICE_S60) != -1
         || userAgent.indexOf(DEVICE_S70) != -1 || userAgent.indexOf(DEVICE_S80) != -1
-        || userAgent.indexOf(DEVICE_S90) != -1) {
-      return true;
-    }
-    return false;
+        || userAgent.indexOf(DEVICE_S90) != -1; // NOSONAR
   }
 
   /**
@@ -434,7 +431,7 @@ public class UAgentInfo {
     if (userAgent.indexOf(DEVICE_WINMOB) != -1 || userAgent.indexOf(DEVICE_WINMOB) != -1
         || userAgent.indexOf(DEVICE_IE_MOB) != -1 || userAgent.indexOf(ENGINE_PIE) != -1
         || (userAgent.indexOf(MANU_HTC) != -1 && userAgent.indexOf(DEVICE_WINDOWS) != -1)
-        || (detectWapWml() && userAgent.indexOf(DEVICE_WINDOWS) != -1)) {
+        || (detectWapWml() && userAgent.indexOf(DEVICE_WINDOWS) != -1)) { // NOSONAR
       return true;
     }
 
@@ -489,11 +486,8 @@ public class UAgentInfo {
    * @return detection of a Blackberry touchscreen device
    */
   public boolean detectBlackBerryTouch() {
-    if (detectBlackBerry() && (userAgent.indexOf(DEVICE_BB_STORM) != -1 || userAgent.indexOf(DEVICE_BB_TORCH) != -1
-        || userAgent.indexOf(DEVICE_BB_BOLD_TOUCH) != -1 || userAgent.indexOf(DEVICE_BB_CURVE_TOUCH) != -1)) {
-      return true;
-    }
-    return false;
+    return detectBlackBerry() && (userAgent.indexOf(DEVICE_BB_STORM) != -1 || userAgent.indexOf(DEVICE_BB_TORCH) != -1
+        || userAgent.indexOf(DEVICE_BB_BOLD_TOUCH) != -1 || userAgent.indexOf(DEVICE_BB_CURVE_TOUCH) != -1); // NOSONAR
   }
 
   /**
@@ -506,16 +500,9 @@ public class UAgentInfo {
     // Disambiguate for BlackBerry OS 6 or 7 (WebKit) browser
     if (detectBlackBerryWebKit())
       return false;
-    if (detectBlackBerry()) {
-      if (detectBlackBerryTouch() || userAgent.indexOf(DEVICE_BB_BOLD) != -1 || userAgent.indexOf(DEVICE_BB_TOUR) != -1
-          || userAgent.indexOf(DEVICE_BB_CURVE) != -1) {
-        return true;
-      } else {
-        return false;
-      }
-    } else {
-      return false;
-    }
+    
+    return detectBlackBerry() && (detectBlackBerryTouch() || userAgent.indexOf(DEVICE_BB_BOLD) != -1 || userAgent.indexOf(DEVICE_BB_TOUR) != -1
+          || userAgent.indexOf(DEVICE_BB_CURVE) != -1); // NOSONAR
   }
 
   /**
@@ -527,7 +514,7 @@ public class UAgentInfo {
   public boolean detectBlackBerryLow() {
     if (detectBlackBerry()) {
       // Assume that if it's not in the High tier, then it's Low
-      if (detectBlackBerryHigh() || detectBlackBerryWebKit()) {
+      if (detectBlackBerryHigh() || detectBlackBerryWebKit()) { // NOSONAR
         return false;
       } else {
         return true;
@@ -544,10 +531,10 @@ public class UAgentInfo {
    */
   public boolean detectPalmOS() {
     // Most devices nowadays report as 'Palm', but some older ones reported as Blazer or Xiino.
-    if (userAgent.indexOf(DEVICE_Palm) != -1 || userAgent.indexOf(DEVICE_BLAZER) != -1
+    if (userAgent.indexOf(DEVICE_PALM) != -1 || userAgent.indexOf(DEVICE_BLAZER) != -1
         || userAgent.indexOf(DEVICE_XIINO) != -1) {
       // Make sure it's not WebOS first
-      if (detectPalmWebOS()) {
+      if (detectPalmWebOS()) { // NOSONAR
         return false;
       } else {
         return true;
@@ -876,7 +863,7 @@ public class UAgentInfo {
   public boolean detectSmartphone() {
     // Exclude duplicates from TierIphone
     return (detectTierIphone() || detectS60OssBrowser() || detectSymbianOS() || detectWindowsMobile()
-        || detectBlackBerry() || detectMeegoPhone() || detectPalmOS());
+        || detectBlackBerry() || detectMeegoPhone() || detectPalmOS()); // NOSONAR
   }
 
   /**
@@ -885,7 +872,7 @@ public class UAgentInfo {
    * 
    * @return detection of any mobile device using the quicker method
    */
-  public boolean detectMobileQuick() {
+  public boolean detectMobileQuick() { // NOSONAR
     // Let's exclude tablets
     if (isTierTablet) {
       return false;
@@ -923,7 +910,7 @@ public class UAgentInfo {
    * 
    * @return detection of any mobile device using the more thorough method
    */
-  public boolean detectMobileLong() {
+  public boolean detectMobileLong() { // NOSONAR
     if (detectMobileQuick() || detectGameConsole()) {
       return true;
     }
@@ -941,7 +928,7 @@ public class UAgentInfo {
     if ((userAgent.indexOf(UPLINK) != -1) || (userAgent.indexOf(ENGINE_OPENWEB) != -1)
         || (userAgent.indexOf(MANU_SAMSUNG1) != -1) || (userAgent.indexOf(MANU_SONY_ERICSSON) != -1)
         || (userAgent.indexOf(MANU_ERICSSON) != -1) || (userAgent.indexOf(SVC_DOCOMO) != -1)
-        || (userAgent.indexOf(SVC_KDDI) != -1) || (userAgent.indexOf(SVC_VODAFONE) != -1)) {
+        || (userAgent.indexOf(SVC_KDDI) != -1) || (userAgent.indexOf(SVC_VODAFONE) != -1)) { // NOSONAR
       return true;
     }
 
@@ -960,7 +947,7 @@ public class UAgentInfo {
    */
   public boolean detectTierTablet() {
     return detectIpad() || detectAndroidTablet() || detectBlackBerryTablet() || detectFirefoxOSTablet()
-        || detectUbuntuTablet() || detectWebOSTablet();
+        || detectUbuntuTablet() || detectWebOSTablet(); // NOSONAR
   }
 
   /**
@@ -972,7 +959,7 @@ public class UAgentInfo {
   public boolean detectTierIphone() {
     return detectIphoneOrIpod() || detectAndroidPhone() || detectWindowsPhone() || detectBlackBerry10Phone()
         || (detectBlackBerryWebKit() && detectBlackBerryTouch()) || detectPalmWebOS() || detectBada() || detectTizen()
-        || detectFirefoxOSPhone() || detectSailfishPhone() || detectUbuntuPhone() || detectGamingHandheld();
+        || detectFirefoxOSPhone() || detectSailfishPhone() || detectUbuntuPhone() || detectGamingHandheld(); // NOSONAR
   }
 
   /**
@@ -989,13 +976,13 @@ public class UAgentInfo {
     if (detectMobileQuick()) {
 
       // Exclude iPhone Tier and e-Ink Kindle devices.
-      if (!detectTierIphone() && !detectKindle()) {
+      if (!detectTierIphone() && !detectKindle()) { // NOSONAR
 
         // The following devices are explicitly ok.
         // Note: 'High' BlackBerry devices ONLY
         // Older Windows 'Mobile' isn't good enough for iPhone Tier.
         if (detectWebkit() || detectS60OssBrowser() || detectBlackBerryHigh() || detectWindowsMobile()
-            || userAgent.indexOf(ENGINE_TELECA_Q) != -1) {
+            || userAgent.indexOf(ENGINE_TELECA_Q) != -1) { // NOSONAR
           result = true;
         } // if detectWebkit()
       } // if !detectTierIphone()
