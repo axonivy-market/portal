@@ -23,17 +23,10 @@
 						<h:outputText value="#{note.creatorFullName}" />
 					</p:column>
 
-					<p:column width="20%" sortBy="#{note.creationTimestamp.time}" filterBy="#{note.creationTimestamp.time}" filterFunction="#{dateFilterBean.filterByDate}">
+					<p:column width="20%" sortBy="#{note.creationTimestamp.time}" >
 						<f:facet name="header">
 							<h:outputText
 								value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnTimestamp')}" />
-						</f:facet>
-						<f:facet name="filter">
-							<p:calendar pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}">
-								<p:ajax event="dateSelect"
-									oncomplete="PF('notesTable').filter()" />
-								<p:ajax event="change" oncomplete="PF('notesTable').filter()" />
-							</p:calendar>
 						</f:facet>
 						<h:outputText value="#{note.creationTimestamp.time}">
 							<f:convertDateTime pattern="#{ivy.cms.co('/patterns/dateTimePattern')}" />
