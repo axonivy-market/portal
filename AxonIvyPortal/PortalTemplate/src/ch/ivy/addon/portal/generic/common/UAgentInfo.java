@@ -326,7 +326,7 @@ public class UAgentInfo {
       return false;
 
     // Otherwise, if it's Android and does NOT have 'mobile' in it, Google says it's a tablet.
-    return userAgent.indexOf(MOBILE) > -1;
+    return userAgent.indexOf(MOBILE) == -1;
   }
 
   /**
