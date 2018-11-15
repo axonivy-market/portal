@@ -34,7 +34,7 @@ public class DeviceDetector {
 
     if (Ivy.request() instanceof IHttpRequest) {
       UAgentInfo agentInfo = agentInfo();
-      return agentInfo.detectMobileQuick();
+      return agentInfo.detectMobileLong();
     }
     return false;
   }
@@ -42,7 +42,7 @@ public class DeviceDetector {
   public boolean isDesktop() {
     if (Ivy.request() instanceof IHttpRequest) {
       UAgentInfo agentInfo = agentInfo();
-      return !agentInfo.detectMobileQuick() && !agentInfo.detectTierTablet();
+      return !agentInfo.detectMobileLong() && !agentInfo.detectTierTablet();
     }
     return false;
   }
