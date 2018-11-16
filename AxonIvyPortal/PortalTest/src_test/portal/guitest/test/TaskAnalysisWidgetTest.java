@@ -185,7 +185,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
   public void testApplyCaseCategoryFilter() {
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
     taskAnalysisWidgetPage.openAdvancedCaseFilter("Case category", "case-category");
-    taskAnalysisWidgetPage.filterByCaseCategory("LeaveRequest");
+    taskAnalysisWidgetPage.filterByCaseCategory("Leave Request");
 
     WebElement applyFilterButton = taskAnalysisWidgetPage.findApplyFilterButton();
     applyFilterButton.click();
