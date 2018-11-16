@@ -1053,15 +1053,6 @@
 		<para>
 			This part lists all relevant changes since the last official product releases of Axon.ivy.
 			<sect2>
-				<title>Changes in 7.3</title>
-				<itemizedlist>
-					<listitem>
-						<para>Provides the mobile pages. The default page is task list, refer to 
-							<link linkend="axonivyportal.customization.mobiledefaultpage" endterm="axonivyportal.customization.mobiledefaultpage.title" /> for the customization.</para>
-					</listitem>
-				</itemizedlist>
-			</sect2>
-			<sect2>
 				<title>Changes in 7.2</title>
 				<itemizedlist>
 					<listitem>
