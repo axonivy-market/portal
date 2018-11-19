@@ -102,7 +102,6 @@ Is0 f3 actionDecl 'ch.ivy.add.portalkit.Data out;
 Is0 f3 actionTable 'out=in;
 ' #txt
 Is0 f3 actionCode 'import ch.ivyteam.ivy.security.IPermission;
-import com.ulcjava.base.client.IPendingRequestsOwner;
 import ch.ivy.addon.portalkit.test.util.SecurityUtils;
 
 ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.TASK_WRITE_EXPIRY_TIMESTAMP, ivy.session.getSessionUser());' #txt
@@ -210,7 +209,6 @@ Is0 f6 actionDecl 'ch.ivy.add.portalkit.Data out;
 Is0 f6 actionTable 'out=in;
 ' #txt
 Is0 f6 actionCode 'import ch.ivyteam.ivy.security.IPermission;
-import com.ulcjava.base.client.IPendingRequestsOwner;
 import ch.ivy.addon.portalkit.test.util.SecurityUtils;
 
 ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.TASK_READ_ALL, ivy.session.getSessionUser());' #txt
@@ -263,7 +261,6 @@ Is0 f17 actionDecl 'ch.ivy.add.portalkit.Data out;
 Is0 f17 actionTable 'out=in;
 ' #txt
 Is0 f17 actionCode 'import ch.ivyteam.ivy.security.IPermission;
-import com.ulcjava.base.client.IPendingRequestsOwner;
 import ch.ivy.addon.portalkit.test.util.SecurityUtils;
 
 ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.CASE_READ_ALL, ivy.session.getSessionUser());' #txt
@@ -285,7 +282,6 @@ Is0 f20 actionDecl 'ch.ivy.add.portalkit.Data out;
 Is0 f20 actionTable 'out=in;
 ' #txt
 Is0 f20 actionCode 'import ch.ivyteam.ivy.security.IPermission;
-import com.ulcjava.base.client.IPendingRequestsOwner;
 import ch.ivy.addon.portalkit.test.util.SecurityUtils;
 
 ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.TASK_READ_OWN_CASE_TASKS, ivy.session.getSessionUser());' #txt
@@ -351,7 +347,6 @@ Is0 f22 actionDecl 'ch.ivy.add.portalkit.Data out;
 Is0 f22 actionTable 'out=in;
 ' #txt
 Is0 f22 actionCode 'import ch.ivyteam.ivy.security.IPermission;
-import com.ulcjava.base.client.IPendingRequestsOwner;
 import ch.ivy.addon.portalkit.test.util.SecurityUtils;
 
 ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.TASK_READ_OWN_CASE_TASKS, ivy.session.getSessionUser());
