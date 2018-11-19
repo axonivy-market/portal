@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ch.ivyteam.ivy.project.portal</groupId>
@@ -11,7 +12,7 @@
 		<version>7.2.0-SNAPSHOT</version>
 		<relativePath>../mavenconfig</relativePath>
 	</parent>
-	
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<doc.source.dir>PortalConnectorDocumentation</doc.source.dir>
@@ -29,7 +30,7 @@
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>xml-maven-plugin</artifactId>								
+				<artifactId>xml-maven-plugin</artifactId>
 				<executions>
 					<execution>
 						<id>validate.docbook.xml</id>
@@ -39,6 +40,11 @@
 			</plugin>
 		</plugins>
 	</build>
+	<distributionManagement>
+		<repository>
+			<id>axonivy-releases-repo</id>
+			<url>https://repo.axonivy.io/artifactory/ext-release-local/</url>
+		</repository>
+	</distributionManagement>
 
-	
 </project> 
