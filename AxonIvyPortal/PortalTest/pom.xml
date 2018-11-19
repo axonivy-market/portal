@@ -7,6 +7,7 @@
   <version>7.0.0-SNAPSHOT</version>
   <packaging>iar</packaging>
   <properties>
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	<powermock.version>1.6.6</powermock.version>
 	<build.plugin.version>7.2.0</build.plugin.version>
   </properties>
