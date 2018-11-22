@@ -5390,6 +5390,8 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   text-align: center;
   background-color: lightgrey;
   line-height: 16px;
+  position: absolute;
+  bottom: 0;
 }
 
 .mobile-footer .ui-commandlink {

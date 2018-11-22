@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
@@ -12,6 +13,7 @@ import org.jsoup.safety.Whitelist;
 
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
@@ -27,6 +29,8 @@ public class TaskWidgetBean implements Serializable {
   private Long expandedTaskId;
   private TaskLazyDataModel dataModel;
   private Boolean isTaskDetailOpenning;
+  private TaskSortField[] taskSortFields = new TaskSortField[]{TaskSortField.CREATION_TIME, TaskSortField.EXPIRY_TIME, TaskSortField.PRIORITY};
+  private TaskSortField selectedSort;
 
   public TaskWidgetBean() {
     expandedTaskId = -1L;
@@ -54,7 +58,6 @@ public class TaskWidgetBean implements Serializable {
       this.expandedTaskId = expandedTaskId;
     }
   }
-  
 
   public TaskLazyDataModel getDataModel() {
     return dataModel;
@@ -105,5 +108,25 @@ public class TaskWidgetBean implements Serializable {
 
   public void setIsTaskDetailOpenning(Boolean isTaskDetailOpenning) {
     this.isTaskDetailOpenning = isTaskDetailOpenning;
+  }
+
+  public TaskSortField[] getTaskSortFields() {
+    return taskSortFields;
+  }
+  
+  public TaskSortField getSelectedSort() {
+    return selectedSort;
+  }
+
+  public void setSelectedSort(TaskSortField selectedSort) {
+    this.selectedSort = selectedSort;
+  }
+  
+  public void sortTask() {
+    if (selectedSort != null) {
+      FacesContext context = FacesContext.getCurrentInstance();
+      TaskLazyDataModel dataModel = context.getApplication().evaluateExpressionGet(context, "#{data.dataModel}", TaskLazyDataModel.class);
+      dataModel.setSortField(selectedSort.name(), false);
+    }
   }
 }
