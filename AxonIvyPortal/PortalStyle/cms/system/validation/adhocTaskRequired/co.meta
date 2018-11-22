@@ -1,4 +1,0 @@
-co: name={adhocTaskRequired} description={} changed={2017-11-15 08:29:45 GMT} changedby={chnam} visualorder={0} guid={15FBECC5F40CA0C3} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15FBECC5F4438828} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 07:01:42 GMT} validto={} changed={2017-11-15 08:29:45 GMT} changedby={chnam} properties={} id={}
-val: guid={15FBECC5F4B22C83} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-15 10:07:59 GMT} validto={} changed={2017-11-15 08:29:45 GMT} changedby={chnam} properties={} id={}
-val: guid={15FBECC5F51296B9} datatype={} isdefault={true} langid={en} description={} validfrom={2017-05-15 10:07:49 GMT} validto={} changed={2017-11-15 08:29:45 GMT} changedby={chnam} properties={} id={}
