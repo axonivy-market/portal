@@ -1,0 +1,25 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/modena"
+  xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
+
+  <div class="TexAlCenter">
+    <p:commandLink id="mobile-logo" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(isWorkingOnATask)}">
+      <p:graphicImage styleClass="mobile-logo" value="#{resource['ivy-cms:images/logo/CorporateLogo']}"
+        alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
+    </p:commandLink>
+    <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask id="mobile-task-leave-warning-component"
+      rendered="#{isWorkingOnATask}" leaveActionListener="#{userMenuBean.resetTaskAndNavigateToHomePage()}"
+      reserveActionListener="#{userMenuBean.reserveTaskAndNavigateToHomePage()}"
+      componentId="logo-task-losing-confirmation-dialog" widgetVar="logo-task-losing-confirmation-dialog" />
+
+    <ic:ch.ivy.addon.portal.generic.MobileMenu id="mobile-menu" isWorkingOnATask="#{isWorkingOnATask}" />
+  </div>
+
+  <span id="top-menu">
+    <ic:ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting id="mobile-logout-setting"
+        isWorkingOnATask="#{isWorkingOnATask}" isMobile="true" />
+  </span>
+</ui:composition>
