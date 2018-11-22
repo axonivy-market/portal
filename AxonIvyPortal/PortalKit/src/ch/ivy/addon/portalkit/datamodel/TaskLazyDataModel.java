@@ -260,7 +260,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     } else if (TaskSortField.CREATION_TIME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
       comparator = comparator(RemoteTask::getStartTimestamp);
     } else if (TaskSortField.EXPIRY_TIME.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
-      comparator = comparator(RemoteTask::getExpiryTimestamp);
+      comparator = comparatorNullsLast(RemoteTask::getExpiryTimestamp);
     } else if (TaskSortField.STATE.toString().equalsIgnoreCase(queryCriteria.getSortField())) {
       comparator = comparator(RemoteTask::getState);
     } else {
@@ -287,6 +287,11 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   protected <U extends Comparable<? super U>> Comparator<RemoteTask> comparator( // NOSONAR
       Function<? super RemoteTask, ? extends U> function) {
     return Comparator.comparing(function, Comparator.nullsFirst(Comparator.naturalOrder()));
+  }
+  
+  protected <U extends Comparable<? super U>> Comparator<RemoteTask> comparatorNullsLast( // NOSONAR
+      Function<? super RemoteTask, ? extends U> function) {
+    return Comparator.comparing(function, Comparator.nullsLast(Comparator.naturalOrder()));
   }
 
   protected Comparator<RemoteTask> comparatorString(Function<? super RemoteTask, String> function) {
