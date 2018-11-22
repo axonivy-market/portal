@@ -79,14 +79,14 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
-  private List<String> portalDefaultColumns = Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME",
-      "EXPIRY_TIME", "STATE");
+  private List<String> portalDefaultColumns = Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME", "EXPIRY_TIME", "STATE");
   private List<String> portalRequiredColumns = Arrays.asList("NAME");
 
   private boolean isAutoHideColumns;
   private boolean isDisableSelectionCheckboxes;
   private boolean isRelatedTaskDisplayed = false;
   private boolean isNotKeepFilter = false;
+  private boolean isMobile = false;
 
   public TaskLazyDataModel(String taskWidgetComponentId) {
     super();
@@ -113,6 +113,12 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   
   public TaskLazyDataModel() {
     this("task-widget");
+  }
+  
+  public TaskLazyDataModel(boolean isMobile) {
+    this("task-widget");
+    this.setMobile(isMobile);
+    queryCriteria.setMobile(isMobile);
   }
 
   /**
@@ -893,5 +899,13 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   public void setQueryForUnassignedTask(boolean isQueryForOnlyUnassignedTask) {
     this.queryCriteria.setQueryForUnassignedTask(isQueryForOnlyUnassignedTask);
+  }
+
+  public boolean isMobile() {
+    return isMobile;
+  }
+
+  public void setMobile(boolean isMobile) {
+    this.isMobile = isMobile;
   }
 }

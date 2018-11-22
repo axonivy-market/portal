@@ -4,6 +4,12 @@
     <startMethod>
         <name>start</name>
         <description></description>
+        <inputParameter>
+            <name>taskView</name>
+            <description></description>
+            <parameterType>ch.ivy.addon.portal.generic.view.TaskView</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
     </startMethod>
     <property>
         <name>guid</name>
