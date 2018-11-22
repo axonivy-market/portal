@@ -238,6 +238,11 @@
 .ui-dialog .ui-dialog-content .ui-icon-alert {
 	margin-top: 0;
 }
+
+.ui-autocomplete .ui-autocomplete-dropdown .ui-icon-triangle-1-s, .ui-selectonemenu .ui-selectonemenu-trigger, .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger {
+  z-index: auto;
+}
+
 /*Case Template*/
 .case-template-title-icon {
 	margin-right: 5px;
