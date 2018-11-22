@@ -220,9 +220,9 @@ public class TaskQueryService {
     private void appendSortByExpiryDateIfSet(TaskQueryCriteria criteria) {
       if (TaskSortField.EXPIRY_TIME.toString().equalsIgnoreCase(criteria.getSortField())) {
         if (criteria.isSortDescending()) {
-          query.orderBy().expiryTimestamp().descending();
+          query.orderBy().expiryTimestamp().descendingNullFirst();
         } else {
-          query.orderBy().expiryTimestamp();
+          query.orderBy().expiryTimestamp().ascendingNullLast();
         }
       }
     }
