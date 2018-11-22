@@ -113,6 +113,18 @@ public final class PortalNavigator {
   public void navigateToPortalHome() throws MalformedURLException {
     navigateByKeyword("PortalStart.ivp", PORTAL_PROCESS_START_NAME);
   }
+  
+  public void navigateToMobilePortalProcess() throws MalformedURLException {
+    navigate(PORTAL_PROCESS, StringUtils.EMPTY);
+  }
+
+  public void navigateToMobilePortalCase() throws MalformedURLException {
+    navigate(PORTAL_CASE, StringUtils.EMPTY);
+  }
+
+  public void navigateToMobilePortalTask() throws MalformedURLException {
+    navigate(PORTAL_TASK, StringUtils.EMPTY);
+  }
 
   private void navigateByKeyword(String keyword, String defaultFriendlyRequestPath) throws MalformedURLException {
     String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword(keyword);

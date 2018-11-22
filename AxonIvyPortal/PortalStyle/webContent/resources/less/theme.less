@@ -285,9 +285,14 @@ div.ui-timepicker-div {
   background: repeating-linear-gradient(180deg, #E0E0E0, #E0E0E0 10px, @body-background-color 10px, @body-background-color 20px);
 }
 
+/*Style For Mobile --------------------------------------------------------------------------------------*/
+.mobile-menu-item {
+  border-color: @menu-color;
+}
+
 .task #mobile-menu .mobile-task-menu-item, .process #mobile-menu .mobile-process-menu-item {
-  border-bottom-width: 2px;
-  border-bottom-color: @menu-color;
+  background-color: @menu-color;
+  color: white !important;
 }
 
 @import "font-faces.less";
