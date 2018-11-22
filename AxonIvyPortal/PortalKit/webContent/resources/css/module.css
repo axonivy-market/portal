@@ -5398,6 +5398,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   color: black !important;
 }
 
-.mobile-container {
-  height: auto;
+.mobile-process-start-list {
+  display: block;
 }

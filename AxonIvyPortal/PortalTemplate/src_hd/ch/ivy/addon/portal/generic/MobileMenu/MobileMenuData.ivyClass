@@ -4,3 +4,5 @@ isWorkingOnATask Boolean #field
 isWorkingOnATask PERSISTENT #fieldModifier
 menuKind ch.ivy.addon.portalkit.enums.MenuKind #field
 menuKind PERSISTENT #fieldModifier
+keyword String #field
+keyword PERSISTENT #fieldModifier
