@@ -10,8 +10,10 @@
     <ui:define name="pageTitle">
       Internal Support
     </ui:define>
-    <ui:define name="pageContent">
-      <h:outputText styleClass="White" value="Internal Support Portal Home Page." />
+    <ui:define name="simplePageContent">
+      <h:outputText value="Internal Support Portal Home Page." />
+      <p:selectOneMenu style="float: right; margin-right: 20px" />
+      <p:autoComplete dropdown="true" style="float: right; margin-right: 20px" />
     </ui:define>
   </ui:composition>
 </h:body>
