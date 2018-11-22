@@ -1,0 +1,4 @@
+co: name={adhocTaskRequired} description={} changed={2018-11-20 08:17:58 GMT} changedby={dhtlong} visualorder={0} guid={16730328CCCC4889} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16730328CDE6ECB0} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 07:01:42 GMT} validto={} changed={2018-11-20 08:17:58 GMT} changedby={dhtlong} properties={} id={}
+val: guid={16730328CED22CBF} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-15 10:07:59 GMT} validto={} changed={2018-11-20 08:17:58 GMT} changedby={dhtlong} properties={} id={}
+val: guid={16730328CF85FFA5} datatype={} isdefault={true} langid={en} description={} validfrom={2017-05-15 10:07:49 GMT} validto={} changed={2018-11-20 08:17:58 GMT} changedby={dhtlong} properties={} id={}
