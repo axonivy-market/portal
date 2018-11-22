@@ -55,6 +55,7 @@ public class ProcessWidgetBean implements Serializable, Converter {
   private List<UserProcess> defaultUserProcesses;
   private List<UserProcess> expressProcesses;
   private boolean compactMode;
+  private boolean mobileMode;
   private boolean editMode;
   private String userName;
   private List<UserProcess> selectedUserProcesses;
@@ -72,6 +73,8 @@ public class ProcessWidgetBean implements Serializable, Converter {
     String compactModeAttribute = Attrs.currentContext().get("compactMode");
     compactMode = compactModeAttribute == null || compactModeAttribute.isEmpty() ? true : Boolean.valueOf(compactModeAttribute);
     editMode = false;
+    String mobileModeAttribute = Attrs.currentContext().get("mobileMode");
+    mobileMode = mobileModeAttribute == null || mobileModeAttribute.isEmpty() ? true : Boolean.valueOf(mobileModeAttribute);
     selectedUserProcesses = new ArrayList<>();
     userName = UserUtils.getSessionUserName();
     if (compactMode) {
@@ -333,6 +336,30 @@ public class ProcessWidgetBean implements Serializable, Converter {
     return editMode;
   }
 
+  public boolean isMobileMode() {
+    return mobileMode;
+  }
+  
+  public String getStyleClassOfMode() {
+    String styleClassName = "";
+    if (mobileMode) {
+      styleClassName = "mobile-process-start-list";
+    }
+    
+    if(!compactMode && !mobileMode) {
+      styleClassName = "process-start-list";
+    }
+    return styleClassName;
+  }
+
+  public String getStyleClassOfProcessStartListItemByMode() {
+    String styleClassName = "process-start-list-item";
+    if (mobileMode) {
+      styleClassName = "mobile-process-start-list-item";
+    }
+    return styleClassName;
+  }
+  
   public void saveProcesses() {
     if (!selectedUserProcesses.isEmpty()) {
       userProcessService.deleteAll(selectedUserProcesses);
