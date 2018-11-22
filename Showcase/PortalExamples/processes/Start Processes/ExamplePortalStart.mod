@@ -642,9 +642,11 @@ Pt0 f17 @|StepIcon #fIcon
 Pt0 f96 targetWindow NEW #txt
 Pt0 f96 targetDisplay TOP #txt
 Pt0 f96 richDialogId ch.ivy.addon.portal.generic.MobilePortalProcesses #txt
-Pt0 f96 startMethod start() #txt
+Pt0 f96 startMethod start(String) #txt
 Pt0 f96 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pt0 f96 requestActionDecl '<> param;' #txt
+Pt0 f96 requestActionDecl '<String keyword> param;' #txt
+Pt0 f96 requestMappingAction 'param.keyword=in.keyword;
+' #txt
 Pt0 f96 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f96 responseMappingAction 'out=in;

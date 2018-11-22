@@ -1,2 +1,18 @@
 MobilePortalProcessesData #class
 ch.ivy.addon.portal.generic.MobilePortalProcesses #namespace
+processes List<ch.ivy.addon.portalkit.persistence.domain.UserProcess> #field
+processes PERSISTENT #fieldModifier
+userProcess ch.ivy.addon.portalkit.persistence.domain.UserProcess #field
+userProcess PERSISTENT #fieldModifier
+synData List<ch.ivy.addon.portalkit.persistence.domain.BusinessEntity> #field
+synData PERSISTENT #fieldModifier
+processLink String #field
+processLink PERSISTENT #fieldModifier
+webStartableSearchCriteria ch.ivy.ws.addon.WebStartableSearchCriteria #field
+webStartableSearchCriteria PERSISTENT #fieldModifier
+language String #field
+language PERSISTENT #fieldModifier
+keyword String #field
+keyword PERSISTENT #fieldModifier
+processStartLink String #field
+processStartLink PERSISTENT #fieldModifier

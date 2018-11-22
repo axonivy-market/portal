@@ -11,6 +11,7 @@
 	<cc:attribute name="processCardStyleClass" />
 	<cc:attribute name="processListStyleClass" />
 	<cc:attribute name="compactMode" default="true" />
+	<cc:attribute name="mobileMode" default="false" />
 	<cc:attribute name="showBackButton" default="true" type="java.lang.Boolean" />
 	<cc:attribute name="hideHeader" default="false" type="java.lang.Boolean" />
 	<cc:attribute name="hideProcessFilter" default="false" shortDescription="Process filter text field is hidden or not"
@@ -74,7 +75,7 @@
 						update="@form #{cc.clientId}:process-list #{cc.clientId}:header" />
 				</h:panelGroup>
 			</h:form>
-			<h:form id="axon-express-form" rendered="#{not processWidgetBean.compactMode and !cc.attrs.hideExpressCreation}"
+			<h:form id="axon-express-form" rendered="#{not processWidgetBean.compactMode and not processWidgetBean.mobileMode and !cc.attrs.hideExpressCreation}"
 				styleClass="process-button-position process-action-button action-create-experss-workflow">
 				<h:panelGroup layout="block" rendered="#{processWidgetBean.canCreateExpessWorkflow()}">
 					<p:commandLink id="create-express-workflow" value="#{processWidgetBean.createExpressWorkflowProcessStart.name}"
@@ -83,9 +84,8 @@
 				</h:panelGroup>
 			</h:form>
 		</h:panelGroup>
-
 		<h:panelGroup id="process-list" layout="block"
-			styleClass="widget-content #{processWidgetBean.compactMode ? '' : 'process-start-list'} #{cc.attrs.processListStyleClass}">
+			styleClass="widget-content #{processWidgetBean.getStyleClassOfMode()} #{cc.attrs.processListStyleClass} ">
 			<h:panelGroup styleClass="process-empty-container"
 				rendered="#{processWidgetBean.compactMode and empty processWidgetBean.userProcesses and processWidgetBean.isUserFavoritesEnabled}">
 				<p>
