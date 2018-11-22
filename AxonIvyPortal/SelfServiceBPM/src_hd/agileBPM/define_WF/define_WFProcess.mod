@@ -137,7 +137,7 @@ import selfServiceBPM.TaskDef;
 out.errormsg = null;
 
 if(in.definedTasks.size() < 1){
-	out.errormsg = ivy.cms.co("/system/validation/adhocTaskRequired");
+	out.errormsg = ivy.cms.co("/Labels/adhocTaskRequired");
 }
 
 for(TaskDef tdef: in.definedTasks)
