@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="src">
+		<attributes>
+			<attribute name="optional" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry excluding="**/*.ivyClass|**/*.mod|**/*.rddescriptor|**/*.eventmappings|**/*.xhtml" kind="src" path="src_hd">
 		<attributes>
 			<attribute name="optional" value="true"/>
