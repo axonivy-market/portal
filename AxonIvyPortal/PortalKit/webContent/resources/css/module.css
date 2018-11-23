@@ -5410,3 +5410,9 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 	width: 100%;
 	margin-right: 3%;
 }
+
+.mobile-process-list-dictionary-group-selection.ui-selectonemenu {
+	min-width: 20px !important;
+	max-width: 20px !important;
+	float: right;
+}
