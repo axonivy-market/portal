@@ -5416,3 +5416,21 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 	max-width: 20px !important;
 	float: right;
 }
+
+.mobile-widget-header div:last-child {
+  margin-left: auto;
+}
+
+.mobile-widget-process-header-sub {
+  flex: 1 0 auto;
+  align-self: flex-end;
+  margin-left: 10px;
+}
+
+.mobile-widget-process-header-sub .filter-widget {
+	width: 85%;
+}
+
+.ui-selectonemenu-panel.hide-disabled .ui-selectonemenu-item.ui-state-disabled {
+    display: none;
+}
