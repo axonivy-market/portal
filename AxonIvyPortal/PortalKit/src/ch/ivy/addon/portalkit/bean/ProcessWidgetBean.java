@@ -351,14 +351,6 @@ public class ProcessWidgetBean implements Serializable, Converter {
     }
     return styleClassName;
   }
-
-  public String getStyleClassOfProcessStartListItemByMode() {
-    String styleClassName = "process-start-list-item";
-    if (mobileMode) {
-      styleClassName = "mobile-process-start-list-item";
-    }
-    return styleClassName;
-  }
   
   public void saveProcesses() {
     if (!selectedUserProcesses.isEmpty()) {
