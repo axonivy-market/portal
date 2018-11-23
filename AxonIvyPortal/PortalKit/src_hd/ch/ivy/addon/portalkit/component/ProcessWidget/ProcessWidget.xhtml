@@ -92,7 +92,7 @@
 			</h:form>
 		</h:panelGroup>
 		<h:panelGroup id="process-list" layout="block"
-			styleClass="widget-content #{processWidgetBean.getStyleClassOfMode()} #{cc.attrs.processListStyleClass} ">
+			styleClass="widget-content #{processWidgetBean.prefixOfStyleClassByMode()}process-start-list #{cc.attrs.processListStyleClass} ">
 			<h:panelGroup styleClass="process-empty-container"
 				rendered="#{processWidgetBean.compactMode and empty processWidgetBean.userProcesses and processWidgetBean.isUserFavoritesEnabled}">
 				<p>
@@ -165,7 +165,7 @@
 			</ui:fragment>
 			<ui:fragment id="full-process-list" rendered="#{!processWidgetBean.compactMode}">
 				<p:fieldset id="express-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/expressWorkflowGroupTitle')}" toggleable="true" styleClass="process-group js-process-index-group js-process-group-express" rendered="#{not empty processWidgetBean.expressProcesses}">
-                  <h:panelGroup id="express-process-container" layout="block" styleClass="#{processWidgetBean.getStyleClassOfMode()}">
+                  <h:panelGroup id="express-process-container" layout="block" styleClass="#{processWidgetBean.prefixOfStyleClassByMode()}process-start-list">
                     <ui:repeat var="process" value="#{processWidgetBean.expressProcesses}">
                       <h:form id="express-process-item-form"
                         styleClass="#{cc.attrs.processCardStyle} process-start-list-item-wrapper js-process-start-list-item process-start-list-item #{processWidgetBean.mobileMode ? 'mobile-process-start-list-item' : ''} express-workflow #{process.link eq cc.attrs.highlightedProcessStartLink ? 'highlighted-item' : ''}"
@@ -189,12 +189,12 @@
                </p:fieldset>
                <ui:repeat id="process-group-alphabet" var="entryProcess" value="#{processWidgetBean.userProcessByAlphabet.entrySet().toArray()}">
 					<p:fieldset id="alphabet-process-index-fieldset" legend="#{entryProcess.key eq 'SPECIAL_CHARACTER'? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/specialCharacterGroup') : entryProcess.key}" toggleable="true" styleClass="process-group js-process-index-group js-process-group-#{entryProcess.key}">
-	                  <h:panelGroup id="none-express-process-container" layout="block" styleClass="#{processWidgetBean.getStyleClassOfMode()}">
+	                  <h:panelGroup id="none-express-process-container" layout="block" styleClass="#{processWidgetBean.prefixOfStyleClassByMode()}process-start-list">
 	                  <ui:repeat id="none-express-processes" varStatus="status" var="process" value="#{entryProcess.value}">
 						<c:set var="isExternalProcess"
 								value="#{!(fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}" />
 						<h:form id="process-item-form"
-							styleClass="#{cc.attrs.processCardStyle} process-start-list-item-wrapper js-process-start-list-item process-start-list-item #{processWidgetBean.mobileMode ? 'mobile-process-start-list-item' : ''} #{process.link eq cc.attrs.highlightedProcessStartLink ? 'highlighted-item' : ''}"
+							styleClass="#{cc.attrs.processCardStyle} process-start-list-item-wrapper js-process-start-list-item process-start-list-item #{process.link eq cc.attrs.highlightedProcessStartLink ? 'highlighted-item' : ''}"
 							style="#{cc.attrs.processCardStyleClass}" rendered="#{!processWidgetBean.editMode}">
 							<p:link id="external-process-item" href="#{process.link}" target="_blank" rendered="#{isExternalProcess}"
 								styleClass="external-process-item #{cc.attrs.processCardStyle} process-start-list-item-wrapper js-process-start-list-item"
