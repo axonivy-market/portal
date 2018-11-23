@@ -36,6 +36,11 @@
 					placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}"
 					styleClass="js-filter-process-widget-list-item" rendered="#{!cc.attrs.hideProcessFilter}"/>
 			</h:panelGroup>
+			<p:selectOneMenu id="dictonary-process-group-selection" widgetVar="dictonary-process-group-selection" styleClass="mobile-process-list-dictionary-group-selection">
+				<f:selectItems value="#{processWidgetBean.userProcessByAlphabet.entrySet().toArray()}" var="dictionaryCharacter" itemValue="#{dictionaryCharacter.key}"
+				 itemLabel="#{dictionaryCharacter.key eq 'SPECIAL_CHARACTER'? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/specialCharacterGroup') : dictionaryCharacter.key}"/>
+				<p:ajax event="change" oncomplete="jumpToProcessGroup();" global="false" immediate="true" update="@none"/>
+			</p:selectOneMenu>
 		</h:panelGroup>
 
 		<div jsf:rendered="#{processWidgetBean.compactMode and processWidgetBean.isUserFavoritesEnabled}" class="favorite-process-title">
@@ -157,7 +162,7 @@
 				</h:form>
 			</ui:fragment>
 			<ui:fragment id="full-process-list" rendered="#{!processWidgetBean.compactMode}">
-				<p:fieldset id="express-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/expressWorkflowGroupTitle')}" toggleable="true" styleClass="process-group js-process-index-group" rendered="#{not empty processWidgetBean.expressProcesses}">
+				<p:fieldset id="express-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/expressWorkflowGroupTitle')}" toggleable="true" styleClass="process-group js-process-index-group js-process-group-express" rendered="#{not empty processWidgetBean.expressProcesses}">
                   <h:panelGroup id="express-process-container" layout="block" styleClass="#{processWidgetBean.getStyleClassOfMode()}">
                     <ui:repeat var="process" value="#{processWidgetBean.expressProcesses}">
                       <h:form id="express-process-item-form"
@@ -181,7 +186,7 @@
                   </h:panelGroup>
                </p:fieldset>
                <ui:repeat id="process-group-alphabet" var="entryProcess" value="#{processWidgetBean.userProcessByAlphabet.entrySet().toArray()}">
-					<p:fieldset id="alphabet-process-index-fieldset" legend="#{entryProcess.key eq 'SPECIAL_CHARACTER'? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/specialCharacterGroup') : entryProcess.key}" toggleable="true" styleClass="process-group js-process-index-group">
+					<p:fieldset id="alphabet-process-index-fieldset" legend="#{entryProcess.key eq 'SPECIAL_CHARACTER'? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/specialCharacterGroup') : entryProcess.key}" toggleable="true" styleClass="process-group js-process-index-group js-process-group-#{entryProcess.key}">
 	                  <h:panelGroup id="none-express-process-container" layout="block" styleClass="#{processWidgetBean.getStyleClassOfMode()}">
 	                  <ui:repeat id="none-express-processes" varStatus="status" var="process" value="#{entryProcess.value}">
 						<c:set var="isExternalProcess"
@@ -366,7 +371,13 @@
 			</div>
 		</h:form>
 	</p:dialog>
-
+	<script>
+	
+    function jumpToProcessGroup() {
+    	document.getElementsByClassName("js-process-group-" + PF('dictonary-process-group-selection').value)[0].scrollIntoView();
+     	PF('dictonary-process-group-selection').hide();
+    }
+    </script>
 	<h:form>
 		<p:remoteCommand name="callSynchronizeDataToPortalServer"
 			actionListener="#{logic.synchronizeUserProcessToPortalServer(processWidgetBean.editingProcess)}" />
