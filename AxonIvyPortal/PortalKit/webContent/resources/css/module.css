@@ -5403,18 +5403,22 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 
 .mobile-process-start-list .process-start-list-item {
-	margin: 0 10px 5px 5px;
+  margin: 0 10px 5px 5px;
 }
 
 .mobile-process-start-list .process-start-list-item-name {
-	width: 100%;
-	margin-right: 3%;
+  width: 100%;
+  margin-right: 3%;
 }
 
 .mobile-process-list-dictionary-group-selection.ui-selectonemenu {
-	min-width: 20px !important;
-	max-width: 20px !important;
-	float: right;
+  min-width: 20px !important;
+  max-width: 20px !important;
+  float: right;
+}
+
+.mobile-process-start-list .process-start-list-item {
+  max-width: 100%;
 }
 
 .mobile-widget-header div:last-child {
