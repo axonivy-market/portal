@@ -118,13 +118,6 @@ public class UserMenuBean implements Serializable {
       navigateToHomePage();
     }
   }
-  
-  public void switchDesktopOrMobileVersion(boolean isMobile) throws IOException {
-    String url = String.format("%s?isMobile=%s", getHomePageURL(), isMobile);
-    FacesContext context = FacesContext.getCurrentInstance();
-    context.getExternalContext().redirect(url);
-    DeviceDetector.instance().updateVersionState(Ivy.session().getHttpSessionIdentifier(), isMobile);
-  }
 
   public void resetTaskAndNavigateToHomePage() throws IOException {
     TaskUtils.resetTask(Ivy.wfTask());
