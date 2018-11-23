@@ -217,14 +217,13 @@
       </h:panelGroup>
     </h:panelGroup>
     
-    <h:panelGrid id="task-widget-mobile-header" rendered="#{isMobile}" columns="2" styleClass="js-task-widget-mobile-header Wid100" >
-      <h:form id="filter-form-mobile" onsubmit="return false;"
-          styleClass="widget-header-content-filter js-filter-container">
+    <h:panelGrid id="task-widget-mobile-header" rendered="#{isMobile}" columns="2" styleClass="Wid100" >
+      <h:form id="filter-form-mobile" onsubmit="return false;" styleClass="widget-header-content-filter js-filter-container">
           <ic:ch.ivy.addon.portalkit.component.Filter id="filter-container" icon="fa fa-filter"
             updateComponent="#{p:component('task-view-container')}"
             placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceHolderMobile')}"
             keywordStoresIn="#{data.dataModel.queryCriteria.keyword}" styleClass="widget-header-filter-input"
-            onCompletedCallback="setupMobileScrollbar();" />
+            onCompletedCallback="taskWidget.setupScrollbar();"/>
       </h:form>
       <h:form>
         <p:selectOneMenu id="sort-task-mobile" value="#{taskWidgetBean.selectedSort}" styleClass="js-task-widget-sort-menu Fright">
