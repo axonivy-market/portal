@@ -2113,7 +2113,7 @@ a.case-details-document-add-link {
   width: 1%;
 }
 	
-.process-start-list .process-start-list-item-name {
+.process-start-list .process-start-list-item-name,  .mobile-process-start-list .process-start-list-item-name {
   padding-left: 3%;
 }
 
@@ -5400,4 +5400,13 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .mobile-process-start-list {
   display: block;
+}
+
+.mobile-process-start-list .process-start-list-item {
+	margin: 0 10px 5px 5px;
+}
+
+.mobile-process-start-list .process-start-list-item-name {
+	width: 100%;
+	margin-right: 3%;
 }
