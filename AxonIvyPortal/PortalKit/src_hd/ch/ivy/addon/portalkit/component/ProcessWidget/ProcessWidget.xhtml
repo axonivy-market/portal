@@ -31,12 +31,14 @@
 					<cc:renderFacet name="headerToolbar" />
 				</h:panelGroup>
 			</h:panelGroup>
-			<h:panelGroup rendered="#{not processWidgetBean.compactMode}" styleClass="widget-header-sub">
+			<h:panelGroup rendered="#{not processWidgetBean.compactMode}" styleClass="#{processWidgetBean.mobileMode? 'mobile-widget-process-header-sub' : 'widget-header-sub'}">
 				<ic:ch.ivy.addon.portalkit.component.Filter id="process-search" listener="processWidget.filter()" ajax="false"
 					placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}"
 					styleClass="js-filter-process-widget-list-item" rendered="#{!cc.attrs.hideProcessFilter}"/>
 			</h:panelGroup>
-			<p:selectOneMenu id="dictonary-process-group-selection" widgetVar="dictonary-process-group-selection" styleClass="mobile-process-list-dictionary-group-selection">
+			<p:selectOneMenu id="dictonary-process-group-selection" widgetVar="dictonary-process-group-selection" rendered="#{processWidgetBean.mobileMode}"
+			 styleClass="mobile-process-list-dictionary-group-selection" panelStyleClass="hide-disabled">
+				<f:selectItem itemValue="express" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/expressWorkflowGroupTitle')}" itemDisabled="#{empty processWidgetBean.expressProcesses}" />			
 				<f:selectItems value="#{processWidgetBean.userProcessByAlphabet.entrySet().toArray()}" var="dictionaryCharacter" itemValue="#{dictionaryCharacter.key}"
 				 itemLabel="#{dictionaryCharacter.key eq 'SPECIAL_CHARACTER'? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/specialCharacterGroup') : dictionaryCharacter.key}"/>
 				<p:ajax event="change" oncomplete="jumpToProcessGroup();" global="false" immediate="true" update="@none"/>
