@@ -9,7 +9,6 @@
     <ui:define name="pageContent">
         <ic:ch.ivy.addon.portalkit.component.TaskWidget 
           id="task-widget" 
-          chunkSize="20"
           dataModel="#{data.taskView.dataModel}"
           title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}"
           keyword="#{data.taskView.dataModel.queryCriteria.keyword}" 
