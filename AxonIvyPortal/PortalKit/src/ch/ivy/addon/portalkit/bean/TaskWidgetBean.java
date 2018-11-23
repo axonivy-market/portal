@@ -50,13 +50,8 @@ public class TaskWidgetBean implements Serializable {
   }
 
   public void setExpandedTaskId(Long expandedTaskId, boolean alreadyExpanded) {
-    if (alreadyExpanded) {
-      setIsTaskDetailOpenning(false);
-      this.expandedTaskId = 0L;
-    } else {
-      setIsTaskDetailOpenning(true);
-      this.expandedTaskId = expandedTaskId;
-    }
+    setIsTaskDetailOpenning(!alreadyExpanded);
+    this.expandedTaskId = alreadyExpanded ? 0L : expandedTaskId;
   }
 
   public TaskLazyDataModel getDataModel() {
@@ -125,8 +120,8 @@ public class TaskWidgetBean implements Serializable {
   public void sortTask() {
     if (selectedSort != null) {
       FacesContext context = FacesContext.getCurrentInstance();
-      TaskLazyDataModel dataModel = context.getApplication().evaluateExpressionGet(context, "#{data.dataModel}", TaskLazyDataModel.class);
-      dataModel.setSortField(selectedSort.name(), false);
+      TaskLazyDataModel taskLazyDataModel = context.getApplication().evaluateExpressionGet(context, "#{data.dataModel}", TaskLazyDataModel.class);
+      taskLazyDataModel.setSortField(selectedSort.name(), false);
     }
   }
 }
