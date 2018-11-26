@@ -74,7 +74,7 @@ public class ProcessWidgetBean implements Serializable, Converter {
     compactMode = compactModeAttribute == null || compactModeAttribute.isEmpty() ? true : Boolean.valueOf(compactModeAttribute);
     editMode = false;
     String mobileModeAttribute = Attrs.currentContext().get("mobileMode");
-    mobileMode = mobileModeAttribute == null || mobileModeAttribute.isEmpty() ? true : Boolean.valueOf(mobileModeAttribute);
+    mobileMode = mobileModeAttribute == null || mobileModeAttribute.isEmpty() ? false : Boolean.valueOf(mobileModeAttribute);
     selectedUserProcesses = new ArrayList<>();
     userName = UserUtils.getSessionUserName();
     if (compactMode) {
