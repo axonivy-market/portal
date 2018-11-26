@@ -19,6 +19,10 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
   public CustomizedTaskLazyDataModel(String taskWidgetComponentId) {
     super(taskWidgetComponentId);
   }
+  
+  public CustomizedTaskLazyDataModel(boolean isMobile) {
+    super(isMobile);
+  }
 
   //===================Basic customization, extend columns====================
   
@@ -64,6 +68,16 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
   @Override
   protected void initFilterContainer() {
     filterContainer = new CustomizedTaskFilterContainer();
+  }
+  
+  @Override
+  public List<String> getPortalTaskMobileSort() {
+    return Arrays.asList("PRIORITY_ASC", "PRIORITY_DESC", "customVarcharField5_ASC", "customVarcharField5_DESC", "customTimestampField1_ASC", "customTimestampField1_DESC");
+  }
+  
+  @Override
+  public String getSortFieldLabel(String fieldName) {
+    return Ivy.cms().co("/sortFields/" + fieldName);
   }
 
 }

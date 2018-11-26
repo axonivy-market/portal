@@ -124,7 +124,7 @@ public final class PortalNavigator {
   }
 
   public void navigateToMobilePortalTask() throws MalformedURLException {
-    navigate(PORTAL_MOBILE_TASK, StringUtils.EMPTY);
+    navigateByKeyword("startPortalMobileTask.ivp", PORTAL_MOBILE_TASK);
   }
 
   private void navigateByKeyword(String keyword, String defaultFriendlyRequestPath) throws MalformedURLException {
