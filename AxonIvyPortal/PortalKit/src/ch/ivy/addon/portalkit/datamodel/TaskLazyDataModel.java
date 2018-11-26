@@ -79,7 +79,14 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
-  private List<String> portalDefaultColumns = Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME", "EXPIRY_TIME", "STATE");
+  private List<String> portalDefaultColumns = Arrays.asList(
+                                                            "PRIORITY", 
+                                                            "NAME", 
+                                                            "ACTIVATOR", 
+                                                            "ID", 
+                                                            "CREATION_TIME", 
+                                                            "EXPIRY_TIME", 
+                                                            "STATE");
   private List<String> portalRequiredColumns = Arrays.asList("NAME");
 
   private boolean isAutoHideColumns;
@@ -110,11 +117,11 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     }
     autoInitForNoAppConfiguration();
   }
-  
+
   public TaskLazyDataModel() {
     this("task-widget");
   }
-  
+
   public TaskLazyDataModel(boolean isMobile) {
     this("task-widget");
     this.setMobile(isMobile);
@@ -167,8 +174,8 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     }
   }
 
-  private void copyProperties(TaskFilter sessionTaskFilter, TaskFilter filter) throws IllegalAccessException,
-      InvocationTargetException {
+  private void copyProperties(TaskFilter sessionTaskFilter, TaskFilter filter)
+      throws IllegalAccessException, InvocationTargetException {
     if (sessionTaskFilter.getClass() == filter.getClass()) {
       BeanUtils.copyProperties(filter, sessionTaskFilter);
       selectedFilters.add(filter);
@@ -186,7 +193,9 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
       Map<String, Object> filters) {
     if (first == 0) {
       initializedDataModel(searchCriteria);
-      RequestContext.getCurrentInstance().execute("updateTaskCount()");
+      if (!isMobile) {
+        RequestContext.getCurrentInstance().execute("updateTaskCount()");
+      }
     }
 
     List<RemoteTask> foundTasks = findTasks(first, pageSize, searchCriteria);
@@ -195,7 +204,9 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     List<RemoteTask> displayedTasks = getDisplayedTasks(notDisplayedTasks, pageSize);
     storeDisplayedTasks(displayedTasks);
 
-    RequestContext.getCurrentInstance().execute("taskListToolKit.responsive()");
+    if (!isMobile) {
+      RequestContext.getCurrentInstance().execute("taskListToolKit.responsive()");
+    }
 
     return displayedTasks;
   }
@@ -223,8 +234,8 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
       startIndex = 0;
       count = first + pageSize;
     }
-    return findTaskCaller.invokeComponentLogic(taskWidgetComponentId, "#{logic.findTasks}", new Object[] {
-        startIndex, count, criteria, serverId});
+    return findTaskCaller.invokeComponentLogic(taskWidgetComponentId, "#{logic.findTasks}",
+        new Object[] {startIndex, count, criteria, serverId});
   }
 
   protected void initializedDataModel(TaskSearchCriteria criteria) {
@@ -294,7 +305,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
       Function<? super RemoteTask, ? extends U> function) {
     return Comparator.comparing(function, Comparator.nullsFirst(Comparator.naturalOrder()));
   }
-  
+
   protected <U extends Comparable<? super U>> Comparator<RemoteTask> comparatorNullsLast( // NOSONAR
       Function<? super RemoteTask, ? extends U> function) {
     return Comparator.comparing(function, Comparator.nullsLast(Comparator.naturalOrder()));
@@ -317,9 +328,8 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
    */
   protected int getTaskCount(TaskSearchCriteria criteria) {
     IvyComponentLogicCaller<Long> countTaskCaller = new IvyComponentLogicCaller<>();
-    Long taskCount =
-        countTaskCaller.invokeComponentLogic(taskWidgetComponentId, "#{logic.countTasks}", new Object[] {criteria,
-            serverId});
+    Long taskCount = countTaskCaller.invokeComponentLogic(taskWidgetComponentId, "#{logic.countTasks}",
+        new Object[] {criteria, serverId});
     return taskCount.intValue();
   }
 
@@ -342,8 +352,8 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   protected TaskQueryCriteria buildQueryCriteria() {
     TaskQueryCriteria jsonQuerycriteria = new TaskQueryCriteria();
     jsonQuerycriteria.setQueryForUnassignedTask(false);
-    jsonQuerycriteria.setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED,
-        TaskState.PARKED)));
+    jsonQuerycriteria
+        .setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED)));
     jsonQuerycriteria.setSortField(TaskSortField.ID.toString());
     jsonQuerycriteria.setSortDescending(true);
     if (shouldSaveAndLoadSessionFilters()) {
@@ -354,8 +364,9 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   /**
    * <p>
-   * If your customized task list has new columns/fields, please extend the {@code taskQuery} parameter with the sort
-   * query for these fields and also override the "extendSortTasksInNotDisplayedTaskMap" method.
+   * If your customized task list has new columns/fields, please extend the {@code taskQuery}
+   * parameter with the sort query for these fields and also override the
+   * "extendSortTasksInNotDisplayedTaskMap" method.
    * </p>
    * <p>
    * <b>Example: </b> <code><pre>
@@ -626,7 +637,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     }
     resetFilterData();
   }
-  
+
   public void onKeywordChange() {
     resetFilterData();
   }
@@ -651,18 +662,17 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
    */
   protected void buildQueryToSearchCriteria() {
     if (queryCriteria.getTaskQuery() == null) {
-      String jsonQuery =
-          SubProcessCall.withPath("Functional Processes/BuildTaskJsonQuery")
-          .withStartSignature("buildTaskJsonQuery(Boolean)").withParam("isQueryForHomePage", compactMode)
-          .call().get("jsonQuery", String.class);
+      String jsonQuery = SubProcessCall.withPath("Functional Processes/BuildTaskJsonQuery")
+          .withStartSignature("buildTaskJsonQuery(Boolean)").withParam("isQueryForHomePage", compactMode).call()
+          .get("jsonQuery", String.class);
       TaskQuery customizedTaskQuery =
           StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
       queryCriteria.setTaskQuery(customizedTaskQuery);
     }
 
     if (compactMode) {
-      queryCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED,
-          TaskState.PARKED)));
+      queryCriteria
+          .setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED)));
     } else {
       if (filterContainer != null) {
         if (selectedFilters.contains(filterContainer.getStateFilter())) {
@@ -682,7 +692,8 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   /**
    * <p>
-   * Your customized data model needs to override this method if your customized task list has new columns/fields.
+   * Your customized data model needs to override this method if your customized task list has new
+   * columns/fields.
    * </p>
    * <p>
    * <b>Example: </b> <code><pre>
@@ -759,8 +770,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     Long applicationId = Ivy.request().getApplication().getId();
     Long processModelId = Ivy.request().getProcessModel().getId();
     if (userId != null) {
-      TaskColumnsConfiguration configData =
-          service.getConfiguration(serverId, applicationId, userId, processModelId);
+      TaskColumnsConfiguration configData = service.getConfiguration(serverId, applicationId, userId, processModelId);
       if (configData != null) {
         selectedColumns = configData.getSelectedColumns();
       }
@@ -774,15 +784,16 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   /**
    * <p>
-   * Your customized data model needs to override this method if your customized task list has new columns/fields.
+   * Your customized data model needs to override this method if your customized task list has new
+   * columns/fields.
    * </p>
    * <p>
    * <b>Example: </b> <code><pre>
    * 
    * return Arrays.asList("PRIORITY", "NAME", "ID" , "ACTIVATOR", "CREATION_TIME", "EXPIRY_TIME", "customVarcharField5", "customVarcharField1");
    * 
-   * </pre></code> This list is the list of sortFields in TaskColumnHeader Portal component when you use it to add new
-   * column headers Also the list of checkboxes in config columns panel
+   * </pre></code> This list is the list of sortFields in TaskColumnHeader Portal component when you
+   * use it to add new column headers Also the list of checkboxes in config columns panel
    * </p>
    * 
    * @return default columns
@@ -796,8 +807,8 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
    * In case you adds new columns, these columns need cms to show in config columns panel
    * </p>
    * <p>
-   * You can either add new entry to default folder below in PortalStyle or override this method to create your own
-   * folder column must be the same with sortField
+   * You can either add new entry to default folder below in PortalStyle or override this method to
+   * create your own folder column must be the same with sortField
    * </p>
    * 
    * @param column
@@ -815,8 +826,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     Long applicationId = Ivy.request().getApplication().getId();
     Long processModelId = Ivy.request().getProcessModel().getId();
     TaskColumnsConfiguration taskColumnsConfiguration =
-        service.getConfiguration(serverId, applicationId, Ivy.session().getSessionUser().getId(),
-            processModelId);
+        service.getConfiguration(serverId, applicationId, Ivy.session().getSessionUser().getId(), processModelId);
     if (taskColumnsConfiguration != null) {
       updateTaskColumnsConfiguration(taskColumnsConfiguration);
     } else {
@@ -827,7 +837,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
   private TaskColumnsConfiguration createNewTaskColumnsConfigurationData() {
-  TaskColumnsConfiguration taskColumnsConfiguration = new TaskColumnsConfiguration();
+    TaskColumnsConfiguration taskColumnsConfiguration = new TaskColumnsConfiguration();
     taskColumnsConfiguration.setProcessModelId(Ivy.request().getProcessModel().getId());
     taskColumnsConfiguration.setUserId(Ivy.session().getSessionUser().getId());
     taskColumnsConfiguration.setApplicationId(Ivy.request().getApplication().getId());
@@ -907,5 +917,29 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   public void setMobile(boolean isMobile) {
     this.isMobile = isMobile;
+  }
+
+  public List<String> getPortalTaskMobileSort() {
+    return Arrays.asList(
+        "CREATION_TIME_ASC", 
+        "CREATION_TIME_DESC", 
+        "EXPIRY_TIME_ASC", 
+        "EXPIRY_TIME_DESC",
+        "PRIORITY_ASC", 
+        "PRIORITY_DESC");
+  }
+
+  public String getSortFieldLabel(String fieldName) {
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/sortFields/" + fieldName);
+  }
+
+  public void sort(String sortField) {
+    if (StringUtils.isNotBlank(sortField) && sortField.length() > 3) {
+      boolean asc = StringUtils.equalsIgnoreCase("asc", sortField.substring(sortField.length() - 3));
+      String sortColumn = StringUtils.substring(sortField, 0, asc? sortField.length() - 4 : sortField.length() - 5);
+      if (getDefaultColumns().contains(sortColumn)) {
+        setSortField(sortColumn, !asc);
+      }
+    }
   }
 }

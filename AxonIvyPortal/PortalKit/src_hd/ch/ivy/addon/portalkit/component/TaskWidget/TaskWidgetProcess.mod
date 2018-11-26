@@ -84,6 +84,11 @@ Ts0 @PushWFArc f19 '' #zField
 Ts0 @GridStep f8 '' #zField
 Ts0 @PushWFArc f10 '' #zField
 Ts0 @PushWFArc f1 '' #zField
+Ts0 @RichDialogMethodStart f11 '' #zField
+Ts0 @GridStep f12 '' #zField
+Ts0 @RichDialogProcessEnd f14 '' #zField
+Ts0 @PushWFArc f33 '' #zField
+Ts0 @PushWFArc f37 '' #zField
 >Proto Ts0 Ts0 TaskWidgetProcess #zField
 Ts0 f0 guid 14FDF92006C61D35 #txt
 Ts0 f0 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
@@ -869,6 +874,49 @@ Ts0 f10 expr out #txt
 Ts0 f10 112 83 112 122 #arcP
 Ts0 f1 expr out #txt
 Ts0 f1 112 166 112 202 #arcP
+Ts0 f11 guid 1673F6EA05E1210C #txt
+Ts0 f11 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
+Ts0 f11 method sortOnMobile() #txt
+Ts0 f11 disableUIEvents false #txt
+Ts0 f11 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<> param = methodEvent.getInputArguments();
+' #txt
+Ts0 f11 outParameterDecl '<> result;
+' #txt
+Ts0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>sortOnMobile()</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f11 787 339 26 26 -40 15 #rect
+Ts0 f11 @|RichDialogMethodStartIcon #fIcon
+Ts0 f12 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
+' #txt
+Ts0 f12 actionTable 'out=in;
+' #txt
+Ts0 f12 actionCode 'import org.apache.commons.lang3.StringUtils;
+if (StringUtils.isNotBlank(in.mobileSelectedSort)){
+	in.dataModel.sort(in.mobileSelectedSort);
+}' #txt
+Ts0 f12 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
+Ts0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>sort</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f12 968 330 112 44 -10 -8 #rect
+Ts0 f12 @|StepIcon #fIcon
+Ts0 f14 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
+Ts0 f14 1203 339 26 26 0 12 #rect
+Ts0 f14 @|RichDialogProcessEndIcon #fIcon
+Ts0 f33 expr out #txt
+Ts0 f33 813 352 968 352 #arcP
+Ts0 f37 expr out #txt
+Ts0 f37 1080 352 1203 352 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -935,3 +983,7 @@ Ts0 f0 mainOut f10 tail #connect
 Ts0 f10 head f8 mainIn #connect
 Ts0 f8 mainOut f1 tail #connect
 Ts0 f1 head f27 mainIn #connect
+Ts0 f11 mainOut f33 tail #connect
+Ts0 f33 head f12 mainIn #connect
+Ts0 f12 mainOut f37 tail #connect
+Ts0 f37 head f14 mainIn #connect
