@@ -378,6 +378,9 @@
     function jumpToProcessGroup() {
     	document.getElementsByClassName("js-process-group-" + PF('dictonary-process-group-selection').value)[0].scrollIntoView();
      	PF('dictonary-process-group-selection').hide();
+
+    	var processHeaderHeight = document.getElementsByClassName("process-widget")[0].getElementsByClassName("widget-header")[0].offsetHeight;
+     	document.getElementsByClassName("mobile-container")[0].scrollTop -= processHeaderHeight;
     }
     </script>
 	<h:form>
