@@ -5398,11 +5398,8 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   color: black !important;
 }
 
-.mobile-process-start-list {
-  display: block;
-}
-
 .mobile-process-start-list .process-start-list-item {
+  max-width: 96vw;
   margin: 0 10px 5px 5px;
 }
 
@@ -5415,14 +5412,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   min-width: 20px !important;
   max-width: 20px !important;
   float: right;
-}
-
-.mobile-process-start-list .process-start-list-item {
-  max-width: 100%;
-}
-
-.mobile-widget-header div:last-child {
-  margin-left: auto;
 }
 
 .mobile-widget-process-header-sub {
