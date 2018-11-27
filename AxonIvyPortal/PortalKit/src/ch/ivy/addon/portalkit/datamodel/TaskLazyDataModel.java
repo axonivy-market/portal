@@ -122,7 +122,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     this("task-widget");
   }
 
-  public TaskLazyDataModel(boolean isMobile) {
+  public TaskLazyDataModel(Boolean isMobile) {
     this("task-widget");
     this.setMobile(isMobile);
     queryCriteria.setMobile(isMobile);
