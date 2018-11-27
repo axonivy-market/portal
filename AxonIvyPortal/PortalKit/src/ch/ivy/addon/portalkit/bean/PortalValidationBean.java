@@ -20,6 +20,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 @ManagedBean
 @SessionScoped
 public class PortalValidationBean {
+  private static final String VERSION_7_0 = "7.0.";
   private List<String> errorMessages;
 
   @PostConstruct
@@ -48,7 +49,7 @@ public class PortalValidationBean {
     if (portalKit != null && portalConnector != null) {
       portalKitVersion = portalKit.getQualifiedVersion().toString();
       portalConnectorVersion = portalConnector.getQualifiedVersion().toString();
-      compatibilityOk = portalConnectorVersion.equals(portalKitVersion);
+      compatibilityOk = isVersion70Compatible(portalKitVersion, portalConnectorVersion);
     }
 
     if (!compatibilityOk) {
@@ -56,6 +57,13 @@ public class PortalValidationBean {
       errorMessages.add(Ivy.cms().co("/errors/compatibility/message", params));
     }
     return compatibilityOk;
+  }
+
+  private boolean isVersion70Compatible(String portalKitVersion, String portalConnectorVersion) {
+    if (portalConnectorVersion == null || portalKitVersion == null) {
+      return false;
+    }
+    return portalKitVersion.indexOf(VERSION_7_0) == 0 && portalConnectorVersion.indexOf(VERSION_7_0) == 0;
   }
 
   public List<String> getErrorMessages() {

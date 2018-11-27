@@ -913,37 +913,10 @@
 		<para>
 			This part lists all relevant changes since the last official product releases of Axon.ivy.
 			<sect2>
-				<title>Changes in 7.2</title>
+				<title>Changes in 7.0.9</title>
 				<itemizedlist>
 					<listitem>
-						<para>Support to configure upload file extension whitelist. Only file extensions appear in this list are allowed to upload to Portal. This function can be configured by UPLOAD_DOCUMENT_WHITELIST_EXTENSION setting.</para>
-					</listitem>
-					<listitem>
-						<para>Support script checking function for upload file. You can enable/disable this function by configuring ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT setting.</para>
-					</listitem>
-				</itemizedlist>
-			</sect2>
-			<sect2>
-				<title>Changes in 7.1</title>
-				<itemizedlist>
-					<listitem>
-						<para>Portal supports client side timeout: informs user when session is about to expire and auto logout when expired.</para>
-					</listitem>
-					<listitem>
-						<para>Hide technical cases (the HIDE additional property is set), so that they and their related task are not displayed
-						in any Portal case lists.</para>
-					</listitem>
-					<listitem>
-						<para>More search criteria for user in Case list are added and allowed to customize.</para>
-					</listitem>
-					<listitem>
-						<para>User can add new language. Please refer to <link linkend="axonivyportal.settings.languagesettings" endterm="axonivyportal.settings.languagesettings.title" /> for detail.</para>
-					</listitem>
-					<listitem>
-						<para>Axon ivy express has custom end page. It can be turned off or customized.</para>
-					</listitem>
-					<listitem>
-						<para>User can create default start process with permission check. If the user doesn't have permission to start the process, it won't appear in favorite processes. Please refer to <link linkend="axonivyportal.customization.defaultuserprocess" endterm="axonivyportal.customization.defaultuserprocess.title" /> for detail.</para>
+						<para>Portal version 7.0.9 .. 7.0.x latest is compatible with Portal Connector latest (of 7.0.x latest engine).</para>
 					</listitem>
 				</itemizedlist>
 			</sect2>
