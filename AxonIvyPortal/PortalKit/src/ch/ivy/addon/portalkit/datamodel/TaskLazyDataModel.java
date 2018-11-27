@@ -243,7 +243,9 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     displayedTaskMap.clear();
     notDisplayedTaskMap.clear();
     buildQueryToSearchCriteria();
-    setRowCount(getTaskCount(criteria));
+    if (!isMobile) {
+      setRowCount(getTaskCount(criteria));
+    }
   }
 
   protected List<RemoteTask> getDisplayedTasks(List<RemoteTask> notDisplayedTasks, int pageSize) {
