@@ -56,31 +56,27 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   protected static final int BUFFER_LOAD = 10;
   protected String taskWidgetComponentId;
-  protected List<RemoteTask> data;
+  protected String caseName;
+  
   protected Map<String, RemoteTask> displayedTaskMap;
   protected Map<String, RemoteTask> notDisplayedTaskMap;
 
   protected int rowIndex;
-  protected TaskSearchCriteria searchCriteria;
-  protected TaskQueryCriteria queryCriteria;
   protected Long serverId;
   protected Comparator<RemoteTask> comparator;
 
-  protected boolean compactMode;
-  protected String caseName;
+  protected TaskSearchCriteria searchCriteria;
+  protected TaskQueryCriteria queryCriteria;
+  protected TaskFilterContainer filterContainer;
+  private TaskInProgressByOthersFilter inProgressFilter;
+  private TaskFilterData selectedTaskFilterData;
 
   protected List<TaskFilter> filters;
   protected List<TaskFilter> selectedFilters;
-  protected TaskFilterContainer filterContainer;
-
-  private TaskInProgressByOthersFilter inProgressFilter;
-  private boolean isInProgressFilterDisplayed = false;
-  private TaskFilterData selectedTaskFilterData;
-
+  protected List<RemoteTask> data;
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
-  private List<String> portalDefaultColumns = Arrays.asList(
-                                                            "PRIORITY", 
+  private List<String> portalDefaultColumns = Arrays.asList("PRIORITY", 
                                                             "NAME", 
                                                             "ACTIVATOR", 
                                                             "ID", 
@@ -89,6 +85,8 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
                                                             "STATE");
   private List<String> portalRequiredColumns = Arrays.asList("NAME");
 
+  protected boolean compactMode;
+  private boolean isInProgressFilterDisplayed = false;
   private boolean isAutoHideColumns;
   private boolean isDisableSelectionCheckboxes;
   private boolean isRelatedTaskDisplayed = false;
@@ -106,7 +104,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     queryCriteria = buildQueryCriteria();
     comparator = comparator(RemoteTask::getId);
     serverId = SecurityServiceUtils.getServerIdFromSession();
-    if (shouldSaveAndLoadSessionFilters()) {
+    if (shouldSaveAndLoadSessionFilters() && !isMobile) {
       selectedTaskFilterData = UserUtils.getSessionSelectedTaskFilterSetAttribute();
       inProgressFilter = UserUtils.getSessionTaskInProgressFilterAttribute();
       if (inProgressFilter != null) {
@@ -239,6 +237,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
   protected void initializedDataModel(TaskSearchCriteria criteria) {
+    criteria.setInvolvedUsername(Ivy.session().getSessionUserName());
     data.clear();
     displayedTaskMap.clear();
     notDisplayedTaskMap.clear();
