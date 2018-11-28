@@ -321,7 +321,7 @@
   </p:confirmDialog>
 
   <script type="text/javascript">
-	var taskWidget = new TaskWidget("#{cc.attrs.outerPanelId}");
+	var taskWidget = new TaskWidget("#{cc.attrs.outerPanelId}", #{isMobile});
     var taskListToolKit = TaskListToolKit();
     $(function(){
       taskWidget.setupScrollbar();
