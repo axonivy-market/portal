@@ -48,3 +48,5 @@ scrollPosition Integer #field
 scrollPosition PERSISTENT #fieldModifier
 expandedTaskId Long #field
 expandedTaskId PERSISTENT #fieldModifier
+mobileSelectedSort String #field
+mobileSelectedSort PERSISTENT #fieldModifier

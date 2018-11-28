@@ -23,17 +23,19 @@ Ps0 f1 229 133 22 22 14 0 #rect
 Ps0 f1 @|RichDialogProcessEndIcon #fIcon
 Ps0 f2 guid 1573377403EC1C55 #txt
 Ps0 f2 type ch.ivy.addon.portal.generic.MobilePortalTasks.MobilePortalTasksData #txt
-Ps0 f2 method start() #txt
+Ps0 f2 method start(ch.ivy.addon.portal.generic.view.TaskView) #txt
 Ps0 f2 disableUIEvents true #txt
 Ps0 f2 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
+<ch.ivy.addon.portal.generic.view.TaskView taskView> param = methodEvent.getInputArguments();
+' #txt
+Ps0 f2 inParameterMapAction 'out.taskView=param.taskView;
 ' #txt
 Ps0 f2 outParameterDecl '<> result;
 ' #txt
 Ps0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name></name>
+        <name>start(TaskView)</name>
     </language>
 </elementInfo>
 ' #txt

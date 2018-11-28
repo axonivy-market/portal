@@ -6,11 +6,13 @@
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="currentPage" value="#{navigatorBean.processPage}" />
-    
-    <ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}</ui:define>
+    <ui:param name="isNotRequiredLogin" value="false" />
     <ui:define name="pageContent">
-      <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-widget" compactMode="false" showBackButton="false" />
+      <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-widget" keyword="#{data.keyword}"
+        hideProcessFilter="#{not empty data.keyword}" compactMode="false" mobileMode="true" showBackButton="false"
+        highlightedProcessStartLink="#{data.processStartLink}" />
     </ui:define>
   </ui:composition>
 </h:body>
 </html>
+

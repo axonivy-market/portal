@@ -69,8 +69,8 @@
           <li><p:link id="project-info-menu-item" href="#"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/info')}"
               onclick="PF('project-info-dialog').show()" /></li>
-
-          <li jsf:rendered="#{not deviceBean.desktop}">
+		  
+		  <li jsf:rendered="#{not deviceBean.desktop}">
             <p:commandLink actionListener="#{userMenuBean.switchDesktopOrMobileVersion(true)}">
               #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/switchToMobileVersion')}
             </p:commandLink>
