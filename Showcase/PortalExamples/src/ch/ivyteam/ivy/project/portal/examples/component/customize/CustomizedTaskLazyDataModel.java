@@ -20,7 +20,7 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
     super(taskWidgetComponentId);
   }
   
-  public CustomizedTaskLazyDataModel(boolean isMobile) {
+  public CustomizedTaskLazyDataModel(Boolean isMobile) {
     super(isMobile);
   }
 
