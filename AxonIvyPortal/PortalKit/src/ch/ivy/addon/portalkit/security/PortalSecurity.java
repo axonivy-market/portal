@@ -23,12 +23,14 @@ public enum PortalSecurity {
   INSTANCE;
 
   private static final class Username {
+    private Username() {}
     private static final String ADMIN = "admin";
     private static final String DEMO = "demo";
     private static final String GUEST = "guest";
   }
   
   private static class Permissions {
+    private Permissions() {}
     @SuppressWarnings("deprecation")
     private static final List<IPermission> ADMIN_USER_ADDITIONAL = Arrays.asList(
             IPermission.ADMINISTRATE_WORKFLOW,
