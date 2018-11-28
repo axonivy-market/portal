@@ -212,6 +212,7 @@
             updateComponent="#{p:component('task-view-container')}"
             placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
             keywordStoresIn="#{data.dataModel.queryCriteria.keyword}" 
+            styleClass="widget-header-filter-input"
             onCompletedCallback="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
         </h:form>
       </h:panelGroup>
@@ -222,7 +223,7 @@
           <ic:ch.ivy.addon.portalkit.component.Filter id="filter-container" icon="fa fa-filter"
             updateComponent="#{p:component('task-view-container')}"
             placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceHolderMobile')}"
-            keywordStoresIn="#{data.dataModel.queryCriteria.keyword}" styleClass="widget-header-filter-input"
+            keywordStoresIn="#{data.dataModel.queryCriteria.keyword}"
             onCompletedCallback="taskWidget.setupScrollbar();"/>
       </h:form>
       <h:form id="sort-form-mobile">
