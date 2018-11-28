@@ -2112,8 +2112,13 @@ a.case-details-document-add-link {
   padding-left: 5px;
   width: 1%;
 }
-	
-.process-start-list .process-start-list-item-name {
+
+.widget-content.mobile-process-start-list {
+	margin-top: 40px;
+	overflow-x: hidden; 
+}
+
+.process-start-list .process-start-list-item-name,  .mobile-process-start-list .process-start-list-item-name {
   padding-left: 3%;
 }
 
@@ -5390,12 +5395,55 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   text-align: center;
   background-color: lightgrey;
   line-height: 16px;
+  position: absolute;
+  bottom: 0;
 }
 
 .mobile-footer .ui-commandlink {
   color: black !important;
 }
 
+.mobile-process-start-list .process-start-list-item {
+  max-width: 96vw;
+  margin: 0 10px 5px 5px;
+}
+
+.mobile-process-start-list .process-start-list-item-name {
+  width: 100%;
+  margin-right: 3%;
+}
+
+.mobile-process-list-dictionary-group-selection.ui-selectonemenu {
+  min-width: 20px !important;
+  max-width: 20px !important;
+  float: right;
+  margin-right: 10px;
+}
+
+.mobile-container .process-widget .widget-header {
+	position: fixed;
+	z-index: 999999;
+	width: 100%;
+	background-color: #FFFFFF;
+}
+
 .mobile-container {
-  height: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-widget-process-header-sub {
+  flex: 1 0 auto;
+  align-self: flex-end;
+  margin-left: 10px;
+}
+
+.mobile-widget-process-header-sub .filter-widget {
+	width: 85%;
+}
+
+.ui-selectonemenu-panel.hide-disabled .ui-selectonemenu-item.ui-state-disabled {
+    display: none;
+}
+.mobile-sort {
+    width: 90px !important;
 }

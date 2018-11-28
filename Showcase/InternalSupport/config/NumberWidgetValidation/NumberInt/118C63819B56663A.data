@@ -1,1 +1,0 @@
-{/description "Whole number"/validationMessage "Invalid input (expected whole number)"/validationState "Error"/datatypeConfig {/useGrouping "true"/decimalSeparator "0"/maxFractionDigits "-1"/isInteger "true"/groupingSeparator "0"/format "integer"/minFractionDigits "-1"/displayLeadingZeroes "false"}}

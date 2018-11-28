@@ -1,5 +1,5 @@
 [Ivy]
-15B853F6C874E6ED 3.20 #module
+15B853F6C874E6ED 3.23 #module
 >Proto >Proto Collection #zClass
 Ce0 CalculateTaskDelegate Big #zClass
 Ce0 B #cInfo
@@ -53,7 +53,7 @@ Ce0 f3 actionTable 'out=in;
 ' #txt
 Ce0 f3 actionCode 'import ch.ivyteam.ivy.security.IUser;
 import java.util.ArrayList;
-if ("#portaladmin".equalsIgnoreCase(in.currentUser.getMemberName()) || "#admin".equalsIgnoreCase(in.currentUser.getMemberName())) {
+if ("#admin".equalsIgnoreCase(in.currentUser.getMemberName())) {
 	if ("Maternity Leave Request".equalsIgnoreCase(in.task.getName())) {
 		in.users = new ArrayList();
 	}
@@ -82,18 +82,18 @@ Ce0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Return your own list of users &amp; roles to delegate task to
 
-if ("portaladmin".equalsIgnoreCase(in.currentUser.getDisplayName()) &amp;&amp; "System task".equalsIgnoreCase(in.task.getName())) {
+if ("admin".equalsIgnoreCase(in.currentUser.getDisplayName()) &amp;&amp; "System task".equalsIgnoreCase(in.task.getName())) {
   in.users = new ArrayList();
   in.roles = new ArrayList();
 }</name>
-        <nameStyle>244,7
+        <nameStyle>238,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f7 144 151 720 108 -351 -48 #rect
+Ce0 f7 160 151 688 108 -335 -48 #rect
 Ce0 f7 @|IBIcon #fIcon
-Ce0 f5 144 205 82 208 #arcP
+Ce0 f5 160 205 82 208 #arcP
 >Proto Ce0 .type internaltest.CalculateTaskDelegateOverrideData #txt
 >Proto Ce0 .processKind CALLABLE_SUB #txt
 >Proto Ce0 0 0 32 24 18 0 #rect

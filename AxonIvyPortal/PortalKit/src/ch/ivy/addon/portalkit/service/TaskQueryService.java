@@ -88,7 +88,7 @@ public class TaskQueryService {
 
   private void addKeywordQuery(TaskQueryCriteria criteria, TaskQuery finalQuery) {
     if (criteria.hasKeyword()) {
-      finalQuery.where().and(queryForKeyword(criteria.getKeyword()));
+      finalQuery.where().and(queryForKeyword(criteria.getKeyword(), criteria.isMobile()));
     }
   }
 
@@ -107,18 +107,20 @@ public class TaskQueryService {
     return returnQuery;
   }
 
-  private TaskQuery queryForKeyword(String keyword) {
+  private TaskQuery queryForKeyword(String keyword, boolean isMobile) {
     String containingKeyword = String.format("%%%s%%", keyword);
     TaskQuery filterByKeywordQuery =
         TaskQuery.create().where().or().name().isLikeIgnoreCase(containingKeyword).or().description()
             .isLikeIgnoreCase(containingKeyword);
 
-    try {
-      long idKeyword = Long.parseLong(keyword);
-      String containingIdKeyword = String.format("%%%d%%", idKeyword);
-      filterByKeywordQuery.where().or().taskId().isLike(containingIdKeyword);
-    } catch (NumberFormatException e) {
-      // do nothing
+    if (!isMobile) {
+      try {
+        long idKeyword = Long.parseLong(keyword);
+        String containingIdKeyword = String.format("%%%d%%", idKeyword);
+        filterByKeywordQuery.where().or().taskId().isLike(containingIdKeyword);
+      } catch (NumberFormatException e) {
+        // do nothing
+      }
     }
     return filterByKeywordQuery;
   }

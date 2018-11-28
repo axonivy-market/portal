@@ -1,8 +1,0 @@
-{
-	/description "Space separated word list"
-	/validationMessage "Invalid input (expected list of words separated by space)"
-	/validationState "Error"
-	/datatypeConfig {
-		/validationExpression "[A-Za-z0-9\\-_]+(\\s+[A-Za-z0-9\\-_]+)*"
-	}
-}

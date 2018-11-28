@@ -1,8 +1,0 @@
-{
-	/description "Single word string"
-	/validationMessage "Invalid input (expected single word)"
-	/validationState "Error"
-	/datatypeConfig {
-		/validationExpression "[A-Za-z0-9\\-_]+"
-	}
-}

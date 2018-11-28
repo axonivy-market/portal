@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry excluding="**/*.ivyClass|**/*.mod|**/*.eventmappings|**/*.rddescriptor" kind="src" path="src_rd"/>
-	<classpathentry kind="src" path="src_ws"/>
-	<classpathentry kind="src" path="src_test"/>
+	<classpathentry kind="src" path="src">
+		<attributes>
+			<attribute name="optional" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="src_ws">
+		<attributes>
+			<attribute name="optional" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="src_test">
+		<attributes>
+			<attribute name="optional" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib_test/guava-18.0.jar"/>
 	<classpathentry exported="true" kind="con" path="IVY_CONTAINER"/>
 	<classpathentry kind="con" path="WEBAPP_CONTAINER"/>
-	<classpathentry kind="con" path="ULC_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="lib" path="lib_test/junit-4.8.2.jar"/>
 	<classpathentry kind="lib" path="lib_test/mockito-core-1.10.19.jar"/>
