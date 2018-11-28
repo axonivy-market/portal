@@ -70,11 +70,17 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
     filterContainer = new CustomizedTaskFilterContainer();
   }
   
+  /**
+   * Customize sort fields in mobile task list
+   */
   @Override
   public List<String> getPortalTaskMobileSort() {
     return Arrays.asList("PRIORITY_ASC", "PRIORITY_DESC", "customVarcharField5_ASC", "customVarcharField5_DESC", "customTimestampField1_ASC", "customTimestampField1_DESC");
   }
   
+  /**
+   * Customize sort field labels on mobile task list
+   */
   @Override
   public String getSortFieldLabel(String fieldName) {
     return Ivy.cms().co("/sortFields/" + fieldName);
