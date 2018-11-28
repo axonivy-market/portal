@@ -183,7 +183,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
       case CREATION_TIME:
         return comparator(RemoteTask::getStartTimestamp);
       case EXPIRY_TIME:
-        return comparator(RemoteTask::getExpiryTimestamp);
+        return comparatorNullsLast(RemoteTask::getExpiryTimestamp);
       case STATE:
         return comparator(RemoteTask::getState);
       case FINISHED_TIME:
@@ -505,6 +505,15 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
       default:
         orderQuery = taskQuery.orderBy().taskId();
         break;
+    }
+    
+    if (sortColumn == TaskAndCaseAnalysisColumn.TASK_EXPIRY_TIME) {
+      if (taskQueryCriteria.isSortDescending()) {
+        orderQuery.descendingNullFirst();
+      } else {
+        orderQuery.ascendingNullLast();
+      }
+      return;
     }
 
     if (taskQueryCriteria.isSortDescending()) {
