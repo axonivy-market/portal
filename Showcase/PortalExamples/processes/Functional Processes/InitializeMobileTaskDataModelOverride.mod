@@ -73,19 +73,15 @@ Il0 f2 384 64 569 64 #arcP
 Il0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>NOTE: IF THERE IS A CUSTOMIZED DATA MODEL, PLEASE REPLACE THE SCRIPT
-
-in.dataModel = new TaskLazyDataModel(in.isMobile);
-BY
-in.dataModel = new &lt;CUSTOMIZED_DATA_MODEL&gt;(in.isMobile);</name>
-        <nameStyle>180,7
+        <name>Override TaskLazrDataModel with CustomizedTaskLazyDataModel</name>
+        <nameStyle>59,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Il0 f16 192 172 480 92 -230 -40 #rect
+Il0 f16 248 203 368 30 -181 -8 #rect
 Il0 f16 @|IBIcon #fIcon
-Il0 f4 432 172 320 86 #arcP
+Il0 f4 432 203 320 86 #arcP
 >Proto Il0 .type _ch.ivyteam.ivy.project.portal.examples.InitializeMobileTaskDataModelOverrideData #txt
 >Proto Il0 .processKind CALLABLE_SUB #txt
 >Proto Il0 0 0 32 24 18 0 #rect
