@@ -83,7 +83,7 @@
   </h:panelGroup>
 
 
-  <p:confirmDialog id="reset-task-dialog" appendTo="@(body)" widgetVar="reset-task-dialog" rendered="#{rowIndex == 0 and !cc.attrs.isMobile}" 
+  <p:confirmDialog id="reset-task-dialog" appendTo="@(body)" widgetVar="reset-task-dialog" rendered="#{rowIndex == 0}" 
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" closeOnEscape="true">
     <f:facet name="message">
       <h:outputText escape="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
