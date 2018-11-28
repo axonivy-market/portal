@@ -327,21 +327,4 @@ out.taskView = TaskView.create().dataModel(dataModel).showHeaderToolbar(false).c
 			</listitem>
 		</orderedlist>
 	</sect2>
-	<sect2 xml:id="axonivyportal.customization.taskwidget.customtaskfiltermobile">
-	<title>How to customize mobile task list sort</title>
-	<para>Refer to <code>PortalExamples</code> project for examples</para>
-	<orderedlist>
-		<listitem>
-			Create a customize TaskLazyDataModel extends TaskLazyDataModel and override 2 methods <code>getPortalTaskMobileSort</code> and <code>getSortFieldLabel</code>
-			<mediaobject>
-			<imageobject>
-			<imagedata fileref="images/TaskWidget/TaskSortOverride.png" />
-			</imageobject>
-			</mediaobject>
-		</listitem>
-		<listitem>
-			Use Axon.ivy Override to override the <code>InitializeMobileTaskDataModel</code> callable. Initialize this customize TaskLazyDataModel <code>in.dataModel = new CustomizedTaskLazyDataModel(true);</code>
-		</listitem>
-	</orderedlist>
-</sect2>
 </sect1>
