@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version="1.0" encoding="utf-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>ch.ivyteam.ivy.project.portal</groupId>
   <artifactId>portalStyle</artifactId>
-  <version>7.0.0.0-SNAPSHOT</version>
+  <version>7.3.165.0</version>
   <packaging>iar</packaging>
   <properties>
     <resources.directory.css>${resources.directory}/css</resources.directory.css>
@@ -15,10 +14,10 @@
   <build>
     <plugins>
       <plugin>
-		<groupId>com.axonivy.ivy.ci</groupId>
-		<artifactId>project-build-plugin</artifactId>
-		<version>${build.plugin.version}</version>
-		<extensions>true</extensions>
+        <groupId>com.axonivy.ivy.ci</groupId>
+        <artifactId>project-build-plugin</artifactId>
+        <version>${build.plugin.version}</version>
+        <extensions>true</extensions>
       </plugin>
       <plugin>
         <groupId>org.lesscss</groupId>
