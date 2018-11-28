@@ -5426,6 +5426,10 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 	background-color: #FFFFFF;
 }
 
+.mobile-container {
+  -webkit-overflow-scrolling: touch;
+}
+
 .mobile-widget-process-header-sub {
   flex: 1 0 auto;
   align-self: flex-end;
