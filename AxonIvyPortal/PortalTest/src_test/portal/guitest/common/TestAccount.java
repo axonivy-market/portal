@@ -31,17 +31,17 @@ public enum TestAccount {
 
   private static String passwordOfDemoUser() {
     String password = System.getProperty("demoUserPassword");
-    return password != null ? password : "+d3m0++";
+    return password != null ? password : "demo";
   }
 
   private static String nameOfAdminUser() {
     String userName = System.getProperty("adminUserName");
-    return Optional.ofNullable(userName).orElse("portaladmin");
+    return Optional.ofNullable(userName).orElse("admin");
   }
 
   private static String passwordOfAdminUser() {
     String password = System.getProperty("adminUserPassword");
-    return Optional.ofNullable(password).orElse("+d3m0++");
+    return Optional.ofNullable(password).orElse("admin");
   }
 
   public String getUsername() {
