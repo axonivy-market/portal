@@ -1,5 +1,4 @@
 {
-  /RICH_DIALOG *
   /PROCESS {
     /Functional-Processes.LogoutPage "Functional Processes/LogoutPageOverride"
     /Functional-Processes.CustomPortalConfig "Functional Processes/CustomPortalConfigOverride"

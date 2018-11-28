@@ -1,5 +1,4 @@
 {
-  /RICH_DIALOG *
   /PROCESS {
     /Functional-Processes.CalculateTaskDelegate "Functional Processes/CalculateTaskDelegateOverride"
     /Functional-Processes.InitializeCaseDataModel "Functional Processes/InitializeCaseDataModelOverride"

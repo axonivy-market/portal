@@ -1,17 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<userConfig>
-    <user>
-        <username>Role1</username>
-        <fullName>My role 1</fullName>
-        <emailAddress>role1@axonactive.com</emailAddress>
-        <role>AXONIVY_PORTAL_ADMIN</role>
-    </user>
-    <user>
-        <username>Role2</username>
-        <fullName>My role 2</fullName>
-        <emailAddress>role2@axonactive.com</emailAddress>
-    </user>
-    <user>
-        <username>nam</username>
-    </user>
-</userConfig>
+<userConfig/>
