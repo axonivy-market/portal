@@ -2115,6 +2115,7 @@ a.case-details-document-add-link {
 
 .widget-content.mobile-process-start-list {
 	margin-top: 40px;
+	overflow-x: hidden; 
 }
 
 .process-start-list .process-start-list-item-name,  .mobile-process-start-list .process-start-list-item-name {

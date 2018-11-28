@@ -1,4 +1,4 @@
-function TaskWidget(outerPanelId) {
+function TaskWidget(outerPanelId, isMobile) {
   var items = $('#' + outerPanelId + ' .js-widget-header-menu li');
   $.each(items, function() {
     $(this).click(function() {
@@ -39,6 +39,9 @@ function TaskWidget(outerPanelId) {
             - taskWidgetSortMenuContainer.outerHeight(true) - taskWidgetFilterContainer.outerHeight(true)
             - customWidgetContainer.outerHeight(true) - globalSearchInput.outerHeight(true) - globalSearchTabHeader.outerHeight(true) - error;
 
+        if (isMobile){
+          availableHeight = availableHeight - $('.mobile-footer').height();
+        }
         if (!!availableHeight) {
           container.height(availableHeight);
         }
