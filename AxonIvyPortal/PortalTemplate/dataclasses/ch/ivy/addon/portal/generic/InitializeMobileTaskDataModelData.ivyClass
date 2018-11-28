@@ -1,0 +1,4 @@
+InitializeMobileTaskDataModelData #class
+ch.ivy.addon.portal.generic #namespace
+dataModel ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel #field
+isMobile Boolean #field
