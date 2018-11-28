@@ -5442,7 +5442,3 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 .mobile-sort {
     width: 90px !important;
 }
-.mobile-sort .ui-selectonemenu-label{
- font-family: "robotomedium" !important;
- font-size: 1.2rem !important;
-}
