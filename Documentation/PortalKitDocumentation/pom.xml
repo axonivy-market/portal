@@ -29,4 +29,11 @@
 			</plugin>			
 		</plugins>
 	</build>
+	<distributionManagement>
+		<repository>
+			<id>axonivy-releases-repo</id>
+			<url>https://repo.axonivy.io/artifactory/ext-release-local/</url>
+		</repository>
+	</distributionManagement>
+
 </project> 
