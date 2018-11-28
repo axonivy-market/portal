@@ -22,15 +22,15 @@ import ch.ivyteam.licence.SignedLicence;
 public enum PortalSecurity {
   INSTANCE;
 
-  private static interface Username {
-    String ADMIN = "admin";
-    String DEMO = "demo";
-    String GUEST = "guest";
+  private static final class Username {
+    private static final String ADMIN = "admin";
+    private static final String DEMO = "demo";
+    private static final String GUEST = "guest";
   }
   
-  private interface Permissions {
+  private static class Permissions {
     @SuppressWarnings("deprecation")
-    List<IPermission> ADMIN_USER_ADDITIONAL = Arrays.asList(
+    private static final List<IPermission> ADMIN_USER_ADDITIONAL = Arrays.asList(
             IPermission.ADMINISTRATE_WORKFLOW,
             IPermission.TASK_READ,
             IPermission.TASK_READ_ALL,
@@ -54,11 +54,11 @@ public enum PortalSecurity {
             IPermission.DOCUMENT_READ,
             IPermission.DOCUMENT_WRITE);
   
-    List<IPermission> DEMO_USER_ADDITIONAL = Arrays.asList(
+    private static final List<IPermission> DEMO_USER_ADDITIONAL = Arrays.asList(
             IPermission.DOCUMENT_READ,
             IPermission.DOCUMENT_WRITE);
   
-    List<IPermission> GUEST_USER_DENIED = Arrays.asList(
+    private static final List<IPermission> GUEST_USER_DENIED = Arrays.asList(
             IPermission.USER_CREATE_OWN_ABSENCE,
             IPermission.USER_READ_OWN_ABSENCES,
             IPermission.USER_DELETE_OWN_ABSENCE,
