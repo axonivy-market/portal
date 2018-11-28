@@ -56,31 +56,27 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
 
   protected static final int BUFFER_LOAD = 10;
   protected String taskWidgetComponentId;
-  protected List<RemoteTask> data;
+  protected String caseName;
+  
   protected Map<String, RemoteTask> displayedTaskMap;
   protected Map<String, RemoteTask> notDisplayedTaskMap;
 
   protected int rowIndex;
-  protected TaskSearchCriteria searchCriteria;
-  protected TaskQueryCriteria queryCriteria;
   protected Long serverId;
   protected Comparator<RemoteTask> comparator;
 
-  protected boolean compactMode;
-  protected String caseName;
+  protected TaskSearchCriteria searchCriteria;
+  protected TaskQueryCriteria queryCriteria;
+  protected TaskFilterContainer filterContainer;
+  private TaskInProgressByOthersFilter inProgressFilter;
+  private TaskFilterData selectedTaskFilterData;
 
   protected List<TaskFilter> filters;
   protected List<TaskFilter> selectedFilters;
-  protected TaskFilterContainer filterContainer;
-
-  private TaskInProgressByOthersFilter inProgressFilter;
-  private boolean isInProgressFilterDisplayed = false;
-  private TaskFilterData selectedTaskFilterData;
-
+  protected List<RemoteTask> data;
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
-  private List<String> portalDefaultColumns = Arrays.asList(
-                                                            "PRIORITY", 
+  private List<String> portalDefaultColumns = Arrays.asList("PRIORITY", 
                                                             "NAME", 
                                                             "ACTIVATOR", 
                                                             "ID", 
@@ -89,6 +85,8 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
                                                             "STATE");
   private List<String> portalRequiredColumns = Arrays.asList("NAME");
 
+  protected boolean compactMode;
+  private boolean isInProgressFilterDisplayed = false;
   private boolean isAutoHideColumns;
   private boolean isDisableSelectionCheckboxes;
   private boolean isRelatedTaskDisplayed = false;
@@ -106,7 +104,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     queryCriteria = buildQueryCriteria();
     comparator = comparator(RemoteTask::getId);
     serverId = SecurityServiceUtils.getServerIdFromSession();
-    if (shouldSaveAndLoadSessionFilters()) {
+    if (shouldSaveAndLoadSessionFilters() && !isMobile) {
       selectedTaskFilterData = UserUtils.getSessionSelectedTaskFilterSetAttribute();
       inProgressFilter = UserUtils.getSessionTaskInProgressFilterAttribute();
       if (inProgressFilter != null) {
@@ -122,7 +120,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     this("task-widget");
   }
 
-  public TaskLazyDataModel(boolean isMobile) {
+  public TaskLazyDataModel(Boolean isMobile) {
     this("task-widget");
     this.setMobile(isMobile);
     queryCriteria.setMobile(isMobile);
@@ -239,11 +237,14 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
   protected void initializedDataModel(TaskSearchCriteria criteria) {
+    criteria.setInvolvedUsername(Ivy.session().getSessionUserName());
     data.clear();
     displayedTaskMap.clear();
     notDisplayedTaskMap.clear();
     buildQueryToSearchCriteria();
-    setRowCount(getTaskCount(criteria));
+    if (!isMobile) {
+      setRowCount(getTaskCount(criteria));
+    }
   }
 
   protected List<RemoteTask> getDisplayedTasks(List<RemoteTask> notDisplayedTasks, int pageSize) {
@@ -919,6 +920,15 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     this.isMobile = isMobile;
   }
 
+  /**
+   * This is default of sort item in mobile, override it if you want to customize it
+   * 
+   * IMPORTANT: Item in this list must follow pattern : column name + "_ASC" or column name + "_DESC"
+   * 
+   * E.g your customize portal column are  Arrays.asList{"PRIORITY", "NAME", "ID" , "ACTIVATOR", "CREATION_TIME", "EXPIRY_TIME", "customVarcharField5", "customVarcharField1"}
+   * You can have sort fields like: return Arrays.asList("CREATION_TIME_ASC", "CREATION_TIME_DESC", "customVarcharField5_ASC", "customVarcharField5_DESC", "customVarcharField1_ASC", "customVarcharField1_DESC"}
+   * @return
+   */
   public List<String> getPortalTaskMobileSort() {
     return Arrays.asList(
         "CREATION_TIME_ASC", 
@@ -929,6 +939,25 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
         "PRIORITY_DESC");
   }
 
+  /**
+   * Sort field label in mobile
+   * Override this method and return cms in your project
+   * 
+   * Example you have custome sort fields like Arrays.asList("CREATION_TIME_ASC", "CREATION_TIME_DESC", "customVarcharField5_ASC", "customVarcharField5_DESC", "customVarcharField1_ASC", "customVarcharField1_DESC"}
+   * 
+   * Then create CMS folder in your project 
+   * 
+   * sortFields/customized/CREATION_TIME_ASC
+   * sortFields/customized/CREATION_TIME_DESC
+   * sortFields/customized/customVarcharField5_ASC
+   * sortFields/customized/customVarcharField5_DESC
+   * sortFields/customized/customVarcharField1_ASC
+   * sortFields/customized/customVarcharField1_DESC
+   * 
+   * Override this method: return Ivy.cms().co("/sortFields/customized/" + fieldName);
+   * @param fieldName
+   * @return
+   */
   public String getSortFieldLabel(String fieldName) {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/sortFields/" + fieldName);
   }
