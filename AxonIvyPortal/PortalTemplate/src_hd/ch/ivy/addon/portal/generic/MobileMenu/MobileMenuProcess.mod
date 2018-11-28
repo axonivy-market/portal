@@ -32,8 +32,6 @@ As0 @PushWFArc f16 '' #zField
 As0 @RichDialogProcessStart f18 '' #zField
 As0 @RichDialogProcessStart f19 '' #zField
 As0 @PushWFArc f20 '' #zField
-As0 @GridStep f10 '' #zField
-As0 @PushWFArc f11 '' #zField
 As0 @PushWFArc f12 '' #zField
 As0 @RichDialogProcessEnd f34 '' #zField
 As0 @GridStep f17 '' #zField
@@ -42,10 +40,12 @@ As0 @PushWFArc f28 '' #zField
 As0 @GridStep f31 '' #zField
 As0 @PushWFArc f35 '' #zField
 As0 @PushWFArc f37 '' #zField
-As0 @PushWFArc f23 '' #zField
 As0 @PushWFArc f3 '' #zField
 As0 @RichDialogProcessStart f0 '' #zField
 As0 @PushWFArc f4 '' #zField
+As0 @RichDialog f5 '' #zField
+As0 @PushWFArc f6 '' #zField
+As0 @PushWFArc f7 '' #zField
 >Proto As0 As0 MobileMenuProcess #zField
 As0 f70 type ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData #txt
 As0 f70 432 400 32 32 0 16 #rect
@@ -220,28 +220,6 @@ As0 f19 435 51 26 26 21 -4 #rect
 As0 f19 @|RichDialogProcessStartIcon #fIcon
 As0 f20 expr out #txt
 As0 f20 448 77 448 124 #arcP
-As0 f10 actionDecl 'ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData out;
-' #txt
-As0 f10 actionTable 'out=in;
-' #txt
-As0 f10 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToMobilePortalProcess();' #txt
-As0 f10 security system #txt
-As0 f10 type ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData #txt
-As0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>redirect to process</name>
-    </language>
-</elementInfo>
-' #txt
-As0 f10 388 488 120 48 -51 -8 #rect
-As0 f10 @|StepIcon #fIcon
-As0 f11 expr in #txt
-As0 f11 outCond 'in.menuKind == ch.ivy.addon.portalkit.enums.MenuKind.PROCESS' #txt
-As0 f11 448 432 448 488 #arcP
-As0 f11 0 0.32034598197015046 0 0 #arcLabel
 As0 f12 expr out #txt
 As0 f12 288 77 288 124 #arcP
 As0 f34 type ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData #txt
@@ -300,9 +278,6 @@ As0 f37 expr out #txt
 As0 f37 608 536 461 608 #arcP
 As0 f37 1 608 608 #addKink
 As0 f37 1 0.8827343468967564 0 0 #arcLabel
-As0 f23 expr out #txt
-As0 f23 448 536 448 595 #arcP
-As0 f23 0 0.6931429895536669 0 0 #arcLabel
 As0 f3 expr out #txt
 As0 f3 96 76 96 212 #arcP
 As0 f0 guid 166D246F7171F299 #txt
@@ -325,6 +300,36 @@ As0 f4 expr out #txt
 As0 f4 735 77 624 224 #arcP
 As0 f4 1 736 224 #addKink
 As0 f4 0 0.9062480058623832 0 0 #arcLabel
+As0 f5 targetWindow NEW #txt
+As0 f5 targetDisplay TOP #txt
+As0 f5 richDialogId ch.ivy.addon.portal.generic.MobilePortalProcesses #txt
+As0 f5 startMethod start(String) #txt
+As0 f5 type ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData #txt
+As0 f5 requestActionDecl '<String keyword> param;' #txt
+As0 f5 requestMappingAction 'param.keyword=in.keyword;
+' #txt
+As0 f5 responseActionDecl 'ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData out;
+' #txt
+As0 f5 responseMappingAction 'out=in;
+' #txt
+As0 f5 isAsynch false #txt
+As0 f5 isInnerRd true #txt
+As0 f5 userContext '* ' #txt
+As0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Mobile Process List</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f5 392 490 112 44 -53 -8 #rect
+As0 f5 @|RichDialogIcon #fIcon
+As0 f6 expr in #txt
+As0 f6 outCond 'in.menuKind == ch.ivy.addon.portalkit.enums.MenuKind.PROCESS' #txt
+As0 f6 448 432 448 490 #arcP
+As0 f6 0 0.32034598197015046 0 0 #arcLabel
+As0 f7 expr out #txt
+As0 f7 448 534 448 595 #arcP
 >Proto As0 .type ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -363,21 +368,21 @@ As0 f98 out f16 tail #connect
 As0 f16 head f70 in #connect
 As0 f19 mainOut f20 tail #connect
 As0 f20 head f91 mainIn #connect
-As0 f70 out f11 tail #connect
-As0 f11 head f10 mainIn #connect
 As0 f18 mainOut f12 tail #connect
 As0 f12 head f14 mainIn #connect
-As0 f70 out f27 tail #connect
 As0 f27 head f17 mainIn #connect
 As0 f17 mainOut f28 tail #connect
 As0 f28 head f34 mainIn #connect
-As0 f70 out f35 tail #connect
 As0 f35 head f31 mainIn #connect
 As0 f31 mainOut f37 tail #connect
 As0 f37 head f34 mainIn #connect
-As0 f10 mainOut f23 tail #connect
-As0 f23 head f34 mainIn #connect
 As0 f87 mainOut f3 tail #connect
 As0 f3 head f85 mainIn #connect
 As0 f0 mainOut f4 tail #connect
 As0 f4 head f76 in #connect
+As0 f70 out f6 tail #connect
+As0 f6 head f5 mainIn #connect
+As0 f70 out f27 tail #connect
+As0 f70 out f35 tail #connect
+As0 f5 mainOut f7 tail #connect
+As0 f7 head f34 mainIn #connect

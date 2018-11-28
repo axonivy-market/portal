@@ -6,9 +6,13 @@
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="currentPage" value="#{navigatorBean.taskPage}" />
-    
     <ui:define name="pageContent">
-      Task List
+        <ic:ch.ivy.addon.portalkit.component.TaskWidget 
+          id="task-widget" 
+          dataModel="#{data.taskView.dataModel}"
+          title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}"
+          keyword="#{data.taskView.dataModel.queryCriteria.keyword}" 
+          compactMode="true" />
     </ui:define>
   </ui:composition>
 </h:body>

@@ -286,10 +286,7 @@ public class SecurityUtils {
 
   private static void updatePermissionsOfAdminUser() {
     IApplication application = Ivy.wf().getApplication();
-    IUser admin = application.getSecurityContext().findUser("portaladmin");
-    if (admin == null) {
-      admin = application.getSecurityContext().findUser("admin");
-    }
+    IUser admin = application.getSecurityContext().findUser("admin");
 
     if (admin != null) {
       for (IPermission permission : ADMIN_PERMISSIONS) {

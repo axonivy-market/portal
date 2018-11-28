@@ -27,6 +27,7 @@ public class TaskQueryCriteria {
   private boolean isNewQueryCreated = false;
   private boolean isQueryByBusinessCaseId = false;
   private boolean isQueryForUnassignedTask = false;
+  private boolean isMobile = false;
 
   public boolean isQueryForUnassignedTask() {
     return isQueryForUnassignedTask;
@@ -173,6 +174,14 @@ public class TaskQueryCriteria {
 
   public void setQueryByBusinessCaseId(boolean isQueryByBusinessCaseId) {
     this.isQueryByBusinessCaseId = isQueryByBusinessCaseId;
+  }
+
+  public boolean isMobile() {
+    return isMobile;
+  }
+
+  public void setMobile(boolean isMobile) {
+    this.isMobile = isMobile;
   }
 
 }

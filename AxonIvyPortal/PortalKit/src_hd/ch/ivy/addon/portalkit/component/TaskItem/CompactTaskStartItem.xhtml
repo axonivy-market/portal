@@ -14,17 +14,17 @@
       <h:outputText id="task-start-task-name" styleClass="task-start-info-task-name"
           value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}" />
       <p:tooltip for="task-start-task-name" value="#{task.name}" trackMouse="true" rendered="#{not empty task.name}"/>
-      <h:outputText id="task-start-task-id" value="(##{task.id})" styleClass="task-start-info-task-id"/>
+      <h:outputText id="task-start-task-id" value="(##{task.id})" styleClass="task-start-info-task-id" rendered="#{!isMobile}"/>
     </h:panelGroup>
     <h:panelGroup layout="block" styleClass="task-start-info-content">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/created')}: " />
         <h:outputText value="#{task.startTimestamp}">
-          <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+          <f:convertDateTime pattern="#{isMobile? dateTimePatternBean.datePattern : dateTimePatternBean.configuredPattern}" />
         </h:outputText>
         <h:outputText value=" / #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/expired')}: "
           rendered="#{task.expiryTimestamp ne null}" />
         <h:outputText value="#{task.expiryTimestamp}">
-          <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+          <f:convertDateTime pattern="#{isMobile? dateTimePatternBean.datePattern : dateTimePatternBean.configuredPattern}" />
         </h:outputText>
     </h:panelGroup> 
     <h:outputText id="task-start-task-description" styleClass="task-start-info-footer task-start-info-task-description"
@@ -32,8 +32,8 @@
     <p:tooltip for="task-start-task-description" value="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.description)}" 
       trackMouse="true" rendered="#{not empty task.description}" />
     </div>
-    <h:panelGroup id="open-task-icon" class="action-icon tmi-chevorn-right icon-compact-mode" />
-    <p:tooltip for="open-task-icon"
+    <h:panelGroup id="open-task-icon" class="action-icon tmi-chevorn-right icon-compact-mode" rendered="#{!isMobile}" />
+    <p:tooltip for="open-task-icon" rendered="#{!isMobile}"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/openTaskTooltip')}"
       styleClass="task-command-tooltip" />
   </h:panelGroup>

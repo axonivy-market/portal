@@ -46,15 +46,9 @@ public class TaskWidgetBean implements Serializable {
   }
 
   public void setExpandedTaskId(Long expandedTaskId, boolean alreadyExpanded) {
-    if (alreadyExpanded) {
-      setIsTaskDetailOpenning(false);
-      this.expandedTaskId = 0L;
-    } else {
-      setIsTaskDetailOpenning(true);
-      this.expandedTaskId = expandedTaskId;
-    }
+    setIsTaskDetailOpenning(!alreadyExpanded);
+    this.expandedTaskId = alreadyExpanded ? 0L : expandedTaskId;
   }
-  
 
   public TaskLazyDataModel getDataModel() {
     return dataModel;
