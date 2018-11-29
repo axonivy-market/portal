@@ -68,7 +68,7 @@
       <f:event listener="#{menuStateBean.initMenuState(menuState)}" type="preRenderView" />
 
       <ui:fragment rendered="#{deviceBean.mobile}">
-        <div class="topbar-container #{currentPage}">
+        <div class="topbar-container topbar-container-mobile #{currentPage}">
           <ui:include src="/layouts/includes/mobileTopbar.xhtml" />
         </div>
       </ui:fragment>
