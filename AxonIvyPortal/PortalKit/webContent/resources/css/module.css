@@ -5433,15 +5433,17 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 	z-index: 999999;
 	width: 100%;
 	background-color: #FFFFFF;
+	top: 120px;
+	-ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 
 .mobile-container {
   -webkit-overflow-scrolling: touch;
   height: calc(100% - 120px);
-}
-
-.mobile-container .widget {
-	margin-bottom: 42px;
 }
 
 .mobile-widget-process-header-sub {
