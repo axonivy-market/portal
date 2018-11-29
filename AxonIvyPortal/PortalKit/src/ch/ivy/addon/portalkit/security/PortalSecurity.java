@@ -26,6 +26,7 @@ public enum PortalSecurity {
     private static final String ADMIN = "admin";
     private static final String DEMO = "demo";
     private static final String GUEST = "guest";
+    private Username() {}
   }
   
   private static class Permissions {
@@ -66,6 +67,7 @@ public enum PortalSecurity {
             IPermission.USER_CREATE_OWN_SUBSTITUTE,
             IPermission.USER_DELETE_OWN_SUBSTITUTE,
             IPermission.USER_READ_OWN_SUBSTITUTIONS);
+    private Permissions() {}
   }
 
   public void assignPermissionsToDefaultUsers() {
