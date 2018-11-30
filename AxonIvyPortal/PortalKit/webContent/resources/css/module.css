@@ -5384,7 +5384,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 /*********** MOBILE ***********/
 .topbar-container-mobile {
-	background-color: rgba(0, 0, 0, 0.05);
 	padding-top: 10px !important;
 }
 
@@ -5395,7 +5394,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .mobile-logout-item {
   font-size: 2.5rem;
-  background-color: rgba(0, 0, 0, 0.05);
   padding: 5px 5px 0 0;
 }
 
