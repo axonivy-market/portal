@@ -5479,3 +5479,10 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 .mobile-sort {
     width: 90px !important;
 }
+
+.mobile-task-header, .mobile-task-item .ui-datascroller-item{
+	padding: 0 5px 0 5px;
+}
+.mobile-task-header .filter-widget{
+	padding-bottom: 3px;
+}
