@@ -238,6 +238,31 @@
 				</listitem>
 				<listitem>
 					<para>
+						Set data to <code>processChainDirection</code> variable to set direction for for ProcessChain component in template.
+						There are two values: "HORIZONTAL" and "VERTICAL".
+						Direction of ProcessChain component is "HORIZONTAL" by default.
+						<para>
+							<code>&lt;ui:param name="processChainDirection" value="#{VERTICAL}" /&gt;</code>
+						</para>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Set data to <code>processChainShape</code> variable to set shape for for ProcessChain component in template.
+						There are two values: "CIRCLE" and "LINE".
+						Shape of ProcessChain component is "CIRCLE" by default.
+						<para>
+							<code>&lt;ui:param name="processChainShape" value="#{LINE}" /&gt;</code>
+						</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/LayoutTemplates/process-chain-shape.png" />
+							</imageobject>
+						</mediaobject>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
 						Inserts contents for <code>taskName</code>, <code>errorsZone</code>, <code>infoZone</code>. It is optional.
 						<para>
 							<code>&lt;ui:define name="taskName"&gt;...&lt;/ui:define&gt;</code>
