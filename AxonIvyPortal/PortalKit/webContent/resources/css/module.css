@@ -3604,6 +3604,21 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 /** LINE VERTICAL*/
+.vertical-process-chain-container {
+	display: inline-block;
+	width: 6%;
+	float: left;
+}
+
+.task-template-content.vertical-process-chain {
+	display: inline-block;
+	width: 94%;
+}
+
+.task-name-vertical-process-chain {
+	margin-left: 6%;
+}
+
 .line-process-chain.vertical-process-chain {
   float: left;
 }
@@ -5369,7 +5384,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 /*********** MOBILE ***********/
 .topbar-container-mobile {
-	background-color: rgba(0, 0, 0, 0.05);
 	padding-top: 10px !important;
 }
 
@@ -5380,7 +5394,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .mobile-logout-item {
   font-size: 2.5rem;
-  background-color: rgba(0, 0, 0, 0.05);
   padding: 5px 5px 0 0;
 }
 
@@ -5465,4 +5478,11 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 .mobile-sort {
     width: 90px !important;
+}
+
+.mobile-task-header, .mobile-task-item .ui-datascroller-item{
+	padding: 0 5px 0 5px;
+}
+.mobile-task-header .filter-widget{
+	padding-bottom: 3px;
 }
