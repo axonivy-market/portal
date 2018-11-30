@@ -1,0 +1,76 @@
+H1, H2, H3, H4 { font-family:Arial, Helvetica, sans-serif }
+H1 {
+	font-size:16pt;
+	font-weight:lighter;
+	color: #FFFFFF;
+	background-color: #406A9D;
+	padding: 4px;
+}
+H2 { font-size:14pt; font-weight:lighter }
+H3 { font-size:12pt; font-weight:bold; margin-bottom: 1px; }
+H4 { font-size:10pt; font-weight:bold }
+
+BODY {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:10pt;
+	background-color: #FFFFFF;
+	margin: 0px;
+	color: #000000;
+
+}
+table.data {
+  background-color: #EEEEEE;
+  border: 0px;
+}
+
+th.data {
+	font-size:10pt;
+	margin: 2px 5px;
+	padding: 2px 5px;
+	border: 0px;
+	text-align: left;
+	background-color: #406A9D;
+	color: #FFFFFF;
+}
+td.data { 
+  font-size:10pt; 
+  border: 0px;
+}
+
+P {	
+  font-size:10pt; 
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+
+UL {
+  left: 0pt;
+  position: static;
+  text-align: left;
+  list-style-type: square;
+  list-style-position: inside;
+}
+.Panel1 {
+	background-color: #EEEEEE;
+	border: 1px solid #888888;
+}
+a:link {
+	font-size:10pt;
+	color: #666666;
+	text-decoration: none;
+	border: 0px;
+	font-weight: bold;
+}
+a:hover {
+	font-size:10pt;
+	color: #66CCFF;
+	text-decoration: none;
+	border: 0px;
+	font-weight: bold;
+}
+a:visited {
+	font-size:10pt;
+	color: #666666;
+	text-decoration: none;
+	border: 0px;
+	font-weight: bold;
+}
