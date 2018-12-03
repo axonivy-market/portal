@@ -297,7 +297,6 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
         List<ITask> tasks = executeTaskQuery(taskQuery, startIndex, count);
         IvyTaskTransformer transformer = new IvyTaskTransformer(isUrlBuiltFromSystemProperties);
         tasks.forEach(task -> {
-          Ivy.log().error("ID {2} PRIORITY {0} EXPIRY {1}", task.getPriority(), task.getExpiryTimestamp(), task.getId());
           IvyTask ivyTask = transformer.transform(task);
           addTaskToResult(taskSearchCriteria, result, task, ivyTask);
         });
