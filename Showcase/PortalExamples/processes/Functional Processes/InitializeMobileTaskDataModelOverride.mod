@@ -73,7 +73,7 @@ Il0 f2 384 64 569 64 #arcP
 Il0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Override TaskLazrDataModel with CustomizedTaskLazyDataModel</name>
+        <name>Override TaskLazyDataModel with CustomizedTaskLazyDataModel</name>
         <nameStyle>59,7
 </nameStyle>
     </language>
