@@ -2,11 +2,8 @@ package ch.ivyteam.ivy.project.portal.guitest.mobile.implementation;
 
 import java.net.MalformedURLException;
 
-import org.junit.Rule;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.rules.TestRule;
-import org.junit.rules.TestWatcher;
-import org.junit.runner.Description;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import ch.ivyteam.ivy.project.portal.guitest.mobile.common.PortalMobileGUITestException;
 import ch.ivyteam.ivy.project.portal.guitest.mobile.common.PropertyLoader;
@@ -15,25 +12,20 @@ import ch.ivyteam.ivy.project.portal.guitest.mobile.common.TestAccount;
 import ch.ivyteam.ivy.project.portal.guitest.mobile.common.UrlHelpers;
 import ch.ivyteam.ivy.project.portal.guitest.mobile.core.Device;
 import ch.ivyteam.ivy.project.portal.guitest.mobile.enums.DeviceType;
+import ch.ivyteam.ivy.project.portal.guitest.mobile.extension.LoggingExtension;
 import ch.ivyteam.ivy.project.portal.guitest.mobile.page.MobileLoginPage;
 import ch.ivyteam.ivy.project.portal.guitest.mobile.page.MobileTaskPage;
 
+@ExtendWith(LoggingExtension.class)
 public class MobileBaseTest {
   
   private Device device;
   public final static String PORTAL_HOME_PAGE_URL = "portalTemplate/1549F58C18A6C562/PortalStart.ivp";
   public final static String CREATE_TESTING_TASK_URL = "internalSupport/14B2FC03D2E87141/CategoriedLeaveRequest.ivp";
+  public final static String UPDATE_PERMISSION_TEST_USER_URL = "portalKitTestHelper/14DE09882B540AD5/updatePermissionsOfTestUsers.ivp";
+  public final static String DESTROY_ALL_TASK_CASE_URL = "portalKitTestHelper/1511A66AF619A768/cleanupCases.ivp";
+  public final static String CLEAN_GLOBAL_VARIABLES_URL = "portalKitTestHelper/1511A66AF619A768/cleanupGlobalVars.ivp";
   public final static String DESIGNER_LOGOUT_URL = "http://localhost:8081/ivy/wf/logout.jsp";
-  
-  @Rule
-  public TestRule watcher = new TestWatcher() {
-
-    @Override
-    protected void starting(Description description) {
-      System.out.println("Starting test: " + description.getMethodName());
-    }
-
-  };
   
   public void setup() {
     device = Device.getDevice();
@@ -46,8 +38,7 @@ public class MobileBaseTest {
   }
   
   private void destroyAllTasksCases() {
-    String destroyAllTaskCaseURL = "portalKitTestHelper/1511A66AF619A768/cleanupCases.ivp";
-    launchDeviceAndGotoRelativeLink(destroyAllTaskCaseURL);
+    launchDeviceAndGotoRelativeLink(DESTROY_ALL_TASK_CASE_URL);
   }
   
   public void launchDeviceAndGotoRelativeLink(String relativeProcessStartLink) {
@@ -68,12 +59,11 @@ public class MobileBaseTest {
   }
   
   private void updatePermissionOfTestUsers() {
-    redirectToRelativeLink("portalKitTestHelper/14DE09882B540AD5/updatePermissionsOfTestUsers.ivp");
+    redirectToRelativeLink(UPDATE_PERMISSION_TEST_USER_URL);
   }
   
   public void cleanUpGlobalVariables(){
-    String cleanUpURL = "portalKitTestHelper/1511A66AF619A768/cleanupGlobalVars.ivp";
-    redirectToRelativeLink(cleanUpURL);
+    redirectToRelativeLink(CLEAN_GLOBAL_VARIABLES_URL);
   }
   
   public void createTestingTasks() {
