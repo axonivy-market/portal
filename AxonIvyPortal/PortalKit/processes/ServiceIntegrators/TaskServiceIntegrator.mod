@@ -910,7 +910,7 @@ if(!in.#count is initialized){
 if (in.count > 1000) {
 	in.timeoutInSecond = 120;
 } else {
-	in.timeoutInSecond = 10;
+	in.timeoutInSecond = 30;
 }' #txt
 Te0 f99 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 Te0 f99 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -941,7 +941,7 @@ Te0 f74 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime
 Te0 f74 clientId 146B90974252183F #txt
 Te0 f74 port TaskServicePort #txt
 Te0 f74 operation countTasksByCriteria #txt
-Te0 f74 properties 'timeout.timeInSeconds=10;
+Te0 f74 properties 'timeout.timeInSeconds=30;
 authType="NTLM";
 username=in.server.username;
 password=in.server.password;
@@ -998,7 +998,7 @@ Te0 f78 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime
 Te0 f78 clientId 146B90974252183F #txt
 Te0 f78 port TaskServicePort #txt
 Te0 f78 operation countTasksByCriteria #txt
-Te0 f78 properties 'timeout.timeInSeconds=10;
+Te0 f78 properties 'timeout.timeInSeconds=30;
 timeout.errorHandler="14E8BC51CC56193A-f7-buffer";
 ' #txt
 Te0 f78 inputParams 'arg0.countTasksByCriteria.taskSearchCriteria=in.taskSearchCriteria;
@@ -1939,7 +1939,7 @@ Te0 f84 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime
 Te0 f84 clientId 146B90974252183F #txt
 Te0 f84 port TaskServicePort #txt
 Te0 f84 operation countTasksByCriteria #txt
-Te0 f84 properties 'timeout.timeInSeconds=10;
+Te0 f84 properties 'timeout.timeInSeconds=30;
 authType="HTTP_BASIC";
 username=in.server.username;
 password=in.server.password;
