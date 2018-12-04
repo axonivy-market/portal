@@ -69,7 +69,9 @@
 
       <ui:fragment rendered="#{deviceBean.mobile}">
         <div class="topbar-container topbar-container-mobile #{currentPage}">
-          <ui:include src="/layouts/includes/mobileTopbar.xhtml" />
+          <ui:include src="/layouts/includes/mobileTopbar.xhtml">
+            <ui:param name="isWorkingOnATask" value="#{isWorkingOnATask}" />
+          </ui:include>
         </div>
       </ui:fragment>
 
