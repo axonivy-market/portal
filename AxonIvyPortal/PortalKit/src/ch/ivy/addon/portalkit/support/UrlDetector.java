@@ -87,7 +87,6 @@ public class UrlDetector {
   
   public String getBaseURLWithoutContextPath(final HttpServletRequest request) throws MalformedURLException {
     URL url = new URL(request.getScheme(), request.getServerName(), request.getServerPort(), request.getContextPath());
-    Ivy.log().warn(url.getPath());
     return url.toString().substring(0, url.toString().lastIndexOf(url.getPath()));
   }
 
