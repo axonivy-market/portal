@@ -15,7 +15,6 @@ import static ch.ivyteam.ivy.security.IPermission.TASK_WRITE_EXPIRY_TIMESTAMP;
 import static ch.ivyteam.ivy.security.IPermission.USER_CREATE_ABSENCE;
 import static ch.ivyteam.ivy.security.IPermission.USER_CREATE_SUBSTITUTE;
 import static ch.ivyteam.ivy.security.IPermission.USER_DELETE_ABSENCE;
-import static ch.ivyteam.ivy.security.IPermission.USER_DELETE_SUBSTITUTE;
 import static ch.ivyteam.ivy.security.IPermission.USER_READ_ABSENCES;
 import static ch.ivyteam.ivy.security.IPermission.USER_READ_SUBSTITUTES;
 import static ch.ivyteam.ivy.security.IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE;
@@ -46,8 +45,6 @@ public class SecurityUtils {
   USER_CREATE_SUBSTITUTE,
 
   USER_DELETE_ABSENCE,
-
-  USER_DELETE_SUBSTITUTE,
 
   CASE_READ_ALL,
 
