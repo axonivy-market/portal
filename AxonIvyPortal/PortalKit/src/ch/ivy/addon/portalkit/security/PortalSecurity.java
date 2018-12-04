@@ -33,31 +33,26 @@ public enum PortalSecurity {
     @SuppressWarnings("deprecation")
     private static final List<IPermission> ADMIN_USER_ADDITIONAL = Arrays.asList(
             IPermission.ADMINISTRATE_WORKFLOW,
-            IPermission.TASK_READ,
             IPermission.TASK_READ_ALL,
             IPermission.TASK_PARK_OWN_WORKING_TASK,
             IPermission.TASK_WRITE_ACTIVATOR,
             IPermission.TASK_WRITE_DESCRIPTION,
             IPermission.TASK_WRITE_NAME,
             IPermission.TASK_WRITE_ORIGINAL_PRIORITY,
+            IPermission.TASK_WRITE_EXPIRY_TIMESTAMP,
             IPermission.TASK_RESET_OWN_WORKING_TASK,
             IPermission.CASE_DESTROY,
-            IPermission.CASE_READ,
             IPermission.CASE_READ_ALL,
             IPermission.CASE_WRITE_DESCRIPTION,
             IPermission.CASE_WRITE_NAME,
             IPermission.USER_CREATE_ABSENCE,
             IPermission.USER_CREATE_SUBSTITUTE,
             IPermission.USER_DELETE_ABSENCE,
-            IPermission.USER_DELETE_SUBSTITUTE,
             IPermission.USER_READ_ABSENCES,
             IPermission.USER_READ_SUBSTITUTES,
-            IPermission.DOCUMENT_READ,
             IPermission.DOCUMENT_WRITE);
   
-    private static final List<IPermission> DEMO_USER_ADDITIONAL = Arrays.asList(
-            IPermission.DOCUMENT_READ,
-            IPermission.DOCUMENT_WRITE);
+    private static final List<IPermission> DEMO_USER_ADDITIONAL = Arrays.asList(IPermission.DOCUMENT_WRITE);
   
     private static final List<IPermission> GUEST_USER_DENIED = Arrays.asList(
             IPermission.USER_CREATE_OWN_ABSENCE,
