@@ -18,8 +18,9 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.BooleanUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.context.RequestContext;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
@@ -47,8 +48,8 @@ import ch.ivyteam.ivy.workflow.IProcessStart;
 @ViewScoped
 public class ProcessWidgetBean implements Serializable, Converter {
 
+private static final long serialVersionUID = -5889375917550618261L;
   private static final String EXPRESS_WORKFLOW_ID_PARAM = "?workflowID=";
-  private static final long serialVersionUID = -5889375917550618261L;
   private UserProcessService userProcessService;
   private UserProcess editingProcess;
   private List<UserProcess> userProcesses;
@@ -71,10 +72,9 @@ public class ProcessWidgetBean implements Serializable, Converter {
     processWidgetComponentId = Attrs.currentContext().getBuildInAttribute("clientId");
     userProcessService = new UserProcessService();
     String compactModeAttribute = Attrs.currentContext().get("compactMode");
-    compactMode = compactModeAttribute == null || compactModeAttribute.isEmpty() ? true : Boolean.valueOf(compactModeAttribute);
-    editMode = false;
-    String mobileModeAttribute = Attrs.currentContext().get("mobileMode");
-    mobileMode = mobileModeAttribute == null || mobileModeAttribute.isEmpty() ? false : Boolean.valueOf(mobileModeAttribute);
+    compactMode = StringUtils.isEmpty(compactModeAttribute) || Boolean.valueOf(compactModeAttribute); 
+    mobileMode = BooleanUtils.toBoolean((String)Attrs.currentContext().get("mobileMode"));
+    
     selectedUserProcesses = new ArrayList<>();
     userName = UserUtils.getSessionUserName();
     if (compactMode) {
@@ -99,7 +99,7 @@ public class ProcessWidgetBean implements Serializable, Converter {
       userProcessByAlphabet = groupUserProcessByAlphabetIndex(userProcesses);
     }
   }
-
+  
   private Map<String, List<UserProcess>> groupUserProcessByAlphabetIndex(List<UserProcess> userProcesses) {
     Map<String, List<UserProcess>> userProcessGroupByAlphabet = new HashMap<>();
     //Follow Oracle document about regex for punctual character
@@ -112,8 +112,7 @@ public class ProcessWidgetBean implements Serializable, Converter {
         String firstLetter = processNameUpperCase.substring(0,1);
         if(firstLetter.matches(punctualRegex)) {
           addOrUpdateUserProcessGroupByKey(userProcessGroupByAlphabet, userProcess, SPECIAL_CHARACTER_KEY);
-        }
-        else {
+        } else {
           addOrUpdateUserProcessGroupByKey(userProcessGroupByAlphabet, userProcess, firstLetter);
         }
       }
@@ -124,7 +123,7 @@ public class ProcessWidgetBean implements Serializable, Converter {
     userProcessGroupByAlphabet = userProcessGroupByAlphabet.entrySet().stream()
                                 .sorted(Map.Entry.comparingByKey(collator::compare))
                                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,(e1, e2) -> e2, LinkedHashMap::new));
-    if(!CollectionUtils.isEmpty(userProcessOfSpecialCharacterGroup)) {
+    if(CollectionUtils.isNotEmpty(userProcessOfSpecialCharacterGroup)) {
       userProcessGroupByAlphabet.put(SPECIAL_CHARACTER_KEY, userProcessOfSpecialCharacterGroup);
     }
     return userProcessGroupByAlphabet;
@@ -138,8 +137,7 @@ public class ProcessWidgetBean implements Serializable, Converter {
       
       userProcessByMapKey.add(userProcess);
       userProcessGroupByAlphabet.put(key, userProcessByMapKey);
-    }
-    else {
+    } else {
       userProcessGroupByAlphabet.get(key).add(userProcess);
     }
   }
@@ -166,8 +164,7 @@ public class ProcessWidgetBean implements Serializable, Converter {
   }
 
   public String getDisplayTextForSwitchModeButton() {
-    return compactMode ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/processwidget/seeAllProcesses") : Ivy.cms().co(
-        "/ch.ivy.addon.portalkit.ui.jsf/processwidget/backToOverview");
+    return Ivy.cms().co(compactMode ? "/ch.ivy.addon.portalkit.ui.jsf/processwidget/seeAllProcesses" : "/ch.ivy.addon.portalkit.ui.jsf/processwidget/backToOverview");
   }
 
   public void switchMode() {
@@ -298,12 +295,12 @@ public class ProcessWidgetBean implements Serializable, Converter {
   }
 
   public String getProcessDescription(String userProcessName) {
-    for (RemoteWebStartable webStartable : webStartables) {
-      if (webStartable.getDisplayName().equals(userProcessName)) {
-        return webStartable.getDescription();
-      }
-    }
-    return StringUtils.EMPTY;
+    return CollectionUtils.emptyIfNull(webStartables)
+      .stream()
+      .filter(item -> StringUtils.equals(item.getDisplayName(), userProcessName))
+      .findFirst()
+      .map(RemoteWebStartable::getDescription)
+      .orElse(StringUtils.EMPTY);
   }
 
   public UserProcess getEditingProcess() {
@@ -341,15 +338,14 @@ public class ProcessWidgetBean implements Serializable, Converter {
   }
 
   public String getStyleClassOfMode() {
-    String styleClassName = "";
     if (mobileMode) {
-      styleClassName = "mobile-process-start-list";
+      return "mobile-process-start-list";
+    } else {
+      if (!compactMode) {
+        return "process-start-list";
+      }
     }
-    
-    if(!compactMode && !mobileMode) {
-      styleClassName = "process-start-list";
-    }
-    return styleClassName;
+    return "";
   }
   
   public void saveProcesses() {
@@ -494,10 +490,7 @@ public class ProcessWidgetBean implements Serializable, Converter {
   }
 
   public int getNumberOfProcesses() {
-    if (CollectionUtils.isEmpty(webStartables)) {
-      return 0;
-    }
-    return webStartables.size();
+    return CollectionUtils.isEmpty(webStartables) ? 0  : webStartables.size();
   }
 
   public Map<String, List<UserProcess>> getUserProcessByAlphabet() {
