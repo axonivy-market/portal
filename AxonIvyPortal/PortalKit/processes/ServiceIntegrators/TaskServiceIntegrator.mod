@@ -524,7 +524,7 @@ out.errors=wsResponse.findTasksByCriteriaResponse.result.errors;
 out.tasks=wsResponse.findTasksByCriteriaResponse.result.ivyTasks;
 ' #txt
 Te0 f34 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f34 timeout 10 #txt
+Te0 f34 timeout 30 #txt
 Te0 f34 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=TaskServicePort
 KEY_WEBSERVICECONFIG_ID=146B90974252183F
@@ -601,7 +601,7 @@ out.errors=wsResponse.findTasksByCriteriaResponse.result.errors;
 out.tasks=wsResponse.findTasksByCriteriaResponse.result.ivyTasks;
 ' #txt
 Te0 f37 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f37 timeout 10 #txt
+Te0 f37 timeout 30 #txt
 Te0 f37 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=TaskServicePort
 KEY_WEBSERVICECONFIG_ID=146B90974252183F
@@ -942,11 +942,13 @@ out.errors=wsResponse.countTasksByCriteriaResponse.result.errors;
 out.taskCount=wsResponse.countTasksByCriteriaResponse.result.taskCount;
 ' #txt
 Te0 f74 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f74 timeout 10 #txt
+Te0 f74 timeout 30 #txt
 Te0 f74 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=TaskServicePort
 KEY_WEBSERVICECONFIG_ID=146B90974252183F
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=countTasksByCriteria
 KEY_AUTHENTICATION_KIND=4
@@ -998,11 +1000,13 @@ out.errors=wsResponse.countTasksByCriteriaResponse.result.errors;
 out.taskCount=wsResponse.countTasksByCriteriaResponse.result.taskCount;
 ' #txt
 Te0 f78 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f78 timeout 10 #txt
+Te0 f78 timeout 30 #txt
 Te0 f78 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=TaskServicePort
 KEY_WEBSERVICECONFIG_ID=146B90974252183F
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=
 KEY_OPERATION=countTasksByCriteria
 KEY_AUTHENTICATION_KIND=0
@@ -1937,11 +1941,13 @@ out.errors=wsResponse.countTasksByCriteriaResponse.result.errors;
 out.taskCount=wsResponse.countTasksByCriteriaResponse.result.taskCount;
 ' #txt
 Te0 f84 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f84 timeout 10 #txt
+Te0 f84 timeout 30 #txt
 Te0 f84 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=TaskServicePort
 KEY_WEBSERVICECONFIG_ID=146B90974252183F
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=countTasksByCriteria
 KEY_AUTHENTICATION_KIND=1
@@ -1984,7 +1990,7 @@ out.errors=wsResponse.findTasksByCriteriaResponse.result.errors;
 out.tasks=wsResponse.findTasksByCriteriaResponse.result.ivyTasks;
 ' #txt
 Te0 f69 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Te0 f69 timeout 10 #txt
+Te0 f69 timeout 30 #txt
 Te0 f69 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=TaskServicePort
 KEY_WEBSERVICECONFIG_ID=146B90974252183F
