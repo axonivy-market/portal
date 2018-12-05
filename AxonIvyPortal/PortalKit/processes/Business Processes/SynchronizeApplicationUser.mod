@@ -19,10 +19,15 @@ tt0 @PushWFArc f7 '' #zField
 tt0 @Trigger f11 '' #zField
 tt0 @PushWFArc f8 '' #zField
 tt0 @PushWFArc f2 '' #zField
-tt0 @PushWFArc f3 '' #zField
 tt0 @GridStep f4 '' #zField
 tt0 @PushWFArc f6 '' #zField
 tt0 @PushWFArc f9 '' #zField
+tt0 @GridStep f10 '' #zField
+tt0 @PushWFArc f13 '' #zField
+tt0 @Alternative f14 '' #zField
+tt0 @PushWFArc f15 '' #zField
+tt0 @PushWFArc f3 '' #zField
+tt0 @PushWFArc f17 '' #zField
 >Proto tt0 tt0 SynchronizeApplicationUser #zField
 tt0 f0 outParamDecl '<List<java.lang.String> errorMsgs,List<ch.ivy.addon.portalkit.persistence.domain.User> users> result;
 ' #txt
@@ -45,7 +50,7 @@ tt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 tt0 f0 163 59 26 26 14 0 #rect
 tt0 f0 @|StartSubIcon #fIcon
 tt0 f1 type ch.ivyteam.wf.processes.SynchronizeApplicationUserData #txt
-tt0 f1 163 475 26 26 14 0 #rect
+tt0 f1 163 707 26 26 14 0 #rect
 tt0 f1 @|EndSubIcon #fIcon
 tt0 f12 type ch.ivyteam.wf.processes.SynchronizeApplicationUserData #txt
 tt0 f12 processCall MultiPortal/SecurityService:findAllUsers() #txt
@@ -134,14 +139,12 @@ tt0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-tt0 f11 158 420 36 24 20 -2 #rect
+tt0 f11 158 652 36 24 20 -2 #rect
 tt0 f11 @|TriggerIcon #fIcon
 tt0 f8 expr out #txt
-tt0 f8 176 444 176 475 #arcP
+tt0 f8 176 676 176 707 #arcP
 tt0 f2 expr out #txt
 tt0 f2 176 340 176 364 #arcP
-tt0 f3 expr out #txt
-tt0 f3 176 388 176 420 #arcP
 tt0 f4 actionDecl 'ch.ivyteam.wf.processes.SynchronizeApplicationUserData out;
 ' #txt
 tt0 f4 actionTable 'out=in;
@@ -164,6 +167,71 @@ tt0 f6 expr out #txt
 tt0 f6 176 85 176 146 #arcP
 tt0 f9 expr out #txt
 tt0 f9 176 190 176 252 #arcP
+tt0 f10 actionDecl 'ch.ivyteam.wf.processes.SynchronizeApplicationUserData out;
+' #txt
+tt0 f10 actionTable 'out=in;
+' #txt
+tt0 f10 actionCode 'import ch.ivyteam.ivy.data.cache.IDataCacheGroup;
+import ch.ivyteam.ivy.environment.Ivy;
+
+String USERS_CACHE_GROUP_NAME = "portalCache";
+String USERS_LIST_CACHE_ENTRY_NAME = "usersList";
+String USERS_REPO_CACHE_ENTRY_NAME = "usersRepo";
+IDataCacheGroup cacheGroup = Ivy.datacache().getEnvironmentCache().getGroup(USERS_CACHE_GROUP_NAME);
+if (cacheGroup != null) {
+	if(cacheGroup.getEntry(USERS_REPO_CACHE_ENTRY_NAME) != null) {
+		cacheGroup.invalidateEntry(USERS_REPO_CACHE_ENTRY_NAME);
+	}
+	if(cacheGroup.getEntry(USERS_LIST_CACHE_ENTRY_NAME) != null) {
+		cacheGroup.invalidateEntry(USERS_LIST_CACHE_ENTRY_NAME);
+	}
+}' #txt
+tt0 f10 type ch.ivyteam.wf.processes.SynchronizeApplicationUserData #txt
+tt0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>invalid users cache</name>
+        <nameStyle>19,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+tt0 f10 120 450 112 44 -53 -8 #rect
+tt0 f10 @|StepIcon #fIcon
+tt0 f13 expr out #txt
+tt0 f13 176 388 176 450 #arcP
+tt0 f14 type ch.ivyteam.wf.processes.SynchronizeApplicationUserData #txt
+tt0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>multi server?</name>
+        <nameStyle>13,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+tt0 f14 160 552 32 32 -35 18 #rect
+tt0 f14 @|AlternativeIcon #fIcon
+tt0 f15 expr out #txt
+tt0 f15 176 494 176 552 #arcP
+tt0 f3 expr in #txt
+tt0 f3 outCond '(new ch.ivy.addon.portalkit.service.ServerService()).findAll().size() > 1' #txt
+tt0 f3 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>yes</name>
+        <nameStyle>3,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+tt0 f3 176 584 176 652 #arcP
+tt0 f3 0 0.5441176470588235 15 0 #arcLabel
+tt0 f17 expr in #txt
+tt0 f17 160 568 163 720 #arcP
+tt0 f17 1 128 568 #addKink
+tt0 f17 2 128 720 #addKink
+tt0 f17 1 0.5098684210526315 0 0 #arcLabel
 >Proto tt0 .type ch.ivyteam.wf.processes.SynchronizeApplicationUserData #txt
 >Proto tt0 .processKind CALLABLE_SUB #txt
 >Proto tt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -184,9 +252,15 @@ tt0 f11 mainOut f8 tail #connect
 tt0 f8 head f1 mainIn #connect
 tt0 f5 mainOut f2 tail #connect
 tt0 f2 head f16 mainIn #connect
-tt0 f16 mainOut f3 tail #connect
-tt0 f3 head f11 mainIn #connect
 tt0 f0 mainOut f6 tail #connect
 tt0 f6 head f4 mainIn #connect
 tt0 f4 mainOut f9 tail #connect
 tt0 f9 head f12 mainIn #connect
+tt0 f16 mainOut f13 tail #connect
+tt0 f13 head f10 mainIn #connect
+tt0 f10 mainOut f15 tail #connect
+tt0 f15 head f14 in #connect
+tt0 f14 out f3 tail #connect
+tt0 f3 head f11 mainIn #connect
+tt0 f14 out f17 tail #connect
+tt0 f17 head f1 mainIn #connect
