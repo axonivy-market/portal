@@ -36,7 +36,6 @@ Pt0 @GridStep f59 '' #zField
 Pt0 @StartRequest f70 '' #zField
 Pt0 @EndTask f64 '' #zField
 Pt0 @GridStep f17 '' #zField
-Pt0 @RichDialog f96 '' #zField
 Pt0 @CallSub f6 '' #zField
 Pt0 @StartRequest f0 '' #zField
 Pt0 @EndTask f57 '' #zField
@@ -94,7 +93,6 @@ Pt0 @PushWFArc f16 '' #zField
 Pt0 @PushWFArc f39 '' #zField
 Pt0 @PushWFArc f15 '' #zField
 Pt0 @PushWFArc f95 '' #zField
-Pt0 @PushWFArc f97 '' #zField
 Pt0 @PushWFArc f71 '' #zField
 Pt0 @PushWFArc f66 '' #zField
 Pt0 @PushWFArc f49 '' #zField
@@ -117,6 +115,8 @@ Pt0 @GridStep f90 '' #zField
 Pt0 @PushWFArc f99 '' #zField
 Pt0 @PushWFArc f100 '' #zField
 Pt0 @PushWFArc f101 '' #zField
+Pt0 @PushWFArc f97 '' #zField
+Pt0 @RichDialog f96 '' #zField
 >Proto Pt0 Pt0 ExamplePortalStart #zField
 Pt0 f18 targetWindow NEW:card: #txt
 Pt0 f18 targetDisplay TOP #txt
@@ -643,30 +643,6 @@ Pt0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f17 2012 336 104 48 -46 -4 #rect
 Pt0 f17 @|StepIcon #fIcon
-Pt0 f96 targetWindow NEW #txt
-Pt0 f96 targetDisplay TOP #txt
-Pt0 f96 richDialogId ch.ivy.addon.portal.generic.MobilePortalProcesses #txt
-Pt0 f96 startMethod start(String) #txt
-Pt0 f96 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pt0 f96 requestActionDecl '<String keyword> param;' #txt
-Pt0 f96 requestMappingAction 'param.keyword=in.keyword;
-' #txt
-Pt0 f96 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
-' #txt
-Pt0 f96 responseMappingAction 'out=in;
-' #txt
-Pt0 f96 isAsynch false #txt
-Pt0 f96 isInnerRd false #txt
-Pt0 f96 userContext '* ' #txt
-Pt0 f96 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Mobile process list</name>
-    </language>
-</elementInfo>
-' #txt
-Pt0 f96 992 426 112 44 -51 -8 #rect
-Pt0 f96 @|RichDialogIcon #fIcon
 Pt0 f6 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f6 processCall 'Functional Processes/InitializeCaseDataModel:call()' #txt
 Pt0 f6 doCall true #txt
@@ -1395,19 +1371,6 @@ Pt0 f15 560 441 560 184 #arcP
 Pt0 f15 0 0.4763694877411137 0 0 #arcLabel
 Pt0 f95 expr out #txt
 Pt0 f95 280 360 312 360 #arcP
-Pt0 f97 expr in #txt
-Pt0 f97 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>PROCESS LIST</name>
-        <nameStyle>12
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Pt0 f97 800 376 992 448 #arcP
-Pt0 f97 1 800 448 #addKink
-Pt0 f97 1 0.43700944193336305 0 -14 #arcLabel
 Pt0 f71 expr out #txt
 Pt0 f71 79 649 156 649 #arcP
 Pt0 f66 expr out #txt
@@ -1636,6 +1599,41 @@ Pt0 f100 expr out #txt
 Pt0 f100 79 1024 160 1024 #arcP
 Pt0 f101 expr out #txt
 Pt0 f101 484 1024 528 1024 #arcP
+Pt0 f97 expr in #txt
+Pt0 f97 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>PROCESS LIST</name>
+        <nameStyle>12
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f97 800 376 992 448 #arcP
+Pt0 f97 1 800 448 #addKink
+Pt0 f97 1 0.43700944193336305 0 -14 #arcLabel
+Pt0 f96 targetWindow NEW #txt
+Pt0 f96 targetDisplay TOP #txt
+Pt0 f96 richDialogId ch.ivy.addon.portal.generic.MobilePortalProcesses #txt
+Pt0 f96 startMethod start() #txt
+Pt0 f96 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f96 requestActionDecl '<> param;' #txt
+Pt0 f96 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
+' #txt
+Pt0 f96 responseMappingAction 'out=in;
+' #txt
+Pt0 f96 isAsynch false #txt
+Pt0 f96 isInnerRd false #txt
+Pt0 f96 userContext '* ' #txt
+Pt0 f96 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Mobile process list</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f96 992 426 112 44 -51 -8 #rect
+Pt0 f96 @|RichDialogIcon #fIcon
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
