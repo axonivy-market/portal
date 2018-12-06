@@ -117,6 +117,9 @@ Pt0 @PushWFArc f75 '' #zField
 Pt0 @CallSub f80 '' #zField
 Pt0 @PushWFArc f90 '' #zField
 Pt0 @PushWFArc f91 '' #zField
+Pt0 @RichDialog f101 '' #zField
+Pt0 @StartRequest f100 '' #zField
+Pt0 @PushWFArc f102 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Pt0 f0 outLink PortalStart.ivp #txt
 Pt0 f0 type ch.ivy.addon.portal.generic.PortalStartData #txt
@@ -1638,6 +1641,60 @@ Pt0 f90 expr out #txt
 Pt0 f90 79 1024 152 1024 #arcP
 Pt0 f91 expr out #txt
 Pt0 f91 328 1024 364 1024 #arcP
+Pt0 f101 targetWindow NEW #txt
+Pt0 f101 targetDisplay TOP #txt
+Pt0 f101 richDialogId ch.ivy.addon.portal.generic.MobilePortalProcesses #txt
+Pt0 f101 startMethod start(String) #txt
+Pt0 f101 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f101 requestActionDecl '<String keyword> param;' #txt
+Pt0 f101 requestMappingAction 'param.keyword=in.keyword;
+' #txt
+Pt0 f101 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
+' #txt
+Pt0 f101 responseMappingAction 'out=in;
+' #txt
+Pt0 f101 isAsynch false #txt
+Pt0 f101 isInnerRd false #txt
+Pt0 f101 userContext '* ' #txt
+Pt0 f101 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Mobile process list</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f101 160 1098 112 44 -51 -8 #rect
+Pt0 f101 @|RichDialogIcon #fIcon
+Pt0 f100 outLink startPortalMobileProcess.ivp #txt
+Pt0 f100 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f100 inParamDecl '<> param;' #txt
+Pt0 f100 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
+' #txt
+Pt0 f100 guid 167812433BC92E55 #txt
+Pt0 f100 requestEnabled true #txt
+Pt0 f100 triggerEnabled false #txt
+Pt0 f100 callSignature startPortalMobileProcess() #txt
+Pt0 f100 persist false #txt
+Pt0 f100 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Pt0 f100 caseData businessCase.attach=true #txt
+Pt0 f100 showInStartList 0 #txt
+Pt0 f100 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>startPortalMobileProcess.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f100 @C|.responsibility Everybody #txt
+Pt0 f100 49 1105 30 30 -63 15 #rect
+Pt0 f100 @|StartRequestIcon #fIcon
+Pt0 f102 expr out #txt
+Pt0 f102 79 1120 160 1120 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1742,3 +1799,5 @@ Pt0 f172 mainOut f90 tail #connect
 Pt0 f90 head f80 mainIn #connect
 Pt0 f80 mainOut f91 tail #connect
 Pt0 f91 head f154 mainIn #connect
+Pt0 f100 mainOut f102 tail #connect
+Pt0 f102 head f101 mainIn #connect
