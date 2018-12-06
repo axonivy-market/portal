@@ -29,6 +29,7 @@ public final class PortalNavigator {
   private static final String PORTAL_CASE = "Start Processes/PortalStart/startPortalCase.ivp";
   private static final String PORTAL_STATISTIC = "Start Processes/PortalStart/startPortalStatistic.ivp";
   private static final String PORTAL_MOBILE_TASK = "Start Processes/PortalStart/startPortalMobileTask.ivp";
+  private static final String PORTAL_MOBILE_PROCESS = "Start Processes/PortalStart/startPortalMobileProcess.ivp";
 
   public String getPortalStartUrl() throws MalformedURLException {
     String homePageURL = getHomePageFromSetting();
@@ -116,7 +117,7 @@ public final class PortalNavigator {
   }
   
   public void navigateToMobilePortalProcess() throws MalformedURLException {
-    navigate(PORTAL_PROCESS, StringUtils.EMPTY);
+    navigateByKeyword("startPortalMobileProcess.ivp", PORTAL_MOBILE_PROCESS);
   }
 
   public void navigateToMobilePortalCase() throws MalformedURLException {
