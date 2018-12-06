@@ -43,9 +43,9 @@ As0 @PushWFArc f37 '' #zField
 As0 @PushWFArc f3 '' #zField
 As0 @RichDialogProcessStart f0 '' #zField
 As0 @PushWFArc f4 '' #zField
-As0 @RichDialog f5 '' #zField
+As0 @GridStep f8 '' #zField
+As0 @PushWFArc f9 '' #zField
 As0 @PushWFArc f6 '' #zField
-As0 @PushWFArc f7 '' #zField
 >Proto As0 As0 MobileMenuProcess #zField
 As0 f70 type ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData #txt
 As0 f70 432 400 32 32 0 16 #rect
@@ -300,36 +300,30 @@ As0 f4 expr out #txt
 As0 f4 735 77 624 224 #arcP
 As0 f4 1 736 224 #addKink
 As0 f4 0 0.9062480058623832 0 0 #arcLabel
-As0 f5 targetWindow NEW #txt
-As0 f5 targetDisplay TOP #txt
-As0 f5 richDialogId ch.ivy.addon.portal.generic.MobilePortalProcesses #txt
-As0 f5 startMethod start(String) #txt
-As0 f5 type ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData #txt
-As0 f5 requestActionDecl '<String keyword> param;' #txt
-As0 f5 requestMappingAction 'param.keyword=in.keyword;
+As0 f8 actionDecl 'ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData out;
 ' #txt
-As0 f5 responseActionDecl 'ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData out;
+As0 f8 actionTable 'out=in;
 ' #txt
-As0 f5 responseMappingAction 'out=in;
-' #txt
-As0 f5 isAsynch false #txt
-As0 f5 isInnerRd true #txt
-As0 f5 userContext '* ' #txt
-As0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+As0 f8 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+PortalNavigator navigator = new PortalNavigator();
+navigator.navigateToMobilePortalProcess();' #txt
+As0 f8 security system #txt
+As0 f8 type ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData #txt
+As0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Mobile Process List</name>
+        <name>navigate to process list</name>
     </language>
 </elementInfo>
 ' #txt
-As0 f5 392 490 112 44 -53 -8 #rect
-As0 f5 @|RichDialogIcon #fIcon
-As0 f6 expr in #txt
-As0 f6 outCond 'in.menuKind == ch.ivy.addon.portalkit.enums.MenuKind.PROCESS' #txt
-As0 f6 448 432 448 490 #arcP
-As0 f6 0 0.32034598197015046 0 0 #arcLabel
-As0 f7 expr out #txt
-As0 f7 448 534 448 595 #arcP
+As0 f8 376 490 144 44 -63 -8 #rect
+As0 f8 @|StepIcon #fIcon
+As0 f9 expr in #txt
+As0 f9 outCond 'in.menuKind == ch.ivy.addon.portalkit.enums.MenuKind.PROCESS' #txt
+As0 f9 448 432 448 490 #arcP
+As0 f9 0 0.32034598197015046 0 0 #arcLabel
+As0 f6 expr out #txt
+As0 f6 448 534 448 595 #arcP
 >Proto As0 .type ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -380,9 +374,9 @@ As0 f87 mainOut f3 tail #connect
 As0 f3 head f85 mainIn #connect
 As0 f0 mainOut f4 tail #connect
 As0 f4 head f76 in #connect
-As0 f70 out f6 tail #connect
-As0 f6 head f5 mainIn #connect
+As0 f70 out f9 tail #connect
+As0 f9 head f8 mainIn #connect
 As0 f70 out f27 tail #connect
 As0 f70 out f35 tail #connect
-As0 f5 mainOut f7 tail #connect
-As0 f7 head f34 mainIn #connect
+As0 f8 mainOut f6 tail #connect
+As0 f6 head f34 mainIn #connect
