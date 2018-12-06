@@ -34,12 +34,6 @@
     <startMethod>
         <name>start</name>
         <description></description>
-        <inputParameter>
-            <name>keyword</name>
-            <description></description>
-            <parameterType>String</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
     </startMethod>
     <property>
         <name>guid</name>
