@@ -1,4 +1,5 @@
 [Ivy]
+[>Created: Mon Jun 05 14:49:14 ICT 2017]
 1504020B50E9697E 3.20 #module
 >Proto >Proto Collection #zClass
 Se0 Synchronizing Big #zClass
@@ -690,20 +691,11 @@ Se0 f69 actionDecl 'ch.ivy.add.portalkit.synchronization.SynchronizingData out;
 ' #txt
 Se0 f69 actionTable 'out=in;
 ' #txt
-Se0 f69 actionCode 'import ch.ivy.addon.portalkit.service.ServerWorkingOnDetector;
-import ch.ivy.addon.portalkit.persistence.domain.Server;
-import ch.ivy.addon.portalkit.service.ServerService;
+Se0 f69 actionCode 'import ch.ivy.addon.portalkit.service.ServerService;
 
 ServerService service = new ServerService();
 in.servers = new java.util.ArrayList();
-List<Server> allServers = service.findAll();
-ServerWorkingOnDetector serverWorkingOnDetector = new ServerWorkingOnDetector();
-Server serverWorkingOn = serverWorkingOnDetector.getServerWorkingOn();
-for (Server server : allServers) {
-	if (!server.getId().equals(serverWorkingOn.getId())) {
-		in.servers.add(server);
-	}
-}' #txt
+in.servers.addAll(service.findAll());' #txt
 Se0 f69 type ch.ivy.add.portalkit.synchronization.SynchronizingData #txt
 Se0 f69 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
