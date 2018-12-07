@@ -17,7 +17,6 @@ public class ProcessWidgetPage extends TemplatePage {
   private WebElement liveSearchTextField;
   private WebElement processWidget;
   private String searchInputField = "process-widget:process-search:non-ajax-keyword-filter";
-  private String processWidgetId;
 
   public ProcessWidgetPage() {
     processWidget = findElementById("process-widget");
@@ -193,7 +192,7 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public class AddNewProcessDialog {
     private WebElement processDialog;
-    private final String PROCESS_DIALOG_ID = processWidgetId + ":add-new-process-dialog";
+    private final String PROCESS_DIALOG_ID = "process-widget:add-new-process-dialog";
     private final String SEARCH_ICON_NAME_CSS_SELECTOR = "input[id$='search-icon-name-field']";
     private final String DEFAULT_ICON_CSS_SELECTOR = "span[id$='awesome-icon-display']";
     private final String ICON_CSS_SELECTOR = "a[id$='awesome-icon']";
