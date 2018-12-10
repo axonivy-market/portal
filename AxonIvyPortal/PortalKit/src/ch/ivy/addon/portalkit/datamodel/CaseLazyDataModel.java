@@ -27,6 +27,7 @@ import ch.ivy.addon.portalkit.casefilter.CaseFilterContainer;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.casefilter.DefaultCaseFilterContainer;
 import ch.ivy.addon.portalkit.comparator.RemoteCaseComparator;
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.GlobalCaseId;
 import ch.ivy.addon.portalkit.enums.CaseAssigneeType;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
@@ -312,7 +313,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     String applicationName = StringUtils.EMPTY;
     String applicationNameFromRequest =
         Optional.ofNullable(Ivy.request().getApplication()).map(IApplication::getName).orElse(StringUtils.EMPTY);
-    if (!IApplication.PORTAL_APPLICATION_NAME.equals(applicationNameFromRequest)) {
+    if (!PortalConstants.PORTAL_APPLICATION_NAME.equals(applicationNameFromRequest)) {
       applicationName = applicationNameFromRequest;
     }
     if (StringUtils.isNotBlank(applicationName)) {

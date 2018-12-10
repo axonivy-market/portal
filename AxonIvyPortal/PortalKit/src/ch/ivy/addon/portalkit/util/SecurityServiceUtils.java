@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.persistence.domain.Server;
@@ -114,7 +115,7 @@ public class SecurityServiceUtils {
   }
 
   private static IApplication getDefaultPortalApplication() {
-    return getServer().getApplicationConfigurationManager().findApplication(IApplication.PORTAL_APPLICATION_NAME);
+    return getServer().getApplicationConfigurationManager().findApplication(PortalConstants.PORTAL_APPLICATION_NAME);
   }
 
   public static Object getSessionAttribute(String name) {
