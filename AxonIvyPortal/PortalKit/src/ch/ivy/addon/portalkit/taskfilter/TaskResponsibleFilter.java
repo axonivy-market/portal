@@ -17,8 +17,8 @@ import ch.ivy.addon.portalkit.bo.RemoteSecurityMember;
 import ch.ivy.addon.portalkit.bo.RemoteUser;
 import ch.ivy.addon.portalkit.comparator.RemoteRoleComparator;
 import ch.ivy.addon.portalkit.comparator.RemoteUserComparator;
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.mapper.RemoteSecurityMemberMapper;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.server.ServerFactory;
@@ -85,7 +85,7 @@ public class TaskResponsibleFilter extends TaskFilter {
           ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<RemoteUser>>() {
             @Override
             public List<RemoteUser> call() throws Exception {
-              if (Ivy.request().getApplication().getName().equals(IApplication.PORTAL_APPLICATION_NAME)) {
+              if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
                 return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllUsers").call()
                     .get("users", List.class);
               }
@@ -97,7 +97,7 @@ public class TaskResponsibleFilter extends TaskFilter {
           ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<RemoteRole>>() {
             @Override
             public List<RemoteRole> call() throws Exception {
-              if (Ivy.request().getApplication().getName().equals(IApplication.PORTAL_APPLICATION_NAME)) {
+              if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
                 return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllRoles").call()
                     .get("roles", List.class);
               }
