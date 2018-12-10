@@ -24,6 +24,7 @@ import org.primefaces.model.SortOrder;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.bo.TaskColumnsConfiguration;
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
@@ -715,7 +716,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
     String applicationName = StringUtils.EMPTY;
     String applicationNameFromRequest =
         Optional.ofNullable(Ivy.request().getApplication()).map(IApplication::getName).orElse(StringUtils.EMPTY);
-    if (!IApplication.PORTAL_APPLICATION_NAME.equals(applicationNameFromRequest)) {
+    if (!PortalConstants.PORTAL_APPLICATION_NAME.equals(applicationNameFromRequest)) {
       applicationName = applicationNameFromRequest;
     }
     if (StringUtils.isNotBlank(applicationName)) {
@@ -925,7 +926,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
    * 
    * E.g your customize portal column are  Arrays.asList{"PRIORITY", "NAME", "ID" , "ACTIVATOR", "CREATION_TIME", "EXPIRY_TIME", "customVarcharField5", "customVarcharField1"}
    * You can have sort fields like: return Arrays.asList("CREATION_TIME_ASC", "CREATION_TIME_DESC", "customVarcharField5_ASC", "customVarcharField5_DESC", "customVarcharField1_ASC", "customVarcharField1_DESC"}
-   * @return
+   * @return list of sort criteria for mobile
    */
   public List<String> getPortalTaskMobileSort() {
     return Arrays.asList(
@@ -954,7 +955,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
    * 
    * Override this method: return Ivy.cms().co("/sortFields/customized/" + fieldName);
    * @param fieldName
-   * @return
+   * @return Sort field label in mobile
    */
   public String getSortFieldLabel(String fieldName) {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/sortFields/" + fieldName);
