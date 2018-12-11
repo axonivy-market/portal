@@ -196,13 +196,13 @@ tt0 f10 type ch.ivyteam.wf.processes.SynchronizeApplicationUserData #txt
 tt0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>invalid users cache</name>
+        <name>refresh users cache</name>
         <nameStyle>19,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-tt0 f10 120 450 112 44 -53 -8 #rect
+tt0 f10 112 450 128 44 -55 -8 #rect
 tt0 f10 @|StepIcon #fIcon
 tt0 f13 expr out #txt
 tt0 f13 176 388 176 450 #arcP
