@@ -32,14 +32,14 @@ public class DeleteHiddenCasesService {
     int numOfDeletedCases = 0;
     for (int i = cases.size()-1; i >= 0; i--) {
       ICase iCase = (cases.get(i));
-      try {
-        if (("HIDE").equals(iCase.getAdditionalProperty("HIDE"))) {
+      if (("HIDE").equals(iCase.getAdditionalProperty("HIDE"))) {
+        try {
           Ivy.wf().deleteCompletedCase(iCase);
+          Ivy.log().info("Case was deleted with id: " + iCase.getId());
+          numOfDeletedCases++;
+        } catch (Exception e) {
+          Ivy.log().error("Cannot delete case: " + iCase.getId(), e);
         }
-        Ivy.log().info("Case was deleted with id: " + iCase.getId());
-        numOfDeletedCases++;
-      } catch (Exception e) {
-        Ivy.log().error("Cannot delete case: " + iCase.getId(), e);
       }
     }
 
