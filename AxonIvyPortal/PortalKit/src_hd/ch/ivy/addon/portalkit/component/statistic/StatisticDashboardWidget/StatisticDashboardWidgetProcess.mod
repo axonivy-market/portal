@@ -369,7 +369,7 @@ Ss0 f30 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboar
 ' #txt
 Ss0 f30 actionTable 'out=in;
 ' #txt
-Ss0 f30 actionCode 'import org.omg.CORBA.INITIALIZE;
+Ss0 f30 actionCode '
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.service.StatisticService;
 
@@ -398,7 +398,7 @@ Ss0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Generate chart models</name>
-        <nameStyle>21
+        <nameStyle>21,7
 </nameStyle>
     </language>
 </elementInfo>

@@ -56,9 +56,11 @@ public class StatisticFilter {
   @JsonIgnore
   private final static String SECURITY_SERVICE_CALLABLE = "MultiPortal/SecurityService";
 
+  public StatisticFilter() {}
+  
   @SuppressWarnings("unchecked")
-  public StatisticFilter() {
-    // Initialize list of available roles
+  public void init() {
+ // Initialize list of available roles
     try {
       List<RemoteRole> remoteRoles =
           ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<RemoteRole>>() {
@@ -115,7 +117,7 @@ public class StatisticFilter {
     this.timePeriodSelection = StatisticTimePeriodSelection.CUSTOM;
     this.allTimePeriodSelection = Arrays.asList(StatisticTimePeriodSelection.CUSTOM, StatisticTimePeriodSelection.LAST_WEEK, StatisticTimePeriodSelection.LAST_MONTH, StatisticTimePeriodSelection.LAST_6_MONTH);
   }
-
+  
   private CategoryData initEmptyCategory() {
 	  CategoryData result = new CategoryData();
 	  result.setPath(StringUtils.EMPTY);

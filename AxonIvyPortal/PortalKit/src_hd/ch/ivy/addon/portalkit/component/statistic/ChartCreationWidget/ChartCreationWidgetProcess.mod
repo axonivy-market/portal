@@ -221,13 +221,13 @@ Cs0 f15 actionTable 'out=in;
 ' #txt
 Cs0 f15 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticFilter;
 
-in.statisticFilter = new StatisticFilter();' #txt
+in.statisticFilter = new StatisticFilter().init();' #txt
 Cs0 f15 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 Cs0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Initialize</name>
-        <nameStyle>10
+        <nameStyle>10,7
 </nameStyle>
     </language>
 </elementInfo>
