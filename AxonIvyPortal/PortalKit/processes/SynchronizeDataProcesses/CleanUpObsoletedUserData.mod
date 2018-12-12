@@ -68,6 +68,7 @@ Ca0 f2 actionTable 'out=in;
 Ca0 f2 actionCode 'import ch.ivy.addon.portalkit.service.DeleteHiddenCasesService;
 DeleteHiddenCasesService deleteHiddenCasesService = new DeleteHiddenCasesService();
 deleteHiddenCasesService.deleteZombieAndFinishedHiddenCases();' #txt
+Ca0 f2 security system #txt
 Ca0 f2 type ch.ivy.add.portalkit.Data #txt
 Ca0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
