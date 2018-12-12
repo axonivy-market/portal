@@ -34,9 +34,7 @@ public class StatisticChartCreationBean implements Serializable {
   private DonutChartModel elapsedTimeModel;
   StatisticService statisticService = new StatisticService();
 
-  public StatisticChartCreationBean() {
-    updateChartModels(new StatisticFilter());
-  }
+  public StatisticChartCreationBean() {}
 
   /**
    * Update chart models
