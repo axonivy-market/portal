@@ -108,9 +108,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
         inProgressFilter = new TaskInProgressByOthersFilter();
       }
     }
-
     autoInitForNoAppConfiguration();
-    initColumnsConfiguration();
   }
 
   /**
@@ -719,7 +717,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
 
-  protected void initColumnsConfiguration() {
+  public void initColumnsConfiguration() {
     allColumns.addAll(getDefaultColumns());
     initSelectedColumns();
   }

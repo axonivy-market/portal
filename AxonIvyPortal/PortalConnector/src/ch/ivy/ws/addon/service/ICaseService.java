@@ -61,6 +61,7 @@ public interface ICaseService {
    * Find all notes for a case
    * 
    * @param caseId
+   * @param excludeSystemNotes 
    * @return list of case notes
    * @throws WSException
    */

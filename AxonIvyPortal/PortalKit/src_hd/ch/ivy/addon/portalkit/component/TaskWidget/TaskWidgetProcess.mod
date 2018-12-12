@@ -478,21 +478,27 @@ Ts0 f27 actionTable 'out=in;
 Ts0 f27 actionCode 'import ch.ivy.addon.portalkit.bean.PermissionBean;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
-TaskFilterService taskFilterService = new TaskFilterService();
-in.taskPrivateFilters = taskFilterService.getPrivateFilterForCurrentUser(in.taskFilterGroupId) as List;
-in.taskPublicFilters = taskFilterService.getPublicFilter(in.taskFilterGroupId) as List;
-in.filterType = FilterType.ONLY_ME;' #txt
+
+if(!in.dataModel.compactMode) {
+	TaskFilterService taskFilterService = new TaskFilterService();
+	in.taskPrivateFilters = taskFilterService.getPrivateFilterForCurrentUser(in.taskFilterGroupId) as List;
+	in.taskPublicFilters = taskFilterService.getPublicFilter(in.taskFilterGroupId) as List;
+	in.filterType = FilterType.ONLY_ME;
+	in.dataModel.initColumnsConfiguration();
+}
+' #txt
 Ts0 f27 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>load filter set</name>
-        <nameStyle>15,7
+        <name>load filter set
+and init column configuration</name>
+        <nameStyle>45,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f27 54 160 36 24 20 -2 #rect
+Ts0 f27 54 160 36 24 28 -14 #rect
 Ts0 f27 @|StepIcon #fIcon
 Ts0 f1 expr out #txt
 Ts0 f1 72 83 72 160 #arcP
