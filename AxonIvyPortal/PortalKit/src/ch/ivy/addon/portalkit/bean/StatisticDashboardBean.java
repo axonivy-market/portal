@@ -96,11 +96,6 @@ public class StatisticDashboardBean implements Serializable {
     return StringUtils.EMPTY;
   }
 
-  @PostConstruct
-  public void initialize() {
-    statisticChartList = statisticService.findStatisticChartsByUserId(Ivy.session().getSessionUser().getId());
-  }
-
   public List<StatisticChart> getStatisticChartList() {
     return statisticChartList;
   }
