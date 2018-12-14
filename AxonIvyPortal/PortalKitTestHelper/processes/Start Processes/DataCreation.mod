@@ -54,23 +54,20 @@ Dt0 @EndTask f21 '' #zField
 Dt0 @GridStep f22 '' #zField
 Dt0 @PushWFArc f36 '' #zField
 Dt0 @PushWFArc f38 '' #zField
-Dt0 @StartRequest f39 '' #zField
-Dt0 @GridStep f40 '' #zField
-Dt0 @Alternative f44 '' #zField
-Dt0 @PushWFArc f46 '' #zField
-Dt0 @EndTask f47 '' #zField
-Dt0 @GridStep f49 '' #zField
-Dt0 @PushWFArc f50 '' #zField
-Dt0 @PushWFArc f45 '' #zField
-Dt0 @Alternative f51 '' #zField
-Dt0 @PushWFArc f52 '' #zField
-Dt0 @PushWFArc f53 '' #zField
-Dt0 @PushWFArc f54 '' #zField
 Dt0 @StartRequest f48 '' #zField
 Dt0 @RichDialog f55 '' #zField
 Dt0 @PushWFArc f56 '' #zField
-Dt0 @Trigger f57 '' #zField
-Dt0 @PushWFArc f58 '' #zField
+Dt0 @Alternative f59 '' #zField
+Dt0 @GridStep f60 '' #zField
+Dt0 @GridStep f61 '' #zField
+Dt0 @EndTask f62 '' #zField
+Dt0 @Alternative f63 '' #zField
+Dt0 @PushWFArc f64 '' #zField
+Dt0 @PushWFArc f65 '' #zField
+Dt0 @PushWFArc f66 '' #zField
+Dt0 @PushWFArc f67 '' #zField
+Dt0 @PushWFArc f68 '' #zField
+Dt0 @PushWFArc f57 '' #zField
 >Proto Dt0 Dt0 DataCreation #zField
 Dt0 f0 outLink createTasks.ivp #txt
 Dt0 f0 type portalKit_test.DataCreationData #txt
@@ -493,115 +490,6 @@ Dt0 f36 expr out #txt
 Dt0 f36 95 736 168 736 #arcP
 Dt0 f38 expr out #txt
 Dt0 f38 280 736 337 736 #arcP
-Dt0 f39 outLink createMultipleTestUsers.ivp #txt
-Dt0 f39 type portalKit_test.DataCreationData #txt
-Dt0 f39 inParamDecl '<java.lang.Integer numberOfUser> param;' #txt
-Dt0 f39 inParamTable 'out.numerOfUsers=param.numberOfUser;
-' #txt
-Dt0 f39 actionDecl 'portalKit_test.DataCreationData out;
-' #txt
-Dt0 f39 guid 167A6A9DC2DA9573 #txt
-Dt0 f39 requestEnabled false #txt
-Dt0 f39 triggerEnabled true #txt
-Dt0 f39 callSignature createMultipleTestUsers(Integer) #txt
-Dt0 f39 persist false #txt
-Dt0 f39 startName 'Create multiple test user, test user will have this format testuser_[number] with default password: +d3m0++' #txt
-Dt0 f39 startDescription 'Create multiple test user, test user will have this format testuser_[number] with default password: +d3m0++' #txt
-Dt0 f39 taskData 'TaskTriggered.ROL=SYSTEM
-TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
-TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
-Dt0 f39 caseData businessCase.attach=true #txt
-Dt0 f39 showInStartList 1 #txt
-Dt0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>createMultipleTestUsers(Integer)</name>
-        <nameStyle>32,5,7
-</nameStyle>
-        <desc>Create multiple test user, test user will have this format testuser_[number] with default password: +d3m0++</desc>
-    </language>
-</elementInfo>
-' #txt
-Dt0 f39 @C|.responsibility Everybody #txt
-Dt0 f39 601 553 30 30 -97 23 #rect
-Dt0 f39 @|StartRequestIcon #fIcon
-Dt0 f40 actionDecl 'portalKit_test.DataCreationData out;
-' #txt
-Dt0 f40 actionTable 'out=in;
-' #txt
-Dt0 f40 actionCode 'import java.util.Locale;
-Integer userIndex =  in.numberOfUsersInApplication + in.counter;
-String username = "testuser_" + userIndex;
-
-if (ivy.wf.getSecurityContext().findUser(username) != null) {
-	ivy.wf.getSecurityContext().deleteUser(username);
-}
-ivy.wf.getSecurityContext().createUser(username, username, "+d3m0++", Locale.ENGLISH, "", "");
-in.counter++;' #txt
-Dt0 f40 type portalKit_test.DataCreationData #txt
-Dt0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Create test user</name>
-        <nameStyle>16,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Dt0 f40 936 546 112 44 -44 -8 #rect
-Dt0 f40 @|StepIcon #fIcon
-Dt0 f44 type portalKit_test.DataCreationData #txt
-Dt0 f44 856 552 32 32 0 16 #rect
-Dt0 f44 @|AlternativeIcon #fIcon
-Dt0 f46 expr in #txt
-Dt0 f46 outCond 'in.counter <= in.numerOfUsers' #txt
-Dt0 f46 888 568 936 568 #arcP
-Dt0 f47 type portalKit_test.DataCreationData #txt
-Dt0 f47 1105 617 30 30 0 15 #rect
-Dt0 f47 @|EndIcon #fIcon
-Dt0 f49 actionDecl 'portalKit_test.DataCreationData out;
-' #txt
-Dt0 f49 actionTable 'out=in;
-' #txt
-Dt0 f49 actionCode 'import ch.ivyteam.ivy.security.IUser;
-List<IUser> users = ivy.request.getApplication().getSecurityContext().getUsers();
-in.numberOfUsersInApplication = users.size();
-in.counter = 1;' #txt
-Dt0 f49 security system #txt
-Dt0 f49 type portalKit_test.DataCreationData #txt
-Dt0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Count total user 
-in application</name>
-        <nameStyle>32,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Dt0 f49 680 546 128 44 -42 -16 #rect
-Dt0 f49 @|StepIcon #fIcon
-Dt0 f50 expr out #txt
-Dt0 f50 631 568 680 568 #arcP
-Dt0 f45 expr out #txt
-Dt0 f45 808 568 856 568 #arcP
-Dt0 f51 type portalKit_test.DataCreationData #txt
-Dt0 f51 1104 552 32 32 0 16 #rect
-Dt0 f51 @|AlternativeIcon #fIcon
-Dt0 f52 expr out #txt
-Dt0 f52 1048 568 1104 568 #arcP
-Dt0 f53 expr in #txt
-Dt0 f53 1120 552 872 552 #arcP
-Dt0 f53 1 1120 512 #addKink
-Dt0 f53 2 872 512 #addKink
-Dt0 f53 1 0.5 0 0 #arcLabel
-Dt0 f54 expr in #txt
-Dt0 f54 872 584 1105 632 #arcP
-Dt0 f54 1 872 632 #addKink
-Dt0 f54 1 0.3661788073886111 0 0 #arcLabel
 Dt0 f48 outLink createTestUsers.ivp #txt
 Dt0 f48 type portalKit_test.DataCreationData #txt
 Dt0 f48 inParamDecl '<> param;' #txt
@@ -662,30 +550,81 @@ Dt0 f55 720 362 128 44 -57 -8 #rect
 Dt0 f55 @|RichDialogIcon #fIcon
 Dt0 f56 expr out #txt
 Dt0 f56 623 384 720 384 #arcP
-Dt0 f57 type portalKit_test.DataCreationData #txt
-Dt0 f57 processCall 'Start Processes/DataCreation:createMultipleTestUsers(Integer)' #txt
-Dt0 f57 doCall true #txt
-Dt0 f57 requestActionDecl '<java.lang.Integer numberOfUser> param;
+Dt0 f59 type portalKit_test.DataCreationData #txt
+Dt0 f59 1080 368 32 32 0 16 #rect
+Dt0 f59 @|AlternativeIcon #fIcon
+Dt0 f60 actionDecl 'portalKit_test.DataCreationData out;
 ' #txt
-Dt0 f57 requestMappingAction 'param.numberOfUser=in.numerOfUsers;
+Dt0 f60 actionTable 'out=in;
 ' #txt
-Dt0 f57 responseActionDecl 'portalKit_test.DataCreationData out;
-' #txt
-Dt0 f57 responseMappingAction 'out=in;
-' #txt
-Dt0 f57 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+Dt0 f60 actionCode 'import ch.ivyteam.ivy.security.IUser;
+List<IUser> users = ivy.request.getApplication().getSecurityContext().getUsers();
+in.numberOfUsersInApplication = users.size();
+in.counter = 1;' #txt
+Dt0 f60 security system #txt
+Dt0 f60 type portalKit_test.DataCreationData #txt
+Dt0 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Trigger create users</name>
-        <nameStyle>20,5,7
+        <name>Count total user 
+in application</name>
+        <nameStyle>32,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Dt0 f57 896 362 128 44 -55 -8 #rect
-Dt0 f57 @|TriggerIcon #fIcon
-Dt0 f58 expr out #txt
-Dt0 f58 848 384 896 384 #arcP
+Dt0 f60 904 362 128 44 -42 -16 #rect
+Dt0 f60 @|StepIcon #fIcon
+Dt0 f61 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f61 actionTable 'out=in;
+' #txt
+Dt0 f61 actionCode 'import java.util.Locale;
+Integer userIndex =  in.numberOfUsersInApplication + in.counter;
+String username = "testuser_" + userIndex;
+
+if (ivy.wf.getSecurityContext().findUser(username) != null) {
+	ivy.wf.getSecurityContext().deleteUser(username);
+}
+ivy.wf.getSecurityContext().createUser(username, username, "+d3m0++", Locale.ENGLISH, "", "");
+in.counter++;' #txt
+Dt0 f61 security system #txt
+Dt0 f61 type portalKit_test.DataCreationData #txt
+Dt0 f61 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Create test user</name>
+        <nameStyle>16,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f61 1160 362 112 44 -44 -8 #rect
+Dt0 f61 @|StepIcon #fIcon
+Dt0 f62 type portalKit_test.DataCreationData #txt
+Dt0 f62 1329 433 30 30 0 15 #rect
+Dt0 f62 @|EndIcon #fIcon
+Dt0 f63 type portalKit_test.DataCreationData #txt
+Dt0 f63 1328 368 32 32 0 16 #rect
+Dt0 f63 @|AlternativeIcon #fIcon
+Dt0 f64 expr in #txt
+Dt0 f64 1096 400 1329 448 #arcP
+Dt0 f64 1 1096 448 #addKink
+Dt0 f64 1 0.3661788073886111 0 0 #arcLabel
+Dt0 f65 expr in #txt
+Dt0 f65 1344 368 1096 368 #arcP
+Dt0 f65 1 1344 296 #addKink
+Dt0 f65 2 1096 296 #addKink
+Dt0 f65 1 0.5 0 0 #arcLabel
+Dt0 f66 expr out #txt
+Dt0 f66 1272 384 1328 384 #arcP
+Dt0 f67 expr out #txt
+Dt0 f67 1032 384 1080 384 #arcP
+Dt0 f68 expr in #txt
+Dt0 f68 outCond 'in.counter <= in.numerOfUsers' #txt
+Dt0 f68 1112 384 1160 384 #arcP
+Dt0 f57 expr out #txt
+Dt0 f57 848 384 904 384 #arcP
 >Proto Dt0 .type portalKit_test.DataCreationData #txt
 >Proto Dt0 .processKind NORMAL #txt
 >Proto Dt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -733,19 +672,17 @@ Dt0 f20 mainOut f36 tail #connect
 Dt0 f36 head f22 mainIn #connect
 Dt0 f22 mainOut f38 tail #connect
 Dt0 f38 head f21 mainIn #connect
-Dt0 f44 out f46 tail #connect
-Dt0 f46 head f40 mainIn #connect
-Dt0 f39 mainOut f50 tail #connect
-Dt0 f50 head f49 mainIn #connect
-Dt0 f49 mainOut f45 tail #connect
-Dt0 f45 head f44 in #connect
-Dt0 f40 mainOut f52 tail #connect
-Dt0 f52 head f51 in #connect
-Dt0 f51 out f53 tail #connect
-Dt0 f53 head f44 in #connect
-Dt0 f44 out f54 tail #connect
-Dt0 f54 head f47 mainIn #connect
 Dt0 f48 mainOut f56 tail #connect
 Dt0 f56 head f55 mainIn #connect
-Dt0 f55 mainOut f58 tail #connect
-Dt0 f58 head f57 mainIn #connect
+Dt0 f59 out f68 tail #connect
+Dt0 f68 head f61 mainIn #connect
+Dt0 f60 mainOut f67 tail #connect
+Dt0 f67 head f59 in #connect
+Dt0 f61 mainOut f66 tail #connect
+Dt0 f66 head f63 in #connect
+Dt0 f63 out f65 tail #connect
+Dt0 f65 head f59 in #connect
+Dt0 f59 out f64 tail #connect
+Dt0 f64 head f62 mainIn #connect
+Dt0 f55 mainOut f57 tail #connect
+Dt0 f57 head f60 mainIn #connect
