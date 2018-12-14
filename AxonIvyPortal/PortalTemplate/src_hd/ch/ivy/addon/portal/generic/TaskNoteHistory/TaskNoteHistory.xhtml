@@ -41,7 +41,7 @@
 					</p:column>
 				</p:dataTable>
 				<p:commandButton ajax="false" styleClass="note-history-export-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}">
-					<p:dataExporter type="xls" target="notes-table" fileName="#{data.exportedFileName}" />
+					<p:fileDownload value="#{caseTaskNoteHistoryBean.getExportedFileOfTaskNoteHistory(data.filteredNotes, data.exportedFileName)}" />
 				</p:commandButton>
 			</h:form>
 			
