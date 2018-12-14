@@ -15,6 +15,7 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 import ch.ivy.addon.portalkit.bean.UserFormatBean;
+import ch.ivy.addon.portalkit.bo.ExcelExportSheet;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.enums.TaskAndCaseAnalysisColumn;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -32,7 +33,11 @@ public class TaskAnalysisExporter {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
     try {
-      ExcelExport.exportListAsExcel(generateHeaders(), rows, null, outputStream);
+      ExcelExportSheet sheet = new ExcelExportSheet();
+      sheet.setHeaders(generateHeaders());
+      sheet.setRows(rows);
+      List<ExcelExportSheet> sheets = Arrays.asList(sheet);
+      ExcelExport.exportListAsExcel(sheets, outputStream);
     } catch (IOException e) {
       Ivy.log().error(e);
     }
