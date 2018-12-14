@@ -175,7 +175,7 @@
 					emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
 					scrollable="true" scrollHeight="240">
 					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/key')}" filterBy="#{setting.key}" filterMatchMode="contains"
-						width="15%">
+						width="17%">
 						<h:outputText value="#{setting.key}" styleClass="setting-key" />
 					</p:column>
 					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/defaultValue')}" filterBy="#{setting.defaultValue}" filterMatchMode="contains"
@@ -191,7 +191,7 @@
 						<h:outputText value="#{setting.note}" />
 					</p:column>
 					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-						styleClass="settings-table-action-buttons" width="9%">
+						styleClass="settings-table-action-buttons" width="7%">
 						<p:commandLink styleClass="action-column-icon-button" id="edit" oncomplete="PF('settingDialog').show()"
 							actionListener="#{logic.editSetting(setting)}" process="@this"
 							title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"

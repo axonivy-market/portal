@@ -65,20 +65,20 @@ Ca0 f2 actionDecl 'ch.ivy.add.portalkit.Data out;
 ' #txt
 Ca0 f2 actionTable 'out=in;
 ' #txt
-Ca0 f2 actionCode 'import ch.ivy.addon.portalkit.service.DeleteHiddenCasesService;
-DeleteHiddenCasesService deleteHiddenCasesService = new DeleteHiddenCasesService();
-deleteHiddenCasesService.deleteZombieAndFinishedHiddenCases();' #txt
+Ca0 f2 actionCode 'import ch.ivy.addon.portalkit.service.DeleteZombieAndFinishedHiddenCasesService;
+DeleteZombieAndFinishedHiddenCasesService deleteZombieAndFinishedHiddenCasesService = new DeleteZombieAndFinishedHiddenCasesService();
+deleteZombieAndFinishedHiddenCasesService.deleteZombieAndFinishedHiddenCases();' #txt
 Ca0 f2 security system #txt
 Ca0 f2 type ch.ivy.add.portalkit.Data #txt
 Ca0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Delete finished and zombie hidden&#xD;
+        <name>Delete zombie &amp; finished hidden&#xD;
 system cases</name>
     </language>
 </elementInfo>
 ' #txt
-Ca0 f2 8 202 224 44 -91 -16 #rect
+Ca0 f2 16 202 208 44 -84 -16 #rect
 Ca0 f2 @|StepIcon #fIcon
 Ca0 f3 expr out #txt
 Ca0 f3 120 141 120 202 #arcP
