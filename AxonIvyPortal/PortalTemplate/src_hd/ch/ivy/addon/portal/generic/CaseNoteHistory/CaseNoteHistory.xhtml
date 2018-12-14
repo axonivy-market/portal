@@ -75,7 +75,7 @@
         
         <p:commandButton ajax="false" styleClass="note-history-export-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}">
-          <p:dataExporter type="xls" target="notes-table, case-info" fileName="#{data.exportedFileName}" />
+          <p:fileDownload value="#{caseTaskNoteHistoryBean.getStreamedContentOfCaseNoteHistory(data.filteredHistories, data.remoteCase, data.exportedFileName)}" />
         </p:commandButton>
       </h:form>
 
