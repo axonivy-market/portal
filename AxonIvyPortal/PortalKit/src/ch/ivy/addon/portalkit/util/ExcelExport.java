@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -16,6 +17,7 @@ import org.apache.poi.xssf.streaming.SXSSFSheet;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 
+import ch.ivy.addon.portalkit.bo.ExcelExportSheet;
 import ch.ivyteam.ivy.scripting.objects.Date;
 import ch.ivyteam.ivy.scripting.objects.DateTime;
 import ch.ivyteam.ivy.scripting.objects.Time;
@@ -38,7 +40,7 @@ public final class ExcelExport
 
   private SXSSFWorkbook workBook;
 
-  private SXSSFSheet sheet;
+  private List<SXSSFSheet> sheets;
 
   private SXSSFRow excelRow;
 
@@ -61,11 +63,11 @@ public final class ExcelExport
     this(null);
   }
 
-  private ExcelExport(String sheetName)
+  private ExcelExport(List<String> sheetNames)
   {
     Font font;
 
-    sheet = null;
+    sheets = new ArrayList<>();
 
     workBook = new SXSSFWorkbook(1000);
     defaultCellStyle = workBook.createCellStyle();
@@ -84,33 +86,36 @@ public final class ExcelExport
     headerCellStyle.setFont(font);
     dateFormatter = new SimpleDateFormat(INTERNAL_DATE_FORMAT);
 
-    sheet = workBook.createSheet(sheetName == null ? DEFAULT_SHEET_NAME : sheetName);
+    for (String sheetName : sheetNames) {
+      sheets.add(workBook.createSheet(sheetName == null ? DEFAULT_SHEET_NAME : sheetName));
+    }
   }
 
-  private static SXSSFWorkbook exportListAsExcel(List<String> headers, List<List<Object>> rows,
-          String sheetName)
+  private static SXSSFWorkbook exportListAsExcel(List<ExcelExportSheet> sheets)
   {
     ExcelExport export;
 
-    export = new ExcelExport(sheetName);
+    List<String> sheetNames = new ArrayList<>(); 
+    for (ExcelExportSheet sheet : sheets) {
+      sheetNames.add(sheet.getSheetName());
+    }
+    export = new ExcelExport(sheetNames);
 
-    return export.exportListAsExcel(headers, rows);
+    return export.exportListToWorkbook(sheets);
   }
 
   /**
    * Exports a java list of list of object to a stream with Excel content.
    * 
-   * @param headers a list of String that is used to fill the 1st line of the Excel sheet
-   * @param rows value contents of the sheet
-   * @param sheetName name of the Excel worksheet into the Excel file
+   * @param sheets a list of sheet to build excel file
    * @param outputStream outputStream stream into which the Excel content is written
    * @throws IOException
    */
-  public static void exportListAsExcel(List<String> headers, List<List<Object>> rows, String sheetName,
+  public static void exportListAsExcel(List<ExcelExportSheet> sheets,
           OutputStream outputStream) throws IOException
   {
     SXSSFWorkbook workbook;
-    workbook = exportListAsExcel(headers, rows, sheetName);
+    workbook = exportListAsExcel(sheets);
 
     write(workbook, outputStream);
   }
@@ -186,7 +191,14 @@ public final class ExcelExport
     cell.setCellStyle(headerCellStyle);
   }
 
-  private SXSSFWorkbook exportListAsExcel(List<String> headers, List<List<Object>> rows)
+  private SXSSFWorkbook exportListToWorkbook(List<ExcelExportSheet> sheets) {
+    for (ExcelExportSheet sheet : sheets) {
+      exportListAsExcel(sheet.getHeaders(), sheet.getRows(), sheets.indexOf(sheet));
+    }
+    return workBook;
+  }
+  
+  private void exportListAsExcel(List<String> headers, List<List<Object>> rows, int sheetIndex)
   {
     int currentColumn;
     int currentRow;
@@ -195,8 +207,8 @@ public final class ExcelExport
 
     if (headers != null)
     {
-      sheet.trackAllColumnsForAutoSizing();
-      excelRow = sheet.createRow(currentRow++);
+      sheets.get(sheetIndex).trackAllColumnsForAutoSizing();
+      excelRow = sheets.get(sheetIndex).createRow(currentRow++);
       currentColumn = 0;
       for (String columnHeader : headers)
       {
@@ -208,7 +220,7 @@ public final class ExcelExport
     {
       for (int i = 0; i < rows.size(); i++)
       {
-        excelRow = sheet.createRow(currentRow++);
+        excelRow = sheets.get(sheetIndex).createRow(currentRow++);
         currentColumn = 0;
         for (Object cellContent : rows.get(i))
         {
@@ -216,23 +228,21 @@ public final class ExcelExport
           currentColumn++;
         }
         if (i == NUMBER_OF_TRACKED_ROWS_TO_AUTOSIZE_COLUMN && headers != null) {
-          autoSizeColumn(headers.size());
+          autoSizeColumn(headers.size(), sheetIndex);
         }
       }
       if (rows.size() < NUMBER_OF_TRACKED_ROWS_TO_AUTOSIZE_COLUMN && headers != null) {
-        autoSizeColumn(headers.size());
+        autoSizeColumn(headers.size(), sheetIndex);
       }
     }
 
-
-    return workBook;
   }
 
-  private void autoSizeColumn(int numberOfColumns) {
-    for (int colIndex = 0; colIndex < numberOfColumns; colIndex++)
+  private void autoSizeColumn(int numberOfColumn, int sheetIndex) {
+    for (int colIndex = 0; colIndex < numberOfColumn; colIndex++)
     {
-      sheet.autoSizeColumn(colIndex, false);
+      sheets.get(sheetIndex).autoSizeColumn(colIndex, false);
     }
-    sheet.untrackAllColumnsForAutoSizing();
+    sheets.get(sheetIndex).untrackAllColumnsForAutoSizing();
   }
 }
