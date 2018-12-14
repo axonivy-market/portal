@@ -8,3 +8,6 @@ numOfCasesPerSubCat Integer #field
 caseName String #field
 handler ch.ivy.addon.portalkit.test.util.DataCreationHandler #field
 handler PERSISTENT #fieldModifier
+counter Integer #field
+numerOfUsers Integer #field
+numberOfUsersInApplication Integer #field
