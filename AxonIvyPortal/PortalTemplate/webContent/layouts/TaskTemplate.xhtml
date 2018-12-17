@@ -14,7 +14,7 @@
 
     <ui:define name="simplePageContent">
 
-      <c:set var="case" value="#{caseWidgetBean.findRemoteCaseByCaseId(caseId)}" scope="request" />
+      <c:set var="case" value="#{caseWidgetBean.findRemoteCaseWithCaching(caseId)}" />
       <ui:insert name="breadCrumb" />
 
       <div>
