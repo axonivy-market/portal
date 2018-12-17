@@ -203,6 +203,14 @@
                            Set to <code>TRUE</code> so that case/task note does not display any technical history entries for administrator.. 
                           </entry>
                         </row>
+                        <row>
+                          <entry>DELETE_ZOMBIE_AND_FINISHED_HIDDEN_CASES_IN_ALL_APPS</entry>
+                          <entry>TRUE/FALSE</entry>
+                          <entry>
+                           If set to <code>TRUE</code>, the cron job runs daily (at 6.AM as default) will clean all zombie & finished hidden cases of all applications. 
+                           Otherwise, just zombie & hidden cases of application Portal will be deleted. 
+                          </entry>
+                        </row>
 					</tbody>
 				</tgroup>
 			</table>
