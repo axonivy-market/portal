@@ -68,6 +68,29 @@ Dt0 @PushWFArc f66 '' #zField
 Dt0 @PushWFArc f67 '' #zField
 Dt0 @PushWFArc f68 '' #zField
 Dt0 @PushWFArc f57 '' #zField
+Dt0 @GridStep f39 '' #zField
+Dt0 @TaskSwitchSimple f40 '' #zField
+Dt0 @EndTask f44 '' #zField
+Dt0 @GridStep f45 '' #zField
+Dt0 @StartRequest f46 '' #zField
+Dt0 @PushWFArc f47 '' #zField
+Dt0 @TkArc f49 '' #zField
+Dt0 @PushWFArc f50 '' #zField
+Dt0 @PushWFArc f51 '' #zField
+Dt0 @StartRequest f52 '' #zField
+Dt0 @RichDialog f53 '' #zField
+Dt0 @PushWFArc f54 '' #zField
+Dt0 @GridStep f58 '' #zField
+Dt0 @PushWFArc f69 '' #zField
+Dt0 @Alternative f70 '' #zField
+Dt0 @PushWFArc f71 '' #zField
+Dt0 @Trigger f72 '' #zField
+Dt0 @PushWFArc f73 '' #zField
+Dt0 @EndTask f74 '' #zField
+Dt0 @PushWFArc f75 '' #zField
+Dt0 @GridStep f76 '' #zField
+Dt0 @PushWFArc f77 '' #zField
+Dt0 @PushWFArc f78 '' #zField
 >Proto Dt0 Dt0 DataCreation #zField
 Dt0 f0 outLink createTasks.ivp #txt
 Dt0 f0 type portalKit_test.DataCreationData #txt
@@ -113,7 +136,9 @@ Dt0 f23 actionDecl 'portalKit_test.DataCreationData out;
 ' #txt
 Dt0 f23 actionTable 'out=in;
 ' #txt
-Dt0 f23 actionCode 'in.caseName = in.taskStructureInfo + "_" + ivy.case.getId();' #txt
+Dt0 f23 actionCode 'import org.apache.commons.lang3.StringUtils;
+in.caseName = in.taskStructureInfo + "_" + ivy.case.getId();
+in.caseStructureInfo = StringUtils.replace(in.taskStructureInfo,StringUtils.SPACE,"_");' #txt
 Dt0 f23 type portalKit_test.DataCreationData #txt
 Dt0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -295,14 +320,14 @@ Dt0 f3 actionTable 'out=in1;
 Dt0 f3 outTypes "portalKit_test.DataCreationData","portalKit_test.DataCreationData","portalKit_test.DataCreationData" #txt
 Dt0 f3 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp" #txt
 Dt0 f3 caseData 'case.name=<%\=in1.caseName%>
-case.category=<%\=in1.taskStructureInfo%>' #txt
+case.category=<%\=in1.caseStructureInfo%>' #txt
 Dt0 f3 taskData 'TaskA.CATEGORY=<%\=in1.taskStructureInfo%>
 TaskA.EXPRI=2
 TaskA.EXROL=Everybody
 TaskA.EXTYPE=0
 TaskA.NAM=<%\=in1.caseName%>_A
 TaskA.PRI=3
-TaskA.ROL=Everybody
+TaskA.ROL=AXONIVY_PORTAL_ADMIN
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0
 TaskB.CATEGORY=<%\=in1.taskStructureInfo%>
@@ -311,7 +336,7 @@ TaskB.EXROL=Everybody
 TaskB.EXTYPE=0
 TaskB.NAM=<%\=in1.caseName%>_B
 TaskB.PRI=2
-TaskB.ROL=Everybody
+TaskB.ROL=AXONIVY_PORTAL_ADMIN
 TaskB.SKIP_TASK_LIST=false
 TaskB.TYPE=0
 TaskC.CATEGORY=<%\=in1.taskStructureInfo%>
@@ -320,7 +345,7 @@ TaskC.EXROL=Everybody
 TaskC.EXTYPE=0
 TaskC.NAM=<%\=in1.caseName%>_C
 TaskC.PRI=1
-TaskC.ROL=Everybody
+TaskC.ROL=AXONIVY_PORTAL_ADMIN
 TaskC.SKIP_TASK_LIST=false
 TaskC.TYPE=0' #txt
 Dt0 f3 type portalKit_test.DataCreationData #txt
@@ -625,6 +650,247 @@ Dt0 f68 outCond 'in.counter <= in.numerOfUsers' #txt
 Dt0 f68 1112 384 1160 384 #arcP
 Dt0 f57 expr out #txt
 Dt0 f57 848 384 904 384 #arcP
+Dt0 f39 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f39 actionTable 'out=in;
+' #txt
+Dt0 f39 actionCode 'import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivy.addon.portalkit.util.TaskUtils;
+TaskUtils.setHidePropertyToHideInPortal(ivy.task);
+CaseUtils.setHidePropertyToHideInPortal(ivy.case);' #txt
+Dt0 f39 security system #txt
+Dt0 f39 type portalKit_test.DataCreationData #txt
+Dt0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Hide 2nd task</name>
+        <nameStyle>13,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f39 922 554 112 44 -38 -8 #rect
+Dt0 f39 @|StepIcon #fIcon
+Dt0 f40 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f40 actionTable 'out=in1;
+' #txt
+Dt0 f40 outTypes "portalKit_test.DataCreationData" #txt
+Dt0 f40 outLinks "TaskA.ivp" #txt
+Dt0 f40 caseData 'case.name=Case contains hidden task' #txt
+Dt0 f40 taskData 'TaskA.DESC=Task, which has the HIDE additional property, won''t be displayed in Portal
+TaskA.EXPRI=2
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.NAM=Second Hidden Task
+TaskA.PRI=2
+TaskA.ROL=SYSTEM
+TaskA.SKIP_TASK_LIST=true
+TaskA.TYPE=0' #txt
+Dt0 f40 type portalKit_test.DataCreationData #txt
+Dt0 f40 template "" #txt
+Dt0 f40 841 561 30 30 0 16 #rect
+Dt0 f40 @|TaskSwitchSimpleIcon #fIcon
+Dt0 f44 type portalKit_test.DataCreationData #txt
+Dt0 f44 1073 561 30 30 0 15 #rect
+Dt0 f44 @|EndIcon #fIcon
+Dt0 f45 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f45 actionTable 'out=in;
+' #txt
+Dt0 f45 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+TaskUtils.setHidePropertyToHideInPortal(ivy.task);' #txt
+Dt0 f45 security system #txt
+Dt0 f45 type portalKit_test.DataCreationData #txt
+Dt0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Hide 1st task</name>
+        <nameStyle>13,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f45 680 554 112 44 -36 -8 #rect
+Dt0 f45 @|StepIcon #fIcon
+Dt0 f46 outLink createHiddenTaskAndCase.ivp #txt
+Dt0 f46 type portalKit_test.DataCreationData #txt
+Dt0 f46 inParamDecl '<> param;' #txt
+Dt0 f46 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f46 guid 167BAEEB324DF265 #txt
+Dt0 f46 requestEnabled true #txt
+Dt0 f46 triggerEnabled true #txt
+Dt0 f46 callSignature createHiddenTaskAndCase() #txt
+Dt0 f46 persist false #txt
+Dt0 f46 startName 'Process contains hidden task and cases' #txt
+Dt0 f46 startDescription 'Task and Case, which has the HIDE additional property, won''t be displayed in Portal' #txt
+Dt0 f46 taskData 'TaskTriggered.ROL=SYSTEM
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody
+TaskTriggered.NAM=First hidden Task
+TaskTriggered.DESC=Task, which has the HIDE additional property, won''t be displayed in Portal' #txt
+Dt0 f46 caseData businessCase.attach=true #txt
+Dt0 f46 showInStartList 0 #txt
+Dt0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>createHiddenTaskAndCase()</name>
+        <nameStyle>25,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f46 @C|.responsibility Everybody #txt
+Dt0 f46 601 561 30 30 -91 22 #rect
+Dt0 f46 @|StartRequestIcon #fIcon
+Dt0 f47 expr out #txt
+Dt0 f47 1034 576 1073 576 #arcP
+Dt0 f49 expr out #txt
+Dt0 f49 type portalKit_test.DataCreationData #txt
+Dt0 f49 var in1 #txt
+Dt0 f49 792 576 841 576 #arcP
+Dt0 f50 expr out #txt
+Dt0 f50 631 576 680 576 #arcP
+Dt0 f51 expr data #txt
+Dt0 f51 outCond ivp=="TaskA.ivp" #txt
+Dt0 f51 871 576 922 576 #arcP
+Dt0 f52 outLink createHiddenTasksAndCases.ivp #txt
+Dt0 f52 type portalKit_test.DataCreationData #txt
+Dt0 f52 inParamDecl '<> param;' #txt
+Dt0 f52 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f52 guid 167BB2EBF5276070 #txt
+Dt0 f52 requestEnabled true #txt
+Dt0 f52 triggerEnabled false #txt
+Dt0 f52 callSignature createHiddenTasksAndCases() #txt
+Dt0 f52 persist false #txt
+Dt0 f52 startName 'Process to create hidden tasks and cases' #txt
+Dt0 f52 startDescription 'Process to create hidden tasks and cases' #txt
+Dt0 f52 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Dt0 f52 caseData businessCase.attach=true #txt
+Dt0 f52 showInStartList 1 #txt
+Dt0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>createHiddenTasksAndCases.ivp</name>
+        <nameStyle>29,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f52 @C|.responsibility Everybody #txt
+Dt0 f52 897 81 30 30 -92 17 #rect
+Dt0 f52 @|StartRequestIcon #fIcon
+Dt0 f53 targetWindow NEW #txt
+Dt0 f53 targetDisplay TOP #txt
+Dt0 f53 richDialogId ch.ivy.addon.portalkit.test.CreateHiddenTasksAndCases #txt
+Dt0 f53 startMethod start() #txt
+Dt0 f53 type portalKit_test.DataCreationData #txt
+Dt0 f53 requestActionDecl '<> param;' #txt
+Dt0 f53 responseActionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f53 responseMappingAction 'out=in;
+out.numberOfCases=result.numberOfCases;
+' #txt
+Dt0 f53 isAsynch false #txt
+Dt0 f53 isInnerRd false #txt
+Dt0 f53 userContext '* ' #txt
+Dt0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Input number of cases</name>
+        <nameStyle>21,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f53 1024 74 128 44 -61 -8 #rect
+Dt0 f53 @|RichDialogIcon #fIcon
+Dt0 f54 expr out #txt
+Dt0 f54 927 96 1024 96 #arcP
+Dt0 f58 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f58 actionTable 'out=in;
+' #txt
+Dt0 f58 actionCode 'in.counter = 1;' #txt
+Dt0 f58 type portalKit_test.DataCreationData #txt
+Dt0 f58 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>init counter</name>
+        <nameStyle>12,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f58 1192 74 112 44 -30 -8 #rect
+Dt0 f58 @|StepIcon #fIcon
+Dt0 f69 expr out #txt
+Dt0 f69 1152 96 1192 96 #arcP
+Dt0 f70 type portalKit_test.DataCreationData #txt
+Dt0 f70 1360 80 32 32 0 16 #rect
+Dt0 f70 @|AlternativeIcon #fIcon
+Dt0 f71 expr out #txt
+Dt0 f71 1304 96 1360 96 #arcP
+Dt0 f72 type portalKit_test.DataCreationData #txt
+Dt0 f72 processCall 'Start Processes/DataCreation:createHiddenTaskAndCase()' #txt
+Dt0 f72 doCall true #txt
+Dt0 f72 requestActionDecl '<> param;
+' #txt
+Dt0 f72 responseActionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f72 responseMappingAction 'out=in;
+' #txt
+Dt0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>DataCreation</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f72 1432 74 112 44 -36 -8 #rect
+Dt0 f72 @|TriggerIcon #fIcon
+Dt0 f73 expr in #txt
+Dt0 f73 outCond 'in.counter <= in.numberOfCases' #txt
+Dt0 f73 1392 96 1432 96 #arcP
+Dt0 f74 type portalKit_test.DataCreationData #txt
+Dt0 f74 1361 177 30 30 0 15 #rect
+Dt0 f74 @|EndIcon #fIcon
+Dt0 f75 expr in #txt
+Dt0 f75 1376 112 1376 177 #arcP
+Dt0 f76 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f76 actionTable 'out=in;
+' #txt
+Dt0 f76 actionCode in.counter++; #txt
+Dt0 f76 type portalKit_test.DataCreationData #txt
+Dt0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>increate counter</name>
+        <nameStyle>16,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f76 1576 74 112 44 -44 -8 #rect
+Dt0 f76 @|StepIcon #fIcon
+Dt0 f77 expr out #txt
+Dt0 f77 1544 96 1576 96 #arcP
+Dt0 f78 expr out #txt
+Dt0 f78 1632 74 1376 80 #arcP
+Dt0 f78 1 1632 24 #addKink
+Dt0 f78 2 1376 24 #addKink
+Dt0 f78 1 0.51171875 0 0 #arcLabel
 >Proto Dt0 .type portalKit_test.DataCreationData #txt
 >Proto Dt0 .processKind NORMAL #txt
 >Proto Dt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -686,3 +952,25 @@ Dt0 f59 out f64 tail #connect
 Dt0 f64 head f62 mainIn #connect
 Dt0 f55 mainOut f57 tail #connect
 Dt0 f57 head f60 mainIn #connect
+Dt0 f46 mainOut f50 tail #connect
+Dt0 f50 head f45 mainIn #connect
+Dt0 f45 mainOut f49 tail #connect
+Dt0 f49 head f40 in #connect
+Dt0 f40 out f51 tail #connect
+Dt0 f51 head f39 mainIn #connect
+Dt0 f39 mainOut f47 tail #connect
+Dt0 f47 head f44 mainIn #connect
+Dt0 f52 mainOut f54 tail #connect
+Dt0 f54 head f53 mainIn #connect
+Dt0 f53 mainOut f69 tail #connect
+Dt0 f69 head f58 mainIn #connect
+Dt0 f58 mainOut f71 tail #connect
+Dt0 f71 head f70 in #connect
+Dt0 f70 out f73 tail #connect
+Dt0 f73 head f72 mainIn #connect
+Dt0 f70 out f75 tail #connect
+Dt0 f75 head f74 mainIn #connect
+Dt0 f72 mainOut f77 tail #connect
+Dt0 f77 head f76 mainIn #connect
+Dt0 f76 mainOut f78 tail #connect
+Dt0 f78 head f70 in #connect

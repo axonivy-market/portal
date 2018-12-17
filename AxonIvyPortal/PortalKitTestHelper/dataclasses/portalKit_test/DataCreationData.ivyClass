@@ -11,3 +11,6 @@ handler PERSISTENT #fieldModifier
 counter Integer #field
 numerOfUsers Integer #field
 numberOfUsersInApplication Integer #field
+numberOfCases Integer #field
+caseStructureInfo String #field
+caseStructureInfo 'contain information of category, sub category of tasks. E.g. CAT1/SUBCAT1' #fieldComment
