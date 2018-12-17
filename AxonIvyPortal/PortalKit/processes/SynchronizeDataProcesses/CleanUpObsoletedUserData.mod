@@ -19,8 +19,6 @@ Ca0 @PushWFArc f0 '' #zField
 Ca0 @GridStep f2 '' #zField
 Ca0 @PushWFArc f3 '' #zField
 Ca0 @PushWFArc f1 '' #zField
-Ca0 @StartRequest f4 '' #zField
-Ca0 @PushWFArc f8 '' #zField
 >Proto Ca0 Ca0 CleanUpObsoletedUserData #zField
 Ca0 f7 actionDecl 'ch.ivy.add.portalkit.Data out;
 ' #txt
@@ -88,36 +86,6 @@ Ca0 f3 expr out #txt
 Ca0 f3 120 141 120 202 #arcP
 Ca0 f1 expr out #txt
 Ca0 f1 120 246 120 307 #arcP
-Ca0 f4 outLink hidecase.ivp #txt
-Ca0 f4 type ch.ivy.add.portalkit.Data #txt
-Ca0 f4 inParamDecl '<> param;' #txt
-Ca0 f4 actionDecl 'ch.ivy.add.portalkit.Data out;
-' #txt
-Ca0 f4 guid 167AC316E559FB42 #txt
-Ca0 f4 requestEnabled true #txt
-Ca0 f4 triggerEnabled false #txt
-Ca0 f4 callSignature hidecase() #txt
-Ca0 f4 persist false #txt
-Ca0 f4 taskData 'TaskTriggered.ROL=Everybody
-TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
-TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
-Ca0 f4 caseData businessCase.attach=true #txt
-Ca0 f4 showInStartList 1 #txt
-Ca0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>hidecase.ivp</name>
-    </language>
-</elementInfo>
-' #txt
-Ca0 f4 @C|.responsibility Everybody #txt
-Ca0 f4 433 225 30 30 -34 17 #rect
-Ca0 f4 @|StartRequestIcon #fIcon
-Ca0 f8 expr out #txt
-Ca0 f8 433 239 224 224 #arcP
 >Proto Ca0 .type ch.ivy.add.portalkit.Data #txt
 >Proto Ca0 .processKind NORMAL #txt
 >Proto Ca0 0 0 32 24 18 0 #rect
@@ -128,5 +96,3 @@ Ca0 f7 mainOut f3 tail #connect
 Ca0 f3 head f2 mainIn #connect
 Ca0 f2 mainOut f1 tail #connect
 Ca0 f1 head f6 mainIn #connect
-Ca0 f4 mainOut f8 tail #connect
-Ca0 f8 head f2 mainIn #connect
