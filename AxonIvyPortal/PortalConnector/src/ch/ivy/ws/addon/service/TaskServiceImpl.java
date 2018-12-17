@@ -282,11 +282,11 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     }
   }
 
-  public void checkUserPemissions(String userName, ITask task, IvyTask ivyTask) {
+  private void checkUserPemissions(String userName, ITask task, IvyTask ivyTask) {
     boolean canUserResumeTask = canUserResumeTask(userName, task);
     ivyTask.setCanReset(hasPermissionToResetTask(task, userName, canUserResumeTask));
     ivyTask.setCanDelegate(hasPermissionToDelegateTask(task, userName));
-    ivyTask.setCanPark(hasPermissionToParkTask(task, userName));
+    ivyTask.setCanPark(hasPermissionToParkTask(task, userName, canUserResumeTask));
     ivyTask.setCanResume(canUserResumeTask);
     ivyTask.setCanChangePriority(hasPermissionToChangeOriginalPriority(userName, task.getApplication()));
     ivyTask.setCanChangeDescription(hasPermissionToChangeDescription(userName, task));
@@ -313,21 +313,19 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
 
           if (taskSearchCriteria.hasInvolvedUsername()) {
             String involvedUsername = taskSearchCriteria.getInvolvedUsername();
-            boolean canUserResumeTask = canUserResumeTask(involvedUsername, task);
             checkUserPemissions(involvedUsername, task, ivyTask);
             try {
-              ivyTask.setHasMoreActions(hasMoreActions(task, involvedUsername));
+              ivyTask.setHasMoreActions(hasMoreActions(task, involvedUsername, ivyTask.getCanResume()));
             } catch (Exception e) {
               Ivy.log().error("Error when checking whether task has more actions", e);
             }
             
             if (taskSearchCriteria.isQueryByTaskId() 
-                || canUserResumeTask 
+                || ivyTask.getCanResume() 
                 || taskSearchCriteria.isTaskStartedByAnotherDisplayed()
                 || isTaskDoneByInvolveUser(involvedUsername, task)){
               ivyTasks.add(ivyTask);
             }
-            
             if (taskSearchCriteria.isIgnoreInvolvedUser()) {
               allIvyTasks.add(ivyTask);
             }
@@ -342,10 +340,9 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     }
   }
   
-  private boolean hasMoreActions(ITask task, String userName) throws Exception {
+  private boolean hasMoreActions(ITask task, String userName, boolean canUserResumeTask) throws Exception {
     boolean isAdmin = SessionUtil.doesUserHavePermission(task.getApplication(), userName, IPermission.TASK_READ_ALL);
     boolean isOpenTask = Stream.of(SUSPENDED, RESUMED, PARKED).anyMatch(state -> state == task.getState());
-    boolean canUserResumeTask = canUserResumeTask(userName, task);
     boolean isAdhocIncluded = (isAdmin && isOpenTask) || canUserResumeTask;
     SideStepServiceImpl sideStepService = new SideStepServiceImpl();
     return sideStepService.hasSideSteps(task.getCase(), isAdhocIncluded);
@@ -778,10 +775,10 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     return SessionUtil.doesUserHavePermission(task.getApplication(), username, IPermission.TASK_WRITE_ACTIVATOR);
   }
 
-  private boolean hasPermissionToParkTask(ITask task, String username) {
+  private boolean hasPermissionToParkTask(ITask task, String username, boolean canUserResumeTask) {
     TaskState taskState = task.getState();
 
-    if (!canUserResumeTask(username, task)) {
+    if (!canUserResumeTask) {
       return false;
     }
     if (!(SUSPENDED == taskState || RESUMED == taskState)) {
@@ -792,11 +789,9 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
 
   private boolean canUserResumeTask(String userName, ITask task) {
     IUser user = findUser(userName, task);
-
     if (SUSPENDED == task.getState()) {
       return task.getActivatorUserCandidates().contains(user);
     }
-
     if (RESUMED == task.getState() || PARKED == task.getState()) {
       return user.equals(task.getWorkerUser());
     }
@@ -940,8 +935,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
    * @return List<ITask>
    */
   private List<ITask> executeTaskQuery(TaskQuery query, Integer startIndex, Integer count) {
-    List<ITask> tasks = taskQueryExecutor().getResults(query, startIndex, count);
-    return tasks;
+    return taskQueryExecutor().getResults(query, startIndex, count);
   }
 
   private long countTasks(TaskQuery query) {
