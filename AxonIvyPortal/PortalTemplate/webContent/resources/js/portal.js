@@ -162,28 +162,37 @@ var MainMenu = {
 /* Portal's second level menu */
 var SecondLevelMenu = {
   init : function(responsiveToolkit) {
+    var firstLevelMenu = MainMenu.getFirstLevelMenuBasedOnPageUrl();
     this.responsiveToolkit = responsiveToolkit;
     this.secondLevelMenu = $("#second-level-menu");
     this.secondLevelMenuHeader = this.secondLevelMenu.find("a.second-level-menu-header");
     this.secondLevelMenuBody = this.secondLevelMenu.find("div.second-level-menu-body");
     this.bindEvents();
     if (getItemFromStorage(SECOND_LEVEL_MENU_MODE) === 'expanded') {
+      if (firstLevelMenu != null && "Cases" === firstLevelMenu[0]){
+        loadCaseCategory();
+      }
       this.secondLevelMenu.addClass("on");
       this.responsiveToolkit.updateLayoutWithoutAnimation();
     }
     this.setupScrollbar();
+    
   },
 
   bindEvents : function() {
     var $this = this;
+    var firstLevelMenu = MainMenu.getFirstLevelMenuBasedOnPageUrl();
     this.secondLevelMenuHeader.on("click", function() {
       if ($this.secondLevelMenu.hasClass('on')) {
-    	storeItemToStorage(SECOND_LEVEL_MENU_MODE, 'collapsed');
-      } else {
-    	storeItemToStorage(SECOND_LEVEL_MENU_MODE, 'expanded');
-      }
-      $this.secondLevelMenu.toggleClass("on");
-      $this.responsiveToolkit.updateLayoutWithAnimation();
+      	storeItemToStorage(SECOND_LEVEL_MENU_MODE, 'collapsed');
+        } else {
+          if (firstLevelMenu != null && "Cases" === firstLevelMenu[0]){
+            loadCaseCategory();
+          }
+      	storeItemToStorage(SECOND_LEVEL_MENU_MODE, 'expanded');
+        }
+        $this.secondLevelMenu.toggleClass("on");
+        $this.responsiveToolkit.updateLayoutWithAnimation();
     });
   },
 

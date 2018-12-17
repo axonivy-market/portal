@@ -9,11 +9,11 @@
 
 <cc:implementation>
   <div id="#{cc.clientId}">
-    <f:event listener="#{logic.findCaseCategory}" type="preRenderComponent" />
+    <p:remoteCommand name="loadCaseCategory" actionListener="#{logic.findCaseCategory}" update=":#{cc.clientId}:main-menu-container" oncomplete="highlighSecondLevelMenuItem();wireListenerToSecondMenuItem();"/>
     <h:inputHidden id="second-menu-state-info" value="#{menuStateBean.menuState}" />
     <p:treeTable id="main-menu-container" selectionMode="single" value="#{caseMenuBean.rootNode}" var="menuItem"
       selection="#{data.selectedNode}" nodeVar="node" scrollable="true">
-      <p:ajax event="select" global="false" listener="#{logic.loadCase}" process=":#{cc.clientId}:second-menu-state-info" />
+      <p:ajax event="select" global="false" listener="#{logic.loadCase}" process=":#{cc.clientId}:second-menu-state-info" update=":#{cc.clientId}:second-menu-state-info"/>
       <p:ajax event="expand" global="false" process="@none" oncomplete="wireListenerToSecondMenuItem()" />
       <f:event listener="#{caseMenuDataBean.setPortalCaseMenuData(data)}" type="preRenderComponent" />
       <f:event listener="#{caseMenuBean.initMenuBean(data, menuStateBean.menuState)}" type="preRenderComponent" />

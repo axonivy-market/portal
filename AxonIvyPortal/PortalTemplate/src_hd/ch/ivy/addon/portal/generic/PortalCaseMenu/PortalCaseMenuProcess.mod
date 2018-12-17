@@ -26,7 +26,6 @@ Ps0 @GridStep f13 '' #zField
 Ps0 @CallSub f38 '' #zField
 Ps0 @RichDialogProcessStart f12 '' #zField
 Ps0 @GridStep f7 '' #zField
-Ps0 @PushWFArc f15 '' #zField
 Ps0 @PushWFArc f17 '' #zField
 Ps0 @Alternative f10 '' #zField
 Ps0 @PushWFArc f5 '' #zField
@@ -42,6 +41,7 @@ Ps0 @PushWFArc f8 '' #zField
 Ps0 @PushWFArc f6 '' #zField
 Ps0 @PushWFArc f19 '' #zField
 Ps0 @PushWFArc f20 '' #zField
+Ps0 @PushWFArc f15 '' #zField
 >Proto Ps0 Ps0 PortalCaseMenuProcess #zField
 Ps0 f0 guid 156F869FC6B3D9ED #txt
 Ps0 f0 type ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData #txt
@@ -165,13 +165,7 @@ Ps0 f13 actionDecl 'ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuDat
 ' #txt
 Ps0 f13 actionTable 'out=in;
 ' #txt
-Ps0 f13 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
-import java.util.Arrays;
-import ch.ivy.addon.portal.generic.common.TreeNodeType;
-import ch.ivy.addon.portalkit.util.MenuUtils;
-import ch.ivy.addon.portalkit.bean.MenuStateBean;
-import ch.ivy.addon.portalkit.jsf.ManagedBeans;
-import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+Ps0 f13 actionCode 'import ch.ivy.addon.portal.generic.common.TreeNodeType;
 import ch.ivy.addon.portal.generic.view.CaseView;
 import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -200,12 +194,12 @@ Ps0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>build data model, 
 case view</name>
-        <nameStyle>28,5
+        <nameStyle>28,5,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f13 294 340 36 24 -47 14 #rect
+Ps0 f13 294 340 36 24 -49 14 #rect
 Ps0 f13 @|StepIcon #fIcon
 Ps0 f38 type ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData #txt
 Ps0 f38 processCall 'Functional Processes/OpenPortalCases:useView(ch.ivy.addon.portal.generic.view.CaseView)' #txt
@@ -265,8 +259,6 @@ Ps0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ps0 f7 120 176 160 48 -66 -9 #rect
 Ps0 f7 @|StepIcon #fIcon
-Ps0 f15 expr out #txt
-Ps0 f15 67 200 120 200 #arcP
 Ps0 f17 expr out #txt
 Ps0 f17 280 200 304 200 #arcP
 Ps0 f10 type ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData #txt
@@ -338,14 +330,14 @@ Ps0 f19 1 800 152 #addKink
 Ps0 f19 0 0.627266316724181 0 0 #arcLabel
 Ps0 f20 expr out #txt
 Ps0 f20 330 352 394 352 #arcP
+Ps0 f15 expr out #txt
+Ps0 f15 67 200 120 200 #arcP
 >Proto Ps0 .type ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
 >Proto Ps0 '' #fIcon
 Ps0 f0 mainOut f2 tail #connect
 Ps0 f2 head f1 mainIn #connect
-Ps0 f3 mainOut f15 tail #connect
-Ps0 f15 head f7 mainIn #connect
 Ps0 f7 mainOut f17 tail #connect
 Ps0 f17 head f9 mainIn #connect
 Ps0 f10 out f5 tail #connect
@@ -368,3 +360,5 @@ Ps0 f21 mainOut f19 tail #connect
 Ps0 f19 head f22 in #connect
 Ps0 f13 mainOut f20 tail #connect
 Ps0 f20 head f38 mainIn #connect
+Ps0 f3 mainOut f15 tail #connect
+Ps0 f15 head f7 mainIn #connect
