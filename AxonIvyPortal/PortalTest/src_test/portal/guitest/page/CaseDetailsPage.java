@@ -338,7 +338,7 @@ public class CaseDetailsPage extends TemplatePage {
       alert.accept();
     }
     String uploadDialogId =
-        String.format("case-widget:case-list-scroller:%d:case-item:case-body:document:document-upload-dialog-", index);
+        String.format("case-widget:case-list-scroller:%d:case-item:case-body:document:document-upload-dialog", index);
     waitForElementDisplayed(By.id(uploadDialogId), true);
     try {
       click(By.className("ui-fileupload-choose"));
