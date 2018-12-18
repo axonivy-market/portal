@@ -63,6 +63,7 @@
           <p:commandButton id="update-command" styleClass="" global="false"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
             actionListener="#{taskFilter.validate()}"
+            process="@form"
             update="#{cc.clientId}:filter-open-form @form"
             oncomplete="if (args &amp;&amp; args.validationFailed) PF('#{widgetVarPanel}').show(); taskWidget.setupScrollbar(); taskWidget.setupHeader()">
             <f:actionListener binding="#{logic.updateTasksByFilter(taskContainerId)}" />
