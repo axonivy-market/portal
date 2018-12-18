@@ -789,13 +789,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
 
   private boolean canUserResumeTask(String userName, ITask task) {
     IUser user = findUser(userName, task);
-    if (SUSPENDED == task.getState()) {
-      return task.getActivatorUserCandidates().contains(user);
-    }
-    if (RESUMED == task.getState() || PARKED == task.getState()) {
-      return user.equals(task.getWorkerUser());
-    }
-    return false;
+    return task.canUserResumeTask(user.getUserToken()).wasSuccessful();
   }
   
   private boolean isTaskDoneByInvolveUser(String userName, ITask task) {
