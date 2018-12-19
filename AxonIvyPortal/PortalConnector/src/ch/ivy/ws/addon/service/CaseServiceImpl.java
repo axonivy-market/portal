@@ -780,12 +780,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
   }
 
   private void queryExcludeHiddenCases(CaseQuery query) {
-    List<ICase> hiddenCases =
-        executeCaseQuery(CaseQuery.create().where().additionalProperty("HIDE").isNotNull(), 0, -1);
-
-    hiddenCases.forEach(hiddenCase -> {
-      query.where().and().caseId().isNotEqual(hiddenCase.getId());
-    });
+	  query.where().and().additionalProperty("HIDE").isNull();
   }
 
 }

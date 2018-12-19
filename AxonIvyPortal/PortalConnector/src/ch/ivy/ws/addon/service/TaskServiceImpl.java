@@ -912,12 +912,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   }
 
   private void queryExcludeHiddenTasks(TaskQuery query) {
-    List<ITask> hiddenTasks =
-        executeTaskQuery(TaskQuery.create().where().additionalProperty("HIDE").isNotNull(), 0, -1);
-
-    hiddenTasks.forEach(hiddenTask -> {
-      query.where().and().taskId().isNotEqual(hiddenTask.getId());
-    });
+	  query.where().and().additionalProperty("HIDE").isNull();
   }
 
   /**
