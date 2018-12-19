@@ -12,7 +12,13 @@ public class DateTimeGlobalSettingService {
   }
 
   public String getGlobalSettingPattern() {
-    return isHideTime() ? getDatePattern() : getDateTimePattern();
+    Object attribute = Ivy.session().getAttribute(HIDE_TIME);
+    if (attribute == null){
+      boolean hideTime = isHideTime();
+      Ivy.session().setAttribute(HIDE_TIME, Boolean.toString(hideTime));
+      return hideTime ? getDatePattern() : getDateTimePattern();
+    } 
+    return Boolean.valueOf((String)attribute)? getDatePattern() : getDateTimePattern();
   }
 
   public String getDateTimePattern() {

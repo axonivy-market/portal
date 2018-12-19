@@ -103,12 +103,12 @@
               <p:resetInput target=":change-password-dialog" />
             </p:commandLink></li>
 
-          <li><p:link id="project-info-menu-item" href="#"
+          <li><p:link id="project-info-menu-item" href="#" 
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/info')}"
-              onclick="PF('project-info-dialog').show()" /></li>
+              onclick="rcProjectInfo();" /></li>
 
           <li><ic:ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting id="logout-setting"
-              isWorkingOnATask="#{isWorkingOnATask}" /></li>
+              isWorkingOnATask="#{isWorkingOnATask}" hideLogout="#{userMenuBean.hiddenLogout}"/></li>
         </ul></li>
       <li jsf:rendered="#{enablesChat}"><a jsf:id="toggle-chat-panel-command"
         class="notification-badge mod-chat-menu js-toggle-chat-panel"><i class="fa fa-comment" /></a></li>
@@ -179,6 +179,10 @@
           id="project-version-close-button" type="button" onclick="PF('project-info-dialog').hide();" />
       </h:panelGroup>
     </p:dialog>
+    
+    <h:form>
+      <p:remoteCommand name="rcProjectInfo" actionListener="#{projectVersionBean.loadData}" oncomplete="PF('project-info-dialog').show()" update="project-info-dialog" />
+    </h:form>
     
   </ui:insert>
   <c:if test="#{enablesChat eq true}">

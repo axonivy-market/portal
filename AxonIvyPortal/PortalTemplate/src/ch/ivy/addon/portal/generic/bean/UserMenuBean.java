@@ -16,6 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.context.RequestContext;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portal.generic.util.SessionUtils;
 import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.bo.RemoteWebStartable;
@@ -54,33 +55,45 @@ public class UserMenuBean implements Serializable {
     userName = Ivy.session().getSessionUserName();
     return userName;
   }
+  
+  private boolean getAttributeValue(String attributeName){
+    Object attribute = Ivy.session().getAttribute(attributeName);
+    if (attribute == null){
+      GlobalSettingService globalSettingSerive = new GlobalSettingService();
+      String attributeValue = globalSettingSerive.findGlobalSettingValue(attributeName);
+      Ivy.session().setAttribute(attributeName, attributeValue);
+      return Boolean.parseBoolean(attributeValue);      
+    }
+    return Boolean.parseBoolean((String)attribute);
+  }
 
   public boolean isShowServerInformation() {
-    GlobalSettingService globalSettingSerive = new GlobalSettingService();
-    String isShowServerInformation = globalSettingSerive.findGlobalSettingValue(GlobalVariable.SHOW_ENVIRONMENT_INFO);
-    return Boolean.parseBoolean(isShowServerInformation);
+    return getAttributeValue(GlobalVariable.SHOW_ENVIRONMENT_INFO);
   }
 
   public boolean isHiddenLogout() {
-    GlobalSettingService globalSettingSerive = new GlobalSettingService();
-    String isHiddenLogout = globalSettingSerive.findGlobalSettingValue(GlobalVariable.HIDE_LOGOUT_BUTTON);
-    return Boolean.parseBoolean(isHiddenLogout);
+    return getAttributeValue(GlobalVariable.HIDE_LOGOUT_BUTTON);
   }
 
   public boolean isHiddenChangePassword() {
-    GlobalSettingService globalSettingSerive = new GlobalSettingService();
-    String isHiddenChangePassword =
-        globalSettingSerive.findGlobalSettingValue(GlobalVariable.HIDE_CHANGE_PASSWORD_BUTTON);
-    return Boolean.parseBoolean(isHiddenChangePassword);
+    return getAttributeValue(GlobalVariable.HIDE_CHANGE_PASSWORD_BUTTON);
   }
 
   public int getClientSideTimeout() {
-    GlobalSettingService globalSettingSerive = new GlobalSettingService();
-    String clientSideTimeoutInMinute = globalSettingSerive.findGlobalSettingValue(GlobalVariable.CLIENT_SIDE_TIMEOUT);
-    if (clientSideTimeoutInMinute != null && !clientSideTimeoutInMinute.isEmpty()) {
-      return Integer.valueOf(clientSideTimeoutInMinute) * MINUTE_TO_SECOND * SECONND_TO_MILLISECOND;
-    }
-    return getDefaultClientSideTimeout();
+    Object attribute = Ivy.session().getAttribute(GlobalVariable.CLIENT_SIDE_TIMEOUT);
+    if (attribute == null){
+      GlobalSettingService globalSettingSerive = new GlobalSettingService();
+      String clientSideTimeoutInMinute = globalSettingSerive.findGlobalSettingValue(GlobalVariable.CLIENT_SIDE_TIMEOUT);
+      int timeout;
+      if (StringUtils.isNotBlank(clientSideTimeoutInMinute)) {
+        timeout = Integer.valueOf(clientSideTimeoutInMinute) * MINUTE_TO_SECOND * SECONND_TO_MILLISECOND;
+      } else {
+        timeout = getDefaultClientSideTimeout();
+      }
+      Ivy.session().setAttribute(GlobalVariable.CLIENT_SIDE_TIMEOUT, String.valueOf(timeout));
+      return timeout;
+    } 
+    return Integer.valueOf((String)attribute);
   }
 
   private int getDefaultClientSideTimeout() {
@@ -91,11 +104,17 @@ public class UserMenuBean implements Serializable {
   }
 
   public String getLogoutPage() throws Exception {
-    Map<String, Object> response =
-        IvyAdapterService.startSubProcess("getLogoutPage()", null,
-            Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
-    String logoutPage = (String) response.get("logoutPage");
-    return StringUtils.isNotBlank(logoutPage) ? logoutPage : getHomePageURL();
+    Object attribute = Ivy.session().getAttribute(SessionUtils.LOGOUT_PAGE_ATTRIBUTE);
+    if (attribute == null){
+      Map<String, Object> response =
+          IvyAdapterService.startSubProcess("getLogoutPage()", null,
+              Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
+      String logoutPage = (String) response.get("logoutPage");
+      String logoutPageUrl = StringUtils.isNotBlank(logoutPage) ? logoutPage : getHomePageURL();
+      Ivy.session().setAttribute(SessionUtils.LOGOUT_PAGE_ATTRIBUTE, logoutPageUrl);
+      return logoutPageUrl;
+    }
+    return String.valueOf(attribute);
   }
 
   public String getHomePageURL() throws Exception {

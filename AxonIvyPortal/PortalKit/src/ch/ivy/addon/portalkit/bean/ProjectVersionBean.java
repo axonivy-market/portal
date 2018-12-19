@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -19,19 +18,10 @@ import ch.ivyteam.ivy.environment.Ivy;
 @ManagedBean
 @ViewScoped
 public class ProjectVersionBean implements Serializable {
-
+  private static final long serialVersionUID = -2148042793400166168L;
   private String engineVersion;
   private String portalVersion;
   private Map<String, List<RemoteLibrary>> projectLibraries;
-
-  @SuppressWarnings("restriction")
-  @PostConstruct
-  private void init() {
-    engineVersion = ch.ivyteam.ivy.Advisor.getAdvisor().getVersion().toString();
-    ILibrary portalLibrary = LibraryUtils.findReleasedLibrary(Ivy.wf().getApplication(), PortalLibrary.PORTAL_KIT.getValue());
-    portalVersion = portalLibrary.getQualifiedVersion().toString();
-    projectLibraries = retrieveProjectLibraries();
-  }
 
   private Map<String, List<RemoteLibrary>> retrieveProjectLibraries() {
     AbstractLibraryService service = LibraryServiceFactory.getLibraryService();
@@ -48,5 +38,13 @@ public class ProjectVersionBean implements Serializable {
 
   public Map<String, List<RemoteLibrary>> getProjectLibraries() {
     return projectLibraries;
+  }
+  
+  @SuppressWarnings("restriction")
+  public void loadData(){
+    engineVersion = ch.ivyteam.ivy.Advisor.getAdvisor().getVersion().toString();
+    ILibrary portalLibrary = LibraryUtils.findReleasedLibrary(Ivy.wf().getApplication(), PortalLibrary.PORTAL_KIT.getValue());
+    portalVersion = portalLibrary.getQualifiedVersion().toString();
+    projectLibraries = retrieveProjectLibraries();
   }
 }

@@ -6,18 +6,19 @@
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="isWorkingOnATask" default="false" />
+  <cc:attribute name="hideLogout" default="false"/>
 </cc:interface>
 
 <cc:implementation>
   <div id="#{cc.clientId}">
     <p:commandLink id="logout-menu-item"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
-      rendered="#{!userMenuBean.hiddenLogout and !cc.attrs.isWorkingOnATask}" actionListener="#{logic.logout}"
+      rendered="#{!cc.attrs.hideLogout and !cc.attrs.isWorkingOnATask}" actionListener="#{logic.logout}"
       oncomplete="returnHomePage()" />
 
     <p:link id="logout-confirmation-menu-item" href="#"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
-      rendered="#{!userMenuBean.hiddenLogout and cc.attrs.isWorkingOnATask}" onclick="PF('logoutConfirmation').show()" />
+      rendered="#{!cc.attrs.hideLogout and cc.attrs.isWorkingOnATask}" onclick="PF('logoutConfirmation').show()" />
 
     <p:confirmDialog id="logout-confirmation-dialog"
       header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" widgetVar="logoutConfirmation"
