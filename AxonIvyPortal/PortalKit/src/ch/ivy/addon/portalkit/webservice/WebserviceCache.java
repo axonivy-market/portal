@@ -15,7 +15,7 @@ public final class WebserviceCache {
   }
   
   public void invalidateGetApplicationsWSCache(){
-    IDataCacheGroup wsGroupName = Ivy.datacache().getAppCache().getGroup(GET_APPLICATIONS_WS_GROUP_NAME);
+    IDataCacheGroup wsGroupName = Ivy.datacache().getEnvironmentCache().getGroup(GET_APPLICATIONS_WS_GROUP_NAME);
     if (wsGroupName != null){
       Ivy.log().debug("CLEAR GET APPS WS CACHE");
       Ivy.datacache().getAppCache().invalidateGroup(wsGroupName );

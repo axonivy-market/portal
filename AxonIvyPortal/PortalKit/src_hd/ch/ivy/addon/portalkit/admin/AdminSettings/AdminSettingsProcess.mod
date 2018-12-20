@@ -2417,18 +2417,22 @@ As0 f15 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData
 ' #txt
 As0 f15 actionTable 'out=in;
 ' #txt
-As0 f15 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.GlobalSetting;
+As0 f15 actionCode 'import ch.ivy.addon.portalkit.support.DataCache;
+import ch.ivy.addon.portalkit.persistence.domain.GlobalSetting;
 
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
 GlobalSettingService globalSettingService= new GlobalSettingService();
-in.selectedSetting = globalSettingService.save(in.selectedSetting) as GlobalSetting;' #txt
+in.selectedSetting = globalSettingService.save(in.selectedSetting) as GlobalSetting;
+
+DataCache.invalidateGlobalSettingCache();' #txt
 As0 f15 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>save global setting</name>
-        <nameStyle>19,7
+        <name>invalidate cache &amp;
+save global setting</name>
+        <nameStyle>38,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -2468,15 +2472,19 @@ As0 f31 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData
 ' #txt
 As0 f31 actionTable 'out=in;
 ' #txt
-As0 f31 actionCode 'import ch.ivy.addon.portalkit.service.GlobalSettingService;
+As0 f31 actionCode 'import ch.ivy.addon.portalkit.support.DataCache;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 GlobalSettingService globalSettingService = new GlobalSettingService();
-globalSettingService.delete(in.selectedSetting);' #txt
+globalSettingService.delete(in.selectedSetting);
+
+DataCache.invalidateGlobalSettingCache();' #txt
 As0 f31 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>delete global setting</name>
-        <nameStyle>21,7
+        <name>delete global setting
+&amp; invalidate cache</name>
+        <nameStyle>40,7
 </nameStyle>
     </language>
 </elementInfo>

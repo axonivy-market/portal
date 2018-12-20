@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.service;
 
 import static ch.ivy.addon.portalkit.service.GlobalSettingService.HIDE_TIME;
+import ch.ivy.addon.portalkit.support.DataCache;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class DateTimeGlobalSettingService {
@@ -12,10 +13,10 @@ public class DateTimeGlobalSettingService {
   }
 
   public String getGlobalSettingPattern() {
-    Object attribute = Ivy.session().getAttribute(HIDE_TIME);
+    Object attribute = DataCache.getGlobalSetting(HIDE_TIME);
     if (attribute == null){
       boolean hideTime = isHideTime();
-      Ivy.session().setAttribute(HIDE_TIME, Boolean.toString(hideTime));
+      DataCache.cacheGlobalSetting(HIDE_TIME, String.valueOf(hideTime));
       return hideTime ? getDatePattern() : getDateTimePattern();
     } 
     return Boolean.valueOf((String)attribute)? getDatePattern() : getDateTimePattern();
