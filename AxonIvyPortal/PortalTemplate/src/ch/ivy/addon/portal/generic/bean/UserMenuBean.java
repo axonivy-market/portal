@@ -56,31 +56,23 @@ public class UserMenuBean implements Serializable {
     return userName;
   }
   
-  private Object getAttributeValue(String attributeName){
-    Object attribute = DataCache.getGlobalSetting(attributeName);
-    if (attribute == null){
-      GlobalSettingService globalSettingSerive = new GlobalSettingService();
-      String attributeValue = globalSettingSerive.findGlobalSettingValue(attributeName);
-      DataCache.cacheGlobalSetting(attributeName, attributeValue);
-      return attributeValue;      
-    }
-    return attribute;
-  }
-
   public boolean isShowServerInformation() {
-    return Boolean.parseBoolean((String)getAttributeValue(GlobalVariable.SHOW_ENVIRONMENT_INFO));
+    final Object globalSettingValue = DataCache.getGlobalSettingValue(GlobalVariable.SHOW_ENVIRONMENT_INFO);
+    return Boolean.parseBoolean((String)globalSettingValue);
   }
 
   public boolean isHiddenLogout() {
-    return Boolean.parseBoolean((String)getAttributeValue(GlobalVariable.HIDE_LOGOUT_BUTTON));
+    final Object globalSettingValue = DataCache.getGlobalSettingValue(GlobalVariable.HIDE_LOGOUT_BUTTON);
+    return Boolean.parseBoolean((String)globalSettingValue);
   }
 
   public boolean isHiddenChangePassword() {
-    return Boolean.parseBoolean((String)getAttributeValue(GlobalVariable.HIDE_CHANGE_PASSWORD_BUTTON));
+    final Object globalSettingValue = DataCache.getGlobalSettingValue(GlobalVariable.HIDE_CHANGE_PASSWORD_BUTTON);
+    return Boolean.parseBoolean((String)globalSettingValue);
   }
 
   public int getClientSideTimeout() {
-    Object attribute = DataCache.getGlobalSetting(GlobalVariable.CLIENT_SIDE_TIMEOUT);
+    Object attribute = DataCache.getGlobalSettingFromCache(GlobalVariable.CLIENT_SIDE_TIMEOUT);
     if (attribute == null){
       GlobalSettingService globalSettingSerive = new GlobalSettingService();
       String clientSideTimeoutInMinute = globalSettingSerive.findGlobalSettingValue(GlobalVariable.CLIENT_SIDE_TIMEOUT);
@@ -159,7 +151,7 @@ public class UserMenuBean implements Serializable {
   }
 
   private String getHomePageFromSetting() {
-    return String.valueOf(getAttributeValue(GlobalVariable.HOMEPAGE_URL));
+    return String.valueOf(DataCache.getGlobalSettingValue(GlobalVariable.HOMEPAGE_URL));
   }
 
   private boolean isDefaultPortalApp() {

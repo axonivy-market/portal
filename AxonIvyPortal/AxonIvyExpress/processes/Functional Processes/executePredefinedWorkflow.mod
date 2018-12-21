@@ -517,17 +517,16 @@ ew0 f29 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 ew0 f29 actionTable 'out=in;
 ' #txt
-ew0 f29 actionCode 'import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
-String useExpressEndPage = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.EXPRESS_END_PAGE);
+ew0 f29 actionCode 'import ch.ivy.addon.portalkit.support.DataCache;
+import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
 
-in.useExpressEndPage = useExpressEndPage.isEmpty()? true : Boolean.valueOf(useExpressEndPage);' #txt
+in.useExpressEndPage = Boolean.valueOf(DataCache.getGlobalSettingValue(GlobalVariable.EXPRESS_END_PAGE) as String); ' #txt
 ew0 f29 type gawfs.ExecutePredefinedWorkflowData #txt
 ew0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>read express end page setting</name>
-        <nameStyle>29
+        <nameStyle>29,7
 </nameStyle>
     </language>
 </elementInfo>

@@ -763,19 +763,9 @@ Cs0 f64 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDo
 Cs0 f64 actionTable 'out=in;
 ' #txt
 Cs0 f64 actionCode 'import ch.ivy.addon.portalkit.support.DataCache;
-import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
-Object attributeValue = DataCache.getGlobalSetting(GlobalVariable.HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE);
-if (attributeValue == null){
-	GlobalSettingService globalSettingSerive = new GlobalSettingService();
-	String isHideUploadDocumentForDoneCase = globalSettingSerive.findGlobalSettingValue(GlobalVariable.HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE);
-	in.isHideUploadDocumentForDoneCase = Boolean.valueOf(isHideUploadDocumentForDoneCase);
-	DataCache.cacheGlobalSetting(GlobalVariable.HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE, in.isHideUploadDocumentForDoneCase.toString());  
-} else {
-	in.isHideUploadDocumentForDoneCase = Boolean.valueOf(String.valueOf(attributeValue));
-}' #txt
+in.isHideUploadDocumentForDoneCase = Boolean.valueOf(DataCache.getGlobalSettingValue(GlobalVariable.HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE) as String);' #txt
 Cs0 f64 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
 Cs0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

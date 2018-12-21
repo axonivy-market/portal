@@ -12,8 +12,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.extensions.util.json.GsonConverter;
 
 import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
+import ch.ivy.addon.portalkit.support.DataCache;
 import ch.ivy.addon.portalkit.support.UrlDetector;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -30,15 +30,14 @@ public final class PortalNavigator {
 
   public String getPortalStartUrl() throws Exception {
     String homePageURL = getHomePageFromSetting();
-    if (!homePageURL.isEmpty()) {
+    if (StringUtils.isNotBlank(homePageURL)) {
       return homePageURL;
     }
     return defaultPortalStartUrl(false);
   }
 
   private String getHomePageFromSetting() {
-    GlobalSettingService globalSettingSerive = new GlobalSettingService();
-    return globalSettingSerive.findGlobalSettingValue(GlobalVariable.HOMEPAGE_URL);
+    return String.valueOf(DataCache.getGlobalSettingValue(GlobalVariable.HOMEPAGE_URL));
   }
 
   private String defaultPortalStartUrl(boolean isAbsoluteLink) throws Exception {

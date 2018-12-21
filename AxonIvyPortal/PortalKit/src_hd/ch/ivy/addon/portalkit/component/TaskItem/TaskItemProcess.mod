@@ -1151,11 +1151,10 @@ Ts0 f66 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
 ' #txt
 Ts0 f66 actionTable 'out=in;
 ' #txt
-Ts0 f66 actionCode 'import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
-GlobalSettingService service = new GlobalSettingService();
+Ts0 f66 actionCode 'import ch.ivy.addon.portalkit.support.DataCache;
+import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
 
-String isShowTaskButtonLabels =  service.findGlobalSettingValue(GlobalVariable.SHOW_TASK_BUTTON_LABELS);
+String isShowTaskButtonLabels =  String.valueOf(DataCache.getGlobalSettingValue(GlobalVariable.SHOW_TASK_BUTTON_LABELS));
 
 if(isShowTaskButtonLabels != null && !isShowTaskButtonLabels.isEmpty()){
 	in.isShowTaskButtonLabels = Boolean.parseBoolean(isShowTaskButtonLabels);
@@ -1169,7 +1168,7 @@ Ts0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Init show/hide
 buttons</name>
-        <nameStyle>22
+        <nameStyle>22,7
 </nameStyle>
     </language>
 </elementInfo>

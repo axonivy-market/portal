@@ -36,7 +36,7 @@ public class GlobalSettingService extends AbstractService<GlobalSetting> {
       globalVariable = GlobalVariable.HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR;
       defaultValue = false;
     }
-    Object atttributeValue = DataCache.getGlobalSetting(globalVariable.toString());
+    Object atttributeValue = DataCache.getGlobalSettingFromCache(globalVariable.toString());
     if (atttributeValue == null){
       String settingValue = findGlobalSettingValue(globalVariable.toString());
       boolean booleanValue = StringUtils.isBlank(settingValue) ? defaultValue : Boolean.parseBoolean(settingValue);

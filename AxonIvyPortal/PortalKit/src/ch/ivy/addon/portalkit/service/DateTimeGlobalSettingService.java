@@ -13,7 +13,7 @@ public class DateTimeGlobalSettingService {
   }
 
   public String getGlobalSettingPattern() {
-    Object attribute = DataCache.getGlobalSetting(HIDE_TIME);
+    Object attribute = DataCache.getGlobalSettingFromCache(HIDE_TIME);
     if (attribute == null){
       boolean hideTime = isHideTime();
       DataCache.cacheGlobalSetting(HIDE_TIME, String.valueOf(hideTime));

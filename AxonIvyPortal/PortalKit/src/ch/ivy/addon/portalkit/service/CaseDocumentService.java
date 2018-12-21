@@ -6,7 +6,6 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
@@ -18,6 +17,7 @@ import ch.ivy.addon.portalkit.document.DocumentDetector;
 import ch.ivy.addon.portalkit.document.DocumentDetectorFactory;
 import ch.ivy.addon.portalkit.document.DocumentExtensionConstants;
 import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
+import ch.ivy.addon.portalkit.support.DataCache;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.vo.DocumentVO;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -126,19 +126,13 @@ public class CaseDocumentService {
   }
   
   public static boolean enableScriptCheckingForUploadedDocument() {
-    GlobalSettingService globalSettingSerive = new GlobalSettingService();
-    String enableScriptCheckingForUploadedDocument = globalSettingSerive.findGlobalSettingValue(GlobalVariable.ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT);
-    return Boolean.parseBoolean(enableScriptCheckingForUploadedDocument);
+    return Boolean.parseBoolean((String)DataCache.getGlobalSettingValue(GlobalVariable.ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT));
   }
   
   private IDocumentService documentsOf(ICase iCase) {
     try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<IDocumentService>() {
-
-        @Override
-        public IDocumentService call() throws Exception {
-          return iCase.documents();
-        }
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+        return iCase.documents();
       });
     } catch (Exception e) {
       throw new RuntimeException(e);
@@ -164,7 +158,7 @@ public class CaseDocumentService {
     GlobalSettingService globalSettingSerive = new GlobalSettingService();
     if(globalSettingSerive.isGlobalSettingAvailable(GlobalVariable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION)){
       String supportedFileType = globalSettingSerive.findGlobalSettingValue(GlobalVariable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION);
-      if(StringUtils.EMPTY.equals(supportedFileType)){
+      if(StringUtils.isBlank(supportedFileType)){
         return new ArrayList<>();
       }
       else{

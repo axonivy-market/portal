@@ -3,8 +3,9 @@ package ch.ivy.addon.portalkit.util;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.Callable;
+import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
@@ -31,13 +32,13 @@ public class SecurityServiceUtils {
    * @return list of application name.
    */
   public static List<String> getAppNames(Server server) {
-    List<String> apps = new ArrayList<String>();
     if (server != null) {
-      for (Application app : server.getApplications()) {
-        apps.add(app.getName());
-      }
+      return CollectionUtils.emptyIfNull(server.getApplications())
+          .stream()
+          .map(Application::getName)
+          .collect(Collectors.toList());
     }
-    return apps;
+    return new ArrayList<String>();
   }
 
   /**
@@ -48,9 +49,7 @@ public class SecurityServiceUtils {
    * @throws Exception exception
    */
   public static String getProcessUri(final String processStartsSignature) throws Exception {
-    return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<String>() {
-      @Override
-      public String call() throws Exception {
+    return ServerFactory.getServer().getSecurityManager().executeAsSystem(()-> {
         String requestUri = "";
         if (Ivy.request() instanceof IHttpRequest) {
           Set<IProcessStart> processStarts = Ivy.wf().findProcessStartsBySignature(processStartsSignature);
@@ -60,9 +59,7 @@ public class SecurityServiceUtils {
             requestUri = "/pro/" + fullRequestPath;
           }
         }
-
         return requestUri;
-      }
     });
   }
 
@@ -74,23 +71,19 @@ public class SecurityServiceUtils {
    * @throws Exception
    */
   public static String findProcessByUserFriendlyRequestPath(String processStartSignature) throws Exception {
-    return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<String>() {
-
-      @Override
-      public String call() throws Exception {
-        ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.wf().getApplication());
-        IProcessStart processStart =
-            processStartCollector.findProcessStartByUserFriendlyRequestPath(processStartSignature);
-        if (processStart != null) {
-          try {
-            return "/pro/" + processStart.getFullRequestPath();
-          } catch (Exception e) {
-            Ivy.log().error(e);
-            return StringUtils.EMPTY;
-          }
+    return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+      ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.wf().getApplication());
+      IProcessStart processStart =
+          processStartCollector.findProcessStartByUserFriendlyRequestPath(processStartSignature);
+      if (processStart != null) {
+        try {
+          return "/pro/" + processStart.getFullRequestPath();
+        } catch (Exception e) {
+          Ivy.log().error(e);
+          return StringUtils.EMPTY;
         }
-        return StringUtils.EMPTY;
       }
+      return StringUtils.EMPTY;
     });
   }
   
@@ -101,30 +94,27 @@ public class SecurityServiceUtils {
    * @throws Exception
    */
   public static String getDefaultPortalStartUrl() throws Exception {
-    return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<String>() {
-      @Override
-      public String call() throws Exception {
-        IApplication defaultPortalApplication =
-            ServerFactory.getServer().getApplicationConfigurationManager()
-                .findApplication(IApplication.PORTAL_APPLICATION_NAME);
-        if (defaultPortalApplication != null) {
-          ProcessStartCollector processStartCollector = new ProcessStartCollector(defaultPortalApplication);
-          IProcessStart processStart =
-              processStartCollector
-                  .findProcessStartByUserFriendlyRequestPath("Start Processes/PortalStart/PortalStart.ivp");
-          if (processStart != null) {
-            try {
-              return String.format("/%s/pro/%s",
-                  RequestUriFactory.getIvyContextName(ServerFactory.getServer().getApplicationConfigurationManager()),
-                  processStart.getFullRequestPath());
-            } catch (Exception e) {
-              Ivy.log().error(e);
-              return StringUtils.EMPTY;
-            }
+    return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+      IApplication defaultPortalApplication =
+          ServerFactory.getServer().getApplicationConfigurationManager()
+              .findApplication(IApplication.PORTAL_APPLICATION_NAME);
+      if (defaultPortalApplication != null) {
+        ProcessStartCollector processStartCollector = new ProcessStartCollector(defaultPortalApplication);
+        IProcessStart processStart =
+            processStartCollector
+                .findProcessStartByUserFriendlyRequestPath("Start Processes/PortalStart/PortalStart.ivp");
+        if (processStart != null) {
+          try {
+            return String.format("/%s/pro/%s",
+                RequestUriFactory.getIvyContextName(ServerFactory.getServer().getApplicationConfigurationManager()),
+                processStart.getFullRequestPath());
+          } catch (Exception e) {
+            Ivy.log().error(e);
+            return StringUtils.EMPTY;
           }
         }
-        return StringUtils.EMPTY;
       }
+      return StringUtils.EMPTY;
     });
   }
 
@@ -142,30 +132,25 @@ public class SecurityServiceUtils {
   
   public static String getApplicationNameFromSession() {
     Object selectedAppAttribute = getSessionAttribute(SessionAttribute.SELECTED_APP.toString());
-    String selectedApp = selectedAppAttribute != null ? selectedAppAttribute.toString() : null;
-    return selectedApp;
+    return selectedAppAttribute != null ? selectedAppAttribute.toString() : null;
   }
 
   public static Long getServerIdFromSession() {
     Object selectedServerIdAttribute = getSessionAttribute(SessionAttribute.SERVER_ID.toString());
-    Long serverId = selectedServerIdAttribute != null ? Long.parseLong(selectedServerIdAttribute.toString()) : null;
-    return serverId;
+    return selectedServerIdAttribute != null ? Long.parseLong(selectedServerIdAttribute.toString()) : null;
   }
 
   public static String getApplicationDisplayNameFromSession() {
     Object selectedAppDisplayNameAttribute = getSessionAttribute(SessionAttribute.SELECTED_APP_DISPLAY_NAME.toString());
-    String selectedAppDisplayName = selectedAppDisplayNameAttribute != null ? selectedAppDisplayNameAttribute.toString() : null;
-    return selectedAppDisplayName;
+    return selectedAppDisplayNameAttribute != null ? selectedAppDisplayNameAttribute.toString() : null;
+    
   }
   
   public static String findFriendlyRequestPathContainsKeyword(String keyword) throws Exception{
-    return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<String>() {
-      @Override
-      public String call() throws Exception {
-        ProcessStartCollector collector = new ProcessStartCollector(Ivy.wf().getApplication());
-        Object portalStartPmvId = getSessionAttribute(SessionAttribute.PORTAL_START_PMV_ID.toString());
-        return collector.findFriendlyRequestPathContainsKeyword(keyword, portalStartPmvId);
-      }
+    return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+      ProcessStartCollector collector = new ProcessStartCollector(Ivy.wf().getApplication());
+      Object portalStartPmvId = getSessionAttribute(SessionAttribute.PORTAL_START_PMV_ID.toString());
+      return collector.findFriendlyRequestPathContainsKeyword(keyword, portalStartPmvId);
     });
   }
 }
