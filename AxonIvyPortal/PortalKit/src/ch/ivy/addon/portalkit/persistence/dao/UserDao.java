@@ -18,10 +18,9 @@ import ch.ivyteam.ivy.environment.Ivy;
 @SuppressWarnings("unchecked")
 public class UserDao extends AbstractDao<User> {
 
-  public static final String USERS_CACHE_GROUP_NAME = "portalCache";
+  public static final String PORTAL_CACHE_GROUP_NAME = "portalCache";
   public static final String USERS_LIST_CACHE_ENTRY_NAME = "usersList";
   public static final String USERS_REPO_CACHE_ENTRY_NAME = "usersRepo";
-  public static final Integer CACHE_LIFETIME = 57600; //16 hous
 
   public UserDao() {
     super();
@@ -34,8 +33,8 @@ public class UserDao extends AbstractDao<User> {
   @ExecuteAsSystem
   private void getRepoIndexedByUserName() {
     repo = null;
-    IDataCache environmentCache = Ivy.datacache().getEnvironmentCache();
-    IDataCacheGroup cacheGroup = environmentCache.getGroup(USERS_CACHE_GROUP_NAME);
+    IDataCache environmentCache = Ivy.datacache().getAppCache();
+    IDataCacheGroup cacheGroup = environmentCache.getGroup(PORTAL_CACHE_GROUP_NAME);
     if (cacheGroup != null) {
       IDataCacheEntry cacheEntry = cacheGroup.getEntry(USERS_REPO_CACHE_ENTRY_NAME);
       if (cacheEntry != null) {
@@ -47,15 +46,15 @@ public class UserDao extends AbstractDao<User> {
       repo =
           Repos.builder().primaryKey(EntityProperty.ID.toString()).searchIndex(EntityProperty.USER_NAME.toString())
               .build(long.class, User.class).init(getAllUsers());
-      environmentCache.setEntry(USERS_CACHE_GROUP_NAME, USERS_REPO_CACHE_ENTRY_NAME, CACHE_LIFETIME, repo);
+      environmentCache.setEntry(PORTAL_CACHE_GROUP_NAME, USERS_REPO_CACHE_ENTRY_NAME, -1, repo);
     }
   }
   
   @ExecuteAsSystem
   private List<User> getAllUsers() {
     List<User> users = null;
-    IDataCache environmentCache = Ivy.datacache().getEnvironmentCache();
-    IDataCacheGroup cacheGroup = environmentCache.getGroup(USERS_CACHE_GROUP_NAME);
+    IDataCache environmentCache = Ivy.datacache().getAppCache();
+    IDataCacheGroup cacheGroup = environmentCache.getGroup(PORTAL_CACHE_GROUP_NAME);
     if (cacheGroup != null) {
       IDataCacheEntry cacheEntry = cacheGroup.getEntry(USERS_LIST_CACHE_ENTRY_NAME);
       if (cacheEntry != null) {
@@ -65,7 +64,7 @@ public class UserDao extends AbstractDao<User> {
     if (users == null) {
       Ivy.log().info("User list didn't exist in cache, store in cache now");
       users = findAll();
-      environmentCache.setEntry(USERS_CACHE_GROUP_NAME, USERS_LIST_CACHE_ENTRY_NAME, CACHE_LIFETIME, users);
+      environmentCache.setEntry(PORTAL_CACHE_GROUP_NAME, USERS_LIST_CACHE_ENTRY_NAME, -1, users);
     }
     return users;
   }

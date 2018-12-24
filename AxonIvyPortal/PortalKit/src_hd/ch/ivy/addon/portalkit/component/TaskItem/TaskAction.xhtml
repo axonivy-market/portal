@@ -41,8 +41,9 @@
         <h:outputText rendered="#{data.isShowTaskButtonLabels}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/openRequest')}" />
       </p:commandLink>
-      <p:commandLink id="task-side-steps-menu" onstart="event.stopPropagation();" styleClass="task-command side-step #{data.isShowTaskButtonLabels? 'side-step-position' : ''}" global="false" disabled="#{not task.hasMoreActions}"
-        actionListener="#{logic.collectSideSteps(task)}" oncomplete="PF('side-steps-panel-#{rowIndex}').loadContents();">
+      <p:commandLink id="task-side-steps-menu" onstart="event.stopPropagation();" styleClass="task-command side-step #{data.isShowTaskButtonLabels? 'side-step-position' : ''}" disabled="#{not task.hasMoreActions}"
+        actionListener="#{logic.collectSideSteps(task)}" oncomplete="PF('side-steps-panel-#{rowIndex}').loadContents();"
+        global="false" process="@none">
       	 <span class="action-icon tmi-ellipsis-v side-step-icon" />
       </p:commandLink>
       <p:overlayPanel id="side-steps-panel" widgetVar="side-steps-panel-#{rowIndex}" for="task-side-steps-menu"

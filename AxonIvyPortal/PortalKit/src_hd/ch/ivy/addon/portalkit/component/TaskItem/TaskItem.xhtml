@@ -41,7 +41,7 @@
         <ui:include src="TaskAction.xhtml" />
       </f:subview>
       <p:commandLink id="show-task-detail-link" class="show-task-detail-link" onstart="event.stopPropagation()" actionListener="#{taskWidgetBean.setExpandedTaskId(task.id, isExpanded)}" 
-        update="task-start @(.show-task-details-mode)" oncomplete="taskWidget.setupScrollbar(); taskListToolKit.responsive();" >
+        update="task-start @(.show-task-details-mode)" oncomplete="taskWidget.setupScrollbar(); taskListToolKit.responsive();" global="false" partialSubmit="true" >
         <h:panelGroup rendered="#{taskWidgetBean.expandedTaskId ne task.id}">
           <i class="fa fa-angle-double-down" />
         </h:panelGroup>

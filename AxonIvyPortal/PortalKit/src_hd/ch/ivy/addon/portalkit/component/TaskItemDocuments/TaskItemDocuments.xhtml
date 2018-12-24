@@ -35,7 +35,7 @@
     </p:scrollPanel>
     <h:panelGroup layout="block" styleClass="task-details-document-add">
       <p:commandLink id="add-document-command" styleClass="task-details-document-add-link" rendered="#{data.isShowUploadDocumentButton}"
-        actionListener="#{data.setTask(task)}" oncomplete="PF('document-upload-dialog').show()">
+        actionListener="#{data.setTask(task)}" oncomplete="PF('document-upload-dialog').show()" global="false" process="@none">
         <span class="fa fa-plus-circle task-details-document-add-link-icon" />
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}" />
       </p:commandLink>
