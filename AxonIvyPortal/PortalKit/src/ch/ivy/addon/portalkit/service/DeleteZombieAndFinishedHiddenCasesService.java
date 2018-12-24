@@ -7,13 +7,10 @@ import java.util.Locale;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.persistence.OrderDirection;
-import ch.ivyteam.ivy.workflow.CaseProperty;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivyteam.ivy.workflow.IPropertyFilter;
-import ch.ivyteam.ivy.workflow.PropertyOrder;
-import ch.ivyteam.logicalexpression.RelationalOperator;
+import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
 
 public class DeleteZombieAndFinishedHiddenCasesService {
   
@@ -27,16 +24,15 @@ public class DeleteZombieAndFinishedHiddenCasesService {
     Date currentDate = new java.util.Date();
     Ivy.log().info("***Job for deleting zombie and finished hidden system cases started at: " + currentDate + " by user: " + Ivy.session().getSessionUserName());
 
-    IPropertyFilter<CaseProperty> zombieCaseFilter = Ivy.wf().createCasePropertyFilter(CaseProperty.STATE, RelationalOperator.EQUAL, CaseState.ZOMBIE);
-    IPropertyFilter<CaseProperty> doneCaseFilter = Ivy.wf().createCasePropertyFilter(CaseProperty.STATE, RelationalOperator.EQUAL, CaseState.DONE);
-    IPropertyFilter<CaseProperty> destroyedCaseFilter = Ivy.wf().createCasePropertyFilter(CaseProperty.STATE, RelationalOperator.EQUAL, CaseState.DESTROYED);
-
-    IPropertyFilter<CaseProperty> caseFilter = zombieCaseFilter.or(doneCaseFilter).or(destroyedCaseFilter);
-
-    // create order
-    List<PropertyOrder<CaseProperty>> propertyOrder = PropertyOrder.create(CaseProperty.ID, OrderDirection.ASCENDING);
-
-    List<ICase> cases = Ivy.wf().findCases(caseFilter, propertyOrder, 0, -1, false).getResultList();
+    CaseQuery caseQuery = CaseQuery.create();
+    List<CaseState> filteredStates = Arrays.asList(CaseState.ZOMBIE, CaseState.DONE, CaseState.DESTROYED);
+    CaseQuery stateFieldQuery = CaseQuery.create();
+    IFilterQuery filteredQuery = stateFieldQuery.where();
+    for (CaseState state : filteredStates) {
+    	filteredQuery.or().state().isEqual(state);
+    }
+    caseQuery.where().and(stateFieldQuery).orderBy().caseId().ascending();
+    List<ICase> cases = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getResults(caseQuery, 0, -1);
 
     int numOfDeletedCases = 0;
     GlobalSettingService globalSettingService = new GlobalSettingService();
