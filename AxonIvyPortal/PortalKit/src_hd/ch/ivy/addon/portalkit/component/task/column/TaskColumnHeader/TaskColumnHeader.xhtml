@@ -17,6 +17,7 @@
 
   <p:commandLink id="#{cc.attrs.componentId}" styleClass="#{cc.attrs.styleClass} #{isSelected ? 'is-selected' : ''}"
     update="#{cc.attrs.componentToBeUpdated} #{p:component('task-view-container')} #{p:component('task-widget-sort-menu')}"
+    partialSubmit="true"
     oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()"
     rendered="#{data.dataModel.isSelectedColumn(sortField)}" >
     <f:actionListener

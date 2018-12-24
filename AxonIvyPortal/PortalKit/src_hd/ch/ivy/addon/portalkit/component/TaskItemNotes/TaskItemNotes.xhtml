@@ -29,7 +29,8 @@
           </span>
           <span class="task-note truncate-note u-italic-font">
             <p:commandLink id="note-message" value="#{note.message}" oncomplete="PF('#{cc.clientId}:view-note-dialog').show()"
-              actionListener="#{data.setFullNote(note.message)}" update="@widgetVar(#{cc.clientId}:view-note-dialog)" />
+              actionListener="#{data.setFullNote(note.message)}" update="@widgetVar(#{cc.clientId}:view-note-dialog)"
+              global="false" process="@none" />
           </span>
         </div>
         <div class="note-separator" />
@@ -38,7 +39,8 @@
 
     <h:panelGroup layout="block" styleClass="task-details-note-add">
       <p:commandLink id="add-note-command" styleClass="task-details-note-add-link"
-        actionListener="#{data.setTask(task)}" oncomplete="PF('#{cc.clientId}:addNewNoteDialog').show()">
+        actionListener="#{data.setTask(task)}" oncomplete="PF('#{cc.clientId}:addNewNoteDialog').show()"
+        global="false" process="@none">
         <span class="fa fa-plus-circle task-details-note-add-link-icon" />
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}" />
       </p:commandLink>
