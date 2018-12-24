@@ -171,26 +171,35 @@ tt0 f10 actionDecl 'ch.ivyteam.wf.processes.SynchronizeApplicationUserData out;
 ' #txt
 tt0 f10 actionTable 'out=in;
 ' #txt
-tt0 f10 actionCode 'import ch.ivy.addon.portalkit.persistence.dao.UserDao;
+tt0 f10 actionCode 'import ch.ivyteam.ivy.data.cache.IDataCache;
+import ch.ivyteam.ivy.server.ServerFactory;
+import ch.ivyteam.ivy.application.IApplication;
+import ch.ivy.addon.portalkit.persistence.dao.UserDao;
 import ch.ivyteam.ivy.data.cache.IDataCacheGroup;
 import ch.ivyteam.ivy.environment.Ivy;
 
 String PORTAL_CACHE_GROUP_NAME = "portalCache";
 String USERS_LIST_CACHE_ENTRY_NAME = "usersList";
 String USERS_REPO_CACHE_ENTRY_NAME = "usersRepo";
-IDataCacheGroup cacheGroup = Ivy.datacache().getAppCache().getGroup(PORTAL_CACHE_GROUP_NAME);
-if (cacheGroup != null) {
-	if(cacheGroup.getEntry(USERS_REPO_CACHE_ENTRY_NAME) != null) {
-		cacheGroup.invalidateEntry(USERS_REPO_CACHE_ENTRY_NAME);
-		ivy.log.info("Invalidated users repo cache");
-	}
-	if(cacheGroup.getEntry(USERS_LIST_CACHE_ENTRY_NAME) != null) {
-		cacheGroup.invalidateEntry(USERS_LIST_CACHE_ENTRY_NAME);
-		ivy.log.info("Invalidated users list cache");
+List<IApplication> applications = ServerFactory.getServer().getApplicationConfigurationManager().getApplications();
+for (IApplication application : applications) {
+	IDataCache cache = application.getAdapter(IDataCache.class) as IDataCache;
+	if (cache != null) {
+		IDataCacheGroup cacheGroup = cache.getGroup(PORTAL_CACHE_GROUP_NAME);
+		if (cacheGroup != null) {
+			if(cacheGroup.getEntry(USERS_REPO_CACHE_ENTRY_NAME) != null) {
+				cacheGroup.invalidateEntry(USERS_REPO_CACHE_ENTRY_NAME);
+				ivy.log.info("Invalidated users repo cache in application: " + application.getName());
+			}
+			if(cacheGroup.getEntry(USERS_LIST_CACHE_ENTRY_NAME) != null) {
+				cacheGroup.invalidateEntry(USERS_LIST_CACHE_ENTRY_NAME);
+				ivy.log.info("Invalidated users list cache in application: " + application.getName());
+			}
+		}
 	}
 }
 UserDao userDao = new UserDao();
-userDao.findByUserName("SYSTEM"); //get any name to init cache' #txt
+userDao.findByUserName("SYSTEM"); //get any name to init cache	' #txt
 tt0 f10 security system #txt
 tt0 f10 type ch.ivyteam.wf.processes.SynchronizeApplicationUserData #txt
 tt0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
