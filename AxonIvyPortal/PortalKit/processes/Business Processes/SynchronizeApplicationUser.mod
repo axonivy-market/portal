@@ -175,10 +175,10 @@ tt0 f10 actionCode 'import ch.ivy.addon.portalkit.persistence.dao.UserDao;
 import ch.ivyteam.ivy.data.cache.IDataCacheGroup;
 import ch.ivyteam.ivy.environment.Ivy;
 
-String USERS_CACHE_GROUP_NAME = "portalCache";
+String PORTAL_CACHE_GROUP_NAME = "portalCache";
 String USERS_LIST_CACHE_ENTRY_NAME = "usersList";
 String USERS_REPO_CACHE_ENTRY_NAME = "usersRepo";
-IDataCacheGroup cacheGroup = Ivy.datacache().getEnvironmentCache().getGroup(USERS_CACHE_GROUP_NAME);
+IDataCacheGroup cacheGroup = Ivy.datacache().getAppCache().getGroup(PORTAL_CACHE_GROUP_NAME);
 if (cacheGroup != null) {
 	if(cacheGroup.getEntry(USERS_REPO_CACHE_ENTRY_NAME) != null) {
 		cacheGroup.invalidateEntry(USERS_REPO_CACHE_ENTRY_NAME);
