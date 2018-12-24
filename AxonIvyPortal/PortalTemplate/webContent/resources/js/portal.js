@@ -290,8 +290,12 @@ function highlighSecondLevelMenuItem() {
   var menuData = $('*[id$=output-menu-state-info]').text();
   var menuItemElements = $('.second-level-menu-body tbody tr').get();
   $.each(menuItemElements, function(index, item) {
-    if (menuData != "" && menuData.indexOf(getCategoryClass(item)) != -1) {
-      $(item).toggleClass('on');
+    var categoryClass = getCategoryClass(item);
+    if (menuData != "") {
+      var itemIndex = menuData.indexOf(categoryClass);
+      if ((itemIndex != -1) && ((itemIndex + categoryClass.length == menuData.length) || (menuData.charAt(itemIndex + categoryClass.length) == '/'))) {
+        $(item).toggleClass('on'); 
+      }
     }
   });
 }
