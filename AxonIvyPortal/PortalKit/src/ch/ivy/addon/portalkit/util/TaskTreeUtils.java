@@ -97,11 +97,12 @@ public class TaskTreeUtils {
     newNodeData.setRootNodeAllTask(isRootAllTask);
     newNodeData.setFirstCategoryNode(false);
     TreeNode newNode = new DefaultTreeNode(nodeType, newNodeData, navigatorNode);
-    if (menuState.contains(nodeType)
+    newNode.setExpanded(false);
+    if (menuState.contains(nodeType) && (menuState.indexOf(nodeType) + nodeType.length() <= menuState.length())
         && !getLastCategoryFromCategoryPath(menuState).contains(getLastCategoryFromCategoryPath(nodeType))) {
-      newNode.setExpanded(true);
-    } else {
-      newNode.setExpanded(false);
+      if((menuState.indexOf(nodeType) + nodeType.length() == menuState.length()) || (menuState.charAt(menuState.indexOf(nodeType) + nodeType.length()) == '/')) {
+        newNode.setExpanded(true);
+      }
     }
     return newNode;
   }

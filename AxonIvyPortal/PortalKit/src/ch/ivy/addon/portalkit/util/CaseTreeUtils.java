@@ -93,12 +93,12 @@ public class CaseTreeUtils {
     newNodeData.setRootNodeAllCase(isRootAllCase);
     newNodeData.setFirstCategoryNode(false);
     TreeNode newNode = new DefaultTreeNode(nodeType, newNodeData, navigatorNode);
-    newNode.setExpanded(true);
-    if (menuState.contains(nodeType)
+    newNode.setExpanded(false);
+    if (menuState.contains(nodeType) && (menuState.indexOf(nodeType) + nodeType.length() <= menuState.length())
         && !getLastCategoryFromCategoryPath(menuState).contains(getLastCategoryFromCategoryPath(nodeType))) {
-      newNode.setExpanded(true);
-    } else {
-      newNode.setExpanded(false);
+      if((menuState.indexOf(nodeType) + nodeType.length() == menuState.length()) || (menuState.charAt(menuState.indexOf(nodeType) + nodeType.length()) == '/')) {
+        newNode.setExpanded(true);
+      }
     }
     return newNode;
   }
