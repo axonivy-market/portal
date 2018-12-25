@@ -2,6 +2,8 @@ package ch.ivy.addon.portalkit.support;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.service.ApplicationService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
@@ -27,8 +29,13 @@ public final class DataCache {
   }
   
   public static void invalidateGlobalSettingCache(){
+    IDataCacheGroup wsGroupNameCurrentApp = Ivy.datacache().getAppCache().getGroup(GLOBAL_SETTING_GROUP);
+    if (wsGroupNameCurrentApp != null){
+      Ivy.log().info("CLEAR GET APPS WS CACHE CURRENT APP");
+      Ivy.datacache().getAppCache().invalidateGroup(wsGroupNameCurrentApp );
+    }
     ApplicationService service = new ApplicationService();
-    final List<Application> findAllIvyApplications = service.findAllIvyApplications();
+    List<Application> findAllIvyApplications = service.findAllIvyApplications();
     findAllIvyApplications.forEach(application -> {
       try {
         ServerFactory.getServer().getSecurityManager().executeAsSystem(() ->{
@@ -36,27 +43,49 @@ public final class DataCache {
           IDataCache cache = (IDataCache) findApplication .getAdapter(IDataCache.class);
           IDataCacheGroup wsGroupName = cache.getGroup(GLOBAL_SETTING_GROUP);
           if (wsGroupName != null){
-            Ivy.log().debug("CLEAR GLOBAL SETTING CACHE");
-            Ivy.datacache().getAppCache().invalidateGroup(wsGroupName );
+            Ivy.log().error("CLEAR GLOBAL SETTING CACHE : {0} on application {1}", GLOBAL_SETTING_GROUP, application.getName());
+            wsGroupName.invalidateAllEntries();
           }
           return null;
         });
       } catch (Exception e) {
-        // TODO Auto-generated catch block
         Ivy.log().error(e);
       }
-      
     });
   }
   
-  public static Object getGlobalSettingValue(String attributeName){
+  public static String getGlobalSettingValueAsString(String attributeName){
     Object attribute = getGlobalSettingFromCache(attributeName);
     if (attribute == null){
-      GlobalSettingService globalSettingSerive = new GlobalSettingService();
-      String attributeValue = globalSettingSerive.findGlobalSettingValue(attributeName);
+      String attributeValue = getValueFromDB(attributeName);
       cacheGlobalSetting(attributeName, attributeValue);
       return attributeValue;      
     }
-    return attribute;
+    return String.valueOf(attribute);
+  }
+  
+  public static Boolean getGlobalSettingValueAsBoolean(String attributeName){
+    Object attribute = getGlobalSettingFromCache(attributeName);
+    if (attribute == null){
+      String attributeValue = getValueFromDB(attributeName);
+      cacheGlobalSetting(attributeName, attributeValue);
+      return Boolean.valueOf(attributeValue);      
+    }
+    return Boolean.valueOf((String)attribute);
+  }
+
+  private static String getValueFromDB(String attributeName) {
+    GlobalSettingService globalSettingSerive = new GlobalSettingService();
+    String attributeValue = globalSettingSerive.findGlobalSettingValue(attributeName);
+    return attributeValue;
+  }
+  
+  public static void cacheLogoutPage(String logoutUrl){
+    Ivy.datacache().getSessionCache().setEntry(LOGOUT_PAGE_GROUP, LOGOUT_PAGE_INDENTIFIER, logoutUrl);
+  }
+  
+  public static String getLogoutPageFromCache(){
+    IDataCacheEntry entry = Ivy.datacache().getSessionCache().getEntry(LOGOUT_PAGE_GROUP, LOGOUT_PAGE_INDENTIFIER);
+    return entry == null ? StringUtils.EMPTY : String.valueOf(entry.getValue());
   }
 }

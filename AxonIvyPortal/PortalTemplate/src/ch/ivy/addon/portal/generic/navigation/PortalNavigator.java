@@ -37,7 +37,7 @@ public final class PortalNavigator {
   }
 
   private String getHomePageFromSetting() {
-    return String.valueOf(DataCache.getGlobalSettingValue(GlobalVariable.HOMEPAGE_URL));
+    return DataCache.getGlobalSettingValueAsString(GlobalVariable.HOMEPAGE_URL);
   }
 
   private String defaultPortalStartUrl(boolean isAbsoluteLink) throws Exception {

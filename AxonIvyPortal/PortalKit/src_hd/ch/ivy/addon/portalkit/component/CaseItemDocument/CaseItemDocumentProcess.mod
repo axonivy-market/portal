@@ -765,7 +765,7 @@ Cs0 f64 actionTable 'out=in;
 Cs0 f64 actionCode 'import ch.ivy.addon.portalkit.support.DataCache;
 import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
 
-in.isHideUploadDocumentForDoneCase = Boolean.valueOf(DataCache.getGlobalSettingValue(GlobalVariable.HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE) as String);' #txt
+in.isHideUploadDocumentForDoneCase = DataCache.getGlobalSettingValueAsBoolean(GlobalVariable.HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE);' #txt
 Cs0 f64 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
 Cs0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

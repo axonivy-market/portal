@@ -57,18 +57,15 @@ public class UserMenuBean implements Serializable {
   }
   
   public boolean isShowServerInformation() {
-    final Object globalSettingValue = DataCache.getGlobalSettingValue(GlobalVariable.SHOW_ENVIRONMENT_INFO);
-    return Boolean.parseBoolean((String)globalSettingValue);
+    return DataCache.getGlobalSettingValueAsBoolean(GlobalVariable.SHOW_ENVIRONMENT_INFO);
   }
 
   public boolean isHiddenLogout() {
-    final Object globalSettingValue = DataCache.getGlobalSettingValue(GlobalVariable.HIDE_LOGOUT_BUTTON);
-    return Boolean.parseBoolean((String)globalSettingValue);
+    return DataCache.getGlobalSettingValueAsBoolean(GlobalVariable.HIDE_LOGOUT_BUTTON);
   }
 
   public boolean isHiddenChangePassword() {
-    final Object globalSettingValue = DataCache.getGlobalSettingValue(GlobalVariable.HIDE_CHANGE_PASSWORD_BUTTON);
-    return Boolean.parseBoolean((String)globalSettingValue);
+    return DataCache.getGlobalSettingValueAsBoolean(GlobalVariable.HIDE_CHANGE_PASSWORD_BUTTON);
   }
 
   public int getClientSideTimeout() {
@@ -96,11 +93,15 @@ public class UserMenuBean implements Serializable {
   }
 
   public String getLogoutPage() throws Exception {
-    Map<String, Object> response =
-        IvyAdapterService.startSubProcess("getLogoutPage()", null,
-            Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
-    String logoutPage = (String) response.get("logoutPage");
-    String logoutPageUrl = StringUtils.isNotBlank(logoutPage) ? logoutPage : getHomePageURL();
+    String logoutPageUrl = DataCache.getLogoutPageFromCache();
+    if (StringUtils.isBlank(logoutPageUrl)){
+      Map<String, Object> response =
+          IvyAdapterService.startSubProcess("getLogoutPage()", null,
+              Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
+      String logoutPage = (String) response.get("logoutPage");
+      logoutPageUrl = StringUtils.isNotBlank(logoutPage) ? logoutPage : getHomePageURL();
+      DataCache.cacheLogoutPage(logoutPageUrl);
+    }
     return logoutPageUrl;
   }
 
@@ -151,7 +152,7 @@ public class UserMenuBean implements Serializable {
   }
 
   private String getHomePageFromSetting() {
-    return String.valueOf(DataCache.getGlobalSettingValue(GlobalVariable.HOMEPAGE_URL));
+    return DataCache.getGlobalSettingValueAsString(GlobalVariable.HOMEPAGE_URL);
   }
 
   private boolean isDefaultPortalApp() {

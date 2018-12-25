@@ -574,7 +574,7 @@ for (StatisticChart chart : out.statisticChartList) {
 	}
 }
 
-String expiryLastDrilldownLevel =  DataCache.getGlobalSettingValue(GlobalVariable.EXPIRY_CHART_LAST_DRILLDOWN_LEVEL) as String;
+String expiryLastDrilldownLevel =  DataCache.getGlobalSettingValueAsString(GlobalVariable.EXPIRY_CHART_LAST_DRILLDOWN_LEVEL);
 if (StringUtils.isEmpty(expiryLastDrilldownLevel) || !service.getDrilldownLevels().contains(expiryLastDrilldownLevel.toUpperCase())) {
 	expiryLastDrilldownLevel = StatisticChartConstants.DRILLDOWN_LEVEL_HOUR;
 }

@@ -126,7 +126,7 @@ public class CaseDocumentService {
   }
   
   public static boolean enableScriptCheckingForUploadedDocument() {
-    return Boolean.parseBoolean((String)DataCache.getGlobalSettingValue(GlobalVariable.ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT));
+    return DataCache.getGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT);
   }
   
   private IDocumentService documentsOf(ICase iCase) {

@@ -520,7 +520,7 @@ ew0 f29 actionTable 'out=in;
 ew0 f29 actionCode 'import ch.ivy.addon.portalkit.support.DataCache;
 import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
 
-in.useExpressEndPage = Boolean.valueOf(DataCache.getGlobalSettingValue(GlobalVariable.EXPRESS_END_PAGE) as String); ' #txt
+in.useExpressEndPage = DataCache.getGlobalSettingValueAsBoolean(GlobalVariable.EXPRESS_END_PAGE); ' #txt
 ew0 f29 type gawfs.ExecutePredefinedWorkflowData #txt
 ew0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

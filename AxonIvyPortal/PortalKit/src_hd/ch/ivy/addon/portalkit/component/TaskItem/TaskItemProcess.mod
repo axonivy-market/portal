@@ -1154,7 +1154,7 @@ Ts0 f66 actionTable 'out=in;
 Ts0 f66 actionCode 'import ch.ivy.addon.portalkit.support.DataCache;
 import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
 
-String isShowTaskButtonLabels =  String.valueOf(DataCache.getGlobalSettingValue(GlobalVariable.SHOW_TASK_BUTTON_LABELS));
+String isShowTaskButtonLabels =  DataCache.getGlobalSettingValueAsString(GlobalVariable.SHOW_TASK_BUTTON_LABELS);
 
 if(isShowTaskButtonLabels != null && !isShowTaskButtonLabels.isEmpty()){
 	in.isShowTaskButtonLabels = Boolean.parseBoolean(isShowTaskButtonLabels);
