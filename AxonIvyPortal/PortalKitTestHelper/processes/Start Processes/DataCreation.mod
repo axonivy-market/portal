@@ -327,7 +327,7 @@ TaskA.EXROL=Everybody
 TaskA.EXTYPE=0
 TaskA.NAM=<%\=in1.caseName%>_A
 TaskA.PRI=3
-TaskA.ROL=AXONIVY_PORTAL_ADMIN
+TaskA.ROL=Everybody
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0
 TaskB.CATEGORY=<%\=in1.taskStructureInfo%>
@@ -336,7 +336,7 @@ TaskB.EXROL=Everybody
 TaskB.EXTYPE=0
 TaskB.NAM=<%\=in1.caseName%>_B
 TaskB.PRI=2
-TaskB.ROL=AXONIVY_PORTAL_ADMIN
+TaskB.ROL=Everybody
 TaskB.SKIP_TASK_LIST=false
 TaskB.TYPE=0
 TaskC.CATEGORY=<%\=in1.taskStructureInfo%>
@@ -345,7 +345,7 @@ TaskC.EXROL=Everybody
 TaskC.EXTYPE=0
 TaskC.NAM=<%\=in1.caseName%>_C
 TaskC.PRI=1
-TaskC.ROL=AXONIVY_PORTAL_ADMIN
+TaskC.ROL=Everybody
 TaskC.SKIP_TASK_LIST=false
 TaskC.TYPE=0' #txt
 Dt0 f3 type portalKit_test.DataCreationData #txt
