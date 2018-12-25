@@ -1,4 +1,0 @@
-co: name={deleteAllZombieAndFinishedHiddenCasesNote} description={} changed={2018-12-24 02:45:46 CET} changedby={tdnguyen} visualorder={0} guid={167AAF37A5EEAD4F} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={167AAF37A6F399B2} datatype={} isdefault={true} langid={en} description={} validfrom={2018-12-14 05:22:22 CET} validto={} changed={2018-12-24 02:45:30 CET} changedby={tdnguyen} properties={} id={}
-val: guid={167AAFBB332B2CEA} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-12-14 05:31:12 CET} validto={} changed={2018-12-24 02:45:42 CET} changedby={tdnguyen} properties={} id={}
-val: guid={167AAFBB19C7E5F6} datatype={} isdefault={false} langid={de} description={} validfrom={2018-12-14 05:31:15 CET} validto={} changed={2018-12-24 02:45:46 CET} changedby={tdnguyen} properties={} id={}
