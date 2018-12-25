@@ -20,7 +20,7 @@ public class DeleteFinishedHiddenCasesService {
 	    Date currentDate = new java.util.Date();
 	    Ivy.log().info("***Job for deleting finished hidden system cases started at: " + currentDate + " by user: " + Ivy.session().getSessionUserName());
 
-	    boolean shouldDeleteAllCases = Boolean.parseBoolean((String)DataCache.getGlobalSettingValue(GlobalVariable.DELETE_ALL_FINISHED_HIDDEN_CASES));
+	    boolean shouldDeleteAllCases = DataCache.getGlobalSettingValueAsBoolean(GlobalVariable.DELETE_ALL_FINISHED_HIDDEN_CASES);
 	    PortalConnectorDetector detector = new PortalConnectorDetector();
 	    IProcessModelVersion portalKitPMV = detector.findPortalPMVByLibraryId(Ivy.wf().getApplication(), PortalLibrary.PORTAL_KIT.getValue());
 	    CaseQuery caseQuery = CaseQuery.create();
