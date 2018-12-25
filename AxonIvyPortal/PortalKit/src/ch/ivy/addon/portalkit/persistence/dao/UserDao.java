@@ -64,8 +64,8 @@ public class UserDao extends AbstractDao<User> {
       }
     }
     if (users == null) {
-      Ivy.log().info("User list didn't exist in cache, store in cache now");
       users = findAll();
+      Ivy.log().info("User list didn't exist in cache, store in cache now with number of inserted users = " +users.size());
       appCache.setEntry(PORTAL_CACHE_GROUP_NAME, USERS_LIST_CACHE_ENTRY_NAME, -1, users);
     }
     return users;
