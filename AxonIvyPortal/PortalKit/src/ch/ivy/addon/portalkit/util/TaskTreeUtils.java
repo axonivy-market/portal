@@ -99,12 +99,16 @@ public class TaskTreeUtils {
     TreeNode newNode = new DefaultTreeNode(nodeType, newNodeData, navigatorNode);
     newNode.setExpanded(false);
     if (menuState.contains(nodeType) && (menuState.indexOf(nodeType) + nodeType.length() <= menuState.length())
+        && isSelectedCategory(menuState, nodeType)
         && !getLastCategoryFromCategoryPath(menuState).contains(getLastCategoryFromCategoryPath(nodeType))) {
-      if((menuState.indexOf(nodeType) + nodeType.length() == menuState.length()) || (menuState.charAt(menuState.indexOf(nodeType) + nodeType.length()) == '/')) {
-        newNode.setExpanded(true);
-      }
+      newNode.setExpanded(true);
     }
     return newNode;
+  }
+
+  private static boolean isSelectedCategory(String menuState, String nodeType) {
+    return (menuState.indexOf(nodeType) + nodeType.length() == menuState.length())
+        ||( menuState.charAt(menuState.indexOf(nodeType) + nodeType.length()) == '/');
   }
 
   public static String getLastCategoryFromCategoryPath(String categoryPath) {
