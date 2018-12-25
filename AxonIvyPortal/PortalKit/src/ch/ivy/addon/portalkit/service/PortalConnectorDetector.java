@@ -71,11 +71,15 @@ public class PortalConnectorDetector {
   }
 
   private IProcessModelVersion findPortalConnectorPMV(IApplication application) {
+    return findPortalPMVByLibraryId(application, PORTAL_CONNECTOR_PROJECT_ID);
+  }
+
+  public IProcessModelVersion findPortalPMVByLibraryId(IApplication application, String libraryId) {
     Callable<IProcessModelVersion> findPMVCallable = () -> {
       List<IProcessModel> pms = application.getProcessModels();
       for (IProcessModel pm : pms) {
         IProcessModelVersion pmv = pm.getReleasedProcessModelVersion();
-        if (isPortalConnectorPMV(pmv)) {
+        if (isPortalPMV(pmv, libraryId)) {
           return pmv;
         }
       }
@@ -84,13 +88,13 @@ public class PortalConnectorDetector {
     return IvyAdapterService.executeCallableAsSystem(findPMVCallable);
   }
 
-  private boolean isPortalConnectorPMV(IProcessModelVersion pmv) {
+  private boolean isPortalPMV(IProcessModelVersion pmv, String libraryId) {
     if (pmv == null) {
       return false;
     }
     ILibrary library = pmv.getLibrary();
     if (library != null) {
-      return PORTAL_CONNECTOR_PROJECT_ID.equals(library.getId());
+      return libraryId.equals(library.getId());
     } else {
       return false;
     }

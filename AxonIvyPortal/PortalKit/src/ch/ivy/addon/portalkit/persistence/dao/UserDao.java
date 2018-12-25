@@ -33,8 +33,8 @@ public class UserDao extends AbstractDao<User> {
   @ExecuteAsSystem
   private void getRepoIndexedByUserName() {
     repo = null;
-    IDataCache environmentCache = Ivy.datacache().getAppCache();
-    IDataCacheGroup cacheGroup = environmentCache.getGroup(PORTAL_CACHE_GROUP_NAME);
+    IDataCache appCache = Ivy.datacache().getAppCache();
+    IDataCacheGroup cacheGroup = appCache.getGroup(PORTAL_CACHE_GROUP_NAME);
     if (cacheGroup != null) {
       IDataCacheEntry cacheEntry = cacheGroup.getEntry(USERS_REPO_CACHE_ENTRY_NAME);
       if (cacheEntry != null) {
@@ -43,18 +43,20 @@ public class UserDao extends AbstractDao<User> {
     }
     if (repo == null) {
       Ivy.log().info("Users repo didn't exist in cache, store in cache now");
-      repo =
-          Repos.builder().primaryKey(EntityProperty.ID.toString()).searchIndex(EntityProperty.USER_NAME.toString())
-              .build(long.class, User.class).init(getAllUsers());
-      environmentCache.setEntry(PORTAL_CACHE_GROUP_NAME, USERS_REPO_CACHE_ENTRY_NAME, -1, repo);
+      repo = buildRepoIndexedByUserName(getAllUsers());
+      appCache.setEntry(PORTAL_CACHE_GROUP_NAME, USERS_REPO_CACHE_ENTRY_NAME, -1, repo);
     }
   }
-  
+
+  public Repo<Long, User> buildRepoIndexedByUserName(List<User> users) {
+	  return Repos.builder().primaryKey(EntityProperty.ID.toString()).searchIndex(EntityProperty.USER_NAME.toString())
+              .build(long.class, User.class).init(users);
+  }
   @ExecuteAsSystem
   private List<User> getAllUsers() {
     List<User> users = null;
-    IDataCache environmentCache = Ivy.datacache().getAppCache();
-    IDataCacheGroup cacheGroup = environmentCache.getGroup(PORTAL_CACHE_GROUP_NAME);
+    IDataCache appCache = Ivy.datacache().getAppCache();
+    IDataCacheGroup cacheGroup = appCache.getGroup(PORTAL_CACHE_GROUP_NAME);
     if (cacheGroup != null) {
       IDataCacheEntry cacheEntry = cacheGroup.getEntry(USERS_LIST_CACHE_ENTRY_NAME);
       if (cacheEntry != null) {
@@ -64,7 +66,7 @@ public class UserDao extends AbstractDao<User> {
     if (users == null) {
       Ivy.log().info("User list didn't exist in cache, store in cache now");
       users = findAll();
-      environmentCache.setEntry(PORTAL_CACHE_GROUP_NAME, USERS_LIST_CACHE_ENTRY_NAME, -1, users);
+      appCache.setEntry(PORTAL_CACHE_GROUP_NAME, USERS_LIST_CACHE_ENTRY_NAME, -1, users);
     }
     return users;
   }

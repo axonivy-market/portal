@@ -171,35 +171,37 @@ tt0 f10 actionDecl 'ch.ivyteam.wf.processes.SynchronizeApplicationUserData out;
 ' #txt
 tt0 f10 actionTable 'out=in;
 ' #txt
-tt0 f10 actionCode 'import ch.ivyteam.ivy.data.cache.IDataCache;
+tt0 f10 actionCode 'import org.boon.datarepo.Repo;
+import ch.ivyteam.ivy.data.cache.IDataCache;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivy.addon.portalkit.persistence.dao.UserDao;
 import ch.ivyteam.ivy.data.cache.IDataCacheGroup;
 import ch.ivyteam.ivy.environment.Ivy;
 
-String PORTAL_CACHE_GROUP_NAME = "portalCache";
-String USERS_LIST_CACHE_ENTRY_NAME = "usersList";
-String USERS_REPO_CACHE_ENTRY_NAME = "usersRepo";
 List<IApplication> applications = ServerFactory.getServer().getApplicationConfigurationManager().getApplications();
+UserDao userDao = new UserDao();
+Repo repo = userDao.buildRepoIndexedByUserName(in.users);
 for (IApplication application : applications) {
 	IDataCache cache = application.getAdapter(IDataCache.class) as IDataCache;
 	if (cache != null) {
-		IDataCacheGroup cacheGroup = cache.getGroup(PORTAL_CACHE_GROUP_NAME);
+		IDataCacheGroup cacheGroup = cache.getGroup(UserDao.PORTAL_CACHE_GROUP_NAME);
 		if (cacheGroup != null) {
-			if(cacheGroup.getEntry(USERS_REPO_CACHE_ENTRY_NAME) != null) {
-				cacheGroup.invalidateEntry(USERS_REPO_CACHE_ENTRY_NAME);
+			if(cacheGroup.getEntry(UserDao.USERS_REPO_CACHE_ENTRY_NAME) != null) {
+				cacheGroup.invalidateEntry(UserDao.USERS_REPO_CACHE_ENTRY_NAME);
 				ivy.log.info("Invalidated users repo cache in application: " + application.getName());
 			}
-			if(cacheGroup.getEntry(USERS_LIST_CACHE_ENTRY_NAME) != null) {
-				cacheGroup.invalidateEntry(USERS_LIST_CACHE_ENTRY_NAME);
+			if(cacheGroup.getEntry(UserDao.USERS_LIST_CACHE_ENTRY_NAME) != null) {
+				cacheGroup.invalidateEntry(UserDao.USERS_LIST_CACHE_ENTRY_NAME);
 				ivy.log.info("Invalidated users list cache in application: " + application.getName());
 			}
+			//insert entries to cache again
+			ivy.log.info("refresh cache entries in application " + application.getName() + ", number of inserted users = " + in.users.size());
+			cache.setEntry(UserDao.PORTAL_CACHE_GROUP_NAME, UserDao.USERS_LIST_CACHE_ENTRY_NAME, -1, in.users);
+			cache.setEntry(UserDao.PORTAL_CACHE_GROUP_NAME, UserDao.USERS_REPO_CACHE_ENTRY_NAME, -1, repo);
 		}
 	}
-}
-UserDao userDao = new UserDao();
-userDao.findByUserName("SYSTEM"); //get any name to init cache	' #txt
+}' #txt
 tt0 f10 security system #txt
 tt0 f10 type ch.ivyteam.wf.processes.SynchronizeApplicationUserData #txt
 tt0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
