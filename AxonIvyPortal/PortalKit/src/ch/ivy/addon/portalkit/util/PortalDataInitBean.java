@@ -1,6 +1,6 @@
 package ch.ivy.addon.portalkit.util;
 
-import ch.ivy.addon.portalkit.persistence.dao.UserDao;
+import ch.ivy.addon.portalkit.service.UserService;
 import ch.ivyteam.ivy.process.eventstart.AbstractProcessStartEventBean;
 import ch.ivyteam.ivy.process.eventstart.IProcessStartEventBeanRuntime;
 
@@ -18,8 +18,8 @@ public class PortalDataInitBean extends AbstractProcessStartEventBean {
 	}
 	
 	private void loadPortalUsersToCache() {
-		UserDao userDao = new UserDao();
-		userDao.findByUserName("SYSTEM"); //get any name to init cache
+		UserService userService = new UserService();
+		userService.findByUserName("SYSTEM"); //get any name to init cache
 	}
 
 }

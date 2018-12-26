@@ -73,14 +73,14 @@ Ca0 f2 type ch.ivy.add.portalkit.Data #txt
 Ca0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Delete zombie &amp; finished hidden
+        <name>Delete finished hidden
 system cases</name>
-        <nameStyle>44,7
+        <nameStyle>35,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ca0 f2 16 202 208 44 -84 -16 #rect
+Ca0 f2 48 202 144 44 -54 -16 #rect
 Ca0 f2 @|StepIcon #fIcon
 Ca0 f3 expr out #txt
 Ca0 f3 120 141 120 202 #arcP
