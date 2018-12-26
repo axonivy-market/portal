@@ -15,12 +15,13 @@
 			<h:form id="form" onkeypress="if (event.keyCode == 13) { return false; }">
 				<p:dataTable id="notes-table" widgetVar="notesTable" var="note" sortBy="#{note.creationTimestamp.time}" sortOrder="DESCENDING"
 					value="#{data.notes}" filteredValue="#{data.filteredNotes}">
-					<p:column width="15%" sortBy="#{note.creatorFullName}" filterBy="#{note.creatorFullName}" filterMatchMode="contains">
+					<p:column width="15%" sortBy="#{userFormatBean.format(note.creatorFullName, note.creatorUserName)}" 
+					  filterBy="#{userFormatBean.format(note.creatorFullName, note.creatorUserName)}" filterMatchMode="contains">
 						<f:facet name="header">
 							<h:outputText
 								value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" />
 						</f:facet>
-						<h:outputText value="#{note.creatorFullName}" />
+						<h:outputText value="#{userFormatBean.format(note.creatorFullName, note.creatorUserName)}" />
 					</p:column>
 
 					<p:column width="20%" sortBy="#{note.creationTimestamp.time}" >
