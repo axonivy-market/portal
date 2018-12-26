@@ -34,26 +34,33 @@ public final class DataCache {
       Ivy.log().info("CLEAR GET APPS WS CACHE CURRENT APP");
       Ivy.datacache().getAppCache().invalidateGroup(wsGroupNameCurrentApp );
     }
+    invalidateGlobalSettingOnApp(IApplication.PORTAL_APPLICATION_NAME);
     ApplicationService service = new ApplicationService();
     List<Application> findAllIvyApplications = service.findAllIvyApplications();
-    findAllIvyApplications.forEach(application -> {
-      try {
-        ServerFactory.getServer().getSecurityManager().executeAsSystem(() ->{
-          IApplication findApplication = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(application.getName());
-          IDataCache cache = (IDataCache) findApplication .getAdapter(IDataCache.class);
-          IDataCacheGroup wsGroupName = cache.getGroup(GLOBAL_SETTING_GROUP);
-          if (wsGroupName != null){
-            Ivy.log().error("CLEAR GLOBAL SETTING CACHE : {0} on application {1}", GLOBAL_SETTING_GROUP, application.getName());
-            wsGroupName.invalidateAllEntries();
-          }
-          return null;
-        });
-      } catch (Exception e) {
-        Ivy.log().error(e);
-      }
-    });
+    findAllIvyApplications.forEach(application -> invalidateGlobalSettingOnApp(application.getName()));
   }
-  
+
+  private static void invalidateGlobalSettingOnApp(String applicationName) {
+    try {
+      ServerFactory.getServer().getSecurityManager().executeAsSystem(() ->{
+        IApplication findApplication = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(applicationName);
+        if (findApplication != null) {
+          IDataCache cache = (IDataCache) findApplication .getAdapter(IDataCache.class);
+          if (cache != null) {
+            IDataCacheGroup wsGroupName = cache.getGroup(GLOBAL_SETTING_GROUP);
+            if (wsGroupName != null){
+              Ivy.log().info("CLEAR GLOBAL SETTING CACHE : {0} on application {1}", GLOBAL_SETTING_GROUP, applicationName);
+              wsGroupName.invalidateAllEntries();
+            }
+          }
+        }
+        return null;
+      });
+    } catch (Exception e) {
+      Ivy.log().error(e);
+    }
+  }
+
   public static String getGlobalSettingValueAsString(String attributeName){
     Object attribute = getGlobalSettingFromCache(attributeName);
     if (attribute == null){
