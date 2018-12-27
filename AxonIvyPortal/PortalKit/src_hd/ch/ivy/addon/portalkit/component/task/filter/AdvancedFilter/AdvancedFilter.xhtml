@@ -40,7 +40,7 @@
           styleClass="advanced-filter-command #{cc.attrs.buttonStyleClass} #{facesContext.validationFailed ? 'error-filter' : ''} #{cc.attrs.buttonStyleClass}" />
         <p:commandLink id="advanced-filter-remove-command"
           styleClass="fa fa-times-circle advanced-filter-icon #{cc.attrs.removeIconStyleClass}"
-          actionListener="#{dataModel.removeFilter(taskFilter)}" global="false"
+          actionListener="#{dataModel.removeFilter(taskFilter)}"
           update="#{p:component('advanced-filter-container')} #{p:component('filter-add-container')} #{p:component('task-view-container')}"
           oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()">
           <f:actionListener binding="#{cc.attrs.removeListener}" />
