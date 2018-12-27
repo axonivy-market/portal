@@ -25,7 +25,7 @@ public enum GlobalVariable {
   HIDE_SYSTEM_TASKS_FROM_HISTORY(Boolean.TRUE.toString(), "hideSystemTasksFromHistory"),
   HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR(Boolean.FALSE.toString(), "hideSystemTasksFromHistoryAdministrator"),
   ENABLE_USER_FAVORITES(Boolean.TRUE.toString(),"enableUserFavorites"),
-  DELETE_ALL_FINISHED_HIDDEN_CASES(Boolean.FALSE.toString(),"deleteAllZombieAndFinishedHiddenCasesNote");
+  DELETE_ALL_FINISHED_HIDDEN_CASES(Boolean.FALSE.toString(),"deleteAllFinishedHiddenCasesNote");
 
   private String defaultValue;
   private String noteCMS;
