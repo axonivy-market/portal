@@ -57,8 +57,7 @@
 								<ui:repeat var="taskFilterData" value="#{data.taskPublicFilters}">
 									<h:panelGroup layout="block" styleClass="user-definied-filter-container">
 										<p:commandLink id="user-definied-filter" styleClass="user-definied-filter"
-											value="#{taskFilterData.filterName}" actionListener="#{logic.applyFilter(taskFilterData)}"
-											partialSubmit="true" global="false"
+											value="#{taskFilterData.filterName}" global="false" actionListener="#{logic.applyFilter(taskFilterData)}"
 											update="#{cc.clientId}:advanced-filter-container #{cc.clientId}:task-widget-header #{cc.clientId}:task-view-container"
 											oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader();" />
 										<p:tooltip id="user-definied-filter-tooltip" for="user-definied-filter" value="#{taskFilterData.filterName}"
@@ -67,8 +66,7 @@
 											rendered="#{taskWidgetBean.isDeleteFilterEnabledFor(taskFilterData)}"
 											styleClass="fa fa-times-circle delete-user-definied-filter-command"
 											actionListener="#{logic.setFilterToBeDeleted(taskFilterData)}"
-											oncomplete="PF('delete-filter-confirmation-dialog').show();"
-											global="false" />
+											oncomplete="PF('delete-filter-confirmation-dialog').show();" />
 									</h:panelGroup>
 								</ui:repeat>
 							</h:panelGroup>
@@ -81,8 +79,7 @@
 								<ui:repeat var="taskFilterData" value="#{data.taskPrivateFilters}">
 									<h:panelGroup layout="block" styleClass="user-definied-filter-container">
 										<p:commandLink id="user-definied-filter" styleClass="user-definied-filter"
-											value="#{taskFilterData.filterName}" actionListener="#{logic.applyFilter(taskFilterData)}"
-											partialSubmit="true" global="false"
+											value="#{taskFilterData.filterName}" global="false" actionListener="#{logic.applyFilter(taskFilterData)}"
 											update="#{cc.clientId}:advanced-filter-container #{cc.clientId}:task-widget-header #{cc.clientId}:task-view-container"
 											oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader();" />
 										<p:tooltip id="user-definied-filter-tooltip" for="user-definied-filter" value="#{taskFilterData.filterName}"
@@ -91,8 +88,7 @@
 											rendered="#{taskWidgetBean.isDeleteFilterEnabledFor(taskFilterData)}"
 											styleClass="fa fa-times-circle delete-user-definied-filter-command"
 											actionListener="#{logic.setFilterToBeDeleted(taskFilterData)}"
-											oncomplete="PF('delete-filter-confirmation-dialog').show();"
-											global="false" />
+											oncomplete="PF('delete-filter-confirmation-dialog').show();" />
 									</h:panelGroup>
 								</ui:repeat>
 							</h:panelGroup>
@@ -246,7 +242,7 @@
 				<p:commandButton id="filter-save-command"
 					value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" process="@form"
 					oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('save-filter-set-dialog').hide();}"
-					actionListener="#{logic.saveFilter}">
+					actionListener="#{logic.saveFilter}" update="#{cc.clientId}:task-widget-header task-widget:filter-save-form">
 				</p:commandButton>
 				<p:spacer width="5px" />
 				<p:commandButton type="button" styleClass="portal-cancel-button"
