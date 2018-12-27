@@ -92,7 +92,6 @@ private static final long serialVersionUID = -5889375917550618261L;
     isUserFavoritesEnabled = StringUtils.isNotBlank(isUserFavoritesEnabledGlobalVariable) ? Boolean.parseBoolean(isUserFavoritesEnabledGlobalVariable) : true;
     
     userProcesses = findUserProcessBaseOnUIMode(compactMode);
-    userProcesses.stream().filter(userProcess -> !AwesomeIcon.exists(userProcess.getIcon())).forEach(this::updateNotExistedIcons);
     expressProcesses = userProcesses.stream().filter(this::isExpressWorkflow).collect(Collectors.toList());
     userProcesses.removeAll(expressProcesses);
     if(!compactMode) {
@@ -181,6 +180,7 @@ private static final long serialVersionUID = -5889375917550618261L;
     if (!isCompactMode) {
       sortUserProcessList(processes);
     } else {
+      processes.stream().filter(userProcess -> !AwesomeIcon.exists(userProcess.getIcon())).forEach(this::updateNotExistedIcons);
       processes.sort(UserProcessIndexComparator.comparatorNullsLast(UserProcess::getIndex));
     }
     return processes;
