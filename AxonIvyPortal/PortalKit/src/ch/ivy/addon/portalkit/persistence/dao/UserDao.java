@@ -9,6 +9,7 @@ import org.boon.datarepo.Repos;
 
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.persistence.domain.User;
+import ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.data.cache.IDataCache;
 import ch.ivyteam.ivy.data.cache.IDataCacheEntry;
@@ -17,10 +18,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 @SuppressWarnings("unchecked")
 public class UserDao extends AbstractDao<User> {
-
-  public static final String PORTAL_CACHE_GROUP_NAME = "portalCache";
-  public static final String USERS_LIST_CACHE_ENTRY_NAME = "usersList";
-  public static final String USERS_REPO_CACHE_ENTRY_NAME = "usersRepo";
 
   public UserDao() {
     super();
@@ -34,9 +31,9 @@ public class UserDao extends AbstractDao<User> {
   private void getRepoIndexedByUserName() {
     repo = null;
     IDataCache appCache = Ivy.datacache().getAppCache();
-    IDataCacheGroup cacheGroup = appCache.getGroup(PORTAL_CACHE_GROUP_NAME);
+    IDataCacheGroup cacheGroup = appCache.getGroup(PortalCacheConstants.PORTAL_USERS_CACHE_GROUP_NAME);
     if (cacheGroup != null) {
-      IDataCacheEntry cacheEntry = cacheGroup.getEntry(USERS_REPO_CACHE_ENTRY_NAME);
+      IDataCacheEntry cacheEntry = cacheGroup.getEntry(PortalCacheConstants.USERS_REPO_CACHE_ENTRY_NAME);
       if (cacheEntry != null) {
         repo = (Repo<Long, User>) cacheEntry.getValue();
       }
@@ -44,7 +41,7 @@ public class UserDao extends AbstractDao<User> {
     if (repo == null) {
       Ivy.log().info("Users repo didn't exist in cache, store in cache now");
       repo = buildRepoIndexedByUserName(getAllUsers());
-      appCache.setEntry(PORTAL_CACHE_GROUP_NAME, USERS_REPO_CACHE_ENTRY_NAME, -1, repo);
+      appCache.setEntry(PortalCacheConstants.PORTAL_USERS_CACHE_GROUP_NAME, PortalCacheConstants.USERS_REPO_CACHE_ENTRY_NAME, repo);
     }
   }
 
@@ -56,9 +53,9 @@ public class UserDao extends AbstractDao<User> {
   private List<User> getAllUsers() {
     List<User> users = null;
     IDataCache appCache = Ivy.datacache().getAppCache();
-    IDataCacheGroup cacheGroup = appCache.getGroup(PORTAL_CACHE_GROUP_NAME);
+    IDataCacheGroup cacheGroup = appCache.getGroup(PortalCacheConstants.PORTAL_USERS_CACHE_GROUP_NAME);
     if (cacheGroup != null) {
-      IDataCacheEntry cacheEntry = cacheGroup.getEntry(USERS_LIST_CACHE_ENTRY_NAME);
+      IDataCacheEntry cacheEntry = cacheGroup.getEntry(PortalCacheConstants.USERS_LIST_CACHE_ENTRY_NAME);
       if (cacheEntry != null) {
         users = (List<User>) cacheEntry.getValue();
       }
@@ -66,7 +63,7 @@ public class UserDao extends AbstractDao<User> {
     if (users == null) {
       users = findAll();
       Ivy.log().info("User list didn't exist in cache, store in cache now with number of inserted users = " +users.size());
-      appCache.setEntry(PORTAL_CACHE_GROUP_NAME, USERS_LIST_CACHE_ENTRY_NAME, -1, users);
+      appCache.setEntry(PortalCacheConstants.PORTAL_USERS_CACHE_GROUP_NAME, PortalCacheConstants.USERS_LIST_CACHE_ENTRY_NAME, -1, users);
     }
     return users;
   }

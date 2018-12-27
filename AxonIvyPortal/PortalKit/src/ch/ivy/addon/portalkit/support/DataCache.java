@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.persistence.domain.Application;
+import ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants;
 import ch.ivy.addon.portalkit.service.ApplicationService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.application.IApplication;
@@ -15,21 +16,18 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.server.ServerFactory;
 
 public final class DataCache {
-  public static final String GLOBAL_SETTING_GROUP = "Global Settings Group";
-  public static final String LOGOUT_PAGE_GROUP = "Logout Page Group";
-  public static final String LOGOUT_PAGE_INDENTIFIER = "Logout Page Id";
   
   public static Object getGlobalSettingFromCache(String attributeName){
-    IDataCacheEntry entry = Ivy.datacache().getAppCache().getEntry(GLOBAL_SETTING_GROUP, attributeName);
+    IDataCacheEntry entry = Ivy.datacache().getAppCache().getEntry(PortalCacheConstants.GLOBAL_SETTING_CACHE_GROUP_NAME, attributeName);
     return entry == null ? null : entry.getValue();
   }
   
   public static void cacheGlobalSetting(String name, Object value){
-    Ivy.datacache().getAppCache().setEntry(GLOBAL_SETTING_GROUP, name, value);
+    Ivy.datacache().getAppCache().setEntry(PortalCacheConstants.GLOBAL_SETTING_CACHE_GROUP_NAME, name, value);
   }
   
   public static void invalidateGlobalSettingCache(){
-    IDataCacheGroup wsGroupNameCurrentApp = Ivy.datacache().getAppCache().getGroup(GLOBAL_SETTING_GROUP);
+    IDataCacheGroup wsGroupNameCurrentApp = Ivy.datacache().getAppCache().getGroup(PortalCacheConstants.GLOBAL_SETTING_CACHE_GROUP_NAME);
     if (wsGroupNameCurrentApp != null){
       Ivy.log().info("CLEAR GET APPS WS CACHE CURRENT APP");
       Ivy.datacache().getAppCache().invalidateGroup(wsGroupNameCurrentApp );
@@ -47,9 +45,9 @@ public final class DataCache {
         if (findApplication != null) {
           IDataCache cache = (IDataCache) findApplication .getAdapter(IDataCache.class);
           if (cache != null) {
-            IDataCacheGroup wsGroupName = cache.getGroup(GLOBAL_SETTING_GROUP);
+            IDataCacheGroup wsGroupName = cache.getGroup(PortalCacheConstants.GLOBAL_SETTING_CACHE_GROUP_NAME);
             if (wsGroupName != null){
-              Ivy.log().info("CLEAR GLOBAL SETTING CACHE : {0} on application {1}", GLOBAL_SETTING_GROUP, applicationName);
+              Ivy.log().info("CLEAR GLOBAL SETTING CACHE : {0} on application {1}", PortalCacheConstants.GLOBAL_SETTING_CACHE_GROUP_NAME, applicationName);
               wsGroupName.invalidateAllEntries();
             }
           }
@@ -88,11 +86,11 @@ public final class DataCache {
   }
   
   public static void cacheLogoutPage(String logoutUrl){
-    Ivy.datacache().getSessionCache().setEntry(LOGOUT_PAGE_GROUP, LOGOUT_PAGE_INDENTIFIER, logoutUrl);
+    Ivy.datacache().getSessionCache().setEntry(PortalCacheConstants.LOGOUT_PAGE_CACHE_GROUP_NAME, PortalCacheConstants.LOGOUT_PAGE_CACHE_ENTRY_NAME, logoutUrl);
   }
   
   public static String getLogoutPageFromCache(){
-    IDataCacheEntry entry = Ivy.datacache().getSessionCache().getEntry(LOGOUT_PAGE_GROUP, LOGOUT_PAGE_INDENTIFIER);
+    IDataCacheEntry entry = Ivy.datacache().getSessionCache().getEntry(PortalCacheConstants.LOGOUT_PAGE_CACHE_GROUP_NAME, PortalCacheConstants.LOGOUT_PAGE_CACHE_ENTRY_NAME);
     return entry == null ? StringUtils.EMPTY : String.valueOf(entry.getValue());
   }
 }

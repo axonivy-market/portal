@@ -53,7 +53,7 @@ Ar0 f17 actionTable 'out=in;
 out.applications=wsResponse.getAllApplicationsResponse.result.applications;
 out.errors=wsResponse.getAllApplicationsResponse.result.errors;
 ' #txt
-Ar0 f17 cache '{/cache true /invalidation false /scope 2 /groupname "ch.ivy.addon.portalkit.webservice.WebserviceCache.GET_APPLICATIONS_WS_GROUP_NAME"/lifetime_group "ch.ivy.addon.portalkit.webservice.WebserviceCache.WS_CACHE_LIFETIME"/invalidation_time_group ""/identifier "\"getAllApplications\""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Ar0 f17 cache '{/cache true /invalidation false /scope 2 /groupname "ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants.GET_APPLICATIONS_WS_CACHE_GROUP_NAME"/lifetime_group "ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants.GET_APPLICATIONS_WS_CACHE_LIFETIME"/invalidation_time_group ""/identifier "\"getAllApplications\""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
 Ar0 f17 timeout 0 #txt
 Ar0 f17 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=ApplicationServicePort
@@ -74,12 +74,12 @@ Ar0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Call ApplicationService
 with default settings</name>
-        <nameStyle>45
+        <nameStyle>45,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ar0 f17 496 292 160 56 -59 -16 #rect
+Ar0 f17 496 298 160 44 -59 -16 #rect
 Ar0 f17 @|WebServiceIcon #fIcon
 Ar0 f15 type ch.ivy.add.portalkit.service.integrators.ApplicationServiceIntergratorData #txt
 Ar0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -100,7 +100,7 @@ Ar0 f9 actionTable 'out=in;
 out.applications=wsResponse.getAllApplicationsResponse.result.applications;
 out.errors=wsResponse.getAllApplicationsResponse.result.errors;
 ' #txt
-Ar0 f9 cache '{/cache true /invalidation false /scope 2 /groupname "ch.ivy.addon.portalkit.webservice.WebserviceCache.GET_APPLICATIONS_WS_GROUP_NAME"/lifetime_group "ch.ivy.addon.portalkit.webservice.WebserviceCache.WS_CACHE_LIFETIME"/invalidation_time_group ""/identifier "\"getAllApplications\""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Ar0 f9 cache '{/cache true /invalidation false /scope 2 /groupname "ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants.GET_APPLICATIONS_WS_CACHE_GROUP_NAME"/lifetime_group "ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants.GET_APPLICATIONS_WS_CACHE_LIFETIME"/invalidation_time_group ""/identifier "\"getAllApplications\""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
 Ar0 f9 timeout 0 #txt
 Ar0 f9 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=ApplicationServicePort
@@ -122,7 +122,7 @@ Ar0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <name>Call ApplicationService
 with NTLM Override
 and Global Variable Settings</name>
-        <nameStyle>71
+        <nameStyle>71,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -148,7 +148,7 @@ Ar0 f19 0 0.27380952380952384 -13 0 #arcLabel
 Ar0 f20 expr out #txt
 Ar0 f20 352 350 352 435 #arcP
 Ar0 f22 expr out #txt
-Ar0 f22 576 348 365 448 #arcP
+Ar0 f22 576 342 365 448 #arcP
 Ar0 f22 1 576 448 #addKink
 Ar0 f22 0 0.5636261753528126 0 0 #arcLabel
 Ar0 f0 inParamDecl '<java.lang.String endpoint,ch.ivy.addon.portalkit.persistence.domain.Server server> param;' #txt
@@ -206,7 +206,7 @@ Ar0 f7 actionTable 'out=in;
 out.applications=wsResponse.getApplicationsByAppNamesResponse.result.applications;
 out.errors=wsResponse.getApplicationsByAppNamesResponse.result.errors;
 ' #txt
-Ar0 f7 cache '{/cache true /invalidation false /scope 2 /groupname "ch.ivy.addon.portalkit.webservice.WebserviceCache.GET_APPLICATIONS_WS_GROUP_NAME"/lifetime_group "ch.ivy.addon.portalkit.webservice.WebserviceCache.WS_CACHE_LIFETIME"/invalidation_time_group ""/identifier "\"getApplicationsConfiguredOnServer\""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Ar0 f7 cache '{/cache true /invalidation false /scope 2 /groupname "ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants.GET_APPLICATIONS_WS_CACHE_GROUP_NAME"/lifetime_group "ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants.GET_APPLICATIONS_WS_CACHE_LIFETIME"/invalidation_time_group ""/identifier "\"getApplicationsConfiguredOnServer\""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
 Ar0 f7 timeout 0 #txt
 Ar0 f7 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=ApplicationServicePort
@@ -228,7 +228,7 @@ Ar0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <name>Call ApplicationService
 with NTLM Override
 and Global Variable Settings</name>
-        <nameStyle>71
+        <nameStyle>71,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -257,7 +257,7 @@ Ar0 f11 actionTable 'out=in;
 out.applications=wsResponse.getApplicationsByAppNamesResponse.result.applications;
 out.errors=wsResponse.getApplicationsByAppNamesResponse.result.errors;
 ' #txt
-Ar0 f11 cache '{/cache true /invalidation false /scope 2 /groupname "ch.ivy.addon.portalkit.webservice.WebserviceCache.GET_APPLICATIONS_WS_GROUP_NAME"/lifetime_group "ch.ivy.addon.portalkit.webservice.WebserviceCache.WS_CACHE_LIFETIME"/invalidation_time_group ""/identifier "\"getApplicationsConfiguredOnServer\""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Ar0 f11 cache '{/cache true /invalidation false /scope 2 /groupname "ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants.GET_APPLICATIONS_WS_CACHE_GROUP_NAME"/lifetime_group "ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants.GET_APPLICATIONS_WS_CACHE_LIFETIME"/invalidation_time_group ""/identifier "\"getApplicationsConfiguredOnServer\""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
 Ar0 f11 timeout 0 #txt
 Ar0 f11 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=ApplicationServicePort
@@ -278,12 +278,12 @@ Ar0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Call ApplicationService
 with default settings</name>
-        <nameStyle>45
+        <nameStyle>45,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ar0 f11 1200 284 160 56 -59 -16 #rect
+Ar0 f11 1200 290 160 44 -59 -16 #rect
 Ar0 f11 @|WebServiceIcon #fIcon
 Ar0 f13 expr in #txt
 Ar0 f13 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.NTLM == in.server.wsAuthenticationType' #txt
@@ -301,7 +301,7 @@ Ar0 f13 0 0.27631578947368424 -16 0 #arcLabel
 Ar0 f14 expr out #txt
 Ar0 f14 1024 342 1024 435 #arcP
 Ar0 f23 expr out #txt
-Ar0 f23 1280 340 1037 448 #arcP
+Ar0 f23 1280 334 1037 448 #arcP
 Ar0 f23 1 1280 448 #addKink
 Ar0 f23 0 0.6469516562241339 0 0 #arcLabel
 Ar0 f28 actionDecl 'ch.ivy.add.portalkit.service.integrators.ApplicationServiceIntergratorData out;
@@ -388,7 +388,7 @@ Ar0 f24 actionTable 'out=in;
 out.applications=wsResponse.getAllApplicationsResponse.result.applications;
 out.errors=wsResponse.getAllApplicationsResponse.result.errors;
 ' #txt
-Ar0 f24 cache '{/cache true /invalidation false /scope 2 /groupname "ch.ivy.addon.portalkit.webservice.WebserviceCache.GET_APPLICATIONS_WS_GROUP_NAME"/lifetime_group "ch.ivy.addon.portalkit.webservice.WebserviceCache.WS_CACHE_LIFETIME"/invalidation_time_group ""/identifier "\"getAllApplications\""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Ar0 f24 cache '{/cache true /invalidation false /scope 2 /groupname "ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants.GET_APPLICATIONS_WS_CACHE_GROUP_NAME"/lifetime_group "ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants.GET_APPLICATIONS_WS_CACHE_LIFETIME"/invalidation_time_group ""/identifier "\"getAllApplications\""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
 Ar0 f24 timeout 0 #txt
 Ar0 f24 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=ApplicationServicePort
@@ -409,7 +409,7 @@ Ar0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Call ApplicationService
 with HTTP Basic</name>
-        <nameStyle>39
+        <nameStyle>39,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -444,7 +444,7 @@ Ar0 f21 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ar0 f21 366 192 576 292 #arcP
+Ar0 f21 366 192 576 298 #arcP
 Ar0 f21 1 576 192 #addKink
 Ar0 f21 0 0.7986561412607155 -1 -11 #arcLabel
 Ar0 f1 expr out #txt
@@ -456,7 +456,7 @@ Ar0 f3 actionTable 'out=in;
 out.applications=wsResponse.getApplicationsByAppNamesResponse.result.applications;
 out.errors=wsResponse.getApplicationsByAppNamesResponse.result.errors;
 ' #txt
-Ar0 f3 cache '{/cache true /invalidation false /scope 2 /groupname "ch.ivy.addon.portalkit.webservice.WebserviceCache.GET_APPLICATIONS_WS_GROUP_NAME"/lifetime_group "ch.ivy.addon.portalkit.webservice.WebserviceCache.WS_CACHE_LIFETIME"/invalidation_time_group ""/identifier "\"getApplicationsConfiguredOnServer\""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Ar0 f3 cache '{/cache true /invalidation false /scope 2 /groupname "ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants.GET_APPLICATIONS_WS_CACHE_GROUP_NAME"/lifetime_group "ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants.GET_APPLICATIONS_WS_CACHE_LIFETIME"/invalidation_time_group ""/identifier "\"getApplicationsConfiguredOnServer\""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
 Ar0 f3 timeout 0 #txt
 Ar0 f3 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=ApplicationServicePort
@@ -477,7 +477,7 @@ Ar0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Call ApplicationService
 with HTTP Basic</name>
-        <nameStyle>39
+        <nameStyle>39,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -512,7 +512,7 @@ Ar0 f6 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ar0 f6 1038 192 1280 284 #arcP
+Ar0 f6 1038 192 1280 290 #arcP
 Ar0 f6 1 1280 192 #addKink
 Ar0 f6 0 0.7107438016528925 0 -12 #arcLabel
 Ar0 f35 expr out #txt
