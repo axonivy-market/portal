@@ -78,7 +78,6 @@ public class ProcessWidgetBean implements Serializable, Converter {
       defaultUserProcesses = findDefaultProcessUserCanStart();
     }
     userProcesses = findUserProcessBaseOnUIMode(compactMode);
-    userProcesses.stream().filter(userProcess -> !AwesomeIcon.exists(userProcess.getIcon())).forEach(this::updateNotExistedIcons);
     expressProcesses = userProcesses.stream().filter(this::isExpressWorkflow).collect(Collectors.toList());
     userProcesses.removeAll(expressProcesses);
     if(!compactMode) {
@@ -170,6 +169,7 @@ public class ProcessWidgetBean implements Serializable, Converter {
     if (!isCompactMode) {
       sortUserProcessList(processes);
     } else {
+      processes.stream().filter(userProcess -> !AwesomeIcon.exists(userProcess.getIcon())).forEach(this::updateNotExistedIcons);
       processes.sort(UserProcessIndexComparator.comparatorNullsLast(UserProcess::getIndex));
     }
     return processes;
