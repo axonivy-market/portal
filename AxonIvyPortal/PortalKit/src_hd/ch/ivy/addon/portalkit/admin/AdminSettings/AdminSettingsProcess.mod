@@ -2417,7 +2417,9 @@ As0 f15 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData
 ' #txt
 As0 f15 actionTable 'out=in;
 ' #txt
-As0 f15 actionCode 'import ch.ivy.addon.portalkit.support.DataCache;
+As0 f15 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.Application;
+import ch.ivy.addon.portalkit.service.ApplicationService;
+import ch.ivy.addon.portalkit.support.DataCache;
 import ch.ivy.addon.portalkit.persistence.domain.GlobalSetting;
 
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
@@ -2425,7 +2427,13 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 GlobalSettingService globalSettingService= new GlobalSettingService();
 in.selectedSetting = globalSettingService.save(in.selectedSetting) as GlobalSetting;
 
-DataCache.invalidateGlobalSettingCache();' #txt
+DataCache.invalidateGlobalSettingCache();
+
+// If there are many apps
+java.util.List<Application> apps = new ApplicationService().findAllIvyApplications();
+for (Application app: apps){
+	DataCache.invalidateGlobalSettingOnApp(app.getName());
+}' #txt
 As0 f15 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2472,12 +2480,21 @@ As0 f31 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData
 ' #txt
 As0 f31 actionTable 'out=in;
 ' #txt
-As0 f31 actionCode 'import ch.ivy.addon.portalkit.support.DataCache;
+As0 f31 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.Application;
+import ch.ivy.addon.portalkit.service.ApplicationService;
+import ch.ivy.addon.portalkit.support.DataCache;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+
 GlobalSettingService globalSettingService = new GlobalSettingService();
 globalSettingService.delete(in.selectedSetting);
 
-DataCache.invalidateGlobalSettingCache();' #txt
+DataCache.invalidateGlobalSettingCache();
+
+// If there are many apps
+java.util.List<Application> apps = new ApplicationService().findAllIvyApplications();
+for (Application app: apps){
+	DataCache.invalidateGlobalSettingOnApp(app.getName());
+}' #txt
 As0 f31 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2994,50 +3011,68 @@ As0 f259 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsDat
 As0 f259 actionTable 'out=in;
 ' #txt
 As0 f259 actionCode 'import ch.ivy.addon.portalkit.webservice.WebserviceCache;
-WebserviceCache.getInstance().invalidateGetApplicationsWSCache();' #txt
+import ch.ivy.addon.portalkit.persistence.domain.Application;
+import ch.ivy.addon.portalkit.service.ApplicationService;
+
+WebserviceCache.getInstance().invalidateGetApplicationsWSCache();
+
+// If there are many apps
+java.util.List<Application> apps = new ApplicationService().findAllIvyApplications();
+for (Application app: apps){
+	WebserviceCache.invalidateGetApplicationCacheOnApp(app.getName());
+}' #txt
 As0 f259 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f259 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>invalidate WS cache</name>
-        <nameStyle>19
+        <nameStyle>19,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-As0 f259 248 332 128 24 -55 -8 #rect
+As0 f259 248 322 128 44 -55 -8 #rect
 As0 f259 @|StepIcon #fIcon
 As0 f260 expr in #txt
 As0 f260 outCond 'in.objToDelete == 2' #txt
-As0 f260 514 296 312 332 #arcP
+As0 f260 514 296 312 322 #arcP
 As0 f260 1 312 296 #addKink
 As0 f260 0 0.7179735871352064 0 0 #arcLabel
 As0 f50 expr out #txt
-As0 f50 312 356 312 388 #arcP
+As0 f50 312 366 312 388 #arcP
 As0 f50 0 0.7179735871352064 0 0 #arcLabel
 As0 f261 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
 ' #txt
 As0 f261 actionTable 'out=in;
 ' #txt
 As0 f261 actionCode 'import ch.ivy.addon.portalkit.webservice.WebserviceCache;
-WebserviceCache.getInstance().invalidateGetApplicationsWSCache();' #txt
+import ch.ivy.addon.portalkit.persistence.domain.Application;
+import ch.ivy.addon.portalkit.service.ApplicationService;
+
+WebserviceCache.getInstance().invalidateGetApplicationsWSCache();
+
+// If there are many apps
+java.util.List<Application> apps = new ApplicationService().findAllIvyApplications();
+for (Application app: apps){
+	WebserviceCache.invalidateGetApplicationCacheOnApp(app.getName());
+}' #txt
 As0 f261 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f261 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>invalidate WS cache</name>
-        <nameStyle>19
+        <nameStyle>19,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-As0 f261 464 780 128 24 -55 -8 #rect
+As0 f261 464 770 128 44 -55 -8 #rect
 As0 f261 @|StepIcon #fIcon
 As0 f262 expr in #txt
 As0 f262 outCond '!in.duplicateApp	' #txt
-As0 f262 528 742 528 780 #arcP
+As0 f262 528 742 528 770 #arcP
 As0 f210 expr out #txt
-As0 f210 528 804 528 858 #arcP
+As0 f210 528 814 528 858 #arcP
 As0 f263 expr out #txt
 As0 f263 1416 58 1416 108 #arcP
 As0 f55 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
@@ -3045,23 +3080,32 @@ As0 f55 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData
 As0 f55 actionTable 'out=in;
 ' #txt
 As0 f55 actionCode 'import ch.ivy.addon.portalkit.webservice.WebserviceCache;
-WebserviceCache.getInstance().invalidateGetApplicationsWSCache();' #txt
+import ch.ivy.addon.portalkit.persistence.domain.Application;
+import ch.ivy.addon.portalkit.service.ApplicationService;
+
+WebserviceCache.getInstance().invalidateGetApplicationsWSCache();
+
+// If there are many apps
+java.util.List<Application> apps = new ApplicationService().findAllIvyApplications();
+for (Application app: apps){
+	WebserviceCache.invalidateGetApplicationCacheOnApp(app.getName());
+}' #txt
 As0 f55 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>invalidate WS cache</name>
-        <nameStyle>19
+        <nameStyle>19,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-As0 f55 248 716 128 24 -55 -8 #rect
+As0 f55 248 706 128 44 -55 -8 #rect
 As0 f55 @|StepIcon #fIcon
 As0 f256 expr out #txt
-As0 f256 312 690 312 716 #arcP
+As0 f256 312 690 312 706 #arcP
 As0 f232 expr out #txt
-As0 f232 312 740 312 780 #arcP
+As0 f232 312 750 312 780 #arcP
 As0 f257 expr in #txt
 As0 f257 528 1262 528 1292 #arcP
 As0 f41 expr out #txt

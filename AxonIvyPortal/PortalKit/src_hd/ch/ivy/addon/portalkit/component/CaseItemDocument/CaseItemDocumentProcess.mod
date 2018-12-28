@@ -762,10 +762,11 @@ Cs0 f64 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDo
 ' #txt
 Cs0 f64 actionTable 'out=in;
 ' #txt
-Cs0 f64 actionCode 'import ch.ivy.addon.portalkit.support.DataCache;
-import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
+Cs0 f64 actionCode 'import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
-in.isHideUploadDocumentForDoneCase = DataCache.getGlobalSettingValueAsBoolean(GlobalVariable.HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE);' #txt
+GlobalSettingService globalSettingSerive = new GlobalSettingService();
+in.isHideUploadDocumentForDoneCase = globalSettingSerive.findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE);' #txt
 Cs0 f64 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
 Cs0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

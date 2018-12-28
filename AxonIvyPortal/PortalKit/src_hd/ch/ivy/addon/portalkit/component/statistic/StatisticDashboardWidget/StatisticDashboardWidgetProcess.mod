@@ -548,7 +548,7 @@ Ss0 f44 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboar
 ' #txt
 Ss0 f44 actionTable 'out=in;
 ' #txt
-Ss0 f44 actionCode 'import ch.ivy.addon.portalkit.support.DataCache;
+Ss0 f44 actionCode 'import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;
 import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
@@ -574,7 +574,7 @@ for (StatisticChart chart : out.statisticChartList) {
 	}
 }
 
-String expiryLastDrilldownLevel =  DataCache.getGlobalSettingValueAsString(GlobalVariable.EXPIRY_CHART_LAST_DRILLDOWN_LEVEL);
+String expiryLastDrilldownLevel = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.EXPIRY_CHART_LAST_DRILLDOWN_LEVEL);
 if (StringUtils.isEmpty(expiryLastDrilldownLevel) || !service.getDrilldownLevels().contains(expiryLastDrilldownLevel.toUpperCase())) {
 	expiryLastDrilldownLevel = StatisticChartConstants.DRILLDOWN_LEVEL_HOUR;
 }

@@ -1151,10 +1151,11 @@ Ts0 f66 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
 ' #txt
 Ts0 f66 actionTable 'out=in;
 ' #txt
-Ts0 f66 actionCode 'import ch.ivy.addon.portalkit.support.DataCache;
-import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
+Ts0 f66 actionCode 'import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
-String isShowTaskButtonLabels =  DataCache.getGlobalSettingValueAsString(GlobalVariable.SHOW_TASK_BUTTON_LABELS);
+GlobalSettingService service = new GlobalSettingService();
+String isShowTaskButtonLabels =  service.findGlobalSettingValue(GlobalVariable.SHOW_TASK_BUTTON_LABELS);
 
 if(isShowTaskButtonLabels != null && !isShowTaskButtonLabels.isEmpty()){
 	in.isShowTaskButtonLabels = Boolean.parseBoolean(isShowTaskButtonLabels);

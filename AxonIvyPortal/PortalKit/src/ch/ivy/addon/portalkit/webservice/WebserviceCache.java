@@ -1,10 +1,6 @@
 package ch.ivy.addon.portalkit.webservice;
 
-import java.util.List;
-
-import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants;
-import ch.ivy.addon.portalkit.service.ApplicationService;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.data.cache.IDataCache;
 import ch.ivyteam.ivy.data.cache.IDataCacheGroup;
@@ -26,24 +22,27 @@ public final class WebserviceCache {
       Ivy.log().info("CLEAR GET APPS WS CACHE CURRENT APP");
       Ivy.datacache().getAppCache().invalidateGroup(wsGroupNameCurrentApp );
     }
-    ApplicationService service = new ApplicationService();
-    List<Application> findAllIvyApplications = service.findAllIvyApplications();
-    findAllIvyApplications.forEach(application -> {
-      try {
-        ServerFactory.getServer().getSecurityManager().executeAsSystem(() ->{
-          IApplication findApplication = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(application.getName());
+    invalidateGetApplicationCacheOnApp(IApplication.PORTAL_APPLICATION_NAME);
+  }
+  
+  public static void invalidateGetApplicationCacheOnApp(String applicationName) {
+    try {
+      ServerFactory.getServer().getSecurityManager().executeAsSystem(() ->{
+        IApplication findApplication = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(applicationName);
+        if (findApplication != null) {
           IDataCache cache = (IDataCache) findApplication .getAdapter(IDataCache.class);
-          IDataCacheGroup wsGroupName = cache.getGroup(PortalCacheConstants.GET_APPLICATIONS_WS_CACHE_GROUP_NAME);
-          if (wsGroupName != null){
-            Ivy.log().info("CLEAR GLOBAL SETTING CACHE : {0} for application: {1}", PortalCacheConstants.GET_APPLICATIONS_WS_CACHE_GROUP_NAME, application.getName());
-            Ivy.datacache().getAppCache().invalidateGroup(wsGroupName );
+          if (cache != null) {
+            IDataCacheGroup wsGroupName = cache.getGroup(PortalCacheConstants.GET_APPLICATIONS_WS_CACHE_GROUP_NAME); 
+            if (wsGroupName != null){
+              Ivy.log().info("CLEAR GLOBAL SETTING CACHE : {0} on application {1}", PortalCacheConstants.GET_APPLICATIONS_WS_CACHE_GROUP_NAME, applicationName);
+              wsGroupName.invalidateAllEntries();
+            }
           }
-          return null;
-        });
-      } catch (Exception e) {
-        // TODO Auto-generated catch block
-        Ivy.log().error(e);
-      }
-    });
+        }
+        return null;
+      });
+    } catch (Exception e) {
+      Ivy.log().error(e);
+    }
   }
 }

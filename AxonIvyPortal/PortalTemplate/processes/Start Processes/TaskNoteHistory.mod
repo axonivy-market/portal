@@ -103,7 +103,7 @@ param.taskSearchCriteria=in.taskSearchCriteria;
 Ty0 f5 responseActionDecl 'ch.ivy.addon.portal.generic.TaskNoteHistoryData out;
 ' #txt
 Ty0 f5 responseMappingAction 'out=in;
-out.remoteTask=result.tasks.get(0);
+out.remoteTask=org.apache.commons.collections4.CollectionUtils.isEmpty(result.tasks) ? null :  result.tasks.get(0);
 ' #txt
 Ty0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

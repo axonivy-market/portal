@@ -10,8 +10,6 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 
 public class GlobalSettingService extends AbstractService<GlobalSetting> {
 
-  public static final String HIDE_TIME = "HIDE_TIME";
-
   public GlobalSettingService() {
     super(GlobalSettingDao.class);
   }
@@ -22,9 +20,25 @@ public class GlobalSettingService extends AbstractService<GlobalSetting> {
   }
 
   public String findGlobalSettingValue(String variableName) {
-    return getDao().findGlobalSettingValue(variableName);
+    Object atttributeValue = DataCache.getGlobalSettingFromCache(variableName);
+    if (atttributeValue == null){
+      String findGlobalSettingValue = getDao().findGlobalSettingValue(variableName);
+      DataCache.cacheGlobalSetting(variableName, findGlobalSettingValue);
+      return findGlobalSettingValue;
+    }
+    return String.valueOf(atttributeValue);
   }
-
+  
+  public Boolean findGlobalSettingValueAsBoolean(String variableName) {
+    Object atttributeValue = DataCache.getGlobalSettingFromCache(variableName);
+    if (atttributeValue == null){
+      String findGlobalSettingValue = getDao().findGlobalSettingValue(variableName);
+      DataCache.cacheGlobalSetting(variableName, findGlobalSettingValue);
+      return Boolean.valueOf(findGlobalSettingValue);
+    }
+    return Boolean.valueOf((String)atttributeValue);
+  }
+  
   public boolean isGlobalSettingAvailable(String variableName) {
     return getDao().isGlobalSettingAvailable(variableName);
   }

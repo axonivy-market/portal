@@ -5,11 +5,8 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.boon.datarepo.Repo;
 
-import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.persistence.domain.User;
 import ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants;
-import ch.ivy.addon.portalkit.service.ApplicationService;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.data.cache.IDataCache;
 import ch.ivyteam.ivy.data.cache.IDataCacheEntry;
@@ -18,6 +15,30 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.server.ServerFactory;
 
 public final class DataCache {
+  public static void cacheEntry(String groupName, String entryName, Object value){
+    Ivy.datacache().getAppCache().setEntry(groupName, entryName, value);
+  }
+  
+  public static Object getValueFromCache(String groupName, String entryName){
+    IDataCacheEntry entry = Ivy.datacache().getAppCache().getEntry(groupName, entryName);
+    return entry == null ? null : entry.getValue();
+  }
+  
+  public static String getValueFromCacheAsString(String groupName, String entryName){
+    Object attribute = getValueFromCache(groupName, entryName);
+    if (attribute != null){
+      return String.valueOf(attribute);
+    }
+    return null;
+  }
+  
+  public static Boolean getValueFromCacheAsBoolean(String groupName, String entryName){
+    Object attribute = getValueFromCache(groupName, entryName);
+    if (attribute != null){
+      return Boolean.valueOf((String)attribute);
+    }
+    return null;
+  }
   
   public static Object getGlobalSettingFromCache(String attributeName){
     IDataCacheEntry entry = Ivy.datacache().getAppCache().getEntry(PortalCacheConstants.GLOBAL_SETTING_CACHE_GROUP_NAME, attributeName);
@@ -35,12 +56,9 @@ public final class DataCache {
       Ivy.datacache().getAppCache().invalidateGroup(wsGroupNameCurrentApp );
     }
     invalidateGlobalSettingOnApp(IApplication.PORTAL_APPLICATION_NAME);
-    ApplicationService service = new ApplicationService();
-    List<Application> findAllIvyApplications = service.findAllIvyApplications();
-    findAllIvyApplications.forEach(application -> invalidateGlobalSettingOnApp(application.getName()));
   }
 
-  private static void invalidateGlobalSettingOnApp(String applicationName) {
+  public static void invalidateGlobalSettingOnApp(String applicationName) {
     try {
       ServerFactory.getServer().getSecurityManager().executeAsSystem(() ->{
         IApplication findApplication = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(applicationName);
@@ -59,32 +77,6 @@ public final class DataCache {
     } catch (Exception e) {
       Ivy.log().error(e);
     }
-  }
-
-  public static String getGlobalSettingValueAsString(String attributeName){
-    Object attribute = getGlobalSettingFromCache(attributeName);
-    if (attribute == null){
-      String attributeValue = getValueFromDB(attributeName);
-      cacheGlobalSetting(attributeName, attributeValue);
-      return attributeValue;      
-    }
-    return String.valueOf(attribute);
-  }
-  
-  public static Boolean getGlobalSettingValueAsBoolean(String attributeName){
-    Object attribute = getGlobalSettingFromCache(attributeName);
-    if (attribute == null){
-      String attributeValue = getValueFromDB(attributeName);
-      cacheGlobalSetting(attributeName, attributeValue);
-      return Boolean.valueOf(attributeValue);      
-    }
-    return Boolean.valueOf((String)attribute);
-  }
-
-  private static String getValueFromDB(String attributeName) {
-    GlobalSettingService globalSettingSerive = new GlobalSettingService();
-    String attributeValue = globalSettingSerive.findGlobalSettingValue(attributeName);
-    return attributeValue;
   }
   
   public static void cacheLogoutPage(String logoutUrl){

@@ -17,7 +17,6 @@ import ch.ivy.addon.portalkit.document.DocumentDetector;
 import ch.ivy.addon.portalkit.document.DocumentDetectorFactory;
 import ch.ivy.addon.portalkit.document.DocumentExtensionConstants;
 import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
-import ch.ivy.addon.portalkit.support.DataCache;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.vo.DocumentVO;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -126,7 +125,8 @@ public class CaseDocumentService {
   }
   
   public static boolean enableScriptCheckingForUploadedDocument() {
-    return DataCache.getGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT);
+    GlobalSettingService globalSettingSerive = new GlobalSettingService();
+    return globalSettingSerive.findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT);
   }
   
   private IDocumentService documentsOf(ICase iCase) {

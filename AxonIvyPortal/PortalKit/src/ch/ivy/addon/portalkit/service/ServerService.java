@@ -7,7 +7,9 @@ import ch.ivy.addon.portalkit.enums.WSAuthenticationType;
 import ch.ivy.addon.portalkit.persistence.dao.ServerDao;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.persistence.domain.Server;
+import ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants;
 import ch.ivy.addon.portalkit.security.PortalConnectorUser;
+import ch.ivy.addon.portalkit.support.DataCache;
 
 
 public class ServerService extends AbstractService<Server> {
@@ -31,8 +33,11 @@ public class ServerService extends AbstractService<Server> {
     List<Server> servers = getDao().findActiveServers();
     if (servers.isEmpty()) {
       Server localServer = localhost();
+      DataCache.cacheEntry(PortalCacheConstants.IS_MULTI_SERVERS_CACHE_GROUP_NAME, PortalCacheConstants.IS_MULTI_SERVERS_CACHE_ENTRY_NAME, "false");
       return Arrays.asList(localServer);
     }
+    boolean isMultiServers = servers.size() > 1;
+    DataCache.cacheEntry(PortalCacheConstants.IS_MULTI_SERVERS_CACHE_GROUP_NAME, PortalCacheConstants.IS_MULTI_SERVERS_CACHE_ENTRY_NAME, String.valueOf(isMultiServers));
     return servers;
   }
   
@@ -41,7 +46,8 @@ public class ServerService extends AbstractService<Server> {
   }
   
   public boolean isMultiServers() {
-    return findActiveServers().size() > 1;
+    Boolean valueFromCacheAsBoolean = DataCache.getValueFromCacheAsBoolean(PortalCacheConstants.IS_MULTI_SERVERS_CACHE_GROUP_NAME, PortalCacheConstants.IS_MULTI_SERVERS_CACHE_ENTRY_NAME);
+    return valueFromCacheAsBoolean != null ? valueFromCacheAsBoolean : findActiveServers().size() > 1;
   }
 
   @Override

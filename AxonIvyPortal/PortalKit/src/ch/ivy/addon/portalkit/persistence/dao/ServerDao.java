@@ -65,7 +65,7 @@ public class ServerDao extends AbstractDao<Server> {
       if (ivyApplication.isSystem()) {
         continue;
       }
-      if (ActivityOperationState.ACTIVE.equals(ivyApplication.getActivityOperationState())) {
+      if (ActivityOperationState.ACTIVE == ivyApplication.getActivityOperationState()) {
         IUser user = ivyApplication.getSecurityContext().findUser(Ivy.session().getSessionUserName());
         if (user != null) {
           Application application = toApplication(server, ivyApplication);
