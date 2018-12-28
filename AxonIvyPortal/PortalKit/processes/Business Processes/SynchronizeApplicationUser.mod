@@ -171,13 +171,12 @@ tt0 f10 actionDecl 'ch.ivyteam.wf.processes.SynchronizeApplicationUserData out;
 ' #txt
 tt0 f10 actionTable 'out=in;
 ' #txt
-tt0 f10 actionCode 'import ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants;
+tt0 f10 actionCode 'import ch.ivy.addon.portalkit.support.DataCache;
 import org.boon.datarepo.Repo;
 import ch.ivyteam.ivy.data.cache.IDataCache;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivy.addon.portalkit.persistence.dao.UserDao;
-import ch.ivyteam.ivy.data.cache.IDataCacheGroup;
 
 List<IApplication> applications = ServerFactory.getServer().getApplicationConfigurationManager().getApplications();
 UserDao userDao = new UserDao();
@@ -185,21 +184,11 @@ Repo repo = userDao.buildRepoIndexedByUserName(in.users);
 for (IApplication application : applications) {
 	IDataCache cache = application.getAdapter(IDataCache.class) as IDataCache;
 	if (cache != null) {
-		IDataCacheGroup cacheGroup = cache.getGroup(PortalCacheConstants.PORTAL_USERS_CACHE_GROUP_NAME);
-		if (cacheGroup != null) {
-			if(cacheGroup.getEntry(PortalCacheConstants.USERS_REPO_CACHE_ENTRY_NAME) != null) {
-				cacheGroup.invalidateEntry(PortalCacheConstants.USERS_REPO_CACHE_ENTRY_NAME);
-				ivy.log.info("Invalidated users repo cache in application: " + application.getName());
-			}
-			if(cacheGroup.getEntry(PortalCacheConstants.USERS_LIST_CACHE_ENTRY_NAME) != null) {
-				cacheGroup.invalidateEntry(PortalCacheConstants.USERS_LIST_CACHE_ENTRY_NAME);
-				ivy.log.info("Invalidated users list cache in application: " + application.getName());
-			}
-			//insert entries to cache again
-			ivy.log.info("refresh cache entries in application " + application.getName() + ", number of inserted users = " + in.users.size());
-			cache.setEntry(PortalCacheConstants.PORTAL_USERS_CACHE_GROUP_NAME, PortalCacheConstants.USERS_LIST_CACHE_ENTRY_NAME, -1, in.users);
-			cache.setEntry(PortalCacheConstants.PORTAL_USERS_CACHE_GROUP_NAME, PortalCacheConstants.USERS_REPO_CACHE_ENTRY_NAME, -1, repo);
-		}
+		//invalidate cache
+		DataCache.invalidateUsersCache(cache, application.getName());
+		//insert entries to cache again
+		DataCache.cacheAllUsers(cache, application.getName(), in.users);
+		DataCache.cacheUsersRepo(cache, application.getName(), repo);
 	}
 }' #txt
 tt0 f10 security system #txt
