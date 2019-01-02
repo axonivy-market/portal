@@ -1,6 +1,7 @@
 package ch.ivy.ws.addon.service;
 
 import static ch.ivy.ws.addon.transformer.IvyCaseTransformer.transformToIvyCase;
+import static ch.ivy.ws.addon.util.HiddenTasksCasesConfig.isHiddenTasksCasesExcluded;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -39,7 +40,6 @@ import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
-import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
@@ -57,7 +57,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
   public CaseServiceResult setAdditionalProperties(final Long caseId,
       final List<IvyAdditionalProperty> additionalProperties) throws WSException {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+      return executeAsSystem(() -> {
         CaseServiceResult result = new CaseServiceResult();
         List<WSException> errors = new ArrayList<WSException>();
         if (caseId != null) {
@@ -99,26 +99,10 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     }
   }
   
-  private WSException createException(WSErrorType wsErrorType, int code, Object... textParams){
-    List<Object> userTextParams = new ArrayList<>();
-    for (Object item : textParams){
-      userTextParams.add(item);
-    }
-    return new WSException(wsErrorType, code, userTextParams, null);
-  }
-  
-  private WSException createException(WSErrorType wsErrorType, int code, Exception e, Object... textParams){
-    List<Object> userTextParams = new ArrayList<>();
-    for (Object item : textParams){
-      userTextParams.add(item);
-    }
-    return new WSException(wsErrorType, code, e, userTextParams, null);
-  }
-  
   @Override
   public CaseServiceResult getAdditionalProperties(final Long caseId) throws WSException {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+      return executeAsSystem(() -> {
         CaseServiceResult result = new CaseServiceResult();
         List<WSException> errors = new ArrayList<WSException>();
 
@@ -178,14 +162,14 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
       return ivyCase;
     };
 
-    ICase ivyCase = ServerFactory.getServer().getSecurityManager().executeAsSystem(caseCallable);
+    ICase ivyCase = executeAsSystem(caseCallable);
     return Optional.ofNullable(ivyCase);
   }
 
   @Override
   public void destroyCase(final Integer caseId) throws WSException {
     try {
-      ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+      executeAsSystem(() -> {
         ICase ivyCase = findCaseById(Optional.ofNullable(caseId)).get();
         ivyCase.destroy();
         return Void.class;
@@ -200,7 +184,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     CaseServiceResult caseServiceResult = new CaseServiceResult();
     IvyCaseTransformer caseTransformer = new IvyCaseTransformer();
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(()->{
+      return executeAsSystem(()->{
         Optional<ICase> optionalCase = findCaseById(Optional.ofNullable(caseId));
         if (optionalCase.isPresent()) {
           IvyCase ivyCase = caseTransformer.transform(optionalCase.get());
@@ -218,7 +202,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
   @Override
   public NoteServiceResult findNotes(final Integer caseId, boolean excludeSystemNotes) throws WSException {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+      return executeAsSystem(() -> {
         NoteServiceResult result = new NoteServiceResult();
         List<WSException> errors = new ArrayList<WSException>();
 
@@ -263,7 +247,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
   public NoteServiceResult createNote(final String username, final Integer caseId, final String message)
       throws WSException {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+      return executeAsSystem(() -> {
         NoteServiceResult result = new NoteServiceResult();
         List<WSException> errors = new ArrayList<WSException>();
 
@@ -321,7 +305,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
   @Override
   public CaseServiceResult findDocuments(final Integer caseId) throws WSException {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+      return executeAsSystem(() -> {
           CaseServiceResult result = new CaseServiceResult();
           List<WSException> errors = new ArrayList<WSException>();
 
@@ -361,7 +345,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
   public CaseServiceResult uploadDocument(String username, Integer caseId, String documentName, Binary documentContent)
       throws WSException {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+      return executeAsSystem(() -> {
         CaseServiceResult result = new CaseServiceResult();
         List<WSException> errors = new ArrayList<WSException>();
 
@@ -409,7 +393,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
   @Override
   public CaseServiceResult downloadDocument(Integer caseId, Integer documentId) throws WSException {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+      return executeAsSystem(() -> {
         CaseServiceResult result = new CaseServiceResult();
         List<WSException> errors = new ArrayList<WSException>();
 
@@ -447,7 +431,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
   @Override
   public CaseServiceResult removeDocument(String userName, Integer caseId, Integer documentId) throws WSException {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+      return executeAsSystem(() -> {
         CaseServiceResult result = new CaseServiceResult();
         List<WSException> errors = new ArrayList<WSException>();
 
@@ -500,26 +484,26 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
       throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+      return executeAsSystem(() -> {
         if (caseSearchCriteria.isEmpty()) {
           return result(noErrors());
         }
 
         CaseQuery caseQuery = createCaseQuery(caseSearchCriteria);
-        queryExcludeHiddenCases(caseQuery);
+        queryExcludeHiddenCases(caseQuery, caseSearchCriteria.getInvolvedApplications());
         List<ICase> cases = executeCaseQuery(caseQuery, startIndex, count);
         List<IvyCase> ivyCases = new ArrayList<>();
 
         for (ICase iCase : cases) {
           IvyCase ivyCase = transformToIvyCase(iCase);
-          ivyCase.setCanDestroy(SessionUtil.doesUserHavePermission(iCase.getApplication(),
-              caseSearchCriteria.getInvolvedUsername(), IPermission.CASE_DESTROY));
-          ivyCase.setCanChangeDescription(SessionUtil.doesUserHavePermission(iCase.getApplication(),
-              caseSearchCriteria.getInvolvedUsername(), IPermission.CASE_WRITE_DESCRIPTION));
-          ivyCase.setCanChangeName(SessionUtil.doesUserHavePermission(iCase.getApplication(),
-              caseSearchCriteria.getInvolvedUsername(), IPermission.CASE_WRITE_NAME));
+          final IApplication application = iCase.getApplication();
+          final String involvedUsername = caseSearchCriteria.getInvolvedUsername();
+          ivyCase.setCanDestroy(SessionUtil.doesUserHavePermission(application, involvedUsername, IPermission.CASE_DESTROY));
+          ivyCase.setCanChangeDescription(SessionUtil.doesUserHavePermission(application, involvedUsername, IPermission.CASE_WRITE_DESCRIPTION));
+          ivyCase.setCanChangeName(SessionUtil.doesUserHavePermission(application, involvedUsername, IPermission.CASE_WRITE_NAME));
           ivyCases.add(ivyCase);
         }
+        
         return result(ivyCases, errors);
       });
     } catch (Exception e) {
@@ -531,13 +515,13 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
   public CaseServiceResult countCasesByCriteria(CaseSearchCriteria caseSearchCriteria) throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+      return executeAsSystem(() -> {
         if (caseSearchCriteria.isEmpty()) {
           return result(0, errors);
         }
 
         CaseQuery caseQuery = createCaseQuery(caseSearchCriteria);
-        queryExcludeHiddenCases(caseQuery);
+        queryExcludeHiddenCases(caseQuery, caseSearchCriteria.getInvolvedApplications());
         long caseCount = countCases(caseQuery);
         return result(caseCount, errors);
 
@@ -553,12 +537,12 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
       throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+      return executeAsSystem(() -> {
         CaseQuery caseQuery = Ivy.wf().getGlobalContext().getCaseQueryExecutor().createCaseQuery();
         if (StringUtils.isNotBlank(jsonQuery)) {
           caseQuery.fromJson(jsonQuery);
         }
-        queryExcludeHiddenCases(caseQuery);
+        queryExcludeHiddenCases(caseQuery, apps);
 
         if (StringUtils.isNotBlank(username)) {
           AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
@@ -591,9 +575,9 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
   public CaseServiceResult analyzeCaseStateStatistic(CaseSearchCriteria caseSearchCriteria) throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+      return executeAsSystem(() -> {
         CaseQuery caseStateQuery = createCaseQuery(caseSearchCriteria);
-        queryExcludeHiddenCases(caseStateQuery);
+        queryExcludeHiddenCases(caseStateQuery, caseSearchCriteria.getInvolvedApplications());
 
         caseStateQuery.aggregate().countRows().groupBy().state().orderBy().state();
 
@@ -626,9 +610,9 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
   public CaseServiceResult analyzeElapsedTimeByCaseCategory(CaseSearchCriteria caseSearchCriteria) throws WSException {
     List<WSException> errors = Collections.emptyList();
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+      return executeAsSystem(() -> {
         CaseQuery elapsedTimeQuery = createCaseQuery(caseSearchCriteria);
-        queryExcludeHiddenCases(elapsedTimeQuery);
+        queryExcludeHiddenCases(elapsedTimeQuery, caseSearchCriteria.getInvolvedApplications());
 
         elapsedTimeQuery.where().and().businessRuntime().isNotNull();
         elapsedTimeQuery.aggregate().avgBusinessRuntime().groupBy().category();
@@ -766,7 +750,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
   @Override
   public void saveCase(IvyCase ivyCase) throws WSException {
     try {
-      ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+      executeAsSystem(() -> {
         CaseQuery query = CaseQuery.create().where().caseId().isEqual(ivyCase.getId());
         ICase icase = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getFirstResult(query);
         icase.setName(ivyCase.getName());
@@ -779,8 +763,10 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     }
   }
 
-  private void queryExcludeHiddenCases(CaseQuery query) {
-	  query.where().and().additionalProperty("HIDE").isNull();
+  private void queryExcludeHiddenCases(CaseQuery query, List<String> apps) {
+    if (isHiddenTasksCasesExcluded(apps)){
+      query.where().and().additionalProperty("HIDE").isNull();
+    }
   }
 
 }

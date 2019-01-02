@@ -5,9 +5,12 @@ import static ch.ivyteam.ivy.server.ServerFactory.getServer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.Callable;
+import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.ws.addon.WSErrorType;
@@ -21,49 +24,33 @@ import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISession;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.IServer;
-import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 /**
  * Abstract service implementation that provides some basic operations
- * 
- * @author mde
  *
  */
 
 public abstract class AbstractService {
-
-  /**
-   * Find all users on the server
-   * 
-   * @return list of users
-   * @throws Exception
-   */
   /**
    * @param apps
    * @param username
    * @return list of {@link IUser}
    * @throws Exception
    */
-  protected List<IUser> findUsers(final java.util.List<String> apps, final String username) throws Exception {
-    return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<IUser>>() {
-      @Override
-      public List<IUser> call() throws Exception {
-        List<IUser> result = new ArrayList<IUser>();
-
-        IServer server = ch.ivyteam.ivy.server.ServerFactory.getServer();
-
-        for (IApplication i : server.getApplicationConfigurationManager().getApplications()) {
-          if (apps.contains(i.getName())) {
-            if (i.getSecurityContext().findUser(username) != null) {
-              result.add(i.getSecurityContext().findUser(username));
-            }
-          }
-        }
-
-        return result;
-      }
+  protected List<IUser> findUsers(final List<String> apps, final String username) throws Exception {
+    return executeAsSystem(() -> {
+        return CollectionUtils.emptyIfNull(getServer().getApplicationConfigurationManager().getApplications())
+            .stream()
+            .filter(application -> apps.contains(application.getName()))
+            .map(user -> findUserInApp(username, user))
+            .filter(Objects::nonNull)
+            .collect(Collectors.toList());
     });
+  }
+
+  private IUser findUserInApp(String username, IApplication application) {
+    return application.getSecurityContext().findUser(username);
   }
 
   /**
@@ -75,39 +62,36 @@ public abstract class AbstractService {
    * @throws Exception General exception
    * @see WSException
    */
-  protected AvailableAppsResult findAvailableApplicationsAndUsers(final java.util.List<String> apps,
+  protected AvailableAppsResult findAvailableApplicationsAndUsers(final List<String> apps,
       final String username) throws Exception {
-    return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<AvailableAppsResult>() {
-      @Override
-      public AvailableAppsResult call() throws Exception {
+    return executeAsSystem(() -> {
         AvailableAppsResult result = new AvailableAppsResult();
 
         result.setUsers(new ArrayList<IUser>());
 
-        java.util.List<WSException> errors = new ArrayList<WSException>();
-        IServer server = ch.ivyteam.ivy.server.ServerFactory.getServer();
+        List<WSException> errors = new ArrayList<WSException>();
+        IServer server = getServer();
 
         if (apps.size() > 0) {
           boolean userNotFound = false;
 
-          java.util.List<String> notFoundApps = new ArrayList<String>();
-          java.util.List<String> notActiveApps = new ArrayList<String>();
-          java.util.List<String> availableApps = new ArrayList<String>();
+          List<String> notFoundApps = new ArrayList<String>();
+          List<String> notActiveApps = new ArrayList<String>();
+          List<String> availableApps = new ArrayList<String>();
 
-          java.util.List<IApplication> serverApps = server.getApplicationConfigurationManager().getApplications();
+          List<IApplication> serverApps = server.getApplicationConfigurationManager().getApplications();
 
           for (String app : apps) {
-            Boolean available = false;
-            Boolean appFound = false;
+            boolean available = false;
+            boolean appFound = false;
             for (IApplication serverApp : serverApps) {
-
               if (serverApp.getName().equals(app)) {
-                IUser u = serverApp.getSecurityContext().findUser(username);
+                IUser user = findUserInApp(username, serverApp);
 
-                if (u != null) {
-                  if (serverApp.getActivityOperationState().equals(ActivityOperationState.ACTIVE)) {
+                if (user != null) {
+                  if (serverApp.getActivityOperationState() == ActivityOperationState.ACTIVE) {
                     available = true;
-                    result.getUsers().add(u);
+                    result.getUsers().add(user);
                   } else {
                     notActiveApps.add(app);
                   }
@@ -131,22 +115,16 @@ public abstract class AbstractService {
           result.setAvailableApps(availableApps);
 
           if (notFoundApps.size() > 0) {
-            List<Object> userText = new ArrayList<Object>();
-            userText.add(parseList(notFoundApps));
-            errors.add(new WSException(WSErrorType.WARNING, 10030, userText, null));
+            errors.add(createException(WSErrorType.WARNING, 10030, parseList(notFoundApps)));
           }
 
           if (notActiveApps.size() > 0) {
-            List<Object> userText = new ArrayList<Object>();
-            userText.add(parseList(notActiveApps));
-            errors.add(new WSException(WSErrorType.WARNING, 10023, userText, null));
+            errors.add(createException(WSErrorType.WARNING, 10023, parseList(notActiveApps)));
           }
 
           if (userNotFound) {
             // No cases found, user is not valid
-            List<Object> userText = new ArrayList<Object>();
-            userText.add(username);
-            errors.add(new WSException(WSErrorType.WARNING, 10029, userText, null));
+            errors.add(createException(WSErrorType.WARNING, 10029, username));
           }
 
         } else {
@@ -157,7 +135,6 @@ public abstract class AbstractService {
         result.setErrors(errors);
 
         return result;
-      }
     });
   }
 
@@ -170,9 +147,7 @@ public abstract class AbstractService {
   protected IWorkflowSession findUserWorkflowSession(final String username, final IApplication app) throws Exception {
     try {
       final ISecurityContext securityContext = app.getSecurityContext();
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<IWorkflowSession>() {
-        @Override
-        public IWorkflowSession call() throws Exception {
+      return executeAsSystem(() -> {
           ISession session = securityContext.createSession();
           IUser user = securityContext.findUser(username);
 
@@ -182,7 +157,6 @@ public abstract class AbstractService {
           }
           IWorkflowSession workflowSession = Ivy.wf().getWorkflowSession(session);
           return workflowSession;
-        }
       });
     } catch (Exception e) {
       throw new WSException(e);
@@ -200,7 +174,7 @@ public abstract class AbstractService {
     IvyApplication ivyApplication = new IvyApplication();
     IApplication application = getApplicationByName(name);
     if (application != null) {
-      ivyApplication.setIsActive(application.getActivityOperationState().equals(ActivityOperationState.ACTIVE));
+      ivyApplication.setIsActive(application.getActivityOperationState() == ActivityOperationState.ACTIVE);
       ivyApplication.setName(name);
       ivyApplication.setId(application.getId());
     }
@@ -208,10 +182,8 @@ public abstract class AbstractService {
   }
 
   protected IApplication getApplicationByName(final String applicationName) throws Exception {
-    return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
-      IServer server = ch.ivyteam.ivy.server.ServerFactory.getServer();
-      IApplication application = server.getApplicationConfigurationManager().findApplication(applicationName);
-      return application;
+    return executeAsSystem(() -> {
+      return getServer().getApplicationConfigurationManager().findApplication(applicationName);
     });
   }
 
@@ -221,7 +193,7 @@ public abstract class AbstractService {
    * @param dataList
    * @return String resultData
    */
-  protected String parseList(java.util.List<String> dataList) {
+  protected String parseList(List<String> dataList) {
     final String separator = ", ";
     String resultData = "";
 
@@ -288,5 +260,21 @@ public abstract class AbstractService {
   
   protected List<WSException> createExceptions(WSErrorType type, int code, String userText) {
     return Arrays.asList(new WSException(type, code, Arrays.asList(userText), null));
+  }
+  
+  protected WSException createException(WSErrorType wsErrorType, int code, Object... textParams){
+    List<Object> userTextParams = new ArrayList<>();
+    for (Object item : textParams){
+      userTextParams.add(item);
+    }
+    return new WSException(wsErrorType, code, userTextParams, null);
+  }
+  
+  protected WSException createException(WSErrorType wsErrorType, int code, Exception e, Object... textParams){
+    List<Object> userTextParams = new ArrayList<>();
+    for (Object item : textParams){
+      userTextParams.add(item);
+    }
+    return new WSException(wsErrorType, code, e, userTextParams, null);
   }
 }
