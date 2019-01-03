@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ch.ivy.addon.portalkit.bo.RemoteUser;
 import ch.ivy.addon.portalkit.bo.TaskColumnsConfigurationData;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
@@ -54,7 +56,7 @@ public class CleanUpObsoletedUserDataService {
     if (userProcesses != null) {
       for (UserProcess userProcess : userProcesses) {
         String processUserName = userProcess.getUserName();
-        if (checkIfUserBelongToCurrentApp(processUserName) && !userNames.contains(processUserName)) {
+        if (checkIfUserBelongToCurrentApp(processUserName) && (!userNames.contains(processUserName) || StringUtils.isBlank(processUserName))) {
           obsoletedUserProcess.add(userProcess);
         }
       }
