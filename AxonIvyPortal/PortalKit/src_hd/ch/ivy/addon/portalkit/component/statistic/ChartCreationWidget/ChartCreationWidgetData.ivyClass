@@ -10,3 +10,7 @@ isChartNameExisted Boolean #field
 isChartNameExisted PERSISTENT #fieldModifier
 statisticChartList java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> #field
 statisticChartList PERSISTENT #fieldModifier
+isAllowedToCreateChart Boolean #field
+isAllowedToCreateChart PERSISTENT #fieldModifier
+oldStatisticFilter ch.ivy.addon.portalkit.statistics.StatisticFilter #field
+oldStatisticFilter PERSISTENT #fieldModifier

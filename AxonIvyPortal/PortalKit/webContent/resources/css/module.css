@@ -4346,6 +4346,18 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   overflow: auto;
 }
 
+.apply-filters-btn {
+  float: right;
+}
+
+.select-all-checkbox {
+  padding-left: 3px;
+}
+
+.select-all-checkbox .ui-chkbox-box {
+  margin-right: 0px;
+}
+
 /********************************** END STATISTIC WIDGET **********************************/
 
 /********************************** START NOTIFICATION **********************************/

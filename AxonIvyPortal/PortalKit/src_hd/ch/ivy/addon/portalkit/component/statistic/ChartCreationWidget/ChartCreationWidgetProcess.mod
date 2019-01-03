@@ -105,7 +105,8 @@ import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 import ch.ivy.addon.portalkit.service.StatisticService;
-import java.util.Arrays;
+
+import java.util.Arrays;
 
 out.isChartNameExisted = false;
 StatisticService service = new StatisticService();
@@ -145,9 +146,17 @@ Cs0 f40 disableUIEvents false #txt
 Cs0 f40 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
-Cs0 f40 inActionCode 'import ch.ivy.addon.portalkit.enums.StatisticChartType;
+Cs0 f40 inActionCode 'import ch.ivy.addon.portalkit.bean.StatisticChartCreationBean;
+import javax.faces.context.FacesContext;
+import ch.ivy.addon.portalkit.enums.StatisticChartType;
 
-out.chartType = StatisticChartType.CASES_BY_STATE;' #txt
+FacesContext context = FacesContext.getCurrentInstance();
+StatisticChartCreationBean chartCreationBean = context.getApplication().evaluateExpressionGet(context, "#{statisticChartCreationBean}", StatisticChartCreationBean.class) as StatisticChartCreationBean;
+out.isAllowedToCreateChart = !chartCreationBean.checkIfAnyFilterChanges(out.statisticFilter, out.oldStatisticFilter);
+
+if (out.isAllowedToCreateChart) {
+	out.chartType  = StatisticChartType.CASES_BY_STATE;
+}' #txt
 Cs0 f40 outParameterDecl '<> result;
 ' #txt
 Cs0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -168,9 +177,17 @@ Cs0 f42 disableUIEvents false #txt
 Cs0 f42 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
-Cs0 f42 inActionCode 'import ch.ivy.addon.portalkit.enums.StatisticChartType;
+Cs0 f42 inActionCode 'import ch.ivy.addon.portalkit.bean.StatisticChartCreationBean;
+import javax.faces.context.FacesContext;
+import ch.ivy.addon.portalkit.enums.StatisticChartType;
 
-out.chartType = StatisticChartType.TASK_BY_EXPIRY;' #txt
+FacesContext context = FacesContext.getCurrentInstance();
+StatisticChartCreationBean chartCreationBean = context.getApplication().evaluateExpressionGet(context, "#{statisticChartCreationBean}", StatisticChartCreationBean.class) as StatisticChartCreationBean;
+out.isAllowedToCreateChart = !chartCreationBean.checkIfAnyFilterChanges(out.statisticFilter, out.oldStatisticFilter);
+
+if (out.isAllowedToCreateChart) {
+	out.chartType  = StatisticChartType.TASK_BY_EXPIRY;
+}' #txt
 Cs0 f42 outParameterDecl '<> result;
 ' #txt
 Cs0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -219,9 +236,11 @@ Cs0 f15 actionDecl 'ch.ivy.addon.portalkit.component.statistic.ChartCreationWidg
 ' #txt
 Cs0 f15 actionTable 'out=in;
 ' #txt
-Cs0 f15 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticFilter;
+Cs0 f15 actionCode 'import org.apache.commons.lang.ObjectUtils;
+import ch.ivy.addon.portalkit.statistics.StatisticFilter;
 
-in.statisticFilter = new StatisticFilter().init();' #txt
+in.statisticFilter = new StatisticFilter().init();
+in.oldStatisticFilter = ObjectUtils.clone(in.statisticFilter) as StatisticFilter;' #txt
 Cs0 f15 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 Cs0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -257,8 +276,19 @@ Cs0 f41 disableUIEvents false #txt
 Cs0 f41 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
-Cs0 f41 inActionCode 'import ch.ivy.addon.portalkit.enums.StatisticChartType;
-out.chartType  = StatisticChartType.TASK_BY_PRIORITY;' #txt
+Cs0 f41 inActionCode 'import ch.ivy.addon.portalkit.bean.StatisticChartCreationBean;
+import javax.faces.context.FacesContext;
+import ch.ivy.addon.portalkit.enums.StatisticChartType;
+
+FacesContext context = FacesContext.getCurrentInstance();
+StatisticChartCreationBean chartCreationBean = context.getApplication().evaluateExpressionGet(context, "#{statisticChartCreationBean}", StatisticChartCreationBean.class) as StatisticChartCreationBean;
+out.isAllowedToCreateChart = !chartCreationBean.checkIfAnyFilterChanges(out.statisticFilter, out.oldStatisticFilter);
+
+if (out.isAllowedToCreateChart) {
+	out.chartType  = StatisticChartType.TASK_BY_PRIORITY;
+}
+
+	' #txt
 Cs0 f41 outParameterDecl '<> result;
 ' #txt
 Cs0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -298,9 +328,17 @@ Cs0 f17 disableUIEvents false #txt
 Cs0 f17 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
-Cs0 f17 inActionCode 'import ch.ivy.addon.portalkit.enums.StatisticChartType;
+Cs0 f17 inActionCode 'import ch.ivy.addon.portalkit.bean.StatisticChartCreationBean;
+import javax.faces.context.FacesContext;
+import ch.ivy.addon.portalkit.enums.StatisticChartType;
 
-out.chartType = StatisticChartType.ELAPSED_TIME_BY_CASE_CATEGORY;' #txt
+FacesContext context = FacesContext.getCurrentInstance();
+StatisticChartCreationBean chartCreationBean = context.getApplication().evaluateExpressionGet(context, "#{statisticChartCreationBean}", StatisticChartCreationBean.class) as StatisticChartCreationBean;
+out.isAllowedToCreateChart = !chartCreationBean.checkIfAnyFilterChanges(out.statisticFilter, out.oldStatisticFilter);
+
+if (out.isAllowedToCreateChart) {
+	out.chartType  = StatisticChartType.ELAPSED_TIME_BY_CASE_CATEGORY;
+}' #txt
 Cs0 f17 outParameterDecl '<> result;
 ' #txt
 Cs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -356,9 +394,17 @@ Cs0 f22 disableUIEvents false #txt
 Cs0 f22 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
-Cs0 f22 inActionCode 'import ch.ivy.addon.portalkit.enums.StatisticChartType;
+Cs0 f22 inActionCode 'import ch.ivy.addon.portalkit.bean.StatisticChartCreationBean;
+import javax.faces.context.FacesContext;
+import ch.ivy.addon.portalkit.enums.StatisticChartType;
 
-out.chartType = StatisticChartType.CASES_BY_FINISHED_TASK;' #txt
+FacesContext context = FacesContext.getCurrentInstance();
+StatisticChartCreationBean chartCreationBean = context.getApplication().evaluateExpressionGet(context, "#{statisticChartCreationBean}", StatisticChartCreationBean.class) as StatisticChartCreationBean;
+out.isAllowedToCreateChart = !chartCreationBean.checkIfAnyFilterChanges(out.statisticFilter, out.oldStatisticFilter);
+
+if (out.isAllowedToCreateChart) {
+	out.chartType  = StatisticChartType.CASES_BY_FINISHED_TASK;
+}' #txt
 Cs0 f22 outParameterDecl '<> result;
 ' #txt
 Cs0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -381,9 +427,17 @@ Cs0 f24 disableUIEvents false #txt
 Cs0 f24 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
-Cs0 f24 inActionCode 'import ch.ivy.addon.portalkit.enums.StatisticChartType;
+Cs0 f24 inActionCode 'import ch.ivy.addon.portalkit.bean.StatisticChartCreationBean;
+import javax.faces.context.FacesContext;
+import ch.ivy.addon.portalkit.enums.StatisticChartType;
 
-out.chartType = StatisticChartType.CASES_BY_FINISHED_TIME;' #txt
+FacesContext context = FacesContext.getCurrentInstance();
+StatisticChartCreationBean chartCreationBean = context.getApplication().evaluateExpressionGet(context, "#{statisticChartCreationBean}", StatisticChartCreationBean.class) as StatisticChartCreationBean;
+out.isAllowedToCreateChart = !chartCreationBean.checkIfAnyFilterChanges(out.statisticFilter, out.oldStatisticFilter);
+
+if (out.isAllowedToCreateChart) {
+	out.chartType  = StatisticChartType.CASES_BY_FINISHED_TIME;
+}' #txt
 Cs0 f24 outParameterDecl '<> result;
 ' #txt
 Cs0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

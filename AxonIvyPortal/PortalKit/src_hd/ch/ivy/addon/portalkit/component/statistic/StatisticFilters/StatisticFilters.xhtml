@@ -14,14 +14,18 @@
 <cc:implementation>
   <c:set var="filter" value="#{cc.attrs.filter}" />
 
-  <p:fieldset legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}" styleClass="statistic-filter-main-container">
-    <h:panelGrid columns="1" cellpadding="10">
+  <p:fieldset id="filter-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}" styleClass="statistic-filter-main-container">
+    <h:panelGrid id="filter-panel" columns="1" cellpadding="10">
+      <p:commandButton id="apply-filter-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/applyFilter')}" styleClass="apply-filters-btn"
+        update="@([id$='chart-management-form'])" process="filter-fieldset" actionListener="#{cc.attrs.updateListener}" />
+
+      <!-- PERIOD TIME FILTER -->
       <p:row>
         <p:column>
           <p:outputLabel styleClass="label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/timePeriod')}" />
           <p:selectOneMenu id="period-time-selection" styleClass="period-time-selection" value="#{filter.timePeriodSelection}">
           	<f:selectItems value="#{filter.allTimePeriodSelection}" var="period" itemLabel="#{period.label}" itemValue="#{period}" />
-          	<p:ajax update="@([id$='chart-management-form'])" listener="#{cc.attrs.updateListener}" />
+          	<p:ajax global="false" update="@([id$='filter-from']) @([id$='filter-to'])" />
           </p:selectOneMenu>
         </p:column>
         <p:column>
@@ -31,20 +35,21 @@
             <p:calendar id="filter-from" value="#{filter.createdDateFrom}" disabled="#{filter.timePeriodSelection ne 'CUSTOM'}"
               pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"
               converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}">
-              <p:ajax event="change" update="@([id$='chart-management-form'])" listener="#{cc.attrs.updateListener}" />
+              <p:ajax global="false" />
             </p:calendar>
 
             <p:outputLabel for="filter-to" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')} " />
             <p:calendar id="filter-to" value="#{filter.createdDateTo}" disabled="#{filter.timePeriodSelection ne 'CUSTOM'}"
               pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"
               converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}">
-              <p:ajax event="change" update="@([id$='chart-management-form'])" listener="#{cc.attrs.updateListener}" />
+              <p:ajax global="false" />
             </p:calendar>
 
           </h:panelGrid>
         </p:column>
       </p:row>
 
+      <!-- CASE CATEGORY FILTER -->
       <p:row>
         <p:column>
           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/caseCategoriesLabel')}"
@@ -52,16 +57,21 @@
         </p:column>
         <p:column>
           <p:scrollPanel mode="native" rendered="#{not empty filter.caseCategories}" styleClass="statistic-filter-container scrollable">
-            <p:selectManyCheckbox id="categories"
+            <p:selectBooleanCheckbox id="categories-select-all" styleClass="select-all-checkbox"
+              itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll')}" value="#{filter.isAllCategoriesSelected}" >
+              <p:ajax global="false" listener="#{statisticChartCreationBean.updateCaseCategoriesCheckboxes(filter)}" update="categories" />
+            </p:selectBooleanCheckbox>
+            <p:selectManyCheckbox id="categories" disabled="#{filter.isAllCategoriesSelected}"
               value="#{filter.selectedCaseCategories}" layout="grid" columns="1">
               <f:selectItems value="#{filter.caseCategories}" var="category" itemValue="#{category.rawPath}"
                 itemLabel="#{category.rawPath == '' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory') : category.path}" />
-              <p:ajax update="@([id$='chart-management-form']) @form" listener="#{cc.attrs.updateListener}" />
+              <p:ajax global="false" />
             </p:selectManyCheckbox>
           </p:scrollPanel>
         </p:column>
       </p:row>
 
+      <!-- ROLE FILTER -->
       <p:row>
         <p:column>
           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/rolesLabel')}"
@@ -70,44 +80,58 @@
         <p:column>
           <p:scrollPanel mode="native" styleClass="statistic-filter-container scrollable"
             rendered="#{not empty filter.roles}">
-            <p:selectManyCheckbox id="roles" value="#{filter.selectedRoles}"
+            <p:selectBooleanCheckbox id="roles-select-all" styleClass="select-all-checkbox"
+              itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll')}" value="#{filter.isAllRolesSelected}" >
+              <p:ajax global="false" listener="#{statisticChartCreationBean.updateRolesCheckboxes(filter)}" update="roles" />
+            </p:selectBooleanCheckbox>
+            <p:selectManyCheckbox id="roles" value="#{filter.selectedRoles}" disabled="#{filter.isAllRolesSelected}"
               layout="grid" columns="1">
               <f:selectItems value="#{filter.roles}" var="role"
                 itemLabel="#{role.displayName}" itemValue="#{role.memberName}" />
-              <p:ajax update="@([id$='chart-management-form']) @form" listener="#{cc.attrs.updateListener}" />
+              <p:ajax global="false" />
             </p:selectManyCheckbox>
           </p:scrollPanel>
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noRoles')}" styleClass="no-data-message" rendered="#{empty filter.roles}" />
         </p:column>
       </p:row>
 
+      <!-- CASE STATE FILTER -->
       <p:row rendered="#{cc.attrs.showCaseStateFilter}">
         <p:column>
-          <p:outputLabel for="caseStates" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/workflowStatesLabel')}" styleClass="label" />
+          <p:outputLabel for="case-states" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/workflowStatesLabel')}" styleClass="label" />
         </p:column>
         <p:column>
           <p:scrollPanel mode="native" styleClass="statistic-filter-container">
-            <p:selectManyCheckbox id="caseStates"
+            <p:selectBooleanCheckbox id="case-states-select-all" styleClass="select-all-checkbox"
+              itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll')}" value="#{filter.isAllCaseStatesSelected}" >
+              <p:ajax global="false" listener="#{statisticChartCreationBean.updateCaseStatesCheckboxes(filter)}" update="case-states" />
+            </p:selectBooleanCheckbox>
+            <p:selectManyCheckbox id="case-states" disabled="#{filter.isAllCaseStatesSelected}"
               value="#{filter.selectedCaseStates}" layout="grid" columns="1">
               <f:selectItems value="#{filter.caseStates}" var="state"
                 itemLabel="#{filter.getCaseStateName(state)}" itemValue="#{state}" />
-              <p:ajax update="@([id$='chart-management-form']) @form" listener="#{cc.attrs.updateListener}" />
+              <p:ajax global="false" />
             </p:selectManyCheckbox>
           </p:scrollPanel>
         </p:column>
       </p:row>
 
+      <!-- TASK PRIORITY FILTER -->
       <p:row>
         <p:column>
-          <p:outputLabel for="taskPriority" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/taskPrioritiesLabel')}" styleClass="label" />
+          <p:outputLabel for="task-priorities" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/taskPrioritiesLabel')}" styleClass="label" />
         </p:column>
         <p:column>
           <p:scrollPanel mode="native" styleClass="statistic-filter-container">
-            <p:selectManyCheckbox id="taskPriority"
+            <p:selectBooleanCheckbox id="task-priorities-select-all" styleClass="select-all-checkbox"
+              itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll')}" value="#{filter.isAllTaskPrioritiesSelected}" >
+              <p:ajax global="false" listener="#{statisticChartCreationBean.updateTaskPrioritiesCheckboxes(filter)}" update="task-priorities" />
+            </p:selectBooleanCheckbox>
+            <p:selectManyCheckbox id="task-priorities" disabled="#{filter.isAllTaskPrioritiesSelected}"
               value="#{cc.attrs.filter.selectedTaskPriorities}" layout="grid" columns="1">
               <f:selectItems value="#{cc.attrs.filter.taskPriorities}" var="priority"
                 itemLabel="#{filter.getPriorityName(priority)}" itemValue="#{priority}" />
-              <p:ajax update="@([id$='chart-management-form']) @form" listener="#{cc.attrs.updateListener}" />
+              <p:ajax global="false" />
             </p:selectManyCheckbox>
           </p:scrollPanel>
         </p:column>

@@ -29,7 +29,7 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class StatisticFilter {
+public class StatisticFilter implements Cloneable {
   
   private StatisticTimePeriodSelection timePeriodSelection;
   @JsonIgnore
@@ -40,18 +40,22 @@ public class StatisticFilter {
   @JsonIgnore
   private List<CategoryData> caseCategories = new ArrayList<>();
   private List<String> selectedCaseCategories = new ArrayList<>();
+  private boolean isAllCategoriesSelected = true;
 
   @JsonIgnore
   private List<Object> roles = new ArrayList<>();
   private List<String> selectedRoles = new ArrayList<>();
+  private boolean isAllRolesSelected = true;
 
   @JsonIgnore
   private List<CaseState> caseStates = new ArrayList<>();
   private List<CaseState> selectedCaseStates = new ArrayList<>();
+  private boolean isAllCaseStatesSelected = true;
   
   @JsonIgnore
   private List<WorkflowPriority> taskPriorities = new ArrayList<>();
   private List<WorkflowPriority> selectedTaskPriorities = new ArrayList<>();
+  private boolean isAllTaskPrioritiesSelected = true;
 
   @JsonIgnore
   private final static String SECURITY_SERVICE_CALLABLE = "MultiPortal/SecurityService";
@@ -228,5 +232,41 @@ public class StatisticFilter {
   public void setAllTimePeriodSelection(List<StatisticTimePeriodSelection> allTimePeriodSelection) {
     this.allTimePeriodSelection = allTimePeriodSelection;
   }
+
+  public boolean getIsAllCategoriesSelected() {
+    return isAllCategoriesSelected;
+  }
+
+  public void setIsAllCategoriesSelected(boolean isAllCategoriesSelected) {
+    this.isAllCategoriesSelected = isAllCategoriesSelected;
+  }
+
+  public boolean getIsAllRolesSelected() {
+    return isAllRolesSelected;
+  }
+
+  public void setIsAllRolesSelected(boolean isAllRolesSelected) {
+    this.isAllRolesSelected = isAllRolesSelected;
+  }
   
+  public boolean getIsAllCaseStatesSelected() {
+    return isAllCaseStatesSelected;
+  }
+
+  public void setIsAllCaseStatesSelected(boolean isAllCaseStatesSelected) {
+    this.isAllCaseStatesSelected = isAllCaseStatesSelected;
+  }
+  
+  public boolean getIsAllTaskPrioritiesSelected() {
+    return isAllTaskPrioritiesSelected;
+  }
+
+  public void setIsAllTaskPrioritiesSelected(boolean isAllTaskPrioritiesSelected) {
+    this.isAllTaskPrioritiesSelected = isAllTaskPrioritiesSelected;
+  }
+
+@Override
+  public Object clone() throws CloneNotSupportedException { //NOSONAR
+    return super.clone();
+  }
 }

@@ -80,6 +80,7 @@ import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.time.DateUtils;
@@ -339,19 +340,21 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   private Map<Object, Number> generateExpiryModelForDrilldownLevelDay(Map<Date, Long> statisticResultMap, String selectedDay, String previousSelectedWeek, String previousSelectedMonth) {
     Map<Object, Number> chartData = new LinkedHashMap<>();
     
-    Long taskExpireBefore8 = new Long(0L);
-    Long taskExpireIn8 = new Long(0L);
-    Long taskExpireIn9 = new Long(0L);
-    Long taskExpireIn10 = new Long(0L);
-    Long taskExpireIn11 = new Long(0L);
-    Long taskExpireIn12 = new Long(0L);
-    Long taskExpireIn13 = new Long(0L);
-    Long taskExpireIn14 = new Long(0L);
-    Long taskExpireIn15 = new Long(0L);
-    Long taskExpireIn16 = new Long(0L);
-    Long taskExpireIn17 = new Long(0L);
-    Long taskExpireAfter18 = new Long(0L);
-    Long[] taskExpireInHour = {taskExpireIn8, taskExpireIn9, taskExpireIn10, taskExpireIn11, taskExpireIn12, taskExpireIn13, taskExpireIn14, taskExpireIn15, taskExpireIn16, taskExpireIn17};
+    Long taskExpireBefore8 = 0L;
+    Long taskExpireIn8 = 0L;
+    Long taskExpireIn9 = 0L;
+    Long taskExpireIn10 = 0L;
+    Long taskExpireIn11 = 0L;
+    Long taskExpireIn12 = 0L;
+    Long taskExpireIn13 = 0L;
+    Long taskExpireIn14 = 0L;
+    Long taskExpireIn15 = 0L;
+    Long taskExpireIn16 = 0L;
+    Long taskExpireIn17 = 0L;
+    Long taskExpireAfter18 = 0L;
+    Long[] taskExpireInHour =
+        {taskExpireIn8, taskExpireIn9, taskExpireIn10, taskExpireIn11, taskExpireIn12, taskExpireIn13, taskExpireIn14,
+            taskExpireIn15, taskExpireIn16, taskExpireIn17};
     
     for (Entry<Date, Long> result : statisticResultMap.entrySet()) {
       Date resultDate = result.getKey();
@@ -405,14 +408,16 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       }
     }
 
-    Long taskExpireOnMonday = new Long(0L);
-    Long taskExpireOnTuesday = new Long(0L);
-    Long taskExpireOnWednesday = new Long(0L);
-    Long taskExpireOnThursday = new Long(0L);
-    Long taskExpireOnFriday = new Long(0L);
-    Long taskExpireOnSaturday = new Long(0L);
-    Long taskExpireOnSunday = new Long(0L);
-    Long[] taskExpireOnDaysOfWeek = {taskExpireOnMonday, taskExpireOnTuesday, taskExpireOnWednesday, taskExpireOnThursday, taskExpireOnFriday, taskExpireOnSaturday, taskExpireOnSunday};
+    Long taskExpireOnMonday = 0L;
+    Long taskExpireOnTuesday = 0L;
+    Long taskExpireOnWednesday = 0L;
+    Long taskExpireOnThursday = 0L;
+    Long taskExpireOnFriday = 0L;
+    Long taskExpireOnSaturday = 0L;
+    Long taskExpireOnSunday = 0L;
+    Long[] taskExpireOnDaysOfWeek =
+        {taskExpireOnMonday, taskExpireOnTuesday, taskExpireOnWednesday, taskExpireOnThursday, taskExpireOnFriday,
+            taskExpireOnSaturday, taskExpireOnSunday};
 
     for (Entry<Date, Long> result : statisticResultMap.entrySet()) {
       Date resultDate = StatisticChartTimeUtils.truncateMinutesPart(result.getKey());
@@ -444,12 +449,12 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       String selectedValue) {
     Map<Object, Number> chartData = new LinkedHashMap<>();
 
-    Long taskExpireOnFirstWeek = new Long(0L);
-    Long taskExpireOnSecondWeek = new Long(0L);
-    Long taskExpireOnThirdWeek = new Long(0L);
-    Long taskExpireOnFourthWeek = new Long(0L);
-    Long taskExpireOnFifthWeek = new Long(0L);
-    Long taskExpireOnSixthWeek = new Long(0L);
+    Long taskExpireOnFirstWeek = 0L;
+    Long taskExpireOnSecondWeek = 0L;
+    Long taskExpireOnThirdWeek = 0L;
+    Long taskExpireOnFourthWeek = 0L;
+    Long taskExpireOnFifthWeek = 0L;
+    Long taskExpireOnSixthWeek = 0L;
 
     Date firstDateOfSelectedMonth = StatisticChartTimeUtils.getFirstDateOfMonth(selectedValue);
     Date firstDateOfWeek = StatisticChartTimeUtils.getFirstDateOfWeekContainsDate(firstDateOfSelectedMonth);
@@ -494,9 +499,10 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     return chartData;
   }
 
-  private Long[] calculateTaskExpireOnFifthAndSixthWeek(Date firstDateOfFifthWeek, Date firstDateOfSixthWeek, Date firstDateOfNextMonth, Date resultDate, Long resultValue) {
-    Long taskExpireOnFifthWeek = new Long(0L);
-    Long taskExpireOnSixthWeek = new Long(0L);
+  private Long[] calculateTaskExpireOnFifthAndSixthWeek(Date firstDateOfFifthWeek, Date firstDateOfSixthWeek,
+      Date firstDateOfNextMonth, Date resultDate, Long resultValue) {
+    Long taskExpireOnFifthWeek = 0L;
+    Long taskExpireOnSixthWeek = 0L;
     if (firstDateOfSixthWeek.compareTo(firstDateOfNextMonth) < 0) {
       if (checkIfDateBetweenRange(firstDateOfFifthWeek, firstDateOfSixthWeek, resultDate)) {
         taskExpireOnFifthWeek = resultValue;
@@ -520,20 +526,22 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   private Map<Object, Number> generateExpiryModelForDrilldownLevelYear(Map<Date, Long> statisticResultMap) {
     Map<Object, Number> chartData = new LinkedHashMap<>();
     
-    Long taskExpireOnJanuary = new Long(0L);
-    Long taskExpireOnFebruary = new Long(0L);
-    Long taskExpireOnMarch = new Long(0L);
-    Long taskExpireOnApril = new Long(0L);
-    Long taskExpireOnMay = new Long(0L);
-    Long taskExpireOnJune = new Long(0L);
-    Long taskExpireOnJuly = new Long(0L);
-    Long taskExpireOnAugust = new Long(0L);
-    Long taskExpireOnSeptember = new Long(0L);
-    Long taskExpireOnOctober = new Long(0L);
-    Long taskExpireOnNovember = new Long(0L);
-    Long taskExpireOnDecember = new Long(0L);
-    Long[] takExpireOnMonths = {taskExpireOnJanuary, taskExpireOnFebruary, taskExpireOnMarch, taskExpireOnApril, taskExpireOnMay, taskExpireOnJune,
-            taskExpireOnJuly, taskExpireOnAugust, taskExpireOnSeptember, taskExpireOnOctober, taskExpireOnNovember, taskExpireOnDecember};
+    Long taskExpireOnJanuary = 0L;
+    Long taskExpireOnFebruary = 0L;
+    Long taskExpireOnMarch = 0L;
+    Long taskExpireOnApril = 0L;
+    Long taskExpireOnMay = 0L;
+    Long taskExpireOnJune = 0L;
+    Long taskExpireOnJuly = 0L;
+    Long taskExpireOnAugust = 0L;
+    Long taskExpireOnSeptember = 0L;
+    Long taskExpireOnOctober = 0L;
+    Long taskExpireOnNovember = 0L;
+    Long taskExpireOnDecember = 0L;
+    Long[] takExpireOnMonths =
+        {taskExpireOnJanuary, taskExpireOnFebruary, taskExpireOnMarch, taskExpireOnApril, taskExpireOnMay,
+            taskExpireOnJune, taskExpireOnJuly, taskExpireOnAugust, taskExpireOnSeptember, taskExpireOnOctober,
+            taskExpireOnNovember, taskExpireOnDecember};
     
     for (Entry<Date, Long> result : statisticResultMap.entrySet()) {
       Date resultDate = StatisticChartTimeUtils.truncateMinutesPart(result.getKey());
@@ -565,10 +573,10 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   private Map<Object, Number> generateDefaultExpiryModel(Map<Date, Long> statisticResultMap) {
     Map<Object, Number> chartData = new LinkedHashMap<>();
     // Calculate result
-    Long taskExpireToday = new Long(0L);
-    Long taskExpireThisWeek = new Long(0L);
-    Long taskExpireThisMonth = new Long(0L);
-    Long taskExpireThisYear = new Long(0L);
+    Long taskExpireToday = 0L;
+    Long taskExpireThisWeek = 0L;
+    Long taskExpireThisMonth = 0L;
+    Long taskExpireThisYear = 0L;
 
     Date today = StatisticChartTimeUtils.truncateMinutesPart(new Date());
     Date firstDateOfWeek = StatisticChartTimeUtils.truncateMinutesPart(StatisticChartTimeUtils.getFirstDateOfWeekContainsDate(new Date()));
@@ -648,7 +656,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
     elapsedTimeStatistic.forEach(statistic -> {
       if (StringUtils.isNotBlank(statistic.getResult())) {
-        Map<String, String> resultAsString = new HashMap<String, String>();
+        Map<String, String> resultAsString = new HashMap<>();
         resultAsString.putAll(gsonConverter.fromJson(statistic.getResult(), type));
         resultAsString.entrySet().forEach(result -> {
           Number elapsedTime = NumberUtils.createNumber(result.getValue());
@@ -658,7 +666,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     });
 
     for (Entry<String, Number> entry : chartDataTemp.entrySet()) {
-      String key = entry.getKey().toString();
+      String key = entry.getKey();
       if (StringUtils.isBlank(key)) {
         key = Ivy.cms().co(NO_CATEGORY_CMS);
       }
@@ -690,7 +698,18 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     statisticChart.setType(chartType);
     statisticChart.setName(Optional.ofNullable(chartName).orElse("New chart"));
     statisticChart.setPosition(countStatisticChartsByUserId(creatorId));
-    statisticChart.setFilter(filter);
+    if (filter.getIsAllCaseStatesSelected() || filter.getIsAllCategoriesSelected()) {
+      StatisticFilter newFilter = (StatisticFilter) ObjectUtils.clone(filter);
+      if (filter.getIsAllCategoriesSelected()) {
+        newFilter.setSelectedCaseCategories(new ArrayList<>());
+      }
+      if (filter.getIsAllRolesSelected()) {
+        newFilter.setSelectedRoles(new ArrayList<>());
+      }
+      statisticChart.setFilter(newFilter);
+    } else {
+      statisticChart.setFilter(filter);
+    }
     BusinessDataInfo<StatisticChart> info = save(statisticChart);
     return findById(info.getId());
   }
