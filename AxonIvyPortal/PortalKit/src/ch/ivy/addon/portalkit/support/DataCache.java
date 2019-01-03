@@ -95,7 +95,7 @@ public final class DataCache {
   }
   
   public static void cacheAllUsers(String applicationName, List<User> users) {
-    IDataCache cache = (IDataCache) getCacheFromApplicationName(applicationName);
+    IDataCache cache = getCacheFromApplicationName(applicationName);
     if (cache == null) {
     	return ;
     }
@@ -110,7 +110,7 @@ public final class DataCache {
     }
   
   public static void cacheUsersRepo(String applicationName, Repo<Long, User> repo) {
-    IDataCache cache = (IDataCache) getCacheFromApplicationName(applicationName);
+    IDataCache cache = getCacheFromApplicationName(applicationName);
       if (cache == null) {
       	return ;
       }
@@ -119,7 +119,7 @@ public final class DataCache {
   }
   
   public static void invalidateUsersCache(String applicationName) {
-    IDataCache cache = (IDataCache) getCacheFromApplicationName(applicationName);
+    IDataCache cache = getCacheFromApplicationName(applicationName);
       if (cache == null) {
       	return ;
       }
