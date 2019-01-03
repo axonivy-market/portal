@@ -178,11 +178,11 @@ public class UserMenuBean implements Serializable {
     hasNoRecordsFound =
         CollectionUtils.isEmpty(foundWebStartables) && CollectionUtils.isEmpty(foundTasks)
             && CollectionUtils.isEmpty(foundCases);
-    addItemToShowMoreTasksInGlobalSearchIfNeeded();
-    addItemToShowMoreCasesInGlobalSearchIfNeeded();
+    configureToShowMoreTasksInGlobalSearchIfNeeded();
+    configureToShowMoreCasesInGlobalSearchIfNeeded();
   }
   
-  private void addItemToShowMoreTasksInGlobalSearchIfNeeded() {
+  private void configureToShowMoreTasksInGlobalSearchIfNeeded() {
     if (CollectionUtils.isNotEmpty(foundTasks) && foundTasks.size() > MAX_NUMBER_OF_RESULTS_IN_TASK_CASE_GLOBAL_SEARCH) {
       RemoteTask lastTask = foundTasks.get(foundTasks.size() - 1);
       lastTask.setName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/ShowMoreResults"));
@@ -190,7 +190,7 @@ public class UserMenuBean implements Serializable {
     }
   }
 
-  private void addItemToShowMoreCasesInGlobalSearchIfNeeded() {
+  private void configureToShowMoreCasesInGlobalSearchIfNeeded() {
     if (CollectionUtils.isNotEmpty(foundCases) && foundCases.size() > MAX_NUMBER_OF_RESULTS_IN_TASK_CASE_GLOBAL_SEARCH) {
       RemoteCase lastCase = foundCases.get(foundCases.size() - 1);
       lastCase.setName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/ShowMoreResults"));
