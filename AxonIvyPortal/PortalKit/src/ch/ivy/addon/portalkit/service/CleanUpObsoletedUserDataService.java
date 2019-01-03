@@ -56,7 +56,7 @@ public class CleanUpObsoletedUserDataService {
     if (userProcesses != null) {
       for (UserProcess userProcess : userProcesses) {
         String processUserName = userProcess.getUserName();
-        if (checkIfUserBelongToCurrentApp(processUserName) && (!userNames.contains(processUserName) || StringUtils.isBlank(processUserName))) {
+        if (StringUtils.isBlank(processUserName) || (checkIfUserBelongToCurrentApp(processUserName) && !userNames.contains(processUserName))) {
           obsoletedUserProcess.add(userProcess);
         }
       }
