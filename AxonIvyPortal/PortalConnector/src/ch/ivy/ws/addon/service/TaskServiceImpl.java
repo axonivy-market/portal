@@ -23,6 +23,7 @@ import java.util.stream.Stream;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.StopWatch;
 
 import ch.ivy.ws.addon.CategoryData;
 import ch.ivy.ws.addon.WSException;
@@ -271,12 +272,18 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
       Integer count, Boolean isUrlBuiltFromSystemProperties) throws WSException {
     try {
       return executeAsSystem(() -> {
+        StopWatch watch = new StopWatch();
+        watch.start();
+        
         if (taskSearchCriteria.isEmpty() || StringUtils.isBlank(taskSearchCriteria.getJsonQuery())) {
           return result(noErrors());
         }
         TaskQuery taskQuery = createTaskQuery(taskSearchCriteria);
         queryExcludeHiddenTasks(taskQuery, taskSearchCriteria.getInvolvedApplications());
         List<ITask> tasks = executeTaskQuery(taskQuery, startIndex, count);
+        
+        Ivy.log().error("EXCECUTE QUERY of findTasksByCriteria AFTER {0} MILISECONDS", watch.getTime());
+        
         List<IvyTask> ivyTasks = new ArrayList<>();
         List<IvyTask> allIvyTasks = new ArrayList<>();
         IvyTaskTransformer transformer = new IvyTaskTransformer(isUrlBuiltFromSystemProperties);
@@ -305,6 +312,8 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             ivyTasks.add(ivyTask);
           }
         });
+        
+        Ivy.log().error("FINISH findTasksByCriteria AFTER {0} MILISECONDS", watch.getTime());
         return result(ivyTasks, allIvyTasks, noErrors());
       });
     } catch (Exception e) {
@@ -324,6 +333,9 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   public TaskServiceResult countTasksByCriteria(TaskSearchCriteria taskSearchCriteria) throws WSException {
     try {
       return executeAsSystem(() -> {
+        StopWatch watch = new StopWatch();
+        watch.start();
+        
         if (taskSearchCriteria.isEmpty()) {
           return result(0, noErrors());
         }
@@ -332,6 +344,8 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
         queryExcludeHiddenTasks(taskQuery, taskSearchCriteria.getInvolvedApplications());
 
         long taskCount = countTasks(taskQuery);
+        
+        Ivy.log().error("FINISH countTasksByCriteria AFTER {0} MILISECONDS", watch.getTime());
         return result(taskCount, noErrors());
 
       });
@@ -872,7 +886,8 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
 
   private void queryExcludeHiddenTasks(TaskQuery query, List<String> apps) {
     if (isHiddenTasksCasesExcluded(apps)){
-      query.where().and().additionalProperty("HIDE").isNull();
+      Ivy.log().error("EXTEND TASK QUERY WITH CUSTOM VARCHAR HIDE");
+      query.where().and().customVarCharField5().equals("HIDE");//additionalProperty("HIDE").isNull();
     }
   }
 
