@@ -94,7 +94,11 @@ public final class DataCache {
     return cacheEntry != null ? (List<User>) cacheEntry.getValue() : null;
   }
   
-  public static void cacheAllUsers(IDataCache cache, String applicationName, List<User> users) {
+  public static void cacheAllUsers(String applicationName, List<User> users) {
+    IDataCache cache = (IDataCache) getCacheFromApplicationName(applicationName);
+    if (cache == null) {
+    	return ;
+    }
     Ivy.log().info("User list didn't exist in cache of application " + applicationName + ", store in cache now with number of inserted users = " +users.size());
     cache.setEntry(PortalCacheConstants.PORTAL_USERS_CACHE_GROUP_NAME, PortalCacheConstants.USERS_LIST_CACHE_ENTRY_NAME, users);
   }
@@ -105,16 +109,32 @@ public final class DataCache {
       return cacheEntry != null ? (Repo<Long, User>) cacheEntry.getValue() : null;
     }
   
-  public static void cacheUsersRepo(IDataCache cache, String applicationName, Repo<Long, User> repo) {
+  public static void cacheUsersRepo(String applicationName, Repo<Long, User> repo) {
+    IDataCache cache = (IDataCache) getCacheFromApplicationName(applicationName);
+      if (cache == null) {
+      	return ;
+      }
     Ivy.log().info("User repo didn't exist in cache of application " + applicationName + ", store in cache now");
     cache.setEntry(PortalCacheConstants.PORTAL_USERS_CACHE_GROUP_NAME, PortalCacheConstants.USERS_REPO_CACHE_ENTRY_NAME, repo);
   }
   
-  public static void invalidateUsersCache(IDataCache cache, String applicationName) {
-    Ivy.log().info("Invalidated users cache in application: " + applicationName);
+  public static void invalidateUsersCache(String applicationName) {
+    IDataCache cache = (IDataCache) getCacheFromApplicationName(applicationName);
+      if (cache == null) {
+      	return ;
+      }
     IDataCacheGroup group = cache.getGroup(PortalCacheConstants.PORTAL_USERS_CACHE_GROUP_NAME);
     if (group != null) {
+      Ivy.log().info("Invalidated users cache in application: " + applicationName);
       cache.invalidateGroup(group);
     }
+  }
+  
+  private static IDataCache getCacheFromApplicationName(String applicationName) {
+    IApplication findApplication = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(applicationName);
+      if (findApplication == null) {
+        return null;
+      }
+      return (IDataCache) findApplication.getAdapter(IDataCache.class);
   }
 }

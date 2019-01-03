@@ -171,25 +171,30 @@ tt0 f10 actionDecl 'ch.ivyteam.wf.processes.SynchronizeApplicationUserData out;
 ' #txt
 tt0 f10 actionTable 'out=in;
 ' #txt
-tt0 f10 actionCode 'import ch.ivy.addon.portalkit.support.DataCache;
+tt0 f10 actionCode 'import ch.ivyteam.ivy.application.IApplication;
+import java.util.ArrayList;
+import ch.ivy.addon.portalkit.persistence.domain.Application;
+import ch.ivy.addon.portalkit.service.ApplicationService;
+import ch.ivy.addon.portalkit.support.DataCache;
 import org.boon.datarepo.Repo;
-import ch.ivyteam.ivy.data.cache.IDataCache;
-import ch.ivyteam.ivy.server.ServerFactory;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivy.addon.portalkit.persistence.dao.UserDao;
 
-List<IApplication> applications = ServerFactory.getServer().getApplicationConfigurationManager().getApplications();
 UserDao userDao = new UserDao();
 Repo repo = userDao.buildRepoIndexedByUserName(in.users);
-for (IApplication application : applications) {
-	IDataCache cache = application.getAdapter(IDataCache.class) as IDataCache;
-	if (cache != null) {
-		//invalidate cache
-		DataCache.invalidateUsersCache(cache, application.getName());
-		//insert entries to cache again
-		DataCache.cacheAllUsers(cache, application.getName(), in.users);
-		DataCache.cacheUsersRepo(cache, application.getName(), repo);
-	}
+ApplicationService appService = new ApplicationService();
+List<String> applicationNames = new ArrayList();
+List<Application> applications = appService.findAllIvyApplications();
+for (Application app : applications) {
+	applicationNames.add(app.getName());
+}
+applicationNames.add(IApplication.PORTAL_APPLICATION_NAME);
+
+for (String applicationName : applicationNames) {
+	//invalidate cache
+	DataCache.invalidateUsersCache(applicationName);
+	//insert entries to cache again
+	DataCache.cacheAllUsers(applicationName, in.users);
+	DataCache.cacheUsersRepo(applicationName, repo);
 }' #txt
 tt0 f10 security system #txt
 tt0 f10 type ch.ivyteam.wf.processes.SynchronizeApplicationUserData #txt

@@ -29,7 +29,7 @@ public class UserDao extends AbstractDao<User> {
     repo = DataCache.getUserRepoFromCache();
     if (repo == null) {
       repo = buildRepoIndexedByUserName(getAllUsers());
-      DataCache.cacheUsersRepo(Ivy.datacache().getAppCache(), Ivy.wf().getApplication().getName(), repo);
+      DataCache.cacheUsersRepo(Ivy.wf().getApplication().getName(), repo);
     }
   }
 
@@ -43,7 +43,7 @@ public class UserDao extends AbstractDao<User> {
     List<User> users = DataCache.getAllUsersFromCache();
     if (users == null) {
       users = findAll();
-      DataCache.cacheAllUsers(Ivy.datacache().getAppCache(), Ivy.wf().getApplication().getName(), users);
+      DataCache.cacheAllUsers(Ivy.wf().getApplication().getName(), users);
     }
     return users;
   }
