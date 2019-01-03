@@ -254,7 +254,7 @@ Gh0 f14 requestActionDecl '<java.lang.Long serverId,ch.ivy.ws.addon.TaskSearchCr
 Gh0 f14 requestMappingAction 'param.serverId=in.#serverId;
 param.taskSearchCriteria=in.taskSearchCriteria;
 param.startIndex=0;
-param.count=20;
+param.count=ch.ivy.addon.portal.generic.bean.UserMenuBean.MAX_NUMBER_OF_RESULTS_IN_TASK_CASE_GLOBAL_SEARCH + 1;
 ' #txt
 Gh0 f14 responseActionDecl 'ch.ivy.addon.portal.generic.GlobalSearchData out;
 ' #txt
@@ -281,7 +281,7 @@ Gh0 f16 requestActionDecl '<java.lang.Long serverId,java.lang.Integer startIndex
 ' #txt
 Gh0 f16 requestMappingAction 'param.serverId=in.#serverId;
 param.startIndex=0;
-param.count=20;
+param.count=ch.ivy.addon.portal.generic.bean.UserMenuBean.MAX_NUMBER_OF_RESULTS_IN_TASK_CASE_GLOBAL_SEARCH + 1;
 param.caseSearchCriteria=in.caseSearchCriteria;
 ' #txt
 Gh0 f16 responseActionDecl 'ch.ivy.addon.portal.generic.GlobalSearchData out;
@@ -337,9 +337,6 @@ if (!StringUtils.isEmpty(expressStartLink)) {
 	}
 }
 in.webStartables.sort(new WebStartableNameComparator());
-if (in.webStartables.size() > 20) {
-	in.webStartables = in.webStartables.subList(0,20);	
-}
 ' #txt
 Gh0 f17 type ch.ivy.addon.portal.generic.GlobalSearchData #txt
 Gh0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

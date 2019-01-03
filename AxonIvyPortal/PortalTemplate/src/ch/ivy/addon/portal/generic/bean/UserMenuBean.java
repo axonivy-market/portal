@@ -48,6 +48,7 @@ public class UserMenuBean implements Serializable {
   public static final int MINUTE_TO_SECOND = 60;
   public static final int SECONND_TO_MILLISECOND = 1000;
   public static final int TIME_BEFORE_LOST_SESSION = 180000; // 3 minutes
+  public static final int MAX_NUMBER_OF_RESULTS_IN_TASK_CASE_GLOBAL_SEARCH = 19;
 
   private boolean hasNoRecordsFound;
 
@@ -177,8 +178,26 @@ public class UserMenuBean implements Serializable {
     hasNoRecordsFound =
         CollectionUtils.isEmpty(foundWebStartables) && CollectionUtils.isEmpty(foundTasks)
             && CollectionUtils.isEmpty(foundCases);
+    addItemToShowMoreTasksInGlobalSearchIfNeeded();
+    addItemToShowMoreCasesInGlobalSearchIfNeeded();
+  }
+  
+  private void addItemToShowMoreTasksInGlobalSearchIfNeeded() {
+    if (CollectionUtils.isNotEmpty(foundTasks) && foundTasks.size() > MAX_NUMBER_OF_RESULTS_IN_TASK_CASE_GLOBAL_SEARCH) {
+      RemoteTask lastTask = foundTasks.get(foundTasks.size() - 1);
+      lastTask.setName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/ShowMoreResults"));
+      lastTask.setDescription("");
+    }
   }
 
+  private void addItemToShowMoreCasesInGlobalSearchIfNeeded() {
+    if (CollectionUtils.isNotEmpty(foundCases) && foundCases.size() > MAX_NUMBER_OF_RESULTS_IN_TASK_CASE_GLOBAL_SEARCH) {
+      RemoteCase lastCase = foundCases.get(foundCases.size() - 1);
+      lastCase.setName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/ShowMoreResults"));
+      lastCase.setDescription("");
+    }
+  }
+  
   public void resetSearchData() {
     searchKeyword = StringUtils.EMPTY;
     foundWebStartables = new ArrayList<>();
