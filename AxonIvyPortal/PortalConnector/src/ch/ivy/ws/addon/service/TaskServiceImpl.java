@@ -887,7 +887,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   private void queryExcludeHiddenTasks(TaskQuery query, List<String> apps) {
     if (isHiddenTasksCasesExcluded(apps)){
       Ivy.log().error("EXTEND TASK QUERY WITH CUSTOM VARCHAR HIDE");
-      query.where().and().customVarCharField5().equals("HIDE");//additionalProperty("HIDE").isNull();
+      query.where().and().customVarCharField5().isEqual("HIDE");//additionalProperty("HIDE").isNull();
     }
   }
 
