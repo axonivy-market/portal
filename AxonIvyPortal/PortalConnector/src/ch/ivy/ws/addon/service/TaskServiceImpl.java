@@ -92,10 +92,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
               }
             } catch (Exception e) {
               // Wrong combination of taskId and username
-              List<Object> userText = new ArrayList<Object>();
-              userText.add(taskId);
-              userText.add(username);
-              errors.add(new WSException(WARNING, 10031, e, userText, null));
+              errors.add(createException(WARNING, 10031, e, taskId, username));
             } finally {
               if (session != null && application != null) {
                 ISecurityContext securityContext = application.getSecurityContext();
@@ -206,9 +203,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
                 }
               } catch (Exception e) {
                 // Invalid username
-                List<Object> userText = new ArrayList<Object>();
-                userText.add(username);
-                errors.add(new WSException(WARNING, 10029, e, userText, null));
+                errors.add(createException(WARNING, 10029, e, username));
               } finally {
                 if (workflowSession != null && application != null) {
                   ISecurityContext securityContext = application.getSecurityContext();
@@ -217,15 +212,11 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
               }
             } else {
               // Invalid taskId
-              List<Object> userText = new ArrayList<Object>();
-              userText.add(taskId);
-              errors.add(new WSException(WARNING, 10027, userText, null));
+              errors.add(createException(WARNING, 10027, taskId));
             }
           } else {
             // No taskId given
-            List<Object> userText = new ArrayList<Object>();
-            userText.add("");
-            errors.add(new WSException(WARNING, 10027, userText, null));
+            errors.add(createException(WARNING, 10029, ""));
           }
           return result;
       });
@@ -672,9 +663,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   @Override
   public ITask findTask(final Integer taskId, List<WSException> errors) {
     if (taskId == null) {
-      List<Object> userText = new ArrayList<Object>();
-      userText.add(taskId);
-      errors.add(new WSException(WARNING, 10028, userText, null));
+      errors.add(createException(WARNING, 10028, taskId));
       return null;
     }
 
@@ -684,9 +673,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
       return task;
     } catch (Exception e) {
       // Wrong TaskId
-      List<Object> userText = new ArrayList<Object>();
-      userText.add(taskId);
-      errors.add(new WSException(WARNING, 10027, e, userText, null));
+      errors.add(createException(WARNING, 10027, e, taskId));
       return null;
     }
   }
@@ -908,8 +895,4 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   private ITaskQueryExecutor taskQueryExecutor() {
     return Ivy.wf().getGlobalContext().getTaskQueryExecutor();
   }
-
-  /*private ISecurityManager securityManager() {
-    return ServerFactory.getServer().getSecurityManager();
-  }*/
 }
