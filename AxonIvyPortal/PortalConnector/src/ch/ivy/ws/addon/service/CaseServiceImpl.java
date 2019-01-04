@@ -19,8 +19,6 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import org.apache.commons.lang3.time.StopWatch;
-
 import ch.ivy.ws.addon.CategoryData;
 import ch.ivy.ws.addon.WSErrorType;
 import ch.ivy.ws.addon.WSException;
@@ -490,8 +488,6 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     List<WSException> errors = Collections.emptyList();
     try {
       return executeAsSystem(() -> {
-        StopWatch watch = new StopWatch();
-        watch.start();
         if (caseSearchCriteria.isEmpty()) {
           return result(noErrors());
         }
@@ -500,7 +496,6 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
         queryExcludeHiddenCases(caseQuery, caseSearchCriteria.getInvolvedApplications());
         List<ICase> cases = executeCaseQuery(caseQuery, startIndex, count);
         
-        Ivy.log().error("EXCECUTE QUERY of findCasesByCriteria AFTER {0} MILISECONDS", watch.getTime());
         List<IvyCase> ivyCases = new ArrayList<>();
         
         for (ICase iCase : cases) {
@@ -513,7 +508,6 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
           ivyCases.add(ivyCase);
         }
         
-        Ivy.log().error("FINISH findCasesByCriteria AFTER {0} MILISECONDS", watch.getTime());
         return result(ivyCases, errors);
       });
     } catch (Exception e) {
@@ -526,8 +520,6 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     List<WSException> errors = Collections.emptyList();
     try {
       return executeAsSystem(() -> {
-        StopWatch watch = new StopWatch();
-        watch.start();
         if (caseSearchCriteria.isEmpty()) {
           return result(0, errors);
         }
@@ -536,7 +528,6 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
         queryExcludeHiddenCases(caseQuery, caseSearchCriteria.getInvolvedApplications());
         long caseCount = countCases(caseQuery);
         
-        Ivy.log().error("FINISH countCasesByCriteria AFTER {0} MILISECONDS", watch.getTime());
         return result(caseCount, errors);
 
       });
@@ -779,8 +770,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
 
   private void queryExcludeHiddenCases(CaseQuery query, List<String> apps) {
     if (isHiddenTasksCasesExcluded(apps)){
-      Ivy.log().error("EXTEND CASE QUERY WITH CUSTOM VARCHAR HIDE");
-      query.where().and().customVarCharField5().isNull();// additionalProperty("HIDE").isNull();
+      query.where().and().additionalProperty("HIDE").isNull();
     }
   }
 
