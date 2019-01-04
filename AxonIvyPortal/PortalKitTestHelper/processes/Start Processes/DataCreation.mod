@@ -22,7 +22,6 @@ Dt0 @Trigger f28 '' #zField
 Dt0 @GridStep f30 '' #zField
 Dt0 @Alternative f32 '' #zField
 Dt0 @PushWFArc f33 '' #zField
-Dt0 @PushWFArc f29 '' #zField
 Dt0 @EndTask f34 '' #zField
 Dt0 @PushWFArc f35 '' #zField
 Dt0 @RichDialog f27 '' #zField
@@ -91,6 +90,14 @@ Dt0 @PushWFArc f75 '' #zField
 Dt0 @GridStep f76 '' #zField
 Dt0 @PushWFArc f77 '' #zField
 Dt0 @PushWFArc f78 '' #zField
+Dt0 @StartRequest f79 '' #zField
+Dt0 @PushWFArc f80 '' #zField
+Dt0 @Alternative f81 '' #zField
+Dt0 @PushWFArc f82 '' #zField
+Dt0 @PushWFArc f29 '' #zField
+Dt0 @Trigger f83 '' #zField
+Dt0 @PushWFArc f84 '' #zField
+Dt0 @PushWFArc f85 '' #zField
 >Proto Dt0 Dt0 DataCreation #zField
 Dt0 f0 outLink createTasks.ivp #txt
 Dt0 f0 type portalKit_test.DataCreationData #txt
@@ -110,6 +117,7 @@ TaskTriggered.EXPRI=2
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
+Dt0 f0 caseData businessCase.attach=false #txt
 Dt0 f0 showInStartList 1 #txt
 Dt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -168,12 +176,15 @@ TaskTriggered.EXPRI=2
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
-Dt0 f25 caseData businessCase.attach=false #txt
+Dt0 f25 caseData 'case.name=Create test data with category
+businessCase.attach=false' #txt
 Dt0 f25 showInStartList 1 #txt
 Dt0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>createTestDataWithCategory.ivp</name>
+        <nameStyle>30,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -207,8 +218,12 @@ Dt0 f30 actionDecl 'portalKit_test.DataCreationData out;
 Dt0 f30 actionTable 'out=in;
 ' #txt
 Dt0 f30 actionCode 'import ch.ivy.addon.portalkit.test.util.DataCreationHandler;
+if(in.attachToBusinessCase) {
+ ivy.case.name = "Create test data with category attach to one business case";	
+}
 in.handler = new DataCreationHandler(in.numOfCats, in.numOfSubCats, in.numOfCasesPerSubCat);
 ' #txt
+Dt0 f30 security system #txt
 Dt0 f30 type portalKit_test.DataCreationData #txt
 Dt0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -226,16 +241,12 @@ Dt0 f32 402 82 28 28 14 0 #rect
 Dt0 f32 @|AlternativeIcon #fIcon
 Dt0 f33 expr out #txt
 Dt0 f33 370 96 402 96 #arcP
-Dt0 f29 expr in #txt
-Dt0 f29 outCond in.handler.createMoreTasks() #txt
-Dt0 f29 430 96 622 96 #arcP
 Dt0 f34 type portalKit_test.DataCreationData #txt
-Dt0 f34 691 139 26 26 14 0 #rect
+Dt0 f34 403 155 26 26 14 0 #rect
 Dt0 f34 @|EndIcon #fIcon
 Dt0 f35 expr in #txt
-Dt0 f35 416 110 691 152 #arcP
-Dt0 f35 1 416 152 #addKink
-Dt0 f35 1 0.4965635738831616 0 0 #arcLabel
+Dt0 f35 416 110 416 155 #arcP
+Dt0 f35 0 0.9664375715922109 0 0 #arcLabel
 Dt0 f27 targetWindow NEW #txt
 Dt0 f27 targetDisplay TOP #txt
 Dt0 f27 richDialogId ch.ivy.addon.portalkit.test.DefaultDialog #txt
@@ -290,6 +301,7 @@ Dt0 f24 requestActionDecl '<> param;' #txt
 Dt0 f24 responseActionDecl 'portalKit_test.DataCreationData out;
 ' #txt
 Dt0 f24 responseMappingAction 'out=in;
+out.attachToBusinessCase=result.attachToBussinessCase;
 out.numOfCasesPerSubCat=result.numOfCasesPerSubCat;
 out.numOfCats=result.numOfCats;
 out.numOfSubCats=result.numOfSubCats;
@@ -891,6 +903,80 @@ Dt0 f78 1632 74 1376 80 #arcP
 Dt0 f78 1 1632 24 #addKink
 Dt0 f78 2 1376 24 #addKink
 Dt0 f78 1 0.51171875 0 0 #arcLabel
+Dt0 f79 outLink createTaskAttachToBusinessCase.ivp #txt
+Dt0 f79 type portalKit_test.DataCreationData #txt
+Dt0 f79 inParamDecl '<java.lang.String taskStructureInfo> param;' #txt
+Dt0 f79 inParamTable 'out.taskStructureInfo=param.taskStructureInfo;
+' #txt
+Dt0 f79 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f79 guid 16817CB0D1E441F9 #txt
+Dt0 f79 requestEnabled false #txt
+Dt0 f79 triggerEnabled true #txt
+Dt0 f79 callSignature createTaskAttachToBusinessCase(String) #txt
+Dt0 f79 persist false #txt
+Dt0 f79 taskData 'TaskTriggered.ROL=SYSTEM
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Dt0 f79 caseData businessCase.attach=true #txt
+Dt0 f79 showInStartList 1 #txt
+Dt0 f79 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>createTaskAttachToBusinessCase(String)</name>
+        <nameStyle>38,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f79 @C|.responsibility Everybody #txt
+Dt0 f79 33 209 30 30 -8 19 #rect
+Dt0 f79 @|StartRequestIcon #fIcon
+Dt0 f80 expr out #txt
+Dt0 f80 60 232 184 324 #arcP
+Dt0 f81 type portalKit_test.DataCreationData #txt
+Dt0 f81 496 80 32 32 0 16 #rect
+Dt0 f81 @|AlternativeIcon #fIcon
+Dt0 f82 expr in #txt
+Dt0 f82 outCond in.handler.createMoreTasks() #txt
+Dt0 f82 430 96 496 96 #arcP
+Dt0 f29 expr in #txt
+Dt0 f29 outCond !in.attachToBusinessCase #txt
+Dt0 f29 528 96 622 96 #arcP
+Dt0 f83 type portalKit_test.DataCreationData #txt
+Dt0 f83 processCall 'Start Processes/DataCreation:createTaskAttachToBusinessCase(String)' #txt
+Dt0 f83 doCall true #txt
+Dt0 f83 requestActionDecl '<java.lang.String taskStructureInfo> param;
+' #txt
+Dt0 f83 requestMappingAction 'param.taskStructureInfo=in.handler.getNextTaskStructureInfo();
+' #txt
+Dt0 f83 responseActionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f83 responseMappingAction 'out=in;
+' #txt
+Dt0 f83 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>DataCreation</name>
+        <nameStyle>12,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f83 584 138 112 44 -36 -8 #rect
+Dt0 f83 @|TriggerIcon #fIcon
+Dt0 f84 expr in #txt
+Dt0 f84 512 112 584 160 #arcP
+Dt0 f84 1 512 160 #addKink
+Dt0 f84 1 0.22214507244215442 0 0 #arcLabel
+Dt0 f85 expr out #txt
+Dt0 f85 696 160 482 48 #arcP
+Dt0 f85 1 752 160 #addKink
+Dt0 f85 2 752 48 #addKink
+Dt0 f85 2 0.5222222222222223 0 0 #arcLabel
 >Proto Dt0 .type portalKit_test.DataCreationData #txt
 >Proto Dt0 .processKind NORMAL #txt
 >Proto Dt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -902,9 +988,6 @@ Dt0 f78 1 0.51171875 0 0 #arcLabel
 >Proto Dt0 @|BIcon #fIcon
 Dt0 f30 mainOut f33 tail #connect
 Dt0 f33 head f32 in #connect
-Dt0 f32 out f29 tail #connect
-Dt0 f29 head f28 mainIn #connect
-Dt0 f32 out f35 tail #connect
 Dt0 f35 head f34 mainIn #connect
 Dt0 f27 mainOut f2 tail #connect
 Dt0 f2 head f1 mainIn #connect
@@ -974,3 +1057,14 @@ Dt0 f72 mainOut f77 tail #connect
 Dt0 f77 head f76 mainIn #connect
 Dt0 f76 mainOut f78 tail #connect
 Dt0 f78 head f70 in #connect
+Dt0 f79 mainOut f80 tail #connect
+Dt0 f80 head f23 mainIn #connect
+Dt0 f32 out f82 tail #connect
+Dt0 f82 head f81 in #connect
+Dt0 f32 out f35 tail #connect
+Dt0 f81 out f29 tail #connect
+Dt0 f29 head f28 mainIn #connect
+Dt0 f81 out f84 tail #connect
+Dt0 f84 head f83 mainIn #connect
+Dt0 f83 mainOut f85 tail #connect
+Dt0 f85 head f41 mainIn #connect

@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Thu Mar 31 14:51:45 ICT 2016]
-153CBA4AE9F19221 3.18 #module
+153CBA4AE9F19221 3.20 #module
 >Proto >Proto Collection #zClass
 Ds0 DataCreationProcess Big #zClass
 Ds0 RD #cInfo
@@ -29,11 +28,12 @@ Ds0 f0 disableUIEvents true #txt
 Ds0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
-Ds0 f0 outParameterDecl '<java.lang.Integer numOfCats,java.lang.Integer numOfSubCats,java.lang.Integer numOfCasesPerSubCat> result;
+Ds0 f0 outParameterDecl '<java.lang.Integer numOfCats,java.lang.Integer numOfSubCats,java.lang.Integer numOfCasesPerSubCat,java.lang.Boolean attachToBussinessCase> result;
 ' #txt
 Ds0 f0 outParameterMapAction 'result.numOfCats=in.numOfCats;
 result.numOfSubCats=in.numOfSubCats;
 result.numOfCasesPerSubCat=in.numOfCasesPerSubCat;
+result.attachToBussinessCase=in.attachToBusinessCase;
 ' #txt
 Ds0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
