@@ -780,7 +780,7 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
   private void queryExcludeHiddenCases(CaseQuery query, List<String> apps) {
     if (isHiddenTasksCasesExcluded(apps)){
       Ivy.log().error("EXTEND CASE QUERY WITH CUSTOM VARCHAR HIDE");
-      query.where().or().customVarCharField5().isNull();// additionalProperty("HIDE").isNull();
+      query.where().and().customVarCharField5().isNull();// additionalProperty("HIDE").isNull();
     }
   }
 
