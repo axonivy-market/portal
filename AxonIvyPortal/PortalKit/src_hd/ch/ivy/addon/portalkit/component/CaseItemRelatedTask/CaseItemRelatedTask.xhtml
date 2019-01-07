@@ -17,7 +17,7 @@
     <div class="Separator" />
     
     <h:panelGrid rendered="#{empty data.relatedTasks and empty data.technicalCases}" columns="1" columnClasses="case-details-data-2nd-column" rowClasses="case-details-row-space">
-        <h:panelGroup styleClass="grid-item-content-list-item">
+        <h:panelGroup layout="block" styleClass="grid-item-content-list-item case-detail-no-related-task-case">
           <h:outputText rendered="#{data.remoteCase.state eq 'DONE'}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noTasksAndCases')}" />
           <h:outputText rendered="#{data.remoteCase.state ne 'DONE'}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noRunningTasksAndCasesPermission')}" 
           				styleClass="no-related-task-and-case-permission"/>
@@ -34,6 +34,11 @@
           </h:panelGroup>
           <p:tooltip for="task" value="#{taskBean.displayRelatedTaskToolTip(task)}" trackMouse="true" />
         </ui:repeat>
+        <h:panelGroup id="more-related-tasks" layout="block" rendered="#{data.relatedTasks.size() gt 20}" styleClass="show-more-related-tasks-container">
+        	<p:commandLink id="show-more-related-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTasks')}..."
+	    			actionListener="#{logic.openPortalTasks}">
+	    	</p:commandLink>
+        </h:panelGroup>
         
         <ui:repeat id="technicalCases" var="technicalCase" value="#{data.technicalCases}">
           <h:panelGroup id="technicalCase" layout="block" class="grid-item-content-list-item related-task-content">
@@ -42,12 +47,25 @@
               <f:attribute name="selectedCase" value="#{technicalCase}" />
             </p:commandLink>
           </h:panelGroup>
-          <p:tooltip for="technicalCase" value="Technical case: ##{technicalCase.id} #{technicalCase.name} (#{caseBean.getState(technicalCase).toUpperCase()})" trackMouse="true" /> 
+          <p:tooltip for="technicalCase" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/technicalCase')}: ##{technicalCase.id} #{technicalCase.name} (#{caseBean.getState(technicalCase).toUpperCase()})" trackMouse="true" /> 
         </ui:repeat>
+        <h:panelGroup id="more-related-cases" layout="block" rendered="#{data.technicalCases.size() gt 20}" styleClass="show-more-technical-cases-container">
+        	<p:commandLink id="show-more-related-cases" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTechnicalCases')}..."
+	    			actionListener="#{logic.navigateToTechnicalCasesOfBusinessCase}">
+	    			<f:attribute name="selectedCase" value="#{data.remoteCase}" />
+	    	</p:commandLink>
+        </h:panelGroup>
     </p:scrollPanel>
-    <p:commandLink id="show-all-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showAllTasks')}"
-    			actionListener="#{logic.openPortalTasks}" styleClass="related-task-show-all-tasks-link">
-    </p:commandLink>
+    <h:panelGroup layout="block" styleClass="case-details-related-tasks-cases-action-container">
+	    <p:commandLink id="show-all-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showAllTasks')}"
+	    			actionListener="#{logic.openPortalTasks}" styleClass="related-task-show-all-tasks-link">
+	    </p:commandLink>
+	    <p:commandLink id="show-all-techinical-cases" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showAllTechnicalCases')}" rendered="#{not empty data.technicalCases}"
+	    			actionListener="#{logic.navigateToTechnicalCasesOfBusinessCase}">
+	    			<f:attribute name="selectedCase" value="#{data.remoteCase}" />
+	    </p:commandLink>
+    </h:panelGroup>
+    
   </div>
 </cc:implementation>
 </html>

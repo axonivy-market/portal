@@ -3148,6 +3148,11 @@ a.task-details-document-add-link {
   font-size: 1.2rem;
 }
 
+.case-detail-no-related-task-case {
+  height: 185px;
+  align-items: baseline;
+}
+
 .case-details-history-scrollpanel .note-separator:last-child {
   display: none;
 }
@@ -3175,10 +3180,22 @@ a.task-details-document-add-link {
   	max-width: 200px;
 }
 
-.related-task-show-all-tasks-link{
-	margin-left: 10px;
-	position: absolute;
-	bottom: 18px
+.case-details-related-tasks-cases-action-container {
+	width: 250px;
+	padding-top: 18px;
+}
+
+.related-task-show-all-tasks-link {
+	margin-right: 10px;
+}
+
+.show-more-related-tasks-container {
+	padding-left: 30px;
+	padding-bottom: 10px;
+}
+
+.show-more-technical-cases-container {
+	padding-left: 30px;
 }
 
 .no-related-task-and-case-permission{

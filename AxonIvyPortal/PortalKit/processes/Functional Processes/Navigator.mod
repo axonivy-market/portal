@@ -32,6 +32,11 @@ Nr0 @InfoButton f16 '' #zField
 Nr0 @AnnotationArc f17 '' #zField
 Nr0 @InfoButton f18 '' #zField
 Nr0 @AnnotationArc f19 '' #zField
+Nr0 @StartSub f20 '' #zField
+Nr0 @EndSub f21 '' #zField
+Nr0 @PushWFArc f22 '' #zField
+Nr0 @InfoButton f23 '' #zField
+Nr0 @AnnotationArc f24 '' #zField
 >Proto Nr0 Nr0 Navigator #zField
 Nr0 f0 inParamDecl '<java.lang.String caseName,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;' #txt
 Nr0 f0 outParamDecl '<> result;
@@ -207,6 +212,48 @@ is put in PortalTemplate.</name>
 Nr0 f18 857 497 496 172 -238 -84 #rect
 Nr0 f18 @|IBIcon #fIcon
 Nr0 f19 857 583 737 492 #arcP
+Nr0 f20 inParamDecl '<java.lang.String businessCaseName,ch.ivy.addon.portalkit.dto.GlobalCaseId businessCaseId> param;' #txt
+Nr0 f20 outParamDecl '<> result;
+' #txt
+Nr0 f20 actionDecl 'ch.ivy.add.portalkit.NavigatorData out;
+' #txt
+Nr0 f20 callSignature viewTechnicalCasesOfBusniessCase(String,ch.ivy.addon.portalkit.dto.GlobalCaseId) #txt
+Nr0 f20 type ch.ivy.add.portalkit.NavigatorData #txt
+Nr0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>viewTechnicalCasesOfBusniessCase(String,GlobalCaseId)</name>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f20 1425 81 30 30 20 -5 #rect
+Nr0 f20 @|StartSubIcon #fIcon
+Nr0 f21 type ch.ivy.add.portalkit.NavigatorData #txt
+Nr0 f21 1425 337 30 30 0 15 #rect
+Nr0 f21 @|EndSubIcon #fIcon
+Nr0 f22 expr out #txt
+Nr0 f22 1440 111 1440 337 #arcP
+Nr0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Technical Note
+
+This callable is introduced for clients of PortalKit
+to override and implement the functionality
+of redirecting into a HtmlDialog for viewing case.
+
+By default, this is doing nothing. The default implementation, however,
+is put in PortalTemplate.</name>
+        <nameStyle>15,0,5,8
+1,5,8
+246,5,8
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f23 1607 163 496 172 -238 -84 #rect
+Nr0 f23 @|IBIcon #fIcon
+Nr0 f24 1607 249 1440 224 #arcP
 >Proto Nr0 .type ch.ivy.add.portalkit.NavigatorData #txt
 >Proto Nr0 .processKind CALLABLE_SUB #txt
 >Proto Nr0 0 0 32 24 18 0 #rect
@@ -227,3 +274,7 @@ Nr0 f16 ao f17 tail #connect
 Nr0 f17 head f15 ai #connect
 Nr0 f18 ao f19 tail #connect
 Nr0 f19 head f10 ai #connect
+Nr0 f20 mainOut f22 tail #connect
+Nr0 f22 head f21 mainIn #connect
+Nr0 f23 ao f24 tail #connect
+Nr0 f24 head f22 ai #connect

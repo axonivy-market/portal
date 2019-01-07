@@ -56,6 +56,16 @@ Nr0 @InfoButton f40 '' #zField
 Nr0 @AnnotationArc f41 '' #zField
 Nr0 @InfoButton f42 '' #zField
 Nr0 @AnnotationArc f43 '' #zField
+Nr0 @StartSub f44 '' #zField
+Nr0 @EndSub f45 '' #zField
+Nr0 @InfoButton f46 '' #zField
+Nr0 @CallSub f48 '' #zField
+Nr0 @CallSub f49 '' #zField
+Nr0 @GridStep f50 '' #zField
+Nr0 @PushWFArc f51 '' #zField
+Nr0 @PushWFArc f52 '' #zField
+Nr0 @PushWFArc f53 '' #zField
+Nr0 @PushWFArc f47 '' #zField
 >Proto Nr0 Nr0 Navigator #zField
 Nr0 f0 inParamDecl '<java.lang.String caseName,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;' #txt
 Nr0 f0 inParamTable 'out.caseId=param.caseId;
@@ -586,6 +596,132 @@ is put in PortalTemplate.</name>
 Nr0 f42 1059 556 496 172 -238 -84 #rect
 Nr0 f42 @|IBIcon #fIcon
 Nr0 f43 1059 642 883 715 #arcP
+Nr0 f44 inParamDecl '<java.lang.String businessCaseName,ch.ivy.addon.portalkit.dto.GlobalCaseId businessCaseId> param;' #txt
+Nr0 f44 inParamTable 'out.caseId=param.businessCaseId;
+out.caseName=param.businessCaseName;
+' #txt
+Nr0 f44 outParamDecl '<> result;
+' #txt
+Nr0 f44 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
+' #txt
+Nr0 f44 callSignature viewTechnicalCasesOfBusniessCase(String,ch.ivy.addon.portalkit.dto.GlobalCaseId) #txt
+Nr0 f44 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
+Nr0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>viewTechnicalCasesOfBusniessCase(String,GlobalCaseId)</name>
+        <nameStyle>53,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f44 1769 49 30 30 20 -5 #rect
+Nr0 f44 @|StartSubIcon #fIcon
+Nr0 f45 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
+Nr0 f45 1769 329 30 30 0 15 #rect
+Nr0 f45 @|EndSubIcon #fIcon
+Nr0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Technical Note
+
+This callable is introduced for clients of PortalKit
+to override and implement the functionality
+of redirecting into a HtmlDialog for viewing case.
+
+By default, this is doing nothing. The default implementation, however,
+is put in PortalTemplate.</name>
+        <nameStyle>15,0,5,8
+1,5,8
+246,5,8
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f46 1951 131 496 172 -238 -84 #rect
+Nr0 f46 @|IBIcon #fIcon
+Nr0 f48 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
+Nr0 f48 processCall 'Functional Processes/OpenPortalCases:useView(ch.ivy.addon.portal.generic.view.CaseView)' #txt
+Nr0 f48 doCall true #txt
+Nr0 f48 requestActionDecl '<ch.ivy.addon.portal.generic.view.CaseView view> param;
+' #txt
+Nr0 f48 requestMappingAction 'param.view=in.caseView;
+' #txt
+Nr0 f48 responseActionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
+' #txt
+Nr0 f48 responseMappingAction 'out=in;
+' #txt
+Nr0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>OpenPortalCases</name>
+        <nameStyle>15,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f48 1766 275 36 24 20 -2 #rect
+Nr0 f48 @|CallSubIcon #fIcon
+Nr0 f49 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
+Nr0 f49 processCall 'Functional Processes/InitializeCaseDataModel:call()' #txt
+Nr0 f49 doCall true #txt
+Nr0 f49 requestActionDecl '<> param;
+' #txt
+Nr0 f49 responseActionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
+' #txt
+Nr0 f49 responseMappingAction 'out=in;
+out.caseDataModel=result.caseDataModel;
+' #txt
+Nr0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Init case
+data model</name>
+        <nameStyle>20,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f49 1728 105 112 44 -31 -20 #rect
+Nr0 f49 @|CallSubIcon #fIcon
+Nr0 f50 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
+' #txt
+Nr0 f50 actionTable 'out=in;
+' #txt
+Nr0 f50 actionCode 'import ch.ivy.addon.portalkit.enums.CaseSortField;
+import java.util.Arrays;
+import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
+import ch.ivy.addon.portal.generic.view.CaseView;
+
+String title = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCasesOfBusinessCaseTitle", Arrays.asList(in.caseId.id().toString(), in.caseName));
+
+in.caseDataModel.getSearchCriteria().setBusinessCase(false);
+in.caseDataModel.getSearchCriteria().setBusinessCaseId(in.caseId.id());
+in.caseDataModel.getSearchCriteria().setTechnicalCase(true);
+in.caseDataModel.getQueryCriteria().sortField = CaseSortField.NAME.toString();
+in.caseDataModel.setNotKeepFilter(true);
+in.caseView = CaseView.create().dataModel(in.caseDataModel).hideCaseFilter(true).withTitle(title).buildNewView();' #txt
+Nr0 f50 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
+Nr0 f50 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>prepare case view</name>
+        <nameStyle>17,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f50 1766 211 36 24 20 -2 #rect
+Nr0 f50 @|StepIcon #fIcon
+Nr0 f51 expr out #txt
+Nr0 f51 1784 235 1784 275 #arcP
+Nr0 f51 0 0.4999999999999999 0 0 #arcLabel
+Nr0 f52 expr out #txt
+Nr0 f52 1784 149 1784 211 #arcP
+Nr0 f53 expr out #txt
+Nr0 f53 1784 79 1784 105 #arcP
+Nr0 f47 expr out #txt
+Nr0 f47 1784 299 1784 329 #arcP
 >Proto Nr0 .type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
 >Proto Nr0 .processKind CALLABLE_SUB #txt
 >Proto Nr0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -635,3 +771,11 @@ Nr0 f40 ao f41 tail #connect
 Nr0 f41 head f35 @CG|ai #connect
 Nr0 f42 ao f43 tail #connect
 Nr0 f43 head f23 @CG|ai #connect
+Nr0 f50 mainOut f51 tail #connect
+Nr0 f51 head f48 mainIn #connect
+Nr0 f49 mainOut f52 tail #connect
+Nr0 f52 head f50 mainIn #connect
+Nr0 f44 mainOut f53 tail #connect
+Nr0 f53 head f49 mainIn #connect
+Nr0 f48 mainOut f47 tail #connect
+Nr0 f47 head f45 mainIn #connect

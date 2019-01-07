@@ -49,6 +49,11 @@ Cs0 @Alternative f24 '' #zField
 Cs0 @PushWFArc f25 '' #zField
 Cs0 @SJArc f18 '' #zField
 Cs0 @PushWFArc f26 '' #zField
+Cs0 @RichDialogProcessStart f27 '' #zField
+Cs0 @GridStep f28 '' #zField
+Cs0 @PushWFArc f29 '' #zField
+Cs0 @CallSub f31 '' #zField
+Cs0 @PushWFArc f30 '' #zField
 >Proto Cs0 Cs0 CaseItemRelatedTaskProcess #zField
 Cs0 f0 guid 153358BE9322E3ED #txt
 Cs0 f0 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
@@ -78,6 +83,8 @@ Cs0 f66 requestActionDecl '<java.lang.Long serverId,ch.ivy.ws.addon.TaskSearchCr
 ' #txt
 Cs0 f66 requestMappingAction 'param.serverId=in.remoteCase.server.#id;
 param.taskSearchCriteria=in.taskSearchCriteria;
+param.startIndex=0;
+param.count=21;
 ' #txt
 Cs0 f66 responseActionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData out;
 ' #txt
@@ -197,6 +204,8 @@ Cs0 f12 doCall true #txt
 Cs0 f12 requestActionDecl '<java.lang.Long serverId,java.lang.Integer startIndex,java.lang.Integer count,ch.ivy.ws.addon.CaseSearchCriteria caseSearchCriteria> param;
 ' #txt
 Cs0 f12 requestMappingAction 'param.serverId=in.remoteCase.server.#id;
+param.startIndex=0;
+param.count=21;
 param.caseSearchCriteria=in.caseSearchCriteria;
 ' #txt
 Cs0 f12 responseActionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData out;
@@ -255,7 +264,7 @@ Cs0 f69 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f69 732 152 36 24 20 -2 #rect
+Cs0 f69 732 152 36 24 26 -4 #rect
 Cs0 f69 @|StepIcon #fIcon
 Cs0 f68 guid 15B7AF6A81A3C6E8 #txt
 Cs0 f68 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
@@ -420,6 +429,73 @@ Cs0 f26 242 272 242 400 #arcP
 Cs0 f26 1 208 272 #addKink
 Cs0 f26 2 208 400 #addKink
 Cs0 f26 1 0.5 0 0 #arcLabel
+Cs0 f27 guid 168127B34A6548C6 #txt
+Cs0 f27 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
+Cs0 f27 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData out;
+' #txt
+Cs0 f27 actionTable 'out=in;
+' #txt
+Cs0 f27 actionCode 'import ch.ivy.addon.portalkit.bo.RemoteCase;
+import org.primefaces.component.commandlink.CommandLink;
+
+CommandLink commandLink = event.getSource() as CommandLink;
+out.selectedCase = commandLink.getAttributes().get("selectedCase") as RemoteCase;' #txt
+Cs0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>navigateToTechnicalCasesOfBusinessCase</name>
+        <nameStyle>38,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f27 1035 83 26 26 20 -11 #rect
+Cs0 f27 @|RichDialogProcessStartIcon #fIcon
+Cs0 f28 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData out;
+' #txt
+Cs0 f28 actionTable 'out=in;
+' #txt
+Cs0 f28 actionCode 'import ch.ivy.addon.portalkit.dto.GlobalCaseId;
+in.selectedGlobalCaseId = GlobalCaseId.inServer(in.remoteCase.getServer().id).caseId(in.selectedCase.id).isBusinessCase(true).build();' #txt
+Cs0 f28 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
+Cs0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Prepare global case id</name>
+        <nameStyle>22,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f28 984 154 128 44 -61 -8 #rect
+Cs0 f28 @|StepIcon #fIcon
+Cs0 f29 expr out #txt
+Cs0 f29 1048 109 1048 154 #arcP
+Cs0 f31 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
+Cs0 f31 processCall 'Functional Processes/Navigator:viewTechnicalCasesOfBusniessCase(String,ch.ivy.addon.portalkit.dto.GlobalCaseId)' #txt
+Cs0 f31 doCall true #txt
+Cs0 f31 requestActionDecl '<java.lang.String businessCaseName,ch.ivy.addon.portalkit.dto.GlobalCaseId businessCaseId> param;
+' #txt
+Cs0 f31 requestMappingAction 'param.businessCaseName=in.selectedCase.name;
+param.businessCaseId=in.selectedGlobalCaseId;
+' #txt
+Cs0 f31 responseActionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData out;
+' #txt
+Cs0 f31 responseMappingAction 'out=in;
+' #txt
+Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Navigator</name>
+        <nameStyle>9,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f31 992 234 112 44 -26 -8 #rect
+Cs0 f31 @|CallSubIcon #fIcon
+Cs0 f30 expr out #txt
+Cs0 f30 1048 198 1048 234 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -458,3 +534,7 @@ Cs0 f24 out f18 tail #connect
 Cs0 f18 head f17 in #connect
 Cs0 f21 out f26 tail #connect
 Cs0 f26 head f24 in #connect
+Cs0 f27 mainOut f29 tail #connect
+Cs0 f29 head f28 mainIn #connect
+Cs0 f28 mainOut f30 tail #connect
+Cs0 f30 head f31 mainIn #connect
