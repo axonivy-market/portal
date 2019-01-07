@@ -104,14 +104,10 @@ Cy0 f5 actionDecl 'ch.ivy.addon.portal.generic.CaseNoteHistoryData out;
 ' #txt
 Cy0 f5 actionTable 'out=in;
 ' #txt
-Cy0 f5 actionCode 'import java.util.Arrays;
-import ch.ivy.addon.portalkit.service.CaseQueryService;
+Cy0 f5 actionCode 'import ch.ivy.addon.portalkit.service.CaseQueryService;
 import ch.ivy.addon.portalkit.support.CaseQueryCriteria;
-import ch.ivy.ws.addon.CaseSearchCriteria;
 
 CaseQueryCriteria queryCriteria = new CaseQueryCriteria();
-List<String> applications = Arrays.asList(ivy.request.getApplication().getName());
-out.caseSearchCriteria.involvedApplications = applications;
 queryCriteria.caseId = in.remoteCaseId;
 queryCriteria.newQueryCreated = true;
 out.caseSearchCriteria.jsonQuery = CaseQueryService.service().createQuery(queryCriteria).asJson();' #txt

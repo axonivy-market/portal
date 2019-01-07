@@ -69,12 +69,9 @@ Ty0 f3 actionDecl 'ch.ivy.addon.portal.generic.TaskNoteHistoryData out;
 Ty0 f3 actionTable 'out=in;
 ' #txt
 Ty0 f3 actionCode 'import ch.ivy.addon.portalkit.service.TaskQueryService;
-import java.util.Arrays;
 import ch.ivy.addon.portalkit.support.TaskQueryCriteria;
 
 TaskQueryCriteria queryCriteria = new TaskQueryCriteria();
-List<String> applications = Arrays.asList(ivy.request.getApplication().getName());
-out.taskSearchCriteria.involvedApplications = applications;
 queryCriteria.taskId = in.remoteTaskId;
 queryCriteria.newQueryCreated = true;
 out.taskSearchCriteria.jsonQuery = TaskQueryService.service().createQuery(queryCriteria).asJson();' #txt
