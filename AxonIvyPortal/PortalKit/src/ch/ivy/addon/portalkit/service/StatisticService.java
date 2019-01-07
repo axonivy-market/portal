@@ -699,7 +699,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     statisticChart.setName(Optional.ofNullable(chartName).orElse("New chart"));
     statisticChart.setPosition(countStatisticChartsByUserId(creatorId));
     if (filter.getIsAllCaseStatesSelected() || filter.getIsAllCategoriesSelected()) {
-      StatisticFilter newFilter = (StatisticFilter) ObjectUtils.clone(filter);
+      StatisticFilter newFilter = ObjectUtils.clone(filter);
       if (filter.getIsAllCategoriesSelected()) {
         newFilter.setSelectedCaseCategories(new ArrayList<>());
       }

@@ -24,10 +24,6 @@
         <description></description>
     </method>
     <method>
-        <name>initialize</name>
-        <description></description>
-    </method>
-    <method>
         <name>updateBeforeAddElapsedTime</name>
         <description></description>
     </method>
