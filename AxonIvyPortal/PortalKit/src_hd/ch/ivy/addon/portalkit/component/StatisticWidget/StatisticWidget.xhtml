@@ -26,8 +26,7 @@
 
     <h:panelGroup id="create-chart-header" layout="block" rendered="#{!cc.attrs.compactMode}"
       styleClass="statistic-actions-panel">
-      <p:commandLink id="create-chart-link" actionListener="#{logic.switchCreateMode}" update="widget-container @this" rendered="#{!data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart}"
-        oncomplete="initCharts();">
+      <p:commandLink id="create-chart-link" actionListener="#{logic.switchCreateMode}" update="widget-container @this" rendered="#{!data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart}">
         <h:outputText id="create-chart-link-label" rendered="#{!data.createMode}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/addChart')}" />
         <h:outputText id="back-to-dashboard-link-label" rendered="#{data.createMode}"
