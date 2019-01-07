@@ -44,25 +44,28 @@ public class StatisticChartCreationBean implements Serializable {
   public StatisticChartCreationBean() {}
 
   /**
-   * Update chart models
+   * Update filters
    * 
    * @param filter
-   * @param oldFilter 
+   * @param oldFilter
    */
-  public void updateChartModels(StatisticFilter filter, StatisticFilter oldFilter) {
+  public void updateFilters(StatisticFilter filter, StatisticFilter oldFilter) {
     if(filter.getTimePeriodSelection() != StatisticTimePeriodSelection.CUSTOM) {
       filter.setCreatedDateFrom(null);
       filter.setCreatedDateTo(null);
     }
-    updateTaskByPriorityModel(filter);
-    updateCaseByStateModel(filter);
-    updateTaskByExpiryModel(filter);
-    updateElapsedTimeByCaseCategory(filter);
-    updateCaseByFinishedTaskModel(filter);
-    updateCaseByFinishedTimeModel(filter);
     if (oldFilter != null) {
       setOldFiltersToCurrentValues(filter, oldFilter);
     }
+  }
+
+  public void clearChartModels() {
+    taskByPriorityModel = null;
+    caseByStateModel = null;
+    caseByFinishedTimeModel = null;
+    caseByFinishedTaskModel = null;
+    taskByExpiryModel = null;
+    elapsedTimeModel = null;
   }
 
   private void setOldFiltersToCurrentValues(StatisticFilter filter, StatisticFilter oldFilter) {

@@ -17,7 +17,8 @@
   <p:fieldset id="filter-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}" styleClass="statistic-filter-main-container">
     <h:panelGrid id="filter-panel" columns="1" cellpadding="10">
       <p:commandButton id="apply-filter-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/applyFilter')}" styleClass="apply-filters-btn"
-        update="@([id$='chart-management-form'])" process="filter-fieldset" actionListener="#{cc.attrs.updateListener}" />
+        process="filter-fieldset" actionListener="#{cc.attrs.updateListener}"
+        oncomplete="clearChartModels(); updateChartModels();" />
 
       <!-- PERIOD TIME FILTER -->
       <p:row>

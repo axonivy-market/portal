@@ -45,7 +45,9 @@ Ls0 f3 actionDecl 'ch.ivy.addon.portal.generic.LoadSubMenuItemsData out;
 ' #txt
 Ls0 f3 actionTable 'out=in;
 ' #txt
-Ls0 f3 actionCode 'import ch.addon.portal.generic.menu.DashboardSubMenuItem;
+Ls0 f3 actionCode 'import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.addon.portal.generic.menu.DashboardSubMenuItem;
 import ch.addon.portal.generic.menu.ProcessSubMenuItem;
 import ch.addon.portal.generic.menu.CaseSubMenuItem;
 import ch.addon.portal.generic.menu.TaskSubMenuItem;
@@ -53,7 +55,15 @@ import ch.addon.portal.generic.menu.TaskSubMenuItem;
 in.subMenuItems.add(new ProcessSubMenuItem());
 in.subMenuItems.add(new TaskSubMenuItem());
 in.subMenuItems.add(new CaseSubMenuItem());
-in.subMenuItems.add(new DashboardSubMenuItem());' #txt
+
+GlobalSettingService globalSettingSerive = new GlobalSettingService();
+String hideStatistic =
+        globalSettingSerive.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET);
+boolean isHideStatistic = Boolean.parseBoolean(hideStatistic);
+
+if (!isHideStatistic) {
+  in.subMenuItems.add(new DashboardSubMenuItem());
+}' #txt
 Ls0 f3 type ch.ivy.addon.portal.generic.LoadSubMenuItemsData #txt
 Ls0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

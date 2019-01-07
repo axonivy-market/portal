@@ -11,14 +11,14 @@
     <ui:define name="pageContent">
       <c:set var="displayProcessWidget" value="#{not empty displayProcessWidget ? displayProcessWidget : true}" />
       <c:set var="displayTaskWidget" value="#{not empty displayTaskWidget ? displayTaskWidget : true}" />
-      <c:set var="displayStatisticWidget" value="#{not empty displayStatisticWidget ? displayStatisticWidget : true}" />
+      <c:set var="displayStatisticWidget" value="#{(not empty displayStatisticWidget ? displayStatisticWidget : true) and not statisticBean.hiddenStatisticWidget}" />
 
       <h:panelGroup layout="block"
         styleClass="js-dashboard-default-widget-container #{dataModel.compactMode ? 'dashboard-container' : 'task-list-container js-task-list-container'}">
 
         <ui:insert name="processWidget">
           <h:panelGroup layout="block"
-            styleClass="js-dashboard-main-content-1st-col dashboard-main-content-1st-col layout-col"
+            styleClass="js-dashboard-main-content-1st-col dashboard-main-content-1st-col layout-col" 
             rendered="#{displayProcessWidget}">
             <h:panelGroup layout="block" styleClass="js-process-widget">
               <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-widget" compactMode="true"
