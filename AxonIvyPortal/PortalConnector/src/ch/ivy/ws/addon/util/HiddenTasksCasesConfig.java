@@ -17,7 +17,7 @@ public final class HiddenTasksCasesConfig {
         String globalVariableValue = apps.stream().findFirst()
                         .map(ServerFactory.getServer().getApplicationConfigurationManager()::findApplication)
                         .map(IApplication::getActualEnvironment)
-                        .map(env -> env.findGlobalVariable("PortalHiddenTasksCasesExcluded"))
+                        .map(env -> env.findGlobalVariable("PortalHiddenTaskCaseExcluded"))
                         .map(IGlobalVariable::getValue).orElse("true");
                 return Boolean.parseBoolean(globalVariableValue);
       });
