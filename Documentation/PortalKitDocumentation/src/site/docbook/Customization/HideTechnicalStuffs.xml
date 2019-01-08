@@ -24,18 +24,17 @@
 			A technical task is the task which is not displayed in any task lists of Portal.
 		</para>
 		<para>
-			To mark a task as a technical task, set the
-			<emphasis role="strong">HIDE</emphasis>
-			additional property with any value to the task.
+			To mark a task as a technical task, make sure Ivy global variable PortalHiddenTasksCasesExcluded is set to true. Then depends on value of PortalHiddenTaskCaseCustomField, it will 
+			mark task as technical. Follow tip
 		</para>
 		<tip>
 			<para>Use the utility methods of Portal:</para>
 			<itemizedlist>
 				<listitem>
-					<para>Set property: ch.ivy.addon.portalkit.util.TaskUtils.setHidePropertyToHideInPortal(ITask)</para>
+					<para>Set task as technical: ch.ivy.addon.portalkit.util.TaskUtils.setHidePropertyToHideInPortal(ITask)</para>
 				</listitem>
 				<listitem>
-					<para>Remove property: ch.ivy.addon.portalkit.util.TaskUtils.removeHidePropertyToDisplayInPortal(ITask)</para>
+					<para>Reverse it: ch.ivy.addon.portalkit.util.TaskUtils.removeHidePropertyToDisplayInPortal(ITask)</para>
 				</listitem>
 			</itemizedlist>
 		</tip>
@@ -49,18 +48,17 @@
 			Tasks belong to the technical case is considered as technical tasks and should be hide as well.
 		</para>
 		<para>
-			To mark a case as a technical case, set the
-			<emphasis role="strong">HIDE</emphasis>
-			additional property with any value to the case.
+			To mark a case as a technical case, make sure Ivy global variable PortalHiddenTasksCasesExcluded is set to true. Then depends on value of PortalHiddenTaskCaseCustomField, it will 
+			mark case as technical. Follow tip 
 		</para>
 		<tip>
 			<para>Use the utility methods of Portal:</para>
 			<itemizedlist>
 				<listitem>
-					<para>Set property: ch.ivy.addon.portalkit.util.CaseUtils.setHidePropertyToHideInPortal(ICase)</para>
+					<para>Set case as technical: ch.ivy.addon.portalkit.util.CaseUtils.setHidePropertyToHideInPortal(ICase)</para>
 				</listitem>
 				<listitem>
-					<para>Remove property: ch.ivy.addon.portalkit.util.CaseUtils.removeHidePropertyToDisplayInPortal(ICase)</para>
+					<para>Reverse it: ch.ivy.addon.portalkit.util.CaseUtils.removeHidePropertyToDisplayInPortal(ICase)</para>
 				</listitem>
 			</itemizedlist>
 		</tip>

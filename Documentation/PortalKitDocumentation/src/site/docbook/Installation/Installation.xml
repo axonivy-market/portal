@@ -578,7 +578,17 @@
 						<row>
 							<entry>PortalHiddenTasksCasesExcluded</entry>
 							<entry>true</entry>
-							<entry>By default, portal will query tasks and cases which don't have addtional property "HIDE". Set it to <code>false</code>, portal will ignore this addtional property.</entry>
+							<entry>By default, portal will query tasks and cases which don't have hide information. Set it to <code>false</code>, portal will ignore this addtional property.</entry>
+						</row>
+						<row>
+							<entry>PortalHiddenTaskCaseCustomField</entry>
+							<entry>CustomDecimalField5</entry>
+							<entry>Name of custom field which store value of hidden task, case. It's case sensitive and can be CustomVarCharField1, CustomVarCharField2,
+							CustomVarCharField3, CustomVarCharField4, CustomVarCharField5, CustomTimestampField1, CustomTimestampField2, CustomTimestampField3, CustomTimestampField4, CustomTimestampField5, 
+							CustomDecimalField1, CustomDecimalField2, CustomDecimalField3, CustomDecimalField4 or CustomDecimalField5.  
+							If empty, it will store hidden info to addtional property name "HIDE". 
+							It only effects when PortalHiddenTasksCasesExcluded is set to true
+							</entry>
 						</row>
 					</tbody>
 				</tgroup>
@@ -676,6 +686,25 @@
 					<listitem>Deactivate standard Portal application if it is not needed.</listitem>
 					<listitem>Redeploy Portal projects (exclude PortalConnector) and customer project.</listitem>
 					<listitem>Follow migration notes to migrate data, if any.</listitem>
+				</orderedlist>
+			</sect3>
+		</sect2>
+		<sect2>
+			<title>Migrate 7.0.x to 7.0.9</title>
+			<sect3>
+				<title>Migrate hidden task and case</title>
+				<para>
+				If you use feature hide technical task and case by set addtional property, Portal 7.0.9 has option to store it in custom field of task and case instead of additional property for better performance. 
+				</para>
+				<para>In case you don't want to change the place to store information of technical task, case from additional property to custom field. You just simply set global variable <code>PortalHiddenTaskCaseCustomField</code> to empty.</para>
+				<para>
+				Otherwise, you need to follow these steps:
+				</para>
+				<orderedlist>
+					<listitem>Make sure PortalHiddenTasksCasesExcluded is set to true in each application(default value)</listitem>
+					<listitem>In each application, set PortalHiddenTaskCaseCustomField to one available custom field of your task and case e.g CustomTimestampField5. Value is case sensive.</listitem>
+					<listitem>Deploy this project <link xlink:href="documents/MigrateHiddenTaskCase.iar">MigrateHiddenTaskCase.iar</link> to all your portal applications</listitem>
+					<listitem>In each application, run start process <code>migrateHiddenTaskCase.ivp</code> to migrate.</listitem>
 				</orderedlist>
 			</sect3>
 		</sect2>
@@ -928,6 +957,9 @@
 				<itemizedlist>
 					<listitem>
 						<para>Portal version 7.0.9 .. 7.0.x latest is compatible with Portal Connector latest (of 7.0.x latest engine).</para>
+					</listitem>
+					<listitem>
+						<para>Hide technical task / case can be configured using additional property or custom field (more performance).</para>
 					</listitem>
 				</itemizedlist>
 			</sect2>
