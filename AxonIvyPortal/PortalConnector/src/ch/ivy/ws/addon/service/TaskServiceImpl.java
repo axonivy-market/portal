@@ -38,6 +38,7 @@ import ch.ivy.ws.addon.types.IvyApplication;
 import ch.ivy.ws.addon.types.IvySecurityMember;
 import ch.ivy.ws.addon.types.IvyTask;
 import ch.ivy.ws.addon.types.PriorityStatistic;
+import ch.ivy.ws.addon.util.HiddenTasksCasesConfig;
 import ch.ivy.ws.addon.util.SessionUtil;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -873,7 +874,57 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
 
   private void queryExcludeHiddenTasks(TaskQuery query, List<String> apps) {
     if (isHiddenTasksCasesExcluded(apps)){
-      query.where().and().additionalProperty("HIDE").isNull();
+      String customField = HiddenTasksCasesConfig.getHiddenTasksCasesField(apps);
+      switch (customField){
+        case "CustomVarcharField1":
+          query.where().and().customVarCharField1().isNull();
+          break;
+        case "CustomVarcharField2":
+          query.where().and().customVarCharField2().isNull();
+          break;
+        case "CustomVarcharField3":
+          query.where().and().customVarCharField3().isNull();
+          break;
+        case "CustomVarcharField4":
+          query.where().and().customVarCharField4().isNull();
+          break;
+        case "CustomVarcharField5":
+          query.where().and().customVarCharField5().isNull();
+          break;
+        case "CustomDecimalField1":
+          query.where().and().customDecimalField1().isNull();
+          break;
+        case "CustomDecimalField2":
+          query.where().and().customDecimalField2().isNull();
+          break;
+        case "CustomDecimalField3":
+          query.where().and().customDecimalField3().isNull();
+          break;
+        case "CustomDecimalField4":
+          query.where().and().customDecimalField4().isNull();
+          break;
+        case "CustomDecimalField5":
+          query.where().and().customDecimalField5().isNull();
+          break;
+        case "CustomTimestampField1":
+          query.where().and().customTimestampField1().isNull();
+          break;
+        case "CustomTimestampField2":
+          query.where().and().customTimestampField2().isNull();
+          break;
+        case "CustomTimestampField3":
+          query.where().and().customTimestampField3().isNull();
+          break;
+        case "CustomTimestampField4":
+          query.where().and().customTimestampField4().isNull();
+          break;
+        case "CustomTimestampField5":
+          query.where().and().customTimestampField5().isNull();
+          break;  
+        default: 
+          query.where().and().additionalProperty("HIDE").isNull();
+          break;
+      }
     }
   }
 

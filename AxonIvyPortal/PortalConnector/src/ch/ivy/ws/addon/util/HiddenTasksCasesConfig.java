@@ -25,4 +25,22 @@ public final class HiddenTasksCasesConfig {
       throw BpmError.create("ivy:portalconnector:error:applicationservice").withCause(exception).build();
     }
   }
+  
+  public static String getHiddenTasksCasesField(List<String> apps) {
+    if (CollectionUtils.isEmpty(apps)) {
+      return "";
+    }
+    try {
+      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+        String globalVariableValue = apps.stream().findFirst()
+                        .map(ServerFactory.getServer().getApplicationConfigurationManager()::findApplication)
+                        .map(IApplication::getActualEnvironment)
+                        .map(env -> env.findGlobalVariable("PortalHiddenTaskCaseCustomField"))
+                        .map(IGlobalVariable::getValue).orElse("");
+                return globalVariableValue;
+      });
+    } catch (Exception exception) {
+      throw BpmError.create("ivy:portalconnector:error:applicationservice").withCause(exception).build();
+    }
+  }
 }

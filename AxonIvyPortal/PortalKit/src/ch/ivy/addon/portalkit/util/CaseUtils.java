@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.util;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Callable;
@@ -9,9 +10,11 @@ import ch.ivy.addon.portalkit.bo.Contact;
 import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.vo.CaseVO;
+import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.IQueryResult;
 import ch.ivyteam.ivy.persistence.OrderDirection;
+import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.security.SecurityManagerFactory;
@@ -32,7 +35,7 @@ import ch.ivyteam.logicalexpression.RelationalOperator;
 
 @SuppressWarnings("deprecation")
 public final class CaseUtils {
-
+  private static final String HIDE = "HIDE";
   private CaseUtils() {
 
   }
@@ -40,7 +43,6 @@ public final class CaseUtils {
   /** default key to store case details process start link in ICase object */
   public static final String CASE_DETAIL_PROCESS = "CASE_DETAIL_PROCESS";
   private static String fullNameFormat = "%s (%s)";
-  private static final String HIDE = "HIDE";
 
   /**
    * This function is o find the running case of session user by process category
@@ -671,19 +673,128 @@ public final class CaseUtils {
   }
   
   /**
-   * Sets the "HIDE" additional property to the given case to hide it in case list of Portal.
+   * Set value to custom field / additional property of given case to hide it in case list of Portal.
    * @param iCase
+   * @throws Exception 
+   * @throws EnvironmentNotAvailableException 
+   * @throws PersistencyException 
    */
-  public static void setHidePropertyToHideInPortal(ICase iCase) {
-    iCase.setAdditionalProperty(HIDE, HIDE);
+  public static void setHidePropertyToHideInPortal(ICase iCase) throws PersistencyException, EnvironmentNotAvailableException, Exception {
+    String hiddenTasksCasesCustomField = HiddenTasksCasesConfig.getHiddenTasksCasesField();
+    Date defaultTimestamp = new Date();
+    String defaultVarChar = "1";
+    int defaultDecimal = 1;
+    switch (hiddenTasksCasesCustomField){
+      case "CustomVarcharField1": 
+        iCase.setCustomVarCharField1(defaultVarChar);
+        break;
+      case "CustomVarcharField2":
+        iCase.setCustomVarCharField2(defaultVarChar);
+        break;
+      case "CustomVarcharField3":
+        iCase.setCustomVarCharField3(defaultVarChar);
+        break;
+      case "CustomVarcharField4":
+        iCase.setCustomVarCharField4(defaultVarChar);
+        break;
+      case "CustomVarcharField5":
+        iCase.setCustomVarCharField5(defaultVarChar);
+        break;
+      case "CustomDecimalField1":
+        iCase.setCustomDecimalField1(defaultDecimal);
+        break;
+      case "CustomDecimalField2":
+        iCase.setCustomDecimalField2(defaultDecimal);
+        break;
+      case "CustomDecimalField3":
+        iCase.setCustomDecimalField3(defaultDecimal);
+        break;
+      case "CustomDecimalField4":
+        iCase.setCustomDecimalField4(defaultDecimal);
+        break;
+      case "CustomDecimalField5":
+        iCase.setCustomDecimalField5(defaultDecimal);
+        break;
+      case "CustomTimestampField1":
+        iCase.setCustomTimestampField1(defaultTimestamp);
+        break;
+      case "CustomTimestampField2":
+        iCase.setCustomTimestampField2(defaultTimestamp);
+        break;
+      case "CustomTimestampField3":
+        iCase.setCustomTimestampField3(defaultTimestamp);
+        break; 
+      case "CustomTimestampField4":
+        iCase.setCustomTimestampField4(defaultTimestamp);
+        break;
+      case "CustomTimestampField5":
+        iCase.setCustomTimestampField5(defaultTimestamp);
+        break;  
+      default:
+        iCase.setAdditionalProperty(HIDE, HIDE);
+        break;
+    }
   }
   
   /**
-   * Removes the "HIDE" additional property to the given case to display it in case list of Portal.
+   * Remove custom field / additional property to the given case to display it in case list of Portal.
    * @param iCase
+   * @throws Exception 
+   * @throws EnvironmentNotAvailableException 
+   * @throws PersistencyException 
    */
-  public static void removeHidePropertyToDisplayInPortal(ICase iCase) {
-    iCase.setAdditionalProperty(HIDE, null);
+  public static void removeHidePropertyToDisplayInPortal(ICase iCase) throws PersistencyException, EnvironmentNotAvailableException, Exception {
+    String hiddenTasksCasesCustomField = HiddenTasksCasesConfig.getHiddenTasksCasesField();
+    switch (hiddenTasksCasesCustomField){
+      case "CustomVarcharField1": 
+        iCase.setCustomVarCharField1(null);
+        break;
+      case "CustomVarcharField2":
+        iCase.setCustomVarCharField2(null);
+        break;
+      case "CustomVarcharField3":
+        iCase.setCustomVarCharField3(null);
+        break;
+      case "CustomVarcharField4":
+        iCase.setCustomVarCharField4(null);
+        break;
+      case "CustomVarcharField5":
+        iCase.setCustomVarCharField5(null);
+        break;
+      case "CustomDecimalField1":
+        iCase.setCustomDecimalField1(null);
+        break;
+      case "CustomDecimalField2":
+        iCase.setCustomDecimalField2(null);
+        break;
+      case "CustomDecimalField3":
+        iCase.setCustomDecimalField3(null);
+        break;
+      case "CustomDecimalField4":
+        iCase.setCustomDecimalField4(null);
+        break;
+      case "CustomDecimalField5":
+        iCase.setCustomDecimalField5(null);
+        break;
+      case "CustomTimestampField1":
+        iCase.setCustomTimestampField1(null);
+        break;
+      case "CustomTimestampField2":
+        iCase.setCustomTimestampField2(null);
+        break;
+      case "CustomTimestampField3":
+        iCase.setCustomTimestampField3(null);
+        break; 
+      case "CustomTimestampField4":
+        iCase.setCustomTimestampField4(null);
+        break;
+      case "CustomTimestampField5":
+        iCase.setCustomTimestampField5(null);
+        break;  
+      default:
+        iCase.setAdditionalProperty(HIDE, null);
+        break;
+    }
   }
   
   public static String getProcessStartUriWithCaseParameters(RemoteCase remoteCase, String requestPath) {

@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.util;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
@@ -42,14 +43,10 @@ import ch.ivyteam.logicalexpression.RelationalOperator;
 /**
  * Provide the utilities related to Task.
  * 
- * @author bolt
  *
  */
 public final class TaskUtils {
-
-  private TaskUtils() {
-
-  }
+  private TaskUtils() {}
 
   private static final boolean FINISHED_MODE = true;
   private static final boolean RUNNING_MODE = false;
@@ -715,8 +712,8 @@ public final class TaskUtils {
     IQueryResult<ITask> queryResult;
 
     List<PropertyOrder<TaskProperty>> taskPropertyOrder =
-        PropertyOrder.create(ch.ivy.addon.portalkit.util.TaskUtils.getTaskProperty(sortField),
-            ch.ivy.addon.portalkit.util.TaskUtils.getTaskDirection(sortOrder));
+        PropertyOrder.create(TaskUtils.getTaskProperty(sortField),
+            TaskUtils.getTaskDirection(sortOrder));
     if (isHistory) {
       queryResult = ivy.session.findWorkedOnTasks(taskFilter, taskPropertyOrder, startIndex, pageSize, true);
     } else {
@@ -737,18 +734,127 @@ public final class TaskUtils {
   }
   
   /**
-   * Sets the "HIDE" additional property to the given task to hide it in any task lists of Portal.
+   * Sets the value to custom field / additional property of the given task to hide it in any task lists of Portal.
    * @param task
+   * @throws Exception 
+   * @throws EnvironmentNotAvailableException 
+   * @throws PersistencyException 
    */
-  public static void setHidePropertyToHideInPortal(ITask task) {
-    task.setAdditionalProperty(HIDE, HIDE);
+  public static void setHidePropertyToHideInPortal(ITask task) throws PersistencyException, EnvironmentNotAvailableException, Exception {
+    String hiddenTasksCasesCustomField = HiddenTasksCasesConfig.getHiddenTasksCasesField();
+    Date defaultTimestamp = new Date();
+    String defaultVarChar = "1";
+    int defaultDecimal = 1;
+    switch (hiddenTasksCasesCustomField){
+      case "CustomVarcharField1": 
+        task.setCustomVarCharField1(defaultVarChar);
+        break;
+      case "CustomVarcharField2":
+        task.setCustomVarCharField2(defaultVarChar);
+        break;
+      case "CustomVarcharField3":
+        task.setCustomVarCharField3(defaultVarChar);
+        break;
+      case "CustomVarcharField4":
+        task.setCustomVarCharField4(defaultVarChar);
+        break;
+      case "CustomVarcharField5":
+        task.setCustomVarCharField5(defaultVarChar);
+        break;
+      case "CustomDecimalField1":
+        task.setCustomDecimalField1(defaultDecimal);
+        break;
+      case "CustomDecimalField2":
+        task.setCustomDecimalField2(defaultDecimal);
+        break;
+      case "CustomDecimalField3":
+        task.setCustomDecimalField3(defaultDecimal);
+        break;
+      case "CustomDecimalField4":
+        task.setCustomDecimalField4(defaultDecimal);
+        break;
+      case "CustomDecimalField5":
+        task.setCustomDecimalField5(defaultDecimal);
+        break;
+      case "CustomTimestampField1":
+        task.setCustomTimestampField1(defaultTimestamp);
+        break;
+      case "CustomTimestampField2":
+        task.setCustomTimestampField2(defaultTimestamp);
+        break;
+      case "CustomTimestampField3":
+        task.setCustomTimestampField3(defaultTimestamp);
+        break; 
+      case "CustomTimestampField4":
+        task.setCustomTimestampField4(defaultTimestamp);
+        break;
+      case "CustomTimestampField5":
+        task.setCustomTimestampField5(defaultTimestamp);
+        break;  
+      default:
+        task.setAdditionalProperty(HIDE, HIDE);
+        break;
+    }
   }
   
   /**
-   * Removes the "HIDE" additional property to the given task to display it in any task lists of Portal.
+   * Removes the custom field / additional property of the given task to display it in any task lists of Portal.
    * @param task
+   * @throws Exception 
+   * @throws EnvironmentNotAvailableException 
+   * @throws PersistencyException 
    */
-  public static void removeHidePropertyToDisplayInPortal(ITask task) {
-    task.setAdditionalProperty(HIDE, null);
+  public static void removeHidePropertyToDisplayInPortal(ITask task) throws PersistencyException, EnvironmentNotAvailableException, Exception {
+    String hiddenTasksCasesCustomField = HiddenTasksCasesConfig.getHiddenTasksCasesField();
+    switch (hiddenTasksCasesCustomField){
+      case "CustomVarcharField1": 
+        task.setCustomVarCharField1(null);
+        break;
+      case "CustomVarcharField2":
+        task.setCustomVarCharField2(null);
+        break;
+      case "CustomVarcharField3":
+        task.setCustomVarCharField3(null);
+        break;
+      case "CustomVarcharField4":
+        task.setCustomVarCharField4(null);
+        break;
+      case "CustomVarcharField5":
+        task.setCustomVarCharField5(null);
+        break;
+      case "CustomDecimalField1":
+        task.setCustomDecimalField1(null);
+        break;
+      case "CustomDecimalField2":
+        task.setCustomDecimalField2(null);
+        break;
+      case "CustomDecimalField3":
+        task.setCustomDecimalField3(null);
+        break;
+      case "CustomDecimalField4":
+        task.setCustomDecimalField4(null);
+        break;
+      case "CustomDecimalField5":
+        task.setCustomDecimalField5(null);
+        break;
+      case "CustomTimestampField1":
+        task.setCustomTimestampField1(null);
+        break;
+      case "CustomTimestampField2":
+        task.setCustomTimestampField2(null);
+        break;
+      case "CustomTimestampField3":
+        task.setCustomTimestampField3(null);
+        break; 
+      case "CustomTimestampField4":
+        task.setCustomTimestampField4(null);
+        break;
+      case "CustomTimestampField5":
+        task.setCustomTimestampField5(null);
+        break;  
+      default:
+        task.setAdditionalProperty(HIDE, null);
+        break;
+    }
   }
 }
