@@ -403,13 +403,13 @@ ew0 U20 .resExport export #txt
 ew0 U20 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
-        <name>UserTaslk</name>
-        <nameStyle>9,5,7
+        <name>UserTask</name>
+        <nameStyle>8,5,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-ew0 U20 592 378 112 44 -28 -8 #rect
+ew0 U20 592 378 112 44 -27 -8 #rect
 ew0 U20 @|BpmnUserTaskIcon #fIcon
 ew0 f27 expr out #txt
 ew0 f27 648 86 648 378 #arcP
