@@ -98,6 +98,11 @@ Dt0 @PushWFArc f29 '' #zField
 Dt0 @Trigger f83 '' #zField
 Dt0 @PushWFArc f84 '' #zField
 Dt0 @PushWFArc f85 '' #zField
+Dt0 @StartRequest f111 '' #zField
+Dt0 @EndTask f112 '' #zField
+Dt0 @RichDialog f113 '' #zField
+Dt0 @PushWFArc f114 '' #zField
+Dt0 @PushWFArc f115 '' #zField
 >Proto Dt0 Dt0 DataCreation #zField
 Dt0 f0 outLink createTasks.ivp #txt
 Dt0 f0 type portalKit_test.DataCreationData #txt
@@ -597,7 +602,10 @@ Dt0 f60 actionTable 'out=in;
 Dt0 f60 actionCode 'import ch.ivyteam.ivy.security.IUser;
 List<IUser> users = ivy.request.getApplication().getSecurityContext().getUsers();
 in.numberOfUsersInApplication = users.size();
-in.counter = 1;' #txt
+in.counter = 1;
+
+
+' #txt
 Dt0 f60 security system #txt
 Dt0 f60 type portalKit_test.DataCreationData #txt
 Dt0 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -742,10 +750,11 @@ TaskTriggered.EXTYPE=0
 TaskTriggered.EXPRI=2
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody
+TaskTriggered.DESC=Task, which has the HIDE additional property, won''t be displayed in Portal
 TaskTriggered.NAM=First hidden Task
-TaskTriggered.DESC=Task, which has the HIDE additional property, won''t be displayed in Portal' #txt
-Dt0 f46 caseData businessCase.attach=true #txt
+TaskTriggered.EXROL=Everybody' #txt
+Dt0 f46 caseData 'case.name=Hidden case
+businessCase.attach=true' #txt
 Dt0 f46 showInStartList 0 #txt
 Dt0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -788,7 +797,8 @@ TaskTriggered.EXPRI=2
 TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody' #txt
-Dt0 f52 caseData businessCase.attach=true #txt
+Dt0 f52 caseData 'case.name=Hidden case
+businessCase.attach=true' #txt
 Dt0 f52 showInStartList 1 #txt
 Dt0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -833,7 +843,10 @@ Dt0 f58 actionDecl 'portalKit_test.DataCreationData out;
 ' #txt
 Dt0 f58 actionTable 'out=in;
 ' #txt
-Dt0 f58 actionCode 'in.counter = 1;' #txt
+Dt0 f58 actionCode 'in.counter = 1;
+
+String hide = "HIDE";
+ivy.case.setAdditionalProperty(hide, hide);' #txt
 Dt0 f58 type portalKit_test.DataCreationData #txt
 Dt0 f58 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -977,6 +990,69 @@ Dt0 f85 696 160 482 48 #arcP
 Dt0 f85 1 752 160 #addKink
 Dt0 f85 2 752 48 #addKink
 Dt0 f85 2 0.5222222222222223 0 0 #arcLabel
+Dt0 f111 outLink hideTaskCase.ivp #txt
+Dt0 f111 type portalKit_test.DataCreationData #txt
+Dt0 f111 inParamDecl '<> param;' #txt
+Dt0 f111 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f111 guid 1682D024FF7B3DA9 #txt
+Dt0 f111 requestEnabled true #txt
+Dt0 f111 triggerEnabled false #txt
+Dt0 f111 callSignature hideTaskCase() #txt
+Dt0 f111 persist false #txt
+Dt0 f111 startName 'Hide task and case in Portal ' #txt
+Dt0 f111 startDescription 'Hide task and case in Portal by Id' #txt
+Dt0 f111 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Dt0 f111 caseData businessCase.attach=true #txt
+Dt0 f111 showInStartList 1 #txt
+Dt0 f111 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>hideTaskCase.ivp</name>
+        <nameStyle>16,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f111 @C|.responsibility Everybody #txt
+Dt0 f111 49 921 30 30 -49 17 #rect
+Dt0 f111 @|StartRequestIcon #fIcon
+Dt0 f112 type portalKit_test.DataCreationData #txt
+Dt0 f112 497 921 30 30 0 15 #rect
+Dt0 f112 @|EndIcon #fIcon
+Dt0 f113 targetWindow NEW #txt
+Dt0 f113 targetDisplay TOP #txt
+Dt0 f113 richDialogId ch.ivy.addon.portalkit.test.HideTaskCase #txt
+Dt0 f113 startMethod start() #txt
+Dt0 f113 type portalKit_test.DataCreationData #txt
+Dt0 f113 requestActionDecl '<> param;' #txt
+Dt0 f113 responseActionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f113 responseMappingAction 'out=in;
+' #txt
+Dt0 f113 isAsynch false #txt
+Dt0 f113 isInnerRd false #txt
+Dt0 f113 userContext '* ' #txt
+Dt0 f113 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Hide task case</name>
+        <nameStyle>14,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f113 200 914 112 44 -41 -8 #rect
+Dt0 f113 @|RichDialogIcon #fIcon
+Dt0 f114 expr out #txt
+Dt0 f114 79 936 200 936 #arcP
+Dt0 f115 expr out #txt
+Dt0 f115 312 936 497 936 #arcP
 >Proto Dt0 .type portalKit_test.DataCreationData #txt
 >Proto Dt0 .processKind NORMAL #txt
 >Proto Dt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1068,3 +1144,7 @@ Dt0 f81 out f84 tail #connect
 Dt0 f84 head f83 mainIn #connect
 Dt0 f83 mainOut f85 tail #connect
 Dt0 f85 head f41 mainIn #connect
+Dt0 f111 mainOut f114 tail #connect
+Dt0 f114 head f113 mainIn #connect
+Dt0 f113 mainOut f115 tail #connect
+Dt0 f115 head f112 mainIn #connect
