@@ -7,7 +7,6 @@ import org.apache.commons.lang.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.process.call.SubProcessCallResult;

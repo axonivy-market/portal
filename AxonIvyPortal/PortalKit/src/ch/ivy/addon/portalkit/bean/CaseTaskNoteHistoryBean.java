@@ -1,13 +1,21 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.model.StreamedContent;
+
 import ch.ivy.addon.portalkit.bo.History;
 import ch.ivy.addon.portalkit.bo.History.HistoryType;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivy.addon.portalkit.support.UrlDetector;
+import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivy.addon.portalkit.util.NoteHistoryExporter;
+import ch.ivy.addon.portalkit.util.UrlValidator;
+import ch.ivy.ws.addon.IvyNote;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.server.ServerFactory;
@@ -66,5 +74,14 @@ public class CaseTaskNoteHistoryBean implements Serializable {
     }
     return content;
   }
+    
+    public StreamedContent getExportedFileOfTaskNoteHistory(List<IvyNote> taskNoteHistory, String fileName) {
+      NoteHistoryExporter exporter = new NoteHistoryExporter();
+      return exporter.getStreamedContentOfTaskNoteHistory(taskNoteHistory, fileName + ".xls");
+    }
 
+    public StreamedContent getStreamedContentOfCaseNoteHistory(List<History> caseNoteHistory, RemoteCase remoteCase, String fileName) {
+      NoteHistoryExporter exporter = new NoteHistoryExporter();
+      return exporter.getStreamedContentOfCaseNoteHistory(caseNoteHistory, remoteCase, fileName + ".xls");
+    }
 }

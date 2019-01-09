@@ -2,15 +2,17 @@ var mainMenuMode = "collapsed";
 var FIRST_LEVEL_MENU_MODE = 'portal-first-level-menu-mode';
 var SECOND_LEVEL_MENU_MODE = 'portal-second-level-menu-mode';
 var ACTIVE_MENU_ITEM = 'portal-active-menu-item';
+var storageType = detectStorage();
 
-var Portal = {
+var Portal = {    
   init : function(responsiveToolkit, updateFlag) {
     typeof(updateFlag) == "undefinied" ? false : updateFlag;
     if ($('form.login-form').size() > 0) {
       return;
     }
     updateMainMenuMode();
-    var previousActiveMenuItem = localStorage.getItem('active-menu-item');
+    var previousActiveMenuItem = getItemFromStorage('active-menu-item');
+    
     updateActivedMenuItem();
 
     if (mainMenuMode === "expanded") {
@@ -76,12 +78,12 @@ function wireListenerToSecondMenuItem() {
 }
 
 function updateMainMenuMode() {
-  mainMenuMode = localStorage.getItem(FIRST_LEVEL_MENU_MODE);
+  mainMenuMode = getItemFromStorage(FIRST_LEVEL_MENU_MODE);
 }
 
 function toggleMainMenuMode() {
   updateMainMenuMode();
-  localStorage.setItem(FIRST_LEVEL_MENU_MODE, getReversedState(mainMenuMode));
+  storeItemToStorage(FIRST_LEVEL_MENU_MODE, getReversedState(mainMenuMode));
 }
 
 function getReversedState(state) {
@@ -162,7 +164,7 @@ var SecondLevelMenu = {
     this.secondLevelMenuHeader = this.secondLevelMenu.find("a.second-level-menu-header");
     this.secondLevelMenuBody = this.secondLevelMenu.find("div.second-level-menu-body");
     this.bindEvents();
-    if (localStorage.getItem(SECOND_LEVEL_MENU_MODE) === 'expanded') {
+    if (getItemFromStorage(SECOND_LEVEL_MENU_MODE) === 'expanded') {
       this.secondLevelMenu.addClass("on");
       this.responsiveToolkit.updateLayoutWithoutAnimation();
     }
@@ -173,9 +175,9 @@ var SecondLevelMenu = {
     var $this = this;
     this.secondLevelMenuHeader.on("click", function() {
       if ($this.secondLevelMenu.hasClass('on')) {
-        localStorage.setItem(SECOND_LEVEL_MENU_MODE, 'collapsed');
+        storeItemToStorage(SECOND_LEVEL_MENU_MODE, 'collapsed');
       } else {
-        localStorage.setItem(SECOND_LEVEL_MENU_MODE, 'expanded');
+        storeItemToStorage(SECOND_LEVEL_MENU_MODE, 'expanded');
       }
       $this.secondLevelMenu.toggleClass("on");
       $this.responsiveToolkit.updateLayoutWithAnimation();
@@ -222,7 +224,7 @@ function animatePreviousActiveMenuItem(previousActiveMenuItem) {
 
 function updateActivedMenuItem() {
   var activeMenuItemClassList = getActiveMenuItemClassList();
-  localStorage.setItem('active-menu-item', getMenuUniqueClassFrom(getActiveMenuItemClassList()));
+  storeItemToStorage('active-menu-item', getMenuUniqueClassFrom(getActiveMenuItemClassList()));
 }
 
 function getMenuUniqueClassFrom(menuClassList) {
@@ -268,8 +270,12 @@ function highlighSecondLevelMenuItem() {
   var menuData = $('*[id$=output-menu-state-info]').text();
   var menuItemElements = $('.second-level-menu-body tbody tr').get();
   $.each(menuItemElements, function(index, item) {
-    if (menuData != "" && menuData.indexOf(getCategoryClass(item)) != -1) {
-      $(item).toggleClass('on');
+    var categoryClass = getCategoryClass(item);
+    if (menuData != "") {
+      var itemIndex = menuData.indexOf(categoryClass);
+      if ((itemIndex != -1) && ((itemIndex + categoryClass.length == menuData.length) || (menuData.charAt(itemIndex + categoryClass.length) == '/'))) {
+        $(item).toggleClass('on'); 
+      }
     }
   });
 }
@@ -307,4 +313,51 @@ function searchIconByName(element) {
 	  icons[i].style.display= "none";
     }
   }
+}
+
+function detectStorage(){
+  if (typeof(Storage) !== "undefined") {
+    return lsTest();
+  } else {
+    return '';
+  }
+}
+
+function lsTest(){
+  var test = 'test';
+  try {
+      localStorage.setItem(test, test);
+      localStorage.removeItem(test);
+      return 'localStorage';
+  } catch(e) {
+      return ssTest();
+  }
+}
+
+function ssTest(){
+  var test = 'test';
+  try {
+    sessionStorage.setItem(test, test);
+    sessionStorage.removeItem(test);
+    return 'sessionStorage';
+} catch(e) {
+    return '';
+  }
+}
+
+function storeItemToStorage(item, value){
+  if (storageType === 'localStorage'){
+    localStorage.setItem(item, value);
+  } else if (storageType === 'sessionStorage'){
+    sessionStorage.setItem(item, value);
+  } 
+}
+
+function getItemFromStorage(item){
+  if (storageType === 'localStorage'){
+    return localStorage.getItem(item);
+  } else if (storageType === 'sessionStorage'){
+    return sessionStorage.getItem(item);
+  }
+  return null;
 }

@@ -21,7 +21,6 @@ import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.process.call.SubProcessCallResult;

@@ -43,7 +43,7 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<ICase> {
     String applicationName = StringUtils.EMPTY;
     String applicationNameFromRequest =
         Optional.ofNullable(Ivy.request().getApplication()).map(IApplication::getName).orElse(StringUtils.EMPTY);
-    if (!IApplication.PORTAL_APPLICATION_NAME.equals(applicationNameFromRequest)) {
+    if (!PortalConstants.PORTAL_APPLICATION_NAME.equals(applicationNameFromRequest)) {
       applicationName = applicationNameFromRequest;
     }
     if (StringUtils.isNotBlank(applicationName)) {
