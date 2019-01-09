@@ -33,7 +33,11 @@ public class TaskAnalysisExporter {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
     try {
-      ExcelExport.exportListAsExcel(generateHeaders(), rows, null, outputStream);
+      ExcelExportSheet sheet = new ExcelExportSheet();
+      sheet.setHeaders(generateHeaders());
+      sheet.setRows(rows);
+      List<ExcelExportSheet> sheets = Arrays.asList(sheet);
+      ExcelExport.exportListAsExcel(sheets, outputStream);
     } catch (IOException e) {
       Ivy.log().error(e);
     }

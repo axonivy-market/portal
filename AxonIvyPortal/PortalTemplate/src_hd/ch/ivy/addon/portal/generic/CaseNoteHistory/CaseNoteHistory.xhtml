@@ -49,12 +49,13 @@
         
         <p:dataTable id="notes-table" widgetVar="notesTable" var="history" sortBy="#{history.timestamp}"
           sortOrder="DESCENDING" value="#{data.histories}" filteredValue="#{data.filteredHistories}">
-          <p:column width="15%" sortBy="#{history.involvedFullname}" filterBy="#{history.involvedFullname}"
+          <p:column width="15%" sortBy="#{userFormatBean.format(history.involvedFullname, history.involvedUsername)}" 
+            filterBy="#{userFormatBean.format(history.involvedFullname, history.involvedUsername)}"
             filterMatchMode="contains">
             <f:facet name="header">
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" />
             </f:facet>
-            <h:outputText value="#{history.involvedFullname}" />
+            <h:outputText value="#{userFormatBean.format(history.involvedFullname, history.involvedUsername)}" />
           </p:column>
           <p:column width="20%" sortBy="#{history.timestamp}" >
             <f:facet name="header">
@@ -75,7 +76,7 @@
         
         <p:commandButton ajax="false" styleClass="note-history-export-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}">
-          <p:dataExporter type="xls" target="notes-table, case-info" fileName="#{data.exportedFileName}" />
+          <p:fileDownload value="#{caseTaskNoteHistoryBean.getStreamedContentOfCaseNoteHistory(data.filteredHistories, data.remoteCase, data.exportedFileName)}" />
         </p:commandButton>
       </h:form>
 

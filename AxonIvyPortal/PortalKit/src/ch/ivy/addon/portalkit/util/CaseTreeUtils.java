@@ -31,7 +31,7 @@ import ch.ivyteam.ivy.workflow.category.CategoryTree;
 public class CaseTreeUtils {
 
   public static final String DELIMITER = "/";
-  
+
   private static CheckboxTreeNode root;
 
   private CaseTreeUtils() {}
@@ -68,14 +68,17 @@ public class CaseTreeUtils {
     newNode.setExpanded(true);
     if (menuState.contains(nodeType) && !getLastCategoryFromCategoryPath(menuState).contains(getLastCategoryFromCategoryPath(nodeType))) {
       newNode.setExpanded(true);
-    } else {
-      newNode.setExpanded(false);
     }
     return newNode;
   }
-  
+
+  private static boolean isSelectedCategory(String menuState, String nodeType) {
+    return (menuState.indexOf(nodeType) + nodeType.length() == menuState.length())
+        ||( menuState.charAt(menuState.indexOf(nodeType) + nodeType.length()) == '/');
+  }
+
   public static CheckboxTreeNode buildCaseCategoryCheckboxTreeRoot() {
-    if (root != null){
+    if (root != null) {
       return root;
     }
     List<String> involvedApplications = null;
@@ -84,7 +87,8 @@ public class CaseTreeUtils {
       involvedApplications = new ArrayList<>();
       involvedApplications.add(appName);
     }
-    String jsonQuery = SubProcessCall.withPath("Functional Processes/BuildCaseJsonQuery").withStartSignature("buildCaseJsonQuery()").call().get("jsonQuery", String.class);
+    String jsonQuery = SubProcessCall.withPath("Functional Processes/BuildCaseJsonQuery")
+        .withStartSignature("buildCaseJsonQuery()").call().get("jsonQuery", String.class);
     List<CategoryData> allCaseCategories = findAllCaseCategories(involvedApplications, jsonQuery);
     root = buildCaseCategoryCheckboxTreeNode(allCaseCategories);
     return root;
@@ -95,14 +99,16 @@ public class CaseTreeUtils {
     params.put("jsonQuery", jsonQuery);
     params.put("apps", involvedApplications != null ? involvedApplications.stream().collect(joining("=~=")) : null);
     Map<String, Object> response =
-        IvyAdapterService.startSubProcess("findCaseCategoriesByCriteria(String, String, Long, String)", params, Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
+        IvyAdapterService.startSubProcess("findCaseCategoriesByCriteria(String, String, Long, String)", params,
+            Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
     @SuppressWarnings("unchecked")
     List<CategoryData> allCaseCategories = (List<CategoryData>) response.get("caseCategories");
     return allCaseCategories;
   }
-  
+
   private static CheckboxTreeNode buildCaseCategoryCheckboxTreeNode(List<CategoryData> categories) {
-    CheckboxTreeNode caseRootNode = new CheckboxTreeNode(buildCaseNodeFrom(StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY));
+    CheckboxTreeNode caseRootNode =
+        new CheckboxTreeNode(buildCaseNodeFrom(StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY));
     CheckboxTreeNode navigatorNode = caseRootNode;
     String nodeType = "default";
     for (CategoryData category : categories) {
@@ -114,12 +120,15 @@ public class CaseTreeUtils {
 
       for (int i = 0; i < nodeNames.length; i++) {
         String subCategoryName = nodeNames[i];
-        String subCategoryPath = categoryPath.substring(0, categoryPath.indexOf(subCategoryName) + subCategoryName.length());
+        String subCategoryPath =
+            categoryPath.substring(0, categoryPath.indexOf(subCategoryName) + subCategoryName.length());
 
         String subCategoryRawName = nodeRawPaths[i];
-        String subCategoryRawPath = categoryRawPath.substring(0, categoryRawPath.indexOf(subCategoryRawName) + subCategoryRawName.length());
+        String subCategoryRawPath =
+            categoryRawPath.substring(0, categoryRawPath.indexOf(subCategoryRawName) + subCategoryRawName.length());
 
-        navigatorNode = buildCaseCategoryTreeNode(navigatorNode, nodeType, subCategoryName, subCategoryPath, subCategoryRawPath);
+        navigatorNode =
+            buildCaseCategoryTreeNode(navigatorNode, nodeType, subCategoryName, subCategoryPath, subCategoryRawPath);
       }
       navigatorNode = caseRootNode;
     }
