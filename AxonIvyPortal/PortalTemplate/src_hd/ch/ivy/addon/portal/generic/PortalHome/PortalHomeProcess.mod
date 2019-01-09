@@ -1,5 +1,5 @@
 [Ivy]
-14BEF201D2E3FF7D 3.20 #module
+14BEF201D2E3FF7D 3.23 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalHomeProcess Big #zClass
 Ps0 RD #cInfo
@@ -60,7 +60,7 @@ Ps0 f1 disableUIEvents false #txt
 Ps0 f1 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
-Ps0 f1 inActionCode 'import ch.ivy.ws.addon.TaskSearchCriteria;
+Ps0 f1 inActionCode 'import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 
 TaskSearchCriteria criteria = out.taskView.dataModel.searchCriteria;
 if (out.isNotLogin) {
@@ -100,7 +100,7 @@ Ps0 f5 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodE
 Ps0 f5 inActionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
 
 StatisticService service = new StatisticService();
-out.statisticChartList = service.findStatisticChartsByUserId(ivy.session.getSessionUser().getId());' #txt
+//out.statisticChartList = service.findStatisticChartsByUserId(ivy.session.getSessionUser().getId());' #txt
 Ps0 f5 outParameterDecl '<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> statisticChartList> result;
 ' #txt
 Ps0 f5 outParameterMapAction 'result.statisticChartList=in.statisticChartList;

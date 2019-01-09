@@ -8,7 +8,7 @@
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cockpit')}</ui:define>
-    <ui:define name="pageContent">
+    <ui:define name="simplePageContent">
       <c:set var="displayProcessWidget" value="#{not empty displayProcessWidget ? displayProcessWidget : true}" />
       <c:set var="displayTaskWidget" value="#{not empty displayTaskWidget ? displayTaskWidget : true}" />
       <c:set var="displayStatisticWidget" value="#{not empty displayStatisticWidget ? displayStatisticWidget : true}" />
@@ -21,13 +21,13 @@
             styleClass="js-dashboard-main-content-1st-col dashboard-main-content-1st-col layout-col"
             rendered="#{displayProcessWidget}">
             <h:panelGroup layout="block" styleClass="js-process-widget">
-              <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-widget" compactMode="true"
-                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" showBackButton="true">
+              <ic:ch.ivy.addon.portalkit.component.CompactProcessWidget id="process-widget"
+                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}">
                 <f:facet name="headerToolbar">
                   <ic:ch.ivy.addon.portal.generic.ProcessNavigator id="process-link"
                     label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/seeAllProcesses')}" />
                 </f:facet>
-              </ic:ch.ivy.addon.portalkit.component.ProcessWidget>
+              </ic:ch.ivy.addon.portalkit.component.CompactProcessWidget>
             </h:panelGroup>
           </h:panelGroup>
         </ui:insert>
@@ -38,7 +38,7 @@
             rendered="#{displayTaskWidget}">
             <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" dataModel="#{dataModel}"
               title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}"
-              keyword="#{dataModel.queryCriteria.keyword}" compactMode="#{dataModel.compactMode}"
+              keyword="#{dataModel.searchCriteria.keyword}" compactMode="#{dataModel.compactMode}"
               componentToUpdateWhenInCompactMode="#{displayStatisticWidget ? 'statistic-widget-container' : ''}">
               <f:facet name="headerToolbar">
                 <ic:ch.ivy.addon.portal.generic.TaskListNavigator id="task-list-link"

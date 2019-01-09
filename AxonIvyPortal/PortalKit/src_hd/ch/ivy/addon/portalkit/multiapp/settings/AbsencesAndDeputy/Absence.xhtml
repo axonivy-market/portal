@@ -15,21 +15,21 @@
        <p:autoComplete scrollHeight="200" dropdown="true" id="username" size="35" 
           completeMethod="#{logic.autoCompleteForUser}"
           value="#{data.selectedUser}"
-          var="user" itemValue="#{user}" itemLabel="#{user.name}"
+          var="user" itemValue="#{user}" itemLabel="#{user.displayName}"
           converter="pojoConverter"
           rendered="#{uneditedUserName eq 'false'}" required="true"
           cache="true" maxResults="100"
           requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/userNameRequired')}"
           moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
-          <f:event listener="#{logic.loadAllUsers}" type="preRenderComponent" />
+          <f:event listener="#{logic.loadUsers}" type="preRenderComponent" />
           <p:ajax event="query" global="false" />
-          <p:ajax event="itemSelect" listener="#{logic.userSelect}"
+          <p:ajax event="itemSelect" listener="#{logic.userSelectInAbsence}"
             process="@this comment absence-start-date absence-end-date" update="#{updateComponent}" />
         </p:autoComplete>
-        <h:outputText rendered="#{empty data.selectedAbsence.userFullName and uneditedUserName}" 
-        	value="#{data.selectedAbsence.userName}" />
-        <h:outputText rendered="#{not empty data.selectedAbsence.userFullName and uneditedUserName}"  
-        	value="#{data.selectedAbsence.userFullName} (#{data.selectedAbsence.userName})"/>
+        <h:outputText rendered="#{empty data.selectedAbsence.fullname and uneditedUserName}" 
+        	value="#{data.selectedAbsence.username}" />
+        <h:outputText rendered="#{not empty data.selectedAbsence.fullname and uneditedUserName}"  
+        	value="#{data.selectedAbsence.fullname} (#{data.selectedAbsence.username})"/>
       </p:column>
     </p:row>
     <p:row>
@@ -37,20 +37,20 @@
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/from')}:" />
       </p:column>
       <p:column>
-        <p:calendar id="absence-start-date" value="#{data.selectedAbsence.startDateInclusive}" locale="#{localeBean.locale}"
+        <p:calendar id="absence-start-date" value="#{data.selectedAbsence.from}" locale="#{localeBean.locale}"
           showOn="button"
           converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}"
           pattern="#{dateTimePatternBean.datePattern}" required="true"
           requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateRequired')}">
-          <p:ajax event="dateSelect" listener="#{logic.fromChange}" process="@this username absence-start-date comment"
+          <p:ajax event="dateSelect" listener="#{logic.dateChange}" process="@this username absence-start-date comment"
             update="#{updateComponent}" />
         </p:calendar>
         <h:outputLabel for="absence-end-date" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/till')}:" styleClass="new-absence-till-label" />
-        <p:calendar id="absence-end-date" value="#{data.selectedAbsence.stopDateInclusive}" showOn="button" locale="#{localeBean.locale}"
+        <p:calendar id="absence-end-date" value="#{data.selectedAbsence.until}" showOn="button" locale="#{localeBean.locale}"
           converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}"
           pattern="#{dateTimePatternBean.datePattern}" required="true"
           requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateRequired')}">
-          <p:ajax event="dateSelect" listener="#{logic.tillChange}" process="@this username comment absence-start-date"
+          <p:ajax event="dateSelect" listener="#{logic.dateChange}" process="@this username comment absence-start-date"
             update="#{updateComponent}" />
         </p:calendar>
       </p:column>
@@ -61,7 +61,7 @@
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/comment')}:" />
       </p:column>
       <p:column>
-        <p:inputText value="#{data.selectedAbsence.description}" maxlength="100" id="comment"
+        <p:inputText value="#{data.selectedAbsence.comment}" maxlength="100" id="comment"
           styleClass="add-absences-dialog-input-comment" />
       </p:column>
     </p:row>

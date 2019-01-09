@@ -9,7 +9,7 @@
   <div id="action-cell-#{rowIndex}" class="action-cell #{data.isShowTaskButtonLabels? 'with-button-labels' : 'without-button-labels'}">
     <div class="action-container">
       <p:commandLink id="task-reset-command" onstart="event.stopPropagation();"
-        disabled="#{task.state eq 'SUSPENDED' or !task.canReset}" styleClass="task-command"
+        disabled="#{!taskActionBean.canReset(task)}" styleClass="task-command"
         actionListener="#{logic.resetTask(task)}" update="@parent :#{p:component('task-start')}">
         <span class="action-icon tmi-box-arrow-left" />
         <h:outputText rendered="#{data.isShowTaskButtonLabels}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" />
@@ -17,7 +17,7 @@
       <p:tooltip for="task-reset-command"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/resetTaskTooltip')}"
         styleClass="task-command-tooltip" />
-      <p:commandLink id="task-delegate-command" disabled="#{!(task.canDelegate or task.state eq 'UNASSIGNED')}"
+      <p:commandLink id="task-delegate-command" disabled="#{!taskActionBean.canDelegate(task)}"
         styleClass="task-command" actionListener="#{logic.initDataToDelegate(task)}" onstart="event.stopPropagation();"
         oncomplete="PF('task-delegate-dialog').show()" update="@widgetVar(task-delegate-dialog) @parent">
         <span class="action-icon tmi-box-arrow-right" />
@@ -27,7 +27,7 @@
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTask')}"
         styleClass="task-command-tooltip" />
       <p:commandLink id="task-reserve-command"
-        disabled="#{!task.canPark or task.state eq 'PARKED' or task.state eq 'RESUMED'}"
+        disabled="#{!taskActionBean.canPark(task)}"
         onstart="event.stopPropagation();" styleClass="task-command" actionListener="#{logic.parkTask(task)}"
         update="@parent :#{p:component('task-start')}">
         <span class="action-icon tmi-box-arrow-toinside" />
@@ -36,27 +36,14 @@
       <p:tooltip for="task-reserve-command"
         value="#{task.state eq 'PARKED'? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/freeReservationTaskTooltip'): ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/reserveTaskTooltip')}"
         styleClass="task-command-tooltip" />
-      <p:commandLink id="task-start-command" disabled="#{!task.canResume}" styleClass="task-command">
+      <p:commandLink id="task-start-command" disabled="#{!taskActionBean.canResume(task)}" styleClass="task-command">
         <span class="action-icon tmi-chevorn-right" />
         <h:outputText rendered="#{data.isShowTaskButtonLabels}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/openRequest')}" />
       </p:commandLink>
-      <p:commandLink id="task-side-steps-menu" onstart="event.stopPropagation();" global="false"
-        styleClass="task-command side-step #{not task.hasMoreActions ? 'u-invisibility' : ''} #{data.isShowTaskButtonLabels? 'side-step-position' : ''}" 
-        actionListener="#{logic.collectSideSteps(task)}" oncomplete="PF('side-steps-panel-#{rowIndex}').loadContents();">
-      	 <span class="action-icon tmi-ellipsis-v side-step-icon" />
-      </p:commandLink>
-      <p:overlayPanel id="side-steps-panel" widgetVar="side-steps-panel-#{rowIndex}" for="task-side-steps-menu"
-        my="left top" at="left bottom" appendToBody="true" styleClass="side-steps-panel" dynamic="true" rendered="#{task.hasMoreActions}">
-        <ui:repeat var="sidestep" value="#{data.sideSteps}">
-          <p:commandLink id="side-step-item" styleClass="side-step-item"
-            value="#{sidestep.name}" global="false"
-            actionListener="#{logic.navigateToSidestep(sidestep,task)}" />
-        </ui:repeat>
-      </p:overlayPanel>
-      
-   	  <p:tooltip for="task-side-steps-menu" styleClass="task-command-tooltip" rendered="#{task.hasMoreActions}"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" />
+        
+      <ic:ch.ivy.addon.portalkit.component.SideStep actionLinkId="task-side-steps-menu" actionLinkStyleClass="task-command #{data.isShowTaskButtonLabels? 'side-step-position' : ''}"
+        panelWidgetVar="task-side-steps-panel-#{rowIndex}" caseId="#{task.case.getId()}" isAdhocExcluded="false" />
     </div>
   </div>
 </ui:composition>

@@ -4,19 +4,17 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
-import ch.ivy.addon.portalkit.bo.RemoteSecurityMember;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class CaseCreatorFilter extends CaseFilter {
   @JsonIgnore
-  private List<RemoteSecurityMember> securityMembers;
-  private RemoteSecurityMember selectedCreator;
-  @JsonIgnore
-  private static final String SECURITY_SERVICE_CALLABLE = "MultiPortal/SecurityService";
+  private List<IUser> creators;
+  private IUser selectedCreator;
 
   @Override
   public String label() {
@@ -37,8 +35,7 @@ public class CaseCreatorFilter extends CaseFilter {
       return null;
     }
 
-    String userName = selectedCreator.getMemberName();
-    return CaseQuery.create().where().creatorUserName().isEqual(userName);
+    return CaseQuery.create().where().creatorUserId().isEqual(selectedCreator.getId());
   }
 
   @Override
@@ -46,33 +43,33 @@ public class CaseCreatorFilter extends CaseFilter {
     selectedCreator = null;
   }
 
-  public String formatName(RemoteSecurityMember responsible) {
-    if (StringUtils.isBlank(responsible.getDisplayName())) {
-      return responsible.getMemberName();
+  public String formatName(IUser creator) {
+    if (StringUtils.isBlank(creator.getFullName())) {
+      return creator.getName();
     }
-    return responsible.getDisplayName() + " (" + responsible.getMemberName() + ")";
+    return creator.getFullName() + " (" + creator.getName() + ")";
   }
 
-  public List<RemoteSecurityMember> getSecurityMembers() {
-    if (securityMembers == null) {
-      initSecurityMembers();
+  public List<IUser> getCreators() throws Exception {
+    if (creators == null) {
+      initUsers();
     }
-    return securityMembers;
+    return creators;
   }
 
-  private void initSecurityMembers() {
-    securityMembers = UserUtils.findAllUserByApplication("Can't get list of users for creator filter");
+  private void initUsers() throws Exception {
+    creators = UserUtils.findAllUserByApplication();
   }
 
-  public void setResponsibles(List<RemoteSecurityMember> securityMembers) {
-    this.securityMembers = securityMembers;
+  public void setCreators(List<IUser> creators) {
+    this.creators = creators;
   }
 
-  public RemoteSecurityMember getSelectedCreator() {
+  public IUser getSelectedCreator() {
     return selectedCreator;
   }
 
-  public void setSelectedCreator(RemoteSecurityMember selectedCreator) {
+  public void setSelectedCreator(IUser selectedCreator) {
     this.selectedCreator = selectedCreator;
   }
 }

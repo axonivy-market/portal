@@ -107,7 +107,6 @@ Pt0 @StartRequest f172 '' #zField
 Pt0 @RichDialog f174 '' #zField
 Pt0 @GridStep f154 '' #zField
 Pt0 @PushWFArc f182 '' #zField
-Pt0 @PushWFArc f29 '' #zField
 Pt0 @GridStep f27 '' #zField
 Pt0 @RichDialog f85 '' #zField
 Pt0 @PushWFArc f99 '' #zField
@@ -120,6 +119,7 @@ Pt0 @PushWFArc f91 '' #zField
 Pt0 @RichDialog f101 '' #zField
 Pt0 @StartRequest f100 '' #zField
 Pt0 @PushWFArc f102 '' #zField
+Pt0 @PushWFArc f29 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Pt0 f0 outLink PortalStart.ivp #txt
 Pt0 f0 type ch.ivy.addon.portal.generic.PortalStartData #txt
@@ -493,18 +493,15 @@ Pt0 f17 actionTable 'out=in;
 Pt0 f17 actionCode 'import java.util.Map;
 import org.primefaces.extensions.util.json.GsonConverter;
 import ch.ivy.addon.portalkit.dto.GlobalCaseId;
-import java.util.Arrays;
 import ch.ivy.addon.portal.generic.view.CaseView;
 
 Map caseInfor = GsonConverter.getGson().fromJson(in.parameters,Map.class) as Map;
 long caseId = Long.parseLong(caseInfor.get("caseId") as String); 
 String caseName = caseInfor.get("caseName") as String;
-long serverId = Long.parseLong(caseInfor.get("serverId") as String);
-
-String title = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/relatedCaseHeader", Arrays.asList(caseId.toString(), caseName));
+String title = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/relatedCaseHeader", [caseId.toString(), caseName]);
 
 in.caseDataModel.setCaseId(caseId);
-out.caseView = CaseView.create().dataModel(in.caseDataModel).withTitle(title).hideCaseFilter(true).autoSelectIfExists(GlobalCaseId.inServer(serverId).caseId(caseId).build()).buildNewView();' #txt
+out.caseView = CaseView.create().dataModel(in.caseDataModel).withTitle(title).hideCaseFilter(true).autoSelectIfExists(GlobalCaseId.caseId(caseId).build()).buildNewView();' #txt
 Pt0 f17 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -567,17 +564,17 @@ if (!in.isDataModelInitialized) {
 	try {
 		taskCategory = SecurityServiceUtils.getSessionAttribute(SessionAttribute.TASK_CATEGORY.toString()) as TaskNode;
 	} catch (Exception e) {}
-	boolean canLinkBackToCaseDetail = in.#dataModel.#queryCriteria.#caseId is initialized; 
+	boolean canLinkBackToCaseDetail = in.#dataModel.#searchCriteria.#caseId is initialized; 
 	
 	in.taskView = TaskView.create().category(#taskCategory).dataModel(in.dataModel)
 												.canLinkBackCaseDetail(canLinkBackToCaseDetail).showHeaderToolbar(false)
-												.remoteTaskId(in.selectedTaskId).createNewTaskView();
+												.taskId(in.selectedTaskId).createNewTaskView();
 	
 	SecurityServiceUtils.removeSessionAttribute(SessionAttribute.TASK_CATEGORY.toString());
 } else {
 	in.dataModel.compactMode = false;
-	in.dataModel.getQueryCriteria().setNewQueryCreated(true);
-	in.dataModel.setIgnoreInvolvedUser(true);
+	in.dataModel.getSearchCriteria().setNewQueryCreated(true);
+	in.dataModel.setAdminQuery(true);
 	in.dataModel.setSortField(TaskSortField.PRIORITY.toString(), false);
 		
 	Map taskInfo = GsonConverter.getGson().fromJson(in.parameters,Map.class) as Map;
@@ -589,7 +586,7 @@ if (!in.isDataModelInitialized) {
 	category.value = pageTitle;
 	String noTaskMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskWarning/taskNotFound");
 		
-	out.taskView = TaskView.create().dataModel(in.dataModel).pageTitle(pageTitle).category(category).remoteTaskId(taskId).hideTaskFilter(true).showHeaderToolbar(false).noTaskFoundMessage(noTaskMessage).createNewTaskView();
+	out.taskView = TaskView.create().dataModel(in.dataModel).pageTitle(pageTitle).category(category).taskId(taskId).hideTaskFilter(true).showHeaderToolbar(false).noTaskFoundMessage(noTaskMessage).createNewTaskView();
 }' #txt
 Pt0 f19 security system #txt
 Pt0 f19 type ch.ivy.addon.portal.generic.PortalStartData #txt
@@ -850,9 +847,9 @@ import ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel;
 
 in.searchResultsDataModel = new SearchResultsDataModel();
 in.searchResultsDataModel.taskDataModel = in.dataModel;
-in.searchResultsDataModel.keyword = in.searchResultsDataModel.taskDataModel.queryCriteria.keyword;
+in.searchResultsDataModel.keyword = in.searchResultsDataModel.taskDataModel.searchCriteria.keyword;
 in.searchResultsDataModel.caseDataModel.notKeepFilter = true;
-in.searchResultsDataModel.caseDataModel.queryCriteria.keyword = in.searchResultsDataModel.taskDataModel.queryCriteria.keyword;
+in.searchResultsDataModel.caseDataModel.getSearchCriteria().keyword = in.searchResultsDataModel.taskDataModel.searchCriteria.keyword;
 
 ' #txt
 Pt0 f52 security system #txt
@@ -1063,7 +1060,7 @@ import ch.ivy.addon.portal.generic.view.TaskView;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 
 boolean hasReadAllTasksPermisson = PermissionUtils.checkReadAllTasksPermission();
-in.dataModel.setIgnoreInvolvedUser(hasReadAllTasksPermisson);
+in.dataModel.setAdminQuery(hasReadAllTasksPermisson);
 in.dataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
 
 in.taskView = TaskView.create().dataModel(in.dataModel).noTaskFoundMessage("").showHeaderToolbar(false).createNewTaskView();
@@ -1161,12 +1158,12 @@ Pt0 f82 @|RichDialogIcon #fIcon
 Pt0 f74 targetWindow NEW:card: #txt
 Pt0 f74 targetDisplay TOP #txt
 Pt0 f74 richDialogId ch.ivy.addon.portal.generic.Processes #txt
-Pt0 f74 startMethod startWithMenuState(String) #txt
+Pt0 f74 startMethod start(String) #txt
 Pt0 f74 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f74 requestActionDecl '<String menuState> param;' #txt
 Pt0 f74 requestMappingAction 'param.menuState=ch.ivy.addon.portalkit.util.MenuUtils.getMenuState();
 ' #txt
-Pt0 f74 responseActionDecl 'ch.ivy.addon.portal.generic.PortalProcessData out;
+Pt0 f74 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f74 responseMappingAction 'out=in;
 ' #txt
@@ -1215,7 +1212,7 @@ import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portal.generic.view.CaseView;
 
 boolean hasReadAllCasesPermission = PermissionUtils.checkReadAllCasesPermission();
-in.caseDataModel.setIgnoreInvolvedUser(hasReadAllCasesPermission);
+in.caseDataModel.setAdminQuery(hasReadAllCasesPermission);
 
 in.caseView = CaseView.create().dataModel(in.caseDataModel).buildNewView();' #txt
 Pt0 f59 type ch.ivy.addon.portal.generic.PortalStartData #txt
@@ -1332,11 +1329,9 @@ Pt0 f94 @|AlternativeIcon #fIcon
 Pt0 f96 targetWindow NEW #txt
 Pt0 f96 targetDisplay TOP #txt
 Pt0 f96 richDialogId ch.ivy.addon.portal.generic.MobilePortalProcesses #txt
-Pt0 f96 startMethod start(String) #txt
+Pt0 f96 startMethod start() #txt
 Pt0 f96 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pt0 f96 requestActionDecl '<String keyword> param;' #txt
-Pt0 f96 requestMappingAction 'param.keyword=in.keyword;
-' #txt
+Pt0 f96 requestActionDecl '<> param;' #txt
 Pt0 f96 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f96 responseMappingAction 'out=in;
@@ -1529,8 +1524,6 @@ Pt0 f154 364 1002 112 44 -35 -8 #rect
 Pt0 f154 @|StepIcon #fIcon
 Pt0 f182 expr out #txt
 Pt0 f182 476 1024 520 1024 #arcP
-Pt0 f29 expr out #txt
-Pt0 f29 800 278 800 336 #arcP
 Pt0 f27 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f27 actionTable 'out=in;
@@ -1644,11 +1637,9 @@ Pt0 f91 328 1024 364 1024 #arcP
 Pt0 f101 targetWindow NEW #txt
 Pt0 f101 targetDisplay TOP #txt
 Pt0 f101 richDialogId ch.ivy.addon.portal.generic.MobilePortalProcesses #txt
-Pt0 f101 startMethod start(String) #txt
+Pt0 f101 startMethod start() #txt
 Pt0 f101 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pt0 f101 requestActionDecl '<String keyword> param;' #txt
-Pt0 f101 requestMappingAction 'param.keyword=in.keyword;
-' #txt
+Pt0 f101 requestActionDecl '<> param;' #txt
 Pt0 f101 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f101 responseMappingAction 'out=in;
@@ -1695,6 +1686,8 @@ Pt0 f100 49 1105 30 30 -63 15 #rect
 Pt0 f100 @|StartRequestIcon #fIcon
 Pt0 f102 expr out #txt
 Pt0 f102 79 1120 160 1120 #arcP
+Pt0 f29 expr out #txt
+Pt0 f29 800 278 800 336 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect

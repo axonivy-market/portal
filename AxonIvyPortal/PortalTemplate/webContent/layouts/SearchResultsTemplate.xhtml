@@ -24,14 +24,14 @@
       </h:form>
       <p:tabView id="search-results-tabview" onTabShow="onTabShow()" dynamic="true" styleClass="search-results-tabview" activeIndex="#{data.activeTabIndex}">
         <p:tab id="process-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" titleStyleClass="process-tab-title">
-          <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-results" compactMode="false"
+          <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-results"
             hideHeader="true" hideExpressCreation="true" processListStyleClass="process-in-search" />
         </p:tab>
         
         <p:tab id="task-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}" titleStyleClass="task-tab-title">
           <div class="task-list-container js-task-list-container js-for-search-result">
             <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-results" listHeaderStyleClass="task-in-search"
-              keyword="#{dataModel.taskDataModel.queryCriteria.keyword}" hideTaskFilter="true"
+              keyword="#{dataModel.taskDataModel.searchCriteria.keyword}" hideTaskFilter="true"
               dataModel="#{dataModel.taskDataModel}" hideWidgetHeader="true" compactMode="false">
               <f:facet name="taskListHeader">
                 <ui:fragment rendered="#{useTaskOverrideListHeader}">
@@ -59,10 +59,10 @@
                       dataModel="#{dataModel.taskDataModel}" />
                   </div>
                   <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible id="task-responsible-component"
-                    dataModel="#{dataModel.taskDataModel}" userName="#{task.activatorUserName}"
-                    fullName="#{task.activatorFullName}"
+                    dataModel="#{dataModel.taskDataModel}" userName="#{task.getActivatorName()}"
+                    fullName="#{task.getActivator().getDisplayName()}"
                     styleClass="activatior-column #{dataModel.taskDataModel.isAutoHideColumns()? 'hidden-sm':''}" />
-                  <ic:ch.ivy.addon.portalkit.component.task.column.TaskId id="task-id-component" value="#{task.id}"
+                  <ic:ch.ivy.addon.portalkit.component.task.column.TaskId id="task-id-component" value="#{task.getId()}"
                     dataModel="#{dataModel.taskDataModel}" />
                   <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-creation-date-component"
                     rendered="#{dataModel.taskDataModel.isSelectedColumn('CREATION_TIME')}" componentId="creation-time"

@@ -4,8 +4,8 @@ import static ch.ivy.addon.portalkit.util.TaskTreeUtils.getLastCategoryFromCateg
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -14,6 +14,7 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
+import org.primefaces.util.TreeUtils;
 
 import ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData;
 import ch.ivy.addon.portal.generic.common.TreeNodeType;
@@ -21,8 +22,8 @@ import ch.ivy.addon.portalkit.bo.CaseNode;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.util.CaseTreeUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.ws.addon.CategoryData;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.category.CategoryTree;
 
 @ManagedBean
 @RequestScoped
@@ -60,28 +61,28 @@ public class CaseMenuBean implements Serializable {
 
   private void addCasesMenuItem(PortalCaseMenuData portalCaseMenuData, String menuState) {
     if (PermissionUtils.checkReadAllCasesPermission()) {
-      DefaultTreeNode allCaseNode = buildAllCaseTree(portalCaseMenuData.getAllCaseCategories(), menuState);
+      TreeNode allCaseNode = buildAllCaseTree(portalCaseMenuData.getAllCaseCategoryTree(), menuState);
       allCaseNode.setParent(rootNode);
       rootNode.getChildren().add(allCaseNode);
     }
 
-    DefaultTreeNode myCaseNode = buildMyCaseTree(portalCaseMenuData.getMyCaseCategories(), menuState);
+    TreeNode myCaseNode = buildMyCaseTree(portalCaseMenuData.getMyCaseCategoryTree(), menuState);
     myCaseNode.setParent(rootNode);
     rootNode.getChildren().add(myCaseNode);
   }
 
-  private DefaultTreeNode buildAllCaseTree(List<CategoryData> allCaseCategories, String menuState) {
-    return buildCaseTree(Ivy.cms().co("/ch.ivy.addon.portal.generic/PortalCaseMenu/AllCases"), allCaseCategories,
+  private TreeNode buildAllCaseTree(CategoryTree allCaseCategoryTree, String menuState) {
+    return buildCaseTree(Ivy.cms().co("/ch.ivy.addon.portal.generic/PortalCaseMenu/AllCases"), allCaseCategoryTree,
         TreeNodeType.CASES_ALL_CASES, menuState);
   }
 
-  private DefaultTreeNode buildMyCaseTree(List<CategoryData> myCaseCategories, String menuState) {
+  private TreeNode buildMyCaseTree(CategoryTree myCaseCategoryTree, String menuState) {
     List<Object> params = Arrays.asList(Ivy.session().getSessionUserName());
     String myCaseNodeName = Ivy.cms().co("/ch.ivy.addon.portal.generic/PortalCaseMenu/MyCases", params);
-    return buildCaseTree(myCaseNodeName, myCaseCategories, TreeNodeType.CASES_MY_CASES, menuState);
+    return buildCaseTree(myCaseNodeName, myCaseCategoryTree, TreeNodeType.CASES_MY_CASES, menuState);
   }
 
-  private DefaultTreeNode buildCaseTree(String nodeDisplayName, List<CategoryData> categories, String firstCategory,
+  private TreeNode buildCaseTree(String nodeDisplayName, CategoryTree categoryTree, String firstCategory,
       String menuState) {
     CaseNode caseMenuItem = new CaseNode();
     caseMenuItem.setValue(nodeDisplayName);
@@ -89,22 +90,28 @@ public class CaseMenuBean implements Serializable {
     boolean isRootNodeAllCase = firstCategory.equals(TreeNodeType.CASES_ALL_CASES);
     caseMenuItem.setRootNodeAllCase(isRootNodeAllCase);
     caseMenuItem.setFirstCategoryNode(true);
-    DefaultTreeNode caseNode = new DefaultTreeNode(caseMenuItem);
+    
+    TreeNode caseNode = new DefaultTreeNode(caseMenuItem);
     caseNode.setType(firstCategory);
     if (menuState.contains(firstCategory) && !getLastCategoryFromCategoryPath(menuState).contains(firstCategory)) {
       caseNode.setExpanded(true);
     } else {
       caseNode.setExpanded(false);
     }
-    if (validCategory(categories)) {
-      List<TreeNode> childrenNodes =
-          CaseTreeUtils.convertToTreeNode(categories, firstCategory, isRootNodeAllCase, menuState).getChildren();
-      caseNode.setChildren(childrenNodes);
+    if (categoryTree != null) {
+      CaseTreeUtils.convertToTreeNode(caseNode, categoryTree, isRootNodeAllCase, menuState);
+      sortNode(caseNode);
     }
+    
     return caseNode;
   }
-
-  private boolean validCategory(List<CategoryData> categories) {
-    return !Objects.isNull(categories) && !categories.isEmpty();
+  
+  private static void sortNode(TreeNode node) {
+    Comparator<TreeNode> comparator = (firstNode, secondNode) -> {
+      CaseNode firstNodeData = (CaseNode) firstNode.getData();
+      CaseNode secondNodeData = (CaseNode) secondNode.getData();
+      return firstNodeData.getValue().compareToIgnoreCase(secondNodeData.getValue());
+    };
+    TreeUtils.sortNode(node, comparator);
   }
 }

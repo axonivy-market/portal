@@ -15,19 +15,20 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 import ch.ivy.addon.portalkit.bean.UserFormatBean;
-import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.enums.TaskAndCaseAnalysisColumn;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.ITask;
 
 public class TaskAnalysisExporter {
   private Map<String, Boolean> columnsVisibility;
   private UserFormatBean userFormatBean;
+  
   public TaskAnalysisExporter(Map<String, Boolean> columnsVisibility) {
     this.columnsVisibility = columnsVisibility;
     this.userFormatBean = new UserFormatBean();
   }
 
-  public StreamedContent getStreamedContent(List<RemoteTask> tasks) {
+  public StreamedContent getStreamedContent(List<ITask> tasks) {
     List<List<Object>> rows = generateData(tasks);
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
@@ -91,7 +92,7 @@ public class TaskAnalysisExporter {
     }
   }
 
-  private String getColumnValue(TaskAndCaseAnalysisColumn column, RemoteTask task) { //NOSONAR
+  private String getColumnValue(TaskAndCaseAnalysisColumn column, ITask task) { //NOSONAR
     switch (column) {
       case CASE_NAME:
         return task.getCase().getName();
@@ -100,7 +101,7 @@ public class TaskAnalysisExporter {
       case CASE_ID:
         return String.valueOf(task.getCase().getId());
       case CASE_CATEGORY:
-        return task.getCase().getCategoryName();
+        return task.getCase().getCategoryPath();
       case CASE_CREATOR:
         return task.getCase().getCreatorUserName();
       case CASE_STATE:
@@ -110,19 +111,19 @@ public class TaskAnalysisExporter {
       case TASK_ID:
         return String.valueOf(task.getId());
       case TASK_CATEGORY:
-        return task.getCategoryName();
+        return task.getCategoryPath();
       case TASK_DESCRIPTION:
         return task.getDescription();
       case TASK_ACTIVATOR:
-        if (task.getActivatorUserName() == null) {
+        if (task.getActivatorName() == null) {
           return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
         }
-        return userFormatBean.formatWithTip(task.getActivatorFullName(), task.getActivatorUserName());
+        return userFormatBean.formatWithTip(task.getActivator().getDisplayName(), task.getActivatorName());
       case TASK_WORKER:
         if (task.getWorkerUserName() == null) {
           return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
         }
-        return userFormatBean.formatWithTip(task.getWorkerFullName(), task.getWorkerUserName());
+        return userFormatBean.formatWithTip(task.getWorkerUser().getFullName(), task.getWorkerUserName());
       case TASK_PRIORITY:
         return task.getPriority().toString();
       case TASK_STATE:
@@ -139,9 +140,9 @@ public class TaskAnalysisExporter {
         return "";
     }
   }
-  private List<List<Object>> generateData(List<RemoteTask> tasks) {
+  private List<List<Object>> generateData(List<ITask> tasks) {
     List<List<Object>> rows = new ArrayList<>();
-    for (RemoteTask task : tasks) {
+    for (ITask task : tasks) {
       List<Object> row = new ArrayList<>();
       for (TaskAndCaseAnalysisColumn column : TaskAndCaseAnalysisColumn.values()) {
         if (isColumnVisible(column))

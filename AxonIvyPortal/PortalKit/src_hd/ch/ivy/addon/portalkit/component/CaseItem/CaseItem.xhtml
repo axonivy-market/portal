@@ -6,7 +6,7 @@
   xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="caseItem" type="ch.ivy.addon.portalkit.bo.RemoteCase" />
+  <cc:attribute name="case" type="ch.ivyteam.ivy.workflow.ICase" />
   <cc:attribute name="itemStyleClass" />
   <cc:attribute name="update" default="" required="false" />
   <cc:attribute name="initialActive" default="false" type="java.lang.Boolean" />
@@ -22,12 +22,12 @@
 
 <cc:implementation>
 
-  <c:set var="caseItem" value="#{cc.attrs.caseItem}" />
+  <c:set var="case" value="#{cc.attrs.case}" />
   <c:set var="rowIndex" value="#{cc.attrs.rowIndex}" />
   <c:set var="active" value="#{caseWidgetBean.expandedCaseId == -1 and cc.attrs.initialActive}" />
-  <c:set var="expanded" value="#{caseItem.id eq caseWidgetBean.expandedCaseId or active}" />
+  <c:set var="expanded" value="#{case.id eq caseWidgetBean.expandedCaseId or active}" />
   <c:set var="alwaysShowDetails" value="#{cc.attrs.alwaysShowDetails}" />
-  <c:set var="renderDestroyAction" value="#{case.canDestroy and case.state ne 'DONE' and cc.attrs.canDestroyCase}" />
+  <c:set var="renderDestroyAction" value="#{caseActionBean.canDestroy(case) and case.state ne 'DONE' and cc.attrs.canDestroyCase}" />
 
   <div id="#{cc.clientId}"
     class="js-case-item case-list-item #{expanded ? 'case-list-item-expanded show-case-details-mode' : ''} case-list-item-position #{cc.attrs.itemStyleClass} ">
@@ -56,23 +56,8 @@
             <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Destroy')}" />
           </p:commandLink>
 
-          <p:commandLink id="case-side-steps-menu" onstart="event.stopPropagation();"
-            styleClass="case-command side-step #{not renderDestroyAction ? 'no-label' : ''} #{not case.hasSideSteps ? 'u-invisibility' : ''}" 
-            global="false" actionListener="#{logic.collectSideSteps(case)}"
-            oncomplete="PF('side-steps-panel-#{rowIndex}').loadContents();">
-            <span class="action-icon tmi-ellipsis-v side-step-icon" />
-          </p:commandLink>
-          <p:overlayPanel id="side-steps-panel" widgetVar="side-steps-panel-#{rowIndex}" for="case-side-steps-menu"
-            my="left top" at="left bottom" appendToBody="true" styleClass="side-steps-panel" dynamic="true"
-            rendered="#{case.hasSideSteps}">
-            <ui:repeat var="sideStep" value="#{data.sideSteps}">
-              <p:commandLink id="side-step-item" styleClass="side-step-item" value="#{sideStep.name}" global="false"
-                actionListener="#{caseWidgetBean.navigateToSideStep(sideStep)}" />
-            </ui:repeat>
-          </p:overlayPanel>
-
-          <p:tooltip for="case-side-steps-menu" styleClass="case-command-tooltip" rendered="#{case.hasSideSteps}"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" />
+          <ic:ch.ivy.addon.portalkit.component.SideStep actionLinkId="case-side-steps-menu" actionLinkStyleClass="case-command #{not renderDestroyAction ? 'no-label' : ''}"
+            panelWidgetVar="case-side-steps-panel-#{rowIndex}" caseId="#{case.getId()}" isAdhocExcluded="true" />
         </h:panelGroup>
       </h:panelGroup>
     </h:panelGroup>

@@ -3,28 +3,6 @@
     <autoScreenshot>true</autoScreenshot>
     <startMethod>
         <name>start</name>
-        <description>Default dialog start method.</description>
-        <inputParameter>
-            <name>histories</name>
-            <description></description>
-            <parameterType>List&lt;ch.ivy.addon.portalkit.bo.History&gt;</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <inputParameter>
-            <name>exportedFileName</name>
-            <description></description>
-            <parameterType>String</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <inputParameter>
-            <name>remoteCase</name>
-            <description></description>
-            <parameterType>ch.ivy.addon.portalkit.bo.RemoteCase</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </startMethod>
-    <startMethod>
-        <name>start</name>
         <description></description>
         <inputParameter>
             <name>histories</name>

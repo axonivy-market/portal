@@ -10,6 +10,8 @@
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/setDeputies')}" resizable="false"
     closable="true" appendTo="@(body)" styleClass="deputy-dialog">
     <h:form id="edit-deputy-form">
+      <p:messages widgetVar="growl" showDetail="true" closable="true" id="edit-deputy-messages" escape="false"/>
+      
       <h:panelGroup layout="block">
         <ui:include src="Deputy.xhtml" />
       </h:panelGroup>
@@ -17,8 +19,8 @@
       <h:panelGroup layout="block" styleClass="u-dialog-footer ui-dialog-footer">
         <p:commandButton process="@form" id="save-deputy"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-          actionListener="#{logic.saveModifiedSubstitute}" update=":#{p:component('absence-table')}"
-          oncomplete="PF('editDeputy').hide();" styleClass="" />
+          actionListener="#{logic.saveSubstitutes}" update=":#{p:component('absence-table')}"
+          oncomplete="PF('editDeputy').hide();" />
         <p:spacer styleClass="u-buttons-spacer" />
         <p:commandButton type="button" id="close-edit-deputy-dialog" styleClass="portal-cancel-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('editDeputy').hide();" />

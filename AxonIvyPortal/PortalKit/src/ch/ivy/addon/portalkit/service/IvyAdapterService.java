@@ -115,7 +115,7 @@ public class IvyAdapterService {
       ISubProcessStart defaultsubProcessStart = null;
       for (ISubProcessStart subProcessStart : subProcessStarts) {
         String libraryId = subProcessStart.getProcessModelVersion().getLibrary().getId();
-        if (!excludedLibraries.contains(libraryId)) {
+        if (excludedLibraries == null || !excludedLibraries.contains(libraryId)) {
           if (subProcessStart.getProcessModelVersion().equals(Ivy.request().getProcessModelVersion())) {
             return subProcessStart;
           }

@@ -16,71 +16,67 @@ Ts0 @TextInP .xml .xml #zField
 Ts0 @TextInP .responsibility .responsibility #zField
 Ts0 @RichDialogInitStart f0 '' #zField
 Ts0 @RichDialogProcessEnd f1 '' #zField
-Ts0 @PushWFArc f2 '' #zField
-Ts0 @RichDialogMethodStart f21 '' #zField
-Ts0 @RichDialogMethodStart f57 '' #zField
-Ts0 @Alternative f35 '' #zField
-Ts0 @RichDialogProcessEnd f60 '' #zField
-Ts0 @GridStep f26 '' #zField
-Ts0 @GridStep f49 '' #zField
-Ts0 @RichDialogProcessEnd f45 '' #zField
-Ts0 @Alternative f48 '' #zField
-Ts0 @GridStep f47 '' #zField
-Ts0 @RichDialogMethodStart f44 '' #zField
-Ts0 @RichDialogMethodStart f53 '' #zField
 Ts0 @RichDialogMethodStart f6 '' #zField
-Ts0 @CallSub f24 '' #zField
-Ts0 @RichDialogProcessEnd f54 '' #zField
-Ts0 @Alternative f28 '' #zField
-Ts0 @RichDialogProcessEnd f40 '' #zField
-Ts0 @RichDialogMethodStart f39 '' #zField
-Ts0 @CallSub f58 '' #zField
-Ts0 @GridStep f13 '' #zField
-Ts0 @CallSub f16 '' #zField
-Ts0 @GridStep f56 '' #zField
-Ts0 @GridStep f62 '' #zField
-Ts0 @CallSub f42 '' #zField
-Ts0 @RichDialogProcessEnd f18 '' #zField
-Ts0 @RichDialogProcessEnd f22 '' #zField
-Ts0 @GridStep f30 '' #zField
+Ts0 @GridStep f9 '' #zField
+Ts0 @PushWFArc f16 '' #zField
+Ts0 @GridStep f64 '' #zField
 Ts0 @PushWFArc f17 '' #zField
-Ts0 @PushWFArc f59 '' #zField
-Ts0 @PushWFArc f25 '' #zField
-Ts0 @PushWFArc f23 '' #zField
-Ts0 @PushWFArc f27 '' #zField
-Ts0 @PushWFArc f29 '' #zField
-Ts0 @PushWFArc f15 '' #zField
-Ts0 @PushWFArc f32 '' #zField
-Ts0 @PushWFArc f31 '' #zField
-Ts0 @PushWFArc f43 '' #zField
-Ts0 @PushWFArc f46 '' #zField
-Ts0 @PushWFArc f50 '' #zField
-Ts0 @PushWFArc f51 '' #zField
-Ts0 @PushWFArc f52 '' #zField
-Ts0 @PushWFArc f55 '' #zField
-Ts0 @PushWFArc f63 '' #zField
-Ts0 @PushWFArc f61 '' #zField
-Ts0 @PushWFArc f20 '' #zField
-Ts0 @PushWFArc f3 '' #zField
-Ts0 @GridStep f4 '' #zField
+Ts0 @PushWFArc f2 '' #zField
+Ts0 @RichDialogProcessEnd f8 '' #zField
+Ts0 @PushWFArc f37 '' #zField
+Ts0 @RichDialogMethodStart f10 '' #zField
+Ts0 @RichDialogProcessEnd f18 '' #zField
+Ts0 @GridStep f36 '' #zField
+Ts0 @GridStep f38 '' #zField
+Ts0 @Alternative f41 '' #zField
+Ts0 @Alternative f53 '' #zField
+Ts0 @Alternative f67 '' #zField
+Ts0 @RichDialogProcessEnd f68 '' #zField
+Ts0 @GridStep f69 '' #zField
+Ts0 @Alternative f70 '' #zField
+Ts0 @GridStep f71 '' #zField
+Ts0 @Alternative f72 '' #zField
+Ts0 @Alternative f73 '' #zField
+Ts0 @Alternative f74 '' #zField
+Ts0 @CallSub f75 '' #zField
+Ts0 @GridStep f76 '' #zField
+Ts0 @PushWFArc f77 '' #zField
+Ts0 @PushWFArc f78 '' #zField
+Ts0 @PushWFArc f79 '' #zField
+Ts0 @PushWFArc f80 '' #zField
+Ts0 @PushWFArc f81 '' #zField
+Ts0 @PushWFArc f82 '' #zField
+Ts0 @PushWFArc f83 '' #zField
+Ts0 @PushWFArc f84 '' #zField
+Ts0 @PushWFArc f85 '' #zField
+Ts0 @PushWFArc f86 '' #zField
+Ts0 @PushWFArc f87 '' #zField
+Ts0 @PushWFArc f88 '' #zField
+Ts0 @PushWFArc f89 '' #zField
+Ts0 @PushWFArc f90 '' #zField
+Ts0 @PushWFArc f91 '' #zField
+Ts0 @PushWFArc f92 '' #zField
+Ts0 @PushWFArc f93 '' #zField
+Ts0 @PushWFArc f94 '' #zField
+Ts0 @GridStep f20 '' #zField
+Ts0 @RichDialogProcessEnd f4 '' #zField
+Ts0 @RichDialogMethodStart f5 '' #zField
 Ts0 @PushWFArc f7 '' #zField
-Ts0 @GridStep f8 '' #zField
-Ts0 @PushWFArc f9 '' #zField
-Ts0 @CallSub f11 '' #zField
-Ts0 @PushWFArc f12 '' #zField
-Ts0 @Alternative f19 '' #zField
-Ts0 @PushWFArc f33 '' #zField
+Ts0 @PushWFArc f11 '' #zField
+Ts0 @RichDialogMethodStart f12 '' #zField
+Ts0 @RichDialogProcessEnd f21 '' #zField
+Ts0 @GridStep f13 '' #zField
+Ts0 @PushWFArc f23 '' #zField
 Ts0 @PushWFArc f14 '' #zField
-Ts0 @PushWFArc f34 '' #zField
-Ts0 @GridStep f41 '' #zField
-Ts0 @PushWFArc f64 '' #zField
-Ts0 @PushWFArc f10 '' #zField
-Ts0 @GridStep f65 '' #zField
-Ts0 @PushWFArc f36 '' #zField
-Ts0 @PushWFArc f66 '' #zField
-Ts0 @PushWFArc f5 '' #zField
+Ts0 @RichDialogMethodStart f3 '' #zField
+Ts0 @GridStep f15 '' #zField
+Ts0 @GridStep f19 '' #zField
+Ts0 @RichDialogProcessEnd f22 '' #zField
+Ts0 @PushWFArc f24 '' #zField
+Ts0 @PushWFArc f25 '' #zField
+Ts0 @PushWFArc f26 '' #zField
 >Proto Ts0 Ts0 TaskItemDocumentsProcess #zField
-Ts0 f0 guid 1549452C02A2D7AA #txt
+Ts0 f0 guid 1682717B951993D3 #txt
 Ts0 f0 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 Ts0 f0 method start() #txt
 Ts0 f0 disableUIEvents true #txt
@@ -96,195 +92,17 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f0 53 85 22 22 14 0 #rect
+Ts0 f0 83 83 26 26 -16 15 #rect
 Ts0 f0 @|RichDialogInitStartIcon #fIcon
 Ts0 f1 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f1 53 213 22 22 14 0 #rect
+Ts0 f1 371 83 26 26 0 12 #rect
 Ts0 f1 @|RichDialogProcessEndIcon #fIcon
-Ts0 f2 expr out #txt
-Ts0 f2 64 107 64 213 #arcP
-Ts0 f21 guid 1549458BA614E531 #txt
-Ts0 f21 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f21 method downloadDocument(ch.ivy.addon.portalkit.bo.RemoteTask,ch.ivy.ws.addon.IvyDocument) #txt
-Ts0 f21 disableUIEvents false #txt
-Ts0 f21 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.bo.RemoteTask task,ch.ivy.ws.addon.IvyDocument document> param = methodEvent.getInputArguments();
-' #txt
-Ts0 f21 inParameterMapAction 'out.document=param.document;
-out.task=param.task;
-' #txt
-Ts0 f21 outParameterDecl '<> result;
-' #txt
-Ts0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>downloadDocument
-(RemoteTask,IvyDocument)</name>
-        <nameStyle>41,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f21 733 85 22 22 14 0 #rect
-Ts0 f21 @|RichDialogMethodStartIcon #fIcon
-Ts0 f57 guid 1549458BA665DE38 #txt
-Ts0 f57 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f57 method resetMessageUploadDocument() #txt
-Ts0 f57 disableUIEvents false #txt
-Ts0 f57 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ts0 f57 outParameterDecl '<> result;
-' #txt
-Ts0 f57 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>resetMessageUploadDocument()</name>
-        <nameStyle>28,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f57 1197 77 22 22 14 -9 #rect
-Ts0 f57 @|RichDialogMethodStartIcon #fIcon
-Ts0 f35 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>valid file?</name>
-        <nameStyle>11,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f35 474 242 28 28 14 0 #rect
-Ts0 f35 @|AlternativeIcon #fIcon
-Ts0 f60 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f60 1197 277 22 22 14 0 #rect
-Ts0 f60 @|RichDialogProcessEndIcon #fIcon
-Ts0 f26 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
-' #txt
-Ts0 f26 actionTable 'out=in;
-' #txt
-Ts0 f26 actionCode 'import org.primefaces.model.DefaultStreamedContent;
-import java.io.InputStream;
-
-InputStream inputStream = in.documentContent.getInputStream();
-in.documentFile = new DefaultStreamedContent(inputStream, in.document.getContentType(), in.document.getName());
-
-' #txt
-Ts0 f26 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f26 726 220 36 24 20 -2 #rect
-Ts0 f26 @|StepIcon #fIcon
-Ts0 f49 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
-' #txt
-Ts0 f49 actionTable 'out=in;
-' #txt
-Ts0 f49 actionCode 'import ch.ivy.ws.addon.WsException;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-
-for (WsException error : in.errors) {
-	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, error.userText, null));
-}' #txt
-Ts0 f49 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>show error message</name>
-        <nameStyle>18,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f49 1614 268 36 24 20 -2 #rect
-Ts0 f49 @|StepIcon #fIcon
-Ts0 f45 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f45 941 269 22 22 14 0 #rect
-Ts0 f45 @|RichDialogProcessEndIcon #fIcon
-Ts0 f48 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>remove successfully?</name>
-        <nameStyle>20,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f48 1426 202 28 28 14 0 #rect
-Ts0 f48 @|AlternativeIcon #fIcon
-Ts0 f47 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
-' #txt
-Ts0 f47 actionTable 'out=in;
-' #txt
-Ts0 f47 actionCode in.documents.remove(in.document); #txt
-Ts0 f47 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>remove document from list
-if no errors</name>
-        <nameStyle>26,7
-12,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f47 1422 268 36 24 21 -11 #rect
-Ts0 f47 @|StepIcon #fIcon
-Ts0 f44 guid 1549458BA6A1C11C #txt
-Ts0 f44 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f44 method onSelectDeletedDocument(ch.ivy.addon.portalkit.bo.RemoteTask,ch.ivy.ws.addon.IvyDocument) #txt
-Ts0 f44 disableUIEvents false #txt
-Ts0 f44 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.bo.RemoteTask task,ch.ivy.ws.addon.IvyDocument document> param = methodEvent.getInputArguments();
-' #txt
-Ts0 f44 inParameterMapAction 'out.document=param.document;
-out.task=param.task;
-' #txt
-Ts0 f44 outParameterDecl '<> result;
-' #txt
-Ts0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>onSelectDeletedDocument
-(RemoteTask,IvyDocument)</name>
-        <nameStyle>48,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f44 941 85 22 22 26 -17 #rect
-Ts0 f44 @|RichDialogMethodStartIcon #fIcon
-Ts0 f53 guid 1549458BA68441E0 #txt
-Ts0 f53 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f53 method uploadDocument(org.primefaces.event.FileUploadEvent) #txt
-Ts0 f53 disableUIEvents false #txt
-Ts0 f53 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<org.primefaces.event.FileUploadEvent uploadEvent> param = methodEvent.getInputArguments();
-' #txt
-Ts0 f53 inParameterMapAction 'out.documentUploadEvent=param.uploadEvent;
-' #txt
-Ts0 f53 outParameterDecl '<> result;
-' #txt
-Ts0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>uploadDocument(FileUploadEvent)</name>
-        <nameStyle>31,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f53 477 85 22 22 14 0 #rect
-Ts0 f53 @|RichDialogMethodStartIcon #fIcon
-Ts0 f6 guid 1549458BA5FB13F8 #txt
+Ts0 f6 guid 1682717F2DAE7E7A #txt
 Ts0 f6 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f6 method initData(ch.ivy.addon.portalkit.bo.RemoteTask) #txt
+Ts0 f6 method initData(ch.ivyteam.ivy.workflow.ITask) #txt
 Ts0 f6 disableUIEvents false #txt
 Ts0 f6 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.bo.RemoteTask task> param = methodEvent.getInputArguments();
+<ch.ivyteam.ivy.workflow.ITask task> param = methodEvent.getInputArguments();
 ' #txt
 Ts0 f6 inParameterMapAction 'out.task=param.task;
 ' #txt
@@ -293,180 +111,460 @@ Ts0 f6 outParameterDecl '<> result;
 Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>initData(RemoteTask)</name>
-        <nameStyle>20,5,7
-</nameStyle>
+        <name>initData(ITask)</name>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f6 173 85 22 22 14 0 #rect
+Ts0 f6 83 179 26 26 -40 15 #rect
 Ts0 f6 @|RichDialogMethodStartIcon #fIcon
-Ts0 f24 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f24 processCall MultiPortal/CaseService:downloadDocument(ch.ivy.addon.portalkit.persistence.domain.Server,Long,Long) #txt
-Ts0 f24 doCall true #txt
-Ts0 f24 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.Long documentId,java.lang.Long caseId> param;
+Ts0 f9 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
 ' #txt
-Ts0 f24 requestMappingAction 'param.server=in.task.applicationRegister.server;
-param.documentId=in.document.id;
-param.caseId=in.task.case.getId();
+Ts0 f9 actionTable 'out=in;
 ' #txt
-Ts0 f24 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
-' #txt
-Ts0 f24 responseMappingAction 'out=in;
-out.documentContent=result.documentContent;
-out.errors=result.errors;
-' #txt
-Ts0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+Ts0 f9 actionCode 'import ch.ivy.addon.portalkit.service.CaseDocumentService;
+
+out.businessCase = in.task.getCase().getBusinessCase();
+out.documents = CaseDocumentService.newInstance(out.businessCase).getAll();' #txt
+Ts0 f9 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>CaseService
-downloadDocument</name>
-        <nameStyle>28,5,7
+        <name>Find documents</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f9 168 170 112 44 -44 -8 #rect
+Ts0 f9 @|StepIcon #fIcon
+Ts0 f16 expr out #txt
+Ts0 f16 109 192 168 192 #arcP
+Ts0 f64 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
+' #txt
+Ts0 f64 actionTable 'out=in;
+' #txt
+Ts0 f64 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+
+GlobalSettingService globalSettingService = new GlobalSettingService();
+String isHideUploadDocumentForDoneCaseString =
+        globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE.toString());
+boolean isHideUploadDocumentForDoneCase = Boolean.parseBoolean(isHideUploadDocumentForDoneCaseString);
+in.isShowUploadDocumentButton =  !isHideUploadDocumentForDoneCase;' #txt
+Ts0 f64 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Init hide&#xD;
+add document</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f64 336 170 112 44 -39 -16 #rect
+Ts0 f64 @|StepIcon #fIcon
+Ts0 f17 expr out #txt
+Ts0 f17 109 96 371 96 #arcP
+Ts0 f2 expr out #txt
+Ts0 f2 280 192 336 192 #arcP
+Ts0 f8 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f8 499 179 26 26 0 12 #rect
+Ts0 f8 @|RichDialogProcessEndIcon #fIcon
+Ts0 f37 expr out #txt
+Ts0 f37 448 192 499 192 #arcP
+Ts0 f10 guid 16827249E7B1FA94 #txt
+Ts0 f10 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f10 method uploadDocument(org.primefaces.event.FileUploadEvent) #txt
+Ts0 f10 disableUIEvents false #txt
+Ts0 f10 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<org.primefaces.event.FileUploadEvent uploadEvent> param = methodEvent.getInputArguments();
+' #txt
+Ts0 f10 inParameterMapAction 'out.documentUploadEvent=param.uploadEvent;
+' #txt
+Ts0 f10 outParameterDecl '<> result;
+' #txt
+Ts0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>uploadDocument(FileUploadEvent)</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f10 83 275 26 26 -86 17 #rect
+Ts0 f10 @|RichDialogMethodStartIcon #fIcon
+Ts0 f18 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f18 1395 371 26 26 0 12 #rect
+Ts0 f18 @|RichDialogProcessEndIcon #fIcon
+Ts0 f36 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
+' #txt
+Ts0 f36 actionTable 'out=in;
+' #txt
+Ts0 f36 actionCode 'import ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus;
+import org.apache.commons.io.FileUtils;
+import java.util.Arrays;
+import ch.ivy.addon.portalkit.masterdata.MasterData;
+
+in.uploadDocumentCheckMessage = "";
+in.uploadDocumentCheckStatus = UploadDocumentCheckStatus.OK;
+
+if (in.documentUploadEvent.getFile() == null || in.documentUploadEvent.getFile().getSize() == 0) {
+	in.uploadDocumentCheckMessage = ivy.cms.co("/Dialogs/components/CaseDocument/invalidFileMessage");
+} else {
+	Long maxFileUploadSize = MasterData.getFileUploadSizeLimit();
+	if (in.documentUploadEvent.getFile().getSize() > maxFileUploadSize) {
+		in.uploadDocumentCheckMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize", Arrays.asList(FileUtils.byteCountToDisplaySize(maxFileUploadSize)));
+	}
+}' #txt
+Ts0 f36 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Validate</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f36 176 266 112 44 -22 -8 #rect
+Ts0 f36 @|StepIcon #fIcon
+Ts0 f38 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
+' #txt
+Ts0 f38 actionTable 'out=in;
+' #txt
+Ts0 f38 actionCode 'import ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus;
+import org.primefaces.model.UploadedFile;
+import ch.ivy.addon.portalkit.service.CaseDocumentService;
+
+UploadedFile uploadedFile = in.documentUploadEvent.getFile();
+out.name = uploadedFile.getFileName();
+boolean doesDocumentExist = CaseDocumentService.newInstance(in.businessCase).doesDocumentExist(out.name);
+
+if (doesDocumentExist) {
+	out.uploadDocumentCheckMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadFileExists", [in.name]);
+	out.uploadDocumentCheckStatus = UploadDocumentCheckStatus.FAIL;
+}' #txt
+Ts0 f38 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Check exist</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f38 712 266 112 44 -31 -8 #rect
+Ts0 f38 @|StepIcon #fIcon
+Ts0 f41 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Upload successfully?</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f41 1152 272 32 32 -54 -39 #rect
+Ts0 f41 @|AlternativeIcon #fIcon
+Ts0 f53 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Document check</name>
+        <nameStyle>14,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f24 726 156 36 24 23 -8 #rect
-Ts0 f24 @|CallSubIcon #fIcon
-Ts0 f54 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f54 477 741 22 22 14 0 #rect
-Ts0 f54 @|RichDialogProcessEndIcon #fIcon
-Ts0 f28 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+Ts0 f53 624 272 32 32 -54 -37 #rect
+Ts0 f53 @|AlternativeIcon #fIcon
+Ts0 f67 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f67 1152 368 32 32 0 16 #rect
+Ts0 f67 @|AlternativeIcon #fIcon
+Ts0 f68 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f68 1395 275 26 26 0 12 #rect
+Ts0 f68 @|RichDialogProcessEndIcon #fIcon
+Ts0 f69 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
+' #txt
+Ts0 f69 actionTable 'out=in;
+' #txt
+Ts0 f69 actionCode 'import ch.ivy.addon.portalkit.service.CaseDocumentService;
+
+out.documents = CaseDocumentService.newInstance(in.businessCase).getAll();' #txt
+Ts0 f69 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f69 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>upload successfully?</name>
-        <nameStyle>20,7
+        <name>Find all documents</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f69 1240 266 112 44 -52 -8 #rect
+Ts0 f69 @|StepIcon #fIcon
+Ts0 f70 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>valid file?</name>
+        <nameStyle>11,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f28 474 626 28 28 14 0 #rect
-Ts0 f28 @|AlternativeIcon #fIcon
-Ts0 f40 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f40 1429 341 22 22 14 0 #rect
-Ts0 f40 @|RichDialogProcessEndIcon #fIcon
-Ts0 f39 guid 1549458BA63D71F0 #txt
-Ts0 f39 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f39 method deleteDocument() #txt
-Ts0 f39 disableUIEvents false #txt
-Ts0 f39 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+Ts0 f70 338 274 28 28 -30 -34 #rect
+Ts0 f70 @|AlternativeIcon #fIcon
+Ts0 f71 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
+' #txt
+Ts0 f71 actionTable 'out=in;
+' #txt
+Ts0 f71 actionCode 'import ch.ivy.addon.portalkit.service.CaseDocumentService;
+import ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus;
+import java.util.Arrays;
+import org.primefaces.model.UploadedFile;
+
+out.uploadDocumentCheckMessage = "";
+out.uploadDocumentCheckStatus = UploadDocumentCheckStatus.OK;
+UploadedFile uploadedFile = in.documentUploadEvent.getFile();
+boolean isUploaded = CaseDocumentService.newInstance(in.businessCase).upload(in.name, uploadedFile.getInputstream());
+
+if (isUploaded) {	
+	String note = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadDocumentNote", Arrays.asList(ivy.session.getSessionUserName(), in.name));
+	in.businessCase.createNote(ivy.session, note);
+} else {
+	out.uploadDocumentCheckMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadFailed");
+	out.uploadDocumentCheckStatus = UploadDocumentCheckStatus.FAIL;
+}' #txt
+Ts0 f71 security system #txt
+Ts0 f71 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f71 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Upload document&#xD;
+and create note</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f71 976 266 128 44 -44 -16 #rect
+Ts0 f71 @|StepIcon #fIcon
+Ts0 f72 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Not exist?</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f72 880 272 32 32 -27 -34 #rect
+Ts0 f72 @|AlternativeIcon #fIcon
+Ts0 f73 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f73 880 368 32 32 0 16 #rect
+Ts0 f73 @|AlternativeIcon #fIcon
+Ts0 f74 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f74 624 368 32 32 0 16 #rect
+Ts0 f74 @|AlternativeIcon #fIcon
+Ts0 f75 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f75 processCall 'Functional Processes/UploadDocumentChecker:call(org.primefaces.model.UploadedFile)' #txt
+Ts0 f75 doCall true #txt
+Ts0 f75 requestActionDecl '<org.primefaces.model.UploadedFile uploadFile> param;
+' #txt
+Ts0 f75 requestMappingAction 'param.uploadFile=in.documentUploadEvent.getFile();
+' #txt
+Ts0 f75 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
+' #txt
+Ts0 f75 responseMappingAction 'out=in;
+out.uploadDocumentCheckMessage=result.message;
+out.uploadDocumentCheckStatus=result.uploadDocumentCheckStatus;
+' #txt
+Ts0 f75 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>UploadDocumentChecker</name>
+        <nameStyle>21,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f75 416 266 160 44 -71 -8 #rect
+Ts0 f75 @|CallSubIcon #fIcon
+Ts0 f76 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
+' #txt
+Ts0 f76 actionTable 'out=in;
+' #txt
+Ts0 f76 actionCode 'import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
+FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, in.uploadDocumentCheckMessage, null));' #txt
+Ts0 f76 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Show error message</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f76 1232 362 128 44 -58 -8 #rect
+Ts0 f76 @|StepIcon #fIcon
+Ts0 f77 expr in #txt
+Ts0 f77 1184 384 1232 384 #arcP
+Ts0 f77 0 0.3194444444444444 0 -10 #arcLabel
+Ts0 f78 expr in #txt
+Ts0 f78 outCond org.apache.commons.lang.StringUtils.isBlank(in.uploadDocumentCheckMessage) #txt
+Ts0 f78 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>YES</name>
+        <nameStyle>3
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f78 366 288 416 288 #arcP
+Ts0 f78 0 0.26 0 -11 #arcLabel
+Ts0 f79 expr out #txt
+Ts0 f79 288 288 338 288 #arcP
+Ts0 f80 expr out #txt
+Ts0 f80 576 288 624 288 #arcP
+Ts0 f80 0 0.9770034044244577 0 0 #arcLabel
+Ts0 f81 expr in #txt
+Ts0 f81 912 384 1152 384 #arcP
+Ts0 f81 0 0.3194444444444444 0 -10 #arcLabel
+Ts0 f82 expr out #txt
+Ts0 f82 1352 288 1395 288 #arcP
+Ts0 f83 expr in #txt
+Ts0 f83 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>NO</name>
+        <nameStyle>2
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f83 352 302 624 384 #arcP
+Ts0 f83 1 352 384 #addKink
+Ts0 f83 1 0.11556836310247781 -1 -9 #arcLabel
+Ts0 f84 expr out #txt
+Ts0 f84 1104 288 1152 288 #arcP
+Ts0 f85 expr in #txt
+Ts0 f85 outCond 'in.uploadDocumentCheckStatus == ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus.OK' #txt
+Ts0 f85 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>YES</name>
+        <nameStyle>3
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f85 1184 288 1240 288 #arcP
+Ts0 f85 0 0.2857142857142857 -1 -7 #arcLabel
+Ts0 f86 expr in #txt
+Ts0 f86 1168 304 1168 368 #arcP
+Ts0 f87 expr in #txt
+Ts0 f87 outCond 'in.uploadDocumentCheckStatus == ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus.OK' #txt
+Ts0 f87 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>OK</name>
+        <nameStyle>2,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f87 656 288 712 288 #arcP
+Ts0 f87 0 0.3333333333333333 0 -9 #arcLabel
+Ts0 f88 expr in #txt
+Ts0 f88 896 304 896 368 #arcP
+Ts0 f88 0 0.6247201550720135 0 0 #arcLabel
+Ts0 f89 expr out #txt
+Ts0 f89 1360 384 1395 384 #arcP
+Ts0 f90 expr in #txt
+Ts0 f90 640 304 640 368 #arcP
+Ts0 f91 expr out #txt
+Ts0 f91 824 288 880 288 #arcP
+Ts0 f91 0 0.3333333333333333 0 -9 #arcLabel
+Ts0 f92 expr in #txt
+Ts0 f92 656 384 880 384 #arcP
+Ts0 f92 0 0.3194444444444444 0 -10 #arcLabel
+Ts0 f93 expr in #txt
+Ts0 f93 outCond 'in.uploadDocumentCheckStatus == ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus.OK' #txt
+Ts0 f93 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>YES</name>
+        <nameStyle>3
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f93 912 288 976 288 #arcP
+Ts0 f93 0 0.3333333333333333 -1 -9 #arcLabel
+Ts0 f94 expr out #txt
+Ts0 f94 109 288 176 288 #arcP
+Ts0 f20 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
+' #txt
+Ts0 f20 actionTable 'out=in;
+' #txt
+Ts0 f20 actionCode 'import ch.ivy.addon.portalkit.service.CaseDocumentService;
+
+out.streamedContent = CaseDocumentService.newInstance(in.businessCase).download(in.document);' #txt
+Ts0 f20 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Download document</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f20 192 426 128 44 -57 -8 #rect
+Ts0 f20 @|StepIcon #fIcon
+Ts0 f4 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f4 403 435 26 26 0 12 #rect
+Ts0 f4 @|RichDialogProcessEndIcon #fIcon
+Ts0 f5 guid 16827286AC6AA280 #txt
+Ts0 f5 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f5 method downloadDocument(ch.ivyteam.ivy.workflow.document.IDocument) #txt
+Ts0 f5 disableUIEvents false #txt
+Ts0 f5 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<ch.ivyteam.ivy.workflow.document.IDocument document> param = methodEvent.getInputArguments();
+' #txt
+Ts0 f5 inParameterMapAction 'out.document=param.document;
+' #txt
+Ts0 f5 outParameterDecl '<org.primefaces.model.StreamedContent streamedContent> result;
+' #txt
+Ts0 f5 outParameterMapAction 'result.streamedContent=in.streamedContent;
+' #txt
+Ts0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>downloadDocument(IDocument)</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f5 83 435 26 26 -89 15 #rect
+Ts0 f5 @|RichDialogMethodStartIcon #fIcon
+Ts0 f7 expr out #txt
+Ts0 f7 320 448 403 448 #arcP
+Ts0 f11 expr out #txt
+Ts0 f11 109 448 192 448 #arcP
+Ts0 f12 guid 168272AA0A252382 #txt
+Ts0 f12 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f12 method resetMessageUploadDocument() #txt
+Ts0 f12 disableUIEvents false #txt
+Ts0 f12 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
-Ts0 f39 outParameterDecl '<> result;
+Ts0 f12 outParameterDecl '<> result;
 ' #txt
-Ts0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+Ts0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>deleteDocument()</name>
-        <nameStyle>16,5,7
-</nameStyle>
+        <name>resetMessageUploadDocument()</name>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f39 1429 77 22 22 14 0 #rect
-Ts0 f39 @|RichDialogMethodStartIcon #fIcon
-Ts0 f58 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f58 processCall MultiPortal/CaseService:uploadDocument(String,String,javax.activation.DataHandler,ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
-Ts0 f58 doCall true #txt
-Ts0 f58 requestActionDecl '<java.lang.String userName,java.lang.String documentName,javax.activation.DataHandler documentContent,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.Long caseId> param;
-' #txt
-Ts0 f58 requestMappingAction 'param.userName=ivy.session.getSessionUserName();
-param.documentName=in.documentContent.getName();
-param.documentContent=in.documentContent;
-param.server=in.task.applicationRegister.server;
-param.caseId=in.task.case.getId();
-' #txt
-Ts0 f58 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
-' #txt
-Ts0 f58 responseMappingAction 'out=in;
-out.document=result.document;
-out.errors=result.errors;
-' #txt
-Ts0 f58 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>CaseService</name>
-        <nameStyle>11,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f58 470 580 36 24 20 -2 #rect
-Ts0 f58 @|CallSubIcon #fIcon
+Ts0 f12 83 531 26 26 -79 21 #rect
+Ts0 f12 @|RichDialogMethodStartIcon #fIcon
+Ts0 f21 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f21 403 531 26 26 0 12 #rect
+Ts0 f21 @|RichDialogProcessEndIcon #fIcon
 Ts0 f13 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
 ' #txt
 Ts0 f13 actionTable 'out=in;
 ' #txt
-Ts0 f13 actionCode in.documents.add(in.document); #txt
-Ts0 f13 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>add document to list
-if no errors</name>
-        <nameStyle>21,7
-12,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f13 470 684 36 24 21 -11 #rect
-Ts0 f13 @|StepIcon #fIcon
-Ts0 f16 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f16 processCall MultiPortal/CaseService:findDocuments(ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
-Ts0 f16 doCall true #txt
-Ts0 f16 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.Long caseId> param;
-' #txt
-Ts0 f16 requestMappingAction 'param.server=in.task.applicationRegister.server;
-param.caseId=in.task.case.getId();
-' #txt
-Ts0 f16 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
-' #txt
-Ts0 f16 responseMappingAction 'out=in;
-out.documents=result.documents;
-out.errors=result.errors;
-' #txt
-Ts0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>CaseService
-find documents</name>
-        <nameStyle>26,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f16 166 164 36 24 20 -2 #rect
-Ts0 f16 @|CallSubIcon #fIcon
-Ts0 f56 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
-' #txt
-Ts0 f56 actionTable 'out=in;
-' #txt
-Ts0 f56 actionCode 'import ch.ivy.addon.portalkit.webservice.InputStreamDataSource;
-import javax.activation.DataHandler;
-import org.primefaces.model.UploadedFile;
-
-UploadedFile uploadedFile = in.documentUploadEvent.getFile();
-InputStreamDataSource source = new InputStreamDataSource(uploadedFile.getInputstream(), uploadedFile.getContentType(), uploadedFile.getFileName());
-in.documentContent = new DataHandler(source);' #txt
-Ts0 f56 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>get document information</name>
-        <nameStyle>24,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f56 470 524 36 24 20 -2 #rect
-Ts0 f56 @|StepIcon #fIcon
-Ts0 f62 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
-' #txt
-Ts0 f62 actionTable 'out=in;
-' #txt
-Ts0 f62 actionCode 'import java.util.Iterator;
+Ts0 f13 actionCode 'import java.util.Iterator;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 Iterator messages = FacesContext.getCurrentInstance().getMessages();
@@ -476,381 +574,145 @@ while(messages.hasNext()) {
 	messages.remove();
 }
 ' #txt
-Ts0 f62 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+Ts0 f13 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>reset message</name>
-        <nameStyle>13,7
-</nameStyle>
+        <name>Reset messages</name>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f62 1190 172 36 24 20 -2 #rect
-Ts0 f62 @|StepIcon #fIcon
-Ts0 f42 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f42 processCall MultiPortal/CaseService:deleteDocument(String,ch.ivy.addon.portalkit.persistence.domain.Server,Long,Long) #txt
-Ts0 f42 doCall true #txt
-Ts0 f42 requestActionDecl '<java.lang.String userName,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.Long documentId,java.lang.Long caseId> param;
-' #txt
-Ts0 f42 requestMappingAction 'param.userName=ivy.session.getSessionUserName();
-param.server=in.task.applicationRegister.server;
-param.documentId=in.document.id;
-param.caseId=in.task.case.getId();
-' #txt
-Ts0 f42 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
-' #txt
-Ts0 f42 responseMappingAction 'out=in;
-out.errors=result.errors;
-' #txt
-Ts0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>CaseService
-deleteDocument</name>
-        <nameStyle>26,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f42 1422 140 36 24 20 -2 #rect
-Ts0 f42 @|CallSubIcon #fIcon
-Ts0 f18 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f18 173 453 22 22 14 0 #rect
-Ts0 f18 @|RichDialogProcessEndIcon #fIcon
-Ts0 f22 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f22 733 285 22 22 14 0 #rect
-Ts0 f22 @|RichDialogProcessEndIcon #fIcon
-Ts0 f30 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
-' #txt
-Ts0 f30 actionTable 'out=in;
-' #txt
-Ts0 f30 actionCode 'import ch.ivy.ws.addon.WsException;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-
-for (WsException error : in.errors) {
-	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, error.userText, null));
-}
-' #txt
-Ts0 f30 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>show error
-message</name>
-        <nameStyle>18,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f30 646 684 36 24 24 -15 #rect
-Ts0 f30 @|StepIcon #fIcon
-Ts0 f17 expr out #txt
-Ts0 f17 184 107 184 164 #arcP
-Ts0 f59 expr out #txt
-Ts0 f59 488 548 488 580 #arcP
-Ts0 f25 expr out #txt
-Ts0 f25 744 107 744 156 #arcP
+Ts0 f13 192 522 112 44 -48 -8 #rect
+Ts0 f13 @|StepIcon #fIcon
 Ts0 f23 expr out #txt
-Ts0 f23 744 244 744 285 #arcP
-Ts0 f27 expr out #txt
-Ts0 f27 744 180 744 220 #arcP
-Ts0 f29 expr out #txt
-Ts0 f29 488 604 488 626 #arcP
-Ts0 f15 expr in #txt
-Ts0 f15 outCond in.errors.isEmpty() #txt
-Ts0 f15 488 654 488 684 #arcP
-Ts0 f32 expr out #txt
-Ts0 f32 664 708 499 752 #arcP
-Ts0 f32 1 664 752 #addKink
-Ts0 f32 1 0.2544295989340298 0 0 #arcLabel
-Ts0 f31 expr in #txt
-Ts0 f31 502 640 664 684 #arcP
-Ts0 f31 1 664 640 #addKink
-Ts0 f31 0 0.7001921317088737 0 0 #arcLabel
-Ts0 f43 expr out #txt
-Ts0 f43 1440 99 1440 140 #arcP
-Ts0 f46 expr out #txt
-Ts0 f46 952 107 952 269 #arcP
-Ts0 f50 expr in #txt
-Ts0 f50 outCond in.errors.isEmpty() #txt
-Ts0 f50 1440 230 1440 268 #arcP
-Ts0 f51 expr in #txt
-Ts0 f51 1454 216 1632 268 #arcP
-Ts0 f51 1 1632 216 #addKink
-Ts0 f51 0 0.7001921317088737 0 0 #arcLabel
-Ts0 f52 expr out #txt
-Ts0 f52 1440 164 1440 202 #arcP
-Ts0 f55 expr out #txt
-Ts0 f55 1632 292 1451 352 #arcP
-Ts0 f55 1 1632 352 #addKink
-Ts0 f55 1 0.3173982703485647 0 0 #arcLabel
-Ts0 f63 expr out #txt
-Ts0 f63 1208 99 1208 172 #arcP
-Ts0 f61 expr out #txt
-Ts0 f61 1208 196 1208 277 #arcP
-Ts0 f20 expr out #txt
-Ts0 f20 488 708 488 741 #arcP
-Ts0 f3 expr out #txt
-Ts0 f3 1440 292 1440 341 #arcP
-Ts0 f4 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
+Ts0 f23 304 544 403 544 #arcP
+Ts0 f14 expr out #txt
+Ts0 f14 109 544 192 544 #arcP
+Ts0 f3 guid 168272BBCF5B4078 #txt
+Ts0 f3 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f3 method deleteDocument() #txt
+Ts0 f3 disableUIEvents false #txt
+Ts0 f3 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
+<> param = methodEvent.getInputArguments();
 ' #txt
-Ts0 f4 actionTable 'out=in;
+Ts0 f3 outParameterDecl '<> result;
 ' #txt
-Ts0 f4 actionCode 'import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
+Ts0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>deleteDocument()</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f3 83 627 26 26 -49 15 #rect
+Ts0 f3 @|RichDialogMethodStartIcon #fIcon
+Ts0 f15 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
+' #txt
+Ts0 f15 actionTable 'out=in;
+' #txt
+Ts0 f15 actionCode 'import java.util.Arrays;
 
-FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, in.uploadDocumentCheckMessage, null));' #txt
-Ts0 f4 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>show error&#xD;
-message</name>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f4 312 428 32 24 -65 18 #rect
-Ts0 f4 @|StepIcon #fIcon
-Ts0 f7 expr out #txt
-Ts0 f7 328 452 477 752 #arcP
-Ts0 f7 1 328 752 #addKink
-Ts0 f7 1 0.1 -12 0 #arcLabel
-Ts0 f8 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
-' #txt
-Ts0 f8 actionTable 'out=in;
-' #txt
-Ts0 f8 actionCode 'import ch.ivy.ws.addon.IvyDocument;
-import org.apache.commons.collections.CollectionUtils;
-import java.util.ArrayList;
-import ch.ivy.addon.portalkit.service.CaseDocumentService;
-import ch.ivy.addon.portalkit.util.CaseUtils;
-import ch.ivyteam.ivy.workflow.ICase;
+in.businessCase.documents().delete(in.document);
 
-if (!CollectionUtils.isEmpty(in.documents)) {
-	ICase iCase = CaseUtils.findcase(in.task.case.getId());
-	List expressDocs = new ArrayList();
-	for (IvyDocument doc : in.documents) {
-		if (iCase.documents().get(doc.getId()).getPath().asString().contains(CaseDocumentService.EXPRESS_UPLOAD_FOLDER)) {
-			expressDocs.add(doc);
-		}
-	}
-	in.documents.removeAll(expressDocs);
-}' #txt
-Ts0 f8 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+String note = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/deleteDocumentNote", Arrays.asList(ivy.session.getSessionUserName(), in.document.getName()));
+in.businessCase.createNote(ivy.session, note);' #txt
+Ts0 f15 security system #txt
+Ts0 f15 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>filter</name>
+        <name>Delete document&#xD;
+and create note</name>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f8 128 250 112 44 -11 -8 #rect
-Ts0 f8 @|StepIcon #fIcon
-Ts0 f9 expr out #txt
-Ts0 f9 184 188 184 250 #arcP
-Ts0 f11 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f11 processCall 'Functional Processes/UploadDocumentChecker:call(org.primefaces.model.UploadedFile)' #txt
-Ts0 f11 doCall true #txt
-Ts0 f11 requestActionDecl '<org.primefaces.model.UploadedFile uploadFile> param;
+Ts0 f15 192 618 128 44 -43 -16 #rect
+Ts0 f15 @|StepIcon #fIcon
+Ts0 f19 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
 ' #txt
-Ts0 f11 requestMappingAction 'param.uploadFile=in.documentUploadEvent.getFile();
+Ts0 f19 actionTable 'out=in;
 ' #txt
-Ts0 f11 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
-' #txt
-Ts0 f11 responseMappingAction 'out=in;
-out.uploadDocumentCheckMessage=result.message;
-out.uploadDocumentCheckStatus=result.uploadDocumentCheckStatus;
-' #txt
-Ts0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>UploadDocumentChecker</name>
-        <nameStyle>21,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f11 408 318 160 44 -71 -8 #rect
-Ts0 f11 @|CallSubIcon #fIcon
-Ts0 f12 expr in #txt
-Ts0 f12 outCond org.apache.commons.lang.StringUtils.isBlank(in.uploadDocumentCheckMessage) #txt
-Ts0 f12 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>yes</name>
-        <nameStyle>3,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f12 488 270 488 318 #arcP
-Ts0 f12 0 0.3333333333333333 -17 0 #arcLabel
+Ts0 f19 actionCode 'import ch.ivy.addon.portalkit.service.CaseDocumentService;
+
+out.documents = CaseDocumentService.newInstance(in.businessCase).getAll();' #txt
 Ts0 f19 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 Ts0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Document check</name>
-        <nameStyle>14,7
-</nameStyle>
+        <name>Find all documents</name>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f19 472 424 32 32 25 -10 #rect
-Ts0 f19 @|AlternativeIcon #fIcon
-Ts0 f33 expr out #txt
-Ts0 f33 488 362 488 424 #arcP
-Ts0 f14 expr in #txt
-Ts0 f14 outCond 'in.uploadDocumentCheckStatus == ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus.OK' #txt
-Ts0 f14 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>OK</name>
-        <nameStyle>2,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f14 488 456 488 524 #arcP
-Ts0 f14 0 0.47058823529411764 17 0 #arcLabel
-Ts0 f34 expr in #txt
-Ts0 f34 472 440 344 440 #arcP
-Ts0 f34 0 0.521883792798481 0 0 #arcLabel
-Ts0 f41 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
-' #txt
-Ts0 f41 actionTable 'out=in;
-' #txt
-Ts0 f41 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivyteam.ivy.workflow.CaseState;GlobalVariable;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
-
-GlobalSettingService globalSettingService = new GlobalSettingService();
-String isHideUploadDocumentForDoneCaseString =
-        globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE.toString());
-boolean isHideUploadDocumentForDoneCase = Boolean.parseBoolean(isHideUploadDocumentForDoneCaseString);
-in.isShowUploadDocumentButton =  !(in.task.case.state == CaseState.DONE && isHideUploadDocumentForDoneCase) && in.task.canUploadDeleteDocument;' #txt
-Ts0 f41 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Init show&#xD;
-upload doc</name>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f41 128 346 112 44 -30 -16 #rect
-Ts0 f41 @|StepIcon #fIcon
-Ts0 f64 expr out #txt
-Ts0 f64 184 294 184 346 #arcP
-Ts0 f10 expr out #txt
-Ts0 f10 184 390 184 453 #arcP
-Ts0 f65 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
-' #txt
-Ts0 f65 actionTable 'out=in;
-' #txt
-Ts0 f65 actionCode 'import org.apache.commons.io.FileUtils;
-import java.util.Arrays;
-import ch.ivy.addon.portalkit.masterdata.MasterData;
-in.uploadDocumentCheckMessage = "";
-if(in.documentUploadEvent.getFile() == null || in.documentUploadEvent.getFile().getSize() == 0) {
-	in.uploadDocumentCheckMessage = ivy.cms.co("/Dialogs/components/CaseDocument/invalidFileMessage");
-} else {
-	Long maxFileUploadSize = MasterData.getFileUploadSizeLimit();
-	if(in.documentUploadEvent.getFile().getSize() > maxFileUploadSize) {
-		in.uploadDocumentCheckMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize", Arrays.asList(FileUtils.byteCountToDisplaySize(maxFileUploadSize)));
-	}
-}' #txt
-Ts0 f65 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f65 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Validate file</name>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f65 444 156 88 40 -31 -8 #rect
-Ts0 f65 @|StepIcon #fIcon
-Ts0 f36 expr out #txt
-Ts0 f36 488 107 488 156 #arcP
-Ts0 f66 expr out #txt
-Ts0 f66 488 196 488 242 #arcP
-Ts0 f5 expr in #txt
-Ts0 f5 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>no</name>
-        <nameStyle>2,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f5 474 256 328 428 #arcP
-Ts0 f5 1 328 256 #addKink
-Ts0 f5 0 0.863013698630137 0 -9 #arcLabel
+Ts0 f19 368 618 112 44 -52 -8 #rect
+Ts0 f19 @|StepIcon #fIcon
+Ts0 f22 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
+Ts0 f22 531 627 26 26 0 12 #rect
+Ts0 f22 @|RichDialogProcessEndIcon #fIcon
+Ts0 f24 expr out #txt
+Ts0 f24 320 640 368 640 #arcP
+Ts0 f25 expr out #txt
+Ts0 f25 480 640 531 640 #arcP
+Ts0 f26 expr out #txt
+Ts0 f26 109 640 192 640 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
 >Proto Ts0 '' #fIcon
-Ts0 f0 mainOut f2 tail #connect
-Ts0 f2 head f1 mainIn #connect
-Ts0 f6 mainOut f17 tail #connect
-Ts0 f17 head f16 mainIn #connect
-Ts0 f56 mainOut f59 tail #connect
-Ts0 f59 head f58 mainIn #connect
-Ts0 f13 mainOut f20 tail #connect
-Ts0 f20 head f54 mainIn #connect
-Ts0 f24 mainOut f27 tail #connect
-Ts0 f27 head f26 mainIn #connect
-Ts0 f26 mainOut f23 tail #connect
-Ts0 f23 head f22 mainIn #connect
-Ts0 f21 mainOut f25 tail #connect
-Ts0 f25 head f24 mainIn #connect
-Ts0 f58 mainOut f29 tail #connect
-Ts0 f29 head f28 in #connect
-Ts0 f28 out f15 tail #connect
-Ts0 f15 head f13 mainIn #connect
-Ts0 f28 out f31 tail #connect
-Ts0 f31 head f30 mainIn #connect
-Ts0 f30 mainOut f32 tail #connect
-Ts0 f32 head f54 mainIn #connect
-Ts0 f39 mainOut f43 tail #connect
-Ts0 f43 head f42 mainIn #connect
-Ts0 f44 mainOut f46 tail #connect
-Ts0 f46 head f45 mainIn #connect
-Ts0 f48 out f50 tail #connect
-Ts0 f50 head f47 mainIn #connect
-Ts0 f48 out f51 tail #connect
-Ts0 f51 head f49 mainIn #connect
-Ts0 f42 mainOut f52 tail #connect
-Ts0 f52 head f48 in #connect
-Ts0 f49 mainOut f55 tail #connect
-Ts0 f55 head f40 mainIn #connect
-Ts0 f57 mainOut f63 tail #connect
-Ts0 f63 head f62 mainIn #connect
-Ts0 f62 mainOut f61 tail #connect
-Ts0 f61 head f60 mainIn #connect
-Ts0 f47 mainOut f3 tail #connect
-Ts0 f3 head f40 mainIn #connect
-Ts0 f4 mainOut f7 tail #connect
-Ts0 f7 head f54 mainIn #connect
-Ts0 f16 mainOut f9 tail #connect
-Ts0 f9 head f8 mainIn #connect
-Ts0 f35 out f12 tail #connect
-Ts0 f12 head f11 mainIn #connect
-Ts0 f11 mainOut f33 tail #connect
-Ts0 f33 head f19 in #connect
-Ts0 f19 out f14 tail #connect
-Ts0 f14 head f56 mainIn #connect
-Ts0 f19 out f34 tail #connect
-Ts0 f34 head f4 mainIn #connect
-Ts0 f8 mainOut f64 tail #connect
-Ts0 f64 head f41 mainIn #connect
-Ts0 f41 mainOut f10 tail #connect
-Ts0 f10 head f18 mainIn #connect
-Ts0 f53 mainOut f36 tail #connect
-Ts0 f36 head f65 mainIn #connect
-Ts0 f65 mainOut f66 tail #connect
-Ts0 f66 head f35 in #connect
-Ts0 f35 out f5 tail #connect
-Ts0 f5 head f4 mainIn #connect
+Ts0 f6 mainOut f16 tail #connect
+Ts0 f16 head f9 mainIn #connect
+Ts0 f0 mainOut f17 tail #connect
+Ts0 f17 head f1 mainIn #connect
+Ts0 f9 mainOut f2 tail #connect
+Ts0 f2 head f64 mainIn #connect
+Ts0 f64 mainOut f37 tail #connect
+Ts0 f37 head f8 mainIn #connect
+Ts0 f70 out f78 tail #connect
+Ts0 f78 head f75 mainIn #connect
+Ts0 f75 mainOut f80 tail #connect
+Ts0 f80 head f53 in #connect
+Ts0 f36 mainOut f79 tail #connect
+Ts0 f79 head f70 in #connect
+Ts0 f76 mainOut f89 tail #connect
+Ts0 f89 head f18 mainIn #connect
+Ts0 f70 out f83 tail #connect
+Ts0 f83 head f74 in #connect
+Ts0 f90 head f74 in #connect
+Ts0 f71 mainOut f84 tail #connect
+Ts0 f84 head f41 in #connect
+Ts0 f41 out f85 tail #connect
+Ts0 f85 head f69 mainIn #connect
+Ts0 f67 out f77 tail #connect
+Ts0 f77 head f76 mainIn #connect
+Ts0 f41 out f86 tail #connect
+Ts0 f86 head f67 in #connect
+Ts0 f53 out f87 tail #connect
+Ts0 f87 head f38 mainIn #connect
+Ts0 f53 out f90 tail #connect
+Ts0 f38 mainOut f91 tail #connect
+Ts0 f91 head f72 in #connect
+Ts0 f72 out f93 tail #connect
+Ts0 f93 head f71 mainIn #connect
+Ts0 f74 out f92 tail #connect
+Ts0 f92 head f73 in #connect
+Ts0 f73 out f81 tail #connect
+Ts0 f81 head f67 in #connect
+Ts0 f72 out f88 tail #connect
+Ts0 f88 head f73 in #connect
+Ts0 f69 mainOut f82 tail #connect
+Ts0 f82 head f68 mainIn #connect
+Ts0 f10 mainOut f94 tail #connect
+Ts0 f94 head f36 mainIn #connect
+Ts0 f5 mainOut f11 tail #connect
+Ts0 f11 head f20 mainIn #connect
+Ts0 f20 mainOut f7 tail #connect
+Ts0 f7 head f4 mainIn #connect
+Ts0 f13 mainOut f23 tail #connect
+Ts0 f23 head f21 mainIn #connect
+Ts0 f12 mainOut f14 tail #connect
+Ts0 f14 head f13 mainIn #connect
+Ts0 f15 mainOut f24 tail #connect
+Ts0 f24 head f19 mainIn #connect
+Ts0 f19 mainOut f25 tail #connect
+Ts0 f25 head f22 mainIn #connect
+Ts0 f3 mainOut f26 tail #connect
+Ts0 f26 head f15 mainIn #connect

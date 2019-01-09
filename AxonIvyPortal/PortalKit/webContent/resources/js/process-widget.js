@@ -9,13 +9,6 @@ function ProcessWidget() {
       $('.js-filter-process-widget-list-item').val('');
     },
 
-    toggleDeletionCheckbox : function(event, widgetComponentVar) {
-      var target = event.target;
-      if (!($(target).is(':checkbox') || $(target).hasClass('ui-chkbox-icon'))) {
-        PF(widgetComponentVar).toggle();
-      }
-    },
-
     filter : function() {
       var processItems = $('.js-process-start-list-item');
       $(processItems).show();

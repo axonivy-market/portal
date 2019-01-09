@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Thu Feb 04 15:14:02 ICT 2016]
-152AA5CA98B525F2 3.18 #module
+152AA5CA98B525F2 3.23 #module
 >Proto >Proto Collection #zClass
 Er0 ErrorHandler Big #zClass
 Er0 B #cInfo
@@ -19,21 +18,19 @@ Er0 @GridStep f3 '' #zField
 Er0 @PushWFArc f4 '' #zField
 Er0 @PushWFArc f2 '' #zField
 >Proto Er0 Er0 ErrorHandler #zField
-Er0 f0 inParamDecl '<java.util.List<ch.ivy.ws.addon.WsException> exceptions> param;' #txt
-Er0 f0 inParamTable 'out.wsExceptions=param.exceptions;
+Er0 f0 inParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
+Er0 f0 inParamTable 'out.exceptions=param.exceptions;
 ' #txt
 Er0 f0 outParamDecl '<> result;
 ' #txt
 Er0 f0 actionDecl 'ch.ivy.add.portalkit.ErrorHandlerData out;
 ' #txt
-Er0 f0 callSignature handle(List<ch.ivy.ws.addon.WsException>) #txt
+Er0 f0 callSignature handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>) #txt
 Er0 f0 type ch.ivy.add.portalkit.ErrorHandlerData #txt
 Er0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>handle(List&lt;Exception&gt;)</name>
-        <nameStyle>23,5,7
-</nameStyle>
+        <name>handle(List&lt;PortalIvyDataException&gt;)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -46,9 +43,10 @@ Er0 f3 actionDecl 'ch.ivy.add.portalkit.ErrorHandlerData out;
 ' #txt
 Er0 f3 actionTable 'out=in;
 ' #txt
-Er0 f3 actionCode 'import ch.ivy.ws.addon.WsException;
+Er0 f3 actionCode 'import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivy.addon.portalkit.util.ErrorHandler;
-for (WsException exception : in.wsExceptions) {
+
+for (PortalIvyDataException exception : in.exceptions) {
 	ErrorHandler.addError(org.apache.log4j.Priority.ERROR, exception);
 }' #txt
 Er0 f3 type ch.ivy.add.portalkit.ErrorHandlerData #txt

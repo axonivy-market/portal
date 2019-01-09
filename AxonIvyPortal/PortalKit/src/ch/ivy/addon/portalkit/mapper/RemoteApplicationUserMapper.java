@@ -4,7 +4,7 @@ import java.util.Calendar;
 
 import org.primefaces.json.JSONException;
 
-import ch.ivy.addon.portalkit.bo.RemoteAbsence;
+import ch.ivy.addon.portalkit.bo.IvyAbsence;
 import ch.ivy.addon.portalkit.bo.RemoteApplicationUser;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.persistence.domain.Server;
@@ -61,9 +61,9 @@ public class RemoteApplicationUserMapper {
 	 * @param remoteAbsence remote absence
 	 * @return web service absence
 	 * @see IvyAbsence
-	 * @see RemoteAbsence
+	 * @see IvyAbsence
 	 */
-	protected static IvyAbsence mapToIvyAbsence(RemoteAbsence remoteAbsence){
+	protected static IvyAbsence mapToIvyAbsence(IvyAbsence remoteAbsence){
 		IvyAbsence result = new IvyAbsence();
 		result.setAppName(remoteAbsence.getAppName());
 		result.setDescription(remoteAbsence.getDescription());
@@ -78,15 +78,15 @@ public class RemoteApplicationUserMapper {
 	/**
 	 * Map list of IvyAbsence to list of RemoteAbsence.
 	 * 
-	 * @param remoteAbsences list of {@link RemoteAbsence}
+	 * @param remoteAbsences list of {@link IvyAbsence}
 	 * @return list of {@link IvyAbsence}
 	 * @see IvyAbsence
-	 * @see RemoteAbsence
+	 * @see IvyAbsence
 	 */
-	public static List<IvyAbsence> mapToIvyAbsences(List<RemoteAbsence> remoteAbsences){
+	public static List<IvyAbsence> mapToIvyAbsences(List<IvyAbsence> remoteAbsences){
 		List<IvyAbsence> outAbsences = List.create(IvyAbsence.class);
 
-		for (RemoteAbsence absence : remoteAbsences){
+		for (IvyAbsence absence : remoteAbsences){
 			IvyAbsence ivyAbsence = mapToIvyAbsence(absence);
 
 			if (null != ivyAbsence) {

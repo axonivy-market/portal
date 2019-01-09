@@ -4,9 +4,13 @@ import java.util.Objects;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.security.IPermission;
+import ch.ivyteam.ivy.security.IPermissionAccess;
 import ch.ivyteam.ivy.security.IRole;
+import ch.ivyteam.ivy.security.ISecurityDescriptor;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
@@ -109,5 +113,21 @@ public class PermissionUtils {
       return false;
     }
     return Ivy.session().hasPermission(Ivy.request().getApplication().getSecurityDescriptor(), iPermission);
+  }
+  
+  public static boolean hasPermission(IApplication application, String username, IPermission permission) {
+    IPermissionAccess permissionAccess = null;
+    try {
+      IUser user = application.getSecurityContext().findUser(username);
+      ISecurityDescriptor securityDescriptor = application.getSecurityDescriptor();
+      if (user != null){
+        permissionAccess = securityDescriptor.getPermissionAccess(permission, user);
+        return permissionAccess.isGranted();
+      }
+    } catch (PersistencyException e) {
+      Ivy.log().error(e);
+      return false;
+    }
+    return false;
   }
 }

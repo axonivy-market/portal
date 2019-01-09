@@ -7,7 +7,7 @@
         <inputParameter>
             <name>selectedAbsence</name>
             <description></description>
-            <parameterType>ch.ivy.addon.portalkit.bo.RemoteAbsence</parameterType>
+            <parameterType>ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>
@@ -17,20 +17,12 @@
         <inputParameter>
             <name>selectedAbsence</name>
             <description></description>
-            <parameterType>ch.ivy.addon.portalkit.bo.RemoteAbsence</parameterType>
+            <parameterType>ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>
     <method>
-        <name>loadDeputy</name>
-        <description></description>
-    </method>
-    <method>
-        <name>loadAllUsers</name>
-        <description></description>
-    </method>
-    <method>
-        <name>editDeputy</name>
+        <name>findAbsences</name>
         <description></description>
     </method>
     <method>
@@ -43,28 +35,22 @@
             <nullPermitted>false</nullPermitted>
         </inputParameter>
         <outputParameter>
-            <name>listUsers</name>
+            <name>users</name>
             <description></description>
-            <parameterType>List&lt;ch.ivy.addon.portalkit.bo.RemoteUser&gt;</parameterType>
+            <parameterType>java.util.List&lt;ch.ivyteam.ivy.security.IUser&gt;</parameterType>
             <nullPermitted>false</nullPermitted>
         </outputParameter>
     </method>
     <method>
-        <name>filterDisplayedAbsences</name>
+        <name>loadUsers</name>
         <description></description>
     </method>
     <method>
-        <name>updateSubstitute</name>
+        <name>createAbsenceAndLoadDeputy</name>
         <description></description>
-        <inputParameter>
-            <name>substituteToUpdate</name>
-            <description></description>
-            <parameterType>ch.ivy.addon.portalkit.bo.SubstituteNode</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
     </method>
     <method>
-        <name>openAbsence</name>
+        <name>editDeputy</name>
         <description></description>
     </method>
     <startMethod>

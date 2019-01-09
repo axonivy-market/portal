@@ -1,0 +1,6 @@
+LanguageServiceData #class
+ch.ivyteam.wf.processes #namespace
+apps java.util.List<String> #field
+errors java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> #field
+languages java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage> #field
+username String #field

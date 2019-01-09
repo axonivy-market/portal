@@ -29,11 +29,9 @@ Ps0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodE
 <java.lang.String keyword> param = methodEvent.getInputArguments();
 ' #txt
 Ps0 f0 inParameterMapAction 'out.dataModel.caseDataModel.notKeepFilter=true;
-out.dataModel.caseDataModel.queryCriteria.keyword=param.keyword;
 out.dataModel.keyword=param.keyword;
 out.dataModel.taskDataModel.compactMode=false;
 out.dataModel.taskDataModel.notKeepFilter=true;
-out.dataModel.taskDataModel.queryCriteria.keyword=param.keyword;
 ' #txt
 Ps0 f0 inActionCode out.dataModel.search(); #txt
 Ps0 f0 outParameterDecl '<> result;

@@ -47,8 +47,7 @@ public class ApplicationDao extends AbstractDao<Application> {
 
     List<Application> otherApplicationsHaveSameNameAndServer =
         repo.query(ObjectFilter.notEq(EntityProperty.ID, application.getId()),
-            ObjectFilter.eq(EntityProperty.NAME, application.getName()),
-            ObjectFilter.eq(EntityProperty.SERVER_ID, application.getServerId()));
+            ObjectFilter.eq(EntityProperty.NAME, application.getName()));
 
     setRelationShipDataForApplications(otherApplicationsHaveSameNameAndServer);
 
@@ -97,15 +96,14 @@ public class ApplicationDao extends AbstractDao<Application> {
   }
 
   @ExecuteAsSystem
-  public Application findByDisplayNameAndNameAndServerId(String displayName, String applicationName, Long serverId) {
+  public Application findByDisplayNameAndName(String displayName, String applicationName) {
     repo =
         Repos.builder().primaryKey(EntityProperty.ID.toString()).searchIndex(EntityProperty.NAME.toString())
             .searchIndex(EntityProperty.SERVER_ID.toString()).build(Long.class, Application.class).init(findAll());
     Criterion<String> objectFilterForDisplayName = ObjectFilter.eq(EntityProperty.DISPLAY_NAME, displayName);
     Criterion<String> objectFilterForAppName = ObjectFilter.eq(EntityProperty.NAME, applicationName);
-    Criterion<Long> objectFilterForServerId = ObjectFilter.eq(EntityProperty.SERVER_ID, serverId);
     List<Application> applications =
-        repo.query(objectFilterForDisplayName, objectFilterForAppName, objectFilterForServerId);
+        repo.query(objectFilterForDisplayName, objectFilterForAppName);
     if (!applications.isEmpty()) {
       Application application = applications.get(0);
       setRelationshipDataFor(application);
@@ -137,6 +135,35 @@ public class ApplicationDao extends AbstractDao<Application> {
             .build(long.class, Application.class).init(findAll());
 
     List<Application> applications = repo.query(ObjectFilter.in(EntityProperty.NAME.toString(), names));
+    setRelationShipDataForApplications(applications);
+    return applications;
+  }
+  
+  @ExecuteAsSystem
+  public List<Application> findOnlineAndVisibleIvyAppsBy(List<String> names) {
+    repo =
+        Repos.builder().primaryKey(EntityProperty.ID.toString()).searchIndex(EntityProperty.NAME.toString())
+            .build(long.class, Application.class).init(findAll());
+
+    Criterion<Long> objectFilterForInNames = ObjectFilter.in(EntityProperty.NAME.toString(), names);
+    Criterion<Long> objectFilterForIsOnline = ObjectFilter.eq(EntityProperty.IS_ONLINE, true);
+    Criterion<Long> objectFilterForVisible = ObjectFilter.eq(EntityProperty.IS_VISIBLE, true);
+    List<Application> applications = repo.query(objectFilterForInNames, objectFilterForIsOnline, objectFilterForVisible);
+    setRelationShipDataForApplications(applications);
+    return applications;
+  }
+  
+  @ExecuteAsSystem
+  public List<Application> findAbsenceEnableAndOnlineAndVisibleIvyAppsBy(List<String> names) {
+    repo =
+        Repos.builder().primaryKey(EntityProperty.ID.toString()).searchIndex(EntityProperty.NAME.toString())
+            .build(long.class, Application.class).init(findAll());
+
+    Criterion<Long> objectFilterForInNames = ObjectFilter.in(EntityProperty.NAME.toString(), names);
+    Criterion<Long> objectFilterForIsOnline = ObjectFilter.eq(EntityProperty.IS_ONLINE, true);
+    Criterion<Long> objectFilterForVisible = ObjectFilter.eq(EntityProperty.IS_VISIBLE, true);
+    Criterion<Long> objectFilterForIsAbsenceEnabled = ObjectFilter.eq(EntityProperty.IS_ABSENCE_ENABLED, true);
+    List<Application> applications = repo.query(objectFilterForInNames, objectFilterForIsOnline, objectFilterForVisible, objectFilterForIsAbsenceEnabled);
     setRelationShipDataForApplications(applications);
     return applications;
   }

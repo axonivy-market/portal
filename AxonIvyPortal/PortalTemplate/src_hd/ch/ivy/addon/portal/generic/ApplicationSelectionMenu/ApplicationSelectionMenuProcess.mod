@@ -248,11 +248,10 @@ for (Application application : in.applications){
 		}
 	
 		in.menuItems.add(menuItem);
-		if ((application.name.equals(ivy.request.getApplication().getName()) && application.getServerId() == serverWorkingOnDetector.getServerWorkingOn().getId()) || (!isThirdPartyApp && numberOfIvyApplications == 1)) {
+		if (application.name.equals(ivy.request.getApplication().getName()) || (!isThirdPartyApp && numberOfIvyApplications == 1)) {
 			menuItem.styleClass = "ivy-active";
 			SecurityServiceUtils.setSessionAttribute(SessionAttribute.SELECTED_APP.toString(), application.name);
 			SecurityServiceUtils.setSessionAttribute(SessionAttribute.SELECTED_APP_DISPLAY_NAME.toString(), application.displayName);
-			SecurityServiceUtils.setSessionAttribute(SessionAttribute.SERVER_ID.toString(), application.serverId);
 		}
 	}
 }

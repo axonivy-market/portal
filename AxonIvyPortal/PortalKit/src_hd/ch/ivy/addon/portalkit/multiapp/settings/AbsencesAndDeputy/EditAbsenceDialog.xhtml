@@ -8,7 +8,7 @@
   <p:dialog id="edit-absence-dialog" widgetVar="editAbsenceDialog" dynamic="true" modal="true" appendTo="@(body)"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/editAbsence')}" responsive="true">
     <h:form id="edit-absence-form">
-      <p:messages id="edit-absence-messages" />
+      <p:messages widgetVar="growl" showDetail="true" closable="true" id="edit-absence-messages" escape="false"/>
       <h:panelGroup layout="block">
         <ui:include src="Absence.xhtml">
           <ui:param name="uneditedUserName" value="true" />
@@ -19,7 +19,7 @@
       <h:panelGroup layout="block" styleClass="u-dialog-footer ui-dialog-footer">
         <p:commandButton id="save-absence" process="@form" disabled="#{data.validationError}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" styleClass=""
-          actionListener="#{logic.saveModifiedAbsence}" update="@form :#{p:component('absence-table')}"
+          actionListener="#{logic.updateAbsences}" update="@form :#{p:component('absence-table')}"
           oncomplete="if (args &amp;&amp; !args.validationFailed) PF('editAbsenceDialog').hide();" />
         <p:spacer width="5px" />
         <p:commandButton id="close-edit-absence-dialog" actionListener="#{logic.cancel}"

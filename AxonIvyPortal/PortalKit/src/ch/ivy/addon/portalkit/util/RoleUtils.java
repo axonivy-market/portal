@@ -14,8 +14,6 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.add.portalkit.admin.RolePropertyData;
-import ch.ivy.ws.addon.IvyRole;
 import ch.ivyteam.api.PublicAPI;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
@@ -29,8 +27,6 @@ import ch.ivyteam.ivy.server.ServerFactory;
  * @author bolt
  */
 public final class RoleUtils {
-
-  
 
   private static final String HIDE_IN_DELEGATION = "HIDE_IN_DELEGATION";
   private static final String[] DEFAULT_HIDDEN_ROLES = {"AXONIVY_PORTAL_ADMIN"};
@@ -307,25 +303,6 @@ public final class RoleUtils {
   }
 
   /**
-   * Get the properties of the given role.
-   * 
-   * @param role role to get properties.
-   * @return List of RolePropertyData
-   */
-  @PublicAPI
-  public static List<RolePropertyData> getProperties(IRole role) {
-    List<String> propertyNames = role.getAllPropertyNames();
-    List<RolePropertyData> properties = new ArrayList<>();
-    for (String propertyName : propertyNames) {
-      RolePropertyData property = new RolePropertyData();
-      property.setPropertyKey(propertyName);
-      property.setValue(role.getProperty(propertyName));
-      properties.add(property);
-    }
-    return properties;
-  }
-
-  /**
    * Set hide property for specific roles by default
    */
   public static void setHidePropertyForDefaultHiddenRoles() {
@@ -352,23 +329,20 @@ public final class RoleUtils {
    * 
    * @param roles roles need to be filtered
    * @param query provided query
-   * @return Filtered and sorted list of ivy roles
+   * @return Filtered list of ivy roles
    */
-  public static List<IvyRole> filterIvyRoles(List<IvyRole> roles, String query) {
+  public static List<IRole> filterRoles(List<IRole> roles, String query) {
     if (StringUtils.isEmpty(query)) {
       return roles;
     }
 
-    List<IvyRole> filterRoles = new ArrayList<>();
-    for (IvyRole role : roles) {
-      if (role.getDisplayName().toLowerCase().contains(query.toLowerCase())
-          || role.getMemberName().toLowerCase().contains(query.toLowerCase())) {
+    List<IRole> filterRoles = new ArrayList<>();
+    for (IRole role : roles) {
+      if (StringUtils.containsIgnoreCase(role.getDisplayName(), query) || StringUtils.containsIgnoreCase(role.getMemberName(), query)) {
         filterRoles.add(role);
       }
     }
 
-    filterRoles.sort((first, second) -> first.getDisplayName().toLowerCase().compareTo(
-        second.getDisplayName().toLowerCase()));
     return filterRoles;
   }
 }

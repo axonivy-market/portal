@@ -1,0 +1,4 @@
+co: name={FAIL_TO_SAVE_EMAIL_SETTING} description={} changed={2018-12-10 04:23:06 GMT} changedby={dhtlong} visualorder={0} guid={167965AB5465DEF3} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={167965AB549D6964} datatype={} isdefault={false} langid={de} description={} validfrom={2018-12-10 04:23:06 GMT} validto={} changed={2018-12-10 04:23:06 GMT} changedby={dhtlong} properties={} id={}
+val: guid={167965AB55730252} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-12-10 04:23:06 GMT} validto={} changed={2018-12-10 04:23:06 GMT} changedby={dhtlong} properties={} id={}
+val: guid={167965AB54E1054C} datatype={} isdefault={true} langid={en} description={} validfrom={2018-12-10 04:23:06 GMT} validto={} changed={2018-12-10 04:23:06 GMT} changedby={dhtlong} properties={} id={}

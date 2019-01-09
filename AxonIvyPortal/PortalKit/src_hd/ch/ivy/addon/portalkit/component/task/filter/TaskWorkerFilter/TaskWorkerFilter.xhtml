@@ -23,7 +23,7 @@
       <f:event listener="#{data.setWorkers(cc.attrs.filter.workers)}" type="preRenderComponent" />
       <p:ajax event="query" global="false" />
       <p:column>
-        <i class="fa #{worker.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+        <i class="fa fa-user u-mar-right-5" />
         <h:outputText value="#{cc.attrs.filter.formatName(worker)}" />
       </p:column>
     </p:autoComplete>

@@ -14,7 +14,7 @@
       <h:outputText id="task-start-task-name" styleClass="task-start-info-task-name"
           value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}" />
       <p:tooltip for="task-start-task-name" value="#{task.name}" trackMouse="true" rendered="#{not empty task.name}"/>
-      <h:outputText id="task-start-task-id" value="(##{task.id})" styleClass="task-start-info-task-id" rendered="#{!isMobile}"/>
+      <h:outputText id="task-start-task-id" value="(##{task.getId()})" styleClass="task-start-info-task-id" rendered="#{!isMobile}"/>
     </h:panelGroup>
     <h:panelGroup layout="block" styleClass="task-start-info-content">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/created')}: " />

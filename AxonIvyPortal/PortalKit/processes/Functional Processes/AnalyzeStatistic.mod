@@ -64,13 +64,6 @@ ac0 @CallSub f49 '' #zField
 ac0 @PushWFArc f50 '' #zField
 ac0 @PushWFArc f52 '' #zField
 ac0 @PushWFArc f48 '' #zField
-ac0 @StartSub f51 '' #zField
-ac0 @GridStep f53 '' #zField
-ac0 @PushWFArc f54 '' #zField
-ac0 @EndSub f55 '' #zField
-ac0 @CallSub f56 '' #zField
-ac0 @PushWFArc f57 '' #zField
-ac0 @PushWFArc f58 '' #zField
 >Proto ac0 ac0 AnalyzeStatistic #zField
 ac0 f0 inParamDecl '<java.lang.String jsonQuery> param;' #txt
 ac0 f0 inParamTable 'out.jsonQuery=param.jsonQuery;
@@ -285,9 +278,9 @@ ac0 f30 @|EndSubIcon #fIcon
 ac0 f33 expr out #txt
 ac0 f33 690 352 755 352 #arcP
 ac0 f34 expr out #txt
-ac0 f34 514 352 578 352 #arcP
+ac0 f34 506 352 578 352 #arcP
 ac0 f29 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
-ac0 f29 processCall 'Functional Processes/BuildCaseJsonQuery:buildCaseJsonQuery()' #txt
+ac0 f29 processCall 'Functional Processes/BuildCaseQuery:buildCaseJsonQuery()' #txt
 ac0 f29 doCall true #txt
 ac0 f29 requestActionDecl '<> param;
 ' #txt
@@ -298,18 +291,16 @@ ac0 f29 responseMappingAction 'out=in;
 ac0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>BuildCaseJsonQuery</name>
-        <nameStyle>18,5,7
-</nameStyle>
+        <name>BuildCaseQuery</name>
     </language>
 </elementInfo>
 ' #txt
-ac0 f29 386 330 128 44 -58 -8 #rect
+ac0 f29 394 330 112 44 -45 -8 #rect
 ac0 f29 @|CallSubIcon #fIcon
 ac0 f16 expr out #txt
-ac0 f16 512 160 576 160 #arcP
+ac0 f16 504 160 576 160 #arcP
 ac0 f13 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
-ac0 f13 processCall 'Functional Processes/BuildCaseJsonQuery:buildCaseJsonQuery()' #txt
+ac0 f13 processCall 'Functional Processes/BuildCaseQuery:buildCaseJsonQuery()' #txt
 ac0 f13 doCall true #txt
 ac0 f13 requestActionDecl '<> param;
 ' #txt
@@ -320,13 +311,11 @@ ac0 f13 responseMappingAction 'out=in;
 ac0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>BuildCaseJsonQuery</name>
-        <nameStyle>18,5,7
-</nameStyle>
+        <name>BuildCaseQuery</name>
     </language>
 </elementInfo>
 ' #txt
-ac0 f13 384 138 128 44 -58 -8 #rect
+ac0 f13 392 138 112 44 -45 -8 #rect
 ac0 f13 @|CallSubIcon #fIcon
 ac0 f12 expr out #txt
 ac0 f12 512 64 576 64 #arcP
@@ -424,9 +413,9 @@ ac0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ac0 f39 576 426 112 44 -35 -8 #rect
 ac0 f39 @|CallSubIcon #fIcon
 ac0 f40 expr out #txt
-ac0 f40 510 449 576 448 #arcP
+ac0 f40 502 449 576 448 #arcP
 ac0 f38 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
-ac0 f38 processCall 'Functional Processes/BuildCaseJsonQuery:buildCaseJsonQuery()' #txt
+ac0 f38 processCall 'Functional Processes/BuildCaseQuery:buildCaseJsonQuery()' #txt
 ac0 f38 doCall true #txt
 ac0 f38 requestActionDecl '<> param;
 ' #txt
@@ -437,13 +426,11 @@ ac0 f38 responseMappingAction 'out=in;
 ac0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>BuildCaseJsonQuery</name>
-        <nameStyle>18,5,7
-</nameStyle>
+        <name>BuildCaseQuery</name>
     </language>
 </elementInfo>
 ' #txt
-ac0 f38 382 427 128 44 -58 -8 #rect
+ac0 f38 390 427 112 44 -45 -8 #rect
 ac0 f38 @|CallSubIcon #fIcon
 ac0 f44 expr out #txt
 ac0 f44 688 448 753 448 #arcP
@@ -458,15 +445,15 @@ ac0 f26 143 256 224 256 #arcP
 ac0 f35 expr out #txt
 ac0 f35 143 352 226 352 #arcP
 ac0 f32 expr out #txt
-ac0 f32 338 352 386 352 #arcP
+ac0 f32 338 352 394 352 #arcP
 ac0 f14 expr out #txt
-ac0 f14 336 160 384 160 #arcP
+ac0 f14 336 160 392 160 #arcP
 ac0 f18 expr out #txt
 ac0 f18 336 256 384 256 #arcP
 ac0 f43 expr out #txt
 ac0 f43 143 448 224 448 #arcP
 ac0 f42 expr out #txt
-ac0 f42 336 448 382 449 #arcP
+ac0 f42 336 448 390 449 #arcP
 ac0 f23 actionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
 ' #txt
 ac0 f23 actionTable 'out=in;
@@ -660,84 +647,6 @@ ac0 f52 expr out #txt
 ac0 f52 688 544 753 544 #arcP
 ac0 f48 expr out #txt
 ac0 f48 336 544 576 544 #arcP
-ac0 f51 inParamDecl '<ch.ivy.ws.addon.CaseCustomVarCharSearchCriteria caseCustomVarCharSearchCriteria> param;' #txt
-ac0 f51 inParamTable 'out.caseCustomVarCharSearchCriteria=param.caseCustomVarCharSearchCriteria;
-' #txt
-ac0 f51 outParamDecl '<java.util.List<java.lang.String> result> result;
-' #txt
-ac0 f51 outParamTable 'result.result=in.caseCustomVarChars;
-' #txt
-ac0 f51 actionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
-' #txt
-ac0 f51 callSignature findCaseCustomVarChars(ch.ivy.ws.addon.CaseCustomVarCharSearchCriteria) #txt
-ac0 f51 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
-ac0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>findCaseCustomVarChars(CaseCustomVarCharSearchCriteria)</name>
-    </language>
-</elementInfo>
-' #txt
-ac0 f51 113 641 30 30 -122 29 #rect
-ac0 f51 @|StartSubIcon #fIcon
-ac0 f53 actionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
-' #txt
-ac0 f53 actionTable 'out=in;
-' #txt
-ac0 f53 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
-
-in.serverId = SecurityServiceUtils.getServerIdFromSession();
-String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
-if (#applicationName is initialized) {
-	in.involvedApplications = [applicationName];
-}' #txt
-ac0 f53 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
-ac0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Initialize</name>
-        <nameStyle>10
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-ac0 f53 227 634 112 44 -22 -8 #rect
-ac0 f53 @|StepIcon #fIcon
-ac0 f54 expr out #txt
-ac0 f54 143 656 227 656 #arcP
-ac0 f55 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
-ac0 f55 753 641 30 30 0 15 #rect
-ac0 f55 @|EndSubIcon #fIcon
-ac0 f56 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
-ac0 f56 processCall MultiPortal/CaseService:findCaseCustomVarchars(String,List<String>,Long,ch.ivy.ws.addon.CaseCustomVarCharSearchCriteria) #txt
-ac0 f56 doCall true #txt
-ac0 f56 requestActionDecl '<java.lang.String userName,java.util.List<java.lang.String> apps,java.lang.Long serverId,ch.ivy.ws.addon.CaseCustomVarCharSearchCriteria caseCustomVarCharSearchCriteria> param;
-' #txt
-ac0 f56 requestMappingAction 'param.userName=ch.ivy.addon.portalkit.util.PermissionUtils.checkReadAllCasesPermission() ? null : ivy.session.getSessionUserName();
-param.apps=in.involvedApplications;
-param.serverId=in.serverId;
-param.caseCustomVarCharSearchCriteria=in.caseCustomVarCharSearchCriteria;
-' #txt
-ac0 f56 responseActionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
-' #txt
-ac0 f56 responseMappingAction 'out=in;
-out.caseCustomVarChars=result.caseCustomVarChars;
-' #txt
-ac0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>CaseService</name>
-        <nameStyle>11,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-ac0 f56 584 634 112 44 -35 -8 #rect
-ac0 f56 @|CallSubIcon #fIcon
-ac0 f57 expr out #txt
-ac0 f57 339 656 584 656 #arcP
-ac0 f58 expr out #txt
-ac0 f58 696 656 753 656 #arcP
 >Proto ac0 .type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
 >Proto ac0 .processKind CALLABLE_SUB #txt
 >Proto ac0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -793,9 +702,3 @@ ac0 f49 mainOut f52 tail #connect
 ac0 f52 head f47 mainIn #connect
 ac0 f46 mainOut f48 tail #connect
 ac0 f48 head f49 mainIn #connect
-ac0 f51 mainOut f54 tail #connect
-ac0 f54 head f53 mainIn #connect
-ac0 f53 mainOut f57 tail #connect
-ac0 f57 head f56 mainIn #connect
-ac0 f56 mainOut f58 tail #connect
-ac0 f58 head f55 mainIn #connect

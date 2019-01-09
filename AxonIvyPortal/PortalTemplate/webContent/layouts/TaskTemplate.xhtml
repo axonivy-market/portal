@@ -14,14 +14,14 @@
 
     <ui:define name="simplePageContent">
 
-      <c:set var="case" value="#{caseWidgetBean.findRemoteCaseByCaseId(caseId)}" scope="request" />
+      <c:set var="case" value="#{caseWidgetBean.findCase(caseId)}" scope="request" />
       <ui:insert name="breadCrumb" />
 
       <div>
         <h:panelGroup layout="block" styleClass="Fleft Wid100 Fs14 foreground-text-color MarTop10 #{processChainDirection eq 'VERTICAL' ? 'task-name-vertical-process-chain' : ''}">
           <ui:insert name="taskName">
             <span class=" fa fa-check-square-o task-template-title-icon"></span>
-            <h:outputText styleClass="task-template-title" id="title" title="#{task.name} (##{task.id})" value="#{task.name} (##{task.id})" />
+            <h:outputText styleClass="task-template-title" id="title" title="#{task.name} (##{task.getId()})" value="#{task.name} (##{task.getId()})" />
           </ui:insert>
         </h:panelGroup>
 
