@@ -18,6 +18,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
@@ -239,7 +240,7 @@ public class UserUtils {
   @SuppressWarnings("unchecked")
   public static List<IUser> findAllUserByApplication() throws Exception {
     SubProcessCallResult result = ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
-      if (Ivy.request().getApplication().getName().equals(IApplication.PORTAL_APPLICATION_NAME)) {
+      if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
         return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE)
             .withStartName("findUsersOverAllApplications").call(Ivy.session().getSessionUserName());
       }

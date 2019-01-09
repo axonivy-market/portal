@@ -7,6 +7,7 @@ import org.apache.commons.lang.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.process.call.SubProcessCallResult;
@@ -71,7 +72,7 @@ public class TaskResponsibleFilter extends TaskFilter {
     responsibles = new ArrayList<>();
     try {
       SubProcessCallResult result = ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
-        if (Ivy.request().getApplication().getName().equals(IApplication.PORTAL_APPLICATION_NAME)) {
+        if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
           return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findSecurityMembersOverAllApplications")
               .call(Ivy.session().getSessionUserName());
         }
