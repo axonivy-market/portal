@@ -354,7 +354,6 @@ in.statisticChartList.remove(in.selectedStatisticChart);
 service.delete(in.selectedStatisticChart.id);
 
 for(StatisticChart chart : in.statisticChartList) {
-	ivy.log.error("CHART MODEL: " + chart.donutChartModel);
       chart.setPosition(in.statisticChartList.indexOf(chart));
 	service.save(chart);
 }' #txt
