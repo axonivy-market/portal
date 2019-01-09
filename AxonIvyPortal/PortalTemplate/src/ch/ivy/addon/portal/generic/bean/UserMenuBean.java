@@ -38,6 +38,8 @@ import ch.ivyteam.ivy.system.ISystemProperty;
 @ManagedBean
 @ViewScoped
 public class UserMenuBean implements Serializable {
+  private static final long NON_EXISTED_ID = -1L;
+
   private static final long serialVersionUID = 1L;
 
   private List<RemoteWebStartable> foundWebStartables;
@@ -48,7 +50,7 @@ public class UserMenuBean implements Serializable {
   public static final int MINUTE_TO_SECOND = 60;
   public static final int SECONND_TO_MILLISECOND = 1000;
   public static final int TIME_BEFORE_LOST_SESSION = 180000; // 3 minutes
-  public static final int MAX_NUMBER_OF_RESULTS_IN_TASK_CASE_GLOBAL_SEARCH = 19;
+  public static final int MAX_NUMBER_OF_RESULTS_IN_TASK_CASE_GLOBAL_SEARCH = 20;
 
   private boolean hasNoRecordsFound;
 
@@ -192,6 +194,7 @@ public class UserMenuBean implements Serializable {
       RemoteTask lastTask = foundTasks.get(foundTasks.size() - 1);
       lastTask.setName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/ShowMoreResults"));
       lastTask.setDescription("");
+      lastTask.setId(NON_EXISTED_ID);
     }
   }
 
@@ -200,6 +203,7 @@ public class UserMenuBean implements Serializable {
       RemoteCase lastCase = foundCases.get(foundCases.size() - 1);
       lastCase.setName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/ShowMoreResults"));
       lastCase.setDescription("");
+      lastCase.setId(NON_EXISTED_ID);
     }
   }
   
