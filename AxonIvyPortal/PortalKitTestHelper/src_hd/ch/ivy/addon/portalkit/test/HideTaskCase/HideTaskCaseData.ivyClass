@@ -1,0 +1,6 @@
+HideTaskCaseData #class
+ch.ivy.addon.portalkit.test.HideTaskCase #namespace
+taskId java.lang.Long #field
+taskId PERSISTENT #fieldModifier
+caseId Long #field
+caseId PERSISTENT #fieldModifier
