@@ -17,6 +17,7 @@ import org.primefaces.context.RequestContext;
 
 import ch.ivy.addon.portal.generic.common.DeviceDetector;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
@@ -25,7 +26,6 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.system.ISystemProperty;
@@ -138,7 +138,7 @@ public class UserMenuBean implements Serializable {
   }
 
   private boolean isDefaultPortalApp() {
-    return IApplication.PORTAL_APPLICATION_NAME.equals(Ivy.wf().getApplication().getName());
+    return PortalConstants.PORTAL_APPLICATION_NAME.equals(Ivy.wf().getApplication().getName());
   }
 
   public boolean getErrorDetailToEndUser() {

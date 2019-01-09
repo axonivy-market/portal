@@ -71,10 +71,13 @@ public class TaskTreeUtils {
     newNode.setExpanded(true);
     if (menuState.contains(nodeType) && !getLastCategoryFromCategoryPath(menuState).contains(getLastCategoryFromCategoryPath(nodeType))) {
       newNode.setExpanded(true);
-    } else {
-      newNode.setExpanded(false);
     }
     return newNode;
+  }
+
+  private static boolean isSelectedCategory(String menuState, String nodeType) {
+    return (menuState.indexOf(nodeType) + nodeType.length() == menuState.length())
+        ||( menuState.charAt(menuState.indexOf(nodeType) + nodeType.length()) == '/');
   }
   
   public static CheckboxTreeNode buildTaskCategoryCheckboxTreeRoot() {
