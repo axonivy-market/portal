@@ -8,10 +8,9 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import ch.ivy.addon.portalkit.bo.RemoteLibrary;
-import ch.ivy.addon.portalkit.datacollecting.factory.LibraryServiceFactory;
-import ch.ivy.addon.portalkit.datacollecting.service.AbstractLibraryService;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import ch.ivy.addon.portalkit.ivydata.factory.LibraryServiceFactory;
+import ch.ivy.addon.portalkit.ivydata.service.ILibraryService;
 import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -22,7 +21,7 @@ public class ProjectVersionBean implements Serializable {
   private static final long serialVersionUID = -2148042793400166168L;
   private String engineVersion;
   private String portalVersion;
-  private Map<String, List<RemoteLibrary>> projectLibraries;
+  private Map<String, List<ILibrary>> projectLibraries;
 
   @SuppressWarnings("restriction")
   @PostConstruct
@@ -33,8 +32,8 @@ public class ProjectVersionBean implements Serializable {
     projectLibraries = retrieveProjectLibraries();
   }
 
-  private Map<String, List<RemoteLibrary>> retrieveProjectLibraries() {
-    AbstractLibraryService service = LibraryServiceFactory.getLibraryService();
+  private Map<String, List<ILibrary>> retrieveProjectLibraries() {
+    ILibraryService service = LibraryServiceFactory.getLibraryService();
     return service.collectLibraries();
   }
 
@@ -46,7 +45,7 @@ public class ProjectVersionBean implements Serializable {
     return portalVersion;
   }
 
-  public Map<String, List<RemoteLibrary>> getProjectLibraries() {
+  public Map<String, List<ILibrary>> getProjectLibraries() {
     return projectLibraries;
   }
 }

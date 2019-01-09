@@ -5,141 +5,70 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;
+import ch.ivyteam.ivy.security.IUser;
 
-/**
- * Bean for substitute node,
- * 
- */
 public class SubstituteNode {
 
   private String name;
-  private RemoteSubstitute remoteSubstitute;
-  private List<RemoteApplicationUser> ivyUsers;
+  private IvySubstitute substitute;
+  private List<IUser> users;
   private boolean isLeaf;
-  private RemoteApplicationUser substituteUser;
 
-  /**
-   * Constructor
-   *
-   */
   public SubstituteNode() {
-    this.remoteSubstitute = new RemoteSubstitute();
+    this.substitute = new IvySubstitute();
   }
 
-  /**
-   * Constructor
-   *
-   * @param name
-   *          name of substitute.
-   * @param remoteSubstitute
-   *          remote substitute
-   * @param ivyUsers
-   *          list of {@link RemoteApplicationUser}
-   * @param isLeaf
-   *          is a leaf or not
-   */
-  public SubstituteNode(String name, RemoteSubstitute remoteSubstitute, List<RemoteApplicationUser> ivyUsers,
+  public SubstituteNode(String name, IvySubstitute substitute, List<IUser> users,
       boolean isLeaf) {
     this.name = name;
-    this.remoteSubstitute = remoteSubstitute;
+    this.substitute = substitute;
     this.isLeaf = isLeaf;
-    this.ivyUsers = ivyUsers;
+    this.users = users;
   }
 
-  /**
-   * Gets the name
-   *
-   * @return Returns the name
-   */
   public String getName() {
     return name;
   }
 
-  /**
-   * Sets the name
-   *
-   * @param name
-   *          The name to set
-   */
   public void setName(String name) {
     this.name = name;
   }
 
-  /**
-   * Gets the remoteSubstitute
-   *
-   * @return Returns the remoteSubstitute
-   */
-  public RemoteSubstitute getRemoteSubstitute() {
-    return remoteSubstitute;
+  public IvySubstitute getSubstitute() {
+    return substitute;
   }
 
-  /**
-   * Sets the remoteSubstitute
-   *
-   * @param remoteSubstitute
-   *          The remoteSubstitute to set
-   */
-  public void setRemoteSubstitute(RemoteSubstitute remoteSubstitute) {
-    this.remoteSubstitute = remoteSubstitute;
+  public void setSubstitute(IvySubstitute substitute) {
+    this.substitute = substitute;
   }
 
-  /**
-   * Gets the ivyUsers
-   *
-   * @return Returns the ivyUsers
-   */
-  public List<RemoteApplicationUser> getIvyUsers() {
-    return ivyUsers;
+  public List<IUser> getUsers() {
+    return users;
   }
 
-  /**
-   * Sets the ivyUsers
-   *
-   * @param ivyUsers
-   *          The ivyUsers to set
-   */
-  public void setIvyUsers(List<RemoteApplicationUser> ivyUsers) {
-    this.ivyUsers = ivyUsers;
+  public void setUsers(List<IUser> users) {
+    this.users = users;
   }
 
-  /**
-   * Gets the isLeaf
-   *
-   * @return Returns the isLeaf
-   */
   public boolean isLeaf() {
     return isLeaf;
   }
 
-  /**
-   * Sets the isLeaf
-   *
-   * @param isLeaf
-   *          The isLeaf to set
-   */
   public void setLeaf(boolean isLeaf) {
     this.isLeaf = isLeaf;
   }
 
-  public RemoteApplicationUser getSubstituteUser() {
-    if (substituteUser == null) {
-      substituteUser = new RemoteApplicationUser();
-      String substituteName = remoteSubstitute.getMySubstitute();
-      if (StringUtils.isNotEmpty(substituteName)) {
-        ivyUsers.stream().filter(user -> substituteName.equals(user.getMemberName()))
-            .forEach(ivyUser -> substituteUser = ivyUser);
-      }
-    }
-    return substituteUser;
+  public IUser getSubstituteUser() {
+    return substitute.getSubstituteUser();
   }
 
-  public void setSubstituteUser(RemoteApplicationUser substituteUser) {
-    this.substituteUser = substituteUser;
+  public void setSubstituteUser(IUser substituteUser) {
+    substitute.setSubstituteUser(substituteUser);
   }
 
-  public List<RemoteApplicationUser> autoCompleteUser(String query) {
-    return ivyUsers.stream()
+  public List<IUser> autoCompleteUser(String query) {
+    return users.stream()
         .filter(user -> StringUtils.containsIgnoreCase(user.getDisplayName(), query) || StringUtils.containsIgnoreCase(user.getMemberName(), query))
         .collect(Collectors.toList());
   }

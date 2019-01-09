@@ -7,7 +7,7 @@
         <inputParameter>
             <name>notes</name>
             <description></description>
-            <parameterType>List&lt;ch.ivy.ws.addon.IvyNote&gt;</parameterType>
+            <parameterType>java.util.List&lt;ch.ivyteam.ivy.workflow.INote&gt;</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
         <inputParameter>

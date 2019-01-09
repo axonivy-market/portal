@@ -12,37 +12,16 @@ public class TaskColumnsConfigurationService extends BusinessDataService<TaskCol
     return TaskColumnsConfiguration.class;
   }
 
-  public TaskColumnsConfiguration getConfiguration(Long serverId, Long applicationId, Long userId, Long processModelId){
-    Filter<TaskColumnsConfiguration> query;
-    if(serverId != null){
-      query =
-          repo().search(getType())
-          .numberField("serverId").isEqualTo(serverId)
-          .and().numberField("applicationId").isEqualTo(applicationId) //NOSONAR
-          .and().numberField("userId").isEqualTo(userId)
-          .and().numberField("processModelId").isEqualTo(processModelId);
-    } else {
-      query =
-          repo().search(getType())
-          .numberField("applicationId").isEqualTo(applicationId)
-          .and().numberField("userId").isEqualTo(userId)
-          .and().numberField("processModelId").isEqualTo(processModelId);
-    }
+  public TaskColumnsConfiguration getConfiguration(Long applicationId, Long userId, Long processModelId) {
+    Filter<TaskColumnsConfiguration> query =
+        repo().search(getType()).numberField("applicationId").isEqualTo(applicationId).and().numberField("userId")
+            .isEqualTo(userId).and().numberField("processModelId").isEqualTo(processModelId);
     return query.execute().getFirst();
   }
 
-  public List<TaskColumnsConfiguration> getAllConfiguration(Long serverId, Long applicationId) {
-    Filter<TaskColumnsConfiguration> query;
-    if(serverId != null){
-      query =
-          repo().search(getType())
-          .numberField("serverId").isEqualTo(serverId)
-          .and().numberField("applicationId").isEqualTo(applicationId);
-    } else {
-      query =
-          repo().search(getType())
-          .numberField("applicationId").isEqualTo(applicationId);
-    }
+  public List<TaskColumnsConfiguration> getAllConfiguration(Long applicationId) {
+    Filter<TaskColumnsConfiguration> query =
+        repo().search(getType()).numberField("applicationId").isEqualTo(applicationId);
     return query.execute().getAll();
   }
 }

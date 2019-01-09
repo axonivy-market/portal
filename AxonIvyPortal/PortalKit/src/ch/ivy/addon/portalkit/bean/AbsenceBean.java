@@ -15,7 +15,7 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import ch.ivy.addon.portalkit.bo.RemoteAbsence;
+import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 import ch.ivy.addon.portalkit.service.PermissionCheckerService;
 import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
@@ -71,7 +71,7 @@ public class AbsenceBean implements Serializable {
     return substitutionManagementCapable;
   }
 
-  public boolean isAbsenceEditable(RemoteAbsence absence) {
+  public boolean isAbsenceEditable(IvyAbsence absence) {
     boolean absenceInThePast = AbsenceAndSubstituteUtils.isInThePast(absence);
     if (absenceInThePast) {
       return absencesInThePastCreatable;
@@ -79,7 +79,7 @@ public class AbsenceBean implements Serializable {
     return ownAbsencesCreatable;
   }
 
-  public boolean isAbsenceDeletable(RemoteAbsence absence) {
+  public boolean isAbsenceDeletable(IvyAbsence absence) {
     boolean absenceInThePast = AbsenceAndSubstituteUtils.isInThePast(absence);
     if (absenceInThePast) {
       return absencesInThePastDeletable;
@@ -87,8 +87,8 @@ public class AbsenceBean implements Serializable {
     return ownAbsencesDeletable;
   }
 
-  public String getDisplayedName(RemoteAbsence absence) {
-    return UserUtils.getDisplayedName(absence.getUserFullName(), absence.getUserName());
+  public String getDisplayedName(IvyAbsence absence) {
+    return UserUtils.getDisplayedName(absence.getFullname(), absence.getUsername());
   }
 
 }

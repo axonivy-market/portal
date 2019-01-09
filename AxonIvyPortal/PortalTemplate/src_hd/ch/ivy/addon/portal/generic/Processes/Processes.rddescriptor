@@ -3,26 +3,6 @@
     <autoScreenshot>true</autoScreenshot>
     <startMethod>
         <name>start</name>
-        <description>Default dialog start method.</description>
-    </startMethod>
-    <startMethod>
-        <name>start</name>
-        <description></description>
-        <inputParameter>
-            <name>keyword</name>
-            <description></description>
-            <parameterType>String</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <inputParameter>
-            <name>processStartLink</name>
-            <description></description>
-            <parameterType>String</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </startMethod>
-    <startMethod>
-        <name>startWithMenuState</name>
         <description></description>
         <inputParameter>
             <name>menuState</name>

@@ -7,6 +7,8 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 
 public class SearchResultsDataModel implements Serializable {
 
+  private static final long serialVersionUID = -472756089365264117L;
+  
   protected static final String CASE_WIDGET_COMPONENT_ID = "search-results-tabview:case-results";
   protected static final String TASK_WIDGET_COMPONENT_ID = "search-results-tabview:task-results";
   protected String keyword;
@@ -17,11 +19,11 @@ public class SearchResultsDataModel implements Serializable {
     boolean hasReadAllTasksPermisson = PermissionUtils.checkReadAllTasksPermission();
     boolean hasReadAllCasesPermission = PermissionUtils.checkReadAllCasesPermission();
     taskDataModel = initTaskDataModel();
-    taskDataModel.setIgnoreInvolvedUser(hasReadAllTasksPermisson);
+    taskDataModel.setAdminQuery(hasReadAllTasksPermisson);
     taskDataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
 
     caseDataModel = initCaseDataModel();
-    caseDataModel.setIgnoreInvolvedUser(hasReadAllCasesPermission);
+    caseDataModel.setIsAdminQuery(hasReadAllCasesPermission);
   }
 
   public void search() {
@@ -42,8 +44,8 @@ public class SearchResultsDataModel implements Serializable {
 
   public void setKeyword(String keyword) {
     this.keyword = keyword;
-    this.taskDataModel.getQueryCriteria().setKeyword(keyword);
-    this.caseDataModel.getQueryCriteria().setKeyword(keyword);
+    this.taskDataModel.getSearchCriteria().setKeyword(keyword);
+    this.caseDataModel.getSearchCriteria().setKeyword(keyword);
   }
 
   public TaskLazyDataModel getTaskDataModel() {

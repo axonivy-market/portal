@@ -1,7 +1,0 @@
-ApplicationServiceIntergratorData #class
-ch.ivy.add.portalkit.service.integrators #namespace
-applicationNames List<String> #field
-applications List<ch.ivy.ws.addon.IvyApplication> #field
-endpoint String #field
-errors List<ch.ivy.ws.addon.WsException> #field
-server ch.ivy.addon.portalkit.persistence.domain.Server #field

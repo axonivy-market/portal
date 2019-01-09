@@ -3,8 +3,6 @@ package ch.ivy.addon.portalkit.datamodel;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,10 +10,8 @@ import javax.faces.event.ValueChangeEvent;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.SortOrder;
 
-import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterContainer;
 import ch.ivy.addon.portalkit.casefilter.TaskAnalysisCaseFilterContainer;
@@ -24,24 +20,22 @@ import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.enums.TaskAndCaseAnalysisColumn;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
-import ch.ivy.addon.portalkit.service.CaseQueryService;
+import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
+import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
-import ch.ivy.addon.portalkit.service.TaskQueryService;
-import ch.ivy.addon.portalkit.support.CaseQueryCriteria;
-import ch.ivy.addon.portalkit.support.TaskQueryCriteria;
 import ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskAnalysisTaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskStateFilter;
-import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.CaseState;
+import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -50,12 +44,9 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery.OrderByColumnQuery;
 
 public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   
-
   private static final long serialVersionUID = -6615871274830927272L;
 
   private static final String TASK_COLUMN_PREFIX = "TASK_";
-
-  protected TaskQueryCriteria taskQueryCriteria;
 
   protected List<TaskFilter> taskFilters;
   protected List<TaskFilter> selectedTaskFilters;
@@ -68,7 +59,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   private boolean isRelatedTaskDisplayed = false;
   private boolean isNotKeepFilter = false;
 
-  private CaseQueryCriteria caseQueryCriteria;
+  private CaseSearchCriteria caseCriteria;
   protected List<CaseFilter> caseFilters;
   protected List<CaseFilter> selectedCaseFilters;
   protected CaseFilterContainer caseFilterContainer;
@@ -76,16 +67,10 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   public TaskAnalysisLazyDataModel(String taskWidgetComponentId) {
     super();
     this.taskWidgetComponentId = taskWidgetComponentId;
-    data = new ArrayList<>();
-    displayedTaskMap = new HashMap<>();
-    notDisplayedTaskMap = new HashMap<>();
     selectedTaskFilters = new ArrayList<>();
     selectedCaseFilters = new ArrayList<>();
-    searchCriteria = buildCriteria();
-    taskQueryCriteria = buildQueryCriteria();
-    caseQueryCriteria = buildInitQueryCriteria();
-    comparator = comparator(RemoteTask::getId);
-    serverId = SecurityServiceUtils.getServerIdFromSession();
+    criteria = buildCriteria();
+    caseCriteria = buildCaseCriteria();
     if (inProgressFilter != null) {
       isInProgressFilterDisplayed = true;
     } else {
@@ -118,17 +103,17 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   public void initTaskFilters() {
     if (taskFilterContainer == null) {
       if (isRelatedTaskDisplayed) {
-        if (!taskQueryCriteria.getIncludedStates().contains(TaskState.DONE)) {
-          taskQueryCriteria.addIncludedStates(Arrays.asList(TaskState.DONE));
+        if (!criteria.getIncludedStates().contains(TaskState.DONE)) {
+          criteria.addIncludedStates(Arrays.asList(TaskState.DONE));
         }
-        if (!taskQueryCriteria.getIncludedStates().contains(TaskState.UNASSIGNED)) {
-          taskQueryCriteria.addIncludedStates(Arrays.asList(TaskState.UNASSIGNED));
+        if (!criteria.getIncludedStates().contains(TaskState.UNASSIGNED)) {
+          criteria.addIncludedStates(Arrays.asList(TaskState.UNASSIGNED));
         }
       }
       initFilterContainer();
       taskFilters = taskFilterContainer.getFilters();
-      setValuesForStateFilter(taskQueryCriteria);
-      if (searchCriteria.getIgnoreInvolvedUser() && !isRelatedTaskDisplayed) {
+      setValuesForStateFilter(criteria);
+      if (criteria.isAdminQuery() && !isRelatedTaskDisplayed) {
         TaskStateFilter stateFilter = taskFilterContainer.getStateFilter();
         stateFilter.setSelectedFilteredStatesAtBeginning(new ArrayList<>(stateFilter.getSelectedFilteredStates()));
       }
@@ -136,165 +121,66 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   }
 
   @Override
-  public List<RemoteTask> load(int first, int pageSize, String sortField, SortOrder sortOrder,
+  public List<ITask> load(int first, int pageSize, String sortField, SortOrder sortOrder,
       Map<String, Object> filters) {
-    taskQueryCriteria.setSortField(sortField);
-    taskQueryCriteria.setSortDescending(sortOrder == SortOrder.DESCENDING);
+    criteria.setSortField(sortField);
+    criteria.setSortDescending(sortOrder == SortOrder.DESCENDING);
 
     if (first == 0) {
-      initializedDataModel(searchCriteria);
+      initializedDataModel(criteria);
     }
 
-    List<RemoteTask> foundTasks = findTasks(first, pageSize, searchCriteria);
-    putTasksToNotDisplayedTaskMap(foundTasks);
-    List<RemoteTask> notDisplayedTasks = sortTasksInNotDisplayedTaskMap();
-    List<RemoteTask> displayedTasks = getDisplayedTasks(notDisplayedTasks, pageSize);
-    storeDisplayedTasks(displayedTasks);
-
-    return displayedTasks;
+    List<ITask> foundTasks = findTasks(criteria, first, pageSize);
+    return foundTasks;
   }
-
+  
   @Override
-  protected List<RemoteTask> sortTasksInNotDisplayedTaskMap() {
-    List<RemoteTask> notDisplayedTasks = new ArrayList<>();
-    notDisplayedTasks.addAll(notDisplayedTaskMap.values());
-
-    if (taskQueryCriteria.getSortField() == null) {
-      taskQueryCriteria.setSortField(TaskAndCaseAnalysisColumn.TASK_ID.name());
-    }
-
-    if (taskQueryCriteria.getSortField().startsWith(TASK_COLUMN_PREFIX)) {
-      TaskSortField taskSortField = TaskSortField.valueOf(taskQueryCriteria.getSortField().replaceAll(TASK_COLUMN_PREFIX, ""));
-      comparator = generateComparatorForTaskColumns(taskSortField);
-
-      if (taskQueryCriteria.isSortDescending()) {
-        comparator = comparator.reversed();
-      }
-
-      notDisplayedTasks.sort(comparator);
-    }
-    return notDisplayedTasks;
+  protected TaskSearchCriteria buildCriteria() {
+    TaskSearchCriteria criteria = new TaskSearchCriteria();
+    criteria.setQueryForUnassignedTask(false);
+    criteria.setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED)));
+    criteria.setSortField(TaskSortField.ID.toString());
+    criteria.setSortDescending(true);
+    return criteria;
   }
 
-  private Comparator<RemoteTask> generateComparatorForTaskColumns(TaskSortField taskSortField) {
-    switch (taskSortField) {
-      case PRIORITY:
-        return comparator(RemoteTask::getPriority);
-      case CREATION_TIME:
-        return comparator(RemoteTask::getStartTimestamp);
-      case EXPIRY_TIME:
-        return comparatorNullsLast(RemoteTask::getExpiryTimestamp);
-      case STATE:
-        return comparator(RemoteTask::getState);
-      case FINISHED_TIME:
-        return comparator(RemoteTask::getEndTimestamp);
-      case NAME:
-        return comparatorString(RemoteTask::getName);
-      case ACTIVATOR:
-        return comparator(RemoteTask::getActivatorFullName);
-      case CATEGORY:
-        return comparatorString(RemoteTask::getCategoryName);
-      case DESCRIPTION:
-        return comparatorString(RemoteTask::getDescription);
-      case WORKER:
-        return comparator(RemoteTask::getWorkerFullName);
-      default:
-        return comparator(RemoteTask::getId);
-    }
-  }
-
-  /**
-   * Initializes TaskQueryCriteria
-   * 
-   * @return TaskQueryCriteria
-   */
-  @Override
-  protected TaskQueryCriteria buildQueryCriteria() {
-    TaskQueryCriteria jsonQuerycriteria = new TaskQueryCriteria();
-    jsonQuerycriteria.setQueryForUnassignedTask(false);
-    jsonQuerycriteria.setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED,
-        TaskState.PARKED)));
-    jsonQuerycriteria.setSortField(TaskSortField.ID.toString());
-    jsonQuerycriteria.setSortDescending(true);
-    return jsonQuerycriteria;
-  }
-
-  @Override
   public void setSortField(String sortField, boolean sortDescending) {
-    taskQueryCriteria.setSortField(sortField);
-    taskQueryCriteria.setSortDescending(sortDescending);
+    criteria.setSortField(sortField);
+    criteria.setSortDescending(sortDescending);
   }
 
-  @Override
   public void setCategory(String category) {
-    taskQueryCriteria.setCategory(category);
+    criteria.setCategory(category);
   }
 
-  @Override
-  public void setIgnoreInvolvedUser(boolean ignoreInvolvedUser) {
-    if (ignoreInvolvedUser && !taskQueryCriteria.getIncludedStates().contains(TaskState.DONE)) {
-      taskQueryCriteria.addIncludedStates(Arrays.asList(TaskState.DONE));
-      setValuesForStateFilter(taskQueryCriteria);
+  public void setAdminQuery(boolean isAdminQuery) {
+    if (isAdminQuery && !criteria.getIncludedStates().contains(TaskState.DONE)) {
+      criteria.addIncludedStates(Arrays.asList(TaskState.DONE));
+      setValuesForStateFilter(criteria);
     }
-    searchCriteria.setIgnoreInvolvedUser(ignoreInvolvedUser);
+    criteria.setAdminQuery(isAdminQuery);
   }
 
-  @Override
   public void setTaskId(Long taskId) {
-    taskQueryCriteria.setTaskId(taskId);
-    taskQueryCriteria.setIncludedStates(new ArrayList<>());
-    searchCriteria.setQueryByTaskId(true);
+    criteria.setTaskId(taskId);
+    criteria.setIncludedStates(new ArrayList<>());
+    criteria.setQueryByTaskId(true);
   }
 
-  @Override
   public void setCaseId(Long caseId) {
-    taskQueryCriteria.setCaseId(caseId);
+    criteria.setCaseId(caseId);
   }
 
-  @Override
   public void setQueryByBusinessCaseId(boolean isQueryByBusinessCaseId) {
-    taskQueryCriteria.setQueryByBusinessCaseId(isQueryByBusinessCaseId);
+    criteria.setQueryByBusinessCaseId(isQueryByBusinessCaseId);
   }
 
-  @Override
-  public void setInvolvedApplications(String... involvedApplications) {
-    searchCriteria.setInvolvedApplications(involvedApplications);
+  public void setApps(List<String> apps) {
+    criteria.setApps(apps);
   }
 
-  @Override
   public void setTaskAssigneeType(TaskAssigneeType assigneeType) {
-    taskQueryCriteria.setTaskAssigneeType(assigneeType);
-  }
-
-  @Override
-  public String getSortField() {
-    return taskQueryCriteria.getSortField();
-  }
-
-  @Override
-  public boolean isSortDescending() {
-    return taskQueryCriteria.isSortDescending();
-  }
-
-  @Override
-  public void setIncludedStates(List<TaskState> includedStates) {
-    this.taskQueryCriteria.setIncludedStates(includedStates);
-    setValuesForStateFilter(this.taskQueryCriteria);
-  }
-
-  @Override
-  public void addIncludedStates(List<TaskState> includedStates) {
-    this.taskQueryCriteria.addIncludedStates(includedStates);
-    setValuesForStateFilter(this.taskQueryCriteria);
-  }
-
-  public void setTaskQueryCriteria(TaskQueryCriteria queryCriteria) {
-    this.taskQueryCriteria = queryCriteria;
-  }
-
-  @Override
-  public TaskQueryCriteria getQueryCriteria() {
-    return taskQueryCriteria;
+    criteria.setTaskAssigneeType(assigneeType);
   }
 
   public List<TaskFilter> getTaskFilters() {
@@ -399,53 +285,50 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   }
 
   /**
-   * Builds and converts TaskQuery to JsonQuery and put it into TaskSearchCriteria.
-   * 
+   * Builds TaskQuery and put it into TaskSearchCriteria.
    */
   @Override
   protected void buildQueryToSearchCriteria() {
-    if (taskQueryCriteria.getTaskQuery() == null) {
-      String jsonQuery =
-          SubProcessCall.withPath("Functional Processes/BuildTaskJsonQuery").withStartSignature("buildTaskJsonQuery()")
-              .call().get("jsonQuery", String.class);
-      TaskQuery customizedTaskQuery =
-          StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
-      taskQueryCriteria.setTaskQuery(customizedTaskQuery);
+    if (criteria.getCustomTaskQuery() == null) {
+      TaskQuery taskQuery = SubProcessCall.withPath("Functional Processes/BuildTaskQuery")
+          .withStartSignature("buildTaskQuery(Boolean)").withParam("isQueryForHomePage", compactMode).call()
+          .get("taskQuery", TaskQuery.class);
+      criteria.setCustomTaskQuery(taskQuery);
     }
 
     if (taskFilterContainer != null) {
       if (selectedTaskFilters.contains(taskFilterContainer.getStateFilter())) {
-        taskQueryCriteria.setIncludedStates(new ArrayList<>());
+        criteria.setIncludedStates(new ArrayList<>());
       } else {
-        taskQueryCriteria.setIncludedStates(taskFilterContainer.getStateFilter().getSelectedFilteredStates());
+        criteria.setIncludedStates(taskFilterContainer.getStateFilter().getSelectedFilteredStates());
       }
     }
     if (caseFilterContainer != null) {
       if (selectedCaseFilters.contains(caseFilterContainer.getStateFilter())) {
-        caseQueryCriteria.setIncludedStates(new ArrayList<>());
+        caseCriteria.setIncludedStates(new ArrayList<>());
       } else {
-        caseQueryCriteria.setIncludedStates(caseFilterContainer.getStateFilter().getSelectedFilteredStates());
+        caseCriteria.setIncludedStates(caseFilterContainer.getStateFilter().getSelectedFilteredStates());
       }
     }
 
-    searchCriteria.setTaskStartedByAnotherDisplayed(inProgressFilter.getIsTaskInProgressByOthersDisplayed());
+    criteria.setTaskStartedByAnotherDisplayed(inProgressFilter.getIsTaskInProgressByOthersDisplayed());
 
     TaskQuery taskQuery = buildTaskQuery();
     CaseQuery caseQuery = buildCaseQuery();
     taskQuery = taskQuery.where().cases(caseQuery);
 
-    String sortField = taskQueryCriteria.getSortField();
+    String sortField = criteria.getSortField();
     if (sortField.startsWith(TASK_COLUMN_PREFIX)) {
       buildSortTaskQuery(taskQuery);
     }
 
     extendSort(taskQuery);
-    searchCriteria.setJsonQuery(taskQuery.asJson());
+    criteria.setFinalTaskQuery(taskQuery);
   }
 
   @Override
   protected TaskQuery buildTaskQuery() {
-    TaskQuery taskQuery = TaskQueryService.service().createQuery(taskQueryCriteria);
+    TaskQuery taskQuery = criteria.createQuery();
     IFilterQuery filterQuery = taskQuery.where();
     selectedTaskFilters.forEach(selectedFilter -> {
       TaskQuery subQuery = selectedFilter.buildQuery();
@@ -457,7 +340,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   }
 
   private CaseQuery buildCaseQuery() {
-    CaseQuery caseQuery = CaseQueryService.service().createQuery(caseQueryCriteria);
+    CaseQuery caseQuery = caseCriteria.createQuery();
     CaseQuery.IFilterQuery filterQuery = caseQuery.where();
     selectedCaseFilters.forEach(selectedFilter -> {
       CaseQuery subQuery = selectedFilter.buildQuery();
@@ -469,7 +352,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   }
 
   private void buildSortTaskQuery(TaskQuery taskQuery) {
-    TaskAndCaseAnalysisColumn sortColumn = TaskAndCaseAnalysisColumn.valueOf(taskQueryCriteria.getSortField());
+    TaskAndCaseAnalysisColumn sortColumn = TaskAndCaseAnalysisColumn.valueOf(criteria.getSortField());
     OrderByColumnQuery orderQuery = null;
     switch (sortColumn) {
       case TASK_ACTIVATOR:
@@ -508,7 +391,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     }
     
     if (sortColumn == TaskAndCaseAnalysisColumn.TASK_EXPIRY_TIME) {
-      if (taskQueryCriteria.isSortDescending()) {
+      if (criteria.isSortDescending()) {
         orderQuery.descendingNullFirst();
       } else {
         orderQuery.ascendingNullLast();
@@ -516,7 +399,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
       return;
     }
 
-    if (taskQueryCriteria.isSortDescending()) {
+    if (criteria.isSortDescending()) {
       orderQuery.descending();
     } else {
       orderQuery.ascending();
@@ -525,7 +408,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
 
   @Override
   public void setQueryForUnassignedTask(boolean isQueryForOnlyUnassignedTask) {
-    this.taskQueryCriteria.setQueryForUnassignedTask(isQueryForOnlyUnassignedTask);
+    this.criteria.setQueryForUnassignedTask(isQueryForOnlyUnassignedTask);
   }
 
   @Override
@@ -534,12 +417,13 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     initCaseFilters();
   }
 
-  private void setValuesForCaseStateFilter(CaseQueryCriteria criteria) {
+  private void setValuesForCaseStateFilter(CaseSearchCriteria criteria) {
     if (caseFilterContainer != null) {
       caseFilterContainer.getStateFilter().setFilteredStates(new ArrayList<>(criteria.getIncludedStates()));
       caseFilterContainer.getStateFilter().setSelectedFilteredStates(criteria.getIncludedStates());
     }
   }
+  
   @SuppressWarnings("unchecked")
   public void onCaseFilterChange(ValueChangeEvent event) {
     List<CaseFilter> oldSelectedFilters = (List<CaseFilter>) event.getOldValue();
@@ -572,13 +456,12 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   }
 
   ///================
-  protected CaseQueryCriteria buildInitQueryCriteria() {
-    CaseQueryCriteria jsonQueryCriteria = new CaseQueryCriteria();
-    jsonQueryCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING,
-        CaseState.DONE)));
-    jsonQueryCriteria.setSortField(CaseSortField.ID.toString());
-    jsonQueryCriteria.setSortDescending(true);
-    return jsonQueryCriteria;
+  protected CaseSearchCriteria buildCaseCriteria() {
+    CaseSearchCriteria caseCriteria = new CaseSearchCriteria();
+    caseCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
+    caseCriteria.setSortField(CaseSortField.ID.toString());
+    caseCriteria.setSortDescending(true);
+    return caseCriteria;
   }
 
   private void restoreSessionAdvancedCaseFilters() throws IllegalAccessException, InvocationTargetException {
@@ -608,7 +491,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     if (caseFilterContainer == null) {
       initCaseFilterContainer();
       caseFilters = caseFilterContainer.getFilters();
-      setValuesForCaseStateFilter(caseQueryCriteria);
+      setValuesForCaseStateFilter(caseCriteria);
       restoreSessionAdvancedCaseFilters();
     }
   }

@@ -17,7 +17,7 @@
         </p:columnToggler>
       </h:panelGroup>
 
-      <p:dataTable id="task-table" widgetVar="task-table" var="task" value="#{data.dataModel}" rowKey="#{task.id}" sortMode="single"
+      <p:dataTable id="task-table" widgetVar="task-table" var="task" value="#{data.dataModel}" rowKey="#{task.getId()}" sortMode="single"
          lazy="true" scrollable="true" liveScroll="true" scrollRows="20" styleClass="task-table" sortBy="#{TASK_NAME}" rows="#{cc.attrs.chunkSize}">
          
 		<p:ajax  event="sort" update="task-table" onstart="liveScroll()"/>
@@ -66,7 +66,7 @@
         <p:column id="task-id" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskID')}" sortBy="#{TASK_ID}" width="120"
           visible="#{taskAnalysisWidgetBean.columns['TASK_ID']}"
           exportable="#{taskAnalysisWidgetBean.columns['TASK_ID']}">
-          <h:outputText value="#{task.id}" />
+          <h:outputText value="#{task.getId()}" />
         </p:column>
 
         <p:column id="task-category" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskCategory')}" sortBy="#{TASK_CATEGORY}" width="200"

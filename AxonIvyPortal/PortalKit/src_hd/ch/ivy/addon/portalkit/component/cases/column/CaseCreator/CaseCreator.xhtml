@@ -4,7 +4,7 @@
   xmlns:ic="http://ivyteam.ch/jsf/component">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="case" type="ch.ivy.addon.portalkit.bo.RemoteCase" />
+  <cc:attribute name="case" type="ch.ivyteam.ivy.workflow.ICase" />
   <cc:attribute name="componentId" default="case-creator-cell" />
   <cc:attribute name="dataModel" />
   <cc:attribute name="styleClass" />
@@ -16,6 +16,6 @@
 
   <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText id="#{cc.attrs.componentId}" 
     styleClass="case-header-creator-cell #{cc.attrs.styleClass} #{dataModel.isAutoHideColumns()?'js-creator-cell':''}" 
-    fullname="#{case.creatorFullName}" username="#{case.creatorUserName}" rendered="#{dataModel.isSelectedColumn('CREATOR')}"/>
+    fullname="#{case.getCreatorUser().getFullName()}" username="#{case.getCreatorUserName()}" rendered="#{dataModel.isSelectedColumn('CREATOR')}"/>
 </cc:implementation>
 </html>

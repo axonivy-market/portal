@@ -22,14 +22,13 @@
     <span class="case-header-name-cell">
       <h:form id="case-name-form">
       <p:inplace id="case-name-edit-inplace" editor="true" rendered="#{expanded and case.state ne 'DONE'}"
-        disabled="#{!case.canChangeName}" saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+        disabled="#{!caseActionBean.canChangeName(case)}" saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
         cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" widgetVar="case-name-edit-inplace"
         label="#{empty case.getName() ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CasesNameIsNot') : case.name}">
         <p:inputText id="case-name-input" value="#{case.name}" maxlength="200" styleClass="case-name-input"
           onkeypress="if(event.keyCode == 13) {PF('case-name-edit-inplace').save()}" />
-        <p:ajax event="save" listener="#{logic.updateName(case)}" process="case-name-edit-inplace"
-          update="case-name-edit-inplace" />
-        <f:passThroughAttribute name="onclick" value="if('#{case.canChangeName}'=='true') {event.stopPropagation()}" />
+        <p:ajax event="save" process="case-name-edit-inplace" />
+        <f:passThroughAttribute name="onclick" value="if('#{caseActionBean.canChangeName(case)}'=='true') {event.stopPropagation()}" />
       </p:inplace>
       </h:form>
     </span>

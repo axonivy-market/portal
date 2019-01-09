@@ -6,7 +6,7 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="case" type="ch.ivy.addon.portalkit.bo.RemoteCase" />
+  <cc:attribute name="case" type="ch.ivyteam.ivy.workflow.ICase" />
   <cc:attribute name="componentToUpdate" />
 </cc:interface>
 
@@ -21,12 +21,12 @@
           <h:panelGroup layout="block" rendered="#{document ne null}"
             styleClass="#{status.even ? 'document-even-row' : 'document-odd-row'}">
             <p:commandLink ajax="false" id="download" styleClass="download-command js-download-command">
-              <p:fileDownload value="#{logic.downloadDocument(document,case)}" />
+              <p:fileDownload value="#{logic.downloadDocument(document)}" />
               <span class="fa fa-file-pdf-o case-details-document-download-icon" />
               <h:outputText value="#{document.name}" styleClass="js-document-name" />
             </p:commandLink>
-            <p:commandLink id="delete-file" actionListener="#{logic.setDataToDelete(document, case)}"
-              rendered="#{!(case.state eq 'DONE' and data.isHideUploadDocumentForDoneCase) and case.canUploadDeleteDocument}"
+            <p:commandLink id="delete-file" actionListener="#{data.setDocument(document)}"
+              rendered="#{!(case.state eq 'DONE' and data.isHideUploadDocumentForDoneCase) and caseActionBean.canWriteDocument(case)}"
               styleClass="fa fa-times Fright" oncomplete="PF('document-deletion-dialog-#{case.id}').show()">
               <p:tooltip for="delete-file"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/deleteFile')} #{document.name}" />
@@ -42,8 +42,8 @@
 
     <h:panelGroup layout="block" styleClass="case-details-document-add">
       <p:commandLink id="add-document-command" styleClass="case-details-document-add-link"
-        rendered="#{!(case.state eq 'DONE' and data.isHideUploadDocumentForDoneCase) and case.canUploadDeleteDocument}"
-        actionListener="#{data.setRemoteCase(case)}" oncomplete="PF('document-upload-dialog-#{case.id}').show()">
+        rendered="#{!(case.state eq 'DONE' and data.isHideUploadDocumentForDoneCase) and caseActionBean.canWriteDocument(case)}"
+        actionListener="#{data.setICase(case)}" oncomplete="PF('document-upload-dialog-#{case.id}').show()">
         <span class="fa fa-plus-circle case-details-document-add-link-icon" />
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}" />
       </p:commandLink>

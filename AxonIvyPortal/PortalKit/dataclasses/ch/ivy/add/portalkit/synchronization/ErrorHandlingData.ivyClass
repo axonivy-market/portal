@@ -1,6 +1,0 @@
-ErrorHandlingData #class
-ch.ivy.add.portalkit.synchronization #namespace
-maximumRetryTimes Integer #field
-message String #field
-retryTime Integer #field
-action String #field

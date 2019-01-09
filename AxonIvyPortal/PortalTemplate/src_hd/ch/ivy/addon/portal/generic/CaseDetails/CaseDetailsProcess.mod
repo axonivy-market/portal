@@ -51,7 +51,7 @@ Cs0 f3 actionTable 'out=in;
 ' #txt
 Cs0 f3 actionCode 'import ch.ivy.addon.portalkit.util.CaseUtils;
 
-in.currentCase = CaseUtils.findRemoteCaseById(in.currentCaseId);' #txt
+in.currentCase = CaseUtils.findCase(in.currentCaseId);' #txt
 Cs0 f3 type ch.ivy.addon.portal.generic.CaseDetails.CaseDetailsData #txt
 Cs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

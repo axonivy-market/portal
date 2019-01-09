@@ -2,12 +2,10 @@ PortalDashBoardData #class
 ch.ivy.addon.portal.generic.admin.PortalDashBoard #namespace
 statisticChartList java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> #field
 statisticChartList PERSISTENT #fieldModifier
-serverId Long #field
-serverId PERSISTENT #fieldModifier
 involvedApplications List<String> #field
 involvedApplications PERSISTENT #fieldModifier
 menuState String #field
 menuState PERSISTENT #fieldModifier
-jsonQuery String #field
-jsonQuery 'Customized TaskQuery' #fieldComment
-jsonQuery PERSISTENT #fieldModifier
+taskQuery ch.ivyteam.ivy.workflow.query.TaskQuery #field
+taskQuery 'Customized TaskQuery' #fieldComment
+taskQuery PERSISTENT #fieldModifier

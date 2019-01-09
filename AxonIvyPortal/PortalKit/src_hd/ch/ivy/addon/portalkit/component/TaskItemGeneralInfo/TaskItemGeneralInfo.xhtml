@@ -5,7 +5,7 @@
   xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="task" type="ch.ivy.addon.portalkit.bo.RemoteTask" />
+  <cc:attribute name="task" type="ch.ivyteam.ivy.workflow.ITask" />
   <cc:attribute name="priorityComponentToUpdate" />
   <cc:attribute name="componentToUpdate" />
   <cc:attribute name="styleClass" />
@@ -19,7 +19,7 @@
       rowClasses="task-details-row-space">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/PRIORITY')}" />
       <h:panelGroup styleClass="task-details-priority">
-        <ui:fragment rendered="#{taskBean.canChangeOriginalPriority(task)}">
+        <ui:fragment rendered="#{taskActionBean.canChangePriority(task)}">
           <h:form id="priority-form">
             <p:inplace id="edit-priority-inplace" effectSpeed="fast"
               saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
@@ -37,8 +37,7 @@
                   <h:outputText value="#{taskBean.getPriority(task.priority)}" />
                 </h:panelGroup>
               </f:facet>
-              <p:ajax event="save" listener="#{logic.updatePriority(task)}"
-                update="priority-form #{cc.attrs.priorityComponentToUpdate}" />
+              <p:ajax event="save" update="priority-form #{cc.attrs.priorityComponentToUpdate}" />
               <p:selectOneMenu id="priority-select-menu" value="#{task.priority}" styleClass="task-details-priority">
                 <f:selectItems value="#{task.getPriority().values()}" var="priority"
                   itemLabel="#{taskBean.getPriority(priority)}" itemValue="#{priority}" />
@@ -46,7 +45,7 @@
             </p:inplace>
           </h:form>
         </ui:fragment>
-        <ui:fragment rendered="#{not taskBean.canChangeOriginalPriority(task)}">
+        <ui:fragment rendered="#{not taskActionBean.canChangePriority(task)}">
           <h:panelGroup rendered="#{task.priority == 'LOW'}"
             styleClass="fa fa-circle task-priority-low task-details-data-priority-icon" />
           <h:panelGroup rendered="#{task.priority == 'NORMAL'}"
@@ -60,34 +59,30 @@
       </h:panelGroup>
 
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/workingUser')}" />
-      <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText fullname="#{task.workerFullName}"
-        username="#{task.workerUserName}" />
+      <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText fullname="#{task.getWorkerUser().getDisplayName()}"
+        username="#{task.getWorkerUserName()}" />
 
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}" />
-      <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText fullname="#{task.activatorFullName}"
-        username="#{task.activatorUserName}" />
+      <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText fullname="#{task.getActivator().getDisplayName()}"
+        username="#{task.getActivatorName()}" />
 
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/afterEscalation')}" />
-      <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText fullname="#{task.expiryActivatorFullName}"
-        username="#{task.expiryActivatorName}" />
+      <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText fullname="#{task.getExpiryActivator().getDisplayName()}"
+        username="#{task.getExpiryActivatorName()}" />
       
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/taskCategory')}" />
       <h:outputText id="task-category" value="#{task.categoryPath}" />
 
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/businessCase')}" />
       <p:commandLink id="related-case" value="#{taskBean.displayCaseName(task)}"
-        actionListener="#{logic.navigateToRelatedCase}">
-        <f:attribute name="selectedCase" value="#{task.case}" />
-      </p:commandLink>
+        actionListener="#{logic.navigateToRelatedCase(task.getCase().getBusinessCase())}" />
       
       <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseCategory')}" />
-      <h:outputText id="case-category" value="#{task.case.categoryPath}" />
+      <h:outputText id="case-category" value="#{task.getCase().getBusinessCase().categoryPath}" />
 
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/technicalCase')}"
-        rendered="#{task.remoteTechnicalCase.id ne task.case.id}" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/technicalCase')}" />
       <p:commandLink id="related-technical-case" value="#{taskBean.getTechnicalCaseDisplayName(task)}"
-        actionListener="#{logic.navigateToRelatedCase}" rendered="#{task.remoteTechnicalCase.id ne task.case.id}">
-        <f:attribute name="selectedCase" value="#{task.remoteTechnicalCase}" />
+        actionListener="#{logic.navigateToRelatedCase(task.getCase())}">
       </p:commandLink>
 
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}" />
@@ -105,7 +100,7 @@
             saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
             cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
             label="#{formattingNullWrapperBean.format(task.expiryTimestamp)}"
-            rendered="#{taskBean.canChangeExpiry(task)}">
+            rendered="#{taskActionBean.canChangeExpiry(task)}">
             <p:ajax event="save" listener="#{logic.updateDeadline(task)}" update="#{cc.attrs.componentToUpdate}" />
             <p:ajax event="cancel" resetValues="true" />
             <p:calendar id="expiry-calendar" styleClass="task-details-data-expiry" value="#{task.expiryTimestamp}"
@@ -116,7 +111,7 @@
         </h:form>
         <h:outputText id="noExpiryAvailable"
           value="#{empty task.expiryTimestamp ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable') : task.expiryTimestamp}"
-          rendered="#{!taskBean.canChangeExpiry(task)}">
+          rendered="#{!taskActionBean.canChangeExpiry(task)}">
           <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
         </h:outputText>
       </ui:fragment>
@@ -139,16 +134,16 @@
       </h:outputText>
     </h:panelGrid>
     <p:tooltip for="task-category" value="#{task.categoryPath}" trackMouse="true" />
-    <p:tooltip for="case-category" value="#{task.case.categoryPath}" trackMouse="true" />
+    <p:tooltip for="case-category" value="#{task.getCase().getBusinessCase().categoryPath}" trackMouse="true" />
     <p:tooltip for="related-case"
-      value="##{task.getCase().id} #{task.getCase().name} (#{caseBean.getState(task.getCase()).toUpperCase()})"
+      value="##{task.getCase().getBusinessCase().id} #{task.getCase().getBusinessCase().name} (#{caseBean.getState(task.getCase().getBusinessCase()).toUpperCase()})"
       trackMouse="true" />
     <p:tooltip for="related-technical-case"
-      value="##{task.getRemoteTechnicalCase().id} #{task.getRemoteTechnicalCase().name} (#{caseBean.getState(task.getRemoteTechnicalCase()).toUpperCase()})"
+      value="##{task.getCase().id} #{task.getCase().name} (#{caseBean.getState(task.getCase()).toUpperCase()})"
       trackMouse="true" />
     <p:tooltip for="noExpiryAvailable expiryLabel"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/taskExpiryDisable')}" trackMouse="true"
-      rendered="#{taskBean.isNotDone(task) and taskBean.notHaveExpiryHandleLogic(task)}" />
+      rendered="#{taskBean.isNotDone(task) and taskActionBean.notHaveExpiryHandleLogic(task)}" />
   </div>
 </cc:implementation>
 </html>

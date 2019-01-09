@@ -1,5 +1,5 @@
 [Ivy]
-14EB4D799BBF04C8 3.20 #module
+14EB4D799BBF04C8 3.23 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalDashBoardProcess Big #zClass
 Ps0 RD #cInfo
@@ -55,7 +55,6 @@ Ps0 f4 actionTable 'out=in;
 ' #txt
 Ps0 f4 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 
-in.serverId = SecurityServiceUtils.getServerIdFromSession();
 String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
 if (#applicationName is initialized) {
 	in.involvedApplications = [applicationName];
@@ -99,19 +98,19 @@ Ps0 f6 @|RichDialogInitStartIcon #fIcon
 Ps0 f7 expr out #txt
 Ps0 f7 120 137 207 76 #arcP
 Ps0 f8 type ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData #txt
-Ps0 f8 processCall 'Functional Processes/BuildTaskJsonQuery:buildTaskJsonQuery()' #txt
+Ps0 f8 processCall 'Functional Processes/BuildTaskQuery:buildTaskQuery()' #txt
 Ps0 f8 doCall true #txt
 Ps0 f8 requestActionDecl '<> param;
 ' #txt
 Ps0 f8 responseActionDecl 'ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData out;
 ' #txt
 Ps0 f8 responseMappingAction 'out=in;
-out.jsonQuery=result.jsonQuery;
+out.taskQuery=result.taskQuery;
 ' #txt
 Ps0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>BuildTaskJsonQuery</name>
+        <name>BuildTaskQuery</name>
     </language>
 </elementInfo>
 ' #txt

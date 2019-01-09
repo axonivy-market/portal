@@ -98,16 +98,15 @@ public class UserMenuBean implements Serializable {
       }
     }
 
-    Long serverId = SecurityServiceUtils.getServerIdFromSession();
     String selectedApp = SecurityServiceUtils.getApplicationNameFromSession();
     String selectedAppDisplayName = SecurityServiceUtils.getApplicationDisplayNameFromSession();
 
-    if (isDefaultPortalApp() || serverId == null || selectedApp == null || selectedAppDisplayName == null) {
+    if (isDefaultPortalApp() || selectedApp == null || selectedAppDisplayName == null) {
       return SecurityServiceUtils.getDefaultPortalStartUrl();
     }
 
     Application selectedApplication =
-        applicationService.findByDisplayNameAndNameAndServerId(selectedAppDisplayName, selectedApp, serverId);
+        applicationService.findByDisplayNameAndName(selectedAppDisplayName, selectedApp);
     return selectedApplication.getLink();
   }
 

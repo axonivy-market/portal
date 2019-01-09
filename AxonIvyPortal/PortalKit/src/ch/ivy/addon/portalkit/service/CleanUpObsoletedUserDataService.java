@@ -12,7 +12,6 @@ import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
-import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IUser;
@@ -100,11 +99,10 @@ public class CleanUpObsoletedUserDataService {
   }
 
   private void cleanUpUserTaskColumnsConfigData() {
-    Long serverId = SecurityServiceUtils.getServerIdFromSession();
     List<Long> userIds = currentUsers.stream().map(RemoteUser::getId).collect(Collectors.toList());
     Long applicationId = Ivy.request().getApplication().getId();
     TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
-    List<TaskColumnsConfiguration> allColumnConfigs = service.getAllConfiguration(serverId, applicationId);
+    List<TaskColumnsConfiguration> allColumnConfigs = service.getAllConfiguration(applicationId);
     if (allColumnConfigs != null) {
       for (TaskColumnsConfiguration columnConfig : allColumnConfigs) {
         if (!userIds.contains(columnConfig.getUserId())) {
@@ -115,11 +113,10 @@ public class CleanUpObsoletedUserDataService {
   }
   
   private void cleanUpUserCaseColumnsConfigData() {
-    Long serverId = SecurityServiceUtils.getServerIdFromSession();
     List<Long> userIds = currentUsers.stream().map(RemoteUser::getId).collect(Collectors.toList());
     Long applicationId = Ivy.request().getApplication().getId();
     CaseColumnsConfigurationService service = new CaseColumnsConfigurationService();
-    List<CaseColumnsConfiguration> allColumnConfigs = service.getAllConfiguration(serverId, applicationId);
+    List<CaseColumnsConfiguration> allColumnConfigs = service.getAllConfiguration(applicationId);
     if (allColumnConfigs != null) {
       for (CaseColumnsConfiguration columnConfig : allColumnConfigs) {
         if (!userIds.contains(columnConfig.getUserId())) {

@@ -29,16 +29,16 @@
     <ui:define name="pageContent">
     <div class="task-list-container js-task-list-container">
       <div>
-        <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" keyword="#{taskView.dataModel.queryCriteria.keyword}"
+        <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" keyword="#{taskView.dataModel.searchCriteria.keyword}"
           hideTaskFilter="#{taskView.hideTaskFilter}" dataModel="#{taskView.dataModel}" filterGroupId="#{filterGroupId}"
-          showHeaderToolbar="#{taskView.showHeaderToolbar}" compactMode="false" selectedTaskId="#{taskView.remoteTaskId}"
+          showHeaderToolbar="#{taskView.showHeaderToolbar}" compactMode="false" selectedTaskId="#{taskView.taskId}"
           selectedTaskServerId="#{taskView.dataModel.serverId}" noTaskFoundMessage="#{taskView.noTaskFoundMessage}"
           hideWidgetHeader="#{hideWidgetHeader}">
             <f:facet name="title">
               <h:form rendered="#{taskView.canLinkBackCaseDetail()}" prependId="false">
               #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader')} 
-              <h:commandLink value="##{taskView.dataModel.queryCriteria.caseId}" styleClass="ui-link"
-                  actionListener="#{navigatorBean.navigateToCaseDetail(taskView.dataModel.caseName, taskView.dataModel.queryCriteria.caseId, dataModel.serverId)}" />
+              <h:commandLink value="##{taskView.dataModel.searchCriteria.caseId}" styleClass="ui-link"
+                  actionListener="#{navigatorBean.navigateToCaseDetail(taskView.dataModel.caseName, taskView.dataModel.searchCriteria.caseId)}" />
               #{taskView.dataModel.caseName}
             </h:form>
               <h:outputText rendered="#{!taskView.canLinkBackCaseDetail()}"
@@ -68,11 +68,11 @@
                   priority="#{task.priority}" dataModel="#{taskView.dataModel}" />
                 <div class="task-start-info">
                   <ic:ch.ivy.addon.portalkit.component.task.column.TaskName id="task-name-component" task="#{task}" dataModel="#{taskView.dataModel}"
-                    isSelected="#{taskView.remoteTaskId eq task.id and dataModel.serverId eq task.getApplicationRegister().serverId}" />
+                    isSelected="#{taskView.taskId eq task.getId()}" />
                 </div>
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible id="task-responsible-component" dataModel="#{taskView.dataModel}"
-                  userName="#{task.activatorUserName}" fullName="#{task.activatorFullName}" styleClass="activatior-column #{taskView.dataModel.isAutoHideColumns()? 'hidden-sm':''}" />
-                <ic:ch.ivy.addon.portalkit.component.task.column.TaskId id="task-id-component" value="#{task.id}" dataModel="#{taskView.dataModel}" />
+                  userName="#{task.getActivatorName()}" fullName="#{task.getActivator().getDisplayName()}" styleClass="activatior-column #{taskView.dataModel.isAutoHideColumns()? 'hidden-sm':''}" />
+                <ic:ch.ivy.addon.portalkit.component.task.column.TaskId id="task-id-component" value="#{task.getId()}" dataModel="#{taskView.dataModel}" />
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-creation-date-component" rendered="#{taskView.dataModel.isSelectedColumn('CREATION_TIME')}"
                   componentId="creation-time" value="#{task.startTimestamp}" styleClass="#{taskView.dataModel.isAutoHideColumns()?'js-create-cell':''}" />
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-expiry-date-component" rendered="#{taskView.dataModel.isSelectedColumn('EXPIRY_TIME')}"
