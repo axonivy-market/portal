@@ -100,7 +100,9 @@ if (task != null){
 }
 
 ICase iCase = CaseUtils.findcase(in.caseId);
-CaseUtils.setHidePropertyToHideInPortal(iCase);' #txt
+if (iCase != null){
+	CaseUtils.setHidePropertyToHideInPortal(iCase);
+}' #txt
 Hs0 f9 type ch.ivy.addon.portalkit.test.HideTaskCase.HideTaskCaseData #txt
 Hs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
