@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Wed Jul 06 14:40:22 ICT 2016]
-14C7834636E63BEA 3.18 #module
+14C7834636E63BEA 3.23 #module
 >Proto >Proto Collection #zClass
 Fr0 FindApplicationsByUser Big #zClass
 Fr0 B #cInfo
@@ -204,9 +203,9 @@ ApplicationService applicationService = new ApplicationService();
 
 List users = userService.findByUserName(in.username);
 
-if(!users.isEmpty()){
-	for(User user: users){
-		in.applications.addAll(applicationService.findByNameAndServerId(user.applicationName,user.serverId));
+if (!users.isEmpty()){
+	for (User user: users){
+		in.applications.addAll(applicationService.findByNameAndServerId(user.applicationName, user.serverId));
 	}
 }' #txt
 Fr0 f16 type ch.ivyteam.wf.processes.FindApplicationsByUserData #txt

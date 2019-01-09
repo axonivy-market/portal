@@ -31,19 +31,17 @@ public abstract class AbstractDao<T extends BusinessEntity> {
   }
 
   /**
-   * Sets relationship object of entity. E.g: If the entity is an Application, this method will find Server of that
-   * Application and then set the Server to Application When subclass implements this method, it should find the related
-   * object of its entity, and set the related object to the entity
-   * 
+   * Sets relationship object of entity. 
+   * E.g: If the entity is an Application, this method will find Server of that Application and then set the Server to Application 
+   * When subclass implements this method, it should find the related object of its entity, and set the related object to the entity
    * @param entity
    */
   @ExecuteAsSystem
-  protected void setRelationshipDataFor(@SuppressWarnings("unused") T entity) {}
+  protected void setRelationshipDataFor(@SuppressWarnings("unused") T entity){}
 
   protected enum EntityProperty {
-    ID("id"), NAME("name"), USER_NAME("userName"), APPLICATION_ID("applicationId"), IS_ONLINE(
-        "isOnline"), KEY("key"), APPLICATION_NAME("applicationName"), DISPLAY_NAME("displayName"), DEFAULT_PROCESS(
-        "defaultProcess"), DELETED("deleted"), IS_VISIBLE("isVisible"), IS_ABSENCE_ENABLED("isSupportAbsenceSettings"), IS_EMAIL_ENABLED("isSupportEmailSettings");
+    ID("id"), NAME("name"), SERVER_ID("serverId"), USER_NAME("userName"), APPLICATION_ID("applicationId"), IS_ONLINE(
+        "isOnline"), IS_VISIBLE("isVisible"), IS_ABSENCE_ENABLED("isSupportAbsenceSettings"), KEY("key"), APPLICATION_NAME("applicationName"), DISPLAY_NAME("displayName"), DEFAULT_PROCESS("defaultProcess"), DELETED("deleted");
 
     private String value;
 
@@ -64,7 +62,7 @@ public abstract class AbstractDao<T extends BusinessEntity> {
    */
   @ExecuteAsSystem
   public List<Property> getAllPortalDataProperties() {
-    List<Property> portalDatas = new ArrayList<>();
+    List<Property> portalDatas = new ArrayList<Property>();
     try {
       List<ICustomProperty> customProperties = findAllStartingWithPrefix(PropertyKey.PORTAL_PROPERTY_START);
       for (ICustomProperty customProperty : customProperties) {
@@ -95,8 +93,8 @@ public abstract class AbstractDao<T extends BusinessEntity> {
   }
 
   /**
-   * Finded an entity by its Id. This method will not set relationship data for this entity. E.g.: It won't set Server
-   * object for Application.
+   * Finded an entity by its Id. This method will not set relationship data for this entity. E.g.:
+   * It won't set Server object for Application.
    * 
    * @param id
    * @return {@link BusinessEntity entity}
@@ -105,12 +103,13 @@ public abstract class AbstractDao<T extends BusinessEntity> {
     String entityPropertyKey = getEntityPropertyKey(id);
     ICustomProperty customProperty = findPropertyByKey(entityPropertyKey);
     String jsonValue = getCustomPropertyValue(customProperty);
-    return parseJsonToObject(jsonValue);
+    T entity = parseJsonToObject(jsonValue);
+    return entity;
   }
 
   @ExecuteAsSystem
   public List<T> findAll() {
-    List<T> entities = new ArrayList<>();
+    List<T> entities = new ArrayList<T>();
     String propertyPrefixKey = getPropertyPrefixKey();
     List<ICustomProperty> properties = findAllStartingWithPrefix(propertyPrefixKey);
     for (ICustomProperty property : properties) {
@@ -142,11 +141,13 @@ public abstract class AbstractDao<T extends BusinessEntity> {
     } else {
       entityValue = modifyData(entity);
     }
-    return parseJsonToObject(entityValue);
+    T savedEntity = parseJsonToObject(entityValue);
+    return savedEntity;
   }
 
   private boolean isAddMode(T entity) {
-    return entity.getId() == null;
+    boolean isAddMode = entity.getId() == null;
+    return isAddMode;
   }
 
   private String saveNewData(T entity) {
@@ -183,7 +184,7 @@ public abstract class AbstractDao<T extends BusinessEntity> {
   }
 
   public List<T> saveAll(List<T> entities) {
-    List<T> savedEntities = new ArrayList<>();
+    List<T> savedEntities = new ArrayList<T>();
     for (T entity : entities) {
       T savedEntity = save(entity);
       savedEntities.add(savedEntity);
@@ -202,9 +203,9 @@ public abstract class AbstractDao<T extends BusinessEntity> {
   }
 
   /**
-   * There is a security risk when publishing this method. In this method, it gets all {@code ICustomProperty} of system
-   * without permission checking, so it is very dangerous if user get another {@code ICustomProperty} which we do not
-   * allow.
+   * There is a security risk when publishing this method. In this method, it gets all
+   * {@code ICustomProperty} of system without permission checking, so it is very dangerous if user
+   * get another {@code ICustomProperty} which we do not allow.
    * 
    * @return {@code ICustomProperties}
    */
@@ -217,7 +218,8 @@ public abstract class AbstractDao<T extends BusinessEntity> {
   }
 
   private String getEntityClassName() {
-    return determineEntityType().getSimpleName();
+    String entityName = determineEntityType().getSimpleName();
+    return entityName;
   }
 
   private String parseObjectToJson(T entity) {
