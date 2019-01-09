@@ -73,24 +73,19 @@ Ts0 f6 actionDecl 'ch.ivy.addon.portal.generic.TaskAnalysis.TaskAnalysisData out
 ' #txt
 Ts0 f6 actionTable 'out=in;
 ' #txt
-Ts0 f6 actionCode 'import ch.ivy.addon.portalkit.taskfilter.DefaultTaskFilterContainer;
-import ch.ivy.addon.portalkit.taskfilter.DefaultTaskFilterContainer;
-import ch.ivy.addon.portal.generic.view.TaskAnalysisView;
-import ch.ivy.addon.portalkit.bo.MainMenuNode;
-import java.util.Map;
-import org.primefaces.extensions.util.json.GsonConverter;
+Ts0 f6 actionCode 'import ch.ivy.addon.portal.generic.view.TaskAnalysisView;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel;
 	
- 	in.menuState = ch.ivy.addon.portalkit.util.MenuUtils.getMenuState();
-	TaskAnalysisLazyDataModel dataModel = new TaskAnalysisLazyDataModel();
-	dataModel.getQueryCriteria().setNewQueryCreated(true);
-	dataModel.setIgnoreInvolvedUser(true);
-	dataModel.setSortField(TaskSortField.PRIORITY.toString(), false);
+in.menuState = ch.ivy.addon.portalkit.util.MenuUtils.getMenuState();
+TaskAnalysisLazyDataModel dataModel = new TaskAnalysisLazyDataModel();
+dataModel.getSearchCriteria().setNewQueryCreated(true);
+dataModel.setAdminQuery(true);
+dataModel.setSortField(TaskSortField.PRIORITY.toString(), false);
 	
-	String pageTitle = ivy.cms.co("/Labels/Task");	
-	String noTaskMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskWarning/taskNotFound");
-	out.taskView = TaskAnalysisView.create().dataModel(dataModel).pageTitle(pageTitle).hideTaskFilter(false).showHeaderToolbar(false).noTaskFoundMessage(noTaskMessage).chunkSize(20).createNewTaskView();
+String pageTitle = ivy.cms.co("/Labels/Task");	
+String noTaskMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskWarning/taskNotFound");
+out.taskView = TaskAnalysisView.create().dataModel(dataModel).pageTitle(pageTitle).hideTaskFilter(false).showHeaderToolbar(false).noTaskFoundMessage(noTaskMessage).chunkSize(20).createNewTaskView();
 ' #txt
 Ts0 f6 type ch.ivy.addon.portal.generic.TaskAnalysis.TaskAnalysisData #txt
 Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

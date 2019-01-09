@@ -3,9 +3,10 @@ package ch.ivy.addon.portalkit.util;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -14,194 +15,53 @@ import org.apache.commons.lang.StringUtils;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 
-import ch.ivy.addon.portalkit.bo.RemoteAbsence;
-import ch.ivy.addon.portalkit.bo.RemoteApplicationUser;
-import ch.ivy.addon.portalkit.bo.RemoteSubstitute;
-import ch.ivy.addon.portalkit.bo.ServerApplication;
 import ch.ivy.addon.portalkit.bo.SubstituteNode;
+import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
+import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
+import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.IUser;
 
 public final class AbsenceAndSubstituteUtils {
 
   private AbsenceAndSubstituteUtils() {
-
   }
 
+  public static Set<IvyAbsence> flatIvyAbsenceMap(Map<String, Set<IvyAbsence>> ivyAbsencesByUser) {
+    return ivyAbsencesByUser.values().stream().flatMap(Set::stream).collect(Collectors.toSet());
+  }
+  
   /**
-   * Build Substitute treeNode for an application
+   * Build Substitute treeNode for applications
    * 
-   * @param ivySubtitutes : List Substitute need to built
-   * @param ivyUsers : List ivy user in current system
-   * @return TreeNode : Substitute treeNode for an application
+   * @param substitutedUser selected user to set substitutes
+   * @param ivySubtitutesByApp
+   * @param usersByApp
+   * @return TreeNode
    */
-  public static TreeNode buildSustitute(List<RemoteSubstitute> ivySubtitutes, List<RemoteApplicationUser> ivyUsers) {
-    // Add Group list Ivy user to map by application name
-    Map<String, List<RemoteApplicationUser>> mapUser = new HashMap<>();
-    List<String> apps = new ArrayList<>();
-    Map<String, String> appDisplayNameMap = new HashMap<>();
-    for (RemoteApplicationUser remoteUser : ivyUsers) {
-      String key = remoteUser.getAppName() + " - " + remoteUser.getAppDisplayName();
-      if (mapUser.get(key) == null) {
-        mapUser.put(key, new ArrayList<RemoteApplicationUser>());
-        apps.add(key);
-      }
-      mapUser.get(key).add(remoteUser);
-      if (appDisplayNameMap.get(key) == null) {
-        appDisplayNameMap.put(key, remoteUser.getAppDisplayName());
-      }
-    }
-
-    return buildSubstituteTree(ivySubtitutes, mapUser, apps, appDisplayNameMap);
-  }
-
-  private static TreeNode buildSubstituteTree(List<RemoteSubstitute> ivySubtitutes,
-      Map<String, List<RemoteApplicationUser>> mapUser, List<String> apps, Map<String, String> appDisplayNameMap) {
+  public static TreeNode buildSustitute(IUser substitutedUser, Map<IvyApplication, List<IvySubstitute>> ivySubtitutesByApp, Map<String, List<IUser>> usersByApp) {
     TreeNode substituteRoot = new DefaultTreeNode(new SubstituteNode(), null);
 
-    for (String app : apps) {
-
+    for (Map.Entry<IvyApplication,List<IvySubstitute>> entry : ivySubtitutesByApp.entrySet()) {
+      IvyApplication ivyApplication = entry.getKey();
       TreeNode appNode =
-          new DefaultTreeNode(new SubstituteNode(appDisplayNameMap.get(app), null, null, false), substituteRoot);
+          new DefaultTreeNode(new SubstituteNode(ivyApplication.getDisplayName(), null, null, false), substituteRoot);
       appNode.setExpanded(true);
 
-      List<RemoteApplicationUser> users = mapUser.get(app);
-      String appName = app.substring(0, app.indexOf(" - "));
-      for (RemoteSubstitute remoteSubstitute : ivySubtitutes) {
-
-        if (remoteSubstitute != null && appName.equals(remoteSubstitute.getAppName())
-            && StringUtils.isEmpty(remoteSubstitute.getForThisRole())) {
-          createSubstituteNode(appNode, users, remoteSubstitute);
-          break;
-        }
+      for (IvySubstitute ivySubstitute : entry.getValue()) {
+        createSubstituteNode(substitutedUser, appNode, usersByApp.get(ivyApplication.getName()), ivySubstitute);
       }
-
-      for (RemoteSubstitute remoteSubstitute : ivySubtitutes) {
-
-        if (remoteSubstitute != null && appName.equals(remoteSubstitute.getAppName())
-            && !StringUtils.isEmpty(remoteSubstitute.getForThisRole())) {
-          String nodeName = getNodeName(remoteSubstitute);
-          createSubstituteNode(appNode, users, remoteSubstitute, nodeName);
-        }
-      }
-
     }
     return substituteRoot;
   }
 
-  private static DefaultTreeNode createSubstituteNode(TreeNode appNode, List<RemoteApplicationUser> users,
-      RemoteSubstitute remoteSubstitute, String nodeName) {
-    return new DefaultTreeNode(new SubstituteNode(Ivy.cms().co(
-        "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/taskForRole")
-        + nodeName, remoteSubstitute, users, true), appNode);
-  }
-
-  private static DefaultTreeNode createSubstituteNode(TreeNode appNode, List<RemoteApplicationUser> users,
-      RemoteSubstitute remoteSubstitute) {
-    return new DefaultTreeNode(new SubstituteNode(Ivy.cms().co(
-        "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTask"), remoteSubstitute, users, true), appNode);
-  }
-
-  private static String getNodeName(RemoteSubstitute remoteSubstitute) {
-    if (StringUtils.isNotEmpty(remoteSubstitute.getRoleDisplayName())) {
-      return remoteSubstitute.getRoleDisplayName();
-    }
-    return remoteSubstitute.getForThisRole();
-  }
-
-  /**
-   * Convert substitute tree to substitute list
-   * 
-   * @param root : treenode of substitute
-   * @return List<RemoteSubstitute> List substitute
-   */
-  public static List<RemoteSubstitute> convertToSubstitueList(TreeNode root) {
-    List<RemoteSubstitute> outSubstitues = new ArrayList<>();
-
-    for (TreeNode appNode : root.getChildren()) {
-      for (TreeNode leafNode : appNode.getChildren()) {
-        SubstituteNode substituteNode = (SubstituteNode) leafNode.getData();
-        if (substituteNode != null) {
-          outSubstitues.add(substituteNode.getRemoteSubstitute());
-        }
-      }
-    }
-
-    return outSubstitues;
-
-  }
-
-  /**
-   * Remove all absence have same StartDateInclusive & StopDateInclusive
-   * 
-   * @param remoteAbsences list of remote absence
-   * @return List<RemoteAbsence> : Remote Absences after remove absence have same StartDateInclusive & StopDateInclusive
-   */
-  public static List<RemoteAbsence> mergeRemoteAbsenceListInApplications(List<RemoteAbsence> remoteAbsences) {
-    List<RemoteAbsence> result = new ArrayList<>();
-    for (RemoteAbsence remoteAbsence : remoteAbsences) {
-      RemoteAbsence atTarget = null;
-      for (RemoteAbsence targetAbsence : result) {
-        if (targetAbsence != null && targetAbsence.getUserName().equals(remoteAbsence.getUserName())
-            && targetAbsence.getStartDateInclusive().equals(remoteAbsence.getStartDateInclusive())
-            && targetAbsence.getStopDateInclusive().equals(remoteAbsence.getStopDateInclusive())) {
-          atTarget = targetAbsence;
-          break;
-        }
-      }
-      if (atTarget == null) {
-        result.add(remoteAbsence);
-      }
-    }
-    return result;
-  }
-
-  /**
-   * Check for absences of each application have the same items in merged absences.
-   * 
-   * @param applications Application list
-   * @param allAbsences Absences of all application
-   * @param mergedAbsences Absences
-   */
-  public static void checkSameAbsencesInApplications(List<ServerApplication> applications,
-      List<RemoteAbsence> allAbsences, List<RemoteAbsence> mergedAbsences) {
-    Boolean result = true;
-    for (ServerApplication serverApplication : applications) {
-      for (RemoteAbsence mergedAbsence : mergedAbsences) {
-        Boolean contains =
-            allAbsences.stream().anyMatch(
-                absence -> isAppAbsenceSameAsMergedAbsence(serverApplication, mergedAbsence, absence));
-        if (!contains) {
-          result = false;
-          break;
-        }
-      }
-      if (!result) {
-        break;
-      }
-    }
-    if (!result && FacesContext.getCurrentInstance() != null) {
-      FacesContext.getCurrentInstance().addMessage(
-          null,
-          new FacesMessage(FacesMessage.SEVERITY_WARN, null, Ivy.cms().co(
-              "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/differentAbsencesInApplications")));
-    }
-  }
-
-  private static boolean isAppAbsenceSameAsMergedAbsence(ServerApplication serverApplication,
-      RemoteAbsence mergedAbsence, RemoteAbsence absence) {
-    return serverApplication.getAppName().equals(absence.getAppName())
-        && checkEqualStartDateInclusive(absence, mergedAbsence) && checkEqualStopDateInclusive(absence, mergedAbsence);
-  }
-
-  private static boolean checkEqualStartDateInclusive(RemoteAbsence absence, RemoteAbsence mergedAbsence) {
-    return absence.getStartDateInclusive() != null
-        && absence.getStartDateInclusive().equals(mergedAbsence.getStartDateInclusive());
-  }
-
-  private static boolean checkEqualStopDateInclusive(RemoteAbsence absence, RemoteAbsence mergedAbsence) {
-    return absence.getStopDateInclusive() != null
-        && absence.getStopDateInclusive().equals(mergedAbsence.getStopDateInclusive());
+  private static DefaultTreeNode createSubstituteNode(IUser substitutedUser, TreeNode appNode, List<IUser> users, IvySubstitute ivySubstitute) {
+    String nodeName = ivySubstitute.getSubstitionRoleDisplayName();
+    String name = StringUtils.isNotBlank(nodeName) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/taskForRole") + nodeName : Ivy.cms().co(
+        "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTask");
+    List<IUser> usersExceptSubstitutedUser = users.stream().filter(user -> !StringUtils.equals(user.getName(), substitutedUser.getName())).collect(Collectors.toList());
+    return new DefaultTreeNode(new SubstituteNode(name, ivySubstitute, usersExceptSubstitutedUser, true), appNode);
   }
 
   /**
@@ -210,21 +70,18 @@ public final class AbsenceAndSubstituteUtils {
    * @param remoteAbsence remote absence need to check
    * @return boolean : true if from bigger than till
    */
-  public static boolean checkFromBiggerThanTill(RemoteAbsence remoteAbsence) {
-    if (remoteAbsence == null || remoteAbsence.getStopDateInclusive() == null
-        || remoteAbsence.getStartDateInclusive() == null) {
+  public static boolean checkFromBiggerThanTill(IvyAbsence remoteAbsence) {
+    if (remoteAbsence == null || remoteAbsence.getFrom() == null || remoteAbsence.getUntil() == null) {
       return false;
     }
 
-    Date startDate = setTimeToMidnight(remoteAbsence.getStartDateInclusive());
-    Date stopDate = setTimeToMidnight(remoteAbsence.getStopDateInclusive());
+    Date startDate = setTimeToMidnight(remoteAbsence.getFrom());
+    Date stopDate = setTimeToMidnight(remoteAbsence.getUntil());
 
-    if (remoteAbsence.getStopDateInclusive() != null && remoteAbsence.getStartDateInclusive() != null
-        && (startDate.compareTo(stopDate) > 0)) {
-      FacesContext.getCurrentInstance().addMessage(
-          null,
+    if (remoteAbsence.getUntil() != null && remoteAbsence.getFrom() != null && (startDate.compareTo(stopDate) > 0)) {
+      FacesContext.getCurrentInstance().addMessage(null,
           new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co(
-              "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/fromBiggerThanTill"), null));
+              "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/fromBiggerThanTill"), ""));
       return true;
     }
 
@@ -237,9 +94,9 @@ public final class AbsenceAndSubstituteUtils {
    * @param absences list of remote absence to remove the old in the past
    * @return List absences which already remove absence in the past
    */
-  public static List<RemoteAbsence> removeAbsenceHasTillInThePast(List<RemoteAbsence> absences) {
-    List<RemoteAbsence> result = new ArrayList<>();
-    for (RemoteAbsence remoteAbsence : absences) {
+  public static List<IvyAbsence> removeAbsenceHasTillInThePast(List<IvyAbsence> absences) {
+    List<IvyAbsence> result = new ArrayList<>();
+    for (IvyAbsence remoteAbsence : absences) {
       boolean tillInThePast = isInThePast(remoteAbsence);
       if (!tillInThePast) {
         result.add(remoteAbsence);
@@ -248,13 +105,13 @@ public final class AbsenceAndSubstituteUtils {
     return result;
   }
 
-  public static boolean isInThePast(RemoteAbsence remoteAbsence) {
+  public static boolean isInThePast(IvyAbsence remoteAbsence) {
     if (remoteAbsence == null) {
       return false;
     }
 
     Date today = setTimeToMidnight(new Date());
-    Date stopDate = setTimeToMidnight(remoteAbsence.getStopDateInclusive());
+    Date stopDate = setTimeToMidnight(remoteAbsence.getUntil());
     return today.compareTo(stopDate) > 0;
   }
 
@@ -295,7 +152,7 @@ public final class AbsenceAndSubstituteUtils {
    */
   public static void deputyChanged(SubstituteNode substituteNode, String deputyValue) {
     if (isCommentDisabled(deputyValue)) {
-      substituteNode.getRemoteSubstitute().setDescription(null);
+      substituteNode.getSubstitute().setDescription(null);
     }
   }
 
@@ -319,9 +176,9 @@ public final class AbsenceAndSubstituteUtils {
     return absencesSettingSupportedApps;
   }
 
-  public static boolean doesNewAbsenceOverlap(List<RemoteAbsence> absences, RemoteAbsence newAbsence) {
-    for (RemoteAbsence remoteAbsence : absences) {
-      boolean isTwoAbsenceOverlaped = isTwoAbsenceOverlaped(newAbsence, remoteAbsence);
+  public static boolean doesNewAbsenceOverlap(Set<IvyAbsence> absences, IvyAbsence newAbsence) {
+    for (IvyAbsence absence : absences) {
+      boolean isTwoAbsenceOverlaped = isTwoAbsenceOverlaped(newAbsence, absence);
       if (isTwoAbsenceOverlaped) {
         return true;
       }
@@ -329,20 +186,19 @@ public final class AbsenceAndSubstituteUtils {
     return false;
   }
 
-  private static boolean isTwoAbsenceOverlaped(RemoteAbsence firstAbsence, RemoteAbsence secondAbsence) {
+  private static boolean isTwoAbsenceOverlaped(IvyAbsence firstAbsence, IvyAbsence secondAbsence) {
     if (firstAbsence == secondAbsence || isNotAbsenceOfSameUser(firstAbsence, secondAbsence)) {
       return false;
     }
-    Date newAbsenceStartDate = firstAbsence.getStartDateInclusive();
-    Date newAbsenceEndDate = firstAbsence.getStopDateInclusive();
-    Date absenceStartDate = secondAbsence.getStartDateInclusive();
-    Date absenceEndDate = secondAbsence.getStopDateInclusive();
+    Date newAbsenceStartDate = firstAbsence.getFrom();
+    Date newAbsenceEndDate = firstAbsence.getUntil();
+    Date absenceStartDate = secondAbsence.getFrom();
+    Date absenceEndDate = secondAbsence.getUntil();
     return Dates.isTwoPeriodsOfDateOverlapped(newAbsenceStartDate, newAbsenceEndDate, absenceStartDate, absenceEndDate);
   }
 
-  private static boolean isNotAbsenceOfSameUser(RemoteAbsence firstAbsence, RemoteAbsence secondAbsence) {
-    return firstAbsence.getUserName() == null
-        || !(firstAbsence.getUserName().equalsIgnoreCase(secondAbsence.getUserName()));
+  private static boolean isNotAbsenceOfSameUser(IvyAbsence firstAbsence, IvyAbsence secondAbsence) {
+    return firstAbsence.getUsername() == null
+        || !(firstAbsence.getUsername().equalsIgnoreCase(secondAbsence.getUsername()));
   }
-
 }

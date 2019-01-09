@@ -41,9 +41,9 @@ public abstract class AbstractDao<T extends BusinessEntity> {
   protected void setRelationshipDataFor(@SuppressWarnings("unused") T entity) {}
 
   protected enum EntityProperty {
-    ID("id"), NAME("name"), SERVER_ID("serverId"), USER_NAME("userName"), APPLICATION_ID("applicationId"), IS_ONLINE(
+    ID("id"), NAME("name"), USER_NAME("userName"), APPLICATION_ID("applicationId"), IS_ONLINE(
         "isOnline"), KEY("key"), APPLICATION_NAME("applicationName"), DISPLAY_NAME("displayName"), DEFAULT_PROCESS(
-        "defaultProcess"), DELETED("deleted");
+        "defaultProcess"), DELETED("deleted"), IS_VISIBLE("isVisible"), IS_ABSENCE_ENABLED("isSupportAbsenceSettings"), IS_EMAIL_ENABLED("isSupportEmailSettings");
 
     private String value;
 

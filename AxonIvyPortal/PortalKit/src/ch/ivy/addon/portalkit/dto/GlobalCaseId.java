@@ -1,18 +1,15 @@
 package ch.ivy.addon.portalkit.dto;
 
 public class GlobalCaseId {
-  private long serverId;
   private long caseId;
   private boolean isBusinessCase;
 
-  public GlobalCaseId(long serverId, long caseId, boolean isBusinessCase) {
-    this.serverId = serverId;
+  public GlobalCaseId(long caseId, boolean isBusinessCase) {
     this.caseId = caseId;
     this.isBusinessCase = isBusinessCase;
   }
 
   public static class Builder {
-    private long serverId;
     private long caseId;
     private boolean isBusinessCase;
 
@@ -27,26 +24,22 @@ public class GlobalCaseId {
     }
 
     public GlobalCaseId build() {
-      return new GlobalCaseId(serverId, caseId, isBusinessCase);
+      return new GlobalCaseId(caseId, isBusinessCase);
     }
   }
-
-  public static Builder inServer(long id) {
+  
+  public static Builder caseId(long caseId) {
     Builder builder = new Builder();
-    builder.serverId = id;
+    builder.caseId(caseId);
     return builder;
   }
 
   public static GlobalCaseId createDefaultInstance() {
-    return new GlobalCaseId(-1, -1, false);
+    return new GlobalCaseId(-1, false);
   }
 
   public long id() {
     return caseId;
-  }
-
-  public long serverId() {
-    return serverId;
   }
 
   public boolean isBusinessCase() {
@@ -63,14 +56,13 @@ public class GlobalCaseId {
     }
     GlobalCaseId other = (GlobalCaseId) obj;
 
-    return this.caseId == other.caseId && this.serverId() == other.serverId();
+    return this.caseId == other.caseId;
   }
 
   @Override
   public int hashCode() {
     int result = 17;
     result = result * 31 + (int) (this.caseId ^ (this.caseId >>> 32));
-    result = result * 31 + (int) (this.serverId ^ (this.serverId >>> 32));
     return result;
   }
 

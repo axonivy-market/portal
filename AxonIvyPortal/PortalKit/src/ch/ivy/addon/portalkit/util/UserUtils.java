@@ -6,9 +6,9 @@ package ch.ivy.addon.portalkit.util;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.TreeSet;
 import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
@@ -16,22 +16,16 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.addon.portalkit.bo.RemoteApplicationUser;
-import ch.ivy.addon.portalkit.bo.RemoteSecurityMember;
-import ch.ivy.addon.portalkit.bo.RemoteUser;
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
-import ch.ivy.addon.portalkit.comparator.RemoteUserComparator;
-import ch.ivy.addon.portalkit.mapper.RemoteSecurityMemberMapper;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
-import ch.ivy.ws.addon.IvyUser;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
-import ch.ivyteam.ivy.security.IRole;
-import ch.ivyteam.ivy.security.ISecurityContext;
+import ch.ivyteam.ivy.process.call.SubProcessCallResult;
+import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
@@ -45,17 +39,6 @@ public class UserUtils {
 
 
   private static final String APPLICATION_DEFAULT = "APPLICATION_DEFAULT";
-  /**
-   * System user
-   */
-  private static final String SYSTEM_USER = "SYSTEM";
-  /** default key to store PHONE number in additional field of User */
-  public static final String PHONE = "PHONE";
-  /** default key to store MOBILE number in additional field of User */
-  public static final String MOBILE = "MOBILE";
-  /** Property to get the hidden roles */
-  private static final String HIDE_USERS_IN_DELEGATION = "HIDE_USERS_IN_DELEGATION";
-
   private static final String SELECTED_TASK_FILTER_SET = "SELECTED_TASK_FILTER_SET";
   private static final String SELECTED_TASK_FILTER = "SELECTED_TASK_FILTER";
   private static final String TASK_KEYWORD_FILTER = "TASK_KEYWORD_FILTER";
@@ -64,88 +47,14 @@ public class UserUtils {
   private static final String SELECTED_CASE_FILTER = "SELECTED_CASE_FILTER";
   private static final String CASE_KEYWORD_FILTER = "CASE_KEYWORD_FILTER";
 
-  private static final String SECURITY_SERVICE_CALLABLE = "MultiPortal/SecurityService";
+  private static final String SECURITY_SERVICE_CALLABLE = "Ivy Data Processes/SecurityService";
 
   private UserUtils() {
 
   }
 
   /**
-   * Get all users in current Ivy Server
-   * 
-   * @return List<IUser> : All users in current Ivy Server
-   */
-  public static List<IUser> getAllUsers() {
-    try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<IUser>>() {
-        @Override
-        public List<IUser> call() throws Exception {
-          ISecurityContext security = getIvySession().getSecurityContext();
-          List<IUser> usersOut = new ArrayList<>();
-          for (IUser user : security.getUsers()) {
-            if (user != null && !SYSTEM_USER.equals(user.getName())) {
-              usersOut.add(user);
-            }
-          }
-          return usersOut;
-        }
-      });
-    } catch (Exception e) {
-      Ivy.log().error(e);
-    }
-    return Collections.emptyList();
-  }
-
-  /**
-   * Get all users in current Ivy Server exclude some users has role hidden for delegate
-   * 
-   * @return List<IUser> : All users in current Ivy Server exclude some users has role hidden for delegate
-   */
-  public static List<IUser> getAllUsersForDelegate() {
-    try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
-        ISecurityContext security = getIvySession().getSecurityContext();
-        List<IUser> delegatedUsers = new ArrayList<>();
-        delegatedUsers.addAll(security.getUsers());
-        for (IRole iRole : security.getRoles()) {
-          if (iRole.getProperty(HIDE_USERS_IN_DELEGATION) != null) {
-            delegatedUsers.removeAll(iRole.getUsers());
-          }
-        }
-
-        for (Iterator<IUser> iter = delegatedUsers.listIterator(); iter.hasNext();) {
-          IUser user = iter.next();
-          if (SYSTEM_USER.equals(user.getName())) {
-            iter.remove();
-            break;
-          }
-        }
-
-        sortUserByDisplayName(delegatedUsers);
-        return delegatedUsers;
-      });
-    } catch (Exception e) {
-      Ivy.log().error(e);
-    }
-    return Collections.emptyList();
-  }
-
-  private static void sortUserByDisplayName(List<IUser> delegatedUsers) {
-    Collections.sort(delegatedUsers, (o1, o2) -> {
-      if (o1 == null || o1.getDisplayName() == null) {
-        return -1;
-      }
-
-      if (o2 == null) {
-        return 1;
-      }
-      return o1.getDisplayName().compareTo(o2.getDisplayName());
-    });
-  }
-
-  /**
    * Set locale for session from user setting or application default
-   * 
    */
   public static void setLanguague() {
     try {
@@ -172,78 +81,12 @@ public class UserUtils {
     }
   }
 
-  /**
-   * Create Ivy user.
-   * 
-   * @param userName username of user will be created.
-   * @param fullUserName full name
-   * @param password password of user
-   * @param eMailLanguage language used for email
-   * @param eMailAddress email address
-   * @param externalSecuritySystemName external security system name
-   */
-  public static void createIvyUser(final String userName, final String fullUserName, final String password,
-      final Locale eMailLanguage, final String eMailAddress, final String externalSecuritySystemName) {
-    try {
-      ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Object>() {
-        @Override
-        public Object call() throws Exception {
-          Ivy.wf().getSecurityContext().createUser(userName, fullUserName, password, eMailLanguage, eMailAddress,
-              externalSecuritySystemName);
-          Ivy.log().info("Created Ivy user: " + userName);
-          return null;
-        }
-      });
-    } catch (Exception e) {
-      Ivy.log().error(e);
-    }
-  }
-
-  public static void deleteIvyUser(final String userName) {
-    try {
-      ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Object>() {
-        @Override
-        public Object call() throws Exception {
-          Ivy.wf().getSecurityContext().deleteUser(userName);
-          Ivy.log().info("Deleted Ivy user: " + userName);
-          return null;
-        }
-      });
-    } catch (Exception e) {
-      Ivy.log().error(e);
-    }
-  }
-
   public static String getSessionUserName() {
     return getIvySession().getSessionUserName();
   }
 
   private static IWorkflowSession getIvySession() {
     return Ivy.session();
-  }
-
-  public static List<RemoteUser> filterUsers(List<RemoteUser> users, String query) {
-    List<RemoteUser> filterUsers = new ArrayList<>();
-    for (RemoteUser user : users) {
-      if (user.getUsername().toLowerCase().contains(query.toLowerCase())
-          || user.getName().toLowerCase().contains(query.toLowerCase())) {
-        filterUsers.add(user);
-      }
-    }
-
-    filterUsers
-        .sort((first, second) -> getDisplayedName(first.getName().toLowerCase(), first.getUsername().toLowerCase())
-            .compareTo(getDisplayedName(second.getName().toLowerCase(), second.getUsername().toLowerCase())));
-    return filterUsers;
-  }
-
-
-  public static List<RemoteApplicationUser> sortApplicationUsers(List<RemoteApplicationUser> users) {
-    List<RemoteApplicationUser> filterUsers = new ArrayList<>(users);
-    filterUsers.sort(
-        (first, second) -> getDisplayedName(first.getDisplayName().toLowerCase(), first.getMemberName().toLowerCase())
-            .compareTo(getDisplayedName(second.getDisplayName().toLowerCase(), second.getMemberName().toLowerCase())));
-    return filterUsers;
   }
 
   public static String getDisplayedName(String fullname, String username) {
@@ -254,53 +97,42 @@ public class UserUtils {
   }
 
   /**
-   * Filter list of ivy users by name based on provided query
-   * 
-   * @param users users need to be filtered
-   * @param query provided query
-   * @return Filtered and sorted list of ivy users
-   */
-  public static List<IvyUser> filterIvyUsers(List<IvyUser> users, String query) {
-    if (StringUtils.isEmpty(query)) {
-      return users;
-    }
-
-    List<IvyUser> filterUsers = new ArrayList<>();
-    for (IvyUser user : users) {
-      if (user.getDisplayName().toLowerCase().contains(query.toLowerCase())
-          || user.getMemberName().toLowerCase().contains(query.toLowerCase())) {
-        filterUsers.add(user);
-      }
-    }
-
-    filterUsers
-        .sort((first, second) -> first.getDisplayName().toLowerCase().compareTo(second.getDisplayName().toLowerCase()));
-    return filterUsers;
-  }
-
-  /**
    * Filter list of users by name based on provided query
    * 
    * @param users users need to be filtered
    * @param query provided query
-   * @return Filtered and sorted list of ivy users
+   * @return Filtered list of ivy users
    */
-  public static List<IUser> filterIUsers(List<IUser> users, String query) {
+  public static List<IUser> filterUsers(List<IUser> users, String query) {
     if (StringUtils.isEmpty(query)) {
       return users;
     }
 
     List<IUser> filterUsers = new ArrayList<>();
     for (IUser user : users) {
-      if (user.getDisplayName().toLowerCase().contains(query.toLowerCase())
-          || user.getMemberName().toLowerCase().contains(query.toLowerCase())) {
+      if (StringUtils.containsIgnoreCase(user.getDisplayName(), query) || StringUtils.containsIgnoreCase(user.getMemberName(), query)) {
         filterUsers.add(user);
       }
     }
 
-    filterUsers
-        .sort((first, second) -> first.getDisplayName().toLowerCase().compareTo(second.getDisplayName().toLowerCase()));
     return filterUsers;
+  }
+  
+  /**
+   * Gets non-duplicated all of users from map usersByApp 
+   * 
+   * @param usersByApp
+   * @return non-duplicated list of ivy users
+   */
+  public static List<IUser> getNonDuplicatedUsers(Map<String, List<IUser>> usersByApp) {
+    if (usersByApp == null || usersByApp.isEmpty()) {
+      return new ArrayList<>();
+    }
+
+    return usersByApp.values()
+        .stream()
+        .flatMap(List::stream)
+        .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(IUser::getName, String.CASE_INSENSITIVE_ORDER))), ArrayList::new));
   }
 
   /**
@@ -310,22 +142,20 @@ public class UserUtils {
    * @param query provided query
    * @return Filtered and sorted list of remote security member
    */
-  public static java.util.List<RemoteSecurityMember> filterSecurityMembers(
-      java.util.List<RemoteSecurityMember> securityMembers, String query) {
+  public static java.util.List<ISecurityMember> filterSecurityMembers(java.util.List<ISecurityMember> securityMembers, String query) {
     if (StringUtils.isEmpty(query)) {
       return securityMembers;
     }
 
-    java.util.List<RemoteSecurityMember> result = new ArrayList<>();
-    for (RemoteSecurityMember securityMember : securityMembers) {
-      if (securityMember.getDisplayName().toLowerCase().contains(query.toLowerCase())
-          || securityMember.getMemberName().toLowerCase().contains(query.toLowerCase())) {
+    java.util.List<ISecurityMember> result = new ArrayList<>();
+    for (ISecurityMember securityMember : securityMembers) {
+      if (StringUtils.containsIgnoreCase(securityMember.getDisplayName(), query)
+          || StringUtils.containsIgnoreCase(securityMember.getName(), query)) {
         result.add(securityMember);
       }
     }
 
-    result
-        .sort((first, second) -> first.getDisplayName().toLowerCase().compareTo(second.getDisplayName().toLowerCase()));
+    result.sort((first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName()));
     return result;
   }
 
@@ -407,36 +237,21 @@ public class UserUtils {
     return keyword;
   }
 
-  public static String getIvySystemUserName() {
-    return Ivy.session().getSecurityContext().getSystemUser().getName();
-  }
-
   @SuppressWarnings("unchecked")
-  public static List<RemoteSecurityMember> findAllUserByApplication(String errorMessage) {
-    List<RemoteSecurityMember> result = new ArrayList<>();
-    try {
-      List<RemoteUser> users =
-          ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<RemoteUser>>() {
-            @Override
-            public List<RemoteUser> call() throws Exception {
-              if (Ivy.request().getApplication().getName().equals(IApplication.PORTAL_APPLICATION_NAME)) {
-                return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllUsers").call()
-                    .get("users", List.class);
-              }
-              return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllUsersByApplication")
-                  .call(Ivy.request().getApplication().getName()).get("users", List.class);
-            }
-          });
+  public static List<IUser> findAllUserByApplication() throws Exception {
+    SubProcessCallResult result = ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+      if (Ivy.request().getApplication().getName().equals(IApplication.PORTAL_APPLICATION_NAME)) {
+        return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE)
+            .withStartName("findUsersOverAllApplications").call(Ivy.session().getSessionUserName());
+      }
+      return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findUsers")
+          .call(Ivy.request().getApplication());
+    });
+    List<IUser> users = result.get("users", List.class);
+    List<IUser> distinctUsers = users.stream().collect(Collectors.collectingAndThen(
+        Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(IUser::getName))), ArrayList::new));
 
-      List<RemoteUser> distinctUsers = users.stream().collect(Collectors.collectingAndThen(
-          Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(RemoteUser::getUsername))), ArrayList::new));
-
-      Collections.sort(distinctUsers, new RemoteUserComparator());
-
-      result.addAll(RemoteSecurityMemberMapper.mapFromRemoteUsers(distinctUsers));
-    } catch (Exception e) {
-      Ivy.log().error(errorMessage, e);
-    }
-    return result;
+    Collections.sort(distinctUsers, (first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName()));
+    return distinctUsers;
   }
 }

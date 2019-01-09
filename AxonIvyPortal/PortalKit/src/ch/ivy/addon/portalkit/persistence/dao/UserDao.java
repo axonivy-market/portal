@@ -9,6 +9,7 @@ import org.boon.datarepo.Repos;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.persistence.domain.User;
 import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.environment.Ivy;
 
 @SuppressWarnings("unchecked")
 public class UserDao extends AbstractDao<User> {

@@ -7,7 +7,7 @@
         <inputParameter>
             <name>task</name>
             <description></description>
-            <parameterType>ch.ivy.addon.portalkit.bo.RemoteTask</parameterType>
+            <parameterType>ch.ivyteam.ivy.workflow.ITask</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>
@@ -17,7 +17,7 @@
         <inputParameter>
             <name>task</name>
             <description></description>
-            <parameterType>ch.ivy.addon.portalkit.bo.RemoteTask</parameterType>
+            <parameterType>ch.ivyteam.ivy.workflow.ITask</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>
@@ -31,7 +31,7 @@
         <inputParameter>
             <name>task</name>
             <description></description>
-            <parameterType>ch.ivy.addon.portalkit.bo.RemoteTask</parameterType>
+            <parameterType>ch.ivyteam.ivy.workflow.ITask</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>
@@ -41,7 +41,7 @@
         <inputParameter>
             <name>task</name>
             <description></description>
-            <parameterType>ch.ivy.addon.portalkit.bo.RemoteTask</parameterType>
+            <parameterType>ch.ivyteam.ivy.workflow.ITask</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
         <inputParameter>
@@ -56,38 +56,6 @@
         <description></description>
     </method>
     <method>
-        <name>collectSideSteps</name>
-        <description></description>
-        <inputParameter>
-            <name>task</name>
-            <description></description>
-            <parameterType>ch.ivy.addon.portalkit.bo.RemoteTask</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <outputParameter>
-            <name>sideSteps</name>
-            <description></description>
-            <parameterType>java.util.List&lt;ch.ivy.addon.portalkit.bo.RemoteSideStep&gt;</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </outputParameter>
-    </method>
-    <method>
-        <name>navigateToSidestep</name>
-        <description></description>
-        <inputParameter>
-            <name>sidestep</name>
-            <description></description>
-            <parameterType>ch.ivy.addon.portalkit.bo.RemoteSideStep</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <inputParameter>
-            <name>task</name>
-            <description></description>
-            <parameterType>ch.ivy.addon.portalkit.bo.RemoteTask</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
         <name>autoCompleteForUserDelegate</name>
         <description></description>
         <inputParameter>
@@ -99,7 +67,7 @@
         <outputParameter>
             <name>usersToDelegate</name>
             <description></description>
-            <parameterType>java.util.List&lt;ch.ivy.ws.addon.IvyUser&gt;</parameterType>
+            <parameterType>java.util.List&lt;ch.ivyteam.ivy.security.IUser&gt;</parameterType>
             <nullPermitted>false</nullPermitted>
         </outputParameter>
     </method>
@@ -115,7 +83,7 @@
         <outputParameter>
             <name>rolesToDelegate</name>
             <description></description>
-            <parameterType>java.util.List&lt;ch.ivy.ws.addon.IvyRole&gt;</parameterType>
+            <parameterType>java.util.List&lt;ch.ivyteam.ivy.security.IRole&gt;</parameterType>
             <nullPermitted>false</nullPermitted>
         </outputParameter>
     </method>
@@ -125,7 +93,7 @@
         <inputParameter>
             <name>task</name>
             <description></description>
-            <parameterType>ch.ivy.addon.portalkit.bo.RemoteTask</parameterType>
+            <parameterType>ch.ivyteam.ivy.workflow.ITask</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
         <inputParameter>
@@ -139,9 +107,9 @@
         <name>setSelectedTaskAndDataModel</name>
         <description></description>
         <inputParameter>
-            <name>selectedTask</name>
+            <name>task</name>
             <description></description>
-            <parameterType>ch.ivy.addon.portalkit.bo.RemoteTask</parameterType>
+            <parameterType>ch.ivyteam.ivy.workflow.ITask</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
         <inputParameter>

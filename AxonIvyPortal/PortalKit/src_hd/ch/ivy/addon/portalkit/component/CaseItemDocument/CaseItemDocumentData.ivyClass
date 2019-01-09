@@ -1,22 +1,20 @@
 CaseItemDocumentData #class
 ch.ivy.addon.portalkit.component.CaseItemDocument #namespace
-remoteCase ch.ivy.addon.portalkit.bo.RemoteCase #field
-remoteCase PERSISTENT #fieldModifier
-documents List<ch.ivy.ws.addon.IvyDocument> #field
+document ch.ivyteam.ivy.workflow.document.IDocument #field
+document PERSISTENT #fieldModifier
+documents java.util.List<ch.ivyteam.ivy.workflow.document.IDocument> #field
 documents PERSISTENT #fieldModifier
 documentUploadEvent org.primefaces.event.FileUploadEvent #field
 documentUploadEvent PERSISTENT #fieldModifier
-documentContent javax.activation.DataHandler #field
-documentContent PERSISTENT #fieldModifier
-document ch.ivy.ws.addon.IvyDocument #field
-document PERSISTENT #fieldModifier
-errors List<ch.ivy.ws.addon.WsException> #field
-errors PERSISTENT #fieldModifier
-documentFile org.primefaces.model.StreamedContent #field
-documentFile PERSISTENT #fieldModifier
-uploadDocumentCheckStatus ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus #field
-uploadDocumentCheckStatus PERSISTENT #fieldModifier
-uploadDocumentCheckMessage String #field
-uploadDocumentCheckMessage PERSISTENT #fieldModifier
+iCase ch.ivyteam.ivy.workflow.ICase #field
+iCase PERSISTENT #fieldModifier
 isHideUploadDocumentForDoneCase Boolean #field
 isHideUploadDocumentForDoneCase PERSISTENT #fieldModifier
+name String #field
+name PERSISTENT #fieldModifier
+streamedContent org.primefaces.model.StreamedContent #field
+streamedContent PERSISTENT #fieldModifier
+uploadDocumentCheckMessage String #field
+uploadDocumentCheckMessage PERSISTENT #fieldModifier
+uploadDocumentCheckStatus ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus #field
+uploadDocumentCheckStatus PERSISTENT #fieldModifier

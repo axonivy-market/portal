@@ -69,7 +69,7 @@
 					<h:panelGroup class="case-header-name-desc-cell">
 						<ic:ch.ivy.addon.portalkit.component.cases.column.CaseName case="#{case}" 
 							dataModel="#{processHistoryBean.dataModel}" 
-							initialActive="#{case.id eq caseView.getAutoSelectCaseId().id() and case.server.id eq caseView.getAutoSelectCaseId().serverId()}" />
+							initialActive="#{case.id eq caseView.getAutoSelectCaseId().id()}" />
 					</h:panelGroup>
 					<ic:ch.ivy.addon.portalkit.component.cases.column.CaseId case="#{case}" dataModel="#{processHistoryBean.dataModel}"
 						styleClass="process-history process-history-list process-history-list-cell-default" />

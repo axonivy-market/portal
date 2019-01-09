@@ -2131,7 +2131,7 @@ a.case-details-document-add-link {
   font-size: 1.2rem;
   overflow: hidden;
   display: flex;
-  width: 90%;
+  width: 100%;
   align-items: center;
 }
 
@@ -2167,10 +2167,11 @@ a.case-details-document-add-link {
 }
 
 
-.process-start-list-item .ui-commandlink.open-icon {
+.process-start-list-item .open-icon {
   padding-right: 15px;
   align-items: center;
   color: rgba(0,0,0,0.5) !important;
+  display: inline-flex;
 }
 
 .process-start-list-item .process-start-list-item-action .express-workflow {
@@ -3856,28 +3857,24 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   width: 900px;
 }
 
-.substitude-exception-dialog {
-  width: 50%;
-}
-
 .substitute-container {
   height: 350px;
   overflow: auto;
 }
 
-.substitude-role {
+.substitute-role {
   width: 40%;
 }
 
-.substitude-deputy {
+.substitute-deputy {
   width: 30%;
 }
 
-.substitude-comment {
+.substitute-comment {
   width: 30%;
 }
 
-.substitude-comment input {
+.substitute-comment input {
   width: calc(100% - 20px);
 }
 
@@ -3889,16 +3886,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .deputy-dialog {
   min-width: 900px;
 }
-/********************************** EMAIL SETTINGS **********************************/
-.email-setting-exception-dialog {
-  width: 50%;
-}
-
-/********************************** LANGUAGE SETTINGS **********************************/
-.language-settings-exception-dialog {
-  width: 70%;
-}
-
 /********************************** UNIVERSAL TASK LIST **********************************/
 .universal-tasks-header {
   border-bottom: 1px solid #dedede;

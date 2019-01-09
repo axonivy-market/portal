@@ -17,7 +17,6 @@
   <cc:attribute name="compactMode" default="true" type="java.lang.Boolean" />
   <cc:attribute name="hideTaskFilter" default="false" shortDescription="Task filter text field is hidden or not" type="java.lang.Boolean" />
   <cc:attribute name="selectedTaskId" />
-  <cc:attribute name="selectedTaskServerId" />
   <cc:attribute name="showHeaderToolbar" default="true" />
   <cc:attribute name="noTaskFoundMessage" />
   <cc:attribute name="hideWidgetHeader" default="false" type="java.lang.Boolean" />
@@ -55,7 +54,7 @@
               updateComponent="#{cc.clientId}:filter-selection-container #{p:component('task-view-container')}"
               listener="#{data.dataModel.onKeywordChange()}"
               placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
-              keywordStoresIn="#{data.dataModel.queryCriteria.keyword}" styleClass="widget-header-filter-input"
+              keywordStoresIn="#{data.dataModel.searchCriteria.keyword}" styleClass="widget-header-filter-input"
               onCompletedCallback="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
           </h:form>
         </h:panelGroup>
@@ -211,7 +210,7 @@
           <ic:ch.ivy.addon.portalkit.component.Filter id="filter-container" icon="fa fa-filter"
             updateComponent="#{p:component('task-view-container')}"
             placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
-            keywordStoresIn="#{data.dataModel.queryCriteria.keyword}" 
+            keywordStoresIn="#{data.dataModel.searchCriteria.keyword}" 
             styleClass="widget-header-filter-input"
             onCompletedCallback="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
         </h:form>
@@ -223,7 +222,7 @@
         <ic:ch.ivy.addon.portalkit.component.Filter id="filter-container" 
           updateComponent="#{p:component('task-view-container')}"
           placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceHolderMobile')}"
-          keywordStoresIn="#{data.dataModel.queryCriteria.keyword}"
+          keywordStoresIn="#{data.dataModel.searchCriteria.keyword}"
           onCompletedCallback="taskWidget.setupScrollbar();"/>
       </h:form>
       <h:form id="sort-form-mobile">
@@ -249,7 +248,7 @@
             id="task-item" task="#{task}" 
             rowIndex="#{rowIndex}" 
             isMobile="#{isMobile}"
-            isSelected="#{cc.attrs.selectedTaskId eq task.id and cc.attrs.selectedTaskServerId eq task.getApplicationRegister().serverId}"
+            isSelected="#{cc.attrs.selectedTaskId eq task.getId()}"
             compactMode="#{data.dataModel.compactMode}" 
             componentToUpdate="#{p:component('task-details-notes')}"
             dataModel="#{data.dataModel}">

@@ -6,49 +6,58 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="case" type="ch.ivy.addon.portalkit.bo.RemoteCase" />
+  <cc:attribute name="case" type="ch.ivyteam.ivy.workflow.ICase" />
   <cc:attribute name="styleClass" />
 </cc:interface>
 
 <cc:implementation>
-  <f:event listener="#{logic.initDatas(cc.attrs.case)}" type="preRenderComponent"/>
+  <f:event listener="#{logic.initData(cc.attrs.case)}" type="preRenderComponent" />
   <div id="#{cc.clientId}" class="case-details-item js-case-details-item js-related-task-column #{cc.attrs.styleClass}">
     <div class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/relatedTasksAndCases')}</div>
     <div class="Separator" />
-    
-    <h:panelGrid rendered="#{empty data.relatedTasks and empty data.technicalCases}" columns="1" columnClasses="case-details-data-2nd-column" rowClasses="case-details-row-space">
-        <h:panelGroup styleClass="grid-item-content-list-item">
-          <h:outputText rendered="#{data.remoteCase.state eq 'DONE'}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noTasksAndCases')}" />
-          <h:outputText rendered="#{data.remoteCase.state ne 'DONE'}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noRunningTasksAndCasesPermission')}" 
-          				styleClass="no-related-task-and-case-permission"/>
-        </h:panelGroup>
-    </h:panelGrid>
-    
-    <p:scrollPanel rendered="#{not empty data.relatedTasks or not empty data.technicalCases}" mode="native" styleClass="case-related-tasks-scrollpanel">
-        <ui:repeat id="tasks" var="task" value="#{data.relatedTasks}">
-          <h:panelGroup id="task" layout="block" class="grid-item-content-list-item related-task-content">
-            <i class="fa #{taskBean.getStateIcon(task.state)} fa-fw related-task-list-item-status" />
-            <p:commandLink id="task-name" value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}" styleClass="related-task">
-              <f:attribute name="taskId" value="#{task.id}" />
-              <p:ajax event="click" listener="#{logic.openPortalTasks}" />
-            </p:commandLink>
-          </h:panelGroup>
-          <p:tooltip for="task" value="#{taskBean.displayRelatedTaskToolTip(task)}" trackMouse="true" />
-        </ui:repeat>
 
-        <ui:repeat id="technicalCases" var="technicalCase" value="#{data.technicalCases}">
-          <h:panelGroup id="technicalCase" layout="block" class="grid-item-content-list-item related-task-content">
-           <i class="fa fa-folder-open-o fa-fw related-task-list-item-status" />
-            <p:commandLink id="case-name" value="#{empty technicalCase.name ? technicalCase.id : technicalCase.name}" actionListener="#{logic.navigateToRelatedCase}" styleClass="related-task">
-              <f:attribute name="selectedCase" value="#{technicalCase}" />
-            </p:commandLink>
-          </h:panelGroup>
-          <p:tooltip for="technicalCase" value="Technical case: ##{technicalCase.id} #{technicalCase.name} (#{caseBean.getState(technicalCase).toUpperCase()})" trackMouse="true" /> 
-        </ui:repeat>
+    <h:panelGrid rendered="#{empty data.relatedTasks and empty data.technicalCases}" columns="1"
+      columnClasses="case-details-data-2nd-column" rowClasses="case-details-row-space">
+      <h:panelGroup styleClass="grid-item-content-list-item">
+        <h:outputText rendered="#{case.state eq 'DONE'}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noTasksAndCases')}" />
+        <h:outputText rendered="#{case.state ne 'DONE'}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noRunningTasksAndCasesPermission')}"
+          styleClass="no-related-task-and-case-permission" />
+      </h:panelGroup>
+    </h:panelGrid>
+
+    <p:scrollPanel rendered="#{not empty data.relatedTasks or not empty data.technicalCases}" mode="native"
+      styleClass="case-related-tasks-scrollpanel">
+      <ui:repeat id="tasks" var="task" value="#{data.relatedTasks}">
+        <h:panelGroup id="task" layout="block" class="grid-item-content-list-item related-task-content">
+          <i class="fa #{taskBean.getStateIcon(task.state)} fa-fw related-task-list-item-status" />
+          <p:commandLink id="task-name"
+            value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}"
+            styleClass="related-task">
+            <f:attribute name="taskId" value="#{task.getId()}" />
+            <p:ajax event="click" listener="#{logic.openPortalTasks}" />
+          </p:commandLink>
+        </h:panelGroup>
+        <p:tooltip for="task" value="#{taskBean.displayRelatedTaskToolTip(task)}" trackMouse="true" />
+      </ui:repeat>
+
+      <ui:repeat id="technicalCases" var="technicalCase" value="#{data.technicalCases}">
+        <h:panelGroup id="technicalCase" layout="block" class="grid-item-content-list-item related-task-content">
+          <i class="fa fa-folder-open-o fa-fw related-task-list-item-status" />
+          <p:commandLink id="case-name" value="#{empty technicalCase.name ? technicalCase.id : technicalCase.name}"
+            actionListener="#{logic.navigateToRelatedCase}" styleClass="related-task">
+            <f:attribute name="selectedCase" value="#{technicalCase}" />
+          </p:commandLink>
+        </h:panelGroup>
+        <p:tooltip for="technicalCase"
+          value="Technical case: ##{technicalCase.id} #{technicalCase.name} (#{caseBean.getState(technicalCase).toUpperCase()})"
+          trackMouse="true" />
+      </ui:repeat>
     </p:scrollPanel>
     <p:commandLink id="show-all-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showAllTasks')}"
-    			styleClass="related-task-show-all-tasks-link">
-          <p:ajax event="click" listener="#{logic.openPortalTasks}" />
+      styleClass="related-task-show-all-tasks-link">
+      <p:ajax event="click" listener="#{logic.openPortalTasks}" />
     </p:commandLink>
   </div>
 </cc:implementation>

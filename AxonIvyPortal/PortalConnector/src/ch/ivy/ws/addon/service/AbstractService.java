@@ -152,13 +152,13 @@ public abstract class AbstractService {
           if (user != null) {
             String authenticationMode = "customAuth";
             session.authenticateSessionUser(user, authenticationMode, Ivy.wfTask().getId());
+            session.
           }
           return Ivy.wf().getWorkflowSession(session);
         }
       });
     } catch (Exception e) {
       throw new WSException(e);
-
     }
   }
 

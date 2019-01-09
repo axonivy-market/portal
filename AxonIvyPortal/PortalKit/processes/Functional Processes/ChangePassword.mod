@@ -1,5 +1,5 @@
 [Ivy]
-15E13D0DD56B6D3B 3.20 #module
+15E13D0DD56B6D3B 3.23 #module
 >Proto >Proto Collection #zClass
 Cd0 ChangePassword Big #zClass
 Cd0 B #cInfo
@@ -14,21 +14,21 @@ Cd0 @TextInP .xml .xml #zField
 Cd0 @TextInP .responsibility .responsibility #zField
 Cd0 @StartSub f0 '' #zField
 Cd0 @EndSub f1 '' #zField
-Cd0 @CallSub f14 '' #zField
 Cd0 @InfoButton f5 '' #zField
 Cd0 @GridStep f6 '' #zField
 Cd0 @PushWFArc f7 '' #zField
 Cd0 @Alternative f3 '' #zField
 Cd0 @PushWFArc f8 '' #zField
-Cd0 @PushWFArc f10 '' #zField
 Cd0 @Alternative f11 '' #zField
 Cd0 @PushWFArc f2 '' #zField
 Cd0 @GridStep f9 '' #zField
-Cd0 @PushWFArc f12 '' #zField
 Cd0 @PushWFArc f4 '' #zField
 Cd0 @GridStep f15 '' #zField
 Cd0 @PushWFArc f16 '' #zField
 Cd0 @PushWFArc f13 '' #zField
+Cd0 @PushWFArc f12 '' #zField
+Cd0 @CallSub f14 '' #zField
+Cd0 @PushWFArc f10 '' #zField
 >Proto Cd0 Cd0 ChangePassword #zField
 Cd0 f0 inParamDecl '<java.lang.String currentPassword,java.lang.String newPassword> param;' #txt
 Cd0 f0 inParamTable 'out.currentPassword=param.currentPassword;
@@ -55,30 +55,6 @@ Cd0 f0 @|StartSubIcon #fIcon
 Cd0 f1 type ch.ivy.add.portalkit.ChangePasswordData #txt
 Cd0 f1 81 625 30 30 0 15 #rect
 Cd0 f1 @|EndSubIcon #fIcon
-Cd0 f14 type ch.ivy.add.portalkit.ChangePasswordData #txt
-Cd0 f14 processCall MultiPortal/PasswordService:changePasswordService(String,String) #txt
-Cd0 f14 doCall true #txt
-Cd0 f14 requestActionDecl '<java.lang.String username,java.lang.String newPassword> param;
-' #txt
-Cd0 f14 requestMappingAction 'param.username=ivy.session.getSessionUserName();
-param.newPassword=in.newPassword;
-' #txt
-Cd0 f14 responseActionDecl 'ch.ivy.add.portalkit.ChangePasswordData out;
-' #txt
-Cd0 f14 responseMappingAction 'out=in;
-out.errors=result.errors;
-' #txt
-Cd0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>PasswordService</name>
-        <nameStyle>15,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Cd0 f14 40 330 112 44 -48 -8 #rect
-Cd0 f14 @|CallSubIcon #fIcon
 Cd0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -124,9 +100,6 @@ Cd0 f3 80 256 32 32 0 16 #rect
 Cd0 f3 @|AlternativeIcon #fIcon
 Cd0 f8 expr out #txt
 Cd0 f8 97 211 96 256 #arcP
-Cd0 f10 expr in #txt
-Cd0 f10 outCond in.isCurrentPasswordCorrect #txt
-Cd0 f10 96 288 96 330 #arcP
 Cd0 f11 type ch.ivy.add.portalkit.ChangePasswordData #txt
 Cd0 f11 80 528 32 32 0 16 #rect
 Cd0 f11 @|AlternativeIcon #fIcon
@@ -157,8 +130,6 @@ Cd0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cd0 f9 24 426 144 44 -64 -8 #rect
 Cd0 f9 @|StepIcon #fIcon
-Cd0 f12 expr out #txt
-Cd0 f12 96 374 96 426 #arcP
 Cd0 f4 expr out #txt
 Cd0 f4 96 470 96 528 #arcP
 Cd0 f15 actionDecl 'ch.ivy.add.portalkit.ChangePasswordData out;
@@ -192,6 +163,35 @@ Cd0 f13 expr out #txt
 Cd0 f13 240 406 112 544 #arcP
 Cd0 f13 1 240 544 #addKink
 Cd0 f13 1 0.5 0 0 #arcLabel
+Cd0 f12 expr out #txt
+Cd0 f12 96 374 96 426 #arcP
+Cd0 f14 type ch.ivy.add.portalkit.ChangePasswordData #txt
+Cd0 f14 processCall 'Ivy Data Processes/PasswordService:changePassword(String,String)' #txt
+Cd0 f14 doCall true #txt
+Cd0 f14 requestActionDecl '<java.lang.String username,java.lang.String newPassword> param;
+' #txt
+Cd0 f14 requestMappingAction 'param.username=ivy.session.getSessionUserName();
+param.newPassword=in.newPassword;
+' #txt
+Cd0 f14 responseActionDecl 'ch.ivy.add.portalkit.ChangePasswordData out;
+' #txt
+Cd0 f14 responseMappingAction 'out=in;
+out.errors=result.errors;
+' #txt
+Cd0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>PasswordService</name>
+        <nameStyle>15,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cd0 f14 40 330 112 44 -48 -8 #rect
+Cd0 f14 @|CallSubIcon #fIcon
+Cd0 f10 expr in #txt
+Cd0 f10 outCond in.isCurrentPasswordCorrect #txt
+Cd0 f10 96 288 96 330 #arcP
 >Proto Cd0 .type ch.ivy.add.portalkit.ChangePasswordData #txt
 >Proto Cd0 .processKind CALLABLE_SUB #txt
 >Proto Cd0 0 0 32 24 18 0 #rect

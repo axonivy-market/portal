@@ -4,20 +4,18 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
-import ch.ivy.addon.portalkit.bo.RemoteSecurityMember;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class TaskWorkerFilter extends TaskFilter {
 
   @JsonIgnore
-  private List<RemoteSecurityMember> workers;
-  private RemoteSecurityMember selectedWorker;
-  @JsonIgnore
-  private static final String SECURITY_SERVICE_CALLABLE = "MultiPortal/SecurityService";
+  private List<IUser> workers;
+  private IUser selectedWorker;
 
   @Override
   public String label() {
@@ -38,8 +36,7 @@ public class TaskWorkerFilter extends TaskFilter {
       return null;
     }
 
-    String memberName = selectedWorker.getMemberName();
-    return TaskQuery.create().where().workerUserName().isEqual(memberName);
+    return TaskQuery.create().where().workerUserId().isEqual(selectedWorker.getId());
   }
 
   @Override
@@ -47,33 +44,33 @@ public class TaskWorkerFilter extends TaskFilter {
     selectedWorker = null;
   }
 
-  public String formatName(RemoteSecurityMember worker) {
-    if (StringUtils.isBlank(worker.getDisplayName())) {
-      return worker.getMemberName();
+  public String formatName(IUser worker) {
+    if (StringUtils.isBlank(worker.getFullName())) {
+      return worker.getName();
     }
-    return worker.getDisplayName() + " (" + worker.getMemberName() + ")";
+    return worker.getFullName() + " (" + worker.getName() + ")";
   }
 
-  public List<RemoteSecurityMember> getWorkers() {
+  public List<IUser> getWorkers() throws Exception {
     if (workers == null) {
       initWorkers();
     }
     return workers;
   }
 
-  private void initWorkers() {
-    workers = UserUtils.findAllUserByApplication("Can't get list of users in worker filter");
+  private void initWorkers() throws Exception {
+    workers = UserUtils.findAllUserByApplication();
   }
 
-  public void setWorkers(List<RemoteSecurityMember> workers) {
+  public void setWorkers(List<IUser> workers) {
     this.workers = workers;
   }
 
-  public RemoteSecurityMember getSelectedWorker() {
+  public IUser getSelectedWorker() {
     return selectedWorker;
   }
 
-  public void setSelectedWorker(RemoteSecurityMember selectedWorker) {
+  public void setSelectedWorker(IUser selectedWorker) {
     this.selectedWorker = selectedWorker;
   }
 }

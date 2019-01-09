@@ -12,6 +12,7 @@
         <password>demo</password>
         <fullName>Portal Demo User</fullName>
         <emailAddress>portal2.axonivy@gmail.com</emailAddress>
+        <role>Test</role>
     </user>
     <user>
         <username>guest</username>
