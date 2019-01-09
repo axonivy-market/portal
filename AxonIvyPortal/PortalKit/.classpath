@@ -39,5 +39,10 @@
 	<classpathentry kind="lib" path="lib/itextpdf-5.5.13.jar"/>
 	<classpathentry kind="lib" path="lib/bcpkix-jdk15on-1.59.jar"/>
 	<classpathentry kind="lib" path="lib/bcprov-jdk15on-1.59.jar"/>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="classes"/>
 </classpath>

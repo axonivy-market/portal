@@ -26,6 +26,7 @@ public class CaseWidgetBean implements Serializable {
 
   private Long expandedCaseId;
   private ICase selectedCase;
+  private Map<Long, RemoteCase> caseCache;
 
   public CaseWidgetBean() {
     expandedCaseId = -1L;
@@ -81,5 +82,16 @@ public class CaseWidgetBean implements Serializable {
       iCase.destroy();
       return Void.class;
     });
+  }
+  public RemoteCase findRemoteCaseWithCaching(long caseId) {
+    if (caseCache == null) {
+      caseCache = new HashMap<>();
+    }
+    if (!caseCache.containsKey(caseId)) {
+      RemoteCase iCase = CaseUtils.findRemoteCaseById(caseId);
+      caseCache.put(caseId, iCase);
+    }
+    return caseCache.get(caseId);
+    
   }
 }
