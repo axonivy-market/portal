@@ -22,6 +22,7 @@ import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterContainer;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.casefilter.DefaultCaseFilterContainer;
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
@@ -208,7 +209,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   protected void autoInitForNoAppConfiguration() {
     String currentApplicatioName =
         Optional.ofNullable(Ivy.request().getApplication()).map(IApplication::getName).orElse(StringUtils.EMPTY);
-    if (!IApplication.PORTAL_APPLICATION_NAME.equals(currentApplicatioName)) {
+    if (!PortalConstants.PORTAL_APPLICATION_NAME.equals(currentApplicatioName)) {
       setInvolvedApplications(currentApplicatioName);
     }
   }
