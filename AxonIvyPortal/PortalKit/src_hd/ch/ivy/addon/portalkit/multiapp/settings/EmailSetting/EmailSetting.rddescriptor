@@ -2,7 +2,7 @@
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
     <method>
-        <name>startEmailSetting</name>
+        <name>findEmailSettings</name>
         <description></description>
     </method>
     <startMethod>

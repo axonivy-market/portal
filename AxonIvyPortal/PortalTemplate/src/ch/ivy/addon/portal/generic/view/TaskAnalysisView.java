@@ -13,7 +13,7 @@ public class TaskAnalysisView {
     private String pageTitle = StringUtils.EMPTY;
     private TaskAnalysisLazyDataModel dataModel;
     private String keyword = StringUtils.EMPTY;
-    private long remoteTaskId = -1L;
+    private long taskId = -1L;
     private boolean canLinkBackCaseDetail = Boolean.FALSE;
     private String caseName = StringUtils.EMPTY;
     private boolean hideTaskFilter = Boolean.FALSE;
@@ -44,8 +44,8 @@ public class TaskAnalysisView {
       return this;
     }
 
-    public Builder remoteTaskId(long taskId) {
-      this.remoteTaskId = taskId;
+    public Builder taskId(long taskId) {
+      this.taskId = taskId;
       return this;
     }
 
@@ -92,7 +92,7 @@ public class TaskAnalysisView {
   private final String pageTitle;
   private TaskAnalysisLazyDataModel dataModel;
   private final String keyword;
-  private final long remoteTaskId;
+  private final long taskId;
   private final String caseName;
   private final boolean canLinkBackCaseDetail;
   private final MainMenuNode category;
@@ -106,7 +106,7 @@ public class TaskAnalysisView {
     pageTitle = builder.pageTitle;
     dataModel = builder.dataModel;
     keyword = builder.keyword;
-    remoteTaskId = builder.remoteTaskId;
+    taskId = builder.taskId;
     category = builder.category;
     canLinkBackCaseDetail = builder.canLinkBackCaseDetail;
     caseName = builder.caseName;
@@ -141,8 +141,8 @@ public class TaskAnalysisView {
     return keyword;
   }
 
-  public long getRemoteTaskId() {
-    return remoteTaskId;
+  public long getTaskId() {
+    return taskId;
   }
 
   public boolean canLinkBackCaseDetail() {

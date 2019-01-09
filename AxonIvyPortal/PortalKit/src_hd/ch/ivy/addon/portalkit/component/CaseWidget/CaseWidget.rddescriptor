@@ -2,28 +2,14 @@
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
     <method>
-        <name>setCases</name>
-        <description></description>
-        <inputParameter>
-            <name>cases</name>
-            <description></description>
-            <parameterType>java.util.List&lt;ch.ivy.addon.portalkit.bo.RemoteCase&gt;</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
-        <name>destroyCase</name>
-        <description></description>
-        <inputParameter>
-            <name>case</name>
-            <description></description>
-            <parameterType>ch.ivy.addon.portalkit.bo.RemoteCase</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
         <name>findCases</name>
         <description></description>
+        <inputParameter>
+            <name>caseSearchCriteria</name>
+            <description></description>
+            <parameterType>ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
         <inputParameter>
             <name>startIndex</name>
             <description></description>
@@ -36,22 +22,10 @@
             <parameterType>java.lang.Integer</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
-        <inputParameter>
-            <name>caseSearchCriteria</name>
-            <description></description>
-            <parameterType>ch.ivy.ws.addon.CaseSearchCriteria</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <inputParameter>
-            <name>serverId</name>
-            <description></description>
-            <parameterType>java.lang.Long</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
         <outputParameter>
             <name>cases</name>
             <description></description>
-            <parameterType>List&lt;ch.ivy.addon.portalkit.bo.RemoteCase&gt;</parameterType>
+            <parameterType>java.util.List&lt;ch.ivyteam.ivy.workflow.ICase&gt;</parameterType>
             <nullPermitted>false</nullPermitted>
         </outputParameter>
     </method>
@@ -61,19 +35,13 @@
         <inputParameter>
             <name>caseSearchCriteria</name>
             <description></description>
-            <parameterType>ch.ivy.ws.addon.CaseSearchCriteria</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <inputParameter>
-            <name>serverId</name>
-            <description></description>
-            <parameterType>java.lang.Long</parameterType>
+            <parameterType>ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
         <outputParameter>
-            <name>caseCount</name>
+            <name>totalCases</name>
             <description></description>
-            <parameterType>java.lang.Long</parameterType>
+            <parameterType>Long</parameterType>
             <nullPermitted>false</nullPermitted>
         </outputParameter>
     </method>
@@ -86,20 +54,6 @@
             <parameterType>ch.ivy.addon.portalkit.casefilter.CaseFilterData</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
-    </method>
-    <method>
-        <name>setFilterToBeDeleted</name>
-        <description></description>
-        <inputParameter>
-            <name>filterData</name>
-            <description></description>
-            <parameterType>ch.ivy.addon.portalkit.casefilter.CaseFilterData</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
-        <name>deleteFilter</name>
-        <description></description>
     </method>
     <startMethod>
         <name>start</name>

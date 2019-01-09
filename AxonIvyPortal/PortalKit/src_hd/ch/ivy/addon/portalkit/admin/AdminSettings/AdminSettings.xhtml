@@ -19,64 +19,6 @@
 	<p:tabView id="adminTabView" rendered="#{permissionBean.hasAdminPermission()}">
 		<p:ajax event="tabChange" listener="#{logic.onTabChange}" />
 
-		<!-- SERVER TAB -->
-		<p:tab id="serverTab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/servers')}">
-			<h:form prependId="false" id="serverForm">
-				<h:panelGroup layout="block" styleClass="server-tab-action-buttons">
-					<p:commandButton actionListener="#{logic.addNewServer}" update=":#{p:component('serverDialog')}"
-						oncomplete="PF('serverDialogVar').show()" resetValues="true"
-						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/new')}" />
-				</h:panelGroup>
-
-				<p:dataTable id="serverTable" value="#{logic.findAllServer()}" var="server" sortBy="#{server.name}"
-					styleClass="admin-table" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
-					scrollable="true" scrollHeight="150">
-					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}">
-						<h:outputText value="#{server.name}" />
-					</p:column>
-
-					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/active')}"
-						styleClass="server-table-action-column">
-						<h:panelGroup rendered="#{server.isOnline}">
-							<span class="fa fa-check"></span>
-						</h:panelGroup>
-						<h:panelGroup rendered="#{!server.isOnline}">
-							<span class="fa fa-close"></span>
-						</h:panelGroup>
-					</p:column>
-
-					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/authenticationType')}"
-						styleClass="server-table-ntlm-column">
-						<h:outputText value="#{server.wsAuthenticationType.value}" />
-					</p:column>
-
-					<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-						styleClass="server-table-action-column">
-						<p:commandLink id="edit" oncomplete="PF('serverDialogVar').show()" actionListener="#{logic.editServer(server)}"
-							process="serverTable" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
-							update=":#{p:component('serverDialog')}" styleClass="edit-server-link" resetValues="true">
-							<span class="fa fa-pencil" />
-						</p:commandLink>
-						<p:commandLink id="delete" process="@this" update=":#{p:component('deleteConfirmationDialog')}"
-							actionListener="#{logic.submitDeleteServer(server)}" styleClass="delete-server-link"
-							title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}">
-							<span class="fa fa-trash-o" />
-						</p:commandLink>
-					</p:column>
-				</p:dataTable>
-			</h:form>
-
-			<!--  WARNING CANNOT DELETE SERVER DIALOG -->
-			<p:confirmDialog message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/cannotDeleteServer')}"
-				appendTo="@(body)" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" severity="alert"
-				widgetVar="cannotDeleteServer">
-				<div class="delete-server-warning-buttons">
-					<p:commandButton styleClass="" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-						onclick="PF('cannotDeleteServer').hide()" type="button" />
-				</div>
-			</p:confirmDialog>
-		</p:tab>
-
 		<!-- APPLICATION TAB -->
 		<p:tab id="applicationTab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applications')}">
 			<h:form prependId="false" id="applicationForm">
@@ -321,103 +263,6 @@
 		</p:tab>
 	</p:tabView>
 
-	<!-- SERVER DIALOG-->
-	<p:dialog header="#{data.dialogTitle}" id="serverDialog" onShow="$('body').css({overflow:'hidden'})"
-		onHide="$('body').css({overflow:'inherit'})" widgetVar="serverDialogVar" dynamic="true" modal="true" showEffect="fade"
-		hideEffect="fade" resizable="false" appendTo="@(body)" width="800px">
-
-		<h:form prependId="false" id="serverDialogForm">
-			<p:messages />
-			<p:outputPanel id="commentDetail">
-				<p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-3, ui-grid-col-9"
-					styleClass="u-no-border admin-settings-container ui-fluid">
-					<p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/serverName')}"
-						for="serverDisplayName" styleClass="admin-settings-form-input-label" />
-					<p:inputText value="#{data.selectedServer.name}" id="serverDisplayName" required="true"
-						requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/serverNameRequiredMsg')}"/>
-
-					<p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/serverPath')}" for="serverPath"
-						styleClass="admin-settings-form-input-label" />
-					<!-- Because changing URL Portal Connector is not supported, so we disable this inputText in Edit mode -->
-					<p:inputText value="#{data.selectedServer.path}" id="serverPath" required="true" disabled="#{not data.isAddMode}"
-						requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/serverPathRequiredMsg')}" 
-						placeholder="#{data.serverPathPlaceholder}"/>
-					<p:spacer />
-					<h:outputText
-						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/warningPortalConnectorPathSecurity')}"
-						styleClass="warning-portal-connector-path-security">
-						<i class="fa fa-exclamation-triangle warning-portal-connector-path-security" />
-						<p:spacer width="5" />
-					</h:outputText>
-					<p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/externalHost')}"
-						styleClass="admin-settings-form-input-label" />
-					<h:panelGroup>
-						<h:outputText id="external-host" value="#{data.serverExternalHost}" />
-						<p:tooltip for="external-host" styleClass="admin-settings-external-host-tooltip"
-							value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/externalHostTooltip')}" />
-					</h:panelGroup>
-					<p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/active')}" for="serverActive"
-						styleClass="admin-settings-form-input-label" />
-					<p:selectBooleanCheckbox id="serverActive" value="#{data.selectedServer.isOnline}" />
-					<p:outputLabel styleClass="admin-settings-form-input-label"
-						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/authenticationType')}" for="authentication-type" />
-					<p:selectOneMenu id="authentication-type" value="#{data.selectedServer.wsAuthenticationType}">
-						<f:selectItems value="#{masterDataBean.wsAuthenticationType}" var="type" itemLabel="#{type.value}" />
-						<p:ajax event="change" process="@this" update="authentication-info" resetValues="true" />
-					</p:selectOneMenu>
-				</p:panelGrid>
-				<p:outputPanel id="authentication-info" layout="block">
-					<c:set var="isNTLM" value="#{data.selectedServer.wsAuthenticationType.value eq 'NTLM'}" />
-					<p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-3, ui-grid-col-9"
-						styleClass="u-no-border admin-settings-container ui-fluid"
-						rendered="#{data.selectedServer.wsAuthenticationType.value ne 'None'}">
-						<p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}" for="username"
-							styleClass="admin-settings-form-input-label" />
-						<p:inputText id="username" value="#{data.selectedServer.username}" required="true"
-							requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/usernameRequiredMsg')}"
-							title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/usernameHint')}" />
-						<p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/password')}" for="password"
-							styleClass="admin-settings-form-input-label" />
-						<p:password id="password" value="#{data.selectedServer.password}" required="true" redisplay="true"
-							requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/passwordRequiredMsg')}"
-							title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/passwordHint')}" />
-
-						<p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/host')}" for="host"
-							styleClass="admin-settings-form-input-label" rendered="#{isNTLM}" />
-						<p:inputText id="host" value="#{data.selectedServer.host}" required="true" rendered="#{isNTLM}"
-							requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/hostRequiredMsg')}"
-							title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/hostHint')}" />
-
-						<p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/domain')}" for="domain"
-							styleClass="admin-settings-form-input-label" rendered="#{isNTLM}" />
-						<p:inputText id="domain" value="#{data.selectedServer.domain}" required="true" rendered="#{isNTLM}"
-							requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/domainRequiredMsg')}"
-							title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/domainHint')}" />
-					</p:panelGrid>
-				</p:outputPanel>
-
-			</p:outputPanel>
-			<p:panelGrid columnClasses="ui-grid-col-3, ui-grid-col-9" columns="2" layout="grid"
-				styleClass="u-dialog-footer ui-dialog-footer">
-				<h:panelGroup styleClass="Fleft">
-					<p:commandButton process="@form"
-						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/testConnection')}"
-						actionListener="#{logic.getExternalHost}" update="@form" />
-				</h:panelGroup>
-				<h:panelGroup layout="block" styleClass="Fright">
-					<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-						actionListener="#{logic.saveServerWithValidation}" styleClass=""						
-						update=":#{p:component('serverForm')} :#{p:component('applicationTable')} @form" process="@form"
-						widgetVar="saveServerButton"/>
-					<p:spacer width="5px" />
-					<p:commandButton styleClass="portal-cancel-button"
-						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this"
-						oncomplete="PF('serverDialogVar').hide()" global="false" />
-				</h:panelGroup>
-			</p:panelGrid>
-		</h:form>
-	</p:dialog>
-
 	<!-- APPLICATION DIALOG-->
 	<p:dialog header="#{data.dialogTitle}" id="appDialog" onShow="$('body').css({overflow:'hidden'})"
 		onHide="$('body').css({overflow:'inherit'})" widgetVar="appDialog" dynamic="true" modal="true" showEffect="fade"
@@ -446,18 +291,6 @@
 					</p:selectOneMenu>
 					<p:spacer />
 
-					<!-- Server -->
-					<p:outputLabel rendered="#{data.isIvyApplicationType}" styleClass="admin-settings-form-input-label"
-						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/server')}" for="serverSelection"></p:outputLabel>
-					<p:selectOneMenu id="serverSelection" required="true" rendered="#{data.isIvyApplicationType}"
-						requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/requireToInputServer')}"
-						value="#{data.selectedApp.server}" disabled="#{!data.isAddMode}" converter="pojoConverter">
-						<p:ajax event="change" listener="#{logic.resetApplicationName}" update="appDialogForm" />
-						<f:selectItem noSelectionOption="true"
-							itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/pleaseSelect')}" />
-						<f:selectItems value="#{logic.findAllServer()}" var="server" itemValue="#{server}" itemLabel="#{server.name}">
-						</f:selectItems>
-					</p:selectOneMenu>
 					<p:spacer rendered="#{data.isIvyApplicationType}" />
 
 					<!--Select Application -->

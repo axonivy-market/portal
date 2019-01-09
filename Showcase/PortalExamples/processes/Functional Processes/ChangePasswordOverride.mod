@@ -54,7 +54,7 @@ Cd0 f1 type _ch.ivyteam.ivy.project.portal.examples.ChangePasswordOverrideData #
 Cd0 f1 169 625 30 30 0 15 #rect
 Cd0 f1 @|EndSubIcon #fIcon
 Cd0 f14 type _ch.ivyteam.ivy.project.portal.examples.ChangePasswordOverrideData #txt
-Cd0 f14 processCall MultiPortal/PasswordService:changePasswordService(String,String) #txt
+Cd0 f14 processCall 'Ivy Data Processes/PasswordService:changePassword(String,String)' #txt
 Cd0 f14 doCall true #txt
 Cd0 f14 requestActionDecl '<java.lang.String username,java.lang.String newPassword> param;
 ' #txt

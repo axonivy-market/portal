@@ -16,15 +16,17 @@ public class UserFormatBean implements Serializable {
 
   public String format(String fullName, String username) {
     if (StringUtils.isBlank(fullName)) {
-      return username;
+      String formattedUsername = username.startsWith("#") ? username.substring(1) : username;
+      return formattedUsername;
     }
     return fullName;
   }
   
   public String formatWithTip(String fullName, String username) {
+    String formattedUsername = username.startsWith("#") ? username.substring(1) : username;
     if (StringUtils.isBlank(fullName)) {
-      return "<" + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/noName") + ">" + " (" + username + ")";
+      return "<" + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/noName") + ">" + " (" + formattedUsername + ")";
     }
-    return fullName + " (" + username + ")"; 
+    return fullName + " (" + formattedUsername + ")"; 
   }
 }

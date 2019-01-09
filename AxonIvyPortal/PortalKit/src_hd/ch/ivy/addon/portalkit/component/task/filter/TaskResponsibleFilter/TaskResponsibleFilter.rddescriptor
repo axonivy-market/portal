@@ -13,7 +13,7 @@
         <outputParameter>
             <name>responsibleList</name>
             <description></description>
-            <parameterType>java.util.List&lt;ch.ivy.addon.portalkit.bo.RemoteSecurityMember&gt;</parameterType>
+            <parameterType>java.util.List&lt;ch.ivyteam.ivy.security.ISecurityMember&gt;</parameterType>
             <nullPermitted>false</nullPermitted>
         </outputParameter>
     </method>

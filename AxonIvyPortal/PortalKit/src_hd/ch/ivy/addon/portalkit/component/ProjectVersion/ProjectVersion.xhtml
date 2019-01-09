@@ -33,10 +33,10 @@
         <div class="ui-g-9">
           <p:dataTable id="application-project-version-table" value="#{entry.value}" var="library" styleClass="project-version-table">
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/projectName')}">
-              <h:outputText id="project-name" value="#{library.projectName}" />
+              <h:outputText id="project-name" value="#{library.getProcessModelVersion().getProcessModel().getName()}" />
             </p:column>
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/version')}">
-              <h:outputText id="project-version" value="#{library.projectVersion}" />
+              <h:outputText id="project-version" value="#{library.getQualifiedVersion().toString()}" />
             </p:column>
           </p:dataTable>
         </div>

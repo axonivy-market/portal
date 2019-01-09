@@ -17,12 +17,11 @@ import ch.ivy.addon.portalkit.enums.MenuKind;
 public class NavigatorBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public void navigateToCaseDetail(String caseName, long caseId, long serverId) throws MalformedURLException {
+  public void navigateToCaseDetail(String caseName, long caseId) throws MalformedURLException {
     PortalNavigator portalNavigator = new PortalNavigator();
     Map<String, String> dialogParameters = new HashMap<>();
     dialogParameters.put("caseName", caseName);
     dialogParameters.put("caseId", String.valueOf(caseId));
-    dialogParameters.put("serverId", String.valueOf(serverId));
     String url = portalNavigator.getPortalStartUrlOf(PortalPage.CASE_DETAIL_FROM_TASK, dialogParameters);
     portalNavigator.redirect(url);
   }

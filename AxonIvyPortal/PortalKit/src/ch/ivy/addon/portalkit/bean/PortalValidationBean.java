@@ -11,8 +11,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import ch.ivy.addon.portalkit.datacollecting.service.SingleAppLibraryService;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import ch.ivy.addon.portalkit.ivydata.service.impl.SingleAppLibraryService;
 import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.environment.Ivy;
 

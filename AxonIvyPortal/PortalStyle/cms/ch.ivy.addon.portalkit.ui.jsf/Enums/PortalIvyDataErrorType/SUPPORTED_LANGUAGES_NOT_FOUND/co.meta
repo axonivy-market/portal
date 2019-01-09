@@ -1,0 +1,4 @@
+co: name={SUPPORTED_LANGUAGES_NOT_FOUND} description={} changed={2018-12-10 04:23:06 GMT} changedby={dhtlong} visualorder={0} guid={167965AB514265C7} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={167965AB52625966} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-12-10 04:23:06 GMT} validto={} changed={2018-12-10 04:23:06 GMT} changedby={dhtlong} properties={} id={}
+val: guid={167965AB5163C1F6} datatype={} isdefault={false} langid={de} description={} validfrom={2018-12-10 04:23:06 GMT} validto={} changed={2018-12-10 04:23:06 GMT} changedby={dhtlong} properties={} id={}
+val: guid={167965AB51D7A388} datatype={} isdefault={true} langid={en} description={} validfrom={2018-12-10 04:23:06 GMT} validto={} changed={2018-12-10 04:23:06 GMT} changedby={dhtlong} properties={} id={}

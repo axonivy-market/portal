@@ -11,14 +11,13 @@
 </cc:interface>
 
 <cc:implementation>
-  <f:event listener="#{logic.loadLanguageSetting()}" type="preRenderComponent" />
+  <f:event listener="#{logic.findUserLanguages()}" type="preRenderComponent" />
   
   <div id="#{cc.clientId}">
-  	
-    <h:panelGroup id="setting-grid" layout="block">     
+    <h:panelGroup id="setting-grid" layout="block">
       <p:messages id="errors-message" severity="error" showDetail="true" escape="false"
         closable="true" />
-      <p:dataTable id="language-setting-table" value="#{data.remoteLanguageSettings}" var="ivyLanguage"
+      <p:dataTable id="language-setting-table" value="#{data.languages}" var="ivyLanguage"
         scrollable="true" scrollHeight="100" styleClass="language-table">
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/application')}">
@@ -32,39 +31,15 @@
         </p:column>
       </p:dataTable>
     </h:panelGroup>
+    
     <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer">
-      
       <p:commandButton id="save-settings" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-        actionListener="#{logic.save}" 
-        oncomplete="if (args &amp;&amp; !args.validationFailed) { 
-        if (args.mailLanguageNotFound === false) {window.location.reload();}  
-        else {PF('#{cc.attrs.dialogName}').hide();PF('mailLanguageDialog').show();}} 
-        else {PF('#{cc.attrs.dialogName}').hide();PF('errorLanguageDialog').show();}"
-        update="@widgetVar(errorLanguageDialog) errors-message @widgetVar(mailLanguageDialog)" />
+        actionListener="#{logic.saveUserLanguages}" update="errors-message"
+        oncomplete="if (args &amp;&amp; !args.validationFailed) { window.location.reload();}" />
       <p:spacer width="5px" />
       <p:commandButton id="cancel-settings" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         onclick="PF('#{cc.attrs.dialogName}').hide()" type="button" styleClass="portal-cancel-button" />
     </h:panelGroup>
-
-    <p:dialog id="exception-handler-dialog" header="#{ivy.cms.co('/errors/header')}" dynamic="true"
-      styleClass="language-settings-exception-dialog" widgetVar="errorLanguageDialog" modal="true" appendTo="@(body)">
-      <p:messages id="info-messages" severity="info" showDetail="true" closable="true" escape="false" />
-
-      <ic:ch.ivy.addon.portalkit.multiapp.general.ErrorDisplay errors="#{data.errors}" />
-      <f:facet name="footer">
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button"
-          onclick="PF('errorLanguageDialog').hide();" />
-      </f:facet>
-    </p:dialog>
-    
-    <p:dialog id="warn-set-mail-language" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" dynamic="true" closable="false"
-      styleClass="language-settings-exception-dialog" widgetVar="mailLanguageDialog" modal="true" appendTo="@(body)">
-		<p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/cannotSetEmailLanguage')}" />
-      <f:facet name="footer">
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button"
-          onclick="window.location.reload();" />
-      </f:facet>
-    </p:dialog>
   </div>
 </cc:implementation>
 

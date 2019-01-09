@@ -2,15 +2,11 @@ package ch.ivy.addon.portalkit.util;
 
 import static ch.ivyteam.ivy.server.ServerFactory.getServer;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import ch.ivy.addon.portalkit.persistence.domain.Application;
-import ch.ivy.addon.portalkit.persistence.domain.Server;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -24,22 +20,6 @@ import ch.ivyteam.ivy.workflow.IProcessStart;
 public class SecurityServiceUtils {
 
   private SecurityServiceUtils() {}
-
-  /**
-   * Get all application names in an ivy server.
-   * 
-   * @param server server to get applications.
-   * @return list of application name.
-   */
-  public static List<String> getAppNames(Server server) {
-    List<String> apps = new ArrayList<>();
-    if (server != null) {
-      for (Application app : server.getApplications()) {
-        apps.add(app.getName());
-      }
-    }
-    return apps;
-  }
 
   /**
    * get Process start URL base on Signature
@@ -132,11 +112,6 @@ public class SecurityServiceUtils {
   public static String getApplicationNameFromSession() {
     Object selectedAppAttribute = getSessionAttribute(SessionAttribute.SELECTED_APP.toString());
     return selectedAppAttribute != null ? selectedAppAttribute.toString() : null;
-  }
-
-  public static Long getServerIdFromSession() {
-    Object selectedServerIdAttribute = getSessionAttribute(SessionAttribute.SERVER_ID.toString());
-    return selectedServerIdAttribute != null ? Long.parseLong(selectedServerIdAttribute.toString()) : null;
   }
 
   public static String getApplicationDisplayNameFromSession() {

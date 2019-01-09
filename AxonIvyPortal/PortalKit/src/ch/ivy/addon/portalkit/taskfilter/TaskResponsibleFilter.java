@@ -1,36 +1,29 @@
 package ch.ivy.addon.portalkit.taskfilter;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.TreeSet;
-import java.util.concurrent.Callable;
-import java.util.stream.Collectors;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import ch.ivy.addon.portalkit.bo.RemoteRole;
-import ch.ivy.addon.portalkit.bo.RemoteSecurityMember;
-import ch.ivy.addon.portalkit.bo.RemoteUser;
-import ch.ivy.addon.portalkit.comparator.RemoteRoleComparator;
-import ch.ivy.addon.portalkit.comparator.RemoteUserComparator;
-import ch.ivy.addon.portalkit.mapper.RemoteSecurityMemberMapper;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
+import ch.ivyteam.ivy.process.call.SubProcessCallResult;
+import ch.ivyteam.ivy.security.IRole;
+import ch.ivyteam.ivy.security.ISecurityMember;
+import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class TaskResponsibleFilter extends TaskFilter {
 
   @JsonIgnore
-  private List<RemoteSecurityMember> responsibles;
-  private RemoteSecurityMember selectedResponsible;
+  private List<ISecurityMember> responsibles;
+  private ISecurityMember selectedResponsible;
   @JsonIgnore
-  private static final String SECURITY_SERVICE_CALLABLE = "MultiPortal/SecurityService";
+  private static final String SECURITY_SERVICE_CALLABLE = "Ivy Data Processes/SecurityService";
 
   @Override
   public String label() {
@@ -52,9 +45,6 @@ public class TaskResponsibleFilter extends TaskFilter {
     }
 
     String memberName = selectedResponsible.getMemberName();
-    if (selectedResponsible.isUser() && !memberName.startsWith("#")) {
-      memberName = "#" + memberName;
-    }
     return TaskQuery.create().where().activatorName().isEqual(memberName);
   }
 
@@ -63,14 +53,14 @@ public class TaskResponsibleFilter extends TaskFilter {
     selectedResponsible = null;
   }
 
-  public String formatName(RemoteSecurityMember responsible) {
+  public String formatName(ISecurityMember responsible) {
     if (StringUtils.isBlank(responsible.getDisplayName())) {
-      return responsible.getMemberName();
+      return responsible.getName();
     }
-    return responsible.getDisplayName() + " (" + responsible.getMemberName() + ")";
+    return responsible.getDisplayName() + " (" + responsible.getName() + ")";
   }
 
-  public List<RemoteSecurityMember> getResponsibles() {
+  public List<ISecurityMember> getResponsibles() {
     if (responsibles == null) {
       initResponsibles();
     }
@@ -81,61 +71,32 @@ public class TaskResponsibleFilter extends TaskFilter {
   private void initResponsibles() {
     responsibles = new ArrayList<>();
     try {
-      List<RemoteUser> users =
-          ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<RemoteUser>>() {
-            @Override
-            public List<RemoteUser> call() throws Exception {
-              if (Ivy.request().getApplication().getName().equals(IApplication.PORTAL_APPLICATION_NAME)) {
-                return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllUsers").call()
-                    .get("users", List.class);
-              }
-              return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllUsersByApplication")
-                  .call(Ivy.request().getApplication().getName()).get("users", List.class);
-            }
-          });
-      List<RemoteRole> roles =
-          ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<RemoteRole>>() {
-            @Override
-            public List<RemoteRole> call() throws Exception {
-              if (Ivy.request().getApplication().getName().equals(IApplication.PORTAL_APPLICATION_NAME)) {
-                return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllRoles").call()
-                    .get("roles", List.class);
-              }
-              return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllRolesByApplication")
-                  .call(Ivy.request().getApplication().getName()).get("roles", List.class);
-            }
-          });
-
-      List<RemoteUser> distinctUsers =
-          users.stream().collect(
-              Collectors.collectingAndThen(
-                  Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(RemoteUser::getUsername))),
-                  ArrayList::new));
-      List<RemoteRole> distinctRoles =
-          roles.stream().collect(
-              Collectors.collectingAndThen(
-                  Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(RemoteRole::getMemberName))),
-                  ArrayList::new));
-
-      Collections.sort(distinctUsers, new RemoteUserComparator());
-      Collections.sort(distinctRoles, new RemoteRoleComparator());
-
-      responsibles.addAll(RemoteSecurityMemberMapper.mapFromRemoteUsers(distinctUsers));
-      responsibles.addAll(RemoteSecurityMemberMapper.mapFromRemoteRoles(distinctRoles));
+      SubProcessCallResult result = ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+        if (Ivy.request().getApplication().getName().equals(IApplication.PORTAL_APPLICATION_NAME)) {
+          return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findSecurityMembersOverAllApplications")
+              .call(Ivy.session().getSessionUserName());
+        }
+        return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findSecurityMembers")
+            .call(Ivy.request().getApplication());
+      }); 
+      List<IUser> users = result.get("users", List.class);
+      List<IRole> roles = result.get("roles", List.class);
+      responsibles.addAll(users);
+      responsibles.addAll(roles);
     } catch (Exception e) {
       Ivy.log().error("Can't get list of users or roles in responsible filter", e);
     }
   }
 
-  public void setResponsibles(List<RemoteSecurityMember> responsibles) {
+  public void setResponsibles(List<ISecurityMember> responsibles) {
     this.responsibles = responsibles;
   }
 
-  public RemoteSecurityMember getSelectedResponsible() {
+  public ISecurityMember getSelectedResponsible() {
     return selectedResponsible;
   }
 
-  public void setSelectedResponsible(RemoteSecurityMember selectedResponsible) {
+  public void setSelectedResponsible(ISecurityMember selectedResponsible) {
     this.selectedResponsible = selectedResponsible;
   }
 }

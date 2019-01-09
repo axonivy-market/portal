@@ -2,84 +2,28 @@
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
     <method>
-        <name>synchronizeUserProcessToPortalServer</name>
-        <description></description>
-        <inputParameter>
-            <name>userProcess</name>
-            <description></description>
-            <parameterType>ch.ivy.addon.portalkit.persistence.domain.UserProcess</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
-        <name>collectAllProcesses</name>
+        <name>collectProcesses</name>
         <description></description>
         <outputParameter>
             <name>processes</name>
             <description></description>
-            <parameterType>List&lt;ch.ivy.addon.portalkit.persistence.domain.UserProcess&gt;</parameterType>
+            <parameterType>java.util.List&lt;ch.ivyteam.ivy.workflow.start.IWebStartable&gt;</parameterType>
             <nullPermitted>false</nullPermitted>
         </outputParameter>
     </method>
     <method>
-        <name>synchronizeDeletedDataToPortalServer</name>
-        <description></description>
-        <inputParameter>
-            <name>userProcesses</name>
-            <description></description>
-            <parameterType>java.util.List&lt;ch.ivy.addon.portalkit.persistence.domain.UserProcess&gt;</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
-        <name>collectAllProcessStarts</name>
+        <name>collectExpressProcesses</name>
         <description></description>
         <outputParameter>
-            <name>webStartables</name>
+            <name>expressProcesses</name>
             <description></description>
-            <parameterType>List&lt;ch.ivy.addon.portalkit.bo.RemoteWebStartable&gt;</parameterType>
+            <parameterType>java.util.List&lt;ch.ivy.addon.portalkit.bo.ExpressProcess&gt;</parameterType>
             <nullPermitted>false</nullPermitted>
         </outputParameter>
-    </method>
-    <method>
-        <name>collectDefaultProcesses</name>
-        <description></description>
-        <outputParameter>
-            <name>userProcesses</name>
-            <description></description>
-            <parameterType>List&lt;ch.ivy.addon.portalkit.persistence.domain.UserProcess&gt;</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </outputParameter>
-    </method>
-    <method>
-        <name>startProcess</name>
-        <description></description>
-        <inputParameter>
-            <name>link</name>
-            <description></description>
-            <parameterType>String</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
-        <name>editExpressWorkflow</name>
-        <description></description>
-        <inputParameter>
-            <name>process</name>
-            <description></description>
-            <parameterType>ch.ivy.addon.portalkit.persistence.domain.UserProcess</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
     </method>
     <startMethod>
         <name>start</name>
         <description></description>
-        <inputParameter>
-            <name>keyword</name>
-            <description></description>
-            <parameterType>String</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
     </startMethod>
     <property>
         <name>guid</name>

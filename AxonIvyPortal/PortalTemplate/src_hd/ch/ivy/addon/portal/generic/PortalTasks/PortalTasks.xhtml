@@ -32,11 +32,11 @@
           priority="#{task.priority}" dataModel="#{taskView.dataModel}" />
         <div class="task-start-info">
           <ic:ch.ivy.addon.portalkit.component.task.column.TaskName task="#{task}" dataModel="#{taskView.dataModel}"
-            isSelected="#{taskView.remoteTaskId eq task.id and dataModel.serverId eq task.getApplicationRegister().serverId}" />
+            isSelected="#{taskView.taskId eq task.getId()}" />
         </div>
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible dataModel="#{taskView.dataModel}"
-          userName="#{task.activatorUserName}" fullName="#{task.activatorFullName}" styleClass="activatior-column #{taskView.dataModel.isAutoHideColumns()? 'hidden-sm':''}" />
-        <ic:ch.ivy.addon.portalkit.component.task.column.TaskId value="#{task.id}" dataModel="#{taskView.dataModel}" />
+          userName="#{task.getActivatorName()}" fullName="#{task.getActivator().getDisplayName()}" styleClass="activatior-column #{taskView.dataModel.isAutoHideColumns()? 'hidden-sm':''}" />
+        <ic:ch.ivy.addon.portalkit.component.task.column.TaskId value="#{task.getId()}" dataModel="#{taskView.dataModel}" />
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate rendered="#{taskView.dataModel.isSelectedColumn('CREATION_TIME')}"
           componentId="creation-time" value="#{task.startTimestamp}" styleClass="#{taskView.dataModel.isAutoHideColumns()?'js-create-cell':''}" />
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate rendered="#{taskView.dataModel.isSelectedColumn('EXPIRY_TIME')}"

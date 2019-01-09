@@ -7,17 +7,17 @@
         <inputParameter>
             <name>task</name>
             <description></description>
-            <parameterType>ch.ivy.addon.portalkit.bo.RemoteTask</parameterType>
+            <parameterType>ch.ivyteam.ivy.workflow.ITask</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>
     <method>
-        <name>updatePriority</name>
+        <name>navigateToRelatedCase</name>
         <description></description>
         <inputParameter>
-            <name>remoteTask</name>
+            <name>iCase</name>
             <description></description>
-            <parameterType>ch.ivy.addon.portalkit.bo.RemoteTask</parameterType>
+            <parameterType>ch.ivyteam.ivy.workflow.ICase</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>

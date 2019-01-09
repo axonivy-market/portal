@@ -5,6 +5,12 @@
         <name>findTasks</name>
         <description></description>
         <inputParameter>
+            <name>criteria</name>
+            <description></description>
+            <parameterType>ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
+        <inputParameter>
             <name>startIndex</name>
             <description></description>
             <parameterType>Integer</parameterType>
@@ -16,22 +22,10 @@
             <parameterType>Integer</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
-        <inputParameter>
-            <name>criteria</name>
-            <description></description>
-            <parameterType>ch.ivy.ws.addon.TaskSearchCriteria</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <inputParameter>
-            <name>serverId</name>
-            <description></description>
-            <parameterType>java.lang.Long</parameterType>
-            <nullPermitted>true</nullPermitted>
-        </inputParameter>
         <outputParameter>
             <name>tasks</name>
             <description></description>
-            <parameterType>java.util.List&lt;ch.ivy.addon.portalkit.bo.RemoteTask&gt;</parameterType>
+            <parameterType>java.util.List&lt;ch.ivyteam.ivy.workflow.ITask&gt;</parameterType>
             <nullPermitted>false</nullPermitted>
         </outputParameter>
     </method>
@@ -41,17 +35,11 @@
         <inputParameter>
             <name>criteria</name>
             <description></description>
-            <parameterType>ch.ivy.ws.addon.TaskSearchCriteria</parameterType>
+            <parameterType>ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
-        <inputParameter>
-            <name>serverId</name>
-            <description></description>
-            <parameterType>java.lang.Long</parameterType>
-            <nullPermitted>true</nullPermitted>
-        </inputParameter>
         <outputParameter>
-            <name>taskCount</name>
+            <name>totalTasks</name>
             <description></description>
             <parameterType>java.lang.Long</parameterType>
             <nullPermitted>false</nullPermitted>

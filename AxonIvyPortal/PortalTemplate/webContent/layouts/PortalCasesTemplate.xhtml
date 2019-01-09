@@ -1,103 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
 <h:body>
-	<ui:composition template="/layouts/BasicTemplate.xhtml">
-		<ui:param name="caseView" value="#{data.caseView}" />
-		<ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:param name="caseView" value="#{data.caseView}" />
+    <ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
 
-		<ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}</ui:define>
+    <ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}</ui:define>
 
-		<ui:define name="secondLevelMenu">
-			<div id="second-level-menu" class="second-level-menu js-left-sidebar-second left-sidebar-animation ">
-				<a href="#" class="second-level-menu-header"> <i class="fa fa-angle-left icon-left left-sidebar-animation" /> <span class="header-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}</span>
-					<i class="fa fa-angle-right icon-right left-sidebar-animation" />
-				</a>
-				<div class="second-level-menu-body">
-					<h:form prependId="false">
-						<ic:ch.ivy.addon.portal.generic.PortalCaseMenu menuState="#{menuState}" />
-					</h:form>
-				</div>
-			</div>
-		</ui:define>
+    <ui:define name="secondLevelMenu">
+      <div id="second-level-menu" class="second-level-menu js-left-sidebar-second left-sidebar-animation ">
+        <a href="#" class="second-level-menu-header"> <i class="fa fa-angle-left icon-left left-sidebar-animation" />
+          <span class="header-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}</span> <i
+          class="fa fa-angle-right icon-right left-sidebar-animation" />
+        </a>
+        <div class="second-level-menu-body">
+          <h:form prependId="false">
+            <ic:ch.ivy.addon.portal.generic.PortalCaseMenu menuState="#{menuState}" />
+          </h:form>
+        </div>
+      </div>
+    </ui:define>
 
-		<ui:define name="pageContent">
-			<div class="js-case-default-widget-container case-default-widget-container js-simple-container">
-				<div class="js-simple-main-col case-main-container">
-					<ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-widget" title="#{data.caseView.getTitle() != '' ? data.caseView.getTitle() : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}"
-						dataModel="#{caseView.getDataModel()}" hideCaseFilter="#{caseView.hideCaseFilter or not empty caseView.getKeyword()}" autoSelectCaseId="#{caseView.getAutoSelectCaseId()}"
-						filterGroupId="#{filterGroupId}" hideWidgetHeader="#{hideWidgetHeader}">
+    <ui:define name="pageContent">
+      <div class="js-case-default-widget-container case-default-widget-container js-simple-container">
+        <div class="js-simple-main-col case-main-container">
+          <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-widget"
+            title="#{data.caseView.getTitle() != '' ? data.caseView.getTitle() : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}"
+            dataModel="#{caseView.getDataModel()}"
+            hideCaseFilter="#{caseView.hideCaseFilter or not empty caseView.getKeyword()}"
+            autoSelectCaseId="#{caseView.getAutoSelectCaseId()}" filterGroupId="#{filterGroupId}"
+            hideWidgetHeader="#{hideWidgetHeader}">
 
-						<f:facet name="caseListHeader">
-							<ui:fragment rendered="#{useOverrideListHeader}">
-								<ui:insert name="caseListHeader" />
-							</ui:fragment>
+            <f:facet name="caseListHeader">
+              <ui:fragment rendered="#{useOverrideListHeader}">
+                <ui:insert name="caseListHeader" />
+              </ui:fragment>
 
-							<ui:fragment rendered="#{not useOverrideListHeader}">
-								<ic:ch.ivy.addon.portalkit.component.CaseListHeader id="case-list-header" dataModel="#{caseView.dataModel}" />
-							</ui:fragment>
-						</f:facet>
+              <ui:fragment rendered="#{not useOverrideListHeader}">
+                <ic:ch.ivy.addon.portalkit.component.CaseListHeader id="case-list-header"
+                  dataModel="#{caseView.dataModel}" />
+              </ui:fragment>
+            </f:facet>
 
-						<f:facet name="caseHeader">
-							<ui:fragment rendered="#{useOverrideHeader}">
-								<ui:insert name="caseHeader" />
-							</ui:fragment>
+            <f:facet name="caseHeader">
+              <ui:fragment rendered="#{useOverrideHeader}">
+                <ui:insert name="caseHeader" />
+              </ui:fragment>
 
-							<ui:fragment rendered="#{not useOverrideHeader}" >
-							  <div class="case-header-name-desc-cell">
-								<ic:ch.ivy.addon.portalkit.component.cases.column.CaseName caseNameId="case-header-name-cell" caseDescriptionId="description-cell"
-									case="#{case}" dataModel="#{caseView.getDataModel()}" id="case-name-component"
-									initialActive="#{case.id eq caseView.getAutoSelectCaseId().id() and case.server.id eq caseView.getAutoSelectCaseId().serverId()}" />
-							  </div>
-						      <ic:ch.ivy.addon.portalkit.component.cases.column.CaseId componentId="case-id-cell" case="#{case}" dataModel="#{caseView.getDataModel()}" />
-							  <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCreator componentId="case-creator-cell" case="#{case}" dataModel="#{caseView.getDataModel()}" 
-							      styleClass="#{caseView.dataModel.isAutoHideColumns()? 'hidden-sm':''}" />
-							  <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-creation-date-cell" 
-							      rendered="#{caseView.dataModel.isSelectedColumn('CREATION_TIME')}" value="#{case.startTimestamp}"
-							      styleClass="#{caseView.dataModel.isAutoHideColumns()?'js-create-cell':''}" />
-							  <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-expiry-date-cell" 
-								  rendered="#{caseView.dataModel.isSelectedColumn('FINISHED_TIME')}" value="#{case.endTimestamp}"
-							      styleClass="#{caseView.dataModel.isAutoHideColumns()?'js-finish-cell':''}"  />
-							  <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState componentId="case-state-cell" case="#{case}" dataModel="#{caseView.getDataModel()}"/>
-							</ui:fragment>
-						</f:facet>
-						<f:facet name="caseBody">
-							<ui:fragment rendered="#{useOverrideBody}">
-								<ui:insert name="caseBody" />
-							</ui:fragment>
+              <ui:fragment rendered="#{not useOverrideHeader}">
+                <div class="case-header-name-desc-cell">
+                  <ic:ch.ivy.addon.portalkit.component.cases.column.CaseName caseNameId="case-header-name-cell"
+                    caseDescriptionId="description-cell" case="#{case}" dataModel="#{caseView.getDataModel()}"
+                    id="case-name-component"
+                    initialActive="#{case.id eq caseView.getAutoSelectCaseId().id()}" />
+                </div>
+                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseId componentId="case-id-cell" case="#{case}"
+                  dataModel="#{caseView.getDataModel()}" />
+                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCreator componentId="case-creator-cell"
+                  case="#{case}" dataModel="#{caseView.getDataModel()}"
+                  styleClass="#{caseView.dataModel.isAutoHideColumns()? 'hidden-sm':''}" />
+                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-creation-date-cell"
+                  rendered="#{caseView.dataModel.isSelectedColumn('CREATION_TIME')}" value="#{case.startTimestamp}"
+                  styleClass="#{caseView.dataModel.isAutoHideColumns()?'js-create-cell':''}" />
+                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-expiry-date-cell"
+                  rendered="#{caseView.dataModel.isSelectedColumn('FINISHED_TIME')}" value="#{case.endTimestamp}"
+                  styleClass="#{caseView.dataModel.isAutoHideColumns()?'js-finish-cell':''}" />
+                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState componentId="case-state-cell" case="#{case}"
+                  dataModel="#{caseView.getDataModel()}" />
+              </ui:fragment>
+            </f:facet>
+            <f:facet name="caseBody">
+              <ui:fragment rendered="#{useOverrideBody}">
+                <ui:insert name="caseBody" />
+              </ui:fragment>
 
-							<ui:fragment rendered="#{not useOverrideBody}">
-								<ic:ch.ivy.addon.portalkit.component.CaseBody id="case-body" case="#{case}" />
-							</ui:fragment>
-						</f:facet>
+              <ui:fragment rendered="#{not useOverrideBody}">
+                <ic:ch.ivy.addon.portalkit.component.CaseBody id="case-body" case="#{case}" />
+              </ui:fragment>
+            </f:facet>
 
-						<f:facet name="caseFilter">
-							<ui:fragment rendered="#{useOverrideFilter}">
-								<ui:insert name="caseFilter" />
-							</ui:fragment>
+            <f:facet name="caseFilter">
+              <ui:fragment rendered="#{useOverrideFilter}">
+                <ui:insert name="caseFilter" />
+              </ui:fragment>
 
-							<ui:fragment rendered="#{not useOverrideFilter}">
-								<ic:ch.ivy.addon.portalkit.component.cases.filter.DefaultCaseFilters dataModel="#{caseView.getDataModel()}" />
-							</ui:fragment>
-						</f:facet>
-					</ic:ch.ivy.addon.portalkit.component.CaseWidget>
-				</div>
-			</div>
-		</ui:define>
-		<ui:define name="footer">
-			<script type="text/javascript">
-				$(function() {
-					var simpleLargeScreen = new CaseListLargeScreenHandler();
-					var simpleMediumScreen = new CaseListMediumScreenHandler();
-					var simpleSmallScreen = new CaseListSmallScreenHandler();
-					var responsiveToolkit = ResponsiveToolkit(
-							simpleLargeScreen, simpleMediumScreen,
-							simpleSmallScreen);
-					Portal.init(responsiveToolkit);
-				});
-			</script>
-		</ui:define>
-	</ui:composition>
+              <ui:fragment rendered="#{not useOverrideFilter}">
+                <ic:ch.ivy.addon.portalkit.component.cases.filter.DefaultCaseFilters
+                  dataModel="#{caseView.getDataModel()}" />
+              </ui:fragment>
+            </f:facet>
+          </ic:ch.ivy.addon.portalkit.component.CaseWidget>
+        </div>
+      </div>
+    </ui:define>
+    <ui:define name="footer">
+      <script type="text/javascript">
+              $(function() {
+                var simpleLargeScreen = new CaseListLargeScreenHandler();
+                var simpleMediumScreen = new CaseListMediumScreenHandler();
+                var simpleSmallScreen = new CaseListSmallScreenHandler();
+                var responsiveToolkit = ResponsiveToolkit(simpleLargeScreen, simpleMediumScreen, simpleSmallScreen);
+                Portal.init(responsiveToolkit);
+              });
+            </script>
+    </ui:define>
+  </ui:composition>
 </h:body>
 </html>

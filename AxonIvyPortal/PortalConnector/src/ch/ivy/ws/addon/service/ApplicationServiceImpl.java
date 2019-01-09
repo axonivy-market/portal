@@ -33,7 +33,7 @@ public class ApplicationServiceImpl implements IApplicationService {
     List<IApplication> serverApplications =
         ServerFactory.getServer().getApplicationConfigurationManager().getApplications();
     return serverApplications.stream().filter(app -> !app.isSystem()).map(this::convertToIvyApplicationBy)
-            .collect(Collectors.toList());
+        .collect(Collectors.toList());
   }
 
   private IvyApplication convertToIvyApplicationBy(IApplication app) {
@@ -55,9 +55,9 @@ public class ApplicationServiceImpl implements IApplicationService {
   }
 
   private Callable<List<IvyApplication>> getApplicationsStateCallable(List<String> applicationNames) {
-    return () ->  applicationNames.stream()
-          .map(ServerFactory.getServer().getApplicationConfigurationManager()::findApplication)
-          .filter(Objects::nonNull).map(this::newIvyApplication).collect(toList());
+    return () -> applicationNames.stream()
+        .map(ServerFactory.getServer().getApplicationConfigurationManager()::findApplication).filter(Objects::nonNull)
+        .map(this::newIvyApplication).collect(toList());
   }
 
   private IvyApplication newIvyApplication(IApplication foundApplication) {
@@ -68,16 +68,14 @@ public class ApplicationServiceImpl implements IApplicationService {
     application.setId(foundApplication.getId());
     return application;
   }
-  
+
   @Override
   public List<Long> convertApplicationIdsToList(String applicationIds) {
-	if (StringUtils.isBlank(applicationIds)) {
-		return Collections.emptyList();
-	}
-	return Arrays.stream(applicationIds.split("\\s*,\\s*"))
-			.filter(id -> id.trim().matches("\\d+"))
-			.map(id -> Long.valueOf(id.trim()))
-			.collect(Collectors.toList());
+    if (StringUtils.isBlank(applicationIds)) {
+      return Collections.emptyList();
+    }
+    return Arrays.stream(applicationIds.split("\\s*,\\s*")).filter(id -> id.trim().matches("\\d+"))
+        .map(id -> Long.valueOf(id.trim())).collect(Collectors.toList());
   }
-	
+
 }

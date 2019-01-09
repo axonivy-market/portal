@@ -1,4 +1,0 @@
-BuildTaskJsonQueryData #class
-ch.ivy.add.portalkit #namespace
-jsonQuery String #field
-isQueryForHomePage Boolean #field

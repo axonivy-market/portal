@@ -7,8 +7,10 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.CheckboxTreeNode;
 import org.primefaces.model.DefaultTreeNode;
@@ -21,6 +23,7 @@ import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.ws.addon.CategoryData;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
+import ch.ivyteam.ivy.workflow.category.CategoryTree;
 
 /**
  * Utilities for case tree.
@@ -36,79 +39,34 @@ public class CaseTreeUtils {
   /**
    * Convert categories of cases to TreeNode
    * 
-   * @param categories
-   * @param firstCategory
+   * @param root
+   * @param categoryTree
    * @param isRootAllCase
    * @param menuState
-   * 
-   * @return {@link TreeNode}
    */
-  public static TreeNode convertToTreeNode(List<CategoryData> categories, String firstCategory, boolean isRootAllCase,
-      String menuState) {
-    TreeNode root = new DefaultTreeNode();
-    TreeNode navigatorNode = root;
-    for (CategoryData category : categories) {
-      String categoryPath = category.getPath();
-      String[] nodeNames = categoryPath.split(DELIMITER);
-
+  public static void convertToTreeNode(TreeNode root, CategoryTree categoryTree, boolean isRootAllCase, String menuState) {
+    for (CategoryTree category : categoryTree.getChildren()) {
+      String name = category.getCategory().getName();
       String categoryRawPath = category.getRawPath();
-      String[] nodePaths = category.getRawPath().split(DELIMITER);
-
-      for (int i = 0; i < nodeNames.length; i++) {
-        String nodeName = nodeNames[i];
-        String categoryName = categoryPath.substring(0, categoryPath.indexOf(nodeName) + nodeName.length());
-
-        String nodePath = nodePaths[i];
-        String rawPath = categoryRawPath.substring(0, categoryRawPath.indexOf(nodePath) + nodePath.length());
-
-        String nodeType = firstCategory + DELIMITER + categoryName.replaceAll(" ", "_");
-        navigatorNode =
-            buildCaseCategoryNode(navigatorNode, nodeName, nodeType, categoryName, rawPath, isRootAllCase, menuState);
-      }
-      navigatorNode = root;
-    }
-    sortNode(root);
-    return root;
-  }
-
-  private static void sortNode(TreeNode node) {
-    Comparator<TreeNode> comparator = (firstNode, secondNode) -> {
-      CaseNode firstNodeData = (CaseNode) firstNode.getData();
-      CaseNode secondNodeData = (CaseNode) secondNode.getData();
-      return firstNodeData.getValue().compareToIgnoreCase(secondNodeData.getValue());
-    };
-    TreeUtils.sortNode(node, comparator);
-  }
-
-  /**
-   * Build task node for current task. If node name exist, return node. Else add new node
-   * 
-   * @param navigatorNode : Current tree node
-   * @param newNodeName : node name
-   * @return TreeNode : Tree node after add node
-   */
-  private static TreeNode buildCaseCategoryNode(TreeNode navigatorNode, String newNodeName, String nodeType,
-      String category, String rawPath, boolean isRootAllCase, String menuState) {
-    List<TreeNode> childNodes = navigatorNode.getChildren();
-    for (TreeNode childNode : childNodes) {
-      CaseNode childNodeData = (CaseNode) childNode.getData();
-      String childNodeName = childNodeData.getValue();
-      if (newNodeName.equalsIgnoreCase(childNodeName)) {
-        return childNode;
+      String nodeType = root.getType() + DELIMITER + category.getCategory().getName(Locale.ENGLISH).replaceAll(" ", "_");
+      TreeNode childNode = buildCaseCategoryNode(root, name, nodeType, categoryRawPath, isRootAllCase, menuState);
+      root.getChildren().add(childNode);
+      if (CollectionUtils.isNotEmpty(category.getChildren())) {
+        convertToTreeNode(childNode, category, isRootAllCase, menuState);
       }
     }
+  }
 
+  private static TreeNode buildCaseCategoryNode(TreeNode root, String newNodeName, String nodeType, String rawPath, boolean isRootAllCase, String menuState) {
     CaseNode newNodeData = new CaseNode();
     newNodeData.setValue(newNodeName);
     newNodeData.setMenuKind(MenuKind.CASE);
-    newNodeData.setCategory(category);
     newNodeData.setCategoryRawPath(rawPath);
     newNodeData.setRootNodeAllCase(isRootAllCase);
-    newNodeData.setFirstCategoryNode(false);
-    TreeNode newNode = new DefaultTreeNode(nodeType, newNodeData, navigatorNode);
+    
+    TreeNode newNode = new DefaultTreeNode(nodeType, newNodeData, root);
     newNode.setExpanded(true);
-    if (menuState.contains(nodeType)
-        && !getLastCategoryFromCategoryPath(menuState).contains(getLastCategoryFromCategoryPath(nodeType))) {
+    if (menuState.contains(nodeType) && !getLastCategoryFromCategoryPath(menuState).contains(getLastCategoryFromCategoryPath(nodeType))) {
       newNode.setExpanded(true);
     } else {
       newNode.setExpanded(false);
@@ -136,7 +94,6 @@ public class CaseTreeUtils {
     Map<String, Object> params = new HashMap<>();
     params.put("jsonQuery", jsonQuery);
     params.put("apps", involvedApplications != null ? involvedApplications.stream().collect(joining("=~=")) : null);
-    params.put("serverId", ch.ivy.addon.portalkit.util.SecurityServiceUtils.getServerIdFromSession());
     Map<String, Object> response =
         IvyAdapterService.startSubProcess("findCaseCategoriesByCriteria(String, String, Long, String)", params, Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
     @SuppressWarnings("unchecked")
@@ -168,6 +125,15 @@ public class CaseTreeUtils {
     }
     sortNode(caseRootNode);
     return caseRootNode;
+  }
+  
+  private static void sortNode(TreeNode node) {
+    Comparator<TreeNode> comparator = (firstNode, secondNode) -> {
+      CaseNode firstNodeData = (CaseNode) firstNode.getData();
+      CaseNode secondNodeData = (CaseNode) secondNode.getData();
+      return firstNodeData.getValue().compareToIgnoreCase(secondNodeData.getValue());
+    };
+    TreeUtils.sortNode(node, comparator);
   }
   
   private static CheckboxTreeNode buildCaseCategoryTreeNode(CheckboxTreeNode navigatorNode, String nodeType, String subCategoryName, String subCategoryPath, String subCategoryRawPath) {

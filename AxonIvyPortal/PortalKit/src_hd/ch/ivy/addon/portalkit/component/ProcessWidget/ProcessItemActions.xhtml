@@ -7,26 +7,23 @@
   xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <ui:composition>
-  <div class="process-start-list-item-action #{canShowExpressActions ? 'is-express-workflow' : ''}"
+  <div class="process-start-list-item-action is-express-workflow"
     jsf:rendered="#{canShowExpressActions}">
-    <h:outputText id="info-express-workflow" styleClass="fa fa-info-circle express-workflow"
-      rendered="#{canShowExpressActions}" />
+    <h:outputText id="info-express-workflow" styleClass="fa fa-info-circle express-workflow" />
     <p:tooltip id="info-express-workflow-tooltip" for="info-express-workflow" value="#{process.description}"
-      position="top" rendered="#{canShowExpressActions}" />
+      position="top" />
 
     <p:commandLink id="delete-express-workflow" styleClass="fa fa-trash express-workflow"
       actionListener="#{processWidgetBean.setEditingProcess(process)}"
       oncomplete="PF('remove-express-workflow-dialog').show();"
-      update=":#{p:component('remove-express-workflow-dialog')}" rendered="#{canShowExpressActions}" />
+      update=":#{p:component('remove-express-workflow-dialog')}" />
     <p:tooltip id="delete-express-workflow-tooltip" for="delete-express-workflow"
-      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExpressWorkflowTooltip')}" position="top"
-      rendered="#{canShowExpressActions}" />
+      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExpressWorkflowTooltip')}" position="top" />
 
     <p:commandLink id="edit-express-workflow" styleClass="fa fa-pencil express-workflow"
-      actionListener="#{logic.editExpressWorkflow(process)}" target="_self" rendered="#{canShowExpressActions}" />
+      actionListener="#{logic.editExpressWorkflow(process)}" target="_self" />
     <p:tooltip id="edit-express-workflow-tooltip" for="edit-express-workflow"
-      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editExpressWorkflowTooltip')}" position="top"
-      rendered="#{canShowExpressActions}" />
+      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editExpressWorkflowTooltip')}" position="top" />
   </div>
   <p:commandLink id="open-process-start" class="tmi-chevorn-right open-icon" ajax="false"
     actionListener="#{logic.startProcess(process.link)}" target="#{processType == 'external-process' ? '_blank' : ''}" />

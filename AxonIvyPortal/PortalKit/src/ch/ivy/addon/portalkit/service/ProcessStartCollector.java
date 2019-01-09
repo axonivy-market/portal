@@ -170,7 +170,7 @@ public class ProcessStartCollector {
   }
 
 
-  public IProcessStart findCreateExpressWorlflowProcess() {
+  public IProcessStart findExpressCreationProcess() {
     return IvyExecutor.executeAsSystem(() -> {
       ProcessStartCollector collector = new ProcessStartCollector(application);
       return collector.findProcessStartByUserFriendlyRequestPath(EXPRESS_CREATE_FRIENDLY_REQUEST_PATH);

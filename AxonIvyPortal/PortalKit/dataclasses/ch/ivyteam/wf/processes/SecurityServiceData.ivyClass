@@ -1,21 +1,10 @@
 SecurityServiceData #class
 ch.ivyteam.wf.processes #namespace
-applications List<ch.ivy.ws.addon.IvyApplication> #field
 apps List<String> #field
-endpoint String #field
-errors List<ch.ivy.ws.addon.WsException> #field
-errorWs ch.ivy.ws.addon.WsException #field
-ivyRoles List<ch.ivy.ws.addon.IvyRole> #field
-ivyUsers List<ch.ivy.ws.addon.IvyUser> #field
-listIterator java.util.ListIterator #field
-portalConfig ch.ivy.addon.portalkit.bo.PortalConfiguration #field
-roles List<ch.ivy.addon.portalkit.bo.RemoteRole> #field
-securityMemberData ch.ivyteam.wf.processes.SecurityMemberData #field
-securityMembers List<ch.ivyteam.ivy.security.ISecurityMember> #field
-server ch.ivy.addon.portalkit.persistence.domain.Server #field
-taskId Long #field
-tempErrors List<ch.ivy.ws.addon.WsException> #field
+errors java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> #field
+roles java.util.List<ch.ivyteam.ivy.security.IRole> #field
 username String #field
-users List<ch.ivy.addon.portalkit.bo.RemoteUser> #field
-hasAppsParam Boolean #field
-hasAppsParam 'Flag to check whether find data by apps from parameter' #fieldComment
+users java.util.List<ch.ivyteam.ivy.security.IUser> #field
+usersByApp java.util.Map #field
+application ch.ivyteam.ivy.application.IApplication #field
+securityMembers java.util.List<ch.ivyteam.ivy.security.ISecurityMember> #field

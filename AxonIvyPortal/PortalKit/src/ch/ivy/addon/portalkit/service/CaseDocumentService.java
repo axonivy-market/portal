@@ -6,7 +6,6 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
@@ -19,11 +18,8 @@ import ch.ivy.addon.portalkit.document.DocumentDetectorFactory;
 import ch.ivy.addon.portalkit.document.DocumentExtensionConstants;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
-import ch.ivy.addon.portalkit.util.CaseUtils;
-import ch.ivy.addon.portalkit.vo.DocumentVO;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
-import ch.ivyteam.ivy.scripting.objects.File;
 import ch.ivyteam.ivy.security.SecurityManagerFactory;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.document.IDocument;
@@ -32,46 +28,45 @@ import ch.ivyteam.ivy.workflow.document.Path;
 
 public class CaseDocumentService {
 
-  private long caseId;
+  private ICase iCase;
+  
+  public static CaseDocumentService newInstance(ICase iCase) {
+    return new CaseDocumentService(iCase);
+  }
 
   public static final String EXPRESS_UPLOAD_FOLDER = "AxonIvyExpress";
 
-  public CaseDocumentService(long caseId) {
-    this.caseId = caseId;
+  private CaseDocumentService(ICase iCase) {
+    this.iCase = iCase;
   }
 
   public boolean upload(String filename, InputStream content) {
-    ICase iCase = CaseUtils.findcase(caseId);
     try {
       documentsOf(iCase).add(filename).write().withContentFrom(content);
     } catch (PersistencyException e) {
-      Ivy.log().error("Cannot add document " + filename, e);
+      Ivy.log().error("Error in uploading the document {0} ", e, filename);
       return false;
     }
     return true;
   }
 
-  public List<DocumentVO> getAll() {
-    ICase iCase = CaseUtils.findcase(caseId);
-    List<IDocument> documents = documentsOf(iCase).getAll();
-    List<DocumentVO> documentVOs = new ArrayList<>();
-    for (IDocument document : documents) {
-      if (!document.getPath().asString().contains(EXPRESS_UPLOAD_FOLDER)) {
-        documentVOs.add(convertDocumentToVO(document));
+  public List<IDocument> getAll() {
+    List<IDocument> documents = new ArrayList<>(documentsOf(iCase).getAll());
+    List<IDocument> expressDocs = new ArrayList<>();
+    for (IDocument doc : documents) {
+      if (doc.getPath().asString().contains(EXPRESS_UPLOAD_FOLDER)) {
+        expressDocs.add(doc);
       }
     }
-    return documentVOs;
+    documents.removeAll(expressDocs);
+    return new ArrayList<>(documents);
   }
 
   /**
-   * @param filename
+   * @param document
    * @throws IOException cannot find the file to delete
    */
-  public void delete(String filename) throws IOException {
-    ICase iCase = CaseUtils.findcase(caseId);
-    IDocument document = documentsOf(iCase).get(new Path(filename));
-    File file = new File(document.getPath().asString());
-    file.delete();
+  public void delete(IDocument document) throws IOException {
     documentsOf(iCase).delete(document);
   }
 
@@ -80,17 +75,13 @@ public class CaseDocumentService {
    * @return streamed content
    * @throws IOException cannot find the file to download
    */
-  public StreamedContent download(String filename) throws IOException {
-    ICase iCase = CaseUtils.findcase(caseId);
-    IDocument document = documentsOf(iCase).get(new Path(filename));
+  public StreamedContent download(IDocument document) throws IOException {
     InputStream inputStream = document.read().asStream();
     String contentType = getContentType(document);
-
-    return new DefaultStreamedContent(inputStream, contentType, filename);
+    return new DefaultStreamedContent(inputStream, contentType, document.getName());
   }
 
   public boolean doesDocumentExist(String filename) {
-    ICase iCase = CaseUtils.findcase(caseId);
     IDocument document = documentsOf(iCase).get(new Path(filename));
     return document != null && !document.getPath().asString().contains(EXPRESS_UPLOAD_FOLDER);
   }
@@ -135,31 +126,16 @@ public class CaseDocumentService {
 
   private IDocumentService documentsOf(ICase iCase) {
     try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<IDocumentService>() {
-
-        @Override
-        public IDocumentService call() throws Exception {
-          return iCase.documents();
-        }
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+        return iCase.documents();
       });
     } catch (Exception e) {
       throw new PortalException(e);
     }
   }
 
-  private DocumentVO convertDocumentToVO(IDocument document) {
-    DocumentVO documentVO = new DocumentVO();
-    documentVO.setName(document.getName());
-    documentVO.setSize(document.getSize() < 1024 ? "1KB" : document.getSize() / 1024 + "KB");
-    documentVO.setModifiedDate(document.getLastModification().getTimestamp().toJavaDate());
-    return documentVO;
-  }
-
   private String getContentType(IDocument document) throws IOException {
-    String contentType;
-    File file = new File(document.getPath().asString());
-    contentType = Files.probeContentType(file.getJavaFile().toPath());
-    return contentType;
+    return Files.probeContentType(document.read().asJavaFile().toPath());
   }
 
   private static List<String> getAllowedUploadFileType() {
@@ -175,7 +151,6 @@ public class CaseDocumentService {
       }
     }
     return DocumentExtensionConstants.DEFAULT_WHITELIST_EXTENSION;
-
   }
 
 }
