@@ -12,12 +12,12 @@ public class ServerWorkingOnDetector {
   public static final String MY_SERVER_ID_KEY = "AxonIvyPortal.MyServerId";
 
   public Server getServerWorkingOn() {
-    Long myServerId = getMyServerId();
-    if (myServerId == null) {
+//    Long myServerId = getMyServerId();
+//    if (myServerId == null) {
       return getDefaultServer();
-    } else {
-      return getServerWorkingOn(myServerId);
-    }
+//    } else {
+//      return getServerWorkingOn(myServerId);
+//    }
   }
 
   private Server getDefaultServer() {

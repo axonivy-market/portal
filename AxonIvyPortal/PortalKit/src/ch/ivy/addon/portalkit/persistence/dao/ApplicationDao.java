@@ -168,19 +168,6 @@ public class ApplicationDao extends AbstractDao<Application> {
     return applications;
   }
 
-  @Override
-  protected void setRelationshipDataFor(Application application) {
-    if (isNotThirdPartyApplication(application)) {
-      ServerDao serverDao = new ServerDao(this.ivyApplication);
-      Server server = serverDao.findByIdWithoutRelationship(application.getServerId());
-      application.setServer(server);
-    }
-  }
-
-  private boolean isNotThirdPartyApplication(Application application) {
-    return application.getServerId() != null;
-  }
-
   private void setRelationShipDataForApplications(List<Application> applications) {
     for (Application application : applications) {
       setRelationshipDataFor(application);
