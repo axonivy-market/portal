@@ -12,28 +12,32 @@
 <cc:implementation>
   <h:form id="chart-management-form">
 
-    <p:remoteCommand name="initFilter" autoRun="true"
+    <p:remoteCommand id="init-filter-command" name="initFilter" autoRun="true"
       update="statistic-filter" global="false"
       action="#{statisticChartCreationBean.updateFilters(data.statisticFilter, data.oldStatisticFilter)}"
       oncomplete="updateChartModels();" />
 
-    <p:remoteCommand name="updateChartModels" update= "chart-list" global="false"
+    <p:remoteCommand id="update-chart-models-command" name="updateChartModels" update= "chart-list" global="false"
       oncomplete="updateTaskByPriorityModel(); updateCaseByStateModel(); updateTaskByExpiryModel(); updateElapsedTimeByCaseCategory(); updateCaseByFinishedTaskModel(); updateCaseByFinishedTimeModel();" />
-
-    <p:remoteCommand name="clearChartModels" update="chart-list" global="false"
+    <p:remoteCommand id="clear-chart-models-command" name="clearChartModels" update="chart-list" global="false"
       action="#{statisticChartCreationBean.clearChartModels()}" />
-
-    <p:remoteCommand name="updateTaskByPriorityModel" action="#{statisticChartCreationBean.updateTaskByPriorityModel(data.statisticFilter)}"
+    <p:remoteCommand id="update-task-by-priority-model-command" name="updateTaskByPriorityModel"
+      action="#{statisticChartCreationBean.updateTaskByPriorityModel(data.statisticFilter)}"
       update="edit-statistic-container" global="false" />
-    <p:remoteCommand name="updateCaseByStateModel" action="#{statisticChartCreationBean.updateCaseByStateModel(data.statisticFilter)}"
+    <p:remoteCommand id="update-case-by-state-model-command" name="updateCaseByStateModel"
+      action="#{statisticChartCreationBean.updateCaseByStateModel(data.statisticFilter)}"
       update="edit-statistic-container" global="false" />
-    <p:remoteCommand name="updateTaskByExpiryModel" action="#{statisticChartCreationBean.updateTaskByExpiryModel(data.statisticFilter)}"
+    <p:remoteCommand id="update-task-by-expiry-model-command" name="updateTaskByExpiryModel"
+      action="#{statisticChartCreationBean.updateTaskByExpiryModel(data.statisticFilter)}"
       update="edit-statistic-container" global="false" />
-    <p:remoteCommand name="updateElapsedTimeByCaseCategory" action="#{statisticChartCreationBean.updateElapsedTimeByCaseCategory(data.statisticFilter)}"
+    <p:remoteCommand id="update-elapsed-time-by-case-category-command" name="updateElapsedTimeByCaseCategory"
+      action="#{statisticChartCreationBean.updateElapsedTimeByCaseCategory(data.statisticFilter)}"
       update="edit-statistic-container" global="false" />
-    <p:remoteCommand name="updateCaseByFinishedTaskModel" action="#{statisticChartCreationBean.updateCaseByFinishedTaskModel(data.statisticFilter)}"
+    <p:remoteCommand id="update-case-by-finished-task-model-command" name="updateCaseByFinishedTaskModel"
+      action="#{statisticChartCreationBean.updateCaseByFinishedTaskModel(data.statisticFilter)}"
       update="edit-statistic-container" global="false" />
-    <p:remoteCommand name="updateCaseByFinishedTimeModel" action="#{statisticChartCreationBean.updateCaseByFinishedTimeModel(data.statisticFilter)}"
+    <p:remoteCommand id="update-case-by-finished-time-model-command" name="updateCaseByFinishedTimeModel"
+      action="#{statisticChartCreationBean.updateCaseByFinishedTimeModel(data.statisticFilter)}"
       update="edit-statistic-container" global="false" />
 
     <p:growl autoUpdate="true" globalOnly="true" showDetail="true" showSummary="true" />

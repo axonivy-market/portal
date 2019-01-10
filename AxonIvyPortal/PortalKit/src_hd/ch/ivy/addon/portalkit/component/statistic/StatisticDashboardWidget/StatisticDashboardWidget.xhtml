@@ -174,7 +174,7 @@
       </h:panelGroup>
     </h:panelGroup>
 
-    <p:remoteCommand name="initCharts" autoRun="true"
+    <p:remoteCommand id="init-chart-command" name="initCharts" autoRun="true"
       update="statistic-container" rendered="#{cc.attrs.compactMode}"
       action="#{logic.initializeCompactMode}"
       async="true" />
