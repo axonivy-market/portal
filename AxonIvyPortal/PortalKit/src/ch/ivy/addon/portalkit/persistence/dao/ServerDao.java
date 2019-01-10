@@ -132,7 +132,6 @@ public class ServerDao extends AbstractDao<Server> {
     application.setIsVisible(true);
     application.setName(iApplication.getName());
     application.setDisplayName(iApplication.getName());
-    application.setServerId(server.getId());
     application.setId(iApplication.getId());
     return application;
   }

@@ -28,12 +28,12 @@ public class ServerService extends AbstractService<Server> {
   }
 
   public List<Server> findActiveServers() {
-    List<Server> servers = getDao().findActiveServers();
-    if (servers.isEmpty()) {
+//    List<Server> servers = getDao().findActiveServers();
+//    if (servers.isEmpty()) {
       Server localServer = localhost();
       return Arrays.asList(localServer);
-    }
-    return servers;
+//    }
+//    return servers;
   }
 
   public List<Server> findActiveServersNotLocalhost() {
