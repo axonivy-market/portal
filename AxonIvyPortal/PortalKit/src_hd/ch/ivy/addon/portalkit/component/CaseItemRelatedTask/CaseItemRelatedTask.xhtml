@@ -25,7 +25,7 @@
     </h:panelGrid>
     
     <p:scrollPanel rendered="#{not empty data.relatedTasks or not empty data.technicalCases}" mode="native" styleClass="case-related-tasks-scrollpanel">
-    	<ui:repeat id="tasks" var="task" value="#{data.relatedTasks}">
+    	<ui:repeat id="tasks" var="task" value="#{data.relatedTasks.size() gt 20? data.relatedTasks.subList(0,20) : data.relatedTasks}">
           <h:panelGroup id="task" layout="block" class="grid-item-content-list-item related-task-content">
             <i class="fa #{taskBean.getStateIcon(task.state)} fa-fw related-task-list-item-status" />
             <p:commandLink id="task-name" value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}" actionListener="#{logic.openPortalTasks}" styleClass="related-task">
@@ -40,7 +40,7 @@
 	    	</p:commandLink>
         </h:panelGroup>
         
-        <ui:repeat id="technicalCases" var="technicalCase" value="#{data.technicalCases}">
+        <ui:repeat id="technicalCases" var="technicalCase" value="#{data.technicalCases.size() gt 20? data.technicalCases.subList(0,20) : data.technicalCases}">
           <h:panelGroup id="technicalCase" layout="block" class="grid-item-content-list-item related-task-content">
            <i class="fa fa-folder-open-o fa-fw related-task-list-item-status" />
             <p:commandLink id="case-name" value="#{empty technicalCase.name ? technicalCase.id : technicalCase.name}" actionListener="#{logic.navigateToRelatedCase}" styleClass="related-task">
