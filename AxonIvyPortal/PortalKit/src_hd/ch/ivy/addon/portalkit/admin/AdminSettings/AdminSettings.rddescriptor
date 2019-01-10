@@ -2,16 +2,6 @@
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
     <method>
-        <name>submitDeleteServer</name>
-        <description></description>
-        <inputParameter>
-            <name>server</name>
-            <description></description>
-            <parameterType>ch.ivy.addon.portalkit.persistence.domain.Server</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
         <name>editApplication</name>
         <description></description>
         <inputParameter>
@@ -77,7 +67,7 @@
         <inputParameter>
             <name>app</name>
             <description></description>
-            <parameterType>ch.ivy.ws.addon.IvyApplication</parameterType>
+            <parameterType>ch.ivy.addon.portalkit.ivydata.bo.IvyApplication</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>
@@ -88,16 +78,6 @@
             <name>reorderEvent</name>
             <description></description>
             <parameterType>org.primefaces.event.ReorderEvent</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
-        <name>editServer</name>
-        <description></description>
-        <inputParameter>
-            <name>server</name>
-            <description></description>
-            <parameterType>ch.ivy.addon.portalkit.persistence.domain.Server</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>
@@ -126,20 +106,6 @@
             <parameterType>List&lt;ch.ivy.addon.portalkit.persistence.domain.Application&gt;</parameterType>
             <nullPermitted>false</nullPermitted>
         </outputParameter>
-    </method>
-    <method>
-        <name>findAllServer</name>
-        <description></description>
-        <outputParameter>
-            <name>servers</name>
-            <description></description>
-            <parameterType>List&lt;ch.ivy.addon.portalkit.persistence.domain.Server&gt;</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </outputParameter>
-    </method>
-    <method>
-        <name>getExternalHost</name>
-        <description></description>
     </method>
     <method>
         <name>submitResetAllSettings</name>

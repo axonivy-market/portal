@@ -151,4 +151,36 @@ public class LanguageService implements ILanguageService {
 
     return supportedEmailLanguages;
   }
+
+  @Override
+  public IvyLanguageResultDTO getSupportedLanguages(String appName) throws Exception {
+    return getServer().getSecurityManager().executeAsSystem(() -> {
+      IvyLanguageResultDTO result = new IvyLanguageResultDTO();
+      
+      List<PortalIvyDataException> errors = new ArrayList<>();
+      List<IvyLanguage> ivyLanguages = new ArrayList<>();
+      
+      try {
+        IApplication app = ServiceUtilities.findApp(appName);
+        IvyLanguage ivyLanguage = new IvyLanguage();
+
+        List<IProcessModelVersion> activeReleasedPmvs = ServiceUtilities.getActiveReleasedPmvs(app);
+        List<String> supportedLanguages = getSupportedLanguagesFromPmvs(activeReleasedPmvs);
+        if (CollectionUtils.isEmpty(supportedLanguages)) {
+          errors.add(new PortalIvyDataException(app.getName(), PortalIvyDataErrorType.SUPPORTED_LANGUAGES_NOT_FOUND.toString()));
+        }
+
+        ivyLanguage.setAppName(app.getName());
+        ivyLanguage.setSupportedLanguages(supportedLanguages);
+        
+        ivyLanguages.add(ivyLanguage);      
+        result.setErrors(errors);
+        result.setIvyLanguages(ivyLanguages);
+      } catch (Exception e) {
+        Ivy.log().error("Error load language for application {0}", e, appName);
+        errors.add(new PortalIvyDataException(appName, PortalIvyDataErrorType.FAIL_TO_LOAD_LANGUAGE.toString()));
+      }
+      return result;
+    });
+  }
 }

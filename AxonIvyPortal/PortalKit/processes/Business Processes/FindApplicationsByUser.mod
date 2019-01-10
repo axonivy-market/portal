@@ -205,7 +205,7 @@ List users = userService.findByUserName(in.username);
 
 if (!users.isEmpty()){
 	for (User user: users){
-		in.applications.addAll(applicationService.findByNameAndServerId(user.applicationName, user.serverId));
+		in.applications.add(applicationService.findByName(user.applicationName));
 	}
 }' #txt
 Fr0 f16 type ch.ivyteam.wf.processes.FindApplicationsByUserData #txt
