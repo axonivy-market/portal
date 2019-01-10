@@ -37,7 +37,7 @@
               <h:form rendered="#{taskView.canLinkBackCaseDetail()}" prependId="false">
               #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader')} 
               <h:commandLink value="##{taskView.dataModel.queryCriteria.caseId}" styleClass="ui-link"
-                  actionListener="#{navigatorBean.navigateToCaseDetail(dataModel.caseName, dataModel.queryCriteria.caseId, dataModel.serverId)}" />
+                  actionListener="#{navigatorBean.navigateToCaseDetail(dataModel.caseName, taskView.dataModel.queryCriteria.caseId, dataModel.serverId)}" />
               #{taskView.dataModel.caseName}
             </h:form>
               <h:outputText rendered="#{!taskView.canLinkBackCaseDetail()}"
