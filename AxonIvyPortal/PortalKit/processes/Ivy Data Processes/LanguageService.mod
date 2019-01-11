@@ -26,6 +26,13 @@ Ee0 @PushWFArc f13 '' #zField
 Ee0 @CallSub f14 '' #zField
 Ee0 @PushWFArc f15 '' #zField
 Ee0 @PushWFArc f11 '' #zField
+Ee0 @GridStep f17 '' #zField
+Ee0 @EndSub f18 '' #zField
+Ee0 @CallSub f19 '' #zField
+Ee0 @PushWFArc f20 '' #zField
+Ee0 @PushWFArc f21 '' #zField
+Ee0 @StartSub f23 '' #zField
+Ee0 @PushWFArc f16 '' #zField
 >Proto Ee0 Ee0 LanguageService #zField
 Ee0 f0 inParamDecl '<java.lang.String username> param;' #txt
 Ee0 f0 inParamTable 'out.username=param.username;
@@ -187,6 +194,76 @@ Ee0 f15 expr out #txt
 Ee0 f15 352 192 496 192 #arcP
 Ee0 f11 expr out #txt
 Ee0 f11 608 192 753 192 #arcP
+Ee0 f17 actionDecl 'ch.ivyteam.wf.processes.LanguageServiceData out;
+' #txt
+Ee0 f17 actionTable 'out=in;
+' #txt
+Ee0 f17 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+
+IvyLanguageResultDTO dto = LanguageService.newInstance().getSupportedLanguages(in.apps.get(0));
+out.languages = dto.ivyLanguages;
+out.errors = dto.errors;' #txt
+Ee0 f17 type ch.ivyteam.wf.processes.LanguageServiceData #txt
+Ee0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>load supported languages for app</name>
+    </language>
+</elementInfo>
+' #txt
+Ee0 f17 200 298 192 44 -93 -8 #rect
+Ee0 f17 @|StepIcon #fIcon
+Ee0 f18 type ch.ivyteam.wf.processes.LanguageServiceData #txt
+Ee0 f18 761 305 30 30 0 15 #rect
+Ee0 f18 @|EndSubIcon #fIcon
+Ee0 f19 type ch.ivyteam.wf.processes.LanguageServiceData #txt
+Ee0 f19 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
+Ee0 f19 doCall true #txt
+Ee0 f19 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
+' #txt
+Ee0 f19 requestMappingAction 'param.exceptions=in.errors;
+' #txt
+Ee0 f19 responseActionDecl 'ch.ivyteam.wf.processes.LanguageServiceData out;
+' #txt
+Ee0 f19 responseMappingAction 'out=in;
+' #txt
+Ee0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>ErrorHandler</name>
+    </language>
+</elementInfo>
+' #txt
+Ee0 f19 504 298 112 44 -35 -8 #rect
+Ee0 f19 @|CallSubIcon #fIcon
+Ee0 f20 expr out #txt
+Ee0 f20 616 320 761 320 #arcP
+Ee0 f21 expr out #txt
+Ee0 f21 392 320 504 320 #arcP
+Ee0 f23 inParamDecl '<java.lang.String appName> param;' #txt
+Ee0 f23 inParamTable 'out.apps=java.util.Arrays.asList(param.appName);
+' #txt
+Ee0 f23 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage supportedLanguge> result;
+' #txt
+Ee0 f23 outParamTable 'result.errors=in.errors;
+result.supportedLanguge=org.apache.commons.collections4.CollectionUtils.isNotEmpty(in.languages) ? in.languages.get(0) : null;
+' #txt
+Ee0 f23 actionDecl 'ch.ivyteam.wf.processes.LanguageServiceData out;
+' #txt
+Ee0 f23 callSignature loadSupportedLanguages(String) #txt
+Ee0 f23 type ch.ivyteam.wf.processes.LanguageServiceData #txt
+Ee0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>loadSupportedLanguages(String)</name>
+    </language>
+</elementInfo>
+' #txt
+Ee0 f23 81 305 30 30 -92 17 #rect
+Ee0 f23 @|StartSubIcon #fIcon
+Ee0 f16 expr out #txt
+Ee0 f16 111 320 200 320 #arcP
 >Proto Ee0 .type ch.ivyteam.wf.processes.LanguageServiceData #txt
 >Proto Ee0 .processKind CALLABLE_SUB #txt
 >Proto Ee0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -218,3 +295,9 @@ Ee0 f12 mainOut f15 tail #connect
 Ee0 f15 head f14 mainIn #connect
 Ee0 f14 mainOut f11 tail #connect
 Ee0 f11 head f9 mainIn #connect
+Ee0 f17 mainOut f21 tail #connect
+Ee0 f21 head f19 mainIn #connect
+Ee0 f19 mainOut f20 tail #connect
+Ee0 f20 head f18 mainIn #connect
+Ee0 f23 mainOut f16 tail #connect
+Ee0 f16 head f17 mainIn #connect

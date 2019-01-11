@@ -18,7 +18,7 @@
 		<script>
 			var confirmMessage = "#{cc.attrs.confirmMessage}";
 			var showConfirmDialogBeforeUnload = true;
-          
+			
 			// Attach the event submit for all forms in the page
 			$("form").on("submit", function() {
 				showConfirmDialogBeforeUnload = false;
@@ -46,12 +46,14 @@
 	
 			// Wire up the events as soon as the DOM tree is ready
 			$(document).ready(function() {
-				window.onbeforeunload = function() {
-					if (showConfirmDialogBeforeUnload) {
-						return confirmMessage;
-					}
-				};
+				window.onbeforeunload = promptWarningOnLeavePage;
 			});
+			
+			function promptWarningOnLeavePage() {
+				if (showConfirmDialogBeforeUnload) {
+					return confirmMessage; 
+				}
+			}
 		</script>
 	</cc:implementation>
 </html>
