@@ -257,70 +257,66 @@ public class StatisticChartQueryUtils {
     TaskQuery taskQuery = TaskQuery.create();
 
     // Filter by created date
-    generateTaskQueryForStartTimestamp(filter, taskQuery);
+    taskQuery.where().and(generateTaskQueryForStartTimestamp(filter));
     
     // Filter by roles
-    generateTaskQueryForRoles(filter, taskQuery);
+    taskQuery.where().and(generateTaskQueryForRoles(filter));
 
-    generateTaskQueryForTaskPriority(filter, taskQuery);
+    taskQuery.where().and(generateTaskQueryForTaskPriority(filter));
 
     taskQuery.where().and().cases(generateCaseQuery(filter, false));
+    
     return taskQuery;
   }
 
-  private static void generateTaskQueryForRoles(StatisticFilter filter, TaskQuery taskQuery) {
+  private static TaskQuery generateTaskQueryForRoles(StatisticFilter filter) {
     TaskQuery subTaskQueryForRoles = TaskQuery.create();
-    IFilterQuery subTaskFilterForRoles = subTaskQueryForRoles.where();
     if (filter.getIsAllRolesSelected()) {
-      subTaskFilterForRoles.or().activatorName().isEqual(Ivy.session().getSessionUser().getMemberName()); //include current user
-      subTaskFilterForRoles.or().activatorName().isNotLike("#%%"); //include roles only, activatorName start with # is user
+      subTaskQueryForRoles.where().or().activatorName().isEqual(Ivy.session().getSessionUser().getMemberName()); //include current user
+      subTaskQueryForRoles.where().or().activatorName().isNotLike("#%%"); //include roles only, activatorName start with # is user
       ISecurityContext securityContext = Ivy.request().getApplication().getSecurityContext();
       List<String> technicalRolesName = securityContext.getRoles().stream().filter(role -> role.getProperty(RoleUtils.HIDE) != null).map(IRole::getMemberName).collect(Collectors.toList());
       if (!CollectionUtils.isEmpty(technicalRolesName)) {
-        technicalRolesName.forEach(roleName -> subTaskFilterForRoles.and().activatorName().isNotEqual(roleName)); //exclude technical role
+        technicalRolesName.forEach(roleName -> subTaskQueryForRoles.where().and().activatorName().isNotEqual(roleName)); //exclude technical role
       }
     } else {
       if (CollectionUtils.isNotEmpty(filter.getSelectedRoles())) {
-        filter.getSelectedRoles().forEach(role -> subTaskFilterForRoles.or().activatorName().isEqual(role));
+        filter.getSelectedRoles().forEach(role -> subTaskQueryForRoles.where().or().activatorName().isEqual(role));
       } else {
-        subTaskFilterForRoles.and().activatorName().isNotLike("#%%"); //exclude other users
+        subTaskQueryForRoles.where().and().activatorName().isNotLike("#%%"); //exclude other users
         List<IRole> roles = CollectionUtils.emptyIfNull(filter.getRoles()).stream().filter(role -> role instanceof IRole).map(role -> (IRole)role).collect(Collectors.toList());
-        roles.forEach(role -> subTaskFilterForRoles.and().activatorName().isNotEqual(role.getMemberName())); //exclude role
+        roles.forEach(role -> subTaskQueryForRoles.where().and().activatorName().isNotEqual(role.getMemberName())); //exclude role
       }
     }
-    taskQuery.where().and(subTaskQueryForRoles);
+    return subTaskQueryForRoles;
   }
 
-  private static void generateTaskQueryForStartTimestamp(StatisticFilter filter, TaskQuery taskQuery) {
+  private static TaskQuery generateTaskQueryForStartTimestamp(StatisticFilter filter) {
     TaskQuery subTaskQueryForCreatedDate = TaskQuery.create();
-    IFilterQuery subTaskFilterForCreatedDate = subTaskQueryForCreatedDate.where();
     if(filter.getTimePeriodSelection() == null || filter.getTimePeriodSelection() == StatisticTimePeriodSelection.CUSTOM){
       Date createdDateFrom = filter.getCreatedDateFrom();
       Date createdDateTo = filter.getCreatedDateTo();
       if (createdDateFrom != null || createdDateTo != null) {
         if (createdDateFrom != null) {
-          subTaskFilterForCreatedDate.startTimestamp().isGreaterOrEqualThan(createdDateFrom);
+          subTaskQueryForCreatedDate.where().startTimestamp().isGreaterOrEqualThan(createdDateFrom);
         }
         if (createdDateTo != null) {
-          subTaskFilterForCreatedDate.startTimestamp().isLowerOrEqualThan(createdDateTo);
+          subTaskQueryForCreatedDate.where().startTimestamp().isLowerOrEqualThan(createdDateTo);
         }
-        taskQuery.where().and(subTaskQueryForCreatedDate);
       }
     }
     else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_WEEK){
-      subTaskFilterForCreatedDate.startTimestamp().isGreaterOrEqualThan(Dates.getMondayOfLastWeek());
-      subTaskFilterForCreatedDate.startTimestamp().isLowerOrEqualThan(Dates.getSundayOfLastWeek());
-      taskQuery.where().and(subTaskQueryForCreatedDate);
+      subTaskQueryForCreatedDate.where().startTimestamp().isGreaterOrEqualThan(Dates.getMondayOfLastWeek());
+      subTaskQueryForCreatedDate.where().startTimestamp().isLowerOrEqualThan(Dates.getSundayOfLastWeek());
     }
     else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_MONTH) {
-      subTaskFilterForCreatedDate.startTimestamp().isGreaterOrEqualThan(Dates.getFirstDayOfLastMonth());
-      subTaskFilterForCreatedDate.startTimestamp().isLowerOrEqualThan(Dates.getLastDayOfLastMonth());
-      taskQuery.where().and(subTaskQueryForCreatedDate);
+      subTaskQueryForCreatedDate.where().startTimestamp().isGreaterOrEqualThan(Dates.getFirstDayOfLastMonth());
+      subTaskQueryForCreatedDate.where().startTimestamp().isLowerOrEqualThan(Dates.getLastDayOfLastMonth());
     }
     else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_6_MONTH){
-      subTaskFilterForCreatedDate.startTimestamp().isGreaterOrEqualThan(Dates.getFirstDayOfLast6Month());
-      taskQuery.where().and(subTaskQueryForCreatedDate);
+      subTaskQueryForCreatedDate.where().startTimestamp().isGreaterOrEqualThan(Dates.getFirstDayOfLast6Month());
     }
+    return subTaskQueryForCreatedDate;
   }
 
   /**
@@ -346,95 +342,86 @@ public class StatisticChartQueryUtils {
     CaseQuery caseQuery = CaseQuery.create();
 
     // Filter by created date
-    generateCaseQueryForStartTimestamp(filter, caseQuery);
-
+    caseQuery.where().and(generateCaseQueryForStartTimestamp(filter));
+    
     // Filter by case state
-    generateCaseQueryForCaseState(filter, isElapsedStatistic, caseQuery);
-
+    caseQuery.where().and(generateCaseQueryForCaseState(filter, isElapsedStatistic));
+    
     // Filter by case category
-    generateCaseQueryForCaseCategory(filter, caseQuery);
+    if (!filter.getIsAllCategoriesSelected()) {
+      caseQuery.where().and(generateCaseQueryForCaseCategory(filter));
+    }
     
     // Filter by customVarChar
     generateCaseQueryForCustomVarChar(filter, caseQuery);
-
+    
     return caseQuery;
   }
 
-  private static void generateCaseQueryForCaseCategory(StatisticFilter filter, CaseQuery caseQuery) {
-    if (filter.getIsAllCategoriesSelected()) {
-      return ;
-    }
+  private static CaseQuery generateCaseQueryForCaseCategory(StatisticFilter filter) {
+    CaseQuery subCaseQueryForSelectedCaseCategories = CaseQuery.create();
     List<String> selectedCaseCategories =
         Optional.ofNullable(filter.getSelectedCaseCategories()).orElse(new ArrayList<>());
-    CaseQuery subCaseQueryForSelectedCaseCategories = CaseQuery.create();
-    ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForSelectedCaseCategories =
-        subCaseQueryForSelectedCaseCategories.where();
     if (selectedCaseCategories.isEmpty()) {
       CategoryTree caseCategoryTree = filter.getCaseCategoryTree();
       if (caseCategoryTree != null) {
-        caseCategoryTree.getAllChildren().stream().map(CategoryTree::getRawPath).forEach(category -> subCaseFilterForSelectedCaseCategories.and().category().isNotEqual(category));
+        caseCategoryTree.getAllChildren().stream().map(CategoryTree::getRawPath).forEach(category -> subCaseQueryForSelectedCaseCategories.where().and().category().isNotEqual(category));
       }
     } else {
-      selectedCaseCategories.forEach(category -> subCaseFilterForSelectedCaseCategories.or().category().isEqual(category));
+      selectedCaseCategories.forEach(category -> {
+        subCaseQueryForSelectedCaseCategories.where().or().category().isEqual(category);
+      });
     }
-    caseQuery.where().and(subCaseQueryForSelectedCaseCategories);
+    return subCaseQueryForSelectedCaseCategories;
   }
 
-  private static void generateCaseQueryForCaseState(StatisticFilter filter, boolean forElapsedStatistic,
-          CaseQuery caseQuery) {
+  private static CaseQuery generateCaseQueryForCaseState(StatisticFilter filter, boolean forElapsedStatistic) {
     List<CaseState> selectedCaseStates = Optional.ofNullable(filter.getSelectedCaseStates()).orElse(new ArrayList<>());
     CaseQuery subCaseQueryForSelectedCaseStates = CaseQuery.create();
-    ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForSelectedCaseStates =
-        subCaseQueryForSelectedCaseStates.where();
 
     if (selectedCaseStates.isEmpty()) {
       List<CaseState> caseStates = Arrays.asList(CaseState.values());
-      caseStates.forEach(caseState -> subCaseFilterForSelectedCaseStates.and().state().isNotEqual(caseState));
+      caseStates.forEach(caseState -> subCaseQueryForSelectedCaseStates.where().and().state().isNotEqual(caseState));
     } else if (forElapsedStatistic) {
-      subCaseFilterForSelectedCaseStates.or().state().isEqual(CaseState.DONE);
+      subCaseQueryForSelectedCaseStates.where().or().state().isEqual(CaseState.DONE);
     } else {
-      selectedCaseStates.forEach(caseState -> subCaseFilterForSelectedCaseStates.or().state().isEqual(caseState));
+      selectedCaseStates.forEach(caseState -> subCaseQueryForSelectedCaseStates.where().or().state().isEqual(caseState));
     }
-    caseQuery.where().and(subCaseQueryForSelectedCaseStates);
+    return subCaseQueryForSelectedCaseStates;
   }
 
-  private static void generateCaseQueryForStartTimestamp(StatisticFilter filter, CaseQuery caseQuery) {
+  private static CaseQuery generateCaseQueryForStartTimestamp(StatisticFilter filter) {
     CaseQuery subCaseQueryForCreatedDate = CaseQuery.create();
-    ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForCreatedDate =
-        subCaseQueryForCreatedDate.where();
     if(filter.getTimePeriodSelection() == null || filter.getTimePeriodSelection() == StatisticTimePeriodSelection.CUSTOM){
       Date createdDateFrom = filter.getCreatedDateFrom();
       Date createdDateTo = filter.getCreatedDateTo();
       if (createdDateFrom != null || createdDateTo != null) {
       
         if (createdDateFrom != null) {
-          subCaseFilterForCreatedDate.startTimestamp().isGreaterOrEqualThan(createdDateFrom);
+          subCaseQueryForCreatedDate.where().startTimestamp().isGreaterOrEqualThan(createdDateFrom);
         }
         if (createdDateTo != null) {
-          subCaseFilterForCreatedDate.startTimestamp().isLowerOrEqualThan(createdDateTo);
+          subCaseQueryForCreatedDate.where().startTimestamp().isLowerOrEqualThan(createdDateTo);
         }
-        caseQuery.where().and(subCaseQueryForCreatedDate);
       }
     }
     else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_WEEK){
-      subCaseFilterForCreatedDate.startTimestamp().isGreaterOrEqualThan(Dates.getMondayOfLastWeek());
-      subCaseFilterForCreatedDate.startTimestamp().isLowerOrEqualThan(Dates.getSundayOfLastWeek());
-      caseQuery.where().and(subCaseQueryForCreatedDate);
+      subCaseQueryForCreatedDate.where().startTimestamp().isGreaterOrEqualThan(Dates.getMondayOfLastWeek());
+      subCaseQueryForCreatedDate.where().startTimestamp().isLowerOrEqualThan(Dates.getSundayOfLastWeek());
     }
     else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_MONTH) {
-      subCaseFilterForCreatedDate.startTimestamp().isGreaterOrEqualThan(Dates.getFirstDayOfLastMonth());
-      subCaseFilterForCreatedDate.startTimestamp().isLowerOrEqualThan(Dates.getLastDayOfLastMonth());
-      caseQuery.where().and(subCaseQueryForCreatedDate);
+      subCaseQueryForCreatedDate.where().startTimestamp().isGreaterOrEqualThan(Dates.getFirstDayOfLastMonth());
+      subCaseQueryForCreatedDate.where().startTimestamp().isLowerOrEqualThan(Dates.getLastDayOfLastMonth());
     }
     else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_6_MONTH) {
-      subCaseFilterForCreatedDate.startTimestamp().isGreaterOrEqualThan(Dates.getFirstDayOfLastMonth());
-      caseQuery.where().and(subCaseQueryForCreatedDate);
+      subCaseQueryForCreatedDate.where().startTimestamp().isGreaterOrEqualThan(Dates.getFirstDayOfLastMonth());
     }
+    return subCaseQueryForCreatedDate;
   }
   
   private static void generateCaseQueryForRole(StatisticFilter filter, CaseQuery caseQuery) {
     TaskQuery taskQuery = TaskQuery.create();
-    generateTaskQueryForRoles(filter, taskQuery);
+    taskQuery.where().and(generateTaskQueryForRoles(filter));
     caseQuery.where().and().tasks(taskQuery);
   }
 
@@ -475,7 +462,7 @@ public class StatisticChartQueryUtils {
     }
     caseQuery.where().and(subCaseQueryForSelectedCaseStates);
     
-    generateCaseQueryForCaseCategory(filter, caseQuery);
+    caseQuery.where().and(generateCaseQueryForCaseCategory(filter));
     
     // Filter by customVarChar
     generateCaseQueryForCustomVarChar(filter, caseQuery);
@@ -533,21 +520,22 @@ public class StatisticChartQueryUtils {
     TaskQuery taskQuery = TaskQuery.create();
     
     // Filter by end date
-    generateTaskQueryForEndTimestamp(filter, taskQuery);
+    taskQuery.where().and(generateTaskQueryForEndTimestamp(filter));
+    taskQuery.where().and().endTimestamp().isNotNull();
     
     //Filter by DONE state
     taskQuery.where().and().state().isEqual(TaskState.DONE);
     
     //Filter by role which finished task
-    generateTaskQueryForRoles(filter, taskQuery);
+    taskQuery.where().and(generateTaskQueryForRoles(filter));
 
     // Filter by task priority
-    generateTaskQueryForTaskPriority(filter, taskQuery);
+    taskQuery.where().and(generateTaskQueryForTaskPriority(filter));
     
     return taskQuery;
   }
 
-  private static void generateTaskQueryForEndTimestamp(StatisticFilter filter, TaskQuery taskQuery) {
+  private static TaskQuery generateTaskQueryForEndTimestamp(StatisticFilter filter) {
     TaskQuery subTaskQueryForCreatedDate = TaskQuery.create();
     IFilterQuery subTaskFilterForCreatedDate = subTaskQueryForCreatedDate.where();
     if(filter.getTimePeriodSelection() == null || filter.getTimePeriodSelection() == StatisticTimePeriodSelection.CUSTOM){
@@ -560,38 +548,33 @@ public class StatisticChartQueryUtils {
         if (createdDateTo != null) {
           subTaskFilterForCreatedDate.endTimestamp().isLowerOrEqualThan(createdDateTo);
         }
-        taskQuery.where().and(subTaskQueryForCreatedDate);
       }
     }
     else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_WEEK){
       subTaskFilterForCreatedDate.endTimestamp().isGreaterOrEqualThan(Dates.getMondayOfLastWeek());
       subTaskFilterForCreatedDate.endTimestamp().isLowerOrEqualThan(Dates.getSundayOfLastWeek());
-      taskQuery.where().and(subTaskQueryForCreatedDate);
     }
     else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_MONTH) {
       subTaskFilterForCreatedDate.endTimestamp().isGreaterOrEqualThan(Dates.getFirstDayOfLastMonth());
       subTaskFilterForCreatedDate.endTimestamp().isLowerOrEqualThan(Dates.getLastDayOfLastMonth());
-      taskQuery.where().and(subTaskQueryForCreatedDate);
     }
     else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_6_MONTH){
       subTaskFilterForCreatedDate.endTimestamp().isGreaterOrEqualThan(Dates.getFirstDayOfLast6Month());
-      taskQuery.where().and(subTaskQueryForCreatedDate);
     }
-    taskQuery.where().and().endTimestamp().isNotNull();
+    return subTaskQueryForCreatedDate;
   }
 
-  private static void generateTaskQueryForTaskPriority(StatisticFilter filter, TaskQuery taskQuery) {
+  private static TaskQuery generateTaskQueryForTaskPriority(StatisticFilter filter) {
     List<WorkflowPriority> selectedPriorities =
         Optional.ofNullable(filter.getSelectedTaskPriorities()).orElse(new ArrayList<>());
     TaskQuery subTaskQueryForPriority = TaskQuery.create();
-    IFilterQuery subTaskFilterForPriority = subTaskQueryForPriority.where();
     if (!selectedPriorities.isEmpty()) {
-      selectedPriorities.forEach(priority -> subTaskFilterForPriority.or().priority().isEqual(priority));
+      selectedPriorities.forEach(priority -> subTaskQueryForPriority.where().or().priority().isEqual(priority));
     } else {
       List<WorkflowPriority> priorities = Optional.ofNullable(filter.getTaskPriorities()).orElse(new ArrayList<>());
-      priorities.forEach(priority -> subTaskFilterForPriority.and().priority().isNotEqual(priority));
+      priorities.forEach(priority -> subTaskQueryForPriority.where().and().priority().isNotEqual(priority));
     }
-    taskQuery.where().and(subTaskQueryForPriority);
+    return subTaskQueryForPriority;
   }
   
   private static TaskQuery filterOnlyTasksExpireInThisYear(TaskQuery taskQuery) {

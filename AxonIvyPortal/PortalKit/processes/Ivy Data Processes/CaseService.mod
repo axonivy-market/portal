@@ -296,8 +296,7 @@ Ce0 f20 actionTable 'out=in;
 Ce0 f20 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
 
 ApplicationService service = new ApplicationService();
-out.caseCategorySearchCriteria.apps = service.findActiveIvyAppsBy(in.caseCategorySearchCriteria.apps);
-' #txt
+out.caseCategorySearchCriteria.apps = service.findActiveIvyAppsBy(in.caseCategorySearchCriteria.apps);' #txt
 Ce0 f20 type ch.ivyteam.wf.processes.CaseServiceData #txt
 Ce0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -372,7 +371,7 @@ Ce0 f45 actionTable 'out=in;
 Ce0 f45 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
 
 ApplicationService service = new ApplicationService();
-out.taskSearchCriteria.apps = service.findActiveIvyAppsBy(in.taskSearchCriteria.apps);
+out.caseCustomVarCharSearchCriteria.apps = service.findActiveIvyAppsBy(in.caseCustomVarCharSearchCriteria.apps);
 ' #txt
 Ce0 f45 type ch.ivyteam.wf.processes.CaseServiceData #txt
 Ce0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -509,21 +508,21 @@ Ce0 f46 actionDecl 'ch.ivyteam.wf.processes.CaseServiceData out;
 ' #txt
 Ce0 f46 actionTable 'out=in;
 ' #txt
-Ce0 f46 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyTaskResultDTO;
-import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;
+Ce0 f46 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
+import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;
 
-IvyTaskResultDTO dto = TaskService.newInstance().analyzeElapsedTimeOfTasks(in.taskSearchCriteria);
-out.elapsedTimeStatistic = dto.elapsedTimeStatistic;
+IvyCaseResultDTO dto = CaseService.newInstance().findValuesOfCustomVarChar(in.caseCustomVarCharSearchCriteria);
+out.customVarChars = dto.customVarChars;
 out.errors = dto.errors;' #txt
 Ce0 f46 type ch.ivyteam.wf.processes.CaseServiceData #txt
 Ce0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Analyze elapsed time statistic</name>
+        <name>Find custom varchars</name>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f46 376 554 176 44 -80 -8 #rect
+Ce0 f46 400 554 128 44 -59 -8 #rect
 Ce0 f46 @|StepIcon #fIcon
 Ce0 f33 actionDecl 'ch.ivyteam.wf.processes.CaseServiceData out;
 ' #txt
@@ -597,13 +596,13 @@ Ce0 f35 344 384 384 384 #arcP
 Ce0 f36 expr out #txt
 Ce0 f36 704 384 777 384 #arcP
 Ce0 f52 expr out #txt
-Ce0 f52 552 576 592 576 #arcP
+Ce0 f52 528 576 592 576 #arcP
 Ce0 f37 expr out #txt
 Ce0 f37 111 384 168 384 #arcP
 Ce0 f38 expr out #txt
 Ce0 f38 544 384 592 384 #arcP
 Ce0 f51 expr out #txt
-Ce0 f51 344 576 376 576 #arcP
+Ce0 f51 344 576 400 576 #arcP
 Ce0 f43 expr out #txt
 Ce0 f43 111 480 168 480 #arcP
 Ce0 f44 expr out #txt

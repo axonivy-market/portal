@@ -34,6 +34,19 @@ public class ServiceUtilities {
     }
     return app;
   }
+  
+  public static List<IApplication> findApps(List<String> appNames) {
+    Objects.requireNonNull(appNames, "The appNames must not be null");
+
+    List<IApplication> apps = new ArrayList<>();
+    for (String appName : appNames) {
+      IApplication app = getServer().getApplicationConfigurationManager().findApplication(appName);
+      if (app != null && app.getActivityState() == ActivityState.ACTIVE) {
+        apps.add(app);
+      }
+    }
+    return apps;
+  }
 
   public static IUser findUser(final String username, IApplication app) throws PortalIvyDataException {
     Objects.requireNonNull(username, "The username must not be null");
