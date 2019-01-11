@@ -24,8 +24,4 @@ public class UserService extends AbstractService<User> {
   public List<User> findByApplication(Application application) {
     return getDao().findByApplication(application);
   }
-
-  public List<String> findApplicationNamesUserCanWorkOn(String userName, long serverId) {
-    return getDao().findApplicationNamesUserCanWorkOn(userName, serverId);
-  }
 }

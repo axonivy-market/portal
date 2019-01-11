@@ -13,8 +13,6 @@ public class Application extends BusinessEntity {
   private String link;
   private Long serverId;
 
-  /*@JsonIgnore
-  private Server server;*/
 
   public String getDisplayName() {
     return displayName;
@@ -96,21 +94,11 @@ public class Application extends BusinessEntity {
     this.serverId = serverId;
   }
 
-  /*
-  public Server getServer() {
-    return this.server;
-  }
-
-  public void setServer(Server server) {
-    this.serverId = server.getId();
-    this.server = server;
-  }*/
-
   @Override
   public String toString() {
     return "Application {displayName=" + displayName + ", isOnline=" + isOnline + ", isVisible=" + isVisible
         + ", isSupportEmailSettings=" + isSupportEmailSettings + ", isSupportAbsenceSettings="
         + isSupportAbsenceSettings + ", menuIcon=" + menuIcon + ", menuOrdinal=" + menuOrdinal + ", name=" + name
-        + ", link=" + link/* + ", serverId=" + serverId + ", id=" + getId()*/ + "}";
+        + ", link=" + link + ", serverId=" + serverId + ", id=" + getId() + "}";
   }
 }
