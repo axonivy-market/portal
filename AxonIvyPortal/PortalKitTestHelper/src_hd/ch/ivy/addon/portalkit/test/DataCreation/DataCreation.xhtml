@@ -12,10 +12,12 @@
       <p:inputText value="#{data.numOfSubCats}" />
       <p:outputLabel value="Number of cases per sub catetory" />
       <p:inputText value="#{data.numOfCasesPerSubCat}" />
+      <p:outputLabel value="Attach to one business case" />
+      <p:selectBooleanCheckbox value="#{data.attachToBusinessCase}"/>
     </p:panelGrid>
     <p:panelGrid columns="1">
       <h:outputText
-        value="*** Note that each case has 10 tasks. So the number of tasks will be created = number of categories * number of sub categories * number of cases per sub category * 10" />
+        value="*** Note that each case has 4 tasks (1 done task and 3 open task). So the number of tasks will be created = number of categories * number of sub categories * number of cases per sub category * 4" />
       <p:commandButton value="Create tasks" actionListener="#{logic.close}" />
     </p:panelGrid>
   </h:form>

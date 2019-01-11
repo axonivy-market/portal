@@ -6,3 +6,5 @@ numOfSubCats Integer #field
 numOfSubCats PERSISTENT #fieldModifier
 numOfCasesPerSubCat Integer #field
 numOfCasesPerSubCat PERSISTENT #fieldModifier
+attachToBusinessCase Boolean #field
+attachToBusinessCase PERSISTENT #fieldModifier
