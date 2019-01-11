@@ -1,0 +1,4 @@
+CreateMultipleTestUsersData #class
+ch.ivy.addon.portalkit.test.CreateMultipleTestUsers #namespace
+numberOfUser Integer #field
+numberOfUser PERSISTENT #fieldModifier
