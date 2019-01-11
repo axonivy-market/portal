@@ -82,7 +82,7 @@
 								title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}">
 								<span class="fa fa-trash-o" />
 							</p:commandLink>
-							<p:commandLink id="previewUsers" process="@this" disabled="#{empty app.serverId}"
+							<p:commandLink id="previewUsers" process="@this" rendered="#{not empty app.serverId}"
 								actionListener="#{logic.getApplicationUserList(app)}" update=":#{p:component('previewUsersDialog')}"
 								oncomplete="PF('previewUsersDialog').show()" styleClass="action-column-icon-button"
 								title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/previewUsers')}">

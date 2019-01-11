@@ -7,13 +7,13 @@
         <inputParameter>
             <name>cases</name>
             <description></description>
-            <parameterType>List&lt;ch.ivy.ws.addon.IvyCase&gt;</parameterType>
+            <parameterType>java.util.List&lt;ch.ivyteam.ivy.workflow.ICase&gt;</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
         <outputParameter>
             <name>cases</name>
             <description></description>
-            <parameterType>List&lt;ch.ivy.ws.addon.IvyCase&gt;</parameterType>
+            <parameterType>java.util.List&lt;ch.ivyteam.ivy.workflow.ICase&gt;</parameterType>
             <nullPermitted>false</nullPermitted>
         </outputParameter>
     </startMethod>

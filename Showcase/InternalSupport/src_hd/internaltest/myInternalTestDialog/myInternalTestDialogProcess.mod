@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Wed Jun 18 13:11:10 CEST 2014]
-146AEAC5C7816D00 3.17 #module
+146AEAC5C7816D00 3.23 #module
 >Proto >Proto Collection #zClass
 ms0 myInternalTestDialogProcess Big #zClass
 ms0 RD #cInfo
@@ -24,14 +23,14 @@ ms0 @PushWFArc f5 '' #zField
 >Proto ms0 ms0 myInternalTestDialogProcess #zField
 ms0 f0 guid 146AEAC5CA7F4CD2 #txt
 ms0 f0 type internaltest.myInternalTestDialog.myInternalTestDialogData #txt
-ms0 f0 method start(List<ch.ivy.ws.addon.IvyCase>) #txt
+ms0 f0 method start(java.util.List<ch.ivyteam.ivy.workflow.ICase>) #txt
 ms0 f0 disableUIEvents true #txt
 ms0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<List<ch.ivy.ws.addon.IvyCase> cases> param = methodEvent.getInputArguments();
+<java.util.List<ch.ivyteam.ivy.workflow.ICase> cases> param = methodEvent.getInputArguments();
 ' #txt
 ms0 f0 inParameterMapAction 'out.cases=param.cases;
 ' #txt
-ms0 f0 outParameterDecl '<List<ch.ivy.ws.addon.IvyCase> cases> result;
+ms0 f0 outParameterDecl '<java.util.List<ch.ivyteam.ivy.workflow.ICase> cases> result;
 ' #txt
 ms0 f0 outParameterMapAction 'result.cases=in.cases;
 ' #txt

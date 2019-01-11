@@ -472,7 +472,6 @@ Tt0 f1 actionCode 'import ch.ivyteam.ivy.workflow.WorkflowPriority;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 
 CaseUtils.setCaseDetailsProcess(ivy.case,ivy.html.startref("Start Processes/InternalSupportPortalHome/caseDetails.ivp"));
-CaseUtils.setCaseMainContactFolderId(ivy.case,"http://www.axonactive.vn/");
 
 in.expiredDate = new Duration(1,0,0,0,0,0);
 in.taskPriority = WorkflowPriority.NORMAL;' #txt
@@ -1904,11 +1903,7 @@ Tt0 f119 actionDecl 'internaltest.Data out;
 ' #txt
 Tt0 f119 actionTable 'out=in;
 ' #txt
-Tt0 f119 actionCode 'import ch.ivy.addon.portalkit.service.ProcessStartCollector;
-import ch.ivy.addon.portalkit.enums.AdditionalProperty;
-import ch.ivy.addon.portalkit.support.UrlDetector;
-import ch.ivy.addon.portalkit.service.ServerWorkingOnDetector;
-import ch.ivy.addon.portalkit.persistence.domain.Server;
+Tt0 f119 actionCode 'import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 
 ivy.case.setAdditionalProperty(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString(), "https://my.axonactive.vn.local/home_page.php");' #txt
 Tt0 f119 security system #txt

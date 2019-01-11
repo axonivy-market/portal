@@ -51,7 +51,6 @@ Pt0 @PushWFArc f45 '' #zField
 Pt0 @CallSub f6 '' #zField
 Pt0 @PushWFArc f16 '' #zField
 Pt0 @PushWFArc f38 '' #zField
-Pt0 @PushWFArc f48 '' #zField
 Pt0 @PushWFArc f50 '' #zField
 Pt0 @StartRequest f28 '' #zField
 Pt0 @PushWFArc f46 '' #zField
@@ -120,6 +119,7 @@ Pt0 @RichDialog f101 '' #zField
 Pt0 @StartRequest f100 '' #zField
 Pt0 @PushWFArc f102 '' #zField
 Pt0 @PushWFArc f29 '' #zField
+Pt0 @PushWFArc f48 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Pt0 f0 outLink PortalStart.ivp #txt
 Pt0 f0 type ch.ivy.addon.portal.generic.PortalStartData #txt
@@ -770,8 +770,6 @@ Pt0 f16 0 1.0 51 13 #arcLabel
 Pt0 f38 expr out #txt
 Pt0 f38 1816 352 1900 352 #arcP
 Pt0 f38 0 0.5114942528735632 0 -12 #arcLabel
-Pt0 f48 expr out #txt
-Pt0 f48 77 449 160 449 #arcP
 Pt0 f50 expr out #txt
 Pt0 f50 272 449 544 449 #arcP
 Pt0 f28 outLink DefaultApplicationHomePage.ivp #txt
@@ -1688,6 +1686,8 @@ Pt0 f102 expr out #txt
 Pt0 f102 79 1120 160 1120 #arcP
 Pt0 f29 expr out #txt
 Pt0 f29 800 278 800 336 #arcP
+Pt0 f48 expr out #txt
+Pt0 f48 77 449 160 449 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1726,8 +1726,6 @@ Pt0 f21 out f16 tail #connect
 Pt0 f16 head f6 mainIn #connect
 Pt0 f6 mainOut f38 tail #connect
 Pt0 f38 head f17 mainIn #connect
-Pt0 f10 mainOut f48 tail #connect
-Pt0 f48 head f11 mainIn #connect
 Pt0 f11 mainOut f50 tail #connect
 Pt0 f50 head f30 in #connect
 Pt0 f28 mainOut f46 tail #connect
@@ -1794,3 +1792,5 @@ Pt0 f80 mainOut f91 tail #connect
 Pt0 f91 head f154 mainIn #connect
 Pt0 f100 mainOut f102 tail #connect
 Pt0 f102 head f101 mainIn #connect
+Pt0 f10 mainOut f48 tail #connect
+Pt0 f48 head f11 mainIn #connect

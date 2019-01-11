@@ -9,14 +9,8 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang3.StringUtils;
-
-import ch.ivy.addon.portalkit.persistence.domain.Server;
-import ch.ivy.addon.portalkit.service.ServerService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.application.IApplicationConfigurationManager;
-import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.request.IHttpRequest;
 import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.server.ServerFactory;
 
@@ -94,13 +88,6 @@ public class UrlDetector {
     return new URL(request.getScheme(), request.getServerName(), request.getContextPath()).toString();
   }
   
-  public String getHost(String serverUrl, Server server) throws MalformedURLException {
-    boolean isMultiServer = (new ServerService()).isMultiServers();
-    if (isMultiServer) {
-      return getHost(StringUtils.isEmpty(serverUrl) ? server.getPath() : serverUrl);
-    }
-    return RequestUriFactory.createServerUri((IHttpRequest) Ivy.request()).toString();
-  }
 
   public String getHost(String url) throws MalformedURLException {
     URL urlObject = new URL(url);
