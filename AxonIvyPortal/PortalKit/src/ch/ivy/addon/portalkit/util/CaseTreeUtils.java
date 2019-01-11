@@ -24,6 +24,7 @@ import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.ws.addon.CategoryData;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
+import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 /**
  * Utilities for case tree.
@@ -65,16 +66,15 @@ public class CaseTreeUtils {
     newNodeData.setRootNodeAllCase(isRootAllCase);
     
     TreeNode newNode = new DefaultTreeNode(nodeType, newNodeData, root);
-    newNode.setExpanded(true);
-    if (menuState.contains(nodeType) && !getLastCategoryFromCategoryPath(menuState).contains(getLastCategoryFromCategoryPath(nodeType))) {
-      newNode.setExpanded(true);
+    if (menuState.contains(nodeType) && isSelectedCategory(menuState, nodeType)) {
+      newNode.getParent().setExpanded(true);
     }
     return newNode;
   }
 
   private static boolean isSelectedCategory(String menuState, String nodeType) {
     return (menuState.indexOf(nodeType) + nodeType.length() == menuState.length())
-        ||( menuState.charAt(menuState.indexOf(nodeType) + nodeType.length()) == '/');
+        ||(menuState.charAt(menuState.indexOf(nodeType) + nodeType.length()) == '/');
   }
 
   public static CheckboxTreeNode buildCaseCategoryCheckboxTreeRoot() {
@@ -87,14 +87,14 @@ public class CaseTreeUtils {
       involvedApplications = new ArrayList<>();
       involvedApplications.add(appName);
     }
-    String jsonQuery = SubProcessCall.withPath("Functional Processes/BuildCaseJsonQuery")
-        .withStartSignature("buildCaseJsonQuery()").call().get("jsonQuery", String.class);
-    List<CategoryData> allCaseCategories = findAllCaseCategories(involvedApplications, jsonQuery);
+    CaseQuery caseQuery = SubProcessCall.withPath("Functional Processes/BuildCaseQuery")
+        .withStartSignature("buildCaseQuery()").call().get("caseQuery", CaseQuery.class);
+    CategoryTree allCaseCategories = findAllCaseCategoryTree(involvedApplications, caseQuery);
     root = buildCaseCategoryCheckboxTreeNode(allCaseCategories);
     return root;
   }
 
-  private static List<CategoryData> findAllCaseCategories(List<String> involvedApplications, String jsonQuery) {
+  private static CategoryTree findAllCaseCategoryTree(List<String> involvedApplications, CaseQuery caseQuery) {
     Map<String, Object> params = new HashMap<>();
     params.put("jsonQuery", jsonQuery);
     params.put("apps", involvedApplications != null ? involvedApplications.stream().collect(joining("=~=")) : null);
@@ -102,16 +102,16 @@ public class CaseTreeUtils {
         IvyAdapterService.startSubProcess("findCaseCategoriesByCriteria(String, String, Long, String)", params,
             Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
     @SuppressWarnings("unchecked")
-    List<CategoryData> allCaseCategories = (List<CategoryData>) response.get("caseCategories");
-    return allCaseCategories;
+    CategoryTree allCaseCategoryTree = (CategoryTree) response.get("caseCategories");
+    return allCaseCategoryTree;
   }
 
-  private static CheckboxTreeNode buildCaseCategoryCheckboxTreeNode(List<CategoryData> categories) {
+  private static CheckboxTreeNode buildCaseCategoryCheckboxTreeNode(CategoryTree categoryTree) {
     CheckboxTreeNode caseRootNode =
         new CheckboxTreeNode(buildCaseNodeFrom(StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY));
     CheckboxTreeNode navigatorNode = caseRootNode;
     String nodeType = "default";
-    for (CategoryData category : categories) {
+    for (CategoryData category : categoryTree) {
       String categoryPath = category.getPath();
       String[] nodeNames = categoryPath.split(DELIMITER);
 

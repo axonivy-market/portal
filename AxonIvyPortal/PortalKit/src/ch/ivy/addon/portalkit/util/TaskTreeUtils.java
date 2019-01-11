@@ -22,6 +22,7 @@ import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.ws.addon.CategoryData;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
 
@@ -68,9 +69,8 @@ public class TaskTreeUtils {
     newNodeData.setRootNodeAllTask(isRootAllTask);
     
     TreeNode newNode = new DefaultTreeNode(nodeType, newNodeData, root);
-    newNode.setExpanded(true);
-    if (menuState.contains(nodeType) && !getLastCategoryFromCategoryPath(menuState).contains(getLastCategoryFromCategoryPath(nodeType))) {
-      newNode.setExpanded(true);
+    if (menuState.contains(nodeType) && isSelectedCategory(menuState, nodeType)) {
+      newNode.getParent().setExpanded(true);
     }
     return newNode;
   }

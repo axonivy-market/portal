@@ -16,13 +16,13 @@ import org.primefaces.model.StreamedContent;
 import ch.ivy.addon.portalkit.bean.CaseBean;
 import ch.ivy.addon.portalkit.bo.ExcelExportSheet;
 import ch.ivy.addon.portalkit.bo.History;
-import ch.ivy.addon.portalkit.bo.RemoteCase;
-import ch.ivy.ws.addon.IvyNote;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.INote;
 
 public class NoteHistoryExporter {
 
-  public StreamedContent getStreamedContentOfTaskNoteHistory(List<IvyNote> taskNoteHistory, String fileName) {
+  public StreamedContent getStreamedContentOfTaskNoteHistory(List<INote> taskNoteHistory, String fileName) {
     List<List<Object>> rows = generateDataForTaskNoteHistory(taskNoteHistory);
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
@@ -40,9 +40,9 @@ public class NoteHistoryExporter {
     return new DefaultStreamedContent(inputStream, "application/xlsx", fileName);
   }
 
-  public StreamedContent getStreamedContentOfCaseNoteHistory(List<History> caseNoteHistory, RemoteCase remoteCase, String fileName) {
+  public StreamedContent getStreamedContentOfCaseNoteHistory(List<History> caseNoteHistory, ICase iCase, String fileName) {
     List<List<Object>> caseNoteRows = generateDataForCaseNoteHistory(caseNoteHistory);
-    List<List<Object>>  generateDataForCaseInfo = generateDataForCaseInfo(remoteCase);
+    List<List<Object>>  generateDataForCaseInfo = generateDataForCaseInfo(iCase);
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
     try {
@@ -74,12 +74,12 @@ public class NoteHistoryExporter {
     return headers;
   }
 
-  private List<List<Object>> generateDataForTaskNoteHistory(List<IvyNote> taskNoteHistory) {
+  private List<List<Object>> generateDataForTaskNoteHistory(List<INote> taskNoteHistory) {
     List<List<Object>> rows = new ArrayList<>();
-    for (IvyNote taskNote : taskNoteHistory) {
+    for (INote taskNote : taskNoteHistory) {
       List<Object> row = new ArrayList<>();
-      row.add(taskNote.getCreatorFullName());
-      row.add(formatDate(taskNote.getCreationTimestamp().getTime()));
+      row.add(taskNote.getWritter().getDisplayName());
+      row.add(formatDate(taskNote.getCreationTimestamp()));
       row.add(taskNote.getMessage());
       rows.add(row);
     }
@@ -95,13 +95,13 @@ public class NoteHistoryExporter {
     return headers;
   }
 
-  private List<List<Object>> generateDataForCaseInfo(RemoteCase remoteCase) {
+  private List<List<Object>> generateDataForCaseInfo(ICase iCase) {
     List<List<Object>> rows = new ArrayList<>();
     List<Object> row = new ArrayList<>();
-    row.add(remoteCase.getName());
-    row.add(remoteCase.getId());
-    row.add(remoteCase.getCreatorFullName());
-    row.add(new CaseBean().getState(remoteCase));
+    row.add(iCase.getName());
+    row.add(iCase.getId());
+    row.add(iCase.getCreatorUser().getDisplayName());
+    row.add(new CaseBean().getState(iCase));
     rows.add(row);
     return rows;
   }

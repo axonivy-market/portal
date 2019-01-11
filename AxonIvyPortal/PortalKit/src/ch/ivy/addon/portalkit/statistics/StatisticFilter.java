@@ -8,26 +8,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
-import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.addon.portalkit.bo.RemoteRole;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
+import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
-import ch.ivy.ws.addon.CategoryData;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IRole;
-import ch.ivyteam.ivy.security.ISecurityContext;
-import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
+import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class StatisticFilter implements Cloneable {
   
@@ -38,7 +36,7 @@ public class StatisticFilter implements Cloneable {
   private Date createdDateTo;
 
   @JsonIgnore
-  private List<CategoryData> caseCategories = new ArrayList<>();
+  private CategoryTree caseCategoryTree;
   private List<String> selectedCaseCategories = new ArrayList<>();
   private boolean isAllCategoriesSelected = true;
 
@@ -58,7 +56,7 @@ public class StatisticFilter implements Cloneable {
   private boolean isAllTaskPrioritiesSelected = true;
 
   @JsonIgnore
-  private static final String SECURITY_SERVICE_CALLABLE = "MultiPortal/SecurityService";
+  private static final String SECURITY_SERVICE_CALLABLE = "Ivy Data Processes/SecurityService";
   
   private List<String> selectedCustomVarCharFields1 = new ArrayList<>();
   private List<String> selectedCustomVarCharFields2 = new ArrayList<>();
@@ -66,36 +64,18 @@ public class StatisticFilter implements Cloneable {
   private List<String> selectedCustomVarCharFields4 = new ArrayList<>();
   private List<String> selectedCustomVarCharFields5 = new ArrayList<>();
   
-  @SuppressWarnings("unchecked")
   public StatisticFilter() {
-    // Initialize list of available roles
     try {
-      List<RemoteRole> remoteRoles =
-          ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<RemoteRole>>() {
-            @Override
-            public List<RemoteRole> call() throws Exception {
-              return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllRoles").call()
-                  .get("roles", List.class);
-            }
-          });
-
-      ISecurityContext securityContext = Ivy.request().getApplication().getSecurityContext();
-      List<RemoteRole> distinctRoles =
-          remoteRoles.stream()
-          .filter(role -> {
-            IRole ivyRole = securityContext.findRole(role.getName());
-            return ivyRole != null && Ivy.session().hasRole(ivyRole, false);
-            }
-          )
-          .collect(
-              Collectors.collectingAndThen(
-                  Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(RemoteRole::getMemberName))),
-                  ArrayList::new));
+      List<IRole> roles = findRolesByCallableProcess();
+      List<IRole> distinctRoles = roles.stream()
+          .filter(role -> role != null && Ivy.session().hasRole(role, false))
+          .sorted((r1, r2) -> StringUtils.compareIgnoreCase(r1.getDisplayName(), r2.getDisplayName()))
+          .collect(Collectors.toList());
 
       this.roles.add(Ivy.session().getSessionUser());
       this.roles.addAll(distinctRoles);
       
-      this.selectedRoles = new ArrayList<>(distinctRoles.stream().map(RemoteRole::getMemberName).collect(Collectors.toList()));
+      this.selectedRoles = new ArrayList<>(distinctRoles.stream().map(IRole::getMemberName).collect(Collectors.toList()));
       this.selectedRoles.add(0, Ivy.session().getSessionUser().getMemberName());
     } catch (Exception e) {
       Ivy.log().error("Can't get list roles statistic filter", e);
@@ -113,23 +93,36 @@ public class StatisticFilter implements Cloneable {
     Map<String, Object> params = new HashMap<>();
     CaseQuery query = CaseQuery.create();
     query.where().state().isNotEqual(CaseState.ZOMBIE).and().state().isNotEqual(CaseState.DESTROYED);
-    params.put("jsonQuery", query.asJson());
+    CaseCategorySearchCriteria criteria = new CaseCategorySearchCriteria();
+    criteria.setCustomCaseQuery(query);
+    params.put("caseCategorySearchCriteria", criteria);
 
-    Map<String, Object> response = IvyAdapterService.startSubProcess("findCaseCategories(String)", params,
+    Map<String, Object> response = IvyAdapterService.startSubProcess("findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria)", params,
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
-    this.caseCategories = ((List<CategoryData>) response.get("result")).stream().distinct().collect(Collectors.toList());
-    caseCategories.add(initEmptyCategory());
-    this.selectedCaseCategories = new ArrayList<>(this.caseCategories.stream().map(CategoryData::getRawPath).collect(Collectors.toList()));
+    this.caseCategoryTree = (CategoryTree) response.get("categoryTree");
+    if (this.caseCategoryTree != null) {
+      this.selectedCaseCategories = this.caseCategoryTree.getAllChildren().stream().map(CategoryTree::getRawPath).collect(Collectors.toList());
+    }
 
     this.timePeriodSelection = StatisticTimePeriodSelection.CUSTOM;
     this.allTimePeriodSelection = Arrays.asList(StatisticTimePeriodSelection.CUSTOM, StatisticTimePeriodSelection.LAST_WEEK, StatisticTimePeriodSelection.LAST_MONTH, StatisticTimePeriodSelection.LAST_6_MONTH);
   }
-
-  private CategoryData initEmptyCategory() {
-    CategoryData result = new CategoryData();
-    result.setPath(StringUtils.EMPTY);
-    result.setRawPath(StringUtils.EMPTY);
-    return result;
+  
+  @SuppressWarnings("unchecked")
+  private List<IRole> findRolesByCallableProcess() {
+    if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
+      Map<String, List<IRole>> rolesByApp = SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE)
+          .withStartName("findRolesOverAllApplications")
+          .call(Ivy.session().getSessionUserName())
+          .get("rolesByApp", Map.class);
+      return rolesByApp.values().stream().flatMap(List::stream)
+          .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(IRole::getName))), ArrayList::new));
+    }
+    
+    return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE)
+        .withStartName("findRoles")
+        .call(Ivy.request().getApplication())
+        .get("roles", List.class);
   }
 
   public Date getCreatedDateFrom() {
@@ -148,12 +141,12 @@ public class StatisticFilter implements Cloneable {
     this.createdDateTo = createdDateTo;
   }
 
-  public List<CategoryData> getCaseCategories() {
-    return caseCategories;
+  public CategoryTree getCaseCategoryTree() {
+    return caseCategoryTree;
   }
 
-  public void setCaseCategories(List<CategoryData> caseCategories) {
-    this.caseCategories = caseCategories;
+  public void setCaseCategoryTree(CategoryTree caseCategoryTree) {
+    this.caseCategoryTree = caseCategoryTree;
   }
 
   public List<String> getSelectedCaseCategories() {
@@ -308,8 +301,8 @@ public class StatisticFilter implements Cloneable {
     this.isAllTaskPrioritiesSelected = isAllTaskPrioritiesSelected;
   }
 
-@Override
-  public Object clone() throws CloneNotSupportedException { //NOSONAR
+  @Override
+  public Object clone() throws CloneNotSupportedException { // NOSONAR
     return super.clone();
   }
 

@@ -2,8 +2,18 @@ package ch.ivy.addon.portalkit.ivydata.service.impl;
 
 import static ch.ivyteam.ivy.server.ServerFactory.getServer;
 
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
+import org.apache.commons.lang3.time.DateUtils;
+
+import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
+import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
+import ch.ivy.addon.portalkit.bo.PriorityStatistic;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyTaskResultDTO;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria;
@@ -12,9 +22,13 @@ import ch.ivy.addon.portalkit.ivydata.service.ITaskService;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.scripting.objects.Record;
+import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.WorkflowPriority;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
+import ch.ivyteam.ivy.workflow.query.ITaskQueryExecutor;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class TaskService implements ITaskService {
@@ -31,15 +45,7 @@ public class TaskService implements ITaskService {
     return getServer().getSecurityManager().executeAsSystem(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       try {
-        TaskQuery finalQuery = criteria.getFinalTaskQuery();
-        if (criteria.hasApps()) {
-          if (criteria.hasInvolvedUsername() && !criteria.isAdminQuery()) {
-            finalQuery.where().and(queryForUsers(criteria.getInvolvedUsername(), criteria.getApps()));
-          } else {
-            finalQuery.where().and(queryForApplications(criteria.getApps()));
-          }
-        }
-//        finalQuery.where().and(queryExcludeHiddenTasks());
+        TaskQuery finalQuery = extendQuery(criteria);
         result.setTasks(executeTaskQuery(finalQuery, startIndex, count));
       } catch (Exception ex) {
         Ivy.log().error("Error in getting tasks", ex);
@@ -54,13 +60,7 @@ public class TaskService implements ITaskService {
     return getServer().getSecurityManager().executeAsSystem(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       try {
-        TaskQuery finalQuery = criteria.getFinalTaskQuery();
-        if (criteria.hasInvolvedUsername() && !criteria.isAdminQuery()) {
-          finalQuery.where().and(queryForUsers(criteria.getInvolvedUsername(), criteria.getApps()));
-        } else {
-          finalQuery.where().and(queryForApplications(criteria.getApps()));
-        }
-//        finalQuery.where().and(queryExcludeHiddenTasks());
+        TaskQuery finalQuery = extendQuery(criteria);
         result.setTotalTasks(countTasks(finalQuery));
       } catch (Exception ex) {
         Ivy.log().error("Error in counting Tasks", ex);
@@ -122,5 +122,135 @@ public class TaskService implements ITaskService {
       }
       return result;
     });
+  }
+  
+  @Override
+  public IvyTaskResultDTO analyzePriorityStatistic(TaskSearchCriteria criteria) throws Exception {
+    return getServer().getSecurityManager().executeAsSystem(() -> {
+      IvyTaskResultDTO result = new IvyTaskResultDTO();
+      try {
+        TaskQuery finalQuery = extendQuery(criteria);
+        finalQuery.aggregate().countRows().groupBy().priority().orderBy().priority();
+
+        Recordset recordSet = taskQueryExecutor().getRecordset(finalQuery);
+        PriorityStatistic priorityStatistic = createPriorityStatistic(recordSet);
+        result.setPriorityStatistic(priorityStatistic);
+      } catch (Exception ex) {
+        Ivy.log().error("Error in getting task priority statistic", ex);
+//        result.setErrors(Arrays.asList(new PortalIvyDataException(appName, PortalIvyDataErrorType.FAIL_TO_LOAD_LANGUAGE.toString())));
+      }
+      return result;
+    });
+  }
+  
+  private PriorityStatistic createPriorityStatistic(Recordset recordSet) {
+    PriorityStatistic priorityStatistic = new PriorityStatistic();
+    if (recordSet != null) {
+      recordSet.getRecords().forEach(record -> {
+        int priority = Integer.parseInt(record.getField("PRIORITY").toString());
+        long numberOfTasks = Long.parseLong(record.getField("COUNT").toString());
+        if (priority == WorkflowPriority.EXCEPTION.intValue()) {
+          priorityStatistic.setException(numberOfTasks);
+        } else if (priority == WorkflowPriority.HIGH.intValue()) {
+          priorityStatistic.setHigh(numberOfTasks);
+        } else if (priority == WorkflowPriority.NORMAL.intValue()) {
+          priorityStatistic.setNormal(numberOfTasks);
+        } else {
+          priorityStatistic.setLow(numberOfTasks);
+        }
+      });
+    }
+    return priorityStatistic;
+  }
+  
+  @Override
+  public IvyTaskResultDTO analyzeExpiryStatistic(TaskSearchCriteria criteria) throws Exception {
+    return getServer().getSecurityManager().executeAsSystem(() -> {
+      IvyTaskResultDTO result = new IvyTaskResultDTO();
+      try {
+        TaskQuery finalQuery = extendQuery(criteria);
+        finalQuery.aggregate().countRows().groupBy().expiryTimestamp().orderBy().expiryTimestamp();
+
+        Recordset recordSet = taskQueryExecutor().getRecordset(finalQuery);
+        ExpiryStatistic expiryStatistic = createExpiryTimeStampToCountMap(recordSet);
+        result.setExpiryStatistic(expiryStatistic);
+      } catch (Exception ex) {
+        Ivy.log().error("Error in getting task expiry statistic", ex);
+//        result.setErrors(Arrays.asList(new PortalIvyDataException(appName, PortalIvyDataErrorType.FAIL_TO_LOAD_LANGUAGE.toString())));
+      }
+      return result;
+    });
+  }
+  
+  private ExpiryStatistic createExpiryTimeStampToCountMap(Recordset recordSet) {
+    ExpiryStatistic expiryStatistic = new ExpiryStatistic();
+    Map<Date, Long> numberOfTasksByExpiryTime = new HashMap<>();
+    if (recordSet != null) {
+      for (Record record : recordSet.getRecords()) {
+        if (record.getField("EXPIRYTIMESTAMP") != null) {
+          try {
+            Date date = DateUtils.parseDate(record.getField("EXPIRYTIMESTAMP").toString(), "yyyy-MM-dd HH:mm:ss.SSS");
+            numberOfTasksByExpiryTime.put(date, Long.valueOf(record.getField("COUNT").toString()));
+          } catch (Exception e) {
+            Ivy.log().error(e);
+          }
+        }
+      }
+    }
+    expiryStatistic.setNumberOfTasksByExpiryTime(numberOfTasksByExpiryTime);
+    return expiryStatistic;
+  }
+  
+  @Override
+  public IvyTaskResultDTO analyzeElapsedTimeOfTasks(TaskSearchCriteria criteria) throws Exception {
+    return getServer().getSecurityManager().executeAsSystem(() -> {
+      IvyTaskResultDTO result = new IvyTaskResultDTO();
+      try {
+        TaskQuery finalQuery = extendQuery(criteria);
+        finalQuery.where().and().businessRuntime().isNotNull();
+        finalQuery.aggregate().avgBusinessRuntime().groupBy().category();
+
+        Recordset recordSet = taskQueryExecutor().getRecordset(finalQuery);
+        ElapsedTimeStatistic elapsedTimeStatistic = createCategoryToAverageElapsedTimeMap(recordSet);
+        result.setElapsedTimeStatistic(elapsedTimeStatistic);
+      } catch (Exception ex) {
+        Ivy.log().error("Error in getting task priority statistic", ex);
+//        result.setErrors(Arrays.asList(new PortalIvyDataException(appName, PortalIvyDataErrorType.FAIL_TO_LOAD_LANGUAGE.toString())));
+      }
+      return result;
+    });
+  }
+  
+  private ElapsedTimeStatistic createCategoryToAverageElapsedTimeMap(Recordset recordSet) {
+    ElapsedTimeStatistic elapsedTimeStatistic = new ElapsedTimeStatistic();
+    HashMap<String, Long> averageElapsedTimeByCategory = new HashMap<>();
+    if (recordSet != null) {
+      recordSet.getRecords().forEach(record -> {
+        String categoryName = record.getField("CATEGORY").toString();
+        BigDecimal averageElapsedTime =
+            Optional.ofNullable((BigDecimal) record.getField("AVGBUSINESSRUNTIME")).orElse(BigDecimal.ZERO);
+        long averageElapsedTimeValue = averageElapsedTime.longValue();
+        averageElapsedTimeByCategory.put(categoryName, averageElapsedTimeValue);
+      });
+    }
+    elapsedTimeStatistic.setAverageElapsedTimeByCategory(averageElapsedTimeByCategory);
+    return elapsedTimeStatistic;
+  }
+
+  private TaskQuery extendQuery(TaskSearchCriteria criteria) {
+    TaskQuery finalQuery = criteria.getFinalTaskQuery();
+    if (criteria.hasApps()) {
+      if (criteria.hasInvolvedUsername() && !criteria.isAdminQuery()) {
+        finalQuery.where().and(queryForUsers(criteria.getInvolvedUsername(), criteria.getApps()));
+      } else {
+        finalQuery.where().and(queryForApplications(criteria.getApps()));
+      }
+    }
+//  queryExcludeHiddenTasks(finalQuery);
+    return finalQuery;
+  }
+  
+  private ITaskQueryExecutor taskQueryExecutor() {
+    return Ivy.wf().getGlobalContext().getTaskQueryExecutor();
   }
 }

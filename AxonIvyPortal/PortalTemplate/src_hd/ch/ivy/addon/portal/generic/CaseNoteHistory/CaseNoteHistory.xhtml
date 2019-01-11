@@ -10,40 +10,40 @@
       <h:form id="form" onkeypress="if (event.keyCode == 13) { return false; }">
         <p:panelGrid columns="2" styleClass="u-no-border" layout="grid" columnClasses="ui-grid-col-2, ui-grid-col-10">
           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}"/>
-          <p:outputLabel id="case-name" value="#{data.iCase.name}"/>
+          <p:outputLabel id="case-name" value="#{data.ivyCase.name}"/>
           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}"/>
-          <p:outputLabel id="case-id" value="#{data.iCase.id}"/>
+          <p:outputLabel id="case-id" value="#{data.ivyCase.id}"/>
           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}"/>
-          <p:outputLabel id="case-creator" value="#{data.iCase.creatorUser.fullName}"/>
+          <p:outputLabel id="case-creator" value="#{data.ivyCase.creatorUser.fullName}"/>
           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}"/>
-          <p:outputLabel id="case-state" value="#{caseBean.getState(data.iCase)}"/>
+          <p:outputLabel id="case-state" value="#{caseBean.getState(data.ivyCase)}"/>
         </p:panelGrid>
         <br/>
         
-        <p:dataTable id="case-info" var="case" value="#{data.iCase}" styleClass="hide">
+        <p:dataTable id="case-info" var="case" value="#{data.ivyCase}" styleClass="hide">
           <p:column width="40%" >
             <f:facet name="header">
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" />
             </f:facet>
-            <h:outputText value="#{data.iCase.name}" />
+            <h:outputText value="#{data.ivyCase.name}" />
           </p:column>
           <p:column width="20%" >
             <f:facet name="header">
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" />
             </f:facet>
-            <h:outputText value="#{data.iCase.id}" />
+            <h:outputText value="#{data.ivyCase.id}" />
           </p:column>
           <p:column width="20%">
             <f:facet name="header">
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" />
             </f:facet>
-            <h:outputText value="#{data.iCase.creatorUser.fullName}" />
+            <h:outputText value="#{data.ivyCase.creatorUser.fullName}" />
           </p:column>
           <p:column>
             <f:facet name="header">
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" />
             </f:facet>
-            <h:outputText value="#{caseBean.getState(data.iCase)}" />
+            <h:outputText value="#{caseBean.getState(data.ivyCase)}" />
           </p:column>
         </p:dataTable>
         
@@ -76,7 +76,7 @@
         
         <p:commandButton ajax="false" styleClass="note-history-export-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}">
-          <p:fileDownload value="#{caseTaskNoteHistoryBean.getStreamedContentOfCaseNoteHistory(data.filteredHistories, data.remoteCase, data.exportedFileName)}" />
+          <p:fileDownload value="#{caseTaskNoteHistoryBean.getStreamedContentOfCaseNoteHistory(data.filteredHistories, data.ivyCase, data.exportedFileName)}" />
         </p:commandButton>
       </h:form>
 

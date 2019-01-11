@@ -12,11 +12,11 @@ import ch.ivy.addon.portalkit.bo.History;
 import ch.ivy.addon.portalkit.bo.History.HistoryType;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.NoteHistoryExporter;
-import ch.ivy.ws.addon.IvyNote;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.INote;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -69,16 +69,16 @@ public class CaseTaskNoteHistoryBean implements Serializable {
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateIsCreated") + ": " + content;
       }
     }
-    return content;
+    return content; 
   }
     
-//    public StreamedContent getExportedFileOfTaskNoteHistory(List<IvyNote> taskNoteHistory, String fileName) {
-//      NoteHistoryExporter exporter = new NoteHistoryExporter();
-//      return exporter.getStreamedContentOfTaskNoteHistory(taskNoteHistory, fileName + ".xls");
-//    }
-//
-//    public StreamedContent getStreamedContentOfCaseNoteHistory(List<History> caseNoteHistory, RemoteCase remoteCase, String fileName) {
-//      NoteHistoryExporter exporter = new NoteHistoryExporter();
-//      return exporter.getStreamedContentOfCaseNoteHistory(caseNoteHistory, remoteCase, fileName + ".xls");
-//    }
+    public StreamedContent getExportedFileOfTaskNoteHistory(List<INote> taskNoteHistory, String fileName) {
+      NoteHistoryExporter exporter = new NoteHistoryExporter();
+      return exporter.getStreamedContentOfTaskNoteHistory(taskNoteHistory, fileName + ".xls");
+    }
+
+    public StreamedContent getStreamedContentOfCaseNoteHistory(List<History> caseNoteHistory, ICase iCase, String fileName) {
+      NoteHistoryExporter exporter = new NoteHistoryExporter();
+      return exporter.getStreamedContentOfCaseNoteHistory(caseNoteHistory, iCase, fileName + ".xls");
+    }
 }

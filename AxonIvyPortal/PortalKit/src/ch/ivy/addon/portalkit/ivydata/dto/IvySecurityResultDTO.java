@@ -10,6 +10,7 @@ import ch.ivyteam.ivy.security.IUser;
 public class IvySecurityResultDTO {
 
   private Map<String, List<IUser>> usersByApp;
+  private Map<String, List<IRole>> rolesByApp;
   private List<IUser> users;
   private List<IRole> roles;
   private List<PortalIvyDataException> errors;
@@ -20,6 +21,14 @@ public class IvySecurityResultDTO {
 
   public void setUsersByApp(Map<String, List<IUser>> usersByApp) {
     this.usersByApp = usersByApp;
+  }
+  
+  public Map<String, List<IRole>> getRolesByApp() {
+    return rolesByApp;
+  }
+
+  public void setRolesByApp(Map<String, List<IRole>> rolesByApp) {
+    this.rolesByApp = rolesByApp;
   }
 
   public List<IUser> getUsers() {

@@ -11,4 +11,10 @@ public interface ITaskService {
   IvyTaskResultDTO countTasksByCriteria(TaskSearchCriteria criteria) throws Exception;
   
   IvyTaskResultDTO findCategoriesByCriteria(TaskCategorySearchCriteria criteria) throws Exception;
+  
+  IvyTaskResultDTO analyzePriorityStatistic(TaskSearchCriteria criteria) throws Exception;
+  
+  IvyTaskResultDTO analyzeExpiryStatistic(TaskSearchCriteria criteria) throws Exception;
+  
+  IvyTaskResultDTO analyzeElapsedTimeOfTasks(TaskSearchCriteria criteria) throws Exception;
 }
