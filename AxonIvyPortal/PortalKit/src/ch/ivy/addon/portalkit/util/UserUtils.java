@@ -24,7 +24,6 @@ import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
-import ch.ivyteam.ivy.process.call.SubProcessCallResult;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.ServerFactory;
@@ -237,21 +236,26 @@ public class UserUtils {
     return keyword;
   }
 
-  @SuppressWarnings("unchecked")
   public static List<IUser> findAllUserByApplication() throws Exception {
-    SubProcessCallResult result = ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
-      if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
-        return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE)
-            .withStartName("findUsersOverAllApplications").call(Ivy.session().getSessionUserName());
-      }
-      return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findUsers")
-          .call(Ivy.request().getApplication());
-    });
-    List<IUser> users = result.get("users", List.class);
-    List<IUser> distinctUsers = users.stream().collect(Collectors.collectingAndThen(
-        Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(IUser::getName))), ArrayList::new));
-
-    Collections.sort(distinctUsers, (first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName()));
-    return distinctUsers;
+    List<IUser> users = findUsersByCallableProcess();
+    Collections.sort(users, (first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName()));
+    return users;
+  }
+  
+  @SuppressWarnings("unchecked")
+  private static List<IUser> findUsersByCallableProcess() {
+    if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
+      Map<String, List<IUser>> usersByApp = SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE)
+          .withStartName("findUsersOverAllApplications")
+          .call(Ivy.session().getSessionUserName())
+          .get("usersByApp", Map.class);
+      return usersByApp.values().stream().flatMap(List::stream)
+          .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(IUser::getName))), ArrayList::new));
+    }
+    
+    return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE)
+        .withStartName("findUsers")
+        .call(Ivy.request().getApplication())
+        .get("users", List.class);
   }
 }

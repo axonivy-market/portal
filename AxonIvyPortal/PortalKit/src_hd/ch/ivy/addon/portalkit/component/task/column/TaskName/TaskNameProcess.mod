@@ -81,6 +81,8 @@ Ts0 f6 disableUIEvents false #txt
 Ts0 f6 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <ch.ivyteam.ivy.workflow.ITask task> param = methodEvent.getInputArguments();
 ' #txt
+Ts0 f6 inParameterMapAction 'out.task=param.task;
+' #txt
 Ts0 f6 outParameterDecl '<> result;
 ' #txt
 Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

@@ -19,6 +19,7 @@ import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModel;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
+import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.IUser;
 
@@ -64,6 +65,27 @@ public class ServiceUtilities {
     
     IvyCacheService.newInstance().setSessionCache(app.getName(), IvyCacheIdentifier.USERS_IN_APPLICATION, users);
     return users;
+  }
+  
+  /**
+   * Finds all of the users within the given app, except the roles have the HIDE property
+   * @param app
+   * @return roles
+   */
+  @SuppressWarnings("unchecked")
+  public static List<IRole> findAllRoles(IApplication app) {
+    Objects.requireNonNull(app, "The application must not be null");
+    
+    Optional<Object> cacheValueOpt = IvyCacheService.newInstance().getSessionCacheValue(app.getName(), IvyCacheIdentifier.ROLES_IN_APPLICATION);
+    if (cacheValueOpt.isPresent()) {
+      return (List<IRole>) cacheValueOpt.get();
+    }
+    
+    List<IRole> roles = new ArrayList<>(app.getSecurityContext().getRoles());
+    roles.removeIf(role -> role.getProperty("HIDE") != null);
+    
+    IvyCacheService.newInstance().setSessionCache(app.getName(), IvyCacheIdentifier.ROLES_IN_APPLICATION, roles);
+    return roles;
   }
 
   public static List<IProcessModelVersion> getActiveReleasedPmvs(IApplication app) {

@@ -12,21 +12,23 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.DonutChartModel;
 
-import ch.ivy.addon.portalkit.bo.RemoteRole;
+import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
+import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
+import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
+import ch.ivy.addon.portalkit.bo.PriorityStatistic;
+import ch.ivy.addon.portalkit.enums.CustomVarCharField;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
 import ch.ivy.addon.portalkit.statistics.StatisticFilter;
-import ch.ivy.ws.addon.CaseStateStatistic;
-import ch.ivy.ws.addon.CategoryData;
-import ch.ivy.ws.addon.ElapsedTimeStatistic;
-import ch.ivy.ws.addon.ExpiryStatistic;
-import ch.ivy.ws.addon.PortalCaseCustomVarField;
-import ch.ivy.ws.addon.PriorityStatistic;
+import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
+import ch.ivyteam.ivy.workflow.category.CategoryTree;
+import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 @ManagedBean
 @ViewScoped
@@ -194,7 +196,7 @@ public class StatisticChartCreationBean implements Serializable {
   public void updateCaseCategoriesCheckboxes(StatisticFilter filter) {
     List<String> selectedCaseCategories = filter.getSelectedCaseCategories();
     if (filter.getIsAllCategoriesSelected()) {
-      for (String category : filter.getCaseCategories().stream().map(CategoryData::getRawPath).collect(Collectors.toList())) {
+      for (String category : filter.getCaseCategoryTree().getAllChildren().stream().map(CategoryTree::getRawPath).collect(Collectors.toList())) {
         addToListIfNotExist(selectedCaseCategories, category);
       }
     } else {
@@ -205,13 +207,13 @@ public class StatisticChartCreationBean implements Serializable {
   public void updateRolesCheckboxes(StatisticFilter filter) {
     List<String> selectedRoles = filter.getSelectedRoles();
     if (filter.getIsAllRolesSelected()) {
-      for (Object role : filter.getRoles()) {
-        if (role instanceof IUser) {
-          IUser user = (IUser)role;
+      for (Object obj : filter.getRoles()) {
+        if (obj instanceof IUser) {
+          IUser user = (IUser) obj;
           addToListIfNotExist(selectedRoles, user.getMemberName());
-        } else if (role instanceof RemoteRole) {
-          RemoteRole remoteRole = (RemoteRole)role;
-          addToListIfNotExist(selectedRoles, remoteRole.getMemberName());
+        } else if (obj instanceof IRole) {
+          IRole role = (IRole) obj;
+          addToListIfNotExist(selectedRoles, role.getMemberName());
         }
       }
     } else {
@@ -260,8 +262,8 @@ public class StatisticChartCreationBean implements Serializable {
    * @param filter statistic filter
    */
   public void updateTaskByPriorityModel(StatisticFilter filter) {
-    String jsonQuery = StatisticChartQueryUtils.generateTaskQuery(filter).asJson();
-    PriorityStatistic priorityStatisticData = statisticService.getPriorityStatisticData(jsonQuery);
+    TaskQuery query = StatisticChartQueryUtils.generateTaskQuery(filter);
+    PriorityStatistic priorityStatisticData = statisticService.getPriorityStatisticData(query);
     taskByPriorityModel = statisticService.generateTaskByPriorityModel(priorityStatisticData, false);
   }
 
@@ -271,8 +273,8 @@ public class StatisticChartCreationBean implements Serializable {
    * @param filter statistic filter
    */
   public void updateTaskByExpiryModel(StatisticFilter filter) {
-    String jsonQuery = StatisticChartQueryUtils.generateTaskQueryForExpiry(filter).asJson();
-    List<ExpiryStatistic> expiryStatisticData = statisticService.getExpiryStatisticData(jsonQuery);
+    TaskQuery taskQuery = StatisticChartQueryUtils.generateTaskQueryForExpiry(filter);
+    ExpiryStatistic expiryStatisticData = statisticService.getExpiryStatisticData(taskQuery);
     taskByExpiryModel = statisticService.generateTaskByExpiryModel(expiryStatisticData, false, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
   }
 
@@ -282,8 +284,8 @@ public class StatisticChartCreationBean implements Serializable {
    * @param filter statistic filter
    */
   public void updateCaseByStateModel(StatisticFilter filter) {
-    String jsonQuery = StatisticChartQueryUtils.generateCaseQueryForCaseState(filter).asJson();
-    CaseStateStatistic caseStateStatisticData = statisticService.getCaseStateStatisticData(jsonQuery);
+    CaseQuery caseQuery = StatisticChartQueryUtils.generateCaseQueryForCaseState(filter);
+    CaseStateStatistic caseStateStatisticData = statisticService.getCaseStateStatisticData(caseQuery);
     caseByStateModel = statisticService.generateCaseByStateModel(caseStateStatisticData,StatisticChartType.CASES_BY_STATE, false);
   }
   
@@ -292,8 +294,8 @@ public class StatisticChartCreationBean implements Serializable {
    * @param filter
    */
   public void updateCaseByFinishedTaskModel(StatisticFilter filter) {
-    String jsonQuery = StatisticChartQueryUtils.generateCaseQueryForCaseHaveFinishedTask(filter).asJson();
-    CaseStateStatistic caseStateStatisticData = statisticService.getCaseStateStatisticData(jsonQuery);
+    CaseQuery caseQuery = StatisticChartQueryUtils.generateCaseQueryForCaseHaveFinishedTask(filter);
+    CaseStateStatistic caseStateStatisticData = statisticService.getCaseStateStatisticData(caseQuery);
     caseByFinishedTaskModel = statisticService.generateCaseByStateModel(caseStateStatisticData, StatisticChartType.CASES_BY_FINISHED_TASK, false);
   }
   
@@ -302,8 +304,8 @@ public class StatisticChartCreationBean implements Serializable {
    * @param filter
    */
   public void updateCaseByFinishedTimeModel(StatisticFilter filter) {
-    String jsonQuery = StatisticChartQueryUtils.generateCaseQueryByFinishedTime(filter).asJson();
-    CaseStateStatistic caseStateStatisticData = statisticService.getCaseStateStatisticData(jsonQuery);
+    CaseQuery caseQuery = StatisticChartQueryUtils.generateCaseQueryByFinishedTime(filter);
+    CaseStateStatistic caseStateStatisticData = statisticService.getCaseStateStatisticData(caseQuery);
     caseByFinishedTimeModel = statisticService.generateCaseByStateModel(caseStateStatisticData, StatisticChartType.CASES_BY_FINISHED_TIME, false);
   }
 
@@ -313,8 +315,8 @@ public class StatisticChartCreationBean implements Serializable {
    * @param filter statistic filter
    */
   public void updateElapsedTimeByCaseCategory(StatisticFilter filter) {
-    String jsonQuery = StatisticChartQueryUtils.generateCaseQuery(filter, true).asJson();
-    List<ElapsedTimeStatistic> elapsedTimeStatisticData = statisticService.getElapsedTimeStatisticData(jsonQuery);
+    CaseQuery caseQuery = StatisticChartQueryUtils.generateCaseQuery(filter, true);
+    ElapsedTimeStatistic elapsedTimeStatisticData = statisticService.getElapsedTimeStatisticData(caseQuery);
     setElapsedTimeModel(statisticService.generateElapsedTimeModel(elapsedTimeStatisticData, false));
   }
 
@@ -381,7 +383,7 @@ public class StatisticChartCreationBean implements Serializable {
    * @return values of available customVarCharField1
    */
   public List<String> populateCustomVarChar1AutoComplete(String query) {
-    return populateCustomVarCharAutoComplete(query, PortalCaseCustomVarField.CUSTOM_VAR_CHAR_1);
+    return populateCustomVarCharAutoComplete(query, CustomVarCharField.CUSTOM_VAR_CHAR_1);
   }
   
   /**
@@ -391,7 +393,7 @@ public class StatisticChartCreationBean implements Serializable {
    * @return values of available customVarCharField2
    */
   public List<String> populateCustomVarChar2AutoComplete(String query) {
-    return populateCustomVarCharAutoComplete(query, PortalCaseCustomVarField.CUSTOM_VAR_CHAR_2);
+    return populateCustomVarCharAutoComplete(query, CustomVarCharField.CUSTOM_VAR_CHAR_2);
   }
   
   /**
@@ -401,7 +403,7 @@ public class StatisticChartCreationBean implements Serializable {
    * @return values of available customVarCharField3
    */
   public List<String> populateCustomVarChar3AutoComplete(String query) {
-    return populateCustomVarCharAutoComplete(query, PortalCaseCustomVarField.CUSTOM_VAR_CHAR_3);
+    return populateCustomVarCharAutoComplete(query, CustomVarCharField.CUSTOM_VAR_CHAR_3);
   }
   
   /**
@@ -411,7 +413,7 @@ public class StatisticChartCreationBean implements Serializable {
    * @return values of available customVarCharField4
    */
   public List<String> populateCustomVarChar4AutoComplete(String query) {
-    return populateCustomVarCharAutoComplete(query, PortalCaseCustomVarField.CUSTOM_VAR_CHAR_4);
+    return populateCustomVarCharAutoComplete(query, CustomVarCharField.CUSTOM_VAR_CHAR_4);
   }
   
   /**
@@ -421,10 +423,10 @@ public class StatisticChartCreationBean implements Serializable {
    * @return values of available customVarCharField5
    */
   public List<String> populateCustomVarChar5AutoComplete(String query) {
-    return populateCustomVarCharAutoComplete(query, PortalCaseCustomVarField.CUSTOM_VAR_CHAR_5);
+    return populateCustomVarCharAutoComplete(query, CustomVarCharField.CUSTOM_VAR_CHAR_5);
   }
   
-  private List<String> populateCustomVarCharAutoComplete(String query, PortalCaseCustomVarField type) {
+  private List<String> populateCustomVarCharAutoComplete(String query, CustomVarCharField type) {
     List<String> result = null;
     if (StringUtils.isEmpty(query)) {
       result = statisticService.getCustomVarCharFields(type, StringUtils.EMPTY, 11);

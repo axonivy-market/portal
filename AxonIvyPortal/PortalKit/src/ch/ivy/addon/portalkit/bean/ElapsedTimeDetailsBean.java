@@ -20,7 +20,7 @@ import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.HorizontalBarChartModel;
 
-import ch.ivy.addon.portalkit.bo.RemoteRole;
+import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.service.StatisticService;
@@ -28,8 +28,8 @@ import ch.ivy.addon.portalkit.statistics.ElapsedTimeComparison;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;
 import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
-import ch.ivy.ws.addon.ElapsedTimeStatistic;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
@@ -43,10 +43,10 @@ public class ElapsedTimeDetailsBean implements Serializable {
   private StatisticService statisticService = new StatisticService();
   private String selectedCaseCategory;
   private HorizontalBarChartModel elapsedTimeOfTasksModel;
-  private List<RemoteRole> rolesForCompareElapsedTime;
+  private List<IRole> rolesForCompareElapsedTime;
   private List<ElapsedTimeComparison> comparisonDataModel;
-  private RemoteRole defaultRole;
-  private String caseQueryOfSelectedChart;
+  private IRole defaultRole;
+  private CaseQuery caseQueryOfSelectedChart;
   private String chartName;
   private boolean dataEmpty;
 
@@ -58,11 +58,11 @@ public class ElapsedTimeDetailsBean implements Serializable {
   @SuppressWarnings("unchecked")
   public void initialize(String caseCategory, StatisticChart statisticChart) {
     setSelectedCaseCategory(caseCategory);
-    setCaseQueryOfSelectedChart(StatisticChartQueryUtils.generateCaseQuery(statisticChart.getFilter(), true).asJson());
+    setCaseQueryOfSelectedChart(StatisticChartQueryUtils.generateCaseQuery(statisticChart.getFilter(), true));
 
     Map<String, Object> response = IvyAdapterService.startSubProcess("findAllRoles()", null,
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
-    setRolesForCompareElapsedTime((List<RemoteRole>)response.get("roles"));
+    setRolesForCompareElapsedTime((List<IRole>)response.get("roles"));
 
     defaultRole = rolesForCompareElapsedTime.stream().findFirst().filter(role -> ROLE_EVERYBODY.equals(role.getName())).get();
     dataEmpty = false;
@@ -70,7 +70,7 @@ public class ElapsedTimeDetailsBean implements Serializable {
     chartName = statisticChart.getName();
   }
 
-  public void compare(RemoteRole firstRoleToCompare, RemoteRole secondRoleToCompare) {
+  public void compare(IRole firstRoleToCompare, IRole secondRoleToCompare) {
     comparisonDataModel = new ArrayList<>();
     String caseCategory = selectedCaseCategory;
     TaskQuery taskQuery = TaskQuery.create();
@@ -80,7 +80,7 @@ public class ElapsedTimeDetailsBean implements Serializable {
     }
 
     if (selectedCaseCategory.equals(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/other"))) {
-      List<ElapsedTimeStatistic> result = statisticService.getElapsedTimeStatisticData(getCaseQueryOfSelectedChart());
+      ElapsedTimeStatistic result = statisticService.getElapsedTimeStatisticData(getCaseQueryOfSelectedChart());
       Map<String, Number> chartData = statisticService.generateDataForElapsedTimeChart(result);
 
       float totalValue = 0;
@@ -179,13 +179,13 @@ public class ElapsedTimeDetailsBean implements Serializable {
     return elapsedTime.toString();
   }
 
-  private ChartSeries generateChartDataForCompareRole(TaskQuery taskQuery, RemoteRole roleToCompare) {
+  private ChartSeries generateChartDataForCompareRole(TaskQuery taskQuery, IRole roleToCompare) {
     Map<Object, Number> result = new HashMap<>();
     TaskQuery updatedTaskQueryForCompare = TaskQuery.fromJson(taskQuery.asJson());
 
     updatedTaskQueryForCompare.where().and().activatorName().isEqual(roleToCompare.getMemberName());
 
-    List<ElapsedTimeStatistic> statisticData = statisticService.getElapsedTimeOfTasksStatisticData(updatedTaskQueryForCompare.asJson());
+    ElapsedTimeStatistic statisticData = statisticService.getElapsedTimeOfTasksStatisticData(updatedTaskQueryForCompare);
     Map<String, Number> elapsedTimeData = statisticService.generateDataForElapsedTimeChart(statisticData);
 
     for (Map.Entry<String, Number> entry : elapsedTimeData.entrySet()) {
@@ -240,12 +240,11 @@ public class ElapsedTimeDetailsBean implements Serializable {
     this.elapsedTimeOfTasksModel = elapsedTimeOfTasksModel;
   }
 
-  public List<RemoteRole> getRolesForCompareElapsedTime() {
+  public List<IRole> getRolesForCompareElapsedTime() {
     return rolesForCompareElapsedTime;
   }
 
-  public void setRolesForCompareElapsedTime(
-      List<RemoteRole> rolesForCompareElapsedTime) {
+  public void setRolesForCompareElapsedTime(List<IRole> rolesForCompareElapsedTime) {
     this.rolesForCompareElapsedTime = rolesForCompareElapsedTime;
   }
 
@@ -257,19 +256,19 @@ public class ElapsedTimeDetailsBean implements Serializable {
     this.comparisonDataModel = comparisonDataModel;
   }
 
-  public RemoteRole getDefaultRole() {
+  public IRole getDefaultRole() {
     return defaultRole;
   }
 
-  public void setDefaultRole(RemoteRole defaultRole) {
+  public void setDefaultRole(IRole defaultRole) {
     this.defaultRole = defaultRole;
   }
 
-  public String getCaseQueryOfSelectedChart() {
+  public CaseQuery getCaseQueryOfSelectedChart() {
     return caseQueryOfSelectedChart;
   }
 
-  public void setCaseQueryOfSelectedChart(String caseQueryOfSelectedChart) {
+  public void setCaseQueryOfSelectedChart(CaseQuery caseQueryOfSelectedChart) {
     this.caseQueryOfSelectedChart = caseQueryOfSelectedChart;
   }
 
