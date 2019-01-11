@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Thu Apr 16 11:17:05 ICT 2015]
-14C9D5FEDF9A85A0 3.17 #module
+14C9D5FEDF9A85A0 3.23 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalCaseDetailsProcess Big #zClass
 Ps0 RD #cInfo
@@ -44,13 +43,13 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ps0 f0 83 51 26 26 -16 15 #rect
 Ps0 f0 @|RichDialogInitStartIcon #fIcon
 Ps0 f1 type internalPortal.casedetails.PortalCaseDetails.PortalCaseDetailsData #txt
-Ps0 f1 211 51 26 26 0 12 #rect
+Ps0 f1 251 51 26 26 0 12 #rect
 Ps0 f1 @|RichDialogProcessEndIcon #fIcon
 Ps0 f3 actionDecl 'internalPortal.casedetails.PortalCaseDetails.PortalCaseDetailsData out;
 ' #txt
 Ps0 f3 actionTable 'out=in;
 ' #txt
-Ps0 f3 actionCode 'import ch.ivy.addon.portalkit.util.CaseUtils;
+Ps0 f3 actionCode '
 in.steps.add("Create Quotation");
 in.steps.add("Approve by PM");
 in.steps.add("Send Quotation");
@@ -59,15 +58,16 @@ in.steps.add("WBS element BL");
 in.steps.add("WBS element COL");
 in.steps.add("Finished");
 in.actualStepIndex = 2;
-in.homeCase = CaseUtils.getCaseById(in.homeCaseId);
+in.homeCase = ivy.wf.findCase(in.homeCaseId);
 in.homeLink = ivy.html.startref("Start Processes/InternalSupportPortalHome/start.ivp");' #txt
+Ps0 f3 security system #txt
 Ps0 f3 type internalPortal.casedetails.PortalCaseDetails.PortalCaseDetailsData #txt
-Ps0 f3 142 52 36 24 20 -2 #rect
+Ps0 f3 182 52 36 24 20 -2 #rect
 Ps0 f3 @|StepIcon #fIcon
 Ps0 f4 expr out #txt
-Ps0 f4 109 64 142 64 #arcP
+Ps0 f4 109 64 182 64 #arcP
 Ps0 f2 expr out #txt
-Ps0 f2 178 64 211 64 #arcP
+Ps0 f2 218 64 251 64 #arcP
 >Proto Ps0 .type internalPortal.casedetails.PortalCaseDetails.PortalCaseDetailsData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect

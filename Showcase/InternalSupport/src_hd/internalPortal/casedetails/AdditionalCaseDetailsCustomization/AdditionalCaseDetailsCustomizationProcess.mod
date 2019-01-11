@@ -1,5 +1,5 @@
 [Ivy]
-160FE150D25EC075 3.20 #module
+160FE150D25EC075 3.23 #module
 >Proto >Proto Collection #zClass
 As0 AdditionalCaseDetailsCustomizationProcess Big #zClass
 As0 RD #cInfo
@@ -23,12 +23,12 @@ As0 @PushWFArc f5 '' #zField
 >Proto As0 As0 AdditionalCaseDetailsCustomizationProcess #zField
 As0 f0 guid 160FE150D32DBADD #txt
 As0 f0 type internalPortal.casedetails.AdditionalCaseDetailsCustomization.AdditionalCaseDetailsCustomizationData #txt
-As0 f0 method start(ch.ivy.addon.portalkit.bo.RemoteCase) #txt
+As0 f0 method start(ch.ivyteam.ivy.workflow.ICase) #txt
 As0 f0 disableUIEvents true #txt
 As0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.bo.RemoteCase remoteCase> param = methodEvent.getInputArguments();
+<ch.ivyteam.ivy.workflow.ICase remoteCase> param = methodEvent.getInputArguments();
 ' #txt
-As0 f0 inParameterMapAction 'out.remoteCase=param.remoteCase;
+As0 f0 inParameterMapAction 'out.iCase=param.remoteCase;
 ' #txt
 As0 f0 outParameterDecl '<> result;
 ' #txt

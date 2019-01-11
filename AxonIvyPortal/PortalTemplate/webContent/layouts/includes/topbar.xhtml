@@ -95,7 +95,7 @@
       width="90%" height="500" closeOnEscape="true" widgetVar="adminUI" id="admin-ui-dialog" resizable="false" 
       modal="true" draggable="false" appendTo="@(body)" dynamic="true" onShow="loadAllGlobalSettings()"
       onHide="PF('dialogClosingInformation').show();">
-<!--       <ic:ch.ivy.addon.portalkit.admin.AdminSettings id="adminui" /> -->
+      <ic:ch.ivy.addon.portalkit.admin.AdminSettings id="adminui" /> 
       <f:facet name="footer">
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" 
           id="close-button" type="button" onclick="clearFilter(); PF('adminUI').hide();" />

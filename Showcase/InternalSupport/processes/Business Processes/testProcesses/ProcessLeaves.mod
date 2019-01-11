@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Wed Apr 26 09:36:46 ICT 2017]
-1470062B2127AF92 3.20 #module
+1470062B2127AF92 3.23 #module
 >Proto >Proto Collection #zClass
 Ps0 ProcessLeaves Big #zClass
 Ps0 B #cInfo
@@ -292,7 +291,8 @@ Ps0 f34 actionTable 'out=in;
 ' #txt
 Ps0 f34 actionCode 'import ch.ivy.addon.portalkit.util.CaseUtils;
 CaseUtils.setCaseDetailsProcess(ivy.case,ivy.html.startref("Start Processes/InternalSupportPortalHome/caseDetails.ivp"));
-CaseUtils.setCaseMainContactFolderId(ivy.case,"https://www.eonenergy.com/");
+
+
 
 ' #txt
 Ps0 f34 type internaltest.ProcessLeaves #txt

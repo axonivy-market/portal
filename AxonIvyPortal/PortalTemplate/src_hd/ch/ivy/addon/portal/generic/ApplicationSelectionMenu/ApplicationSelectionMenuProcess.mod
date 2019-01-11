@@ -219,10 +219,9 @@ import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
 import org.primefaces.component.button.Button;
-import ch.ivy.addon.portalkit.service.ServerWorkingOnDetector;
 import ch.ivyteam.ivy.server.ServerFactory;
 
-ServerWorkingOnDetector serverWorkingOnDetector = new ServerWorkingOnDetector();
+
 ApplicationService applicationService = new ApplicationService();
 int numberOfIvyApplications = applicationService.countIvyApplications(in.applications);
 SecurityServiceUtils.removeSessionAttribute(SessionAttribute.SELECTED_APP.toString());

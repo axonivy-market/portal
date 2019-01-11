@@ -5,8 +5,8 @@ import java.util.List;
 import ch.ivy.addon.portalkit.persistence.dao.AbstractDao;
 import ch.ivy.addon.portalkit.persistence.dao.ExecuteAsSystemDecorator;
 import ch.ivy.addon.portalkit.persistence.domain.BusinessEntity;
-import ch.ivy.addon.portalkit.util.PasswordUtils;
 import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.util.Property;
 
 /**
@@ -17,20 +17,11 @@ public class PortalDataService {
   private AbstractDao<BusinessEntity> abstractDao;
 
   public PortalDataService() {
-    PortalConnectorDetector detector = new PortalConnectorDetector();
-    IApplication application = detector.getPortalConnectorApplication();
-    abstractDao = ExecuteAsSystemDecorator.decorate(new BusinessEntityDao(), application);
+    abstractDao = ExecuteAsSystemDecorator.decorate(new BusinessEntityDao(), Ivy.request().getApplication());
   }
 
   public List<Property> getAllPortalCustomProperty() {
-    List<Property> props = abstractDao.getAllPortalDataProperties();
-    for (Property prop : props) {
-      if (PasswordUtils.isKeyOfServer(prop.getName())) {
-        String addedPasswordServer = PasswordUtils.addPasswordInformation(prop.getValue());
-        prop.setValue(addedPasswordServer);
-      }
-    }
-    return props;
+    return abstractDao.getAllPortalDataProperties();
   }
 
   public long getPortalIncrementIdValue() {

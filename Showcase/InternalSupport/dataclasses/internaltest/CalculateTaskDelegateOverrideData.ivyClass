@@ -1,10 +1,6 @@
 CalculateTaskDelegateOverrideData #class
 internaltest #namespace
 currentUser ch.ivyteam.ivy.security.ISecurityMember #field
-currentUser PERSISTENT #fieldModifier
-task ch.ivy.addon.portalkit.bo.RemoteTask #field
-task PERSISTENT #fieldModifier
-users List<ch.ivy.ws.addon.IvyUser> #field
-users PERSISTENT #fieldModifier
-roles List<ch.ivy.ws.addon.IvyRole> #field
-roles PERSISTENT #fieldModifier
+task ch.ivyteam.ivy.workflow.ITask #field
+users java.util.List<ch.ivyteam.ivy.security.IUser> #field
+roles java.util.List<ch.ivyteam.ivy.security.IRole> #field
