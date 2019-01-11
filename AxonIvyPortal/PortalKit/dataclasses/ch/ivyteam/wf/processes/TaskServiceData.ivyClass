@@ -3,7 +3,10 @@ ch.ivyteam.wf.processes #namespace
 apps List<String> #field
 categoryTree ch.ivyteam.ivy.workflow.category.CategoryTree #field
 count Integer #field
+elapsedTimeStatistic ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic #field
 errors java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> #field
+expiryStatistic ch.ivy.addon.portalkit.bo.ExpiryStatistic #field
+priorityStatistic ch.ivy.addon.portalkit.bo.PriorityStatistic #field
 startIndex Integer #field
 taskCategorySearchCriteria ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria #field
 tasks java.util.List<ch.ivyteam.ivy.workflow.ITask> #field

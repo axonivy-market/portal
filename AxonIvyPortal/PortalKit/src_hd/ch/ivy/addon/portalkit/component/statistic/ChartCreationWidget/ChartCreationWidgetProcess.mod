@@ -245,6 +245,7 @@ import ch.ivy.addon.portalkit.statistics.StatisticFilter;
 
 in.statisticFilter = new StatisticFilter();
 in.oldStatisticFilter = ObjectUtils.clone(in.statisticFilter) as StatisticFilter;' #txt
+Cs0 f15 security system #txt
 Cs0 f15 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 Cs0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

@@ -26,19 +26,19 @@
               cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" editor="true">
               <f:facet name="output">
                 <h:panelGroup id="priority-icon">
-                  <h:panelGroup rendered="#{task.priority == 'LOW'}"
+                  <h:panelGroup rendered="#{task.originalPriority == 'LOW'}"
                     styleClass="fa fa-circle task-priority-low task-details-data-priority-icon" />
-                  <h:panelGroup rendered="#{task.priority == 'NORMAL'}"
+                  <h:panelGroup rendered="#{task.originalPriority == 'NORMAL'}"
                     styleClass="fa fa-circle task-priority-normal task-details-data-priority-icon" />
-                  <h:panelGroup rendered="#{task.priority == 'HIGH'}"
+                  <h:panelGroup rendered="#{task.originalPriority == 'HIGH'}"
                     styleClass="fa fa-circle task-priority-high task-details-data-priority-icon" />
-                  <h:panelGroup rendered="#{task.priority == 'EXCEPTION'}"
+                  <h:panelGroup rendered="#{task.originalPriority == 'EXCEPTION'}"
                     styleClass="fa fa-circle task-priority-exception task-details-data-priority-icon" />
-                  <h:outputText value="#{taskBean.getPriority(task.priority)}" />
+                  <h:outputText value="#{taskBean.getPriority(task.originalPriority)}" />
                 </h:panelGroup>
               </f:facet>
               <p:ajax event="save" update="priority-form #{cc.attrs.priorityComponentToUpdate}" />
-              <p:selectOneMenu id="priority-select-menu" value="#{task.priority}" styleClass="task-details-priority">
+              <p:selectOneMenu id="priority-select-menu" value="#{task.originalPriority}" styleClass="task-details-priority">
                 <f:selectItems value="#{task.getPriority().values()}" var="priority"
                   itemLabel="#{taskBean.getPriority(priority)}" itemValue="#{priority}" />
               </p:selectOneMenu>
@@ -46,15 +46,15 @@
           </h:form>
         </ui:fragment>
         <ui:fragment rendered="#{not taskActionBean.canChangePriority(task)}">
-          <h:panelGroup rendered="#{task.priority == 'LOW'}"
+          <h:panelGroup rendered="#{task.originalPriority == 'LOW'}"
             styleClass="fa fa-circle task-priority-low task-details-data-priority-icon" />
-          <h:panelGroup rendered="#{task.priority == 'NORMAL'}"
+          <h:panelGroup rendered="#{task.originalPriority == 'NORMAL'}"
             styleClass="fa fa-circle task-priority-normal task-details-data-priority-icon" />
-          <h:panelGroup rendered="#{task.priority == 'HIGH'}"
+          <h:panelGroup rendered="#{task.originalPriority == 'HIGH'}"
             styleClass="fa fa-circle task-priority-high task-details-data-priority-icon" />
-          <h:panelGroup rendered="#{task.priority == 'EXCEPTION'}"
+          <h:panelGroup rendered="#{task.originalPriority == 'EXCEPTION'}"
             styleClass="fa fa-circle task-priority-exception task-details-data-priority-icon" />
-          <h:outputText value="#{taskBean.getPriority(task.priority)}" styleClass="DispInlBlock" />
+          <h:outputText value="#{taskBean.getPriority(task.originalPriority)}" styleClass="DispInlBlock" />
         </ui:fragment>
       </h:panelGroup>
 
@@ -80,10 +80,12 @@
       <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseCategory')}" />
       <h:outputText id="case-category" value="#{task.getCase().getBusinessCase().categoryPath}" />
 
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/technicalCase')}" />
-      <p:commandLink id="related-technical-case" value="#{taskBean.getTechnicalCaseDisplayName(task)}"
-        actionListener="#{logic.navigateToRelatedCase(task.getCase())}">
-      </p:commandLink>
+      <h:panelGroup rendered="#{task.getCase().getId() != task.getCase().getBusinessCase().getId()}">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/technicalCase')}" />
+        <p:commandLink id="related-technical-case" value="#{taskBean.getTechnicalCaseDisplayName(task)}"
+          actionListener="#{logic.navigateToRelatedCase(task.getCase())}">
+        </p:commandLink>
+      </h:panelGroup>
 
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}" />
       <h:outputText id="start-date" value="#{task.startTimestamp}">

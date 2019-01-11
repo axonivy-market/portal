@@ -2016,7 +2016,7 @@ a.case-details-document-add-link {
   font-size: 1.2rem;
 }
 
-.process-start-list {
+.process-start-list, .process-in-search {
   margin: 15px 0 10px 0;
   display: flex;
   flex-flow: row wrap;
@@ -2118,7 +2118,7 @@ a.case-details-document-add-link {
 	overflow-x: hidden; 
 }
 
-.process-start-list .process-start-list-item-name,  .mobile-process-start-list .process-start-list-item-name {
+.process-start-list .process-start-list-item-name, .process-in-search .process-start-list-item-name, .mobile-process-start-list .process-start-list-item-name {
   padding-left: 3%;
 }
 

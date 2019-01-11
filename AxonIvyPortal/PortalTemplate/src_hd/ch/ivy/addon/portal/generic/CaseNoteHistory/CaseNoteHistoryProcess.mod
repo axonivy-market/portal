@@ -28,7 +28,7 @@ Cs0 f6 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodE
 Cs0 f6 inParameterMapAction 'out.exportedFileName=param.exportedFileName;
 out.filteredHistories=param.histories;
 out.histories=param.histories;
-out.iCase=param.ivyCase;
+out.ivyCase=param.ivyCase;
 ' #txt
 Cs0 f6 outParameterDecl '<> result;
 ' #txt

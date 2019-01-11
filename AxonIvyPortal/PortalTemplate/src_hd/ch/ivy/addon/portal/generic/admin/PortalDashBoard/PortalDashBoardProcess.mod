@@ -16,15 +16,11 @@ Ps0 @TextInP .xml .xml #zField
 Ps0 @TextInP .responsibility .responsibility #zField
 Ps0 @RichDialogInitStart f0 '' #zField
 Ps0 @RichDialogProcessEnd f1 '' #zField
-Ps0 @GridStep f4 '' #zField
-Ps0 @PushWFArc f5 '' #zField
 Ps0 @RichDialogInitStart f6 '' #zField
-Ps0 @PushWFArc f7 '' #zField
-Ps0 @CallSub f8 '' #zField
-Ps0 @PushWFArc f10 '' #zField
 Ps0 @GridStep f2 '' #zField
-Ps0 @PushWFArc f3 '' #zField
 Ps0 @PushWFArc f9 '' #zField
+Ps0 @PushWFArc f11 '' #zField
+Ps0 @PushWFArc f7 '' #zField
 >Proto Ps0 Ps0 PortalDashBoardProcess #zField
 Ps0 f0 guid 14EB4D799DA15883 #txt
 Ps0 f0 type ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData #txt
@@ -47,32 +43,8 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ps0 f0 101 53 22 22 -16 12 #rect
 Ps0 f0 @|RichDialogInitStartIcon #fIcon
 Ps0 f1 type ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData #txt
-Ps0 f1 565 53 22 22 14 0 #rect
+Ps0 f1 309 53 22 22 14 0 #rect
 Ps0 f1 @|RichDialogProcessEndIcon #fIcon
-Ps0 f4 actionDecl 'ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData out;
-' #txt
-Ps0 f4 actionTable 'out=in;
-' #txt
-Ps0 f4 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
-
-String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
-if (#applicationName is initialized) {
-	in.involvedApplications = [applicationName];
-}' #txt
-Ps0 f4 type ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData #txt
-Ps0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>get selected apps</name>
-        <nameStyle>17
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ps0 f4 206 52 36 24 -47 19 #rect
-Ps0 f4 @|StepIcon #fIcon
-Ps0 f5 expr out #txt
-Ps0 f5 123 64 206 64 #arcP
 Ps0 f6 guid 157336D81FC73158 #txt
 Ps0 f6 type ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData #txt
 Ps0 f6 method startWithMenuState(String) #txt
@@ -95,29 +67,6 @@ Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ps0 f6 101 133 22 22 -73 13 #rect
 Ps0 f6 @|RichDialogInitStartIcon #fIcon
-Ps0 f7 expr out #txt
-Ps0 f7 120 137 207 76 #arcP
-Ps0 f8 type ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData #txt
-Ps0 f8 processCall 'Functional Processes/BuildTaskQuery:buildTaskQuery()' #txt
-Ps0 f8 doCall true #txt
-Ps0 f8 requestActionDecl '<> param;
-' #txt
-Ps0 f8 responseActionDecl 'ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData out;
-' #txt
-Ps0 f8 responseMappingAction 'out=in;
-out.taskQuery=result.taskQuery;
-' #txt
-Ps0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>BuildTaskQuery</name>
-    </language>
-</elementInfo>
-' #txt
-Ps0 f8 310 52 36 24 -51 18 #rect
-Ps0 f8 @|CallSubIcon #fIcon
-Ps0 f10 expr out #txt
-Ps0 f10 242 64 310 64 #arcP
 Ps0 f2 actionDecl 'ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData out;
 ' #txt
 Ps0 f2 actionTable 'out=in;
@@ -136,12 +85,14 @@ Ps0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f2 449 52 36 24 -49 14 #rect
+Ps0 f2 209 52 36 24 -49 14 #rect
 Ps0 f2 @|StepIcon #fIcon
-Ps0 f3 expr out #txt
-Ps0 f3 346 64 449 64 #arcP
 Ps0 f9 expr out #txt
-Ps0 f9 485 64 565 64 #arcP
+Ps0 f9 245 64 309 64 #arcP
+Ps0 f11 expr out #txt
+Ps0 f11 121 137 210 76 #arcP
+Ps0 f7 expr out #txt
+Ps0 f7 123 64 209 64 #arcP
 >Proto Ps0 .type ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -158,13 +109,9 @@ Ps0 f9 485 64 565 64 #arcP
 ' #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
 >Proto Ps0 '' #fIcon
-Ps0 f0 mainOut f5 tail #connect
-Ps0 f5 head f4 mainIn #connect
-Ps0 f6 mainOut f7 tail #connect
-Ps0 f7 head f4 mainIn #connect
-Ps0 f4 mainOut f10 tail #connect
-Ps0 f10 head f8 mainIn #connect
-Ps0 f8 mainOut f3 tail #connect
-Ps0 f3 head f2 mainIn #connect
 Ps0 f2 mainOut f9 tail #connect
 Ps0 f9 head f1 mainIn #connect
+Ps0 f6 mainOut f11 tail #connect
+Ps0 f11 head f2 mainIn #connect
+Ps0 f0 mainOut f7 tail #connect
+Ps0 f7 head f2 mainIn #connect
