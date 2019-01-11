@@ -5,8 +5,12 @@ import java.util.Date;
 import java.util.List;
 
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.application.ILibrary;
+import ch.ivyteam.ivy.application.IProcessModel;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -21,8 +25,7 @@ public class DeleteFinishedHiddenCasesService {
     Ivy.log().info("***Job for deleting finished hidden system cases started at: " + currentDate + " by user: " + Ivy.session().getSessionUserName());
 
     boolean shouldDeleteAllCases = Boolean.parseBoolean(Ivy.var().get(DELETE_ALL_FINISHED_HIDDEN_CASES));
-    PortalConnectorDetector detector = new PortalConnectorDetector();
-    IProcessModelVersion portalKitPMV = detector.findPortalPMVByLibraryId(Ivy.wf().getApplication(), PortalLibrary.PORTAL_KIT.getValue());
+    IProcessModelVersion portalKitPMV = findPortalPMVByLibraryId(Ivy.wf().getApplication(), PortalLibrary.PORTAL_KIT.getValue());
     CaseQuery caseQuery = CaseQuery.create();
     List<CaseState> filteredStates = Arrays.asList(CaseState.DONE, CaseState.DESTROYED);
     CaseQuery stateFieldQuery = CaseQuery.create();
@@ -58,5 +61,34 @@ public class DeleteFinishedHiddenCasesService {
     currentDate = new java.util.Date();
     Ivy.log().info("***Job for deleting finished hidden cases (deleted " + numOfDeletedCases + " cases) has ended at: " + currentDate);
   }
+  
+  private IProcessModelVersion findPortalPMVByLibraryId(IApplication app, String libraryId){
+    try {
+      ServerFactory.getServer().getSecurityManager().executeAsSystem(()->{
+        List<IProcessModel> pms = app.getProcessModels();
+        for (IProcessModel pm : pms) {
+          IProcessModelVersion pmv = pm.getReleasedProcessModelVersion();
+          if (isPortalPMV(pmv, libraryId)) {
+            return pmv;
+          }
+        }
+        return null;
+      });
+    } catch (Exception e) {
+      Ivy.log().error("Error find portal library id: {0}", e, libraryId);
+    }
+    return null;
+  }
 
+  private boolean isPortalPMV(IProcessModelVersion pmv, String libraryId) {
+    if (pmv == null) {
+      return false;
+    }
+    ILibrary library = pmv.getLibrary();
+    if (library != null) {
+      return libraryId.equals(library.getId());
+    } else {
+      return false;
+    }
+  }
 }

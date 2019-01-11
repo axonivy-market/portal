@@ -1,6 +1,4 @@
 AdditionalCaseDetailsData #class
 internaltest #namespace
-remoteCaseId Long #field
-remoteCase ch.ivy.addon.portalkit.bo.RemoteCase #field
-serverId Long #field
-server ch.ivy.addon.portalkit.persistence.domain.Server #field
+caseId Long #field
+iCase ch.ivyteam.ivy.workflow.ICase #field

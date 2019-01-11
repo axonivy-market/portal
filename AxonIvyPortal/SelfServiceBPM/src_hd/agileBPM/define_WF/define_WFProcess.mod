@@ -692,7 +692,7 @@ ds0 f42 outParameterDecl '<java.util.List<ch.ivyteam.ivy.security.IUser> userLis
 ' #txt
 ds0 f42 outActionCode 'import ch.ivy.addon.portalkit.util.UserUtils;
 
-result.userList = UserUtils.filterIUsers(in.userList, in.queryAutoComplete);' #txt
+result.userList = UserUtils.filterUsers(in.userList, in.queryAutoComplete);' #txt
 ds0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

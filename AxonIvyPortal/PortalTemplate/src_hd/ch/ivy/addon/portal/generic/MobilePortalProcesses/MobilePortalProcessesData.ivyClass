@@ -8,7 +8,7 @@ synData List<ch.ivy.addon.portalkit.persistence.domain.BusinessEntity> #field
 synData PERSISTENT #fieldModifier
 processLink String #field
 processLink PERSISTENT #fieldModifier
-webStartableSearchCriteria ch.ivy.ws.addon.WebStartableSearchCriteria #field
+webStartableSearchCriteria ch.ivy.addon.portalkit.ivydata.searchcriteria.ProcessSearchCriteria #field
 webStartableSearchCriteria PERSISTENT #fieldModifier
 language String #field
 language PERSISTENT #fieldModifier
