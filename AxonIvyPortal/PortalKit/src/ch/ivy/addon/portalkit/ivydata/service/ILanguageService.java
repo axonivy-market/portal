@@ -24,4 +24,13 @@ public interface ILanguageService {
    * @throws Exception 
    */
   IvyLanguageResultDTO saveUserLanguages(String username, List<IvyLanguage> languages) throws Exception;
+  
+  
+  /**
+   * get supported languages of application store in portal style
+   * @param appName
+   * @return
+   * @throws Exception
+   */
+  IvyLanguageResultDTO getSupportedLanguages(String appName) throws Exception;
 }

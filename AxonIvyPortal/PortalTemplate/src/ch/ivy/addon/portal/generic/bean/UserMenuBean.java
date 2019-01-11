@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -107,7 +108,7 @@ public class UserMenuBean implements Serializable {
 
     Application selectedApplication =
         applicationService.findByDisplayNameAndName(selectedAppDisplayName, selectedApp);
-    return selectedApplication.getLink();
+    return Optional.ofNullable(selectedApplication).map(Application::getLink).orElse(""); //selectedApplication.getLink();
   }
 
   public void navigateToHomePageOrDisplayWorkingTaskWarning(boolean isWorkingOnATask) throws IOException {

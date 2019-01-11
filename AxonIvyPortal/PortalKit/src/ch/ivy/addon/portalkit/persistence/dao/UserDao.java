@@ -38,8 +38,8 @@ public class UserDao extends AbstractDao<User> {
             .searchIndex(EntityProperty.APPLICATION_NAME.toString()).searchIndex(EntityProperty.SERVER_ID.toString())
             .build(long.class, User.class).init(findAll());
 
-    return repo.query(ObjectFilter.eq(EntityProperty.APPLICATION_NAME.toString(), application.getName()),
-        ObjectFilter.eq(EntityProperty.SERVER_ID.toString(), application.getServerId()));
+    return repo.query(ObjectFilter.eq(EntityProperty.APPLICATION_NAME.toString(), application.getName())
+        /*, ObjectFilter.eq(EntityProperty.SERVER_ID.toString(), application.getServerId())*/);
   }
 
   @ExecuteAsSystem
