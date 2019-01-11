@@ -993,7 +993,6 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       taskByPriorityData =
           getPriorityStatisticData(StatisticChartQueryUtils.generateTaskQuery(statisticChart.getFilter()));
     }
-    Ivy.log().error("TEST {0}", taskByPriorityData.getLow());
     return generateTaskByPriorityModel(taskByPriorityData, true);
   }
 

@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.statistics;
 
+import static ch.ivyteam.ivy.server.ServerFactory.getServer;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -96,20 +98,21 @@ public class StatisticFilter implements Cloneable {
     CaseCategorySearchCriteria criteria = new CaseCategorySearchCriteria();
     criteria.setCustomCaseQuery(query);
     params.put("caseCategorySearchCriteria", criteria);
-
     Map<String, Object> response = IvyAdapterService.startSubProcess("findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria)", params,
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
     this.caseCategoryTree = (CategoryTree) response.get("categoryTree");
     if (this.caseCategoryTree != null) {
       this.selectedCaseCategories = this.caseCategoryTree.getAllChildren().stream().map(CategoryTree::getRawPath).collect(Collectors.toList());
     }
+    this.selectedCaseCategories.add(StringUtils.EMPTY);
 
     this.timePeriodSelection = StatisticTimePeriodSelection.CUSTOM;
     this.allTimePeriodSelection = Arrays.asList(StatisticTimePeriodSelection.CUSTOM, StatisticTimePeriodSelection.LAST_WEEK, StatisticTimePeriodSelection.LAST_MONTH, StatisticTimePeriodSelection.LAST_6_MONTH);
   }
   
   @SuppressWarnings("unchecked")
-  private List<IRole> findRolesByCallableProcess() {
+  private List<IRole> findRolesByCallableProcess() throws Exception {
+    return getServer().getSecurityManager().executeAsSystem(() -> {
     if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
       Map<String, List<IRole>> rolesByApp = SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE)
           .withStartName("findRolesOverAllApplications")
@@ -123,6 +126,7 @@ public class StatisticFilter implements Cloneable {
         .withStartName("findRoles")
         .call(Ivy.request().getApplication())
         .get("roles", List.class);
+    });
   }
 
   public Date getCreatedDateFrom() {

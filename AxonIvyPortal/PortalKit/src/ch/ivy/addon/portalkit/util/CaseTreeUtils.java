@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.util;
 
-import static java.util.stream.Collectors.joining;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -20,8 +18,8 @@ import org.primefaces.util.TreeUtils;
 import ch.ivy.addon.portalkit.bo.CaseNode;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
-import ch.ivy.ws.addon.CategoryData;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -90,50 +88,35 @@ public class CaseTreeUtils {
     CaseQuery caseQuery = SubProcessCall.withPath("Functional Processes/BuildCaseQuery")
         .withStartSignature("buildCaseQuery()").call().get("caseQuery", CaseQuery.class);
     CategoryTree allCaseCategories = findAllCaseCategoryTree(involvedApplications, caseQuery);
-    root = buildCaseCategoryCheckboxTreeNode(allCaseCategories);
+    convertToCheckboxTreeNode(root, allCaseCategories);
+    sortNode(root);
     return root;
   }
 
   private static CategoryTree findAllCaseCategoryTree(List<String> involvedApplications, CaseQuery caseQuery) {
     Map<String, Object> params = new HashMap<>();
-    params.put("jsonQuery", jsonQuery);
-    params.put("apps", involvedApplications != null ? involvedApplications.stream().collect(joining("=~=")) : null);
+    CaseCategorySearchCriteria criteria = new CaseCategorySearchCriteria();
+    criteria.setCustomCaseQuery(caseQuery);
+    criteria.setApps(involvedApplications);
+    params.put("caseCategorySearchCriteria", criteria);
     Map<String, Object> response =
-        IvyAdapterService.startSubProcess("findCaseCategoriesByCriteria(String, String, Long, String)", params,
-            Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
-    @SuppressWarnings("unchecked")
-    CategoryTree allCaseCategoryTree = (CategoryTree) response.get("caseCategories");
+        IvyAdapterService.startSubProcess("findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria)", 
+            params, Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
+    CategoryTree allCaseCategoryTree = (CategoryTree) response.get("categoryTree");
     return allCaseCategoryTree;
   }
 
-  private static CheckboxTreeNode buildCaseCategoryCheckboxTreeNode(CategoryTree categoryTree) {
-    CheckboxTreeNode caseRootNode =
-        new CheckboxTreeNode(buildCaseNodeFrom(StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY));
-    CheckboxTreeNode navigatorNode = caseRootNode;
-    String nodeType = "default";
-    for (CategoryData category : categoryTree) {
-      String categoryPath = category.getPath();
-      String[] nodeNames = categoryPath.split(DELIMITER);
-
+  private static void convertToCheckboxTreeNode(CheckboxTreeNode root, CategoryTree categoryTree) {
+    for (CategoryTree category : categoryTree.getChildren()) {
+      String name = category.getCategory().getName();
       String categoryRawPath = category.getRawPath();
-      String[] nodeRawPaths = category.getRawPath().split(DELIMITER);
-
-      for (int i = 0; i < nodeNames.length; i++) {
-        String subCategoryName = nodeNames[i];
-        String subCategoryPath =
-            categoryPath.substring(0, categoryPath.indexOf(subCategoryName) + subCategoryName.length());
-
-        String subCategoryRawName = nodeRawPaths[i];
-        String subCategoryRawPath =
-            categoryRawPath.substring(0, categoryRawPath.indexOf(subCategoryRawName) + subCategoryRawName.length());
-
-        navigatorNode =
-            buildCaseCategoryTreeNode(navigatorNode, nodeType, subCategoryName, subCategoryPath, subCategoryRawPath);
+      String nodeType = root.getType() + DELIMITER + category.getCategory().getName(Locale.ENGLISH).replaceAll(" ", "_");
+      CheckboxTreeNode childNode = buildCaseCategoryCheckBoxTreeNode(root, name, nodeType, categoryRawPath);
+      root.getChildren().add(childNode);
+      if (CollectionUtils.isNotEmpty(category.getChildren())) {
+        convertToCheckboxTreeNode(childNode, category);
       }
-      navigatorNode = caseRootNode;
     }
-    sortNode(caseRootNode);
-    return caseRootNode;
   }
   
   private static void sortNode(TreeNode node) {
@@ -145,28 +128,27 @@ public class CaseTreeUtils {
     TreeUtils.sortNode(node, comparator);
   }
   
-  private static CheckboxTreeNode buildCaseCategoryTreeNode(CheckboxTreeNode navigatorNode, String nodeType, String subCategoryName, String subCategoryPath, String subCategoryRawPath) {
-    List<TreeNode> childNodes = navigatorNode.getChildren();
+  private static CheckboxTreeNode buildCaseCategoryCheckBoxTreeNode(CheckboxTreeNode root, String newNodeName, String nodeType, String rawPath) {
+    List<TreeNode> childNodes = root.getChildren();
     for (TreeNode childNode : childNodes) {
       CaseNode childNodeData = (CaseNode) childNode.getData();
-      if (subCategoryPath.equalsIgnoreCase(childNodeData.getValue())) {
+      if (rawPath.equalsIgnoreCase(childNodeData.getValue())) {
         return (CheckboxTreeNode) childNode;
       }
     }
 
-    CaseNode nodeData = buildCaseNodeFrom(subCategoryName, subCategoryPath, subCategoryRawPath);
-    CheckboxTreeNode checkboxTreeNode = new CheckboxTreeNode(nodeType, nodeData, navigatorNode);
+    CaseNode nodeData = buildCaseNodeFrom(newNodeName, rawPath);
+    CheckboxTreeNode checkboxTreeNode = new CheckboxTreeNode(nodeType, nodeData, root);
     checkboxTreeNode.setExpanded(true);
     checkboxTreeNode.setSelected(false);
     return checkboxTreeNode;
   }
-
-  private static CaseNode buildCaseNodeFrom(String subCategoryName, String subCategoryPath, String subCategoryRawPath) {
+  
+  private static CaseNode buildCaseNodeFrom(String name, String rawPath) {
     CaseNode nodeData = new CaseNode();
-    nodeData.setValue(subCategoryPath);
+    nodeData.setValue(name);
     nodeData.setMenuKind(MenuKind.CASE);
-    nodeData.setCategory(subCategoryName);
-    nodeData.setCategoryRawPath(subCategoryRawPath);
+    nodeData.setCategoryRawPath(rawPath);
     nodeData.setRootNodeAllCase(false);
     nodeData.setFirstCategoryNode(false);
     return nodeData;

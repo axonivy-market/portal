@@ -17,5 +17,5 @@ public interface ICaseService {
   
   IvyCaseResultDTO analyzeElapsedTimeByCaseCategory(CaseSearchCriteria criteria) throws Exception;
   
-  IvyCaseResultDTO findValuesOfCustomVarChar(CaseCustomVarCharSearchCriteria criteria);
+  IvyCaseResultDTO findValuesOfCustomVarChar(CaseCustomVarCharSearchCriteria criteria) throws Exception;
 }
