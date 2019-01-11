@@ -6,7 +6,6 @@ public class User extends BusinessEntity {
   private String userName;
   private String fullUserName;
   private String applicationName;
-  private long serverId;
   
   public String getUserName() {
     return userName;
@@ -32,17 +31,8 @@ public class User extends BusinessEntity {
     this.applicationName = applicationName;
   }
 
-  public long getServerId() {
-    return serverId;
-  }
-
-  public void setServerId(long serverId) {
-    this.serverId = serverId;
-  }
-  
   @Override
   public String toString() {
-    return "User {userName=" + userName + ", fullUserName=" + fullUserName + ", serverId=" + serverId
-        + ", applicationName=" + applicationName + ", id=" + getId() + "}";
+    return "User {userName=" + userName + ", fullUserName=" + fullUserName +", applicationName=" + applicationName + ", id=" + getId() + "}";
   }
 }
