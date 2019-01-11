@@ -3,19 +3,23 @@ package ch.ivy.addon.portalkit.ivydata.service.impl;
 import static ch.ivyteam.ivy.server.ServerFactory.getServer;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
 import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+import ch.ivy.addon.portalkit.ivydata.dao.PortalCaseDao;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomVarCharSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.ICaseService;
+import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -191,33 +195,37 @@ public class CaseService implements ICaseService {
   }
   
   @Override
-  public IvyCaseResultDTO findValuesOfCustomVarChar(CaseCustomVarCharSearchCriteria criteria) {
-    IvyCaseResultDTO result = new IvyCaseResultDTO();
-//    List<String> customVarChars = new ArrayList<>();
-//    PortalCaseDao portalCaseDAO = new PortalCaseDao();
-//
-//    List<Long> applicationIds = WsServiceFactory.getApplicationService().convertApplicationIdsToList(applications);
-//    switch (customVarCharField) {
-//      case CUSTOM_VAR_CHAR_1:
-//        customVarChars = portalCaseDAO.findCustomVarChar1Fields(keyword, limit, applicationIds);
-//        break;
-//      case CUSTOM_VAR_CHAR_2:
-//        customVarChars = portalCaseDAO.findCustomVarChar2Fields(keyword, limit, applicationIds);
-//        break;
-//      case CUSTOM_VAR_CHAR_3:
-//        customVarChars = portalCaseDAO.findCustomVarChar3Fields(keyword, limit, applicationIds);
-//        break;
-//      case CUSTOM_VAR_CHAR_4:
-//        customVarChars = portalCaseDAO.findCustomVarChar4Fields(keyword, limit, applicationIds);
-//        break;
-//      case CUSTOM_VAR_CHAR_5:
-//        customVarChars = portalCaseDAO.findCustomVarChar5Fields(keyword, limit, applicationIds);
-//        break;
-//      default:
-//        break;
-//    }
-//    result.setCustomVarChars(customVarChars);
-    return result;
+  public IvyCaseResultDTO findValuesOfCustomVarChar(CaseCustomVarCharSearchCriteria criteria) throws Exception {
+    return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+      IvyCaseResultDTO result = new IvyCaseResultDTO();
+      List<String> customVarChars = new ArrayList<>();
+      PortalCaseDao portalCaseDao = new PortalCaseDao();
+      String keyword = criteria.getKeyword();
+      int limit = criteria.getLimit();
+      List<Long> applicationIds = ServiceUtilities.findApps(criteria.getApps()).stream().map(IApplication::getId).collect(Collectors.toList());
+  
+      switch (criteria.getCustomVarCharField()) {
+        case CUSTOM_VAR_CHAR_1:
+          customVarChars = portalCaseDao.findCustomVarChar1Fields(keyword, limit, applicationIds);
+          break;
+        case CUSTOM_VAR_CHAR_2:
+          customVarChars = portalCaseDao.findCustomVarChar2Fields(keyword, limit, applicationIds);
+          break;
+        case CUSTOM_VAR_CHAR_3:
+          customVarChars = portalCaseDao.findCustomVarChar3Fields(keyword, limit, applicationIds);
+          break;
+        case CUSTOM_VAR_CHAR_4:
+          customVarChars = portalCaseDao.findCustomVarChar4Fields(keyword, limit, applicationIds);
+          break;
+        case CUSTOM_VAR_CHAR_5:
+          customVarChars = portalCaseDao.findCustomVarChar5Fields(keyword, limit, applicationIds);
+          break;
+        default:
+          break;
+      }
+      result.setCustomVarChars(customVarChars);
+      return result;
+    });
   }
 
   private CaseQuery queryExcludeHiddenCases() {
