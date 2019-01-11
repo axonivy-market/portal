@@ -233,9 +233,7 @@ for (Application application : in.applications){
 		Button menuItem = new Button();
 		menuItem.value = ApplicationMultiLanguage.getDisplayNameInCurrentLocale(application);
 		boolean isThirdPartyApp = !application.#serverId is initialized;
-		if (!isThirdPartyApp){
-			menuItem.getAttributes().put("serverId", application.serverId.toString());
-		} else {
+		if (isThirdPartyApp){
 			menuItem.getAttributes().put("isThirdPartyApp", true);
 		}
 		menuItem.href = application.link;
