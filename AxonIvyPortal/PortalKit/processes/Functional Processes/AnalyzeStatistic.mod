@@ -54,6 +54,13 @@ ac0 @PushWFArc f10 '' #zField
 ac0 @PushWFArc f12 '' #zField
 ac0 @PushWFArc f13 '' #zField
 ac0 @PushWFArc f14 '' #zField
+ac0 @GridStep f16 '' #zField
+ac0 @StartSub f17 '' #zField
+ac0 @EndSub f18 '' #zField
+ac0 @CallSub f20 '' #zField
+ac0 @PushWFArc f29 '' #zField
+ac0 @PushWFArc f32 '' #zField
+ac0 @PushWFArc f34 '' #zField
 >Proto ac0 ac0 AnalyzeStatistic #zField
 ac0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;' #txt
 ac0 f0 inParamTable 'out.taskSearchCriteria.finalTaskQuery=param.taskQuery;
@@ -128,6 +135,8 @@ ac0 f11 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
 ac0 f11 processCall 'Ivy Data Processes/TaskService:analyzePriorityStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)' #txt
 ac0 f11 doCall true #txt
 ac0 f11 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria> param;
+' #txt
+ac0 f11 requestMappingAction 'param.taskSearchCriteria=in.taskSearchCriteria;
 ' #txt
 ac0 f11 responseActionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
 ' #txt
@@ -498,6 +507,78 @@ ac0 f13 expr out #txt
 ac0 f13 338 352 386 352 #arcP
 ac0 f14 expr out #txt
 ac0 f14 336 448 384 448 #arcP
+ac0 f16 actionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
+' #txt
+ac0 f16 actionTable 'out=in;
+' #txt
+ac0 f16 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+
+String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
+if (#applicationName is initialized) {
+	in.caseCustomVarCharSearchCriteria.apps = [applicationName];
+}' #txt
+ac0 f16 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
+ac0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Initialize</name>
+        <nameStyle>10
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ac0 f16 224 618 112 44 -22 -8 #rect
+ac0 f16 @|StepIcon #fIcon
+ac0 f17 inParamDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomVarCharSearchCriteria caseCustomVarCharSearchCriteria> param;' #txt
+ac0 f17 inParamTable 'out.caseCustomVarCharSearchCriteria=param.caseCustomVarCharSearchCriteria;
+' #txt
+ac0 f17 outParamDecl '<java.util.List<java.lang.String> result> result;
+' #txt
+ac0 f17 outParamTable 'result.result=in.caseCustomVarChars;
+' #txt
+ac0 f17 actionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
+' #txt
+ac0 f17 callSignature findCaseCustomVarChars(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomVarCharSearchCriteria) #txt
+ac0 f17 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
+ac0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>findCaseCustomVarChars(CaseCustomVarCharSearchCriteria)</name>
+    </language>
+</elementInfo>
+' #txt
+ac0 f17 113 625 30 30 -117 17 #rect
+ac0 f17 @|StartSubIcon #fIcon
+ac0 f18 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
+ac0 f18 561 625 30 30 0 15 #rect
+ac0 f18 @|EndSubIcon #fIcon
+ac0 f20 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
+ac0 f20 processCall 'Ivy Data Processes/CaseService:findValuesOfCustomVarChar(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomVarCharSearchCriteria)' #txt
+ac0 f20 doCall true #txt
+ac0 f20 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomVarCharSearchCriteria caseCustomVarCharSearchCriteria> param;
+' #txt
+ac0 f20 requestMappingAction 'param.caseCustomVarCharSearchCriteria=in.caseCustomVarCharSearchCriteria;
+' #txt
+ac0 f20 responseActionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
+' #txt
+ac0 f20 responseMappingAction 'out=in;
+out.caseCustomVarChars=result.customVarChars;
+' #txt
+ac0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>CaseService</name>
+    </language>
+</elementInfo>
+' #txt
+ac0 f20 384 618 112 44 -35 -8 #rect
+ac0 f20 @|CallSubIcon #fIcon
+ac0 f29 expr out #txt
+ac0 f29 496 640 561 640 #arcP
+ac0 f32 expr out #txt
+ac0 f32 143 640 224 640 #arcP
+ac0 f34 expr out #txt
+ac0 f34 336 640 384 640 #arcP
 >Proto ac0 .type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
 >Proto ac0 .processKind CALLABLE_SUB #txt
 >Proto ac0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -543,3 +624,9 @@ ac0 f31 mainOut f13 tail #connect
 ac0 f13 head f28 mainIn #connect
 ac0 f41 mainOut f14 tail #connect
 ac0 f14 head f39 mainIn #connect
+ac0 f17 mainOut f32 tail #connect
+ac0 f32 head f16 mainIn #connect
+ac0 f20 mainOut f29 tail #connect
+ac0 f29 head f18 mainIn #connect
+ac0 f16 mainOut f34 tail #connect
+ac0 f34 head f20 mainIn #connect
