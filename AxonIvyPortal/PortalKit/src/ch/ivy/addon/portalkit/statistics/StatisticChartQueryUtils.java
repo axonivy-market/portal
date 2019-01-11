@@ -25,20 +25,19 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.event.ItemSelectEvent;
 
-import ch.ivy.addon.portalkit.bo.RemoteRole;
+import ch.ivy.addon.portalkit.enums.CustomVarCharField;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivy.addon.portalkit.util.RoleUtils;
-import ch.ivy.ws.addon.CategoryData;
-import ch.ivy.ws.addon.PortalCaseCustomVarField;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
+import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
@@ -285,7 +284,7 @@ public class StatisticChartQueryUtils {
         filter.getSelectedRoles().forEach(role -> subTaskFilterForRoles.or().activatorName().isEqual(role));
       } else {
         subTaskFilterForRoles.and().activatorName().isNotLike("#%%"); //exclude other users
-        List<RemoteRole> roles = CollectionUtils.emptyIfNull(filter.getRoles()).stream().filter(role -> role instanceof RemoteRole).map(role -> (RemoteRole)role).collect(Collectors.toList());
+        List<IRole> roles = CollectionUtils.emptyIfNull(filter.getRoles()).stream().filter(role -> role instanceof IRole).map(role -> (IRole)role).collect(Collectors.toList());
         roles.forEach(role -> subTaskFilterForRoles.and().activatorName().isNotEqual(role.getMemberName())); //exclude role
       }
     }
@@ -371,8 +370,10 @@ public class StatisticChartQueryUtils {
     ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForSelectedCaseCategories =
         subCaseQueryForSelectedCaseCategories.where();
     if (selectedCaseCategories.isEmpty()) {
-      List<CategoryData> caseCategories = Optional.ofNullable(filter.getCaseCategories()).orElse(new ArrayList<>());
-      caseCategories.stream().map(CategoryData::getRawPath).forEach(category -> subCaseFilterForSelectedCaseCategories.and().category().isNotEqual(category));
+      CategoryTree caseCategoryTree = filter.getCaseCategoryTree();
+      if (caseCategoryTree != null) {
+        caseCategoryTree.getAllChildren().stream().map(CategoryTree::getRawPath).forEach(category -> subCaseFilterForSelectedCaseCategories.and().category().isNotEqual(category));
+      }
     } else {
       selectedCaseCategories.forEach(category -> subCaseFilterForSelectedCaseCategories.or().category().isEqual(category));
     }
@@ -608,30 +609,30 @@ public class StatisticChartQueryUtils {
   }
   
   private static void generateCaseQueryForCustomVarChar(StatisticFilter filter, CaseQuery caseQuery) {
-    generateCaseQueryForCustomVarCharByType(filter.getSelectedCustomVarCharFields1(), caseQuery, PortalCaseCustomVarField.CUSTOM_VAR_CHAR_1);
-    generateCaseQueryForCustomVarCharByType(filter.getSelectedCustomVarCharFields2(), caseQuery, PortalCaseCustomVarField.CUSTOM_VAR_CHAR_2);
-    generateCaseQueryForCustomVarCharByType(filter.getSelectedCustomVarCharFields3(), caseQuery, PortalCaseCustomVarField.CUSTOM_VAR_CHAR_3);
-    generateCaseQueryForCustomVarCharByType(filter.getSelectedCustomVarCharFields4(), caseQuery, PortalCaseCustomVarField.CUSTOM_VAR_CHAR_4);
-    generateCaseQueryForCustomVarCharByType(filter.getSelectedCustomVarCharFields5(), caseQuery, PortalCaseCustomVarField.CUSTOM_VAR_CHAR_5);
+    generateCaseQueryForCustomVarCharByType(filter.getSelectedCustomVarCharFields1(), caseQuery, CustomVarCharField.CUSTOM_VAR_CHAR_1);
+    generateCaseQueryForCustomVarCharByType(filter.getSelectedCustomVarCharFields2(), caseQuery, CustomVarCharField.CUSTOM_VAR_CHAR_2);
+    generateCaseQueryForCustomVarCharByType(filter.getSelectedCustomVarCharFields3(), caseQuery, CustomVarCharField.CUSTOM_VAR_CHAR_3);
+    generateCaseQueryForCustomVarCharByType(filter.getSelectedCustomVarCharFields4(), caseQuery, CustomVarCharField.CUSTOM_VAR_CHAR_4);
+    generateCaseQueryForCustomVarCharByType(filter.getSelectedCustomVarCharFields5(), caseQuery, CustomVarCharField.CUSTOM_VAR_CHAR_5);
   }
   
-  private static void generateCaseQueryForCustomVarCharByType(List<String> customVarChars, CaseQuery caseQuery, PortalCaseCustomVarField type) {
+  private static void generateCaseQueryForCustomVarCharByType(List<String> customVarChars, CaseQuery caseQuery, CustomVarCharField type) {
     if(CollectionUtils.isNotEmpty(customVarChars)) {
       CaseQuery subTaskQueryForCustomVarCharField = CaseQuery.create();
       ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForCustomVarCharField = subTaskQueryForCustomVarCharField.where();
-      if(type == PortalCaseCustomVarField.CUSTOM_VAR_CHAR_1) {
+      if(type == CustomVarCharField.CUSTOM_VAR_CHAR_1) {
         customVarChars.forEach(item -> subCaseFilterForCustomVarCharField.or().customVarCharField1().isEqual(item));
       }
-      else if (type == PortalCaseCustomVarField.CUSTOM_VAR_CHAR_2) {
+      else if (type == CustomVarCharField.CUSTOM_VAR_CHAR_2) {
         customVarChars.forEach(item -> subCaseFilterForCustomVarCharField.or().customVarCharField2().isEqual(item));
       }
-      else if (type == PortalCaseCustomVarField.CUSTOM_VAR_CHAR_3) {
+      else if (type == CustomVarCharField.CUSTOM_VAR_CHAR_3) {
         customVarChars.forEach(item -> subCaseFilterForCustomVarCharField.or().customVarCharField3().isEqual(item));
       }
-      else if (type == PortalCaseCustomVarField.CUSTOM_VAR_CHAR_4) {
+      else if (type == CustomVarCharField.CUSTOM_VAR_CHAR_4) {
         customVarChars.forEach(item -> subCaseFilterForCustomVarCharField.or().customVarCharField4().isEqual(item));
       }
-      else if (type == PortalCaseCustomVarField.CUSTOM_VAR_CHAR_5) {
+      else if (type == CustomVarCharField.CUSTOM_VAR_CHAR_5) {
         customVarChars.forEach(item -> subCaseFilterForCustomVarCharField.or().customVarCharField5().isEqual(item));
       }
       caseQuery.where().and(subTaskQueryForCustomVarCharField);

@@ -2,17 +2,26 @@ package ch.ivy.addon.portalkit.ivydata.service.impl;
 
 import static ch.ivyteam.ivy.server.ServerFactory.getServer;
 
+import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
+import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
+import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria;
+import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomVarCharSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.ICaseService;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.server.ServerFactory;
+import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -31,15 +40,7 @@ public class CaseService implements ICaseService {
     return getServer().getSecurityManager().executeAsSystem(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       try {
-        CaseQuery finalQuery = criteria.getFinalCaseQuery();
-        if (criteria.hasApps()) {
-          if (criteria.hasInvolvedUsername() && !criteria.isAdminQuery()) {
-            finalQuery.where().and(queryForUsers(criteria.getInvolvedUsername(), criteria.getApps()));
-          } else {
-            finalQuery.where().and(queryForApplications(criteria.getApps()));
-          }
-        }
-//        finalQuery.where().and(queryExcludeHiddenCases());
+        CaseQuery finalQuery = extendQuery(criteria);
         result.setCases(executeCaseQuery(finalQuery, startIndex, count));
       } catch (Exception ex) {
         Ivy.log().error("Error in getting cases", ex);
@@ -54,13 +55,7 @@ public class CaseService implements ICaseService {
     return getServer().getSecurityManager().executeAsSystem(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       try {
-        CaseQuery finalQuery = criteria.getFinalCaseQuery();
-        if (criteria.hasInvolvedUsername() && !criteria.isAdminQuery()) {
-          finalQuery.where().and(queryForUsers(criteria.getInvolvedUsername(), criteria.getApps()));
-        } else {
-          finalQuery.where().and(queryForApplications(criteria.getApps()));
-        }
-//        finalQuery.where().and(queryExcludeHiddenCases());
+        CaseQuery finalQuery = extendQuery(criteria);
         result.setTotalCases(countCases(finalQuery));
       } catch (Exception ex) {
         Ivy.log().error("Error in counting cases", ex);
@@ -69,7 +64,7 @@ public class CaseService implements ICaseService {
       return result;
     });
   }
-  
+
   private List<ICase> executeCaseQuery(CaseQuery query, Integer startIndex, Integer count) {
     return Ivy.wf().getGlobalContext().getCaseQueryExecutor().getResults(query, startIndex, count);
   }
@@ -95,10 +90,6 @@ public class CaseService implements ICaseService {
     return caseQuery;
   }
   
-  private CaseQuery queryExcludeHiddenCases() {
-    return CaseQuery.create().where().additionalProperty(AdditionalProperty.HIDE.toString()).isNull();
-  }
-
   @Override
   public IvyCaseResultDTO findCategoriesByCriteria(CaseCategorySearchCriteria criteria) throws Exception { // NOSONAR
     return getServer().getSecurityManager().executeAsSystem(() -> {
@@ -122,5 +113,127 @@ public class CaseService implements ICaseService {
       }
       return result;
     });
+  }
+  
+  @Override
+  public IvyCaseResultDTO analyzeCaseStateStatistic(CaseSearchCriteria criteria) throws Exception { // NOSONAR
+    return getServer().getSecurityManager().executeAsSystem(() -> {
+      IvyCaseResultDTO result = new IvyCaseResultDTO();
+      try {
+        CaseQuery finalQuery = extendQuery(criteria);
+        finalQuery.aggregate().countRows().groupBy().state().orderBy().state();
+
+        Recordset recordSet = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getRecordset(finalQuery);
+        CaseStateStatistic caseStateStatistic = createCaseStateStatistic(recordSet);
+        result.setCaseStateStatistic(caseStateStatistic);
+      } catch (Exception ex) {
+        Ivy.log().error("Error in getting task expiry statistic", ex);
+//        result.setErrors(Arrays.asList(new PortalIvyDataException(appName, PortalIvyDataErrorType.FAIL_TO_LOAD_LANGUAGE.toString())));
+      }
+      return result;
+    });
+  }
+  
+  private CaseStateStatistic createCaseStateStatistic(Recordset recordSet) {
+    CaseStateStatistic caseStateStatistic = new CaseStateStatistic();
+    if (recordSet != null) {
+      recordSet.getRecords().forEach(record -> {
+        int state = Integer.parseInt(record.getField("STATE").toString());
+        long numberOfCases = Long.parseLong(record.getField("COUNT").toString());
+        if (state == CaseState.DONE.intValue()) {
+          caseStateStatistic.setDone((numberOfCases));
+        } else if (state == CaseState.CREATED.intValue()) {
+          caseStateStatistic.setCreated(numberOfCases);
+        } else if (state == CaseState.DESTROYED.intValue()) {
+          caseStateStatistic.setFailed(numberOfCases);
+        } else if (state == CaseState.RUNNING.intValue()) {
+          caseStateStatistic.setRunning(numberOfCases);
+        }
+      });
+    }
+    return caseStateStatistic;
+  }
+  
+  @Override
+  public IvyCaseResultDTO analyzeElapsedTimeByCaseCategory(CaseSearchCriteria criteria) throws Exception { // NOSONAR
+    return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+      IvyCaseResultDTO result = new IvyCaseResultDTO();
+      try {
+        CaseQuery finalQuery = extendQuery(criteria);
+        finalQuery.where().and().businessRuntime().isNotNull();
+        finalQuery.aggregate().avgBusinessRuntime().groupBy().category();
+
+        Recordset recordSet = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getRecordset(finalQuery);
+        ElapsedTimeStatistic elapsedTimeStatistic = createCategoryToAverageElapsedTimeMap(recordSet);
+        result.setElapsedTimeStatistic(elapsedTimeStatistic);
+      } catch (Exception ex) {
+        Ivy.log().error("Error in getting task priority statistic", ex);
+//        result.setErrors(Arrays.asList(new PortalIvyDataException(appName, PortalIvyDataErrorType.FAIL_TO_LOAD_LANGUAGE.toString())));
+      }
+      return result;
+    });
+  }
+  
+  private ElapsedTimeStatistic createCategoryToAverageElapsedTimeMap(Recordset recordSet) {
+    ElapsedTimeStatistic elapsedTimeStatistic = new ElapsedTimeStatistic();
+    Map<String, Long> averageElapsedTimeByCategory = new HashMap<>();
+    if (recordSet != null) {
+      recordSet.getRecords().forEach(record -> {
+        String categoryName = record.getField("CATEGORY").toString();
+        BigDecimal averageElapsedTime =
+            Optional.ofNullable((BigDecimal) record.getField("AVGBUSINESSRUNTIME")).orElse(BigDecimal.ZERO);
+        long averageElapsedTimeValue = averageElapsedTime.longValue();
+        averageElapsedTimeByCategory.put(categoryName, averageElapsedTimeValue);
+      });
+    }
+    elapsedTimeStatistic.setAverageElapsedTimeByCategory(averageElapsedTimeByCategory);
+    return elapsedTimeStatistic;
+  }
+  
+  @Override
+  public IvyCaseResultDTO findValuesOfCustomVarChar(CaseCustomVarCharSearchCriteria criteria) {
+    IvyCaseResultDTO result = new IvyCaseResultDTO();
+//    List<String> customVarChars = new ArrayList<>();
+//    PortalCaseDao portalCaseDAO = new PortalCaseDao();
+//
+//    List<Long> applicationIds = WsServiceFactory.getApplicationService().convertApplicationIdsToList(applications);
+//    switch (customVarCharField) {
+//      case CUSTOM_VAR_CHAR_1:
+//        customVarChars = portalCaseDAO.findCustomVarChar1Fields(keyword, limit, applicationIds);
+//        break;
+//      case CUSTOM_VAR_CHAR_2:
+//        customVarChars = portalCaseDAO.findCustomVarChar2Fields(keyword, limit, applicationIds);
+//        break;
+//      case CUSTOM_VAR_CHAR_3:
+//        customVarChars = portalCaseDAO.findCustomVarChar3Fields(keyword, limit, applicationIds);
+//        break;
+//      case CUSTOM_VAR_CHAR_4:
+//        customVarChars = portalCaseDAO.findCustomVarChar4Fields(keyword, limit, applicationIds);
+//        break;
+//      case CUSTOM_VAR_CHAR_5:
+//        customVarChars = portalCaseDAO.findCustomVarChar5Fields(keyword, limit, applicationIds);
+//        break;
+//      default:
+//        break;
+//    }
+//    result.setCustomVarChars(customVarChars);
+    return result;
+  }
+
+  private CaseQuery queryExcludeHiddenCases() {
+    return CaseQuery.create().where().additionalProperty(AdditionalProperty.HIDE.toString()).isNull();
+  }
+  
+  private CaseQuery extendQuery(CaseSearchCriteria criteria) {
+    CaseQuery finalQuery = criteria.getFinalCaseQuery();
+    if (criteria.hasApps()) {
+      if (criteria.hasInvolvedUsername() && !criteria.isAdminQuery()) {
+        finalQuery.where().and(queryForUsers(criteria.getInvolvedUsername(), criteria.getApps()));
+      } else {
+        finalQuery.where().and(queryForApplications(criteria.getApps()));
+      }
+    }
+//        finalQuery.where().and(queryExcludeHiddenCases());
+    return finalQuery;
   }
 }

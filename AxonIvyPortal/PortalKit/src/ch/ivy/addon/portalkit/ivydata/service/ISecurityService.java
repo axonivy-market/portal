@@ -24,6 +24,22 @@ public interface ISecurityService {
   IvySecurityResultDTO findUsers(IApplication app) throws Exception;
   
   /**
+   * Gets roles of the given apps
+   * @param apps
+   * @return IvySecurityResultDTO
+   * @throws Exception 
+   */
+  IvySecurityResultDTO findRoles(List<String> apps) throws Exception;
+  
+  /**
+   * Finds the roles by the given app
+   * @param app
+   * @return IvySecurityResultDTO
+   * @throws Exception
+   */
+  IvySecurityResultDTO findRoles(IApplication app) throws Exception;
+  
+  /**
    * Finds the users and roles
    * @param app
    * @return IvySecurityResultDTO

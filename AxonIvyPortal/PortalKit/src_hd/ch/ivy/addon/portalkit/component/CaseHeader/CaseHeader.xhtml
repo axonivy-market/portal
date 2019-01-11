@@ -35,7 +35,7 @@
     <h:outputText id="description-cell" styleClass="case-header-desc-cell" value="#{case.description}" />
   </h:panelGroup>
   <h:outputText styleClass="case-header-id-cell case-header-default-cell" value="#{case.id}" />
-  <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText styleClass="case-header-creator-cell" fullname="#{case.creatorFullName}"
+  <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText styleClass="case-header-creator-cell" fullname="#{case.creatorUser.fullName}"
       username="#{case.creatorUserName}" />
   <h:outputText value="#{case.startTimestamp}" styleClass="case-header-start-time-cell case-header-default-cell">
     <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
