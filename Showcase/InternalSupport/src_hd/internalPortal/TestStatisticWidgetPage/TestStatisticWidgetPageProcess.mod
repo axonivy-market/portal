@@ -1,5 +1,5 @@
 [Ivy]
-16150F8167BC0EF5 3.20 #module
+16150F8167BC0EF5 3.23 #module
 >Proto >Proto Collection #zClass
 Ts0 TestStatisticWidgetPageProcess Big #zClass
 Ts0 RD #cInfo
@@ -29,8 +29,6 @@ Ts0 f4 actionDecl 'internalPortal.TestStatisticWidgetPage.TestStatisticWidgetPag
 Ts0 f4 actionTable 'out=in;
 ' #txt
 Ts0 f4 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
-
-in.serverId = SecurityServiceUtils.getServerIdFromSession();
 String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
 if (#applicationName is initialized) {
 	in.involvedApplications = [applicationName];
@@ -67,7 +65,7 @@ Ts0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f2 405 54 36 24 -49 14 #rect
+Ts0 f2 453 54 36 24 -49 14 #rect
 Ts0 f2 @|StepIcon #fIcon
 Ts0 f0 guid 16150F9B6D41C56F #txt
 Ts0 f0 type internalPortal.TestStatisticWidgetPage.TestStatisticWidgetPageData #txt
@@ -88,10 +86,10 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ts0 f0 57 55 22 22 -16 13 #rect
 Ts0 f0 @|RichDialogInitStartIcon #fIcon
 Ts0 f1 type internalPortal.TestStatisticWidgetPage.TestStatisticWidgetPageData #txt
-Ts0 f1 521 55 22 22 14 0 #rect
+Ts0 f1 569 55 22 22 14 0 #rect
 Ts0 f1 @|RichDialogProcessEndIcon #fIcon
 Ts0 f8 type internalPortal.TestStatisticWidgetPage.TestStatisticWidgetPageData #txt
-Ts0 f8 processCall 'Functional Processes/BuildTaskJsonQuery:buildTaskJsonQuery()' #txt
+Ts0 f8 processCall 'Functional Processes/BuildTaskQuery:buildTaskQuery()' #txt
 Ts0 f8 doCall true #txt
 Ts0 f8 requestActionDecl '<> param;
 ' #txt
@@ -102,20 +100,20 @@ Ts0 f8 responseMappingAction 'out=in;
 Ts0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>BuildTaskJsonQuery</name>
+        <name>BuildTaskQuery</name>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f8 266 54 36 24 -51 18 #rect
+Ts0 f8 314 54 36 24 -51 18 #rect
 Ts0 f8 @|CallSubIcon #fIcon
 Ts0 f10 expr out #txt
-Ts0 f10 198 66 266 66 #arcP
+Ts0 f10 198 66 314 66 #arcP
 Ts0 f5 expr out #txt
 Ts0 f5 79 66 162 66 #arcP
 Ts0 f9 expr out #txt
-Ts0 f9 441 66 521 66 #arcP
+Ts0 f9 489 66 569 66 #arcP
 Ts0 f3 expr out #txt
-Ts0 f3 302 66 405 66 #arcP
+Ts0 f3 350 66 453 66 #arcP
 >Proto Ts0 .type internalPortal.TestStatisticWidgetPage.TestStatisticWidgetPageData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect

@@ -7,7 +7,6 @@ import org.boon.criteria.ObjectFilter;
 import org.boon.datarepo.Repos;
 
 import ch.ivy.addon.portalkit.persistence.domain.Application;
-import ch.ivy.addon.portalkit.persistence.domain.Server;
 import ch.ivyteam.ivy.application.IApplication;
 
 @SuppressWarnings("unchecked")
@@ -52,20 +51,6 @@ public class ApplicationDao extends AbstractDao<Application> {
     setRelationShipDataForApplications(otherApplicationsHaveSameNameAndServer);
 
     return otherApplicationsHaveSameNameAndServer;
-  }
-
-  @ExecuteAsSystem
-  public List<Application> findByNameAndServerId(String applicationName, Long serverId) {
-    repo =
-        Repos.builder().primaryKey(EntityProperty.ID.toString()).searchIndex(EntityProperty.NAME.toString())
-            .searchIndex(EntityProperty.SERVER_ID.toString()).build(Long.class, Application.class).init(findAll());
-    Criterion<String> objectFilterForAppName = ObjectFilter.eq(EntityProperty.NAME, applicationName);
-    Criterion<Long> objectFilterForServerId = ObjectFilter.eq(EntityProperty.SERVER_ID, serverId);
-    List<Application> applications = repo.query(objectFilterForAppName, objectFilterForServerId);
-
-    setRelationShipDataForApplications(applications);
-
-    return applications;
   }
 
   @ExecuteAsSystem

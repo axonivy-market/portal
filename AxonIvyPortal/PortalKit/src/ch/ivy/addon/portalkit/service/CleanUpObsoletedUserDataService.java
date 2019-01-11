@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.CaseColumnsConfiguration;
-import ch.ivy.addon.portalkit.bo.RemoteUser;
 import ch.ivy.addon.portalkit.bo.TaskColumnsConfiguration;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
@@ -23,14 +22,14 @@ import ch.ivyteam.ivy.server.ServerFactory;
 public class CleanUpObsoletedUserDataService {
 
   private static final String SECURITY_SERVICE_CALLABLE = "Ivy Data Processes/SecurityService";
-  List<RemoteUser> currentUsers;
+  List<IUser> currentUsers;
 
   public void cleanUpData() {
     try {
-      currentUsers = ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<RemoteUser>>() {
+      currentUsers = ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<IUser>>() {
         @SuppressWarnings("unchecked")
         @Override
-        public List<RemoteUser> call() throws Exception {
+        public List<IUser> call() throws Exception {
           return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findAllUsersByApplication")
               .call(Ivy.request().getApplication().getName()).get("users", List.class);
         }
@@ -48,7 +47,7 @@ public class CleanUpObsoletedUserDataService {
   }
 
   private void cleanUpUserFavouriteProcess() {
-    List<String> userNames = currentUsers.stream().map(RemoteUser::getUsername).distinct().collect(Collectors.toList());
+    List<String> userNames = currentUsers.stream().map(IUser::getName).distinct().collect(Collectors.toList());
     UserProcessService userProcessService = new UserProcessService();
     List<UserProcess> userProcesses = userProcessService.findAll();
     List<UserProcess> obsoletedUserProcess = new ArrayList<>();
@@ -77,7 +76,7 @@ public class CleanUpObsoletedUserDataService {
 
   private void cleanUpUserTaskCaseFilter() {
     long applicationId = Ivy.request().getApplication().getId();
-    List<Long> userIds = currentUsers.stream().map(RemoteUser::getId).collect(Collectors.toList());
+    List<Long> userIds = currentUsers.stream().map(IUser::getId).collect(Collectors.toList());
     AbstractFilterService<TaskFilterData> taskFilterService = new TaskFilterService();
     List<TaskFilterData> allPrivateTaskFilters = taskFilterService.getAllPrivateFilters();
     if (allPrivateTaskFilters != null) {
@@ -101,7 +100,7 @@ public class CleanUpObsoletedUserDataService {
   }
 
   private void cleanUpUserTaskColumnsConfigData() {
-    List<Long> userIds = currentUsers.stream().map(RemoteUser::getId).collect(Collectors.toList());
+    List<Long> userIds = currentUsers.stream().map(IUser::getId).collect(Collectors.toList());
     Long applicationId = Ivy.request().getApplication().getId();
     TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
     List<TaskColumnsConfiguration> allColumnConfigs = service.getAllConfiguration(applicationId);
@@ -115,7 +114,7 @@ public class CleanUpObsoletedUserDataService {
   }
   
   private void cleanUpUserCaseColumnsConfigData() {
-    List<Long> userIds = currentUsers.stream().map(RemoteUser::getId).collect(Collectors.toList());
+    List<Long> userIds = currentUsers.stream().map(IUser::getId).collect(Collectors.toList());
     Long applicationId = Ivy.request().getApplication().getId();
     CaseColumnsConfigurationService service = new CaseColumnsConfigurationService();
     List<CaseColumnsConfiguration> allColumnConfigs = service.getAllConfiguration(applicationId);
@@ -130,7 +129,7 @@ public class CleanUpObsoletedUserDataService {
 
 
   private void cleanUpUserStatisticChartData() {
-    List<Long> userIds = currentUsers.stream().map(RemoteUser::getId).collect(Collectors.toList());
+    List<Long> userIds = currentUsers.stream().map(IUser::getId).collect(Collectors.toList());
     StatisticService statisticService = new StatisticService();
     List<StatisticChart> allStatisticCharts = statisticService.findAllStatisticCharts();
     if (allStatisticCharts != null) {

@@ -1,5 +1,5 @@
 [Ivy]
-15B0ED8770CD5F13 3.20 #module
+15B0ED8770CD5F13 3.23 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalHomeProcess Big #zClass
 Ps0 RD #cInfo
@@ -59,7 +59,7 @@ Ps0 f2 disableUIEvents false #txt
 Ps0 f2 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
-Ps0 f2 inActionCode 'import ch.ivy.ws.addon.TaskSearchCriteria;
+Ps0 f2 inActionCode 'import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 
 TaskSearchCriteria criteria = out.taskView.dataModel.searchCriteria;
 if (out.isNotLogin) {

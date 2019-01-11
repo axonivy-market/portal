@@ -8,11 +8,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.commons.lang3.StringUtils;
 import org.primefaces.json.JSONException;
 
 import ch.ivy.addon.portalkit.persistence.domain.Application;
-import ch.ivy.addon.portalkit.persistence.domain.Server;
 import ch.ivy.addon.portalkit.util.DisplayNameAdaptor;
 import ch.ivy.addon.portalkit.util.Locales;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -34,17 +32,6 @@ public class ApplicationMultiLanguage {
     }
   }
 
-  public static String getDisplayNameOfAllAppInSameIvyApplication(Application application, Server server)
-      throws JSONException {
-    List<String> displayNames = new ArrayList<>();
-    for (Application app : server.getApplications()) {
-      if (app.getName().equals(application.getName()) && app.getIsVisible()) {
-        displayNames.add(getDisplayNameInCurrentLocale(app));
-      }
-    }
-    String delimiter = ", ";
-    return StringUtils.join(displayNames, delimiter);
-  }
 
   private static String getRandomDisplayName(Map<String, String> displayNameAsMap) {
     Set<String> keySet = displayNameAsMap.keySet();

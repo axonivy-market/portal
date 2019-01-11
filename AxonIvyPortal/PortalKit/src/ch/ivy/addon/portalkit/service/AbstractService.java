@@ -7,26 +7,24 @@ import ch.ivy.addon.portalkit.persistence.dao.AbstractDao;
 import ch.ivy.addon.portalkit.persistence.dao.ExecuteAsSystemDecorator;
 import ch.ivy.addon.portalkit.persistence.domain.BusinessEntity;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
+import ch.ivyteam.ivy.environment.Ivy;
 
 class AbstractService<T extends BusinessEntity> {
 
   private AbstractDao<T> dao;
-  private PortalConnectorDetector portalConnectorDetector;
   
-  public AbstractService(AbstractDao<T> abstractDao, PortalConnectorDetector portalConnectorDetector) {
-    this.portalConnectorDetector = portalConnectorDetector;
+  public AbstractService(AbstractDao<T> abstractDao) {
     this.dao = abstractDao;
   }
 
   /**
-   * Proxy constructor of {@link AbstractService} instance to implicitly pass PortalConnector
+   * Proxy constructor of {@link AbstractService} instance to implicitly 
    * Application to {@link AbstractDao} property
    * 
    * @param daoClassType
    */
   public AbstractService(Class<? extends AbstractDao<T>> daoClassType) {
-    this.portalConnectorDetector = new PortalConnectorDetector();
-    this.dao = ExecuteAsSystemDecorator.decorate(newInstance(daoClassType), this.portalConnectorDetector.getPortalConnectorApplication());
+    this.dao = ExecuteAsSystemDecorator.decorate(newInstance(daoClassType), Ivy.request().getApplication());
   }
 
   /**
@@ -52,10 +50,6 @@ class AbstractService<T extends BusinessEntity> {
 
   private static boolean isDefaultConstructor(Constructor<?> c) {
     return c.getParameterTypes().length == 0;
-  }
-
-  protected PortalConnectorDetector getPortalConnectorDetector() {
-    return this.portalConnectorDetector;
   }
 
   protected AbstractDao<T> getDao() {
