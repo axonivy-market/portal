@@ -41,10 +41,6 @@ public class ApplicationService extends AbstractService<Application> {
     return getDao().findByDisplayNameAndName(displayName, name);
   }
 
-  public List<Application> findOnlineApplicationByServerId(Long serverId) {
-    return getDao().findOnlineAppByServerId(serverId);
-  }
-
   public List<Application> findOnlineIvyApps() {
     return getDao().findOnlineIvyApps();
   }
@@ -116,7 +112,6 @@ public class ApplicationService extends AbstractService<Application> {
           .collect(Collectors.toList());
     }
     
-    //IvyCacheService.newInstance().setSessionCache(username, IvyCacheIdentifier.ONLINE_APPLICATIONS_USER_CAN_WORK_ON, workOnApps);
     return workOnApps;
   }
   
