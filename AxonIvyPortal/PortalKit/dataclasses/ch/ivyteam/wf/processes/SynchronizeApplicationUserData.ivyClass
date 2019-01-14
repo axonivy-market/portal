@@ -1,5 +1,0 @@
-SynchronizeApplicationUserData #class
-ch.ivyteam.wf.processes #namespace
-remoteUsers List<ch.ivy.addon.portalkit.bo.RemoteUser> #field
-users List<ch.ivy.addon.portalkit.persistence.domain.User> #field
-errorMsgs List<String> #field
