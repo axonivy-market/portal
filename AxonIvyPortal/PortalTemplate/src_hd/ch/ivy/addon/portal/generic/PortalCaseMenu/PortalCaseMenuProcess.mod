@@ -291,7 +291,7 @@ import ch.ivy.addon.portalkit.bo.MainMenuNode;
 in.selectedMenuItem = in.selectedNode.getData() as MainMenuNode;
 CaseNode categoryMenu = in.selectedMenuItem as CaseNode;
 
-in.dataModel.setCategory(categoryMenu.categoryRawPath);
+in.dataModel.setCategory(categoryMenu.category);
 
 if(in.selectedNode.type.startsWith(TreeNodeType.CASES_ALL_CASES)){
 	in.hasReadAllCasesPermisson = PermissionUtils.checkReadAllCasesPermission();

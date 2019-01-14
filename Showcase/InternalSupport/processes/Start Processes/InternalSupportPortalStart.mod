@@ -655,9 +655,9 @@ import ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel;
 
 in.searchResultsDataModel = new SearchResultsDataModel();
 in.searchResultsDataModel.taskDataModel = in.dataModel;
-in.searchResultsDataModel.keyword = in.searchResultsDataModel.taskDataModel.searchCriteria.keyword;
+in.searchResultsDataModel.keyword = in.searchResultsDataModel.taskDataModel.criteria.keyword;
 in.searchResultsDataModel.caseDataModel.notKeepFilter = true;
-in.searchResultsDataModel.caseDataModel.getSearchCriteria().keyword = in.searchResultsDataModel.taskDataModel.searchCriteria.keyword;
+in.searchResultsDataModel.caseDataModel.getCriteria().keyword = in.searchResultsDataModel.taskDataModel.criteria.keyword;
 
 ' #txt
 Pt0 f52 security system #txt
@@ -786,7 +786,7 @@ if (!in.isDataModelInitialized) {
 	try {
 		taskCategory = SecurityServiceUtils.getSessionAttribute(SessionAttribute.TASK_CATEGORY.toString()) as TaskNode;
 	} catch (Exception e) {}
-	boolean canLinkBackToCaseDetail = in.#dataModel.#searchCriteria.#caseId is initialized; 
+	boolean canLinkBackToCaseDetail = in.#dataModel.#criteria.#caseId is initialized; 
 	
 	in.taskView = TaskView.create().category(#taskCategory).dataModel(in.dataModel)
 												.canLinkBackCaseDetail(canLinkBackToCaseDetail).showHeaderToolbar(false)
@@ -795,7 +795,7 @@ if (!in.isDataModelInitialized) {
 	SecurityServiceUtils.removeSessionAttribute(SessionAttribute.TASK_CATEGORY.toString());
 } else {
 	in.dataModel.compactMode = false;
-	in.dataModel.getSearchCriteria().setNewQueryCreated(true);
+	in.dataModel.getCriteria().setNewQueryCreated(true);
 	in.dataModel.setAdminQuery(true);
 	in.dataModel.setSortField(TaskSortField.PRIORITY.toString(), false);
 		
@@ -1584,8 +1584,9 @@ Pt0 f53 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f53 1494 168 1760 522 #arcP
-Pt0 f53 0 0.7770738386707813 8 -6 #arcLabel
+Pt0 f53 1488 174 1704 544 #arcP
+Pt0 f53 1 1488 544 #addKink
+Pt0 f53 1 0.46987517298157394 0 -10 #arcLabel
 Pt0 f95 expr out #txt
 Pt0 f95 296 352 328 352 #arcP
 Pt0 f46 expr out #txt
@@ -1662,8 +1663,9 @@ Pt0 f56 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f56 1495 167 1760 420 #arcP
-Pt0 f56 0 0.8104879907883252 9 -10 #arcLabel
+Pt0 f56 1490 172 1696 448 #arcP
+Pt0 f56 1 1536 448 #addKink
+Pt0 f56 1 0.572089955758512 0 -13 #arcLabel
 Pt0 f44 expr out #txt
 Pt0 f44 1312 160 1376 160 #arcP
 Pt0 f24 expr out #txt

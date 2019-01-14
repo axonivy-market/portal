@@ -3,8 +3,6 @@ package ch.ivyteam.ivy.project.portal.examples.component.customize.cases;
 import java.util.Arrays;
 import java.util.List;
 
-import ch.ivy.addon.portalkit.bo.RemoteCase;
-import ch.ivy.addon.portalkit.comparator.RemoteCaseComparator;
 import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -27,14 +25,14 @@ public class CustomizedCaseLazyDataModel extends CaseLazyDataModel {
 	// Extend sort fields, include 1 text field and 1 date time field
 	@Override
 	public void extendSort(CaseQuery caseQuery) {
-		if (CUSTOM_VARCHAR_FIELD1.equalsIgnoreCase(queryCriteria.getSortField())) {
-			if (queryCriteria.isSortDescending()) {
+		if (CUSTOM_VARCHAR_FIELD1.equalsIgnoreCase(criteria.getSortField())) {
+			if (criteria.isSortDescending()) {
 				caseQuery.orderBy().customVarCharField1().descending();
 			} else {
 				caseQuery.orderBy().customVarCharField1();
 			}
-		} else if (CUSTOM_TIMESTAMP_FIELD1.equalsIgnoreCase(queryCriteria.getSortField())) {
-			if (queryCriteria.isSortDescending()) {
+		} else if (CUSTOM_TIMESTAMP_FIELD1.equalsIgnoreCase(criteria.getSortField())) {
+			if (criteria.isSortDescending()) {
 				caseQuery.orderBy().customTimestampField1().descending();
 			} else {
 				caseQuery.orderBy().customTimestampField1();
@@ -42,15 +40,6 @@ public class CustomizedCaseLazyDataModel extends CaseLazyDataModel {
 		}
 	}
 
-	@Override
-	public void extendSortCasesInNotDisplayedCaseMap() {
-		if (CUSTOM_VARCHAR_FIELD1.equalsIgnoreCase(queryCriteria.getSortField())) {
-			comparator = RemoteCaseComparator.comparatorString(RemoteCase::getCustomVarCharField1);
-		} else if (CUSTOM_TIMESTAMP_FIELD1.equalsIgnoreCase(queryCriteria.getSortField())) {
-			comparator = RemoteCaseComparator.naturalOrderNullsFirst(RemoteCase::getCustomTimestampField1);
-		}
-	}
-	
 	@Override
 	protected List<String> getDefaultColumns() {
 	  return Arrays.asList("NAME", "ID", "CREATOR", "CREATION_TIME", "FINISHED_TIME", CUSTOM_VARCHAR_FIELD1, CUSTOM_TIMESTAMP_FIELD1);

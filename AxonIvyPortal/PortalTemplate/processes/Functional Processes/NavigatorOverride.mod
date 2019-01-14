@@ -116,7 +116,7 @@ import ch.ivy.addon.portal.generic.view.CaseView;
 String title = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/relatedCaseHeader", Arrays.asList(in.caseId.id().toString(), in.caseName));
 
 in.caseDataModel.setCaseId(in.caseId.id());
-in.caseDataModel.getSearchCriteria().setBusinessCase(in.caseId.isBusinessCase());
+in.caseDataModel.getCriteria().setBusinessCase(in.caseId.isBusinessCase());
 in.caseDataModel.setNotKeepFilter(true);
 in.caseView = CaseView.create().dataModel(in.caseDataModel).hideCaseFilter(true).withTitle(title).autoSelectIfExists(in.caseId).buildNewView();' #txt
 Nr0 f7 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
@@ -338,7 +338,7 @@ import ch.ivy.addon.portal.generic.navigation.PortalPage;
 
 String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedStatisticHeader") + in.chartName;
 
-in.taskDataModel.getSearchCriteria().setFinalTaskQuery(in.taskQuery);
+in.taskDataModel.getCriteria().setFinalTaskQuery(in.taskQuery);
 in.taskDataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
 in.taskDataModel.setNotKeepFilter(true);
 
@@ -445,9 +445,9 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 
 String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/relatedStatisticHeader") + in.chartName;
 
-in.caseDataModel.getSearchCriteria().setBusinessCase(true);
+in.caseDataModel.getCriteria().setBusinessCase(true);
 in.caseDataModel.setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
-in.caseDataModel.getSearchCriteria().setFinalCaseQuery(in.caseQuery);
+in.caseDataModel.getCriteria().setFinalCaseQuery(in.caseQuery);
 in.caseDataModel.setNotKeepFilter(true);
 
 in.caseView = CaseView.create()

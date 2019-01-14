@@ -3,7 +3,6 @@ package ch.ivyteam.ivy.project.portal.examples.component.customize;
 import java.util.Arrays;
 import java.util.List;
 
-import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -29,27 +28,18 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
   // Extend sort fields, include 1 text field and 1 date time field
   @Override
   public void extendSort(TaskQuery taskQuery) {
-    if ("customVarcharField5".equalsIgnoreCase(queryCriteria.getSortField())) {
-      if (queryCriteria.isSortDescending()) {
+    if ("customVarcharField5".equalsIgnoreCase(criteria.getSortField())) {
+      if (criteria.isSortDescending()) {
         taskQuery.orderBy().customVarCharField5().descending();
       } else {
         taskQuery.orderBy().customVarCharField5();
       }
-    } else if ("customTimestampField1".equalsIgnoreCase(queryCriteria.getSortField())) {
-      if (queryCriteria.isSortDescending()) {
+    } else if ("customTimestampField1".equalsIgnoreCase(criteria.getSortField())) {
+      if (criteria.isSortDescending()) {
         taskQuery.orderBy().customTimestampField1().descending();
       } else {
         taskQuery.orderBy().customTimestampField1();
       }
-    }
-  }
-
-  @Override
-  public void extendSortTasksInNotDisplayedTaskMap() {
-    if ("customVarcharField5".equalsIgnoreCase(queryCriteria.getSortField())) {
-      comparator = comparatorString(RemoteTask::getCustomVarCharField5);
-    } else if ("customTimestampField1".equalsIgnoreCase(queryCriteria.getSortField())) {
-      comparator = comparator(RemoteTask::getCustomTimestampField1);
     }
   }
   

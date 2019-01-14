@@ -44,8 +44,8 @@ public class SearchResultsDataModel implements Serializable {
 
   public void setKeyword(String keyword) {
     this.keyword = keyword;
-    this.taskDataModel.getSearchCriteria().setKeyword(keyword);
-    this.caseDataModel.getSearchCriteria().setKeyword(keyword);
+    this.taskDataModel.getCriteria().setKeyword(keyword);
+    this.caseDataModel.getCriteria().setKeyword(keyword);
   }
 
   public TaskLazyDataModel getTaskDataModel() {

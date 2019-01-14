@@ -377,9 +377,9 @@ import ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel;
 
 in.searchResultsDataModel = new SearchResultsDataModel();
 in.searchResultsDataModel.taskDataModel = in.dataModel;
-in.searchResultsDataModel.keyword = in.searchResultsDataModel.taskDataModel.queryCriteria.keyword;
+in.searchResultsDataModel.keyword = in.searchResultsDataModel.taskDataModel.criteria.keyword;
 in.searchResultsDataModel.caseDataModel.notKeepFilter = true;
-in.searchResultsDataModel.caseDataModel.queryCriteria.keyword = in.searchResultsDataModel.taskDataModel.queryCriteria.keyword;
+in.searchResultsDataModel.caseDataModel.criteria.keyword = in.searchResultsDataModel.taskDataModel.criteria.keyword;
 
 ' #txt
 Pt0 f52 security system #txt
@@ -565,7 +565,7 @@ import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portal.generic.view.CaseView;
 
 boolean hasReadAllCasesPermission = PermissionUtils.checkReadAllCasesPermission();
-in.caseDataModel.setIgnoreInvolvedUser(hasReadAllCasesPermission);
+in.caseDataModel.setAdminQuery(hasReadAllCasesPermission);
 
 in.caseView = CaseView.create().dataModel(in.caseDataModel).buildNewView();' #txt
 Pt0 f59 type ch.ivy.addon.portal.generic.PortalStartData #txt
@@ -630,7 +630,7 @@ long serverId = Long.parseLong(caseInfor.get("serverId") as String);
 String title = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/relatedCaseHeader", Arrays.asList(caseId.toString(), caseName));
 
 in.caseDataModel.setCaseId(caseId);
-out.caseView = CaseView.create().dataModel(in.caseDataModel).withTitle(title).hideCaseFilter(true).autoSelectIfExists(GlobalCaseId.inServer(serverId).caseId(caseId).build()).buildNewView();' #txt
+out.caseView = CaseView.create().dataModel(in.caseDataModel).withTitle(title).hideCaseFilter(true).autoSelectIfExists(GlobalCaseId.caseId(caseId).build()).buildNewView();' #txt
 Pt0 f17 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -915,7 +915,7 @@ import ch.ivy.addon.portal.generic.view.TaskView;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 
 boolean hasReadAllTasksPermisson = PermissionUtils.checkReadAllTasksPermission();
-in.dataModel.setIgnoreInvolvedUser(hasReadAllTasksPermisson);
+in.dataModel.setAdminQuery(hasReadAllTasksPermisson);
 in.dataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
 
 in.taskView = TaskView.create().dataModel(in.dataModel).noTaskFoundMessage("").showHeaderToolbar(false).createNewTaskView();
@@ -1007,12 +1007,12 @@ Pt0 f55 @|CallSubIcon #fIcon
 Pt0 f74 targetWindow NEW:card: #txt
 Pt0 f74 targetDisplay TOP #txt
 Pt0 f74 richDialogId ch.ivy.addon.portal.generic.Processes #txt
-Pt0 f74 startMethod startWithMenuState(String) #txt
+Pt0 f74 startMethod start(String) #txt
 Pt0 f74 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f74 requestActionDecl '<String menuState> param;' #txt
 Pt0 f74 requestMappingAction 'param.menuState=ch.ivy.addon.portalkit.util.MenuUtils.getMenuState();
 ' #txt
-Pt0 f74 responseActionDecl 'ch.ivy.addon.portal.generic.PortalProcessData out;
+Pt0 f74 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f74 responseMappingAction 'out=in;
 ' #txt
@@ -1099,17 +1099,17 @@ if (!in.isDataModelInitialized) {
 	try {
 		taskCategory = SecurityServiceUtils.getSessionAttribute(SessionAttribute.TASK_CATEGORY.toString()) as TaskNode;
 	} catch (Exception e) {}
-	boolean canLinkBackToCaseDetail = in.#dataModel.#queryCriteria.#caseId is initialized; 
+	boolean canLinkBackToCaseDetail = in.#dataModel.#criteria.#caseId is initialized; 
 	
 	in.taskView = TaskView.create().category(#taskCategory).dataModel(in.dataModel)
 												.canLinkBackCaseDetail(canLinkBackToCaseDetail).showHeaderToolbar(false)
-												.remoteTaskId(in.selectedTaskId).createNewTaskView();
+												.taskId(in.selectedTaskId).createNewTaskView();
 	
 	SecurityServiceUtils.removeSessionAttribute(SessionAttribute.TASK_CATEGORY.toString());
 } else {
 	in.dataModel.compactMode = false;
-	in.dataModel.getQueryCriteria().setNewQueryCreated(true);
-	in.dataModel.setIgnoreInvolvedUser(true);
+	in.dataModel.getCriteria().setNewQueryCreated(true);
+	in.dataModel.setAdminQuery(true);
 	in.dataModel.setSortField(TaskSortField.PRIORITY.toString(), false);
 		
 	Map taskInfo = GsonConverter.getGson().fromJson(in.parameters,Map.class) as Map;
@@ -1121,7 +1121,7 @@ if (!in.isDataModelInitialized) {
 	category.value = pageTitle;
 	String noTaskMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskWarning/taskNotFound");
 		
-	out.taskView = TaskView.create().dataModel(in.dataModel).pageTitle(pageTitle).category(category).remoteTaskId(taskId).hideTaskFilter(true).showHeaderToolbar(false).noTaskFoundMessage(noTaskMessage).createNewTaskView();
+	out.taskView = TaskView.create().dataModel(in.dataModel).pageTitle(pageTitle).category(category).taskId(taskId).hideTaskFilter(true).showHeaderToolbar(false).noTaskFoundMessage(noTaskMessage).createNewTaskView();
 }' #txt
 Pt0 f19 security system #txt
 Pt0 f19 type ch.ivy.addon.portal.generic.PortalStartData #txt
