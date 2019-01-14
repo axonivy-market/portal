@@ -56,11 +56,8 @@ in.subMenuItems.add(new ProcessSubMenuItem());
 in.subMenuItems.add(new TaskSubMenuItem());
 in.subMenuItems.add(new CaseSubMenuItem());
 
-GlobalSettingService globalSettingSerive = new GlobalSettingService();
-String hideStatistic =
-        globalSettingSerive.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET);
-boolean isHideStatistic = Boolean.parseBoolean(hideStatistic);
-
+GlobalSettingService globalSettingService = new GlobalSettingService();
+boolean isHideStatistic = globalSettingService.findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_STATISTIC_WIDGET);
 if (!isHideStatistic) {
   in.subMenuItems.add(new DashboardSubMenuItem());
 }' #txt
