@@ -701,10 +701,12 @@
 				Otherwise, you need to follow these steps:
 				</para>
 				<orderedlist>
-					<listitem>Make sure PortalHiddenTaskCaseExcluded is set to true in each application(default value)</listitem>
-					<listitem>In each application, set PortalHiddenTaskCaseCustomField to one available custom field of your task and case e.g CustomTimestampField5. Value is case sensive.</listitem>
+					<listitem>Make sure <code>PortalHiddenTaskCaseExcluded</code> is set to true in each application(default value)</listitem>
+					<listitem>In each application, set <code>PortalHiddenTaskCaseCustomField</code> to one available custom field of your task and case e.g CustomTimestampField5.
+					This value must be the same for all applications.</listitem>
 					<listitem>Deploy this project <link xlink:href="documents/MigrateHiddenTaskCase.iar">MigrateHiddenTaskCase.iar</link> to all your portal applications</listitem>
-					<listitem>In each application, run start process <code>migrateHiddenTaskCase</code> to migrate.</listitem>
+					<listitem>In each application, run start process <code>MigrateHiddenTaskCase</code> to migrate.</listitem>
+					<listitem>After migration finishes succesfully, run start process <code>RemoveHideAddtionalProperty</code> in each application to clean up HIDE addtional property. It's will delete HIDE additional property of all tasks and cases in current application. So be careful with it.</listitem>
 				</orderedlist>
 			</sect3>
 		</sect2>

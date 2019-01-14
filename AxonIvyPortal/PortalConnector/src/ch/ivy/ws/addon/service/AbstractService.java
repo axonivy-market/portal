@@ -43,7 +43,7 @@ public abstract class AbstractService {
         return CollectionUtils.emptyIfNull(getServer().getApplicationConfigurationManager().getApplications())
             .stream()
             .filter(application -> apps.contains(application.getName()))
-            .map(user -> findUserInApp(username, user))
+            .map(app -> findUserInApp(username, app))
             .filter(Objects::nonNull)
             .collect(Collectors.toList());
     });

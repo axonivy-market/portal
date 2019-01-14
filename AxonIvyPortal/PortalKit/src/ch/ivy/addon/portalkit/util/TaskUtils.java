@@ -18,6 +18,7 @@ import ch.ivy.add.portalkit.admin.Task;
 import ch.ivy.addon.portalkit.bo.NodeObject;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
+import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
 import ch.ivy.addon.portalkit.vo.TaskVO;
 import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -149,12 +150,9 @@ public final class TaskUtils {
     // must be in RESUMED, CREATED, PARKED, READY_FOR_JOIN, FAILED
     if (Arrays.asList(TaskState.RESUMED, TaskState.CREATED, TaskState.PARKED, 
         TaskState.READY_FOR_JOIN, TaskState.FAILED).contains(task.getState())){
-      ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Boolean>() {
-        @Override
-        public Boolean call() throws Exception {
-          task.reset();
-          return true;
-        }
+      ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+        task.reset();
+        return true;
       });
     }
   }
@@ -166,22 +164,19 @@ public final class TaskUtils {
    * @throws Exception exception
    */
   public static void parkTask(final ITask task) throws Exception {
-    ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Void>() {
-      @Override
-      public Void call() throws PersistencyException {
-        IWorkflowSession iWorkflowSession = Ivy.session();
-        // Resume a task if it's suspended.
-        if (task.getState() == TaskState.SUSPENDED) {
-          iWorkflowSession.resumeTask(task.getId());
-        }
-
-        // If the task is resumed or created, then park task.
-        if (task.getState() == TaskState.RESUMED || task.getState() == TaskState.CREATED) {
-          iWorkflowSession.parkTask(task);
-        }
-
-        return null;
+    ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+      IWorkflowSession iWorkflowSession = Ivy.session();
+      // Resume a task if it's suspended.
+      if (task.getState() == TaskState.SUSPENDED) {
+        iWorkflowSession.resumeTask(task.getId());
       }
+
+      // If the task is resumed or created, then park task.
+      if (task.getState() == TaskState.RESUMED || task.getState() == TaskState.CREATED) {
+        iWorkflowSession.parkTask(task);
+      }
+
+      return null;
     });
 
   }
@@ -194,16 +189,13 @@ public final class TaskUtils {
    */
   public static Boolean removeTaskDelay(final ITask task) {
     try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<Boolean>() {
-        @Override
-        public Boolean call() {
-          try {
-            task.setDelayTimestamp(null);
-            return true;
-          } catch (Exception e) {
-            Ivy.log().error(e);
-            return false;
-          }
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+        try {
+          task.setDelayTimestamp(null);
+          return true;
+        } catch (Exception e) {
+          Ivy.log().error(e);
+          return false;
         }
       });
     } catch (Exception e) {
@@ -269,24 +261,21 @@ public final class TaskUtils {
    */
   public static ITask findTaskUserHasPermissionToSee(final long taskId) {
     try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<ITask>() {
-        @Override
-        public ITask call() throws Exception {
-          try {
-            TaskQuery taskQuery1 = TaskQuery.create().where().taskId().isEqual(taskId);
-            TaskQuery taskQuery2 = TaskQuery.create().where().currentUserIsInvolved();
-            IUser user = Ivy.session().getSessionUser();
-            if (user == null) {
-              return null;
-            }
-            for (IRole role : user.getRoles()) {
-              taskQuery2 = taskQuery2.where().or().roleIsInvolved(role);
-            }
-            return Ivy.wf().getTaskQueryExecutor().getFirstResult(taskQuery1.where().and(taskQuery2));
-          } catch (Exception e) {
-            Ivy.log().error(e);
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+        try {
+          TaskQuery taskQuery1 = TaskQuery.create().where().taskId().isEqual(taskId);
+          TaskQuery taskQuery2 = TaskQuery.create().where().currentUserIsInvolved();
+          IUser user = Ivy.session().getSessionUser();
+          if (user == null) {
             return null;
           }
+          for (IRole role : user.getRoles()) {
+            taskQuery2 = taskQuery2.where().or().roleIsInvolved(role);
+          }
+          return Ivy.wf().getTaskQueryExecutor().getFirstResult(taskQuery1.where().and(taskQuery2));
+        } catch (Exception e) {
+          Ivy.log().error(e);
+          return null;
         }
       });
     } catch (Exception e) {
@@ -380,22 +369,19 @@ public final class TaskUtils {
         && iTask.getActivator().getSecurityContext().getUsers() != null
         && iTask.getActivator().getSecurityContext().getUsers().size() > 0) {
       try {
-        return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
-          @Override
-          public String call() {
-            try {
-              String st = iTask.getActivator().getMemberName();
-              List<IUser> l = iTask.getActivator().getSecurityContext().getUsers();
-              for (IUser user : l) {
-                if (st.equals(user.getMemberName())) {
-                  return user.getEMailAddress();
-                }
+        return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+          try {
+            String st = iTask.getActivator().getMemberName();
+            List<IUser> l = iTask.getActivator().getSecurityContext().getUsers();
+            for (IUser user : l) {
+              if (st.equals(user.getMemberName())) {
+                return user.getEMailAddress();
               }
-              return st;
-            } catch (Exception e) {
-              Ivy.log().error(e);
-              return null;
             }
+            return st;
+          } catch (Exception e) {
+            Ivy.log().error(e);
+            return null;
           }
         });
       } catch (Exception e) {
@@ -456,22 +442,19 @@ public final class TaskUtils {
         && iTask.getActivator().getSecurityContext().getUsers() != null
         && iTask.getActivator().getSecurityContext().getUsers().size() > 0) {
       try {
-        return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
-          @Override
-          public String call() {
-            try {
-              String st = iTask.getActivator().getMemberName();
-              List<IUser> l = iTask.getActivator().getSecurityContext().getUsers();
-              for (IUser user : l) {
-                if (st.equals(user.getMemberName())) {
-                  return user.getProperty(UserUtils.MOBILE);
-                }
+        return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+          try {
+            String st = iTask.getActivator().getMemberName();
+            List<IUser> l = iTask.getActivator().getSecurityContext().getUsers();
+            for (IUser user : l) {
+              if (st.equals(user.getMemberName())) {
+                return user.getProperty(UserUtils.MOBILE);
               }
-              return st;
-            } catch (Exception e) {
-              Ivy.log().error(e);
-              return null;
             }
+            return st;
+          } catch (Exception e) {
+            Ivy.log().error(e);
+            return null;
           }
         });
       } catch (Exception e) {
@@ -491,15 +474,12 @@ public final class TaskUtils {
    */
   public static String getPhone(final IUser iUser) {
     try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
-        @Override
-        public String call() {
-          try {
-            return iUser.getProperty(UserUtils.PHONE);
-          } catch (Exception e) {
-            Ivy.log().error(e);
-            return null;
-          }
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+        try {
+          return iUser.getProperty(UserUtils.PHONE);
+        } catch (Exception e) {
+          Ivy.log().error(e);
+          return null;
         }
       });
     } catch (Exception e) {
@@ -516,15 +496,12 @@ public final class TaskUtils {
    */
   public static String getMobile(final IUser iUser) {
     try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
-        @Override
-        public String call() {
-          try {
-            return iUser.getProperty(UserUtils.MOBILE);
-          } catch (Exception e) {
-            Ivy.log().error(e);
-            return null;
-          }
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+        try {
+          return iUser.getProperty(UserUtils.MOBILE);
+        } catch (Exception e) {
+          Ivy.log().error(e);
+          return null;
         }
       });
     } catch (Exception e) {
@@ -541,15 +518,12 @@ public final class TaskUtils {
    */
   public static String getEmailAddress(final IUser iUser) {
     try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
-        @Override
-        public String call() {
-          try {
-            return iUser.getEMailAddress();
-          } catch (Exception e) {
-            Ivy.log().error(e);
-            return null;
-          }
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+        try {
+          return iUser.getEMailAddress();
+        } catch (Exception e) {
+          Ivy.log().error(e);
+          return null;
         }
       });
     } catch (Exception e) {
@@ -567,21 +541,17 @@ public final class TaskUtils {
   @SuppressWarnings("deprecation")
   public static List<ITask> findWaitingTaskByKindCode(final String kindCode) {
     try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<List<ITask>>() {
-        @Override
-        public List<ITask> call() throws Exception {
-          try {
-            TaskQuery taskQuery =
-                TaskQuery.create().where().state().isEqual(TaskState.WAITING_FOR_INTERMEDIATE_EVENT).and().kindCode()
-                    .isEqual(kindCode);
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+        try {
+          TaskQuery taskQuery =
+              TaskQuery.create().where().state().isEqual(TaskState.WAITING_FOR_INTERMEDIATE_EVENT).and().kindCode()
+                  .isEqual(kindCode);
 
-            List<ITask> taskList = Ivy.wf().getTaskQueryExecutor().getResults(taskQuery);
-            return taskList;
-          } catch (Exception e) {
-            Ivy.log().error(e);
-            return null;
-          }
-
+          List<ITask> taskList = Ivy.wf().getTaskQueryExecutor().getResults(taskQuery);
+          return taskList;
+        } catch (Exception e) {
+          Ivy.log().error(e);
+          return null;
         }
       });
     } catch (Exception e) {
@@ -599,18 +569,15 @@ public final class TaskUtils {
    */
   public static ITask findTaskById(final long taskId) {
     try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<ITask>() {
-        @Override
-        public ITask call() throws Exception {
-          ITask t = null;
-          try {
-            TaskQuery query = TaskQuery.create().where().taskId().isEqual(taskId);
-            t = Ivy.wf().getGlobalContext().getTaskQueryExecutor().getResults(query).get(0);
-          } catch (Exception e) {
-            Ivy.log().error(e);
-          }
-          return t;
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+        ITask t = null;
+        try {
+          TaskQuery query = TaskQuery.create().where().taskId().isEqual(taskId);
+          t = Ivy.wf().getGlobalContext().getTaskQueryExecutor().getResults(query).get(0);
+        } catch (Exception e) {
+          Ivy.log().error(e);
         }
+        return t;
       });
     } catch (Exception e) {
       Ivy.log().error(e);
@@ -626,13 +593,9 @@ public final class TaskUtils {
    */
   public static Recordset findtasks(final TaskQuery taskQuery) {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Recordset>() {
-        @Override
-        public Recordset call() throws Exception {
-          return Ivy.wf().getTaskQueryExecutor().getRecordset(taskQuery);
-        }
+      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+        return Ivy.wf().getTaskQueryExecutor().getRecordset(taskQuery);
       });
-
     } catch (Exception e) {
       Ivy.log().error(e);
     }
@@ -647,14 +610,10 @@ public final class TaskUtils {
    */
   public static void delegateTask(final ITask iTask, final ISecurityMember iSecurityMember) {
     try {
-      ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Object>() {
-        @Override
-        public Object call() throws Exception {
-          iTask.setActivator(iSecurityMember);
-          return null;
-        }
+      ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+        iTask.setActivator(iSecurityMember);
+        return null;
       });
-
     } catch (Exception e) {
       Ivy.log().error(e);
     }
@@ -741,54 +700,54 @@ public final class TaskUtils {
    * @throws PersistencyException 
    */
   public static void setHidePropertyToHideInPortal(ITask task) throws PersistencyException, EnvironmentNotAvailableException, Exception {
-    String hiddenTasksCasesCustomField = HiddenTasksCasesConfig.getHiddenTasksCasesField();
+    String hiddenTasksCasesCustomField = Ivy.var().get(GlobalVariable.PORTAL_HIDDEN_TASK_CASE_CUSTOM_FIELD);
     Date defaultTimestamp = new Date();
     String defaultVarChar = "1";
     int defaultDecimal = 1;
-    switch (hiddenTasksCasesCustomField){
-      case "CustomVarcharField1": 
+    switch (hiddenTasksCasesCustomField.toLowerCase()){
+      case "customvarcharfield1": 
         task.setCustomVarCharField1(defaultVarChar);
         break;
-      case "CustomVarcharField2":
+      case "customvarcharfield2":
         task.setCustomVarCharField2(defaultVarChar);
         break;
-      case "CustomVarcharField3":
+      case "customvarcharfield3":
         task.setCustomVarCharField3(defaultVarChar);
         break;
-      case "CustomVarcharField4":
+      case "customvarcharfield4":
         task.setCustomVarCharField4(defaultVarChar);
         break;
-      case "CustomVarcharField5":
+      case "customvarcharfield5":
         task.setCustomVarCharField5(defaultVarChar);
         break;
-      case "CustomDecimalField1":
+      case "customdecimalfield1":
         task.setCustomDecimalField1(defaultDecimal);
         break;
-      case "CustomDecimalField2":
+      case "customdecimalfield2":
         task.setCustomDecimalField2(defaultDecimal);
         break;
-      case "CustomDecimalField3":
+      case "customdecimalfield3":
         task.setCustomDecimalField3(defaultDecimal);
         break;
-      case "CustomDecimalField4":
+      case "customdecimalfield4":
         task.setCustomDecimalField4(defaultDecimal);
         break;
-      case "CustomDecimalField5":
+      case "customdecimalfield5":
         task.setCustomDecimalField5(defaultDecimal);
         break;
-      case "CustomTimestampField1":
+      case "customtimestampfield1":
         task.setCustomTimestampField1(defaultTimestamp);
         break;
-      case "CustomTimestampField2":
+      case "customtimestampfield2":
         task.setCustomTimestampField2(defaultTimestamp);
         break;
-      case "CustomTimestampField3":
+      case "customtimestampfield3":
         task.setCustomTimestampField3(defaultTimestamp);
         break; 
-      case "CustomTimestampField4":
+      case "customtimestampfield4":
         task.setCustomTimestampField4(defaultTimestamp);
         break;
-      case "CustomTimestampField5":
+      case "customtimestampfield5":
         task.setCustomTimestampField5(defaultTimestamp);
         break;  
       default:
@@ -805,51 +764,51 @@ public final class TaskUtils {
    * @throws PersistencyException 
    */
   public static void removeHidePropertyToDisplayInPortal(ITask task) throws PersistencyException, EnvironmentNotAvailableException, Exception {
-    String hiddenTasksCasesCustomField = HiddenTasksCasesConfig.getHiddenTasksCasesField();
-    switch (hiddenTasksCasesCustomField){
-      case "CustomVarcharField1": 
+    String hiddenTasksCasesCustomField = Ivy.var().get(GlobalVariable.PORTAL_HIDDEN_TASK_CASE_CUSTOM_FIELD);
+    switch (hiddenTasksCasesCustomField.toLowerCase()){
+      case "customvarcharfield1": 
         task.setCustomVarCharField1(null);
         break;
-      case "CustomVarcharField2":
+      case "customvarcharfield2":
         task.setCustomVarCharField2(null);
         break;
-      case "CustomVarcharField3":
+      case "customvarcharfield3":
         task.setCustomVarCharField3(null);
         break;
-      case "CustomVarcharField4":
+      case "customvarcharfield4":
         task.setCustomVarCharField4(null);
         break;
-      case "CustomVarcharField5":
+      case "customvarcharfield5":
         task.setCustomVarCharField5(null);
         break;
-      case "CustomDecimalField1":
+      case "customdecimalfield1":
         task.setCustomDecimalField1(null);
         break;
-      case "CustomDecimalField2":
+      case "customdecimalfield2":
         task.setCustomDecimalField2(null);
         break;
-      case "CustomDecimalField3":
+      case "customdecimalfield3":
         task.setCustomDecimalField3(null);
         break;
-      case "CustomDecimalField4":
+      case "customdecimalfield4":
         task.setCustomDecimalField4(null);
         break;
-      case "CustomDecimalField5":
+      case "customdecimalfield5":
         task.setCustomDecimalField5(null);
         break;
-      case "CustomTimestampField1":
+      case "customtimestampfield1":
         task.setCustomTimestampField1(null);
         break;
-      case "CustomTimestampField2":
+      case "customtimestampfield2":
         task.setCustomTimestampField2(null);
         break;
-      case "CustomTimestampField3":
+      case "customtimestampfield3":
         task.setCustomTimestampField3(null);
         break; 
-      case "CustomTimestampField4":
+      case "customtimestampfield4":
         task.setCustomTimestampField4(null);
         break;
-      case "CustomTimestampField5":
+      case "customtimestampfield5":
         task.setCustomTimestampField5(null);
         break;  
       default:

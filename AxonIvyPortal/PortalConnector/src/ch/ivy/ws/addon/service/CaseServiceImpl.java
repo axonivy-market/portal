@@ -775,50 +775,50 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
   private void queryExcludeHiddenCases(CaseQuery query, List<String> apps) {
     if (isHiddenTasksCasesExcluded(apps)){
       String customField = HiddenTasksCasesConfig.getHiddenTasksCasesField(apps);
-      switch (customField){
-        case "CustomVarcharField1":
+      switch (customField.toLowerCase()){
+        case "customvarcharfield1":
           query.where().and().customVarCharField1().isNull();
           break;
-        case "CustomVarcharField2":
+        case "customvarcharfield2":
           query.where().and().customVarCharField2().isNull();
           break;
-        case "CustomVarcharField3":
+        case "customvarcharfield3":
           query.where().and().customVarCharField3().isNull();
           break;
-        case "CustomVarcharField4":
+        case "customvarcharfield4":
           query.where().and().customVarCharField4().isNull();
           break;
-        case "CustomVarcharField5":
+        case "customvarcharfield5":
           query.where().and().customVarCharField5().isNull();
           break;
-        case "CustomDecimalField1":
+        case "customdecimalfield1":
           query.where().and().customDecimalField1().isNull();
           break;
-        case "CustomDecimalField2":
+        case "customdecimalfield2":
           query.where().and().customDecimalField2().isNull();
           break;
-        case "CustomDecimalField3":
+        case "customdecimalfield3":
           query.where().and().customDecimalField3().isNull();
           break;
-        case "CustomDecimalField4":
+        case "customdecimalfield4":
           query.where().and().customDecimalField4().isNull();
           break;
-        case "CustomDecimalField5":
+        case "customdecimalfield5":
           query.where().and().customDecimalField5().isNull();
           break;
-        case "CustomTimestampField1":
+        case "customtimestampfield1":
           query.where().and().customTimestampField1().isNull();
           break;
-        case "CustomTimestampField2":
+        case "customtimestampfield2":
           query.where().and().customTimestampField2().isNull();
           break;
-        case "CustomTimestampField3":
+        case "customtimestampfield3":
           query.where().and().customTimestampField3().isNull();
           break;
-        case "CustomTimestampField4":
+        case "customtimestampfield4":
           query.where().and().customTimestampField4().isNull();
           break;
-        case "CustomTimestampField5":
+        case "customtimestampfield5":
           query.where().and().customTimestampField5().isNull();
           break;  
         default: 

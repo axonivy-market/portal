@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.Callable;
+
+import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.Contact;
 import ch.ivy.addon.portalkit.bo.RemoteCase;
+import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.vo.CaseVO;
 import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
@@ -384,26 +386,22 @@ public final class CaseUtils {
                 null, 0, -1, true).getResultList();
     if (cases != null && cases.size() > 0) {
       try {
-        return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<Boolean>() {
-          @Override
-          public Boolean call() {
-            try {
-              ICase ic = cases.get(0);
-              ic.destroy();
-              return true;
-            } catch (Exception e) {
-              Ivy.log().error(e);
-              return false;
-            }
+        return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+          try {
+            ICase ic = cases.get(0);
+            ic.destroy();
+            return true;
+          } catch (Exception e) {
+            Ivy.log().error(e);
+            return false;
           }
         });
       } catch (Exception e) {
         Ivy.log().error(e);
         return false;
       }
-    } else {
-      return false;
-    }
+    } 
+    return false;
   }
 
   /**
@@ -416,24 +414,20 @@ public final class CaseUtils {
 
     if (iCase != null && iCase.getCreatorUser() != null) {
       try {
-        return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
-          @Override
-          public String call() {
-            try {
-              return iCase.getCreatorUser().getEMailAddress();
-            } catch (Exception e) {
-              Ivy.log().error(e);
-              return null;
-            }
+        return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+          try {
+            return iCase.getCreatorUser().getEMailAddress();
+          } catch (Exception e) {
+            Ivy.log().error(e);
+            return null;
           }
         });
       } catch (Exception e) {
         Ivy.log().error(e);
         return null;
       }
-    } else {
-      return null;
-    }
+    } 
+    return null;
   }
 
   /**
@@ -446,24 +440,20 @@ public final class CaseUtils {
 
     if (iCase != null && iCase.getCreatorUser() != null) {
       try {
-        return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
-          @Override
-          public String call() {
-            try {
-              return iCase.getCreatorUser().getProperty(UserUtils.MOBILE);
-            } catch (Exception e) {
-              Ivy.log().error(e);
-              return null;
-            }
+        return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+          try {
+            return iCase.getCreatorUser().getProperty(UserUtils.MOBILE);
+          } catch (Exception e) {
+            Ivy.log().error(e);
+            return null;
           }
         });
       } catch (Exception e) {
         Ivy.log().error(e);
         return null;
       }
-    } else {
-      return null;
-    }
+    } 
+    return null;
   }
 
   /**
@@ -473,27 +463,22 @@ public final class CaseUtils {
    * @return String get the email of creator of case, execute under system permission
    */
   public static String getPhone(final ICase iCase) {
-
     if (iCase != null && iCase.getCreatorUser() != null) {
       try {
-        return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<String>() {
-          @Override
-          public String call() {
-            try {
-              return iCase.getCreatorUser().getProperty(UserUtils.PHONE);
-            } catch (Exception e) {
-              Ivy.log().error(e);
-              return null;
-            }
+        return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+          try {
+            return iCase.getCreatorUser().getProperty(UserUtils.PHONE);
+          } catch (Exception e) {
+            Ivy.log().error(e);
+            return null;
           }
         });
       } catch (Exception e) {
         Ivy.log().error(e);
         return null;
       }
-    } else {
-      return null;
     }
+    return null;
   }
 
   /**
@@ -504,15 +489,12 @@ public final class CaseUtils {
    */
   public static ICase getCaseById(final Integer caseId) {
     try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<ICase>() {
-        @Override
-        public ICase call() {
-          try {
-            return Ivy.wf().findCase(new Long(caseId));
-          } catch (Exception e) {
-            Ivy.log().error(e);
-            return null;
-          }
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+        try {
+          return Ivy.wf().findCase(new Long(caseId));
+        } catch (Exception e) {
+          Ivy.log().error(e);
+          return null;
         }
       });
     } catch (Exception e) {
@@ -531,11 +513,7 @@ public final class CaseUtils {
    * @return String display name
    */
   public static String getDisplayNameInFormat(String fullName, String name) {
-    if (fullName != null && !fullName.isEmpty()) {
-      return fullName;
-    } else {
-      return name;
-    }
+    return StringUtils.isNotBlank(fullName) ? fullName : name;
   }
 
   /**
@@ -547,16 +525,13 @@ public final class CaseUtils {
    */
   public static boolean setCaseDetailsProcess(final ICase iCase, final String value) {
     try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<Boolean>() {
-        @Override
-        public Boolean call() {
-          try {
-            iCase.setAdditionalProperty(CASE_DETAIL_PROCESS, value);
-            return true;
-          } catch (Exception e) {
-            Ivy.log().error(e);
-            return false;
-          }
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+        try {
+          iCase.setAdditionalProperty(CASE_DETAIL_PROCESS, value);
+          return true;
+        } catch (Exception e) {
+          Ivy.log().error(e);
+          return false;
         }
       });
     } catch (Exception e) {
@@ -574,16 +549,13 @@ public final class CaseUtils {
    */
   public static boolean setCaseMainContactFolderId(final ICase iCase, final String value) {
     try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(new Callable<Boolean>() {
-        @Override
-        public Boolean call() {
-          try {
-            iCase.setBusinessMainContactFolderId(value);
-            return true;
-          } catch (Exception e) {
-            Ivy.log().error(e);
-            return false;
-          }
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+        try {
+          iCase.setBusinessMainContactFolderId(value);
+          return true;
+        } catch (Exception e) {
+          Ivy.log().error(e);
+          return false;
         }
       });
     } catch (Exception e) {
@@ -617,13 +589,9 @@ public final class CaseUtils {
    */
   public static Recordset findcases(final CaseQuery caseQuery) {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Recordset>() {
-        @Override
-        public Recordset call() throws Exception {
+      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
           return Ivy.wf().getCaseQueryExecutor().getRecordset(caseQuery);
-        }
       });
-
     } catch (Exception e) {
       Ivy.log().error(e);
     }
@@ -638,13 +606,9 @@ public final class CaseUtils {
    */
   public static ICase findcase(final long id) {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<ICase>() {
-        @Override
-        public ICase call() throws Exception {
-          return Ivy.wf().findCase(id);
-        }
+      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+        return Ivy.wf().findCase(id);
       });
-
     } catch (Exception e) {
       Ivy.log().error(e);
     }
@@ -659,12 +623,8 @@ public final class CaseUtils {
    */
   public static IQueryResult<ICase> findcases(final IPropertyFilter<CaseProperty> caseFilter) {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<IQueryResult<ICase>>() {
-        @Override
-        public IQueryResult<ICase> call() throws Exception {
-          return Ivy.wf().findCases(caseFilter, PropertyOrder.create(CaseProperty.ID, OrderDirection.DESCENDING), 0, 1,
-              true);
-        }
+      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+        return Ivy.wf().findCases(caseFilter, PropertyOrder.create(CaseProperty.ID, OrderDirection.DESCENDING), 0, 1, true);
       });
     } catch (Exception e) {
       Ivy.log().error(e);
@@ -680,54 +640,54 @@ public final class CaseUtils {
    * @throws PersistencyException 
    */
   public static void setHidePropertyToHideInPortal(ICase iCase) throws PersistencyException, EnvironmentNotAvailableException, Exception {
-    String hiddenTasksCasesCustomField = HiddenTasksCasesConfig.getHiddenTasksCasesField();
+    String hiddenTasksCasesCustomField = Ivy.var().get(GlobalVariable.PORTAL_HIDDEN_TASK_CASE_CUSTOM_FIELD);
     Date defaultTimestamp = new Date();
     String defaultVarChar = "1";
     int defaultDecimal = 1;
-    switch (hiddenTasksCasesCustomField){
-      case "CustomVarcharField1": 
+    switch (hiddenTasksCasesCustomField.toLowerCase()){
+      case "customvarcharfield1": 
         iCase.setCustomVarCharField1(defaultVarChar);
         break;
-      case "CustomVarcharField2":
+      case "customvarcharfield2":
         iCase.setCustomVarCharField2(defaultVarChar);
         break;
-      case "CustomVarcharField3":
+      case "customvarcharfield3":
         iCase.setCustomVarCharField3(defaultVarChar);
         break;
-      case "CustomVarcharField4":
+      case "customvarcharfield4":
         iCase.setCustomVarCharField4(defaultVarChar);
         break;
-      case "CustomVarcharField5":
+      case "customvarcharfield5":
         iCase.setCustomVarCharField5(defaultVarChar);
         break;
-      case "CustomDecimalField1":
+      case "customdecimalfield1":
         iCase.setCustomDecimalField1(defaultDecimal);
         break;
-      case "CustomDecimalField2":
+      case "customdecimalfield2":
         iCase.setCustomDecimalField2(defaultDecimal);
         break;
-      case "CustomDecimalField3":
+      case "customdecimalfield3":
         iCase.setCustomDecimalField3(defaultDecimal);
         break;
-      case "CustomDecimalField4":
+      case "customdecimalfield4":
         iCase.setCustomDecimalField4(defaultDecimal);
         break;
-      case "CustomDecimalField5":
+      case "customdecimalfield5":
         iCase.setCustomDecimalField5(defaultDecimal);
         break;
-      case "CustomTimestampField1":
+      case "customtimestampfield1":
         iCase.setCustomTimestampField1(defaultTimestamp);
         break;
-      case "CustomTimestampField2":
+      case "customtimestampfield2":
         iCase.setCustomTimestampField2(defaultTimestamp);
         break;
-      case "CustomTimestampField3":
+      case "customtimestampfield3":
         iCase.setCustomTimestampField3(defaultTimestamp);
         break; 
-      case "CustomTimestampField4":
+      case "customtimestampfield4":
         iCase.setCustomTimestampField4(defaultTimestamp);
         break;
-      case "CustomTimestampField5":
+      case "customtimestampfield5":
         iCase.setCustomTimestampField5(defaultTimestamp);
         break;  
       default:
@@ -744,51 +704,51 @@ public final class CaseUtils {
    * @throws PersistencyException 
    */
   public static void removeHidePropertyToDisplayInPortal(ICase iCase) throws PersistencyException, EnvironmentNotAvailableException, Exception {
-    String hiddenTasksCasesCustomField = HiddenTasksCasesConfig.getHiddenTasksCasesField();
-    switch (hiddenTasksCasesCustomField){
-      case "CustomVarcharField1": 
+    String hiddenTasksCasesCustomField = Ivy.var().get(GlobalVariable.PORTAL_HIDDEN_TASK_CASE_CUSTOM_FIELD);
+    switch (hiddenTasksCasesCustomField.toLowerCase()){
+      case "customvarcharfield1": 
         iCase.setCustomVarCharField1(null);
         break;
-      case "CustomVarcharField2":
+      case "customvarcharfield2":
         iCase.setCustomVarCharField2(null);
         break;
-      case "CustomVarcharField3":
+      case "customvarcharfield3":
         iCase.setCustomVarCharField3(null);
         break;
-      case "CustomVarcharField4":
+      case "customvarcharfield4":
         iCase.setCustomVarCharField4(null);
         break;
-      case "CustomVarcharField5":
+      case "customvarcharfield5":
         iCase.setCustomVarCharField5(null);
         break;
-      case "CustomDecimalField1":
+      case "customdecimalfield1":
         iCase.setCustomDecimalField1(null);
         break;
-      case "CustomDecimalField2":
+      case "customdecimalfield2":
         iCase.setCustomDecimalField2(null);
         break;
-      case "CustomDecimalField3":
+      case "customdecimalfield3":
         iCase.setCustomDecimalField3(null);
         break;
-      case "CustomDecimalField4":
+      case "customdecimalfield4":
         iCase.setCustomDecimalField4(null);
         break;
-      case "CustomDecimalField5":
+      case "customdecimalfield5":
         iCase.setCustomDecimalField5(null);
         break;
-      case "CustomTimestampField1":
+      case "customtimestampfield1":
         iCase.setCustomTimestampField1(null);
         break;
-      case "CustomTimestampField2":
+      case "customtimestampfield2":
         iCase.setCustomTimestampField2(null);
         break;
-      case "CustomTimestampField3":
+      case "customtimestampfield3":
         iCase.setCustomTimestampField3(null);
         break; 
-      case "CustomTimestampField4":
+      case "customtimestampfield4":
         iCase.setCustomTimestampField4(null);
         break;
-      case "CustomTimestampField5":
+      case "customtimestampfield5":
         iCase.setCustomTimestampField5(null);
         break;  
       default:
