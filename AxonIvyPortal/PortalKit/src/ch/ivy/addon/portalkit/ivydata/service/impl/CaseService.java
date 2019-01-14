@@ -4,6 +4,7 @@ import static ch.ivyteam.ivy.server.ServerFactory.getServer;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,8 @@ import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.ivydata.dao.PortalCaseDao;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
+import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataErrorType;
+import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomVarCharSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
@@ -48,7 +51,7 @@ public class CaseService implements ICaseService {
         result.setCases(executeCaseQuery(finalQuery, startIndex, count));
       } catch (Exception ex) {
         Ivy.log().error("Error in getting cases", ex);
-//        result.setErrors(Arrays.asList(new PortalIvyDataException(appName, PortalIvyDataErrorType.FAIL_TO_LOAD_LANGUAGE.toString())));
+        result.setErrors(Arrays.asList(new PortalIvyDataException(PortalIvyDataErrorType.FAIL_TO_LOAD_CASE.toString())));
       }
       return result;
     });
@@ -63,7 +66,7 @@ public class CaseService implements ICaseService {
         result.setTotalCases(countCases(finalQuery));
       } catch (Exception ex) {
         Ivy.log().error("Error in counting cases", ex);
-//        result.setErrors(Arrays.asList(new PortalIvyDataException(appName, PortalIvyDataErrorType.FAIL_TO_LOAD_LANGUAGE.toString())));
+        result.setErrors(Arrays.asList(new PortalIvyDataException(PortalIvyDataErrorType.FAIL_TO_COUNT_CASE.toString())));
       }
       return result;
     });
@@ -108,12 +111,12 @@ public class CaseService implements ICaseService {
             finalQuery.where().and(queryForApplications(criteria.getApps()));
           }
         }
-//        finalQuery.where().and(queryExcludeHiddenCases());
+        finalQuery.where().and(queryExcludeHiddenCases());
         finalQuery.where().and().category().isNotNull().and().category().isNotEqual("Portal");
         result.setCategoryTree(CategoryTree.createFor(finalQuery));
       } catch (Exception ex) {
         Ivy.log().error("Error in getting case category", ex);
-//        result.setErrors(Arrays.asList(new PortalIvyDataException(appName, PortalIvyDataErrorType.FAIL_TO_LOAD_LANGUAGE.toString())));
+        result.setErrors(Arrays.asList(new PortalIvyDataException(PortalIvyDataErrorType.FAIL_TO_LOAD_CASE_CATEGORY.toString())));
       }
       return result;
     });
@@ -131,8 +134,8 @@ public class CaseService implements ICaseService {
         CaseStateStatistic caseStateStatistic = createCaseStateStatistic(recordSet);
         result.setCaseStateStatistic(caseStateStatistic);
       } catch (Exception ex) {
-        Ivy.log().error("Error in getting task expiry statistic", ex);
-//        result.setErrors(Arrays.asList(new PortalIvyDataException(appName, PortalIvyDataErrorType.FAIL_TO_LOAD_LANGUAGE.toString())));
+        Ivy.log().error("Error in getting case state statistic", ex);
+        result.setErrors(Arrays.asList(new PortalIvyDataException(PortalIvyDataErrorType.FAIL_TO_LOAD_CASE_STATE_STATISTIC.toString())));
       }
       return result;
     });
@@ -171,8 +174,8 @@ public class CaseService implements ICaseService {
         ElapsedTimeStatistic elapsedTimeStatistic = createCategoryToAverageElapsedTimeMap(recordSet);
         result.setElapsedTimeStatistic(elapsedTimeStatistic);
       } catch (Exception ex) {
-        Ivy.log().error("Error in getting task priority statistic", ex);
-//        result.setErrors(Arrays.asList(new PortalIvyDataException(appName, PortalIvyDataErrorType.FAIL_TO_LOAD_LANGUAGE.toString())));
+        Ivy.log().error("Error in getting case elapsed time statistic", ex);
+        result.setErrors(Arrays.asList(new PortalIvyDataException(PortalIvyDataErrorType.FAIL_TO_LOAD_CASE_ELAPSED_TIME_STATISTIC.toString())));
       }
       return result;
     });
@@ -241,7 +244,7 @@ public class CaseService implements ICaseService {
         finalQuery.where().and(queryForApplications(criteria.getApps()));
       }
     }
-//        finalQuery.where().and(queryExcludeHiddenCases());
+    finalQuery.where().and(queryExcludeHiddenCases());
     return finalQuery;
   }
 }
