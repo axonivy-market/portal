@@ -318,11 +318,11 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     setValuesForStateFilter(this.criteria);
   }
 
-  public void setSearchCriteria(TaskSearchCriteria searchCriteria) {
-    this.criteria = searchCriteria;
+  public void setCriteria(TaskSearchCriteria criteria) {
+    this.criteria = criteria;
   }
 
-  public TaskSearchCriteria getSearchCriteria() {
+  public TaskSearchCriteria getCriteria() {
     return criteria;
   }
 

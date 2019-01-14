@@ -564,7 +564,7 @@ if (!in.isDataModelInitialized) {
 	try {
 		taskCategory = SecurityServiceUtils.getSessionAttribute(SessionAttribute.TASK_CATEGORY.toString()) as TaskNode;
 	} catch (Exception e) {}
-	boolean canLinkBackToCaseDetail = in.#dataModel.#searchCriteria.#caseId is initialized; 
+	boolean canLinkBackToCaseDetail = in.#dataModel.#criteria.#caseId is initialized; 
 	
 	in.taskView = TaskView.create().category(#taskCategory).dataModel(in.dataModel)
 												.canLinkBackCaseDetail(canLinkBackToCaseDetail).showHeaderToolbar(false)
@@ -573,7 +573,7 @@ if (!in.isDataModelInitialized) {
 	SecurityServiceUtils.removeSessionAttribute(SessionAttribute.TASK_CATEGORY.toString());
 } else {
 	in.dataModel.compactMode = false;
-	in.dataModel.getSearchCriteria().setNewQueryCreated(true);
+	in.dataModel.getCriteria().setNewQueryCreated(true);
 	in.dataModel.setAdminQuery(true);
 	in.dataModel.setSortField(TaskSortField.PRIORITY.toString(), false);
 		
@@ -845,9 +845,9 @@ import ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel;
 
 in.searchResultsDataModel = new SearchResultsDataModel();
 in.searchResultsDataModel.taskDataModel = in.dataModel;
-in.searchResultsDataModel.keyword = in.searchResultsDataModel.taskDataModel.searchCriteria.keyword;
+in.searchResultsDataModel.keyword = in.searchResultsDataModel.taskDataModel.criteria.keyword;
 in.searchResultsDataModel.caseDataModel.notKeepFilter = true;
-in.searchResultsDataModel.caseDataModel.getSearchCriteria().keyword = in.searchResultsDataModel.taskDataModel.searchCriteria.keyword;
+in.searchResultsDataModel.caseDataModel.getCriteria().keyword = in.searchResultsDataModel.taskDataModel.criteria.keyword;
 
 ' #txt
 Pt0 f52 security system #txt

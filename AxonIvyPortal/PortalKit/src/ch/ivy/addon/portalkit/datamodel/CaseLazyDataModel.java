@@ -506,10 +506,6 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     return criteria.isSortDescending();
   }
 
-  public CaseSearchCriteria getSearchCriteria() {
-    return criteria;
-  }
-
   public List<String> getSelectedColumns() {
     return selectedColumns;
   }
@@ -541,4 +537,13 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   public void setIsAdminQuery(boolean isAdminQuery) {
     criteria.setAdminQuery(isAdminQuery);
   }
+
+  public CaseSearchCriteria getCriteria() {
+    return criteria;
+  }
+
+  public void setCriteria(CaseSearchCriteria criteria) {
+    this.criteria = criteria;
+  }
+  
 }

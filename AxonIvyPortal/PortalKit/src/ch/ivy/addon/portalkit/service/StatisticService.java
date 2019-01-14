@@ -265,13 +265,13 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   @SuppressWarnings("unchecked")
   public List<String> getCustomVarCharFields(CustomVarCharField customVarCharField, String keyword,
       int limit) {
-    CaseCustomVarCharSearchCriteria searchCriteria = new CaseCustomVarCharSearchCriteria();
-    searchCriteria.setCustomVarCharField(customVarCharField);
-    searchCriteria.setKeyword(keyword);
-    searchCriteria.setLimit(limit);
+    CaseCustomVarCharSearchCriteria criteria = new CaseCustomVarCharSearchCriteria();
+    criteria.setCustomVarCharField(customVarCharField);
+    criteria.setKeyword(keyword);
+    criteria.setLimit(limit);
     return SubProcessCall.withPath("Functional Processes/AnalyzeStatistic")
         .withStartSignature("findCaseCustomVarChars(CaseCustomVarCharSearchCriteria)")
-        .withParam("caseCustomVarCharSearchCriteria", searchCriteria).call().get(RESULT, List.class);
+        .withParam("caseCustomVarCharSearchCriteria", criteria).call().get(RESULT, List.class);
 
   }
 

@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Fri May 19 15:31:44 ICT 2017]
-15C1FA307D3E1AB1 3.20 #module
+15C1FA307D3E1AB1 3.23 #module
 >Proto >Proto Collection #zClass
 Ds0 DrillDownChartsProcess Big #zClass
 Ds0 RD #cInfo
@@ -90,13 +89,13 @@ ChartView chartView = context.getApplication().evaluateExpressionGet(context, "#
 TaskLazyDataModel dataModel = new CustomizedTaskLazyDataModel();
 
 if (in.event.getItemIndex() == 0) {
-	dataModel.getQueryCriteria().setTaskQuery(chartView.getToday());
+	dataModel.getCriteria().setCustomTaskQuery(chartView.getToday());
 } else if (in.event.getItemIndex() == 1) {
-	dataModel.getQueryCriteria().setTaskQuery(chartView.getTomorrow());
+	dataModel.getCriteria().setCustomTaskQuery(chartView.getTomorrow());
 } else if (in.event.getItemIndex() == 2) {
-	dataModel.getQueryCriteria().setTaskQuery(chartView.getIn2Days());
+	dataModel.getCriteria().setCustomTaskQuery(chartView.getIn2Days());
 } else if (in.event.getItemIndex() == 3) {
-	dataModel.getQueryCriteria().setTaskQuery(chartView.getIn3Days());
+	dataModel.getCriteria().setCustomTaskQuery(chartView.getIn3Days());
 }
 
 out.taskView = TaskView.create().dataModel(dataModel).showHeaderToolbar(false).createNewTaskView();' #txt

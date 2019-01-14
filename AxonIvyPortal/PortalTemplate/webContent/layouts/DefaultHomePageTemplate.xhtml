@@ -38,7 +38,7 @@
             rendered="#{displayTaskWidget}">
             <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" dataModel="#{dataModel}"
               title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}"
-              keyword="#{dataModel.searchCriteria.keyword}" compactMode="#{dataModel.compactMode}"
+              keyword="#{dataModel.criteria.keyword}" compactMode="#{dataModel.compactMode}"
               componentToUpdateWhenInCompactMode="#{displayStatisticWidget ? 'statistic-widget-container' : ''}">
               <f:facet name="headerToolbar">
                 <ic:ch.ivy.addon.portal.generic.TaskListNavigator id="task-list-link"
