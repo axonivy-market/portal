@@ -100,7 +100,7 @@ Ps0 f5 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodE
 Ps0 f5 inActionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
 
 StatisticService service = new StatisticService();
-//out.statisticChartList = service.findStatisticChartsByUserId(ivy.session.getSessionUser().getId());' #txt
+out.statisticChartList = service.findStatisticChartsByUserId(ivy.session.getSessionUser().getId());' #txt
 Ps0 f5 outParameterDecl '<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> statisticChartList> result;
 ' #txt
 Ps0 f5 outParameterMapAction 'result.statisticChartList=in.statisticChartList;

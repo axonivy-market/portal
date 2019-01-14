@@ -604,6 +604,8 @@ Ts0 f2 inParameterMapAction 'out.taskSearchCriteria=param.criteria;
 ' #txt
 Ts0 f2 outParameterDecl '<java.lang.Long totalTasks> result;
 ' #txt
+Ts0 f2 outParameterMapAction 'result.totalTasks=in.totalTasks;
+' #txt
 Ts0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

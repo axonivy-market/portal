@@ -49,7 +49,7 @@ public class TaskCategoryFilter extends TaskFilter {
     IFilterQuery filterQuery = taskQuery.where();
     for (CheckboxTreeNode node : categories) {
       if (node.getParent() != null && !Arrays.asList(categories).contains(node.getParent())) {
-        String category = ((TaskNode) node.getData()).getCategoryRawPath();
+        String category = ((TaskNode) node.getData()).getCategory();
         if (node.isLeaf()) {
           filterQuery.or().category().isEqualIgnoreCase(category);
         } else {
