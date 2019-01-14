@@ -56,14 +56,14 @@ public class CaseTreeUtils {
     }
   }
 
-  private static TreeNode buildCaseCategoryNode(TreeNode root, String newNodeName, String nodeType, String rawPath, boolean isRootAllCase, String menuState) {
+  private static TreeNode buildCaseCategoryNode(TreeNode parentNode, String newNodeName, String nodeType, String category, boolean isRootAllCase, String menuState) {
     CaseNode newNodeData = new CaseNode();
     newNodeData.setValue(newNodeName);
     newNodeData.setMenuKind(MenuKind.CASE);
-    newNodeData.setCategoryRawPath(rawPath);
+    newNodeData.setCategory(category);
     newNodeData.setRootNodeAllCase(isRootAllCase);
     
-    TreeNode newNode = new DefaultTreeNode(nodeType, newNodeData, root);
+    TreeNode newNode = new DefaultTreeNode(nodeType, newNodeData, parentNode);
     if (menuState.contains(nodeType) && isSelectedCategory(menuState, nodeType)) {
       newNode.getParent().setExpanded(true);
     }
@@ -79,6 +79,8 @@ public class CaseTreeUtils {
     if (root != null) {
       return root;
     }
+    
+    root = buildRoot();
     List<String> involvedApplications = null;
     String appName = SecurityServiceUtils.getApplicationNameFromSession();
     if (StringUtils.isNotEmpty(appName)) {
@@ -107,10 +109,10 @@ public class CaseTreeUtils {
   }
 
   private static void convertToCheckboxTreeNode(CheckboxTreeNode root, CategoryTree categoryTree) {
+    String nodeType = "default";
     for (CategoryTree category : categoryTree.getChildren()) {
       String name = category.getCategory().getName();
       String categoryRawPath = category.getRawPath();
-      String nodeType = root.getType() + DELIMITER + category.getCategory().getName(Locale.ENGLISH).replaceAll(" ", "_");
       CheckboxTreeNode childNode = buildCaseCategoryCheckBoxTreeNode(root, name, nodeType, categoryRawPath);
       root.getChildren().add(childNode);
       if (CollectionUtils.isNotEmpty(category.getChildren())) {
@@ -128,30 +130,43 @@ public class CaseTreeUtils {
     TreeUtils.sortNode(node, comparator);
   }
   
-  private static CheckboxTreeNode buildCaseCategoryCheckBoxTreeNode(CheckboxTreeNode root, String newNodeName, String nodeType, String rawPath) {
-    List<TreeNode> childNodes = root.getChildren();
+  private static CheckboxTreeNode buildCaseCategoryCheckBoxTreeNode(CheckboxTreeNode parentNode, String newNodeName, String nodeType, String category) {
+    List<TreeNode> childNodes = parentNode.getChildren();
     for (TreeNode childNode : childNodes) {
       CaseNode childNodeData = (CaseNode) childNode.getData();
-      if (rawPath.equalsIgnoreCase(childNodeData.getValue())) {
+      if (category.equalsIgnoreCase(childNodeData.getValue())) {
         return (CheckboxTreeNode) childNode;
       }
     }
 
-    CaseNode nodeData = buildCaseNodeFrom(newNodeName, rawPath);
-    CheckboxTreeNode checkboxTreeNode = new CheckboxTreeNode(nodeType, nodeData, root);
+    CaseNode nodeData = buildCaseNodeFrom(newNodeName, category);
+    CheckboxTreeNode checkboxTreeNode = new CheckboxTreeNode(nodeType, nodeData, parentNode);
     checkboxTreeNode.setExpanded(true);
     checkboxTreeNode.setSelected(false);
     return checkboxTreeNode;
   }
   
-  private static CaseNode buildCaseNodeFrom(String name, String rawPath) {
+  private static CaseNode buildCaseNodeFrom(String name, String category) {
     CaseNode nodeData = new CaseNode();
     nodeData.setValue(name);
     nodeData.setMenuKind(MenuKind.CASE);
-    nodeData.setCategoryRawPath(rawPath);
+    nodeData.setCategory(category);
     nodeData.setRootNodeAllCase(false);
     nodeData.setFirstCategoryNode(false);
     return nodeData;
+  }
+  
+  private static CheckboxTreeNode buildRoot() {
+    CaseNode nodeData = new CaseNode();
+    nodeData.setValue(StringUtils.EMPTY);
+    nodeData.setMenuKind(MenuKind.CASE);
+    nodeData.setCategory(StringUtils.EMPTY);
+    nodeData.setRootNodeAllCase(true);
+    nodeData.setFirstCategoryNode(true);
+    CheckboxTreeNode checkboxTreeNode = new CheckboxTreeNode(StringUtils.EMPTY, nodeData, null);
+    checkboxTreeNode.setExpanded(true);
+    checkboxTreeNode.setSelected(false);
+    return checkboxTreeNode;
   }
 
   public static String getLastCategoryFromCategoryPath(String categoryPath) {

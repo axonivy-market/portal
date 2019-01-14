@@ -13,16 +13,15 @@
     <ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}</ui:define>
 
     <ui:define name="simplePageContent">
-      <ic:ch.ivy.addon.portalkit.component.TaskAnalysisWidget id="task-widget" keyword="#{taskView.dataModel.queryCriteria.keyword}"
+      <ic:ch.ivy.addon.portalkit.component.TaskAnalysisWidget id="task-widget" keyword="#{taskView.dataModel.criteria.keyword}"
         hideTaskFilter="#{taskView.hideTaskFilter}" dataModel="#{taskView.dataModel}" filterGroupId="#{filterGroupId}"
         showHeaderToolbar="#{taskView.showHeaderToolbar}" selectedTaskId="#{taskView.taskId}"
-        selectedTaskServerId="#{taskView.dataModel.serverId}" noTaskFoundMessage="#{taskView.noTaskFoundMessage}"
-        hideWidgetHeader="#{hideWidgetHeader}" chunkSize="#{taskView.chunkSize}">
+        noTaskFoundMessage="#{taskView.noTaskFoundMessage}" hideWidgetHeader="#{hideWidgetHeader}" chunkSize="#{taskView.chunkSize}">
           <f:facet name="title">
             <h:form rendered="#{taskView.canLinkBackCaseDetail()}" prependId="false">
             #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader')} 
-            <h:commandLink value="##{taskView.dataModel.queryCriteria.caseId}" styleClass="ui-link"
-                actionListener="#{navigatorBean.navigateToCaseDetail(dataModel.caseName, dataModel.queryCriteria.caseId, dataModel.serverId)}" />
+            <h:commandLink value="##{taskView.dataModel.criteria.caseId}" styleClass="ui-link"
+                actionListener="#{navigatorBean.navigateToCaseDetail(dataModel.caseName, dataModel.criteria.caseId)}" />
             #{taskView.dataModel.caseName}
           </h:form>
             <h:outputText rendered="#{!taskView.canLinkBackCaseDetail()}"
