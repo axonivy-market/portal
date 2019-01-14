@@ -31,7 +31,7 @@
         <p:tab id="task-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}" titleStyleClass="task-tab-title">
           <div class="task-list-container js-task-list-container js-for-search-result">
             <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-results" listHeaderStyleClass="task-in-search"
-              keyword="#{dataModel.taskDataModel.searchCriteria.keyword}" hideTaskFilter="true"
+              keyword="#{dataModel.taskDataModel.criteria.keyword}" hideTaskFilter="true"
               dataModel="#{dataModel.taskDataModel}" hideWidgetHeader="true" compactMode="false">
               <f:facet name="taskListHeader">
                 <ui:fragment rendered="#{useTaskOverrideListHeader}">

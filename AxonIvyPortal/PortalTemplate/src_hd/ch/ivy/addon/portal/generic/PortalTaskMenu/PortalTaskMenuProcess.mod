@@ -513,7 +513,7 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 in.selectedMenuItem = in.selectedNode.getData() as MainMenuNode;
 TaskNode categoryMenu = in.selectedMenuItem as TaskNode;
 
-in.dataModel.setCategory(categoryMenu.categoryRawPath);
+in.dataModel.setCategory(categoryMenu.category);
 in.hasReadAllTasksPermisson = PermissionUtils.checkReadAllTasksPermission();
 if(in.selectedNode.type.startsWith(TreeNodeType.TASKS_ALL_TASKS)){
 	in.dataModel.setTaskAssigneeType(TaskAssigneeType.ALL);

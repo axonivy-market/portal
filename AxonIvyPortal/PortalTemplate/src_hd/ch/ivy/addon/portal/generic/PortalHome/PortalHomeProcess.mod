@@ -62,7 +62,7 @@ Ps0 f1 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodE
 ' #txt
 Ps0 f1 inActionCode 'import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 
-TaskSearchCriteria criteria = out.taskView.dataModel.searchCriteria;
+TaskSearchCriteria criteria = out.taskView.dataModel.criteria;
 if (out.isNotLogin) {
 	criteria.setInvolvedUsername(ivy.session.getSessionUserName());
 	out.isNotLogin = false;

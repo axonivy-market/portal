@@ -31,12 +31,12 @@ Ps0 f0 disableUIEvents true #txt
 Ps0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <java.lang.String keyword> param = methodEvent.getInputArguments();
 ' #txt
-Ps0 f0 inParameterMapAction 'out.dataModel.caseDataModel.notKeepFilter=true;
-out.dataModel.caseDataModel.queryCriteria.keyword=param.keyword;
+Ps0 f0 inParameterMapAction 'out.dataModel.caseDataModel.criteria.keyword=param.keyword;
+out.dataModel.caseDataModel.notKeepFilter=true;
 out.dataModel.keyword=param.keyword;
 out.dataModel.taskDataModel.compactMode=false;
+out.dataModel.taskDataModel.criteria.keyword=param.keyword;
 out.dataModel.taskDataModel.notKeepFilter=true;
-out.dataModel.taskDataModel.queryCriteria.keyword=param.keyword;
 ' #txt
 Ps0 f0 inActionCode out.dataModel.search(); #txt
 Ps0 f0 outParameterDecl '<> result;

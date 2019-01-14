@@ -17,6 +17,8 @@ import ch.ivyteam.ivy.project.portal.examples.component.customize.cases.Customiz
 
 public class CustomizedSearchResultsDataModel extends SearchResultsDataModel {
 
+  private static final long serialVersionUID = -4669041169831272486L;
+  
   private List<Employee> employees;
   
   public CustomizedSearchResultsDataModel() {
