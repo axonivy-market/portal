@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.ivydata.service.impl;
 import static ch.ivyteam.ivy.server.ServerFactory.getServer;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +17,8 @@ import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
 import ch.ivy.addon.portalkit.bo.PriorityStatistic;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyTaskResultDTO;
+import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataErrorType;
+import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.ITaskService;
@@ -49,7 +52,7 @@ public class TaskService implements ITaskService {
         result.setTasks(executeTaskQuery(finalQuery, startIndex, count));
       } catch (Exception ex) {
         Ivy.log().error("Error in getting tasks", ex);
-//        result.setErrors(Arrays.asList(new PortalIvyDataException(appName, PortalIvyDataErrorType.FAIL_TO_LOAD_LANGUAGE.toString())));
+        result.setErrors(Arrays.asList(new PortalIvyDataException(PortalIvyDataErrorType.FAIL_TO_LOAD_TASK.toString())));
       }
       return result;
     });
@@ -64,7 +67,7 @@ public class TaskService implements ITaskService {
         result.setTotalTasks(countTasks(finalQuery));
       } catch (Exception ex) {
         Ivy.log().error("Error in counting Tasks", ex);
-//        result.setErrors(Arrays.asList(new PortalIvyDataException(appName, PortalIvyDataErrorType.FAIL_TO_LOAD_LANGUAGE.toString())));
+        result.setErrors(Arrays.asList(new PortalIvyDataException(PortalIvyDataErrorType.FAIL_TO_COUNT_TASK.toString())));
       }
       return result;
     });
@@ -113,12 +116,12 @@ public class TaskService implements ITaskService {
             finalQuery.where().and(queryForApplications(criteria.getApps()));
           }
         }
-//        finalQuery.where().and(queryExcludeHiddenTasks());
+        finalQuery.where().and(queryExcludeHiddenTasks());
         finalQuery.where().and().category().isNotNull();
         result.setCategoryTree(CategoryTree.createFor(finalQuery));
       } catch (Exception ex) {
         Ivy.log().error("Error in getting task category", ex);
-//        result.setErrors(Arrays.asList(new PortalIvyDataException(appName, PortalIvyDataErrorType.FAIL_TO_LOAD_LANGUAGE.toString())));
+        result.setErrors(Arrays.asList(new PortalIvyDataException(PortalIvyDataErrorType.FAIL_TO_LOAD_TASK_CATEGORY.toString())));
       }
       return result;
     });
@@ -137,7 +140,7 @@ public class TaskService implements ITaskService {
         result.setPriorityStatistic(priorityStatistic);
       } catch (Exception ex) {
         Ivy.log().error("Error in getting task priority statistic", ex);
-//        result.setErrors(Arrays.asList(new PortalIvyDataException(appName, PortalIvyDataErrorType.FAIL_TO_LOAD_LANGUAGE.toString())));
+        result.setErrors(Arrays.asList(new PortalIvyDataException(PortalIvyDataErrorType.FAIL_TO_LOAD_TASK_PRIORITY_STATISTIC.toString())));
       }
       return result;
     });
@@ -176,7 +179,7 @@ public class TaskService implements ITaskService {
         result.setExpiryStatistic(expiryStatistic);
       } catch (Exception ex) {
         Ivy.log().error("Error in getting task expiry statistic", ex);
-//        result.setErrors(Arrays.asList(new PortalIvyDataException(appName, PortalIvyDataErrorType.FAIL_TO_LOAD_LANGUAGE.toString())));
+        result.setErrors(Arrays.asList(new PortalIvyDataException(PortalIvyDataErrorType.FAIL_TO_LOAD_TASK_EXPIRY_STATISTIC.toString())));
       }
       return result;
     });
@@ -214,8 +217,8 @@ public class TaskService implements ITaskService {
         ElapsedTimeStatistic elapsedTimeStatistic = createCategoryToAverageElapsedTimeMap(recordSet);
         result.setElapsedTimeStatistic(elapsedTimeStatistic);
       } catch (Exception ex) {
-        Ivy.log().error("Error in getting task priority statistic", ex);
-//        result.setErrors(Arrays.asList(new PortalIvyDataException(appName, PortalIvyDataErrorType.FAIL_TO_LOAD_LANGUAGE.toString())));
+        Ivy.log().error("Error in getting task elapsed time statistic", ex);
+        result.setErrors(Arrays.asList(new PortalIvyDataException(PortalIvyDataErrorType.FAIL_TO_LOAD_TASK_ELAPSED_TIME_STATISTIC.toString())));
       }
       return result;
     });
@@ -246,7 +249,7 @@ public class TaskService implements ITaskService {
         finalQuery.where().and(queryForApplications(criteria.getApps()));
       }
     }
-//  queryExcludeHiddenTasks(finalQuery);
+    finalQuery.where().and(queryExcludeHiddenTasks());
     return finalQuery;
   }
   
