@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.util;
 
-import static java.util.stream.Collectors.joining;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -20,11 +18,11 @@ import org.primefaces.util.TreeUtils;
 import ch.ivy.addon.portalkit.bo.TaskNode;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
-import ch.ivy.ws.addon.CategoryData;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
+import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 
 /**
@@ -61,14 +59,14 @@ public class TaskTreeUtils {
     }
   }
 
-  private static TreeNode buildTaskCategoryNode(TreeNode root, String newNodeName, String nodeType, String rawPath, boolean isRootAllTask, String menuState) {
+  private static TreeNode buildTaskCategoryNode(TreeNode parentNode, String newNodeName, String nodeType, String category, boolean isRootAllTask, String menuState) {
     TaskNode newNodeData = new TaskNode();
     newNodeData.setValue(newNodeName);
     newNodeData.setMenuKind(MenuKind.TASK);
-    newNodeData.setCategoryRawPath(rawPath);
+    newNodeData.setCategory(category);
     newNodeData.setRootNodeAllTask(isRootAllTask);
     
-    TreeNode newNode = new DefaultTreeNode(nodeType, newNodeData, root);
+    TreeNode newNode = new DefaultTreeNode(nodeType, newNodeData, parentNode);
     if (menuState.contains(nodeType) && isSelectedCategory(menuState, nodeType)) {
       newNode.getParent().setExpanded(true);
     }
@@ -81,53 +79,51 @@ public class TaskTreeUtils {
   }
   
   public static CheckboxTreeNode buildTaskCategoryCheckboxTreeRoot() {
+    if (root != null) {
+      return root;
+    }
+    
+    root = buildRoot();
     List<String> involvedApplications = null;
     String appName = SecurityServiceUtils.getApplicationNameFromSession();
     if (StringUtils.isNotEmpty(appName)) {
       involvedApplications = new ArrayList<>();
       involvedApplications.add(appName);
     }
-    String jsonQuery = SubProcessCall.withPath("Functional Processes/BuildTaskJsonQuery").withStartSignature("buildTaskJsonQuery()").call().get("jsonQuery", String.class);
-    List<CategoryData> allTaskCategories = findAllTaskCategories(involvedApplications, jsonQuery);
-    root = buildTaskCategoryCheckboxTreeNode(allTaskCategories);
+    TaskQuery taskQuery = SubProcessCall.withPath("Functional Processes/BuildTaskQuery")
+        .withStartSignature("buildTaskQuery()")
+        .call()
+        .get("taskQuery", TaskQuery.class);
+    CategoryTree allTaskCategoryTree = findAllTaskCategoryTree(involvedApplications, taskQuery);
+    convertToCheckboxTreeNode(root, allTaskCategoryTree);
+    sortNode(root);
     return root;
   }
   
-  private static List<CategoryData> findAllTaskCategories(List<String> involvedApplications, String jsonQuery) {
+  private static CategoryTree findAllTaskCategoryTree(List<String> involvedApplications, TaskQuery taskQuery) {
     Map<String, Object> params = new HashMap<>();
-    params.put("jsonQuery", jsonQuery);
-    params.put("apps", involvedApplications != null ? involvedApplications.stream().collect(joining("=~=")) : null);
-    Map<String, Object> response =
-        IvyAdapterService.startSubProcess("findCategories(String, String, String, Long)", params, Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
-    @SuppressWarnings("unchecked")
-    List<CategoryData> allTaskCategories = (List<CategoryData>) response.get("categories");
-    return allTaskCategories;
+    TaskCategorySearchCriteria criteria = new TaskCategorySearchCriteria();
+    criteria.setCustomTaskQuery(taskQuery);
+    criteria.setApps(involvedApplications);
+    params.put("taskCategorySearchCriteria", criteria);
+    Map<String, Object> response = IvyAdapterService.startSubProcess(
+        "findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria)", params,
+        Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
+    CategoryTree allTaskCategoryTree = (CategoryTree) response.get("categoryTree");
+    return allTaskCategoryTree;
   }
   
-  private static CheckboxTreeNode buildTaskCategoryCheckboxTreeNode(List<CategoryData> categories) {
-    CheckboxTreeNode taskRootNode = new CheckboxTreeNode(buildTaskNodeFrom(StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY));
-    CheckboxTreeNode navigatorNode = taskRootNode;
+  private static void convertToCheckboxTreeNode(CheckboxTreeNode root, CategoryTree categoryTree) {
     String nodeType = "default";
-    for (CategoryData category : categories) {
-      String categoryPath = category.getPath();
-      String[] categoryNames = categoryPath.split(DELIMITER);
-
+    for (CategoryTree category : categoryTree.getChildren()) {
+      String name = category.getCategory().getName();
       String categoryRawPath = category.getRawPath();
-      String[] nodeRawPaths = category.getRawPath().split(DELIMITER);
-
-      for (int i = 0; i < categoryNames.length; i++) {
-        String subCategoryName = categoryNames[i];
-        String subCategoryPath = categoryPath.substring(0, categoryPath.indexOf(subCategoryName) + subCategoryName.length());
-
-        String subCategoryRawName = nodeRawPaths[i];
-        String subCategoryRawPath = categoryRawPath.substring(0, categoryRawPath.indexOf(subCategoryRawName) + subCategoryRawName.length());
-
-        navigatorNode = buildTaskCategoryTreeNode(navigatorNode, nodeType, subCategoryName, subCategoryPath, subCategoryRawPath);
+      CheckboxTreeNode childNode = buildTaskCategoryCheckBoxTreeNode(root, name, nodeType, categoryRawPath);
+      root.getChildren().add(childNode);
+      if (CollectionUtils.isNotEmpty(category.getChildren())) {
+        convertToCheckboxTreeNode(childNode, category);
       }
-      navigatorNode = taskRootNode;
     }
-    sortNode(taskRootNode);
-    return taskRootNode;
   }
   
   private static void sortNode(TreeNode node) {
@@ -138,32 +134,44 @@ public class TaskTreeUtils {
     };
     TreeUtils.sortNode(node, comparator);
   }
-
-  private static CheckboxTreeNode buildTaskCategoryTreeNode(CheckboxTreeNode navigatorNode, String nodeType, String subCategoryName, String subCategoryPath, String subCategoryRawPath) {
-    List<TreeNode> childNodes = navigatorNode.getChildren();
+  
+  private static CheckboxTreeNode buildTaskCategoryCheckBoxTreeNode(CheckboxTreeNode parentNode, String newNodeName, String nodeType, String category) {
+    List<TreeNode> childNodes = parentNode.getChildren();
     for (TreeNode childNode : childNodes) {
       TaskNode childNodeData = (TaskNode) childNode.getData();
-      if (subCategoryPath.equalsIgnoreCase(childNodeData.getValue())) {
+      if (category.equalsIgnoreCase(childNodeData.getValue())) {
         return (CheckboxTreeNode) childNode;
       }
     }
 
-    TaskNode nodeData = buildTaskNodeFrom(subCategoryName, subCategoryPath, subCategoryRawPath);
-    CheckboxTreeNode checkboxTreeNode = new CheckboxTreeNode(nodeType, nodeData, navigatorNode);
+    TaskNode nodeData = buildTaskNodeFrom(newNodeName, category);
+    CheckboxTreeNode checkboxTreeNode = new CheckboxTreeNode(nodeType, nodeData, parentNode);
     checkboxTreeNode.setExpanded(true);
     checkboxTreeNode.setSelected(false);
     return checkboxTreeNode;
   }
 
-  private static TaskNode buildTaskNodeFrom(String subCategoryName, String subCategoryPath, String subCategoryRawPath) {
+  private static TaskNode buildTaskNodeFrom(String name, String category) {
     TaskNode nodeData = new TaskNode();
-    nodeData.setValue(subCategoryPath);
+    nodeData.setValue(name);
     nodeData.setMenuKind(MenuKind.TASK);
-    nodeData.setCategory(subCategoryName);
-    nodeData.setCategoryRawPath(subCategoryRawPath);
+    nodeData.setCategory(category);
     nodeData.setRootNodeAllTask(false);
     nodeData.setFirstCategoryNode(false);
     return nodeData;
+  }
+  
+  private static CheckboxTreeNode buildRoot() {
+    TaskNode nodeData = new TaskNode();
+    nodeData.setValue(StringUtils.EMPTY);
+    nodeData.setMenuKind(MenuKind.TASK);
+    nodeData.setCategory(StringUtils.EMPTY);
+    nodeData.setRootNodeAllTask(true);
+    nodeData.setFirstCategoryNode(true);
+    CheckboxTreeNode checkboxTreeNode = new CheckboxTreeNode(StringUtils.EMPTY, nodeData, null);
+    checkboxTreeNode.setExpanded(true);
+    checkboxTreeNode.setSelected(false);
+    return checkboxTreeNode;
   }
 
   public static String getLastCategoryFromCategoryPath(String categoryPath) {

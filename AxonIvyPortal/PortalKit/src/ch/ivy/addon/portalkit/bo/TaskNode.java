@@ -4,9 +4,8 @@ public class TaskNode extends MainMenuNode {
 
   private boolean isRootNodeAllTask;
   private String category;
-  private String categoryRawPath;
   private boolean isFirstCategoryNode;
-  
+
   public boolean isRootNodeAllTask() {
     return isRootNodeAllTask;
   }
@@ -23,22 +22,14 @@ public class TaskNode extends MainMenuNode {
     this.category = category;
   }
 
-	public boolean isFirstCategoryNode() {
-		return isFirstCategoryNode;
-	}
-
-	public void setFirstCategoryNode(boolean isFirstCategoryNode) {
-		this.isFirstCategoryNode = isFirstCategoryNode;
-	}
-
-  public String getCategoryRawPath() {
-    return categoryRawPath;
+  public boolean isFirstCategoryNode() {
+    return isFirstCategoryNode;
   }
 
-  public void setCategoryRawPath(String categoryRawPath) {
-    this.categoryRawPath = categoryRawPath;
+  public void setFirstCategoryNode(boolean isFirstCategoryNode) {
+    this.isFirstCategoryNode = isFirstCategoryNode;
   }
-  
+
   @Override
   public String toString() {
     return this.getCategory();
