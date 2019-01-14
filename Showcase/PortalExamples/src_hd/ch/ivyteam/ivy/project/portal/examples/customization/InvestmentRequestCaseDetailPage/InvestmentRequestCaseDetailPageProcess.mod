@@ -1,5 +1,5 @@
 [Ivy]
-1624D1BB2301B683 3.20 #module
+1624D1BB2301B683 3.23 #module
 >Proto >Proto Collection #zClass
 Is0 InvestmentRequestCaseDetailPageProcess Big #zClass
 Is0 RD #cInfo
@@ -23,25 +23,23 @@ Is0 @PushWFArc f5 '' #zField
 >Proto Is0 Is0 InvestmentRequestCaseDetailPageProcess #zField
 Is0 f0 guid 1624D1BB2437AE35 #txt
 Is0 f0 type ch.ivyteam.ivy.project.portal.examples.customization.InvestmentRequestCaseDetailPage.InvestmentRequestCaseDetailPageData #txt
-Is0 f0 method start(ch.ivy.addon.portalkit.bo.RemoteCase) #txt
+Is0 f0 method start(ch.ivyteam.ivy.workflow.ICase) #txt
 Is0 f0 disableUIEvents true #txt
 Is0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.bo.RemoteCase remoteCase> param = methodEvent.getInputArguments();
+<ch.ivyteam.ivy.workflow.ICase iCase> param = methodEvent.getInputArguments();
 ' #txt
-Is0 f0 inParameterMapAction 'out.remoteCase=param.remoteCase;
+Is0 f0 inParameterMapAction 'out.iCase=param.iCase;
 ' #txt
 Is0 f0 outParameterDecl '<> result;
 ' #txt
 Is0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start(RemoteCase)</name>
-        <nameStyle>17,5,7
-</nameStyle>
+        <name>start(ICase)</name>
     </language>
 </elementInfo>
 ' #txt
-Is0 f0 83 51 26 26 -53 15 #rect
+Is0 f0 83 51 26 26 -36 17 #rect
 Is0 f0 @|RichDialogInitStartIcon #fIcon
 Is0 f1 type ch.ivyteam.ivy.project.portal.examples.customization.InvestmentRequestCaseDetailPage.InvestmentRequestCaseDetailPageData #txt
 Is0 f1 211 51 26 26 0 12 #rect

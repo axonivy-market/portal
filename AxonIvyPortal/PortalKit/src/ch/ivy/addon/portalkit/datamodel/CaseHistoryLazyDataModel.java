@@ -29,13 +29,13 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<ICase> {
 
   private String businessEntityId;
   private final List<ICase> data;
-  private CaseSearchCriteria searchCriteria;
+  private CaseSearchCriteria criteria;
 
   public CaseHistoryLazyDataModel(String businessEntityId) {
     super();
     this.businessEntityId = businessEntityId;
     data = new ArrayList<>();
-    searchCriteria = buildInitSearchCriteria();
+    criteria = buildInitSearchCriteria();
     setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
     autoInitForNoAppConfiguration();
   }
@@ -48,14 +48,14 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<ICase> {
       applicationName = applicationNameFromRequest;
     }
     if (StringUtils.isNotBlank(applicationName)) {
-      searchCriteria.setApps(Arrays.asList(applicationName));
+      criteria.setApps(Arrays.asList(applicationName));
     }
   }
 
   public void setAdminQuery(boolean isAdminQuery) {
-    searchCriteria.setAdminQuery(isAdminQuery);
-    if (isAdminQuery && !searchCriteria.getIncludedStates().contains(CaseState.DONE)) {
-      searchCriteria.addIncludedStates(Arrays.asList(CaseState.DONE));
+    criteria.setAdminQuery(isAdminQuery);
+    if (isAdminQuery && !criteria.getIncludedStates().contains(CaseState.DONE)) {
+      criteria.addIncludedStates(Arrays.asList(CaseState.DONE));
     }
   }
 
@@ -73,10 +73,10 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<ICase> {
   public List<ICase> load(int first, int pageSize, String sortField, SortOrder sortOrder,
       Map<String, Object> filters) {
     if (first == 0) {
-      initializedDataModel(searchCriteria);
+      initializedDataModel(criteria);
     }
 
-    List<ICase> foundCases = findCases(searchCriteria, first, pageSize);
+    List<ICase> foundCases = findCases(criteria, first, pageSize);
     return foundCases;
   }
 
@@ -99,16 +99,16 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<ICase> {
   }
 
   public void setSorting(String sortedField, boolean descending) {
-    searchCriteria.setSortField(sortedField);
-    searchCriteria.setSortDescending(descending);
+    criteria.setSortField(sortedField);
+    criteria.setSortDescending(descending);
   }
 
   public String getSortField() {
-    return searchCriteria.getSortField();
+    return criteria.getSortField();
   }
 
   public boolean isSortDescending() {
-    return searchCriteria.isSortDescending();
+    return criteria.isSortDescending();
   }
 
   private int getCaseCount(CaseSearchCriteria criteria) {
@@ -127,11 +127,11 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<ICase> {
   }
 
   private void buildQueryToSearchCriteria() {
-    if (searchCriteria.getCustomCaseQuery() == null) {
+    if (criteria.getCustomCaseQuery() == null) {
       CaseQuery caseQuery = CaseQuery.create();
       caseQuery.where().additionalProperty(AdditionalProperty.CASE_BUSINESS_ENTITY_PROPERTY.toString())
           .isEqual(businessEntityId);
-      searchCriteria.setCustomCaseQuery(caseQuery);
+      criteria.setCustomCaseQuery(caseQuery);
     }
   }
 

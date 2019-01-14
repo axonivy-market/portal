@@ -21,14 +21,12 @@ Ae0 @PushWFArc f6 '' #zField
 Ae0 @TkArc f4 '' #zField
 Ae0 @StartRequest f7 '' #zField
 Ae0 @EndTask f8 '' #zField
-Ae0 @GridStep f212 '' #zField
-Ae0 @CallSub f224 '' #zField
 Ae0 @RichDialog f9 '' #zField
-Ae0 @PushWFArc f10 '' #zField
 Ae0 @PushWFArc f11 '' #zField
-Ae0 @PushWFArc f225 '' #zField
-Ae0 @PushWFArc f12 '' #zField
 Ae0 @InfoButton f13 '' #zField
+Ae0 @GridStep f10 '' #zField
+Ae0 @PushWFArc f12 '' #zField
+Ae0 @PushWFArc f14 '' #zField
 >Proto Ae0 Ae0 AdditionalCaseDetailPage #zField
 Ae0 f0 outLink createInvestmentRequest.ivp #txt
 Ae0 f0 type ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage #txt
@@ -125,16 +123,15 @@ Ae0 f4 var in1 #txt
 Ae0 f4 408 184 441 184 #arcP
 Ae0 f7 outLink showInvestmentRequestCustomFields.ivp #txt
 Ae0 f7 type ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage #txt
-Ae0 f7 inParamDecl '<java.lang.Long serverId,java.lang.Long caseId> param;' #txt
-Ae0 f7 inParamTable 'out.remoteCaseId=param.caseId;
-out.serverId=param.serverId;
+Ae0 f7 inParamDecl '<java.lang.Long caseId> param;' #txt
+Ae0 f7 inParamTable 'out.caseId=param.caseId;
 ' #txt
 Ae0 f7 actionDecl 'ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage out;
 ' #txt
 Ae0 f7 guid 1624D26B5D1EB34D #txt
 Ae0 f7 requestEnabled true #txt
 Ae0 f7 triggerEnabled false #txt
-Ae0 f7 callSignature showInvestmentRequestCustomFields(Long,Long) #txt
+Ae0 f7 callSignature showInvestmentRequestCustomFields(Long) #txt
 Ae0 f7 persist false #txt
 Ae0 f7 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
@@ -159,55 +156,13 @@ Ae0 f7 @|StartRequestIcon #fIcon
 Ae0 f8 type ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage #txt
 Ae0 f8 701 49 30 30 0 15 #rect
 Ae0 f8 @|EndIcon #fIcon
-Ae0 f212 actionDecl 'ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage out;
-' #txt
-Ae0 f212 actionTable 'out=in;
-' #txt
-Ae0 f212 actionCode 'import ch.ivy.addon.portalkit.service.ServerService;
-
-ServerService serverService = new ServerService();
-in.server = serverService.findById(in.serverId);' #txt
-Ae0 f212 type ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage #txt
-Ae0 f212 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Find server</name>
-    </language>
-</elementInfo>
-' #txt
-Ae0 f212 312 52 40 24 -32 19 #rect
-Ae0 f212 @|StepIcon #fIcon
-Ae0 f224 type ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage #txt
-Ae0 f224 processCall MultiPortal/CaseService:findCase(ch.ivy.addon.portalkit.persistence.domain.Server,Long) #txt
-Ae0 f224 doCall true #txt
-Ae0 f224 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.Long caseId> param;
-' #txt
-Ae0 f224 requestMappingAction 'param.server=in.server;
-param.caseId=in.remoteCaseId;
-' #txt
-Ae0 f224 responseActionDecl 'ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage out;
-' #txt
-Ae0 f224 responseMappingAction 'out=in;
-out.remoteCase=result.remoteCase;
-' #txt
-Ae0 f224 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Find Case</name>
-        <nameStyle>9,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ae0 f224 392 52 40 24 -26 21 #rect
-Ae0 f224 @|CallSubIcon #fIcon
 Ae0 f9 targetWindow NEW #txt
 Ae0 f9 targetDisplay TOP #txt
 Ae0 f9 richDialogId ch.ivyteam.ivy.project.portal.examples.customization.InvestmentRequestCaseDetailPage #txt
-Ae0 f9 startMethod start(ch.ivy.addon.portalkit.bo.RemoteCase) #txt
+Ae0 f9 startMethod start(ch.ivyteam.ivy.workflow.ICase) #txt
 Ae0 f9 type ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage #txt
-Ae0 f9 requestActionDecl '<ch.ivy.addon.portalkit.bo.RemoteCase remoteCase> param;' #txt
-Ae0 f9 requestMappingAction 'param.remoteCase=in.remoteCase;
+Ae0 f9 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase iCase> param;' #txt
+Ae0 f9 requestMappingAction 'param.iCase=in.iCase;
 ' #txt
 Ae0 f9 responseActionDecl 'ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage out;
 ' #txt
@@ -228,14 +183,8 @@ Additional Case Details Page</name>
 ' #txt
 Ae0 f9 476 42 192 44 -76 -16 #rect
 Ae0 f9 @|RichDialogIcon #fIcon
-Ae0 f10 expr out #txt
-Ae0 f10 432 64 476 64 #arcP
 Ae0 f11 expr out #txt
 Ae0 f11 668 64 701 64 #arcP
-Ae0 f225 expr out #txt
-Ae0 f225 352 64 392 64 #arcP
-Ae0 f12 expr out #txt
-Ae0 f12 159 64 312 64 #arcP
 Ae0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -263,6 +212,26 @@ HOW TO RUN THIS EXAMPLE:
 ' #txt
 Ae0 f13 784 2 896 268 -438 -128 #rect
 Ae0 f13 @|IBIcon #fIcon
+Ae0 f10 actionDecl 'ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage out;
+' #txt
+Ae0 f10 actionTable 'out=in;
+' #txt
+Ae0 f10 actionCode 'import ch.ivy.addon.portalkit.util.CaseUtils;
+out.iCase = CaseUtils.findCase(in.caseId);' #txt
+Ae0 f10 type ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage #txt
+Ae0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Find case by id</name>
+    </language>
+</elementInfo>
+' #txt
+Ae0 f10 296 42 112 44 -41 -8 #rect
+Ae0 f10 @|StepIcon #fIcon
+Ae0 f12 expr out #txt
+Ae0 f12 159 64 296 64 #arcP
+Ae0 f14 expr out #txt
+Ae0 f14 408 64 476 64 #arcP
 >Proto Ae0 .type ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage #txt
 >Proto Ae0 .processKind NORMAL #txt
 >Proto Ae0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -280,9 +249,7 @@ Ae0 f5 mainOut f4 tail #connect
 Ae0 f4 head f3 in #connect
 Ae0 f9 mainOut f11 tail #connect
 Ae0 f11 head f8 mainIn #connect
-Ae0 f212 mainOut f225 tail #connect
-Ae0 f225 head f224 mainIn #connect
-Ae0 f224 mainOut f10 tail #connect
-Ae0 f10 head f9 mainIn #connect
 Ae0 f7 mainOut f12 tail #connect
-Ae0 f12 head f212 mainIn #connect
+Ae0 f12 head f10 mainIn #connect
+Ae0 f10 mainOut f14 tail #connect
+Ae0 f14 head f9 mainIn #connect
