@@ -331,7 +331,7 @@ public class StatisticChartQueryUtils {
    */
   public static TaskQuery generateTaskQueryForExpiry(StatisticFilter filter) {
     TaskQuery taskQuery = generateTaskQuery(filter);
-    taskQuery = filterOnlyTasksExpireInThisYear(taskQuery);
+    filterOnlyTasksExpireInThisYear(taskQuery);
     return taskQuery;
   }
 
@@ -587,8 +587,7 @@ public class StatisticChartQueryUtils {
       taskQuery.where().and(subTaskQueryForPriority);
     }
   
-  private static TaskQuery filterOnlyTasksExpireInThisYear(TaskQuery taskQuery) {
-    TaskQuery result = TaskQuery.fromJson(taskQuery.asJson());
+  private static void filterOnlyTasksExpireInThisYear(TaskQuery taskQuery) {
     Date firsDateOfThisYear = StatisticChartTimeUtils.truncateMinutesPart(StatisticChartTimeUtils.getFirstDateOfThisYear());
     Date firsDateOfNextYear = StatisticChartTimeUtils.truncateMinutesPart(DateUtils.addYears(firsDateOfThisYear, 1));
 
@@ -597,8 +596,7 @@ public class StatisticChartQueryUtils {
     filterQueryForExpiryDate.and().expiryTimestamp().isGreaterOrEqualThan(firsDateOfThisYear).and().expiryTimestamp()
         .isLowerThan(firsDateOfNextYear).and().expiryTimestamp().isNotNull();
 
-    result.where().and(taskQueryForExpiryDate);
-    return result;
+    taskQuery.where().and(taskQueryForExpiryDate);
   }
 
 }
