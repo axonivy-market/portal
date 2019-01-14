@@ -49,7 +49,7 @@ public class CaseCategoryFilter extends CaseFilter {
     IFilterQuery filterQuery = caseQuery.where();
     for (CheckboxTreeNode node : categories) {
       if (node.getParent() != null && !Arrays.asList(categories).contains(node.getParent())) {
-        String category = ((CaseNode) node.getData()).getCategoryRawPath();
+        String category = ((CaseNode) node.getData()).getCategory();
         if (node.isLeaf()) {
           filterQuery.or().category().isEqualIgnoreCase(category);
         } else {

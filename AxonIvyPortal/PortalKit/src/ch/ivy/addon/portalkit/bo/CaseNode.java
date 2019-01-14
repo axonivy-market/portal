@@ -11,7 +11,6 @@ public class CaseNode extends MainMenuNode implements Serializable {
 
   private boolean isRootNodeAllCase;
   private String category;
-  private String categoryRawPath;
   private boolean isFirstCategoryNode;
 
   public boolean isRootNodeAllCase() {
@@ -22,21 +21,12 @@ public class CaseNode extends MainMenuNode implements Serializable {
     this.isRootNodeAllCase = isRootNodeAllCase;
   }
 
-
   public String getCategory() {
     return category;
   }
 
   public void setCategory(String category) {
     this.category = category;
-  }
-
-  public String getCategoryRawPath() {
-    return categoryRawPath;
-  }
-
-  public void setCategoryRawPath(String categoryRawPath) {
-    this.categoryRawPath = categoryRawPath;
   }
 
   public boolean isFirstCategoryNode() {
