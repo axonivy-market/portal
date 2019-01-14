@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.ivydata.service.impl;
 
 import static ch.ivyteam.ivy.server.ServerFactory.getServer;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,6 +10,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.ivydata.bo.IvySideStep;
 import ch.ivy.addon.portalkit.ivydata.dto.IvySideStepResultDTO;
+import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataErrorType;
+import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.SideStepSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.ISideStepService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
@@ -52,7 +55,7 @@ public class SideStepService implements ISideStepService {
         result.setSideSteps(ivySideSteps);
       } catch (Exception ex) {
         Ivy.log().error("Error in getting side steps of case {0} via user {1}", ex, criteria.getCaseId(), criteria.getInvolvedUsername());
-//        result.setErrors(Arrays.asList(new PortalIvyDataException(appName, PortalIvyDataErrorType.FAIL_TO_LOAD_LANGUAGE.toString())));
+        result.setErrors(Arrays.asList(new PortalIvyDataException(PortalIvyDataErrorType.FAIL_TO_LOAD_SIDESTEP.toString())));
       }
       return result;
     });
