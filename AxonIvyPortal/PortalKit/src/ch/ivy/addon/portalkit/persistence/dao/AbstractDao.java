@@ -122,7 +122,7 @@ public abstract class AbstractDao<T extends BusinessEntity> {
   }
 
   private String getPropertyPrefixKey() {
-    return String.format(PropertyKey.ENTITY_PROPERTY_KEY_PREFIX, getEntityClassName());
+    return String.format(PropertyKey.ENTITY_PROPERTY_KEY_PREFIX, getEntityClassName() + ".");
   }
 
   private String getCustomPropertyValue(ICustomProperty customProperty) {
