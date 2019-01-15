@@ -19,7 +19,7 @@
 
 <cc:implementation>
   <f:event listener="#{logic.initialize(cc.attrs.statisticChartList,cc.attrs.showTaskListImmediately, cc.attrs.isBackFromDrilldown, cc.attrs.compactMode)}" type="preRenderComponent" />
-    <h:panelGroup id="statistic-container" layout="block">
+    <h:panelGroup id="statistic-container" layout="block" styleClass="#{cc.attrs.compactMode eq 'true' ? 'statistic-carousel' : 'Wid100'}">
       <h:panelGroup id="statistic-dashboard-expand-mode" layout="block" styleClass="statistic-dashboard-expand-mode #{cc.attrs.isDrilldownExpiryChart ? 'task-by-expiry-drilldown-mode' : ''}"
         rendered="#{!cc.attrs.compactMode and data.hasStatistic and !cc.attrs.isDrilldownElapsedTime}">
         <ui:repeat id="statistic-chart-repeater" var="chart" value="#{data.statisticChartList}">
