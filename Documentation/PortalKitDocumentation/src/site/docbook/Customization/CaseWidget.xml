@@ -272,7 +272,7 @@
 					<para>Use the <code>OpenPortalCases</code> callable process with the <code>CaseView</code> parameter. It is used to define which information are displayed in CaseWidget.</para>
 				</listitem>
 				<listitem>
-					<para>Refer to CaseView, CaseSearchCriteria, CaseQueryCriteria to build your CaseView</para>
+					<para>Refer to CaseView, CaseSearchCriteria to build your CaseView</para>
 				</listitem>
 			</itemizedlist>
 			<screen>

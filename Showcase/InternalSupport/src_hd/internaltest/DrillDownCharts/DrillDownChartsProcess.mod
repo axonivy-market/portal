@@ -79,7 +79,6 @@ Ds0 f4 actionTable 'out=in;
 Ds0 f4 actionCode 'import ch.internalsupport.CustomizedTaskLazyDataModel;
 import ch.ivy.addon.portal.generic.view.TaskView;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
-import ch.ivy.addon.portalkit.support.TaskQueryCriteria;
 import ch.internalsupport.ChartView;
 import javax.faces.context.FacesContext;
 

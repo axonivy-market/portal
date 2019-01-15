@@ -155,9 +155,9 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   private boolean shouldSaveAndLoadSessionFilters() {
-    boolean isValidQueryCriteria =
+    boolean isValidCriteria =
         (this.criteria == null) || (this.criteria != null && !this.criteria.isQueryForUnassignedTask());
-    return isValidQueryCriteria && !isRelatedTaskDisplayed && !isNotKeepFilter;
+    return isValidCriteria && !isRelatedTaskDisplayed && !isNotKeepFilter;
   }
 
   @Override
@@ -532,11 +532,11 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     }
   }
 
-  protected void setValuesForStateFilter(TaskSearchCriteria querycriteria) {
+  protected void setValuesForStateFilter(TaskSearchCriteria criteria) {
     if (filterContainer != null) {
-      filterContainer.getStateFilter().setFilteredStates(new ArrayList<>(querycriteria.getIncludedStates()));
-      filterContainer.getStateFilter().setSelectedFilteredStates(querycriteria.getIncludedStates());
-      filterContainer.getStateFilter().setSelectedFilteredStatesAtBeginning(querycriteria.getIncludedStates());
+      filterContainer.getStateFilter().setFilteredStates(new ArrayList<>(criteria.getIncludedStates()));
+      filterContainer.getStateFilter().setSelectedFilteredStates(criteria.getIncludedStates());
+      filterContainer.getStateFilter().setSelectedFilteredStatesAtBeginning(criteria.getIncludedStates());
     }
   }
 

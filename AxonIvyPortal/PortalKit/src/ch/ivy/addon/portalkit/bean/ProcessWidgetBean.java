@@ -23,7 +23,7 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.jsf.Attrs;
-import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
+import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -38,8 +38,8 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 public class ProcessWidgetBean implements Serializable {
 
   private static final long serialVersionUID = -5889375917550618261L;
-  private static final String EXPRESS_WORKFLOW_ID_PARAM = "?workflowID=";
   private static final String SPECIAL_CHARACTER_KEY = "SPECIAL_CHARACTER";
+  private static final String EXPRESS_WORKFLOW_ID_PARAM = "?workflowID=";
 
   private String processWidgetComponentId;
   private List<ExpressProcess> expressProcesses;
@@ -87,7 +87,6 @@ public class ProcessWidgetBean implements Serializable {
     }
   }
 
-
   private void addOrUpdateProcessesByKey(IWebStartable process, String key) {
     if (!processesByAlphabet.containsKey(key)) {
       List<IWebStartable> processes = new ArrayList<>();
@@ -107,9 +106,17 @@ public class ProcessWidgetBean implements Serializable {
   }
 
   private List<ExpressProcess> findExpressProcesses() {
-    IvyComponentLogicCaller<List<ExpressProcess>> ivyComponentLogicCaller = new IvyComponentLogicCaller<>();
-    List<ExpressProcess> processes = ivyComponentLogicCaller.invokeComponentLogic(processWidgetComponentId,
-        "#{logic.collectExpressProcesses}", new Object[] {});
+    List<ExpressProcess> processes = new ArrayList<>();
+    ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.request().getApplication());
+    String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
+    if (StringUtils.isNotBlank(expressStartLink)) {
+      List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findReadyToExecuteProcessOrderByName();
+      for (ExpressProcess wf : workflows) {
+        if (PermissionUtils.canStartExpressWorkflow(wf)) {
+          processes.add(wf);
+        }
+      }
+    }
     sortExpressProcesses(processes);
     return processes;
   }
@@ -127,18 +134,18 @@ public class ProcessWidgetBean implements Serializable {
     return mobileMode;
   }
 
-  public String getEditLinkOfExpressWorkflow(UserProcess process) {
-    String editLink = Ivy.html().startref("Start Processes/GenericPredefinedWorkflowStart/GenericEditProcessStart.ivp");
-    return editLink + EXPRESS_WORKFLOW_ID_PARAM + process.getWorkflowId();
+  public void editExpressWorkflow(ExpressProcess process) throws IOException {
+    ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
+    String editLink = collector.findExpressWorkflowEditLink(process.getId());
+    startProcess(editLink);
   }
 
   public void deleteExpressWorkflow() {
-    // String workflowId = editingProcess.getWorkflowId();
-    // ExpressServiceRegistry.getProcessService().delete(workflowId);
-    // ExpressServiceRegistry.getTaskDefinitionService().deleteByProcessId(workflowId);
-    // ExpressServiceRegistry.getFormElementService().deleteByProcessId(workflowId);
-    //
-    // expressProcesses.remove(editingProcess);
+     String workflowId = deletedExpressProcess.getId();
+     ExpressServiceRegistry.getProcessService().delete(workflowId);
+     ExpressServiceRegistry.getTaskDefinitionService().deleteByProcessId(workflowId);
+     ExpressServiceRegistry.getFormElementService().deleteByProcessId(workflowId);
+     expressProcesses.remove(deletedExpressProcess);
   }
 
   public String getCreateExpessWorkflowLink() {
@@ -154,6 +161,16 @@ public class ProcessWidgetBean implements Serializable {
   public boolean canCreateExpessWorkflow() {
     return createExpressWorkflowProcessStart != null
         && PermissionUtils.hasPortalPermission(PortalPermission.EXPRESS_CREATE_WORKFLOW);
+  }
+  
+  public void startExpressProcess(ExpressProcess process) throws IOException {
+    String startLink = generateWorkflowStartLink(process);
+    startProcess(startLink);
+  }
+  
+  private String generateWorkflowStartLink(ExpressProcess process) {
+    ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.request().getApplication());
+    return processStartCollector.findExpressWorkflowStartLink() + EXPRESS_WORKFLOW_ID_PARAM + process.getId();
   }
 
   public void startProcess(String link) throws IOException {
