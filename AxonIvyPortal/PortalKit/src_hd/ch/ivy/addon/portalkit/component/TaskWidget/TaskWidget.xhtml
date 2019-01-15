@@ -336,7 +336,7 @@
   </script>
 
   <h:form>
-    <p:remoteCommand name="updateTaskCount" update="#{cc.clientId}:task-widget-title" global="false" />
+    <p:remoteCommand name="updateTaskCount" update="#{cc.clientId}:task-widget-title" global="false" process="@none" />
   </h:form>
 </cc:implementation>
 </html>

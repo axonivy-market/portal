@@ -247,7 +247,7 @@
   </p:confirmDialog>
 
   <h:form>
-    <p:remoteCommand name="updateCaseCount" update="#{cc.clientId}:case-widget-title" global="false" />
+    <p:remoteCommand name="updateCaseCount" update="#{cc.clientId}:case-widget-title" global="false" process="@none" />
   </h:form>
 </cc:implementation>
 </html>
