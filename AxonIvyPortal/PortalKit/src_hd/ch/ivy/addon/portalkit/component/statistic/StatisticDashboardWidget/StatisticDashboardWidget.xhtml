@@ -48,7 +48,7 @@
                   rendered="#{index % 2 != 0}" />
                 <p:commandLink styleClass="fa fa-arrow-right chart-action"
                   actionListener="#{logic.moveRight(chart)}"
-                  update="@([id$='statistic-dashboard-container'])"
+                  update="@([id$='statistic-container'])"
                   rendered="#{index % 2 == 0 and index != data.statisticChartList.size() -1}" />
     
                 <p:commandLink id="delete-chart-link" styleClass="fa fa-close chart-action">
@@ -186,7 +186,7 @@
     widgetVar="delete-confirmation-dialog" appendTo="@(body)" severity="alert">
     <p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
       actionListener="#{logic.deleteChart()}"
-      update="@([id$='statistic-dashboard-container']) @([id$='statistic-widget-empty-state'])"
+      update="@([id$='statistic-container']) @([id$='statistic-widget-empty-state'])"
       oncomplete="PF('delete-confirmation-dialog').hide();" />
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
       onclick="PF('delete-confirmation-dialog').hide();" type="button" styleClass="portal-cancel-button" />

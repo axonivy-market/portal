@@ -17,8 +17,11 @@ public class StatisticChart {
   private String jsonQuery;
   private StatisticFilter filter;
   private long position;
+  @JsonIgnore
   private DonutChartModel donutChartModel;
+  @JsonIgnore
   private BarChartModel barChartModel;
+  @JsonIgnore
   private PieChartModel pieChartModel;
 
   public String getId() {
