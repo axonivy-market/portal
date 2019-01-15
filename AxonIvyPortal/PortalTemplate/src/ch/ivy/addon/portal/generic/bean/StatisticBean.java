@@ -14,7 +14,7 @@ public class StatisticBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public boolean isHiddenStatisticWidget() {
-    GlobalSettingService globalSettingSerive = new GlobalSettingService();
-    return globalSettingSerive.findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_STATISTIC_WIDGET);
+    GlobalSettingService globalSettingService = new GlobalSettingService();
+    return globalSettingService.findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_STATISTIC_WIDGET);
   }
 }

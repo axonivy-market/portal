@@ -123,9 +123,6 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
   @Override
   public BusinessDataInfo<StatisticChart> save(StatisticChart statisticChart) {
-    statisticChart.setBarChartModel(null);
-    statisticChart.setDonutChartModel(null);
-    statisticChart.setPieChartModel(null);
     return super.save(statisticChart);
   }
 
