@@ -551,14 +551,21 @@ Ts0 f8 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData ou
 ' #txt
 Ts0 f8 actionTable 'out=in;
 ' #txt
-Ts0 f8 actionCode 'import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
+Ts0 f8 actionCode 'import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
+import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
 import javax.faces.context.FacesContext;
 
+FacesContext context = FacesContext.getCurrentInstance();
+TaskWidgetBean taskWidgetBean = context.getApplication().evaluateExpressionGet(context, "#{taskWidgetBean}", TaskWidgetBean.class) as TaskWidgetBean;
 if (!in.#dataModel is initialized) {
-	FacesContext context = FacesContext.getCurrentInstance();
-	TaskWidgetBean taskWidgetBean = context.getApplication().evaluateExpressionGet(context, "#{taskWidgetBean}", TaskWidgetBean.class) as TaskWidgetBean;
-	in.dataModel = taskWidgetBean.dataModel;
-} ' #txt
+TaskLazyDataModel dataModel = new TaskLazyDataModel();
+dataModel.setCompactMode(true);
+taskWidgetBean.setDataModel(dataModel);
+in.dataModel = taskWidgetBean.dataModel;
+} 
+else {
+taskWidgetBean.setDataModel(in.dataModel);
+}' #txt
 Ts0 f8 security system #txt
 Ts0 f8 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

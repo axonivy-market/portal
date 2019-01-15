@@ -10,7 +10,6 @@ import org.apache.commons.io.FileUtils;
 
 import ch.ivy.addon.portalkit.enums.ApplicationType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
-import ch.ivy.addon.portalkit.enums.WSAuthenticationType;
 import ch.ivy.addon.portalkit.masterdata.AwesomeIcon;
 import ch.ivy.addon.portalkit.masterdata.MasterData;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -27,10 +26,6 @@ public class MasterDataBean implements Serializable {
 
   public ApplicationType[] getApplicationTypes() {
     return ApplicationType.values();
-  }
-
-  public WSAuthenticationType[] getWsAuthenticationType() {
-    return WSAuthenticationType.values();
   }
 
   public String getTaskSortFieldPriority() {
