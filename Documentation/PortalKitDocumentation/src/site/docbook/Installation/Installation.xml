@@ -839,7 +839,7 @@
 				<code>PasswordService.mod#changePasswordService(String, String)</code> in this customization.</para>
 			<para>
 				Custom fields in Portal task list can now be sorted properly. The method <code>extendSort()</code> of <code>TaskLazyDataModel</code> is changed
-				to have a <code>taskQuery</code> parameter. If you override this method, change your code to use the new parameter instead of using the <code>queryCriteria</code> taskQuery.
+				to have a <code>taskQuery</code> parameter. If you override this method, change your code to use the new parameter instead of using the <code>criteria</code> taskQuery.
 			</para>
 			<para>
 				Portal does not have separate full task list in the homepage anymore. It's mean that you don't have to customize the task list in <code>/layouts/DefaultHomePageTemplate.xhtml</code>. You can remove your

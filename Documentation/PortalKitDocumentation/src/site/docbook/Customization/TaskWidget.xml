@@ -293,7 +293,7 @@ if (in.isQueryForHomePage) { // in home page
 						<para>Use the <code>OpenPortalTasks</code> callable process with the <code>TaskView</code> parameter. It is used to define which information are displayed in TaskWidget.</para>
 					</listitem>
 					<listitem>
-						<para>Refer to TaskView, TaskSearchCriteria, TaskQueryCriteria to build your TaskView</para>
+						<para>Refer to TaskView, TaskSearchCriteria to build your TaskView</para>
 					</listitem>
 				</itemizedlist>
 <screen>

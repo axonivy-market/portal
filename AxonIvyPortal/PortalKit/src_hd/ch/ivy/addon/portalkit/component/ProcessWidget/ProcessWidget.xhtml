@@ -62,17 +62,17 @@
             <ui:repeat var="expressProcess" value="#{processWidgetBean.expressProcesses}">
               <h:form id="express-process-item-form"
                 styleClass="process-start-list-item-wrapper js-process-start-list-item process-start-list-item #{processWidgetBean.mobileMode ? 'mobile-process-start-list-item' : ''} express-workflow">
-                <p:commandLink id="process-item" actionListener="#{processWidgetBean.startProcess(expressProcess.link)}" target="_self"
+                <p:commandLink id="process-item" actionListener="#{processWidgetBean.startExpressProcess(expressProcess)}" target="_self"
                   styleClass="process-item">
                   <ui:include src="ProcessItem.xhtml">
                     <ui:param name="processName" value="#{expressProcess.processName}" />
                     <ui:param name="processType" value="process-item" />
+                    <ui:param name="isExpress" value="true" />
                   </ui:include>
                 </p:commandLink>
                 <h:panelGroup rendered="#{!processWidgetBean.mobileMode}">
-                  <ui:include src="ProcessItemActions.xhtml">
+                  <ui:include src="ProcessItemExpressActions.xhtml">
                     <ui:param name="processType" value="process" />
-                    <ui:param name="canShowExpressActions" value="true" />
                   </ui:include>
                 </h:panelGroup>
               </h:form>

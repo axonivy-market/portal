@@ -30,10 +30,6 @@ public class TaskWidgetBean implements Serializable {
 
   public TaskWidgetBean() {
     expandedTaskId = -1L;
-    if(dataModel == null) {
-      dataModel = new TaskLazyDataModel();
-      dataModel.setCompactMode(true);
-    }
     String taskListRefreshIntervalUserSetting =
         new GlobalSettingService().findGlobalSettingValue(GlobalVariable.REFRESH_TASK_LIST_INTERVAL.toString());
     taskListRefreshInterval =
