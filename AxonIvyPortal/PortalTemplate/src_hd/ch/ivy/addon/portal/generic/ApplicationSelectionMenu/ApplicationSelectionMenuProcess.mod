@@ -291,9 +291,7 @@ As0 f94 actionTable 'out=in;
 As0 f94 actionCode 'import ch.ivy.addon.portalkit.comparator.ApplicationIndexAscendingComparator;
 import java.util.Collections;
 
-if (in.applications != null) {
-	Collections.sort(in.applications, new ApplicationIndexAscendingComparator());
-}' #txt
+Collections.sort(in.applications, new ApplicationIndexAscendingComparator());' #txt
 As0 f94 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f94 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
