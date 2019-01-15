@@ -221,12 +221,10 @@ import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
 import org.primefaces.component.button.Button;
 import ch.ivyteam.ivy.server.ServerFactory;
 
-
 ApplicationService applicationService = new ApplicationService();
 int numberOfIvyApplications = applicationService.countIvyApplications(in.applications);
 SecurityServiceUtils.removeSessionAttribute(SessionAttribute.SELECTED_APP.toString());
 SecurityServiceUtils.removeSessionAttribute(SessionAttribute.SELECTED_APP_DISPLAY_NAME.toString());
-SecurityServiceUtils.removeSessionAttribute(SessionAttribute.SERVER_ID.toString());
 
 for (Application application : in.applications){
 	if (application.isVisible) {
@@ -293,7 +291,9 @@ As0 f94 actionTable 'out=in;
 As0 f94 actionCode 'import ch.ivy.addon.portalkit.comparator.ApplicationIndexAscendingComparator;
 import java.util.Collections;
 
-Collections.sort(in.applications, new ApplicationIndexAscendingComparator());' #txt
+if (in.applications != null) {
+	Collections.sort(in.applications, new ApplicationIndexAscendingComparator());
+}' #txt
 As0 f94 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f94 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
