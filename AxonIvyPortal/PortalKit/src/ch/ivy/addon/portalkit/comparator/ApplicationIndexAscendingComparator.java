@@ -8,6 +8,6 @@ public class ApplicationIndexAscendingComparator implements Comparator<Applicati
 
 	@Override
 	public int compare(Application firstApplication, Application secondApplication) {
-		return firstApplication.getMenuOrdinal().compareTo(secondApplication.getMenuOrdinal());
+		return Integer.compare(firstApplication.getMenuOrdinal(), secondApplication.getMenuOrdinal());
 	}
 }
