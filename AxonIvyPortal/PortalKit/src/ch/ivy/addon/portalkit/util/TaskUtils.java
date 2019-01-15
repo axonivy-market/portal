@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -47,12 +48,10 @@ public final class TaskUtils {
       IWorkflowSession iWorkflowSession = null;
       try {
         iWorkflowSession = findUserWorkflowSession(Ivy.session().getSessionUserName(), task.getApplication());
-        if (task.getState() == TaskState.SUSPENDED || task.getState() == TaskState.RESUMED || task.getState() == TaskState.CREATED) {
-          iWorkflowSession.parkTask(task);
-        }
+        iWorkflowSession.parkTask(task);
         return null;
       } finally {
-        if (iWorkflowSession != null) {
+        if (iWorkflowSession != null && !Objects.equals(Ivy.wf().getApplication(), task.getApplication())) {
           ISecurityContext securityContext = task.getApplication().getSecurityContext();
           securityContext.destroySession(iWorkflowSession.getIdentifier());
         }
@@ -60,7 +59,11 @@ public final class TaskUtils {
     });
   }
   
-  private static IWorkflowSession findUserWorkflowSession(String username, IApplication app) {
+  public static IWorkflowSession findUserWorkflowSession(String username, IApplication app) {
+    if (Objects.equals(Ivy.wf().getApplication(), app)) {
+      return Ivy.session();
+    }
+    
     ISecurityContext securityContext = app.getSecurityContext();
     return IvyExecutor.executeAsSystem(() -> {
       ISession session = securityContext.createSession();
@@ -68,7 +71,7 @@ public final class TaskUtils {
 
       if (user != null) {
         String authenticationMode = "customAuth";
-        session.authenticateSessionUser(user, authenticationMode, Ivy.wfTask().getId());
+        session.authenticateSessionUser(user, authenticationMode, -1L);
       }
       return Ivy.wf().getWorkflowSession(session);
     });
