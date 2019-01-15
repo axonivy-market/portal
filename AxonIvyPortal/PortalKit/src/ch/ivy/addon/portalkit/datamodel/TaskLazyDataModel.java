@@ -47,12 +47,12 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   private static final long serialVersionUID = -6615871274830927272L;
 
-  protected static final int BUFFER_LOAD = 10;
   protected String taskWidgetComponentId;
   protected String caseName;
   protected int rowIndex;
   protected TaskSearchCriteria criteria;
-
+  protected List<ITask> data;
+  
   protected TaskFilterContainer filterContainer;
   private TaskInProgressByOthersFilter inProgressFilter;
   private TaskFilterData selectedTaskFilterData;
@@ -78,6 +78,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     this.taskWidgetComponentId = taskWidgetComponentId;
     selectedFilters = new ArrayList<>();
     criteria = buildCriteria();
+    data = new ArrayList<>();
     if (shouldSaveAndLoadSessionFilters() && !isMobile) {
       selectedTaskFilterData = UserUtils.getSessionSelectedTaskFilterSetAttribute();
       inProgressFilter = UserUtils.getSessionTaskInProgressFilterAttribute();
@@ -173,6 +174,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     if (!isMobile) {
       RequestContext.getCurrentInstance().execute("taskListToolKit.responsive()");
     }
+    data.addAll(foundTasks);
     return foundTasks;
   }
 
@@ -186,8 +188,8 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    */
   protected List<ITask> findTasks(TaskSearchCriteria criteria, int first, int pageSize) {
     IvyComponentLogicCaller<List<ITask>> findTaskCaller = new IvyComponentLogicCaller<>();
-    int startIndex = first - BUFFER_LOAD;
-    int count = pageSize + BUFFER_LOAD;
+    int startIndex = first;
+    int count = pageSize;
     if (startIndex < 0) {
       startIndex = 0;
       count = first + pageSize;
@@ -198,6 +200,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   protected void initializedDataModel(TaskSearchCriteria criteria) {
     criteria.setInvolvedUsername(Ivy.session().getSessionUserName());
+    data.clear();
     buildQueryToSearchCriteria();
     setRowCount(getTaskCount(criteria));
   }
@@ -590,6 +593,28 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     setDisableSelectionCheckboxes(isAutoHideColumns);
   }
 
+  @Override
+  public void setRowIndex(int index) {
+    int idx = index;
+    if (idx >= data.size()) {
+      idx = -1;
+    }
+    this.rowIndex = idx;
+  }
+
+  @Override
+  public ITask getRowData() {
+    return data.get(rowIndex);
+  }
+
+  @Override
+  public boolean isRowAvailable() {
+    if (data == null) {
+      return false;
+    }
+    return rowIndex >= 0 && rowIndex < data.size();
+  }
+  
   /**
    * <p>
    * Your customized data model needs to override this method if your customized task list has new
