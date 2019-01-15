@@ -12,14 +12,12 @@ import org.apache.commons.lang.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivyteam.ivy.application.IApplication;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISession;
-import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
-import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 
@@ -67,12 +65,12 @@ public class TaskActionBean {
     
     ISession session = null;
     try {
-      session = createSession(Ivy.session().getSessionUserName(), task.getApplication());
+      session = TaskUtils.findUserWorkflowSession(Ivy.session().getSessionUserName(), task.getApplication());
       boolean canResume = task.canUserResumeTask(session).wasSuccessful();
       canResumeByTaskId.put(task.getId(), canResume);
       return canResume;
     } finally {
-      if (session != null) {
+      if (session != null && !Objects.equals(Ivy.wf().getApplication(), task.getApplication())) {
         ISecurityContext securityContext = task.getApplication().getSecurityContext();
         securityContext.destroySession(session.getIdentifier());
       }
@@ -132,19 +130,5 @@ public class TaskActionBean {
     EnumSet<TaskState> taskStates =
         EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.SUSPENDED, TaskState.UNASSIGNED);
     return taskStates.contains(task.getState());
-  }
-
-  private ISession createSession(String username, IApplication app) throws Exception {
-    ISecurityContext securityContext = app.getSecurityContext();
-    return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
-      ISession session = securityContext.createSession();
-      IUser user = securityContext.findUser(username);
-
-      if (user != null) {
-        String authenticationMode = "customAuth";
-        session.authenticateSessionUser(user, authenticationMode);
-      }
-      return session;
-    });
   }
 }
