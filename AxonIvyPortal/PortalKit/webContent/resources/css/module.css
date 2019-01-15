@@ -2174,6 +2174,10 @@ a.case-details-document-add-link {
   display: inline-flex;
 }
 
+.process-start-list-item .express-icon.open-icon {
+  color: rgba(0,0,0,0.5) !important;
+}
+
 .process-start-list-item .process-start-list-item-action .express-workflow {
   display: none;
   font-size: 1.4rem;

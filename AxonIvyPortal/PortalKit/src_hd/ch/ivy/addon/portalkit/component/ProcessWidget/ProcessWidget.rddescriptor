@@ -11,16 +11,6 @@
             <nullPermitted>false</nullPermitted>
         </outputParameter>
     </method>
-    <method>
-        <name>collectExpressProcesses</name>
-        <description></description>
-        <outputParameter>
-            <name>expressProcesses</name>
-            <description></description>
-            <parameterType>java.util.List&lt;ch.ivy.addon.portalkit.bo.ExpressProcess&gt;</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </outputParameter>
-    </method>
     <startMethod>
         <name>start</name>
         <description></description>
