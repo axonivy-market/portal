@@ -63,9 +63,11 @@ Pt0 @PushWFArc f49 '' #zField
 Pt0 @GridStep f51 '' #zField
 Pt0 @PushWFArc f54 '' #zField
 Pt0 @PushWFArc f14 '' #zField
+Pt0 @EndTask f57 '' #zField
 Pt0 @StartRequest f63 '' #zField
 Pt0 @StartRequest f70 '' #zField
 Pt0 @CallSub f55 '' #zField
+Pt0 @EndTask f64 '' #zField
 Pt0 @StartRequest f76 '' #zField
 Pt0 @GridStep f69 '' #zField
 Pt0 @StartRequest f58 '' #zField
@@ -77,6 +79,8 @@ Pt0 @GridStep f59 '' #zField
 Pt0 @CallSub f62 '' #zField
 Pt0 @PushWFArc f60 '' #zField
 Pt0 @PushWFArc f61 '' #zField
+Pt0 @PushWFArc f65 '' #zField
+Pt0 @PushWFArc f66 '' #zField
 Pt0 @PushWFArc f67 '' #zField
 Pt0 @PushWFArc f71 '' #zField
 Pt0 @PushWFArc f77 '' #zField
@@ -933,6 +937,9 @@ Pt0 f54 expr out #txt
 Pt0 f54 77 160 152 160 #arcP
 Pt0 f14 expr out #txt
 Pt0 f14 280 160 312 160 #arcP
+Pt0 f57 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f57 789 626 30 30 0 15 #rect
+Pt0 f57 @|EndIcon #fIcon
 Pt0 f63 outLink startPortalTask.ivp #txt
 Pt0 f63 type ch.ivy.addon.portal.generic.PortalTaskData #txt
 Pt0 f63 inParamDecl '<> param;' #txt
@@ -1011,6 +1018,9 @@ Pt0 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f55 504 617 112 48 -49 -12 #rect
 Pt0 f55 @|CallSubIcon #fIcon
+Pt0 f64 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f64 789 721 30 30 0 15 #rect
+Pt0 f64 @|EndIcon #fIcon
 Pt0 f76 outLink startPortalProcess.ivp #txt
 Pt0 f76 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f76 inParamDecl '<> param;' #txt
@@ -1242,6 +1252,10 @@ Pt0 f60 expr out #txt
 Pt0 f60 432 640 504 641 #arcP
 Pt0 f61 expr out #txt
 Pt0 f61 268 641 304 640 #arcP
+Pt0 f65 expr out #txt
+Pt0 f65 612 736 789 736 #arcP
+Pt0 f66 expr out #txt
+Pt0 f66 616 641 789 641 #arcP
 Pt0 f67 expr out #txt
 Pt0 f67 424 736 508 736 #arcP
 Pt0 f71 expr out #txt
@@ -1730,12 +1744,16 @@ Pt0 f62 mainOut f61 tail #connect
 Pt0 f61 head f59 mainIn #connect
 Pt0 f59 mainOut f60 tail #connect
 Pt0 f60 head f55 mainIn #connect
+Pt0 f55 mainOut f66 tail #connect
+Pt0 f66 head f57 mainIn #connect
 Pt0 f58 mainOut f71 tail #connect
 Pt0 f71 head f62 mainIn #connect
 Pt0 f73 mainOut f118 tail #connect
 Pt0 f118 head f69 mainIn #connect
 Pt0 f69 mainOut f67 tail #connect
 Pt0 f67 head f84 mainIn #connect
+Pt0 f84 mainOut f65 tail #connect
+Pt0 f65 head f64 mainIn #connect
 Pt0 f63 mainOut f77 tail #connect
 Pt0 f77 head f73 mainIn #connect
 Pt0 f70 mainOut f78 tail #connect
