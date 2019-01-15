@@ -60,8 +60,8 @@
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskName task="#{task}" dataModel="#{taskView.dataModel}" />
       </div>
 
-      <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible userName="#{task.activatorUserName}"
-        fullName="#{task.activatorFullName}" styleClass="activatior-column #{taskView.dataModel.isAutoHideColumns()? 'hidden-sm':''}" 
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible userName="#{task.activatorName}"
+        fullName="#{task.activator.displayName}" styleClass="activatior-column #{taskView.dataModel.isAutoHideColumns()? 'hidden-sm':''}" 
         dataModel="#{taskView.dataModel}" />
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskId value="#{task.getId()}" dataModel="#{taskView.dataModel}" />
 
