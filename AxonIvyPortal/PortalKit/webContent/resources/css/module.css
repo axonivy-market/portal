@@ -4344,6 +4344,10 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   width: 100%;
 }
 
+.chart-info-container .display-block {
+  display: block;
+}
+
 .chart-info-container,
 .chart-info-container.ui-panelgrid tbody tr td {
   vertical-align: top;
