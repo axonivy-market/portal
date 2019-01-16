@@ -6,19 +6,15 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
-import junit.framework.Assert;
-
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import ch.ivy.addon.portalkit.persistence.domain.Server;
-import ch.ivy.addon.portalkit.service.ServerService;
 import ch.ivyteam.ivy.environment.Ivy;
+import junit.framework.Assert;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(Ivy.class)
@@ -58,18 +54,6 @@ public class UrlDetectorTest {
     Assert.assertEquals("https://www.google.com", detector.getHost("https://www.google.com:443/ivy/designer"));
   }
   
-  @Test
-  @PrepareForTest({UrlDetector.class, ServerService.class})
-  public void testGetHostByServer() throws Exception {
-    UrlDetector detector = new UrlDetector();
-    ServerService serverService = PowerMockito.mock(ServerService.class);
-    PowerMockito.whenNew(ServerService.class).withNoArguments().thenReturn(serverService);
-    PowerMockito.when(serverService.isMultiServers()).thenReturn(true);
-    Server server = new Server();
-    server.setPath("http://google.com");
-    Assert.assertEquals("http://google.com", detector.getHost(StringUtils.EMPTY, server));
-  }
-
   private FacesContext mockBaseUrl(String scheme, String serverName, int serverPort, String contextPath) {
     HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
     Mockito.when(request.getScheme()).thenReturn(scheme);
