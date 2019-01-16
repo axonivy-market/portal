@@ -245,7 +245,7 @@ public class AbstractDaoTest {
   
   @Test
   public void testGetPropertyPrefixKey() throws Exception{
-    String expectedPropertyPrefixKey = "AxonIvyPortal.Test";
+    String expectedPropertyPrefixKey = "AxonIvyPortal.Test.";
     when(abstractDao, "getEntityClassName").thenReturn("Test");
     when(abstractDao, "getPropertyPrefixKey").thenCallRealMethod();
     String actualPropertyPrefixKey = Whitebox.invokeMethod(abstractDao, "getPropertyPrefixKey");

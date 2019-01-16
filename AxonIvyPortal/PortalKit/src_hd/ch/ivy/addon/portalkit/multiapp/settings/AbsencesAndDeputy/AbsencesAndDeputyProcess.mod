@@ -152,11 +152,11 @@ As0 @PushWFArc f21 '' #zField
 As0 @Alternative f24 '' #zField
 As0 @PushWFArc f25 '' #zField
 As0 @PushWFArc f29 '' #zField
-As0 @PushWFArc f112 '' #zField
-As0 @PushWFArc f67 '' #zField
 As0 @GridStep f69 '' #zField
 As0 @PushWFArc f127 '' #zField
 As0 @PushWFArc f105 '' #zField
+As0 @PushWFArc f133 '' #zField
+As0 @PushWFArc f67 '' #zField
 >Proto As0 As0 AbsencesAndDeputyProcess #zField
 As0 f0 guid 1679C986E063D36E #txt
 As0 f0 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
@@ -999,6 +999,7 @@ As0 f60 actionTable 'out=in;
 As0 f60 actionCode 'import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
 
 out.substituteRoot = AbsenceAndSubstituteUtils.buildSustitute(in.selectedUser, in.substitutesByApp, in.usersByApp);' #txt
+As0 f60 security system #txt
 As0 f60 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1479,10 +1480,6 @@ As0 f29 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f29 496 352 568 352 #arcP
 As0 f29 0 0.4642857142857143 0 -12 #arcLabel
-As0 f112 expr out #txt
-As0 f112 1768 1718 1768 1770 #arcP
-As0 f67 expr in #txt
-As0 f67 1528 1696 1696 1696 #arcP
 As0 f69 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
 ' #txt
 As0 f69 actionTable 'out=in;
@@ -1516,6 +1513,10 @@ As0 f127 0 0.4875 -19 0 #arcLabel
 As0 f105 expr out #txt
 As0 f105 480 234 480 176 #arcP
 As0 f105 0 0.4875 -19 0 #arcLabel
+As0 f133 expr in #txt
+As0 f133 1528 1696 1592 1696 #arcP
+As0 f67 expr out #txt
+As0 f67 1840 1696 1907 1696 #arcP
 >Proto As0 .type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1674,12 +1675,12 @@ As0 f21 head f83 in #connect
 As0 f101 mainOut f25 tail #connect
 As0 f25 head f24 in #connect
 As0 f29 head f104 mainIn #connect
-As0 f60 mainOut f112 tail #connect
-As0 f112 head f70 mainIn #connect
-As0 f97 out f67 tail #connect
-As0 f67 head f60 mainIn #connect
 As0 f24 out f127 tail #connect
 As0 f127 head f69 mainIn #connect
 As0 f24 out f29 tail #connect
 As0 f69 mainOut f105 tail #connect
 As0 f105 head f17 in #connect
+As0 f97 out f133 tail #connect
+As0 f133 head f68 in #connect
+As0 f60 mainOut f67 tail #connect
+As0 f67 head f59 mainIn #connect
