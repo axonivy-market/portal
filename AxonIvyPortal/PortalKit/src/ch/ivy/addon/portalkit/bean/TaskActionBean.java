@@ -112,8 +112,8 @@ public class TaskActionBean {
   }
   
   public boolean canChangeExpiry(ITask task) {
-    return isNotDone(task) && hasPermission(task, IPermission.TASK_WRITE_EXPIRY_TIMESTAMP) && task.getExpiryActivator() != null
-        && StringUtils.isNotBlank(task.getExpiryTaskStartElementPid());
+    return (hasPermission(task, IPermission.TASK_WRITE_EXPIRY_TIMESTAMP) && task.getExpiryActivator() != null)
+        || StringUtils.isNotBlank(task.getExpiryTaskStartElementPid());
   }
   
   public boolean notHaveExpiryHandleLogic(ITask task) {
