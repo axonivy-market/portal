@@ -80,12 +80,11 @@
       <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseCategory')}" />
       <h:outputText id="case-category" value="#{task.getCase().getBusinessCase().categoryPath}" />
 
-      <h:panelGroup rendered="#{task.getCase().getId() != task.getCase().getBusinessCase().getId()}">
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/technicalCase')}" />
-        <p:commandLink id="related-technical-case" value="#{taskBean.getTechnicalCaseDisplayName(task)}"
-          actionListener="#{logic.navigateToRelatedCase(task.getCase())}">
-        </p:commandLink>
-      </h:panelGroup>
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/technicalCase')}"
+        rendered="#{task.getCase().getId() != task.getCase().getBusinessCase().getId()}" />
+      <p:commandLink id="related-technical-case" value="#{taskBean.getTechnicalCaseDisplayName(task)}"
+        actionListener="#{logic.navigateToRelatedCase(task.getCase())}"
+        rendered="#{task.getCase().getId() != task.getCase().getBusinessCase().getId()}" />
 
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}" />
       <h:outputText id="start-date" value="#{task.startTimestamp}">
