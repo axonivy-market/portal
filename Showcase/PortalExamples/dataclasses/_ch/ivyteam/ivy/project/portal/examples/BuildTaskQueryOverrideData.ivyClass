@@ -1,0 +1,4 @@
+BuildTaskQueryOverrideData #class
+_ch.ivyteam.ivy.project.portal.examples #namespace
+taskQuery ch.ivyteam.ivy.workflow.query.TaskQuery #field
+isQueryForHomePage Boolean #field

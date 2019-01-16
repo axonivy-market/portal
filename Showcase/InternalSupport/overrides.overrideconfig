@@ -6,7 +6,7 @@
     /Functional-Processes.InitializeTaskDataModel "Functional Processes/InitializeTaskDataModelOverride"
     /Functional-Processes.OpenPortalTasks "Functional Processes/OpenPortalTasksOverride"
     /Functional-Processes.CustomPortalConfig "Functional Processes/CustomPortalConfigOverride"
-    /Functional-Processes.BuildCaseQuery "Functional Processes/BuildCaseJsonQueryOverride"
+    /Functional-Processes.BuildCaseQuery "Functional Processes/BuildCaseQueryOverride"
     /Functional-Processes.OpenPortalCases "Functional Processes/OpenPortalCasesOverride"
   }
 }
