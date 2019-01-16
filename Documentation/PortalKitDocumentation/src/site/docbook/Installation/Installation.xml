@@ -583,7 +583,7 @@
 						<row>
 							<entry>PortalHiddenTaskCaseCustomField</entry>
 							<entry>CustomDecimalField5</entry>
-							<entry>Name of custom field which store value of hidden task, case. It's case sensitive and can be CustomVarCharField1, CustomVarCharField2,
+							<entry>Name of custom field which store value of hidden task, case. It can be CustomVarCharField1, CustomVarCharField2,
 							CustomVarCharField3, CustomVarCharField4, CustomVarCharField5, CustomTimestampField1, CustomTimestampField2, CustomTimestampField3, CustomTimestampField4, CustomTimestampField5, 
 							CustomDecimalField1, CustomDecimalField2, CustomDecimalField3, CustomDecimalField4 or CustomDecimalField5.  
 							If empty, it will store hidden info to addtional property name "HIDE". 
@@ -690,7 +690,7 @@
 			</sect3>
 		</sect2>
 		<sect2>
-			<title>Migrate 7.0.x to 7.0.9</title>
+			<title>Migrate 7.0.x to 7.0.10</title>
 			<sect3>
 				<title>Migrate hidden task and case</title>
 				<para>
@@ -706,7 +706,7 @@
 					This value must be the same for all applications.</listitem>
 					<listitem>Deploy this project <link xlink:href="documents/MigrateHiddenTaskCase.iar">MigrateHiddenTaskCase.iar</link> to all your portal applications</listitem>
 					<listitem>In each application, run start process <code>MigrateHiddenTaskCase</code> to migrate.</listitem>
-					<listitem>After migration finishes succesfully, run start process <code>RemoveHideAddtionalProperty</code> in each application to clean up HIDE addtional property. It's will delete HIDE additional property of all tasks and cases in current application. So be careful with it.</listitem>
+					<listitem>After migration finishes succesfully, run start process <code>RemoveHideAddtionalProperty</code> in each application to clean up HIDE addtional property. It will delete HIDE additional property of all tasks and cases in current application. So be careful with it.</listitem>
 				</orderedlist>
 			</sect3>
 		</sect2>

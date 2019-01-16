@@ -23,8 +23,4 @@ public class GlobalVariable {
   
   public static final String ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT = "ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT";
   public static final String UPLOAD_DOCUMENT_WHITELIST_EXTENSION = "UPLOAD_DOCUMENT_WHITELIST_EXTENSION";
-  
-  
-  // Ivy global variable
-  public static final String PORTAL_HIDDEN_TASK_CASE_CUSTOM_FIELD = "PortalHiddenTaskCaseCustomField";
 }

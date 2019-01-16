@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import ch.ivy.addon.portalkit.persistence.variable.IvyVariable;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
@@ -14,13 +15,11 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
 
 public class DeleteFinishedHiddenCasesService {
 
-  private static final String DELETE_ALL_FINISHED_HIDDEN_CASES = "PortalDeleteAllFinishedHiddenCases";
-
   public void deleteFinishedHiddenCases() {
 	    Date currentDate = new java.util.Date();
 	    Ivy.log().info("***Job for deleting finished hidden system cases started at: " + currentDate + " by user: " + Ivy.session().getSessionUserName());
 
-	    boolean shouldDeleteAllCases = Boolean.parseBoolean(Ivy.var().get(DELETE_ALL_FINISHED_HIDDEN_CASES));
+	    boolean shouldDeleteAllCases = Boolean.parseBoolean(Ivy.var().get(IvyVariable.DELETE_ALL_FINISHED_HIDDEN_CASES));
 	    PortalConnectorDetector detector = new PortalConnectorDetector();
 	    IProcessModelVersion portalKitPMV = detector.findPortalPMVByLibraryId(Ivy.wf().getApplication(), PortalLibrary.PORTAL_KIT.getValue());
 	    CaseQuery caseQuery = CaseQuery.create();

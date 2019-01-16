@@ -9,7 +9,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.Contact;
 import ch.ivy.addon.portalkit.bo.RemoteCase;
-import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
+import ch.ivy.addon.portalkit.persistence.variable.CustomField;
+import ch.ivy.addon.portalkit.persistence.variable.IvyVariable;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.vo.CaseVO;
 import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
@@ -640,54 +641,54 @@ public final class CaseUtils {
    * @throws PersistencyException 
    */
   public static void setHidePropertyToHideInPortal(ICase iCase) throws PersistencyException, EnvironmentNotAvailableException, Exception {
-    String hiddenTasksCasesCustomField = Ivy.var().get(GlobalVariable.PORTAL_HIDDEN_TASK_CASE_CUSTOM_FIELD);
+    String hiddenTasksCasesCustomField = Ivy.var().get(IvyVariable.PORTAL_HIDDEN_TASK_CASE_CUSTOM_FIELD);
     Date defaultTimestamp = new Date();
     String defaultVarChar = "1";
     int defaultDecimal = 1;
     switch (hiddenTasksCasesCustomField.toLowerCase()){
-      case "customvarcharfield1": 
+      case CustomField.CUSTOM_VARCHAR_FIELD1: 
         iCase.setCustomVarCharField1(defaultVarChar);
         break;
-      case "customvarcharfield2":
+      case CustomField.CUSTOM_VARCHAR_FIELD2:
         iCase.setCustomVarCharField2(defaultVarChar);
         break;
-      case "customvarcharfield3":
+      case CustomField.CUSTOM_VARCHAR_FIELD3:
         iCase.setCustomVarCharField3(defaultVarChar);
         break;
-      case "customvarcharfield4":
+      case CustomField.CUSTOM_VARCHAR_FIELD4:
         iCase.setCustomVarCharField4(defaultVarChar);
         break;
-      case "customvarcharfield5":
+      case CustomField.CUSTOM_VARCHAR_FIELD5:
         iCase.setCustomVarCharField5(defaultVarChar);
         break;
-      case "customdecimalfield1":
+      case CustomField.CUSTOM_DECIMAL_FIELD1:
         iCase.setCustomDecimalField1(defaultDecimal);
         break;
-      case "customdecimalfield2":
+      case CustomField.CUSTOM_DECIMAL_FIELD2:
         iCase.setCustomDecimalField2(defaultDecimal);
         break;
-      case "customdecimalfield3":
+      case CustomField.CUSTOM_DECIMAL_FIELD3:
         iCase.setCustomDecimalField3(defaultDecimal);
         break;
-      case "customdecimalfield4":
+      case CustomField.CUSTOM_DECIMAL_FIELD4:
         iCase.setCustomDecimalField4(defaultDecimal);
         break;
-      case "customdecimalfield5":
+      case CustomField.CUSTOM_DECIMAL_FIELD5:
         iCase.setCustomDecimalField5(defaultDecimal);
         break;
-      case "customtimestampfield1":
+      case CustomField.CUSTOM_TIMESTAMP_FIELD1:
         iCase.setCustomTimestampField1(defaultTimestamp);
         break;
-      case "customtimestampfield2":
+      case CustomField.CUSTOM_TIMESTAMP_FIELD2:
         iCase.setCustomTimestampField2(defaultTimestamp);
         break;
-      case "customtimestampfield3":
+      case CustomField.CUSTOM_TIMESTAMP_FIELD3:
         iCase.setCustomTimestampField3(defaultTimestamp);
         break; 
-      case "customtimestampfield4":
+      case CustomField.CUSTOM_TIMESTAMP_FIELD4:
         iCase.setCustomTimestampField4(defaultTimestamp);
         break;
-      case "customtimestampfield5":
+      case CustomField.CUSTOM_TIMESTAMP_FIELD5:
         iCase.setCustomTimestampField5(defaultTimestamp);
         break;  
       default:
@@ -704,51 +705,51 @@ public final class CaseUtils {
    * @throws PersistencyException 
    */
   public static void removeHidePropertyToDisplayInPortal(ICase iCase) throws PersistencyException, EnvironmentNotAvailableException, Exception {
-    String hiddenTasksCasesCustomField = Ivy.var().get(GlobalVariable.PORTAL_HIDDEN_TASK_CASE_CUSTOM_FIELD);
+    String hiddenTasksCasesCustomField = Ivy.var().get(IvyVariable.PORTAL_HIDDEN_TASK_CASE_CUSTOM_FIELD);
     switch (hiddenTasksCasesCustomField.toLowerCase()){
-      case "customvarcharfield1": 
+      case CustomField.CUSTOM_VARCHAR_FIELD1: 
         iCase.setCustomVarCharField1(null);
         break;
-      case "customvarcharfield2":
+      case CustomField.CUSTOM_VARCHAR_FIELD2:
         iCase.setCustomVarCharField2(null);
         break;
-      case "customvarcharfield3":
+      case CustomField.CUSTOM_VARCHAR_FIELD3:
         iCase.setCustomVarCharField3(null);
         break;
-      case "customvarcharfield4":
+      case CustomField.CUSTOM_VARCHAR_FIELD4:
         iCase.setCustomVarCharField4(null);
         break;
-      case "customvarcharfield5":
+      case CustomField.CUSTOM_VARCHAR_FIELD5:
         iCase.setCustomVarCharField5(null);
         break;
-      case "customdecimalfield1":
+      case CustomField.CUSTOM_DECIMAL_FIELD1:
         iCase.setCustomDecimalField1(null);
         break;
-      case "customdecimalfield2":
+      case CustomField.CUSTOM_DECIMAL_FIELD2:
         iCase.setCustomDecimalField2(null);
         break;
-      case "customdecimalfield3":
+      case CustomField.CUSTOM_DECIMAL_FIELD3:
         iCase.setCustomDecimalField3(null);
         break;
-      case "customdecimalfield4":
+      case CustomField.CUSTOM_DECIMAL_FIELD4:
         iCase.setCustomDecimalField4(null);
         break;
-      case "customdecimalfield5":
+      case CustomField.CUSTOM_DECIMAL_FIELD5:
         iCase.setCustomDecimalField5(null);
         break;
-      case "customtimestampfield1":
+      case CustomField.CUSTOM_TIMESTAMP_FIELD1:
         iCase.setCustomTimestampField1(null);
         break;
-      case "customtimestampfield2":
+      case CustomField.CUSTOM_TIMESTAMP_FIELD2:
         iCase.setCustomTimestampField2(null);
         break;
-      case "customtimestampfield3":
+      case CustomField.CUSTOM_TIMESTAMP_FIELD3:
         iCase.setCustomTimestampField3(null);
         break; 
-      case "customtimestampfield4":
+      case CustomField.CUSTOM_TIMESTAMP_FIELD4:
         iCase.setCustomTimestampField4(null);
         break;
-      case "customtimestampfield5":
+      case CustomField.CUSTOM_TIMESTAMP_FIELD5:
         iCase.setCustomTimestampField5(null);
         break;  
       default:

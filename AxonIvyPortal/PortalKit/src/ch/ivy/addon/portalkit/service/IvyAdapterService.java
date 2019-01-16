@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
+import ch.ivy.addon.portalkit.persistence.variable.IvyVariable;
 import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.ISubProcessStart;
@@ -18,7 +19,7 @@ import ch.ivyteam.ivy.service.ServiceException;
  * This class is to implement method to get information of Ivy
  */
 public class IvyAdapterService {
-  private static final String PORTAL_CALL_WEBSERVICE_MAX_RETRY = "PortalCallWebserviceMaxRetry";
+  
 
   /**
    * Get maximum time global variable that portal can retry to synchronize data to other portals,
@@ -27,11 +28,11 @@ public class IvyAdapterService {
    * @return maximum times
    */
   public Integer getMaximumRetryPortalDataSynchonizationTimes() {
-    String retryTimesLiteral = Ivy.var().get(PORTAL_CALL_WEBSERVICE_MAX_RETRY);
+    String retryTimesLiteral = Ivy.var().get(IvyVariable.PORTAL_CALL_WEBSERVICE_MAX_RETRY);
     try {
       return Integer.valueOf(retryTimesLiteral);
     } catch (NumberFormatException e) {
-      String message = String.format("Value of global variable %s  is not number", PORTAL_CALL_WEBSERVICE_MAX_RETRY);
+      String message = String.format("Value of global variable %s  is not number", IvyVariable.PORTAL_CALL_WEBSERVICE_MAX_RETRY);
       Ivy.log().error(message, e);
     }
     return 0;

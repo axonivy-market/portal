@@ -18,7 +18,8 @@ import ch.ivy.add.portalkit.admin.Task;
 import ch.ivy.addon.portalkit.bo.NodeObject;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
-import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
+import ch.ivy.addon.portalkit.persistence.variable.CustomField;
+import ch.ivy.addon.portalkit.persistence.variable.IvyVariable;
 import ch.ivy.addon.portalkit.vo.TaskVO;
 import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -700,54 +701,54 @@ public final class TaskUtils {
    * @throws PersistencyException 
    */
   public static void setHidePropertyToHideInPortal(ITask task) throws PersistencyException, EnvironmentNotAvailableException, Exception {
-    String hiddenTasksCasesCustomField = Ivy.var().get(GlobalVariable.PORTAL_HIDDEN_TASK_CASE_CUSTOM_FIELD);
+    String hiddenTasksCasesCustomField = Ivy.var().get(IvyVariable.PORTAL_HIDDEN_TASK_CASE_CUSTOM_FIELD);
     Date defaultTimestamp = new Date();
     String defaultVarChar = "1";
     int defaultDecimal = 1;
     switch (hiddenTasksCasesCustomField.toLowerCase()){
-      case "customvarcharfield1": 
+      case CustomField.CUSTOM_VARCHAR_FIELD1: 
         task.setCustomVarCharField1(defaultVarChar);
         break;
-      case "customvarcharfield2":
+      case CustomField.CUSTOM_VARCHAR_FIELD2:
         task.setCustomVarCharField2(defaultVarChar);
         break;
-      case "customvarcharfield3":
+      case CustomField.CUSTOM_VARCHAR_FIELD3:
         task.setCustomVarCharField3(defaultVarChar);
         break;
-      case "customvarcharfield4":
+      case CustomField.CUSTOM_VARCHAR_FIELD4:
         task.setCustomVarCharField4(defaultVarChar);
         break;
-      case "customvarcharfield5":
+      case CustomField.CUSTOM_VARCHAR_FIELD5:
         task.setCustomVarCharField5(defaultVarChar);
         break;
-      case "customdecimalfield1":
+      case CustomField.CUSTOM_DECIMAL_FIELD1:
         task.setCustomDecimalField1(defaultDecimal);
         break;
-      case "customdecimalfield2":
+      case CustomField.CUSTOM_DECIMAL_FIELD2:
         task.setCustomDecimalField2(defaultDecimal);
         break;
-      case "customdecimalfield3":
+      case CustomField.CUSTOM_DECIMAL_FIELD3:
         task.setCustomDecimalField3(defaultDecimal);
         break;
-      case "customdecimalfield4":
+      case CustomField.CUSTOM_DECIMAL_FIELD4:
         task.setCustomDecimalField4(defaultDecimal);
         break;
-      case "customdecimalfield5":
+      case CustomField.CUSTOM_DECIMAL_FIELD5:
         task.setCustomDecimalField5(defaultDecimal);
         break;
-      case "customtimestampfield1":
+      case CustomField.CUSTOM_TIMESTAMP_FIELD1:
         task.setCustomTimestampField1(defaultTimestamp);
         break;
-      case "customtimestampfield2":
+      case CustomField.CUSTOM_TIMESTAMP_FIELD2:
         task.setCustomTimestampField2(defaultTimestamp);
         break;
-      case "customtimestampfield3":
+      case CustomField.CUSTOM_TIMESTAMP_FIELD3:
         task.setCustomTimestampField3(defaultTimestamp);
         break; 
-      case "customtimestampfield4":
+      case CustomField.CUSTOM_TIMESTAMP_FIELD4:
         task.setCustomTimestampField4(defaultTimestamp);
         break;
-      case "customtimestampfield5":
+      case CustomField.CUSTOM_TIMESTAMP_FIELD5:
         task.setCustomTimestampField5(defaultTimestamp);
         break;  
       default:
@@ -764,51 +765,51 @@ public final class TaskUtils {
    * @throws PersistencyException 
    */
   public static void removeHidePropertyToDisplayInPortal(ITask task) throws PersistencyException, EnvironmentNotAvailableException, Exception {
-    String hiddenTasksCasesCustomField = Ivy.var().get(GlobalVariable.PORTAL_HIDDEN_TASK_CASE_CUSTOM_FIELD);
+    String hiddenTasksCasesCustomField = Ivy.var().get(IvyVariable.PORTAL_HIDDEN_TASK_CASE_CUSTOM_FIELD);
     switch (hiddenTasksCasesCustomField.toLowerCase()){
-      case "customvarcharfield1": 
+      case CustomField.CUSTOM_VARCHAR_FIELD1: 
         task.setCustomVarCharField1(null);
         break;
-      case "customvarcharfield2":
+      case CustomField.CUSTOM_VARCHAR_FIELD2:
         task.setCustomVarCharField2(null);
         break;
-      case "customvarcharfield3":
+      case CustomField.CUSTOM_VARCHAR_FIELD3:
         task.setCustomVarCharField3(null);
         break;
-      case "customvarcharfield4":
+      case CustomField.CUSTOM_VARCHAR_FIELD4:
         task.setCustomVarCharField4(null);
         break;
-      case "customvarcharfield5":
+      case CustomField.CUSTOM_VARCHAR_FIELD5:
         task.setCustomVarCharField5(null);
         break;
-      case "customdecimalfield1":
+      case CustomField.CUSTOM_DECIMAL_FIELD1:
         task.setCustomDecimalField1(null);
         break;
-      case "customdecimalfield2":
+      case CustomField.CUSTOM_DECIMAL_FIELD2:
         task.setCustomDecimalField2(null);
         break;
-      case "customdecimalfield3":
+      case CustomField.CUSTOM_DECIMAL_FIELD3:
         task.setCustomDecimalField3(null);
         break;
-      case "customdecimalfield4":
+      case CustomField.CUSTOM_DECIMAL_FIELD4:
         task.setCustomDecimalField4(null);
         break;
-      case "customdecimalfield5":
+      case CustomField.CUSTOM_DECIMAL_FIELD5:
         task.setCustomDecimalField5(null);
         break;
-      case "customtimestampfield1":
+      case CustomField.CUSTOM_TIMESTAMP_FIELD1:
         task.setCustomTimestampField1(null);
         break;
-      case "customtimestampfield2":
+      case CustomField.CUSTOM_TIMESTAMP_FIELD2:
         task.setCustomTimestampField2(null);
         break;
-      case "customtimestampfield3":
+      case CustomField.CUSTOM_TIMESTAMP_FIELD3:
         task.setCustomTimestampField3(null);
         break; 
-      case "customtimestampfield4":
+      case CustomField.CUSTOM_TIMESTAMP_FIELD4:
         task.setCustomTimestampField4(null);
         break;
-      case "customtimestampfield5":
+      case CustomField.CUSTOM_TIMESTAMP_FIELD5:
         task.setCustomTimestampField5(null);
         break;  
       default:
