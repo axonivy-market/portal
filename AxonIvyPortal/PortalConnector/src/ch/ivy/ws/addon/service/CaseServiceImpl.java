@@ -5,6 +5,7 @@ import static ch.ivy.ws.addon.util.HiddenTasksCasesConfig.isHiddenTasksCasesExcl
 
 
 
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,6 +16,7 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
+
 
 
 
@@ -38,6 +40,7 @@ import ch.ivy.ws.addon.types.IvyApplication;
 import ch.ivy.ws.addon.types.IvyCase;
 import ch.ivy.ws.addon.util.HiddenTasksCasesConfig;
 import ch.ivy.ws.addon.util.SessionUtil;
+import ch.ivy.ws.portaldata.model.CustomField;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.Binary;
@@ -53,6 +56,7 @@ import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.document.IDocument;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
+
 
 
 
@@ -776,49 +780,49 @@ public class CaseServiceImpl extends AbstractService implements ICaseService {
     if (isHiddenTasksCasesExcluded(apps)){
       String customField = HiddenTasksCasesConfig.getHiddenTasksCasesField(apps);
       switch (customField.toLowerCase()){
-        case "customvarcharfield1":
+        case CustomField.CUSTOM_VARCHAR_FIELD1:
           query.where().and().customVarCharField1().isNull();
           break;
-        case "customvarcharfield2":
+        case CustomField.CUSTOM_VARCHAR_FIELD2:
           query.where().and().customVarCharField2().isNull();
           break;
-        case "customvarcharfield3":
+        case CustomField.CUSTOM_VARCHAR_FIELD3:
           query.where().and().customVarCharField3().isNull();
           break;
-        case "customvarcharfield4":
+        case CustomField.CUSTOM_VARCHAR_FIELD4:
           query.where().and().customVarCharField4().isNull();
           break;
-        case "customvarcharfield5":
+        case CustomField.CUSTOM_VARCHAR_FIELD5:
           query.where().and().customVarCharField5().isNull();
           break;
-        case "customdecimalfield1":
+        case CustomField.CUSTOM_DECIMAL_FIELD1:
           query.where().and().customDecimalField1().isNull();
           break;
-        case "customdecimalfield2":
+        case CustomField.CUSTOM_DECIMAL_FIELD2:
           query.where().and().customDecimalField2().isNull();
           break;
-        case "customdecimalfield3":
+        case CustomField.CUSTOM_DECIMAL_FIELD3:
           query.where().and().customDecimalField3().isNull();
           break;
-        case "customdecimalfield4":
+        case CustomField.CUSTOM_DECIMAL_FIELD4:
           query.where().and().customDecimalField4().isNull();
           break;
-        case "customdecimalfield5":
+        case CustomField.CUSTOM_DECIMAL_FIELD5:
           query.where().and().customDecimalField5().isNull();
           break;
-        case "customtimestampfield1":
+        case CustomField.CUSTOM_TIMESTAMP_FIELD1:
           query.where().and().customTimestampField1().isNull();
           break;
-        case "customtimestampfield2":
+        case CustomField.CUSTOM_TIMESTAMP_FIELD2:
           query.where().and().customTimestampField2().isNull();
           break;
-        case "customtimestampfield3":
+        case CustomField.CUSTOM_TIMESTAMP_FIELD3:
           query.where().and().customTimestampField3().isNull();
           break;
-        case "customtimestampfield4":
+        case CustomField.CUSTOM_TIMESTAMP_FIELD4:
           query.where().and().customTimestampField4().isNull();
           break;
-        case "customtimestampfield5":
+        case CustomField.CUSTOM_TIMESTAMP_FIELD5:
           query.where().and().customTimestampField5().isNull();
           break;  
         default: 
