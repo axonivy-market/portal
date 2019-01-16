@@ -10,9 +10,11 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.NumberUtils;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.ICase;
 
@@ -27,9 +29,13 @@ public class CaseWidgetBean implements Serializable {
 
   private Long expandedCaseId;
   private ICase selectedCase;
+  private boolean isShowCaseDetails;
+  private boolean isShowAllTasksOfCase;
 
   public CaseWidgetBean() {
     expandedCaseId = -1L;
+    isShowCaseDetails = PermissionUtils.hasPortalPermission(PortalPermission.SHOW_CASE_DETAILS);
+    isShowAllTasksOfCase = PermissionUtils.hasPortalPermission(PortalPermission.SHOW_ALL_TASKS_OF_CASE);
   }
 
   public Long getExpandedCaseId() {
@@ -64,7 +70,7 @@ public class CaseWidgetBean implements Serializable {
     }
     return removeDuplicatedPartOfUrl(additionalCaseDetailsPageUri);
   }
-
+  
   public boolean isNaN(Number number){
     return NumberUtils.isNaN(number);
   }
@@ -87,5 +93,21 @@ public class CaseWidgetBean implements Serializable {
   private String removeDuplicatedPartOfUrl(String redirectLink) {
     String applicationContextPath = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
     return redirectLink.replaceFirst(applicationContextPath, ""); // remove duplicate contextPath in URL
+  }
+
+  public boolean isShowCaseDetails() {
+    return isShowCaseDetails;
+  }
+
+  public void setShowCaseDetails(boolean isShowCaseDetails) {
+    this.isShowCaseDetails = isShowCaseDetails;
+  }
+
+  public boolean isShowAllTasksOfCase() {
+    return isShowAllTasksOfCase;
+  }
+
+  public void setShowAllTasksOfCase(boolean isShowAllTasksOfCase) {
+    this.isShowAllTasksOfCase = isShowAllTasksOfCase;
   }
 }

@@ -2,13 +2,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
 
 <ui:composition>
   <div id="action-cell-#{rowIndex}" class="action-cell #{data.isShowTaskButtonLabels? 'with-button-labels' : 'without-button-labels'}">
     <div class="action-container">
-      <p:commandLink id="task-reset-command" onstart="event.stopPropagation();"
+      <p:commandLink id="task-reset-command" onstart="event.stopPropagation();" rendered="#{taskActionBean.showResetTask}"
         disabled="#{!taskActionBean.canReset(task)}" styleClass="task-command"
         actionListener="#{logic.resetTask(task)}" update="@parent :#{p:component('task-start')}">
         <span class="action-icon tmi-box-arrow-left" />
@@ -17,7 +17,7 @@
       <p:tooltip for="task-reset-command"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/resetTaskTooltip')}"
         styleClass="task-command-tooltip" />
-      <p:commandLink id="task-delegate-command" disabled="#{!taskActionBean.canDelegate(task)}"
+      <p:commandLink id="task-delegate-command" disabled="#{!taskActionBean.canDelegate(task)}" rendered="#{taskActionBean.showDelegateTask}"
         styleClass="task-command" actionListener="#{logic.initDataToDelegate(task)}" onstart="event.stopPropagation();"
         oncomplete="PF('task-delegate-dialog').show()" update="@widgetVar(task-delegate-dialog) @parent">
         <span class="action-icon tmi-box-arrow-right" />
@@ -27,7 +27,7 @@
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTask')}"
         styleClass="task-command-tooltip" />
       <p:commandLink id="task-reserve-command"
-        disabled="#{!taskActionBean.canPark(task)}"
+        disabled="#{!taskActionBean.canPark(task)}" rendered="#{taskActionBean.showReserveTask}"
         onstart="event.stopPropagation();" styleClass="task-command" actionListener="#{logic.parkTask(task)}"
         update="@parent :#{p:component('task-start')}">
         <span class="action-icon tmi-box-arrow-toinside" />
@@ -41,9 +41,10 @@
         <h:outputText rendered="#{data.isShowTaskButtonLabels}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/openRequest')}" />
       </p:commandLink>
-        
-      <ic:ch.ivy.addon.portalkit.component.SideStep actionLinkId="task-side-steps-menu" actionLinkStyleClass="task-command #{data.isShowTaskButtonLabels? 'side-step-position' : ''}"
-        panelWidgetVar="task-side-steps-panel-#{rowIndex}" caseId="#{task.case.getId()}" isAdhocExcluded="false" />
+      <c:if test="#{data.isDisplaySideStep}">
+      	<ic:ch.ivy.addon.portalkit.component.SideStep actionLinkId="task-side-steps-menu" actionLinkStyleClass="task-command #{data.isShowTaskButtonLabels? 'side-step-position' : ''}"
+        panelWidgetVar="task-side-steps-panel-#{rowIndex}" caseId="#{task.case.getId()}" isAdhocExcluded="false" rendered="#{taskActionBean.showAdditionalOptions}"/>
+      </c:if>
     </div>
   </div>
 </ui:composition>

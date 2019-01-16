@@ -17,7 +17,7 @@
     <h:panelGroup id="header" layout="block" styleClass="widget-header">
       <div class="widget-header-main">
         <span class="widget-header-main-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/statistics')}</span>
-        <h:panelGroup id="statistic-widget-header" layout="block" rendered="#{cc.attrs.compactMode}"
+        <h:panelGroup id="statistic-widget-header" layout="block" rendered="#{data.isDisplayShowAllChartLink and cc.attrs.compactMode}"
           styleClass="widget-header-main-menu">
           <cc:renderFacet name="headerToolbar" />
         </h:panelGroup>

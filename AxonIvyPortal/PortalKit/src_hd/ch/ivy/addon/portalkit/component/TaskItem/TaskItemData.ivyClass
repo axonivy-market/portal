@@ -33,3 +33,5 @@ rolesToDelegate java.util.List<ch.ivyteam.ivy.security.IRole> #field
 rolesToDelegate PERSISTENT #fieldModifier
 canDelegateTask Boolean #field
 canDelegateTask PERSISTENT #fieldModifier
+isDisplaySideStep Boolean #field
+isDisplaySideStep PERSISTENT #fieldModifier
