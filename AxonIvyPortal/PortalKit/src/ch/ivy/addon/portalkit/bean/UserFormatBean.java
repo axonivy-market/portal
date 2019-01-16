@@ -15,6 +15,10 @@ public class UserFormatBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public String format(String fullName, String username) {
+    if (StringUtils.isBlank(username)) {
+      return StringUtils.EMPTY;
+    }
+      
     if (StringUtils.isBlank(fullName)) {
       String formattedUsername = username.startsWith("#") ? username.substring(1) : username;
       return formattedUsername;
@@ -23,6 +27,10 @@ public class UserFormatBean implements Serializable {
   }
   
   public String formatWithTip(String fullName, String username) {
+    if (StringUtils.isBlank(username)) {
+      return StringUtils.EMPTY;
+    }
+    
     String formattedUsername = username.startsWith("#") ? username.substring(1) : username;
     if (StringUtils.isBlank(fullName)) {
       return "<" + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/noName") + ">" + " (" + formattedUsername + ")";
