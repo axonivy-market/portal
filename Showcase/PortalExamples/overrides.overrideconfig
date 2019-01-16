@@ -8,6 +8,7 @@
     /Functional-Processes.OpenPortalTasks "Functional Processes/OpenPortalTasksOverride"
     /Functional-Processes.OpenMobilePortalTasks "Functional Processes/OpenMobilePortalTasksOverride"
     /Functional-Processes.OpenPortalSearch "Functional Processes/OpenPortalSearchOverride"
+    /Functional-Processes.BuildTaskQuery "Functional Processes/BuildTaskQueryOverride"
     /Functional-Processes.OpenPortalCases "Functional Processes/OpenPortalCasesOverride"
   }
 }
