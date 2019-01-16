@@ -10,8 +10,10 @@ import org.primefaces.model.StreamedContent;
 
 import ch.ivy.addon.portalkit.bo.History;
 import ch.ivy.addon.portalkit.bo.History.HistoryType;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.NoteHistoryExporter;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.server.ServerFactory;
@@ -24,6 +26,14 @@ import ch.ivyteam.ivy.workflow.TaskState;
 @ManagedBean(name = "caseTaskNoteHistoryBean")
 public class CaseTaskNoteHistoryBean implements Serializable {
   private static final long serialVersionUID = 1L;
+  
+  public boolean isShowAddNote() {
+    return PermissionUtils.hasPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
+  }
+  
+  public boolean isShowMoreNote() {
+    return PermissionUtils.hasPortalPermission(PortalPermission.TASK_CASE_SHOW_MORE_NOTE);
+  }
 
   public String getTaskNoteHistoryLink(ITask task) {
     ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());

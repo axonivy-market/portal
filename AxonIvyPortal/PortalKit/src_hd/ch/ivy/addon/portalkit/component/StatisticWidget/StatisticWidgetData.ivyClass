@@ -30,3 +30,6 @@ hasDefaultChart PERSISTENT #fieldModifier
 canAnalyzeTask Boolean #field
 canAnalyzeTask 'Check user has permission to analyzing task' #fieldComment
 canAnalyzeTask PERSISTENT #fieldModifier
+isDisplayShowAllChartLink Boolean #field
+isDisplayShowAllChartLink 'Is show all chart link at home page' #fieldComment
+isDisplayShowAllChartLink PERSISTENT #fieldModifier

@@ -20,6 +20,7 @@ import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bo.TaskColumnsConfiguration;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.FilterType;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
@@ -72,6 +73,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   private boolean isRelatedTaskDisplayed;
   private boolean isNotKeepFilter;
   private boolean isMobile;
+  private boolean isDisplayShowFullTaskListLink;
 
   public TaskLazyDataModel(String taskWidgetComponentId) {
     super();
@@ -89,6 +91,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
       }
     }
     autoInitForNoAppConfiguration();
+    isDisplayShowFullTaskListLink = PermissionUtils.hasPortalPermission(PortalPermission.ACCESS_FULL_TASK_LIST);
   }
 
   public TaskLazyDataModel() {
@@ -800,5 +803,13 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
         setSortField(sortColumn, !asc);
       }
     }
+  }
+
+  public boolean isDisplayShowFullTaskListLink() {
+    return isDisplayShowFullTaskListLink;
+  }
+
+  public void setDisplayShowFullTaskListLink(boolean isDisplayShowFullTaskListLink) {
+    this.isDisplayShowFullTaskListLink = isDisplayShowFullTaskListLink;
   }
 }

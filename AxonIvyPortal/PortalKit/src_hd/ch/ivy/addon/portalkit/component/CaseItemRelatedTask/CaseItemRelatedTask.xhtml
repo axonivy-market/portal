@@ -56,7 +56,7 @@
       </ui:repeat>
     </p:scrollPanel>
     <p:commandLink id="show-all-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showAllTasks')}"
-      styleClass="related-task-show-all-tasks-link">
+      styleClass="related-task-show-all-tasks-link" rendered="#{caseWidgetBean.showAllTasksOfCase}">
       <p:ajax event="click" listener="#{logic.openPortalTasks}" />
     </p:commandLink>
   </div>

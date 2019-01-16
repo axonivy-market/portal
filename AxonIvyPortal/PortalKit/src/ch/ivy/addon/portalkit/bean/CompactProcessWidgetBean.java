@@ -21,6 +21,7 @@ import org.primefaces.context.RequestContext;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.comparator.UserProcessIndexComparator;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.Protocol;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
@@ -49,6 +50,7 @@ private static final long serialVersionUID = -5889375917550618261L;
   
   private boolean editMode;
   private boolean isUserFavoritesEnabled;
+  private boolean isDisplayShowAllProcessesLink;
   
   @PostConstruct
   public void init() {
@@ -60,6 +62,7 @@ private static final long serialVersionUID = -5889375917550618261L;
     isUserFavoritesEnabled = StringUtils.isNotBlank(isUserFavoritesEnabledGlobalVariable) ? Boolean.parseBoolean(isUserFavoritesEnabledGlobalVariable) : true;
     userProcesses = findUserProcesses();
     defaultProcesses = findStartableDefaultProcesses();
+    isDisplayShowAllProcessesLink = PermissionUtils.hasPortalPermission(PortalPermission.ACCESS_FULL_PROCESS_LIST);
   }
 
   private List<UserProcess> findStartableDefaultProcesses() {
@@ -305,4 +308,12 @@ private static final long serialVersionUID = -5889375917550618261L;
     return process.getId() == null ? "" : process.getId().toString();
   }
 
+  public boolean isDisplayShowAllProcessesLink() {
+    return isDisplayShowAllProcessesLink;
+  }
+
+  public void setDisplayShowAllProcessesLink(boolean isDisplayShowAllProcessesLink) {
+    this.isDisplayShowAllProcessesLink = isDisplayShowAllProcessesLink;
+  }
+  
 }

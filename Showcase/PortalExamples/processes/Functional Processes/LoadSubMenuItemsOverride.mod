@@ -45,7 +45,9 @@ Ls0 f3 actionDecl '_ch.ivyteam.ivy.project.portal.examples.LoadSubMenuItemsOverr
 ' #txt
 Ls0 f3 actionTable 'out=in;
 ' #txt
-Ls0 f3 actionCode 'import ch.ivyteam.ivy.request.RequestUriFactory;
+Ls0 f3 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
@@ -56,10 +58,18 @@ import ch.addon.portal.generic.menu.TaskSubMenuItem;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.addon.portal.generic.menu.SubMenuItem;
 
-in.subMenuItems.add(new ProcessSubMenuItem());
-in.subMenuItems.add(new TaskSubMenuItem());
-in.subMenuItems.add(new CaseSubMenuItem());
-in.subMenuItems.add(new DashboardSubMenuItem());
+if(PermissionUtils.hasPortalPermission(PortalPermission.ACCESS_FULL_PROCESS_LIST)) {
+	in.subMenuItems.add(new ProcessSubMenuItem());
+}
+if(PermissionUtils.hasPortalPermission(PortalPermission.ACCESS_FULL_TASK_LIST)) {
+	in.subMenuItems.add(new TaskSubMenuItem());
+}
+if(PermissionUtils.hasPortalPermission(PortalPermission.ACCESS_FULL_CASE_LIST)) {
+	in.subMenuItems.add(new CaseSubMenuItem());
+}
+if(PermissionUtils.hasPortalPermission(PortalPermission.ACCESS_FULL_STATISTICS_LIST)) {
+	in.subMenuItems.add(new DashboardSubMenuItem());
+}
 
 SubMenuItem google = new SubMenuItem();
 google.setIcon("fa fa-binoculars");
