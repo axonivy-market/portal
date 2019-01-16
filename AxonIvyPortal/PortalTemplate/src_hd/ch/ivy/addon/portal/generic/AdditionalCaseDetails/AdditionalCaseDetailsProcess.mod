@@ -22,17 +22,16 @@ As0 f0 guid 160FD493ABB7A5B5 #txt
 As0 f0 type ch.ivy.addon.portal.generic.AdditionalCaseDetails.AdditionalCaseDetailsData #txt
 As0 f0 method start(ch.ivyteam.ivy.workflow.ICase) #txt
 As0 f0 disableUIEvents true #txt
-As0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivyteam.ivy.workflow.ICase iCase> param = methodEvent.getInputArguments();
+As0 f0 inParameterDecl 'ch.ivy.addon.portal.generic.AdditionalCaseDetails.AdditionalCaseDetailsData out;
 ' #txt
-As0 f0 inParameterMapAction 'out.iCase=param.iCase;
+As0 f0 inParameterMapAction 'out.selectedCase=param.iCase;
 ' #txt
 As0 f0 outParameterDecl '<> result;
 ' #txt
 As0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name></name>
+        <name>start(ICase)</name>
     </language>
 </elementInfo>
 ' #txt
