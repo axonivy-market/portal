@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.server.ServerFactory;
 
 public class SubstituteNode {
 
@@ -67,9 +68,13 @@ public class SubstituteNode {
     substitute.setSubstituteUser(substituteUser);
   }
 
-  public List<IUser> autoCompleteUser(String query) {
-    return users.stream()
-        .filter(user -> StringUtils.containsIgnoreCase(user.getDisplayName(), query) || StringUtils.containsIgnoreCase(user.getMemberName(), query))
-        .collect(Collectors.toList());
+  public List<IUser> autoCompleteUser(String query) throws Exception {
+    return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+      List<IUser> filteredUsers = users.stream()
+          .filter(user -> StringUtils.containsIgnoreCase(user.getDisplayName(), query) || StringUtils.containsIgnoreCase(user.getMemberName(), query))
+          .collect(Collectors.toList());
+      filteredUsers.set(0, null);
+      return filteredUsers;
+    });
   }
 }
