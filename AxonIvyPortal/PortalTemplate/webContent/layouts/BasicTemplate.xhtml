@@ -81,7 +81,6 @@
             <ui:param name="isWorkingOnATask" value="#{isWorkingOnATask}" />
             <ui:param name="isNotRequiredLogin" value="#{isNotRequiredLogin}" />
             <ui:param name="hasMainMenu" value="#{empty hasMainMenu ? true : hasMainMenu}" />
-            <ui:param name="showGlobalSearch" value="#{empty portalValidationBean.errorMessages}" />
             <ui:param name="enablesChat" value="#{enablesChat}" />
           </ui:include>
           <div class="color-header">
@@ -114,7 +113,7 @@
         </div>
       </ui:fragment>
 
-      <ui:fragment rendered="#{empty portalValidationBean.errorMessages}">
+      <ui:fragment>
         <div class="container #{showMainArea eq true or deviceBean.mobile ? '' : 'u-invisibility'} #{deviceBean.mobile ? 'mobile-container' : ''}" id="main-area-panel">
           <ui:insert name="pageContent">
             <div class="simple-container js-simple-container #{simpleContainerClass}">
@@ -123,15 +122,6 @@
               </div>
             </div>
           </ui:insert>
-        </div>
-      </ui:fragment>
-      <ui:fragment rendered="#{not empty portalValidationBean.errorMessages}">
-        <div class="error-container">
-          <ui:repeat var="error" value="#{portalValidationBean.errorMessages}">
-            <div class="message">
-              <div class="message-container">#{error}</div>
-            </div>
-          </ui:repeat>
         </div>
       </ui:fragment>
 
