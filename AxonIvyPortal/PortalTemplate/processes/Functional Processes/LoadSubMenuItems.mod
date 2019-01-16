@@ -36,10 +36,10 @@ Ls0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ls0 f0 81 137 30 30 16 11 #rect
+Ls0 f0 81 241 30 30 16 11 #rect
 Ls0 f0 @|StartSubIcon #fIcon
 Ls0 f1 type ch.ivy.addon.portal.generic.LoadSubMenuItemsData #txt
-Ls0 f1 81 361 30 30 0 15 #rect
+Ls0 f1 81 465 30 30 0 15 #rect
 Ls0 f1 @|EndSubIcon #fIcon
 Ls0 f3 actionDecl 'ch.ivy.addon.portal.generic.LoadSubMenuItemsData out;
 ' #txt
@@ -71,12 +71,12 @@ Ls0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ls0 f3 40 226 112 44 -48 -8 #rect
+Ls0 f3 40 330 112 44 -48 -8 #rect
 Ls0 f3 @|StepIcon #fIcon
 Ls0 f4 expr out #txt
-Ls0 f4 96 167 96 226 #arcP
+Ls0 f4 96 271 96 330 #arcP
 Ls0 f2 expr out #txt
-Ls0 f2 96 270 96 361 #arcP
+Ls0 f2 96 374 96 465 #arcP
 Ls0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -108,15 +108,24 @@ Axon.Ivy link
 - Relative path: RequestUriFactory.createProcessStartUri(...)
 External link: 
 - www.yourexternallink.com
-- http://www.yourexternallink.com</name>
-        <nameStyle>946,7
+- http://www.yourexternallink.com
+
+NOTE:
+If you want to hide Statistic widget, please copy these line of code into your overrided process
+
+GlobalSettingService globalSettingService = new GlobalSettingService();
+boolean isHideStatistic = globalSettingService.findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_STATISTIC_WIDGET);
+if (!isHideStatistic) {
+  in.subMenuItems.add(new DashboardSubMenuItem());
+}</name>
+        <nameStyle>1318,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ls0 f5 296 10 656 476 -321 -232 #rect
+Ls0 f5 280 42 688 620 -341 -304 #rect
 Ls0 f5 @|IBIcon #fIcon
-Ls0 f6 296 248 152 248 #arcP
+Ls0 f6 280 352 152 352 #arcP
 >Proto Ls0 .type ch.ivy.addon.portal.generic.LoadSubMenuItemsData #txt
 >Proto Ls0 .processKind CALLABLE_SUB #txt
 >Proto Ls0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

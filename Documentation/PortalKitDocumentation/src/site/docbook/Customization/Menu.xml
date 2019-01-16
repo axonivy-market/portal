@@ -23,6 +23,8 @@
 					<imagedata fileref="images/Menu/LoadSubMenuItemsProcess.png" />
 				</imageobject>
 			</mediaobject>
+			User can hide Statistic widget in <link linkend="axonivyportal.settings.adminsettings" endterm="axonivyportal.settings.adminsettings.title" />.
+			Therefore, if you want to hide Statistic widget in your overrided process, please take a look on NOTE section of <code>LoadSubMenuItems</code> in PortalTemplate.
 		</para>
 	</sect2>
 </sect1>
