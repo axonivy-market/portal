@@ -26,7 +26,18 @@ import ch.ivyteam.ivy.workflow.TaskState;
 public class TaskActionBean {
   
   private Map<Long, Boolean> canResumeByTaskId = new HashMap<>();
-
+  private boolean isShowResetTask;
+  private boolean isShowReserveTask;
+  private boolean isShowDelegateTask;
+  private boolean isShowAdditionalOptions;
+  
+  public TaskActionBean() {
+	  isShowResetTask = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_RESET_ACTION);
+	  isShowReserveTask = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_RESERVE_ACTION);
+	  isShowDelegateTask = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_DELEGATE_ACTION);
+	  isShowAdditionalOptions = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS);
+  }
+  
   public boolean canReset(ITask task) throws Exception {
     TaskState taskState = task.getState();
     if (taskState != TaskState.RESUMED && taskState != TaskState.PARKED) {
@@ -131,4 +142,36 @@ public class TaskActionBean {
         EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.SUSPENDED, TaskState.UNASSIGNED);
     return taskStates.contains(task.getState());
   }
+
+public boolean isShowResetTask() {
+	return isShowResetTask;
+}
+
+public void setShowResetTask(boolean isShowResetTask) {
+	this.isShowResetTask = isShowResetTask;
+}
+
+public boolean isShowReserveTask() {
+	return isShowReserveTask;
+}
+
+public void setShowReserveTask(boolean isShowReserveTask) {
+	this.isShowReserveTask = isShowReserveTask;
+}
+
+public boolean isShowDelegateTask() {
+	return isShowDelegateTask;
+}
+
+public void setShowDelegateTask(boolean isShowDelegateTask) {
+	this.isShowDelegateTask = isShowDelegateTask;
+}
+
+public boolean isShowAdditionalOptions() {
+	return isShowAdditionalOptions;
+}
+
+public void setShowAdditionalOptions(boolean isShowAdditionalOptions) {
+	this.isShowAdditionalOptions = isShowAdditionalOptions;
+}
 }

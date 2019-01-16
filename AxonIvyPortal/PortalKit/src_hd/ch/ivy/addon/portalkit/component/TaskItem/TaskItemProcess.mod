@@ -708,11 +708,12 @@ Ts0 f2 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
 ' #txt
 Ts0 f2 actionTable 'out=in;
 ' #txt
-Ts0 f2 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
+Ts0 f2 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
 GlobalSettingService service = new GlobalSettingService();
-
 String isShowTaskButtonLabels =  service.findGlobalSettingValue(GlobalVariable.SHOW_TASK_BUTTON_LABELS.toString());
 
 if(isShowTaskButtonLabels != null && !isShowTaskButtonLabels.isEmpty()){
@@ -720,17 +721,21 @@ if(isShowTaskButtonLabels != null && !isShowTaskButtonLabels.isEmpty()){
 } else{
 	in.isShowTaskButtonLabels = false;	
 }
+
+in.isDisplaySideStep = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS);
+
 ' #txt
 Ts0 f2 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Init show/hide&#xD;
-buttons</name>
+button label&#xD;
+More actions</name>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f2 168 74 112 44 -38 -16 #rect
+Ts0 f2 168 66 112 60 -38 -24 #rect
 Ts0 f2 @|StepIcon #fIcon
 Ts0 f21 expr out #txt
 Ts0 f21 109 864 152 864 #arcP
