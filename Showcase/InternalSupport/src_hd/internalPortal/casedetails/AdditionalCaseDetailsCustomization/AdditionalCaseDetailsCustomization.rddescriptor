@@ -5,7 +5,7 @@
         <name>start</name>
         <description>Default dialog start method.</description>
         <inputParameter>
-            <name>remoteCase</name>
+            <name>selectedCase</name>
             <description></description>
             <parameterType>ch.ivyteam.ivy.workflow.ICase</parameterType>
             <nullPermitted>false</nullPermitted>

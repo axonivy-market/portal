@@ -53,7 +53,7 @@ public class CaseTaskNoteHistoryBean implements Serializable {
 
   private String removeDuplicatedPartOfUrl(String redirectLink) {
     String applicationContextPath = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
-    return redirectLink.replace(applicationContextPath, ""); // remove duplicate part of path
+    return redirectLink.replaceFirst(applicationContextPath, ""); // remove duplicate contextPath in URL
   }
 
   public String getCaseNoteContent(History history) {
