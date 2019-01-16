@@ -78,36 +78,4 @@ public class ApplicationDaoTest {
     assertEquals(expectApplication, sameApplications.get(0));
   }
 
-  @Test
-  public void testFindByNameAndServerId() {
-    List<Application> mockReturnAllApplications = new ArrayList<Application>();
-    Application testApplication = new Application();
-    testApplication.setId(1L);
-    testApplication.setName("test01");
-    testApplication.setServerId(1L);
-
-    Application testApplication2 = new Application();
-    testApplication2.setId(2L);
-    testApplication2.setName("test02");
-    testApplication2.setServerId(2L);
-
-    Application testApplication3 = new Application();
-    testApplication3.setId(3L);
-    testApplication3.setName("test02");
-    testApplication3.setServerId(2L);
-
-    mockReturnAllApplications.add(testApplication);
-    mockReturnAllApplications.add(testApplication2);
-    mockReturnAllApplications.add(testApplication3);
-
-    PowerMockito.when(applicationDao.findAll()).thenReturn(mockReturnAllApplications);
-    PowerMockito.when(applicationDao.findByNameAndServerId("test02", 2L)).thenCallRealMethod();
-
-    List<Application> results = applicationDao.findByNameAndServerId("test02", 2L);
-
-    assertEquals(2, results.size());
-
-    assertEquals(testApplication2, results.get(0));
-  }
-
 }
