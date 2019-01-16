@@ -148,7 +148,7 @@ GlobalSettingService globalSettingService = new GlobalSettingService();
 String isHideUploadDocumentForDoneCaseString =
         globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE.toString());
 boolean isHideUploadDocumentForDoneCase = Boolean.parseBoolean(isHideUploadDocumentForDoneCaseString);
-in.isShowUploadDocumentButton =  !isHideUploadDocumentForDoneCase;' #txt
+in.isShowUploadDocumentButton = !isHideUploadDocumentForDoneCase;' #txt
 Ts0 f64 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 Ts0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
