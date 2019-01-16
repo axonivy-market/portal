@@ -6,7 +6,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.server.ServerFactory;
 
 public class IvyAbsence {
 
@@ -63,11 +65,20 @@ public class IvyAbsence {
   
   @Override
   public int hashCode() {
-    return new HashCodeBuilder()
-        .append(user.getName())
-        .append(from)
-        .append(until)
-        .toHashCode();
+    try {
+        return ServerFactory.getServer().getSecurityManager().executeAsSystem(this::generateHashCode);
+      } catch (Exception e) {
+        Ivy.log().error(e);
+      }
+  	return 0;
+  }
+  
+  private int generateHashCode() {
+	  return new HashCodeBuilder()
+		        .append(user.getName())
+		        .append(from)
+		        .append(until)
+		        .toHashCode();
   }
 
   @Override
