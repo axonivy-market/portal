@@ -34,7 +34,7 @@
       <h:outputText id="case-category" value="#{case.categoryPath}" />
     </h:panelGrid>
 	<p:link id="show-additional-case-details-link" styleClass="additional-case-details-link" target="_blank"
-            href="#{caseWidgetBean.getAdditionalCaseDetailsPageUri(case)}">
+            href="#{caseWidgetBean.getAdditionalCaseDetailsPageUri(case)}" rendered="#{caseWidgetBean.showCaseDetails}">
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showDetail')}" />
     </p:link>
 	</div>

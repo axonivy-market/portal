@@ -10,7 +10,7 @@
   <h:panelGroup id="header" styleClass="widget-header" layout="block">
     <h:panelGroup class="widget-header-main">
       <span class="widget-header-main-title">#{cc.attrs.title}</span>
-      <h:panelGroup styleClass="widget-header-main-menu" rendered="#{not compactProcessWidgetBean.editMode}">
+      <h:panelGroup styleClass="widget-header-main-menu" rendered="#{compactProcessWidgetBean.displayShowAllProcessesLink and not compactProcessWidgetBean.editMode}">
         <cc:renderFacet name="headerToolbar" />
       </h:panelGroup>
     </h:panelGroup>
