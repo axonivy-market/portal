@@ -110,16 +110,15 @@ Ps0 f7 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData
 ' #txt
 Ps0 f7 actionTable 'out=in;
 ' #txt
-Ps0 f7 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
-import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+Ps0 f7 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
+import ch.ivyteam.ivy.workflow.TaskState;
 
-String appName = SecurityServiceUtils.getApplicationNameFromSession();
-if (#appName is initialized) {
-	out.allCategoryCriteria.apps = [appName];
-	out.myCategoryCriteria.apps = [appName];
-	out.groupCategoryCriteria.apps = [appName];
-	out.unassignedCategoryCriteria.apps = [appName];
-}
+ApplicationService service = new ApplicationService();
+java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
+out.allCategoryCriteria.apps = apps;
+out.myCategoryCriteria.apps = apps;
+out.groupCategoryCriteria.apps = apps;
+out.unassignedCategoryCriteria.apps = apps;
 
 out.allCategoryCriteria.includedStates = [TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE];
 out.myCategoryCriteria.includedStates = [TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE];

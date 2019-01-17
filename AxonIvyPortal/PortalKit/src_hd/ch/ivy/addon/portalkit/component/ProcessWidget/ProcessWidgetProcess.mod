@@ -72,15 +72,13 @@ Ps0 f2 actionDecl 'ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetD
 ' #txt
 Ps0 f2 actionTable 'out=in;
 ' #txt
-Ps0 f2 actionCode 'import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+Ps0 f2 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
 
+ApplicationService service = new ApplicationService();
+java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
+out.processSearchCriteria.apps = apps;
 out.processSearchCriteria.username = ivy.session.getSessionUserName();
 
-String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
-if (StringUtils.isNotBlank(applicationName)) {
-	out.processSearchCriteria.apps = [applicationName];
-}
 ' #txt
 Ps0 f2 type ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData #txt
 Ps0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

@@ -77,7 +77,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
       inProgressFilter = new TaskInProgressByOthersFilter();
     }
 
-    autoInitForNoAppConfiguration();
+    setInvolvedApplications();
     initColumnsConfiguration();
   }
   
