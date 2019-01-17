@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.util;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -102,6 +103,6 @@ public final class CaseUtils {
           .filter(n -> !StringUtils.equals(n.getWritterName(), ISecurityConstants.SYSTEM_USER_NAME))
           .collect(Collectors.toList());
     }
-    return notes;
+    return new ArrayList<>(notes);
   }
 }
