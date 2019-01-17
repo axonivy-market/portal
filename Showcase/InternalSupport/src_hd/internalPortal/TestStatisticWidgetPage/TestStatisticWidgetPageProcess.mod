@@ -28,11 +28,11 @@ Ts0 f4 actionDecl 'internalPortal.TestStatisticWidgetPage.TestStatisticWidgetPag
 ' #txt
 Ts0 f4 actionTable 'out=in;
 ' #txt
-Ts0 f4 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
-String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
-if (#applicationName is initialized) {
-	in.involvedApplications = [applicationName];
-}' #txt
+Ts0 f4 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
+
+ApplicationService service = new ApplicationService();
+java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
+in.involvedApplications = apps;' #txt
 Ts0 f4 type internalPortal.TestStatisticWidgetPage.TestStatisticWidgetPageData #txt
 Ts0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
