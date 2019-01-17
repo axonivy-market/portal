@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -9,10 +10,13 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.ivydata.service.IApplicationService;
 import ch.ivy.addon.portalkit.persistence.dao.ApplicationDao;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.persistence.domain.User;
+import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.environment.Ivy;
 
 public class ApplicationService extends AbstractService<Application> {
 
@@ -62,6 +66,43 @@ public class ApplicationService extends AbstractService<Application> {
 
   public long countIvyApplications(List<Application> applications) {
     return applications.stream().filter(application -> application.getServerId() != null).count();
+  }
+  
+  /**
+   * Finds names of the online and visible applications based on the configuration; if the current app is not Portal, returns the current app.
+   * Otherwise, finds the applications registered by the admin user; if empty, means there is no
+   * configuration in admin settings, finds all of active applications of the engine.
+   * 
+   * @param username
+   * @return {@link java.util.List} of application names
+   */
+  @SuppressWarnings("unchecked")
+  public List<String> findActiveIvyAppsBasedOnConfiguration(String username) {
+    if (StringUtils.isBlank(username)) {
+      return new ArrayList<>();
+    }
+    
+    Optional<Object> cacheValueOpt = IvyCacheService.newInstance().getSessionCacheValue(username, IvyCacheIdentifier.ONLINE_APPLICATIONS_BASED_ON_CONFIGURATION);
+    if (cacheValueOpt.isPresent()) {
+      return (List<String>) cacheValueOpt.get();
+    }
+    
+    List<User> users = new UserService().findByUserName(username);
+    if (users == null) {
+      return new ArrayList<>();
+    }
+
+    List<String> workOnApps = new ArrayList<>();
+    String currentApplicationName =
+        Optional.ofNullable(Ivy.request().getApplication()).map(IApplication::getName).orElse(StringUtils.EMPTY);
+    if (PortalConstants.PORTAL_APPLICATION_NAME.equals(currentApplicationName)) {
+      workOnApps = findActiveIvyAppsUserCanWorkOn(Ivy.session().getSessionUserName());
+    } else {
+      workOnApps = Arrays.asList(currentApplicationName);
+    }
+    
+    IvyCacheService.newInstance().setSessionCache(username, IvyCacheIdentifier.ONLINE_APPLICATIONS_BASED_ON_CONFIGURATION, workOnApps);
+    return workOnApps;
   }
   
   /**

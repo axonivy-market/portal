@@ -11,7 +11,6 @@ import javax.faces.event.ValueChangeEvent;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.primefaces.context.RequestContext;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
@@ -22,15 +21,14 @@ import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterContainer;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.casefilter.DefaultCaseFilterContainer;
-import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
+import ch.ivy.addon.portalkit.service.ApplicationService;
 import ch.ivy.addon.portalkit.service.CaseColumnsConfigurationService;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
@@ -75,7 +73,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     criteria = initSearchCriteria();
     setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
     selectedFilterData = UserUtils.getSessionSelectedCaseFilterSetAttribute();
-    autoInitForNoAppConfiguration();
+    setInvolvedApplications();
   }
 
   @Override
@@ -207,12 +205,9 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     filterContainer = new DefaultCaseFilterContainer();
   }
 
-  protected void autoInitForNoAppConfiguration() {
-    String currentApplicatioName =
-        Optional.ofNullable(Ivy.request().getApplication()).map(IApplication::getName).orElse(StringUtils.EMPTY);
-    if (!PortalConstants.PORTAL_APPLICATION_NAME.equals(currentApplicatioName)) {
-      setInvolvedApplications(currentApplicatioName);
-    }
+  protected void setInvolvedApplications() {
+    ApplicationService service = new ApplicationService();
+    criteria.setApps(service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName()));
   }
 
   /**
@@ -489,10 +484,6 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   public void setSelectedFilters(List<CaseFilter> selectedFilters) {
     this.selectedFilters = selectedFilters;
-  }
-
-  public void setInvolvedApplications(String... apps) {
-    criteria.setApps(Arrays.asList(apps));
   }
 
   public void setCategory(String category) {
