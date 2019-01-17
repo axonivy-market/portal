@@ -12,9 +12,11 @@ import org.jsoup.safety.Whitelist;
 
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -27,6 +29,7 @@ public class TaskWidgetBean implements Serializable {
   private Long expandedTaskId;
   private TaskLazyDataModel dataModel;
   private Boolean isTaskDetailOpenning;
+  private boolean isShowFullTaskList;
 
   public TaskWidgetBean() {
     expandedTaskId = -1L;
@@ -35,6 +38,7 @@ public class TaskWidgetBean implements Serializable {
     taskListRefreshInterval =
         StringUtils.isNumeric(taskListRefreshIntervalUserSetting) ? Long.parseLong(taskListRefreshIntervalUserSetting)
             : DEFAULT_TASK_LIST_REFRESH_INTERVAL;
+    isShowFullTaskList = PermissionUtils.hasPortalPermission(PortalPermission.ACCESS_FULL_TASK_LIST);
   }
 
   public Long getExpandedTaskId() {
@@ -95,5 +99,13 @@ public class TaskWidgetBean implements Serializable {
 
   public void setIsTaskDetailOpenning(Boolean isTaskDetailOpenning) {
     this.isTaskDetailOpenning = isTaskDetailOpenning;
+  }
+
+  public boolean isShowFullTaskList() {
+    return isShowFullTaskList;
+  }
+
+  public void setShowFullTaskList(boolean isShowFullTaskList) {
+    this.isShowFullTaskList = isShowFullTaskList;
   }
 }

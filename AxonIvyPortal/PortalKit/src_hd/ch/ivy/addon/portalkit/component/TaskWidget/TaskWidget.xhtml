@@ -43,7 +43,7 @@
           </h:panelGroup>
 
           <h:panelGroup styleClass="widget-header-main-menu js-widget-header-menu"
-            rendered="#{data.dataModel.compactMode and showHeaderToolbar}">
+            rendered="#{data.dataModel.compactMode and showHeaderToolbar and taskWidgetBean.showFullTaskList}">
             <cc:renderFacet name="headerToolbar" />
           </h:panelGroup>
         </h:panelGroup>
