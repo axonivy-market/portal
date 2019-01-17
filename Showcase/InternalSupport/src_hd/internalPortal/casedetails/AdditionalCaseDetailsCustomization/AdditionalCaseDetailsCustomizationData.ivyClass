@@ -1,4 +1,4 @@
 AdditionalCaseDetailsCustomizationData #class
 internalPortal.casedetails.AdditionalCaseDetailsCustomization #namespace
-iCase ch.ivyteam.ivy.workflow.ICase #field
-iCase PERSISTENT #fieldModifier
+selectedCase ch.ivyteam.ivy.workflow.ICase #field
+selectedCase PERSISTENT #fieldModifier

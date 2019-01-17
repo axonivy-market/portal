@@ -61,7 +61,10 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
     initSystemPermission(statisticsPermissionGroup, getPortalPermissionsByGroup(PortalPermissionGroup.STATISTIC_GROUP));
     initSystemPermission(expressPermissionGroup, getPortalPermissionsByGroup(PortalPermissionGroup.EXPRESS_GROUP));
     grantPortalPermissionsForEverybody(
-        Arrays.asList(PortalPermission.STATISTIC_ADD_DASHBOARD_CHART, PortalPermission.EXPRESS_CREATE_WORKFLOW));
+        Arrays.asList(PortalPermission.STATISTIC_ADD_DASHBOARD_CHART, PortalPermission.EXPRESS_CREATE_WORKFLOW, PortalPermission.ACCESS_FULL_CASE_LIST,
+            PortalPermission.ACCESS_FULL_TASK_LIST, PortalPermission.ACCESS_FULL_PROCESS_LIST, PortalPermission.ACCESS_FULL_STATISTICS_LIST, PortalPermission.TASK_CASE_ADD_NOTE,
+            PortalPermission.TASK_CASE_SHOW_MORE_NOTE, PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS, PortalPermission.SHOW_ALL_TASKS_OF_CASE, 
+            PortalPermission.TASK_DISPLAY_RESET_ACTION, PortalPermission.TASK_DISPLAY_RESERVE_ACTION, PortalPermission.TASK_DISPLAY_DELEGATE_ACTION));
   }
 
   private void initSystemPermission(IPermissionGroup permissionGroup, List<IPermission> permissions) {
@@ -73,21 +76,11 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
   }
 
   private List<IPermission> getTaskPermissions() {
-    List<IPermission> result = getPortalTaskPermission();
+    List<IPermission> result = getPortalPermissionsByGroup(PortalPermissionGroup.TASK_PERMISSIONS_GROUP);
     result.addAll(Arrays.asList(IPermission.TASK_READ_ALL, IPermission.TASK_RESET_OWN_WORKING_TASK,
         IPermission.TASK_RESET, IPermission.TASK_WRITE_ACTIVATOR, IPermission.TASK_PARK_OWN_WORKING_TASK,
         IPermission.TASK_WRITE_EXPIRY_TIMESTAMP, IPermission.TASK_WRITE_ORIGINAL_PRIORITY,
         IPermission.TASK_WRITE_DESCRIPTION, IPermission.TASK_WRITE_NAME, IPermission.TASK_READ_OWN_CASE_TASKS));
-    return result;
-  }
-
-  private List<IPermission> getPortalTaskPermission() {
-    List<IPermission> result = new ArrayList<>();
-    List<PortalPermission> portalTaskPermissions = Stream.of(PortalPermission.values())
-        .filter(p -> p.getGroup() == PortalPermissionGroup.TASK_PERMISSIONS_GROUP).collect(toList());
-    for (PortalPermission permission : portalTaskPermissions) {
-      result.add(createPermission(permission));
-    }
     return result;
   }
 
@@ -100,12 +93,16 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
   }
 
   private List<IPermission> getCasePermissions() {
-    return Arrays.asList(IPermission.CASE_DESTROY, IPermission.CASE_WRITE_DESCRIPTION, IPermission.CASE_WRITE_NAME,
-        IPermission.CASE_READ_ALL);
+    List<IPermission> result = getPortalPermissionsByGroup(PortalPermissionGroup.CASE_PERMISSIONS_GROUP);
+    result.addAll(Arrays.asList(IPermission.CASE_DESTROY, IPermission.CASE_WRITE_DESCRIPTION, IPermission.CASE_WRITE_NAME,
+        IPermission.CASE_READ_ALL));
+    return result;
   }
 
   private List<IPermission> getGeneralPermissions() {
-    return Arrays.asList(IPermission.DOCUMENT_WRITE, IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE);
+    List<IPermission> result = getPortalPermissionsByGroup(PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP);
+    result.addAll(Arrays.asList(IPermission.DOCUMENT_WRITE, IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE));
+    return result;
   }
 
   private List<IPermission> getAbsenceAndSubstitutePermissions() {
