@@ -1,5 +1,5 @@
 [Ivy]
-15FA4CC33E5D866A 3.20 #module
+15FA4CC33E5D866A 3.23 #module
 >Proto >Proto Collection #zClass
 Ls0 LoadSubMenuItems Big #zClass
 Ls0 B #cInfo
@@ -45,15 +45,25 @@ Ls0 f3 actionDecl 'ch.ivy.addon.portal.generic.LoadSubMenuItemsData out;
 ' #txt
 Ls0 f3 actionTable 'out=in;
 ' #txt
-Ls0 f3 actionCode 'import ch.addon.portal.generic.menu.DashboardSubMenuItem;
+Ls0 f3 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.addon.portal.generic.menu.DashboardSubMenuItem;
 import ch.addon.portal.generic.menu.ProcessSubMenuItem;
 import ch.addon.portal.generic.menu.CaseSubMenuItem;
 import ch.addon.portal.generic.menu.TaskSubMenuItem;
 
-in.subMenuItems.add(new ProcessSubMenuItem());
-in.subMenuItems.add(new TaskSubMenuItem());
-in.subMenuItems.add(new CaseSubMenuItem());
-in.subMenuItems.add(new DashboardSubMenuItem());' #txt
+if(PermissionUtils.hasPortalPermission(PortalPermission.ACCESS_FULL_PROCESS_LIST)) {
+	in.subMenuItems.add(new ProcessSubMenuItem());
+}
+if(PermissionUtils.hasPortalPermission(PortalPermission.ACCESS_FULL_TASK_LIST)) {
+	in.subMenuItems.add(new TaskSubMenuItem());
+}
+if(PermissionUtils.hasPortalPermission(PortalPermission.ACCESS_FULL_CASE_LIST)) {
+	in.subMenuItems.add(new CaseSubMenuItem());
+}
+if(PermissionUtils.hasPortalPermission(PortalPermission.ACCESS_FULL_STATISTICS_LIST)) {
+	in.subMenuItems.add(new DashboardSubMenuItem());
+}' #txt
 Ls0 f3 type ch.ivy.addon.portal.generic.LoadSubMenuItemsData #txt
 Ls0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
