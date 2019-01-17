@@ -5,19 +5,17 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
-import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
+import ch.ivy.addon.portalkit.service.ApplicationService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -37,19 +35,12 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<ICase> {
     data = new ArrayList<>();
     criteria = buildInitSearchCriteria();
     setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
-    autoInitForNoAppConfiguration();
+    setInvolvedApplications();
   }
 
-  protected void autoInitForNoAppConfiguration() {
-    String applicationName = StringUtils.EMPTY;
-    String applicationNameFromRequest =
-        Optional.ofNullable(Ivy.request().getApplication()).map(IApplication::getName).orElse(StringUtils.EMPTY);
-    if (!PortalConstants.PORTAL_APPLICATION_NAME.equals(applicationNameFromRequest)) {
-      applicationName = applicationNameFromRequest;
-    }
-    if (StringUtils.isNotBlank(applicationName)) {
-      criteria.setApps(Arrays.asList(applicationName));
-    }
+  protected void setInvolvedApplications() {
+    ApplicationService service = new ApplicationService();
+    criteria.setApps(service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName()));
   }
 
   public void setAdminQuery(boolean isAdminQuery) {

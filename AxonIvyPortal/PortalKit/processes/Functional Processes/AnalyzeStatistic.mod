@@ -314,12 +314,11 @@ ac0 f23 actionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
 ' #txt
 ac0 f23 actionTable 'out=in;
 ' #txt
-ac0 f23 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+ac0 f23 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
 
-String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
-if (#applicationName is initialized) {
-	in.caseSearchCriteria.apps = [applicationName];
-}' #txt
+ApplicationService service = new ApplicationService();
+java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
+in.caseSearchCriteria.apps = apps;' #txt
 ac0 f23 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
 ac0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -336,12 +335,11 @@ ac0 f31 actionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
 ' #txt
 ac0 f31 actionTable 'out=in;
 ' #txt
-ac0 f31 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+ac0 f31 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
 
-String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
-if (#applicationName is initialized) {
-	in.caseSearchCriteria.apps = [applicationName];
-}' #txt
+ApplicationService service = new ApplicationService();
+java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
+in.caseSearchCriteria.apps = apps;' #txt
 ac0 f31 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
 ac0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -358,12 +356,11 @@ ac0 f25 actionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
 ' #txt
 ac0 f25 actionTable 'out=in;
 ' #txt
-ac0 f25 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+ac0 f25 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
 
-String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
-if (#applicationName is initialized) {
-	in.taskSearchCriteria.apps = [applicationName];
-}' #txt
+ApplicationService service = new ApplicationService();
+java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
+in.taskSearchCriteria.apps = apps;' #txt
 ac0 f25 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
 ac0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -380,12 +377,11 @@ ac0 f21 actionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
 ' #txt
 ac0 f21 actionTable 'out=in;
 ' #txt
-ac0 f21 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+ac0 f21 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
 
-String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
-if (#applicationName is initialized) {
-	in.taskSearchCriteria.apps = [applicationName];
-}' #txt
+ApplicationService service = new ApplicationService();
+java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
+in.taskSearchCriteria.apps = apps;' #txt
 ac0 f21 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
 ac0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -403,12 +399,11 @@ ac0 f41 actionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
 ac0 f41 actionTable 'out=in;
 ' #txt
 ac0 f41 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+import ch.ivy.addon.portalkit.service.ApplicationService;
 
-String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
-if (#applicationName is initialized) {
-	in.caseSearchCriteria.apps = [applicationName];
-}
+ApplicationService service = new ApplicationService();
+java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
+in.caseSearchCriteria.apps = apps;
 
 if (PermissionUtils.checkReadAllCasesPermission()) {
 	in.caseSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
@@ -449,12 +444,11 @@ ac0 f46 actionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
 ' #txt
 ac0 f46 actionTable 'out=in;
 ' #txt
-ac0 f46 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+ac0 f46 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
 
-String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
-if (#applicationName is initialized) {
-	in.taskSearchCriteria.apps = [applicationName];
-}' #txt
+ApplicationService service = new ApplicationService();
+java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
+in.taskSearchCriteria.apps = apps;' #txt
 ac0 f46 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
 ac0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -511,12 +505,11 @@ ac0 f16 actionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
 ' #txt
 ac0 f16 actionTable 'out=in;
 ' #txt
-ac0 f16 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+ac0 f16 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
 
-String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
-if (#applicationName is initialized) {
-	in.caseCustomVarCharSearchCriteria.apps = [applicationName];
-}' #txt
+ApplicationService service = new ApplicationService();
+java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
+in.caseCustomVarCharSearchCriteria.apps = apps;' #txt
 ac0 f16 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
 ac0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

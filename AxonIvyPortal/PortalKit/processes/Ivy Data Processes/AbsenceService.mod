@@ -187,7 +187,7 @@ Se0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Se0 f0 81 369 30 30 -70 18 #rect
+Se0 f0 81 337 30 30 -70 18 #rect
 Se0 f0 @|StartSubIcon #fIcon
 Se0 f1 actionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
 ' #txt
@@ -206,10 +206,10 @@ Se0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Se0 f1 160 362 176 44 -81 -8 #rect
+Se0 f1 160 330 176 44 -81 -8 #rect
 Se0 f1 @|StepIcon #fIcon
 Se0 f2 expr out #txt
-Se0 f2 111 384 160 384 #arcP
+Se0 f2 111 352 160 352 #arcP
 Se0 f3 actionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
 ' #txt
 Se0 f3 actionTable 'out=in;
@@ -227,10 +227,10 @@ Se0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Se0 f3 376 362 112 44 -42 -8 #rect
+Se0 f3 376 330 112 44 -42 -8 #rect
 Se0 f3 @|StepIcon #fIcon
 Se0 f4 expr out #txt
-Se0 f4 336 384 376 384 #arcP
+Se0 f4 336 352 376 352 #arcP
 Se0 f5 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f5 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
 Se0 f5 doCall true #txt
@@ -249,15 +249,15 @@ Se0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Se0 f5 538 362 112 44 -35 -8 #rect
+Se0 f5 538 330 112 44 -35 -8 #rect
 Se0 f5 @|CallSubIcon #fIcon
 Se0 f6 expr out #txt
-Se0 f6 488 384 538 384 #arcP
+Se0 f6 488 352 538 352 #arcP
 Se0 f7 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
-Se0 f7 689 369 30 30 0 15 #rect
+Se0 f7 689 337 30 30 0 15 #rect
 Se0 f7 @|EndSubIcon #fIcon
 Se0 f8 expr out #txt
-Se0 f8 650 384 689 384 #arcP
+Se0 f8 650 352 689 352 #arcP
 Se0 f9 inParamDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence ivyAbsence> param;' #txt
 Se0 f9 inParamTable 'out.absence=param.ivyAbsence;
 ' #txt
@@ -276,10 +276,10 @@ Se0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Se0 f9 81 497 30 30 -75 17 #rect
+Se0 f9 81 433 30 30 -75 17 #rect
 Se0 f9 @|StartSubIcon #fIcon
 Se0 f10 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
-Se0 f10 689 497 30 30 0 15 #rect
+Se0 f10 689 433 30 30 0 15 #rect
 Se0 f10 @|EndSubIcon #fIcon
 Se0 f11 actionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
 ' #txt
@@ -298,10 +298,10 @@ Se0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Se0 f11 168 490 176 44 -81 -8 #rect
+Se0 f11 168 426 176 44 -81 -8 #rect
 Se0 f11 @|StepIcon #fIcon
 Se0 f12 expr out #txt
-Se0 f12 111 512 168 512 #arcP
+Se0 f12 111 448 168 448 #arcP
 Se0 f13 actionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
 ' #txt
 Se0 f13 actionTable 'out=in;
@@ -319,10 +319,10 @@ Se0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Se0 f13 376 490 112 44 -43 -8 #rect
+Se0 f13 376 426 112 44 -43 -8 #rect
 Se0 f13 @|StepIcon #fIcon
 Se0 f14 expr out #txt
-Se0 f14 344 512 376 512 #arcP
+Se0 f14 344 448 376 448 #arcP
 Se0 f15 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f15 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
 Se0 f15 doCall true #txt
@@ -341,12 +341,12 @@ Se0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Se0 f15 522 490 112 44 -35 -8 #rect
+Se0 f15 522 426 112 44 -35 -8 #rect
 Se0 f15 @|CallSubIcon #fIcon
 Se0 f16 expr out #txt
-Se0 f16 488 512 522 512 #arcP
+Se0 f16 488 448 522 448 #arcP
 Se0 f17 expr out #txt
-Se0 f17 634 512 689 512 #arcP
+Se0 f17 634 448 689 448 #arcP
 Se0 f18 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f18 689 241 30 30 0 15 #rect
 Se0 f18 @|EndSubIcon #fIcon

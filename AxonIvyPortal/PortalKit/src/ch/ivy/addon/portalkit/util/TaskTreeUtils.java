@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.util;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -19,7 +18,9 @@ import ch.ivy.addon.portalkit.bo.TaskNode;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria;
+import ch.ivy.addon.portalkit.service.ApplicationService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -84,12 +85,8 @@ public class TaskTreeUtils {
     }
     
     root = buildRoot();
-    List<String> involvedApplications = null;
-    String appName = SecurityServiceUtils.getApplicationNameFromSession();
-    if (StringUtils.isNotEmpty(appName)) {
-      involvedApplications = new ArrayList<>();
-      involvedApplications.add(appName);
-    }
+    ApplicationService service = new ApplicationService();
+    List<String> involvedApplications = service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName());
     TaskQuery taskQuery = SubProcessCall.withPath("Functional Processes/BuildTaskQuery")
         .withStartSignature("buildTaskQuery()")
         .call()
