@@ -338,7 +338,7 @@ import ch.ivy.addon.portal.generic.navigation.PortalPage;
 
 String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedStatisticHeader") + in.chartName;
 
-in.taskDataModel.getCriteria().setFinalTaskQuery(in.taskQuery);
+in.taskDataModel.getCriteria().setCustomTaskQuery(in.taskQuery);
 in.taskDataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
 in.taskDataModel.setNotKeepFilter(true);
 
@@ -447,7 +447,7 @@ String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTit
 
 in.caseDataModel.getCriteria().setBusinessCase(true);
 in.caseDataModel.setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
-in.caseDataModel.getCriteria().setFinalCaseQuery(in.caseQuery);
+in.caseDataModel.getCriteria().setCustomCaseQuery(in.caseQuery);
 in.caseDataModel.setNotKeepFilter(true);
 
 in.caseView = CaseView.create()
