@@ -491,6 +491,46 @@
 							.
 						</important>
 					</listitem>
+					<listitem>
+						<para>
+							DISPLAY RESET TASK ACTION
+						</para>
+						<para>
+							This action will be hidden if session user does not have permission
+							<code>PortalPermission.TASK_DISPLAY_RESET_ACTION</code>
+							.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							DISPLAY RESERVE TASK ACTION
+						</para>
+						<para>
+							This action will be hidden if session user does not have permission
+							<code>PortalPermission.TASK_DISPLAY_RESERVE_ACTION</code>
+							.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							DISPLAY DELEGATE TASK ACTION
+						</para>
+						<para>
+							This action will be hidden if session user does not have permission
+							<code>PortalPermission.TASK_DISPLAY_DELEGATE_ACTION</code>
+							.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							DISPLAY ADDITIONAL OPTIONS
+						</para>
+						<para>
+							This action will be hidden if session user does not have permission
+							<code>PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS</code>
+							.
+						</para>
+					</listitem>
 				</itemizedlist>
 			</sect3>
 			<sect3>
@@ -564,6 +604,26 @@
 							<code>DESTROYED</code>.
 						</important>
 					</listitem>
+					<listitem>
+						<para>
+							DISPLAY SHOW DETAILS BUTTON
+						</para>
+						<para>
+							This button will be hidden if session user does not have permission
+							<code>PortalPermission.SHOW_CASE_DETAILS</code>
+							.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							DISPLAY SHOW ALL TASKS BUTTON
+						</para>
+						<para>
+							This button will be hidden if session user does not have permission
+							<code>PortalPermission.SHOW_ALL_TASKS_OF_CASE</code>
+							.
+						</para>
+					</listitem>
 				</itemizedlist>
 			</sect3>
             <sect3>
@@ -606,6 +666,71 @@
 							Filter tasks and export data to excel for advanced analysis. This function will be enabled if session user has
 							<code>PortalPermission.STATISTIC_ANALYZE_TASK</code>
 							(This permission belongs to Portal permission group, assigned to user admin by default).
+						</para>
+					</listitem>
+				</itemizedlist>
+			</sect3>
+			<sect3>
+				<title>Portal general permission</title>
+				<itemizedlist>
+					<listitem>
+						<para>
+							ACCESS TO FULL PROCESS LIST 
+						</para>
+						<para>
+							User cannot see "Processes" on the left menu and link "Show all processes" (on Dashboard) if he does not have permission
+							<code>PortalPermission.ACCESS_FULL_PROCESS_LIST</code>
+							.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							ACCESS TO FULL TASK LIST
+						</para>
+						<para>
+							User cannot see "Tasks" on the left menu and link "Show full task list" (on Dashboard) if he does not have permission
+							<code>PortalPermission.ACCESS_FULL_TASK_LIST</code>
+							.	
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							ACCESS TO FULL CASE LIST
+						</para>
+						<para>
+							User cannot see "Cases" on the left menu if he does not have permission
+							<code>PortalPermission.ACCESS_FULL_CASE_LIST</code>
+							.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							ACCESS TO FULL STATISTIC LIST
+						</para>
+						<para>
+							User cannot see "Statistics" on the left menu and link "Show all charts" (on Dashboard) if he does not have permission
+							<code>PortalPermission.ACCESS_FULL_STATISTICS_LIST</code>
+							.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							DISPLAY ADD NOTE BUTTON
+						</para>
+						<para>
+							This button will be hidden if session user does not have permission
+							<code>PortalPermission.TASK_CASE_ADD_NOTE</code>
+							.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							DISPLAY SHOW MORE NOTE BUTTON
+						</para>
+						<para>
+							This button will be hidden if session user does not have permission
+							<code>PortalPermission.TASK_CASE_SHOW_MORE_NOTE</code>
+							.
 						</para>
 					</listitem>
 				</itemizedlist>
