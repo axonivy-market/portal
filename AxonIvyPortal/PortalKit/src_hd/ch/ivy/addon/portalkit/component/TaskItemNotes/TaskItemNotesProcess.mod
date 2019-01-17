@@ -77,8 +77,15 @@ Ts0 f4 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemNotes.TaskItemNotesD
 Ts0 f4 actionTable 'out=in;
 ' #txt
 Ts0 f4 actionCode 'import java.util.ArrayList;
+import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
-out.notes = new ArrayList(in.task.getCase().getBusinessCase().getNotes());' #txt
+ICase iCase = in.task.getCase().getBusinessCase();
+GlobalSettingService globalSettingService = new GlobalSettingService();
+boolean excludeTechnicalHistory = globalSettingService.findHideSystemTasksFromHistorySettingValue();
+out.notes = CaseUtils.findNotes(iCase, excludeTechnicalHistory);
+' #txt
 Ts0 f4 type ch.ivy.addon.portalkit.component.TaskItemNotes.TaskItemNotesData #txt
 Ts0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
