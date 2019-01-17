@@ -22,13 +22,11 @@ Fr0 @GridStep f8 '' #zField
 Fr0 @PushWFArc f9 '' #zField
 Fr0 @PushWFArc f7 '' #zField
 Fr0 @PushWFArc f2 '' #zField
-Fr0 @GridStep f17 '' #zField
-Fr0 @PushWFArc f12 '' #zField
 Fr0 @GridStep f19 '' #zField
-Fr0 @PushWFArc f18 '' #zField
 Fr0 @GridStep f16 '' #zField
-Fr0 @PushWFArc f13 '' #zField
 Fr0 @PushWFArc f21 '' #zField
+Fr0 @PushWFArc f13 '' #zField
+Fr0 @PushWFArc f10 '' #zField
 >Proto Fr0 Fr0 FindApplicationsByUser #zField
 Fr0 f0 inParamDecl '<java.lang.String username> param;' #txt
 Fr0 f0 inParamTable 'out.username=param.username;
@@ -148,33 +146,16 @@ Fr0 f2 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Fr0 f2 184 462 184 531 #arcP
 Fr0 f2 0 0.456 11 0 #arcLabel
-Fr0 f17 actionDecl 'ch.ivyteam.wf.processes.FindApplicationsByUserData out;
-' #txt
-Fr0 f17 actionTable 'out=in;
-' #txt
-Fr0 f17 actionCode '// add all custom application
-in.applications.addAll(in.thirdPartyApplications);' #txt
-Fr0 f17 type ch.ivyteam.wf.processes.FindApplicationsByUserData #txt
-Fr0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Add applications</name>
-        <nameStyle>16,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Fr0 f17 166 372 36 24 20 -2 #rect
-Fr0 f17 @|StepIcon #fIcon
-Fr0 f12 expr out #txt
-Fr0 f12 184 396 184 434 #arcP
 Fr0 f19 actionDecl 'ch.ivyteam.wf.processes.FindApplicationsByUserData out;
 ' #txt
 Fr0 f19 actionTable 'out=in;
 ' #txt
 Fr0 f19 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
 ApplicationService applicationService = new ApplicationService();
-in.thirdPartyApplications = applicationService.findAllThirdPartyApplications();' #txt
+in.thirdPartyApplications = applicationService.findAllThirdPartyApplications();
+in.applications.addAll(in.thirdPartyApplications);
+' #txt
+Fr0 f19 security system #txt
 Fr0 f19 type ch.ivyteam.wf.processes.FindApplicationsByUserData #txt
 Fr0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -185,29 +166,27 @@ Fr0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fr0 f19 166 316 36 24 20 -2 #rect
+Fr0 f19 166 308 36 24 20 -2 #rect
 Fr0 f19 @|StepIcon #fIcon
-Fr0 f18 expr out #txt
-Fr0 f18 184 340 184 372 #arcP
 Fr0 f16 actionDecl 'ch.ivyteam.wf.processes.FindApplicationsByUserData out;
 ' #txt
 Fr0 f16 actionTable 'out=in;
 ' #txt
-Fr0 f16 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.User;
-
+Fr0 f16 actionCode 'import ch.ivyteam.ivy.security.IUser;
+import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
+import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.service.ApplicationService;
-import ch.ivy.addon.portalkit.service.UserService;
 
-UserService userService = new UserService();
 ApplicationService applicationService = new ApplicationService();
 
-List users = userService.findByUserName(in.username);
-
-if (!users.isEmpty()){
-	for (User user: users){
-		in.applications.add(applicationService.findByName(user.applicationName));
+List<Application> apps = applicationService.findAllIvyApplications();
+for (Application app : apps){
+	IUser user = ServiceUtilities.findUser(ivy.session.getSessionUserName(), app.getName());
+	if (#user is initialized){
+		in.applications.add(app);
 	}
 }' #txt
+Fr0 f16 security system #txt
 Fr0 f16 type ch.ivyteam.wf.processes.FindApplicationsByUserData #txt
 Fr0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -220,8 +199,6 @@ Fr0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Fr0 f16 166 236 36 24 20 -2 #rect
 Fr0 f16 @|StepIcon #fIcon
-Fr0 f13 expr out #txt
-Fr0 f13 184 260 184 316 #arcP
 Fr0 f21 expr in #txt
 Fr0 f21 outCond in.applications.isEmpty() #txt
 Fr0 f21 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -235,6 +212,10 @@ Fr0 f21 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Fr0 f21 184 206 184 236 #arcP
 Fr0 f21 0 0.0 -16 0 #arcLabel
+Fr0 f13 expr out #txt
+Fr0 f13 184 260 184 308 #arcP
+Fr0 f10 expr out #txt
+Fr0 f10 184 332 184 434 #arcP
 >Proto Fr0 .type ch.ivyteam.wf.processes.FindApplicationsByUserData #txt
 >Proto Fr0 .processKind CALLABLE_SUB #txt
 >Proto Fr0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -260,12 +241,10 @@ Fr0 f8 mainOut f7 tail #connect
 Fr0 f7 head f1 mainIn #connect
 Fr0 f11 out f2 tail #connect
 Fr0 f2 head f1 mainIn #connect
-Fr0 f17 mainOut f12 tail #connect
-Fr0 f12 head f11 in #connect
-Fr0 f19 mainOut f18 tail #connect
-Fr0 f18 head f17 mainIn #connect
-Fr0 f16 mainOut f13 tail #connect
-Fr0 f13 head f19 mainIn #connect
 Fr0 f5 out f21 tail #connect
 Fr0 f21 head f16 mainIn #connect
 Fr0 f5 out f15 tail #connect
+Fr0 f16 mainOut f13 tail #connect
+Fr0 f13 head f19 mainIn #connect
+Fr0 f19 mainOut f10 tail #connect
+Fr0 f10 head f11 in #connect
