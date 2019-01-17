@@ -46,7 +46,6 @@ Cs0 @PushWFArc f32 '' #zField
 Cs0 @GridStep f30 '' #zField
 Cs0 @Alternative f34 '' #zField
 Cs0 @PushWFArc f35 '' #zField
-Cs0 @PushWFArc f6 '' #zField
 Cs0 @GridStep f36 '' #zField
 Cs0 @PushWFArc f38 '' #zField
 Cs0 @PushWFArc f33 '' #zField
@@ -58,6 +57,9 @@ Cs0 @RichDialogProcessEnd f37 '' #zField
 Cs0 @GridStep f41 '' #zField
 Cs0 @PushWFArc f42 '' #zField
 Cs0 @PushWFArc f40 '' #zField
+Cs0 @GridStep f44 '' #zField
+Cs0 @PushWFArc f45 '' #zField
+Cs0 @PushWFArc f6 '' #zField
 >Proto Cs0 Cs0 StatisticWidgetProcess #zField
 Cs0 f0 guid 16034D800DC77D9C #txt
 Cs0 f0 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
@@ -379,19 +381,6 @@ Cs0 f34 248 352 32 32 -46 14 #rect
 Cs0 f34 @|AlternativeIcon #fIcon
 Cs0 f35 expr out #txt
 Cs0 f35 107 368 248 368 #arcP
-Cs0 f6 expr in #txt
-Cs0 f6 outCond in.compactMode #txt
-Cs0 f6 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>yes</name>
-        <nameStyle>3
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f6 280 368 723 368 #arcP
-Cs0 f6 0 0.4748858447488584 0 12 #arcLabel
 Cs0 f36 actionDecl 'ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData out;
 ' #txt
 Cs0 f36 actionTable 'out=in;
@@ -466,6 +455,40 @@ Cs0 f42 expr out #txt
 Cs0 f42 109 768 216 768 #arcP
 Cs0 f40 expr out #txt
 Cs0 f40 360 768 467 768 #arcP
+Cs0 f44 actionDecl 'ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData out;
+' #txt
+Cs0 f44 actionTable 'out=in;
+' #txt
+Cs0 f44 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
+in.isDisplayShowAllChartLink = PermissionUtils.hasPortalPermission(PortalPermission.ACCESS_FULL_STATISTICS_LIST);' #txt
+Cs0 f44 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
+Cs0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Check permission &#xD;
+to see show all chart link</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f44 400 346 160 44 -61 -16 #rect
+Cs0 f44 @|StepIcon #fIcon
+Cs0 f45 expr in #txt
+Cs0 f45 outCond in.compactMode #txt
+Cs0 f45 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>yes</name>
+        <nameStyle>3
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f45 280 368 400 368 #arcP
+Cs0 f45 0 0.4748858447488584 0 12 #arcLabel
+Cs0 f6 expr out #txt
+Cs0 f6 560 368 723 368 #arcP
+Cs0 f6 0 0.4748858447488584 0 12 #arcLabel
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -490,9 +513,6 @@ Cs0 f28 mainOut f32 tail #connect
 Cs0 f32 head f31 mainIn #connect
 Cs0 f4 mainOut f35 tail #connect
 Cs0 f35 head f34 in #connect
-Cs0 f34 out f6 tail #connect
-Cs0 f6 head f5 mainIn #connect
-Cs0 f34 out f38 tail #connect
 Cs0 f38 head f36 mainIn #connect
 Cs0 f36 mainOut f33 tail #connect
 Cs0 f33 head f30 mainIn #connect
@@ -506,3 +526,8 @@ Cs0 f29 mainOut f42 tail #connect
 Cs0 f42 head f41 mainIn #connect
 Cs0 f41 mainOut f40 tail #connect
 Cs0 f40 head f37 mainIn #connect
+Cs0 f34 out f45 tail #connect
+Cs0 f45 head f44 mainIn #connect
+Cs0 f34 out f38 tail #connect
+Cs0 f44 mainOut f6 tail #connect
+Cs0 f6 head f5 mainIn #connect
