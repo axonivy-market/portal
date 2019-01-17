@@ -32,10 +32,10 @@
         dataModel="#{taskView.dataModel}" />
       <div class="task-start-info">
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskName task="#{task}" dataModel="#{taskView.dataModel}"
-          isSelected="#{taskView.remoteTaskId eq task.getId() and dataModel.serverId eq task.getApplicationRegister().serverId}" />
+                    isSelected="#{taskView.taskId eq task.getId()}" />
       </div>
-      <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible userName="#{task.activatorName}"
-        fullName="#{task.activator.displayName}" styleClass="hidden-sm" dataModel="#{taskView.dataModel}" />
+      <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible dataModel="#{taskView.dataModel}"
+                  userName="#{task.getActivatorName()}" fullName="#{task.getActivator().getDisplayName()}" styleClass="activatior-column #{taskView.dataModel.isAutoHideColumns()? 'hidden-sm':''}" />
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskId value="#{task.getId()}" dataModel="#{taskView.dataModel}" />
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate componentId="creation-time"
         value="#{task.startTimestamp}" styleClass="#{taskView.dataModel.isAutoHideColumns()?'js-create-cell':''}"
