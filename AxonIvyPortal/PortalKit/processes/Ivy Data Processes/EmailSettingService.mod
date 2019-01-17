@@ -138,7 +138,7 @@ Ee0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ee0 f0 81 177 30 30 -131 17 #rect
+Ee0 f0 81 177 30 30 -79 14 #rect
 Ee0 f0 @|StartSubIcon #fIcon
 Ee0 f6 actionDecl 'ch.ivyteam.wf.processes.EmailSettingServiceData out;
 ' #txt

@@ -18,12 +18,12 @@ import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bo.TaskColumnsConfiguration;
-import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
+import ch.ivy.addon.portalkit.service.ApplicationService;
 import ch.ivy.addon.portalkit.service.TaskColumnsConfigurationService;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.taskfilter.DefaultTaskFilterContainer;
@@ -34,7 +34,6 @@ import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskStateFilter;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
@@ -90,7 +89,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
         inProgressFilter = new TaskInProgressByOthersFilter();
       }
     }
-    autoInitForNoAppConfiguration();
+    setInvolvedApplications();
     isDisplayShowFullTaskListLink = PermissionUtils.hasPortalPermission(PortalPermission.ACCESS_FULL_TASK_LIST);
   }
 
@@ -296,10 +295,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   public void setQueryByBusinessCaseId(boolean isQueryByBusinessCaseId) {
     criteria.setQueryByBusinessCaseId(isQueryByBusinessCaseId);
-  }
-
-  public void setInvolvedApplications(String... involvedApplications) {
-    criteria.setApps(Arrays.asList(involvedApplications));
   }
 
   public void setTaskAssigneeType(TaskAssigneeType assigneeType) {
@@ -526,16 +521,9 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     criteria.setFinalTaskQuery(taskQuery);
   }
 
-  protected void autoInitForNoAppConfiguration() {
-    String applicationName = StringUtils.EMPTY;
-    String applicationNameFromRequest =
-        Optional.ofNullable(Ivy.request().getApplication()).map(IApplication::getName).orElse(StringUtils.EMPTY);
-    if (!PortalConstants.PORTAL_APPLICATION_NAME.equals(applicationNameFromRequest)) {
-      applicationName = applicationNameFromRequest;
-    }
-    if (StringUtils.isNotBlank(applicationName)) {
-      setInvolvedApplications(applicationName);
-    }
+  protected void setInvolvedApplications() {
+    ApplicationService service = new ApplicationService();
+    criteria.setApps(service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName()));
   }
 
   protected void setValuesForStateFilter(TaskSearchCriteria criteria) {

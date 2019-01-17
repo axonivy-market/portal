@@ -89,13 +89,12 @@ Ps0 f7 actionDecl 'ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData
 ' #txt
 Ps0 f7 actionTable 'out=in;
 ' #txt
-Ps0 f7 actionCode 'import ch.ivyteam.ivy.workflow.CaseState;
-import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+Ps0 f7 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
+import ch.ivyteam.ivy.workflow.CaseState;
 
-String appName = SecurityServiceUtils.getApplicationNameFromSession();
-if (#appName is initialized) {
-	out.criteria.apps = [appName];
-}
+ApplicationService service = new ApplicationService();
+java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
+out.criteria.apps = apps;
 
 out.criteria.includedStates = [CaseState.CREATED, CaseState.RUNNING, CaseState.DONE];' #txt
 Ps0 f7 type ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData #txt
