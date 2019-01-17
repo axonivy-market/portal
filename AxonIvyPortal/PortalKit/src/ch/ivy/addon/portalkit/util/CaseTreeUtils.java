@@ -19,7 +19,9 @@ import ch.ivy.addon.portalkit.bo.CaseNode;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria;
+import ch.ivy.addon.portalkit.service.ApplicationService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -81,12 +83,8 @@ public class CaseTreeUtils {
     }
     
     root = buildRoot();
-    List<String> involvedApplications = null;
-    String appName = SecurityServiceUtils.getApplicationNameFromSession();
-    if (StringUtils.isNotEmpty(appName)) {
-      involvedApplications = new ArrayList<>();
-      involvedApplications.add(appName);
-    }
+    ApplicationService service = new ApplicationService();
+    List<String> involvedApplications = service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName());
     CaseQuery caseQuery = SubProcessCall.withPath("Functional Processes/BuildCaseQuery")
         .withStartSignature("buildCaseQuery()").call().get("caseQuery", CaseQuery.class);
     CategoryTree allCaseCategories = findAllCaseCategoryTree(involvedApplications, caseQuery);
