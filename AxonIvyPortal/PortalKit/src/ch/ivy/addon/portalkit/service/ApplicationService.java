@@ -12,9 +12,9 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.ivydata.service.IApplicationService;
+import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.persistence.dao.ApplicationDao;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
-import ch.ivy.addon.portalkit.persistence.domain.User;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -87,11 +87,6 @@ public class ApplicationService extends AbstractService<Application> {
       return (List<String>) cacheValueOpt.get();
     }
     
-    List<User> users = new UserService().findByUserName(username);
-    if (users == null) {
-      return new ArrayList<>();
-    }
-
     List<String> workOnApps = new ArrayList<>();
     String currentApplicationName =
         Optional.ofNullable(Ivy.request().getApplication()).map(IApplication::getName).orElse(StringUtils.EMPTY);
@@ -122,15 +117,11 @@ public class ApplicationService extends AbstractService<Application> {
     if (cacheValueOpt.isPresent()) {
       return (List<String>) cacheValueOpt.get();
     }
-    
-    List<User> users = new UserService().findByUserName(username);
-    if (users == null) {
+
+    List<String> workOnApps = findInvolvedAppsOfUser(username);
+    if (CollectionUtils.isEmpty(workOnApps)) {
       return new ArrayList<>();
     }
-
-    List<String> appNames =
-        users.stream().map(User::getApplicationName).filter(StringUtils::isNotBlank).collect(Collectors.toList());
-    List<String> workOnApps = findActiveIvyAppsBy(appNames);
     IvyCacheService.newInstance().setSessionCache(username, IvyCacheIdentifier.ONLINE_APPLICATIONS_USER_CAN_WORK_ON, workOnApps);
     return workOnApps;
   }
@@ -178,14 +169,8 @@ public class ApplicationService extends AbstractService<Application> {
       return (List<String>) cacheValueOpt.get();
     }
     
-    List<User> users = new UserService().findByUserName(username);
-    if (users == null) {
-      return new ArrayList<>();
-    }
-
     List<String> workOnApps = new ArrayList<>();
-    List<String> appNames =
-        users.stream().map(User::getApplicationName).filter(StringUtils::isNotBlank).collect(Collectors.toList());
+    List<String> appNames = findInvolvedAppsOfUser(username);
     List<Application> applications = getDao().findAbsenceEnableAndOnlineAndVisibleIvyAppsBy(appNames);
     if (CollectionUtils.isNotEmpty(applications)) {
       workOnApps = applications.stream().map(Application::getName).collect(Collectors.toList());
@@ -197,5 +182,26 @@ public class ApplicationService extends AbstractService<Application> {
 
     IvyCacheService.newInstance().setSessionCache(username, IvyCacheIdentifier.ABSENCE_ENABLE_AND_ONLINE_APPLICATIONS, workOnApps);
     return workOnApps;
+  }
+  
+  private List<String> findInvolvedAppsOfUser(String username) {
+    List<Application> allIvyApplications = findAllIvyApplications();
+    Ivy.log().error("RESULT OF findAllIvyApplications");
+    allIvyApplications.forEach(x -> Ivy.log().error("allIvyApps: {0} and online state {1}, visible state {2}", x.getName(), x.getIsOnline(), x.getIsVisible()));
+
+    List<String> appNames = allIvyApplications
+        .stream()
+        .filter(application -> ServiceUtilities.findUser(username, application.getName()) != null 
+              && application.getIsOnline() 
+              && application.getIsVisible())
+        .map(Application::getName)
+        .collect(Collectors.toList());
+    
+    if (CollectionUtils.isEmpty(appNames)) {
+      IApplicationService applicationService = ch.ivy.addon.portalkit.ivydata.service.impl.ApplicationService.newInstance();
+      return applicationService.findActiveAll().stream().map(ch.ivy.addon.portalkit.ivydata.bo.IvyApplication::getName)
+          .collect(Collectors.toList());
+    }
+    return appNames;
   }
 }
