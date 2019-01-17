@@ -1,7 +1,6 @@
 package ch.ivy.addon.portalkit.service;
 
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.util.ArrayList;
 import java.util.Arrays;

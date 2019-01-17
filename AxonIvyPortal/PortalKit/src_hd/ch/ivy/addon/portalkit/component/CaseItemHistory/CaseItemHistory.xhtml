@@ -59,13 +59,13 @@
     </p:scrollPanel>
 
     <h:panelGroup layout="block" styleClass="case-details-note-add">
-      <p:commandLink id="add-note-command" styleClass="case-details-document-add-link" 
+      <p:commandLink id="add-note-command" styleClass="case-details-document-add-link" rendered="#{caseTaskNoteHistoryBean.showAddNote}"
         onclick="PF('add-note-dialog-#{case.id}').show()" actionListener="#{data.setICase(case)}">
         <span class="fa fa-plus-circle case-details-note-add-link-icon" />
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}" />
       </p:commandLink>
       <p:link id="show-more-note-link" styleClass="case-details-document-add-link note-show-more-link"
-      	target="_blank" href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case)}">
+      	target="_blank" href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case)}" rendered="#{caseTaskNoteHistoryBean.showMoreNote}">
       	<span class="fa fa-external-link-square note-show-more-link-icon" />
       	<h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}" />
       </p:link>

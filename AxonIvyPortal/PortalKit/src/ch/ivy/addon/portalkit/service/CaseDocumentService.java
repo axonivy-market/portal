@@ -51,7 +51,7 @@ public class CaseDocumentService {
   }
 
   public List<IDocument> getAll() {
-    List<IDocument> documents = new ArrayList<>(documentsOf(iCase).getAll());
+    List<IDocument> documents = new ArrayList<>(getAllDocumentsOf(iCase));
     List<IDocument> expressDocs = new ArrayList<>();
     for (IDocument doc : documents) {
       if (doc.getPath().asString().contains(EXPRESS_UPLOAD_FOLDER)) {
@@ -128,6 +128,16 @@ public class CaseDocumentService {
     try {
       return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
         return iCase.documents();
+      });
+    } catch (Exception e) {
+      throw new PortalException(e);
+    }
+  }
+  
+  private List<IDocument> getAllDocumentsOf(ICase iCase) {
+    try {
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
+        return iCase.documents().getAll();
       });
     } catch (Exception e) {
       throw new PortalException(e);
