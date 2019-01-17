@@ -1511,9 +1511,7 @@ As0 f169 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsDat
 ' #txt
 As0 f169 actionTable 'out=in;
 ' #txt
-As0 f169 actionCode 'import ch.ivy.addon.portalkit.service.UserService;
-
-in.filteredUsers = in.usersApplicationList;' #txt
+As0 f169 actionCode 'in.filteredUsers = in.usersApplicationList;' #txt
 As0 f169 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f169 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
