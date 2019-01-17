@@ -319,7 +319,7 @@ import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
 
 Set<IvyAbsence> ivyAbsences = in.absencesByUser.get(ivy.session.getSessionUserName()) as Set;
-if (in.absenceInThePastShown) {
+if (!in.absenceInThePastShown) {
 	out.displayedAbsences.clear();
 	for (IvyAbsence absence : ivyAbsences) {
 			if (!AbsenceAndSubstituteUtils.isInThePast(absence)) {
@@ -1327,7 +1327,7 @@ import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
 
 Set<IvyAbsence> ivyAbsences = AbsenceAndSubstituteUtils.flatIvyAbsenceMap(in.absencesByUser);
-if (in.absenceInThePastShown) {
+if (!in.absenceInThePastShown) {
 	out.displayedAbsences.clear();
 	for (IvyAbsence absence : ivyAbsences) {
 			if (!AbsenceAndSubstituteUtils.isInThePast(absence)) {
