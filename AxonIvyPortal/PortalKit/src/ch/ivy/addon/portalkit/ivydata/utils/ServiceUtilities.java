@@ -116,4 +116,20 @@ public class ServiceUtilities {
     ivyApplication.setActive(true);
     return ivyApplication;
   }
+  
+  public static IUser findUser(String username, String appName){
+    try {
+      return getServer().getSecurityManager().executeAsSystem(() -> {
+        IApplication app;
+        try {
+          app = findApp(appName);
+        } catch (PortalIvyDataException e) {
+          return null;
+        }
+        return app.getSecurityContext().findUser(username);
+      });
+    } catch (Exception e) {
+      return null;
+    }
+  }
 }
