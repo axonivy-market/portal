@@ -14,7 +14,7 @@
 		</para>
 	</sect2>
 	<sect2 xml:id="axonivyportal.customization.menu.customization">
-		<title>Customization</title>
+		<title xml:id="axonivyportal.customization.menu.customization.title">Customization</title>
 		<para>
 		Create a callable sub process in your project with the <code>loadSubMenuItems()</code> signature, 
 		make sure this signature is unique in your application and follow the hints.

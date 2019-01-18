@@ -90,7 +90,7 @@ in.subMenuItems.add(new CaseSubMenuItem());
 in.subMenuItems.add(new DashboardSubMenuItem());
 
 PERMISSION CHECK TO SEE SUB MENU ITEM
-In PermissionUtils we provide some method to check permission to see sub menu item
+In PermissionUtils we provide some methods to check permission to see sub menu item
 - checkAccessFullProcessListPermission() for Process list sub menu item
 - checkAccessFullTaskListPermission() for Task list sub menu item
 - checkAccessFullCaseListPermission() for Case list sub menu item
@@ -119,7 +119,7 @@ Axon.Ivy link
 External link: 
 - www.yourexternallink.com
 - http://www.yourexternallink.com</name>
-        <nameStyle>1346,7
+        <nameStyle>1347,7
 </nameStyle>
     </language>
 </elementInfo>
