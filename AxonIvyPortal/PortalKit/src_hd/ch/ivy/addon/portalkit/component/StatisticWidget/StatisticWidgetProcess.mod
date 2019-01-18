@@ -459,9 +459,8 @@ Cs0 f44 actionDecl 'ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWi
 ' #txt
 Cs0 f44 actionTable 'out=in;
 ' #txt
-Cs0 f44 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPermission;
-import ch.ivy.addon.portalkit.util.PermissionUtils;
-in.isDisplayShowAllChartLink = PermissionUtils.hasPortalPermission(PortalPermission.ACCESS_FULL_STATISTICS_LIST);' #txt
+Cs0 f44 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
+in.isDisplayShowAllChartLink = PermissionUtils.checkAccessFullStatisticsListPermission();' #txt
 Cs0 f44 type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
 Cs0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

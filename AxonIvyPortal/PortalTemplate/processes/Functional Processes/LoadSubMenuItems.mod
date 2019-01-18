@@ -45,23 +45,22 @@ Ls0 f3 actionDecl 'ch.ivy.addon.portal.generic.LoadSubMenuItemsData out;
 ' #txt
 Ls0 f3 actionTable 'out=in;
 ' #txt
-Ls0 f3 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPermission;
-import ch.ivy.addon.portalkit.util.PermissionUtils;
+Ls0 f3 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.addon.portal.generic.menu.DashboardSubMenuItem;
 import ch.addon.portal.generic.menu.ProcessSubMenuItem;
 import ch.addon.portal.generic.menu.CaseSubMenuItem;
 import ch.addon.portal.generic.menu.TaskSubMenuItem;
 
-if(PermissionUtils.hasPortalPermission(PortalPermission.ACCESS_FULL_PROCESS_LIST)) {
+if(PermissionUtils.checkAccessFullProcessListPermission()) {
 	in.subMenuItems.add(new ProcessSubMenuItem());
 }
-if(PermissionUtils.hasPortalPermission(PortalPermission.ACCESS_FULL_TASK_LIST)) {
+if(PermissionUtils.checkAccessFullTaskListPermission()) {
 	in.subMenuItems.add(new TaskSubMenuItem());
 }
-if(PermissionUtils.hasPortalPermission(PortalPermission.ACCESS_FULL_CASE_LIST)) {
+if(PermissionUtils.checkAccessFullCaseListPermission()) {
 	in.subMenuItems.add(new CaseSubMenuItem());
 }
-if(PermissionUtils.hasPortalPermission(PortalPermission.ACCESS_FULL_STATISTICS_LIST)) {
+if(PermissionUtils.checkAccessFullStatisticsListPermission()) {
 	in.subMenuItems.add(new DashboardSubMenuItem());
 }' #txt
 Ls0 f3 type ch.ivy.addon.portal.generic.LoadSubMenuItemsData #txt
@@ -90,6 +89,14 @@ in.subMenuItems.add(new TaskSubMenuItem());
 in.subMenuItems.add(new CaseSubMenuItem());
 in.subMenuItems.add(new DashboardSubMenuItem());
 
+PERMISSION CHECK TO SEE SUB MENU ITEM
+In PermissionUtils we provide some method to check permission to see sub menu item
+- checkAccessFullProcessListPermission() for Process list sub menu item
+- checkAccessFullTaskListPermission() for Task list sub menu item
+- checkAccessFullCaseListPermission() for Case list sub menu item
+- checkAccessFullStatisticsListPermission() for Statistics sub menu item
+
+
 TO CREATE A SUB MENU ITEM:
 
 SubMenuItem subMenuItem = new SubMenuItem();
@@ -112,14 +119,16 @@ Axon.Ivy link
 External link: 
 - www.yourexternallink.com
 - http://www.yourexternallink.com</name>
-        <nameStyle>946,7
+        <nameStyle>1346,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ls0 f5 296 10 656 476 -321 -232 #rect
+Ls0 f5 296 26 656 604 -321 -296 #rect
 Ls0 f5 @|IBIcon #fIcon
-Ls0 f6 296 248 152 248 #arcP
+Ls0 f6 296 328 152 248 #arcP
+Ls0 f6 1 296 248 #addKink
+Ls0 f6 1 0.22725934349270996 0 0 #arcLabel
 >Proto Ls0 .type ch.ivy.addon.portal.generic.LoadSubMenuItemsData #txt
 >Proto Ls0 .processKind CALLABLE_SUB #txt
 >Proto Ls0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
