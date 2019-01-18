@@ -21,7 +21,6 @@ import org.primefaces.context.RequestContext;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.comparator.UserProcessIndexComparator;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.Protocol;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
