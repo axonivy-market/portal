@@ -130,4 +130,35 @@ public class PermissionUtils {
     }
     return false;
   }
+  
+  /**
+   * Check if current user has permission to see full process list
+   * @return
+   */
+  public static boolean checkAccessFullProcessListPermission() {
+    return hasPortalPermission(PortalPermission.ACCESS_FULL_PROCESS_LIST);
+  }
+  /**
+   * Check if current user has permission to see full task list
+   * @return
+   */
+  public static boolean checkAccessFullTaskListPermission() {
+    return hasPortalPermission(PortalPermission.ACCESS_FULL_TASK_LIST);
+  }
+  
+  /**
+   * Check if current user has permission to see full case list
+   * @return
+   */
+  public static boolean checkAccessFullCaseListPermission() {
+    return hasPortalPermission(PortalPermission.ACCESS_FULL_CASE_LIST);
+  }
+  
+  /**
+   * Check if current user has permission to see full statistic list
+   * @return
+   */
+  public static boolean checkAccessFullStatisticsListPermission() {
+    return hasPortalPermission(PortalPermission.ACCESS_FULL_STATISTICS_LIST);
+  }
 }

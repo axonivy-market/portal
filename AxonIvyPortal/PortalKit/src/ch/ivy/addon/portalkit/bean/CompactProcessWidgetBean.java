@@ -62,7 +62,7 @@ private static final long serialVersionUID = -5889375917550618261L;
     isUserFavoritesEnabled = StringUtils.isNotBlank(isUserFavoritesEnabledGlobalVariable) ? Boolean.parseBoolean(isUserFavoritesEnabledGlobalVariable) : true;
     userProcesses = findUserProcesses();
     defaultProcesses = findStartableDefaultProcesses();
-    isDisplayShowAllProcessesLink = PermissionUtils.hasPortalPermission(PortalPermission.ACCESS_FULL_PROCESS_LIST);
+    isDisplayShowAllProcessesLink = PermissionUtils.checkAccessFullProcessListPermission();
   }
 
   private List<UserProcess> findStartableDefaultProcesses() {
