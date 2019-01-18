@@ -12,7 +12,6 @@ import org.jsoup.safety.Whitelist;
 
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
@@ -38,7 +37,7 @@ public class TaskWidgetBean implements Serializable {
     taskListRefreshInterval =
         StringUtils.isNumeric(taskListRefreshIntervalUserSetting) ? Long.parseLong(taskListRefreshIntervalUserSetting)
             : DEFAULT_TASK_LIST_REFRESH_INTERVAL;
-    isShowFullTaskList = PermissionUtils.hasPortalPermission(PortalPermission.ACCESS_FULL_TASK_LIST);
+    isShowFullTaskList = PermissionUtils.checkAccessFullTaskListPermission();
   }
 
   public Long getExpandedTaskId() {
