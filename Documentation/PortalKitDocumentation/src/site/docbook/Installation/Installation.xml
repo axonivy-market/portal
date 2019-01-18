@@ -694,7 +694,7 @@
 			<sect3>
 				<title>Migrate hidden task and case</title>
 				<para>
-				If you use feature hide technical task and case by set addtional property, Portal 7.0.9 has option to store it in custom field of task and case instead of additional property for better performance. 
+				If you use feature hide technical task and case by set addtional property, Portal 7.0.10 has option to store it in custom field of task and case instead of additional property for better performance. 
 				</para>
 				<para>In case you don't want to change the place to store information of technical task, case from additional property to custom field. You just simply set global variable <code>PortalHiddenTaskCaseCustomField</code> to empty.</para>
 				<para>
@@ -702,7 +702,7 @@
 				</para>
 				<orderedlist>
 					<listitem>Make sure <code>PortalHiddenTaskCaseExcluded</code> is set to true in each application(default value)</listitem>
-					<listitem>In each application, set <code>PortalHiddenTaskCaseCustomField</code> to one available custom field of your task and case e.g CustomTimestampField5.
+					<listitem>In each application, set <code>PortalHiddenTaskCaseCustomField</code> to one available custom field of your task and case e.g CustomDecimalField5.
 					This value must be the same for all applications.</listitem>
 					<listitem>Deploy this project <link xlink:href="documents/MigrateHiddenTaskCase.iar">MigrateHiddenTaskCase.iar</link> to all your portal applications</listitem>
 					<listitem>In each application, run start process <code>MigrateHiddenTaskCase</code> to migrate.</listitem>
