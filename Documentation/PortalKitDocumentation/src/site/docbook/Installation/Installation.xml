@@ -883,6 +883,13 @@
 			</sect3>
 		</sect2>
 		<sect2>
+			<title>Migrate 7.2.0 to 7.3.0</title>
+			<para>
+				From 7.3.0, Portal supports some permissions to show/hide left menu item, if you overrode LoadSubMenuItems process and want to use these permissions, please refer to 
+				<link linkend="axonivyportal.customization.menu.customization" endterm="axonivyportal.customization.menu.customization.title" /> for more detail.
+			</para>
+		</sect2>
+		<sect2>
 			<title>Migrate 7.1.0 to 7.2.0</title>
 			<para>
 				Portal needs <link xlink:show="new" xlink:href="https://poi.apache.org">Apache POI</link> for exporting to Excel features.
@@ -1189,6 +1196,10 @@
 					<listitem>
 						<para>Provides the mobile pages. The default page is task list, refer to 
 							<link linkend="axonivyportal.customization.mobiledefaultpage" endterm="axonivyportal.customization.mobiledefaultpage.title" /> for the customization.</para>
+					</listitem>
+					<listitem>
+						<para>Provides more permissions to show/hide menu, button and link in Portal, refer to 
+							<link linkend="axonivyportal.installation.basicinstallation.permissionsettings" endterm="axonivyportal.installation.basicinstallation.permissionsettings.title" /> for more detail.</para>
 					</listitem>
 				</itemizedlist>
 			</sect2>
