@@ -11,8 +11,9 @@ public class MainMenuPage extends TemplatePage {
   private final static String PROCESSES_MENU_ICON_POSITION = "1";
   private final static String TASK_MENU_ICON_POSITION = "2";
   private final static String CASE_MENU_ICON_POSITION = "3";
-  private final static String DASHBOARD_MENU_ICON_POSITION = "4";
+  private final static String STATISTIC_MENU_ICON_POSITION = "4";
   private final static String CASE_MENU_ID = "main-menu-container:main-menu-form:main-menu-container_node_2";
+  private final static String SUB_MENU_ITEM_ID = "user-menu-required-login:main-navigator:sub-menu-item-0:%d:sub-menu-item-link";
 
   @Override
   protected String getLoadedLocator() {
@@ -38,6 +39,29 @@ public class MainMenuPage extends TemplatePage {
     if (isTaskMenuOpen()) {
       toggleTaskMenu();
     }
+  }
+  
+  public boolean isProcessesDisplayed() {
+    return isElementDisplayedById(String.format(SUB_MENU_ITEM_ID, 0));
+  }
+  
+  //When hiding all 4 sub menu items: Processes, Cases, Tasks and Statistics.
+  public boolean isTasksDisplayed() {
+    String taskItemId = String.format(SUB_MENU_ITEM_ID, 1);
+    if (isElementDisplayedById(taskItemId)) {
+      if (findChildElementByClassName(findElementById(taskItemId),"left-sidebar-sub-menu-name").getText().equals("Tasks") ) {
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  public boolean isCasesDisplayed() {
+    return isElementDisplayedById(String.format(SUB_MENU_ITEM_ID, 2));
+  }
+  
+  public boolean isStatisticsDisplayed() {
+    return isElementDisplayedById(String.format(SUB_MENU_ITEM_ID, 3));
   }
   
   public ProcessWidgetPage selectProcessesMenu() {
@@ -112,7 +136,7 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public StatisticWidgetPage selectStatisticDashboard() {
-    findElementByCssSelector("a.left-sidebar-sub-menu-item:nth-of-type(" + DASHBOARD_MENU_ICON_POSITION + ")").click();
+    findElementByCssSelector("a.left-sidebar-sub-menu-item:nth-of-type(" + STATISTIC_MENU_ICON_POSITION + ")").click();
     ensureNoBackgroundRequest();
     waitForPageLoaded();
     return new StatisticWidgetPage();

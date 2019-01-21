@@ -9,6 +9,9 @@ public class HomePage extends TemplatePage {
   public final static String INTERNAL_SUPPORT_HOME_PAGE_URL = "internalSupport/164211FF9482BB44/PortalStart.ivp";
   public final static String PORTAL_EXAMPLES_HOME_PAGE_URL = "portalExamples/164211E97C598DAA/PortalStart.ivp";
   public final static String TASK_SWITCH_MODE_BTN_LOCATOR = "id('task-widget:task-list-link:task-list-link')";
+  private static final String SHOW_ALL_PROCESSES_LINK_ID = "process-widget:process-link:process-link-label";
+  private static final String SHOW_TASK_LIST_LINK_ID = "task-widget:task-list-link:task-list-link-label";
+  private static final String SHOW_ALL_CHARTS_LINK_ID = "statistics-widget:statistic-link:statistic-link-label";
 
   @Override
   protected String getLoadedLocator() {
@@ -29,5 +32,17 @@ public class HomePage extends TemplatePage {
   
   public String getMainColor() {
     return Color.fromString(findElementById("app-menu-panel").getCssValue("background-color")).asHex().substring(1);
+  }
+  
+  public boolean isShowAllProcessesLinkDisplayed() {
+    return isElementDisplayedById(SHOW_ALL_PROCESSES_LINK_ID);
+  }
+  
+  public boolean isShowTaskListLinkDisplayed() {
+    return isElementDisplayedById(SHOW_TASK_LIST_LINK_ID);
+  }
+  
+  public boolean isShowAllChartsLinkDisplayed() {
+    return isElementDisplayedById(SHOW_ALL_CHARTS_LINK_ID);
   }
 }
