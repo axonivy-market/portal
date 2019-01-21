@@ -52,13 +52,13 @@ public class PortalExpressTest extends BaseTest{
   
   @Test
   public void testOpenProcessWidgetWithoutCreateExpressWorkflowPermission() throws Exception {
-    String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/denyPortalPermission.ivp";
-    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
+    String denyAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/denyPortalPermission.ivp";
+    redirectToRelativeLink(denyAllPermissionsForAdminUserURL);
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     processWidget = mainMenuPage.selectProcessesMenu();
     assertEquals(false, processWidget.hasCreateNewExpressWorkflowLink());
     //run process to grant permission back to normal
-    grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp";
+    String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp";
     redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
   }
   
