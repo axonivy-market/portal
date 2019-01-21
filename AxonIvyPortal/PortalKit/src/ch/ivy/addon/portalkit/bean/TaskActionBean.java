@@ -11,8 +11,8 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.lang.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -76,7 +76,7 @@ public class TaskActionBean {
     
     ISession session = null;
     try {
-      session = TaskUtils.findUserWorkflowSession(Ivy.session().getSessionUserName(), task.getApplication());
+      session = ServiceUtilities.findUserWorkflowSession(Ivy.session().getSessionUserName(), task.getApplication());
       boolean canResume = task.canUserResumeTask(session).wasSuccessful();
       canResumeByTaskId.put(task.getId(), canResume);
       return canResume;
