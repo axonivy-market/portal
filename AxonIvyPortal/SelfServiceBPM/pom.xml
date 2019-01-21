@@ -9,6 +9,7 @@
 	<packaging>iar</packaging>
 
 	<properties>
+        <ivy.engine.version>7.0.10</ivy.engine.version>
 		<build.plugin.version>7.0.1</build.plugin.version>
 	</properties>
 	<dependencies>
