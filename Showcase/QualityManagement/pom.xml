@@ -14,9 +14,6 @@
       <type>iar</type>
     </dependency>
   </dependencies>  
-  <properties>		
-	<ivy.engine.version>7.0.9</ivy.engine.version>
-  </properties>
   <build>
 	  <plugins>			
 			<plugin>
