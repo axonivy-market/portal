@@ -15,13 +15,18 @@ import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
 import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataErrorType;
 import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModel;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityConstants;
+import ch.ivyteam.ivy.security.ISecurityContext;
+import ch.ivyteam.ivy.security.ISession;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 public class ServiceUtilities {
 
@@ -131,5 +136,24 @@ public class ServiceUtilities {
     } catch (Exception e) {
       return null;
     }
+  }
+  
+  
+  public static IWorkflowSession findUserWorkflowSession(String username, IApplication app) {
+    if (Objects.equals(Ivy.wf().getApplication(), app)) {
+      return Ivy.session();
+    }
+    
+    ISecurityContext securityContext = app.getSecurityContext();
+    return IvyExecutor.executeAsSystem(() -> {
+      ISession session = securityContext.createSession();
+      IUser user = securityContext.findUser(username);
+
+      if (user != null) {
+        String authenticationMode = "customAuth";
+        session.authenticateSessionUser(user, authenticationMode, -1L);
+      }
+      return Ivy.wf().getWorkflowSession(session);
+    });
   }
 }
