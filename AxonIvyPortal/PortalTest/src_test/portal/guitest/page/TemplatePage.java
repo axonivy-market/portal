@@ -181,7 +181,16 @@ protected boolean isIntegrationTestRun() {
   public boolean isAdminSettingsMenuItemPresent() {
     return isElementPresent("id('adminui-menu-item')");
   }
-
+  
+  public boolean isElementDisplayedById(String id) {
+    try {
+      findElementById(id);
+      return true;
+    } catch (org.openqa.selenium.NoSuchElementException e) {
+      return false;
+    }
+  }
+  
   public MainMenuPage openMainMenu() {
     WebElement mainMenuToggle = findDisplayedElementBySelector(".js-left-sidebar-toggle");
     if (!isMainMenuOpen()) {
