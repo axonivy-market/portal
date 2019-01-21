@@ -186,9 +186,6 @@ public class ApplicationService extends AbstractService<Application> {
   
   private List<String> findInvolvedAppsOfUser(String username) {
     List<Application> allIvyApplications = findAllIvyApplications();
-    Ivy.log().error("RESULT OF findAllIvyApplications");
-    allIvyApplications.forEach(x -> Ivy.log().error("allIvyApps: {0} and online state {1}, visible state {2}", x.getName(), x.getIsOnline(), x.getIsVisible()));
-
     List<String> appNames = allIvyApplications
         .stream()
         .filter(application -> ServiceUtilities.findUser(username, application.getName()) != null 
@@ -202,6 +199,8 @@ public class ApplicationService extends AbstractService<Application> {
       return applicationService.findActiveAll().stream().map(ch.ivy.addon.portalkit.ivydata.bo.IvyApplication::getName)
           .collect(Collectors.toList());
     }
+    
+    Ivy.log().error("APP NAMES : {0}", appNames);
     return appNames;
   }
 }
