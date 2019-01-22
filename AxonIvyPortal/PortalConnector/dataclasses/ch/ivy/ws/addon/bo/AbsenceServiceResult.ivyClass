@@ -1,4 +1,0 @@
-AbsenceServiceResult #class
-ch.ivy.ws.addon.bo #namespace
-absences java.util.List<ch.ivy.ws.addon.types.Absence> #field
-errors java.util.List<ch.ivy.ws.addon.WSException> #field

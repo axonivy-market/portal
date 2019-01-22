@@ -1,4 +1,0 @@
-IvyAdditionalProperty #class
-ch.ivy.ws.addon.types #namespace
-key String #field
-value String #field
