@@ -4,17 +4,6 @@ function CaseWidget() {
   var MEDIUM_RESPONSIVE_THRESHOLD = 950;
   var LARGE_RESPONSIVE_THRESHOLD = 1550;
   
-  this.setupHeader = function() {
-    $processHistoryListHeader = $('.js-case-widget-column-header');
-    $uiDatascrollerContent = $('.process-history-list .ui-datascroller-content');
-    $uiDatascrollerlist = $('.process-history-list .ui-datascroller-content .ui-datascroller-list');
-    if ($uiDatascrollerContent.width() > $uiDatascrollerlist.width()) {
-      $processHistoryListHeader.css("padding-right", "20px");
-    } else {
-      $processHistoryListHeader.css("padding-right", "2px");
-    }
-  }
-
   this.setupCaseBody = function() {
 
     var $caseItem = caseItem();
@@ -95,7 +84,6 @@ function CaseWidget() {
 function processHistory() {
   this.setup = function() {
     var caseWidget = new CaseWidget();
-    caseWidget.setupHeader();
     caseWidget.setupCaseBody();
   }
 }

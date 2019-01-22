@@ -62,9 +62,9 @@
 		<p:dataScroller id="case-list-scroller" value="#{processHistoryBean.dataModel}" var="case"
 			scrollHeight="#{cc.attrs.scrollHeight}" chunkSize="#{cc.attrs.chunkSize}" lazy="true" mode="inline"
 			rowIndexVar="rowIndex" styleClass="js-case-list" buffer="70" widgetVar="process-history-scroller">
-			<ic:ch.ivy.addon.portalkit.component.CaseItem caseItem="#{case}" id="case-item" enableCaseAction="false"
+			<ic:ch.ivy.addon.portalkit.component.CaseItem case="#{case}" id="case-item" enableCaseAction="false"
 				itemStyleClass="#{rowIndex % 2 == 0 ? 'case-even-row' : 'case-odd-row'}"
-				expandCallback="caseWidget.setupHeader();caseWidget.setupCaseBody();">
+				expandCallback="caseWidget.setupCaseBody();">
 				<f:facet name="caseHeader">
 					<h:panelGroup class="case-header-name-desc-cell">
 						<ic:ch.ivy.addon.portalkit.component.cases.column.CaseName case="#{case}" 
@@ -73,7 +73,7 @@
 					</h:panelGroup>
 					<ic:ch.ivy.addon.portalkit.component.cases.column.CaseId case="#{case}" dataModel="#{processHistoryBean.dataModel}"
 						styleClass="process-history process-history-list process-history-list-cell-default" />
-					<h:outputText value="#{case.processName}" dataModel="#{processHistoryBean.dataModel}"
+					<h:outputText value="#{case.processName}"
 						styleClass="process-history process-history-list process-history-list-cell-default process-history-list-width-120" />
 					<ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-creation-time-cell" value="#{case.startTimestamp}"
 						styleClass="process-history process-history-list process-history-list-cell-default" />

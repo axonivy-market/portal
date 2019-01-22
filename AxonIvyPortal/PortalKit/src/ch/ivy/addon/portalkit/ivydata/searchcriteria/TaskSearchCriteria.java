@@ -53,7 +53,7 @@ public class TaskSearchCriteria {
     setNewQueryCreated(isNewQueryCreated() || customTaskQuery == null|| hasTaskId() || hasCaseId());
 
     if (!isNewQueryCreated()) {
-      finalQuery = customTaskQuery;
+      finalQuery = TaskQuery.fromJson(customTaskQuery.asJson()); // clone to keep the original custom query
     }
 
     addTaskStateQuery(finalQuery);

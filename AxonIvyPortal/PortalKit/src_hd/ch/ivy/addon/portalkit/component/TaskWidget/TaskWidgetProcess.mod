@@ -558,13 +558,12 @@ import javax.faces.context.FacesContext;
 FacesContext context = FacesContext.getCurrentInstance();
 TaskWidgetBean taskWidgetBean = context.getApplication().evaluateExpressionGet(context, "#{taskWidgetBean}", TaskWidgetBean.class) as TaskWidgetBean;
 if (!in.#dataModel is initialized) {
-TaskLazyDataModel dataModel = new TaskLazyDataModel();
-dataModel.setCompactMode(true);
-taskWidgetBean.setDataModel(dataModel);
-in.dataModel = taskWidgetBean.dataModel;
-} 
-else {
-taskWidgetBean.setDataModel(in.dataModel);
+	TaskLazyDataModel dataModel = new TaskLazyDataModel();
+	dataModel.setCompactMode(true);
+	taskWidgetBean.setDataModel(dataModel);
+	in.dataModel = taskWidgetBean.dataModel;
+} else {
+	taskWidgetBean.setDataModel(in.dataModel);
 }' #txt
 Ts0 f8 security system #txt
 Ts0 f8 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
