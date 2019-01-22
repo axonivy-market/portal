@@ -1,4 +1,0 @@
-IsAliveServiceResult #class
-ch.ivy.ws.addon.bo #namespace
-apps java.util.List<ch.ivy.ws.addon.types.IvyApplication> #field
-errors java.util.List<ch.ivy.ws.addon.WSException> #field
