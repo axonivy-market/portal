@@ -13,6 +13,7 @@ public class CasePage extends TemplatePage {
   private final static String CASE_PAGE_LOCATION = "id('case-widget:case-list')";
   private static final String DESTROY_CASE_ID = "case-widget:case-list-scroller:%s:case-item:destroy-case";
   private static final String CASE_ITEM_DETAILS_ID = "case-widget:case-list-scroller:%s:case-item:case-details";
+  private static final String CASE_NAME_ID = "case-widget:case-list-scroller:%d:case-item:case-header:case-name-form:case-name-edit-inplace";
 
   @Override
   protected String getLoadedLocator() {
@@ -76,11 +77,10 @@ public class CasePage extends TemplatePage {
     return caseItems.size();
   }
 
-  public String getCaseName() {
+  public String getCaseName(int index) {
     waitForElementDisplayed(By.cssSelector("*[id$='case-widget:case-list']"), true);
-    WebElement selectedCaseElement = findElementByCssSelector(".case-list-item-expanded");
     WebElement selectedCaseNameElement =
-        findElementById(selectedCaseElement.getAttribute("id") + ":case-header:case-name-form:case-name-edit-inplace");
+        findElementById(String.format(CASE_NAME_ID, index));
     return selectedCaseNameElement.getText();
   }
 
