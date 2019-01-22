@@ -422,14 +422,19 @@ Ts0 f8 actionDecl 'ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnaly
 ' #txt
 Ts0 f8 actionTable 'out=in;
 ' #txt
-Ts0 f8 actionCode 'import ch.ivy.addon.portalkit.bean.TaskAnalysisWidgetBean;
+Ts0 f8 actionCode 'import ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel;
+import ch.ivy.addon.portalkit.bean.TaskAnalysisWidgetBean;
 import javax.faces.context.FacesContext;
 
+FacesContext context = FacesContext.getCurrentInstance();
+TaskAnalysisWidgetBean taskAnalysisWidgetBean = context.getApplication().evaluateExpressionGet(context, "#{taskAnalysisWidgetBean}", TaskAnalysisWidgetBean.class) as TaskAnalysisWidgetBean;
 if (!in.#dataModel is initialized) {
-	FacesContext context = FacesContext.getCurrentInstance();
-	TaskAnalysisWidgetBean taskAnalysisWidgetBean = context.getApplication().evaluateExpressionGet(context, "#{taskAnalysisWidgetBean}", TaskAnalysisWidgetBean.class) as TaskAnalysisWidgetBean;
+	TaskAnalysisLazyDataModel dataModel = new TaskAnalysisLazyDataModel();
+	taskAnalysisWidgetBean.setDataModel(dataModel);
 	in.dataModel = taskAnalysisWidgetBean.dataModel;
-} ' #txt
+} else {
+	taskAnalysisWidgetBean.setDataModel(in.dataModel);
+}' #txt
 Ts0 f8 security system #txt
 Ts0 f8 type ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData #txt
 Ts0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
