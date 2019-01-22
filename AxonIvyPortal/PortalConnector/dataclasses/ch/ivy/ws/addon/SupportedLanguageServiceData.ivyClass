@@ -1,5 +1,0 @@
-SupportedLanguageServiceData #class
-ch.ivy.ws.addon #namespace
-applicationName String #field
-errors List<ch.ivy.ws.addon.WSException> #field
-supportedLanguages List<String> #field

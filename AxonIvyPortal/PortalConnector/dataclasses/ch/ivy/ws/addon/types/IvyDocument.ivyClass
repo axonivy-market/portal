@@ -1,6 +1,0 @@
-IvyDocument #class
-ch.ivy.ws.addon.types #namespace
-contentType String #field
-id Long #field
-name String #field
-size Long #field
