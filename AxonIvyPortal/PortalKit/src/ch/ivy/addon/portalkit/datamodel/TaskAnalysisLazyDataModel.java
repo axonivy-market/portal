@@ -131,6 +131,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     }
 
     List<ITask> foundTasks = findTasks(criteria, first, pageSize);
+    data.addAll(foundTasks);
     return foundTasks;
   }
   

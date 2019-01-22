@@ -37,7 +37,7 @@ public class CaseSearchCriteria {
     setNewQueryCreated(isNewQueryCreated() || customCaseQuery == null || hasCaseId());
 
     if (!isNewQueryCreated()) {
-      finalQuery = customCaseQuery;
+      finalQuery = CaseQuery.fromJson(customCaseQuery.asJson()); // clone to keep the original custom query
     }
 
     if (hasIncludedStates()) {
