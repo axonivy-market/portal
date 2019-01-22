@@ -11,6 +11,8 @@ public class CasePage extends TemplatePage {
   private static final String CASE_ITEM_LIST_SELECTOR = "li[class='ui-datascroller-item']";
   private static final String CASE_NAME_CSS_SELECTOR = "span[class='case-header-name-cell']";
   private final static String CASE_PAGE_LOCATION = "id('case-widget:case-list')";
+  private static final String DESTROY_CASE_ID = "case-widget:case-list-scroller:%s:case-item:destroy-case";
+  private static final String CASE_ITEM_DETAILS_ID = "case-widget:case-list-scroller:%s:case-item:case-details";
 
   @Override
   protected String getLoadedLocator() {
@@ -18,31 +20,30 @@ public class CasePage extends TemplatePage {
   }
 
   public WebElement selectCaseItem(int index) {
-    String caseItemId = String.format("case-widget:case-list-scroller:%s:case-item", index);
+    String caseItemId = String.format(CASE_ITEM_DETAILS_ID, index);
     return findElementById(caseItemId);
   }
 
   public boolean isCaseItemSelected(int index) {
-    return findElementById("case-widget:case-list-scroller:" + index + ":case-item").getAttribute("class").contains(
+    return findElementById(String.format(CASE_ITEM_DETAILS_ID, index)).getAttribute("class").contains(
         "case-list-item-expanded");
   }
 
-  private WebElement getDestroyButtonOfCaseItem(WebElement caseItem) {
-    String caseItemId = caseItem.getAttribute("id");
-    String destroyButtonId = String.format("%s:destroy-case", caseItemId);
+  private WebElement getDestroyButtonOfCaseItem(int index) {
+    String destroyButtonId = String.format(DESTROY_CASE_ID, index);
     WebElement destroyButton = findElementById(destroyButtonId);
     findElementById(destroyButtonId);
     return destroyButton;
   }
 
-  public void clickDestroyButton(WebElement caseItem) {
-    WebElement destroyButton = getDestroyButtonOfCaseItem(caseItem);
+  public void clickDestroyButton(int index) {
+    WebElement destroyButton = getDestroyButtonOfCaseItem(index);
     destroyButton.click();
   }
 
-  public boolean isDestroyButtonVisible(WebElement caseItem) {
+  public boolean isDestroyButtonVisible(int index) {
     try {
-      getDestroyButtonOfCaseItem(caseItem);
+      getDestroyButtonOfCaseItem(index);
       return true;
     } catch (Exception ex) {
       return false;
