@@ -30,10 +30,8 @@ public class TaskAnalysisWidgetBean implements Serializable {
   private TaskAnalysisLazyDataModel dataModel;
   private Map<String, Boolean> columns;
 
-
   public TaskAnalysisWidgetBean() {
     expandedTaskId = -1L;
-    dataModel = new TaskAnalysisLazyDataModel();
     String taskListRefreshIntervalUserSetting =
         new GlobalSettingService().findGlobalSettingValue(GlobalVariable.REFRESH_TASK_LIST_INTERVAL.toString());
     taskListRefreshInterval =
