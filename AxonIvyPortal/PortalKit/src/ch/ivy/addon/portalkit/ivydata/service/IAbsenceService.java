@@ -15,7 +15,7 @@ public interface IAbsenceService {
    * @return IvyAbsenceResultDTO
    * @throws Exception
    */
-  IvyAbsenceResultDTO findAbsences(String username, List<String> apps) throws Exception;
+  IvyAbsenceResultDTO findAbsences(String username, List<String> apps);
   
   /**
    * Creates the new absence of the given user
@@ -24,7 +24,7 @@ public interface IAbsenceService {
    * @return IvyAbsenceResultDTO
    * @throws Exception
    */
-  IvyAbsenceResultDTO createAbsence(IvyAbsence ivyAbsence, List<String> apps) throws Exception;
+  IvyAbsenceResultDTO createAbsence(IvyAbsence ivyAbsence, List<String> apps);
   
   /**
    * Updates the existing absences (Deletes all of the absences then creates the new ones of the given user)
@@ -34,7 +34,7 @@ public interface IAbsenceService {
    * @return IvyAbsenceResultDTO
    * @throws Exception
    */
-  IvyAbsenceResultDTO updateAbsences(String username, Set<IvyAbsence> ivyAbsences, List<String> apps) throws Exception;
+  IvyAbsenceResultDTO updateAbsences(String username, Set<IvyAbsence> ivyAbsences, List<String> apps);
   
   /**
    * Deletes the given absence
@@ -43,5 +43,5 @@ public interface IAbsenceService {
    * @return IvyAbsenceResultDTO
    * @throws Exception
    */
-  IvyAbsenceResultDTO deleteAbsence(IvyAbsence ivyAbsence, List<String> apps) throws Exception;
+  IvyAbsenceResultDTO deleteAbsence(IvyAbsence ivyAbsence, List<String> apps);
 }

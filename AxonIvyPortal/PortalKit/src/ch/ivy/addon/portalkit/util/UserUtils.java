@@ -1,6 +1,3 @@
-/**
- * 
- */
 package ch.ivy.addon.portalkit.util;
 
 import java.util.ArrayList;
@@ -29,13 +26,7 @@ import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
-/**
- * Provide the utilities related to user
- * 
- * @author bolt
- */
 public class UserUtils {
-
 
   private static final String APPLICATION_DEFAULT = "APPLICATION_DEFAULT";
   private static final String SELECTED_TASK_FILTER_SET = "SELECTED_TASK_FILTER_SET";
@@ -49,7 +40,6 @@ public class UserUtils {
   private static final String SECURITY_SERVICE_CALLABLE = "Ivy Data Processes/SecurityService";
 
   private UserUtils() {
-
   }
 
   /**
@@ -236,7 +226,7 @@ public class UserUtils {
     return keyword;
   }
 
-  public static List<IUser> findAllUserByApplication() throws Exception {
+  public static List<IUser> findAllUserByApplication() {
     List<IUser> users = findUsersByCallableProcess();
     Collections.sort(users, (first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName()));
     return users;

@@ -24,20 +24,20 @@ import ch.ivyteam.ivy.workflow.TaskState;
 @ManagedBean
 @ViewScoped
 public class TaskActionBean {
-  
+
   private Map<Long, Boolean> canResumeByTaskId = new HashMap<>();
   private boolean isShowResetTask;
   private boolean isShowReserveTask;
   private boolean isShowDelegateTask;
   private boolean isShowAdditionalOptions;
-  
+
   public TaskActionBean() {
-	  isShowResetTask = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_RESET_ACTION);
-	  isShowReserveTask = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_RESERVE_ACTION);
-	  isShowDelegateTask = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_DELEGATE_ACTION);
-	  isShowAdditionalOptions = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS);
+    isShowResetTask = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_RESET_ACTION);
+    isShowReserveTask = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_RESERVE_ACTION);
+    isShowDelegateTask = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_DELEGATE_ACTION);
+    isShowAdditionalOptions = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS);
   }
-  
+
   public boolean canReset(ITask task) throws Exception {
     TaskState taskState = task.getState();
     if (taskState != TaskState.RESUMED && taskState != TaskState.PARKED) {
@@ -48,11 +48,11 @@ public class TaskActionBean {
         || hasPermission(task, IPermission.TASK_RESET);
   }
 
-  public boolean canDelegate(ITask task) throws Exception {
+  public boolean canDelegate(ITask task) {
     if (!isNotDone(task)) {
       return false;
     }
-    
+
     if (userCanOnlyDelegateAssignedTask(task)) {
       return canResume(task);
     } else {
@@ -69,11 +69,11 @@ public class TaskActionBean {
     return hasPermission(task, permission) && !hasPermission(task, IPermission.TASK_WRITE_ACTIVATOR);
   }
 
-  public boolean canResume(ITask task) throws Exception {
+  public boolean canResume(ITask task) {
     if (canResumeByTaskId.containsKey(task.getId())) {
       return canResumeByTaskId.get(task.getId());
     }
-    
+
     ISession session = null;
     try {
       session = ServiceUtilities.findUserWorkflowSession(Ivy.session().getSessionUserName(), task.getApplication());
@@ -88,8 +88,9 @@ public class TaskActionBean {
     }
   }
 
-  public boolean canPark(ITask task) throws Exception {
-    if (task.getState() != TaskState.SUSPENDED && task.getState() != TaskState.PARKED && task.getState() != TaskState.RESUMED) {
+  public boolean canPark(ITask task) {
+    if (task.getState() != TaskState.SUSPENDED && task.getState() != TaskState.PARKED
+        && task.getState() != TaskState.RESUMED) {
       return false;
     }
 
@@ -106,34 +107,34 @@ public class TaskActionBean {
     }
     return PermissionUtils.hasPermission(task.getApplication(), Ivy.session().getSessionUserName(), permission);
   }
-  
+
   public boolean canChangePriority(ITask task) {
     return isNotDone(task) && hasPermission(task, IPermission.TASK_WRITE_ORIGINAL_PRIORITY);
   }
-  
+
   public boolean canChangeExpiry(ITask task) {
     return (hasPermission(task, IPermission.TASK_WRITE_EXPIRY_TIMESTAMP) && task.getExpiryActivator() != null)
         || (task != null && StringUtils.isNotBlank(task.getExpiryTaskStartElementPid()));
   }
-  
+
   public boolean notHaveExpiryHandleLogic(ITask task) {
-    return isNotDone(task) && hasPermission(task, IPermission.TASK_WRITE_EXPIRY_TIMESTAMP) && task.getExpiryActivator() == null
-        && StringUtils.isBlank(task.getExpiryTaskStartElementPid());
+    return isNotDone(task) && hasPermission(task, IPermission.TASK_WRITE_EXPIRY_TIMESTAMP)
+        && task.getExpiryActivator() == null && StringUtils.isBlank(task.getExpiryTaskStartElementPid());
   }
-  
+
   public boolean canChangeName(ITask task) {
     return isNotDone(task) && hasPermission(task, IPermission.TASK_WRITE_NAME);
   }
-  
+
   public boolean canChangeDescription(ITask task) {
     return isNotDone(task) && hasPermission(task, IPermission.TASK_WRITE_DESCRIPTION);
   }
-  
+
   public boolean canWriteDocument(ITask task) {
     return hasPermission(task, IPermission.DOCUMENT_WRITE)
         || hasPermission(task, IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE);
   }
-  
+
   private boolean isNotDone(ITask task) {
     if (task == null) {
       return false;
@@ -143,35 +144,35 @@ public class TaskActionBean {
     return taskStates.contains(task.getState());
   }
 
-public boolean isShowResetTask() {
-	return isShowResetTask;
-}
+  public boolean isShowResetTask() {
+    return isShowResetTask;
+  }
 
-public void setShowResetTask(boolean isShowResetTask) {
-	this.isShowResetTask = isShowResetTask;
-}
+  public void setShowResetTask(boolean isShowResetTask) {
+    this.isShowResetTask = isShowResetTask;
+  }
 
-public boolean isShowReserveTask() {
-	return isShowReserveTask;
-}
+  public boolean isShowReserveTask() {
+    return isShowReserveTask;
+  }
 
-public void setShowReserveTask(boolean isShowReserveTask) {
-	this.isShowReserveTask = isShowReserveTask;
-}
+  public void setShowReserveTask(boolean isShowReserveTask) {
+    this.isShowReserveTask = isShowReserveTask;
+  }
 
-public boolean isShowDelegateTask() {
-	return isShowDelegateTask;
-}
+  public boolean isShowDelegateTask() {
+    return isShowDelegateTask;
+  }
 
-public void setShowDelegateTask(boolean isShowDelegateTask) {
-	this.isShowDelegateTask = isShowDelegateTask;
-}
+  public void setShowDelegateTask(boolean isShowDelegateTask) {
+    this.isShowDelegateTask = isShowDelegateTask;
+  }
 
-public boolean isShowAdditionalOptions() {
-	return isShowAdditionalOptions;
-}
+  public boolean isShowAdditionalOptions() {
+    return isShowAdditionalOptions;
+  }
 
-public void setShowAdditionalOptions(boolean isShowAdditionalOptions) {
-	this.isShowAdditionalOptions = isShowAdditionalOptions;
-}
+  public void setShowAdditionalOptions(boolean isShowAdditionalOptions) {
+    this.isShowAdditionalOptions = isShowAdditionalOptions;
+  }
 }
