@@ -118,84 +118,42 @@
 			</para>
 		</sect2>
 		<sect2>
-			<title>Specify servers, applications used in Portal</title>
+			<title>Specify applications used in Portal</title>
 			<sect3 xml:id="axonivyportal.installation.basicinstallation.specifyservers.generalConcept">
 				<title xml:id="axonivyportal.installation.basicinstallation.specifyservers.generalConcept.title">General concept</title>
-				<para>Portal has 3 different configurations:</para>
+				<para>Portal has 2 different configurations:</para>
 				<itemizedlist>
 					<listitem>
 						<emphasis role="bold">Single mode</emphasis>
-						: Only one Portal application on one engine. The Portal application must include portalKit, portalTemplate and
-						portalStyle modules.
-						By default, portalConnector is already deployed on the System application of Axon.ivy engine.
+						: The working application must include portalKit, portalTemplate and portalStyle modules.
 					</listitem>
 					<listitem>
-						<emphasis role="bold">Multi applications on single engine mode</emphasis>
+						<emphasis role="bold">Multi applications mode</emphasis>
 						: Multiple Portal applications on one engine. Each Portal application must include portalKit, portalTemplate and
-						portalStyle modules. Only one portalConnector of the System application is needed.
-					</listitem>
-					<listitem>
-						<emphasis role="bold">Multi applications on multi engines mode</emphasis>
-						: Single or multiple Portal applications on multiple engines. The engines will communicate with each other via the
-						portalConnector of their System
-						application (This mode is not supported yet).
+						portalStyle modules.
 					</listitem>
 				</itemizedlist>
 				<important>
 					<itemizedlist>
-						<listitem>In single mode, if you deploy a new Portal application with a customer project, you need to deactivate the standard Portal application.</listitem>
-						<listitem>In multi applications on single engine mode, if you do not need overall dashboard, deactivate the standard Portal application. Otherwise, 
-							keep the standard Portal application activated.</listitem>
+						<listitem>In multi applications mode, if you need overall dashboard, create the standard Portal application with the Portal modules.</listitem>
 					</itemizedlist>
 				</important>
 			</sect3>
 			<sect3>
-				<title>Automatically detect servers, applications</title>
-				<para>
-					By default, PortalKit will connect to PortalConnector using the address specified by the system property
-					<code>WebServer.HTTP.Address</code>
-					. If the property is not set, PortalKit will use the address localhost to connect to PortalConnector. All
-					applications of the server which have the logged-in user are used in Portal.
-				</para>
-				<note>
-					System property
-					<code>WebServer.HTTP.Address</code>
-					specifies the address that will listen on the ivy engine port.
-				</note>
-				<para>
-					Steps to set the system property
-					<code>WebServer.HTTP.Address</code>
-					<orderedlist>
-						<listitem>
-							Open AdminUI and go to System Properties.
-						</listitem>
-						<listitem>
-							Set the
-							<code>WebServer.HTTP.Address</code>
-							property to the value of the address that will be used to connect to PortalConnector.
-							<mediaobject>
-								<imageobject>
-									<imagedata fileref="images/Installation/serveraddress-settings.png" />
-								</imageobject>
-							</mediaobject>
-						</listitem>
-						<listitem>
-							Restart the ivy engine.
-						</listitem>
-					</orderedlist>
-				</para>
-			</sect3>
-			<sect3>
-				<title>Manually configure servers, applications</title>
+				<title>Manually configure applications</title>
 				<para>
 					Refer
 					<link linkend="axonivyportal.settings.adminsettings.setupmultiportals" endterm="axonivyportal.settings.adminsettings.setupmultiportals.title" />
 					.
 				</para>
 			</sect3>
+			<sect3 xml:id="axonivyportal.installation.basicinstallation.specifyservers.standardPortal">
+				<para>The engine via the demo mode automatically deploy the Portal application with default users. You need to deploy it in the production mode.
+				</para>
+			</sect3>
 		</sect2>
 		<sect2>
-			<title>Default user credentials</title>
+			<title>Default user credentials in demo mode</title>
 			<para>Portal provides 3 default users: </para>
 			<table>
 				<title>Default user credentials</title>
@@ -226,9 +184,6 @@
 					</tbody>
 				</tgroup>
 			</table>
-			<tip>
-				You can change these accounts info in the AdminUI.
-			</tip>
 		</sect2>
 		<sect2>
 			<title>Role configuration</title>
@@ -775,33 +730,6 @@
 						</row>
 					</thead>
 					<tbody>
-						<row>
-							<entry>PortalStartTimeSynchUserExpression</entry>
-							<entry>0 0 5 * * ?</entry>
-							<entry>
-								Cron expression define the time to reload application user datas. E.g.: expression for at 5AM every
-								day is
-								<code>0 0 5 * * ?</code>
-								. Refer to
-								<link xlink:href="http://quartz-scheduler.org/documentation/quartz-2.1.x/tutorials/crontrigger">crontrigger</link>
-								. Restart Ivy engine after changing this variable.
-							</entry>
-						</row>
-						<row>
-							<entry>PortalCallWebserviceMaxRetry</entry>
-							<entry>10</entry>
-							<entry>
-								Maximum time that PortalConnector will retry to synchronize data to Portal on the system. If beyond this limit,
-								system will create a Task for
-								<code>AXONIVY_PORTAL_ADMIN</code>
-								role to handle this error.
-							</entry>
-						</row>
-						<row>
-							<entry>PortalSearchDelayInMilliseconds</entry>
-							<entry>500</entry>
-							<entry>The delay time of search function at top menu.</entry>
-						</row>
 						<row>
 							<entry>PortalStartTimeCleanObsoletedDataExpression</entry>
 							<entry>0 0 6 * * ?</entry>
