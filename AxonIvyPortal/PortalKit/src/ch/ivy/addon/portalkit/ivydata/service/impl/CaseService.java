@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
-import static ch.ivyteam.ivy.server.ServerFactory.getServer;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,6 +21,7 @@ import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomVarCharSearchCrit
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.ICaseService;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -43,8 +42,8 @@ public class CaseService implements ICaseService {
   }
   
   @Override
-  public IvyCaseResultDTO findCasesByCriteria(CaseSearchCriteria criteria, int startIndex, int count) throws Exception { // NOSONAR
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvyCaseResultDTO findCasesByCriteria(CaseSearchCriteria criteria, int startIndex, int count) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       try {
         CaseQuery finalQuery = extendQuery(criteria);
@@ -58,8 +57,8 @@ public class CaseService implements ICaseService {
   }
   
   @Override
-  public IvyCaseResultDTO countCasesByCriteria(CaseSearchCriteria criteria) throws Exception { // NOSONAR
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvyCaseResultDTO countCasesByCriteria(CaseSearchCriteria criteria) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       try {
         CaseQuery finalQuery = extendQuery(criteria);
@@ -98,8 +97,8 @@ public class CaseService implements ICaseService {
   }
   
   @Override
-  public IvyCaseResultDTO findCategoriesByCriteria(CaseCategorySearchCriteria criteria) throws Exception { // NOSONAR
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvyCaseResultDTO findCategoriesByCriteria(CaseCategorySearchCriteria criteria) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       try {
         CaseQuery finalQuery = criteria.createQuery();
@@ -123,8 +122,8 @@ public class CaseService implements ICaseService {
   }
   
   @Override
-  public IvyCaseResultDTO analyzeCaseStateStatistic(CaseSearchCriteria criteria) throws Exception { // NOSONAR
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvyCaseResultDTO analyzeCaseStateStatistic(CaseSearchCriteria criteria) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       try {
         CaseQuery finalQuery = extendQuery(criteria);
@@ -162,8 +161,8 @@ public class CaseService implements ICaseService {
   }
   
   @Override
-  public IvyCaseResultDTO analyzeElapsedTimeByCaseCategory(CaseSearchCriteria criteria) throws Exception { // NOSONAR
-    return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvyCaseResultDTO analyzeElapsedTimeByCaseCategory(CaseSearchCriteria criteria) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       try {
         CaseQuery finalQuery = extendQuery(criteria);
@@ -198,8 +197,8 @@ public class CaseService implements ICaseService {
   }
   
   @Override
-  public IvyCaseResultDTO findValuesOfCustomVarChar(CaseCustomVarCharSearchCriteria criteria) throws Exception {
-    return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvyCaseResultDTO findValuesOfCustomVarChar(CaseCustomVarCharSearchCriteria criteria) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       List<String> customVarChars = new ArrayList<>();
       PortalCaseDao portalCaseDao = new PortalCaseDao();

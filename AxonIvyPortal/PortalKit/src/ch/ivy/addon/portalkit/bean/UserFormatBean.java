@@ -20,8 +20,7 @@ public class UserFormatBean implements Serializable {
     }
       
     if (StringUtils.isBlank(fullName)) {
-      String formattedUsername = username.startsWith("#") ? username.substring(1) : username;
-      return formattedUsername;
+      return username.startsWith("#") ? username.substring(1) : username;
     }
     return fullName;
   }

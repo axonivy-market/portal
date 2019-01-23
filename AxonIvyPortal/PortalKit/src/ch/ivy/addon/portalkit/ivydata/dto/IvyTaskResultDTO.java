@@ -11,7 +11,7 @@ import ch.ivyteam.ivy.workflow.category.CategoryTree;
 
 public class IvyTaskResultDTO {
 
-  private List<ITask> Tasks;
+  private List<ITask> tasks;
   private long totalTasks;
   private CategoryTree categoryTree;
   private PriorityStatistic priorityStatistic;
@@ -20,11 +20,11 @@ public class IvyTaskResultDTO {
   private List<PortalIvyDataException> errors;
 
   public List<ITask> getTasks() {
-    return Tasks;
+    return tasks;
   }
 
-  public void setTasks(List<ITask> Tasks) {
-    this.Tasks = Tasks;
+  public void setTasks(List<ITask> tasks) {
+    this.tasks = tasks;
   }
 
   public long getTotalTasks() {

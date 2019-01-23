@@ -29,6 +29,9 @@ import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 public class ServiceUtilities {
+  
+  private ServiceUtilities() {
+  }
 
   public static IApplication findApp(final String appName) throws PortalIvyDataException {
     Objects.requireNonNull(appName, "The appName must not be null");
@@ -55,13 +58,17 @@ public class ServiceUtilities {
 
   public static IUser findUser(final String username, IApplication app) throws PortalIvyDataException {
     Objects.requireNonNull(username, "The username must not be null");
-    Objects.requireNonNull(app, "The application must not be null");
+    requireNonNull(app);
     
     IUser user = app.getSecurityContext().findUser(username);
     if (user == null) {
       throw new PortalIvyDataException(app.getName(), PortalIvyDataErrorType.USER_NOT_FOUND.toString());
     }
     return user;
+  }
+
+  private static void requireNonNull(IApplication app) {
+    Objects.requireNonNull(app, "The application must not be null");
   }
 
   /**
@@ -71,7 +78,7 @@ public class ServiceUtilities {
    */
   @SuppressWarnings("unchecked")
   public static List<IUser> findAllUsers(IApplication app) {
-    Objects.requireNonNull(app, "The application must not be null");
+    requireNonNull(app);
     
     Optional<Object> cacheValueOpt = IvyCacheService.newInstance().getSessionCacheValue(app.getName(), IvyCacheIdentifier.USERS_IN_APPLICATION);
     if (cacheValueOpt.isPresent()) {
@@ -92,7 +99,7 @@ public class ServiceUtilities {
    */
   @SuppressWarnings("unchecked")
   public static List<IRole> findAllRoles(IApplication app) {
-    Objects.requireNonNull(app, "The application must not be null");
+    requireNonNull(app);
     
     Optional<Object> cacheValueOpt = IvyCacheService.newInstance().getSessionCacheValue(app.getName(), IvyCacheIdentifier.ROLES_IN_APPLICATION);
     if (cacheValueOpt.isPresent()) {
@@ -107,7 +114,7 @@ public class ServiceUtilities {
   }
 
   public static List<IProcessModelVersion> getActiveReleasedPmvs(IApplication app) {
-    Objects.requireNonNull(app, "The application must not be null");
+    requireNonNull(app);
     
     return app.getProcessModels().stream().filter(pm -> pm.getActivityState() == ActivityState.ACTIVE)
         .map(IProcessModel::getReleasedProcessModelVersion)
@@ -123,19 +130,14 @@ public class ServiceUtilities {
   }
   
   public static IUser findUser(String username, String appName){
-    try {
-      return getServer().getSecurityManager().executeAsSystem(() -> {
-        IApplication app;
-        try {
-          app = findApp(appName);
-        } catch (PortalIvyDataException e) {
-          return null;
-        }
-        return app.getSecurityContext().findUser(username);
-      });
-    } catch (Exception e) {
-      return null;
-    }
+    return IvyExecutor.executeAsSystem(() -> {
+      try {
+        IApplication app = findApp(appName);
+        return findUser(username, app);
+      } catch (PortalIvyDataException e) {
+        return null;
+      }
+    });
   }
   
   
