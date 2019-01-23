@@ -2636,6 +2636,7 @@ a.compact-task-start-link:hover {
 .task-start-info-task-id {
   margin-left: 5px;
   flex: 0 0 auto;
+  font-weight: normal;
 }
 
 .task-start-info-task-description, .task-start-info-task-name {
