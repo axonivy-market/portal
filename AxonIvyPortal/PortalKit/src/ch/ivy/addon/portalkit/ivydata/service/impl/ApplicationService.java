@@ -15,6 +15,8 @@ import ch.ivyteam.ivy.server.ServerFactory;
 
 public class ApplicationService implements IApplicationService {
 
+  private static final String APPLICATIONSERVICE_ERROR_CODE = "ivy:portalconnector:error:applicationservice";
+
   private ApplicationService() {
   }
   
@@ -31,22 +33,22 @@ public class ApplicationService implements IApplicationService {
         return applications.stream().map(this::toIvyApplication).collect(Collectors.toList());
       });
     } catch (Exception exception) {
-      throw BpmError.create("ivy:portalconnector:error:applicationservice").withCause(exception).build();
+      throw BpmError.create(APPLICATIONSERVICE_ERROR_CODE).withCause(exception).build();
     }
   }
 
   @Override
   public List<IvyApplication> findBy(List<String> names) {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
-        return names.stream()
+      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> 
+        names.stream()
             .map(ServerFactory.getServer().getApplicationConfigurationManager()::findApplication)
             .filter(Objects::nonNull)
             .map(this::toIvyApplication)
-            .collect(toList());
-      });
+            .collect(toList())
+      );
     } catch (Exception exception) {
-      throw BpmError.create("ivy:portalconnector:error:applicationservice").withCause(exception).build();
+      throw BpmError.create(APPLICATIONSERVICE_ERROR_CODE).withCause(exception).build();
     }
   }
   
@@ -61,7 +63,7 @@ public class ApplicationService implements IApplicationService {
             .collect(Collectors.toList());
       });
     } catch (Exception exception) {
-      throw BpmError.create("ivy:portalconnector:error:applicationservice").withCause(exception).build();
+      throw BpmError.create(APPLICATIONSERVICE_ERROR_CODE).withCause(exception).build();
     }
   }
 

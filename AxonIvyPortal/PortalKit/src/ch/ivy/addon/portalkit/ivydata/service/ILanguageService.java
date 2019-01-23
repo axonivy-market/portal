@@ -14,7 +14,7 @@ public interface ILanguageService {
    * @return IvyLanguageResultDTO
    * @throws Exception 
    */
-  IvyLanguageResultDTO findUserLanguages(String username, List<String> apps) throws Exception;
+  IvyLanguageResultDTO findUserLanguages(String username, List<String> apps);
   
   /**
    * set Languages for the passed user
@@ -23,7 +23,7 @@ public interface ILanguageService {
    * @return IvyLanguageResultDTO
    * @throws Exception 
    */
-  IvyLanguageResultDTO saveUserLanguages(String username, List<IvyLanguage> languages) throws Exception;
+  IvyLanguageResultDTO saveUserLanguages(String username, List<IvyLanguage> languages);
   
   
   /**
@@ -32,5 +32,5 @@ public interface ILanguageService {
    * @return
    * @throws Exception
    */
-  IvyLanguageResultDTO getSupportedLanguages(String appName) throws Exception;
+  IvyLanguageResultDTO getSupportedLanguages(String appName);
 }

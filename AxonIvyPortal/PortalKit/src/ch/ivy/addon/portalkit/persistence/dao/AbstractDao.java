@@ -62,7 +62,7 @@ public abstract class AbstractDao<T extends BusinessEntity> {
    */
   @ExecuteAsSystem
   public List<Property> getAllPortalDataProperties() {
-    List<Property> portalDatas = new ArrayList<Property>();
+    List<Property> portalDatas = new ArrayList<>();
     try {
       List<ICustomProperty> customProperties = findAllStartingWithPrefix(PropertyKey.PORTAL_PROPERTY_START);
       for (ICustomProperty customProperty : customProperties) {
@@ -103,13 +103,12 @@ public abstract class AbstractDao<T extends BusinessEntity> {
     String entityPropertyKey = getEntityPropertyKey(id);
     ICustomProperty customProperty = findPropertyByKey(entityPropertyKey);
     String jsonValue = getCustomPropertyValue(customProperty);
-    T entity = parseJsonToObject(jsonValue);
-    return entity;
+    return parseJsonToObject(jsonValue);
   }
 
   @ExecuteAsSystem
   public List<T> findAll() {
-    List<T> entities = new ArrayList<T>();
+    List<T> entities = new ArrayList<>();
     String propertyPrefixKey = getPropertyPrefixKey();
     List<ICustomProperty> properties = findAllStartingWithPrefix(propertyPrefixKey);
     for (ICustomProperty property : properties) {
@@ -141,13 +140,11 @@ public abstract class AbstractDao<T extends BusinessEntity> {
     } else {
       entityValue = modifyData(entity);
     }
-    T savedEntity = parseJsonToObject(entityValue);
-    return savedEntity;
+    return parseJsonToObject(entityValue);
   }
 
   private boolean isAddMode(T entity) {
-    boolean isAddMode = entity.getId() == null;
-    return isAddMode;
+    return entity.getId() == null;
   }
 
   private String saveNewData(T entity) {
@@ -184,7 +181,7 @@ public abstract class AbstractDao<T extends BusinessEntity> {
   }
 
   public List<T> saveAll(List<T> entities) {
-    List<T> savedEntities = new ArrayList<T>();
+    List<T> savedEntities = new ArrayList<>();
     for (T entity : entities) {
       T savedEntity = save(entity);
       savedEntities.add(savedEntity);
@@ -218,8 +215,7 @@ public abstract class AbstractDao<T extends BusinessEntity> {
   }
 
   private String getEntityClassName() {
-    String entityName = determineEntityType().getSimpleName();
-    return entityName;
+    return determineEntityType().getSimpleName();
   }
 
   private String parseObjectToJson(T entity) {

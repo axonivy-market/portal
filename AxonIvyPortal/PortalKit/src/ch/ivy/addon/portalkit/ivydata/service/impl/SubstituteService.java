@@ -94,8 +94,7 @@ public class SubstituteService implements ISubstituteService {
   }
   
   private IvySubstitute createPersonalSubstitute() {
-    IvySubstitute substitute = new IvySubstitute();
-    return substitute;
+    return new IvySubstitute();
   }
   
   private IvySubstitute newIvySubtitute(IRole role) {
@@ -109,7 +108,7 @@ public class SubstituteService implements ISubstituteService {
       return new ArrayList<>();
     }
     return user.getAllRoles().stream()
-        .filter((role) -> !ROLE_EVERYBODY.equals(role.getName()) && Objects.isNull(role.getProperty(HIDE)))
+        .filter(role -> !ROLE_EVERYBODY.equals(role.getName()) && Objects.isNull(role.getProperty(HIDE)))
         .collect(Collectors.toList());
   }
   
