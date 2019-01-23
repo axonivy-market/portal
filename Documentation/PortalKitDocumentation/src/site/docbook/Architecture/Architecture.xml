@@ -2,8 +2,11 @@
 <chapter xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="axonivyportal.architecture">
 	<title xml:id="axonivyportal.architecture.title">Architecture</title>
 	<sect1 xml:id="axonivyportal.architecture.portalprocessmodulesstructure">
+		<important>
+			The css styles, java methods, etc., which are not documented, are only used internally in Portal. Don't use them because they can be changed in next versions. 
+		</important>
 		<para>
-			Currently Portal system contains 6 modules
+			Currently Portal system contains the following modules:
 		</para>
 		<mediaobject>
 			<imageobject>
@@ -58,14 +61,5 @@
 				</para>
 			</listitem>
 		</itemizedlist>
-	</sect1>
-	<sect1 xml:id="axonivyportal.architecture.portalconnector">
-		<title>Portal connector</title>
-		<para>
-			Communication channel to communicate between portal axon.ivy engine (e.g.: for synchronizing data, read ivy process data like task, case, absence, substitute,...). This module acts like service layer that contains web service's implementation for PortalKit to call and get data, only PortalKit knows about these web services.
-		</para>
-		<note>
-			By default, this module is integrated to System application of Axon.Ivy engine. To be able to run Portal in designer, you need to import this module.
-		</note>
 	</sect1>
 </chapter>
