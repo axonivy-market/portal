@@ -63,11 +63,6 @@
 		</sect2>
 		<sect2 xml:id="axonivyportal.settings.adminsettings.setupmultiportals">
 			<title xml:id="axonivyportal.settings.adminsettings.setupmultiportals.title">Setup multi portals</title>
-			<warning>
-				Multi applications on multi engines is not officially supported, only an
-				experimental mode is
-				available.
-			</warning>
 			<important>
 				<para> There is 2 ways to configure portals: <code>two levels</code> and <code>single level</code></para>
 				<itemizedlist>
@@ -121,262 +116,102 @@
 				</itemizedlist>
 			</important>
 			<para>
-				<orderedlist>
-					<listitem>
-						<para>
-							Add a new server
-							<orderedlist>
-								<listitem>
-									<para>
-										Open
-										<code>Admin Settings</code>
-										by selecting the item in
-										<code>UserMenu</code>
-										on the topbar, if your page using layout of
-										<code>PortalTemplate</code>
-										.
-										<mediaobject>
-											<imageobject>
-												<imagedata fileref="images/Settings/multi-portal-open-settings.png" />
-											</imageobject>
-										</mediaobject>
-									</para>
-									<important>
-										If your application does not use templates of
-										<code>PortalTemplate</code>
-										project, you have to create a page and use
-										<code>AdminSettings</code>
-										component inside.
-									</important>
-									<tip>
-										To be able to open Admin Settings dialog, user needs to have
-										role
-										<code>AXONIVY_PORTAL_ADMIN</code>
-										.
-									</tip>
-								</listitem>
-								<listitem>
-									<para>
-										Click on
-										<code>New</code>
-										button to add new server.
-										<mediaobject>
-											<imageobject>
-												<imagedata fileref="images/Settings/multi-portal-add-server.png" />
-											</imageobject>
-										</mediaobject>
-									</para>
-									<note>
-										<itemizedlist>
-											<listitem>
-												<para>
-													<code>Server path</code>
-													must be the link of the
-													<code>PortalConnector</code>
-													application (e.g.
-													<code>http://localhost:8080/ivy/ws/System/PortalConnector
-													</code>
-													). Note that the port in the link is the <link xlink:href="https://developer.axonivy.com/doc/latest/EngineGuideHtml/configuration.html#configuration-webserver">web server port</link>
-												</para>
-											</listitem>
-											<listitem>
-												<para>
-													Web services authentication of the built-in PortalConnector
-													of the Axon.ivy engine are configured as
-													<code>HTTP Basic</code>
-													. Therefore, when adding a new server using the built-in
-													PortalConnector, use authentication type
-													<code>HTTP Basic</code>
-													.
-												</para>
-											</listitem>
-											<listitem>
-												<para>
-													The username, password are used by PortalKit to invoke
-													the web
-													services of PortalConnector.
-												</para>
-												<para>
-													These are accounts of the application that deploys
-													PortalConnector.
-												</para>
-												<para>
-													The built-in PortalConnector are deployed to application
-													System therefore use the
-													<code>username/password of system administrators</code> (account to login to <link xlink:href="https://developer.axonivy.com/doc/latest/EngineGuideHtml/administration.html">administration tool</link>)
-													when connecting to built-in PortalConnector.
-												</para>
-												<para>
-													To create system administrators, refer to the document
-													<code>EngineGuide > chapter Configuration
-														> Engine Configuration > System Administrators
-													</code>
-													. E.g. in the latest EngineGuide, refer to
-													<link xlink:href="http://developer.axonivy.com/doc/latest/EngineGuideHtml/configuration.html#d5e1756">this guideline</link>
-													.
-												</para>
-											</listitem>
-										</itemizedlist>
-									</note>
-									<tip>
-										<itemizedlist>
-											<listitem>
-												<para>
-													In multi-Portal mode, Portal uses the
-													External Host value as host value for task or process starts
-													URLs.
-													If this value is empty, Portal will use the host value as configured in the server path field. For
-													other
-													mode, Portal will use the host value of the web address of the engine for the URLs.
-												</para>
-											</listitem>
-											<listitem>
-												<para>
-													External Host value is returned from configured server's
-													system property
-													<code>WebServer.ExternalHostName</code>
-													(you might want to change it via Engine's
-													<code>AdminUI</code>
-													).
-												</para>
-												<para>
-													You can sync this value by clicking
-													<code>Test Connection</code>
-													button, if
-													<code>WebServer.ExternalHostName</code>
-													is set the value would be updated, otherwise displays
-													<code>AUTO_DETECT</code>
-													.
-												</para>
-												<para>
-													Configured server information is needed for calling
-													service to get
-													this value.
-												</para>
-											</listitem>
-										</itemizedlist>
-									</tip>
-								</listitem>
-							</orderedlist>
-						</para>
-					</listitem>
-					<listitem>
-						<para>
-							Add a new application
+				<para>
+					Open
+					<code>Admin Settings</code>
+					by selecting the item in
+					<code>UserMenu</code>
+					on the topbar, if your page using layout of
+					<code>PortalTemplate</code>
+					.
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="images/Settings/multi-portal-open-settings.png" />
+						</imageobject>
+					</mediaobject>
+				</para>
+				<important>
+					If your application does not use templates of
+					<code>PortalTemplate</code>
+					project, you have to create a page and use
+					<code>AdminSettings</code>
+					component inside.
+				</important>
+				<tip>
+					To be able to open Admin Settings dialog, user needs to have
+					role
+					<code>AXONIVY_PORTAL_ADMIN</code>
+					.
+				</tip>
+				<para>
+					Add a new application
+					<para>
+						Choose
+						<code>Application</code>
+						tab on
+						<code>Admin Settings</code>
+						dialog and click on
+						<code>New</code>
+						button to add new application. Here you can choose application
+						type either as Ivy application or Third Party
+						application.
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/Settings/multi-portal-add-application.png" />
+							</imageobject>
+						</mediaobject>
+					</para>
+				</para>
+				<tip>
+					<itemizedlist>
+						<listitem>
 							<para>
-								Choose
-								<code>Application</code>
-								tab on
-								<code>Admin Settings</code>
-								dialog and click on
-								<code>New</code>
-								button to add new application. Here you can choose application
-								type either as Ivy application or Third Party
-								application.
-								<mediaobject>
-									<imageobject>
-										<imagedata fileref="images/Settings/multi-portal-add-application.png" />
-									</imageobject>
-								</mediaobject>
+								<code>Application name</code>
+								is the name of the application when you create it.
+								<code>Display name</code>
+								is the name of the application to be shown on Portal UI.
 							</para>
-						</para>
-						<tip>
-							<itemizedlist>
-								<listitem>
-									<para>
-										<code>Application name</code>
-										is the name of the application when you create it.
-										<code>Display name</code>
-										is the name of the application to be shown on Portal UI.
-									</para>
-								</listitem>
-								<listitem>
-									<para>
-										If
-										<code>Active</code>
-										is not checked, the application will be disabled on the application menu. To prevent its tasks, cases and
-										processes to be shown, you must leave the
-										<code>Visible</code>
-										box unchecked.
-									</para>
-								</listitem>
-								<listitem>
-									<para>
-										<code>Portal link</code>
-										specifies the link you will be redirect to when selecting the application on the application menu. It could be an absolute link (e.g. http://10.123.1.30:8000/ivy/pro/.../PortalStart.ivp)
-										or relative link (e.g. /ivy/pro/.../PortalStart.ivp). If your application could be accessed from multiple domains, use relative link so that you can access the link from different domains.
-									</para>
-								</listitem>
-								<listitem>
-									<para>
-										<code>Absence planning</code>
-										if checked will enable absence feature for the application.
-									</para>
-								</listitem>
-								<listitem>
-									<para>
-										<code>Mail notification</code>
-										If checked will enable email setting feature for the application.
-									</para>
-								</listitem>
-								<listitem>
-									<para>
-										For multiple languages of application display name, you need to create the "AppInfo/SupportedLanguages"
-										CMS
-										which defines how
-										many languages your application supports. See the below "Language settings" for more
-										details.
-									</para>
-								</listitem>
-							</itemizedlist>
-						</tip>
-					</listitem>
-					<listitem>
-						<para>
-							Synchronize data
+						</listitem>
+						<listitem>
 							<para>
-								After adding new settings (server, application), click on
-								<code>Synchronize Settings</code>
-								to synch new settings and information about users to registered
-								servers. Close dialog (logging out may be
-								required) and check if
-								newly created application is available on left menu.
-								<mediaobject>
-									<imageobject>
-										<imagedata fileref="images/Settings/multi-portal-result.png" />
-									</imageobject>
-								</mediaobject>
+								If
+								<code>Active</code>
+								is not checked, the application will be disabled on the application menu. To prevent its tasks, cases and
+								processes to be shown, you must leave the
+								<code>Visible</code>
+								box unchecked.
 							</para>
-							<tip>
-								In single mode, Portal detects the applications that have
-								the
-								login user in the current engine. Based on that,
-								Portal will
-								collect tasks, cases of those applications. In multi-portal
-								mode, Portal will only collect on
-								registered applications.
-							</tip>
+						</listitem>
+						<listitem>
 							<para>
-								By default, Portal will automatically synchronize user settings to registered servers at 5AM everyday.
-								This
-								synchronization process is needed to run at only one application for each server. If there are
-								multiple
-								applications registered for one server, the first application in alphabetical order will run
-								the synchronization
-								process. You can change the time when the synchronization start by going to AdminUI
-								and change the value of the
-								global variable
-								<code class="code"> PortalStartTimeSynchUserExpression</code>
-								of the application that will run the synchronization process.
-								<mediaobject>
-									<imageobject>
-										<imagedata fileref="images/Settings/synchronization-time-setting.png" />
-									</imageobject>
-								</mediaobject>
+								<code>Portal link</code>
+								specifies the link you will be redirect to when selecting the application on the application menu. It could be an absolute link (e.g. http://10.123.1.30:8000/ivy/pro/.../PortalStart.ivp)
+								or relative link (e.g. /ivy/pro/.../PortalStart.ivp). If your application could be accessed from multiple domains, use relative link so that you can access the link from different domains.
 							</para>
-						</para>
-					</listitem>
-				</orderedlist>
+						</listitem>
+						<listitem>
+							<para>
+								<code>Absence planning</code>
+								if checked will enable absence feature for the application.
+							</para>
+						</listitem>
+						<listitem>
+							<para>
+								<code>Mail notification</code>
+								If checked will enable email setting feature for the application.
+							</para>
+						</listitem>
+						<listitem>
+							<para>
+								For multiple languages of application display name, you need to create the "AppInfo/SupportedLanguages"
+								CMS
+								which defines how
+								many languages your application supports. See the below "Language settings" for more
+								details.
+							</para>
+						</listitem>
+					</itemizedlist>
+				</tip>
 			</para>
 		</sect2>
 	</sect1>
