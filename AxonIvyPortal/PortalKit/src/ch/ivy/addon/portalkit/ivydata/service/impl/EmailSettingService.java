@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
-import static ch.ivyteam.ivy.server.ServerFactory.getServer;
-
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
@@ -18,6 +16,7 @@ import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.persistence.dao.ApplicationDao;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IEMailNotificationSettings;
@@ -37,8 +36,8 @@ public class EmailSettingService implements IEmailSettingService {
   }
   
   @Override
-  public IvyEmailSettingResultDTO findEmailSetting(String username, List<String> apps) throws Exception { // NOSONAR
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvyEmailSettingResultDTO findEmailSetting(String username, List<String> apps) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvyEmailSettingResultDTO result = new IvyEmailSettingResultDTO();
       if (CollectionUtils.isEmpty(apps)) {
         return result;
@@ -106,8 +105,8 @@ public class EmailSettingService implements IEmailSettingService {
 
 
   @Override
-  public IvyEmailSettingResultDTO saveEmailSetting(String username, List<IvyEmailSetting> emailSettings) throws Exception { // NOSONAR
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvyEmailSettingResultDTO saveEmailSetting(String username, List<IvyEmailSetting> emailSettings) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvyEmailSettingResultDTO rs = new IvyEmailSettingResultDTO();
       List<PortalIvyDataException> errors = new ArrayList<>();
       if (CollectionUtils.isNotEmpty(emailSettings)) {

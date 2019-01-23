@@ -106,8 +106,7 @@ public class TaskTreeUtils {
     Map<String, Object> response = IvyAdapterService.startSubProcess(
         "findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria)", params,
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
-    CategoryTree allTaskCategoryTree = (CategoryTree) response.get("categoryTree");
-    return allTaskCategoryTree;
+    return (CategoryTree) response.get("categoryTree");
   }
   
   private static void convertToCheckboxTreeNode(CheckboxTreeNode root, CategoryTree categoryTree) {

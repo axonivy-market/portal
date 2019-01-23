@@ -126,9 +126,7 @@ public class CaseDocumentService {
 
   private IDocumentService documentsOf(ICase iCase) {
     try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
-        return iCase.documents();
-      });
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> iCase.documents());
     } catch (Exception e) {
       throw new PortalException(e);
     }
@@ -136,9 +134,7 @@ public class CaseDocumentService {
   
   private List<IDocument> getAllDocumentsOf(ICase iCase) {
     try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
-        return iCase.documents().getAll();
-      });
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> iCase.documents().getAll());
     } catch (Exception e) {
       throw new PortalException(e);
     }
