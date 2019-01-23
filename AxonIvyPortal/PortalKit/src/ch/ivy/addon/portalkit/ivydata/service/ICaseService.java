@@ -7,15 +7,15 @@ import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 
 public interface ICaseService {
 
-  IvyCaseResultDTO findCasesByCriteria(CaseSearchCriteria criteria, int startIndex, int count) throws Exception;
+  IvyCaseResultDTO findCasesByCriteria(CaseSearchCriteria criteria, int startIndex, int count);
   
-  IvyCaseResultDTO countCasesByCriteria(CaseSearchCriteria criteria) throws Exception;
+  IvyCaseResultDTO countCasesByCriteria(CaseSearchCriteria criteria);
   
-  IvyCaseResultDTO findCategoriesByCriteria(CaseCategorySearchCriteria criteria) throws Exception;
+  IvyCaseResultDTO findCategoriesByCriteria(CaseCategorySearchCriteria criteria);
   
-  IvyCaseResultDTO analyzeCaseStateStatistic(CaseSearchCriteria criteria) throws Exception;
+  IvyCaseResultDTO analyzeCaseStateStatistic(CaseSearchCriteria criteria);
   
-  IvyCaseResultDTO analyzeElapsedTimeByCaseCategory(CaseSearchCriteria criteria) throws Exception;
+  IvyCaseResultDTO analyzeElapsedTimeByCaseCategory(CaseSearchCriteria criteria);
   
-  IvyCaseResultDTO findValuesOfCustomVarChar(CaseCustomVarCharSearchCriteria criteria) throws Exception;
+  IvyCaseResultDTO findValuesOfCustomVarChar(CaseCustomVarCharSearchCriteria criteria);
 }

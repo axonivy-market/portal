@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
-import static ch.ivyteam.ivy.server.ServerFactory.getServer;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -19,6 +17,7 @@ import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataErrorType;
 import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivy.addon.portalkit.ivydata.service.IAbsenceService;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
@@ -34,8 +33,8 @@ public class AbsenceService implements IAbsenceService {
   }
   
   @Override
-  public IvyAbsenceResultDTO findAbsences(String username, List<String> apps) throws Exception {
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvyAbsenceResultDTO findAbsences(String username, List<String> apps) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvyAbsenceResultDTO result = new IvyAbsenceResultDTO();
       if (CollectionUtils.isEmpty(apps)) {
         return result;
@@ -93,8 +92,8 @@ public class AbsenceService implements IAbsenceService {
   }
 
   @Override
-  public IvyAbsenceResultDTO createAbsence(IvyAbsence ivyAbsence, List<String> apps) throws Exception {
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvyAbsenceResultDTO createAbsence(IvyAbsence ivyAbsence, List<String> apps) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvyAbsenceResultDTO result = new IvyAbsenceResultDTO();
       if (CollectionUtils.isEmpty(apps)) {
         return result;
@@ -119,8 +118,8 @@ public class AbsenceService implements IAbsenceService {
   }
   
   @Override
-  public IvyAbsenceResultDTO updateAbsences(String username, Set<IvyAbsence> ivyAbsences, List<String> apps) throws Exception {
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvyAbsenceResultDTO updateAbsences(String username, Set<IvyAbsence> ivyAbsences, List<String> apps) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvyAbsenceResultDTO result = new IvyAbsenceResultDTO();
       if (CollectionUtils.isEmpty(apps)) {
         return result;
@@ -150,8 +149,8 @@ public class AbsenceService implements IAbsenceService {
   }
 
   @Override
-  public IvyAbsenceResultDTO deleteAbsence(IvyAbsence ivyAbsence, List<String> apps) throws Exception {
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvyAbsenceResultDTO deleteAbsence(IvyAbsence ivyAbsence, List<String> apps) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvyAbsenceResultDTO result = new IvyAbsenceResultDTO();
       if (CollectionUtils.isEmpty(apps)) {
         return result;
