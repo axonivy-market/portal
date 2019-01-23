@@ -14,7 +14,7 @@ public interface IEmailSettingService {
    * @return IvyEmailSettingResultDTO
    * @throws Exception 
    */
-  IvyEmailSettingResultDTO findEmailSetting(String username, List<String> apps) throws Exception;
+  IvyEmailSettingResultDTO findEmailSetting(String username, List<String> apps);
   
   /**
    * Sets email setting for the passed user
@@ -23,7 +23,7 @@ public interface IEmailSettingService {
    * @return IvyEmailSettingResultDTO
    * @throws Exception 
    */
-  IvyEmailSettingResultDTO saveEmailSetting(String username, List<IvyEmailSetting> emailSettings) throws Exception;
+  IvyEmailSettingResultDTO saveEmailSetting(String username, List<IvyEmailSetting> emailSettings);
 
   
   /**

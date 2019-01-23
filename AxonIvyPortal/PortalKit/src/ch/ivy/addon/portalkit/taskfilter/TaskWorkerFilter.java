@@ -58,7 +58,7 @@ public class TaskWorkerFilter extends TaskFilter {
     return workers;
   }
 
-  private void initWorkers() throws Exception {
+  private void initWorkers() {
     workers = UserUtils.findAllUserByApplication();
   }
 
