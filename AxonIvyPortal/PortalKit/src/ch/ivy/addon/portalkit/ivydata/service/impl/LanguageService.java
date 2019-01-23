@@ -20,6 +20,7 @@ import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.persistence.dao.ApplicationDao;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.cm.IContentManagementSystem;
@@ -37,8 +38,8 @@ public class LanguageService implements ILanguageService {
   }
 
   @Override
-  public IvyLanguageResultDTO findUserLanguages(String username, List<String> apps) throws Exception { // NOSONAR
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvyLanguageResultDTO findUserLanguages(String username, List<String> apps) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvyLanguageResultDTO result = new IvyLanguageResultDTO();
       if (CollectionUtils.isEmpty(apps)) {
         return result;
@@ -110,8 +111,8 @@ public class LanguageService implements ILanguageService {
   }
 
   @Override
-  public IvyLanguageResultDTO saveUserLanguages(String username, List<IvyLanguage> languages) throws Exception { // NOSONAR
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvyLanguageResultDTO saveUserLanguages(String username, List<IvyLanguage> languages) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvyLanguageResultDTO rs = new IvyLanguageResultDTO();
       List<PortalIvyDataException> errors = new ArrayList<>();
       if (CollectionUtils.isNotEmpty(languages)) {
@@ -140,7 +141,7 @@ public class LanguageService implements ILanguageService {
     });
   }
 
-  private Set<Locale> getSupportedEmailLanguages(List<IProcessModelVersion> activePmvs) throws Exception {
+  private Set<Locale> getSupportedEmailLanguages(List<IProcessModelVersion> activePmvs) {
     Set<Locale> supportedEmailLanguages = new HashSet<>();
     activePmvs.forEach(pmv -> {
       IContentManagementSystem findCms = getServer().getContentManagement().findCms(pmv);
@@ -153,8 +154,8 @@ public class LanguageService implements ILanguageService {
   }
 
   @Override
-  public IvyLanguageResultDTO getSupportedLanguages(String appName) throws Exception {
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvyLanguageResultDTO getSupportedLanguages(String appName) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvyLanguageResultDTO result = new IvyLanguageResultDTO();
       
       List<PortalIvyDataException> errors = new ArrayList<>();

@@ -67,8 +67,7 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<ICase> {
       initializedDataModel(criteria);
     }
 
-    List<ICase> foundCases = findCases(criteria, first, pageSize);
-    return foundCases;
+    return findCases(criteria, first, pageSize);
   }
 
   @SuppressWarnings("unchecked")

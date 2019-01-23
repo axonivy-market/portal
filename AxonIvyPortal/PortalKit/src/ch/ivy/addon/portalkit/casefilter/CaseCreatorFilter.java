@@ -57,7 +57,7 @@ public class CaseCreatorFilter extends CaseFilter {
     return creators;
   }
 
-  private void initUsers() throws Exception {
+  private void initUsers() {
     creators = UserUtils.findAllUserByApplication();
   }
 

@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.statistics;
 
-import static ch.ivyteam.ivy.server.ServerFactory.getServer;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -21,6 +19,7 @@ import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IRole;
@@ -67,21 +66,16 @@ public class StatisticFilter implements Cloneable {
   private List<String> selectedCustomVarCharFields5 = new ArrayList<>();
   
   public StatisticFilter() {
-    try {
-      List<IRole> roles = findRolesByCallableProcess();
-      List<IRole> distinctRoles = roles.stream()
-          .filter(role -> role != null && Ivy.session().hasRole(role, false))
-          .sorted((r1, r2) -> StringUtils.compareIgnoreCase(r1.getDisplayName(), r2.getDisplayName()))
-          .collect(Collectors.toList());
+    List<IRole> distinctRoles = findRolesByCallableProcess().stream()
+        .filter(role -> role != null && Ivy.session().hasRole(role, false))
+        .sorted((r1, r2) -> StringUtils.compareIgnoreCase(r1.getDisplayName(), r2.getDisplayName()))
+        .collect(Collectors.toList());
 
-      this.roles.add(Ivy.session().getSessionUser());
-      this.roles.addAll(distinctRoles);
-      
-      this.selectedRoles = new ArrayList<>(distinctRoles.stream().map(IRole::getMemberName).collect(Collectors.toList()));
-      this.selectedRoles.add(0, Ivy.session().getSessionUser().getMemberName());
-    } catch (Exception e) {
-      Ivy.log().error("Can't get list roles statistic filter", e);
-    }
+    this.roles.add(Ivy.session().getSessionUser());
+    this.roles.addAll(distinctRoles);
+    
+    this.selectedRoles = new ArrayList<>(distinctRoles.stream().map(IRole::getMemberName).collect(Collectors.toList()));
+    this.selectedRoles.add(0, Ivy.session().getSessionUser().getMemberName());
 
     // Initialize list of case states
     this.caseStates = Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE);
@@ -111,21 +105,22 @@ public class StatisticFilter implements Cloneable {
   }
   
   @SuppressWarnings("unchecked")
-  private List<IRole> findRolesByCallableProcess() throws Exception {
-    return getServer().getSecurityManager().executeAsSystem(() -> {
-    if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
-      Map<String, List<IRole>> rolesByApp = SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE)
-          .withStartName("findRolesOverAllApplications")
-          .call(Ivy.session().getSessionUserName())
-          .get("rolesByApp", Map.class);
-      return rolesByApp.values().stream().flatMap(List::stream)
-          .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(IRole::getName))), ArrayList::new));
-    }
-    
-    return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE)
-        .withStartName("findRoles")
-        .call(Ivy.request().getApplication())
-        .get("roles", List.class);
+  private List<IRole> findRolesByCallableProcess() {
+    return IvyExecutor.executeAsSystem(() -> {
+      if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
+        Map<String, List<IRole>> rolesByApp =
+            SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findRolesOverAllApplications")
+                .call(Ivy.session().getSessionUserName())
+                .get("rolesByApp", Map.class);
+        return rolesByApp.values().stream()
+            .flatMap(List::stream)
+            .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(IRole::getName))), ArrayList::new));
+      }
+
+      return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE)
+          .withStartName("findRoles")
+          .call(Ivy.request().getApplication())
+          .get("roles", List.class);
     });
   }
 
