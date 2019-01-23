@@ -4,6 +4,7 @@ import static ch.ivyteam.ivy.server.ServerFactory.getServer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -53,7 +54,7 @@ public class ProcessService implements IProcessService {
           Ivy.log().error("Error in getting processes of user {0} within app {1}", ex, criteria.getUsername(), app);
           errors.add(new PortalIvyDataException(app, PortalIvyDataErrorType.FAIL_TO_LOAD_PROCESS.toString()));
         } finally {
-          if (session != null) {
+          if (session != null && !Objects.equals(Ivy.wf().getApplication(), application)) {
             ISecurityContext securityContext = application.getSecurityContext();
             securityContext.destroySession(session.getIdentifier());
           }
