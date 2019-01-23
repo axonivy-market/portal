@@ -7,23 +7,7 @@
 			<orderedlist>
 				<listitem>
 					<para>
-						Create new project
-						<para>
-							Create a new project that depends on <code>PortalTemplate</code>.
-							<mediaobject>
-								<imageobject>
-									<imagedata fileref="images/BuildYourOwnPortal/new-project.png" />
-								</imageobject>
-							</mediaobject>
-						</para>
-						<para>
-							Project structure
-							<mediaobject>
-								<imageobject>
-									<imagedata fileref="images/BuildYourOwnPortal/project-structure.png" />
-								</imageobject>
-							</mediaobject>
-						</para>
+						Create a new project that depends on <code>PortalTemplate</code>.
 					</para>
 				</listitem>
 				<listitem>
