@@ -98,7 +98,7 @@
 						</listitem>
 						<listitem>
 							<para>
-								Override the <code>extendSort</code> method, the <code>extendSortCasesInNotDisplayedCaseMap</code> method and extend the sort function for the added columns (see the methods' Javadoc comments)
+								Override the <code>extendSort</code> method and extend the sort function for the added columns (see the method's Javadoc comments)
 							</para>
 						</listitem>
 						<listitem>
@@ -263,7 +263,7 @@
 	<sect2 xml:id="axonivyportal.customization.casewidget.howtooverridedataquery">
 		<title xml:id="axonivyportal.customization.casewidget.howtooverridedataquery.title">How to override case widget's data query</title>
 		<para>
-			Override the <code>BuildCaseJsonQuery</code> callable process of PortalKit and build your own query to effect the data of case widget.
+			Override the <code>BuildCaseQuery</code> callable process of PortalKit and build your own query to effect the data of case widget.
 		</para>
 		<para>
 			Apply the following steps in case you would like to provide data for case list after navigating to case list from your page:
@@ -278,7 +278,7 @@
 			<screen>
 CaseLazyDataModel dataModel = new CaseLazyDataModel();
 dataModel.getCriteria().setCustomizedCaseQuery(YOUR_CASE_QUERY); // Set your CaseQuery
-dataModel.getCriteria().setAdminQuery(true); // Use this code line if you would like to display the cases for all users
+dataModel.getCriteria().setAdminQuery(true); // Display the cases of all users
 out.caseView = CaseView.create().dataModel(dataModel).withTitle("My Cases").buildNewView();
 			</screen>
 		</para>
