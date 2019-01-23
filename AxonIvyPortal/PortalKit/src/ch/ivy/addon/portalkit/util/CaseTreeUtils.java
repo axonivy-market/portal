@@ -101,8 +101,7 @@ public class CaseTreeUtils {
     Map<String, Object> response =
         IvyAdapterService.startSubProcess("findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria)", 
             params, Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
-    CategoryTree allCaseCategoryTree = (CategoryTree) response.get("categoryTree");
-    return allCaseCategoryTree;
+    return (CategoryTree) response.get("categoryTree");
   }
 
   private static void convertToCheckboxTreeNode(CheckboxTreeNode root, CategoryTree categoryTree) {

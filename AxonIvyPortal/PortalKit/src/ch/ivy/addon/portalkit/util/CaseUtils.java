@@ -26,8 +26,8 @@ public final class CaseUtils {
   private CaseUtils() {
   }
   
-  public static ICase findCase(long caseId) throws Exception {
-    return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+  public static ICase findCase(long caseId) {
+    return IvyExecutor.executeAsSystem(() -> {
       return Ivy.wf().findCase(caseId);
     });
   }

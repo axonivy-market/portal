@@ -13,9 +13,9 @@ import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.NumberUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.ICase;
 
 @ManagedBean
@@ -79,12 +79,12 @@ public class CaseWidgetBean implements Serializable {
     return iCase.getAdditionalProperty(HIDE) != null;
   }
   
-  public ICase findCase(long caseId) throws Exception {
+  public ICase findCase(long caseId) {
     return CaseUtils.findCase(caseId);
   }
   
-  public void destroyCase(ICase iCase) throws Exception {
-    ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+  public void destroyCase(ICase iCase) {
+    IvyExecutor.executeAsSystem(() -> {
       iCase.destroy();
       return Void.class;
     });
