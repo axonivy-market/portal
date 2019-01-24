@@ -125,7 +125,7 @@ public class CaseDocumentService {
 
   private IDocumentService documentsOf(ICase iCase) {
     try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> iCase.documents());
+      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> iCase.documents()); // NOSONAR
     } catch (Exception e) {
       throw new PortalException(e);
     }
