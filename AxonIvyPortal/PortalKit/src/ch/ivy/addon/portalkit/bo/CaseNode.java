@@ -21,20 +21,20 @@ public class CaseNode extends MainMenuNode implements Serializable {
     this.isRootNodeAllCase = isRootNodeAllCase;
   }
 
-  public String getCategory() {
-    return category;
-  }
-
-  public void setCategory(String category) {
-    this.category = category;
-  }
-
   public boolean isFirstCategoryNode() {
     return isFirstCategoryNode;
   }
 
   public void setFirstCategoryNode(boolean isFirstCategoryNode) {
     this.isFirstCategoryNode = isFirstCategoryNode;
+  }
+  
+  public String getCategory() {
+    return category;
+  }
+
+  public void setCategory(String category) {
+    this.category = category;
   }
   
   @Override

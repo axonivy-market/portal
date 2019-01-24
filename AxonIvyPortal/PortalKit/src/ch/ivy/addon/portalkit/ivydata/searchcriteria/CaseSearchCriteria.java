@@ -198,10 +198,6 @@ public class CaseSearchCriteria {
   public List<CaseState> getIncludedStates() {
     return includedStates;
   }
-
-  public void setIncludedStates(List<CaseState> includedStates) {
-    this.includedStates = includedStates;
-  }
   
   public void addIncludedStates(List<CaseState> includedStates) {
     if (CollectionUtils.isEmpty(includedStates)) {
@@ -210,6 +206,10 @@ public class CaseSearchCriteria {
     this.includedStates.addAll(includedStates);
   }
 
+  public void setIncludedStates(List<CaseState> includedStates) {
+    this.includedStates = includedStates;
+  }
+  
   public String getKeyword() {
     return keyword;
   }
@@ -225,15 +225,7 @@ public class CaseSearchCriteria {
   public void setCaseId(Long caseId) {
     this.caseId = caseId;
   }
-
-  public String getCategory() {
-    return category;
-  }
-
-  public void setCategory(String category) {
-    this.category = category;
-  }
-
+  
   public String getSortField() {
     return sortField;
   }
@@ -249,7 +241,15 @@ public class CaseSearchCriteria {
   public void setSortDescending(boolean sortDescending) {
     this.sortDescending = sortDescending;
   }
-  
+
+  public String getCategory() {
+    return category;
+  }
+
+  public void setCategory(String category) {
+    this.category = category;
+  }
+
   public String getInvolvedUsername() {
     return involvedUsername;
   }
@@ -318,16 +318,16 @@ public class CaseSearchCriteria {
     return StringUtils.isNotBlank(category);
   }
   
-  public boolean hasInvolvedUsername() {
-    return StringUtils.isNotBlank(involvedUsername);
-  }
-  
   public boolean isNewQueryCreated() {
     return isNewQueryCreated;
   }
 
   public void setNewQueryCreated(boolean isNewQueryCreated) {
     this.isNewQueryCreated = isNewQueryCreated;
+  }
+  
+  public boolean hasInvolvedUsername() {
+    return StringUtils.isNotBlank(involvedUsername);
   }
 
   public CaseQuery getFinalCaseQuery() {

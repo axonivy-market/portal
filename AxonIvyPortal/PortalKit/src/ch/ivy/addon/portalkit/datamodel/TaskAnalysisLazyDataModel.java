@@ -18,7 +18,6 @@ import ch.ivy.addon.portalkit.casefilter.TaskAnalysisCaseFilterContainer;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.enums.TaskAndCaseAnalysisColumn;
-import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
@@ -48,16 +47,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
 
   private static final String TASK_COLUMN_PREFIX = "TASK_";
 
-  protected List<TaskFilter> taskFilters;
-  protected List<TaskFilter> selectedTaskFilters;
-  protected TaskFilterContainer taskFilterContainer;
-
-  private TaskInProgressByOthersFilter inProgressFilter;
-  private boolean isInProgressFilterDisplayed = false;
   private TaskAnalysisFilterData selectedTaskAnalysisFilterData;
-
-  private boolean isRelatedTaskDisplayed = false;
-  private boolean isNotKeepFilter = false;
 
   private CaseSearchCriteria caseCriteria;
   protected List<CaseFilter> caseFilters;
@@ -66,42 +56,22 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
 
   public TaskAnalysisLazyDataModel(String taskWidgetComponentId) {
     super();
-    this.taskWidgetComponentId = taskWidgetComponentId;
-    selectedTaskFilters = new ArrayList<>();
     selectedCaseFilters = new ArrayList<>();
-    buildCriteria();
     buildCaseCriteria();
-    if (inProgressFilter != null) {
-      isInProgressFilterDisplayed = true;
-    } else {
-      inProgressFilter = new TaskInProgressByOthersFilter();
-    }
-
-    setInvolvedApplications();
-    initColumnsConfiguration();
+    setInvolvedApplicationsForCaseCriteria();
   }
   
   public TaskAnalysisLazyDataModel() {
     this("task-widget");
   }
-
-  /**
-   * <p>
-   * Initialize TaskFilterContainer with your customized TaskFilterContainer class.
-   * </p>
-   * <p>
-   * <b>Example: </b> <code><pre>
-   * filterContainer = new CustomizedTaskFilterContainer();
-   * </pre></code>
-   * </p>
-   */
+  
   @Override
   protected void initFilterContainer() {
-    taskFilterContainer = new TaskAnalysisTaskFilterContainer();
+    filterContainer = new TaskAnalysisTaskFilterContainer();
   }
 
   public void initTaskFilters() {
-    if (taskFilterContainer == null) {
+    if (filterContainer == null) {
       if (isRelatedTaskDisplayed) {
         if (!criteria.getIncludedStates().contains(TaskState.DONE)) {
           criteria.addIncludedStates(Arrays.asList(TaskState.DONE));
@@ -111,10 +81,10 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
         }
       }
       initFilterContainer();
-      taskFilters = taskFilterContainer.getFilters();
+      filters = filterContainer.getFilters();
       setValuesForStateFilter(criteria);
       if (criteria.isAdminQuery() && !isRelatedTaskDisplayed) {
-        TaskStateFilter stateFilter = taskFilterContainer.getStateFilter();
+        TaskStateFilter stateFilter = filterContainer.getStateFilter();
         stateFilter.setSelectedFilteredStatesAtBeginning(new ArrayList<>(stateFilter.getSelectedFilteredStates()));
       }
     }
@@ -143,64 +113,33 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     criteria.setSortField(TaskSortField.ID.toString());
     criteria.setSortDescending(true);
   }
-
-  public void setSortField(String sortField, boolean sortDescending) {
-    criteria.setSortField(sortField);
-    criteria.setSortDescending(sortDescending);
-  }
-
-  public void setCategory(String category) {
-    criteria.setCategory(category);
-  }
-
-  public void setAdminQuery(boolean isAdminQuery) {
-    if (isAdminQuery && !criteria.getIncludedStates().contains(TaskState.DONE)) {
-      criteria.addIncludedStates(Arrays.asList(TaskState.DONE));
-      setValuesForStateFilter(criteria);
-    }
-    criteria.setAdminQuery(isAdminQuery);
-  }
-
-  public void setTaskId(Long taskId) {
-    criteria.setTaskId(taskId);
-    criteria.setIncludedStates(new ArrayList<>());
-    criteria.setQueryByTaskId(true);
-  }
-
-  public void setCaseId(Long caseId) {
-    criteria.setCaseId(caseId);
-  }
-
-  public void setQueryByBusinessCaseId(boolean isQueryByBusinessCaseId) {
-    criteria.setQueryByBusinessCaseId(isQueryByBusinessCaseId);
+  
+  protected void setInvolvedApplicationsForCaseCriteria() {
+    caseCriteria.setApps(criteria.getApps());
   }
 
   public void setApps(List<String> apps) {
     criteria.setApps(apps);
   }
 
-  public void setTaskAssigneeType(TaskAssigneeType assigneeType) {
-    criteria.setTaskAssigneeType(assigneeType);
-  }
-
   public List<TaskFilter> getTaskFilters() {
-    return taskFilters;
+    return filters;
   }
 
   public List<TaskFilter> getSelectedTaskFilters() {
-    return selectedTaskFilters;
+    return selectedFilters;
   }
 
   public void setSelectedTaskFilters(List<TaskFilter> selectedFilters) {
-    this.selectedTaskFilters = selectedFilters;
+    this.selectedFilters = selectedFilters;
   }
 
   public TaskFilterContainer getTaskFilterContainer() {
-    return taskFilterContainer;
+    return filterContainer;
   }
 
   public void setTaskFilterContainer(TaskFilterContainer filterContainer) {
-    this.taskFilterContainer = filterContainer;
+    this.filterContainer = filterContainer;
   }
 
   public TaskAnalysisFilterData getSelectedTaskAnalysisFilterData() {
@@ -214,7 +153,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   @Override
   public void removeFilter(TaskFilter filter) {
     filter.resetValues();
-    selectedTaskFilters.remove(filter);
+    selectedFilters.remove(filter);
   }
 
   public void removeFilter(CaseFilter filter) {
@@ -225,13 +164,13 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
 
   @Override
   public void resetFilters() {
-    for (TaskFilter selectedFilter : selectedTaskFilters) {
+    for (TaskFilter selectedFilter : selectedFilters) {
       selectedFilter.resetValues();
     }
     for (CaseFilter selectedCaseFilter : selectedCaseFilters) {
       selectedCaseFilter.resetValues();
     }
-    selectedTaskFilters = new ArrayList<>();
+    selectedFilters = new ArrayList<>();
     selectedCaseFilters = new ArrayList<>();
     selectedTaskAnalysisFilterData = null;
   }
@@ -246,7 +185,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
    */
   public TaskAnalysisFilterData saveTaskAnalysisFilter(String filterName, FilterType filterType, Long taskFilterGroupId) {
     TaskAnalysisFilterData taskAnalysisFilterData = new TaskAnalysisFilterData();
-    List<TaskFilter> taskFiltersToSave = new ArrayList<>(selectedTaskFilters);
+    List<TaskFilter> taskFiltersToSave = new ArrayList<>(selectedFilters);
     addCustomSettingsToTaskFilters(taskFiltersToSave);
     taskAnalysisFilterData.setTaskFilters(taskFiltersToSave);
     List<CaseFilter> filtersToSave = new ArrayList<>(selectedCaseFilters);
@@ -296,11 +235,11 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
       criteria.setCustomTaskQuery(taskQuery);
     }
 
-    if (taskFilterContainer != null) {
-      if (selectedTaskFilters.contains(taskFilterContainer.getStateFilter())) {
+    if (filterContainer != null) {
+      if (selectedFilters.contains(filterContainer.getStateFilter())) {
         criteria.setIncludedStates(new ArrayList<>());
       } else {
-        criteria.setIncludedStates(taskFilterContainer.getStateFilter().getSelectedFilteredStates());
+        criteria.setIncludedStates(filterContainer.getStateFilter().getSelectedFilteredStates());
       }
     }
     if (caseFilterContainer != null) {
@@ -330,7 +269,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   protected TaskQuery buildTaskQuery() {
     TaskQuery taskQuery = criteria.createQuery();
     IFilterQuery filterQuery = taskQuery.where();
-    selectedTaskFilters.forEach(selectedFilter -> {
+    selectedFilters.forEach(selectedFilter -> {
       TaskQuery subQuery = selectedFilter.buildQuery();
       if (subQuery != null) {
         filterQuery.and(subQuery);
@@ -404,11 +343,6 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     } else {
       orderQuery.ascending();
     }
-  }
-
-  @Override
-  public void setQueryForUnassignedTask(boolean isQueryForOnlyUnassignedTask) {
-    this.criteria.setQueryForUnassignedTask(isQueryForOnlyUnassignedTask);
   }
 
   @Override
@@ -492,15 +426,5 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
       setValuesForCaseStateFilter(caseCriteria);
       restoreSessionAdvancedCaseFilters();
     }
-  }
-
-  @Override
-  public boolean isInProgressFilterDisplayed() {
-    return isInProgressFilterDisplayed;
-  }
-
-  @Override
-  public void setInProgressFilterDisplayed(boolean isInProgressFilterDisplayed) {
-    this.isInProgressFilterDisplayed = isInProgressFilterDisplayed;
   }
 }
