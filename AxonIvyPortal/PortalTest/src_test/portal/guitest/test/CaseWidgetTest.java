@@ -128,7 +128,7 @@ public class CaseWidgetTest extends BaseTest {
   
   private void openAdditionalCaseDetailsPage(String initDataUrl, String caseName){
     navigateToUrl(initDataUrl);
-    initHomePage(TestAccount.DEMO_USER);
+    initHomePage(TestAccount.ADMIN_USER);
     mainMenuPage = homePage.openMainMenu();
     additionalCaseDetailsPage = new AdditionalCaseDetailsPage();
     casePage = mainMenuPage.selectCaseMenu();

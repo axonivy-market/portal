@@ -25,10 +25,9 @@ Is0 f0 guid 1624D1BB2437AE35 #txt
 Is0 f0 type ch.ivyteam.ivy.project.portal.examples.customization.InvestmentRequestCaseDetailPage.InvestmentRequestCaseDetailPageData #txt
 Is0 f0 method start(ch.ivyteam.ivy.workflow.ICase) #txt
 Is0 f0 disableUIEvents true #txt
-Is0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivyteam.ivy.workflow.ICase iCase> param = methodEvent.getInputArguments();
+Is0 f0 inParameterDecl 'ch.ivyteam.ivy.project.portal.examples.customization.InvestmentRequestCaseDetailPage.InvestmentRequestCaseDetailPageData out;
 ' #txt
-Is0 f0 inParameterMapAction 'out.iCase=param.iCase;
+Is0 f0 inParameterMapAction 'out.ivyCase=param.iCase;
 ' #txt
 Is0 f0 outParameterDecl '<> result;
 ' #txt

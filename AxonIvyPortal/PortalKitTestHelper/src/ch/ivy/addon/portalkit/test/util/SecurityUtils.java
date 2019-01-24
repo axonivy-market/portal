@@ -30,6 +30,7 @@ import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
@@ -68,8 +69,9 @@ public class SecurityUtils {
 
   TASK_RESET_OWN_WORKING_TASK,
   
-  DOCUMENT_OF_INVOLVED_CASE_WRITE
-
+  DOCUMENT_OF_INVOLVED_CASE_WRITE,
+  
+  IPermissionRepository.get().findByName("ShowCaseDetails")
   };
   private static final IPermission DEMO_DENIED_PERMISSIONS[] = {
 
