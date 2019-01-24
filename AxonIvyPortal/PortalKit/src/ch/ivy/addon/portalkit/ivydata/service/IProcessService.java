@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.ivydata.service;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessResultDTO;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.ProcessSearchCriteria;
 
+@FunctionalInterface
 public interface IProcessService {
 
   /**

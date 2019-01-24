@@ -42,11 +42,11 @@ public class AbsenceService implements IAbsenceService {
 
       List<PortalIvyDataException> errors = new ArrayList<>();
       Map<String, Set<IvyAbsence>> ivyAbsencesByUser = new HashMap<>();
-      apps.stream().forEach(app -> {
+      apps.forEach(app -> {
         try {
           IApplication application = ServiceUtilities.findApp(app);
           if (StringUtils.isBlank(username)) {
-            application.getSecurityContext().getUsers().stream().forEach(user -> {
+            application.getSecurityContext().getUsers().forEach(user -> {
               if (ivyAbsencesByUser.containsKey(user.getName())) {
                 ivyAbsencesByUser.get(user.getName()).addAll(getAbsences(user));
               } else {
@@ -100,7 +100,7 @@ public class AbsenceService implements IAbsenceService {
       }
 
       List<PortalIvyDataException> errors = new ArrayList<>();
-      apps.stream().forEach(app -> {
+      apps.forEach(app -> {
         try {
           IApplication application = ServiceUtilities.findApp(app);
           IUser user = ServiceUtilities.findUser(ivyAbsence.getUsername(), application);
@@ -126,7 +126,7 @@ public class AbsenceService implements IAbsenceService {
       }
 
       List<PortalIvyDataException> errors = new ArrayList<>();
-      apps.stream().forEach(app -> {
+      apps.forEach(app -> {
         try {
           IApplication application = ServiceUtilities.findApp(app);
           IUser user = ServiceUtilities.findUser(username, application);
@@ -157,7 +157,7 @@ public class AbsenceService implements IAbsenceService {
       }
 
       List<PortalIvyDataException> errors = new ArrayList<>();
-      apps.stream().forEach(app -> {
+      apps.forEach(app -> {
         try {
           IApplication application = ServiceUtilities.findApp(app);
           IUser user = ServiceUtilities.findUser(ivyAbsence.getUsername(), application);
