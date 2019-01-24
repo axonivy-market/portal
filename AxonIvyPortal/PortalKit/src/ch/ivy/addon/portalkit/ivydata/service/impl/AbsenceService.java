@@ -34,7 +34,7 @@ public class AbsenceService implements IAbsenceService {
   
   @Override
   public IvyAbsenceResultDTO findAbsences(String username, List<String> apps) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return IvyExecutor.executeAsSystem(() -> { // NOSONAR
       IvyAbsenceResultDTO result = new IvyAbsenceResultDTO();
       if (CollectionUtils.isEmpty(apps)) {
         return result;
@@ -42,7 +42,7 @@ public class AbsenceService implements IAbsenceService {
 
       List<PortalIvyDataException> errors = new ArrayList<>();
       Map<String, Set<IvyAbsence>> ivyAbsencesByUser = new HashMap<>();
-      apps.forEach(app -> {
+      apps.forEach(app -> { // NOSONAR
         try {
           IApplication application = ServiceUtilities.findApp(app);
           if (StringUtils.isBlank(username)) {
@@ -93,7 +93,7 @@ public class AbsenceService implements IAbsenceService {
 
   @Override
   public IvyAbsenceResultDTO createAbsence(IvyAbsence ivyAbsence, List<String> apps) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return IvyExecutor.executeAsSystem(() -> { // NOSONAR
       IvyAbsenceResultDTO result = new IvyAbsenceResultDTO();
       if (CollectionUtils.isEmpty(apps)) {
         return result;
@@ -119,7 +119,7 @@ public class AbsenceService implements IAbsenceService {
   
   @Override
   public IvyAbsenceResultDTO updateAbsences(String username, Set<IvyAbsence> ivyAbsences, List<String> apps) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return IvyExecutor.executeAsSystem(() -> { // NOSONAR
       IvyAbsenceResultDTO result = new IvyAbsenceResultDTO();
       if (CollectionUtils.isEmpty(apps)) {
         return result;
@@ -150,7 +150,7 @@ public class AbsenceService implements IAbsenceService {
 
   @Override
   public IvyAbsenceResultDTO deleteAbsence(IvyAbsence ivyAbsence, List<String> apps) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return IvyExecutor.executeAsSystem(() -> { // NOSONAR
       IvyAbsenceResultDTO result = new IvyAbsenceResultDTO();
       if (CollectionUtils.isEmpty(apps)) {
         return result;

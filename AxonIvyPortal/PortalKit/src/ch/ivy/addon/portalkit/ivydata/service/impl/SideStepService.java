@@ -32,7 +32,7 @@ public class SideStepService implements ISideStepService {
 
   @Override
   public IvySideStepResultDTO findSideStepsByCriteria(SideStepSearchCriteria criteria) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return IvyExecutor.executeAsSystem(() -> { // NOSONAR
       IvySideStepResultDTO result = new IvySideStepResultDTO();
       try {
         ICase iCase = findCase(criteria.getCaseId());

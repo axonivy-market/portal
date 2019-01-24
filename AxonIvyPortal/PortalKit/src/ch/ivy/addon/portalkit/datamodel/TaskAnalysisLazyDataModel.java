@@ -28,7 +28,6 @@ import ch.ivy.addon.portalkit.taskfilter.TaskAnalysisTaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
-import ch.ivy.addon.portalkit.taskfilter.TaskStateFilter;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -68,26 +67,6 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   @Override
   protected void initFilterContainer() {
     filterContainer = new TaskAnalysisTaskFilterContainer();
-  }
-
-  public void initTaskFilters() {
-    if (filterContainer == null) {
-      if (isRelatedTaskDisplayed) {
-        if (!criteria.getIncludedStates().contains(TaskState.DONE)) {
-          criteria.addIncludedStates(Arrays.asList(TaskState.DONE));
-        }
-        if (!criteria.getIncludedStates().contains(TaskState.UNASSIGNED)) {
-          criteria.addIncludedStates(Arrays.asList(TaskState.UNASSIGNED));
-        }
-      }
-      initFilterContainer();
-      filters = filterContainer.getFilters();
-      setValuesForStateFilter(criteria);
-      if (criteria.isAdminQuery() && !isRelatedTaskDisplayed) {
-        TaskStateFilter stateFilter = filterContainer.getStateFilter();
-        stateFilter.setSelectedFilteredStatesAtBeginning(new ArrayList<>(stateFilter.getSelectedFilteredStates()));
-      }
-    }
   }
 
   @Override
@@ -347,10 +326,10 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
 
   @Override
   public void initFilters() throws ReflectiveOperationException {
-    initTaskFilters();
+    super.initFilters();
     initCaseFilters();
   }
-
+  
   private void setValuesForCaseStateFilter(CaseSearchCriteria criteria) {
     if (caseFilterContainer != null) {
       caseFilterContainer.getStateFilter().setFilteredStates(new ArrayList<>(criteria.getIncludedStates()));
