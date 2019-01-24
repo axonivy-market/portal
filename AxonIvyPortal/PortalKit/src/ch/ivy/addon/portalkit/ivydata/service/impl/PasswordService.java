@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
-import static ch.ivyteam.ivy.server.ServerFactory.getServer;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +10,7 @@ import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataErrorType;
 import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivy.addon.portalkit.ivydata.service.IPasswordService;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
@@ -25,8 +24,8 @@ public class PasswordService implements IPasswordService {
   }
 
   @Override
-  public IvyPasswordResultDTO changePassword(String username, String newPassword, List<String> apps) throws Exception { // NOSONAR
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvyPasswordResultDTO changePassword(String username, String newPassword, List<String> apps) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvyPasswordResultDTO result = new IvyPasswordResultDTO();
       if (CollectionUtils.isEmpty(apps)) {
         return result;

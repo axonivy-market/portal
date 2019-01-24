@@ -11,6 +11,6 @@ public interface IProcessService {
    * @return IvyProcessResultDTO
    * @throws Exception
    */
-  IvyProcessResultDTO findProcesses(ProcessSearchCriteria criteria) throws Exception;
+  IvyProcessResultDTO findProcesses(ProcessSearchCriteria criteria);
   
 }
