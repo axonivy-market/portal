@@ -251,14 +251,6 @@ public class TaskSearchCriteria {
     }
   }
 
-  public List<String> getApps() {
-    return apps;
-  }
-
-  public void setApps(List<String> apps) {
-    this.apps = apps;
-  }
-
   public List<TaskState> getIncludedStates() {
     return includedStates;
   }
@@ -272,6 +264,14 @@ public class TaskSearchCriteria {
       this.includedStates = new ArrayList<>();
     }
     this.includedStates.addAll(includedStates);
+  }
+  
+  public List<String> getApps() {
+    return apps;
+  }
+
+  public void setApps(List<String> apps) {
+    this.apps = apps;
   }
 
   public String getKeyword() {

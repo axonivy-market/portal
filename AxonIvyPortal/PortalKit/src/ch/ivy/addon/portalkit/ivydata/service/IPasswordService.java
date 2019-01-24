@@ -4,6 +4,7 @@ import java.util.List;
 
 import ch.ivy.addon.portalkit.ivydata.dto.IvyPasswordResultDTO;
 
+@FunctionalInterface
 public interface IPasswordService {
 
   /**

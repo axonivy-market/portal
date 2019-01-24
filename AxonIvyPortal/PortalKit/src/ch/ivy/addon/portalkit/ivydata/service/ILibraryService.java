@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivyteam.ivy.application.ILibrary;
 
+@FunctionalInterface
 public interface ILibraryService {
 
   final List<String> portalLibraryStrings = Stream.of(PortalLibrary.values()).map(PortalLibrary::getValue)

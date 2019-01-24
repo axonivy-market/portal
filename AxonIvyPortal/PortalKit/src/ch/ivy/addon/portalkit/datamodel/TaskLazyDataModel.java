@@ -53,24 +53,24 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected List<ITask> data;
   
   protected TaskFilterContainer filterContainer;
-  private TaskInProgressByOthersFilter inProgressFilter;
-  private TaskFilterData selectedTaskFilterData;
+  protected TaskInProgressByOthersFilter inProgressFilter;
+  protected TaskFilterData selectedTaskFilterData;
 
   protected List<TaskFilter> filters;
   protected List<TaskFilter> selectedFilters;
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
-  private List<String> portalDefaultColumns =
+  protected List<String> portalDefaultColumns =
       Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME", "EXPIRY_TIME", "STATE");
-  private List<String> portalRequiredColumns = Arrays.asList("NAME");
+  protected List<String> portalRequiredColumns = Arrays.asList("NAME");
 
   protected boolean compactMode;
-  private boolean isInProgressFilterDisplayed;
-  private boolean isAutoHideColumns;
-  private boolean isDisableSelectionCheckboxes;
-  private boolean isRelatedTaskDisplayed;
-  private boolean isNotKeepFilter;
-  private boolean isMobile;
+  protected boolean isInProgressFilterDisplayed;
+  protected boolean isAutoHideColumns;
+  protected boolean isDisableSelectionCheckboxes;
+  protected boolean isRelatedTaskDisplayed;
+  protected boolean isNotKeepFilter;
+  protected boolean isMobile;
 
   public TaskLazyDataModel(String taskWidgetComponentId) {
     super();

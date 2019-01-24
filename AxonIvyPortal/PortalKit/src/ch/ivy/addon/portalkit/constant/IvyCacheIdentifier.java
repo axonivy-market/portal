@@ -1,6 +1,9 @@
 package ch.ivy.addon.portalkit.constant;
 
 public final class IvyCacheIdentifier {
+  
+  private IvyCacheIdentifier() {
+  }
 
   public static final String USERS_IN_APPLICATION = "USERS_IN_APPLICATION";
   public static final String ROLES_IN_APPLICATION = "ROLES_IN_APPLICATION";
