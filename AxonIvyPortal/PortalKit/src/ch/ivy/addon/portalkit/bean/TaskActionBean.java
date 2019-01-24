@@ -38,7 +38,7 @@ public class TaskActionBean {
     isShowAdditionalOptions = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS);
   }
 
-  public boolean canReset(ITask task) throws Exception {
+  public boolean canReset(ITask task) {
     TaskState taskState = task.getState();
     if (taskState != TaskState.RESUMED && taskState != TaskState.PARKED) {
       return false;

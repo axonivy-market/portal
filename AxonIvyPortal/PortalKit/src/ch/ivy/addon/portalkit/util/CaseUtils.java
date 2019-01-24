@@ -27,9 +27,7 @@ public final class CaseUtils {
   }
   
   public static ICase findCase(long caseId) {
-    return IvyExecutor.executeAsSystem(() -> {
-      return Ivy.wf().findCase(caseId);
-    });
+    return IvyExecutor.executeAsSystem(() -> Ivy.wf().findCase(caseId));
   }
   
   /**

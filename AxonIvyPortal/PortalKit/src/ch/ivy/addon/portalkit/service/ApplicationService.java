@@ -87,7 +87,7 @@ public class ApplicationService extends AbstractService<Application> {
       return (List<String>) cacheValueOpt.get();
     }
     
-    List<String> workOnApps = new ArrayList<>();
+    List<String> workOnApps;
     String currentApplicationName =
         Optional.ofNullable(Ivy.request().getApplication()).map(IApplication::getName).orElse(StringUtils.EMPTY);
     if (PortalConstants.PORTAL_APPLICATION_NAME.equals(currentApplicationName)) {
@@ -134,17 +134,15 @@ public class ApplicationService extends AbstractService<Application> {
    * @return
    */
   public List<String> findActiveIvyAppsBy(List<String> appNames) {
-    List<String> workOnApps = new ArrayList<>();
     List<Application> applications = findOnlineAndVisibleIvyAppsBy(appNames);
     if (CollectionUtils.isNotEmpty(applications)) {
-      workOnApps = applications.stream().map(Application::getName).collect(Collectors.toList());
-    } else {
-      IApplicationService applicationService = ch.ivy.addon.portalkit.ivydata.service.impl.ApplicationService.newInstance();
-      workOnApps = applicationService.findActiveAll().stream().map(ch.ivy.addon.portalkit.ivydata.bo.IvyApplication::getName)
-          .collect(Collectors.toList());
+      return applications.stream().map(Application::getName).collect(Collectors.toList());
     }
-    
-    return workOnApps;
+
+    IApplicationService applicationService =
+        ch.ivy.addon.portalkit.ivydata.service.impl.ApplicationService.newInstance();
+    return applicationService.findActiveAll().stream().map(ch.ivy.addon.portalkit.ivydata.bo.IvyApplication::getName)
+        .collect(Collectors.toList());
   }
   
   public List<Application> findOnlineAndVisibleIvyAppsBy(List<String> appNames) {
@@ -169,7 +167,7 @@ public class ApplicationService extends AbstractService<Application> {
       return (List<String>) cacheValueOpt.get();
     }
     
-    List<String> workOnApps = new ArrayList<>();
+    List<String> workOnApps;
     List<String> appNames = findInvolvedAppsOfUser(username);
     List<Application> applications = getDao().findAbsenceEnableAndOnlineAndVisibleIvyAppsBy(appNames);
     if (CollectionUtils.isNotEmpty(applications)) {
@@ -199,8 +197,6 @@ public class ApplicationService extends AbstractService<Application> {
       return applicationService.findActiveAll().stream().map(ch.ivy.addon.portalkit.ivydata.bo.IvyApplication::getName)
           .collect(Collectors.toList());
     }
-    
-    Ivy.log().error("APP NAMES : {0}", appNames);
     return appNames;
   }
 }

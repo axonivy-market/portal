@@ -13,7 +13,7 @@ public interface ISecurityService {
    * @return IvySecurityResultDTO
    * @throws Exception 
    */
-  IvySecurityResultDTO findUsers(List<String> apps) throws Exception;
+  IvySecurityResultDTO findUsers(List<String> apps);
   
   /**
    * Finds the users by the given app
@@ -21,7 +21,7 @@ public interface ISecurityService {
    * @return IvySecurityResultDTO
    * @throws Exception
    */
-  IvySecurityResultDTO findUsers(IApplication app) throws Exception;
+  IvySecurityResultDTO findUsers(IApplication app);
   
   /**
    * Gets roles of the given apps
@@ -29,7 +29,7 @@ public interface ISecurityService {
    * @return IvySecurityResultDTO
    * @throws Exception 
    */
-  IvySecurityResultDTO findRoles(List<String> apps) throws Exception;
+  IvySecurityResultDTO findRoles(List<String> apps);
   
   /**
    * Finds the roles by the given app
@@ -37,7 +37,7 @@ public interface ISecurityService {
    * @return IvySecurityResultDTO
    * @throws Exception
    */
-  IvySecurityResultDTO findRoles(IApplication app) throws Exception;
+  IvySecurityResultDTO findRoles(IApplication app);
   
   /**
    * Finds the users and roles
@@ -45,7 +45,7 @@ public interface ISecurityService {
    * @return IvySecurityResultDTO
    * @throws Exception
    */
-  IvySecurityResultDTO findSecurityMembers(IApplication app) throws Exception;
+  IvySecurityResultDTO findSecurityMembers(IApplication app);
   
   /**
    * Finds the users and roles by the list of apps
@@ -53,5 +53,5 @@ public interface ISecurityService {
    * @return
    * @throws Exception
    */
-  IvySecurityResultDTO findSecurityMembers(List<String> apps) throws Exception;
+  IvySecurityResultDTO findSecurityMembers(List<String> apps);
 }

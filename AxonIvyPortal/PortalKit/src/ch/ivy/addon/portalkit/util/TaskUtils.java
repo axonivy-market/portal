@@ -138,27 +138,22 @@ public final class TaskUtils {
    * @return task if it exists and user has insufficient rights to see, null if otherwise
    */
   public static ITask findTaskUserHasPermissionToSee(final long taskId) {
-    try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
-        try {
-          TaskQuery taskQuery1 = TaskQuery.create().where().taskId().isEqual(taskId);
-          TaskQuery taskQuery2 = TaskQuery.create().where().currentUserIsInvolved();
-          IUser user = Ivy.session().getSessionUser();
-          if (user == null) {
-            return null;
-          }
-          for (IRole role : user.getRoles()) {
-            taskQuery2 = taskQuery2.where().or().roleIsInvolved(role);
-          }
-          return Ivy.wf().getTaskQueryExecutor().getFirstResult(taskQuery1.where().and(taskQuery2));
-        } catch (Exception e) {
-          Ivy.log().error(e);
+    return IvyExecutor.executeAsSystem(() -> {
+      try {
+        TaskQuery taskQuery1 = TaskQuery.create().where().taskId().isEqual(taskId);
+        TaskQuery taskQuery2 = TaskQuery.create().where().currentUserIsInvolved();
+        IUser user = Ivy.session().getSessionUser();
+        if (user == null) {
           return null;
         }
-      });
-    } catch (Exception e) {
-      Ivy.log().error(e);
-      return null;
-    }
+        for (IRole role : user.getRoles()) {
+          taskQuery2 = taskQuery2.where().or().roleIsInvolved(role);
+        }
+        return Ivy.wf().getTaskQueryExecutor().getFirstResult(taskQuery1.where().and(taskQuery2));
+      } catch (Exception e) {
+        Ivy.log().error(e);
+        return null;
+      }
+    });
   }
 }
