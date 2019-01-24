@@ -60,7 +60,9 @@ public class ElapsedTimeDetailsBean implements Serializable {
     setSelectedCaseCategory(caseCategory);
     setCaseQueryOfSelectedChart(StatisticChartQueryUtils.generateCaseQuery(statisticChart.getFilter(), true));
 
-    Map<String, Object> response = IvyAdapterService.startSubProcess("findAllRoles()", null,
+    Map<String, Object> params = new HashMap<>();
+    params.put("application", Ivy.wf().getApplication());
+    Map<String, Object> response = IvyAdapterService.startSubProcess("findRoles(ch.ivyteam.ivy.application.IApplication)", params,
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
     setRolesForCompareElapsedTime((List<IRole>)response.get("roles"));
 
