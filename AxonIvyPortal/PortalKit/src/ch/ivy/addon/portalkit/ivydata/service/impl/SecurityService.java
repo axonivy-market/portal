@@ -32,7 +32,7 @@ public class SecurityService implements ISecurityService {
 
   @Override
   public IvySecurityResultDTO findUsers(List<String> apps) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return IvyExecutor.executeAsSystem(() -> { // NOSONAR
       IvySecurityResultDTO result = new IvySecurityResultDTO();
       if (CollectionUtils.isEmpty(apps)) {
         return result;
@@ -80,7 +80,7 @@ public class SecurityService implements ISecurityService {
   
   @Override
   public IvySecurityResultDTO findRoles(List<String> apps) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return IvyExecutor.executeAsSystem(() -> { // NOSONAR
       IvySecurityResultDTO result = new IvySecurityResultDTO();
       if (CollectionUtils.isEmpty(apps)) {
         return result;
@@ -154,7 +154,7 @@ public class SecurityService implements ISecurityService {
 
   @Override
   public IvySecurityResultDTO findSecurityMembers(List<String> apps) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return IvyExecutor.executeAsSystem(() -> { // NOSONAR
       IvySecurityResultDTO result = new IvySecurityResultDTO();
       List<PortalIvyDataException> errors = new ArrayList<>();
       List<IRole> roles = new ArrayList<>();
