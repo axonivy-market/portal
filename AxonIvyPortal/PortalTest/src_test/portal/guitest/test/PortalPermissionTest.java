@@ -16,8 +16,8 @@ import portal.guitest.page.TaskWidgetPage;
 public class PortalPermissionTest extends BaseTest{
   
   protected HomePage homePage;
-  private String grantSpecificPortalPermissionLink = "PortalKitTestHelper/14DE09882B540AD5/grantSpecificPortalPermission.ivp?portalPermission=%s";
-  private String denySpecificPortalPermissionLink = "PortalKitTestHelper/14DE09882B540AD5/denySpecificPortalPermission.ivp?portalPermission=%s";
+  private String grantSpecificPortalPermissionLink = "portalKitTestHelper/14DE09882B540AD5/grantSpecificPortalPermission.ivp?portalPermission=%s";
+  private String denySpecificPortalPermissionLink = "portalKitTestHelper/14DE09882B540AD5/denySpecificPortalPermission.ivp?portalPermission=%s";
   
   @Override
   @Before

@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 public class SettingDeputyPage extends TemplatePage {
 
   public void proceedWhenCreatingAbsence() {
-    String selector = "button[id*='save-new-absence']";
+    String selector = "button[id*='save-substitutes']";
     proceed(selector);
   }
 
