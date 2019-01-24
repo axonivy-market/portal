@@ -9,7 +9,7 @@ import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivyteam.ivy.application.ILibrary;
 
 @FunctionalInterface
-public interface ILibraryService {
+public interface ILibraryService { // NOSONAR
 
   final List<String> portalLibraryStrings = Stream.of(PortalLibrary.values()).map(PortalLibrary::getValue)
       .collect(Collectors.toList());
