@@ -39,7 +39,7 @@ public class LanguageService implements ILanguageService {
 
   @Override
   public IvyLanguageResultDTO findUserLanguages(String username, List<String> apps) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return IvyExecutor.executeAsSystem(() -> { // NOSONAR
       IvyLanguageResultDTO result = new IvyLanguageResultDTO();
       if (CollectionUtils.isEmpty(apps)) {
         return result;
@@ -112,7 +112,7 @@ public class LanguageService implements ILanguageService {
 
   @Override
   public IvyLanguageResultDTO saveUserLanguages(String username, List<IvyLanguage> languages) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return IvyExecutor.executeAsSystem(() -> { // NOSONAR
       IvyLanguageResultDTO rs = new IvyLanguageResultDTO();
       List<PortalIvyDataException> errors = new ArrayList<>();
       if (CollectionUtils.isNotEmpty(languages)) {
@@ -122,7 +122,7 @@ public class LanguageService implements ILanguageService {
             IUser user = ServiceUtilities.findUser(username, app);
             List<IProcessModelVersion> activePmvs = ServiceUtilities.getActiveReleasedPmvs(app);
             Locale userLanguage = Locale.forLanguageTag(language.getUserLanguage());
-            if (!getSupportedEmailLanguages(activePmvs).contains(userLanguage)) {
+            if (!getSupportedEmailLanguages(activePmvs).contains(userLanguage)) { // NOSONAR
               errors.add(new PortalIvyDataException(app.getName(), PortalIvyDataErrorType.SUPPORTED_LANGUAGES_NOT_FOUND.toString()));
               continue;
             }
@@ -155,7 +155,7 @@ public class LanguageService implements ILanguageService {
 
   @Override
   public IvyLanguageResultDTO getSupportedLanguages(String appName) {
-    return IvyExecutor.executeAsSystem(() -> {
+    return IvyExecutor.executeAsSystem(() -> { // NOSONAR
       IvyLanguageResultDTO result = new IvyLanguageResultDTO();
       
       List<PortalIvyDataException> errors = new ArrayList<>();

@@ -21,16 +21,16 @@ public class TaskCategorySearchCriteria {
   private TaskQuery finalQuery;
   
   public TaskQuery createQuery() {
-    TaskQuery finalQuery = TaskQuery.create();
+    TaskQuery query = TaskQuery.create();
     if (customTaskQuery != null) {
-      finalQuery = customTaskQuery;
+      query = customTaskQuery;
     }
 
     if (hasIncludedStates()) {
-      finalQuery.where().and(queryForStates(getIncludedStates()));
+      query.where().and(queryForStates(getIncludedStates()));
     }
 
-    return finalQuery;
+    return query;
   }
   
   private TaskQuery queryForStates(List<TaskState> states) {

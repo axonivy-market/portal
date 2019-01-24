@@ -28,16 +28,15 @@ import ch.ivyteam.ivy.workflow.document.Path;
 
 public class CaseDocumentService {
 
-  private ICase iCase;
-  
-  public static CaseDocumentService newInstance(ICase iCase) {
-    return new CaseDocumentService(iCase);
-  }
-
   public static final String EXPRESS_UPLOAD_FOLDER = "AxonIvyExpress";
+  private ICase iCase;
 
   private CaseDocumentService(ICase iCase) {
     this.iCase = iCase;
+  }
+  
+  public static CaseDocumentService newInstance(ICase iCase) {
+    return new CaseDocumentService(iCase);
   }
 
   public boolean upload(String filename, InputStream content) {

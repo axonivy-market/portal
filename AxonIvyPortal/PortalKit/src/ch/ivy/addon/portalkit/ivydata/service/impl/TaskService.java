@@ -190,7 +190,7 @@ public class TaskService implements ITaskService {
     if (recordSet != null) {
       for (Record record : recordSet.getRecords()) {
         if (record.getField("EXPIRYTIMESTAMP") != null) {
-          try {
+          try { // NOSONAR
             Date date = DateUtils.parseDate(record.getField("EXPIRYTIMESTAMP").toString(), "yyyy-MM-dd HH:mm:ss.SSS");
             numberOfTasksByExpiryTime.put(date, Long.valueOf(record.getField("COUNT").toString()));
           } catch (Exception e) {
