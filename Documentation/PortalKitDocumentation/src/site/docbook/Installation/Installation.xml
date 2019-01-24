@@ -775,8 +775,11 @@
 		</para>
 		<sect2>
 			<title>How to migrate</title>
-			<important>In order to migrate Portal, you need to migrate Axon.ivy, refer <link xlink:href="https://developer.axonivy.com/doc/latest/MigrationNotes.html">Axon.ivy migration notes</link>. 
-				Changes in Axon.ivy could lead to problems if the customer project is not migrated properly.</important>
+			<important>
+				<para>If you call any Portal API which is not mentioned in document. It could be changed or removed. Re-implement it in your own project.</para>
+				<para>In order to migrate Portal, you need to migrate Axon.ivy, refer <link xlink:href="https://developer.axonivy.com/doc/latest/MigrationNotes.html">Axon.ivy migration notes</link>. 
+				Changes in Axon.ivy could lead to problems if customer project is not migrated properly.</para>
+			</important>
 			<sect3>
 				<title>In designer</title>
 				<orderedlist>
@@ -788,9 +791,9 @@
 				</orderedlist>
 				<important>
 					<itemizedlist>
-						<listitem>Scenario migrating one customer project without customization: Follow the guidelines to step 2.</listitem>
+						<listitem>Scenario migrating one customer project without customization: Follow guidelines to step 2.</listitem>
 						<listitem>Scenario migrating one customer project with supported customization: Follow the guidelines.</listitem>
-						<listitem>Scenario migrating one customer project with (un)supported customization: Follow the guidelines for supported customization. 
+						<listitem>Scenario migrating one customer project with (un)supported customization: Follow guidelines for supported customization. 
 							If unsupported customization needs copying code from Portal, merge changes between 2 versions of Portal for copied code. Take care your own unsupported customization.</listitem>
 					</itemizedlist>
 				</important>
@@ -799,17 +802,28 @@
 				<title>In engine</title>
 				<orderedlist>
 					<listitem>Convert database schema if needed.</listitem>
-					<listitem>Deactivate standard Portal application if it is not needed.</listitem>
+					<listitem>If your ivy version is before 7.3.0 : deactivate standard Portal application if it's not needed.</listitem>
 					<listitem>Redeploy Portal projects (exclude PortalConnector) and customer project.</listitem>
 					<listitem>Follow migration notes to migrate data, if any.</listitem>
 				</orderedlist>
 			</sect3>
 		</sect2>
 		<sect2>
-			<title>Migrate 7.2.0 to 7.3.0</title>
+			<title>Migrate to 7.3.0</title>
 			<para>
 				From 7.3.0, Portal supports some permissions to show/hide left menu item, if you overrode LoadSubMenuItems process and want to use these permissions, please refer to 
 				<link linkend="axonivyportal.customization.menu.customization" endterm="axonivyportal.customization.menu.customization.title" /> for more detail.
+			</para>
+			<para>
+				Portal connector is removed, so there are many things related to it must be adjusted. Check this list below
+				<itemizedlist>
+					<listitem>All <code>Remote*</code> classes are removed, replaced by the Ivy classes: ICase, ITask, IUser, IApplication, etc..</listitem>
+					<listitem>Use <code>BuildTaskQuery</code> and <code>BuildCaseQuery</code> callable process instead of <code>BuildTaskJsonQuery</code> and <code>BuildCaseJsonQuery</code>.</listitem>
+					<listitem>If you override TaskLazyDataModel, remove <code>extendSortTasksInNotDisplayedTaskMap</code> method. 
+					Use <code>criteria</code> field instead of <code>queryCriteria</code> or <code>searchCriteria</code>, use <code>adminQuery</code> field instead of <code>ignoreInvolvedUser</code>.</listitem>
+					<listitem>If you override CaseLazyDataModel: remove <code>extendSortCasesInNotDisplayedTaskMap</code> method. 
+					Use <code>criteria</code> field instead of <code>queryCriteria</code> or <code>searchCriteria</code>, use <code>adminQuery</code> field instead of <code>ignoreInvolvedUser</code>.</listitem>
+				</itemizedlist>
 			</para>
 		</sect2>
 		<sect2>
@@ -819,7 +833,7 @@
 				Refer to <link linkend="axonivyportal.installation.basicinstallation.addlibraries" endterm="axonivyportal.installation.basicinstallation.addlibraries.title" />.
 			</para>
 			<para>
-				If you overrode task widget's data query described at <link linkend="axonivyportal.customization.taskwidget.howtooverridedataquery" endterm="axonivyportal.customization.taskwidget.howtooverridedataquery.title" />, 
+				If you override task widget's data query described at <link linkend="axonivyportal.customization.taskwidget.howtooverridedataquery" endterm="axonivyportal.customization.taskwidget.howtooverridedataquery.title" />, 
 				follow these steps to migrate
 				<itemizedlist>
 					<listitem>
@@ -1117,14 +1131,14 @@
 				<title>Changes in 7.3</title>
 				<itemizedlist>
 					<listitem>
-						<para>Removes PortalConnector, query data via Ivy API directly to increase performance, refer to Migration Notes</para>
+						<para>Remove PortalConnector, query data via Ivy API directly to increase performance, refer to Migration Notes</para>
 					</listitem>
 					<listitem>
-						<para>Provides the mobile pages. The default page is task list, refer to 
+						<para>Provide the mobile pages. The default page is task list, refer to 
 							<link linkend="axonivyportal.customization.mobiledefaultpage" endterm="axonivyportal.customization.mobiledefaultpage.title" /> for the customization.</para>
 					</listitem>
 					<listitem>
-						<para>Provides more permissions to show/hide menu, button and link in Portal, refer to 
+						<para>Provide more permissions to show/hide menu, button and link in Portal, refer to 
 							<link linkend="axonivyportal.installation.basicinstallation.permissionsettings" endterm="axonivyportal.installation.basicinstallation.permissionsettings.title" /> for more detail.</para>
 					</listitem>
 				</itemizedlist>
@@ -1133,22 +1147,22 @@
 				<title>Changes in 7.2</title>
 				<itemizedlist>
 					<listitem>
-						<para>Introduced the variables to customize task priority and state colors and header bar colors</para>
+						<para>Introduce variables to customize task priority and state colors and header bar colors</para>
 					</listitem>
                     <listitem>
-                      <para>Introduces the new page: Global search result, and supports the customization</para>
+                      <para>Introduce new page: Global search result, and supports the customization</para>
                     </listitem>
                     <listitem>
-                      <para>Overrides the DefaultApplicationHomePage.ivp, DefaultLoginPage.ivp, DefaultEndPage.ivp processes, refer to <link xlink:show="new" xlink:href="https://developer.axonivy.com/doc/latest/EngineGuideHtml/administration.html#ServerAdministration-htmlworkflowui">Replacement Project</link>, check migration notes if you have the customized PortalStart.ivp process.</para>
+                      <para>Override DefaultApplicationHomePage.ivp, DefaultLoginPage.ivp, DefaultEndPage.ivp processes, refer to <link xlink:show="new" xlink:href="https://developer.axonivy.com/doc/latest/EngineGuideHtml/administration.html#ServerAdministration-htmlworkflowui">Replacement Project</link>, check migration notes if you have the customized PortalStart.ivp process.</para>
                     </listitem>
                     <listitem>
-                      <para>Portal checks permission when upload/delete document. User needs permission <code>IPermission.DOCUMENT_WRITE</code> or <code>IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE</code> to upload/delete document.</para>
+                      <para>Check permission when upload/delete document. User needs permission <code>IPermission.DOCUMENT_WRITE</code> or <code>IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE</code> to upload/delete document.</para>
                     </listitem>
                     <listitem>
-                      <para>Support to disable upload/delete document when a case is done. This function can be configured by <code>HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE</code> setting.</para>
+                      <para>Support disable upload/delete document when a case is done. This function can be configured by <code>HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE</code> setting.</para>
                     </listitem>
 					<listitem>
-						<para>Support to configure upload file extension whitelist. Only file extensions appear in this list are allowed to upload to Portal. This function can be configured by <code>UPLOAD_DOCUMENT_WHITELIST_EXTENSION</code> setting.</para>
+						<para>Support configure upload file extension whitelist. Only file extensions appear in this list are allowed to upload to Portal. This function can be configured by <code>UPLOAD_DOCUMENT_WHITELIST_EXTENSION</code> setting.</para>
 					</listitem>
 					<listitem>
 						<para>Support script checking function for upload file. You can enable/disable this function by configuring <code>ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT</code> setting.</para>
@@ -1159,7 +1173,7 @@
 				<title>Changes in 7.1</title>
 				<itemizedlist>
 					<listitem>
-						<para>Portal supports client side timeout: informs user when session is about to expire and auto logout when expired.</para>
+						<para>Support client side timeout: informs user when session is about to expire and auto logout when expired.</para>
 					</listitem>
 					<listitem>
 						<para>Hide technical cases (the HIDE additional property is set), so that they and their related task are not displayed
@@ -1247,7 +1261,7 @@
 					</listitem>
 					<listitem>
 						<para>
-							Portal supports responsiveness with 3 screen widths: 1920, 1366 and 1024.
+							Support responsiveness with 3 screen widths: 1920, 1366 and 1024.
 							Refer to
 							<link linkend="axonivyportal.components.layouttemplates.reponsiveness" endterm="axonivyportal.components.layouttemplates.reponsiveness.title" />
 							for more details.
