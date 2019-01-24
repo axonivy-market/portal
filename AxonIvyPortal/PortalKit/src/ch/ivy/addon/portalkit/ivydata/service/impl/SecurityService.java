@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
-import static ch.ivyteam.ivy.server.ServerFactory.getServer;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -17,6 +15,7 @@ import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataErrorType;
 import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivy.addon.portalkit.ivydata.service.ISecurityService;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -32,8 +31,8 @@ public class SecurityService implements ISecurityService {
   }
 
   @Override
-  public IvySecurityResultDTO findUsers(List<String> apps) throws Exception {
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvySecurityResultDTO findUsers(List<String> apps) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
       if (CollectionUtils.isEmpty(apps)) {
         return result;
@@ -58,8 +57,8 @@ public class SecurityService implements ISecurityService {
   }
   
   @Override
-  public IvySecurityResultDTO findUsers(IApplication app) throws Exception {
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvySecurityResultDTO findUsers(IApplication app) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
       List<PortalIvyDataException> errors = new ArrayList<>();
       if (app.getActivityState() != ActivityState.ACTIVE) {
@@ -80,8 +79,8 @@ public class SecurityService implements ISecurityService {
   }
   
   @Override
-  public IvySecurityResultDTO findRoles(List<String> apps) throws Exception {
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvySecurityResultDTO findRoles(List<String> apps) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
       if (CollectionUtils.isEmpty(apps)) {
         return result;
@@ -106,8 +105,8 @@ public class SecurityService implements ISecurityService {
   }
   
   @Override
-  public IvySecurityResultDTO findRoles(IApplication app) throws Exception {
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvySecurityResultDTO findRoles(IApplication app) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
       List<PortalIvyDataException> errors = new ArrayList<>();
       if (app.getActivityState() != ActivityState.ACTIVE) {
@@ -128,8 +127,8 @@ public class SecurityService implements ISecurityService {
   }
 
   @Override
-  public IvySecurityResultDTO findSecurityMembers(IApplication app) throws Exception {
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvySecurityResultDTO findSecurityMembers(IApplication app) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
       List<PortalIvyDataException> errors = new ArrayList<>();
       if (app.getActivityState() != ActivityState.ACTIVE) {
@@ -154,8 +153,8 @@ public class SecurityService implements ISecurityService {
   }
 
   @Override
-  public IvySecurityResultDTO findSecurityMembers(List<String> apps) throws Exception {
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvySecurityResultDTO findSecurityMembers(List<String> apps) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
       List<PortalIvyDataException> errors = new ArrayList<>();
       List<IRole> roles = new ArrayList<>();

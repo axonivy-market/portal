@@ -7,6 +7,9 @@ import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class UserProcessMapper {
+  
+  private UserProcessMapper() {
+  }
 
   public static List<UserProcess> toUserProcesses(List<IWebStartable> webStartables) {
     return webStartables.stream().map(UserProcessMapper::toUserProcess).collect(Collectors.toList());

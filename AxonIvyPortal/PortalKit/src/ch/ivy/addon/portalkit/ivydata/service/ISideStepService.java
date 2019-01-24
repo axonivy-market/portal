@@ -5,5 +5,5 @@ import ch.ivy.addon.portalkit.ivydata.searchcriteria.SideStepSearchCriteria;
 
 public interface ISideStepService {
 
-  IvySideStepResultDTO findSideStepsByCriteria(SideStepSearchCriteria criteria) throws Exception;
+  IvySideStepResultDTO findSideStepsByCriteria(SideStepSearchCriteria criteria);
 }

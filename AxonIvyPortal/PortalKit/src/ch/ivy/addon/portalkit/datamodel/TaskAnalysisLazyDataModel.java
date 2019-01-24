@@ -69,8 +69,8 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     this.taskWidgetComponentId = taskWidgetComponentId;
     selectedTaskFilters = new ArrayList<>();
     selectedCaseFilters = new ArrayList<>();
-    criteria = buildCriteria();
-    caseCriteria = buildCaseCriteria();
+    buildCriteria();
+    buildCaseCriteria();
     if (inProgressFilter != null) {
       isInProgressFilterDisplayed = true;
     } else {
@@ -136,13 +136,12 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   }
   
   @Override
-  protected TaskSearchCriteria buildCriteria() {
-    TaskSearchCriteria criteria = new TaskSearchCriteria();
+  protected void buildCriteria() {
+    criteria = new TaskSearchCriteria();
     criteria.setQueryForUnassignedTask(false);
     criteria.setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED)));
     criteria.setSortField(TaskSortField.ID.toString());
     criteria.setSortDescending(true);
-    return criteria;
   }
 
   public void setSortField(String sortField, boolean sortDescending) {
@@ -456,13 +455,11 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     return caseFilters;
   }
 
-  ///================
-  protected CaseSearchCriteria buildCaseCriteria() {
-    CaseSearchCriteria caseCriteria = new CaseSearchCriteria();
+  protected void buildCaseCriteria() {
+    caseCriteria = new CaseSearchCriteria();
     caseCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
     caseCriteria.setSortField(CaseSortField.ID.toString());
     caseCriteria.setSortDescending(true);
-    return caseCriteria;
   }
 
   private void restoreSessionAdvancedCaseFilters() throws IllegalAccessException, InvocationTargetException {

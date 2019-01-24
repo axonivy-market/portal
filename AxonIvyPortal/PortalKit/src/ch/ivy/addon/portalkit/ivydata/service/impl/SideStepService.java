@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
-import static ch.ivyteam.ivy.server.ServerFactory.getServer;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,6 +13,7 @@ import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.SideStepSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.ISideStepService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.casemap.runtime.ICaseMapService;
 import ch.ivyteam.ivy.casemap.runtime.model.IStartableSideStep;
@@ -32,8 +31,8 @@ public class SideStepService implements ISideStepService {
   }
 
   @Override
-  public IvySideStepResultDTO findSideStepsByCriteria(SideStepSearchCriteria criteria) throws Exception { // NOSONAR
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvySideStepResultDTO findSideStepsByCriteria(SideStepSearchCriteria criteria) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvySideStepResultDTO result = new IvySideStepResultDTO();
       try {
         ICase iCase = findCase(criteria.getCaseId());

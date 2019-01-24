@@ -9,9 +9,9 @@ import ch.ivy.addon.portalkit.persistence.dao.AbstractDao;
 import ch.ivy.addon.portalkit.persistence.dao.ExecuteAsSystemDecorator;
 import ch.ivy.addon.portalkit.persistence.domain.BusinessEntity;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.server.ServerFactory;
 
 class AbstractService<T extends BusinessEntity> {
 
@@ -37,9 +37,7 @@ class AbstractService<T extends BusinessEntity> {
   
   private IApplication getSystemApp() {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
-        return getServer().getApplicationConfigurationManager().findApplication("System");
-      });
+      return IvyExecutor.executeAsSystem(() -> getServer().getApplicationConfigurationManager().getSystemApplication());
     } catch (Exception e) {
       Ivy.log().error("Can not find system application", e);
       return null;
