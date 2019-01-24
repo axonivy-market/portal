@@ -38,7 +38,7 @@ public class CaseWidgetPage extends TemplatePage {
 	}
 	
 	public void openSideStepPopup(int index) {
-	  click(By.id("case-widget:case-list-scroller:" + index + ":case-item:case-side-steps-menu"));
+	  click(By.id("case-widget:case-list-scroller:" + index + ":case-item:side-step-component:case-side-steps-menu"));
 	  waitForElementDisplayed(By.id("case-widget:case-list-scroller:" + index + ":case-item:side-steps-panel"), true);
 	}
 	

@@ -1486,7 +1486,9 @@ As0 f69 actionTable 'out=in;
 ' #txt
 As0 f69 actionCode 'import org.primefaces.context.RequestContext;
 
-RequestContext.getCurrentInstance().execute("PF(''addNewAbsence'').hide()");' #txt
+RequestContext.getCurrentInstance().execute("PF(''addNewAbsence'').hide()");
+
+out.isLoadDeputy = false;' #txt
 As0 f69 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f69 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
