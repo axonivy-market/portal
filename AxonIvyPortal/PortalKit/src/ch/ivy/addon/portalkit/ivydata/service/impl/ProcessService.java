@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
-import static ch.ivyteam.ivy.server.ServerFactory.getServer;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -15,6 +13,7 @@ import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.ProcessSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.IProcessService;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -32,8 +31,8 @@ public class ProcessService implements IProcessService {
   }
 
   @Override
-  public IvyProcessResultDTO findProcesses(ProcessSearchCriteria criteria) throws Exception {
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvyProcessResultDTO findProcesses(ProcessSearchCriteria criteria) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvyProcessResultDTO result = new IvyProcessResultDTO();
       if (criteria == null || CollectionUtils.isEmpty(criteria.getApps())) {
         return result;

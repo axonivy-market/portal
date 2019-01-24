@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
-import static ch.ivyteam.ivy.server.ServerFactory.getServer;
-
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Date;
@@ -22,6 +20,7 @@ import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.ITaskService;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -44,8 +43,8 @@ public class TaskService implements ITaskService {
   }
   
   @Override
-  public IvyTaskResultDTO findTasksByCriteria(TaskSearchCriteria criteria, int startIndex, int count) throws Exception { // NOSONAR
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvyTaskResultDTO findTasksByCriteria(TaskSearchCriteria criteria, int startIndex, int count) { // NOSONAR
+    return IvyExecutor.executeAsSystem(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       try {
         TaskQuery finalQuery = extendQuery(criteria);
@@ -59,8 +58,8 @@ public class TaskService implements ITaskService {
   }
   
   @Override
-  public IvyTaskResultDTO countTasksByCriteria(TaskSearchCriteria criteria) throws Exception { // NOSONAR
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvyTaskResultDTO countTasksByCriteria(TaskSearchCriteria criteria) { // NOSONAR
+    return IvyExecutor.executeAsSystem(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       try {
         TaskQuery finalQuery = extendQuery(criteria);
@@ -103,8 +102,8 @@ public class TaskService implements ITaskService {
   }
 
   @Override
-  public IvyTaskResultDTO findCategoriesByCriteria(TaskCategorySearchCriteria criteria) throws Exception { // NOSONAR
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvyTaskResultDTO findCategoriesByCriteria(TaskCategorySearchCriteria criteria) { // NOSONAR
+    return IvyExecutor.executeAsSystem(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       try {
         TaskQuery finalQuery = criteria.getFinalQuery();
@@ -128,8 +127,8 @@ public class TaskService implements ITaskService {
   }
   
   @Override
-  public IvyTaskResultDTO analyzePriorityStatistic(TaskSearchCriteria criteria) throws Exception {
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvyTaskResultDTO analyzePriorityStatistic(TaskSearchCriteria criteria) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       try {
         TaskQuery finalQuery = extendQuery(criteria);
@@ -167,8 +166,8 @@ public class TaskService implements ITaskService {
   }
   
   @Override
-  public IvyTaskResultDTO analyzeExpiryStatistic(TaskSearchCriteria criteria) throws Exception {
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvyTaskResultDTO analyzeExpiryStatistic(TaskSearchCriteria criteria) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       try {
         TaskQuery finalQuery = extendQuery(criteria);
@@ -205,8 +204,8 @@ public class TaskService implements ITaskService {
   }
   
   @Override
-  public IvyTaskResultDTO analyzeElapsedTimeOfTasks(TaskSearchCriteria criteria) throws Exception {
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvyTaskResultDTO analyzeElapsedTimeOfTasks(TaskSearchCriteria criteria) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       try {
         TaskQuery finalQuery = extendQuery(criteria);

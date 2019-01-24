@@ -108,7 +108,7 @@ public class UserMenuBean implements Serializable {
 
     Application selectedApplication =
         applicationService.findByDisplayNameAndName(selectedAppDisplayName, selectedApp);
-    return Optional.ofNullable(selectedApplication).map(Application::getLink).orElse(""); //selectedApplication.getLink();
+    return Optional.ofNullable(selectedApplication).map(Application::getLink).orElse(StringUtils.EMPTY);
   }
 
   public void navigateToHomePageOrDisplayWorkingTaskWarning(boolean isWorkingOnATask) throws IOException {

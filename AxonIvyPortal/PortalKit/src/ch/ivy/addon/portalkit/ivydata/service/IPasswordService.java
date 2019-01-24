@@ -14,5 +14,5 @@ public interface IPasswordService {
    * @return IvyLanguageResultDTO
    * @throws Exception 
    */
-  IvyPasswordResultDTO changePassword(String username, String newPassword, List<String> apps) throws Exception;
+  IvyPasswordResultDTO changePassword(String username, String newPassword, List<String> apps);
 }

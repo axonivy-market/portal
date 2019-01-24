@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
-import static ch.ivyteam.ivy.server.ServerFactory.getServer;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +21,7 @@ import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.persistence.dao.ApplicationDao;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
@@ -42,8 +41,8 @@ public class SubstituteService implements ISubstituteService {
   }
   
   @Override
-  public IvySubstituteResultDTO findSubstitutes(String username, List<String> apps) throws Exception {
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvySubstituteResultDTO findSubstitutes(String username, List<String> apps) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvySubstituteResultDTO result = new IvySubstituteResultDTO();
       if (CollectionUtils.isEmpty(apps)) {
         return result;
@@ -124,8 +123,8 @@ public class SubstituteService implements ISubstituteService {
   }
 
   @Override
-  public IvySubstituteResultDTO saveSubstitutes(String username, Map<IvyApplication, List<IvySubstitute>> ivySubstitutesByApp) throws Exception {
-    return getServer().getSecurityManager().executeAsSystem(() -> {
+  public IvySubstituteResultDTO saveSubstitutes(String username, Map<IvyApplication, List<IvySubstitute>> ivySubstitutesByApp) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvySubstituteResultDTO result = new IvySubstituteResultDTO();
       if (ivySubstitutesByApp == null || ivySubstitutesByApp.isEmpty()) {
         return result;

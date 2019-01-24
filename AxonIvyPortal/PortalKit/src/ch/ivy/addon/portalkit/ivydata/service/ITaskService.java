@@ -6,15 +6,15 @@ import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 
 public interface ITaskService {
 
-  IvyTaskResultDTO findTasksByCriteria(TaskSearchCriteria criteria, int startIndex, int count) throws Exception;
+  IvyTaskResultDTO findTasksByCriteria(TaskSearchCriteria criteria, int startIndex, int count);
   
-  IvyTaskResultDTO countTasksByCriteria(TaskSearchCriteria criteria) throws Exception;
+  IvyTaskResultDTO countTasksByCriteria(TaskSearchCriteria criteria);
   
-  IvyTaskResultDTO findCategoriesByCriteria(TaskCategorySearchCriteria criteria) throws Exception;
+  IvyTaskResultDTO findCategoriesByCriteria(TaskCategorySearchCriteria criteria);
   
-  IvyTaskResultDTO analyzePriorityStatistic(TaskSearchCriteria criteria) throws Exception;
+  IvyTaskResultDTO analyzePriorityStatistic(TaskSearchCriteria criteria);
   
-  IvyTaskResultDTO analyzeExpiryStatistic(TaskSearchCriteria criteria) throws Exception;
+  IvyTaskResultDTO analyzeExpiryStatistic(TaskSearchCriteria criteria);
   
-  IvyTaskResultDTO analyzeElapsedTimeOfTasks(TaskSearchCriteria criteria) throws Exception;
+  IvyTaskResultDTO analyzeElapsedTimeOfTasks(TaskSearchCriteria criteria);
 }

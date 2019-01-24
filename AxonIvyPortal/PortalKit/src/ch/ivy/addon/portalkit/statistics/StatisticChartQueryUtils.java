@@ -368,9 +368,7 @@ public class StatisticChartQueryUtils {
         caseCategoryTree.getAllChildren().stream().map(CategoryTree::getRawPath).forEach(category -> subCaseQueryForSelectedCaseCategories.where().and().category().isNotEqual(category));
       }
     } else {
-      selectedCaseCategories.forEach(category -> {
-        subCaseQueryForSelectedCaseCategories.where().or().category().isEqual(category);
-      });
+      selectedCaseCategories.forEach(category -> subCaseQueryForSelectedCaseCategories.where().or().category().isEqual(category));
     }
     return subCaseQueryForSelectedCaseCategories;
   }

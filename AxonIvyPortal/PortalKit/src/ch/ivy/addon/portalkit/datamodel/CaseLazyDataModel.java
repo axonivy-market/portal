@@ -70,7 +70,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     data = new ArrayList<>();
     selectedFilters = new ArrayList<>();
     this.caseWidgetComponentId = caseWidgetComponentId;
-    criteria = initSearchCriteria();
+    buildCriteria();
     setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
     selectedFilterData = UserUtils.getSessionSelectedCaseFilterSetAttribute();
     setInvolvedApplications();
@@ -305,8 +305,8 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     return caseCount.intValue();
   }
 
-  private CaseSearchCriteria initSearchCriteria() {
-    CaseSearchCriteria criteria = new CaseSearchCriteria();
+  private void buildCriteria() {
+    criteria = new CaseSearchCriteria();
     criteria.setInvolvedUsername(Ivy.session().getSessionUserName());
     criteria.setBusinessCase(true);
     criteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
@@ -315,7 +315,6 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     if (!isNotKeepFilter) {
       criteria.setKeyword(UserUtils.getSessionCaseKeywordFilterAttribute());
     }
-    return criteria;
   }
 
   private void applyCustomSettings(CaseFilterData caseFilterData) {

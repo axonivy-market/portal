@@ -76,7 +76,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     super();
     this.taskWidgetComponentId = taskWidgetComponentId;
     selectedFilters = new ArrayList<>();
-    criteria = buildCriteria();
+    buildCriteria();
     data = new ArrayList<>();
     if (shouldSaveAndLoadSessionFilters() && !isMobile) {
       selectedTaskFilterData = UserUtils.getSessionSelectedTaskFilterSetAttribute();
@@ -217,13 +217,8 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     return taskCount.intValue();
   }
 
-  /**
-   * Initializes TaskSearchCriteria
-   * 
-   * @return TaskSearchCriteria
-   */
-  protected TaskSearchCriteria buildCriteria() {
-    TaskSearchCriteria criteria = new TaskSearchCriteria();
+  protected void buildCriteria() {
+    criteria = new TaskSearchCriteria();
     criteria.setInvolvedUsername(Ivy.session().getSessionUserName());
     criteria.setQueryForUnassignedTask(false);
     criteria
@@ -233,7 +228,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     if (shouldSaveAndLoadSessionFilters()) {
       criteria.setKeyword(UserUtils.getSessionTaskKeywordFilterAttribute());
     }
-    return criteria;
   }
 
   /**
