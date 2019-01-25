@@ -28,3 +28,5 @@ displayedAbsences java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence> #
 displayedAbsences PERSISTENT #fieldModifier
 usersByApp java.util.Map #field
 usersByApp PERSISTENT #fieldModifier
+isAbsenceBeingCreated Boolean #field
+isAbsenceBeingCreated PERSISTENT #fieldModifier
