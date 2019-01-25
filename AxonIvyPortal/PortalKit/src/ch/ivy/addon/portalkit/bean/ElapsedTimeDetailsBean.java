@@ -30,6 +30,7 @@ import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;
 import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
+import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
@@ -37,8 +38,6 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 @ViewScoped
 public class ElapsedTimeDetailsBean implements Serializable {
   private static final long serialVersionUID = 1L;
-
-  private static final String ROLE_EVERYBODY = "Everybody";
 
   private StatisticService statisticService = new StatisticService();
   private String selectedCaseCategory;
@@ -66,7 +65,7 @@ public class ElapsedTimeDetailsBean implements Serializable {
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
     setRolesForCompareElapsedTime((List<IRole>)response.get("roles"));
 
-    defaultRole = rolesForCompareElapsedTime.stream().findFirst().filter(role -> ROLE_EVERYBODY.equals(role.getName())).get();
+    defaultRole = Ivy.wf().getSecurityContext().findRole(ISecurityConstants.TOP_LEVEL_ROLE_NAME);
     dataEmpty = false;
     compare(defaultRole, defaultRole);
     chartName = statisticChart.getName();

@@ -227,7 +227,11 @@ Pt0 f11 392 576 432 576 #arcP
 Pt0 f12 inParamDecl '<java.lang.String username> param;' #txt
 Pt0 f12 inParamTable 'out.username=param.username;
 ' #txt
-Pt0 f12 outParamDecl '<> result;
+Pt0 f12 outParamDecl '<java.util.List<ch.ivyteam.ivy.security.IUser> users,java.util.List<ch.ivyteam.ivy.security.IRole> roles,java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;
+' #txt
+Pt0 f12 outParamTable 'result.users=in.users;
+result.roles=in.roles;
+result.errors=in.errors;
 ' #txt
 Pt0 f12 actionDecl 'ch.ivyteam.wf.processes.SecurityServiceData out;
 ' #txt

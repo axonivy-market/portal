@@ -147,7 +147,7 @@ public class CaseSearchCriteria {
     }
 
     private void appendSortByStartTimeIfSet(CaseSearchCriteria criteria) {
-      if (!CaseSortField.START_TIME.toString().equalsIgnoreCase(criteria.getSortField())) {
+      if (!CaseSortField.CREATION_TIME.toString().equalsIgnoreCase(criteria.getSortField())) {
         return;
       }
       OrderByColumnQuery orderByName = query.orderBy().startTimestamp();
@@ -157,7 +157,7 @@ public class CaseSearchCriteria {
     }
 
     private void appendSortByEndTimeIfSet(CaseSearchCriteria criteria) {
-      if (!CaseSortField.END_TIME.toString().equalsIgnoreCase(criteria.getSortField())) {
+      if (!CaseSortField.FINISHED_TIME.toString().equalsIgnoreCase(criteria.getSortField())) {
         return;
       }
       OrderByColumnQuery orderByName = query.orderBy().endTimestamp();
