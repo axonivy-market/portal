@@ -1919,6 +1919,7 @@ As0 f14 actionTable 'out=in;
 ' #txt
 As0 f14 actionCode 'import ch.ivyteam.ivy.server.ServerFactory;
 in.app = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(in.selectedApp.name);' #txt
+As0 f14 security system #txt
 As0 f14 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
