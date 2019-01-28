@@ -194,7 +194,9 @@ public class ApplicationService extends AbstractService<Application> {
     
     if (CollectionUtils.isEmpty(appNames)) {
       IApplicationService applicationService = ch.ivy.addon.portalkit.ivydata.service.impl.ApplicationService.newInstance();
-      return applicationService.findActiveAll().stream().map(ch.ivy.addon.portalkit.ivydata.bo.IvyApplication::getName)
+      return applicationService.findActiveAll().stream()
+          .filter(application -> ServiceUtilities.findUser(username, application.getName()) != null)
+          .map(ch.ivy.addon.portalkit.ivydata.bo.IvyApplication::getName)
           .collect(Collectors.toList());
     }
     return appNames;
