@@ -43,7 +43,7 @@ public class CaseWidgetPage extends TemplatePage {
 	}
 	
 	public int countSideStepItems(int index) {
-	  WebElement sideStepPanel = findElementById("case-widget:case-list-scroller:" + index + ":case-item:side-steps-panel");
+	  WebElement sideStepPanel = findElementById("case-widget:case-list-scroller:" + index + ":case-item:side-step-component:side-steps-panel");
     return sideStepPanel.findElements(By.tagName("a")).size();
 	}
 
