@@ -872,7 +872,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       Entry<String, Number> chartDataEntry = iterator.next();
       float floatValueOfChartData = chartDataEntry.getValue().floatValue();
       if (floatValueOfChartData < totalValue * 0.02) {
-        otherValue = otherValue + floatValueOfChartData;
+        otherValue += floatValueOfChartData;
         iterator.remove();
       } else {
         chartDataEntry.setValue(floatValueOfChartData * 100 / totalValue);
