@@ -50,7 +50,7 @@ public class SubstituteService implements ISubstituteService {
 
       List<PortalIvyDataException> errors = new ArrayList<>();
       Map<IvyApplication, List<IvySubstitute>> ivySubstitutesByApp = new HashMap<>();
-      List<Application> applications = new ApplicationDao().findOnlineAndVisibleIvyAppsBy(apps);
+      List<Application> applications = new ApplicationDao().findByNames(apps);
       apps.stream().forEach(appName -> {
         try {
           String appDisplayName = applications.stream().filter(app -> StringUtils.equals(app.getName(), appName))

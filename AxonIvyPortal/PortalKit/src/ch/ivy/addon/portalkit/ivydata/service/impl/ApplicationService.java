@@ -66,7 +66,7 @@ public class ApplicationService implements IApplicationService {
       throw BpmError.create(APPLICATIONSERVICE_ERROR_CODE).withCause(exception).build();
     }
   }
-
+  
   private IvyApplication toIvyApplication(IApplication app) {
     IvyApplication ivyApp = new IvyApplication();
     ivyApp.setName(app.getName());

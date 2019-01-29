@@ -18,7 +18,7 @@ public class MultiAppLibraryService implements ILibraryService {
   public Map<String, List<ILibrary>> collectLibraries() {
     Map<String, List<ILibrary>> libraries = new HashMap<>();
     ApplicationService applicationService = new ApplicationService();
-    for (Application app : applicationService.findOnlineIvyApps()) {
+    for (Application app : applicationService.findAllIvyApplications()) {
       IApplication ivyApplication = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(app.getName());
       if (ivyApplication != null) {
         libraries.put(

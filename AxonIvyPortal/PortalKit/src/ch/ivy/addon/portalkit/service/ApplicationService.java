@@ -6,11 +6,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
 import ch.ivy.addon.portalkit.ivydata.service.IApplicationService;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.persistence.dao.ApplicationDao;
@@ -37,16 +38,8 @@ public class ApplicationService extends AbstractService<Application> {
     return getDao().findAllIvyApplications();
   }
 
-  public List<Application> findOtherApplicationsHaveSameNameAndServer(Application application) {
-    return getDao().findOtherApplicationsHaveSameNameAndServer(application);
-  }
-
   public Application findByDisplayNameAndName(String displayName, String name) {
     return getDao().findByDisplayNameAndName(displayName, name);
-  }
-
-  public List<Application> findOnlineIvyApps() {
-    return getDao().findOnlineIvyApps();
   }
 
   public Application findByName(String name) {
@@ -69,8 +62,8 @@ public class ApplicationService extends AbstractService<Application> {
   }
   
   /**
-   * Finds names of the online and visible applications based on the configuration; if the current app is not Portal, returns the current app.
-   * Otherwise, finds the applications registered by the admin user; if empty, means there is no
+   * Finds names of the active applications based on the configuration; if the current app is not Portal, returns the current app.
+   * Otherwise, finds the active applications registered by the admin user; if empty, means there is no
    * configuration in admin settings, finds all of active applications of the engine.
    * 
    * @param username
@@ -101,7 +94,7 @@ public class ApplicationService extends AbstractService<Application> {
   }
   
   /**
-   * Finds names of the online and visible applications registered by the admin user; if empty, means there is no
+   * Finds names of the active applications registered by the admin user; if empty, means there is no
    * configuration in admin settings, finds all of active applications of the engine.
    * 
    * @param username
@@ -126,94 +119,14 @@ public class ApplicationService extends AbstractService<Application> {
     return workOnApps;
   }
   
-  /**
-   * Finds names of the online and visible applications registered by the admin user; if empty, means there is no
-   * configuration in admin settings, finds all of active applications of the engine.
-   * 
-   * @param appNames
-   * @return
-   */
-  public List<String> findActiveIvyAppsBy(List<String> appNames) {
-    List<Application> applications = findOnlineAndVisibleIvyAppsBy(appNames);
-    if (CollectionUtils.isNotEmpty(applications)) {
-      return applications.stream().map(Application::getName).collect(Collectors.toList());
-    }
-
-    IApplicationService applicationService =
-        ch.ivy.addon.portalkit.ivydata.service.impl.ApplicationService.newInstance();
-    return applicationService.findActiveAll().stream().map(ch.ivy.addon.portalkit.ivydata.bo.IvyApplication::getName)
-        .collect(Collectors.toList());
-  }
-  
-  public List<Application> findOnlineAndVisibleIvyAppsBy(List<String> appNames) {
-    return getDao().findOnlineAndVisibleIvyAppsBy(appNames);
-  }
-  
-  /**
-   * Finds names of the absence enable and online and visible applications registered by the admin user; if empty, means there is no
-   * configuration in admin settings, finds all of active applications of the engine.
-   * 
-   * @param username
-   * @return {@link java.util.List} of application names
-   */
-  @SuppressWarnings("unchecked")
-  public List<String> findAbsenceEnableAndActiveIvyAppsUserCanWorkOn(String username) {
-    if (StringUtils.isBlank(username)) {
-      return new ArrayList<>();
-    }
-    
-    Optional<Object> cacheValueOpt = IvyCacheService.newInstance().getSessionCacheValue(username, IvyCacheIdentifier.ABSENCE_ENABLE_AND_ONLINE_APPLICATIONS);
-    if (cacheValueOpt.isPresent()) {
-      return (List<String>) cacheValueOpt.get();
-    }
-    
-    List<String> workOnApps = findAbsenceEnableAndInvolvedAppsOfUser(username);
-    if (CollectionUtils.isEmpty(workOnApps)) {
-      return new ArrayList<>();
-    }
-
-    IvyCacheService.newInstance().setSessionCache(username, IvyCacheIdentifier.ABSENCE_ENABLE_AND_ONLINE_APPLICATIONS, workOnApps);
-    return workOnApps;
-  }
-  
   private List<String> findInvolvedAppsOfUser(String username) {
-    List<Application> allIvyApplications = findAllIvyApplications();
-    List<String> appNames = allIvyApplications
-        .stream()
-        .filter(application -> ServiceUtilities.findUser(username, application.getName()) != null 
-              && application.getIsOnline() 
-              && application.getIsVisible())
-        .map(Application::getName)
+    IApplicationService applicationService = ch.ivy.addon.portalkit.ivydata.service.impl.ApplicationService.newInstance();
+    List<String> registeredApplicationNames = findAllIvyApplications().stream().map(Application::getName).collect(Collectors.toList());
+    return applicationService.findActiveAll().stream()
+        .filter(app -> ServiceUtilities.findUser(username, app.getName()) != null 
+          && (CollectionUtils.isEmpty(registeredApplicationNames) || CollectionUtils.containsAny(registeredApplicationNames, app.getName())))
+        .map(IvyApplication::getName)
         .collect(Collectors.toList());
-    
-    if (CollectionUtils.isEmpty(appNames)) {
-      IApplicationService applicationService = ch.ivy.addon.portalkit.ivydata.service.impl.ApplicationService.newInstance();
-      return applicationService.findActiveAll().stream()
-          .filter(application -> ServiceUtilities.findUser(username, application.getName()) != null)
-          .map(ch.ivy.addon.portalkit.ivydata.bo.IvyApplication::getName)
-          .collect(Collectors.toList());
-    }
-    return appNames;
   }
-  
-  private List<String> findAbsenceEnableAndInvolvedAppsOfUser(String username) {
-    List<Application> allIvyApplications = findAllIvyApplications();
-    List<String> appNames = allIvyApplications
-        .stream()
-        .filter(application -> ServiceUtilities.findUser(username, application.getName()) != null 
-              && application.getIsOnline() 
-              && application.getIsVisible()
-              && application.getIsSupportAbsenceSettings())
-        .map(Application::getName)
-        .collect(Collectors.toList());
-    
-    if (CollectionUtils.isEmpty(appNames)) {
-      IApplicationService applicationService = ch.ivy.addon.portalkit.ivydata.service.impl.ApplicationService.newInstance();
-      return applicationService.findActiveAll().stream()
-          .filter(application -> ServiceUtilities.findUser(username, application.getName()) != null)
-          .map(ch.ivy.addon.portalkit.ivydata.bo.IvyApplication::getName)
-          .collect(Collectors.toList());
-    }
-    return appNames;
-  }
+
 }
