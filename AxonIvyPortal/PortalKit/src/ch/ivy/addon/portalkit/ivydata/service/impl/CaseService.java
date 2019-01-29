@@ -147,7 +147,7 @@ public class CaseService implements ICaseService {
         int state = Integer.parseInt(record.getField("STATE").toString());
         long numberOfCases = Long.parseLong(record.getField("COUNT").toString());
         if (state == CaseState.DONE.intValue()) {
-          caseStateStatistic.setDone((numberOfCases));
+          caseStateStatistic.setDone(numberOfCases);
         } else if (state == CaseState.CREATED.intValue()) {
           caseStateStatistic.setCreated(numberOfCases);
         } else if (state == CaseState.DESTROYED.intValue()) {
@@ -243,6 +243,7 @@ public class CaseService implements ICaseService {
         finalQuery.where().and(queryForApplications(criteria.getApps()));
       }
     }
+    
     finalQuery.where().and(queryExcludeHiddenCases());
     return finalQuery;
   }
