@@ -52,30 +52,4 @@ public class ApplicationDaoTest {
 
   }
 
-  @Test
-  public void testFindOtherApplicationsHaveSameNameAndServer() {
-    List<Application> mockReturnAllApplications = new ArrayList<Application>();
-    Application testApplication = new Application();
-    testApplication.setId(1L);
-    testApplication.setName("test01");
-    testApplication.setServerId(1L);
-
-    Application expectApplication = new Application();
-    expectApplication.setId(2L);
-    expectApplication.setName("test01");
-    expectApplication.setServerId(1L);
-
-    mockReturnAllApplications.add(testApplication);
-    mockReturnAllApplications.add(expectApplication);
-
-    PowerMockito.when(applicationDao.findAll()).thenReturn(mockReturnAllApplications);
-    PowerMockito.when(applicationDao.findOtherApplicationsHaveSameNameAndServer(testApplication)).thenCallRealMethod();
-
-    List<Application> sameApplications = applicationDao.findOtherApplicationsHaveSameNameAndServer(testApplication);
-
-    assertEquals(1, sameApplications.size());
-
-    assertEquals(expectApplication, sameApplications.get(0));
-  }
-
 }

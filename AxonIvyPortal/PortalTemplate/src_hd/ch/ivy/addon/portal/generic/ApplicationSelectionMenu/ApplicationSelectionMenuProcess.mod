@@ -227,27 +227,21 @@ SecurityServiceUtils.removeSessionAttribute(SessionAttribute.SELECTED_APP.toStri
 SecurityServiceUtils.removeSessionAttribute(SessionAttribute.SELECTED_APP_DISPLAY_NAME.toString());
 
 for (Application application : in.applications){
-	if (application.isVisible) {
-		Button menuItem = new Button();
-		menuItem.value = ApplicationMultiLanguage.getDisplayNameInCurrentLocale(application);
-		boolean isThirdPartyApp = !application.#serverId is initialized;
-		if (isThirdPartyApp){
-			menuItem.getAttributes().put("isThirdPartyApp", true);
-		}
-		menuItem.href = application.link;
-		menuItem.getAttributes().put("appName", application.name);
-		menuItem.icon = "fa " + application.menuIcon;
-		
-		if (!application.isOnline) {
-			menuItem.disabled = true;
-		}
+	Button menuItem = new Button();
+	menuItem.value = ApplicationMultiLanguage.getDisplayNameInCurrentLocale(application);
+	boolean isThirdPartyApp = !application.#serverId is initialized;
+	if (isThirdPartyApp){
+		menuItem.getAttributes().put("isThirdPartyApp", true);
+	}
+	menuItem.href = application.link;
+	menuItem.getAttributes().put("appName", application.name);
+	menuItem.icon = "fa " + application.menuIcon;
 	
-		in.menuItems.add(menuItem);
-		if (application.name.equals(ivy.request.getApplication().getName()) || (!isThirdPartyApp && numberOfIvyApplications == 1)) {
-			menuItem.styleClass = "ivy-active";
-			SecurityServiceUtils.setSessionAttribute(SessionAttribute.SELECTED_APP.toString(), application.name);
-			SecurityServiceUtils.setSessionAttribute(SessionAttribute.SELECTED_APP_DISPLAY_NAME.toString(), application.displayName);
-		}
+	in.menuItems.add(menuItem);
+	if (application.name.equals(ivy.request.getApplication().getName()) || (!isThirdPartyApp && numberOfIvyApplications == 1)) {
+		menuItem.styleClass = "ivy-active";
+		SecurityServiceUtils.setSessionAttribute(SessionAttribute.SELECTED_APP.toString(), application.name);
+		SecurityServiceUtils.setSessionAttribute(SessionAttribute.SELECTED_APP_DISPLAY_NAME.toString(), application.displayName);
 	}
 }
 
