@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.taskfilter;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -20,10 +21,13 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 public class TaskResponsibleFilter extends TaskFilter {
 
   @JsonIgnore
-  private List<ISecurityMember> responsibles;
-  private ISecurityMember selectedResponsible;
-  @JsonIgnore
   private static final String SECURITY_SERVICE_CALLABLE = "Ivy Data Processes/SecurityService";
+  
+  @JsonIgnore
+  private List<ISecurityMember> responsibles;
+  @JsonIgnore
+  private ISecurityMember selectedResponsible;
+  private String selectedResponsibleMemberName;
 
   @Override
   public String label() {
@@ -32,7 +36,7 @@ public class TaskResponsibleFilter extends TaskFilter {
 
   @Override
   public String value() {
-    if (selectedResponsible == null) {
+    if (getSelectedResponsible() == null) {
       return ALL;
     }
     return String.format(DOUBLE_QUOTES, formatName(selectedResponsible));
@@ -40,7 +44,7 @@ public class TaskResponsibleFilter extends TaskFilter {
 
   @Override
   public TaskQuery buildQuery() {
-    if (selectedResponsible == null) {
+    if (getSelectedResponsible() == null) {
       return null;
     }
 
@@ -51,6 +55,7 @@ public class TaskResponsibleFilter extends TaskFilter {
   @Override
   public void resetValues() {
     selectedResponsible = null;
+    selectedResponsibleMemberName = null;
   }
 
   public String formatName(ISecurityMember responsible) {
@@ -93,10 +98,28 @@ public class TaskResponsibleFilter extends TaskFilter {
   }
 
   public ISecurityMember getSelectedResponsible() {
+    if (selectedResponsible == null && CollectionUtils.isNotEmpty(responsibles)) {
+      selectedResponsible = responsibles.stream()
+          .filter(responsible -> StringUtils.equals(responsible.getMemberName(), selectedResponsibleMemberName))
+          .findFirst()
+          .orElse(null);
+    }
     return selectedResponsible;
   }
 
   public void setSelectedResponsible(ISecurityMember selectedResponsible) {
     this.selectedResponsible = selectedResponsible;
+    if (selectedResponsible != null) {
+      this.selectedResponsibleMemberName = selectedResponsible.getMemberName();
+    }
   }
+
+  public String getSelectedResponsibleMemberName() {
+    return selectedResponsibleMemberName;
+  }
+
+  public void setSelectedResponsibleMemberName(String selectedResponsibleMemberName) {
+    this.selectedResponsibleMemberName = selectedResponsibleMemberName;
+  }
+  
 }
