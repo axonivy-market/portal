@@ -101,7 +101,7 @@ public class ElapsedTimeDetailsBean implements Serializable {
     } else {
       taskQuery = StatisticChartQueryUtils.getQueryForSelectedItemElapsedTime(caseCategory);
     }
-
+    
     HorizontalBarChartModel result = new HorizontalBarChartModel();
 
     ChartSeries chartSeriesOfFirstRole = generateChartDataForCompareRole(taskQuery, firstRoleToCompare);
@@ -185,7 +185,7 @@ public class ElapsedTimeDetailsBean implements Serializable {
     TaskQuery updatedTaskQueryForCompare = TaskQuery.fromJson(taskQuery.asJson());
 
     updatedTaskQueryForCompare.where().and().activatorName().isEqual(roleToCompare.getMemberName());
-
+    
     ElapsedTimeStatistic statisticData = statisticService.getElapsedTimeOfTasksStatisticData(updatedTaskQueryForCompare);
     Map<String, Number> elapsedTimeData = statisticService.generateDataForElapsedTimeChart(statisticData);
 

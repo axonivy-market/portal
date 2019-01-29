@@ -309,6 +309,7 @@ if (FilterType.ONLY_ME == filterData.type) {
 	in.publicFilters = filterService.sortFilters(in.publicFilters) as List;
 }
 in.dataModel.selectedFilterData = filterData;' #txt
+Cs0 f24 security system #txt
 Cs0 f24 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 Cs0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

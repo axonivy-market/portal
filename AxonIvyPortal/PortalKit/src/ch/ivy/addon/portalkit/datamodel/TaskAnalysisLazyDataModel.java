@@ -55,6 +55,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
 
   public TaskAnalysisLazyDataModel(String taskWidgetComponentId) {
     super();
+    isNotKeepFilter = true;
     selectedCaseFilters = new ArrayList<>();
     buildCaseCriteria();
     setInvolvedApplicationsForCaseCriteria();
