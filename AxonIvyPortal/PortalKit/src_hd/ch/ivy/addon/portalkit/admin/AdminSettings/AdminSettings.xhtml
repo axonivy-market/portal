@@ -206,35 +206,12 @@
 						<f:param name="skipDisplayNameInputValidation" value="true" />
 					</p:commandButton>
 
-					<!-- Active -->
-					<p:outputLabel rendered="#{data.type == 'IVY_APPLICATION'}" styleClass="admin-settings-form-input-label"
-						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/active')}" for="appActive" />
-					<p:selectBooleanCheckbox rendered="#{data.type == 'IVY_APPLICATION'}" value="#{data.selectedApp.isOnline}"
-						id="appActive" />
-					<p:spacer rendered="#{data.type == 'IVY_APPLICATION'}" />
-
 					<!-- Portal link -->
 					<p:outputLabel rendered="#{data.type == 'IVY_APPLICATION'}" styleClass="admin-settings-form-input-label"
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/portalLink')}" for="portalLink" />
 					<p:inputText value="#{data.selectedApp.link}" rendered="#{data.type == 'IVY_APPLICATION'}" id="portalLink"
 						required="true" styleClass="admin-settings-form-input"
 						requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/portalLinkRequiredMsg')}" />
-					<p:spacer rendered="#{data.type == 'IVY_APPLICATION'}" />
-
-					<!-- Absence planning -->
-					<p:outputLabel rendered="#{data.type == 'IVY_APPLICATION'}" styleClass="admin-settings-form-input-label"
-						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/absencePlanning')}"
-						for="absence" />
-					<p:selectBooleanCheckbox rendered="#{data.type == 'IVY_APPLICATION'}"
-						value="#{data.selectedApp.isSupportAbsenceSettings}" id="absence" />
-					<p:spacer rendered="#{data.type == 'IVY_APPLICATION'}" />
-
-					<!-- Mail notification -->
-					<p:outputLabel rendered="#{data.type == 'IVY_APPLICATION'}" styleClass="admin-settings-form-input-label"
-						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/mailNotification')}"
-						for="mailNotification" />
-					<p:selectBooleanCheckbox rendered="#{data.type == 'IVY_APPLICATION'}" value="#{data.selectedApp.isSupportEmailSettings}"
-						id="mailNotification" />
 					<p:spacer rendered="#{data.type == 'IVY_APPLICATION'}" />
 
 					<!-- 3rd application view -->
@@ -266,13 +243,6 @@
 					<h:panelGroup>
 						<ic:ch.ivy.addon.portalkit.component.IconSelection value="#{data.selectedApp.menuIcon}" />
 					</h:panelGroup>
-					<p:spacer />
-
-					<!-- Visible -->
-					<p:outputLabel styleClass="admin-settings-form-input-label"
-						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/visible')}" for="visible" />
-					<p:selectBooleanCheckbox value="#{data.selectedApp.isVisible}" id="visible" />
-					<p:spacer />
 				</p:panelGrid>
 
 				<!-- Two buttons OK, Cancel -->

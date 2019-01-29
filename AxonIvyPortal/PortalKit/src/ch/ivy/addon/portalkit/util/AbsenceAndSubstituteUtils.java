@@ -19,7 +19,6 @@ import ch.ivy.addon.portalkit.bo.SubstituteNode;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
 import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;
-import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 
@@ -154,26 +153,6 @@ public final class AbsenceAndSubstituteUtils {
     if (isCommentDisabled(deputyValue)) {
       substituteNode.getSubstitute().setDescription(null);
     }
-  }
-
-  /**
-   * Get names of applications that support absences setting
-   * 
-   * @param apps
-   * @param applications
-   * @return List<String>
-   */
-  public static List<String> getAbsencesSettingSupportedApps(List<String> apps, List<Application> applications) {
-    List<String> absencesSettingSupportedApps = new ArrayList<>();
-    for (String appName : apps) {
-      for (Application application : applications) {
-        if (appName.equals(application.getName()) && application.getIsVisible()
-            && application.getIsSupportAbsenceSettings() && !absencesSettingSupportedApps.contains(appName)) {
-          absencesSettingSupportedApps.add(appName);
-        }
-      }
-    }
-    return absencesSettingSupportedApps;
   }
 
   public static boolean doesNewAbsenceOverlap(Set<IvyAbsence> absences, IvyAbsence newAbsence) {
