@@ -28,6 +28,7 @@ public class CaseSearchCriteria {
   private boolean isAdminQuery;
   
   private boolean isNewQueryCreated;
+  private boolean isSorted = true;
   private CaseQuery customCaseQuery;
   
   private CaseQuery finalCaseQuery;
@@ -62,8 +63,10 @@ public class CaseSearchCriteria {
       finalQuery.where().and().isNotBusinessCase().and().businessCaseId().isEqual(businessCaseId);
     }
 
-    CaseSortingQueryAppender appender = new CaseSortingQueryAppender(finalQuery);
-    finalQuery = appender.appendSorting(this).toQuery();
+    if (isSorted) {
+      CaseSortingQueryAppender appender = new CaseSortingQueryAppender(finalQuery);
+      finalQuery = appender.appendSorting(this).toQuery();
+    }
     return finalQuery;
   }
   
@@ -318,6 +321,14 @@ public class CaseSearchCriteria {
     return StringUtils.isNotBlank(category);
   }
   
+  public boolean isSorted() {
+    return isSorted;
+  }
+
+  public void setSorted(boolean isSorted) {
+    this.isSorted = isSorted;
+  }
+
   public boolean isNewQueryCreated() {
     return isNewQueryCreated;
   }
