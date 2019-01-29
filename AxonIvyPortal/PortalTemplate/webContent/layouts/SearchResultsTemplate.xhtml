@@ -11,6 +11,7 @@
     <ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/searchResults')}</ui:define>
     <ui:define name="simplePageContent">
       <c:set property="navigationHistory" value="SEARCH_RESULTS" target="#{navigationHistoryBean}"></c:set>
+      <c:set var="isShowResultTabView" value="#{compactProcessWidgetBean.displayShowAllProcessesLink or taskWidgetBean.showFullTaskList or caseWidgetBean.showFullCaseList}"></c:set>
       <h:form id="global-search-form-in-page">
         <div id="global-search-container-in-page" class="global-search">
           <p:inputText id="global-search-data" styleClass="global-search-input js-global-search js-filter-process-widget-list-item" value="#{dataModel.keyword}"
@@ -22,13 +23,19 @@
         <p:remoteCommand name="portalGlobalSearchInPage" actionListener="#{dataModel.search}"
           update="#{p:component('search-results-tabview')}" oncomplete="processWidget.filter()" />
       </h:form>
-      <p:tabView id="search-results-tabview" onTabShow="onTabShow()" dynamic="true" styleClass="search-results-tabview" activeIndex="#{data.activeTabIndex}">
-        <p:tab id="process-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" titleStyleClass="process-tab-title">
+      <c:if test="#{!isShowResultTabView}" >
+      	<h:outputText styleClass="not-display-result-tab-view" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/notDisplayResultTabView')}."/>
+      </c:if>
+      <p:tabView id="search-results-tabview" onTabShow="onTabShow()" dynamic="true" styleClass="search-results-tabview" activeIndex="#{data.activeTabIndex}"
+        rendered="#{isShowResultTabView}">
+        <p:tab id="process-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" titleStyleClass="process-tab-title"
+          rendered="#{compactProcessWidgetBean.displayShowAllProcessesLink}">
           <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-results"
             hideHeader="true" hideExpressCreation="true" processListStyleClass="process-in-search" />
         </p:tab>
         
-        <p:tab id="task-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}" titleStyleClass="task-tab-title">
+        <p:tab id="task-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}" titleStyleClass="task-tab-title"
+          rendered="#{taskWidgetBean.showFullTaskList}">
           <div class="task-list-container js-task-list-container js-for-search-result">
             <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-results" listHeaderStyleClass="task-in-search"
               keyword="#{dataModel.taskDataModel.criteria.keyword}" hideTaskFilter="true"
@@ -121,7 +128,8 @@
           </div>
         </p:tab>
         
-        <p:tab id="case-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}" titleStyleClass="case-tab-title">
+        <p:tab id="case-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}" titleStyleClass="case-tab-title"
+          rendered="#{caseWidgetBean.showFullCaseList}">
           <div class="js-case-default-widget-container case-default-widget-container js-simple-container js-for-search-result">
             <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-results" hideWidgetHeader="true"
               dataModel="#{dataModel.caseDataModel}" hideCaseFilter="true" listHeaderStyleClass="case-in-search">

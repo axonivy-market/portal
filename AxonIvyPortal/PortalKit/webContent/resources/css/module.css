@@ -5374,6 +5374,12 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   display: none;
 }
 
+.not-display-result-tab-view {
+  display: block;
+  margin: 12px 0;
+  font-size: 1.2rem;	
+}
+
 /*********** MOBILE ***********/
 .topbar-container-mobile {
 	padding-top: 10px !important;
