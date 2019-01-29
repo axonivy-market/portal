@@ -87,7 +87,7 @@ Se0 f84 actionTable 'out=in;
 Se0 f84 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
 
 ApplicationService service = new ApplicationService();
-out.apps = service.findAbsenceEnableAndActiveIvyAppsUserCanWorkOn(in.username);
+out.apps = service.findActiveIvyAppsUserCanWorkOn(in.username);
 ' #txt
 Se0 f84 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f84 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -196,7 +196,7 @@ Se0 f1 actionTable 'out=in;
 Se0 f1 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
 
 ApplicationService service = new ApplicationService();
-out.apps = service.findAbsenceEnableAndActiveIvyAppsUserCanWorkOn(in.username);
+out.apps = service.findActiveIvyAppsUserCanWorkOn(in.username);
 ' #txt
 Se0 f1 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -288,7 +288,7 @@ Se0 f11 actionTable 'out=in;
 Se0 f11 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
 
 ApplicationService service = new ApplicationService();
-out.apps = service.findAbsenceEnableAndActiveIvyAppsUserCanWorkOn(in.absence.getUsername());
+out.apps = service.findActiveIvyAppsUserCanWorkOn(in.absence.getUsername());
 ' #txt
 Se0 f11 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -416,7 +416,7 @@ Se0 f22 actionTable 'out=in;
 Se0 f22 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
 
 ApplicationService service = new ApplicationService();
-out.apps = service.findAbsenceEnableAndActiveIvyAppsUserCanWorkOn(in.absence.getUsername());
+out.apps = service.findActiveIvyAppsUserCanWorkOn(in.absence.getUsername());
 ' #txt
 Se0 f22 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -443,7 +443,7 @@ Se0 f27 actionTable 'out=in;
 Se0 f27 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
 
 ApplicationService service = new ApplicationService();
-out.apps = service.findAbsenceEnableAndActiveIvyAppsUserCanWorkOn(in.username);
+out.apps = service.findActiveIvyAppsUserCanWorkOn(in.username);
 ' #txt
 Se0 f27 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

@@ -78,7 +78,7 @@ Se0 f84 actionTable 'out=in;
 Se0 f84 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
 
 ApplicationService service = new ApplicationService();
-out.apps = service.findAbsenceEnableAndActiveIvyAppsUserCanWorkOn(in.username);
+out.apps = service.findActiveIvyAppsUserCanWorkOn(in.username);
 ' #txt
 Se0 f84 type ch.ivyteam.wf.processes.SubstituteServiceData #txt
 Se0 f84 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

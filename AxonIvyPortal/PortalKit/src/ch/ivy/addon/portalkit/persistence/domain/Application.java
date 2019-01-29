@@ -3,16 +3,11 @@ package ch.ivy.addon.portalkit.persistence.domain;
 public class Application extends BusinessEntity {
 
   private String displayName;
-  private Boolean isOnline;
-  private Boolean isVisible;
-  private Boolean isSupportEmailSettings;
-  private Boolean isSupportAbsenceSettings;
   private String menuIcon;
   private Integer menuOrdinal;
   private String name;
   private String link;
   private Long serverId;
-
 
   public String getDisplayName() {
     return displayName;
@@ -20,38 +15,6 @@ public class Application extends BusinessEntity {
 
   public void setDisplayName(String displayName) {
     this.displayName = displayName;
-  }
-
-  public Boolean getIsOnline() {
-    return isOnline;
-  }
-
-  public void setIsOnline(Boolean isOnline) {
-    this.isOnline = isOnline;
-  }
-
-  public Boolean getIsVisible() {
-    return isVisible;
-  }
-
-  public void setIsVisible(Boolean isVisible) {
-    this.isVisible = isVisible;
-  }
-
-  public Boolean getIsSupportEmailSettings() {
-    return isSupportEmailSettings;
-  }
-
-  public void setIsSupportEmailSettings(Boolean isSupportEmailSettings) {
-    this.isSupportEmailSettings = isSupportEmailSettings;
-  }
-
-  public Boolean getIsSupportAbsenceSettings() {
-    return isSupportAbsenceSettings;
-  }
-
-  public void setIsSupportAbsenceSettings(Boolean isSupportAbsenceSettings) {
-    this.isSupportAbsenceSettings = isSupportAbsenceSettings;
   }
 
   public String getMenuIcon() {
@@ -96,9 +59,8 @@ public class Application extends BusinessEntity {
 
   @Override
   public String toString() {
-    return "Application {displayName=" + displayName + ", isOnline=" + isOnline + ", isVisible=" + isVisible
-        + ", isSupportEmailSettings=" + isSupportEmailSettings + ", isSupportAbsenceSettings="
-        + isSupportAbsenceSettings + ", menuIcon=" + menuIcon + ", menuOrdinal=" + menuOrdinal + ", name=" + name
+    return "Application {displayName=" + displayName
+        +  ", menuIcon=" + menuIcon + ", menuOrdinal=" + menuOrdinal + ", name=" + name
         + ", link=" + link + ", serverId=" + serverId + ", id=" + getId() + "}";
   }
 }

@@ -47,7 +47,7 @@ public class LanguageService implements ILanguageService {
 
       List<PortalIvyDataException> errors = new ArrayList<>();
       List<IvyLanguage> ivyLanguages = new ArrayList<>();
-      List<Application> applications = new ApplicationDao().findOnlineAndVisibleIvyAppsBy(apps);
+      List<Application> applications = new ApplicationDao().findByNames(apps);
       for (String appName : apps) {
         try {
           String appDisplayName = applications.stream().filter(app -> StringUtils.equals(app.getName(), appName))

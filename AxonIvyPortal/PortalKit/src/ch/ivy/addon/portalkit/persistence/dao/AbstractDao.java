@@ -40,8 +40,8 @@ public abstract class AbstractDao<T extends BusinessEntity> {
   protected void setRelationshipDataFor(@SuppressWarnings("unused") T entity){}
 
   protected enum EntityProperty {
-    ID("id"), NAME("name"), SERVER_ID("serverId"), USER_NAME("userName"), APPLICATION_ID("applicationId"), IS_ONLINE(
-        "isOnline"), IS_VISIBLE("isVisible"), IS_ABSENCE_ENABLED("isSupportAbsenceSettings"), KEY("key"), APPLICATION_NAME("applicationName"), DISPLAY_NAME("displayName"), DEFAULT_PROCESS("defaultProcess"), DELETED("deleted");
+    ID("id"), NAME("name"), SERVER_ID("serverId"), USER_NAME("userName"), APPLICATION_ID("applicationId"), KEY("key"), 
+    APPLICATION_NAME("applicationName"), DISPLAY_NAME("displayName"), DEFAULT_PROCESS("defaultProcess"), DELETED("deleted");
 
     private String value;
 
