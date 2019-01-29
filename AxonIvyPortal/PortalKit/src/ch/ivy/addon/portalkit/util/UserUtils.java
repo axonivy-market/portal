@@ -97,14 +97,16 @@ public class UserUtils {
       return users;
     }
 
-    List<IUser> filterUsers = new ArrayList<>();
-    for (IUser user : users) {
-      if (StringUtils.containsIgnoreCase(user.getDisplayName(), query) || StringUtils.containsIgnoreCase(user.getMemberName(), query)) {
-        filterUsers.add(user);
+    return IvyExecutor.executeAsSystem(() -> {
+      List<IUser> filterUsers = new ArrayList<>();
+      for (IUser user : users) {
+        if (StringUtils.containsIgnoreCase(user.getDisplayName(), query) || StringUtils.containsIgnoreCase(user.getMemberName(), query)) {
+          filterUsers.add(user);
+        }
       }
-    }
-
-    return filterUsers;
+  
+      return filterUsers;
+    });
   }
   
   /**

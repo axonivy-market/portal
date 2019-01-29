@@ -549,15 +549,17 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
             taskExpireOnJune, taskExpireOnJuly, taskExpireOnAugust, taskExpireOnSeptember, taskExpireOnOctober,
             taskExpireOnNovember, taskExpireOnDecember};
 
-    for (Entry<Date, Long> result : numberOfTasksByExpiryTime.entrySet()) {
-      Date resultDate = StatisticChartTimeUtils.truncateMinutesPart(result.getKey());
-      Calendar cal = Calendar.getInstance();
-      cal.setTime(resultDate);
-
-      int thisYear = Year.now().getValue();
-      if (cal.get(Calendar.YEAR) == thisYear) {
-        int monthIndex = cal.get(Calendar.MONTH); // from JANUARY to DECEMBER, month index from 0 to 11
-        takExpireOnMonths[monthIndex] += result.getValue();
+    if (numberOfTasksByExpiryTime != null) {
+      for (Entry<Date, Long> result : numberOfTasksByExpiryTime.entrySet()) {
+        Date resultDate = StatisticChartTimeUtils.truncateMinutesPart(result.getKey());
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(resultDate);
+  
+        int thisYear = Year.now().getValue();
+        if (cal.get(Calendar.YEAR) == thisYear) {
+          int monthIndex = cal.get(Calendar.MONTH); // from JANUARY to DECEMBER, month index from 0 to 11
+          takExpireOnMonths[monthIndex] += result.getValue();
+        }
       }
     }
 
@@ -594,21 +596,23 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     Date firsDateOfYear = StatisticChartTimeUtils.truncateMinutesPart(StatisticChartTimeUtils.getFirstDateOfThisYear());
     Date firsDateOfNextYear = StatisticChartTimeUtils.truncateMinutesPart(DateUtils.addYears(firsDateOfYear, 1));
 
-    for (Entry<Date, Long> result : numberOfTasksByExpiryTime.entrySet()) {
-      Date resultDate = StatisticChartTimeUtils.truncateMinutesPart(result.getKey());
-
-      if (today.compareTo(resultDate) == 0) {
-        taskExpireToday += result.getValue();
-      }
-
-      if (firstDateOfWeek.compareTo(resultDate) <= 0 && firstDateOfNextWeek.compareTo(resultDate) > 0) {
-        taskExpireThisWeek += result.getValue();
-      }
-      if (firstDateOfMonth.compareTo(resultDate) <= 0 && firsDateOfNextMonth.compareTo(resultDate) > 0) {
-        taskExpireThisMonth += result.getValue();
-      }
-      if (firsDateOfYear.compareTo(resultDate) <= 0 && firsDateOfNextYear.compareTo(resultDate) > 0) {
-        taskExpireThisYear += result.getValue();
+    if (numberOfTasksByExpiryTime != null) {
+      for (Entry<Date, Long> result : numberOfTasksByExpiryTime.entrySet()) {
+        Date resultDate = StatisticChartTimeUtils.truncateMinutesPart(result.getKey());
+  
+        if (today.compareTo(resultDate) == 0) {
+          taskExpireToday += result.getValue();
+        }
+  
+        if (firstDateOfWeek.compareTo(resultDate) <= 0 && firstDateOfNextWeek.compareTo(resultDate) > 0) {
+          taskExpireThisWeek += result.getValue();
+        }
+        if (firstDateOfMonth.compareTo(resultDate) <= 0 && firsDateOfNextMonth.compareTo(resultDate) > 0) {
+          taskExpireThisMonth += result.getValue();
+        }
+        if (firsDateOfYear.compareTo(resultDate) <= 0 && firsDateOfNextYear.compareTo(resultDate) > 0) {
+          taskExpireThisYear += result.getValue();
+        }
       }
     }
 
