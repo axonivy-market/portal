@@ -460,7 +460,9 @@ public class StatisticChartQueryUtils {
     }
     caseQuery.where().and(subCaseQueryForSelectedCaseStates);
     
-    caseQuery.where().and(generateCaseQueryForCaseCategory(filter));
+    if (!filter.getIsAllCategoriesSelected()) {
+      caseQuery.where().and(generateCaseQueryForCaseCategory(filter));
+    }
     
     // Filter by customVarChar
     generateCaseQueryForCustomVarChar(filter, caseQuery);

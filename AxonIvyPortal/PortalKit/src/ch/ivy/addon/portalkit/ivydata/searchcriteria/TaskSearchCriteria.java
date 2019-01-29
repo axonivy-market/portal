@@ -33,6 +33,7 @@ public class TaskSearchCriteria {
   private String sortField;
   private boolean sortDescending;
 
+  private boolean isSorted = true;
   private TaskQuery customTaskQuery;
 
   private TaskQuery finalTaskQuery;
@@ -68,8 +69,10 @@ public class TaskSearchCriteria {
     addAssigneeTypeQuery(finalQuery);
     addCategoryQuery(finalQuery);
 
-    TaskSortingQueryAppender appender = new TaskSortingQueryAppender(finalQuery);
-    finalQuery = appender.appendSorting(this).toQuery();
+    if (isSorted) {
+      TaskSortingQueryAppender appender = new TaskSortingQueryAppender(finalQuery);
+      finalQuery = appender.appendSorting(this).toQuery();
+    }
     return finalQuery;
   }
   
@@ -420,6 +423,14 @@ public class TaskSearchCriteria {
 
   public boolean hasInvolvedUsername() {
     return StringUtils.isNotBlank(involvedUsername);
+  }
+  
+  public boolean isSorted() {
+    return isSorted;
+  }
+
+  public void setSorted(boolean isSorted) {
+    this.isSorted = isSorted;
   }
 
   public boolean isNewQueryCreated() {
