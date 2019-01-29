@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.taskfilter;
 
 import java.util.List;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,7 +16,9 @@ public class TaskWorkerFilter extends TaskFilter {
 
   @JsonIgnore
   private List<IUser> workers;
+  @JsonIgnore
   private IUser selectedWorker;
+  private String selectedWorkerMemberName;
 
   @Override
   public String label() {
@@ -24,7 +27,7 @@ public class TaskWorkerFilter extends TaskFilter {
 
   @Override
   public String value() {
-    if (selectedWorker == null) {
+    if (getSelectedWorker() == null) {
       return ALL;
     }
     return String.format(DOUBLE_QUOTES, formatName(selectedWorker));
@@ -32,7 +35,7 @@ public class TaskWorkerFilter extends TaskFilter {
 
   @Override
   public TaskQuery buildQuery() {
-    if (selectedWorker == null) {
+    if (getSelectedWorker() == null) {
       return null;
     }
 
@@ -42,6 +45,7 @@ public class TaskWorkerFilter extends TaskFilter {
   @Override
   public void resetValues() {
     selectedWorker = null;
+    selectedWorkerMemberName = null;
   }
 
   public String formatName(IUser worker) {
@@ -67,10 +71,28 @@ public class TaskWorkerFilter extends TaskFilter {
   }
 
   public IUser getSelectedWorker() {
+    if (selectedWorker == null && CollectionUtils.isNotEmpty(workers)) {
+      selectedWorker = workers.stream()
+          .filter(worker -> StringUtils.equals(worker.getMemberName(), selectedWorkerMemberName))
+          .findFirst()
+          .orElse(null);
+    }
     return selectedWorker;
   }
 
   public void setSelectedWorker(IUser selectedWorker) {
     this.selectedWorker = selectedWorker;
+    if (selectedWorker != null) {
+      this.selectedWorkerMemberName = selectedWorker.getMemberName();
+    }
   }
+
+  public String getSelectedWorkerMemberName() {
+    return selectedWorkerMemberName;
+  }
+
+  public void setSelectedWorkerMemberName(String selectedWorkerMemberName) {
+    this.selectedWorkerMemberName = selectedWorkerMemberName;
+  }
+  
 }

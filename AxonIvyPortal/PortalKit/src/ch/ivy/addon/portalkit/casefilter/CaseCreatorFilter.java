@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.casefilter;
 
 import java.util.List;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -14,7 +15,9 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery;
 public class CaseCreatorFilter extends CaseFilter {
   @JsonIgnore
   private List<IUser> creators;
+  @JsonIgnore
   private IUser selectedCreator;
+  private String selectedCreatorMemberName;
 
   @Override
   public String label() {
@@ -23,7 +26,7 @@ public class CaseCreatorFilter extends CaseFilter {
 
   @Override
   public String value() {
-    if (selectedCreator == null) {
+    if (getSelectedCreator() == null) {
       return ALL;
     }
     return String.format(DOUBLE_QUOTES, formatName(selectedCreator));
@@ -31,7 +34,7 @@ public class CaseCreatorFilter extends CaseFilter {
 
   @Override
   public CaseQuery buildQuery() {
-    if (selectedCreator == null) {
+    if (getSelectedCreator() == null) {
       return null;
     }
 
@@ -41,6 +44,7 @@ public class CaseCreatorFilter extends CaseFilter {
   @Override
   public void resetValues() {
     selectedCreator = null;
+    selectedCreatorMemberName = null;
   }
 
   public String formatName(IUser creator) {
@@ -66,10 +70,28 @@ public class CaseCreatorFilter extends CaseFilter {
   }
 
   public IUser getSelectedCreator() {
+    if (selectedCreator == null && CollectionUtils.isNotEmpty(creators)) {
+      selectedCreator = creators.stream()
+          .filter(creator -> StringUtils.equals(creator.getMemberName(), selectedCreatorMemberName))
+          .findFirst()
+          .orElse(null);
+    }
     return selectedCreator;
   }
 
   public void setSelectedCreator(IUser selectedCreator) {
     this.selectedCreator = selectedCreator;
+    if (selectedCreator != null) {
+      this.selectedCreatorMemberName = selectedCreator.getMemberName();
+    }
   }
+
+  public String getSelectedCreatorMemberName() {
+    return selectedCreatorMemberName;
+  }
+
+  public void setSelectedCreatorMemberName(String selectedCreatorMemberName) {
+    this.selectedCreatorMemberName = selectedCreatorMemberName;
+  }
+  
 }
