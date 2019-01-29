@@ -72,6 +72,14 @@ Is0 @PushWFArc f44 '' #zField
 Is0 @PushWFArc f46 '' #zField
 Is0 @PushWFArc f65 '' #zField
 Is0 @StartRequest f61 '' #zField
+Is0 @StartRequest f51 '' #zField
+Is0 @StartRequest f52 '' #zField
+Is0 @GridStep f57 '' #zField
+Is0 @PushWFArc f58 '' #zField
+Is0 @PushWFArc f59 '' #zField
+Is0 @PushWFArc f56 '' #zField
+Is0 @PushWFArc f55 '' #zField
+Is0 @GridStep f54 '' #zField
 >Proto Is0 Is0 GrantPermissions #zField
 Is0 f0 outLink grantAllPermissionsToCurrentUser.ivp #txt
 Is0 f0 type portalKit_test.GrantPermissionsData #txt
@@ -693,27 +701,7 @@ iPermission = IPermissionRepository.get().findByName(PortalPermission.STATISTIC_
     if (Objects.nonNull(iPermission)){
       ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());
     }
-    
-    /*iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_PROCESS_LIST.getValue());
-    if (Objects.nonNull(iPermission)){
-      ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());
-    }
-    
-    iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_TASK_LIST.getValue());
-    if (Objects.nonNull(iPermission)){
-      ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());
-    }
-    
-    iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_CASE_LIST.getValue());
-    if (Objects.nonNull(iPermission)){
-      ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());
-    }
-    
-    iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_STATISTICS_LIST.getValue());
-    if (Objects.nonNull(iPermission)){
-      ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());
-    }*/
-    
+
     iPermission = IPermissionRepository.get().findByName(PortalPermission.SHOW_CASE_DETAILS.getValue());
     if (Objects.nonNull(iPermission)){
       ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());
@@ -935,25 +923,7 @@ IPermission iPermission = IPermissionRepository.get().findByName(PortalPermissio
     if (Objects.nonNull(iPermission)){
       ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());
     }
-    
-    /*iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_PROCESS_LIST.getValue());
-    if (Objects.nonNull(iPermission)){
-      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());
-    }
-    
-    iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_TASK_LIST.getValue());
-    if (Objects.nonNull(iPermission)){
-      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());
-    }
-        iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_CASE_LIST.getValue());
-    if (Objects.nonNull(iPermission)){
-      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());
-    }
-        iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_STATISTICS_LIST.getValue());
-    if (Objects.nonNull(iPermission)){
-      ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());
-    }*/
-    
+
     iPermission = IPermissionRepository.get().findByName(PortalPermission.SHOW_CASE_DETAILS.getValue());
     if (Objects.nonNull(iPermission)){
       ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());
@@ -1029,6 +999,126 @@ Is0 f61 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Is0 f61 @C|.responsibility Everybody #txt
 Is0 f61 33 1281 30 30 -23 20 #rect
 Is0 f61 @|StartRequestIcon #fIcon
+Is0 f51 outLink denyAccessFullListPermissions.ivp #txt
+Is0 f51 type portalKit_test.GrantPermissionsData #txt
+Is0 f51 inParamDecl '<> param;' #txt
+Is0 f51 actionDecl 'portalKit_test.GrantPermissionsData out;
+' #txt
+Is0 f51 guid 16897950766293F9 #txt
+Is0 f51 requestEnabled true #txt
+Is0 f51 triggerEnabled false #txt
+Is0 f51 callSignature denyAccessFullListPermissions() #txt
+Is0 f51 persist false #txt
+Is0 f51 caseData businessCase.attach=true #txt
+Is0 f51 showInStartList 1 #txt
+Is0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>denyAccessFullListPermissions.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f51 @C|.responsibility Everybody #txt
+Is0 f51 33 1345 30 30 -23 21 #rect
+Is0 f51 @|StartRequestIcon #fIcon
+Is0 f52 outLink grantAccessFullListPermissions.ivp #txt
+Is0 f52 type portalKit_test.GrantPermissionsData #txt
+Is0 f52 inParamDecl '<> param;' #txt
+Is0 f52 actionDecl 'portalKit_test.GrantPermissionsData out;
+' #txt
+Is0 f52 guid 168979518DBFD3B4 #txt
+Is0 f52 requestEnabled true #txt
+Is0 f52 triggerEnabled false #txt
+Is0 f52 callSignature grantAccessFullListPermissions() #txt
+Is0 f52 persist false #txt
+Is0 f52 caseData businessCase.attach=true #txt
+Is0 f52 showInStartList 1 #txt
+Is0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>grantAccessFullListPermissions.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f52 @C|.responsibility Everybody #txt
+Is0 f52 33 1409 30 30 -24 18 #rect
+Is0 f52 @|StartRequestIcon #fIcon
+Is0 f57 actionDecl 'portalKit_test.GrantPermissionsData out;
+' #txt
+Is0 f57 actionTable 'out=in;
+' #txt
+Is0 f57 actionCode 'import java.util.Objects;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
+import ch.ivyteam.ivy.security.IPermission;
+
+IPermission iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_PROCESS_LIST.getValue());
+if (Objects.nonNull(iPermission)){
+  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());
+}
+    
+iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_TASK_LIST.getValue());
+if (Objects.nonNull(iPermission)){
+  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());
+}
+
+iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_CASE_LIST.getValue());
+if (Objects.nonNull(iPermission)){
+  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());
+}
+
+iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_STATISTICS_LIST.getValue());
+if (Objects.nonNull(iPermission)){
+  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());
+}' #txt
+Is0 f57 security system #txt
+Is0 f57 type portalKit_test.GrantPermissionsData #txt
+Is0 f57 180 1348 40 24 0 -8 #rect
+Is0 f57 @|StepIcon #fIcon
+Is0 f58 expr out #txt
+Is0 f58 63 1360 180 1360 #arcP
+Is0 f59 expr out #txt
+Is0 f59 220 1360 400 543 #arcP
+Is0 f59 1 400 1360 #addKink
+Is0 f59 1 0.3849449204406365 0 0 #arcLabel
+Is0 f56 expr out #txt
+Is0 f56 220 1424 400 543 #arcP
+Is0 f56 1 400 1424 #addKink
+Is0 f56 1 0.38641858494407466 0 0 #arcLabel
+Is0 f55 expr out #txt
+Is0 f55 63 1424 180 1424 #arcP
+Is0 f54 actionDecl 'portalKit_test.GrantPermissionsData out;
+' #txt
+Is0 f54 actionTable 'out=in;
+' #txt
+Is0 f54 actionCode 'import java.util.Objects;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
+import ch.ivyteam.ivy.security.IPermission;
+
+IPermission iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_PROCESS_LIST.getValue());
+if (Objects.nonNull(iPermission)){
+  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());
+}
+    
+iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_TASK_LIST.getValue());
+if (Objects.nonNull(iPermission)){
+  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());
+}
+    
+iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_CASE_LIST.getValue());
+if (Objects.nonNull(iPermission)){
+  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());
+}
+    
+iPermission = IPermissionRepository.get().findByName(PortalPermission.ACCESS_FULL_STATISTICS_LIST.getValue());
+if (Objects.nonNull(iPermission)){
+  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());
+}' #txt
+Is0 f54 security system #txt
+Is0 f54 type portalKit_test.GrantPermissionsData #txt
+Is0 f54 180 1412 40 24 0 -8 #rect
+Is0 f54 @|StepIcon #fIcon
 >Proto Is0 .type portalKit_test.GrantPermissionsData #txt
 >Proto Is0 .processKind NORMAL #txt
 >Proto Is0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1101,3 +1191,11 @@ Is0 f44 head f45 mainIn #connect
 Is0 f46 head f7 mainIn #connect
 Is0 f43 mainOut f44 tail #connect
 Is0 f45 mainOut f46 tail #connect
+Is0 f52 mainOut f55 tail #connect
+Is0 f55 head f54 mainIn #connect
+Is0 f54 mainOut f56 tail #connect
+Is0 f56 head f7 mainIn #connect
+Is0 f51 mainOut f58 tail #connect
+Is0 f58 head f57 mainIn #connect
+Is0 f57 mainOut f59 tail #connect
+Is0 f59 head f7 mainIn #connect
