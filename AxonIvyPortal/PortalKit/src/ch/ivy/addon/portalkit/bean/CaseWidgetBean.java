@@ -31,11 +31,13 @@ public class CaseWidgetBean implements Serializable {
   private ICase selectedCase;
   private boolean isShowCaseDetails;
   private boolean isShowAllTasksOfCase;
+  private boolean isShowFullCaseList;
 
   public CaseWidgetBean() {
     expandedCaseId = -1L;
     isShowCaseDetails = PermissionUtils.hasPortalPermission(PortalPermission.SHOW_CASE_DETAILS);
     isShowAllTasksOfCase = PermissionUtils.hasPortalPermission(PortalPermission.SHOW_ALL_TASKS_OF_CASE);
+    isShowFullCaseList = PermissionUtils.checkAccessFullCaseListPermission();
   }
 
   public Long getExpandedCaseId() {
@@ -109,5 +111,13 @@ public class CaseWidgetBean implements Serializable {
 
   public void setShowAllTasksOfCase(boolean isShowAllTasksOfCase) {
     this.isShowAllTasksOfCase = isShowAllTasksOfCase;
+  }
+
+  public boolean isShowFullCaseList() {
+    return isShowFullCaseList;
+  }
+
+  public void setShowFullCaseList(boolean isShowFullCaseList) {
+    this.isShowFullCaseList = isShowFullCaseList;
   }
 }
