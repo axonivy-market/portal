@@ -33,7 +33,7 @@ public class CaseSearchCriteria {
   
   private CaseQuery finalCaseQuery;
 
-  public CaseQuery createQuery() {
+  public CaseQuery createQuery() { // NOSONAR
     CaseQuery finalQuery = CaseQuery.create();
     setNewQueryCreated(isNewQueryCreated() || customCaseQuery == null || hasCaseId());
 
