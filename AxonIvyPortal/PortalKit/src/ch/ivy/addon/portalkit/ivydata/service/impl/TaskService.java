@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
 import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
@@ -47,7 +48,7 @@ public class TaskService implements ITaskService {
     return IvyExecutor.executeAsSystem(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       try {
-        TaskQuery finalQuery = extendQuery(criteria);
+        TaskQuery finalQuery = extendQueryWithInvolvedUser(criteria);
         result.setTasks(executeTaskQuery(finalQuery, startIndex, count));
       } catch (Exception ex) {
         Ivy.log().error("Error in getting tasks", ex);
@@ -62,7 +63,7 @@ public class TaskService implements ITaskService {
     return IvyExecutor.executeAsSystem(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       try {
-        TaskQuery finalQuery = extendQuery(criteria);
+        TaskQuery finalQuery = extendQueryWithInvolvedUser(criteria);
         result.setTotalTasks(countTasks(finalQuery));
       } catch (Exception ex) {
         Ivy.log().error("Error in counting Tasks", ex);
@@ -83,6 +84,18 @@ public class TaskService implements ITaskService {
   private static TaskQuery queryForUsers(String involvedUsername, List<String> apps) {
     TaskQuery taskQuery = TaskQuery.create();
     apps.forEach(app -> taskQuery.where().or().userIsInvolved(involvedUsername, app));
+    return taskQuery;
+  }
+  
+  private static TaskQuery queryForUserCanWorkOn(String involvedUsername, List<String> apps) {
+    TaskQuery taskQuery = TaskQuery.create();
+    for (int i = 0; i < apps.size(); i++) {
+      taskQuery.where().canWorkOn(StringUtils.prependIfMissing(involvedUsername, "#"), apps.get(i));
+      if (i < apps.size() - 1) {
+        taskQuery.where().or();
+      }
+    }
+    
     return taskQuery;
   }
   
@@ -131,7 +144,7 @@ public class TaskService implements ITaskService {
     return IvyExecutor.executeAsSystem(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       try {
-        TaskQuery finalQuery = extendQuery(criteria);
+        TaskQuery finalQuery = extendQueryWithUserCanWorkOn(criteria);
         finalQuery.aggregate().countRows().groupBy().priority().orderBy().priority();
 
         Recordset recordSet = taskQueryExecutor().getRecordset(finalQuery);
@@ -170,7 +183,7 @@ public class TaskService implements ITaskService {
     return IvyExecutor.executeAsSystem(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       try {
-        TaskQuery finalQuery = extendQuery(criteria);
+        TaskQuery finalQuery = extendQueryWithUserCanWorkOn(criteria);
         finalQuery.aggregate().countRows().groupBy().expiryTimestamp().orderBy().expiryTimestamp();
 
         Recordset recordSet = taskQueryExecutor().getRecordset(finalQuery);
@@ -208,7 +221,7 @@ public class TaskService implements ITaskService {
     return IvyExecutor.executeAsSystem(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       try {
-        TaskQuery finalQuery = extendQuery(criteria);
+        TaskQuery finalQuery = extendQueryWithUserCanWorkOn(criteria);
         finalQuery.where().and().businessRuntime().isNotNull();
         finalQuery.aggregate().avgBusinessRuntime().groupBy().category();
 
@@ -239,11 +252,24 @@ public class TaskService implements ITaskService {
     return elapsedTimeStatistic;
   }
 
-  private TaskQuery extendQuery(TaskSearchCriteria criteria) {
+  private TaskQuery extendQueryWithInvolvedUser(TaskSearchCriteria criteria) {
     TaskQuery finalQuery = criteria.getFinalTaskQuery();
     if (criteria.hasApps()) {
       if (criteria.hasInvolvedUsername() && !criteria.isAdminQuery()) {
         finalQuery.where().and(queryForUsers(criteria.getInvolvedUsername(), criteria.getApps()));
+      } else {
+        finalQuery.where().and(queryForApplications(criteria.getApps()));
+      }
+    }
+    finalQuery.where().and(queryExcludeHiddenTasks());
+    return finalQuery;
+  }
+  
+  private TaskQuery extendQueryWithUserCanWorkOn(TaskSearchCriteria criteria) {
+    TaskQuery finalQuery = criteria.getFinalTaskQuery();
+    if (criteria.hasApps()) {
+      if (criteria.hasInvolvedUsername() && !criteria.isAdminQuery()) {
+        finalQuery.where().and(queryForUserCanWorkOn(criteria.getInvolvedUsername(), criteria.getApps()));
       } else {
         finalQuery.where().and(queryForApplications(criteria.getApps()));
       }

@@ -566,6 +566,7 @@ if (doesDocumentExist) {
 	out.uploadDocumentCheckMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadFileExists", [in.name]);
 	out.uploadDocumentCheckStatus = UploadDocumentCheckStatus.FAIL;
 }' #txt
+Cs0 f43 security system #txt
 Cs0 f43 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
 Cs0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

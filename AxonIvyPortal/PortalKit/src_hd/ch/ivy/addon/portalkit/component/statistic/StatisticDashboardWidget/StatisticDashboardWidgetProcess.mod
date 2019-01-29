@@ -100,8 +100,7 @@ Ss0 f8 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboard
 ' #txt
 Ss0 f8 actionTable 'out=in;
 ' #txt
-Ss0 f8 actionCode 'import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
-import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
+Ss0 f8 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
 
 in.taskQuery = StatisticChartQueryUtils.getQueryForSelectedItemOfTaskByPriorityChart(in.event, in.selectedStatisticChart);
 in.taskListName = in.selectedStatisticChart.name;' #txt
@@ -498,10 +497,7 @@ Ss0 f40 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboar
 ' #txt
 Ss0 f40 actionTable 'out=in;
 ' #txt
-Ss0 f40 actionCode 'import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
-import ch.ivy.addon.portalkit.service.StatisticService;
-import org.primefaces.component.chart.Chart;
-import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
+Ss0 f40 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
 
 in.caseQuery = StatisticChartQueryUtils.getQueryForSelectedItemByCaseByState(in.event, in.selectedStatisticChart);' #txt
 Ss0 f40 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
