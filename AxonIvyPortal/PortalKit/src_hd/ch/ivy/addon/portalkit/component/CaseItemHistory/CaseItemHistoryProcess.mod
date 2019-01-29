@@ -88,7 +88,8 @@ Cs0 f19 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
 out.taskSearchCriteria.includedStates = [TaskState.DONE, TaskState.DESTROYED, TaskState.ZOMBIE, TaskState.CREATED];
 out.taskSearchCriteria.caseId = in.iCase.getId();
 out.taskSearchCriteria.queryByBusinessCaseId = in.iCase.isBusinessCase();
-out.taskSearchCriteria.newQueryCreated = true;' #txt
+out.taskSearchCriteria.newQueryCreated = true;
+out.taskSearchCriteria.finalTaskQuery = out.taskSearchCriteria.createQuery();' #txt
 Cs0 f19 type ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData #txt
 Cs0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
