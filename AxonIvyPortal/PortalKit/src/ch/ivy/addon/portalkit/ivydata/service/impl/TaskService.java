@@ -1,3 +1,4 @@
+
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
 import java.math.BigDecimal;
