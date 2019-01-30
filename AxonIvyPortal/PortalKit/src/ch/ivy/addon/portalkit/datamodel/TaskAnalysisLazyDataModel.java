@@ -53,16 +53,12 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   protected List<CaseFilter> selectedCaseFilters;
   protected CaseFilterContainer caseFilterContainer;
 
-  public TaskAnalysisLazyDataModel(String taskWidgetComponentId) {
+  public TaskAnalysisLazyDataModel() {
     super();
     isNotKeepFilter = true;
     selectedCaseFilters = new ArrayList<>();
     buildCaseCriteria();
     setInvolvedApplicationsForCaseCriteria();
-  }
-  
-  public TaskAnalysisLazyDataModel() {
-    this("task-widget");
   }
   
   @Override
