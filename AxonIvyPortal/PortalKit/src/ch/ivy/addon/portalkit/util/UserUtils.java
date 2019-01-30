@@ -138,16 +138,18 @@ public class UserUtils {
       return securityMembers;
     }
 
-    java.util.List<ISecurityMember> result = new ArrayList<>();
-    for (ISecurityMember securityMember : securityMembers) {
-      if (StringUtils.containsIgnoreCase(securityMember.getDisplayName(), query)
-          || StringUtils.containsIgnoreCase(securityMember.getName(), query)) {
-        result.add(securityMember);
+    return IvyExecutor.executeAsSystem(() -> {
+      List<ISecurityMember> result = new ArrayList<>();
+      for (ISecurityMember securityMember : securityMembers) {
+        if (StringUtils.containsIgnoreCase(securityMember.getDisplayName(), query)
+            || StringUtils.containsIgnoreCase(securityMember.getName(), query)) {
+          result.add(securityMember);
+        }
       }
-    }
-
-    result.sort((first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName()));
-    return result;
+  
+      result.sort((first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName()));
+      return result;
+    });
   }
 
   public static void setSessionAttribute(String key, Object value) {
