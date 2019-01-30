@@ -143,6 +143,10 @@ public class TaskActionBean {
         EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.SUSPENDED, TaskState.UNASSIGNED);
     return taskStates.contains(task.getState());
   }
+  
+  public void removeFromCanResumeByTaskId(long taskId) {
+    canResumeByTaskId.remove(taskId);
+  }
 
   public boolean isShowResetTask() {
     return isShowResetTask;

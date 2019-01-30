@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
@@ -89,10 +90,10 @@ public class TaskService implements ITaskService {
   
   private static TaskQuery queryForUserCanWorkOn(String involvedUsername, List<String> apps) {
     TaskQuery taskQuery = TaskQuery.create();
-    for (int i = 0; i < apps.size(); i++) {
-      taskQuery.where().canWorkOn(StringUtils.prependIfMissing(involvedUsername, "#"), apps.get(i));
-      if (i < apps.size() - 1) {
-        taskQuery.where().or();
+    if (CollectionUtils.isNotEmpty(apps)) {
+      taskQuery.where().canWorkOn(StringUtils.prependIfMissing(involvedUsername, "#"), apps.get(0));
+      for (int i = 1; i < apps.size(); i++) {
+        taskQuery.where().or().canWorkOn(StringUtils.prependIfMissing(involvedUsername, "#"), apps.get(i));
       }
     }
     
