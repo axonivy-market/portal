@@ -157,21 +157,20 @@ public class SecurityService implements ISecurityService {
     return IvyExecutor.executeAsSystem(() -> { // NOSONAR
       IvySecurityResultDTO result = new IvySecurityResultDTO();
       List<PortalIvyDataException> errors = new ArrayList<>();
-      List<IRole> roles = new ArrayList<>();
-      List<IUser> users = new ArrayList<>();
+      Map<String, IRole> roleByName = new HashMap<>();
+      Map<String, IUser> userByName = new HashMap<>();
 
       for (String appName : apps) {
         try {
           IApplication app = ServiceUtilities.findApp(appName);
-          roles.addAll(ServiceUtilities.findAllRoles(app));
-          
-          users.addAll(ServiceUtilities.findAllUsers(app));
+          ServiceUtilities.findAllRoles(app).forEach(role -> roleByName.put(role.getName() + " - " + role.getMemberName(), role));
+          ServiceUtilities.findAllUsers(app).forEach(user -> userByName.put(user.getName() + " - " + user.getMemberName(), user));
         } catch (Exception ex) {
           Ivy.log().error("Error in getting security members within app {0}", ex, appName);
         }
       }
-      roles = roles.stream().distinct().sorted((r1, r2) -> StringUtils.compareIgnoreCase(r1.getDisplayName(), r2.getDisplayName())).collect(Collectors.toList());
-      users = users.stream().distinct().sorted((u1, u2) -> StringUtils.compareIgnoreCase(u1.getDisplayName(), u2.getDisplayName())).collect(Collectors.toList());
+      List<IRole> roles = roleByName.values().stream().sorted((r1, r2) -> StringUtils.compareIgnoreCase(r1.getDisplayName(), r2.getDisplayName())).collect(Collectors.toList());
+      List<IUser> users = userByName.values().stream().sorted((u1, u2) -> StringUtils.compareIgnoreCase(u1.getDisplayName(), u2.getDisplayName())).collect(Collectors.toList());
       
       result.setUsers(users);
       result.setRoles(roles);
