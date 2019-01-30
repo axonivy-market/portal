@@ -277,7 +277,7 @@
 			</itemizedlist>
 			<screen>
 CaseLazyDataModel dataModel = new CaseLazyDataModel();
-dataModel.getCriteria().setCustomizedCaseQuery(YOUR_CASE_QUERY); // Set your CaseQuery
+dataModel.getCriteria().setCustomCaseQuery(YOUR_CASE_QUERY); // Set your CaseQuery
 dataModel.getCriteria().setAdminQuery(true); // Display the cases of all users
 out.caseView = CaseView.create().dataModel(dataModel).withTitle("My Cases").buildNewView();
 			</screen>
