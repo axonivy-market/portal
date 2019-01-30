@@ -75,7 +75,7 @@ public class ApplicationService extends AbstractService<Application> {
       return new ArrayList<>();
     }
     
-    Optional<Object> cacheValueOpt = IvyCacheService.newInstance().getSessionCacheValue(username, IvyCacheIdentifier.ONLINE_APPLICATIONS_BASED_ON_CONFIGURATION);
+    Optional<Object> cacheValueOpt = IvyCacheService.newInstance().getSessionCacheValue(IvyCacheIdentifier.ONLINE_APPLICATIONS_BASED_ON_CONFIGURATION, username);
     if (cacheValueOpt.isPresent()) {
       return (List<String>) cacheValueOpt.get();
     }
@@ -89,7 +89,7 @@ public class ApplicationService extends AbstractService<Application> {
       workOnApps = Arrays.asList(currentApplicationName);
     }
     
-    IvyCacheService.newInstance().setSessionCache(username, IvyCacheIdentifier.ONLINE_APPLICATIONS_BASED_ON_CONFIGURATION, workOnApps);
+    IvyCacheService.newInstance().setSessionCache(IvyCacheIdentifier.ONLINE_APPLICATIONS_BASED_ON_CONFIGURATION, username, workOnApps);
     return workOnApps;
   }
   
@@ -106,7 +106,7 @@ public class ApplicationService extends AbstractService<Application> {
       return new ArrayList<>();
     }
     
-    Optional<Object> cacheValueOpt = IvyCacheService.newInstance().getSessionCacheValue(username, IvyCacheIdentifier.ONLINE_APPLICATIONS_USER_CAN_WORK_ON);
+    Optional<Object> cacheValueOpt = IvyCacheService.newInstance().getSessionCacheValue(IvyCacheIdentifier.ONLINE_APPLICATIONS_USER_CAN_WORK_ON, username);
     if (cacheValueOpt.isPresent()) {
       return (List<String>) cacheValueOpt.get();
     }
@@ -115,7 +115,7 @@ public class ApplicationService extends AbstractService<Application> {
     if (CollectionUtils.isEmpty(workOnApps)) {
       return new ArrayList<>();
     }
-    IvyCacheService.newInstance().setSessionCache(username, IvyCacheIdentifier.ONLINE_APPLICATIONS_USER_CAN_WORK_ON, workOnApps);
+    IvyCacheService.newInstance().setSessionCache(IvyCacheIdentifier.ONLINE_APPLICATIONS_USER_CAN_WORK_ON, username, workOnApps);
     return workOnApps;
   }
   
