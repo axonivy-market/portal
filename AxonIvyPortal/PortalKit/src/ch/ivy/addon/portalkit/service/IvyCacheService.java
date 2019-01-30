@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import ch.ivyteam.ivy.data.cache.IDataCache;
 import ch.ivyteam.ivy.data.cache.IDataCacheEntry;
+import ch.ivyteam.ivy.data.cache.IDataCacheGroup;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class IvyCacheService {
@@ -33,6 +34,13 @@ public class IvyCacheService {
     Objects.requireNonNull(groupIdentifier, "groupIdentifier shouldn't be null");
     Objects.requireNonNull(identifier, "identifier shouldn't be null");
     sessionCache().setEntry(groupIdentifier, identifier, value);
+  }
+  
+  public void invalidateGroup(String groupIdentifier) {
+    IDataCacheGroup group = sessionCache().getGroup(groupIdentifier);
+    if (group != null) {
+      sessionCache().invalidateGroup(group);
+    }
   }
   
   private IDataCache sessionCache() {
