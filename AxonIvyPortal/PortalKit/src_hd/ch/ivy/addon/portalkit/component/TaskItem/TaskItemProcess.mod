@@ -367,9 +367,11 @@ Ts0 f19 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
 ' #txt
 Ts0 f19 actionTable 'out=in;
 ' #txt
-Ts0 f19 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+Ts0 f19 actionCode 'import ch.ivy.addon.portalkit.util.BeanUtils;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 
-TaskUtils.delegateTask(in.task, in.delegatedSecurityMember);' #txt
+TaskUtils.delegateTask(in.task, in.delegatedSecurityMember);
+BeanUtils.invokeBeanMethodViaMethodExpression("#{taskActionBean.removeFromCanResumeByTaskId}", in.task.getId());' #txt
 Ts0 f19 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
