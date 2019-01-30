@@ -5,10 +5,6 @@
         <name>checkValue</name>
         <description></description>
     </method>
-    <method>
-        <name>aa</name>
-        <description></description>
-    </method>
     <startMethod>
         <name>start</name>
         <description>Default dialog start method.</description>
