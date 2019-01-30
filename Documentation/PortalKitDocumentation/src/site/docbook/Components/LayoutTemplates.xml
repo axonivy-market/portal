@@ -455,7 +455,7 @@
 							<code>MainMenuNode category = new MainMenuNode();</code>
 						</para>
 						<para>
-							<code>category.value = "My Task List";</code>
+							<code>category.setValue("My Task List");</code>
 						</para>
 						<para>
 							<code/>
