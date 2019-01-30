@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
 import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
@@ -22,12 +20,14 @@ import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.ITaskService;
+import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.Record;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
+import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
@@ -90,13 +90,10 @@ public class TaskService implements ITaskService {
   
   private static TaskQuery queryForUserCanWorkOn(String involvedUsername, List<String> apps) {
     TaskQuery taskQuery = TaskQuery.create();
-    if (CollectionUtils.isNotEmpty(apps)) {
-      taskQuery.where().canWorkOn(StringUtils.prependIfMissing(involvedUsername, "#"), apps.get(0));
-      for (int i = 1; i < apps.size(); i++) {
-        taskQuery.where().or().canWorkOn(StringUtils.prependIfMissing(involvedUsername, "#"), apps.get(i));
-      }
-    }
-    
+    apps.forEach(app -> {
+      IUser user = ServiceUtilities.findUser(involvedUsername, app);
+      taskQuery.where().or().canWorkOn(user);
+    });
     return taskQuery;
   }
   
