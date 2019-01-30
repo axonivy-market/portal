@@ -54,7 +54,7 @@ public class CaseCreatorFilter extends CaseFilter {
     return creator.getFullName() + " (" + creator.getName() + ")";
   }
 
-  public List<IUser> getCreators() throws Exception {
+  public List<IUser> getCreators() {
     if (creators == null) {
       initUsers();
     }
@@ -70,7 +70,7 @@ public class CaseCreatorFilter extends CaseFilter {
   }
 
   public IUser getSelectedCreator() {
-    if (selectedCreator == null && CollectionUtils.isNotEmpty(creators)) {
+    if (selectedCreator == null && CollectionUtils.isNotEmpty(getCreators())) {
       selectedCreator = creators.stream()
           .filter(creator -> StringUtils.equals(creator.getMemberName(), selectedCreatorMemberName))
           .findFirst()

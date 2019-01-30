@@ -98,7 +98,7 @@ public class TaskResponsibleFilter extends TaskFilter {
   }
 
   public ISecurityMember getSelectedResponsible() {
-    if (selectedResponsible == null && CollectionUtils.isNotEmpty(responsibles)) {
+    if (selectedResponsible == null && CollectionUtils.isNotEmpty(getResponsibles())) {
       selectedResponsible = responsibles.stream()
           .filter(responsible -> StringUtils.equals(responsible.getMemberName(), selectedResponsibleMemberName))
           .findFirst()

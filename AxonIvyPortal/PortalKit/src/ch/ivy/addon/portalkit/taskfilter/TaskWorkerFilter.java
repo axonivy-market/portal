@@ -55,7 +55,7 @@ public class TaskWorkerFilter extends TaskFilter {
     return worker.getFullName() + " (" + worker.getName() + ")";
   }
 
-  public List<IUser> getWorkers() throws Exception {
+  public List<IUser> getWorkers() {
     if (workers == null) {
       initWorkers();
     }
@@ -71,7 +71,7 @@ public class TaskWorkerFilter extends TaskFilter {
   }
 
   public IUser getSelectedWorker() {
-    if (selectedWorker == null && CollectionUtils.isNotEmpty(workers)) {
+    if (selectedWorker == null && CollectionUtils.isNotEmpty(getWorkers())) {
       selectedWorker = workers.stream()
           .filter(worker -> StringUtils.equals(worker.getMemberName(), selectedWorkerMemberName))
           .findFirst()
