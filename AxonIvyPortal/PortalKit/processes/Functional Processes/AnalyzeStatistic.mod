@@ -463,7 +463,6 @@ ac0 f46 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
 ApplicationService service = new ApplicationService();
 java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
 in.taskSearchCriteria.apps = apps;
-in.taskSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
 in.taskSearchCriteria.sorted = false;' #txt
 ac0 f46 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
 ac0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
