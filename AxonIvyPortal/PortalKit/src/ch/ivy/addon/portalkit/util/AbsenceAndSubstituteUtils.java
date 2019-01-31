@@ -180,4 +180,10 @@ public final class AbsenceAndSubstituteUtils {
     return firstAbsence.getUsername() == null
         || !(firstAbsence.getUsername().equalsIgnoreCase(secondAbsence.getUsername()));
   }
+  
+  public static String getUserName(IUser user) {
+    return IvyExecutor.executeAsSystem(() -> {
+      return user.getName();
+    });
+  }
 }

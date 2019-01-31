@@ -967,7 +967,7 @@ As0 f62 processCall 'Ivy Data Processes/SubstituteService:findSubstitutes(String
 As0 f62 doCall true #txt
 As0 f62 requestActionDecl '<java.lang.String username> param;
 ' #txt
-As0 f62 requestMappingAction 'param.username=in.selectedUser.getName();
+As0 f62 requestMappingAction 'param.username=ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils.getUserName(in.selectedUser);
 ' #txt
 As0 f62 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
 ' #txt
