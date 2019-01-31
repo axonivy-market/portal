@@ -140,6 +140,7 @@ HistoryService historyService = new HistoryService();
 GlobalSettingService globalSettingService = new GlobalSettingService();
 boolean excludeTechnicalHistory = globalSettingService.findHideSystemTasksFromHistorySettingValue();
 in.histories = historyService.getHistories(in.tasks, in.iCase.getNotes(), excludeTechnicalHistory);' #txt
+Cs0 f26 security system #txt
 Cs0 f26 type ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData #txt
 Cs0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
