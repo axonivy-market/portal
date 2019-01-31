@@ -52,6 +52,9 @@ Cs0 @PushWFArc f14 '' #zField
 Cs0 @RichDialogMethodStart f16 '' #zField
 Cs0 @RichDialogProcessEnd f17 '' #zField
 Cs0 @PushWFArc f22 '' #zField
+Cs0 @RichDialogMethodStart f23 '' #zField
+Cs0 @RichDialogProcessEnd f27 '' #zField
+Cs0 @PushWFArc f32 '' #zField
 >Proto Cs0 Cs0 CaseWidgetProcess #zField
 Cs0 f0 guid 152E8EDB3E3A6957 #txt
 Cs0 f0 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
@@ -455,6 +458,30 @@ Cs0 f17 339 659 26 26 0 12 #rect
 Cs0 f17 @|RichDialogProcessEndIcon #fIcon
 Cs0 f22 expr out #txt
 Cs0 f22 77 672 339 672 #arcP
+Cs0 f23 guid 168A2BE8E0F76EC9 #txt
+Cs0 f23 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
+Cs0 f23 method setFilterToBeDeleted(ch.ivy.addon.portalkit.casefilter.CaseFilterData) #txt
+Cs0 f23 disableUIEvents false #txt
+Cs0 f23 inParameterDecl 'ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData out;
+' #txt
+Cs0 f23 inParameterMapAction 'out.filterDataToBeDeleted=param.caseFilterData;
+' #txt
+Cs0 f23 outParameterDecl '<> result;
+' #txt
+Cs0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>setFilterToBeDeleted(CaseFilterData)</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f23 51 755 26 26 -58 17 #rect
+Cs0 f23 @|RichDialogMethodStartIcon #fIcon
+Cs0 f27 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
+Cs0 f27 339 755 26 26 0 12 #rect
+Cs0 f27 @|RichDialogProcessEndIcon #fIcon
+Cs0 f32 expr out #txt
+Cs0 f32 77 768 339 768 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -491,3 +518,5 @@ Cs0 f13 mainOut f14 tail #connect
 Cs0 f14 head f35 mainIn #connect
 Cs0 f16 mainOut f22 tail #connect
 Cs0 f22 head f17 mainIn #connect
+Cs0 f23 mainOut f32 tail #connect
+Cs0 f32 head f27 mainIn #connect
