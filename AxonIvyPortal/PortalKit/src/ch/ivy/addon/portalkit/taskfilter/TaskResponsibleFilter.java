@@ -21,9 +21,6 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 public class TaskResponsibleFilter extends TaskFilter {
 
   @JsonIgnore
-  private static final String SECURITY_SERVICE_CALLABLE = "Ivy Data Processes/SecurityService";
-  
-  @JsonIgnore
   private List<ISecurityMember> responsibles;
   @JsonIgnore
   private ISecurityMember selectedResponsible;
@@ -78,10 +75,10 @@ public class TaskResponsibleFilter extends TaskFilter {
     try {
       SubProcessCallResult result = ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
         if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
-          return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findSecurityMembersOverAllApplications")
+          return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE).withStartName("findSecurityMembersOverAllApplications")
               .call(Ivy.session().getSessionUserName());
         }
-        return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findSecurityMembers")
+        return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE).withStartName("findSecurityMembers")
             .call(Ivy.request().getApplication());
       }); 
       List<IUser> users = result.get("users", List.class);

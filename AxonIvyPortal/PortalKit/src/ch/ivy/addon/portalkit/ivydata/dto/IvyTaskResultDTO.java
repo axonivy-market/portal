@@ -5,11 +5,10 @@ import java.util.List;
 import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
 import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
 import ch.ivy.addon.portalkit.bo.PriorityStatistic;
-import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
 
-public class IvyTaskResultDTO {
+public class IvyTaskResultDTO extends AbstractResultDTO {
 
   private List<ITask> tasks;
   private long totalTasks;
@@ -17,7 +16,6 @@ public class IvyTaskResultDTO {
   private PriorityStatistic priorityStatistic;
   private ExpiryStatistic expiryStatistic;
   private ElapsedTimeStatistic elapsedTimeStatistic;
-  private List<PortalIvyDataException> errors;
 
   public List<ITask> getTasks() {
     return tasks;
@@ -65,14 +63,6 @@ public class IvyTaskResultDTO {
 
   public void setElapsedTimeStatistic(ElapsedTimeStatistic elapsedTimeStatistic) {
     this.elapsedTimeStatistic = elapsedTimeStatistic;
-  }
-
-  public List<PortalIvyDataException> getErrors() {
-    return errors;
-  }
-
-  public void setErrors(List<PortalIvyDataException> errors) {
-    this.errors = errors;
   }
 
 }

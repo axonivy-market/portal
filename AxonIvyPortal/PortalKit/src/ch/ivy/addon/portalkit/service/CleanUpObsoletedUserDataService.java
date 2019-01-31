@@ -21,7 +21,6 @@ import ch.ivyteam.ivy.server.ServerFactory;
 
 public class CleanUpObsoletedUserDataService {
 
-  private static final String SECURITY_SERVICE_CALLABLE = "Ivy Data Processes/SecurityService";
   List<IUser> currentUsers;
 
   public void cleanUpData() {

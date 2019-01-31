@@ -86,6 +86,7 @@ GlobalSettingService globalSettingService = new GlobalSettingService();
 boolean excludeTechnicalHistory = globalSettingService.findHideSystemTasksFromHistorySettingValue();
 out.notes = CaseUtils.findNotes(iCase, excludeTechnicalHistory);
 ' #txt
+Ts0 f4 security system #txt
 Ts0 f4 type ch.ivy.addon.portalkit.component.TaskItemNotes.TaskItemNotesData #txt
 Ts0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

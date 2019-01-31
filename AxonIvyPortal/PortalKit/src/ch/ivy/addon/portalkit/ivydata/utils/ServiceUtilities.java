@@ -135,7 +135,7 @@ public class ServiceUtilities {
         IApplication app = findApp(appName);
         return findUser(username, app);
       } catch (PortalIvyDataException e) {
-        Ivy.log().error("Can't find user {0}", e, username);
+        Ivy.log().error("Can't find user " + username, e);
         return null;
       }
     });
