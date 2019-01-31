@@ -500,13 +500,14 @@ As0 f7 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.Ab
 ' #txt
 As0 f7 actionTable 'out=in;
 ' #txt
-As0 f7 actionCode 'import java.util.Set;
+As0 f7 actionCode 'import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
+import java.util.Set;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
 
 in.validationError = false;
-String username = in.selectedUser.getName();
+String username = AbsenceAndSubstituteUtils.getUserName(in.selectedUser);
 boolean fromBiggerThanTill = AbsenceAndSubstituteUtils.checkFromBiggerThanTill(in.selectedAbsence);
 in.selectedAbsence.user = in.selectedUser;
 
@@ -724,8 +725,8 @@ As0 f111 processCall 'Ivy Data Processes/AbsenceService:updateAbsences(String,ja
 As0 f111 doCall true #txt
 As0 f111 requestActionDecl '<java.lang.String username,java.util.Set ivyAbsences> param;
 ' #txt
-As0 f111 requestMappingAction 'param.username=in.selectedUser.getName();
-param.ivyAbsences=in.absencesByUser.get(in.selectedUser.getName()) as java.util.Set;
+As0 f111 requestMappingAction 'param.username=ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils.getUserName(in.selectedUser);
+param.ivyAbsences=in.absencesByUser.get(ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils.getUserName(in.selectedUser)) as java.util.Set;
 ' #txt
 As0 f111 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
 ' #txt
@@ -801,11 +802,12 @@ As0 f9 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.Ab
 ' #txt
 As0 f9 actionTable 'out=in;
 ' #txt
-As0 f9 actionCode 'import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
+As0 f9 actionCode 'import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
+import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 import java.util.Set;
 
 out.displayedAbsences.remove(in.selectedAbsence);
-Set<IvyAbsence> ivyAbsences = out.absencesByUser.get(in.selectedAbsence.user.getName()) as Set;
+Set<IvyAbsence> ivyAbsences = out.absencesByUser.get(AbsenceAndSubstituteUtils.getUserName(in.selectedUser)) as Set;
 ivyAbsences.remove(in.selectedAbsence);' #txt
 As0 f9 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1095,7 +1097,7 @@ import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
 
 in.validationError = false;
-String username = in.selectedUser.getName();
+String username = AbsenceAndSubstituteUtils.getUserName(in.selectedUser);
 boolean fromBiggerThanTill = AbsenceAndSubstituteUtils.checkFromBiggerThanTill(in.selectedAbsence);
 in.selectedAbsence.user = in.selectedUser;
 
@@ -1203,7 +1205,7 @@ As0 f101 processCall 'Ivy Data Processes/SubstituteService:saveSubstitutes(Strin
 As0 f101 doCall true #txt
 As0 f101 requestActionDecl '<java.lang.String username,java.util.Map substitutesByApp> param;
 ' #txt
-As0 f101 requestMappingAction 'param.username=in.selectedUser.getName();
+As0 f101 requestMappingAction 'param.username=ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils.getUserName(in.selectedUser);
 param.substitutesByApp=in.substitutesByApp;
 ' #txt
 As0 f101 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
