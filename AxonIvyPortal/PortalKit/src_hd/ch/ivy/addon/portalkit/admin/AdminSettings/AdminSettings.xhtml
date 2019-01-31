@@ -141,14 +141,6 @@
 	<p:dialog header="#{data.dialogTitle}" id="appDialog" onShow="$('body').css({overflow:'hidden'})" 
 		onHide="$('body').css({overflow:'inherit'})" widgetVar="appDialog" dynamic="true" modal="true" resizable="false" appendTo="@(body)" width="800px">
 		<h:form prependId="false" id="appDialogForm">
-			<p:outputPanel id="synchronizeSettingsToAppsInSameIvyApplication" rendered="#{data.type == 'IVY_APPLICATION'}"
-				styleClass="ui-messages ui-widget">
-				<p:outputPanel styleClass="ui-messages-info ui-corner-all">
-					<span class="fa fa-info-circle" />
-					<h:outputText styleClass="ui-messages-info-detail"
-						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/infoSynchronizeSettingsToAppsInSameIvyApplication')}" />
-				</p:outputPanel>
-			</p:outputPanel>
 			<p:messages id="messages" closable="true" />
 
 			<p:outputPanel id="appOverview">
