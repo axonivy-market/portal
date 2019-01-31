@@ -1302,6 +1302,10 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 	color: rgba(0, 0, 0, 1);
 }
 
+.filter-category-checkbox-tree .ui-tree-container{
+	height: 500px;
+}
+
 .filter-category-checkbox-tree.ui-tree .ui-treenode .ui-treenode-label{
 	font-size: 1.2rem;	
 }
@@ -5484,3 +5488,4 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 .mobile-task-header .filter-widget{
 	padding-bottom: 4px;
 }
+
