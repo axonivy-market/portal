@@ -38,7 +38,7 @@ public class CaseCreatorFilter extends CaseFilter {
       return null;
     }
 
-    return CaseQuery.create().where().creatorUserId().isEqual(selectedCreator.getId());
+    return CaseQuery.create().where().creatorUserName().isEqual(selectedCreator.getName());
   }
 
   @Override

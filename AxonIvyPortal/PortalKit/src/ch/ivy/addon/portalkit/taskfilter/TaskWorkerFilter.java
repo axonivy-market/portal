@@ -39,7 +39,7 @@ public class TaskWorkerFilter extends TaskFilter {
       return null;
     }
 
-    return TaskQuery.create().where().workerUserId().isEqual(selectedWorker.getId());
+    return TaskQuery.create().where().workerUserName().isEqual(selectedWorker.getName());
   }
 
   @Override

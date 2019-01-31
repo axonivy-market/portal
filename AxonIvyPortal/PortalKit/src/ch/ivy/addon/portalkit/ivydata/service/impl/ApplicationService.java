@@ -8,14 +8,12 @@ import java.util.stream.Collectors;
 
 import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
 import ch.ivy.addon.portalkit.ivydata.service.IApplicationService;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.ActivityOperationState;
 import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.bpm.error.BpmError;
 import ch.ivyteam.ivy.server.ServerFactory;
 
 public class ApplicationService implements IApplicationService {
-
-  private static final String APPLICATIONSERVICE_ERROR_CODE = "ivy:portalconnector:error:applicationservice";
 
   private ApplicationService() {
   }
@@ -26,45 +24,33 @@ public class ApplicationService implements IApplicationService {
   
   @Override
   public List<IvyApplication> findAll() {
-    try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
-        List<IApplication> applications =
-            ServerFactory.getServer().getApplicationConfigurationManager().getApplicationsSortedByName(false);
-        return applications.stream().map(this::toIvyApplication).collect(Collectors.toList());
-      });
-    } catch (Exception exception) {
-      throw BpmError.create(APPLICATIONSERVICE_ERROR_CODE).withCause(exception).build();
-    }
+    return IvyExecutor.executeAsSystem(() -> {
+      List<IApplication> applications =
+          ServerFactory.getServer().getApplicationConfigurationManager().getApplicationsSortedByName(false);
+      return applications.stream().map(this::toIvyApplication).collect(Collectors.toList());
+    });
   }
 
   @Override
   public List<IvyApplication> findBy(List<String> names) {
-    try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> 
-        names.stream()
-            .map(ServerFactory.getServer().getApplicationConfigurationManager()::findApplication)
-            .filter(Objects::nonNull)
-            .map(this::toIvyApplication)
-            .collect(toList())
-      );
-    } catch (Exception exception) {
-      throw BpmError.create(APPLICATIONSERVICE_ERROR_CODE).withCause(exception).build();
-    }
+    return IvyExecutor.executeAsSystem(() -> 
+      names.stream()
+          .map(ServerFactory.getServer().getApplicationConfigurationManager()::findApplication)
+          .filter(Objects::nonNull)
+          .map(this::toIvyApplication)
+          .collect(toList())
+    );
   }
   
   @Override
   public List<IvyApplication> findActiveAll() {
-    try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
-        List<IApplication> applications =
-            ServerFactory.getServer().getApplicationConfigurationManager().getApplicationsSortedByName(false);
-        return applications.stream().map(this::toIvyApplication)
-            .filter(IvyApplication::isActive)
-            .collect(Collectors.toList());
-      });
-    } catch (Exception exception) {
-      throw BpmError.create(APPLICATIONSERVICE_ERROR_CODE).withCause(exception).build();
-    }
+    return IvyExecutor.executeAsSystem(() -> {
+      List<IApplication> applications =
+          ServerFactory.getServer().getApplicationConfigurationManager().getApplicationsSortedByName(false);
+      return applications.stream().map(this::toIvyApplication)
+          .filter(IvyApplication::isActive)
+          .collect(Collectors.toList());
+    });
   }
   
   private IvyApplication toIvyApplication(IApplication app) {
