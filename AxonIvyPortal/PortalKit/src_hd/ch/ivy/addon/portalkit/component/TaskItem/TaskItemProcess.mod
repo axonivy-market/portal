@@ -500,7 +500,7 @@ Ts0 f20 processCall 'Ivy Data Processes/SecurityService:findSecurityMembers(ch.i
 Ts0 f20 doCall true #txt
 Ts0 f20 requestActionDecl '<ch.ivyteam.ivy.application.IApplication application> param;
 ' #txt
-Ts0 f20 requestMappingAction 'param.application=in.task.getApplication();
+Ts0 f20 requestMappingAction 'param.application=in.application;
 ' #txt
 Ts0 f20 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
 ' #txt
@@ -683,7 +683,9 @@ Ts0 f24 actionTable 'out=in;
 ' #txt
 Ts0 f24 actionCode 'in.disabledDelegateButton = true;
 in.isUserDelegated = true;
-in.delegatedSecurityMember = null;' #txt
+in.delegatedSecurityMember = null;
+in.application = in.task.getApplication();' #txt
+Ts0 f24 security system #txt
 Ts0 f24 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

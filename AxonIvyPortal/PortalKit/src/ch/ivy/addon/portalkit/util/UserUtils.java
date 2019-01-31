@@ -120,10 +120,12 @@ public class UserUtils {
       return new ArrayList<>();
     }
 
-    return usersByApp.values()
-        .stream()
-        .flatMap(List::stream)
-        .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(IUser::getName, String.CASE_INSENSITIVE_ORDER))), ArrayList::new));
+    return IvyExecutor.executeAsSystem(() -> {
+      return usersByApp.values()
+          .stream()
+          .flatMap(List::stream)
+          .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(IUser::getName, String.CASE_INSENSITIVE_ORDER))), ArrayList::new));
+    });
   }
 
   /**
