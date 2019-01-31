@@ -254,4 +254,10 @@ public class UserUtils {
         .call(Ivy.request().getApplication())
         .get("users", List.class);
   }
+  
+  public static String getUserName(IUser user) {
+    return IvyExecutor.executeAsSystem(() -> {
+      return user.getName();
+    });
+  }
 }
