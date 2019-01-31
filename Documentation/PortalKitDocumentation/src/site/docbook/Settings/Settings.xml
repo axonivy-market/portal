@@ -64,7 +64,7 @@
 		<sect2 xml:id="axonivyportal.settings.adminsettings.setupmultiportals">
 			<title xml:id="axonivyportal.settings.adminsettings.setupmultiportals.title">Setup multi portals</title>
 			<important>
-				<para> There is 2 ways to configure portals: <code>two levels</code> and <code>single level</code></para>
+				<para> There are 2 ways to configure portals: <code>two levels</code> and <code>single level</code></para>
 				<itemizedlist>
 					<listitem>
 						<para>Two levels portal</para>
@@ -75,10 +75,10 @@
 						</mediaobject>
 						<itemizedlist>
 							<listitem>
-								<para>Used for related applications where we need an overview of all tasks and cases.</para>
+								<para>Used for related applications which we need an overview of all tasks and cases.</para>
 							</listitem>
 							<listitem>
-								<para>Create a new application named Portal. Deploy portal (kit, template ..) to this applications.</para>
+								<para>Create a new application named Portal. Deploy portal (kit, template ..) to this application.</para>
 							</listitem>
 							<listitem>
 								<para>Create new applications: App1, App2, App3... Deploy portal (kit, template ..) to new applications.</para>
@@ -90,7 +90,7 @@
 								<para>Note that, <code>do not</code> add Portal application, it is reserved for displaying all tasks/cases... from all configured applications.</para>
 							</listitem>
 							<listitem>
-								<para>Dashboard menu only visible when login user exists in Portal application.</para>
+								<para>Dashboard menu is only visible when logged-in user exists in Portal application.</para>
 							</listitem>
 						</itemizedlist>
 					</listitem>
@@ -175,7 +175,7 @@
 						<listitem>
 							<para>
 								<code>Portal link</code>
-								specifies the link you will be redirect to when selecting the application on the application menu. It could be an absolute link (e.g. http://10.123.1.30:8000/ivy/pro/.../PortalStart.ivp)
+								specifies the link will be redirected when selecting the application on the application menu. It could be an absolute link (e.g. http://10.123.1.30:8000/ivy/pro/.../PortalStart.ivp)
 								or relative link (e.g. /ivy/pro/.../PortalStart.ivp). If your application could be accessed from multiple domains, use relative link so that you can access the link from different domains.
 							</para>
 						</listitem>

@@ -811,7 +811,7 @@
 		<sect2>
 			<title>Migrate to 7.3.0</title>
 			<para>
-				From 7.3.0, Portal supports some permissions to show/hide left menu item, if you overrode LoadSubMenuItems process and want to use these permissions, please refer to 
+				From 7.3.0, Portal supports some permissions to show/hide left menu item, if you override LoadSubMenuItems process and want to use these permissions, please refer to 
 				<link linkend="axonivyportal.customization.menu.customization" endterm="axonivyportal.customization.menu.customization.title" /> for more detail.
 			</para>
 			<para>
