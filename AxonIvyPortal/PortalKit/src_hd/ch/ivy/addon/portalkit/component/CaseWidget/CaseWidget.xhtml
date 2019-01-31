@@ -219,7 +219,7 @@
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
     widgetVar="delete-filter-confirmation-dialog" appendTo="@(body)" severity="alert">
     <p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
-      actionListener="#{logic.deleteFilter()}"
+      actionListener="#{logic.deleteFilter}"
       oncomplete="PF('delete-filter-confirmation-dialog').hide(); caseWidget.setUpScrollbar(); caseWidget.setupHeader();"
       update="case-basic-filter-form advanced-filter-container filter-selection-container case-list filter-add-form" />
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
