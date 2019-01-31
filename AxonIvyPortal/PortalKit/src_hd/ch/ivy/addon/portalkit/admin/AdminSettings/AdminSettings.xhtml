@@ -152,7 +152,7 @@
 					<p:selectOneMenu id="applicationType" value="#{data.type}" required="true">
 						<f:selectItems value="#{masterDataBean.applicationTypes}" var="type" itemLabel="#{type.label}" />
 						<p:ajax event="change" listener="#{logic.appTypeChange}" oncomplete="PF('appDialog').initPosition()"
-							update="applicationPanelGrid synchronizeSettingsToAppsInSameIvyApplication" />
+							update="applicationPanelGrid" />
 					</p:selectOneMenu>
 					<p:spacer />
 

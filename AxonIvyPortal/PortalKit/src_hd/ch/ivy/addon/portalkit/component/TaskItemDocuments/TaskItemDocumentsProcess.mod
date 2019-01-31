@@ -125,6 +125,7 @@ Ts0 f9 actionCode 'import ch.ivy.addon.portalkit.service.CaseDocumentService;
 
 out.businessCase = in.task.getCase().getBusinessCase();
 out.documents = CaseDocumentService.newInstance(out.businessCase).getAll();' #txt
+Ts0 f9 security system #txt
 Ts0 f9 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 Ts0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

@@ -32,7 +32,7 @@ public final class TaskUtils {
         TaskState.FAILED).contains(task.getState())) {
       IvyExecutor.executeAsSystem(() -> {
         task.reset();
-        return true;
+        return Void.class;
       });
     }
   }
