@@ -37,8 +37,6 @@ public class UserUtils {
   private static final String SELECTED_CASE_FILTER = "SELECTED_CASE_FILTER";
   private static final String CASE_KEYWORD_FILTER = "CASE_KEYWORD_FILTER";
 
-  private static final String SECURITY_SERVICE_CALLABLE = "Ivy Data Processes/SecurityService";
-
   private UserUtils() {
   }
 
@@ -241,7 +239,7 @@ public class UserUtils {
   @SuppressWarnings("unchecked")
   private static List<IUser> findUsersByCallableProcess() {
     if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
-      Map<String, List<IUser>> usersByApp = SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE)
+      Map<String, List<IUser>> usersByApp = SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
           .withStartName("findUsersOverAllApplications")
           .call(Ivy.session().getSessionUserName())
           .get("usersByApp", Map.class);
@@ -249,7 +247,7 @@ public class UserUtils {
           .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(IUser::getName))), ArrayList::new));
     }
     
-    return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE)
+    return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
         .withStartName("findUsers")
         .call(Ivy.request().getApplication())
         .get("users", List.class);

@@ -3,17 +3,15 @@ package ch.ivy.addon.portalkit.ivydata.dto;
 import java.util.List;
 import java.util.Map;
 
-import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
 
-public class IvySecurityResultDTO {
+public class IvySecurityResultDTO extends AbstractResultDTO {
 
   private Map<String, List<IUser>> usersByApp;
   private Map<String, List<IRole>> rolesByApp;
   private List<IUser> users;
   private List<IRole> roles;
-  private List<PortalIvyDataException> errors;
 
   public Map<String, List<IUser>> getUsersByApp() {
     return usersByApp;
@@ -45,14 +43,6 @@ public class IvySecurityResultDTO {
 
   public void setRoles(List<IRole> roles) {
     this.roles = roles;
-  }
-
-  public List<PortalIvyDataException> getErrors() {
-    return errors;
-  }
-
-  public void setErrors(List<PortalIvyDataException> errors) {
-    this.errors = errors;
   }
 
 }
