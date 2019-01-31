@@ -1303,7 +1303,8 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 }
 
 .filter-category-checkbox-tree .ui-tree-container{
-	height: 500px;
+	height: auto;
+	max-height: 500px;
 }
 
 .filter-category-checkbox-tree.ui-tree .ui-treenode .ui-treenode-label{
