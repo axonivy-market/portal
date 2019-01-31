@@ -181,9 +181,4 @@ public final class AbsenceAndSubstituteUtils {
         || !(firstAbsence.getUsername().equalsIgnoreCase(secondAbsence.getUsername()));
   }
   
-  public static String getUserName(IUser user) {
-    return IvyExecutor.executeAsSystem(() -> {
-      return user.getName();
-    });
-  }
 }
