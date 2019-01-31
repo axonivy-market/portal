@@ -23,7 +23,7 @@ public class TaskCategorySearchCriteria {
   public TaskQuery createQuery() {
     TaskQuery query = TaskQuery.create();
     if (customTaskQuery != null) {
-      query = customTaskQuery;
+      query = TaskQuery.fromJson(customTaskQuery.asJson()); // clone to keep the original custom query
     }
 
     if (hasIncludedStates()) {

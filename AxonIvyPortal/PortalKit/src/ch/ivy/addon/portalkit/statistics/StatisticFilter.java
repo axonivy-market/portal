@@ -56,9 +56,6 @@ public class StatisticFilter implements Cloneable {
   private List<WorkflowPriority> selectedTaskPriorities = new ArrayList<>();
   private boolean isAllTaskPrioritiesSelected = true;
 
-  @JsonIgnore
-  private static final String SECURITY_SERVICE_CALLABLE = "Ivy Data Processes/SecurityService";
-  
   private List<String> selectedCustomVarCharFields1 = new ArrayList<>();
   private List<String> selectedCustomVarCharFields2 = new ArrayList<>();
   private List<String> selectedCustomVarCharFields3 = new ArrayList<>();
@@ -109,7 +106,7 @@ public class StatisticFilter implements Cloneable {
     return IvyExecutor.executeAsSystem(() -> {
       if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
         Map<String, List<IRole>> rolesByApp =
-            SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE).withStartName("findRolesOverAllApplications")
+            SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE).withStartName("findRolesOverAllApplications")
                 .call(Ivy.session().getSessionUserName())
                 .get("rolesByApp", Map.class);
         return rolesByApp.values().stream()
@@ -117,7 +114,7 @@ public class StatisticFilter implements Cloneable {
             .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(IRole::getName))), ArrayList::new));
       }
 
-      return SubProcessCall.withPath(SECURITY_SERVICE_CALLABLE)
+      return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
           .withStartName("findRoles")
           .call(Ivy.request().getApplication())
           .get("roles", List.class);

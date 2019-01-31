@@ -21,7 +21,7 @@ public class CaseCategorySearchCriteria {
   public CaseQuery createQuery() {
     CaseQuery finalQuery = CaseQuery.create();
     if (customCaseQuery != null) {
-      finalQuery = customCaseQuery;
+      finalQuery = CaseQuery.fromJson(customCaseQuery.asJson()); // clone to keep the original custom query
     }
 
     if (hasIncludedStates()) {
