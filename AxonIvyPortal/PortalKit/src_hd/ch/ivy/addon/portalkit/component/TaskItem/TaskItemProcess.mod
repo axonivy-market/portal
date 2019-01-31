@@ -414,6 +414,7 @@ facesContext.validationFailed();
 facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
 requesContext.update("task-widget:cannot-start-task-notification");  
 ' #txt
+Ts0 f66 security system #txt
 Ts0 f66 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -529,6 +530,7 @@ Ts0 f10 actionTable 'out=in;
 Ts0 f10 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
 
 TaskUtils.resetTask(in.task);' #txt
+Ts0 f10 security system #txt
 Ts0 f10 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

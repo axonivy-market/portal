@@ -233,7 +233,7 @@ Cs0 f4 requestActionDecl '<java.lang.Long taskId,ch.ivy.addon.portalkit.dto.Glob
 ' #txt
 Cs0 f4 requestMappingAction 'param.taskId=in.taskId;
 param.caseId=ch.ivy.addon.portalkit.dto.GlobalCaseId.caseId(in.iCase.getId()).isBusinessCase(in.iCase.isBusinessCase()).build();
-param.caseName=in.iCase.getName();
+param.caseName=ch.ivy.addon.portalkit.util.PermissionUtils.getCaseName(in.iCase);
 ' #txt
 Cs0 f4 responseActionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData out;
 ' #txt
@@ -277,7 +277,7 @@ Cs0 f23 processCall 'Functional Processes/Navigator:viewCase(String,ch.ivy.addon
 Cs0 f23 doCall true #txt
 Cs0 f23 requestActionDecl '<java.lang.String caseName,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;
 ' #txt
-Cs0 f23 requestMappingAction 'param.caseName=in.selectedTechnicalCase.name;
+Cs0 f23 requestMappingAction 'param.caseName=ch.ivy.addon.portalkit.util.PermissionUtils.getCaseName(in.selectedTechnicalCase);
 param.caseId=ch.ivy.addon.portalkit.dto.GlobalCaseId.caseId(in.selectedTechnicalCase.getId()).isBusinessCase(in.selectedTechnicalCase.isBusinessCase()).build();
 ' #txt
 Cs0 f23 responseActionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData out;

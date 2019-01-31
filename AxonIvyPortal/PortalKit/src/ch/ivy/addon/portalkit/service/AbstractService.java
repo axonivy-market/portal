@@ -45,8 +45,7 @@ class AbstractService<T extends BusinessEntity> {
   }
 
   /**
-   * Try to instantiate instance of AbstractDao with IApplication parameter, then by pass
-   * PortalConnectorApplication
+   * Try to instantiate instance of AbstractDao with IApplication parameter
    * 
    * @param abstractDaoClassType
    * @return {@link AbstractDao}
