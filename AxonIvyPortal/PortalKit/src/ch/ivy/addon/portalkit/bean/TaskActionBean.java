@@ -135,13 +135,17 @@ public class TaskActionBean {
         || hasPermission(task, IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE);
   }
 
-  private boolean isNotDone(ITask task) {
+  public boolean isNotDone(ITask task) {
     if (task == null) {
       return false;
     }
     EnumSet<TaskState> taskStates =
         EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.SUSPENDED, TaskState.UNASSIGNED);
     return taskStates.contains(task.getState());
+  }
+  
+  public boolean showAdditionalOptions(ITask task) {
+    return isShowAdditionalOptions && isNotDone(task);
   }
   
   public void removeFromCanResumeByTaskId(long taskId) {
