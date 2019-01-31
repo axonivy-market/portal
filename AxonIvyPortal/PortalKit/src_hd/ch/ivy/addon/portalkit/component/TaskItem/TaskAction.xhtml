@@ -41,10 +41,9 @@
         <h:outputText rendered="#{data.isShowTaskButtonLabels}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/openRequest')}" />
       </p:commandLink>
-      <c:if test="#{data.isDisplaySideStep}">
-      	<ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" actionLinkId="task-side-steps-menu" actionLinkStyleClass="task-command #{data.isShowTaskButtonLabels? 'side-step-position' : ''}"
-        panelWidgetVar="task-side-steps-panel-#{rowIndex}" caseId="#{task.case.getId()}" isAdhocExcluded="false" rendered="#{taskActionBean.showAdditionalOptions}"/>
-      </c:if>
+      <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" actionLinkId="task-side-steps-menu" actionLinkStyleClass="task-command #{data.isShowTaskButtonLabels? 'side-step-position' : ''}"
+        panelWidgetVar="task-side-steps-panel-#{rowIndex}" caseId="#{task.case.getId()}" isAdhocExcluded="false" rendered="#{taskActionBean.showAdditionalOptions}" 
+        isDisabled="#{!taskActionBean.isNotDone(task)}" />
     </div>
   </div>
 </ui:composition>

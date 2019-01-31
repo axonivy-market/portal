@@ -726,8 +726,6 @@ if(isShowTaskButtonLabels != null && !isShowTaskButtonLabels.isEmpty()){
 	in.isShowTaskButtonLabels = false;	
 }
 
-in.isDisplaySideStep = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS);
-
 ' #txt
 Ts0 f2 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
