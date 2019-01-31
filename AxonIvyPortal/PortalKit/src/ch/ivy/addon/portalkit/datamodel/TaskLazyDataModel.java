@@ -87,7 +87,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
         inProgressFilter = new TaskInProgressByOthersFilter();
       }
     }
-    setInvolvedApplications();
   }
 
   public TaskLazyDataModel() {
@@ -199,6 +198,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   protected void initializedDataModel(TaskSearchCriteria criteria) {
     criteria.setInvolvedUsername(Ivy.session().getSessionUserName());
+    setInvolvedApplications();
     data.clear();
     buildQueryToSearchCriteria();
     setRowCount(getTaskCount(criteria));

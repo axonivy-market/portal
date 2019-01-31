@@ -73,7 +73,6 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     buildCriteria();
     setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
     selectedFilterData = UserUtils.getSessionSelectedCaseFilterSetAttribute();
-    setInvolvedApplications();
   }
 
   @Override
@@ -294,6 +293,8 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   }
 
   private void initializedDataModel() {
+    criteria.setInvolvedUsername(Ivy.session().getSessionUserName());
+    setInvolvedApplications();
     data.clear();
     buildQueryToSearchCriteria();
     setRowCount(getCaseCount(criteria));
@@ -307,7 +308,6 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   private void buildCriteria() {
     criteria = new CaseSearchCriteria();
-    criteria.setInvolvedUsername(Ivy.session().getSessionUserName());
     criteria.setBusinessCase(true);
     criteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
     criteria.setSortField(CaseSortField.ID.toString());
