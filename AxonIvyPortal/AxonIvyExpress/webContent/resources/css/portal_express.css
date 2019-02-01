@@ -5,17 +5,21 @@
 }
 
 .show-default-ui-icon {
-  display: inline-flex;
-  margin-left: -17%;
-  transform: translateY(-50%);
   color: black !important;
   font-size: 1.5rem;
+  padding-left: 10px;
 }
 
-@media (max-width: 1365px) {
-  .show-default-ui-icon {
-    margin-left: -28%;
-  }
+.user-interface-panel{
+	width: 50%;
+	border: none;
+}
+
+.ui-panelgrid-odd .process-property-input-col .user-interface-panel .option-user-interface {
+	width: 50%;
+	border: none;
+	text-align:left;
+	padding-left: 2px;
 }
 
 .process-property-container .ui-panelgrid-cell:not(.process-property-input-col) {
@@ -38,7 +42,8 @@
     padding-right: 20px;
   }
 
-  .process-property-input-col .radio-group {
+  .process-property-input-col .radio-group,
+  .user-interface-panel {
     width: 100%;
   }
 }
