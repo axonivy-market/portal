@@ -68,7 +68,7 @@
                   priority="#{task.priority}" dataModel="#{taskView.dataModel}" />
                 <div class="task-start-info">
                   <ic:ch.ivy.addon.portalkit.component.task.column.TaskName id="task-name-component" task="#{task}" dataModel="#{taskView.dataModel}"
-                    isSelected="#{taskView.taskId eq task.getId()}" />
+                    isSelected="#{taskView.taskId eq task.getId()}" componentToUpdate="#{p:component('task-note')}" />
                 </div>
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible id="task-responsible-component" dataModel="#{taskView.dataModel}"
                   userName="#{task.getActivatorName()}" fullName="#{task.getActivator().getDisplayName()}" styleClass="activatior-column #{taskView.dataModel.isAutoHideColumns()? 'hidden-sm':''}" />
