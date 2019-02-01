@@ -443,10 +443,10 @@
 							<code>TaskLazyDataModel dataModel = new TaskLazyDataModel();</code>
 						</para>
 						<para>
-							<code>dataModel.setIgnoreInvolvedUser(true);</code>
+							<code>dataModel.setAdminQuery(true);</code>
 						</para>
 						<para>
-							<code>dataModel.setSortType(ch.ivy.addon.portalkit.enums.SortType.BY_PRIORITY);</code>
+							<code>dataModel.setSortField(ch.ivy.addon.portalkit.enums.TaskSortField.PRIORITY.toString(), true);</code>
 						</para>
 						<para>
 							<code/>
