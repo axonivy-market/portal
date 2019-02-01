@@ -1178,7 +1178,9 @@ Bk7 f24 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk7 f24 actionTable 'out=in;
 ' #txt
-Bk7 f24 actionCode 'in.currentTask.subject = ivy.cms.co("/Dialogs/Tasks/FinalReview/TaskName");' #txt
+Bk7 f24 actionCode 'ivy.session.setContentLocale(ivy.case.creatorUser.getEMailLanguage());
+ivy.session.setFormattingLocale(ivy.case.creatorUser.getEMailLanguage());
+in.currentTask.subject = ivy.cms.co("/Dialogs/Tasks/FinalReview/TaskName");' #txt
 Bk7 f24 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk7 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
