@@ -111,11 +111,13 @@ Ty0 f17 actionDecl 'ch.ivy.addon.portal.generic.TaskNoteHistoryData out;
 ' #txt
 Ty0 f17 actionTable 'out=in;
 ' #txt
-Ty0 f17 actionCode 'import ch.ivy.addon.portalkit.util.CaseUtils;
+Ty0 f17 actionCode 'import ch.ivyteam.ivy.workflow.query.TaskQuery;
+import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
-out.task = ivy.wf.findTask(in.taskId);
+out.task = ivy.wf.getGlobalContext().getTaskQueryExecutor().getFirstResult(TaskQuery.create().where().taskId().isEqual(in.taskId)) as ITask;
 ICase iCase = out.task.getCase().getBusinessCase();
 GlobalSettingService globalSettingService = new GlobalSettingService();
 boolean excludeTechnicalHistory = globalSettingService.findHideSystemTasksFromHistorySettingValue();

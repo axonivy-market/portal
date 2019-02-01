@@ -101,6 +101,7 @@ Ts0 f7 actionTable 'out=in;
 Ts0 f7 actionCode 'import java.util.Arrays;
 
 out.task.getCase().createNote(ivy.session, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/setNameNote", Arrays.asList(ivy.session.getSessionUser().getDisplayName(), in.oldName, in.task.getName())));' #txt
+Ts0 f7 security system #txt
 Ts0 f7 type ch.ivy.addon.portalkit.component.task.column.TaskName.TaskNameData #txt
 Ts0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
