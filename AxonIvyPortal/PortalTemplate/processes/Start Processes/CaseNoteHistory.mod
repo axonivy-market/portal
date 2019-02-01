@@ -56,14 +56,16 @@ Cy0 f17 actionDecl 'ch.ivy.addon.portal.generic.CaseNoteHistoryData out;
 ' #txt
 Cy0 f17 actionTable 'out=in;
 ' #txt
-Cy0 f17 actionCode 'import ch.ivy.addon.portalkit.service.GlobalSettingService;
+Cy0 f17 actionCode 'import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import java.util.ArrayList;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivy.addon.portalkit.service.HistoryService;
 
 List<ITask> finishedTasks = new ArrayList();
-in.internalCase = ivy.wf.findCase(in.caseId);
+in.internalCase = ivy.wf.getGlobalContext().getCaseQueryExecutor().getFirstResult(CaseQuery.create().where().caseId().isEqual(in.caseId)) as ICase;
 for(ITask task : in.internalCase.getTasks()) {
 	if(task.getState() == TaskState.DONE 
 	|| task.getState() == TaskState.DESTROYED 
