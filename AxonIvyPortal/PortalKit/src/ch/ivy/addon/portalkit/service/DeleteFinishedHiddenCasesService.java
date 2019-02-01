@@ -26,6 +26,9 @@ public class DeleteFinishedHiddenCasesService {
 
     boolean shouldDeleteAllCases = Boolean.parseBoolean(Ivy.var().get(DELETE_ALL_FINISHED_HIDDEN_CASES));
     IProcessModelVersion portalKitPMV = findPortalPMVByLibraryId(Ivy.wf().getApplication(), PortalLibrary.PORTAL_KIT.getValue());
+    if (portalKitPMV == null) {
+    	return ;
+    }
     CaseQuery caseQuery = CaseQuery.create();
     List<CaseState> filteredStates = Arrays.asList(CaseState.DONE, CaseState.DESTROYED);
     CaseQuery stateFieldQuery = CaseQuery.create();
@@ -62,9 +65,9 @@ public class DeleteFinishedHiddenCasesService {
     Ivy.log().info("***Job for deleting finished hidden cases (deleted " + numOfDeletedCases + " cases) has ended at: " + currentDate);
   }
   
-  private IProcessModelVersion findPortalPMVByLibraryId(IApplication app, String libraryId){
+  private IProcessModelVersion findPortalPMVByLibraryId(IApplication app, String libraryId) {
     try {
-      ServerFactory.getServer().getSecurityManager().executeAsSystem(()->{
+      return ServerFactory.getServer().getSecurityManager().executeAsSystem(()->{
         List<IProcessModel> pms = app.getProcessModels();
         for (IProcessModel pm : pms) {
           IProcessModelVersion pmv = pm.getReleasedProcessModelVersion();
@@ -76,8 +79,8 @@ public class DeleteFinishedHiddenCasesService {
       });
     } catch (Exception e) {
       Ivy.log().error("Error find portal library id: {0}", e, libraryId);
+      return null;
     }
-    return null;
   }
 
   private boolean isPortalPMV(IProcessModelVersion pmv, String libraryId) {
