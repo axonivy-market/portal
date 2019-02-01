@@ -66,18 +66,18 @@ public final class AbsenceAndSubstituteUtils {
   /**
    * Check validation if from bigger than till
    * 
-   * @param remoteAbsence remote absence need to check
+   * @param ivyAbsence absence need to check
    * @return boolean : true if from bigger than till
    */
-  public static boolean checkFromBiggerThanTill(IvyAbsence remoteAbsence) {
-    if (remoteAbsence == null || remoteAbsence.getFrom() == null || remoteAbsence.getUntil() == null) {
+  public static boolean checkFromBiggerThanTill(IvyAbsence ivyAbsence) {
+    if (ivyAbsence == null || ivyAbsence.getFrom() == null || ivyAbsence.getUntil() == null) {
       return false;
     }
 
-    Date startDate = setTimeToMidnight(remoteAbsence.getFrom());
-    Date stopDate = setTimeToMidnight(remoteAbsence.getUntil());
+    Date startDate = setTimeToMidnight(ivyAbsence.getFrom());
+    Date stopDate = setTimeToMidnight(ivyAbsence.getUntil());
 
-    if (remoteAbsence.getUntil() != null && remoteAbsence.getFrom() != null && (startDate.compareTo(stopDate) > 0)) {
+    if (ivyAbsence.getUntil() != null && ivyAbsence.getFrom() != null && (startDate.compareTo(stopDate) > 0)) {
       FacesContext.getCurrentInstance().addMessage(null,
           new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co(
               "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/fromBiggerThanTill"), ""));
@@ -90,15 +90,15 @@ public final class AbsenceAndSubstituteUtils {
   /**
    * Remove the absence in the past
    * 
-   * @param absences list of remote absence to remove the old in the past
+   * @param absences list of absence to remove the old in the past
    * @return List absences which already remove absence in the past
    */
   public static List<IvyAbsence> removeAbsenceHasTillInThePast(List<IvyAbsence> absences) {
     List<IvyAbsence> result = new ArrayList<>();
-    for (IvyAbsence remoteAbsence : absences) {
-      boolean tillInThePast = isInThePast(remoteAbsence);
+    for (IvyAbsence absence : absences) {
+      boolean tillInThePast = isInThePast(absence);
       if (!tillInThePast) {
-        result.add(remoteAbsence);
+        result.add(absence);
       }
     }
     return result;
