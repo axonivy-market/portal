@@ -127,11 +127,11 @@ public class UserUtils {
   }
 
   /**
-   * Filter list of remote security member by name based on provided query
+   * Filter list of security member by name based on provided query
    * 
    * @param securityMembers security members need to be filtered
    * @param query provided query
-   * @return Filtered and sorted list of remote security member
+   * @return Filtered and sorted list of security member
    */
   public static java.util.List<ISecurityMember> filterSecurityMembers(java.util.List<ISecurityMember> securityMembers, String query) {
     if (StringUtils.isEmpty(query)) {
