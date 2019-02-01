@@ -83,7 +83,7 @@ Ty0 f11 startMethod start(java.util.List<ch.ivyteam.ivy.workflow.INote>,String) 
 Ty0 f11 type ch.ivy.addon.portal.generic.TaskNoteHistoryData #txt
 Ty0 f11 requestActionDecl '<java.util.List<ch.ivyteam.ivy.workflow.INote> notes, String exportedFileName> param;' #txt
 Ty0 f11 requestMappingAction 'param.notes=in.notes;
-param.exportedFileName=ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/noteHistory/taskExportedFileNamePrefix", java.util.Arrays.asList(in.task.name));
+param.exportedFileName=ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/noteHistory/taskExportedFileNamePrefix", java.util.Arrays.asList(ch.ivy.addon.portalkit.util.PermissionUtils.getTaskName(in.task)));
 ' #txt
 Ty0 f11 responseActionDecl 'ch.ivy.addon.portal.generic.TaskNoteHistoryData out;
 ' #txt

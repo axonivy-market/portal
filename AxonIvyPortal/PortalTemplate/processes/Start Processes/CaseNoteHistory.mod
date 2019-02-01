@@ -105,7 +105,7 @@ Cy0 f20 startMethod start(java.util.List<ch.ivy.addon.portalkit.bo.History>,Stri
 Cy0 f20 type ch.ivy.addon.portal.generic.CaseNoteHistoryData #txt
 Cy0 f20 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.bo.History> histories, String exportedFileName, ch.ivyteam.ivy.workflow.ICase ivyCase> param;' #txt
 Cy0 f20 requestMappingAction 'param.histories=in.histories;
-param.exportedFileName=ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/noteHistory/caseExportedFileNamePrefix", java.util.Arrays.asList(in.internalCase.name));
+param.exportedFileName=ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/noteHistory/caseExportedFileNamePrefix", java.util.Arrays.asList(ch.ivy.addon.portalkit.util.PermissionUtils.getCaseName(in.internalCase)));
 param.ivyCase=in.internalCase;
 ' #txt
 Cy0 f20 responseActionDecl 'ch.ivy.addon.portal.generic.CaseNoteHistoryData out;

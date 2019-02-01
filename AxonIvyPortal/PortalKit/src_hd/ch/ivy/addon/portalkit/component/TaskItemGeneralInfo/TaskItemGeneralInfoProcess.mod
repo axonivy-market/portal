@@ -133,6 +133,7 @@ IUser user = ivy.session.getSessionUser();
 String fullName = user.getFullName();
 String userName = StringUtils.substring(user.getMemberName(), 1);
 in.changeDeadlineNoteContent = service.prepareChangeDeadlineNoteContent(fullName, userName, in.task.expiryTimestamp, in.task.getId());' #txt
+Ts0 f13 security system #txt
 Ts0 f13 type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
 Ts0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -150,6 +151,7 @@ Ts0 f15 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskIte
 Ts0 f15 actionTable 'out=in;
 ' #txt
 Ts0 f15 actionCode 'in.task.getCase().getBusinessCase().createNote(ivy.session, in.changeDeadlineNoteContent);' #txt
+Ts0 f15 security system #txt
 Ts0 f15 type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
 Ts0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
