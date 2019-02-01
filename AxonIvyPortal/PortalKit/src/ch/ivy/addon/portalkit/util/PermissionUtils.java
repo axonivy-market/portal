@@ -15,6 +15,7 @@ import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.ITask;
 
 public class PermissionUtils {
   private static final String ADMIN_ROLE = "AXONIVY_PORTAL_ADMIN";
@@ -165,5 +166,9 @@ public class PermissionUtils {
   
   public static String getCaseName(ICase iCase) {
     return IvyExecutor.executeAsSystem(() -> iCase.getName());
+  }
+  
+  public static String getTaskName(ITask task) {
+    return IvyExecutor.executeAsSystem(() -> task.getName());
   }
 }
