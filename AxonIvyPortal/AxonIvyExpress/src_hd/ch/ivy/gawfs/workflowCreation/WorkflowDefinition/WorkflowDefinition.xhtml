@@ -43,7 +43,7 @@
             </p:row>
 
             <!-- UI SETTING -->
-            <p:row>
+			 <p:row>
               <p:column styleClass="process-property-label-col">
                 <p:outputLabel
                   value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/UserInterface')}:"
@@ -51,20 +51,26 @@
               </p:column>
               <p:column styleClass="process-property-input-col">
                 <p:selectOneRadio id="user-interface" styleClass="radio-group"
-                  value="#{data.data.isUseDefaultUI}" required="true"
+                  value="#{data.data.isUseDefaultUI}" required="true" layout="custom"
                   requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/UserInterface')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
-                  <f:selectItem itemValue="false"
-                    itemLabel="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/CreateOwn')}" />
-                  <f:selectItem itemValue="true"
-                    itemLabel="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/UseDefault')}">
-                  </f:selectItem>
+                  <f:selectItem itemValue="false"/>
+                  <f:selectItem itemValue="true" />
                   <p:ajax onstart="PF('deleteAllDefinedTasksWarning').show();" />
                 </p:selectOneRadio>
-
-                <p:commandLink id="show-default-ui-icon" styleClass="show-default-ui-icon fa fa-info-circle"
-                  oncomplete="PF('default-template-dialog').show();" />
+                <p:panelGrid id="user-interface-panel" styleClass="user-interface-panel">
+                    <p:column styleClass="option-user-interface"	>
+                    	<p:radioButton id="own-option" for="user-interface" itemIndex="0" />
+	                	<h:outputLabel id="own-option-label" for="own-option" value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/CreateOwn')}" />
+                    </p:column>
+                    <p:column styleClass="option-user-interface">
+                    	<p:radioButton id="default-option" for="user-interface" itemIndex="1"/>
+	                	<h:outputLabel id="default-option-label" for="own-option" value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/UseDefault')}" />
+		                <p:commandLink id="show-default-ui-icon" styleClass="show-default-ui-icon fa fa-info-circle"
+		                  oncomplete="PF('default-template-dialog').show();" />
+                    </p:column>
+                </p:panelGrid>
               </p:column>
-            </p:row>
+			</p:row>
 
             <!-- PROCESS NAME -->
             <p:row>
@@ -311,6 +317,9 @@
     <ui:define name="css">
       <h:outputStylesheet library="css" name="portal_express.css" />
     </ui:define>
+    <script>
+
+    </script>
   </ui:composition>
 </h:body>
 </html>
