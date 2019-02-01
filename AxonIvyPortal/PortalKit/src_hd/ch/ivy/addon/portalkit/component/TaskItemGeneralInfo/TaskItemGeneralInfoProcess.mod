@@ -77,7 +77,7 @@ Ts0 f9 processCall 'Functional Processes/Navigator:viewCase(String,ch.ivy.addon.
 Ts0 f9 doCall true #txt
 Ts0 f9 requestActionDecl '<java.lang.String caseName,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;
 ' #txt
-Ts0 f9 requestMappingAction 'param.caseName=in.selectedCase.name;
+Ts0 f9 requestMappingAction 'param.caseName=ch.ivy.addon.portalkit.util.PermissionUtils.getCaseName(in.selectedCase);
 param.caseId=in.globalCaseId;
 ' #txt
 Ts0 f9 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData out;
