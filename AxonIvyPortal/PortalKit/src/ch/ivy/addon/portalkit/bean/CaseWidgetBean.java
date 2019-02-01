@@ -16,6 +16,7 @@ import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.NumberUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 
 @ManagedBean
@@ -45,6 +46,7 @@ public class CaseWidgetBean implements Serializable {
   }
 
   public void setExpandedCaseId(Long expandedCaseId, boolean alreadyExpanded) {
+    Ivy.log().error("aaaa {0}", expandedCaseId);
     if (alreadyExpanded) {
       this.expandedCaseId = 0L;
     } else {
