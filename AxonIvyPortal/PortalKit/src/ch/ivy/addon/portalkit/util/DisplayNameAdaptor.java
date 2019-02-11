@@ -26,14 +26,13 @@ public class DisplayNameAdaptor {
 		return displayNameConvertor;
 	}
 
-  @SuppressWarnings("unused")
   private boolean isValidJson(String jsonString) {
 		try {
 			new JSONObject(jsonString);
-		} catch (JSONException e) { //NOSONAR
+		} catch (JSONException e) { 
 			try {
 				new JSONArray(jsonString);
-			} catch(JSONException e1) { //NOSONAR
+			} catch(JSONException e1) { 
 				return false;
 			}
 		}

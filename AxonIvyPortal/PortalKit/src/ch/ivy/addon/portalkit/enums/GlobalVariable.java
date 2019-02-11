@@ -13,7 +13,7 @@ public enum GlobalVariable {
   HIDE_LOGOUT_BUTTON(Boolean.FALSE.toString(), "hideLogoutButtonNote"),
   SHOW_ENVIRONMENT_INFO(Boolean.FALSE.toString(), "showEnvironmentInfoNote"),
   SHOW_TASK_BUTTON_LABELS(Boolean.FALSE.toString(), "showTaskButtonLabelsNote"),
-  HIDE_CHANGE_PASSWORD_BUTTON(Boolean.FALSE.toString(), "hideChangePasswordButtonNote"), //NOSONAR
+  HIDE_CHANGE_PASSWORD_BUTTON(Boolean.FALSE.toString(), "hideChangePasswordButtonNote"), 
   HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE(Boolean.FALSE.toString(), "hideUploadDocumentForDoneCaseNote"),
   ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT(Boolean.FALSE.toString(), "enableScriptCheckingForUploadedDocumentNote"),
   HIDE_TIME(Boolean.FALSE.toString(), "hideTimeNote"),
