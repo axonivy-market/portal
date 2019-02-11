@@ -12,8 +12,8 @@ public class PortalIvyDataException extends Exception {
 
   private static final long serialVersionUID = -8558165268719107465L;
   
-  private String appName; // NOSONAR
-  private String userText; // NOSONAR
+  private String appName; 
+  private String userText; 
   
   public PortalIvyDataException(String userText) {
     this.userText = userText;

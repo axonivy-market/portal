@@ -32,7 +32,7 @@ public class ProcessService implements IProcessService {
 
   @Override
   public IvyProcessResultDTO findProcesses(ProcessSearchCriteria criteria) {
-    return IvyExecutor.executeAsSystem(() -> { // NOSONAR
+    return IvyExecutor.executeAsSystem(() -> { 
       IvyProcessResultDTO result = new IvyProcessResultDTO();
       if (criteria == null || CollectionUtils.isEmpty(criteria.getApps())) {
         return result;

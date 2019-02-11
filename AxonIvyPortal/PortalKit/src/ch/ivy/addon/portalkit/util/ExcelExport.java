@@ -125,7 +125,7 @@ public final class ExcelExport
     workbook.write(outputStream);
   }
 
-  private void addCell(int currentColumn, Object cellContent) //NOSONAR
+  private void addCell(int currentColumn, Object cellContent)
   {
     Object usedCellContent;
     usedCellContent = cellContent;

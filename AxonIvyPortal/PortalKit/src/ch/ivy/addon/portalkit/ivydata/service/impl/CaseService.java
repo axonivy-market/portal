@@ -198,7 +198,7 @@ public class CaseService implements ICaseService {
   
   @Override
   public IvyCaseResultDTO findValuesOfCustomVarChar(CaseCustomVarCharSearchCriteria criteria) {
-    return IvyExecutor.executeAsSystem(() -> { // NOSONAR
+    return IvyExecutor.executeAsSystem(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       List<String> customVarChars = new ArrayList<>();
       PortalCaseDao portalCaseDao = new PortalCaseDao();
