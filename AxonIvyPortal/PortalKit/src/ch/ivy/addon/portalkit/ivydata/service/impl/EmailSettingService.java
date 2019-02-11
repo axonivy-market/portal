@@ -37,7 +37,7 @@ public class EmailSettingService implements IEmailSettingService {
   
   @Override
   public IvyEmailSettingResultDTO findEmailSetting(String username, List<String> apps) {
-    return IvyExecutor.executeAsSystem(() -> { // NOSONAR
+    return IvyExecutor.executeAsSystem(() -> { 
       IvyEmailSettingResultDTO result = new IvyEmailSettingResultDTO();
       if (CollectionUtils.isEmpty(apps)) {
         return result;
@@ -106,7 +106,7 @@ public class EmailSettingService implements IEmailSettingService {
 
   @Override
   public IvyEmailSettingResultDTO saveEmailSetting(String username, List<IvyEmailSetting> emailSettings) {
-    return IvyExecutor.executeAsSystem(() -> { // NOSONAR
+    return IvyExecutor.executeAsSystem(() -> { 
       IvyEmailSettingResultDTO rs = new IvyEmailSettingResultDTO();
       List<PortalIvyDataException> errors = new ArrayList<>();
       if (CollectionUtils.isNotEmpty(emailSettings)) {
@@ -119,7 +119,7 @@ public class EmailSettingService implements IEmailSettingService {
             userEmailSettings.setNotificationDisabled(false);
             userEmailSettings.setSendDailyTaskSummary(EnumSet.copyOf(emailSetting.getEmailSendDailyTaskSummary()));
             userEmailSettings.setSendOnNewWorkTasks(emailSetting.isEmailSendOnNewWorkTasks());
-            if (emailSetting.isCustomMailEnabled()) { // NOSONAR
+            if (emailSetting.isCustomMailEnabled()) { 
               user.setProperty(ENABLE_CUSTOM_MAIL, String.valueOf(emailSetting.isCustomMailEnabled()));
             } else {
               user.removeProperty(ENABLE_CUSTOM_MAIL);

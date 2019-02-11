@@ -25,7 +25,7 @@ public class PasswordService implements IPasswordService {
 
   @Override
   public IvyPasswordResultDTO changePassword(String username, String newPassword, List<String> apps) {
-    return IvyExecutor.executeAsSystem(() -> { // NOSONAR
+    return IvyExecutor.executeAsSystem(() -> { 
       IvyPasswordResultDTO result = new IvyPasswordResultDTO();
       if (CollectionUtils.isEmpty(apps)) {
         return result;

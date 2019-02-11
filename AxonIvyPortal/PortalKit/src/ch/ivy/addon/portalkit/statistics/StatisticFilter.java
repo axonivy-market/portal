@@ -298,7 +298,7 @@ public class StatisticFilter implements Cloneable {
   }
 
   @Override
-  public Object clone() throws CloneNotSupportedException { // NOSONAR
+  public Object clone() throws CloneNotSupportedException { 
     return super.clone();
   }
 

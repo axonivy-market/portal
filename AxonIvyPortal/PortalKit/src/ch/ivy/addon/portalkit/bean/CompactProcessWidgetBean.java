@@ -172,11 +172,11 @@ private static final long serialVersionUID = -5889375917550618261L;
     return defaultProcesses.stream().anyMatch(userProcess -> StringUtils.containsIgnoreCase(userProcess.getLink(), processToAdd.getLink()));
   }
 
-  private boolean isUserProcess(ExpressProcess workflow) { // NOSONAR
+  private boolean isUserProcess(ExpressProcess workflow) { 
     return userProcesses.stream().anyMatch(userProcess -> StringUtils.containsIgnoreCase(userProcess.getLink(), generateWorkflowStartLink(workflow)));
   }
 
-  private boolean isDefaultUserProcess(ExpressProcess workflow) { // NOSONAR
+  private boolean isDefaultUserProcess(ExpressProcess workflow) { 
     return defaultProcesses.stream().anyMatch(userProcess -> StringUtils.containsIgnoreCase(userProcess.getLink(), generateWorkflowStartLink(workflow)));
   }
 
