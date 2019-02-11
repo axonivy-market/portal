@@ -42,7 +42,7 @@ public class SubstituteService implements ISubstituteService {
   
   @Override
   public IvySubstituteResultDTO findSubstitutes(String username, List<String> apps) {
-    return IvyExecutor.executeAsSystem(() -> { // NOSONAR
+    return IvyExecutor.executeAsSystem(() -> { 
       IvySubstituteResultDTO result = new IvySubstituteResultDTO();
       if (CollectionUtils.isEmpty(apps)) {
         return result;
@@ -124,7 +124,7 @@ public class SubstituteService implements ISubstituteService {
 
   @Override
   public IvySubstituteResultDTO saveSubstitutes(String username, Map<IvyApplication, List<IvySubstitute>> ivySubstitutesByApp) {
-    return IvyExecutor.executeAsSystem(() -> { // NOSONAR
+    return IvyExecutor.executeAsSystem(() -> { 
       IvySubstituteResultDTO result = new IvySubstituteResultDTO();
       if (ivySubstitutesByApp == null || ivySubstitutesByApp.isEmpty()) {
         return result;

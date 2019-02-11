@@ -56,7 +56,7 @@ public class TaskAnalysisExporter {
     return headers;
   }
   
-  private String getColumnName(TaskAndCaseAnalysisColumn column) { //NOSONAR
+  private String getColumnName(TaskAndCaseAnalysisColumn column) { 
     switch (column) {
       case CASE_NAME:
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseName");
@@ -97,7 +97,7 @@ public class TaskAnalysisExporter {
     }
   }
 
-  private String getColumnValue(TaskAndCaseAnalysisColumn column, ITask task) { //NOSONAR
+  private String getColumnValue(TaskAndCaseAnalysisColumn column, ITask task) { 
     switch (column) {
       case CASE_NAME:
         return task.getCase().getName();
