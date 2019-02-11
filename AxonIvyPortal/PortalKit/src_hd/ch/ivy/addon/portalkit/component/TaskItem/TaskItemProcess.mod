@@ -484,6 +484,7 @@ Ts0 f7 actionCode 'String newResponsibleName = in.delegatedSecurityMember.getDis
 String oldResponsibleName = in.task.getActivator().getDisplayName();
 
 in.delegateComment = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateComment", [in.task.getId(), oldResponsibleName, newResponsibleName]);' #txt
+Ts0 f7 security system #txt
 Ts0 f7 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -772,6 +773,7 @@ Ts0 f15 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
 Ts0 f15 actionTable 'out=in;
 ' #txt
 Ts0 f15 actionCode 'in.task.getCase().getBusinessCase().createNote(ivy.session, in.delegateComment);' #txt
+Ts0 f15 security system #txt
 Ts0 f15 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
