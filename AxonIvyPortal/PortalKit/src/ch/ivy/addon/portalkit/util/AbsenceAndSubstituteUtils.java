@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -59,7 +60,7 @@ public final class AbsenceAndSubstituteUtils {
     String nodeName = ivySubstitute.getSubstitionRoleDisplayName();
     String name = StringUtils.isNotBlank(nodeName) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/taskForRole") + nodeName : Ivy.cms().co(
         "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTask");
-    List<IUser> usersExceptSubstitutedUser = users.stream().filter(user -> !StringUtils.equals(user.getName(), substitutedUser.getName())).collect(Collectors.toList());
+    List<IUser> usersExceptSubstitutedUser = Optional.ofNullable(users).orElse(new ArrayList<>()).stream().filter(user -> !StringUtils.equals(user.getName(), substitutedUser.getName())).collect(Collectors.toList());
     return new DefaultTreeNode(new SubstituteNode(name, ivySubstitute, usersExceptSubstitutedUser, true), appNode);
   }
 
