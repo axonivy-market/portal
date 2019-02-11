@@ -428,8 +428,9 @@ public class UAgentInfo {
     // Most devices use 'Windows CE', but some report 'iemobile'
     // and some older ones report as 'PIE' for Pocket IE.
     // We also look for instances of HTC and Windows for many of their WinMo devices.
-    if (userAgent.indexOf(DEVICE_WINMOB) != -1 || userAgent.indexOf(DEVICE_WINMOB) != -1 
-        || userAgent.indexOf(DEVICE_IE_MOB) != -1 || userAgent.indexOf(ENGINE_PIE) != -1
+    if (userAgent.indexOf(DEVICE_WINMOB) != -1 
+        || userAgent.indexOf(DEVICE_IE_MOB) != -1 
+        || userAgent.indexOf(ENGINE_PIE) != -1
         || (userAgent.indexOf(MANU_HTC) != -1 && userAgent.indexOf(DEVICE_WINDOWS) != -1)
         || (detectWapWml() && userAgent.indexOf(DEVICE_WINDOWS) != -1)) {
       return true;

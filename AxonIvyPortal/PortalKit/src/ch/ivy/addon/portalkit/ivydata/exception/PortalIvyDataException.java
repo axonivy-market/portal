@@ -12,11 +12,12 @@ public class PortalIvyDataException extends Exception {
 
   private static final long serialVersionUID = -8558165268719107465L;
   
-  private String appName; 
-  private String userText; 
+  private final String appName; 
+  private final String userText; 
   
   public PortalIvyDataException(String userText) {
     this.userText = userText;
+    this.appName = StringUtils.EMPTY;
   }
   
   public PortalIvyDataException(String appName, String userText) {
@@ -26,7 +27,7 @@ public class PortalIvyDataException extends Exception {
   
   public String getAppName() {
     if (StringUtils.isBlank(appName)) {
-      appName = Optional.ofNullable(Ivy.request())
+      return Optional.ofNullable(Ivy.request())
           .map(IProcessModelVersionRequest::getApplication)
           .map(IApplication::getName)
           .orElse(StringUtils.EMPTY);
