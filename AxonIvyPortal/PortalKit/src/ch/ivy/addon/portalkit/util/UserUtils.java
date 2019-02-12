@@ -258,4 +258,10 @@ public class UserUtils {
       return user.getName();
     });
   }
+  
+  public static String getFullName(IUser user) {
+    return IvyExecutor.executeAsSystem(() -> {
+      return user.getFullName();
+    });
+  }
 }
