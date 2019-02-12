@@ -46,11 +46,11 @@ public class Helper {
       boolean b1 = m1.isUser();
       boolean b2 = m2.isUser();
 
-      if (b1 == !b2) {
-        return 1;
-      }
-      if (!b1 == b2) {
+      if (b1 && !b2) {
         return -1;
+      }
+      if (!b1 && b2) {
+        return 1;
       }
       try {
         return (m1.getDisplayName().toLowerCase().compareTo(m2.getDisplayName().toLowerCase()));
@@ -67,11 +67,11 @@ public class Helper {
       boolean b1 = m1.isUser();
       boolean b2 = m2.isUser();
 
-      if (b1 == !b2) {
-        return 1;
+      if (b1 && !b2) {
+          return -1;
       }
-      if (!b1 == b2) {
-        return -1;
+      if (!b1 && b2) {
+        return 1;
       }
       return 0;
     });
