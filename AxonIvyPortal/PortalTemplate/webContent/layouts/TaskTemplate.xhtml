@@ -55,7 +55,7 @@
             styleClass="case-action-link" global="false"
             disabled="#{isSideStepDisabled}">
             <span class="action-icon tmi-ellipsis-h side-step-icon" 
-              title="#{isSideStepDisabled ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/noSideSteps') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/sideSteps')}" />
+              title="#{ivy.cms.co(isSideStepDisabled ? '/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps' : '/ch.ivy.addon.portalkit.ui.jsf/caseDetails/sideSteps' )}" />
           </p:commandLink>
         </div>
 
@@ -110,11 +110,13 @@
                     </h:panelGroup>
                   </h:panelGroup>
 
-                  <ic:ch.ivy.addon.portalkit.component.CaseItem caseItem="#{case}" id="case-item"
-                    initialActive="#{true}"
+                  <ic:ch.ivy.addon.portalkit.component.CaseItem 
+                  	case="#{case}" 
+                  	id="case-item" 
+                    initialActive="true"
                     itemStyleClass="case-even-row"
                     alwaysShowDetails="true"
-                    canDestroyCase="#{false}">
+                    canDestroyCase="false">
 
                     <!-- CASE HEADER -->
                     <f:facet name="caseHeader">
