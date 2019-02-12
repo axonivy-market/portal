@@ -70,7 +70,6 @@ Is0 @PushWFArc f67 '' #zField
 Is0 @GridStep f45 '' #zField
 Is0 @PushWFArc f44 '' #zField
 Is0 @PushWFArc f46 '' #zField
-Is0 @PushWFArc f65 '' #zField
 Is0 @StartRequest f61 '' #zField
 Is0 @StartRequest f51 '' #zField
 Is0 @StartRequest f52 '' #zField
@@ -80,6 +79,19 @@ Is0 @PushWFArc f59 '' #zField
 Is0 @PushWFArc f56 '' #zField
 Is0 @PushWFArc f55 '' #zField
 Is0 @GridStep f54 '' #zField
+Is0 @PushWFArc f65 '' #zField
+Is0 @StartRequest f68 '' #zField
+Is0 @GridStep f69 '' #zField
+Is0 @StartRequest f70 '' #zField
+Is0 @GridStep f71 '' #zField
+Is0 @PushWFArc f74 '' #zField
+Is0 @PushWFArc f75 '' #zField
+Is0 @RichDialog f76 '' #zField
+Is0 @PushWFArc f77 '' #zField
+Is0 @PushWFArc f72 '' #zField
+Is0 @RichDialog f78 '' #zField
+Is0 @PushWFArc f79 '' #zField
+Is0 @PushWFArc f73 '' #zField
 >Proto Is0 Is0 GrantPermissions #zField
 Is0 f0 outLink grantAllPermissionsToCurrentUser.ivp #txt
 Is0 f0 type portalKit_test.GrantPermissionsData #txt
@@ -349,17 +361,17 @@ Is0 f21 @|StartRequestIcon #fIcon
 Is0 f24 expr out #txt
 Is0 f24 92 594 157 594 #arcP
 Is0 f7 type portalKit_test.GrantPermissionsData #txt
-Is0 f7 385 513 30 30 16 0 #rect
+Is0 f7 393 513 30 30 16 0 #rect
 Is0 f7 @|EndIcon #fIcon
 Is0 f9 expr out #txt
-Is0 f9 185 464 400 513 #arcP
-Is0 f9 1 400 464 #addKink
+Is0 f9 185 464 408 513 #arcP
+Is0 f9 1 408 464 #addKink
 Is0 f9 0 0.6438292660099184 0 0 #arcLabel
 Is0 f16 expr out #txt
-Is0 f16 193 527 385 527 #arcP
+Is0 f16 193 527 393 527 #arcP
 Is0 f18 expr out #txt
-Is0 f18 193 594 400 543 #arcP
-Is0 f18 1 400 594 #addKink
+Is0 f18 193 594 408 543 #arcP
+Is0 f18 1 408 594 #addKink
 Is0 f18 0 0.6493809127148381 0 0 #arcLabel
 Is0 f22 actionDecl 'portalKit_test.GrantPermissionsData out;
 ' #txt
@@ -416,8 +428,8 @@ Is0 f23 @|StartRequestIcon #fIcon
 Is0 f25 expr out #txt
 Is0 f25 93 653 158 653 #arcP
 Is0 f26 expr out #txt
-Is0 f26 194 653 400 543 #arcP
-Is0 f26 1 400 653 #addKink
+Is0 f26 194 653 408 543 #arcP
+Is0 f26 1 408 653 #addKink
 Is0 f26 0 0.7956172575541481 0 0 #arcLabel
 Is0 f27 outLink grantDocumentOfInvolvedCaseWritePemission.ivp #txt
 Is0 f27 type portalKit_test.GrantPermissionsData #txt
@@ -492,8 +504,8 @@ Is0 f32 expr out #txt
 Is0 f32 95 704 156 704 #arcP
 Is0 f32 0 0.7960339943342776 0 0 #arcLabel
 Is0 f29 expr out #txt
-Is0 f29 196 704 400 543 #arcP
-Is0 f29 1 400 704 #addKink
+Is0 f29 196 704 408 543 #arcP
+Is0 f29 1 408 704 #addKink
 Is0 f29 0 0.7960339943342776 0 0 #arcLabel
 Is0 f33 actionDecl 'portalKit_test.GrantPermissionsData out;
 ' #txt
@@ -512,8 +524,8 @@ Is0 f34 expr out #txt
 Is0 f34 95 768 156 768 #arcP
 Is0 f34 0 0.8741317568482905 0 0 #arcLabel
 Is0 f30 expr out #txt
-Is0 f30 196 768 400 543 #arcP
-Is0 f30 1 400 768 #addKink
+Is0 f30 196 768 408 543 #arcP
+Is0 f30 1 408 768 #addKink
 Is0 f30 0 0.8741317568482905 0 0 #arcLabel
 Is0 f35 outLink grantOnlyDelegateOwnTasksPermission.ivp #txt
 Is0 f35 type portalKit_test.GrantPermissionsData #txt
@@ -566,8 +578,8 @@ Is0 f38 expr out #txt
 Is0 f38 79 848 156 848 #arcP
 Is0 f38 0 0.978319783197832 0 0 #arcLabel
 Is0 f36 expr out #txt
-Is0 f36 196 848 400 543 #arcP
-Is0 f36 1 400 848 #addKink
+Is0 f36 196 848 408 543 #arcP
+Is0 f36 1 408 848 #addKink
 Is0 f36 0 0.978319783197832 0 0 #arcLabel
 Is0 f39 outLink undoOnlyDelegateOwnTasksPermission.ivp #txt
 Is0 f39 type portalKit_test.GrantPermissionsData #txt
@@ -620,8 +632,8 @@ Is0 f42 expr out #txt
 Is0 f42 72 944 156 944 #arcP
 Is0 f42 0 0.08158561403068428 0 0 #arcLabel
 Is0 f40 expr out #txt
-Is0 f40 196 944 400 543 #arcP
-Is0 f40 1 400 944 #addKink
+Is0 f40 196 944 408 543 #arcP
+Is0 f40 1 408 944 #addKink
 Is0 f40 1 0.08158561403068428 0 0 #arcLabel
 Is0 f43 outLink denyPortalPermission.ivp #txt
 Is0 f43 type portalKit_test.GrantPermissionsData #txt
@@ -748,8 +760,8 @@ Is0 f49 @|StepIcon #fIcon
 Is0 f48 expr out #txt
 Is0 f48 63 1136 180 1136 #arcP
 Is0 f50 expr out #txt
-Is0 f50 220 1136 400 543 #arcP
-Is0 f50 1 400 1136 #addKink
+Is0 f50 220 1136 408 543 #arcP
+Is0 f50 1 408 1136 #addKink
 Is0 f50 1 0.33135304817177313 0 0 #arcLabel
 Is0 f53 actionDecl 'portalKit_test.GrantPermissionsData out;
 ' #txt
@@ -878,8 +890,8 @@ Is0 f63 @|StepIcon #fIcon
 Is0 f64 expr out #txt
 Is0 f64 63 1232 180 1232 #arcP
 Is0 f66 expr out #txt
-Is0 f66 220 1232 400 543 #arcP
-Is0 f66 1 400 1232 #addKink
+Is0 f66 220 1232 408 543 #arcP
+Is0 f66 1 408 1232 #addKink
 Is0 f66 1 0.39399293286219084 0 0 #arcLabel
 Is0 f62 actionDecl 'portalKit_test.GrantPermissionsData out;
 ' #txt
@@ -899,8 +911,8 @@ Is0 f62 type portalKit_test.GrantPermissionsData #txt
 Is0 f62 180 1284 40 24 0 -8 #rect
 Is0 f62 @|StepIcon #fIcon
 Is0 f67 expr out #txt
-Is0 f67 220 1296 400 543 #arcP
-Is0 f67 1 400 1296 #addKink
+Is0 f67 220 1296 408 543 #arcP
+Is0 f67 1 408 1296 #addKink
 Is0 f67 1 0.4014238773274918 0 0 #arcLabel
 Is0 f45 actionDecl 'portalKit_test.GrantPermissionsData out;
 ' #txt
@@ -970,11 +982,9 @@ Is0 f45 @|StepIcon #fIcon
 Is0 f44 expr out #txt
 Is0 f44 63 1040 180 1040 #arcP
 Is0 f46 expr out #txt
-Is0 f46 220 1040 400 543 #arcP
-Is0 f46 1 400 1040 #addKink
+Is0 f46 220 1040 408 543 #arcP
+Is0 f46 1 408 1040 #addKink
 Is0 f46 1 0.2992533122461412 0 0 #arcLabel
-Is0 f65 expr out #txt
-Is0 f65 63 1296 180 1296 #arcP
 Is0 f61 outLink grantSpecificPortalPermission.ivp #txt
 Is0 f61 type portalKit_test.GrantPermissionsData #txt
 Is0 f61 inParamDecl '<java.lang.String portalPermission> param;' #txt
@@ -1078,12 +1088,12 @@ Is0 f57 @|StepIcon #fIcon
 Is0 f58 expr out #txt
 Is0 f58 63 1360 180 1360 #arcP
 Is0 f59 expr out #txt
-Is0 f59 220 1360 400 543 #arcP
-Is0 f59 1 400 1360 #addKink
+Is0 f59 220 1360 408 543 #arcP
+Is0 f59 1 408 1360 #addKink
 Is0 f59 1 0.3849449204406365 0 0 #arcLabel
 Is0 f56 expr out #txt
-Is0 f56 220 1424 400 543 #arcP
-Is0 f56 1 400 1424 #addKink
+Is0 f56 220 1424 408 543 #arcP
+Is0 f56 1 408 1424 #addKink
 Is0 f56 1 0.38641858494407466 0 0 #arcLabel
 Is0 f55 expr out #txt
 Is0 f55 63 1424 180 1424 #arcP
@@ -1119,6 +1129,146 @@ Is0 f54 security system #txt
 Is0 f54 type portalKit_test.GrantPermissionsData #txt
 Is0 f54 180 1412 40 24 0 -8 #rect
 Is0 f54 @|StepIcon #fIcon
+Is0 f65 expr out #txt
+Is0 f65 63 1296 180 1296 #arcP
+Is0 f68 outLink denySpecificPermission.ivp #txt
+Is0 f68 type portalKit_test.GrantPermissionsData #txt
+Is0 f68 inParamDecl '<java.lang.String portalPermission> param;' #txt
+Is0 f68 inParamTable 'out.portalPermission=param.portalPermission;
+' #txt
+Is0 f68 actionDecl 'portalKit_test.GrantPermissionsData out;
+' #txt
+Is0 f68 guid 168DFA83CB243285 #txt
+Is0 f68 requestEnabled true #txt
+Is0 f68 triggerEnabled false #txt
+Is0 f68 callSignature denySpecificPermission(String) #txt
+Is0 f68 persist false #txt
+Is0 f68 caseData businessCase.attach=true #txt
+Is0 f68 showInStartList 1 #txt
+Is0 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>denySpecificPermission.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f68 @C|.responsibility Everybody #txt
+Is0 f68 33 1473 30 30 -26 18 #rect
+Is0 f68 @|StartRequestIcon #fIcon
+Is0 f69 actionDecl 'portalKit_test.GrantPermissionsData out;
+' #txt
+Is0 f69 actionTable 'out=in;
+' #txt
+Is0 f69 actionCode 'import java.util.Objects;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
+import ch.ivyteam.ivy.security.IPermission;
+
+IPermission iPermission = IPermissionRepository.get().findByName(in.portalPermission);
+if (Objects.nonNull(iPermission)){
+  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());
+}' #txt
+Is0 f69 security system #txt
+Is0 f69 type portalKit_test.GrantPermissionsData #txt
+Is0 f69 284 1476 40 24 0 -8 #rect
+Is0 f69 @|StepIcon #fIcon
+Is0 f70 outLink grantSpecificPermission.ivp #txt
+Is0 f70 type portalKit_test.GrantPermissionsData #txt
+Is0 f70 inParamDecl '<java.lang.String portalPermission> param;' #txt
+Is0 f70 inParamTable 'out.portalPermission=param.portalPermission;
+' #txt
+Is0 f70 actionDecl 'portalKit_test.GrantPermissionsData out;
+' #txt
+Is0 f70 guid 168DFA83CB371360 #txt
+Is0 f70 requestEnabled true #txt
+Is0 f70 triggerEnabled false #txt
+Is0 f70 callSignature grantSpecificPermission(String) #txt
+Is0 f70 persist false #txt
+Is0 f70 caseData businessCase.attach=true #txt
+Is0 f70 showInStartList 1 #txt
+Is0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>grantSpecificPermission.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f70 @C|.responsibility Everybody #txt
+Is0 f70 33 1537 30 30 -23 20 #rect
+Is0 f70 @|StartRequestIcon #fIcon
+Is0 f71 actionDecl 'portalKit_test.GrantPermissionsData out;
+' #txt
+Is0 f71 actionTable 'out=in;
+' #txt
+Is0 f71 actionCode 'import java.util.Objects;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
+import ch.ivyteam.ivy.security.IPermission;
+
+IPermission iPermission = IPermissionRepository.get().findByName(in.portalPermission);
+if (Objects.nonNull(iPermission)){
+  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());
+}' #txt
+Is0 f71 security system #txt
+Is0 f71 type portalKit_test.GrantPermissionsData #txt
+Is0 f71 284 1540 40 24 0 -8 #rect
+Is0 f71 @|StepIcon #fIcon
+Is0 f74 expr out #txt
+Is0 f74 324 1488 408 543 #arcP
+Is0 f74 1 408 1488 #addKink
+Is0 f74 1 0.40476190476190477 0 0 #arcLabel
+Is0 f75 expr out #txt
+Is0 f75 324 1552 408 543 #arcP
+Is0 f75 1 408 1552 #addKink
+Is0 f75 1 0.410802775024777 0 0 #arcLabel
+Is0 f76 richDialogId ch.ivy.addon.portalkit.test.GrantOrDenySpecificPermission #txt
+Is0 f76 startMethod start(Boolean) #txt
+Is0 f76 type portalKit_test.GrantPermissionsData #txt
+Is0 f76 requestActionDecl '<Boolean isGrantPermission> param;' #txt
+Is0 f76 requestMappingAction 'param.isGrantPermission=false;
+' #txt
+Is0 f76 responseActionDecl 'portalKit_test.GrantPermissionsData out;
+' #txt
+Is0 f76 responseMappingAction 'out=in;
+out.portalPermission=result.permission;
+' #txt
+Is0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Deny permission HTML</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f76 104 1466 144 44 -64 -8 #rect
+Is0 f76 @|RichDialogIcon #fIcon
+Is0 f77 expr out #txt
+Is0 f77 63 1488 104 1488 #arcP
+Is0 f72 expr out #txt
+Is0 f72 248 1488 284 1488 #arcP
+Is0 f78 richDialogId ch.ivy.addon.portalkit.test.GrantOrDenySpecificPermission #txt
+Is0 f78 startMethod start(Boolean) #txt
+Is0 f78 type portalKit_test.GrantPermissionsData #txt
+Is0 f78 requestActionDecl '<Boolean isGrantPermission> param;' #txt
+Is0 f78 requestMappingAction 'param.isGrantPermission=true;
+' #txt
+Is0 f78 responseActionDecl 'portalKit_test.GrantPermissionsData out;
+' #txt
+Is0 f78 responseMappingAction 'out=in;
+out.portalPermission=result.permission;
+' #txt
+Is0 f78 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Grant permission HTML</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f78 104 1530 144 44 -65 -8 #rect
+Is0 f78 @|RichDialogIcon #fIcon
+Is0 f79 expr out #txt
+Is0 f79 63 1552 104 1552 #arcP
+Is0 f73 expr out #txt
+Is0 f73 248 1552 284 1552 #arcP
 >Proto Is0 .type portalKit_test.GrantPermissionsData #txt
 >Proto Is0 .processKind NORMAL #txt
 >Proto Is0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1199,3 +1349,15 @@ Is0 f51 mainOut f58 tail #connect
 Is0 f58 head f57 mainIn #connect
 Is0 f57 mainOut f59 tail #connect
 Is0 f59 head f7 mainIn #connect
+Is0 f69 mainOut f74 tail #connect
+Is0 f74 head f7 mainIn #connect
+Is0 f71 mainOut f75 tail #connect
+Is0 f75 head f7 mainIn #connect
+Is0 f68 mainOut f77 tail #connect
+Is0 f77 head f76 mainIn #connect
+Is0 f76 mainOut f72 tail #connect
+Is0 f72 head f69 mainIn #connect
+Is0 f70 mainOut f79 tail #connect
+Is0 f79 head f78 mainIn #connect
+Is0 f78 mainOut f73 tail #connect
+Is0 f73 head f71 mainIn #connect
