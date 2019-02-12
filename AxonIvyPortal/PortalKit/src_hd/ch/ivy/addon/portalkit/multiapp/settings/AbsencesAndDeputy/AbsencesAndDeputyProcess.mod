@@ -524,6 +524,7 @@ if (doesNewAbsenceOverlap) {
 	FacesContext.getCurrentInstance().validationFailed();
 }
 ' #txt
+As0 f7 security system #txt
 As0 f7 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -809,8 +810,9 @@ import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 import java.util.Set;
 
 out.displayedAbsences.remove(in.selectedAbsence);
-Set<IvyAbsence> ivyAbsences = out.absencesByUser.get(UserUtils.getUserName(in.selectedUser)) as Set;
+Set<IvyAbsence> ivyAbsences = out.absencesByUser.get(UserUtils.getUserName(in.selectedAbsence.user)) as Set;
 ivyAbsences.remove(in.selectedAbsence);' #txt
+As0 f9 security system #txt
 As0 f9 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

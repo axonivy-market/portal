@@ -290,6 +290,7 @@ Se0 f11 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
 ApplicationService service = new ApplicationService();
 out.apps = service.findActiveIvyAppsUserCanWorkOn(in.absence.getUsername());
 ' #txt
+Se0 f11 security system #txt
 Se0 f11 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -418,6 +419,7 @@ Se0 f22 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
 ApplicationService service = new ApplicationService();
 out.apps = service.findActiveIvyAppsUserCanWorkOn(in.absence.getUsername());
 ' #txt
+Se0 f22 security system #txt
 Se0 f22 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
