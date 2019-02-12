@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.ServerFactory;
@@ -51,14 +52,14 @@ public class IvyAbsence {
   
   public String getUsername() {
     if (user != null) {
-      return user.getName();
+      return UserUtils.getUserName(user);
     }
     return StringUtils.EMPTY;
   }
   
   public String getFullname() {
     if (user != null) {
-      return user.getFullName();
+      return UserUtils.getFullName(user);
     }
     return StringUtils.EMPTY;
   }
