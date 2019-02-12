@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Rule;
 
 import portal.guitest.page.HomePage;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.xpertline.base.client.Browser;
 import ch.xpertline.base.enums.BrowserType;
 
@@ -163,6 +164,16 @@ public class BaseTest extends SeleneseTestBase {
     redirectToRelativeLink(grantDocumentOfInvolvedCaseWritePemissionURL);
   }
   
+  public void grantSpecificPortalPermission(PortalPermission portalPermission) {
+    String grantSpecificPortalPermissionLink = "portalKitTestHelper/14DE09882B540AD5/grantSpecificPortalPermission.ivp?portalPermission=%s";
+    redirectToRelativeLink(String.format(grantSpecificPortalPermissionLink, portalPermission.getValue()));
+  }
+
+  public void denySpecificPortalPermission(PortalPermission portalPermission) {
+    String denySpecificPortalPermissionLink = "portalKitTestHelper/14DE09882B540AD5/denySpecificPortalPermission.ivp?portalPermission=%s";
+    redirectToRelativeLink(String.format(denySpecificPortalPermissionLink, portalPermission.getValue()));
+  }
+
   public void cleanUpGlobalVariables(){
     String cleanUpURL = "portalKitTestHelper/1511A66AF619A768/cleanupGlobalVars.ivp";
     redirectToRelativeLink(cleanUpURL);
