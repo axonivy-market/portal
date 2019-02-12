@@ -165,6 +165,7 @@ Cs0 f3 actionTable 'out=in;
 ' #txt
 Cs0 f3 actionCode 'in.iCase.getBusinessCase().createNote(ivy.session, in.noteContent);
 in.noteContent = "";' #txt
+Cs0 f3 security system #txt
 Cs0 f3 type ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData #txt
 Cs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
