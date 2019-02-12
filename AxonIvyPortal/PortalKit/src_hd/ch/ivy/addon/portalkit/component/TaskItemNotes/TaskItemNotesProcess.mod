@@ -147,6 +147,7 @@ Ts0 f10 actionTable 'out=in;
 ' #txt
 Ts0 f10 actionCode 'in.task.getCase().getBusinessCase().createNote(ivy.session, in.noteContent);
 in.noteContent = "";' #txt
+Ts0 f10 security system #txt
 Ts0 f10 type ch.ivy.addon.portalkit.component.TaskItemNotes.TaskItemNotesData #txt
 Ts0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
