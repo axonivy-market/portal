@@ -1,9 +1,11 @@
 package portal.guitest.test;
 
 import org.apache.commons.lang.StringUtils;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import ch.ivy.addon.portalkit.enums.PortalPermission;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseDetailsPage;
@@ -24,8 +26,9 @@ public class CaseDetailsTest extends BaseTest {
     navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
-
+    
     HomePage homePage = new HomePage();
+    grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
@@ -67,6 +70,11 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.clickViewNote();
     assertTrue(detailsPage.isViewNoteDialogPresented());
     
+  }
+  
+  @After
+  public void teardown() {
+    denySpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
   }
 
 }
