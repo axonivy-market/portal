@@ -1113,6 +1113,7 @@ if (doesNewAbsenceOverlap) {
 	in.validationError = true;
 	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/overlappingAbsence"), ""));
 }' #txt
+As0 f77 security system #txt
 As0 f77 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f77 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
