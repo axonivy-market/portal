@@ -31,10 +31,6 @@
 				</p:outputPanel>
 
 				<h:panelGroup layout="block" styleClass="application-tab-action-buttons">
-					<p:commandButton actionListener="#{logic.refreshUserPermissions}" rendered="false"
-						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/refreshUserPermissions')}"
-						update=":#{p:component('appDialog')} applicationMsg" />
-					<p:spacer width="5px" />
 					<p:commandButton actionListener="#{logic.addNewApp}" oncomplete="PF('appDialog').show()" resetValues="true"
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/new')}" update=":#{p:component('appDialog')}" />
 				</h:panelGroup>
