@@ -30,7 +30,7 @@ public class CleanUpObsoletedUserDataService {
         @SuppressWarnings("unchecked")
         @Override
         public List<IUser> call() throws Exception {
-          return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE).withStartName("findAllUsersByApplication")
+          return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE).withStartName("findUsers")
               .call(Ivy.request().getApplication().getName()).get("users", List.class);
         }
       });

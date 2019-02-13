@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
 import ch.ivy.addon.portalkit.ivydata.service.IApplicationService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
@@ -47,7 +48,9 @@ public class ApplicationService implements IApplicationService {
     return IvyExecutor.executeAsSystem(() -> {
       List<IApplication> applications =
           ServerFactory.getServer().getApplicationConfigurationManager().getApplicationsSortedByName(false);
-      return applications.stream().map(this::toIvyApplication)
+      return applications.stream()
+          .filter(app -> app.findReleasedLibrary(PortalLibrary.PORTAL_STYLE.getValue()) != null)
+          .map(this::toIvyApplication)
           .filter(IvyApplication::isActive)
           .collect(Collectors.toList());
     });
