@@ -24,10 +24,10 @@ public class ExpressProcessPage extends TemplatePage{
     }
     
     if(isCreateOwn){
-      selectCheckbox("form:user-interface:0");
+      selectCheckbox("form:own-option");
     }
     else {
-      selectCheckbox("form:user-interface:1");
+      selectCheckbox("form:default-option");
       agreeToDeleteAllDefineTasks();
     }
     
