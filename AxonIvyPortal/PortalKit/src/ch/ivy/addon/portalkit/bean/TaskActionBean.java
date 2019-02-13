@@ -89,15 +89,11 @@ public class TaskActionBean {
   }
 
   public boolean canPark(ITask task) {
-    if (task.getState() != TaskState.SUSPENDED && task.getState() != TaskState.PARKED
-        && task.getState() != TaskState.RESUMED) {
+    if ((task.getState() != TaskState.SUSPENDED && task.getState() != TaskState.CREATED && task.getState() != TaskState.RESUMED) 
+        || !canResume(task)) {
       return false;
     }
-
-    if (!canResume(task)) {
-      return false;
-    }
-
+    
     return hasPermission(task, IPermission.TASK_PARK_OWN_WORKING_TASK);
   }
 
