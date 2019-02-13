@@ -26,8 +26,7 @@ public class ApplicationService implements IApplicationService {
   @Override
   public List<IvyApplication> findAll() {
     return IvyExecutor.executeAsSystem(() -> {
-      List<IApplication> applications =
-          ServerFactory.getServer().getApplicationConfigurationManager().getApplicationsSortedByName(false);
+      List<IApplication> applications = getAllPortalAppsOnServer();
       return applications.stream().map(this::toIvyApplication).collect(Collectors.toList());
     });
   }
@@ -46,10 +45,8 @@ public class ApplicationService implements IApplicationService {
   @Override
   public List<IvyApplication> findActiveAll() {
     return IvyExecutor.executeAsSystem(() -> {
-      List<IApplication> applications =
-          ServerFactory.getServer().getApplicationConfigurationManager().getApplicationsSortedByName(false);
+      List<IApplication> applications = getAllPortalAppsOnServer();
       return applications.stream()
-          .filter(app -> app.findReleasedLibrary(PortalLibrary.PORTAL_STYLE.getValue()) != null)
           .map(this::toIvyApplication)
           .filter(IvyApplication::isActive)
           .collect(Collectors.toList());
@@ -61,6 +58,26 @@ public class ApplicationService implements IApplicationService {
     ivyApp.setName(app.getName());
     ivyApp.setActive(app.getActivityOperationState() == ActivityOperationState.ACTIVE);
     return ivyApp;
+  }
+
+  @Override
+  public List<IvyApplication> findActiveAllInvolvedUser(String username) {
+    return IvyExecutor.executeAsSystem(() -> {
+      List<IApplication> applications = getAllPortalAppsOnServer();
+      return applications.stream()
+          .filter(app -> app.getSecurityContext().findUser(username) != null)
+          .map(this::toIvyApplication)
+          .filter(IvyApplication::isActive)
+          .collect(Collectors.toList());
+    });
+  }
+
+  private List<IApplication> getAllPortalAppsOnServer() {
+    List<IApplication> applications =
+        ServerFactory.getServer().getApplicationConfigurationManager().getApplicationsSortedByName(false);
+    return applications.stream()
+        .filter(app -> app.findReleasedLibrary(PortalLibrary.PORTAL_STYLE.getValue()) != null)
+        .collect(Collectors.toList());
   }
 
 }
