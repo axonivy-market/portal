@@ -71,7 +71,7 @@
                       <p:commandLink id="user-definied-filter" styleClass="user-definied-filter"
                         value="#{filterData.filterName}" global="false"
                         actionListener="#{logic.applyFilter(filterData)}"
-                        update="#{cc.clientId}:filter-selection-container #{cc.clientId}:advanced-filter-container #{cc.clientId}:case-widget-header #{cc.clientId}:case-list"
+                        update="#{cc.clientId}:filter-selection-container #{cc.clientId}:advanced-filter-container #{cc.clientId}:case-widget-header #{cc.clientId}:case-list #{cc.clientId}:filter-add-form"
                         oncomplete="caseWidget.setUpScrollbar();caseWidget.setupHeader();" />
                       <p:tooltip id="user-definied-filter-tooltip" for="user-definied-filter"
                         value="#{filterData.filterName}" trackMouse="true" />
@@ -95,7 +95,7 @@
                       <p:commandLink id="user-definied-filter" styleClass="user-definied-filter"
                         value="#{filterData.filterName}" global="false"
                         actionListener="#{logic.applyFilter(filterData)}"
-                        update="#{cc.clientId}:filter-selection-container #{cc.clientId}:advanced-filter-container #{cc.clientId}:case-widget-header #{cc.clientId}:case-list"
+                        update="#{cc.clientId}:filter-selection-container #{cc.clientId}:advanced-filter-container #{cc.clientId}:case-widget-header #{cc.clientId}:case-list #{cc.clientId}:filter-add-form"
                         oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader();" />
                       <p:tooltip id="user-definied-filter-tooltip" for="user-definied-filter"
                         value="#{filterData.filterName}" trackMouse="true" />
