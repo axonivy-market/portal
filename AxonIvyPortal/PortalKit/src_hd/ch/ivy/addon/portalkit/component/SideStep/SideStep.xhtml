@@ -27,7 +27,7 @@
     rendered="#{hasSideSteps and !cc.attrs.isDisabled}">
     <ui:repeat var="sideStep" value="#{sideStepBean.getSideSteps(cc.attrs.caseId, cc.attrs.isAdhocExcluded)}">
       <p:commandLink id="adhoc-side-step-item" styleClass="side-step-item" value="#{sideStep.name}" global="false" 
-        rendered="#{sideStep.isAdhoc()}" actionListener="#{sideStepBean.startSideStep(sideStep, cc.attrs.taskId)}" />
+        rendered="#{sideStep.isAdhoc()}" actionListener="#{sideStepBean.startAdhoc(sideStep, cc.attrs.taskId)}" />
       
       <p:commandLink id="side-step-item" styleClass="side-step-item" value="#{sideStep.name}" global="false" 
         rendered="#{not sideStep.isAdhoc()}" actionListener="#{sideStepBean.startSideStep(sideStep)}" />
