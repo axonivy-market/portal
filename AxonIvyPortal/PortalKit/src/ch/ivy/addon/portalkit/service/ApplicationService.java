@@ -13,7 +13,6 @@ import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
 import ch.ivy.addon.portalkit.ivydata.service.IApplicationService;
-import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.persistence.dao.ApplicationDao;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivyteam.ivy.application.IApplication;
@@ -122,9 +121,8 @@ public class ApplicationService extends AbstractService<Application> {
   private List<String> findInvolvedAppsOfUser(String username) {
     IApplicationService applicationService = ch.ivy.addon.portalkit.ivydata.service.impl.ApplicationService.newInstance();
     List<String> registeredApplicationNames = findAllIvyApplications().stream().map(Application::getName).collect(Collectors.toList());
-    return applicationService.findActiveAll().stream()
-        .filter(app -> ServiceUtilities.findUser(username, app.getName()) != null 
-          && (CollectionUtils.isEmpty(registeredApplicationNames) || CollectionUtils.containsAny(registeredApplicationNames, app.getName())))
+    return applicationService.findActiveAllInvolvedUser(username).stream()
+        .filter(app -> CollectionUtils.isEmpty(registeredApplicationNames) || CollectionUtils.containsAny(registeredApplicationNames, app.getName()))
         .map(IvyApplication::getName)
         .collect(Collectors.toList());
   }
