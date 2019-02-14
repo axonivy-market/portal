@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.MainMenuNode;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class TaskView {
@@ -20,6 +21,7 @@ public class TaskView {
     private boolean showHeaderToolbar = Boolean.TRUE;
     private String noTaskFoundMessage = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/noTask");
     private boolean compactMode = Boolean.TRUE;
+    private boolean isDisplayTaskCategory = PermissionUtils.checkAccessFullTaskListPermission();
 
     private MainMenuNode category;
 
@@ -94,6 +96,7 @@ public class TaskView {
   private final boolean showHeaderToolbar;
   private final String noTaskFoundMessage;
   private final boolean compactMode;
+  private boolean isDisplayTaskCategory;
 
   private TaskView(Builder builder) {
     pageTitle = builder.pageTitle;
@@ -107,6 +110,7 @@ public class TaskView {
     showHeaderToolbar = builder.showHeaderToolbar;
     noTaskFoundMessage = builder.noTaskFoundMessage;
     compactMode = builder.compactMode;
+    setDisplayTaskCategory(builder.isDisplayTaskCategory);
   }
 
   public String getNoTaskFoundMessage() {
@@ -159,6 +163,14 @@ public class TaskView {
 
   public boolean isCompactMode() {
     return compactMode;
+  }
+
+  public boolean isDisplayTaskCategory() {
+    return isDisplayTaskCategory;
+  }
+
+  public void setDisplayTaskCategory(boolean isDisplayTaskCategory) {
+    this.isDisplayTaskCategory = isDisplayTaskCategory;
   }
   
 }
