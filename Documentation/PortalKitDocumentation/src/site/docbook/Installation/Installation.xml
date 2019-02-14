@@ -312,6 +312,11 @@
 							<code>FAILED</code>
 							.
 						</important>
+						<para>
+							This function will be hidden if session user does not have permission
+							<code>PortalPermission.TASK_DISPLAY_DELEGATE_ACTION</code>
+							.
+						</para>
 					</listitem>
 					<listitem>
 						<para>
@@ -349,10 +354,15 @@
 							<code>PARKED</code>
 							.
 						</important>
+						<para>
+							This function will be hidden if session user does not have permission
+							<code>PortalPermission.TASK_DISPLAY_RESET_ACTION</code>
+							.
+						</para>
 					</listitem>
 					<listitem>
 						<para>
-							PARK
+							RESERVE
 						</para>
 						<para>
 							This function will be enabled if session user has permission
@@ -364,6 +374,11 @@
 							<code>RESUMED</code>
 							.
 						</important>
+						<para>
+							This function will be hidden if session user does not have permission
+							<code>PortalPermission.TASK_DISPLAY_RESERVE_ACTION</code>
+							.
+						</para>
 					</listitem>
 					<listitem>
 						<para>
@@ -443,40 +458,10 @@
 					</listitem>
 					<listitem>
 						<para>
-							DISPLAY RESET TASK ACTION
-						</para>
-						<para>
-							This action will be hidden if session user does not have permission
-							<code>PortalPermission.TASK_DISPLAY_RESET_ACTION</code>
-							.
-						</para>
-					</listitem>
-					<listitem>
-						<para>
-							DISPLAY RESERVE TASK ACTION
-						</para>
-						<para>
-							This action will be hidden if session user does not have permission
-							<code>PortalPermission.TASK_DISPLAY_RESERVE_ACTION</code>
-							.
-						</para>
-					</listitem>
-					<listitem>
-						<para>
-							DISPLAY DELEGATE TASK ACTION
-						</para>
-						<para>
-							This action will be hidden if session user does not have permission
-							<code>PortalPermission.TASK_DISPLAY_DELEGATE_ACTION</code>
-							.
-						</para>
-					</listitem>
-					<listitem>
-						<para>
 							DISPLAY ADDITIONAL OPTIONS
 						</para>
 						<para>
-							This action will be hidden if session user does not have permission
+							This function will be hidden if session user does not have permission
 							<code>PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS</code>
 							.
 						</para>
@@ -553,24 +538,19 @@
 							Case state cannot to be:
 							<code>DESTROYED</code>.
 						</important>
-					</listitem>
-					<listitem>
 						<para>
-							DISPLAY SHOW DETAILS BUTTON
-						</para>
-						<para>
-							This button will be hidden if session user does not have permission
-							<code>PortalPermission.SHOW_CASE_DETAILS</code>
+							Link to show all tasks of case will be hidden if session user does not have permission
+							<code>PortalPermission.SHOW_ALL_TASKS_OF_CASE</code>
 							.
 						</para>
 					</listitem>
 					<listitem>
 						<para>
-							DISPLAY SHOW ALL TASKS BUTTON
+							DISPLAY SHOW DETAILS LINK
 						</para>
 						<para>
-							This button will be hidden if session user does not have permission
-							<code>PortalPermission.SHOW_ALL_TASKS_OF_CASE</code>
+							This link will be hidden if session user does not have permission
+							<code>PortalPermission.SHOW_CASE_DETAILS</code>
 							.
 						</para>
 					</listitem>
