@@ -4,7 +4,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.MainMenuNode;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
-import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class TaskView {
@@ -21,7 +20,7 @@ public class TaskView {
     private boolean showHeaderToolbar = Boolean.TRUE;
     private String noTaskFoundMessage = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/noTask");
     private boolean compactMode = Boolean.TRUE;
-    private boolean isDisplayTaskCategory = PermissionUtils.checkAccessFullTaskListPermission();
+    private boolean displayTaskCategory = Boolean.TRUE;
 
     private MainMenuNode category;
 
@@ -69,6 +68,11 @@ public class TaskView {
       this.showHeaderToolbar = showHeaderToolbar;
       return this;
     }
+    
+    public Builder displayTaskCategory(boolean displayTaskCategory) {
+      this.displayTaskCategory = displayTaskCategory;
+      return this;
+    }
 
     public Builder noTaskFoundMessage(String noTaskFoundMessage) {
       this.noTaskFoundMessage = noTaskFoundMessage;
@@ -96,7 +100,7 @@ public class TaskView {
   private final boolean showHeaderToolbar;
   private final String noTaskFoundMessage;
   private final boolean compactMode;
-  private boolean isDisplayTaskCategory;
+  private boolean displayTaskCategory;
 
   private TaskView(Builder builder) {
     pageTitle = builder.pageTitle;
@@ -110,7 +114,7 @@ public class TaskView {
     showHeaderToolbar = builder.showHeaderToolbar;
     noTaskFoundMessage = builder.noTaskFoundMessage;
     compactMode = builder.compactMode;
-    setDisplayTaskCategory(builder.isDisplayTaskCategory);
+    displayTaskCategory = builder.displayTaskCategory;
   }
 
   public String getNoTaskFoundMessage() {
@@ -166,11 +170,7 @@ public class TaskView {
   }
 
   public boolean isDisplayTaskCategory() {
-    return isDisplayTaskCategory;
-  }
-
-  public void setDisplayTaskCategory(boolean isDisplayTaskCategory) {
-    this.isDisplayTaskCategory = isDisplayTaskCategory;
+    return displayTaskCategory;
   }
   
 }
