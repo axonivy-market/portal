@@ -26,19 +26,25 @@
               cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" editor="true">
               <f:facet name="output">
                 <h:panelGroup id="priority-icon">
-                  <h:panelGroup rendered="#{task.originalPriority == 'LOW'}"
+                  <h:panelGroup rendered="#{task.priority == 'LOW'}"
                     styleClass="fa fa-circle task-priority-low task-details-data-priority-icon" />
-                  <h:panelGroup rendered="#{task.originalPriority == 'NORMAL'}"
+                  <h:panelGroup rendered="#{task.priority == 'NORMAL'}"
                     styleClass="fa fa-circle task-priority-normal task-details-data-priority-icon" />
-                  <h:panelGroup rendered="#{task.originalPriority == 'HIGH'}"
+                  <h:panelGroup rendered="#{task.priority == 'HIGH'}"
                     styleClass="fa fa-circle task-priority-high task-details-data-priority-icon" />
-                  <h:panelGroup rendered="#{task.originalPriority == 'EXCEPTION'}"
+                  <h:panelGroup rendered="#{task.priority == 'EXCEPTION'}"
                     styleClass="fa fa-circle task-priority-exception task-details-data-priority-icon" />
-                  <h:outputText value="#{taskBean.getPriority(task.originalPriority)}" />
+                  <h:outputText value="#{taskBean.getPriority(task.priority)}" />
                 </h:panelGroup>
               </f:facet>
               <p:ajax event="save" update="priority-form #{cc.attrs.priorityComponentToUpdate}" />
-              <p:selectOneMenu id="priority-select-menu" value="#{task.originalPriority}" styleClass="task-details-priority">
+              <p:selectOneMenu id="priority-select-menu" value="#{task.originalPriority}" styleClass="task-details-priority"
+                rendered="#{!task.isExpired()}">
+                <f:selectItems value="#{task.getPriority().values()}" var="priority"
+                  itemLabel="#{taskBean.getPriority(priority)}" itemValue="#{priority}" />
+              </p:selectOneMenu>
+              <p:selectOneMenu id="expiry-priority-select-menu" value="#{task.expiryPriority}" styleClass="task-details-priority"
+                rendered="#{task.isExpired()}">
                 <f:selectItems value="#{task.getPriority().values()}" var="priority"
                   itemLabel="#{taskBean.getPriority(priority)}" itemValue="#{priority}" />
               </p:selectOneMenu>
