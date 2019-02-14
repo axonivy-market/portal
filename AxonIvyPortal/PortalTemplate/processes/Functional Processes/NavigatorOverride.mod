@@ -109,7 +109,8 @@ Nr0 f7 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 ' #txt
 Nr0 f7 actionTable 'out=in;
 ' #txt
-Nr0 f7 actionCode 'import java.util.Arrays;
+Nr0 f7 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
+import java.util.Arrays;
 import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
 import ch.ivy.addon.portal.generic.view.CaseView;
 
@@ -118,7 +119,11 @@ String title = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/relatedCaseHe
 in.caseDataModel.setCaseId(in.caseId.id());
 in.caseDataModel.getCriteria().setBusinessCase(in.caseId.isBusinessCase());
 in.caseDataModel.setNotKeepFilter(true);
-in.caseView = CaseView.create().dataModel(in.caseDataModel).hideCaseFilter(true).withTitle(title).autoSelectIfExists(in.caseId).buildNewView();' #txt
+in.caseView = CaseView.create().dataModel(in.caseDataModel)
+								.hideCaseFilter(true)
+								.displayCaseCategory(PermissionUtils.checkAccessFullCaseListPermission())
+								.withTitle(title)
+								.autoSelectIfExists(in.caseId).buildNewView();' #txt
 Nr0 f7 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
 Nr0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -188,7 +193,8 @@ Nr0 f14 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 ' #txt
 Nr0 f14 actionTable 'out=in;
 ' #txt
-Nr0 f14 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
+Nr0 f14 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalPage;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
@@ -215,6 +221,7 @@ in.taskView = TaskView.create()
 											.taskId(in.taskId)
 											.pageTitle(pageTitle)
 											.showHeaderToolbar(false)
+											.displayTaskCategory(PermissionUtils.checkAccessFullTaskListPermission())
 											.dataModel(in.taskDataModel).createNewTaskView();								
 											' #txt
 Nr0 f14 security system #txt
@@ -346,6 +353,7 @@ in.taskView = TaskView
 								.create()
 								.pageTitle(pageTitle)
 								.showHeaderToolbar(false)
+								.displayTaskCategory(PermissionUtils.checkAccessFullTaskListPermission())
 								.dataModel(in.taskDataModel)
 								.createNewTaskView();' #txt
 Nr0 f20 security system #txt
@@ -452,6 +460,7 @@ in.caseDataModel.setNotKeepFilter(true);
 
 in.caseView = CaseView.create()
 								.dataModel(in.caseDataModel)
+								.displayCaseCategory(PermissionUtils.checkAccessFullCaseListPermission())
 								.withTitle(pageTitle)
 								.buildNewView();' #txt
 Nr0 f31 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt

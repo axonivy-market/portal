@@ -3,7 +3,6 @@ package ch.ivy.addon.portal.generic.view;
 import ch.ivy.addon.portalkit.bo.MainMenuNode;
 import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
 import ch.ivy.addon.portalkit.dto.GlobalCaseId;
-import ch.ivy.addon.portalkit.util.PermissionUtils;
 
 public class CaseView {
 
@@ -15,7 +14,7 @@ public class CaseView {
     private String title = "";
     private boolean hideCaseFilter = false;
     private MainMenuNode category;
-    private boolean isDisplayCaseCategory = PermissionUtils.checkAccessFullCaseListPermission();
+    private boolean displayCaseCategory = true;
 
     public Builder dataModel(CaseLazyDataModel dataModel) {
       this.dataModel = dataModel;
@@ -47,6 +46,11 @@ public class CaseView {
       return this;
     }
     
+    public Builder displayCaseCategory(boolean displayCaseCategory) {
+      this.displayCaseCategory = displayCaseCategory;
+      return this;
+    }
+    
     public CaseView buildNewView() {
       return new CaseView(this);
     }
@@ -59,7 +63,7 @@ public class CaseView {
   private String caseName = "";
   private boolean hideCaseFilter = false;
   private final MainMenuNode category;
-  private boolean isDisplayCaseCategory;
+  private boolean displayCaseCategory = true;
 
   public CaseView(Builder builder) {
     dataModel = builder.dataModel;
@@ -68,7 +72,7 @@ public class CaseView {
     title = builder.title;
     this.hideCaseFilter = builder.hideCaseFilter;
     category = builder.category;
-    this.setDisplayCaseCategory(builder.isDisplayCaseCategory);
+    this.displayCaseCategory = builder.displayCaseCategory;
   }
 
   public static Builder create() {
@@ -104,10 +108,6 @@ public class CaseView {
   }
 
   public boolean isDisplayCaseCategory() {
-    return isDisplayCaseCategory;
-  }
-
-  public void setDisplayCaseCategory(boolean isDisplayCaseCategory) {
-    this.isDisplayCaseCategory = isDisplayCaseCategory;
+    return displayCaseCategory;
   }
 }
