@@ -1,13 +1,13 @@
 package ch.ivy.addon.portalkit.service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.CaseColumnsConfiguration;
+import ch.ivy.addon.portalkit.bo.ColumnsConfiguration;
 import ch.ivy.addon.portalkit.bo.TaskColumnsConfiguration;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
@@ -24,15 +24,13 @@ public class CleanUpObsoletedUserDataService {
 
   List<IUser> currentUsers;
 
+  @SuppressWarnings("unchecked")
   public void cleanUpData() {
     try {
-      currentUsers = ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<IUser>>() {
-        @SuppressWarnings("unchecked")
-        @Override
-        public List<IUser> call() throws Exception {
-          return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE).withStartName("findUsers")
-              .call(Ivy.request().getApplication().getName()).get("users", List.class);
-        }
+      currentUsers = ServerFactory.getServer().getSecurityManager().executeAsSystem(()-> {
+        return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
+            .withStartName("findUsers")
+            .call(Ivy.request().getApplication()).get("users", List.class);
       });
 
     } catch (Exception e) {
@@ -50,23 +48,17 @@ public class CleanUpObsoletedUserDataService {
     List<String> userNames = currentUsers.stream().map(IUser::getName).distinct().collect(Collectors.toList());
     UserProcessService userProcessService = new UserProcessService();
     List<UserProcess> userProcesses = userProcessService.findAll();
-    List<UserProcess> obsoletedUserProcess = new ArrayList<>();
-    if (userProcesses != null) {
-      for (UserProcess userProcess : userProcesses) {
-        String processUserName = userProcess.getUserName();
-        if (StringUtils.isBlank(processUserName) || (checkIfUserBelongToCurrentApp(processUserName) && !userNames.contains(processUserName))) {
-          obsoletedUserProcess.add(userProcess);
-        }
-      }
-    }
+    List<UserProcess> obsoletedUserProcess = userProcesses
+      .stream()
+      .filter(userProcess -> StringUtils.isBlank(userProcess.getUserName()) || (checkIfUserBelongToCurrentApp(userProcess.getUserName()) && !userNames.contains(userProcess.getUserName())))
+      .collect(Collectors.toList());
     userProcessService.deleteAll(obsoletedUserProcess);
   }
 
   private boolean checkIfUserBelongToCurrentApp(String userName) {
     try {
       return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
-        IUser user = Ivy.request().getApplication().getSecurityContext().findUser(userName);
-        return user != null;
+        return Ivy.request().getApplication().getSecurityContext().findUser(userName) != null;
       });
     } catch (Exception e) {
       Ivy.log().error("Check user belongs to current app failed ", e);
@@ -79,66 +71,51 @@ public class CleanUpObsoletedUserDataService {
     List<Long> userIds = currentUsers.stream().map(IUser::getId).collect(Collectors.toList());
     AbstractFilterService<TaskFilterData> taskFilterService = new TaskFilterService();
     List<TaskFilterData> allPrivateTaskFilters = taskFilterService.getAllPrivateFilters();
-    if (allPrivateTaskFilters != null) {
-      for (TaskFilterData privateTaskFilter : allPrivateTaskFilters) {
-        if (Ivy.repo().getInfo(privateTaskFilter).getCreatedByAppId() == applicationId
-            && !userIds.contains(privateTaskFilter.getUserId())) {
-          taskFilterService.delete(privateTaskFilter.getId());
-        }
-      }
-    }
+   
+    CollectionUtils.emptyIfNull(allPrivateTaskFilters)
+      .stream()
+      .filter(privateTaskFilter -> Ivy.repo().getInfo(privateTaskFilter).getCreatedByAppId() == applicationId && !userIds.contains(privateTaskFilter.getUserId()))
+      .forEach(privateTaskFilter -> taskFilterService.delete(privateTaskFilter.getId()));
+    
+    
     AbstractFilterService<CaseFilterData> caseFilterService = new CaseFilterService();
     List<CaseFilterData> allPrivateCaseFilters = caseFilterService.getAllPrivateFilters();
-    if (allPrivateCaseFilters != null) {
-      for (CaseFilterData privateCaseFilter : allPrivateCaseFilters) {
-        if (Ivy.repo().getInfo(privateCaseFilter).getCreatedByAppId() == applicationId
-            && !userIds.contains(privateCaseFilter.getUserId())) {
-          caseFilterService.delete(privateCaseFilter.getId());
-        }
-      }
-    }
+    
+    CollectionUtils.emptyIfNull(allPrivateCaseFilters)
+      .stream()
+      .filter(privateCaseFilter -> Ivy.repo().getInfo(privateCaseFilter).getCreatedByAppId() == applicationId && !userIds.contains(privateCaseFilter.getUserId()))
+      .forEach(privateCaseFilter -> caseFilterService.delete(privateCaseFilter.getId()));
   }
 
   private void cleanUpUserTaskColumnsConfigData() {
     List<Long> userIds = currentUsers.stream().map(IUser::getId).collect(Collectors.toList());
-    Long applicationId = Ivy.request().getApplication().getId();
     TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
-    List<TaskColumnsConfiguration> allColumnConfigs = service.getAllConfiguration(applicationId);
-    if (allColumnConfigs != null) {
-      for (TaskColumnsConfiguration columnConfig : allColumnConfigs) {
-        if (!userIds.contains(columnConfig.getUserId())) {
-          Ivy.repo().delete(columnConfig);
-        }
-      }
-    }
+    List<TaskColumnsConfiguration> allColumnConfigs = service.getAllConfiguration(Ivy.request().getApplication().getId());
+    cleanRepoColumnConfig(userIds, allColumnConfigs);
   }
   
   private void cleanUpUserCaseColumnsConfigData() {
     List<Long> userIds = currentUsers.stream().map(IUser::getId).collect(Collectors.toList());
-    Long applicationId = Ivy.request().getApplication().getId();
     CaseColumnsConfigurationService service = new CaseColumnsConfigurationService();
-    List<CaseColumnsConfiguration> allColumnConfigs = service.getAllConfiguration(applicationId);
-    if (allColumnConfigs != null) {
-      for (CaseColumnsConfiguration columnConfig : allColumnConfigs) {
-        if (!userIds.contains(columnConfig.getUserId())) {
-          Ivy.repo().delete(columnConfig);
-        }
-      }
-    }
+    List<CaseColumnsConfiguration> allColumnConfigs = service.getAllConfiguration(Ivy.request().getApplication().getId());
+    cleanRepoColumnConfig(userIds, allColumnConfigs);
   }
 
+  private void cleanRepoColumnConfig(List<Long> userIds, List<? extends ColumnsConfiguration> allColumnConfigs) {
+    CollectionUtils.emptyIfNull(allColumnConfigs)
+      .stream()
+      .filter(columnConfig -> !userIds.contains(columnConfig.getUserId()))
+      .forEach(columnConfig -> Ivy.repo().delete(columnConfig));
+  }
 
   private void cleanUpUserStatisticChartData() {
     List<Long> userIds = currentUsers.stream().map(IUser::getId).collect(Collectors.toList());
     StatisticService statisticService = new StatisticService();
     List<StatisticChart> allStatisticCharts = statisticService.findAllStatisticCharts();
-    if (allStatisticCharts != null) {
-      for (StatisticChart chart : allStatisticCharts) {
-        Long applicationId = Ivy.request().getApplication().getId();
-        if (Ivy.repo().getInfo(chart).getCreatedByAppId() == applicationId && !userIds.contains(chart.getUserId())) {
-          statisticService.delete(chart.getId());
-        }
-      }
-    }
+    
+    Long applicationId = Ivy.request().getApplication().getId();
+    allStatisticCharts.stream()
+      .filter(chart -> Ivy.repo().getInfo(chart).getCreatedByAppId() == applicationId && !userIds.contains(chart.getUserId()))
+      .forEach(chart -> statisticService.delete(chart.getId()));
   }
 }
