@@ -7,7 +7,7 @@
   xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <ui:composition>
-  <div jsf:rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled}" class="favorite-process-title">
+  <div jsf:rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled and compactProcessWidgetBean.displayShowAllProcessesLink}" class="favorite-process-title">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/favoriteProcesses')}" />
   </div>
 
@@ -15,13 +15,13 @@
 
   <h:panelGroup id="process-list" layout="block" styleClass="widget-content">
     <h:panelGroup styleClass="process-empty-container"
-      rendered="#{empty compactProcessWidgetBean.userProcesses and compactProcessWidgetBean.isUserFavoritesEnabled}">
+      rendered="#{empty compactProcessWidgetBean.userProcesses and compactProcessWidgetBean.isUserFavoritesEnabled and compactProcessWidgetBean.displayShowAllProcessesLink}">
       <p>
         <h:outputText id="empty-process-message"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/noFavoriteProcess')}" />
       </p>
     </h:panelGroup>
-    <ui:fragment id="user-favorite-process-list" rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled}">
+    <ui:fragment id="user-favorite-process-list" rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled and compactProcessWidgetBean.displayShowAllProcessesLink}">
       <ui:repeat varStatus="status" var="process" value="#{compactProcessWidgetBean.userProcesses}">
         <c:set var="isExternalProcess"
           value="#{!(fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}" />
