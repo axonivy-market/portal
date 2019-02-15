@@ -14,7 +14,6 @@ public interface ISubstituteService {
    * @param username
    * @param apps
    * @return IvySubstituteResultDTO
-   * @throws Exception
    */
   IvySubstituteResultDTO findSubstitutes(String username, List<String> apps);
   
@@ -23,7 +22,6 @@ public interface ISubstituteService {
    * @param username
    * @param ivySubstitutesByApp
    * @return IvySubstituteResultDTO
-   * @throws Exception
    */
   IvySubstituteResultDTO saveSubstitutes(String username, Map<IvyApplication, List<IvySubstitute>> ivySubstitutesByApp);
 }

@@ -3,7 +3,7 @@ package ch.ivy.addon.portalkit.persistence.dao;
 import java.util.Arrays;
 import java.util.List;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;

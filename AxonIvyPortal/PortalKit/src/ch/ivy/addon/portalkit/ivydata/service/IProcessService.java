@@ -10,7 +10,6 @@ public interface IProcessService {
    * Finds the processes which the given user can start
    * @param criteria
    * @return IvyProcessResultDTO
-   * @throws Exception
    */
   IvyProcessResultDTO findProcesses(ProcessSearchCriteria criteria);
   

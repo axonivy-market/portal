@@ -11,8 +11,7 @@ public interface ILanguageService {
    * Get Languages for the passed user
    * @param username
    * @param apps
-   * @return IvyLanguageResultDTO
-   * @throws Exception 
+   * @return {@link IvyLanguageResultDTO}
    */
   IvyLanguageResultDTO findUserLanguages(String username, List<String> apps);
   
@@ -20,8 +19,7 @@ public interface ILanguageService {
    * set Languages for the passed user
    * @param username
    * @param languages
-   * @return IvyLanguageResultDTO
-   * @throws Exception 
+   * @return {@link IvyLanguageResultDTO}
    */
   IvyLanguageResultDTO saveUserLanguages(String username, List<IvyLanguage> languages);
   
@@ -29,8 +27,7 @@ public interface ILanguageService {
   /**
    * get supported languages of application store in portal style
    * @param appName
-   * @return
-   * @throws Exception
+   * @return {@link IvyLanguageResultDTO}
    */
   IvyLanguageResultDTO getSupportedLanguages(String appName);
 }

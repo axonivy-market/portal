@@ -85,7 +85,7 @@ public class TaskTemplateBean implements Serializable{
     if (wfCase == null) {
       return Collections.emptyList();
     }
-    ICaseMap caseMap = getCaseMapService(wfCase.getBusinessCase()).findCaseMap();
+    ICaseMap caseMap = getCaseMapService(wfCase.getBusinessCase()).find().current();
     if (caseMap == null) {
       return Collections.emptyList();
     }
@@ -113,7 +113,7 @@ public class TaskTemplateBean implements Serializable{
     if (wfCase == null) {
       return Collections.emptyList();
     }
-    ICaseMap caseMap = getCaseMapService(wfCase.getBusinessCase()).findCaseMap();
+    ICaseMap caseMap = getCaseMapService(wfCase.getBusinessCase()).find().current();
     if (caseMap == null) {
       return Collections.emptyList();
     }
