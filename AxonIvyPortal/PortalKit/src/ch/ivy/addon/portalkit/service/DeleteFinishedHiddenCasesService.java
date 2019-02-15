@@ -42,7 +42,7 @@ public class DeleteFinishedHiddenCasesService {
     	CaseQuery pmvQuery = CaseQuery.create();
     	pmvQuery.where().processModelId().isEqual(portalKitPMV.getId());
     	caseQuery.where().and(pmvQuery);
-    };
+    }
     caseQuery.orderBy().caseId().ascending();
     List<ICase> cases = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getResults(caseQuery, 0, -1);
 
