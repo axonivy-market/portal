@@ -63,7 +63,7 @@ Ps0 @SJArc f10 '' #zField
 Ps0 @PushWFArc f34 '' #zField
 >Proto Ps0 Ps0 PortalTaskMenuProcess #zField
 Ps0 f4 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
-Ps0 f4 1107 211 26 26 0 12 #rect
+Ps0 f4 1139 211 26 26 0 12 #rect
 Ps0 f4 @|RichDialogProcessEndIcon #fIcon
 Ps0 f9 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out;
 ' #txt
@@ -289,7 +289,7 @@ out.groupTaskCategoryTree=in3.groupTaskCategoryTree;
 out.myTaskCategoryTree=in2.myTaskCategoryTree;
 out.unassignedTaskCategoryTree=in4.#unassignedTaskCategoryTree;
 ' #txt
-Ps0 f8 1040 208 32 32 0 16 #rect
+Ps0 f8 1072 208 32 32 0 16 #rect
 Ps0 f8 @|JoinIcon #fIcon
 Ps0 f20 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f20 processCall 'Ivy Data Processes/TaskService:findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria)' #txt
@@ -310,7 +310,7 @@ Ps0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f20 776 106 112 44 -33 -8 #rect
+Ps0 f20 808 106 112 44 -33 -8 #rect
 Ps0 f20 @|CallSubIcon #fIcon
 Ps0 f26 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f26 processCall 'Ivy Data Processes/TaskService:findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria)' #txt
@@ -331,13 +331,13 @@ Ps0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f26 856 170 112 44 -33 -8 #rect
+Ps0 f26 888 170 112 44 -33 -8 #rect
 Ps0 f26 @|CallSubIcon #fIcon
 Ps0 f31 expr out #txt
 Ps0 f31 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f31 var in2 #txt
-Ps0 f31 968 192 1056 208 #arcP
-Ps0 f31 1 1056 192 #addKink
+Ps0 f31 1000 192 1088 208 #arcP
+Ps0 f31 1 1088 192 #addKink
 Ps0 f31 0 0.7797197062858272 0 0 #arcLabel
 Ps0 f32 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out;
 ' #txt
@@ -360,13 +360,13 @@ Ps0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f32 704 170 112 44 -35 -8 #rect
+Ps0 f32 736 170 112 44 -35 -8 #rect
 Ps0 f32 @|StepIcon #fIcon
 Ps0 f27 expr out #txt
-Ps0 f27 816 192 856 192 #arcP
+Ps0 f27 848 192 888 192 #arcP
 Ps0 f27 0 0.2202802937141729 0 0 #arcLabel
 Ps0 f35 expr out #txt
-Ps0 f35 1072 224 1107 224 #arcP
+Ps0 f35 1104 224 1139 224 #arcP
 Ps0 f36 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f36 processCall 'Ivy Data Processes/TaskService:findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria)' #txt
 Ps0 f36 doCall true #txt
@@ -386,7 +386,7 @@ Ps0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f36 856 234 112 44 -33 -8 #rect
+Ps0 f36 888 234 112 44 -33 -8 #rect
 Ps0 f36 @|CallSubIcon #fIcon
 Ps0 f37 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out;
 ' #txt
@@ -408,20 +408,27 @@ Ps0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f37 704 234 112 44 -35 -8 #rect
+Ps0 f37 736 234 112 44 -35 -8 #rect
 Ps0 f37 @|StepIcon #fIcon
 Ps0 f39 expr out #txt
-Ps0 f39 816 256 856 256 #arcP
+Ps0 f39 848 256 888 256 #arcP
 Ps0 f39 0 0.2202802937141729 0 0 #arcLabel
 Ps0 f40 expr out3 #txt
-Ps0 f40 640 240 704 256 #arcP
+Ps0 f40 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>group tasks</name>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f40 640 240 736 256 #arcP
 Ps0 f40 1 640 256 #addKink
-Ps0 f40 1 0.14115012303089255 0 0 #arcLabel
+Ps0 f40 1 0.4583333333333333 0 -10 #arcLabel
 Ps0 f41 expr out #txt
 Ps0 f41 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f41 var in3 #txt
-Ps0 f41 968 256 1056 240 #arcP
-Ps0 f41 1 1056 256 #addKink
+Ps0 f41 1000 256 1088 240 #arcP
+Ps0 f41 1 1088 256 #addKink
 Ps0 f41 0 0.8859746521921745 0 0 #arcLabel
 Ps0 f42 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out;
 ' #txt
@@ -438,7 +445,7 @@ Ps0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f42 712 298 112 44 -35 -8 #rect
+Ps0 f42 744 298 112 44 -35 -8 #rect
 Ps0 f42 @|StepIcon #fIcon
 Ps0 f43 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f43 processCall 'Ivy Data Processes/TaskService:findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria)' #txt
@@ -459,36 +466,43 @@ Ps0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f43 864 298 112 44 -33 -8 #rect
+Ps0 f43 896 298 112 44 -33 -8 #rect
 Ps0 f43 @|CallSubIcon #fIcon
 Ps0 f44 expr out #txt
-Ps0 f44 824 320 864 320 #arcP
+Ps0 f44 856 320 896 320 #arcP
 Ps0 f44 0 0.2202802937141729 0 0 #arcLabel
 Ps0 f45 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
-Ps0 f45 656 304 32 32 0 16 #rect
+Ps0 f45 688 304 32 32 0 16 #rect
 Ps0 f45 @|AlternativeIcon #fIcon
 Ps0 f46 expr in #txt
 Ps0 f46 outCond in.hasReadAllTasksPermisson #txt
-Ps0 f46 688 320 712 320 #arcP
+Ps0 f46 720 320 744 320 #arcP
 Ps0 f47 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
-Ps0 f47 1008 304 32 32 0 16 #rect
+Ps0 f47 1040 304 32 32 0 16 #rect
 Ps0 f47 @|AlternativeIcon #fIcon
 Ps0 f48 expr out #txt
-Ps0 f48 976 320 1008 320 #arcP
+Ps0 f48 1008 320 1040 320 #arcP
 Ps0 f49 expr in #txt
 Ps0 f49 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f49 var in4 #txt
-Ps0 f49 1040 320 1056 240 #arcP
-Ps0 f49 1 1056 320 #addKink
-Ps0 f49 1 0.31887730715271106 0 0 #arcLabel
+Ps0 f49 1072 320 1088 240 #arcP
+Ps0 f49 1 1088 320 #addKink
+Ps0 f49 1 0.07214375457691527 0 0 #arcLabel
 Ps0 f50 expr out4 #txt
-Ps0 f50 640 240 656 320 #arcP
+Ps0 f50 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>unassigned tasks</name>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f50 640 240 688 320 #arcP
 Ps0 f50 1 640 320 #addKink
-Ps0 f50 0 0.6811226928472891 0 0 #arcLabel
+Ps0 f50 0 0.825 -4 0 #arcLabel
 Ps0 f51 expr in #txt
-Ps0 f51 672 336 1024 336 #arcP
-Ps0 f51 1 672 368 #addKink
-Ps0 f51 2 1024 368 #addKink
+Ps0 f51 704 336 1056 336 #arcP
+Ps0 f51 1 704 368 #addKink
+Ps0 f51 2 1056 368 #addKink
 Ps0 f51 1 0.5 0 0 #arcLabel
 Ps0 f13 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out;
 ' #txt
@@ -556,19 +570,33 @@ Ps0 f18 296 416 320 416 #arcP
 Ps0 f29 expr out #txt
 Ps0 f29 448 416 472 416 #arcP
 Ps0 f52 expr out1 #txt
-Ps0 f52 640 208 776 128 #arcP
+Ps0 f52 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>all tasks</name>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f52 640 208 808 128 #arcP
 Ps0 f52 1 640 128 #addKink
-Ps0 f52 0 0.7562475879084162 0 0 #arcLabel
+Ps0 f52 1 0.20588235294117646 0 -8 #arcLabel
 Ps0 f10 expr out #txt
 Ps0 f10 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f10 var in1 #txt
-Ps0 f10 888 128 1056 208 #arcP
-Ps0 f10 1 1056 128 #addKink
+Ps0 f10 920 128 1088 208 #arcP
+Ps0 f10 1 1088 128 #addKink
 Ps0 f10 0 0.7380952380952381 0 0 #arcLabel
 Ps0 f34 expr out2 #txt
-Ps0 f34 640 208 704 192 #arcP
+Ps0 f34 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>user''s tasks</name>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f34 640 208 736 192 #arcP
 Ps0 f34 1 640 192 #addKink
-Ps0 f34 1 0.2202802937141729 0 0 #arcLabel
+Ps0 f34 1 0.46875 0 -10 #arcLabel
 >Proto Ps0 .type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
