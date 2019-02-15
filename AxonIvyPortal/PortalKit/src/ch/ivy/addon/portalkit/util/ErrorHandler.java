@@ -5,10 +5,6 @@ import org.apache.log4j.Priority;
 import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivyteam.ivy.environment.Ivy;
 
-/**
- * This class handles errors by logging and storing the errors to FacesContext so that in the GUI, we can display the
- * errors
- */
 public class ErrorHandler {
 
   private ErrorHandler() {}

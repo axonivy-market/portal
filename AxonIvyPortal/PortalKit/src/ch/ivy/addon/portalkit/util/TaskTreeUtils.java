@@ -25,12 +25,6 @@ import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
-
-/**
- * Provide the utilities related to Task Tree
- * 
- * @author BOLT
- */
 public class TaskTreeUtils {
 
   public static final String DELIMITER = "/";
@@ -51,6 +45,7 @@ public class TaskTreeUtils {
     for (CategoryTree category : categoryTree.getChildren()) {
       String name = category.getCategory().getName();
       String categoryRawPath = category.getRawPath();
+      // this field is stored in html tag attribute to get the selected category
       String nodeType = root.getType() + DELIMITER + category.getCategory().getName(Locale.ENGLISH).replaceAll(" ", "_");
       TreeNode childNode = buildTaskCategoryNode(root, name, nodeType, categoryRawPath, isRootAllTask, menuState);
       root.getChildren().add(childNode);
