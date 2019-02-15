@@ -13,7 +13,6 @@ public interface IAbsenceService {
    * @param username
    * @param apps
    * @return IvyAbsenceResultDTO
-   * @throws Exception
    */
   IvyAbsenceResultDTO findAbsences(String username, List<String> apps);
   
@@ -22,7 +21,6 @@ public interface IAbsenceService {
    * @param ivyAbsence
    * @param apps
    * @return IvyAbsenceResultDTO
-   * @throws Exception
    */
   IvyAbsenceResultDTO createAbsence(IvyAbsence ivyAbsence, List<String> apps);
   
@@ -32,7 +30,6 @@ public interface IAbsenceService {
    * @param ivyAbsences
    * @param apps
    * @return IvyAbsenceResultDTO
-   * @throws Exception
    */
   IvyAbsenceResultDTO updateAbsences(String username, Set<IvyAbsence> ivyAbsences, List<String> apps);
   
@@ -41,7 +38,6 @@ public interface IAbsenceService {
    * @param ivyAbsence
    * @param apps
    * @return IvyAbsenceResultDTO
-   * @throws Exception
    */
   IvyAbsenceResultDTO deleteAbsence(IvyAbsence ivyAbsence, List<String> apps);
 }

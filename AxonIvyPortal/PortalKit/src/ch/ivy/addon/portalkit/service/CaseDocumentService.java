@@ -63,14 +63,13 @@ public class CaseDocumentService {
 
   /**
    * @param document
-   * @throws IOException cannot find the file to delete
    */
-  public void delete(IDocument document) throws IOException {
+  public void delete(IDocument document) {
     documentsOf(iCase).delete(document);
   }
 
   /**
-   * @param filename
+   * @param document
    * @return streamed content
    * @throws IOException cannot find the file to download
    */

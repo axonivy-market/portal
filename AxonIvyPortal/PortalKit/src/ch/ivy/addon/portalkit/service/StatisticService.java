@@ -241,7 +241,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   /**
    * Get Elapsed time of related tasks by Case Category
    * 
-   * @param jsonQuery
+   * @param taskQuery
    * @return Elapsed time of related tasks by Case Category
    */
   public ElapsedTimeStatistic getElapsedTimeOfTasksStatisticData(TaskQuery taskQuery) {
