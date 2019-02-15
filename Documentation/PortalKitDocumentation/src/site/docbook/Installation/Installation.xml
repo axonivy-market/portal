@@ -595,7 +595,7 @@
 						<para>
 							Filter tasks and export data to excel for advanced analysis. This function will be enabled if session user has
 							<code>PortalPermission.STATISTIC_ANALYZE_TASK</code>
-							(This permission belongs to Portal permission group, assigned to user admin by default).
+							(This permission belongs to Portal permission group and it is not assigned to role Everybody by default).
 						</para>
 					</listitem>
 				</itemizedlist>
