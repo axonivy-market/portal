@@ -13,7 +13,6 @@ public interface IPasswordService {
    * @param newPassword
    * @param apps
    * @return IvyLanguageResultDTO
-   * @throws Exception 
    */
   IvyPasswordResultDTO changePassword(String username, String newPassword, List<String> apps);
 }
