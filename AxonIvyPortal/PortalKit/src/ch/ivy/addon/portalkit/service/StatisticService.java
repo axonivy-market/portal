@@ -73,6 +73,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -661,14 +662,15 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    */
   public Map<String, Number> generateDataForElapsedTimeChart(ElapsedTimeStatistic elapsedTimeStatistic) {
     Map<String, Number> chartData = new LinkedHashMap<>();
-    for (Entry<String, Long> entry : elapsedTimeStatistic.getAverageElapsedTimeByCategory().entrySet()) {
-      String key = entry.getKey();
-      if (StringUtils.isBlank(key)) {
-        key = Ivy.cms().co(NO_CATEGORY_CMS);
+    if(!Objects.isNull(elapsedTimeStatistic.getAverageElapsedTimeByCategory())) {
+      for (Entry<String, Long> entry : elapsedTimeStatistic.getAverageElapsedTimeByCategory().entrySet()) {
+        String key = entry.getKey();
+        if (StringUtils.isBlank(key)) {
+          key = Ivy.cms().co(NO_CATEGORY_CMS);
+        }
+        chartData.put(key, entry.getValue());
       }
-      chartData.put(key, entry.getValue());
     }
-
     return chartData;
   }
 
