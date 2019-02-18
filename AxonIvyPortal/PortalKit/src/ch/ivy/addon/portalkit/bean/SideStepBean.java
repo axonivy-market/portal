@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -20,17 +21,44 @@ import ch.ivyteam.ivy.environment.Ivy;
 @ViewScoped
 public class SideStepBean {
 
-  private Map<Long, List<IvySideStep>> sideStepsByCase = new HashMap<>();
+  private Map<Long, List<IvySideStep>> sideStepOfTasks = new HashMap<>();
+  private Map<Long, List<IvySideStep>> sideStepOfCases = new HashMap<>();
   
-  public boolean hasSideSteps(Long caseId, boolean isAdhocExcluded) {
-    return CollectionUtils.isNotEmpty(getSideSteps(caseId, isAdhocExcluded));
+  public boolean hasSideSteps(Long taskId, Long caseId, boolean isAdhocExcluded) {
+    if(isNullOrZero(taskId)) {
+      return CollectionUtils.isNotEmpty(getSideStepsOfCases(caseId, isAdhocExcluded));
+    }
+    return CollectionUtils.isNotEmpty(getSideStepsOfTasks(caseId, isAdhocExcluded));
   }
   
-  public List<IvySideStep> getSideSteps(Long caseId, boolean isAdhocExcluded) {
-    if (sideStepsByCase.containsKey(caseId)) {
-      return sideStepsByCase.get(caseId);
+  public List<IvySideStep> getSideSteps(Long taskId, Long caseId, boolean isAdhocExcluded) {
+    if(isNullOrZero(taskId)) {
+      return getSideStepsOfCases(caseId, isAdhocExcluded);
+    }
+    else return getSideStepsOfTasks(caseId, isAdhocExcluded);
+  }
+  
+  private List<IvySideStep> getSideStepsOfCases(Long caseId, boolean isAdhocExcluded) {
+    if (sideStepOfCases.containsKey(caseId)) {
+      return sideStepOfCases.get(caseId);
     }
     
+    List<IvySideStep> sideSteps = getSideStepsByCriteria(caseId, isAdhocExcluded);
+    sideStepOfCases.put(caseId, sideSteps);
+    return sideSteps;
+  }
+  
+  private List<IvySideStep> getSideStepsOfTasks(Long caseId, boolean isAdhocExcluded) {
+    if (sideStepOfTasks.containsKey(caseId)) {
+      return sideStepOfTasks.get(caseId);
+    }
+    
+    List<IvySideStep> sideSteps = getSideStepsByCriteria(caseId, isAdhocExcluded);
+    sideStepOfTasks.put(caseId, sideSteps);
+    return sideSteps;
+  }
+
+  private List<IvySideStep> getSideStepsByCriteria(Long caseId, boolean isAdhocExcluded) {
     SideStepSearchCriteria criteria = new SideStepSearchCriteria();
     criteria.setCaseId(caseId);
     criteria.setInvolvedUsername(Ivy.session().getSessionUserName());
@@ -41,7 +69,6 @@ public class SideStepBean {
     Map<String, Object> response = IvyAdapterService.startSubProcess("findSideStepsByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.SideStepSearchCriteria)", params, null);
     @SuppressWarnings("unchecked")
     List<IvySideStep> sideSteps =  (List<IvySideStep>) response.get("sideSteps");
-    sideStepsByCase.put(caseId, sideSteps);
     return sideSteps;
   }
   
@@ -53,5 +80,9 @@ public class SideStepBean {
   public void startAdhoc(IvySideStep sideStep, long taskId) throws IOException {
     String url = sideStep.getStartLink() + "?originalTaskId=" + taskId;
     FacesContext.getCurrentInstance().getExternalContext().redirect(url);
+  }
+  
+  private boolean isNullOrZero(Long value) {
+    return Objects.isNull(value) || value.equals(0L); 
   }
 }
