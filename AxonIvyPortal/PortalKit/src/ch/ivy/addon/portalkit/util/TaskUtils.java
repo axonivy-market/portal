@@ -24,17 +24,16 @@ public final class TaskUtils {
 
   private static final String HIDE = "HIDE";
 
-  private TaskUtils() {
-  }
+  private TaskUtils() {}
 
   public static void resetTask(final ITask task) {
-    if (Arrays.asList(TaskState.RESUMED, TaskState.CREATED, TaskState.PARKED, TaskState.READY_FOR_JOIN,
-        TaskState.FAILED).contains(task.getState())) {
-      IvyExecutor.executeAsSystem(() -> {
+    IvyExecutor.executeAsSystem(() -> {
+      if (Arrays.asList(TaskState.RESUMED, TaskState.CREATED, TaskState.PARKED, TaskState.READY_FOR_JOIN, TaskState.FAILED)
+          .contains(task.getState())) {
         task.reset();
-        return Void.class;
-      });
-    }
+      }
+      return Void.class;
+    });
   }
 
   /**
@@ -46,7 +45,8 @@ public final class TaskUtils {
     IvyExecutor.executeAsSystem(() -> {
       IWorkflowSession iWorkflowSession = null;
       try {
-        iWorkflowSession = ServiceUtilities.findUserWorkflowSession(Ivy.session().getSessionUserName(), task.getApplication());
+        iWorkflowSession =
+            ServiceUtilities.findUserWorkflowSession(Ivy.session().getSessionUserName(), task.getApplication());
         iWorkflowSession.parkTask(task);
         return null;
       } finally {
@@ -57,7 +57,7 @@ public final class TaskUtils {
       }
     });
   }
-  
+
   /**
    * Remove delay time of task
    * 
@@ -130,7 +130,7 @@ public final class TaskUtils {
   public static void removeHidePropertyToDisplayInPortal(ITask task) {
     task.setAdditionalProperty(HIDE, null);
   }
-  
+
   /**
    * Gets task by ID that session user has permission to see
    * 
