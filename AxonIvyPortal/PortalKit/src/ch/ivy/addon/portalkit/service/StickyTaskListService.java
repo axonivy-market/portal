@@ -16,7 +16,7 @@ public class StickyTaskListService {
   }
 
   public String getTaskEndInfoSessionAttributeKey(Long taskId) {
-    return SessionAttribute.TASK_END_INFO + "1" + taskId.toString();
+    return SessionAttribute.TASK_END_INFO + taskId.toString();
   }
 
   public ITask getPreviousTaskWithTaskEndInfo(ITask task) {
