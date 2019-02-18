@@ -27,6 +27,7 @@ public class DeleteFinishedHiddenCasesService {
     boolean shouldDeleteAllCases = Boolean.parseBoolean(Ivy.var().get(DELETE_ALL_FINISHED_HIDDEN_CASES));
     IProcessModelVersion portalKitPMV = findPortalPMVByLibraryId(Ivy.wf().getApplication(), PortalLibrary.PORTAL_KIT.getValue());
     if (portalKitPMV == null) {
+      Ivy.log().warn("Can not retrieve portalKit PMV");
     	return ;
     }
     CaseQuery caseQuery = CaseQuery.create();
