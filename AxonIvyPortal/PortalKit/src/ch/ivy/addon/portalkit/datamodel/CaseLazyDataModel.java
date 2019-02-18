@@ -21,6 +21,7 @@ import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterContainer;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.casefilter.DefaultCaseFilterContainer;
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
@@ -214,7 +215,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
    */
   protected void buildQueryToSearchCriteria() {
     if (criteria.getCustomCaseQuery() == null) {
-      CaseQuery customCaseQuery = SubProcessCall.withPath("Functional Processes/BuildCaseQuery")
+      CaseQuery customCaseQuery = SubProcessCall.withPath(PortalConstants.BUILD_CASE_QUERY_CALLABLE)
           .withStartSignature("buildCaseQuery()")
           .call()
           .get("caseQuery", CaseQuery.class);

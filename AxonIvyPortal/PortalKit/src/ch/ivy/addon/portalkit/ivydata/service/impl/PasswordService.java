@@ -30,7 +30,6 @@ public class PasswordService implements IPasswordService {
       if (CollectionUtils.isEmpty(apps)) {
         return result;
       }
-
       List<PortalIvyDataException> errors = new ArrayList<>();
       for (String appName : apps) {
         try {

@@ -93,6 +93,7 @@ import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
 import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
 import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
 import ch.ivy.addon.portalkit.bo.PriorityStatistic;
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.CustomVarCharField;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
@@ -269,7 +270,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     criteria.setCustomVarCharField(customVarCharField);
     criteria.setKeyword(keyword);
     criteria.setLimit(limit);
-    return SubProcessCall.withPath("Functional Processes/AnalyzeStatistic")
+    return SubProcessCall.withPath(PortalConstants.ANALYZE_STATISTIC_CALLABLE)
         .withStartSignature("findCaseCustomVarChars(CaseCustomVarCharSearchCriteria)")
         .withParam("caseCustomVarCharSearchCriteria", criteria).call().get(RESULT, List.class);
 
