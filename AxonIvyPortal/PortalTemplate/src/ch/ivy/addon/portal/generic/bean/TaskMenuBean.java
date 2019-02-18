@@ -4,7 +4,6 @@ import static ch.ivy.addon.portalkit.util.TaskTreeUtils.getLastCategoryFromCateg
 
 import java.io.Serializable;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -17,7 +16,6 @@ import org.primefaces.event.NodeExpandEvent;
 import org.primefaces.event.NodeSelectEvent;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
-import org.primefaces.util.TreeUtils;
 
 import ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData;
 import ch.ivy.addon.portal.generic.common.TreeNodeType;
@@ -134,17 +132,9 @@ public class TaskMenuBean implements Serializable {
     
     if (categoryTree != null) {
       TaskTreeUtils.convertToTreeNode(taskNode, categoryTree, isRootNodeAllTask, menuState);
-      sortNode(taskNode);
+      TaskTreeUtils.sortNode(taskNode);
     }
     return taskNode;
   }
   
-  private static void sortNode(TreeNode node) {
-    Comparator<TreeNode> comparator = (firstNode, secondNode) -> {
-      TaskNode firstNodeData = (TaskNode) firstNode.getData();
-      TaskNode secondNodeData = (TaskNode) secondNode.getData();
-      return firstNodeData.getValue().compareToIgnoreCase(secondNodeData.getValue());
-    };
-    TreeUtils.sortNode(node, comparator);
-  }
 }

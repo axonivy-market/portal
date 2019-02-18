@@ -37,7 +37,6 @@ public class SecurityService implements ISecurityService {
       if (CollectionUtils.isEmpty(apps)) {
         return result;
       }
-
       List<PortalIvyDataException> errors = new ArrayList<>();
       Map<String, List<IUser>> usersByApp = new HashMap<>();
       for (String appName : apps) {
@@ -85,7 +84,6 @@ public class SecurityService implements ISecurityService {
       if (CollectionUtils.isEmpty(apps)) {
         return result;
       }
-
       List<PortalIvyDataException> errors = new ArrayList<>();
       Map<String, List<IRole>> rolesByApp = new HashMap<>();
       for (String appName : apps) {
@@ -159,7 +157,6 @@ public class SecurityService implements ISecurityService {
       List<PortalIvyDataException> errors = new ArrayList<>();
       Map<String, IRole> roleByName = new HashMap<>();
       Map<String, IUser> userByName = new HashMap<>();
-
       for (String appName : apps) {
         try {
           IApplication app = ServiceUtilities.findApp(appName);
