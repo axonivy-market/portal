@@ -105,13 +105,13 @@ public final class AbsenceAndSubstituteUtils {
     return result;
   }
 
-  public static boolean isInThePast(IvyAbsence remoteAbsence) {
-    if (remoteAbsence == null) {
+  public static boolean isInThePast(IvyAbsence absence) {
+    if (absence == null) {
       return false;
     }
 
     Date today = setTimeToMidnight(new Date());
-    Date stopDate = setTimeToMidnight(remoteAbsence.getUntil());
+    Date stopDate = setTimeToMidnight(absence.getUntil());
     return today.compareTo(stopDate) > 0;
   }
 
