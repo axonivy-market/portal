@@ -15,6 +15,7 @@ import org.primefaces.model.TreeNode;
 import org.primefaces.util.TreeUtils;
 
 import ch.ivy.addon.portalkit.bo.TaskNode;
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria;
@@ -82,7 +83,7 @@ public class TaskTreeUtils {
     root = buildRoot();
     ApplicationService service = new ApplicationService();
     List<String> involvedApplications = service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName());
-    TaskQuery taskQuery = SubProcessCall.withPath("Functional Processes/BuildTaskQuery")
+    TaskQuery taskQuery = SubProcessCall.withPath(PortalConstants.BUILD_TASK_QUERY_CALLABLE)
         .withStartSignature("buildTaskQuery()")
         .call()
         .get("taskQuery", TaskQuery.class);
@@ -117,7 +118,7 @@ public class TaskTreeUtils {
     }
   }
   
-  private static void sortNode(TreeNode node) {
+  public static void sortNode(TreeNode node) {
     Comparator<TreeNode> comparator = (firstNode, secondNode) -> {
       TaskNode firstNodeData = (TaskNode) firstNode.getData();
       TaskNode secondNodeData = (TaskNode) secondNode.getData();

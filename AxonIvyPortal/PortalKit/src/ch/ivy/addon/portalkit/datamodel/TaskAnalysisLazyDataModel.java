@@ -15,6 +15,7 @@ import org.primefaces.model.SortOrder;
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterContainer;
 import ch.ivy.addon.portalkit.casefilter.TaskAnalysisCaseFilterContainer;
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.enums.TaskAndCaseAnalysisColumn;
@@ -205,7 +206,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   @Override
   protected void buildQueryToSearchCriteria() {
     if (criteria.getCustomTaskQuery() == null) {
-      TaskQuery taskQuery = SubProcessCall.withPath("Functional Processes/BuildTaskQuery")
+      TaskQuery taskQuery = SubProcessCall.withPath(PortalConstants.BUILD_TASK_QUERY_CALLABLE)
           .withStartSignature("buildTaskQuery(Boolean)").withParam("isQueryForHomePage", compactMode).call()
           .get("taskQuery", TaskQuery.class);
       criteria.setCustomTaskQuery(taskQuery);

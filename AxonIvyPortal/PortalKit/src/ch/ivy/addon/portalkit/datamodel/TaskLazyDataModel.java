@@ -18,6 +18,7 @@ import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bo.TaskColumnsConfiguration;
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
@@ -487,7 +488,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    */
   protected void buildQueryToSearchCriteria() {
     if (criteria.getCustomTaskQuery() == null) {
-      TaskQuery taskQuery = SubProcessCall.withPath("Functional Processes/BuildTaskQuery")
+      TaskQuery taskQuery = SubProcessCall.withPath(PortalConstants.BUILD_TASK_QUERY_CALLABLE)
           .withStartSignature("buildTaskQuery(Boolean)").withParam("isQueryForHomePage", compactMode).call()
           .get("taskQuery", TaskQuery.class);
       criteria.setCustomTaskQuery(taskQuery);

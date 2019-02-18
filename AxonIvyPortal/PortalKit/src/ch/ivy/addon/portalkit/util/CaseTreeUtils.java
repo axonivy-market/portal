@@ -15,6 +15,7 @@ import org.primefaces.model.TreeNode;
 import org.primefaces.util.TreeUtils;
 
 import ch.ivy.addon.portalkit.bo.CaseNode;
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria;
@@ -84,7 +85,7 @@ public class CaseTreeUtils {
     root = buildRoot();
     ApplicationService service = new ApplicationService();
     List<String> involvedApplications = service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName());
-    CaseQuery caseQuery = SubProcessCall.withPath("Functional Processes/BuildCaseQuery")
+    CaseQuery caseQuery = SubProcessCall.withPath(PortalConstants.BUILD_CASE_QUERY_CALLABLE)
         .withStartSignature("buildCaseQuery()").call().get("caseQuery", CaseQuery.class);
     CategoryTree allCaseCategories = findAllCaseCategoryTree(involvedApplications, caseQuery);
     convertToCheckboxTreeNode(root, allCaseCategories);
@@ -117,7 +118,7 @@ public class CaseTreeUtils {
     }
   }
   
-  private static void sortNode(TreeNode node) {
+  public static void sortNode(TreeNode node) {
     Comparator<TreeNode> comparator = (firstNode, secondNode) -> {
       CaseNode firstNodeData = (CaseNode) firstNode.getData();
       CaseNode secondNodeData = (CaseNode) secondNode.getData();
