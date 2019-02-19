@@ -1,0 +1,5 @@
+co: name={FAIL_TO_LOAD_TASK_ELAPSED_TIME_STATISTIC} description={} changed={2019-02-19 05:37:21 CET} changedby={ldnam} visualorder={0} guid={16903FFD6491FBAE} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16903FFD64B85A07} datatype={} isdefault={true} langid={en} description={} validfrom={2019-02-19 05:24:52 CET} validto={} changed={2019-02-19 05:24:52 CET} changedby={ldnam} properties={} id={}
+val: guid={169040B42F9FC595} datatype={} isdefault={false} langid={de} description={} validfrom={2019-02-19 05:37:13 CET} validto={} changed={2019-02-19 05:37:20 CET} changedby={ldnam} properties={} id={}
+val: guid={169040B447BE7A74} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-19 05:37:16 CET} validto={} changed={2019-02-19 05:37:21 CET} changedby={ldnam} properties={} id={}
+val: guid={169040B4488C0C52} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-02-19 05:37:10 CET} validto={} changed={2019-02-19 05:37:21 CET} changedby={ldnam} properties={} id={}

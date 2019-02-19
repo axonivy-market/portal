@@ -1,0 +1,5 @@
+co: name={FAIL_TO_UPDATE_ABSENCE} description={} changed={2019-02-19 05:38:55 CET} changedby={ldnam} visualorder={0} guid={16903E4BA1EC185B} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={169040CB36BF5F8A} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-19 05:38:50 CET} validto={} changed={2019-02-19 05:38:55 CET} changedby={ldnam} properties={} id={}
+val: guid={16903E4BA21787E8} datatype={} isdefault={true} langid={en} description={} validfrom={2019-02-19 04:55:15 CET} validto={} changed={2019-02-19 04:55:15 CET} changedby={ldnam} properties={} id={}
+val: guid={169040CB275B1AF9} datatype={} isdefault={false} langid={de} description={} validfrom={2019-02-19 05:38:47 CET} validto={} changed={2019-02-19 05:38:54 CET} changedby={ldnam} properties={} id={}
+val: guid={169040CB374F093C} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-02-19 05:38:45 CET} validto={} changed={2019-02-19 05:38:55 CET} changedby={ldnam} properties={} id={}
