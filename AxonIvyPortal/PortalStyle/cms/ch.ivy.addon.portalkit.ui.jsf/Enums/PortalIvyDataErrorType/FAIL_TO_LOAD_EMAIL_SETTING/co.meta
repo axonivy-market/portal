@@ -1,0 +1,5 @@
+co: name={FAIL_TO_LOAD_EMAIL_SETTING} description={} changed={2019-02-19 05:31:22 CET} changedby={ldnam} visualorder={0} guid={16903E3AAE25A8AC} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16903E3AAE94F0B9} datatype={} isdefault={true} langid={en} description={} validfrom={2019-02-19 04:54:05 CET} validto={} changed={2019-02-19 04:54:05 CET} changedby={ldnam} properties={} id={}
+val: guid={1690405CA1A36821} datatype={} isdefault={false} langid={de} description={} validfrom={2019-02-19 05:31:14 CET} validto={} changed={2019-02-19 05:31:22 CET} changedby={ldnam} properties={} id={}
+val: guid={1690405CB1D442F6} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-02-19 05:31:12 CET} validto={} changed={2019-02-19 05:31:22 CET} changedby={ldnam} properties={} id={}
+val: guid={1690405CB153291A} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-19 05:31:17 CET} validto={} changed={2019-02-19 05:31:22 CET} changedby={ldnam} properties={} id={}
