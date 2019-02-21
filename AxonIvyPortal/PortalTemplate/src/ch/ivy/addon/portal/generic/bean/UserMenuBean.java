@@ -65,6 +65,12 @@ public class UserMenuBean implements Serializable {
     return Boolean.parseBoolean(isHiddenChangePassword);
   }
 
+  public boolean isHiddenStatisticWidget() {
+    GlobalSettingService globalSettingService = new GlobalSettingService();
+    String isHideStatisticWidget = globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET.toString());
+	return StringUtils.isNotBlank(isHideStatisticWidget) ? Boolean.parseBoolean(isHideStatisticWidget) : false;
+  }
+
   public int getClientSideTimeout() {
     GlobalSettingService globalSettingService = new GlobalSettingService();
     String clientSideTimeoutInMinute = globalSettingService.findGlobalSettingValue(GlobalVariable.CLIENT_SIDE_TIMEOUT.toString());

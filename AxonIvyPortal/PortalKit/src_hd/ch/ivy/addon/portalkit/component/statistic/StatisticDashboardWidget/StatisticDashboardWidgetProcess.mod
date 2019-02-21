@@ -60,7 +60,6 @@ Ss0 @Alternative f39 '' #zField
 Ss0 @PushWFArc f41 '' #zField
 Ss0 @PushWFArc f37 '' #zField
 Ss0 @RichDialogProcessEnd f46 '' #zField
-Ss0 @PushWFArc f31 '' #zField
 Ss0 @RichDialogProcessStart f50 '' #zField
 Ss0 @RichDialogProcessEnd f48 '' #zField
 Ss0 @PushWFArc f49 '' #zField
@@ -74,6 +73,15 @@ Ss0 @PushWFArc f57 '' #zField
 Ss0 @PushWFArc f47 '' #zField
 Ss0 @RichDialogProcessStart f58 '' #zField
 Ss0 @PushWFArc f59 '' #zField
+Ss0 @Alternative f60 '' #zField
+Ss0 @PushWFArc f61 '' #zField
+Ss0 @PushWFArc f31 '' #zField
+Ss0 @PushWFArc f62 '' #zField
+Ss0 @RichDialogMethodStart f63 '' #zField
+Ss0 @RichDialogProcessEnd f64 '' #zField
+Ss0 @GridStep f65 '' #zField
+Ss0 @PushWFArc f66 '' #zField
+Ss0 @PushWFArc f67 '' #zField
 >Proto Ss0 Ss0 StatisticDashboardWidgetProcess #zField
 Ss0 f3 guid 1600AC95D5A96D44 #txt
 Ss0 f3 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
@@ -120,8 +128,9 @@ Ss0 f11 guid 1604F11B5BA97CC5 #txt
 Ss0 f11 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 Ss0 f11 method start() #txt
 Ss0 f11 disableUIEvents true #txt
-Ss0 f11 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
+Ss0 f11 inParameterDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData out;
+' #txt
+Ss0 f11 inParameterMapAction 'out.isFinishLoadCharts=false;
 ' #txt
 Ss0 f11 outParameterDecl '<> result;
 ' #txt
@@ -143,12 +152,12 @@ Ss0 f0 expr out #txt
 Ss0 f0 141 64 243 64 #arcP
 Ss0 f1 guid 1604F3D5F5A87086 #txt
 Ss0 f1 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
-Ss0 f1 method initialize(java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>,Boolean,Boolean) #txt
+Ss0 f1 method initialize(java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>,Boolean,Boolean,Boolean) #txt
 Ss0 f1 disableUIEvents false #txt
-Ss0 f1 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> statisticChartList,java.lang.Boolean showTaskListImmediately,java.lang.Boolean isBackFromDrilldown> param = methodEvent.getInputArguments();
+Ss0 f1 inParameterDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData out;
 ' #txt
 Ss0 f1 inParameterMapAction 'out.isBackFromDrilldown=param.isBackFromDrilldown;
+out.isCompactMode=param.isCompactMode;
 out.showTaskListImmediately=param.showTaskListImmediately;
 out.statisticChartList=param.statisticChartList;
 ' #txt
@@ -157,16 +166,16 @@ Ss0 f1 outParameterDecl '<> result;
 Ss0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>initialize(List&lt;StatisticChart&gt;)</name>
-        <nameStyle>32,5,7
+        <name>initialize</name>
+        <nameStyle>10,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f1 115 131 26 26 -79 15 #rect
+Ss0 f1 643 51 26 26 -27 16 #rect
 Ss0 f1 @|RichDialogMethodStartIcon #fIcon
 Ss0 f2 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
-Ss0 f2 531 131 26 26 0 12 #rect
+Ss0 f2 1099 51 26 26 0 12 #rect
 Ss0 f2 @|RichDialogProcessEndIcon #fIcon
 Ss0 f13 guid 16052B0A98BF3B09 #txt
 Ss0 f13 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
@@ -378,7 +387,6 @@ Ss0 f30 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboar
 Ss0 f30 actionTable 'out=in;
 ' #txt
 Ss0 f30 actionCode 'import org.primefaces.context.RequestContext;
-import org.omg.CORBA.INITIALIZE;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.service.StatisticService;
 
@@ -402,7 +410,8 @@ if (in.statisticChartList.size() != 0) {
 	}
 } else {
 	in.hasStatistic = false;
-}' #txt
+}
+in.isFinishLoadCharts = true;' #txt
 Ss0 f30 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 Ss0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -413,10 +422,10 @@ Ss0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f30 288 122 144 44 -63 -8 #rect
+Ss0 f30 856 42 144 44 -63 -8 #rect
 Ss0 f30 @|StepIcon #fIcon
 Ss0 f12 expr out #txt
-Ss0 f12 432 144 531 144 #arcP
+Ss0 f12 1000 64 1099 64 #arcP
 Ss0 f7 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 Ss0 f7 processCall 'Functional Processes/Navigator:viewTaskForAnalytic(String,ch.ivyteam.ivy.workflow.query.TaskQuery)' #txt
 Ss0 f7 doCall true #txt
@@ -660,8 +669,6 @@ Ss0 f37 240 272 288 272 #arcP
 Ss0 f46 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 Ss0 f46 531 195 26 26 0 12 #rect
 Ss0 f46 @|RichDialogProcessEndIcon #fIcon
-Ss0 f31 expr out #txt
-Ss0 f31 141 144 288 144 #arcP
 Ss0 f50 guid 161BBDE048B4425D #txt
 Ss0 f50 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 Ss0 f50 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData out;
@@ -714,10 +721,10 @@ Ss0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f51 659 251 26 26 -61 15 #rect
+Ss0 f51 659 259 26 26 -61 15 #rect
 Ss0 f51 @|RichDialogProcessStartIcon #fIcon
 Ss0 f52 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
-Ss0 f52 931 251 26 26 0 12 #rect
+Ss0 f52 931 259 26 26 0 12 #rect
 Ss0 f52 @|RichDialogProcessEndIcon #fIcon
 Ss0 f53 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData out;
 ' #txt
@@ -753,12 +760,12 @@ Ss0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f53 776 242 112 44 -22 -8 #rect
+Ss0 f53 776 250 112 44 -22 -8 #rect
 Ss0 f53 @|StepIcon #fIcon
 Ss0 f54 expr out #txt
-Ss0 f54 685 264 776 264 #arcP
+Ss0 f54 685 272 776 272 #arcP
 Ss0 f55 expr out #txt
-Ss0 f55 888 264 931 264 #arcP
+Ss0 f55 888 272 931 272 #arcP
 Ss0 f56 guid 163DD43587A98693 #txt
 Ss0 f56 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 Ss0 f56 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData out;
@@ -811,6 +818,92 @@ Ss0 f59 expr out #txt
 Ss0 f59 451 352 344 294 #arcP
 Ss0 f59 1 344 352 #addKink
 Ss0 f59 0 0.8154754678204545 0 0 #arcLabel
+Ss0 f60 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
+Ss0 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Compact mode?</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f60 752 48 32 32 -49 -36 #rect
+Ss0 f60 @|AlternativeIcon #fIcon
+Ss0 f61 expr out #txt
+Ss0 f61 669 64 752 64 #arcP
+Ss0 f31 expr in #txt
+Ss0 f31 outCond !in.isCompactMode #txt
+Ss0 f31 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>false</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f31 784 64 856 64 #arcP
+Ss0 f31 0 0.3888888888888889 0 -10 #arcLabel
+Ss0 f62 expr in #txt
+Ss0 f62 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>true</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f62 768 80 1112 77 #arcP
+Ss0 f62 1 768 112 #addKink
+Ss0 f62 2 1112 112 #addKink
+Ss0 f62 0 0.5 15 0 #arcLabel
+Ss0 f63 guid 168FFD6C153F13B5 #txt
+Ss0 f63 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
+Ss0 f63 method initializeCompactMode() #txt
+Ss0 f63 disableUIEvents false #txt
+Ss0 f63 inParameterDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData out;
+' #txt
+Ss0 f63 outParameterDecl '<> result;
+' #txt
+Ss0 f63 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>initializeCompactMode()</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f63 627 147 26 26 -66 15 #rect
+Ss0 f63 @|RichDialogMethodStartIcon #fIcon
+Ss0 f64 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
+Ss0 f64 1099 147 26 26 0 12 #rect
+Ss0 f64 @|RichDialogProcessEndIcon #fIcon
+Ss0 f65 actionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData out;
+' #txt
+Ss0 f65 actionTable 'out=in;
+' #txt
+Ss0 f65 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticChart;
+import ch.ivy.addon.portalkit.service.StatisticService;
+
+if (in.statisticChartList.size() != 0) {
+	StatisticService service = new StatisticService();
+	service.generateChartModelForStatisticCharts(in.statisticChartList);
+
+	in.hasStatistic = true;
+} else {
+	in.hasStatistic = false;
+}
+
+in.isFinishLoadCharts = true;' #txt
+Ss0 f65 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
+Ss0 f65 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Generate chart models</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f65 824 138 144 44 -63 -8 #rect
+Ss0 f65 @|StepIcon #fIcon
+Ss0 f66 expr out #txt
+Ss0 f66 653 160 824 160 #arcP
+Ss0 f67 expr out #txt
+Ss0 f67 968 160 1099 160 #arcP
 >Proto Ss0 .type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 >Proto Ss0 .processKind HTML_DIALOG #txt
 >Proto Ss0 -8 -8 16 16 16 26 #rect
@@ -851,8 +944,6 @@ Ss0 f44 mainOut f41 tail #connect
 Ss0 f41 head f39 in #connect
 Ss0 f39 out f37 tail #connect
 Ss0 f37 head f36 mainIn #connect
-Ss0 f1 mainOut f31 tail #connect
-Ss0 f31 head f30 mainIn #connect
 Ss0 f50 mainOut f49 tail #connect
 Ss0 f49 head f48 mainIn #connect
 Ss0 f51 mainOut f54 tail #connect
@@ -865,3 +956,13 @@ Ss0 f39 out f47 tail #connect
 Ss0 f47 head f46 mainIn #connect
 Ss0 f58 mainOut f59 tail #connect
 Ss0 f59 head f36 mainIn #connect
+Ss0 f1 mainOut f61 tail #connect
+Ss0 f61 head f60 in #connect
+Ss0 f60 out f31 tail #connect
+Ss0 f31 head f30 mainIn #connect
+Ss0 f60 out f62 tail #connect
+Ss0 f62 head f2 mainIn #connect
+Ss0 f63 mainOut f66 tail #connect
+Ss0 f66 head f65 mainIn #connect
+Ss0 f65 mainOut f67 tail #connect
+Ss0 f67 head f64 mainIn #connect
