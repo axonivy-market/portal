@@ -168,7 +168,7 @@ var SecondLevelMenu = {
     if (getItemFromStorage(SECOND_LEVEL_MENU_MODE) === 'expanded') {
       if (firstLevelMenu != null){
         if ("Cases" === firstLevelMenu[0]) {
-          //loadCaseCategory();
+          loadCaseCategory();
         } else if ("Tasks" === firstLevelMenu[0]) {
           loadTaskCategory();
         }
@@ -188,7 +188,7 @@ var SecondLevelMenu = {
       } else {
         if (firstLevelMenu != null){
           if ("Cases" === firstLevelMenu[0]) {
-            //loadCaseCategory();
+            loadCaseCategory();
           } else if ("Tasks" === firstLevelMenu[0]) {
             loadTaskCategory();
           }
