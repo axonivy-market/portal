@@ -118,11 +118,6 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     return StatisticChart.class;
   }
 
-  @Override
-  public BusinessDataInfo<StatisticChart> save(StatisticChart statisticChart) {
-    return super.save(statisticChart);
-  }
-
   /**
    * Find all statistic charts by user id
    * 
