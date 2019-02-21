@@ -89,7 +89,6 @@ public class AbstractDaoTest {
     when(abstractDao.findById(entityId)).thenCallRealMethod();
 
     assertEquals(entityId, abstractDao.findById(entityId).getId());
-    Mockito.verify(abstractDao).setRelationshipDataFor(entity);
   }
 
 
@@ -126,8 +125,6 @@ public class AbstractDaoTest {
     assertEquals(2, actualEntities.size());
     assertEquals(entity1, actualEntities.get(0));
     assertEquals(entity2, actualEntities.get(1));
-    Mockito.verify(abstractDao).setRelationshipDataFor(entity1);
-    Mockito.verify(abstractDao).setRelationshipDataFor(entity2);
   }
 
   @Test

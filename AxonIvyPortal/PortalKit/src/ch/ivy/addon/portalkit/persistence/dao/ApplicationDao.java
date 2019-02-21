@@ -49,7 +49,6 @@ public class ApplicationDao extends AbstractDao<Application> {
         repo.query(objectFilterForDisplayName, objectFilterForAppName);
     if (!applications.isEmpty()) {
       Application application = applications.get(0);
-      setRelationshipDataFor(application);
       return application;
     }
 
@@ -65,7 +64,6 @@ public class ApplicationDao extends AbstractDao<Application> {
     List<Application> applications = repo.query(ObjectFilter.eq(EntityProperty.NAME.toString(), name));
     if (!applications.isEmpty()) {
       Application application = applications.get(0);
-      setRelationshipDataFor(application);
       return application;
     }
     return null;
@@ -78,13 +76,6 @@ public class ApplicationDao extends AbstractDao<Application> {
             .build(long.class, Application.class).init(findAll());
 
     List<Application> applications = repo.query(ObjectFilter.in(EntityProperty.NAME.toString(), names));
-    setRelationShipDataForApplications(applications);
     return applications;
-  }
-  
-  private void setRelationShipDataForApplications(List<Application> applications) {
-    for (Application application : applications) {
-      setRelationshipDataFor(application);
-    }
   }
 }
