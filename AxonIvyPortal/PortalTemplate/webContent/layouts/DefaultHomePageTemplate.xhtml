@@ -11,7 +11,7 @@
     <ui:define name="simplePageContent">
       <c:set var="displayProcessWidget" value="#{not empty displayProcessWidget ? displayProcessWidget : true}" />
       <c:set var="displayTaskWidget" value="#{not empty displayTaskWidget ? displayTaskWidget : true}" />
-      <c:set var="displayStatisticWidget" value="#{not empty displayStatisticWidget ? displayStatisticWidget : true}" />
+      <c:set var="displayStatisticWidget" value="#{(not empty displayStatisticWidget ? displayStatisticWidget : true) and not statisticBean.hiddenStatisticWidget}" />
 
       <h:panelGroup layout="block"
         styleClass="js-dashboard-default-widget-container #{dataModel.compactMode ? 'dashboard-container' : 'task-list-container js-task-list-container'}">

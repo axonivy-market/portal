@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -18,7 +17,6 @@ import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.statistics.StatisticFilter;
-import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
 @ViewScoped
@@ -33,7 +31,6 @@ public class StatisticDashboardBean implements Serializable {
   private static final String DASH = "%s - %s";
 
   private StatisticService statisticService = new StatisticService();
-  private List<StatisticChart> statisticChartList;
 
   public String getChartWidthStyle(List<StatisticChart> chartList) {
     List<String> chartIdSuffixes = new ArrayList<>();
@@ -96,18 +93,6 @@ public class StatisticDashboardBean implements Serializable {
     return StringUtils.EMPTY;
   }
 
-  @PostConstruct
-  public void initialize() {
-    statisticChartList = statisticService.findStatisticChartsByUserId(Ivy.session().getSessionUser().getId());
-  }
-
-  public List<StatisticChart> getStatisticChartList() {
-    return statisticChartList;
-  }
-
-  public void setStatisticChartList(List<StatisticChart> statisticChartList) {
-    this.statisticChartList = statisticChartList;
-  }
 
   public boolean isTaskByPriority(StatisticChart statisticChart) {
     if (statisticChart == null) {

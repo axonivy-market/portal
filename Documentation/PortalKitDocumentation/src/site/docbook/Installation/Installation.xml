@@ -1121,6 +1121,9 @@
 						<para>Provide more permissions to show/hide menu, button and link in Portal, refer to 
 							<link linkend="axonivyportal.installation.basicinstallation.permissionsettings" endterm="axonivyportal.installation.basicinstallation.permissionsettings.title" /> for more detail.</para>
 					</listitem>
+					<listitem>
+						<para>Hide Statistic widget can be configured in Admin setting.</para>
+					</listitem>
 				</itemizedlist>
 			</sect2>
 			<sect2>
