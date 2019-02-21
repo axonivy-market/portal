@@ -73,13 +73,13 @@ import ch.ivy.addon.portalkit.service.StatisticService;
 StatisticService service = new StatisticService();
 String chartName = "My default chart";
 StatisticChartType chartType = StatisticChartType.TASK_BY_PRIORITY;
-StatisticFilter statisticFilter = new StatisticFilter();
+StatisticFilter statisticFilter = new StatisticFilter().init();
 
 if (!service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName)) {
   StatisticChart newChart = service.createStatisticChart(statisticFilter, chartName, chartType, ivy.session.getSessionUser().getId(), true);
   in.defaultCharts.add(newChart);		
 }</name>
-        <nameStyle>777
+        <nameStyle>784,5
 </nameStyle>
     </language>
 </elementInfo>
