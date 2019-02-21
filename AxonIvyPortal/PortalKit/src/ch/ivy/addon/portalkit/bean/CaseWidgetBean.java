@@ -1,6 +1,8 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -116,4 +118,9 @@ public class CaseWidgetBean implements Serializable {
   public void setShowFullCaseList(boolean isShowFullCaseList) {
     this.isShowFullCaseList = isShowFullCaseList;
   }
+  
+  public <T> List<T> getFirst20Items(List<T> items) {
+    return items.stream().limit(20).collect(Collectors.toList());
+  }
+  
 }
