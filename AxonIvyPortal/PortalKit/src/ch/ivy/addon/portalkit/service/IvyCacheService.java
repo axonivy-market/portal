@@ -94,10 +94,10 @@ public class IvyCacheService {
   }
   
   public void invalidateGlobalSettingCache(){
-    IDataCacheGroup wsGroupNameCurrentApp = applicationCache().getGroup(IvyCacheIdentifier.GLOBAL_SETTING_CACHE_GROUP_NAME);
-    if (wsGroupNameCurrentApp != null){
+    IDataCacheGroup groupNameCurrentApp = applicationCache().getGroup(IvyCacheIdentifier.GLOBAL_SETTING_CACHE_GROUP_NAME);
+    if (groupNameCurrentApp != null){
       Ivy.log().info("CLEAR GET APPS WS CACHE CURRENT APP");
-      applicationCache().invalidateGroup(wsGroupNameCurrentApp );
+      applicationCache().invalidateGroup(groupNameCurrentApp );
     }
     invalidateGlobalSettingOnApp(PortalConstants.PORTAL_APPLICATION_NAME);
   }
@@ -132,25 +132,6 @@ public class IvyCacheService {
     return entry == null ? StringUtils.EMPTY : String.valueOf(entry.getValue());
   }
   
-  public void invalidateUsersCache(String applicationName) {
-    IDataCache cache = getCacheFromApplicationName(applicationName);
-      if (cache == null) {
-        return ;
-      }
-    IDataCacheGroup group = cache.getGroup(IvyCacheIdentifier.PORTAL_USERS_CACHE_GROUP_NAME);
-    if (group != null) {
-      Ivy.log().info("Invalidated users cache in application: " + applicationName);
-      cache.invalidateGroup(group);
-    }
-  }
-  
-  private IDataCache getCacheFromApplicationName(String applicationName) {
-    IApplication findApplication = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(applicationName);
-      if (findApplication == null) {
-        return null;
-      }
-      return (IDataCache) findApplication.getAdapter(IDataCache.class);
-  }
   
   private IDataCache sessionCache() {
     return Ivy.datacache().getSessionCache();
