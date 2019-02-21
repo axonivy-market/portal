@@ -77,7 +77,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang.ObjectUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.component.chart.Chart;
@@ -120,9 +120,6 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
   @Override
   public BusinessDataInfo<StatisticChart> save(StatisticChart statisticChart) {
-    statisticChart.setBarChartModel(null);
-    statisticChart.setDonutChartModel(null);
-    statisticChart.setPieChartModel(null);
     return super.save(statisticChart);
   }
 
@@ -694,7 +691,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     statisticChart.setPosition(countStatisticChartsByUserId(creatorId));
     statisticChart.setDefaultChart(String.valueOf(isDefault));
     if (filter.getIsAllCaseStatesSelected() || filter.getIsAllCategoriesSelected()) {
-      StatisticFilter newFilter = (StatisticFilter) ObjectUtils.clone(filter);
+      StatisticFilter newFilter = ObjectUtils.clone(filter);
       if (filter.getIsAllCategoriesSelected()) {
         newFilter.setSelectedCaseCategories(new ArrayList<>());
       }
