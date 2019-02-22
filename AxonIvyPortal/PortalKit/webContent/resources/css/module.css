@@ -3525,6 +3525,21 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 }
 
 /** LINE VERTICAL*/
+.vertical-process-chain-container {
+	display: inline-block;
+	width: 6%;
+	float: left;
+}
+
+.task-template-content.vertical-process-chain {
+	display: inline-block;
+	width: 94%;
+}
+
+.task-name-vertical-process-chain {
+	margin-left: 6%;
+}
+
 .line-process-chain.vertical-process-chain {
   float: left;
 }

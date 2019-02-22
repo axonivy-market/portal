@@ -8,28 +8,31 @@
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="isWorkingOnATask" value="true" />
-
+ 
     <ui:define name="simplePageContent">
       <ui:insert name="breadCrumb" />
       <div>
-        <div class="Fleft Wid100 Fs14 foreground-text-color MarTop10">
+        <h:panelGroup layout="block" styleClass="Fleft Wid100 Fs14 foreground-text-color MarTop10 #{processChainDirection eq 'VERTICAL' ? 'task-name-vertical-process-chain' : ''}">
           <ui:insert name="taskName">
             <span class=" fa fa-check-square-o task-template-title-icon" />
             <h:outputText styleClass="task-template-title" id="title" title="#{task.name} (##{task.id})" value="#{task.name} (##{task.id})" />
           </ui:insert>
-        </div>
-        <div class="Fright Wid70">
+        </h:panelGroup>
+        <h:panelGroup  class="Fright Wid70 MarBot20 #{processChainDirection eq 'VERTICAL' ? 'vertical-process-chain-container' : ''}">
           <ui:insert name="process_chain_area">
-            <ic:ch.ivy.addon.portalkit.singleapp.process.ProcessChain actualStepIndex="#{actualStepIndex}" componentId="process-chain-id" shape="CIRCLE" direction="HORIZONTAL" isShowAllSteps="false"
-              steps="#{steps}" stages="#{taskTemplateBean.getStagesBaseOnCurrentStage(caseId)}" startMethod="start"
-              currentIndex="#{taskTemplateBean.getIndexOfCurrentStage(caseId)}" />
+            <ic:ch.ivy.addon.portalkit.singleapp.process.ProcessChain startMethod="start" componentId="process-chain-component-id"
+              shape="#{processChainShape eq 'LINE' ? 'LINE' : 'CIRCLE'}"
+              direction="#{processChainDirection eq 'VERTICAL' ? 'VERTICAL' : 'HORIZONTAL'}"
+              isShowAllSteps="false"
+              actualStepIndex="#{actualStepIndex}" steps="#{steps}"
+              currentIndex="#{taskTemplateBean.getIndexOfCurrentStage(caseId)}" stages="#{taskTemplateBean.getStagesBaseOnCurrentStage(caseId)}" />
           </ui:insert>
-        </div>
+        </h:panelGroup>
       </div>
 
-      <div class="ClearBoth" />
-
-      <div class="task-template-content">
+      <h:panelGroup layout="block" styleClass="ClearBoth" rendered="#{processChainDirection ne 'VERTICAL'}" />
+      
+      <h:panelGroup layout="block" styleClass="task-template-content #{processChainDirection eq 'VERTICAL' ? 'vertical-process-chain' : ''}">
         <ui:insert name="errorsZone" />
         <ui:insert name="infoZone" />
 
@@ -99,7 +102,7 @@
             </ui:insert>
           </p:tab>
         </p:tabView>
-      </div>
+      </h:panelGroup>
 
       <div>
         <div class="Fleft">
