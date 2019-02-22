@@ -1,5 +1,5 @@
 [Ivy]
-14BDDCD00C5EA267 3.23 #module
+14BDDCD00C5EA267 3.24 #module
 >Proto >Proto Collection #zClass
 Se0 AbsenceService Big #zClass
 Se0 B #cInfo
@@ -31,10 +31,7 @@ Se0 @EndSub f7 '' #zField
 Se0 @PushWFArc f8 '' #zField
 Se0 @StartSub f9 '' #zField
 Se0 @EndSub f10 '' #zField
-Se0 @GridStep f11 '' #zField
-Se0 @PushWFArc f12 '' #zField
 Se0 @GridStep f13 '' #zField
-Se0 @PushWFArc f14 '' #zField
 Se0 @CallSub f15 '' #zField
 Se0 @PushWFArc f16 '' #zField
 Se0 @PushWFArc f17 '' #zField
@@ -55,6 +52,9 @@ Se0 @PushWFArc f31 '' #zField
 Se0 @PushWFArc f32 '' #zField
 Se0 @EndSub f33 '' #zField
 Se0 @PushWFArc f34 '' #zField
+Se0 @PushWFArc f14 '' #zField
+Se0 @PushWFArc f12 '' #zField
+Se0 @GridStep f11 '' #zField
 >Proto Se0 Se0 AbsenceService #zField
 Se0 f81 inParamDecl '<java.lang.String username> param;' #txt
 Se0 f81 inParamTable 'out.username=param.username;
@@ -84,9 +84,9 @@ Se0 f84 actionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
 ' #txt
 Se0 f84 actionTable 'out=in;
 ' #txt
-Se0 f84 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
+Se0 f84 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-ApplicationService service = new ApplicationService();
+RegisteredApplicationService service = new RegisteredApplicationService();
 out.apps = service.findActiveIvyAppsUserCanWorkOn(in.username);
 ' #txt
 Se0 f84 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
@@ -193,9 +193,9 @@ Se0 f1 actionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
 ' #txt
 Se0 f1 actionTable 'out=in;
 ' #txt
-Se0 f1 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
+Se0 f1 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-ApplicationService service = new ApplicationService();
+RegisteredApplicationService service = new RegisteredApplicationService();
 out.apps = service.findActiveIvyAppsUserCanWorkOn(in.username);
 ' #txt
 Se0 f1 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
@@ -281,28 +281,6 @@ Se0 f9 @|StartSubIcon #fIcon
 Se0 f10 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f10 689 433 30 30 0 15 #rect
 Se0 f10 @|EndSubIcon #fIcon
-Se0 f11 actionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
-' #txt
-Se0 f11 actionTable 'out=in;
-' #txt
-Se0 f11 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
-
-ApplicationService service = new ApplicationService();
-out.apps = service.findActiveIvyAppsUserCanWorkOn(in.absence.getUsername());
-' #txt
-Se0 f11 security system #txt
-Se0 f11 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
-Se0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Find applications can work on</name>
-    </language>
-</elementInfo>
-' #txt
-Se0 f11 168 426 176 44 -81 -8 #rect
-Se0 f11 @|StepIcon #fIcon
-Se0 f12 expr out #txt
-Se0 f12 111 448 168 448 #arcP
 Se0 f13 actionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
 ' #txt
 Se0 f13 actionTable 'out=in;
@@ -322,8 +300,6 @@ Se0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Se0 f13 376 426 112 44 -43 -8 #rect
 Se0 f13 @|StepIcon #fIcon
-Se0 f14 expr out #txt
-Se0 f14 344 448 376 448 #arcP
 Se0 f15 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f15 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
 Se0 f15 doCall true #txt
@@ -414,9 +390,9 @@ Se0 f22 actionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
 ' #txt
 Se0 f22 actionTable 'out=in;
 ' #txt
-Se0 f22 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
+Se0 f22 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-ApplicationService service = new ApplicationService();
+RegisteredApplicationService service = new RegisteredApplicationService();
 out.apps = service.findActiveIvyAppsUserCanWorkOn(in.absence.getUsername());
 ' #txt
 Se0 f22 security system #txt
@@ -442,9 +418,9 @@ Se0 f27 actionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
 ' #txt
 Se0 f27 actionTable 'out=in;
 ' #txt
-Se0 f27 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
+Se0 f27 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-ApplicationService service = new ApplicationService();
+RegisteredApplicationService service = new RegisteredApplicationService();
 out.apps = service.findActiveIvyAppsUserCanWorkOn(in.username);
 ' #txt
 Se0 f27 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
@@ -509,6 +485,30 @@ Se0 f33 691 145 30 30 0 15 #rect
 Se0 f33 @|EndSubIcon #fIcon
 Se0 f34 expr out #txt
 Se0 f34 634 160 691 160 #arcP
+Se0 f14 expr out #txt
+Se0 f14 344 448 376 448 #arcP
+Se0 f12 expr out #txt
+Se0 f12 111 448 168 448 #arcP
+Se0 f11 actionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
+' #txt
+Se0 f11 actionTable 'out=in;
+' #txt
+Se0 f11 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
+
+RegisteredApplicationService service = new RegisteredApplicationService();
+out.apps = service.findActiveIvyAppsUserCanWorkOn(in.absence.getUsername());
+' #txt
+Se0 f11 security system #txt
+Se0 f11 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
+Se0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Find applications can work on</name>
+    </language>
+</elementInfo>
+' #txt
+Se0 f11 168 426 176 44 -81 -8 #rect
+Se0 f11 @|StepIcon #fIcon
 >Proto Se0 .type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 >Proto Se0 .processKind CALLABLE_SUB #txt
 >Proto Se0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

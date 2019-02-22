@@ -1,5 +1,5 @@
 [Ivy]
-16150F8167BC0EF5 3.23 #module
+16150F8167BC0EF5 3.24 #module
 >Proto >Proto Collection #zClass
 Ts0 TestStatisticWidgetPageProcess Big #zClass
 Ts0 RD #cInfo
@@ -28,9 +28,9 @@ Ts0 f4 actionDecl 'internalPortal.TestStatisticWidgetPage.TestStatisticWidgetPag
 ' #txt
 Ts0 f4 actionTable 'out=in;
 ' #txt
-Ts0 f4 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
+Ts0 f4 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-ApplicationService service = new ApplicationService();
+RegisteredApplicationService service = new RegisteredApplicationService();
 java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
 in.involvedApplications = apps;' #txt
 Ts0 f4 type internalPortal.TestStatisticWidgetPage.TestStatisticWidgetPageData #txt

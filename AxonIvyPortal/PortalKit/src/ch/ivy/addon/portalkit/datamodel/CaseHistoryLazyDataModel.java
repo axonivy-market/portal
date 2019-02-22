@@ -13,7 +13,7 @@ import org.primefaces.model.SortOrder;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
-import ch.ivy.addon.portalkit.service.ApplicationService;
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -39,7 +39,7 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<ICase> {
   }
 
   protected void setInvolvedApplications() {
-    ApplicationService service = new ApplicationService();
+    RegisteredApplicationService service = new RegisteredApplicationService();
     criteria.setApps(service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName()));
   }
 

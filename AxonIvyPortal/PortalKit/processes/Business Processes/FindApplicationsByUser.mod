@@ -45,9 +45,9 @@ Fr0 f3 actionDecl 'ch.ivyteam.wf.processes.FindApplicationsByUserData out;
 ' #txt
 Fr0 f3 actionTable 'out=in;
 ' #txt
-Fr0 f3 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
+Fr0 f3 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-ApplicationService service = new ApplicationService();
+RegisteredApplicationService service = new RegisteredApplicationService();
 in.applications = service.findApplicationByUser(in.username);' #txt
 Fr0 f3 type ch.ivyteam.wf.processes.FindApplicationsByUserData #txt
 Fr0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
