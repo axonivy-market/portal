@@ -84,6 +84,7 @@ public class AdminSettingsPage extends TemplatePage {
   private void saveGlobalVariable(String value, boolean isBooleanType){
     if(!isBooleanType) {
       WebElement valueInput = findElementById("adminui:valueSetting");
+      valueInput.clear();
       valueInput.sendKeys(value);
     } else {
       click(By.id("adminui:valueSetting_label"));
