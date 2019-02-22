@@ -22,7 +22,7 @@ import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
-import ch.ivy.addon.portalkit.service.ApplicationService;
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
@@ -95,7 +95,7 @@ public class UserMenuBean implements Serializable {
   }
 
   public String getHomePageURL() throws MalformedURLException {
-    ApplicationService applicationService = new ApplicationService();
+    RegisteredApplicationService applicationService = new RegisteredApplicationService();
     String homePageURL = getHomePageFromSetting();
     if (CollectionUtils.isEmpty(applicationService.findAllIvyApplications())) {
       if (!StringUtils.isEmpty(homePageURL)) {

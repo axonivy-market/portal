@@ -21,9 +21,9 @@ import ch.ivyteam.ivy.data.cache.IDataCacheEntry;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 
-public class ApplicationService extends AbstractService<Application> {
+public class RegisteredApplicationService extends AbstractService<Application> {
 
-  public ApplicationService() {
+  public RegisteredApplicationService() {
     super(ApplicationDao.class);
   }
 

@@ -1310,9 +1310,9 @@ As0 f92 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData
 ' #txt
 As0 f92 actionTable 'out=in;
 ' #txt
-As0 f92 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
+As0 f92 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-ApplicationService applicationService = new ApplicationService();
+RegisteredApplicationService applicationService = new RegisteredApplicationService();
 applicationService.delete(in.selectedApp);' #txt
 As0 f92 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1334,9 +1334,9 @@ As0 f40 actionTable 'out=in;
 ' #txt
 As0 f40 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.Application;
 
-import ch.ivy.addon.portalkit.service.ApplicationService;
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-ApplicationService applicationService = new ApplicationService();
+RegisteredApplicationService applicationService = new RegisteredApplicationService();
 in.selectedApp = applicationService.save(in.selectedApp) as Application;' #txt
 As0 f40 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1354,9 +1354,9 @@ As0 f225 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsDat
 ' #txt
 As0 f225 actionTable 'out=in;
 ' #txt
-As0 f225 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
+As0 f225 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-ApplicationService applicationService = new ApplicationService();
+RegisteredApplicationService applicationService = new RegisteredApplicationService();
 in.applicationList = applicationService.findAll();' #txt
 As0 f225 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f225 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1378,9 +1378,9 @@ As0 f231 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsDat
 ' #txt
 As0 f231 actionTable 'out=in;
 ' #txt
-As0 f231 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
+As0 f231 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-ApplicationService applicationService = new ApplicationService();
+RegisteredApplicationService applicationService = new RegisteredApplicationService();
 in.applicationList = applicationService.saveAll(in.applicationList);' #txt
 As0 f231 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f231 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1478,8 +1478,7 @@ As0 f2 guid 151E78971722E279 #txt
 As0 f2 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f2 method findAllApplication() #txt
 As0 f2 disableUIEvents false #txt
-As0 f2 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
+As0 f2 inParameterDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
 ' #txt
 As0 f2 outParameterDecl '<List<ch.ivy.addon.portalkit.persistence.domain.Application> applications> result;
 ' #txt
@@ -1487,9 +1486,9 @@ As0 f2 outParameterMapAction 'result.applications=in.applicationList;
 ' #txt
 As0 f2 outActionCode 'import ch.ivy.addon.portalkit.comparator.ApplicationIndexAscendingComparator;
 import java.util.Collections;
-import ch.ivy.addon.portalkit.service.ApplicationService;
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-ApplicationService applicationService = new ApplicationService();
+RegisteredApplicationService applicationService = new RegisteredApplicationService();
 in.applicationList  = applicationService.findAll();
 Collections.sort(in.applicationList, new ApplicationIndexAscendingComparator());
 result.applications = in.applicationList;' #txt
@@ -1966,12 +1965,12 @@ Ct0 f51 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData
 Ct0 f51 actionTable 'out=in;
 ' #txt
 Ct0 f51 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.Application;
-import ch.ivy.addon.portalkit.service.ApplicationService;
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 
 IvyCacheService.newInstance().invalidateGlobalSettingCache();
 
-java.util.List<Application> apps = new ApplicationService().findAllIvyApplications();
+java.util.List<Application> apps = new RegisteredApplicationService().findAllIvyApplications();
 
 for (Application app: apps){
 	IvyCacheService.newInstance().invalidateGlobalSettingOnApp(app.getName());

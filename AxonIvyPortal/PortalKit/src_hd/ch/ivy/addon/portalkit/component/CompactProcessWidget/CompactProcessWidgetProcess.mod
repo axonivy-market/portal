@@ -1,5 +1,5 @@
 [Ivy]
-167CFB0D927CF955 3.23 #module
+167CFB0D927CF955 3.24 #module
 >Proto >Proto Collection #zClass
 Ps0 CompactProcessWidgetProcess Big #zClass
 Ps0 RD #cInfo
@@ -74,9 +74,9 @@ Ps0 f2 actionDecl 'ch.ivy.addon.portalkit.component.CompactProcessWidget.Compact
 ' #txt
 Ps0 f2 actionTable 'out=in;
 ' #txt
-Ps0 f2 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
+Ps0 f2 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-ApplicationService service = new ApplicationService();
+RegisteredApplicationService service = new RegisteredApplicationService();
 java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
 out.processSearchCriteria.apps = apps;
 out.processSearchCriteria.username = ivy.session.getSessionUserName();
