@@ -1,5 +1,5 @@
 [Ivy]
-1602F513613E1225 3.23 #module
+1602F513613E1225 3.24 #module
 >Proto >Proto Collection #zClass
 ac0 AnalyzeStatistic Big #zClass
 ac0 B #cInfo
@@ -315,9 +315,9 @@ ac0 f23 actionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
 ac0 f23 actionTable 'out=in;
 ' #txt
 ac0 f23 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.service.ApplicationService;
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-ApplicationService service = new ApplicationService();
+RegisteredApplicationService service = new RegisteredApplicationService();
 java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
 in.caseSearchCriteria.apps = apps;
 in.caseSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
@@ -341,9 +341,9 @@ ac0 f31 actionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
 ac0 f31 actionTable 'out=in;
 ' #txt
 ac0 f31 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.service.ApplicationService;
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-ApplicationService service = new ApplicationService();
+RegisteredApplicationService service = new RegisteredApplicationService();
 java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
 in.caseSearchCriteria.apps = apps;
 in.caseSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
@@ -366,9 +366,9 @@ ac0 f25 actionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
 ' #txt
 ac0 f25 actionTable 'out=in;
 ' #txt
-ac0 f25 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
+ac0 f25 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-ApplicationService service = new ApplicationService();
+RegisteredApplicationService service = new RegisteredApplicationService();
 java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
 in.taskSearchCriteria.apps = apps;
 in.taskSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
@@ -389,9 +389,9 @@ ac0 f21 actionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
 ' #txt
 ac0 f21 actionTable 'out=in;
 ' #txt
-ac0 f21 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
+ac0 f21 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-ApplicationService service = new ApplicationService();
+RegisteredApplicationService service = new RegisteredApplicationService();
 java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
 in.taskSearchCriteria.apps = apps;
 in.taskSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
@@ -413,9 +413,9 @@ ac0 f41 actionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
 ac0 f41 actionTable 'out=in;
 ' #txt
 ac0 f41 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.service.ApplicationService;
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-ApplicationService service = new ApplicationService();
+RegisteredApplicationService service = new RegisteredApplicationService();
 java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
 in.caseSearchCriteria.apps = apps;
 
@@ -458,9 +458,9 @@ ac0 f46 actionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
 ' #txt
 ac0 f46 actionTable 'out=in;
 ' #txt
-ac0 f46 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
+ac0 f46 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-ApplicationService service = new ApplicationService();
+RegisteredApplicationService service = new RegisteredApplicationService();
 java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
 in.taskSearchCriteria.apps = apps;
 in.taskSearchCriteria.sorted = false;' #txt
@@ -520,9 +520,9 @@ ac0 f16 actionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
 ' #txt
 ac0 f16 actionTable 'out=in;
 ' #txt
-ac0 f16 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
+ac0 f16 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-ApplicationService service = new ApplicationService();
+RegisteredApplicationService service = new RegisteredApplicationService();
 java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
 in.caseCustomVarCharSearchCriteria.apps = apps;' #txt
 ac0 f16 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt

@@ -1,5 +1,5 @@
 [Ivy]
-14BECA923C1F4A4B 3.23 #module
+14BECA923C1F4A4B 3.24 #module
 >Proto >Proto Collection #zClass
 Se0 SubstituteService Big #zClass
 Se0 B #cInfo
@@ -75,9 +75,9 @@ Se0 f84 actionDecl 'ch.ivyteam.wf.processes.SubstituteServiceData out;
 ' #txt
 Se0 f84 actionTable 'out=in;
 ' #txt
-Se0 f84 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
+Se0 f84 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-ApplicationService service = new ApplicationService();
+RegisteredApplicationService service = new RegisteredApplicationService();
 out.apps = service.findActiveIvyAppsUserCanWorkOn(in.username);
 ' #txt
 Se0 f84 type ch.ivyteam.wf.processes.SubstituteServiceData #txt
