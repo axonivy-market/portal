@@ -1,5 +1,5 @@
 [Ivy]
-14BDEA64F884ED76 3.23 #module
+14BDEA64F884ED76 3.24 #module
 >Proto >Proto Collection #zClass
 Ee0 EmailSettingService Big #zClass
 Ee0 B #cInfo
@@ -52,9 +52,9 @@ Ee0 f10 actionDecl 'ch.ivyteam.wf.processes.EmailSettingServiceData out;
 ' #txt
 Ee0 f10 actionTable 'out=in;
 ' #txt
-Ee0 f10 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
+Ee0 f10 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-ApplicationService service = new ApplicationService();
+RegisteredApplicationService service = new RegisteredApplicationService();
 out.apps = service.findActiveIvyAppsUserCanWorkOn(in.username);
 ' #txt
 Ee0 f10 type ch.ivyteam.wf.processes.EmailSettingServiceData #txt
