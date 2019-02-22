@@ -11,7 +11,6 @@ import portal.guitest.page.LoginPage;
 
 public class SearchCaseByJsonQueryTest extends BaseTest {
     
-    @SuppressWarnings("unused")
     @Before
     @Override
     public void setup() {

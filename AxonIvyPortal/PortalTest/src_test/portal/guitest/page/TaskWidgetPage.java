@@ -58,8 +58,8 @@ public class TaskWidgetPage extends TemplatePage {
             + ":task-item:show-task-detail-link')]");
     taskShowHideDetailsLink.click();
     waitAjaxIndicatorDisappear();
-    waitForElementDisplayed(By.cssSelector("*[id$='" + index + ":task-item:task-details-container']"), isDetailsShown,
-        DEFAULT_TIMEOUT);
+    waitForElementPresent(By.cssSelector("*[id$='" + index + ":task-item:description:task-description-form"), isDetailsShown,
+            DEFAULT_TIMEOUT);
   }
 
   public TaskDetailsPage getTaskDetailsElement(int index) {

@@ -60,7 +60,7 @@ public class TaskWidgetTest extends BaseTest {
     String relatedCaseName = taskWidgetPage.getRelatedCase();
     CasePage casePage = taskWidgetPage.openRelatedCaseOfTask();
 
-    String caseName = casePage.getCaseName();
+    String caseName = casePage.getCaseName(0);
     assertEquals(relatedCaseName, caseName);
   }
 

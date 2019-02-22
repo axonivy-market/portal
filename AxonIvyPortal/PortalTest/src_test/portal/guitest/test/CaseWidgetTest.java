@@ -5,7 +5,6 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebElement;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
@@ -62,8 +61,9 @@ public class CaseWidgetTest extends BaseTest {
     mainMenuPage = homePage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
     int numberOfCasesBeforeDestroying = casePage.getNumberOfCases();
-    WebElement caseSecondItemBeforDestroy = casePage.selectCaseItem(0);
-    casePage.clickDestroyButton(caseSecondItemBeforDestroy);
+    int selectedCaseIndex = 0;
+    casePage.selectCaseItem(selectedCaseIndex);
+    casePage.clickDestroyButton(selectedCaseIndex);
     casePage.confimDestruction();
     casePage.waitAjaxIndicatorDisappear();
     assertEquals(numberOfCasesBeforeDestroying - 1, casePage.getNumberOfCases());
@@ -75,9 +75,9 @@ public class CaseWidgetTest extends BaseTest {
     initHomePage(TestAccount.DEMO_USER);
     mainMenuPage = homePage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
-    WebElement caseSecondItem = casePage.selectCaseItem(0);
-
-    assertFalse(casePage.isDestroyButtonVisible(caseSecondItem));
+    int selectedCaseIndex = 0;
+    casePage.selectCaseItem(selectedCaseIndex);
+    assertFalse(casePage.isDestroyButtonVisible(selectedCaseIndex));
   }
 
   @Test
