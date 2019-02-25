@@ -791,7 +791,7 @@
 		<sect2>
 			<title>Migrate to 7.3.0</title>
 			<para>
-				From 7.3.0, Portal supports some permissions to show/hide left menu item, if you override LoadSubMenuItems process and want to use these permissions, please refer to 
+				From 7.3.0, Portal supports some permissions to show/hide left menu item, if you override <code>LoadSubMenuItems</code> process and want to use these permissions, refer to 
 				<link linkend="axonivyportal.customization.menu.customization" endterm="axonivyportal.customization.menu.customization.title" /> for more detail.
 			</para>
 			<para>
@@ -803,6 +803,7 @@
 					Use <code>criteria</code> field instead of <code>queryCriteria</code> or <code>searchCriteria</code>, use <code>adminQuery</code> field instead of <code>ignoreInvolvedUser</code>.</listitem>
 					<listitem>If you override CaseLazyDataModel: remove <code>extendSortCasesInNotDisplayedTaskMap</code> method. 
 					Use <code>criteria</code> field instead of <code>queryCriteria</code> or <code>searchCriteria</code>, use <code>adminQuery</code> field instead of <code>ignoreInvolvedUser</code>.</listitem>
+					<listitem>If you override ChangePassword.mod: change process call from <code>MultiPortal/PasswordService:changePasswordService(String,String)</code> to <code>Ivy Data Processes/PasswordService:changePassword(String,String)</code>.</listitem>
 				</itemizedlist>
 			</para>
 		</sect2>
