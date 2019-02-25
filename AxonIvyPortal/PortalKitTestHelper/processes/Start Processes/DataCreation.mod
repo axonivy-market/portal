@@ -98,6 +98,11 @@ Dt0 @PushWFArc f29 '' #zField
 Dt0 @Trigger f83 '' #zField
 Dt0 @PushWFArc f84 '' #zField
 Dt0 @PushWFArc f85 '' #zField
+Dt0 @StartRequest f86 '' #zField
+Dt0 @EndTask f87 '' #zField
+Dt0 @RichDialog f88 '' #zField
+Dt0 @PushWFArc f89 '' #zField
+Dt0 @PushWFArc f90 '' #zField
 >Proto Dt0 Dt0 DataCreation #zField
 Dt0 f0 outLink createTasks.ivp #txt
 Dt0 f0 type portalKit_test.DataCreationData #txt
@@ -985,6 +990,52 @@ Dt0 f85 696 160 482 48 #arcP
 Dt0 f85 1 752 160 #addKink
 Dt0 f85 2 752 48 #addKink
 Dt0 f85 2 0.5222222222222223 0 0 #arcLabel
+Dt0 f86 outLink hideOrUnHideTaskCase.ivp #txt
+Dt0 f86 type portalKit_test.DataCreationData #txt
+Dt0 f86 inParamDecl '<> param;' #txt
+Dt0 f86 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f86 guid 16913899615B73C1 #txt
+Dt0 f86 requestEnabled true #txt
+Dt0 f86 triggerEnabled false #txt
+Dt0 f86 callSignature hideOrUnHideTaskCase() #txt
+Dt0 f86 persist false #txt
+Dt0 f86 caseData businessCase.attach=true #txt
+Dt0 f86 showInStartList 1 #txt
+Dt0 f86 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>hideOrUnHideTaskCase.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f86 @C|.responsibility Everybody #txt
+Dt0 f86 49 849 30 30 -77 17 #rect
+Dt0 f86 @|StartRequestIcon #fIcon
+Dt0 f87 type portalKit_test.DataCreationData #txt
+Dt0 f87 497 849 30 30 0 15 #rect
+Dt0 f87 @|EndIcon #fIcon
+Dt0 f88 richDialogId ch.ivy.addon.portalkit.test.HideOrUnHideTaskCase #txt
+Dt0 f88 startMethod start() #txt
+Dt0 f88 type portalKit_test.DataCreationData #txt
+Dt0 f88 requestActionDecl '<> param;' #txt
+Dt0 f88 responseActionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f88 responseMappingAction 'out=in;
+' #txt
+Dt0 f88 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Hide or unhide task case</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f88 216 842 144 44 -68 -8 #rect
+Dt0 f88 @|RichDialogIcon #fIcon
+Dt0 f89 expr out #txt
+Dt0 f89 79 864 216 864 #arcP
+Dt0 f90 expr out #txt
+Dt0 f90 360 864 497 864 #arcP
 >Proto Dt0 .type portalKit_test.DataCreationData #txt
 >Proto Dt0 .processKind NORMAL #txt
 >Proto Dt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1076,3 +1127,7 @@ Dt0 f81 out f84 tail #connect
 Dt0 f84 head f83 mainIn #connect
 Dt0 f83 mainOut f85 tail #connect
 Dt0 f85 head f41 mainIn #connect
+Dt0 f86 mainOut f89 tail #connect
+Dt0 f89 head f88 mainIn #connect
+Dt0 f88 mainOut f90 tail #connect
+Dt0 f90 head f87 mainIn #connect
