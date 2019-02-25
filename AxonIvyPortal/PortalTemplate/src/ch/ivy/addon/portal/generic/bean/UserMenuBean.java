@@ -16,6 +16,7 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.context.RequestContext;
 
 import ch.ivy.addon.portal.generic.common.DeviceDetector;
@@ -39,9 +40,7 @@ import ch.ivyteam.ivy.system.ISystemProperty;
 public class UserMenuBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final int MINUTE_TO_SECOND = 60;
-  public static final int SECONND_TO_MILLISECOND = 1000;
-  public static final int TIME_BEFORE_LOST_SESSION = 180000; // 3 minutes
+  public static final long TIME_BEFORE_LOST_SESSION = 3 * DateUtils.MILLIS_PER_MINUTE; // 3 minutes
   
   private String userName;
   GlobalSettingService globalSettingService;
@@ -72,10 +71,10 @@ public class UserMenuBean implements Serializable {
     return BooleanUtils.toBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET.toString()));
   }
 
-  public int getClientSideTimeout() {
+  public long getClientSideTimeout() {
     String clientSideTimeoutInMinute = globalSettingService.findGlobalSettingValue(GlobalVariable.CLIENT_SIDE_TIMEOUT.toString());
     if (StringUtils.isNotBlank(clientSideTimeoutInMinute)) {
-      return Integer.valueOf(clientSideTimeoutInMinute) * MINUTE_TO_SECOND * SECONND_TO_MILLISECOND;
+      return Integer.valueOf(clientSideTimeoutInMinute) * DateUtils.MILLIS_PER_MINUTE;
     }
     return getDefaultClientSideTimeout();
   }
@@ -163,9 +162,9 @@ public class UserMenuBean implements Serializable {
     return systemProp.getBooleanValue();
   }
   
-  private int getDefaultClientSideTimeout() {
+  private long getDefaultClientSideTimeout() {
     ExternalContext externalContext = getExternalContext();
-    int serverSideTimeOutInMillisecond = externalContext.getSessionMaxInactiveInterval() * SECONND_TO_MILLISECOND;
+    long serverSideTimeOutInMillisecond = externalContext.getSessionMaxInactiveInterval() * DateUtils.MILLIS_PER_SECOND;
     return serverSideTimeOutInMillisecond - TIME_BEFORE_LOST_SESSION;
   }
 
