@@ -12,6 +12,10 @@ public class HiddenTasksCasesConfig {
   private static final String PORTAL_HIDDEN_TASK_CASE_EXCLUDED = "PortalHiddenTaskCaseExcluded";
   public static final String PORTAL_USE_CUSTOM_FIELD_FOR_HIDDEN_TASK_CASE = "PortalUseCustomFieldForHiddenTaskCase";
 
+  private HiddenTasksCasesConfig() {
+    
+  }
+
   public static boolean isHiddenTasksCasesExcluded(List<String> apps) {
     return getGlobalVariable(apps, PORTAL_HIDDEN_TASK_CASE_EXCLUDED);
   }
