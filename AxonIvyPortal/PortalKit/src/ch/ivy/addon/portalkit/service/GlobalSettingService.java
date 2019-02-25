@@ -53,31 +53,25 @@ public class GlobalSettingService extends AbstractService<GlobalSetting> {
       return allGlobalSettingsFromCache.stream()
           .map(cacheEntry -> new GlobalSetting(cacheEntry.getIdentifier(), String.valueOf(cacheEntry.getValue())))
           .collect(Collectors.toList());
-    } else {
-      List<GlobalSetting> globalSettings = super.findAll();
-      globalSettings = globalSettings.stream()
-          .filter(setting -> EnumUtils.isValidEnum(GlobalVariable.class, setting.getKey()))
-          .collect(Collectors.toList());
-      
-      List<String> allGlobalSettingKeys = globalSettings.stream()
-          .map(GlobalSetting::getKey)
-          .collect(Collectors.toList());
-      
-      for (GlobalVariable globalVariable : GlobalVariable.values()) {
-        if (!allGlobalSettingKeys.contains(globalVariable.toString())) {
-          globalSettings.add(new GlobalSetting(globalVariable.toString(), globalVariable.getDefaultValue()));
-        }
+    } 
+    List<GlobalSetting> globalSettings = super.findAll();
+    globalSettings = globalSettings.stream()
+        .filter(setting -> EnumUtils.isValidEnum(GlobalVariable.class, setting.getKey()))
+        .collect(Collectors.toList());
+    
+    List<String> allGlobalSettingKeys = globalSettings.stream()
+        .map(GlobalSetting::getKey)
+        .collect(Collectors.toList());
+    
+    for (GlobalVariable globalVariable : GlobalVariable.values()) {
+      if (!allGlobalSettingKeys.contains(globalVariable.toString())) {
+        globalSettings.add(new GlobalSetting(globalVariable.toString(), globalVariable.getDefaultValue()));
       }
-      
-      globalSettings.forEach(setting -> IvyCacheService.newInstance().cacheGlobalSetting(setting.getKey(), StringUtils.defaultString(setting.getValue())));
-      sortByAlphabet(globalSettings);
-      return globalSettings;
     }
-  }
-  
-  private void sortByAlphabet(List<GlobalSetting> globalSettings) {
-    globalSettings
-        .sort((GlobalSetting setting1, GlobalSetting setting2) -> setting1.getKey().compareTo(setting2.getKey()));
+    
+    globalSettings.forEach(setting -> IvyCacheService.newInstance().cacheGlobalSetting(setting.getKey(), StringUtils.defaultString(setting.getValue())));
+    globalSettings.sort((setting1, setting2) -> StringUtils.compareIgnoreCase(setting1.getKey(), setting2.getKey()));
+    return globalSettings;
   }
 
   public void resetGlobalSetting(String variableName) {
@@ -89,7 +83,6 @@ public class GlobalSettingService extends AbstractService<GlobalSetting> {
         PermissionUtils.isSessionUserHasAdminRole() ? GlobalVariable.HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR
             : GlobalVariable.HIDE_SYSTEM_TASKS_FROM_HISTORY;
     String settingValue = findGlobalSettingValue(globalVariable.toString());
-    return StringUtils.isBlank(settingValue) ? Boolean.valueOf(globalVariable.getDefaultValue())
-        : Boolean.valueOf(settingValue);
+    return StringUtils.isBlank(settingValue) ? Boolean.valueOf(globalVariable.getDefaultValue()) : Boolean.valueOf(settingValue);
   }
 }
