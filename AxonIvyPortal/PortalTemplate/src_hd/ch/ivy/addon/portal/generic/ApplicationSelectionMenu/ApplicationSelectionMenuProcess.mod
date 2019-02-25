@@ -1,5 +1,5 @@
 [Ivy]
-156A1AA176DE2A21 3.23 #module
+156A1AA176DE2A21 3.24 #module
 >Proto >Proto Collection #zClass
 As0 ApplicationSelectionMenuProcess Big #zClass
 As0 RD #cInfo
@@ -212,7 +212,7 @@ As0 f92 actionTable 'out=in;
 ' #txt
 As0 f92 actionCode 'import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-import ch.ivy.addon.portalkit.service.ApplicationService;
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
@@ -221,7 +221,7 @@ import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
 import org.primefaces.component.button.Button;
 import ch.ivyteam.ivy.server.ServerFactory;
 
-ApplicationService applicationService = new ApplicationService();
+RegisteredApplicationService applicationService = new RegisteredApplicationService();
 int numberOfIvyApplications = applicationService.countIvyApplications(in.applications);
 SecurityServiceUtils.removeSessionAttribute(SessionAttribute.SELECTED_APP.toString());
 SecurityServiceUtils.removeSessionAttribute(SessionAttribute.SELECTED_APP_DISPLAY_NAME.toString());

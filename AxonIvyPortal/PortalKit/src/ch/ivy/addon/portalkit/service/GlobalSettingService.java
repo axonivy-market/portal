@@ -10,6 +10,7 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.persistence.dao.GlobalSettingDao;
 import ch.ivy.addon.portalkit.persistence.domain.GlobalSetting;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivyteam.ivy.data.cache.IDataCacheEntry;
 
 public class GlobalSettingService extends AbstractService<GlobalSetting> {
 
@@ -23,33 +24,54 @@ public class GlobalSettingService extends AbstractService<GlobalSetting> {
   }
 
   public String findGlobalSettingValue(String variableName) {
-    return getDao().findGlobalSettingValue(variableName);
+    Object atttributeValue = IvyCacheService.newInstance().getGlobalSettingFromCache(variableName);
+    if (atttributeValue == null){
+       GlobalSetting setting = findAllGlobalSetting().stream()
+          .filter(globalSetting -> StringUtils.equals(globalSetting.getKey(), variableName))
+          .findFirst()
+          .orElse(new GlobalSetting());
+       return StringUtils.defaultString(setting.getValue());
+    }
+    return String.valueOf(atttributeValue);
   }
 
   public boolean isGlobalSettingAvailable(String variableName) {
-    return getDao().isGlobalSettingAvailable(variableName);
+    Object atttributeValue = IvyCacheService.newInstance().getGlobalSettingFromCache(variableName);
+    if (atttributeValue == null){
+       GlobalSetting setting = findAllGlobalSetting().stream()
+          .filter(globalSetting -> StringUtils.equals(globalSetting.getKey(), variableName))
+          .findFirst()
+          .orElse(new GlobalSetting());
+       return StringUtils.isNotBlank(setting.getValue());
+    }
+    return StringUtils.isNotBlank(String.valueOf(atttributeValue));
   }
 
   public List<GlobalSetting> findAllGlobalSetting() {
+    List<IDataCacheEntry> allGlobalSettingsFromCache = IvyCacheService.newInstance().getAllGlobalSettingsFromCache();
+    if (allGlobalSettingsFromCache != null) {
+      return allGlobalSettingsFromCache.stream()
+          .map(cacheEntry -> new GlobalSetting(cacheEntry.getIdentifier(), String.valueOf(cacheEntry.getValue())))
+          .collect(Collectors.toList());
+    } 
     List<GlobalSetting> globalSettings = super.findAll();
     globalSettings = globalSettings.stream()
-        .filter(setting -> EnumUtils.isValidEnum(GlobalVariable.class, setting.getKey())).collect(Collectors.toList());
-    List<String> allGlobalSettingKeys = globalSettings.stream().map(GlobalSetting::getKey).collect(Collectors.toList());
+        .filter(setting -> EnumUtils.isValidEnum(GlobalVariable.class, setting.getKey()))
+        .collect(Collectors.toList());
+    
+    List<String> allGlobalSettingKeys = globalSettings.stream()
+        .map(GlobalSetting::getKey)
+        .collect(Collectors.toList());
+    
     for (GlobalVariable globalVariable : GlobalVariable.values()) {
       if (!allGlobalSettingKeys.contains(globalVariable.toString())) {
-        GlobalSetting newGlobalSetting = new GlobalSetting();
-        newGlobalSetting.setKey(globalVariable.toString());
-        newGlobalSetting.setValue(globalVariable.getDefaultValue());
-        globalSettings.add(newGlobalSetting);
+        globalSettings.add(new GlobalSetting(globalVariable.toString(), globalVariable.getDefaultValue()));
       }
     }
-    sortByAlphabet(globalSettings);
+    
+    globalSettings.forEach(setting -> IvyCacheService.newInstance().cacheGlobalSetting(setting.getKey(), StringUtils.defaultString(setting.getValue())));
+    globalSettings.sort((setting1, setting2) -> StringUtils.compareIgnoreCase(setting1.getKey(), setting2.getKey()));
     return globalSettings;
-  }
-
-  private void sortByAlphabet(List<GlobalSetting> globalSettings) {
-    globalSettings
-        .sort((GlobalSetting setting1, GlobalSetting setting2) -> setting1.getKey().compareTo(setting2.getKey()));
   }
 
   public void resetGlobalSetting(String variableName) {
@@ -61,7 +83,6 @@ public class GlobalSettingService extends AbstractService<GlobalSetting> {
         PermissionUtils.isSessionUserHasAdminRole() ? GlobalVariable.HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR
             : GlobalVariable.HIDE_SYSTEM_TASKS_FROM_HISTORY;
     String settingValue = findGlobalSettingValue(globalVariable.toString());
-    return StringUtils.isBlank(settingValue) ? Boolean.valueOf(globalVariable.getDefaultValue())
-        : Boolean.valueOf(settingValue);
+    return StringUtils.isBlank(settingValue) ? Boolean.valueOf(globalVariable.getDefaultValue()) : Boolean.valueOf(settingValue);
   }
 }

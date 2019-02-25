@@ -1,5 +1,5 @@
 [Ivy]
-1485F329FE84F01E 3.23 #module
+1485F329FE84F01E 3.24 #module
 >Proto >Proto Collection #zClass
 Pt0 SecurityService Big #zClass
 Pt0 B #cInfo
@@ -87,9 +87,9 @@ Pt0 f10 actionDecl 'ch.ivyteam.wf.processes.SecurityServiceData out;
 ' #txt
 Pt0 f10 actionTable 'out=in;
 ' #txt
-Pt0 f10 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
+Pt0 f10 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-ApplicationService service = new ApplicationService();
+RegisteredApplicationService service = new RegisteredApplicationService();
 out.apps = service.findActiveIvyAppsUserCanWorkOn(in.username);
 ' #txt
 Pt0 f10 type ch.ivyteam.wf.processes.SecurityServiceData #txt
@@ -272,9 +272,9 @@ Pt0 f14 actionDecl 'ch.ivyteam.wf.processes.SecurityServiceData out;
 ' #txt
 Pt0 f14 actionTable 'out=in;
 ' #txt
-Pt0 f14 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
+Pt0 f14 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-ApplicationService service = new ApplicationService();
+RegisteredApplicationService service = new RegisteredApplicationService();
 out.apps = service.findActiveIvyAppsUserCanWorkOn(in.username);
 ' #txt
 Pt0 f14 type ch.ivyteam.wf.processes.SecurityServiceData #txt
@@ -417,9 +417,9 @@ Pt0 f34 actionDecl 'ch.ivyteam.wf.processes.SecurityServiceData out;
 ' #txt
 Pt0 f34 actionTable 'out=in;
 ' #txt
-Pt0 f34 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
+Pt0 f34 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-ApplicationService service = new ApplicationService();
+RegisteredApplicationService service = new RegisteredApplicationService();
 out.apps = service.findActiveIvyAppsUserCanWorkOn(in.username);
 ' #txt
 Pt0 f34 type ch.ivyteam.wf.processes.SecurityServiceData #txt

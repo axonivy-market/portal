@@ -19,7 +19,7 @@ import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria;
-import ch.ivy.addon.portalkit.service.ApplicationService;
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
@@ -83,7 +83,7 @@ public class CaseTreeUtils {
     }
     
     root = buildRoot();
-    ApplicationService service = new ApplicationService();
+    RegisteredApplicationService service = new RegisteredApplicationService();
     List<String> involvedApplications = service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName());
     CaseQuery caseQuery = SubProcessCall.withPath(PortalConstants.BUILD_CASE_QUERY_CALLABLE)
         .withStartSignature("buildCaseQuery()").call().get("caseQuery", CaseQuery.class);

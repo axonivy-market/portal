@@ -27,10 +27,7 @@ Cs0 @PushWFArc f45 '' #zField
 Cs0 @PushWFArc f46 '' #zField
 Cs0 @RichDialogMethodStart f6 '' #zField
 Cs0 @GridStep f15 '' #zField
-Cs0 @PushWFArc f2 '' #zField
 Cs0 @RichDialogProcessEnd f7 '' #zField
-Cs0 @PushWFArc f8 '' #zField
-Cs0 @PushWFArc f9 '' #zField
 Cs0 @RichDialogProcessEnd f11 '' #zField
 Cs0 @PushWFArc f44 '' #zField
 Cs0 @RichDialogMethodStart f41 '' #zField
@@ -48,13 +45,15 @@ Cs0 @RichDialogMethodStart f22 '' #zField
 Cs0 @PushWFArc f23 '' #zField
 Cs0 @RichDialogMethodStart f24 '' #zField
 Cs0 @PushWFArc f25 '' #zField
+Cs0 @PushWFArc f26 '' #zField
+Cs0 @PushWFArc f8 '' #zField
+Cs0 @PushWFArc f2 '' #zField
 >Proto Cs0 Cs0 ChartCreationWidgetProcess #zField
 Cs0 f0 guid 15FFC669CAD8BE32 #txt
 Cs0 f0 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 Cs0 f0 method start() #txt
 Cs0 f0 disableUIEvents true #txt
-Cs0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
+Cs0 f0 inParameterDecl 'ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData out;
 ' #txt
 Cs0 f0 inParameterMapAction 'out.isAllowedToCreateChart=true;
 ' #txt
@@ -220,8 +219,7 @@ Cs0 f6 guid 160358C7FBCD2AE2 #txt
 Cs0 f6 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 Cs0 f6 method initialize() #txt
 Cs0 f6 disableUIEvents false #txt
-Cs0 f6 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
+Cs0 f6 inParameterDecl 'ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData out;
 ' #txt
 Cs0 f6 outParameterDecl '<> result;
 ' #txt
@@ -240,11 +238,17 @@ Cs0 f15 actionDecl 'ch.ivy.addon.portalkit.component.statistic.ChartCreationWidg
 ' #txt
 Cs0 f15 actionTable 'out=in;
 ' #txt
-Cs0 f15 actionCode 'import org.apache.commons.lang.ObjectUtils;
+Cs0 f15 actionCode 'import org.apache.commons.lang3.ObjectUtils;
 import ch.ivy.addon.portalkit.statistics.StatisticFilter;
+import java.util.ArrayList;
 
-in.statisticFilter = new StatisticFilter();
-in.oldStatisticFilter = ObjectUtils.clone(in.statisticFilter) as StatisticFilter;' #txt
+if (!(in.statisticChartList is initialized)) {
+	in.statisticChartList = new ArrayList();
+}
+
+in.statisticFilter = new StatisticFilter().init();
+in.oldStatisticFilter = ObjectUtils.clone(in.statisticFilter) as StatisticFilter;
+' #txt
 Cs0 f15 security system #txt
 Cs0 f15 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 Cs0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -256,17 +260,11 @@ Cs0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f15 222 234 112 44 -22 -8 #rect
+Cs0 f15 222 42 112 44 -22 -8 #rect
 Cs0 f15 @|StepIcon #fIcon
-Cs0 f2 expr out #txt
-Cs0 f2 141 256 222 256 #arcP
 Cs0 f7 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 Cs0 f7 435 243 26 26 0 12 #rect
 Cs0 f7 @|RichDialogProcessEndIcon #fIcon
-Cs0 f8 expr out #txt
-Cs0 f8 334 256 435 256 #arcP
-Cs0 f9 expr out #txt
-Cs0 f9 141 64 435 64 #arcP
 Cs0 f11 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 Cs0 f11 435 955 26 26 0 12 #rect
 Cs0 f11 @|RichDialogProcessEndIcon #fIcon
@@ -462,6 +460,12 @@ Cs0 f25 expr out #txt
 Cs0 f25 125 808 448 509 #arcP
 Cs0 f25 1 448 808 #addKink
 Cs0 f25 0 0.9649071720549873 0 0 #arcLabel
+Cs0 f26 expr out #txt
+Cs0 f26 141 64 222 64 #arcP
+Cs0 f8 expr out #txt
+Cs0 f8 141 256 435 256 #arcP
+Cs0 f2 expr out #txt
+Cs0 f2 334 64 435 64 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -480,12 +484,6 @@ Cs0 f40 mainOut f45 tail #connect
 Cs0 f45 head f43 mainIn #connect
 Cs0 f42 mainOut f46 tail #connect
 Cs0 f46 head f43 mainIn #connect
-Cs0 f6 mainOut f2 tail #connect
-Cs0 f2 head f15 mainIn #connect
-Cs0 f15 mainOut f8 tail #connect
-Cs0 f8 head f7 mainIn #connect
-Cs0 f0 mainOut f9 tail #connect
-Cs0 f9 head f1 mainIn #connect
 Cs0 f13 mainOut f12 tail #connect
 Cs0 f12 head f11 mainIn #connect
 Cs0 f17 mainOut f18 tail #connect
@@ -502,3 +500,9 @@ Cs0 f22 mainOut f23 tail #connect
 Cs0 f23 head f43 mainIn #connect
 Cs0 f24 mainOut f25 tail #connect
 Cs0 f25 head f43 mainIn #connect
+Cs0 f0 mainOut f26 tail #connect
+Cs0 f26 head f15 mainIn #connect
+Cs0 f6 mainOut f8 tail #connect
+Cs0 f8 head f7 mainIn #connect
+Cs0 f15 mainOut f2 tail #connect
+Cs0 f2 head f1 mainIn #connect

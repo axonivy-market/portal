@@ -1,5 +1,5 @@
 [Ivy]
-15E0CEDE89CC1D0E 3.23 #module
+15E0CEDE89CC1D0E 3.24 #module
 >Proto >Proto Collection #zClass
 Pe0 PasswordService Big #zClass
 Pe0 B #cInfo
@@ -50,9 +50,9 @@ Pe0 f10 actionDecl 'ch.ivyteam.wf.processes.PasswordServiceData out;
 ' #txt
 Pe0 f10 actionTable 'out=in;
 ' #txt
-Pe0 f10 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
+Pe0 f10 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-ApplicationService service = new ApplicationService();
+RegisteredApplicationService service = new RegisteredApplicationService();
 out.apps = service.findActiveIvyAppsUserCanWorkOn(in.username);
 ' #txt
 Pe0 f10 type ch.ivyteam.wf.processes.PasswordServiceData #txt

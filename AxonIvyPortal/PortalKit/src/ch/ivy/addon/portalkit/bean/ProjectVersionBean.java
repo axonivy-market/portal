@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -23,15 +22,6 @@ public class ProjectVersionBean implements Serializable {
   private String portalVersion;
   private Map<String, List<ILibrary>> projectLibraries;
 
-  @SuppressWarnings("restriction")
-  @PostConstruct
-  private void init() {
-    engineVersion = ch.ivyteam.ivy.Advisor.getAdvisor().getVersion().toString();
-    ILibrary portalLibrary = Ivy.wf().getApplication().findReleasedLibrary(PortalLibrary.PORTAL_KIT.getValue());
-    portalVersion = portalLibrary.getQualifiedVersion().toString();
-    projectLibraries = retrieveProjectLibraries();
-  }
-
   private Map<String, List<ILibrary>> retrieveProjectLibraries() {
     ILibraryService service = LibraryServiceFactory.getLibraryService();
     return service.collectLibraries();
@@ -47,5 +37,13 @@ public class ProjectVersionBean implements Serializable {
 
   public Map<String, List<ILibrary>> getProjectLibraries() {
     return projectLibraries;
+  }
+  
+  @SuppressWarnings("restriction")
+  public void loadProjectVesion() {
+    engineVersion = ch.ivyteam.ivy.Advisor.getAdvisor().getVersion().toString();
+    ILibrary portalLibrary = Ivy.wf().getApplication().findReleasedLibrary(PortalLibrary.PORTAL_KIT.getValue());
+    portalVersion = portalLibrary.getQualifiedVersion().toString();
+    projectLibraries = retrieveProjectLibraries();
   }
 }

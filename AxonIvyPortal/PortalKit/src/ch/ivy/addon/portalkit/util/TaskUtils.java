@@ -1,11 +1,14 @@
 package ch.ivy.addon.portalkit.util;
 
+import static ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig.PORTAL_USE_CUSTOM_FIELD_FOR_HIDDEN_TASK_CASE;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
@@ -119,7 +122,12 @@ public final class TaskUtils {
    * @param task
    */
   public static void setHidePropertyToHideInPortal(ITask task) {
-    task.setAdditionalProperty(HIDE, HIDE);
+    boolean isUseCustomFieldForHiddenTaskCase = Boolean.parseBoolean(Ivy.var().get(PORTAL_USE_CUSTOM_FIELD_FOR_HIDDEN_TASK_CASE));
+    if (isUseCustomFieldForHiddenTaskCase) {
+      task.customFields().stringField(PortalConstants.HIDDEN_TASK_CASE_FIELD_NAME).set(HIDE);
+    } else {
+      task.setAdditionalProperty(HIDE, HIDE);
+    }
   }
 
   /**
@@ -128,7 +136,12 @@ public final class TaskUtils {
    * @param task
    */
   public static void removeHidePropertyToDisplayInPortal(ITask task) {
+  boolean isUseCustomFieldForHiddenTaskCase = Boolean.parseBoolean(Ivy.var().get(PORTAL_USE_CUSTOM_FIELD_FOR_HIDDEN_TASK_CASE));
+  if (isUseCustomFieldForHiddenTaskCase) {
+    task.customFields().stringField(PortalConstants.HIDDEN_TASK_CASE_FIELD_NAME).delete();
+  } else {
     task.setAdditionalProperty(HIDE, null);
+  }
   }
 
   /**

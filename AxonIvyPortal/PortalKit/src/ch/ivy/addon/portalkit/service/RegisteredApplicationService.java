@@ -13,14 +13,17 @@ import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
 import ch.ivy.addon.portalkit.ivydata.service.IApplicationService;
+import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.persistence.dao.ApplicationDao;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.data.cache.IDataCacheEntry;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.IUser;
 
-public class ApplicationService extends AbstractService<Application> {
+public class RegisteredApplicationService extends AbstractService<Application> {
 
-  public ApplicationService() {
+  public RegisteredApplicationService() {
     super(ApplicationDao.class);
   }
 
@@ -29,12 +32,30 @@ public class ApplicationService extends AbstractService<Application> {
     return (ApplicationDao) super.getDao();
   }
 
+  @SuppressWarnings("unchecked")
   public List<Application> findAllThirdPartyApplications() {
-    return getDao().findAllThirdPartyApplications();
+    String sessionUserName = Ivy.session().getSessionUserName();
+    IDataCacheEntry sessionCache = IvyCacheService.newInstance().getSessionCache(sessionUserName, IvyCacheIdentifier.ALL_THIRD_PARTY_APPLICATIONS);
+    if (sessionCache == null) {
+      List<Application> allThirdPartyApplications = getDao().findAllThirdPartyApplications();
+      IvyCacheService.newInstance().setSessionCache(sessionUserName, IvyCacheIdentifier.ALL_THIRD_PARTY_APPLICATIONS, allThirdPartyApplications);
+      return allThirdPartyApplications;
+    } else {
+      return (List<Application>) sessionCache.getValue();
+    }
   }
 
+  @SuppressWarnings("unchecked")
   public List<Application> findAllIvyApplications() {
-    return getDao().findAllIvyApplications();
+    String sessionUserName = Ivy.session().getSessionUserName();
+    IDataCacheEntry sessionCache = IvyCacheService.newInstance().getSessionCache(sessionUserName, IvyCacheIdentifier.ALL_IVY_APPLICATIONS);
+    if (sessionCache == null) {
+      List<Application> allIvyApplications = getDao().findAllIvyApplications();
+      IvyCacheService.newInstance().setSessionCache(sessionUserName, IvyCacheIdentifier.ALL_IVY_APPLICATIONS, allIvyApplications);
+      return allIvyApplications;
+    } else {
+      return (List<Application>) sessionCache.getValue();
+    }
   }
 
   public Application findByDisplayNameAndName(String displayName, String name) {
@@ -127,4 +148,29 @@ public class ApplicationService extends AbstractService<Application> {
         .collect(Collectors.toList());
   }
 
+  /**
+   * Find all register apps
+   * @param username
+   * @return
+   */
+  @SuppressWarnings("unchecked")
+  public List<Application> findApplicationByUser(String username){
+    IDataCacheEntry sessionCache = IvyCacheService.newInstance().getSessionCache(username, IvyCacheIdentifier.ALL_IVY_AND_THIRD_PARTY_APPLICATIONS);
+    if (sessionCache == null) {
+      List<Application> applications = new ArrayList<>();
+      List<Application> apps = findAllIvyApplications();
+      for (Application app : apps){
+        IUser user = ServiceUtilities.findUser(username, app.getName());
+        if (user != null){
+          applications.add(app);
+        }
+      }
+      applications.addAll(findAllThirdPartyApplications());
+      IvyCacheService.newInstance().setSessionCache(username, IvyCacheIdentifier.ALL_IVY_AND_THIRD_PARTY_APPLICATIONS, applications);
+      return applications;
+    } else {
+      return (List<Application>) sessionCache.getValue();
+    }
+    
+  }
 }

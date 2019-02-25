@@ -68,7 +68,7 @@
 
           <li><p:link id="project-info-menu-item" href="#"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/info')}"
-              onclick="PF('project-info-dialog').show()" /></li>
+              onclick="rcProjectInfo();" /></li>
 		  
 		  <li jsf:rendered="#{not deviceBean.desktop}">
             <p:commandLink actionListener="#{userMenuBean.switchDesktopOrMobileVersion(true)}">
@@ -149,6 +149,10 @@
           id="project-version-close-button" type="button" onclick="PF('project-info-dialog').hide();" />
       </h:panelGroup>
     </p:dialog>
+    
+    <h:form>
+      <p:remoteCommand name="rcProjectInfo" actionListener="#{projectVersionBean.loadProjectVesion}" oncomplete="PF('project-info-dialog').show()" update="project-info-dialog" />
+    </h:form>
   </ui:insert>
   <c:if test="#{enablesChat eq true}">
     <ui:include src="/layouts/includes/chat.xhtml" />

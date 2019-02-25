@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import ch.ivy.addon.portalkit.ivydata.service.ILibraryService;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
-import ch.ivy.addon.portalkit.service.ApplicationService;
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.server.ServerFactory;
@@ -17,7 +17,7 @@ public class MultiAppLibraryService implements ILibraryService {
   @Override
   public Map<String, List<ILibrary>> collectLibraries() {
     Map<String, List<ILibrary>> libraries = new HashMap<>();
-    ApplicationService applicationService = new ApplicationService();
+    RegisteredApplicationService applicationService = new RegisteredApplicationService();
     for (Application app : applicationService.findAllIvyApplications()) {
       IApplication ivyApplication = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(app.getName());
       if (ivyApplication != null) {

@@ -1,5 +1,8 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
+import static ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig.isHiddenTasksCasesExcluded;
+import static ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig.isUseCustomFieldForHiddenTaskCase;
+
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Date;
@@ -13,6 +16,7 @@ import org.apache.commons.lang3.time.DateUtils;
 import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
 import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
 import ch.ivy.addon.portalkit.bo.PriorityStatistic;
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyTaskResultDTO;
 import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataErrorType;
@@ -108,7 +112,10 @@ public class TaskService implements ITaskService {
     return taskQuery;
   }
   
-  private TaskQuery queryExcludeHiddenTasks() {
+  private TaskQuery queryExcludeHiddenTasks(List<String> apps) {
+    if (isUseCustomFieldForHiddenTaskCase(apps)) {
+      return TaskQuery.create().where().customField().stringField(PortalConstants.HIDDEN_TASK_CASE_FIELD_NAME).isNull();
+    }
     return TaskQuery.create().where().additionalProperty(AdditionalProperty.HIDE.toString()).isNull();
   }
 
@@ -126,7 +133,9 @@ public class TaskService implements ITaskService {
             finalQuery.where().and(queryForApplications(criteria.getApps()));
           }
         }
-        finalQuery.where().and(queryExcludeHiddenTasks());
+        if (isHiddenTasksCasesExcluded(criteria.getApps())) {
+          finalQuery.where().and(queryExcludeHiddenTasks(criteria.getApps()));
+        }
         finalQuery.where().and().category().isNotNull();
         result.setCategoryTree(CategoryTree.createFor(finalQuery));
       } catch (Exception ex) {
@@ -259,7 +268,9 @@ public class TaskService implements ITaskService {
         finalQuery.where().and(queryForApplications(criteria.getApps()));
       }
     }
-    finalQuery.where().and(queryExcludeHiddenTasks());
+    if (isHiddenTasksCasesExcluded(criteria.getApps())) {
+      finalQuery.where().and(queryExcludeHiddenTasks(criteria.getApps()));
+    }
     return finalQuery;
   }
   
@@ -272,7 +283,9 @@ public class TaskService implements ITaskService {
         finalQuery.where().and(queryForApplications(criteria.getApps()));
       }
     }
-    finalQuery.where().and(queryExcludeHiddenTasks());
+    if (isHiddenTasksCasesExcluded(criteria.getApps())) {
+      finalQuery.where().and(queryExcludeHiddenTasks(criteria.getApps()));
+    }
     return finalQuery;
   }
   
