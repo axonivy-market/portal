@@ -127,8 +127,8 @@ public class IvyCacheService {
     sessionCache().setEntry(IvyCacheIdentifier.LOGOUT_PAGE_CACHE_GROUP_NAME, IvyCacheIdentifier.LOGOUT_PAGE_CACHE_ENTRY_NAME, logoutUrl);
   }
   
-  public static String getLogoutPageFromCache(){
-    IDataCacheEntry entry = Ivy.datacache().getSessionCache().getEntry(IvyCacheIdentifier.LOGOUT_PAGE_CACHE_GROUP_NAME, IvyCacheIdentifier.LOGOUT_PAGE_CACHE_ENTRY_NAME);
+  public String getLogoutPageFromCache(){
+    IDataCacheEntry entry = sessionCache().getEntry(IvyCacheIdentifier.LOGOUT_PAGE_CACHE_GROUP_NAME, IvyCacheIdentifier.LOGOUT_PAGE_CACHE_ENTRY_NAME);
     return entry == null ? StringUtils.EMPTY : String.valueOf(entry.getValue());
   }
   
