@@ -2161,6 +2161,7 @@ a.case-details-document-add-link {
   display: block;
   width: 100%;
   padding: .6em 0;
+  background-color: transparent;
 }
 
 .process-widget .process-group .ui-fieldset-toggler.ui-icon-minusthick:before {
