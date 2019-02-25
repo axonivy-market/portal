@@ -159,12 +159,20 @@ var MainMenu = {
 /* Portal's second level menu */
 var SecondLevelMenu = {
   init : function(responsiveToolkit) {
+    var firstLevelMenu = MainMenu.getFirstLevelMenuBasedOnPageUrl();
     this.responsiveToolkit = responsiveToolkit;
     this.secondLevelMenu = $("#second-level-menu");
     this.secondLevelMenuHeader = this.secondLevelMenu.find("a.second-level-menu-header");
     this.secondLevelMenuBody = this.secondLevelMenu.find("div.second-level-menu-body");
     this.bindEvents();
     if (getItemFromStorage(SECOND_LEVEL_MENU_MODE) === 'expanded') {
+      if (firstLevelMenu != null){
+        if ("Cases" === firstLevelMenu[0]) {
+          loadCaseCategory();
+        } else if ("Tasks" === firstLevelMenu[0]) {
+          loadTaskCategory();
+        }
+      }
       this.secondLevelMenu.addClass("on");
       this.responsiveToolkit.updateLayoutWithoutAnimation();
     }
@@ -173,10 +181,18 @@ var SecondLevelMenu = {
 
   bindEvents : function() {
     var $this = this;
+    var firstLevelMenu = MainMenu.getFirstLevelMenuBasedOnPageUrl();
     this.secondLevelMenuHeader.on("click", function() {
       if ($this.secondLevelMenu.hasClass('on')) {
         storeItemToStorage(SECOND_LEVEL_MENU_MODE, 'collapsed');
       } else {
+        if (firstLevelMenu != null){
+          if ("Cases" === firstLevelMenu[0]) {
+            loadCaseCategory();
+          } else if ("Tasks" === firstLevelMenu[0]) {
+            loadTaskCategory();
+          }
+        }
         storeItemToStorage(SECOND_LEVEL_MENU_MODE, 'expanded');
       }
       $this.secondLevelMenu.toggleClass("on");

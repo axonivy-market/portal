@@ -10,14 +10,40 @@
 </cc:interface>
 
 <cc:implementation>
-  <f:event listener="#{logic.initialize}" type="preRenderComponent" />
-  <f:event listener="#{statisticChartCreationBean.updateChartModels(data.statisticFilter, data.oldStatisticFilter)}" type="preRenderComponent" />
   <h:form id="chart-management-form">
+    <p:remoteCommand id="init-filter-command" name="initFilter" autoRun="true"
+      update="statistic-filter" global="false"
+      action="#{statisticChartCreationBean.updateFilters(data.statisticFilter, data.oldStatisticFilter)}"
+      oncomplete="updateChartModels();" />
+
+    <p:remoteCommand id="update-chart-models-command" name="updateChartModels" global="false" process="@this"
+      oncomplete="updateTaskByPriorityModel(); updateCaseByStateModel(); updateTaskByExpiryModel(); updateElapsedTimeByCaseCategory(); updateCaseByFinishedTaskModel(); updateCaseByFinishedTimeModel();" />
+    <p:remoteCommand id="clear-chart-models-command" name="clearChartModels" global="false" process="@this"
+      action="#{statisticChartCreationBean.clearChartModels()}" />
+    <p:remoteCommand id="update-task-by-priority-model-command" name="updateTaskByPriorityModel" process="@this"
+      action="#{statisticChartCreationBean.updateTaskByPriorityModel(data.statisticFilter)}"
+      update="chart-list" global="false" />
+    <p:remoteCommand id="update-case-by-state-model-command" name="updateCaseByStateModel" process="@this"
+      action="#{statisticChartCreationBean.updateCaseByStateModel(data.statisticFilter)}"
+      update="chart-list" global="false" />
+    <p:remoteCommand id="update-task-by-expiry-model-command" name="updateTaskByExpiryModel" process="@this"
+      action="#{statisticChartCreationBean.updateTaskByExpiryModel(data.statisticFilter)}"
+      update="chart-list" global="false" />
+    <p:remoteCommand id="update-elapsed-time-by-case-category-command" name="updateElapsedTimeByCaseCategory" process="@this"
+      action="#{statisticChartCreationBean.updateElapsedTimeByCaseCategory(data.statisticFilter)}"
+      update="chart-list" global="false" />
+    <p:remoteCommand id="update-case-by-finished-task-model-command" name="updateCaseByFinishedTaskModel" process="@this"
+      action="#{statisticChartCreationBean.updateCaseByFinishedTaskModel(data.statisticFilter)}"
+      update="chart-list" global="false" />
+    <p:remoteCommand id="update-case-by-finished-time-model-command" name="updateCaseByFinishedTimeModel" process="@this"
+      action="#{statisticChartCreationBean.updateCaseByFinishedTimeModel(data.statisticFilter)}"
+      update="chart-list" global="false" />
+
   	<p:growl autoUpdate="true" globalOnly="true" showDetail="true" showSummary="true" />
-    <h:panelGrid columns="2" styleClass="edit-statistic-container">
+    <h:panelGrid columns="2" styleClass="edit-statistic-container" id="edit-statistic-container">
       <h:panelGroup id="chart-list" layout="block" styleClass="chart-list">
         <c:set var="taskByPriorityModel" value="#{statisticChartCreationBean.taskByPriorityModel}" />
-        <h:panelGroup id="task-by-priority-chart" layout="block" styleClass="chart-container">
+        <h:panelGroup id="task-by-priority-chart" layout="block" styleClass="chart-container" rendered="#{taskByPriorityModel ne null}">
           <p:outputLabel id="task-by-priority-label" styleClass="label"
            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}" />
           <p:commandLink id="create-task-by-priority-link" styleClass="add-link fa fa-plus-circle" global="false"
@@ -29,7 +55,7 @@
         </h:panelGroup>
 
         <c:set var="caseByStateModel" value="#{statisticChartCreationBean.caseByStateModel}" />
-        <h:panelGroup id="case-by-state-chart" layout="block" styleClass="chart-container">
+        <h:panelGroup id="case-by-state-chart" layout="block" styleClass="chart-container" rendered="#{caseByStateModel ne null}">
           <p:outputLabel id="case-by-state-label" styleClass="label"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')}" />
           <p:commandLink id="create-case-by-state-link" styleClass="add-link fa fa-plus-circle" global="false"
@@ -41,7 +67,7 @@
         </h:panelGroup>
 
         <c:set var="taskByExpiryModel" value="#{statisticChartCreationBean.taskByExpiryModel}" />
-        <h:panelGroup id="task-by-expiry-chart" layout="block" styleClass="chart-container">
+        <h:panelGroup id="task-by-expiry-chart" layout="block" styleClass="chart-container" rendered="#{taskByExpiryModel ne null}">
           <p:outputLabel id="task-by-expiry-label" styleClass="label"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}" />
           <p:commandLink id="create-task-by-expiry-link" styleClass="add-link fa fa-plus-circle" global="false"
@@ -53,7 +79,7 @@
         </h:panelGroup>
 
         <c:set var="elapsedTimeModel" value="#{statisticChartCreationBean.elapsedTimeModel}" />
-        <h:panelGroup id="elapsed-time-by-case-category" layout="block" styleClass="chart-container">
+        <h:panelGroup id="elapsed-time-by-case-category" layout="block" styleClass="chart-container" rendered="#{elapsedTimeModel ne null}">
           <p:outputLabel id="elapsed-time-by-case-category-label" styleClass="label"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory')}" />
           <p:commandLink id="create-elapsed-time-link" styleClass="add-link fa fa-plus-circle" global="false"
@@ -65,7 +91,7 @@
         </h:panelGroup>
 
         <c:set var="caseByFinishedTaskModel" value="#{statisticChartCreationBean.caseByFinishedTaskModel}" />
-        <h:panelGroup id="case-by-finished-task-chart" layout="block" styleClass="chart-container">
+        <h:panelGroup id="case-by-finished-task-chart" layout="block" styleClass="chart-container" rendered="#{caseByFinishedTaskModel ne null}">
           <p:outputLabel id="case-by-finished-task-label" styleClass="label"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}" />
           <p:commandLink id="create-case-by-finished-task-link" styleClass="add-link fa fa-plus-circle" global="false"
@@ -77,7 +103,7 @@
         </h:panelGroup>
 
         <c:set var="caseByFinishedTimeModel" value="#{statisticChartCreationBean.caseByFinishedTimeModel}" />
-        <h:panelGroup id="case-by-finished-time-chart" layout="block" styleClass="chart-container">
+        <h:panelGroup id="case-by-finished-time-chart" layout="block" styleClass="chart-container" rendered="#{caseByFinishedTimeModel ne null}">
           <p:outputLabel id="case-by-finished-time-label" styleClass="label"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTime')}" />
           <p:commandLink id="create-case-by-finished-time-link" styleClass="add-link fa fa-plus-circle" global="false"
@@ -91,7 +117,7 @@
 
       <h:panelGroup layout="block" styleClass="filter-container">
         <ic:ch.ivy.addon.portalkit.component.statistic.StatisticFilters id="statistic-filter"
-          filter="#{data.statisticFilter}" updateListener="#{statisticChartCreationBean.updateChartModels(data.statisticFilter, data.oldStatisticFilter)}" />
+          filter="#{data.statisticFilter}" updateListener="#{statisticChartCreationBean.updateFilters(data.statisticFilter, data.oldStatisticFilter)}" />
       </h:panelGroup>
     </h:panelGrid>
 

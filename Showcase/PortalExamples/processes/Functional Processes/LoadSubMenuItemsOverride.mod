@@ -45,7 +45,10 @@ Ls0 f3 actionDecl '_ch.ivyteam.ivy.project.portal.examples.LoadSubMenuItemsOverr
 ' #txt
 Ls0 f3 actionTable 'out=in;
 ' #txt
-Ls0 f3 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
+Ls0 f3 actionCode 'import org.apache.commons.lang3.StringUtils;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IProcessStart;
@@ -67,7 +70,12 @@ if(PermissionUtils.checkAccessFullCaseListPermission()) {
 	in.subMenuItems.add(new CaseSubMenuItem());
 }
 if(PermissionUtils.checkAccessFullStatisticsListPermission()) {
-	in.subMenuItems.add(new DashboardSubMenuItem());
+	GlobalSettingService globalSettingService = new GlobalSettingService();
+	String isHideStatisticStr = globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET.toString());
+	boolean isHideStatistic = StringUtils.isNotBlank(isHideStatisticStr) ? Boolean.parseBoolean(isHideStatisticStr) : false;
+	if (!isHideStatistic) {
+  	in.subMenuItems.add(new DashboardSubMenuItem());
+	}
 }
 
 SubMenuItem google = new SubMenuItem();

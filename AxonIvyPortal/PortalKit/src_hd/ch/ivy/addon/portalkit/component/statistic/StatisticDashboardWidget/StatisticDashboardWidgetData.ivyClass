@@ -30,3 +30,7 @@ taskListName String #field
 taskListName PERSISTENT #fieldModifier
 isBackFromDrilldown Boolean #field
 isBackFromDrilldown PERSISTENT #fieldModifier
+isFinishLoadCharts Boolean #field
+isFinishLoadCharts PERSISTENT #fieldModifier
+isCompactMode Boolean #field
+isCompactMode PERSISTENT #fieldModifier

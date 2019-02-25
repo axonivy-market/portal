@@ -1,5 +1,5 @@
 [Ivy]
-156F869FC3FCD1D9 3.23 #module
+156F869FC3FCD1D9 3.24 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalTaskMenuProcess Big #zClass
 Ps0 RD #cInfo
@@ -110,10 +110,10 @@ Ps0 f7 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData
 ' #txt
 Ps0 f7 actionTable 'out=in;
 ' #txt
-Ps0 f7 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
+Ps0 f7 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivyteam.ivy.workflow.TaskState;
 
-ApplicationService service = new ApplicationService();
+RegisteredApplicationService service = new RegisteredApplicationService();
 java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
 out.allCategoryCriteria.apps = apps;
 out.myCategoryCriteria.apps = apps;

@@ -55,7 +55,7 @@ StatisticService service = new StatisticService();
 String chartName1 = "My default chart 1";
 String chartName2 = "My default chart 2";
 StatisticChartType chartType = StatisticChartType.TASK_BY_PRIORITY;
-StatisticFilter statisticFilter = new StatisticFilter();
+StatisticFilter statisticFilter = new StatisticFilter().init();
 
 if (!service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName1)) {
   StatisticChart newChart1 = service.createStatisticChart(statisticFilter, chartName1, chartType, ivy.session.getSessionUser().getId(), true);

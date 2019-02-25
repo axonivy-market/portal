@@ -45,7 +45,11 @@ Ls0 f3 actionDecl 'ch.ivy.addon.portal.generic.LoadSubMenuItemsData out;
 ' #txt
 Ls0 f3 actionTable 'out=in;
 ' #txt
-Ls0 f3 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
+Ls0 f3 actionCode 'import org.apache.commons.lang3.StringUtils;
+import Boolean;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.addon.portal.generic.menu.DashboardSubMenuItem;
 import ch.addon.portal.generic.menu.ProcessSubMenuItem;
 import ch.addon.portal.generic.menu.CaseSubMenuItem;
@@ -61,7 +65,12 @@ if(PermissionUtils.checkAccessFullCaseListPermission()) {
 	in.subMenuItems.add(new CaseSubMenuItem());
 }
 if(PermissionUtils.checkAccessFullStatisticsListPermission()) {
-	in.subMenuItems.add(new DashboardSubMenuItem());
+	GlobalSettingService globalSettingService = new GlobalSettingService();
+	String isHideStatisticStr = globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET.toString());
+	boolean isHideStatistic = StringUtils.isNotBlank(isHideStatisticStr) ? Boolean.parseBoolean(isHideStatisticStr) : false;
+	if (!isHideStatistic) {
+  	in.subMenuItems.add(new DashboardSubMenuItem());
+	}
 }' #txt
 Ls0 f3 type ch.ivy.addon.portal.generic.LoadSubMenuItemsData #txt
 Ls0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -118,16 +127,26 @@ Axon.Ivy link
 - Relative path: RequestUriFactory.createProcessStartUri(...)
 External link: 
 - www.yourexternallink.com
-- http://www.yourexternallink.com</name>
-        <nameStyle>1347,7
+- http://www.yourexternallink.com&#xD;
+&#xD;
+NOTE:&#xD;
+If you want to hide Statistic widget, please copy these line of code into your overrided process&#xD;
+&#xD;
+GlobalSettingService globalSettingService = new GlobalSettingService();&#xD;
+String isHideStatisticStr = globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET.toString());&#xD;
+boolean isHideStatistic = StringUtils.isNotBlank(isHideStatisticStr) ? Boolean.parseBoolean(isHideStatisticStr) : false;&#xD;
+if (!isHideStatistic) {&#xD;
+  in.subMenuItems.add(new DashboardSubMenuItem());&#xD;
+}</name>
+        <nameStyle>1854,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ls0 f5 296 26 656 604 -321 -296 #rect
+Ls0 f5 280 10 688 764 -339 -376 #rect
 Ls0 f5 @|IBIcon #fIcon
-Ls0 f6 296 328 152 248 #arcP
-Ls0 f6 1 296 248 #addKink
+Ls0 f6 280 392 152 248 #arcP
+Ls0 f6 1 280 248 #addKink
 Ls0 f6 1 0.22725934349270996 0 0 #arcLabel
 >Proto Ls0 .type ch.ivy.addon.portal.generic.LoadSubMenuItemsData #txt
 >Proto Ls0 .processKind CALLABLE_SUB #txt

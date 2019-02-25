@@ -23,7 +23,7 @@ import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
-import ch.ivy.addon.portalkit.service.ApplicationService;
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.service.TaskColumnsConfigurationService;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.taskfilter.DefaultTaskFilterContainer;
@@ -514,7 +514,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   protected void setInvolvedApplications() {
-    ApplicationService service = new ApplicationService();
+    RegisteredApplicationService service = new RegisteredApplicationService();
     criteria.setApps(service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName()));
   }
 

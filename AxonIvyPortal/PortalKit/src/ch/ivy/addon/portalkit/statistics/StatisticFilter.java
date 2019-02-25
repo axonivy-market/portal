@@ -62,7 +62,7 @@ public class StatisticFilter implements Cloneable {
   private List<String> selectedCustomVarCharFields4 = new ArrayList<>();
   private List<String> selectedCustomVarCharFields5 = new ArrayList<>();
   
-  public StatisticFilter() {
+  public void init() {
     List<IRole> distinctRoles = findRolesByCallableProcess().stream()
         .filter(role -> role != null && Ivy.session().hasRole(role, false))
         .sorted((r1, r2) -> StringUtils.compareIgnoreCase(r1.getDisplayName(), r2.getDisplayName()))
