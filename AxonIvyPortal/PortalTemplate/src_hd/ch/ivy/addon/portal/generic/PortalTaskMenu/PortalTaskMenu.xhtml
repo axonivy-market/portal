@@ -10,8 +10,8 @@
 
 <cc:implementation>
   <div id="#{cc.clientId}">
-    <f:event listener="#{logic.findTaskCategory}" type="preRenderComponent" />
     <h:inputHidden id="second-menu-state-info" value="#{menuStateBean.menuState}" />
+    <p:remoteCommand name="loadTaskCategory" actionListener="#{logic.findTaskCategory}" update=":#{cc.clientId}:main-menu-container" oncomplete="highlighSecondLevelMenuItem();wireListenerToSecondMenuItem();"/>
     <p:treeTable id="main-menu-container" selectionMode="single" value="#{taskMenuBean.rootNode}" var="menuItem"
       selection="#{data.selectedNode}" nodeVar="node" scrollable="true" >
       <p:ajax event="select" global="false" listener="#{logic.loadTask}" process=":#{cc.clientId}:second-menu-state-info" />

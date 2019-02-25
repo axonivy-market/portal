@@ -22,6 +22,12 @@
             <parameterType>Boolean</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
+        <inputParameter>
+            <name>isCompactMode</name>
+            <description></description>
+            <parameterType>Boolean</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
     </method>
     <method>
         <name>moveUp</name>
@@ -76,6 +82,10 @@
             <parameterType>ch.ivy.addon.portalkit.statistics.StatisticChart</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
+    </method>
+    <method>
+        <name>initializeCompactMode</name>
+        <description></description>
     </method>
     <startMethod>
         <name>start</name>

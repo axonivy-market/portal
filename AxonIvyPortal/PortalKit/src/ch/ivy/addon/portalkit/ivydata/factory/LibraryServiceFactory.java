@@ -7,7 +7,7 @@ import ch.ivy.addon.portalkit.ivydata.service.ILibraryService;
 import ch.ivy.addon.portalkit.ivydata.service.impl.MultiAppLibraryService;
 import ch.ivy.addon.portalkit.ivydata.service.impl.NoRegisteredAppLibraryService;
 import ch.ivy.addon.portalkit.ivydata.service.impl.SingleAppLibraryService;
-import ch.ivy.addon.portalkit.service.ApplicationService;
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class LibraryServiceFactory {
@@ -15,7 +15,7 @@ public class LibraryServiceFactory {
   private LibraryServiceFactory() {}
 
   public static ILibraryService getLibraryService() {
-    ApplicationService applicationService = new ApplicationService();
+    RegisteredApplicationService applicationService = new RegisteredApplicationService();
     if (CollectionUtils.isNotEmpty(applicationService.findAllIvyApplications())) {
       if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
         return new MultiAppLibraryService();

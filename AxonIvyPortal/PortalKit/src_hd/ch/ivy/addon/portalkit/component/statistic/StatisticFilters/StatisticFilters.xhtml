@@ -15,8 +15,8 @@
   <h:outputScript library="js" name="statistic-widget.js" />
   <c:set var="filter" value="#{cc.attrs.filter}" />
   <h:panelGrid columns="1">
-    <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/applyFilter')}" styleClass="apply-filters-btn"
-                       update="@([id$='chart-management-form'])" process="statistic-filter-accordion-panel" actionListener="#{cc.attrs.updateListener}" />
+    <p:commandButton id="apply-filter-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/applyFilter')}" styleClass="apply-filters-btn"
+                       process="statistic-filter-accordion-panel" actionListener="#{cc.attrs.updateListener}" oncomplete="clearChartModels(); updateChartModels();" />
     <p:accordionPanel id="statistic-filter-accordion-panel" styleClass="statistic-filter-accordion-panel" multiple="true" activeIndex="0,1,2,3">
       <!-- PERIOD TIME FILTER -->
       <p:tab id="period-time-filter-tab">
