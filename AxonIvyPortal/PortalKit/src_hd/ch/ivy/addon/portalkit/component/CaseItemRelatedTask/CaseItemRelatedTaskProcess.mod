@@ -39,6 +39,9 @@ Cs0 @PushWFArc f16 '' #zField
 Cs0 @RichDialogProcessStart f22 '' #zField
 Cs0 @CallSub f23 '' #zField
 Cs0 @PushWFArc f24 '' #zField
+Cs0 @RichDialogProcessStart f25 '' #zField
+Cs0 @CallSub f26 '' #zField
+Cs0 @PushWFArc f27 '' #zField
 >Proto Cs0 Cs0 CaseItemRelatedTaskProcess #zField
 Cs0 f0 guid 167E9A75EF3D0909 #txt
 Cs0 f0 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
@@ -117,9 +120,11 @@ import ch.ivyteam.ivy.workflow.ITask;
 
 in.relatedTasks.clear();
 
+int count = 1;
 for (ITask task : in.iCase.getTasks()) {
-	if (task.getState() == TaskState.SUSPENDED || task.getState() == TaskState.RESUMED || task.getState() == TaskState.UNASSIGNED || task.getState() == TaskState.PARKED) {
+	if ((task.getState() == TaskState.SUSPENDED || task.getState() == TaskState.RESUMED || task.getState() == TaskState.UNASSIGNED || task.getState() == TaskState.PARKED) && count <= 21) {//get only 21 tasks
 		in.relatedTasks.add(task);
+		count++;
 	}
 }' #txt
 Cs0 f14 security system #txt
@@ -167,7 +172,7 @@ Cs0 f19 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSe
 ' #txt
 Cs0 f19 requestMappingAction 'param.caseSearchCriteria=in.caseSearchCriteria;
 param.startIndex=0;
-param.count=-1;
+param.count=21;
 ' #txt
 Cs0 f19 responseActionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData out;
 ' #txt
@@ -295,6 +300,49 @@ Cs0 f23 192 458 128 44 -61 -8 #rect
 Cs0 f23 @|CallSubIcon #fIcon
 Cs0 f24 expr out #txt
 Cs0 f24 109 480 192 480 #arcP
+Cs0 f25 guid 1690E16A5D3AD46C #txt
+Cs0 f25 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
+Cs0 f25 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData out;
+' #txt
+Cs0 f25 actionTable 'out=in;
+' #txt
+Cs0 f25 actionCode 'import ch.ivyteam.ivy.workflow.ICase;
+import org.primefaces.component.commandlink.CommandLink;
+
+CommandLink commandLink = event.getSource() as CommandLink;
+out.selectedTechnicalCase = commandLink.getAttributes().get("selectedCase") as ICase;' #txt
+Cs0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>navigateToTechnicalCasesOfBusinessCase</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f25 83 563 26 26 -88 17 #rect
+Cs0 f25 @|RichDialogProcessStartIcon #fIcon
+Cs0 f26 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
+Cs0 f26 processCall 'Functional Processes/Navigator:viewTechnicalCasesOfBusniessCase(String,ch.ivy.addon.portalkit.dto.GlobalCaseId)' #txt
+Cs0 f26 doCall true #txt
+Cs0 f26 requestActionDecl '<java.lang.String businessCaseName,ch.ivy.addon.portalkit.dto.GlobalCaseId businessCaseId> param;
+' #txt
+Cs0 f26 requestMappingAction 'param.businessCaseName=ch.ivy.addon.portalkit.util.PermissionUtils.getCaseName(in.selectedTechnicalCase);
+param.businessCaseId=ch.ivy.addon.portalkit.dto.GlobalCaseId.caseId(in.selectedTechnicalCase.getId()).isBusinessCase(in.selectedTechnicalCase.isBusinessCase()).build();
+' #txt
+Cs0 f26 responseActionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData out;
+' #txt
+Cs0 f26 responseMappingAction 'out=in;
+' #txt
+Cs0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Navigate to case detail</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f26 320 554 128 44 -61 -8 #rect
+Cs0 f26 @|CallSubIcon #fIcon
+Cs0 f27 expr out #txt
+Cs0 f27 109 576 320 576 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -321,3 +369,5 @@ Cs0 f2 mainOut f11 tail #connect
 Cs0 f11 head f4 mainIn #connect
 Cs0 f22 mainOut f24 tail #connect
 Cs0 f24 head f23 mainIn #connect
+Cs0 f25 mainOut f27 tail #connect
+Cs0 f27 head f26 mainIn #connect

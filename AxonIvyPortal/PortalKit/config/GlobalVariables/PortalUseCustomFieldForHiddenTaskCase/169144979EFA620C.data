@@ -1,0 +1,1 @@
+{/value "true"/description "By default, Portal will use custom field of task and case to store hidden info.\nIf this value is set to false, it will store hidden info to addtional property name \"HIDE\".\nIMPORTANT: It only effects when PortalHiddenTaskCaseExcluded is set to true."/environments * }

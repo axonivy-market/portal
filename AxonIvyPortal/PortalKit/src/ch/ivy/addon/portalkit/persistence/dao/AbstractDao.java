@@ -30,15 +30,6 @@ public abstract class AbstractDao<T extends BusinessEntity> {
     this.ivyApplication = Ivy.wf().getApplication();
   }
 
-  /**
-   * Sets relationship object of entity. 
-   * E.g: If the entity is an Application, this method will find Server of that Application and then set the Server to Application 
-   * When subclass implements this method, it should find the related object of its entity, and set the related object to the entity
-   * @param entity
-   */
-  @ExecuteAsSystem
-  protected void setRelationshipDataFor(@SuppressWarnings("unused") T entity){}
-
   protected enum EntityProperty {
     ID("id"), NAME("name"), SERVER_ID("serverId"), USER_NAME("userName"), APPLICATION_ID("applicationId"), KEY("key"), 
     APPLICATION_NAME("applicationName"), DISPLAY_NAME("displayName"), DEFAULT_PROCESS("defaultProcess"), DELETED("deleted");
@@ -87,7 +78,6 @@ public abstract class AbstractDao<T extends BusinessEntity> {
   @ExecuteAsSystem
   public T findById(long id) {
     T entity = findByIdWithoutRelationship(id);
-    setRelationshipDataFor(entity);
     return entity;
 
   }
@@ -114,7 +104,6 @@ public abstract class AbstractDao<T extends BusinessEntity> {
     for (ICustomProperty property : properties) {
       String propertyValue = getCustomPropertyValue(property);
       T entity = parseJsonToObject(propertyValue);
-      setRelationshipDataFor(entity);
       entities.add(entity);
     }
     return entities;

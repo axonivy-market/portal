@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.util;
 
+import static ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig.PORTAL_USE_CUSTOM_FIELD_FOR_HIDDEN_TASK_CASE;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -7,6 +9,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang.StringUtils;
 
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.RequestUriFactory;
@@ -68,7 +71,12 @@ public final class CaseUtils {
    * @param iCase
    */
   public static void setHidePropertyToHideInPortal(ICase iCase) {
-    iCase.setAdditionalProperty(HIDE, HIDE);
+    boolean isUseCustomFieldForHiddenTaskCase = Boolean.parseBoolean(Ivy.var().get(PORTAL_USE_CUSTOM_FIELD_FOR_HIDDEN_TASK_CASE));
+    if (isUseCustomFieldForHiddenTaskCase) {
+      iCase.customFields().stringField(PortalConstants.HIDDEN_TASK_CASE_FIELD_NAME).set(HIDE);
+    } else {
+      iCase.setAdditionalProperty(HIDE, HIDE);
+    }
   }
 
   /**
@@ -77,7 +85,12 @@ public final class CaseUtils {
    * @param iCase
    */
   public static void removeHidePropertyToDisplayInPortal(ICase iCase) {
-    iCase.setAdditionalProperty(HIDE, null);
+    boolean isUseCustomFieldForHiddenTaskCase = Boolean.parseBoolean(Ivy.var().get(PORTAL_USE_CUSTOM_FIELD_FOR_HIDDEN_TASK_CASE));
+    if (isUseCustomFieldForHiddenTaskCase) {
+      iCase.customFields().stringField(PortalConstants.HIDDEN_TASK_CASE_FIELD_NAME).delete();
+    } else {
+      iCase.setAdditionalProperty(HIDE, null);
+    }
   }
 
   public static String getProcessStartUriWithCaseParameters(ICase iCase, String requestPath) {
