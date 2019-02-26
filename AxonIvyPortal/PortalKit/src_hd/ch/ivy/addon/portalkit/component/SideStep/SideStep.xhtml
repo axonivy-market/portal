@@ -16,24 +16,22 @@
 </cc:interface>
 
 <cc:implementation>
-  <c:set var="hasSideSteps" value="#{sideStepBean.hasSideSteps(cc.attrs.taskId, cc.attrs.caseId, cc.attrs.isAdhocExcluded)}" />
-  
-  <p:commandLink id="#{cc.attrs.actionLinkId}" onstart="event.stopPropagation();" global="false" disabled="#{cc.attrs.isDisabled}"
-    styleClass="side-step #{not hasSideSteps ? 'u-invisibility' : ''} #{cc.attrs.actionLinkStyleClass} #{cc.attrs.taskId}" oncomplete="PF('#{cc.attrs.panelWidgetVar}').loadContents();">
+  <p:commandLink id="#{cc.attrs.actionLinkId}" onstart="event.stopPropagation();" global="false" disabled="#{cc.attrs.isDisabled}" actionListener="#{sideStepBean.getSideSteps(cc.attrs.taskId, cc.attrs.caseId, cc.attrs.isAdhocExcluded)}"
+    styleClass="side-step #{cc.attrs.actionLinkStyleClass} #{cc.attrs.taskId}" oncomplete="PF('#{cc.attrs.panelWidgetVar}').loadContents();">
     <span class="action-icon tmi-ellipsis-v side-step-icon" />
   </p:commandLink>
-  <p:overlayPanel id="side-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}" for="#{cc.attrs.actionLinkId}"
-    my="left top" at="left bottom" appendToBody="true" styleClass="side-steps-panel" dynamic="true"
-    rendered="#{hasSideSteps and !cc.attrs.isDisabled}">
-    <ui:repeat var="sideStep" value="#{sideStepBean.getSideSteps(cc.attrs.taskId, cc.attrs.caseId, cc.attrs.isAdhocExcluded)}">
+  <p:overlayPanel id="side-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}" for="#{cc.attrs.actionLinkId}" 
+    my="left top" at="left bottom" appendToBody="true" styleClass="side-steps-panel" dynamic="true" 
+    rendered="#{!cc.attrs.isDisabled}">
+    <p:commandLink rendered="#{empty sideStepBean.currentSideSteps}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}" styleClass="side-step-item" />
+    <ui:repeat var="sideStep" value="#{sideStepBean.currentSideSteps}" >
       <p:commandLink id="adhoc-side-step-item" styleClass="side-step-item" value="#{sideStep.name}" global="false" 
         rendered="#{sideStep.isAdhoc()}" actionListener="#{sideStepBean.startAdhoc(sideStep, cc.attrs.taskId)}" />
       
       <p:commandLink id="side-step-item" styleClass="side-step-item" value="#{sideStep.name}" global="false" 
         rendered="#{not sideStep.isAdhoc()}" actionListener="#{sideStepBean.startSideStep(sideStep)}" />
-    </ui:repeat>
+    </ui:repeat> 
   </p:overlayPanel>
-
-  <p:tooltip for="#{cc.attrs.actionLinkId}" rendered="#{hasSideSteps and !cc.attrs.isDisabled}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" />
+  <p:tooltip for="#{cc.attrs.actionLinkId}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" />
 </cc:implementation>
 </html>

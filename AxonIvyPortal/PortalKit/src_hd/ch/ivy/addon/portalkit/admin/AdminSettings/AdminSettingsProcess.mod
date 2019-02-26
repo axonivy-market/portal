@@ -183,9 +183,7 @@ As0 @PushWFArc f57 '' #zField
 As0 @CallSub f21 '' #zField
 As0 @PushWFArc f60 '' #zField
 As0 @PushWFArc f70 '' #zField
-As0 @CallSub f64 '' #zField
-As0 @PushWFArc f65 '' #zField
-As0 @PushWFArc f68 '' #zField
+As0 @PushWFArc f71 '' #zField
 >Proto As0 As0 AdminUIProcess #zField
 Ct0 @TextInP .resExport .resExport #zField
 Ct0 @TextInP .type .type #zField
@@ -1958,30 +1956,8 @@ As0 f60 0 0.5000000000000001 0 0 #arcLabel
 As0 f70 expr out #txt
 As0 f70 2352 1014 2352 1068 #arcP
 As0 f70 0 0.5000000000000001 0 0 #arcLabel
-As0 f64 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f64 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-As0 f64 doCall true #txt
-As0 f64 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
-' #txt
-As0 f64 requestMappingAction 'param.exceptions=in.errors;
-' #txt
-As0 f64 responseActionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
-As0 f64 responseMappingAction 'out=in;
-' #txt
-As0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>ErrorHandler</name>
-    </language>
-</elementInfo>
-' #txt
-As0 f64 2296 1130 112 44 -35 -8 #rect
-As0 f64 @|CallSubIcon #fIcon
-As0 f65 expr out #txt
-As0 f65 2352 1092 2352 1130 #arcP
-As0 f68 expr out #txt
-As0 f68 2352 1174 2352 1262 #arcP
+As0 f71 expr out #txt
+As0 f71 2352 1092 2352 1262 #arcP
 >Proto As0 .type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -2221,10 +2197,8 @@ As0 f178 out f60 tail #connect
 As0 f60 head f21 mainIn #connect
 As0 f21 mainOut f70 tail #connect
 As0 f70 head f190 mainIn #connect
-As0 f190 mainOut f65 tail #connect
-As0 f65 head f64 mainIn #connect
-As0 f64 mainOut f68 tail #connect
-As0 f68 head f188 mainIn #connect
+As0 f190 mainOut f71 tail #connect
+As0 f71 head f188 mainIn #connect
 Ct0 g0 m f0 tail #connect
 Ct0 f0 head f51 mainIn #connect
 Ct0 f1 head g1 m #connect
