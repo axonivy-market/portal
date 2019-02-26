@@ -19,7 +19,6 @@ import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.data.cache.IDataCacheEntry;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.IUser;
 
 public class RegisteredApplicationService extends AbstractService<Application> {
 
@@ -30,19 +29,6 @@ public class RegisteredApplicationService extends AbstractService<Application> {
   @Override
   protected ApplicationDao getDao() {
     return (ApplicationDao) super.getDao();
-  }
-
-  @SuppressWarnings("unchecked")
-  public List<Application> findAllThirdPartyApplications() {
-    String sessionUserName = Ivy.session().getSessionUserName();
-    IDataCacheEntry sessionCache = IvyCacheService.newInstance().getSessionCache(sessionUserName, IvyCacheIdentifier.ALL_THIRD_PARTY_APPLICATIONS);
-    if (sessionCache == null) {
-      List<Application> allThirdPartyApplications = getDao().findAllThirdPartyApplications();
-      IvyCacheService.newInstance().setSessionCache(sessionUserName, IvyCacheIdentifier.ALL_THIRD_PARTY_APPLICATIONS, allThirdPartyApplications);
-      return allThirdPartyApplications;
-    } else {
-      return (List<Application>) sessionCache.getValue();
-    }
   }
 
   @SuppressWarnings("unchecked")
@@ -157,15 +143,12 @@ public class RegisteredApplicationService extends AbstractService<Application> {
   public List<Application> findApplicationByUser(String username){
     IDataCacheEntry sessionCache = IvyCacheService.newInstance().getSessionCache(username, IvyCacheIdentifier.ALL_IVY_AND_THIRD_PARTY_APPLICATIONS);
     if (sessionCache == null) {
-      List<Application> applications = new ArrayList<>();
       List<Application> apps = findAllIvyApplications();
-      for (Application app : apps){
-        IUser user = ServiceUtilities.findUser(username, app.getName());
-        if (user != null){
-          applications.add(app);
-        }
-      }
-      applications.addAll(findAllThirdPartyApplications());
+      List<Application> applications = CollectionUtils.emptyIfNull(apps)
+          .stream()
+          .filter(app -> ServiceUtilities.findUser(username, app.getName()) != null)
+          .collect(Collectors.toList());
+      applications.addAll(getDao().findAllThirdPartyApplications());
       IvyCacheService.newInstance().setSessionCache(username, IvyCacheIdentifier.ALL_IVY_AND_THIRD_PARTY_APPLICATIONS, applications);
       return applications;
     } else {
