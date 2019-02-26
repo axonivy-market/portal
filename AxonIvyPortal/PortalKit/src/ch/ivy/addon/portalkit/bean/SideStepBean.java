@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,8 +10,6 @@ import java.util.Objects;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-
-import org.apache.commons.collections.CollectionUtils;
 
 import ch.ivy.addon.portalkit.ivydata.bo.IvySideStep;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.SideStepSearchCriteria;
@@ -24,18 +23,15 @@ public class SideStepBean {
   private Map<Long, List<IvySideStep>> sideStepOfTasks = new HashMap<>();
   private Map<Long, List<IvySideStep>> sideStepOfCases = new HashMap<>();
   
-  public boolean hasSideSteps(Long taskId, Long caseId, boolean isAdhocExcluded) {
-    if(isNullOrZero(taskId)) {
-      return CollectionUtils.isNotEmpty(getSideStepsOfCases(caseId, isAdhocExcluded));
-    }
-    return CollectionUtils.isNotEmpty(getSideStepsOfTasks(caseId, isAdhocExcluded));
-  }
+  private List<IvySideStep> currentSideSteps = new ArrayList<>(); 
   
-  public List<IvySideStep> getSideSteps(Long taskId, Long caseId, boolean isAdhocExcluded) {
+  public void getSideSteps(Long taskId, Long caseId, boolean isAdhocExcluded) {
+    currentSideSteps.clear();
     if(isNullOrZero(taskId)) {
-      return getSideStepsOfCases(caseId, isAdhocExcluded);
+      currentSideSteps.addAll(getSideStepsOfCases(caseId, isAdhocExcluded));
+    } else {
+      currentSideSteps.addAll(getSideStepsOfTasks(caseId, isAdhocExcluded));
     }
-    else return getSideStepsOfTasks(caseId, isAdhocExcluded);
   }
   
   private List<IvySideStep> getSideStepsOfCases(Long caseId, boolean isAdhocExcluded) {
@@ -72,6 +68,10 @@ public class SideStepBean {
     return sideSteps;
   }
   
+  private boolean isNullOrZero(Long value) {
+    return Objects.isNull(value) || value.equals(0L); 
+  }
+  
   public void startSideStep(IvySideStep sideStep) throws IOException {
     String url = sideStep.getStartLink();
     FacesContext.getCurrentInstance().getExternalContext().redirect(url);
@@ -81,8 +81,8 @@ public class SideStepBean {
     String url = sideStep.getStartLink() + "?originalTaskId=" + taskId;
     FacesContext.getCurrentInstance().getExternalContext().redirect(url);
   }
-  
-  private boolean isNullOrZero(Long value) {
-    return Objects.isNull(value) || value.equals(0L); 
+
+  public List<IvySideStep> getCurrentSideSteps() {
+    return currentSideSteps;
   }
 }
