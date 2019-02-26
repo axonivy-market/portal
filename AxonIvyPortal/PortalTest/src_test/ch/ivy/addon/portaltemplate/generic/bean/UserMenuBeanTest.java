@@ -23,45 +23,47 @@ import ch.ivyteam.ivy.workflow.IWorkflowSession;
 public class UserMenuBeanTest {
 
   private UserMenuBean userMenuBean;
+  private GlobalSettingService globalSettingService;
+  final String SHOW_ENVIROMENT_INFO = "SHOW_ENVIRONMENT_INFO";
+  final String HIDE_LOGOUT_BUTTON = "HIDE_LOGOUT_BUTTON";
+  String testUsername = "test";
+  
 
   @Before
-  public void init() {
+  public void init() throws Exception {
     userMenuBean = new UserMenuBean();
-  }
-
-  @Test
-  @PrepareForTest(Ivy.class)
-  public void testGetUserName() {
-    String testUsername = "test";
+    
     mockStatic(Ivy.class);
     IWorkflowSession session = mock(IWorkflowSession.class);
     when(Ivy.session()).thenReturn(session);
     when(session.getSessionUserName()).thenReturn(testUsername);
+    
+    globalSettingService = mock(GlobalSettingService.class);
+    whenNew(GlobalSettingService.class).withNoArguments().thenReturn(globalSettingService);
+    when(globalSettingService.findGlobalSettingValue(SHOW_ENVIROMENT_INFO)).thenReturn("true");
+    when(globalSettingService.findGlobalSettingValue(HIDE_LOGOUT_BUTTON)).thenReturn("true");
+    
+    this.userMenuBean.init();
+  }
+
+  @Test
+  @PrepareForTest({ Ivy.class, UserMenuBean.class })
+  public void testGetUserName() {
     assertEquals(userMenuBean.getUserName(), testUsername);
   }
 
   @Test
-  @PrepareForTest(UserMenuBean.class)
+  @PrepareForTest({ Ivy.class, UserMenuBean.class })
   public void testIsShowServerInformation() throws Exception {
-    final String SHOW_ENVIROMENT_INFO = "SHOW_ENVIRONMENT_INFO";
-    GlobalSettingService globalSettingService = mock(GlobalSettingService.class);
-    whenNew(GlobalSettingService.class).withNoArguments().thenReturn(globalSettingService);
-    when(globalSettingService.findGlobalSettingValue(SHOW_ENVIROMENT_INFO)).thenReturn("true");
     assertEquals(Boolean.TRUE, userMenuBean.isShowServerInformation());
-
     verifyNew(GlobalSettingService.class).withNoArguments();
     Mockito.verify(globalSettingService).findGlobalSettingValue(SHOW_ENVIROMENT_INFO);
   }
 
   @Test
-  @PrepareForTest(UserMenuBean.class)
+  @PrepareForTest({ Ivy.class, UserMenuBean.class })
   public void testIsHiddenLogout() throws Exception {
-    final String HIDE_LOGOUT_BUTTON = "HIDE_LOGOUT_BUTTON";
-    GlobalSettingService globalSettingService = mock(GlobalSettingService.class);
-    whenNew(GlobalSettingService.class).withNoArguments().thenReturn(globalSettingService);
-    when(globalSettingService.findGlobalSettingValue(HIDE_LOGOUT_BUTTON)).thenReturn("true");
     assertEquals(Boolean.TRUE, userMenuBean.isHiddenLogout());
-
     verifyNew(GlobalSettingService.class).withNoArguments();
     Mockito.verify(globalSettingService).findGlobalSettingValue(HIDE_LOGOUT_BUTTON);
   }
