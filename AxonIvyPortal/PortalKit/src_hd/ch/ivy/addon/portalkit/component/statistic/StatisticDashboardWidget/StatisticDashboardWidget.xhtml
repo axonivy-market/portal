@@ -27,8 +27,7 @@
     <h:panelGroup id="statistic-dashboard-expand-mode" layout="block"
       styleClass="statistic-dashboard-expand-mode #{cc.attrs.isDrilldownExpiryChart ? 'task-by-expiry-drilldown-mode' : ''}"
       rendered="#{!cc.attrs.compactMode and data.hasStatistic and !cc.attrs.isDrilldownElapsedTime}">
-      <ui:repeat id="statistic-chart-repeater" var="chart" value="#{data.statisticChartList}">
-        <c:set var="index" value="#{data.statisticChartList.indexOf(chart)}" />
+      <ui:repeat id="statistic-chart-repeater" var="chart" value="#{data.statisticChartList}" varStatus="chartStatus">
         <p:panel id="chart-panel" styleClass="dashboard-chart-panel">
           <f:facet name="header">
             <h:panelGroup id="chart-name-container" styleClass="chart-name-container" layout="block">
@@ -41,14 +40,14 @@
               rendered="#{!cc.attrs.isDrilldownExpiryChart}">
               <p:commandLink styleClass="fa fa-arrow-down chart-action" actionListener="#{logic.moveDown(chart)}"
                 update="@([id$='statistic-container'])"
-                rendered="#{index &lt; data.statisticChartList.size() - 2}" />
+                rendered="#{chartStatus.index &lt; data.statisticChartList.size() - 2}" />
               <p:commandLink styleClass="fa fa-arrow-up chart-action" actionListener="#{logic.moveUp(chart)}"
-                update="@([id$='statistic-container'])" rendered="#{index &gt; 1}" />
+                update="@([id$='statistic-container'])" rendered="#{chartStatus.index &gt; 1}" />
               <p:commandLink styleClass="fa fa-arrow-left chart-action" actionListener="#{logic.moveLeft(chart)}"
-                update="@([id$='statistic-container'])" rendered="#{index % 2 != 0}" />
+                update="@([id$='statistic-container'])" rendered="#{chartStatus.index % 2 != 0}" />
               <p:commandLink styleClass="fa fa-arrow-right chart-action" actionListener="#{logic.moveRight(chart)}"
                 update="@([id$='statistic-container'])"
-                rendered="#{index % 2 == 0 and index != data.statisticChartList.size() -1}" />
+                rendered="#{chartStatus.index % 2 == 0 and chartStatus.index != data.statisticChartList.size() -1}" />
 
               <p:commandLink id="delete-chart-link" styleClass="fa fa-close chart-action"
                 rendered="#{chart.defaultChart == 'false'}">
@@ -64,13 +63,13 @@
             <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByPriority}" />
           </p:chart>
 
-          <p:chart type="bar" styleClass="statistic-chart js-drilldown-cursor #{!statisticDashboardBean.isTaskByExpiryHour(chart) ? 'js-expiry-chart' : ''} expiry-chart-#{index}" id="expiry-chart"
+          <p:chart type="bar" styleClass="statistic-chart js-drilldown-cursor #{!statisticDashboardBean.isTaskByExpiryHour(chart) ? 'js-expiry-chart' : ''} expiry-chart-#{chartStatus.index}" id="expiry-chart"
             style="#{statisticDashboardBean.getChartWidthStyle(data.statisticChartList)}" model="#{chart.barChartModel}"
             rendered="#{statisticDashboardBean.isTaskByExpiry(chart)}">
             <f:attribute name="selectedChartId" value="#{chart.id}" />
             <p:ajax event="itemSelect" listener="#{logic.onSelectDrilldownTaskByExpiry}" global="false" />
           </p:chart>
-          <p:overlayPanel styleClass="context-menu-#{index} expiry-chart-context-menu side-steps-panel" widgetVar="context-menu-#{index}"
+          <p:overlayPanel styleClass="context-menu-#{chartStatus.index} expiry-chart-context-menu side-steps-panel" widgetVar="context-menu-#{chartStatus.index}"
             rendered="#{statisticDashboardBean.isTaskByExpiry(chart) and !statisticDashboardBean.isTaskByExpiryHour(chart)}">
             <p:commandLink
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/contextMenuDrilldown')}"

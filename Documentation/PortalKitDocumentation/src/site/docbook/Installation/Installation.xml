@@ -807,6 +807,9 @@
 				<link linkend="axonivyportal.customization.menu.customization" endterm="axonivyportal.customization.menu.customization.title" /> for more detail.
 			</para>
 			<para>
+				There is a small change when initializing statistic chart, so if you override <code>DefaultChart.mod</code>, have a look at its note to see what is changed. 
+			</para>
+			<para>
 				Portal connector is removed, so there are many things related to it must be adjusted. Check this list below
 				<itemizedlist>
 					<listitem>All <code>Remote*</code> classes are removed, replaced by the Ivy classes: ICase, ITask, IUser, IApplication, etc..</listitem>
