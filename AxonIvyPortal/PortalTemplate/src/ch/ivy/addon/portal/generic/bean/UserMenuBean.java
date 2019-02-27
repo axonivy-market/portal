@@ -99,6 +99,10 @@ public class UserMenuBean implements Serializable {
 
   public String getHomePageURL() throws MalformedURLException {
     RegisteredApplicationService applicationService = new RegisteredApplicationService();
+    // Special handle since this function is call in javascript: window.location = "${userMenuBean.getHomePageURL()}";
+    if (globalSettingService == null) {
+      globalSettingService = new GlobalSettingService();
+    }
     String homePageURL = globalSettingService.findGlobalSettingValue(GlobalVariable.HOMEPAGE_URL.toString());
     if (CollectionUtils.isEmpty(applicationService.findAllIvyApplications())) {
       if (StringUtils.isNotBlank(homePageURL)) {
