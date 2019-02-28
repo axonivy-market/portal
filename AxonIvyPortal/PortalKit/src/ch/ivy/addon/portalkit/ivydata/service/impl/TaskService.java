@@ -1,7 +1,6 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
 import static ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig.isHiddenTasksCasesExcluded;
-import static ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig.isUseCustomFieldForHiddenTaskCase;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -16,7 +15,6 @@ import org.apache.commons.lang3.time.DateUtils;
 import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
 import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
 import ch.ivy.addon.portalkit.bo.PriorityStatistic;
-import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyTaskResultDTO;
 import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataErrorType;
@@ -113,10 +111,7 @@ public class TaskService implements ITaskService {
   }
   
   private TaskQuery queryExcludeHiddenTasks(List<String> apps) {
-    if (isUseCustomFieldForHiddenTaskCase(apps)) {
-      return TaskQuery.create().where().customField().stringField(PortalConstants.HIDDEN_TASK_CASE_FIELD_NAME).isNull();
-    }
-    return TaskQuery.create().where().additionalProperty(AdditionalProperty.HIDE.toString()).isNull();
+    return TaskQuery.create().where().customField().textField(AdditionalProperty.HIDE.toString()).isNull();
   }
 
   @Override

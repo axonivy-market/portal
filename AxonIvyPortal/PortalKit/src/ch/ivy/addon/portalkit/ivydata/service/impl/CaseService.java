@@ -1,7 +1,6 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
 import static ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig.isHiddenTasksCasesExcluded;
-import static ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig.isUseCustomFieldForHiddenTaskCase;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -14,7 +13,6 @@ import java.util.stream.Collectors;
 
 import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
 import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
-import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.ivydata.dao.PortalCaseDao;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
@@ -237,10 +235,7 @@ public class CaseService implements ICaseService {
   }
 
   private CaseQuery queryExcludeHiddenCases(List<String> apps) {
-    if (isUseCustomFieldForHiddenTaskCase(apps)) {
-      return CaseQuery.create().where().customField().stringField(PortalConstants.HIDDEN_TASK_CASE_FIELD_NAME).isNull();
-    }
-    return CaseQuery.create().where().additionalProperty(AdditionalProperty.HIDE.toString()).isNull();
+    return CaseQuery.create().where().customField().textField(AdditionalProperty.HIDE.toString()).isNull();
   }
   
   private CaseQuery extendQuery(CaseSearchCriteria criteria) {
