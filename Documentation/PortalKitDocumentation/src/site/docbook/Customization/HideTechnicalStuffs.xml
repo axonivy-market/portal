@@ -23,10 +23,6 @@
 		<para>
 			A technical task is the task which is not displayed in any task lists of Portal.
 		</para>
-		<para>
-			To mark a task as a technical task, make sure Ivy global variable <code>PortalHiddenTaskCaseExcluded</code> is set to true. Then depends on value of <code>PortalUseCustomFieldForHiddenTaskCase</code>, it will 
-			mark task as technical. Follow tip
-		</para>
 		<tip>
 			<para>Use the utility methods of Portal:</para>
 			<itemizedlist>
@@ -48,8 +44,7 @@
 			Tasks belong to the technical case is considered as technical tasks and should be hide as well.
 		</para>
 		<para>
-			To mark a case as a technical case, make sure Ivy global variable <code>PortalHiddenTaskCaseExcluded</code> is set to true. Then depends on value of <code>PortalUseCustomFieldForHiddenTaskCase</code>, it will 
-			mark case as technical. Follow tip 
+			To mark a case as a technical case, make sure Ivy global variable <code>PortalHiddenTaskCaseExcluded</code> is set to true. Follow tip 
 		</para>
 		<tip>
 			<para>Use the utility methods of Portal:</para>
