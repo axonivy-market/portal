@@ -1,5 +1,5 @@
 [Ivy]
-14B2FC03D2E87141 3.23 #module
+14B2FC03D2E87141 3.24 #module
 >Proto >Proto Collection #zClass
 Tt0 TestTaskFlow Big #zClass
 Tt0 B #cInfo
@@ -203,19 +203,19 @@ Tt0 f5 triggerEnabled false #txt
 Tt0 f5 callSignature CategoriedLeaveRequest() #txt
 Tt0 f5 persist false #txt
 Tt0 f5 startName 'Categoried Leave Request' #txt
-Tt0 f5 taskData 'TaskTriggered.ROL=Everybody
+Tt0 f5 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Tt0 f5 caseData 'case.description=Leave Request Description
 case.name=Leave Request
-customFields.varchar.1="Leave Request CustomVarCharField1"
-customFields.varchar.2="Leave Request CustomVarCharField2"
-customFields.varchar.3="Leave Request CustomVarCharField3"
-customFields.varchar.4="Leave Request CustomVarCharField4"
-customFields.varchar.5="Leave Request CustomVarCharField5"
+customFields.STRING.CustomVarCharField1="Leave Request CustomVarCharField1"
+customFields.STRING.CustomVarCharField2="Leave Request CustomVarCharField2"
+customFields.STRING.CustomVarCharField3="Leave Request CustomVarCharField3"
+customFields.STRING.CustomVarCharField4="Leave Request CustomVarCharField4"
+customFields.STRING.CustomVarCharField5="Leave Request CustomVarCharField5"
 process.code=pubRequested
 process.name=Publication Requested
 processCategory.code=pubRequested
@@ -239,8 +239,8 @@ Tt0 f7 actionTable 'out=in1;
 ' #txt
 Tt0 f7 outTypes "internaltest.Data","internaltest.Data","internaltest.Data" #txt
 Tt0 f7 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp" #txt
-Tt0 f7 caseData 'case.name=Leave Request
-case.category=LeaveRequest' #txt
+Tt0 f7 caseData 'case.category=LeaveRequest
+case.name=Leave Request' #txt
 Tt0 f7 taskData 'TaskA.CATEGORY=AnnualLeave
 TaskA.DESC=Annual Leave Request Description
 TaskA.EXP=new Duration("3H")
@@ -252,9 +252,9 @@ TaskA.PRI=2
 TaskA.ROL="demo"
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=3
-TaskA.customFields.timestamp.1=new DateTime()
-TaskA.customFields.varchar.1="Exterior"
-TaskA.customFields.varchar.5="Long Do"
+TaskA.customFields.STRING.CustomVarCharField1="Exterior"
+TaskA.customFields.STRING.CustomVarCharField5="Long Do"
+TaskA.customFields.TIMESTAMP.CustomTimestampField1=new DateTime()
 TaskB.CATEGORY=OtherLeave/SickLeave/Long
 TaskB.DESC=Sick Leave Request Description
 TaskB.EXP=new Duration("1D")
@@ -266,9 +266,9 @@ TaskB.PRI=1
 TaskB.ROL=Everybody
 TaskB.SKIP_TASK_LIST=false
 TaskB.TYPE=0
-TaskB.customFields.timestamp.1=new DateTime()
-TaskB.customFields.varchar.1="Interior"
-TaskB.customFields.varchar.5="Tung Le"
+TaskB.customFields.STRING.CustomVarCharField1="Interior"
+TaskB.customFields.STRING.CustomVarCharField5="Tung Le"
+TaskB.customFields.TIMESTAMP.CustomTimestampField1=new DateTime()
 TaskC.CATEGORY=OtherLeave/Maternity
 TaskC.DESC=Maternity Leave Request Description
 TaskC.EXP=new Duration("2D")
@@ -280,9 +280,9 @@ TaskC.PRI=3
 TaskC.ROL=Everybody
 TaskC.SKIP_TASK_LIST=false
 TaskC.TYPE=0
-TaskC.customFields.timestamp.1=new DateTime()
-TaskC.customFields.varchar.1="Interior"
-TaskC.customFields.varchar.5="Anh Nguyen"' #txt
+TaskC.customFields.STRING.CustomVarCharField1="Interior"
+TaskC.customFields.STRING.CustomVarCharField5="Anh Nguyen"
+TaskC.customFields.TIMESTAMP.CustomTimestampField1=new DateTime()' #txt
 Tt0 f7 type internaltest.Data #txt
 Tt0 f7 template "" #txt
 Tt0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -399,18 +399,18 @@ Tt0 f0 triggerEnabled false #txt
 Tt0 f0 callSignature CreateSupportTicket() #txt
 Tt0 f0 persist false #txt
 Tt0 f0 startName 'Create Support Ticket' #txt
-Tt0 f0 taskData 'TaskTriggered.ROL=Everybody
+Tt0 f0 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
-Tt0 f0 caseData 'customFields.varchar.5="Leave 5"
-customFields.varchar.4="Leave 4"
-customFields.varchar.3="Leave 3"
-customFields.varchar.2="Leave 2"
-customFields.varchar.1="Leave 1"
-businessCase.attach=false' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Tt0 f0 caseData 'businessCase.attach=false
+customFields.STRING.CustomVarCharField1="Leave 1"
+customFields.STRING.CustomVarCharField2="Leave 2"
+customFields.STRING.CustomVarCharField3="Leave 3"
+customFields.STRING.CustomVarCharField4="Leave 4"
+customFields.STRING.CustomVarCharField5="Leave 5"' #txt
 Tt0 f0 showInStartList 1 #txt
 Tt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -433,12 +433,12 @@ Tt0 f23 actionTable 'out=in1;
 ' #txt
 Tt0 f23 outTypes "internaltest.Data" #txt
 Tt0 f23 outLinks "TaskA.ivp" #txt
-Tt0 f23 caseData 'processCategory.name=Ticket Category Name
+Tt0 f23 caseData 'case.category=SupportTicket
 case.name=SupportTicket
-processCategory.code=Ticket Category Code
+process.code=Ticket Category Code
 process.name=Ticket Category Name
-case.category=SupportTicket
-process.code=Ticket Category Code' #txt
+processCategory.code=Ticket Category Code
+processCategory.name=Ticket Category Name' #txt
 Tt0 f23 taskData 'TaskA.EXC=14B2FC03D2E87141-f38-buffer
 TaskA.EXP=new Duration("3H")
 TaskA.EXPRI=2
@@ -469,12 +469,11 @@ Tt0 f1 actionDecl 'internaltest.Data out;
 Tt0 f1 actionTable 'out=in;
 ' #txt
 Tt0 f1 actionCode 'import ch.ivyteam.ivy.workflow.WorkflowPriority;
-import ch.ivy.addon.portalkit.util.CaseUtils;
-
-CaseUtils.setCaseDetailsProcess(ivy.case,ivy.html.startref("Start Processes/InternalSupportPortalHome/caseDetails.ivp"));
+ivy.case.customFields().stringField("CASE_DETAIL_PROCESS").set(ivy.html.startref("Start Processes/InternalSupportPortalHome/caseDetails.ivp"));
 
 in.expiredDate = new Duration(1,0,0,0,0,0);
 in.taskPriority = WorkflowPriority.NORMAL;' #txt
+Tt0 f1 security system #txt
 Tt0 f1 type internaltest.Data #txt
 Tt0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -500,8 +499,8 @@ Tt0 f8 actionTable 'out=in1;
 ' #txt
 Tt0 f8 outTypes "internaltest.Data" #txt
 Tt0 f8 outLinks "TaskA.ivp" #txt
-Tt0 f8 caseData 'case.name=\u00D6sterreich Resource with ID 1212
-case.category=Resource/Austria' #txt
+Tt0 f8 caseData 'case.category=Resource/Austria
+case.name=\u00D6sterreich Resource with ID 1212' #txt
 Tt0 f8 taskData 'TaskA.EXP=new Duration("1D")
 TaskA.EXPRI=2
 TaskA.EXTYPE=-1
@@ -530,12 +529,12 @@ Tt0 f6 requestEnabled true #txt
 Tt0 f6 triggerEnabled false #txt
 Tt0 f6 callSignature CreateTaskWithSpecialCharacter() #txt
 Tt0 f6 persist false #txt
-Tt0 f6 taskData 'TaskTriggered.ROL=Everybody
+Tt0 f6 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Tt0 f6 showInStartList 1 #txt
 Tt0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -621,11 +620,11 @@ TaskA.PRI=2
 TaskA.ROL="demoNotExisted"
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=3
-TaskA.customFields.varchar.1="Annual CustomVarCharField1"
-TaskA.customFields.varchar.2="Annual CustomVarCharField2"
-TaskA.customFields.varchar.3="Annual CustomVarCharField3"
-TaskA.customFields.varchar.4="Annual CustomVarCharField4"
-TaskA.customFields.varchar.5="Annual Leave"
+TaskA.customFields.STRING.CustomVarCharField1="Annual CustomVarCharField1"
+TaskA.customFields.STRING.CustomVarCharField2="Annual CustomVarCharField2"
+TaskA.customFields.STRING.CustomVarCharField3="Annual CustomVarCharField3"
+TaskA.customFields.STRING.CustomVarCharField4="Annual CustomVarCharField4"
+TaskA.customFields.STRING.CustomVarCharField5="Annual Leave"
 TaskB.DESC=Sick Leave Request Description
 TaskB.EXP=new Duration("1D")
 TaskB.EXPRI=2
@@ -636,11 +635,11 @@ TaskB.PRI=1
 TaskB.ROL=Everybody
 TaskB.SKIP_TASK_LIST=false
 TaskB.TYPE=0
-TaskB.customFields.varchar.1="Sick CustomVarCharField1"
-TaskB.customFields.varchar.2="Sick CustomVarCharField2"
-TaskB.customFields.varchar.3="Sick CustomVarCharField3"
-TaskB.customFields.varchar.4="Sick CustomVarCharField4"
-TaskB.customFields.varchar.5="Other Leave/Sick/Long"
+TaskB.customFields.STRING.CustomVarCharField1="Sick CustomVarCharField1"
+TaskB.customFields.STRING.CustomVarCharField2="Sick CustomVarCharField2"
+TaskB.customFields.STRING.CustomVarCharField3="Sick CustomVarCharField3"
+TaskB.customFields.STRING.CustomVarCharField4="Sick CustomVarCharField4"
+TaskB.customFields.STRING.CustomVarCharField5="Other Leave/Sick/Long"
 TaskC.DESC=Maternity Leave Request Description
 TaskC.EXP=new Duration("2D")
 TaskC.EXPRI=2
@@ -651,11 +650,11 @@ TaskC.PRI=3
 TaskC.ROL=Everybody
 TaskC.SKIP_TASK_LIST=false
 TaskC.TYPE=0
-TaskC.customFields.varchar.1="Maternity CustomVarCharField1"
-TaskC.customFields.varchar.2="Maternity CustomVarCharField2"
-TaskC.customFields.varchar.3="Maternity CustomVarCharField3"
-TaskC.customFields.varchar.4="Maternity CustomVarCharField4"
-TaskC.customFields.varchar.5="Other Leave/Maternity"' #txt
+TaskC.customFields.STRING.CustomVarCharField1="Maternity CustomVarCharField1"
+TaskC.customFields.STRING.CustomVarCharField2="Maternity CustomVarCharField2"
+TaskC.customFields.STRING.CustomVarCharField3="Maternity CustomVarCharField3"
+TaskC.customFields.STRING.CustomVarCharField4="Maternity CustomVarCharField4"
+TaskC.customFields.STRING.CustomVarCharField5="Other Leave/Maternity"' #txt
 Tt0 f27 type internaltest.Data #txt
 Tt0 f27 template "" #txt
 Tt0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -707,19 +706,19 @@ Tt0 f29 callSignature TestRelatedTaskWithNoResponsible() #txt
 Tt0 f29 persist false #txt
 Tt0 f29 startName 'Categoried Leave Request' #txt
 Tt0 f29 startDescription 'Test for IVYPORTAL-3369' #txt
-Tt0 f29 taskData 'TaskTriggered.ROL=Everybody
+Tt0 f29 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Tt0 f29 caseData 'case.description=Leave Request Description 
 case.name=Leave Request Test For IVYPORTAL-3369
-customFields.varchar.1="Leave Request CustomVarCharField1"
-customFields.varchar.2="Leave Request CustomVarCharField2"
-customFields.varchar.3="Leave Request CustomVarCharField3"
-customFields.varchar.4="Leave Request CustomVarCharField4"
-customFields.varchar.5="Leave Request CustomVarCharField5"
+customFields.STRING.CustomVarCharField1="Leave Request CustomVarCharField1"
+customFields.STRING.CustomVarCharField2="Leave Request CustomVarCharField2"
+customFields.STRING.CustomVarCharField3="Leave Request CustomVarCharField3"
+customFields.STRING.CustomVarCharField4="Leave Request CustomVarCharField4"
+customFields.STRING.CustomVarCharField5="Leave Request CustomVarCharField5"
 process.code=pubRequested
 process.name=Publication Requested
 processCategory.code=pubRequested
@@ -797,11 +796,11 @@ Tt0 f41 actionTable 'out=in1;
 ' #txt
 Tt0 f41 outTypes "internaltest.Data" #txt
 Tt0 f41 outLinks "TaskA.ivp" #txt
-Tt0 f41 caseData 'processCategory.name=Ticket Category Name
-processCategory.code=Ticket Category Code
-case.name=SupportTicket
+Tt0 f41 caseData 'case.name=SupportTicket
+process.code=Ticket Category Code
 process.name=Ticket Category Name
-process.code=Ticket Category Code' #txt
+processCategory.code=Ticket Category Code
+processCategory.name=Ticket Category Name' #txt
 Tt0 f41 taskData 'TaskA.EXC=14B2FC03D2E87141-f38-buffer
 TaskA.EXP=new Duration("1D")
 TaskA.EXPRI=2
@@ -876,12 +875,12 @@ Tt0 f30 triggerEnabled false #txt
 Tt0 f30 callSignature CategoriedPersonalRequest() #txt
 Tt0 f30 persist false #txt
 Tt0 f30 startName 'Categoried Personal Request' #txt
-Tt0 f30 taskData 'TaskTriggered.ROL=Everybody
+Tt0 f30 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Tt0 f30 caseData businessCase.attach=true #txt
 Tt0 f30 showInStartList 1 #txt
 Tt0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -911,7 +910,7 @@ TaskA.PRI=2
 TaskA.ROL="demo"
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=3
-TaskA.customFields.varchar.5="\u00DCber"
+TaskA.customFields.STRING.CustomVarCharField5="\u00DCber"
 TaskB.CATEGORY=PersonalRequest/Vacation
 TaskB.EXPRI=2
 TaskB.EXROL=Everybody
@@ -921,7 +920,7 @@ TaskB.PRI=2
 TaskB.ROL="demo"
 TaskB.SKIP_TASK_LIST=false
 TaskB.TYPE=3
-TaskB.customFields.varchar.5="M\u00FCller"' #txt
+TaskB.customFields.STRING.CustomVarCharField5="M\u00FCller"' #txt
 Tt0 f32 type internaltest.Data #txt
 Tt0 f32 template "" #txt
 Tt0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -966,12 +965,12 @@ Tt0 f52 triggerEnabled false #txt
 Tt0 f52 callSignature CreateOldCategoriedRequest() #txt
 Tt0 f52 persist false #txt
 Tt0 f52 startName 'Create Old Categoried Request' #txt
-Tt0 f52 taskData 'TaskTriggered.ROL=Everybody
+Tt0 f52 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Tt0 f52 caseData businessCase.attach=true #txt
 Tt0 f52 showInStartList 1 #txt
 Tt0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1006,7 +1005,7 @@ TaskA.PRI=2
 TaskA.ROL="demo"
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=3
-TaskA.customFields.varchar.5="ICT Support/Request/Change Hardware"
+TaskA.customFields.STRING.CustomVarCharField5="ICT Support/Request/Change Hardware"
 TaskB.EXPRI=2
 TaskB.EXROL=Everybody
 TaskB.EXTYPE=0
@@ -1015,7 +1014,7 @@ TaskB.PRI=2
 TaskB.ROL=Everybody
 TaskB.SKIP_TASK_LIST=false
 TaskB.TYPE=0
-TaskB.customFields.varchar.5="ICT Support/Request/Install Software"' #txt
+TaskB.customFields.STRING.CustomVarCharField5="ICT Support/Request/Install Software"' #txt
 Tt0 f55 type internaltest.Data #txt
 Tt0 f55 template "" #txt
 Tt0 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1053,12 +1052,12 @@ Tt0 f66 requestEnabled true #txt
 Tt0 f66 triggerEnabled false #txt
 Tt0 f66 callSignature testPortalCustomErrorHandler() #txt
 Tt0 f66 persist false #txt
-Tt0 f66 taskData 'TaskTriggered.ROL=Everybody
+Tt0 f66 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Tt0 f66 caseData businessCase.attach=true #txt
 Tt0 f66 showInStartList 1 #txt
 Tt0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1104,34 +1103,34 @@ Tt0 f71 triggerEnabled false #txt
 Tt0 f71 callSignature CustomizationAdditionalCaseDetails() #txt
 Tt0 f71 persist false #txt
 Tt0 f71 startName 'Customization Additional Case Details' #txt
-Tt0 f71 taskData 'TaskTriggered.ROL=Everybody
+Tt0 f71 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
-Tt0 f71 caseData 'customFields.decimal.5=555
-customFields.decimal.4=444
-processCategory.name=Publication Requested
-customFields.decimal.3=333
-customFields.decimal.2=222
-processCategory.code=pubRequested
-customFields.decimal.1=111
-customFields.varchar.5="CustomizationAdditionalCaseDetails CustomVarCharField5"
-customFields.varchar.4="CustomizationAdditionalCaseDetails CustomVarCharField4"
-customFields.varchar.3="CustomizationAdditionalCaseDetails CustomVarCharField3"
-customFields.varchar.2="CustomizationAdditionalCaseDetails CustomVarCharField2"
-customFields.varchar.1="CustomizationAdditionalCaseDetails CustomVarCharField1"
-businessCase.attach=true
-process.name=Publication Requested
-process.code=pubRequested
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Tt0 f71 caseData 'businessCase.attach=true
+case.description=Leave Request Description for Customization Additional Case Details
 case.name=Leave Request for Customization Additional Case Details
-customFields.timestamp.5=new DateTime(2018, 5, 5, 5, 5, 5)
-customFields.timestamp.4=new DateTime(2018, 4, 4, 4, 4, 4)
-customFields.timestamp.3=new DateTime(2018, 3, 3, 3, 3, 3)
-customFields.timestamp.2=new DateTime(2018, 2, 2, 2, 2 ,2)
-customFields.timestamp.1=new DateTime(2018, 1, 1, 1, 1, 1)
-case.description=Leave Request Description for Customization Additional Case Details' #txt
+customFields.NUMBER.CustomDecimalField1=111
+customFields.NUMBER.CustomDecimalField2=222
+customFields.NUMBER.CustomDecimalField3=333
+customFields.NUMBER.CustomDecimalField4=444
+customFields.NUMBER.CustomDecimalField5=555
+customFields.STRING.CustomVarCharField1="CustomizationAdditionalCaseDetails CustomVarCharField1"
+customFields.STRING.CustomVarCharField2="CustomizationAdditionalCaseDetails CustomVarCharField2"
+customFields.STRING.CustomVarCharField3="CustomizationAdditionalCaseDetails CustomVarCharField3"
+customFields.STRING.CustomVarCharField4="CustomizationAdditionalCaseDetails CustomVarCharField4"
+customFields.STRING.CustomVarCharField5="CustomizationAdditionalCaseDetails CustomVarCharField5"
+customFields.TIMESTAMP.CustomTimestampField1=new DateTime(2018, 1, 1, 1, 1, 1)
+customFields.TIMESTAMP.CustomTimestampField2=new DateTime(2018, 2, 2, 2, 2 ,2)
+customFields.TIMESTAMP.CustomTimestampField3=new DateTime(2018, 3, 3, 3, 3, 3)
+customFields.TIMESTAMP.CustomTimestampField4=new DateTime(2018, 4, 4, 4, 4, 4)
+customFields.TIMESTAMP.CustomTimestampField5=new DateTime(2018, 5, 5, 5, 5, 5)
+process.code=pubRequested
+process.name=Publication Requested
+processCategory.code=pubRequested
+processCategory.name=Publication Requested' #txt
 Tt0 f71 showInStartList 1 #txt
 Tt0 f71 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1206,8 +1205,8 @@ Tt0 f75 actionTable 'out=in1;
 ' #txt
 Tt0 f75 outTypes "internaltest.Data","internaltest.Data","internaltest.Data" #txt
 Tt0 f75 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp" #txt
-Tt0 f75 caseData 'case.name=Leave Request Customization Case Details Page
-case.category=CustomizationCaseDetailsPage' #txt
+Tt0 f75 caseData 'case.category=CustomizationCaseDetailsPage
+case.name=Leave Request Customization Case Details Page' #txt
 Tt0 f75 taskData 'TaskA.CATEGORY=AnnualLeave
 TaskA.DESC=Annual Leave Request Description
 TaskA.EXP=new Duration("3H")
@@ -1219,8 +1218,8 @@ TaskA.PRI=2
 TaskA.ROL="demo"
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=3
-TaskA.customFields.varchar.1="Exterior"
-TaskA.customFields.varchar.5="Long Do"
+TaskA.customFields.STRING.CustomVarCharField1="Exterior"
+TaskA.customFields.STRING.CustomVarCharField5="Long Do"
 TaskB.CATEGORY=OtherLeave/SickLeave/Long
 TaskB.DESC=Sick Leave Request Description
 TaskB.EXP=new Duration("1D")
@@ -1232,8 +1231,8 @@ TaskB.PRI=1
 TaskB.ROL=Everybody
 TaskB.SKIP_TASK_LIST=false
 TaskB.TYPE=0
-TaskB.customFields.varchar.1="Interior"
-TaskB.customFields.varchar.5="Tung Le"
+TaskB.customFields.STRING.CustomVarCharField1="Interior"
+TaskB.customFields.STRING.CustomVarCharField5="Tung Le"
 TaskC.CATEGORY=OtherLeave/Maternity
 TaskC.DESC=Maternity Leave Request Description
 TaskC.EXP=new Duration("2D")
@@ -1245,8 +1244,8 @@ TaskC.PRI=3
 TaskC.ROL=Everybody
 TaskC.SKIP_TASK_LIST=false
 TaskC.TYPE=0
-TaskC.customFields.varchar.1="Interior"
-TaskC.customFields.varchar.5="Anh Nguyen"' #txt
+TaskC.customFields.STRING.CustomVarCharField1="Interior"
+TaskC.customFields.STRING.CustomVarCharField5="Anh Nguyen"' #txt
 Tt0 f75 type internaltest.Data #txt
 Tt0 f75 template "" #txt
 Tt0 f75 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1383,8 +1382,8 @@ TaskA.PRI=2
 TaskA.ROL="demo"
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=3
-TaskA.customFields.varchar.1="Exterior"
-TaskA.customFields.varchar.5="Long Do"
+TaskA.customFields.STRING.CustomVarCharField1="Exterior"
+TaskA.customFields.STRING.CustomVarCharField5="Long Do"
 TaskB.CATEGORY=OtherLeave/SickLeave/Long
 TaskB.DESC=Sick Leave Request Description
 TaskB.EXP=new Duration("1D")
@@ -1396,8 +1395,8 @@ TaskB.PRI=1
 TaskB.ROL=Everybody
 TaskB.SKIP_TASK_LIST=false
 TaskB.TYPE=0
-TaskB.customFields.varchar.1="Interior"
-TaskB.customFields.varchar.5="Tung Le"
+TaskB.customFields.STRING.CustomVarCharField1="Interior"
+TaskB.customFields.STRING.CustomVarCharField5="Tung Le"
 TaskC.CATEGORY=OtherLeave/Maternity
 TaskC.DESC=Maternity Leave Request Description
 TaskC.EXP=new Duration("2D")
@@ -1409,8 +1408,8 @@ TaskC.PRI=3
 TaskC.ROL=Everybody
 TaskC.SKIP_TASK_LIST=false
 TaskC.TYPE=0
-TaskC.customFields.varchar.1="Interior"
-TaskC.customFields.varchar.5="Anh Nguyen"' #txt
+TaskC.customFields.STRING.CustomVarCharField1="Interior"
+TaskC.customFields.STRING.CustomVarCharField5="Anh Nguyen"' #txt
 Tt0 f90 type internaltest.Data #txt
 Tt0 f90 template "" #txt
 Tt0 f90 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1462,30 +1461,30 @@ Tt0 f92 triggerEnabled false #txt
 Tt0 f92 callSignature DefaultAdditionalCaseDetails() #txt
 Tt0 f92 persist false #txt
 Tt0 f92 startName 'Default Additional Case Details' #txt
-Tt0 f92 taskData 'TaskTriggered.ROL=Everybody
+Tt0 f92 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
-Tt0 f92 caseData 'customFields.decimal.5=1598526
-processCategory.name=Publication Requested
-customFields.decimal.3=745856
-processCategory.code=pubRequested
-customFields.decimal.1=159753852
-customFields.varchar.5="CustomVarCharField 5"
-customFields.varchar.4="CustomVarCharField 4"
-customFields.varchar.3="CustomVarCharField 3"
-customFields.varchar.2="CustomVarCharField 2"
-customFields.varchar.1="CustomVarCharField 1"
-businessCase.attach=true
-process.name=Publication Requested
-process.code=pubRequested
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Tt0 f92 caseData 'businessCase.attach=true
+case.description=Leave Request Description for Default Additional Case Details
 case.name=Leave Request for Default Additional Case Details
-customFields.timestamp.5=new DateTime(2018, 5, 5, 5, 5, 5)
-customFields.timestamp.3=new DateTime(2018, 3, 3, 3, 3, 3)
-customFields.timestamp.2=new DateTime(2018, 2, 2, 2, 2 ,2)
-case.description=Leave Request Description for Default Additional Case Details' #txt
+customFields.NUMBER.CustomDecimalField1=159753852
+customFields.NUMBER.CustomDecimalField3=745856
+customFields.NUMBER.CustomDecimalField5=1598526
+customFields.STRING.CustomVarCharField1="CustomVarCharField 1"
+customFields.STRING.CustomVarCharField2="CustomVarCharField 2"
+customFields.STRING.CustomVarCharField3="CustomVarCharField 3"
+customFields.STRING.CustomVarCharField4="CustomVarCharField 4"
+customFields.STRING.CustomVarCharField5="CustomVarCharField 5"
+customFields.TIMESTAMP.CustomTimestampField2=new DateTime(2018, 2, 2, 2, 2 ,2)
+customFields.TIMESTAMP.CustomTimestampField3=new DateTime(2018, 3, 3, 3, 3, 3)
+customFields.TIMESTAMP.CustomTimestampField5=new DateTime(2018, 5, 5, 5, 5, 5)
+process.code=pubRequested
+process.name=Publication Requested
+processCategory.code=pubRequested
+processCategory.name=Publication Requested' #txt
 Tt0 f92 showInStartList 1 #txt
 Tt0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1544,8 +1543,8 @@ TaskA.PRI=2
 TaskA.ROL="UserA"
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=3
-TaskA.customFields.varchar.1="Exterior"
-TaskA.customFields.varchar.5="Long Do"
+TaskA.customFields.STRING.CustomVarCharField1="Exterior"
+TaskA.customFields.STRING.CustomVarCharField5="Long Do"
 TaskB.CATEGORY=OtherLeave/SickLeave/Long
 TaskB.DESC=Sick Leave Request Description
 TaskB.EXP=new Duration("1D")
@@ -1557,8 +1556,8 @@ TaskB.PRI=1
 TaskB.ROL="UserB"
 TaskB.SKIP_TASK_LIST=false
 TaskB.TYPE=3
-TaskB.customFields.varchar.1="Interior"
-TaskB.customFields.varchar.5="Tung Le"
+TaskB.customFields.STRING.CustomVarCharField1="Interior"
+TaskB.customFields.STRING.CustomVarCharField5="Tung Le"
 TaskC.CATEGORY=OtherLeave/Maternity
 TaskC.DESC=Maternity Leave Request Description
 TaskC.EXP=new Duration("2D")
@@ -1570,8 +1569,8 @@ TaskC.PRI=3
 TaskC.ROL="UserC"
 TaskC.SKIP_TASK_LIST=false
 TaskC.TYPE=3
-TaskC.customFields.varchar.1="Interior"
-TaskC.customFields.varchar.5="Anh Nguyen"
+TaskC.customFields.STRING.CustomVarCharField1="Interior"
+TaskC.customFields.STRING.CustomVarCharField5="Anh Nguyen"
 TaskD.DESC=Maternity Leave Request Description
 TaskD.EXPRI=2
 TaskD.EXROL=Everybody
@@ -1605,34 +1604,34 @@ Tt0 f100 triggerEnabled false #txt
 Tt0 f100 callSignature TestCaseListPermissions() #txt
 Tt0 f100 persist false #txt
 Tt0 f100 startName 'Test Case List Permissions' #txt
-Tt0 f100 taskData 'TaskTriggered.ROL=Everybody
+Tt0 f100 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
-Tt0 f100 caseData 'customFields.decimal.5=555
-customFields.decimal.4=444
-processCategory.name=Publication Requested
-customFields.decimal.3=333
-customFields.decimal.2=222
-processCategory.code=pubRequested
-customFields.decimal.1=111
-customFields.varchar.5="CustomizationAdditionalCaseDetails CustomVarCharField5"
-customFields.varchar.4="CustomizationAdditionalCaseDetails CustomVarCharField4"
-customFields.varchar.3="CustomizationAdditionalCaseDetails CustomVarCharField3"
-customFields.varchar.2="CustomizationAdditionalCaseDetails CustomVarCharField2"
-customFields.varchar.1="CustomizationAdditionalCaseDetails CustomVarCharField1"
-businessCase.attach=true
-process.name=Publication Requested
-process.code=pubRequested
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Tt0 f100 caseData 'businessCase.attach=true
+case.description=Test case List Permission
 case.name=Test Case List Permission
-customFields.timestamp.5=new DateTime(2018, 5, 5, 5, 5, 5)
-customFields.timestamp.4=new DateTime(2018, 4, 4, 4, 4, 4)
-customFields.timestamp.3=new DateTime(2018, 3, 3, 3, 3, 3)
-customFields.timestamp.2=new DateTime(2018, 2, 2, 2, 2 ,2)
-customFields.timestamp.1=new DateTime(2018, 1, 1, 1, 1, 1)
-case.description=Test case List Permission' #txt
+customFields.NUMBER.CustomDecimalField1=111
+customFields.NUMBER.CustomDecimalField2=222
+customFields.NUMBER.CustomDecimalField3=333
+customFields.NUMBER.CustomDecimalField4=444
+customFields.NUMBER.CustomDecimalField5=555
+customFields.STRING.CustomVarCharField1="CustomizationAdditionalCaseDetails CustomVarCharField1"
+customFields.STRING.CustomVarCharField2="CustomizationAdditionalCaseDetails CustomVarCharField2"
+customFields.STRING.CustomVarCharField3="CustomizationAdditionalCaseDetails CustomVarCharField3"
+customFields.STRING.CustomVarCharField4="CustomizationAdditionalCaseDetails CustomVarCharField4"
+customFields.STRING.CustomVarCharField5="CustomizationAdditionalCaseDetails CustomVarCharField5"
+customFields.TIMESTAMP.CustomTimestampField1=new DateTime(2018, 1, 1, 1, 1, 1)
+customFields.TIMESTAMP.CustomTimestampField2=new DateTime(2018, 2, 2, 2, 2 ,2)
+customFields.TIMESTAMP.CustomTimestampField3=new DateTime(2018, 3, 3, 3, 3, 3)
+customFields.TIMESTAMP.CustomTimestampField4=new DateTime(2018, 4, 4, 4, 4, 4)
+customFields.TIMESTAMP.CustomTimestampField5=new DateTime(2018, 5, 5, 5, 5, 5)
+process.code=pubRequested
+process.name=Publication Requested
+processCategory.code=pubRequested
+processCategory.name=Publication Requested' #txt
 Tt0 f100 showInStartList 1 #txt
 Tt0 f100 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1855,34 +1854,34 @@ Tt0 f117 triggerEnabled false #txt
 Tt0 f117 callSignature CustomizationAdditionalCaseDetailsByUrl() #txt
 Tt0 f117 persist false #txt
 Tt0 f117 startName 'Customization Additional Case Details By Url' #txt
-Tt0 f117 taskData 'TaskTriggered.ROL=Everybody
+Tt0 f117 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
-Tt0 f117 caseData 'customFields.decimal.5=555
-customFields.decimal.4=444
-processCategory.name=Publication Requested
-customFields.decimal.3=333
-customFields.decimal.2=222
-processCategory.code=pubRequested
-customFields.decimal.1=111
-customFields.varchar.5="CustomizationAdditionalCaseDetails CustomVarCharField5"
-customFields.varchar.4="CustomizationAdditionalCaseDetails CustomVarCharField4"
-customFields.varchar.3="CustomizationAdditionalCaseDetails CustomVarCharField3"
-customFields.varchar.2="CustomizationAdditionalCaseDetails CustomVarCharField2"
-customFields.varchar.1="CustomizationAdditionalCaseDetails CustomVarCharField1"
-businessCase.attach=true
-process.name=Publication Requested
-process.code=pubRequested
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Tt0 f117 caseData 'businessCase.attach=true
+case.description=Leave Request Description for Customization Additional Case Details
 case.name=Customization Additional Case Details By Url
-customFields.timestamp.5=new DateTime(2018, 5, 5, 5, 5, 5)
-customFields.timestamp.4=new DateTime(2018, 4, 4, 4, 4, 4)
-customFields.timestamp.3=new DateTime(2018, 3, 3, 3, 3, 3)
-customFields.timestamp.2=new DateTime(2018, 2, 2, 2, 2 ,2)
-customFields.timestamp.1=new DateTime(2018, 1, 1, 1, 1, 1)
-case.description=Leave Request Description for Customization Additional Case Details' #txt
+customFields.NUMBER.CustomDecimalField1=111
+customFields.NUMBER.CustomDecimalField2=222
+customFields.NUMBER.CustomDecimalField3=333
+customFields.NUMBER.CustomDecimalField4=444
+customFields.NUMBER.CustomDecimalField5=555
+customFields.STRING.CustomVarCharField1="CustomizationAdditionalCaseDetails CustomVarCharField1"
+customFields.STRING.CustomVarCharField2="CustomizationAdditionalCaseDetails CustomVarCharField2"
+customFields.STRING.CustomVarCharField3="CustomizationAdditionalCaseDetails CustomVarCharField3"
+customFields.STRING.CustomVarCharField4="CustomizationAdditionalCaseDetails CustomVarCharField4"
+customFields.STRING.CustomVarCharField5="CustomizationAdditionalCaseDetails CustomVarCharField5"
+customFields.TIMESTAMP.CustomTimestampField1=new DateTime(2018, 1, 1, 1, 1, 1)
+customFields.TIMESTAMP.CustomTimestampField2=new DateTime(2018, 2, 2, 2, 2 ,2)
+customFields.TIMESTAMP.CustomTimestampField3=new DateTime(2018, 3, 3, 3, 3, 3)
+customFields.TIMESTAMP.CustomTimestampField4=new DateTime(2018, 4, 4, 4, 4, 4)
+customFields.TIMESTAMP.CustomTimestampField5=new DateTime(2018, 5, 5, 5, 5, 5)
+process.code=pubRequested
+process.name=Publication Requested
+processCategory.code=pubRequested
+processCategory.name=Publication Requested' #txt
 Tt0 f117 showInStartList 1 #txt
 Tt0 f117 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1949,8 +1948,8 @@ Tt0 f121 actionTable 'out=in1;
 ' #txt
 Tt0 f121 outTypes "internaltest.Data","internaltest.Data","internaltest.Data" #txt
 Tt0 f121 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp" #txt
-Tt0 f121 caseData 'case.name=Leave Request Customization Case Details Page
-case.category=CustomizationCaseDetailsPage' #txt
+Tt0 f121 caseData 'case.category=CustomizationCaseDetailsPage
+case.name=Leave Request Customization Case Details Page' #txt
 Tt0 f121 taskData 'TaskA.CATEGORY=AnnualLeave
 TaskA.DESC=Annual Leave Request Description
 TaskA.EXP=new Duration("3H")
@@ -1962,8 +1961,8 @@ TaskA.PRI=2
 TaskA.ROL="demo"
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=3
-TaskA.customFields.varchar.1="Exterior"
-TaskA.customFields.varchar.5="Long Do"
+TaskA.customFields.STRING.CustomVarCharField1="Exterior"
+TaskA.customFields.STRING.CustomVarCharField5="Long Do"
 TaskB.CATEGORY=OtherLeave/SickLeave/Long
 TaskB.DESC=Sick Leave Request Description
 TaskB.EXP=new Duration("1D")
@@ -1975,8 +1974,8 @@ TaskB.PRI=1
 TaskB.ROL=Everybody
 TaskB.SKIP_TASK_LIST=false
 TaskB.TYPE=0
-TaskB.customFields.varchar.1="Interior"
-TaskB.customFields.varchar.5="Tung Le"
+TaskB.customFields.STRING.CustomVarCharField1="Interior"
+TaskB.customFields.STRING.CustomVarCharField5="Tung Le"
 TaskC.CATEGORY=OtherLeave/Maternity
 TaskC.DESC=Maternity Leave Request Description
 TaskC.EXP=new Duration("2D")
@@ -1988,8 +1987,8 @@ TaskC.PRI=3
 TaskC.ROL=Everybody
 TaskC.SKIP_TASK_LIST=false
 TaskC.TYPE=0
-TaskC.customFields.varchar.1="Interior"
-TaskC.customFields.varchar.5="Anh Nguyen"' #txt
+TaskC.customFields.STRING.CustomVarCharField1="Interior"
+TaskC.customFields.STRING.CustomVarCharField5="Anh Nguyen"' #txt
 Tt0 f121 type internaltest.Data #txt
 Tt0 f121 template "" #txt
 Tt0 f121 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -2042,15 +2041,15 @@ Tt0 f130 requestEnabled true #txt
 Tt0 f130 triggerEnabled false #txt
 Tt0 f130 callSignature SaleDepartment() #txt
 Tt0 f130 persist false #txt
-Tt0 f130 taskData 'TaskTriggered.ROL=Everybody
+Tt0 f130 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
-Tt0 f130 caseData 'case.name=Sale Information
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Tt0 f130 caseData 'businessCase.attach=true
 case.description=Sale Information
-businessCase.attach=true' #txt
+case.name=Sale Information' #txt
 Tt0 f130 showInStartList 1 #txt
 Tt0 f130 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2105,12 +2104,12 @@ Tt0 f135 triggerEnabled false #txt
 Tt0 f135 callSignature start() #txt
 Tt0 f135 persist false #txt
 Tt0 f135 startName 'Create unassigned task' #txt
-Tt0 f135 taskData 'TaskTriggered.ROL=Everybody
+Tt0 f135 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Tt0 f135 caseData businessCase.attach=true #txt
 Tt0 f135 showInStartList 1 #txt
 Tt0 f135 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -2190,12 +2189,12 @@ Tt0 f140 triggerEnabled false #txt
 Tt0 f140 callSignature ProcessWithSkipTaskListTask() #txt
 Tt0 f140 persist false #txt
 Tt0 f140 startName 'Start Sprint meetings' #txt
-Tt0 f140 taskData 'TaskTriggered.ROL=Everybody
+Tt0 f140 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Tt0 f140 caseData businessCase.attach=true #txt
 Tt0 f140 showInStartList 1 #txt
 Tt0 f140 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -2476,12 +2475,12 @@ Tt0 f168 triggerEnabled false #txt
 Tt0 f168 callSignature processWithSystemNote() #txt
 Tt0 f168 persist false #txt
 Tt0 f168 startName 'Create note' #txt
-Tt0 f168 taskData 'TaskTriggered.ROL=Everybody
+Tt0 f168 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Tt0 f168 caseData businessCase.attach=true #txt
 Tt0 f168 showInStartList 1 #txt
 Tt0 f168 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -2628,12 +2627,12 @@ Tt0 f59 requestEnabled true #txt
 Tt0 f59 triggerEnabled false #txt
 Tt0 f59 callSignature leaveRequest() #txt
 Tt0 f59 persist false #txt
-Tt0 f59 taskData 'TaskTriggered.ROL=Everybody
+Tt0 f59 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Tt0 f59 caseData businessCase.attach=true #txt
 Tt0 f59 showInStartList 1 #txt
 Tt0 f59 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

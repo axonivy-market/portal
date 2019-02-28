@@ -10,7 +10,6 @@ import ch.ivyteam.ivy.server.ServerFactory;
 
 public class HiddenTasksCasesConfig {
   private static final String PORTAL_HIDDEN_TASK_CASE_EXCLUDED = "PortalHiddenTaskCaseExcluded";
-  public static final String PORTAL_USE_CUSTOM_FIELD_FOR_HIDDEN_TASK_CASE = "PortalUseCustomFieldForHiddenTaskCase";
 
   private HiddenTasksCasesConfig() {
     
@@ -18,10 +17,6 @@ public class HiddenTasksCasesConfig {
 
   public static boolean isHiddenTasksCasesExcluded(List<String> apps) {
     return getGlobalVariable(apps, PORTAL_HIDDEN_TASK_CASE_EXCLUDED);
-  }
-  
-  public static boolean isUseCustomFieldForHiddenTaskCase(List<String> apps) {
-    return getGlobalVariable(apps, PORTAL_USE_CUSTOM_FIELD_FOR_HIDDEN_TASK_CASE);
   }
   
   private static boolean getGlobalVariable(List<String> apps, String variableName) {
