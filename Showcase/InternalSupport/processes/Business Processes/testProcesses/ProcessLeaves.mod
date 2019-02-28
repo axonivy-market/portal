@@ -1,5 +1,5 @@
 [Ivy]
-1470062B2127AF92 3.23 #module
+1470062B2127AF92 3.24 #module
 >Proto >Proto Collection #zClass
 Ps0 ProcessLeaves Big #zClass
 Ps0 B #cInfo
@@ -101,14 +101,14 @@ Ps0 f0 persist false #txt
 Ps0 f0 startName 'Employee Leave Request' #txt
 Ps0 f0 startDescription '<u><i>Urlaubsantrag erstellen und genehmigen</i></u>
 ' #txt
-Ps0 f0 taskData 'TaskTriggered.ROL=Everybody
-TaskTriggered.EXTYPE=0
+Ps0 f0 taskData 'TaskTriggered.DESC=Employees Leave Request. 
 TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
-TaskTriggered.PRI=2
-TaskTriggered.DESC=Employees Leave Request. 
+TaskTriggered.EXROL=Everybody
+TaskTriggered.EXTYPE=0
 TaskTriggered.NAM=Leave Request 
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.PRI=2
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Ps0 f0 caseData 'case.name=Process Leave Management Case
 processCategory.code=HolidayRequested' #txt
 Ps0 f0 showInStartList 1 #txt
@@ -289,8 +289,7 @@ Ps0 f34 actionDecl 'internaltest.ProcessLeaves out;
 ' #txt
 Ps0 f34 actionTable 'out=in;
 ' #txt
-Ps0 f34 actionCode 'import ch.ivy.addon.portalkit.util.CaseUtils;
-CaseUtils.setCaseDetailsProcess(ivy.case,ivy.html.startref("Start Processes/InternalSupportPortalHome/caseDetails.ivp"));
+Ps0 f34 actionCode 'ivy.case.customFields().stringField("CASE_DETAIL_PROCESS").set(ivy.html.startref("Start Processes/InternalSupportPortalHome/caseDetails.ivp"));
 
 
 
@@ -454,9 +453,9 @@ TaskA.PRI=2
 TaskA.ROL=CREATOR
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0
-TaskA.customFields.varchar.1=in1.Mitarbeiter
-TaskA.customFields.varchar.2=in1.Von.toString()
-TaskA.customFields.varchar.3=in1.Bis.toString()
+TaskA.customFields.STRING.CustomVarCharField1=in1.Mitarbeiter
+TaskA.customFields.STRING.CustomVarCharField2=in1.Von.toString()
+TaskA.customFields.STRING.CustomVarCharField3=in1.Bis.toString()
 TaskB.CATEGORY=CategoryDemo/ApprovedByManager
 TaskB.DESC=Manager approves Request by checking application and signing approve checkbox
 TaskB.EXP=new Duration("3D")
@@ -607,11 +606,11 @@ TaskA.PRI=2
 TaskA.ROL=Human Ressources
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0
-TaskA.customFields.decimal.1=in1.Von.toNumber()
-TaskA.customFields.decimal.2=in1.Bis.toNumber()
-TaskA.customFields.decimal.3=in1.Bis.toNumber()-in1.Von.toNumber()
-TaskA.customFields.varchar.1=in1.Mitarbeiter
-TaskA.customFields.varchar.5="CategoryDemo/BookByHR"' #txt
+TaskA.customFields.NUMBER.CustomDecimalField1=in1.Von.toNumber()
+TaskA.customFields.NUMBER.CustomDecimalField2=in1.Bis.toNumber()
+TaskA.customFields.NUMBER.CustomDecimalField3=in1.Bis.toNumber()-in1.Von.toNumber()
+TaskA.customFields.STRING.CustomVarCharField1=in1.Mitarbeiter
+TaskA.customFields.STRING.CustomVarCharField5="CategoryDemo/BookByHR"' #txt
 Ct3 f12 type internaltest.ProcessLeaves #txt
 Ct3 f12 template "/ProcessPages/portalHome.ivc" #txt
 Ct3 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

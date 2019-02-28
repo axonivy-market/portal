@@ -7,7 +7,6 @@ public final class PortalConstants {
   public static final String BUILD_CASE_QUERY_CALLABLE = "Functional Processes/BuildCaseQuery";
   public static final String BUILD_TASK_QUERY_CALLABLE = "Functional Processes/BuildTaskQuery";
   public static final String ANALYZE_STATISTIC_CALLABLE = "Functional Processes/AnalyzeStatistic";
-  public static final String HIDDEN_TASK_CASE_FIELD_NAME = "PortalHiddenTaskCaseField";
   
   private PortalConstants() {}
 }

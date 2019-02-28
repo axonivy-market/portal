@@ -1,14 +1,12 @@
 package ch.ivy.addon.portalkit.util;
 
-import static ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig.PORTAL_USE_CUSTOM_FIELD_FOR_HIDDEN_TASK_CASE;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
@@ -24,9 +22,6 @@ import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public final class TaskUtils {
-
-  private static final String HIDE = "HIDE";
-
   private TaskUtils() {}
 
   public static void resetTask(final ITask task) {
@@ -122,26 +117,16 @@ public final class TaskUtils {
    * @param task
    */
   public static void setHidePropertyToHideInPortal(ITask task) {
-    boolean isUseCustomFieldForHiddenTaskCase = Boolean.parseBoolean(Ivy.var().get(PORTAL_USE_CUSTOM_FIELD_FOR_HIDDEN_TASK_CASE));
-    if (isUseCustomFieldForHiddenTaskCase) {
-      task.customFields().stringField(PortalConstants.HIDDEN_TASK_CASE_FIELD_NAME).set(HIDE);
-    } else {
-      task.setAdditionalProperty(HIDE, HIDE);
-    }
+    task.customFields().textField(AdditionalProperty.HIDE.toString()).set(AdditionalProperty.HIDE.toString());
   }
 
   /**
-   * Removes the "HIDE" additional property to the given task to display it in any task lists of Portal.
+   * Removes the "HIDE" property to the given task to display it in any task lists of Portal.
    * 
    * @param task
    */
   public static void removeHidePropertyToDisplayInPortal(ITask task) {
-  boolean isUseCustomFieldForHiddenTaskCase = Boolean.parseBoolean(Ivy.var().get(PORTAL_USE_CUSTOM_FIELD_FOR_HIDDEN_TASK_CASE));
-  if (isUseCustomFieldForHiddenTaskCase) {
-    task.customFields().stringField(PortalConstants.HIDDEN_TASK_CASE_FIELD_NAME).delete();
-  } else {
-    task.setAdditionalProperty(HIDE, null);
-  }
+    task.customFields().textField(AdditionalProperty.HIDE.toString()).set(null);
   }
 
   /**
