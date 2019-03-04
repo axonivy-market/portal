@@ -3,7 +3,6 @@ package portal.guitest.page;
 import java.util.Random;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -114,7 +113,6 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   }
   
   public void moveAllElementToDragAndDrogPanel() {
-	driver.manage().window().setSize(new Dimension(2000, 1000));
     int size = driver.findElements(By.xpath("//div[@id='form:availableFormelements_content']/table/tbody/tr")).size();
     for(int i=size-1; i>= 0; i--){
       moveFormElementToPanel(i, getRandomPosition());
@@ -122,7 +120,6 @@ public class ExpressFormDefinitionPage extends TemplatePage {
   }
   
   public void moveFormElementToPanel(int index, String position) {
-    driver.manage().window().setSize(new Dimension(2000, 1000));
     WebElement formElement = findElementById(String.format("form:availableFormelements:%d:pnl_content", index));
     //If elements is FileUpload, move to footer
     if(formElementIsFileUpload(formElement)){
