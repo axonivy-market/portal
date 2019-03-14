@@ -16,9 +16,11 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib_test/guava-18.0.jar"/>
 	<classpathentry exported="true" kind="con" path="IVY_CONTAINER"/>
 	<classpathentry kind="con" path="WEBAPP_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="lib" path="lib_test/junit-4.8.2.jar"/>
 	<classpathentry kind="lib" path="lib_test/mockito-core-1.10.19.jar"/>
 	<classpathentry kind="lib" path="lib_test/objenesis-2.2.jar"/>
 	<classpathentry kind="lib" path="lib_test/powermock-api-mockito-common-1.6.5.jar"/>
@@ -28,7 +30,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib_test/guava-21.0.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
