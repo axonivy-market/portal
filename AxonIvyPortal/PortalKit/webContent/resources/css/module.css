@@ -864,6 +864,16 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   background-color: rgba(0,0,0,0) !important;
   font-size: 1.8rem !important;
 }
+
+.ui-fluid .ui-selectonemenu .ui-selectonemenu-trigger {
+  padding: 0 0 0 20px !important;
+}
+
+.ui-fluid .ui-selectonemenu .ui-selectonemenu-trigger,
+.ui-fluid .ui-selectcheckboxmenu-trigger {
+  height: 38px !important;
+}
+
 .ui-selectonemenu .ui-selectonemenu-trigger,
 .ui-selectonemenu .ui-selectonemenu-trigger.ui-state-hover,
 .ui-selectonemenu .ui-selectonemenu-trigger.ui-state-focus {
@@ -5508,3 +5518,15 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 	padding-bottom: 4px;
 }
 
+/* =================== RESPONSIVE GRID ====================== */
+.ui-g div {
+	display: grid;
+	align-items: center;
+}
+
+_:-ms-input-placeholder, :root .ui-g .ui-widget.ui-outputlabel {
+	display: inline-block;
+	-ms-transform: translateY(35%);
+	height: 100%;
+}
+/* ================= END RESPONSIVE GRID ==================== */
