@@ -77,6 +77,7 @@ public class Device {
     DesiredCapabilities capabilities = new DesiredCapabilities();
     capabilities.setCapability(CapabilityType.PLATFORM_NAME, Platform.ANDROID);
     capabilities.setCapability("deviceName", deviceName);
+    capabilities.setCapability("automationName", "uiautomator2");
     //for android, we support only Chrome
     capabilities.setCapability(CapabilityType.BROWSER_NAME, MobileBrowserType.CHROME);
     return capabilities;
