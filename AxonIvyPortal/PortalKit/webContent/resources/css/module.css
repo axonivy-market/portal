@@ -5522,14 +5522,13 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 
 /* =================== RESPONSIVE GRID ====================== */
-.ui-g div {
+.ui-g > div {
 	display: grid;
 	align-items: center;
 }
 
-_:-ms-input-placeholder, :root .ui-g .ui-widget.ui-outputlabel {
+_:-ms-input-placeholder, :root .ui-g .ui-outputlabel {
 	display: inline-block;
-	-ms-transform: translateY(35%);
-	height: 100%;
+	margin-top: 6px;
 }
 /* ================= END RESPONSIVE GRID ==================== */
