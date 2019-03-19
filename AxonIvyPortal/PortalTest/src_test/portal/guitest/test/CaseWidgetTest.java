@@ -50,7 +50,7 @@ public class CaseWidgetTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksBy("Report and hide case");
     taskWidgetPage.findElementByCssSelector("*[id*='" + 0 + ":task-item']").click();
-    taskWidgetPage.goToHomePage();
+    homePage = new HomePage();
     
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
