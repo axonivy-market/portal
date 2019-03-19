@@ -1,16 +1,22 @@
 /* WORKFLOW DEFINITION */
 .process-property-container {
-  width: 100%;
-  border: none;
+	width: 100%;
+	border: none;
 }
 
 .show-default-ui-icon {
-  color: black !important;
-  font-size: 1.5rem;
-  padding-left: 10px;
+	color: black !important;
+	font-size: 1.5rem;
+	margin-top: 25px;
 }
 
-.user-interface-panel{
+@media ( max-width : 1365px) {
+	.show-default-ui-icon {
+		margin-left: -28%;
+	}
+}
+
+.user-interface-panel {
 	width: 50%;
 	border: none;
 }
@@ -18,220 +24,193 @@
 .ui-panelgrid-odd .process-property-input-col .user-interface-panel .option-user-interface {
 	width: 50%;
 	border: none;
-	text-align:left;
+	text-align: left;
 	padding-left: 2px;
 }
 
-.process-property-container .ui-panelgrid-cell:not(.process-property-input-col) {
-  text-align: right;
-  padding-right: 40px;
-}
-
 .process-property-input-col .radio-group {
-  display: inline-table;
+	display: inline-table;
 }
 
-.process-property-input-col .radio-group,
-.process-property-input-col .radio-group td {
-  width: 50%;
-}
-
-@media (max-width: 1365px) {
-  .process-property-container .ui-panelgrid-cell:not(.process-property-input-col) {
-    width: 21.3%;
-    padding-right: 20px;
-  }
-
-  .process-property-input-col .radio-group,
-  .user-interface-panel {
-    width: 100%;
-  }
+@media ( max-width : 1365px) {
+	.process-property-input-col .radio-group, .user-interface-panel {
+		width: 100%;
+	}
 }
 
 .process-property-label-col {
-  width: 15%;
-  border: none !important;
+	width: 15%;
+	border: none !important;
 }
 
 .process-description-label-col {
-  vertical-align: top;
+	vertical-align: top;
 }
 
 .process-property-input-col {
-  width: 71.5%;
-  border: none !important;
+	width: 71.5%;
+	border: none !important;
 }
 
 .process-property-input {
-  width: 98%;
+	width: 98%;
 }
 
 .process-property-input.ui-inputfield.ui-inputtext {
-  width: 99.4%;
+	width: 99.4%;
 }
 
 .process-flow-container {
-  border: none;
-  margin-left: -10px;
+	border: none;
+	margin-left: -10px;
 }
 
 .task-panel-container {
-  text-align: center;
-  vertical-align: middle;
-  border: none;
+	text-align: center;
+	vertical-align: middle;
+	border: none;
 }
 
 .process-flow-field {
-  margin-top: 20px;
+	margin-top: 20px;
 }
 
 .dynamic-task-panel-grid {
-  border: none;
-  text-align: left;
-  width: 100%;
+	border: none;
+	text-align: left;
+	width: 100%;
 }
 
-.dynamic-task-panel-grid td:not(.dynamic-task-title-col) {
-  border: none !important;
+.dynamic-task-panel-grid td:not (.dynamic-task-title-col ) {
+	border: none !important;
 }
 
 .dynamic-task-title-col {
-  border: none !important;
-  border-bottom: solid #dfdfdf !important;
+	border: none !important;
+	border-bottom: solid #dfdfdf !important;
 }
 
 .dynamic-task-arrow {
-  padding-top: 15px !important;
+	padding-top: 15px !important;
 }
 
-.dynamic-task-panel-grid .ui-panelgrid-cell:not(.dynamic-task-title-col) {
-  text-align: right;
+.dynamic-task-panel-grid .ui-panelgrid-cell:not (.dynamic-task-title-col
+	) .ui-inputfield.ui-inputtext {
+	width: 30rem;
 }
 
-.dynamic-task-panel-grid .first-col {
-  width: 30%;
+.dynamic-task-panel-grid .ui-panelgrid-cell:not (.dynamic-task-title-col
+	) .ui-selectonemenu {
+	width: 24.3rem;
 }
 
-.dynamic-task-panel-grid .ui-panelgrid-cell:not(.dynamic-task-title-col) .ui-inputfield.ui-inputtext {
-  width: 30rem;
-}
-
-.dynamic-task-panel-grid .ui-panelgrid-cell:not(.dynamic-task-title-col) .ui-selectonemenu {
-  width: 24.3rem;
-}
-
-.dynamic-task-panel-grid .ui-panelgrid-cell:not(.dynamic-task-title-col) .ui-outputlabel {
-  margin-right: 50px;
+.dynamic-task-panel-grid .ui-panelgrid-cell:not (.dynamic-task-title-col
+	) .ui-outputlabel {
+	margin-right: 50px;
 }
 
 .dynamic-task-panel-grid .merged-col .ui-widget.ui-spinner {
-  margin-right: 13.1rem;
+	margin-right: 13.1rem;
 }
 
-@media (max-width: 1365px) {
-  .dynamic-task-panel-grid .first-col {
-    width: 45%;
-  }
-
-  .dynamic-task-panel-grid .ui-panelgrid-cell:not(.dynamic-task-title-col) .ui-inputfield.ui-inputtext {
-    width: 16rem;
-  }
-
-  .dynamic-task-panel-grid .ui-panelgrid-cell:not(.dynamic-task-title-col) .ui-selectonemenu {
-    width: 10rem;
-    min-width: 10rem !important;
-  }
-
-  .dynamic-task-panel-grid .ui-panelgrid-cell:not(.dynamic-task-title-col) .ui-outputlabel {
-    margin-right: 20px;
-  }
-
-  .dynamic-task-panel-grid .merged-col {
-    width: 100%;
-  }
-
-  .dynamic-task-panel-grid .merged-col .ui-inputfield.ui-spinner-input {
-    width: 16.2rem;
-  }
-
-  .dynamic-task-panel-grid .merged-col .ui-widget.ui-spinner {
-    margin-right: 0;
-  }
+@media ( max-width : 1365px) {
+	.dynamic-task-panel-grid .ui-panelgrid-cell:not (.dynamic-task-title-col
+		) .ui-inputfield.ui-inputtext {
+		width: 16rem;
+	}
+	.dynamic-task-panel-grid .ui-panelgrid-cell:not (.dynamic-task-title-col
+		) .ui-selectonemenu {
+		width: 10rem;
+		min-width: 10rem !important;
+	}
+	.dynamic-task-panel-grid .ui-panelgrid-cell:not (.dynamic-task-title-col
+		) .ui-outputlabel {
+		margin-right: 20px;
+	}
+	.dynamic-task-panel-grid .merged-col {
+		width: 100%;
+	}
+	.dynamic-task-panel-grid .merged-col .ui-inputfield.ui-spinner-input {
+		width: 16.2rem;
+	}
+	.dynamic-task-panel-grid .merged-col .ui-widget.ui-spinner {
+		margin-right: 0;
+	}
 }
 
 .dynamic-task-action-container {
-  border: none !important;
-  text-align: left;
-  width: 100%;
-  margin-top: 20px;
+	border: none !important;
+	text-align: left;
+	width: 100%;
+	margin-top: 20px;
 }
 
 .dynamic-task-left-action {
-  border: none !important;
-  text-align: left;
-  width: 50%;
+	border: none !important;
+	text-align: left;
+	width: 50%;
 }
 
 .dynamic-task-right-action {
-  border: none !important;
-  text-align: right;
+	border: none !important;
+	text-align: right;
 }
 
 .applicant-field-container {
-  width: 100%;
-  border: none;
+	width: 100%;
+	border: none;
 }
 
 .applicant-label-field-col {
-  width: 2%;
-  border: none !important;
+	width: 2%;
+	border: none !important;
 }
 
 .applicant-field-col {
-  width: 25%;
-  border: none !important;
+	width: 25%;
+	border: none !important;
 }
 
 .applicant-field-input {
-  width: 85%;
+	width: 85%;
 }
 
 .padding-top-15 {
-  padding-top: 15px !important;
+	padding-top: 15px !important;
 }
 
 .applicant-selection-container {
-  border: none;
-  border-bottom: solid #dfdfdf;
+	border: none;
+	border-bottom: solid #dfdfdf;
 }
 
 .user-list-form {
-  width: 500px;
+	width: 500px;
 }
 
 .user-selection {
-  min-width: 500px;
-  margin-bottom: 60px;
+	min-width: 500px;
+	margin-bottom: 60px;
 }
 
 .user-selection {
-  min-width: 500px;
-  margin-bottom: 60px;
+	min-width: 500px;
+	margin-bottom: 60px;
 }
 
 .user-selection .ui-autocomplete-input {
-  min-width: 470px;
+	min-width: 470px;
 }
 
 .select-responsible-icon-column {
-  width: 16px;
-  text-align: right;
+	width: 16px;
+	text-align: right;
 }
 
 .ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-moretext.ui-state-highlight,
 .ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-moretext.ui-state-highlight td {
-  background-color: white !important;
-  cursor: default;
+	background-color: white !important;
+	cursor: default;
 }
 
 .form-definition-item-icon {
@@ -253,7 +232,7 @@
 }
 
 .form-element-attribute {
-	width: 25%;
+	width: 30%;
 	border: none !important;
 }
 
@@ -310,10 +289,6 @@
 	padding-top: 10px !important;
 }
 
-.pe-dynaform-grid.Wid100 {
-	width: 100% !important;
-}
-
 .floatLeft {
 	float: left !important;
 }
@@ -331,206 +306,199 @@
 	width: 10%;
 }
 
-.default-template-dyna-form .pe-dynaform-cell[colspan]>textarea {
-	width: 97%;
-}
-
 .default-dynamic-task-panel-grid .dynamic-task-arrow {
-  width: 5.5rem;
+	width: 5.5rem;
 }
 
 .default-dynamic-task-panel-grid .dynamic-task-resopsible {
-  text-align: left !important;
-  padding-left: 10% !important;
+	text-align: left !important;
+	padding-left: 10% !important;
 }
 
 .default-dynamic-task-panel-grid .dynamic-task-resopsible .ui-outputlabel {
-  width: 16rem;
-  display: inline-block;
+	width: 16rem;
+	display: inline-block;
 }
 
 /* SELECT RESPONSIBLE DIALOG */
-
 .assignee-selection-panel {
-  width: 100%;
+	width: 100%;
 }
 
-.assignee-selection-panel,
-.assignee-selection-panel tbody tr td {
-  border: none !important;
+.assignee-selection-panel, .assignee-selection-panel tbody tr td {
+	border: none !important;
 }
 
 .assignee-selection-panel .select-assignee .ui-autocomplete {
-  width: 100%;
+	width: 100%;
 }
 
 .assignee-selection-panel .select-assignee .ui-autocomplete-input {
-  width: 96%;
+	width: 95%;
 }
 
 .assignee-selection-panel .add-assignee-button {
-  float: right;
-  margin-top: 15px;
+	float: right;
+	margin-top: 15px;
 }
 
 .assignee-selection-panel .selected-assignee-panel {
-  padding: .6em 0 !important;
-  cursor: default;
+	padding: .6em 0 !important;
+	cursor: default;
 }
 
 .assignee-selection-panel .selected-assignee-panel .ui-fieldset-legend {
-  margin-left: 1em;
+	margin-left: 1em;
 }
 
 .assignee-selection-panel .selected-assignee-panel .assignee-selection {
-  width: 100%;
-  border: none !important;
-  margin: 10px 0;
+	width: 100%;
+	border: none !important;
+	margin: 10px 0;
 }
 
 .assignee-selection-panel .delete-assignee {
-  font-size: 1.4rem;
-  color: rgba(0,0,0,0.7) !important;
-  padding-right: 5px;
+	font-size: 1.4rem;
+	color: rgba(0, 0, 0, 0.7) !important;
+	padding-right: 5px;
 }
 
 .assignee-selection-panel .assignee-name-col {
-  width: 90%;
+	width: 90%;
 }
 
 .assignee-selection-panel .assignee-type-col .fa {
-  text-align: center;
-  width: 3rem;
-  font-size: 1.8rem;
+	text-align: center;
+	width: 3rem;
+	font-size: 1.8rem;
 }
 
 .assignee-selection-panel .save-assignee-button {
-  margin-top: 10px;
+	margin-top: 10px;
 }
 
 /* FORM DEFINITION */
 .defined-task-container {
-  margin: 10px 0 20px 0;
+	margin: 10px 0 20px 0;
 }
 
 .ui-widget.ui-button.defined-task-button {
-  width: 16rem;
-  height: 5rem !important;
-  background-color: #ffffff;
-  margin-left: 20px;
-
+	min-width: 16rem;
+	height: 5rem !important;
+	background-color: #ffffff;
+	margin-left: 13px;
 }
 
 .ui-widget.ui-button.defined-task-button span {
-  padding: 0 20px !important;
-  white-space: pre;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transform: translateY(-30%);
+	padding: 0 20px !important;
+	white-space: pre;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	transform: translateY(-30%);
 }
 
 .defined-task-button-container .ui-widget.ui-button.defined-task-button:before {
-  display: inline-block;
-  content: "";
-  border-top: 3px solid #E0E0E0;
-  width: 2.2rem;
-  transform: translate(-9.3rem, 1rem);
+	display: inline-block;
+	content: "";
+	border-top: 3px solid #E0E0E0;
+	width: 2.2rem;
+	transform: translate(-9.3rem, 1rem);
 }
 
 .defined-task-button-container:first-child .ui-widget.ui-button.defined-task-button:before {
-  width: 0;
+	width: 0;
 }
 
 .ui-widget.ui-button.defined-task-button.active {
-  font-weight: bold;
-  opacity: .8 !important;
+	font-weight: bold;
+	opacity: .8 !important;
 }
 
 .ui-widget.ui-button.defined-task-button.visited {
-  opacity: .8 !important;
+	opacity: .8 !important;
 }
 
 .text-editor-send-email {
-  padding-left: 0px;
+	padding-left: 0px;
 }
 
 .form-elements-container {
-  margin: 20px 0;
-  border: none !important;
-  padding: 0;
+	margin: 20px 0;
+	border: none !important;
+	padding: 0;
 }
 
 .form-elements-container .ui-panelgrid-cell {
-  padding: 0;
+	padding: 0;
 }
 
 .available-formelements-field {
-  height: 100%;
-  box-sizing: border-box;
+	height: 100%;
+	box-sizing: border-box;
 }
 
 .show-preview-button {
-  margin-bottom: 20px;
-  margin-right: 24px;
+	margin-bottom: 20px;
+	margin-right: 24px;
 }
 
 .create-element-button {
-  margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 .ui-draggable:hover {
-  cursor: all-scroll;
+	cursor: all-scroll;
 }
 
 .express-form-buttons-container {
-  margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 .createTabsFieldset .ui-panelgrid {
-  border: none !important;
+	border: none !important;
 }
 
 .selected-formelements-panel {
-  border: solid 3px #656565;
+	border: solid 3px #656565;
 }
 
 .selected-formelements-panel.hover-drop-section {
-  border: dashed #699924;
-  background-color: #edffd3 !important;
+	border: dashed #699924;
+	background-color: #edffd3 !important;
 }
 
 .form-definition-table {
-  border: solid 4px;
-  border-collapse: separate;
-  height: 100%;
+	border: solid 4px;
+	border-collapse: separate;
+	height: 100%;
 }
 
 .form-definition-table td.ui-panelgrid-cell {
-  padding: 10px;
-  height: 100%;
+	padding: 10px;
+	height: 100%;
 }
 
 .form-definition-table tr:first-child td.ui-panelgrid-cell {
-  padding-bottom: 0;
+	padding-bottom: 0;
 }
 
 .form-definition-table tr:last-child td.ui-panelgrid-cell {
-  padding-top: 0;
+	padding-top: 0;
 }
 
 .form-definition-table .selected-formelements-panel {
-  border: dashed 2px #E0E0E0;
-  border-radius: 5px;
-  height: 100%;
+	border: dashed 2px #E0E0E0;
+	border-radius: 5px;
+	height: 100%;
 }
 
 .form-definition-table .selected-formelements-panel.right-section .ui-outputpanel,
 .form-definition-table .selected-formelements-panel.left-section .ui-outputpanel {
-  height: 100%;
+	height: 100%;
 }
 
 .form-definition-table .selected-formelements-panel .ui-datagrid {
-  background: transparent;
+	background: transparent;
 }
 
 /* EMAIL */
@@ -543,7 +511,7 @@
 }
 
 .email-attachment:before {
-  padding-right: 10px;
+	padding-right: 10px;
 }
 
 .email-attachment-upload-btn {
@@ -559,9 +527,10 @@
 
 /* REVIEW FORM */
 .review-content-title {
-	font-size: 1.8rem;
+	font-size: 1.5rem;
 	display: block;
 	margin-bottom: 10px;
+	margin-left: 10px;
 	color: black;
 }
 
@@ -582,24 +551,8 @@
 }
 
 /* DYNA FORM */
-.pe-dynaform-cell .ui-inputtextarea {
-	width: 98% !important;
-}
-
 .defined-task-button-container {
 	display: inline;
-}
-
-.pe-dynaform-cell .ui-datalist {
-	border: none;
-}
-
-.pe-dynaform-cell .ui-fileupload-content .ui-fileupload-messages {
-	text-align: left;
-}
-
-td.pe-dynaform-label[colspan="4"] {
-	text-align: left;
 }
 
 /* APPROVAL FORM */
@@ -611,11 +564,13 @@ td.pe-dynaform-label[colspan="4"] {
 	margin-bottom: 20px;
 }
 
-.comment-container .comment-label,
-.finished-task-label {
+.comment-container .comment-label, .finished-task-label {
 	display: block !important;
 	margin-bottom: 20px;
-	font-weight: bold !important;
+	margin-left: 30px;
+	margin-top: 10px;
+	color: black;
+	font-size: 1.6rem;
 }
 
 .comment-container .comment {
@@ -643,21 +598,28 @@ td.pe-dynaform-label[colspan="4"] {
 	width: 100%;
 }
 
-
-.preview-dialog .pe-dynaform-cell>.form-definition-calendar>input.hasDatepicker {
+.preview-dialog .pe-dynaform-cell>.form-definition-calendar>input.hasDatepicker
+	{
 	width: 88%;
 }
 
-.preview-dialog .pe-dynaform-cell[colspan]>.form-definition-calendar>input.hasDatepicker {
+.preview-dialog .pe-dynaform-cell[colspan]>.form-definition-calendar>input.hasDatepicker
+	{
 	width: 96.3%;
 }
 
 .preview-dialog .pe-dynaform-cell[colspan]>.ui-spinner {
-	width: 100%;
+	width: auto;
 }
 
-.preview-dialog .pe-dynaform-cell[colspan]>.ui-spinner>.ui-spinner-input {
-	width: 97.8%;
+.preview-dialog .pe-dynaform-cell[colspan="3"]>.ui-spinner>.ui-spinner-input
+	{
+	width: auto;
+}
+
+.preview-dialog .ui-widget.ui-datatable {
+	border: none;
+	width: 99%;
 }
 
 .preview-dialog .pe-dynaform-cell>.ui-spinner {
@@ -674,4 +636,176 @@ td.pe-dynaform-label[colspan="4"] {
 	max-height: 500px;
 	width: 100%;
 	overflow-y: auto;
+}
+
+.ui-selectmanycheckbox.ui-widget td:first-child, .ui-selectoneradio.ui-widget td:first-child
+	{
+	min-width: 165px;
+}
+
+.margin-left-minus-2px {
+	margin-left:-2px;
+}
+
+.margin-left-20px {
+	margin-left: 20px !important;
+}
+
+.margin-left-minus-20px {
+	margin-left: -20px !important;
+}
+
+.choose-responsible-dialog .ui-button-icon-only .ui-icon {
+	left: 70% !important;
+	margin-top: -10px;
+}
+
+/*fix checkbox menu*/
+.ui-selectonemenu .ui-selectonemenu-trigger, .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger {
+	padding: 0px 12px !important;
+	background-color: @body-background-color;
+	border-bottom: none !important;
+}
+
+.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger,
+	.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger.ui-state-hover {
+	padding: 0 12px !important;
+	background-color: #fff;
+	border-bottom: 1px solid #B0BEC5 !important;
+}
+
+.ui-fluid .ui-selectcheckboxmenu-trigger {
+	height: 37px !important;
+}
+
+/*fix all input elements same height*/
+.ui-g label {
+	display: inline-block !important;
+}
+
+.ui-g .ui-outputlabel {
+	margin-top: 6px !important;
+}
+/*end of fix all input elements same height*/
+
+/*center main content */
+@media ( min-width : 1920px) {
+	.simple-container {
+		width: 71%;
+		padding: 0;
+		margin-right: auto;
+		margin-left: auto;
+	}
+	.case-details-item {
+		min-width: auto;
+	}
+}
+/*end of center main content */
+/*info button popup*/
+.pe-dynaform-label {
+	vertical-align: top;
+	padding-top: 7px;
+	text-align: left !important;
+}
+
+.ui-widget.ui-dialog .ui-dialog-content {
+	font-size: 1.4rem;
+}
+
+/*end of info button popup*/
+.pe-dynaform-cell .ui-datalist-item {
+	margin-top: -5px !important;
+}
+
+.pe-dynaform-cell .ui-inputfield.hasDatepicker {
+	width: auto !important;
+}
+
+.wid98 {
+	width: 98%;
+}
+
+.process-property-container .ui-panelgrid-cell:not (.process-property-input-col
+	){
+	padding: 0 !important;
+}
+
+.pe-dynaform-cell[colspan="3"]>input, .pe-dynaform-cell[colspan="3"]>textarea,
+	.pe-dynaform-cell[colspan="3"]>select {
+	width: 99%;
+}
+
+.ui-datalist {
+	border: none;
+}
+
+.pe-dynaform-cell-first {
+	width: 17%;
+}
+
+.pe-dynaform-cell-last .pe-dynaform-cell>input {
+	width: auto;
+}
+
+.pe-dynaform-grid {
+	width: 100%;
+}
+
+.preview-dialog .pe-dynaform-cell[colspan="3"]>textarea {
+	width: 97%;
+}
+
+.preview-dialog .pe-dynaform-cell[colspan="3"]>input.ui-inputtext {
+	width: 98%;
+}
+
+.pe-dynaform-cell[colspan="3"]>textarea {
+	width: 98%;
+}
+
+.preview-dialog .pe-dynaform-cell>input.ui-inputtext {
+	width: 96%;
+}
+
+.preview-dialog .pe-dynaform-cell-last .ui-inputfield.ui-inputtextarea,
+	.ui-inputfield.ui-inputtextarea {
+	width: 91%;
+	white-space: normal;
+}
+
+.pe-dynaform-cell-last .ui-inputfield.ui-inputtextarea {
+	width: 92%;
+}
+
+@media screen and (-ms-high-contrast: active) , screen and
+	(-ms-high-contrast: none) {
+	.pe-dynaform-cell-last .ui-inputfield.ui-inputtextarea {
+		width: 90%;
+	}
+}
+
+.pe-dynaform-cell>input, .pe-dynaform-cell[colspan="3"]>textarea {
+	width: 98%;
+}
+
+.Fs18 {
+	font-size: 1.2rem !important;
+}
+
+.Wid80 {
+	width: 80% !important;
+}
+
+.pe-dynaform-cell {
+	vertical-align: top;
+}
+
+.ui-radiobutton {
+	margin: 2px 10px 0px 0px !important;
+}
+
+.ui-selectmanycheckbox label, .ui-selectmanycheckbox label.ui-state-disabled {
+	font-size: 1.4rem;
+	color: #757575;
+	opacity: 1;
 }
