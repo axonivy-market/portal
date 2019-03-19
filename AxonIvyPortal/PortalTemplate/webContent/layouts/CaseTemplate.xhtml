@@ -19,7 +19,7 @@
             <h:outputText title="#{case.name} (#{case.id})" value="#{case.name} (#{case.id})" rendered="#{!caseWidgetBean.isHiddenCase(case)}" />
           </ui:insert>
         </div>
-        <div class="Fright Wid70">
+        <div class="process-chain-container Fright Wid70">
           <ui:insert name="process_chain_area">
             <ic:ch.ivy.addon.portalkit.singleapp.process.ProcessChain id="process-step-container" componentId="process-chain-component-id" shape="CIRCLE" direction="HORIZONTAL" isShowAllSteps="false"
               startMethod="start" actualStepIndex="#{actualStepIndex}" steps="#{steps}" />
