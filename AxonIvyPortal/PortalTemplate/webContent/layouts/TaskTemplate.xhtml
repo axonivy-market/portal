@@ -18,7 +18,7 @@
             <h:outputText styleClass="task-template-title" id="title" title="#{task.name} (##{task.id})" value="#{task.name} (##{task.id})" />
           </ui:insert>
         </h:panelGroup>
-        <h:panelGroup  class="Fright Wid70 MarBot20 #{processChainDirection eq 'VERTICAL' ? 'vertical-process-chain-container' : ''}">
+        <h:panelGroup  class="process-chain-container Fright Wid70 MarBot20 #{processChainDirection eq 'VERTICAL' ? 'vertical-process-chain-container' : ''}">
           <ui:insert name="process_chain_area">
             <ic:ch.ivy.addon.portalkit.singleapp.process.ProcessChain startMethod="start" componentId="process-chain-component-id"
               shape="#{processChainShape eq 'LINE' ? 'LINE' : 'CIRCLE'}"

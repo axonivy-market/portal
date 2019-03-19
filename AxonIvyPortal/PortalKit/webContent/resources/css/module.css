@@ -2126,15 +2126,11 @@ a.case-details-document-add-link {
 }
 
 .process-start-list-item .process-start-list-item-action .express-workflow {
-  display: none;
+  display: inline-block;
   font-size: 1.4rem;
   padding-right: 7px;
   padding-bottom: 3px;
   float: left;
-}
-
-.process-start-list-item:hover .process-start-list-item-action .express-workflow {
-  display: inline-block;
 }
 
 .process-start-list-item .ui-commandlink,
@@ -3355,6 +3351,13 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 /********************************** END CASE VIEW **********************************/
 
 /********************************** PROCESS CHAIN **********************************/
+
+/* Small screen */
+@media (max-width: 1024px) {
+  .process-chain-container {
+    display: none;
+  }
+}
 
 /* CIRCLE HONRIZONTAL***/
 .circle-process-chain.horizontal-process-chain {
