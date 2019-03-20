@@ -12,7 +12,7 @@
         </inputParameter>
     </method>
     <method>
-        <name>loadSubMenuItems</name>
+        <name>init</name>
         <description></description>
     </method>
     <startMethod>
