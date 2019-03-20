@@ -30,7 +30,7 @@
           placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}"
           styleClass="js-filter-process-widget-list-item" />
       </h:panelGroup>
-      <p:selectOneMenu id="dictonary-process-group-selection" widgetVar="dictonary-process-group-selection"
+      <p:selectOneMenu id="dictionary-process-group-selection" widgetVar="dictionary-process-group-selection"
         rendered="#{processWidgetBean.mobileMode}" styleClass="mobile-process-list-dictionary-group-selection"
         panelStyleClass="hide-disabled">
         <f:selectItem itemValue="express"
@@ -125,9 +125,9 @@
   </p:dialog>
   <script>
       function jumpToProcessGroup() {
-        document.getElementsByClassName("js-process-group-" + PF('dictonary-process-group-selection').value)[0]
+        document.getElementsByClassName("js-process-group-" + PF('dictionary-process-group-selection').value)[0]
             .scrollIntoView();
-        PF('dictonary-process-group-selection').hide();
+        PF('dictionary-process-group-selection').hide();
 
         var processHeaderHeight = document.getElementsByClassName("process-widget")[0]
             .getElementsByClassName("widget-header")[0].offsetHeight;
