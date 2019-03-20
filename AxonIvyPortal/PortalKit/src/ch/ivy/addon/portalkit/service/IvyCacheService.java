@@ -73,7 +73,7 @@ public class IvyCacheService {
     if (attribute != null){
       return Boolean.valueOf((String)attribute);
     }
-    return null;
+    return false;
   }
   
   public Object getGlobalSettingFromCache(String attributeName){
