@@ -110,7 +110,7 @@ public class TaskService implements ITaskService {
     return taskQuery;
   }
   
-  private TaskQuery queryExcludeHiddenTasks(List<String> apps) {
+  private TaskQuery queryExcludeHiddenTasks() {
     return TaskQuery.create().where().customField().textField(AdditionalProperty.HIDE.toString()).isNull();
   }
 
@@ -129,7 +129,7 @@ public class TaskService implements ITaskService {
           }
         }
         if (isHiddenTasksCasesExcluded(criteria.getApps())) {
-          finalQuery.where().and(queryExcludeHiddenTasks(criteria.getApps()));
+          finalQuery.where().and(queryExcludeHiddenTasks());
         }
         finalQuery.where().and().category().isNotNull();
         result.setCategoryTree(CategoryTree.createFor(finalQuery));
@@ -264,7 +264,7 @@ public class TaskService implements ITaskService {
       }
     }
     if (isHiddenTasksCasesExcluded(criteria.getApps())) {
-      finalQuery.where().and(queryExcludeHiddenTasks(criteria.getApps()));
+      finalQuery.where().and(queryExcludeHiddenTasks());
     }
     return finalQuery;
   }
@@ -279,7 +279,7 @@ public class TaskService implements ITaskService {
       }
     }
     if (isHiddenTasksCasesExcluded(criteria.getApps())) {
-      finalQuery.where().and(queryExcludeHiddenTasks(criteria.getApps()));
+      finalQuery.where().and(queryExcludeHiddenTasks());
     }
     return finalQuery;
   }
