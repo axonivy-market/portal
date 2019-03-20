@@ -32,18 +32,13 @@ As0 @PushWFArc f110 '' #zField
 As0 @PushWFArc f111 '' #zField
 As0 @PushWFArc f112 '' #zField
 As0 @PushWFArc f114 '' #zField
-As0 @PushWFArc f115 '' #zField
 As0 @PushWFArc f122 '' #zField
 As0 @PushWFArc f125 '' #zField
-As0 @PushWFArc f126 '' #zField
 As0 @PushWFArc f129 '' #zField
 As0 @RichDialogProcessStart f1 '' #zField
 As0 @PushWFArc f2 '' #zField
 As0 @GridStep f3 '' #zField
 As0 @RichDialogMethodStart f7 '' #zField
-As0 @PushWFArc f8 '' #zField
-As0 @RichDialogProcessEnd f6 '' #zField
-As0 @PushWFArc f9 '' #zField
 As0 @GridStep f14 '' #zField
 As0 @PushWFArc f13 '' #zField
 As0 @PushWFArc f16 '' #zField
@@ -67,7 +62,12 @@ As0 @PushWFArc f21 '' #zField
 As0 @PushWFArc f23 '' #zField
 As0 @PushWFArc f24 '' #zField
 As0 @PushWFArc f25 '' #zField
-As0 @PushWFArc f5 '' #zField
+As0 @PushWFArc f115 '' #zField
+As0 @PushWFArc f6 '' #zField
+As0 @RichDialogProcessEnd f5 '' #zField
+As0 @PushWFArc f9 '' #zField
+As0 @PushWFArc f4 '' #zField
+As0 @PushWFArc f8 '' #zField
 >Proto As0 As0 ApplicationSelectionMenuProcess #zField
 As0 f67 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
 ' #txt
@@ -163,7 +163,7 @@ dialog</name>
 As0 f83 960 266 128 44 -42 -16 #rect
 As0 f83 @|StepIcon #fIcon
 As0 f85 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
-As0 f85 228 348 24 24 13 0 #rect
+As0 f85 228 244 24 24 13 0 #rect
 As0 f85 @|RichDialogProcessEndIcon #fIcon
 As0 f87 guid 15FB36E87031CAD2 #txt
 As0 f87 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
@@ -221,6 +221,7 @@ import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
 import org.primefaces.component.button.Button;
 import ch.ivyteam.ivy.server.ServerFactory;
 
+in.menuItems.clear();
 RegisteredApplicationService applicationService = new RegisteredApplicationService();
 int numberOfIvyApplications = applicationService.countIvyApplications(in.applications);
 SecurityServiceUtils.removeSessionAttribute(SessionAttribute.SELECTED_APP.toString());
@@ -276,7 +277,7 @@ As0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f92 212 272 56 32 39 -14 #rect
+As0 f92 452 112 56 32 39 -14 #rect
 As0 f92 @|StepIcon #fIcon
 As0 f94 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
 ' #txt
@@ -371,14 +372,10 @@ As0 f112 0 0.8119251469460217 0 0 #arcLabel
 As0 f114 expr out #txt
 As0 f114 1088 288 1171 288 #arcP
 As0 f114 0 0.2964491651298413 0 0 #arcLabel
-As0 f115 expr out #txt
-As0 f115 240 44 240 96 #arcP
 As0 f122 expr out #txt
 As0 f122 864 132 864 178 #arcP
 As0 f125 expr in #txt
 As0 f125 1008 192 878 192 #arcP
-As0 f126 expr out #txt
-As0 f126 240 208 240 272 #arcP
 As0 f129 expr out #txt
 As0 f129 240 128 240 176 #arcP
 As0 f1 guid 15FB83C392F10C9D #txt
@@ -428,33 +425,25 @@ As0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f3 216 432 48 32 -25 18 #rect
+As0 f3 456 176 48 32 31 -9 #rect
 As0 f3 @|StepIcon #fIcon
 As0 f7 guid 15FDC9D01571BA80 #txt
 As0 f7 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
-As0 f7 method loadSubMenuItems() #txt
+As0 f7 method init() #txt
 As0 f7 disableUIEvents false #txt
-As0 f7 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
+As0 f7 inParameterDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
 ' #txt
 As0 f7 outParameterDecl '<> result;
 ' #txt
 As0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>loadSubMenuItems()</name>
+        <name>init()</name>
     </language>
 </elementInfo>
 ' #txt
-As0 f7 67 435 26 26 -57 15 #rect
+As0 f7 467 19 26 26 -13 17 #rect
 As0 f7 @|RichDialogMethodStartIcon #fIcon
-As0 f8 expr out #txt
-As0 f8 93 448 216 448 #arcP
-As0 f6 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
-As0 f6 339 435 26 26 0 12 #rect
-As0 f6 @|RichDialogProcessEndIcon #fIcon
-As0 f9 expr out #txt
-As0 f9 264 448 339 448 #arcP
 As0 f14 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
 ' #txt
 As0 f14 actionTable 'out=in;
@@ -635,11 +624,22 @@ As0 f24 1024 560 876 699 #arcP
 As0 f24 1 1024 640 #addKink
 As0 f24 1 0.2637121995195685 0 0 #arcLabel
 As0 f25 expr out #txt
-As0 f25 80 44 228 360 #arcP
-As0 f25 1 80 360 #addKink
+As0 f25 80 44 228 256 #arcP
+As0 f25 1 80 256 #addKink
 As0 f25 0 0.8605300296400707 0 0 #arcLabel
-As0 f5 expr out #txt
-As0 f5 240 304 240 348 #arcP
+As0 f115 expr out #txt
+As0 f115 240 44 240 96 #arcP
+As0 f6 expr out #txt
+As0 f6 240 208 240 244 #arcP
+As0 f5 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
+As0 f5 467 243 26 26 0 12 #rect
+As0 f5 @|RichDialogProcessEndIcon #fIcon
+As0 f9 expr out #txt
+As0 f9 480 208 480 243 #arcP
+As0 f4 expr out #txt
+As0 f4 480 45 480 112 #arcP
+As0 f8 expr out #txt
+As0 f8 480 144 480 176 #arcP
 >Proto As0 .type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -664,8 +664,6 @@ As0 f5 240 304 240 348 #arcP
 >Proto As0 '' #fIcon
 As0 f97 mainOut f129 tail #connect
 As0 f129 head f94 mainIn #connect
-As0 f94 mainOut f126 tail #connect
-As0 f126 head f92 mainIn #connect
 As0 f87 mainOut f115 tail #connect
 As0 f115 head f97 mainIn #connect
 As0 f91 mainOut f122 tail #connect
@@ -683,10 +681,6 @@ As0 f114 head f81 mainIn #connect
 As0 f110 head f67 mainIn #connect
 As0 f1 mainOut f2 tail #connect
 As0 f2 head f76 in #connect
-As0 f7 mainOut f8 tail #connect
-As0 f8 head f3 mainIn #connect
-As0 f3 mainOut f9 tail #connect
-As0 f9 head f6 mainIn #connect
 As0 f14 mainOut f13 tail #connect
 As0 f13 head f98 in #connect
 As0 f98 out f16 tail #connect
@@ -718,5 +712,11 @@ As0 f15 mainOut f24 tail #connect
 As0 f24 head f34 mainIn #connect
 As0 f74 mainOut f25 tail #connect
 As0 f25 head f85 mainIn #connect
-As0 f92 mainOut f5 tail #connect
-As0 f5 head f85 mainIn #connect
+As0 f94 mainOut f6 tail #connect
+As0 f6 head f85 mainIn #connect
+As0 f3 mainOut f9 tail #connect
+As0 f9 head f5 mainIn #connect
+As0 f7 mainOut f4 tail #connect
+As0 f4 head f92 mainIn #connect
+As0 f92 mainOut f8 tail #connect
+As0 f8 head f3 mainIn #connect
