@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
+ <html xmlns="http://www.w3.org/1999/xhtml"
   xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html"
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
@@ -31,8 +31,7 @@
 						<div class="ui-fluid">
 						<div class="ui-g">
 							<div class="ui-g-12 ui-md-12 ui-lg-2">
-								<p:outputLabel styleClass="TexAlRight"
-									value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processtype')}:"
+								<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processtype')}:"
 									for="process-type" />
 							</div>
 							<div class="ui-g-12 ui-md-6 ui-lg-4">
@@ -58,8 +57,14 @@
 									for="user-interface" />
 							</div>
 								<div class="ui-g-12 ui-md-12 ui-lg-2">
-									<p:panelGrid columns="2" styleClass="ui-panelgrid-blank radioButtonPanelgrid" >
-											<p:selectOneRadio id="user-interface" layout="grid" columns="1"
+											<p:selectOneRadio id="user-interface" styleClass="radio-group"
+                  value="#{data.data.isUseDefaultUI}" required="true" layout="custom"
+                  requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/UserInterface')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
+                  <f:selectItem itemValue="false"/>
+                  <f:selectItem itemValue="true" />
+                  <p:ajax onstart="PF('deleteAllDefinedTasksWarning').show();" />
+                </p:selectOneRadio>
+											<!-- <p:selectOneRadio id="user-interface" layout="grid" columns="1"
 												value="#{data.data.isUseDefaultUI}" required="true"
 												requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/UserInterface')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
 												<f:selectItem itemValue="false"
@@ -67,13 +72,29 @@
 												<f:selectItem itemValue="true"
 													itemLabel="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/UseDefault')}">
 												</f:selectItem>
+												<f:selectItem itemValue="false"/>
+												<f:selectItem itemValue="true" />
 												<p:ajax onstart="PF('deleteAllDefinedTasksWarning').show();" />
-											</p:selectOneRadio>
+											</p:selectOneRadio> -->
 								
-											<p:commandLink id="show-default-ui-icon"
+											<!-- <p:commandLink id="show-default-ui-icon"
 												styleClass="show-default-ui-icon fa fa-info-circle"
-												oncomplete="PF('default-template-dialog').show();" />	
-									</p:panelGrid>
+												oncomplete="PF('default-template-dialog').show();" />	 -->
+											<p:panelGrid id="user-interface-panel" styleClass="user-interface-panel" columns="1">
+												<p:row>
+													<p:radioButton id="own-option" for="user-interface" itemIndex="0" />
+													<h:outputLabel id="own-option-label" for="own-option" value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/CreateOwn')}" />
+												</p:row>
+
+												<p:row>
+													<p:radioButton id="default-option" for="user-interface" itemIndex="1"/>
+													<h:panelGroup layout="block">
+														<h:outputLabel id="default-option-label" for="default-option" value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/UseDefault')}" />
+														<p:commandLink id="show-default-ui-icon" styleClass="show-default-ui-icon fa fa-info-circle"
+															oncomplete="PF('default-template-dialog').show();" />
+													</h:panelGroup>
+												</p:row>
+											</p:panelGrid>
 									</div>
 										<div class="ui-g-12 ui-md-12 ui-lg-2"></div>
 							</div>

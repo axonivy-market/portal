@@ -7,17 +7,14 @@
 .show-default-ui-icon {
 	color: black !important;
 	font-size: 1.5rem;
-	margin-top: 25px;
-}
-
-@media ( max-width : 1365px) {
-	.show-default-ui-icon {
-		margin-left: -28%;
-	}
+	margin-left: 10px;
 }
 
 .user-interface-panel {
-	width: 50%;
+	border: none;
+}
+
+.user-interface-panel.ui-panelgrid tbody tr td {
 	border: none;
 }
 
@@ -394,15 +391,16 @@
 	white-space: pre;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	transform: translateY(-30%);
 }
 
 .defined-task-button-container .ui-widget.ui-button.defined-task-button:before {
 	display: inline-block;
 	content: "";
 	border-top: 3px solid #E0E0E0;
-	width: 2.2rem;
-	transform: translate(-9.3rem, 1rem);
+	width: 1.5rem;
+	position: absolute;
+	top: 2.5rem;
+	left: -1.6rem;
 }
 
 .defined-task-button-container:first-child .ui-widget.ui-button.defined-task-button:before {
