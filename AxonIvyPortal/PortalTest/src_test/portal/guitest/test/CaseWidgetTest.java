@@ -49,11 +49,11 @@ public class CaseWidgetTest extends BaseTest {
     
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksBy("Report and hide case");
-    taskWidgetPage.findElementByCssSelector("*[id*='" + 0 + ":task-item']").click();
+    taskWidgetPage.startTaskWithoutUI(0);
     homePage = new HomePage();
     
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
-    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
+    mainMenuPage = homePage.openMainMenu();
+    casePage = mainMenuPage.selectCaseMenu();
     assertFalse(casePage.isCaseDisplayed("Repair Computer"));
   }
 
