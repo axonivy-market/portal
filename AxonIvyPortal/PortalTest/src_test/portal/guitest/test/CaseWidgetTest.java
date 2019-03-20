@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
@@ -51,6 +52,7 @@ public class CaseWidgetTest extends BaseTest {
     taskWidgetPage.filterTasksBy("Report and hide case");
     taskWidgetPage.startTaskWithoutUI(0);
     homePage = new HomePage();
+    Sleeper.sleepTight(2000);
     
     mainMenuPage = homePage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
