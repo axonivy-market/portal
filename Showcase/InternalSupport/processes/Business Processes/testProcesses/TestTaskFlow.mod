@@ -191,6 +191,11 @@ Tt0 @StartRequest f59 '' #zField
 Tt0 @PushWFArc f63 '' #zField
 Tt0 @TkArc f61 '' #zField
 Tt0 @UserTask f60 '' #zField
+Tt0 @StartRequest f181 '' #zField
+Tt0 @EndTask f182 '' #zField
+Tt0 @RichDialog f183 '' #zField
+Tt0 @PushWFArc f184 '' #zField
+Tt0 @PushWFArc f185 '' #zField
 >Proto Tt0 Tt0 TestTaskFlow #zField
 Tt0 f5 outLink CategoriedLeaveRequest.ivp #txt
 Tt0 f5 type internaltest.Data #txt
@@ -2686,6 +2691,46 @@ Tt0 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Tt0 f60 480 642 128 44 -58 -8 #rect
 Tt0 f60 @|UserTaskIcon #fIcon
+Tt0 f181 outLink start2.ivp #txt
+Tt0 f181 type internaltest.Data #txt
+Tt0 f181 inParamDecl '<> param;' #txt
+Tt0 f181 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f181 guid 169809BC91F265AA #txt
+Tt0 f181 requestEnabled true #txt
+Tt0 f181 triggerEnabled false #txt
+Tt0 f181 callSignature ResponsiveUI() #txt
+Tt0 f181 persist false #txt
+Tt0 f181 startName ResponsiveUI #txt
+Tt0 f181 caseData businessCase.attach=true #txt
+Tt0 f181 showInStartList 1 #txt
+Tt0 f181 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>ResponsiveUI.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f181 @C|.responsibility Everybody #txt
+Tt0 f181 113 1425 30 30 -24 17 #rect
+Tt0 f181 @|StartRequestIcon #fIcon
+Tt0 f182 type internaltest.Data #txt
+Tt0 f182 497 1425 30 30 0 15 #rect
+Tt0 f182 @|EndIcon #fIcon
+Tt0 f183 richDialogId internaltest.ResponsiveUI #txt
+Tt0 f183 startMethod start() #txt
+Tt0 f183 type internaltest.Data #txt
+Tt0 f183 requestActionDecl '<> param;' #txt
+Tt0 f183 responseActionDecl 'internaltest.Data out;
+' #txt
+Tt0 f183 responseMappingAction 'out=in;
+' #txt
+Tt0 f183 280 1418 112 44 0 -8 #rect
+Tt0 f183 @|RichDialogIcon #fIcon
+Tt0 f184 expr out #txt
+Tt0 f184 143 1440 280 1440 #arcP
+Tt0 f185 expr out #txt
+Tt0 f185 392 1440 497 1440 #arcP
 >Proto Tt0 .type internaltest.Data #txt
 >Proto Tt0 .processKind NORMAL #txt
 >Proto Tt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -2879,3 +2924,7 @@ Tt0 f177 mainOut f180 tail #connect
 Tt0 f180 head f179 mainIn #connect
 Tt0 f179 mainOut f173 tail #connect
 Tt0 f173 head f169 mainIn #connect
+Tt0 f181 mainOut f184 tail #connect
+Tt0 f184 head f183 mainIn #connect
+Tt0 f183 mainOut f185 tail #connect
+Tt0 f185 head f182 mainIn #connect
