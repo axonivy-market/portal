@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
@@ -49,11 +50,12 @@ public class CaseWidgetTest extends BaseTest {
     
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksBy("Report and hide case");
-    taskWidgetPage.findElementByCssSelector("*[id*='" + 0 + ":task-item']").click();
+    taskWidgetPage.startTaskWithoutUI(0);
     homePage = new HomePage();
+    Sleeper.sleepTight(2000);
     
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
-    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
+    mainMenuPage = homePage.openMainMenu();
+    casePage = mainMenuPage.selectCaseMenu();
     assertFalse(casePage.isCaseDisplayed("Repair Computer"));
   }
 

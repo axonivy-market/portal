@@ -1,8 +1,7 @@
 package ch.ivy.addon.portalkit.constant;
 
 public final class IvyCacheIdentifier {
-  private IvyCacheIdentifier() {}
-  
+
   public static final String USERS_IN_APPLICATION = "USERS_IN_APPLICATION";
   public static final String ROLES_IN_APPLICATION = "ROLES_IN_APPLICATION";
   public static final String ONLINE_APPLICATIONS_BASED_ON_CONFIGURATION = "ONLINE_APPLICATIONS_BASED_ON_CONFIGURATION";
@@ -12,4 +11,6 @@ public final class IvyCacheIdentifier {
   public static final String LOGOUT_PAGE_CACHE_ENTRY_NAME = "LOGOUT_PAGE_ID";
   public static final String ALL_IVY_AND_THIRD_PARTY_APPLICATIONS = "ALL_IVY_AND_THIRD_PARTY_APPLICATIONS";
   public static final String ALL_IVY_APPLICATIONS = "ALL_IVY_APPLICATIONS";
+
+  private IvyCacheIdentifier() {}
 }
