@@ -20,7 +20,7 @@
     </div>
     <h:form id="main-navigator">
       <h:inputHidden id="first-level-menu-state-info" value="#{menuStateBean.menuState}" />
-      <ui:repeat value="#{data.menuItems}" var="menuItem" varStatus="theCount">
+      <ui:repeat id="menu-item" value="#{data.menuItems}" var="menuItem" varStatus="theCount">
         <p:commandLink actionListener="#{logic.openApp(menuItem.href)}" disabled="#{menuItem.disabled}"
           rendered="#{empty menuItem.getAttributes().get('isThirdPartyApp')}"
           styleClass="left-sidebar-menu-header js-left-side-bar-item-#{theCount.index} #{menuItem.styleClass}">
@@ -45,7 +45,7 @@
         <h:panelGroup styleClass="left-sidebar-sub-menu js-left-side-bar-item-#{theCount.index} #{menuItem.styleClass}"
           layout="block" rendered="#{empty menuItem.getAttributes().get('isThirdPartyApp')}">
           <div class="left-sidebar-separator-top" />
-          <ui:repeat id="sub-menu-item-#{theCount.index}" var="subMenuItem" value="#{data.subMenuItems}"
+          <ui:repeat id="sub-menu-item" var="subMenuItem" value="#{data.subMenuItems}"
             varStatus="status">
             <c:set var="isIvyLink"
               value="#{(fn:contains(process.link, '.ivp?') or fn:endsWith(subMenuItem.link, '.ivp') or fn:endsWith(subMenuItem.link, '.icm')) or subMenuItem.link eq NULL}" />
