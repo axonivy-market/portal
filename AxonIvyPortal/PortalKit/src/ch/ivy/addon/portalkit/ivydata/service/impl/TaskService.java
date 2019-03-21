@@ -111,7 +111,7 @@ public class TaskService implements ITaskService {
   }
   
   private TaskQuery queryExcludeHiddenTasks() {
-    return TaskQuery.create().where().customField().textField(AdditionalProperty.HIDE.toString()).isNull();
+    return TaskQuery.create().where().customField().stringField(AdditionalProperty.HIDE.toString()).isNull();
   }
 
   @Override

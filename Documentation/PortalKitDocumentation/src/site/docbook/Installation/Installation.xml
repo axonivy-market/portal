@@ -815,12 +815,12 @@
 				</itemizedlist>
 			</para>
 			<sect3>
-				<title>Migrate hidden task and case from 7.0.10 to 7.3.0</title>
+				<title>Migrate hidden task and case to 7.3.0</title>
 				<para>
-				Portal 7.0.10 has option to store hidden information in custom field of task and case instead of additional property for better performance. 
+				Portal 7.0.10 has option to store hidden information in custom field of task and case instead of additional property for better performance. Other versions of Portal store these info in additional property.
 				</para>
 				<para>
-				If you use custom field of task, case to store hidden information, you need to follow these steps:
+				If you use hide task/case feature, you need to follow these steps:
 				</para>
 				<orderedlist>
 					<listitem>Deploy this project <link xlink:href="documents/MigrateHiddenTaskCase.iar">MigrateHiddenTaskCase.iar</link> to all your portal applications.</listitem>

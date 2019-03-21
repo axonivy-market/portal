@@ -235,7 +235,7 @@ public class CaseService implements ICaseService {
   }
 
   private CaseQuery queryExcludeHiddenCases() {
-    return CaseQuery.create().where().customField().textField(AdditionalProperty.HIDE.toString()).isNull();
+    return CaseQuery.create().where().customField().stringField(AdditionalProperty.HIDE.toString()).isNull();
   }
   
   private CaseQuery extendQuery(CaseSearchCriteria criteria) {
