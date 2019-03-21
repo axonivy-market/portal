@@ -113,7 +113,7 @@ public class CaseService implements ICaseService {
           }
         }
         if (isHiddenTasksCasesExcluded(criteria.getApps())) {
-          finalQuery.where().and(queryExcludeHiddenCases(criteria.getApps()));
+          finalQuery.where().and(queryExcludeHiddenCases());
         }
         finalQuery.where().and().category().isNotNull().and().category().isNotEqual("Portal");
         result.setCategoryTree(CategoryTree.createFor(finalQuery));
@@ -234,7 +234,7 @@ public class CaseService implements ICaseService {
     });
   }
 
-  private CaseQuery queryExcludeHiddenCases(List<String> apps) {
+  private CaseQuery queryExcludeHiddenCases() {
     return CaseQuery.create().where().customField().textField(AdditionalProperty.HIDE.toString()).isNull();
   }
   
@@ -249,7 +249,7 @@ public class CaseService implements ICaseService {
     }
     
     if (isHiddenTasksCasesExcluded(criteria.getApps())) {
-      finalQuery.where().and(queryExcludeHiddenCases(criteria.getApps()));
+      finalQuery.where().and(queryExcludeHiddenCases());
     }
     return finalQuery;
   }

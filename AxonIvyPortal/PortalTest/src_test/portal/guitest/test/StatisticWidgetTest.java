@@ -70,7 +70,8 @@ public class StatisticWidgetTest extends BaseTest {
     WebDriverWait wait = new WebDriverWait(statisticWidgetPage.getDriver(), 30);
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("statistics-widget:widget-container")));
     statisticWidgetPage.switchCreateMode();
-
+    
+    Sleeper.sleepTight(20000);
     createTaskByPriorityChart();
     createTaskByExpiryChart();
     createCaseByStateChart();
