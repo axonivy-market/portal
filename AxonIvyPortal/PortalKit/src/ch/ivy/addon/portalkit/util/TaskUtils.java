@@ -103,7 +103,7 @@ public final class TaskUtils {
     try {
       ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
         iTask.setActivator(iSecurityMember);
-        iTask.setCustomTimestampField5(new Date());
+        iTask.customFields().timestampField("CustomTimestampField5").set(new Date());
         return null;
       });
     } catch (Exception e) {
@@ -117,7 +117,7 @@ public final class TaskUtils {
    * @param task
    */
   public static void setHidePropertyToHideInPortal(ITask task) {
-    task.customFields().textField(AdditionalProperty.HIDE.toString()).set(AdditionalProperty.HIDE.toString());
+    task.customFields().stringField(AdditionalProperty.HIDE.toString()).set(AdditionalProperty.HIDE.toString());
   }
 
   /**
@@ -126,7 +126,7 @@ public final class TaskUtils {
    * @param task
    */
   public static void removeHidePropertyToDisplayInPortal(ITask task) {
-    task.customFields().textField(AdditionalProperty.HIDE.toString()).set(null);
+    task.customFields().stringField(AdditionalProperty.HIDE.toString()).set(null);
   }
 
   /**
