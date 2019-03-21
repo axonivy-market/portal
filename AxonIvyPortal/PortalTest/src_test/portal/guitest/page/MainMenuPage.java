@@ -13,7 +13,7 @@ public class MainMenuPage extends TemplatePage {
   private final static String CASE_MENU_ICON_POSITION = "3";
   private final static String STATISTIC_MENU_ICON_POSITION = "4";
   private final static String CASE_MENU_ID = "main-menu-container:main-menu-form:main-menu-container_node_2";
-  private final static String SUB_MENU_ITEM_ID = "user-menu-required-login:main-navigator:sub-menu-item-0:%d:sub-menu-item-link";
+  private final static String SUB_MENU_ITEM_ID = "user-menu-required-login:main-navigator:menu-item:0:sub-menu-item:%d:sub-menu-item-link";
 
   @Override
   protected String getLoadedLocator() {
