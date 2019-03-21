@@ -62,18 +62,7 @@ public class IvyCacheService {
   
   public String getValueFromCacheAsString(String groupName, String entryName){
     Object attribute = getValueFromCache(groupName, entryName);
-    if (attribute != null){
-      return String.valueOf(attribute);
-    }
-    return null;
-  }
-  
-  public Boolean getValueFromCacheAsBoolean(String groupName, String entryName){
-    Object attribute = getValueFromCache(groupName, entryName);
-    if (attribute != null){
-      return Boolean.valueOf((String)attribute);
-    }
-    return false;
+    return attribute == null ? null : String.valueOf(attribute);
   }
   
   public Object getGlobalSettingFromCache(String attributeName){

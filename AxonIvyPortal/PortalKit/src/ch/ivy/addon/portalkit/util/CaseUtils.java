@@ -31,7 +31,7 @@ public final class CaseUtils {
    * @param iCase
    */
   public static void setHidePropertyToHideInPortal(ICase iCase) {
-    iCase.customFields().textField(AdditionalProperty.HIDE.toString()).set(AdditionalProperty.HIDE.toString());
+    iCase.customFields().stringField(AdditionalProperty.HIDE.toString()).set(AdditionalProperty.HIDE.toString());
   }
 
   /**
@@ -40,7 +40,7 @@ public final class CaseUtils {
    * @param iCase
    */
   public static void removeHidePropertyToDisplayInPortal(ICase iCase) {
-    iCase.customFields().textField(AdditionalProperty.HIDE.toString()).set(null);
+    iCase.customFields().stringField(AdditionalProperty.HIDE.toString()).set(null);
   }
 
   public static String getProcessStartUriWithCaseParameters(ICase iCase, String requestPath) {
