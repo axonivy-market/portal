@@ -258,8 +258,7 @@ if (numberOfIvyApplications > 1 || numberOfIvyApplications == 0) {
 		IApplication portal = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(PortalConstants.PORTAL_APPLICATION_NAME);
 		if (portal != null && portal.getActivityState() != ch.ivyteam.ivy.application.ActivityState.INACTIVE && portal.getSecurityContext().findUser(ivy.session.getSessionUserName()) != null) {
 			menuItem.href = SecurityServiceUtils.getDefaultPortalStartUrl();
-			boolean isAllAppSelected = PortalConstants.PORTAL_APPLICATION_NAME.equals(ivy.request.getApplication().getName());
-			if (isAllAppSelected) {
+			if (PortalConstants.PORTAL_APPLICATION_NAME.equals(ivy.request.getApplication().getName())) {
 				menuItem.styleClass = "ivy-active";
 			}
 			in.menuItems.add(0, menuItem);
