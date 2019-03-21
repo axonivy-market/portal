@@ -58,11 +58,13 @@ public class DefaultChartTest extends BaseTest {
     grantPermissionToCreateChart();
     MainMenuPage mainMenuPage = new MainMenuPage();
     StatisticWidgetPage statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
-    Sleeper.sleepTight(2000);
+    Sleeper.sleepTight(10000);
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     statisticWidgetPage.switchCreateMode();
+    Sleeper.sleepTight(5000);
     createCaseByFinishedTask(statisticWidgetPage);
     statisticWidgetPage.switchCreateMode();
+    Sleeper.sleepTight(5000);
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:0:chart-name"), true);
     WebElement restoreDefault = statisticWidgetPage.findElementById("statistics-widget:restore-default-chart-link-label");
     

@@ -48,8 +48,7 @@ public class ApplicationDao extends AbstractDao<Application> {
     List<Application> applications =
         repo.query(objectFilterForDisplayName, objectFilterForAppName);
     if (!applications.isEmpty()) {
-      Application application = applications.get(0);
-      return application;
+      return applications.get(0);
     }
 
     return null;
@@ -63,8 +62,7 @@ public class ApplicationDao extends AbstractDao<Application> {
 
     List<Application> applications = repo.query(ObjectFilter.eq(EntityProperty.NAME.toString(), name));
     if (!applications.isEmpty()) {
-      Application application = applications.get(0);
-      return application;
+      return applications.get(0);
     }
     return null;
   }
@@ -75,7 +73,6 @@ public class ApplicationDao extends AbstractDao<Application> {
         Repos.builder().primaryKey(EntityProperty.ID.toString()).searchIndex(EntityProperty.NAME.toString())
             .build(long.class, Application.class).init(findAll());
 
-    List<Application> applications = repo.query(ObjectFilter.in(EntityProperty.NAME.toString(), names));
-    return applications;
+    return repo.query(ObjectFilter.in(EntityProperty.NAME.toString(), names));
   }
 }
