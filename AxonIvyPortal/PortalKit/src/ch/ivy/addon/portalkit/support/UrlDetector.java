@@ -34,9 +34,9 @@ public class UrlDetector {
     if (facesContext == null) {
       IApplicationConfigurationManager configManager = ServerFactory.getServer().getApplicationConfigurationManager();
       try {
-        return RequestUriFactory.createLocalHostServerUri(configManager).toString() + "/"
+        return RequestUriFactory.createLocalHostServerUri().toString() + "/"
             + RequestUriFactory.getIvyContextName(configManager);
-      } catch (UnknownHostException | URISyntaxException e) {
+      } catch (URISyntaxException e) {
         throw new PortalException(e);
       }
     }
