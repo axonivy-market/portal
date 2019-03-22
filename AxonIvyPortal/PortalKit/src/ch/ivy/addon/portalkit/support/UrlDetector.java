@@ -3,7 +3,6 @@ package ch.ivy.addon.portalkit.support;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.net.UnknownHostException;
 
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
