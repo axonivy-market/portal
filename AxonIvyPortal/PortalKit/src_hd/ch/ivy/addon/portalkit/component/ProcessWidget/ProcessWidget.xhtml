@@ -238,7 +238,7 @@
 					styleClass="#{cc.attrs.processCardStyle} process-start-list-item #{process.link eq cc.attrs.highlightedProcessStartLink ? 'highlighted-item' : ''} #{isExpressWorkflow ? 'express-workflow' : ''}"
 					style="#{cc.attrs.processCardStyleClass}" rendered="#{!processWidgetBean.editMode}">
 					<p:link id="external-process-item" href="#{process.link}" target="_blank" rendered="#{isExternalProcess}"
-						styleClass="external-process-item #{cc.attrs.processCardStyle} process-start-list-item-wrapper js-process-start-list-item"
+						styleClass="external-process-item #{cc.attrs.processCardStyle} js-process-start-list-item"
 						style="#{cc.attrs.processCardStyleClass}">
 						<ui:include src="ProcessItem.xhtml">
 							<ui:param name="renderIcon" value="true"></ui:param>
