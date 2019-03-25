@@ -1,5 +1,5 @@
-co: name={technicalCasesOfBusinessCaseTitle} description={} changed={2019-02-21 03:14:10 CET} changedby={tdnguyen} visualorder={0} guid={1690DD3C1FFC9493} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={technicalCasesOfBusinessCaseTitle} description={} changed={2019-03-25 10:06:47 CET} changedby={lttung} visualorder={0} guid={1690DD3C1FFC9493} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={1690DD4965A8BAC1} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-02-21 03:13:31 CET} validto={} changed={2019-02-21 03:13:49 CET} changedby={tdnguyen} properties={} id={}
-val: guid={1690DD4E77093637} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-21 03:14:03 CET} validto={} changed={2019-02-21 03:14:10 CET} changedby={tdnguyen} properties={} id={}
+val: guid={1690DD4E77093637} datatype={} isdefault={false} langid={es} description={} validfrom={2019-03-25 10:06:47 CET} validto={} changed={2019-03-25 10:06:47 CET} changedby={lttung} properties={} id={}
 val: guid={1690DD3C2148254B} datatype={} isdefault={true} langid={en} description={} validfrom={2019-02-21 03:12:55 CET} validto={} changed={2019-02-21 03:13:49 CET} changedby={tdnguyen} properties={} id={}
 val: guid={1690DD4954BE8223} datatype={} isdefault={false} langid={de} description={} validfrom={2019-02-21 03:13:35 CET} validto={} changed={2019-02-21 03:13:49 CET} changedby={tdnguyen} properties={} id={}
