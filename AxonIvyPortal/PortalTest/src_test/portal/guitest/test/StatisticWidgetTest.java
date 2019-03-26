@@ -56,7 +56,8 @@ public class StatisticWidgetTest extends BaseTest {
     WebDriverWait wait = new WebDriverWait(statisticWidgetPage.getDriver(), 30);
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("statistics-widget:widget-container")));
     statisticWidgetPage.switchCreateMode();
-
+    
+    Sleeper.sleepTight(20000);
     createTaskByPriorityChart();
     createTaskByExpiryChart();
     createCaseByStateChart();
@@ -113,7 +114,7 @@ public class StatisticWidgetTest extends BaseTest {
     createCaseByStateLink.click();
     statisticWidgetPage.waitAjaxIndicatorDisappear();
 
-    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:add-chart-dialog"), true, 30);
+    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:add-chart-dialog"), true, 100);
     WebElement chartNameInput
       = statisticWidgetPage.findElementById("statistics-widget:chart-creation-widget:chart-management-form:add-statistic-form:chart-name-input");
     WebElement createChartButton
