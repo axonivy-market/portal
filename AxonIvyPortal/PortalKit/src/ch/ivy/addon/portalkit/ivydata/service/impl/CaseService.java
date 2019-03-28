@@ -240,17 +240,19 @@ public class CaseService implements ICaseService {
   
   private CaseQuery extendQuery(CaseSearchCriteria criteria) {
     CaseQuery finalQuery = criteria.getFinalCaseQuery();
+    CaseQuery clonedQuery = CaseQuery.fromJson(finalQuery.asJson()); // clone to keep the final query in CaseSearchCriteria
+
     if (criteria.hasApps()) {
       if (criteria.hasInvolvedUsername() && !criteria.isAdminQuery()) {
-        finalQuery.where().and(queryForUsers(criteria.getInvolvedUsername(), criteria.getApps()));
+        clonedQuery.where().and(queryForUsers(criteria.getInvolvedUsername(), criteria.getApps()));
       } else {
-        finalQuery.where().and(queryForApplications(criteria.getApps()));
+        clonedQuery.where().and(queryForApplications(criteria.getApps()));
       }
     }
     
     if (isHiddenTasksCasesExcluded(criteria.getApps())) {
-      finalQuery.where().and(queryExcludeHiddenCases());
+      clonedQuery.where().and(queryExcludeHiddenCases());
     }
-    return finalQuery;
+    return clonedQuery;
   }
 }
