@@ -23,8 +23,6 @@
 	<classpathentry exported="true" kind="con" path="IVY_CONTAINER"/>
 	<classpathentry kind="con" path="WEBAPP_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
-	<classpathentry kind="lib" path="lib/plexus-utils-3.1.0.jar"/>
-	<classpathentry kind="lib" path="lib/maven-invoker-3.0.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
@@ -34,8 +32,6 @@
 	<classpathentry kind="con" path="WS_CALL_AXIS2_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/jsoup-1.10.3.jar"/>
 	<classpathentry kind="lib" path="lib/quartz-2.1.1.jar"/>
-	<classpathentry kind="lib" path="lib/vt-password-3.1.1.jar"/>
-	<classpathentry kind="lib" path="lib/jlessc-1.5.jar"/>
 	<classpathentry kind="lib" path="lib/itextpdf-5.5.13.jar"/>
 	<classpathentry kind="lib" path="lib/bcpkix-jdk15on-1.59.jar"/>
 	<classpathentry kind="lib" path="lib/bcprov-jdk15on-1.59.jar"/>
