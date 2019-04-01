@@ -15,110 +15,104 @@
 			<h:form id="main-form" styleClass="calculation-form" style="margin-top: 50px;">
 				<div class="ui-g header-section">
 					<div class="ui-g-2">
-						<p:outputLabel for="calculation-number" value="Kalkulationsnummer" styleClass="MarRight10"/>
-						<p:inputText id="calculation-number"
+						<p:outputLabel for="trans-number" value="Transaction number" styleClass="MarRight10"/>
+						<p:inputText id="trans-number"
 							styleClass="ui-corner-all" value="1234567" />
 					</div>
 					<div class="ui-g-3">
-						<p:outputLabel for="calculation-date" value="Kalkulationsdatum" styleClass="MarRight10"/>
-						<p:calendar id="calculation-date" value="#{cc.attrs.project.dateOfExptectedFirstMutation}"
+						<p:outputLabel for="header-date" value="Date" styleClass="MarRight10"/>
+						<p:calendar id="header-date" value=""
 							pattern="#{dateTimePatternBean.datePattern}" showOn="button"
 							styleClass="ui-corner-all" />
 					</div>
 					<div class="ui-g-2">
-						<p:outputLabel for="last-saved" value="Zuletzt gespeichert" styleClass="MarRight10"/>
-						<p:inputText id="last-saved" styleClass="ui-corner-all" value="Daniel Rafyi 31.12.2018" />
+						<p:outputLabel for="last-saved" value="Last saved" styleClass="MarRight10"/>
+						<p:inputText id="last-saved" styleClass="ui-corner-all" value="Daniel 31.12.2018" />
 					</div>
 					<div class="ui-g-2">
-						<p:commandButton id="calculate-button" value="Berechnen" />
+						<p:commandButton id="load-button" value="Load" />
 					</div>
 				</div>
 				<p:tabMenu id="first-level-tab-menu" styleClass="MarTop20 first-level-tab-menu">
-					<p:menuitem value="Stammdaten">
+					<p:menuitem value="General Information">
 						<f:param name="i" value="0" />
 					</p:menuitem>
-					<p:menuitem value="Konditionen">
+					<p:menuitem value="Project Information">
 						<f:param name="i" value="1" />
 					</p:menuitem>
-					<p:menuitem value="Finanzleistungen">
+					<p:menuitem value="Relations">
 						<f:param name="i" value="2" />
 					</p:menuitem>
-					<p:menuitem value="Dauerleihe">
+					<p:menuitem value="Process">
 						<f:param name="i" value="3" />
 					</p:menuitem>
-					<p:menuitem value="Budg.Kk-Wkz">
+					<p:menuitem value="Approval">
 						<f:param name="i" value="4" />
 					</p:menuitem>
-					<p:menuitem value="Bonität">
+					<p:menuitem value="Additional Information 1">
 						<f:param name="i" value="5" />
 					</p:menuitem>
-					<p:menuitem value="Aktennotiz">
+					<p:menuitem value="Additional Information 2">
 						<f:param name="i" value="6" />
 					</p:menuitem>
-					<p:menuitem value="KPI-Dashboard">
+					<p:menuitem value="Summarize">
 						<f:param name="i" value="7" />
 					</p:menuitem>
 				</p:tabMenu>
 				<div class="ui-g debitor-details-container">
 					<p:tabMenu id="second-level-tab-menu" styleClass="Wid100 second-level-tab-menu">
-						<p:menuitem value="Debitor 1 - Daniel Rafyi, Markus Delmosky, Timo Rupp">
+						<p:menuitem value="Customer 6232 - Optimus Prime">
 							<f:param name="i" value="0" />
 						</p:menuitem>
-						<p:menuitem value="Debitornummer 2">
+						<p:menuitem value="Customer 2130 - Tester">
 							<f:param name="i" value="1" />
 						</p:menuitem>
-						<p:menuitem value="Debitornummer 3">
+						<p:menuitem value="Customer 3478 - Megatron">
 							<f:param name="i" value="2" />
 						</p:menuitem>
-						<p:menuitem value="Debitornummer 4">
+						<p:menuitem value="Customer 0510 - Bumblebee">
 							<f:param name="i" value="3" />
-						</p:menuitem>
-						<p:menuitem value="Debitornummer 5">
-							<f:param name="i" value="4" />
-						</p:menuitem>
-						<p:menuitem value="Konsolidate Ansicht">
-							<f:param name="i" value="5" />
 						</p:menuitem>
 					</p:tabMenu>
 
 					<div class="ui-g debitor-details">
 						<!-- PANEL 2 -->
-						<p:fieldset id="panel-2" widgetVar="panel-2" legend="Kundenportal" styleClass="MarTop10" toggleable="true" >
+						<p:fieldset id="panel-2" widgetVar="panel-2" legend="General information" styleClass="MarTop10" toggleable="true" >
 							<div class="ui-g">
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="debitor-number" value="Debitorennummer" styleClass="MarRight10"/>
+											<p:outputLabel for="customer-number" value="Number" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="debitor-number" styleClass="ui-corner-all" value="001" />
+											<p:inputText id="customer-number" styleClass="ui-corner-all" value="6232" />
 										</div>
 									</div>
 								</div>
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="last-calculation" value="Letzte Kalkulation (vom &amp; Nr.)" styleClass="MarRight10" escape="true"/>
+											<p:outputLabel for="invoice-code" value="Invoice code" styleClass="MarRight10" escape="true"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="last-calculation" styleClass="ui-corner-all" value="359912400" />
+											<p:inputText id="invoice-code" styleClass="ui-corner-all" value="359-9-124-001" />
 										</div>
 									</div>
 								</div>
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="address" value="Anschrift" styleClass="MarRight10"/>
+											<p:outputLabel for="address" value="Address" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="address" styleClass="ui-corner-all" value="Neubaugasse 43 1070 Vienna" />
+											<p:inputText id="address" styleClass="ui-corner-all" value="4810  Murphy Court, Riverside, CA" />
 										</div>
 									</div>
 								</div>
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="customer-since" value="Kunde seit" styleClass="MarRight10" escape="true"/>
+											<p:outputLabel for="customer-since" value="Customer Since" styleClass="MarRight10" escape="true"/>
 										</div>
 										<div class="Wid74">
 											<p:calendar id="customer-since"
@@ -130,40 +124,40 @@
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="plz" value="PLZ" styleClass="MarRight10"/>
+											<p:outputLabel for="custom-code" value="Custom code" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="plz" styleClass="ui-corner-all" value="345341" />
+											<p:inputText id="custom-code" styleClass="ui-corner-all" value="111-002-122-001" />
 										</div>
 									</div>
 								</div>
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="access-type" value="Zugangsart" styleClass="MarRight10"/>
+											<p:outputLabel for="custom-type" value="Custom Type" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="access-type" styleClass="ui-corner-all" value="345341" />
+											<p:inputText id="custom-type" styleClass="ui-corner-all" value="None" />
 										</div>
 									</div>
 								</div>
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="ort" value="Ort" styleClass="MarRight10"/>
+											<p:outputLabel for="custom-code-2" value="Custom Code 2" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="ort" styleClass="ui-corner-all" value="001-119931-345-01" />
+											<p:inputText id="custom-code-2" styleClass="ui-corner-all" value="001-1931-345-01" />
 										</div>
 									</div>
 								</div>
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="distribution-channel" value="Vertriebsweg" styleClass="MarRight10"/>
+											<p:outputLabel for="job" value="Job" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="distribution-channel" styleClass="ui-corner-all" value="Lokale Märkte" />
+											<p:inputText id="job" styleClass="ui-corner-all" value="Web developer" />
 										</div>
 									</div>
 								</div>
@@ -172,30 +166,30 @@
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="operation-type" value="Betriebstyp" styleClass="MarRight10"/>
+											<p:outputLabel for="company" value="Company" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="operation-type" styleClass="ui-corner-all" value="Der Umsatz" />
+											<p:inputText id="company" styleClass="ui-corner-all" value="Axon Ivy company" />
 										</div>
 									</div>
 								</div>
 								<div class="ui-g-6 MarTop20 Height100">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel value="Zugeordnete Adressbeziehungen" styleClass="MarRight10"/>
+											<p:outputLabel value="Relation table 1" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
 											<p:dataTable id="table-1" value="#{data.table1}" var="entity" scrollable="true" scrollHeight="152">
-												<p:column headerText="Nummer" width="70">
+												<p:column headerText="Number" width="70">
 													<h:outputText value="#{entity.number}" />
 												</p:column>
-												<p:column headerText="ADBEZ-Code" width="90">
+												<p:column headerText="Customer code" width="90">
 													<h:outputText value="#{entity.code}" />
 												</p:column>
-												<p:column headerText="Adressbeziehung zu Nr." width="120">
+												<p:column headerText="Address" width="120">
 													<h:outputText value="#{entity.address}" />
 												</p:column>
-												<p:column headerText="Kundenname zu" width="110">
+												<p:column headerText="Relation Name" width="110">
 													<h:outputText value="#{entity.name}" />
 												</p:column>
 											</p:dataTable>
@@ -205,20 +199,20 @@
 								<div class="ui-g-6 MarTop20 Height100">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel value="Adressbeziehungen" styleClass="MarRight10"/>
+											<p:outputLabel value="Relation table 2" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
 											<p:dataTable id="table-2" value="#{data.table2}" var="entity" scrollable="true" scrollHeight="152">
-												<p:column headerText="Nummer" width="70">
+												<p:column headerText="Number" width="70">
 													<h:outputText value="#{entity.number}" />
 												</p:column>
-												<p:column headerText="ADBEZ-Code" width="90">
+												<p:column headerText="Customer code" width="90">
 													<h:outputText value="#{entity.code}" />
 												</p:column>
-												<p:column headerText="Adressbeziehung zu Nr." width="120">
+												<p:column headerText="Address" width="120">
 													<h:outputText value="#{entity.address}" />
 												</p:column>
-												<p:column headerText="Kundenname zu" width="110">
+												<p:column headerText="Relation Name" width="110">
 													<h:outputText value="#{entity.name}" />
 												</p:column>
 											</p:dataTable>
@@ -229,23 +223,23 @@
 								<div class="ui-g-6 MarTop20 Height100 MarBot20">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel value="Vertragsobjekte" styleClass="MarRight10"/>
+											<p:outputLabel value="Object List" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
 											<p:dataTable id="table-3" value="#{data.table3}" var="entity" scrollable="true" scrollHeight="152">
-												<p:column headerText="Objektnummer" width="90">
+												<p:column headerText="Number" width="90">
 													<h:outputText value="#{entity.objectNumber}" />
 												</p:column>
-												<p:column headerText="Objektname" width="100">
+												<p:column headerText="Object Name" width="100">
 													<h:outputText value="#{entity.objectName}" />
 												</p:column>
-												<p:column headerText="Startdatum" width="100">
+												<p:column headerText="Created Date" width="100">
 													<h:outputText value="#{entity.startDate}" />
 												</p:column>
-												<p:column headerText="Enddatum" width="100">
+												<p:column headerText="Expiry Date" width="100">
 													<h:outputText value="#{entity.endDate}" />
 												</p:column>
-												<p:column headerText="Typ" width="70">
+												<p:column headerText="Type" width="70">
 													<h:outputText value="#{entity.type}" />
 												</p:column>
 											</p:dataTable>
@@ -258,145 +252,125 @@
 						</p:fieldset>
 
 						<!-- PANEL 3 -->
-						<p:fieldset id="panel-3" widgetVar="panel-3" legend="Vertragsdaten" styleClass="MarTop20" toggleable="true" >
+						<p:fieldset id="panel-3" widgetVar="panel-3" legend="Custom Fields" styleClass="MarTop20" toggleable="true" >
 							<div class="ui-g">
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="area" value="Gebiet" styleClass="MarRight10"/>
+											<p:outputLabel for="custom-field-1" value="Custom field 1" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="area" styleClass="ui-corner-all" value="Vienna" />
+											<p:inputText id="custom-field-1" styleClass="ui-corner-all" value="Lorem ipsum dolor sit amet" />
 										</div>
 									</div>
 								</div>
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="vendor" value="Verkäufer/Bierversilberer" styleClass="MarRight10"/>
+											<p:outputLabel for="custom-field-2" value="Custom field 1" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="vendor" styleClass="ui-corner-all" value="Volker Heinrich" />
+											<p:inputText id="custom-field-2" styleClass="ui-corner-all" value="11-60012-542" />
 										</div>
 									</div>
 								</div>
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="unit-code" value="Zuständigkeitseinheiteinheitencode" styleClass="MarRight10"/>
+											<p:outputLabel for="custom-field-3" value="Custom field 3" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="unit-code" styleClass="ui-corner-all" value="001-1157-41" />
+											<p:inputText id="custom-field-3" styleClass="ui-corner-all" value="Excepteur sint occaecat cupidatat non proident" />
 										</div>
 									</div>
 								</div>
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="vendor2" value="Verkaufsinnendienst" styleClass="MarRight10"/>
+											<p:outputLabel for="custom-field-4" value="Custom field 4" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="vendor2" styleClass="ui-corner-all" value="Fotini Kalantidou" />
+											<p:inputText id="custom-field-4" styleClass="ui-corner-all" value="Lorem ipsum dolor sit amet" />
 										</div>
 									</div>
 								</div>
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="debitor-group" value="Debitorengruppe" styleClass="MarRight10"/>
+											<p:outputLabel for="custom-field-5" value="Custom field 5" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="debitor-group" styleClass="ui-corner-all" value="Gruppe 1" />
+											<p:inputText id="custom-field-5" styleClass="ui-corner-all" value="Excepteur sint occaecat cupidatat non proident" />
 										</div>
 									</div>
 								</div>
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="last-level" value="Letzte registrierte Mahnstufe" styleClass="MarRight10"/>
+											<p:outputLabel for="custom-field-6" value="Custom field 6" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="last-level" styleClass="ui-corner-all" value="00125000124" />
+											<p:inputText id="custom-field-6" styleClass="ui-corner-all" value="Lorem ipsum dolor sit amet" />
 										</div>
 									</div>
 								</div>
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="goods" value="Offene Posten Ware" styleClass="MarRight10"/>
+											<p:outputLabel for="custom-field-7" value="Custom field 7" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="goods" styleClass="ui-corner-all" value="Stiegl Bier" />
+											<p:inputText id="custom-field-7" styleClass="ui-corner-all" value="11-60012-542" />
 										</div>
 									</div>
 								</div>
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="op-status" value="OP Status" styleClass="MarRight10"/>
+											<p:outputLabel for="custom-field-8" value="Custom field 8" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="op-status" styleClass="ui-corner-all" value="perfekt" />
+											<p:inputText id="custom-field-8" styleClass="ui-corner-all" value="perfekt" />
 										</div>
 									</div>
 								</div>
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="item-contact" value="Offene Posten Vertrag" styleClass="MarRight10"/>
+											<p:outputLabel for="custom-field-9" value="Custom field 9" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="item-contact" styleClass="ui-corner-all" value="01002167995" />
+											<p:inputText id="custom-field-9" styleClass="ui-corner-all" value="01002167995" />
 										</div>
 									</div>
 								</div>
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="customer-ticket-number" value="Kundentickets Anzahl roll." styleClass="MarRight10"/>
+											<p:outputLabel for="custom-field-10" value="Custom field 10" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="customer-ticket-number" styleClass="ui-corner-all" value="1005116221" />
+											<p:inputText id="custom-field-10" styleClass="ui-corner-all" value="11-60012-542" />
 										</div>
 									</div>
 								</div>
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="old-price" value="Alt preisgarantie" styleClass="MarRight10"/>
+											<p:outputLabel for="custom-field-11" value="Custom field 11" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="old-price" styleClass="ui-corner-all" value="120.000" />
+											<p:inputText id="custom-field-11" styleClass="ui-corner-all" value="Excepteur sint occaecat cupidatat non proident" />
 										</div>
 									</div>
 								</div>
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="billing-period" value="Abrechnungsperiode" styleClass="MarRight10"/>
+											<p:outputLabel for="custom-field-12" value="Custom field 12" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="billing-period" styleClass="ui-corner-all" value="2" />
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="old-price-2" value="Alt preisgarantie (von/bis)" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="old-price-2" styleClass="ui-corner-all" value="120.000" />
-										</div>
-									</div>
-								</div>
-								<div class="ui-g-6">
-									<div class="ui-g">
-										<div class="debitor-label-container">
-											<p:outputLabel for="payment-form" value="Zahlungsformcode" styleClass="MarRight10"/>
-										</div>
-										<div class="Wid74">
-											<p:inputText id="payment-form" styleClass="ui-corner-all" value="211-00-19463-1" />
+											<p:inputText id="custom-field-12" styleClass="ui-corner-all" value="2" />
 										</div>
 									</div>
 								</div>
@@ -405,10 +379,10 @@
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="condition-code" value="Zlg - Bedingungscode" styleClass="MarRight10"/>
+											<p:outputLabel for="custom-field-13" value="Custom field 13" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="condition-code" styleClass="ui-corner-all" value="001" />
+											<p:inputText id="custom-field-13" styleClass="ui-corner-all" value="001" />
 										</div>
 									</div>
 								</div>
@@ -416,34 +390,34 @@
 						</p:fieldset>
 
 						<!-- PANEL 4 -->
-						<p:fieldset id="panel-4" widgetVar="panel-4" legend="Sonstige Daten" styleClass="MarTop20" toggleable="true" >
+						<p:fieldset id="panel-4" widgetVar="panel-4" legend="Additional Properties" styleClass="MarTop20" toggleable="true" >
 							<div class="ui-g">
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="legal-relationship" value="Rechtsverhältnis" styleClass="MarRight10"/>
+											<p:outputLabel for="additional-1" value="Additional Property 1" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="legal-relationship" styleClass="ui-corner-all" value="345011127" />
+											<p:inputText id="additional-1" styleClass="ui-corner-all" value="345011127" />
 										</div>
 									</div>
 								</div>
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="new-customer" value="Neukunde" styleClass="MarRight10"/>
+											<p:outputLabel for="additional-2" value="Additional Option 1" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid11">
-											<p:selectOneMenu id="new-customer" value="#{data.isNewCustomer}">
+											<p:selectOneMenu id="additional-2" value="#{data.isNewCustomer}">
 												<f:selectItem itemValue="true" itemLabel="Ja"></f:selectItem>
 												<f:selectItem itemValue="false" itemLabel="Nein"></f:selectItem>
 											</p:selectOneMenu>
 										</div>
 										<div class="debitor-label-container small">
-											<p:outputLabel for="new-customer-letter" value="Neukundenbrief" styleClass="MarRight10"/>
+											<p:outputLabel for="additional-3" value="Additional Option 2" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid11">
-											<p:selectOneMenu id="new-customer-letter" value="#{data.isNewCustomerLetter}">
+											<p:selectOneMenu id="additional-3" value="#{data.isNewCustomerLetter}">
 												<f:selectItem itemValue="true" itemLabel="Ja"></f:selectItem>
 												<f:selectItem itemValue="false" itemLabel="Nein"></f:selectItem>
 											</p:selectOneMenu>
@@ -453,60 +427,60 @@
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="contact-person" value="Ansprechpartner" styleClass="MarRight10"/>
+											<p:outputLabel for="additional-4" value="Additional Property 2" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="contact-person" styleClass="ui-corner-all" value="Daniel Rafyi" />
+											<p:inputText id="additional-4" styleClass="ui-corner-all" value="11-60012-542" />
 										</div>
 									</div>
 								</div>
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="estimated-age" value="Geburtsdatum/Geschätztes Alter" styleClass="MarRight10"/>
+											<p:outputLabel for="additional-5" value="Additional Property 3" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="estimated-age" styleClass="ui-corner-all" value="31.12.2018/32" />
+											<p:inputText id="additional-5" styleClass="ui-corner-all" value="11-60012-542" />
 										</div>
 									</div>
 								</div>
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="current-supplier" value="Lieferant Bier bisher" styleClass="MarRight10"/>
+											<p:outputLabel for="additional-6" value="Additional Property 4" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="current-supplier" styleClass="ui-corner-all" value="Stiegl Bier" />
+											<p:inputText id="additional-6" styleClass="ui-corner-all" value="perfekt" />
 										</div>
 									</div>
 								</div>
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="new-supplier" value="Lieferant Bier neu" styleClass="MarRight10"/>
+											<p:outputLabel for="additional-7" value="Additional Property 5" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="new-supplier" styleClass="ui-corner-all" value="Stiegl Bier" />
+											<p:inputText id="additional-7" styleClass="ui-corner-all" value="Lorem ipsum dolor sit amet" />
 										</div>
 									</div>
 								</div>
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="current-supplier-af" value="Lieferant AF bisher" styleClass="MarRight10"/>
+											<p:outputLabel for="current-supplier-af" value="Additional Property 6" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="current-supplier-af" styleClass="ui-corner-all" value="Stiegl Bier" />
+											<p:inputText id="current-supplier-af" styleClass="ui-corner-all" value="Excepteur sint occaecat cupidatat non proident" />
 										</div>
 									</div>
 								</div>
 								<div class="ui-g-6">
 									<div class="ui-g">
 										<div class="debitor-label-container">
-											<p:outputLabel for="new-supplier-af" value="Lieferant AF neu" styleClass="MarRight10"/>
+											<p:outputLabel for="new-supplier-af" value="Additional Property 7" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="new-supplier-af" styleClass="ui-corner-all" value="Stiegl Bier" />
+											<p:inputText id="new-supplier-af" styleClass="ui-corner-all" value="Lorem ipsum dolor sit amet" />
 										</div>
 									</div>
 								</div>
@@ -516,9 +490,9 @@
 				</div>
 				<div class="ui-g">
 					<div class="ui-g-12">
-						<p:commandButton id="button-2" value="Zum Freigabelauf" styleClass="Fright footer-button" />
-						<p:commandButton id="button-3" value="Abbrechen" styleClass="Fright footer-button" />
-						<p:commandButton id="button-1" value="Speichern" styleClass="Fright footer-button" />
+						<p:commandButton id="button-3" value="Button 3" styleClass="Fright footer-button" />
+						<p:commandButton id="button-2" value="Button 2" styleClass="Fright footer-button" />
+						<p:commandButton id="button-1" value="Button 1" styleClass="Fright footer-button" />
 					</div>
 				</div>
 			</h:form>
