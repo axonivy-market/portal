@@ -46,8 +46,8 @@ Ss0 f0 requestEnabled true #txt
 Ss0 f0 triggerEnabled false #txt
 Ss0 f0 callSignature ApplicationShowcase() #txt
 Ss0 f0 persist false #txt
-Ss0 f0 startName 'Application Showcase' #txt
-Ss0 f0 startDescription 'Application Showcase' #txt
+Ss0 f0 startName 'Showcase Application' #txt
+Ss0 f0 startDescription 'Showcase Application' #txt
 Ss0 f0 taskData 'TaskTriggered.NAM=Start Application Showcase' #txt
 Ss0 f0 caseData 'businessCase.attach=true
 case.name=Application Showcase' #txt
@@ -94,8 +94,8 @@ Ss0 f6 requestEnabled true #txt
 Ss0 f6 triggerEnabled false #txt
 Ss0 f6 callSignature DataTableShowcase() #txt
 Ss0 f6 persist false #txt
-Ss0 f6 startName 'Data Table Showcase' #txt
-Ss0 f6 startDescription 'Data Table Showcase' #txt
+Ss0 f6 startName 'Showcase Data Table' #txt
+Ss0 f6 startDescription 'Showcase Data Table' #txt
 Ss0 f6 taskData 'TaskTriggered.NAM=Start DataTable Showcase' #txt
 Ss0 f6 caseData 'businessCase.attach=true
 case.name=DataTable Showcase' #txt
@@ -144,8 +144,8 @@ Ss0 f11 requestEnabled true #txt
 Ss0 f11 triggerEnabled false #txt
 Ss0 f11 callSignature Ecalculation() #txt
 Ss0 f11 persist false #txt
-Ss0 f11 startName Ecalculation #txt
-Ss0 f11 startDescription Ecalculation #txt
+Ss0 f11 startName 'Showcase Ecalculation' #txt
+Ss0 f11 startDescription 'Showcase Ecalculation' #txt
 Ss0 f11 taskData 'TaskTriggered.NAM=Start Ecalculation Showcase' #txt
 Ss0 f11 caseData 'businessCase.attach=true
 case.name=Ecalculation Showcase' #txt
@@ -177,8 +177,8 @@ Ss0 f15 requestEnabled true #txt
 Ss0 f15 triggerEnabled false #txt
 Ss0 f15 callSignature PrimefacesElements() #txt
 Ss0 f15 persist false #txt
-Ss0 f15 startName 'Primefaces Elements' #txt
-Ss0 f15 startDescription 'Primefaces Elements.ivp' #txt
+Ss0 f15 startName 'Showcase Primefaces Elements' #txt
+Ss0 f15 startDescription 'Showcase Primefaces Elements' #txt
 Ss0 f15 taskData 'TaskTriggered.NAM=Start Primefaces Elements' #txt
 Ss0 f15 caseData 'businessCase.attach=true
 case.name=Primefaces Elements Showcase' #txt
