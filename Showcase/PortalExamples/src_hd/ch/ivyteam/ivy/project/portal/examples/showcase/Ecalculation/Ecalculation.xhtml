@@ -19,7 +19,7 @@
 						<p:inputText id="calculation-number"
 							styleClass="ui-corner-all" value="1234567" />
 					</div>
-					<div class="ui-g-2">
+					<div class="ui-g-3">
 						<p:outputLabel for="calculation-date" value="Kalkulationsdatum" styleClass="MarRight10"/>
 						<p:calendar id="calculation-date" value="#{cc.attrs.project.dateOfExptectedFirstMutation}"
 							pattern="#{dateTimePatternBean.datePattern}" showOn="button"
@@ -185,17 +185,17 @@
 											<p:outputLabel value="Zugeordnete Adressbeziehungen" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:dataTable id="table-1" value="#{data.table1}" var="entity" scrollable="true" scrollHeight="160">
-												<p:column headerText="Nummer" width="100">
+											<p:dataTable id="table-1" value="#{data.table1}" var="entity" scrollable="true" scrollHeight="152">
+												<p:column headerText="Nummer" width="70">
 													<h:outputText value="#{entity.number}" />
 												</p:column>
-												<p:column headerText="ADBEZ-Code" width="120">
+												<p:column headerText="ADBEZ-Code" width="90">
 													<h:outputText value="#{entity.code}" />
 												</p:column>
-												<p:column headerText="Adressbeziehung zu Nr." width="200">
+												<p:column headerText="Adressbeziehung zu Nr." width="120">
 													<h:outputText value="#{entity.address}" />
 												</p:column>
-												<p:column headerText="Kundenname zu" width="100">
+												<p:column headerText="Kundenname zu" width="110">
 													<h:outputText value="#{entity.name}" />
 												</p:column>
 											</p:dataTable>
@@ -208,17 +208,17 @@
 											<p:outputLabel value="Adressbeziehungen" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:dataTable id="table-2" value="#{data.table2}" var="entity" scrollable="true" scrollHeight="160">
-												<p:column headerText="Nummer" width="100">
+											<p:dataTable id="table-2" value="#{data.table2}" var="entity" scrollable="true" scrollHeight="152">
+												<p:column headerText="Nummer" width="70">
 													<h:outputText value="#{entity.number}" />
 												</p:column>
-												<p:column headerText="ADBEZ-Code" width="120">
+												<p:column headerText="ADBEZ-Code" width="90">
 													<h:outputText value="#{entity.code}" />
 												</p:column>
-												<p:column headerText="Adressbeziehung zu Nr." width="200">
+												<p:column headerText="Adressbeziehung zu Nr." width="120">
 													<h:outputText value="#{entity.address}" />
 												</p:column>
-												<p:column headerText="Kundenname zu" width="100">
+												<p:column headerText="Kundenname zu" width="110">
 													<h:outputText value="#{entity.name}" />
 												</p:column>
 											</p:dataTable>
@@ -226,26 +226,26 @@
 									</div>
 									
 								</div>
-								<div class="ui-g-6 MarTop20 Height100">
+								<div class="ui-g-6 MarTop20 Height100 MarBot20">
 									<div class="ui-g">
 										<div class="debitor-label-container">
 											<p:outputLabel value="Vertragsobjekte" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:dataTable id="table-3" value="#{data.table3}" var="entity" scrollable="true" scrollHeight="160">
-												<p:column headerText="Objektnummer" width="80">
+											<p:dataTable id="table-3" value="#{data.table3}" var="entity" scrollable="true" scrollHeight="152">
+												<p:column headerText="Objektnummer" width="90">
 													<h:outputText value="#{entity.objectNumber}" />
 												</p:column>
 												<p:column headerText="Objektname" width="100">
 													<h:outputText value="#{entity.objectName}" />
 												</p:column>
-												<p:column headerText="Startdatum" width="120">
+												<p:column headerText="Startdatum" width="100">
 													<h:outputText value="#{entity.startDate}" />
 												</p:column>
-												<p:column headerText="Enddatum" width="120">
+												<p:column headerText="Enddatum" width="100">
 													<h:outputText value="#{entity.endDate}" />
 												</p:column>
-												<p:column headerText="Typ" width="80">
+												<p:column headerText="Typ" width="70">
 													<h:outputText value="#{entity.type}" />
 												</p:column>
 											</p:dataTable>
@@ -439,7 +439,7 @@
 												<f:selectItem itemValue="false" itemLabel="Nein"></f:selectItem>
 											</p:selectOneMenu>
 										</div>
-										<div class="debitor-label-container">
+										<div class="debitor-label-container small">
 											<p:outputLabel for="new-customer-letter" value="Neukundenbrief" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid11">
