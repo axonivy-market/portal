@@ -124,7 +124,7 @@ Ss0 f8 expr out #txt
 Ss0 f8 280 160 337 160 #arcP
 Ss0 f9 expr out #txt
 Ss0 f9 111 160 168 160 #arcP
-Ss0 f10 richDialogId ch.ivyteam.ivy.project.portal.examples.showcase.Ecalculation #txt
+Ss0 f10 richDialogId ch.ivyteam.ivy.project.portal.examples.showcase.CustomizedUI #txt
 Ss0 f10 startMethod start() #txt
 Ss0 f10 type ch.ivyteam.ivy.project.portal.examples.showcase.Data #txt
 Ss0 f10 requestActionDecl '<> param;' #txt
@@ -134,7 +134,7 @@ Ss0 f10 responseMappingAction 'out=in;
 ' #txt
 Ss0 f10 168 234 112 44 0 -8 #rect
 Ss0 f10 @|RichDialogIcon #fIcon
-Ss0 f11 outLink Ecalculation.ivp #txt
+Ss0 f11 outLink CustomizedUIShowcase.ivp #txt
 Ss0 f11 type portal.show.Data #txt
 Ss0 f11 inParamDecl '<> param;' #txt
 Ss0 f11 actionDecl 'portal.show.Data out;
@@ -142,23 +142,23 @@ Ss0 f11 actionDecl 'portal.show.Data out;
 Ss0 f11 guid 169C7A532A81F34E #txt
 Ss0 f11 requestEnabled true #txt
 Ss0 f11 triggerEnabled false #txt
-Ss0 f11 callSignature Ecalculation() #txt
+Ss0 f11 callSignature CustomizedUIShowcase() #txt
 Ss0 f11 persist false #txt
-Ss0 f11 startName 'Showcase Ecalculation' #txt
-Ss0 f11 startDescription 'Showcase Ecalculation' #txt
-Ss0 f11 taskData 'TaskTriggered.NAM=Start Ecalculation Showcase' #txt
+Ss0 f11 startName 'Showcase Customized UI' #txt
+Ss0 f11 startDescription 'Showcase Customized UI' #txt
+Ss0 f11 taskData 'TaskTriggered.NAM=Start Customized UI' #txt
 Ss0 f11 caseData 'businessCase.attach=true
-case.name=Ecalculation Showcase' #txt
+case.name=Start Customized UI' #txt
 Ss0 f11 showInStartList 1 #txt
 Ss0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Ecalculation.ivp</name>
+        <name>CustomizedUIShowcase.ivp</name>
     </language>
 </elementInfo>
 ' #txt
 Ss0 f11 @C|.responsibility Everybody #txt
-Ss0 f11 81 241 30 30 -47 18 #rect
+Ss0 f11 81 241 30 30 -77 19 #rect
 Ss0 f11 @|StartRequestIcon #fIcon
 Ss0 f12 type ch.ivyteam.ivy.project.portal.examples.showcase.Data #txt
 Ss0 f12 337 241 30 30 0 15 #rect
