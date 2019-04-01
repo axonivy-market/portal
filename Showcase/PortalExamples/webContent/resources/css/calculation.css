@@ -51,6 +51,14 @@
 	width: 25%;
 }
 
+.debitor-label-container.small {
+	width: 15.5%;
+}
+
+_:-ms-input-placeholder, :root .debitor-label-container.small {
+	width: 16.5%;
+}
+
 .debitor-label-container label {
 	line-height: 2.3;
 }
@@ -107,6 +115,12 @@
 .calculation-form .header-section label {
 	float: left !important;
 	margin-top: 2px;
+	line-height: 2.3;
+}
+
+_:-ms-input-placeholder, :root .ui-g .ui-outputlabel {
+	line-height: 2;
+	margin-top: 0 !important;
 }
 
 .debitor-details {
@@ -131,10 +145,6 @@
 .calculation-form .footer-button {
 	margin-top: 20px;
 	margin-bottom: 40px;
-}
-
-.calculation-form .ui-fieldset-toggleable {
-	width: 100%;
 }
 
 .calculation-form .ui-fieldset-toggleable legend {
