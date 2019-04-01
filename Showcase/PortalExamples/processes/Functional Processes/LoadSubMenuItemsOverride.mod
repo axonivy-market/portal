@@ -1,5 +1,5 @@
 [Ivy]
-1657E6622F0C0122 3.23 #module
+1657E6622F0C0122 3.26 #module
 >Proto >Proto Collection #zClass
 Ls0 LoadSubMenuItems Big #zClass
 Ls0 B #cInfo
@@ -91,9 +91,11 @@ selfService.setLabel("Self Service");
 selfService.setMenuKind(MenuKind.CUSTOM);
 ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
 IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath("BusinessProcesses/AdHocWF/start.ivp");
-selfService.setLink(RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString());
-selfService.getViews().add("define_WF.xhtml");
-in.subMenuItems.add(selfService);' #txt
+if(process != null) {
+	selfService.setLink(RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString());
+	selfService.getViews().add("define_WF.xhtml");
+	in.subMenuItems.add(selfService);
+}' #txt
 Ls0 f3 security system #txt
 Ls0 f3 type _ch.ivyteam.ivy.project.portal.examples.LoadSubMenuItemsOverrideData #txt
 Ls0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
