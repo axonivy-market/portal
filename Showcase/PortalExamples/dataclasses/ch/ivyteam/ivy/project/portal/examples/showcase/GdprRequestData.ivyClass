@@ -1,0 +1,6 @@
+GdprRequestData #class
+ch.ivyteam.ivy.project.portal.examples.showcase #namespace
+taskName String #field
+taskName PERSISTENT #fieldModifier
+gdprRequest ch.ivyteam.ivy.project.portal.examples.showcase.GdprRequest #field
+gdprRequest PERSISTENT #fieldModifier
