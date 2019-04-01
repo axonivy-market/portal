@@ -1,0 +1,14 @@
+Person #class
+ch.ivyteam.ivy.project.portal.examples.showcase #namespace
+name String #field
+name PERSISTENT #fieldModifier
+firstname String #field
+firstname PERSISTENT #fieldModifier
+billingAddress ch.ivyteam.ivy.project.portal.examples.showcase.Address #field
+billingAddress PERSISTENT #fieldModifier
+deliveryAddress ch.ivyteam.ivy.project.portal.examples.showcase.Address #field
+deliveryAddress PERSISTENT #fieldModifier
+birthYear Number #field
+birthYear PERSISTENT #fieldModifier
+id Number #field
+id PERSISTENT #fieldModifier

@@ -1,0 +1,6 @@
+PrimefacesElementsData #class
+ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesElements #namespace
+data ch.ivyteam.ivy.project.portal.examples.showcase.Data #field
+data PERSISTENT #fieldModifier
+persons org.primefaces.model.DualListModel #field
+persons PERSISTENT #fieldModifier
