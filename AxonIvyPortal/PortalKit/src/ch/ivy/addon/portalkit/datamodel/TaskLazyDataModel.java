@@ -138,9 +138,17 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   private void restoreSessionAdvancedFilters() throws IllegalAccessException, InvocationTargetException {
     if (shouldSaveAndLoadSessionFilters()) {
       List<TaskFilter> sessionTaskFilters = UserUtils.getSessionTaskAdvancedFilterAttribute();
-      for (TaskFilter filter : filters) {
-        for (TaskFilter sessionTaskFilter : sessionTaskFilters) {
-          copyProperties(sessionTaskFilter, filter);
+      if(sessionTaskFilters.isEmpty()) {
+        for (TaskFilter filter : filters) {
+          if(filter.defaultFilter()) {
+            selectedFilters.add(filter);
+          }
+        }
+      } else {
+        for (TaskFilter filter : filters) {
+          for (TaskFilter sessionTaskFilter : sessionTaskFilters) {
+            copyProperties(sessionTaskFilter, filter);
+          }
         }
       }
     }

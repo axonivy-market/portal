@@ -78,6 +78,11 @@ public class TaskStateFilter extends TaskFilter {
   public void resetValues() {
     selectedFilteredStates = new ArrayList<>(selectedFilteredStatesAtBeginning);
   }
+  
+  @Override
+  public boolean defaultFilter() {
+    return true;
+  }
 
   public String userFriendlyState(TaskState state) {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/" + state);

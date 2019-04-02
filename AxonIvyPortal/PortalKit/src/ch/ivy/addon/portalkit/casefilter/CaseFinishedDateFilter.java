@@ -80,6 +80,11 @@ public class CaseFinishedDateFilter extends CaseFilter {
     }
   }
 
+  @Override
+  public boolean defaultFilter() {
+    return true;
+  }
+  
   public Date getFromFinishedDate() {
     return fromFinishedDate;
   }
