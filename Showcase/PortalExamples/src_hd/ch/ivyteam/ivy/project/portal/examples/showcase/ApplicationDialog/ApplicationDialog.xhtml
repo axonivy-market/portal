@@ -36,55 +36,55 @@
 			<h:form id="form">
 				<p:growl id="growl" autoUpdate="true" />
 				<div class="ui-fluid">
-				<div style="" class="fitDivToFieldset marginTop10px">
-					<div class="ui-g" style="">
-						<div class="ui-g-12 ui-md-6 ui-lg-2" style="">
+				<div  class="fitDivToFieldset marginTop10px">
+					<div class="ui-g" >
+						<div class="ui-g-12 ui-md-6 ui-lg-2" >
 							<p:outputLabel id="caseIdLabel" styleClass=""
 								value="#{ivy.cms.co('/Labels/caseId')}" />
 						</div>
 
-						<div class="ui-g-12 ui-md-6 ui-lg-3" style="">
-							<p:outputLabel id="caseIdValue" value="#{caseId}" style="" />
+						<div class="ui-g-12 ui-md-6 ui-lg-3" >
+							<p:outputLabel id="caseIdValue" value="#{caseId}"  />
 						</div>
-						<div class="ui-g-12 ui-md-6 ui-lg-1" style=""></div>
-						<div class="ui-g-12 ui-md-6 ui-lg-2" style="">
-							<p:outputLabel id="dateLabel" styleClass="" style=""
+						<div class="ui-g-12 ui-md-12 ui-lg-1" ></div>
+						<div class="ui-g-12 ui-md-6 ui-lg-2" >
+							<p:outputLabel id="dateLabel" styleClass="" 
 								value="#{ivy.cms.co('/Labels/date')}" />
 						</div>
-						<div class="ui-g-12 ui-md-6 ui-lg-3" style="">
-							<p:outputLabel id="dateValue" value="12.11.2018 15:00" style="">
+						<div class="ui-g-12 ui-md-6 ui-lg-3" >
+							<p:outputLabel id="dateValue" value="12.11.2018 15:00" >
 								<f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
 							</p:outputLabel>
 						</div>
-						<div class="ui-g-12 ui-md-6 ui-lg-1" style=""></div>
+						<div class="ui-g-12 ui-md-12 ui-lg-1" ></div>
 					</div>
 				</div>
 				<br/>
 				<p:fieldset id="personalDataFieldset" toggleable="true"
-					styleClass="fitFieldsetToDiv" style=""
+					styleClass="fitFieldsetToDiv" 
 					legend="#{ivy.cms.co('/Labels/personalData')}">
 
 						<div class="ui-g">
-							<div class="ui-g-12 ui-md-6 ui-lg-2" style="">
+							<div class="ui-g-12 ui-md-6 ui-lg-2" >
 								<p:outputLabel id="nameLabel" for="nameValue"
 									value="#{ivy.cms.co('/Labels/firstName')}" />
 							</div>
-							<div class="ui-g-12 ui-md-6 ui-lg-3" style="">
+							<div class="ui-g-12 ui-md-6 ui-lg-3" >
 								<p:inputText id="nameValue" required="true"
 									value="#{data.gdprRequest.name}" />
 							</div>
 
-							<div class="ui-g-12 ui-md-6 ui-lg-1" style=""></div>
-							<div class="ui-g-12 ui-md-6 ui-lg-2" style="">
+							<div class="ui-g-12 ui-md-12 ui-lg-1" ></div>
+							<div class="ui-g-12 ui-md-6 ui-lg-2" >
 								<p:outputLabel id="surnameLabel" for="surnameValue"
 									value="#{ivy.cms.co('/Labels/surName')}" />
 							</div>
 
-							<div class="ui-g-12 ui-md-6 ui-lg-3" style="">
+							<div class="ui-g-12 ui-md-6 ui-lg-3" >
 								<p:inputText id="surnameValue" required="true"
 									value="#{data.gdprRequest.surname}" />
 							</div>
-							<div class="ui-g-12 ui-md-6 ui-lg-1" style=""></div>
+							<div class="ui-g-12 ui-md-12 ui-lg-1" ></div>
 						</div>
 
 						<div class="ui-g">
@@ -96,7 +96,7 @@
 								<p:inputText id="addressValue" required="true"
 									value="#{data.gdprRequest.address}" />
 							</div>
-							<div class="ui-g-12 ui-md-6 ui-lg-1">
+							<div class="ui-g-12 ui-md-12 ui-lg-1">
 								<p:spacer />
 							</div>
 						
@@ -104,13 +104,13 @@
 								<p:outputLabel id="cityLabel" for="cityValue"
 									value=" #{ivy.cms.co('/Labels/zip')}#{ivy.cms.co('/Labels/city')}" />
 							</div>
-							<div class="ui-g-12 ui-md-6 ui-lg-1">
+							<div class="ui-g-12 ui-md-2 ui-lg-1">
 							<p:inputNumber id="zipValue" required="true" decimalPlaces="0"
 									decimalSeparator="" thousandSeparator=""
 									value="#{data.gdprRequest.zip}" />
 								
 							</div>
-							<div class="ui-g-12 ui-md-6 ui-lg-2">
+							<div class="ui-g-12 ui-md-4 ui-lg-2">
 								<p:inputText id="cityValue" required="true"
 									value="#{data.gdprRequest.city}" />
 							</div>
@@ -127,7 +127,7 @@
 								<p:inputText id="phoneNumberValue"
 									value="#{data.gdprRequest.phoneNumber}" />
 							</div>
-							<div class="ui-g-12 ui-md-6 ui-lg-1">
+							<div class="ui-g-12 ui-md-12 ui-lg-1">
 								<p:spacer />
 							</div>
 							<div class="ui-g-12 ui-md-6 ui-lg-2">
@@ -139,7 +139,7 @@
 									value="#{data.gdprRequest.emailAddress}" />
 							</div>
 							
-							<div class="ui-g-12 ui-md-6 ui-lg-1">
+							<div class="ui-g-12 ui-md-12 ui-lg-1">
 								<p:spacer />
 							</div>
 						</div>
@@ -153,18 +153,6 @@
 							<div class="ui-g-12 ui-md-6 ui-lg-3">
 								<p:inputText id="identificationNumberValue" required="false"
 									value="#{data.gdprRequest.identificationNumer}" />
-							</div>
-							<div class="ui-g-12 ui-md-6 ui-lg-1">
-								<p:spacer />
-							</div>
-							<div class="ui-g-12 ui-md-6 ui-lg-2">
-								
-							</div>
-							<div class="ui-g-12 ui-md-6 ui-lg-3">
-								
-							</div>
-							<div class="ui-g-12 ui-md-6 ui-lg-1">
-								<p:spacer />
 							</div>
 						</div>
 
@@ -226,7 +214,7 @@
 				
 
 					<p:panelGrid id="pdfFileGrid"
-						styleClass="ui-panelgrid-blank marginTop20px">
+						styleClass="ui-panelgrid-blank MarTop20">
 						<p:row>
 							<p:column>
 								<p:dataTable id="fileTable" value="#{data.gdprRequest.files}"
@@ -301,11 +289,6 @@
 					
 					</f:facet>
 				</p:toolbar>
-				<p:commandButton id="updateFileTableButton" value="update"
-					immediate="true" style="visibility: hidden">
-					<p:ajax update="form" />
-				</p:commandButton>
-			
 			</h:form>
 			
 		</ui:define>

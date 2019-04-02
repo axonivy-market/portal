@@ -13,354 +13,308 @@
 		<ui:param name="task" value="#{ivy.task}" />
 
 		<ui:define name="dynamicTabs">
-		<p:tab title="Demo">
-		<br/>
-			<!-- only for mobile view -->
-            <!-- <span class=" fa fa-check-square-o task-template-title-icon"></span>
-            <h:outputText styleClass="task-template-title" id="title" title="#{task.name} (##{task.id})" value="#{task.name} (##{task.id})" /> -->
-          
+			<p:tab title="Demo">
+			<br/>
 			<h:form id="form">
-		<div class="ui-fluid">
-
-				
-					<!-- <f:facet name="header">
-						<p:messages></p:messages>
-					</f:facet> -->
-					<p:outputLabel styleClass="bigLabel marginLeft25px">Demo Primefaces Elements</p:outputLabel>
-
-
-						<div class="ui-g marginTop10px marginLeft20px fitDivToFieldset">
-								<div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="input" value="Input" styleClass="" /></div>
-								<div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputText id="input" /></div>
-								<div class="ui-g-12 ui-md-6 ui-lg-1"></div>
-								<div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="input2" value="More Input" styleClass="" /></div>
-								<div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputText id="input2" /></div>
-								<div class="ui-g-12 ui-md-6 ui-lg-1"></div>
-						</div>
-
-						<div class="ui-g marginLeft20px fitDivToFieldset">
-						    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="calendar" value="Calendar" /></div>
-						    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:calendar id="calendar" /></div>
-						    <div class="ui-g-12 ui-md-6 ui-lg-1"></div>
-						    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="ac" value="AutoComplete" /></div>
-						    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:autoComplete id="ac" completeMethod="#{autoCompleteView.completeText}" /></div>
-						     <div class="ui-g-12 ui-md-6 ui-lg-1"></div>
-						</div>
-
-						
-						<div class="ui-g marginLeft20px fitDivToFieldset">
-						    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="area" value="Comment" styleClass="alignTop" /></div>
-						    <div class="ui-g-12 ui-md-6 ui-lg-9"><p:inputTextarea id="area" style="" /><p:spacer/><p:spacer/></div>
-						    <div class="ui-g-12 ui-md-6 ui-lg-1"></div>
-						</div>
-						
-		
-					
-					<p:fieldset legend="More options" styleClass="marginTop10px fitFieldsetToDiv" toggleable="true" collapsed="true">
-					
+			<div class="ui-fluid">
+				<p:outputLabel styleClass="task-template-title">Demo Primefaces Elements</p:outputLabel>
+	
+				<div class="ui-g">
+						<div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="input" value="Input" styleClass="" /></div>
+						<div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputText id="input" /></div>
+						<div class="ui-g-12 ui-md-12 ui-lg-1"></div>
+						<div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="input2" value="More Input" styleClass="" /></div>
+						<div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputText id="input2" /></div>
+				</div>
+				<div class="ui-g">
+				    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="calendar" value="Calendar" /></div>
+				    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:calendar id="calendar" /></div>
+				    <div class="ui-g-12 ui-md-12 ui-lg-1"></div>
+				    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="ac" value="AutoComplete" /></div>
+				    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:autoComplete id="ac" completeMethod="#{autoCompleteView.completeText}" /></div>
+				</div>
+				<div class="ui-g">
+				    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="area" value="Comment" styleClass="alignTop" /></div>
+				    <div class="ui-g-12 ui-md-6 ui-lg-9"><p:inputTextarea id="area" style="" /></div>
+				</div>
+	
+				<p:fieldset legend="More options" styleClass="marginTop10px fitFieldsetToDiv" toggleable="true" collapsed="true">
 					<div class="ui-g">
 					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="onemenu" value="OneMenu" /></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:selectOneMenu id="onemenu">
-																<f:selectItem itemLabel="Select One" itemValue="" />
-																<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
-																<f:selectItem itemLabel="PS4" itemValue="PS4" />
-																<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
-															</p:selectOneMenu></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-1"></div>
+					    <div class="ui-g-12 ui-md-6 ui-lg-3">
+					    	<p:selectOneMenu id="onemenu">
+								<f:selectItem itemLabel="Select One" itemValue="" />
+								<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
+								<f:selectItem itemLabel="PS4" itemValue="PS4" />
+								<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+							</p:selectOneMenu>
+						</div>
+					    <div class="ui-g-12 ui-md-12 ui-lg-1"></div>
 					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="spinner" value="Spinner" style="" /></div>
 					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:spinner id="spinner" style="" /></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-1"></div>
 					</div>
-						
-						
-						
 					<div class="ui-g">
 					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="console" value="Basic" /></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:selectOneMenu id="console" value="#{selectOneMenuView.console}" >
-																<f:selectItem itemLabel="Select One" itemValue="" />
-																<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
-																<f:selectItem itemLabel="PS4" itemValue="PS4" />
-																<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
-															</p:selectOneMenu></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-1"></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-2"></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-3"></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-1"></div>
+					    <div class="ui-g-12 ui-md-6 ui-lg-3">
+					    	<p:selectOneMenu id="console" value="#{selectOneMenuView.console}" >
+								<f:selectItem itemLabel="Select One" itemValue="" />
+								<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
+								<f:selectItem itemLabel="PS4" itemValue="PS4" />
+								<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+							</p:selectOneMenu>
+						</div>
 					</div>
-						
-						
-						
-
 					<div class="ui-g">
 					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="radio" value="Radio" /></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:selectOneRadio id="radio" value="#{radioView.console}">
-																<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
-																<f:selectItem itemLabel="PS4" itemValue="PS4" />
-																<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
-															</p:selectOneRadio></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-1"></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-2"></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-3"></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-1"></div>
+					    <div class="ui-g-12 ui-md-6 ui-lg-3">
+					    	<p:selectOneRadio id="radio" value="#{radioView.console}">
+								<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
+								<f:selectItem itemLabel="PS4" itemValue="PS4" />
+								<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+							</p:selectOneRadio>
+						</div>
 					</div>
-						
-
 					<div class="ui-g">
 					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="chkbox" value="Checkbox" style="" /></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-4"><p:panelGrid columns="6" style="" columnClasses="" styleClass="ui-panelgrid-blank marginLeftMinus10">
-																<p:selectManyCheckbox id="chkbox" style="" layout="grid" columns="3"
-																		value="#{checkboxView.selectedConsoles}">
-																		<f:selectItem itemLabel="Opt one" itemValue="Opt One" />
-																		<f:selectItem itemLabel="Opt twotwotwo" itemValue="Opt two" />
-																		<f:selectItem itemLabel="Opt three" itemValue="Opt three" />
-																		<f:selectItem itemLabel="Opt four" itemValue="Opt four" />
-																		<f:selectItem itemLabel="Opt five" itemValue="Opt five" />
-																		<f:selectItem itemLabel="Opt fivefivefive" itemValue="Opt six" />
-																</p:selectManyCheckbox>
-															</p:panelGrid></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-1"></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-2"></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-2"></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-1"></div>
-					</div>
-					
-					</p:fieldset>
-				
-				<br/>
-					
-
-						<p:dialog header="Login" widgetVar="dlg" resizable="false"
-						responsive="true">
-						<p:panelGrid columns="2" layout="grid"
-							styleClass="ui-panelgrid-blank"
-							columnClasses="ui-grid-col-4,ui-grid-col-8">
-							<h:outputLabel for="username" value="Username:" />
-							<p:inputText id="username" />
-
-							<h:outputLabel for="password" value="Password:" />
-							<p:password id="password" />
-
-							<f:facet name="footer">
-								<p:commandButton value="Login" type="button"
-									onclick="PF('dlg').hide()" />
-							</f:facet>
-						</p:panelGrid>
-					</p:dialog>
-					<br/>
-					 <p:accordionPanel activeIndex="null" styleClass="fitAccordionToFieldset">
-        			<p:tab title="Filter table">
-					<div class="ui-g">
-					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="input6" value="Surname" /></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputText id="input6" /></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-1"></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="input7" value="First name" /></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputText id="input7" /></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-1"></div>
-					</div>
-					<div class="ui-g">
-					 <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="console4" value="Profession" /></div>
-					 <div class="ui-g-12 ui-md-6 ui-lg-3"><p:selectOneMenu id="console4" value="#{selectOneMenuView.console}" >
-																<f:selectItem itemLabel="Select One" itemValue="" />
-																<f:selectItem itemLabel="Filter Xy" itemValue="Xbox One" />
-																<f:selectItem itemLabel="Filter Xy" itemValue="PS4" />
-																<f:selectItem itemLabel="Filter Xy" itemValue="Wii U" />
-															</p:selectOneMenu></div>
-					<div class="ui-g-12 ui-md-6 ui-lg-1"></div>
-					<div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="console5" value="ID" /></div>
-					<div class="ui-g-12 ui-md-6 ui-lg-3"><p:selectOneMenu id="console5" value="#{selectOneMenuView.console}" >
-																<f:selectItem itemLabel="Select One" itemValue="" />
-																<f:selectItem itemLabel="Filter Xy" itemValue="Xbox One" />
-																<f:selectItem itemLabel="Filter Xy" itemValue="PS4" />
-																<f:selectItem itemLabel="Filter Xy" itemValue="Wii U" />
-															</p:selectOneMenu></div>
-					</div>
-					</p:tab>
-					</p:accordionPanel>
-					<p:toolbar style="border:none">
-						<f:facet name="right" >
-							<p:commandButton value="Add new row" style="margin-right:0px"
-								styleClass="portal-cancel-button" process="@this" 
-								update="theTable" actionListener="#{dtAddRowView.onAddNew()}"
-								oncomplete="PF('cars1').addRow();" />
-						</f:facet>
-					</p:toolbar>
-					<p:dataTable id="theTable" widgetVar="theTable" editable="true"
-						scrollable="true" scrollHeight="250"
-						value="#{data.scores}" var="score" rows="8"
-						selection="#{data.selectedScore}" selectionMode="single"
-						rowKey="#{score.id}" draggableColumns="true" draggableRows="true"
-						style="width:100%">
-						<p:ajax event="rowSelect" update=":detailDialog"
-							oncomplete="PF('detailDialog').show()" />
-						
-
-						<p:rowExpansion>
-							<p:panelGrid columns="2" style="width:400px">
-								<p:outputLabel>No</p:outputLabel>
-								<p:inputText value="#{score.id}" disabled="true" />
-								<p:outputLabel for="name">Name</p:outputLabel>
-								<p:inputText id="name" value="#{score.name}" required="true" />
-								<p:outputLabel for="points">Points</p:outputLabel>
-								<p:inputText id="points" value="#{score.points}" required="true" />
-								<br></br>
-								<p:commandButton value="Save" update=":form:theTable"
-									actionListener="#{logic.save}" id="saveButton" />
+					    <div class="ui-g-12 ui-md-6 ui-lg-4">
+					    	<p:panelGrid columns="6" style="" columnClasses="" styleClass="ui-panelgrid-blank marginLeftMinus10">
+								<p:selectManyCheckbox id="chkbox" style="" layout="grid" columns="3"
+										value="#{checkboxView.selectedConsoles}">
+										<f:selectItem itemLabel="Opt one" itemValue="Opt One" />
+										<f:selectItem itemLabel="Opt twotwotwo" itemValue="Opt two" />
+										<f:selectItem itemLabel="Opt three" itemValue="Opt three" />
+										<f:selectItem itemLabel="Opt four" itemValue="Opt four" />
+										<f:selectItem itemLabel="Opt five" itemValue="Opt five" />
+										<f:selectItem itemLabel="Opt fivefivefive" itemValue="Opt six" />
+								</p:selectManyCheckbox>
 							</p:panelGrid>
-						</p:rowExpansion>
-
-						<p:column headerText="No" sortBy="#{score.id}" style="width:60px"
-							id="scoreId">
-							<p:outputLabel value="#{score.id}" />
-						</p:column>
-
-						<p:column headerText="Name" filterMatchMode="exact"
-							filterBy="#{score.name}" styleClass="filterColumn"
-							style="width:200px">
-							<f:facet name="filter">
-								<p:selectOneMenu onchange="PF('theTable').filter()"
-									id="nameFilter">
-									<f:selectItem itemLabel="All" itemValue="#{null}"
-										noSelectionOption="true" />
-									<f:selectItems value="#{data.names}" />
+						</div>
+					</div>
+				</p:fieldset>
+				<p:dialog header="Login" widgetVar="dlg" resizable="false"
+				responsive="true">
+					<p:panelGrid columns="2" layout="grid"
+						styleClass="ui-panelgrid-blank"
+						columnClasses="ui-grid-col-4,ui-grid-col-8">
+						<h:outputLabel for="username" value="Username:" />
+						<p:inputText id="username" />
+		
+						<h:outputLabel for="password" value="Password:" />
+						<p:password id="password" />
+		
+						<f:facet name="footer">
+							<p:commandButton value="Login" type="button"
+								onclick="PF('dlg').hide()" />
+						</f:facet>
+					</p:panelGrid>
+				</p:dialog>
+	
+				<br/>
+				<p:accordionPanel activeIndex="null">
+	        		<p:tab title="Filter table">
+						<div class="ui-g">
+						    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="input6" value="Surname" /></div>
+						    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputText id="input6" /></div>
+						    <div class="ui-g-12 ui-md-12 ui-lg-1"></div>
+						    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="input7" value="First name" /></div>
+						    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputText id="input7" /></div>
+						</div>
+						<div class="ui-g">
+							 <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="console4" value="Profession" /></div>
+							 <div class="ui-g-12 ui-md-6 ui-lg-3">
+							 	<p:selectOneMenu id="console4" value="#{selectOneMenuView.console}" >
+									<f:selectItem itemLabel="Select One" itemValue="" />
+									<f:selectItem itemLabel="Filter Xy" itemValue="Xbox One" />
+									<f:selectItem itemLabel="Filter Xy" itemValue="PS4" />
+									<f:selectItem itemLabel="Filter Xy" itemValue="Wii U" />
 								</p:selectOneMenu>
-							</f:facet>
-							<p:outputLabel id="colName" value="#{score.name}" />
-						</p:column>
-
-						<p:column headerText="Points" filterMatchMode="startsWith"
-							filterBy="#{score.points}" style="width:180px"
-							styleClass="filterColumn" id="scorePointFilter">
-							<p:outputLabel value="#{score.points}"></p:outputLabel>
-						</p:column>
-
-						<p:column headerText="Date" filterBy="#{score.date}"
-							style="width:200px">
-							<f:facet name="filter">
-								<p:calendar onchange="PF('theTable').filter()"
-									pattern="dd.MM.yyyy">
-									<p:ajax event="dateSelect" oncomplete="PF('theTable').filter()"
-										update="theTable" />
-								</p:calendar>
-							</f:facet>
-							<p:outputLabel value="#{score.date}">
-								<f:convertDateTime pattern="dd.MM.yyyy" />
-							</p:outputLabel>
-						</p:column>
-
-						<p:column style="width:32px;text-align: center">
-							<p:commandLink update=":detailDialog" styleClass="fa fa-edit"
-								oncomplete="PF('detailDialog').show()" title="Edit"
-								style="height:20px;" id="dialogEditButton">
-								<f:setPropertyActionListener value="#{score}"
-									target="#{data.selectedScore}" />
-							</p:commandLink>
-							<p:commandLink update=":detailDialog" styleClass="fa fa-trash"
-								oncomplete="PF('detailDialog').show()" title="Delete"
-								style="height:20px;margin-left:10px" id="dialogDeleteButton">
-								<f:setPropertyActionListener value="#{score}"
-									target="#{data.selectedScore}" />
-							</p:commandLink>
-						</p:column>
-
-					</p:dataTable>
-					
-		</div>
-
-		</h:form>
-	</p:tab>
-			<ui:include src="DetailsDialog.xhtml"></ui:include>
-
-
-
-		</ui:define>
-		<ui:define name="taskForm">
-		
-			<p:tabView styleClass="marginLeft10px">
-							<p:tab title="First">
-							<div class="ui-fluid">
-							
-								<div class="ui-g">
-								    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="input8" value="Input" style="text-align:top" /></div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputText id="input8" /></div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-1"></div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="input9" value="Input" style="text-align:top" /></div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputText id="input9" /></div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-1"></div>
-								</div>
-									
-								<div class="ui-g">
-								    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="calendar5" value="Calendar" /></div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:calendar id="calendar5" /></div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-1"></div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-2">  <p:outputLabel value="Simple:" for="acSimple" /> </div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-3">
-								    <p:autoComplete id="acSimple" value="#{autoCompleteView.txt1}" completeMethod="#{autoCompleteView.completeText}" />
-								    </div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-1"></div>
-								</div>	
-								<div class="ui-g">
-								    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="mask5" value="Mask" /></div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputMask id="mask5" mask="99/99/9999" /></div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-1"></div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="pwd5" value="Password" /></div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:password id="pwd5" /></div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-1"></div>
-								</div>		
-								<div class="ui-g">
-								    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="input10" value="Input" style="text-align:top" /></div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputText id="input10" /></div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-1"></div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="input11" value="Input" style="text-align:top" /></div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputText id="input11" /></div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-1"></div>
-								</div>	
-									<div class="ui-g">
-								    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="calendar8" value="Calendar" /></div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:calendar id="calendar8" /></div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-1"></div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="ac8" value="AutoComplete" /></div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:autoComplete id="ac8"
-										completeMethod="#{autoCompleteView.completeText}" /></div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-1"></div>
-								</div>		
-									<div class="ui-g">
-								    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="mask8" value="Mask" /></div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputMask id="mask8" mask="99/99/9999" /></div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-1"></div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="pwd8" value="Password" /></div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:password id="pwd8" /></div>
-								    <div class="ui-g-12 ui-md-6 ui-lg-1"></div>
-								</div>		
-								
 							</div>
-							</p:tab>
-							<p:tab title="Second">
-								<p:panelGrid columns="1" styleClass="ui-panelgrid-blank">
-									
-									<h:outputText
-										value="Francis Ford Coppola's legendary continuation and sequel to his landmark 1972 film, The_Godfather, parallels the young Vito Corleone's rise with his son Michael's spiritual fall, deepening The_Godfather's depiction of the dark side of the American dream. 
-               									 In the early 1900s, the child Vito flees his Sicilian village for America after the local Mafia kills his family. Vito struggles to make a living, legally or illegally, for his wife and growing brood in Little Italy, 
-                								killing the local Black Hand Fanucci after he demands his customary cut of the tyro's business. With Fanucci gone, Vito's communal stature grows." />
-								</p:panelGrid>
-							<br/>	
-								<p:panelGrid columns="1"  styleClass="ui-panelgrid-blank">
-									
-									<h:outputText
-										value="After a break of more than 15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family. 
-                   								 Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate." />
-								</p:panelGrid>
-							</p:tab>
-						</p:tabView>
+							<div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="console5" value="ID" /></div>
+							<div class="ui-g-12 ui-md-6 ui-lg-3">
+								<p:selectOneMenu id="console5" value="#{selectOneMenuView.console}" >
+									<f:selectItem itemLabel="Select One" itemValue="" />
+									<f:selectItem itemLabel="Filter Xy" itemValue="Xbox One" />
+									<f:selectItem itemLabel="Filter Xy" itemValue="PS4" />
+									<f:selectItem itemLabel="Filter Xy" itemValue="Wii U" />
+								</p:selectOneMenu>
+							</div>
+						</div>
+					</p:tab>
+				</p:accordionPanel>
+	
+				<p:toolbar style="border:none">
+					<f:facet name="right" >
+						<p:commandButton value="Add new row" style="margin-right:0px"
+							styleClass="portal-cancel-button" process="@this" 
+							update="theTable" actionListener="#{dtAddRowView.onAddNew()}"
+							oncomplete="PF('cars1').addRow();" />
+					</f:facet>
+				</p:toolbar>
+	
+				<p:dataTable id="theTable" widgetVar="theTable" editable="true"
+					scrollable="true" scrollHeight="250"
+					value="#{data.scores}" var="score" rows="8"
+					selection="#{data.selectedScore}" selectionMode="single"
+					rowKey="#{score.id}" draggableColumns="true" draggableRows="true"
+					style="width:100%">
+					<p:ajax event="rowSelect" update=":detailDialog"
+						oncomplete="PF('detailDialog').show()" />
+					
+					<p:rowExpansion>
+						<p:panelGrid columns="2" style="width:400px">
+							<p:outputLabel>No</p:outputLabel>
+							<p:inputText value="#{score.id}" disabled="true" />
+							<p:outputLabel for="name">Name</p:outputLabel>
+							<p:inputText id="name" value="#{score.name}" required="true" />
+							<p:outputLabel for="points">Points</p:outputLabel>
+							<p:inputText id="points" value="#{score.points}" required="true" />
+							<br></br>
+							<p:commandButton value="Save" update=":form:theTable"
+								actionListener="#{logic.save}" id="saveButton" />
+						</p:panelGrid>
+					</p:rowExpansion>
+	
+					<p:column headerText="No" sortBy="#{score.id}" style="width:60px"
+						id="scoreId">
+						<p:outputLabel value="#{score.id}" />
+					</p:column>
+	
+					<p:column headerText="Name" filterMatchMode="exact"
+						filterBy="#{score.name}" styleClass="filterColumn"
+						style="width:200px">
+						<f:facet name="filter">
+							<p:selectOneMenu onchange="PF('theTable').filter()"
+								id="nameFilter">
+								<f:selectItem itemLabel="All" itemValue="#{null}"
+									noSelectionOption="true" />
+								<f:selectItems value="#{data.names}" />
+							</p:selectOneMenu>
+						</f:facet>
+						<p:outputLabel id="colName" value="#{score.name}" />
+					</p:column>
+	
+					<p:column headerText="Points" filterMatchMode="startsWith"
+						filterBy="#{score.points}" style="width:180px"
+						styleClass="filterColumn" id="scorePointFilter">
+						<p:outputLabel value="#{score.points}"></p:outputLabel>
+					</p:column>
+	
+					<p:column headerText="Date" filterBy="#{score.date}"
+						style="width:200px">
+						<f:facet name="filter">
+							<p:calendar onchange="PF('theTable').filter()"
+								pattern="dd.MM.yyyy">
+								<p:ajax event="dateSelect" oncomplete="PF('theTable').filter()"
+									update="theTable" />
+							</p:calendar>
+						</f:facet>
+						<p:outputLabel value="#{score.date}">
+							<f:convertDateTime pattern="dd.MM.yyyy" />
+						</p:outputLabel>
+					</p:column>
+	
+					<p:column style="width:32px;text-align: center">
+						<p:commandLink update=":detailDialog" styleClass="fa fa-edit"
+							oncomplete="PF('detailDialog').show()" title="Edit"
+							style="height:20px;" id="dialogEditButton">
+							<f:setPropertyActionListener value="#{score}"
+								target="#{data.selectedScore}" />
+						</p:commandLink>
+						<p:commandLink update=":detailDialog" styleClass="fa fa-trash"
+							oncomplete="PF('detailDialog').show()" title="Delete"
+							style="height:20px;margin-left:10px" id="dialogDeleteButton">
+							<f:setPropertyActionListener value="#{score}"
+								target="#{data.selectedScore}" />
+						</p:commandLink>
+					</p:column>
+	
+				</p:dataTable>
+						
+			</div>
+	
+			</h:form>
+		</p:tab>
+		<ui:include src="DetailsDialog.xhtml"></ui:include>
+	</ui:define>
+	<ui:define name="taskForm">
+		<p:tabView>
+			<p:tab title="First">
+				<div class="ui-fluid">
+					<div class="ui-g">
+					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="input8" value="Input" style="text-align:top" /></div>
+					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputText id="input8" /></div>
+					    <div class="ui-g-12 ui-md-12 ui-lg-1"></div>
+					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="input9" value="Input" style="text-align:top" /></div>
+					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputText id="input9" /></div>
+					</div>
+	
+					<div class="ui-g">
+					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="calendar5" value="Calendar" /></div>
+					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:calendar id="calendar5" /></div>
+					    <div class="ui-g-12 ui-md-12 ui-lg-1"></div>
+					    <div class="ui-g-12 ui-md-6 ui-lg-2">  <p:outputLabel value="Simple:" for="acSimple" /> </div>
+					    <div class="ui-g-12 ui-md-12 ui-lg-3">
+					    	<p:autoComplete id="acSimple" value="#{autoCompleteView.txt1}" completeMethod="#{autoCompleteView.completeText}" />
+					    </div>
+					</div>
+	
+					<div class="ui-g">
+					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="mask5" value="Mask" /></div>
+					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputMask id="mask5" mask="99/99/9999" /></div>
+					    <div class="ui-g-12 ui-md-12 ui-lg-1"></div>
+					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="pwd5" value="Password" /></div>
+					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:password id="pwd5" /></div>
+					</div>
+	
+					<div class="ui-g">
+					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="input10" value="Input" style="text-align:top" /></div>
+					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputText id="input10" /></div>
+					    <div class="ui-g-12 ui-md-12 ui-lg-1"></div>
+					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="input11" value="Input" style="text-align:top" /></div>
+					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputText id="input11" /></div>
+					</div>
+	
+					<div class="ui-g">
+					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="calendar8" value="Calendar" /></div>
+					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:calendar id="calendar8" /></div>
+					    <div class="ui-g-12 ui-md-12 ui-lg-1"></div>
+					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="ac8" value="AutoComplete" /></div>
+					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:autoComplete id="ac8"
+							completeMethod="#{autoCompleteView.completeText}" /></div>
+					</div>
+	
+					<div class="ui-g">
+					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="mask8" value="Mask" /></div>
+					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputMask id="mask8" mask="99/99/9999" /></div>
+					    <div class="ui-g-12 ui-md-12 ui-lg-1"></div>
+					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="pwd8" value="Password" /></div>
+					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:password id="pwd8" /></div>
+					</div>
+				</div>
+			</p:tab>
+			<p:tab title="Second">
+				<p:panelGrid columns="1" styleClass="ui-panelgrid-blank">
+					<h:outputText
+						value="Francis Ford Coppola's legendary continuation and sequel to his landmark 1972 film, The_Godfather, parallels the young Vito Corleone's rise with his son Michael's spiritual fall, deepening The_Godfather's depiction of the dark side of the American dream. 
+           									 In the early 1900s, the child Vito flees his Sicilian village for America after the local Mafia kills his family. Vito struggles to make a living, legally or illegally, for his wife and growing brood in Little Italy, 
+            								killing the local Black Hand Fanucci after he demands his customary cut of the tyro's business. With Fanucci gone, Vito's communal stature grows." />
+				</p:panelGrid>
+				<br/>
+				<p:panelGrid columns="1"  styleClass="ui-panelgrid-blank">
+					<h:outputText
+						value="After a break of more than 15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family. 
+               								 Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate." />
+				</p:panelGrid>
+			</p:tab>
+		</p:tabView>
 		
 		</ui:define>
-		 <ui:define name="rightButtons" ><!-- "centerButtons" for mobile view and remove next div-->
-          <br/><div class="marginBottom10px">
-          	<p:commandButton actionListener="#{logic.close}" value="Proceed" styleClass="" 
-								update="form" icon="fa fa-check" />
-				<p:commandButton actionListener="#{logic.close}" value="Cancel"  styleClass="" 
-								update="form" icon="fa fa-close" />
-								</div>
-		  </ui:define>
+		 <ui:define name="rightButtons" >
+	         <div class="MarTop20">
+	          	<p:commandButton actionListener="#{logic.close}" value="Proceed" update="form" icon="fa fa-check" />
+				<p:commandButton actionListener="#{logic.close}" value="Cancel" update="form" icon="fa fa-close" />
+			</div>
+		</ui:define>
 	</ui:composition>
 </h:body>
 </html>
