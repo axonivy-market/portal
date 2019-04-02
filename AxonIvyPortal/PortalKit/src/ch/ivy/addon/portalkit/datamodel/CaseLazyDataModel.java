@@ -25,9 +25,9 @@ import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
-import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.service.CaseColumnsConfigurationService;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
@@ -325,9 +325,17 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   private void restoreSessionAdvancedFilters() throws IllegalAccessException, InvocationTargetException {
     if (!isNotKeepFilter) {
       List<CaseFilter> sessionCaseFilters = UserUtils.getSessionCaseAdvancedFilterAttribute();
-      for (CaseFilter filter : filters) {
-        for (CaseFilter sessionCaseFilter : sessionCaseFilters) {
-          copyProperties(sessionCaseFilter, filter);
+      if(sessionCaseFilters.isEmpty()) {
+        for (CaseFilter filter : filters) {
+          if(filter.defaultFilter()) {
+            selectedFilters.add(filter);
+          }
+        }
+      } else {
+        for (CaseFilter filter : filters) {
+          for (CaseFilter sessionCaseFilter : sessionCaseFilters) {
+            copyProperties(sessionCaseFilter, filter);
+          }
         }
       }
     }
