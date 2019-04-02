@@ -93,4 +93,9 @@ public abstract class AbstractFilter<T extends Query<?>> {
    * </p>
    */
   public void validate() {}
+  
+  public boolean defaultFilter() {
+    return false;
+  }
+
 }

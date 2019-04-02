@@ -50,7 +50,7 @@
       <h:panelGroup styleClass="filter-container js-filter-container"
         rendered="#{!cc.attrs.hideCaseFilter}">
         <h:panelGroup id="filter-selection-container">
-          <h:form id="filter-selection-form" class="filter-selection-form"
+          <h:form id="filter-selection-form" class="filter-selection-form vertical-line"
             rendered="#{not empty data.privateFilters or not empty data.publicFilters}">
             <p:outputPanel id="filter-selection-panel"
               rendered="#{(not empty data.privateFilters or not empty data.publicFilters)}">

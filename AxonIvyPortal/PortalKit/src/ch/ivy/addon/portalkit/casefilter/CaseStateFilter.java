@@ -71,6 +71,11 @@ public class CaseStateFilter extends CaseFilter {
   public void resetValues() {
     selectedFilteredStates = new ArrayList<>(selectedFilteredStatesAtBeginning);
   }
+  
+  @Override
+  public boolean defaultFilter() {
+    return true;
+ }
 
   public String userFriendlyState(CaseState state) {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/" + state);
