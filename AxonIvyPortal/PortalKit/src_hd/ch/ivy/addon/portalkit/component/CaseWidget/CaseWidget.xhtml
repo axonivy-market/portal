@@ -111,9 +111,13 @@
             </p:outputPanel>
           </h:form>
         </h:panelGroup>
-        <h:panelGroup id="filter-add-container" styleClass="filter-add-container">
+        <h:panelGroup id="advanced-filter-container" layout="block" styleClass="advanced-filter-container">
           <f:event listener="#{data.dataModel.initFilters()}" type="preRenderComponent" />
-
+          <h:panelGroup styleClass="additional-filter-container">
+            <cc:renderFacet name="caseFilter" />
+          </h:panelGroup>
+        </h:panelGroup>
+        <h:panelGroup id="filter-add-container" styleClass="filter-add-container">
           <p:commandButton id="filter-add-action" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/filter')}"
             styleClass="filter-add-button" icon="fa fa-caret-down" iconPos="right" type="button" />
           <p:overlayPanel id="filter-add-panel" styleClass="filter-add-panel" for="filter-add-action" my="left top"
@@ -131,11 +135,6 @@
               </p:scrollPanel>
             </h:form>
           </p:overlayPanel>
-        </h:panelGroup>
-        <h:panelGroup id="advanced-filter-container" layout="block" styleClass="advanced-filter-container">
-          <h:panelGroup styleClass="additional-filter-container js-additional-filter-container">
-            <cc:renderFacet name="caseFilter" />
-          </h:panelGroup>
         </h:panelGroup>
         <h:panelGroup id="filter-save-container">
           <p:commandButton id="filter-save-action"
