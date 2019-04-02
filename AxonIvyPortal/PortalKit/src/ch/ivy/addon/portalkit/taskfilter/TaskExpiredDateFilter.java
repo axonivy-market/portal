@@ -95,4 +95,9 @@ public class TaskExpiredDateFilter extends TaskFilter {
   public void setToExpiredDate(Date toExpiredDate) {
     this.toExpiredDate = toExpiredDate;
   }
+  
+  @Override
+  public boolean defaultFilter() {
+    return true;
+ }
 }
