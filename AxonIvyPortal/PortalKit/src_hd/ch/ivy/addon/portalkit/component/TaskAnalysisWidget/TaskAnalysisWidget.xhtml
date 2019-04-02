@@ -88,7 +88,7 @@
         <!-- TASK FILTERS -->
         <p:fieldset id="task-filters-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskFilter')}" toggleable="false" styleClass="filter-fieldset MarTop20">
           <h:panelGroup id="task-filters-container" layout="block" styleClass="advanced-filter-container">
-            <h:panelGroup id="additional-task-filter" styleClass="additional-filter-container js-additional-filter-container">
+            <h:panelGroup id="additional-task-filter" styleClass="additional-filter-container">
               <c:set var="filterContainer" value="#{data.dataModel.taskFilterContainer}" />
               <ic:ch.ivy.addon.portalkit.component.task.filter.TaskPriorityFilter filter="#{filterContainer.priorityFilter}"
                 dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
@@ -142,7 +142,7 @@
         <!-- CASE FILTERS -->
         <p:fieldset id="case-filters-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseFilter')}" toggleable="false" styleClass="MarTop20 filter-fieldset">
           <h:panelGroup id="case-filters-container" layout="block" styleClass="advanced-filter-container">
-            <h:panelGroup id="additional-case-filter" styleClass="additional-filter-container js-additional-filter-container">
+            <h:panelGroup id="additional-case-filter" styleClass="additional-filter-container">
               <c:set var="caseFilterContainer" value="#{data.dataModel.caseFilterContainer}" />
               <cc:attribute name="filterContainerId" default="#{p:component('task-filters-container')}" />
               <cc:attribute name="filterAddingContainerId" default="#{p:component('filter-add-container')}" />
