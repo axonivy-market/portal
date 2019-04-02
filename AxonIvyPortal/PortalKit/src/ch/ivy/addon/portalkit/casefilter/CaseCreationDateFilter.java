@@ -79,6 +79,10 @@ public class CaseCreationDateFilter extends CaseFilter {
     }
   }
 
+  @Override
+  public boolean defaultFilter() {
+    return true;
+ }
   public Date getFromCreationDate() {
     return fromCreationDate;
   }
