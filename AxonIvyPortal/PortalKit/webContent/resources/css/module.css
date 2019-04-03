@@ -5555,3 +5555,11 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel {
     display: inline-block;
     margin-right: 5xp;
 }
+
+/* =================== RESPONSIVE ENHANCEMENT ====================== */
+@media screen and (min-width: 40.063em) {
+	.ui-md-0 {
+		display: none !important;
+	}
+}
+/* =================== END ENHANCEMENT ====================== */
