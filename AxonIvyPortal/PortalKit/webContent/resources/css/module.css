@@ -1420,7 +1420,9 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 }
 
 .task-widget .advanced-filter:hover, 
-.case-widget-container .advanced-filter:hover  {
+.case-widget-container .advanced-filter:hover,
+.task-widget .filter-selection-container:hover,
+.case-widget-container .filter-selection-container:hover {
   background-color: rgba(0,0,0,0.04);
   border-color: #d5d5d5;
   border-radius: 5px;
@@ -1438,6 +1440,18 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   text-overflow: ellipsis;
   white-space: nowrap;
   max-width: 400px;
+}
+
+.task-widget .filter-selection-container,
+.case-widget-container .filter-selection-container,
+.filter-container .vertical-line {
+  display: inline-block;
+  height: 35px;
+  line-height: 35px;
+  background: none;
+  min-width: 0;
+  border: solid transparent 1px;
+  padding-left: 5px;
 }
 
 .task-widget .ui-widget.ui-button.advanced-filter-command:after, 
@@ -2454,8 +2468,7 @@ a.case-details-document-add-link {
 } 
 
 .filter-selection-form {
-  margin-right: 10px;
-  padding-top: 5px;
+  margin-right: 5px;
   padding-right: 10px;
 }
 
@@ -5538,6 +5551,5 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel {
 .filter-container .vertical-line {
     border-right: solid 1px rgba(0,0,0,0.5);
     display: inline-block;
-    height: 20px;
-    margin-right: 5px;
+    margin-right: 5xp;
 }
