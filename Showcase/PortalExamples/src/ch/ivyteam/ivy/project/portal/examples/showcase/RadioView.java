@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
 
-import ch.ivyteam.ivy.scripting.objects.List;
-
 @ManagedBean
 public class RadioView {
      
