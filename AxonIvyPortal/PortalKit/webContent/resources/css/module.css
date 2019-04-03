@@ -3307,7 +3307,9 @@ _:-ms-input-placeholder, :root .case-details > * {
 .no-related-task-and-case-permission{
 	word-break: normal ;
 	word-wrap: break-word;	
-	white-space: normal;	
+	white-space: normal;
+	max-width: 250px;
+	min-width: 100px;	
 }
 
 .case-details-note-add {
