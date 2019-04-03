@@ -59,6 +59,13 @@ _:-ms-input-placeholder, :root .debitor-label-container.small {
 	width: 16.5%;
 }
 
+@media (max-width: 1366px) {
+  .debitor-label-container.small,
+  _:-ms-input-placeholder, :root .debitor-label-container.small {
+    width: 25% !important;
+  }
+}
+
 .debitor-label-container label {
 	line-height: 2.3;
 }
@@ -169,6 +176,12 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel {
 	width: 12.29%;
 }
 
+@media (max-width: 1025px) {
+	.first-level-tab-menu .ui-tabmenu-nav .ui-tabmenuitem {
+		width: 20% !important;
+	}
+}
+
 .first-level-tab-menu .ui-tabmenu-nav .ui-tabmenuitem a {
 	padding: 10px !important;
 }
@@ -231,6 +244,10 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel {
 	top: 123px;
 	width: 92.4%;
 	z-index: 100;
+}
+
+_:-ms-input-placeholder, :root .second-level-tab-menu.fixed {
+	top: 124px;
 }
 
 .Height100 {
