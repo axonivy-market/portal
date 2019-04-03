@@ -63,7 +63,7 @@
       <h:panelGroup styleClass="filter-container js-filter-container"
         rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter and !isMobile}">
         <h:panelGroup id="filter-selection-container">
-          <h:form id="filter-selection-form" class="filter-selection-form vertical-line"
+          <h:form id="filter-selection-form" class="filter-selection-form filter-selection-container vertical-line"
             rendered="#{(not empty data.taskPrivateFilters or not empty data.taskPublicFilters) and not data.dataModel.compactMode}">
             <p:outputPanel id="filter-selection-panel">
               <h:outputLabel rendered="#{not data.dataModel.compactMode}"
