@@ -89,7 +89,7 @@
 						<div class="ui-g-12 ui-md-6 ui-lg-2">
 							<p:outputLabel for="radio" value="Radio" />
 						</div>
-						<div class="ui-g-12 ui-md-6 ui-lg-3">
+						<div class="ui-g-12 ui-md-6 ui-lg-6">
 							<p:panelGrid columns="6" styleClass="ui-panelgrid-blank">
 								<p:selectOneRadio id="radio" value="#{radioView.console}"  layout="grid" columns="3">
 									<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
@@ -174,18 +174,26 @@
 						</p:selectOneListbox></div>
 						<div class="ui-g-12 ui-md-12 ui-lg-1" ></div>
 						<div class="ui-g-12 ui-md-6 ui-lg-2" >
-							<p:outputLabel id="booleanBtnLabel" for="booleanBtn" value="Boolean Button" />
-							<p:outputLabel id= "manyBtnLabel" for="manyBtn" value="Many Button" />
+							<div class="ui-g-12 ui-md-12 ui-lg-12" >
+								<p:outputLabel id="booleanBtnLabel" for="booleanBtn" value="Boolean Button" />
+							</div>
+							<div class="ui-g-12 ui-md-12 ui-lg-12" >
+								<p:outputLabel id= "manyBtnLabel" for="manyBtn" value="Many Button" />
+							</div>
 						</div>
 						<div class="ui-g-12 ui-md-6 ui-lg-3" >
-							<p:selectBooleanButton id="booleanBtn" onLabel="Yes" offLabel="No"
-								onIcon="fa fa-check" offIcon="fa fa-close" />
+							<div class="ui-g-12 ui-md-12 ui-lg-12" >
+								<p:selectBooleanButton id="booleanBtn" onLabel="Yes" offLabel="No"
+									onIcon="fa fa-check" offIcon="fa fa-close" />
+							</div>
 
-							<p:selectOneButton id="manyBtn">
-								<f:selectItem itemLabel="Sentinel" itemValue="Sentinel" />
-								<f:selectItem itemLabel="Spark" itemValue="Spark" />
-								<f:selectItem itemLabel="Ronin" itemValue="Ronin" />
-							</p:selectOneButton>
+							<div class="ui-g-12 ui-md-12 ui-lg-12" >
+								<p:selectOneButton id="manyBtn">
+									<f:selectItem itemLabel="Sentinel" itemValue="Sentinel" />
+									<f:selectItem itemLabel="Spark" itemValue="Spark" />
+									<f:selectItem itemLabel="Ronin" itemValue="Ronin" />
+								</p:selectOneButton>
+							</div>
 						</div>
 					</div>
 					<br/>
