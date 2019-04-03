@@ -20,28 +20,28 @@
 				<p:outputLabel styleClass="task-template-title">Demo Primefaces Elements</p:outputLabel>
 	
 				<div class="ui-g">
-						<div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="input" value="Input" styleClass="" /></div>
-						<div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputText id="input" /></div>
-						<div class="ui-g-12 ui-md-12 ui-lg-1"></div>
-						<div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="input2" value="More Input" styleClass="" /></div>
-						<div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputText id="input2" /></div>
+						<div class="ui-g-12 ui-md-3 ui-lg-2"><p:outputLabel for="input" value="Input" styleClass="" /></div>
+						<div class="ui-g-12 ui-md-9 ui-lg-3"><p:inputText id="input" /></div>
+						<div class="ui-g-12 ui-md-0 ui-lg-1"></div>
+						<div class="ui-g-12 ui-md-3 ui-lg-2"><p:outputLabel for="input2" value="More Input" styleClass="" /></div>
+						<div class="ui-g-12 ui-md-9 ui-lg-3"><p:inputText id="input2" /></div>
 				</div>
 				<div class="ui-g">
-				    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="calendar" value="Calendar" /></div>
-				    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:calendar id="calendar" /></div>
-				    <div class="ui-g-12 ui-md-12 ui-lg-1"></div>
-				    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="ac" value="AutoComplete" /></div>
-				    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:autoComplete id="ac" completeMethod="#{autoCompleteView.completeText}" /></div>
+				    <div class="ui-g-12 ui-md-3 ui-lg-2"><p:outputLabel for="calendar" value="Calendar" /></div>
+				    <div class="ui-g-12 ui-md-9 ui-lg-3"><p:calendar id="calendar" /></div>
+				    <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
+				    <div class="ui-g-12 ui-md-3 ui-lg-2"><p:outputLabel for="ac" value="AutoComplete" /></div>
+				    <div class="ui-g-12 ui-md-9 ui-lg-3"><p:autoComplete id="ac" /></div>
 				</div>
 				<div class="ui-g">
-				    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="area" value="Comment" styleClass="alignTop" /></div>
-				    <div class="ui-g-12 ui-md-6 ui-lg-9"><p:inputTextarea id="area" style="" /></div>
+				    <div class="ui-g-12 ui-md-3 ui-lg-2"><p:outputLabel for="area" value="Comment" styleClass="alignTop" /></div>
+				    <div class="ui-g-12 ui-md-9 ui-lg-9"><p:inputTextarea id="area" style="" /></div>
 				</div>
 	
 				<p:fieldset legend="More options" styleClass="marginTop10px fitFieldsetToDiv" toggleable="true" collapsed="true">
 					<div class="ui-g">
-					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="onemenu" value="OneMenu" /></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-3">
+					    <div class="ui-g-12 ui-md-3 ui-lg-2"><p:outputLabel for="onemenu" value="OneMenu" /></div>
+					    <div class="ui-g-12 ui-md-9 ui-lg-3">
 					    	<p:selectOneMenu id="onemenu">
 								<f:selectItem itemLabel="Select One" itemValue="" />
 								<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
@@ -49,13 +49,13 @@
 								<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
 							</p:selectOneMenu>
 						</div>
-					    <div class="ui-g-12 ui-md-12 ui-lg-1"></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="spinner" value="Spinner" style="" /></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:spinner id="spinner" style="" /></div>
+					    <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
+					    <div class="ui-g-12 ui-md-3 ui-lg-2"><p:outputLabel for="spinner" value="Spinner" style="" /></div>
+					    <div class="ui-g-12 ui-md-9 ui-lg-3"><p:spinner id="spinner" style="" /></div>
 					</div>
 					<div class="ui-g">
-					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="console" value="Basic" /></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-3">
+					    <div class="ui-g-12 ui-md-3 ui-lg-2"><p:outputLabel for="console" value="Basic" /></div>
+					    <div class="ui-g-12 ui-md-9 ui-lg-3">
 					    	<p:selectOneMenu id="console" value="#{selectOneMenuView.console}" >
 								<f:selectItem itemLabel="Select One" itemValue="" />
 								<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
@@ -65,8 +65,8 @@
 						</div>
 					</div>
 					<div class="ui-g">
-					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="radio" value="Radio" /></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-3">
+					    <div class="ui-g-12 ui-md-3 ui-lg-2"><p:outputLabel for="radio" value="Radio" /></div>
+					    <div class="ui-g-12 ui-md-9 ui-lg-3">
 					    	<p:selectOneRadio id="radio" value="#{radioView.console}">
 								<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
 								<f:selectItem itemLabel="PS4" itemValue="PS4" />
@@ -75,8 +75,8 @@
 						</div>
 					</div>
 					<div class="ui-g">
-					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="chkbox" value="Checkbox" style="" /></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-4">
+					    <div class="ui-g-12 ui-md-3 ui-lg-2"><p:outputLabel for="chkbox" value="Checkbox" style="" /></div>
+					    <div class="ui-g-12 ui-md-9 ui-lg-4">
 					    	<p:panelGrid columns="6" style="" columnClasses="" styleClass="ui-panelgrid-blank marginLeftMinus10">
 								<p:selectManyCheckbox id="chkbox" style="" layout="grid" columns="3"
 										value="#{checkboxView.selectedConsoles}">
@@ -113,15 +113,15 @@
 				<p:accordionPanel activeIndex="null">
 	        		<p:tab title="Filter table">
 						<div class="ui-g">
-						    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="input6" value="Surname" /></div>
-						    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputText id="input6" /></div>
-						    <div class="ui-g-12 ui-md-12 ui-lg-1"></div>
-						    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="input7" value="First name" /></div>
-						    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputText id="input7" /></div>
+						    <div class="ui-g-12 ui-md-3 ui-lg-2"><p:outputLabel for="input6" value="Surname" /></div>
+						    <div class="ui-g-12 ui-md-9 ui-lg-3"><p:inputText id="input6" /></div>
+						    <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
+						    <div class="ui-g-12 ui-md-3 ui-lg-2"><p:outputLabel for="input7" value="First name" /></div>
+						    <div class="ui-g-12 ui-md-9 ui-lg-3"><p:inputText id="input7" /></div>
 						</div>
 						<div class="ui-g">
-							 <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="console4" value="Profession" /></div>
-							 <div class="ui-g-12 ui-md-6 ui-lg-3">
+							 <div class="ui-g-12 ui-md-3 ui-lg-2"><p:outputLabel for="console4" value="Profession" /></div>
+							 <div class="ui-g-12 ui-md-9 ui-lg-3">
 							 	<p:selectOneMenu id="console4" value="#{selectOneMenuView.console}" >
 									<f:selectItem itemLabel="Select One" itemValue="" />
 									<f:selectItem itemLabel="Filter Xy" itemValue="Xbox One" />
@@ -129,8 +129,8 @@
 									<f:selectItem itemLabel="Filter Xy" itemValue="Wii U" />
 								</p:selectOneMenu>
 							</div>
-							<div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="console5" value="ID" /></div>
-							<div class="ui-g-12 ui-md-6 ui-lg-3">
+							<div class="ui-g-12 ui-md-3 ui-lg-2"><p:outputLabel for="console5" value="ID" /></div>
+							<div class="ui-g-12 ui-md-9 ui-lg-3">
 								<p:selectOneMenu id="console5" value="#{selectOneMenuView.console}" >
 									<f:selectItem itemLabel="Select One" itemValue="" />
 									<f:selectItem itemLabel="Filter Xy" itemValue="Xbox One" />
@@ -146,8 +146,8 @@
 					<f:facet name="right" >
 						<p:commandButton value="Add new row" style="margin-right:0px"
 							styleClass="portal-cancel-button" process="@this" 
-							update="theTable" actionListener="#{dtAddRowView.onAddNew()}"
-							oncomplete="PF('cars1').addRow();" />
+							actionListener="#{logic.addNewRow}"
+							update="theTable" />
 					</f:facet>
 				</p:toolbar>
 	
@@ -159,7 +159,6 @@
 					style="width:100%">
 					<p:ajax event="rowSelect" update=":detailDialog"
 						oncomplete="PF('detailDialog').show()" />
-					
 					<p:rowExpansion>
 						<p:panelGrid columns="2" style="width:400px">
 							<p:outputLabel>No</p:outputLabel>
@@ -241,54 +240,53 @@
 			<p:tab title="First">
 				<div class="ui-fluid">
 					<div class="ui-g">
-					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="input8" value="Input" style="text-align:top" /></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputText id="input8" /></div>
-					    <div class="ui-g-12 ui-md-12 ui-lg-1"></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="input9" value="Input" style="text-align:top" /></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputText id="input9" /></div>
+					    <div class="ui-g-12 ui-md-3 ui-lg-2"><p:outputLabel for="input8" value="Input" style="text-align:top" /></div>
+					    <div class="ui-g-12 ui-md-9 ui-lg-3"><p:inputText id="input8" /></div>
+					    <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
+					    <div class="ui-g-12 ui-md-3 ui-lg-2"><p:outputLabel for="input9" value="Input" style="text-align:top" /></div>
+					    <div class="ui-g-12 ui-md-9 ui-lg-3"><p:inputText id="input9" /></div>
 					</div>
 	
 					<div class="ui-g">
-					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="calendar5" value="Calendar" /></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:calendar id="calendar5" /></div>
-					    <div class="ui-g-12 ui-md-12 ui-lg-1"></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-2">  <p:outputLabel value="Simple:" for="acSimple" /> </div>
+					    <div class="ui-g-12 ui-md-3 ui-lg-2"><p:outputLabel for="calendar5" value="Calendar" /></div>
+					    <div class="ui-g-12 ui-md-9 ui-lg-3"><p:calendar id="calendar5" /></div>
+					    <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
+					    <div class="ui-g-12 ui-md-12 ui-lg-2">  <p:outputLabel value="Simple:" for="acSimple" /> </div>
 					    <div class="ui-g-12 ui-md-12 ui-lg-3">
-					    	<p:autoComplete id="acSimple" value="#{autoCompleteView.txt1}" completeMethod="#{autoCompleteView.completeText}" />
+					    	<p:autoComplete id="acSimple" value="" />
 					    </div>
 					</div>
 	
 					<div class="ui-g">
-					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="mask5" value="Mask" /></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputMask id="mask5" mask="99/99/9999" /></div>
-					    <div class="ui-g-12 ui-md-12 ui-lg-1"></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="pwd5" value="Password" /></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:password id="pwd5" /></div>
+					    <div class="ui-g-12 ui-md-3 ui-lg-2"><p:outputLabel for="mask5" value="Mask" /></div>
+					    <div class="ui-g-12 ui-md-9 ui-lg-3"><p:inputMask id="mask5" mask="99/99/9999" /></div>
+					    <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
+					    <div class="ui-g-12 ui-md-3 ui-lg-2"><p:outputLabel for="pwd5" value="Password" /></div>
+					    <div class="ui-g-12 ui-md-9 ui-lg-3"><p:password id="pwd5" /></div>
 					</div>
 	
 					<div class="ui-g">
-					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="input10" value="Input" style="text-align:top" /></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputText id="input10" /></div>
-					    <div class="ui-g-12 ui-md-12 ui-lg-1"></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="input11" value="Input" style="text-align:top" /></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputText id="input11" /></div>
+					    <div class="ui-g-12 ui-md-3 ui-lg-2"><p:outputLabel for="input10" value="Input" style="text-align:top" /></div>
+					    <div class="ui-g-12 ui-md-9 ui-lg-3"><p:inputText id="input10" /></div>
+					    <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
+					    <div class="ui-g-12 ui-md-3 ui-lg-2"><p:outputLabel for="input11" value="Input" style="text-align:top" /></div>
+					    <div class="ui-g-12 ui-md-9 ui-lg-3"><p:inputText id="input11" /></div>
 					</div>
 	
 					<div class="ui-g">
-					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="calendar8" value="Calendar" /></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:calendar id="calendar8" /></div>
-					    <div class="ui-g-12 ui-md-12 ui-lg-1"></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="ac8" value="AutoComplete" /></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:autoComplete id="ac8"
-							completeMethod="#{autoCompleteView.completeText}" /></div>
+					    <div class="ui-g-12 ui-md-3 ui-lg-2"><p:outputLabel for="calendar8" value="Calendar" /></div>
+					    <div class="ui-g-12 ui-md-9 ui-lg-3"><p:calendar id="calendar8" /></div>
+					    <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
+					    <div class="ui-g-12 ui-md-3 ui-lg-2"><p:outputLabel for="ac8" value="AutoComplete" /></div>
+					    <div class="ui-g-12 ui-md-9 ui-lg-3"><p:autoComplete id="ac8" /></div>
 					</div>
 	
 					<div class="ui-g">
-					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="mask8" value="Mask" /></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:inputMask id="mask8" mask="99/99/9999" /></div>
-					    <div class="ui-g-12 ui-md-12 ui-lg-1"></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-2"><p:outputLabel for="pwd8" value="Password" /></div>
-					    <div class="ui-g-12 ui-md-6 ui-lg-3"><p:password id="pwd8" /></div>
+					    <div class="ui-g-12 ui-md-3 ui-lg-2"><p:outputLabel for="mask8" value="Mask" /></div>
+					    <div class="ui-g-12 ui-md-9 ui-lg-3"><p:inputMask id="mask8" mask="99/99/9999" /></div>
+					    <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
+					    <div class="ui-g-12 ui-md-3 ui-lg-2"><p:outputLabel for="pwd8" value="Password" /></div>
+					    <div class="ui-g-12 ui-md-9 ui-lg-3"><p:password id="pwd8" /></div>
 					</div>
 				</div>
 			</p:tab>
