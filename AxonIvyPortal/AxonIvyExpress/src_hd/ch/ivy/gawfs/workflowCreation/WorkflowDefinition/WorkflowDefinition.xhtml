@@ -58,28 +58,12 @@
 							</div>
 								<div class="ui-g-12 ui-md-12 ui-lg-2">
 											<p:selectOneRadio id="user-interface" styleClass="radio-group"
-                  value="#{data.data.isUseDefaultUI}" required="true" layout="custom"
-                  requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/UserInterface')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
-                  <f:selectItem itemValue="false"/>
-                  <f:selectItem itemValue="true" />
-                  <p:ajax onstart="PF('deleteAllDefinedTasksWarning').show();" />
-                </p:selectOneRadio>
-											<!-- <p:selectOneRadio id="user-interface" layout="grid" columns="1"
-												value="#{data.data.isUseDefaultUI}" required="true"
-												requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/UserInterface')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
-												<f:selectItem itemValue="false"
-													itemLabel="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/CreateOwn')}" />
-												<f:selectItem itemValue="true"
-													itemLabel="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/UseDefault')}">
-												</f:selectItem>
-												<f:selectItem itemValue="false"/>
-												<f:selectItem itemValue="true" />
-												<p:ajax onstart="PF('deleteAllDefinedTasksWarning').show();" />
-											</p:selectOneRadio> -->
-								
-											<!-- <p:commandLink id="show-default-ui-icon"
-												styleClass="show-default-ui-icon fa fa-info-circle"
-												oncomplete="PF('default-template-dialog').show();" />	 -->
+							                  value="#{data.data.isUseDefaultUI}" required="true" layout="custom"
+							                  requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/UserInterface')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
+							                  <f:selectItem itemValue="false" />
+							                  <f:selectItem itemValue="true" />
+							                  <p:ajax onstart="PF('deleteAllDefinedTasksWarning').show();" />
+							                </p:selectOneRadio>
 											<p:panelGrid id="user-interface-panel" styleClass="user-interface-panel" columns="1">
 												<p:row>
 													<p:radioButton id="own-option" for="user-interface" itemIndex="0" />
@@ -389,7 +373,7 @@
             styleClass="portal-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
             actionListener="#{logic.changeUISetting(false)}"
             oncomplete="PF('deleteAllDefinedTasksWarning').hide()"
-            update="form:user-interface" global="false" />
+            update="form" global="false" />
         </div>
       </p:confirmDialog>
     </ui:define>
