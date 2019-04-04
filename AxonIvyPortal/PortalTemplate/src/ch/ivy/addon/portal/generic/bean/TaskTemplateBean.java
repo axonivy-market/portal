@@ -37,7 +37,7 @@ public class TaskTemplateBean implements Serializable{
   public void startAdhoc() {
     PortalNavigator portalNavigator = new PortalNavigator();
     ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.wf().getApplication());
-    String url = processStartCollector.findACMLink();
+    String url = processStartCollector.findExpressAdhocWFLink();
     url = url + "?originalTaskId=" + Ivy.wfTask().getId();
     portalNavigator.redirect(url);
   }
@@ -47,9 +47,9 @@ public class TaskTemplateBean implements Serializable{
     portalNavigator.redirect(selectedSideStep.getStartLink().getAbsoluteEncoded());
   }
 
-  public boolean hasSelfService() {
+  public boolean hasExpressAdhocWF() {
     ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.wf().getApplication());
-    String adhocUrl = processStartCollector.findACMLink();
+    String adhocUrl = processStartCollector.findExpressAdhocWFLink();
     return !adhocUrl.isEmpty();
   }
 
