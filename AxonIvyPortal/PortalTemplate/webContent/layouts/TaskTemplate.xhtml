@@ -44,7 +44,7 @@
       <h:panelGroup layout="block" styleClass="task-template-content #{processChainDirection eq 'VERTICAL' ? 'vertical-process-chain' : ''}">
 
         <div class="task-template-tasks-command">
-          <p:commandLink id="start-adhoc" rendered="#{empty isShowStartAdhocButton? taskTemplateBean.hasSelfService(): isShowStartAdhocButton}"
+          <p:commandLink id="start-adhoc" rendered="#{empty isShowStartAdhocButton? taskTemplateBean.hasExpressAdhocWF(): isShowStartAdhocButton}"
             title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHocTooltip')}" styleClass="case-action-link"
             oncomplete="PF('adhoc-task-reset-confirmation-dialog').show()" >
             <i class="fa fa-random fa-2x" />
