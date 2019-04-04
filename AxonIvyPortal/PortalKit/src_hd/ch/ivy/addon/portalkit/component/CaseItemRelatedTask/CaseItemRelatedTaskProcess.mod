@@ -115,7 +115,8 @@ Cs0 f14 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseIte
 ' #txt
 Cs0 f14 actionTable 'out=in;
 ' #txt
-Cs0 f14 actionCode 'import org.apache.commons.lang3.StringUtils;
+Cs0 f14 actionCode 'import ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig;
+import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -123,8 +124,11 @@ import ch.ivyteam.ivy.workflow.ITask;
 in.relatedTasks.clear();
 
 int count = 1;
+boolean excludeHiddenTasks = Boolean.parseBoolean(ivy.var.get(HiddenTasksCasesConfig.PORTAL_HIDDEN_TASK_CASE_EXCLUDED));
 for (ITask task : in.iCase.getTasks()) {
-	if ((task.getState() == TaskState.SUSPENDED || task.getState() == TaskState.RESUMED || task.getState() == TaskState.UNASSIGNED || task.getState() == TaskState.PARKED) && StringUtils.isEmpty(task.customFields().stringField(AdditionalProperty.HIDE.toString()).getOrNull()) && count <= 21) {//get only 21 tasks
+	if ((task.getState() == TaskState.SUSPENDED || task.getState() == TaskState.RESUMED || task.getState() == TaskState.UNASSIGNED || task.getState() == TaskState.PARKED)
+				&& (excludeHiddenTasks ? StringUtils.isEmpty(task.customFields().stringField(AdditionalProperty.HIDE.toString()).getOrNull()) : true)
+				&& count <= 21) {//get only 21 tasks
 		in.relatedTasks.add(task);
 		count++;
 	}
