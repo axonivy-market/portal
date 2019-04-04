@@ -50,7 +50,7 @@
       <h:panelGroup styleClass="filter-container js-filter-container"
         rendered="#{!cc.attrs.hideCaseFilter}">
         <h:panelGroup id="filter-selection-container">
-          <h:form id="filter-selection-form" class="filter-selection-form filter-selection-container vertical-line"
+          <h:form id="filter-selection-form" class="filter-selection-form filter-selection-container"
             rendered="#{not empty data.privateFilters or not empty data.publicFilters}">
             <p:outputPanel id="filter-selection-panel"
               rendered="#{(not empty data.privateFilters or not empty data.publicFilters)}">
@@ -111,6 +111,9 @@
             </p:outputPanel>
           </h:form>
         </h:panelGroup>
+        <h:form id="vertical-line">
+          <p:outputLabel id="vertical-line-filter" styleClass="vertical-line" rendered="#{not empty data.privateFilters or not empty data.publicFilters}"/>
+        </h:form>
         <h:panelGroup id="advanced-filter-container" layout="block" styleClass="advanced-filter-container">
           <f:event listener="#{data.dataModel.initFilters()}" type="preRenderComponent" />
           <h:panelGroup styleClass="additional-filter-container">
@@ -202,7 +205,7 @@
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" process="@form"
           oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('save-filter-set-dialog').hide();}"
           actionListener="#{logic.saveFilter}"
-          update="#{cc.clientId}:filter-selection-container #{cc.clientId}:filter-save-form">
+          update="#{cc.clientId}:filter-selection-container #{cc.clientId}:filter-save-form #{cc.clientId}:vertical-line">
         </p:commandButton>
         <p:spacer width="5px" />
         <p:commandButton type="button" styleClass="portal-cancel-button"
