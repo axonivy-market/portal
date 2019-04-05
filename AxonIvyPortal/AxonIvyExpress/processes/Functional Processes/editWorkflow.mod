@@ -29,7 +29,6 @@ ew0 @PushWFArc f17 '' #zField
 ew0 @PushWFArc f15 '' #zField
 ew0 @Alternative f18 '' #zField
 ew0 @CallSub f20 '' #zField
-ew0 @PushWFArc f2 '' #zField
 ew0 @StartSub f21 '' #zField
 ew0 @PushWFArc f34 '' #zField
 ew0 @EndSub f32 '' #zField
@@ -69,6 +68,11 @@ ew0 @StartSub f50 '' #zField
 ew0 @GridStep f52 '' #zField
 ew0 @PushWFArc f53 '' #zField
 ew0 @PushWFArc f51 '' #zField
+ew0 @GridStep f54 '' #zField
+ew0 @PushWFArc f55 '' #zField
+ew0 @GridStep f56 '' #zField
+ew0 @PushWFArc f57 '' #zField
+ew0 @PushWFArc f2 '' #zField
 >Proto ew0 ew0 editWorkflow #zField
 Ct0 @TextInP .resExport .resExport #zField
 Ct0 @TextInP .type .type #zField
@@ -293,22 +297,8 @@ ew0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 f20 1624 338 176 44 -84 -8 #rect
+ew0 f20 1968 338 176 44 -84 -8 #rect
 ew0 f20 @|CallSubIcon #fIcon
-ew0 f2 expr in #txt
-ew0 f2 outCond 'in.processType == ch.ivy.gawfs.enums.ProcessType.AD_HOC' #txt
-ew0 f2 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>yes</name>
-        <nameStyle>3,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-ew0 f2 1568 280 1624 360 #arcP
-ew0 f2 1 1568 360 #addKink
-ew0 f2 0 0.3125 13 0 #arcLabel
 ew0 f21 inParamDecl '<java.lang.String workflowID> param;' #txt
 ew0 f21 inParamTable 'out.processID=param.workflowID;
 ' #txt
@@ -332,7 +322,7 @@ ew0 f21 @|StartSubIcon #fIcon
 ew0 f34 368 330 368 286 #arcP
 ew0 f34 0 0.37027027027027026 0 0 #arcLabel
 ew0 f32 type gawfs.Data #txt
-ew0 f32 1969 249 30 30 0 15 #rect
+ew0 f32 2193 249 30 30 0 15 #rect
 ew0 f32 @|EndSubIcon #fIcon
 ew0 f41 type gawfs.Data #txt
 ew0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -374,8 +364,8 @@ ew0 f48 1136 264 1192 264 #arcP
 ew0 f12 expr in #txt
 ew0 f12 1224 264 1256 264 #arcP
 ew0 f19 expr out #txt
-ew0 f19 1800 360 1984 279 #arcP
-ew0 f19 1 1984 360 #addKink
+ew0 f19 2144 360 2208 279 #arcP
+ew0 f19 1 2208 360 #addKink
 ew0 f19 0 0.7027137765500376 0 0 #arcLabel
 ew0 f22 actionDecl 'gawfs.Data out;
 ' #txt
@@ -537,7 +527,7 @@ ew0 f40 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 f40 1904 264 1969 264 #arcP
+ew0 f40 1904 264 2193 264 #arcP
 ew0 f40 0 0.410958904109589 0 -10 #arcLabel
 ew0 f1 actionDecl 'gawfs.Data out;
 ' #txt
@@ -631,6 +621,74 @@ ew0 f53 0 0.9833105470266609 0 0 #arcLabel
 ew0 f51 expr out #txt
 ew0 f51 208 94 208 242 #arcP
 ew0 f51 0 0.04035645403300575 0 0 #arcLabel
+ew0 f54 actionDecl 'gawfs.Data out;
+' #txt
+ew0 f54 actionTable 'out=in;
+' #txt
+ew0 f54 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivyteam.ivy.workflow.ITask;
+
+if(in.isAdhocProcess){
+	ITask originalTask = ivy.wf.findTask(in.originalTaskId);
+	if(originalTask != null){
+		TaskUtils.setHidePropertyToHideInPortal(originalTask);
+	}
+}' #txt
+ew0 f54 type gawfs.Data #txt
+ew0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Hide original task</name>
+    </language>
+</elementInfo>
+' #txt
+ew0 f54 1640 338 112 44 -48 -8 #rect
+ew0 f54 @|StepIcon #fIcon
+ew0 f55 expr in #txt
+ew0 f55 outCond 'in.processType == ch.ivy.gawfs.enums.ProcessType.AD_HOC' #txt
+ew0 f55 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>yes</name>
+        <nameStyle>3,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ew0 f55 1568 280 1640 360 #arcP
+ew0 f55 1 1568 360 #addKink
+ew0 f55 0 0.3125 13 0 #arcLabel
+ew0 f56 actionDecl 'gawfs.Data out;
+' #txt
+ew0 f56 actionTable 'out=in;
+' #txt
+ew0 f56 actionCode 'import ch.ivy.gawfs.SystemDo;
+import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.ITask;
+ITask originalTask = ivy.wf.findTask(in.originalTaskID);
+ICase bussinessCase;
+if(originalTask != null) {
+	ICase bussinessCase = originalTask.getCase().getBusinessCase();
+	if (bussinessCase != null) {
+		SystemDo.attachToBusinessCase(ivy.case, bussinessCase.getId());
+	}
+}' #txt
+ew0 f56 type gawfs.Data #txt
+ew0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Attach to business case</name>
+    </language>
+</elementInfo>
+' #txt
+ew0 f56 1784 338 144 44 -65 -8 #rect
+ew0 f56 @|StepIcon #fIcon
+ew0 f57 expr out #txt
+ew0 f57 1752 360 1784 360 #arcP
+ew0 f57 0 0.3125 13 0 #arcLabel
+ew0 f2 expr out #txt
+ew0 f2 1928 360 1968 360 #arcP
+ew0 f2 0 0.3125 13 0 #arcLabel
 >Proto ew0 .type gawfs.Data #txt
 >Proto ew0 .processKind CALLABLE_SUB #txt
 >Proto ew0 0 0 32 24 18 0 #rect
@@ -720,8 +778,6 @@ ew0 f11 out f17 tail #connect
 ew0 f17 head f16 mainIn #connect
 ew0 f16 mainOut f15 tail #connect
 ew0 f15 head f13 in #connect
-ew0 f18 out f2 tail #connect
-ew0 f2 head f20 mainIn #connect
 ew0 S10 g1 f34 tail #connect
 ew0 f34 head f5 mainIn #connect
 ew0 f44 head f43 mainIn #connect
@@ -742,7 +798,6 @@ ew0 f4 head f3 mainIn #connect
 ew0 f27 out f30 tail #connect
 ew0 f30 head f18 in #connect
 ew0 f27 out f4 tail #connect
-ew0 f18 out f24 tail #connect
 ew0 f24 head f9 mainIn #connect
 ew0 f11 out f25 tail #connect
 ew0 f25 head f22 mainIn #connect
@@ -770,6 +825,13 @@ ew0 f50 mainOut f53 tail #connect
 ew0 f53 head f52 mainIn #connect
 ew0 f52 mainOut f51 tail #connect
 ew0 f51 head f28 mainIn #connect
+ew0 f18 out f55 tail #connect
+ew0 f55 head f54 mainIn #connect
+ew0 f18 out f24 tail #connect
+ew0 f54 mainOut f57 tail #connect
+ew0 f57 head f56 mainIn #connect
+ew0 f56 mainOut f2 tail #connect
+ew0 f2 head f20 mainIn #connect
 Ct0 f1 head g1 m #connect
 Ct0 f25 mainOut f1 tail #connect
 Ct0 g0 m f0 tail #connect
