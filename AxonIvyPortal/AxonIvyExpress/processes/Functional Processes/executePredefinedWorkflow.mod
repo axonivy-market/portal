@@ -1,5 +1,5 @@
 [Ivy]
-163729F2CBAE7BE4 3.23 #module
+163729F2CBAE7BE4 3.26 #module
 >Proto >Proto Collection #zClass
 ew0 executePredefinedWorkflow Big #zClass
 ew0 B #cInfo
@@ -36,11 +36,9 @@ ew0 @PushWFArc f13 '' #zField
 ew0 @PushWFArc f18 '' #zField
 ew0 @PushWFArc f11 '' #zField
 ew0 @PushWFArc f4 '' #zField
-ew0 @PushWFArc f8 '' #zField
 ew0 @PushWFArc f6 '' #zField
 ew0 @PushWFArc f30 '' #zField
 ew0 @PushWFArc f3 '' #zField
-ew0 @PushWFArc f12 '' #zField
 ew0 @PushWFArc f2 '' #zField
 ew0 @PushWFArc f10 '' #zField
 ew0 Bk8 U20 'User 2' #zField
@@ -56,6 +54,15 @@ ew0 @PushWFArc f39 '' #zField
 ew0 @TaskSwitch f26 '' #zField
 ew0 @TkArc f20 '' #zField
 ew0 @PushWFArc f21 '' #zField
+ew0 @Alternative f12 '' #zField
+ew0 @PushWFArc f22 '' #zField
+ew0 @Alternative f23 '' #zField
+ew0 @PushWFArc f25 '' #zField
+ew0 @PushWFArc f24 '' #zField
+ew0 @PushWFArc f8 '' #zField
+ew0 @GridStep f28 '' #zField
+ew0 @PushWFArc f29 '' #zField
+ew0 @PushWFArc f27 '' #zField
 >Proto ew0 ew0 executePredefinedWorkflow #zField
 Bk4 @TextInP .resExport .resExport #zField
 Bk4 @TextInP .type .type #zField
@@ -192,7 +199,7 @@ Bk8 @PushWFArc f14 '' #zField
 Bk8 @PushWFArc f6 '' #zField
 >Proto Bk8 Bk4 BpmnUserTask #zField
 ew0 f1 type gawfs.ExecutePredefinedWorkflowData #txt
-ew0 f1 955 147 30 30 0 15 #rect
+ew0 f1 1137 145 30 30 0 15 #rect
 ew0 f1 @|EndSubIcon #fIcon
 ew0 f9 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
@@ -290,20 +297,21 @@ ew0 S31 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 S31 778 140 112 44 -26 -8 #rect
+ew0 S31 874 138 112 44 -26 -8 #rect
 ew0 S31 @|BpmnUserTaskIcon #fIcon
-ew0 f16 inParamDecl '<List<gawfs.TaskDef> definedTasks,java.lang.String processName,java.lang.String processDescription,ch.ivy.gawfs.enums.ProcessType processType,ch.ivy.gawfs.DragAndDropController dragAndDropController,ch.ivy.gawfs.DynaFormController dynaFormController,java.lang.String processID> param;' #txt
+ew0 f16 inParamDecl '<List<gawfs.TaskDef> definedTasks,java.lang.String processName,java.lang.String processDescription,ch.ivy.gawfs.enums.ProcessType processType,java.lang.String processID,java.lang.Boolean isAdhocProcess,java.lang.Long originalTaskID> param;' #txt
 ew0 f16 inParamTable 'out.definedTasks=param.definedTasks;
+out.isAdhocProcess=param.isAdhocProcess;
+out.originalTaskID=param.originalTaskID;
 out.workflowDescription=param.processDescription;
 out.workflowID=param.processID;
 out.workflowName=param.processName;
 out.workflowType=param.processType;
 ' #txt
-ew0 f16 outParamDecl '<> result;
-' #txt
+ew0 f16 outParamDecl '<> result;' #txt
 ew0 f16 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
-ew0 f16 callSignature call(List<gawfs.TaskDef>,String,String,ch.ivy.gawfs.enums.ProcessType,ch.ivy.gawfs.DragAndDropController,ch.ivy.gawfs.DynaFormController,String) #txt
+ew0 f16 callSignature call(List<gawfs.TaskDef>,String,String,ch.ivy.gawfs.enums.ProcessType,String,Boolean,Long) #txt
 ew0 f16 type gawfs.ExecutePredefinedWorkflowData #txt
 ew0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -352,19 +360,6 @@ ew0 f11 0 0.8125675639531414 0 0 #arcLabel
 ew0 f4 582 290 678 174 #arcP
 ew0 f4 1 632 290 #addKink
 ew0 f4 0 0.8278533742264182 0 0 #arcLabel
-ew0 f8 expr in #txt
-ew0 f8 outCond 'in.currentTask.taskType == ch.ivy.gawfs.enums.TaskType.FINAL_REVIEW' #txt
-ew0 f8 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>no</name>
-        <nameStyle>2
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-ew0 f8 698 162 778 162 #arcP
-ew0 f8 0 0.5125 0 -9 #arcLabel
 ew0 f6 582 162 666 162 #arcP
 ew0 f30 expr out #txt
 ew0 f30 89 66 226 140 #arcP
@@ -383,7 +378,6 @@ ew0 f3 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 ew0 f3 370 162 470 162 #arcP
 ew0 f3 0 0.4772727272727273 -1 8 #arcLabel
-ew0 f12 890 162 955 162 #arcP
 ew0 f2 expr in #txt
 ew0 f2 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -521,6 +515,84 @@ ew0 f21 expr data #txt
 ew0 f21 outCond ivp=="TaskA.ivp" #txt
 ew0 f21 368 441 513 441 #arcP
 ew0 f21 0 0.5135135135135135 0 11 #arcLabel
+ew0 f12 type gawfs.ExecutePredefinedWorkflowData #txt
+ew0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Is Adhoc Task?</name>
+    </language>
+</elementInfo>
+' #txt
+ew0 f12 760 144 32 32 -36 22 #rect
+ew0 f12 @|AlternativeIcon #fIcon
+ew0 f22 expr in #txt
+ew0 f22 outCond 'in.currentTask.taskType == ch.ivy.gawfs.enums.TaskType.FINAL_REVIEW' #txt
+ew0 f22 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>no</name>
+        <nameStyle>2
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ew0 f22 698 162 760 160 #arcP
+ew0 f22 0 0.11363636363636363 0 -10 #arcLabel
+ew0 f23 type gawfs.ExecutePredefinedWorkflowData #txt
+ew0 f23 1040 144 32 32 0 16 #rect
+ew0 f23 @|AlternativeIcon #fIcon
+ew0 f25 986 160 1040 160 #arcP
+ew0 f24 expr in #txt
+ew0 f24 1072 160 1137 160 #arcP
+ew0 f8 expr in #txt
+ew0 f8 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>No</name>
+    </language>
+</elementInfo>
+' #txt
+ew0 f8 792 160 874 160 #arcP
+ew0 f8 0 0.43902439024390244 0 -13 #arcLabel
+ew0 f28 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
+' #txt
+ew0 f28 actionTable 'out=in;
+' #txt
+ew0 f28 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivyteam.ivy.workflow.ITask;
+
+if(in.isAdhocProcess){
+	ITask originalTask = ivy.wf.findTask(in.originalTaskId);
+	if(originalTask != null){
+		TaskUtils.removeHidePropertyToDisplayInPortal(originalTask);
+	}
+}' #txt
+ew0 f28 type gawfs.ExecutePredefinedWorkflowData #txt
+ew0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Display original adhoc task</name>
+    </language>
+</elementInfo>
+' #txt
+ew0 f28 840 42 160 44 -74 -8 #rect
+ew0 f28 @|StepIcon #fIcon
+ew0 f29 expr in #txt
+ew0 f29 outCond in.isAdhocProcess #txt
+ew0 f29 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Yes</name>
+    </language>
+</elementInfo>
+' #txt
+ew0 f29 776 144 840 64 #arcP
+ew0 f29 1 776 64 #addKink
+ew0 f29 1 0.40625 0 -13 #arcLabel
+ew0 f27 expr out #txt
+ew0 f27 1000 64 1056 144 #arcP
+ew0 f27 1 1056 64 #addKink
+ew0 f27 1 0.5 0 0 #arcLabel
 >Proto ew0 .type gawfs.ExecutePredefinedWorkflowData #txt
 >Proto ew0 .processKind CALLABLE_SUB #txt
 >Proto ew0 0 0 32 24 18 0 #rect
@@ -878,14 +950,21 @@ Bk5 f28 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk5 f28 actionTable 'out=in;
 ' #txt
-Bk5 f28 actionCode 'import ch.ivy.gawfs.enums.TaskType;
+Bk5 f28 actionCode 'import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivy.gawfs.enums.TaskType;
 import gawfs.TaskDef;
 
 
 // Add review task to defined tasks
 TaskDef taskDef = new gawfs.TaskDef();
 taskDef.taskType = TaskType.FINAL_REVIEW;
-taskDef.subject = TaskType.FINAL_REVIEW.getLabel();
+if(in.isAdhocProcess) {
+	ITask originalTask = ivy.wf.findTask(in.originalTaskID);
+	taskDef.subject = originalTask.name;
+}
+else {
+	taskDef.subject = TaskType.FINAL_REVIEW.getLabel();
+}
 in.definedTasks.add(taskDef);
 
 // Initialize steps
@@ -896,6 +975,7 @@ for(TaskDef task: in.definedTasks) {
 // Initialize controllers
 in.actualStepIndex = 0;
 in.currentTask = in.definedTasks.get(in.actualStepIndex);' #txt
+Bk5 f28 security system #txt
 Bk5 f28 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk5 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1521,11 +1601,6 @@ ew0 f0 mainOut f30 tail #connect
 ew0 f30 head S11 g0 #connect
 ew0 f16 mainOut f18 tail #connect
 ew0 f18 head S11 g2 #connect
-ew0 f12 head f1 mainIn #connect
-ew0 f5 out f8 tail #connect
-ew0 f8 head S31 g0 #connect
-ew0 S31 g1 f12 tail #connect
-ew0 f5 out f2 tail #connect
 ew0 f2 head f9 mainIn #connect
 ew0 U21 g1 f6 tail #connect
 ew0 f6 head f5 in #connect
@@ -1553,6 +1628,19 @@ ew0 f34 out f20 tail #connect
 ew0 f20 head f26 in #connect
 ew0 f26 out f21 tail #connect
 ew0 f21 head f32 mainIn #connect
+ew0 f5 out f22 tail #connect
+ew0 f22 head f12 in #connect
+ew0 f5 out f2 tail #connect
+ew0 S31 g1 f25 tail #connect
+ew0 f25 head f23 in #connect
+ew0 f23 out f24 tail #connect
+ew0 f24 head f1 mainIn #connect
+ew0 f8 head S31 g0 #connect
+ew0 f12 out f29 tail #connect
+ew0 f29 head f28 mainIn #connect
+ew0 f12 out f8 tail #connect
+ew0 f28 mainOut f27 tail #connect
+ew0 f27 head f23 in #connect
 Bk4 f8 head f16 in #connect
 Bk4 f0 out f8 tail #connect
 Bk4 f0 out f1 tail #connect
