@@ -99,10 +99,6 @@ ew0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ew0 S10 312 330 112 44 -37 -8 #rect
 ew0 S10 @|BIcon #fIcon
 ew0 f0 inParamDecl '<> param;' #txt
-ew0 f0 inParamTable 'out.isUseDefaultUI=true;
-out.processName="Test";
-out.processType=ch.ivy.gawfs.enums.ProcessType.AD_HOC;
-' #txt
 ew0 f0 outParamDecl '<> result;
 ' #txt
 ew0 f0 actionDecl 'gawfs.Data out;
