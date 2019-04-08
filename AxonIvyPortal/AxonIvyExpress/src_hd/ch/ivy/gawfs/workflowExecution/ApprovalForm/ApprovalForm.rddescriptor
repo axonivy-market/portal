@@ -22,6 +22,12 @@
             <parameterType>java.lang.Integer</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
+        <inputParameter>
+            <name>isAdhocProcess</name>
+            <description></description>
+            <parameterType>Boolean</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
         <outputParameter>
             <name>approvalResult</name>
             <description></description>
