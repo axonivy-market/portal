@@ -181,9 +181,7 @@ Bk8 @PushWFArc f12 '' #zField
 Bk8 @PushWFArc f3 '' #zField
 Bk8 @TaskSwitchSimple f18 '' #zField
 Bk8 @TaskSwitchSimple f20 '' #zField
-Bk8 @RichDialog f9 '' #zField
 Bk8 @Alternative f22 '' #zField
-Bk8 @PushWFArc f15 '' #zField
 Bk8 @PushWFArc f23 '' #zField
 Bk8 @PushWFArc f24 '' #zField
 Bk8 @Alternative f0 '' #zField
@@ -196,7 +194,9 @@ Bk8 @PushWFArc f2 '' #zField
 Bk8 @GridStep f29 '' #zField
 Bk8 @PushWFArc f5 '' #zField
 Bk8 @PushWFArc f14 '' #zField
-Bk8 @PushWFArc f6 '' #zField
+Bk8 @RichDialog f7 '' #zField
+Bk8 @PushWFArc f16 '' #zField
+Bk8 @PushWFArc f15 '' #zField
 >Proto Bk8 Bk4 BpmnUserTask #zField
 ew0 f1 type gawfs.ExecutePredefinedWorkflowData #txt
 ew0 f1 1137 145 30 30 0 15 #rect
@@ -1426,40 +1426,9 @@ Bk8 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Bk8 f20 396 406 30 30 20 -10 #rect
 Bk8 f20 @|TaskSwitchSimpleIcon #fIcon
-Bk8 f9 targetWindow NEW #txt
-Bk8 f9 targetDisplay TOP #txt
-Bk8 f9 richDialogId ch.ivy.gawfs.workflowExecution.ApprovalForm #txt
-Bk8 f9 startMethod start(java.util.List<gawfs.TaskDef>,java.util.List<String>,java.lang.Integer) #txt
-Bk8 f9 type gawfs.ExecutePredefinedWorkflowData #txt
-Bk8 f9 requestActionDecl '<java.util.List<gawfs.TaskDef> finishedTasks, java.util.List<String> steps, java.lang.Integer actualStepIndex> param;' #txt
-Bk8 f9 requestMappingAction 'param.finishedTasks=in.finishedTasks;
-param.steps=in.steps;
-param.actualStepIndex=in.actualStepIndex;
-' #txt
-Bk8 f9 responseActionDecl 'gawfs.ExecutePredefinedWorkflowData out;
-' #txt
-Bk8 f9 responseMappingAction 'out=in;
-out.approvalTaskResult=result.approvalResult;
-' #txt
-Bk8 f9 isAsynch false #txt
-Bk8 f9 isInnerRd false #txt
-Bk8 f9 userContext '* ' #txt
-Bk8 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Approval form</name>
-        <nameStyle>13,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Bk8 f9 264 565 112 44 -37 -8 #rect
-Bk8 f9 @|RichDialogIcon #fIcon
 Bk8 f22 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk8 f22 304 485 32 32 0 16 #rect
 Bk8 f22 @|AlternativeIcon #fIcon
-Bk8 f15 expr in #txt
-Bk8 f15 320 517 320 565 #arcP
 Bk8 f23 expr data #txt
 Bk8 f23 outCond ivp=="TaskA.ivp" #txt
 Bk8 f23 227 436 304 501 #arcP
@@ -1593,8 +1562,32 @@ Bk8 f5 expr out #txt
 Bk8 f5 320 700 320 770 #arcP
 Bk8 f14 expr out #txt
 Bk8 f14 320 814 320 882 #arcP
-Bk8 f6 expr out #txt
-Bk8 f6 320 609 320 656 #arcP
+Bk8 f7 richDialogId ch.ivy.gawfs.workflowExecution.ApprovalForm #txt
+Bk8 f7 startMethod start(java.util.List<gawfs.TaskDef>,java.util.List<String>,java.lang.Integer,Boolean) #txt
+Bk8 f7 type gawfs.ExecutePredefinedWorkflowData #txt
+Bk8 f7 requestActionDecl '<java.util.List<gawfs.TaskDef> finishedTasks,java.util.List<String> steps,java.lang.Integer actualStepIndex,Boolean isAdhocProcess> param;' #txt
+Bk8 f7 requestMappingAction 'param.finishedTasks=in.finishedTasks;
+param.steps=in.steps;
+param.actualStepIndex=in.actualStepIndex;
+param.isAdhocProcess=in.isAdhocProcess;
+' #txt
+Bk8 f7 responseActionDecl 'gawfs.ExecutePredefinedWorkflowData out;
+' #txt
+Bk8 f7 responseMappingAction 'out=in;
+' #txt
+Bk8 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Approval Form</name>
+    </language>
+</elementInfo>
+' #txt
+Bk8 f7 264 554 112 44 -39 -8 #rect
+Bk8 f7 @|RichDialogIcon #fIcon
+Bk8 f16 expr in #txt
+Bk8 f16 320 517 320 554 #arcP
+Bk8 f15 expr out #txt
+Bk8 f15 320 598 320 656 #arcP
 >Proto Bk4 0 0 32 24 18 0 #rect
 >Proto Bk4 @|BIcon #fIcon
 ew0 f0 mainOut f30 tail #connect
@@ -1715,8 +1708,6 @@ Bk8 g0 m f3 tail #connect
 Bk8 f3 head f64 mainIn #connect
 Bk8 f18 out f23 tail #connect
 Bk8 f23 head f22 in #connect
-Bk8 f22 out f15 tail #connect
-Bk8 f15 head f9 mainIn #connect
 Bk8 f20 out f24 tail #connect
 Bk8 f24 head f22 in #connect
 Bk8 f13 mainOut f4 tail #connect
@@ -1731,6 +1722,8 @@ Bk8 f29 mainOut f5 tail #connect
 Bk8 f5 head f1 mainIn #connect
 Bk8 f1 mainOut f14 tail #connect
 Bk8 f14 head f10 mainIn #connect
-Bk8 f9 mainOut f6 tail #connect
-Bk8 f6 head f29 mainIn #connect
+Bk8 f22 out f16 tail #connect
+Bk8 f16 head f7 mainIn #connect
+Bk8 f7 mainOut f15 tail #connect
+Bk8 f15 head f29 mainIn #connect
 Bk8 0 0 552 1160 0 #ivRect

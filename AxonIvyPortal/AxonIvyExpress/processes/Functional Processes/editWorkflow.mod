@@ -122,11 +122,12 @@ ew0 f5 actionDecl 'gawfs.Data out;
 ' #txt
 ew0 f5 actionTable 'out=in;
 ' #txt
-ew0 f5 actionCode 'in.steps.add(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/start"));
-in.steps.add(ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/WorkflowPropertiesStep"));
-in.steps.add(ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/FormDefinitionStep"));
-in.steps.add(ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/EndStep"));
-
+ew0 f5 actionCode 'if(!in.isAdhocProcess) {
+	in.steps.add(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/start"));
+	in.steps.add(ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/WorkflowPropertiesStep"));
+	in.steps.add(ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/FormDefinitionStep"));
+	in.steps.add(ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/EndStep"));
+}
 in.discard = false;' #txt
 ew0 f5 security system #txt
 ew0 f5 type gawfs.Data #txt
