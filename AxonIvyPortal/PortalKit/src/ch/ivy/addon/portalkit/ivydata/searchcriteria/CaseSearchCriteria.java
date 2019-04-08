@@ -33,12 +33,17 @@ public class CaseSearchCriteria {
   
   private CaseQuery finalCaseQuery;
 
-  public CaseQuery createQuery() { 
+  public CaseQuery createQuery() {
     CaseQuery finalQuery = CaseQuery.create();
-    setNewQueryCreated(isNewQueryCreated() || customCaseQuery == null || hasCaseId());
+    if (isBusinessCase) {
+      finalQuery = CaseQuery.businessCases();
+    } else if (isTechnicalCase) {
+      finalQuery = CaseQuery.subCases().where().and().businessCaseId().isEqual(businessCaseId);
+    }
 
+    setNewQueryCreated(isNewQueryCreated() || customCaseQuery == null || hasCaseId());
     if (!isNewQueryCreated()) {
-      finalQuery = CaseQuery.fromJson(customCaseQuery.asJson()); // clone to keep the original custom query
+      finalQuery.where().andOverall(CaseQuery.fromJson(customCaseQuery.asJson())); // clone to keep the original custom query
     }
 
     if (hasIncludedStates()) {
@@ -55,12 +60,6 @@ public class CaseSearchCriteria {
 
     if (hasCategory()) {
       finalQuery.where().and(queryForCategory(getCategory()));
-    }
-    
-    if (isBusinessCase) {
-      finalQuery.where().and().isBusinessCase();
-    } else if (isTechnicalCase) {
-      finalQuery.where().and().isNotBusinessCase().and().businessCaseId().isEqual(businessCaseId);
     }
 
     if (isSorted) {
@@ -83,10 +82,7 @@ public class CaseSearchCriteria {
     String containingKeyword = String.format("%%%s%%", keyword);
 
     CaseQuery filterByKeywordQuery = CaseQuery.create().where().or().name().isLikeIgnoreCase(containingKeyword).or()
-        .description().isLikeIgnoreCase(containingKeyword).or().customVarCharField1()
-        .isLikeIgnoreCase(containingKeyword).or().customVarCharField2().isLikeIgnoreCase(containingKeyword).or()
-        .customVarCharField3().isLikeIgnoreCase(containingKeyword).or().customVarCharField4()
-        .isLikeIgnoreCase(containingKeyword).or().customVarCharField5().isLikeIgnoreCase(containingKeyword);
+        .description().isLikeIgnoreCase(containingKeyword).or().customField().anyStringField().isLikeIgnoreCase(containingKeyword);
 
     try {
       long idKeyword = Long.parseLong(keyword);
