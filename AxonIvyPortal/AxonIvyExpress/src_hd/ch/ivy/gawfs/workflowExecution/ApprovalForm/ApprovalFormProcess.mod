@@ -1,5 +1,5 @@
 [Ivy]
-162F55163FD8DF16 3.23 #module
+162F55163FD8DF16 3.26 #module
 >Proto >Proto Collection #zClass
 As0 ApprovalFormProcess Big #zClass
 As0 RD #cInfo
@@ -42,18 +42,16 @@ As0 @PushWFArc f2 '' #zField
 >Proto As0 As0 ApprovalFormProcess #zField
 As0 f0 guid 162F55164217492D #txt
 As0 f0 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
-As0 f0 method start(java.util.List<gawfs.TaskDef>,java.util.List<String>,java.lang.Integer) #txt
+As0 f0 method start(java.util.List<gawfs.TaskDef>,java.util.List<String>,java.lang.Integer,Boolean) #txt
 As0 f0 disableUIEvents true #txt
-As0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.util.List<gawfs.TaskDef> finishedTasks,java.util.List<java.lang.String> steps,java.lang.Integer actualStepIndex> param = methodEvent.getInputArguments();
+As0 f0 inParameterDecl 'ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData out;
 ' #txt
 As0 f0 inParameterMapAction 'out.actualStepIndex=param.actualStepIndex;
 out.finishedTasks=param.finishedTasks;
+out.isAdhocProcess=param.isAdhocProcess;
 out.steps=param.steps;
 ' #txt
 As0 f0 outParameterDecl '<gawfs.ApprovalTaskResult approvalResult> result;
-' #txt
-As0 f0 outParameterMapAction 'result.approvalResult=in.approvalResult;
 ' #txt
 As0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
