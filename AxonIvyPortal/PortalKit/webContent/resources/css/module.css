@@ -4328,7 +4328,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   display: inline-block;
   flex: 0 1 30%;
   margin: 1rem;
-  padding: 0 !important;
 }
 
 .dashboard-chart-panel .ui-panel-titlebar {
@@ -4338,7 +4337,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .dashboard-chart-panel .ui-panel-titlebar .ui-panel-title {
   display: flex;
   justify-content: flex-end;
-  width: 32.4rem;
+  width: 34rem;
 }
 
 .dashboard-chart-panel .chart-name-container {
@@ -4353,6 +4352,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 .dashboard-chart-panel .chart-name-container {
   flex: 1 0 50%;
+  padding-left: 3px;
 }
 
 .dashboard-chart-panel .chart-actions-container {
@@ -5402,7 +5402,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 
 .ui-panel .ui-panel-titlebar {
-	padding: .3em 1em !important;
+	padding: .3em .3em .3em .5em !important;
 	margin-top: -.15em;
 }
 
