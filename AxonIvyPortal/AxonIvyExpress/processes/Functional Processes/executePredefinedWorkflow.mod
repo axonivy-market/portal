@@ -615,9 +615,9 @@ TaskA.EXTYPE=0
 TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=in1.responsible.getMemberName().substring(1)
+TaskA.SCRIPT=if (in1.originalTaskID \!\= null && in1.originalTaskID > 0) {\r\n  ivy.task.customFields().stringField(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString());\r\n}
 TaskA.SKIP_TASK_LIST=false
-TaskA.TYPE=3
-TaskA.customFields.STRING.ADHOC_EXPRESS_TASK=ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()' #txt
+TaskA.TYPE=3' #txt
 Bk4 f6 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk4 f6 template "" #txt
 Bk4 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -693,9 +693,9 @@ TaskA.EXTYPE=0
 TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=in1.responsible.getMemberName()
+TaskA.SCRIPT=if (in1.originalTaskID \!\= null && in1.originalTaskID > 0) {\r\n  ivy.task.customFields().stringField(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString());\r\n}
 TaskA.SKIP_TASK_LIST=false
-TaskA.TYPE=2
-TaskA.customFields.STRING.ADHOC_EXPRESS_TASK=ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()' #txt
+TaskA.TYPE=2' #txt
 Bk4 f16 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk4 f16 template "" #txt
 Bk4 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1384,9 +1384,9 @@ TaskA.EXTYPE=0
 TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=in1.responsible.getMemberName()
+TaskA.SCRIPT=if (in1.originalTaskID \!\= null && in1.originalTaskID > 0) {\r\n  ivy.task.customFields().stringField(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString());\r\n}
 TaskA.SKIP_TASK_LIST=false
-TaskA.TYPE=2
-TaskA.customFields.STRING.ADHOC_EXPRESS_TASK=ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()' #txt
+TaskA.TYPE=2' #txt
 Bk8 f18 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk8 f18 template "" #txt
 Bk8 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1414,9 +1414,9 @@ TaskA.EXTYPE=0
 TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=in1.responsible.getMemberName().substring(1)
+TaskA.SCRIPT=if (in1.originalTaskID \!\= null && in1.originalTaskID > 0) {\r\n  ivy.task.customFields().stringField(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString());\r\n}
 TaskA.SKIP_TASK_LIST=false
-TaskA.TYPE=3
-TaskA.customFields.STRING.ADHOC_EXPRESS_TASK=ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()' #txt
+TaskA.TYPE=3' #txt
 Bk8 f20 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk8 f20 template "" #txt
 Bk8 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
