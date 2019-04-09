@@ -229,7 +229,9 @@
       <p:spacer height="20"></p:spacer>
       <p:dataTable id="adhoc-task-history-table" value="#{taskTemplateBean.allAdhocHistories}" var="history">
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnTimestamp')}">
-          <h:outputText value="#{history.timestamp}" />
+          <h:outputText value="#{history.timestamp}" >
+            <f:convertDateTime pattern="#{ivy.cms.co('/patterns/dateTimePattern')}" />
+          </h:outputText>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskName')}">
           <h:outputText value="#{history.taskName}" />
@@ -242,8 +244,8 @@
         <h:form prependId="false">
           <h:panelGroup styleClass="Fs14 ui-dialog-buttonpane">
             <p:commandButton onclick="PF('adhoc-task-history-dialog').hide()"
-              value="Proceed" type="button"
-              styleClass="portal-ok-button" />
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button"
+              styleClass="portal-cancel-button" />
           </h:panelGroup>
         </h:form>
       </f:facet>
