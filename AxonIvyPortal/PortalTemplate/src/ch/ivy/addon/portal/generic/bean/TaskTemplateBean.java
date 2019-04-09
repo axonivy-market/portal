@@ -76,6 +76,14 @@ public class TaskTemplateBean implements Serializable{
     return AdditionalProperty.ORIGINAL_ADHOC_EXPRESS_TASK.toString().equals(Ivy.wfTask().customFields().stringField(AdditionalProperty.ORIGINAL_ADHOC_EXPRESS_TASK.toString()).getOrNull());
   }
   
+  public boolean getIsFirstTimeOpenOriginalAdhocTask() {
+    return AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString().equals(Ivy.wfTask().customFields().stringField(AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString()).getOrNull());
+  }
+  
+  public void onCloseDialogOfOriginalAdhocTask() {
+    Ivy.wfTask().customFields().stringField(AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString()).delete();
+    }
+  
   public List<AdhocHistory> getAllAdhocHistories() {
     AdhocHistoryService adhocHistoryService = new AdhocHistoryService();
     return adhocHistoryService.getHistoriesByTaskID(Ivy.wfTask().getId());
