@@ -639,6 +639,7 @@ if(in.isAdhocProcess){
 		TaskUtils.setHidePropertyToHideInPortal(originalTask);
 		//Mark task as adhoc express
 		originalTask.customFields().stringField(AdditionalProperty.ORIGINAL_ADHOC_EXPRESS_TASK.toString()).set(AdditionalProperty.ORIGINAL_ADHOC_EXPRESS_TASK.toString());
+		originalTask.customFields().stringField(AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString()).set(AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString());
 	}
 	ICase bussinessCase = originalTask.getCase().getBusinessCase();
 	if (bussinessCase != null) {
