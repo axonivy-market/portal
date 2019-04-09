@@ -616,7 +616,8 @@ TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=in1.responsible.getMemberName().substring(1)
 TaskA.SKIP_TASK_LIST=false
-TaskA.TYPE=3' #txt
+TaskA.TYPE=3
+TaskA.customFields.STRING.ADHOC_EXPRESS_TASK=ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()' #txt
 Bk4 f6 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk4 f6 template "" #txt
 Bk4 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -693,7 +694,8 @@ TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=in1.responsible.getMemberName()
 TaskA.SKIP_TASK_LIST=false
-TaskA.TYPE=2' #txt
+TaskA.TYPE=2
+TaskA.customFields.STRING.ADHOC_EXPRESS_TASK=ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()' #txt
 Bk4 f16 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk4 f16 template "" #txt
 Bk4 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1383,7 +1385,8 @@ TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=in1.responsible.getMemberName()
 TaskA.SKIP_TASK_LIST=false
-TaskA.TYPE=2' #txt
+TaskA.TYPE=2
+TaskA.customFields.STRING.ADHOC_EXPRESS_TASK=ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()' #txt
 Bk8 f18 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk8 f18 template "" #txt
 Bk8 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1412,7 +1415,8 @@ TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=in1.responsible.getMemberName().substring(1)
 TaskA.SKIP_TASK_LIST=false
-TaskA.TYPE=3' #txt
+TaskA.TYPE=3
+TaskA.customFields.STRING.ADHOC_EXPRESS_TASK=ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()' #txt
 Bk8 f20 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk8 f20 template "" #txt
 Bk8 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1563,13 +1567,14 @@ Bk8 f5 320 700 320 770 #arcP
 Bk8 f14 expr out #txt
 Bk8 f14 320 814 320 882 #arcP
 Bk8 f7 richDialogId ch.ivy.gawfs.workflowExecution.ApprovalForm #txt
-Bk8 f7 startMethod start(java.util.List<gawfs.TaskDef>,java.util.List<String>,java.lang.Integer,Boolean) #txt
+Bk8 f7 startMethod start(java.util.List<gawfs.TaskDef>,java.util.List<String>,java.lang.Integer,Boolean,java.lang.Long) #txt
 Bk8 f7 type gawfs.ExecutePredefinedWorkflowData #txt
-Bk8 f7 requestActionDecl '<java.util.List<gawfs.TaskDef> finishedTasks,java.util.List<String> steps,java.lang.Integer actualStepIndex,Boolean isAdhocProcess> param;' #txt
+Bk8 f7 requestActionDecl '<java.util.List<gawfs.TaskDef> finishedTasks,java.util.List<String> steps,java.lang.Integer actualStepIndex,Boolean isAdhocProcess,java.lang.Long originalTaskID> param;' #txt
 Bk8 f7 requestMappingAction 'param.finishedTasks=in.finishedTasks;
 param.steps=in.steps;
 param.actualStepIndex=in.actualStepIndex;
 param.isAdhocProcess=in.isAdhocProcess;
+param.originalTaskID=in.originalTaskID;
 ' #txt
 Bk8 f7 responseActionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
