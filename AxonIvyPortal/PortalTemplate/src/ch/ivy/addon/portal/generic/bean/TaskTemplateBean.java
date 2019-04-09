@@ -10,6 +10,9 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.bo.AdhocHistory;
+import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+import ch.ivy.addon.portalkit.service.AdhocHistoryService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivyteam.ivy.casemap.runtime.ICaseMapService;
 import ch.ivyteam.ivy.casemap.runtime.model.ICaseMap;
@@ -67,6 +70,15 @@ public class TaskTemplateBean implements Serializable{
       sortSideStepsByName(sideStepList);
     }
     return sideStepList;
+  }
+  
+  public boolean hasAdhocTasks() {
+    return AdditionalProperty.ORIGINAL_ADHOC_EXPRESS_TASK.toString().equals(Ivy.wfTask().customFields().stringField(AdditionalProperty.ORIGINAL_ADHOC_EXPRESS_TASK.toString()).getOrNull());
+  }
+  
+  public List<AdhocHistory> getAllAdhocHistories() {
+    AdhocHistoryService adhocHistoryService = new AdhocHistoryService();
+    return adhocHistoryService.getHistoriesByTaskID(Ivy.wfTask().getId());
   }
 
   public boolean checkSideStepsEnabled(String caseId) {

@@ -627,7 +627,8 @@ ew0 f54 actionDecl 'gawfs.Data out;
 ' #txt
 ew0 f54 actionTable 'out=in;
 ' #txt
-ew0 f54 actionCode 'import ch.ivy.gawfs.SystemDo;
+ew0 f54 actionCode 'import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+import ch.ivy.gawfs.SystemDo;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -636,6 +637,8 @@ if(in.isAdhocProcess){
 	ITask originalTask = ivy.wf.findTask(in.originalTaskId);
 	if(originalTask != null){
 		TaskUtils.setHidePropertyToHideInPortal(originalTask);
+		//Mark task as adhoc express
+		originalTask.customFields().stringField(AdditionalProperty.ORIGINAL_ADHOC_EXPRESS_TASK.toString()).set(AdditionalProperty.ORIGINAL_ADHOC_EXPRESS_TASK.toString());
 	}
 	ICase bussinessCase = originalTask.getCase().getBusinessCase();
 	if (bussinessCase != null) {
