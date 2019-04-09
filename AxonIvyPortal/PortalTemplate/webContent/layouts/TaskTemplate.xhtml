@@ -218,10 +218,11 @@
       </f:facet>
     </p:dialog>
     
-     <p:dialog id="adhoc-task-history-dialog" resizable="false"
+     <p:dialog id="adhoc-task-history-dialog" resizable="false" visible="#{taskTemplateBean.isFirstTimeOpenOriginalAdhocTask}"
       header="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/resultFromAdhocProcess')}"
       widgetVar="adhoc-task-history-dialog" appendTo="@(body)" width="850"
       modal="true" dynamic="true">
+      <p:ajax event="close" listener="#{taskTemplateBean.onCloseDialogOfOriginalAdhocTask()}" />
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/resultFromAdhocProcess')}" />
       <br/>
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/noteOfResultFromAdhocProcess')}" />
