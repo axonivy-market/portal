@@ -44,7 +44,7 @@
       <h:panelGroup layout="block" styleClass="task-template-content #{processChainDirection eq 'VERTICAL' ? 'vertical-process-chain' : ''}">
 
         <div class="task-template-tasks-command">
-          <p:commandLink id="show-adhoc-history" rendered="#{empty isShowStartAdhocButton? taskTemplateBean.hasExpressAdhocWF(): isShowStartAdhocButton}"
+          <p:commandLink id="show-adhoc-history" rendered="#{taskTemplateBean.hasAdhocTasks()}"
             title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/adhocHistoryTooltip')}" styleClass="case-action-link"
             oncomplete="PF('adhoc-task-history-dialog').show()" >
             <i class="fa fa-history fa-2x" />
@@ -227,23 +227,23 @@
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/noteOfResultFromAdhocProcess')}" />
       <br/>
       <p:spacer height="20"></p:spacer>
-      <p:dataTable id="adhoc-task-history-table">
-		<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnTimestamp')}">
-			<h:outputText value="10:11:20 30:40:50" />
-		</p:column>
-		<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskName')}">
-			<h:outputText value="This is task name" />
-		</p:column>
-		<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/comment')}">
-			<h:outputText value="This is fake comment" />
-		</p:column>
-	 </p:dataTable>
+      <p:dataTable id="adhoc-task-history-table" value="#{taskTemplateBean.allAdhocHistories}" var="history">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnTimestamp')}">
+          <h:outputText value="#{history.timestamp}" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskName')}">
+          <h:outputText value="#{history.taskName}" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/comment')}">
+          <h:outputText value="#{history.content}" />
+        </p:column>
+     </p:dataTable>
       <f:facet name="footer">
         <h:form prependId="false">
           <h:panelGroup styleClass="Fs14 ui-dialog-buttonpane">
             <p:commandButton onclick="PF('adhoc-task-history-dialog').hide()"
               value="Proceed" type="button"
-              styleClass="portal-cancel-button" />
+              styleClass="portal-ok-button" />
           </h:panelGroup>
         </h:form>
       </f:facet>
