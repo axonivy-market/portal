@@ -103,6 +103,12 @@ public class TaskStateFilter extends TaskFilter {
   public void setFilteredStates(List<TaskState> filteredStates) {
     this.filteredStates = filteredStates;
   }
+  
+  public void addFilteredState(TaskState filteredState) {
+    if (filteredStates != null) {
+      this.filteredStates.add(filteredState);
+    }
+  }
 
   public List<TaskState> getSelectedFilteredStatesAtBeginning() {
     return selectedFilteredStatesAtBeginning;
