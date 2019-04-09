@@ -3,7 +3,7 @@
     <autoScreenshot>true</autoScreenshot>
     <startMethod>
         <name>start</name>
-        <description>Default dialog start method.</description>
+        <description></description>
         <inputParameter>
             <name>finishedTasks</name>
             <description></description>
@@ -26,6 +26,12 @@
             <name>isAdhocProcess</name>
             <description></description>
             <parameterType>Boolean</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
+        <inputParameter>
+            <name>originalTaskID</name>
+            <description></description>
+            <parameterType>java.lang.Long</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
         <outputParameter>
