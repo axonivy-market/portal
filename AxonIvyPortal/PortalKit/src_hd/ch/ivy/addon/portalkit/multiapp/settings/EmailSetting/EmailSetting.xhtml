@@ -21,7 +21,7 @@
     </h:panelGrid>
     <p:remoteCommand name="updateGrowlEmail" actionListener="#{logic.updateGrowl}" update="change-email-setting-info" />
 
-    <h:panelGroup layout="block" id="email-setting-container">
+    <h:panelGroup layout="block" id="email-setting-container" styleClass="email-setting-container">
       <p:messages showDetail="true" closable="true" id="email-messages" escape="false" />
       <h:panelGrid>
 
