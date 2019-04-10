@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.faces.event.ValueChangeEvent;
 
@@ -326,11 +327,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     if (!isNotKeepFilter) {
       List<CaseFilter> sessionCaseFilters = UserUtils.getSessionCaseAdvancedFilterAttribute();
       if(sessionCaseFilters.isEmpty()) {
-        for (CaseFilter filter : filters) {
-          if(filter.defaultFilter()) {
-            selectedFilters.add(filter);
-          }
-        }
+        selectedFilters.addAll(filters.stream().filter(CaseFilter::defaultFilter).collect(Collectors.toList()));
       } else {
         for (CaseFilter filter : filters) {
           for (CaseFilter sessionCaseFilter : sessionCaseFilters) {
