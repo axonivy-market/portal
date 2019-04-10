@@ -62,14 +62,12 @@
 
       <h:panelGroup id="filter-container" styleClass="filter-container js-filter-container"
         rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter and !isMobile}">
-        <h:panelGroup id="filter-selection-container" styleClass="filter-selection-container-group"> 
+        <h:panelGroup id="filter-selection-container" styleClass="filter-selection-container-group vertical-line"> 
           <h:form id="filter-selection-form" class="filter-selection-form filter-selection-container"
             rendered="#{(not empty data.taskPrivateFilters or not empty data.taskPublicFilters) and not data.dataModel.compactMode}">
             <p:outputPanel id="filter-selection-panel">
-              <h:outputLabel rendered="#{not data.dataModel.compactMode}"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}" for="filter-name" />
               <p:commandLink id="filter-name" styleClass="filter-name"
-                value="#{data.dataModel.selectedTaskFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection') : data.dataModel.selectedTaskFilterData.filterName}"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/savedFilters')} #{data.dataModel.selectedTaskFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection') : data.dataModel.selectedTaskFilterData.filterName}"
                 global="false" />
               <p:overlayPanel id="filter-name-overlay-panel" styleClass="filter-name-overlay-panel" for="filter-name"
                 hideEffect="fade" my="left top" at="left bottom">
@@ -91,7 +89,7 @@
                         rendered="#{taskWidgetBean.isDeleteFilterEnabledFor(taskFilterData)}"
                         styleClass="fa fa-times-circle delete-user-definied-filter-command"
                         actionListener="#{logic.setFilterToBeDeleted(taskFilterData)}"
-                        oncomplete="PF('delete-filter-confirmation-dialog').show();" />
+                        oncomplete="PF('delete-filter-confirmation-dialog').show();"/>
                     </h:panelGroup>
                   </ui:repeat>
                 </h:panelGroup>
@@ -122,7 +120,6 @@
               </p:overlayPanel>
             </p:outputPanel>
           </h:form>
-          <p:outputLabel id="vertical-line-filter" styleClass="vertical-line" rendered="#{not empty data.taskPrivateFilters or not empty data.taskPublicFilters}"/>
         </h:panelGroup>
 
         <h:panelGroup id="advanced-filter-container" layout="block" styleClass="advanced-filter-container" rendered="#{!isMobile}">
@@ -146,7 +143,7 @@
         </h:panelGroup>
         <h:panelGroup id="filter-add-container" styleClass="filter-add-container" rendered="#{!isMobile}">
           <p:commandButton id="filter-add-action"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/filter')}" styleClass="filter-add-button"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/more')}" styleClass="filter-add-button"
             icon="fa fa-caret-down" iconPos="right" type="button" />
           <p:overlayPanel id="filter-add-panel" styleClass="filter-add-panel" for="filter-add-action" my="left top"
             at="left bottom">
