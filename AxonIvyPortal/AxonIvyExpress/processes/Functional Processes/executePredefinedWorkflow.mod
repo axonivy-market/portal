@@ -1579,6 +1579,7 @@ param.originalTaskID=in.originalTaskID;
 Bk8 f7 responseActionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk8 f7 responseMappingAction 'out=in;
+out.approvalTaskResult=result.approvalResult;
 ' #txt
 Bk8 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
