@@ -599,12 +599,10 @@ ew0 f52 actionDecl 'gawfs.Data out;
 ew0 f52 actionTable 'out=in;
 ' #txt
 ew0 f52 actionCode 'import java.util.Arrays;
-import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 ITask originalTask = ivy.wf.findTask(in.originalTaskID);
 if(originalTask != null) {
-	ICase bussinessCase = originalTask.getCase().getBusinessCase();
-	in.processName = ivy.cms.co("/Dialogs/workflowCreation/AdhocProcessName", Arrays.asList(String.valueOf(bussinessCase.getId()), bussinessCase.getName()));
+	in.processName = ivy.cms.co("/Dialogs/workflowCreation/AdhocProcessName", Arrays.asList(String.valueOf(originalTask.getId()), originalTask.getName()));
 }' #txt
 ew0 f52 security system #txt
 ew0 f52 type gawfs.Data #txt
