@@ -54,6 +54,8 @@ out.steps=param.steps;
 ' #txt
 As0 f0 outParameterDecl '<gawfs.ApprovalTaskResult approvalResult> result;
 ' #txt
+As0 f0 outParameterMapAction 'result.approvalResult=in.approvalResult;
+' #txt
 As0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
