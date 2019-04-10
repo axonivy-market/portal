@@ -694,6 +694,13 @@
   margin-top: 35px !important;
 }
 
+.email-setting-container {
+  overflow-y: auto;
+  height: 303px;
+}
+_:-ms-input-placeholder, :root .email-setting-container {
+  height: 315px;
+}
 /* =================== END DIALOG ====================== */
 
 /* =================== LINK ====================== */
