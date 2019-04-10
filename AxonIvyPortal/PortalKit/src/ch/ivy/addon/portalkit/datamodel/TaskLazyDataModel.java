@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.faces.event.ValueChangeEvent;
 
@@ -141,11 +142,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     if (shouldSaveAndLoadSessionFilters()) {
       List<TaskFilter> sessionTaskFilters = UserUtils.getSessionTaskAdvancedFilterAttribute();
       if(sessionTaskFilters.isEmpty()) {
-        for (TaskFilter filter : filters) {
-          if(filter.defaultFilter()) {
-            selectedFilters.add(filter);
-          }
-        }
+        selectedFilters.addAll(filters.stream().filter(TaskFilter::defaultFilter).collect(Collectors.toList()));
       } else {
         for (TaskFilter filter : filters) {
           for (TaskFilter sessionTaskFilter : sessionTaskFilters) {
