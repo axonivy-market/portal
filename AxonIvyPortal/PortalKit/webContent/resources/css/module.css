@@ -5590,8 +5590,7 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel {
 .ui-widget.ui-fileupload {
 	margin-top: 5px;
 }
-.ui-fileupload-buttonbar,
-.ui-growl-message .ui-growl-title {
+.ui-fileupload-buttonbar {
 	-webkit-transform: translateY(30%);
 	-moz-transform: translateY(30%);
 	-o-transform: translateY(30%);
