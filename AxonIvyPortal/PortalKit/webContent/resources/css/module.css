@@ -5556,6 +5556,10 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel {
     display: inline-block;
     padding-left: 0;
 }
+.task-widget .filter-container .filter-selection-container-group,
+.case-widget-container .filter-container .filter-selection-container-group {
+	display: inline-flex;
+}
 
 /* =================== RESPONSIVE ENHANCEMENT ====================== */
 @media screen and (min-width: 40.063em) {
