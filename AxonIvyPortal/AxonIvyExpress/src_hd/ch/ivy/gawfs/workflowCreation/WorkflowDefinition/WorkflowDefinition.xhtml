@@ -98,7 +98,7 @@
 								</div>
 								<div class="ui-g-12 ui-md-12 ui-lg-3">
 									<p:inputText id="process-name" value="#{data.data.processName}"
-										required="true" maxlength="50"
+										required="true" maxlength="50" disabled="#{data.data.isAdhocProcess}"
 										requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
 										<p:ajax event="blur" partialSubmit="true" process="@this"
 											global="false" immediate="true" />

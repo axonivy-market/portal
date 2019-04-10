@@ -80,13 +80,21 @@ public class TaskTemplateBean implements Serializable{
     return AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString().equals(Ivy.wfTask().customFields().stringField(AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString()).getOrNull());
   }
   
-  public void onCloseDialogOfOriginalAdhocTask() {
+  public void onCloseAdhocTaskHistoryDialog() {
     Ivy.wfTask().customFields().stringField(AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString()).delete();
-    }
+  }
+  
+  public String getAdhocCreationMessage() {
+    AdhocHistoryService adhocHistoryService = new AdhocHistoryService();
+    boolean hasAdhocHistory = adhocHistoryService.hasAdhocHistory(Ivy.wfTask().getId());
+    return hasAdhocHistory ? Ivy.cms().co("/ch.ivy.addon.portal.generic/OpenTaskTemplate/reCreateAdhocWarning") : Ivy.cms().co("/ch.ivy.addon.portal.generic/OpenTaskTemplate/goToAdhocWarning");
+  }
   
   public List<AdhocHistory> getAllAdhocHistories() {
     AdhocHistoryService adhocHistoryService = new AdhocHistoryService();
-    return adhocHistoryService.getHistoriesByTaskID(Ivy.wfTask().getId());
+    List<AdhocHistory> histories = adhocHistoryService.getHistoriesByTaskID(Ivy.wfTask().getId());
+    histories.sort((first, second) -> second.getTimestamp().compareTo(first.getTimestamp()));
+	return histories;
   }
 
   public boolean checkSideStepsEnabled(String caseId) {
