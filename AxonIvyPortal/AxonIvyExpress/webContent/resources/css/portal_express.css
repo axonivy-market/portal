@@ -625,8 +625,8 @@
 }
 
 .preview-dialog .pe-dynaform-cell>.ui-spinner>.ui-spinner-input {
-	width: 94.5%;
-}
+	width: 96%;
+} 
 
 .preview-dialog .preview-dyna-container {
 	padding: 0;
@@ -681,9 +681,7 @@
 	display: inline-block !important;
 }
 
-.ui-g .ui-outputlabel {
-	margin-top: 6px !important;
-}
+
 /*end of fix all input elements same height*/
 
 /*center main content */
@@ -715,9 +713,9 @@
 	margin-top: -5px !important;
 }
 
-.pe-dynaform-cell .ui-inputfield.hasDatepicker {
+/* .pe-dynaform-cell .ui-inputfield.hasDatepicker {
 	width: auto !important;
-}
+} */
 
 .wid98 {
 	width: 98%;
@@ -806,4 +804,21 @@
 	font-size: 1.4rem;
 	color: #757575;
 	opacity: 1;
+}
+
+.alignLabelTop {
+	display: initial;
+}
+
+.marginTop6 {
+	margin-top:6px;
+}
+
+.ui-fluid .ui-spinner,
+.ui-fluid .ui-spinner .ui-spinner-input {
+    width: auto;
+}
+
+.create-form-toolbar {
+	border: none;
 }
