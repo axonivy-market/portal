@@ -675,7 +675,13 @@
 .ui-dialog-footer.u-dialog-footer.u-email-dialog-footer {
   margin-top: 35px !important;
 }
-
+.email-setting-container {
+  overflow-y: auto;
+  height: 283px;
+}
+_:-ms-input-placeholder, :root .email-setting-container {
+  height: 290px;
+}
 /* =================== END DIALOG ====================== */
 
 /* =================== LINK ====================== */
