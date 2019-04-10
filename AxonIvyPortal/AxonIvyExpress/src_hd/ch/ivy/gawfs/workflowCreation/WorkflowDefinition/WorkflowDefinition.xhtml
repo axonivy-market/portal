@@ -29,7 +29,7 @@
 						styleClass="process-property-container"> 
 						<!-- PROCESS TYPE -->
 						<div class="ui-fluid">
-						<div class="ui-g">
+						<div class="ui-g alignLabelTop">
 							<div class="ui-g-12 ui-md-12 ui-lg-2">
 								<p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processtype')}:"
 									for="process-type" />
@@ -56,11 +56,11 @@
 									value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/UserInterface')}:"
 									for="user-interface" />
 							</div>
-								<div class="ui-g-12 ui-md-12 ui-lg-2">
+								<div class="ui-g-12 ui-md-12 ui-lg-3">
 											<p:selectOneRadio id="user-interface" styleClass="radio-group"
 							                  value="#{data.data.isUseDefaultUI}" required="true" layout="custom"
 							                  requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/UserInterface')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
-							                  <f:selectItem itemValue="false" />
+							                  <f:selectItem itemValue="false"/>
 							                  <f:selectItem itemValue="true" />
 							                  <p:ajax onstart="PF('deleteAllDefinedTasksWarning').show();" />
 							                </p:selectOneRadio>
@@ -80,7 +80,7 @@
 												</p:row>
 											</p:panelGrid>
 									</div>
-										<div class="ui-g-12 ui-md-12 ui-lg-2"></div>
+										<div class="ui-g-12 ui-md-12 ui-lg-1"></div>
 							</div>
 
 						<!-- PROCESS NAME -->
@@ -345,7 +345,7 @@
 
       <p:dialog id="choose-responsible-dialog" styleClass="choose-responsible-dialog"
         header="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ChooseAssignee/AddUserOrRole')}"
-        widgetVar="choose-responsible-dialog" modal="true" appendTo="@(body)" width="25%" resizable="false">
+        widgetVar="choose-responsible-dialog" modal="true" appendTo="@(body)" width="600" resizable="false">
         <p:ajax event="close" listener="#{logic.closeDialog}" global="false" immediate="true"/>
         <ui:include src="ChooseAssignee.xhtml" />
       </p:dialog>
