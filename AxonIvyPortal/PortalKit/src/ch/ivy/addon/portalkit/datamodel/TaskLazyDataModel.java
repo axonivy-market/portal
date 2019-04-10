@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -393,13 +392,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     this.selectedTaskFilterData = selectedTaskFilterData;
   }
 
-  @SuppressWarnings("static-access")
   public void removeFilter(TaskFilter filter) {
-    if (!StringUtils.equals(filter.value(), filter.ALL)) {
-      String separatorChar = String.valueOf(FacesContext.getCurrentInstance().getNamingContainerSeparatorChar());
-      String taskContainerId = String.join(separatorChar, this.taskWidgetComponentId, "task-view-container");
-      RequestContext.getCurrentInstance().update(taskContainerId);
-    }
     filter.resetValues();
     selectedFilters.remove(filter);
     resetFilterData();
@@ -469,26 +462,15 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     }
   }
 
-  @SuppressWarnings({ "unchecked", "static-access" })
+  @SuppressWarnings("unchecked")
   public void onFilterChange(ValueChangeEvent event) {
     List<TaskFilter> oldSelectedFilters = (List<TaskFilter>) event.getOldValue();
     List<TaskFilter> newSelectedFilters = (List<TaskFilter>) event.getNewValue();
     List<TaskFilter> toggleFilters =
         (List<TaskFilter>) CollectionUtils.subtract(newSelectedFilters, oldSelectedFilters);
-    List<TaskFilter> uncheckedFilters =
-        (List<TaskFilter>) CollectionUtils.subtract(oldSelectedFilters, newSelectedFilters);
- 
     if (CollectionUtils.isNotEmpty(toggleFilters)) {
       toggleFilters.get(0).resetValues();
     }
-
-    boolean hasUpdatedFilter = CollectionUtils.isNotEmpty(uncheckedFilters) && uncheckedFilters.stream().anyMatch(filter -> !StringUtils.equals(filter.value(), filter.ALL));
-
-    if (hasUpdatedFilter) {
-      String separatorChar = String.valueOf(FacesContext.getCurrentInstance().getNamingContainerSeparatorChar());
-      RequestContext.getCurrentInstance().update(String.join(separatorChar, this.taskWidgetComponentId, "task-view-container"));
-    }
-
     resetFilterData();
   }
 
