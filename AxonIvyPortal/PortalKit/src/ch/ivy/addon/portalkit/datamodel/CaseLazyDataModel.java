@@ -8,12 +8,10 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.primefaces.context.RequestContext;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
@@ -103,25 +101,15 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     }
   }
 
-  @SuppressWarnings({ "unchecked", "static-access" })
+  @SuppressWarnings("unchecked")
   public void onFilterChange(ValueChangeEvent event) {
     List<CaseFilter> oldSelectedFilters = (List<CaseFilter>) event.getOldValue();
     List<CaseFilter> newSelectedFilters = (List<CaseFilter>) event.getNewValue();
     List<CaseFilter> toggleFilters =
         (List<CaseFilter>) CollectionUtils.subtract(newSelectedFilters, oldSelectedFilters);
-    List<CaseFilter> uncheckedFilters =
-        (List<CaseFilter>) CollectionUtils.subtract(oldSelectedFilters, newSelectedFilters);
     if (CollectionUtils.isNotEmpty(toggleFilters)) {
       toggleFilters.get(0).resetValues();
     }
-
-    boolean hasUpdatedFilter = CollectionUtils.isNotEmpty(uncheckedFilters) && uncheckedFilters.stream().anyMatch(filter -> !StringUtils.equals(filter.value(), filter.ALL));
-
-    if (hasUpdatedFilter) {
-      String separatorChar = String.valueOf(FacesContext.getCurrentInstance().getNamingContainerSeparatorChar());
-      RequestContext.getCurrentInstance().update(String.join(separatorChar, this.caseWidgetComponentId, "case-list"));
-    }
-
     resetFilterData();
   }
 
@@ -135,14 +123,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     }
   }
 
-  @SuppressWarnings("static-access")
   public void removeFilter(CaseFilter filter) {
-    if (!StringUtils.equals(filter.value(), filter.ALL)) {
-      String separatorChar = String.valueOf(FacesContext.getCurrentInstance().getNamingContainerSeparatorChar());
-      String caseContainerId = String.join(separatorChar, this.caseWidgetComponentId, "case-list");
-      RequestContext.getCurrentInstance().update(caseContainerId);
-    }
-
     filter.resetValues();
     selectedFilters.remove(filter);
     resetFilterData();
