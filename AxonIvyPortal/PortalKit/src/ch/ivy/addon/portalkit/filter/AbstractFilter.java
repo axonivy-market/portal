@@ -94,6 +94,16 @@ public abstract class AbstractFilter<T extends Query<?>> {
    */
   public void validate() {}
   
+  /**
+   * <p>
+   * Check filter category show default in Task/Case List
+   * </p>
+   * <p>
+   * <b>Example: </b>
+   * Default categories of Task list: Expiry, Responsible, State
+   * Default categories of Case list: Created, Finished, State
+   * </p>
+   */
   public boolean defaultFilter() {
     return false;
   }
