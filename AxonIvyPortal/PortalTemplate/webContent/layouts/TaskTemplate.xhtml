@@ -189,9 +189,9 @@
       <f:facet name="footer">
         <h:form prependId="false">
           <h:panelGroup styleClass="Fs14 ui-dialog-buttonpane">
-            <p:commandButton actionListener="#{taskTemplateBean.startAdhoc()}" process="@this" update="@none"
+            <p:commandButton actionListener="#{taskTemplateBean.startAdhoc()}" process="@this" update="@none" id="start-adhoc-ok-button"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
-            <p:commandButton onclick="PF('adhoc-task-reset-confirmation-dialog').hide()"
+            <p:commandButton onclick="PF('adhoc-task-reset-confirmation-dialog').hide()" id="start-adhoc-cancel-button"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button"
               styleClass="portal-cancel-button" />
           </h:panelGroup>
