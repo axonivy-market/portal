@@ -49,9 +49,9 @@
 
       <h:panelGroup id="filter-container" styleClass="filter-container js-filter-container"
         rendered="#{!cc.attrs.hideCaseFilter}">
-        <h:panelGroup id="filter-selection-container" styleClass="filter-selection-container-group vertical-line">
-          <h:form id="filter-selection-form" class="filter-selection-form filter-selection-container"
-            rendered="#{(not empty data.privateFilters or not empty data.publicFilters)}">
+        <h:panelGroup id="filter-selection-container" styleClass="filter-selection-container-group"
+          rendered="#{(not empty data.privateFilters or not empty data.publicFilters)}">
+          <h:form id="filter-selection-form" class="filter-selection-form filter-selection-container">
             <p:outputPanel id="filter-selection-panel">
               <p:commandLink id="filter-name" styleClass="filter-name"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/savedFilters')} #{data.dataModel.selectedFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection') : data.dataModel.selectedFilterData.filterName}"
@@ -218,7 +218,7 @@
     <p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
       actionListener="#{logic.deleteFilter}"
       oncomplete="PF('delete-filter-confirmation-dialog').hide(); caseWidget.setUpScrollbar(); caseWidget.setupHeader();"
-      update="case-basic-filter-form advanced-filter-container filter-selection-container case-list filter-add-form" />
+      update="case-basic-filter-form advanced-filter-container #{cc.clientId}:filter-container case-list filter-add-form" />
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
       onclick="PF('delete-filter-confirmation-dialog').hide();" type="button" styleClass="portal-cancel-button" />
   </p:confirmDialog>
