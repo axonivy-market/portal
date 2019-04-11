@@ -97,4 +97,39 @@ public class TaskTemplatePage extends TemplatePage {
   public String getCaseName(){
     return findElementById("case-item:case-name-component:case-header-name-cell").getText();
   }
+  
+  public void clickAdhocButton() {
+    String adhocButtonCssSelection = "a[id$='start-adhoc']";
+    findElementByCssSelector(adhocButtonCssSelection).click();
+    waitAjaxIndicatorDisappear();
+  }
+  
+  public void clickAdhocOkButton() {
+    String adhocButtonCssSelection = "button[id$='start-adhoc-ok-button']";
+    findElementByCssSelector(adhocButtonCssSelection).click();
+    waitAjaxIndicatorDisappear();
+  }
+  
+  public void clickAdhocCancelButton() {
+    String adhocButtonCssSelection = "button[id$='start-adhoc-cancel-button']";
+    findElementByCssSelector(adhocButtonCssSelection).click();
+    waitAjaxIndicatorDisappear();
+  }
+  
+  public String getTaskId() {
+    String taskTitleCssSelection = "span[id$='title']";
+    String taskTitle = findElementByCssSelector(taskTitleCssSelection).getText();
+    String taskId = taskTitle.substring(taskTitle.indexOf("#") + 1, taskTitle.indexOf(")"));
+    return taskId;
+  }
+  
+  public boolean isShowAdhocHistoryBtnNotExist() {
+    String adhocHistoryBtnCSSSelection = "a[id$='show-adhoc-history']";
+    return driver.findElements(By.cssSelector(adhocHistoryBtnCSSSelection)).isEmpty();
+  }
+  
+  public boolean isAdhocHistoryDialogExist() {
+    String adhocHistoryBtnCSSSelection = "div[id$='adhoc-task-history-dialog']";
+    return !driver.findElements(By.cssSelector(adhocHistoryBtnCSSSelection)).isEmpty();
+  }
 }
