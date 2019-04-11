@@ -677,9 +677,6 @@
 }
 .email-setting-container {
   overflow-y: auto;
-  height: 283px;
-}
-_:-ms-input-placeholder, :root .email-setting-container {
   height: 290px;
 }
 /* =================== END DIALOG ====================== */
