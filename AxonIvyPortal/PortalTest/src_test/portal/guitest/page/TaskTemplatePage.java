@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 
 public class TaskTemplatePage extends TemplatePage {
 
+  String ADHOC_HISTORY_TABLE_CSS_SELECTOR = "div[id*='adhoc-task-history-table'] table>tbody>tr";
+
   @Override
   protected String getLoadedLocator() {
     return "id('side-steps-menu')";
@@ -130,6 +132,29 @@ public class TaskTemplatePage extends TemplatePage {
   
   public boolean isAdhocHistoryDialogExist() {
     String adhocHistoryBtnCSSSelection = "div[id$='adhoc-task-history-dialog']";
-    return !driver.findElements(By.cssSelector(adhocHistoryBtnCSSSelection)).isEmpty();
+    return findElementByCssSelector(adhocHistoryBtnCSSSelection).isDisplayed();
   }
+  
+  public void clickShowAdhocHistoryBtn() {
+    String adhocHistoryBtnCSSSelection = "a[id$='show-adhoc-history']";
+    findElementByCssSelector(adhocHistoryBtnCSSSelection).click();
+    waitAjaxIndicatorDisappear();
+  }
+
+  public String getTaskNameOfAdhocHistoryRow(int index) {
+    WebElement row = driver.findElements(By.cssSelector(ADHOC_HISTORY_TABLE_CSS_SELECTOR)).get(index);
+    return row.findElements(By.xpath("td")).get(1).getText();
+  }
+  
+  public String getCommentOfAdhocHistoryRow(int index) {
+    WebElement row = driver.findElements(By.cssSelector(ADHOC_HISTORY_TABLE_CSS_SELECTOR)).get(index);
+    return row.findElements(By.xpath("td")).get(2).getText();
+  }
+  
+  public void closeAdhocHistoryDialog() {
+    String adhocButtonCssSelection = "button[id$='close-adhoc-dialog-button']";
+    findElementByCssSelector(adhocButtonCssSelection).click();
+    waitAjaxIndicatorDisappear();
+  }
+
 }

@@ -43,16 +43,19 @@ public class AdhocExpressTest extends BaseTest {
     String defaultTaskComment = "good";
     String approvalTaskComment = "it's okay";
     
+    //check if task Maternity exists
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksBy(taskNamePrefix);
     assertEquals(1, taskWidgetPage.countTasks());
-    startATask();
+    taskTemplatePage = taskWidgetPage.startTask(0);
     
+    //create adhoc from Maternity task
     String taskId = taskTemplatePage.getTaskId();
     assertEquals(true, taskTemplatePage.isShowAdhocHistoryBtnNotExist());
     taskTemplatePage.clickAdhocButton();
     taskTemplatePage.clickAdhocOkButton();
     
+    //create tasks in adhoc page
     ExpressProcessPage expressPage = new ExpressProcessPage();
     String processName = expressPage.getProcessName();
     assertEquals(String.format("AdHoc Process for Task %s - Maternity Leave Request", taskId), processName);
@@ -63,29 +66,48 @@ public class AdhocExpressTest extends BaseTest {
     expressPage.createDefaultTask(1, null, responsibles);
     expressPage.executeDirectlyAndGoToHomePage();
     
+    //first task of adhoc
     assertEquals(0, taskWidgetPage.countTasks()); //no task name Maternity
     taskWidgetPage.filterTasksBy(defaultTaskName);
-    startATask();
+    taskWidgetPage.startTask(0);
     defaultExpressTaskPage = new DefaulExpresTaskPage();
     defaultExpressTaskPage.enterTextToDefaultTask(defaultTaskComment);
     defaultExpressTaskPage.finishDefaultTask();
     
+    //approval task of adhoc
     homePage = new HomePage();
     taskWidgetPage.filterTasksBy(approvalTaskName);
     assertEquals(1, taskWidgetPage.countTasks());
-    startATask();
+    taskWidgetPage.startTask(0);
     expressApprovalPage = new ExpressApprovalPage();
     expressApprovalPage.comment(approvalTaskComment);
     expressApprovalPage.approve();
     
+    //check if task Maternity task
     homePage = new HomePage();
     taskWidgetPage.filterTasksBy(taskNamePrefix);
     assertEquals(1, taskWidgetPage.countTasks());
-    startATask();
+    taskWidgetPage.expand();
+    taskWidgetPage.resetReservedTask(0);
+    taskWidgetPage.startTask(0);
+    
+    //check adhoc history
     assertEquals(true, taskTemplatePage.isAdhocHistoryDialogExist());
+    assertEquals(approvalTaskName, taskTemplatePage.getTaskNameOfAdhocHistoryRow(0));
+    assertEquals("Approved - " + approvalTaskComment, taskTemplatePage.getCommentOfAdhocHistoryRow(0));
+    assertEquals(defaultTaskName, taskTemplatePage.getTaskNameOfAdhocHistoryRow(1));
+    assertEquals(defaultTaskComment, taskTemplatePage.getCommentOfAdhocHistoryRow(1));
+    
+    //open again by clicking adhoc dialog icon
+    taskTemplatePage.closeAdhocHistoryDialog();
+    taskTemplatePage.clickShowAdhocHistoryBtn();
+    assertEquals(true, taskTemplatePage.isAdhocHistoryDialogExist());
+    taskTemplatePage.closeAdhocHistoryDialog();
+    
+    //open Maternity task again and make sure adhoc history dialog doesn't appear
+    taskTemplatePage.goToHomePage();
+    taskWidgetPage.startTask(0);
+    assertEquals(false, taskTemplatePage.isAdhocHistoryDialogExist());
   }
   
-  private void startATask() {
-    taskTemplatePage = taskWidgetPage.startTask(0);
-  }
 }
