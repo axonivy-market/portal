@@ -100,7 +100,7 @@ public class TaskTemplatePage extends TemplatePage {
     return findElementById("case-item:case-name-component:case-header-name-cell").getText();
   }
   
-  public void clickAdhocButton() {
+  public void clickAdhocCreationButton() {
     String adhocButtonCssSelection = "a[id$='start-adhoc']";
     findElementByCssSelector(adhocButtonCssSelection).click();
     waitAjaxIndicatorDisappear();
@@ -155,6 +155,11 @@ public class TaskTemplatePage extends TemplatePage {
     String adhocButtonCssSelection = "button[id$='close-adhoc-dialog-button']";
     findElementByCssSelector(adhocButtonCssSelection).click();
     waitAjaxIndicatorDisappear();
+  }
+  
+  public String getAdhocCreationMessage() {
+    String adhocCreationMessageCSSSelector = "span[id$='adhoc-creation-message']";
+    return findDisplayedElementBySelector(adhocCreationMessageCSSSelector).getText();
   }
 
 }
