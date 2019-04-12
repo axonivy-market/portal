@@ -70,7 +70,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     click(By.xpath("//*[@id='form:createTabs']/ul/li[4]"));
     ensureNoBackgroundRequest();
     Sleeper.sleepTight(3000);
-    waitForElementDisplayed(By.id("form:createTabs:createOneRadioGrid"), true, TIME_OUT);
+    waitForElementDisplayed(By.id("form:createTabs:OneRadioLabel"), true, TIME_OUT);
     type(By.id("form:createTabs:OneRadioLabel"), label);
     Sleeper.sleepTight(2000);
     addRadioOptions(numberOfOption);
