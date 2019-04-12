@@ -52,7 +52,8 @@ public class AdhocExpressTest extends BaseTest {
     //create adhoc from Maternity task
     String taskId = taskTemplatePage.getTaskId();
     assertEquals(true, taskTemplatePage.isShowAdhocHistoryBtnNotExist());
-    taskTemplatePage.clickAdhocButton();
+    taskTemplatePage.clickAdhocCreationButton();
+    assertEquals("You may lose your work in progress and start the Ad-hoc process. Do you want to continue?", taskTemplatePage.getAdhocCreationMessage());
     taskTemplatePage.clickAdhocOkButton();
     
     //create tasks in adhoc page
@@ -108,6 +109,10 @@ public class AdhocExpressTest extends BaseTest {
     taskTemplatePage.goToHomePage();
     taskWidgetPage.startTask(0);
     assertEquals(false, taskTemplatePage.isAdhocHistoryDialogExist());
+    
+    //click adhoc creation button and check warning message
+    taskTemplatePage.clickAdhocCreationButton();
+    assertEquals("There is already an adhoc process for this task, do you want to create another one?", taskTemplatePage.getAdhocCreationMessage());
   }
   
 }
