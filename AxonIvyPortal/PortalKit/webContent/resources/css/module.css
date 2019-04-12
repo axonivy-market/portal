@@ -5568,34 +5568,10 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel {
 	padding: 0 10px 0 5px;
 }
 
-/* ================ RESPONSIVE ENHANCEMENT ================== */
+/* =================== RESPONSIVE ENHANCEMENT ====================== */
 @media screen and (min-width: 40.063em) {
 	.ui-md-0 {
 		display: none !important;
 	}
 }
 /* =================== END ENHANCEMENT ====================== */
-
-/* ======================= MESSAGES ========================= */
-.ui-messages-info-icon,
-.ui-messages-warn-icon,
-.ui-messages-error-icon,
-.ui-message-error-icon,
-.ui-messages-fatal-icon {
-	width: 35px !important;
-	height: 35px !important;
-	top: -7px !important;
-}
-.ui-messages ul {
-	margin-top: 0 !important;
-}
-.ui-widget.ui-fileupload {
-	margin-top: 5px;
-}
-.ui-fileupload-buttonbar {
-	-webkit-transform: translateY(30%);
-	-moz-transform: translateY(30%);
-	-o-transform: translateY(30%);
-	transform: translateY(30%);
-}
-/* =================== END MESSAGES ========================= */
