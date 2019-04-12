@@ -15,7 +15,6 @@
   <f:event listener="#{logic.initData(case)}" type="preRenderComponent" />
 
   <div id="#{cc.clientId}" class="case-details-item js-case-details-item js-document-column #{cc.attrs.styleClass}">
-    <p:growl id="case-document-global-messages" />
     <p:scrollPanel styleClass="case-details-document-scrollpanel" mode="native" id="case-details-documents">
       <ui:repeat var="document" value="#{data.documents}" varStatus="status" id="document-list">
         <h:form prependId="false">
@@ -60,7 +59,9 @@
       <p:fileUpload styleClass="document-upload" id="document-upload-panel" fileUploadListener="#{logic.uploadDocument}"
         mode="advanced" dragDropSupport="true" multiple="true" oncomplete="documentTruncation.truncate();"
         update="#{cc.clientId}:document-upload-form:upload-messages #{cc.clientId}:case-details-documents #{cc.attrs.componentToUpdate}"
-        label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" auto="true"/>
+        label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" auto="true"
+        invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
+        sizeLimit="#{masterDataBean.fileUploadSizeLimit}" />
     </h:form>
     <f:facet name="footer">
       <p:commandButton id="document-upload-close-command" type="button"
@@ -77,7 +78,7 @@
     <h:panelGroup layout="block" styleClass="document-deletion-command-buttons">
       <p:commandButton styleClass="document-deletion-command" id="document-deletion-command"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" process="@this"
-        update="#{cc.clientId}:case-details-documents #{cc.attrs.componentToUpdate} #{p:component('case-document-global-messages')}"
+        update="#{cc.clientId}:case-details-documents #{cc.attrs.componentToUpdate}"
         actionListener="#{logic.deleteDocument}" oncomplete="PF('document-deletion-dialog-#{case.id}').hide()" />
       <p:commandButton id="document-deletion-cancellation-command" styleClass="portal-cancel-button"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" process="@this"
