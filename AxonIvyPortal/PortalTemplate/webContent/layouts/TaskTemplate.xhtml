@@ -184,7 +184,7 @@
       header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
       widgetVar="adhoc-task-reset-confirmation-dialog" appendTo="@(body)"
       modal="true" dynamic="true">
-      <h:outputText escape="false" styleClass="ui-confirm-dialog-message"
+      <h:outputText escape="false" styleClass="ui-confirm-dialog-message" id="adhoc-creation-message"
         value="#{taskTemplateBean.getAdhocCreationMessage()}" />
       <f:facet name="footer">
         <h:form prependId="false">
