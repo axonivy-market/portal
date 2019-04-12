@@ -12,7 +12,6 @@
 
 <cc:implementation>
   <f:event listener="#{logic.initData(task)}" type="preRenderComponent" />
-  <p:growl id="task-document-global-messages" />
   <div id="task-document" class="task-details-item js-task-details-item js-document-column #{cc.attrs.styleClass}">
     <p:scrollPanel styleClass="task-details-document-scrollpanel" mode="native" id="task-details-documents">
       <ui:repeat var="document" value="#{data.documents}" varStatus="status">
@@ -55,7 +54,8 @@
       <p:fileUpload styleClass="document-upload" id="document-upload-panel" fileUploadListener="#{logic.uploadDocument}"
         mode="advanced" dragDropSupport="true" oncomplete="documentTruncation.truncate();"
         label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
-        auto="true" multiple="true"
+        auto="true" multiple="true" sizeLimit="#{masterDataBean.fileUploadSizeLimit}"
+        invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
         update="upload-messages #{p:component('task-details-documents')} #{cc.attrs.componentToUpdate}" />
     </h:form>
     <f:facet name="footer">
@@ -73,7 +73,7 @@
     <h:panelGroup layout="block" styleClass="document-deletion-command-buttons">
       <p:commandButton styleClass="document-deletion-command" id="document-deletion-command"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" process="@this"
-        update="#{p:component('task-details-documents')} #{cc.attrs.componentToUpdate} #{p:component('task-document-global-messages')}"
+        update="#{p:component('task-details-documents')} #{cc.attrs.componentToUpdate}"
         actionListener="#{logic.deleteDocument}" oncomplete="PF('document-deletion-dialog').hide()" />
       <p:commandButton id="document-deletion-cancellation-command" styleClass="portal-cancel-button"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" process="@this"
