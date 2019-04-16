@@ -1,5 +1,5 @@
 [Ivy]
-163729F2CBAE7BE4 3.23 #module
+163729F2CBAE7BE4 3.26 #module
 >Proto >Proto Collection #zClass
 ew0 executePredefinedWorkflow Big #zClass
 ew0 B #cInfo
@@ -36,11 +36,9 @@ ew0 @PushWFArc f13 '' #zField
 ew0 @PushWFArc f18 '' #zField
 ew0 @PushWFArc f11 '' #zField
 ew0 @PushWFArc f4 '' #zField
-ew0 @PushWFArc f8 '' #zField
 ew0 @PushWFArc f6 '' #zField
 ew0 @PushWFArc f30 '' #zField
 ew0 @PushWFArc f3 '' #zField
-ew0 @PushWFArc f12 '' #zField
 ew0 @PushWFArc f2 '' #zField
 ew0 @PushWFArc f10 '' #zField
 ew0 Bk8 U20 'User 2' #zField
@@ -56,6 +54,15 @@ ew0 @PushWFArc f39 '' #zField
 ew0 @TaskSwitch f26 '' #zField
 ew0 @TkArc f20 '' #zField
 ew0 @PushWFArc f21 '' #zField
+ew0 @Alternative f12 '' #zField
+ew0 @PushWFArc f22 '' #zField
+ew0 @Alternative f23 '' #zField
+ew0 @PushWFArc f25 '' #zField
+ew0 @PushWFArc f24 '' #zField
+ew0 @PushWFArc f8 '' #zField
+ew0 @GridStep f28 '' #zField
+ew0 @PushWFArc f29 '' #zField
+ew0 @PushWFArc f27 '' #zField
 >Proto ew0 ew0 executePredefinedWorkflow #zField
 Bk4 @TextInP .resExport .resExport #zField
 Bk4 @TextInP .type .type #zField
@@ -174,9 +181,7 @@ Bk8 @PushWFArc f12 '' #zField
 Bk8 @PushWFArc f3 '' #zField
 Bk8 @TaskSwitchSimple f18 '' #zField
 Bk8 @TaskSwitchSimple f20 '' #zField
-Bk8 @RichDialog f9 '' #zField
 Bk8 @Alternative f22 '' #zField
-Bk8 @PushWFArc f15 '' #zField
 Bk8 @PushWFArc f23 '' #zField
 Bk8 @PushWFArc f24 '' #zField
 Bk8 @Alternative f0 '' #zField
@@ -189,10 +194,12 @@ Bk8 @PushWFArc f2 '' #zField
 Bk8 @GridStep f29 '' #zField
 Bk8 @PushWFArc f5 '' #zField
 Bk8 @PushWFArc f14 '' #zField
-Bk8 @PushWFArc f6 '' #zField
+Bk8 @RichDialog f7 '' #zField
+Bk8 @PushWFArc f16 '' #zField
+Bk8 @PushWFArc f15 '' #zField
 >Proto Bk8 Bk4 BpmnUserTask #zField
 ew0 f1 type gawfs.ExecutePredefinedWorkflowData #txt
-ew0 f1 955 147 30 30 0 15 #rect
+ew0 f1 1137 145 30 30 0 15 #rect
 ew0 f1 @|EndSubIcon #fIcon
 ew0 f9 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
@@ -290,20 +297,21 @@ ew0 S31 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 S31 778 140 112 44 -26 -8 #rect
+ew0 S31 874 138 112 44 -26 -8 #rect
 ew0 S31 @|BpmnUserTaskIcon #fIcon
-ew0 f16 inParamDecl '<List<gawfs.TaskDef> definedTasks,java.lang.String processName,java.lang.String processDescription,ch.ivy.gawfs.enums.ProcessType processType,ch.ivy.gawfs.DragAndDropController dragAndDropController,ch.ivy.gawfs.DynaFormController dynaFormController,java.lang.String processID> param;' #txt
+ew0 f16 inParamDecl '<List<gawfs.TaskDef> definedTasks,java.lang.String processName,java.lang.String processDescription,ch.ivy.gawfs.enums.ProcessType processType,java.lang.String processID,java.lang.Boolean isAdhocProcess,java.lang.Long originalTaskID> param;' #txt
 ew0 f16 inParamTable 'out.definedTasks=param.definedTasks;
+out.isAdhocProcess=param.isAdhocProcess;
+out.originalTaskID=param.originalTaskID;
 out.workflowDescription=param.processDescription;
 out.workflowID=param.processID;
 out.workflowName=param.processName;
 out.workflowType=param.processType;
 ' #txt
-ew0 f16 outParamDecl '<> result;
-' #txt
+ew0 f16 outParamDecl '<> result;' #txt
 ew0 f16 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
-ew0 f16 callSignature call(List<gawfs.TaskDef>,String,String,ch.ivy.gawfs.enums.ProcessType,ch.ivy.gawfs.DragAndDropController,ch.ivy.gawfs.DynaFormController,String) #txt
+ew0 f16 callSignature call(List<gawfs.TaskDef>,String,String,ch.ivy.gawfs.enums.ProcessType,String,Boolean,Long) #txt
 ew0 f16 type gawfs.ExecutePredefinedWorkflowData #txt
 ew0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -352,19 +360,6 @@ ew0 f11 0 0.8125675639531414 0 0 #arcLabel
 ew0 f4 582 290 678 174 #arcP
 ew0 f4 1 632 290 #addKink
 ew0 f4 0 0.8278533742264182 0 0 #arcLabel
-ew0 f8 expr in #txt
-ew0 f8 outCond 'in.currentTask.taskType == ch.ivy.gawfs.enums.TaskType.FINAL_REVIEW' #txt
-ew0 f8 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>no</name>
-        <nameStyle>2
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-ew0 f8 698 162 778 162 #arcP
-ew0 f8 0 0.5125 0 -9 #arcLabel
 ew0 f6 582 162 666 162 #arcP
 ew0 f30 expr out #txt
 ew0 f30 89 66 226 140 #arcP
@@ -383,7 +378,6 @@ ew0 f3 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 ew0 f3 370 162 470 162 #arcP
 ew0 f3 0 0.4772727272727273 -1 8 #arcLabel
-ew0 f12 890 162 955 162 #arcP
 ew0 f2 expr in #txt
 ew0 f2 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -521,6 +515,84 @@ ew0 f21 expr data #txt
 ew0 f21 outCond ivp=="TaskA.ivp" #txt
 ew0 f21 368 441 513 441 #arcP
 ew0 f21 0 0.5135135135135135 0 11 #arcLabel
+ew0 f12 type gawfs.ExecutePredefinedWorkflowData #txt
+ew0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Is Adhoc Task?</name>
+    </language>
+</elementInfo>
+' #txt
+ew0 f12 760 144 32 32 -36 22 #rect
+ew0 f12 @|AlternativeIcon #fIcon
+ew0 f22 expr in #txt
+ew0 f22 outCond 'in.currentTask.taskType == ch.ivy.gawfs.enums.TaskType.FINAL_REVIEW' #txt
+ew0 f22 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>no</name>
+        <nameStyle>2
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ew0 f22 698 162 760 160 #arcP
+ew0 f22 0 0.11363636363636363 0 -10 #arcLabel
+ew0 f23 type gawfs.ExecutePredefinedWorkflowData #txt
+ew0 f23 1040 144 32 32 0 16 #rect
+ew0 f23 @|AlternativeIcon #fIcon
+ew0 f25 986 160 1040 160 #arcP
+ew0 f24 expr in #txt
+ew0 f24 1072 160 1137 160 #arcP
+ew0 f8 expr in #txt
+ew0 f8 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>No</name>
+    </language>
+</elementInfo>
+' #txt
+ew0 f8 792 160 874 160 #arcP
+ew0 f8 0 0.43902439024390244 0 -13 #arcLabel
+ew0 f28 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
+' #txt
+ew0 f28 actionTable 'out=in;
+' #txt
+ew0 f28 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivyteam.ivy.workflow.ITask;
+
+if(in.isAdhocProcess){
+	ITask originalTask = ivy.wf.findTask(in.originalTaskId);
+	if(originalTask != null){
+		TaskUtils.removeHidePropertyToDisplayInPortal(originalTask);
+	}
+}' #txt
+ew0 f28 type gawfs.ExecutePredefinedWorkflowData #txt
+ew0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Display original adhoc task</name>
+    </language>
+</elementInfo>
+' #txt
+ew0 f28 840 42 160 44 -74 -8 #rect
+ew0 f28 @|StepIcon #fIcon
+ew0 f29 expr in #txt
+ew0 f29 outCond in.isAdhocProcess #txt
+ew0 f29 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Yes</name>
+    </language>
+</elementInfo>
+' #txt
+ew0 f29 776 144 840 64 #arcP
+ew0 f29 1 776 64 #addKink
+ew0 f29 1 0.40625 0 -13 #arcLabel
+ew0 f27 expr out #txt
+ew0 f27 1000 64 1056 144 #arcP
+ew0 f27 1 1056 64 #addKink
+ew0 f27 1 0.5 0 0 #arcLabel
 >Proto ew0 .type gawfs.ExecutePredefinedWorkflowData #txt
 >Proto ew0 .processKind CALLABLE_SUB #txt
 >Proto ew0 0 0 32 24 18 0 #rect
@@ -543,6 +615,7 @@ TaskA.EXTYPE=0
 TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=in1.responsible.getMemberName().substring(1)
+TaskA.SCRIPT=if (in1.originalTaskID \!\= null && in1.originalTaskID > 0) {\r\n  task.customFields().stringField(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString());\r\n}
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=3' #txt
 Bk4 f6 type gawfs.ExecutePredefinedWorkflowData #txt
@@ -620,6 +693,7 @@ TaskA.EXTYPE=0
 TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=in1.responsible.getMemberName()
+TaskA.SCRIPT=if (in1.originalTaskID \!\= null && in1.originalTaskID > 0) {\r\n  task.customFields().stringField(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString());\r\n}
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=2' #txt
 Bk4 f16 type gawfs.ExecutePredefinedWorkflowData #txt
@@ -878,14 +952,21 @@ Bk5 f28 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk5 f28 actionTable 'out=in;
 ' #txt
-Bk5 f28 actionCode 'import ch.ivy.gawfs.enums.TaskType;
+Bk5 f28 actionCode 'import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivy.gawfs.enums.TaskType;
 import gawfs.TaskDef;
 
 
 // Add review task to defined tasks
 TaskDef taskDef = new gawfs.TaskDef();
 taskDef.taskType = TaskType.FINAL_REVIEW;
-taskDef.subject = TaskType.FINAL_REVIEW.getLabel();
+if(in.isAdhocProcess) {
+	ITask originalTask = ivy.wf.findTask(in.originalTaskID);
+	taskDef.subject = originalTask.name;
+}
+else {
+	taskDef.subject = TaskType.FINAL_REVIEW.getLabel();
+}
 in.definedTasks.add(taskDef);
 
 // Initialize steps
@@ -896,6 +977,7 @@ for(TaskDef task: in.definedTasks) {
 // Initialize controllers
 in.actualStepIndex = 0;
 in.currentTask = in.definedTasks.get(in.actualStepIndex);' #txt
+Bk5 f28 security system #txt
 Bk5 f28 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk5 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1302,6 +1384,7 @@ TaskA.EXTYPE=0
 TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=in1.responsible.getMemberName()
+TaskA.SCRIPT=if (in1.originalTaskID \!\= null && in1.originalTaskID > 0) {\r\n  task.customFields().stringField(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString());\r\n}
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=2' #txt
 Bk8 f18 type gawfs.ExecutePredefinedWorkflowData #txt
@@ -1331,6 +1414,7 @@ TaskA.EXTYPE=0
 TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=in1.responsible.getMemberName().substring(1)
+TaskA.SCRIPT=if (in1.originalTaskID \!\= null && in1.originalTaskID > 0) {\r\n  task.customFields().stringField(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString());\r\n}
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=3' #txt
 Bk8 f20 type gawfs.ExecutePredefinedWorkflowData #txt
@@ -1346,40 +1430,9 @@ Bk8 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Bk8 f20 396 406 30 30 20 -10 #rect
 Bk8 f20 @|TaskSwitchSimpleIcon #fIcon
-Bk8 f9 targetWindow NEW #txt
-Bk8 f9 targetDisplay TOP #txt
-Bk8 f9 richDialogId ch.ivy.gawfs.workflowExecution.ApprovalForm #txt
-Bk8 f9 startMethod start(java.util.List<gawfs.TaskDef>,java.util.List<String>,java.lang.Integer) #txt
-Bk8 f9 type gawfs.ExecutePredefinedWorkflowData #txt
-Bk8 f9 requestActionDecl '<java.util.List<gawfs.TaskDef> finishedTasks, java.util.List<String> steps, java.lang.Integer actualStepIndex> param;' #txt
-Bk8 f9 requestMappingAction 'param.finishedTasks=in.finishedTasks;
-param.steps=in.steps;
-param.actualStepIndex=in.actualStepIndex;
-' #txt
-Bk8 f9 responseActionDecl 'gawfs.ExecutePredefinedWorkflowData out;
-' #txt
-Bk8 f9 responseMappingAction 'out=in;
-out.approvalTaskResult=result.approvalResult;
-' #txt
-Bk8 f9 isAsynch false #txt
-Bk8 f9 isInnerRd false #txt
-Bk8 f9 userContext '* ' #txt
-Bk8 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Approval form</name>
-        <nameStyle>13,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Bk8 f9 264 565 112 44 -37 -8 #rect
-Bk8 f9 @|RichDialogIcon #fIcon
 Bk8 f22 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk8 f22 304 485 32 32 0 16 #rect
 Bk8 f22 @|AlternativeIcon #fIcon
-Bk8 f15 expr in #txt
-Bk8 f15 320 517 320 565 #arcP
 Bk8 f23 expr data #txt
 Bk8 f23 outCond ivp=="TaskA.ivp" #txt
 Bk8 f23 227 436 304 501 #arcP
@@ -1513,19 +1566,40 @@ Bk8 f5 expr out #txt
 Bk8 f5 320 700 320 770 #arcP
 Bk8 f14 expr out #txt
 Bk8 f14 320 814 320 882 #arcP
-Bk8 f6 expr out #txt
-Bk8 f6 320 609 320 656 #arcP
+Bk8 f7 richDialogId ch.ivy.gawfs.workflowExecution.ApprovalForm #txt
+Bk8 f7 startMethod start(java.util.List<gawfs.TaskDef>,java.util.List<String>,java.lang.Integer,Boolean,java.lang.Long) #txt
+Bk8 f7 type gawfs.ExecutePredefinedWorkflowData #txt
+Bk8 f7 requestActionDecl '<java.util.List<gawfs.TaskDef> finishedTasks,java.util.List<String> steps,java.lang.Integer actualStepIndex,Boolean isAdhocProcess,java.lang.Long originalTaskID> param;' #txt
+Bk8 f7 requestMappingAction 'param.finishedTasks=in.finishedTasks;
+param.steps=in.steps;
+param.actualStepIndex=in.actualStepIndex;
+param.isAdhocProcess=in.isAdhocProcess;
+param.originalTaskID=in.originalTaskID;
+' #txt
+Bk8 f7 responseActionDecl 'gawfs.ExecutePredefinedWorkflowData out;
+' #txt
+Bk8 f7 responseMappingAction 'out=in;
+out.approvalTaskResult=result.approvalResult;
+' #txt
+Bk8 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Approval Form</name>
+    </language>
+</elementInfo>
+' #txt
+Bk8 f7 264 554 112 44 -39 -8 #rect
+Bk8 f7 @|RichDialogIcon #fIcon
+Bk8 f16 expr in #txt
+Bk8 f16 320 517 320 554 #arcP
+Bk8 f15 expr out #txt
+Bk8 f15 320 598 320 656 #arcP
 >Proto Bk4 0 0 32 24 18 0 #rect
 >Proto Bk4 @|BIcon #fIcon
 ew0 f0 mainOut f30 tail #connect
 ew0 f30 head S11 g0 #connect
 ew0 f16 mainOut f18 tail #connect
 ew0 f18 head S11 g2 #connect
-ew0 f12 head f1 mainIn #connect
-ew0 f5 out f8 tail #connect
-ew0 f8 head S31 g0 #connect
-ew0 S31 g1 f12 tail #connect
-ew0 f5 out f2 tail #connect
 ew0 f2 head f9 mainIn #connect
 ew0 U21 g1 f6 tail #connect
 ew0 f6 head f5 in #connect
@@ -1553,6 +1627,19 @@ ew0 f34 out f20 tail #connect
 ew0 f20 head f26 in #connect
 ew0 f26 out f21 tail #connect
 ew0 f21 head f32 mainIn #connect
+ew0 f5 out f22 tail #connect
+ew0 f22 head f12 in #connect
+ew0 f5 out f2 tail #connect
+ew0 S31 g1 f25 tail #connect
+ew0 f25 head f23 in #connect
+ew0 f23 out f24 tail #connect
+ew0 f24 head f1 mainIn #connect
+ew0 f8 head S31 g0 #connect
+ew0 f12 out f29 tail #connect
+ew0 f29 head f28 mainIn #connect
+ew0 f12 out f8 tail #connect
+ew0 f28 mainOut f27 tail #connect
+ew0 f27 head f23 in #connect
 Bk4 f8 head f16 in #connect
 Bk4 f0 out f8 tail #connect
 Bk4 f0 out f1 tail #connect
@@ -1627,8 +1714,6 @@ Bk8 g0 m f3 tail #connect
 Bk8 f3 head f64 mainIn #connect
 Bk8 f18 out f23 tail #connect
 Bk8 f23 head f22 in #connect
-Bk8 f22 out f15 tail #connect
-Bk8 f15 head f9 mainIn #connect
 Bk8 f20 out f24 tail #connect
 Bk8 f24 head f22 in #connect
 Bk8 f13 mainOut f4 tail #connect
@@ -1643,6 +1728,8 @@ Bk8 f29 mainOut f5 tail #connect
 Bk8 f5 head f1 mainIn #connect
 Bk8 f1 mainOut f14 tail #connect
 Bk8 f14 head f10 mainIn #connect
-Bk8 f9 mainOut f6 tail #connect
-Bk8 f6 head f29 mainIn #connect
+Bk8 f22 out f16 tail #connect
+Bk8 f16 head f7 mainIn #connect
+Bk8 f7 mainOut f15 tail #connect
+Bk8 f15 head f29 mainIn #connect
 Bk8 0 0 552 1160 0 #ivRect

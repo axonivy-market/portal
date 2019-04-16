@@ -112,4 +112,7 @@ public class ExpressProcessPage extends TemplatePage{
     Sleeper.sleepTight(2000);
   }
   
+  public String getProcessName() {
+    return findElementById("form:process-name").getAttribute("value");
+  }
 }

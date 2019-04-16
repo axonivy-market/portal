@@ -1,5 +1,5 @@
 [Ivy]
-162F0A4F9FF3C1EC 3.23 #module
+162F0A4F9FF3C1EC 3.26 #module
 >Proto >Proto Collection #zClass
 Us0 UserTaskFormProcess Big #zClass
 Us0 RD #cInfo
@@ -151,7 +151,14 @@ Us0 f12 actionDecl 'ch.ivy.gawfs.workflowExecution.UserTaskForm.UserTaskFormData
 ' #txt
 Us0 f12 actionTable 'out=in;
 ' #txt
-Us0 f12 actionCode 'in.executePredefinedWorkflowData.currentTask.actualApplicantName = ivy.session.getSessionUser().getName();' #txt
+Us0 f12 actionCode 'import ch.ivy.addon.portalkit.util.AdhocUtils;
+
+in.executePredefinedWorkflowData.currentTask.actualApplicantName = ivy.session.getSessionUser().getName();
+if (in.executePredefinedWorkflowData.originalTaskID != null && in.executePredefinedWorkflowData.originalTaskID > 0) {
+	String description = AdhocUtils.getDescriptionOfFirstTask(in.executePredefinedWorkflowData);
+	AdhocUtils.storeHistory(in.executePredefinedWorkflowData.getOriginalTaskID(), description);
+	ivy.case.getBusinessCase().createNote(ivy.session, ivy.task.getName() + ": " + description);
+}' #txt
 Us0 f12 security system #txt
 Us0 f12 type ch.ivy.gawfs.workflowExecution.UserTaskForm.UserTaskFormData #txt
 Us0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
