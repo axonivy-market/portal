@@ -180,6 +180,13 @@ public class TaskWidgetPage extends TemplatePage {
     click(findElementById(resetCommandButton));
   }
 
+  public void resetReservedTask(int taskId) {
+    String resetCommandButton =
+        String.format(taskWidgetId + ":task-list-scroller:%s:task-item:resume-task-action:task-reset-command", taskId);
+    click(findElementById(resetCommandButton));
+    waitAjaxIndicatorDisappear();
+  }
+
   public boolean isTaskStartEnabled(int taskId) {
     String startCommandButton =
         String.format(taskWidgetId + ":task-list-scroller:%d:task-item:task-action:task-start-command", taskId);
