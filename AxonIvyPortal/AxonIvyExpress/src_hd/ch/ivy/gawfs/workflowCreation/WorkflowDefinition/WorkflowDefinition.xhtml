@@ -37,7 +37,7 @@
 							<div class="ui-g-12 ui-md-6 ui-lg-4">
 									
 										<p:selectOneRadio id="process-type" layout="grid" columns="1"
-											disabled="#{not empty data.data.processID}"
+											disabled="#{not empty data.data.processID or data.data.isAdhocProcess}"
 											value="#{data.data.processType}" required="true"
 											requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processtype')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
 											<f:selectItems value="#{workflowDefinitionBean.processTypes}"
@@ -58,7 +58,7 @@
 							</div>
 								<div class="ui-g-12 ui-md-12 ui-lg-3">
 											<p:selectOneRadio id="user-interface" styleClass="radio-group"
-							                  value="#{data.data.isUseDefaultUI}" required="true" layout="custom"
+							                  value="#{data.data.isUseDefaultUI}" required="true" layout="custom" disabled="#{data.data.isAdhocProcess}"
 							                  requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/UserInterface')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
 							                  <f:selectItem itemValue="false"/>
 							                  <f:selectItem itemValue="true" />
@@ -92,7 +92,7 @@
 							</div>
 							<div class="ui-g-12 ui-md-12 ui-lg-3">
 								<p:inputText id="process-name"
-									value="#{data.data.processName}" required="true" maxlength="50"
+									value="#{data.data.processName}" required="true" maxlength="50" disabled="#{data.data.isAdhocProcess}"
 									requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
 									<p:ajax event="blur" partialSubmit="true" process="@this"
 										global="false" immediate="true" />
