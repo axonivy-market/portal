@@ -71,10 +71,10 @@
         value="#{task.expiryTimestamp}" styleClass="js-expiry-cell" />
 
       <h:outputText id="customer-name" styleClass="TexAlCenter" style="flex: 0 0 150px;"
-        value="#{task.customVarCharField5}" />
+        value="#{task.customFields().stringField('CustomVarCharField5').getOrNull()}" />
 
       <h:outputText id="customer-type" styleClass="TexAlCenter" style="flex: 0 0 150px;"
-        value="#{task.customVarCharField1}" />
+        value="#{task.customFields().stringField('CustomVarCharField1').getOrNull()}" />
     </ui:define>
 
     <ui:define name="taskFilter">

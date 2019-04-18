@@ -61,8 +61,8 @@
 
 			<!-- New field -->
 			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseCustomField id="case-customer-name-component" panelGroupId="customVarCharField1-column-case-header-panel" 
-				componentId="customVarCharField1-column-case-header-text" column="customVarCharField1" dataModel="#{caseView.dataModel}" labelValue="#{case.customVarCharField1}" />
-			<h:outputText value="#{case.customTimestampField1}" styleClass="TexAlCenter case-header-end-time-cell customized-case-header-column"
+				componentId="customVarCharField1-column-case-header-text" column="customVarCharField1" dataModel="#{caseView.dataModel}" labelValue="#{case.customFields().stringField('CustomVarCharField1').getOrNull()}" />
+			<h:outputText value="#{case.customFields().timestampField('CustomTimestampField1').getOrNull()}" styleClass="TexAlCenter case-header-end-time-cell customized-case-header-column"
 				rendered="#{caseView.dataModel.isSelectedColumn('customTimestampField1')}" >
 				<f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
 			</h:outputText>
