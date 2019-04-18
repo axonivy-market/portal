@@ -1,5 +1,10 @@
 package ch.ivy.addon.portalkit.statistics;
 
+import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_VARCHAR_FIELD1;
+import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_VARCHAR_FIELD2;
+import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_VARCHAR_FIELD3;
+import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_VARCHAR_FIELD4;
+import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_VARCHAR_FIELD5;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.AFTER_18;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.BEFORE_8;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CREATED_CASE_KEY;
@@ -602,19 +607,19 @@ public class StatisticChartQueryUtils {
       CaseQuery subTaskQueryForCustomVarCharField = CaseQuery.create();
       ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForCustomVarCharField = subTaskQueryForCustomVarCharField.where();
       if(type == CustomVarCharField.CUSTOM_VAR_CHAR_1) {
-        customVarChars.forEach(item -> subCaseFilterForCustomVarCharField.or().customVarCharField1().isEqual(item));
+        customVarChars.forEach(item -> subCaseFilterForCustomVarCharField.or().customField().stringField(CUSTOM_VARCHAR_FIELD1).isEqual(item));
       }
       else if (type == CustomVarCharField.CUSTOM_VAR_CHAR_2) {
-        customVarChars.forEach(item -> subCaseFilterForCustomVarCharField.or().customVarCharField2().isEqual(item));
+        customVarChars.forEach(item -> subCaseFilterForCustomVarCharField.or().customField().stringField(CUSTOM_VARCHAR_FIELD2).isEqual(item));
       }
       else if (type == CustomVarCharField.CUSTOM_VAR_CHAR_3) {
-        customVarChars.forEach(item -> subCaseFilterForCustomVarCharField.or().customVarCharField3().isEqual(item));
+        customVarChars.forEach(item -> subCaseFilterForCustomVarCharField.or().customField().stringField(CUSTOM_VARCHAR_FIELD3).isEqual(item));
       }
       else if (type == CustomVarCharField.CUSTOM_VAR_CHAR_4) {
-        customVarChars.forEach(item -> subCaseFilterForCustomVarCharField.or().customVarCharField4().isEqual(item));
+        customVarChars.forEach(item -> subCaseFilterForCustomVarCharField.or().customField().stringField(CUSTOM_VARCHAR_FIELD4).isEqual(item));
       }
       else if (type == CustomVarCharField.CUSTOM_VAR_CHAR_5) {
-        customVarChars.forEach(item -> subCaseFilterForCustomVarCharField.or().customVarCharField5().isEqual(item));
+        customVarChars.forEach(item -> subCaseFilterForCustomVarCharField.or().customField().stringField(CUSTOM_VARCHAR_FIELD5).isEqual(item));
       }
       caseQuery.where().and(subTaskQueryForCustomVarCharField);
     }

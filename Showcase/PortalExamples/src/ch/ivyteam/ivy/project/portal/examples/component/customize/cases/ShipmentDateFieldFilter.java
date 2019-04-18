@@ -1,5 +1,7 @@
 package ch.ivyteam.ivy.project.portal.examples.component.customize.cases;
 
+import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_TIMESTAMP_FIELD1;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -55,11 +57,11 @@ public class ShipmentDateFieldFilter extends CaseFilter {
 
     CaseQuery query = CaseQuery.create();
     if (fromFinishedDate != null) {
-      query.where().customTimestampField1().isGreaterOrEqualThan(fromFinishedDate);
+      query.where().customField().timestampField(CUSTOM_TIMESTAMP_FIELD1).isGreaterOrEqualThan(fromFinishedDate);
     }
 
     if (toFinishedDate != null) {
-      query.where().customTimestampField1().isLowerOrEqualThan(toFinishedDate);
+      query.where().customField().timestampField(CUSTOM_TIMESTAMP_FIELD1).isLowerOrEqualThan(toFinishedDate);
     }
     return query;
   }
