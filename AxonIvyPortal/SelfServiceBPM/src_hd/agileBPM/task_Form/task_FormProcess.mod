@@ -1,5 +1,5 @@
 [Ivy]
-1492E077AA2879D3 3.20 #module
+1492E077AA2879D3 3.26 #module
 >Proto >Proto Collection #zClass
 ts0 task_FormProcess Big #zClass
 ts0 RD #cInfo
@@ -76,21 +76,21 @@ ts0 f0 guid 1492E077AC02C00B #txt
 ts0 f0 type agileBPM.task_Form.task_FormData #txt
 ts0 f0 method start(selfServiceBPM.CaseDef,selfServiceBPM.TaskDef,List<selfServiceBPM.TaskDef>) #txt
 ts0 f0 disableUIEvents true #txt
-ts0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<selfServiceBPM.CaseDef caseInfo,selfServiceBPM.TaskDef nextTask,List<selfServiceBPM.TaskDef> definedTasks> param = methodEvent.getInputArguments();
+ts0 f0 inParameterDecl 'agileBPM.task_Form.task_FormData out;
 ' #txt
 ts0 f0 inParameterMapAction 'out.caseInfo=param.caseInfo;
 out.definedTasks=param.definedTasks;
 out.nextTask=param.nextTask;
 ' #txt
-ts0 f0 inActionCode 'import selfServiceBPM.TaskDef;
+ts0 f0 inActionCode 'import ch.ivy.addon.portalkit.constant.CustomFields;
+import selfServiceBPM.TaskDef;
 import ch.ivyteam.ivy.workflow.ITask;
 for(int i=0; i<ivy.case.getTasks().size()-1; i++)
 {
 	ITask itask = ivy.case.getTasks().get(i);
 	if(!"#SYSTEM".equalsIgnoreCase(itask.getActivatorName()) 
 		&& itask.getEndTimestamp().toString().length()>0
-		&& !"AD_HOC_MODIFIED".equals(itask.getCustomVarCharField1()))
+		&& !"AD_HOC_MODIFIED".equals(itask.customFields().stringField(CustomFields.CUSTOM_VARCHAR_FIELD1)))
 	{ 
 		TaskDef def = 	new TaskDef();
 		def.actor = itask.getWorkerUserName();

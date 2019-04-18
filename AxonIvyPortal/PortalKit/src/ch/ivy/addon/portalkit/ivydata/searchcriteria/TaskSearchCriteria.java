@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 
+import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_TIMESTAMP_FIELD5;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -43,7 +45,7 @@ public class TaskSearchCriteria {
       taskQuery.where().and(TaskQuery.create().where().startTimestamp().isGreaterThan(timeStamp));
     } else {
       // task when delegate or reset, delegate time will write to customTimestampField5
-      taskQuery.where().and(TaskQuery.create().where().startTimestamp().isGreaterThan(timeStamp).or().customTimestampField5()
+      taskQuery.where().and(TaskQuery.create().where().startTimestamp().isGreaterThan(timeStamp).or().customField().timestampField(CUSTOM_TIMESTAMP_FIELD5)
           .isGreaterOrEqualThan(timeStamp));
     }
     return taskQuery;

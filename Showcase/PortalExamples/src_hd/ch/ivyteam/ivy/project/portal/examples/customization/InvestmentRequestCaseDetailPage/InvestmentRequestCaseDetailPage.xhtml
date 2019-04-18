@@ -17,22 +17,22 @@
 			    </f:facet>
 			 
 			    <h:outputText value="Company name (CustomVarCharField1)" />
-			    <h:outputText id="custom-varchar-field-1" value="#{data.ivyCase.customVarCharField1}" />
+			    <h:outputText id="custom-varchar-field-1" value="#{data.ivyCase.customFields().stringField('CustomVarCharField1').getOrNull()}" />
 			 
 			    <h:outputText value="Request Type (CustomVarCharField2)" />
-			    <h:outputText value="#{data.ivyCase.customVarCharField2}" />
+			    <h:outputText value="#{data.ivyCase.customFields().stringField('CustomVarCharField2').getOrNull()}" />
 			 
 			    <h:outputText value="Min number (CustomDecimalField1)" />
-			    <h:outputText value="#{data.ivyCase.customDecimalField1}" />
+			    <h:outputText value="#{data.ivyCase.customFields().numberField('CustomDecimalField1').getOrNull()}" />
 			    
 			    <h:outputText value="Max number (CustomDecimalField1)" />
-			    <h:outputText value="#{data.ivyCase.customDecimalField2}" />
+			    <h:outputText value="#{data.ivyCase.customFields().numberField('CustomDecimalField2').getOrNull()}" />
 			    
 			    <h:outputText value="Start date (CustomTimestampField1)" />
-			    <h:outputText value="#{data.ivyCase.customTimestampField1}" />
+			    <h:outputText value="#{data.ivyCase.customFields().timestampField('CustomTimestamplField1').getOrNull()}" />
 			    
 			    <h:outputText value="Expiry date(CustomTimestampField2)" />
-			    <h:outputText value="#{data.ivyCase.customTimestampField2}" />
+			    <h:outputText value="#{data.ivyCase.customFields().timestampField('CustomTimestamplField2').getOrNull()}" />
 			</p:panelGrid>		
 		</ui:define>
 	</ui:composition>

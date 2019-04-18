@@ -1,5 +1,5 @@
 [Ivy]
-16812A78CEF8FB1A 3.23 #module
+16812A78CEF8FB1A 3.26 #module
 >Proto >Proto Collection #zClass
 By0 BuildTaskQuery Big #zClass
 By0 B #cInfo
@@ -50,7 +50,7 @@ By0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>HINT: build your task query
 
-out.taskQuery = TaskQuery.create().where().customVarCharField5().isLike("%HELLO WORLD%");
+out.taskQuery = TaskQuery.create().where().customField().stringField("CustomVarCharField5").isLike("%HELLO WORLD%");
 
 If you want to differentiate the customization in home page from customization in other places like task list, 
 just check  the attribute isQueryForHomePage
@@ -58,12 +58,12 @@ just check  the attribute isQueryForHomePage
 if (in.isQueryForHomePage) { // in home page
 	in.taskQuery = TaskQuery.create().where().activatorUserId().isNotNull();
 }</name>
-        <nameStyle>398,7
+        <nameStyle>425,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-By0 f5 252 140 592 172 -289 -80 #rect
+By0 f5 204 140 688 172 -340 -80 #rect
 By0 f5 @|IBIcon #fIcon
 By0 f2 actionDecl 'ch.ivy.add.portalkit.BuildTaskQueryData out;
 ' #txt

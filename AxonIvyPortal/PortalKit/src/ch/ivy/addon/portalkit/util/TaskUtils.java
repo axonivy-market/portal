@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.util;
 
+import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_TIMESTAMP_FIELD5;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -103,7 +105,7 @@ public final class TaskUtils {
     try {
       ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
         iTask.setActivator(iSecurityMember);
-        iTask.customFields().timestampField("CustomTimestampField5").set(new Date());
+        iTask.customFields().timestampField(CUSTOM_TIMESTAMP_FIELD5).set(new Date());
         return null;
       });
     } catch (Exception e) {

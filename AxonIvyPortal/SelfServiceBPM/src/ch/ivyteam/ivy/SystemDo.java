@@ -1,5 +1,7 @@
 package ch.ivyteam.ivy;
 
+import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_VARCHAR_FIELD1;
+
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -11,7 +13,7 @@ public class SystemDo {
 
   public static void setCustomVarCharField1(final ITask task, final String val) {
     IvyExecutor.executeAsSystem(() -> {
-      task.setCustomVarCharField1(val);
+      task.customFields().stringField(CUSTOM_VARCHAR_FIELD1).set(val);
       return null;
     });
   }

@@ -247,9 +247,9 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    * <b>Example: </b> <code><pre>
    * if ("CustomVarcharField5".equalsIgnoreCase(criteria.getSortField())) {
    *   if (criteria.isSortDescending()) {
-   *     taskQuery.orderBy().customVarCharField5().descending();
+   *     taskQuery.orderBy().customField().stringField("CustomVarCharField5").descending();
    *   } else {
-   *     taskQuery.orderBy().customVarCharField5();
+   *     taskQuery.orderBy().customField().stringField("CustomVarCharField5");
    *   }
    * }
    * </pre></code>
