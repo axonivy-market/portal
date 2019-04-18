@@ -244,9 +244,9 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
    * <b>Example: </b> <code><pre>
    * if ("CustomVarcharField5".equalsIgnoreCase(criteria.getSortField())) {
    *   if (criteria.isSortDescending()) {
-   *     caseQuery.orderBy().customVarCharField5().descending();
+   *     caseQuery.orderBy().customField().stringField("CustomVarCharField5").descending();
    *   } else {
-   *     caseQuery.orderBy().customVarCharField5();
+   *     caseQuery.orderBy().customField().stringField("CustomVarCharField5");
    *   }
    * }
    * </pre></code>

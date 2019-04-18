@@ -15,13 +15,13 @@
 
       Internal support. This is the customized content of the case: #{case.getId()}
       
-      <ui:fragment rendered="#{case.getCustomVarCharField1().equals('I am a secret')}">
+      <ui:fragment rendered="#{case.customFields().stringField('CustomVarCharField1').getOrDefault('').equals('I am a secret')}">
       
       <h:outputText value="I'm a secret case so I'm displayed differently" />
       
       </ui:fragment>
       
-      <ui:fragment rendered="#{case.getCustomVarCharField1().equals('I am even more secret')}">
+      <ui:fragment rendered="#{case.customFields().stringField('CustomVarCharField1').getOrDefault('').equals('I am even more secret')}">
       
       Put your secret content here
       

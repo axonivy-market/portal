@@ -1,5 +1,5 @@
 [Ivy]
-1685475D840E6170 3.23 #module
+1685475D840E6170 3.26 #module
 >Proto >Proto Collection #zClass
 By0 BuildCaseQuery Big #zClass
 By0 B #cInfo
@@ -49,13 +49,13 @@ By0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <name>HINT: build your case query
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
-out.caseQuery = CaseQuery.create().where().customVarCharField5().isLike("%HELLO WORLD%");</name>
-        <nameStyle>166,7
+CaseQuery.create().where().customField().stringField("CustomVarCharField5").isLike("%HELLO WORLD%");</name>
+        <nameStyle>177,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-By0 f5 92 148 544 76 -269 -32 #rect
+By0 f5 60 148 608 76 -298 -32 #rect
 By0 f5 @|IBIcon #fIcon
 By0 f2 actionDecl 'internaltest.BuildCaseQueryOverrideData out;
 ' #txt
@@ -77,7 +77,7 @@ By0 f3 expr out #txt
 By0 f3 107 64 232 64 #arcP
 By0 f4 expr out #txt
 By0 f4 344 64 469 64 #arcP
-By0 f6 364 148 288 86 #arcP
+By0 f6 364 148 247 86 #arcP
 >Proto By0 .type internaltest.BuildCaseQueryOverrideData #txt
 >Proto By0 .processKind CALLABLE_SUB #txt
 >Proto By0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

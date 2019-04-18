@@ -27,15 +27,15 @@ public class CustomizedCaseLazyDataModel extends CaseLazyDataModel {
 	public void extendSort(CaseQuery caseQuery) {
 		if (CUSTOM_VARCHAR_FIELD1.equalsIgnoreCase(criteria.getSortField())) {
 			if (criteria.isSortDescending()) {
-				caseQuery.orderBy().customVarCharField1().descending();
+				caseQuery.orderBy().customField().stringField(CUSTOM_VARCHAR_FIELD1).descending();
 			} else {
-				caseQuery.orderBy().customVarCharField1();
+				caseQuery.orderBy().customField().stringField(CUSTOM_VARCHAR_FIELD1);
 			}
 		} else if (CUSTOM_TIMESTAMP_FIELD1.equalsIgnoreCase(criteria.getSortField())) {
 			if (criteria.isSortDescending()) {
-				caseQuery.orderBy().customTimestampField1().descending();
+				caseQuery.orderBy().customField().timestampField(CUSTOM_TIMESTAMP_FIELD1).descending();
 			} else {
-				caseQuery.orderBy().customTimestampField1();
+				caseQuery.orderBy().customField().timestampField(CUSTOM_TIMESTAMP_FIELD1);
 			}
 		}
 	}

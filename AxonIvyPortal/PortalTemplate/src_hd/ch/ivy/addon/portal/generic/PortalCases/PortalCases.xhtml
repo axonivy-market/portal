@@ -62,10 +62,10 @@
 
 				<!-- New field -->
 				<h:panelGroup styleClass="customized-case-header-column">
-					<h:outputText value="#{case.customVarCharField1}" styleClass="case-header-default-cell customized-case-header-column" />
+					<h:outputText value="#{case.customFields().stringField('CustomVarcharField1').getOrNull()}" styleClass="case-header-default-cell customized-case-header-column" />
 				</h:panelGroup>
 				<h:panelGroup styleClass="customized-case-header-column">
-					<h:outputText value="#{case.customTimestampField1}" styleClass="case-header-end-time-cell case-header-default-cell customized-case-header-column">
+					<h:outputText value="#{case.customFields().timestampField('CustomTimestampField1').getOrNull()}" styleClass="case-header-end-time-cell case-header-default-cell customized-case-header-column">
 						<f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
 					</h:outputText>
 				</h:panelGroup>
