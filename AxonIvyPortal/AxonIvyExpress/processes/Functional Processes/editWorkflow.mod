@@ -627,7 +627,6 @@ ew0 f54 actionTable 'out=in;
 ' #txt
 ew0 f54 actionCode 'import ch.ivy.addon.portalkit.util.AdhocUtils;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
-import ch.ivy.gawfs.SystemDo;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.workflow.ITask;
