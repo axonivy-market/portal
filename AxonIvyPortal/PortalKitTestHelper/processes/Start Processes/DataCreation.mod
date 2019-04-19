@@ -103,6 +103,27 @@ Dt0 @EndTask f112 '' #zField
 Dt0 @RichDialog f113 '' #zField
 Dt0 @PushWFArc f114 '' #zField
 Dt0 @PushWFArc f115 '' #zField
+Dt0 @StartRequest f86 '' #zField
+Dt0 @GridStep f87 '' #zField
+Dt0 @PushWFArc f88 '' #zField
+Dt0 @TaskSwitchSimple f89 '' #zField
+Dt0 @TkArc f90 '' #zField
+Dt0 @EndTask f91 '' #zField
+Dt0 @PushWFArc f92 '' #zField
+Dt0 @StartRequest f93 '' #zField
+Dt0 @GridStep f94 '' #zField
+Dt0 @PushWFArc f95 '' #zField
+Dt0 @Alternative f96 '' #zField
+Dt0 @PushWFArc f97 '' #zField
+Dt0 @Trigger f98 '' #zField
+Dt0 @PushWFArc f99 '' #zField
+Dt0 @GridStep f100 '' #zField
+Dt0 @PushWFArc f101 '' #zField
+Dt0 @Alternative f102 '' #zField
+Dt0 @PushWFArc f103 '' #zField
+Dt0 @PushWFArc f104 '' #zField
+Dt0 @EndTask f105 '' #zField
+Dt0 @PushWFArc f106 '' #zField
 >Proto Dt0 Dt0 DataCreation #zField
 Dt0 f0 outLink createTasks.ivp #txt
 Dt0 f0 type portalKit_test.DataCreationData #txt
@@ -1053,6 +1074,195 @@ Dt0 f114 expr out #txt
 Dt0 f114 79 936 200 936 #arcP
 Dt0 f115 expr out #txt
 Dt0 f115 312 936 497 936 #arcP
+Dt0 f86 outLink createCaseWithSpecificCategory.ivp #txt
+Dt0 f86 type portalKit_test.DataCreationData #txt
+Dt0 f86 inParamDecl '<java.lang.String caseCategory> param;' #txt
+Dt0 f86 inParamTable 'out.caseCategory=param.caseCategory;
+' #txt
+Dt0 f86 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f86 guid 16A34C10BD193789 #txt
+Dt0 f86 requestEnabled true #txt
+Dt0 f86 triggerEnabled true #txt
+Dt0 f86 callSignature createCaseWithSpecificCategory(String) #txt
+Dt0 f86 persist false #txt
+Dt0 f86 taskData 'TaskTriggered.ROL=SYSTEM
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Dt0 f86 caseData businessCase.attach=false #txt
+Dt0 f86 showInStartList 0 #txt
+Dt0 f86 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>createCaseWithSpecificCategory(String)</name>
+        <nameStyle>38,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f86 @C|.responsibility Everybody #txt
+Dt0 f86 593 721 30 30 -123 25 #rect
+Dt0 f86 @|StartRequestIcon #fIcon
+Dt0 f87 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f87 actionTable 'out=in;
+' #txt
+Dt0 f87 actionCode 'ivy.case.setCategoryPath(in.caseCategory);
+ivy.case.setName("Case with category path: " + in.caseCategory);' #txt
+Dt0 f87 type portalKit_test.DataCreationData #txt
+Dt0 f87 680 714 112 44 0 -8 #rect
+Dt0 f87 @|StepIcon #fIcon
+Dt0 f88 expr out #txt
+Dt0 f88 623 736 680 736 #arcP
+Dt0 f89 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f89 actionTable 'out=in1;
+' #txt
+Dt0 f89 outTypes "portalKit_test.DataCreationData" #txt
+Dt0 f89 outLinks "TaskA.ivp" #txt
+Dt0 f89 taskData 'TaskA.EXPRI=2
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.NAM=System Task
+TaskA.PRI=2
+TaskA.ROL=SYSTEM
+TaskA.SKIP_TASK_LIST=false
+TaskA.TYPE=0' #txt
+Dt0 f89 type portalKit_test.DataCreationData #txt
+Dt0 f89 template "" #txt
+Dt0 f89 849 721 30 30 0 16 #rect
+Dt0 f89 @|TaskSwitchSimpleIcon #fIcon
+Dt0 f90 expr out #txt
+Dt0 f90 type portalKit_test.DataCreationData #txt
+Dt0 f90 var in1 #txt
+Dt0 f90 792 736 849 736 #arcP
+Dt0 f91 type portalKit_test.DataCreationData #txt
+Dt0 f91 977 721 30 30 0 15 #rect
+Dt0 f91 @|EndIcon #fIcon
+Dt0 f92 expr data #txt
+Dt0 f92 outCond ivp=="TaskA.ivp" #txt
+Dt0 f92 879 736 977 736 #arcP
+Dt0 f93 outLink createCaseHaveCategoryTreeWithCMS.ivp #txt
+Dt0 f93 type portalKit_test.DataCreationData #txt
+Dt0 f93 inParamDecl '<> param;' #txt
+Dt0 f93 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f93 guid 16A34C4D990DC6C5 #txt
+Dt0 f93 requestEnabled true #txt
+Dt0 f93 triggerEnabled false #txt
+Dt0 f93 callSignature createCaseHaveCategoryTreeWithCMS() #txt
+Dt0 f93 persist false #txt
+Dt0 f93 startName 'Create Cases Have Category Tree With CMS' #txt
+Dt0 f93 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Dt0 f93 caseData businessCase.attach=true #txt
+Dt0 f93 showInStartList 1 #txt
+Dt0 f93 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>createCaseHaveCategoryTreeWithCMS.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f93 @C|.responsibility Everybody #txt
+Dt0 f93 57 1041 30 30 -68 35 #rect
+Dt0 f93 @|StartRequestIcon #fIcon
+Dt0 f94 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f94 actionTable 'out=in;
+' #txt
+Dt0 f94 actionCode 'in.caseCatagories.add("/Test/ETest_1");
+in.caseCatagories.add("/Test/CTest_2");
+in.caseCatagories.add("/Test/BTest_3");
+in.caseCatagories.add("/Test/ATest_4");
+in.caseCatagories.add("/Test/DTest_5");
+in.numOfCats = in.caseCatagories.size();
+in.counter = 0;' #txt
+Dt0 f94 type portalKit_test.DataCreationData #txt
+Dt0 f94 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Init Categories</name>
+        <nameStyle>15,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f94 136 1034 112 44 -40 -8 #rect
+Dt0 f94 @|StepIcon #fIcon
+Dt0 f95 expr out #txt
+Dt0 f95 87 1056 136 1056 #arcP
+Dt0 f96 type portalKit_test.DataCreationData #txt
+Dt0 f96 336 1040 32 32 0 16 #rect
+Dt0 f96 @|AlternativeIcon #fIcon
+Dt0 f97 expr out #txt
+Dt0 f97 248 1056 336 1056 #arcP
+Dt0 f98 type portalKit_test.DataCreationData #txt
+Dt0 f98 processCall 'Start Processes/DataCreation:createCaseWithSpecificCategory(String)' #txt
+Dt0 f98 doCall true #txt
+Dt0 f98 requestActionDecl '<java.lang.String caseCategory> param;
+' #txt
+Dt0 f98 requestMappingAction 'param.caseCategory=in.caseCatagories.get(in.counter);
+' #txt
+Dt0 f98 responseActionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f98 responseMappingAction 'out=in;
+' #txt
+Dt0 f98 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>DataCreation</name>
+        <nameStyle>12,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f98 424 1034 112 44 -36 -8 #rect
+Dt0 f98 @|TriggerIcon #fIcon
+Dt0 f99 expr in #txt
+Dt0 f99 outCond 'in.counter < in.numOfCats' #txt
+Dt0 f99 368 1056 424 1056 #arcP
+Dt0 f100 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f100 actionTable 'out=in;
+' #txt
+Dt0 f100 actionCode in.counter++; #txt
+Dt0 f100 type portalKit_test.DataCreationData #txt
+Dt0 f100 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>increase counter</name>
+        <nameStyle>16,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f100 584 1034 112 44 -46 -8 #rect
+Dt0 f100 @|StepIcon #fIcon
+Dt0 f101 expr out #txt
+Dt0 f101 536 1056 584 1056 #arcP
+Dt0 f102 type portalKit_test.DataCreationData #txt
+Dt0 f102 752 1040 32 32 0 16 #rect
+Dt0 f102 @|AlternativeIcon #fIcon
+Dt0 f103 expr out #txt
+Dt0 f103 696 1056 752 1056 #arcP
+Dt0 f104 expr in #txt
+Dt0 f104 768 1040 352 1040 #arcP
+Dt0 f104 1 768 992 #addKink
+Dt0 f104 2 352 992 #addKink
+Dt0 f104 1 0.5 0 0 #arcLabel
+Dt0 f105 type portalKit_test.DataCreationData #txt
+Dt0 f105 337 1113 30 30 0 15 #rect
+Dt0 f105 @|EndIcon #fIcon
+Dt0 f106 expr in #txt
+Dt0 f106 352 1072 352 1113 #arcP
 >Proto Dt0 .type portalKit_test.DataCreationData #txt
 >Proto Dt0 .processKind NORMAL #txt
 >Proto Dt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1148,3 +1358,23 @@ Dt0 f111 mainOut f114 tail #connect
 Dt0 f114 head f113 mainIn #connect
 Dt0 f113 mainOut f115 tail #connect
 Dt0 f115 head f112 mainIn #connect
+Dt0 f86 mainOut f88 tail #connect
+Dt0 f88 head f87 mainIn #connect
+Dt0 f87 mainOut f90 tail #connect
+Dt0 f90 head f89 in #connect
+Dt0 f89 out f92 tail #connect
+Dt0 f92 head f91 mainIn #connect
+Dt0 f93 mainOut f95 tail #connect
+Dt0 f95 head f94 mainIn #connect
+Dt0 f94 mainOut f97 tail #connect
+Dt0 f97 head f96 in #connect
+Dt0 f96 out f99 tail #connect
+Dt0 f99 head f98 mainIn #connect
+Dt0 f98 mainOut f101 tail #connect
+Dt0 f101 head f100 mainIn #connect
+Dt0 f100 mainOut f103 tail #connect
+Dt0 f103 head f102 in #connect
+Dt0 f102 out f104 tail #connect
+Dt0 f104 head f96 in #connect
+Dt0 f96 out f106 tail #connect
+Dt0 f106 head f105 mainIn #connect

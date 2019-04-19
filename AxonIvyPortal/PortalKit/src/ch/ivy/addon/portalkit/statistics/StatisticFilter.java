@@ -115,6 +115,7 @@ public class StatisticFilter implements Cloneable {
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
 
     this.caseCategories = ((List<CategoryData>) response.get("result")).stream().distinct().collect(Collectors.toList());
+    this.caseCategories.sort(Comparator.comparing(item -> item.getPath()));
     caseCategories.add(initEmptyCategory());
     this.selectedCaseCategories = new ArrayList<>(this.caseCategories.stream().map(CategoryData::getRawPath).collect(Collectors.toList()));
 
