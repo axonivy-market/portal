@@ -96,10 +96,10 @@ function getReversedState(state) {
 
 /* Portal's main menu */
 var MainMenu = {
-  urlToFirstLevelMenu : [["Processes.xhtml", ["Processes", "Prozesse", "Processus"]],
-      ["PortalTasks.xhtml", ["Tasks", "Aufgaben", "Tâches"]], ["PortalCases.xhtml", ["Cases", "Vorgänge", "Dossiers"]],
-      ["PortalDashBoard.xhtml", ["Statistics", "Statistiken", "Statistiques"]], ["TaskAnalysis.xhtml", ["Statistics", "Statistiken", "Statistiques"]],
-      ["TaskWidget.xhtml", ["Tasks", "Aufgaben", "Tâches"]], ["CaseWidget.xhtml", ["Cases", "Vorgänge", "Dossiers"]]],
+  urlToFirstLevelMenu : [["Processes.xhtml", ["Processes", "Prozesse", "Processus", "Procesos"]],
+      ["PortalTasks.xhtml", ["Tasks", "Aufgaben", "Tâches", "Tareas"]], ["PortalCases.xhtml", ["Cases", "Vorgänge", "Dossiers", "Casos"]],
+      ["PortalDashBoard.xhtml", ["Statistics", "Statistiken", "Statistiques", "Estadísticas"]], ["TaskAnalysis.xhtml", ["Statistics", "Statistiken", "Statistiques", "Estadísticas"]],
+      ["TaskWidget.xhtml", ["Tasks", "Aufgaben", "Tâches", "Tareas"]], ["CaseWidget.xhtml", ["Cases", "Vorgänge", "Dossiers", "Casos"]]],
 
   init : function(responsiveToolkit) {
     this.highlightFirstLevelMenu();
