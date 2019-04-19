@@ -93,7 +93,7 @@
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}" 
       width="90%" height="500" closeOnEscape="true" widgetVar="adminUI" id="admin-ui-dialog" resizable="false" 
-      modal="true" draggable="false" appendTo="@(body)" dynamic="true" onShow="loadAllGlobalSettings()"
+      modal="true" draggable="false" appendTo="@(body)" dynamic="true" onShow="initAdminSettingsData()"
       onHide="PF('dialogClosingInformation').show();">
       <ic:ch.ivy.addon.portalkit.admin.AdminSettings id="adminui" /> 
       <f:facet name="footer">
@@ -108,7 +108,7 @@
       <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/dialogclosinginformation/informMessage')}" />
       <f:facet name="footer">
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" 
-          id="close-dialog-button" type="button" onclick="PF('dialogClosingInformation').hide();" />
+          id="close-dialog-button" type="button" onclick="window.location.reload();" />
       </f:facet>
     </p:dialog>
 

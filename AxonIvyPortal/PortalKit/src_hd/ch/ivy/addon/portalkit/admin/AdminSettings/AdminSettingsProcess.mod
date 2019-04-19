@@ -1,5 +1,5 @@
 [Ivy]
-150F0B4F8F3CB2CB 3.24 #module
+150F0B4F8F3CB2CB 3.26 #module
 >Proto >Proto Collection #zClass
 As0 AdminUIProcess Big #zClass
 As0 RD #cInfo
@@ -184,6 +184,19 @@ As0 @CallSub f21 '' #zField
 As0 @PushWFArc f60 '' #zField
 As0 @PushWFArc f70 '' #zField
 As0 @PushWFArc f71 '' #zField
+As0 @RichDialogMethodStart f64 '' #zField
+As0 @RichDialogMethodStart f65 '' #zField
+As0 @RichDialogProcessEnd f68 '' #zField
+As0 @RichDialogProcessEnd f77 '' #zField
+As0 @GridStep f81 '' #zField
+As0 @PushWFArc f82 '' #zField
+As0 @PushWFArc f78 '' #zField
+As0 @GridStep f85 '' #zField
+As0 @PushWFArc f86 '' #zField
+As0 @PushWFArc f79 '' #zField
+As0 @RichDialogMethodStart f87 '' #zField
+As0 @RichDialogProcessEnd f89 '' #zField
+As0 @PushWFArc f90 '' #zField
 >Proto As0 As0 AdminUIProcess #zField
 Ct0 @TextInP .resExport .resExport #zField
 Ct0 @TextInP .type .type #zField
@@ -219,10 +232,11 @@ As0 f0 guid 14B6C3C6330883A7 #txt
 As0 f0 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f0 method start() #txt
 As0 f0 disableUIEvents true #txt
-As0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
+As0 f0 inParameterDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
 ' #txt
 As0 f0 inParameterMapAction 'out.resetAllSettings=false;
+' #txt
+As0 f0 inActionCode '
 ' #txt
 As0 f0 outParameterDecl '<> result;
 ' #txt
@@ -425,20 +439,21 @@ As0 f61 guid 14B76C9713AD988C #txt
 As0 f61 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f61 method onTabChange(org.primefaces.event.TabChangeEvent) #txt
 As0 f61 disableUIEvents false #txt
-As0 f61 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<org.primefaces.event.TabChangeEvent tabEvent> param = methodEvent.getInputArguments();
+As0 f61 inParameterDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
 ' #txt
-As0 f61 inActionCode 'import org.primefaces.context.RequestContext;
+As0 f61 inActionCode 'import ch.ivy.addon.portalkit.service.AnnouncementService;
+import org.primefaces.context.RequestContext;
 import org.primefaces.component.tabview.TabView;
 import org.primefaces.event.TabChangeEvent;
 
 TabChangeEvent tabChangeEvent = param.tabEvent;
 TabView tabView = tabChangeEvent.getComponent() as TabView;
 out.tabIndexActive = tabView.getChildren().indexOf(tabChangeEvent.getTab());
-if (out.tabIndexActive == 2) {
+if (out.tabIndexActive == 1) {
 	out.settingTabOpened = true;
 	RequestContext.getCurrentInstance().execute("PF(''settingTable'').filter()");
-}' #txt
+}
+' #txt
 As0 f61 outParameterDecl '<> result;
 ' #txt
 As0 f61 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1657,7 +1672,7 @@ As0 f9 actionTable 'out=in;
 As0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>loadAllGlobalSettings</name>
+        <name>initAdminSettingsData</name>
         <nameStyle>21,5,7
 </nameStyle>
     </language>
@@ -1669,22 +1684,26 @@ As0 f10 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData
 ' #txt
 As0 f10 actionTable 'out=in;
 ' #txt
-As0 f10 actionCode 'import org.apache.commons.collections.CollectionUtils;
+As0 f10 actionCode 'import ch.ivy.addon.portalkit.service.AnnouncementService;
+import org.apache.commons.collections.CollectionUtils;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
 in.settingTabOpened = false;
 GlobalSettingService globalSettingService = new GlobalSettingService();
 in.settingList = globalSettingService.findAllGlobalSetting();
-in.filteredSettingList = in.settingList;' #txt
+in.filteredSettingList = in.settingList;
+
+in.announcements = AnnouncementService.getInstance().getAnnouncements();
+in.isAnnouncementActivated = AnnouncementService.getInstance().isAnnouncementActivated();' #txt
 As0 f10 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>find all global settings</name>
+        <name>init data</name>
     </language>
 </elementInfo>
 ' #txt
-As0 f10 1336 1594 128 44 -60 -8 #rect
+As0 f10 1344 1594 112 44 -21 -8 #rect
 As0 f10 @|StepIcon #fIcon
 As0 f66 expr out #txt
 As0 f66 1400 1509 1400 1594 #arcP
@@ -1958,6 +1977,127 @@ As0 f70 2352 1014 2352 1068 #arcP
 As0 f70 0 0.5000000000000001 0 0 #arcLabel
 As0 f71 expr out #txt
 As0 f71 2352 1092 2352 1262 #arcP
+As0 f64 guid 16A29A0E1F97DE40 #txt
+As0 f64 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f64 method publishAnnouncement() #txt
+As0 f64 disableUIEvents false #txt
+As0 f64 inParameterDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f64 outParameterDecl '<> result;
+' #txt
+As0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>publishAnnouncement()</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f64 83 1931 26 26 -59 -35 #rect
+As0 f64 @|RichDialogMethodStartIcon #fIcon
+As0 f65 guid 16A29A0F2F82745C #txt
+As0 f65 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f65 method depublishAnnouncement() #txt
+As0 f65 disableUIEvents false #txt
+As0 f65 inParameterDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f65 outParameterDecl '<> result;
+' #txt
+As0 f65 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>depublishAnnouncement()</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f65 371 1931 26 26 -66 -35 #rect
+As0 f65 @|RichDialogMethodStartIcon #fIcon
+As0 f68 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f68 83 2099 26 26 0 12 #rect
+As0 f68 @|RichDialogProcessEndIcon #fIcon
+As0 f77 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f77 371 2099 26 26 0 12 #rect
+As0 f77 @|RichDialogProcessEndIcon #fIcon
+As0 f81 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f81 actionTable 'out=in;
+' #txt
+As0 f81 actionCode 'import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import ch.ivy.addon.portalkit.service.AnnouncementService;
+AnnouncementService service = AnnouncementService.getInstance();
+service.saveAll(in.announcements);
+service.activateAnnouncement();
+out.isAnnouncementActivated = true;
+FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, 
+	ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsPublished"), null));
+' #txt
+As0 f81 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f81 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>publish</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f81 40 2018 112 44 -20 -8 #rect
+As0 f81 @|StepIcon #fIcon
+As0 f82 expr out #txt
+As0 f82 96 1957 96 2018 #arcP
+As0 f78 expr out #txt
+As0 f78 96 2062 96 2099 #arcP
+As0 f85 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f85 actionTable 'out=in;
+' #txt
+As0 f85 actionCode 'import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import ch.ivy.addon.portalkit.service.AnnouncementService;
+AnnouncementService service = AnnouncementService.getInstance();
+service.deactivateAnnouncement();
+out.isAnnouncementActivated = false;
+FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, 
+	ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsDepublished"), null));
+' #txt
+As0 f85 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f85 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>depublish</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f85 328 2018 112 44 -27 -8 #rect
+As0 f85 @|StepIcon #fIcon
+As0 f86 expr out #txt
+As0 f86 384 1957 384 2018 #arcP
+As0 f79 expr out #txt
+As0 f79 384 2062 384 2099 #arcP
+As0 f87 guid 16A33CB19C2E90CF #txt
+As0 f87 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f87 method isApplicationDefaultEmailLanguage(String) #txt
+As0 f87 disableUIEvents false #txt
+As0 f87 inParameterDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
+' #txt
+As0 f87 inActionCode 'import ch.ivy.addon.portalkit.service.AnnouncementService;
+out.isDefaultApplicationLanguage = AnnouncementService.getInstance().isDefaultApplicationLanguage(param.language);' #txt
+As0 f87 outParameterDecl '<java.lang.Boolean result> result;
+' #txt
+As0 f87 outParameterMapAction 'result.result=in.isDefaultApplicationLanguage;
+' #txt
+As0 f87 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>isApplicationDefaultEmailLanguage(String)</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f87 587 1931 26 26 -113 -36 #rect
+As0 f87 @|RichDialogMethodStartIcon #fIcon
+As0 f89 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f89 587 2099 26 26 0 12 #rect
+As0 f89 @|RichDialogProcessEndIcon #fIcon
+As0 f90 expr out #txt
+As0 f90 600 1957 600 2099 #arcP
 >Proto As0 .type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1967,18 +2107,23 @@ As0 f71 2352 1092 2352 1262 #arcP
         <swimlaneLabel>Start Method</swimlaneLabel>
         <swimlaneLabel>Application</swimlaneLabel>
         <swimlaneLabel>Global settings</swimlaneLabel>
+        <swimlaneLabel>Announcements</swimlaneLabel>
         <swimlaneLabel></swimlaneLabel>
     </language>
     <swimlaneOrientation>false</swimlaneOrientation>
     <swimlaneSize>112</swimlaneSize>
     <swimlaneSize>1312</swimlaneSize>
     <swimlaneSize>456</swimlaneSize>
+    <swimlaneSize>272</swimlaneSize>
     <swimlaneColor gradient="true">-3342337</swimlaneColor>
     <swimlaneColor gradient="true">-10027009</swimlaneColor>
     <swimlaneColor gradient="true">-52429</swimlaneColor>
+    <swimlaneColor gradient="true">-3342388</swimlaneColor>
     <swimlaneType>LANE</swimlaneType>
     <swimlaneType>LANE</swimlaneType>
     <swimlaneType>LANE</swimlaneType>
+    <swimlaneType>LANE</swimlaneType>
+    <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
     <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
     <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
     <swimlaneSpaceBefore>0</swimlaneSpaceBefore>
@@ -2199,6 +2344,16 @@ As0 f21 mainOut f70 tail #connect
 As0 f70 head f190 mainIn #connect
 As0 f190 mainOut f71 tail #connect
 As0 f71 head f188 mainIn #connect
+As0 f64 mainOut f82 tail #connect
+As0 f82 head f81 mainIn #connect
+As0 f81 mainOut f78 tail #connect
+As0 f78 head f68 mainIn #connect
+As0 f65 mainOut f86 tail #connect
+As0 f86 head f85 mainIn #connect
+As0 f85 mainOut f79 tail #connect
+As0 f79 head f77 mainIn #connect
+As0 f87 mainOut f90 tail #connect
+As0 f90 head f89 mainIn #connect
 Ct0 g0 m f0 tail #connect
 Ct0 f0 head f51 mainIn #connect
 Ct0 f1 head g1 m #connect
