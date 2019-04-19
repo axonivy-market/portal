@@ -25,6 +25,7 @@ import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
+import ch.ivy.addon.portalkit.service.AnnouncementService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
@@ -152,6 +153,13 @@ public class UserMenuBean implements Serializable {
     return true;
   }
 
+  public String getAnnouncement() {
+    return AnnouncementService.getInstance().getAnnouncement();
+  }
+
+  public boolean isAnnouncementActivated() {
+    return AnnouncementService.getInstance().isAnnouncementActivated();
+  }
   private void navigateToHomePage() throws IOException {
     getExternalContext().redirect(getHomePageURL());
   }
