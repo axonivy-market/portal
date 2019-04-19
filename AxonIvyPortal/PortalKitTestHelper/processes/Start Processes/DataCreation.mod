@@ -1,5 +1,5 @@
 [Ivy]
-153CACC26D0D4C3D 3.23 #module
+153CACC26D0D4C3D 3.26 #module
 >Proto >Proto Collection #zClass
 Dt0 DataCreation Big #zClass
 Dt0 B #cInfo
@@ -103,6 +103,27 @@ Dt0 @EndTask f87 '' #zField
 Dt0 @RichDialog f88 '' #zField
 Dt0 @PushWFArc f89 '' #zField
 Dt0 @PushWFArc f90 '' #zField
+Dt0 @StartRequest f91 '' #zField
+Dt0 @StartRequest f92 '' #zField
+Dt0 @GridStep f95 '' #zField
+Dt0 @PushWFArc f96 '' #zField
+Dt0 @EndTask f97 '' #zField
+Dt0 @TaskSwitchSimple f93 '' #zField
+Dt0 @TkArc f94 '' #zField
+Dt0 @PushWFArc f98 '' #zField
+Dt0 @Trigger f99 '' #zField
+Dt0 @GridStep f100 '' #zField
+Dt0 @PushWFArc f101 '' #zField
+Dt0 @Alternative f102 '' #zField
+Dt0 @PushWFArc f103 '' #zField
+Dt0 @EndTask f105 '' #zField
+Dt0 @PushWFArc f106 '' #zField
+Dt0 @Alternative f107 '' #zField
+Dt0 @PushWFArc f109 '' #zField
+Dt0 @GridStep f110 '' #zField
+Dt0 @PushWFArc f104 '' #zField
+Dt0 @PushWFArc f108 '' #zField
+Dt0 @PushWFArc f111 '' #zField
 >Proto Dt0 Dt0 DataCreation #zField
 Dt0 f0 outLink createTasks.ivp #txt
 Dt0 f0 type portalKit_test.DataCreationData #txt
@@ -116,12 +137,12 @@ Dt0 f0 requestEnabled false #txt
 Dt0 f0 triggerEnabled true #txt
 Dt0 f0 callSignature createTasks(String) #txt
 Dt0 f0 persist false #txt
-Dt0 f0 taskData 'TaskTriggered.ROL=SYSTEM
+Dt0 f0 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=SYSTEM
+TaskTriggered.TYPE=0' #txt
 Dt0 f0 caseData businessCase.attach=false #txt
 Dt0 f0 showInStartList 1 #txt
 Dt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -175,14 +196,14 @@ Dt0 f25 triggerEnabled false #txt
 Dt0 f25 callSignature createTestDataWithCategory() #txt
 Dt0 f25 persist false #txt
 Dt0 f25 startName 'Create test data with category' #txt
-Dt0 f25 taskData 'TaskTriggered.ROL=Everybody
+Dt0 f25 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
-Dt0 f25 caseData 'case.name=Create test data with category
-businessCase.attach=false' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Dt0 f25 caseData 'businessCase.attach=false
+case.name=Create test data with category' #txt
 Dt0 f25 showInStartList 1 #txt
 Dt0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -336,8 +357,8 @@ Dt0 f3 actionTable 'out=in1;
 ' #txt
 Dt0 f3 outTypes "portalKit_test.DataCreationData","portalKit_test.DataCreationData","portalKit_test.DataCreationData" #txt
 Dt0 f3 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp" #txt
-Dt0 f3 caseData 'case.name=<%\=in1.caseName%>
-case.category=<%\=in1.caseStructureInfo%>' #txt
+Dt0 f3 caseData 'case.category=<%\=in1.caseStructureInfo%>
+case.name=<%\=in1.caseName%>' #txt
 Dt0 f3 taskData 'TaskA.CATEGORY=<%\=in1.taskStructureInfo%>
 TaskA.EXPRI=2
 TaskA.EXROL=Everybody
@@ -392,12 +413,12 @@ Dt0 f10 requestEnabled true #txt
 Dt0 f10 triggerEnabled false #txt
 Dt0 f10 callSignature destroyTask() #txt
 Dt0 f10 persist false #txt
-Dt0 f10 taskData 'TaskTriggered.ROL=Everybody
+Dt0 f10 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Dt0 f10 showInStartList 1 #txt
 Dt0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -445,12 +466,12 @@ Dt0 f15 triggerEnabled false #txt
 Dt0 f15 callSignature createTestUser() #txt
 Dt0 f15 persist false #txt
 Dt0 f15 startName 'Create test user' #txt
-Dt0 f15 taskData 'TaskTriggered.ROL=Everybody
+Dt0 f15 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Dt0 f15 caseData businessCase.attach=true #txt
 Dt0 f15 showInStartList 1 #txt
 Dt0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -495,12 +516,12 @@ Dt0 f20 requestEnabled true #txt
 Dt0 f20 triggerEnabled false #txt
 Dt0 f20 callSignature createRelatedTasksTestUser() #txt
 Dt0 f20 persist false #txt
-Dt0 f20 taskData 'TaskTriggered.ROL=Everybody
+Dt0 f20 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Dt0 f20 caseData businessCase.attach=true #txt
 Dt0 f20 showInStartList 1 #txt
 Dt0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -544,12 +565,12 @@ Dt0 f48 callSignature createTestUsers() #txt
 Dt0 f48 persist false #txt
 Dt0 f48 startName 'Create multiple test users' #txt
 Dt0 f48 startDescription 'Create multiple test users' #txt
-Dt0 f48 taskData 'TaskTriggered.ROL=Everybody
+Dt0 f48 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Dt0 f48 caseData businessCase.attach=true #txt
 Dt0 f48 showInStartList 1 #txt
 Dt0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -745,16 +766,16 @@ Dt0 f46 callSignature createHiddenTaskAndCase() #txt
 Dt0 f46 persist false #txt
 Dt0 f46 startName 'Process contains hidden task and cases' #txt
 Dt0 f46 startDescription 'Task and Case, which has the HIDE additional property, won''t be displayed in Portal' #txt
-Dt0 f46 taskData 'TaskTriggered.ROL=SYSTEM
-TaskTriggered.EXTYPE=0
+Dt0 f46 taskData 'TaskTriggered.DESC=Task, which has the HIDE additional property, won''t be displayed in Portal
 TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
-TaskTriggered.PRI=2
-TaskTriggered.DESC=Task, which has the HIDE additional property, won''t be displayed in Portal
+TaskTriggered.EXROL=Everybody
+TaskTriggered.EXTYPE=0
 TaskTriggered.NAM=First hidden Task
-TaskTriggered.EXROL=Everybody' #txt
-Dt0 f46 caseData 'case.name=Hidden case
-businessCase.attach=true' #txt
+TaskTriggered.PRI=2
+TaskTriggered.ROL=SYSTEM
+TaskTriggered.TYPE=0' #txt
+Dt0 f46 caseData 'businessCase.attach=true
+case.name=Hidden case' #txt
 Dt0 f46 showInStartList 0 #txt
 Dt0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -791,14 +812,14 @@ Dt0 f52 callSignature createHiddenTasksAndCases() #txt
 Dt0 f52 persist false #txt
 Dt0 f52 startName 'Process to create hidden tasks and cases' #txt
 Dt0 f52 startDescription 'Process to create hidden tasks and cases' #txt
-Dt0 f52 taskData 'TaskTriggered.ROL=Everybody
+Dt0 f52 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
-Dt0 f52 caseData 'case.name=Hidden case
-businessCase.attach=true' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Dt0 f52 caseData 'businessCase.attach=true
+case.name=Hidden case' #txt
 Dt0 f52 showInStartList 1 #txt
 Dt0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -928,12 +949,12 @@ Dt0 f79 requestEnabled false #txt
 Dt0 f79 triggerEnabled true #txt
 Dt0 f79 callSignature createTaskAttachToBusinessCase(String) #txt
 Dt0 f79 persist false #txt
-Dt0 f79 taskData 'TaskTriggered.ROL=SYSTEM
+Dt0 f79 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=SYSTEM
+TaskTriggered.TYPE=0' #txt
 Dt0 f79 caseData businessCase.attach=true #txt
 Dt0 f79 showInStartList 1 #txt
 Dt0 f79 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1036,6 +1057,168 @@ Dt0 f89 expr out #txt
 Dt0 f89 79 864 216 864 #arcP
 Dt0 f90 expr out #txt
 Dt0 f90 360 864 497 864 #arcP
+Dt0 f91 outLink createCaseHaveCategoryTreeWithCMS.ivp #txt
+Dt0 f91 type portalKit_test.DataCreationData #txt
+Dt0 f91 inParamDecl '<> param;' #txt
+Dt0 f91 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f91 guid 16A2F385BAEC9522 #txt
+Dt0 f91 requestEnabled true #txt
+Dt0 f91 triggerEnabled false #txt
+Dt0 f91 callSignature createCaseHaveCategoryTreeWithCMS() #txt
+Dt0 f91 persist false #txt
+Dt0 f91 startName 'Create Case Have Category Tree With CMS' #txt
+Dt0 f91 caseData businessCase.attach=true #txt
+Dt0 f91 showInStartList 1 #txt
+Dt0 f91 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>createCaseHaveCategoryTreeWithCMS.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f91 @C|.responsibility Everybody #txt
+Dt0 f91 57 977 30 30 -99 26 #rect
+Dt0 f91 @|StartRequestIcon #fIcon
+Dt0 f92 outLink createCaseWithSpecificCategory.ivp #txt
+Dt0 f92 type portalKit_test.DataCreationData #txt
+Dt0 f92 inParamDecl '<java.lang.String caseCategory> param;' #txt
+Dt0 f92 inParamTable 'out.caseCategory=param.caseCategory;
+' #txt
+Dt0 f92 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f92 guid 16A2F39FD5F73154 #txt
+Dt0 f92 requestEnabled true #txt
+Dt0 f92 triggerEnabled true #txt
+Dt0 f92 callSignature createCaseWithSpecificCategory(String) #txt
+Dt0 f92 persist false #txt
+Dt0 f92 taskData 'TaskTriggered.ROL=SYSTEM
+TaskTriggered.TYPE=0' #txt
+Dt0 f92 caseData businessCase.attach=true #txt
+Dt0 f92 showInStartList 0 #txt
+Dt0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>createCaseWithSpecificCategory(java.lang.String)</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f92 @C|.responsibility Everybody #txt
+Dt0 f92 593 721 30 30 -148 26 #rect
+Dt0 f92 @|StartRequestIcon #fIcon
+Dt0 f95 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f95 actionTable 'out=in;
+' #txt
+Dt0 f95 actionCode 'ivy.case.setCategoryPath(in.caseCategory);
+ivy.case.setName("Case with category path: " + in.caseCategory);' #txt
+Dt0 f95 type portalKit_test.DataCreationData #txt
+Dt0 f95 680 714 112 44 0 -8 #rect
+Dt0 f95 @|StepIcon #fIcon
+Dt0 f96 expr out #txt
+Dt0 f96 623 736 680 736 #arcP
+Dt0 f97 type portalKit_test.DataCreationData #txt
+Dt0 f97 1073 721 30 30 0 15 #rect
+Dt0 f97 @|EndIcon #fIcon
+Dt0 f93 actionTable 'out=in1;
+' #txt
+Dt0 f93 outTypes "portalKit_test.DataCreationData" #txt
+Dt0 f93 taskData 'TaskA.NAM=System Task
+TaskA.ROL=SYSTEM
+TaskA.TYPE=0' #txt
+Dt0 f93 type portalKit_test.DataCreationData #txt
+Dt0 f93 template "" #txt
+Dt0 f93 865 721 30 30 0 16 #rect
+Dt0 f93 @|TaskSwitchSimpleIcon #fIcon
+Dt0 f94 expr out #txt
+Dt0 f94 792 736 865 736 #arcP
+Dt0 f98 expr in #txt
+Dt0 f98 outCond ivp=="TaskA.ivp" #txt
+Dt0 f98 895 736 1073 736 #arcP
+Dt0 f99 type portalKit_test.DataCreationData #txt
+Dt0 f99 processCall 'Start Processes/DataCreation:createCaseWithSpecificCategory(String)' #txt
+Dt0 f99 doCall true #txt
+Dt0 f99 requestActionDecl '<java.lang.String caseCategory> param;
+' #txt
+Dt0 f99 requestMappingAction 'param.caseCategory=in.caseCatagories.get(in.counter);
+' #txt
+Dt0 f99 responseActionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f99 responseMappingAction 'out=in;
+' #txt
+Dt0 f99 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Create case &#xD;
+with specific category</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f99 456 970 144 44 -53 -16 #rect
+Dt0 f99 @|TriggerIcon #fIcon
+Dt0 f100 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f100 actionTable 'out=in;
+' #txt
+Dt0 f100 actionCode 'in.caseCatagories.add("/Test/ETest_1");
+in.caseCatagories.add("/Test/CTest_2");
+in.caseCatagories.add("/Test/BTest_3");
+in.caseCatagories.add("/Test/ATest_4");
+in.caseCatagories.add("/Test/DTest_5");
+in.numOfCats = in.caseCatagories.size();
+in.counter = 0;' #txt
+Dt0 f100 type portalKit_test.DataCreationData #txt
+Dt0 f100 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Init categories</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f100 184 970 112 44 -38 -8 #rect
+Dt0 f100 @|StepIcon #fIcon
+Dt0 f101 expr out #txt
+Dt0 f101 87 992 184 992 #arcP
+Dt0 f102 type portalKit_test.DataCreationData #txt
+Dt0 f102 368 976 32 32 0 16 #rect
+Dt0 f102 @|AlternativeIcon #fIcon
+Dt0 f103 expr out #txt
+Dt0 f103 296 992 368 992 #arcP
+Dt0 f105 type portalKit_test.DataCreationData #txt
+Dt0 f105 369 1041 30 30 0 15 #rect
+Dt0 f105 @|EndIcon #fIcon
+Dt0 f106 expr in #txt
+Dt0 f106 384 1008 384 1041 #arcP
+Dt0 f107 type portalKit_test.DataCreationData #txt
+Dt0 f107 816 976 32 32 0 16 #rect
+Dt0 f107 @|AlternativeIcon #fIcon
+Dt0 f109 expr in #txt
+Dt0 f109 832 976 384 976 #arcP
+Dt0 f109 1 832 920 #addKink
+Dt0 f109 2 384 920 #addKink
+Dt0 f109 1 0.5 0 0 #arcLabel
+Dt0 f110 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f110 actionTable 'out=in;
+' #txt
+Dt0 f110 actionCode in.counter++; #txt
+Dt0 f110 type portalKit_test.DataCreationData #txt
+Dt0 f110 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>increase counter</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f110 640 970 112 44 -46 -8 #rect
+Dt0 f110 @|StepIcon #fIcon
+Dt0 f104 expr in #txt
+Dt0 f104 outCond 'in.counter < in.numOfCats' #txt
+Dt0 f104 400 992 456 992 #arcP
+Dt0 f108 expr out #txt
+Dt0 f108 600 992 640 992 #arcP
+Dt0 f111 expr out #txt
+Dt0 f111 752 992 816 992 #arcP
 >Proto Dt0 .type portalKit_test.DataCreationData #txt
 >Proto Dt0 .processKind NORMAL #txt
 >Proto Dt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1131,3 +1314,23 @@ Dt0 f86 mainOut f89 tail #connect
 Dt0 f89 head f88 mainIn #connect
 Dt0 f88 mainOut f90 tail #connect
 Dt0 f90 head f87 mainIn #connect
+Dt0 f92 mainOut f96 tail #connect
+Dt0 f96 head f95 mainIn #connect
+Dt0 f95 mainOut f94 tail #connect
+Dt0 f94 head f93 in #connect
+Dt0 f93 out f98 tail #connect
+Dt0 f98 head f97 mainIn #connect
+Dt0 f91 mainOut f101 tail #connect
+Dt0 f101 head f100 mainIn #connect
+Dt0 f100 mainOut f103 tail #connect
+Dt0 f103 head f102 in #connect
+Dt0 f106 head f105 mainIn #connect
+Dt0 f107 out f109 tail #connect
+Dt0 f109 head f102 in #connect
+Dt0 f102 out f104 tail #connect
+Dt0 f104 head f99 mainIn #connect
+Dt0 f102 out f106 tail #connect
+Dt0 f99 mainOut f108 tail #connect
+Dt0 f108 head f110 mainIn #connect
+Dt0 f110 mainOut f111 tail #connect
+Dt0 f111 head f107 in #connect
