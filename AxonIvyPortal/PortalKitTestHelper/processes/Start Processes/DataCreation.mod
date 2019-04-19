@@ -1094,7 +1094,7 @@ Dt0 f92 callSignature createCaseWithSpecificCategory(String) #txt
 Dt0 f92 persist false #txt
 Dt0 f92 taskData 'TaskTriggered.ROL=SYSTEM
 TaskTriggered.TYPE=0' #txt
-Dt0 f92 caseData businessCase.attach=true #txt
+Dt0 f92 caseData businessCase.attach=false #txt
 Dt0 f92 showInStartList 0 #txt
 Dt0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
