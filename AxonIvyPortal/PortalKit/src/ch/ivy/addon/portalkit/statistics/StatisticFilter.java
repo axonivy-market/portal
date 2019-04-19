@@ -37,7 +37,7 @@ public class StatisticFilter implements Cloneable {
   private Date createdDateTo;
 
   @JsonIgnore
-  private CategoryTree caseCategoryTree;
+  private List<CategoryTree> caseCategories;
   private List<String> selectedCaseCategories = new ArrayList<>();
   private boolean isAllCategoriesSelected = true;
 
@@ -91,9 +91,13 @@ public class StatisticFilter implements Cloneable {
     params.put("caseCategorySearchCriteria", criteria);
     Map<String, Object> response = IvyAdapterService.startSubProcess("findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria)", params,
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
-    this.caseCategoryTree = (CategoryTree) response.get("categoryTree");
-    if (this.caseCategoryTree != null) {
-      this.selectedCaseCategories = this.caseCategoryTree.getAllChildren().stream().map(CategoryTree::getRawPath).collect(Collectors.toList());
+    CategoryTree caseCategoryTree = (CategoryTree) response.get("categoryTree");
+    if(caseCategoryTree != null) {
+      this.caseCategories = caseCategoryTree.getAllChildren();
+    }
+    if (this.caseCategories != null && !this.caseCategories.isEmpty()) {
+      this.caseCategories.sort(Comparator.comparing(item -> item.getCategory().getPath()));
+      this.selectedCaseCategories = this.caseCategories.stream().map(CategoryTree::getRawPath).collect(Collectors.toList());
     }
     this.selectedCaseCategories.add(StringUtils.EMPTY);
 
@@ -136,13 +140,13 @@ public class StatisticFilter implements Cloneable {
   public void setCreatedDateTo(Date createdDateTo) {
     this.createdDateTo = createdDateTo;
   }
-
-  public CategoryTree getCaseCategoryTree() {
-    return caseCategoryTree;
+  
+  public List<CategoryTree> getCaseCategories() {
+    return caseCategories;
   }
 
-  public void setCaseCategoryTree(CategoryTree caseCategoryTree) {
-    this.caseCategoryTree = caseCategoryTree;
+  public void setCaseCategories(List<CategoryTree> caseCategories) {
+    this.caseCategories = caseCategories;
   }
 
   public List<String> getSelectedCaseCategories() {

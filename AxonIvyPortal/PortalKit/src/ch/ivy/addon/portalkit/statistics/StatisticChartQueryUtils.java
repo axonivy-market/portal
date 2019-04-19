@@ -368,9 +368,9 @@ public class StatisticChartQueryUtils {
     List<String> selectedCaseCategories =
         Optional.ofNullable(filter.getSelectedCaseCategories()).orElse(new ArrayList<>());
     if (selectedCaseCategories.isEmpty()) {
-      CategoryTree caseCategoryTree = filter.getCaseCategoryTree();
-      if (caseCategoryTree != null) {
-        caseCategoryTree.getAllChildren().stream().map(CategoryTree::getRawPath).forEach(category -> subCaseQueryForSelectedCaseCategories.where().and().category().isNotEqual(category));
+      List<CategoryTree> caseCategories = filter.getCaseCategories();
+      if (caseCategories != null && !caseCategories.isEmpty()) {
+        caseCategories.stream().map(CategoryTree::getRawPath).forEach(category -> subCaseQueryForSelectedCaseCategories.where().and().category().isNotEqual(category));
       }
     } else {
       selectedCaseCategories.forEach(category -> subCaseQueryForSelectedCaseCategories.where().or().category().isEqual(category));

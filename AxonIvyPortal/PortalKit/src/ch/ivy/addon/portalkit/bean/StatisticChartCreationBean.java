@@ -196,7 +196,7 @@ public class StatisticChartCreationBean implements Serializable {
   public void updateCaseCategoriesCheckboxes(StatisticFilter filter) {
     List<String> selectedCaseCategories = filter.getSelectedCaseCategories();
     if (filter.getIsAllCategoriesSelected()) {
-      for (String category : filter.getCaseCategoryTree().getAllChildren().stream().map(CategoryTree::getRawPath).collect(Collectors.toList())) {
+      for (String category : filter.getCaseCategories().stream().map(CategoryTree::getRawPath).collect(Collectors.toList())) {
         addToListIfNotExist(selectedCaseCategories, category);
       }
     } else {
