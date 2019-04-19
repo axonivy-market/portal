@@ -85,7 +85,8 @@
           </p:selectBooleanCheckbox>
           <p:selectManyCheckbox id="categories" disabled="#{filter.isAllCategoriesSelected}"
             value="#{filter.selectedCaseCategories}" layout="grid" columns="1">
-            <f:selectItems value="#{filter.caseCategoryTree.getAllChildren()}" var="category" itemValue="#{category.rawPath}" itemLabel="#{category.rawPath}" />
+            <f:selectItems value="#{filter.caseCategoryTree.getAllChildren()}" var="category" itemValue="#{category.rawPath}" 
+              itemLabel="#{category.category.path}" />
             <f:selectItem itemValue="" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory')}" />
             <p:ajax global="false" />
           </p:selectManyCheckbox>
