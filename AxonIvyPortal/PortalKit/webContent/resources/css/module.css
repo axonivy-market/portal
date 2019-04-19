@@ -5580,3 +5580,8 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel {
 	}
 }
 /* =================== END ENHANCEMENT ====================== */
+
+/* =================== ADHOC ============================= */
+.adhoc-task-history-dialog .ui-dialog-content.ui-widget-content {
+    max-height: 750px;
+}
