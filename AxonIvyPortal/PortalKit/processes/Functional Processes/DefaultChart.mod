@@ -1,5 +1,5 @@
 [Ivy]
-163AA0C4B3771751 3.23 #module
+163AA0C4B3771751 3.26 #module
 >Proto >Proto Collection #zClass
 Dt0 DefaultChart Big #zClass
 Dt0 B #cInfo
@@ -45,6 +45,21 @@ Dt0 f1 @|EndSubIcon #fIcon
 Dt0 f3 actionDecl 'ch.ivy.addon.portalkit.DefaultChartData out;
 ' #txt
 Dt0 f3 actionTable 'out=in;
+' #txt
+Dt0 f3 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticFilter;
+import ch.ivy.addon.portalkit.enums.StatisticChartType;
+import ch.ivy.addon.portalkit.statistics.StatisticChart;
+import ch.ivy.addon.portalkit.service.StatisticService;
+
+StatisticService service = new StatisticService();
+String chartName = "Tasks by Priority";
+StatisticChartType chartType = StatisticChartType.TASK_BY_PRIORITY;
+StatisticFilter statisticFilter = new StatisticFilter().init();
+
+if (!service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName)) {
+  StatisticChart newChart = service.createStatisticChart(statisticFilter, chartName, chartType, ivy.session.getSessionUser().getId(), true);
+  in.defaultCharts.add(newChart);		
+}
 ' #txt
 Dt0 f3 type ch.ivy.addon.portalkit.DefaultChartData #txt
 Dt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
