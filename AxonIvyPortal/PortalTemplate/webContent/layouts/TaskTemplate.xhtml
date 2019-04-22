@@ -221,7 +221,7 @@
      <p:dialog id="adhoc-task-history-dialog" resizable="false" visible="#{taskTemplateBean.isFirstTimeOpenOriginalAdhocTask}"
       styleClass="adhoc-task-history-dialog"
       header="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/resultFromAdhocProcess')}"
-      widgetVar="adhoc-task-history-dialog" appendTo="@(body)" width="850"
+      widgetVar="adhoc-task-history-dialog" appendTo="@(body)"
       modal="true" dynamic="true">
       <p:ajax event="close" listener="#{taskTemplateBean.onCloseAdhocTaskHistoryDialog()}" />
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/noteOfResultFromAdhocProcess')}" />
