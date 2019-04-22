@@ -59,7 +59,7 @@
           </p:column>
           <p:column width="20%" sortBy="#{history.timestamp}" >
             <f:facet name="header">
-              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnTimestamp')}" />
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/timestamp')}" />
             </f:facet>
             <h:outputText value="#{history.timestamp}">
               <f:convertDateTime pattern="#{ivy.cms.co('/patterns/dateTimePattern')}" />
