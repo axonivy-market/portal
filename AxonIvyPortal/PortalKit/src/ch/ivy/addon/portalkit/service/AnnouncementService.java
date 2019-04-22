@@ -73,7 +73,7 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
       apps = IvyExecutor.executeAsSystem(
           () -> ServerFactory.getServer().getApplicationConfigurationManager().getApplicationsSortedByName(false));
     } else {
-      apps = ServiceUtilities.findApps(configuredApps);
+      apps = IvyExecutor.executeAsSystem(() -> ServiceUtilities.findApps(configuredApps));
     }
     return apps;
   }
