@@ -61,7 +61,8 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
 
   public boolean isDefaultApplicationLanguage(String language) {
     List<IApplication> apps = getApplicationsRelatedToPortal();
-    return apps.stream().anyMatch(app -> app.getDefaultEMailLanguage().getLanguage().equalsIgnoreCase(language));
+    return IvyExecutor.executeAsSystem(
+        () -> apps.stream().anyMatch(app -> app.getDefaultEMailLanguage().getLanguage().equalsIgnoreCase(language)));
   }
 
   private List<IApplication> getApplicationsRelatedToPortal() {
