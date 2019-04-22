@@ -4,7 +4,7 @@
 	<sect2 xml:id="axonivyportal.customization.defaultchart.introduction">
 		<title>Introduction</title>
 		<para>
-			In Portal homepage, by default there is no chart. But you can create your default chart.
+			In Portal homepage, by default there is a chart named "Tasks by Priority". But you can create your default chart.
 		</para>
 	</sect2>
 	<sect2 xml:id="axonivyportal.customization.defaultchart.customization">
