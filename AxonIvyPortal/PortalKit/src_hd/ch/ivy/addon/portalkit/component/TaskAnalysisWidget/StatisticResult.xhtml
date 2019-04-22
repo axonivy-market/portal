@@ -57,7 +57,7 @@
           <h:outputText value="#{task.getCase().getState().toString()}" />
         </p:column>
 
-        <p:column id="task-name" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskName')}" sortBy="#{TASK_NAME}" width="250"
+        <p:column id="task-name" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/taskName')}" sortBy="#{TASK_NAME}" width="250"
           visible="#{taskAnalysisWidgetBean.columns['TASK_NAME']}"
           exportable="#{taskAnalysisWidgetBean.columns['TASK_NAME']}">
           <h:outputText value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}" />

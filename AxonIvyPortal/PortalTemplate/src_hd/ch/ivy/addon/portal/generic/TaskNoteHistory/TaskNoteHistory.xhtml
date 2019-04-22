@@ -25,7 +25,7 @@
 
 					<p:column width="20%" sortBy="#{note.creationTimestamp.time}">
 						<f:facet name="header">
-							<h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnTimestamp')}" />
+							<h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/timestamp')}" />
 						</f:facet>
 						<h:outputText value="#{note.creationTimestamp.time}">
 							<f:convertDateTime pattern="#{ivy.cms.co('/patterns/dateTimePattern')}" />
