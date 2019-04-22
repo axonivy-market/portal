@@ -640,9 +640,7 @@ if(in.isAdhocProcess){
 		originalTask.customFields().stringField(AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString()).set(AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString());
 	}
 	ICase bussinessCase = originalTask.getCase().getBusinessCase();
-	if (bussinessCase != null) {
-		AdhocUtils.attachToBusinessCase(ivy.case, bussinessCase.getId());
-	}
+	AdhocUtils.attachToBusinessCase(ivy.case, bussinessCase.getId());
 }' #txt
 ew0 f54 security system #txt
 ew0 f54 type gawfs.Data #txt
