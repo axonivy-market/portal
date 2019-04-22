@@ -109,7 +109,6 @@ As0 f3 actionDecl 'ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData 
 As0 f3 actionTable 'out=in;
 ' #txt
 As0 f3 actionCode 'import ch.ivy.addon.portalkit.util.AdhocUtils;
-import ch.ivyteam.ivy.workflow.businesscase.IBusinessCase;
 import org.apache.commons.lang3.StringUtils;
 String note = ivy.session.getSessionUserName() + ":" + ivy.cms.co("/Dialogs/WorkflowExecution/ApprovalForm/Approve"); 
 ivy.case.createNote(ivy.session, note);
@@ -117,10 +116,7 @@ ivy.case.createNote(ivy.session, note);
 if (in.originalTaskId != null && in.originalTaskId > 0) {
 	String approvalComment = ivy.cms.co("/Dialogs/WorkflowExecution/ApprovalForm/ApproveComment") + (StringUtils.isEmpty(in.comment) ? "" : (" - " + in.comment));
 	AdhocUtils.storeHistory(in.originalTaskId, approvalComment);
-	IBusinessCase businessCase = ivy.case.getBusinessCase();
-	if (businessCase != null) {
-		businessCase.createNote(ivy.session, ivy.task.getName() + ": " + approvalComment);
-	}
+	ivy.case.getBusinessCase().createNote(ivy.session, ivy.task.getName() + ": " + approvalComment);
 }' #txt
 As0 f3 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
 As0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -178,17 +174,13 @@ As0 f13 actionTable 'out=in;
 ' #txt
 As0 f13 actionCode 'import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.util.AdhocUtils;
-import ch.ivyteam.ivy.workflow.businesscase.IBusinessCase;
 String note = ivy.session.getSessionUserName() + ":" + ivy.cms.co("/Dialogs/WorkflowExecution/ApprovalForm/Reject"); 
 ivy.case.createNote(ivy.session, note);
 
 if (in.originalTaskId != null && in.originalTaskId > 0) {
 	String approvalComment = ivy.cms.co("/Dialogs/WorkflowExecution/ApprovalForm/RejectComment") + (StringUtils.isEmpty(in.comment) ? "" : (" - " + in.comment));
 	AdhocUtils.storeHistory(in.originalTaskId, approvalComment);
-	IBusinessCase businessCase = ivy.case.getBusinessCase();
-	if (businessCase != null) {
-		businessCase.createNote(ivy.session, ivy.task.getName() + ": " + approvalComment);
-	}
+	ivy.case.getBusinessCase().createNote(ivy.session, ivy.task.getName() + ": " + approvalComment);
 }' #txt
 As0 f13 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
 As0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
