@@ -5593,5 +5593,6 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel {
 
 /* =================== ADHOC ============================= */
 .adhoc-task-history-dialog .ui-dialog-content.ui-widget-content {
-    max-height: 750px;
+    max-height: 50vh;
+    width: 35vw;
 }
