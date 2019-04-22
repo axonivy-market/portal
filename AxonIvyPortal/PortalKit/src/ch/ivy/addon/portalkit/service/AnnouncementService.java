@@ -49,14 +49,14 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
         announcements.stream().collect(Collectors.groupingBy(Announcement::getLanguage));
     Stream<String> supportedLanguageStream = getApplicationsRelatedToPortal().stream().map(IApplication::getName)
         .flatMap(appName -> LanguageService.newInstance().getSupportedLanguages(appName).getIvyLanguages().stream())
-        .flatMap(language -> language.getSupportedLanguages().stream());
-    return supportedLanguageStream.distinct().map(String::toUpperCase).map(language -> {
+        .flatMap(language -> language.getSupportedLanguages().stream()).distinct().map(String::toUpperCase);
+    return IvyExecutor.executeAsSystem(() -> supportedLanguageStream.map(language -> {
       if (languageToAnnouncements.containsKey(language)) {
         return languageToAnnouncements.get(language).get(0);
       } else {
         return new Announcement(language, null);
       }
-    }).collect(Collectors.toList());
+    }).collect(Collectors.toList()));
   }
 
   public boolean isDefaultApplicationLanguage(String language) {
