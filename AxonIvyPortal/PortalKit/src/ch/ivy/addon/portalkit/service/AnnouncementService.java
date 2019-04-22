@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.Announcement;
 import ch.ivy.addon.portalkit.bo.PortalProperty;
@@ -80,16 +81,27 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
   }
 
   public String getAnnouncement() {
+    String language;
     Locale locale = Ivy.session().getSessionUser().getEMailLanguage();
-    if (locale == null) {
-      locale = Ivy.wf().getApplication().getDefaultEMailLanguage();
+    if (locale != null) {
+      language = locale.getLanguage();
+    } else {
+      language = getDefaultEmailLanguage();
     }
     Announcement announcement =
-        repo().search(getType()).textField("language").isEqualToIgnoringCase(locale.getLanguage()).execute().getFirst();
+        repo().search(getType()).textField("language").isEqualToIgnoringCase(language).execute().getFirst();
+    if (announcement == null || StringUtils.isBlank(announcement.getValue())) {
+      announcement = repo().search(getType()).textField("language").isEqualToIgnoringCase(getDefaultEmailLanguage())
+          .execute().getFirst();
+    }
     if (announcement == null) {
-      return null;
+      return "";
     }
     return announcement.getValue();
+  }
+
+  private String getDefaultEmailLanguage() {
+    return Ivy.wf().getApplication().getDefaultEMailLanguage().getLanguage();
   }
 
   public void activateAnnouncement() {
