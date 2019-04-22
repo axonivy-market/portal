@@ -13,12 +13,12 @@ public class AdhocHistoryService extends BusinessDataService<AdhocHistory> {
   }
   
   public List<AdhocHistory> getHistoriesByTaskID(long taskID) {
-    Filter<AdhocHistory> query = repo().search(getType()).numberField("originalTaskID").isEqualTo(taskID);
+    Filter<AdhocHistory> query = repo().search(getType()).numberField("originalTaskId").isEqualTo(taskID);
     return query.limit(1000).execute().getAll();
   }
   
   public boolean hasAdhocHistory(long taskID) {
-    Filter<AdhocHistory> query = repo().search(getType()).numberField("originalTaskID").isEqualTo(taskID);
+    Filter<AdhocHistory> query = repo().search(getType()).numberField("originalTaskId").isEqualTo(taskID);
     return query.limit(1).execute().count() > 0;
   }
 
