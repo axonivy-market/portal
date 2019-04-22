@@ -328,8 +328,14 @@
   padding-top: 10px;
 }
 
+.ui-datepicker-calendar tbody tr .ui-datepicker-today .ui-state-highlight{
+  border: solid 1px #a7a7a7 !important;
+  padding: 6.5px;
+}
+
 .ui-datepicker-calendar tbody tr td:hover a {
   color: rgba(0, 0, 0, 0.8) !important;
+  border: none !important;
 }
 
 .ui-datepicker-calendar tbody tr:first-child td {
