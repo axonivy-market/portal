@@ -299,10 +299,10 @@ ew0 S31 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 ew0 S31 874 138 112 44 -26 -8 #rect
 ew0 S31 @|BpmnUserTaskIcon #fIcon
-ew0 f16 inParamDecl '<List<gawfs.TaskDef> definedTasks,java.lang.String processName,java.lang.String processDescription,ch.ivy.gawfs.enums.ProcessType processType,java.lang.String processID,java.lang.Boolean isAdhocProcess,java.lang.Long originalTaskID> param;' #txt
+ew0 f16 inParamDecl '<List<gawfs.TaskDef> definedTasks,java.lang.String processName,java.lang.String processDescription,ch.ivy.gawfs.enums.ProcessType processType,java.lang.String processID,java.lang.Boolean isAdhocProcess,java.lang.Long originalTaskId> param;' #txt
 ew0 f16 inParamTable 'out.definedTasks=param.definedTasks;
 out.isAdhocProcess=param.isAdhocProcess;
-out.originalTaskID=param.originalTaskID;
+out.originalTaskId=param.originalTaskId;
 out.workflowDescription=param.processDescription;
 out.workflowID=param.processID;
 out.workflowName=param.processName;
@@ -615,7 +615,7 @@ TaskA.EXTYPE=0
 TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=in1.responsible.getMemberName().substring(1)
-TaskA.SCRIPT=if (in1.originalTaskID \!\= null && in1.originalTaskID > 0) {\r\n  task.customFields().stringField(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString());\r\n}
+TaskA.SCRIPT=if (in1.originalTaskId \!\= null && in1.originalTaskId > 0) {\r\n  task.customFields().stringField(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString());\r\n}
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=3' #txt
 Bk4 f6 type gawfs.ExecutePredefinedWorkflowData #txt
@@ -693,7 +693,7 @@ TaskA.EXTYPE=0
 TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=in1.responsible.getMemberName()
-TaskA.SCRIPT=if (in1.originalTaskID \!\= null && in1.originalTaskID > 0) {\r\n  task.customFields().stringField(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString());\r\n}
+TaskA.SCRIPT=if (in1.originalTaskId \!\= null && in1.originalTaskId > 0) {\r\n  task.customFields().stringField(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString());\r\n}
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=2' #txt
 Bk4 f16 type gawfs.ExecutePredefinedWorkflowData #txt
@@ -961,7 +961,7 @@ import gawfs.TaskDef;
 TaskDef taskDef = new gawfs.TaskDef();
 taskDef.taskType = TaskType.FINAL_REVIEW;
 if(in.isAdhocProcess) {
-	ITask originalTask = ivy.wf.findTask(in.originalTaskID);
+	ITask originalTask = ivy.wf.findTask(in.originalTaskId);
 	taskDef.subject = originalTask.name;
 }
 else {
@@ -1384,7 +1384,7 @@ TaskA.EXTYPE=0
 TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=in1.responsible.getMemberName()
-TaskA.SCRIPT=if (in1.originalTaskID \!\= null && in1.originalTaskID > 0) {\r\n  task.customFields().stringField(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString());\r\n}
+TaskA.SCRIPT=if (in1.originalTaskId \!\= null && in1.originalTaskId > 0) {\r\n  task.customFields().stringField(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString());\r\n}
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=2' #txt
 Bk8 f18 type gawfs.ExecutePredefinedWorkflowData #txt
@@ -1414,7 +1414,7 @@ TaskA.EXTYPE=0
 TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=in1.responsible.getMemberName().substring(1)
-TaskA.SCRIPT=if (in1.originalTaskID \!\= null && in1.originalTaskID > 0) {\r\n  task.customFields().stringField(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString());\r\n}
+TaskA.SCRIPT=if (in1.originalTaskId \!\= null && in1.originalTaskId > 0) {\r\n  task.customFields().stringField(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString());\r\n}
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=3' #txt
 Bk8 f20 type gawfs.ExecutePredefinedWorkflowData #txt
@@ -1569,12 +1569,12 @@ Bk8 f14 320 814 320 882 #arcP
 Bk8 f7 richDialogId ch.ivy.gawfs.workflowExecution.ApprovalForm #txt
 Bk8 f7 startMethod start(java.util.List<gawfs.TaskDef>,java.util.List<String>,java.lang.Integer,Boolean,java.lang.Long) #txt
 Bk8 f7 type gawfs.ExecutePredefinedWorkflowData #txt
-Bk8 f7 requestActionDecl '<java.util.List<gawfs.TaskDef> finishedTasks,java.util.List<String> steps,java.lang.Integer actualStepIndex,Boolean isAdhocProcess,java.lang.Long originalTaskID> param;' #txt
+Bk8 f7 requestActionDecl '<java.util.List<gawfs.TaskDef> finishedTasks,java.util.List<String> steps,java.lang.Integer actualStepIndex,Boolean isAdhocProcess,java.lang.Long originalTaskId> param;' #txt
 Bk8 f7 requestMappingAction 'param.finishedTasks=in.finishedTasks;
 param.steps=in.steps;
 param.actualStepIndex=in.actualStepIndex;
 param.isAdhocProcess=in.isAdhocProcess;
-param.originalTaskID=in.originalTaskID;
+param.originalTaskId=in.originalTaskId;
 ' #txt
 Bk8 f7 responseActionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt

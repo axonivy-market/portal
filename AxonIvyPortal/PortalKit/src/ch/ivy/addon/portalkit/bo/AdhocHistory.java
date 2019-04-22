@@ -4,17 +4,17 @@ import java.util.Date;
 
 public class AdhocHistory {
 	
-  private long originalTaskID;
+  private long originalTaskId;
   private String content;
   private Date timestamp;
   private String taskName;
   
-  public long getOriginalTaskID() {
-    return originalTaskID;
+  public long getOriginalTaskId() {
+    return originalTaskId;
   }
 
-  public void setOriginalTaskID(long originalTaskId) {
-    this.originalTaskID = originalTaskId;
+  public void setOriginalTaskId(long originalTaskId) {
+    this.originalTaskId = originalTaskId;
   }
 
   public String getContent() {

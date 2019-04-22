@@ -22,9 +22,9 @@ public class AdhocUtils {
     return Optional.ofNullable((String)formElement.getValue()).orElse(null);
   }
   
-  public static void storeHistory(long originalTaskID, String content) {
+  public static void storeHistory(long originalTaskId, String content) {
     AdhocHistory adhocHistory = new AdhocHistory();
-    adhocHistory.setOriginalTaskID(originalTaskID);
+    adhocHistory.setOriginalTaskId(originalTaskId);
     adhocHistory.setContent(content);
     adhocHistory.setTaskName(Ivy.wfTask().getName());
     adhocHistory.setTimestamp(Ivy.wfTask().getStartTimestamp());
