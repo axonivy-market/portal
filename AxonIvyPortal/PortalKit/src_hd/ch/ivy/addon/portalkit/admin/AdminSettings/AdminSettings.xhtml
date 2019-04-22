@@ -88,7 +88,7 @@
 		<!-- SETTINGS TAB -->
 		<p:tab id="settingTab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/setting')}">
 			<h:form prependId="false" id="settingForm">
-				<p:remoteCommand name="loadAllGlobalSettings" actionListener="#{logic.loadAllGlobalSettings}" update=":#{p:component('settingTable')}"/>
+				<p:remoteCommand name="initAdminSettingsData" actionListener="#{logic.initAdminSettingsData}" update=":#{p:component('settingTable')} :#{p:component('announcement-table')} :#{p:component('action-group')}"/>
 				<p:remoteCommand name="clearFilter" actionListener="#{logic.clearSettingTableFilter}"/>
 				<h:panelGroup layout="block" styleClass="setting-tab-action-buttons">
 					<p:commandButton id="restore-all-to-default-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreAllToDefault')}"
@@ -131,7 +131,41 @@
 				</p:dataTable>
 			</h:form>
 		</p:tab>
-	</p:tabView>
+    <p:tab id="announcement-tab"
+      title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/tabTitle')}">
+      <h:form prependId="false" id="announcement-form">
+        <div>#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/information")}</div>
+        <div>#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/yourAnnouncement")}</div>
+        <p:messages id="announcement-validation-messages" />
+        <p:dataTable id="announcement-table" styleClass="admin-table" value="#{data.announcements}" var="announcement"
+          widgetVar="announcement-table"
+          emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" scrollable="true"
+          scrollHeight="240" sortBy="#{announcement.language}">
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/language')}" width="10%">
+            <p:outputLabel for="announcement-input" value="#{announcement.language}" />
+          </p:column>
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcement')}"
+            width="90%">
+            <p:inputText id="announcement-input" value="#{announcement.value}" styleClass="announcement-input"
+              required="#{logic.isApplicationDefaultEmailLanguage(announcement.language)}"
+              requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/defaultLanguageRequiredMessage')}" />
+          </p:column>
+        </p:dataTable>
+        <h:panelGroup id="action-group" layout="block">
+          <p:commandButton id="publish-announcement" process="@form" disabled="#{data.isAnnouncementActivated}"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/publish')}"
+            actionListener="#{logic.publishAnnouncement()}"
+            update="#{cc.clientId}:adminTabView:announcement-table #{cc.clientId}:adminTabView:announcement-validation-messages #{cc.clientId}:adminTabView:action-group" />
+          <p:spacer width="5px" />
+          <p:commandButton id="delete-announcement" process="@this" actionListener="#{logic.depublishAnnouncement()}"
+            disabled="#{not data.isAnnouncementActivated}"
+            update="#{cc.clientId}:adminTabView:announcement-validation-messages  #{cc.clientId}:adminTabView:action-group"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/depublish')}">
+          </p:commandButton>
+        </h:panelGroup>
+      </h:form>
+    </p:tab>
+  </p:tabView>
 
 	<!-- APPLICATION DIALOG-->
 	<p:dialog header="#{data.dialogTitle}" id="appDialog" onShow="$('body').css({overflow:'hidden'})" 
@@ -141,7 +175,7 @@
 
 			<p:outputPanel id="appOverview">
 				<p:panelGrid columns="3" layout="grid" columnClasses="ui-grid-col-3, ui-grid-col-6, ui-grid-col-3"
-					styleClass="u-no-border admin-settings-container ui-fluid" id="applicationPanelGrid">
+					styleClass="u-no-border admin-settiannouncementtainer ui-fluid" id="applicationPanelGrid">
 					<!-- Application Type -->
 					<p:outputLabel styleClass="admin-settings-form-input-label"
 						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/type')}" for="applicationType" />
