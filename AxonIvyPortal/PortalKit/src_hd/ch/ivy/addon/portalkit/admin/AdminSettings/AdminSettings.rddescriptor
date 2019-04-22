@@ -111,6 +111,30 @@
         <name>submitResetAllSettings</name>
         <description></description>
     </method>
+    <method>
+        <name>publishAnnouncement</name>
+        <description></description>
+    </method>
+    <method>
+        <name>depublishAnnouncement</name>
+        <description></description>
+    </method>
+    <method>
+        <name>isApplicationDefaultEmailLanguage</name>
+        <description></description>
+        <inputParameter>
+            <name>language</name>
+            <description></description>
+            <parameterType>String</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
+        <outputParameter>
+            <name>result</name>
+            <description></description>
+            <parameterType>Boolean</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </outputParameter>
+    </method>
     <startMethod>
         <name>start</name>
         <description>Default dialog start method.</description>
