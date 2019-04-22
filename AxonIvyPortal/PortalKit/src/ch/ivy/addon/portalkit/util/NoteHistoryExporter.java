@@ -69,7 +69,7 @@ public class NoteHistoryExporter {
   private List<String> generateHeaders() {
     List<String> headers = new ArrayList<>();
     headers.add(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/name"));
-    headers.add(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnTimestamp"));
+    headers.add(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/timestamp"));
     headers.add(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent"));
     return headers;
   }
