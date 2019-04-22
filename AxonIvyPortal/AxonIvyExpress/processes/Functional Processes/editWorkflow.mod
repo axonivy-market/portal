@@ -275,7 +275,7 @@ ew0 f18 @|AlternativeIcon #fIcon
 ew0 f20 type gawfs.Data #txt
 ew0 f20 processCall 'Functional Processes/executePredefinedWorkflow:call(List<gawfs.TaskDef>,String,String,ch.ivy.gawfs.enums.ProcessType,String,Boolean,Long)' #txt
 ew0 f20 doCall true #txt
-ew0 f20 requestActionDecl '<List<gawfs.TaskDef> definedTasks,java.lang.String processName,java.lang.String processDescription,ch.ivy.gawfs.enums.ProcessType processType,java.lang.String processID,java.lang.Boolean isAdhocProcess,java.lang.Long originalTaskID> param;
+ew0 f20 requestActionDecl '<List<gawfs.TaskDef> definedTasks,java.lang.String processName,java.lang.String processDescription,ch.ivy.gawfs.enums.ProcessType processType,java.lang.String processID,java.lang.Boolean isAdhocProcess,java.lang.Long originalTaskId> param;
 ' #txt
 ew0 f20 requestMappingAction 'param.definedTasks=in.definedTasks;
 param.processName=in.processName;
@@ -283,7 +283,7 @@ param.processDescription=in.processDescription;
 param.processType=in.processType;
 param.processID=in.processID;
 param.isAdhocProcess=in.isAdhocProcess;
-param.originalTaskID=in.originalTaskID;
+param.originalTaskId=in.originalTaskId;
 ' #txt
 ew0 f20 responseActionDecl 'gawfs.Data out;
 ' #txt
@@ -576,7 +576,7 @@ ew0 f10 1 0.4647529069767442 0 0 #arcLabel
 ew0 f50 inParamDecl '<java.lang.Long originalTaskId> param;' #txt
 ew0 f50 inParamTable 'out.isAdhocProcess=true;
 out.isUseDefaultUI=true;
-out.originalTaskID=param.originalTaskId;
+out.originalTaskId=param.originalTaskId;
 out.processType=ch.ivy.gawfs.enums.ProcessType.AD_HOC;
 ' #txt
 ew0 f50 outParamDecl '<> result;
@@ -600,7 +600,7 @@ ew0 f52 actionTable 'out=in;
 ' #txt
 ew0 f52 actionCode 'import java.util.Arrays;
 import ch.ivyteam.ivy.workflow.ITask;
-ITask originalTask = ivy.wf.findTask(in.originalTaskID);
+ITask originalTask = ivy.wf.findTask(in.originalTaskId);
 if(originalTask != null) {
 	in.processName = ivy.cms.co("/Dialogs/workflowCreation/AdhocProcessName", Arrays.asList(String.valueOf(originalTask.getId()), originalTask.getName()));
 }' #txt

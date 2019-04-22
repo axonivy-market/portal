@@ -49,7 +49,7 @@ As0 f0 inParameterDecl 'ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalForm
 As0 f0 inParameterMapAction 'out.actualStepIndex=param.actualStepIndex;
 out.finishedTasks=param.finishedTasks;
 out.isAdhocProcess=param.isAdhocProcess;
-out.originalTaskID=param.originalTaskID;
+out.originalTaskId=param.originalTaskId;
 out.steps=param.steps;
 ' #txt
 As0 f0 outParameterDecl '<gawfs.ApprovalTaskResult approvalResult> result;
@@ -114,9 +114,9 @@ import org.apache.commons.lang3.StringUtils;
 String note = ivy.session.getSessionUserName() + ":" + ivy.cms.co("/Dialogs/WorkflowExecution/ApprovalForm/Approve"); 
 ivy.case.createNote(ivy.session, note);
 
-if (in.originalTaskID != null && in.originalTaskID > 0) {
+if (in.originalTaskId != null && in.originalTaskId > 0) {
 	String approvalComment = ivy.cms.co("/Dialogs/WorkflowExecution/ApprovalForm/ApproveComment") + (StringUtils.isEmpty(in.comment) ? "" : (" - " + in.comment));
-	AdhocUtils.storeHistory(in.originalTaskID, approvalComment);
+	AdhocUtils.storeHistory(in.originalTaskId, approvalComment);
 	IBusinessCase businessCase = ivy.case.getBusinessCase();
 	if (businessCase != null) {
 		businessCase.createNote(ivy.session, ivy.task.getName() + ": " + approvalComment);
@@ -182,9 +182,9 @@ import ch.ivyteam.ivy.workflow.businesscase.IBusinessCase;
 String note = ivy.session.getSessionUserName() + ":" + ivy.cms.co("/Dialogs/WorkflowExecution/ApprovalForm/Reject"); 
 ivy.case.createNote(ivy.session, note);
 
-if (in.originalTaskID != null && in.originalTaskID > 0) {
+if (in.originalTaskId != null && in.originalTaskId > 0) {
 	String approvalComment = ivy.cms.co("/Dialogs/WorkflowExecution/ApprovalForm/RejectComment") + (StringUtils.isEmpty(in.comment) ? "" : (" - " + in.comment));
-	AdhocUtils.storeHistory(in.originalTaskID, approvalComment);
+	AdhocUtils.storeHistory(in.originalTaskId, approvalComment);
 	IBusinessCase businessCase = ivy.case.getBusinessCase();
 	if (businessCase != null) {
 		businessCase.createNote(ivy.session, ivy.task.getName() + ": " + approvalComment);

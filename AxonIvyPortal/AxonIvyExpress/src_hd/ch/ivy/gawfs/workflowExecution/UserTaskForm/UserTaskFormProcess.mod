@@ -154,9 +154,9 @@ Us0 f12 actionTable 'out=in;
 Us0 f12 actionCode 'import ch.ivy.addon.portalkit.util.AdhocUtils;
 
 in.executePredefinedWorkflowData.currentTask.actualApplicantName = ivy.session.getSessionUser().getName();
-if (in.executePredefinedWorkflowData.originalTaskID != null && in.executePredefinedWorkflowData.originalTaskID > 0) {
+if (in.executePredefinedWorkflowData.originalTaskId != null && in.executePredefinedWorkflowData.originalTaskId > 0) {
 	String description = AdhocUtils.getDescriptionOfFirstTask(in.executePredefinedWorkflowData);
-	AdhocUtils.storeHistory(in.executePredefinedWorkflowData.getOriginalTaskID(), description);
+	AdhocUtils.storeHistory(in.executePredefinedWorkflowData.getOriginalTaskId(), description);
 	ivy.case.getBusinessCase().createNote(ivy.session, ivy.task.getName() + ": " + description);
 }' #txt
 Us0 f12 security system #txt
