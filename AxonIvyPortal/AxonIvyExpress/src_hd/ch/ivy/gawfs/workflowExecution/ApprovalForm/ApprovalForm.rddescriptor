@@ -29,7 +29,7 @@
             <nullPermitted>false</nullPermitted>
         </inputParameter>
         <inputParameter>
-            <name>originalTaskID</name>
+            <name>originalTaskId</name>
             <description></description>
             <parameterType>java.lang.Long</parameterType>
             <nullPermitted>false</nullPermitted>

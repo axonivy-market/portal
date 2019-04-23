@@ -37,6 +37,6 @@ savedFlag Boolean #field
 savedFlag PERSISTENT #fieldModifier
 isAdhocProcess Boolean #field
 isAdhocProcess PERSISTENT #fieldModifier
-originalTaskID Long #field
-originalTaskID 'This field store original task id which is trigger express adhoc WF' #fieldComment
-originalTaskID PERSISTENT #fieldModifier
+originalTaskId Long #field
+originalTaskId 'This field store original task id which is trigger express adhoc WF' #fieldComment
+originalTaskId PERSISTENT #fieldModifier

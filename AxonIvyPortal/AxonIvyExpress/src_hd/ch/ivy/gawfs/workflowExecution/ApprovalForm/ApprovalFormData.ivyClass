@@ -12,5 +12,5 @@ finishedTasks java.util.List<gawfs.TaskDef> #field
 finishedTasks PERSISTENT #fieldModifier
 isAdhocProcess Boolean #field
 isAdhocProcess PERSISTENT #fieldModifier
-originalTaskID Long #field
-originalTaskID PERSISTENT #fieldModifier
+originalTaskId Long #field
+originalTaskId PERSISTENT #fieldModifier
