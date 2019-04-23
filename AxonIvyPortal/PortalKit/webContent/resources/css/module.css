@@ -3868,6 +3868,13 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .announcement-input {
   width: 100%;
 }
+
+.announcement-message {
+  font-size: 1.4rem;
+  border-radius: 0.5rem;
+  padding: 0.2rem 1rem;
+  margin-top: 0.2rem;
+}
 /********************************** ABSENCES AND DEPUTY **********************************/
 .substituted-user-text {
   font-size: 1.4rem;
