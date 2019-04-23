@@ -228,15 +228,15 @@
       <br/>
       <p:spacer height="20"></p:spacer>
       <p:dataTable id="adhoc-task-history-table" value="#{taskTemplateBean.allAdhocHistories}" var="history">
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnTimestamp')}">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/timestamp')}">
           <h:outputText value="#{history.timestamp}" >
             <f:convertDateTime pattern="#{ivy.cms.co('/patterns/dateTimePattern')}" />
           </h:outputText>
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskName')}">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/taskName')}">
           <h:outputText value="#{history.taskName}" />
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/comment')}">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/comment')}">
           <h:outputText value="#{history.content}" />
         </p:column>
      </p:dataTable>
