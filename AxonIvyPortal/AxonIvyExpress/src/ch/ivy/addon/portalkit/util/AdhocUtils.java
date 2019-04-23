@@ -18,13 +18,12 @@ public class AdhocUtils {
 
   public static String getDescriptionOfFirstTask(ExecutePredefinedWorkflowData data) {
     Object dynaData = Optional.ofNullable(data.getCurrentTask()).map(TaskDef::getDynaFormController).map(DynaFormController::getModel).map(DynaFormModel::getControls).map(controls -> controls.get(0)).map(DynaFormControl::getData).orElse(null);
-    Formelement formElement = dynaData == null ? null : (Formelement)dynaData;
-    return Optional.ofNullable((String)formElement.getValue()).orElse(null);
+    return Optional.ofNullable((Formelement) dynaData).map(Formelement::getValue).map(String::valueOf).orElse(null);
   }
   
-  public static void storeHistory(long originalTaskID, String content) {
+  public static void storeHistory(long originalTaskId, String content) {
     AdhocHistory adhocHistory = new AdhocHistory();
-    adhocHistory.setOriginalTaskID(originalTaskID);
+    adhocHistory.setOriginalTaskId(originalTaskId);
     adhocHistory.setContent(content);
     adhocHistory.setTaskName(Ivy.wfTask().getName());
     adhocHistory.setTimestamp(Ivy.wfTask().getStartTimestamp());
