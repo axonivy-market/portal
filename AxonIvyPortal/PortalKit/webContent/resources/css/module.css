@@ -3785,7 +3785,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 .server-tab-action-buttons, .application-tab-action-buttons, .setting-tab-action-buttons,
-  .application-selection-action-buttons {
+  .application-selection-action-buttons, .announcement-tab-action-buttons {
   text-align: right;
   margin: 5px 0;
 }
@@ -3859,6 +3859,10 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .global-setting-table .setting-key {
   display: inline-block;
   word-break: break-all;
+}
+
+.announcement-information {
+  margin: 1rem 0;
 }
 
 .announcement-input {
@@ -4941,12 +4945,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   top: auto !important;
 }
 
-.announcement-message {
-  background-color: yellow;
-   border-radius: 3rem;
-   padding-left: 1rem;
-   padding-right: 1rem;
-}
 /*Style for express ----------------------------------------------*/
 .express-panel {
   width: 60%;
