@@ -4091,6 +4091,12 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   justify-content: flex-start;
   width: 130rem;
 }
+/* Medium screen */
+@media (min-width: 1366px) and (max-width: 1919px) {
+   .edit-statistic-container .chart-list {
+       width: 80rem;
+    }
+}
 
 .edit-statistic-container .chart-list .chart-container {
   margin: auto;
@@ -4157,6 +4163,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   .statistic-chart {
     width: 24rem;
     height: 24rem;
+    margin: auto;
   }
   
   .statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
