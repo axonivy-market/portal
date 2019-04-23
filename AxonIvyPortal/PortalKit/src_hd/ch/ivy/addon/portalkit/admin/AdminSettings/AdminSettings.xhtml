@@ -133,16 +133,15 @@
 		</p:tab>
     <p:tab id="announcement-tab"
       title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/tabTitle')}">
+      <p:messages id="announcement-validation-messages" />
       <h:form prependId="false" id="announcement-form">
-        <div>#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/information")}</div>
-        <div>#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/yourAnnouncement")}</div>
-        <p:messages id="announcement-validation-messages" />
+        <div class="announcement-information">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/information")}</div>
         <p:dataTable id="announcement-table" styleClass="admin-table" value="#{data.announcements}" var="announcement"
           widgetVar="announcement-table"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" scrollable="true"
-          scrollHeight="240" sortBy="#{announcement.language}">
+          scrollHeight="215" sortBy="#{announcement.language}">
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/language')}" width="10%">
-            <p:outputLabel for="announcement-input" value="#{announcement.language}" />
+            <p:outputLabel for="announcement-input" value="#{announcement.getLanguageDisplayName()}" />
           </p:column>
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcement')}"
             width="90%">
@@ -151,7 +150,7 @@
               requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/defaultLanguageRequiredMessage')}" />
           </p:column>
         </p:dataTable>
-        <h:panelGroup id="action-group" layout="block">
+        <h:panelGroup id="action-group" styleClass="announcement-tab-action-buttons" layout="block">
           <p:commandButton id="publish-announcement" process="@form" disabled="#{data.isAnnouncementActivated}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/publish')}"
             actionListener="#{logic.publishAnnouncement()}"

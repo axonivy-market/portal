@@ -1,10 +1,20 @@
 package ch.ivy.addon.portalkit.bo;
 
+import java.util.Locale;
+
+import org.apache.commons.lang3.StringUtils;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import ch.ivyteam.ivy.environment.Ivy;
+
 public class Announcement {
 
   private String id;
   private String language;
   private String value;
+  @JsonIgnore
+  private String languageDisplayName;
 
   public Announcement() {}
 
@@ -35,6 +45,14 @@ public class Announcement {
 
   public void setValue(String value) {
     this.value = value;
+  }
+
+  public String getLanguageDisplayName() {
+    if (StringUtils.isEmpty(languageDisplayName)) {
+      Locale displayedLocale = Locale.forLanguageTag(language);
+      languageDisplayName = displayedLocale.getDisplayLanguage(Ivy.session().getContentLocale());
+    }
+    return languageDisplayName;
   }
 
 }
