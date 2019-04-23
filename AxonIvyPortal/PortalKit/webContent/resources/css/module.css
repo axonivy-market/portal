@@ -4224,6 +4224,13 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   width: 130rem;
 }
 
+/* Medium screen */
+@media (min-width: 1366px) and (max-width: 1919px) {
+	.edit-statistic-container .chart-list {
+		width: 80rem;
+	}
+}
+
 .edit-statistic-container .chart-list .chart-container {
   margin: auto;
   margin-bottom: 20px;
@@ -4295,6 +4302,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   .statistic-chart {
     width: 24rem;
     height: 24rem;
+    margin: auto;
   }
 
   .edit-statistic-container {
