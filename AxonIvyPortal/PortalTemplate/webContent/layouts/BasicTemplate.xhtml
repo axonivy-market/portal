@@ -115,12 +115,10 @@
 
       <ui:fragment>
         <div class="container #{showMainArea eq true or deviceBean.mobile ? '' : 'u-invisibility'} #{deviceBean.mobile ? 'mobile-container' : ''}" id="main-area-panel">
-          <div class="simple-container js-simple-container ">
-            <h:panelGroup layout="block" rendered="#{userMenuBean.isAnnouncementActivated()}"
-              styleClass="js-dashboard-default-widget-container js-task-list-container js-simple-main-col js-case-default-widget-container announcement-message">
-              <h:outputText value="#{userMenuBean.getAnnouncement()}" />
-            </h:panelGroup>
-          </div>
+          <h:panelGroup layout="block" rendered="#{userMenuBean.isAnnouncementActivated()}"
+            styleClass="js-dashboard-default-widget-container js-task-list-container js-simple-main-col js-case-default-widget-container announcement-message">
+            <h:outputText value="#{userMenuBean.getAnnouncement()}" />
+          </h:panelGroup>
 
           <ui:insert name="pageContent">
             <div class="simple-container js-simple-container #{simpleContainerClass}">
