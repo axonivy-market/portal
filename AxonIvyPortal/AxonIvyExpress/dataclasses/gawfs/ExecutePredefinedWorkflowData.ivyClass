@@ -30,5 +30,5 @@ workflowName PERSISTENT #fieldModifier
 workflowType ch.ivy.gawfs.enums.ProcessType #field
 isAdhocProcess Boolean #field
 isAdhocProcess PERSISTENT #fieldModifier
-originalTaskID Long #field
-originalTaskID PERSISTENT #fieldModifier
+originalTaskId Long #field
+originalTaskId PERSISTENT #fieldModifier
