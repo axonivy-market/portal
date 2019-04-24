@@ -1684,7 +1684,9 @@ As0 f10 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData
 ' #txt
 As0 f10 actionTable 'out=in;
 ' #txt
-As0 f10 actionCode 'import ch.ivy.addon.portalkit.service.AnnouncementService;
+As0 f10 actionCode 'import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import ch.ivy.addon.portalkit.service.AnnouncementService;
 import org.apache.commons.collections.CollectionUtils;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
@@ -1694,7 +1696,11 @@ in.settingList = globalSettingService.findAllGlobalSetting();
 in.filteredSettingList = in.settingList;
 
 in.announcements = AnnouncementService.getInstance().getAnnouncements();
-in.isAnnouncementActivated = AnnouncementService.getInstance().isAnnouncementActivated();' #txt
+in.isAnnouncementActivated = AnnouncementService.getInstance().isAnnouncementActivated();
+FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, 
+	ivy.cms.co(in.isAnnouncementActivated ? "/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsEnabled"
+	: "/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsDisabled"), null));
+' #txt
 As0 f10 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2029,8 +2035,8 @@ service.saveAll(in.announcements);
 service.activateAnnouncement();
 out.isAnnouncementActivated = true;
 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, 
-	ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsPublished"), null));
-' #txt
+	ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsEnabled"), null));
+service.invalidateCache();' #txt
 As0 f81 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f81 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2056,8 +2062,8 @@ AnnouncementService service = AnnouncementService.getInstance();
 service.deactivateAnnouncement();
 out.isAnnouncementActivated = false;
 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, 
-	ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsDepublished"), null));
-' #txt
+	ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsDisabled"), null));
+service.invalidateCache();' #txt
 As0 f85 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f85 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
