@@ -97,13 +97,13 @@ public class AdminSettingsPage extends TemplatePage {
     saveButton.click();
   }
   
-  private void closeAdminSettingDialog(){
+  public void closeAdminSettingDialog(){
     WebElement closeButton = findElementById("close-button");
     closeButton.click();
     waitForElementDisplayed(By.id("dialog-closing-information"), true);
   }
   
-  private void closeInformConfigDialog(){
+  public void closeInformConfigDialog(){
     WebElement closeButton = findElementById("close-dialog-button");
     closeButton.click();
   }
@@ -145,4 +145,13 @@ public class AdminSettingsPage extends TemplatePage {
     waitForElementDisplayed(By.id("warning-before-lost-session:timeout-dialog"), true, 180);
     return isElementDisplayed(By.id("warning-before-lost-session:timeout-dialog"));
   }
+
+  public AnnouncementPage openAnnouncementTab() {
+    WebElement settingTabLink = findElementByXpath("//a[@href='#adminui:adminTabView:announcement-tab']");
+    settingTabLink.click();
+    waitForElementPresent(By.id("adminui:adminTabView:announcement-tab"), true);
+    waitAjaxIndicatorDisappear();
+    return new AnnouncementPage();
+  }
+
 }
