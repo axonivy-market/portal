@@ -1,15 +1,13 @@
 package ch.ivy.addon.portalkit.bo;
 
-public class PortalProperty {
+public class AnnouncementStatus {
 
   private String id;
-  private String key;
   private String value;
 
-  public PortalProperty() {}
+  public AnnouncementStatus() {}
 
-  public PortalProperty(String key, String value) {
-    this.key = key;
+  public AnnouncementStatus(String value) {
     this.value = value;
   }
 
@@ -21,14 +19,6 @@ public class PortalProperty {
     this.id = id;
   }
 
-  public String getKey() {
-    return key;
-  }
-
-  public void setKey(String key) {
-    this.key = key;
-  }
-
   public String getValue() {
     return value;
   }
@@ -36,7 +26,5 @@ public class PortalProperty {
   public void setValue(String value) {
     this.value = value;
   }
-
-
 
 }
