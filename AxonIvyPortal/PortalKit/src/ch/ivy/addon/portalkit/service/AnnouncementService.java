@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.Announcement;
-import ch.ivy.addon.portalkit.bo.PortalProperty;
+import ch.ivy.addon.portalkit.bo.AnnouncementStatus;
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
@@ -89,18 +89,18 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
   }
 
   public void activateAnnouncement() {
-    PortalPropertyService.getInstance().updateFirstPropertyByKey(ANNOUNCEMENT_ACTIVATED, Boolean.toString(true));
+    AnnouncementStatusService.getInstance().updateFirstPropertyByKey(ANNOUNCEMENT_ACTIVATED, Boolean.toString(true));
   }
 
   public void deactivateAnnouncement() {
-    PortalPropertyService.getInstance().updateFirstPropertyByKey(ANNOUNCEMENT_ACTIVATED, Boolean.toString(false));
+    AnnouncementStatusService.getInstance().updateFirstPropertyByKey(ANNOUNCEMENT_ACTIVATED, Boolean.toString(false));
   }
 
   public boolean isAnnouncementActivated() {
     Boolean announcementActivated =
         (Boolean) IvyCacheService.newInstance().getAnnouncementSettingsFromCache(ANNOUNCEMENT_ACTIVATED);
     if (announcementActivated == null) {
-      PortalProperty property = PortalPropertyService.getInstance().findFirstByKey(ANNOUNCEMENT_ACTIVATED);
+      AnnouncementStatus property = AnnouncementStatusService.getInstance().findFirst();
       announcementActivated = false;
       if (property != null) {
         announcementActivated = Boolean.parseBoolean(property.getValue());
