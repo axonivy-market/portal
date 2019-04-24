@@ -1,5 +1,7 @@
 package portal.guitest.page;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.remote.server.handler.FindElements;
 import org.openqa.selenium.support.Color;
 
 
@@ -44,5 +46,18 @@ public class HomePage extends TemplatePage {
   
   public boolean isShowAllChartsLinkDisplayed() {
     return isElementDisplayedById(SHOW_ALL_CHARTS_LINK_ID);
+  }
+  
+  public String getAnnouncementMessage() {
+    waitForElementDisplayed(By.cssSelector("div[class$='announcement-message-customizable']"), true);
+    return driver.findElement(By.cssSelector("div[class$='announcement-message-customizable']")).getText();
+  }
+  
+  public boolean isAnnouncementMessageNotDisplayed() {
+    if(driver.findElements(By.cssSelector("div[class$='announcement-message-customizable']")).size()==0) {
+      return true;
+    }
+    return false;
+    
   }
 }
