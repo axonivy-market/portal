@@ -4,7 +4,7 @@ package ch.ivy.addon.portalkit.service;
 import ch.ivy.addon.portalkit.bo.PortalProperty;
 
 public class PortalPropertyService extends BusinessDataService<PortalProperty> {
-  private static final String FILED_KEY = "key";
+  private static final String FIElD_KEY = "key";
   private static PortalPropertyService INSTANCE;
 
   private PortalPropertyService() {}
@@ -17,7 +17,7 @@ public class PortalPropertyService extends BusinessDataService<PortalProperty> {
   }
 
   public void updateFirstPropertyByKey(String key, String value) {
-    PortalProperty property = repo().search(getType()).textField(FILED_KEY).isEqualToIgnoringCase(key).execute().getFirst();
+    PortalProperty property = repo().search(getType()).textField(FIElD_KEY).isEqualToIgnoringCase(key).execute().getFirst();
     if (property == null) {
       property = new PortalProperty(key, value);
     } else {
@@ -27,7 +27,7 @@ public class PortalPropertyService extends BusinessDataService<PortalProperty> {
   }
 
   public PortalProperty findFirstByKey(String key) {
-    return repo().search(getType()).textField(FILED_KEY).isEqualToIgnoringCase(key).execute().getFirst();
+    return repo().search(getType()).textField(FIElD_KEY).isEqualToIgnoringCase(key).execute().getFirst();
   }
   
   @Override
