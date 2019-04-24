@@ -99,6 +99,18 @@
               </listitem>
               <listitem>
                 <para>
+                  <code>@announcement-background-color</code>
+                  : it is the background color of the announcement panel.
+                </para>
+              </listitem>
+              <listitem>
+                <para>
+                  <code>@announcement-border-color</code>
+                  : it is the border color of the announcement panel.
+                </para>
+              </listitem>
+              <listitem>
+                <para>
                   <code>@process-chain-menu-color</code>
                   : it is the color of Process Chain component.
                 </para>
