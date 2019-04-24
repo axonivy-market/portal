@@ -5,6 +5,7 @@ function CaseWidget(outerPanelId) {
       var container = $('.js-case-list > .ui-datascroller-content');
       var mainAreaPanel = $('#' + outerPanelId);
       var caseWidgetHeaderContainer = $('.widget-header');
+      var announcementMessageContainer = $('.js-announcement-message');
       var caseWidgetSortMenuContainer = $('.js-case-widget-column-header');
       var caseWidgetFilterContainer = $('.js-filter-container');
       var error = 5;
@@ -16,7 +17,8 @@ function CaseWidget(outerPanelId) {
 
       var availableHeight = mainAreaPanel.outerHeight() - caseWidgetHeaderContainer.outerHeight(true)
           - caseWidgetSortMenuContainer.outerHeight(true) - caseWidgetFilterContainer.outerHeight(true)
-          - globalSearchInput.outerHeight(true) - globalSearchTabHeader.outerHeight(true)- error;
+          - globalSearchInput.outerHeight(true) - globalSearchTabHeader.outerHeight(true)
+          - announcementMessageContainer.outerHeight(true) - error;
 
       if (!!availableHeight) {
         container.height(availableHeight);
