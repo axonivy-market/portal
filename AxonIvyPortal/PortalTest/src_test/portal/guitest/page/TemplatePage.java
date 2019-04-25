@@ -165,6 +165,11 @@ protected boolean isIntegrationTestRun() {
     return new ChangePasswordPage();
   }
   
+  public LanguagePage openLanguagePage() {
+    clickUserMenuItem("language-setting-menu-item");
+    return new LanguagePage();
+  }
+  
   public ProjectVersionPage openProjectVersionPage() {
     clickUserMenuItem("project-info-menu-item");
     return new ProjectVersionPage();
