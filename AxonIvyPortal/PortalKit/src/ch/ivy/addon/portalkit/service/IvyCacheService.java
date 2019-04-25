@@ -107,6 +107,7 @@ public class IvyCacheService {
           cacheGroup.invalidateAllEntries();
         });
     Ivy.log().info("CLEAR CACHE GROUP {0} OF ALL ALLICATIONS RELATED TO PORTAL", groupName);
+    Ivy.log().warn("portal apps {0}", apps);
   }
 
   public void invalidateGlobalSettingOnApp(String applicationName) {
