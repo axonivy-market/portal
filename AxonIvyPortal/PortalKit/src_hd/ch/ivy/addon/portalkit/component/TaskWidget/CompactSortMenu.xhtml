@@ -12,7 +12,7 @@
     <f:actionListener binding="#{logic.sortByPriority()}" />
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/sortByPriority')}" />
   </p:commandLink>
-  <p:spacer width="20" />
+  <p:spacer width="10" />
   <p:commandLink styleClass="#{data.dataModel.sortField eq masterDataBean.getTaskSortFieldExpiryTime() ? 'is-selected' : ''}" id="expiry-sort-command"
     update="#{cc.attrs.componentToUpdateWhenInCompactMode} task-view-container task-widget-sort-menu"
     oncomplete="taskWidget.setupScrollbar()">
