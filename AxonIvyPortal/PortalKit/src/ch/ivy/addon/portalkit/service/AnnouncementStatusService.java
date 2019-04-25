@@ -2,7 +2,6 @@ package ch.ivy.addon.portalkit.service;
 
 
 import ch.ivy.addon.portalkit.bo.AnnouncementStatus;
-import ch.ivyteam.ivy.environment.Ivy;
 
 public class AnnouncementStatusService extends BusinessDataService<AnnouncementStatus> {
   private static AnnouncementStatusService instance;
@@ -27,12 +26,7 @@ public class AnnouncementStatusService extends BusinessDataService<AnnouncementS
   }
 
   public AnnouncementStatus findFirst() {
-    AnnouncementStatus first = repo().search(getType()).limit(1).execute().getFirst();
-    Ivy.log().warn("findFirst {0}", first);
-    if (first != null) {
-      Ivy.log().warn("findFirst {0}", first.getId());
-    }
-    return first;
+    return repo().search(getType()).limit(1).execute().getFirst();
   }
 
   @Override
