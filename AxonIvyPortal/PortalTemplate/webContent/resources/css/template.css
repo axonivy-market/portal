@@ -723,14 +723,14 @@
 @media ( min-width : 992px) and ( max-width : 1365px) {
   .dashboard-container, .simple-container, .announcement-message-container {
     width: 880px;
-    padding-left: 40px;
+    padding-left: 10px;
   }
   .announcement-container-in-task-list, .announcement-container-in-case-list {
     width: auto;
     padding-left: 0;
   }
   .dashboard-main-content-2nd-col {
-    width: 520px;
+    width: 540px;
   }
   .task-list-container {
     max-width: 1246px;
