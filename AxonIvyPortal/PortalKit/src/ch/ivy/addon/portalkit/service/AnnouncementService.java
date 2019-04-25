@@ -31,8 +31,7 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
   }
 
   public List<Announcement> findAllOrderedByLanguage() {
-    List<Announcement> result = repo().search(getType()).orderBy().textField("language").ascending().execute().getAll();
-    return result;
+    return repo().search(getType()).orderBy().textField("language").ascending().execute().getAll();
   }
 
   public void saveAll(List<Announcement> announcements) {
@@ -88,26 +87,21 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
     return Ivy.wf().getApplication().getDefaultEMailLanguage().getLanguage();
   }
 
-  public void activateAnnouncement() {
+  public void activateAnnouncement() throws InterruptedException {
     AnnouncementStatusService.getInstance().updateFirstProperty(Boolean.toString(true));
     makeSureAnnouncementStatusUpToDate("true");
   }
-  
-  public void deactivateAnnouncement() {
+
+  public void deactivateAnnouncement() throws InterruptedException {
     AnnouncementStatusService.getInstance().updateFirstProperty(Boolean.toString(false));
     makeSureAnnouncementStatusUpToDate("false");
   }
 
-  private void makeSureAnnouncementStatusUpToDate(String expectedValue) {
+  private void makeSureAnnouncementStatusUpToDate(String expectedValue) throws InterruptedException {
     for (int i = 0; i < 100; i++) {
       AnnouncementStatus status = AnnouncementStatusService.getInstance().findFirst();
       if (status == null || !status.getEnabled().equalsIgnoreCase(expectedValue)) {
-        try {
-          Thread.sleep(20);
-          Ivy.log().warn("loop {0}", i);
-        } catch (InterruptedException e) {
-          Ivy.log().error("Error when enabling announcement", e);
-        }
+        Thread.sleep(20);
       } else {
         return;
       }
@@ -125,9 +119,7 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
         announcementActivated = Boolean.parseBoolean(property.getEnabled());
       }
       IvyCacheService.newInstance().cacheAnnouncementSettings(ANNOUNCEMENT_ACTIVATED, announcementActivated);
-      Ivy.log().warn("cache {0}",announcementActivated);
     }
-    Ivy.log().warn("get cache {0}",announcementActivated);
     return announcementActivated;
   }
 
