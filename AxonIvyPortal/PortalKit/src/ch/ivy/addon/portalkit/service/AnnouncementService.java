@@ -19,15 +19,15 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public class AnnouncementService extends BusinessDataService<Announcement> {
   private static final String ANNOUNCEMENT_ACTIVATED = "ANNOUNCEMENT_ACTIVATED";
-  private static AnnouncementService INSTANCE;
+  private static AnnouncementService instance;
 
   private AnnouncementService() {}
 
   public static final AnnouncementService getInstance() {
-    if (INSTANCE == null) {
-      INSTANCE = new AnnouncementService();
+    if (instance == null) {
+      instance = new AnnouncementService();
     }
-    return INSTANCE;
+    return instance;
   }
 
   public List<Announcement> findAllOrderedByLanguage() {
@@ -90,10 +90,29 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
 
   public void activateAnnouncement() {
     AnnouncementStatusService.getInstance().updateFirstProperty(Boolean.toString(true));
+    makeSureAnnouncementStatusUpToDate("true");
   }
-
+  
   public void deactivateAnnouncement() {
     AnnouncementStatusService.getInstance().updateFirstProperty(Boolean.toString(false));
+    makeSureAnnouncementStatusUpToDate("false");
+  }
+
+  private void makeSureAnnouncementStatusUpToDate(String expectedValue) {
+    for (int i = 0; i < 100; i++) {
+      AnnouncementStatus status = AnnouncementStatusService.getInstance().findFirst();
+      if (status == null || !status.getEnabled().equalsIgnoreCase(expectedValue)) {
+        try {
+          Thread.sleep(20);
+          Ivy.log().warn("loop {0}", i);
+        } catch (InterruptedException e) {
+          Ivy.log().error("Error when enabling announcement", e);
+        }
+      } else {
+        return;
+      }
+    }
+    Ivy.log().error("Announcement status is not up to date");
   }
 
   public boolean isAnnouncementActivated() {
@@ -106,7 +125,9 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
         announcementActivated = Boolean.parseBoolean(property.getEnabled());
       }
       IvyCacheService.newInstance().cacheAnnouncementSettings(ANNOUNCEMENT_ACTIVATED, announcementActivated);
+      Ivy.log().warn("cache {0}",announcementActivated);
     }
+    Ivy.log().warn("get cache {0}",announcementActivated);
     return announcementActivated;
   }
 
