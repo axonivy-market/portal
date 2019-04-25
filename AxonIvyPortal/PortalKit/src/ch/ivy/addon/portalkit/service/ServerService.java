@@ -15,15 +15,15 @@ import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.server.ServerFactory;
 
 public class ServerService {
-  private static ServerService INSTANCE;
+  private static ServerService instance;
 
   private ServerService() {}
 
   public static final ServerService getInstance() {
-    if (INSTANCE == null) {
-      INSTANCE = new ServerService();
+    if (instance == null) {
+      instance = new ServerService();
     }
-    return INSTANCE;
+    return instance;
   }
 
   public List<IApplication> getApplicationsRelatedToPortal() {
