@@ -89,11 +89,11 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
   }
 
   public void activateAnnouncement() {
-    AnnouncementStatusService.getInstance().updateFirstPropertyByKey(ANNOUNCEMENT_ACTIVATED, Boolean.toString(true));
+    AnnouncementStatusService.getInstance().updateFirstProperty(Boolean.toString(true));
   }
 
   public void deactivateAnnouncement() {
-    AnnouncementStatusService.getInstance().updateFirstPropertyByKey(ANNOUNCEMENT_ACTIVATED, Boolean.toString(false));
+    AnnouncementStatusService.getInstance().updateFirstProperty(Boolean.toString(false));
   }
 
   public boolean isAnnouncementActivated() {
@@ -103,7 +103,7 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
       AnnouncementStatus property = AnnouncementStatusService.getInstance().findFirst();
       announcementActivated = false;
       if (property != null) {
-        announcementActivated = Boolean.parseBoolean(property.getValue());
+        announcementActivated = Boolean.parseBoolean(property.getEnabled());
       }
       IvyCacheService.newInstance().cacheAnnouncementSettings(ANNOUNCEMENT_ACTIVATED, announcementActivated);
     }

@@ -3871,9 +3871,9 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 .announcement-message {
   font-size: 1.4rem;
-  border-radius: 0.5rem;
-  padding: 0.2rem 1rem;
-  margin-top: 0.2rem;
+  border-radius: 5px;
+  padding: 2px 10px;
+  margin-top: 2px;
 }
 /********************************** ABSENCES AND DEPUTY **********************************/
 .substituted-user-text {
