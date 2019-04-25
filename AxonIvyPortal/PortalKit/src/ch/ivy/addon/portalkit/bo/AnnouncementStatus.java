@@ -3,12 +3,12 @@ package ch.ivy.addon.portalkit.bo;
 public class AnnouncementStatus {
 
   private String id;
-  private String value;
+  private String enabled;
 
   public AnnouncementStatus() {}
 
-  public AnnouncementStatus(String value) {
-    this.value = value;
+  public AnnouncementStatus(String enabled) {
+    this.enabled = enabled;
   }
 
   public String getId() {
@@ -19,12 +19,12 @@ public class AnnouncementStatus {
     this.id = id;
   }
 
-  public String getValue() {
-    return value;
+  public String getEnabled() {
+    return enabled;
   }
 
-  public void setValue(String value) {
-    this.value = value;
+  public void setEnabled(String enabled) {
+    this.enabled = enabled;
   }
 
 }

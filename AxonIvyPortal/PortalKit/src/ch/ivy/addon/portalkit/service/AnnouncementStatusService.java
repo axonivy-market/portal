@@ -15,12 +15,12 @@ public class AnnouncementStatusService extends BusinessDataService<AnnouncementS
     return INSTANCE;
   }
 
-  public void updateFirstPropertyByKey(String key, String value) {
+  public void updateFirstProperty(String value) {
     AnnouncementStatus property = findFirst();
     if (property == null) {
       property = new AnnouncementStatus(value);
     } else {
-      property.setValue(value);
+      property.setEnabled(value);
     }
     save(property);
   }
