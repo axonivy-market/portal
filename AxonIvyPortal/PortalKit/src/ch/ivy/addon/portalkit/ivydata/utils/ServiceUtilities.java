@@ -8,13 +8,17 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
 import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataErrorType;
 import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
+import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
@@ -26,6 +30,7 @@ import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISession;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 public class ServiceUtilities {
@@ -159,4 +164,23 @@ public class ServiceUtilities {
       return Ivy.wf().getWorkflowSession(session);
     });
   }
+
+  public List<IApplication> getApplicationsRelatedToPortal() {
+    RegisteredApplicationService service = new RegisteredApplicationService();
+    List<String> configuredApps =
+        service.findAllIvyApplications().stream().map(Application::getName).collect(Collectors.toList());
+    List<IApplication> apps;
+    if (CollectionUtils.isEmpty(configuredApps)) {
+      apps = IvyExecutor.executeAsSystem(
+          () -> ServerFactory.getServer().getApplicationConfigurationManager().getApplicationsSortedByName(false));
+    } else {
+      apps = IvyExecutor.executeAsSystem(() -> ServiceUtilities.findApps(configuredApps));
+      IApplication defaultApplication = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(PortalConstants.PORTAL_APPLICATION_NAME);
+      if (defaultApplication != null && defaultApplication.getActivityState() == ActivityState.ACTIVE) {
+        apps.add(defaultApplication);
+      }
+    }
+    return apps;
+  }
+
 }
