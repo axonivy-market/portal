@@ -793,7 +793,7 @@ function DashboardSmallScreen() {
 
   var secondCol = {
     secondColumnSmallSize : 480,
-    secondColumnLargeSize : 520,
+    secondColumnLargeSize : 540,
     marginValWhenMenuOpen : 20,
     marginValWhenMenuClose : 45
   };
@@ -812,17 +812,18 @@ function DashboardSmallScreen() {
     var $announcement = $('.js-announcement-message');
     var $dashboardFirstCol = $('.js-dashboard-main-content-1st-col');
     var $dashboardSecondCol = $('.js-dashboard-main-content-2nd-col');
+    var paddingLeft = 10;
     moveStatisticsToFirstCol();
     if ($mainMenu.hasClass('in')) {
       // Open main menu
-      $announcement.animate({ marginLeft : firstCol.marginValWhenMenuOpen }, animateDuration);
       $dashboardFirstCol.animate({ marginLeft : firstCol.marginValWhenMenuOpen }, animateDuration);
       $dashboardSecondCol.animate({ width : secondCol.secondColumnSmallSize, marginLeft : secondCol.marginValWhenMenuOpen }, animateDuration);
+      $announcement.animate({ marginLeft : firstCol.marginValWhenMenuOpen + paddingLeft }, animateDuration);
     } else {
       // Close main menu
-      $announcement.animate({ marginLeft : firstCol.marginValWhenMenuClose }, animateDuration);
       $dashboardFirstCol.animate({ marginLeft : firstCol.marginValWhenMenuClose }, animateDuration);
       $dashboardSecondCol.animate({ width : secondCol.secondColumnLargeSize, marginLeft : secondCol.marginValWhenMenuClose }, animateDuration);
+      $announcement.animate({ marginLeft : firstCol.marginValWhenMenuClose + paddingLeft }, animateDuration);
     }
   }
 }
