@@ -88,8 +88,6 @@ public class AdhocExpressTest extends BaseTest {
     homePage = new HomePage();
     taskWidgetPage.filterTasksBy(taskNamePrefix);
     assertEquals(1, taskWidgetPage.countTasks());
-    taskWidgetPage.expand();
-    taskWidgetPage.resetReservedTask(0);
     taskWidgetPage.startTask(0);
     
     //check adhoc history
