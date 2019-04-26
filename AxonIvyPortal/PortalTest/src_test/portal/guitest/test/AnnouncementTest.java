@@ -18,7 +18,6 @@ import portal.guitest.page.LoginPage;
 public class AnnouncementTest extends BaseTest {
   @Before
   public void setup() {
-    // TODO Auto-generated method stub
     super.setup();
     navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
     LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
@@ -33,10 +32,6 @@ public class AnnouncementTest extends BaseTest {
 
   @Test
   public void notificationCanBeChangeLanguage() {
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
-    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
-    loginPage.login();
-
     HomePage homePage = new HomePage();
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
     AnnouncementPage announcementPage = adminSettingsPage.openAnnouncementTab();
@@ -56,25 +51,17 @@ public class AnnouncementTest extends BaseTest {
 
   @Test
   public void validationDefaultLanguage() {
-
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
-    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
-    loginPage.login();
-
     HomePage homePage = new HomePage();
 
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
     AnnouncementPage announcementPage = adminSettingsPage.openAnnouncementTab();
     announcementPage.publish();
-    assertEquals("TODO Announcement for application default language is required.", announcementPage.getInfoSummary());
+    assertEquals("Announcement for application default language is required.", announcementPage.getInfoSummary());
 
   }
 
   @Test
   public void shouldNotification() {
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
-    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
-    loginPage.login();
     HomePage homePage = new HomePage();
     assertTrue("Admin Settings menu item is not displayed", homePage.isAdminSettingsMenuItemPresent());
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
@@ -94,9 +81,6 @@ public class AnnouncementTest extends BaseTest {
 
   @Test
   public void depulishNotification() {
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
-    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
-    loginPage.login();
     HomePage homePage = new HomePage();
     assertTrue("Admin Settings menu item is not displayed", homePage.isAdminSettingsMenuItemPresent());
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
