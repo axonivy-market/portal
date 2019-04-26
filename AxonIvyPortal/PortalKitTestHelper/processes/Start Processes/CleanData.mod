@@ -1,5 +1,5 @@
 [Ivy]
-1511A66AF619A768 3.23 #module
+1511A66AF619A768 3.26 #module
 >Proto >Proto Collection #zClass
 Ca0 CleanData Big #zClass
 Ca0 B #cInfo
@@ -59,12 +59,12 @@ Ca0 f0 triggerEnabled false #txt
 Ca0 f0 callSignature cleanCompletedCases() #txt
 Ca0 f0 persist false #txt
 Ca0 f0 startName 'Clean completed cases' #txt
-Ca0 f0 taskData 'TaskTriggered.ROL=Everybody
+Ca0 f0 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Ca0 f0 showInStartList 1 #txt
 Ca0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -119,12 +119,12 @@ Ca0 f7 triggerEnabled false #txt
 Ca0 f7 callSignature CleanFavoriteProcess() #txt
 Ca0 f7 persist false #txt
 Ca0 f7 startName '(For autotest) Clean all favorite processes' #txt
-Ca0 f7 taskData 'TaskTriggered.ROL=Everybody
+Ca0 f7 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Ca0 f7 showInStartList 1 #txt
 Ca0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -180,12 +180,12 @@ Ca0 f61 triggerEnabled false #txt
 Ca0 f61 callSignature cleanAllCasesByDestroying() #txt
 Ca0 f61 persist false #txt
 Ca0 f61 startName 'Clean all cases by destroying and clear all business data' #txt
-Ca0 f61 taskData 'TaskTriggered.ROL=Everybody
+Ca0 f61 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Ca0 f61 caseData businessCase.attach=false #txt
 Ca0 f61 showInStartList 1 #txt
 Ca0 f61 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -216,12 +216,12 @@ Ca0 f10 triggerEnabled false #txt
 Ca0 f10 callSignature cleanAbsences() #txt
 Ca0 f10 persist false #txt
 Ca0 f10 startName '(For autotest) Clean absences' #txt
-Ca0 f10 taskData 'TaskTriggered.ROL=Everybody
+Ca0 f10 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Ca0 f10 showInStartList 1 #txt
 Ca0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -263,12 +263,12 @@ Ca0 f15 triggerEnabled false #txt
 Ca0 f15 callSignature cleanupCases() #txt
 Ca0 f15 persist false #txt
 Ca0 f15 startName '(For autotest) Clean up all cases and clear all business data' #txt
-Ca0 f15 taskData 'TaskTriggered.ROL=Everybody
+Ca0 f15 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Ca0 f15 caseData businessCase.attach=false #txt
 Ca0 f15 showInStartList 1 #txt
 Ca0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -290,7 +290,8 @@ Ca0 f16 actionTable 'out=in;
 Ca0 f16 actionCode 'import ch.ivy.addon.portalkit.test.util.BusinessDataUtils;
 import ch.ivy.addon.portalkit.test.util.CaseUtils;
 CaseUtils.deleteAllCases();
-BusinessDataUtils.clearAllBusinessData();' #txt
+BusinessDataUtils.clearAllBusinessData();
+ivy.datacache.getAppCache().invalidate();' #txt
 Ca0 f16 security system #txt
 Ca0 f16 type portalKit_test.Data #txt
 Ca0 f16 718 180 36 24 20 -2 #rect
@@ -312,12 +313,12 @@ Ca0 f20 requestEnabled true #txt
 Ca0 f20 triggerEnabled false #txt
 Ca0 f20 callSignature cleanupGlobalVars() #txt
 Ca0 f20 persist false #txt
-Ca0 f20 taskData 'TaskTriggered.ROL=Everybody
+Ca0 f20 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Ca0 f20 caseData businessCase.attach=true #txt
 Ca0 f20 showInStartList 1 #txt
 Ca0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -361,12 +362,12 @@ Ca0 f25 triggerEnabled false #txt
 Ca0 f25 callSignature cleanPortalPermissions() #txt
 Ca0 f25 persist false #txt
 Ca0 f25 startName 'Clean Portal permissions' #txt
-Ca0 f25 taskData 'TaskTriggered.ROL=Everybody
+Ca0 f25 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Ca0 f25 caseData businessCase.attach=true #txt
 Ca0 f25 showInStartList 1 #txt
 Ca0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
