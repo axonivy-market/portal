@@ -10,6 +10,7 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CREATED_
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DECEMBER_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DONE_CASE_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.EXCEPTION_PRIORITY_KEY;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.EXPIRED_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.EXPIRY_PERIOD_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.FAILED_CASE_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.FEBRUARY_CMS;
@@ -575,6 +576,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   private Map<Object, Number> generateDefaultExpiryModel(Map<Date, Long> numberOfTasksByExpiryTime) {
     Map<Object, Number> chartData = new LinkedHashMap<>();
     // Calculate result
+    Long expiredTasks = 0L;
     Long taskExpireToday = 0L;
     Long taskExpireThisWeek = 0L;
     Long taskExpireThisMonth = 0L;
@@ -593,11 +595,17 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     if (numberOfTasksByExpiryTime != null) {
       for (Entry<Date, Long> result : numberOfTasksByExpiryTime.entrySet()) {
         Date resultDate = StatisticChartTimeUtils.truncateMinutesPart(result.getKey());
-  
+
+        if (today.compareTo(resultDate) > 0) {
+          expiredTasks += result.getValue();
+        }
+        
+        Ivy.log().error("AAA {0}", today);
+        Ivy.log().error("BBB {0}", resultDate);
         if (today.compareTo(resultDate) == 0) {
           taskExpireToday += result.getValue();
         }
-  
+
         if (firstDateOfWeek.compareTo(resultDate) <= 0 && firstDateOfNextWeek.compareTo(resultDate) > 0) {
           taskExpireThisWeek += result.getValue();
         }
@@ -610,6 +618,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       }
     }
 
+    chartData.put(Ivy.cms().co(EXPIRED_KEY), expiredTasks);
     chartData.put(Ivy.cms().co(TODAY_EXPIRY_KEY), taskExpireToday);
     chartData.put(Ivy.cms().co(THIS_WEEK_EXPIRY_KEY), taskExpireThisWeek);
     chartData.put(Ivy.cms().co(THIS_MONTH_EXPIRY_KEY), taskExpireThisMonth);
