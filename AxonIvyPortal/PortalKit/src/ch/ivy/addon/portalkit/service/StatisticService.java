@@ -600,8 +600,6 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
           expiredTasks += result.getValue();
         }
         
-        Ivy.log().error("AAA {0}", today);
-        Ivy.log().error("BBB {0}", resultDate);
         if (today.compareTo(resultDate) == 0) {
           taskExpireToday += result.getValue();
         }
