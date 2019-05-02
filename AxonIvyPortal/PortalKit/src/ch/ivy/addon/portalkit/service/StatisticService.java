@@ -96,10 +96,9 @@ import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
 import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
 import ch.ivy.addon.portalkit.bo.PriorityStatistic;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
-import ch.ivy.addon.portalkit.enums.CustomVarCharField;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
-import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomVarCharSearchCriteria;
+import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria;
 import ch.ivy.addon.portalkit.statistics.Colors;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
@@ -249,25 +248,14 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     return (ElapsedTimeStatistic) response.get(RESULT);
   }
 
-  /**
-   * Get customVarChar fields
-   * 
-   * @param customVarCharField
-   * @param keyword
-   * @param limit
-   * @return list of customVarChar
-   */
   @SuppressWarnings("unchecked")
-  public List<String> getCustomVarCharFields(CustomVarCharField customVarCharField, String keyword,
-      int limit) {
-    CaseCustomVarCharSearchCriteria criteria = new CaseCustomVarCharSearchCriteria();
-    criteria.setCustomVarCharField(customVarCharField);
+  public List<String> getCustomFields(String fieldName, String keyword){
+    CaseCustomFieldSearchCriteria criteria = new CaseCustomFieldSearchCriteria();
     criteria.setKeyword(keyword);
-    criteria.setLimit(limit);
+    criteria.setFieldName(fieldName);
     return SubProcessCall.withPath(PortalConstants.ANALYZE_STATISTIC_CALLABLE)
-        .withStartSignature("findCaseCustomVarChars(CaseCustomVarCharSearchCriteria)")
-        .withParam("caseCustomVarCharSearchCriteria", criteria).call().get(RESULT, List.class);
-
+        .withStartSignature("findCaseCustomFields(CaseCustomFieldSearchCriteria)")
+        .withParam("caseCustomFieldSearchCriteria", criteria).call().get(RESULT, List.class);
   }
 
   /**

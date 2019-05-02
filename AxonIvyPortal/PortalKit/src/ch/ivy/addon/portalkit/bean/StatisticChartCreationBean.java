@@ -3,10 +3,12 @@ package ch.ivy.addon.portalkit.bean;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.chart.BarChartModel;
@@ -16,7 +18,6 @@ import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
 import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
 import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
 import ch.ivy.addon.portalkit.bo.PriorityStatistic;
-import ch.ivy.addon.portalkit.enums.CustomVarCharField;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
 import ch.ivy.addon.portalkit.service.StatisticService;
@@ -42,11 +43,10 @@ public class StatisticChartCreationBean implements Serializable {
   private DonutChartModel caseByFinishedTaskModel;
   private BarChartModel taskByExpiryModel;
   private BarChartModel elapsedTimeModel;
-  private List<String> availableCustomValues;
   StatisticService statisticService = new StatisticService();
 
   public static final int CASE_CATEGORIES_TYPE = 0;
-
+  
   /**
    * Update filters
    * 
@@ -368,75 +368,9 @@ public class StatisticChartCreationBean implements Serializable {
     this.caseByFinishedTimeModel = caseByFinishedTimeModel;
   }
 
-  public List<String> getAvailableCustomValues() {
-    return availableCustomValues;
-  }
-
-  public void setAvailableCustomValues(List<String> availableCustomValues) {
-    this.availableCustomValues = availableCustomValues;
-  }
-
-  /**
-   * Populate values for Auto Complete of cutomVarCharField1
-   * 
-   * @param query
-   * @return values of available customVarCharField1
-   */
-  public List<String> populateCustomVarChar1AutoComplete(String query) {
-    return populateCustomVarCharAutoComplete(query, CustomVarCharField.CUSTOM_VAR_CHAR_1);
-  }
-  
-  /**
-   * Populate values for Auto Complete of cutomVarCharField2
-   * 
-   * @param query
-   * @return values of available customVarCharField2
-   */
-  public List<String> populateCustomVarChar2AutoComplete(String query) {
-    return populateCustomVarCharAutoComplete(query, CustomVarCharField.CUSTOM_VAR_CHAR_2);
-  }
-  
-  /**
-   * Populate values for Auto Complete of cutomVarCharField3
-   * 
-   * @param query
-   * @return values of available customVarCharField3
-   */
-  public List<String> populateCustomVarChar3AutoComplete(String query) {
-    return populateCustomVarCharAutoComplete(query, CustomVarCharField.CUSTOM_VAR_CHAR_3);
-  }
-  
-  /**
-   * Populate values for Auto Complete of cutomVarCharField4
-   * 
-   * @param query
-   * @return values of available customVarCharField4
-   */
-  public List<String> populateCustomVarChar4AutoComplete(String query) {
-    return populateCustomVarCharAutoComplete(query, CustomVarCharField.CUSTOM_VAR_CHAR_4);
-  }
-  
-  /**
-   * Populate values for Auto Complete of cutomVarCharField5
-   * 
-   * @param query
-   * @return values of available customVarCharField5
-   */
-  public List<String> populateCustomVarChar5AutoComplete(String query) {
-    return populateCustomVarCharAutoComplete(query, CustomVarCharField.CUSTOM_VAR_CHAR_5);
-  }
-  
-  private List<String> populateCustomVarCharAutoComplete(String query, CustomVarCharField type) {
-    List<String> result = null;
-    if (StringUtils.isEmpty(query)) {
-      result = statisticService.getCustomVarCharFields(type, StringUtils.EMPTY, 11);
-    }
-    else {
-      result = statisticService.getCustomVarCharFields(type, query, 11);
-    }
-    result.sort((first, second) -> first.toLowerCase()
-        .compareTo(second.toLowerCase()));
-
-    return result;
+  public List<String> populateCustomStringFieldAutoComplete(String query) {
+    Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+    String fieldName = params.get("fieldName");
+    return statisticService.getCustomFields(fieldName, query);
   }
 }
