@@ -7,6 +7,7 @@
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="isWorkingOnATask" value="true" />
+    <ui:param name="announcementInvisible" value="true" />
 
     <ui:define name="head">
       <h:outputScript name="case-widget.js" library="js" />
@@ -17,17 +18,17 @@
       <c:set var="case" value="#{caseWidgetBean.findCase(caseId)}" scope="request" />
       <ui:insert name="breadCrumb" />
 
-      <div>
-        <h:panelGroup layout="block" styleClass="Fleft Wid100 Fs14 foreground-text-color MarTop10 #{processChainDirection eq 'VERTICAL' ? 'task-name-vertical-process-chain' : ''}">
+      <div class="#{processChainDirection eq 'VERTICAL' ? '' : 'task-template-title-horizontal-container'}">
+        <h:panelGroup layout="block" styleClass="task-template-title #{processChainDirection eq 'VERTICAL' ? 'task-name-vertical-process-chain' : ''}">
           <ui:insert name="taskName">
             <span class=" fa fa-check-square-o task-template-title-icon"></span>
-            <h:outputText styleClass="task-template-title" id="title" title="#{task.name} (##{task.getId()})" value="#{task.name} (##{task.getId()})" />
+            <h:outputText id="title" styleClass="task-template-title-text" title="#{task.name} (##{task.getId()})" value="#{task.name} (##{task.getId()})" />
           </ui:insert>
         </h:panelGroup>
 
-        <h:panelGroup  class="process-chain-container Fright Wid70 MarBot20 #{processChainDirection eq 'VERTICAL' ? 'vertical-process-chain-container' : ''}" >
+        <h:panelGroup layout="block" styleClass="process-chain-container #{processChainDirection eq 'VERTICAL' ? 'vertical-process-chain-container' : ''}" >
           <ui:insert name="process_chain_area">
-            <ic:ch.ivy.addon.portalkit.singleapp.process.ProcessChain startMethod="start" componentId="process-chain-component-id"
+            <ic:ch.ivy.addon.portalkit.singleapp.process.ProcessChain id="process-chain-component" startMethod="start" componentId="process-chain-component-id"
               shape="#{processChainShape eq 'LINE' ? 'LINE' : 'CIRCLE'}"
               direction="#{processChainDirection eq 'VERTICAL' ? 'VERTICAL' : 'HORIZONTAL'}"
               isShowAllSteps="false"
@@ -36,8 +37,6 @@
           </ui:insert>
         </h:panelGroup>
       </div>
-
-      <h:panelGroup layout="block" styleClass="ClearBoth" rendered="#{processChainDirection ne 'VERTICAL'}" />
 
       <ui:insert name="errorsZone" />
       <ui:insert name="infoZone" />

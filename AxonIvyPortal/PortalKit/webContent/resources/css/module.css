@@ -3484,6 +3484,10 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 /********************************** END CASE VIEW **********************************/
 
 /********************************** PROCESS CHAIN **********************************/
+.process-chain-container {
+  flex: 1 0 auto;
+  text-align: right;
+}
 
 /* Small screen */
 @media (max-width: 1024px) {
@@ -3493,17 +3497,8 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 }
 
 /* CIRCLE HONRIZONTAL***/
-.circle-process-chain.horizontal-process-chain {
-  position: relative;
-  top: 20px;
-  right: 20px;
-  clear: both;
-  float: right;
-}
-
 .circle-process-chain .circle-horizontal-process-step {
   width: 14rem;
-  height: 50px;
   display: inline-block;
   margin: -2px;
   text-align: center;
@@ -3543,7 +3538,6 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 }
 
 .circle-process-chain .circle-horizontal-step-title {
-  margin-top: -20px;
   margin-bottom: 10px;
   display: block;
   overflow: hidden;
@@ -3613,14 +3607,6 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 }
 
 /** LINE HORIZONTAL*/
-.line-process-chain.horizontal-process-chain {
-  position: relative;
-  float: right;
-  top: 20px;
-  right: 20px;
-  clear: both;
-}
-
 .line-process-chain .line-horizontal-process-step {
   width: 13rem;
   display: inline-block;
