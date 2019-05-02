@@ -18,6 +18,7 @@ import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class AnnouncementService extends BusinessDataService<Announcement> {
+  private static final String FIELD_LANGUAGE = "language";
   private static final String ANNOUNCEMENT_ACTIVATED = "ANNOUNCEMENT_ACTIVATED";
   private static AnnouncementService instance;
 
@@ -31,7 +32,7 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
   }
 
   public List<Announcement> findAllOrderedByLanguage() {
-    return repo().search(getType()).orderBy().textField("language").ascending().execute().getAll();
+    return repo().search(getType()).orderBy().textField(FIELD_LANGUAGE).ascending().execute().getAll();
   }
 
   public void saveAll(List<Announcement> announcements) {
@@ -72,9 +73,9 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
       language = getDefaultEmailLanguage();
     }
     Announcement announcement =
-        repo().search(getType()).textField("language").isEqualToIgnoringCase(language).execute().getFirst();
+        repo().search(getType()).textField(FIELD_LANGUAGE).isEqualToIgnoringCase(language).execute().getFirst();
     if (announcement == null || StringUtils.isBlank(announcement.getValue())) {
-      announcement = repo().search(getType()).textField("language").isEqualToIgnoringCase(getDefaultEmailLanguage())
+      announcement = repo().search(getType()).textField(FIELD_LANGUAGE).isEqualToIgnoringCase(getDefaultEmailLanguage())
           .execute().getFirst();
     }
     if (announcement == null) {

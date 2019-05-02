@@ -765,6 +765,10 @@
 	white-space: normal;
 }
 
+.express-process-name {
+	width: 91% !important;
+}
+
 .pe-dynaform-cell-last .ui-inputfield.ui-inputtextarea {
 	width: 92%;
 }
