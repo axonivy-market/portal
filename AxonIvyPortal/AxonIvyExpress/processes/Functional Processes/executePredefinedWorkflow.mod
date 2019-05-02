@@ -565,6 +565,7 @@ if(in.isAdhocProcess){
 	ITask originalTask = ivy.wf.findTask(in.originalTaskId);
 	if(originalTask != null){
 		TaskUtils.removeHidePropertyToDisplayInPortal(originalTask);
+		TaskUtils.resetTask(originalTask);
 	}
 }' #txt
 ew0 f28 type gawfs.ExecutePredefinedWorkflowData #txt

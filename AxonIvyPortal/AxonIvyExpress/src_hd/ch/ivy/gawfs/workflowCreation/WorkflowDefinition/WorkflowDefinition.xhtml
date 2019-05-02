@@ -90,15 +90,14 @@
 									value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}:"
 									for="process-name" />
 							</div>
-							<div class="ui-g-12 ui-md-12 ui-lg-3">
+							<div class="ui-g-12 ui-md-12 ui-lg-10">
 								<p:inputText id="process-name"
-									value="#{data.data.processName}" required="true" maxlength="50" disabled="#{data.data.isAdhocProcess}"
+									value="#{data.data.processName}" required="true" maxlength="50" disabled="#{data.data.isAdhocProcess}" styleClass="express-process-name"
 									requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
 									<p:ajax event="blur" partialSubmit="true" process="@this"
 										global="false" immediate="true" />
 								</p:inputText>
 							</div>
-							<div class="ui-g-12 ui-md-12 ui-lg-7"></div>
 						</div>
 
 						<!-- PROCESS DESCRIPTION -->
@@ -196,12 +195,12 @@
 												value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:" />
 											<p:outputLabel rendered="#{gtask.position == 1}"
 												for="task-responsible"
-												value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/EntitledUser')}:" />
+												value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:" />
 										</div>
 										<div class="ui-g-12 ui-md-12 ui-lg-3">
 											<p:inputText id="task-responsible"
 												value="#{gtask.responsibleDisplayName}" required="true"
-												requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}/#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/EntitledUser')}  #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
+												requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}  #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
 												<p:ajax event="mousedown" immediate="true"
 													listener="#{logic.initAssginement(gtask)}"
 													oncomplete="PF('choose-responsible-dialog').show();"
@@ -248,12 +247,12 @@
 	                    <p:outputLabel rendered="#{gtask.position gt 1}" for="default-task-responsible"
 	                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:" />
 	                    <p:outputLabel rendered="#{gtask.position == 1}" for="default-task-responsible"
-	                      value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/EntitledUser')}:" />
+	                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:" />
                 	</div>
                     <div class="ui-g-12 ui-md-12 ui-lg-3">
 	                    <p:inputText id="default-task-responsible" value="#{gtask.responsibleDisplayName}"
 	                      required="true"
-	                      requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}/#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/EntitledUser')}  #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
+	                      requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}  #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
 	                      <p:ajax event="mousedown" immediate="true"
 	                        listener="#{logic.initAssginement(gtask)}"
 	                        oncomplete="PF('choose-responsible-dialog').show();"
