@@ -16,6 +16,7 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
+import portal.guitest.page.WorkingTaskDialogPage;
 
 public class AdhocExpressTest extends BaseTest {
 
@@ -88,8 +89,6 @@ public class AdhocExpressTest extends BaseTest {
     homePage = new HomePage();
     taskWidgetPage.filterTasksBy(taskNamePrefix);
     assertEquals(1, taskWidgetPage.countTasks());
-    taskWidgetPage.expand();
-    taskWidgetPage.resetReservedTask(0);
     taskWidgetPage.startTask(0);
     
     //check adhoc history
@@ -106,7 +105,9 @@ public class AdhocExpressTest extends BaseTest {
     taskTemplatePage.closeAdhocHistoryDialog();
     
     //open Maternity task again and make sure adhoc history dialog doesn't appear
-    taskTemplatePage.goToHomePage();
+    taskTemplatePage.clickOnLogo();
+    WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
+    dialogPage.leaveTask();
     taskWidgetPage.startTask(0);
     assertEquals(false, taskTemplatePage.isAdhocHistoryDialogExist());
     
