@@ -5588,6 +5588,10 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel {
 		display: none !important;
 	}
 }
+
+.mobile-scroll-disabled {
+	overflow: hidden !important;
+}
 /* =================== END ENHANCEMENT ====================== */
 
 /* =================== ADHOC ============================= */
