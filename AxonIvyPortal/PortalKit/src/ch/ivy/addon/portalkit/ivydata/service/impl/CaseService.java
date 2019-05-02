@@ -3,7 +3,6 @@ package ch.ivy.addon.portalkit.ivydata.service.impl;
 import static ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig.isHiddenTasksCasesExcluded;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -11,18 +10,18 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
 import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
-import ch.ivy.addon.portalkit.ivydata.dao.PortalCaseDao;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
 import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataErrorType;
 import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria;
-import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomVarCharSearchCriteria;
+import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.ICaseService;
-import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
@@ -200,38 +199,27 @@ public class CaseService implements ICaseService {
     return elapsedTimeStatistic;
   }
   
-  @Override
-  public IvyCaseResultDTO findValuesOfCustomVarChar(CaseCustomVarCharSearchCriteria criteria) {
-    return IvyExecutor.executeAsSystem(() -> {
-      IvyCaseResultDTO result = new IvyCaseResultDTO();
-      List<String> customVarChars = new ArrayList<>();
-      PortalCaseDao portalCaseDao = new PortalCaseDao();
-      String keyword = criteria.getKeyword();
-      int limit = criteria.getLimit();
-      List<Long> applicationIds = ServiceUtilities.findApps(criteria.getApps()).stream().map(IApplication::getId).collect(Collectors.toList());
-  
-      switch (criteria.getCustomVarCharField()) {
-        case CUSTOM_VAR_CHAR_1:
-          customVarChars = portalCaseDao.findCustomVarChar1Fields(keyword, limit, applicationIds);
-          break;
-        case CUSTOM_VAR_CHAR_2:
-          customVarChars = portalCaseDao.findCustomVarChar2Fields(keyword, limit, applicationIds);
-          break;
-        case CUSTOM_VAR_CHAR_3:
-          customVarChars = portalCaseDao.findCustomVarChar3Fields(keyword, limit, applicationIds);
-          break;
-        case CUSTOM_VAR_CHAR_4:
-          customVarChars = portalCaseDao.findCustomVarChar4Fields(keyword, limit, applicationIds);
-          break;
-        case CUSTOM_VAR_CHAR_5:
-          customVarChars = portalCaseDao.findCustomVarChar5Fields(keyword, limit, applicationIds);
-          break;
-        default:
-          break;
-      }
-      result.setCustomVarChars(customVarChars);
-      return result;
-    });
+  private List<String> collectCustomField(CaseCustomFieldSearchCriteria criteria) {
+    String fieldName = criteria.getFieldName();
+    Recordset recordset = CaseQuery
+        .businessCases()
+        .aggregate()
+        .countRows()
+        .where().and(queryForApplications(criteria.getApps()))
+        
+        .groupBy()
+        .customField()
+        .stringField(fieldName)
+        .executor()
+        .recordset();
+    
+    return recordset
+        .getRecords()
+        .stream()
+        .filter(x->x.getField(fieldName) != null)
+        .map(x -> x.getField(fieldName).toString())
+        .filter(x -> StringUtils.containsIgnoreCase(x, criteria.getKeyword()))
+        .collect(Collectors.toList());
   }
 
   private CaseQuery queryExcludeHiddenCases() {
@@ -254,5 +242,15 @@ public class CaseService implements ICaseService {
       clonedQuery.where().and(queryExcludeHiddenCases());
     }
     return clonedQuery;
+  }
+
+  @Override
+  public IvyCaseResultDTO findValuesOfCustomString(CaseCustomFieldSearchCriteria criteria) {
+    return IvyExecutor.executeAsSystem(() -> {
+      IvyCaseResultDTO result = new IvyCaseResultDTO();
+      List<String> customFields = collectCustomField(criteria);
+      result.setCustomFields(customFields);
+      return result;
+    });
   }
 }

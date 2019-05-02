@@ -1,5 +1,5 @@
 [Ivy]
-15FFC669C88F7E0B 3.23 #module
+15FFC669C88F7E0B 3.26 #module
 >Proto >Proto Collection #zClass
 Cs0 ChartCreationWidgetProcess Big #zClass
 Cs0 RD #cInfo
@@ -47,6 +47,8 @@ Cs0 @RichDialogMethodStart f24 '' #zField
 Cs0 @PushWFArc f25 '' #zField
 Cs0 @PushWFArc f26 '' #zField
 Cs0 @PushWFArc f8 '' #zField
+Cs0 @CallSub f9 '' #zField
+Cs0 @PushWFArc f27 '' #zField
 Cs0 @PushWFArc f2 '' #zField
 >Proto Cs0 Cs0 ChartCreationWidgetProcess #zField
 Cs0 f0 guid 15FFC669CAD8BE32 #txt
@@ -71,7 +73,7 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f0 115 51 26 26 -16 15 #rect
 Cs0 f0 @|RichDialogInitStartIcon #fIcon
 Cs0 f1 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
-Cs0 f1 435 51 26 26 0 12 #rect
+Cs0 f1 667 51 26 26 0 12 #rect
 Cs0 f1 @|RichDialogProcessEndIcon #fIcon
 Cs0 f3 guid 15FFC669CBAE4804 #txt
 Cs0 f3 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
@@ -464,8 +466,29 @@ Cs0 f26 expr out #txt
 Cs0 f26 141 64 222 64 #arcP
 Cs0 f8 expr out #txt
 Cs0 f8 141 256 435 256 #arcP
+Cs0 f9 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
+Cs0 f9 processCall 'Functional Processes/DefaultStatisticCustomField:createDefaultStatisticCustomFields()' #txt
+Cs0 f9 doCall true #txt
+Cs0 f9 requestActionDecl '<> param;
+' #txt
+Cs0 f9 responseActionDecl 'ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData out;
+' #txt
+Cs0 f9 responseMappingAction 'out=in;
+out.customFields=result.customFields;
+' #txt
+Cs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>get custom fields</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f9 424 42 112 44 -47 -8 #rect
+Cs0 f9 @|CallSubIcon #fIcon
+Cs0 f27 expr out #txt
+Cs0 f27 334 64 424 64 #arcP
 Cs0 f2 expr out #txt
-Cs0 f2 334 64 435 64 #arcP
+Cs0 f2 536 64 667 64 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -504,5 +527,7 @@ Cs0 f0 mainOut f26 tail #connect
 Cs0 f26 head f15 mainIn #connect
 Cs0 f6 mainOut f8 tail #connect
 Cs0 f8 head f7 mainIn #connect
-Cs0 f15 mainOut f2 tail #connect
+Cs0 f15 mainOut f27 tail #connect
+Cs0 f27 head f9 mainIn #connect
+Cs0 f9 mainOut f2 tail #connect
 Cs0 f2 head f1 mainIn #connect
