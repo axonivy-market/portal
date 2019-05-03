@@ -269,6 +269,10 @@ protected boolean isIntegrationTestRun() {
     waitForElementPresent(By.cssSelector("div.js-case-default-widget-container"), true);
     return new CaseWidgetPage();
   }
+  
+  public String getGlobalGrowlMessage() {
+    return findElementById("portal-global-growl_container").getText();
+  }
 
   public GlobalSearch getGlobalSearch() {
     return new GlobalSearch();

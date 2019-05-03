@@ -1,5 +1,5 @@
 [Ivy]
-15C67FEA143420EE 3.23 #module
+15C67FEA143420EE 3.26 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalTaskListCallbackProcess Big #zClass
 Ps0 RD #cInfo
@@ -19,9 +19,11 @@ Ps0 @RichDialogProcessEnd f1 '' #zField
 Ps0 @PushWFArc f2 '' #zField
 Ps0 @RichDialogMethodStart f3 '' #zField
 Ps0 @GridStep f4 '' #zField
-Ps0 @PushWFArc f5 '' #zField
 Ps0 @RichDialogProcessEnd f6 '' #zField
 Ps0 @PushWFArc f7 '' #zField
+Ps0 @GridStep f8 '' #zField
+Ps0 @PushWFArc f9 '' #zField
+Ps0 @PushWFArc f5 '' #zField
 >Proto Ps0 Ps0 PortalTaskListCallbackProcess #zField
 Ps0 f0 guid 15C67E57F20669EF #txt
 Ps0 f0 type ch.ivy.addon.portal.generic.PortalTaskListCallback.PortalTaskListCallbackData #txt
@@ -54,8 +56,7 @@ Ps0 f3 guid 15C67E8753E2C68C #txt
 Ps0 f3 type ch.ivy.addon.portal.generic.PortalTaskListCallback.PortalTaskListCallbackData #txt
 Ps0 f3 method redirect() #txt
 Ps0 f3 disableUIEvents false #txt
-Ps0 f3 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
+Ps0 f3 inParameterDecl 'ch.ivy.addon.portal.generic.PortalTaskListCallback.PortalTaskListCallbackData out;
 ' #txt
 Ps0 f3 outParameterDecl '<> result;
 ' #txt
@@ -102,22 +103,52 @@ Ps0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f4 160 138 128 44 -58 -8 #rect
+Ps0 f4 320 138 128 44 -58 -8 #rect
 Ps0 f4 @|StepIcon #fIcon
-Ps0 f5 expr out #txt
-Ps0 f5 109 160 160 160 #arcP
 Ps0 f6 type ch.ivy.addon.portal.generic.PortalTaskListCallback.PortalTaskListCallbackData #txt
-Ps0 f6 339 147 26 26 0 12 #rect
+Ps0 f6 499 147 26 26 0 12 #rect
 Ps0 f6 @|RichDialogProcessEndIcon #fIcon
 Ps0 f7 expr out #txt
-Ps0 f7 288 160 339 160 #arcP
+Ps0 f7 448 160 499 160 #arcP
+Ps0 f8 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskListCallback.PortalTaskListCallbackData out;
+' #txt
+Ps0 f8 actionTable 'out=in;
+' #txt
+Ps0 f8 actionCode 'import javax.faces.context.Flash;
+import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
+
+Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+if (!flash.containsKey("overridePortalGrowl")) {
+	FacesMessage message = new FacesMessage(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskLeftSuccessful"));
+	FacesContext.getCurrentInstance().addMessage("portal-global-growl", message);
+}
+flash.setRedirect(true);
+flash.setKeepMessages(true);' #txt
+Ps0 f8 type ch.ivy.addon.portal.generic.PortalTaskListCallback.PortalTaskListCallbackData #txt
+Ps0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Display message after&#xD;
+finish task</name>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f8 152 138 144 44 -54 -16 #rect
+Ps0 f8 @|StepIcon #fIcon
+Ps0 f9 expr out #txt
+Ps0 f9 109 160 152 160 #arcP
+Ps0 f5 expr out #txt
+Ps0 f5 296 160 320 160 #arcP
 >Proto Ps0 .type ch.ivy.addon.portal.generic.PortalTaskListCallback.PortalTaskListCallbackData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
 >Proto Ps0 '' #fIcon
 Ps0 f0 mainOut f2 tail #connect
 Ps0 f2 head f1 mainIn #connect
-Ps0 f3 mainOut f5 tail #connect
-Ps0 f5 head f4 mainIn #connect
 Ps0 f4 mainOut f7 tail #connect
 Ps0 f7 head f6 mainIn #connect
+Ps0 f3 mainOut f9 tail #connect
+Ps0 f9 head f8 mainIn #connect
+Ps0 f8 mainOut f5 tail #connect
+Ps0 f5 head f4 mainIn #connect
