@@ -43,7 +43,7 @@
       </p:selectOneMenu>
     </h:panelGroup>
 
-    <h:panelGroup id="process-widget-action" styleClass="process-widget-action">
+    <h:panelGroup id="process-widget-action" styleClass="process-widget-action process-navigation-container">
       <h:form id="axon-express-form" rendered="#{not processWidgetBean.mobileMode and !cc.attrs.hideExpressCreation}"
         styleClass="process-button-position process-action-button action-create-experss-workflow">
         <h:panelGroup layout="block" rendered="#{processWidgetBean.canCreateExpessWorkflow()}">
@@ -52,6 +52,23 @@
             actionListener="#{processWidgetBean.startProcess(processWidgetBean.getCreateExpessWorkflowLink())}" />
         </h:panelGroup>
       </h:form>
+      <br/>
+      <span class="expand-collapse-btns">
+        <p:commandLink id="expand-all-btn"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/expandAll')}" onclick="expandOrCollapseAllCategories(true); return false;"
+        />
+        <p:spacer width="10" />
+        <p:commandLink id="collapse-all-btn"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/collapseAll')}" onclick="expandOrCollapseAllCategories(false); return false;"
+        />
+      </span>
+      <span>
+        <p:outputLabel value="Go to: "/>
+        <ui:repeat value="#{processWidgetBean.getAllAlphabeticalCharacters()}" var="character" >
+          <p:commandLink value="#{character}" disabled="#{!processWidgetBean.processesByAlphabet.containsKey(character.toString())}" onclick="jumpToProcessGroupByCharacter(event); return;" />
+          <p:spacer width="5" />
+        </ui:repeat>
+      </span>
     </h:panelGroup>
     <h:panelGroup id="process-list" layout="block" styleClass="widget-content #{cc.attrs.processListStyleClass}">
       <ui:fragment id="full-process-list">

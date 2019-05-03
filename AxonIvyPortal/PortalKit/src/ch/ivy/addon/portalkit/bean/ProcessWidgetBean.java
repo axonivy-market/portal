@@ -204,5 +204,13 @@ public class ProcessWidgetBean implements Serializable {
   public IProcessStart getCreateExpressWorkflowProcessStart() {
     return createExpressWorkflowProcessStart;
   }
+  
+  public List<Character> getAllAlphabeticalCharacters() {
+    List<Character> characters = new ArrayList<>();
+    for (int i = 65; i <= 90; i++) {
+      characters.add((char)i);
+    }
+    return characters;
+  }
 
 }
