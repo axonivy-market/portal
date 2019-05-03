@@ -46,3 +46,19 @@ $(document).ready(function() {
   processWidget = ProcessWidget();
   processWidget.filter();
 });
+
+function expandOrCollapseAllCategories(shouldExpand) {
+  var allFieldsets = $("fieldset[id$='alphabet-process-index-fieldset']");
+  allFieldsets.each(function() {
+    var collapsed = $(this).find("input[id$='alphabet-process-index-fieldset_collapsed']").val();
+    if ((shouldExpand && collapsed == 'true') || (!shouldExpand && collapsed == 'false')) {
+      var categoryButton = $(this).find("span[class*='ui-fieldset-toggler']");
+      $(categoryButton).click();
+    }
+  });
+}
+
+function jumpToProcessGroupByCharacter(event) {
+  var clickedCharacter = event.target.text;
+  document.getElementsByClassName("js-process-group-" + clickedCharacter)[0].scrollIntoView();
+}
