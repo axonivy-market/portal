@@ -1062,7 +1062,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 .widget-header-main {
   flex: 1 0 50%;
   position: relative;
-  height: 50px;
+  height: 35px;
   border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
@@ -1120,7 +1120,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 
 .widget-sort-menu.full-mode {
   flex: 1 0 100%;
-  height: 60px;
+  height: 35px;
   display: flex;
   align-items: flex-end;
   line-height: normal;
@@ -1768,7 +1768,7 @@ a.case-details-document-add-link {
 .case-widget-top-header-main-title-container {
   font-size: 1.4rem;
   flex: 1 0 50%;
-  height: 50px;
+  height: 36px;
   box-sizing: border-box;
   position: relative;
 }
@@ -1826,7 +1826,7 @@ a.case-details-document-add-link {
 .case-widget-container .widget-column-header,
 .case-default-widget-container .widget-column-header {
   flex: 1 0 100%;
-  height: 60px;
+  height: 35px;
   display: flex;
   align-items: flex-end;
   line-height: normal;
@@ -1894,7 +1894,7 @@ a.case-details-document-add-link {
 
 .case-show-detail-container .case-header-data {
   display: flex;
-  height: 65px;
+  height: 59px;
   align-items: center;
   position: relative;
   font-size: 1.2rem;
@@ -2810,7 +2810,7 @@ a.compact-task-start-link:hover {
 
 .task-start-list-item.full-mode .task-start-link {
   display: flex;
-  height: 65px;
+  height: 59px;
   align-items: center;
   position: relative;
   font-size: 1.2rem;
@@ -4819,13 +4819,13 @@ margin-top
   position: relative;
   padding-top: 15px;
   z-index: 100;
-  height: 65px;
+  height: 55px;
 }
 
 .color-header {
   height: 4px;
   display: flex;
-  margin-top: 10px;
+  margin-top: 4px;
 }
 
 .container {
