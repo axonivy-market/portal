@@ -63,7 +63,7 @@
         />
       </span>
       <span>
-        <p:outputLabel value="Go to: "/>
+        <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/goTo')}"/>
         <ui:repeat value="#{processWidgetBean.getAllAlphabeticalCharacters()}" var="character" >
           <p:commandLink value="#{character}" disabled="#{!processWidgetBean.processesByAlphabet.containsKey(character.toString())}" onclick="jumpToProcessGroupByCharacter(event); return;" />
           <p:spacer width="5" />
