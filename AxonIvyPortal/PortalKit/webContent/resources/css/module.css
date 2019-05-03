@@ -2032,8 +2032,16 @@ a.case-details-document-add-link {
 .process-widget-action {
   line-height: 15px;
   display: inline-block;
+  width: 100%;
 }
 
+.process-navigation-container {
+  text-align: center;
+}
+
+.expand-collapse-btns {
+  float: left;
+}
 .process-widget-action-form {
   margin-top: 6px;
   margin-bottom: 8px;
@@ -2042,6 +2050,7 @@ a.case-details-document-add-link {
 .process-widget-action .process-action-button.action-create-experss-workflow {
   line-height: 1.2rem;
   margin-top: 20px;
+  text-align: left;
 }
 
 .process-widget-action .name-sort-command {
