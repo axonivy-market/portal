@@ -1,5 +1,5 @@
 [Ivy]
-1538898FE5F1C3BA 3.23 #module
+1538898FE5F1C3BA 3.26 #module
 >Proto >Proto Collection #zClass
 Ds0 DefaultUserProcess Big #zClass
 Ds0 B #cInfo
@@ -53,7 +53,7 @@ import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
 
 String acmLink = collector.findACMLink();
-if (!StringUtils.isEmpty(acmLink)) {
+if (StringUtils.isNotEmpty(acmLink)) {
 	UserProcess acmProcess = new UserProcess();
 	acmProcess.setLink(acmLink);
 	acmProcess.setProcessName("Axon.ivy Selfservice");

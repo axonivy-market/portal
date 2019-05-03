@@ -9,6 +9,7 @@
   <cc:attribute name="filter" type="ch.ivy.addon.portalkit.statistics.StatisticFilter" required="true" />
   <cc:attribute name="showCaseStateFilter" type="Boolean" default="true" />
   <cc:attribute name="updateListener" method-signature="void handleEvent(javax.faces.event.ActionEvent)" />
+  <cc:attribute name="customFields" />
 </cc:interface>
 
 <cc:implementation>
@@ -176,7 +177,7 @@
       </p:tab>
   
     <!-- CUSTOM VAR 1 FILTER -->
-    <p:tab id="custom-varchar-1-filter-tab">
+   <!--  <p:tab id="custom-varchar-1-filter-tab">
     	<f:facet name="title">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/customVarCharField1')}" />
           <p:outputLabel id="custom-varchar-1-filter" styleClass="chart-filter-info-icon"><span class="fa fa-info-circle filter-info"/></p:outputLabel>
@@ -190,10 +191,28 @@
       <ic:ch.ivy.addon.portalkit.component.statistic.CustomVarField id="customVarCharFields1Filter"
           completeMethod="#{statisticChartCreationBean.populateCustomVarChar1AutoComplete}" 
           selectedValues="#{cc.attrs.filter.selectedCustomVarCharFields1}" />
-    </p:tab>
+    </p:tab> -->
+    
+    <c:forEach items="#{cc.attrs.customFields}" var="tabVar">
+	   	<p:tab title="#{tabVar}">
+	   		<f:facet name="title">
+	         <h:outputText value="#{tabVar}" />
+	         <p:outputLabel styleClass="chart-filter-info-icon"><span class="fa fa-info-circle filter-info"/></p:outputLabel>
+	         <p:tooltip >
+	           #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')},
+	           #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory')},
+	           #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTime')}<br/>
+	           #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/description")}: #{tabVar})}
+	         </p:tooltip>
+	       </f:facet>
+	      <ic:ch.ivy.addon.portalkit.component.statistic.CustomField id="#{tabVar}" fieldName="#{tabVar}"	      	
+	          completeMethod="#{statisticChartCreationBean.populateCustomStringFieldAutoComplete}" 
+	          selectedValues="#{cc.attrs.filter.selectedCustomVarCharFields1}" /> 
+    	</p:tab>
+  	</c:forEach>
   
     <!-- CUSTOM VAR 2 FILTER -->
-    <p:tab id="custom-varchar-2-filter-tab">
+    <!-- <p:tab id="custom-varchar-2-filter-tab">
     	<f:facet name="title">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/customVarCharField2')}" />
           <p:outputLabel id="custom-varchar-2-filter" styleClass="chart-filter-info-icon"><span class="fa fa-info-circle filter-info"/></p:outputLabel>
@@ -209,10 +228,10 @@
           selectedValues="#{cc.attrs.filter.selectedCustomVarCharFields2}"
           updateListener="#{cc.attrs.updateListener}" 
           updateComponents="@([id$='chart-management-form']) @form" />
-    </p:tab>
+    </p:tab> -->
   
     <!-- CUSTOM VAR 3 FILTER -->
-    <p:tab id="custom-varchar-3-filter-tab">
+    <!-- <p:tab id="custom-varchar-3-filter-tab">
     	<f:facet name="title">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/customVarCharField3')}" />
           <p:outputLabel id="custom-varchar-3-filter" styleClass="chart-filter-info-icon"><span class="fa fa-info-circle filter-info"/></p:outputLabel>
@@ -228,10 +247,10 @@
           selectedValues="#{cc.attrs.filter.selectedCustomVarCharFields3}"
           updateListener="#{cc.attrs.updateListener}"
           updateComponents="@([id$='chart-management-form']) @form" />
-    </p:tab>
+    </p:tab> -->
   
       <!-- CUSTOM VAR 4 FILTER -->
-    <p:tab id="custom-varchar-4-filter-tab">
+    <!-- <p:tab id="custom-varchar-4-filter-tab">
     	<f:facet name="title">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/customVarCharField4')}" />
           <p:outputLabel id="custom-varchar-4-filter" styleClass="chart-filter-info-icon"><span class="fa fa-info-circle filter-info"/></p:outputLabel>
@@ -247,10 +266,10 @@
           selectedValues="#{cc.attrs.filter.selectedCustomVarCharFields4}"
           updateListener="#{cc.attrs.updateListener}"
           updateComponents="@([id$='chart-management-form']) @form" />
-    </p:tab>
+    </p:tab> -->
   
     <!-- CUSTOM VAR 5 FILTER -->
-    <p:tab id="custom-varchar-5-filter-tab">
+    <!-- <p:tab id="custom-varchar-5-filter-tab">
     	<f:facet name="title">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/customVarCharField5')}" />
           <p:outputLabel id="custom-varchar-5-filter" styleClass="chart-filter-info-icon"><span class="fa fa-info-circle filter-info"/></p:outputLabel>
@@ -266,7 +285,7 @@
           selectedValues="#{cc.attrs.filter.selectedCustomVarCharFields5}"
           updateListener="#{cc.attrs.updateListener}"
           updateComponents="@([id$='chart-management-form']) @form" />
-    </p:tab>
+    </p:tab> -->
   
     </p:accordionPanel>
   </h:panelGrid>
