@@ -1,5 +1,5 @@
 [Ivy]
-14B2FC03D2E87141 3.24 #module
+14B2FC03D2E87141 3.26 #module
 >Proto >Proto Collection #zClass
 Tt0 TestTaskFlow Big #zClass
 Tt0 B #cInfo
@@ -24,7 +24,6 @@ Tt0 @TaskSwitch f23 '' #zField
 Tt0 @PushWFArc f25 '' #zField
 Tt0 @GridStep f1 '' #zField
 Tt0 @PushWFArc f2 '' #zField
-Tt0 @TkArc f4 '' #zField
 Tt0 @TaskSwitchSimple f8 '' #zField
 Tt0 @EndTask f10 '' #zField
 Tt0 @PushWFArc f21 '' #zField
@@ -196,6 +195,7 @@ Tt0 @EndTask f182 '' #zField
 Tt0 @RichDialog f183 '' #zField
 Tt0 @PushWFArc f184 '' #zField
 Tt0 @PushWFArc f185 '' #zField
+Tt0 @TkArc f4 '' #zField
 >Proto Tt0 Tt0 TestTaskFlow #zField
 Tt0 f5 outLink CategoriedLeaveRequest.ivp #txt
 Tt0 f5 type internaltest.Data #txt
@@ -221,10 +221,10 @@ customFields.STRING.CustomVarCharField2="Leave Request CustomVarCharField2"
 customFields.STRING.CustomVarCharField3="Leave Request CustomVarCharField3"
 customFields.STRING.CustomVarCharField4="Leave Request CustomVarCharField4"
 customFields.STRING.CustomVarCharField5="Leave Request CustomVarCharField5"
-process.code=pubRequested
-process.name=Publication Requested
-processCategory.code=pubRequested
-processCategory.name=Publication Requested' #txt
+customFields.STRING.ProcessCategoryCode="pubRequested"
+customFields.STRING.ProcessCategoryName="Publication Requested"
+customFields.STRING.ProcessCode="pubRequested"
+customFields.STRING.ProcessName="Publication Requested"' #txt
 Tt0 f5 showInStartList 1 #txt
 Tt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -247,22 +247,7 @@ Tt0 f7 outLinks "TaskB.ivp","TaskA.ivp","TaskC.ivp" #txt
 Tt0 f7 caseData 'case.category=LeaveRequest
 case.name=Leave Request
 customFields.NUMBER.CustomDecimalField2=36' #txt
-Tt0 f7 taskData 'TaskB.CATEGORY=OtherLeave/SickLeave/Long
-TaskB.DESC=Sick Leave Request Description
-TaskB.EXP=new Duration("1D")
-TaskB.EXPRI=2
-TaskB.EXROL=Everybody
-TaskB.EXTYPE=0
-TaskB.NAM=Sick Leave Request
-TaskB.PRI=1
-TaskB.ROL=Everybody
-TaskB.SKIP_TASK_LIST=false
-TaskB.TYPE=0
-TaskB.customFields.NUMBER.CustomDecimalField2=14
-TaskB.customFields.STRING.CustomVarCharField1="Interior"
-TaskB.customFields.STRING.CustomVarCharField5="Tung Le"
-TaskB.customFields.TIMESTAMP.CustomTimestampField1=new DateTime()
-TaskA.CATEGORY=AnnualLeave
+Tt0 f7 taskData 'TaskA.CATEGORY=AnnualLeave
 TaskA.DESC=Annual Leave Request Description
 TaskA.EXP=new Duration("3H")
 TaskA.EXPRI=2
@@ -277,6 +262,21 @@ TaskA.customFields.NUMBER.CustomDecimalField2=7
 TaskA.customFields.STRING.CustomVarCharField1="Exterior"
 TaskA.customFields.STRING.CustomVarCharField5="Long Do"
 TaskA.customFields.TIMESTAMP.CustomTimestampField1=new DateTime()
+TaskB.CATEGORY=OtherLeave/SickLeave/Long
+TaskB.DESC=Sick Leave Request Description
+TaskB.EXP=new Duration("1D")
+TaskB.EXPRI=2
+TaskB.EXROL=Everybody
+TaskB.EXTYPE=0
+TaskB.NAM=Sick Leave Request
+TaskB.PRI=1
+TaskB.ROL=Everybody
+TaskB.SKIP_TASK_LIST=false
+TaskB.TYPE=0
+TaskB.customFields.NUMBER.CustomDecimalField2=14
+TaskB.customFields.STRING.CustomVarCharField1="Interior"
+TaskB.customFields.STRING.CustomVarCharField5="Tung Le"
+TaskB.customFields.TIMESTAMP.CustomTimestampField1=new DateTime()
 TaskC.CATEGORY=OtherLeave/Maternity
 TaskC.DESC=Maternity Leave Request Description
 TaskC.EXP=new Duration("2D")
@@ -444,10 +444,10 @@ Tt0 f23 outTypes "internaltest.Data" #txt
 Tt0 f23 outLinks "TaskA.ivp" #txt
 Tt0 f23 caseData 'case.category=SupportTicket
 case.name=SupportTicket
-process.code=Ticket Category Code
-process.name=Ticket Category Name
-processCategory.code=Ticket Category Code
-processCategory.name=Ticket Category Name' #txt
+customFields.STRING.ProcessCategoryCode="Ticket Category Code"
+customFields.STRING.ProcessCategoryName="Ticket Category Name"
+customFields.STRING.ProcessCode="Ticket Category Code"
+customFields.STRING.ProcessName="Ticket Category Name"' #txt
 Tt0 f23 taskData 'TaskA.EXC=14B2FC03D2E87141-f38-buffer
 TaskA.EXP=new Duration("3H")
 TaskA.EXPRI=2
@@ -498,10 +498,6 @@ Tt0 f1 526 180 36 24 20 -2 #rect
 Tt0 f1 @|StepIcon #fIcon
 Tt0 f2 expr out #txt
 Tt0 f2 544 77 544 180 #arcP
-Tt0 f4 expr out #txt
-Tt0 f4 type internaltest.Data #txt
-Tt0 f4 var in1 #txt
-Tt0 f4 200 77 200 178 #arcP
 Tt0 f8 actionDecl 'internaltest.Data out;
 ' #txt
 Tt0 f8 actionTable 'out=in1;
@@ -728,10 +724,10 @@ customFields.STRING.CustomVarCharField2="Leave Request CustomVarCharField2"
 customFields.STRING.CustomVarCharField3="Leave Request CustomVarCharField3"
 customFields.STRING.CustomVarCharField4="Leave Request CustomVarCharField4"
 customFields.STRING.CustomVarCharField5="Leave Request CustomVarCharField5"
-process.code=pubRequested
-process.name=Publication Requested
-processCategory.code=pubRequested
-processCategory.name=Publication Requested' #txt
+customFields.STRING.ProcessCategoryCode="pubRequested"
+customFields.STRING.ProcessCategoryName="Publication Requested"
+customFields.STRING.ProcessCode="pubRequested"
+customFields.STRING.ProcessName="Publication Requested"' #txt
 Tt0 f29 showInStartList 1 #txt
 Tt0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -806,10 +802,10 @@ Tt0 f41 actionTable 'out=in1;
 Tt0 f41 outTypes "internaltest.Data" #txt
 Tt0 f41 outLinks "TaskA.ivp" #txt
 Tt0 f41 caseData 'case.name=SupportTicket
-process.code=Ticket Category Code
-process.name=Ticket Category Name
-processCategory.code=Ticket Category Code
-processCategory.name=Ticket Category Name' #txt
+customFields.STRING.ProcessCategoryCode="Ticket Category Code"
+customFields.STRING.ProcessCategoryName="Ticket Category Name"
+customFields.STRING.ProcessCode="Ticket Category Code"
+customFields.STRING.ProcessName="Ticket Category Name"' #txt
 Tt0 f41 taskData 'TaskA.EXC=14B2FC03D2E87141-f38-buffer
 TaskA.EXP=new Duration("1D")
 TaskA.EXPRI=2
@@ -1131,15 +1127,15 @@ customFields.STRING.CustomVarCharField2="CustomizationAdditionalCaseDetails Cust
 customFields.STRING.CustomVarCharField3="CustomizationAdditionalCaseDetails CustomVarCharField3"
 customFields.STRING.CustomVarCharField4="CustomizationAdditionalCaseDetails CustomVarCharField4"
 customFields.STRING.CustomVarCharField5="CustomizationAdditionalCaseDetails CustomVarCharField5"
+customFields.STRING.ProcessCategoryCode="pubRequested"
+customFields.STRING.ProcessCategoryName="Publication Requested"
+customFields.STRING.ProcessCode="pubRequested"
+customFields.STRING.ProcessName="Publication Requested"
 customFields.TIMESTAMP.CustomTimestampField1=new DateTime(2018, 1, 1, 1, 1, 1)
 customFields.TIMESTAMP.CustomTimestampField2=new DateTime(2018, 2, 2, 2, 2 ,2)
 customFields.TIMESTAMP.CustomTimestampField3=new DateTime(2018, 3, 3, 3, 3, 3)
 customFields.TIMESTAMP.CustomTimestampField4=new DateTime(2018, 4, 4, 4, 4, 4)
-customFields.TIMESTAMP.CustomTimestampField5=new DateTime(2018, 5, 5, 5, 5, 5)
-process.code=pubRequested
-process.name=Publication Requested
-processCategory.code=pubRequested
-processCategory.name=Publication Requested' #txt
+customFields.TIMESTAMP.CustomTimestampField5=new DateTime(2018, 5, 5, 5, 5, 5)' #txt
 Tt0 f71 showInStartList 1 #txt
 Tt0 f71 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1487,13 +1483,13 @@ customFields.STRING.CustomVarCharField2="CustomVarCharField 2"
 customFields.STRING.CustomVarCharField3="CustomVarCharField 3"
 customFields.STRING.CustomVarCharField4="CustomVarCharField 4"
 customFields.STRING.CustomVarCharField5="CustomVarCharField 5"
+customFields.STRING.ProcessCategoryCode="pubRequested"
+customFields.STRING.ProcessCategoryName="Publication Requested"
+customFields.STRING.ProcessCode="pubRequested"
+customFields.STRING.ProcessName="Publication Requested"
 customFields.TIMESTAMP.CustomTimestampField2=new DateTime(2018, 2, 2, 2, 2 ,2)
 customFields.TIMESTAMP.CustomTimestampField3=new DateTime(2018, 3, 3, 3, 3, 3)
-customFields.TIMESTAMP.CustomTimestampField5=new DateTime(2018, 5, 5, 5, 5, 5)
-process.code=pubRequested
-process.name=Publication Requested
-processCategory.code=pubRequested
-processCategory.name=Publication Requested' #txt
+customFields.TIMESTAMP.CustomTimestampField5=new DateTime(2018, 5, 5, 5, 5, 5)' #txt
 Tt0 f92 showInStartList 1 #txt
 Tt0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1632,15 +1628,15 @@ customFields.STRING.CustomVarCharField2="CustomizationAdditionalCaseDetails Cust
 customFields.STRING.CustomVarCharField3="CustomizationAdditionalCaseDetails CustomVarCharField3"
 customFields.STRING.CustomVarCharField4="CustomizationAdditionalCaseDetails CustomVarCharField4"
 customFields.STRING.CustomVarCharField5="CustomizationAdditionalCaseDetails CustomVarCharField5"
+customFields.STRING.ProcessCategoryCode="pubRequested"
+customFields.STRING.ProcessCategoryName="Publication Requested"
+customFields.STRING.ProcessCode="pubRequested"
+customFields.STRING.ProcessName="Publication Requested"
 customFields.TIMESTAMP.CustomTimestampField1=new DateTime(2018, 1, 1, 1, 1, 1)
 customFields.TIMESTAMP.CustomTimestampField2=new DateTime(2018, 2, 2, 2, 2 ,2)
 customFields.TIMESTAMP.CustomTimestampField3=new DateTime(2018, 3, 3, 3, 3, 3)
 customFields.TIMESTAMP.CustomTimestampField4=new DateTime(2018, 4, 4, 4, 4, 4)
-customFields.TIMESTAMP.CustomTimestampField5=new DateTime(2018, 5, 5, 5, 5, 5)
-process.code=pubRequested
-process.name=Publication Requested
-processCategory.code=pubRequested
-processCategory.name=Publication Requested' #txt
+customFields.TIMESTAMP.CustomTimestampField5=new DateTime(2018, 5, 5, 5, 5, 5)' #txt
 Tt0 f100 showInStartList 1 #txt
 Tt0 f100 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1882,15 +1878,15 @@ customFields.STRING.CustomVarCharField2="CustomizationAdditionalCaseDetails Cust
 customFields.STRING.CustomVarCharField3="CustomizationAdditionalCaseDetails CustomVarCharField3"
 customFields.STRING.CustomVarCharField4="CustomizationAdditionalCaseDetails CustomVarCharField4"
 customFields.STRING.CustomVarCharField5="CustomizationAdditionalCaseDetails CustomVarCharField5"
+customFields.STRING.ProcessCategoryCode="pubRequested"
+customFields.STRING.ProcessCategoryName="Publication Requested"
+customFields.STRING.ProcessCode="pubRequested"
+customFields.STRING.ProcessName="Publication Requested"
 customFields.TIMESTAMP.CustomTimestampField1=new DateTime(2018, 1, 1, 1, 1, 1)
 customFields.TIMESTAMP.CustomTimestampField2=new DateTime(2018, 2, 2, 2, 2 ,2)
 customFields.TIMESTAMP.CustomTimestampField3=new DateTime(2018, 3, 3, 3, 3, 3)
 customFields.TIMESTAMP.CustomTimestampField4=new DateTime(2018, 4, 4, 4, 4, 4)
-customFields.TIMESTAMP.CustomTimestampField5=new DateTime(2018, 5, 5, 5, 5, 5)
-process.code=pubRequested
-process.name=Publication Requested
-processCategory.code=pubRequested
-processCategory.name=Publication Requested' #txt
+customFields.TIMESTAMP.CustomTimestampField5=new DateTime(2018, 5, 5, 5, 5, 5)' #txt
 Tt0 f117 showInStartList 1 #txt
 Tt0 f117 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2731,6 +2727,10 @@ Tt0 f184 expr out #txt
 Tt0 f184 143 1440 280 1440 #arcP
 Tt0 f185 expr out #txt
 Tt0 f185 392 1440 497 1440 #arcP
+Tt0 f4 expr out #txt
+Tt0 f4 type internaltest.Data #txt
+Tt0 f4 var in1 #txt
+Tt0 f4 200 77 200 178 #arcP
 >Proto Tt0 .type internaltest.Data #txt
 >Proto Tt0 .processKind NORMAL #txt
 >Proto Tt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
