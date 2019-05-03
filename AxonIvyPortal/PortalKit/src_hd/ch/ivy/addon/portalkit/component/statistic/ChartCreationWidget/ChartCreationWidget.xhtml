@@ -116,7 +116,7 @@
       </h:panelGroup>
 
       <h:panelGroup layout="block" styleClass="filter-container">
-        <ic:ch.ivy.addon.portalkit.component.statistic.StatisticFilters id="statistic-filter"
+        <ic:ch.ivy.addon.portalkit.component.statistic.StatisticFilters id="statistic-filter" customFields="#{data.customFields}"
           filter="#{data.statisticFilter}" updateListener="#{statisticChartCreationBean.updateFilters(data.statisticFilter, data.oldStatisticFilter)}" />
       </h:panelGroup>
     </h:panelGrid>
