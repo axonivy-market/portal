@@ -76,7 +76,7 @@ public class CaseWidgetBean implements Serializable {
   }
 
   public boolean isHiddenCase(ICase iCase) {
-    return iCase.customFields().stringField(AdditionalProperty.HIDE.toString()) != null;
+    return iCase.customFields().stringField(AdditionalProperty.HIDE.toString()).isPresent();
   }
   
   public ICase findCase(long caseId) {
