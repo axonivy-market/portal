@@ -1062,7 +1062,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 .widget-header-main {
   flex: 1 0 50%;
   position: relative;
-  height: 35px;
+  height: 42px;
   border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
