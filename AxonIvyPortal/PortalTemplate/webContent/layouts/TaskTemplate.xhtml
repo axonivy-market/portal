@@ -22,7 +22,7 @@
         <h:panelGroup layout="block" styleClass="task-template-title #{processChainDirection eq 'VERTICAL' ? 'task-name-vertical-process-chain' : ''}">
           <ui:insert name="taskName">
             <span class=" fa fa-check-square-o task-template-title-icon"></span>
-            <h:outputText id="title" styleClass="task-template-title-text" title="#{task.name} (##{task.getId()})" value="#{task.name} (##{task.getId()})" />
+            <h:outputText id="title" title="#{task.name}" value="#{task.name}" />
           </ui:insert>
         </h:panelGroup>
 

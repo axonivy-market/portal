@@ -259,6 +259,7 @@
 .task-template-title-horizontal-container {
   display: flex;
   flex-wrap: wrap;
+  margin-top: 5px;
 }
 
 .task-template-title {
@@ -267,14 +268,11 @@
   font-weight: bold;
   flex: 1 0 auto;
   display: flex;
+  align-items: center;
 }
 
 .task-template-title-icon {
-  margin: auto 5px auto 0;
-}
-
-.task-template-title-text {
-  margin: auto 0;
+  margin-right: 5px;
 }
 
 .task-template-content {
