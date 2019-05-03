@@ -1,7 +1,6 @@
 package portal.guitest.page;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.remote.server.handler.FindElements;
 import org.openqa.selenium.support.Color;
 
 
