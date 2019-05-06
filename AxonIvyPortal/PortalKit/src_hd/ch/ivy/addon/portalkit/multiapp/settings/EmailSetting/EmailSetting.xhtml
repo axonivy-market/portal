@@ -28,7 +28,7 @@
         <h:panelGrid columns="2">
           <!--  SETTING -->
           <p:fieldset legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/setting')}">
-            <p:selectOneRadio id="select-setting-options" value="#{data.settingForAllApp}" layout="pageDirection"
+            <p:selectOneRadio id="select-setting-options" value="#{data.settingForAllApp}" layout="pageDirection" disabled="#{emailSettingBean.countApplication() eq 1}" 
               columns="1">
               <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/forAllApplications')}"
                 itemValue="#{true}" />
@@ -41,7 +41,7 @@
 
           </p:fieldset>
         </h:panelGrid>
-
+        
         <p:panel id="all-applications-email-setting"
           header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/forAllApplications')}"
           rendered="#{data.settingForAllApp}">
@@ -53,9 +53,9 @@
             <p:selectOneMenu id="mail-notification-on-task-assign" value="#{data.generalEmailSetting.emailSendOnNewWorkTasks}"
               rendered="#{data.settingForAllApp}" appendTo="@this">
               <f:selectItem id="enable-mail-notification"
-                itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/enabled')}" itemValue="true" />
+                itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/active')}" itemValue="true" />
               <f:selectItem id="disable-mail-notification"
-                itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/disabled')}" itemValue="false" />
+                itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/inactive')}" itemValue="false" />
             </p:selectOneMenu>
 
             <!--  DAILY SUMMARY -->
@@ -71,8 +71,8 @@
               for="further-mails-from-application" rendered="#{data.settingForAllApp}" />
             <p:selectOneMenu id="further-mails-from-application" value="#{data.generalEmailSetting.customMailEnabled}"
               rendered="#{data.settingForAllApp}" appendTo="@this">
-              <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/enabled')}" itemValue="true" />
-              <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/disabled')}"
+              <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/active')}" itemValue="true" />
+              <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/inactive')}"
                 itemValue="false" />
             </p:selectOneMenu>
           </h:panelGrid>
@@ -89,9 +89,9 @@
                   for="mail-notification-on-task-assign" />
                 <p:selectOneMenu id="mail-notification-on-task-assign" value="#{appSetting.emailSendOnNewWorkTasks}"
                   appendTo="@this">
-                  <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/enabled')}"
+                  <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/active')}"
                     itemValue="#{true}" />
-                  <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/disabled')}"
+                  <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/inactive')}"
                     itemValue="#{false}" />
                 </p:selectOneMenu>
 
@@ -107,9 +107,9 @@
                   for="further-mails-from-application" />
                 <p:selectOneMenu id="further-mails-from-application" value="#{appSetting.customMailEnabled}"
                   appendTo="@this">
-                  <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/enabled')}"
+                  <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/active')}"
                     itemValue="#{true}" />
-                  <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/disabled')}"
+                  <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/inactive')}"
                     itemValue="#{false}" />
                 </p:selectOneMenu>
               </h:panelGrid>
