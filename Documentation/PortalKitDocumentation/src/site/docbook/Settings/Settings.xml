@@ -210,6 +210,15 @@
                            Set to <code>TRUE</code> to hide Statistic widget from homepage and application menu. 
                           </entry>
                         </row>
+						<row>
+							<entry>DISPLAY_MESSAGE_AFTER_FINISH_TASK</entry>
+							<entry>TRUE/FALSE</entry>
+							<entry>
+								Set to
+								<code>TRUE</code>
+								to display a feedback message after finishing a task.
+							</entry>
+						</row>
 					</tbody>
 				</tgroup>
 			</table>
