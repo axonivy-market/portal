@@ -91,4 +91,17 @@ public class TaskTemplatePage extends TemplatePage {
   public void showNoteHistory() {
     click(driver.findElement(By.cssSelector("a[id$='show-more-note-link']")));
   }
+  
+  public void clickSubmitButton() {
+    String submitButton = "button[id$='command-form:button-submit']";
+    findElementByCssSelector(submitButton).click();
+    waitAjaxIndicatorDisappear();
+  }
+  
+  public void inputFields(String employee, String from, String to, String representation) {
+    type(By.id("leave-request:fullname"), employee);
+    type(By.id("leave-request:from_input"), from);
+    type(By.id("leave-request:to_input"), to);
+    type(By.id("leave-request:substitute"), representation);
+  }
 }

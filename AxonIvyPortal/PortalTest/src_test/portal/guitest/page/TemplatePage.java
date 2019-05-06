@@ -200,6 +200,10 @@ public abstract class TemplatePage extends AbstractPage {
     waitForElementPresent(By.cssSelector("div.js-case-default-widget-container"), true);
     return new CasePage();
   }
+  
+  public String getGlobalGrowlMessage() {
+    return findElementById("portal-global-growl_container").getText();
+  }
 
   public GlobalSearch getGlobalSearch() {
     return new GlobalSearch();

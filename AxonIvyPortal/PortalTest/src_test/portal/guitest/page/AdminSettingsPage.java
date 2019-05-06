@@ -107,6 +107,14 @@ public class AdminSettingsPage extends TemplatePage {
     closeInformConfigDialog();
   }
   
+  public void setDisplayMessageAfterFinishTaskVariable(){
+    openSettingTab();
+    clickAddNewGlobalVariable();
+    addGlobalVariable("DISPLAY_MESSAGE_AFTER_FINISH_TASK", "true");
+    closeAdminSettingDialog();
+    closeInformConfigDialog();
+  }
+  
   public boolean isWarningDialogShowWhenTimeoutIsLosing(){
     waitForElementDisplayed(By.id("warning-before-lost-session:timeout-warning-dialog"), true, 120);
     return isElementDisplayed(By.id("warning-before-lost-session:timeout-warning-dialog"));
