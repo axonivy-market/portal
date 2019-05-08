@@ -207,7 +207,7 @@
 	       </f:facet>
 	      <ic:ch.ivy.addon.portalkit.component.statistic.CustomField id="#{tabVar}" fieldName="#{tabVar}"	      	
 	          completeMethod="#{statisticChartCreationBean.populateCustomStringFieldAutoComplete}" 
-	          selectedValues="#{cc.attrs.filter.selectedCustomVarCharFields1}" /> 
+	          selectedValues="#{cc.attrs.filter.getCustomFieldFilter(tabVar)}" /> 
     	</p:tab>
   	</c:forEach>
   
