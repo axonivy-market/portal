@@ -71,11 +71,11 @@
           </p:chart>
           <p:overlayPanel styleClass="context-menu-#{chartStatus.index} expiry-chart-context-menu side-steps-panel" widgetVar="context-menu-#{chartStatus.index}"
             rendered="#{statisticDashboardBean.isTaskByExpiry(chart) and !statisticDashboardBean.isTaskByExpiryHour(chart)}">
-            <p:commandLink
+            <p:commandLink id="expiry-chart-drill-down" styleClass="js-expiry-chart-drill-down side-step-item"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/contextMenuDrilldown')}"
               action="#{cc.attrs.drillDownExpiryChartListener}" actionListener="#{logic.drilldownTaskByExpiry}"
-              update="@([id$='create-chart-header']) #{p:component('widget-container')}" styleClass="side-step-item" />
-            <p:commandLink styleClass="side-step-item"
+              update="@([id$='create-chart-header']) #{p:component('widget-container')}" />
+            <p:commandLink id="expiry-chart-task-list" styleClass="js-expiry-chart-task-list side-step-item"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/contextMenuToTaskList')}"
               actionListener="#{logic.toTaskByExpiryTaskList}" />
           </p:overlayPanel>
