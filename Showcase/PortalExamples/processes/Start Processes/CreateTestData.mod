@@ -1,5 +1,5 @@
 [Ivy]
-162511D2577DBA88 3.23 #module
+162511D2577DBA88 3.26 #module
 >Proto >Proto Collection #zClass
 Cs0 CreateTestData Big #zClass
 Cs0 B #cInfo
@@ -54,12 +54,12 @@ Cs0 f0 callSignature createTasksForTaskListCustomization() #txt
 Cs0 f0 persist false #txt
 Cs0 f0 startName 'Create Tasks For Task List Customization' #txt
 Cs0 f0 startDescription 'Create 3 tasks, each task has customVarcharField5 and customTimestampField1' #txt
-Cs0 f0 taskData 'TaskTriggered.ROL=Everybody
+Cs0 f0 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Cs0 f0 caseData businessCase.attach=true #txt
 Cs0 f0 showInStartList 1 #txt
 Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -89,8 +89,9 @@ Cs0 f7 actionTable 'out=in1;
 ' #txt
 Cs0 f7 outTypes "ch.ivyteam.ivy.project.portal.examples.Data","ch.ivyteam.ivy.project.portal.examples.Data","ch.ivyteam.ivy.project.portal.examples.Data" #txt
 Cs0 f7 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp" #txt
-Cs0 f7 caseData 'case.name=Leave Request
-case.category=LeaveRequest' #txt
+Cs0 f7 caseData 'case.category=LeaveRequest
+case.name=Leave Request
+customFields.STRING.CompanyName="AxonIvy"' #txt
 Cs0 f7 taskData 'TaskA.CATEGORY=Drink
 TaskA.DESC=Milk tea for 4 people
 TaskA.EXP=new Duration("3H")
@@ -102,9 +103,9 @@ TaskA.PRI=2
 TaskA.ROL="demo"
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=3
-TaskA.customFields.timestamp.1=new DateTime()
-TaskA.customFields.varchar.1="Exterior"
-TaskA.customFields.varchar.5="Sarah"
+TaskA.customFields.STRING.CustomVarCharField1="Exterior"
+TaskA.customFields.STRING.CustomVarCharField5="Sarah"
+TaskA.customFields.TIMESTAMP.CustomTimestampField1=new DateTime()
 TaskB.CATEGORY=Drink
 TaskB.DESC=Beer for a big company with 10.000 people
 TaskB.EXP=new Duration("1D")
@@ -116,9 +117,9 @@ TaskB.PRI=1
 TaskB.ROL=Everybody
 TaskB.SKIP_TASK_LIST=false
 TaskB.TYPE=0
-TaskB.customFields.timestamp.1=new DateTime("2080-03-23 11\:11\:11")
-TaskB.customFields.varchar.1="Interior"
-TaskB.customFields.varchar.5="Julie"
+TaskB.customFields.STRING.CustomVarCharField1="Interior"
+TaskB.customFields.STRING.CustomVarCharField5="Julie"
+TaskB.customFields.TIMESTAMP.CustomTimestampField1=new DateTime("2080-03-23 11\:11\:11")
 TaskC.CATEGORY=Food
 TaskC.DESC=Pizza for 10 people
 TaskC.EXP=new Duration("2D")
@@ -130,9 +131,9 @@ TaskC.PRI=3
 TaskC.ROL=Everybody
 TaskC.SKIP_TASK_LIST=false
 TaskC.TYPE=0
-TaskC.customFields.timestamp.1=new DateTime()
-TaskC.customFields.varchar.1="Interior"
-TaskC.customFields.varchar.5="Florian"' #txt
+TaskC.customFields.STRING.CustomVarCharField1="Interior"
+TaskC.customFields.STRING.CustomVarCharField5="Florian"
+TaskC.customFields.TIMESTAMP.CustomTimestampField1=new DateTime()' #txt
 Cs0 f7 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cs0 f7 template "" #txt
 Cs0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -191,17 +192,17 @@ Cs0 f9 requestEnabled true #txt
 Cs0 f9 triggerEnabled false #txt
 Cs0 f9 callSignature createCasesForCaseListCustomization() #txt
 Cs0 f9 persist false #txt
-Cs0 f9 taskData 'TaskTriggered.ROL=Everybody
+Cs0 f9 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
-Cs0 f9 caseData 'customFields.timestamp.1=new DateTime()
-case.name=CreateCasesForCaseListCustomization
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Cs0 f9 caseData 'businessCase.attach=true
 case.description=CreateCasesForCaseListCustomization
-customFields.varchar.1="Parent Case"
-businessCase.attach=true' #txt
+case.name=CreateCasesForCaseListCustomization
+customFields.STRING.CustomVarCharField1="Parent Case"
+customFields.TIMESTAMP.CustomTimestampField1=new DateTime()' #txt
 Cs0 f9 showInStartList 1 #txt
 Cs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -282,17 +283,17 @@ Cs0 f43 requestEnabled false #txt
 Cs0 f43 triggerEnabled true #txt
 Cs0 f43 callSignature startACase(Integer) #txt
 Cs0 f43 persist false #txt
-Cs0 f43 taskData 'TaskTriggered.ROL=SYSTEM
+Cs0 f43 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
-Cs0 f43 caseData 'customFields.timestamp.1=new DateTime()
-case.name=TestCase Name <%\=param.count%>
+TaskTriggered.ROL=SYSTEM
+TaskTriggered.TYPE=0' #txt
+Cs0 f43 caseData 'businessCase.attach=false
 case.description=TestCase Description <%\=param.count%>
-customFields.varchar.1="CustomVarcharField1" + param.count
-businessCase.attach=false' #txt
+case.name=TestCase Name <%\=param.count%>
+customFields.STRING.CustomVarCharField1="CustomVarcharField1" + param.count
+customFields.TIMESTAMP.CustomTimestampField1=new DateTime()' #txt
 Cs0 f43 showInStartList 1 #txt
 Cs0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

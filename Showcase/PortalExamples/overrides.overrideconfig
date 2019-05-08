@@ -10,5 +10,6 @@
     /Functional-Processes.OpenPortalSearch "Functional Processes/OpenPortalSearchOverride"
     /Functional-Processes.BuildTaskQuery "Functional Processes/BuildTaskQueryOverride"
     /Functional-Processes.OpenPortalCases "Functional Processes/OpenPortalCasesOverride"
+    /Functional-Processes.DefaultStatisticCustomField "Functional Processes/DefaultStatisticCustomFieldOverride"
   }
 }

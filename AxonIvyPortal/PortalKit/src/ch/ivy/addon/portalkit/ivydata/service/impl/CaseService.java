@@ -206,7 +206,6 @@ public class CaseService implements ICaseService {
         .aggregate()
         .countRows()
         .where().and(queryForApplications(criteria.getApps()))
-        
         .groupBy()
         .customField()
         .stringField(fieldName)
@@ -216,9 +215,9 @@ public class CaseService implements ICaseService {
     return recordset
         .getRecords()
         .stream()
-        .filter(x->x.getField(fieldName) != null)
-        .map(x -> x.getField(fieldName).toString())
-        .filter(x -> StringUtils.containsIgnoreCase(x, criteria.getKeyword()))
+        .filter(item -> item.getField(fieldName) != null)
+        .map(item -> item.getField(fieldName).toString())
+        .filter(item -> StringUtils.containsIgnoreCase(item, criteria.getKeyword()))
         .collect(Collectors.toList());
   }
 

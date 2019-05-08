@@ -55,14 +55,10 @@ public class StatisticFilter implements Cloneable {
   private List<WorkflowPriority> taskPriorities = new ArrayList<>();
   private List<WorkflowPriority> selectedTaskPriorities = new ArrayList<>();
   private boolean isAllTaskPrioritiesSelected = true;
-
-  private List<String> selectedCustomVarCharFields1 = new ArrayList<>();
-  private List<String> selectedCustomVarCharFields2 = new ArrayList<>();
-  private List<String> selectedCustomVarCharFields3 = new ArrayList<>();
-  private List<String> selectedCustomVarCharFields4 = new ArrayList<>();
-  private List<String> selectedCustomVarCharFields5 = new ArrayList<>();
+  private Map<String, List<String>> customFieldFilters;
   
   public void init() {
+    customFieldFilters = new HashMap<>();
     List<IRole> distinctRoles = findRolesByCallableProcess().stream()
         .filter(role -> role != null && Ivy.session().hasRole(role, false))
         .sorted((r1, r2) -> StringUtils.compareIgnoreCase(r1.getDisplayName(), r2.getDisplayName()))
@@ -229,46 +225,6 @@ public class StatisticFilter implements Cloneable {
     this.allTimePeriodSelection = allTimePeriodSelection;
   }
 
-  public List<String> getSelectedCustomVarCharFields1() {
-    return selectedCustomVarCharFields1;
-  }
-
-  public void setSelectedCustomVarCharFields1(List<String> selectedCustomVarCharFields1) {
-    this.selectedCustomVarCharFields1 = selectedCustomVarCharFields1;
-  }
-
-  public List<String> getSelectedCustomVarCharFields2() {
-    return selectedCustomVarCharFields2;
-  }
-
-  public void setSelectedCustomVarCharFields2(List<String> selectedCustomVarCharFields2) {
-    this.selectedCustomVarCharFields2 = selectedCustomVarCharFields2;
-  }
-
-  public List<String> getSelectedCustomVarCharFields3() {
-    return selectedCustomVarCharFields3;
-  }
-
-  public void setSelectedCustomVarCharFields3(List<String> selectedCustomVarCharFields3) {
-    this.selectedCustomVarCharFields3 = selectedCustomVarCharFields3;
-  }
-
-  public List<String> getSelectedCustomVarCharFields4() {
-    return selectedCustomVarCharFields4;
-  }
-
-  public void setSelectedCustomVarCharFields4(List<String> selectedCustomVarCharFields4) {
-    this.selectedCustomVarCharFields4 = selectedCustomVarCharFields4;
-  }
-
-  public List<String> getSelectedCustomVarCharFields5() {
-    return selectedCustomVarCharFields5;
-  }
-
-  public void setSelectedCustomVarCharFields5(List<String> selectedCustomVarCharFields5) {
-    this.selectedCustomVarCharFields5 = selectedCustomVarCharFields5;
-  }
-
   public boolean getIsAllCategoriesSelected() {
     return isAllCategoriesSelected;
   }
@@ -306,4 +262,16 @@ public class StatisticFilter implements Cloneable {
     return super.clone();
   }
 
+  public Map<String, List<String>> getCustomFieldFilters() {
+    return customFieldFilters;
+  }
+
+  public void setCustomFieldFilters(Map<String, List<String>> customFieldFilters) {
+    this.customFieldFilters = customFieldFilters;
+  }
+  
+  public List<String> getCustomFieldFilter(String customFieldName) {
+    Ivy.log().error("Get value here {0}", customFieldName);
+    return this.customFieldFilters.get(customFieldName);
+  }
 }

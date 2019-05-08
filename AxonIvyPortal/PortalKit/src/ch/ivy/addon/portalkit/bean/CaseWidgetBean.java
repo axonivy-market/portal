@@ -25,7 +25,6 @@ import ch.ivyteam.ivy.workflow.ICase;
 public class CaseWidgetBean implements Serializable {
 
   private static final String START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE = "Start Processes/CaseWidget/showAdditionalCaseDetails.ivp";
-  private static final String HIDE = "HIDE";
   
   private static final long serialVersionUID = 1L;
 

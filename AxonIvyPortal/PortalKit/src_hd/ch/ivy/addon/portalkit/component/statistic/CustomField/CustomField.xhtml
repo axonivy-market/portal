@@ -40,10 +40,10 @@
         <p:scrollPanel id="selected-custom-val-container" mode="native" styleClass="statistic-filter-container">
           <h:panelGroup id="selected-custom-val-panel" styleClass="selected-custom-val-panel" layout="block">
 
-            <p:selectManyCheckbox id="selected-custom-val" value="#{cc.attrs.selectedValues}" layout="grid" columns="1">
+            <p:selectManyCheckbox id="selected-custom-val"  layout="grid" columns="1">
               <f:selectItems value="#{data.tempSelectedCustomValues}" var="customVal"
                 itemValue="#{customVal}" itemLabel="#{customVal}" />
-                <p:ajax global="false" />
+                <p:ajax global="false" listener="#{statisticChartCreationBean.setCustomFieldFilter(cc.attrs.fieldName, data.tempSelectedCustomValues)}" />
             </p:selectManyCheckbox>
 
           </h:panelGroup>
