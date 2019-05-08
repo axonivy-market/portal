@@ -5090,3 +5090,25 @@ margin-top
 .search-icon-input::-ms-clear {
   display: none;
 }
+/* ===================== END ADHOC ======================= */
+
+/* ======================= MESSAGES ========================= */
+.ui-messages-info-icon,
+.ui-messages-warn-icon,
+.ui-messages-error-icon,
+.ui-message-error-icon,
+.ui-messages-fatal-icon {
+	width: 35px !important;
+	height: 35px !important;
+	top: -7px !important;
+}
+.ui-widget.ui-fileupload {
+	margin-top: 5px;
+}
+.ui-fileupload-buttonbar {
+	-webkit-transform: translateY(30%);
+	-moz-transform: translateY(30%);
+	-o-transform: translateY(30%);
+	transform: translateY(30%);
+}
+/* =================== END MESSAGES ========================= */

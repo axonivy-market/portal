@@ -36,7 +36,6 @@ Cs0 @RichDialogProcessEnd f18 '' #zField
 Cs0 @PushWFArc f19 '' #zField
 Cs0 @GridStep f10 '' #zField
 Cs0 @PushWFArc f16 '' #zField
-Cs0 @PushWFArc f20 '' #zField
 Cs0 @GridStep f21 '' #zField
 Cs0 @Alternative f29 '' #zField
 Cs0 @Alternative f22 '' #zField
@@ -44,7 +43,6 @@ Cs0 @PushWFArc f32 '' #zField
 Cs0 @PushWFArc f27 '' #zField
 Cs0 @GridStep f24 '' #zField
 Cs0 @PushWFArc f25 '' #zField
-Cs0 @PushWFArc f36 '' #zField
 Cs0 @GridStep f38 '' #zField
 Cs0 @PushWFArc f42 '' #zField
 Cs0 @PushWFArc f28 '' #zField
@@ -62,6 +60,12 @@ Cs0 @PushWFArc f44 '' #zField
 Cs0 @GridStep f62 '' #zField
 Cs0 @PushWFArc f45 '' #zField
 Cs0 @PushWFArc f2 '' #zField
+Cs0 @GridStep f68 '' #zField
+Cs0 @PushWFArc f46 '' #zField
+Cs0 @PushWFArc f20 '' #zField
+Cs0 @GridStep f66 '' #zField
+Cs0 @PushWFArc f47 '' #zField
+Cs0 @PushWFArc f36 '' #zField
 >Proto Cs0 Cs0 CaseItemDocumentProcess #zField
 Cs0 f0 guid 1533610171B77F44 #txt
 Cs0 f0 type ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.CaseItemDocumentData #txt
@@ -83,7 +87,7 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f0 85 85 22 22 14 0 #rect
+Cs0 f0 45 85 22 22 14 0 #rect
 Cs0 f0 @|RichDialogInitStartIcon #fIcon
 Cs0 f7 guid 153361C617411F60 #txt
 Cs0 f7 type ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.CaseItemDocumentData #txt
@@ -125,7 +129,7 @@ Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f31 221 85 22 22 12 -3 #rect
+Cs0 f31 261 85 22 22 12 -3 #rect
 Cs0 f31 @|RichDialogMethodStartIcon #fIcon
 Cs0 f33 type ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.CaseItemDocumentData #txt
 Cs0 f33 549 597 22 22 14 0 #rect
@@ -178,7 +182,7 @@ Cs0 f23 1440 107 1440 180 #arcP
 Cs0 f5 expr out #txt
 Cs0 f5 1440 204 1440 213 #arcP
 Cs0 f37 type ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.CaseItemDocumentData #txt
-Cs0 f37 85 301 22 22 14 0 #rect
+Cs0 f37 45 301 22 22 14 0 #rect
 Cs0 f37 @|RichDialogProcessEndIcon #fIcon
 Cs0 f39 actionDecl 'ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.CaseItemDocumentData out;
 ' #txt
@@ -199,10 +203,10 @@ Cs0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f39 78 180 36 24 4 18 #rect
+Cs0 f39 38 180 36 24 -38 22 #rect
 Cs0 f39 @|StepIcon #fIcon
 Cs0 f41 expr out #txt
-Cs0 f41 96 204 96 301 #arcP
+Cs0 f41 56 204 56 301 #arcP
 Cs0 f8 guid 153A7A3758776085 #txt
 Cs0 f8 type ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.CaseItemDocumentData #txt
 Cs0 f8 method downloadDocument(String) #txt
@@ -286,6 +290,8 @@ Cs0 f10 actionDecl 'ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.Case
 Cs0 f10 actionTable 'out=in;
 ' #txt
 Cs0 f10 actionCode 'import ch.ivy.addon.portalkit.service.CaseDocumentService;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 CaseDocumentService documentService = new CaseDocumentService(in.internalCase.getId());
 documentService.delete(in.selectedFileName);
@@ -300,12 +306,10 @@ Cs0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f10 214 180 36 24 20 -2 #rect
+Cs0 f10 254 180 36 24 20 -2 #rect
 Cs0 f10 @|StepIcon #fIcon
 Cs0 f16 expr out #txt
-Cs0 f16 232 107 232 180 #arcP
-Cs0 f20 expr out #txt
-Cs0 f20 214 192 114 192 #arcP
+Cs0 f16 272 107 272 180 #arcP
 Cs0 f21 actionDecl 'ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.CaseItemDocumentData out;
 ' #txt
 Cs0 f21 actionTable 'out=in;
@@ -369,6 +373,7 @@ if(!uploaded){
   FacesContext.getCurrentInstance().addMessage("upload-messages", new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadFailed"),null));
 } else {
  RequestContext.getCurrentInstance().update(in.clientId + ":case-details-documents");
+ 
 }
 ' #txt
 Cs0 f24 type ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.CaseItemDocumentData #txt
@@ -381,15 +386,12 @@ Cs0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f24 358 260 36 24 20 -2 #rect
+Cs0 f24 358 252 36 24 20 -2 #rect
 Cs0 f24 @|StepIcon #fIcon
 Cs0 f25 expr in #txt
-Cs0 f25 546 512 376 284 #arcP
+Cs0 f25 546 512 376 276 #arcP
 Cs0 f25 1 376 512 #addKink
 Cs0 f25 1 0.02888732979171206 0 0 #arcLabel
-Cs0 f36 expr out #txt
-Cs0 f36 358 272 114 192 #arcP
-Cs0 f36 0 0.6065414273012237 0 0 #arcLabel
 Cs0 f38 actionDecl 'ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.CaseItemDocumentData out;
 ' #txt
 Cs0 f38 actionTable 'out=in;
@@ -443,12 +445,12 @@ Cs0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f11 78 132 36 24 20 -2 #rect
+Cs0 f11 38 132 36 24 20 -2 #rect
 Cs0 f11 @|StepIcon #fIcon
 Cs0 f30 expr out #txt
-Cs0 f30 96 156 96 180 #arcP
+Cs0 f30 56 156 56 180 #arcP
 Cs0 f17 expr out #txt
-Cs0 f17 96 107 96 132 #arcP
+Cs0 f17 56 107 56 132 #arcP
 Cs0 f1 actionDecl 'ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.CaseItemDocumentData out;
 ' #txt
 Cs0 f1 actionTable 'out=in;
@@ -463,6 +465,8 @@ Cs0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>show error msg</name>
+        <nameStyle>14,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -551,6 +555,55 @@ Cs0 f45 1 720 160 #addKink
 Cs0 f45 0 0.5629581565438773 0 -12 #arcLabel
 Cs0 f2 expr out #txt
 Cs0 f2 720 273 720 460 #arcP
+Cs0 f68 actionDecl 'ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.CaseItemDocumentData out;
+' #txt
+Cs0 f68 actionTable 'out=in;
+' #txt
+Cs0 f68 actionCode 'import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
+FacesContext.getCurrentInstance().addMessage("", new FacesMessage( ivy.cms.co("/Dialogs/components/CaseDocument/deleteSucceed"), "" ));' #txt
+Cs0 f68 type ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.CaseItemDocumentData #txt
+Cs0 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Show success message</name>
+        <nameStyle>20,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f68 168 180 32 24 -70 -31 #rect
+Cs0 f68 @|StepIcon #fIcon
+Cs0 f46 expr out #txt
+Cs0 f46 254 192 200 192 #arcP
+Cs0 f20 expr out #txt
+Cs0 f20 168 192 74 192 #arcP
+Cs0 f66 actionDecl 'ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.CaseItemDocumentData out;
+' #txt
+Cs0 f66 actionTable 'out=in;
+' #txt
+Cs0 f66 actionCode 'import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
+FacesContext.getCurrentInstance().addMessage("", new FacesMessage( ivy.cms.co("/Dialogs/components/CaseDocument/uploadSucceed"), "" ));' #txt
+Cs0 f66 type ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.CaseItemDocumentData #txt
+Cs0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Show success message</name>
+        <nameStyle>20,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f66 176 252 32 24 -60 17 #rect
+Cs0 f66 @|StepIcon #fIcon
+Cs0 f47 expr out #txt
+Cs0 f47 358 264 208 264 #arcP
+Cs0 f47 0 0.6065414273012237 0 0 #arcLabel
+Cs0 f36 expr out #txt
+Cs0 f36 176 264 74 202 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.CaseItemDocumentData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -569,15 +622,11 @@ Cs0 f12 mainOut f19 tail #connect
 Cs0 f19 head f18 mainIn #connect
 Cs0 f31 mainOut f16 tail #connect
 Cs0 f16 head f10 mainIn #connect
-Cs0 f10 mainOut f20 tail #connect
-Cs0 f20 head f39 mainIn #connect
 Cs0 f21 mainOut f32 tail #connect
 Cs0 f32 head f22 in #connect
 Cs0 f7 mainOut f27 tail #connect
 Cs0 f27 head f29 in #connect
 Cs0 f25 head f24 mainIn #connect
-Cs0 f24 mainOut f36 tail #connect
-Cs0 f36 head f39 mainIn #connect
 Cs0 f22 out f42 tail #connect
 Cs0 f42 head f38 mainIn #connect
 Cs0 f22 out f25 tail #connect
@@ -601,3 +650,11 @@ Cs0 f29 out f45 tail #connect
 Cs0 f45 head f62 mainIn #connect
 Cs0 f62 mainOut f2 tail #connect
 Cs0 f2 head f1 mainIn #connect
+Cs0 f10 mainOut f46 tail #connect
+Cs0 f46 head f68 mainIn #connect
+Cs0 f68 mainOut f20 tail #connect
+Cs0 f20 head f39 mainIn #connect
+Cs0 f24 mainOut f47 tail #connect
+Cs0 f47 head f66 mainIn #connect
+Cs0 f66 mainOut f36 tail #connect
+Cs0 f36 head f39 mainIn #connect
