@@ -97,7 +97,10 @@ public class StatisticChartQueryUtils {
     Date fromDate;
     Date toDate;
     HashMap<String, Date> fromToDateMap;
-    if (StatisticService.selectHourOfDay(selectedValue)) {
+    if (StringUtils.equals(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/expired"), selectedValue)) {
+      query.where().isExpired().isEqual(true);
+      return query;
+    } else if (StatisticService.selectHourOfDay(selectedValue)) {
       fromToDateMap = calculateTimeRangeOfSelectedHour(selectedValue, previousSelectedMonth, previousSelectedWeek, previousSelectedDay);
       fromDate = fromToDateMap.get(FROM_DATE_KEY);
       toDate = fromToDateMap.get(TO_DATE_KEY);
@@ -119,7 +122,7 @@ public class StatisticChartQueryUtils {
     }
 
     query.where().and().expiryTimestamp().isGreaterOrEqualThan(fromDate).and().expiryTimestamp()
-    .isLowerThan(toDate);
+      .isLowerThan(toDate).and().isExpired().isEqual(false);
 
     return query;
   }
