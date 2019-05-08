@@ -1,10 +1,5 @@
 package ch.ivy.addon.portalkit.statistics;
 
-import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_VARCHAR_FIELD1;
-import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_VARCHAR_FIELD2;
-import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_VARCHAR_FIELD3;
-import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_VARCHAR_FIELD4;
-import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_VARCHAR_FIELD5;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.AFTER_18;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.BEFORE_8;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CREATED_CASE_KEY;
@@ -22,6 +17,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -30,7 +26,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.event.ItemSelectEvent;
 
-import ch.ivy.addon.portalkit.enums.CustomVarCharField;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
 import ch.ivy.addon.portalkit.service.StatisticService;
@@ -357,8 +352,8 @@ public class StatisticChartQueryUtils {
       caseQuery.where().and(generateCaseQueryForCaseCategory(filter));
     }
     
-    // Filter by customVarChar
-    generateCaseQueryForCustomVarChar(filter, caseQuery);
+    // Filter by custom field
+    generateCaseQueryForCustomField(filter, caseQuery);
     
     return caseQuery;
   }
@@ -470,7 +465,7 @@ public class StatisticChartQueryUtils {
     }
     
     // Filter by customVarChar
-    generateCaseQueryForCustomVarChar(filter, caseQuery);
+    generateCaseQueryForCustomField(filter, caseQuery);
     
     return caseQuery;
   }
@@ -594,35 +589,17 @@ public class StatisticChartQueryUtils {
     taskQuery.where().and(taskQueryForExpiryDate);
   }
   
-  private static void generateCaseQueryForCustomVarChar(StatisticFilter filter, CaseQuery caseQuery) {
-    generateCaseQueryForCustomVarCharByType(filter.getSelectedCustomVarCharFields1(), caseQuery, CustomVarCharField.CUSTOM_VAR_CHAR_1);
-    generateCaseQueryForCustomVarCharByType(filter.getSelectedCustomVarCharFields2(), caseQuery, CustomVarCharField.CUSTOM_VAR_CHAR_2);
-    generateCaseQueryForCustomVarCharByType(filter.getSelectedCustomVarCharFields3(), caseQuery, CustomVarCharField.CUSTOM_VAR_CHAR_3);
-    generateCaseQueryForCustomVarCharByType(filter.getSelectedCustomVarCharFields4(), caseQuery, CustomVarCharField.CUSTOM_VAR_CHAR_4);
-    generateCaseQueryForCustomVarCharByType(filter.getSelectedCustomVarCharFields5(), caseQuery, CustomVarCharField.CUSTOM_VAR_CHAR_5);
-  }
-  
-  private static void generateCaseQueryForCustomVarCharByType(List<String> customVarChars, CaseQuery caseQuery, CustomVarCharField type) {
-    if(CollectionUtils.isNotEmpty(customVarChars)) {
-      CaseQuery subTaskQueryForCustomVarCharField = CaseQuery.create();
-      ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForCustomVarCharField = subTaskQueryForCustomVarCharField.where();
-      if(type == CustomVarCharField.CUSTOM_VAR_CHAR_1) {
-        customVarChars.forEach(item -> subCaseFilterForCustomVarCharField.or().customField().stringField(CUSTOM_VARCHAR_FIELD1).isEqual(item));
-      }
-      else if (type == CustomVarCharField.CUSTOM_VAR_CHAR_2) {
-        customVarChars.forEach(item -> subCaseFilterForCustomVarCharField.or().customField().stringField(CUSTOM_VARCHAR_FIELD2).isEqual(item));
-      }
-      else if (type == CustomVarCharField.CUSTOM_VAR_CHAR_3) {
-        customVarChars.forEach(item -> subCaseFilterForCustomVarCharField.or().customField().stringField(CUSTOM_VARCHAR_FIELD3).isEqual(item));
-      }
-      else if (type == CustomVarCharField.CUSTOM_VAR_CHAR_4) {
-        customVarChars.forEach(item -> subCaseFilterForCustomVarCharField.or().customField().stringField(CUSTOM_VARCHAR_FIELD4).isEqual(item));
-      }
-      else if (type == CustomVarCharField.CUSTOM_VAR_CHAR_5) {
-        customVarChars.forEach(item -> subCaseFilterForCustomVarCharField.or().customField().stringField(CUSTOM_VARCHAR_FIELD5).isEqual(item));
-      }
-      caseQuery.where().and(subTaskQueryForCustomVarCharField);
+  private static void generateCaseQueryForCustomField(StatisticFilter filter, CaseQuery caseQuery) {
+    Map<String, List<String>> customFieldFilters = filter.getCustomFieldFilters();
+    if (customFieldFilters != null) {
+      customFieldFilters.forEach((k,v) -> {
+        if (CollectionUtils.isNotEmpty(v)) {
+          CaseQuery subTaskQueryForCustomVarCharField = CaseQuery.create();                                                                         
+          ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery subCaseFilterForCustomVarCharField = subTaskQueryForCustomVarCharField.where();      
+          v.forEach(item -> subCaseFilterForCustomVarCharField.or().customField().stringField(k).isEqual(item)); 
+          caseQuery.where().and(subTaskQueryForCustomVarCharField); 
+        }
+      });
     }
   }
-
-}
+}                                                                                                                                             

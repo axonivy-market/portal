@@ -49,6 +49,8 @@ Cs0 @PushWFArc f26 '' #zField
 Cs0 @PushWFArc f8 '' #zField
 Cs0 @CallSub f9 '' #zField
 Cs0 @PushWFArc f27 '' #zField
+Cs0 @GridStep f28 '' #zField
+Cs0 @PushWFArc f29 '' #zField
 Cs0 @PushWFArc f2 '' #zField
 >Proto Cs0 Cs0 ChartCreationWidgetProcess #zField
 Cs0 f0 guid 15FFC669CAD8BE32 #txt
@@ -73,7 +75,7 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f0 115 51 26 26 -16 15 #rect
 Cs0 f0 @|RichDialogInitStartIcon #fIcon
 Cs0 f1 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
-Cs0 f1 667 51 26 26 0 12 #rect
+Cs0 f1 803 51 26 26 0 12 #rect
 Cs0 f1 @|RichDialogProcessEndIcon #fIcon
 Cs0 f3 guid 15FFC669CBAE4804 #txt
 Cs0 f3 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
@@ -487,8 +489,22 @@ Cs0 f9 424 42 112 44 -47 -8 #rect
 Cs0 f9 @|CallSubIcon #fIcon
 Cs0 f27 expr out #txt
 Cs0 f27 334 64 424 64 #arcP
+Cs0 f28 actionDecl 'ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData out;
+' #txt
+Cs0 f28 actionTable 'out=in;
+' #txt
+Cs0 f28 actionCode 'import java.util.ArrayList;
+for (String field : in.customFields){
+	in.statisticFilter.customFieldFilters.put(field, new ArrayList());	
+}
+' #txt
+Cs0 f28 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
+Cs0 f28 616 42 112 44 0 -8 #rect
+Cs0 f28 @|StepIcon #fIcon
+Cs0 f29 expr out #txt
+Cs0 f29 536 64 616 64 #arcP
 Cs0 f2 expr out #txt
-Cs0 f2 536 64 667 64 #arcP
+Cs0 f2 728 64 803 64 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -529,5 +545,7 @@ Cs0 f6 mainOut f8 tail #connect
 Cs0 f8 head f7 mainIn #connect
 Cs0 f15 mainOut f27 tail #connect
 Cs0 f27 head f9 mainIn #connect
-Cs0 f9 mainOut f2 tail #connect
+Cs0 f9 mainOut f29 tail #connect
+Cs0 f29 head f28 mainIn #connect
+Cs0 f28 mainOut f2 tail #connect
 Cs0 f2 head f1 mainIn #connect

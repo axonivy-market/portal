@@ -1,5 +1,5 @@
 [Ivy]
-16A684441A0EF157 3.26 #module
+16A914CEF46EA5B8 3.26 #module
 >Proto >Proto Collection #zClass
 Dd0 DefaultStatisticCustomField Big #zClass
 Dd0 B #cInfo
@@ -24,10 +24,10 @@ Dd0 f0 outParamDecl '<java.util.List<java.lang.String> customFields> result;
 ' #txt
 Dd0 f0 outParamTable 'result.customFields=in.customFields;
 ' #txt
-Dd0 f0 actionDecl 'ch.ivy.addon.portalkit.DefaultStatisticCustomFieldData out;
+Dd0 f0 actionDecl '_ch.ivyteam.ivy.project.portal.examples.DefaultStatisticCustomFieldOverrideData out;
 ' #txt
 Dd0 f0 callSignature createDefaultStatisticCustomFields() #txt
-Dd0 f0 type ch.ivy.addon.portalkit.DefaultStatisticCustomFieldData #txt
+Dd0 f0 type _ch.ivyteam.ivy.project.portal.examples.DefaultStatisticCustomFieldOverrideData #txt
 Dd0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -35,19 +35,19 @@ Dd0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Dd0 f0 81 49 30 30 28 -7 #rect
+Dd0 f0 81 49 30 30 34 -10 #rect
 Dd0 f0 @|StartSubIcon #fIcon
-Dd0 f1 type ch.ivy.addon.portalkit.DefaultStatisticCustomFieldData #txt
-Dd0 f1 81 297 30 30 0 15 #rect
+Dd0 f1 type _ch.ivyteam.ivy.project.portal.examples.DefaultStatisticCustomFieldOverrideData #txt
+Dd0 f1 81 305 30 30 0 15 #rect
 Dd0 f1 @|EndSubIcon #fIcon
-Dd0 f3 actionDecl 'ch.ivy.addon.portalkit.DefaultStatisticCustomFieldData out;
+Dd0 f3 actionDecl '_ch.ivyteam.ivy.project.portal.examples.DefaultStatisticCustomFieldOverrideData out;
 ' #txt
 Dd0 f3 actionTable 'out=in;
 ' #txt
 Dd0 f3 actionCode 'import java.util.Arrays;
 
-in.customFields = Arrays.asList("CustomVarCharField1", "CustomVarCharField2", "CustomVarCharField3", "CustomVarCharField4", "CustomVarCharField5");' #txt
-Dd0 f3 type ch.ivy.addon.portalkit.DefaultStatisticCustomFieldData #txt
+in.customFields = Arrays.asList("CustomVarCharField1", "CompanyName");' #txt
+Dd0 f3 type _ch.ivyteam.ivy.project.portal.examples.DefaultStatisticCustomFieldOverrideData #txt
 Dd0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -60,7 +60,7 @@ Dd0 f3 @|StepIcon #fIcon
 Dd0 f4 expr out #txt
 Dd0 f4 96 79 96 170 #arcP
 Dd0 f2 expr out #txt
-Dd0 f2 96 214 96 297 #arcP
+Dd0 f2 96 214 96 305 #arcP
 Dd0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -69,14 +69,13 @@ Dd0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 // DEFAULT IS "CustomVarCharField1", "CustomVarCharField2", "CustomVarCharField3", "CustomVarCharField4", "CustomVarCharField5"&#xD;
 // YOU CAN CREATE YOUR OWN CUSTOM STRING FIELD NAME&#xD;
 import java.util.Arrays;&#xD;
-in.customFields = Arrays.asList("MyCustomStringField1", "MyCustomStringField2");&#xD;
-</name>
+in.customFields = Arrays.asList("MyCustomStringField1", "MyCustomStringField2");</name>
     </language>
 </elementInfo>
 ' #txt
-Dd0 f5 264 114 768 124 -379 -56 #rect
+Dd0 f5 320 130 768 108 -379 -48 #rect
 Dd0 f5 @|IBIcon #fIcon
->Proto Dd0 .type ch.ivy.addon.portalkit.DefaultStatisticCustomFieldData #txt
+>Proto Dd0 .type _ch.ivyteam.ivy.project.portal.examples.DefaultStatisticCustomFieldOverrideData #txt
 >Proto Dd0 .processKind CALLABLE_SUB #txt
 >Proto Dd0 0 0 32 24 18 0 #rect
 >Proto Dd0 @|BIcon #fIcon
