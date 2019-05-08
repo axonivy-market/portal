@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -44,6 +45,7 @@ public class StatisticChartCreationBean implements Serializable {
   private BarChartModel taskByExpiryModel;
   private BarChartModel elapsedTimeModel;
   StatisticService statisticService = new StatisticService();
+  private Map<String, List<String>> customFieldFilters = new HashMap<>();
 
   public static final int CASE_CATEGORIES_TYPE = 0;
   
@@ -54,6 +56,7 @@ public class StatisticChartCreationBean implements Serializable {
    * @param oldFilter 
    */
   public void updateFilters(StatisticFilter filter, StatisticFilter oldFilter) {
+    filter.setCustomFieldFilters(this.customFieldFilters);
     if(filter.getTimePeriodSelection() != StatisticTimePeriodSelection.CUSTOM) {
       filter.setCreatedDateFrom(null);
       filter.setCreatedDateTo(null);
@@ -94,11 +97,7 @@ public class StatisticChartCreationBean implements Serializable {
     if (!filter.getIsAllTaskPrioritiesSelected()) {
       updateOldListToNewList(oldFilter.getSelectedTaskPriorities(), filter.getSelectedTaskPriorities());
     }
-    updateOldListToNewList(oldFilter.getSelectedCustomVarCharFields1(), filter.getSelectedCustomVarCharFields1());
-    updateOldListToNewList(oldFilter.getSelectedCustomVarCharFields2(), filter.getSelectedCustomVarCharFields2());
-    updateOldListToNewList(oldFilter.getSelectedCustomVarCharFields3(), filter.getSelectedCustomVarCharFields3());
-    updateOldListToNewList(oldFilter.getSelectedCustomVarCharFields4(), filter.getSelectedCustomVarCharFields4());
-    updateOldListToNewList(oldFilter.getSelectedCustomVarCharFields5(), filter.getSelectedCustomVarCharFields5());
+    oldFilter.setCustomFieldFilters(filter.getCustomFieldFilters());
   }
 
   public boolean checkIfAnyFilterChanges(StatisticFilter filter, StatisticFilter oldFilter) {
@@ -123,7 +122,7 @@ public class StatisticChartCreationBean implements Serializable {
     if (checkIfAnyRoleChanged(filter, oldFilter)) {
       return true;
     }
-    return checkIfAnyCustomVarcharChanged(filter, oldFilter);
+    return checkIfAnyCustomFieldChanged(filter, oldFilter);
   }
 
   private boolean checkIfAnyCaseStateChanged(StatisticFilter filter, StatisticFilter oldFilter) {
@@ -162,25 +161,14 @@ public class StatisticChartCreationBean implements Serializable {
     return !filter.getIsAllRolesSelected() && !oldFilter.getSelectedRoles().equals(filter.getSelectedRoles());
   }
 
-  private boolean checkIfAnyCustomVarcharChanged(StatisticFilter filter, StatisticFilter oldFilter) {
-    //compare check boxes of custom varchar 1
-    if (!oldFilter.getSelectedCustomVarCharFields1().equals(filter.getSelectedCustomVarCharFields1())) {
-      return true;
+  private boolean checkIfAnyCustomFieldChanged(StatisticFilter filter, StatisticFilter oldFilter) {
+    for (Map.Entry<String, List<String>> entry : filter.getCustomFieldFilters().entrySet()) {
+      List<String> list = oldFilter.getCustomFieldFilters().get(entry.getKey());
+      if (!list.equals(entry.getValue())) {
+        return true;
+      }
     }
-    //compare check boxes of custom varchar 2
-    if (!oldFilter.getSelectedCustomVarCharFields2().equals(filter.getSelectedCustomVarCharFields2())) {
-      return true;
-    }
-    //compare check boxes of custom varchar 3
-    if (!oldFilter.getSelectedCustomVarCharFields3().equals(filter.getSelectedCustomVarCharFields3())) {
-      return true;
-    }
-    //compare check boxes of custom varchar 4
-    if (!oldFilter.getSelectedCustomVarCharFields4().equals(filter.getSelectedCustomVarCharFields4())) {
-      return true;
-    }
-    //compare check boxes of custom varchar 5
-    return !oldFilter.getSelectedCustomVarCharFields5().equals(filter.getSelectedCustomVarCharFields5());
+    return false;
   }
 
   private boolean isDateChanged(Date oldDate, Date currentDate) {
@@ -372,5 +360,9 @@ public class StatisticChartCreationBean implements Serializable {
     Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
     String fieldName = params.get("fieldName");
     return statisticService.getCustomFields(fieldName, query);
+  }
+  
+  public void setCustomFieldFilter(String customFieldName, List<String> values) {
+    this.customFieldFilters.put(customFieldName, values);
   }
 }
