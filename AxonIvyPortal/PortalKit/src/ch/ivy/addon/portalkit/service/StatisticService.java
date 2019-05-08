@@ -584,8 +584,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       for (Entry<Date, Long> result : numberOfTasksByExpiryTime.entrySet()) {
         Date resultDate = StatisticChartTimeUtils.truncateMinutesPart(result.getKey());
 
-        if (today.compareTo(resultDate) > 0) {
+        if (new Date().after(result.getKey())) {
           expiredTasks += result.getValue();
+          continue; // Not include expired tasks to other bars
         }
         
         if (today.compareTo(resultDate) == 0) {
