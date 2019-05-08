@@ -42,7 +42,6 @@ Ts0 @GridStep f62 '' #zField
 Ts0 @CallSub f42 '' #zField
 Ts0 @RichDialogProcessEnd f18 '' #zField
 Ts0 @RichDialogProcessEnd f22 '' #zField
-Ts0 @GridStep f30 '' #zField
 Ts0 @PushWFArc f17 '' #zField
 Ts0 @PushWFArc f59 '' #zField
 Ts0 @PushWFArc f25 '' #zField
@@ -50,8 +49,6 @@ Ts0 @PushWFArc f23 '' #zField
 Ts0 @PushWFArc f27 '' #zField
 Ts0 @PushWFArc f29 '' #zField
 Ts0 @PushWFArc f15 '' #zField
-Ts0 @PushWFArc f32 '' #zField
-Ts0 @PushWFArc f31 '' #zField
 Ts0 @PushWFArc f36 '' #zField
 Ts0 @PushWFArc f43 '' #zField
 Ts0 @PushWFArc f46 '' #zField
@@ -83,6 +80,7 @@ Ts0 @PushWFArc f3 '' #zField
 Ts0 @GridStep f67 '' #zField
 Ts0 @PushWFArc f68 '' #zField
 Ts0 @PushWFArc f20 '' #zField
+Ts0 @PushWFArc f30 '' #zField
 >Proto Ts0 Ts0 TaskItemDocumentsProcess #zField
 Ts0 f0 guid 1549452C02A2D7AA #txt
 Ts0 f0 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
@@ -527,31 +525,6 @@ Ts0 f18 @|RichDialogProcessEndIcon #fIcon
 Ts0 f22 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 Ts0 f22 733 269 22 22 14 0 #rect
 Ts0 f22 @|RichDialogProcessEndIcon #fIcon
-Ts0 f30 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
-' #txt
-Ts0 f30 actionTable 'out=in;
-' #txt
-Ts0 f30 actionCode 'import ch.ivy.ws.addon.WsException;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-
-for (WsException error : in.errors) {
-	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, error.userText, null));
-}
-' #txt
-Ts0 f30 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
-Ts0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>show error
-message</name>
-        <nameStyle>18,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f30 646 596 36 24 24 -15 #rect
-Ts0 f30 @|StepIcon #fIcon
 Ts0 f17 expr out #txt
 Ts0 f17 184 107 184 164 #arcP
 Ts0 f59 expr out #txt
@@ -567,14 +540,6 @@ Ts0 f29 488 516 488 538 #arcP
 Ts0 f15 expr in #txt
 Ts0 f15 outCond in.errors.isEmpty() #txt
 Ts0 f15 488 566 488 596 #arcP
-Ts0 f32 expr out #txt
-Ts0 f32 664 620 499 720 #arcP
-Ts0 f32 1 664 720 #addKink
-Ts0 f32 1 0.2544295989340298 0 0 #arcLabel
-Ts0 f31 expr in #txt
-Ts0 f31 502 552 664 596 #arcP
-Ts0 f31 1 664 552 #addKink
-Ts0 f31 0 0.7001921317088737 0 0 #arcLabel
 Ts0 f36 expr out #txt
 Ts0 f36 488 107 488 130 #arcP
 Ts0 f43 expr out #txt
@@ -612,6 +577,8 @@ Ts0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>show error&#xD;
 message</name>
+        <nameStyle>19,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -831,6 +798,11 @@ Ts0 f68 expr out #txt
 Ts0 f68 488 620 488 652 #arcP
 Ts0 f20 expr out #txt
 Ts0 f20 488 676 488 709 #arcP
+Ts0 f30 expr in #txt
+Ts0 f30 502 552 499 720 #arcP
+Ts0 f30 1 664 552 #addKink
+Ts0 f30 2 664 720 #addKink
+Ts0 f30 1 0.5089285714285714 0 0 #arcLabel
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -851,10 +823,6 @@ Ts0 f58 mainOut f29 tail #connect
 Ts0 f29 head f28 in #connect
 Ts0 f28 out f15 tail #connect
 Ts0 f15 head f13 mainIn #connect
-Ts0 f28 out f31 tail #connect
-Ts0 f31 head f30 mainIn #connect
-Ts0 f30 mainOut f32 tail #connect
-Ts0 f32 head f54 mainIn #connect
 Ts0 f53 mainOut f36 tail #connect
 Ts0 f36 head f35 in #connect
 Ts0 f39 mainOut f43 tail #connect
@@ -901,3 +869,5 @@ Ts0 f13 mainOut f68 tail #connect
 Ts0 f68 head f67 mainIn #connect
 Ts0 f67 mainOut f20 tail #connect
 Ts0 f20 head f54 mainIn #connect
+Ts0 f28 out f30 tail #connect
+Ts0 f30 head f54 mainIn #connect
