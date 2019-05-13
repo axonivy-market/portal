@@ -5117,4 +5117,17 @@ margin-top
 	-o-transform: translateY(30%);
 	transform: translateY(30%);
 }
+
+.ui-messages ul {
+  margin-top: 0 !important;
+}
+
+.ui-messages-info,
+.ui-message-info,
+.ui-messages-warn,
+.ui-message-warn,
+.ui-messages-error,
+.ui-message-error {
+  font-size: 14px !important;
+} 
 /* =================== END MESSAGES ========================= */
