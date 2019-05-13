@@ -655,9 +655,9 @@
 	<p:dialog
 		header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/applicationSelectionHeader')}"
 		id="applicationSelectionDialog" widgetVar="applicationSelectionDialog" dynamic="true" modal="true" showEffect="fade"
-		hideEffect="fade" resizable="false" appendTo="@(body)" width="60%">
-		<p:dataTable value="#{data.ivyApplications}" var="app"
-			emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
+		hideEffect="fade" resizable="false" appendTo="@(body)" width="60%" >
+		<p:dataTable value="#{data.ivyApplications}" var="app" scrollable="true" 
+			emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" styleClass="application-selection-container">
 			<p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationName')}">
 				<h:outputText value="#{app.name}" />
 			</p:column>

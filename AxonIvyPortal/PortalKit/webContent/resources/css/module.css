@@ -3722,6 +3722,12 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 .logo-height-unit {
   line-height: 39px;
 }
+
+.application-selection-container .ui-datatable-scrollable-body {
+  height: auto;
+  max-height: 60vh !important;
+  overflow: auto;
+}
 /********************************** ABSENCES AND DEPUTY **********************************/
 .substituted-user-text {
   font-size: 1.4rem;
