@@ -69,7 +69,7 @@
       header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" appendTo="@(body)" severity="alert">
       <p:commandButton styleClass="document-deletion-command" id="document-deletion-command"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" process="@this"
-        update="case-details-documents" actionListener="#{logic.deleteDocument} #{p:component('case-document-global-messages')}"
+        update="case-details-documents #{p:component('case-document-global-messages')}" actionListener="#{logic.deleteDocument}"
         oncomplete="PF('document-deletion-dialog').hide()" />
       <p:commandButton id="document-deletion-cancellation-command" type="button"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
