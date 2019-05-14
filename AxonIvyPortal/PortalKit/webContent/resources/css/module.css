@@ -3105,6 +3105,7 @@ a.task-details-document-add-link {
 }
 
 .case-details-data-2nd-column > * {
+  display: inline-block;
   font-size: 1.2rem !important;
 }
 .case-details-data-2nd-column > *:not(.case-details-priority):not(form):not(div) {
