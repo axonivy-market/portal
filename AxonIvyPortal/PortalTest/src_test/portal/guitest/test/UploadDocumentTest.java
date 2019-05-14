@@ -61,7 +61,7 @@ public class UploadDocumentTest extends BaseTest{
     casePage = homePage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     String error = caseDetailsPage.uploadDocumentWithError(getAbsolutePathToTestFile("unsupportedExtension.abc"));
-    assertEquals(error, "This file type is not acceptable!");
+    assertEquals(error, "This file type is not accepted!");
   }
   
   @Test
