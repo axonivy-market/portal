@@ -48,10 +48,10 @@ public class AdhocExpressTest extends BaseTest {
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksBy(taskNamePrefix);
     assertEquals(1, taskWidgetPage.countTasks());
+    String taskId = taskWidgetPage.getTaskId();
     taskTemplatePage = taskWidgetPage.startTask(0);
     
     //create adhoc from Maternity task
-    String taskId = taskTemplatePage.getTaskId();
     assertEquals(true, taskTemplatePage.isShowAdhocHistoryBtnNotExist());
     taskTemplatePage.clickAdhocCreationButton();
     assertEquals("You may lose your work in progress and start the Ad-hoc process. Do you want to continue?", taskTemplatePage.getAdhocCreationMessage());

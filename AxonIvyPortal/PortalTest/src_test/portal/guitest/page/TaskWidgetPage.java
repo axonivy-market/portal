@@ -513,6 +513,13 @@ public class TaskWidgetPage extends TemplatePage {
     return descriptionInput.getText();
   }
 
+  public String getTaskId() {
+    String taskTitleCssSelection = "span[id$='task-start-task-id']";
+    String taskTitle = findElementByCssSelector(taskTitleCssSelection).getText();
+    String taskId = taskTitle.substring(taskTitle.indexOf("#") + 1, taskTitle.indexOf(")"));
+    return taskId;
+  }
+  
   public boolean hasNoTask() {
     WebElement noTaskMessage = findElementByCssSelector("label[class*='no-task-message']");
     return noTaskMessage.isDisplayed();
