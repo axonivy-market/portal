@@ -118,12 +118,6 @@ public class TaskTemplatePage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
   
-  public String getTaskId() {
-    String taskTitleCssSelection = "span[id$='title']";
-    String taskTitle = findElementByCssSelector(taskTitleCssSelection).getText();
-    String taskId = taskTitle.substring(taskTitle.indexOf("#") + 1, taskTitle.indexOf(")"));
-    return taskId;
-  }
   
   public boolean isShowAdhocHistoryBtnNotExist() {
     String adhocHistoryBtnCSSSelection = "a[id$='show-adhoc-history']";
