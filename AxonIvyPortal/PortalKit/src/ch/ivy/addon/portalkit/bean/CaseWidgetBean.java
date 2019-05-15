@@ -63,7 +63,7 @@ public class CaseWidgetBean implements Serializable {
   }
 
   public String getAdditionalCaseDetailsPageUri(ICase iCase) {
-    String additionalCaseDetailsPageUri = iCase.getAdditionalProperty(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString());
+    String additionalCaseDetailsPageUri = iCase.customFields().textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).getOrNull();
     if (StringUtils.isEmpty(additionalCaseDetailsPageUri)) {
       additionalCaseDetailsPageUri = CaseUtils.getProcessStartUriWithCaseParameters(iCase, START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE);
     }
