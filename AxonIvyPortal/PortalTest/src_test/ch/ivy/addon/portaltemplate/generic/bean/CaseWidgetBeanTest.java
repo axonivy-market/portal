@@ -45,7 +45,7 @@ public class CaseWidgetBeanTest {
     PowerMockito.mockStatic(CaseUtils.class);
     
     ICase iCase = PowerMockito.mock(ICase.class);
-    PowerMockito.when(iCase.getAdditionalProperty(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString())).thenReturn(StringUtils.EMPTY);
+    PowerMockito.when(iCase.customFields().textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).getOrNull()).thenReturn(StringUtils.EMPTY);
     
     PowerMockito.when(CaseUtils.getProcessStartUriWithCaseParameters(Matchers.any(ICase.class), Matchers.anyString())).thenReturn(DEFAULT_ADDITIONAL_CASE_DETAILS_PAGE);
     
@@ -63,7 +63,7 @@ public class CaseWidgetBeanTest {
   @PrepareForTest({CaseWidgetBean.class, PermissionUtils.class, FacesContext.class})
   public void testGetAdditionalCaseDetailsPageUriWithCustomization() throws Exception {
     ICase iCase = PowerMockito.mock(ICase.class);
-    PowerMockito.when(iCase.getAdditionalProperty(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString())).thenReturn(CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE);
+    PowerMockito.when(iCase.customFields().textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).getOrNull()).thenReturn(CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE);
     PowerMockito.mockStatic(FacesContext.class);
 
     PowerMockito.when(FacesContext.getCurrentInstance()).thenReturn(facesContext);
