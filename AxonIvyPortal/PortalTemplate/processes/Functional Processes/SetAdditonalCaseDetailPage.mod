@@ -1,5 +1,5 @@
 [Ivy]
-1624CFE2532EF6BE 3.23 #module
+1624CFE2532EF6BE 3.26 #module
 >Proto >Proto Collection #zClass
 Se0 SetAdditonalCaseDetailPage Big #zClass
 Se0 B #cInfo
@@ -52,7 +52,8 @@ import ch.ivy.addon.portalkit.support.UrlDetector;
 ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
 String casePageUrl = collector.findLinkByFriendlyRequestPath(in.linkToAdditonalCaseDetailPage)  
 											+ "?caseId=" + ivy.case.getId();
-ivy.case.setAdditionalProperty(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString(), casePageUrl);' #txt
+											
+ivy.case.customFields().textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).set(casePageUrl);' #txt
 Se0 f3 security system #txt
 Se0 f3 type ch.ivy.addon.portal.generic.SetAdditonalCaseDetailPageData #txt
 Se0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
