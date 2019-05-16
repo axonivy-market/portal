@@ -1,5 +1,5 @@
 [Ivy]
-15795F163B7492E2 3.23 #module
+15795F163B7492E2 3.26 #module
 >Proto >Proto Collection #zClass
 Ds0 CaseDocumentProcess Big #zClass
 Ds0 RD #cInfo
@@ -23,7 +23,6 @@ Ds0 @RichDialogMethodStart f5 '' #zField
 Ds0 @PushWFArc f11 '' #zField
 Ds0 @GridStep f16 '' #zField
 Ds0 @PushWFArc f19 '' #zField
-Ds0 @GridStep f21 '' #zField
 Ds0 @RichDialogMethodStart f24 '' #zField
 Ds0 @GridStep f26 '' #zField
 Ds0 @PushWFArc f10 '' #zField
@@ -31,7 +30,6 @@ Ds0 @PushWFArc f28 '' #zField
 Ds0 @RichDialogProcessEnd f25 '' #zField
 Ds0 @RichDialogMethodStart f3 '' #zField
 Ds0 @Alternative f31 '' #zField
-Ds0 @PushWFArc f20 '' #zField
 Ds0 @Alternative f29 '' #zField
 Ds0 @RichDialogMethodStart f12 '' #zField
 Ds0 @PushWFArc f18 '' #zField
@@ -48,7 +46,6 @@ Ds0 @PushWFArc f37 '' #zField
 Ds0 @PushWFArc f22 '' #zField
 Ds0 @RichDialogProcessEnd f27 '' #zField
 Ds0 @PushWFArc f38 '' #zField
-Ds0 @PushWFArc f39 '' #zField
 Ds0 @PushWFArc f23 '' #zField
 Ds0 @PushWFArc f33 '' #zField
 Ds0 @GridStep f48 '' #zField
@@ -61,6 +58,9 @@ Ds0 @PushWFArc f44 '' #zField
 Ds0 @PushWFArc f46 '' #zField
 Ds0 @PushWFArc f9 '' #zField
 Ds0 @PushWFArc f42 '' #zField
+Ds0 @GridStep f21 '' #zField
+Ds0 @PushWFArc f20 '' #zField
+Ds0 @PushWFArc f39 '' #zField
 >Proto Ds0 Ds0 CaseDocumentProcess #zField
 Ds0 f1 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
 Ds0 f1 85 589 22 22 14 0 #rect
@@ -201,27 +201,6 @@ Ds0 f19 expr out #txt
 Ds0 f19 224 204 114 512 #arcP
 Ds0 f19 1 224 512 #addKink
 Ds0 f19 0 0.5352887443931681 0 0 #arcLabel
-Ds0 f21 actionDecl 'ch.ivy.gawfs.component.CaseDocument.CaseDocumentData out;
-' #txt
-Ds0 f21 actionTable 'out=in;
-' #txt
-Ds0 f21 actionCode 'import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-
-FacesContext context = FacesContext.getCurrentInstance();
-context.addMessage("choose-uploading-file", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Die Datei " + in.selectedFile.getFileName() + " exisitert bereits!" ,null));' #txt
-Ds0 f21 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
-Ds0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>show warning</name>
-        <nameStyle>12,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ds0 f21 622 436 36 24 24 -7 #rect
-Ds0 f21 @|StepIcon #fIcon
 Ds0 f24 guid 14DD7D57754BAFCF #txt
 Ds0 f24 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
 Ds0 f24 method overrideFile() #txt
@@ -252,7 +231,7 @@ import javax.faces.context.FacesContext;
 FacesContext context = FacesContext.getCurrentInstance();
 Boolean uploadSuccesfully = DocumentFileUtils.uploadToDirectory(ivy.case,in.selectedFile.getInputstream(),in.selectedFile.getFileName());
 if (uploadSuccesfully) {
-	context.addMessage("documentFile", new FacesMessage( ivy.cms.co("/Dialogs/components/CaseDocument/uploadSucceed"), "" ));
+	context.addMessage("messagesDynaForm", new FacesMessage( ivy.cms.co("/Dialogs/components/CaseDocument/uploadSucceed"), "" ));
 	ivy.log.debug("FileUpload erfolgreich" + ivy.cms.co("/Dialogs/components/CaseDocument/uploadSucceed"));
 } else {
 	context.addMessage("documentFile", new FacesMessage(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadFailed"), "" ));
@@ -313,19 +292,6 @@ Ds0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ds0 f31 490 434 28 28 12 -22 #rect
 Ds0 f31 @|AlternativeIcon #fIcon
-Ds0 f20 expr in #txt
-Ds0 f20 outCond in.uploadingFileExists #txt
-Ds0 f20 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>yes</name>
-        <nameStyle>3,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ds0 f20 518 448 622 448 #arcP
-Ds0 f20 0 0.7307692307692307 0 -8 #arcLabel
 Ds0 f29 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
 Ds0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -461,7 +427,7 @@ Ds0 f32 actionCode 'import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 FacesContext context = FacesContext.getCurrentInstance();
-context.addMessage("choose-uploading-file", new FacesMessage(FacesMessage.SEVERITY_INFO, ivy.cms.co("/Dialogs/components/CaseDocument/fileLimitMessage") + " (max." + in.numberOfFilesLimit + ")"  ,null));' #txt
+context.addMessage("messagesDynaForm", new FacesMessage(FacesMessage.SEVERITY_INFO, ivy.cms.co("/Dialogs/components/CaseDocument/fileLimitMessage") + " (max." + in.numberOfFilesLimit + ")"  ,null));' #txt
 Ds0 f32 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
 Ds0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -499,9 +465,6 @@ Ds0 f27 627 531 26 26 0 12 #rect
 Ds0 f27 @|RichDialogProcessEndIcon #fIcon
 Ds0 f38 expr out #txt
 Ds0 f38 640 628 640 557 #arcP
-Ds0 f39 expr out #txt
-Ds0 f39 640 460 640 531 #arcP
-Ds0 f39 0 0.2466712619605421 0 0 #arcLabel
 Ds0 f23 expr in #txt
 Ds0 f23 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -560,7 +523,7 @@ Ds0 f41 actionTable 'out=in;
 Ds0 f41 actionCode 'import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, in.uploadDocumentCheckMessage, null));' #txt
+FacesContext.getCurrentInstance().addMessage("messagesDynaForm", new FacesMessage(FacesMessage.SEVERITY_ERROR, in.uploadDocumentCheckMessage, null));' #txt
 Ds0 f41 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
 Ds0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -631,6 +594,42 @@ Ds0 f9 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ds0 f9 504 280 504 340 #arcP
 Ds0 f42 expr in #txt
 Ds0 f42 520 264 557 264 #arcP
+Ds0 f21 actionDecl 'ch.ivy.gawfs.component.CaseDocument.CaseDocumentData out;
+' #txt
+Ds0 f21 actionTable 'out=in;
+' #txt
+Ds0 f21 actionCode 'import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
+FacesContext context = FacesContext.getCurrentInstance();
+context.addMessage("messagesDynaForm", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Die Datei " + in.selectedFile.getFileName() + " exisitert bereits!" ,null));' #txt
+Ds0 f21 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
+Ds0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>show warning</name>
+        <nameStyle>12,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ds0 f21 622 436 36 24 24 -7 #rect
+Ds0 f21 @|StepIcon #fIcon
+Ds0 f20 expr in #txt
+Ds0 f20 outCond in.uploadingFileExists #txt
+Ds0 f20 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>yes</name>
+        <nameStyle>3,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ds0 f20 518 448 622 448 #arcP
+Ds0 f20 0 0.432345938218868 1 -1 #arcLabel
+Ds0 f39 expr out #txt
+Ds0 f39 640 460 640 531 #arcP
 >Proto Ds0 .type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
 >Proto Ds0 .processKind HTML_DIALOG #txt
 >Proto Ds0 -8 -8 16 16 16 26 #rect
@@ -647,8 +646,6 @@ Ds0 f26 mainOut f10 tail #connect
 Ds0 f10 head f6 mainIn #connect
 Ds0 f24 mainOut f28 tail #connect
 Ds0 f28 head f26 mainIn #connect
-Ds0 f31 out f20 tail #connect
-Ds0 f20 head f21 mainIn #connect
 Ds0 f12 mainOut f18 tail #connect
 Ds0 f18 head f16 mainIn #connect
 Ds0 f13 mainOut f15 tail #connect
@@ -661,9 +658,6 @@ Ds0 f35 out f22 tail #connect
 Ds0 f22 head f32 mainIn #connect
 Ds0 f32 mainOut f38 tail #connect
 Ds0 f38 head f27 mainIn #connect
-Ds0 f21 mainOut f39 tail #connect
-Ds0 f39 head f27 mainIn #connect
-Ds0 f31 out f23 tail #connect
 Ds0 f23 head f17 mainIn #connect
 Ds0 f35 out f33 tail #connect
 Ds0 f33 head f26 mainIn #connect
@@ -681,3 +675,8 @@ Ds0 f40 out f9 tail #connect
 Ds0 f9 head f8 mainIn #connect
 Ds0 f40 out f42 tail #connect
 Ds0 f42 head f41 mainIn #connect
+Ds0 f20 head f21 mainIn #connect
+Ds0 f39 head f27 mainIn #connect
+Ds0 f31 out f20 tail #connect
+Ds0 f31 out f23 tail #connect
+Ds0 f21 mainOut f39 tail #connect
