@@ -46,20 +46,6 @@ Ds0 f3 actionDecl 'ch.ivy.add.portalkit.DefaultUserProcessData out;
 ' #txt
 Ds0 f3 actionTable 'out=in;
 ' #txt
-Ds0 f3 actionCode 'import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
-
-ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
-
-String acmLink = collector.findACMLink();
-if (!StringUtils.isEmpty(acmLink)) {
-	UserProcess acmProcess = new UserProcess();
-	acmProcess.setLink(acmLink);
-	acmProcess.setProcessName("Axon.ivy Selfservice");
-	acmProcess.setIcon("fa-play");
-	in.defaultUserProcesses.add(acmProcess);
-}' #txt
 Ds0 f3 type ch.ivy.add.portalkit.DefaultUserProcessData #txt
 Ds0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
