@@ -186,9 +186,12 @@
 			</itemizedlist>
 <screen>
 CaseLazyDataModel dataModel = new CaseLazyDataModel();
-dataModel.getQueryCriteria().setCaseQuery(YOUR_CASE_QUERY); // Set your CaseQuery
-dataModel.getSearchCriteria().setInvolvedUsername(true); // Use this code line if you would like to display the cases for all users
-out.caseView = CaseView.create().dataModel(dataModel).withTitle("My Cases").buildNewView();
+// Set your CaseQuery
+dataModel.getQueryCriteria().setCaseQuery(YOUR_CASE_QUERY); 
+// Use this code line if you would like to display the cases for all users
+dataModel.getSearchCriteria().setInvolvedUsername(true); 
+out.caseView = CaseView.create().dataModel(dataModel)
+.withTitle("My Cases").buildNewView();
 </screen>
 		</para>
 	</sect2>
