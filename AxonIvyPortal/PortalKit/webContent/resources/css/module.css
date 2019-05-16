@@ -3821,6 +3821,12 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   box-sizing: border-box !important;
 }
 
+.language-table .ui-datatable-scrollable-body {
+  height: auto !important;
+  max-height: 55vh !important;
+  overflow-x: hidden;
+}
+
 .deputy-dialog {
   min-width: 900px;
 }
