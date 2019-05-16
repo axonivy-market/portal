@@ -286,9 +286,12 @@
 			</itemizedlist>
 <screen>
 TaskLazyDataModel dataModel = new TaskLazyDataModel();
-dataModel.getQueryCriteria().setTaskQuery(YOUR_TASK_QUERY); // Set your TaskQuery
-dataModel.getSearchCriteria().setInvolvedUsername(true); // Use this code line if you would like to display the tasks for all users
-out.taskView = TaskView.create().dataModel(dataModel).showHeaderToolbar(false).createNewTaskView();
+// Set your TaskQuery
+dataModel.getQueryCriteria().setTaskQuery(YOUR_TASK_QUERY); 
+// Use this code line if you would like to display the tasks for all users
+dataModel.getSearchCriteria().setInvolvedUsername(true); 
+out.taskView = TaskView.create().dataModel(dataModel)
+.showHeaderToolbar(false).createNewTaskView();
 </screen>
 		</para>
 	</sect2>

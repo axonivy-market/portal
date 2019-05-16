@@ -194,10 +194,10 @@
 	<sect3 xml:id="axonivyportal.components.additionalcomponent.globalgrowl.growlafterfinishtask">
 		<title>Display growl after finish task</title>
 		<para>
-			After a task is finished, growl message appears as default.
+			To make growl message appears as default after a task is finished, administrator could set the <code>DISPLAY_MESSAGE_AFTER_FINISH_TASK</code> Portal variable to true.
 		</para>
 		<para>
-			For each task, you can turn it off or override it. Firstly, when you submit form to finish task, you need to put
+			After that, for each task, you can turn it off or override it. Firstly, when you submit form to finish task, you need to put
 			the
 			<code>overridePortalGrowl</code>
 			key to flash object with any value

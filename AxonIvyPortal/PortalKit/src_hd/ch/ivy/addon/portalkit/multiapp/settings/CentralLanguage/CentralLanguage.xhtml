@@ -19,7 +19,7 @@
       <p:messages id="errors-message" severity="error" showDetail="true" escape="false"
         closable="true" />
       <p:dataTable id="language-setting-table" value="#{data.remoteLanguageSettings}" var="ivyLanguage"
-        scrollable="true" scrollHeight="100" styleClass="language-table">
+        scrollable="true" styleClass="language-table">
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/application')}">
           <p:outputLabel id="application-name" styleClass="TexAlLeft" value="#{ivyLanguage.appDisplayName}" />

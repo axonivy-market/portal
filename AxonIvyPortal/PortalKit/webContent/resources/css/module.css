@@ -3083,7 +3083,8 @@ a.task-details-document-add-link {
 }
 
 .case-details-item {
-  display: inline-block;
+  display: inline-flex;
+  flex-direction: column;
   width: 250px;
   height: 270px;
 }
@@ -3727,7 +3728,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 .application-selection-container .ui-datatable-scrollable-body {
   height: auto;
   max-height: 60vh !important;
-  overflow: auto;
+  overflow-x: hidden;
 }
 /********************************** ABSENCES AND DEPUTY **********************************/
 .substituted-user-text {
@@ -3819,6 +3820,12 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 /* Override Primefaces table style */
 .absence-table table, .language-table table, .admin-table table {
   box-sizing: border-box !important;
+}
+
+.language-table .ui-datatable-scrollable-body {
+  height: auto !important;
+  max-height: 55vh !important;
+  overflow-x: hidden;
 }
 
 .deputy-dialog {
@@ -4290,7 +4297,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 .dashboard-chart-panel .chart-actions-container {
   height: 25px;
   float: right;
-  flex: 1;
+  text-align: right;
 }
 
 .dashboard-chart-panel:hover .chart-actions-container .chart-action {
