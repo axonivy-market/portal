@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 
 import ch.ivy.addon.portalkit.persistence.variable.IvyVariable;
+import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.ISubProcessStart;
@@ -127,7 +128,10 @@ public class IvyAdapterService {
           defaultsubProcessStart = subProcessStart;
         }
       }
-      return foundSubProcessStart != null ? foundSubProcessStart : defaultsubProcessStart;
+      return foundSubProcessStart != null && 
+              foundSubProcessStart.getProcessModelVersion() != null && 
+              foundSubProcessStart.getProcessModelVersion().getActivityState() == ActivityState.ACTIVE 
+              ? foundSubProcessStart : defaultsubProcessStart;
     }
   }
 
