@@ -4290,7 +4290,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 .dashboard-chart-panel .chart-actions-container {
   height: 25px;
   float: right;
-  flex: 1;
+  text-align: right;
 }
 
 .dashboard-chart-panel:hover .chart-actions-container .chart-action {
