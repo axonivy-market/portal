@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
+import ch.ivyteam.ivy.application.ActivityState;
+import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.ISubProcessStart;
@@ -114,9 +116,10 @@ public class IvyAdapterService {
       ISubProcessStart foundSubProcessStart = null;
       ISubProcessStart defaultsubProcessStart = null;
       for (ISubProcessStart subProcessStart : subProcessStarts) {
-        String libraryId = subProcessStart.getProcessModelVersion().getLibrary().getId();
+        IProcessModelVersion processModelVersion = subProcessStart.getProcessModelVersion();
+        String libraryId = processModelVersion.getLibrary().getId();
         if (excludedLibraries == null || !excludedLibraries.contains(libraryId)) {
-          if (subProcessStart.getProcessModelVersion().equals(Ivy.request().getProcessModelVersion())) {
+          if (processModelVersion.equals(Ivy.request().getProcessModelVersion())) {
             return subProcessStart;
           }
           foundSubProcessStart = subProcessStart;
@@ -124,7 +127,10 @@ public class IvyAdapterService {
           defaultsubProcessStart = subProcessStart;
         }
       }
-      return foundSubProcessStart != null ? foundSubProcessStart : defaultsubProcessStart;
+      return foundSubProcessStart != null && 
+          foundSubProcessStart.getProcessModelVersion() != null && 
+          foundSubProcessStart.getProcessModelVersion().getActivityState() == ActivityState.ACTIVE 
+          ? foundSubProcessStart : defaultsubProcessStart;
     }
   }
 
