@@ -3083,7 +3083,8 @@ a.task-details-document-add-link {
 }
 
 .case-details-item {
-  display: inline-block;
+  display: inline-flex;
+  flex-direction: column;
   width: 250px;
   height: 270px;
 }
