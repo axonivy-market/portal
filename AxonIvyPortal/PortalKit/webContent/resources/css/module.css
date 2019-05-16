@@ -3727,7 +3727,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 .application-selection-container .ui-datatable-scrollable-body {
   height: auto;
   max-height: 60vh !important;
-  overflow: auto;
+  overflow-x: hidden;
 }
 /********************************** ABSENCES AND DEPUTY **********************************/
 .substituted-user-text {
