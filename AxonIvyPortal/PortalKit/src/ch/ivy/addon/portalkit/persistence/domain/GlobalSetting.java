@@ -43,6 +43,7 @@ public class GlobalSetting extends BusinessEntity {
     value = getDefaultValue();
   }
 
+  @JsonIgnore
   public String getNote() {
     return GlobalVariable.valueOf(key).getNote();
   }
