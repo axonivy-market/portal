@@ -5,8 +5,6 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.boon.datarepo.Repo;
-
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.persistence.domain.BusinessEntity;
 import ch.ivy.addon.portalkit.persistence.exception.DaoException;
@@ -19,7 +17,6 @@ import ch.ivyteam.util.Property;
 
 public abstract class AbstractDao<T extends BusinessEntity> {
 
-  protected Repo<Long, T> repo;
   protected IApplication ivyApplication;
 
   public AbstractDao(IApplication application) {
@@ -28,22 +25,6 @@ public abstract class AbstractDao<T extends BusinessEntity> {
 
   public AbstractDao() {
     this.ivyApplication = Ivy.wf().getApplication();
-  }
-
-  protected enum EntityProperty {
-    ID("id"), NAME("name"), SERVER_ID("serverId"), USER_NAME("userName"), APPLICATION_ID("applicationId"), KEY("key"), 
-    APPLICATION_NAME("applicationName"), DISPLAY_NAME("displayName"), DEFAULT_PROCESS("defaultProcess"), DELETED("deleted");
-
-    private String value;
-
-    private EntityProperty(String value) {
-      this.value = value;
-    }
-
-    @Override
-    public String toString() {
-      return value;
-    }
   }
 
   /**
