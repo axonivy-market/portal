@@ -9,6 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -21,7 +22,11 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
+import ch.ivy.addon.portalkit.bo.IvyProcess;
+import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
+import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
@@ -39,14 +44,13 @@ public class ProcessWidgetBean implements Serializable {
 
   private static final long serialVersionUID = -5889375917550618261L;
   private static final String SPECIAL_CHARACTER_KEY = "SPECIAL_CHARACTER";
-  private static final String EXPRESS_WORKFLOW_ID_PARAM = "?workflowID=";
 
   private String processWidgetComponentId;
-  private List<ExpressProcess> expressProcesses;
-  private ExpressProcess deletedExpressProcess;
+  private Process deletedExpressProcess;
   private boolean mobileMode;
   private IProcessStart createExpressWorkflowProcessStart;
-  private Map<String, List<IWebStartable>> processesByAlphabet;
+  private Map<String, List<Process>> processesByAlphabet;
+  List<Process> portalProcesses;
 
   @PostConstruct
   public void init() {
@@ -56,17 +60,18 @@ public class ProcessWidgetBean implements Serializable {
     ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
     createExpressWorkflowProcessStart = collector.findExpressCreationProcess();
 
-    expressProcesses = findExpressProcesses();
-    groupProcessesByAlphabetIndex(findProcesses());
+    portalProcesses = findProcesses();
+    portalProcesses.addAll(findExpressProcesses());
+    groupProcessesByAlphabetIndex(portalProcesses);
   }
 
-  private void groupProcessesByAlphabetIndex(List<IWebStartable> processes) {
+  private void groupProcessesByAlphabetIndex(List<Process> processes) {
     processesByAlphabet = new HashMap<>();
     // Follow Oracle document about regex for punctual character
     // https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
     String punctualRegex = "\\p{Punct}";
 
-    for (IWebStartable process : processes) {
+    for (Process process : processes) {
       String processNameUpperCase = StringUtils.trim(process.getName()).toUpperCase();
       if (StringUtils.isNotEmpty(processNameUpperCase)) {
         String firstLetter = processNameUpperCase.substring(0, 1);
@@ -78,7 +83,7 @@ public class ProcessWidgetBean implements Serializable {
       }
     }
 
-    List<IWebStartable> processesBySpecialCharacterGroup = processesByAlphabet.remove(SPECIAL_CHARACTER_KEY);
+    List<Process> processesBySpecialCharacterGroup = processesByAlphabet.remove(SPECIAL_CHARACTER_KEY);
     Collator collator = Collator.getInstance(Locale.GERMAN);
     processesByAlphabet = processesByAlphabet.entrySet().stream().sorted(Map.Entry.comparingByKey(collator::compare))
         .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
@@ -87,9 +92,9 @@ public class ProcessWidgetBean implements Serializable {
     }
   }
 
-  private void addOrUpdateProcessesByKey(IWebStartable process, String key) {
+  private void addOrUpdateProcessesByKey(Process process, String key) {
     if (!processesByAlphabet.containsKey(key)) {
-      List<IWebStartable> processes = new ArrayList<>();
+      List<Process> processes = new ArrayList<>();
       processes.add(process);
       processesByAlphabet.put(key, processes);
     } else {
@@ -97,15 +102,17 @@ public class ProcessWidgetBean implements Serializable {
     }
   }
 
-  private List<IWebStartable> findProcesses() {
+  private List<Process> findProcesses() {
     IvyComponentLogicCaller<List<IWebStartable>> ivyComponentLogicCaller = new IvyComponentLogicCaller<>();
     List<IWebStartable> processes = ivyComponentLogicCaller.invokeComponentLogic(processWidgetComponentId,
         "#{logic.collectProcesses}", new Object[] {});
     sortProcesses(processes);
-    return processes;
+    List<Process> defaultPortalProcesses = new ArrayList<>();
+    processes.forEach(process -> defaultPortalProcesses.add(new IvyProcess(process)));
+    return defaultPortalProcesses;
   }
 
-  private List<ExpressProcess> findExpressProcesses() {
+  private List<Process> findExpressProcesses() {
     List<ExpressProcess> processes = new ArrayList<>();
     ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.request().getApplication());
     String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
@@ -118,7 +125,9 @@ public class ProcessWidgetBean implements Serializable {
       }
     }
     sortExpressProcesses(processes);
-    return processes;
+    List<Process> defaultPortalProcesses = new ArrayList<>();
+    processes.forEach(process -> defaultPortalProcesses.add(new PortalExpressProcess(process)));
+    return defaultPortalProcesses;
   }
 
   private void sortProcesses(List<IWebStartable> processes) {
@@ -145,7 +154,8 @@ public class ProcessWidgetBean implements Serializable {
      ExpressServiceRegistry.getProcessService().delete(workflowId);
      ExpressServiceRegistry.getTaskDefinitionService().deleteByProcessId(workflowId);
      ExpressServiceRegistry.getFormElementService().deleteByProcessId(workflowId);
-     expressProcesses.remove(deletedExpressProcess);
+     portalProcesses.remove(portalProcesses.stream().filter(process -> process.getId().equals(deletedExpressProcess.getId())).findFirst().get());
+     groupProcessesByAlphabetIndex(portalProcesses);
   }
 
   public String getCreateExpessWorkflowLink() {
@@ -162,55 +172,41 @@ public class ProcessWidgetBean implements Serializable {
     return createExpressWorkflowProcessStart != null
         && PermissionUtils.hasPortalPermission(PortalPermission.EXPRESS_CREATE_WORKFLOW);
   }
-  
-  public void startExpressProcess(ExpressProcess process) throws IOException {
-    String startLink = generateWorkflowStartLink(process);
-    startProcess(startLink);
-  }
-  
-  private String generateWorkflowStartLink(ExpressProcess process) {
-    ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.request().getApplication());
-    return processStartCollector.findExpressWorkflowStartLink() + EXPRESS_WORKFLOW_ID_PARAM + process.getId();
-  }
 
   public void startProcess(String link) throws IOException {
     FacesContext.getCurrentInstance().getExternalContext().redirect(link);
   }
-
-  public List<ExpressProcess> getExpressProcesses() {
-    return expressProcesses;
-  }
-
-  public void setExpressProcesses(List<ExpressProcess> expressProcesses) {
-    this.expressProcesses = expressProcesses;
-  }
   
-  public ExpressProcess getDeletedExpressProcess() {
+  public Process getDeletedExpressProcess() {
     return deletedExpressProcess;
   }
 
-  public void setDeletedExpressProcess(ExpressProcess deletedExpressProcess) {
+  public void setDeletedExpressProcess(Process deletedExpressProcess) {
     this.deletedExpressProcess = deletedExpressProcess;
   }
 
-  public Map<String, List<IWebStartable>> getProcessesByAlphabet() {
+  public Map<String, List<Process>> getProcessesByAlphabet() {
     return processesByAlphabet;
   }
 
-  public void setUserProcessByAlphabet(Map<String, List<IWebStartable>> processesByAlphabet) {
+  public void setUserProcessByAlphabet(Map<String, List<Process>> processesByAlphabet) {
     this.processesByAlphabet = processesByAlphabet;
   }
 
   public IProcessStart getCreateExpressWorkflowProcessStart() {
     return createExpressWorkflowProcessStart;
   }
-  
-  public List<Character> getAllAlphabeticalCharacters() {
-    List<Character> characters = new ArrayList<>();
-    for (int i = 65; i <= 90; i++) {
+
+  public Set<String> getAllAlphabeticalCharacters() {
+    //List<Character> characters = new ArrayList<>();
+    /*for (int i = 65; i <= 90; i++) {
       characters.add((char)i);
     }
-    return characters;
+    return characters;*/
+    return processesByAlphabet.keySet();
   }
 
+  public boolean isExpressProcess (Process process) {
+    return process.getType() == ProcessType.EXPRESS_PROCESS;
+  }
 }

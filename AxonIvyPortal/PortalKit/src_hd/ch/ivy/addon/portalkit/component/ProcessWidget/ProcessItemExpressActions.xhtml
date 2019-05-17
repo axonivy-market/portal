@@ -7,24 +7,21 @@
   xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <ui:composition>
-  <div class="process-start-list-item-action is-express-workflow">
-    <h:outputText id="info-express-workflow" styleClass="fa fa-info-circle express-workflow" />
-    <p:tooltip id="info-express-workflow-tooltip" for="info-express-workflow" value="#{expressProcess.processDescription}"
-      position="top" />
-
+  <h:panelGroup class="process-start-list-item-action is-express-workflow" rendered="#{!processWidgetBean.mobileMode}">
     <p:commandLink id="delete-express-workflow" styleClass="fa fa-trash express-workflow"
-      actionListener="#{processWidgetBean.setDeletedExpressProcess(expressProcess)}"
+      actionListener="#{processWidgetBean.setDeletedExpressProcess(process)}"
       oncomplete="PF('remove-express-workflow-dialog').show();"
       update=":#{p:component('remove-express-workflow-dialog')}" />
     <p:tooltip id="delete-express-workflow-tooltip" for="delete-express-workflow"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExpressWorkflowTooltip')}" position="top" />
 
     <p:commandLink id="edit-express-workflow" styleClass="fa fa-pencil express-workflow"
-      actionListener="#{processWidgetBean.editExpressWorkflow(expressProcess)}" target="_self" />
+      actionListener="#{processWidgetBean.editExpressWorkflow(process.getProcess())}" target="_self" />
     <p:tooltip id="edit-express-workflow-tooltip" for="edit-express-workflow"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editExpressWorkflowTooltip')}" position="top" />
-  </div>
+  </h:panelGroup>
   <p:commandLink id="open-process-start" class="tmi-chevorn-right open-icon express-icon" ajax="false"
-    actionListener="#{processWidgetBean.startExpressProcess(expressProcess)}" />
+    actionListener="#{processWidgetBean.startProcess(process.getStartLink())}"/>
+    
 </ui:composition>
 </html>
