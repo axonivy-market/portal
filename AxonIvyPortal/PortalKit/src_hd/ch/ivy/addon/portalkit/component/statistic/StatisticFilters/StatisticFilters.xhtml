@@ -176,16 +176,15 @@
         </p:scrollPanel>
       </p:tab>
 
-    <c:forEach items="#{cc.attrs.customFields}" var="tabVar">
-	   	<p:tab title="#{tabVar}">
+    <c:forEach items="#{cc.attrs.customFields}" var="tabVar" varStatus="status">
+	   	<p:tab title="#{tabVar}" id="custom-field-filter-#{status.index}">
 	   		<f:facet name="title">
 	         <h:outputText value="#{tabVar}" />
-	         <p:outputLabel styleClass="chart-filter-info-icon"><span class="fa fa-info-circle filter-info"/></p:outputLabel>
-	         <p:tooltip >
+	         <p:outputLabel id="case-custom-#{status.index}" styleClass="chart-filter-info-icon"><span class="fa fa-info-circle filter-info"/></p:outputLabel>
+	         <p:tooltip for="case-custom-#{status.index}">
 	           #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')},
 	           #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory')},
-	           #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTime')}<br/>
-	           #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/description")}: #{tabVar})}
+	           #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTime')}
 	         </p:tooltip>
 	       </f:facet>
 	      <ic:ch.ivy.addon.portalkit.component.statistic.CustomField id="#{tabVar}" fieldName="#{tabVar}"	      	
