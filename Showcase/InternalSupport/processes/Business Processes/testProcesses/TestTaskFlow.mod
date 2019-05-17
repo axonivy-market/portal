@@ -892,8 +892,6 @@ Tt0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>CategoriedPersonalRequest.ivp</name>
-        <nameStyle>29,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -1909,7 +1907,7 @@ Tt0 f119 actionTable 'out=in;
 ' #txt
 Tt0 f119 actionCode 'import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 
-ivy.case.setAdditionalProperty(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString(), "https://my.axonactive.vn.local/home_page.php");' #txt
+ivy.case.customFields().textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).set("https://my.axonactive.vn.local/home_page.php");' #txt
 Tt0 f119 security system #txt
 Tt0 f119 type internaltest.Data #txt
 Tt0 f119 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
