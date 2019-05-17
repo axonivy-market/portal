@@ -598,11 +598,13 @@ Ds0 f21 actionDecl 'ch.ivy.gawfs.component.CaseDocument.CaseDocumentData out;
 ' #txt
 Ds0 f21 actionTable 'out=in;
 ' #txt
-Ds0 f21 actionCode 'import javax.faces.application.FacesMessage;
+Ds0 f21 actionCode 'import java.util.Arrays;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-FacesContext context = FacesContext.getCurrentInstance();
-context.addMessage("messagesDynaForm", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Die Datei " + in.selectedFile.getFileName() + " exisitert bereits!" ,null));' #txt
+FacesContext context = FacesContext.getCurrentInstance(); 
+context.addMessage("messagesDynaForm", new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+	ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadFileExists", Arrays.asList(in.selectedFile.getFileName())) ,null));' #txt
 Ds0 f21 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
 Ds0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
