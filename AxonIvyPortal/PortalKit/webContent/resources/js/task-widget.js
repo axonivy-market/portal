@@ -36,7 +36,6 @@ function TaskWidget(outerPanelId) {
         if (globalSearchTabHeader.length > 0) {
           error = 55; // included margin, padding in search page
         }
-        console.log("height" + announcementMessageContainer.outerHeight(true));
         var availableHeight = mainAreaPanel.outerHeight() - taskWidgetHeaderContainer.outerHeight(true) - announcementMessageContainer.outerHeight(true)
             - taskWidgetSortMenuContainer.outerHeight(true) - taskWidgetFilterContainer.outerHeight(true)
             - customWidgetContainer.outerHeight(true) - globalSearchInput.outerHeight(true) - globalSearchTabHeader.outerHeight(true) - error;
@@ -44,7 +43,6 @@ function TaskWidget(outerPanelId) {
         if (!!availableHeight) {
           container.height(availableHeight);
         }
-        console.log("available height" + availableHeight);
       }
     },
   }
