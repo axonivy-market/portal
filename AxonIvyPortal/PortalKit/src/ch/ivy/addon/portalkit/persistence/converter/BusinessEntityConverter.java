@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.persistence.converter;
 import java.io.IOException;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portalkit.persistence.domain.BusinessEntity;
@@ -29,7 +30,7 @@ public final class BusinessEntityConverter {
   }
 
   public static <T> T jsonValueToEntity(String jsonValue, Class<T> classType) {
-    ObjectMapper objectMapper = new ObjectMapper();
+    ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     try {
       return objectMapper.readValue(jsonValue, classType);
     } catch (IOException e) {
