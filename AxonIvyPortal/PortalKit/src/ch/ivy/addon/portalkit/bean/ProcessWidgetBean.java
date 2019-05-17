@@ -197,13 +197,12 @@ public class ProcessWidgetBean implements Serializable {
     return createExpressWorkflowProcessStart;
   }
 
-  public Set<String> getAllAlphabeticalCharacters() {
-    //List<Character> characters = new ArrayList<>();
-    /*for (int i = 65; i <= 90; i++) {
+  public List<Character> getAllAlphabeticalCharacters() {
+    List<Character> characters = new ArrayList<>();
+    for (int i = 65; i <= 90; i++) {
       characters.add((char)i);
     }
-    return characters;*/
-    return processesByAlphabet.keySet();
+    return characters;
   }
 
   public boolean isExpressProcess (Process process) {
