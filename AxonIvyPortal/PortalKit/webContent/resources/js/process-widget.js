@@ -8,15 +8,40 @@ function ProcessWidget() {
     clearSearchField : function() {
       $('.js-filter-process-widget-list-item').val('');
     },
+    
+    setupScrollbar : function () {
+    	var processsHeader = $('.js-process-header');
+    	var processStartListContainer = $('.js-process-start-list-container');
+    	var mainAreaPanel = $('#main-area-panel');
+    	var error = 0;
+        var globalSearchInput = $('.js-global-search');
+        var globalSearchTabHeader = $('.ui-tabs-nav');
+        if (globalSearchTabHeader.length > 0) {
+          error = 55; // included margin, padding in search page
+        }
+        var announcementMessageContainer = $('.js-announcement-message');
+    	var  availableHeight = mainAreaPanel.outerHeight() - announcementMessageContainer.outerHeight(true)
+    							- processsHeader.outerHeight(true) 
+    							- globalSearchInput.outerHeight(true) - globalSearchTabHeader.outerHeight(true)
+    							- error;
+    	if (!!availableHeight) {
+    		processStartListContainer.height(availableHeight);
+    	}
+    },
 
     filter : function() {
       var processItems = $('.js-process-start-list-item');
       $(processItems).show();
-      $.each(processItems, function() {
+      $.each(processItems, function(index) {
         var processName = $('.js-process-start-list-item-name', this).text().toLowerCase();
+        var processDescription = $('.js-process-start-list-item-description .ui-tooltip-text').get(index).innerText.toLowerCase();
         var keyword = $('.js-filter-process-widget-list-item').val().toLowerCase();
-        if (!contain(processName, keyword)) {
+        if (!contain(processName, keyword) && !contain(processDescription, keyword)) {
           $(this).hide();
+        }
+        var expressKeyToSearch = "express";
+        if (contain(expressKeyToSearch, keyword.trim()) && $(this).hasClass("express-workflow")) {
+        	$(this).show();
         }
       });
       

@@ -2082,9 +2082,20 @@ a.case-details-document-add-link {
   justify-content: flex-start;
 }
 
+.process-start-list-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  overflow: auto;
+}
+
 .process-start-list-item-wrapper {
   min-width: 300px;
   margin-right: 5px;
+}
+
+.process-header {
+  margin-bottom: 15px;
 }
 
 /* Small screen */
@@ -2237,7 +2248,7 @@ a.case-details-document-add-link {
   color: rgba(0,0,0,0.5) !important;
 }
 
-.process-start-list-item .process-start-list-item-action .express-workflow {
+.process-start-list-item .process-start-list-item-action .process-description {
   display: inline-block;
   font-size: 1.4rem;
   padding-right: 7px;
@@ -2353,6 +2364,15 @@ a.case-details-document-add-link {
 
 .autocomplete-process-description-tooltip {
   width: 150px;
+}
+
+.express-process-logo {
+  border: none;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  margin: 15px 7px;
+  font-size: 14px;
+  background-image: url(#{resource['ivy-webcontent:images/processLogo/icon_express_process_14x14.png']});
 }
 
 .ui-autocomplete-panel .ui-autocomplete-table.ui-autocomplete-items {
@@ -5591,6 +5611,9 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 	padding-bottom: 4px;
 }
 
+.hide-item-mobile-mode {
+	display: none;
+}
 /* =================== RESPONSIVE GRID ====================== */
 .ui-g > div {
 	display: grid;
