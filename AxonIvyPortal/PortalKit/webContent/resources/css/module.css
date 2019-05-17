@@ -3889,7 +3889,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .application-selection-container .ui-datatable-scrollable-body {
   height: auto;
   max-height: 60vh !important;
-  overflow: auto;
+  overflow-x: hidden;
 }
 
 /********************************** ABSENCES AND DEPUTY **********************************/
