@@ -17,11 +17,6 @@
       <version>8.0.0.0-SNAPSHOT</version>
       <type>iar</type>
     </dependency>
-    <dependency>
-      <groupId>io.fastjson</groupId>
-      <artifactId>boon</artifactId>
-      <version>0.33</version>
-    </dependency>
     <!-- to enable excel export feature, these libraries must be manually copied to [engine-dir]/webapps/ivy/WEB-INF/lib -->
     <dependency>
       <groupId>org.apache.poi</groupId>
