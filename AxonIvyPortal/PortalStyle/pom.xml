@@ -9,8 +9,8 @@
 	<packaging>iar</packaging>
 
 	<properties>
-        <ivy.engine.version>7.0.10</ivy.engine.version>
-		<build.plugin.version>7.0.1</build.plugin.version>
+        <ivy.engine.version>7.0.12</ivy.engine.version>
+		<build.plugin.version>7.0.4</build.plugin.version>
 		<resources.directory.css>${resources.directory}/css</resources.directory.css>
 		<resources.directory.less>${resources.directory}/less/</resources.directory.less>
 		<resources.directory>${project.basedir}/webContent/resources</resources.directory>
