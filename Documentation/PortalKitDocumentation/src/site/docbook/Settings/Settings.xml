@@ -117,7 +117,8 @@
 							</entry>
 						</row>
 						<row>
-							<entry>HIDE_CHANGE_PASSWORD_BUTTON</entry>
+							<entry>HIDE_CHANGE_PASSWORD
+							_BUTTON</entry>
 							<entry>TRUE/FALSE</entry>
 							<entry>
 								Set to
@@ -153,21 +154,24 @@
 							</entry>
 						</row>
 						<row>
-							<entry>EXPIRY_CHART_LAST_DRILLDOWN_LEVEL</entry>
+							<entry>EXPIRY_CHART_LAST
+							_DRILLDOWN_LEVEL</entry>
 							<entry>One of these values: HOUR/DAY/WEEK/MONTH/YEAR</entry>
 							<entry>
 								Determine last drilldown level using in Task by expiry chart. Default value is HOUR.
 							</entry>
 						</row>
 						<row>
-							<entry>ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT</entry>
+							<entry>ENABLE_SCRIPT_CHECKING_FOR
+							_UPLOADED_DOCUMENT</entry>
 							<entry>TRUE/FALSE</entry>
 							<entry>
 								Set to <code>TRUE</code> to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, MS Doc.
 							</entry>
 						</row>
 						<row>
-							<entry>UPLOAD_DOCUMENT_WHITELIST_EXTENSION</entry>
+							<entry>UPLOAD_DOCUMENT_WHITELIST
+							_EXTENSION</entry>
 							<entry>Empty or List of allowed extensions when upload document in Portal, which are separated by comma</entry>
 							<entry>
 								<para>
@@ -183,21 +187,24 @@
 							</entry>
 						</row>
                         <row>
-                          <entry>HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE</entry>
+                          <entry>HIDE_UPLOAD_DOCUMENT_FOR
+                          _DONE_CASE</entry>
                           <entry>TRUE/FALSE</entry>
                           <entry>
                            Set to <code>TRUE</code> to deny upload document after a case is done. By default, user can upload document independent of case status. 
                           </entry>
                         </row>
                         <row>
-                          <entry>HIDE_SYSTEM_TASKS_FROM_HISTORY</entry>
+                          <entry>HIDE_SYSTEM_TASKS_FROM
+                          _HISTORY</entry>
                           <entry>TRUE/FALSE</entry>
                           <entry>
                            Set to <code>TRUE</code> so that case/task note does not display any technical history entries for non-administrator users.. 
                           </entry>
                         </row>
                         <row>
-                          <entry>HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR</entry>
+                          <entry>HIDE_SYSTEM_TASKS_FROM
+                          _HISTORY_ADMINISTRATOR</entry>
                           <entry>TRUE/FALSE</entry>
                           <entry>
                            Set to <code>TRUE</code> so that case/task note does not display any technical history entries for administrator.. 
@@ -211,7 +218,8 @@
                           </entry>
                         </row>
 						<row>
-							<entry>DISPLAY_MESSAGE_AFTER_FINISH_TASK</entry>
+							<entry>DISPLAY_MESSAGE_AFTER
+							_FINISH_TASK</entry>
 							<entry>TRUE/FALSE</entry>
 							<entry>
 								Set to

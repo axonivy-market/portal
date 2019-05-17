@@ -522,6 +522,9 @@
 			<table>
 				<title>Global variables</title>
 				<tgroup cols="3">
+					<colspec colnum='1' colwidth="2*"/>
+					<colspec colnum='2' colwidth="1*"/>
+					<colspec colnum='3' colwidth="2*"/>
 					<thead>
 						<row>
 							<entry>Variable</entry>
