@@ -1,5 +1,5 @@
 [Ivy]
-167CFB0D927CF955 3.24 #module
+167CFB0D927CF955 3.26 #module
 >Proto >Proto Collection #zClass
 Ps0 CompactProcessWidgetProcess Big #zClass
 Ps0 RD #cInfo
@@ -124,7 +124,8 @@ Ps0 f10 actionDecl 'ch.ivy.addon.portalkit.component.CompactProcessWidget.Compac
 ' #txt
 Ps0 f10 actionTable 'out=in;
 ' #txt
-Ps0 f10 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
+Ps0 f10 actionCode 'import ch.ivy.addon.portalkit.util.ProcessStartsUtil;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
@@ -136,7 +137,7 @@ String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
 if (StringUtils.isNotBlank(expressStartLink)) {
 	List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findReadyToExecuteProcessOrderByName();
 	for(ExpressProcess wf : workflows) {
-		if (PermissionUtils.canStartExpressWorkflow(wf)) {
+		if (PermissionUtils.canStartExpressWorkflow(wf) && ProcessStartsUtil.isExpressProcessAdded(wf, in.userProcesses)) {
 			UserProcess userProcess = new UserProcess();
 		  userProcess.setProcessName(wf.processName);
 		  userProcess.setUserName(wf.processOwner);

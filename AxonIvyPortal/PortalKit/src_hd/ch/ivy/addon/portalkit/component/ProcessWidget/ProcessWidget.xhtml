@@ -17,98 +17,86 @@
 <cc:implementation>
   <h:outputScript library="js" name="process-widget.js" />
   <div id="#{cc.clientId}" class="widget process-widget">
-    <h:panelGroup id="header" styleClass="widget-header expanded" layout="block" rendered="#{!cc.attrs.hideHeader}">
-      <h:panelGroup class="widget-header-main" rendered="#{!processWidgetBean.mobileMode}">
-        <span class="widget-header-main-title">#{cc.attrs.title}</span>
-        <h:panelGroup styleClass="widget-header-main-menu">
-          <cc:renderFacet name="headerToolbar" />
-        </h:panelGroup>
-      </h:panelGroup>
-      <h:panelGroup layout="block"
-        styleClass="#{processWidgetBean.mobileMode ? 'mobile-widget-process-header-sub' : 'widget-header-sub'}">
-        <ic:ch.ivy.addon.portalkit.component.Filter id="process-search" listener="processWidget.filter()" ajax="false"
-          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}"
-          styleClass="js-filter-process-widget-list-item" />
-      </h:panelGroup>
-      <p:selectOneMenu id="dictionary-process-group-selection" widgetVar="dictionary-process-group-selection"
-        rendered="#{processWidgetBean.mobileMode}" styleClass="mobile-process-list-dictionary-group-selection"
-        panelStyleClass="hide-disabled">
-        <f:selectItem itemValue="express"
-          itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/expressWorkflowGroupTitle')}"
-          itemDisabled="#{empty processWidgetBean.expressProcesses}" />
-        <f:selectItems value="#{processWidgetBean.processesByAlphabet.entrySet().toArray()}" var="dictionaryCharacter"
-          itemValue="#{dictionaryCharacter.key}"
-          itemLabel="#{dictionaryCharacter.key eq 'SPECIAL_CHARACTER'? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/specialCharacterGroup') : dictionaryCharacter.key}" />
-        <p:ajax event="change" oncomplete="jumpToProcessGroup();" global="false" immediate="true" update="@none" />
-      </p:selectOneMenu>
-    </h:panelGroup>
-
-    <h:panelGroup id="process-widget-action" styleClass="process-widget-action process-navigation-container">
-      <h:form id="axon-express-form" rendered="#{not processWidgetBean.mobileMode and !cc.attrs.hideExpressCreation}"
-        styleClass="process-button-position process-action-button action-create-experss-workflow">
-        <h:panelGroup layout="block" rendered="#{processWidgetBean.canCreateExpessWorkflow()}">
-          <p:commandLink id="create-express-workflow"
-            value="#{processWidgetBean.createExpressWorkflowProcessStart.name}"
-            actionListener="#{processWidgetBean.startProcess(processWidgetBean.getCreateExpessWorkflowLink())}" />
-        </h:panelGroup>
-      </h:form>
-      <br/>
-      <span class="expand-collapse-btns">
-        <p:commandLink id="expand-all-btn"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/expandAll')}" onclick="expandOrCollapseAllCategories(true); return false;"
-        />
-        <p:spacer width="10" />
-        <p:commandLink id="collapse-all-btn"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/collapseAll')}" onclick="expandOrCollapseAllCategories(false); return false;"
-        />
-      </span>
-      <span>
-        <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/goTo')}"/>
-        <ui:repeat value="#{processWidgetBean.getAllAlphabeticalCharacters()}" var="character" >
-          <p:commandLink value="#{character}" disabled="#{!processWidgetBean.processesByAlphabet.containsKey(character.toString())}" onclick="jumpToProcessGroupByCharacter(event); return;" />
-          <p:spacer width="5" />
-        </ui:repeat>
-      </span>
-    </h:panelGroup>
-    <h:panelGroup id="process-list" layout="block" styleClass="widget-content #{cc.attrs.processListStyleClass}">
+    <div class="process-header js-process-header">
+	    <h:panelGroup id="header" styleClass="widget-header expanded" layout="block" rendered="#{!cc.attrs.hideHeader}">
+	      <h:panelGroup class="widget-header-main" rendered="#{!processWidgetBean.mobileMode}">
+	        <span class="widget-header-main-title">#{cc.attrs.title}</span>
+	        <h:panelGroup styleClass="widget-header-main-menu">
+	          <cc:renderFacet name="headerToolbar" />
+	        </h:panelGroup>
+	      </h:panelGroup>
+	      <h:panelGroup layout="block"
+	        styleClass="#{processWidgetBean.mobileMode ? 'mobile-widget-process-header-sub' : 'widget-header-sub'}">
+	        <ic:ch.ivy.addon.portalkit.component.Filter id="process-search" listener="processWidget.filter()" ajax="false"
+	          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}"
+	          styleClass="js-filter-process-widget-list-item" />
+	      </h:panelGroup>
+	      <p:selectOneMenu id="dictionary-process-group-selection" widgetVar="dictionary-process-group-selection"
+	        rendered="#{processWidgetBean.mobileMode}" styleClass="mobile-process-list-dictionary-group-selection"
+	        panelStyleClass="hide-disabled">
+	        <f:selectItems value="#{processWidgetBean.processesByAlphabet.entrySet().toArray()}" var="dictionaryCharacter"
+	          itemValue="#{dictionaryCharacter.key}"
+	          itemLabel="#{dictionaryCharacter.key eq 'SPECIAL_CHARACTER'? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/specialCharacterGroup') : dictionaryCharacter.key}" />
+	        <p:ajax event="change" oncomplete="jumpToProcessGroup();" global="false" immediate="true" update="@none" />
+	      </p:selectOneMenu>
+	    </h:panelGroup>
+	
+	    <h:panelGroup id="process-widget-action" styleClass="process-widget-action process-navigation-container">
+	      <h:form id="axon-express-form" rendered="#{not processWidgetBean.mobileMode and !cc.attrs.hideExpressCreation}"
+	        styleClass="process-button-position process-action-button action-create-experss-workflow">
+	        <h:panelGroup layout="block" rendered="#{processWidgetBean.canCreateExpessWorkflow()}">
+	          <p:commandLink id="create-express-workflow"
+	            value="#{processWidgetBean.createExpressWorkflowProcessStart.name}"
+	            actionListener="#{processWidgetBean.startProcess(processWidgetBean.getCreateExpessWorkflowLink())}" />
+	        </h:panelGroup>
+	      </h:form>
+	      <br/>
+	      <span class="expand-collapse-btns">
+	        <p:commandLink id="expand-all-btn"
+	          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/expandAll')}" onclick="expandOrCollapseAllCategories(true); return false;"
+	        />
+	        <p:spacer width="10" />
+	        <p:commandLink id="collapse-all-btn"
+	          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/collapseAll')}" onclick="expandOrCollapseAllCategories(false); return false;"
+	        />
+	      </span>
+	      <h:panelGroup rendered="#{!processWidgetBean.mobileMode}">
+	        <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/goTo')}"/>
+	        <ui:repeat value="#{processWidgetBean.getAllAlphabeticalCharacters()}" var="character" >
+	          <p:commandLink value="#{character}" disabled="#{!processWidgetBean.processesByAlphabet.containsKey(character.toString())}" onclick="jumpToProcessGroupByCharacter(event); return;" />
+	          <p:spacer width="5" />
+	        </ui:repeat>
+	      </h:panelGroup>
+	    </h:panelGroup>
+    </div>
+    <h:panelGroup id="process-list" layout="block" styleClass="widget-content process-start-list-container js-process-start-list-container">
       <ui:fragment id="full-process-list">
-        <p:fieldset id="express-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/expressWorkflowGroupTitle')}"
-          toggleable="true" styleClass="process-group js-process-index-group js-process-group-express"
-          rendered="#{not empty processWidgetBean.expressProcesses}">
-          <h:panelGroup id="express-process-container" layout="block" styleClass="#{cc.attrs.processListStyleClass}">
-            <ui:repeat var="expressProcess" value="#{processWidgetBean.expressProcesses}">
-              <h:form id="express-process-item-form"
-                styleClass="process-start-list-item-wrapper js-process-start-list-item process-start-list-item #{processWidgetBean.mobileMode ? 'mobile-process-start-list-item' : ''} express-workflow">
-                <p:commandLink id="process-item" actionListener="#{processWidgetBean.startExpressProcess(expressProcess)}" target="_self"
-                  styleClass="process-item">
-                  <ui:include src="ProcessItem.xhtml">
-                    <ui:param name="processName" value="#{expressProcess.processName}" />
-                    <ui:param name="processType" value="process-item" />
-                    <ui:param name="isExpress" value="true" />
-                  </ui:include>
-                </p:commandLink>
-                <h:panelGroup rendered="#{!processWidgetBean.mobileMode}">
-                  <ui:include src="ProcessItemExpressActions.xhtml">
-                    <ui:param name="processType" value="process" />
-                  </ui:include>
-                </h:panelGroup>
-              </h:form>
-            </ui:repeat>
-          </h:panelGroup>
-        </p:fieldset>
         <ui:repeat id="process-group-alphabet" var="entryProcess"
           value="#{processWidgetBean.processesByAlphabet.entrySet().toArray()}">
           <p:fieldset id="alphabet-process-index-fieldset"
             legend="#{entryProcess.key eq 'SPECIAL_CHARACTER'? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/specialCharacterGroup') : entryProcess.key}"
             toggleable="true" styleClass="process-group js-process-index-group js-process-group-#{entryProcess.key}">
-            <h:panelGroup id="none-express-process-container" layout="block" styleClass="#{cc.attrs.processListStyleClass}">
-              <ui:repeat id="none-express-processes" varStatus="status" var="process" value="#{entryProcess.value}">
-                <h:form id="process-item-form"
-                  styleClass="process-start-list-item-wrapper js-process-start-list-item process-start-list-item">
+            <h:panelGroup id="process-container" layout="block" styleClass="#{cc.attrs.processListStyleClass}">
+              <ui:repeat id="processes" varStatus="status" var="process" value="#{entryProcess.value}">
+                <h:form id="process-item-form" 
+                  styleClass="process-start-list-item-wrapper js-process-start-list-item process-start-list-item #{processWidgetBean.isExpressProcess(process) ? 'express-workflow' : ''}">
                   <ui:include src="ProcessItemLink.xhtml">
                     <ui:param name="processName" value="#{process.name}" />
-                    <ui:param name="processLink" value="#{process.getLink().getRelativeEncoded()}" />
+                    <ui:param name="processLink" value="#{process.getStartLink()}" />
+                    <ui:param name="isExpress" value="#{processWidgetBean.isExpressProcess(process)}" />
                   </ui:include>
+     			  <h:panelGroup rendered="#{processWidgetBean.isExpressProcess(process)}">
+     			    <p:panel styleClass="express-process-logo" />
+     			  </h:panelGroup>	
+     			  <h:panelGroup styleClass="process-start-list-item-action is-express-workflow #{processWidgetBean.mobileMode ? 'hide-item-mobile-mode' : ''}">
+     			    <h:outputText id="info-workflow" styleClass="fa fa-info-circle process-description" />
+     			    <p:tooltip id="info-workflow-tooltip" for="info-workflow" value="#{process.getDescription()}" position="top" styleClass="js-process-start-list-item-description"/>
+     			  </h:panelGroup>
+                  <h:panelGroup rendered="#{processWidgetBean.isExpressProcess(process)}">
+                    <ui:include src="ProcessItemExpressActions.xhtml">
+                      <ui:param name="processType" value="process" />
+                    </ui:include>
+                  </h:panelGroup>
                 </h:form>
               </ui:repeat>
             </h:panelGroup>
@@ -128,7 +116,7 @@
       <h:outputText escape="false"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExpressWorkflowConfirmation')}" />
       <br />
-      <h:outputText value="#{processWidgetBean.deletedExpressProcess.processName}" styleClass="FontBold" />
+      <h:outputText value="#{processWidgetBean.deletedExpressProcess.getName()}" styleClass="FontBold" />
       <div class="ui-dialog-footer u-dialog-footer">
         <p:commandButton global="false" process="@this" update="#{cc.clientId}:process-list"
           actionListener="#{processWidgetBean.deleteExpressWorkflow}"
@@ -141,14 +129,19 @@
     </h:form>
   </p:dialog>
   <script>
+      var processWidget = new ProcessWidget();
+      $(function() {
+      	processWidget.setupScrollbar();
+      });
       function jumpToProcessGroup() {
         document.getElementsByClassName("js-process-group-" + PF('dictionary-process-group-selection').value)[0]
             .scrollIntoView();
         PF('dictionary-process-group-selection').hide();
-
+		
         var processHeaderHeight = document.getElementsByClassName("process-widget")[0]
             .getElementsByClassName("widget-header")[0].offsetHeight;
         document.getElementsByClassName("process-widget")[0].scrollTop -= processHeaderHeight;
+        
       }
     </script>
 </cc:implementation>
