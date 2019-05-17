@@ -19,6 +19,8 @@ import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
+import ch.ivyteam.ivy.workflow.custom.field.ICustomStringField;
 
 @RunWith(PowerMockRunner.class)
 public class CaseWidgetBeanTest {
@@ -43,10 +45,7 @@ public class CaseWidgetBeanTest {
   @PrepareForTest({CaseWidgetBean.class, CaseUtils.class, PermissionUtils.class, FacesContext.class})
   public void testGetAdditionalCaseDetailsPageUri() throws Exception {
     PowerMockito.mockStatic(CaseUtils.class);
-    
-    ICase iCase = PowerMockito.mock(ICase.class);
-    PowerMockito.when(iCase.customFields().textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).getOrNull()).thenReturn(StringUtils.EMPTY);
-    
+    ICase iCase = mockCustomFieldForCaseDetailsPage(StringUtils.EMPTY);
     PowerMockito.when(CaseUtils.getProcessStartUriWithCaseParameters(Matchers.any(ICase.class), Matchers.anyString())).thenReturn(DEFAULT_ADDITIONAL_CASE_DETAILS_PAGE);
     
     PowerMockito.mockStatic(FacesContext.class);
@@ -62,8 +61,7 @@ public class CaseWidgetBeanTest {
   @Test
   @PrepareForTest({CaseWidgetBean.class, PermissionUtils.class, FacesContext.class})
   public void testGetAdditionalCaseDetailsPageUriWithCustomization() throws Exception {
-    ICase iCase = PowerMockito.mock(ICase.class);
-    PowerMockito.when(iCase.customFields().textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).getOrNull()).thenReturn(CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE);
+    ICase iCase = mockCustomFieldForCaseDetailsPage(CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE);
     PowerMockito.mockStatic(FacesContext.class);
 
     PowerMockito.when(FacesContext.getCurrentInstance()).thenReturn(facesContext);
@@ -71,6 +69,16 @@ public class CaseWidgetBeanTest {
         .thenReturn(externalContext);
     PowerMockito.when(externalContext.getApplicationContextPath()).thenReturn("");
     Assert.assertEquals(CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE, caseWidgetBean.getAdditionalCaseDetailsPageUri(iCase)); 
+  }
+
+  private ICase mockCustomFieldForCaseDetailsPage(String detailsPage) {
+    ICase iCase = PowerMockito.mock(ICase.class);
+    ICustomFields iCustomFields = PowerMockito.mock(ICustomFields.class);
+    ICustomStringField iCustomStringField = PowerMockito.mock(ICustomStringField.class);
+    PowerMockito.when(iCase.customFields()).thenReturn(iCustomFields);
+    PowerMockito.when(iCustomFields.textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString())).thenReturn(iCustomStringField);
+    PowerMockito.when(iCustomStringField.getOrNull()).thenReturn(detailsPage);
+    return iCase;
   }
   
 }
