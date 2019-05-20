@@ -822,3 +822,12 @@
 .create-form-toolbar {
 	border: none;
 }
+
+.task-responsible-link {
+  font-size: 14px;
+}
+
+.task-responsible-link:after {
+  font-family: 'FontAwesome' !important;
+  content: " \f044";
+}

@@ -101,8 +101,26 @@ Bk4 @GridStep f20 '' #zField
 Bk4 @PushWFArc f22 '' #zField
 Bk4 @PushWFArc f3 '' #zField
 Bk4 @GridStep f11 '' #zField
-Bk4 @PushWFArc f15 '' #zField
 Bk4 @PushWFArc f17 '' #zField
+Bk4 @Alternative f23 '' #zField
+Bk4 @PushWFArc f24 '' #zField
+Bk4 @PushWFArc f15 '' #zField
+Bk4 @GridStep f25 '' #zField
+Bk4 @PushWFArc f26 '' #zField
+Bk4 @TaskSwitchSimple f29 '' #zField
+Bk4 @PushWFArc f31 '' #zField
+Bk4 @TaskSwitch f27 '' #zField
+Bk4 @TkArc f32 '' #zField
+Bk4 @Alternative f33 '' #zField
+Bk4 @TkArc f28 '' #zField
+Bk4 @EndTask f35 '' #zField
+Bk4 @PushWFArc f36 '' #zField
+Bk4 @GridStep f37 '' #zField
+Bk4 @PushWFArc f38 '' #zField
+Bk4 @PushWFArc f34 '' #zField
+Bk4 @GridStep f39 '' #zField
+Bk4 @PushWFArc f40 '' #zField
+Bk4 @PushWFArc f30 '' #zField
 >Proto Bk4 Bk0 BpmnUserTask #zField
 Bk5 @TextInP .resExport .resExport #zField
 Bk5 @TextInP .type .type #zField
@@ -600,7 +618,7 @@ ew0 f27 1 0.5 0 0 #arcLabel
 >Proto ew0 @|BIcon #fIcon
 Bk4 g0 275 51 26 26 21 -3 #rect
 Bk4 g0 @|MIGIcon #fIcon
-Bk4 g1 275 1171 26 26 19 -15 #rect
+Bk4 g1 275 1235 26 26 19 -15 #rect
 Bk4 g1 @|MOGIcon #fIcon
 Bk4 f6 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
@@ -630,7 +648,7 @@ Bk4 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk4 f6 418 482 28 28 21 -17 #rect
+Bk4 f6 418 522 28 28 21 -17 #rect
 Bk4 f6 @|TaskSwitchSimpleIcon #fIcon
 Bk4 f5 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk4 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -642,7 +660,7 @@ Bk4 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk4 f5 272 560 32 32 -39 -35 #rect
+Bk4 f5 272 624 32 32 -39 -35 #rect
 Bk4 f5 @|AlternativeIcon #fIcon
 Bk4 f14 targetWindow NEW #txt
 Bk4 f14 targetDisplay TOP #txt
@@ -668,17 +686,17 @@ Bk4 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk4 f14 104 690 112 44 -27 -8 #rect
+Bk4 f14 104 762 112 44 -27 -8 #rect
 Bk4 f14 @|RichDialogIcon #fIcon
 Bk4 f10 expr data #txt
 Bk4 f10 outCond ivp=="TaskA.ivp" #txt
-Bk4 f10 432 510 304 576 #arcP
-Bk4 f10 1 432 576 #addKink
+Bk4 f10 432 550 304 640 #arcP
+Bk4 f10 1 432 640 #addKink
 Bk4 f10 1 0.991265262979699 0 0 #arcLabel
 Bk4 f7 expr data #txt
 Bk4 f7 outCond ivp=="TaskA.ivp" #txt
-Bk4 f7 160 510 272 576 #arcP
-Bk4 f7 1 160 576 #addKink
+Bk4 f7 160 550 272 640 #arcP
+Bk4 f7 1 160 640 #addKink
 Bk4 f7 0 0.5055155163921642 0 0 #arcLabel
 Bk4 f16 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
@@ -708,7 +726,7 @@ Bk4 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk4 f16 146 482 28 28 -137 -17 #rect
+Bk4 f16 146 522 28 28 -137 -17 #rect
 Bk4 f16 @|TaskSwitchSimpleIcon #fIcon
 Bk4 f8 expr in #txt
 Bk4 f8 outCond !in.responsible.isUser() #txt
@@ -723,9 +741,9 @@ Bk4 f8 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk4 f8 272 432 160 482 #arcP
-Bk4 f8 1 160 432 #addKink
-Bk4 f8 0 0.4732142857142857 0 10 #arcLabel
+Bk4 f8 272 472 160 522 #arcP
+Bk4 f8 1 160 472 #addKink
+Bk4 f8 0 0.4898916508577348 -1 10 #arcLabel
 Bk4 f1 expr in #txt
 Bk4 f1 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk4 f1 var in1 #txt
@@ -738,8 +756,8 @@ Bk4 f1 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk4 f1 304 432 432 482 #arcP
-Bk4 f1 1 432 432 #addKink
+Bk4 f1 304 472 432 522 #arcP
+Bk4 f1 1 432 472 #addKink
 Bk4 f1 0 0.38392857142857145 0 10 #arcLabel
 Bk4 f0 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk4 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -751,7 +769,7 @@ Bk4 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk4 f0 272 416 32 32 14 -27 #rect
+Bk4 f0 272 456 32 32 14 -27 #rect
 Bk4 f0 @|AlternativeIcon #fIcon
 Bk4 f13 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
@@ -767,10 +785,10 @@ Bk4 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk4 f13 232 322 112 44 -44 -8 #rect
+Bk4 f13 232 362 112 44 -44 -8 #rect
 Bk4 f13 @|StepIcon #fIcon
 Bk4 f21 expr out #txt
-Bk4 f21 288 366 288 416 #arcP
+Bk4 f21 288 406 288 456 #arcP
 Bk4 f50 expr in #txt
 Bk4 f50 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -781,8 +799,8 @@ Bk4 f50 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk4 f50 288 592 216 712 #arcP
-Bk4 f50 1 288 712 #addKink
+Bk4 f50 288 656 216 784 #arcP
+Bk4 f50 1 288 784 #addKink
 Bk4 f50 1 0.463235294117647 1 -7 #arcLabel
 Bk4 f64 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk4 f64 processCall 'Functional Processes/ParallelTasksUtil:splitTasks(Number)' #txt
@@ -805,17 +823,17 @@ Bk4 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk4 f64 232 218 112 44 -28 -8 #rect
+Bk4 f64 232 266 112 44 -28 -8 #rect
 Bk4 f64 @|CallSubIcon #fIcon
 Bk4 f12 expr out #txt
-Bk4 f12 288 262 288 322 #arcP
+Bk4 f12 288 310 288 362 #arcP
 Bk4 f12 0 0.42340889686368355 0 0 #arcLabel
 Bk4 f2 type gawfs.ExecutePredefinedWorkflowData #txt
-Bk4 f2 272 800 32 32 0 16 #rect
+Bk4 f2 272 872 32 32 0 16 #rect
 Bk4 f2 @|AlternativeIcon #fIcon
 Bk4 f57 expr out #txt
-Bk4 f57 160 734 272 816 #arcP
-Bk4 f57 1 160 816 #addKink
+Bk4 f57 160 806 272 888 #arcP
+Bk4 f57 1 160 888 #addKink
 Bk4 f57 1 0.40436755213021147 0 0 #arcLabel
 Bk4 f4 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk4 f4 processCall 'Functional Processes/executePredefinedWorkflow:join(gawfs.ExecutePredefinedWorkflowData)' #txt
@@ -837,11 +855,11 @@ Bk4 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk4 f4 232 986 112 44 -26 -8 #rect
+Bk4 f4 232 1058 112 44 -26 -8 #rect
 Bk4 f4 @|CallSubIcon #fIcon
 Bk4 f66 expr out #txt
-Bk4 f66 432 734 304 816 #arcP
-Bk4 f66 1 432 816 #addKink
+Bk4 f66 432 806 304 888 #arcP
+Bk4 f66 1 432 888 #addKink
 Bk4 f66 1 0.41968068058180114 0 0 #arcLabel
 Bk4 f56 expr in #txt
 Bk4 f56 outCond 'in.currentTask.taskType == ch.ivy.gawfs.enums.TaskType.USER_TASK_WITH_EMAIL' #txt
@@ -854,8 +872,8 @@ Bk4 f56 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk4 f56 288 592 376 712 #arcP
-Bk4 f56 1 288 712 #addKink
+Bk4 f56 288 656 376 784 #arcP
+Bk4 f56 1 288 784 #addKink
 Bk4 f56 1 0.47678018575851394 0 -10 #arcLabel
 Bk4 f55 targetWindow NEW #txt
 Bk4 f55 targetDisplay TOP #txt
@@ -881,7 +899,7 @@ Bk4 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk4 f55 376 690 112 44 -39 -8 #rect
+Bk4 f55 376 762 112 44 -39 -8 #rect
 Bk4 f55 @|RichDialogIcon #fIcon
 Bk4 f18 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
@@ -898,12 +916,12 @@ Bk4 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk4 f18 232 890 112 44 -31 -8 #rect
+Bk4 f18 232 962 112 44 -31 -8 #rect
 Bk4 f18 @|StepIcon #fIcon
 Bk4 f19 expr in #txt
-Bk4 f19 288 832 288 890 #arcP
+Bk4 f19 288 904 288 962 #arcP
 Bk4 f9 expr out #txt
-Bk4 f9 288 934 288 986 #arcP
+Bk4 f9 288 1006 288 1058 #arcP
 Bk4 f20 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk4 f20 actionTable 'out=in;
@@ -921,12 +939,12 @@ Bk4 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk4 f20 224 1082 128 44 -54 -8 #rect
+Bk4 f20 224 1154 128 44 -54 -8 #rect
 Bk4 f20 @|StepIcon #fIcon
 Bk4 f22 expr out #txt
-Bk4 f22 288 1030 288 1082 #arcP
+Bk4 f22 288 1102 288 1154 #arcP
 Bk4 f3 expr out #txt
-Bk4 f3 288 1126 288 1171 #arcP
+Bk4 f3 288 1198 288 1235 #arcP
 Bk4 f11 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk4 f11 actionTable 'out=in;
@@ -942,11 +960,197 @@ Bk4 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk4 f11 232 130 112 44 -53 -8 #rect
+Bk4 f11 232 170 112 44 -53 -8 #rect
 Bk4 f11 @|StepIcon #fIcon
-Bk4 f15 288 77 288 130 #arcP
 Bk4 f17 expr out #txt
-Bk4 f17 288 174 288 218 #arcP
+Bk4 f17 288 214 288 266 #arcP
+Bk4 f23 type gawfs.ExecutePredefinedWorkflowData #txt
+Bk4 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>first task?</name>
+    </language>
+</elementInfo>
+' #txt
+Bk4 f23 272 112 32 32 -58 -22 #rect
+Bk4 f23 @|AlternativeIcon #fIcon
+Bk4 f24 288 77 288 112 #arcP
+Bk4 f15 expr in #txt
+Bk4 f15 outCond 'in.actualStepIndex != 0' #txt
+Bk4 f15 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>NO</name>
+    </language>
+</elementInfo>
+' #txt
+Bk4 f15 288 144 288 170 #arcP
+Bk4 f15 0 0.34615384615384615 -15 0 #arcLabel
+Bk4 f25 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
+' #txt
+Bk4 f25 actionTable 'out=in;
+' #txt
+Bk4 f25 actionCode 'int currentUserIndex = in.currentTask.getResponsibles().indexOf(ivy.session.getSessionUser().getMemberName());
+in.doesCreatorHaveTask = currentUserIndex >= 0;
+if (in.doesCreatorHaveTask) {
+	in.currentTask.setResponsibles(in.currentTask.getResponsibles().removeAt(currentUserIndex));
+	ivy.log.error("bbb {0}", in.currentTask.getResponsibles().size());
+}' #txt
+Bk4 f25 type gawfs.ExecutePredefinedWorkflowData #txt
+Bk4 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Check if creator has task</name>
+    </language>
+</elementInfo>
+' #txt
+Bk4 f25 568 170 144 44 -67 -8 #rect
+Bk4 f25 @|StepIcon #fIcon
+Bk4 f26 expr in #txt
+Bk4 f26 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>YES</name>
+    </language>
+</elementInfo>
+' #txt
+Bk4 f26 304 128 640 170 #arcP
+Bk4 f26 1 640 128 #addKink
+Bk4 f26 0 0.5583333333333333 0 -8 #arcLabel
+Bk4 f29 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
+' #txt
+Bk4 f29 actionTable 'out=in1;
+' #txt
+Bk4 f29 outTypes "gawfs.ExecutePredefinedWorkflowData" #txt
+Bk4 f29 outLinks "TaskA.ivp" #txt
+Bk4 f29 taskData 'TaskA.DESC=<%\=in1.currentTask.description%>\n
+TaskA.EXP=new Duration(0,0,in1.currentTask.untilDays,0,0,0)
+TaskA.EXPRI=1
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.NAM=<%\=in1.currentTask.subject%>
+TaskA.PRI=2
+TaskA.ROL=SELF
+TaskA.SCRIPT=if (in1.originalTaskId \!\= null && in1.originalTaskId > 0) {\r\n  task.customFields().stringField(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString());\r\n}
+TaskA.SKIP_TASK_LIST=true
+TaskA.TYPE=0' #txt
+Bk4 f29 type gawfs.ExecutePredefinedWorkflowData #txt
+Bk4 f29 template "" #txt
+Bk4 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>create task for user</name>
+        <nameStyle>20,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Bk4 f29 626 514 28 28 21 -17 #rect
+Bk4 f29 @|TaskSwitchSimpleIcon #fIcon
+Bk4 f31 expr in #txt
+Bk4 f31 outCond ivp=="TaskA.ivp" #txt
+Bk4 f31 640 542 304 640 #arcP
+Bk4 f31 1 640 640 #addKink
+Bk4 f31 1 0.38458131567408715 0 0 #arcLabel
+Bk4 f27 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
+' #txt
+Bk4 f27 actionTable 'out=in1;
+' #txt
+Bk4 f27 outTypes "gawfs.ExecutePredefinedWorkflowData","gawfs.ExecutePredefinedWorkflowData" #txt
+Bk4 f27 outLinks "TaskA.ivp","TaskB.ivp" #txt
+Bk4 f27 taskData 'TaskB.NAM=System\: create tasks for responsibles except current user
+TaskB.ROL=SYSTEM
+TaskB.TYPE=0
+TaskA.TYPE=0
+TaskA.ROL=SELF
+TaskA.SKIP_TASK_LIST=true
+TaskA.NAM=System\: create task for current user' #txt
+Bk4 f27 type gawfs.ExecutePredefinedWorkflowData #txt
+Bk4 f27 template "" #txt
+Bk4 f27 624 272 32 32 0 16 #rect
+Bk4 f27 @|TaskSwitchIcon #fIcon
+Bk4 f32 expr out #txt
+Bk4 f32 var in1 #txt
+Bk4 f32 640 214 640 272 #arcP
+Bk4 f33 type gawfs.ExecutePredefinedWorkflowData #txt
+Bk4 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Does current user&#xD;
+have task?</name>
+    </language>
+</elementInfo>
+' #txt
+Bk4 f33 624 432 32 32 -101 -44 #rect
+Bk4 f33 @|AlternativeIcon #fIcon
+Bk4 f28 expr in #txt
+Bk4 f28 outCond in.doesCreatorHaveTask #txt
+Bk4 f28 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>YES</name>
+    </language>
+</elementInfo>
+' #txt
+Bk4 f28 640 464 640 514 #arcP
+Bk4 f28 0 0.4298245614035088 -16 0 #arcLabel
+Bk4 f35 type gawfs.ExecutePredefinedWorkflowData #txt
+Bk4 f35 753 433 30 30 0 15 #rect
+Bk4 f35 @|EndIcon #fIcon
+Bk4 f36 expr in #txt
+Bk4 f36 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>NO</name>
+    </language>
+</elementInfo>
+' #txt
+Bk4 f36 656 448 753 448 #arcP
+Bk4 f36 0 0.4845360824742268 0 -8 #arcLabel
+Bk4 f37 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
+' #txt
+Bk4 f37 actionTable 'out=in;
+' #txt
+Bk4 f37 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+TaskUtils.setHidePropertyToHideInPortal(ivy.task);' #txt
+Bk4 f37 security system #txt
+Bk4 f37 type gawfs.ExecutePredefinedWorkflowData #txt
+Bk4 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Hide system task</name>
+    </language>
+</elementInfo>
+' #txt
+Bk4 f37 584 330 112 44 -47 -8 #rect
+Bk4 f37 @|StepIcon #fIcon
+Bk4 f38 expr data #txt
+Bk4 f38 outCond ivp=="TaskA.ivp" #txt
+Bk4 f38 640 304 640 330 #arcP
+Bk4 f34 expr out #txt
+Bk4 f34 640 374 640 432 #arcP
+Bk4 f39 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
+' #txt
+Bk4 f39 actionTable 'out=in;
+' #txt
+Bk4 f39 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+TaskUtils.setHidePropertyToHideInPortal(ivy.task);' #txt
+Bk4 f39 security system #txt
+Bk4 f39 type gawfs.ExecutePredefinedWorkflowData #txt
+Bk4 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Hide system task</name>
+    </language>
+</elementInfo>
+' #txt
+Bk4 f39 432 266 112 44 -47 -8 #rect
+Bk4 f39 @|StepIcon #fIcon
+Bk4 f40 expr data #txt
+Bk4 f40 outCond ivp=="TaskB.ivp" #txt
+Bk4 f40 624 288 544 288 #arcP
+Bk4 f30 expr out #txt
+Bk4 f30 432 288 344 288 #arcP
 >Proto Bk0 0 0 32 24 18 0 #rect
 >Proto Bk0 @|BIcon #fIcon
 Bk5 f28 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
@@ -1669,11 +1873,31 @@ Bk4 f4 mainOut f22 tail #connect
 Bk4 f22 head f20 mainIn #connect
 Bk4 f20 mainOut f3 tail #connect
 Bk4 f3 head g1 m #connect
-Bk4 g0 m f15 tail #connect
-Bk4 f15 head f11 mainIn #connect
 Bk4 f11 mainOut f17 tail #connect
 Bk4 f17 head f64 mainIn #connect
-Bk4 0 0 664 1248 0 #ivRect
+Bk4 g0 m f24 tail #connect
+Bk4 f24 head f23 in #connect
+Bk4 f23 out f15 tail #connect
+Bk4 f15 head f11 mainIn #connect
+Bk4 f23 out f26 tail #connect
+Bk4 f26 head f25 mainIn #connect
+Bk4 f29 out f31 tail #connect
+Bk4 f31 head f5 in #connect
+Bk4 f25 mainOut f32 tail #connect
+Bk4 f32 head f27 in #connect
+Bk4 f33 out f28 tail #connect
+Bk4 f28 head f29 in #connect
+Bk4 f33 out f36 tail #connect
+Bk4 f36 head f35 mainIn #connect
+Bk4 f27 out f38 tail #connect
+Bk4 f38 head f37 mainIn #connect
+Bk4 f37 mainOut f34 tail #connect
+Bk4 f34 head f33 in #connect
+Bk4 f27 out f40 tail #connect
+Bk4 f40 head f39 mainIn #connect
+Bk4 f39 mainOut f30 tail #connect
+Bk4 f30 head f64 mainIn #connect
+Bk4 0 0 904 1248 0 #ivRect
 Bk5 f5 mainOut f29 tail #connect
 Bk5 f29 head f28 mainIn #connect
 Bk5 g2 m f10 tail #connect
