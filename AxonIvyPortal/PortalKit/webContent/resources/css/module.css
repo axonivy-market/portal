@@ -2086,8 +2086,38 @@ a.case-details-document-add-link {
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
-  overflow: auto;
+  margin-right: 60px;
 }
+
+.process-start-list-container .process-nav {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  text-align: center;
+  position: absolute;
+  right: 10px;
+  height: 80%;
+  border-left: 1px solid rgba(0,0,0,0.1);
+  top: 15%;
+}
+
+.process-start-list-container .process-nav .process-nav-item {
+  padding: 0 30px;
+}
+
+.process-start-list-container .process-nav .process-nav-item.selected {
+  font-weight: bold;
+}
+
+.process-start-list-container .process-nav .process-nav-item.selected:before {
+  content: "";
+  display: table;
+  position: absolute;
+  border-left: 3px solid #afca05;
+  height: 3rem;
+  left: -2px;
+  transform: translateY(-20%);
+  }
 
 .process-start-list-item-wrapper {
   min-width: 300px;
@@ -2217,25 +2247,18 @@ a.case-details-document-add-link {
 .process-start-list-item-action {
   display: inline-flex;
   align-items: center;
-  opacity: .3;
   font-size: 1.2rem;
   padding-right: 10px;
 }
 
-.process-start-list-item-action.fa-info-circle.express-workflow {
+.process-start-list-item-action .process-item {
+  opacity: 0.3;
+}
+
+.process-start-list-item-action .express-workflow {
   cursor: default;
+  margin: 0 5px 3px 5px;
 }
-
-.process-start-list-item:hover .process-start-list-item-action.is-express-workflow {
-  padding-left: 10px;
-  margin-left: auto;
-  min-width: 60px;
-}
-
-.process-start-list-item .process-start-list-item-action.is-express-workflow {
-  min-width: 0;
-}
-
 
 .process-start-list-item .open-icon {
   padding-right: 15px;
@@ -2250,9 +2273,10 @@ a.case-details-document-add-link {
 
 .process-start-list-item .process-start-list-item-action .process-description {
   display: inline-block;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   padding-right: 7px;
   padding-bottom: 3px;
+  padding-left: 5px;
   float: left;
 }
 
@@ -2264,10 +2288,17 @@ a.case-details-document-add-link {
   color: black !important;
 }
 
+.process-start-list-item .ui-commandlink.process-item {
+  font-size: 1.5rem;
+}
+
 .process-start-list-item .ui-commandlink.process-item,  
 .process-start-list-item .ui-link.external-process-item {
-  min-width: 60%;
   width: 100%;
+}
+
+.process-start-list-item .ui-link.external-process-item {
+  min-width: 60%;
 }
 
 .process-start-list-item:hover ,
@@ -2368,11 +2399,18 @@ a.case-details-document-add-link {
 
 .express-process-logo {
   border: none;
+  opacity: 0.8;
   background-color: transparent;
   background-repeat: no-repeat;
-  margin: 15px 7px;
-  font-size: 14px;
-  background-image: url(#{resource['ivy-webcontent:images/processLogo/icon_express_process_14x14.png']});
+  margin: 0 5px 3px 5px;
+  width: 2rem;
+  background-size: 100%;
+  background-image: url(#{resource['ivy-webcontent:images/expressLogo/icon_express_process_120x120.png']});
+}
+
+.express-process-logo .ui-panel-content {
+  width: 0.4rem;
+  height: 0.4rem;
 }
 
 .ui-autocomplete-panel .ui-autocomplete-table.ui-autocomplete-items {
