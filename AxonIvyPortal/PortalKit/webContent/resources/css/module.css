@@ -2112,6 +2112,7 @@ a.case-details-document-add-link {
 
 .process-start-list-container .process-nav .process-nav-item {
   padding: 0 30px;
+  color: rgba(0,0,0,1) !important;
 }
 
 .process-start-list-container .process-nav .process-nav-item.selected {
@@ -2126,7 +2127,13 @@ a.case-details-document-add-link {
   height: 3rem;
   left: -2px;
   transform: translateY(-20%);
-  }
+}
+
+.process-nav .process-nav-item.disabled {
+  pointer-events: none;
+  cursor: default;
+  color: rgba(0,0,0,0.3) !important;
+}
 
 .process-start-list-item-wrapper {
   min-width: 300px;
