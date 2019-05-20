@@ -27,6 +27,9 @@ function ProcessWidget() {
     	if (!!availableHeight) {
     		processStartListContainer.height(availableHeight);
     	}
+    	processStartListContainer.on("scroll", function() {
+    		$(".process-nav-item.selected").removeClass("selected");
+    	});
     },
 
     filter : function() {
@@ -84,6 +87,9 @@ function expandOrCollapseAllCategories(shouldExpand) {
 }
 
 function jumpToProcessGroupByCharacter(event) {
+  $(".process-nav-item.selected").removeClass("selected");
   var clickedCharacter = event.target.text;
+  var selectedItem = document.getElementById(event.target.id);
   document.getElementsByClassName("js-process-group-" + clickedCharacter)[0].scrollIntoView();
+  setTimeout(function(){ selectedItem.classList.add("selected"); }, 1);
 }
