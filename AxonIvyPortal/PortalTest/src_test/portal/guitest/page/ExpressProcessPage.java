@@ -45,24 +45,25 @@ public class ExpressProcessPage extends TemplatePage{
     chooseTaskType(taskIndex, typeIndex);
     Sleeper.sleepTight(1000);
     waitAjaxIndicatorDisappear();
-    type(By.id(String.format("form:defined-tasks-list:%d:task-name", taskIndex)), taskName);
-    type(By.id(String.format("form:defined-tasks-list:%d:task-description", taskIndex)), taskDescription);
-    click(By.id(String.format("form:defined-tasks-list:%d:task-responsible", taskIndex)));
-//    waitAjaxIndicatorDisappear();
-    ensureNoBackgroundRequest();
-    waitForElementDisplayed(By.id("choose-responsible-dialog"), true);
-    for(ExpressResponsible responsible : responsibles){
-      chooseResponsible(responsible.getResponsibleName(), responsible.isGroup());
+    if (typeIndex != 2) { // 2 is INFORMATION_EMAIL_INDEX
+      type(By.id(String.format("form:defined-tasks-list:%d:task-name", taskIndex)), taskName);
+      type(By.id(String.format("form:defined-tasks-list:%d:task-description", taskIndex)), taskDescription);
+      click(By.id(String.format("form:defined-tasks-list:%d:task-responsible-link", taskIndex)));
+  //    waitAjaxIndicatorDisappear();
+      ensureNoBackgroundRequest();
+      waitForElementDisplayed(By.id("choose-responsible-dialog"), true);
+      for(ExpressResponsible responsible : responsibles){
+        chooseResponsible(responsible.getResponsibleName(), responsible.isGroup());
+      }
+      click(By.id("assignee-selection-form:save-assignee-button"));
     }
-    click(By.id("assignee-selection-form:save-assignee-button"));
-    
   }
   
   public void createDefaultTask(int taskIndex, String taskName, List<ExpressResponsible> responsibles) {
     if(taskName != null) {
       type(By.id(String.format("form:defined-tasks-list:%d:default-task-name", taskIndex)), taskName);
     }
-    click(By.id(String.format("form:defined-tasks-list:%d:default-task-responsible", taskIndex)));
+    click(By.id(String.format("form:defined-tasks-list:%d:default-task-responsible-link", taskIndex)));
     waitAjaxIndicatorDisappear();
     waitForElementDisplayed(By.id("choose-responsible-dialog"), true);
     for(ExpressResponsible responsible : responsibles){
