@@ -27,7 +27,7 @@
             <h:outputText value="#{document.name}" styleClass="js-document-name" />
           </p:commandLink>
           <p:commandLink id="delete-file" actionListener="#{logic.setDataToDelete(document, case)}"
-            styleClass="fa fa-times Fright" oncomplete="PF('document-deletion-dialog-#{case.id}').show()">
+            styleClass="fa fa-times Fright" oncomplete="PF('document-deletion-dialog-#{case.id}').show();">
             <p:tooltip for="delete-file"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/deleteFile')} #{document.name}" />
           </p:commandLink>
@@ -77,7 +77,7 @@
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" process="@this"
         update="#{cc.clientId}:case-details-documents #{cc.attrs.componentToUpdate} #{p:component('case-document-global-messages')}"
         actionListener="#{logic.deleteDocument}"
-        oncomplete="PF('document-deletion-dialog-#{case.id}').hide()" />
+        oncomplete="PF('document-deletion-dialog-#{case.id}').hide(); documentTruncation.truncate();" />
       <p:commandButton id="document-deletion-cancellation-command" styleClass="portal-cancel-button"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" process="@this"
         onsuccess="PF('document-deletion-dialog-#{case.id}').hide()" />

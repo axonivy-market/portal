@@ -71,7 +71,7 @@
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" process="@this"
         update="#{p:component('task-details-documents')} #{cc.attrs.componentToUpdate} #{p:component('task-document-global-messages')}" 
         actionListener="#{logic.deleteDocument}"
-        oncomplete="PF('document-deletion-dialog').hide()" />
+        oncomplete="PF('document-deletion-dialog').hide(); documentTruncation.truncate();" />
       <p:commandButton id="document-deletion-cancellation-command" styleClass="portal-cancel-button"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" process="@this"
         onsuccess="PF('document-deletion-dialog').hide()" />
