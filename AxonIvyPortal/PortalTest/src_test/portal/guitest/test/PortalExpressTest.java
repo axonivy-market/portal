@@ -101,7 +101,7 @@ public class PortalExpressTest extends BaseTest{
     expressProcessPage.createTask(1, USER_TASK_WITH_EMAIL_INDEX, "Task 2", "Task 2 description", Arrays.asList(responsible2));
     
     expressProcessPage.addNewTask(1);
-    expressProcessPage.createTask(2, INFORMATION_EMAIL_INDEX, "Task 3", "Task 3 description", Arrays.asList(responsible1));
+    expressProcessPage.createTask(2, INFORMATION_EMAIL_INDEX, null, null, null);
     
     expressProcessPage.addNewTask(2);
     expressProcessPage.createTask(3, APPROVAL_INDEX, "Task 4", "Task 4 description", Arrays.asList(responsible1));
@@ -110,6 +110,26 @@ public class PortalExpressTest extends BaseTest{
     Assert.assertEquals(4, formDefinition.countNumberOfSteps());
   }
   
+  @Test
+  public void testStartFirstTaskIfCreatorIsAssigned() {
+    goToCreateExpressProcess();
+    ExpressProcessPage expressProcessPage = new ExpressProcessPage();
+    expressProcessPage.fillProcessProperties(true, true, "Test 1 Process for creator", "Test description Process for creator");
+    
+    ExpressResponsible responsible1 = new ExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
+    
+    expressProcessPage.createTask(0, USER_TASK_INDEX, "Task for creator", "Task 1 description for creator", Arrays.asList(responsible1));
+    
+    ExpressFormDefinitionPage formDefinition = expressProcessPage.goToFormDefinition();
+    formDefinition.createTextInputField("Input Text", INPUT_TEXT_TYPE_INDEX, false);
+    formDefinition.moveAllElementToDragAndDrogPanel();
+    formDefinition.executeWorkflow();
+    Sleeper.sleepTight(2000);
+    ExpressTaskPage expressTaskPage = new ExpressTaskPage();
+    expressTaskPage.finish();
+    HomePage home = new HomePage();
+    home.waitForPageLoaded();
+  }
 
   @Test
   public void createUserDefaultProcess() {
