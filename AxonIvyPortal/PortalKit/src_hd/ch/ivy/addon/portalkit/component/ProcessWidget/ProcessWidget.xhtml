@@ -89,9 +89,9 @@
           styleClass="no-process-message js-no-found-processes u-display-none" />
       </ui:fragment>
       <h:panelGroup id="process-nav" styleClass="process-nav">
-         <ui:repeat value="#{processWidgetBean.getAllAlphabeticalCharacters()}" var="character" >
-           <p:commandLink value="#{character}" styleClass="process-nav-item"
-             disabled="#{!processWidgetBean.processesByAlphabet.containsKey(character.toString())}" onclick="jumpToProcessGroupByCharacter(event); return;" />
+         <ui:repeat value="#{processWidgetBean.getAllAlphabeticalCharacters().entrySet().toArray()}" var="character" >
+           <p:commandLink value="#{character.value}" styleClass="process-nav-item js-process-starts-with-#{character.key}"
+             onclick="jumpToProcessGroupByCharacter(event)" />
          </ui:repeat>
        </h:panelGroup>
     </h:panelGroup>
