@@ -62,14 +62,14 @@
 
 
 		</p:dataTable>
-		<div class="MarTop10">
+		<div class="MarTop10 TexAlRight">
 
 		<p:fileUpload id="choose-uploading-file" value="#{data.selectedFile}"
 					mode="advanced" auto="true" dragDropSupport="true"
 					fileUploadListener="#{logic.submitUpload}" update="document-table error-messages"
 					label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/upload')}"
                     invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
-					rendered="#{cc.attrs.uploadPossible}"
+					rendered="#{cc.attrs.uploadPossible}" styleClass="uploading-file-message"
 					cancelLabel="Abbrechen" onstart="#{logic.setFileLimit(cc.attrs.fileLimit)}"
 					sizeLimit="#{masterDataBean.fileUploadSizeLimit}"
 					>
