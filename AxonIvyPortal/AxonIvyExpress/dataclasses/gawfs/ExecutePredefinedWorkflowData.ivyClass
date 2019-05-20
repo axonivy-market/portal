@@ -32,3 +32,5 @@ isAdhocProcess Boolean #field
 isAdhocProcess PERSISTENT #fieldModifier
 originalTaskId Long #field
 originalTaskId PERSISTENT #fieldModifier
+doesCreatorHaveTask Boolean #field
+doesCreatorHaveTask PERSISTENT #fieldModifier
