@@ -1,5 +1,5 @@
 [Ivy]
-1576FA61C4EDC8B1 3.23 #module
+1576FA61C4EDC8B1 3.26 #module
 >Proto >Proto Collection #zClass
 Fs0 WorkflowDefinitionProcess Big #zClass
 Fs0 RD #cInfo
@@ -297,16 +297,15 @@ Fs0 f16 guid 157930AFEEC5B0A0 #txt
 Fs0 f16 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f16 method initAssginement(gawfs.TaskDef) #txt
 Fs0 f16 disableUIEvents false #txt
-Fs0 f16 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<gawfs.TaskDef taskDefinition> param = methodEvent.getInputArguments();
+Fs0 f16 inParameterDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
 ' #txt
 Fs0 f16 inParameterMapAction 'out.taskDefinition=param.taskDefinition;
 ' #txt
 Fs0 f16 inActionCode 'int indexOfSelectedTaskDef = out.data.definedTasks.indexOf(param.taskDefinition);
 if (out.data.isUseDefaultUI) {
-	out.selectedResponsibleFieldId =  "form:defined-tasks-list:" + indexOfSelectedTaskDef + ":default-task-responsible";
+	out.selectedResponsibleFieldId =  "form:defined-tasks-list:" + indexOfSelectedTaskDef + ":default-task-responsible-input-container";
 } else {
-	out.selectedResponsibleFieldId =  "form:defined-tasks-list:" + indexOfSelectedTaskDef + ":task-responsible";
+	out.selectedResponsibleFieldId =  "form:defined-tasks-list:" + indexOfSelectedTaskDef + ":task-responsible-input-container";
 }
 ' #txt
 Fs0 f16 outParameterDecl '<> result;
