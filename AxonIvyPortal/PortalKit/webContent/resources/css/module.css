@@ -5680,4 +5680,8 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel {
 	-o-transform: translateY(30%);
 	transform: translateY(30%);
 }
+
+.uploading-file-message .ui-fileupload-messages {
+	text-align: left;
+}
 /* =================== END MESSAGES ========================= */
