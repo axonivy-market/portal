@@ -30,7 +30,7 @@
         rendered="#{isShowResultTabView}">
         <p:tab id="process-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" titleStyleClass="process-tab-title"
           rendered="#{compactProcessWidgetBean.displayShowAllProcessesLink}">
-          <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-results"
+          <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-results" hideProcessNavigation="true"
             hideHeader="true" hideExpressCreation="true" processListStyleClass="process-in-search" />
         </p:tab>
         

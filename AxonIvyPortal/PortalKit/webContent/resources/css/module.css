@@ -2098,6 +2098,10 @@ a.case-details-document-add-link {
   padding-top: 15px;
 }
 
+.mobile-process-start-list-container .no-process-message  {
+  margin-left: 10px;
+}
+
 /* Small screen */
 @media (max-width: 1365px) {
   .process-start-list-container {
