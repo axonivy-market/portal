@@ -2089,6 +2089,11 @@ a.case-details-document-add-link {
   margin-right: -15px;
   padding-right: 80px;
   overflow: auto;
+  height: auto !important;
+}
+
+.mobile-process-start-list-container {
+  padding-right: 0;
 }
 
 /* Small screen */

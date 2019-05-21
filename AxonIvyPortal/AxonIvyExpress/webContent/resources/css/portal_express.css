@@ -384,6 +384,7 @@
 	height: 5rem !important;
 	background-color: #ffffff;
 	margin-left: 13px;
+	vertical-align: top;
 }
 
 .ui-widget.ui-button.defined-task-button span {
