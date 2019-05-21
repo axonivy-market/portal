@@ -9,7 +9,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -197,12 +196,17 @@ public class ProcessWidgetBean implements Serializable {
     return createExpressWorkflowProcessStart;
   }
 
-  public List<Character> getAllAlphabeticalCharacters() {
-    List<Character> characters = new ArrayList<>();
-    for (int i = 65; i <= 90; i++) {
-      characters.add((char)i);
+  public Map<String, String> getAllAlphabeticalCharacters() {
+    Map<String, String> processGroups = new LinkedHashMap<>();
+    for (String processGroupName : processesByAlphabet.keySet()) {
+      if (!processGroupName.equals(SPECIAL_CHARACTER_KEY)) {
+        processGroups.put(processGroupName, processGroupName);
+      } else {
+        processGroups.put(SPECIAL_CHARACTER_KEY, "#");
+      }
     }
-    return characters;
+    
+    return processGroups;
   }
 
   public boolean isExpressProcess (Process process) {
