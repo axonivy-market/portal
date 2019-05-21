@@ -2,7 +2,6 @@ package ch.ivy.addon.portalkit.service;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +16,7 @@ import ch.ivy.addon.portalkit.document.DocumentDetector;
 import ch.ivy.addon.portalkit.document.DocumentDetectorFactory;
 import ch.ivy.addon.portalkit.document.DocumentExtensionConstants;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.ivydata.bo.IvyDocument;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
@@ -71,12 +71,10 @@ public class CaseDocumentService {
   /**
    * @param document
    * @return streamed content
-   * @throws IOException cannot find the file to download
    */
-  public StreamedContent download(IDocument document) throws IOException {
-    InputStream inputStream = document.read().asStream();
-    String contentType = getContentType(document);
-    return new DefaultStreamedContent(inputStream, contentType, document.getName());
+  public StreamedContent download(IvyDocument document) {
+    InputStream inputStream = documentsOf(iCase).get(Long.valueOf(document.getId())).read().asStream();
+    return new DefaultStreamedContent(inputStream, document.getContentType(), document.getName());
   }
 
   public boolean doesDocumentExist(String filename) {
@@ -136,10 +134,6 @@ public class CaseDocumentService {
     } catch (Exception e) {
       throw new PortalException(e);
     }
-  }
-
-  private String getContentType(IDocument document) throws IOException {
-    return Files.probeContentType(document.read().asJavaFile().toPath());
   }
 
   private static List<String> getAllowedUploadFileType() {
