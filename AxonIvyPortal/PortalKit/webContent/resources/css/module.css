@@ -2419,7 +2419,8 @@ a.case-details-document-add-link {
   background-color: transparent;
   background-repeat: no-repeat;
   margin: 0 5px 3px 5px;
-  width: 2rem;
+  width: 1.1rem;
+  height: 1.1rem;
   background-size: 100%;
   background-image: url(#{resource['ivy-webcontent:images/expressLogo/icon_express_process_120x120.png']});
 }
@@ -2427,6 +2428,19 @@ a.case-details-document-add-link {
 .express-process-logo .ui-panel-content {
   width: 0.4rem;
   height: 0.4rem;
+  margin: 0 5px 3px 5px;
+}
+
+_:-ms-input-placeholder, :root .express-process-logo {
+  height: auto;
+  width: auto;
+  margin: 0 5px 3px 0px;
+}
+
+_:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
+  width: auto;
+  height: auto;
+  margin: 0;
 }
 
 .ui-autocomplete-panel .ui-autocomplete-table.ui-autocomplete-items {
