@@ -5658,7 +5658,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 	align-items: center;
 }
 
-_:-ms-input-placeholder, :root .ui-g .ui-outputlabel {
+_:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlink {
 	display: inline-block;
 	margin-top: 6px;
 }
