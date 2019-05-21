@@ -11,6 +11,7 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -276,7 +277,7 @@ public class StatisticFilter implements Cloneable {
   }
   
   public List<String> findSavedCustomFields(){
-    return customFieldFilters.entrySet()
+    return MapUtils.emptyIfNull(customFieldFilters).entrySet()
         .stream()
         .filter(item -> CollectionUtils.isNotEmpty(item.getValue()))
         .map(Map.Entry::getKey)
