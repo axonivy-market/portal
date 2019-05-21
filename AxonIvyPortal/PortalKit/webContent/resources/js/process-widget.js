@@ -62,13 +62,18 @@ function ProcessWidget() {
       });
       
       var noFoundProcesses = $('.js-no-found-processes');
+      var expandCollapseButtons = $('.expand-collapse-btns');
       if (!$(processItems).is(":visible")) {
         $(noFoundProcesses).removeClass('u-display-none');
+        expandCollapseButtons.addClass('u-display-none');
       } else {
         $(noFoundProcesses).addClass('u-display-none');
+        expandCollapseButtons.removeClass('u-display-none');
       }
       
-      disableGroupNavigation();
+      if (document.getElementsByClassName('process-nav').length != 0) {
+        disableGroupNavigation();
+      }
     }
   }
 }
