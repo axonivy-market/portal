@@ -2086,7 +2086,16 @@ a.case-details-document-add-link {
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
-  margin-right: 60px;
+  margin-right: -15px;
+  padding-right: 80px;
+  overflow: auto;
+}
+
+/* Small screen */
+@media (max-width: 1365px) {
+  .process-start-list-container {
+    margin-right: -65px;
+  }
 }
 
 .process-start-list-container .process-nav {
@@ -2103,6 +2112,7 @@ a.case-details-document-add-link {
 
 .process-start-list-container .process-nav .process-nav-item {
   padding: 0 30px;
+  color: rgba(0,0,0,1) !important;
 }
 
 .process-start-list-container .process-nav .process-nav-item.selected {
@@ -2117,7 +2127,13 @@ a.case-details-document-add-link {
   height: 3rem;
   left: -2px;
   transform: translateY(-20%);
-  }
+}
+
+.process-nav .process-nav-item.disabled {
+  pointer-events: none;
+  cursor: default;
+  color: rgba(0,0,0,0.3) !important;
+}
 
 .process-start-list-item-wrapper {
   min-width: 300px;
@@ -3366,6 +3382,7 @@ _:-ms-input-placeholder, :root .case-details > * {
   line-height: 1.8rem;
   border: none;
   padding: 0 0 7px 0 !important;
+  margin-bottom: 15px;
 }
 
 .case-related-tasks-scrollpanel .related-task{

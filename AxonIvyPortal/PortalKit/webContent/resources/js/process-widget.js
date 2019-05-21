@@ -33,6 +33,7 @@ function ProcessWidget() {
     },
 
     filter : function() {
+      $(".process-nav-item.selected").removeClass("selected");
       var processItems = $('.js-process-start-list-item');
       $(processItems).show();
       $.each(processItems, function(index) {
@@ -66,6 +67,8 @@ function ProcessWidget() {
       } else {
         $(noFoundProcesses).addClass('u-display-none');
       }
+      
+      disableGroupNavigation();
     }
   }
 }
@@ -87,9 +90,43 @@ function expandOrCollapseAllCategories(shouldExpand) {
 }
 
 function jumpToProcessGroupByCharacter(event) {
+  var prefix = "js-process-starts-with-";
+  var clickedCharacter = getClassNameStartsWith(event.target.className, prefix).slice(prefix.length);
   $(".process-nav-item.selected").removeClass("selected");
-  var clickedCharacter = event.target.text;
   var selectedItem = document.getElementById(event.target.id);
   document.getElementsByClassName("js-process-group-" + clickedCharacter)[0].scrollIntoView();
   setTimeout(function(){ selectedItem.classList.add("selected"); }, 1);
+}
+
+function getClassNameStartsWith(classList, prefix) {
+  return $.grep(classList.split(" "), function(className, index){
+    return className.indexOf(prefix) === 0;
+  }).join();
+}
+
+function disableGroupNavigation() {
+  var prefix ="js-process-group-";
+  var processIndexGroups = document.getElementsByClassName("js-process-index-group");
+
+  var hiddenIndexGroups = getElementsHaveClassName(processIndexGroups, false);
+  hiddenIndexGroups.forEach(function(e) {
+    var indexNav = getClassNameStartsWith(e.className, prefix).slice(prefix.length);
+    var hidden = document.getElementsByClassName('js-process-starts-with-' + indexNav)[0];
+    hidden.classList.add('disabled');
+  });
+
+  var displayedIndexGroups = getElementsHaveClassName(processIndexGroups, true);
+  displayedIndexGroups.forEach(function(e) {
+    var indexNav = getClassNameStartsWith(e.className, prefix).slice(prefix.length);
+    var hidden = document.getElementsByClassName('js-process-starts-with-' + indexNav)[0];
+    if ($(hidden).hasClass('disabled')) {
+      hidden.classList.remove('disabled');
+    }
+  });
+}
+
+function getElementsHaveClassName(displayedFieldSets, invert) {
+  return $.grep(displayedFieldSets, function(fieldSet, index){
+    return fieldSet.style.display === "none";
+  }, invert);
 }
