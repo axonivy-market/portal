@@ -11,7 +11,7 @@ public class MobileProcessPage extends MobileTemplatePage{
   private static final String PROCESS_NAME_SEARCH_INPUT_ID = "process-widget:process-search:non-ajax-keyword-filter";
   private static final String DICTIONARY_GROUP_ID = "process-widget:dictionary-process-group-selection";
   private static final String PROCESS_ITEM_CSS_SELECTOR = 
-      "[id$=':%d:none-express-processes:%d:process-item-form:process-item']"; //First input: Index of field set, Second input: Index of process item in that field set
+      "[id$=':%d:processes:%d:process-item-form:process-item']"; //First input: Index of field set, Second input: Index of process item in that field set
   @Override
   protected String getLoadedLocator() {
     return "id('" + PROCESS_NAME_SEARCH_INPUT_ID + "')";

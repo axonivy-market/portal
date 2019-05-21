@@ -2092,6 +2092,10 @@ a.case-details-document-add-link {
   height: auto !important;
 }
 
+.mobile-process-start-list-container {
+  padding-right: 0;
+}
+
 /* Small screen */
 @media (max-width: 1365px) {
   .process-start-list-container {
