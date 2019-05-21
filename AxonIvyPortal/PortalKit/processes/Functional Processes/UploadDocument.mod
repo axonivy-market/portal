@@ -296,7 +296,7 @@ Ut0 f4 0 0.6389354311645866 0 0 #arcLabel
 Ut0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Override this sub process to download your file from DMS&#xD;
+        <name>Override this sub process to upload your file to DMS&#xD;
 This sub process also contains some validation, so if you override it, you have to implement validation by your own</name>
     </language>
 </elementInfo>
