@@ -1,0 +1,6 @@
+UploadDocumentData #class
+ch.ivy.add.portalkit #namespace
+status ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus #field
+message String #field
+uploadedFile org.primefaces.model.UploadedFile #field
+businessCase ch.ivyteam.ivy.workflow.ICase #field

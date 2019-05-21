@@ -27,7 +27,7 @@
         <inputParameter>
             <name>document</name>
             <description></description>
-            <parameterType>ch.ivyteam.ivy.workflow.document.IDocument</parameterType>
+            <parameterType>ch.ivy.addon.portalkit.ivydata.bo.IvyDocument</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
         <outputParameter>
