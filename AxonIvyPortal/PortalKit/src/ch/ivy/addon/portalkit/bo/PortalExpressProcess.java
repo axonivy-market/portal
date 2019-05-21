@@ -7,7 +7,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 /*
  *Used for merging express process and ivy process into a process list 
  */
-public class PortalExpressProcess extends Process {
+public class PortalExpressProcess implements Process {
   private ExpressProcess process;
   private static final String EXPRESS_WORKFLOW_ID_PARAM = "?workflowID=";
   
