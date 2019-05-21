@@ -73,7 +73,6 @@ import org.apache.commons.io.FileUtils;
 import java.util.Arrays;
 import ch.ivy.addon.portalkit.masterdata.MasterData;
 
-ivy.log.warn("Call to override process upload document");
 in.message = "";
 in.status = UploadDocumentCheckStatus.OK;
 
