@@ -654,10 +654,6 @@
 	margin-left: -20px !important;
 }
 
-.choose-responsible-dialog .ui-dialog-content {
-	cursor: default;
-}
-
 .choose-responsible-dialog .ui-button-icon-only .ui-icon {
 	left: 70% !important;
 	margin-top: -10px;
@@ -835,22 +831,6 @@
 .task-responsible-link:after {
   font-family: 'FontAwesome' !important;
   content: " \f044";
-}
-
-.task-responsible-input-container {
-  display: flex !important;
-  align-items: flex-end !important;
-}
-
-.task-responsible {
-  box-shadow: inset 0 -1px 0px 0px rgba(0,0,0,0.3);
-  padding: 6px !important;
-  flex: 1 0 auto;
-  word-break: break-all;
-}
-
-.ui-widget.ui-button.task-responsible-button {
-  padding: 0 50px;
-  border-top-left-radius: 0 !important;
-  border-bottom-left-radius: 0 !important;
+  margin-left: 5px;
+  color: black;
 }

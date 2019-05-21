@@ -177,14 +177,17 @@
                       <p:outputLabel for="task-responsible"
                         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:" />
                     </h:panelGroup>
-                    <h:panelGroup layout="block" id="task-responsible-input-container" styleClass="ui-g-12 ui-md-12 ui-lg-3 task-responsible-input-container" rendered="#{gtask.taskType ne 'EMAIL'}">
-                      <h:inputHidden id="task-responsible-output" value="#{gtask.responsibleDisplayName}" required="true"
+                    <h:panelGroup layout="block" id="task-responsible-input-container" styleClass="ui-g-12 ui-md-12 ui-lg-3" rendered="#{gtask.taskType ne 'EMAIL'}">
+                      <h:inputHidden id="task-responsible" value="#{gtask.responsibleDisplayName}" required="true"
                         requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
-                      <h:outputText id="task-responsible" styleClass="task-responsible" value="#{gtask.responsibleDisplayName}" />
-                      <p:commandButton id="task-responsible-button" styleClass="task-responsible-button" icon="fa fa-search"
-                              actionListener="#{logic.initAssginement(gtask)}" oncomplete="PF('choose-responsible-dialog').show();"
-                              update="assignee-selection-form:assignee-selection-panel" global="false" immediate="true" />
+                      <p:commandLink id="task-responsible-link" immediate="true" styleClass="task-responsible-link"
+                        value="#{not empty gtask.responsibleDisplayName ? gtask.responsibleDisplayName : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"
+                        actionListener="#{logic.initAssginement(gtask)}" oncomplete="PF('choose-responsible-dialog').show();"
+                        update="assignee-selection-form:assignee-selection-panel" global="false" />
                     </h:panelGroup>
+                    <div class="ui-g-12 ui-md-12 ui-lg-2"></div>
+                  </div>
+                  <div class="ui-g">
 
                     <h:panelGroup layout="block" styleClass="ui-g-12 ui-md-12 ui-lg-2" rendered="#{gtask.taskType ne 'EMAIL'}">
                       <!-- NUMBER OF VALID DAYS -->
