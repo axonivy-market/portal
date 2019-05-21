@@ -3382,6 +3382,7 @@ _:-ms-input-placeholder, :root .case-details > * {
   line-height: 1.8rem;
   border: none;
   padding: 0 0 7px 0 !important;
+  margin-bottom: 15px;
 }
 
 .case-related-tasks-scrollpanel .related-task{
