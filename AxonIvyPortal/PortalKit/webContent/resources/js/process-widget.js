@@ -25,7 +25,7 @@ function ProcessWidget() {
     							- globalSearchInput.outerHeight(true) - globalSearchTabHeader.outerHeight(true)
     							- error;
     	if (!!availableHeight) {
-    		processStartListContainer.height(availableHeight);
+    		processStartListContainer.css("max-height", availableHeight + "px");
     	}
     	processStartListContainer.on("scroll", function() {
     		$(".process-nav-item.selected").removeClass("selected");
