@@ -1,19 +1,13 @@
 package ch.ivy.addon.portalkit.bo;
 
-import org.apache.commons.lang3.StringUtils;
-
 import ch.ivy.addon.portalkit.enums.ProcessType;
 
-public abstract class Process {
-  
-  public abstract String getName();
-  public abstract String getStartLink();
-  public abstract String getDescription();
-  public abstract Object getProcess();
-  public abstract ProcessType getType();
-  public abstract String getTypeName();
-  public String getId() {
-    return StringUtils.EMPTY;
-  }
-  
+public interface Process {
+  public String getName();
+  public String getStartLink();
+  public String getDescription();
+  public Object getProcess();
+  public ProcessType getType();
+  public String getTypeName();
+  public String getId();
 }
