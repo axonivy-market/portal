@@ -2430,6 +2430,11 @@ a.case-details-document-add-link {
   background-image: url(#{resource['ivy-webcontent:images/expressLogo/icon_express_process_120x120.png']});
 }
 
+
+.express-process-logo.mobile-express-process-logo {
+	margin: 0;
+}
+
 .express-process-logo .ui-panel-content {
   width: 0.4rem;
   height: 0.4rem;
