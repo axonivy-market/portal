@@ -1,10 +1,12 @@
 package ch.ivy.addon.portalkit.document;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
 import ch.ivy.addon.portalkit.ivydata.bo.IvyDocument;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.File;
 import ch.ivyteam.ivy.workflow.document.IDocument;
 
@@ -22,7 +24,8 @@ public class IvyDocumentTransformer {
     try {
       File file = new File(document.getPath().asString());
       result.setContentType(Files.probeContentType(file.getJavaFile().toPath()));
-    } catch (Exception e) {
+    } catch (IOException e) {
+      Ivy.log().error(e);
     }
 
     return result;
