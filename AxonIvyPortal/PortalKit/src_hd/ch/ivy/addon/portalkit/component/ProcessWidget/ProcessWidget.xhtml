@@ -51,7 +51,7 @@
 	        </h:panelGroup>
 	      </h:form>
 	      <br/>
-	      <span class="expand-collapse-btns">
+	      <h:panelGroup class="expand-collapse-btns" rendered="#{not processWidgetBean.mobileMode}">
 	        <p:commandLink id="expand-all-btn"
 	          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/expandAll')}" onclick="expandOrCollapseAllCategories(true); return false;"
 	        />
@@ -59,7 +59,7 @@
 	        <p:commandLink id="collapse-all-btn"
 	          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/collapseAll')}" onclick="expandOrCollapseAllCategories(false); return false;"
 	        />
-	      </span>
+	      </h:panelGroup>
 	    </h:panelGroup>
     </div>
     <h:panelGroup id="process-list" layout="block" styleClass="widget-content process-start-list-container js-process-start-list-container #{processWidgetBean.mobileMode ? 'mobile-process-start-list-container' : ''}">
@@ -123,7 +123,7 @@
       });
       function jumpToProcessGroup() {
         document.getElementsByClassName("js-process-group-" + PF('dictionary-process-group-selection').value)[0]
-            .scrollIntoView();
+            .scrollIntoViewIfNeeded();
         PF('dictionary-process-group-selection').hide();
 		
         var processHeaderHeight = document.getElementsByClassName("process-widget")[0]
