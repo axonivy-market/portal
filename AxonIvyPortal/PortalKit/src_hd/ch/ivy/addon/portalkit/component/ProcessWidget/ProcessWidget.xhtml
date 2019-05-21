@@ -62,7 +62,7 @@
 	      </span>
 	    </h:panelGroup>
     </div>
-    <h:panelGroup id="process-list" layout="block" styleClass="widget-content process-start-list-container js-process-start-list-container">
+    <h:panelGroup id="process-list" layout="block" styleClass="widget-content process-start-list-container js-process-start-list-container #{processWidgetBean.mobileMode ? 'mobile-process-start-list-container' : ''}">
       <ui:fragment id="full-process-list">
         <ui:repeat id="process-group-alphabet" var="entryProcess"
           value="#{processWidgetBean.processesByAlphabet.entrySet().toArray()}">
@@ -88,7 +88,7 @@
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/noProcesses')}"
           styleClass="no-process-message js-no-found-processes u-display-none" />
       </ui:fragment>
-      <h:panelGroup id="process-nav" styleClass="process-nav">
+      <h:panelGroup id="process-nav" styleClass="process-nav" rendered="#{!processWidgetBean.mobileMode}">
          <ui:repeat value="#{processWidgetBean.getAllAlphabeticalCharacters().entrySet().toArray()}" var="character" >
            <p:commandLink value="#{character.value}" styleClass="process-nav-item js-process-starts-with-#{character.key}"
              onclick="jumpToProcessGroupByCharacter(event)" />

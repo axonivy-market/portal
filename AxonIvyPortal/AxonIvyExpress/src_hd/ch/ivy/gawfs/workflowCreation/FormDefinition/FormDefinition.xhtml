@@ -28,7 +28,8 @@
       <h:panelGroup id="defined-task-container" layout="block" styleClass="defined-task-container">
         <c:forEach items="#{data.data.definedTasks}" var="definedTask" varStatus="status" >
           <h:panelGroup id="defined-task-button-container-#{status.index}" layout="block" styleClass="defined-task-button-container">
-            <p:commandButton id="defined-task-button-#{status.index}" value="#{definedTask.subject}&#10;(#{definedTask.taskType.label})" partialSubmit="true"
+            <p:commandButton id="defined-task-button-#{status.index}" partialSubmit="true"
+              value="#{definedTask.taskType == 'EMAIL' ? definedTask.taskType.label : definedTask.subject.concat('&#10;(').concat(definedTask.taskType.label).concat(')')}"
               styleClass="defined-task-button #{status.index == data.activeTaskIndex ? 'active' : ''} #{status.index lt data.activeTaskIndex ? 'visited' : ''}"
               disabled="#{(status.index == data.activeTaskIndex) || (definedTask.taskType == 'APPROVAL')}"
               actionListener="#{logic.moveToTask(status.index)}" update="form defined-task-container buttons-container" process="form:selected-formelements-field form:information-email:email-container">

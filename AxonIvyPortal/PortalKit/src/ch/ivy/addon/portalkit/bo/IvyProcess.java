@@ -1,9 +1,11 @@
 package ch.ivy.addon.portalkit.bo;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
-public class IvyProcess extends Process{
+public class IvyProcess implements Process{
   
   private IWebStartable process;
   
@@ -39,5 +41,10 @@ public class IvyProcess extends Process{
   @Override
   public String getTypeName() {
     return ProcessType.IVY_PROCESS.getType();
+  }
+
+  @Override
+  public String getId() {
+    return StringUtils.EMPTY;
   }
 }
