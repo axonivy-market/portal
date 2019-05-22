@@ -2,7 +2,6 @@ package ch.ivy.addon.portalkit.persistence.dao;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.persistence.domain.GlobalSetting;
 import ch.ivyteam.ivy.application.IApplication;
 
@@ -39,7 +38,6 @@ public class GlobalSettingDao extends AbstractDao<GlobalSetting> {
     if (globalSetting == null) {
       return;
     }
-    globalSetting.setValue(GlobalVariable.valueOf(globalSetting.getKey()).getDefaultValue());
-    save(globalSetting);
+    delete(globalSetting);
   }
 }
