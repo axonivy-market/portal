@@ -13,7 +13,8 @@
     <p:tooltip for="process-name-#{processType}" value="#{processName}" />
   </div>
   <h:panelGroup styleClass="process-start-list-item-action u-padding-0" rendered="#{isExpress}" layout="block">
-    <p:panel styleClass="express-process-logo #{processWidgetBean.mobileMode ? 'mobile-express-process-logo' : ''}" />
+    <p:panel id="express-process-logo" styleClass="express-process-logo #{processWidgetBean.mobileMode ? 'mobile-express-process-logo' : ''}" />
+    <p:tooltip id="express-process-logo-tooltip" for="express-process-logo" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/expressWorkflow')}" position="top"/>
     <ui:include src="ProcessItemExpressActions.xhtml">
       <ui:param name="processType" value="process" />
       <ui:param name="isMobileMode" value="#{processWidgetBean.mobileMode}" />
