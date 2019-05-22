@@ -16,7 +16,7 @@ public class CustomTaskDelegateTest extends BaseTest {
   public void setup() {
     super.setup();
     createTestingTasks();
-    redirectToRelativeLink(HomePage.INTERNAL_SUPPORT_HOME_PAGE_URL);
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
   }
 
   @Test
