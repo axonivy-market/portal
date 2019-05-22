@@ -25,12 +25,15 @@ Cs0 @RichDialogProcessEnd f10 '' #zField
 Cs0 @RichDialogMethodStart f9 '' #zField
 Cs0 @PushWFArc f11 '' #zField
 Cs0 @PushWFArc f13 '' #zField
+Cs0 @RichDialogProcessEnd f7 '' #zField
+Cs0 @RichDialogMethodStart f14 '' #zField
+Cs0 @PushWFArc f15 '' #zField
 >Proto Cs0 Cs0 CustomFieldProcess #zField
 Cs0 f0 guid 16A76A01F08609A3 #txt
 Cs0 f0 type ch.ivy.addon.portalkit.component.statistic.CustomField.CustomFieldData #txt
 Cs0 f0 method start() #txt
 Cs0 f0 disableUIEvents true #txt
-Cs0 f0 inParameterDecl 'ch.ivy.add.portalkit.Data out;
+Cs0 f0 inParameterDecl 'ch.ivy.addon.portalkit.component.statistic.CustomField.CustomFieldData out;
 ' #txt
 Cs0 f0 outParameterDecl '<> result;
 ' #txt
@@ -107,6 +110,31 @@ Cs0 f11 expr out #txt
 Cs0 f11 281 258 340 258 #arcP
 Cs0 f13 expr out #txt
 Cs0 f13 110 258 169 258 #arcP
+Cs0 f7 type ch.ivy.addon.portalkit.component.statistic.CustomField.CustomFieldData #txt
+Cs0 f7 211 339 26 26 0 12 #rect
+Cs0 f7 @|RichDialogProcessEndIcon #fIcon
+Cs0 f14 guid 16ADE4E91DC3CB1F #txt
+Cs0 f14 type ch.ivy.addon.portalkit.component.statistic.CustomField.CustomFieldData #txt
+Cs0 f14 method cleanUp() #txt
+Cs0 f14 disableUIEvents false #txt
+Cs0 f14 inParameterDecl 'ch.ivy.addon.portalkit.component.statistic.CustomField.CustomFieldData out;
+' #txt
+Cs0 f14 inParameterMapAction 'out.selectedCustomValues=new java.util.ArrayList();
+out.tempSelectedCustomValues=new java.util.ArrayList();
+' #txt
+Cs0 f14 outParameterDecl '<> result;
+' #txt
+Cs0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>cleanUp()</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f14 83 339 26 26 -27 15 #rect
+Cs0 f14 @|RichDialogMethodStartIcon #fIcon
+Cs0 f15 expr out #txt
+Cs0 f15 109 352 211 352 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.statistic.CustomField.CustomFieldData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -119,3 +147,5 @@ Cs0 f9 mainOut f13 tail #connect
 Cs0 f13 head f12 mainIn #connect
 Cs0 f12 mainOut f11 tail #connect
 Cs0 f11 head f10 mainIn #connect
+Cs0 f14 mainOut f15 tail #connect
+Cs0 f15 head f7 mainIn #connect
