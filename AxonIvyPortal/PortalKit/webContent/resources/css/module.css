@@ -2246,7 +2246,7 @@ a.case-details-document-add-link {
 }
 
 .process-start-list .process-start-list-item-name, .process-in-search .process-start-list-item-name, .mobile-process-start-list .process-start-list-item-name {
-  padding-left: 3%;
+  padding-left: 15px;
 }
 
 .process-start-list-item:hover .process-start-list-item-icon,
@@ -2284,7 +2284,7 @@ a.case-details-document-add-link {
 
 .process-start-list-item-action .express-workflow {
   cursor: default;
-  margin: 0 5px 3px 5px;
+  margin: 0 5px;
 }
 
 .process-start-list-item .open-icon {
@@ -2429,7 +2429,6 @@ a.case-details-document-add-link {
   opacity: 0.8;
   background-color: transparent;
   background-repeat: no-repeat;
-  margin: 0 5px 3px 5px;
   width: 1.1rem;
   height: 1.1rem;
   background-size: 100%;
