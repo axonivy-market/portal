@@ -807,7 +807,8 @@ Fs0 f62 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDef
 ' #txt
 Fs0 f62 actionTable 'out=in;
 ' #txt
-Fs0 f62 actionCode 'import org.apache.commons.codec.binary.StringUtils;
+Fs0 f62 actionCode 'import org.apache.commons.lang.StringUtils;
+
 import ch.ivy.gawfs.enums.ProcessType;
 import ch.ivy.gawfs.ExpressProcessUtils;
 ExpressProcessUtils utils = new ExpressProcessUtils();
