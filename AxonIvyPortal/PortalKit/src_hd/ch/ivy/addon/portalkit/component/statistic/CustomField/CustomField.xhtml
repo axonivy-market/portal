@@ -11,12 +11,12 @@
   <cc:interface componentType="IvyComponent">
   	<cc:attribute name="completeMethod" method-signature="java.util.List autocompleteMethod(java.lang.String)" />
   	<cc:attribute name="updateListener" method-signature="void handleEvent(javax.faces.event.ActionEvent)" />
-  	<cc:attribute name="selectedValues" />
   	<cc:attribute name="updateComponents" />
   	<cc:attribute name="fieldName"/>
   </cc:interface>
   
   <cc:implementation>
+  	<f:event listener="#{logic.cleanUp}" type="preRenderComponent"/>
     <h:panelGroup id="custom-field-panel-header-container" layout="block" styleClass="custom-field-panel-header-container">
           <p:autoComplete id="custom-string-selection" scrollHeight="400" dropdown="true" styleClass="custom-val-selection"
             value="#{data.selectedCustomValue}" completeMethod="#{cc.attrs.completeMethod}" var="customVal"
@@ -40,10 +40,10 @@
         <p:scrollPanel id="selected-custom-val-container" mode="native" styleClass="statistic-filter-container">
           <h:panelGroup id="selected-custom-val-panel" styleClass="selected-custom-val-panel" layout="block">
 
-            <p:selectManyCheckbox id="selected-custom-val"  layout="grid" columns="1">
+            <p:selectManyCheckbox id="selected-custom-val" value="#{data.selectedCustomValues}" layout="grid" columns="1">
               <f:selectItems value="#{data.tempSelectedCustomValues}" var="customVal"
                 itemValue="#{customVal}" itemLabel="#{customVal}" />
-                <p:ajax global="false" listener="#{statisticChartCreationBean.setCustomFieldFilter(cc.attrs.fieldName, data.tempSelectedCustomValues)}" />
+                <p:ajax global="false" listener="#{statisticChartCreationBean.setCustomFieldFilter(cc.attrs.fieldName, data.selectedCustomValues)}" />
             </p:selectManyCheckbox>
 
           </h:panelGroup>
