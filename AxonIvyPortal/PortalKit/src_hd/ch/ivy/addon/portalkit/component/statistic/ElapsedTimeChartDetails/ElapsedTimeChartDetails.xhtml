@@ -6,59 +6,70 @@
   xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="selectedCaseCategory" required="true" />
+  <cc:attribute name="caseCategory" required="true" />
+  <cc:attribute name="statisticChart" required="true" />
+  <cc:attribute name="chunkSize" shortDescription="Number of items to fetch for each lazy load" default="20" />
 </cc:interface>
 
 <cc:implementation>
-  <f:event listener="#{elapsedTimeDetailsBean.initialize(cc.attrs.selectedCaseCategory, cc.attrs.statisticChart)}" type="preRenderComponent" />
-  <f:event listener="#{data.setFirstRoleToCompare(elapsedTimeDetailsBean.defaultRole)}" type="preRenderComponent" />
-  <f:event listener="#{data.setSecondRoleToCompare(elapsedTimeDetailsBean.defaultRole)}" type="preRenderComponent" />
-  <h:form id="compare-elapsed-time-form">
-    <h:panelGrid id="compare-items-panel" styleClass="compare-items-panel" columns="1">
-      <h:panelGrid id="compare-roles-panel" styleClass="compare-roles-panel" columns="2">
-
-        <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/compareRole')}" />
-        <p:selectOneMenu value="#{data.firstRoleToCompare}" id="first-role-to-compare" filter="true" filterMatchMode="contains" converter="ivy.ListItem">
-          <f:selectItems value="#{elapsedTimeDetailsBean.rolesForCompareElapsedTime}" var="member" itemLabel="#{member.displayName}" itemValue="#{member}" />
-        </p:selectOneMenu>
-  
-          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/withRole')}" />
-          <p:selectOneMenu value="#{data.secondRoleToCompare}" id="second-role-to-compare" filter="true" filterMatchMode="contains" converter="ivy.ListItem">
-            <f:selectItems value="#{elapsedTimeDetailsBean.rolesForCompareElapsedTime}" var="member" itemLabel="#{member.displayName}" itemValue="#{member}" />
-          </p:selectOneMenu>
-      </h:panelGrid>
-
-      <p:commandButton id="compare-elapsed-time-button" styleClass="compare-elapsed-time-button" update="compare-elapsed-time-form"
-      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/compareButton')}"
-          actionListener="#{elapsedTimeDetailsBean.compare(data.firstRoleToCompare, data.secondRoleToCompare)}" />
-    </h:panelGrid>
-
-    <p:spacer height="30" />
-    <p:chart id="elapsed-tasks-chart" type="bar" rendered="#{!elapsedTimeDetailsBean.getDataEmpty()}"
-      styleClass="big-horizontal-statistic-chart" model="#{elapsedTimeDetailsBean.elapsedTimeOfTasksModel}" />
-
-    <p:spacer height="30" />
-
-    <h:panelGrid id="compare-result-panel" styleClass="compare-result-panel" columns="1">
-      <p:commandButton id="export-button" ajax="false" styleClass="export-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}">
-        <p:dataExporter type="xls" target="compare-table" fileName="#{elapsedTimeDetailsBean.getExcelFileName()}" />
+  <f:event listener="#{elapsedTimeDetailsBean.initialize(cc.attrs.caseCategory, cc.attrs.statisticChart)}"
+    type="preRenderComponent" />
+  <f:event listener="#{logic.initialize(cc.attrs.caseCategory)}" type="preRenderComponent" />
+  <div id="#{cc.clientId}:elapsed-time-details-category" class="widget case-widget-container">
+    <h:form id="export-button-form">
+      <p:commandButton id="export-button" ajax="false" styleClass="export-button"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}">
+        <p:dataExporter type="xls" target="case-table" fileName="#{elapsedTimeDetailsBean.getExcelFileName()}" />
       </p:commandButton>
 
-      <p:dataTable  id="compare-table" widgetVar="comparisonTable" value="#{elapsedTimeDetailsBean.comparisonDataModel}"
-        var="comparison" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/noEntriesFound')}"
-        scrollable="true" scrollHeight="200">
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/taskCategory')}">
-          <h:outputText value="#{comparison.category}" />
+      <p:dataTable id="case-table" widgetVar="case-table" var="elapsedTimeDetail" value="#{data.dataModel}"
+        rowKey="#{elapsedTimeDetail.getId()}" sortMode="single" lazy="true" scrollable="true" liveScroll="true"
+        scrollRows="20" styleClass="task-table" rows="#{cc.attrs.chunkSize}">
+
+        <p:ajax event="sort" update="case-table" onstart="liveScroll()" />
+
+        <p:column id="case-id"
+          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseID')}" sortable="false"
+          width="120">
+          <h:outputText value="#{elapsedTimeDetail.getId()}" />
         </p:column>
-        <p:column headerText="#{data.firstRoleToCompare.displayName}">
-          <h:outputText value="#{comparison.elapsedTimeOfFirstRole}" />
+
+        <p:column id="case-name"
+          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseName')}" sortable="false"
+          width="250">
+          <h:outputText value="#{elapsedTimeDetail.getName()}" />
         </p:column>
-        <p:column headerText="#{data.secondRoleToCompare.displayName}">
-          <h:outputText value="#{comparison.elapsedTimeOfSecondRole}" />
+
+        <p:column id="case-creator"
+          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" sortable="false"
+          width="200">
+          <h:outputText value="#{elapsedTimeDetail.getCreatorUserName()}" />
+        </p:column>
+
+        <p:column id="case-created"
+          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}"
+          sortBy="false" width="120">
+          <h:outputText value="#{elapsedTimeDetail.getStartTimestamp()}">
+            <f:convertDateTime pattern="#{ivy.cms.co('/patterns/dateTimePattern')}" />
+          </h:outputText>
+        </p:column>
+
+        <p:column id="case-finished"
+          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME')}"
+          sortBy="false" width="120">
+          <h:outputText value="#{elapsedTimeDetail.getEndTimestamp()}">
+            <f:convertDateTime pattern="#{ivy.cms.co('/patterns/dateTimePattern')}" />
+          </h:outputText>
+        </p:column>
+
+        <p:column id="case-elapsed-time"
+          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTime')}" sortable="false"
+          width="200">
+          <h:outputText value="#{elapsedTimeDetail.getBusinessRuntime().toNumber()}" />
         </p:column>
       </p:dataTable>
-    </h:panelGrid>
+    </h:form>
+  </div>
 
-  </h:form>
 </cc:implementation>
 </html>
