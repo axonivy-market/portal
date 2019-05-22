@@ -8,23 +8,22 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="caseCategory" required="true" />
   <cc:attribute name="statisticChart" required="true" />
-  <cc:attribute name="chunkSize" shortDescription="Number of items to fetch for each lazy load" default="20" />
 </cc:interface>
 
 <cc:implementation>
   <f:event listener="#{elapsedTimeDetailsBean.initialize(cc.attrs.caseCategory, cc.attrs.statisticChart)}"
     type="preRenderComponent" />
   <f:event listener="#{logic.initialize(cc.attrs.caseCategory)}" type="preRenderComponent" />
-  <div id="#{cc.clientId}:elapsed-time-details-category" class="widget case-widget-container">
-    <h:form id="export-button-form">
-      <p:commandButton id="export-button" ajax="false" styleClass="export-button"
+  <h:panelGroup id="elapsed-time-details-category" layout="block" styleClass="elapsed-time-result-list MarTop10">
+    <h:form id="elapsed-time-detail-form">
+      <p:commandButton id="export-button" ajax="false" styleClass="export-excel"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}">
         <p:dataExporter type="xls" target="case-table" fileName="#{elapsedTimeDetailsBean.getExcelFileName()}" />
       </p:commandButton>
 
       <p:dataTable id="case-table" widgetVar="case-table" var="elapsedTimeDetail" value="#{data.dataModel}"
         rowKey="#{elapsedTimeDetail.getId()}" sortMode="single" lazy="true" scrollable="true" liveScroll="true"
-        scrollRows="20" styleClass="task-table" rows="#{cc.attrs.chunkSize}">
+        scrollRows="20" styleClass="case-table">
 
         <p:ajax event="sort" update="case-table" onstart="liveScroll()" />
 
@@ -69,7 +68,27 @@
         </p:column>
       </p:dataTable>
     </h:form>
-  </div>
+     <script type="text/javascript">
+      $(document).ready(function(){
+        setTimeout(function(){initializeScrollbar();}, 100);
+      });
+    
+    function liveScroll(){
+      PF('case-table').scrollOffset=0;    
+        PF('case-table').scrollBody.scrollTop(1);   
+        PF('case-table').allLoadedLiveScroll = false; 
+    }
+    
+      function initializeScrollbar() {
+        var $caseTable = $("[id$='elapsed-time-chart-details:elapsed-time-detail-form:case-table']");
+        var resultTableBody = $caseTable.find(".ui-datatable-scrollable-body").get(0);
 
+        if (resultTableBody.scrollHeight > resultTableBody.clientHeight) {
+          var scrollbarWidth = resultTableBody.offsetWidth - resultTableBody.clientWidth
+          $caseTable.find(".ui-datatable-scrollable-header").css("width", "calc(100% - " + scrollbarWidth + "px)" );
+        }
+      };
+    </script>
+  </h:panelGroup>
 </cc:implementation>
 </html>
