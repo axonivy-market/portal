@@ -64,7 +64,7 @@
         <p:column id="case-elapsed-time"
           headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTime')}" sortable="false"
           width="200">
-          <h:outputText value="#{elapsedTimeDetail.getBusinessRuntime().toNumber()}" />
+          <h:outputText value="#{elapsedTimeDetailsBean.calculateElapsedTime(elapsedTimeDetail.getBusinessRuntime().toNumber())}" />
         </p:column>
       </p:dataTable>
     </h:form>
