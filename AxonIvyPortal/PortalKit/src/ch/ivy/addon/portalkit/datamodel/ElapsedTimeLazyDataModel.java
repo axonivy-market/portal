@@ -11,14 +11,9 @@ import org.primefaces.model.SortOrder;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterContainer;
-import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
-import ch.ivy.addon.portalkit.casefilter.DefaultCaseFilterContainer;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
-import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
-import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.CaseState;
@@ -35,11 +30,8 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
   protected int rowIndex;
   protected CaseSearchCriteria criteria;
 
-  protected List<CaseFilter> filters;
   protected List<CaseFilter> selectedFilters;
   protected CaseFilterContainer filterContainer;
-  protected CaseFilterData selectedFilterData;
-  protected boolean isNotKeepFilter = false;
 
   public ElapsedTimeLazyDataModel() {
     this("statistics-widget:statistic-dashboard-widget:elapsed-time-chart-details");
@@ -51,8 +43,6 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
     selectedFilters = new ArrayList<>();
     this.caseWidgetComponentId = caseWidgetComponentId;
     buildCriteria();
-    setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
-    selectedFilterData = UserUtils.getSessionSelectedCaseFilterSetAttribute();
   }
 
   @Override
@@ -64,41 +54,6 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
     List<ICase> foundCases =  findCases(criteria, first, pageSize);
     data.addAll(foundCases);
     return foundCases;
-  }
-
-  public void initFilters() throws ReflectiveOperationException {
-    if (filterContainer == null) {
-      initFilterContainer();
-      filters = filterContainer.getFilters();
-      setValuesForCaseStateFilter(criteria);
-    }
-  }
-
-  public void setAdminQuery(boolean isAdminQuery) {
-    criteria.setAdminQuery(isAdminQuery);
-    if (isAdminQuery && !criteria.getIncludedStates().contains(CaseState.DONE)) {
-      criteria.addIncludedStates(Arrays.asList(CaseState.DONE));
-      setValuesForCaseStateFilter(criteria);
-    }
-  }
-
-  /**
-   * <p>
-   * Initialize CaseFilterContainer with your customized CaseFilterContainer class.
-   * </p>
-   * <p>
-   * <b>Example: </b> <code><pre>
-   * filterContainer = new CustomizedCaseFilterContainer();
-   * </pre></code>
-   * </p>
-   */
-  protected void initFilterContainer() {
-    filterContainer = new DefaultCaseFilterContainer();
-  }
-
-  protected void setInvolvedApplications() {
-    RegisteredApplicationService service = new RegisteredApplicationService();
-    criteria.setApps(service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName()));
   }
 
   /**
@@ -120,32 +75,9 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
       }
     }
     CaseQuery caseQuery = buildCaseQuery();
-    extendSort(caseQuery);
     this.criteria.setFinalCaseQuery(caseQuery);
   }
 
-  /**
-   * <p>
-   * If your customized case list has new columns/fields, please extend the {@code caseQuery} parameter with the sort
-   * query for these fields.
-   * </p>
-   * <p>
-   * <b>Example: </b> <code><pre>
-   * if ("CustomVarcharField5".equalsIgnoreCase(criteria.getSortField())) {
-   *   if (criteria.isSortDescending()) {
-   *     caseQuery.orderBy().customField().stringField("CustomVarCharField5").descending();
-   *   } else {
-   *     caseQuery.orderBy().customField().stringField("CustomVarCharField5");
-   *   }
-   * }
-   * </pre></code>
-   * </p>
-   * 
-   * @param caseQuery
-   */
-  protected void extendSort(@SuppressWarnings("unused") CaseQuery caseQuery) {
-    // Placeholder for customization
-  }
 
   private CaseQuery buildCaseQuery() {
     CaseQuery caseQuery = criteria.createQuery();
@@ -156,19 +88,7 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
         filterQuery.and(subQuery);
       }
     });
-    if (!isNotKeepFilter) {
-      UserUtils.setSessionSelectedCaseFilterSetAttribute(selectedFilterData);
-      UserUtils.setSessionCaseKeywordFilterAttribute(criteria.getKeyword());
-      UserUtils.setSessionCaseAdvancedFilterAttribute(selectedFilters);
-    }
     return caseQuery;
-  }
-
-  private void setValuesForCaseStateFilter(CaseSearchCriteria criteria) {
-    if (filterContainer != null) {
-      filterContainer.getStateFilter().setFilteredStates(new ArrayList<>(criteria.getIncludedStates()));
-      filterContainer.getStateFilter().setSelectedFilteredStates(criteria.getIncludedStates());
-    }
   }
 
   private List<ICase> findCases(CaseSearchCriteria criteria, int first, int pageSize) {
@@ -185,7 +105,6 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
 
   private void initializedDataModel() {
     criteria.setInvolvedUsername(Ivy.session().getSessionUserName());
-    setInvolvedApplications();
     data.clear();
     buildQueryToSearchCriteria();
     setRowCount(getCaseCount(criteria));
@@ -203,33 +122,6 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
     criteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.DONE)));
     criteria.setSortField(CaseSortField.ID.toString());
     criteria.setSortDescending(true);
-    if (!isNotKeepFilter) {
-      criteria.setKeyword(UserUtils.getSessionCaseKeywordFilterAttribute());
-    }
-  }
-
-  public CaseFilterData getSelectedFilterData() {
-    return selectedFilterData;
-  }
-
-  public void setSelectedFilterData(CaseFilterData selectedFilterData) {
-    this.selectedFilterData = selectedFilterData;
-  }
-
-  public boolean isNotKeepFilter() {
-    return isNotKeepFilter;
-  }
-
-  public void setNotKeepFilter(boolean isNotKeepFilter) {
-    this.isNotKeepFilter = isNotKeepFilter;
-  }
-
-  public List<CaseFilter> getFilters() {
-    return filters;
-  }
-
-  public void setFilters(List<CaseFilter> filters) {
-    this.filters = filters;
   }
 
   public CaseFilterContainer getFilterContainer() {
@@ -240,28 +132,8 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
     this.filterContainer = filterContainer;
   }
 
-  public List<CaseFilter> getSelectedFilters() {
-    return selectedFilters;
-  }
-
-  public void setSelectedFilters(List<CaseFilter> selectedFilters) {
-    this.selectedFilters = selectedFilters;
-  }
-
   public void setCategory(String category) {
     criteria.setCategory(category);
-  }
-
-  public String getSortField() {
-    return criteria.getSortField();
-  }
-
-  public boolean isSortDescending() {
-    return criteria.isSortDescending();
-  }
-  
-  public void setIsAdminQuery(boolean isAdminQuery) {
-    criteria.setAdminQuery(isAdminQuery);
   }
 
   public CaseSearchCriteria getCriteria() {
