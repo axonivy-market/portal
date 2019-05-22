@@ -171,8 +171,8 @@
 
     <h:panelGroup id="elapsed-time-details" layout="block" rendered="#{cc.attrs.isDrilldownElapsedTime}"
       styleClass="statistic-dashboard-expand-mode">
-      <ic:ch.ivy.addon.portalkit.component.statistic.ElapsedTimeChartDetails
-        selectedCaseCategory="#{data.selectedCaseCategory}" statisticChart="#{data.selectedStatisticChart}" />
+      <ic:ch.ivy.addon.portalkit.component.statistic.ElapsedTimeChartDetails 
+        id="elapsed-time-chart-details" caseCategory="#{data.selectedCaseCategory}" statisticChart="#{data.selectedStatisticChart}" />
     </h:panelGroup>
   </h:panelGroup>
 
