@@ -1,4 +1,0 @@
-AdditionalCaseDetailsData #class
-internaltest #namespace
-caseId Long #field
-iCase ch.ivyteam.ivy.workflow.ICase #field
