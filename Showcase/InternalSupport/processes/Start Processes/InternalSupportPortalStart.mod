@@ -1,5 +1,5 @@
 [Ivy]
-164211FF9482BB44 3.26 #module
+164211FF9482BB44 3.23 #module
 >Proto >Proto Collection #zClass
 Pt0 InternalSupportPortalStart Big #zClass
 Pt0 B #cInfo
@@ -332,12 +332,12 @@ Pt0 f58 requestEnabled true #txt
 Pt0 f58 triggerEnabled false #txt
 Pt0 f58 callSignature startPortalCase() #txt
 Pt0 f58 persist false #txt
-Pt0 f58 taskData 'TaskTriggered.EXPRI=2
-TaskTriggered.EXROL=Everybody
+Pt0 f58 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.ROL=Everybody
-TaskTriggered.TYPE=0' #txt
+TaskTriggered.EXROL=Everybody' #txt
 Pt0 f58 caseData businessCase.attach=true #txt
 Pt0 f58 showInStartList 0 #txt
 Pt0 f58 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -594,7 +594,7 @@ Pt0 f93 328 330 144 44 -53 -16 #rect
 Pt0 f93 @|StepIcon #fIcon
 Pt0 f13 targetWindow NEW:card: #txt
 Pt0 f13 targetDisplay TOP #txt
-Pt0 f13 richDialogId internalPortal.PortalHome #txt
+Pt0 f13 richDialogId ch.ivy.addon.portal.generic.PortalHome #txt
 Pt0 f13 startMethod start(ch.ivy.addon.portal.generic.view.TaskView) #txt
 Pt0 f13 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f13 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;' #txt
@@ -726,12 +726,12 @@ Pt0 f28 requestEnabled true #txt
 Pt0 f28 triggerEnabled false #txt
 Pt0 f28 callSignature DefaultApplicationHomePage() #txt
 Pt0 f28 persist false #txt
-Pt0 f28 taskData 'TaskTriggered.EXPRI=2
-TaskTriggered.EXROL=Everybody
+Pt0 f28 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.ROL=Everybody
-TaskTriggered.TYPE=0' #txt
+TaskTriggered.EXROL=Everybody' #txt
 Pt0 f28 caseData businessCase.attach=true #txt
 Pt0 f28 showInStartList 0 #txt
 Pt0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -858,12 +858,12 @@ Pt0 f63 requestEnabled true #txt
 Pt0 f63 triggerEnabled false #txt
 Pt0 f63 callSignature startPortalTask() #txt
 Pt0 f63 persist false #txt
-Pt0 f63 taskData 'TaskTriggered.EXPRI=2
-TaskTriggered.EXROL=Everybody
+Pt0 f63 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.ROL=Everybody
-TaskTriggered.TYPE=0' #txt
+TaskTriggered.EXROL=Everybody' #txt
 Pt0 f63 caseData businessCase.attach=true #txt
 Pt0 f63 showInStartList 0 #txt
 Pt0 f63 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -974,12 +974,12 @@ Pt0 f70 requestEnabled true #txt
 Pt0 f70 triggerEnabled false #txt
 Pt0 f70 callSignature startPortalStatistic() #txt
 Pt0 f70 persist false #txt
-Pt0 f70 taskData 'TaskTriggered.EXPRI=2
-TaskTriggered.EXROL=Everybody
+Pt0 f70 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.ROL=Everybody
-TaskTriggered.TYPE=0' #txt
+TaskTriggered.EXROL=Everybody' #txt
 Pt0 f70 caseData businessCase.attach=true #txt
 Pt0 f70 showInStartList 0 #txt
 Pt0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1034,12 +1034,12 @@ Pt0 f76 requestEnabled true #txt
 Pt0 f76 triggerEnabled false #txt
 Pt0 f76 callSignature startPortalProcess() #txt
 Pt0 f76 persist false #txt
-Pt0 f76 taskData 'TaskTriggered.EXPRI=2
-TaskTriggered.EXROL=Everybody
+Pt0 f76 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.ROL=Everybody
-TaskTriggered.TYPE=0' #txt
+TaskTriggered.EXROL=Everybody' #txt
 Pt0 f76 caseData businessCase.attach=true #txt
 Pt0 f76 showInStartList 0 #txt
 Pt0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1064,12 +1064,12 @@ Pt0 f31 requestEnabled true #txt
 Pt0 f31 triggerEnabled false #txt
 Pt0 f31 callSignature DefaultLoginPage(String) #txt
 Pt0 f31 persist false #txt
-Pt0 f31 taskData 'TaskTriggered.EXPRI=2
-TaskTriggered.EXROL=Everybody
+Pt0 f31 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.ROL=Everybody
-TaskTriggered.TYPE=0' #txt
+TaskTriggered.EXROL=Everybody' #txt
 Pt0 f31 caseData businessCase.attach=true #txt
 Pt0 f31 showInStartList 0 #txt
 Pt0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1116,12 +1116,12 @@ Pt0 f25 requestEnabled true #txt
 Pt0 f25 triggerEnabled false #txt
 Pt0 f25 callSignature restorePortalTaskList(Number) #txt
 Pt0 f25 persist false #txt
-Pt0 f25 taskData 'TaskTriggered.EXPRI=2
-TaskTriggered.EXROL=Everybody
+Pt0 f25 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.ROL=Everybody
-TaskTriggered.TYPE=0' #txt
+TaskTriggered.EXROL=Everybody' #txt
 Pt0 f25 caseData businessCase.attach=true #txt
 Pt0 f25 showInStartList 0 #txt
 Pt0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1242,12 +1242,12 @@ Pt0 f100 requestEnabled true #txt
 Pt0 f100 triggerEnabled false #txt
 Pt0 f100 callSignature startPortalMobileProcess() #txt
 Pt0 f100 persist false #txt
-Pt0 f100 taskData 'TaskTriggered.EXPRI=2
-TaskTriggered.EXROL=Everybody
+Pt0 f100 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.ROL=Everybody
-TaskTriggered.TYPE=0' #txt
+TaskTriggered.EXROL=Everybody' #txt
 Pt0 f100 caseData businessCase.attach=true #txt
 Pt0 f100 showInStartList 0 #txt
 Pt0 f100 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1270,12 +1270,12 @@ Pt0 f172 requestEnabled true #txt
 Pt0 f172 triggerEnabled false #txt
 Pt0 f172 callSignature startPortalMobileTask() #txt
 Pt0 f172 persist false #txt
-Pt0 f172 taskData 'TaskTriggered.EXPRI=2
-TaskTriggered.EXROL=Everybody
+Pt0 f172 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.ROL=Everybody
-TaskTriggered.TYPE=0' #txt
+TaskTriggered.EXROL=Everybody' #txt
 Pt0 f172 caseData businessCase.attach=true #txt
 Pt0 f172 showInStartList 0 #txt
 Pt0 f172 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1303,19 +1303,19 @@ Pt0 f0 triggerEnabled false #txt
 Pt0 f0 callSignature PortalStart(Boolean,String,String) #txt
 Pt0 f0 persist false #txt
 Pt0 f0 startName <%=ivy.cms.co("/Processes/portalHome")%> #txt
-Pt0 f0 taskData 'TaskTriggered.CATEGORY=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
-TaskTriggered.DESC=<%\=ivy.cms.co("/Processes/Cases/PortalInternalProcess/PortalInternalProcessDescription")%>
-TaskTriggered.EXPRI=2
-TaskTriggered.EXROL=Everybody
+Pt0 f0 taskData 'TaskTriggered.DESC=<%\=ivy.cms.co("/Processes/Cases/PortalInternalProcess/PortalInternalProcessDescription")%>
 TaskTriggered.EXTYPE=0
-TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/portalSettingSaved")%>
+TaskTriggered.CATEGORY=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
+TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
+TaskTriggered.EXPRI=2
+TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/portalSettingSaved")%>
 TaskTriggered.ROL=Everybody
-TaskTriggered.TYPE=0' #txt
-Pt0 f0 caseData 'businessCase.attach=true
-case.category=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
+TaskTriggered.EXROL=Everybody' #txt
+Pt0 f0 caseData 'case.name=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/portalSettingSaved")%>
 case.description=<%\=ivy.cms.co("/Processes/Cases/PortalInternalProcess/PortalInternalProcessDescription")%>
-case.name=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/portalSettingSaved")%>' #txt
+case.category=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
+businessCase.attach=true' #txt
 Pt0 f0 showInStartList 1 #txt
 Pt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1341,12 +1341,12 @@ Pt0 f10 requestEnabled true #txt
 Pt0 f10 triggerEnabled false #txt
 Pt0 f10 callSignature DefaultEndPage(Number) #txt
 Pt0 f10 persist false #txt
-Pt0 f10 taskData 'TaskTriggered.EXPRI=2
-TaskTriggered.EXROL=Everybody
+Pt0 f10 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.ROL=Everybody
-TaskTriggered.TYPE=0' #txt
+TaskTriggered.EXROL=Everybody' #txt
 Pt0 f10 caseData businessCase.attach=true #txt
 Pt0 f10 showInStartList 0 #txt
 Pt0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

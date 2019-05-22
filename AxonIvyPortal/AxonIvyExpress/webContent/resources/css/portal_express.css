@@ -355,7 +355,7 @@
 }
 
 .selected-assignee-panel .ui-fieldset-content {
-	max-height: 35vh;
+	max-height: 40vh;
 	overflow-y: auto;
 }
 
