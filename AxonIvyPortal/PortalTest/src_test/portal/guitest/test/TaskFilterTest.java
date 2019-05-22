@@ -111,7 +111,7 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.filterByDescription("Sick");
     taskWidgetPage.saveFilter(filterName);
 
-    redirectToRelativeLink(HomePage.INTERNAL_SUPPORT_HOME_PAGE_URL);
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     taskWidgetPage = mainMenuPage.openTaskList();
 
     assertFalse(taskWidgetPage.isFilterSelectionVisible());
