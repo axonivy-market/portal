@@ -354,6 +354,11 @@
 	margin: 10px 0;
 }
 
+.selected-assignee-panel .ui-fieldset-content {
+	max-height: 40vh;
+	overflow-y: auto;
+}
+
 .assignee-selection-panel .delete-assignee {
 	font-size: 1.4rem;
 	color: rgba(0, 0, 0, 0.7) !important;
