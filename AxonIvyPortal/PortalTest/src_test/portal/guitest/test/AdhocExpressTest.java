@@ -66,12 +66,9 @@ public class AdhocExpressTest extends BaseTest {
     expressPage.createDefaultTask(0, defaultTaskName, responsibles);
     expressPage.addNewTask(0);
     expressPage.createDefaultTask(1, null, responsibles);
-    expressPage.executeDirectlyAndGoToHomePage();
+    expressPage.executeDirectly();
     
     //first task of adhoc
-    assertEquals(0, taskWidgetPage.countTasks()); //no task name Maternity
-    taskWidgetPage.filterTasksBy(defaultTaskName);
-    taskWidgetPage.startTask(0);
     defaultExpressTaskPage = new DefaulExpresTaskPage();
     defaultExpressTaskPage.enterTextToDefaultTask(defaultTaskComment);
     defaultExpressTaskPage.finishDefaultTask();
