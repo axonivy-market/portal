@@ -61,6 +61,7 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.TODAY_EX
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.TUESDAY_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.USER_ID;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.WEDNESDAY_CMS;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.ELAPSED_TIME_DETAIL_CHART_NAME_CMS;
 
 import java.time.Year;
 import java.util.ArrayList;
@@ -832,6 +833,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       if(chartData.size() == 1) {
         model.setBarWidth(80);
       }
+      model.setBarMargin(1);
       chartSeries.setData(new HashMap<>(chartData));
       model.setExtender("elapsedTimeBarChartExtender");
       model.setShadow(false);
@@ -840,7 +842,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       xAxis.setLabel(Ivy.cms().co(CASE_CATEGORIES_CMS));
 
       Axis yAxis = model.getAxis(AxisType.Y);
-      yAxis.setLabel(Ivy.cms().co(PERCENTAGE_CMS));
+      yAxis.setLabel(Ivy.cms().co(ELAPSED_TIME_DETAIL_CHART_NAME_CMS));
     }
     if (isSetDefaultName) {
       model.setTitle(Ivy.cms().co(StatisticChartType.ELAPSED_TIME_BY_CASE_CATEGORY.getCmsUri()));
@@ -856,27 +858,10 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       caseCategoryToElapsedTime.put("", 0);
     }
 
-    float totalValue = 0f;
-    float otherValue = 0f;
-
-    for (Number number : caseCategoryToElapsedTime.values()) {
-      totalValue += number.floatValue();
-    }
-
     for (Iterator<Entry<String, Number>> iterator = caseCategoryToElapsedTime.entrySet().iterator(); iterator.hasNext();) {
       Entry<String, Number> chartDataEntry = iterator.next();
       float floatValueOfChartData = chartDataEntry.getValue().floatValue();
-      if (floatValueOfChartData < totalValue * 0.02) {
-        otherValue += floatValueOfChartData;
-        iterator.remove();
-      } else {
-        chartDataEntry.setValue(floatValueOfChartData * 100 / totalValue);
-      }
-    }
-
-    if (Float.compare(otherValue, 0f) != 0) {
-      caseCategoryToElapsedTime.put(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/other"), otherValue
-          * 100 / totalValue);
+        chartDataEntry.setValue(floatValueOfChartData);
     }
 
     return new HashMap<>(caseCategoryToElapsedTime);
