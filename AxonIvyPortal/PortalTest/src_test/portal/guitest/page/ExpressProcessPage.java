@@ -82,9 +82,9 @@ public class ExpressProcessPage extends TemplatePage{
     ensureNoBackgroundRequest();
   }
   
-  public HomePage executeDirectlyAndGoToHomePage() {
+  public void executeDirectly() {
     click(By.id("form:save"));
-    return new HomePage();
+    waitAjaxIndicatorDisappear();
   }
   
   private void chooseResponsible(String responsible, boolean isGroup) {
