@@ -92,7 +92,7 @@
       <h:panelGroup id="process-nav" styleClass="process-nav" rendered="#{!processWidgetBean.mobileMode and !cc.attrs.hideProcessNavigation}">
          <ui:repeat value="#{processWidgetBean.getAllAlphabeticalCharacters().entrySet().toArray()}" var="character" >
            <p:commandLink value="#{character.value}" styleClass="process-nav-item js-process-starts-with-#{character.key}"
-             onclick="jumpToProcessGroupByCharacter(event)" />
+             onclick="jumpToProcessGroupByCharacter(event)" global="false" />
          </ui:repeat>
        </h:panelGroup>
     </h:panelGroup>
