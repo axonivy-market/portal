@@ -11,7 +11,6 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -59,8 +58,14 @@ public class StatisticFilter implements Cloneable {
   private boolean isAllTaskPrioritiesSelected = true;
   private Map<String, List<String>> customFieldFilters;
   
+  private List<String> selectedCustomVarCharFields1 = new ArrayList<>();
+  private List<String> selectedCustomVarCharFields2 = new ArrayList<>();
+  private List<String> selectedCustomVarCharFields3 = new ArrayList<>();
+  private List<String> selectedCustomVarCharFields4 = new ArrayList<>();
+  private List<String> selectedCustomVarCharFields5 = new ArrayList<>();
+  
   public void init() {
-    customFieldFilters = new HashMap<>();
+    initCustomFieldFromDeprecatedCustomVarChar();
     List<IRole> distinctRoles = findRolesByCallableProcess().stream()
         .filter(role -> role != null && Ivy.session().hasRole(role, false))
         .sorted((r1, r2) -> StringUtils.compareIgnoreCase(r1.getDisplayName(), r2.getDisplayName()))
@@ -277,10 +282,82 @@ public class StatisticFilter implements Cloneable {
   }
   
   public List<String> findSavedCustomFields(){
-    return MapUtils.emptyIfNull(customFieldFilters).entrySet()
+    if (customFieldFilters == null) {
+      initCustomFieldFromDeprecatedCustomVarChar();
+    }
+    return customFieldFilters.entrySet()
         .stream()
         .filter(item -> CollectionUtils.isNotEmpty(item.getValue()))
         .map(Map.Entry::getKey)
         .collect(Collectors.toList());
+  }
+  
+  @Deprecated
+  public List<String> getSelectedCustomVarCharFields1() {
+    return selectedCustomVarCharFields1;
+  }
+
+  @Deprecated
+  public void setSelectedCustomVarCharFields1(List<String> selectedCustomVarCharFields1) {
+    this.selectedCustomVarCharFields1 = selectedCustomVarCharFields1;
+  }
+
+  @Deprecated
+  public List<String> getSelectedCustomVarCharFields2() {
+    return selectedCustomVarCharFields2;
+  }
+
+  @Deprecated
+  public void setSelectedCustomVarCharFields2(List<String> selectedCustomVarCharFields2) {
+    this.selectedCustomVarCharFields2 = selectedCustomVarCharFields2;
+  }
+
+  @Deprecated
+  public List<String> getSelectedCustomVarCharFields3() {
+    return selectedCustomVarCharFields3;
+  }
+
+  @Deprecated
+  public void setSelectedCustomVarCharFields3(List<String> selectedCustomVarCharFields3) {
+    this.selectedCustomVarCharFields3 = selectedCustomVarCharFields3;
+  }
+
+  @Deprecated
+  public List<String> getSelectedCustomVarCharFields4() {
+    return selectedCustomVarCharFields4;
+  }
+
+  @Deprecated
+  public void setSelectedCustomVarCharFields4(List<String> selectedCustomVarCharFields4) {
+    this.selectedCustomVarCharFields4 = selectedCustomVarCharFields4;
+  }
+
+  @Deprecated
+  public List<String> getSelectedCustomVarCharFields5() {
+    return selectedCustomVarCharFields5;
+  }
+
+  @Deprecated
+  public void setSelectedCustomVarCharFields5(List<String> selectedCustomVarCharFields5) {
+    this.selectedCustomVarCharFields5 = selectedCustomVarCharFields5;
+  }
+  
+  private void initCustomFieldFromDeprecatedCustomVarChar() {
+    customFieldFilters = new HashMap<>();
+    if (CollectionUtils.isNotEmpty(selectedCustomVarCharFields1)) {
+      customFieldFilters.put("CustomVarCharFields1", selectedCustomVarCharFields1);
+    }
+    if (CollectionUtils.isNotEmpty(selectedCustomVarCharFields2)) {
+      customFieldFilters.put("CustomVarCharFields2", selectedCustomVarCharFields2);
+    }
+    if (CollectionUtils.isNotEmpty(selectedCustomVarCharFields3)) {
+      customFieldFilters.put("CustomVarCharFields3", selectedCustomVarCharFields3);
+    }
+    if (CollectionUtils.isNotEmpty(selectedCustomVarCharFields4)) {
+      customFieldFilters.put("CustomVarCharFields4", selectedCustomVarCharFields4);
+    }
+    if (CollectionUtils.isNotEmpty(selectedCustomVarCharFields5)) {
+      customFieldFilters.put("CustomVarCharFields5", selectedCustomVarCharFields5);
+    }
   }
 }

@@ -11,6 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.DonutChartModel;
@@ -164,7 +165,7 @@ public class StatisticChartCreationBean implements Serializable {
   private boolean checkIfAnyCustomFieldChanged(StatisticFilter filter, StatisticFilter oldFilter) {
     for (Map.Entry<String, List<String>> entry : filter.getCustomFieldFilters().entrySet()) {
       List<String> list = oldFilter.getCustomFieldFilters().get(entry.getKey());
-      if (!list.equals(entry.getValue())) {
+      if (list != null && entry.getValue() != null && !CollectionUtils.isEqualCollection(list, entry.getValue())) {
         return true;
       }
     }
