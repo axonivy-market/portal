@@ -4,3 +4,5 @@ selectedCustomValue String #field
 selectedCustomValue PERSISTENT #fieldModifier
 tempSelectedCustomValues java.util.List<String> #field
 tempSelectedCustomValues PERSISTENT #fieldModifier
+selectedCustomValues java.util.List<String> #field
+selectedCustomValues PERSISTENT #fieldModifier
