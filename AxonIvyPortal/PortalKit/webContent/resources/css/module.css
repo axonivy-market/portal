@@ -3388,7 +3388,7 @@ _:-ms-input-placeholder, :root .case-details > * {
 }
 
 .case-detail-no-related-task-case {
-  height: 185px;
+  height: 203px;
   align-items: baseline;
 }
 
@@ -5673,7 +5673,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .mobile-container {
   -webkit-overflow-scrolling: touch;
-  overflow:hidden;
+  overflow: auto;
   height: calc(100% - 120px);
 }
 
