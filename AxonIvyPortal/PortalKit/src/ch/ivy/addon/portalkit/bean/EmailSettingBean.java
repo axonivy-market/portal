@@ -12,8 +12,8 @@ import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 public class EmailSettingBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public Long countApplication() {
+  public Integer countApplication() {
     RegisteredApplicationService service = new RegisteredApplicationService();
-    return service.countIvyApplications(service.findAllIvyApplications());
+    return service.findAllIvyApplications().size();
   }
 }
