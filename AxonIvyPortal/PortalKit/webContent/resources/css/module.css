@@ -2285,6 +2285,10 @@ a.case-details-document-add-link {
   right: 27px;
 }
 
+.compact-process-widget .process-start-list-item {
+  padding-right: 40px;
+}
+
 .process-start-list-item-action.is-express {
   right: 50px;
 }
