@@ -25,10 +25,10 @@
       <p:messages showDetail="true" closable="true" id="email-messages" escape="false" />
       <h:panelGrid>
 
-        <h:panelGrid columns="2">
+        <h:panelGrid columns="2" rendered="#{emailSettingBean.countApplication() gt 1}">
           <!--  SETTING -->
           <p:fieldset legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/setting')}">
-            <p:selectOneRadio id="select-setting-options" value="#{data.settingForAllApp}" layout="pageDirection" disabled="#{emailSettingBean.countApplication() eq 1}" 
+            <p:selectOneRadio id="select-setting-options" value="#{data.settingForAllApp}" layout="pageDirection" 
               columns="1">
               <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/forAllApplications')}"
                 itemValue="#{true}" />
@@ -38,7 +38,6 @@
                 update=":#{p:component('email-setting-container')}"
                 oncomplete="PF('#{cc.attributes.dialogName}').initPosition();" />
             </p:selectOneRadio>
-
           </p:fieldset>
         </h:panelGrid>
         
