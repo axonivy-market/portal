@@ -99,7 +99,7 @@
           priorityComponentToUpdate="#{p:component('task-priority')}"
           componentToUpdate="#{p:component('task-details-notes')}" />
         <ic:ch.ivy.addon.portalkit.component.TaskItemNotes id="task-notes" task="#{task}" />
-        <ic:ch.ivy.addon.portalkit.component.TaskItemDocuments id="task-documents" task="#{task}" />
+        <ic:ch.ivy.addon.portalkit.component.TaskItemDocuments id="task-documents" task="#{task}" componentToUpdate="#{p:component('task-details-notes')}" />
         
         <!-- Add new panel -->
         <div class="task-details-item custom-task-details-panel">
