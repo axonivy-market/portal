@@ -1,5 +1,5 @@
 [Ivy]
-150CB86EFC2F2972 3.23 #module
+150CB86EFC2F2972 3.26 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemProcess Big #zClass
 Ts0 RD #cInfo
@@ -367,11 +367,9 @@ Ts0 f19 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
 ' #txt
 Ts0 f19 actionTable 'out=in;
 ' #txt
-Ts0 f19 actionCode 'import ch.ivy.addon.portalkit.util.BeanUtils;
-import ch.ivy.addon.portalkit.util.TaskUtils;
+Ts0 f19 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
 
-TaskUtils.delegateTask(in.task, in.delegatedSecurityMember);
-BeanUtils.invokeBeanMethodViaMethodExpression("#{taskActionBean.removeFromCanResumeByTaskId}", in.task.getId());' #txt
+TaskUtils.delegateTask(in.task, in.delegatedSecurityMember);' #txt
 Ts0 f19 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -411,8 +409,8 @@ if(in.task.getState() == TaskState.DONE){
 }
 
 facesContext.validationFailed();
-facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
-requesContext.update("task-widget:cannot-start-task-notification");  
+facesContext.addMessage("portal-global-growl", new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
+requesContext.update("portal-global-growl");  
 ' #txt
 Ts0 f66 security system #txt
 Ts0 f66 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
