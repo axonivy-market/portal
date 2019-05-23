@@ -2247,6 +2247,11 @@ a.case-details-document-add-link {
 
 .process-start-list .process-start-list-item-name, .process-in-search .process-start-list-item-name, .mobile-process-start-list .process-start-list-item-name {
   padding-left: 15px;
+  padding-right: 50px;
+}
+
+.process-start-list .process-start-list-item-name.is-express, .process-in-search .process-start-list-item-name.is-express, .mobile-process-start-list .process-start-list-item-name.is-express {
+  padding-right: 120px;
 }
 
 .process-start-list-item:hover .process-start-list-item-icon,
@@ -2275,6 +2280,13 @@ a.case-details-document-add-link {
   display: inline-flex;
   align-items: center;
   font-size: 1.2rem;
+  position: absolute;
+  bottom: 35%;
+  right: 27px;
+}
+
+.process-start-list-item-action.is-express {
+  right: 50px;
 }
 
 .process-start-list-item-action .process-item {
@@ -2286,10 +2298,10 @@ a.case-details-document-add-link {
 }
 
 .process-start-list-item .open-icon {
-  padding-right: 15px;
-  align-items: center;
+  position: absolute;;
   color: rgba(0,0,0,0.5) !important;
-  display: inline-flex;
+  bottom: 27%;
+  right: 15px;
 }
 
 .process-start-list-item .express-icon.open-icon {
