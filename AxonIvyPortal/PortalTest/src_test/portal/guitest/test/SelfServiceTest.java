@@ -1,6 +1,7 @@
 package portal.guitest.test;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
@@ -12,6 +13,7 @@ import portal.guitest.page.SelfServicePage;
 import portal.guitest.page.SelfServiceTaskPage;
 import portal.guitest.page.TaskWidgetPage;
 
+@Ignore
 public class SelfServiceTest extends BaseTest {
 
   /*
