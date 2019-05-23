@@ -2464,7 +2464,7 @@ a.case-details-document-add-link {
 _:-ms-input-placeholder, :root .express-process-logo {
   height: auto;
   width: auto;
-  margin: 0 5px 3px 0px;
+  margin-right: 5px;
 }
 
 _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
