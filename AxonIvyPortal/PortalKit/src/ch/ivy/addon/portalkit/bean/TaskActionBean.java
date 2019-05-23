@@ -1,8 +1,6 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 import javax.faces.bean.ManagedBean;
@@ -25,7 +23,6 @@ import ch.ivyteam.ivy.workflow.TaskState;
 @ViewScoped
 public class TaskActionBean {
 
-  private Map<Long, Boolean> canResumeByTaskId = new HashMap<>();
   private boolean isShowResetTask;
   private boolean isShowReserveTask;
   private boolean isShowDelegateTask;
@@ -70,16 +67,10 @@ public class TaskActionBean {
   }
 
   public boolean canResume(ITask task) {
-    if (canResumeByTaskId.containsKey(task.getId())) {
-      return canResumeByTaskId.get(task.getId());
-    }
-
     ISession session = null;
     try {
       session = ServiceUtilities.findUserWorkflowSession(Ivy.session().getSessionUserName(), task.getApplication());
-      boolean canResume = task.canUserResumeTask(session).wasSuccessful();
-      canResumeByTaskId.put(task.getId(), canResume);
-      return canResume;
+      return task.canUserResumeTask(session).wasSuccessful();
     } finally {
       if (session != null && !Objects.equals(Ivy.wf().getApplication(), task.getApplication())) {
         ISecurityContext securityContext = task.getApplication().getSecurityContext();
@@ -144,10 +135,6 @@ public class TaskActionBean {
     return isShowAdditionalOptions && isNotDone(task);
   }
   
-  public void removeFromCanResumeByTaskId(long taskId) {
-    canResumeByTaskId.remove(taskId);
-  }
-
   public boolean isShowResetTask() {
     return isShowResetTask;
   }
