@@ -73,7 +73,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 
 FacesMessage message = new FacesMessage("Task is done successfully");
-FacesContext.getCurrentInstance().addMessage("portal-global-growl", message);
+FacesContext.getCurrentInstance().addMessage(null, message);
 
 Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 flash.put("overridePortalGrowl", true);
