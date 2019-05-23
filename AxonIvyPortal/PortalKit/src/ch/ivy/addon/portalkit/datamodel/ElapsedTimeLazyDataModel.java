@@ -30,8 +30,8 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
   protected int rowIndex;
   protected CaseSearchCriteria criteria;
 
-  protected List<CaseFilter> selectedFilters;
-  protected CaseFilterContainer filterContainer;
+//  protected List<CaseFilter> selectedFilters;
+//  protected CaseFilterContainer filterContainer;
 
   public ElapsedTimeLazyDataModel() {
     this("statistics-widget:statistic-dashboard-widget:elapsed-time-chart-details");
@@ -40,7 +40,7 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
   public ElapsedTimeLazyDataModel(String caseWidgetComponentId) {
     super();
     data = new ArrayList<>();
-    selectedFilters = new ArrayList<>();
+//    selectedFilters = new ArrayList<>();
     this.caseWidgetComponentId = caseWidgetComponentId;
     buildCriteria();
   }
@@ -67,13 +67,13 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
           .get("caseQuery", CaseQuery.class);
       criteria.setCustomCaseQuery(customCaseQuery);
     }
-    if (filterContainer != null) {
-      if (selectedFilters.contains(filterContainer.getStateFilter())) {
-        criteria.setIncludedStates(new ArrayList<>());
-      } else {
-        criteria.setIncludedStates(filterContainer.getStateFilter().getSelectedFilteredStates());
-      }
-    }
+//    if (filterContainer != null) {
+//      if (selectedFilters.contains(filterContainer.getStateFilter())) {
+//        criteria.setIncludedStates(new ArrayList<>());
+//      } else {
+//        criteria.setIncludedStates(filterContainer.getStateFilter().getSelectedFilteredStates());
+//      }
+//    }
     CaseQuery caseQuery = buildCaseQuery();
     this.criteria.setFinalCaseQuery(caseQuery);
   }
@@ -81,13 +81,13 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
 
   private CaseQuery buildCaseQuery() {
     CaseQuery caseQuery = criteria.createQuery();
-    IFilterQuery filterQuery = caseQuery.where();
-    selectedFilters.forEach(selectedFilter -> {
-      CaseQuery subQuery = selectedFilter.buildQuery();
-      if (subQuery != null) {
-        filterQuery.and(subQuery);
-      }
-    });
+//    IFilterQuery filterQuery = caseQuery.where();
+//    selectedFilters.forEach(selectedFilter -> {
+//      CaseQuery subQuery = selectedFilter.buildQuery();
+//      if (subQuery != null) {
+//        filterQuery.and(subQuery);
+//      }
+//    });
     return caseQuery;
   }
 
@@ -123,14 +123,14 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
     criteria.setSortField(CaseSortField.ID.toString());
     criteria.setSortDescending(true);
   }
-
-  public CaseFilterContainer getFilterContainer() {
-    return filterContainer;
-  }
-
-  public void setFilterContainer(CaseFilterContainer filterContainer) {
-    this.filterContainer = filterContainer;
-  }
+//
+//  public CaseFilterContainer getFilterContainer() {
+//    return filterContainer;
+//  }
+//
+//  public void setFilterContainer(CaseFilterContainer filterContainer) {
+//    this.filterContainer = filterContainer;
+//  }
 
   public void setCategory(String category) {
     criteria.setCategory(category);
