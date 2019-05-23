@@ -1,5 +1,5 @@
 [Ivy]
-1657E93190721001 3.23 #module
+1657E93190721001 3.26 #module
 >Proto >Proto Collection #zClass
 Ds0 DefaultUserProcess Big #zClass
 Ds0 B #cInfo
@@ -55,16 +55,6 @@ import ch.ivyteam.ivy.server.ServerFactory;
 
 
 ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
-
-String acmLink = collector.findACMLink();
-if (!StringUtils.isEmpty(acmLink)) {
-	UserProcess acmProcess = new UserProcess();
-	acmProcess.setLink(acmLink);
-	acmProcess.setProcessName("Axon.ivy Selfservice");
-	acmProcess.setIcon("fa-play");
-	acmProcess.setIndex(5);
-	in.defaultUserProcesses.add(acmProcess);
-}
 
 String createAlphaLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/createAlphaCompany.ivp");
 if (!StringUtils.isEmpty(createAlphaLink)){	
