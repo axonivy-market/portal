@@ -51,6 +51,7 @@ function ProcessWidget() {
       
       var processAlphabetGroups = $('.js-process-index-group');
       $(processAlphabetGroups).show();
+      expandOrCollapseAllCategories(true);
       $.each(processAlphabetGroups, function() {
         if($(this).find('.ui-icon-plusthick').length) {
           $(this).find('div.ui-fieldset-content').show();
@@ -86,8 +87,12 @@ $(document).ready(function() {
 function expandOrCollapseAllCategories(shouldExpand) {
   var allFieldsets = $("fieldset[id$='alphabet-process-index-fieldset']");
   allFieldsets.each(function() {
-    var collapsed = $(this).find("input[id$='alphabet-process-index-fieldset_collapsed']").val();
-    if ((shouldExpand && collapsed == 'true') || (!shouldExpand && collapsed == 'false')) {
+    if(shouldExpand && $(this).find('.ui-icon-plusthick').length) {
+      var categoryButton = $(this).find("span[class*='ui-fieldset-toggler']");
+      $(categoryButton).click();
+    }
+
+    if(!shouldExpand && $(this).find('.ui-icon-minusthick').length) {
       var categoryButton = $(this).find("span[class*='ui-fieldset-toggler']");
       $(categoryButton).click();
     }
