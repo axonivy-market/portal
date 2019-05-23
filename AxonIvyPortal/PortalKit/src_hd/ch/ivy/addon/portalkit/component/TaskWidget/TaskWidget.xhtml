@@ -32,7 +32,6 @@
 	<h:outputScript name="task-widget.js" library="js" />
 
 	<div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} js-task-widget">
-		<p:growl id="cannot-start-task-notification" autoUpdate="false" severity="info" />
 		<h:panelGroup id="task-widget-header" styleClass="widget-header task-widget-header js-task-widget-header"
 			layout="block">
 			<div class="widget-header-main #{data.dataModel.compactMode ? '' : 'mod-expanded-mode'}">
@@ -212,7 +211,6 @@
 					listener="#{logic.refreshTaskList(taskWidgetBean.expandedTaskId)}" process="scroll-position" update="@none"
 					global="false" onstart="getTaskListScrollPosition()" />
 				<h:inputHidden id="scroll-position" value="#{data.scrollPosition}" />
-				<p:growl id="new-task-notification" autoUpdate="false" severity="info" />
 			</h:form>
 		</h:panelGroup>
 	</div>
