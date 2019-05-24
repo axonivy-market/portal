@@ -29,7 +29,7 @@
 	      <h:panelGroup layout="block"
 	        styleClass="#{processWidgetBean.mobileMode ? 'mobile-widget-process-header-sub' : 'widget-header-sub'}">
 	        <ic:ch.ivy.addon.portalkit.component.Filter id="process-search" listener="processWidget.filter()" ajax="false"
-	          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}"
+	          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processFilterPlaceHolder')}"
 	          styleClass="js-filter-process-widget-list-item" />
 	      </h:panelGroup>
 	      <p:selectOneMenu id="dictionary-process-group-selection" widgetVar="dictionary-process-group-selection"

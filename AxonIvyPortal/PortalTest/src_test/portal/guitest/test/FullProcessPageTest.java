@@ -30,9 +30,9 @@ public class FullProcessPageTest extends BaseTest{
   
   @Test
   public void testFindProcess() {
-    processWidgetPage.enterSearchKeyword("Self Service");
-    assertTrue(processWidgetPage.isProcessDisplay("Axon.ivy Self Service"));
-    assertTrue(processWidgetPage.isProcessGroupDisplay("A"));
+    processWidgetPage.enterSearchKeyword("Alpha Company");
+    assertTrue(processWidgetPage.isProcessDisplay("Create Alpha Company"));
+    assertTrue(processWidgetPage.isProcessGroupDisplay("C"));
     processWidgetPage.enterSearchKeyword("random keyword never match with any process");
     assertTrue(processWidgetPage.isNoProcessFound());
     assertFalse(processWidgetPage.isProcessGroupDisplay("A"));
