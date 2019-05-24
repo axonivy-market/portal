@@ -37,7 +37,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     homePage = new HomePage();
 
     LanguagePage languagePage = homePage.openLanguagePage();
-    languagePage.selectLanguage(1);;
+    languagePage.selectLanguage(1);
     languagePage.save();
 
     mainMenuPage = homePage.openMainMenu();
