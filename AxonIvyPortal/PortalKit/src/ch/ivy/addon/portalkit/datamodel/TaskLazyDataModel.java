@@ -594,7 +594,11 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   @Override
   public ITask getRowData() {
-    return data.get(rowIndex);
+    if (rowIndex >= 0 && rowIndex < data.size()) {
+      return data.get(rowIndex);
+    } else {
+      return null;
+    }
   }
 
   @Override
