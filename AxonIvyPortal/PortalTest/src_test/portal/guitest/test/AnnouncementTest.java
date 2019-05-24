@@ -1,11 +1,7 @@
 package portal.guitest.test;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
-
-import com.thoughtworks.selenium.webdriven.commands.IsElementPresent;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
@@ -16,6 +12,7 @@ import portal.guitest.page.LanguagePage;
 import portal.guitest.page.LoginPage;
 
 public class AnnouncementTest extends BaseTest {
+  @Override
   @Before
   public void setup() {
     super.setup();
@@ -26,7 +23,7 @@ public class AnnouncementTest extends BaseTest {
     assertTrue("Admin Settings menu item is  displayed", homePage.isAdminSettingsMenuItemPresent());
     LanguagePage languagePage = homePage.openLanguagePage();
 
-    languagePage.selectLanguage(1);;
+    languagePage.selectLanguage(1);
     languagePage.save();
   }
 
@@ -44,8 +41,13 @@ public class AnnouncementTest extends BaseTest {
     LanguagePage languagePage = homePage.openLanguagePage();
     languagePage.selectLanguage(0);
     languagePage.save();
-    
     assertEquals("lies mich", homePage.getAnnouncementMessage());
+    
+    homePage = new HomePage();
+    languagePage = homePage.openLanguagePage();
+    languagePage.selectLanguage(1);
+    languagePage.save();
+    assertEquals("Readme1", homePage.getAnnouncementMessage());
 
   }
 
