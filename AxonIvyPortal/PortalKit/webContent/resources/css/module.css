@@ -2250,8 +2250,16 @@ a.case-details-document-add-link {
   padding-right: 50px;
 }
 
-.process-start-list .process-start-list-item-name.is-express, .process-in-search .process-start-list-item-name.is-express, .mobile-process-start-list .process-start-list-item-name.is-express {
+.process-start-list .process-start-list-item-name.is-express, .process-in-search .process-start-list-item-name.is-express {
   padding-right: 120px;
+}
+
+.mobile-process-start-list .process-start-list-item-name {
+ padding-right: 30px;
+}
+
+.mobile-process-start-list .process-start-list-item-name.is-express {
+  padding-right: 50px;
 }
 
 .process-start-list-item:hover .process-start-list-item-icon,
@@ -2291,6 +2299,10 @@ a.case-details-document-add-link {
 
 .process-start-list-item-action.is-express {
   right: 50px;
+}
+
+.mobile-process-start-list .process-start-list-item-action.is-express {
+  right: 35px;
 }
 
 .process-start-list-item-action .process-item {

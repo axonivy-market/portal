@@ -70,7 +70,8 @@
 					label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/upload')}"
                     invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
 					rendered="#{cc.attrs.uploadPossible}" styleClass="uploading-file-message"
-					cancelLabel="Abbrechen" onstart="#{logic.setFileLimit(cc.attrs.fileLimit)}"
+					cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+					onstart="#{logic.setFileLimit(cc.attrs.fileLimit)}"
 					sizeLimit="#{masterDataBean.fileUploadSizeLimit}"
 					>
 		</p:fileUpload>
