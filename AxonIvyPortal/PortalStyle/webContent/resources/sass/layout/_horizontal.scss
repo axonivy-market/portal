@@ -1,0 +1,453 @@
+@media (min-width: 1025px) {
+    .layout-wrapper {
+        &.layout-menu-horizontal {
+
+            .layout-sidebar {
+                width: 100%;
+                height: auto;
+                top: 64px;
+                left: 0;
+                z-index: 99;
+
+                @if variable-exists(horizontalMenuBgImageLight) {
+                    background-image: url("\#{resource['serenity-layout:images/special/#{$horizontalMenuBgImageLight}']}");
+                    background-size: auto;
+                    background-repeat: no-repeat;
+                    background-color: $horizontalMenuBgColor;
+                }
+
+                .sidebar-logo {
+                    display: none;
+                }
+
+                > .nano {
+                    overflow: visible;
+
+                    > .nano-content {
+                        margin-right: 0 !important;
+                        display: inherit;
+                        height: auto;
+                        position: static;
+                        overflow: visible;
+                        overflow-x: visible;
+
+                        &.sidebar-scroll-content .layout-menu {
+                            padding-bottom: 0;
+                        }
+                    }
+
+                    > .nano-pane {
+                        display: none !important;
+                    }
+                }
+
+                .layout-menu {
+                    margin: 0;
+
+                    > li {
+                        width: auto;
+                        padding: 0;
+                        position: relative;
+                        float: left;
+
+                        > a {
+                            height: 44px;
+                            padding-top: 12px;
+                            @include box-sizing(border-box);
+                            @include border-radius(0);
+
+                            &:hover {
+                                background-color: $horizontalSubmenuitemHoverBgColor;
+                            }
+
+                            .menuitem-text {
+                                vertical-align: middle;
+                            }
+
+                            i {
+                                float: none;
+                                position: static;
+                                vertical-align: middle;
+                                margin-top: 0;
+                                top: auto;
+                                right: auto;
+                                margin-right: 5px;
+
+                                &.layout-submenu-toggler {
+                                    display: inline-block;
+                                    margin-top: 2px;
+                                }
+                            }
+                        }
+
+                        &.active-menuitem {
+                            > a {
+                                color: $horizontalMenuActiveTextColor;
+                                
+                                i {
+                                    color: $horizontalMenuActiveTextColor;
+                                }
+
+                                &:hover {
+                                    color: $horizontalMenuActiveHoverTextColor;
+
+                                    i {
+                                        color: $horizontalMenuActiveHoverTextColor;
+                                    }
+                                }
+                            }
+                        }
+
+                        > ul {
+                            top: 44px;
+                            left: 0;
+                            width: 230px;
+                            position: absolute;
+                            padding: 0;
+                            margin: 0;
+                            z-index: 100;
+                            overflow: auto;
+                            max-height: 450px;
+                            @include overlay-content-shadow();
+
+                            li {
+                                a {
+                                    padding-left: 40px;
+
+                                    &:hover {
+                                        background-color: $horizontalSubmenuitemHoverBgColor;
+                                    }
+
+                                    i {
+                                        float: none;
+                                        left: 10px;
+                                        
+                                        &:last-child {
+                                            right: 10px;
+                                            left: auto;
+                                        }
+                                    }
+
+                                    .layout-submenu-toggler {
+                                        display: block;
+                                        left: auto;
+                                        right: 10px;
+                                    }
+                                }
+
+                                ul {
+                                    li {
+                                        a {
+                                            padding-left: 50px;
+
+                                            &:hover {
+                                                background-color: $horizontalSubmenuitemHoverBgColor;
+                                            }
+
+                                            i:first-child {
+                                                left: 20px;
+                                            }
+                                        }
+                                    }
+
+                                    ul {
+                                        li {
+                                            a {
+                                                padding-left: 60px;
+
+                                                &:hover {
+                                                    background-color: $horizontalSubmenuitemHoverBgColor;
+                                                }
+
+                                                i:first-child {
+                                                    left: 30px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        &.active-menuitem {
+                            > ul {
+                                background-color: $horizontalSubmenuBgColor;
+                            }
+                        }
+                    }
+
+                    li {
+                        
+                        a {
+                            &:hover {
+                                background-color: $horizontalSubmenuitemHoverBgColor;
+                                color: $horizontalMenuActiveHoverTextColor;
+                                i {
+                                    color: $horizontalMenuActiveHoverTextColor;
+                                }
+                            }
+                            
+                            .menuitem-badge {
+                                left: 18px;
+                                top: 15px;
+                                display: block;
+                            }
+                        }   
+                    }
+                }
+
+                &.layout-sidebar-dark {
+                    background-color: $horizontalDarkSubmenuBgColor;
+
+                    @if variable-exists(horizontalMenuBgImageDark) {
+                        background-image: url("\#{resource['serenity-layout:images/special/#{$horizontalMenuBgImageDark}']}");
+                        background-color: $horizontalDarkMenuBgColor;
+                    }
+
+                    .layout-menu {
+                        > li {
+                            > a {          
+                                &:hover {
+                                    background-color: $horizontalSubmenuitemDarkHoverBgColor;
+                                    color: $horizontalSubmenuitemDarkHoverTextColor;
+
+                                    i {
+                                        color:$horizontalDarkMenuActiveTextColor;
+                                    }
+                                }
+                            }
+                            
+                            > ul {
+                                li {
+                                    a {
+                                        &:hover {
+                                            background-color: $horizontalSubmenuitemDarkHoverBgColor;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        li {
+                            a {
+                                &:hover {
+                                    color: $horizontalSubmenuitemDarkHoverTextColor;
+                                    
+                                    i {
+                                        color: $horizontalSubmenuitemDarkHoverTextColor;
+                                    }
+                                }
+                            }
+                            
+                            &.active-menuitem {
+                                > a {
+                                    @if not variable-exists(horizontalMenuBgImageDark) {
+                                        color: lighten($primaryLightColor, 6%);
+                                        
+                                        i {
+                                            color: lighten($primaryLightColor, 6%);
+                                        }
+                                    }
+                                    
+                                    &:hover {
+                                        color: $horizontalDarkMenuActiveHoverTextColor;
+
+                                        i {
+                                            color: $horizontalDarkMenuActiveHoverTextColor;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
+                        > li {                            
+                            &.active-menuitem {
+                                > a {
+                                    color: $horizontalDarkMenuActiveTextColor;
+                                    
+                                    i {
+                                        color: $horizontalDarkMenuActiveTextColor;
+                                    }
+                                }
+                                
+                                > ul {
+                                    background-color: $horizontalDarkSubmenuBgColor;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .layout-main {
+                margin-left: 0px;
+            }
+
+            .layout-topbar {
+                width: 100%;
+
+                .topbar-logo {
+                    float: left;
+                    margin-top: -10px;
+                    margin-right: 20px;
+                    display: inline-block;
+
+                    img {
+                        height: 56px;
+                        vertical-align: middle;
+                    }
+
+                    .app-name {
+                        color: $primaryTextColor;
+                        font-size: 26px;
+                    }
+                }
+
+                .layout-topbar-menu-wrapper {
+                    .topbar-menu {
+                        > li.profile-item {
+                            float: right;
+                            margin-left: 20px;
+
+                            > ul {
+                                left: auto;
+                                right: 105px;
+
+                                &:before {
+                                    left: 232px;
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            .layout-breadcrumb {
+                padding-top: 108px;
+            }
+
+            &.layout-rtl {
+                .layout-main {
+                    margin-right: 0px;
+
+                    .layout-topbar {
+                        .layout-topbar-menu-wrapper {
+                            .topbar-menu {
+                                > li {
+                                    &.profile-item {
+                                        float: left;
+                                        margin-right: 20px;
+                                        margin-left: auto;
+
+                                        > ul {
+                                            left: 105px;
+                                            right: auto;
+
+                                            &:before {
+                                                left: auto;
+                                                right: 232px;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .topbar-logo {
+                            float: right;
+                            margin-right: auto;
+                            margin-left: 20px;
+                        }
+                    }
+                }
+
+                .layout-sidebar {
+                    @include transition(right 0s);
+
+                    .layout-menu {
+                        > li {
+                            float: right;
+
+                            > a {
+                                i {
+                                    margin-right: auto;
+                                    margin-left: 5px;
+                                }
+                            }
+
+                            > ul {
+                                left: auto;
+
+                                li {
+                                    a {
+                                        padding-right: 40px;
+                                        padding-left: 0px;
+
+                                        i {
+                                            right: 10px;
+                                            left: auto;
+
+                                            &:last-child {
+                                                left: 10px;
+                                                right: auto;
+                                            }
+                                        }
+                                        
+                                        .layout-submenu-toggler {
+                                            right: auto;
+                                            left: 10px;
+                                        }
+                                    }
+
+                                    ul {
+                                        li {
+                                            a {
+                                                padding-right: 50px;
+                                                padding-left: 0px;
+
+                                                i:first-child {
+                                                    right: 20px;
+                                                    left: auto;
+                                                }
+                                            }
+                                        }
+
+                                        ul {
+                                            li {
+                                                a {
+                                                    padding-right: 60px;
+                                                    padding-left: 0px;
+
+                                                    i:first-child {
+                                                        right: 30px;
+                                                        left: auto;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        li {
+                            a {
+                                .menuitem-badge {
+                                    right: 18px;
+                                    left: auto;
+                                }
+
+                                i {
+                                    &:last-child {
+                                        margin-right: 3px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+ }

@@ -1,0 +1,80 @@
+@media (max-width: 640px) {
+    body {
+        .ui-panelgrid {
+            .ui-grid-responsive {
+                .ui-grid-row {
+                    border: 0 none;
+                }
+            }
+        }
+        
+        .ui-steps {
+            .ui-steps-item {
+                .ui-menuitem-link {
+                    .ui-steps-title {
+                        display: none;
+                    }
+                }
+            }
+        }
+        
+        .ui-picklist {
+            &.ui-picklist-responsive {
+                .ui-picklist-list-wrapper {
+                    margin-bottom: 8px;
+                }
+                .ui-picklist-buttons {
+                    .ui-button {
+                        &.ui-button-icon-only {
+                            display: inline-block;
+                            margin-right: 4px;
+                        }
+                    }
+                    
+                    .ui-icon-arrow-1-e {
+                        @include icon-override("\e037"); @include rotate(90deg);
+                    }
+                    .ui-icon-arrowstop-1-e {
+                        @include icon-override("\e045"); @include rotate(-90deg);
+                        
+                    }
+                    .ui-icon-arrow-1-w {
+                        @include icon-override("\e037"); @include rotate(-90deg);
+                    }
+                    .ui-icon-arrowstop-1-w {
+                        @include icon-override("\e044"); @include rotate(-90deg);
+                    }
+                }
+            }
+        }
+        
+        .ui-orderlist {
+            &.ui-grid-responsive {
+                .ui-orderlist-controls {
+                    text-align: center;
+                    width: auto;
+                    margin-bottom: 8px;
+                    
+                    .ui-button {
+                        margin-right: 4px;  
+                    }
+                }
+            }
+        }
+        
+        .ui-buttonset {
+            > .ui-button {
+                display: block;
+                @include border-radius(0);
+                
+                &:first-child {
+                    @include border-radius-top(3px);
+                }
+                
+                &:last-child {
+                    @include border-radius-bottom(3px);
+                }
+            }
+        }
+    }
+}
