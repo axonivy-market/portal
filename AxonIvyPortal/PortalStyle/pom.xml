@@ -8,9 +8,10 @@
   <packaging>iar</packaging>
   <properties>
     <resources.directory.css>${resources.directory}/css</resources.directory.css>
-    <resources.directory.less>${resources.directory}/less/</resources.directory.less>
+    <resources.directory.theme>${resources.directory}/primefaces-serenity-ivy/</resources.directory.theme>
     <resources.directory>${project.basedir}/webContent/resources</resources.directory>
     <build.plugin.version>7.3.0</build.plugin.version>
+    <libsass.version>0.2.10-libsass_3.5.3</libsass.version>
   </properties>
   <build>
     <plugins>
@@ -21,18 +22,24 @@
 		<extensions>true</extensions>
       </plugin>
       <plugin>
-        <groupId>org.lesscss</groupId>
-        <artifactId>lesscss-maven-plugin</artifactId>
-        <version>1.7.0.1.1</version>
+        <groupId>com.github.warmuuh</groupId>
+        <artifactId>libsass-maven-plugin</artifactId>
+        <version>${libsass.version}</version>
+        <executions>
+          <execution>
+            <id>scss</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+        </executions>
         <configuration>
-          <sourceDirectory>${resources.directory.less}</sourceDirectory>
-          <outputDirectory>${resources.directory.css}</outputDirectory>
-          <outputFileFormat>theme.min.css</outputFileFormat>
-          <includes>
-            <include>theme.less</include>
-          </includes>
-          <force>true</force>
-          <compress>true</compress>
+          <inputPath>${resources.directory.theme}</inputPath>
+          <outputPath>${resources.directory.css}</outputPath>
+          <generateSourceMap>false</generateSourceMap>
+          <generateSourceComments>false</generateSourceComments>
+          <outputStyle>compressed</outputStyle>
         </configuration>
       </plugin>
     </plugins>

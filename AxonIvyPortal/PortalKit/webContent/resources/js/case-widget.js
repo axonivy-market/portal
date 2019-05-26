@@ -81,11 +81,10 @@ function CaseListToolKit() {
     
     responsiveInMediumScreen : function(){
       var $mainMenu = $('.js-left-sidebar');
-      var $secondLevelMenu = $('#second-level-menu');
       var $creatorColumnHeader = $('.js-creator-column-header');
       var $creatorCell = $('.js-creator-cell');
 
-      if ($mainMenu.hasClass('in') && $secondLevelMenu.hasClass('on')) {
+      if ($mainMenu.hasClass('in')) {
         hideColumnInMediumScreen($creatorColumnHeader, $creatorCell);
       } else {
         displayColumnInMediumScreen($creatorColumnHeader, $creatorCell);
@@ -95,7 +94,6 @@ function CaseListToolKit() {
   
     responsiveInSmallScreen : function() {
       var $mainMenu = $('.js-left-sidebar');
-      var $secondLevelMenu = $('#second-level-menu');
       var $idColumnHeader = $('.js-id-column-header');
       var $idCell = $('.js-id-cell');
       var $creatorColumnHeader = $('.js-creator-column-header');
@@ -104,20 +102,14 @@ function CaseListToolKit() {
       var $createCell = $('.js-create-cell');
       var $expiryColumnHeader = $('.js-expiry-column-header');
       var $expiryCell = $('.js-finish-cell');
-      
 
-      if ($mainMenu.hasClass('in') && $secondLevelMenu.hasClass('on')) {
-        hideColumnInSmallScreen($creatorColumnHeader, $creatorCell);
-        hideColumnInSmallScreen($idColumnHeader, $idCell);
-        hideColumnInSmallScreen($createColumnHeader, $createCell);
-        hideColumnInSmallScreen($expiryColumnHeader, $expiryCell);
-      } else if ($mainMenu.hasClass('in') || $secondLevelMenu.hasClass('on')) {
+      if ($mainMenu.hasClass('in')) {
         hideColumnInSmallScreen($creatorColumnHeader, $creatorCell);
         hideColumnInSmallScreen($idColumnHeader, $idCell);
         displayColumnInSmallScreen($createColumnHeader, $createCell);
         displayColumnInSmallScreen($expiryColumnHeader, $expiryCell);
       } else {
-    	hideColumnInSmallScreen($creatorColumnHeader, $creatorCell);
+        hideColumnInSmallScreen($creatorColumnHeader, $creatorCell);
         displayColumnInSmallScreen($idColumnHeader, $idCell);
         displayColumnInSmallScreen($createColumnHeader, $createCell);
         displayColumnInSmallScreen($expiryColumnHeader, $expiryCell);

@@ -1,0 +1,352 @@
+$primaryColor:#AFCA05;
+$primaryDarkColor:#97AE04;
+$primaryLightColor:#DCF91F;
+$primaryLightestColor:#FFFFFF;
+$primaryTextColor:#212121;
+$accentColor:#AFCA05;
+$accentDarkColor: #97AE04;
+$accentLightColor: #DCF91F;
+$accentTextColor: #ECFC82;
+
+@import '../sass/theme/_theme';
+@import '../sass/ivy/variables';
+@import '../sass/ivy/font-faces';
+
+/*Style For Logos --------------------------------------------------------------------------------------*/
+.portal-home-logo {
+  height: $homeLogoHeight !important;
+}
+
+.portal-login-logo {
+  height: $loginLogoHeight;
+}
+
+/* Style for calendar -----------------------------------------------------------------------------------r*/
+.ui-datepicker .ui-datepicker-buttonpane button {
+  border-radius: $actionButtonBorderRadius;
+  background-color: $primaryColor;
+}
+
+/*Style For Color Header --------------------------------------------------------------------------------------*/
+.first-header-bar {
+  width: 70%;
+  background-color: $firstHeaderBarColor;
+}
+
+.second-header-bar {
+  width: 15%;
+  background-color: $secondHeaderBarColor;
+}
+
+.third-header-bar {
+  width: 15%;
+  background-color: $thirdHeaderBarColor;
+}
+
+/*Style For Background --------------------------------------------------------------------------------------*/
+body {
+  background: $bodyBackgroundColor;
+}
+
+/*Style For Main menu (Left Sidebar)------------------------------------------------------------------------ */
+.left-sidebar-color {
+	background-color: $menuColor;
+}
+
+.layout-wrapper .layout-sidebar .layout-menu > li.active-menuitem > a {
+	background-color: $primaryLightestColor;
+	color: $primaryTextColor;
+}
+
+.layout-wrapper .layout-sidebar .layout-menu li > a:hover {
+	background-color: $primaryLightestColor;
+}
+
+.layout-wrapper .layout-sidebar {
+	background-color: $menuColor;
+}
+
+.layout-wrapper .layout-sidebar .sidebar-logo {
+	background-color: $menuColor;
+}
+
+.layout-wrapper .layout-sidebar .sidebar-logo .sidebar-anchor {
+	border-color: #FFFFFF;
+	background-color: $primaryColor;
+}
+
+.layout-wrapper-static .layout-sidebar .sidebar-logo .sidebar-anchor {
+	background-color: $primaryColor;
+	border-color: $primaryColor;
+}
+
+
+.layout-wrapper .layout-sidebar .layout-menu > li.active-menuitem > a i {
+	color: $primaryTextColor;
+}
+
+/*Style for Top bar -------------------------------------------------------------------------------------- */
+.layout-wrapper .layout-main .layout-topbar {
+	background: $primaryLightestColor;
+}
+
+/*Style For Process Widget --------------------------------------------------------------------------------*/
+.process-start-list-item:hover .process-start-list-item-icon {
+  color: $primaryColor;
+}
+
+.process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-icon {
+  color: $primaryColor;
+}
+
+.process-group.ui-fieldset .ui-fieldset-legend{
+  font-size: 1.4rem;
+  color: $primaryColor;
+}
+
+.process-widget .process-group .ui-fieldset-toggler {
+  background-image: none !important;
+  text-indent: 0;
+  font-size: 25px;
+  color: $primaryColor !important;
+}
+
+.process-widget .process-group .ui-fieldset-toggler:before {
+  font-family: 'FontAwesome';
+  font-size: 2.4rem;
+  color: $primaryColor !important;
+}
+
+
+/*Style For Task Widget ----------------------------------------------------------------------------------*/
+.filter-selection-form .filter-name:hover,
+.filter-selection-form .filter-name-overlay-panel .user-definied-filter-container .delete-user-definied-filter-command:hover {
+  color: $primaryColor !important;
+}
+
+.task-state-open {
+  color: $taskStateOpenColor;
+}
+
+.task-state-in-progress {
+  color: $taskStateInProgressColor;
+}
+
+.task-state-done {
+  color: $taskStateDoneColor;
+}
+
+.task-state-zombie-destroyed {
+  color: $taskStateZombieDestroyedColor;
+}
+
+.task-state-reserved {
+  color: $taskStateReservedColor;
+}
+
+.task-state-system {
+  color: $taskStateSystemColor;
+}
+
+.task-priority-low {
+  color: $taskPriorityLowColor;
+}
+
+.task-priority-normal {
+  color: $taskPriorityNormalColor;
+}
+
+.task-priority-high {
+  color: $taskPriorityHighColor;
+}
+
+.task-priority-exception {
+  color: $taskPriorityExceptionColor;
+}
+
+/*Style For Statistic Widget -----------------------------------------------------------------------------*/
+.statistic-carousel .ui-carousel-header {
+  background-color: $primaryColor;
+}
+
+.statistic-carousel .ui-carousel-header .ui-carousel-next-button:hover,
+.statistic-carousel .ui-carousel-header .ui-carousel-prev-button:hover {
+  background-color: rgba($primaryColor, 0.2) !important;
+}
+
+.dashboard-chart-panel .ui-panel-titlebar {
+  background-color: $primaryColor;
+}
+
+.statistic-selection .add-link:hover {
+  color: $primaryColor !important;
+}
+
+/*Style For Buttons --------------------------------------------------------------------------------------*/
+.ui-widget.ui-button {
+  border-radius: $actionButtonBorderRadius !important;
+  background-color: $actionButtonColor;
+}
+.ui-widget.ui-button.ui-state-hover:not(.ui-spinner-button), .ui-widget.ui-buttonset .ui-state-hover,
+body .ui-buttonset .ui-state-active {
+  background-color: rgba($actionButtonColor, 0.6) !important;
+}
+.ui-widget.ui-button.ui-state-focus {
+  background-color: rgba($actionButtonColor, 0.8);
+}
+.portal-cancel-button.ui-widget.ui-button, .ui-inplace-cancel.ui-widget.ui-button, .ui-fileupload-cancel.ui-widget.ui-button {
+  background-color: rgba($cancelButtonBackgroundColor, 0.5);
+}
+.portal-cancel-button.ui-widget.ui-button.ui-state-hover, .portal-cancel-button.ui-widget.ui-buttonset .ui-state-hover, .ui-inplace-cancel.ui-widget.ui-button.ui-state-hover, .ui-fileupload-cancel.ui-widget.ui-button.ui-state-hover {
+  background-color: rgba($cancelButtonBackgroundColor, 0.6) !important;
+}
+.portal-cancel-button.ui-widget.ui-button.ui-state-focus, .ui-inplace-cancel.ui-widget.ui-button.ui-state-focus, .ui-fileupload-cancel.ui-widget.ui-button.ui-state-focus {
+  background-color: rgba($cancelButtonBackgroundColor, 0.8);
+}
+.ui-widget.ui-button.context-button{
+  border-radius: $contextButtonBorderRadius !important;
+  background-color: rgba($contextButtonColor, 0.5);
+}
+.ui-widget.ui-button.context-button.ui-state-hover{
+  background-color: rgba($contextButtonColor, 0.6)!important;
+}
+.ui-widget.ui-button.context-button.ui-state-focus{
+  background-color: rgba($contextButtonColor, 0.8)!important;
+}
+
+/*Style for table --------------------------------------------------------------------------------------*/
+.ui-datatable table tbody tr.ui-datatable-selectable.ui-state-highlight td  {
+  background-color: rgba(red($primaryColor), green($primaryColor), blue($primaryColor), 0.6);
+}
+
+.ui-datatable table tbody tr.ui-datatable-selectable.ui-state-hover td {
+  background-color: rgba(red($primaryColor), green($primaryColor), blue($primaryColor), 0.25);
+}
+
+.ui-treetable table tbody .ui-state-highlight td  {
+  background-color: rgba(red($primaryColor), green($primaryColor), blue($primaryColor), 0.6) !important;
+}
+
+.ui-treetable table tbody .ui-state-hover td {
+  background-color: rgba(red($primaryColor), green($primaryColor), blue($primaryColor), 0.25) !important;
+}
+
+/*Style for self service --------------------------------------------------------------------------------------*/
+img[id*='additonalTaskUserAvatar'] {
+	border:	solid 2px;
+	border-color : $primaryColor;
+}
+
+/*Style for express --------------------------------------------------------------------------------------*/
+.express-start-process-panel .process-list .icon-placeholder .fa {
+  color: $primaryColor;
+}
+
+.express-start-process-panel .process-list .icon-placeholder .fa:hover {
+  color: rgba($primaryColor, 0.6) !important;
+}
+
+.process-start-list-item .process-start-list-item-action .express-workflow:hover {
+  color: $primaryColor !important;
+}
+
+.process-start-list-item.express-workflow .process-start-list-item-icon {
+  color: $primaryColor !important;
+  opacity: 1;
+}
+
+.ui-widget.ui-button.defined-task-button {
+  border: solid 2px $primaryColor;
+}
+
+.ui-widget.ui-button.defined-task-button.active,
+.ui-widget.ui-button.defined-task-button.visited {
+  border: solid 2px $primaryColor;
+  background-color: $primaryColor !important;
+}
+
+.ui-widget.ui-button.defined-task-button.active:before {
+  border-color: $primaryColor;
+}
+
+.ui-widget.ui-button.defined-task-button.ui-state-hover {
+  background-color: $primaryColor !important;
+}
+
+/*Style for stages breadcrumb --------------------------------------------------------------------------------------*/
+.stages-chain .current i {
+  color: $primaryColor;
+}
+
+/*Style for stages process chain -----------------------------------------------------------------------------------*/
+.circle-process-chain .circle-horizontal-process-step.visited .circle-horizontal-step-container span:before {
+  border-color: $processChainMenuColor;
+}
+
+.circle-process-chain .circle-horizontal-process-step.waiting .circle-horizontal-step-container {
+  border: solid 2px $processChainMenuColor;
+}
+
+.circle-process-chain .circle-horizontal-process-step .circle-horizontal-step-container {
+  background-color: $processChainMenuColor;
+}
+
+.circle-process-chain .circle-vertical-process-step.visited .circle-vertical-step-container span:before {
+  border-color: $processChainMenuColor;
+}
+
+.circle-process-chain .circle-vertical-process-step.waiting .circle-vertical-step-container {
+  border: solid 2px $processChainMenuColor;
+}
+
+.circle-process-chain .circle-vertical-process-step .circle-vertical-step-container {
+  background-color: $processChainMenuColor;
+}
+
+.line-process-chain .line-horizontal-process-step .line-horizontal-step-container {
+  background-color: $processChainMenuColor;
+}
+
+.line-process-chain .line-horizontal-process-step.hide-left-steps  {
+  background: repeating-linear-gradient(90deg, $processChainMenuColor, $processChainMenuColor 10px, $bodyBackgroundColor 10px, $bodyBackgroundColor 20px);
+}
+
+.line-process-chain .line-horizontal-process-step.hide-right-steps {
+  background: repeating-linear-gradient(90deg, #E0E0E0, #E0E0E0 10px, $bodyBackgroundColor 10px, $bodyBackgroundColor 20px);
+}
+
+.line-process-chain .line-vertical-process-step .line-vertical-step-container {
+  background-color: $processChainMenuColor;
+}
+
+.line-process-chain .line-vertical-process-step.hide-left-steps  {
+  background: repeating-linear-gradient(180deg, $processChainMenuColor, $processChainMenuColor 10px, $bodyBackgroundColor 10px, $bodyBackgroundColor 20px);
+}
+
+.line-process-chain .line-vertical-process-step.hide-right-steps {
+  background: repeating-linear-gradient(180deg, #E0E0E0, #E0E0E0 10px, $bodyBackgroundColor 10px, $bodyBackgroundColor 20px);
+}
+
+.task #mobile-menu .mobile-task-menu-item, .process #mobile-menu .mobile-process-menu-item {
+  border-bottom-width: 2px;
+  border-bottom-color: $primaryColor;
+}
+
+/*Style for checkbox ------------------------------------------------------------------------------------------------*/
+body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
+  color: $primaryLightestColor !important;
+}
+
+/*Style for announcement*/
+.announcement-message-customizable {
+  background-color: $announcementBackgroundColor;
+  border: 2px solid $announcementBorderColor;
+}
+
+/*Style For Mobile --------------------------------------------------------------------------------------*/
+.task #mobile-menu .mobile-task-menu-item, .process #mobile-menu .mobile-process-menu-item {
+  border-bottom: solid 3px $menuColor;
+  color: $menuColor !important;
+}
+
+@import '../sass/ivy/customization';
