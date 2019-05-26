@@ -1,0 +1,245 @@
+body {
+    /* Messages */
+    .ui-messages {
+        > div {
+            padding: 10px 16px;
+        }
+        
+        ul {
+            display: inline-block;
+            margin-left: 0;
+        }
+        
+        .ui-messages-info {
+            background-color: #2196F3;
+            border-color: #2196F3;
+            color: #ffffff;
+            
+            .ui-messages-close:hover {
+                background-color: lighten(#2196F3,15%);
+            }
+        }
+        
+        .ui-messages-warn {
+            background-color: #ffc107;
+            border-color: #ffc107;
+            color: #000000;
+            
+            .ui-messages-close:hover {
+                background-color: lighten(#ffc107,15%);
+            }
+        }
+        
+        .ui-messages-error {
+            background-color: #e62a10;
+            border-color: #e62a10;
+            color: #ffffff;
+            
+            .ui-messages-close:hover {
+                background-color: lighten(#e62a10,15%);
+            }
+        }
+        
+        .ui-messages-fatal {
+            background-color: #212121;
+            border-color: #212121;
+            color: #ffffff;
+            
+            .ui-messages-close:hover {
+                background-color: lighten(#212121,15%);
+            }
+        }
+    }
+
+    .ui-message {  
+        padding: 4px 8px;
+              
+        &.ui-message-info {
+            background-color: #2196F3;
+            border-color: #2196F3;
+            color: #ffffff;
+        }
+        
+        &.ui-message-warn {
+            background-color: #ffc107;
+            border-color: #ffc107;
+            color: #ffffff;
+        }
+        
+        &.ui-message-error {
+            background-color: #e62a10;
+            border-color: #e62a10;
+            color: #ffffff;
+        }
+        
+        &.ui-message-fatal {
+            background-color: #212121;
+            border-color: #212121;
+            color: #ffffff;
+        }
+        
+        &.ui-message-icon-only {
+            text-align: center;
+            
+            span {
+                float: none;
+                margin-top: -1px;
+                position: static;
+            }
+        }
+    }
+
+    /* Info */
+    .ui-messages .ui-messages-info-icon,.ui-message .ui-message-info-icon {
+        background: none;
+        @include material-icon("\e88e");
+        font-size: 24px;
+        color: #fff;
+    }
+
+    .ui-message .ui-message-info-icon {
+        margin-top: -1px;
+        font-size: 18px;
+        right: 1px;
+    }
+
+    /* Error */
+    .ui-messages .ui-messages-error-icon, .ui-message .ui-message-error-icon {
+        background: none;
+        @include material-icon("\e000");
+        font-size: 24px;
+        color: #fff;
+    }
+
+    .ui-message .ui-message-error-icon {
+        margin-top: -1px;
+        font-size: 18px;
+        right: 1px;
+    }
+
+    /* Warn */
+    .ui-messages .ui-messages-warn-icon,.ui-message .ui-message-warn-icon {
+        background: none;
+        @include material-icon("\e002");
+        font-size: 24px;
+        color: $textColor;
+    }
+    
+    .ui-messages .ui-messages-warn {
+        .ui-messages-close {
+            color: $textColor; 
+        }
+    }
+
+    .ui-message .ui-message-warn-icon {
+        margin-top: -1px;
+        font-size: 18px;
+        right: 1px;
+    }
+
+    /* Fatal */
+    .ui-messages .ui-messages-fatal-icon,.ui-message .ui-message-fatal-icon {
+        background: none;
+        @include material-icon("\e000");
+        font-size: 24px;
+        color: #fff;
+    }
+
+    .ui-message .ui-message-fatal-icon {
+        margin-top: -1px;
+        font-size: 18px;
+    }
+
+    .ui-messages-close {
+        text-decoration: none;
+        color: #fff;
+        width: $iconWidth;
+        height: $iconWidth;
+        margin-top: -2px;
+        @include border-radius(50%);
+        @include transition(background-color $transitionDuration);
+    }
+    
+    .md-inputfield {
+        .ui-message {
+            &.ui-message-error {
+                background-color: transparent;
+                border: 0 none;
+                margin: 0px;
+                color: $inputErrorTextColor;
+                font-size: $errorMessageFontSize;
+                
+                .ui-message-error-icon {
+                    color: $inputErrorTextColor;
+                    font-size: $errorMessageIconFontSize;
+                }
+            }
+        }
+    }
+
+    .ui-growl {
+        top: 90px;
+        
+        > .ui-growl-item-container {
+            opacity: 1;
+            
+            &.ui-growl-info {
+                background-color: #2196F3;
+            }
+
+            &.ui-growl-warn {
+                background-color: #ffc107;
+            }
+
+            &.ui-growl-error {
+                background-color: #e62a10;
+            }
+
+            &.ui-growl-fatal {
+                background-color: #212121;
+            }
+            
+            &.ui-shadow {
+                @include overlay-content-shadow();
+            }
+        }
+        
+        .ui-growl-item {
+            .ui-growl-image {
+                background: none;
+                color: #ffffff;
+                padding: 4px;         
+    
+                &.ui-growl-image-info {
+                    @include material-icon("\e88e");        
+                    font-size: 36px;
+                }
+                
+                &.ui-growl-image-error {
+                    @include material-icon("\e000");
+                    font-size: 36px;
+                }
+                
+                &.ui-growl-image-warn {
+                    @include material-icon("\e002");
+                    font-size: 36px;
+                }
+                
+                &.ui-growl-image-fatal {
+                    @include material-icon("\e000");
+                    font-size: 36px;
+                }
+            }
+            
+            .ui-growl-message {
+                color: #ffffff;
+            }
+            
+            .ui-growl-icon-close {
+                @include material-icon("\e5cd");
+                font-size: 24px;
+                color: #ffffff;
+            }        
+        }
+    }
+}

@@ -11,22 +11,6 @@
     <ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
     <ui:param name="announcementContainerStyleClass" value="announcement-container-in-task-list" />
     <ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}</ui:define>
-	
-	<ui:define name="secondLevelMenu">
-		<h:panelGroup id="second-level-menu" styleClass="second-level-menu js-left-sidebar-second left-sidebar-animation" rendered="#{taskView.displayTaskCategory}">
-          <a href="#" class="second-level-menu-header"> 
-            <i class="fa fa-angle-left icon-left left-sidebar-animation" /> 
-            <span class="header-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}</span>
-            <i class="fa fa-angle-right icon-right left-sidebar-animation" />
-          </a> 
-          <div class="second-level-menu-body">
-            <h:form prependId="false">
-              <ic:ch.ivy.addon.portal.generic.PortalTaskMenu menuState="#{menuState}"/>
-            </h:form>
-          </div>
-        </h:panelGroup>			
-	</ui:define>
-	
     <ui:define name="pageContent">
     <div class="task-list-container js-task-list-container">
       <div>
@@ -136,17 +120,6 @@
           </ic:ch.ivy.addon.portalkit.component.TaskWidget>
       </div>
     </div>
-    </ui:define>
-    <ui:define name="footer">
-      <script type="text/javascript">
-        $(function() {
-          var taskListLargeScreen = new TaskListLargeScreenHandler();
-          var taskListMediumScreen = new TaskListMediumScreenHandler();
-          var taskListSmallScreen = new TaskListSmallScreenHandler();
-          var responsiveToolkit = ResponsiveToolkit(taskListLargeScreen, taskListMediumScreen, taskListSmallScreen);
-          Portal.init(responsiveToolkit);
-        });
-      </script>
     </ui:define>
   </ui:composition>
 </h:body>

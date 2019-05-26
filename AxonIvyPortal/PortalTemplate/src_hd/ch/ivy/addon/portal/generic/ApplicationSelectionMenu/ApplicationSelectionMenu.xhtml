@@ -5,7 +5,7 @@
   xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile"
-  xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+  xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:ps="http://primefaces.org/serenity">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="menuState" />
@@ -14,96 +14,75 @@
 
 <cc:implementation>
   <f:event listener="#{logic.init}" type="preRenderComponent" />
-  <div id="#{cc.clientId}" class="left-main-menu">
-    <div class="left-sidebar-toggle-button js-left-sidebar-toggle left-sidebar-animation">
-      <i class="fa fa-bars left-sidebar-menu-icon left-sidebar-menu-icon-font-size left-sidebar-animation" />
-    </div>
-    <h:form id="main-navigator">
-      <h:inputHidden id="first-level-menu-state-info" value="#{menuStateBean.menuState}" />
-      <ui:repeat id="menu-item" value="#{data.menuItems}" var="menuItem" varStatus="theCount">
-        <p:commandLink actionListener="#{logic.openApp(menuItem.href)}" disabled="#{menuItem.disabled}"
-          rendered="#{empty menuItem.getAttributes().get('isThirdPartyApp')}"
-          styleClass="left-sidebar-menu-header js-left-side-bar-item-#{theCount.index} #{menuItem.styleClass}">
-          <h:outputText
-            class="#{menuItem.icon} left-sidebar-menu-icon left-sidebar-menu-icon-font-size left-sidebar-animation application-icon-#{theCount.index}" />
-          <h:outputText value="#{menuItem.value}" styleClass="left-sidebar-menu-name left-sidebar-animation" />
-          <p:tooltip styleClass="left-sidebar-menu-item-tooltip left-sidebar-menu-item-tooltip-#{theCount.index}"
-            value="#{menuItem.value}" for="@(.application-icon-#{theCount.index})" />
-        </p:commandLink>
-        <p:commandLink rendered="#{not empty menuItem.getAttributes().get('isThirdPartyApp')}"
-          disabled="#{menuItem.disabled}"
-          styleClass="left-sidebar-menu-header js-left-side-bar-item-#{theCount.index} #{menuItem.styleClass}"
-          actionListener="#{logic.openApp(menuItem.href)}" ajax="false" target="_blank"
-          onclick="event.stopPropagation()">
-          <h:outputText
-            class="#{menuItem.icon} left-sidebar-menu-icon left-sidebar-menu-icon-font-size left-sidebar-animation application-icon-#{theCount.index}" />
-          <h:outputText value="#{menuItem.value}" styleClass="left-sidebar-menu-name left-sidebar-animation" />
-          <p:tooltip styleClass="left-sidebar-menu-item-tooltip left-sidebar-menu-item-tooltip-#{theCount.index}"
-            value="#{menuItem.value}" for="@(.application-icon-#{theCount.index})" />
-        </p:commandLink>
+  <!-- LOGO  -->
+  <div class="sidebar-logo">
+    <p:commandLink id="logo" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(isWorkingOnATask)}">
+      <p:graphicImage styleClass="portal-home-logo" value="#{resource['ivy-cms:images/logo/CorporateLogo']}" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
+    </p:commandLink>
 
-        <h:panelGroup styleClass="left-sidebar-sub-menu js-left-side-bar-item-#{theCount.index} #{menuItem.styleClass}"
-          layout="block" rendered="#{empty menuItem.getAttributes().get('isThirdPartyApp')}">
-          <div class="left-sidebar-separator-top" />
-          <ui:repeat id="sub-menu-item" var="subMenuItem" value="#{data.subMenuItems}"
-            varStatus="status">
-            <c:set var="isIvyLink"
-              value="#{(fn:contains(process.link, '.ivp?') or fn:endsWith(subMenuItem.link, '.ivp') or fn:endsWith(subMenuItem.link, '.icm')) or subMenuItem.link eq NULL}" />
-            <p:commandLink id="sub-menu-item-link" styleClass="left-sidebar-sub-menu-item left-sidebar-animation"
-              rendered="#{isIvyLink}" actionListener="#{logic.onClickSubMenuItem}" onclick="saveMenuState(this)">
-              <h:outputText
-                class="#{subMenuItem.icon} left-sidebar-menu-icon left-sidebar-sub-menu-icon-font-size left-sidebar-animation left-sidebar-sub-menu-item-#{status.index}-#{theCount.index}" />
-              <h:outputText value="#{subMenuItem.label}" styleClass="left-sidebar-sub-menu-name left-sidebar-animation" />
-              <f:attribute name="selectedSubMenuItem" value="#{subMenuItem}" />
-              <script type="text/javascript">
-                              $(function() {
-                                MainMenu.highlightCustomMenuItem('#{view.viewId}', '#{subMenuItem.views}',
-                                    '#{component.clientId}');
-                              });
-                            </script>
-            </p:commandLink>
-            <p:link styleClass="left-sidebar-sub-menu-item left-sidebar-animation" rendered="#{!isIvyLink}"
-              href="#{subMenuItem.externalLink}" target="_blank">
-              <h:panelGroup
-                class="#{subMenuItem.icon} left-sidebar-menu-icon left-sidebar-sub-menu-icon-font-size left-sidebar-animation left-sidebar-sub-menu-item-external-#{status.index}-#{theCount.index}" />
-              <h:outputText value="#{subMenuItem.label}" styleClass="left-sidebar-sub-menu-name left-sidebar-animation" />
-            </p:link>
-            <p:tooltip id="left-sidebar-menu-item-tooltip" styleClass="left-sidebar-menu-item-tooltip"
-              value="#{subMenuItem.label}" for="@(.left-sidebar-sub-menu-item-#{status.index}-#{theCount.index})" />
-            <p:tooltip id="left-sidebar-sub-menu-item-tooltip-external" styleClass="left-sidebar-menu-item-tooltip"
-              value="#{subMenuItem.label}"
-              for="@(.left-sidebar-sub-menu-item-external-#{status.index}-#{theCount.index})" />
-          </ui:repeat>
-          <div class="left-sidebar-separator-bottom" />
-        </h:panelGroup>
-      </ui:repeat>
-    </h:form>
+    <p:commandLink id="logo-small" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(isWorkingOnATask)}" styleClass="portal-home-logo-small">
+      <p:graphicImage styleClass="portal-home-logo" value="#{resource['ivy-cms:images/logo/SmallCorporateLogo']}" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
+    </p:commandLink>
 
-    <p:confirmDialog id="task-leave-warning-dialog" rendered="#{data.isWorkingOnATask}" 
-      header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
-      widgetVar="task-losing-confirmation-dialog" appendTo="@(body)" closeOnEscape="true">
-      <h:form prependId="false">
-        <h:panelGroup styleClass="Fs14">
-          <p:commandButton id="leave-button" actionListener="#{logic.leave}" process="@this" update="@none"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leave')}"
-            styleClass="ui-confirmdialog-yes u-mar-right-5" />
-          <p:commandButton id="reserve-task-button" actionListener="#{logic.reserveTask}" process="@this" update="@none"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}"
-            styleClass="ui-confirmdialog-yes u-mar-right-5" rendered="#{ivy.task.state != 'CREATED'}" />
-          <p:tooltip for="reserve-task-button" trackMouse="true" rendered="#{ivy.task.state != 'CREATED'}"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leaveAndReserve')}" />
-          <p:commandButton onclick="PF('task-losing-confirmation-dialog').hide()"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button"
-            styleClass="ui-confirmdialog-no portal-cancel-button" />
-        </h:panelGroup>
-      </h:form>
-      <f:facet name="message">
-        <h:outputText escape="false" styleClass="ui-confirm-dialog-message" rendered="#{ivy.task.state != 'CREATED'}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resetParkTaskBeforeLeave')}" />
-        <h:outputText escape="false" styleClass="ui-confirm-dialog-message" rendered="#{ivy.task.state == 'CREATED'}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/createdTaskLeave')}" />
-      </f:facet>
-    </p:confirmDialog>
+    <a href="#" class="sidebar-anchor" title="Toggle Menu"></a>
   </div>
+
+  <!-- APPLICATION MENU -->
+  <div>
+    <div id="#{cc.clientId}" class="nano-content sidebar-scroll-content">
+      <div class="layout-menu-container">
+        <h:form id="main-navigator">
+          <ps:menu id="main-menu" widgetVar="main-menu">
+            <c:forEach var="menuItem" items="#{data.menuItems}" varStatus="menuItemStatus">
+              <p:menuitem id="menu-item-#{menuItemStatus.index}" rendered="#{empty menuItem.getAttributes().get('isThirdPartyApp')}"
+                actionListener="#{logic.openApp(menuItem.href)}" disabled="#{menuItem.disabled}" update="main-menu" process="main-menu"
+                icon="#{menuItem.icon} fa" value="#{menuItem.value}" iconPos="right" containerStyleClass="#{menuItem.styleClass}" />
+  
+              <p:menuitem id="thirdparty-menu-item-#{menuItemStatus.index}" rendered="#{not empty menuItem.getAttributes().get('isThirdPartyApp')}" update="main-menu" process="main-menu"
+                actionListener="#{logic.openApp(menuItem.href)}" ajax="false" target="_blank" onclick="event.stopPropagation()" disabled="#{menuItem.disabled}" 
+                icon="#{menuItem.icon}" value="#{menuItem.value}" iconPos="right" containerStyleClass="#{menuItem.styleClass}" />
+
+              <c:forEach var="subMenuItem" items="#{data.subMenuItems}" varStatus="subMenuItemStatus">
+                <c:set var="isIvyLink"
+                  value="#{(fn:contains(process.link, '.ivp?') or fn:endsWith(subMenuItem.link, '.ivp') or fn:endsWith(subMenuItem.link, '.icm')) or subMenuItem.link eq NULL}" />
+                <p:menuitem id="menu-item-#{menuItemStatus.index}-sub-menu-item-#{subMenuItemStatus.index}" rendered="#{isIvyLink}" actionListener="#{logic.onClickSubMenuItem}"
+                  value="#{subMenuItem.label}" icon="#{subMenuItem.icon}" iconPos="right" styleClass="submenu" update="main-menu" process="main-menu">
+                  <f:attribute name="selectedSubMenuItem" value="#{subMenuItem}" />
+                </p:menuitem>
+                <p:menuitem id="thirdparty-menu-item-#{menuItemStatus.index}-sub-menu-item-#{subMenuItemStatus.index}" rendered="#{!isIvyLink}" target="_blank" url="#{subMenuItem.externalLink}" value="#{subMenuItem.label}" update="main-menu" process="main-menu" />
+              </c:forEach>
+
+            </c:forEach>
+          </ps:menu>
+        </h:form>
+      </div>
+    </div>
+  </div>
+
+  <p:confirmDialog id="task-leave-warning-dialog" rendered="#{data.isWorkingOnATask}" 
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
+    widgetVar="task-losing-confirmation-dialog" appendTo="@(body)" closeOnEscape="true">
+    <h:form prependId="false">
+      <h:panelGroup styleClass="Fs14">
+        <p:commandButton id="leave-button" actionListener="#{logic.leave}" process="@this" update="@none"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leave')}"
+          styleClass="ui-confirmdialog-yes u-mar-right-5" />
+        <p:commandButton id="reserve-task-button" actionListener="#{logic.reserveTask}" process="@this" update="@none"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}"
+          styleClass="ui-confirmdialog-yes u-mar-right-5" rendered="#{ivy.task.state != 'CREATED'}" />
+        <p:tooltip for="reserve-task-button" trackMouse="true" rendered="#{ivy.task.state != 'CREATED'}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leaveAndReserve')}" />
+        <p:commandButton onclick="PF('task-losing-confirmation-dialog').hide()"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button"
+          styleClass="ui-confirmdialog-no portal-cancel-button" />
+      </h:panelGroup>
+    </h:form>
+    <f:facet name="message">
+      <h:outputText escape="false" styleClass="ui-confirm-dialog-message" rendered="#{ivy.task.state != 'CREATED'}"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resetParkTaskBeforeLeave')}" />
+      <h:outputText escape="false" styleClass="ui-confirm-dialog-message" rendered="#{ivy.task.state == 'CREATED'}"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/createdTaskLeave')}" />
+    </f:facet>
+  </p:confirmDialog>
 </cc:implementation>
 </html>

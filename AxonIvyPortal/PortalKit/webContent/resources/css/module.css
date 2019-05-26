@@ -50,362 +50,6 @@
   color: black;
 }
 /* =================== END WIDGET ====================== */
-/* =================== PORTAL BUTTONS ====================== */
-.ui-widget.ui-button {
-  min-width: 137px;
-  height: 40px;
-  font-size: 1.2rem;
-  border-radius: 8px !important;
-  -webkit-border-radius: 8px !important;
-  -moz-border-radius: 8px !important;
-  display: inline-block;
-  align-items: center;
-  justify-content: center;
-}
-
-.ui-widget.ui-button span{
-  color: rgba(0, 0, 0, 1);
-}
-
-.ui-widget.ui-button-text-icon-right {
-  direction: rtl;
-}
-
-.ui-button-text-only .ui-button-text, .ui-widget.ui-button-text-icon-left .ui-button-text, .ui-button-text-icon-right .ui-button-text {
-  padding: 13px 25px !important;
-}
-
-.ui-widget.ui-button-text-icon-left .ui-icon, .ui-widget.ui-button-text-icon-right .ui-icon {
-  float: left;
-  top: 0;
-  margin-left: 0;
-  margin-top: 0 !important;
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  padding: 13px;
-  position: static;
-  line-height: 14px;
-  background-size: 14px 14px !important;
-  overflow: initial;
-}
-
-.ui-widget.ui-button-text-icon-left .ui-button-text, .ui-widget.ui-button-text-icon-right .ui-button-text {
-  display: inline-block;
-  height: 14px;
-  line-height: 14px;
-  min-width: 97px;
-  position: static;
-}
-
-.ui-widget.ui-button-text-icon-left .ui-button-text {
-  border-left: 1px solid rgba(0,0,0,0.08);
-}
-
-.ui-widget.ui-button-text-icon-right .ui-button-text {
-  border-right: 1px solid rgba(0,0,0,0.08);
-}
-
-.ui-widget.ui-button-text-icon-right .ui-icon {
-  right: 0;
-  margin-right: 0;
-}
-/* =================== END PORTAL BUTTONS ====================== */
-
-/* =================== RADIO BUTTON ====================== */
-.ui-selectoneradio label, .ui-selectoneradio label.ui-state-disabled {
-  font-size: 1.4rem;
-  opacity: 1;
-  color: #757575;
-}
-
-.ui-selectoneradio label.ui-state-disabled {
-  color: rgba(0, 0, 0, 0.5);
-}
-
-.ui-radiobutton .ui-radiobutton-box.ui-state-default  {
-  border: solid 2px rgba(0, 0, 0, 1);
-}
-
-.ui-radiobutton .ui-radiobutton-box.ui-state-active .ui-icon-bullet {
-  width: 12px;
-  height: 12px;
-  margin: 2px !important;
-  background: rgba(0, 0, 0, 1);
-}
-
-.ui-radiobutton .ui-radiobutton-box.ui-state-disabled {
-  opacity: 1;
-  border: solid 2px rgba(0, 0, 0, 0.3);
-}
-
-.ui-radiobutton .ui-radiobutton-box.ui-state-disabled .ui-icon-bullet {
-  background: rgba(0, 0, 0, 0.3);
-}
-
-.ui-radiobutton .ui-radiobutton-box.ui-state-error  {
-  border: solid 2px rgba(255, 100, 100, 1) !important;
-}
-
-.ui-radiobutton .ui-radiobutton-box.ui-state-error .ui-icon-bullet {
-  background: rgba(255, 100, 100, 1);
-}
-
-.ui-radiobutton {
-  margin: 5px 10px 0px 0px !important;
-}
-/* =================== END RADIO BUTTON ====================== */
-
-/* =================== SPINNER BUTTON ====================== */
-.ui-widget.ui-button.ui-spinner-button  {
-  min-width: 0;
-  height: 16px;
-  border-radius: 0 !important;
-  -webkit-border-radius: 0 !important;
-  -moz-border-radius: 0 !important;
-}
-
-.ui-spinner .ui-spinner-button .ui-button-text {
-  height: 0px;
-  padding-top: 0px !important;
-  padding-bottom: 0px !important;
-}
-
-.pe-dynaform-cell[colspan] input.ui-spinner-input {
-  width: inherit;
-}
-/* =================== END SPINNER BUTTONS ====================== */
-
-/* =================== CHECKBOX ====================== */
-.ui-selectmanycheckbox label, .ui-selectmanycheckbox label.ui-state-disabled {
-  font-size: 1.2rem;
-  color: #757575;
-  opacity: 1;
-}
-
-.ui-selectmanycheckbox label.ui-state-disabled {
-  color: rgba(0, 0, 0, 0.5);
-}
-
-.ui-chkbox .ui-chkbox-label {
-  font-size: 1.2rem;
-  color: #757575;
-  margin: 3px 15px 0px 5px !important;
-}
-
-.ui-chkbox .ui-chkbox-box {
-  border: solid 2px rgba(0, 0, 0, 1);
-}
-
-.ui-chkbox .ui-chkbox-box.ui-state-disabled {
-  opacity: 1;
-  border: solid 2px rgba(0, 0, 0, 0.3);
-}
-
-.ui-chkbox .ui-chkbox-box .ui-icon-check {
-  border: 2px solid white;
-  transform: none;
-  background: rgba(0, 0, 0, 1);
-  width: 100%;
-  height: 100%;
-  margin: 0px;
-  box-sizing: border-box;
-  transition: background 0.5s ease;
-}
-
-.ui-chkbox .ui-chkbox-box.ui-state-disabled .ui-icon-check{
-  background: rgba(0, 0, 0, 0.3);
-}
-
-.ui-chkbox .ui-chkbox-box.ui-state-default .ui-icon-blank {
-  border-bottom: none;
-  border-right: none;
-  transform: none;
-  width: 12px;
-  height: 12px;
-  margin: 2px;
-}
-
-.ui-chkbox .ui-chkbox-box.ui-state-error {
-  border: solid 2px rgba(255, 100, 100, 1) !important;
-}
-
-.ui-chkbox .ui-chkbox-box.ui-state-error .ui-icon-check {
-  background: rgba(255, 100, 100, 1);
-}
-
-.ui-chkbox {
-	vertical-align: bottom !important;
-}
-/* =================== END CHECKBOX ====================== */
-
-/* =================== CALENDAR ====================== */
-#ui-datepicker-div {
-  width: auto;
-  padding: 25px 25px 17.5px 25px !important;
-  margin-top: 8px; 
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.4) !important;
-  border-radius: 10px;
-}
-
-.ui-datepicker .ui-datepicker-header {
-  padding: 0px 0px 25px 0px !important;
-}
-
-.ui-datepicker div.ui-datepicker-title {
-  line-height: normal;
-  font-size: 1.8rem;
-  color: rgba(0, 0, 0, 0.4);
-  margin: 0px;
-}
-
-.ui-datepicker a.ui-datepicker-prev {
-  width: auto;
-  top: -2px !important;
-  left: 5px !important;
-}
-
-.ui-datepicker a.ui-datepicker-prev span.ui-icon{
-  background-image: none;
-  text-indent: 0;
-}
-
-.ui-datepicker a.ui-datepicker-prev span:before {
-  font-family: 'FontAwesome';
-  font-size: 1.8rem;
-  content: "\f053";
-  position: absolute;
-  color: rgba(0, 0, 0, 0.4);
-}
-
-.ui-datepicker a.ui-datepicker-next {
-  width: auto;
-  top: -2px !important;
-  right: 5px !important;
-}
-
-.ui-datepicker a.ui-datepicker-next span.ui-icon{
-  background-image: none;
-  text-indent: 0;
-}
-
-.ui-datepicker a.ui-datepicker-next span:before {
-  font-family: 'FontAwesome';
-  font-size: 1.8rem;
-  content: "\f054";
-  position: absolute;
-  color: rgba(0, 0, 0, 0.4);
-}
-
-.ui-datepicker  table.ui-datepicker-calendar {
-  border-spacing: 0;
-  table-layout: fixed;
-  width: 187px;
-  margin-top: 0px !important;
-}
-
-.ui-datepicker-calendar thead tr th {
-  padding: 0px 7.5px 8px 7.5px;
-  font-size: 1.2rem;
-  width: 14px;
-  color: rgba(0, 0, 0, 0.4);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-  border-radius: 0px;
-}
-
-.ui-datepicker-calendar thead tr th:first-child {
-  padding-left: 0px;
-}
-
-.ui-datepicker-calendar thead tr th:last-child {
-  padding-right: 0px;
-}
-
-.ui-datepicker-calendar tbody tr td {
-  padding: 0;
-  border: none !important;
-  background-color: transparent !important;
-  padding-top: 10px;
-}
-
-.ui-datepicker-calendar tbody tr .ui-datepicker-today .ui-state-highlight{
-  border: solid 1px #a7a7a7 !important;
-  padding: 6.5px;
-}
-
-.ui-datepicker-calendar tbody tr td:hover a {
-  color: rgba(0, 0, 0, 0.8) !important;
-}
-
-.ui-datepicker-calendar tbody tr:first-child td {
-  padding-top: 17.5px;
-}
-
-.ui-datepicker .ui-datepicker-calendar tbody tr td a {
-  font-size: 1.2rem;
-  color: rgba(0, 0, 0, 0.8) !important;
-  padding: 7.5px 7.5px;
-  width: 15px;
-  border-radius: 30px;
-}
-
-.ui-datepicker-calendar tbody tr td a.ui-state-hover,
-.ui-datepicker-calendar tbody tr td a.ui-state-active,
-.ui-datepicker-calendar tbody tr td.ui-datepicker-current-day span {
-  font-family: 'robotobold';
-  color: rgba(255, 255, 255, 1) !important;
-  background-color: rgba(0, 0, 0, 1) !important;
-}
-
-.ui-datepicker-calendar tbody tr td.ui-state-disabled {
-  opacity: 1;
-}
-
-.ui-datepicker-calendar tbody tr td.ui-state-disabled span {
-  font-size: 1.2rem;
-  color: rgba(0, 0, 0, 0.2);
-  padding: 7.5px 7.5px;
-  width: 15px;
-  border-radius: 30px;
-}
-
-.ui-datepicker-calendar tbody tr td.ui-state-disabled span {
-  font-size: 1.2rem;
-  color: rgba(0, 0, 0, 0.2);
-  padding: 7.5px 7.5px;
-  width: 15px;
-  border-radius: 30px;
-}
-
-.ui-datepicker-calendar tbody tr td:first-child a,
-.ui-datepicker-calendar tbody tr td:first-child span {
-  position: relative;
-  left: -8px;
-}
-
-.ui-datepicker-calendar tbody tr td.ui-datepicker-week-col {
-  padding-right: 7.5px;
-  font-size: 1.2rem;
-  color: rgba(0, 0, 0, 0.8) !important;
-}
-
-.ui-calendar .ui-button.ui-datepicker-trigger {
-  background-color: transparent !important;
-  background-image: none;
-  display: inline-block;
-}
-
-.ui-calendar .ui-button.ui-datepicker-trigger:after {
-  font-family: 'FontAwesome';
-  font-size: 1.8rem;
-  content: "\f073";
-  color: rgba(0, 0, 0, 1);
-  position: absolute;
-  left: 10px;
-  top: 10px;
-}
-
-/* =================== END CALENDAR ====================== */
 
 /* =================== TABLE ====================== */
 .ui-widget.ui-datatable {
@@ -474,12 +118,14 @@
 }
 
 .ui-datatable table thead tr th {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
   height: 30px;
   color: #757575;
   background-color: rgba(236, 236, 236, 1);
   font-size: 1.4rem !important;
   font-weight: normal !important;
-  font-family: 'robotoregular' !important;
   border-right: 1px solid rgba(0, 0, 0, 0.2);
   text-align: left;
   vertical-align: top;
@@ -713,126 +359,6 @@
 }
 /* =================== END LINK ====================== */
 
-/* =================== TEXTFIELD ====================== */
-.ui-inputtext,
-.ui-inputfield.hasDatepicker,
-.ui-inputfield.ui-password,
-.ui-selectlistbox-filter.ui-inputfield.ui-widget {
-  padding: 6px 0 6px 6px !important;
-  font-family: "robotoregular" !important;
-  font-size: 1.4rem;
-  color: #757575 !important;
-  background-color: rgba(0,0,0,0);
-  border-bottom: none;
-  -webkit-box-shadow: inset 0 -1px 0px 0px rgba(0,0,0,0.3);
-  -moz-box-shadow: inset 0 -1px 0px 0px rgba(0,0,0,0.3);
-  box-shadow: inset 0 -1px 0px 0px rgba(0,0,0,0.3);
-  transition: none !important;
-}
-
-.ui-selectlistbox-filter.ui-inputfield.ui-widget {
-  padding-left: 35px !important;
-}
-
-#top-menu li ul li input[type="text"] {
-  font-size: 1.8rem;
-  padding: 6px 0 !important;
-}
-.ui-inputtext.ui-state-hover,
-.ui-inputtext.ui-state-focus,
-.ui-inputfield.hasDatepicker.ui-state-hover,
-.ui-inputfield.hasDatepicker.ui-state-focus,
-.ui-inputfield.ui-password.ui-state-hover,
-.ui-inputfield.ui-password.ui-state-focus {
-  color: rgba(0,0,0,1);
-  background-color: rgba(0,0,0,0);
-  border-bottom: none;
-  -webkit-box-shadow: inset 0 -2px 0px 0px rgba(0,0,0,1);
-  -moz-box-shadow: inset 0 -2px 0px 0px rgba(0,0,0,1);
-  box-shadow: inset 0 -2px 0px 0px rgba(0,0,0,1);
-}
-.ui-inputtext.ui-state-error,
-.ui-inputfield.hasDatepicker.ui-state-error,
-.ui-inputfield.ui-password.ui-state-error {
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
-.ui-inputtext.ui-state-error.ui-state-hover,
-.ui-inputtext.ui-state-error.ui-state-focus,
-.ui-inputfield.hasDatepicker.ui-state-error.ui-state-hover,
-.ui-inputfield.hasDatepicker.ui-state-error.ui-state-focus,
-.ui-inputfield.ui-password.ui-state-error.ui-state-hover,
-.ui-inputfield.ui-password.ui-state-error.ui-state-hover {
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
-
-.ui-messages ul {
-  margin-top: 0 !important;
-}
-
-.ui-messages-info,
-.ui-message-info,
-.ui-messages-warn,
-.ui-message-warn,
-.ui-messages-error,
-.ui-message-error {
-  font-size: 14px !important;
-} 
-
-.ui-messages-error,
-.ui-message-error {
-  color: rgba(255,120,120,1) !important;
-}
-.ui-messages-error:hover,
-.ui-message-error:hover {
-  color: rgba(255,100,100,1) !important;
-}
-.ui-messages-error .ui-message-error-icon,
-.ui-message-error .ui-message-error-icon {
-  font-size: 1.2rem;
-}
-.ui-messages-error .ui-message-error-detail,
-.ui-message-error .ui-message-error-detail {
-  font-style: italic;
-  font-size: 1.2rem;
-}
-/** Style for placeholder **/
-/*Chrome/Opera/Safari*/
-.ui-inputtext::-webkit-input-placeholder,
-.ui-inputfield.hasDatepicker::-webkit-input-placeholder,
-.ui-inputfield.ui-password::-webkit-input-placeholder {
-  color: rgba(0,0,0,0.2) !important;
-}
-/*Firefox 19+*/
-.ui-inputtext::-moz-placeholder,
-.ui-inputfield.hasDatepicker::-moz-placeholder,
-.ui-inputfield.ui-password::-moz-placeholder {
-  color: rgba(0,0,0,0.2) !important;
-}
-/*IE 10+*/
-.ui-widget.ui-inputtext:-ms-input-placeholder,
-.ui-widget.ui-inputfield.hasDatepicker:-ms-input-placeholder,
-.ui-widget.ui-inputfield.ui-password:-ms-input-placeholder {
-  color: rgba(0,0,0,0.2) !important;
-}
-
-.ui-widget.ui-inputtext.ui-state-hover:-ms-input-placeholder,
-.ui-widget.ui-inputfield.ui-state-hover.hasDatepicker:-ms-input-placeholder,
-.ui-widget.ui-inputfield.ui-state-hover.ui-password:-ms-input-placeholder {
-  color: rgba(0,0,0,0.2) !important;
-}
-/*Firefox 18-*/
-.ui-inputtext:-moz-placeholder,
-.ui-inputfield.hasDatepicker:-moz-placeholder,
-.ui-inputfield.ui-password:-moz-placeholder {
-  color: rgba(0,0,0,0.2) !important;
-}
-/*End of placeholder*/
-/* =================== END TEXTFIELD ====================== */
-
 /* =================== INPLACE EDITOR ===================== */
 .ui-inplace-editor {
   display: inline-block;
@@ -840,207 +366,26 @@
 /* =================== END INPLACE EDITOR ================= */
 
 /* =================== DROPDOWN =========================== */
-.ui-selectonemenu {
-  padding: 0;
-}
-.ui-selectonemenu,
-.ui-selectonemenu.ui-state-focus {
-  border-bottom: solid 1px rgba(0,0,0,0.3) !important;
-}
-.ui-selectonemenu.ui-state-focus .ui-selectonemenu-label {
-  background-color: rgba(0,0,0,0) !important;
-}
-.ui-inputfield.ui-selectonemenu-label {
-  font-family:'robotoregular' !important;
-  font-size: 1.4rem !important;
-  color: #757575 !important;
-  background-color: rgba(0,0,0,0);
-  padding: 9px 0 6px 6px !important;
-}
-div.ui-selectonemenu-panel {
-  border-top: solid 1px rgba(0,0,0,0.3);
-  border-radius: 0 0 10px 10px;
-  -webkit-box-shadow: 0 2px 4px 0 !important;
-  -moz-box-shadow: 0 2px 4px 0 !important;
-  box-shadow: 0 2px 4px 0 !important;
-}
-ul.ui-selectonemenu-list li.ui-selectonemenu-item:first-child {
-  margin-top: 15px !important;
-}
-ul.ui-selectonemenu-list li.ui-selectonemenu-item:last-child {
-  margin-bottom: 15px !important;
-}
-ul.ui-selectonemenu-list li.ui-selectonemenu-item {
-  padding: 9px 20px !important;
-  font-family: 'robotoregular';
-  font-size: 1.4rem !important;
-  color: rgba(0,0,0,0.4);
-}
-ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-highlight,
-ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
-  font-family: 'robotobold';
-  color: rgba(0,0,0,1) !important;
-}
-.ui-selectonemenu .ui-selectonemenu-trigger {
-  padding: 0 0 0 56px !important;
-  background-color: rgba(0,0,0,0) !important;
-  font-size: 1.8rem !important;
+body .ui-selectonemenu-panel .ui-selectonemenu-item.ui-state-hover,
+body .ui-selectonemenu-panel .ui-selectonemenu-item.ui-state-focus {
+  outline: none;
 }
 
-.ui-fluid .ui-selectonemenu .ui-selectonemenu-trigger {
-  padding: 0 0 0 20px !important;
-}
-
-.ui-fluid .ui-selectonemenu .ui-selectonemenu-trigger,
-.ui-fluid .ui-selectcheckboxmenu-trigger {
-  height: 38px !important;
-}
-
-.ui-selectonemenu .ui-selectonemenu-trigger,
-.ui-selectonemenu .ui-selectonemenu-trigger.ui-state-hover,
-.ui-selectonemenu .ui-selectonemenu-trigger.ui-state-focus {
-  color: rgba(0,0,0,1) !important;
-  border-bottom: none !important;
-}
-.ui-selectonemenu-trigger .ui-icon-triangle-1-s {
-  background: none repeat scroll 0 0 transparent !important;
-  background-repeat: no-repeat;
-  display: block;
-  overflow: visible;
-  text-indent: 0px !important;
-  position: relative;
-}
-.ui-selectonemenu .ui-selectonemenu-trigger .ui-icon:after {
-  font-family: 'FontAwesome';
-  content: "\f078";
-  font-size: 1.4rem;
-  left:-5px;
-  position:absolute;
-  top:-2px;
-}
-.ui-selectonemenu .ui-selectonemenu-trigger .ui-icon.rotate-icon:after {
-  content: "\f077";
-}
-.ui-inplace-content .ui-selectonemenu-trigger .ui-icon:after {
-  top:-3px !important;
+body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-close.ui-state-hover {
+  background: white !important;
+  border-radius: 50%;
 }
 /* =================== END DROPDOWN ====================== */
 
 /* =================== AUTOCOMPLETE ====================== */
-.ui-autocomplete {
-  display: inline-block !important;
-  display: -ms-inline-flexbox !important;
-}
-.dialog-autocomplete-add-new-process .ui-autocomplete-input {
-  width: 93% !important;
-}
-
-.ui-autocomplete-input {
-  padding: 6px 10px 6px 0 !important;
-  font-family: "robotoregular" !important;
-  font-size: 1.4rem !important;
-  color: #757575 !important;
-  background-color: rgba(0,0,0,0);
-  border-bottom: 0 !important;
-  -webkit-box-shadow: 0 1px 0px 0px rgba(0,0,0,0.3) !important;
-  -moz-box-shadow: 0 1px 0px 0px rgba(0,0,0,0.3) !important;
-  box-shadow: 0 1px 0px 0px rgba(0,0,0,0.3) !important;
-}
-.ui-autocomplete-input.ui-state-hover,
-.ui-autocomplete-input.ui-state-focus {
-  color: rgba(0,0,0,1) !important;
-  background-color: rgba(0,0,0,0);
-  -webkit-box-shadow: 0 2px 0px 0px rgba(0,0,0,1) !important;
-  -moz-box-shadow: 0 2px 0px 0px rgba(0,0,0,1) !important;
-  box-shadow: 0 2px 0px 0px rgba(0,0,0,1) !important;
-}
-.ui-autocomplete-input.ui-state-error {
-  -webkit-box-shadow: none !important;
-  -moz-box-shadow: none !important;
-  box-shadow: none !important;
-}
-.ui-autocomplete-panel {
-  -webkit-box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.3) !important;
-  -moz-box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.3) !important;
-  box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.3) !important;
-}
-
-.ui-autocomplete-list .ui-autocomplete-item {
-  margin: 0 !important;
-  padding: 9px 20px !important;
-  font-family: 'robotoregular';
-  font-size: 1.4rem !important;
-  color: rgba(0,0,0,0.4);
-}
-.ui-autocomplete-list .ui-autocomplete-item.ui-state-highlight,
-.ui-autocomplete-list .ui-autocomplete-item.ui-state-hover {
-  font-family: 'robotobold';
-  color: rgba(0,0,0,1) !important;
-}
-
-.ui-autocomplete-list .ui-autocomplete-item.ui-autocomplete-moretext,
-.ui-autocomplete-items .ui-autocomplete-item.ui-autocomplete-moretext {
-  cursor: default;
-  transition: none !important;
-}
-
-.ui-autocomplete-list .ui-autocomplete-item.ui-autocomplete-moretext.ui-state-highlight,
-.ui-autocomplete-list .ui-autocomplete-item.ui-autocomplete-moretext.ui-state-hover,
-.ui-autocomplete-items .ui-autocomplete-item.ui-autocomplete-moretext.ui-state-highlight td,
-.ui-autocomplete-items .ui-autocomplete-item.ui-autocomplete-moretext.ui-state-hover td {
-  font-family: 'robotoregular';
-  color: #656565 !important;
-  background-color: white;
-}
-
-.ui-autocomplete .ui-button.ui-autocomplete-dropdown {
-  background-color: transparent !important;
+.ui-autocomplete-panel .ui-autocomplete-items.ui-autocomplete-table tr,
+.ui-autocomplete-panel .ui-autocomplete-items.ui-autocomplete-table td {
   border: none;
-  margin-left: -30px;
-}
-
-.ui-autocomplete .ui-button.ui-autocomplete-dropdown .ui-icon {
-  text-indent: 0;
-  background-image: none;
-}
-
-.ui-autocomplete .ui-button.ui-autocomplete-dropdown .ui-icon:before {
-  font-family: 'FontAwesome';
-  content: "\f078";
-  font-size: 1.4rem;
-}
-
-.ui-autocomplete .ui-button.ui-autocomplete-dropdown.panel-visible .ui-icon:before {
-  font-family: 'FontAwesome';
-  content: "\f077";
-  font-size: 1.4rem;
-}
-
-.ui-autocomplete .ui-autocomplete-input {
-  padding-right: 25px !important;
-}
-
-.ui-autocomplete-panel {
-  border-radius: 0px;
+  transition: background-color 0.3s ease 0s;
 }
 
 .ui-autocomplete-panel .ui-autocomplete-items.ui-autocomplete-table td {
-  border: none;
-}
-
-.ui-autocomplete-panel .ui-autocomplete-items.ui-autocomplete-table td span {
-  font-family: 'robotoregular';
-  font-size: 1.4rem !important;
-  color: rgba(0,0,0,0.4);
-}
-
-.ui-autocomplete-panel .ui-autocomplete-items.ui-autocomplete-table tr.ui-state-highlight span {
-  font-family: 'robotobold';
-  color: rgba(0,0,0,1) !important;
-}
-
-.ui-autocomplete-panel .ui-autocomplete-items {
-  padding: 15px 0 !important;
+  padding: 6px 10px;
 }
 /* =================== END AUTOCOMPLETE ====================== */
 
@@ -1157,7 +502,9 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 .widget-header-filter-input.ui-inputfield {
   background-color: transparent;
   padding: 15px 25px 5px 0 !important;
-  font-family: "robotomedium" !important;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
   color: black;
   font-size: 1.2rem;
   width: 185px;
@@ -1173,7 +520,9 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 .widget-header-filter-input.ui-inputfield.ui-state-hover, .widget-header-filter-input.ui-inputfield.ui-state-focus {
   background-color: transparent;
   padding: 15px 25px 5px 0 !important;
-  font-family: "robotomedium" !important;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
   color: black !important;
   font-size: 1.2rem;
 }
@@ -1231,7 +580,9 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 
 .grid-item-header {
   font-size: 1.2rem;
-  font-family: "robotomedium";
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
 }
 
 .grid-item-content {
@@ -1399,38 +750,6 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   margin-right: 10px;
 }
 
-.task-widget .ui-widget.ui-button.filter-add-button {
-  min-width: 10px;
-  margin-top: auto;
-  margin-bottom: auto;
-  height: 30px;
-} 
-
-.case-widget-container .ui-widget.ui-button.filter-add-button {
-  min-width: 10px;
-  margin-top: auto;
-  margin-left: auto;
-  height: 30px;
-}
-
-.task-widget .ui-widget.ui-button.filter-add-button .ui-button-text, 
-.case-widget-container .ui-widget.ui-button.filter-add-button .ui-button-text {
-  min-width: 10px;
-  padding: 5px 0 5px 10px !important;
-  border-right: none;
-}
-
-.task-widget .ui-widget.ui-button.filter-add-button .ui-icon, 
-.case-widget-container .ui-widget.ui-button.filter-add-button .ui-icon {
-  float: right;
-  padding: 5px 10px 5px 5px !important;
-}
-
-.task-widget .ui-overlaypanel.filter-add-panel .ui-scrollpanel.filter-selector-container .ui-widget.ui-chkbox-box, 
-.case-widget-container .ui-overlaypanel.filter-add-panel .ui-scrollpanel.filter-selector-container .ui-widget.ui-chkbox-box {
-  outline: none;
-}
-
 .task-widget .advanced-filter, .case-widget .advanced-filter,
 .case-widget-container .advanced-filter, .case-widget .advanced-filter {
   display: inline-block;
@@ -1455,13 +774,16 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   display: inline-block;
   height: 35px;
   line-height: 35px;
-  background: none;
+  background: rgba(0,0,0,0.15) !important;
   min-width: 0;
-  padding: 0 25px 0 5px;
+  padding: 0 25px 0 5px !important;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   max-width: 400px;
+  border: none;
+  border-radius: 4px !important;
+  box-shadow: none !important;
 }
 
 .task-widget .filter-selection-container,
@@ -1543,7 +865,6 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 .task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content .ui-overlaypanel-filter-content,
 .case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content .ui-overlaypanel-filter-content {
   padding: 10px;
-  font-size: 1.2rem;
 }
 
 .task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer,
@@ -1607,10 +928,6 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 /********************************** END ADVANCED FILTER WIDGET **********************************/
 
 /********************************** START CASE ITEM **********************************/
-.case-widget-empty-message .ui-outputlabel{
-  font-size: 1.2rem;
-}
-
 .case.expanded-mode {
   color: #546e7a;
   background-color: white;
@@ -1869,7 +1186,9 @@ a.case-details-document-add-link {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-family: "robotomedium";
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
   font-size: 1.2rem;
 }
 
@@ -1885,7 +1204,8 @@ a.case-details-document-add-link {
   text-overflow: ellipsis;
 }
 
-.case-list .ui-datascroller {
+.case-list .ui-datascroller,
+.case-list .ui-datascroller .ui-datascroller-content {
   border: none;
   border-radius: 0;
   background-color: transparent;
@@ -2209,7 +1529,9 @@ a.case-details-document-add-link {
   -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.8);
   -moz-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.8);
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.8);
-  font-family: "robotomedium";
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
 }
 
 .process-start-list-item.highlighted-item {
@@ -2277,7 +1599,9 @@ a.case-details-document-add-link {
 
 .process-start-list-item:hover .process-start-list-item-name,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-name {
-  font-family: "robotomedium";
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
 }
 
 .process-start-list-item-name-text {
@@ -2747,7 +2071,8 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
   overflow: hidden;
 }
 
-.task-view-container .ui-datascroller {
+.task-view-container .ui-datascroller,
+.task-view-container .ui-datascroller .ui-datascroller-content {
   border: none;
   border-radius: 0;
   background-color: transparent;
@@ -2851,7 +2176,9 @@ a.compact-task-start-link:hover {
 }
 
 .task-start-list .name-cell {
-  font-family: "robotomedium";
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
   font-size: 1.2rem;
   display: block;
 }
@@ -2999,18 +2326,6 @@ a.compact-task-start-link:hover {
   font-size: 1.2rem;
 }
 
-.no-task-message, .no-process-message {
-  font-size: 1.2rem;
-}
-
-.no-process-message {
-  font-size: 1.2rem;
-}
-
-.side-steps-menu-item .ui-menuitem-text {
-  font-size: 1.2rem;
-}
-
 .side-steps-panel {
   background-color: #FFFFFF;
   width: 200px;
@@ -3054,7 +2369,9 @@ a.compact-task-start-link:hover {
   width: 160px;
   color: rgba(0, 0, 0, 0.5) !important;
   font-size: 1.2rem;
-  font-family: 'robotoregular';
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
   line-height: 1.2rem;
   box-sizing: content-box;
 }
@@ -3125,7 +2442,9 @@ a.compact-task-start-link:hover {
 
 .task-details-data-2nd-column {
   text-align: left;
-  font-family: 'robotomedium';
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
   line-height: 1.8rem;
 }
 
@@ -3144,7 +2463,9 @@ a.compact-task-start-link:hover {
 
 
 .task-details-data-2nd-column a.ui-commandlink.ui-widget {
-  font-family: 'robotomedium' !important;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
 }
 
 .task-details-data-priority-icon {
@@ -3356,7 +2677,9 @@ _:-ms-input-placeholder, :root .case-details > * {
 
 .case-details-data-2nd-column {
   text-align: left;
-  font-family: 'robotomedium';
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
   line-height: 1.8rem;
 }
 
@@ -4026,7 +3349,9 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 /********************************** ABSENCES AND DEPUTY **********************************/
 .substituted-user-text {
   font-size: 1.4rem;
-  font-family: 'robotoregular';
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
   color: #757575;
 }
 
@@ -4408,7 +3733,9 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   text-align: center;
   font-size: 1.3rem;
   margin-top: 5px;
-  font-family: 'robotoregular';
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
 }
 
 .edit-statistic-container .chart-list .chart-container .add-link:before {
@@ -4624,7 +3951,9 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .chart-info-header {
   display: block;
   color: #656565;
-  font-family: 'robotoregular';
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
   font-size: 1.6rem;
   font-weight: bold;
   margin-top: 20px;
@@ -4946,7 +4275,9 @@ margin-top
   width: 70%;
   background: transparent;
   font-size: 1.8em;
-  font-family: 'robotomedium' !important;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
 }
 
 .content .ui-inputfield.ui-state-hover, .content .ui-inputfield.ui-state-focus {
@@ -5048,7 +4379,9 @@ margin-top
   width: 160px;
   color: rgba(0, 0, 0, 0.5) !important;
   font-size: 1.2rem;
-  font-family: 'robotoregular';
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
   line-height: 36px;
   box-sizing: content-box;
 }

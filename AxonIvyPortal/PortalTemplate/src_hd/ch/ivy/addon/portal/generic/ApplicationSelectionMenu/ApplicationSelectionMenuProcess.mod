@@ -1,5 +1,5 @@
 [Ivy]
-156A1AA176DE2A21 3.24 #module
+156A1AA176DE2A21 3.26 #module
 >Proto >Proto Collection #zClass
 As0 ApplicationSelectionMenuProcess Big #zClass
 As0 RD #cInfo
@@ -22,7 +22,6 @@ As0 @GridStep f83 '' #zField
 As0 @RichDialogProcessEnd f85 '' #zField
 As0 @RichDialogInitStart f87 '' #zField
 As0 @GridStep f91 '' #zField
-As0 @GridStep f92 '' #zField
 As0 @GridStep f94 '' #zField
 As0 @GridStep f95 '' #zField
 As0 @CallSub f97 '' #zField
@@ -66,6 +65,7 @@ As0 @PushWFArc f115 '' #zField
 As0 @PushWFArc f6 '' #zField
 As0 @RichDialogProcessEnd f5 '' #zField
 As0 @PushWFArc f9 '' #zField
+As0 @GridStep f92 '' #zField
 As0 @PushWFArc f4 '' #zField
 As0 @PushWFArc f8 '' #zField
 >Proto As0 As0 ApplicationSelectionMenuProcess #zField
@@ -206,78 +206,6 @@ As0 f91 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f91 816 92 96 40 -29 -6 #rect
 As0 f91 @|StepIcon #fIcon
-As0 f92 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
-' #txt
-As0 f92 actionTable 'out=in;
-' #txt
-As0 f92 actionCode 'import ch.ivy.addon.portalkit.constant.PortalConstants;
-import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
-import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import ch.ivyteam.ivy.application.IApplication;
-import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
-import ch.ivy.addon.portalkit.persistence.domain.Application;
-import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
-import org.primefaces.component.button.Button;
-import ch.ivyteam.ivy.server.ServerFactory;
-
-in.menuItems.clear();
-RegisteredApplicationService applicationService = new RegisteredApplicationService();
-int numberOfIvyApplications = applicationService.countIvyApplications(in.applications);
-SecurityServiceUtils.removeSessionAttribute(SessionAttribute.SELECTED_APP.toString());
-SecurityServiceUtils.removeSessionAttribute(SessionAttribute.SELECTED_APP_DISPLAY_NAME.toString());
-
-for (Application application : in.applications){
-	Button menuItem = new Button();
-	menuItem.value = ApplicationMultiLanguage.getDisplayNameInCurrentLocale(application);
-	boolean isThirdPartyApp = !application.#serverId is initialized;
-	if (isThirdPartyApp){
-		menuItem.getAttributes().put("isThirdPartyApp", true);
-	}
-	menuItem.href = application.link;
-	menuItem.getAttributes().put("appName", application.name);
-	menuItem.icon = "fa " + application.menuIcon;
-	
-	in.menuItems.add(menuItem);
-	if (application.name.equals(ivy.request.getApplication().getName()) || (!isThirdPartyApp && numberOfIvyApplications == 1)) {
-		menuItem.styleClass = "ivy-active";
-		SecurityServiceUtils.setSessionAttribute(SessionAttribute.SELECTED_APP.toString(), application.name);
-		SecurityServiceUtils.setSessionAttribute(SessionAttribute.SELECTED_APP_DISPLAY_NAME.toString(), application.displayName);
-	}
-}
-
-if (numberOfIvyApplications > 1 || numberOfIvyApplications == 0) {
-	Button menuItem = new Button();
-	menuItem.value = ivy.cms.co("/ch.ivy.addon.portal.generic/CustomLinkGenerator/dashboard");
-	menuItem.icon = "fa fa-dashcube";
-	if (numberOfIvyApplications == 0) {
-		menuItem.href = new PortalNavigator().getPortalStartUrlOfCurrentApplication();
-		menuItem.styleClass="ivy-active";
-		in.menuItems.add(0, menuItem);
-	} else {
-		IApplication portal = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(PortalConstants.PORTAL_APPLICATION_NAME);
-		if (portal != null && portal.getActivityState() != ch.ivyteam.ivy.application.ActivityState.INACTIVE && portal.getSecurityContext().findUser(ivy.session.getSessionUserName()) != null) {
-			menuItem.href = SecurityServiceUtils.getDefaultPortalStartUrl();
-			if (PortalConstants.PORTAL_APPLICATION_NAME.equals(ivy.request.getApplication().getName())) {
-				menuItem.styleClass = "ivy-active";
-			}
-			in.menuItems.add(0, menuItem);
-		}
-	}
-}' #txt
-As0 f92 security system #txt
-As0 f92 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
-As0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Convert menu items</name>
-        <nameStyle>18,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f92 452 112 56 32 39 -14 #rect
-As0 f92 @|StepIcon #fIcon
 As0 f94 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
 ' #txt
 As0 f94 actionTable 'out=in;
@@ -383,11 +311,11 @@ As0 f1 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.Applicat
 ' #txt
 As0 f1 actionTable 'out=in;
 ' #txt
-As0 f1 actionCode 'import ch.addon.portal.generic.menu.SubMenuItem;
-import org.primefaces.component.commandlink.CommandLink;
+As0 f1 actionCode 'import org.primefaces.component.menuitem.UIMenuItem;
+import ch.addon.portal.generic.menu.SubMenuItem;
 
-CommandLink commandLink = event.getSource() as CommandLink;
-in.selectedSubMenuItem = commandLink.getAttributes().get("selectedSubMenuItem") as SubMenuItem;' #txt
+UIMenuItem menu = event.getSource() as UIMenuItem;
+in.selectedSubMenuItem = menu.getAttributes().get("selectedSubMenuItem") as SubMenuItem;' #txt
 As0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -635,10 +563,82 @@ As0 f5 467 243 26 26 0 12 #rect
 As0 f5 @|RichDialogProcessEndIcon #fIcon
 As0 f9 expr out #txt
 As0 f9 480 208 480 243 #arcP
+As0 f92 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
+' #txt
+As0 f92 actionTable 'out=in;
+' #txt
+As0 f92 actionCode 'import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivyteam.ivy.application.IApplication;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+import ch.ivy.addon.portalkit.persistence.domain.Application;
+import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
+import org.primefaces.component.button.Button;
+import ch.ivyteam.ivy.server.ServerFactory;
+
+in.menuItems.clear();
+RegisteredApplicationService applicationService = new RegisteredApplicationService();
+int numberOfIvyApplications = applicationService.countIvyApplications(in.applications);
+SecurityServiceUtils.removeSessionAttribute(SessionAttribute.SELECTED_APP.toString());
+SecurityServiceUtils.removeSessionAttribute(SessionAttribute.SELECTED_APP_DISPLAY_NAME.toString());
+
+for (Application application : in.applications){
+	Button menuItem = new Button();
+	menuItem.value = ApplicationMultiLanguage.getDisplayNameInCurrentLocale(application);
+	boolean isThirdPartyApp = !application.#serverId is initialized;
+	if (isThirdPartyApp){
+		menuItem.getAttributes().put("isThirdPartyApp", true);
+	}
+	menuItem.href = application.link;
+	menuItem.getAttributes().put("appName", application.name);
+	menuItem.icon = "fa " + application.menuIcon;
+	
+	in.menuItems.add(menuItem);
+	if (application.name.equals(ivy.request.getApplication().getName()) || (!isThirdPartyApp && numberOfIvyApplications == 1)) {
+		menuItem.styleClass = "active-menuitem";
+		SecurityServiceUtils.setSessionAttribute(SessionAttribute.SELECTED_APP.toString(), application.name);
+		SecurityServiceUtils.setSessionAttribute(SessionAttribute.SELECTED_APP_DISPLAY_NAME.toString(), application.displayName);
+	}
+}
+
+if (numberOfIvyApplications > 1 || numberOfIvyApplications == 0) {
+	Button menuItem = new Button();
+	menuItem.value = ivy.cms.co("/ch.ivy.addon.portal.generic/CustomLinkGenerator/dashboard");
+	menuItem.icon = "fa fa-dashcube";
+	if (numberOfIvyApplications == 0) {
+		menuItem.href = new PortalNavigator().getPortalStartUrlOfCurrentApplication();
+		menuItem.styleClass="active-menuitem";
+		in.menuItems.add(0, menuItem);
+	} else {
+		IApplication portal = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(PortalConstants.PORTAL_APPLICATION_NAME);
+		if (portal != null && portal.getActivityState() != ch.ivyteam.ivy.application.ActivityState.INACTIVE && portal.getSecurityContext().findUser(ivy.session.getSessionUserName()) != null) {
+			menuItem.href = SecurityServiceUtils.getDefaultPortalStartUrl();
+			if (PortalConstants.PORTAL_APPLICATION_NAME.equals(ivy.request.getApplication().getName())) {
+				menuItem.styleClass = "active-menuitem";
+			}
+			in.menuItems.add(0, menuItem);
+		}
+	}
+}' #txt
+As0 f92 security system #txt
+As0 f92 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
+As0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Convert menu items</name>
+        <nameStyle>18,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f92 452 104 56 32 39 -14 #rect
+As0 f92 @|StepIcon #fIcon
 As0 f4 expr out #txt
-As0 f4 480 45 480 112 #arcP
+As0 f4 480 45 480 104 #arcP
 As0 f8 expr out #txt
-As0 f8 480 144 480 176 #arcP
+As0 f8 480 136 480 176 #arcP
 >Proto As0 .type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
