@@ -90,11 +90,10 @@ function TaskListToolKit() {
 
     responsiveInMediumScreen : function() {
       var $mainMenu = $('.js-left-sidebar');
-      var $secondLevelMenu = $('#second-level-menu');
       var $responsibleColumnHeader = $('.js-responsible-column-header');
       var $responsibleCell = $('.js-responsible-cell');
 
-      if ($mainMenu.hasClass('in') && $secondLevelMenu.hasClass('on')) {
+      if ($mainMenu.hasClass('in')) {
         hideColumnInMediumScreen($responsibleColumnHeader, $responsibleCell);
       } else {
         displayColumnInMediumScreen($responsibleColumnHeader, $responsibleCell);
@@ -104,7 +103,6 @@ function TaskListToolKit() {
 
     responsiveInSmallScreen : function() {
       var $mainMenu = $('.js-left-sidebar');
-      var $secondLevelMenu = $('#second-level-menu');
       var $idColumnHeader = $('.js-id-column-header');
       var $idCell = $('.js-id-cell');
       var $createColumnHeader = $('.js-create-column-header');
@@ -112,11 +110,7 @@ function TaskListToolKit() {
       var $expiryColumnHeader = $('.js-expiry-column-header');
       var $expiryCell = $('.js-expiry-cell');
 
-      if ($mainMenu.hasClass('in') && $secondLevelMenu.hasClass('on')) {
-        hideColumnInSmallScreen($idColumnHeader, $idCell);
-        hideColumnInSmallScreen($createColumnHeader, $createCell);
-        hideColumnInSmallScreen($expiryColumnHeader, $expiryCell);
-      } else if ($mainMenu.hasClass('in') || $secondLevelMenu.hasClass('on')) {
+      if ($mainMenu.hasClass('in')) {
         hideColumnInSmallScreen($idColumnHeader, $idCell);
         displayColumnInSmallScreen($createColumnHeader, $createCell);
         displayColumnInSmallScreen($expiryColumnHeader, $expiryCell);

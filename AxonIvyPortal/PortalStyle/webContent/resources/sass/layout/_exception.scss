@@ -1,0 +1,168 @@
+.exception-body {
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    &.error {
+        background-image: url("\#{resource['serenity-layout:images/exception/error-bg.jpg']}");
+
+        .exception-panel {
+            .exception-code {
+                background-color: #e91e63;
+
+                img {
+                    margin-left: -194px;
+                }
+            }
+
+            .exception-icon {
+                background-color: #e91e63;
+            }
+        }
+    }
+
+    &.notfound {
+        background-image: url("\#{resource['serenity-layout:images/exception/notfound-bg.jpg']}");
+
+        .exception-panel {
+            .exception-code {
+                background-color: #e91e63;
+
+                img {
+                    margin-left: -206px;
+                }
+            }
+
+            .exception-icon {
+                background-color: #e91e63;
+            }
+        }
+    }
+
+    &.accessdenied {
+        background-image: url("\#{resource['serenity-layout:images/exception/access-bg.jpg']}");
+
+        .exception-panel {
+            .exception-code {
+                background-color: #ffb300;
+
+                img {
+                    margin-left: -178px;
+                }
+            }
+
+            .exception-icon {
+                background-color: #ffb300;
+            }
+        }
+    }
+
+    .exception-panel {
+        width: 550px;
+        height: 480px;
+        background-color: #ffffff;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -275px;
+        margin-top: -240px;
+        padding: 0;
+        text-align: center;
+        @include border-radius(2px);
+        @include multi-shadow(0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 6px 10px 0 rgba(0, 0, 0, 0.14));
+
+        .exception-code {
+            height: 240px;
+            position: relative;
+
+            img {
+                position: absolute;
+                bottom: 0;
+                height: 190px;
+                left: 50%;
+            }
+        }
+
+        .exception-detail {
+            height: 240px;
+            position: relative;
+            padding: 60px 0 0 0;
+
+            .exception-icon {
+                width: 90px;
+                height: 90px;
+                line-height: 90px;
+                text-align: center;
+                display: inline-block;
+                z-index: 100;
+                position: absolute;
+                top: -45px;
+                left: 50%;
+                margin-left: -45px;
+                @include border-radius(50%);
+                @include multi-shadow(0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.12), 0 0 1px 0 rgba(0, 0, 0, 0.14));
+
+                i {
+                    font-size: 45px;
+                    line-height: inherit;
+                    color: #ffffff;
+                }
+            }
+
+            h1 {
+                font-size: 15px;
+                font-weight: bold;
+                margin: 10px 0 8px 0;
+            }
+
+            p {
+                color: $textSecondaryColor;
+                margin: 0 0 60px 0;
+            }
+        }
+    }
+}
+
+@media (max-width: 640px) {
+    .exception-body {
+        .exception-panel {
+            left: 0;
+            margin-left: 0;
+            width: 100%;
+        }
+        
+        &.error {
+            .exception-panel {
+                .exception-code {
+                    img {
+                        height: 150px;
+                        margin-left: -150px;
+                    }
+                }
+            }
+        }
+
+        &.notfound {
+            .exception-panel {
+                .exception-code {
+                    img {
+                        height: 150px;
+                        margin-left: -163px;
+                    }
+                }
+            }
+        }
+
+        &.accessdenied {
+            .exception-panel {
+                .exception-code {
+                    img {
+                        height: 150px;
+                        margin-left: -141px;
+                    }
+                }
+            }
+        }
+    }
+}
