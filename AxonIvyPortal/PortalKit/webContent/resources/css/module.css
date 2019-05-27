@@ -5563,6 +5563,9 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   box-sizing: border-box;
 }
 
+.elapsed-time-result-list {
+  width: 100%;
+}
 .elapsed-time-result-list .case-table .ui-datatable-scrollable-body {
   max-height: 500px;
 }
@@ -5571,10 +5574,27 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   box-sizing: border-box;
 }
 .elapsed-time-result-list .export-excel {
-  left:93%;
   margin-bottom: 8px;
 }
+.elapsed-time-result-list .case-table {
+  display: inline-block !important;
 
+}
+.elapsed-time-detail-form {
+  width: 80%;
+}
+
+.elapsed-time-result-list .case-table .case-id,
+.elapsed-time-result-list .case-table .case-creator,
+.elapsed-time-result-list .case-table .case-created,
+.elapsed-time-result-list .case-table .case-finished {
+  width: 10%;
+}
+
+.elapsed-time-result-list .case-table .case-name,
+.elapsed-time-result-list .case-table .case-elapsed-time{
+  width: 20%;
+}
 .ui-columntoggler[id$='task-table-toggler'] {
   min-width: 200px;
   padding: 0 !important;

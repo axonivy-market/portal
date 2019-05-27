@@ -15,8 +15,9 @@
     type="preRenderComponent" />
   <f:event listener="#{logic.initialize(cc.attrs.caseCategory)}" type="preRenderComponent" />
   <h:panelGroup id="elapsed-time-details-category" layout="block" styleClass="elapsed-time-result-list MarTop10">
-    <h:form id="elapsed-time-detail-form">
-      <p:commandButton id="export-button" ajax="false" styleClass="export-excel"
+    <h:form id="elapsed-time-detail-form" styleClass="elapsed-time-detail-form">
+    
+      <p:commandButton id="export-button" ajax="false" styleClass="export-excel Fright"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}">
         <p:dataExporter type="xls" target="case-table" fileName="#{elapsedTimeDetailsBean.getExcelFileName()}" />
       </p:commandButton>
@@ -27,43 +28,37 @@
 
         <p:ajax event="sort" update="case-table" onstart="liveScroll()" />
 
-        <p:column id="case-id"
-          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseID')}" sortable="false"
-          width="120">
+        <p:column id="case-id" styleClass="case-id"
+          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseID')}" sortable="false">
           <h:outputText value="#{elapsedTimeDetail.getId()}" />
         </p:column>
 
-        <p:column id="case-name"
-          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseName')}" sortable="false"
-          width="250">
+        <p:column id="case-name" styleClass="case-name"
+          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseName')}" sortable="false">
           <h:outputText value="#{elapsedTimeDetail.getName()}" />
         </p:column>
 
-        <p:column id="case-creator"
-          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" sortable="false"
-          width="200">
+        <p:column id="case-creator" styleClass="case-creator"
+          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" sortable="false">
           <h:outputText value="#{elapsedTimeDetail.getCreatorUserName()}" />
         </p:column>
 
-        <p:column id="case-created"
-          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}"
-          sortBy="false" width="120">
+        <p:column id="case-created" styleClass="case-created" 
+          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}" sortBy="false">
           <h:outputText value="#{elapsedTimeDetail.getStartTimestamp()}">
             <f:convertDateTime pattern="#{ivy.cms.co('/patterns/dateTimePattern')}" />
           </h:outputText>
         </p:column>
 
-        <p:column id="case-finished"
-          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME')}"
-          sortBy="false" width="120">
+        <p:column id="case-finished" styleClass="case-finished"
+          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME')}" sortBy="false">
           <h:outputText value="#{elapsedTimeDetail.getEndTimestamp()}">
             <f:convertDateTime pattern="#{ivy.cms.co('/patterns/dateTimePattern')}" />
           </h:outputText>
         </p:column>
 
-        <p:column id="case-elapsed-time"
-          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTime')}" sortable="false"
-          width="200">
+        <p:column id="case-elapsed-time" styleClass="case-elapsed-time" sortable="true" sortBy="#{elapsedTimeDetail.getBusinessRuntime()}"
+          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTime')}"  >
           <h:outputText value="#{elapsedTimeDetailsBean.calculateElapsedTime(elapsedTimeDetail.getBusinessRuntime().toNumber())}" />
         </p:column>
       </p:dataTable>
