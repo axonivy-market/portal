@@ -341,7 +341,12 @@ import ch.addon.portal.generic.menu.SubMenuItem;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import java.util.Map;
 Map response = IvyAdapterService.startSubProcess("loadSubMenuItems()", null, Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
-in.subMenuItems = response.get("subMenuItems") as List<SubMenuItem>;' #txt
+in.subMenuItems = response.get("subMenuItems") as List<SubMenuItem>;
+
+for (SubMenuItem item : in.subMenuItems) {
+	ivy.log.info("Menu Item {0}", item.label);
+}
+' #txt
 As0 f3 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 As0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

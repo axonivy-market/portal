@@ -134,7 +134,7 @@
 .ui-datatable table thead tr th .ui-sortable-column-icon.ui-icon {
   background-image: none;
   text-indent: 0;
-  margin: -4px 0px -1px 10px;
+  margin: -18px 0px -1px 10px;
   height: 20px;
   width: 18px;
 }
@@ -149,8 +149,8 @@
   font-family: 'FontAwesome';
   content: "\f107";
   position: relative;
-  left: -9px;
-  top: 7px;
+  left: -13px;
+  top: 8px;
 }
 
 .ui-datatable table thead tr th .ui-column-customfilter span input {
@@ -178,10 +178,10 @@
   height: 18px;
   color: #757575 !important;
   font-size: 1.2rem;
-  border-left: none;
-  border-top: none;
+  border-left: none !important;
+  border-top: none !important;
   border-right: none;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid white !important;
   text-align: left;
 }
 
@@ -198,7 +198,7 @@
 }
 
 .ui-datatable table tbody tr.ui-datatable-even {
-  background-color: rgba(255, 255, 255, 1);
+  background-color: rgba(255, 255, 255, 1) !important;
 }
 
 .ui-datatable table tbody tr.ui-datatable-odd {
@@ -397,14 +397,9 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   font-family: "robotoregular";
 }
 
-.ui-fieldset-legend .ui-icon-minusthick {
-    background-image: url(/ivy/faces/javax.faces.resource/images/minus-sign-gray.svg?ln=primefaces-modena-ivy);
-   
-}
 
-.ui-fieldset-legend .ui-icon-plusthick {
-    background-image: url(/ivy/faces/javax.faces.resource/images/plus-sign-gray.svg?ln=primefaces-modena-ivy);
-
+.ui-fieldset-toggler :hover {
+	background-color: transparent !important;
 }
 
 .ui-fieldset-legend.ui-state-hover {
@@ -2261,6 +2256,7 @@ a.compact-task-start-link:hover {
 
 .task-odd-row.full-mode {
   background-color: rgba(0,0,0,0.04);
+  position: relative;
 }
 
 .show-task-detail-link,
@@ -2298,7 +2294,7 @@ a.compact-task-start-link:hover {
 }
 
 .task-start-link:hover {
-  border-bottom: none;
+/*   border-bottom: none; */
 }
 
 .task-details-separator {

@@ -21,7 +21,7 @@
 	content: "\f078";
 	position: absolute;
 	margin-left: 8px;
-	margin-top: 0.25rem;
+	margin-top: 0;
 }
 
 #user-settings-menu.active-menu>.dropdown-icon.user-name:after {
@@ -172,7 +172,7 @@
 /*Task template*/
 .task-template-title {
 	font-family: robotoregular;
-	font-size: 1.4rem;
+	font-size: 1.6rem;
 	font-weight: bold;
 	color: #757575
 }

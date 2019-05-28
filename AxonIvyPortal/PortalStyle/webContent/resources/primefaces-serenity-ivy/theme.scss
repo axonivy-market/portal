@@ -7,6 +7,10 @@ $accentColor:#AFCA05;
 $accentDarkColor: #97AE04;
 $accentLightColor: #DCF91F;
 $accentTextColor: #ECFC82;
+$inputLabelText: 14px;
+$dataTableRowBgColorEven: rgba(255, 255, 255, 1);
+$listTableItemPadding: 10px 10px;
+$headerPadding: 14px 1em;
 
 @import '../sass/theme/_theme';
 @import '../sass/ivy/variables';
@@ -186,6 +190,12 @@ body {
 .ui-widget.ui-button {
   border-radius: $actionButtonBorderRadius !important;
   background-color: $actionButtonColor;
+  min-width: 137px;
+  height: 40px;
+  font-size: 1.2rem;
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
 }
 .ui-widget.ui-button.ui-state-hover:not(.ui-spinner-button), .ui-widget.ui-buttonset .ui-state-hover,
 body .ui-buttonset .ui-state-active {
@@ -195,13 +205,13 @@ body .ui-buttonset .ui-state-active {
   background-color: rgba($actionButtonColor, 0.8);
 }
 .portal-cancel-button.ui-widget.ui-button, .ui-inplace-cancel.ui-widget.ui-button, .ui-fileupload-cancel.ui-widget.ui-button {
-  background-color: rgba($cancelButtonBackgroundColor, 0.5);
+  background-color: rgba($cancelButtonBackgroundColor, 0.5) !important;
 }
 .portal-cancel-button.ui-widget.ui-button.ui-state-hover, .portal-cancel-button.ui-widget.ui-buttonset .ui-state-hover, .ui-inplace-cancel.ui-widget.ui-button.ui-state-hover, .ui-fileupload-cancel.ui-widget.ui-button.ui-state-hover {
   background-color: rgba($cancelButtonBackgroundColor, 0.6) !important;
 }
 .portal-cancel-button.ui-widget.ui-button.ui-state-focus, .ui-inplace-cancel.ui-widget.ui-button.ui-state-focus, .ui-fileupload-cancel.ui-widget.ui-button.ui-state-focus {
-  background-color: rgba($cancelButtonBackgroundColor, 0.8);
+  background-color: rgba($cancelButtonBackgroundColor, 0.8) !important;
 }
 .ui-widget.ui-button.context-button{
   border-radius: $contextButtonBorderRadius !important;
@@ -212,6 +222,19 @@ body .ui-buttonset .ui-state-active {
 }
 .ui-widget.ui-button.context-button.ui-state-focus{
   background-color: rgba($contextButtonColor, 0.8)!important;
+}
+
+.ui-widget.ui-button {
+  .ui-button-text {
+    color: $primaryTextColor !important;
+	line-height: 40px;
+  }        
+  .ui-icon {
+	color: $primaryTextColor !important;
+  }
+  ui-button-icon-left.ui-icon {
+	color: $primaryTextColor !important;
+  }
 }
 
 /*Style for table --------------------------------------------------------------------------------------*/
@@ -229,6 +252,25 @@ body .ui-buttonset .ui-state-active {
 
 .ui-treetable table tbody .ui-state-hover td {
   background-color: rgba(red($primaryColor), green($primaryColor), blue($primaryColor), 0.25) !important;
+}
+
+.ui-datatable {
+
+  tbody { 
+  	tr {
+       td {
+          padding: $listTableItemPadding !important;
+       }
+     }
+  }
+  
+  .ui-datatable-scrollable-body {
+    outline: transparent;
+  }
+}
+
+.ui-state-default.ui-sortable-column {
+	outline: transparent;
 }
 
 /*Style for self service --------------------------------------------------------------------------------------*/
@@ -347,6 +389,43 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 .task #mobile-menu .mobile-task-menu-item, .process #mobile-menu .mobile-process-menu-item {
   border-bottom: solid 3px $menuColor;
   color: $menuColor !important;
+}
+
+/*Style For Input field --------------------------------------------------------------------------------------*/
+.ui-outputlabel {
+  font-size: $inputLabelText !important;
+}
+
+.ui-inputfield {
+  padding: 6px 0 6px 6px !important;
+}
+
+/*Style For Accordion header --------------------------------------------------------------------------------------*/
+.ui-accordion {
+  .ui-accordion-header {
+     padding: 13px 5px 13px 30px !important;
+     
+     &.ui-state-active, .ui-icon-triangle-1-e, .ui-icon-triangle-1-s {
+       color: $primaryTextColor !important;
+     }
+   }
+}
+
+/*Style For Toolbar --------------------------------------------------------------------------------------*/
+body .ui-widget.ui-toolbar {
+	background-color : $primaryLightestColor;
+	box-shadow : none;
+}
+
+/*Style For Tabs nav --------------------------------------------------------------------------------------*/
+.ui-tabs.ui-tabs-top {
+  .ui-tabs-nav {
+    padding: .2em .2em 0 !important;
+    
+    li a {
+      padding: 14px 1em !important;
+    }
+  }
 }
 
 @import '../sass/ivy/customization';
