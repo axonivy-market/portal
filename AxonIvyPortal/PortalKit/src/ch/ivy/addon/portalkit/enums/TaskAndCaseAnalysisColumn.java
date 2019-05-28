@@ -8,6 +8,7 @@ public enum TaskAndCaseAnalysisColumn {
   CASE_CATEGORY(false, false),
   CASE_CREATOR(false, false),
   CASE_STATE(false, true),
+  CASE_ELAPSED_TIME(false,true),
   TASK_NAME(true, true),
   TASK_ID(true, false),
   TASK_CATEGORY(true, false),

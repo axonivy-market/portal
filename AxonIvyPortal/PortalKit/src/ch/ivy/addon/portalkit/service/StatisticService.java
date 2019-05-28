@@ -860,7 +860,8 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
     for (Iterator<Entry<String, Number>> iterator = caseCategoryToElapsedTime.entrySet().iterator(); iterator.hasNext();) {
       Entry<String, Number> chartDataEntry = iterator.next();
-      float floatValueOfChartData = chartDataEntry.getValue().floatValue();
+      float floatValueOfChartData = chartDataEntry.getValue().floatValue()/3600;
+
         chartDataEntry.setValue(floatValueOfChartData);
     }
 

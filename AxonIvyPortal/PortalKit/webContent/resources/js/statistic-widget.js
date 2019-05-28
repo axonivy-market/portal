@@ -94,7 +94,7 @@ function elapsedTimeBarChartExtender() {
     show : true,
     tooltipAxes : 'y',
     useAxesFormatters : false,
-    tooltipFormatString : "%.0f"
+    tooltipFormatString : "%.2f"
   };
 }
 
