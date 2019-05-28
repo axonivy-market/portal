@@ -36,7 +36,9 @@ function TaskWidget(outerPanelId) {
         if (globalSearchTabHeader.length > 0) {
           error = 55; // included margin, padding in search page
         }
-        var availableHeight = mainAreaPanel.outerHeight() - taskWidgetHeaderContainer.outerHeight(true) - announcementMessageContainer.outerHeight(true)
+
+        var mainScreenHeight = $('body').outerHeight() - $('.layout-topbar').outerHeight() - 70; // exclude padding
+        var availableHeight = mainScreenHeight - taskWidgetHeaderContainer.outerHeight(true) - announcementMessageContainer.outerHeight(true)
             - taskWidgetSortMenuContainer.outerHeight(true) - taskWidgetFilterContainer.outerHeight(true)
             - customWidgetContainer.outerHeight(true) - globalSearchInput.outerHeight(true) - globalSearchTabHeader.outerHeight(true) - error;
 

@@ -12,7 +12,6 @@ function ProcessWidget() {
     setupScrollbar : function () {
     	var processsHeader = $('.js-process-header');
     	var processStartListContainer = $('.js-process-start-list-container');
-    	var mainAreaPanel = $('#main-area-panel');
     	var error = 0;
         var globalSearchInput = $('.js-global-search');
         var globalSearchTabHeader = $('.ui-tabs-nav');
@@ -20,7 +19,8 @@ function ProcessWidget() {
           error = 55; // included margin, padding in search page
         }
         var announcementMessageContainer = $('.js-announcement-message');
-    	var  availableHeight = mainAreaPanel.outerHeight() - announcementMessageContainer.outerHeight(true)
+        var mainScreenHeight = $('body').outerHeight() - $('.layout-topbar').outerHeight() - 70; // exclude padding
+    	var availableHeight = mainScreenHeight - announcementMessageContainer.outerHeight(true)
     							- processsHeader.outerHeight(true) 
     							- globalSearchInput.outerHeight(true) - globalSearchTabHeader.outerHeight(true)
     							- error;
