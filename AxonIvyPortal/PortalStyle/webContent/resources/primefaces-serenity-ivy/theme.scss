@@ -194,7 +194,7 @@ body {
   border-radius: $actionButtonBorderRadius !important;
   background-color: $actionButtonColor;
   min-width: 137px;
-  height: 40px;
+  height: 35px;
   font-size: 1.2rem;
   display: inline-block;
   align-items: center;
@@ -230,7 +230,7 @@ body .ui-buttonset .ui-state-active {
 .ui-widget.ui-button {
   .ui-button-text {
     color: $primaryTextColor !important;
-	line-height: 40px;
+	line-height: 35px;
   }        
   .ui-icon {
 	color: $primaryTextColor !important;
@@ -433,6 +433,13 @@ body .ui-widget.ui-toolbar {
       padding: 14px 1em !important;
     }
   }
+}
+
+/*Style For Spinner input --------------------------------------------------------------------------------------*/
+.ui-spinner {
+    .ui-spinner-button {
+    	min-width : auto;
+	}
 }
 
 @import '../sass/ivy/customization';
