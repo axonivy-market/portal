@@ -171,9 +171,10 @@
 
 /*Task template*/
 .task-template-title {
-	font-family: robotoregular;
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 600;
 	font-size: 1.6rem;
-	font-weight: bold;
 	color: #757575
 }
 
@@ -189,7 +190,7 @@
 .task-template-tasks-command {
 	z-index: 1;
 	position: absolute;
-	top: 15px;
+	top: 9px;
 	right: 15px;
 }
 

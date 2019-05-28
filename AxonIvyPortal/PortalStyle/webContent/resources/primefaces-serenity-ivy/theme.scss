@@ -263,6 +263,10 @@ body .ui-buttonset .ui-state-active {
   	tr {
        td {
           padding: $listTableItemPadding !important;
+          
+          .ui-inputfield {
+	       	 color: $primaryTextColor !important;
+	      }
        }
      }
   }
@@ -403,6 +407,10 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
   font-size: $inputLabelText !important;
 }
 
+.ui-widget-content.ui-tabs-panel {
+    padding: 7px !important;
+}
+
 .ui-inputfield {
   padding: 6px 0 6px 6px !important;
 }
@@ -425,14 +433,13 @@ body .ui-widget.ui-toolbar {
 }
 
 /*Style For Tabs nav --------------------------------------------------------------------------------------*/
-.ui-tabs.ui-tabs-top {
-  .ui-tabs-nav {
-    padding: .2em .2em 0 !important;
-    
-    li a {
-      padding: 14px 1em !important;
-    }
-  }
+.ui-widget-header.ui-corner-top, .ui-widget.ui-widget-header {
+	background-color : $primaryLightestColor;
+	border: 1px solid transparent;
+}
+
+.ui-widget-content.ui-corner-bottom {
+	border: 1px solid transparent;
 }
 
 /*Style For Spinner input --------------------------------------------------------------------------------------*/
