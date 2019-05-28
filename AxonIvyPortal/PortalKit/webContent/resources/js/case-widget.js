@@ -1,9 +1,8 @@
-function CaseWidget(outerPanelId) {
+function CaseWidget() {
   this.setUpScrollbar = function() {
     var childElements = $('.js-case-item');
     if (childElements.length > 0) {
       var container = $('.js-case-list > .ui-datascroller-content');
-      var mainAreaPanel = $('#' + outerPanelId);
       var caseWidgetHeaderContainer = $('.widget-header');
       var announcementMessageContainer = $('.js-announcement-message');
       var caseWidgetSortMenuContainer = $('.js-case-widget-column-header');
@@ -15,7 +14,8 @@ function CaseWidget(outerPanelId) {
         error = 55; // included margin, padding in search page
       }
 
-      var availableHeight = mainAreaPanel.outerHeight() - caseWidgetHeaderContainer.outerHeight(true)
+      var mainScreenHeight = $('body').outerHeight() - $('.layout-topbar').outerHeight();
+      var availableHeight = mainScreenHeight - caseWidgetHeaderContainer.outerHeight(true)
           - caseWidgetSortMenuContainer.outerHeight(true) - caseWidgetFilterContainer.outerHeight(true)
           - globalSearchInput.outerHeight(true) - globalSearchTabHeader.outerHeight(true)
           - announcementMessageContainer.outerHeight(true) - error;
@@ -115,7 +115,7 @@ function CaseListToolKit() {
         displayColumnInSmallScreen($expiryColumnHeader, $expiryCell);
       }
       this.setupHeader();
-      var caseWidget = new CaseWidget("main-area-panel");
+      var caseWidget = new CaseWidget();
       caseWidget.setUpScrollbar();
     },
     

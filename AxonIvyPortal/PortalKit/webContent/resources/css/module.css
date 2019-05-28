@@ -321,7 +321,8 @@
 
 /* =================== DIALOG ====================== */
 .ui-widget.ui-dialog .ui-dialog-content {
-  font-size: 1.2rem;
+  font-size: 14px;
+  padding: 2rem;
 }
 .ui-dialog-footer.u-dialog-footer.u-email-dialog-footer {
   margin-top: 35px !important;
@@ -1405,6 +1406,7 @@ a.case-details-document-add-link {
   padding-right: 80px;
   overflow: auto;
   height: auto !important;
+  padding: 10px;
 }
 
 .mobile-process-start-list-container {
@@ -1430,10 +1432,10 @@ a.case-details-document-add-link {
   justify-content: space-between;
   text-align: center;
   position: absolute;
-  right: 10px;
-  height: 80%;
+  right: 30px;
+  height: 75%;
   border-left: 1px solid rgba(0,0,0,0.1);
-  top: 15%;
+  top: 20%;
 }
 
 .process-start-list-container .process-nav .process-nav-item {
@@ -2248,10 +2250,6 @@ a.compact-task-start-link:hover {
 
 .task-start-list .action-cell .task-command.side-step-position {
   position: absolute;
-}
-
-.task-even-row.full-mode {
-  background-color: rgba(255,255,255,1);
 }
 
 .task-odd-row.full-mode {
@@ -3823,7 +3821,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 .statistic-dashboard-container-width {
-  width: 76rem;
+  width: 78rem;
 }
 
 .elapsed-time-detail-container-width {
