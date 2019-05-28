@@ -395,7 +395,9 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   background-color: #fff;
   color: #000;
   padding: 0 10px !important;
-  font-family: "robotoregular";
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 600;
 }
 
 
@@ -4588,7 +4590,9 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .ui-tabs-top .ui-tabs-nav li a {
   font-size: 1.4rem;
-  font-family: robotoregular;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 600;
   color: #757575 !important;
 }
 
