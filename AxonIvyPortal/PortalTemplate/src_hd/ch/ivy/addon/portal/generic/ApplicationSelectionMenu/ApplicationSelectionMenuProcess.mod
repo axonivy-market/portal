@@ -1,5 +1,5 @@
 [Ivy]
-156A1AA176DE2A21 3.24 #module
+156A1AA176DE2A21 3.26 #module
 >Proto >Proto Collection #zClass
 As0 ApplicationSelectionMenuProcess Big #zClass
 As0 RD #cInfo
@@ -249,7 +249,7 @@ for (Application application : in.applications){
 if (numberOfIvyApplications > 1 || numberOfIvyApplications == 0) {
 	Button menuItem = new Button();
 	menuItem.value = ivy.cms.co("/ch.ivy.addon.portal.generic/CustomLinkGenerator/dashboard");
-	menuItem.icon = "fa fa-dashcube";
+	menuItem.icon = "fa fa-home";
 	if (numberOfIvyApplications == 0) {
 		menuItem.href = new PortalNavigator().getPortalStartUrlOfCurrentApplication();
 		menuItem.styleClass="ivy-active";
