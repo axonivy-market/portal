@@ -17,7 +17,9 @@
 .calculation-form .ui-selectlistbox-filter.ui-inputfield.ui-widget,
 .calculation-form .ui-inputfield.ui-inputtextarea,
 .calculation-form .ui-spinner > .ui-spinner-input.ui-inputfield {
-	font-family: "robotoregular" !important;
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 600;
 	font-size: 13px;
 	border-radius: 0 !important;
 }
@@ -103,7 +105,9 @@ _:-ms-input-placeholder, :root .debitor-label-container.small {
 .calculation-form .ui-selectonemenu .ui-selectonemenu-label {
 	font-size: 13px;
 	color: #222;
-	font-family: "robotoregular" !important;
+	font-family: 'Roboto' !important;
+	font-style: normal;
+	font-weight: 600;
 }
 
 .calculation-form .ui-selectonemenu .ui-selectonemenu-trigger .ui-icon:after {
