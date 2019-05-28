@@ -163,3 +163,16 @@
 .u-padding-0 {
   padding: 0 !important;
 }
+
+.MarRight10 {
+    margin-right: 10px;
+}
+.MarTop20 {
+    margin-top: 20px;
+}
+.Fleft {
+	float: left;
+}
+.Fright {
+	float: right;
+}
