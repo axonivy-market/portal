@@ -6,7 +6,7 @@ body {
         background-position: 50% 100%, 50% 100%;
         transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
         border-width: 0;  
-        padding: 2px 2px 2px 2px;
+        padding: 6px 0 6px 6px !important;
         font-size: $fontSize;
         @include border-radius(0px);
         
@@ -1080,7 +1080,7 @@ body {
         }
         
         .ui-spinner-input {
-            padding-right: 30px;
+            padding-right: 30px !important;
         }
     }
     
@@ -1092,7 +1092,7 @@ body {
             }
             
             .ui-spinner-input {
-                padding-right: 30px;
+                padding-right: 30px !important;
             }
         }
     }

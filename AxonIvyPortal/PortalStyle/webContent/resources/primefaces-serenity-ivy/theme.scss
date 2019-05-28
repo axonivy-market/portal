@@ -118,7 +118,10 @@ body {
 .process-widget .process-group .ui-fieldset-toggler:before {
   font-family: 'FontAwesome';
   font-size: 2.4rem;
-  color: $primaryColor !important;
+  color: $primaryLightestColor !important;
+  display: flex;
+  justify-content: center; /* align horizontal */
+  align-items: center; /* align vertical */
 }
 
 
@@ -313,6 +316,10 @@ img[id*='additonalTaskUserAvatar'] {
 
 .ui-widget.ui-button.defined-task-button.ui-state-hover {
   background-color: $primaryColor !important;
+}
+
+.Fleft {
+  float: left;
 }
 
 /*Style for stages breadcrumb --------------------------------------------------------------------------------------*/
