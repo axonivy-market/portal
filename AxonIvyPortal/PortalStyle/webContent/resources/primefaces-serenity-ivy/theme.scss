@@ -93,7 +93,21 @@ body {
 .layout-wrapper .layout-main .layout-topbar {
 	background: $primaryLightestColor;
 }
-
+@media (max-width: 1024px) {
+	.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu {
+        display: inline;
+	}
+}
+/*Style for Admin Setting -------------------------------------------------------------------------------------- */
+body {
+    .ui-dialog {
+        .ui-dialog-titlebar {
+            .ui-dialog-title {
+              padding-left: 8px;
+            }
+         }
+     }
+}
 /*Style For Process Widget --------------------------------------------------------------------------------*/
 .process-start-list-item:hover .process-start-list-item-icon {
   color: $primaryColor;
