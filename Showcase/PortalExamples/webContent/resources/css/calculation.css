@@ -19,7 +19,7 @@
 .calculation-form .ui-spinner > .ui-spinner-input.ui-inputfield {
 	font-family: 'Roboto';
 	font-style: normal;
-	font-weight: 600;
+	font-weight: 400;
 	font-size: 13px;
 	border-radius: 0 !important;
 }
@@ -107,7 +107,7 @@ _:-ms-input-placeholder, :root .debitor-label-container.small {
 	color: #222;
 	font-family: 'Roboto' !important;
 	font-style: normal;
-	font-weight: 600;
+	font-weight: 400;
 }
 
 .calculation-form .ui-selectonemenu .ui-selectonemenu-trigger .ui-icon:after {
