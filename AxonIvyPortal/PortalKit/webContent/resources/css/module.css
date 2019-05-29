@@ -4318,7 +4318,7 @@ margin-top
 }
 
 .color-header {
-  height: 4px;
+  height: 3px;
   display: flex;
   margin-top: 10px;
 }
@@ -4692,6 +4692,8 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 	border: none;
 	padding: 0;
 	width: 100%;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 .statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
@@ -4743,7 +4745,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .statistic-filter-accordion-panel .ui-selectmanycheckbox label {
 	display: inline-block;
-	width: 21rem;
+	width: 20rem;
 	margin-right: 0 !important;
 }
 
@@ -4811,6 +4813,10 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .settings-table-action-buttons {
   text-align: center !important;
+}
+
+.select-all-checkbox, .ui-chkbox {
+	width: fit-content !important
 }
 
 .select-all-checkbox {

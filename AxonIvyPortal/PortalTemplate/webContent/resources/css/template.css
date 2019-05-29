@@ -24,7 +24,7 @@
 	margin-top: 0;
 }
 
-#user-settings-menu.active-menu>.dropdown-icon.user-name:after {
+.active-topmenuitem>#user-settings-menu>.dropdown-icon.user-name:after {
 	content: "\f077";
 }
 
