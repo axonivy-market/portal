@@ -240,6 +240,11 @@ body .ui-buttonset .ui-state-active {
   }
 }
 
+.ui-autocomplete {
+  .ui-autocomplete-dropdown {
+    min-width: 18px !important;	
+  }
+}
 /*Style for table --------------------------------------------------------------------------------------*/
 .ui-datatable table tbody tr.ui-datatable-selectable.ui-state-highlight td  {
   background-color: rgba(red($primaryColor), green($primaryColor), blue($primaryColor), 0.6);
@@ -388,6 +393,11 @@ img[id*='additonalTaskUserAvatar'] {
 /*Style for checkbox ------------------------------------------------------------------------------------------------*/
 body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
   color: $primaryLightestColor !important;
+}
+
+.ui-chkbox-label {
+  width: 20rem;
+  margin-left: 12px !important;
 }
 
 /*Style for announcement*/
