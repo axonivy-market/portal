@@ -130,13 +130,23 @@ body {
 
 .process-widget .process-group .ui-fieldset-toggler:before {
   font-family: 'FontAwesome';
-  font-size: 2.4rem;
-  color: $primaryLightestColor !important;
+  font-size: 1.8rem;
+  color: $black !important;
   display: flex;
   justify-content: center; /* align horizontal */
   align-items: center; /* align vertical */
 }
 
+.ui-fieldset {
+  .ui-fieldset-legend {
+    color: $black !important;
+    .ui-fieldset-toggler {
+      padding: 3px !important;
+      background-color: #eee !important;
+      color: $black !important;
+    }
+  }
+}
 
 /*Style For Task Widget ----------------------------------------------------------------------------------*/
 .filter-selection-form .filter-name:hover,
@@ -420,7 +430,7 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 
 .ui-chkbox-label {
   width: 20rem;
-  margin-left: 12px !important;
+  margin: 0px 0px 0px 12px !important;
 }
 
 /*Style for announcement*/

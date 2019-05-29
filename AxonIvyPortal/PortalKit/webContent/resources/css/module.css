@@ -1685,7 +1685,7 @@ a.case-details-document-add-link {
 .process-widget .process-group {
   border: none;
   display: block;
-  width: 100%;
+  width: calc(100% - 80px);
   padding: .6em 0;
   background-color: transparent;
 }
