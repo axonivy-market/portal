@@ -609,11 +609,14 @@ if (!CollectionUtils.isEmpty(in.documents)) {
 	}
 	in.documents.removeAll(expressDocs);
 }' #txt
+Ts0 f8 security system #txt
 Ts0 f8 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 Ts0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>filter</name>
+        <nameStyle>6,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
