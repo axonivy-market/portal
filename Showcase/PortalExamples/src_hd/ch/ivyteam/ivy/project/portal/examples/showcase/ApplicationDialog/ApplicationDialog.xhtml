@@ -237,7 +237,7 @@
 											onclick="PrimeFaces.monitorDownload(start, stop);"
 											icon="fa fa-download"
 											title="#{ivy.cms.co('/Dialogs/GdprRequest/Labels/tableDownload')}"
-											style="background-color: Transparent; border: none"
+											
 											immediate="true">
 											<p:fileDownload value="#{data.streamedContent}"
 												style="text-align:center;" />
@@ -250,8 +250,7 @@
 											title="#{ivy.cms.co('/Labels/delete')}"
 											update="#{p:component('fileTable')} #{p:component('pdfFileGrid')} form"
 											icon="fa fa-trash" immediate="true"
-											disabled="#{!file.isNewAdded}"
-											style="background-color: Transparent; border: none" />
+											 />
 									</p:column>
 								</p:dataTable>
 							</p:column>
