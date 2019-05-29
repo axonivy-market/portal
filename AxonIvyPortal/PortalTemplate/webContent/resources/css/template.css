@@ -91,7 +91,7 @@
 #user-setting-container li a:hover {
 	font-family: 'Roboto';
 	font-style: normal;
-	font-weight: 600;
+	font-weight: 400;
 	color: rgba(0, 0, 0, 1) !important;
 }
 /*
@@ -173,7 +173,7 @@
 .task-template-title {
 	font-family: 'Roboto';
 	font-style: normal;
-	font-weight: 600;
+	font-weight: 400;
 	font-size: 1.6rem;
 	color: #757575
 }
