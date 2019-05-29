@@ -61,7 +61,7 @@
 }
 
 .ui-datatable .ui-paginator {
-  background-color: transparent;
+/*   background-color: transparent; */
 }
 
 .ui-datatable .ui-paginator .ui-paginator-pages{
@@ -70,10 +70,10 @@
 
 
 .ui-datatable .ui-paginator.ui-widget-header span {
-  font-size: 1.4rem;
-  color: rgba(0, 0, 0, 0.4);
-  border-bottom: none !important;
-  background: none !important;
+/*   font-size: 1.4rem; */
+/*   color: rgba(0, 0, 0, 0.4); */
+/*   border-bottom: none !important; */
+/*   background: none !important; */
 }
 
 .ui-datatable .ui-paginator span.ui-icon {
@@ -83,23 +83,23 @@
 }
 
 .ui-datatable .ui-paginator .ui-paginator-prev:before {
-  font-family: 'FontAwesome';
-  content: "\f104";
+/*   font-family: 'FontAwesome'; */
+/*   content: "\f104"; */
 }
 
 .ui-datatable .ui-paginator .ui-paginator-first:before {
-  font-family: 'FontAwesome';
-  content: "\f100";
+/*   font-family: 'FontAwesome'; */
+/*   content: "\f100"; */
 }
 
 .ui-datatable .ui-paginator .ui-paginator-next:before {
-  font-family: 'FontAwesome';
-  content: "\f105";
+/*   font-family: 'FontAwesome'; */
+/*   content: "\f105"; */
 }
 
 .ui-datatable .ui-paginator .ui-paginator-last:before {
-  font-family: 'FontAwesome';
-  content: "\f101";
+/*   font-family: 'FontAwesome'; */
+/*   content: "\f101"; */
 }
 
 .ui-datatable .ui-paginator span.ui-state-active, 
@@ -118,39 +118,39 @@
 }
 
 .ui-datatable table thead tr th {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  height: 30px;
-  color: #757575;
-  background-color: rgba(236, 236, 236, 1);
-  font-size: 1.4rem !important;
-  font-weight: normal !important;
-  border-right: 1px solid rgba(0, 0, 0, 0.2);
-  text-align: left;
-  vertical-align: top;
+/*   font-family: 'Roboto'; */
+/*   font-style: normal; */
+/*   font-weight: 400; */
+/*   height: 30px; */
+/*   color: #757575; */
+/*   background-color: rgba(236, 236, 236, 1); */
+/*   font-size: 1.4rem !important; */
+/*   font-weight: normal !important; */
+/*   border-right: 1px solid rgba(0, 0, 0, 0.2); */
+/*   text-align: left; */
+/*   vertical-align: middle; */
 }
 
 .ui-datatable table thead tr th .ui-sortable-column-icon.ui-icon {
-  background-image: none;
-  text-indent: 0;
-  margin: -18px 0px -1px 10px;
-  height: 20px;
-  width: 18px;
+/*   background-image: none; */
+/*   text-indent: 0; */
+/*   margin: -18px 0px -1px 10px; */
+/*   height: 20px; */
+/*   width: 18px; */
 }
 
 .ui-datatable table thead tr th .ui-sortable-column-icon:before {
-  font-family: 'FontAwesome';
-  content: "\f106";
-  position: relative;
+/*   font-family: 'FontAwesome'; */
+/*   content: "\f106"; */
+/*   position: relative; */
 }
 
 .ui-datatable table thead tr th .ui-sortable-column-icon:after {
-  font-family: 'FontAwesome';
-  content: "\f107";
-  position: relative;
-  left: -13px;
-  top: 8px;
+/*   font-family: 'FontAwesome'; */
+/*   content: "\f107"; */
+/*   position: relative; */
+/*   left: -13px; */
+/*   top: 8px; */
 }
 
 .ui-datatable table thead tr th .ui-column-customfilter span input {
@@ -162,12 +162,12 @@
 }
 
 .ui-datatable table thead tr th .ui-sortable-column-icon.ui-icon-triangle-1-s:before {
-  color: rgba(0, 0, 0, 0.2);
+/*   color: rgba(0, 0, 0, 0.2); */
 }
 
 .ui-datatable table thead tr th.ui-state-focus, .ui-datatable table thead tr th.ui-state-hover, .ui-datatable table thead tr th.ui-state-active {
-  box-shadow: none;
-  background-color: rgba(236, 236, 236, 1) !important;
+/*   box-shadow: none; */
+/*   background-color: rgba(236, 236, 236, 1) !important; */
 }
 
 .ui-datatable table thead tr th:last-child {
@@ -4731,14 +4731,14 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 
 .add-custom-val .ui-icon {
-	float: right !important;
-	padding: 5px 10px 5px 5px !important;
+/* 	float: right !important; */
+/* 	padding: 5px 10px 5px 5px !important; */
 }
 
 .add-custom-val .ui-button-text {
 	min-width: 40px !important;
-	padding: 5px 0 5px 10px !important;
-	border-right: none !important;
+/* 	padding: 5px 0 5px 10px !important; */
+/* 	border-right: none !important; */
 }
 
 .statistic-filter-accordion-panel .ui-selectmanycheckbox label {

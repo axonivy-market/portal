@@ -38,6 +38,20 @@
 				    <div class="ui-g-12 ui-md-9 ui-lg-9"><p:inputTextarea id="area" style="" /></div>
 				</div>
 	
+				<br/>
+				<p:outputLabel styleClass="task-template-title">Input Animations</p:outputLabel>
+				<br />
+				<div class="ui-g">
+					<br />
+					<div style="height: 100px;">
+						<h:panelGroup styleClass="md-inputfield">
+		    				<p:inputText id="textAnimations"/>
+		    				<p:outputLabel for="textAnimations" value="Input with Animations" />
+						</h:panelGroup>
+					</div>
+				</div>
+				<br/>
+	
 				<p:fieldset legend="More options" styleClass="marginTop10px fitFieldsetToDiv" toggleable="true" collapsed="true">
 					<div class="ui-g">
 					    <div class="ui-g-12 ui-md-3 ui-lg-2"><p:outputLabel for="onemenu" value="OneMenu" /></div>
@@ -109,7 +123,6 @@
 					</p:panelGrid>
 				</p:dialog>
 	
-				<br/>
 				<p:accordionPanel activeIndex="null">
 	        		<p:tab title="Filter table">
 						<div class="ui-g">
@@ -150,6 +163,8 @@
 							update="theTable" />
 					</f:facet>
 				</p:toolbar>
+				
+				<br/>
 			
 				<p:dataTable id="theTable" widgetVar="theTable" editable="true"
 					scrollable="true" scrollHeight="250"
@@ -229,18 +244,20 @@
 	
 				</p:dataTable>
 				
-				<p:toolbar style="border:none">
-					<h:outputText value="Cell Editing with Click and RightClick"></h:outputText>	
-				</p:toolbar>
+				<br />
+				<p:outputLabel styleClass="task-template-title">Cell Editing with Click</p:outputLabel>	
+				<br />
 				<p:dataTable value="#{data.scores}" var="tableData" id="theEditData" editable="true" editMode="cell" widgetVar="editCell" 
-					scrollable="true" scrollHeight="200" rows="5" draggableRows="true" draggableColumns="true">
+					draggableRows="true" draggableColumns="true" rows="5" rowsPerPageTemplate="5,10,15" paginator="true" 
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 					<p:row>
 						<f:facet name="header">
-		            		<h:outputText value="Cell Editing with Click and RightClick"></h:outputText>
+						Cell Editing with Click
+		            		<h:outputText value="Cell Editing with Click"></h:outputText>
 		        		</f:facet>
 	        		</p:row>
 	        		
-					<p:column headerText="No">
+					<p:column headerText="No" sortBy="#{tableData.id}">
 		               <p:cellEditor>
 		                   <f:facet name="output"><h:outputText value="#{tableData.id}" /></f:facet>
 		                   <f:facet name="input"><p:inputText id="modelInput" value="#{tableData.id}" /></f:facet>
@@ -271,6 +288,54 @@
 			                </f:facet>
 		            	</p:cellEditor>
 	        		</p:column>
+				</p:dataTable>
+				
+				<br />
+				<p:outputLabel styleClass="task-template-title">Row Editing</p:outputLabel>	
+				<br />
+				<p:dataTable value="#{data.scores}" var="rowEditData" id="theEditRowData" editable="true" widgetVar="editRow" 
+					draggableRows="true" draggableColumns="true" scrollable="true" scrollHeight="150" paginator="true" >
+					<p:row>
+						<f:facet name="header">
+						Row Editing
+		        		</f:facet>
+	        		</p:row>
+	        		
+					<p:column headerText="No" sortBy="#{rowEditData.id}">
+		               <p:cellEditor>
+		                   <f:facet name="output"><h:outputText value="#{rowEditData.id}" /></f:facet>
+		                   <f:facet name="input"><p:inputText id="modelInput" value="#{rowEditData.id}" /></f:facet>
+		               </p:cellEditor>
+		           </p:column>
+		 
+		           <p:column headerText="Name">
+			            <p:cellEditor>
+			                <f:facet name="output"><h:outputText value="#{rowEditData.name}" /></f:facet>
+			                <f:facet name="input"><p:inputText value="#{rowEditData.name}" label="Name"/></f:facet>
+			            </p:cellEditor>
+	        		</p:column>
+	 
+			        <p:column headerText="Points">
+			            <p:cellEditor>
+			                <f:facet name="output"><h:outputText value="#{rowEditData.points}" /></f:facet>
+			                <f:facet name="input">
+			                    <p:inputText value="#{rowEditData.points}"></p:inputText>
+			                </f:facet>
+			            </p:cellEditor>
+			        </p:column>
+	 
+			        <p:column headerText="Date">
+			            <p:cellEditor>
+			                <f:facet name="output"><h:outputText value="#{rowEditData.date}" /></f:facet>
+			                <f:facet name="input">
+			                    <p:calendar value="#{rowEditData.date}" pattern="dd.MM.yyyy" ></p:calendar>
+			                </f:facet>
+		            	</p:cellEditor>
+	        		</p:column>
+	        		
+	        		<p:column style="width: 60px;">
+            			<p:rowEditor />
+        			</p:column>
 				</p:dataTable>
 						
 			</div>
@@ -354,7 +419,7 @@
 		 <ui:define name="rightButtons" >
 	         <div class="MarTop20">
 	          	<p:commandButton actionListener="#{logic.close}" value="Proceed" update="form" icon="fa fa-check" />
-				<p:commandButton actionListener="#{logic.close}" value="Cancel" update="form" icon="fa fa-close" />
+				<p:commandButton actionListener="#{logic.close}" value="Cancel" update="form" icon="fa fa-close" styleClass="portal-cancel-button"/>
 			</div>
 		</ui:define>
 	</ui:composition>
