@@ -744,7 +744,7 @@ function CaseListSmallScreenHandler() {
 /***************************Handle responsive for Dashboard**********************************/
 function DashboardLargeScreen() {
   var marginValWhenMainMenuOpen = 210;
-  var marginValWhenTwoMenuClose = 70;
+  var marginValWhenTwoMenuClose = 50;
 
   this.updateMainContainer = function() {
     var $mainMenu = $('.js-left-sidebar');
@@ -764,7 +764,7 @@ function DashboardLargeScreen() {
 function DashboardMediumScreen() {
   var firstCol = {
     marginValWhenMainMenuOpen : 190,
-    marginValWhenMainMenuClose : 70
+    marginValWhenMainMenuClose : 50
   };
 
   this.updateMainContainer = function() {
