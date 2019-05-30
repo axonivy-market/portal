@@ -24,7 +24,7 @@ $headerPadding: 14px 1em;
   height: $loginLogoHeight;
 }
 
-/* Style for calendar -----------------------------------------------------------------------------------r*/
+/* Style for calendar -----------------------------------------------------------------------------------*/
 .ui-datepicker .ui-datepicker-buttonpane button {
   border-radius: $actionButtonBorderRadius;
   background-color: $primaryColor;
@@ -467,24 +467,6 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
      }
    }
 }
-
-/*Style For Toolbar --------------------------------------------------------------------------------------
-body .ui-widget.ui-toolbar {
-	background-color : $primaryLightestColor;
-	box-shadow : none;
-}
-*/
-
-/*Style For Tabs nav --------------------------------------------------------------------------------------
-.ui-widget-header.ui-corner-top, .ui-widget.ui-widget-header {
-	background-color : $primaryLightestColor;
-	border: 1px solid transparent;
-}
-
-.ui-widget-content.ui-corner-bottom {
-	border: 1px solid transparent;
-}
-*/
 
 /*Style For Spinner input --------------------------------------------------------------------------------------*/
 .ui-spinner {
