@@ -13,7 +13,6 @@
 </cc:interface>
 
 <cc:implementation>
-  <f:event listener="#{logic.init}" type="preRenderComponent" />
   <!-- LOGO  -->
   <div class="sidebar-logo">
     <p:commandLink id="logo" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(isWorkingOnATask)}">
@@ -49,7 +48,8 @@
                   value="#{subMenuItem.label}" icon="#{subMenuItem.icon}" iconPos="right" styleClass="submenu" update="main-menu" process="main-menu">
                   <f:attribute name="selectedSubMenuItem" value="#{subMenuItem}" />
                 </p:menuitem>
-                <p:menuitem id="thirdparty-menu-item-#{menuItemStatus.index}-sub-menu-item-#{subMenuItemStatus.index}" rendered="#{!isIvyLink}" target="_blank" url="#{subMenuItem.externalLink}" value="#{subMenuItem.label}" update="main-menu" process="main-menu" />
+                <p:menuitem id="thirdparty-menu-item-#{menuItemStatus.index}-sub-menu-item-#{subMenuItemStatus.index}" rendered="#{!isIvyLink}" target="_blank" url="#{subMenuItem.externalLink}" value="#{subMenuItem.label}"
+                  icon="#{subMenuItem.icon}" update="main-menu" process="main-menu" />
               </c:forEach>
 
             </c:forEach>
