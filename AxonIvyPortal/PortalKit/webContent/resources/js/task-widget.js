@@ -30,6 +30,11 @@ function TaskWidget(outerPanelId) {
         }
         var taskWidgetFilterContainer = $('.js-filter-container');
         var customWidgetContainer = $('.js-custom-widget-container');
+        if (customWidgetContainer.height() > 0) {
+        	customWidgetContainer = customWidgetContainer.outerHeight(true);
+        } else {
+        	customWidgetContainer = customWidgetContainer.height();
+        }
         var error = 5;
         var globalSearchInput = $('.js-global-search');
         var globalSearchTabHeader = $('.ui-tabs-nav');
@@ -37,10 +42,10 @@ function TaskWidget(outerPanelId) {
           error = 55; // included margin, padding in search page
         }
 
-        var mainScreenHeight = $('body').outerHeight() - $('.layout-topbar').outerHeight() - 70; // exclude padding
+        var mainScreenHeight = $('body').outerHeight() - $('.layout-topbar').outerHeight(); // exclude padding
         var availableHeight = mainScreenHeight - taskWidgetHeaderContainer.outerHeight(true) - announcementMessageContainer.outerHeight(true)
             - taskWidgetSortMenuContainer.outerHeight(true) - taskWidgetFilterContainer.outerHeight(true)
-            - customWidgetContainer.outerHeight(true) - globalSearchInput.outerHeight(true) - globalSearchTabHeader.outerHeight(true) - error;
+            - customWidgetContainer - globalSearchInput.outerHeight(true) - globalSearchTabHeader.outerHeight(true) - error;
 
         if (!!availableHeight) {
           container.height(availableHeight);
