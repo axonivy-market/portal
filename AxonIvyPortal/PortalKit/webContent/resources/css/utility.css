@@ -176,3 +176,11 @@
 .Fright {
 	float: right;
 }
+.Separator {
+	border-bottom: solid 1px #E0E0E0;
+    width: 100%;
+    overflow: hidden;
+    height: 0px;
+    margin: 10px 0px;
+    clear: both;
+}
