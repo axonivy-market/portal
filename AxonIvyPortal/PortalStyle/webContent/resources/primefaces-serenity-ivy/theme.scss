@@ -92,6 +92,7 @@ body {
 .layout-wrapper .layout-main .layout-topbar {
 	background: $primaryLightestColor;
 }
+
 @media (max-width: 1024px) {
 	.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu {
         display: inline;
@@ -245,6 +246,7 @@ body .ui-buttonset .ui-state-active {
 }
 
 .ui-widget.ui-button {
+  margin-left: .1em;
   .ui-button-text {
     color: $primaryTextColor !important;
   }        
