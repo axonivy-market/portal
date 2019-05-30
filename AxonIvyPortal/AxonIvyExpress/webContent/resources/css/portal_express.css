@@ -65,7 +65,7 @@
 .task-panel-container {
 	text-align: center;
 	vertical-align: middle;
-	border: none;
+	border: none !important;
 }
 
 .process-flow-field {
