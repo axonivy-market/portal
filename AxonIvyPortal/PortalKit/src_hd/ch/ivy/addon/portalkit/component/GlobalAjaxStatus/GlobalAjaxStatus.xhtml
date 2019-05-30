@@ -21,7 +21,7 @@
       </div>
     </f:facet>
   </p:ajaxStatus>
-  <p:dialog id="error-ajax-dialog" widgetVar="error-ajax-dialog" closable="true"
+  <p:dialog id="error-ajax-dialog" widgetVar="error-ajax-dialog" closable="true" onShow="debugger;"
     modal="true" resizable="false" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/errorAjaxMessage')}" />
     <p:spacer width="20px" />
