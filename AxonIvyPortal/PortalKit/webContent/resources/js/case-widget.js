@@ -1,4 +1,4 @@
-function CaseWidget() {
+function CaseWidget(outerPanelId) {
   this.setUpScrollbar = function() {
     var childElements = $('.js-case-item');
     if (childElements.length > 0) {
