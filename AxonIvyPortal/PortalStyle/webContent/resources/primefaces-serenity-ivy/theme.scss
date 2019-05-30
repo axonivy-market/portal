@@ -102,8 +102,10 @@ body {
 body {
     .ui-dialog {
         .ui-dialog-titlebar {
+            border-bottom: 1px solid $greyLineColor;
+            padding: 8px 20px !important;
             .ui-dialog-title {
-              padding-left: 8px;
+              padding-left: 2px;
             }
          }
      }
@@ -139,6 +141,7 @@ body {
 }
 
 .ui-fieldset {
+   border: solid 1px #E0E0E0 !important;
   .ui-fieldset-legend {
     color: $black !important;
     .ui-fieldset-toggler {
@@ -147,6 +150,10 @@ body {
       color: $black !important;
     }
   }
+}
+
+body .ui-panelgrid tbody tr.ui-widget-content {
+  border: none !important;
 }
 
 /*Style For Task Widget ----------------------------------------------------------------------------------*/
@@ -458,6 +465,12 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 
 .ui-inputfield {
   padding: 6px 0 6px 6px !important;
+}
+
+.ui-spinner {
+  .ui-spinner-input {
+    padding-right: 30px !important;
+   }
 }
 
 /*Style For Accordion header --------------------------------------------------------------------------------------*/
