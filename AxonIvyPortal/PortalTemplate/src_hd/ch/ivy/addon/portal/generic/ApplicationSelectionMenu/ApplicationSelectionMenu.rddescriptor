@@ -11,10 +11,6 @@
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>
-    <method>
-        <name>init</name>
-        <description></description>
-    </method>
     <startMethod>
         <name>start</name>
         <description>Default dialog start method.</description>

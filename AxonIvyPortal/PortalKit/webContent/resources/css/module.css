@@ -4732,7 +4732,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 
 .select-all-checkbox, .ui-chkbox {
-	width: fit-content !important
+	width: auto !important;
 }
 
 .select-all-checkbox {
