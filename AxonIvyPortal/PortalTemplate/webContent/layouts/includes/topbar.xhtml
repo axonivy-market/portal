@@ -143,8 +143,8 @@
     </p:dialog>
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}" 
-      width="90%" height="500" closeOnEscape="true" widgetVar="adminUI" id="admin-ui-dialog" resizable="false" 
-      modal="true" draggable="false" appendTo="@(body)" dynamic="true" onShow="initAdminSettingsData()"
+     closeOnEscape="true" widgetVar="adminUI" id="admin-ui-dialog" resizable="false" styleClass="admin-ui-dialog"
+      modal="true" draggable="false" appendTo="@(body)" dynamic="true" onShow="initAdminSettingsData()" 
       onHide="PF('dialogClosingInformation').show();">
       <ic:ch.ivy.addon.portalkit.admin.AdminSettings id="adminui" /> 
       <f:facet name="footer">
