@@ -152,6 +152,28 @@ body .ui-messages .ui-messages-error-icon, body .ui-message .ui-message-error-ic
 .ui-datatable table tbody tr td {
   border-right: none;
 }
+
+/*Style Email Setting --------------------------------------------------------------------------------*/
+@media (max-width: 1365px) {
+  .applications-email-setting-dialog {
+      left: 10% !important;
+      right: 10% !important;
+      top: 150px !important;
+  }
+}
+
+@media (min-width: 1366px) and (max-width: 1919px) {
+  .applications-email-setting-dialog {
+    left: 15% !important;
+    right: 10% !important;
+    top: 150px !important;
+  }
+}
+body .ui-selectmanycheckbox.ui-widget label, body .ui-selectoneradio.ui-widget label {
+  margin: 0;
+}
+
+
 /*Style For Process Widget --------------------------------------------------------------------------------*/
 .process-start-list-item:hover .process-start-list-item-icon {
   color: $primaryColor;
