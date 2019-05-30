@@ -91,14 +91,39 @@ body {
 
 /*Style for Top bar -------------------------------------------------------------------------------------- */
 .layout-wrapper .layout-main .layout-topbar {
-	background: $primaryLightestColor;
+  background: $primaryLightestColor;
+  box-shadow: none;
+  padding-bottom: 0;
+  height: 60px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1365px) {
 	.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu {
         display: inline;
-	}
+  }
+  
+  .appDialog {
+      left: 10% !important;
+      top: 250px !important; 
+  }
 }
+
+@media (min-width: 1366px) and (max-width: 1919px) {
+  .appDialog {
+    left: 20% !important;
+    top: 250px !important;
+  }
+}
+
+@media (min-width: 1920px) {
+  .appDialog {
+    top: 300px !important;
+  }
+}
+.layout-wrapper .layout-main .layout-content {
+  padding: 60px 17px 24px 17px;
+}
+
 /*Style for Admin Setting -------------------------------------------------------------------------------------- */
 body {
     .ui-dialog {
@@ -108,8 +133,24 @@ body {
             .ui-dialog-title {
               padding-left: 2px;
             }
-         }
-     }
+        }
+    }
+   .admin-ui-dialog {
+      width: 80% !important;
+      left: 10% !important;
+      top: 160px !important;
+      height: auto !important;
+    }
+}
+body .ui-messages .ui-messages-error-icon, body .ui-message .ui-message-error-icon,
+.ui-messages-info-icon, .ui-messages-warn-icon, .ui-messages-error-icon, .ui-messages-fatal-icon{
+  margin-top: 2px !important;
+}
+.ui-datatable table thead tr th:last-child{
+  border-right: 1px solid #d8d8d8 !important; 
+}
+.ui-datatable table tbody tr td {
+  border-right: none;
 }
 /*Style For Process Widget --------------------------------------------------------------------------------*/
 .process-start-list-item:hover .process-start-list-item-icon {
