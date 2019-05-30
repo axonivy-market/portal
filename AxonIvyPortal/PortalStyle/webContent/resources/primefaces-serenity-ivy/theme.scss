@@ -10,6 +10,7 @@ $accentTextColor: #ECFC82;
 $inputLabelText: 14px;
 $dataTableRowBgColorEven: rgba(255, 255, 255, 1);
 $headerPadding: 14px 1em;
+$greyLineColor: #d8d8d8;
 
 @import '../sass/theme/_theme';
 @import '../sass/ivy/variables';
@@ -141,7 +142,6 @@ body {
 }
 
 .ui-fieldset {
-   border: solid 1px #E0E0E0 !important;
   .ui-fieldset-legend {
     color: $black !important;
     .ui-fieldset-toggler {
