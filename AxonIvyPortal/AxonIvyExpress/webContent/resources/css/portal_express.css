@@ -659,11 +659,6 @@
 	margin-left: -20px !important;
 }
 
-.choose-responsible-dialog .ui-button-icon-only .ui-icon {
-	left: 70% !important;
-	margin-top: -10px;
-}
-
 /*fix checkbox menu*/
 .ui-selectonemenu .ui-selectonemenu-trigger, .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger {
 	padding: 0px 12px !important;

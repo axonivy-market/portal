@@ -79,7 +79,7 @@ if(PermissionUtils.checkAccessFullStatisticsListPermission()) {
 }
 
 SubMenuItem google = new SubMenuItem();
-google.setIcon("fa fa-binoculars");
+google.setIcon("fa fa-google");
 google.setLabel("Google");
 google.setMenuKind(MenuKind.CUSTOM);
 google.setLink("www.google.com");
