@@ -1356,10 +1356,10 @@ a.case-details-document-add-link {
   justify-content: space-between;
   text-align: center;
   position: absolute;
-  right: 30px;
-  height: 75%;
+  right: 15px;
+  height: 80%;
   border-left: 1px solid rgba(0,0,0,0.1);
-  top: 20%;
+  top: 15%;
 }
 
 .process-start-list-container .process-nav .process-nav-item {
