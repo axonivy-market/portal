@@ -3352,6 +3352,28 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .deputy-dialog {
   min-width: 900px;
 }
+
+.delete-absence-confirmation-dialog .confirm-action{
+  outline: none;
+}
+
+.delete-absence-confirmation-dialog .confirm-action:hover {
+  background-color: #AFCA05 !important;
+}
+
+
+@media (max-width: 1365px) {
+  .language-setting-dialog {
+    left: 150px !important;
+  }
+}
+
+@media (min-width: 1366px) and (max-width: 1919px) {
+  .language-setting-dialog {
+    left: 250px !important;
+    top: 300px !important;
+  }
+}
 /********************************** UNIVERSAL TASK LIST **********************************/
 .universal-tasks-header {
   border-bottom: 1px solid #dedede;
