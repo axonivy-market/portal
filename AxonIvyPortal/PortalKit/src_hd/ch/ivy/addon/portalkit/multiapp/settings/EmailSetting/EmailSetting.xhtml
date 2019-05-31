@@ -61,7 +61,7 @@
             <p:outputLabel id="daily-summary-text"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/dailySummary')}" for="daily-summary"
               rendered="#{data.settingForAllApp}" />
-            <p:selectManyCheckbox id="daily-summary" value="#{data.generalEmailSetting.emailSendDailyTaskSummary}" rendered="#{data.settingForAllApp}">
+            <p:selectManyCheckbox id="daily-summary" value="#{data.generalEmailSetting.emailSendDailyTaskSummary}" rendered="#{data.settingForAllApp}"  styleClass="daily-summary">
               <f:selectItems value="#{data.dailySummaryList}" var="day" itemLabel="#{day.getLocalizedName(ivy.session.getContentLocale())}" itemValue="#{day}" />
             </p:selectManyCheckbox>
 
@@ -97,7 +97,7 @@
                 <!--  DAILY SUMMARY -->
                 <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/dailySummary')}"
                   for="daily-summary" />
-                <p:selectManyCheckbox id="daily-summary" value="#{appSetting.emailSendDailyTaskSummary}">
+                <p:selectManyCheckbox id="daily-summary" value="#{appSetting.emailSendDailyTaskSummary}" styleClass="daily-summary">
                   <f:selectItems value="#{data.dailySummaryList}" var="day" itemLabel="#{day.getLocalizedName(ivy.session.getContentLocale())}" itemValue="#{day}" />
                 </p:selectManyCheckbox>
 
