@@ -209,6 +209,7 @@ body .ui-selectmanycheckbox.ui-widget label, body .ui-selectoneradio.ui-widget l
 .ui-fieldset {
   .ui-fieldset-legend {
     color: $black !important;
+    line-height: 1.2rem;
     .ui-fieldset-toggler {
       padding: 3px !important;
       background-color: #eee !important;
