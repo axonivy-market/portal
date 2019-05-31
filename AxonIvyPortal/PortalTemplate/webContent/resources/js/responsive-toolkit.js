@@ -53,7 +53,7 @@ function ResponsiveToolkit(largeScreenToolkit, mediumScreenToolkit, smallScreenT
 /***************************Handle responsive for Task list**********************************/
 function TaskListLargeScreenHandler() {
     var marginValues = {
-      marginValWhenAllMenuClose : 70,
+      marginValWhenAllMenuClose : 0,
       marginValWhenMainMenuOpen : 210,
       marginValWhenSecondMenuOpen : 280,
       marginValWhenAllMenuOpen : 410,
@@ -106,7 +106,7 @@ function TaskListLargeScreenHandler() {
 
 function TaskListMediumScreenHandler() {
      var marginValues = {
-        marginValWhenAllMenuClose : 60,
+        marginValWhenAllMenuClose : 0,
         marginValWhenMainMenuOpen : 190,
         marginValWhenSecondMenuOpen : 260,
         marginValWhenAllMenuOpen : 380,
@@ -220,7 +220,7 @@ function TaskListMediumScreenHandler() {
 
 function TaskListSmallScreenHandler() {
     var marginValues = {
-        marginValWhenAllMenuClose : 60,
+        marginValWhenAllMenuClose : 0,
         marginValWhenMainMenuOpen : 190,
         marginValWhenSecondMenuOpen : 260,
         marginValWhenAllMenuOpen : 380,
@@ -356,7 +356,7 @@ function TaskListSmallScreenHandler() {
 /***************************Handle responsive for Simple Screen**********************************/	
 function SimpleLargeScreen(){
   var marginValWhenMainMenuOpen = 210;
-  var marginValWhenTwoMenuClose = 70;
+  var marginValWhenTwoMenuClose = 0;
 
   this.updateMainContainer = function() {
     var $mainMenu = $('.js-left-sidebar');
@@ -375,7 +375,7 @@ function SimpleLargeScreen(){
 
 function SimpleMediumScreen() {
   var marginValWhenMainMenuOpen = 190;
-  var marginValWhenTwoMenuClose = 70;
+  var marginValWhenTwoMenuClose = 0;
 
   this.updateMainContainer = function() {
     var $mainMenu = $('.js-left-sidebar');
@@ -415,7 +415,7 @@ function SimpleSmallScreen() {
 /***************************Handle responsive for Case List**********************************/
 function CaseListLargeScreenHandler() {
   var marginValues = {
-    marginValWhenAllMenuClose : 70,
+    marginValWhenAllMenuClose : 0,
     marginValWhenMainMenuOpen : 210,
     marginValWhenSecondMenuOpen : 280,
     marginValWhenAllMenuOpen : 410,
@@ -467,7 +467,7 @@ function CaseListLargeScreenHandler() {
 
 function CaseListMediumScreenHandler() {
   var marginValues = {
-    marginValWhenAllMenuClose : 60,
+    marginValWhenAllMenuClose : 0,
     marginValWhenMainMenuOpen : 190,
     marginValWhenSecondMenuOpen : 260,
     marginValWhenAllMenuOpen : 380,
@@ -599,7 +599,7 @@ function CaseListMediumScreenHandler() {
 
 function CaseListSmallScreenHandler() {
   var marginValues = {
-    marginValWhenAllMenuClose : 60,
+    marginValWhenAllMenuClose : 0,
     marginValWhenMainMenuOpen : 190,
     marginValWhenSecondMenuOpen : 260,
     marginValWhenAllMenuOpen : 380,
