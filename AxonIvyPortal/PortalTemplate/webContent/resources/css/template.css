@@ -320,8 +320,6 @@
 	}
 	.task-list-container {
 		max-width: 1246px;
-		margin-left: 60px;
-		margin-right: 15px;
 	}
 	.hidden-sm {
 		display: none !important;
@@ -337,7 +335,6 @@
 	.dashboard-container, .simple-container, .task-list-container, .case-main-container {
 		width: initial;
 		width: auto;
-		margin-right: 15px;
 		max-width: none;
 	}
 	.dashboard-main-content-1st-col{
