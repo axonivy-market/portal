@@ -27,14 +27,14 @@
           <li>
             <p:commandLink id="adminui-menu-item" resetValues="true" rendered="#{permissionBean.hasAdminPermission()}"
               	value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}"
-              	update="admin-ui-dialog" oncomplete="PF('adminUI').show()"/></li>
+              	update="admin-ui-dialog" oncomplete="PF('adminUI').show(); $('#user-setting-container').click()"/></li>
           <li><p:link id="absence-menu-item" href="#"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}"
-              onclick="PF('absenceSetting').show()" rendered="#{absenceBean.ownAbsencesReadable}" /></li>
+              onclick="PF('absenceSetting').show(); $('#user-setting-container').click()" rendered="#{absenceBean.ownAbsencesReadable}" /></li>
 
           <li><p:commandLink id="email-setting-menu-item"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/emailSetting')}"
-              oncomplete="PF('emailSetting').show();"
+              oncomplete="PF('emailSetting').show(); $('#user-settings-menu').click()"
               resetValues="true" update="applications-email-setting-form">
                 <p:resetInput target=":applications-email-setting-dialog" />
               </p:commandLink>
@@ -42,7 +42,7 @@
           </li>
           <li><p:commandLink id="language-setting-menu-item"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/languageSetting')}" 
-              oncomplete="PF('languageDialogVar').show();" 
+              oncomplete="PF('languageDialogVar').show(); $('#user-setting-container').click()" 
               resetValues="true" update="language-settings-form" >
                 <p:resetInput target=":language-setting-dialog" />
               </p:commandLink>
@@ -51,7 +51,7 @@
           <li><p:commandLink id="change-password-menu-item"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" 
               rendered="#{not userMenuBean.hiddenChangePassword}"
-              oncomplete="PF('changePasswordDialog').show();" 
+              oncomplete="PF('changePasswordDialog').show(); $('#user-setting-container').click()" 
               resetValues="true" update="change-password-form" >
                 <p:resetInput target=":change-password-dialog" />
               </p:commandLink>
@@ -59,7 +59,7 @@
 
           <li><p:link id="project-info-menu-item" href="#"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/info')}"
-              onclick="rcProjectInfo();" /></li>
+              onclick="rcProjectInfo(); $('#user-setting-container').click()" /></li>
 
           <li jsf:rendered="#{not deviceBean.desktop}">
             <p:commandLink actionListener="#{userMenuBean.switchDesktopOrMobileVersion(true)}">
