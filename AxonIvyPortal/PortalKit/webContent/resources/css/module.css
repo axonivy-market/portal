@@ -245,7 +245,7 @@
 /* =================== DIALOG ====================== */
 .ui-widget.ui-dialog .ui-dialog-content {
   font-size: 14px;
-  padding: 2rem;
+  padding: 1rem 2rem 2rem;
 }
 .ui-dialog-footer.u-dialog-footer.u-email-dialog-footer {
   margin-top: 35px !important;
@@ -395,7 +395,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   color: rgba(0,0,0,0.4);
   flex: 1 0 100%;
   line-height: 45px;
-  margin-right: 10px;
 }
 
 .widget-sort-menu.full-mode {
@@ -404,7 +403,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   display: flex;
   align-items: flex-end;
   line-height: normal;
-  padding: 0 2px 10px 2px;
+  padding: 0 12px 10px 2px;
   border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
