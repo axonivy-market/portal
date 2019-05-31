@@ -18,111 +18,112 @@ $greyLineColor: #d8d8d8;
 
 /*Style For Logos --------------------------------------------------------------------------------------*/
 .portal-home-logo {
-  height: $homeLogoHeight !important;
+    height: $homeLogoHeight !important;
 }
 
 .portal-login-logo {
-  height: $loginLogoHeight;
+    height: $loginLogoHeight;
 }
 
 /* Style for calendar -----------------------------------------------------------------------------------*/
 .ui-datepicker .ui-datepicker-buttonpane button {
-  border-radius: $actionButtonBorderRadius;
-  background-color: $primaryColor;
+    border-radius: $actionButtonBorderRadius;
+    background-color: $primaryColor;
 }
 
 /*Style For Color Header --------------------------------------------------------------------------------------*/
 .first-header-bar {
-  width: 70%;
-  background-color: $firstHeaderBarColor;
+    width: 70%;
+    background-color: $firstHeaderBarColor;
 }
 
 .second-header-bar {
-  width: 15%;
-  background-color: $secondHeaderBarColor;
+    width: 15%;
+    background-color: $secondHeaderBarColor;
 }
 
 .third-header-bar {
-  width: 15%;
-  background-color: $thirdHeaderBarColor;
+    width: 15%;
+    background-color: $thirdHeaderBarColor;
 }
 
 /*Style For Background --------------------------------------------------------------------------------------*/
 body {
-  background: $bodyBackgroundColor;
+    background: $bodyBackgroundColor;
 }
 
 /*Style For Main menu (Left Sidebar)------------------------------------------------------------------------ */
 .left-sidebar-color {
-	background-color: $menuColor;
+    background-color: $menuColor;
 }
 
-.layout-wrapper .layout-sidebar .layout-menu > li.active-menuitem > a {
-	background-color: $primaryLightestColor;
-	color: $primaryTextColor;
+.layout-wrapper .layout-sidebar .layout-menu>li.active-menuitem>a {
+    background-color: $primaryLightestColor;
+    color: $primaryTextColor;
 }
 
-.layout-wrapper .layout-sidebar .layout-menu li > a:hover {
-	background-color: $primaryLightestColor;
+.layout-wrapper .layout-sidebar .layout-menu li>a:hover {
+    background-color: $primaryLightestColor;
 }
 
 .layout-wrapper .layout-sidebar {
-	background-color: $menuColor;
+    background-color: $menuColor;
 }
 
 .layout-wrapper .layout-sidebar .sidebar-logo {
-	background-color: $menuColor;
+    background-color: $menuColor;
 }
 
 .layout-wrapper .layout-sidebar .sidebar-logo .sidebar-anchor {
-	border-color: #FFFFFF;
-	background-color: $primaryColor;
+    border-color: #FFFFFF;
+    background-color: $primaryColor;
 }
 
 .layout-wrapper-static .layout-sidebar .sidebar-logo .sidebar-anchor {
-	background-color: $primaryColor;
-	border-color: $primaryColor;
+    background-color: $primaryColor;
+    border-color: $primaryColor;
 }
 
 
-.layout-wrapper .layout-sidebar .layout-menu > li.active-menuitem > a i {
-	color: $primaryTextColor;
+.layout-wrapper .layout-sidebar .layout-menu>li.active-menuitem>a i {
+    color: $primaryTextColor;
 }
 
 /*Style for Top bar -------------------------------------------------------------------------------------- */
 .layout-wrapper .layout-main .layout-topbar {
-  background: $primaryLightestColor;
-  box-shadow: none;
-  padding-bottom: 0;
-  height: 60px;
+    background: $primaryLightestColor;
+    box-shadow: none;
+    padding-bottom: 0;
+    height: 60px;
 }
 
 @media (max-width: 1365px) {
-	.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu {
+    .layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu {
         display: inline;
-  }
-  
-  .appDialog {
-      left: 10% !important;
-      top: 250px !important; 
-  }
+    }
+
+    .appDialog {
+        left: 10% !important;
+        top: 250px !important;
+    }
 }
 
 @media (min-width: 1366px) and (max-width: 1919px) {
-  .appDialog {
-    left: 20% !important;
-    top: 250px !important;
-  }
+    .appDialog {
+        left: 20% !important;
+        top: 250px !important;
+    }
 }
 
 @media (min-width: 1920px) {
-  .appDialog {
-    top: 300px !important;
-  }
+    .appDialog {
+        top: 300px !important;
+    }
 }
+
 .layout-wrapper .layout-main .layout-content {
-  padding: 60px 17px 0 17px;
-  max-height: calc(100vh - 60px);
+    padding: 60px 17px 0 17px;
+    max-height: calc(100vh - 60px);
 }
 
 /*Style for Admin Setting -------------------------------------------------------------------------------------- */
@@ -131,397 +132,439 @@ body {
         .ui-dialog-titlebar {
             border-bottom: 1px solid $greyLineColor;
             padding: 8px 20px !important;
+
             .ui-dialog-title {
-              padding-left: 2px;
-              font-size: 19px;
+                padding-left: 2px;
+                font-size: 19px;
             }
         }
     }
-   .admin-ui-dialog {
-      width: 80% !important;
-      left: 10% !important;
-      top: 160px !important;
-      height: auto !important;
+
+    .admin-ui-dialog {
+        width: 80% !important;
+        left: 10% !important;
+        top: 160px !important;
+        height: auto !important;
     }
 }
-body .ui-messages .ui-messages-error-icon, body .ui-message .ui-message-error-icon,
-.ui-messages-info-icon, .ui-messages-warn-icon, .ui-messages-error-icon, .ui-messages-fatal-icon{
-  margin-top: 2px !important;
-}
-.ui-datatable table thead tr th:last-child{
-  border-right: 1px solid #d8d8d8 !important; 
-}
-.ui-datatable table tbody tr td {
-  border-right: none;
+
+body .ui-messages .ui-messages-error-icon,
+body .ui-message .ui-message-error-icon,
+.ui-messages-info-icon,
+.ui-messages-warn-icon,
+.ui-messages-error-icon,
+.ui-messages-fatal-icon {
+    margin-top: 2px !important;
 }
 
 /*Style Email Setting --------------------------------------------------------------------------------*/
 @media (max-width: 1365px) {
-  .applications-email-setting-dialog {
-      left: 10% !important;
-      right: 10% !important;
-      top: 150px !important;
-  }
+    .applications-email-setting-dialog {
+        left: 10% !important;
+        right: 10% !important;
+        top: 150px !important;
+    }
 }
 
 @media (min-width: 1366px) and (max-width: 1919px) {
-  .applications-email-setting-dialog {
-    left: 15% !important;
-    right: 10% !important;
-    top: 150px !important;
-  }
+    .applications-email-setting-dialog {
+        left: 15% !important;
+        right: 10% !important;
+        top: 150px !important;
+    }
 }
-body .ui-selectmanycheckbox.ui-widget label, body .ui-selectoneradio.ui-widget label {
-  margin: 0;
+
+body .ui-selectmanycheckbox.ui-widget label,
+body .ui-selectoneradio.ui-widget label {
+    margin: 0;
 }
 
 
 /*Style For Process Widget --------------------------------------------------------------------------------*/
 .process-start-list-item:hover .process-start-list-item-icon {
-  color: $primaryColor;
+    color: $primaryColor;
 }
 
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-icon {
-  color: $primaryColor;
+    color: $primaryColor;
 }
 
-.process-group.ui-fieldset .ui-fieldset-legend{
-  font-size: 1.4rem;
-  color: $primaryColor;
+.process-group.ui-fieldset .ui-fieldset-legend {
+    font-size: 1.4rem;
+    color: $primaryColor;
 }
 
 .process-widget .process-group .ui-fieldset-toggler {
-  background-image: none !important;
-  text-indent: 0;
-  font-size: 25px;
-  color: $primaryColor !important;
+    background-image: none !important;
+    text-indent: 0;
+    font-size: 25px;
+    color: $primaryColor !important;
 }
 
 .process-widget .process-group .ui-fieldset-toggler:before {
-  font-family: 'FontAwesome';
-  font-size: 1.8rem;
-  color: $black !important;
-  display: flex;
-  justify-content: center; /* align horizontal */
-  align-items: center; /* align vertical */
+    font-family: 'FontAwesome';
+    font-size: 1.8rem;
+    color: $black !important;
+    display: flex;
+    justify-content: center;
+    /* align horizontal */
+    align-items: center;
+    /* align vertical */
 }
 
 .ui-fieldset {
-  .ui-fieldset-legend {
-    color: $black !important;
-    line-height: 1.2rem;
-    .ui-fieldset-toggler {
-      padding: 3px !important;
-      background-color: #eee !important;
-      color: $black !important;
+    .ui-fieldset-legend {
+        color: $black !important;
+        line-height: 1.2rem;
+
+        .ui-fieldset-toggler {
+            padding: 3px !important;
+            background-color: #eee !important;
+            color: $black !important;
+        }
     }
-  }
 }
 
 body .ui-panelgrid tbody tr.ui-widget-content {
-  border: none !important;
+    border: none !important;
 }
 
 /*Style For Task Widget ----------------------------------------------------------------------------------*/
 .filter-selection-form .filter-name:hover,
 .filter-selection-form .filter-name-overlay-panel .user-definied-filter-container .delete-user-definied-filter-command:hover {
-  color: $primaryColor !important;
+    color: $primaryColor !important;
 }
 
 .task-state-open {
-  color: $taskStateOpenColor;
+    color: $taskStateOpenColor;
 }
 
 .task-state-in-progress {
-  color: $taskStateInProgressColor;
+    color: $taskStateInProgressColor;
 }
 
 .task-state-done {
-  color: $taskStateDoneColor;
+    color: $taskStateDoneColor;
 }
 
 .task-state-zombie-destroyed {
-  color: $taskStateZombieDestroyedColor;
+    color: $taskStateZombieDestroyedColor;
 }
 
 .task-state-reserved {
-  color: $taskStateReservedColor;
+    color: $taskStateReservedColor;
 }
 
 .task-state-system {
-  color: $taskStateSystemColor;
+    color: $taskStateSystemColor;
 }
 
 .task-priority-low {
-  color: $taskPriorityLowColor;
+    color: $taskPriorityLowColor;
 }
 
 .task-priority-normal {
-  color: $taskPriorityNormalColor;
+    color: $taskPriorityNormalColor;
 }
 
 .task-priority-high {
-  color: $taskPriorityHighColor;
+    color: $taskPriorityHighColor;
 }
 
 .task-priority-exception {
-  color: $taskPriorityExceptionColor;
+    color: $taskPriorityExceptionColor;
 }
 
 /*Style For Statistic Widget -----------------------------------------------------------------------------*/
 .statistic-carousel .ui-carousel-header {
-  background-color: $primaryColor;
+    background-color: $primaryColor;
 }
 
 .statistic-carousel .ui-carousel-header .ui-carousel-next-button:hover,
 .statistic-carousel .ui-carousel-header .ui-carousel-prev-button:hover {
-  background-color: rgba($primaryColor, 0.2) !important;
+    background-color: rgba($primaryColor, 0.2) !important;
 }
 
 .dashboard-chart-panel .ui-panel-titlebar {
-  background-color: $primaryColor;
+    background-color: $primaryColor;
 }
 
 .statistic-selection .add-link:hover {
-  color: $primaryColor !important;
+    color: $primaryColor !important;
 }
 
 /*Style For Buttons --------------------------------------------------------------------------------------*/
 .ui-widget.ui-button {
-  border-radius: $actionButtonBorderRadius !important;
-  background-color: $actionButtonColor;
+    border-radius: $actionButtonBorderRadius !important;
+    background-color: $actionButtonColor;
 }
-.ui-widget.ui-button.ui-state-hover:not(.ui-spinner-button), .ui-widget.ui-buttonset .ui-state-hover,
+
+.ui-widget.ui-button.ui-state-hover:not(.ui-spinner-button),
+.ui-widget.ui-buttonset .ui-state-hover,
 body .ui-buttonset .ui-state-active {
-  background-color: rgba($actionButtonColor, 0.6) !important;
+    background-color: rgba($actionButtonColor, 0.6) !important;
 }
+
 .ui-widget.ui-button.ui-state-focus {
-  background-color: rgba($actionButtonColor, 0.8);
+    background-color: rgba($actionButtonColor, 0.8);
 }
-.portal-cancel-button.ui-widget.ui-button, .ui-inplace-cancel.ui-widget.ui-button, .ui-fileupload-cancel.ui-widget.ui-button {
-  background-color: rgba($cancelButtonBackgroundColor, 1) !important;
+
+.portal-cancel-button.ui-widget.ui-button,
+.ui-inplace-cancel.ui-widget.ui-button,
+.ui-fileupload-cancel.ui-widget.ui-button {
+    background-color: rgba($cancelButtonBackgroundColor, 1) !important;
 }
-.portal-cancel-button.ui-widget.ui-button.ui-state-hover, .portal-cancel-button.ui-widget.ui-buttonset .ui-state-hover, .ui-inplace-cancel.ui-widget.ui-button.ui-state-hover, .ui-fileupload-cancel.ui-widget.ui-button.ui-state-hover {
-  background-color: rgba($cancelButtonBackgroundColor, 0.6) !important;
+
+.portal-cancel-button.ui-widget.ui-button.ui-state-hover,
+.portal-cancel-button.ui-widget.ui-buttonset .ui-state-hover,
+.ui-inplace-cancel.ui-widget.ui-button.ui-state-hover,
+.ui-fileupload-cancel.ui-widget.ui-button.ui-state-hover {
+    background-color: rgba($cancelButtonBackgroundColor, 0.6) !important;
 }
-.portal-cancel-button.ui-widget.ui-button.ui-state-focus, .ui-inplace-cancel.ui-widget.ui-button.ui-state-focus, .ui-fileupload-cancel.ui-widget.ui-button.ui-state-focus {
-  background-color: rgba($cancelButtonBackgroundColor, 0.8) !important;
+
+.portal-cancel-button.ui-widget.ui-button.ui-state-focus,
+.ui-inplace-cancel.ui-widget.ui-button.ui-state-focus,
+.ui-fileupload-cancel.ui-widget.ui-button.ui-state-focus {
+    background-color: rgba($cancelButtonBackgroundColor, 0.8) !important;
 }
-.ui-widget.ui-button.context-button{
-  border-radius: $contextButtonBorderRadius !important;
-  background-color: rgba($contextButtonColor, 0.5);
+
+.ui-widget.ui-button.context-button {
+    border-radius: $contextButtonBorderRadius !important;
+    background-color: rgba($contextButtonColor, 0.5);
 }
-.ui-widget.ui-button.context-button.ui-state-hover{
-  background-color: rgba($contextButtonColor, 0.6)!important;
+
+.ui-widget.ui-button.context-button.ui-state-hover {
+    background-color: rgba($contextButtonColor, 0.6) !important;
 }
-.ui-widget.ui-button.context-button.ui-state-focus{
-  background-color: rgba($contextButtonColor, 0.8)!important;
+
+.ui-widget.ui-button.context-button.ui-state-focus {
+    background-color: rgba($contextButtonColor, 0.8) !important;
 }
 
 .ui-widget.ui-button {
-  .ui-button-text {
-    color: $primaryTextColor !important;
-  }        
-  .ui-icon {
-	color: $primaryTextColor !important;
-  }
-  ui-button-icon-left.ui-icon {
-	color: $primaryTextColor !important;
-  }
+    .ui-button-text {
+        color: $primaryTextColor !important;
+    }
+
+    .ui-icon {
+        color: $primaryTextColor !important;
+    }
+
+    ui-button-icon-left.ui-icon {
+        color: $primaryTextColor !important;
+    }
 }
 
 .ui-autocomplete {
-  .ui-autocomplete-dropdown {
-    min-width: 18px !important;	
-  }
+    .ui-autocomplete-dropdown {
+        min-width: 18px !important;
+    }
 }
+
 /*Style for table --------------------------------------------------------------------------------------*/
-.ui-datatable table tbody tr.ui-datatable-selectable.ui-state-highlight td  {
-  background-color: rgba(red($primaryColor), green($primaryColor), blue($primaryColor), 0.6);
+.ui-datatable table tbody tr.ui-datatable-selectable.ui-state-highlight td {
+    background-color: rgba(red($primaryColor), green($primaryColor), blue($primaryColor), 0.6);
 }
 
 .ui-datatable table tbody tr.ui-datatable-selectable.ui-state-hover td {
-  background-color: rgba(red($primaryColor), green($primaryColor), blue($primaryColor), 0.25);
+    background-color: rgba(red($primaryColor), green($primaryColor), blue($primaryColor), 0.25);
 }
 
-.ui-treetable table tbody .ui-state-highlight td  {
-  background-color: rgba(red($primaryColor), green($primaryColor), blue($primaryColor), 0.6) !important;
+.ui-treetable table tbody .ui-state-highlight td {
+    background-color: rgba(red($primaryColor), green($primaryColor), blue($primaryColor), 0.6) !important;
 }
 
 .ui-treetable table tbody .ui-state-hover td {
-  background-color: rgba(red($primaryColor), green($primaryColor), blue($primaryColor), 0.25) !important;
+    background-color: rgba(red($primaryColor), green($primaryColor), blue($primaryColor), 0.25) !important;
+}
+
+.ui-datatable table thead tr td:not(:last-child),
+.ui-datatable table tbody tr td:not(:last-child) {
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .ui-datatable {
+    thead {
+        tr {
+            th {
+                .ui-column-title {
+                    color: $primaryTextColor;
+                }
 
-  thead {
-  	tr {
-  	  th {
-  	    .ui-column-title {
-  	  	  color : $primaryTextColor;
-  	  	}
-  	    .ui-sortable-column-icon.ui-icon {
-  	    	color : $primaryTextColor;
-  	    }
-  	  }
-  	}
-  }
+                .ui-sortable-column-icon.ui-icon {
+                    color: $primaryTextColor;
+                }
 
-  tbody { 
-  	tr {
-       td {
-          
-          .ui-inputfield {
-	       	 color: $primaryTextColor !important;
-	      }
-       }
-     }
-  }
-  
-  .ui-datatable-scrollable-body {
-    outline: transparent;
-  }
-  
-  .ui-paginator-rpp-options {
-  	 vertical-align: middle;
-  }
-  
+                &:not(:last-child) {
+                    border-right: 1px solid rgba(0, 0, 0, 0.2);
+                }
+
+                &:not(:first-child) {
+                    border-left: 1px solid transparent;
+                }
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            td {
+                .ui-inputfield {
+                    color: $primaryTextColor !important;
+                }
+
+                &:first-child {
+                    border-left: 1px solid $greyLineColor !important;
+                }
+            }
+        }
+    }
+
+    .ui-datatable-scrollable-body {
+        outline: transparent;
+    }
+
+    .ui-paginator-rpp-options {
+        vertical-align: middle;
+    }
 }
 
 .ui-state-default.ui-sortable-column {
-	outline: transparent;
+    outline: transparent;
 }
 
 /*Style for self service --------------------------------------------------------------------------------------*/
 img[id*='additonalTaskUserAvatar'] {
-	border:	solid 2px;
-	border-color : $primaryColor;
+    border: solid 2px;
+    border-color: $primaryColor;
 }
 
 /*Style for express --------------------------------------------------------------------------------------*/
 .express-start-process-panel .process-list .icon-placeholder .fa {
-  color: $primaryColor;
+    color: $primaryColor;
 }
 
 .express-start-process-panel .process-list .icon-placeholder .fa:hover {
-  color: rgba($primaryColor, 0.6) !important;
+    color: rgba($primaryColor, 0.6) !important;
 }
 
 .process-start-list-item .process-start-list-item-action .express-workflow:hover {
-  color: $primaryColor !important;
+    color: $primaryColor !important;
 }
 
 .process-start-list-item.express-workflow .process-start-list-item-icon {
-  color: $primaryColor !important;
-  opacity: 1;
+    color: $primaryColor !important;
+    opacity: 1;
 }
 
 .ui-widget.ui-button.defined-task-button {
-  border: solid 2px $primaryColor;
+    border: solid 2px $primaryColor;
 }
 
 .ui-widget.ui-button.defined-task-button.active,
 .ui-widget.ui-button.defined-task-button.visited {
-  border: solid 2px $primaryColor;
-  background-color: $primaryColor !important;
+    border: solid 2px $primaryColor;
+    background-color: $primaryColor !important;
 }
 
 .ui-widget.ui-button.defined-task-button.active:before {
-  border-color: $primaryColor;
+    border-color: $primaryColor;
 }
 
 .ui-widget.ui-button.defined-task-button.ui-state-hover {
-  background-color: $primaryColor !important;
+    background-color: $primaryColor !important;
 }
 
 .Fleft {
-  float: left;
+    float: left;
 }
 
 /*Style for stages breadcrumb --------------------------------------------------------------------------------------*/
 .stages-chain .current i {
-  color: $primaryColor;
+    color: $primaryColor;
 }
 
 /*Style for stages process chain -----------------------------------------------------------------------------------*/
 .circle-process-chain .circle-horizontal-process-step.visited .circle-horizontal-step-container span:before {
-  border-color: $processChainMenuColor;
+    border-color: $processChainMenuColor;
 }
 
 .circle-process-chain .circle-horizontal-process-step.waiting .circle-horizontal-step-container {
-  border: solid 2px $processChainMenuColor;
+    border: solid 2px $processChainMenuColor;
 }
 
 .circle-process-chain .circle-horizontal-process-step .circle-horizontal-step-container {
-  background-color: $processChainMenuColor;
+    background-color: $processChainMenuColor;
 }
 
 .circle-process-chain .circle-vertical-process-step.visited .circle-vertical-step-container span:before {
-  border-color: $processChainMenuColor;
+    border-color: $processChainMenuColor;
 }
 
 .circle-process-chain .circle-vertical-process-step.waiting .circle-vertical-step-container {
-  border: solid 2px $processChainMenuColor;
+    border: solid 2px $processChainMenuColor;
 }
 
 .circle-process-chain .circle-vertical-process-step .circle-vertical-step-container {
-  background-color: $processChainMenuColor;
+    background-color: $processChainMenuColor;
 }
 
 .line-process-chain .line-horizontal-process-step .line-horizontal-step-container {
-  background-color: $processChainMenuColor;
+    background-color: $processChainMenuColor;
 }
 
-.line-process-chain .line-horizontal-process-step.hide-left-steps  {
-  background: repeating-linear-gradient(90deg, $processChainMenuColor, $processChainMenuColor 10px, $bodyBackgroundColor 10px, $bodyBackgroundColor 20px);
+.line-process-chain .line-horizontal-process-step.hide-left-steps {
+    background: repeating-linear-gradient(90deg, $processChainMenuColor, $processChainMenuColor 10px, $bodyBackgroundColor 10px, $bodyBackgroundColor 20px);
 }
 
 .line-process-chain .line-horizontal-process-step.hide-right-steps {
-  background: repeating-linear-gradient(90deg, #E0E0E0, #E0E0E0 10px, $bodyBackgroundColor 10px, $bodyBackgroundColor 20px);
+    background: repeating-linear-gradient(90deg, #E0E0E0, #E0E0E0 10px, $bodyBackgroundColor 10px, $bodyBackgroundColor 20px);
 }
 
 .line-process-chain .line-vertical-process-step .line-vertical-step-container {
-  background-color: $processChainMenuColor;
+    background-color: $processChainMenuColor;
 }
 
-.line-process-chain .line-vertical-process-step.hide-left-steps  {
-  background: repeating-linear-gradient(180deg, $processChainMenuColor, $processChainMenuColor 10px, $bodyBackgroundColor 10px, $bodyBackgroundColor 20px);
+.line-process-chain .line-vertical-process-step.hide-left-steps {
+    background: repeating-linear-gradient(180deg, $processChainMenuColor, $processChainMenuColor 10px, $bodyBackgroundColor 10px, $bodyBackgroundColor 20px);
 }
 
 .line-process-chain .line-vertical-process-step.hide-right-steps {
-  background: repeating-linear-gradient(180deg, #E0E0E0, #E0E0E0 10px, $bodyBackgroundColor 10px, $bodyBackgroundColor 20px);
+    background: repeating-linear-gradient(180deg, #E0E0E0, #E0E0E0 10px, $bodyBackgroundColor 10px, $bodyBackgroundColor 20px);
 }
 
-.task #mobile-menu .mobile-task-menu-item, .process #mobile-menu .mobile-process-menu-item {
-  border-bottom-width: 2px;
-  border-bottom-color: $primaryColor;
+.task #mobile-menu .mobile-task-menu-item,
+.process #mobile-menu .mobile-process-menu-item {
+    border-bottom-width: 2px;
+    border-bottom-color: $primaryColor;
 }
 
 /*Style for checkbox ------------------------------------------------------------------------------------------------*/
 body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
-  color: $primaryLightestColor !important;
+    color: $primaryLightestColor !important;
 }
 
 .ui-chkbox-label {
-  width: 20rem;
-  margin: 0px 0px 0px 12px !important;
+    width: 20rem;
+    margin: 0px 0px 0px 12px !important;
 }
 
 /*Style for announcement*/
 .announcement-message-customizable {
-  background-color: $announcementBackgroundColor;
-  border: 2px solid $announcementBorderColor;
+    background-color: $announcementBackgroundColor;
+    border: 2px solid $announcementBorderColor;
 }
 
 /*Style For Mobile --------------------------------------------------------------------------------------*/
-.task #mobile-menu .mobile-task-menu-item, .process #mobile-menu .mobile-process-menu-item {
-  border-bottom: solid 3px $menuColor;
-  color: $menuColor !important;
+.task #mobile-menu .mobile-task-menu-item,
+.process #mobile-menu .mobile-process-menu-item {
+    border-bottom: solid 3px $menuColor;
+    color: $menuColor !important;
 }
 
 /*Style For Input field --------------------------------------------------------------------------------------*/
 .ui-outputlabel {
-  font-size: $inputLabelText !important;
+    font-size: $inputLabelText !important;
 }
 
 .ui-widget-content.ui-tabs-panel {
@@ -529,30 +572,32 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 }
 
 .ui-inputfield {
-  padding: 6px 0 6px 6px !important;
+    padding: 6px 0 6px 6px !important;
 }
 
 .ui-spinner {
-  .ui-spinner-input {
-    padding-right: 30px !important;
-   }
+    .ui-spinner-input {
+        padding-right: 30px !important;
+    }
 }
 
 /*Style For Accordion header --------------------------------------------------------------------------------------*/
 .ui-accordion {
-  .ui-accordion-header {
-     
-     &.ui-state-active, .ui-icon-triangle-1-e, .ui-icon-triangle-1-s {
-       color: $primaryTextColor !important;
-     }
-   }
+    .ui-accordion-header {
+
+        &.ui-state-active,
+        .ui-icon-triangle-1-e,
+        .ui-icon-triangle-1-s {
+            color: $primaryTextColor !important;
+        }
+    }
 }
 
 /*Style For Spinner input --------------------------------------------------------------------------------------*/
 .ui-spinner {
     .ui-spinner-button {
-    	min-width : auto;
-	}
+        min-width: auto;
+    }
 }
 
 /*Style For Panel --------------------------------------------------------------------------------------*/
