@@ -164,6 +164,10 @@ body .ui-message .ui-message-error-icon,
         right: 10% !important;
         top: 150px !important;
     }
+
+ .daily-summary.ui-selectmanycheckbox.ui-widget label {
+    margin-left: 0px !important;
+  }
 }
 
 @media (min-width: 1366px) and (max-width: 1919px) {
@@ -172,13 +176,11 @@ body .ui-message .ui-message-error-icon,
         right: 10% !important;
         top: 150px !important;
     }
-}
 
-body .ui-selectmanycheckbox.ui-widget label,
-body .ui-selectoneradio.ui-widget label {
-    margin: 0;
+ .daily-summary.ui-selectmanycheckbox.ui-widget label {
+    margin-left: 0px !important;
+ }
 }
-
 
 /*Style For Process Widget --------------------------------------------------------------------------------*/
 .process-start-list-item:hover .process-start-list-item-icon {
