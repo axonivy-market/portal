@@ -282,7 +282,7 @@
 	padding: 0;
 	margin-right: auto;
 	margin-left: auto;
-	margin-top: 50px;
+	margin-top: 0;
 }
 
 .dashboard-container:before, .dashboard-container:after, .simple-container:before, .simple-container:after,
@@ -313,7 +313,7 @@
 @media ( min-width : 992px) and ( max-width : 1365px) {
 	.dashboard-container, .simple-container {
 		width: 880px;
-		padding-left: 40px;
+		padding-left: 0;
 	}
 	.dashboard-main-content-2nd-col {
 		width: 520px;
