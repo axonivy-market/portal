@@ -121,7 +121,8 @@ body {
   }
 }
 .layout-wrapper .layout-main .layout-content {
-  padding: 60px 17px 24px 17px;
+  padding: 60px 17px 0 17px;
+  max-height: calc(100vh - 60px);
 }
 
 /*Style for Admin Setting -------------------------------------------------------------------------------------- */

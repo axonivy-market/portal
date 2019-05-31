@@ -4248,7 +4248,6 @@ margin-top
 
 .container {
   flex-shrink: 1;
-  height: calc(100% - 64px);
   overflow: auto;
 }
 
