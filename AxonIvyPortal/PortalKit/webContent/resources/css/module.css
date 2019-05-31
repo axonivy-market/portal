@@ -4495,11 +4495,11 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   white-space: nowrap;
 }
 
-.change-password-1st-column{
-  width: 40%;
+.change-password-column {
+	padding: 15px 0;
 }
 
-.change-password-2nd-column input{
+.change-password-column input {
   width: 100%;
 }
 
