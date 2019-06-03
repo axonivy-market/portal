@@ -199,28 +199,25 @@ body .ui-message .ui-message-error-icon,
 .process-widget .process-group .ui-fieldset-toggler {
     background-image: none !important;
     text-indent: 0;
-    font-size: 25px;
     color: $primaryColor !important;
 }
 
 .process-widget .process-group .ui-fieldset-toggler:before {
     font-family: 'FontAwesome';
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     color: $black !important;
     display: flex;
     justify-content: center;
-    /* align horizontal */
     align-items: center;
-    /* align vertical */
 }
 
 .ui-fieldset {
     .ui-fieldset-legend {
         color: $black !important;
-        line-height: 1.2rem;
+        line-height: 0.6rem;
 
         .ui-fieldset-toggler {
-            padding: 3px !important;
+            padding: 0px !important;
             background-color: #eee !important;
             color: $black !important;
         }
@@ -547,7 +544,7 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 }
 
 .ui-chkbox-label {
-    width: 20rem;
+    width: auto;
     margin: 0px 0px 0px 12px !important;
 }
 
