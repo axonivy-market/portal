@@ -74,7 +74,7 @@
         </ui:repeat>
       </p:overlayPanel>
 
-        <p:tabView id="task-template-tabview" prependId="false" onTabShow="onTabShow()">
+        <p:tabView id="task-template-tabview" prependId="false" onTabShow="onTabShow(); onStatusTabShow();">
           <ui:insert name="dynamicTabs">
             <!-- You can add one or many tabs here -->
           </ui:insert>
@@ -253,6 +253,7 @@
       <ic:ch.ivy.addon.portalkit.feature.WarnOnClosingBrowserTab
         confirmMessage="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/browserTabClosingWarning')}" />
 
+      <h:outputScript library="js" name="document-truncation.js" />
       <script type="text/javascript">
         function onTabShow() {
           var caseWidget = new CaseWidget("main-area-panel");
@@ -277,7 +278,10 @@
           Portal.init(responsiveToolkit, true);
         }
 
-        </script>
+        function onStatusTabShow() {
+          documentTruncation.truncate();
+        }
+      </script>
     </ui:define>
   </ui:composition>
 </h:body>
