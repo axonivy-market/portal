@@ -34,7 +34,7 @@
           <ps:menu id="main-menu" widgetVar="main-menu">
             <c:forEach var="menuItem" items="#{data.menuItems}" varStatus="menuItemStatus">
               <p:menuitem id="menu-item-#{menuItemStatus.index}" rendered="#{empty menuItem.getAttributes().get('isThirdPartyApp')}"
-                actionListener="#{logic.openApp(menuItem.href)}" disabled="#{menuItem.disabled}" update="main-menu" process="main-menu"
+                actionListener="#{logic.openApp(menuItem.href)}" disabled="#{menuItem.disabled}" update="main-menu" process="main-menu" onclick="PF('main-menu').clearMenuState();"
                 icon="#{menuItem.icon}" value="#{menuItem.value}" iconPos="right" containerStyleClass="#{menuItem.styleClass}" />
   
               <p:menuitem id="thirdparty-menu-item-#{menuItemStatus.index}" rendered="#{not empty menuItem.getAttributes().get('isThirdPartyApp')}" update="main-menu" process="main-menu"
@@ -49,7 +49,7 @@
                   <f:attribute name="selectedSubMenuItem" value="#{subMenuItem}" />
                 </p:menuitem>
                 <p:menuitem id="thirdparty-menu-item-#{menuItemStatus.index}-sub-menu-item-#{subMenuItemStatus.index}" rendered="#{!isIvyLink}" target="_blank" url="#{subMenuItem.externalLink}" value="#{subMenuItem.label}"
-                  icon="#{subMenuItem.icon}" update="main-menu" process="main-menu" />
+                  styleClass="submenu" icon="#{subMenuItem.icon}" update="main-menu" process="main-menu" />
               </c:forEach>
 
             </c:forEach>
