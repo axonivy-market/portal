@@ -59,14 +59,14 @@ As0 @PushWFArc f21 '' #zField
 As0 @PushWFArc f23 '' #zField
 As0 @PushWFArc f24 '' #zField
 As0 @PushWFArc f33 '' #zField
-As0 @GridStep f26 '' #zField
-As0 @PushWFArc f29 '' #zField
-As0 @PushWFArc f25 '' #zField
 As0 @GridStep f30 '' #zField
 As0 @GridStep f32 '' #zField
 As0 @PushWFArc f36 '' #zField
-As0 @PushWFArc f4 '' #zField
 As0 @PushWFArc f3 '' #zField
+As0 @Split f5 '' #zField
+As0 @PushWFArc f6 '' #zField
+As0 @PushWFArc f8 '' #zField
+As0 @PushWFArc f7 '' #zField
 >Proto As0 As0 ApplicationSelectionMenuProcess #zField
 As0 f67 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
 ' #txt
@@ -161,7 +161,7 @@ dialog</name>
 As0 f83 960 266 128 44 -42 -16 #rect
 As0 f83 @|StepIcon #fIcon
 As0 f85 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
-As0 f85 156 516 24 24 13 0 #rect
+As0 f85 156 540 24 24 13 0 #rect
 As0 f85 @|RichDialogProcessEndIcon #fIcon
 As0 f87 guid 15FB36E87031CAD2 #txt
 As0 f87 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
@@ -509,28 +509,6 @@ As0 f24 1 1024 640 #addKink
 As0 f24 1 0.2637121995195685 0 0 #arcLabel
 As0 f33 expr out #txt
 As0 f33 272 44 272 96 #arcP
-As0 f26 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
-' #txt
-As0 f26 actionTable 'out=in;
-' #txt
-As0 f26 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
-As0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Load MenuIttem</name>
-    </language>
-</elementInfo>
-' #txt
-As0 f26 112 234 112 44 -44 -8 #rect
-As0 f26 @|StepIcon #fIcon
-As0 f29 expr out #txt
-As0 f29 80 44 112 256 #arcP
-As0 f29 1 80 256 #addKink
-As0 f29 1 0.4001152932228009 0 0 #arcLabel
-As0 f25 expr out #txt
-As0 f25 272 208 224 256 #arcP
-As0 f25 1 272 256 #addKink
-As0 f25 1 0.18663324733876824 0 0 #arcLabel
 As0 f30 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
 ' #txt
 As0 f30 actionTable 'out=in;
@@ -554,7 +532,7 @@ As0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f30 144 400 48 32 31 -9 #rect
+As0 f30 144 424 48 32 31 -9 #rect
 As0 f30 @|StepIcon #fIcon
 As0 f32 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
 ' #txt
@@ -626,14 +604,30 @@ As0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f32 140 320 56 32 39 -14 #rect
+As0 f32 140 344 56 32 39 -14 #rect
 As0 f32 @|StepIcon #fIcon
 As0 f36 expr out #txt
-As0 f36 168 352 168 400 #arcP
-As0 f4 expr out #txt
-As0 f4 168 278 168 320 #arcP
+As0 f36 168 376 168 424 #arcP
 As0 f3 expr out #txt
-As0 f3 168 432 168 516 #arcP
+As0 f3 168 456 168 540 #arcP
+As0 f5 actionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out1;
+' #txt
+As0 f5 actionTable 'out1=in;
+' #txt
+As0 f5 type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
+As0 f5 152 240 32 32 0 16 #rect
+As0 f5 @|ThreadIcon #fIcon
+As0 f6 expr out #txt
+As0 f6 272 208 184 256 #arcP
+As0 f6 1 272 256 #addKink
+As0 f6 1 0.18663324733876824 0 0 #arcLabel
+As0 f8 expr out1 #txt
+As0 f8 168 272 168 344 #arcP
+As0 f8 0 0.18663324733876824 0 0 #arcLabel
+As0 f7 expr out #txt
+As0 f7 80 44 152 256 #arcP
+As0 f7 1 80 256 #addKink
+As0 f7 1 0.4001152932228009 0 0 #arcLabel
 >Proto As0 .type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -704,13 +698,13 @@ As0 f15 mainOut f24 tail #connect
 As0 f24 head f34 mainIn #connect
 As0 f87 mainOut f33 tail #connect
 As0 f33 head f97 mainIn #connect
-As0 f74 mainOut f29 tail #connect
-As0 f29 head f26 mainIn #connect
-As0 f94 mainOut f25 tail #connect
-As0 f25 head f26 mainIn #connect
 As0 f32 mainOut f36 tail #connect
 As0 f36 head f30 mainIn #connect
-As0 f26 mainOut f4 tail #connect
-As0 f4 head f32 mainIn #connect
 As0 f30 mainOut f3 tail #connect
 As0 f3 head f85 mainIn #connect
+As0 f94 mainOut f6 tail #connect
+As0 f6 head f5 in #connect
+As0 f5 out f8 tail #connect
+As0 f8 head f32 mainIn #connect
+As0 f74 mainOut f7 tail #connect
+As0 f7 head f5 in #connect

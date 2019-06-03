@@ -304,7 +304,37 @@
 					        </p:panelGrid>
 					    </p:dialog>
 					</div>
-				</h:form>
+
+					<div class="card card-w-title">
+						<h4>Toolbar</h4>
+						<p>Toolbar is a grouping component for buttons and other content</p>
+						<p:toolbar>
+							<f:facet name="left">
+								<p:commandButton type="button" value="New" icon="fa fa-file" />
+	
+								<p:commandButton type="button" value="Open" icon="fa fa-folder-open" />
+	
+								<span class="ui-separator" style="margin-right: 10px;"> <i class="fa fa-ellipsis-v" />
+								</span>
+	
+								<p:commandButton type="button" title="Save" icon="fa fa-save" />
+								<p:commandButton type="button" title="Delete" icon="fa fa-trash" />
+								<p:commandButton type="button" title="Print" icon="fa fa-print" />
+							</f:facet>
+	
+							<f:facet name="right">
+								<p:menuButton value="Options">
+									<p:menuitem value="Save" icon="fa fa-save" />
+									<p:menuitem value="Update" icon="fa fa-refresh" />
+									<p:menuitem value="Delete" icon="fa fa-times" />
+									<p:menuitem value="Homepage" icon="fa fa-home" />
+								</p:menuButton>
+							</f:facet>
+	
+						</p:toolbar>
+					</div>
+
+			</h:form>
 		</ui:define>
 		
 		 <ui:define name="centerButtons">
