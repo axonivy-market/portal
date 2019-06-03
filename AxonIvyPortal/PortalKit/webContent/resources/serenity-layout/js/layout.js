@@ -12,7 +12,8 @@ PrimeFaces.widget.Serenity = PrimeFaces.widget.BaseWidget.extend({
             $this._init();
         });
         
-        this.restoreMenuState();
+        //Comment out this line of Serenity, we call this method in BasicTemplate and DefaultHomePageTemplate
+        //this.restoreMenuState();
         this.expandedMenuitems = this.expandedMenuitems||[];
     },
     
@@ -34,7 +35,6 @@ PrimeFaces.widget.Serenity = PrimeFaces.widget.BaseWidget.extend({
     
     bindEvents: function() {
         var $this = this;
-        
         $('.nano').nanoScroller({flash: true});
         
         this.sidebar.on('mouseenter', function(e) {
