@@ -5759,7 +5759,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 /* =================== RESPONSIVE GRID ====================== */
 .ui-g > div {
-	display: grid;
 	align-items: center;
 }
 
