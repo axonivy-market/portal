@@ -143,6 +143,12 @@
   
   <ui:fragment rendered="#{not deviceBean.mobile}">
     <ui:insert name="footer">
+    	<script type="text/javascript">
+	    	$(function() {
+	    	  //restores menu states stores in cookies
+	          PF('main-menu').restoreMenuState();
+	        });
+	    </script>
     </ui:insert>
   </ui:fragment>
   

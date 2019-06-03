@@ -25,6 +25,9 @@ Ps0 @PushWFArc f5 '' #zField
 Ps0 @PushWFArc f0 '' #zField
 Ps0 @PushWFArc f11 '' #zField
 Ps0 @PushWFArc f2 '' #zField
+Ps0 @RichDialogProcessStart f7 '' #zField
+Ps0 @RichDialogProcessEnd f12 '' #zField
+Ps0 @PushWFArc f13 '' #zField
 >Proto Ps0 Ps0 PrimefacesElementsProcess #zField
 Ps0 f9 type ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesElements.PrimefacesElementsData #txt
 Ps0 f9 531 115 26 26 0 12 #rect
@@ -148,6 +151,26 @@ Ps0 f11 expr out #txt
 Ps0 f11 105 222 207 222 #arcP
 Ps0 f2 expr out #txt
 Ps0 f2 104 126 256 128 #arcP
+Ps0 f7 guid 16B1CD2B0F3CBB95 #txt
+Ps0 f7 type ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesElements.PrimefacesElementsData #txt
+Ps0 f7 actionDecl 'ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesElements.PrimefacesElementsData out;
+' #txt
+Ps0 f7 actionTable 'out=in;
+' #txt
+Ps0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>optionSelection</name>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f7 83 339 26 26 -47 15 #rect
+Ps0 f7 @|RichDialogProcessStartIcon #fIcon
+Ps0 f12 type ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesElements.PrimefacesElementsData #txt
+Ps0 f12 499 339 26 26 0 12 #rect
+Ps0 f12 @|RichDialogProcessEndIcon #fIcon
+Ps0 f13 expr out #txt
+Ps0 f13 109 352 499 352 #arcP
 >Proto Ps0 .type ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesElements.PrimefacesElementsData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
@@ -160,3 +183,5 @@ Ps0 f6 mainOut f2 tail #connect
 Ps0 f2 head f1 mainIn #connect
 Ps0 f1 mainOut f0 tail #connect
 Ps0 f0 head f9 mainIn #connect
+Ps0 f7 mainOut f13 tail #connect
+Ps0 f13 head f12 mainIn #connect

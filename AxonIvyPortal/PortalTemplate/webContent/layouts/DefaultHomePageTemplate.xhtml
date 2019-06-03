@@ -84,6 +84,9 @@
                   dashboardSmallScreen);
               $(function() {
                 Portal.init(responsiveToolkit);
+                //when user enter HomePage, we clear menu state store in cookies
+    	        PF('main-menu').clearMenuState();
+	            PF('main-menu').restoreMenuState();
               });
             </script>
     </ui:define>

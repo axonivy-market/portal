@@ -42,7 +42,7 @@
 						<p:outputLabel for="calendar" value="Calendar" />
 					</div>
 					<div class="ui-g-12 ui-md-9 ui-lg-3">
-						<p:calendar id="calendar" />
+						<p:calendar id="calendar" pattern="dd/MM/yyyy" />
 					</div>
 					<div class="ui-g-12 ui-md-0 ui-lg-1" ></div>
 					<div class="ui-g-12 ui-md-3 ui-lg-2">
@@ -129,8 +129,8 @@
 				</div>
 
 				<div class="ui-g" >		
-					<div class="ui-g-12 ui-md-3 ui-lg-2" ><p:outputLabel for="calendar" value="Calendar" /></div>
-					<div class="ui-g-12 ui-md-9 ui-lg-3" ><p:calendar id="calendar" /></div>
+					<div class="ui-g-12 ui-md-3 ui-lg-2" ><p:outputLabel for="calendarSecond" value="Calendar" /></div>
+					<div class="ui-g-12 ui-md-9 ui-lg-3" ><p:calendar id="calendarSecond" pattern="dd/MM/yyyy" /></div>
 					<div class="ui-g-12 ui-md-0 ui-lg-1" ></div>
 					<div class="ui-g-12 ui-md-3 ui-lg-2" ><p:outputLabel for="inputz" value="AutoComplete" /></div>
 					<div class="ui-g-12 ui-md-9 ui-lg-3" ><p:inputText id="inputz" /></div>
@@ -271,8 +271,6 @@
 										showTargetControls="true" showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains"
 										converter="ivy.ListItem">
 										
-										<p:ajax event="transfer" update="resultPanel"/>
-										
 										<f:facet name="sourceCaption">Available</f:facet>
 										<f:facet name="targetCaption">Selected</f:facet>
 						
@@ -282,11 +280,6 @@
 									</p:pickList>
 									<br />
 									<p:panelGrid columns="2" id="resultPanel" styleClass="ui-panelgrid-blank">
-										<h:outputText>Available:</h:outputText>
-										<h:outputText value="#{data.persons.source}"></h:outputText>
-										
-										<h:outputText>Selected</h:outputText>
-										<h:outputText value="#{data.persons.target}"></h:outputText>
 									</p:panelGrid>
 								</p:panelGrid>
 					    </p:panel>
@@ -303,35 +296,6 @@
 					            </f:facet>  
 					        </p:panelGrid>
 					    </p:dialog>
-					</div>
-
-					<div class="card card-w-title">
-						<h4>Toolbar</h4>
-						<p>Toolbar is a grouping component for buttons and other content</p>
-						<p:toolbar>
-							<f:facet name="left">
-								<p:commandButton type="button" value="New" icon="fa fa-file" />
-	
-								<p:commandButton type="button" value="Open" icon="fa fa-folder-open" />
-	
-								<span class="ui-separator" style="margin-right: 10px;"> <i class="fa fa-ellipsis-v" />
-								</span>
-	
-								<p:commandButton type="button" title="Save" icon="fa fa-save" />
-								<p:commandButton type="button" title="Delete" icon="fa fa-trash" />
-								<p:commandButton type="button" title="Print" icon="fa fa-print" />
-							</f:facet>
-	
-							<f:facet name="right">
-								<p:menuButton value="Options">
-									<p:menuitem value="Save" icon="fa fa-save" />
-									<p:menuitem value="Update" icon="fa fa-refresh" />
-									<p:menuitem value="Delete" icon="fa fa-times" />
-									<p:menuitem value="Homepage" icon="fa fa-home" />
-								</p:menuButton>
-							</f:facet>
-	
-						</p:toolbar>
 					</div>
 
 			</h:form>
