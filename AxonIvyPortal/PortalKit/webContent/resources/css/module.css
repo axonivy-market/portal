@@ -3361,10 +3361,12 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   background-color: #AFCA05 !important;
 }
 
-
+/********************************** LANGUAGE SETTING DIALOG **********************************/
 @media (max-width: 1365px) {
   .language-setting-dialog {
-    left: 150px !important;
+    left: 15% !important;
+    overflow: auto !important;
+    top: 35% !important;
   }
 }
 
@@ -3372,8 +3374,36 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   .language-setting-dialog {
     left: 250px !important;
     top: 300px !important;
+    overflow: auto !important;
   }
 }
+
+/* Large screen */
+@media (min-width: 1920px) {
+  .language-setting-dialog {
+    left: 15% !important ;
+  }
+}
+/********************************** END LANGUAGE SETTING DIALOG **********************************/
+/********************************** VERSION INFORMATION DIALOG **********************************/
+
+/* Small screen */
+@media (max-width: 1365px) {
+  .project-info-dialog {
+    left: 10% !important;
+  }
+}
+
+/* Medium screen */
+@media (min-width: 1366px) and (max-width: 1919px) {
+  .project-info-dialog {
+    left: 25% !important;
+    top: 30% !important;
+  }
+}
+
+/********************************** END VERSION INFORMATION DIALOG **********************************/
+
 /********************************** UNIVERSAL TASK LIST **********************************/
 .universal-tasks-header {
   border-bottom: 1px solid #dedede;
@@ -4514,6 +4544,20 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .change-password-panel {
   width: 100%;
+}
+
+@media (max-width: 1365px) {
+  .change-password-dialog {
+    left: 250px !important;
+    top: 400px !important;
+  }
+}
+
+@media (min-width: 1366px) and (max-width: 1919px) {
+  .change-password-dialog {
+    left: 400px !important;
+    top: 400px !important;
+  }
 }
 
 .widget-header-main.mod-expanded-mode .task-widget-header-content-title {
