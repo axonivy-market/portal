@@ -61,10 +61,14 @@ body {
 .layout-wrapper .layout-sidebar .layout-menu>li.active-menuitem>a {
     background-color: $primaryLightestColor;
     color: $primaryTextColor;
+    @include multi-shadow(0 4px 10px 0 rgba(0, 0, 0, 0.14), 0 5px 5px -5px rgba(60, 72, 88, 0.3), 0 5px 5px -5px rgba(60, 72, 88, 0.1));
 }
 
-.layout-wrapper .layout-sidebar .layout-menu li>a:hover {
-    background-color: $primaryLightestColor !important;
+.layout-wrapper .layout-sidebar .layout-menu .submenu-container {
+	padding: 4px 0;
+	a:hover {
+    	background-color: $primaryLightestColor !important;
+    }
 }
 
 .layout-wrapper .layout-sidebar {

@@ -476,25 +476,20 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 	background-color: rgba(255, 255, 255, 0.6);
     box-shadow: none;
     margin: auto 10px;
-    padding-right: 0;
+    padding-right: 0 !important;
 }
 
-.submenu-container :first-child {
-	border-top-right-radius: 10px !important;
-    border-top-left-radius: 10px !important;
-}
-
-.submenu-container :last-child {
-	border-bottom-right-radius: 10px !important;
-    border-bottom-left-radius: 10px !important;
-}
+/* .submenu-container :first-child { */
+/* 	border-top-right-radius: 10px !important; */
+/*     border-top-left-radius: 10px !important; */
+/* } */
 
 .submenu-container a:hover {
 	background-color: #AFCA05 !important;
 }
 
 .submenu-container.active-menuitem a:hover {
-	background-color: transparent;	
+	background-color: transparent !important;	
 }
 
 .submenu-container a {
@@ -504,6 +499,11 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .submenu-container.active-menuitem a i, .submenu-container.active-menuitem a {
   color: #AFCA05 !important; 
+}
+
+.last-sub-item {
+	border-bottom-right-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
 }
 
 /********************** END SUBMENU ITEM ***********************/
