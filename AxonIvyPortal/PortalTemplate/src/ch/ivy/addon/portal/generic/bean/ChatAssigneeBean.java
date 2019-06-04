@@ -214,9 +214,12 @@ public class ChatAssigneeBean implements Serializable {
     if (checkNoAssignees() || checkGroupChatExist()) {
       return;
     }
-
-    ICase iCase = Ivy.wfCase().ensureBusinessCase();
-    GroupChat group = initGroupChat(iCase);
+    
+    //This code from Fintech chat, persist business case when create group chat
+    //ICase iCase = Ivy.wfCase().ensureBusinessCase();
+    
+    //This code from trunk, just get current business case
+    GroupChat group = initGroupChat(Ivy.wfCase().getBusinessCase());
     FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, 
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/processChatIsCreated", Arrays.asList(getGroupChatName(group))), null);
 

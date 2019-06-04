@@ -21,7 +21,7 @@ public final class ConcurrentChatUtils {
   public static Queue<ChatMessage> getPortalChatMessageQueueOrInitIfNull(String username) {
     Queue<ChatMessage> queue = getPortalChatMessageQueue(username);
     if (queue == null) {
-      queue = new ConcurrentLinkedQueue<ChatMessage>();
+      queue = new ConcurrentLinkedQueue<>();
       setPortalChatMessageQueue(username, queue);
     }
     return queue;
