@@ -471,6 +471,39 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   z-index: auto !important;
 }
 
+/********************** START SUBMENU ITEM ***********************/
+.submenu-container {
+	background-color: rgba(255, 255, 255, 0.6);
+    box-shadow: none;
+    margin: auto 10px;
+    padding-right: 0;
+}
+
+.submenu-container :first-child {
+	border-top-right-radius: 10px !important;
+    border-top-left-radius: 10px !important;
+}
+
+.submenu-container :last-child {
+	border-bottom-right-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
+}
+
+.submenu-container a:hover {
+	background-color: #AFCA05 !important;
+}
+
+.submenu-container a {
+	background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.submenu-container.active-menuitem a i, .submenu-container.active-menuitem a {
+  color: #AFCA05 !important; 
+}
+
+/********************** END SUBMENU ITEM ***********************/
+
 /********************** START CASE BOX ***********************/
 .grid {
   display: flex;

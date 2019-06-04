@@ -269,6 +269,11 @@ PrimeFaces.widget.Serenity = PrimeFaces.widget.BaseWidget.extend({
         $.removeCookie('serenity_menu_static', {path: '/'});
     },
     
+    clearActiveMenuState: function() {
+        $.removeCookie('serenity_expandeditems', {path: '/'});
+//        $.removeCookie('serenity_menu_static', {path: '/'});
+    },
+    
     //Just remove selection item on menu, not remove state of side bar
     clearMenuStateItemSelection: function() {
     	var activeMenuItems = this.jq.find("li.active-menuitem");
