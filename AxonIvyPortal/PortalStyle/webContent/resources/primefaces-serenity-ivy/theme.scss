@@ -209,12 +209,13 @@ body .ui-message .ui-message-error-icon,
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 3px;
 }
 
 .ui-fieldset {
     .ui-fieldset-legend {
         color: $black !important;
-        line-height: 0.6rem;
+        line-height: 0.3rem;
 
         .ui-fieldset-toggler {
             padding: 0px !important;
