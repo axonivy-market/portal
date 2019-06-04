@@ -2,6 +2,7 @@ package ch.ivy.addon.portal.chat;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import ch.ivyteam.ivy.environment.Ivy;
@@ -13,12 +14,12 @@ public final class ConcurrentChatUtils {
   private ConcurrentChatUtils() {}
 
   @SuppressWarnings("unchecked")
-  public static ConcurrentLinkedQueue<ChatMessage> getPortalChatMessageQueue(String username) {
-    return (ConcurrentLinkedQueue<ChatMessage>) Ivy.wf().getApplication().getAttribute(String.format(PORTAL_CHAT_MESSAGE_QUEUE, username));
+  public static Queue<ChatMessage> getPortalChatMessageQueue(String username) {
+    return (Queue<ChatMessage>) Ivy.wf().getApplication().getAttribute(String.format(PORTAL_CHAT_MESSAGE_QUEUE, username));
   }
 
-  public static ConcurrentLinkedQueue<ChatMessage> getPortalChatMessageQueueOrInitIfNull(String username) {
-    ConcurrentLinkedQueue<ChatMessage> queue = getPortalChatMessageQueue(username);
+  public static Queue<ChatMessage> getPortalChatMessageQueueOrInitIfNull(String username) {
+    Queue<ChatMessage> queue = getPortalChatMessageQueue(username);
     if (queue == null) {
       queue = new ConcurrentLinkedQueue<ChatMessage>();
       setPortalChatMessageQueue(username, queue);
@@ -26,7 +27,7 @@ public final class ConcurrentChatUtils {
     return queue;
   }
 
-  public static void setPortalChatMessageQueue(String username,ConcurrentLinkedQueue<ChatMessage> queue) {
+  public static void setPortalChatMessageQueue(String username,Queue<ChatMessage> queue) {
     Ivy.wf().getApplication().setAttribute(String.format(PORTAL_CHAT_MESSAGE_QUEUE, username), queue);
   }
   

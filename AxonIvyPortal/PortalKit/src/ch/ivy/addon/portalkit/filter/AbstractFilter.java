@@ -103,6 +103,7 @@ public abstract class AbstractFilter<T extends Query<?>> {
    * Default categories of Task list: Expiry, Responsible, State
    * Default categories of Case list: Created, Finished, State
    * </p>
+   * @return is default filter
    */
   public boolean defaultFilter() {
     return false;

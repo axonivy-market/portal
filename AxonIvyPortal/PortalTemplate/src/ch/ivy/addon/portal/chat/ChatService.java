@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
+import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
 
 import javax.inject.Singleton;
@@ -51,6 +51,9 @@ import com.google.gson.GsonBuilder;
 @Singleton
 public class ChatService {
 
+  private static final String ERROR = "ERROR";
+  private static final String NO_ASYNC_RESPONSE = "NO_ASYNC_RESPONSE";
+  private static final String SUCCESSFUL = "SUCCESSFUL";
   private Map<String, AsyncResponse> messageResponses = new ConcurrentHashMap<>();
   private Map<String, AsyncResponse> userResponses = new ConcurrentHashMap<>();
   private Map<String, AsyncResponse> groupResponses = new ConcurrentHashMap<>();
@@ -64,7 +67,7 @@ public class ChatService {
       ChatServiceContainer.setChatService(this);
       ChatServiceContainer.registerSessionExtension();
     }
-    ConcurrentLinkedQueue<ChatMessage> messageQueue = ConcurrentChatUtils.getPortalChatMessageQueue(sessionUserName());
+    Queue<ChatMessage> messageQueue = ConcurrentChatUtils.getPortalChatMessageQueue(sessionUserName());
     if (messageQueue != null) {
       messageQueue.clear();
     }
@@ -77,7 +80,7 @@ public class ChatService {
   @Path("/messages-next")
   @Produces(MediaType.APPLICATION_JSON)
   public synchronized void reRegisterMessage(@Suspended AsyncResponse response) {
-    ConcurrentLinkedQueue<ChatMessage> messageQueue = ConcurrentChatUtils.getPortalChatMessageQueue(sessionUserName());
+    Queue<ChatMessage> messageQueue = ConcurrentChatUtils.getPortalChatMessageQueue(sessionUserName());
     if (CollectionUtils.isEmpty(messageQueue)) {
       String listener = sessionUserName();
       messageResponses.put(listener, response);
@@ -107,7 +110,7 @@ public class ChatService {
   @Produces(MediaType.APPLICATION_JSON)
   public synchronized Response readMessage(@PathParam("participant") String participant) {
     ChatMessageManager.deletedReadMessagesInMemory(Arrays.asList(sessionUserName()), participant);
-    return Response.ok("SUCCESSFUL").build();
+    return Response.ok(SUCCESSFUL).build();
   }
   
   @POST
@@ -116,7 +119,7 @@ public class ChatService {
   public synchronized Response readGroupMessage(@PathParam("caseId") String caseId) {
     ChatMessageManager.deletedReadMessagesInMemoryForGroupChat(Arrays.asList(sessionUserName()), caseId);
     
-    return Response.ok("SUCCESSFUL").build();
+    return Response.ok(SUCCESSFUL).build();
   }
 
   /**
@@ -130,8 +133,7 @@ public class ChatService {
   @Produces(MediaType.APPLICATION_JSON)
   public synchronized List<ChatMessage> loadPreviousMessages(@PathParam("participant") String participant) {
     List<String> participants = Arrays.asList(sessionUserName(), participant);
-    List<ChatMessage> result = ChatMessageManager.loadPersonalMessages(participants);
-    return result;
+    return ChatMessageManager.loadPersonalMessages(participants);
   }
 
   /**
@@ -154,12 +156,12 @@ public class ChatService {
     if (receiverResponse != null && receiverResponse.isSuspended()) {
       receiverResponse.resume(message);
     } else if (ConcurrentChatUtils.isUserOnline(receiver)){
-      ConcurrentLinkedQueue<ChatMessage> queue = ConcurrentChatUtils.getPortalChatMessageQueueOrInitIfNull(receiver);
+      Queue<ChatMessage> queue = ConcurrentChatUtils.getPortalChatMessageQueueOrInitIfNull(receiver);
       queue.add(message);
     }
 
     ChatMessageManager.savePersonalMessage(message);
-    return Response.ok("SUCCESSFUL").build();
+    return Response.ok(SUCCESSFUL).build();
   }
 
 
@@ -215,7 +217,7 @@ public class ChatService {
             userNameToSession = ConcurrentChatUtils.getUserNameToSession();
           }
           if (userNameToSession.containsKey(member)) { // user online but no AsyncResponse
-            ConcurrentLinkedQueue<ChatMessage> queue = ConcurrentChatUtils.getPortalChatMessageQueueOrInitIfNull(member);
+            Queue<ChatMessage> queue = ConcurrentChatUtils.getPortalChatMessageQueueOrInitIfNull(member);
             queue.add(message);
           }
         } 
@@ -228,9 +230,9 @@ public class ChatService {
       }
 
       ChatMessageManager.storeUnreadMessageInMemoryForGroupChat(message, Long.parseLong(caseId));
-      return Response.ok("SUCCESSFUL").build();
+      return Response.ok(SUCCESSFUL).build();
     }
-    return Response.ok("ERROR").build();
+    return Response.ok(ERROR).build();
   }
 
   @POST
@@ -259,9 +261,9 @@ public class ChatService {
     AsyncResponse response = userResponses.remove(sessionUserName());
     if (response != null) {
       response.resume(json);
-      return Response.ok("SUCCESSFUL").build();
+      return Response.ok(SUCCESSFUL).build();
     } else {
-      return Response.ok("NO_ASYNC_RESPONSE").build();
+      return Response.ok(NO_ASYNC_RESPONSE).build();
     }
   }
   
@@ -293,16 +295,16 @@ public class ChatService {
   @GET
   @Path("/groups")
   @Produces(MediaType.APPLICATION_JSON)
-  public synchronized Response loadAllGroupChat() throws Exception {
+  public synchronized Response loadAllGroupChat() {
     String sessionUserName = sessionUserName();
     List<GroupChat> groupChats = findAllChatGroups();
     AsyncResponse response = groupResponses.remove(sessionUserName);
     if (response != null) {
       response.resume(groupChats);
       usernameToGroupChats.put(sessionUserName, groupChats);
-      return Response.ok("SUCCESSFUL").build();
+      return Response.ok(SUCCESSFUL).build();
     } else {
-      return Response.ok("NO_ASYNC_RESPONSE").build();
+      return Response.ok(NO_ASYNC_RESPONSE).build();
     }
   }
 
@@ -334,7 +336,7 @@ public class ChatService {
           try {
             return mapper.readValue(iCase.getCustomVarCharField5(), GroupChat.class);
           } catch (PersistencyException | EnvironmentNotAvailableException | IOException e) {
-            e.printStackTrace();
+            Ivy.log().error(e);
             return null;
           }
         })
@@ -343,12 +345,11 @@ public class ChatService {
   }
 
   private CaseQuery buildCaseQuery() {
-    CaseQuery caseQuery = CaseQuery.create().where()
+    return CaseQuery.create().where()
         .customVarCharField5().isNotNull()
         .and().state().isNotEqual(CaseState.DONE)
         .and().state().isNotEqual(CaseState.DESTROYED)
         .and().isBusinessCase();
-    return caseQuery;
   }
   
   private boolean isUserInvolvedInGroup(long caseId, String userName) {

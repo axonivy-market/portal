@@ -16,8 +16,7 @@ public class ChatMessage
   private Date sentDate;
   private String message;
   
-  public ChatMessage()
-  {  // for decode
+  public ChatMessage() {  // for decode
   }
 
   //For case group chat
@@ -28,17 +27,7 @@ public class ChatMessage
     this.recipients = Arrays.asList("Case-" + caseId);
   }
 
-  public ChatMessage copy() {
-    ChatMessage clonedMessage = new ChatMessage();
-    clonedMessage.setSender(sender);
-    clonedMessage.setSentDate(sentDate);
-    clonedMessage.setMessage(message);
-    clonedMessage.setRecipients(recipients);
-    return clonedMessage;
-  }
-  
-  public ChatMessage(String sender, List<String> recipients, String message) 
-  {
+  public ChatMessage(String sender, List<String> recipients, String message) {
     this.sender = sender;
     this.recipients = recipients;
     this.sentDate = new Date();
@@ -48,6 +37,15 @@ public class ChatMessage
   public ChatMessage(String sender, List<String> recipients) {
     this.sender = sender;
     this.recipients = recipients;
+  }
+  
+  public ChatMessage copy() {
+    ChatMessage clonedMessage = new ChatMessage();
+    clonedMessage.setSender(sender);
+    clonedMessage.setSentDate(sentDate);
+    clonedMessage.setMessage(message);
+    clonedMessage.setRecipients(recipients);
+    return clonedMessage;
   }
 
   public String getSender() {

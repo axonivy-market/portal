@@ -25,10 +25,9 @@ public class GroupChat implements Serializable {
   private String creator;
   private Set<String> assigneeNames;
   private Map<String, String> params;
-
   @JsonIgnore
   private Set<ISecurityMember> assignees;
-
+  
   public Long getCaseId() {
     return caseId;
   }
@@ -77,7 +76,7 @@ public class GroupChat implements Serializable {
     this.assigneeNames = assigneeNames;
   }
 
-  public Set<ISecurityMember> getAssignees() throws Exception {
+  public Set<ISecurityMember> getAssignees() {
     if (CollectionUtils.isEmpty(this.assignees) && CollectionUtils.isNotEmpty(this.assigneeNames)
         && StringUtils.isNotBlank(this.applicationName)) {
       IApplication app = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(this.applicationName);

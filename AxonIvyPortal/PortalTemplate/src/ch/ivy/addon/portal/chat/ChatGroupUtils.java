@@ -24,7 +24,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ChatGroupUtils {
 
   private static final List<String> SYSTEM_USERS = Arrays.asList("SYSTEM", "PortalConnector");
-
+  private ChatGroupUtils() {}
+  
   public static Set<String> getUserNamesFromGroup(long caseId) {
     return getAllUsersFromAssigneeNames(getAssigneesFromGroup(caseId));
   }
@@ -50,7 +51,7 @@ public class ChatGroupUtils {
     Set<String> userNames = new HashSet<>();
     IRole role = Ivy.wf().getApplication().getSecurityContext().findRole(roleName);
     if (role != null) {
-      userNames.addAll(role.getAllUsers().stream().map(user -> user.getName()).collect(Collectors.toSet()));
+      userNames.addAll(role.getAllUsers().stream().map(IUser::getName).collect(Collectors.toSet()));
     }
     userNames.removeAll(SYSTEM_USERS);
     return userNames;
@@ -96,7 +97,7 @@ public class ChatGroupUtils {
     for (String roleName : roleNames) {
       IRole role = Ivy.wf().getApplication().getSecurityContext().findRole(roleName);
       if (role != null) {
-        userNames.addAll(role.getAllUsers().stream().map(user -> user.getName()).collect(Collectors.toSet()));
+        userNames.addAll(role.getAllUsers().stream().map(IUser::getName).collect(Collectors.toSet()));
       }
     }
     userNames.removeAll(SYSTEM_USERS);
