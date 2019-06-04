@@ -64,7 +64,7 @@ body {
 }
 
 .layout-wrapper .layout-sidebar .layout-menu li>a:hover {
-    background-color: $primaryLightestColor;
+    background-color: $primaryLightestColor !important;
 }
 
 .layout-wrapper .layout-sidebar {
