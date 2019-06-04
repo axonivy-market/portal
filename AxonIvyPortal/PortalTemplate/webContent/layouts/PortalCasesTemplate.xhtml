@@ -81,6 +81,17 @@
         </div>
       </div>
     </ui:define>
+    <ui:define name="footer">
+      <script type="text/javascript">
+              $(function() {
+                var simpleLargeScreen = new CaseListLargeScreenHandler();
+                var simpleMediumScreen = new CaseListMediumScreenHandler();
+                var simpleSmallScreen = new CaseListSmallScreenHandler();
+                var responsiveToolkit = ResponsiveToolkit(simpleLargeScreen, simpleMediumScreen, simpleSmallScreen);
+                Portal.init(responsiveToolkit);
+              });
+            </script>
+    </ui:define>
   </ui:composition>
 </h:body>
 </html>
