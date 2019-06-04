@@ -32,7 +32,7 @@
         <ui:insert name="errorsZone" />
         <ui:insert name="infoZone" />
 
-        <p:tabView id="case-template-tabview" prependId="false" onTabShow="onTabShow()">
+        <p:tabView id="case-template-tabview" prependId="false" onTabShow="onTabShow(); onStatusTabShow();">
           <ui:insert name="dynamicTabs">
             <!-- You can add one or many tabs here -->
           </ui:insert>
@@ -163,6 +163,9 @@
           var simpleSmallScreen = new SimpleSmallScreen();
           var responsiveToolkit = ResponsiveToolkit(simpleLargeScreen, simpleMediumScreen, simpleSmallScreen);
           Portal.init(responsiveToolkit, true);
+        }
+
+        function onStatusTabShow() {
           documentTruncation.truncate();
         }
 
