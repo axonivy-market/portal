@@ -52,6 +52,7 @@ body {
     background: $bodyBackgroundColor;
 }
 
+
 /*Style For Main menu (Left Sidebar)------------------------------------------------------------------------ */
 .left-sidebar-color {
     background-color: $menuColor;
@@ -125,7 +126,10 @@ body {
     padding: 60px 17px 0 17px;
     max-height: calc(100vh - 60px);
 }
-
+.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu > li > ul {
+    top: 54px !important;
+    border-top: 3px solid #C0CA33 !important;
+}
 /*Style for Admin Setting -------------------------------------------------------------------------------------- */
 body {
     .ui-dialog {
@@ -182,6 +186,9 @@ body .ui-message .ui-message-error-icon,
  }
 }
 
+.application-email-setting .ui-widget-header{
+    color: black !important;
+}
 /*Style For Process Widget --------------------------------------------------------------------------------*/
 .process-start-list-item:hover .process-start-list-item-icon {
     color: $primaryColor;
@@ -360,6 +367,15 @@ body .ui-buttonset .ui-state-active {
         min-width: 18px !important;
     }
 }
+
+.portal-cancel-button.ui-widget.ui-button, .ui-inplace-cancel.ui-widget.ui-button, .ui-fileupload-cancel.ui-widget.ui-button {
+    background-color: #d3d3d3 !important;
+}
+
+body .ui-dialog .ui-dialog-footer .ui-button {
+    background-color: #AFCA05;
+}
+
 
 /*Style for table --------------------------------------------------------------------------------------*/
 .ui-datatable table tbody tr.ui-datatable-selectable.ui-state-highlight td {
@@ -572,7 +588,7 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 }
 
 .ui-inputfield {
-    padding: 6px 0 6px 6px !important;
+    padding: 0px 0 6px 6px !important;
 }
 
 .ui-spinner {
