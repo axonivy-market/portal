@@ -147,6 +147,11 @@
 	    	$(function() {
 	    	  //restores menu states stores in cookies
 	          PF('main-menu').restoreMenuState();
+	          var simpleLargeScreen = new SimpleLargeScreen();
+	          var simpleMediumScreen = new SimpleMediumScreen();
+	          var simpleSmallScreen = new SimpleSmallScreen();
+	          var responsiveToolkit = ResponsiveToolkit(simpleLargeScreen, simpleMediumScreen, simpleSmallScreen);
+	          Portal.init(responsiveToolkit);
 	        });
 	    </script>
     </ui:insert>
