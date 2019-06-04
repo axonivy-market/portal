@@ -3224,7 +3224,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 .global-setting-table .ui-datatable-scrollable-header table tr th span.ui-column-title {
   display: block;
-  height: 40px;
 }
 
 .global-setting-table .setting-key {
@@ -4281,7 +4280,7 @@ margin-top
 }
 
 .color-header {
-  height: 3px;
+  height: 4px;
   display: flex;
   margin-top: 10px;
 }

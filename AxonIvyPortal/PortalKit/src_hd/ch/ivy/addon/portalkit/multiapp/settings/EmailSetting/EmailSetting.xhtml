@@ -42,7 +42,7 @@
         </h:panelGrid>
         
         <p:panel id="all-applications-email-setting"
-          header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/forAllApplications')}"
+          header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/forAllApplications')}" styleClass="application-email-setting"
           rendered="#{data.settingForAllApp}">
           <h:panelGrid columns="2">
             <!-- MAIL NOTIFICATION ON TASK ASSIGNMENT -->
@@ -80,7 +80,7 @@
 
         <h:panelGrid id="application-email-setting" columns="1" rendered="#{!data.settingForAllApp}">
           <ui:repeat value="#{data.emailSettings}" var="appSetting" step="1">
-            <p:panel header="#{appSetting.appDisplayName}" id="application-name">
+            <p:panel header="#{appSetting.appDisplayName}" id="application-name" styleClass="application-email-setting">
               <h:panelGrid columns="2">
                 <!-- MAIL NOTIFICATION ON TASK ASSIGNMENT -->
                 <p:outputLabel
