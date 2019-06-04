@@ -11,27 +11,6 @@
 	margin: 5px 0 0 10px;
 }
 
-.dropdown-icon.user-name {
-	margin-right: 20px;
-}
-
-#user-settings-menu>.dropdown-icon.user-name:after {
-	border-top-color: rgba(0, 0, 0, 0.5) !important;
-	font-family: 'FontAwesome';
-	content: "\f078";
-	position: absolute;
-	margin-left: 8px;
-	margin-top: 0;
-}
-
-.active-topmenuitem>#user-settings-menu>.dropdown-icon.user-name:after {
-	content: "\f077";
-}
-
-.dropdown-icon:hover:after, a.active-menu .dropdown-icon:after {
-	border-top-color: rgba(0, 0, 0, 1) !important;
-}
-
 .global-search-icon {
 	position: absolute;
     top: 25%;
