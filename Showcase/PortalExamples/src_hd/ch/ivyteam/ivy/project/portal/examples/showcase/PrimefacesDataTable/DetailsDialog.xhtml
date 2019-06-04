@@ -8,7 +8,7 @@
 	xmlns:pm="http://primefaces.org/mobile"
 	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:body>
-	<p:dialog header="Detail" id="detailDialog" widgetVar="detailDialog" modal="true" appendTo="@(body)">
+	<p:dialog header="Detail" id="detailDialog" widgetVar="detailDialog" modal="true" appendTo="@(body)" closeOnEscape="true" closable="true">
 		<h:form id="detailForm">
 			<p:messages id="detailMessage" />
 			<p:panelGrid columns="3" styleClass="ui-panelgrid-blank" columnClasses="ui-grid-col-4,ui-grid-col-1,ui-grid-col7">
@@ -26,12 +26,12 @@
 			</p:panelGrid>
 			<p:toolbar style="border:none">
 			<f:facet name="right">
-				<p:commandButton value="Cancel" process="@this" oncomplete="PF('detailDialog').hide();">
-					<p:resetInput target="detailForm"></p:resetInput>
-				</p:commandButton>
 				<p:commandButton value="Save" actionListener="#{logic.save}"
 					update=":form:theTable detailForm" oncomplete="validateToHide(args, PF('detailDialog'));" id="dialogSaveButton"/>
 				
+				<p:commandButton value="Cancel" process="@this" oncomplete="PF('detailDialog').hide();" styleClass="portal-cancel-button">
+					<p:resetInput target="detailForm"></p:resetInput>
+				</p:commandButton>				
 			</f:facet>	
 			</p:toolbar>		
 		</h:form>

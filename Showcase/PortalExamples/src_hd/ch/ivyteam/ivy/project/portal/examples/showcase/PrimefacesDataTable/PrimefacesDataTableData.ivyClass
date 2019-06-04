@@ -18,3 +18,5 @@ txt2 String #field
 txt2 PERSISTENT #fieldModifier
 txt3 String #field
 txt3 PERSISTENT #fieldModifier
+scoresList java.util.List<ch.ivyteam.ivy.project.portal.examples.showcase.Score> #field
+scoresList PERSISTENT #fieldModifier

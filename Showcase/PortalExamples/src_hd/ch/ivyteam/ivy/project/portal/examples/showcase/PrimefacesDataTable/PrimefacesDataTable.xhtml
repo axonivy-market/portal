@@ -285,7 +285,7 @@
 
 						<div class="card card-w-title">
 							<h4>Cell Editing with Click</h4>
-							<p:dataTable value="#{data.scores}" var="tableData" id="theEditData" editable="true" editMode="cell" widgetVar="editCell" draggableRows="true"
+							<p:dataTable value="#{data.scoresList}" var="tableData" id="theEditData" editable="true" editMode="cell" widgetVar="editCell" draggableRows="true"
 								draggableColumns="true" rows="5" rowsPerPageTemplate="5,10,15" paginator="true"
 								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
@@ -334,65 +334,11 @@
 								</p:column>
 							</p:dataTable>
 						</div>
-
-						<div class="card card-w-title">
-							<h4>Row Editing</h4>
-							<p:dataTable value="#{data.scores}" var="rowEditData" id="theEditRowData" editable="true" widgetVar="editRow" draggableRows="true"
-								draggableColumns="true" scrollable="true" scrollHeight="150" paginator="true">
-
-								<p:column headerText="No" sortBy="#{rowEditData.id}">
-									<p:cellEditor>
-										<f:facet name="output">
-											<h:outputText value="#{rowEditData.id}" />
-										</f:facet>
-										<f:facet name="input">
-											<p:inputText id="modelInput" value="#{rowEditData.id}" />
-										</f:facet>
-									</p:cellEditor>
-								</p:column>
-
-								<p:column headerText="Name">
-									<p:cellEditor>
-										<f:facet name="output">
-											<h:outputText value="#{rowEditData.name}" />
-										</f:facet>
-										<f:facet name="input">
-											<p:inputText value="#{rowEditData.name}" label="Name" />
-										</f:facet>
-									</p:cellEditor>
-								</p:column>
-
-								<p:column headerText="Points">
-									<p:cellEditor>
-										<f:facet name="output">
-											<h:outputText value="#{rowEditData.points}" />
-										</f:facet>
-										<f:facet name="input">
-											<p:inputText value="#{rowEditData.points}" />
-										</f:facet>
-									</p:cellEditor>
-								</p:column>
-
-								<p:column headerText="Date">
-									<p:cellEditor>
-										<f:facet name="output">
-											<h:outputText value="#{rowEditData.date}" />
-										</f:facet>
-										<f:facet name="input">
-											<p:calendar value="#{rowEditData.date}" pattern="dd.MM.yyyy" />
-										</f:facet>
-									</p:cellEditor>
-								</p:column>
-
-								<p:column style="width: 60px;">
-									<p:rowEditor />
-								</p:column>
-							</p:dataTable>
-						</div>
 					</div>
 				</h:form>
+				<ui:include src="DetailsDialog.xhtml" />
 			</p:tab>
-			<ui:include src="DetailsDialog.xhtml" />
+			
 		</ui:define>
 
 		<ui:define name="taskForm">
