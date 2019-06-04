@@ -220,7 +220,6 @@ customFields.STRING.CustomVarCharField1="Leave Request CustomVarCharField1"
 customFields.STRING.CustomVarCharField2="Leave Request CustomVarCharField2"
 customFields.STRING.CustomVarCharField3="Leave Request CustomVarCharField3"
 customFields.STRING.CustomVarCharField4="Leave Request CustomVarCharField4"
-customFields.STRING.CustomVarCharField5="Leave Request CustomVarCharField5"
 customFields.STRING.ProcessCategoryCode="pubRequested"
 customFields.STRING.ProcessCategoryName="Publication Requested"
 customFields.STRING.ProcessCode="pubRequested"
@@ -230,8 +229,6 @@ Tt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>CategoriedLeaveRequest.ivp</name>
-        <nameStyle>26,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -723,7 +720,6 @@ customFields.STRING.CustomVarCharField1="Leave Request CustomVarCharField1"
 customFields.STRING.CustomVarCharField2="Leave Request CustomVarCharField2"
 customFields.STRING.CustomVarCharField3="Leave Request CustomVarCharField3"
 customFields.STRING.CustomVarCharField4="Leave Request CustomVarCharField4"
-customFields.STRING.CustomVarCharField5="Leave Request CustomVarCharField5"
 customFields.STRING.ProcessCategoryCode="pubRequested"
 customFields.STRING.ProcessCategoryName="Publication Requested"
 customFields.STRING.ProcessCode="pubRequested"
@@ -733,8 +729,6 @@ Tt0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>TestRelatedTaskWithNoResponsible.ivp</name>
-        <nameStyle>36,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

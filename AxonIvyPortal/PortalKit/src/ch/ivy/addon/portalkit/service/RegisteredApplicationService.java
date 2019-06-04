@@ -137,7 +137,7 @@ public class RegisteredApplicationService extends AbstractService<Application> {
   /**
    * Find all register apps
    * @param username
-   * @return
+   * @return all register app
    */
   @SuppressWarnings("unchecked")
   public List<Application> findApplicationByUser(String username){

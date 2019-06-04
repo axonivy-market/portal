@@ -79,8 +79,10 @@
           <li><ic:ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting id="logout-setting" isWorkingOnATask="#{isWorkingOnATask}" />
           </li>
         </ul></li>
-      <li jsf:rendered="#{enablesChat}"><a jsf:id="toggle-chat-panel-command"
-        class="notification-badge mod-chat-menu js-toggle-chat-panel"><i class="fa fa-comment" /></a></li>
+      <li jsf:rendered="#{chatRendererBean.isChatRendered}"><p:commandLink id="toggle-chat-panel-command" global="false"
+          styleClass="notification-badge mod-chat-menu js-toggle-chat-panel">
+          <i class="fa fa-comment" />
+        </p:commandLink></li>
     </ul>
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" 
@@ -154,7 +156,7 @@
       <p:remoteCommand name="rcProjectInfo" actionListener="#{projectVersionBean.loadProjectVesion}" oncomplete="PF('project-info-dialog').show()" update="project-info-dialog" />
     </h:form>
   </ui:insert>
-  <c:if test="#{enablesChat eq true}">
+  <c:if test="#{chatRendererBean.isChatRendered}">
     <ui:include src="/layouts/includes/chat.xhtml" />
   </c:if>
   <!-- TOPBAR END -->
