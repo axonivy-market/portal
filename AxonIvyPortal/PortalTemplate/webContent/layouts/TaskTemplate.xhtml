@@ -260,9 +260,21 @@
           var isSelectCaseDetailsTab = $selectedTab.find('.js-case-default-widget-container').length != 0;
 
           if (isSelectCaseDetailsTab) {
+            var caseListLargeScreen = new CaseListLargeScreenHandler();
+            var caseListMediumScreen = new CaseListMediumScreenHandler();
+            var caseListSmallScreen = new CaseListSmallScreenHandler();
+            var responsiveToolkit = ResponsiveToolkit(caseListLargeScreen, caseListMediumScreen, caseListSmallScreen);
+
+            Portal.init(responsiveToolkit, true);
             caseWidget.setupHeader();
             return;
           }
+
+          var simpleLargeScreen = new SimpleLargeScreen();
+          var simpleMediumScreen = new SimpleMediumScreen();
+          var simpleSmallScreen = new SimpleSmallScreen();
+          var responsiveToolkit = ResponsiveToolkit(simpleLargeScreen, simpleMediumScreen, simpleSmallScreen);
+          Portal.init(responsiveToolkit, true);
         }
 
         </script>
