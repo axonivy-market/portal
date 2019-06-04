@@ -6,53 +6,116 @@
 
 <h:body>
   <ui:composition>
-    <h:outputScript library="js" name="chat.js" /> 
+    <ui:param name="userAgent" value="#{request.getHeader('User-Agent')}"></ui:param>
+    <ui:param name="isIE" value="#{fn:containsIgnoreCase(userAgent, 'Trident') and fn:containsIgnoreCase(userAgent, 'rv:11')}" />
+
+    <h:form>
+    <h:outputScript library="js" name="polyfill/promise.min.js" rendered="#{isIE}" />
+    <h:outputScript library="js" name="polyfill/fetch.js" rendered="#{isIE}" />
+    <h:outputScript library="js" name="polyfill/babel-runtime.js" rendered="#{isIE}" />
+    <h:outputScript library="js" name="chat-transpiled.js" rendered="#{isIE}" />
+
+    <h:outputScript library="js" name="chat.js" rendered="#{!isIE}" />
+
+    <script type="text/javascript">
+        var userName = "#{ivy.session.getSessionUserName()}";
+        var resource = new IvyUri().rest()+"/chat";
+        var isChatGroupEnabled = "#{chatRendererBean.isGroupChatRendered}";
+        var isChatPrivateEnabled = "#{chatRendererBean.isPrivateChatRendered}";
+
+        var view = new View(resource);
+        var chat = new Chat(resource, view);
+        chat.listen(true);
+        chat.getSendersOfUnreadMessages();
+        if (isChatGroupEnabled === 'true'){
+ 	       	chat.registerGroupResponse();
+        }
+        if (isChatPrivateEnabled === 'true'){
+	        chat.registerUserResponse();
+        }
+    </script>
+    <p:remoteCommand autoRun="true" actionListener="#{chatRendererBean.getGroupChatName}" global="false" />
     <h:outputStylesheet library="css" name="chat.css" />
-    <p:socket transport="long-polling" onMessage="chatHandler.onMessage" channel="/portalchat/#{chatBean.username}" autoConnect="true" />
     <div id="chat-panel" class="chat-panel js-chat-panel">
       <div class="chat-contact">
-        <div class="chat-contact-header js-chat-contact-header">
-        </div>
-        <div class="chat-contact-content">
-          <div class="chat-contact-content-filter js-filter-chat-contact">
-            <ic:ch.ivy.addon.portalkit.component.Filter ajax="false" listener="chatHandler.filter()" styleClass="js-chat-filter-user" />
+        <div class="chat-contact-content-contact-list js-chat-contact-list">
+          <div class="chat-contact-type-header" jsf:rendered="#{chatRendererBean.isGroupChatRendered and chatRendererBean.isPrivateChatRendered}">
+            #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/groupChatHeader')}
           </div>
-          <div class="chat-contact-content-contact-list js-chat-contact-list">
-            <ui:repeat var="contact" value="#{chatBean.contacts}">
-              <div class="contact-card#{contact.online ? '' : ' is-offline'} js-show-chat-message">
-                <span class="contact-card-icon js-show-contact-message-unread">
-                  <i class="fa fa-user" />
-                </span>
-                <span class="contact-card-name js-contact-card-name">#{contact.name}</span>
-                <span class="contact-card-status#{contact.online ? '' : ' is-offline'} js-contact-card-status"></span>
-              </div>
-            </ui:repeat>
+          <h:panelGroup id="group-chat-container" class="js-group-chat-container" layout="block" rendered="#{chatRendererBean.isGroupChatRendered}" />
+          <div class="chat-contact-type-header" jsf:rendered="#{chatRendererBean.isGroupChatRendered and chatRendererBean.isPrivateChatRendered}">
+            #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/personalChatHeader')}
           </div>
+          <h:panelGroup id="private-chat-container" class="js-private-chat-container" layout="block" rendered="#{chatRendererBean.isPrivateChatRendered}" />
         </div>
       </div>
-      <div class="message-list js-chat-message">
+      <div class="message-list js-chat-message-container">
         <div class="message-list-header">
-          <span class="message-list-header-close js-close-message-list"></span>
+          <span class="message-chat-header-name js-message-chat-header-name" />
+          <span class="message-list-header-close js-close-message-list" />
+          <p:commandLink id="show-participants-link" styleClass="show-participants-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/viewParticipant')}"
+            oncomplete="chat.getParticipantsForGroupChat(); PF('participants-list-dialog').show()" />
         </div>
         <div class="message-list-content">
-          <h:panelGroup id="chat-message-list" layout="block" styleClass="message-card-list js-message-card-list">
-            <ui:repeat var="message" value="#{chatBean.messages}">
-              <div class="message-card #{message.sender eq chatBean.username ? 'sent' : 'received'}">
-                <p>#{message.content}</p>
-              </div>
-            </ui:repeat>
-          </h:panelGroup>
-          <div class="message-list-content-send">
-            <h:form id="chat-send-form">
-              <p:remoteCommand name="handleChatMessageSending" actionListener="#{chatBean.handleChatMessageSending}" global="false" />
-              <p:remoteCommand name="loadPreviouseConversation" actionListener="#{chatBean.loadPreviousConversation}" update="chat-message-list" async="false" oncomplete="chatHandler.scrollMessagePanelToBottom()" global="false" />
-              <textarea onkeydown="chatHandler.onKeyEvent(event)" placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/typeMessage')}" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all message-list-content-send-input js-input-message ui-inputtextarea-resizable" />
-              <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/send')}" onclick="chatHandler.onSend(event)" styleClass="message-list-content-send-button js-send-chat-message" global="false" />
-            </h:form>
+          <div id="chat-message-list" class="chat-message-list js-message-list">
+          </div>
+          <div class="message-list-content-send chat-send-form">
+              <textarea id="message-input-field" onkeydown="chat.onKeyEvent(event)" placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/typeMessage')}" maxlength="2500"
+                class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all message-list-content-send-input js-input-message ui-inputtextarea-resizable"  wrap="hard"/>
+              <p:commandButton icon="fa fa-paper-plane" onclick="chat.sendMessage()" styleClass="message-list-content-send-button js-send-chat-message" global="false" update="@(none)" />
+
           </div>
         </div>
       </div>
     </div>
+
+    <div class="contact-card js-show-group-chat-message js-group-template u-hidden">
+      <span class="contact-card-icon js-show-contact-message-unread">
+        <i class="fa fa-users" />
+      </span>
+      <div class="contact-card-name js-group-card-name"/>
+      <input type="hidden" class="js-case-id" />
+      <span class="contact-notification js-notification u-hidden" />
+    </div>
+
+    <div id="contact-template" class="contact-card js-contact-template js-show-chat-message u-hidden">
+      <span class="contact-card-icon js-show-contact-message-unread">
+        <i class="fa fa-user" />
+        <i class="contact-card-status js-contact-card-status" />
+      </span>
+      <span class="contact-card-name js-contact-card-name" />
+      <span class="contact-notification js-notification u-hidden" />
+    </div>
+
+    <div class="js-message-template u-hidden chat-message-container">
+      <div class="chat-meta">
+        <span class="chat-sender js-sender" />
+        <span class="chat-sender js-time" />
+        <span class="tooltip js-tooltip" />
+      </div>
+      <p class="chat-message js-message" />
+    </div>
+    </h:form>
+
+    <p:dialog id="participants-list-dialog" resizable="false"
+      header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/participants')}"
+      widgetVar="participants-list-dialog" appendTo="@(body)" modal="true" width="400">
+      <h:outputText id="user-participants-list-header" styleClass="participants-list-header js-users-participants-header" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/users')}" />
+      <div class="js-users-participants">
+        <ul id="user-participants-list" class="participants-list"></ul>
+      </div>
+      <div class="js-roles-participants">
+        <ul id="roles-participants-list" class="participants-list roles-participants-list"></ul>
+      </div>
+
+      <f:facet name="footer">
+          <h:panelGroup styleClass="Fs14">
+            <p:commandButton onclick="PF('participants-list-dialog').hide()"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button"
+              styleClass="ui-confirmdialog-no" />
+          </h:panelGroup>
+      </f:facet>
+    </p:dialog>
   </ui:composition>
 </h:body>
 </html>
