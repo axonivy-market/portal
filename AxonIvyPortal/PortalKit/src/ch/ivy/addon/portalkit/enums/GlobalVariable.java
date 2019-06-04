@@ -28,7 +28,7 @@ public enum GlobalVariable {
   HIDE_STATISTIC_WIDGET(Boolean.FALSE.toString(), "hideStatisticWidget"),
   DISPLAY_MESSAGE_AFTER_FINISH_TASK(Boolean.TRUE.toString(), "displayMessageAfterFinishTask"),
   ENABLE_GROUP_CHAT(Boolean.FALSE.toString(), "enableGroupChat"),
-  ENABLE_PRIVATE_CHAT(Boolean.FALSE.toString(), "enableGroupChat");
+  ENABLE_PRIVATE_CHAT(Boolean.FALSE.toString(), "enablePrivateChat");
 
   private String defaultValue;
   private String noteCMS;
