@@ -90,6 +90,12 @@ body {
     color: $primaryTextColor;
 }
 
+.layout-wrapper .layout-sidebar .layout-menu {
+	li {
+		width : auto;
+	}
+}
+
 /*Style for Top bar -------------------------------------------------------------------------------------- */
 .layout-wrapper .layout-main .layout-topbar {
     background: $primaryLightestColor;
@@ -420,6 +426,12 @@ body .ui-dialog .ui-dialog-footer .ui-button {
                 }
             }
         }
+
+        .ui-inputfield.ui-inputtext.ui-widget.ui-state-default.ui-corner-all {
+            &.ui-column-filter {
+                background-image: linear-gradient(to bottom, $primaryColor, $primaryColor), linear-gradient(to bottom, $inputBorderColor, $inputBorderColor);
+            }
+        }
     }
 
     tbody {
@@ -434,6 +446,12 @@ body .ui-dialog .ui-dialog-footer .ui-button {
                 }
             }
         }
+
+        tr.ui-datatable-even {    
+            .ui-editable-column.ui-state-highlight.ui-cell-editing {
+                background-color: transparent;
+            }
+        }
     }
 
     .ui-datatable-scrollable-body {
@@ -442,6 +460,10 @@ body .ui-dialog .ui-dialog-footer .ui-button {
 
     .ui-paginator-rpp-options {
         vertical-align: middle;
+    }
+
+    .ui-inputfield.ui-widget.ui-state-default.ui-corner-all.hasDatepicker {
+        background-image: linear-gradient(to bottom, $primaryColor, $primaryColor), linear-gradient(to bottom, $inputBorderColor, $inputBorderColor) !important;
     }
 }
 

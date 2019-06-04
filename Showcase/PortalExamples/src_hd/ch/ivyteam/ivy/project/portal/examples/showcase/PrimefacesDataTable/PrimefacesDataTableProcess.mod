@@ -78,6 +78,9 @@ out.scores.add((new Score()).setId(650).setName("Peter").setPoints(2479).setDate
 out.scores.add((new Score()).setId(700).setName("Charly").setPoints(3424).setDate(new Date()));
 out.scores.add((new Score()).setId(850).setName("Tim").setPoints(2889).setDate(new Date()));
 
+// init List data for table Cell edit
+out.scoresList = out.scores;
+
 // init list of names
 for(Score scr : out.scores)
 {
