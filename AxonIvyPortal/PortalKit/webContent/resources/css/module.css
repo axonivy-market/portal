@@ -493,6 +493,10 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 	background-color: #AFCA05 !important;
 }
 
+.submenu-container.active-menuitem a:hover {
+	background-color: transparent;	
+}
+
 .submenu-container a {
 	background-color: transparent !important;
     box-shadow: none !important;
