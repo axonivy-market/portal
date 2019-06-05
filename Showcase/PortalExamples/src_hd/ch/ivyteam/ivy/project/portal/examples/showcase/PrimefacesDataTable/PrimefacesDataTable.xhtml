@@ -3,7 +3,7 @@
 	xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
 <h:body>
 	<ui:composition template="/layouts/TaskTemplate.xhtml">
-		<ui:define name="title">Datatable</ui:define>
+		<ui:define name="pageTitle">Datatable</ui:define>
 		<ui:param name="caseId" value="#{ivy.case.id}" />
 		<ui:param name="task" value="#{ivy.task}" />
 
@@ -37,7 +37,7 @@
 									<p:outputLabel for="calendar" value="Calendar" />
 								</div>
 								<div class="ui-g-12 ui-md-9 ui-lg-3">
-									<p:calendar id="calendar" />
+									<p:calendar id="calendar" pattern="dd/MM/yyyy" />
 								</div>
 								<div class="ui-g-12 ui-md-0 ui-lg-1" />
 								<div class="ui-g-12 ui-md-3 ui-lg-2">
