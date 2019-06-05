@@ -262,6 +262,7 @@
 	margin-right: auto;
 	margin-left: auto;
 	margin-top: 0;
+	margin-bottom: 10px;
 }
 
 .dashboard-container:before, .dashboard-container:after, .simple-container:before, .simple-container:after,
@@ -291,8 +292,7 @@
 /* Small screen */
 @media ( min-width : 992px) and ( max-width : 1365px) {
 	.dashboard-container, .simple-container {
-		width: 880px;
-		padding-left: 0;
+		padding: 0;
 	}
 	.dashboard-main-content-2nd-col {
 		width: 520px;
