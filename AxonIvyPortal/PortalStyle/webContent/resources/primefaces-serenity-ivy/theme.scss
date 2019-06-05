@@ -664,5 +664,15 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
     padding: 8px !important;
 }
 
+/*Style for Top/Side bar - override z-index */ 
+.layout-wrapper {
+	.layout-sidebar {
+		z-index: 1000 !important;
+	}
+	.layout-topbar {
+		z-index: 997 !important;
+	}
+}
+
 
 @import '../sass/ivy/customization';
