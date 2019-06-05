@@ -19,7 +19,7 @@ function ProcessWidget() {
           error = 55; // included margin, padding in search page
         }
         var announcementMessageContainer = $('.js-announcement-message');
-        var mainScreenHeight = $('body').outerHeight() - $('.layout-topbar').outerHeight() - 70; // exclude padding
+        var mainScreenHeight = $('body').outerHeight() - $('.layout-topbar').outerHeight() - 30; // exclude margin
     	var availableHeight = mainScreenHeight - announcementMessageContainer.outerHeight(true)
     							- processsHeader.outerHeight(true) 
     							- globalSearchInput.outerHeight(true) - globalSearchTabHeader.outerHeight(true)
