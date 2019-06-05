@@ -41,18 +41,20 @@
                 actionListener="#{logic.openApp(menuItem.href)}" ajax="false" target="_blank" onclick="event.stopPropagation()" disabled="#{menuItem.disabled}" 
                 icon="#{menuItem.icon}" value="#{menuItem.value}" iconPos="right" containerStyleClass="#{menuItem.styleClass}" />
 
-              <c:forEach var="subMenuItem" items="#{data.subMenuItems}" varStatus="subMenuItemStatus">
+              <c:forEach var="subMenuItem" items="#{data.subMenuItems}" varStatus="subMenuItemStatus" >
+              	<c:set var="isThirdPartyApp" value="#{empty menuItem.getAttributes().get('isThirdPartyApp')}"/>
               	<c:set var="islastSubItem" value="#{subMenuItemStatus.index == data.subMenuItems.size() - 1 ? 'last-sub-item':''}" />
                 <c:set var="isIvyLink"
                   value="#{(fn:contains(process.link, '.ivp?') or fn:endsWith(subMenuItem.link, '.ivp') or fn:endsWith(subMenuItem.link, '.icm')) or subMenuItem.link eq NULL}" />
-                <p:menuitem id="menu-item-#{menuItemStatus.index}-sub-menu-item-#{subMenuItemStatus.index}" rendered="#{isIvyLink}" actionListener="#{logic.onClickSubMenuItem}"
+                <p:menuitem id="menu-item-#{menuItemStatus.index}-sub-menu-item-#{subMenuItemStatus.index}" rendered="#{isThirdPartyApp and isIvyLink}" actionListener="#{logic.onClickSubMenuItem}"
                   value="#{subMenuItem.label}" icon="#{subMenuItem.icon}" iconPos="right" styleClass="submenu" update="main-menu" process="main-menu" containerStyleClass="submenu-container #{islastSubItem}">
                   <f:attribute name="selectedSubMenuItem" value="#{subMenuItem}" />
                 </p:menuitem>
-                <p:menuitem id="thirdparty-menu-item-#{menuItemStatus.index}-sub-menu-item-#{subMenuItemStatus.index}" rendered="#{!isIvyLink}" target="_blank" url="#{subMenuItem.externalLink}" value="#{subMenuItem.label}"
+                
+                <p:menuitem id="thirdparty-menu-item-#{menuItemStatus.index}-sub-menu-item-#{subMenuItemStatus.index}" rendered="#{isThirdPartyApp and !isIvyLink}" target="_blank" url="#{subMenuItem.externalLink}" value="#{subMenuItem.label}"
                   styleClass="submenu" icon="#{subMenuItem.icon}" update="main-menu" process="main-menu" containerStyleClass="submenu-container #{islastSubItem}" />
               </c:forEach>
-
+              
             </c:forEach>
           </ps:menu>
         </h:form>
