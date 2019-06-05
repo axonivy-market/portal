@@ -5578,6 +5578,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 .elapsed-time-result-list .case-table {
   display: inline-block !important;
+  width: 100%;
 
 }
 .elapsed-time-detail-form {
