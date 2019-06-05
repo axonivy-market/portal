@@ -479,11 +479,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
     padding-right: 0 !important;
 }
 
-/* .submenu-container :first-child { */
-/* 	border-top-right-radius: 10px !important; */
-/*     border-top-left-radius: 10px !important; */
-/* } */
-
 .submenu-container a:hover {
 	background-color: #AFCA05 !important;
 }
@@ -498,7 +493,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .submenu-container.active-menuitem a i, .submenu-container.active-menuitem a {
-  color: #AFCA05 !important; 
+  color: #AFCA05 !important;
 }
 
 .last-sub-item {
