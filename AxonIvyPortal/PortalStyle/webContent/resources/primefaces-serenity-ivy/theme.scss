@@ -614,12 +614,20 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 }
 
 .ui-inputfield {
-    padding: 0px 0 6px 6px !important;
+    padding: 6px 0 6px 6px !important;
 }
 
 .ui-spinner {
     .ui-spinner-input {
         padding-right: 30px !important;
+    }
+}
+
+.ui-selectonemenu {
+	.ui-selectonemenu-trigger {
+		.ui-icon.ui-icon-triangle-1-s {
+    		margin-top: 5px;
+    	}
     }
 }
 
