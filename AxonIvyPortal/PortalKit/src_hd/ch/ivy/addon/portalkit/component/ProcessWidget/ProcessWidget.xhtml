@@ -83,7 +83,7 @@
 		</h:panelGroup>
 
 		<h:panelGroup id="process-list" layout="block"
-			styleClass="widget-content #{processWidgetBean.compactMode ? '' : 'process-start-list'}">
+			styleClass="widget-content #{processWidgetBean.compactMode ? 'compact-processes-container' : 'process-start-list'}">
 			<h:panelGroup styleClass="process-empty-container"
 				rendered="#{processWidgetBean.compactMode and empty processWidgetBean.userProcesses}">
 				<p>
@@ -230,36 +230,38 @@
 					</h:panelGroup>
 				</h:form>
 			</h:panelGroup>
-			<ui:repeat varStatus="status" var="process" value="#{processWidgetBean.defaultUserProcesses}">
-				<c:set var="isExpressWorkflow" value="#{processWidgetBean.isExpressWorkflow(process)}" />
-				<c:set var="isExternalProcess"
-					value="#{!(fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}" />
-				<h:form id="process-item-form"
-					styleClass="#{cc.attrs.processCardStyle} process-start-list-item #{process.link eq cc.attrs.highlightedProcessStartLink ? 'highlighted-item' : ''} #{isExpressWorkflow ? 'express-workflow' : ''}"
-					style="#{cc.attrs.processCardStyleClass}" rendered="#{!processWidgetBean.editMode}">
-					<p:link id="external-process-item" href="#{process.link}" target="_blank" rendered="#{isExternalProcess}"
-						styleClass="external-process-item #{cc.attrs.processCardStyle} js-process-start-list-item"
-						style="#{cc.attrs.processCardStyleClass}">
-						<ui:include src="ProcessItem.xhtml">
-							<ui:param name="renderIcon" value="true"></ui:param>
-							<ui:param name="processType" value="external-process-item" />
-						</ui:include>
-					</p:link>
-					<p:commandLink id="process-item" actionListener="#{logic.startProcess(process.link)}" target="_self"
-						styleClass="process-item" rendered="#{!isExternalProcess}">
-						<ui:include src="ProcessItem.xhtml">
-							<ui:param name="renderIcon" value="true"></ui:param>
-							<ui:param name="processType" value="process-item" />
-						</ui:include>
-					</p:commandLink>
-					<h:panelGroup>
-						<ui:include src="ProcessItemActions.xhtml">
-							<ui:param name="processType" value="#{isExternalProcess ? 'external-process' : 'process'}" />
-							<ui:param name="canShowExpressActions" value="#{isExpressWorkflow}" />
-						</ui:include>
-					</h:panelGroup>
-				</h:form>
-			</ui:repeat>
+			<h:panelGroup id="default-user-processes-container" styleClass="compact-processes-container" layout="block">
+				<ui:repeat varStatus="status" var="process" value="#{processWidgetBean.defaultUserProcesses}">
+					<c:set var="isExpressWorkflow" value="#{processWidgetBean.isExpressWorkflow(process)}" />
+					<c:set var="isExternalProcess"
+						value="#{!(fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}" />
+					<h:form id="process-item-form"
+						styleClass="#{cc.attrs.processCardStyle} process-start-list-item #{process.link eq cc.attrs.highlightedProcessStartLink ? 'highlighted-item' : ''} #{isExpressWorkflow ? 'express-workflow' : ''}"
+						style="#{cc.attrs.processCardStyleClass}" rendered="#{!processWidgetBean.editMode}">
+						<p:link id="external-process-item" href="#{process.link}" target="_blank" rendered="#{isExternalProcess}"
+							styleClass="external-process-item #{cc.attrs.processCardStyle} js-process-start-list-item"
+							style="#{cc.attrs.processCardStyleClass}">
+							<ui:include src="ProcessItem.xhtml">
+								<ui:param name="renderIcon" value="true"></ui:param>
+								<ui:param name="processType" value="external-process-item" />
+							</ui:include>
+						</p:link>
+						<p:commandLink id="process-item" actionListener="#{logic.startProcess(process.link)}" target="_self"
+							styleClass="process-item" rendered="#{!isExternalProcess}">
+							<ui:include src="ProcessItem.xhtml">
+								<ui:param name="renderIcon" value="true"></ui:param>
+								<ui:param name="processType" value="process-item" />
+							</ui:include>
+						</p:commandLink>
+						<h:panelGroup>
+							<ui:include src="ProcessItemActions.xhtml">
+								<ui:param name="processType" value="#{isExternalProcess ? 'external-process' : 'process'}" />
+								<ui:param name="canShowExpressActions" value="#{isExpressWorkflow}" />
+							</ui:include>
+						</h:panelGroup>
+					</h:form>
+				</ui:repeat>
+			</h:panelGroup>
 		</h:panelGroup>
 	</div>
 	<p:dialog id="add-new-process-dialog" styleClass="new-process-dialog" closeOnEscape="true"

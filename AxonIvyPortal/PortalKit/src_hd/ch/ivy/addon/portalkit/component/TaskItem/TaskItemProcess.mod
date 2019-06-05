@@ -619,8 +619,8 @@ if(in.selectedTask.state == TaskState.DONE){
 }
 
 facesContext.validationFailed();
-facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
-requesContext.update("task-widget:cannot-start-task-notification");  
+facesContext.addMessage("portal-global-growl", new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
+requesContext.update("portal-global-growl");  
 ' #txt
 Ts0 f79 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f79 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1290,8 +1290,8 @@ if(!in.selectedTask.canResume) {
 	RequestContext requesContext = RequestContext.getCurrentInstance();
       FacesContext facesContext = FacesContext.getCurrentInstance();
 	facesContext.validationFailed();
-      facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
-      requesContext.update("task-widget:cannot-start-task-notification");        
+      facesContext.addMessage("portal-global-growl", new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
+      requesContext.update("portal-global-growl");        
 }
 ' #txt
 Ts0 f100 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt

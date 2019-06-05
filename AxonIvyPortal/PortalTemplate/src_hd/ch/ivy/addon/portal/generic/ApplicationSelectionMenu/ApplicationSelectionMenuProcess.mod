@@ -261,7 +261,7 @@ for (Application application : in.applications){
 if (numberOfIvyApplications > 1 || numberOfIvyApplications == 0) {
 	Button menuItem = new Button();
 	menuItem.value = ivy.cms.co("/ch.ivy.addon.portal.generic/CustomLinkGenerator/dashboard");
-	menuItem.icon = "fa fa-dashcube";
+	menuItem.icon = "fa fa-home";
 	if (numberOfIvyApplications == 0) {
 		menuItem.href = new PortalNavigator().getPortalStartUrlOfCurrentApplication();
 		menuItem.styleClass="ivy-active";

@@ -2248,6 +2248,32 @@ a.case-details-document-add-link {
   padding-right: 5px;
 }
 
+.compact-processes-container {
+  overflow-y: auto;
+}
+
+.compact-processes-container .process-start-list-item {
+ margin: 2px 3px 5px 2px;
+} 
+
+@media (max-width: 1365px) {
+  .compact-processes-container {
+    max-height: 110px;
+  }
+}
+
+@media (min-width: 1366px) and (max-width: 1919px) {
+  .compact-processes-container {
+    max-height: 385px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .compact-processes-container {
+    max-height: 385px;
+  }
+}
+
 .autocomplete-process-description-tooltip {
   width: 150px;
 }
