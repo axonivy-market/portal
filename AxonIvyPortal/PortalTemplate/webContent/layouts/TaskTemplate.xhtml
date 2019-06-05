@@ -14,6 +14,7 @@
     </ui:define>
 
     <ui:define name="simplePageContent">
+    <p:growl id="task-template-growl" />
 
       <c:set var="case" value="#{caseWidgetBean.findCase(caseId)}" scope="request" />
       <ui:insert name="breadCrumb" />

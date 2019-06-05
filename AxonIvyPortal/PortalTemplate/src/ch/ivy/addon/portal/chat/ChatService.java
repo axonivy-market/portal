@@ -27,7 +27,9 @@ import javax.ws.rs.core.Response;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.ListUtils;
+import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
@@ -328,13 +330,13 @@ public class ChatService {
   private List<GroupChat> findAllChatGroups() {
     ObjectMapper mapper = new ObjectMapper();
     CaseQuery caseQuery = buildCaseQuery();
-    List<ICase> casesWithNonNullVarchar5 = Ivy.wf().getCaseQueryExecutor().getResults(caseQuery);
+    List<ICase> caseWithNoneEmptyGroupChatInfo = Ivy.wf().getCaseQueryExecutor().getResults(caseQuery);
     
-    return casesWithNonNullVarchar5.stream()
+    return caseWithNoneEmptyGroupChatInfo.stream()
         .filter(iCase -> isUserInvolvedInGroup(iCase.getId(), sessionUserName()))
         .map(iCase -> {
           try {
-            return mapper.readValue(iCase.getCustomVarCharField5(), GroupChat.class);
+            return mapper.readValue(iCase.customFields().stringField(AdditionalProperty.PORTAL_GROUP_CHAT_INFO.toString()).get().orElse(StringUtils.EMPTY), GroupChat.class);
           } catch (PersistencyException | EnvironmentNotAvailableException | IOException e) {
             Ivy.log().error(e);
             return null;
@@ -346,7 +348,7 @@ public class ChatService {
 
   private CaseQuery buildCaseQuery() {
     return CaseQuery.create().where()
-        .customVarCharField5().isNotNull()
+        .customField().stringField(AdditionalProperty.PORTAL_GROUP_CHAT_INFO.toString()).isNotNull()
         .and().state().isNotEqual(CaseState.DONE)
         .and().state().isNotEqual(CaseState.DESTROYED)
         .and().isBusinessCase();

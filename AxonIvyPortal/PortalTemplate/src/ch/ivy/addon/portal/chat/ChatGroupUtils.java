@@ -6,20 +6,20 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ChatGroupUtils {
 
@@ -81,7 +81,7 @@ public class ChatGroupUtils {
       return assignees;
     }
     ObjectMapper mapper = new ObjectMapper();
-    String groupChatJson = Optional.ofNullable(iCase.getCustomVarCharField5()).orElse(StringUtils.EMPTY);
+    String groupChatJson = iCase.customFields().stringField(AdditionalProperty.PORTAL_GROUP_CHAT_INFO.toString()).get().orElse(StringUtils.EMPTY);
     try {
       GroupChat groupChat = mapper.readValue(groupChatJson, GroupChat.class);
       assignees = groupChat.getAssigneeNames();

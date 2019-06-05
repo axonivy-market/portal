@@ -27,6 +27,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import ch.ivy.addon.portal.chat.ChatGroupUtils;
 import ch.ivy.addon.portal.chat.ChatServiceContainer;
 import ch.ivy.addon.portal.chat.GroupChat;
+import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
@@ -186,7 +187,7 @@ public class ChatAssigneeBean implements Serializable {
   }
 
   private GroupChat mapFromCustomField(ICase iCase) {
-    String groupChatJson = iCase.getCustomVarCharField5();
+    String groupChatJson = iCase.customFields().stringField(AdditionalProperty.PORTAL_GROUP_CHAT_INFO.toString()).get().orElse(StringUtils.EMPTY);
     try {
       ObjectMapper mapper = new ObjectMapper();
       return mapper.readValue(groupChatJson, GroupChat.class);
@@ -198,7 +199,7 @@ public class ChatAssigneeBean implements Serializable {
 
   private CaseQuery queryCaseHasGroupChat() {
     CaseQuery caseQuery = CaseQuery.create();
-    caseQuery.where().caseId().isEqual(Ivy.wfCase().getBusinessCase().getId()).and().customVarCharField5().isNotNull();
+    caseQuery.where().caseId().isEqual(Ivy.wfCase().getBusinessCase().getId()).and().customField().stringField(AdditionalProperty.PORTAL_GROUP_CHAT_INFO.toString()).isNotNull();
     return caseQuery;
   }
   
@@ -263,9 +264,10 @@ public class ChatAssigneeBean implements Serializable {
 
   private boolean saveGroupChat(GroupChat group, boolean isUpdate) throws JsonProcessingException {
     IBusinessCase iCase = Ivy.wfCase().getBusinessCase();
-    if (StringUtils.isBlank(iCase.getCustomVarCharField5()) || isUpdate) {
+    String portalGroupChatInfo = iCase.customFields().stringField(AdditionalProperty.PORTAL_GROUP_CHAT_INFO.toString()).get().orElse(StringUtils.EMPTY);
+    if (StringUtils.isBlank(portalGroupChatInfo) || isUpdate) {
       String json = new ObjectMapper().writeValueAsString(group);
-      iCase.setCustomVarCharField5(json);
+      iCase.customFields().stringField(AdditionalProperty.PORTAL_GROUP_CHAT_INFO.toString()).set(json);
       return true;
     }
     return false;
