@@ -164,8 +164,6 @@
   border: none;
   padding-left: 10px;
   padding-right: 10px;
-  font-family: 'robotobold'; 
-  font-size: 1.2rem;
   height: 25px;
   border-bottom: 1px solid rgba(244, 244, 244 ,1);
   text-align: left;
@@ -3355,14 +3353,17 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 .substitute-role {
   width: 40%;
+  height: 30px !important;
 }
 
 .substitute-deputy {
   width: 30%;
+  height: 29px !important;
 }
 
 .substitute-comment {
   width: 30%;
+  height: 29px !important;
 }
 
 .substitute-comment input {
