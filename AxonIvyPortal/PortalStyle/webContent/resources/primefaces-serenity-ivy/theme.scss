@@ -631,6 +631,15 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
     }
 }
 
+.ui-autocomplete {
+	.ui-autocomplete-dropdown {
+    
+		&.ui-button.ui-button-icon-only {
+        	top: 5px;
+        }
+    }
+}
+
 /*Style For Accordion header --------------------------------------------------------------------------------------*/
 .ui-accordion {
     .ui-accordion-header {
