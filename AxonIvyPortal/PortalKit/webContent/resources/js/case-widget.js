@@ -14,7 +14,7 @@ function CaseWidget(outerPanelId) {
         error = 55; // included margin, padding in search page
       }
 
-      var mainScreenHeight = $('body').outerHeight() - $('.layout-topbar').outerHeight();
+      var mainScreenHeight = $('body').outerHeight() - $('.layout-topbar').outerHeight() - 20; //exclude margin
       var availableHeight = mainScreenHeight - caseWidgetHeaderContainer.outerHeight(true)
           - caseWidgetSortMenuContainer.outerHeight(true) - caseWidgetFilterContainer.outerHeight(true)
           - globalSearchInput.outerHeight(true) - globalSearchTabHeader.outerHeight(true)
