@@ -590,6 +590,10 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
     width: auto;
     margin: 0px 0px 0px 12px !important;
 }
+.ui-chkbox.ui-widget {
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
 
 /*Style for announcement*/
 .announcement-message-customizable {
