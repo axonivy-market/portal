@@ -11,9 +11,11 @@ PrimeFaces.widget.Serenity = PrimeFaces.widget.BaseWidget.extend({
         $(function() {
             $this._init();
         });
+
+        if(!this.wrapper.hasClass('layout-menu-horizontal')) {
+            this.restoreMenuState();
+        }
         
-        //Comment out this line of Serenity, we call this method in BasicTemplate and DefaultHomePageTemplate
-        //this.restoreMenuState();
         this.expandedMenuitems = this.expandedMenuitems||[];
     },
     
@@ -22,7 +24,7 @@ PrimeFaces.widget.Serenity = PrimeFaces.widget.BaseWidget.extend({
         this.sidebar = this.wrapper.children('.layout-sidebar');
         this.menu = this.sidebar.find('.layout-menu');
         this.menulinks = this.menu.find('a');
-        this.topbar = this.contentWrapper.children('.layout-topbar');
+        this.topbar = this.contentWrapper.find('.layout-topbar');
         this.menuButton = this.topbar.children('.menu-btn');
         this.topbarMenu = this.topbar.find('> .layout-topbar-menu-wrapper > .topbar-menu');
         this.topbarItems = this.topbarMenu.children('li');
@@ -30,36 +32,62 @@ PrimeFaces.widget.Serenity = PrimeFaces.widget.BaseWidget.extend({
         this.topbarMenuButton = this.topbar.find('> .topbar-menu-btn');
         this.anchorButton = this.sidebar.find('> .sidebar-logo > .sidebar-anchor');
         this.nano = this.sidebar.find('.nano');
+        this.isRTL = this.wrapper.hasClass('layout-rtl');
         this.bindEvents();
     },
     
     bindEvents: function() {
         var $this = this;
-        $('.nano').nanoScroller({flash: true});
+        
+        $('.nano').nanoScroller({flash: true, isRTL: $this.isRTL});
         
         this.sidebar.on('mouseenter', function(e) {
-            if(!$this.wrapper.hasClass('layout-sidebar-static')) {
-                if($this.hideTimeout) {
-                    clearTimeout($this.hideTimeout);
+        
+                if(!$this.wrapper.hasClass('layout-sidebar-static')) {
+                    if($this.hideTimeout) {
+                        clearTimeout($this.hideTimeout);
+                    }
+                    $this.sidebar.addClass('layout-sidebar-active');
                 }
-                $this.sidebar.addClass('layout-sidebar-active');
-            }
+            
         })
         .on('mouseleave', function(e) {
-            if(!$this.wrapper.hasClass('layout-sidebar-static')) {
-                $this.hideTimeout = setTimeout(function() {
-                    $this.sidebar.removeClass('layout-sidebar-active');
-                }, 250); 
-            }
+            
+                if(!$this.wrapper.hasClass('layout-sidebar-static')) {
+                    $this.hideTimeout = setTimeout(function() {
+                        $this.sidebar.removeClass('layout-sidebar-active');
+                    }, $this.cfg.closeDelay); 
+                }
+            
         });
+        
         
         this.menulinks.off('click').on('click', function(e) {
             var link = $(this),
             item = link.parent(),
             submenu = item.children('ul');
+            horizontal = $this.isHorizontal() && $this.isDesktop();
+            
+            if(horizontal) {
+                $this.horizontalMenuClick = true;
+            }
             
             if(item.hasClass('active-menuitem')) {
                 if(submenu.length) {
+                    $this.removeMenuitem(item.attr('id'));
+                    item.removeClass('active-menuitem');
+                    
+                    if(horizontal) {
+                        if(item.parent().is($this.jq)) {
+                            $this.menuActive = false;
+                        }
+                        
+                        submenu.hide();
+                    }
+                    else {
+                        submenu.slideUp();
+                    }
+                    
                     submenu.find('.ink').remove();
                     
                     submenu.slideUp(function() {
@@ -70,27 +98,59 @@ PrimeFaces.widget.Serenity = PrimeFaces.widget.BaseWidget.extend({
             }
             else {
                 $this.addMenuitem(item.attr('id'));
-                $this.deactivateItems(item.siblings(), true);
-                $this.activate(item);
+
+                if(horizontal) {
+                    $this.deactivateItems(item.siblings());
+                    item.addClass('active-menuitem');
+                    $this.menuActive = true;
+                    submenu.show();
+                }
+                else {
+                    $this.deactivateItems(item.siblings(), true);
+                    $this.activate(item);
+                }
             }
 
             setTimeout(function() {
                 $this.nano.nanoScroller();
             }, 500);
                                     
+            if(!horizontal) {
+                setTimeout(function() {
+                    $(".nano").nanoScroller();
+                }, 500);
+            }
+            
             if(submenu.length) {
                 e.preventDefault();
             }
         });
-        
-        this.topbarLinks.on('click', function(e) {
+
+        this.menu.find('> li').on('mouseenter', function(e) {    
+            if($this.isHorizontal() && $this.isDesktop()) {
+                var item = $(this);
+                
+                if(!item.hasClass('active-menuitem')) {
+                    $this.menu.find('.active-menuitem').removeClass('active-menuitem');
+                    $this.menu.find('ul:visible').hide();
+                    $this.menu.find('.ink').remove();
+                    
+                    if($this.menuActive) {
+                        item.addClass('active-menuitem');
+                        item.children('ul').show();
+                    }
+                }
+            }
+        });
+
+        this.topbarLinks.off('click.topbarLink').on('click.topbarLink',  function(e) {
             var link = $(this),
             item = link.parent(),
             submenu = link.next();
             
             $this.topbarClick = true;
 
-            item.siblings('.active-topmenuitem').removeClass('active-topmenuitem');
+            item.siblings('.active-topmenuitem').removeClass('active-topmenuitem'); 
 
             if($this.isMobile()) {
                 item.children('ul').removeClass('fadeInDown fadeOutUp');
@@ -166,22 +226,30 @@ PrimeFaces.widget.Serenity = PrimeFaces.widget.BaseWidget.extend({
             $(document.body).removeClass('hidden-overflow');
         });
         
-        $(document.body).on('click', function() {
+        $(document.body).off('click').on('click', function() {
+            if($this.isHorizontal() && !$this.horizontalMenuClick && $this.isDesktop()) {
+                $this.menu.find('.active-menuitem').removeClass('active-menuitem');
+                $this.menu.find('ul:visible').hide();
+                $this.menuActive = false;
+            }
+
             if(!$this.topbarClick) {
                 $this.topbarItems.filter('.active-topmenuitem').removeClass('active-topmenuitem');
                 $this.topbarMenu.removeClass('topbar-menu-active');
             }
-                                    
+                    
+            $this.horizontalMenuClick = false;
             $this.topbarClick = false;
         });
     },
         
     activate: function(item) {
-        var submenu = item.children('ul');
-        item.addClass('active-menuitem');
-
-        if(submenu.length) {
-            submenu.slideDown();
+        if (!item[0].id.includes('thirdparty-menu-item')) {
+            var submenu = item.children('ul');
+            item.addClass('active-menuitem');
+            if(submenu.length) {
+                submenu.slideDown();
+            }
         }
     },
     
@@ -256,6 +324,10 @@ PrimeFaces.widget.Serenity = PrimeFaces.widget.BaseWidget.extend({
     },
     
     saveMenuState: function() {
+        if(this.isHorizontal()) {
+            return;
+        }
+        
         if(this.wrapper.hasClass('layout-wrapper-static'))
             $.cookie('serenity_menu_static', 'serenity_menu_static', {path: '/'});
         else
@@ -271,7 +343,15 @@ PrimeFaces.widget.Serenity = PrimeFaces.widget.BaseWidget.extend({
     
     clearActiveMenuState: function() {
         $.removeCookie('serenity_expandeditems', {path: '/'});
-//        $.removeCookie('serenity_menu_static', {path: '/'});
+    },
+    
+  //Just remove active state of thirdparty item
+    removeActiveMenuItemSelection: function() {
+    	var activeMenuItems = this.jq.find("li.active-menuitem");
+    	
+    	if(activeMenuItems.length > 0) {
+    		activeMenuItems.removeClass('active-menuitem');
+    	}
     },
     
     //Just remove selection item on menu, not remove state of side bar
@@ -293,7 +373,9 @@ PrimeFaces.widget.Serenity = PrimeFaces.widget.BaseWidget.extend({
                 var id = this.expandedMenuitems[i];
                 if (id) {
                     var menuitem = $("#" + this.expandedMenuitems[i].replace(/:/g, "\\:"));
-                    menuitem.addClass('active-menuitem');
+                    if (!menuitem[0].id.includes('thirdparty-menu-item')) {
+                    	menuitem.addClass('active-menuitem');
+                    }
                     
                     var submenu = menuitem.children('ul');
                     if(submenu.length) {
@@ -320,6 +402,14 @@ PrimeFaces.widget.Serenity = PrimeFaces.widget.BaseWidget.extend({
     
     isMobile: function() {
         return window.innerWidth <= 640;
+    },
+
+    isHorizontal: function() {
+        return this.wrapper.hasClass('layout-menu-horizontal');
+    },
+
+    isDesktop: function() {
+        return window.innerWidth > 1024;
     }
 });
 
@@ -453,14 +543,18 @@ if(PrimeFaces.widget.InputSwitch) {
          toggle: function() {
              var $this = this;
 
-             if(this.input.prop('checked'))
-                 this.uncheck();    
-             else
-                 this.check();    
-             
-             setTimeout(function() {
-                 $this.jq.toggleClass('ui-inputswitch-checked');
-             }, 100);
+             if(this.input.prop('checked')) {
+                 this.uncheck(); 
+                 setTimeout(function() {
+                    $this.jq.removeClass('ui-inputswitch-checked');
+                 }, 100);
+             }
+             else {
+                 this.check();
+                 setTimeout(function() {
+                    $this.jq.addClass('ui-inputswitch-checked');
+                 }, 100);
+             }
          }
     });
 }
@@ -678,6 +772,44 @@ if(window['PrimeFaces'] && window['PrimeFaces'].widget.Schedule) {
 
                 PrimeFaces.ajax.Request.handle(options);
             }
+        }
+    });
+}
+
+if(PrimeFaces.widget.SelectOneMenu) {
+    PrimeFaces.widget.SelectOneMenu = PrimeFaces.widget.SelectOneMenu.extend({
+        init: function(cfg) {
+            this._super(cfg);
+
+            var $this = this;
+            if(!this.disabled && this.jq.parent().hasClass('md-inputfield')) {
+                this.itemsContainer.children('.ui-selectonemenu-item:first').css({'display': 'none'});
+                if (this.input.val() != "") {
+                    this.jq.addClass("ui-state-filled");
+                }
+
+                this.input.off('change').on('change', function() {
+                    $this.inputValueControl($(this));
+                });
+                
+                if(this.cfg.editable) {
+                    this.label.on('input', function(e) {
+                        $this.inputValueControl($(this));
+                    }).on('focus', function() {
+                        $this.jq.addClass('ui-state-focus');
+                    }).on('blur', function() {
+                        $this.jq.removeClass('ui-state-focus');
+                        $this.inputValueControl($(this));
+                    });
+                }
+            }
+        },
+        
+        inputValueControl: function(input) {
+            if (input.val() != "")
+                this.jq.addClass("ui-state-filled"); 
+            else
+                this.jq.removeClass("ui-state-filled");
         }
     });
 }
