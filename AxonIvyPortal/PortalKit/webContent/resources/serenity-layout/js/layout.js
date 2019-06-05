@@ -244,7 +244,7 @@ PrimeFaces.widget.Serenity = PrimeFaces.widget.BaseWidget.extend({
     },
         
     activate: function(item) {
-        if (!item[0].id.includes('thirdparty-menu-item')) {
+        if (item[0].id.indexOf('thirdparty-menu-item') < 0) {
             var submenu = item.children('ul');
             item.addClass('active-menuitem');
             if(submenu.length) {
@@ -373,7 +373,7 @@ PrimeFaces.widget.Serenity = PrimeFaces.widget.BaseWidget.extend({
                 var id = this.expandedMenuitems[i];
                 if (id) {
                     var menuitem = $("#" + this.expandedMenuitems[i].replace(/:/g, "\\:"));
-                    if (!menuitem[0].id.includes('thirdparty-menu-item')) {
+                    if (menuitem[0].id.indexOf('thirdparty-menu-item') < 0) {
                     	menuitem.addClass('active-menuitem');
                     }
                     

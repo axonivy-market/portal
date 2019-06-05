@@ -672,11 +672,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .task-widget .in-progress-task-checkbox, 
 .case-widget-container .in-progress-task-checkbox {
   padding-left: 2.4px;
-}
-
-.task-widget .in-progress-task-checkbox .ui-chkbox-label, 
-.case-widget-container .in-progress-task-checkbox .ui-chkbox-label {
-  margin-left: 0 !important;
+  margin-left: .1rem; 
 }
 
 .task-widget .advanced-filter-container .additional-filter-container, 
