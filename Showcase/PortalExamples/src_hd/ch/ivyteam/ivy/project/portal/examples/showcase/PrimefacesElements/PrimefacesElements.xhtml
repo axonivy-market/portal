@@ -155,9 +155,11 @@
 
 					<div class="ui-g" >		
 						<div class="ui-g-12 ui-md-3 ui-lg-2" ><p:outputLabel for="chkmenu" value="CheckboxMenu" /></div>
-						<div class="ui-g-12 ui-md-9 ui-lg-3" ><p:selectCheckboxMenu id="chkmenu" label="Cities">
-							<f:selectItems value="#{checkboxView.cities}" />
-						</p:selectCheckboxMenu></div>
+						<div class="ui-g-12 ui-md-9 ui-lg-3" >
+							<p:selectCheckboxMenu id="chkmenu" label="Cities" filterMatchMode="contains" filter="true">
+								<f:selectItems value="#{data.cities}"/>
+							</p:selectCheckboxMenu>
+						</div>
 						<div class="ui-g-12 ui-md-0 ui-lg-1" ></div>
 						<div class="ui-g-12 ui-md-3 ui-lg-2" ><p:outputLabel for="dialog" value="Dialog" /></div>
 						<div class="ui-g-12 ui-md-9 ui-lg-3" ><p:commandButton id="dialog" value="Show" icon="fa fa-eye"
@@ -255,8 +257,6 @@
 										showTargetControls="true" showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains"
 										converter="ivy.ListItem">
 										
-										<p:ajax event="transfer" update="resultPanel"/>
-										
 										<f:facet name="sourceCaption">Available</f:facet>
 										<f:facet name="targetCaption">Selected</f:facet>
 						
@@ -264,14 +264,6 @@
 											<b>#{person.name}</b> #{person.firstname}
 										</p:column>
 									</p:pickList>
-									<br />
-									<p:panelGrid columns="2" id="resultPanel" styleClass="ui-panelgrid-blank">
-										<h:outputText>Available:</h:outputText>
-										<h:outputText value="#{data.persons.source}"></h:outputText>
-										
-										<h:outputText>Selected</h:outputText>
-										<h:outputText value="#{data.persons.target}"></h:outputText>
-									</p:panelGrid>
 								</p:panelGrid>
 					    </p:panel>
 					     <p:dialog header="Login" widgetVar="dlg" resizable="false" responsive="true">
