@@ -86,7 +86,7 @@ public final class PortalSessionExtension implements ISessionExtension {
     }
   }
 
-  private static AbstractExecutionContext createRequestContext(IProcessModelVersion pmv,  ISession session) throws Exception {
+  private static AbstractExecutionContext createRequestContext(IProcessModelVersion pmv,  ISession session) {
       IProcessModelVersionRequest request = RequestFactory.createRestRequest(pmv, session);
       return new RequestContext(request);
   }
