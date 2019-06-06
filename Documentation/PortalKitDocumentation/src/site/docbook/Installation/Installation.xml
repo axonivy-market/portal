@@ -785,6 +785,16 @@
 							If unsupported customization needs copying code from Portal, merge changes between 2 versions of Portal for copied code. Take care your own unsupported customization.</listitem>
 					</itemizedlist>
 				</important>
+				<para>
+					<note>
+						<para><emphasis role="bold">For Portal 8.0.0</emphasis>. We used <code>Sass</code> instead of <code>Less</code> languages.</para>
+						<itemizedlist>
+							<listitem>If PortalStyle is customized, we should cross check in your system which is using stylesheet extension languages as <code>LESS</code> or <code>SASS</code>.</listitem>
+							<listitem>If the project is using <code>Less</code>, we need to do one more step to convert <code>Less</code> to <code>Sass</code> languages, so that your system can work correctly with Serenity theme.</listitem>
+							<listitem>Refer to <emphasis role="bold"><link linkend="axonivyportal.installation.migrationnotes.8.0.0" endterm="axonivyportal.installation.migrationnotes.8.0.0.title" /></emphasis> for more detail.</listitem>
+						</itemizedlist>
+					</note>
+				</para>
 			</sect3>
 			<sect3>
 				<title>In engine</title>
@@ -794,6 +804,36 @@
 					<listitem>Redeploy Portal projects (exclude PortalConnector) and customer project.</listitem>
 					<listitem>Follow migration notes to migrate data, if any.</listitem>
 				</orderedlist>
+			</sect3>
+		</sect2>
+		<sect2 xml:id="axonivyportal.installation.migrationnotes.8.0.0">
+			<title xml:id="axonivyportal.installation.migrationnotes.8.0.0.title">Migrate to 8.0.0</title>
+			<sect3>
+				<title>How to convert <code>Less</code> to <code>Sass</code> languages</title>
+				<para>From Portal version 8.0.0, we use the Serenity theme as the default style for project. So, if your project is using <code>Less</code> languages for customizing style, we should do one more step as convert them to a new format as <code>Sass</code>.</para>
+				<para>Please follow below step to do automation step convert your less file by plugin <code>less2sass.</code>
+				<para>The <emphasis role="bold">less2sass</emphasis> converter is pretty good and maintained <link xlink:href="https://www.npmjs.com/package/less2sass" />.</para>
+					<itemizedlist>
+						<listitem>Install <emphasis role="bold">NoteJS</emphasis> on your system (can get by this page <link xlink:href="https://nodejs.org/en/download" />). Once installed, restart your system as well.</listitem>
+						<listitem>Open Cmd command line and run command: <code>npm install -g less2sass</code></listitem>
+						<listitem>Once installed you can simply run:
+							<para><code>less2sass 'path_to_less_file_or_directory'</code></para>
+							<para>E.g for path_to_less_file_or_directory:
+								<para><code>C:\Projects\Portal\axonivyportal\AxonIvyPortal\PortalStyle\webContent\resources\less\customization.less</code></para>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/Installation/less2sass.png" />
+									</imageobject>
+								</mediaobject>
+							</para>
+						</listitem>
+						<listitem>After run above command, you also see a new <code>*.scss</code> file is created into same folder.
+							<para><code>C:\Projects\Portal\axonivyportal\AxonIvyPortal\PortalStyle\webContent\resources\less\customization.scss</code></para>
+							<para>Copy <code>*.scss</code> files to new folder as <code>..\webContent\resources\sass\ivy</code></para>
+						</listitem>
+						<listitem>Run <code>mvn libsass:compile</code> to compile your <code>scss</code> to <code>css</code> file.</listitem>
+					</itemizedlist>
+				</para>
 			</sect3>
 		</sect2>
 		<sect2>
