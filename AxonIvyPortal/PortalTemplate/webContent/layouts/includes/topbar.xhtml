@@ -77,62 +77,6 @@
       </h:form>
     </li>
   </ul>
-    <!-- <ul id="top-menu" class="js-top-menu">
-      <li><h:form prependId="false" rendered="#{showGlobalSearch}">
-            <ic:ch.ivy.addon.portal.generic.GlobalSearch id="global-search-component" />
-        </h:form>
-      </li>
-      <li class="setting-container" ><a href="#" jsf:rendered="#{userMenuBean.showServerInformation}"> <span jsf:id="server-infor"
-          class="TexAlLeft DispBlock Fs11">Host: #{serverInformationBean.host} Env:
-            #{serverInformationBean.environment}</span> <span class="TexAlLeft DispBlock Fs17"><b class="dropdown-icon">#{userMenuBean.userName}</b></span>
-      </a> <a href="#" jsf:rendered="#{not userMenuBean.showServerInformation}" id="user-settings-menu"> <span
-          class="dropdown-icon user-name js-user-name">#{userMenuBean.userName}</span>
-      </a>
-        <ul id="user-setting-container">
-          <li><p:commandLink id="adminui-menu-item" resetValues="true" rendered="#{permissionBean.hasAdminPermission()}"
-              	value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}"
-              	update="admin-ui-dialog" oncomplete="PF('adminUI').show()" /></li>
-          <li><p:link id="absence-menu-item" href="#"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}"
-              onclick="PF('absenceSetting').show()" rendered="#{absenceBean.ownAbsencesReadable}" /></li>
-
-          <li><p:commandLink id="email-setting-menu-item"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/emailSetting')}"
-              oncomplete="PF('emailSetting').show();"
-              resetValues="true" update="applications-email-setting-form">
-                <p:resetInput target=":applications-email-setting-dialog" />
-              </p:commandLink>
-            
-          </li>
-          <li><p:commandLink id="language-setting-menu-item"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/languageSetting')}" 
-              oncomplete="PF('languageDialogVar').show();" 
-              resetValues="true" update="language-settings-form" >
-                <p:resetInput target=":language-setting-dialog" />
-              </p:commandLink>
-          </li>
-
-          <li><p:commandLink id="change-password-menu-item"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" 
-              rendered="#{not userMenuBean.hiddenChangePassword}"
-              oncomplete="PF('changePasswordDialog').show();" 
-              resetValues="true" update="change-password-form" >
-                <p:resetInput target=":change-password-dialog" />
-              </p:commandLink>
-          </li>
-		  
-		  <li jsf:rendered="#{not deviceBean.desktop}">
-            <p:commandLink actionListener="#{userMenuBean.switchDesktopOrMobileVersion(true)}">
-              #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/switchToMobileVersion')}
-            </p:commandLink>
-          </li>
-          
-          <li><ic:ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting id="logout-setting" isWorkingOnATask="#{isWorkingOnATask}" />
-          </li>
-        </ul></li>
-      <li jsf:rendered="#{enablesChat}"><a jsf:id="toggle-chat-panel-command"
-        class="notification-badge mod-chat-menu js-toggle-chat-panel"><i class="fa fa-comment" /></a></li>
-    </ul> -->
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" 
       width="500" closeOnEscape="true" widgetVar="changePasswordDialog" id="change-password-dialog" resizable="false" 
