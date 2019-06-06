@@ -9,11 +9,13 @@ import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.IPersistentTransaction;
 import ch.ivyteam.ivy.persistence.PersistencyException;
+import ch.ivyteam.ivy.request.IProcessModelVersionRequest;
 import ch.ivyteam.ivy.request.RequestFactory;
-import ch.ivyteam.ivy.request.metadata.MetaData;
+import ch.ivyteam.ivy.request.impl.RequestContext;
 import ch.ivyteam.ivy.security.ISecurityManager;
 import ch.ivyteam.ivy.security.ISession;
 import ch.ivyteam.ivy.security.ISessionExtension;
+import ch.ivyteam.util.callable.AbstractExecutionContext;
 
 
 public final class PortalSessionExtension implements ISessionExtension {
@@ -84,13 +86,13 @@ public final class PortalSessionExtension implements ISessionExtension {
     }
   }
 
+  private static AbstractExecutionContext createRequestContext(IProcessModelVersion pmv,  ISession session) throws Exception {
+      IProcessModelVersionRequest request = RequestFactory.createRestRequest(pmv, session);
+      return new RequestContext(request);
+  }
+  
   private static <T> T executeWithIvyContext(Callable<T> callable, IProcessModelVersion pmv, ISession session) throws Exception {
-    MetaData.pushRequest(RequestFactory.createRestRequest(pmv, session));
-    try {
-      return callable.call();
-    } finally {
-      MetaData.popRequest();
-    }
+      return createRequestContext(pmv, session).callInContext(callable);
   }
 
   private ChatService chatService() {
