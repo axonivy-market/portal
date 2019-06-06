@@ -494,11 +494,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   color: #AFCA05 !important;
 }
 
-.last-sub-item {
-	border-bottom-right-radius: 10px !important;
-    border-bottom-left-radius: 10px !important;
-}
-
 /********************** END SUBMENU ITEM ***********************/
 
 /********************** START CASE BOX ***********************/
@@ -2808,14 +2803,6 @@ _:-ms-input-placeholder, :root .case-details > * {
   margin-right: 5px;
 }
 
-.icon-selection-icon-text {
-  padding-right: 5px;
-}
-
-.icon-selection-icon-text:empty {
-  padding-right: 0;
-}
-
 .icon-selection-dialog-selecting-icon {
   display: inline-flex;
   width: 35px;
@@ -3164,16 +3151,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   padding: 10px;
 }
 
-.edit-server-link {
-  padding: 0 5px;
-}
-
-.delete-server-link {
-  padding: 0 5px;
-}
-
-.server-table-action-column, .server-table-ntlm-column, .application-table-is-online-column,
-  .application-table-type-column, .application-table-action-column, .settings-table-action-buttons {
+.application-table-type-column, .application-table-action-column, .settings-table-action-buttons {
   text-align: center;
 }
 
@@ -3181,15 +3159,11 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   margin: 0 5px;
 }
 
-.server-tab-action-buttons, .application-tab-action-buttons, .setting-tab-action-buttons,
-  .application-selection-action-buttons, .announcement-tab-action-buttons {
+ .setting-tab-action-buttons, .application-selection-action-buttons, .announcement-tab-action-buttons {
   text-align: right;
   margin: 5px 0;
 }
 
-.dialog-form-checkbox {
-  float: left;
-}
 
 .admin-settings-form-input {
   width: 90%;
@@ -3197,51 +3171,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 .admin-settings-form-input-label {
   float: right;
-}
-
-.admin-settings-update-external-host-button {
-  width: auto !important;
-}
-
-.admin-settings-external-host-tooltip {
-  width: 200px;
-}
-
-.warning-portal-connector-path-security {
-  color: #f9bf08;
-  font-size: 1.2rem;
-}
-
-.color-button .ui-button.ui-widget {
-  min-width: 0;
-}
-
-.logo-chooser-container {
-  display: inline;
-  margin-right: 30px;
-}
-
-.logo-chooser-container,
-.logo-chooser-container td,
-.logo-chooser-container .ui-panelgrid {
-  border: none !important;
-}
-
-.logo-chooser-container .label {
-  vertical-align: middle;
-}
-
-.logo-chooser-container .logo-size-recommendation {
-  padding-left: 10px;
-}
-
-.logo-height {
-  padding-left: 10px;
-}
-
-.logo-height input {
-  width: 70px;
-  text-align: center;
 }
 
 .logo-height-unit {
@@ -3294,11 +3223,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .absence-in-the-past-command {
   float: left;
   margin-top: 5px;
-}
-
-.absence-close-command {
-  float: right;
-  margin-top: 10px;
 }
 
 .absence-reset-float {

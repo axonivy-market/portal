@@ -259,7 +259,7 @@
 
 				<!-- Two buttons OK, Cancel -->
 				<h:panelGroup layout="block" styleClass="u-dialog-footer ui-dialog-footer">
-					<p:commandButton styleClass="" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+					<p:commandButton  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
 						actionListener="#{logic.saveApplication}" oncomplete="if (!args.validationFailed){ PF('appDialog').hide()}"
 						update=":#{p:component('applicationTable')} appDialogForm" process="@form"
 						widgetVar="saveAppButton" onclick="PF('saveAppButton').disable();" />
