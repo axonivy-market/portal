@@ -11,7 +11,6 @@ import org.primefaces.model.SortOrder;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
-import ch.ivy.addon.portalkit.enums.TaskAndCaseAnalysisColumn;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
@@ -22,7 +21,6 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery.OrderByColumnQuery;
 
 public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
   private static final long serialVersionUID = 1L;
-  private static final String CASE_COLUMN_PREFIX = "CASE_";
   protected final List<ICase> data;
 
   protected String caseWidgetComponentId;
@@ -64,10 +62,7 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
       criteria.setCustomCaseQuery(customCaseQuery);
     }
     CaseQuery caseQuery = buildCaseQuery();
-    String sortField = criteria.getSortField();
-    if (sortField.startsWith(CASE_COLUMN_PREFIX)) {
-      buildSortCaseQuery(caseQuery);
-    }
+    buildSortCaseQuery(caseQuery);
     this.criteria.setFinalCaseQuery(caseQuery);
   }
 
@@ -111,13 +106,12 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
   }
   
   private void buildSortCaseQuery(CaseQuery caseQuery) {
-    TaskAndCaseAnalysisColumn sortColumn = TaskAndCaseAnalysisColumn.valueOf(criteria.getSortField());
+    CaseSortField sortColumn = CaseSortField.valueOf(criteria.getSortField());
     OrderByColumnQuery orderQuery = null;
     switch (sortColumn) {
-      case CASE_ELAPSED_TIME:
+      case ELAPSED_TIME:
         orderQuery = caseQuery.orderBy().businessRuntime();
         break;
-      case CASE_ID:
       default:
         orderQuery = caseQuery.orderBy().caseId();
         break;
