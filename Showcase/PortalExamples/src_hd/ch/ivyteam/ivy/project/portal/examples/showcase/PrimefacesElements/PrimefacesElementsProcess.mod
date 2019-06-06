@@ -129,7 +129,14 @@ person.name = "Dänzer";
 person.firstname = "Michael";
 listSource.add(person);
 
-in.persons.source = listSource;' #txt
+in.persons.source = listSource;
+
+in.cities.add("London");
+in.cities.add("Miami");
+in.cities.add("Berlin");
+in.cities.add("Paris");
+in.cities.add("Rome");
+' #txt
 Ps0 f1 type ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesElements.PrimefacesElementsData #txt
 Ps0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
