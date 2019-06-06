@@ -68,8 +68,7 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
 
 
   private CaseQuery buildCaseQuery() {
-    CaseQuery caseQuery = criteria.createQuery();
-    return caseQuery;
+    return criteria.createQuery();
   }
 
   private List<ICase> findCases(CaseSearchCriteria criteria, int first, int pageSize) {
@@ -108,13 +107,10 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
   private void buildSortCaseQuery(CaseQuery caseQuery) {
     CaseSortField sortColumn = CaseSortField.valueOf(criteria.getSortField());
     OrderByColumnQuery orderQuery = null;
-    switch (sortColumn) {
-      case ELAPSED_TIME:
-        orderQuery = caseQuery.orderBy().businessRuntime();
-        break;
-      default:
-        orderQuery = caseQuery.orderBy().caseId();
-        break;
+    if (sortColumn.equals(CaseSortField.ELAPSED_TIME)) {
+      orderQuery = caseQuery.orderBy().businessRuntime();
+    } else {
+      orderQuery = caseQuery.orderBy().caseId();
     }
 
     if (criteria.isSortDescending()) {
