@@ -897,7 +897,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 .ui-selectonemenu .ui-selectonemenu-trigger,
 .ui-selectonemenu .ui-selectonemenu-trigger.ui-state-hover,
 .ui-selectonemenu .ui-selectonemenu-trigger.ui-state-focus {
-  color: rgba(0,0,0,1) !important;
+  color: grey !important;
   border-bottom: none !important;
 }
 .ui-selectonemenu-trigger .ui-icon-triangle-1-s {
@@ -921,6 +921,33 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 }
 .ui-inplace-content .ui-selectonemenu-trigger .ui-icon:after {
   top:-3px !important;
+}
+.ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+}
+.ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-filter-container .ui-icon-search, .ui-picklist .ui-picklist-filter-container .ui-icon, .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon {
+	background: transparent;
+    overflow: visible;
+    text-indent: 5px;
+    color: grey;
+}
+.ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-filter-container .ui-icon:before, .ui-picklist .ui-picklist-filter-container .ui-icon:before {
+    font: normal normal normal 18px/1 FontAwesome;
+    -webkit-font-smoothing: antialiased;
+    content: "\f002";
+    position: absolute;
+    left: 0;
+    top: 5px;
+}
+.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon:after {
+    font: normal normal normal 1.4rem/1 FontAwesome;
+    -webkit-font-smoothing: antialiased;
+    content: "\f078";
+    position: absolute;
+    left: 6px;
+    top: 12px;
 }
 /* =================== END DROPDOWN ====================== */
 
