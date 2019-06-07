@@ -14,7 +14,7 @@ public class ExpressFormElementService extends BusinessDataService<ExpressFormEl
   }
 
   public List<ExpressFormElement> findByProcessId(String processId) {
-    return repo().search(ExpressFormElement.class).textField("processID").isEqualToIgnoringCase(processId).execute().getAll();
+    return repo().search(ExpressFormElement.class).textField("processID").isEqualToIgnoringCase(processId).limit(100).execute().getAll();
   }
 
   @Override

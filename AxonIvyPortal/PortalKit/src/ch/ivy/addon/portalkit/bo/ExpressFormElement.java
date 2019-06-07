@@ -12,6 +12,7 @@ public class ExpressFormElement {
   private String elementType;
   private String optionsStr;
   private String elementPosition;
+  private int indexInPanel;
   private int counter;
 
   public String getId() {
@@ -102,4 +103,11 @@ public class ExpressFormElement {
     this.counter = counter;
   }
 
+  public int getIndexInPanel() {
+    return indexInPanel;
+  }
+
+  public void setIndexInPanel(int indexInPanel) {
+    this.indexInPanel = indexInPanel;
+  }
 }

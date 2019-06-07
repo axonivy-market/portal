@@ -189,7 +189,7 @@ ExpressServiceRegistry.getTaskDefinitionService().deleteByProcessId(in.processID
 ExpressServiceRegistry.getFormElementService().deleteByProcessId(in.processID);
 
 //save all formelements with ID, location and order
-
+int indexInPanel = 0;
 for (Formelement e: in.dragAndDropController.selectedFormelementsHeader){
 		ExpressFormElement x = new ExpressFormElement();
 		x.elementID = e.id;
@@ -201,10 +201,11 @@ for (Formelement e: in.dragAndDropController.selectedFormelementsHeader){
 		x.required = e.required;
 		x.processID =  processID;
 		x.optionsStr = e.getOptionsAsString();
-
+		x.setIndexInPanel(indexInPanel++);
 		ExpressServiceRegistry.getFormElementService().save(x);
 }
 
+indexInPanel = 0;
 for (Formelement e: in.dragAndDropController.selectedFormelementsLeftPanel){
 		ExpressFormElement x = new ExpressFormElement();
 		x.elementID = e.id;
@@ -216,8 +217,11 @@ for (Formelement e: in.dragAndDropController.selectedFormelementsLeftPanel){
 		x.required = e.required;
 		x.processID = processID;
 		x.optionsStr = e.getOptionsAsString();
-		ExpressServiceRegistry.getFormElementService().save(x);}
+		x.setIndexInPanel(indexInPanel++);
+		ExpressServiceRegistry.getFormElementService().save(x);
+}
 
+indexInPanel = 0;
 for (Formelement e: in.dragAndDropController.selectedFormelementsRightPanel){
 		ExpressFormElement x = new ExpressFormElement();
 		x.elementID = e.id;
@@ -229,8 +233,11 @@ for (Formelement e: in.dragAndDropController.selectedFormelementsRightPanel){
 		x.required = e.required;
 		x.processID = processID;
 		x.optionsStr = e.getOptionsAsString();
-		ExpressServiceRegistry.getFormElementService().save(x);}
+		x.setIndexInPanel(indexInPanel++);
+		ExpressServiceRegistry.getFormElementService().save(x);
+}
 
+indexInPanel = 0;
 for (Formelement e: in.dragAndDropController.selectedFormelementsFooter){
 		ExpressFormElement x = new ExpressFormElement();
 		x.elementID = e.id;
@@ -242,7 +249,9 @@ for (Formelement e: in.dragAndDropController.selectedFormelementsFooter){
 		x.required = e.required;
 		x.processID = processID;
 		x.optionsStr = e.getOptionsAsString();
-		ExpressServiceRegistry.getFormElementService().save(x);}
+		x.setIndexInPanel(indexInPanel++);
+		ExpressServiceRegistry.getFormElementService().save(x);
+}
 
 //save the taskdefinition with the order of the tasks
 

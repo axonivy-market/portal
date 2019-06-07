@@ -689,7 +689,9 @@ Bk0 f3 actionDecl 'gawfs.ExecutePredefinedWorkflowData out;
 ' #txt
 Bk0 f3 actionTable 'out=in;
 ' #txt
-Bk0 f3 actionCode 'import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
+Bk0 f3 actionCode 'import ch.ivy.addon.portalkit.util.ExpressProcessUtils;
+
+import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.bo.ExpressFormElement;
 List<ExpressFormElement> formelements = ExpressServiceRegistry.getFormElementService().findByProcessId(in.workflowID);
 
@@ -702,6 +704,7 @@ for(ExpressFormElement element: formelements){
 	formelement.name = element.name;
 	formelement.required = element.required;
 	formelement.type = element.elementType;
+	formelement.indexInPanel = element.indexInPanel;
 	
 	ivy.log.debug("element.optionsStr");
 	List<String> optionsStrx = element.optionsStr.split(":",-1);
@@ -722,7 +725,7 @@ for(ExpressFormElement element: formelements){
 		in.dragAndDropController.selectedFormelementsFooter.add(formelement);
 	}
 	
-	
+	ExpressProcessUtils.sortIndexInPanels(in.dragAndDropController);
 }' #txt
 Bk0 f3 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
