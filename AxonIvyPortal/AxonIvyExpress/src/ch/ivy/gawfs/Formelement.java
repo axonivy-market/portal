@@ -27,6 +27,7 @@ public class Formelement implements Serializable {
   private FormElementType type; // Form element type
   private List<String> optionsStr; // String List representation of options
   private int taskPosition; // Position of the task which this element belonged to
+  private int indexInPanel; //Index of element in panel (Header, Footer, Left or Right)
   private Object value; // Value of the Formelement, later Userinput
 
   public Formelement() {
@@ -180,5 +181,13 @@ public class Formelement implements Serializable {
 
   public void setValue(Object value) {
     this.value = value;
+  }
+
+  public int getIndexInPanel() {
+    return indexInPanel;
+  }
+
+  public void setIndexInPanel(int indexInPanel) {
+    this.indexInPanel = indexInPanel;
   }
 }
