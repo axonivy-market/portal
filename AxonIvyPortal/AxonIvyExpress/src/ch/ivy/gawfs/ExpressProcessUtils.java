@@ -499,8 +499,7 @@ public class ExpressProcessUtils {
     SubProcessSearchFilter filter =
         subprocessFilter.setSignature("portalExpressDataProvider()").setSearchInAllProjects(true)
         .setSearchInDependentProjects(false).toFilter();
-    List<ExternalDataProvider> result = SubProcessRunner.findSubProcessStarts(filter).stream().map(this::toDataProvider).collect(Collectors.toList());
-    return result;
+    return SubProcessRunner.findSubProcessStarts(filter).stream().map(this::toDataProvider).collect(Collectors.toList());
   }
 
   private ExternalDataProvider toDataProvider(ISubProcessStart subProcessStart) {
