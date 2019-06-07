@@ -1,6 +1,7 @@
 package ch.ivy.gawfs;
 
 import gawfs.Data;
+import gawfs.ExternalDataProvider;
 import gawfs.TaskDef;
 
 import java.util.ArrayList;
@@ -28,6 +29,10 @@ import ch.ivy.gawfs.enums.TaskType;
 import ch.ivy.gawfs.mail.MailAttachment;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.process.call.ISubProcessStart;
+import ch.ivyteam.ivy.process.call.SubProcessRunner;
+import ch.ivyteam.ivy.process.call.SubProcessSearchFilter;
+import ch.ivyteam.ivy.process.call.SubProcessSearchFilter.Builder;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
@@ -487,5 +492,22 @@ public class ExpressProcessUtils {
   public boolean isProcessNameDuplicated(String processName) {
     List<ExpressProcess> expressProcesses = ExpressServiceRegistry.getProcessService().findExpressProcessByName(processName);
     return !CollectionUtils.isEmpty(expressProcesses);
+  }
+
+  public List<ExternalDataProvider> findDataProviders() {
+    Builder subprocessFilter = SubProcessSearchFilter.create();
+    SubProcessSearchFilter filter =
+        subprocessFilter.setSignature("portalExpressDataProvider()").setSearchInAllProjects(true)
+        .setSearchInDependentProjects(false).toFilter();
+    List<ExternalDataProvider> result = SubProcessRunner.findSubProcessStarts(filter).stream().map(this::toDataProvider).collect(Collectors.toList());
+    return result;
+  }
+
+  private ExternalDataProvider toDataProvider(ISubProcessStart subProcessStart) {
+    ExternalDataProvider dataProvider = new ExternalDataProvider();
+    dataProvider.setLibraryId(subProcessStart.getProcessModelVersion().getLibrary().getId());
+    dataProvider.setSignature(subProcessStart.getSignature());
+    dataProvider.setName(subProcessStart.getProcessName());
+    return dataProvider;
   }
 }
