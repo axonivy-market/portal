@@ -46,6 +46,10 @@
   right: 0px;
  }
 /* =================== TABLE ====================== */
+.ui-datatable .ui-column-filter.ui-widget {
+  width: 100%;
+}
+
 .ui-datatable table tbody tr.ui-datatable-even {
   background-color: rgba(255, 255, 255, 1) !important;
 }
