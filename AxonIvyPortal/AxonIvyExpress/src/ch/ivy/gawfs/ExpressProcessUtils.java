@@ -5,6 +5,7 @@ import gawfs.TaskDef;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -103,30 +104,38 @@ public class ExpressProcessUtils {
    * @param controller
    */
   private void saveFormElements(String processId, int taskPosition, DragAndDropController controller) {
+    int indexInPanel = 0;
     if (!Optional.ofNullable(controller.getSelectedFormelementsHeader()).orElse(new ArrayList<>()).isEmpty()) {
       for (Formelement element : controller.getSelectedFormelementsHeader()) {
         element.setTaskPosition(taskPosition);
+        element.setIndexInPanel(indexInPanel++);
         saveFormElement(element, HEADER_PANEL, processId);
       }
     }
 
     if (!Optional.ofNullable(controller.getSelectedFormelementsLeftPanel()).orElse(new ArrayList<>()).isEmpty()) {
+      indexInPanel = 0;
       for (Formelement element : controller.getSelectedFormelementsLeftPanel()) {
         element.setTaskPosition(taskPosition);
+        element.setIndexInPanel(indexInPanel++);
         saveFormElement(element, LEFT_PANEL, processId);
       }
     }
 
     if (!Optional.ofNullable(controller.getSelectedFormelementsRightPanel()).orElse(new ArrayList<>()).isEmpty()) {
+      indexInPanel = 0;
       for (Formelement element : controller.getSelectedFormelementsRightPanel()) {
         element.setTaskPosition(taskPosition);
+        element.setIndexInPanel(indexInPanel++);
         saveFormElement(element, RIGHT_PANEL, processId);
       }
     }
 
     if (!Optional.ofNullable(controller.getSelectedFormelementsFooter()).orElse(new ArrayList<>()).isEmpty()) {
+      indexInPanel = 0;
       for (Formelement element : controller.getSelectedFormelementsFooter()) {
         element.setTaskPosition(taskPosition);
+        element.setIndexInPanel(indexInPanel++);
         saveFormElement(element, FOOTER_PANEL, processId);
       }
     }
@@ -150,6 +159,7 @@ public class ExpressProcessUtils {
     expressFormElement.setProcessID(processId);
     expressFormElement.setOptionStrs(element.getOptionsStr());
     expressFormElement.setTaskPosition(element.getTaskPosition());
+    expressFormElement.setIndexInPanel(element.getIndexInPanel());
 
     ExpressServiceRegistry.getFormElementService().save(expressFormElement);
   }
@@ -301,6 +311,7 @@ public class ExpressProcessUtils {
       element.setLabel(expressElement.getLabel());
       element.setRequired(expressElement.isRequired());
       element.setTaskPosition(taskPosition);
+      element.setIndexInPanel(expressElement.getIndexInPanel());
 
       for (FormElementType type : FormElementType.values()) {
         if (expressElement.getElementType().equals(type.getValue())) {
@@ -327,6 +338,15 @@ public class ExpressProcessUtils {
           break;
       }
     }
+    
+    sortIndexInPanels(controller);
+  }
+  
+  private void sortIndexInPanels(DragAndDropController controller) {
+    controller.setSelectedFormelementsHeader(controller.getSelectedFormelementsHeader().stream().sorted(Comparator.comparingInt(Formelement::getIndexInPanel)).collect(Collectors.toList()));
+    controller.setSelectedFormelementsLeftPanel(controller.getSelectedFormelementsLeftPanel().stream().sorted(Comparator.comparingInt(Formelement::getIndexInPanel)).collect(Collectors.toList()));
+    controller.setSelectedFormelementsRightPanel(controller.getSelectedFormelementsRightPanel().stream().sorted(Comparator.comparingInt(Formelement::getIndexInPanel)).collect(Collectors.toList()));
+    controller.setSelectedFormelementsFooter(controller.getSelectedFormelementsFooter().stream().sorted(Comparator.comparingInt(Formelement::getIndexInPanel)).collect(Collectors.toList()));
   }
 
   public boolean isNeedUpdatePathForAttachments(List<TaskDef> taskDefs) {
