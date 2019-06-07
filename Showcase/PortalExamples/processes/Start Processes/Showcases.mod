@@ -32,10 +32,6 @@ Ss0 @EndTask f16 '' #zField
 Ss0 @RichDialog f17 '' #zField
 Ss0 @PushWFArc f18 '' #zField
 Ss0 @PushWFArc f19 '' #zField
-Ss0 @StartRequest f20 '' #zField
-Ss0 @EndTask f21 '' #zField
-Ss0 @PushWFArc f22 '' #zField
-Ss0 @RichDialog f23 '' #zField
 >Proto Ss0 Ss0 Showcases #zField
 Ss0 f0 outLink ApplicationShowcase.ivp #txt
 Ss0 f0 type ch.ivyteam.ivy.project.portal.examples.showcase.Data #txt
@@ -214,41 +210,6 @@ Ss0 f18 expr out #txt
 Ss0 f18 111 352 168 352 #arcP
 Ss0 f19 expr out #txt
 Ss0 f19 280 352 337 352 #arcP
-Ss0 f20 outLink start.ivp #txt
-Ss0 f20 type ch.ivyteam.ivy.project.portal.examples.showcase.Data #txt
-Ss0 f20 inParamDecl '<> param;' #txt
-Ss0 f20 actionDecl 'ch.ivyteam.ivy.project.portal.examples.showcase.Data out;
-' #txt
-Ss0 f20 guid 16AE94CB7AC40006 #txt
-Ss0 f20 requestEnabled true #txt
-Ss0 f20 triggerEnabled false #txt
-Ss0 f20 callSignature start() #txt
-Ss0 f20 caseData businessCase.attach=true #txt
-Ss0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>start.ivp</name>
-    </language>
-</elementInfo>
-' #txt
-Ss0 f20 @C|.responsibility Everybody #txt
-Ss0 f20 81 577 30 30 -21 17 #rect
-Ss0 f20 @|StartRequestIcon #fIcon
-Ss0 f21 type ch.ivyteam.ivy.project.portal.examples.showcase.Data #txt
-Ss0 f21 433 577 30 30 0 15 #rect
-Ss0 f21 @|EndIcon #fIcon
-Ss0 f22 expr out #txt
-Ss0 f22 111 592 433 592 #arcP
-Ss0 f23 richDialogId ch.ivyteam.ivy.project.portal.examples.showcase.NewTable #txt
-Ss0 f23 startMethod start() #txt
-Ss0 f23 type ch.ivyteam.ivy.project.portal.examples.showcase.Data #txt
-Ss0 f23 requestActionDecl '<> param;' #txt
-Ss0 f23 responseActionDecl 'ch.ivyteam.ivy.project.portal.examples.showcase.Data out;
-' #txt
-Ss0 f23 responseMappingAction 'out=in;
-' #txt
-Ss0 f23 200 570 112 44 0 -8 #rect
-Ss0 f23 @|RichDialogIcon #fIcon
 >Proto Ss0 .type ch.ivyteam.ivy.project.portal.examples.showcase.Data #txt
 >Proto Ss0 .processKind NORMAL #txt
 >Proto Ss0 0 0 32 24 18 0 #rect
@@ -269,5 +230,3 @@ Ss0 f15 mainOut f18 tail #connect
 Ss0 f18 head f17 mainIn #connect
 Ss0 f17 mainOut f19 tail #connect
 Ss0 f19 head f16 mainIn #connect
-Ss0 f20 mainOut f22 tail #connect
-Ss0 f22 head f21 mainIn #connect

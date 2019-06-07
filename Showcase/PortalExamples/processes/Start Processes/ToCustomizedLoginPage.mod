@@ -1,5 +1,5 @@
 [Ivy]
-1657B2041502A14A 3.26 #module
+1657B2041502A14A 3.23 #module
 >Proto >Proto Collection #zClass
 Te0 ToCustomizedLoginPage Big #zClass
 Te0 B #cInfo
@@ -30,12 +30,12 @@ Te0 f0 triggerEnabled false #txt
 Te0 f0 callSignature toPageWithCustomLoginPage() #txt
 Te0 f0 persist false #txt
 Te0 f0 startName 'Open page with custom login' #txt
-Te0 f0 taskData 'TaskTriggered.EXPRI=2
-TaskTriggered.EXROL=Everybody
+Te0 f0 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.ROL=Everybody
-TaskTriggered.TYPE=0' #txt
+TaskTriggered.EXROL=Everybody' #txt
 Te0 f0 caseData businessCase.attach=true #txt
 Te0 f0 showInStartList 1 #txt
 Te0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
