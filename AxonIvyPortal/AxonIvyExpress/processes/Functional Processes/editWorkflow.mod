@@ -535,7 +535,8 @@ Ct0 f28 actionDecl 'gawfs.Data out;
 ' #txt
 Ct0 f28 actionTable 'out=in;
 ' #txt
-Ct0 f28 actionCode 'import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
+Ct0 f28 actionCode 'import ch.ivy.addon.portalkit.util.ExpressProcessUtils;
+import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.bo.ExpressFormElement;
 
 List<ExpressFormElement> formelements = ExpressServiceRegistry.getFormElementService().findByProcessId(in.processID);
@@ -567,7 +568,7 @@ for (ExpressFormElement element: formelements){
 		in.dragAndDropController.selectedFormelementsFooter.add(formelement);
 	}
 	
-	
+	ExpressProcessUtils.sortIndexInPanels(in.dragAndDropController);
 }' #txt
 Ct0 f28 security system #txt
 Ct0 f28 type gawfs.Data #txt
