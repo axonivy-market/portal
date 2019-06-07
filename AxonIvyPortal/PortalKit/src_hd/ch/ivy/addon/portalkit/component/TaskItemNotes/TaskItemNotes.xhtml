@@ -38,7 +38,7 @@
 
     <h:panelGroup layout="block" styleClass="task-details-note-add">
       <p:commandLink id="add-note-command" styleClass="task-details-note-add-link" rendered="#{caseTaskNoteHistoryBean.showAddNote}"
-        oncomplete="PF('#{cc.clientId}:addNewNoteDialog').show()">
+        actionListener="#{data.setTask(task)}" oncomplete="PF('#{cc.clientId}:addNewNoteDialog').show()">
         <span class="fa fa-plus-circle task-details-note-add-link-icon" />
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}" />
       </p:commandLink>
