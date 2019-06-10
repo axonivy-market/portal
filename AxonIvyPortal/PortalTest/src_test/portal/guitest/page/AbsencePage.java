@@ -7,7 +7,7 @@ public class AbsencePage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "id('absence-settings-dialog')";
+    return "id('absence-settings-dialog_title')";
   }
 
   public NewAbsencePage openNewAbsenceDialog() {
