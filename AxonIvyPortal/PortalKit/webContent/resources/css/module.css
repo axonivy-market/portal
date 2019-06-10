@@ -4076,6 +4076,43 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   margin: auto;
 }
 
+.ui-carousel .ui-carousel-header .ui-carousel-header-title {
+  width: auto !important;	
+  max-width: 78%;
+}
+
+.ui-carousel-header-title {
+  float: left;
+  padding-left: 8px;
+}
+
+.ui-carousel-header-title .chart-name-container {
+	width: 100%;
+    position: relative;
+    float: left;
+}
+
+.ui-carousel .ui-carousel-header .ui-carousel-header-title .chart-info {
+	color: white !important;
+    font-size: 1.5rem;
+    margin-right: 8px;
+    float: left;
+    margin-top: 3px;
+}
+
+.ui-carousel-header-title .chart-name {
+	max-width: 88%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	float: left;
+	overflow: hidden;
+}
+
+.carousel-title-hide {
+	height: 0;
+	display: none;
+}
+
 /* Small screen */
 @media (max-width: 1365px) {
   .statistic-carousel {
@@ -4084,6 +4121,9 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   }
   .compact-mode .jqplot-target {
     width: 25rem;
+  }
+  .ui-carousel .ui-carousel-header .ui-carousel-header-title {
+    max-width: 70% !important;
   }
 }
 
@@ -4096,6 +4136,10 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 
   .compact-mode .jqplot-target {
     width: 26rem;
+  }
+  
+  .ui-carousel .ui-carousel-header .ui-carousel-header-title {
+    max-width: 72% !important;
   }
 }
 
