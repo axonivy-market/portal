@@ -5,6 +5,12 @@ import org.openqa.selenium.WebElement;
 
 public class SettingDeputyPage extends TemplatePage {
 
+
+  @Override
+  protected String getLoadedLocator() {
+    return "id('absence-settings:edit-deputy-dialog_title')";
+  }
+  
   public void proceedWhenCreatingAbsence() {
     String selector = "button[id*='save-substitutes']";
     proceed(selector);
@@ -16,7 +22,6 @@ public class SettingDeputyPage extends TemplatePage {
   }
 
   private void proceed(String selector) {
-    waitForElementDisplayed(By.cssSelector(selector), true);
     WebElement proceedElement = findElementByCssSelector(selector);
     proceedElement.click();
     waitAjaxIndicatorDisappear();
