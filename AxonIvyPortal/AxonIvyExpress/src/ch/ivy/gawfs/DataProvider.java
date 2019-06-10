@@ -69,7 +69,7 @@ public class DataProvider {
       return optionStrs;
     }
     @SuppressWarnings("unchecked")
-    List<String> values = new ArrayList<String>((List<String>) data);
+    List<String> values = new ArrayList<>((List<String>) data);
     return values;
   }
 }
