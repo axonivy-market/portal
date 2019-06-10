@@ -29,7 +29,7 @@
 				</listitem>
 				<listitem>
 					<para>
-						Override the <code>SetGroupChatName</code> process to customize the group chat name, follow it notes to change the group chat name.
+						Override the <code>SetGroupChatName</code> process to customize the group chat name, follow its notes to change the group chat name.
 						<mediaobject>
 							<imageobject>
 								<imagedata fileref="images/GroupChat/CustomizeGroupChatName.png" />
@@ -48,6 +48,17 @@
 					</para>
 				</listitem>
 			</orderedlist>
+		</para>
+	</sect2>
+	<sect2 xml:id="axonivyportal.customization.groupchat.customize.predefinedroles">
+		<title>Customize predefined responsible roles</title>
+		<para>
+			Override the <code>AssignRolesGroupChat</code> process to customize the predefined responsible roles, follow its notes to configure.
+			<mediaobject>
+				<imageobject>
+					<imagedata fileref="images/GroupChat/CustomizePredefinedRoles.png" />
+				</imageobject>
+			</mediaobject>
 		</para>
 	</sect2>
 </sect1>

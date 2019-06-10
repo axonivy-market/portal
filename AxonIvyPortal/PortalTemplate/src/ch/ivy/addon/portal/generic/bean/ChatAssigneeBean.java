@@ -323,12 +323,10 @@ public class ChatAssigneeBean implements Serializable {
 
   @SuppressWarnings("unchecked")
   private List<ISecurityMember> getConfiguredRoles() {
-    Ivy.log().warn("java code1 {0}", Ivy.wfCase().getProcessStart().getUserFriendlyRequestPath());
     Map<String, Object> params = new HashMap<>();
     params.put("task", Ivy.wfTask());
     Map<String, Object> response = IvyAdapterService.startSubProcess(CONFIGURED_ROLES_SUB_PROCESS, params,
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
-    Ivy.log().warn("java code2 {0}", Ivy.wfCase().getProcessStart().getUserFriendlyRequestPath());
     List<IRole> roles = (List<IRole>) response.get("roles");
     return roles.stream().filter(role -> !Objects.isNull(role)).collect(Collectors.toList());
   }

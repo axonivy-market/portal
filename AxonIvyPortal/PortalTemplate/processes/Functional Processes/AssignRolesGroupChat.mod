@@ -21,7 +21,8 @@ At0 @AnnotationArc f4 '' #zField
 At0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ITask task> param;' #txt
 At0 f0 inParamTable 'out.task=param.task;
 ' #txt
-At0 f0 outParamDecl '<java.util.List<ch.ivyteam.ivy.security.IRole> roles> result;' #txt
+At0 f0 outParamDecl '<java.util.List<ch.ivyteam.ivy.security.IRole> roles> result;
+' #txt
 At0 f0 outParamTable 'result.roles=in.roles;
 ' #txt
 At0 f0 actionDecl 'ch.ivy.addon.portal.generic.AssignRolesGroupChatData out;
@@ -35,28 +36,33 @@ At0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-At0 f0 81 49 30 30 5 17 #rect
+At0 f0 33 25 30 30 5 17 #rect
 At0 f0 @|StartSubIcon #fIcon
 At0 f1 type ch.ivy.addon.portal.generic.AssignRolesGroupChatData #txt
-At0 f1 81 257 30 30 0 15 #rect
+At0 f1 33 233 30 30 0 15 #rect
 At0 f1 @|EndSubIcon #fIcon
 At0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Use this callable to configure a predefined list of roles for group chat feature. 
-By default, this does nothing.
-Set value of in.roles to customize this role list.</name>
+        <name>Use this callable to configure a predefined list of responsible roles for group chat feature. 
+By default, this does nothing. Set value of in.roles to customize this role list.&#xD;
+&#xD;
+e.g. set predefined role HR for the process leave request.&#xD;
+String processPath = in.task.getCase().getProcessStart().getUserFriendlyRequestPath();&#xD;
+if (processPath.contains("Start Processes/CreateTestData/CategoriedLeaveRequest.ivp")) {&#xD;
+  in.roles.add(ivy.wf.getSecurityContext().findRole("HR"));&#xD;
+}</name>
         <nameStyle>5,5
-159,5
+475,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-At0 f3 152 130 432 60 -209 -24 #rect
+At0 f3 72 82 512 140 -250 -64 #rect
 At0 f3 @|IBIcon #fIcon
 At0 f2 expr out #txt
-At0 f2 96 79 96 257 #arcP
-At0 f4 152 160 96 168 #arcP
+At0 f2 48 55 48 233 #arcP
+At0 f4 72 152 48 144 #arcP
 >Proto At0 .type ch.ivy.addon.portal.generic.AssignRolesGroupChatData #txt
 >Proto At0 .processKind CALLABLE_SUB #txt
 >Proto At0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

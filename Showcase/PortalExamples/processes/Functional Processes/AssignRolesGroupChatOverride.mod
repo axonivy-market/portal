@@ -37,31 +37,32 @@ At0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-At0 f0 81 49 30 30 5 17 #rect
+At0 f0 57 17 30 30 5 17 #rect
 At0 f0 @|StartSubIcon #fIcon
 At0 f1 type _ch.ivyteam.ivy.project.portal.examples.AssignRolesGroupChatOverrideData #txt
-At0 f1 81 257 30 30 0 15 #rect
+At0 f1 57 225 30 30 0 15 #rect
 At0 f1 @|EndSubIcon #fIcon
 At0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Use this callable to configure a predefined list of roles for group chat feature. 
-By default, this does nothing.
-Set value of in.roles to customize this role list.</name>
-        <nameStyle>5,5
-159,5
-</nameStyle>
+        <name>Use this callable to configure a predefined list of responsible roles for group chat feature. &#xD;
+By default, this does nothing. Set value of in.roles to customize this role list.&#xD;
+&#xD;
+e.g. set predefined role HR for the process leave request.&#xD;
+String processPath = in.task.getCase().getProcessStart().getUserFriendlyRequestPath();&#xD;
+if (processPath.contains("Start Processes/CreateTestData/CategoriedLeaveRequest.ivp")) {&#xD;
+  in.roles.add(ivy.wf.getSecurityContext().findRole("HR"));&#xD;
+}</name>
     </language>
 </elementInfo>
 ' #txt
-At0 f3 192 130 432 60 -209 -24 #rect
+At0 f3 136 74 512 140 -250 -64 #rect
 At0 f3 @|IBIcon #fIcon
 At0 f5 actionDecl '_ch.ivyteam.ivy.project.portal.examples.AssignRolesGroupChatOverrideData out;
 ' #txt
 At0 f5 actionTable 'out=in;
 ' #txt
 At0 f5 actionCode 'import java.util.ArrayList;
-in.roles = new ArrayList();
 String processPath = in.task.getCase().getProcessStart().getUserFriendlyRequestPath();
 if (processPath.contains("Start Processes/CreateTestData/CategoriedLeaveRequest.ivp")) {
 	in.roles.add(ivy.wf.getSecurityContext().findRole("HR"));
@@ -70,16 +71,16 @@ At0 f5 type _ch.ivyteam.ivy.project.portal.examples.AssignRolesGroupChatOverride
 At0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Configure predefined roles</name>
+        <name>Configure</name>
     </language>
 </elementInfo>
 ' #txt
-At0 f5 16 138 160 44 -73 -8 #rect
+At0 f5 16 106 112 44 -27 -8 #rect
 At0 f5 @|StepIcon #fIcon
 At0 f6 expr out #txt
-At0 f6 96 79 96 138 #arcP
+At0 f6 72 47 72 106 #arcP
 At0 f2 expr out #txt
-At0 f2 96 182 96 257 #arcP
+At0 f2 72 150 72 225 #arcP
 >Proto At0 .type _ch.ivyteam.ivy.project.portal.examples.AssignRolesGroupChatOverrideData #txt
 >Proto At0 .processKind CALLABLE_SUB #txt
 >Proto At0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
