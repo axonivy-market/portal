@@ -4329,6 +4329,38 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   margin: auto;
 }
 
+.ui-carousel .ui-carousel-header .ui-carousel-header-title {
+  width: auto !important;	
+  max-width: 78%;
+}
+
+.ui-carousel-header-title {
+  float: left;
+  padding-left: 8px;
+}
+
+.ui-carousel-header-title .chart-name-container {
+	width: 100%;
+    position: relative;
+    float: left;
+}
+
+.ui-carousel .ui-carousel-header .ui-carousel-header-title .chart-info {
+	color: white !important;
+    font-size: 1.5rem;
+    margin-right: 8px;
+    float: left;
+    margin-top: 3px;
+}
+
+.ui-carousel-header-title .chart-name {
+	max-width: 88%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	float: left;
+	overflow: hidden;
+}
+
 /* Small screen */
 @media (max-width: 1365px) {
   .statistic-carousel {
