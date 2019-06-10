@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sect1 xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:id="axonivyportal.components.portalchat">
-	<title>Enable Portal chat</title>
-	<sect2 xml:id="axonivyportal.components.portalchat.switchonoffportalchatfeature">
+	<title>Portal chat</title>
+	<sect2 xml:id="axonivyportal.components.portalchat.portalchatfeature">
 		<title>Chat feature</title>
 		<mediaobject>
 			<imageobject>
@@ -12,89 +12,53 @@
 	<sect2 xml:id="axonivyportal.components.portalchat.information">
 		<title>Information</title>
 		<para>
-			Chat feature was implemented on Portal.
+			Chat feature is reimplemented from Ivy 7.4.
 		</para>
 		<para>
-			There are couple of reason, it's intentionally disabled by default:
-			<itemizedlist>
-				<listitem>
-					<para>
-						Customers have their own Chat, they do not need another.
-					</para>
-				</listitem>
-				<listitem>
-					<para>
-						For using Chat, system administrator has to configure it on their server (needs additional Libraries).
-					</para>
-				</listitem>
-				<listitem>
-					<para>
-						With added libraries for using Chat, it slows AxonIvyEngine down.
-					</para>
-				</listitem>
-				<listitem>
-					<para>
-						It has log-in issue as if AxonIvyEngine is configured with IIS (version <code>7.5</code> or older) to manage SSO.
-					</para>
-				</listitem>
-				<listitem>
-					<para>
-						Not fully support <code>UNICODE</code> characters on Ivy <code>6.3</code> and upwards.
-					</para>
-				</listitem>
-			</itemizedlist>
-		</para>
-	</sect2>
-	<sect2 xml:id="axonivyportal.components.portalchat.foruserswhowanttousechatonivy">
-		<title>For users who want to use chat feature</title>
-		<para>
-			Follow the steps below:
+			There are two modes of chat: Group chat and Private chat. Both features are disabled by default.
 			<orderedlist>
 				<listitem>
 					<para>
-						First, IvyEngine/Designer needs some configuration to use Chat. Copy two libraries and then paste into <code>webapps/ivy/WEB-INF/lib</code> folder located on <code>AxonIvyEngine, AxonIvyDesigner.</code>
-						<note>
-							You can find these libraries inside PortalKit module, located on <code>PortalKit/lib_chat</code> or download from this site.
-						</note>
-						<itemizedlist>
-							<listitem>
-								<para>
-									<link xlink:href="documents/PortalChat/portal-chat-endpoints-s125.jar">portal-chat-endpoints-s125.jar</link>
-								</para>
-							</listitem>
-							<listitem>
-								<para>
-									<link xlink:href="documents/PortalChat/atmosphere-runtime-2.4.2.jar">atmosphere-runtime-2.4.2.jar</link>
-								</para>
-							</listitem>
-						</itemizedlist>
+						You can turn on private chat with this Global setting: <emphasis role="bold">ENABLE_PRIVATE_CHAT</emphasis>.
 					</para>
 				</listitem>
 				<listitem>
 					<para>
-						Second, Enables Chat on UI by setting <code>enablesChat</code> param
-						<para><code>&lt;ui:param name="enablesChat" value="true" /&gt;</code></para>
-						<para>
-							Added this line to your pages that are using BasicTemplates of Portal (adds to <code>DefaultPortalHomeTemplate.xhtml</code>, <code>TaskTempate.xhtml</code>, etc.) 
-						</para>
-						<para>
-							E.g.:
-							<para><code>&lt;ui:composition template="/layouts/BasicTemplate.xhtml"&gt;</code></para>
-							<para><code>&lt;ui:param name="enablesChat" value="true" /&gt;</code></para>
-							<para><code>&lt;...&gt;</code></para>
-							<para><code>&lt;/ui:composition&gt;</code></para>
-						</para>
+						You can turn on group chat with this Global setting: <emphasis role="bold">ENABLE_GROUP_CHAT</emphasis>. 
 					</para>
 					<para>
-						Or simply change param's value on <code>BasicTemplate.xhtml</code>
+						After turn on group chat feature, go to any task using Task Template, you will see the chat group icon there.
+					</para>
+					<para>
+						Click on group chat icon, the dialog will appear to choose members of group chat. Members could be users or roles.
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/PortalChat/chatGroupAssignee.png" />
+							</imageobject>
+						</mediaobject>
+					</para>
+					<tip>
 						<para>
-							&lt;ui:param name="enablesChat" value="<code>#{enablesChat}</code>" /&gt; to 
-							&lt;ui:param name="enablesChat" value="<code>true</code>" /&gt;
+							Group chat supports some customizations, refer to <link linkend="axonivyportal.customization.groupchat" endterm="axonivyportal.customization.groupchat.title" /> for more detail.
 						</para>
+					</tip>
+				</listitem>
+			</orderedlist>
+		</para>
+	</sect2>
+	<sect2 xml:id="axonivyportal.components.portalchat.limitation">
+		<title>Limitation of current Portal chat</title>
+		<para>
+			<orderedlist>
+				<listitem>
+					<para>
+						Do not support multiple tab. For each browser, user able to open 1 Portal tab if they enable Portal chat.
 					</para>
 				</listitem>
 				<listitem>
-					Restarts AxonIvy Desinger/Engine. Then enjoy Chat.
+					<para>
+						Do not support multiple applications. User able to chat with user in current application, can not chat with user in other application.
+					</para>
 				</listitem>
 			</orderedlist>
 		</para>
