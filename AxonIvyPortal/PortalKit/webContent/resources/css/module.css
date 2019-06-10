@@ -4361,6 +4361,11 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 	overflow: hidden;
 }
 
+.carousel-title-hide {
+	height: 0;
+	display: none;
+}
+
 /* Small screen */
 @media (max-width: 1365px) {
   .statistic-carousel {
@@ -4369,6 +4374,9 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   }
   .compact-mode .jqplot-target {
     width: 25rem;
+  }
+  .ui-carousel .ui-carousel-header .ui-carousel-header-title {
+    max-width: 70% !important;
   }
 }
 
@@ -4381,6 +4389,10 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
   .compact-mode .jqplot-target {
     width: 26rem;
+  }
+  
+  .ui-carousel .ui-carousel-header .ui-carousel-header-title {
+    max-width: 72% !important;
   }
 }
 
