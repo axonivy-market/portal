@@ -24,23 +24,22 @@ public class DataProvider {
   }
 
   public List<String> execute() {
-    Ivy.log().info("executeDataProvider");
+    Ivy.log().debug("executeDataProvider");
     ISubProcessStart subProcessStart = findSubProcessStart(optionStrs);
     if (subProcessStart == null) {
       return optionStrs;
     }
-    Ivy.log().info(
-        "call data provider " + subProcessStart.getProjectName() + "/" + subProcessStart.getProcessPath() + "/"
+    Ivy.log().debug("call data provider " + subProcessStart.getProjectName() + "/" + subProcessStart.getProcessPath() + "/"
             + subProcessStart.getSignature());
     List<String> values = executeSubProcess(subProcessStart);
-    Ivy.log().info("provided data is " + values);
+    Ivy.log().debug("provided data is " + values);
     return values;
   }
 
   private ISubProcessStart findSubProcessStart(List<String> optionStrs) {
 
     if (optionStrs == null || optionStrs.size() < 2) {
-      Ivy.log().info("no data provider configured");
+      Ivy.log().debug("no data provider configured");
       return null;
     }
 
@@ -65,7 +64,7 @@ public class DataProvider {
     Map<String, Object> result = SubProcessRunner.execute(subProcessStart);
     Object data = result.get(RESULT_PARAMETER_NAME);
     if (data == null || !(data instanceof List)) {
-      Ivy.log().info("no data provided");
+      Ivy.log().debug("no data provided");
       return optionStrs;
     }
     @SuppressWarnings("unchecked")
