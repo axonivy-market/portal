@@ -4,6 +4,7 @@
     /Functional-Processes.CalculateTaskDelegate "Functional Processes/CalculateTaskDelegateOverride"
     /Functional-Processes.InitializeMobileTaskDataModel "Functional Processes/InitializeMobileTaskDataModelOverride"
     /Functional-Processes.DeleteDocument "Functional Processes/DeleteDocumentOverride"
+    /Functional-Processes.AssignRolesGroupChat "Functional Processes/AssignRolesGroupChatOverride"
     /Functional-Processes.InitializeTaskDataModel "Functional Processes/InitializeTaskDataModelOverride"
     /Functional-Processes.GetGroupChatParams "Functional Processes/GetGroupChatParamsOverride"
     /Functional-Processes.OpenPortalSearch "Functional Processes/OpenPortalSearchOverride"

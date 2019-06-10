@@ -5,4 +5,8 @@
         <identifier>PortalSystem</identifier>
         <displayName>Portal System</displayName>
     </role>
+    <role>
+        <identifier>HR</identifier>
+        <displayName>Human resources department</displayName>
+    </role>
 </role>

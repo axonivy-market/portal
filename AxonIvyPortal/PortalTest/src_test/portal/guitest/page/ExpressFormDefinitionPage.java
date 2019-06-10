@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.server.browserlaunchers.Sleeper;
+import org.openqa.selenium.support.ui.Select;
 
 import ch.xpertline.base.client.Browser;
 
@@ -60,6 +61,21 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     waitForElementDisplayed(By.id("form:createTabs:createManyCheckboxTab"), true, TIME_OUT);
     type(By.id("form:createTabs:ManyCheckboxLabel"), label);
     addCheckboxOptions(numberOfSelection);
+    Sleeper.sleepTight(1000);
+    click(By.id("form:createTabs:add-checkbox-btn"));
+    waitAjaxIndicatorDisappear();
+    ensureNoBackgroundRequest();
+  }
+  
+  public void createCheckboxFieldWithDataProvider(String label) {
+    click(By.xpath("//*[@id='form:createTabs']/ul/li[3]"));
+    ensureNoBackgroundRequest();
+    Sleeper.sleepTight(3000);
+    waitForElementDisplayed(By.id("form:createTabs:createManyCheckboxTab"), true, TIME_OUT);
+    click(By.id("form:createTabs:DataProvider_label"));
+    Sleeper.sleepTight(1000);
+    click(By.xpath("//*[@data-label='SampleDataProviderForPortalExpress']"));
+    type(By.id("form:createTabs:ManyCheckboxLabel"), label);
     Sleeper.sleepTight(1000);
     click(By.id("form:createTabs:add-checkbox-btn"));
     waitAjaxIndicatorDisappear();

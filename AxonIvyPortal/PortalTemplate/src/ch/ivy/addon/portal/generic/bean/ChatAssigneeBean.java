@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +50,7 @@ public class ChatAssigneeBean implements Serializable {
 
   private static final String TASK_TEMPLATE_GROWL_ID = "task-template-growl";
   private static final String CHAT_ASSIGNEE_ERROR_MESSAGE_ID = "chat-assignee-selection-form:error-message";
-  private static final String CONFIGURED_ROLES_SUB_PROCESS = "configureRolesForGroupChat()";
+  private static final String CONFIGURED_ROLES_SUB_PROCESS = "configureRolesForGroupChat(ch.ivyteam.ivy.workflow.ITask)";
 
 
   private static final long serialVersionUID = 4691697531600235758L;
@@ -322,7 +323,9 @@ public class ChatAssigneeBean implements Serializable {
 
   @SuppressWarnings("unchecked")
   private List<ISecurityMember> getConfiguredRoles() {
-    Map<String, Object> response = IvyAdapterService.startSubProcess(CONFIGURED_ROLES_SUB_PROCESS, null,
+    Map<String, Object> params = new HashMap<>();
+    params.put("task", Ivy.wfTask());
+    Map<String, Object> response = IvyAdapterService.startSubProcess(CONFIGURED_ROLES_SUB_PROCESS, params,
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
     List<IRole> roles = (List<IRole>) response.get("roles");
     return roles.stream().filter(role -> !Objects.isNull(role)).collect(Collectors.toList());

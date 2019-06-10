@@ -1,5 +1,5 @@
 [Ivy]
-169B2A4D199FA6EA 3.26 #module
+16B3FA08E0ADDCE6 3.26 #module
 >Proto >Proto Collection #zClass
 At0 AssignRolesGroupChat Big #zClass
 At0 B #cInfo
@@ -15,8 +15,9 @@ At0 @TextInP .responsibility .responsibility #zField
 At0 @StartSub f0 '' #zField
 At0 @EndSub f1 '' #zField
 At0 @InfoButton f3 '' #zField
+At0 @GridStep f5 '' #zField
+At0 @PushWFArc f6 '' #zField
 At0 @PushWFArc f2 '' #zField
-At0 @AnnotationArc f4 '' #zField
 >Proto At0 At0 AssignRolesGroupChat #zField
 At0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ITask task> param;' #txt
 At0 f0 inParamTable 'out.task=param.task;
@@ -25,10 +26,10 @@ At0 f0 outParamDecl '<java.util.List<ch.ivyteam.ivy.security.IRole> roles> resul
 ' #txt
 At0 f0 outParamTable 'result.roles=in.roles;
 ' #txt
-At0 f0 actionDecl 'ch.ivy.addon.portal.generic.AssignRolesGroupChatData out;
+At0 f0 actionDecl '_ch.ivyteam.ivy.project.portal.examples.AssignRolesGroupChatOverrideData out;
 ' #txt
 At0 f0 callSignature configureRolesForGroupChat(ch.ivyteam.ivy.workflow.ITask) #txt
-At0 f0 type ch.ivy.addon.portal.generic.AssignRolesGroupChatData #txt
+At0 f0 type _ch.ivyteam.ivy.project.portal.examples.AssignRolesGroupChatOverrideData #txt
 At0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -36,15 +37,15 @@ At0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-At0 f0 33 25 30 30 5 17 #rect
+At0 f0 57 17 30 30 5 17 #rect
 At0 f0 @|StartSubIcon #fIcon
-At0 f1 type ch.ivy.addon.portal.generic.AssignRolesGroupChatData #txt
-At0 f1 33 233 30 30 0 15 #rect
+At0 f1 type _ch.ivyteam.ivy.project.portal.examples.AssignRolesGroupChatOverrideData #txt
+At0 f1 57 225 30 30 0 15 #rect
 At0 f1 @|EndSubIcon #fIcon
 At0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Use this callable to configure a predefined list of responsible roles for group chat feature. 
+        <name>Use this callable to configure a predefined list of responsible roles for group chat feature. &#xD;
 By default, this does nothing. Set value of in.roles to customize this role list.&#xD;
 &#xD;
 e.g. set predefined role HR for the process leave request.&#xD;
@@ -52,18 +53,36 @@ String processPath = in.task.getCase().getProcessStart().getUserFriendlyRequestP
 if (processPath.contains("Start Processes/CreateTestData/CategoriedLeaveRequest.ivp")) {&#xD;
   in.roles.add(ivy.wf.getSecurityContext().findRole("HR"));&#xD;
 }</name>
-        <nameStyle>5,5
-475,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
-At0 f3 72 82 512 140 -250 -64 #rect
+At0 f3 136 74 512 140 -250 -64 #rect
 At0 f3 @|IBIcon #fIcon
+At0 f5 actionDecl '_ch.ivyteam.ivy.project.portal.examples.AssignRolesGroupChatOverrideData out;
+' #txt
+At0 f5 actionTable 'out=in;
+' #txt
+At0 f5 actionCode 'import java.util.ArrayList;
+String processPath = in.task.getCase().getProcessStart().getUserFriendlyRequestPath();
+if (processPath.contains("Start Processes/CreateTestData/CategoriedLeaveRequest.ivp")) {
+	in.roles.add(ivy.wf.getSecurityContext().findRole("HR"));
+}' #txt
+At0 f5 security system #txt
+At0 f5 type _ch.ivyteam.ivy.project.portal.examples.AssignRolesGroupChatOverrideData #txt
+At0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Configure</name>
+    </language>
+</elementInfo>
+' #txt
+At0 f5 16 106 112 44 -27 -8 #rect
+At0 f5 @|StepIcon #fIcon
+At0 f6 expr out #txt
+At0 f6 72 47 72 106 #arcP
 At0 f2 expr out #txt
-At0 f2 48 55 48 233 #arcP
-At0 f4 72 152 48 144 #arcP
->Proto At0 .type ch.ivy.addon.portal.generic.AssignRolesGroupChatData #txt
+At0 f2 72 150 72 225 #arcP
+>Proto At0 .type _ch.ivyteam.ivy.project.portal.examples.AssignRolesGroupChatOverrideData #txt
 >Proto At0 .processKind CALLABLE_SUB #txt
 >Proto At0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -72,7 +91,7 @@ At0 f4 72 152 48 144 #arcP
 ' #txt
 >Proto At0 0 0 32 24 18 0 #rect
 >Proto At0 @|BIcon #fIcon
-At0 f0 mainOut f2 tail #connect
+At0 f0 mainOut f6 tail #connect
+At0 f6 head f5 mainIn #connect
+At0 f5 mainOut f2 tail #connect
 At0 f2 head f1 mainIn #connect
-At0 f3 ao f4 tail #connect
-At0 f4 head f2 ai #connect
