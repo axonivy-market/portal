@@ -550,6 +550,7 @@ for (ExpressFormElement element: formelements){
 	formelement.name = element.name;
 	formelement.required = element.required;
 	formelement.type = element.elementType;
+	formelement.indexInPanel = element.indexInPanel;
 
 	List<String> optionsStrx = element.optionsStr.split(":",-1);
 	
@@ -567,9 +568,9 @@ for (ExpressFormElement element: formelements){
 	}else{
 		in.dragAndDropController.selectedFormelementsFooter.add(formelement);
 	}
-	
-	ExpressProcessUtils.sortIndexInPanels(in.dragAndDropController);
-}' #txt
+}
+
+ExpressProcessUtils.sortIndexInPanels(in.dragAndDropController);' #txt
 Ct0 f28 security system #txt
 Ct0 f28 type gawfs.Data #txt
 Ct0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
