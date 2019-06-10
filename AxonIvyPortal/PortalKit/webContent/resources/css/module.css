@@ -910,7 +910,8 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   display: block;
   overflow: visible;
   text-indent: 0px !important;
-  position: relative;
+  position: absolute;
+  right: 0;
 }
 .ui-selectonemenu .ui-selectonemenu-trigger .ui-icon:after {
   font-family: 'FontAwesome';
