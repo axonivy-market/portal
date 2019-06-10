@@ -66,7 +66,9 @@
 .ui-widget.ui-button span{
   color: rgba(0, 0, 0, 1);
 }
-
+.ui-widget.ui-button span:before {
+  color: grey;
+}
 .ui-widget.ui-button-text-icon-right {
   direction: rtl;
 }
@@ -542,7 +544,9 @@
 .ui-datatable table tbody tr td a, .ui-datatable table tbody tr td span {
   color: rgba(0, 0, 0, 1) !important;
 }
-
+.ui-datatable table tbody tr td a, .ui-datatable table tbody tr td span:after {
+  color: grey;
+}
 .ui-datatable table tbody tr td:not(:last-child) {
   border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
@@ -951,6 +955,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
     left: 6px;
     top: 12px;
 }
+
 /* =================== END DROPDOWN ====================== */
 
 /* =================== AUTOCOMPLETE ====================== */
