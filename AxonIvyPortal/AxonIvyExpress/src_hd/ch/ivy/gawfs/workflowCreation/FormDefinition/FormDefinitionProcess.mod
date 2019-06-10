@@ -1,5 +1,5 @@
 [Ivy]
-1574EBDBE9576CED 3.23 #module
+1574EBDBE9576CED 3.26 #module
 >Proto >Proto Collection #zClass
 Ds0 FormDefinitionProcess Big #zClass
 Ds0 RD #cInfo
@@ -288,7 +288,8 @@ Ds0 f11 actionDecl 'ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionD
 Ds0 f11 actionTable 'out=in;
 out.activeTab=0;
 ' #txt
-Ds0 f11 actionCode 'import ch.ivy.gawfs.ExpressProcessUtils;
+Ds0 f11 actionCode 'import gawfs.ExternalDataProvider;
+import ch.ivy.gawfs.ExpressProcessUtils;
 import ch.ivy.addon.portalkit.bo.ExpressUserEmail;
 import ch.ivy.gawfs.enums.TaskType;
 import ch.ivy.gawfs.DynaFormController;
@@ -318,7 +319,12 @@ if(in.data.definedTasks.get(0).taskType != TaskType.EMAIL) {
 }
 in.activeTaskIndex = 0;
 ExpressProcessUtils expressUtils = new ExpressProcessUtils();
-in.displayNextBtn = expressUtils.displayNextButton(in.data.definedTasks, in.activeTaskIndex);' #txt
+in.displayNextBtn = expressUtils.displayNextButton(in.data.definedTasks, in.activeTaskIndex);
+
+in.selectedDataProvider = new ExternalDataProvider();
+in.selectedDataProvider.name = ivy.cms.co("/Dialogs/workflowCreation/FormDefinition/NoDataProvider");
+in.dataProviders.add(in.selectedDataProvider);
+in.dataProviders.addAll(expressUtils.findDataProviders());' #txt
 Ds0 f11 security system #txt
 Ds0 f11 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
 Ds0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -342,6 +348,10 @@ Ds0 f33 actionTable 'out=in;
 ' #txt
 Ds0 f33 actionCode '
 in.createManyCheckboxTab.id = in.createManyCheckboxTab.label + new DateTime();
+if (!in.selectedDataProvider.libraryId.isEmpty()) {
+	in.createManyCheckboxTab.addOption(in.selectedDataProvider.libraryId);
+	in.createManyCheckboxTab.addOption(in.selectedDataProvider.signature);
+}
 in.dragAndDropController.availableFormelements.add(in.createManyCheckboxTab);
 
 ' #txt

@@ -3,6 +3,7 @@ package ch.ivy.gawfs;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -43,13 +44,23 @@ public class Formelement implements Serializable {
 
   public List<String> getOptionsStr() {
     this.optionsStr.clear();
-    for (FormelementOption formelementOption : options) {
-      optionsStr.add(formelementOption.getValue());
+    if (type == FormElementType.CHECKBOX && options != null
+        && options.size() == 2
+        && "portalExpressDataProvider()".equals(options.get(1).getValue())) {
+      optionsStr = executeDataProvider(options.stream().map(FormelementOption::getValue).collect(Collectors.toList()));
+    } else {
+      for (FormelementOption formelementOption : options) {
+        optionsStr.add(formelementOption.getValue());
+      }
     }
     if (this.optionsStr.isEmpty()) {
       this.optionsStr.add(StringUtils.EMPTY);
     }
     return optionsStr;
+  }
+
+  private List<String> executeDataProvider(List<String> optionStrs) {
+    return DataProvider.create(optionStrs).execute();
   }
 
   public void setOptionsStr(List<String> optionsStr) {
