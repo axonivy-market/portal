@@ -93,21 +93,21 @@
       <ic:ch.ivy.addon.portalkit.admin.AdminSettings id="adminui" /> 
       <f:facet name="footer">
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" 
-          id="close-button" type="button" onclick="clearFilter(); PF('adminUI').hide();" />
+          id="close-button" type="button" onclick="clearFilter(); PF('adminUI').hide();" styleClass="buttonDelegate" />
       </f:facet>
     </p:dialog>
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/dialogclosinginformation/dialogHeader')}" 
       width="50%" closeOnEscape="true" widgetVar="dialogClosingInformation" id="dialog-closing-information" resizable="false" 
-      modal="true" draggable="false" appendTo="@(body)" dynamic="true" >
+      modal="true" draggable="false" appendTo="@(body)" dynamic="true" styleClass="dialog-closing-information">
       <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/dialogclosinginformation/informMessage')}" />
       <f:facet name="footer">
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" 
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" styleClass="portal-ok-button"
           id="close-dialog-button" type="button" onclick="window.location.reload();" />
       </f:facet>
     </p:dialog>
 
-    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}" 
+    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}" styleClass="absence-settings-dialog"
       width="80%" height="420" closeOnEscape="true" widgetVar="absenceSetting" id="absence-settings-dialog" resizable="false" 
       modal="true" draggable="true" appendTo="@(body)" dynamic="true" responsive="true">
       <ic:ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy id="absence-settings" dialogName="absenceSetting" />
