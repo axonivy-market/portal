@@ -1,0 +1,3 @@
+GetGroupChatParamsOverrideData #class
+_ch.ivyteam.ivy.project.portal.examples #namespace
+params java.util.Map #field
