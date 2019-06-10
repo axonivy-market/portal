@@ -11,7 +11,7 @@
     <ic:ch.ivy.addon.portalkit.component.statistic.ChartInformationDialog selectedStatisticChart="#{data.selectedStatisticChart}" />
     <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer">
       <p:commandButton type="button" styleClass="portal-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-        onclick="PF('chart-details-dialog').hide();">
+        onclick="PF('#{chartDetailDialogId}').hide();">
       </p:commandButton>
     </h:panelGroup>
   </p:dialog>
