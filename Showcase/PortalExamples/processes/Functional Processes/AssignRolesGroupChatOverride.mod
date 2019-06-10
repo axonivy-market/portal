@@ -67,6 +67,7 @@ String processPath = in.task.getCase().getProcessStart().getUserFriendlyRequestP
 if (processPath.contains("Start Processes/CreateTestData/CategoriedLeaveRequest.ivp")) {
 	in.roles.add(ivy.wf.getSecurityContext().findRole("HR"));
 }' #txt
+At0 f5 security system #txt
 At0 f5 type _ch.ivyteam.ivy.project.portal.examples.AssignRolesGroupChatOverrideData #txt
 At0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
