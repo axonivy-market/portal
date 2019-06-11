@@ -494,8 +494,6 @@
 			
 			$(document).ready(function() {
 				$('.ui-inputfield.ui-inputtext').on("input", function() {
-					console.log($(this).val());
-					console.log($(this).val().length);
 					var size = $(this).val().length;
 					$(this).attr('size', size);
 				});

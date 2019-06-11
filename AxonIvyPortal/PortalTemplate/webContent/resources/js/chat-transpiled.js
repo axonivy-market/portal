@@ -779,17 +779,17 @@ function View(uri) {
     var $usersParticipants = $('.js-users-participants>.participants-list');
     $usersParticipants.find('li').remove();
 
-    if (users.length > 0) {
-      $('js-users-participants-header').removeClass('u-hidden');
-      $('js-users-participants').removeClass('u-hidden');
+    if (users !== undefined && users.length > 0) {
+      $('.js-users-participants-header').removeClass('u-hidden');
+      $('.js-users-participants').removeClass('u-hidden');
       $(users).each(function (index, user) {
         var userDom = document.createElement('li');
         userDom.innerHTML = user;
         $usersParticipants.get(0).appendChild(userDom);
       });
     } else {
-      $('js-users-participants-header').addClass('u-hidden');
-      $('js-users-participants').addClass('u-hidden');
+      $('.js-users-participants-header').addClass('u-hidden');
+      $('.js-users-participants').addClass('u-hidden');
     }
   }
 
