@@ -166,6 +166,11 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   transition: background-color 0.3s ease 0s;
 }
 
+.ui-autocomplete-panel .ui-autocomplete-items.ui-autocomplete-table tr:hover {
+  background: #E8E8E8;
+  color: #000;
+}
+
 .ui-autocomplete-panel .ui-autocomplete-items.ui-autocomplete-table td {
   padding: 6px 10px;
 }
@@ -1711,6 +1716,11 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 	float: right;
 	text-align: left;
 	transform: translateY(35%);
+	line-height: 1;
+}
+
+.ui-selectoneradio.ui-widget.process-type {
+  padding: 6px;	
 }
 
 .widget a.border-bottom-none {
@@ -1811,7 +1821,7 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 }
 
 .filter-selection-form .filter-name-overlay-panel .user-definied-filter-container:hover .ui-commandlink {
-  font-family: 'robotobold' !important;
+  font-weight: bold;
 }
 .filter-selection-form .filter-name-overlay-panel .user-definied-filter-container .user-definied-filter {
   flex: 1 0 80%;
@@ -3408,9 +3418,9 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 /********************************** AWESOME ICON SELECTION **********************************/
 .select-awesome-icon-button {
   margin-left: 10px;
-  font-family: 'robotobold' !important;
   text-decoration: underline !important;
   color: rgba(0, 0, 0, 1) !important;
+  font-weight: bold;
 }
 
 .select-awesome-icon-button:hover {
@@ -3421,6 +3431,10 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   display: flex;
   padding-top: 10px;
   align-items: center;
+}
+
+.ui-widget-content a {
+  color: #337ab7;
 }
 
 /********************************** STATISTIC WIDGET **********************************/
