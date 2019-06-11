@@ -662,6 +662,13 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
     }
 }
 
+/*Style For Growl message --------------------------------------------------------------------------------------*/
+.ui-growl-item .ui-growl-message {
+  .ui-growl-title {
+    padding: 10px 0px 0px 0px !important;
+  }
+}
+
 /*Style For Panel --------------------------------------------------------------------------------------*/
 .ui-panel .ui-panel-content {
     padding: 8px !important;
