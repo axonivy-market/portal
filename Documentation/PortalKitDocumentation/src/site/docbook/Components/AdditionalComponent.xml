@@ -272,7 +272,7 @@ flash.setKeepMessages(true);
 		</sect3>
 	</sect2>
 	<sect2 xml:id="axonivyportal.components.additionalcomponent.documenttable">
-		<title>Global growl</title>
+		<title>Document table</title>
 		<sect3 xml:id="axonivyportal.components.additionalcomponent.documenttable.introduction">
 			<title>Introduction</title>
 			<para>
@@ -284,6 +284,7 @@ flash.setKeepMessages(true);
 				</imageobject>
 			</mediaobject>
 		</sect3>
+		<sect3>
 			<para>
 				You can override the <code>GetDocumentList</code>, <code>UploadDocument</code>, <code>DeleteDocument</code>, <code>DownloadDocument</code> sub processes to extend these features, 
 				and add more columns, remove default columns in document table. Refer to the <code>DocumentTableComponent</code> process in PortalExamples project
