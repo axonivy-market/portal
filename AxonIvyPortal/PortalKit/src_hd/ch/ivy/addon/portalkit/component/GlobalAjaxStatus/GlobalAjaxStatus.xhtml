@@ -29,7 +29,7 @@
   </p:dialog>
   
   <p:dialog id="detail-error-dialog" widgetVar="detail-error-dialog" closable="true" 
-    modal="true" resizable="false" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}">
+    modal="true" resizable="false" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/errorXhr')}">
     <div class="ui-g-2">
     	<h:outputText value="Status code"/>
     </div>
@@ -65,6 +65,24 @@
     </div>
     <div class="ui-g-10">
     	<h:outputText id="error-args" />
+    </div>
+    <div class="ui-g-2">
+    	<h:outputText value="PfSettings.source.id"/>
+    </div>
+    <div class="ui-g-10">
+    	<h:outputText id="pfSettings-source" />
+    </div>
+    <div class="ui-g-2">
+    	<h:outputText value="Form data" />
+    </div>
+    <div class="ui-g-10">
+    	<p:inputTextarea disabled="true" id="form-data" styleClass="Wid100" rows="3" autoResize="false"/>
+    </div>
+    <div class="ui-g-2">
+    	<h:outputText value="Response text" />
+    </div>
+    <div class="ui-g-10">
+    	<p:inputTextarea disabled="true" id="response-text" styleClass="Wid100" rows="10" autoResize="false"/>
     </div>
   </p:dialog>
 </cc:implementation>

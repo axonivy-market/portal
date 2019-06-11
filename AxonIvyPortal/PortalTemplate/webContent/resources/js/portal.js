@@ -390,6 +390,9 @@ function handleError(xhr){
     document.getElementById('ajax-indicator:error-ready-state').innerHTML = xhr.readyState;
     document.getElementById('ajax-indicator:error-type').innerHTML = xhr.pfSettings.type;
     document.getElementById('ajax-indicator:error-args').innerHTML = JSON.stringify(xhr.pfArgs);
+    document.getElementById('ajax-indicator:pfSettings-source').innerHTML = xhr.pfSettings.source.id;
+    document.getElementById('ajax-indicator:form-data').innerHTML = decodeURIComponent(xhr.pfSettings.data);
+    document.getElementById('ajax-indicator:response-text').innerHTML = xhr.responseText;
     PF('detail-error-dialog').show();
   }
   PF('error-ajax-dialog').show();
