@@ -9,9 +9,9 @@
   pageLinks="0" rendered="#{cc.attrs.compactMode and data.hasStatistic and !cc.attrs.isDrilldownElapsedTime}">
   <p:panelGrid columns="2" columnClasses="label, value">
     <p:panel>
-      <p:panel styleClass="carousel-title-hide">
-        <h:panelGroup id="chart-name-container" style="" styleClass="chart-name-container" layout="block">
-          <p:commandLink rendered="#{!(empty chart.filter)}" styleClass="fa fa-info-circle chart-info" actionListener="#{logic.selectChart(chart)}"
+      <p:panel styleClass="hidden-carousel-title">
+        <h:panelGroup id="chart-name-container" styleClass="chart-name-container" layout="block">
+          <p:commandLink rendered="#{not empty chart.filter}" styleClass="fa fa-info-circle chart-info" actionListener="#{logic.selectChart(chart)}"
             update="chart-dashboard-details-dialog" oncomplete="PF('chart-dashboard-details-dialog').show();" />
           <h:outputLabel id="chart-name" styleClass="chart-name" value="#{chart.name}" for="chart-#{chart.id}" />
         </h:panelGroup>

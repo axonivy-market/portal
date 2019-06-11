@@ -4113,7 +4113,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 	overflow: hidden;
 }
 
-.carousel-title-hide {
+.hidden-carousel-title {
 	height: 0;
 	display: none;
 }
