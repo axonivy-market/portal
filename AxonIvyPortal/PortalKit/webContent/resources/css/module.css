@@ -45,6 +45,11 @@
   left: 0px;
   right: 0px;
  }
+ 
+input::-ms-clear {
+  display: none;
+}
+
 /* =================== TABLE ====================== */
 .ui-datatable .ui-column-filter.ui-widget {
   width: 100%;
