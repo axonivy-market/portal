@@ -33,7 +33,7 @@
 						</div>
 						<div class="ui-g-12 ui-md-6 ui-lg-3">
 							<p:inputText id="InputFieldLabel" required="true"
-								value="#{data.createInputFieldTab.label}" styleClass="" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"/>
+								value="#{data.createInputFieldTab.label}" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"/>
 						</div>
 						<div class="ui-g-12 ui-md-6 ui-lg-1" />
 						<div class="ui-g-12 ui-md-6 ui-lg-2">
@@ -41,7 +41,7 @@
 						</div>
 					
 						<div class="ui-g-12 ui-md-6 ui-lg-3">
-							<p:selectOneMenu id="InputFieldType" value="#{data.createInputFieldTab.type}" styleClass=""
+							<p:selectOneMenu id="InputFieldType" value="#{data.createInputFieldTab.type}"
 								requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputType')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
 								<f:selectItems value="#{formDefinitionBean.inputFormElementTypes}" var="type" itemLabel="#{type.label}" itemValue="#{type}" />
 							</p:selectOneMenu>
@@ -53,7 +53,7 @@
 							<p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}:" for="InputFieldRequired" />
 						</div>
 						<div class="ui-g-12 ui-md-6 ui-lg-10">
-							<p:selectBooleanCheckbox id="InputFieldRequired" styleClass=""
+							<p:selectBooleanCheckbox id="InputFieldRequired" 
 								value="#{data.createInputFieldTab.required}" />
 						</div>
 					</div>
@@ -93,14 +93,13 @@
 							<p:inputText id="InputAreaLabel" required="true"
 								requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
 								value="#{data.createInputAreaTab.label}"
-								styleClass=""
 								maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" />
 						</div>
 						<div class="ui-g-12 ui-md-6 ui-lg-1" />
 						<div class="ui-g-12 ui-md-6 ui-lg-2">
 							<p:outputLabel
 								value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NumberOfRows')}:"
-								for="InputAreaNoRows" styleClass="" />
+								for="InputAreaNoRows" />
 						</div>
 						<div class="ui-g-12 ui-md-6 ui-lg-1">
 							<p:spinner id="InputAreaNoRows"
@@ -115,7 +114,6 @@
 						</div>
 						<div class="ui-g-12 ui-md-6 ui-lg-10">
 							<p:selectBooleanCheckbox id="InputAreaRequired"
-								styleClass=""
 								value="#{data.createInputAreaTab.required}" />
 						</div>
 					</div>
@@ -156,7 +154,6 @@
 						<p:inputText id="ManyCheckboxLabel" required="true"
 							requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
 							value="#{data.createManyCheckboxTab.label}"
-							styleClass=""
 							maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" />
 					</div>
 					<div class="ui-g-12 ui-md-6 ui-lg-2" />
@@ -240,7 +237,6 @@
 						<p:inputText id="OneRadioLabel" required="true"
 							requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}  #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
 							value="#{data.createOneRadioTab.label}"
-							styleClass=""
 							maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" />
 					</div>
 					<div class="ui-g-12 ui-md-6 ui-lg-2"/>
@@ -321,7 +317,6 @@
 							<p:inputText id="FileUploadLabel" required="true"
 								requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
 								value="#{data.createFileUploadTab.label}"
-								styleClass=""
 								maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" />
 						</div>
 						<div class="ui-g-12 ui-md-6 ui-lg-2"></div>

@@ -85,6 +85,9 @@
         <div class="layout-main">
           <ui:fragment rendered="#{not deviceBean.mobile}">
             <div class="layout-topbar">
+              <a class="menu-btn">
+                <i class="material-icons fa fa-bars left-sidebar-menu-icon left-sidebar-menu-icon-font-size left-sidebar-animation" />
+              </a>
               <div class="layout-topbar-menu-wrapper">
                 <ui:include src="/layouts/includes/topbar.xhtml">
                   <ui:param name="isWorkingOnATask" value="#{isWorkingOnATask}" />
