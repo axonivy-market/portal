@@ -4366,6 +4366,18 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 	display: none;
 }
 
+.ui-carousel-item .ui-dialog-content .ui-panelgrid, .ui-carousel-item .ui-dialog-content .ui-panelgrid tbody tr .ui-panelgrid-cell {
+	border: solid 1px #E0E0E0 !important;
+	text-align: left;
+}
+
+.ui-carousel-item .ui-dialog-content .ui-panelgrid tbody tr .ui-panelgrid-cell {
+	padding: 4px 10px !important;
+}
+.ui-carousel-item .ui-dialog-content .chart-info-header {
+	text-align: left;
+}
+
 /* Small screen */
 @media (max-width: 1365px) {
   .statistic-carousel {

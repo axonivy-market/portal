@@ -11,15 +11,14 @@
 
   <p:panelGrid columns="2" columnClasses="label, value">
     <p:panel>
-      <p:panel style="height: 0; display: none">
+      <p:panel styleClass="carousel-title-hide" >
         <h:panelGroup id="chart-name-container" style="" styleClass="chart-name-container" layout="block">
           <p:commandLink rendered="#{!(empty chart.filter)}" styleClass="fa fa-info-circle chart-info" actionListener="#{logic.selectChart(chart)}"
             update="chart-dashboard-details-dialog" oncomplete="PF('chart-dashboard-details-dialog').show();" />
           <h:outputLabel id="chart-name" styleClass="chart-name" value="#{chart.name}" for="chart-#{chart.id}" />
         </h:panelGroup>
         
-        <h:outputText id="carousel-effect-duration" value="#{carouselStatistic.effectDuration}" style="height: 0; display: none" />
-        <h:outputText id="carousel-row-index" value="#{carouselStatistic.rowIndex}" style="height: 0; display: none" />
+        <h:outputText id="carousel-effect-duration" value="#{carouselStatistic.effectDuration}" />
       </p:panel>
 
       <p:chart type="donut" styleClass="statistic-chart" model="#{chart.donutChartModel}" rendered="#{statisticDashboardBean.isTaskByPriority(chart)}">
