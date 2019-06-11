@@ -17,7 +17,6 @@
         </h:panelGroup>
 
         <h:outputText id="carousel-effect-duration" value="#{carouselStatistic.effectDuration}" />
-        <h:outputText id="carousel-row-index" value="#{carouselStatistic.rowIndex}" />
       </p:panel>
       <p:chart type="donut" styleClass="statistic-chart" model="#{chart.donutChartModel}" rendered="#{statisticDashboardBean.isTaskByPriority(chart)}">
         <f:attribute name="selectedChartId" value="#{chart.id}" />
