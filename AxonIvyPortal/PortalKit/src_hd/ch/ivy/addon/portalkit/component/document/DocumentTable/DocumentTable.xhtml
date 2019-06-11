@@ -1,0 +1,112 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:cc="http://java.sun.com/jsf/composite"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="nameColumnRendered" default="true" />
+  <cc:attribute name="sizeColumnRendered" default="true" />
+  <cc:attribute name="typeColumnRendered" default="true" />
+  <cc:attribute name="functionColumnRendered" default="true" />
+  <cc:attribute name="uploadRendered" default="true" />
+  <cc:attribute name="downloadRendered" default="true" />
+  <cc:attribute name="deleteRendered" default="true" />
+  
+  <cc:attribute name="fileLimit" type="Integer" shortDescription="Number of files are in the given ICase" default="-1" />
+  <cc:attribute name="uploadText" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/upload')}" />
+  <cc:attribute name="updatedComponentAfterUploaded" />
+
+  <cc:attribute name="downloadText" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}" />
+  <cc:attribute name="downloadTitle" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}" />
+  <cc:attribute name="downloadIcon" default="fa-download" />
+  <cc:attribute name="downloadStyleClass" />
+
+  <cc:attribute name="deleteText" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" />
+  <cc:attribute name="deleteTitle" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" />
+  <cc:attribute name="deleteIcon" default="fa-trash-o" />
+  <cc:attribute name="deleteStyleClass" />
+  <cc:attribute name="updatedComponentAfterDeleted" />
+  
+  <cc:attribute name="typeSelectionItems" required="true" shortDescription="Use #{masterDataBean.documentTypes} if there are no custom Document Type" />
+</cc:interface>
+
+<cc:implementation>
+  <div id="#{cc.clientId}">
+    <ui:param name="messageComponentId" value="#{cc.clientId.concat(':document-messages')}" />
+
+    <cc:renderFacet name="componentHeader" />
+
+    <p:messages id="document-messages" />
+    <p:dataTable id="document-table" value="#{data.documents}" var="document"
+      emptyMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/NoFiles')}" styleClass="MarTop5"
+      widgetVar="fileTableVar">
+      <f:event type="preRenderComponent" listener="#{logic.load(messageComponentId, cc.attrs.typeColumnRendered)}" />
+
+      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}"
+        rendered="#{cc.attrs.nameColumnRendered}">
+        <h:outputText id="name" value="#{document.name}" title="#{document.name}" />
+      </p:column>
+      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/size')}"
+        rendered="#{cc.attrs.sizeColumnRendered}">
+        <h:outputText id="size" value="#{document.userFriendlySize}" title="#{document.userFriendlySize}" />
+      </p:column>
+      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/type')}" rendered="#{cc.attrs.typeColumnRendered}">
+        <h:outputText id="type" value="#{document.type.toString()}" />
+      </p:column>
+      <cc:insertChildren />
+      <p:column styleClass="u-text-align-center" rendered="#{cc.attrs.functionColumnRendered}"
+        headerText="#{ivy.cms.co('/Dialogs/components/CaseDocument/FileFunctions')}">
+        <p:commandLink id="document-download" styleClass="fa #{cc.attrs.downloadIcon} #{cc.attrs.downloadStyleClass}"
+          immediate="true" ajax="false" process="@none" title="#{cc.attrs.downloadTitle}"
+          value="#{cc.attrs.downloadText}" rendered="#{cc.attrs.downloadRendered}">
+          <p:fileDownload value="#{logic.download(document)}" />
+        </p:commandLink>
+
+        <p:spacer width="20px" />
+
+        <p:commandLink id="document-delete" styleClass="fa fa-trash-o"
+          actionListener="#{data.setSelectedDocument(document)}" rendered="#{cc.attrs.deleteRendered}"
+          update="#{cc.attrs.updatedComponentAfterDeleted}" immediate="true" title="#{cc.attrs.deleteTitle}"
+          value="#{cc.attrs.deleteText}" oncomplete="PF('document-delete-dialog').show()">
+        </p:commandLink>
+      </p:column>
+    </p:dataTable>
+    <div class="upload-container">
+      <h:panelGroup rendered="#{cc.attrs.typeColumnRendered}">
+          <p:outputLabel for="type-selection" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/type')}: " styleClass="u-mar-right-5" />
+          <p:selectOneMenu id="type-selection" value="#{data.typeSelection}" converter="pojoConverter" styleClass="u-mar-right-5">
+            <p:ajax global="false" />
+            <f:selectItems value="#{cc.attrs.typeSelectionItems}" var="type" itemLabel="#{type.toString()}"
+              itemValue="#{type}" />
+          </p:selectOneMenu>
+      </h:panelGroup>
+      <h:panelGroup rendered="#{cc.attrs.uploadRendered}">
+        <p:fileUpload id="document-upload" mode="advanced" auto="true" dragDropSupport="true"
+          fileUploadListener="#{logic.upload}"
+          update="document-table document-messages #{cc.attrs.updatedComponentAfterUploaded}"
+          invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}" 
+          label="#{not empty cc.attrs.uploadText ? cc.attrs.uploadText : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/upload')}"
+          cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          onstart="#{logic.setFileLimit(cc.attrs.fileLimit)}" sizeLimit="#{masterDataBean.fileUploadSizeLimit}">
+        </p:fileUpload>
+      </h:panelGroup>
+    </div>
+    
+    <cc:renderFacet name="componentFooter" />
+
+    <p:dialog id="document-delete-dialog" widgetVar="document-delete-dialog" appendTo="@(body)" closable="true"
+      closeOnEscape="true" modal="true" draggable="false" rendered="#{cc.attrs.deleteRendered}"
+      header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" resizable="false">
+      #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmForDelete')}
+      <f:facet name="footer">
+        <p:commandButton id="document-deletion-yes"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" process="@this"
+          update="document-table document-messages #{cc.attrs.updatedComponentAfterDeleted}"
+          actionListener="#{logic.delete}" oncomplete="PF('document-delete-dialog').hide();" />
+        <p:commandButton id="document-deletion-no" styleClass="portal-cancel-button"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" type="button"
+          onclick="PF('document-delete-dialog').hide()" />
+      </f:facet>
+    </p:dialog>
+  </div>
+</cc:implementation>
+</html>

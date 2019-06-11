@@ -52,11 +52,8 @@
       </pe:dynaFormControl>
 
       <pe:dynaFormControl type="FileUpload" for="fileUpload">
-          <ic:ch.ivy.gawfs.component.CaseDocument uploadPossible="false"
-          id="fileUploadComponent"
-          fileLimit="#{dynaData.intSetting}"
-          startMethod="start(#{dynaData.options})"
-          allowFiletypes="#{dynaData.options}" requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"/>
+        <ic:ch.ivy.addon.portalkit.component.document.DocumentTable id="fileUploadComponent" uploadRendered="false"
+          fileLimit="#{dynaData.intSetting}" iCase="#{ivy.case}" typeColumnRendered="false" />
       </pe:dynaFormControl>
 
       <pe:dynaFormControl type="Spacer" for="spacer">

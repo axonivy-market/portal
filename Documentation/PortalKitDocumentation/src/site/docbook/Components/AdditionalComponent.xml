@@ -271,4 +271,23 @@ flash.setKeepMessages(true);
 </screen>
 		</sect3>
 	</sect2>
+	<sect2 xml:id="axonivyportal.components.additionalcomponent.documenttable">
+		<title>Global growl</title>
+		<sect3 xml:id="axonivyportal.components.additionalcomponent.documenttable.introduction">
+			<title>Introduction</title>
+			<para>
+				This component is case document table with the features: upload, download and delete. 
+			</para>
+			<mediaobject>
+				<imageobject>
+					<imagedata fileref="images/AdditionalComponent/documentTable.png" />
+				</imageobject>
+			</mediaobject>
+		</sect3>
+			<para>
+				You can override the <code>GetDocumentList</code>, <code>UploadDocument</code>, <code>DeleteDocument</code>, <code>DownloadDocument</code> sub processes to extend these features, 
+				and add more columns, remove default columns in document table. Refer to the <code>DocumentTableComponent</code> process in PortalExamples project
+			</para>
+		</sect3>
+	</sect2>
 </sect1>

@@ -39,14 +39,13 @@ public class CaseDocumentService {
     return new CaseDocumentService(iCase);
   }
 
-  public boolean upload(String filename, InputStream content) {
+  public IDocument upload(String filename, InputStream content) {
     try {
-      documentsOf(iCase).add(filename).write().withContentFrom(content);
+      return documentsOf(iCase).add(filename).write().withContentFrom(content);
     } catch (PersistencyException e) {
       Ivy.log().error("Error in uploading the document {0} ", e, filename);
-      return false;
+      return null;
     }
-    return true;
   }
 
   public List<IDocument> getAll() {

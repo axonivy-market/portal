@@ -296,7 +296,7 @@ Ts0 f46 actionTable 'out=in;
 Ts0 f46 actionCode 'import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-FacesContext.getCurrentInstance().addMessage("", new FacesMessage( ivy.cms.co("/Dialogs/components/CaseDocument/uploadSucceed"), "" ));' #txt
+FacesContext.getCurrentInstance().addMessage("", new FacesMessage( in.uploadDocumentCheckMessage, "" ));' #txt
 Ts0 f46 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 Ts0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

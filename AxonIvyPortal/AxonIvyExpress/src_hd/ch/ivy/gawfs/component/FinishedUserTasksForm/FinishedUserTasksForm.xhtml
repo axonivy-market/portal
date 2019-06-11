@@ -84,9 +84,8 @@
         </pe:dynaFormControl>
         
         <pe:dynaFormControl type="FileUpload" for="fileUpload">
-          <ic:ch.ivy.gawfs.component.CaseDocument uploadPossible="false"
-            fileLimit="#{dynaData.intSetting}" startMethod="start(#{dynaData.options})" 
-            allowFiletypes="#{dynaData.options}"/>
+          <ic:ch.ivy.addon.portalkit.component.document.DocumentTable uploadRendered="false" deleteRendered="false" typeColumnRendered="false"
+            fileLimit="#{dynaData.intSetting}" iCase="#{ivy.case}" />
         </pe:dynaFormControl>
 
         <pe:dynaFormControl type="Spacer" for="spacer">

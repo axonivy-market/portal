@@ -47,7 +47,11 @@ Gt0 f3 actionDecl 'ch.ivy.add.portalkit.GetDocumentListData out;
 ' #txt
 Gt0 f3 actionTable 'out=in;
 ' #txt
-Gt0 f3 actionCode 'import ch.ivy.addon.portalkit.document.IvyDocumentTransformer;
+Gt0 f3 actionCode 'import ch.ivy.addon.portalkit.document.DocumentCustomField;
+import org.apache.commons.lang3.StringUtils;
+import ch.ivy.addon.portalkit.enums.BasicDocumentType;
+import ch.ivy.addon.portalkit.ivydata.bo.IvyDocument;
+import ch.ivy.addon.portalkit.document.IvyDocumentTransformer;
 import ch.ivyteam.ivy.workflow.document.IDocument;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
@@ -57,9 +61,14 @@ if(in.#businessCase is initialized) {
 	List<IDocument> iDocuments = CaseDocumentService.newInstance(in.businessCase).getAll();
 	IvyDocumentTransformer transformer = new IvyDocumentTransformer();
 	in.documents = transformer.transform(iDocuments);
-}
-
-' #txt
+	for (IvyDocument ivyDocument : in.documents) {
+		String stringField = DocumentCustomField.TYPE_PREFIX + ivyDocument.id;
+		String documentTypeString = in.businessCase.customFields().stringField(stringField).getOrNull();
+		if (StringUtils.isNotBlank(documentTypeString)) {
+			ivyDocument.setType(BasicDocumentType.valueOf(documentTypeString.toUpperCase()));
+		}
+	}
+}' #txt
 Gt0 f3 security system #txt
 Gt0 f3 type ch.ivy.add.portalkit.GetDocumentListData #txt
 Gt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

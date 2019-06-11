@@ -16,7 +16,7 @@
   <ui:param name="isShowStartAdhocButton" value="#{not data.executePredefinedWorkflowData.isAdhocProcess}" />
   <ui:define name="title" />
     <ui:define name="errorsZone">
-      <p:messages id="error-messages" showDetail="false" closable="true" autoUpdate="true" globalOnly="true"/>
+      <p:messages id="error-messages" showDetail="false" closable="true" autoUpdate="true" globalOnly="true" />
     </ui:define>
   <ui:define name="taskForm">
     <h:form id="form">
@@ -25,8 +25,7 @@
       </h:panelGroup>
       
       <p:fieldset id="dynaFormFieldSet" toggleable="true" legend="#{ivy.cms.co('/Dialogs/WorkflowExecution/UserTaskForm/Formular')}">
-        <p:messages id="messagesDynaForm" showDetail="false"
-          autoUpdate="true" closable="true" />
+        <p:messages id="messagesDynaForm" showDetail="false" autoUpdate="true" closable="true" globalOnly="true" />
 
         <pe:dynaForm id="user-task-dyna-form"
           value="#{data.executePredefinedWorkflowData.currentTask.dynaFormController.model}"
@@ -73,11 +72,8 @@
 
 
           <pe:dynaFormControl type="FileUpload" for="fileUpload">
-          
-            <ic:ch.ivy.gawfs.component.CaseDocument uploadPossible="true"
-              noOfFiles="#{dynaData.intSetting}" fileLimit="#{dynaData.intSetting}"
-              allowFiletypes="#{dynaData.options}" requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"/>
-              
+            <ic:ch.ivy.addon.portalkit.component.document.DocumentTable id="fileUploadComponent" typeColumnRendered="false"
+              fileLimit="#{dynaData.intSetting}" iCase="#{ivy.case}" />
           </pe:dynaFormControl>
 
           <pe:dynaFormControl type="Spacer" for="spacer">
