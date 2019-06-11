@@ -39,7 +39,7 @@
 				<div  class="fitDivToFieldset marginTop10px">
 					<div class="ui-g" >
 						<div class="ui-g-12 ui-md-6 ui-lg-2" >
-							<p:outputLabel id="caseIdLabel" styleClass=""
+							<p:outputLabel id="caseIdLabel" 
 								value="#{ivy.cms.co('/Labels/caseId')}" />
 						</div>
 
@@ -48,8 +48,7 @@
 						</div>
 						<div class="ui-g-12 ui-md-12 ui-lg-1" ></div>
 						<div class="ui-g-12 ui-md-6 ui-lg-2" >
-							<p:outputLabel id="dateLabel" styleClass="" 
-								value="#{ivy.cms.co('/Labels/date')}" />
+							<p:outputLabel id="dateLabel" value="#{ivy.cms.co('/Labels/date')}" />
 						</div>
 						<div class="ui-g-12 ui-md-6 ui-lg-3" >
 							<p:outputLabel id="dateValue" value="12.11.2018 15:00" >
@@ -195,8 +194,7 @@
 
 						<div class="ui-g-12 ui-md-6 ui-lg-9">
 							<p:inputTextarea id="reasonValue"
-								value="#{data.gdprRequest.requestReason}" maxlength="2600"
-								styleClass="" />
+								value="#{data.gdprRequest.requestReason}" maxlength="2600" />
 						</div>
 						<div class="ui-g-12 ui-md-6 ui-lg-1">
 							<p:spacer />
