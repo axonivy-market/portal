@@ -25,6 +25,7 @@ import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
 import ch.ivy.addon.portalkit.statistics.StatisticFilter;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.CaseState;
@@ -102,6 +103,7 @@ public class StatisticChartCreationBean implements Serializable {
   }
 
   public boolean checkIfAnyFilterChanges(StatisticFilter filter, StatisticFilter oldFilter) {
+    Ivy.log().error("checkIfAnyFilterChanges");
     if (oldFilter.getTimePeriodSelection() != filter.getTimePeriodSelection()) {
       return true;
     }
@@ -163,8 +165,16 @@ public class StatisticChartCreationBean implements Serializable {
   }
 
   private boolean checkIfAnyCustomFieldChanged(StatisticFilter filter, StatisticFilter oldFilter) {
+    Ivy.log().error("checkIfAnyCustomFieldChanged");
     for (Map.Entry<String, List<String>> entry : filter.getCustomFieldFilters().entrySet()) {
       List<String> list = oldFilter.getCustomFieldFilters().get(entry.getKey());
+      if (CollectionUtils.isNotEmpty(entry.getValue())) {
+        entry.getValue().forEach(x -> Ivy.log().error("value of OLD FILTER key {0} is {1}" ,entry.getKey(), x));
+      }
+      
+      if (CollectionUtils.isNotEmpty(list)) {
+        list.forEach(x -> Ivy.log().error("value of OLD FILTER key {0} is {1}" ,entry.getKey(), x));
+      }
       if (list != null && entry.getValue() != null && !CollectionUtils.isEqualCollection(list, entry.getValue())) {
         return true;
       }

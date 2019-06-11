@@ -850,7 +850,10 @@ Ts0 f48 actionTable 'out=in;
 ' #txt
 Ts0 f48 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
 
-TaskUtils.parkTask(in.task);' #txt
+
+TaskUtils.parkTask(in.task);
+
+int x = 10/0;' #txt
 Ts0 f48 security system #txt
 Ts0 f48 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
