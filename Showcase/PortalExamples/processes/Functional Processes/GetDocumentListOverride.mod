@@ -47,19 +47,31 @@ Gt0 f3 actionDecl '_ch.ivyteam.ivy.project.portal.examples.GetDocumentListOverri
 ' #txt
 Gt0 f3 actionTable 'out=in;
 ' #txt
-Gt0 f3 actionCode 'import ch.ivy.addon.portalkit.ivydata.bo.IvyDocument;
-import ch.ivy.addon.portalkit.document.IvyDocumentTransformer;
+Gt0 f3 actionCode 'import ch.ivy.addon.portalkit.document.DocumentCustomField;
+import ch.ivyteam.ivy.project.portal.examples.component.customize.CustomizedIvyDocumentTransformer;
+import ch.ivyteam.ivy.project.portal.examples.component.customize.CustomizedIvyDocument;
+import ch.ivyteam.ivy.project.portal.examples.enums.ExtendedDocumentType;
+import org.apache.commons.lang3.StringUtils;
 import ch.ivyteam.ivy.workflow.document.IDocument;
-import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.service.CaseDocumentService;
 
 if(in.#businessCase is initialized) {
 	List<IDocument> iDocuments = CaseDocumentService.newInstance(in.businessCase).getAll();
-	IvyDocumentTransformer transformer = new IvyDocumentTransformer();
+	CustomizedIvyDocumentTransformer transformer = new CustomizedIvyDocumentTransformer();
 	in.documents = transformer.transform(iDocuments);
-	for(IvyDocument doc : in.documents) {
+	for(CustomizedIvyDocument doc : in.documents) {
 		doc.setName("Overrided: " + doc.getName());
+		String typeStringField = DocumentCustomField.TYPE_PREFIX + doc.id;
+		String typeString = in.businessCase.customFields().stringField(typeStringField).getOrNull();
+		if (StringUtils.isNotBlank(typeString)) {
+			doc.setType(ExtendedDocumentType.valueOf(typeString.toUpperCase()));
+		}
+		
+		String customerStringField = "IvyDocumentCustomer-" + doc.id;
+		String customer = in.businessCase.customFields().stringField(customerStringField).getOrNull();
+		if (StringUtils.isNotBlank(customer)) {
+			doc.setCustomer(customer);
+		}
 	}
 }
 

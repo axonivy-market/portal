@@ -2,7 +2,23 @@
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
     <method>
-        <name>submitUpload</name>
+        <name>load</name>
+        <description></description>
+        <inputParameter>
+            <name>messageComponentId</name>
+            <description></description>
+            <parameterType>String</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
+        <inputParameter>
+            <name>typeColumnRendered</name>
+            <description></description>
+            <parameterType>Boolean</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
+    </method>
+    <method>
+        <name>upload</name>
         <description></description>
         <inputParameter>
             <name>event</name>
@@ -10,36 +26,6 @@
             <parameterType>org.primefaces.event.FileUploadEvent</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
-    </method>
-    <method>
-        <name>downloadFile</name>
-        <description></description>
-        <inputParameter>
-            <name>filePath</name>
-            <description></description>
-            <parameterType>String</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <inputParameter>
-            <name>fileName</name>
-            <description></description>
-            <parameterType>String</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
-        <name>deleteFile</name>
-        <description></description>
-        <inputParameter>
-            <name>filePath</name>
-            <description></description>
-            <parameterType>String</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
-        <name>overrideFile</name>
-        <description></description>
     </method>
     <method>
         <name>setFileLimit</name>
@@ -51,25 +37,39 @@
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>
+    <method>
+        <name>delete</name>
+        <description></description>
+    </method>
+    <method>
+        <name>download</name>
+        <description></description>
+        <inputParameter>
+            <name>selectedDocument</name>
+            <description></description>
+            <parameterType>ch.ivy.addon.portalkit.ivydata.bo.IvyDocument</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
+        <outputParameter>
+            <name>streamedContent</name>
+            <description></description>
+            <parameterType>org.primefaces.model.StreamedContent</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </outputParameter>
+    </method>
     <startMethod>
         <name>start</name>
         <description>Default dialog start method.</description>
         <inputParameter>
-            <name>noOfFiles</name>
+            <name>iCase</name>
             <description></description>
-            <parameterType>java.lang.Integer</parameterType>
+            <parameterType>ch.ivyteam.ivy.workflow.ICase</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
-        <outputParameter>
-            <name>noOfFiles</name>
-            <description></description>
-            <parameterType>java.lang.Integer</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </outputParameter>
     </startMethod>
     <property>
         <name>guid</name>
-        <value>15795F163B6BD3F5</value>
+        <value>16B1B70EE89AA088</value>
         <readOnly>true</readOnly>
     </property>
     <property>

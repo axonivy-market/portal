@@ -4,7 +4,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public enum WeekDay {
   MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY;
-
+  
   @Override
   public String toString() {
     String translatedEnum =

@@ -994,7 +994,6 @@ Bk4 f25 actionCode 'int currentUserIndex = in.currentTask.getResponsibles().inde
 in.doesCreatorHaveTask = currentUserIndex >= 0;
 if (in.doesCreatorHaveTask) {
 	in.currentTask.setResponsibles(in.currentTask.getResponsibles().removeAt(currentUserIndex));
-	ivy.log.error("bbb {0}", in.currentTask.getResponsibles().size());
 }' #txt
 Bk4 f25 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk4 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
