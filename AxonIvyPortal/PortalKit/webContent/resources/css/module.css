@@ -4366,7 +4366,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 	overflow: hidden;
 }
 
-.carousel-title-hide {
+.hidden-carousel-title {
 	height: 0;
 	display: none;
 }

@@ -82,9 +82,11 @@ $(document).ready(function() {
     
     if (titleLength > 30) {
       activeTitle = activeTitle.substring(0, maxTitleSize);
+      
+      if (titleHeader.get(0) !== undefined) {
+        titleHeader.get(0).innerHTML = activeTitle + ' ...';
+      }
     }
-    
-    titleHeader.innerHTML = activeTitle;
   }
 
 });
