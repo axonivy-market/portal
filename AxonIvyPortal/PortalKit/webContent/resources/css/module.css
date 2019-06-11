@@ -4330,33 +4330,38 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 .ui-carousel .ui-carousel-header .ui-carousel-header-title {
-  width: auto !important;	
+  width: calc(100% - 64px) !important;
   max-width: 78%;
 }
 
 .ui-carousel-header-title {
   float: left;
-  padding-left: 8px;
+  padding-left: 2px;
 }
 
 .ui-carousel-header-title .chart-name-container {
 	width: 100%;
     position: relative;
     float: left;
+    display: inline-block;
 }
 
 .ui-carousel .ui-carousel-header .ui-carousel-header-title .chart-info {
 	color: white !important;
     font-size: 1.5rem;
-    margin-right: 8px;
+    margin-right: 5px;
     float: left;
     margin-top: 3px;
+    width: 20px;
+    height: 20px;
 }
 
 .ui-carousel-header-title .chart-name {
+	width: calc(100% - 28px);
 	max-width: 88%;
 	white-space: nowrap;
 	text-overflow: ellipsis;
+	text-align: left;
 	float: left;
 	overflow: hidden;
 }
