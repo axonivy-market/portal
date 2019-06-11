@@ -80,10 +80,14 @@ public class PortalExpressTest extends BaseTest{
     formDefinition.createUploadComponent("Upload");
     formDefinition.createCheckboxField("Checkbox", 3);
     formDefinition.createTextAreaField("Text area", true);
+    formDefinition.createCheckboxFieldWithDataProvider("Checkbox with data provider");
     formDefinition.moveAllElementToDragAndDrogPanel();
     //if we have radio button or checkbox, remember multiply with number of options
     //Example: we have 1 checkbox with 2 options, 1 radio with 3 options. Total we have 5 inputs
-    Assert.assertEquals(11, formDefinition.countNumberOfElementsInPreviewDialog());
+    Assert.assertEquals(14, formDefinition.countNumberOfElementsInPreviewDialog());
+    Assert.assertNotNull(formDefinition.findElementByXpath("//label[text()='Data Provider Item 1']"));
+    Assert.assertNotNull(formDefinition.findElementByXpath("//label[text()='Data Provider Item 2']"));
+    Assert.assertNotNull(formDefinition.findElementByXpath("//label[text()='Data Provider Item 3']"));
   }
   
   @Test

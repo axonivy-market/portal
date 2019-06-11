@@ -66,7 +66,9 @@
 .ui-widget.ui-button span{
   color: rgba(0, 0, 0, 1);
 }
-
+.ui-widget.ui-button span:before {
+  color: grey;
+}
 .ui-widget.ui-button-text-icon-right {
   direction: rtl;
 }
@@ -542,7 +544,9 @@
 .ui-datatable table tbody tr td a, .ui-datatable table tbody tr td span {
   color: rgba(0, 0, 0, 1) !important;
 }
-
+.ui-datatable table tbody tr td a, .ui-datatable table tbody tr td span:after {
+  color: grey;
+}
 .ui-datatable table tbody tr td:not(:last-child) {
   border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
@@ -899,7 +903,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 .ui-selectonemenu .ui-selectonemenu-trigger,
 .ui-selectonemenu .ui-selectonemenu-trigger.ui-state-hover,
 .ui-selectonemenu .ui-selectonemenu-trigger.ui-state-focus {
-  color: rgba(0,0,0,1) !important;
+  color: grey !important;
   border-bottom: none !important;
 }
 .ui-selectonemenu-trigger .ui-icon-triangle-1-s {
@@ -924,6 +928,34 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 .ui-inplace-content .ui-selectonemenu-trigger .ui-icon:after {
   top:-3px !important;
 }
+.ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+}
+.ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-filter-container .ui-icon-search, .ui-picklist .ui-picklist-filter-container .ui-icon, .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon {
+	background: transparent;
+    overflow: visible;
+    text-indent: 5px;
+    color: grey;
+}
+.ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-filter-container .ui-icon:before, .ui-picklist .ui-picklist-filter-container .ui-icon:before {
+    font: normal normal normal 18px/1 FontAwesome;
+    -webkit-font-smoothing: antialiased;
+    content: "\f002";
+    position: absolute;
+    left: 0;
+    top: 5px;
+}
+.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon:after {
+    font: normal normal normal 1.4rem/1 FontAwesome;
+    -webkit-font-smoothing: antialiased;
+    content: "\f078";
+    position: absolute;
+    left: 6px;
+    top: 12px;
+}
+
 /* =================== END DROPDOWN ====================== */
 
 /* =================== AUTOCOMPLETE ====================== */
@@ -4297,6 +4329,60 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   margin: auto;
 }
 
+.ui-carousel .ui-carousel-header .ui-carousel-header-title {
+  width: calc(100% - 64px) !important;
+  max-width: 78%;
+}
+
+.ui-carousel-header-title {
+  float: left;
+  padding-left: 2px;
+}
+
+.ui-carousel-header-title .chart-name-container {
+	width: 100%;
+    position: relative;
+    float: left;
+    display: inline-block;
+}
+
+.ui-carousel .ui-carousel-header .ui-carousel-header-title .chart-info {
+	color: white !important;
+    font-size: 1.5rem;
+    margin-right: 5px;
+    float: left;
+    margin-top: 3px;
+    width: 20px;
+    height: 20px;
+}
+
+.ui-carousel-header-title .chart-name {
+	width: calc(100% - 28px);
+	max-width: 88%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	text-align: left;
+	float: left;
+	overflow: hidden;
+}
+
+.carousel-title-hide {
+	height: 0;
+	display: none;
+}
+
+.ui-carousel-item .ui-dialog-content .ui-panelgrid, .ui-carousel-item .ui-dialog-content .ui-panelgrid tbody tr .ui-panelgrid-cell {
+	border: solid 1px #E0E0E0 !important;
+	text-align: left;
+}
+
+.ui-carousel-item .ui-dialog-content .ui-panelgrid tbody tr .ui-panelgrid-cell {
+	padding: 4px 10px !important;
+}
+.ui-carousel-item .ui-dialog-content .chart-info-header {
+	text-align: left;
+}
+
 /* Small screen */
 @media (max-width: 1365px) {
   .statistic-carousel {
@@ -4305,6 +4391,9 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   }
   .compact-mode .jqplot-target {
     width: 25rem;
+  }
+  .ui-carousel .ui-carousel-header .ui-carousel-header-title {
+    max-width: 70% !important;
   }
 }
 
@@ -4317,6 +4406,10 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
   .compact-mode .jqplot-target {
     width: 26rem;
+  }
+  
+  .ui-carousel .ui-carousel-header .ui-carousel-header-title {
+    max-width: 72% !important;
   }
 }
 
@@ -5578,6 +5671,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 .elapsed-time-result-list .case-table {
   display: inline-block !important;
+  width: 100%;
 
 }
 .elapsed-time-detail-form {
@@ -5759,7 +5853,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 /* =================== RESPONSIVE GRID ====================== */
 .ui-g > div {
-	display: grid;
 	align-items: center;
 }
 

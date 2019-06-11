@@ -47,7 +47,7 @@
 		<ui:define name="caseHeader">
             <div class="case-header-name-desc-cell">
 				<ic:ch.ivy.addon.portalkit.component.cases.column.CaseName case="#{case}" caseNameId="case-header-name-cell" caseDescriptionId="description-cell"
-				  initialActive="#{case.id eq caseView.getAutoSelectCaseId().id() and case.server.id eq caseView.getAutoSelectCaseId().serverId()}" 
+				  initialActive="#{case.id eq caseView.getAutoSelectCaseId().id()}" 
 				  dataModel="#{caseView.getDataModel()}" />
 			</div>
 			<ic:ch.ivy.addon.portalkit.component.cases.column.CaseId componentId="case-id-cell" case="#{case}" dataModel="#{caseView.getDataModel()}" />

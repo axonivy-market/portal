@@ -10,14 +10,6 @@ Tt0 @TextInP .processKind .processKind #zField
 Tt0 @AnnotationInP-0n ai ai #zField
 Tt0 @TextInP .xml .xml #zField
 Tt0 @TextInP .responsibility .responsibility #zField
-Tt0 @StartRequest f5 '' #zField
-Tt0 @TaskSwitch f7 '' #zField
-Tt0 @RichDialog f9 '' #zField
-Tt0 @RichDialog f11 '' #zField
-Tt0 @RichDialog f12 '' #zField
-Tt0 @PushWFArc f13 '' #zField
-Tt0 @PushWFArc f14 '' #zField
-Tt0 @PushWFArc f15 '' #zField
 Tt0 @StartRequest f0 '' #zField
 Tt0 @EndTask f22 '' #zField
 Tt0 @TaskSwitch f23 '' #zField
@@ -46,10 +38,6 @@ Tt0 @EndTask f42 '' #zField
 Tt0 @TkArc f43 '' #zField
 Tt0 @PushWFArc f44 '' #zField
 Tt0 @TkArc f3 '' #zField
-Tt0 @EndTask f45 '' #zField
-Tt0 @PushWFArc f17 '' #zField
-Tt0 @PushWFArc f18 '' #zField
-Tt0 @PushWFArc f19 '' #zField
 Tt0 @EndTask f20 '' #zField
 Tt0 @PushWFArc f46 '' #zField
 Tt0 @PushWFArc f36 '' #zField
@@ -195,208 +183,20 @@ Tt0 @EndTask f182 '' #zField
 Tt0 @RichDialog f183 '' #zField
 Tt0 @PushWFArc f184 '' #zField
 Tt0 @PushWFArc f185 '' #zField
+Tt0 @RichDialog f9 '' #zField
+Tt0 @RichDialog f11 '' #zField
+Tt0 @StartRequest f5 '' #zField
+Tt0 @RichDialog f12 '' #zField
+Tt0 @PushWFArc f19 '' #zField
+Tt0 @PushWFArc f18 '' #zField
+Tt0 @PushWFArc f17 '' #zField
+Tt0 @EndTask f45 '' #zField
 Tt0 @TkArc f4 '' #zField
+Tt0 @PushWFArc f15 '' #zField
+Tt0 @PushWFArc f14 '' #zField
+Tt0 @PushWFArc f13 '' #zField
+Tt0 @TaskSwitch f7 '' #zField
 >Proto Tt0 Tt0 TestTaskFlow #zField
-Tt0 f5 outLink CategoriedLeaveRequest.ivp #txt
-Tt0 f5 type internaltest.Data #txt
-Tt0 f5 inParamDecl '<> param;' #txt
-Tt0 f5 actionDecl 'internaltest.Data out;
-' #txt
-Tt0 f5 guid 14B3A6DCB767D79A #txt
-Tt0 f5 requestEnabled true #txt
-Tt0 f5 triggerEnabled false #txt
-Tt0 f5 callSignature CategoriedLeaveRequest() #txt
-Tt0 f5 persist false #txt
-Tt0 f5 startName 'Categoried Leave Request' #txt
-Tt0 f5 taskData 'TaskTriggered.EXPRI=2
-TaskTriggered.EXROL=Everybody
-TaskTriggered.EXTYPE=0
-TaskTriggered.PRI=2
-TaskTriggered.ROL=Everybody
-TaskTriggered.TYPE=0' #txt
-Tt0 f5 caseData 'case.description=Leave Request Description
-case.name=Leave Request
-customFields.STRING.CustomVarCharField1="Leave Request CustomVarCharField1"
-customFields.STRING.CustomVarCharField2="Leave Request CustomVarCharField2"
-customFields.STRING.CustomVarCharField3="Leave Request CustomVarCharField3"
-customFields.STRING.CustomVarCharField4="Leave Request CustomVarCharField4"
-customFields.STRING.CustomVarCharField5="Leave Request CustomVarCharField5"
-customFields.STRING.ProcessCategoryCode="pubRequested"
-customFields.STRING.ProcessCategoryName="Publication Requested"
-customFields.STRING.ProcessCode="pubRequested"
-customFields.STRING.ProcessName="Publication Requested"' #txt
-Tt0 f5 showInStartList 1 #txt
-Tt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>CategoriedLeaveRequest.ivp</name>
-        <nameStyle>26,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Tt0 f5 @C|.responsibility Everybody #txt
-Tt0 f5 187 51 26 26 14 0 #rect
-Tt0 f5 @|StartRequestIcon #fIcon
-Tt0 f7 actionDecl 'internaltest.Data out;
-' #txt
-Tt0 f7 actionTable 'out=in1;
-' #txt
-Tt0 f7 outTypes "internaltest.Data","internaltest.Data","internaltest.Data" #txt
-Tt0 f7 outLinks "TaskB.ivp","TaskA.ivp","TaskC.ivp" #txt
-Tt0 f7 caseData 'case.category=LeaveRequest
-case.name=Leave Request
-customFields.NUMBER.CustomDecimalField2=36' #txt
-Tt0 f7 taskData 'TaskA.CATEGORY=AnnualLeave
-TaskA.DESC=Annual Leave Request Description
-TaskA.EXP=new Duration("3H")
-TaskA.EXPRI=2
-TaskA.EXROL=Everybody
-TaskA.EXTYPE=0
-TaskA.NAM=Annual Leave Request
-TaskA.PRI=2
-TaskA.ROL="demo"
-TaskA.SKIP_TASK_LIST=false
-TaskA.TYPE=3
-TaskA.customFields.NUMBER.CustomDecimalField2=7
-TaskA.customFields.STRING.CustomVarCharField1="Exterior"
-TaskA.customFields.STRING.CustomVarCharField5="Long Do"
-TaskA.customFields.TIMESTAMP.CustomTimestampField1=new DateTime()
-TaskB.CATEGORY=OtherLeave/SickLeave/Long
-TaskB.DESC=Sick Leave Request Description
-TaskB.EXP=new Duration("1D")
-TaskB.EXPRI=2
-TaskB.EXROL=Everybody
-TaskB.EXTYPE=0
-TaskB.NAM=Sick Leave Request
-TaskB.PRI=1
-TaskB.ROL=Everybody
-TaskB.SKIP_TASK_LIST=false
-TaskB.TYPE=0
-TaskB.customFields.NUMBER.CustomDecimalField2=14
-TaskB.customFields.STRING.CustomVarCharField1="Interior"
-TaskB.customFields.STRING.CustomVarCharField5="Tung Le"
-TaskB.customFields.TIMESTAMP.CustomTimestampField1=new DateTime()
-TaskC.CATEGORY=OtherLeave/Maternity
-TaskC.DESC=Maternity Leave Request Description
-TaskC.EXP=new Duration("2D")
-TaskC.EXPRI=2
-TaskC.EXROL=Everybody
-TaskC.EXTYPE=0
-TaskC.NAM=Maternity Leave Request
-TaskC.PRI=3
-TaskC.ROL=Everybody
-TaskC.SKIP_TASK_LIST=false
-TaskC.TYPE=0
-TaskC.customFields.NUMBER.CustomDecimalField2=13
-TaskC.customFields.STRING.CustomVarCharField1="Interior"
-TaskC.customFields.STRING.CustomVarCharField5="Anh Nguyen"
-TaskC.customFields.TIMESTAMP.CustomTimestampField1=new DateTime()' #txt
-Tt0 f7 type internaltest.Data #txt
-Tt0 f7 template "" #txt
-Tt0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Create tasks</name>
-        <nameStyle>12,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Tt0 f7 186 178 28 28 9 -21 #rect
-Tt0 f7 @|TaskSwitchIcon #fIcon
-Tt0 f9 targetWindow NEW:card: #txt
-Tt0 f9 targetDisplay TOP #txt
-Tt0 f9 richDialogId internaltest.TaskForm #txt
-Tt0 f9 startMethod start() #txt
-Tt0 f9 type internaltest.Data #txt
-Tt0 f9 requestActionDecl '<> param;' #txt
-Tt0 f9 responseActionDecl 'internaltest.Data out;
-' #txt
-Tt0 f9 responseMappingAction 'out=in;
-' #txt
-Tt0 f9 windowConfiguration '* ' #txt
-Tt0 f9 isAsynch false #txt
-Tt0 f9 isInnerRd false #txt
-Tt0 f9 userContext '* ' #txt
-Tt0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Show 
-Task Form</name>
-        <nameStyle>6,7
-9,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Tt0 f9 54 284 36 24 20 -2 #rect
-Tt0 f9 @|RichDialogIcon #fIcon
-Tt0 f11 targetWindow NEW:card: #txt
-Tt0 f11 targetDisplay TOP #txt
-Tt0 f11 richDialogId internaltest.TaskForm #txt
-Tt0 f11 startMethod start() #txt
-Tt0 f11 type internaltest.Data #txt
-Tt0 f11 requestActionDecl '<> param;' #txt
-Tt0 f11 responseActionDecl 'internaltest.Data out;
-' #txt
-Tt0 f11 responseMappingAction 'out=in;
-' #txt
-Tt0 f11 windowConfiguration '* ' #txt
-Tt0 f11 isAsynch false #txt
-Tt0 f11 isInnerRd false #txt
-Tt0 f11 userContext '* ' #txt
-Tt0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Show 
-Task Form</name>
-        <nameStyle>15,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Tt0 f11 182 284 36 24 20 -2 #rect
-Tt0 f11 @|RichDialogIcon #fIcon
-Tt0 f12 targetWindow NEW:card: #txt
-Tt0 f12 targetDisplay TOP #txt
-Tt0 f12 richDialogId internaltest.TaskForm #txt
-Tt0 f12 startMethod start() #txt
-Tt0 f12 type internaltest.Data #txt
-Tt0 f12 requestActionDecl '<> param;' #txt
-Tt0 f12 responseActionDecl 'internaltest.Data out;
-' #txt
-Tt0 f12 responseMappingAction 'out=in;
-' #txt
-Tt0 f12 windowConfiguration '* ' #txt
-Tt0 f12 isAsynch false #txt
-Tt0 f12 isInnerRd false #txt
-Tt0 f12 userContext '* ' #txt
-Tt0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Show 
-Task Form</name>
-        <nameStyle>15,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Tt0 f12 318 284 36 24 20 -2 #rect
-Tt0 f12 @|RichDialogIcon #fIcon
-Tt0 f13 expr data #txt
-Tt0 f13 outCond ivp=="TaskA.ivp" #txt
-Tt0 f13 186 192 72 284 #arcP
-Tt0 f13 1 72 192 #addKink
-Tt0 f13 0 0.8879104383411323 0 0 #arcLabel
-Tt0 f14 expr data #txt
-Tt0 f14 outCond ivp=="TaskB.ivp" #txt
-Tt0 f14 200 206 200 284 #arcP
-Tt0 f15 expr data #txt
-Tt0 f15 outCond ivp=="TaskC.ivp" #txt
-Tt0 f15 214 192 336 284 #arcP
-Tt0 f15 1 336 192 #addKink
-Tt0 f15 0 0.8643692094953389 0 0 #arcLabel
 Tt0 f0 outLink CreateSupportTicket.ivp #txt
 Tt0 f0 type internaltest.Data #txt
 Tt0 f0 inParamDecl '<> param;' #txt
@@ -557,7 +357,7 @@ Tt0 f16 var in1 #txt
 Tt0 f16 1072 77 1072 155 #arcP
 Tt0 f24 targetWindow NEW:card: #txt
 Tt0 f24 targetDisplay TOP #txt
-Tt0 f24 richDialogId internaltest.TaskForm #txt
+Tt0 f24 richDialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Tt0 f24 startMethod start() #txt
 Tt0 f24 type internaltest.Data #txt
 Tt0 f24 requestActionDecl '<> param;' #txt
@@ -583,7 +383,7 @@ Tt0 f24 1628 272 36 24 20 -2 #rect
 Tt0 f24 @|RichDialogIcon #fIcon
 Tt0 f26 targetWindow NEW:card: #txt
 Tt0 f26 targetDisplay TOP #txt
-Tt0 f26 richDialogId internaltest.TaskForm #txt
+Tt0 f26 richDialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Tt0 f26 startMethod start() #txt
 Tt0 f26 type internaltest.Data #txt
 Tt0 f26 requestActionDecl '<> param;' #txt
@@ -675,7 +475,7 @@ Tt0 f27 1496 166 28 28 9 -21 #rect
 Tt0 f27 @|TaskSwitchIcon #fIcon
 Tt0 f28 targetWindow NEW:card: #txt
 Tt0 f28 targetDisplay TOP #txt
-Tt0 f28 richDialogId internaltest.TaskForm #txt
+Tt0 f28 richDialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Tt0 f28 startMethod start() #txt
 Tt0 f28 type internaltest.Data #txt
 Tt0 f28 requestActionDecl '<> param;' #txt
@@ -723,7 +523,6 @@ customFields.STRING.CustomVarCharField1="Leave Request CustomVarCharField1"
 customFields.STRING.CustomVarCharField2="Leave Request CustomVarCharField2"
 customFields.STRING.CustomVarCharField3="Leave Request CustomVarCharField3"
 customFields.STRING.CustomVarCharField4="Leave Request CustomVarCharField4"
-customFields.STRING.CustomVarCharField5="Leave Request CustomVarCharField5"
 customFields.STRING.ProcessCategoryCode="pubRequested"
 customFields.STRING.ProcessCategoryName="Publication Requested"
 customFields.STRING.ProcessCode="pubRequested"
@@ -733,8 +532,6 @@ Tt0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>TestRelatedTaskWithNoResponsible.ivp</name>
-        <nameStyle>36,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -843,19 +640,6 @@ Tt0 f3 expr out #txt
 Tt0 f3 type internaltest.Data #txt
 Tt0 f3 var in1 #txt
 Tt0 f3 544 204 544 274 #arcP
-Tt0 f45 type internaltest.Data #txt
-Tt0 f45 187 403 26 26 14 0 #rect
-Tt0 f45 @|EndIcon #fIcon
-Tt0 f17 expr out #txt
-Tt0 f17 200 308 200 403 #arcP
-Tt0 f18 expr out #txt
-Tt0 f18 72 308 187 416 #arcP
-Tt0 f18 1 72 416 #addKink
-Tt0 f18 1 0.040404381211362396 0 0 #arcLabel
-Tt0 f19 expr out #txt
-Tt0 f19 336 308 213 416 #arcP
-Tt0 f19 1 336 416 #addKink
-Tt0 f19 1 0.07231812892046431 0 0 #arcLabel
 Tt0 f20 type internaltest.Data #txt
 Tt0 f20 1497 403 26 26 14 0 #rect
 Tt0 f20 @|EndIcon #fIcon
@@ -1149,7 +933,7 @@ Tt0 f71 1059 488 26 26 14 0 #rect
 Tt0 f71 @|StartRequestIcon #fIcon
 Tt0 f72 targetWindow NEW:card: #txt
 Tt0 f72 targetDisplay TOP #txt
-Tt0 f72 richDialogId internaltest.TaskForm #txt
+Tt0 f72 richDialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Tt0 f72 startMethod start() #txt
 Tt0 f72 type internaltest.Data #txt
 Tt0 f72 requestActionDecl '<> param;' #txt
@@ -1175,7 +959,7 @@ Tt0 f72 1190 676 36 24 20 -2 #rect
 Tt0 f72 @|RichDialogIcon #fIcon
 Tt0 f73 targetWindow NEW:card: #txt
 Tt0 f73 targetDisplay TOP #txt
-Tt0 f73 richDialogId internaltest.TaskForm #txt
+Tt0 f73 richDialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Tt0 f73 startMethod start() #txt
 Tt0 f73 type internaltest.Data #txt
 Tt0 f73 requestActionDecl '<> param;' #txt
@@ -1264,7 +1048,7 @@ Tt0 f75 1058 618 28 28 9 -21 #rect
 Tt0 f75 @|TaskSwitchIcon #fIcon
 Tt0 f76 targetWindow NEW:card: #txt
 Tt0 f76 targetDisplay TOP #txt
-Tt0 f76 richDialogId internaltest.TaskForm #txt
+Tt0 f76 richDialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Tt0 f76 startMethod start() #txt
 Tt0 f76 type internaltest.Data #txt
 Tt0 f76 requestActionDecl '<> param;' #txt
@@ -1314,7 +1098,7 @@ Tt0 f82 1 1208 752 #addKink
 Tt0 f82 1 0.07231812892046431 0 0 #arcLabel
 Tt0 f86 targetWindow NEW:card: #txt
 Tt0 f86 targetDisplay TOP #txt
-Tt0 f86 richDialogId internaltest.TaskForm #txt
+Tt0 f86 richDialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Tt0 f86 startMethod start() #txt
 Tt0 f86 type internaltest.Data #txt
 Tt0 f86 requestActionDecl '<> param;' #txt
@@ -1340,7 +1124,7 @@ Tt0 f86 1472 672 36 24 20 -2 #rect
 Tt0 f86 @|RichDialogIcon #fIcon
 Tt0 f87 targetWindow NEW:card: #txt
 Tt0 f87 targetDisplay TOP #txt
-Tt0 f87 richDialogId internaltest.TaskForm #txt
+Tt0 f87 richDialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Tt0 f87 startMethod start() #txt
 Tt0 f87 type internaltest.Data #txt
 Tt0 f87 requestActionDecl '<> param;' #txt
@@ -1428,7 +1212,7 @@ Tt0 f90 1476 614 28 28 9 -21 #rect
 Tt0 f90 @|TaskSwitchIcon #fIcon
 Tt0 f91 targetWindow NEW:card: #txt
 Tt0 f91 targetDisplay TOP #txt
-Tt0 f91 richDialogId internaltest.TaskForm #txt
+Tt0 f91 richDialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Tt0 f91 startMethod start() #txt
 Tt0 f91 type internaltest.Data #txt
 Tt0 f91 requestActionDecl '<> param;' #txt
@@ -1650,7 +1434,7 @@ Tt0 f100 618 799 26 26 14 0 #rect
 Tt0 f100 @|StartRequestIcon #fIcon
 Tt0 f101 targetWindow NEW:card: #txt
 Tt0 f101 targetDisplay TOP #txt
-Tt0 f101 richDialogId internaltest.TaskForm #txt
+Tt0 f101 richDialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Tt0 f101 startMethod start() #txt
 Tt0 f101 type internaltest.Data #txt
 Tt0 f101 requestActionDecl '<> param;' #txt
@@ -1676,7 +1460,7 @@ Tt0 f101 749 987 36 24 20 -2 #rect
 Tt0 f101 @|RichDialogIcon #fIcon
 Tt0 f103 targetWindow NEW:card: #txt
 Tt0 f103 targetDisplay TOP #txt
-Tt0 f103 richDialogId internaltest.TaskForm #txt
+Tt0 f103 richDialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Tt0 f103 startMethod start() #txt
 Tt0 f103 type internaltest.Data #txt
 Tt0 f103 requestActionDecl '<> param;' #txt
@@ -1703,7 +1487,7 @@ Tt0 f103 485 987 36 24 20 -2 #rect
 Tt0 f103 @|RichDialogIcon #fIcon
 Tt0 f104 targetWindow NEW:card: #txt
 Tt0 f104 targetDisplay TOP #txt
-Tt0 f104 richDialogId internaltest.TaskForm #txt
+Tt0 f104 richDialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Tt0 f104 startMethod start() #txt
 Tt0 f104 type internaltest.Data #txt
 Tt0 f104 requestActionDecl '<> param;' #txt
@@ -1759,7 +1543,7 @@ Tt0 f102 var in1 #txt
 Tt0 f102 631 825 631 929 #arcP
 Tt0 f106 targetWindow NEW:card: #txt
 Tt0 f106 targetDisplay TOP #txt
-Tt0 f106 richDialogId internaltest.TaskForm #txt
+Tt0 f106 richDialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Tt0 f106 startMethod start() #txt
 Tt0 f106 type internaltest.Data #txt
 Tt0 f106 requestActionDecl '<> param;' #txt
@@ -1795,7 +1579,7 @@ Tt0 f114 1 896 1064 #addKink
 Tt0 f114 1 0.36673298908246516 0 0 #arcLabel
 Tt0 f115 targetWindow NEW:card: #txt
 Tt0 f115 targetDisplay TOP #txt
-Tt0 f115 richDialogId internaltest.TaskForm #txt
+Tt0 f115 richDialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Tt0 f115 startMethod start() #txt
 Tt0 f115 type internaltest.Data #txt
 Tt0 f115 requestActionDecl '<> param;' #txt
@@ -1821,7 +1605,7 @@ Tt0 f115 2016 663 36 24 20 -2 #rect
 Tt0 f115 @|RichDialogIcon #fIcon
 Tt0 f116 targetWindow NEW:card: #txt
 Tt0 f116 targetDisplay TOP #txt
-Tt0 f116 richDialogId internaltest.TaskForm #txt
+Tt0 f116 richDialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Tt0 f116 startMethod start() #txt
 Tt0 f116 type internaltest.Data #txt
 Tt0 f116 requestActionDecl '<> param;' #txt
@@ -1921,7 +1705,7 @@ Tt0 f119 1826 506 128 44 -59 -8 #rect
 Tt0 f119 @|StepIcon #fIcon
 Tt0 f120 targetWindow NEW:card: #txt
 Tt0 f120 targetDisplay TOP #txt
-Tt0 f120 richDialogId internaltest.TaskForm #txt
+Tt0 f120 richDialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Tt0 f120 startMethod start() #txt
 Tt0 f120 type internaltest.Data #txt
 Tt0 f120 requestActionDecl '<> param;' #txt
@@ -2581,7 +2365,7 @@ Tt0 f178 outCond ivp=="TaskA.ivp" #txt
 Tt0 f178 1832 920 1888 920 #arcP
 Tt0 f179 targetWindow NEW #txt
 Tt0 f179 targetDisplay TOP #txt
-Tt0 f179 richDialogId internaltest.TaskForm #txt
+Tt0 f179 richDialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Tt0 f179 startMethod start() #txt
 Tt0 f179 type internaltest.Data #txt
 Tt0 f179 requestActionDecl '<> param;' #txt
@@ -2657,7 +2441,7 @@ Tt0 f61 expr out #txt
 Tt0 f61 type internaltest.Data #txt
 Tt0 f61 var in1 #txt
 Tt0 f61 544 602 544 642 #arcP
-Tt0 f60 richDialogId internaltest.TaskForm #txt
+Tt0 f60 richDialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Tt0 f60 startMethod start() #txt
 Tt0 f60 requestActionDecl '<> param;' #txt
 Tt0 f60 responseActionDecl 'internaltest.Data out;
@@ -2725,10 +2509,220 @@ Tt0 f184 expr out #txt
 Tt0 f184 143 1440 280 1440 #arcP
 Tt0 f185 expr out #txt
 Tt0 f185 392 1440 497 1440 #arcP
+Tt0 f9 targetWindow NEW:card: #txt
+Tt0 f9 targetDisplay TOP #txt
+Tt0 f9 richDialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
+Tt0 f9 startMethod start() #txt
+Tt0 f9 type internaltest.Data #txt
+Tt0 f9 requestActionDecl '<> param;' #txt
+Tt0 f9 responseActionDecl 'internaltest.Data out;
+' #txt
+Tt0 f9 responseMappingAction 'out=in;
+' #txt
+Tt0 f9 windowConfiguration '* ' #txt
+Tt0 f9 isAsynch false #txt
+Tt0 f9 isInnerRd false #txt
+Tt0 f9 userContext '* ' #txt
+Tt0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Show 
+Task Form</name>
+        <nameStyle>6,7
+9,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f9 54 284 36 24 20 -2 #rect
+Tt0 f9 @|RichDialogIcon #fIcon
+Tt0 f11 targetWindow NEW:card: #txt
+Tt0 f11 targetDisplay TOP #txt
+Tt0 f11 richDialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
+Tt0 f11 startMethod start() #txt
+Tt0 f11 type internaltest.Data #txt
+Tt0 f11 requestActionDecl '<> param;' #txt
+Tt0 f11 responseActionDecl 'internaltest.Data out;
+' #txt
+Tt0 f11 responseMappingAction 'out=in;
+' #txt
+Tt0 f11 windowConfiguration '* ' #txt
+Tt0 f11 isAsynch false #txt
+Tt0 f11 isInnerRd false #txt
+Tt0 f11 userContext '* ' #txt
+Tt0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Show 
+Task Form</name>
+        <nameStyle>15,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f11 182 284 36 24 20 -2 #rect
+Tt0 f11 @|RichDialogIcon #fIcon
+Tt0 f5 outLink CategoriedLeaveRequest.ivp #txt
+Tt0 f5 type internaltest.Data #txt
+Tt0 f5 inParamDecl '<> param;' #txt
+Tt0 f5 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f5 guid 14B3A6DCB767D79A #txt
+Tt0 f5 requestEnabled true #txt
+Tt0 f5 triggerEnabled false #txt
+Tt0 f5 callSignature CategoriedLeaveRequest() #txt
+Tt0 f5 persist false #txt
+Tt0 f5 startName 'Categoried Leave Request' #txt
+Tt0 f5 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Tt0 f5 caseData 'case.description=Leave Request Description
+case.name=Leave Request
+customFields.STRING.CustomVarCharField1="Leave Request CustomVarCharField1"
+customFields.STRING.CustomVarCharField2="Leave Request CustomVarCharField2"
+customFields.STRING.CustomVarCharField3="Leave Request CustomVarCharField3"
+customFields.STRING.CustomVarCharField4="Leave Request CustomVarCharField4"
+customFields.STRING.ProcessCategoryCode="pubRequested"
+customFields.STRING.ProcessCategoryName="Publication Requested"
+customFields.STRING.ProcessCode="pubRequested"
+customFields.STRING.ProcessName="Publication Requested"' #txt
+Tt0 f5 showInStartList 1 #txt
+Tt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>CategoriedLeaveRequest.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f5 @C|.responsibility Everybody #txt
+Tt0 f5 187 51 26 26 14 0 #rect
+Tt0 f5 @|StartRequestIcon #fIcon
+Tt0 f12 targetWindow NEW:card: #txt
+Tt0 f12 targetDisplay TOP #txt
+Tt0 f12 richDialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
+Tt0 f12 startMethod start() #txt
+Tt0 f12 type internaltest.Data #txt
+Tt0 f12 requestActionDecl '<> param;' #txt
+Tt0 f12 responseActionDecl 'internaltest.Data out;
+' #txt
+Tt0 f12 responseMappingAction 'out=in;
+' #txt
+Tt0 f12 windowConfiguration '* ' #txt
+Tt0 f12 isAsynch false #txt
+Tt0 f12 isInnerRd false #txt
+Tt0 f12 userContext '* ' #txt
+Tt0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Show 
+Task Form</name>
+        <nameStyle>15,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f12 318 284 36 24 20 -2 #rect
+Tt0 f12 @|RichDialogIcon #fIcon
+Tt0 f19 expr out #txt
+Tt0 f19 336 308 213 416 #arcP
+Tt0 f19 1 336 416 #addKink
+Tt0 f19 1 0.07231812892046431 0 0 #arcLabel
+Tt0 f18 expr out #txt
+Tt0 f18 72 308 187 416 #arcP
+Tt0 f18 1 72 416 #addKink
+Tt0 f18 1 0.040404381211362396 0 0 #arcLabel
+Tt0 f17 expr out #txt
+Tt0 f17 200 308 200 403 #arcP
+Tt0 f45 type internaltest.Data #txt
+Tt0 f45 187 403 26 26 14 0 #rect
+Tt0 f45 @|EndIcon #fIcon
 Tt0 f4 expr out #txt
 Tt0 f4 type internaltest.Data #txt
 Tt0 f4 var in1 #txt
 Tt0 f4 200 77 200 178 #arcP
+Tt0 f15 expr data #txt
+Tt0 f15 outCond ivp=="TaskC.ivp" #txt
+Tt0 f15 214 192 336 284 #arcP
+Tt0 f15 1 336 192 #addKink
+Tt0 f15 0 0.8643692094953389 0 0 #arcLabel
+Tt0 f14 expr data #txt
+Tt0 f14 outCond ivp=="TaskB.ivp" #txt
+Tt0 f14 200 206 200 284 #arcP
+Tt0 f13 expr data #txt
+Tt0 f13 outCond ivp=="TaskA.ivp" #txt
+Tt0 f13 186 192 72 284 #arcP
+Tt0 f13 1 72 192 #addKink
+Tt0 f13 0 0.8879104383411323 0 0 #arcLabel
+Tt0 f7 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f7 actionTable 'out=in1;
+' #txt
+Tt0 f7 outTypes "internaltest.Data","internaltest.Data","internaltest.Data" #txt
+Tt0 f7 outLinks "TaskB.ivp","TaskA.ivp","TaskC.ivp" #txt
+Tt0 f7 caseData 'case.category=LeaveRequest
+case.name=Leave Request
+customFields.NUMBER.CustomDecimalField2=36' #txt
+Tt0 f7 taskData 'TaskA.CATEGORY=AnnualLeave
+TaskA.DESC=Annual Leave Request Description
+TaskA.EXP=new Duration("3H")
+TaskA.EXPRI=2
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.NAM=Annual Leave Request
+TaskA.PRI=2
+TaskA.ROL="demo"
+TaskA.SKIP_TASK_LIST=false
+TaskA.TYPE=3
+TaskA.customFields.NUMBER.CustomDecimalField2=7
+TaskA.customFields.STRING.CustomVarCharField1="Exterior"
+TaskA.customFields.STRING.CustomVarCharField5="Long Do"
+TaskA.customFields.TIMESTAMP.CustomTimestampField1=new DateTime()
+TaskB.CATEGORY=OtherLeave/SickLeave/Long
+TaskB.DESC=Sick Leave Request Description
+TaskB.EXP=new Duration("1D")
+TaskB.EXPRI=2
+TaskB.EXROL=Everybody
+TaskB.EXTYPE=0
+TaskB.NAM=Sick Leave Request
+TaskB.PRI=1
+TaskB.ROL=Everybody
+TaskB.SKIP_TASK_LIST=false
+TaskB.TYPE=0
+TaskB.customFields.NUMBER.CustomDecimalField2=14
+TaskB.customFields.STRING.CustomVarCharField1="Interior"
+TaskB.customFields.STRING.CustomVarCharField5="Tung Le"
+TaskB.customFields.TIMESTAMP.CustomTimestampField1=new DateTime()
+TaskC.CATEGORY=OtherLeave/Maternity
+TaskC.DESC=Maternity Leave Request Description
+TaskC.EXP=new Duration("2D")
+TaskC.EXPRI=2
+TaskC.EXROL=Everybody
+TaskC.EXTYPE=0
+TaskC.NAM=Maternity Leave Request
+TaskC.PRI=3
+TaskC.ROL=Everybody
+TaskC.SKIP_TASK_LIST=false
+TaskC.TYPE=0
+TaskC.customFields.NUMBER.CustomDecimalField2=13
+TaskC.customFields.STRING.CustomVarCharField1="Interior"
+TaskC.customFields.STRING.CustomVarCharField5="Anh Nguyen"
+TaskC.customFields.TIMESTAMP.CustomTimestampField1=new DateTime()' #txt
+Tt0 f7 type internaltest.Data #txt
+Tt0 f7 template "" #txt
+Tt0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Create tasks</name>
+        <nameStyle>12,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f7 186 178 28 28 9 -21 #rect
+Tt0 f7 @|TaskSwitchIcon #fIcon
 >Proto Tt0 .type internaltest.Data #txt
 >Proto Tt0 .processKind NORMAL #txt
 >Proto Tt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
