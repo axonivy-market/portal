@@ -18,7 +18,7 @@
 
       <h:panelGroup layout="block" styleClass="u-dialog-footer ui-dialog-footer">
         <p:commandButton id="save-absence" process="@form" disabled="#{data.validationError}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" styleClass=""
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           actionListener="#{logic.updateAbsences}" update="@form :#{p:component('absence-table')}"
           oncomplete="if (args &amp;&amp; !args.validationFailed) PF('editAbsenceDialog').hide();" />
         <p:spacer width="5px" />

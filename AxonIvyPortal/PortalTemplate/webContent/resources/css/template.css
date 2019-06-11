@@ -152,9 +152,13 @@
 .task-template-title {
 	font-family: 'Roboto';
 	font-style: normal;
-	font-weight: 400;
+	font-weight: bold;
 	font-size: 1.6rem;
-	color: #757575
+}
+
+.ui-outputlabel.task-template-title {
+	font-weight: 400;
+	font-size: 1.6rem !important;
 }
 
 .task-template-title-icon {
@@ -254,6 +258,12 @@
 	width: 18px;
 	font-size: 18px;
 	top: 56%;
+}
+
+.task-template-title-horizontal-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5px;
 }
 
 /* Responsive design */

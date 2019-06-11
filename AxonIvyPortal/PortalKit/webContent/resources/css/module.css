@@ -164,6 +164,10 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .ui-autocomplete-panel .ui-autocomplete-items.ui-autocomplete-table td {
   padding: 6px 10px;
 }
+
+.ui-autocomplete-input.ui-autocomplete-dd-input {
+  padding-right: 3.4rem !important;
+}
 /* =================== END AUTOCOMPLETE ====================== */
 
 /* =================== FIELDSET ====================== */
@@ -354,10 +358,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .submenu-container a {
 	background-color: transparent !important;
     box-shadow: none !important;
-}
-
-.submenu-container.active-menuitem a i, .submenu-container.active-menuitem a {
-  color: #AFCA05 !important;
 }
 
 /********************** END SUBMENU ITEM ***********************/
@@ -1635,6 +1635,7 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 .select-delegate-panel .ui-autocomplete .ui-autocomplete-input {
   width: auto;
   min-width: 94%;
+  padding-right: 3.4rem !important;
 }
 
 /* Small screen */
@@ -4146,6 +4147,14 @@ margin-top
   height: 4px;
   display: flex;
   margin-top: 10px;
+}
+
+/* Small screen */
+@media (max-width: 1024px) {
+  .color-header {
+    margin-left: -25px;
+    margin-right: -25px;
+  }
 }
 
 .container {

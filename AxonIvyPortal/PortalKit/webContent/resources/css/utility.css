@@ -187,4 +187,7 @@
     margin: 10px 0px;
     clear: both;
 }
+.TexAlRight { 
+	text-align:right !important;
+}
 /* For Serenity theme - End */
