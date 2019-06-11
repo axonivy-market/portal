@@ -9,6 +9,8 @@ $(document).ready(function() {
     effectDuration = 500;
   }
 
+  validateTitleLength(index);
+  
   var statisticContainer = $('.js-statistic-widget-container.compact-mode');
   var nextNav = statisticContainer.find('.ui-carousel-next-button');
   var prevNav = statisticContainer.find('.ui-carousel-prev-button');
@@ -67,8 +69,22 @@ $(document).ready(function() {
   });
 
   function updateHeaderTitle(curentIndex) {
+    validateTitleLength(index);
     var dir = headerTitle.get(0).innerHTML = "";
     headerTitle.append($('[id$="' + curentIndex + ':chart-name-container"]').clone());
+  }
+  
+  function validateTitleLength(index) {
+    var maxTitleSize = 30;
+    var titleHeader = $('[id$="' + index + ':chart-name"]');
+    var activeTitle = titleHeader.text();
+    var titleLength = activeTitle.length;
+    
+    if (titleLength > 30) {
+      activeTitle = activeTitle.substring(0, maxTitleSize);
+    }
+    
+    titleHeader.innerHTML = activeTitle;
   }
 
 });
