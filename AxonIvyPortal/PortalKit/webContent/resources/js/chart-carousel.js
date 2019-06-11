@@ -85,7 +85,6 @@ $(document).ready(function() {
     }
     
     titleHeader.innerHTML = activeTitle;
-    console.log(activeTitle.length);
   }
 
 });
