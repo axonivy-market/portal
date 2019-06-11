@@ -74,7 +74,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     waitForElementDisplayed(By.id("form:createTabs:createManyCheckboxTab"), true, TIME_OUT);
     click(By.id("form:createTabs:DataProvider_label"));
     Sleeper.sleepTight(1000);
-    click(By.xpath("//*[@data-label='SampleDataProviderForPortalExpress']"));
+    click(By.xpath("//*[@data-label='TestDataProviderForPortalExpress']"));
     type(By.id("form:createTabs:ManyCheckboxLabel"), label);
     Sleeper.sleepTight(1000);
     click(By.id("form:createTabs:add-checkbox-btn"));
