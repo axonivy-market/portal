@@ -1,5 +1,5 @@
 [Ivy]
-15F6ACE164737414 3.23 #module
+15F6ACE164737414 3.26 #module
 >Proto >Proto Collection #zClass
 Ss0 TaskListNavigatorProcess Big #zClass
 Ss0 RD #cInfo
@@ -23,9 +23,7 @@ Ss0 @CallSub f7 '' #zField
 Ss0 @GridStep f10 '' #zField
 Ss0 @PushWFArc f11 '' #zField
 Ss0 @PushWFArc f9 '' #zField
-Ss0 @GridStep f12 '' #zField
-Ss0 @PushWFArc f13 '' #zField
-Ss0 @PushWFArc f6 '' #zField
+Ss0 @PushWFArc f3 '' #zField
 >Proto Ss0 Ss0 TaskListNavigatorProcess #zField
 Ss0 f0 guid 15F6ACE17192667A #txt
 Ss0 f0 type ch.ivy.addon.portal.generic.TaskListNavigator.TaskListNavigatorData #txt
@@ -106,7 +104,7 @@ Ss0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f7 360 138 144 44 -65 -8 #rect
+Ss0 f7 224 138 144 44 -65 -8 #rect
 Ss0 f7 @|CallSubIcon #fIcon
 Ss0 f10 actionDecl 'ch.ivy.addon.portal.generic.TaskListNavigator.TaskListNavigatorData out;
 ' #txt
@@ -130,32 +128,14 @@ Ss0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f10 568 138 160 44 -74 -8 #rect
+Ss0 f10 488 138 160 44 -74 -8 #rect
 Ss0 f10 @|StepIcon #fIcon
 Ss0 f11 expr out #txt
-Ss0 f11 504 160 568 160 #arcP
+Ss0 f11 368 160 488 160 #arcP
 Ss0 f9 expr out #txt
-Ss0 f9 728 160 768 160 #arcP
-Ss0 f12 actionDecl 'ch.ivy.addon.portal.generic.TaskListNavigator.TaskListNavigatorData out;
-' #txt
-Ss0 f12 actionTable 'out=in;
-' #txt
-Ss0 f12 actionCode 'import ch.ivy.addon.portalkit.util.MenuUtils;
-MenuUtils.clearMenuState();' #txt
-Ss0 f12 type ch.ivy.addon.portal.generic.TaskListNavigator.TaskListNavigatorData #txt
-Ss0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Clear menu state</name>
-    </language>
-</elementInfo>
-' #txt
-Ss0 f12 184 138 112 44 -47 -8 #rect
-Ss0 f12 @|StepIcon #fIcon
-Ss0 f13 expr out #txt
-Ss0 f13 109 160 184 160 #arcP
-Ss0 f6 expr out #txt
-Ss0 f6 296 160 360 160 #arcP
+Ss0 f9 648 160 768 160 #arcP
+Ss0 f3 expr out #txt
+Ss0 f3 109 160 224 160 #arcP
 >Proto Ss0 .type ch.ivy.addon.portal.generic.TaskListNavigator.TaskListNavigatorData #txt
 >Proto Ss0 .processKind HTML_DIALOG #txt
 >Proto Ss0 -8 -8 16 16 16 26 #rect
@@ -166,7 +146,5 @@ Ss0 f7 mainOut f11 tail #connect
 Ss0 f11 head f10 mainIn #connect
 Ss0 f10 mainOut f9 tail #connect
 Ss0 f9 head f40 mainIn #connect
-Ss0 f8 mainOut f13 tail #connect
-Ss0 f13 head f12 mainIn #connect
-Ss0 f12 mainOut f6 tail #connect
-Ss0 f6 head f7 mainIn #connect
+Ss0 f8 mainOut f3 tail #connect
+Ss0 f3 head f7 mainIn #connect
