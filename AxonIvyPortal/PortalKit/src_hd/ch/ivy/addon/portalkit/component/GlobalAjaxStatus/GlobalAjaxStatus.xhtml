@@ -21,7 +21,7 @@
       </div>
     </f:facet>
   </p:ajaxStatus>
-  <p:dialog id="error-ajax-dialog" widgetVar="error-ajax-dialog" closable="true" onShow="debugger;"
+  <p:dialog id="error-ajax-dialog" widgetVar="error-ajax-dialog" closable="true" onShow="debugger;" closeOnEscape="true"
     modal="true" resizable="false" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/errorAjaxMessage')}" />
     <p:spacer width="20px" />
@@ -29,7 +29,7 @@
     
   </p:dialog>
   
-  <p:dialog id="detail-error-dialog" widgetVar="detail-error-dialog" closable="true" width="80%"
+  <p:dialog id="detail-error-dialog" widgetVar="detail-error-dialog" closable="true" width="80%" closeOnEscape="true"
     modal="true" resizable="false" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/errorXhr')}">
     <div class="ui-g-2">
       <h:outputText value="Status code"/>
@@ -77,19 +77,19 @@
       <h:outputText value="Form data" />
     </div>
     <div class="ui-g-10">
-      <p:inputTextarea disabled="true" id="form-data" styleClass="Wid100" rows="3" autoResize="false" />
+      <p:inputTextarea readonly="true" id="form-data" styleClass="Wid100" rows="3" autoResize="false" />
     </div>
     <div class="ui-g-2">
       <h:outputText value="Response text" />
     </div>
     <div class="ui-g-10">
-      <p:inputTextarea disabled="true" id="response-text" styleClass="Wid100" rows="10" autoResize="false" />
+      <p:inputTextarea readonly="true" id="response-text" styleClass="Wid100" rows="10" autoResize="false"  />
     </div>
     <div class="ui-g-2">
       <h:outputText value="PrimeFaces.ajax.Queue.xhrs[0]" />
     </div>
     <div class="ui-g-10">
-      <p:inputTextarea disabled="true" id="xhr" styleClass="Wid100" rows="10" autoResize="false" />
+      <p:inputTextarea readonly="true" id="xhr" styleClass="Wid100" rows="10" autoResize="false" />
     </div>
   </p:dialog>
 </cc:implementation>
