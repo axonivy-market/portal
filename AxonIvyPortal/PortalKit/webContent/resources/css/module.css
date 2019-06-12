@@ -481,7 +481,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .filter-widget .filter-widget-input {
-  color: black;
+  color: rgba(0,0,0,0.5);
 }
 
 .filter-widget-icon  {
@@ -885,6 +885,10 @@ a.case-details-document-add-link {
 
 .history-note .task-note-link{
 	color: rgba(0,0,0,0.5) !important;
+}
+
+.case-filter-component.ui-inputfield {
+  padding: 15px 25px 5px 0 !important;
 }
 /********************************** CASE ITEM SIMIlAR TO TASK ITEM CLASSES **********************************/
 .case-widget-container .case-widget-top-header {
@@ -3132,7 +3136,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 .next-to-deputy, .new-app, .ui-dialog-footer button {
-  width: 80px;
+  min-width: 120px;
   margin-bottom : 6px ;
  -webkit-box-shadow: 0 1px 2.5px 0 rgba(0,0,0,0.26), 0 1px 5px 0 rgba(0,0,0,0.16) !important;
   box-shadow: 0 1px 2.5px 0 rgba(0,0,0,0.26), 0 1px 5px 0 rgba(0,0,0,0.16) !important;
