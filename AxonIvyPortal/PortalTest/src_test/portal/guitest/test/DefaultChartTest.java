@@ -32,7 +32,7 @@ public class DefaultChartTest extends BaseTest {
     loginPage.login();
   }
 
-  /*@Test
+  @Test
   public void testCreateDefaultChart() {
     grantPermissionToCreateChart();
     MainMenuPage mainMenuPage = new MainMenuPage();
@@ -51,7 +51,7 @@ public class DefaultChartTest extends BaseTest {
     assertEquals(DEFAULT_NAME_1, taskByExpiryChartName1.getText());
     assertEquals(DEFAULT_NAME_2, taskByExpiryChartName2.getText());
     assertEquals(RESTORE_DEFAULT, restoreDefault.getText());
-  }*/
+  }
   
   @Test
   public void testRestoreDefaultChart() {

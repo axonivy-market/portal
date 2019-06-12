@@ -35,7 +35,7 @@
       styleClass="case-header-container #{alwaysShowDetails ? 'always-show-details' : ''}" layout="block">
       <div class="case-show-detail-container">
         <h:panelGroup id="case-header-data" layout="block" styleClass="case-header-data js-case-item-header">
-          <p:ajax event="click" listener="#{caseWidgetBean.setExpandedCaseId(case.id,expanded)}" 
+          <p:ajax event="click" listener="#{caseWidgetBean.setExpandedCaseId(case.id,expanded)}"
             update="@(.case-list-item-expanded) #{cc.clientId}" disabled="#{alwaysShowDetails}" oncomplete="#{cc.attrs.expandCallback}" />
           <cc:renderFacet name="caseHeader" />
           <h:panelGroup layout="block" rendered="#{expanded and not alwaysShowDetails}">

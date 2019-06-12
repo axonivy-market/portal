@@ -1,4 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<databaseconfigs>
-    <databaseconfig name="Axon" url="jdbc:hsqldb:mem:AxonIvySystemDatabase" driver="org.hsqldb.jdbcDriver"/>
-</databaseconfigs>
+<databaseconfigs/>
