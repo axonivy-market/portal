@@ -61,6 +61,27 @@ public class PortalExpressTest extends BaseTest{
     String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp";
     redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
   }
+ 
+  @Test
+  public void testCreateDocumentElement() {
+    goToCreateExpressProcess();
+    ExpressProcessPage expressProcessPage = new ExpressProcessPage();
+    expressProcessPage.fillProcessProperties(true, true, "Test 1", "Test description");
+    
+    ExpressResponsible responsible1 = new ExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
+    
+    expressProcessPage.createTask(0, USER_TASK_INDEX, "Task 1", "Task 1 description", Arrays.asList(responsible1));
+    
+    ExpressFormDefinitionPage formDefinition = expressProcessPage.goToFormDefinition();
+    formDefinition.createUploadComponent("Upload");
+    formDefinition.moveAllElementToDragAndDrogPanel();
+    formDefinition.executeWorkflow();
+    Sleeper.sleepTight(2000);
+    ExpressTaskPage expressTaskPage = new ExpressTaskPage();
+    Assert.assertTrue(expressTaskPage.isDocumentTableVisible());
+    Assert.assertTrue(expressTaskPage.isDocumentUploadButtonVisible());
+    expressTaskPage.finish();
+  }
   
   @Test
   public void createFullElementsOfForm() {
