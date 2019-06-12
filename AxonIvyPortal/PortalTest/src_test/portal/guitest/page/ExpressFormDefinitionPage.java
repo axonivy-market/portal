@@ -167,7 +167,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     //Example: we have 1 checkbox with 2 options, 1 radio with 3 options. Total we have 5 inputs
     int numberOfInput = previewDialog.findElements(By.xpath("//table[@id='form:dynaForm']//input")).size();
     int numberOfTextArea = previewDialog.findElements(By.xpath("//table[@id='form:dynaForm']//textarea")).size();
-    int numberOfUploadFile = previewDialog.findElements(By.id("document-table-div")).size();
+    int numberOfUploadFile = previewDialog.findElements(By.xpath("//div[contains(@id,'fileUploadComponent:document-table')]")).size();
     return numberOfInput + numberOfTextArea + numberOfUploadFile;
   }
   
