@@ -23,17 +23,19 @@
         </h:panelGroup>
       </h:form>
     </h:panelGroup>
-    <ui:repeat varStatus="status" var="process" value="#{compactProcessWidgetBean.defaultUserProcesses}">
-      <c:set var="isExternalProcess"
-        value="#{!(fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}" />
-      <h:form id="process-item-form" styleClass="process-start-list-item"
-        rendered="#{!compactProcessWidgetBean.editMode}">
-        <ui:include src="ProcessItemLink.xhtml">
-          <ui:param name="processLink" value="#{process.link}"></ui:param>
-          <ui:param name="isExternalProcess" value="isExternalProcess" />
-        </ui:include>
-      </h:form>
-    </ui:repeat>
+    <h:panelGroup id="default-user-processes-container" styleClass="compact-processes-container" layout="block">
+      <ui:repeat varStatus="status" var="process" value="#{compactProcessWidgetBean.defaultUserProcesses}">
+        <c:set var="isExternalProcess"
+          value="#{!(fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}" />
+        <h:form id="process-item-form" styleClass="process-start-list-item"
+          rendered="#{!compactProcessWidgetBean.editMode}">
+          <ui:include src="ProcessItemLink.xhtml">
+            <ui:param name="processLink" value="#{process.link}"></ui:param>
+            <ui:param name="isExternalProcess" value="isExternalProcess" />
+          </ui:include>
+        </h:form>
+      </ui:repeat>
+    </h:panelGroup>
   </h:panelGroup>
 </ui:composition>
 </html>

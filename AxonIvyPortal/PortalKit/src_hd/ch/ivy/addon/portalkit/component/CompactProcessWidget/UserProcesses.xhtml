@@ -13,7 +13,7 @@
 
   <ui:include src="UserProcessAction.xhtml" />
 
-  <h:panelGroup id="process-list" layout="block" styleClass="widget-content">
+  <h:panelGroup id="process-list" layout="block" styleClass="compact-processes-container widget-content">
     <h:panelGroup styleClass="process-empty-container"
       rendered="#{empty compactProcessWidgetBean.userProcesses and compactProcessWidgetBean.isUserFavoritesEnabled and compactProcessWidgetBean.displayShowAllProcessesLink}">
       <p>
