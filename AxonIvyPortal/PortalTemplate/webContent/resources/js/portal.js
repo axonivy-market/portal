@@ -393,6 +393,7 @@ function handleError(xhr){
     document.getElementById('ajax-indicator:pfSettings-source').innerHTML = xhr.pfSettings.source.id;
     document.getElementById('ajax-indicator:form-data').innerHTML = decodeURIComponent(xhr.pfSettings.data);
     document.getElementById('ajax-indicator:response-text').innerHTML = xhr.responseText;
+    document.getElementById('ajax-indicator:xhr').innerHTML = JSON.stringify(xhr);
     PF('detail-error-dialog').show();
   }
   PF('error-ajax-dialog').show();
