@@ -32,58 +32,64 @@
   <p:dialog id="detail-error-dialog" widgetVar="detail-error-dialog" closable="true" width="80%"
     modal="true" resizable="false" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/errorXhr')}">
     <div class="ui-g-2">
-    	<h:outputText value="Status code"/>
+      <h:outputText value="Status code"/>
     </div>
     <div class="ui-g-10">
-    	<h:outputText id="error-code" />
+      <h:outputText id="error-code" />
     </div>
     <div class="ui-g-2">
-    	<h:outputText value="Status text"/>
+      <h:outputText value="Status text"/>
     </div>
     <div class="ui-g-10">
-    	<h:outputText id="error-text" />
+      <h:outputText id="error-text" />
     </div>
     <div class="ui-g-2">
-    	<h:outputText value="Url"/>
+      <h:outputText value="Url" />
     </div>
     <div class="ui-g-10">
-    	<h:outputText id="error-url" />
+      <h:outputText id="error-url" />
     </div>
     <div class="ui-g-2">
-    	<h:outputText value="Ready state"/>
+      <h:outputText value="Ready state" />
     </div>
     <div class="ui-g-10">
-    	<h:outputText id="error-ready-state" />
+      <h:outputText id="error-ready-state" />
     </div>
     <div class="ui-g-2">
-    	<h:outputText value="Type"/>
+      <h:outputText value="Type" />
     </div>
     <div class="ui-g-10">
-    	<h:outputText id="error-type" />
+      <h:outputText id="error-type" />
     </div>
     <div class="ui-g-2">
-    	<h:outputText value="PfArgs"/>
+      <h:outputText value="PfArgs" />
     </div>
     <div class="ui-g-10">
-    	<h:outputText id="error-args" />
+      <h:outputText id="error-args" />
     </div>
     <div class="ui-g-2">
-    	<h:outputText value="PfSettings.source.id"/>
+      <h:outputText value="PfSettings.source.id" />
     </div>
     <div class="ui-g-10">
-    	<h:outputText id="pfSettings-source" />
+      <h:outputText id="pfSettings-source" />
     </div>
     <div class="ui-g-2">
-    	<h:outputText value="Form data" />
+      <h:outputText value="Form data" />
     </div>
     <div class="ui-g-10">
-    	<p:inputTextarea disabled="true" id="form-data" styleClass="Wid100" rows="3" autoResize="false"/>
+      <p:inputTextarea disabled="true" id="form-data" styleClass="Wid100" rows="3" autoResize="false" />
     </div>
     <div class="ui-g-2">
-    	<h:outputText value="Response text" />
+      <h:outputText value="Response text" />
     </div>
     <div class="ui-g-10">
-    	<p:inputTextarea disabled="true" id="response-text" styleClass="Wid100" rows="10" autoResize="false"/>
+      <p:inputTextarea disabled="true" id="response-text" styleClass="Wid100" rows="10" autoResize="false" />
+    </div>
+    <div class="ui-g-2">
+      <h:outputText value="PrimeFaces.ajax.Queue.xhrs[0]" />
+    </div>
+    <div class="ui-g-10">
+      <p:inputTextarea disabled="true" id="xhr" styleClass="Wid100" rows="10" autoResize="false" />
     </div>
   </p:dialog>
 </cc:implementation>
