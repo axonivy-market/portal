@@ -1,6 +1,7 @@
-@import '../sass/theme/_theme';
 @import '../sass/ivy/variables';
 @import '../sass/ivy/font-faces';
+@import '../sass/ivy/customization';
+@import '../sass/theme/_theme';
 
 /*Style For Logos --------------------------------------------------------------------------------------*/
 .portal-home-logo {
@@ -687,6 +688,3 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 		z-index: 997 !important;
 	}
 }
-
-
-@import '../sass/ivy/customization';
