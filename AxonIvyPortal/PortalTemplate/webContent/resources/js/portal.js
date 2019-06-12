@@ -31,6 +31,9 @@ var Portal = {
       $('.left-sidebar-menu-header').toggleClass('left-sidebar-animation');
     }, 3);
 
+    // Update menuitem when access page by direct link
+    MainMenu.init(responsiveToolkit);
+    
     // Update screen when window size is changed
     $(window).resize(function() {
       responsiveToolkit.updateLayoutWithoutAnimation();
@@ -53,4 +56,65 @@ function searchIconByName(element) {
 	  icons[i].style.display= "none";
     }
   }
+}
+
+var MainMenu = {
+  urlToFirstLevelMenu : [["Processes.xhtml", ["Processes", "Prozesse", "Processus", "Procesos"]],
+      ["PortalTasks.xhtml", ["Tasks", "Aufgaben", "Tâches", "Tareas"]],
+      ["PortalCases.xhtml", ["Cases", "Vorgänge", "Dossiers", "Casos"]],
+      ["PortalDashBoard.xhtml", ["Statistics", "Statistiken", "Statistiques", "Estadísticas"]],
+      ["TaskAnalysis.xhtml", ["Statistics", "Statistiken", "Statistiques", "Estadísticas"]],
+      ["TaskWidget.xhtml", ["Tasks", "Aufgaben", "Tâches", "Tareas"]],
+      ["CaseWidget.xhtml", ["Cases", "Vorgänge", "Dossiers", "Casos"]]],
+
+  init : function(responsiveToolkit) {
+    this.highlightFirstLevelMenu();
+  },
+
+  highlightFirstLevelMenu : function() {
+    var firstLevelMenu = MainMenu.getFirstLevelMenuBasedOnPageUrl();
+    var parentActiveMenuId = MainMenu.getFirstParentMenuActive();
+
+    var $activeFirstLevelMenu = $(".layout-menu li[id^='" + parentActiveMenuId + "'] .menuitem-text").filter(
+        function(index) {
+          if (firstLevelMenu) {
+            return (firstLevelMenu.indexOf($(this).text()) > -1);
+          }
+        });
+    
+    $activeFirstLevelMenu.parent().parent().addClass('active-menuitem');
+  },
+
+  getFirstParentMenuActive : function() {
+    var parentId = "";
+    var parentMenuActive = $(".layout-menu .active-menuitem").not(".submenu-container");
+    if (parentMenuActive) {
+      parentId = parentMenuActive.get(0).id;
+      MainMenu.getFirstSubMenuActive();
+    }
+    return parentId;
+  },
+
+  getFirstSubMenuActive : function() {
+    var subMenuActive = $(".layout-menu .active-menuitem.submenu-container");
+
+    for (var i = 0; i < subMenuActive.length; i++) {
+      var item = subMenuActive.get(i);
+      $(item).removeClass('active-menuitem');
+    }
+
+    if (subMenuActive.length > 0) {
+      PF('main-menu').clearActiveMenuState();
+    }
+  },
+
+  getFirstLevelMenuBasedOnPageUrl : function() {
+    var pageUrl = window.location.pathname;
+    for (var i = 0; i < MainMenu.urlToFirstLevelMenu.length; i++) {
+      if (pageUrl.indexOf(MainMenu.urlToFirstLevelMenu[i][0]) > -1) {
+        return MainMenu.urlToFirstLevelMenu[i][1];
+      }
+    }
+  }
+
 }
