@@ -150,7 +150,7 @@
 
 /*Task template*/
 .task-template-title {
-	font-family: 'Roboto';
+	font-family: "Roboto","Helvetica Neue",sans-serif;
 	font-style: normal;
 	font-weight: bold;
 	font-size: 1.6rem;
@@ -166,7 +166,7 @@
 }
 
 .task-template-content {
-	margin-top: 15px;
+	margin-top: 20px;
 	position: relative;
 }
 
