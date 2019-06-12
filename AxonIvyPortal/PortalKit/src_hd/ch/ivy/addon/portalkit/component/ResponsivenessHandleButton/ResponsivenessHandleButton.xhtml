@@ -18,6 +18,7 @@
     shortDescription="Client side callback to execute before responsiveness execution." />
   <cc:attribute name="oncomplete" default="null"
     shortDescription="Client side callback to execute after responsiveness execution." />
+  <cc:attribute name="toolTip"/>
 </cc:interface>
 
 <cc:implementation>
@@ -29,7 +30,8 @@
   <c:set var="onstart" value="#{cc.attrs.onstart}" />
   <c:set var="oncomplete" value="#{cc.attrs.oncomplete}" />
 
-  <a href="#" class="#{cc.attrs.icon} responsive-handle-button js-responsive-handle-button #{cc.attrs.styleClass}"
+  <p:link id="link" href="#" styleClass="#{cc.attrs.icon} responsive-handle-button js-responsive-handle-button #{cc.attrs.styleClass}"
      onclick="responsiveButton.apply({clickedLink: this, displayedSelectors: #{displayedSelectors}, hiddenSelectorsInLargeScreen: #{hiddenSelectorsInLargeScreen}, hiddenSelectorsInMediumScreen: #{hiddenSelectorsInMediumScreen}, hiddenSelectorsInSmallScreen: #{hiddenSelectorsInSmallScreen}, fadeTime: #{fadeTime}}, #{onstart}, #{oncomplete})" />
+  <p:tooltip for="link" value="#{cc.attrs.toolTip}" />
 </cc:implementation>
 </html>
