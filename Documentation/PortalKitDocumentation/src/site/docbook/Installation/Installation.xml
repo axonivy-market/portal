@@ -773,7 +773,7 @@
 				<orderedlist>
 					<listitem>Replace all Portal projects</listitem>
 					<listitem>Update PortalTemplate dependency of customer project in pom.xml.</listitem>
-					<listitem>If PortalStyle is customized, copy logo, customization.less, font-faces.less, customized stuff from old to new PortalStyle, run maven to compile CSS.</listitem>
+					<listitem>If PortalStyle is customized, copy logo, customization.scss, font-faces.scss, customized stuff from old to new PortalStyle, run maven to compile CSS.</listitem>
 					<listitem>Follow migration notes.</listitem>
 					<listitem>If customization needs copying code from Portal, merge changes between 2 version of Portal for copied code.</listitem>
 				</orderedlist>
@@ -785,16 +785,6 @@
 							If unsupported customization needs copying code from Portal, merge changes between 2 versions of Portal for copied code. Take care your own unsupported customization.</listitem>
 					</itemizedlist>
 				</important>
-				<para>
-					<note>
-						<para><emphasis role="bold">For Portal 8.0.0</emphasis>. We used <code>Sass</code> instead of <code>Less</code> languages.</para>
-						<itemizedlist>
-							<listitem>If PortalStyle is customized, we should cross check in your system which is using stylesheet extension languages as <code>LESS</code> or <code>SASS</code>.</listitem>
-							<listitem>If the project is using <code>Less</code>, we need to do one more step to convert <code>Less</code> to <code>Sass</code> languages, so that your system can work correctly with Serenity theme.</listitem>
-							<listitem>Refer to <emphasis role="bold"><link linkend="axonivyportal.installation.migrationnotes.8.0.0" endterm="axonivyportal.installation.migrationnotes.8.0.0.title" /></emphasis> for more detail.</listitem>
-						</itemizedlist>
-					</note>
-				</para>
 			</sect3>
 			<sect3>
 				<title>In engine</title>
@@ -809,8 +799,8 @@
 		<sect2 xml:id="axonivyportal.installation.migrationnotes.8.0.0">
 			<title xml:id="axonivyportal.installation.migrationnotes.8.0.0.title">Migrate to 8.0.0</title>
 			<sect3>
-				<title>How to convert <code>Less</code> to <code>Sass</code> languages</title>
-				<para>From Portal version 8.0.0, we use the Serenity theme as the default style for project. So, if your project is using <code>Less</code> languages for customizing style, we should do one more step as convert them to a new format as <code>Sass</code>.</para>
+				<title>How to convert <link xlink:show="new" xlink:href="http://lesscss.org">LESS</link> to <link xlink:show="new" xlink:href="https://sass-lang.com/">SASS</link> languages</title>
+				<para>From Portal version 8.0.0, we use the Serenity theme as the default style for project. So, if your project is using <code>LESS</code> languages for customizing style, we should do one more step as convert them to a new format as <code>SASS</code>. Otherwise, please ignore this step</para>
 				<para>Please follow below step to do automation step convert your less file by plugin <code>less2sass.</code>
 				<para>The <emphasis role="bold">less2sass</emphasis> converter is pretty good and maintained <link xlink:href="https://www.npmjs.com/package/less2sass" />.</para>
 					<itemizedlist>
