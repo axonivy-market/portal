@@ -132,7 +132,11 @@ body {
 }
 .layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu > li > ul {
     top: 54px !important;
-    border-top: 3px solid #C0CA33 !important;
+    border-top: 3px solid $primaryColor !important;
+}
+
+.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu > li > ul:before {
+    border-bottom: 15px solid $primaryColor !important;
 }
 /*Style for Admin Setting -------------------------------------------------------------------------------------- */
 body {
