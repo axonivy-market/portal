@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 
-import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NO_CATEGORY_CMS;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +7,6 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.CaseSortField;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;

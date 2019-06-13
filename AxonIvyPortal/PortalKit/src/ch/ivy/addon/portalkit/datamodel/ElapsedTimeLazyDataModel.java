@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.datamodel;
 
-import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NO_CATEGORY_CMS;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
