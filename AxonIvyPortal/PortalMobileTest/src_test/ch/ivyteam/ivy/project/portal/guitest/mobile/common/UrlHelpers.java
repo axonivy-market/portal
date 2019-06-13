@@ -30,10 +30,6 @@ public class UrlHelpers {
     return PropertyLoader.getAppiumAddress() + ":" + PropertyLoader.getAppiumPort();
   }
   
-  private static boolean isServerMode() {
-    return SystemProperties.isInServerMode() || PropertyLoader.getServerMode();
-  }
-  
   public static String getLogoutURLOnDesigner() {
     return getEngineUrl() + "/wf/logout.jsp";
   }
