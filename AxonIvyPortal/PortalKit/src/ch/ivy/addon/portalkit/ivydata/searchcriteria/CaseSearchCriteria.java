@@ -98,12 +98,8 @@ public class CaseSearchCriteria {
   }
 
   private CaseQuery queryForCategory(String keyword) {
-    if (keyword.equalsIgnoreCase(Ivy.cms().co(NO_CATEGORY_CMS))) {
-      return CaseQuery.create().where().and().category().isEqual("");
-    } else {
       String startingWithCategory = String.format("%s%%", keyword);
       return CaseQuery.create().where().category().isLike(startingWithCategory);
-    }
   }
 
   private static final class CaseSortingQueryAppender {
