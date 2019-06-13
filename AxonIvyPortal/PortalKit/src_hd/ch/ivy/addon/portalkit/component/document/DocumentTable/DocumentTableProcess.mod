@@ -439,7 +439,7 @@ Ds0 f39 actionCode 'import ch.ivy.addon.portalkit.document.DocumentCustomField;
 
 if (in.typeColumnRendered) {
 	String stringField = DocumentCustomField.TYPE_PREFIX + in.uploadedDocument.getId();
-	in.ivyCase.customFields().stringField(stringField).set(in.typeSelection.toString());
+	in.ivyCase.customFields().stringField(stringField).set(in.typeSelection.name());
 }' #txt
 Ds0 f39 type ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData #txt
 Ds0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
