@@ -231,7 +231,7 @@ public class ChatAssigneeBean implements Serializable {
       CreateGroupChatStatus createGroupChatStatus = saveGroupChat(group, false);
       if (createGroupChatStatus == CreateGroupChatStatus.ALREADY_EXIST) {
         message = new FacesMessage(FacesMessage.SEVERITY_ERROR, getGroupChatExistMessage(), null);
-      } else if (createGroupChatStatus == CreateGroupChatStatus.SUSCCESSS) {
+      } else if (createGroupChatStatus == CreateGroupChatStatus.SUSCCESS) {
         ChatServiceContainer.getChatService().updateGroupList(group);
       } else {
         message = generateErrorMessageWhenCreateGroupChat();
@@ -280,7 +280,7 @@ public class ChatAssigneeBean implements Serializable {
         return CreateGroupChatStatus.JSON_TOO_LONG;
       } else {
         iCase.customFields().stringField(AdditionalProperty.PORTAL_GROUP_CHAT_INFO.toString()).set(json);
-        return CreateGroupChatStatus.SUSCCESSS;
+        return CreateGroupChatStatus.SUSCCESS;
       }
     }
     return CreateGroupChatStatus.ALREADY_EXIST;
