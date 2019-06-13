@@ -111,13 +111,9 @@ public class TaskWidgetPage extends TemplatePage {
   public TaskTemplatePage startTask(int index) {
     WebElement taskListElement = findElementById(taskWidgetId + ":task-list-scroller");
     if (taskListElement.getAttribute(CLASS).contains("compact-mode")) {
-      WebElement findElementByCssSelector = findElementByCssSelector(ID_CONTAIN + index + TASK_ITEM);
-      findElementByCssSelector.getText(); //make sure it's not failed before click
-      findElementByCssSelector.click();
+      findElementByCssSelector("a[id^='task-widget:task-list-scroller:" + index + TASK_ITEM).click();
     } else {
-      WebElement findElementByCssSelector = findElementByCssSelector(ID_END + index + TASK_ITEM_TASK_INFO);
-      findElementByCssSelector.getText();
-      findElementByCssSelector.click();
+      findElementByCssSelector(ID_END + index + TASK_ITEM_TASK_INFO).click();
     }
     waitForElementPresent(By.id(SIDE_STEP_MENU), true);
     return new TaskTemplatePage();

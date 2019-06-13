@@ -15,8 +15,10 @@
       <div>
         <div class="Fleft Wid50 Fs20 MarTop10">
           <ui:insert name="caseName">
-            <span class="fa fa-plane case-template-title-icon"></span>
-            <h:outputText title="#{case.name} (#{case.id})" value="#{case.name} (#{case.id})" rendered="#{!caseWidgetBean.isHiddenCase(case)}" />
+            <h:panelGroup rendered="#{case ne null}">
+              <span class="fa fa-plane case-template-title-icon"></span>
+              <h:outputText title="#{case.name} (#{case.id})" value="#{case.name} (#{case.id})" rendered="#{!caseWidgetBean.isHiddenCase(case)}" />
+            </h:panelGroup>
           </ui:insert>
         </div>
         <div class="process-chain-container Fright Wid70">
@@ -49,8 +51,8 @@
             title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/statusTabTitle')}"
             rendered="#{showCaseStatusInfoTab == null ? true : showCaseStatusInfoTab}">
             <ui:insert name="caseStatusTab">
-              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/noCaseId')}" rendered="#{caseWidgetBean.isHiddenCase(case)}" />
-              <h:form id="case-details-form" prependId="false" rendered="#{!caseWidgetBean.isHiddenCase(case)}">
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/noCaseId')}" rendered="#{case ne null and caseWidgetBean.isHiddenCase(case)}" />
+              <h:form id="case-details-form" prependId="false" rendered="#{case ne null and !caseWidgetBean.isHiddenCase(case)}">
                 <div class="js-case-default-widget-container case-default-widget-container js-simple-container js-for-search-result case-details">
                   <!-- HEADER -->
                   <h:panelGroup id="widget-column-header" class="widget-column-header js-case-widget-column-header">
