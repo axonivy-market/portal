@@ -66,7 +66,7 @@ Ds0 f0 method start(ch.ivyteam.ivy.workflow.ICase) #txt
 Ds0 f0 disableUIEvents true #txt
 Ds0 f0 inParameterDecl 'ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData out;
 ' #txt
-Ds0 f0 inParameterMapAction 'out.ivyCase=param.iCase;
+Ds0 f0 inParameterMapAction 'out.ivyCase=param.#iCase is initialized ? param.iCase : ivy.case;
 out.typeSelection=ch.ivy.addon.portalkit.enums.BasicDocumentType.DOCUMENTATION;
 ' #txt
 Ds0 f0 outParameterDecl '<> result;
