@@ -59,6 +59,9 @@ Ds0 @PushWFArc f38 '' #zField
 Ds0 @GridStep f39 '' #zField
 Ds0 @PushWFArc f40 '' #zField
 Ds0 @PushWFArc f41 '' #zField
+Ds0 @RichDialogMethodStart f42 '' #zField
+Ds0 @RichDialogProcessEnd f43 '' #zField
+Ds0 @PushWFArc f44 '' #zField
 >Proto Ds0 Ds0 DocumentTableProcess #zField
 Ds0 f0 guid 016B0CFC3D7D6069 #txt
 Ds0 f0 type ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData #txt
@@ -67,7 +70,6 @@ Ds0 f0 disableUIEvents true #txt
 Ds0 f0 inParameterDecl 'ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData out;
 ' #txt
 Ds0 f0 inParameterMapAction 'out.ivyCase=param.#iCase is initialized ? param.iCase : ivy.case;
-out.typeSelection=ch.ivy.addon.portalkit.enums.BasicDocumentType.DOCUMENTATION;
 ' #txt
 Ds0 f0 outParameterDecl '<> result;
 ' #txt
@@ -85,23 +87,20 @@ Ds0 f1 339 83 26 26 0 12 #rect
 Ds0 f1 @|RichDialogProcessEndIcon #fIcon
 Ds0 f5 guid 16B1C835D6DF8ED1 #txt
 Ds0 f5 type ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData #txt
-Ds0 f5 method load(String,Boolean) #txt
+Ds0 f5 method renderTable() #txt
 Ds0 f5 disableUIEvents false #txt
 Ds0 f5 inParameterDecl 'ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData out;
-' #txt
-Ds0 f5 inParameterMapAction 'out.messageComponentId=param.messageComponentId;
-out.typeColumnRendered=param.typeColumnRendered;
 ' #txt
 Ds0 f5 outParameterDecl '<> result;
 ' #txt
 Ds0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>load(String,Boolean)</name>
+        <name>renderTable()</name>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f5 83 179 26 26 -25 17 #rect
+Ds0 f5 83 275 26 26 -25 17 #rect
 Ds0 f5 @|RichDialogMethodStartIcon #fIcon
 Ds0 f6 type ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData #txt
 Ds0 f6 processCall 'Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)' #txt
@@ -123,15 +122,15 @@ Ds0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f6 168 170 112 44 -48 -8 #rect
+Ds0 f6 168 266 112 44 -48 -8 #rect
 Ds0 f6 @|CallSubIcon #fIcon
 Ds0 f7 type ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData #txt
-Ds0 f7 339 179 26 26 0 12 #rect
+Ds0 f7 339 275 26 26 0 12 #rect
 Ds0 f7 @|RichDialogProcessEndIcon #fIcon
 Ds0 f8 expr out #txt
-Ds0 f8 109 192 168 192 #arcP
+Ds0 f8 109 288 168 288 #arcP
 Ds0 f9 expr out #txt
-Ds0 f9 280 192 339 192 #arcP
+Ds0 f9 280 288 339 288 #arcP
 Ds0 f10 guid 16B1C99C07E95EDC #txt
 Ds0 f10 type ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData #txt
 Ds0 f10 method upload(org.primefaces.event.FileUploadEvent) #txt
@@ -149,7 +148,7 @@ Ds0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f10 83 275 26 26 -68 15 #rect
+Ds0 f10 83 371 26 26 -68 15 #rect
 Ds0 f10 @|RichDialogMethodStartIcon #fIcon
 Ds0 f28 type ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData #txt
 Ds0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -159,7 +158,7 @@ Ds0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f28 496 272 32 32 -54 -39 #rect
+Ds0 f28 496 368 32 32 -54 -39 #rect
 Ds0 f28 @|AlternativeIcon #fIcon
 Ds0 f11 actionDecl 'ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData out;
 ' #txt
@@ -177,13 +176,13 @@ Ds0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f11 576 362 128 44 -58 -8 #rect
+Ds0 f11 576 458 128 44 -58 -8 #rect
 Ds0 f11 @|StepIcon #fIcon
 Ds0 f51 type ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData #txt
-Ds0 f51 915 275 26 26 0 12 #rect
+Ds0 f51 915 371 26 26 0 12 #rect
 Ds0 f51 @|RichDialogProcessEndIcon #fIcon
 Ds0 f15 type ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData #txt
-Ds0 f15 755 371 26 26 0 12 #rect
+Ds0 f15 755 467 26 26 0 12 #rect
 Ds0 f15 @|RichDialogProcessEndIcon #fIcon
 Ds0 f13 type ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData #txt
 Ds0 f13 processCall 'Functional Processes/UploadDocument:call(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.UploadedFile)' #txt
@@ -207,7 +206,7 @@ Ds0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f13 328 266 112 44 -48 -8 #rect
+Ds0 f13 328 362 112 44 -48 -8 #rect
 Ds0 f13 @|CallSubIcon #fIcon
 Ds0 f46 actionDecl 'ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData out;
 ' #txt
@@ -226,12 +225,12 @@ message</name>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f46 736 266 128 44 -40 -16 #rect
+Ds0 f46 736 362 128 44 -40 -16 #rect
 Ds0 f46 @|StepIcon #fIcon
 Ds0 f29 expr out #txt
-Ds0 f29 440 288 496 288 #arcP
+Ds0 f29 440 384 496 384 #arcP
 Ds0 f17 expr out #txt
-Ds0 f17 704 384 755 384 #arcP
+Ds0 f17 704 480 755 480 #arcP
 Ds0 f2 expr out #txt
 Ds0 f2 109 96 339 96 #arcP
 Ds0 f3 guid 16B2047AE0419DBD #txt
@@ -251,15 +250,15 @@ Ds0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f3 83 435 26 26 -55 15 #rect
+Ds0 f3 83 531 26 26 -55 15 #rect
 Ds0 f3 @|RichDialogMethodStartIcon #fIcon
 Ds0 f4 type ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData #txt
-Ds0 f4 339 435 26 26 0 12 #rect
+Ds0 f4 339 531 26 26 0 12 #rect
 Ds0 f4 @|RichDialogProcessEndIcon #fIcon
 Ds0 f18 expr out #txt
-Ds0 f18 109 448 339 448 #arcP
+Ds0 f18 109 544 339 544 #arcP
 Ds0 f14 expr out #txt
-Ds0 f14 864 288 915 288 #arcP
+Ds0 f14 864 384 915 384 #arcP
 Ds0 f19 guid 16B213CA436B66B2 #txt
 Ds0 f19 type ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData #txt
 Ds0 f19 method delete() #txt
@@ -275,7 +274,7 @@ Ds0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f19 83 531 26 26 -21 15 #rect
+Ds0 f19 83 627 26 26 -21 15 #rect
 Ds0 f19 @|RichDialogMethodStartIcon #fIcon
 Ds0 f20 type ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData #txt
 Ds0 f20 processCall 'Functional Processes/DeleteDocument:call(ch.ivyteam.ivy.workflow.ICase,ch.ivy.addon.portalkit.ivydata.bo.IvyDocument)' #txt
@@ -297,7 +296,7 @@ Ds0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f20 160 522 112 44 -48 -8 #rect
+Ds0 f20 160 618 112 44 -48 -8 #rect
 Ds0 f20 @|CallSubIcon #fIcon
 Ds0 f50 actionDecl 'ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData out;
 ' #txt
@@ -316,17 +315,17 @@ message</name>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f50 320 522 112 44 -34 -16 #rect
+Ds0 f50 320 618 112 44 -34 -16 #rect
 Ds0 f50 @|StepIcon #fIcon
 Ds0 f30 expr out #txt
-Ds0 f30 272 544 320 544 #arcP
+Ds0 f30 272 640 320 640 #arcP
 Ds0 f21 expr out #txt
-Ds0 f21 109 544 160 544 #arcP
+Ds0 f21 109 640 160 640 #arcP
 Ds0 f22 type ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData #txt
-Ds0 f22 499 531 26 26 0 12 #rect
+Ds0 f22 499 627 26 26 0 12 #rect
 Ds0 f22 @|RichDialogProcessEndIcon #fIcon
 Ds0 f23 expr out #txt
-Ds0 f23 432 544 499 544 #arcP
+Ds0 f23 432 640 499 640 #arcP
 Ds0 f24 guid 16B214644C2FBAA8 #txt
 Ds0 f24 type ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData #txt
 Ds0 f24 method download(ch.ivy.addon.portalkit.ivydata.bo.IvyDocument) #txt
@@ -346,7 +345,7 @@ Ds0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f24 83 627 26 26 -66 15 #rect
+Ds0 f24 83 723 26 26 -66 15 #rect
 Ds0 f24 @|RichDialogMethodStartIcon #fIcon
 Ds0 f25 type ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData #txt
 Ds0 f25 processCall 'Functional Processes/DownloadDocument:call(ch.ivyteam.ivy.workflow.ICase,ch.ivy.addon.portalkit.ivydata.bo.IvyDocument)' #txt
@@ -368,15 +367,15 @@ Ds0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f25 160 618 128 44 -56 -8 #rect
+Ds0 f25 160 714 128 44 -56 -8 #rect
 Ds0 f25 @|CallSubIcon #fIcon
 Ds0 f26 type ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData #txt
-Ds0 f26 339 627 26 26 0 12 #rect
+Ds0 f26 339 723 26 26 0 12 #rect
 Ds0 f26 @|RichDialogProcessEndIcon #fIcon
 Ds0 f27 expr out #txt
-Ds0 f27 288 640 339 640 #arcP
+Ds0 f27 288 736 339 736 #arcP
 Ds0 f31 expr out #txt
-Ds0 f31 109 640 160 640 #arcP
+Ds0 f31 109 736 160 736 #arcP
 Ds0 f16 type ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData #txt
 Ds0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -386,10 +385,10 @@ limit of documents?</name>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f16 208 272 32 32 -68 -48 #rect
+Ds0 f16 208 368 32 32 -68 -48 #rect
 Ds0 f16 @|AlternativeIcon #fIcon
 Ds0 f32 expr out #txt
-Ds0 f32 109 288 208 288 #arcP
+Ds0 f32 109 384 208 384 #arcP
 Ds0 f33 expr in #txt
 Ds0 f33 outCond 'in.fileLimit <= 0 || in.fileLimit > in.documents.size()' #txt
 Ds0 f33 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -399,7 +398,7 @@ Ds0 f33 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f33 240 288 328 288 #arcP
+Ds0 f33 240 384 328 384 #arcP
 Ds0 f33 0 0.5 0 -11 #arcLabel
 Ds0 f34 actionDecl 'ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData out;
 ' #txt
@@ -415,23 +414,23 @@ limit of documents error message</name>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f34 264 362 208 44 -86 -16 #rect
+Ds0 f34 264 458 208 44 -86 -16 #rect
 Ds0 f34 @|StepIcon #fIcon
 Ds0 f35 expr in #txt
-Ds0 f35 224 304 264 384 #arcP
-Ds0 f35 1 224 384 #addKink
-Ds0 f35 1 0.21965692365617775 0 0 #arcLabel
+Ds0 f35 224 400 264 480 #arcP
+Ds0 f35 1 224 480 #addKink
+Ds0 f35 1 0.5781899068506348 0 0 #arcLabel
 Ds0 f36 type ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData #txt
-Ds0 f36 496 368 32 32 0 16 #rect
+Ds0 f36 496 464 32 32 0 16 #rect
 Ds0 f36 @|AlternativeIcon #fIcon
 Ds0 f37 expr in #txt
-Ds0 f37 512 304 512 368 #arcP
+Ds0 f37 512 400 512 464 #arcP
 Ds0 f37 0 0.6396370554297803 0 0 #arcLabel
 Ds0 f12 expr in #txt
-Ds0 f12 528 384 576 384 #arcP
+Ds0 f12 528 480 576 480 #arcP
 Ds0 f12 0 0.18918337471700586 0 0 #arcLabel
 Ds0 f38 expr out #txt
-Ds0 f38 472 384 496 384 #arcP
+Ds0 f38 472 480 496 480 #arcP
 Ds0 f39 actionDecl 'ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData out;
 ' #txt
 Ds0 f39 actionTable 'out=in;
@@ -451,7 +450,7 @@ if it is not empty</name>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f39 568 266 144 44 -52 -16 #rect
+Ds0 f39 568 362 144 44 -52 -16 #rect
 Ds0 f39 @|StepIcon #fIcon
 Ds0 f40 expr in #txt
 Ds0 f40 outCond 'in.uploadDocumentCheckStatus == ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus.OK' #txt
@@ -464,11 +463,37 @@ Ds0 f40 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f40 528 288 568 288 #arcP
+Ds0 f40 528 384 568 384 #arcP
 Ds0 f40 0 0.2857142857142857 0 -7 #arcLabel
 Ds0 f41 expr out #txt
-Ds0 f41 712 288 736 288 #arcP
+Ds0 f41 712 384 736 384 #arcP
 Ds0 f41 0 0.2857142857142857 0 -7 #arcLabel
+Ds0 f42 guid 16B4E86E9AEE3309 #txt
+Ds0 f42 type ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData #txt
+Ds0 f42 method renderComponent(String,Boolean,ch.ivy.addon.portalkit.enums.DocumentType) #txt
+Ds0 f42 disableUIEvents false #txt
+Ds0 f42 inParameterDecl 'ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData out;
+' #txt
+Ds0 f42 inParameterMapAction 'out.messageComponentId=param.messageComponentId;
+out.typeColumnRendered=param.typeColumnRendered;
+out.typeSelection=param.selectedType;
+' #txt
+Ds0 f42 outParameterDecl '<> result;
+' #txt
+Ds0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>renderComponent(String,Boolean,DocumentType)</name>
+    </language>
+</elementInfo>
+' #txt
+Ds0 f42 83 179 26 26 -91 17 #rect
+Ds0 f42 @|RichDialogMethodStartIcon #fIcon
+Ds0 f43 type ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData #txt
+Ds0 f43 339 179 26 26 0 12 #rect
+Ds0 f43 @|RichDialogProcessEndIcon #fIcon
+Ds0 f44 expr out #txt
+Ds0 f44 109 192 339 192 #arcP
 >Proto Ds0 .type ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData #txt
 >Proto Ds0 .processKind HTML_DIALOG #txt
 >Proto Ds0 -8 -8 16 16 16 26 #rect
@@ -513,3 +538,5 @@ Ds0 f40 head f39 mainIn #connect
 Ds0 f28 out f37 tail #connect
 Ds0 f39 mainOut f41 tail #connect
 Ds0 f41 head f46 mainIn #connect
+Ds0 f42 mainOut f44 tail #connect
+Ds0 f44 head f43 mainIn #connect

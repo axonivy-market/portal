@@ -26,13 +26,18 @@
   <cc:attribute name="deleteStyleClass" />
   <cc:attribute name="updatedComponentAfterDeleted" />
   
+  <cc:attribute name="selectedType" />
   <cc:attribute name="typeSelectionItems" required="true" shortDescription="Use #{masterDataBean.documentTypes} if there are no custom Document Type" />
 </cc:interface>
 
 <cc:implementation>
+  <ui:param name="messageComponentId" value="#{cc.clientId.concat(':document-messages')}" />
+  <ui:param name="typeSelectionItems" value="#{not empty cc.attrs.typeSelectionItems ? cc.attrs.typeSelectionItems : masterDataBean.documentTypes}" />
+  <ui:param name="selectedType" value="#{not empty cc.attrs.selectedType ? cc.attrs.selectedType : typeSelectionItems[0]}" />
+  
+  <f:event type="preRenderComponent" listener="#{logic.renderComponent(messageComponentId, cc.attrs.typeColumnRendered, selectedType)}" />
+
   <div id="#{cc.clientId}">
-    <ui:param name="messageComponentId" value="#{cc.clientId.concat(':document-messages')}" />
-    <ui:param name="typeSelectionItems" value="#{not empty cc.attrs.typeSelectionItems ? cc.attrs.typeSelectionItems : masterDataBean.documentTypes}" />
 
     <cc:renderFacet name="componentHeader" />
 
@@ -40,7 +45,7 @@
     <p:dataTable id="document-table" value="#{data.documents}" var="document"
       emptyMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/NoFiles')}" styleClass="MarTop5"
       widgetVar="fileTableVar">
-      <f:event type="preRenderComponent" listener="#{logic.load(messageComponentId, cc.attrs.typeColumnRendered)}" />
+      <f:event type="preRenderComponent" listener="#{logic.renderTable()}" />
 
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}"
         rendered="#{cc.attrs.nameColumnRendered}">

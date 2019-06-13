@@ -2,7 +2,7 @@
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
     <method>
-        <name>load</name>
+        <name>renderComponent</name>
         <description></description>
         <inputParameter>
             <name>messageComponentId</name>
@@ -14,6 +14,12 @@
             <name>typeColumnRendered</name>
             <description></description>
             <parameterType>Boolean</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
+        <inputParameter>
+            <name>selectedType</name>
+            <description></description>
+            <parameterType>ch.ivy.addon.portalkit.enums.DocumentType</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>
@@ -56,6 +62,10 @@
             <parameterType>org.primefaces.model.StreamedContent</parameterType>
             <nullPermitted>false</nullPermitted>
         </outputParameter>
+    </method>
+    <method>
+        <name>renderTable</name>
+        <description></description>
     </method>
     <startMethod>
         <name>start</name>
