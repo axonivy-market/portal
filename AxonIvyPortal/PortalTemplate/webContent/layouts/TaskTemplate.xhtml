@@ -12,7 +12,7 @@
     <ui:define name="simplePageContent">
       <ui:insert name="breadCrumb" />
       <div>
-        <h:panelGroup layout="block" styleClass="Fleft Wid100 Fs14 foreground-text-color MarTop10 #{processChainDirection eq 'VERTICAL' ? 'task-name-vertical-process-chain' : ''}">
+        <h:panelGroup layout="block" styleClass="Fleft Wid100 Fs14 foreground-text-color MarTop10 #{processChainDirection eq 'VERTICAL' ? 'task-name-vertical-process-chain' : ''}" rendered="#{task ne null}">
           <ui:insert name="taskName">
             <span class=" fa fa-check-square-o task-template-title-icon" />
             <h:outputText styleClass="task-template-title" id="title" title="#{task.name} (##{task.id})" value="#{task.name} (##{task.id})" />
