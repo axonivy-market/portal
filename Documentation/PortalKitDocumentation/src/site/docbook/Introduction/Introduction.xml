@@ -21,43 +21,4 @@
 			</listitem>				
 		</itemizedlist>
 	</sect1>
-	<sect1 xml:id="axonivyportal.introduction.referencearchitecture">
-		<title>Reference architecture</title>
-		<para>The following image describes the reference architecture of the Portal Kit:
-			<itemizedlist>
-				<listitem>
-					<para>
-					Organize Ivy Landscape in more Ivy engine based on
-						<itemizedlist>
-							<listitem>
-								<para>
-									Critical Process Apps
-								</para>
-							</listitem>
-							<listitem>
-								<para>
-									Support Applications
-								</para>
-							</listitem>
-						</itemizedlist>
-					</para>
-				</listitem>
-				<listitem>
-					<para>
-					Ivy Landscape shares a Company wide LDAP
-					</para>
-				</listitem>
-				<listitem>
-					<para>
-					Ivy Landscape shares a Landscape wide DB for centralize settings
-					</para>
-				</listitem>			
-			</itemizedlist>
-		</para>
-		<mediaobject>
-			<imageobject>
-				<imagedata fileref="images/Introduction/MultiServerArchitecture.png"/>
-			</imageobject>
-		</mediaobject>
-	</sect1>
 </chapter>

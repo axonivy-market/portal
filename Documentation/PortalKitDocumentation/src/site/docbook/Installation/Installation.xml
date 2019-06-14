@@ -50,11 +50,6 @@
 					</listitem>
 					<listitem>
 						<para>
-							SelfServiceBpm
-						</para>
-					</listitem>
-					<listitem>
-						<para>
 							AxonIvyExpress
 						</para>
 					</listitem>
@@ -77,39 +72,6 @@
 						</para>
 					</listitem>
 				</itemizedlist>
-			</para>
-		</sect2>
-		<sect2 xml:id="axonivyportal.installation.basicinstallation.addlibraries">
-			<title xml:id="axonivyportal.installation.basicinstallation.addlibraries.title">Add required libraries</title>
-			<para>
-				Portal needs <link xlink:show="new" xlink:href="https://poi.apache.org">Apache POI</link> for exporting to Excel features. Follow these steps to add Apache POI libraries:
-				<orderedlist>
-					<listitem>
-						<para>
-							Copy libraries below and then paste into <code>webapps/ivy/WEB-INF/lib</code> folder located on <code>AxonIvyEngine, AxonIvyDesigner.</code>
-							<note>
-								You can find libraries inside <code>AxonIvyDesigner</code> folder, under <code>configuration/org.eclipse.osgi</code> (search libraries in this directory), or download from this site.
-							</note>
-							<itemizedlist>
-								<listitem>
-								<para><link xlink:href="documents/Export/poi-3.15.jar">poi-3.15.jar</link></para>
-								</listitem>
-								<listitem>
-									<para><link xlink:href="documents/Export/poi-ooxml-3.15.jar">poi-ooxml-3.15.jar</link></para>
-								</listitem>
-								<listitem>
-									<para><link xlink:href="documents/Export/poi-ooxml-schemas-3.15.jar">poi-ooxml-schemas-3.15.jar</link></para>
-								</listitem>
-								<listitem>
-									<para><link xlink:href="documents/Export/xmlbeans-2.6.0.jar">xmlbeans-2.6.0.jar</link></para>
-								</listitem>
-							</itemizedlist>
-						</para>
-					</listitem>
-					<listitem>
-						Restart AxonIvy Designer/Engine.
-					</listitem>
-				</orderedlist>
 			</para>
 		</sect2>
 		<sect2>
@@ -742,10 +704,6 @@
 				<link xlink:href="http://www.primefaces.org/eos/modena/">Modena</link>
 				theme from version 6.3.
 			</para>
-			<para>
-				All dialogs in Portal and screens of <emphasis role="bold">Self service BPM</emphasis> 
-				and <emphasis role="bold">Axon.ivy Express</emphasis> have following buttons orders:
-			</para>
 			<itemizedlist>
 				<listitem>
 					<para>
@@ -837,7 +795,6 @@
 			<title>Migrate 7.1.0 to 7.2.0</title>
 			<para>
 				Portal needs <link xlink:show="new" xlink:href="https://poi.apache.org">Apache POI</link> for exporting to Excel features.
-				Refer to <link linkend="axonivyportal.installation.basicinstallation.addlibraries" endterm="axonivyportal.installation.basicinstallation.addlibraries.title" />.
 			</para>
 			<para>
 				If you override task widget's data query described at <link linkend="axonivyportal.customization.taskwidget.howtooverridedataquery" endterm="axonivyportal.customization.taskwidget.howtooverridedataquery.title" />, 
