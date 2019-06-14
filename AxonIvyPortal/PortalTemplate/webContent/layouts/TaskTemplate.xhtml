@@ -20,7 +20,7 @@
       <ui:insert name="breadCrumb" />
 
       <div class="#{processChainDirection eq 'VERTICAL' ? '' : 'task-template-title-horizontal-container'}">
-        <h:panelGroup layout="block" styleClass="task-template-title #{processChainDirection eq 'VERTICAL' ? 'task-name-vertical-process-chain' : ''}">
+        <h:panelGroup layout="block" styleClass="task-template-title #{processChainDirection eq 'VERTICAL' ? 'task-name-vertical-process-chain' : ''}" rendered="#{task ne null}">
           <ui:insert name="taskName">
             <span class=" fa fa-check-square-o task-template-title-icon"></span>
             <h:outputText id="title" title="#{task.name}" value="#{task.name}" />
@@ -98,8 +98,8 @@
             title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/statusTabTitle')}"
             rendered="#{showCaseStatusInfoTab == null ? true : showCaseStatusInfoTab}">
             <ui:insert name="caseStatusTab">
-              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/noCaseId')}" rendered="#{caseWidgetBean.isHiddenCase(case)}" />
-                <h:panelGroup id="case-details-panel" layout="block" rendered="#{!caseWidgetBean.isHiddenCase(case)}"
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/noCaseId')}" rendered="#{case ne null and caseWidgetBean.isHiddenCase(case)}" />
+                <h:panelGroup id="case-details-panel" layout="block" rendered="#{case ne null and !caseWidgetBean.isHiddenCase(case)}"
                   styleClass="js-case-default-widget-container case-default-widget-container js-simple-container js-for-search-result case-details">
                   <!-- HEADER -->
                   <h:panelGroup id="widget-column-header" class="widget-column-header js-case-widget-column-header">

@@ -207,7 +207,14 @@ Es0 f16 actionDecl 'ch.ivy.addon.portalkit.component.statistic.ElapsedTimeChartD
 ' #txt
 Es0 f16 actionTable 'out=in;
 ' #txt
-Es0 f16 actionCode in.dataModel.setCategory(in.category); #txt
+Es0 f16 actionCode 'import ch.ivy.addon.portalkit.datamodel.ElapsedTimeLazyDataModel;
+import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;
+
+in.dataModel = new ElapsedTimeLazyDataModel();
+if(!ivy.cms.co(StatisticChartConstants.NO_CATEGORY_CMS).equalsIgnoreCase(in.category)) {
+	in.dataModel.setCategory(in.category);
+}
+' #txt
 Es0 f16 type ch.ivy.addon.portalkit.component.statistic.ElapsedTimeChartDetails.ElapsedTimeChartDetailsData #txt
 Es0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

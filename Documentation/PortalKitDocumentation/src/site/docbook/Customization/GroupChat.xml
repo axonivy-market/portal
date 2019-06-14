@@ -10,7 +10,7 @@
 	<sect2 xml:id="axonivyportal.customization.groupchat.customize.groupchatheader">
 		<title>Customize group chat header</title>
 		<para>
-			Override group chat title/header via the "groupChatHeader" CMS entry.
+			Override group chat title/header via "groupChatHeader" CMS entry.
 			<mediaobject>
 				<imageobject>
 					<imagedata fileref="images/GroupChat/CustomizeGroupChatHeader.png" />
@@ -29,7 +29,7 @@
 				</listitem>
 				<listitem>
 					<para>
-						Override the <code>SetGroupChatName</code> process to customize the group chat name, follow its notes to change the group chat name.
+						Override <code>SetGroupChatName</code> process to customize group chat name, follow its note to change group chat name.
 						<mediaobject>
 							<imageobject>
 								<imagedata fileref="images/GroupChat/CustomizeGroupChatName.png" />
@@ -39,7 +39,7 @@
 				</listitem>
 				<listitem>
 					<para>
-						If you have the parameters which are not available in GroupChat.java, override the <code>GetGroupChatParams</code> callable process and follow its note.
+						If you have parameters which are not available in GroupChat.java, override <code>GetGroupChatParams</code> callable process and follow its note.
 						<mediaobject>
 							<imageobject>
 								<imagedata fileref="images/GroupChat/CustomizeGroupChatNameParams.png" />
@@ -53,7 +53,7 @@
 	<sect2 xml:id="axonivyportal.customization.groupchat.customize.predefinedroles">
 		<title>Customize predefined responsible roles</title>
 		<para>
-			Override the <code>AssignRolesGroupChat</code> process to customize the predefined responsible roles, follow its notes to configure.
+			Override <code>AssignRolesGroupChat</code> process to customize predefined responsible roles, follow its note to configure.
 			<mediaobject>
 				<imageobject>
 					<imagedata fileref="images/GroupChat/CustomizePredefinedRoles.png" />

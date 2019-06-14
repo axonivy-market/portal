@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
@@ -62,6 +63,13 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
       criteria.setCustomCaseQuery(customCaseQuery);
     }
     CaseQuery caseQuery = buildCaseQuery();
+    
+    /**
+     * Filter CaseSearchCriteria with noCategory
+     */
+    if (StringUtils.isEmpty(criteria.getCategory())) {
+      caseQuery.where().and().category().isEqual("");
+    }
     buildSortCaseQuery(caseQuery);
     this.criteria.setFinalCaseQuery(caseQuery);
   }

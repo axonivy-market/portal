@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sect1 xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:id="axonivyportal.components.portalchat">
-	<title>Portal chat</title>
+	<title xml:id="axonivyportal.components.portalchat.title">Portal chat</title>
 	<sect2 xml:id="axonivyportal.components.portalchat.portalchatfeature">
 		<title>Chat feature</title>
 		<mediaobject>
@@ -39,7 +39,7 @@
 					</para>
 					<tip>
 						<para>
-							Group chat supports some customizations, refer to <link linkend="axonivyportal.customization.groupchat" endterm="axonivyportal.customization.groupchat.title" /> for more detail.
+							Group chat supports some customizations, refer to <link linkend="axonivyportal.customization.groupchat" endterm="axonivyportal.customization.groupchat.title" /> for more details.
 						</para>
 					</tip>
 				</listitem>
@@ -52,12 +52,12 @@
 			<orderedlist>
 				<listitem>
 					<para>
-						Do not support multiple tab. For each browser, user able to open 1 Portal tab if they enable Portal chat.
+						Do not support multiple tabs. For each browser, user is able to open 1 Portal tab if he enables Portal chat.
 					</para>
 				</listitem>
 				<listitem>
 					<para>
-						Do not support multiple applications. User able to chat with user in current application, can not chat with user in other application.
+						Do not support multiple applications. User is able to chat with other users in current application, cannot chat with users in other application.
 					</para>
 				</listitem>
 			</orderedlist>
