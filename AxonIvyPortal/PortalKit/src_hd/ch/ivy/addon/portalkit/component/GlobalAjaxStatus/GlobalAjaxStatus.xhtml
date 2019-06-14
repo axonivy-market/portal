@@ -12,8 +12,9 @@
   <cc:attribute name="waitingIcon" default="fa fa-spinner" shortDescription="style class icon of Font Awesome" />
 </cc:interface>
 <cc:implementation>
+  <c:set var="renderDetail" value="#{userMenuBean.errorDetailToEndUser}" />
   <h:outputStylesheet library="css" name="module.css" />
-  <p:ajaxStatus id="#{cc.id}" widgetVar="#{cc.attrs.widgetVar}" onerror="handleError(PrimeFaces.ajax.Queue.xhrs[0])">
+  <p:ajaxStatus id="#{cc.id}" widgetVar="#{cc.attrs.widgetVar}" onerror="handleError(PrimeFaces.ajax.Queue.xhrs[0], #{renderDetail})">
     <f:facet name="start">
       <div class="ajax-status ajax-status-position ajax-status-color #{cc.attrs.styleClass}" >
         <span> <i class="#{cc.attrs.waitingIcon} fa-3x fa-spin" />
@@ -25,12 +26,13 @@
     modal="true" resizable="false" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/errorAjaxMessage')}" />
     <p:spacer width="20px" />
-    <p:commandLink id="show-more"  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" styleClass="notification-content-action-more-details" />
+    <p:commandLink id="show-more" rendered="#{renderDetail}" 
+       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" styleClass="notification-content-action-more-details" />
     
   </p:dialog>
   
   <p:dialog id="detail-error-dialog" widgetVar="detail-error-dialog" closable="true" width="80%" closeOnEscape="true"
-    modal="true" resizable="false" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/errorXhr')}">
+    modal="true" resizable="false" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/errorXhr')}" rendered="#{renderDetail}">
     <div class="ui-g-2">
       <h:outputText value="Status code"/>
     </div>
