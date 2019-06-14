@@ -281,7 +281,7 @@
 								<para>Used for independent applications.</para>
 							</listitem>
 							<listitem>
-								<para>Disable the default application Portal.</para>
+								<para>Disable the default application Portal. <code>DO NOT DELETE</code> this application, it will be auto generated after engine restart.</para>
 							</listitem>
 							<listitem>
 								<para>Create new applications: App1, App2, App3... Deploy portal(kit, template ..) to new applications.</para>
