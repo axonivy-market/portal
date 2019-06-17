@@ -30,6 +30,7 @@ public final class PortalNavigator {
   private static final String PORTAL_STATISTIC = "Start Processes/PortalStart/startPortalStatistic.ivp";
   private static final String PORTAL_MOBILE_TASK = "Start Processes/PortalStart/startPortalMobileTask.ivp";
   private static final String PORTAL_MOBILE_PROCESS = "Start Processes/PortalStart/startPortalMobileProcess.ivp";
+  private static final String SLASH = "/";
 
   public String getPortalStartUrl() throws MalformedURLException {
     String homePageURL = getHomePageFromSetting();
@@ -51,7 +52,7 @@ public final class PortalNavigator {
       String serverUrl = urlDetector.getBaseURL(FacesContext.getCurrentInstance());
       return serverUrl + requestPath;
     }
-    return "/" + RequestUriFactory
+    return SLASH + RequestUriFactory
                     .getIvyContextName(ServerFactory.getServer().getApplicationConfigurationManager())
             + requestPath;
   }
@@ -86,7 +87,7 @@ public final class PortalNavigator {
     return Ivy.html().startref(PORTAL_PROCESS_START_NAME);
   }
 
-  public void navigateToPortalEndPage() throws MalformedURLException {
+  public void navigateToPortalEndPage() throws Exception {
     String customizePortalEndPage = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("DefaultEndPage.ivp"); 
     String param = "?endedTaskId=" + Ivy.wfTask().getId();
     if (StringUtils.isNotEmpty(customizePortalEndPage)) {
@@ -96,39 +97,39 @@ public final class PortalNavigator {
     }
   }
 
-  public void navigateToPortalProcess() throws MalformedURLException {
+  public void navigateToPortalProcess() throws Exception {
     navigateByKeyword("startPortalProcess.ivp", PORTAL_PROCESS);
   }
 
-  public void navigateToPortalCase() throws MalformedURLException {
+  public void navigateToPortalCase() throws Exception {
     navigateByKeyword("startPortalCase.ivp", PORTAL_CASE);
   }
 
-  public void navigateToPortalTask() throws MalformedURLException {
+  public void navigateToPortalTask() throws Exception {
     navigateByKeyword("startPortalTask.ivp", PORTAL_TASK);
   }
 
-  public void navigateToPortalStatistic() throws MalformedURLException {
+  public void navigateToPortalStatistic() throws Exception {
     navigateByKeyword("startPortalStatistic.ivp", PORTAL_STATISTIC);
   }
   
-  public void navigateToPortalHome() throws MalformedURLException {
+  public void navigateToPortalHome() throws Exception {
     navigateByKeyword("PortalStart.ivp", PORTAL_PROCESS_START_NAME);
   }
   
-  public void navigateToMobilePortalProcess() throws MalformedURLException {
+  public void navigateToMobilePortalProcess() throws Exception {
     navigateByKeyword("startPortalMobileProcess.ivp", PORTAL_MOBILE_PROCESS);
   }
 
-  public void navigateToMobilePortalCase() throws MalformedURLException {
+  public void navigateToMobilePortalCase() throws Exception {
     navigate(PORTAL_CASE, StringUtils.EMPTY);
   }
 
-  public void navigateToMobilePortalTask() throws MalformedURLException {
+  public void navigateToMobilePortalTask() throws Exception {
     navigateByKeyword("startPortalMobileTask.ivp", PORTAL_MOBILE_TASK);
   }
 
-  private void navigateByKeyword(String keyword, String defaultFriendlyRequestPath) throws MalformedURLException {
+  private void navigateByKeyword(String keyword, String defaultFriendlyRequestPath) throws Exception {
     String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword(keyword);
     if (StringUtils.isNotEmpty(customizePortalFriendlyRequestPath)) {
       navigate(customizePortalFriendlyRequestPath, StringUtils.EMPTY);
@@ -137,13 +138,16 @@ public final class PortalNavigator {
     }
   }
 
-  private void navigate(String friendlyRequestPath, String param) throws MalformedURLException {
+  private void navigate(String friendlyRequestPath, String param) throws Exception {
     String requestPath = SecurityServiceUtils.findProcessByUserFriendlyRequestPath(friendlyRequestPath);
-    if (StringUtils.isNotEmpty(requestPath))
-    {
-      UrlDetector urlDetector = new UrlDetector();
-      String serverUrl = urlDetector.getBaseURL(FacesContext.getCurrentInstance());
-      redirect(serverUrl + requestPath + param);
+    if (StringUtils.isNotEmpty(requestPath)) {
+      try {
+        String ivyContextName = ServerFactory.getServer().getSecurityManager().executeAsSystem(
+            () -> RequestUriFactory.getIvyContextName(ServerFactory.getServer().getApplicationConfigurationManager()));
+        redirect(SLASH + ivyContextName + requestPath + param);
+      } catch (Exception e) {
+        Ivy.log().error(e);
+      }
     }
   }
 }
