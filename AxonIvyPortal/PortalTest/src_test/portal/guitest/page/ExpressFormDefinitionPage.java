@@ -144,7 +144,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     WebElement panel = findElementById(String.format("form:selectedFormelements%sFieldSet", position));
     Actions builder = new Actions(driver);
     Action moveProcessSequence =
-        builder.clickAndHold(formElement).moveByOffset(100, 100).moveToElement(panel).release(formElement).build();
+        builder.clickAndHold(formElement).moveToElement(panel).release(formElement).build();
     moveProcessSequence.perform();
     waitAjaxIndicatorDisappear();
   }
