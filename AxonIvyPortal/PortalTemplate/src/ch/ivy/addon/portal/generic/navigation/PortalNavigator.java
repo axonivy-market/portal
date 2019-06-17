@@ -27,6 +27,7 @@ public final class PortalNavigator {
   private static final String PORTAL_TASK = "Start Processes/PortalStart/startPortalTask.ivp";
   private static final String PORTAL_CASE = "Start Processes/PortalStart/startPortalCase.ivp";
   private static final String PORTAL_STATISTIC = "Start Processes/PortalStart/startPortalStatistic.ivp";
+  private static final String SLASH = "/";
 
   public String getPortalStartUrl() throws Exception {
     String homePageURL = getHomePageFromSetting();
@@ -48,7 +49,7 @@ public final class PortalNavigator {
       String serverUrl = urlDetector.getBaseURL(FacesContext.getCurrentInstance());
       return serverUrl + requestPath;
     }
-    return "/" + RequestUriFactory.getIvyContextName(ServerFactory.getServer().getApplicationConfigurationManager())
+    return SLASH + RequestUriFactory.getIvyContextName(ServerFactory.getServer().getApplicationConfigurationManager())
         + requestPath;
   }
 
@@ -121,11 +122,14 @@ public final class PortalNavigator {
 
   private void navigate(String friendlyRequestPath, String param) throws Exception {
     String requestPath = SecurityServiceUtils.findProcessByUserFriendlyRequestPath(friendlyRequestPath);
-    if (StringUtils.isNotEmpty(requestPath))
-    {
-      UrlDetector urlDetector = new UrlDetector();
-      String serverUrl = urlDetector.getBaseURL(FacesContext.getCurrentInstance());
-      redirect(serverUrl + requestPath + param);
+    if (StringUtils.isNotEmpty(requestPath)) {
+        try {
+            String ivyContextName = ServerFactory.getServer().getSecurityManager().executeAsSystem(
+                () -> RequestUriFactory.getIvyContextName(ServerFactory.getServer().getApplicationConfigurationManager()));
+            redirect(SLASH + ivyContextName + requestPath + param);
+          } catch (Exception e) {
+            Ivy.log().error(e);
+          }
     }
   }
 }
