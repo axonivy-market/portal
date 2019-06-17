@@ -49,7 +49,9 @@ function Chat(uri, view) {
               mode: 'cors',
               credentials: "include",
               headers: {
-                "X-Requested-By": "ivy"
+                "X-Requested-By": "ivy",
+                "Content-Type": "application/json",
+                "Accept": "application/json"
               }
             });
 
@@ -105,7 +107,9 @@ function Chat(uri, view) {
               mode: 'cors',
               credentials: "include",
               headers: {
-                "X-Requested-By": "ivy"
+                "X-Requested-By": "ivy",
+                "Content-Type": "application/json",
+                "Accept": "application/json"
               }
             });
 
@@ -195,7 +199,9 @@ function Chat(uri, view) {
                 mode: 'cors',
                 credentials: "include",
                 headers: {
-                  "X-Requested-By": "ivy"
+                  "X-Requested-By": "ivy",
+                  "Content-Type": "application/json",
+                  "Accept": "application/json"
                 }
               });
 

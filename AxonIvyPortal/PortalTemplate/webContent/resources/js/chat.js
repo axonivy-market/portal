@@ -27,7 +27,7 @@ function Chat(uri, view) {
     var chatGroupMemoryPrefix = "Case-";
     
     this.registerGroupResponse = async function() {
-      const jsonResponse = await fetch(uri+"/groups", { method:"POST", mode: 'cors', credentials: "include", headers: {"X-Requested-By": "ivy"}});
+      const jsonResponse = await fetch(uri+"/groups", { method:"POST", mode: 'cors', credentials: "include", headers: {"X-Requested-By": "ivy", "Content-Type": "application/json", "Accept": "application/json"}});
       var response = await jsonResponse.json();
       this.registerGroupResponse();
       view.renderGroupList(response);
@@ -50,7 +50,7 @@ function Chat(uri, view) {
     }
 
     this.registerUserResponse = async function() {
-      const jsonResponse = await fetch(uri+"/users", { method:"POST", mode: 'cors', credentials: "include", headers: {"X-Requested-By": "ivy"}});
+      const jsonResponse = await fetch(uri+"/users", { method:"POST", mode: 'cors', credentials: "include", headers: {"X-Requested-By": "ivy", "Content-Type": "application/json", "Accept": "application/json"}});
       var response = await jsonResponse.json();
       this.registerUserResponse();
       if (response.action === "updateUserStatus") {
@@ -101,7 +101,7 @@ function Chat(uri, view) {
       if (isFirstCall !== true) {
         path += "-next";
       }
-      const response = await fetch(uri+"/" + path, { method:"POST", mode: 'cors', credentials: "include", headers: {"X-Requested-By": "ivy"}});
+      const response = await fetch(uri+"/" + path, { method:"POST", mode: 'cors', credentials: "include", headers: {"X-Requested-By": "ivy", "Content-Type": "application/json", "Accept": "application/json"}});
       const messages = await response.json();
       this.listen(false); // wait for next update
 
