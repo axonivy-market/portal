@@ -108,20 +108,33 @@ public class TaskWidgetPage extends TemplatePage {
     }
   }
 
-  public TaskTemplatePage startTask(int index) {
-    WebElement taskListElement = findElementById(taskWidgetId + ":task-list-scroller");
-    if (taskListElement.getAttribute(CLASS).contains("compact-mode")) {
-      String cssSelector = ID_CONTAIN + index + TASK_ITEM;
-      waitForElementPresent(By.cssSelector(cssSelector), true);
-      findElementByCssSelector(cssSelector).click();
-    } else {
-      String cssSelector = ID_END + index + TASK_ITEM_TASK_INFO;
-      waitForElementPresent(By.cssSelector(cssSelector), true);
-      findElementByCssSelector(cssSelector).click();
-    }
-    waitForElementPresent(By.id(SIDE_STEP_MENU), true);
-    return new TaskTemplatePage();
-  }
+	public TaskTemplatePage startTask(int index) {
+		WebElement taskListElement = findElementById(taskWidgetId + ":task-list-scroller");
+		if (taskListElement.getAttribute(CLASS).contains("compact-mode")) {
+			String cssSelector = ID_CONTAIN + index + TASK_ITEM;
+			refreshAndWaitElement(cssSelector);
+			waitForElementPresent(By.cssSelector(cssSelector), true);
+			findElementByCssSelector(cssSelector).click();
+		} else {
+			String cssSelector = ID_END + index + TASK_ITEM_TASK_INFO;
+			refreshAndWaitElement(cssSelector);
+			waitForElementPresent(By.cssSelector(cssSelector), true);
+			findElementByCssSelector(cssSelector).click();
+		}
+		waitForElementPresent(By.id(SIDE_STEP_MENU), true);
+		return new TaskTemplatePage();
+	}
+
+	private void refreshAndWaitElement(String cssSelector) {
+		Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> {
+			if (findListElementsByCssSelector(cssSelector).isEmpty()) {
+				refresh();
+				return false;
+			} else {
+				return true;
+			}
+		});
+	}
 
   public boolean isTaskDelegateOptionDisable(int index) {
     WebElement delegateButton =
