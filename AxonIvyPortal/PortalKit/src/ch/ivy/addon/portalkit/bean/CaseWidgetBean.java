@@ -10,6 +10,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.safety.Whitelist;
 
 import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
@@ -21,6 +24,7 @@ import ch.ivy.addon.portalkit.support.UrlDetector;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.NumberUtils;
 import ch.ivy.addon.portalkit.util.UrlValidator;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.model.value.WebLink;
 
 @ManagedBean
@@ -88,7 +92,25 @@ public class CaseWidgetBean implements Serializable {
     RemoteCase responseRemoteCase = (RemoteCase) response.get(SUBPROCESS_PARAM_REMOTE_CASE);
     return responseRemoteCase.getAdditionalProperty(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString());
   }
+
+  public String sanitizeHTML(String text) {
+    String sanitizedText = sanitize(text);
+    if (StringUtils.isBlank(extractTextFromHtml(sanitizedText))) {
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription");
+    }
+    return sanitizedText;
+  }
   
+  private String extractTextFromHtml(String text) {
+    String sanitizedText = sanitize(text);
+    Document doc = Jsoup.parse(sanitizedText);
+    return doc.body().text();
+ }
+
+  private String sanitize(String text) {
+    return Jsoup.clean(text, Whitelist.relaxed().addAttributes(":all", "style"));
+  }
+
   public boolean isNaN(Number number){
     return NumberUtils.isNaN(number);
   }

@@ -25,8 +25,13 @@
         <p:ajax event="save" listener="#{logic.updateCaseDescription(case)}"
           update="#{cc.attrs.descriptionComponentToUpdate} case-description-form" />
         <p:ajax event="cancel" resetValues="true" />
-        <p:inputTextarea id="case-description-input" rows="7" styleClass="case-detail-description-input"
-          value="#{case.description}" autoResize="false" />
+        <f:facet name="input">
+          <p:inputTextarea id="case-description-input" rows="7" styleClass="case-detail-description-input"
+            value="#{case.description}" autoResize="false" />
+        </f:facet>
+        <f:facet name="output">
+          <h:outputText id="case-description-output" escape="false" value="#{caseWidgetBean.sanitizeHTML(case.description)}" />
+        </f:facet>
       </p:inplace>
       </h:form>
     </div>
