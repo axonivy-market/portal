@@ -87,7 +87,7 @@ public final class PortalNavigator {
     return Ivy.html().startref(PORTAL_PROCESS_START_NAME);
   }
 
-  public void navigateToPortalEndPage() throws Exception {
+  public void navigateToPortalEndPage() {
     String customizePortalEndPage = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("DefaultEndPage.ivp"); 
     String param = "?endedTaskId=" + Ivy.wfTask().getId();
     if (StringUtils.isNotEmpty(customizePortalEndPage)) {
@@ -97,39 +97,39 @@ public final class PortalNavigator {
     }
   }
 
-  public void navigateToPortalProcess() throws Exception {
+  public void navigateToPortalProcess() {
     navigateByKeyword("startPortalProcess.ivp", PORTAL_PROCESS);
   }
 
-  public void navigateToPortalCase() throws Exception {
+  public void navigateToPortalCase() {
     navigateByKeyword("startPortalCase.ivp", PORTAL_CASE);
   }
 
-  public void navigateToPortalTask() throws Exception {
+  public void navigateToPortalTask() {
     navigateByKeyword("startPortalTask.ivp", PORTAL_TASK);
   }
 
-  public void navigateToPortalStatistic() throws Exception {
+  public void navigateToPortalStatistic() {
     navigateByKeyword("startPortalStatistic.ivp", PORTAL_STATISTIC);
   }
   
-  public void navigateToPortalHome() throws Exception {
+  public void navigateToPortalHome() {
     navigateByKeyword("PortalStart.ivp", PORTAL_PROCESS_START_NAME);
   }
   
-  public void navigateToMobilePortalProcess() throws Exception {
+  public void navigateToMobilePortalProcess() {
     navigateByKeyword("startPortalMobileProcess.ivp", PORTAL_MOBILE_PROCESS);
   }
 
-  public void navigateToMobilePortalCase() throws Exception {
+  public void navigateToMobilePortalCase() {
     navigate(PORTAL_CASE, StringUtils.EMPTY);
   }
 
-  public void navigateToMobilePortalTask() throws Exception {
+  public void navigateToMobilePortalTask() {
     navigateByKeyword("startPortalMobileTask.ivp", PORTAL_MOBILE_TASK);
   }
 
-  private void navigateByKeyword(String keyword, String defaultFriendlyRequestPath) throws Exception {
+  private void navigateByKeyword(String keyword, String defaultFriendlyRequestPath) {
     String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword(keyword);
     if (StringUtils.isNotEmpty(customizePortalFriendlyRequestPath)) {
       navigate(customizePortalFriendlyRequestPath, StringUtils.EMPTY);
@@ -138,7 +138,7 @@ public final class PortalNavigator {
     }
   }
 
-  private void navigate(String friendlyRequestPath, String param) throws Exception {
+  private void navigate(String friendlyRequestPath, String param) {
     String requestPath = SecurityServiceUtils.findProcessByUserFriendlyRequestPath(friendlyRequestPath);
     if (StringUtils.isNotEmpty(requestPath)) {
       try {
