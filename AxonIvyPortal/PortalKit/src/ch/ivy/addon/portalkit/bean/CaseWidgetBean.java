@@ -9,6 +9,9 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.safety.Whitelist;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
@@ -18,6 +21,7 @@ import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.NumberUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 
 @ManagedBean
@@ -92,6 +96,24 @@ public class CaseWidgetBean implements Serializable {
   private String removeDuplicatedPartOfUrl(String redirectLink) {
     String applicationContextPath = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
     return redirectLink.replaceFirst(applicationContextPath, ""); // remove duplicate contextPath in URL
+  }
+  
+  public String sanitizeHTML(String text) {
+    String sanitizedText = sanitize(text);
+    if (StringUtils.isBlank(extractTextFromHtml(sanitizedText))) {
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription");
+    }
+    return sanitizedText;
+  }
+  
+  private String extractTextFromHtml(String text) {
+    String sanitizedText = sanitize(text);
+    Document doc = Jsoup.parse(sanitizedText);
+    return doc.body().text();
+  }
+  
+  private String sanitize(String text) {
+    return Jsoup.clean(text, Whitelist.relaxed().addAttributes(":all", "style"));
   }
 
   public boolean isShowCaseDetails() {
