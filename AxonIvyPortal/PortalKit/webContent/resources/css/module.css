@@ -2148,9 +2148,9 @@ a.case-details-document-add-link {
   text-align: center;
   position: absolute;
   right: 10px;
-  height: 80%;
+  height: calc(95% - 210px);
   border-left: 1px solid rgba(0,0,0,0.1);
-  top: 15%;
+  top: 210px;
 }
 
 .process-start-list-container .process-nav .process-nav-item {
@@ -5958,3 +5958,11 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
   align-items: center;
   justify-content: flex-end;
 }
+
+/* ======================= MAIN AREA PANEL ========================= */
+.hidden-scroll-bar {
+	overflow-y: hidden;
+	overflow-x: auto;
+}
+
+/* ======================= END MAIN AREA PANEL ========================= */

@@ -730,7 +730,8 @@
 /* Small screen */
 @media ( min-width : 992px) and ( max-width : 1365px) {
   .dashboard-container, .simple-container, .announcement-message-container {
-    width: 880px;
+    width: calc(100% - 140px);
+    min-width: 880px;
     padding-left: 10px;
   }
   .announcement-container-in-task-list, .announcement-container-in-case-list {

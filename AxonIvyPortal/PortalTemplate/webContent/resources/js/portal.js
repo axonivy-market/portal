@@ -68,6 +68,9 @@ var Portal = {
     responsiveToolkit.updateLayoutWithoutAnimation();
     $('#main-area-panel').removeClass('u-invisibility');
     $('#left-menu').removeClass('u-invisibility');
+    
+    // Update scrollbar for Main Area panel
+    MainArea.init();
   },
 }
 
@@ -395,4 +398,32 @@ function handleError(xhr, renderDetail){
     }
   }
   PF('error-ajax-dialog').show();
+}
+
+/* Portal's Main Area panel */
+var MainArea = {
+  urlToUseMenuArea : [["Processes.xhtml", ["Processes", "Prozesse", "Processus", "Procesos"]],
+      ["PortalTasks.xhtml", ["Tasks", "Aufgaben", "Tâches", "Tareas"]],
+      ["PortalCases.xhtml", ["Cases", "Vorgänge", "Dossiers", "Casos"]]],
+
+  init : function() {
+    var curentFrame = this.detectCurentFrame();
+    this.hiddenScrollBar(curentFrame);
+  },
+
+  detectCurentFrame : function() {
+    var pageUrl = window.location.pathname;
+    for (var i = 0; i < MainArea.urlToUseMenuArea.length; i++) {
+      if (pageUrl.indexOf(MainArea.urlToUseMenuArea[i][0]) > -1) {
+        return MainArea.urlToUseMenuArea[i][1];
+      }
+    }
+  },
+
+  hiddenScrollBar : function(curentFrame) {
+    var mainArea = $('#main-area-panel');
+    if (typeof curentFrame !== 'undefined' && typeof mainArea !== 'undefined' && curentFrame.length > 0) {
+      $(mainArea).addClass('hidden-scroll-bar');
+    }
+  }
 }
