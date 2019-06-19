@@ -36,6 +36,10 @@ public class TaskActionBean {
   }
 
   public boolean canReset(ITask task) {
+    if (task == null) {
+      return false;
+    }
+    
     TaskState taskState = task.getState();
     if (taskState != TaskState.RESUMED && taskState != TaskState.PARKED) {
       return false;
@@ -67,6 +71,10 @@ public class TaskActionBean {
   }
 
   public boolean canResume(ITask task) {
+    if (task == null) {
+      return false;
+    }
+    
     ISession session = null;
     try {
       session = ServiceUtilities.findUserWorkflowSession(Ivy.session().getSessionUserName(), task.getApplication());
@@ -80,7 +88,7 @@ public class TaskActionBean {
   }
 
   public boolean canPark(ITask task) {
-    if ((task.getState() != TaskState.SUSPENDED && task.getState() != TaskState.CREATED && task.getState() != TaskState.RESUMED) 
+    if (task == null || (task.getState() != TaskState.SUSPENDED && task.getState() != TaskState.CREATED && task.getState() != TaskState.RESUMED) 
         || !canResume(task)) {
       return false;
     }
