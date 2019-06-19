@@ -122,11 +122,13 @@ Nr0 f7 actionTable 'out=in;
 Nr0 f7 actionCode 'import java.util.Arrays;
 import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
 import ch.ivy.addon.portal.generic.view.CaseView;
+import org.apache.commons.lang3.StringUtils;
 
 String title = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/relatedCaseHeader", Arrays.asList(in.caseId.id().toString(), in.caseName));
 
 in.caseDataModel.setCaseId(in.caseId.id());
 in.caseDataModel.getSearchCriteria().setBusinessCase(in.caseId.isBusinessCase());
+in.caseDataModel.getQueryCriteria().setKeyword(StringUtils.EMPTY);
 in.caseDataModel.setNotKeepFilter(true);
 in.caseView = CaseView.create().dataModel(in.caseDataModel).hideCaseFilter(true).withTitle(title).autoSelectIfExists(in.caseId).buildNewView();' #txt
 Nr0 f7 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
@@ -207,6 +209,7 @@ import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.bo.MainMenuNode;
 import ch.ivy.addon.portal.generic.view.TaskView;
 import java.util.Arrays;
+import org.apache.commons.lang3.StringUtils;
 
 MainMenuNode category = new MainMenuNode();
 String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader", Arrays.asList("#" + in.caseId.toString(), in.caseName));
@@ -219,6 +222,7 @@ in.taskDataModel.setCaseName(in.caseName);
 in.taskDataModel.setIgnoreInvolvedUser(PermissionUtils.checkReadAllTasksPermission() || PermissionUtils.checkTaskReadOwnCaseTasksPermission());
 in.taskDataModel.setInvolvedUsername(ivy.session.getSessionUserName());
 in.taskDataModel.setRelatedTaskDisplayed(true);
+in.taskDataModel.getQueryCriteria().setKeyword(StringUtils.EMPTY);
 
 in.taskView = TaskView.create()
 											.category(category)
@@ -346,10 +350,12 @@ import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portal.generic.navigation.PortalPage;
+import org.apache.commons.lang3.StringUtils;
 
 String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedStatisticHeader") + in.chartName;
 
 in.taskDataModel.getQueryCriteria().setTaskQuery(in.taskQuery);
+in.taskDataModel.getQueryCriteria().setKeyword(StringUtils.EMPTY);
 in.taskDataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
 in.taskDataModel.setNotKeepFilter(true);
 
@@ -451,7 +457,8 @@ Nr0 f31 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 ' #txt
 Nr0 f31 actionTable 'out=in;
 ' #txt
-Nr0 f31 actionCode 'import ch.ivy.addon.portal.generic.view.CaseView;
+Nr0 f31 actionCode 'import org.apache.commons.lang3.StringUtils;
+import ch.ivy.addon.portal.generic.view.CaseView;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 
 String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/relatedStatisticHeader") + in.chartName;
@@ -459,6 +466,7 @@ String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTit
 in.caseDataModel.getSearchCriteria().setBusinessCase(true);
 in.caseDataModel.setIgnoreInvolvedUser(PermissionUtils.checkReadAllCasesPermission());
 in.caseDataModel.getQueryCriteria().setCaseQuery(in.caseQuery);
+in.caseDataModel.getQueryCriteria().setKeyword(StringUtils.EMPTY);
 in.caseDataModel.setNotKeepFilter(true);
 
 in.caseView = CaseView.create()
@@ -692,6 +700,7 @@ Nr0 f50 actionCode 'import ch.ivy.addon.portalkit.enums.CaseSortField;
 import java.util.Arrays;
 import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
 import ch.ivy.addon.portal.generic.view.CaseView;
+import org.apache.commons.lang3.StringUtils;
 
 String title = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCasesOfBusinessCaseTitle", Arrays.asList(in.caseId.id().toString(), in.caseName));
 
@@ -699,6 +708,7 @@ in.caseDataModel.getSearchCriteria().setBusinessCase(false);
 in.caseDataModel.getSearchCriteria().setBusinessCaseId(in.caseId.id());
 in.caseDataModel.getSearchCriteria().setTechnicalCase(true);
 in.caseDataModel.getQueryCriteria().sortField = CaseSortField.NAME.toString();
+in.caseDataModel.getQueryCriteria().setKeyword(StringUtils.EMPTY);
 in.caseDataModel.setNotKeepFilter(true);
 in.caseView = CaseView.create().dataModel(in.caseDataModel).hideCaseFilter(true).withTitle(title).buildNewView();' #txt
 Nr0 f50 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
