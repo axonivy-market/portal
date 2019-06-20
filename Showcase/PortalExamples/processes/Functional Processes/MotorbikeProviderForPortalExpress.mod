@@ -1,7 +1,7 @@
 [Ivy]
 16B40A95DA8F858E 3.26 #module
 >Proto >Proto Collection #zClass
-Ds0 DataProviderForPortalExpress Big #zClass
+Ds0 MotorbikeProviderForPortalExpress Big #zClass
 Ds0 B #cInfo
 Ds0 #process
 Ds0 @TextInP .resExport .resExport #zField
@@ -18,7 +18,7 @@ Ds0 @GridStep f3 '' #zField
 Ds0 @PushWFArc f4 '' #zField
 Ds0 @PushWFArc f2 '' #zField
 Ds0 @InfoButton f5 '' #zField
->Proto Ds0 Ds0 DataProviderForPortalExpress #zField
+>Proto Ds0 Ds0 MotorbikeProviderForPortalExpress #zField
 Ds0 f0 inParamDecl '<> param;' #txt
 Ds0 f0 outParamDecl '<List<java.lang.String> data> result;
 ' #txt
@@ -43,7 +43,7 @@ Ds0 f1 @|EndSubIcon #fIcon
 Ds0 f3 actionDecl 'ch.ivyteam.ivy.project.portal.examples.DataProviderForPortalExpressData out;
 ' #txt
 Ds0 f3 actionTable 'out=in;
-out.items=java.util.Arrays.asList("item 1", "item 2", "item 3");
+out.items=java.util.Arrays.asList("BMW", "Harley Davidson", "Honda", "Agusta", "Triumph");
 ' #txt
 Ds0 f3 type ch.ivyteam.ivy.project.portal.examples.DataProviderForPortalExpressData #txt
 Ds0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
