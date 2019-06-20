@@ -123,7 +123,7 @@ out.uploadedDocument = CaseDocumentService.newInstance(in.businessCase).upload(f
 
 if (out.#uploadedDocument != null) {	
 	String note = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadDocumentNote", Arrays.asList(ivy.session.getSessionUserName(), fileName));
-	in.businessCase.createNote(ivy.session, "Overriden: " + note);
+	in.businessCase.createNote(ivy.session, "Overridden: " + note);
 	out.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadSucceed");
 } else {
 	out.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadFailed");
