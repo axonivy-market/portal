@@ -58,7 +58,7 @@
           <p:spacer width="7"/>
           <p:commandLink id="chat-group" global="false" styleClass="case-action-link"
             actionListener="#{chatAssigneeBean.createGroupChatForConfiguredRoleList}"
-            rendered="#{chatRendererBean.isGroupChatRendered and !(ivy.task.state eq 'CREATED')}" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/createGroupChat')}"
+            rendered="#{chatRendererBean.isGroupChatRendered and !(ivy.task.state eq 'CREATED')}" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/createProcessChat')}"
             update="chat-assignee-dialog">
             <span class="fa fa-comments fa-2x" />
           </p:commandLink>
