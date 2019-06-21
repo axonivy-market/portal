@@ -1,11 +1,11 @@
 package ch.ivy.addon.portalkit.enums;
 
 public enum PortalLibrary {
-  PORTAL_STYLE("ch.ivyteam.ivy.project.portal:portalStyle"),
-  PORTAL_KIT("ch.ivyteam.ivy.project.portal:portalKit"), 
-  PORTAL_TEMPLATE("ch.ivyteam.ivy.project.portal:portalTemplate"),
-  AXON_EXPRESS("ch.ivyteam.ivy.project.portal:axonIvyExpress"),
-  SELF_SERVICE("ch.ivyteam.ivy.project.portal:selfService");
+  PORTAL_STYLE("at.aws.ivy:portalStyle"),
+  PORTAL_KIT("at.aws.ivy:portalKit"), 
+  PORTAL_TEMPLATE("at.aws.ivy:portalTemplate"),
+  AXON_EXPRESS("at.aws.ivy:axonIvyExpress"),
+  SELF_SERVICE("at.aws.ivy:selfService");
 
   private String value;
 
