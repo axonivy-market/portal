@@ -33,6 +33,11 @@
   max-height: 100vh;
 }
 
+.no-group-chat {
+  color: white;
+  font-size: 1.4rem;
+}
+
 .contact-card {
   padding: 5px 10px;
   display: flex;
