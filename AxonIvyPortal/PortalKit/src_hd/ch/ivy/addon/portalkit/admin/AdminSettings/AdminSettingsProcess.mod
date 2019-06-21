@@ -3191,7 +3191,14 @@ import javax.faces.application.FacesMessage;
 
 ILibrary portalKit = LibraryUtils.findReleasedLibrary(ivy.wf.getApplication(), PortalLibrary.PORTAL_KIT.getValue());
 String portalKitVersion = portalKit.getQualifiedVersion().toString();
-in.isServerCompatible = portalKitVersion.equals(in.remotePortalConnector.projectVersion);
+if (!in.remotePortalConnector.projectVersion is initialized) {
+	in.isServerCompatible = false;
+} else {
+	in.isServerCompatible = portalKitVersion.equals(in.remotePortalConnector.projectVersion);
+	if (in.isServerCompatible == false) {
+		in.isServerCompatible  = portalKitVersion.indexOf("7.0.") == 0 && in.remotePortalConnector.projectVersion.indexOf("7.0.") == 0;
+	}
+}
 
 if(in.errors.size() > 0) {
 	List<Object> params = Arrays.asList(portalKitVersion);
