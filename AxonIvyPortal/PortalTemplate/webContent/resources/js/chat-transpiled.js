@@ -532,6 +532,10 @@ function View(uri) {
           groupChatContainer.appendChild(cloneGroup);
         }
       });
+    } else {
+      var noGroupChatTemplate = document.getElementsByClassName('js-no-group-chat-template')[0];
+      noGroupChatTemplate.classList.remove("u-hidden");
+      groupChatContainer.appendChild(noGroupChatTemplate);
     } //remove deleted groups
 
 

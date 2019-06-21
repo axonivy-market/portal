@@ -354,7 +354,12 @@ function View(uri)
             groupChatContainer.appendChild(cloneGroup);
           }
         });
+      } else {
+        var noGroupChatTemplate = document.getElementsByClassName('js-no-group-chat-template')[0];
+        noGroupChatTemplate.classList.remove("u-hidden");
+        groupChatContainer.appendChild(noGroupChatTemplate);
       }
+      
       //remove deleted groups
       $(".js-show-group-chat-message").each(function(index) {
         var $caseId = $(this).find("input[class='js-case-id']");
