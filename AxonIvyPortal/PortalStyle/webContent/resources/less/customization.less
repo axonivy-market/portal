@@ -4,3 +4,1098 @@
    After customizing, you should run a maven command ("mvn lesscss:compile") to compile these LESS files.
    And then, refresh PortalStyle project to see the changing */
 
+
+@darkgrey: #757575;
+@black: #000000;
+@white: #ffffff;
+@lighter-grey: #f5f5f5;
+@context-button-color: @action-button-color;
+@menu-color: #00377A;
+@process-chain-menu-color: @menu-color;
+@action-button-color: #0099FF;
+
+
+
+
+.ui-widget.ui-button {
+    /* min-width: 137px !important; */
+}
+
+
+#logo>img {
+	margin: -8px 0px -8px 10px;
+}
+
+.portal-home-logo {
+    height: 42px !important;
+}
+
+.task-template-title {
+    font-size: 2.0rem !important;
+}
+
+.marginLeft5px {
+	margin-left:5px;
+}
+
+.marginBottom15px {
+    margin-bottom: 15px;
+}
+
+.marginTop10px {
+	margin-top:10px;
+}
+
+.marginTop20px {
+	margin-top:20px;
+}
+
+.marginTop40px {
+	margin-top:40px;
+}
+
+.marginLeft10px {
+	margin-left:10px;
+}
+
+.marginLeftMinus6px {
+	margin-left:-6px !important;
+}
+
+.marginLeftMinus10 {
+	margin-left:-10px !important;
+}
+
+.marginLeft15px {
+	margin-left:15px;
+}
+
+.marginLeft20px {
+	margin-left:20px;
+}
+
+.marginLeft25px {
+	margin-left:25px;
+}
+
+.marginLeft30px {
+	margin-left:30px;
+}
+
+.marginLeft40px {
+	margin-left:40px;
+}
+
+.marginLeftMinus10px  {
+	margin-left:-10px;
+}
+
+
+
+.bigLabel {
+	font-size:16px !important;
+	font-weight:bold !important;
+}
+
+
+
+
+/* make tabs slimmer */
+.ui-tabs-top .ui-tabs-nav li a {
+    padding: 8px 8px !important;
+}
+
+.marginBottom10px {
+	padding-bottom: 10px !important;
+}
+
+.alignTop{
+	text-align:top;
+}
+
+
+.task-template-title, .task-template-title-icon {
+   font-size: 1.6rem;
+   
+}
+
+.ui-inputfield {
+	   background-color: @body-background-color;
+}
+
+.ui-selectcheckboxmenu .ui-selectcheckboxmenu-label {
+   
+    background-color: @body-background-color;
+   
+}
+
+
+/*center main content */
+
+.simple-container {
+   width: 70%; 
+    padding: 0;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.dashboard-container, .task-list-container {
+    width: 100% !important;
+}
+
+/*make width of case widget fit centered screen*/
+.case-details-item {
+    min-width: auto;
+}
+
+
+.fitDivToFieldset {
+	width:96% !important;
+	margin-left:18px !important;	
+}
+
+.fitFieldsetToDiv {
+	width:96%;
+}
+
+/*make accordion fit to fieldset*/
+.ui-accordion {
+    padding: 10px !important;
+}
+
+.fitAccordionToFieldset {
+	width:97% !important;
+}
+/*fit accordion header to fieldset legend*/
+.ui-accordion .ui-accordion-header .ui-icon {
+    left: .8em;
+}
+
+@media screen and (max-width: 750px) { 
+
+.fitFieldsetToDiv {
+width:auto;
+}
+}
+
+
+.ui-fieldset-legend {
+	margin-left: -5px !important;
+	color: #757575;
+}
+
+.ui-fluid .ui-button {
+    width: auto !important;
+}
+
+.inputTextAreaWidth {
+    width: 100% !important;
+    /*margin-top:-5px;*/
+}
+
+
+/*fix checkbox menu*/
+.ui-selectonemenu .ui-selectonemenu-trigger, .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger {
+    padding: 0px 12px !important;
+  	background-color: @body-background-color;
+    border-bottom: none !important; 
+}
+
+
+/*show all DIV borders*/ 
+.ui-g-12 {
+    
+    /*border: 1px solid;*/
+}
+
+.width100 {
+	width:100%;
+}
+
+.width50 {
+	width:50%;
+}
+
+/*fix selectcheckboxmenu trigger*/
+
+.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger,.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger.ui-state-hover {
+    padding: 0 12px !important;
+    background-color: #fff;
+     border-bottom: 1px solid #B0BEC5 !important;
+}
+
+.ui-fluid .ui-selectcheckboxmenu-trigger {
+    height: 37px !important;
+}
+
+
+
+/* make modena look better */
+
+.ui-accordion-header, .ui-accordion-header .ui-state-hover, .ui-accordion .ui-accordion-header.ui-state-hover, .ui-accordion .ui-accordion-header.ui-state-active {
+ padding: 8px 5px 10px 30px !important;
+    color: @black;
+    background-color: #f5f5f5;
+    font-size:1.6rem !important;
+   
+}
+.ui-accordion-header .ui-icon-triangle-1-s {
+    background-image: url(/ivy/faces/javax.faces.resource/images/downarrow-navy.svg?ln=primefaces-modena-ivy);
+    background-position: center !important;
+    background-repeat: no-repeat;
+    background-size: 110%;
+}
+
+.ui-accordion-header .ui-icon-triangle-1-e {
+    background-image: url(/ivy/faces/javax.faces.resource/images/rightarrow-navy.svg?ln=primefaces-modena-ivy);
+    background-position: center !important;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.ui-panel .ui-panel-titlebar {
+    padding: 15px 20px !important;
+    font-size: 14px;
+    color: #757575;
+    z-index: 100;
+    font-family: 'robotolight';
+    font-weight: normal;
+    border-radius: 1px !important;
+    -webkit-border-radius: 1px !important;
+    -moz-border-radius: 1px !important;
+    background-color: #f5f5f5;
+    margin: -2px;
+}
+.ui-panel .ui-panel-titlebar .ui-icon-minusthick {
+    background-image: url(/ivy/faces/javax.faces.resource/images/minus-sign-navy.svg?ln=primefaces-modena-ivy) !important;
+    background-position: center !important;
+    background-size: 110% !important;
+}
+
+/* make table padding smaller*/
+.ui-datatable table tbody td {
+    font-family: 'robotoregular';
+    padding: 4px 10px !important;
+}
+
+.ui-datatable table thead tr th, .ui-datatable table tfoot tr td, .ui-datatable table thead tr th {
+    color: #656565;
+    background-color: #eaeaea;
+    border: solid 1px #dadada;
+    outline: none;
+    padding: 7px;
+    font-family: 'robotolight';
+    font-size: 14px;
+}
+
+/*end of make modena look better */
+
+.ui-accordion-header, .ui-accordion-header .ui-state-hover, .ui-accordion .ui-accordion-header.ui-state-hover, .ui-accordion .ui-accordion-header.ui-state-active {
+    color: @black !important;
+    background-color: @body-background-color !important;
+    
+}
+
+
+/*fix all input elements same height*/
+
+.ui-g label {
+    display: inline-block !important;
+}
+
+.ui-g .ui-outputlabel {
+    margin-top: 6px !important;
+}
+/*end of fix all input elements same height*/
+
+
+
+.ui-widget.ui-button {
+  border-radius: @action-button-border-radius !important;
+  background-color: @action-button-color;
+}
+
+.ui-widget.ui-button.ui-state-hover, .ui-widget.ui-buttonset .ui-state-hover {
+  background-color: fade(@action-button-color, 60%) !important;
+}
+
+.ui-widget.ui-button.ui-state-focus {
+  background-color: fade(@action-button-color, 80%);
+}
+
+.ui-widget.ui-button span {
+    color: @body-background-color;
+}
+
+.portal-cancel-button.ui-widget.ui-button.ui-widget.ui-button span {
+    color: #000000;
+}
+
+
+/*fix task and case widget filter buttons*/
+.task-widget .advanced-filter .ui-button span,
+.case-widget-container .advanced-filter .ui-button span{
+    color: #000;
+}
+.task-widget .ui-widget.ui-button.advanced-filter-command, .case-widget-container .ui-widget.ui-button.advanced-filter-command {
+    border: 1px solid #000000;
+}
+
+.task-widget .advanced-filter, .case-widget .advanced-filter, .case-widget-container .advanced-filter, .case-widget .advanced-filter {
+    border: none;
+}
+
+
+
+
+/*   from Partner portal */
+
+
+
+
+/*Style for individual portal --------------------------------------------------------------------------------------*/
+#app-menu-panel span {
+	font-family: robotoregular;
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.topbar-container {
+	border-bottom: 1px solid #e5e5e5 !important;
+	height: 40px;
+}
+
+.ui-datepicker .ui-datepicker-prev span, .ui-datepicker .ui-datepicker-next span,
+.ui-datepicker .ui-datepicker-prev span, .ui-datepicker .ui-datepicker-next span {
+    display: block;
+    position: initial !important;
+    left: 50%;
+    margin-left: -2px !important;
+    top: 50%;
+    margin-top: 8px !important;
+}
+
+
+
+.ui-datatable table thead tr th .ui-sortable-column-icon.ui-icon {
+    font-size: 12px;
+}
+
+.ui-selectonemenu-trigger .ui-icon-triangle-1-s {
+   	position: relative !important;
+    margin-left: -15px !important;
+    margin-top: 16px !important;
+}
+
+.ui-panel .ui-panel-titlebar .ui-icon-minusthick {
+    background-image: url("/ivy/faces/javax.faces.resource/images/minus-sign-gray.svg?ln=primefaces-modena-ivy") !important;
+}
+
+.ui-panel .ui-panel-titlebar .ui-icon-plusthick {
+    background-image: url("/ivy/faces/javax.faces.resource/images/plus-sign-gray.svg?ln=primefaces-modena-ivy") !important;
+    background-position: center !important;
+    background-size: 110% !important;
+}
+
+.ui-panel .ui-panel-titlebar .ui-icon-closethick {
+    background-image: url(/ivy/faces/javax.faces.resource/images/delete-gray.svg?ln=primefaces-modena-ivy) !important;
+}
+
+.ui-inputtext, .ui-inputfield.hasDatepicker, .ui-inputfield.ui-password, .ui-selectlistbox-filter.ui-inputfield.ui-widget,
+.ui-inputfield.ui-selectonemenu-label,.ui-autocomplete .ui-autocomplete-input,.ui-autocomplete-input
+.ui-inputfield.ui-inputtextarea {
+    padding: 4px 10px !important;
+    font-family: "robotoregular" !important;
+    
+    font-size: 14px !important;
+    color: rgba(0,0,0,1);
+   /* background-color: @lighter-grey;*/
+}
+
+ui-fileupload-choose .ui-icon-plusthick, .ui-fileupload-simple .ui-icon-plusthick {
+    background-image: url(/ivy/faces/javax.faces.resource/images/plus-sign.svg?ln=primefaces-modena-ivy) !important;
+}
+
+.ui-selectonemenu {
+	color: rgba(0,0,0,1);
+  	/*background-color: @lighter-grey !important;*/
+}
+.ui-selectonemenu, .ui-inputtext, .ui-autocomplete .ui-autocomplete-input, .ui-inputfield.ui-inputtextarea, .ui-inputtextarea, .ui-inputfield.hasDatepicker, .ui-inputfield .ui-state-disabled {
+ 	background-color: @body-background-color;
+  	font-family: "robotoregular" !important;
+    
+    font-size: 14px !important;
+    color: rgba(0,0,0,1);
+ }
+
+
+.task-widget .ui-widget.ui-button.advanced-filter-command, .case-widget-container .ui-widget.ui-button.advanced-filter-command {
+    border: 1px solid @darkgrey;
+    color: @black !important;
+}
+
+
+
+.task-widget .advanced-filter .ui-button-text-only .ui-button-text, .case-widget-container .advanced-filter .ui-button-text-only .ui-button-text {
+    color: #000000 !important;
+}
+
+.ui-tabs-top .ui-tabs-nav {
+    background-color: @body-background-color;
+}
+
+.ui-tabs-top .ui-tabs-nav li.ui-tabs-selected, .ui-tabs-top .ui-tabs-nav li.ui-tabs-active, .ui-tabs-top .ui-tabs-nav li.ui-state-hover {
+    background-color: @body-background-color !important;   
+}
+
+.ui-tabs-top .ui-tabs-nav li.ui-tabs-selected, .ui-tabs-top .ui-tabs-nav li.ui-tabs-active, .ui-tabs-top .ui-tabs-nav li.ui-state-hover {
+   
+    border-bottom: solid 3px @menu-color !important;
+}
+
+.ui-tabs-top .ui-tabs-nav li a {
+   
+    padding: 8px 8px !important;
+   
+}
+
+.ui-fieldset-legend {
+    color: @black;
+    font-size: 14px;
+    line-height: 15px;
+    font-family: 'robotoregular';
+    background-color: #ffffff;
+    padding: 10px 7px !important;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-top-left-radius: 2px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.ui-autocomplete .ui-autocomplete-dropdown .ui-icon-triangle-1-s {
+    background-image: url(/ivy/faces/javax.faces.resource/images/downarrow.svg?ln=primefaces-modena-ivy) !important;
+    background-position: center !important;
+    background-size: 130% !important;
+    z-index: 998;
+    margin-top: -6px;
+}
+.filter-widget-icon {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    font-size: 1.4rem;
+}
+
+.ui-datatable .ui-datatable-tablewrapper {
+    border-top-left-radius: 1px;
+    border-top-right-radius: 1px;
+}
+   
+.ui-datatable table thead tr th:first-child {
+    border-top-left-radius: 1px;
+}
+
+.ui-datatable table thead tr th:last-child {
+    border-top-right-radius: 1px;
+}
+  
+.task-template-title {
+    font-family: robotobold;
+    font-size: 1.8 rem;
+    color: @black;
+}
+
+.ui-toolbar {
+    border: none;
+}
+
+.noBorder td{
+	border:none !important;
+}
+
+.bigLabel {
+	font-size: 16px;
+	font-family: 'robotobold';
+}
+
+
+.ui-widget.ui-button {
+  background-color: @action-button-color; 
+}
+
+.ui-widget.ui-button.ui-state-hover, .ui-widget.ui-buttonset .ui-state-hover {
+  background-color:darken(@action-button-color, 5%) !important;
+}
+
+.ui-widget.ui-button.ui-state-focus {
+  background-color:darken(@action-button-color, 8%) !important;
+}
+
+.ui-widget.ui-button.context-button.ui-state-hover{
+  background-color:fade(@context-button-color, 80%)!important;
+}
+
+.ui-fileupload-choose .ui-icon-plusthick, .ui-fileupload-simple .ui-icon-plusthick {
+    background-image: url(/ivy/javax.faces.resource/images/plus-sign.svg.xhtml?ln=primefaces-modena-ivy) !important;
+   
+}
+
+
+.filterColumn span {
+    float: inherit !important;
+    padding-top: 5%;
+}
+
+.ui-inputtext, .ui-inputfield.hasDatepicker, .ui-inputfield.ui-password, .ui-selectlistbox-filter.ui-inputfield.ui-widget, .ui-inputfield.ui-selectonemenu-label, .ui-autocomplete .ui-autocomplete-input, .ui-autocomplete-input .ui-inputfield.ui-inputtextarea {
+    padding: 8px 10px !important;
+}
+
+.task-template-title {
+    font-weight: normal;
+    color: @black;
+}
+
+.noBorder {
+	border: none;
+}
+
+.marginTop10 {
+	marginTop: 10px;
+}
+
+
+/*remove round table borders*/
+
+.ui-datatable .ui-datatable-scrollable-header, .ui-datatable {
+ 
+    border-radius: 0px !important;
+}
+
+
+.ui-datatable .ui-datatable-scrollable-header table {
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+}
+/*end of remove round table borders*/
+
+.ui-fileupload-choose .ui-icon-plusthick, .ui-fileupload-simple .ui-icon-plusthick {
+    background-image: url(/ivy/faces/javax.faces.resource/images/plus-sign-navy.svg?ln=primefaces-modena-ivy) !important;
+    background-position: center !important;
+    background-size: 100% !important;
+} 
+
+
+.ui-panelgrid .ui-panelgrid-content .ui-grid-row .ui-panelgrid-cell > label {
+    position: absolute;
+    margin-top: -1rem;
+    top: 50%;
+}
+
+
+.ui-chkbox .ui-chkbox-label {
+    font-size: 1.2rem;
+    color: @black;
+    margin: 4px 12px 0px 5px !important;
+}
+
+/*
+.ui-selectonemenu .ui-selectonemenu-trigger {
+    right: 18px !important;
+}
+*/
+
+/*fix all input elements same height*/
+
+.ui-g label {
+    display: inline-block !important;
+}
+
+.ui-g .ui-outputlabel {
+    margin-top: 6px !important;
+}
+/*end of fix all input elements same height*/
+
+/*
+div {
+	border: 1px solid black;
+}
+*/
+
+/*fix layout of task title in TaskTemplate, remove if necessary*/
+
+.MarTop10 {
+    margin-top: 25px;
+}
+
+
+.Fs14 {
+	font-size: 16px !important;
+}
+
+.circle-process-chain .circle-horizontal-process-step {
+    height: 60px;
+}
+
+/*fix layout process-chain*/
+.circle-process-chain.horizontal-process-chain {
+    top: 30px;
+    right: 0px;
+}
+
+.totalAmountPanelgrid td{
+	min-width:100px;
+}
+
+.task-template-title {
+    font-size: 2rem;
+}
+
+.listItemsTable table tbody tr td .ui-inputfield{
+	width: 87%;
+}
+
+.ui-toolbar-group-right .ui-widget.ui-button {
+	margin-left: 20px;
+}
+
+.ui-widget.ui-button.context-button{
+  border-radius: @context-button-border-radius !important;
+  background-color:context-button-color !important;
+  color: @black !important;
+}
+
+/*
+.ui-widget.ui-button.context-button.ui-widget.ui-button span {
+  color: @black !important;
+}*/
+
+.ui-widget.ui-button.context-button.ui-state-hover, .ui-widget.ui-button.context-button.ui-state-focus,
+.ui-datatable .ui-datatable-header .ui-button.ui-state-hover {
+  background-color:fade(@context-button-color, 80%)!important;
+  border:none !important;
+  /*color: @black !important;*/
+}
+
+.ui-datatable .ui-datatable-header .ui-button {
+    margin-top: -3px !important;
+    background-color: @context-button-color !important;
+    border:none !important;
+}
+
+.ui-datatable .ui-datatable-header .ui-button.ui-button span {
+ 	/*color: @black !important;*/
+}
+
+.ui-tabs {
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2), 0 2px 10px 0 rgba(0,0,0,0.19);
+}
+
+.ui-toolbar {
+    background-color: transparent;
+}
+
+.ui-fileupload-buttonbar {
+    padding: .2em .7em;
+}
+
+.ui-datatable .ui-datatable-header .ui-button {
+    margin-right: -20px;
+}
+
+
+.marginTop20px {
+	margin-top:20px;
+}
+
+.marginTop40px {
+	margin-top:40px;
+}
+
+.marginTop60px {
+	margin-top:60px;
+}
+
+.marginLeft20px {
+	margin-left:20px;
+}
+
+.marginLeft40px {
+	margin-left:40px;
+}
+
+.marginLeft60px {
+	margin-left:60px;
+}
+
+.fitFieldsetToDiv {
+	width: 89%;
+}
+.ui-panelgrid .ui-panelgrid-content .ui-grid-row .ui-panelgrid-cell > label {
+    position: absolute;
+    margin-top: -1rem;
+    top: 50%;
+}
+
+
+
+/*klara table layout*/
+
+.ui-datatable table thead tr th {
+    height: 30px;
+    color: @black;
+    background-color: @body-background-color;
+   }
+
+.ui-datatable .ui-datatable-header {
+    height: 50px;
+}
+
+
+.ui-datatable .ui-datatable-header {
+    color: @black;
+    /*background-color: rgba(0, 0, 0, 0.2);*/
+    border-radius: 1px !important;
+    -webkit-border-radius: 1px !important;
+    -moz-border-radius: 1px !important;
+    font-size: 20px;
+    padding: 5px 10px !important;
+    font-weight: normal;
+    font-family: 'robotolight';
+    font-size: 14px;
+}
+
+.ui-datatable table thead tr th {
+    height: 30px;
+    color: @black;
+    font-family: 'robotoregular' !important;
+    text-align: left;
+    /*vertical-align: inherit;*/
+    padding: 5px 10px !important;
+}
+.ui-datatable table thead tr th .ui-sortable-column-icon.ui-icon {
+    font-size: 14px;
+}
+
+.ui-datatable .ui-datatable-header {	
+   /*background-color: @lighter-grey;
+   border: 1px solid @lighter-grey;*/
+}
+
+.ui-datatable table tbody td {
+    font-family: 'robotoregular';
+    padding: 5px 10px !important;
+} 
+
+.ui-datatable-footer {
+	 height: 50px;
+    background-color: @body-background-color;
+    color: #d9d9d9;
+    font-family: 'robotoregular';
+    font-size: 13px;
+    padding: 0px !important;
+    border-radius: 1px !important;
+}
+
+
+
+.ui-datatable .ui-datatable-header {
+    background-color: #fff;
+    border: none;
+}
+
+
+
+.ui-datatable table tbody tr td span {
+    color: #757575 !important;
+}
+
+.uploadTable table tbody td {
+    padding: 10px 10px !important;
+}
+
+.ui-datatable table tbody tr td {
+  
+    font-size: 14px;
+   }
+   
+.formHeader {
+	background-color: @lighter-grey;
+	border: none !important;	
+}
+
+.formHeader .ui-panelgrid-cell{
+	border-style: none !important;
+}
+
+.ui-panel .ui-panel-titlebar {
+    padding: 10px 20px !important;
+    font-size: 16px;
+    font-family: robotobold;
+   
+    background-color: @lighter-grey;
+}
+
+.ui-panel .ui-panel-titlebar {
+  
+    color: @black;
+    border-radius: 3px !important;
+    
+}
+
+.ui-panel {
+    border: none;
+}
+
+.ui-panel .ui-panel-content{
+    border: 1px solid #f5f5f5 !important;
+}
+
+.ui-accordion-header {
+    color: @black !important;
+    background-color: @lighter-grey !important;
+    padding: 10px 5px 10px 30px !important;
+    font-family: 'robotobold';
+    font-size: 1.4 rem !important;
+}
+
+.ui-accordion-header .ui-icon-triangle-1-e {
+    background-image: url(/ivy/faces/javax.faces.resource/images/right-arrow.svg?ln=primefaces-modena-ivy);
+}
+
+.ui-accordion-header .ui-icon-triangle-1-s {
+    background-image: url(/ivy/faces/javax.faces.resource/images/downarrow.svg?ln=primefaces-modena-ivy);
+}
+
+.ui-panelgrid thead tr td, .ui-panelgrid tfoot tr td {
+    border:none !important;
+    background-color: @body-background-color;
+}
+
+.width100perc {
+	width:100%;
+}
+
+/*fix font size for mobile data tables*/
+.ui-datatable table tbody tr td {
+    font-size: 0.9em;
+}
+
+@media screen and (max-width: 40em){
+.ui-fileupload-buttonbar .ui-button .ui-button-text {
+    display: block;
+}
+
+.ui-fileupload-buttonbar .ui-button {
+    padding: initial;
+}
+}
+
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
+.ui-toolbar-group-right .ui-widget.ui-button {
+	margin-top: 10px;
+}
+}
+
+/*fix bug for horizontal processchain position */
+.line-process-chain.vertical-process-chain {
+    position: absolute;
+    margin-top: 60px;
+    right: 60px;
+    clear: both;
+    float: left;
+}
+
+
+.circle-process-chain.vertical-process-chain {
+    position: absolute;
+    margin-right: 30px;
+    margin-top: 60px;
+}
+
+.line-process-chain .line-vertical-process-step {
+    width: 12rem;
+    height: 120px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.line-process-chain.horizontal-process-chain {
+    top: -30px;
+}
+
+.circle-process-chain.horizontal-process-chain {
+    top: -10px;
+}
+
+.task-template-title {
+    font-size: 1.6rem;
+}
+/*
+.task-template-content {
+    margin-top: 10px;
+   }
+*/
+@media only screen 
+  and (max-device-width: 1365px)
+  {
+  	.line-process-chain.vertical-process-chain, .circle-process-chain.vertical-process-chain {
+    display:none;
+	}
+  }
+
+/*end of fix bug processchain*/
+
+/*fix layout case Information*/
+.case-description-singleapp {
+    margin-left: 50px;
+}
+
+.grid-item-content-list-item-left {
+    text-align: left; 
+}
+
+.grid-item-content-list-item-right {
+    margin-left: 0px; 
+}
+
+/*align table headers to top*/
+.ui-datatable table thead tr th {
+	vertical-align:top !important;
+}
+
+.ui-datatable .ui-datatable-tablewrapper table thead tr th,.ui-datatable-scrollable-header-box table thead tr th{
+    border-bottom: 2px solid #757575 !important; 
+}
+
+.ui-datatable .ui-datatable-scrollable-header table {
+	border:none !important;
+}
+
+
+.ui-datatable .ui-datatable-tablewrapper table thead tr th:not(:last-child) {
+    border-right: 1px solid #757575 !important;
+}
+
+.ui-datatable table tbody tr td {
+    border-bottom: 1px solid #757575;
+}
+
+.ui-datatable .ui-datatable-tablewrapper {
+    border: 1px solid #757575 !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+}
+.ui-datatable table tbody tr:last-child td {
+    border-bottom: 1px solid #757575;
+}
+
+
+
+
+.ui-datatable table thead tr th.ui-state-hover {
+	background-color: @white;
+}
+
+.ui-datatable .ui-datatable-odd {
+    background-color: #f5f5f5;
+}
+
+.ui-datatable table thead tr th.ui-state-focus, .ui-datatable table thead tr th.ui-state-hover, .ui-datatable table thead tr th.ui-state-active {
+   
+    background-color: @white !important;
+}
+.ui-panelgrid tbody tr td {
+    border-color: #757575 !important;
+}
+
+/*make all fonts black*/
+.ui-outputlabel, #top-menu>li>a, .ui-inputtext, .ui-inputfield.hasDatepicker, .ui-inputfield.ui-password, 
+.ui-selectlistbox-filter.ui-inputfield.ui-widget, .ui-datatable table tbody tr td,.ui-selectoneradio label {
+    color: @black !important;
+}
+
+ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-highlight, ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover, #top-menu li ul li a.active-menu, #top-menu li ul li a:hover, #top-menu li ul li a:focus {
+    color: @black !important;
+    
+}
+
+.ui-autocomplete-list .ui-autocomplete-item.ui-state-highlight, .ui-autocomplete-list .ui-autocomplete-item.ui-state-hover {
+    font-family: 'robotoregular';
+}
+
+.ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-item {
+    color: @black !important;
+}
+
+.ui-selectmanycheckbox label, ul.ui-selectonemenu-list li.ui-selectonemenu-item, .ui-inputfield.ui-selectonemenu-label{
+    font-size: 1.4rem;
+    color: @black !important;
+}
+
+.ui-paginator .ui-state-active, .ui-paginator .ui-state-hover, .ui-paginator .ui-paginator-pages .ui-state-active, .ui-paginator .ui-paginator-pages .ui-state-hover {
+    font-size: 1.6rem;
+}
+
+.questionTable .ui-radiobutton .ui-radiobutton-box.ui-state-active .ui-icon-bullet {
+    width: 12px;
+    height: 12px;
+    margin: 0px !important;
+    background: rgba(0, 0, 0, 1);
+}
+
+.ui-datatable .ui-datatable-odd {
+    background-color: #f5f5f5 !important;
+}
+
+.task-start-list .name-cell,.case-header-name-desc-cell .case-header-name-cell {
+    font-family: "robotomedium";
+    font-size: 1.3rem;
+    display: block;
+}
+
+.ui-fileupload-choose .ui-icon-plusthick, .ui-fileupload-simple .ui-icon-plusthick {
+    background-image: url(/ivy/faces/javax.faces.resource/images/plus-sign-white.svg?ln=primefaces-modena-ivy) !important;
+}
+
+.ui-inputtext.ui-state-hover, .ui-inputtext.ui-state-focus,  .ui-inputfield.hasDatepicker.ui-state-hover {
+	
+	-webkit-box-shadow: inset 0 -2px 0px 0px @action-button-color !important;
+    -moz-box-shadow: inset 0 -2px 0px 0px @action-button-color !important;
+    box-shadow: inset 0 -2px 0px 0px @action-button-color !important;
+}
+
+.ui-accordion-header {
+    color: #000 !important;
+    background-color: #f5f5f5 !important;
+    padding: 10px 5px 10px 30px !important;
+    font-family: 'robotobold';
+    font-size: 1.4 rem !important;
+    font-size: 1.6rem !important;
+}
+
+.ui-tabs-top .ui-tabs-nav li.ui-tabs-selected a, .ui-tabs-top .ui-tabs-nav li.ui-tabs-active a, .ui-tabs-top .ui-tabs-nav li.ui-state-hover a {
+    color: @black !important;
+}
+
+h3 {
+	font-family:'robotobold';
+	color: @black !important;
+}
+
+.line-process-chain .line-horizontal-process-step.current .line-horizontal-step-title,
+.line-process-chain .line-vertical-process-step.current .line-vertical-step-title {
+    font-family:'robotobold';
+	color: @black !important;
+}
