@@ -142,7 +142,7 @@
 /* Small screen */
 @media (max-width: 1365px) {
   .simple-container {
-    width: 90%;
+    width: 100%;
   }
 }
 
@@ -424,6 +424,10 @@ width:auto;
    /* background-color: @lighter-grey;*/
 }
 
+.ui-autocomplete .ui-button.ui-autocomplete-dropdown {
+    color: black;
+}
+
 ui-fileupload-choose .ui-icon-plusthick, .ui-fileupload-simple .ui-icon-plusthick {
     background-image: url(/ivy/faces/javax.faces.resource/images/plus-sign.svg?ln=primefaces-modena-ivy) !important;
 }
@@ -489,13 +493,6 @@ ui-fileupload-choose .ui-icon-plusthick, .ui-fileupload-simple .ui-icon-plusthic
     transition: all 0.3s ease;
 }
 
-.ui-autocomplete .ui-autocomplete-dropdown .ui-icon-triangle-1-s {
-    background-image: url(/ivy/faces/javax.faces.resource/images/downarrow.svg?ln=primefaces-modena-ivy) !important;
-    background-position: center !important;
-    background-size: 130% !important;
-    z-index: 998;
-    margin-top: -6px;
-}
 .filter-widget-icon {
     position: absolute;
     top: 50%;
@@ -1079,11 +1076,19 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-highlight, ul.ui-sele
     background-image: url(/ivy/faces/javax.faces.resource/images/plus-sign-white.svg?ln=primefaces-modena-ivy) !important;
 }
 
-.ui-inputtext.ui-state-hover, .ui-inputtext.ui-state-focus,  .ui-inputfield.hasDatepicker.ui-state-hover {
-	
+.ui-inputtext.ui-state-hover,
+.ui-inputtext.ui-state-focus,
+.ui-inputfield.hasDatepicker.ui-state-hover,
+.ui-inputfield.hasDatepicker.ui-state-focus,
+.ui-inputfield.ui-autocomplete-input.ui-state-hover,
+.ui-inputfield.ui-autocomplete-input.ui-state-focus {
 	-webkit-box-shadow: inset 0 -2px 0px 0px @action-button-color !important;
-    -moz-box-shadow: inset 0 -2px 0px 0px @action-button-color !important;
-    box-shadow: inset 0 -2px 0px 0px @action-button-color !important;
+	-moz-box-shadow: inset 0 -2px 0px 0px @action-button-color !important;
+	box-shadow: inset 0 -2px 0px 0px @action-button-color !important;
+}
+
+.ui-autocomplete .ui-button.ui-autocomplete-dropdown .ui-icon {
+	color: #000000 !important;
 }
 
 .ui-accordion-header {
@@ -1139,11 +1144,28 @@ h3 {
 
 /* Small screen */
 @media (max-width: 1365px) {
-  .aws-button-container .ui-button {
-    width: 100% !important;
-    margin-left: 0;
-    margin-bottom: 10px;
+  .aws-button-container {
+    text-align: center;
+    margin-right: 0;
   }
+
+  .aws-button-container .ui-button {
+    width: 90% !important;
+    margin: auto;
+    margin-bottom: 10px;
+    float: initial !important;
+  }
+}
+
+.open-add-user-dialog-button {
+	margin-top: 10px;
+}
+
+/* Small screen */
+@media (max-width: 1365px) {
+	.open-add-user-dialog-button {
+		float: right;
+	}
 }
 
 .enable-overflow {
@@ -1152,4 +1174,53 @@ h3 {
 
 .ui-datatable-reflow .ui-datatable-data td[role="gridcell"] {
 	margin-bottom: 10px;
+}
+
+.selected-users-panel {
+	border: solid 1px #c5c5c5;
+}
+
+.selected-users-panel.ui-panel .ui-panel-content {
+	border: none !important;
+}
+
+.selected-users-panel span {
+	display: block;
+	color: black;
+	padding: 5px 0;
+}
+
+.choose-users-dialog .add-user-container {
+	width: 100%;
+}
+
+.choose-users-dialog .add-user-container .ui-button {
+	width: 100px !important;
+	margin-left: auto;
+	margin-right: 5px;
+	margin-top: 10px;
+}
+
+.choose-users-dialog .selected-user-panel {
+	width: 100%;
+	border: none;
+}
+
+.choose-users-dialog .selected-user-panel td {
+	border: none;
+}
+
+.choose-users-dialog .selected-user-panel .icon-column {
+	width: 1rem;
+}
+
+.choose-users-label {
+	margin-top: -50px !important;
+}
+
+/* Small screen */
+@media (max-width: 1365px) {
+	.choose-users-label {
+		margin-top: 0 !important;
+	}
 }
