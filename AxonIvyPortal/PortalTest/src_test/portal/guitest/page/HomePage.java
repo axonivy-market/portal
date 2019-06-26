@@ -64,4 +64,11 @@ public class HomePage extends TemplatePage {
 		}
 		return true;
 	}
+
+	public  ChatPage getChat() {
+		waitForElementDisplayed(By.id("toggle-chat-panel-command"), true, 5);
+		findElementById("toggle-chat-panel-command").click();
+		return new ChatPage();
+	}
+
 }
