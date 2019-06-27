@@ -223,6 +223,7 @@ function TaskListSmallScreenHandler() {
         marginValWhenAllMenuClose : 60,
         marginValWhenMainMenuOpen : 190,
         marginValWhenSecondMenuOpen : 260,
+        marginValForLogoWhenAllMenuOpen : 310,
         marginValWhenAllMenuOpen : 380,
     }
 
@@ -238,6 +239,7 @@ function TaskListSmallScreenHandler() {
         var $secondLevelMenu = $('#second-level-menu');
         var $announcement = $('.js-announcement-message');
         var $taskListContainer = $('.js-task-list-container');
+        var $logo = $('.js-logo');
         var isSecondLevelMenuOpen = $secondLevelMenu.hasClass('on') && !$secondLevelMenu.hasClass('hide');
 
         var isSearchResultPage = $taskListContainer.hasClass('js-for-search-result');
@@ -247,10 +249,12 @@ function TaskListSmallScreenHandler() {
             // Open main menu when second menu is opened
             animateTaskList($announcement, {marginLeft : marginValues.marginValWhenAllMenuOpen});
             animateTaskList($taskListContainer, {marginLeft : marginValues.marginValWhenAllMenuOpen});
+            animateTaskList($logo, {marginLeft : marginValues.marginValForLogoWhenAllMenuOpen});
           } else {
             // Open main menu when second menu is closed
             animateTaskList($announcement, {marginLeft : marginValues.marginValWhenMainMenuOpen});
             animateTaskList($taskListContainer, {marginLeft : marginValues.marginValWhenMainMenuOpen});
+            animateTaskList($logo, {marginLeft : marginValues.marginValWhenMainMenuOpen});
             if (isSearchResultPage) {
               var simpleSmallScreen = new SimpleSmallScreen();
               simpleSmallScreen.updateMainContainer();
@@ -261,10 +265,12 @@ function TaskListSmallScreenHandler() {
             // Close main menu when second menu is opened
             animateTaskList($announcement, {marginLeft : marginValues.marginValWhenSecondMenuOpen});
             animateTaskList($taskListContainer, {marginLeft : marginValues.marginValWhenSecondMenuOpen});
+            animateTaskList($logo, {marginLeft : marginValues.marginValWhenMainMenuOpen});
           } else {
             // Close main menu when second menu is closed
             animateTaskList($announcement, {marginLeft : marginValues.marginValWhenAllMenuClose});
             animateTaskList($taskListContainer, {marginLeft : marginValues.marginValWhenAllMenuClose});
+            animateTaskList($logo, {marginLeft : marginValues.marginValWhenAllMenuClose});
             if (isSearchResultPage) {
               var simpleSmallScreen = new SimpleSmallScreen();
               simpleSmallScreen.updateMainContainer();
@@ -401,13 +407,16 @@ function SimpleSmallScreen() {
     var $mainMenu = $('.js-left-sidebar');
     var $announcement = $('.js-announcement-message');
     var $simpleMainColumn = $('.js-simple-main-col');
+    var $logo = $('.js-logo');
 
     if ($mainMenu.hasClass('in')) {
       $announcement.animate({marginLeft : marginValWhenMainMenuOpen}, animateDuration);
       $simpleMainColumn.animate({marginLeft : marginValWhenMainMenuOpen}, animateDuration);
+      $logo.animate({marginLeft : marginValWhenMainMenuOpen}, animateDuration);
     } else {
       $announcement.animate({marginLeft : marginValWhenMenuClose}, animateDuration);
       $simpleMainColumn.animate({marginLeft : marginValWhenMenuClose}, animateDuration);
+      $logo.animate({marginLeft : marginValWhenMenuClose}, animateDuration);
     }
   };
 }
@@ -602,6 +611,7 @@ function CaseListSmallScreenHandler() {
     marginValWhenAllMenuClose : 60,
     marginValWhenMainMenuOpen : 190,
     marginValWhenSecondMenuOpen : 260,
+    marginValForLogoWhenAllMenuOpen : 310,
     marginValWhenAllMenuOpen : 380,
   }
 
@@ -617,6 +627,7 @@ function CaseListSmallScreenHandler() {
     var $secondLevelMenu = $('#second-level-menu');
     var $announcement = $('.js-announcement-message');
     var $caseListContainer = $('.js-case-default-widget-container');
+    var $logo = $('.js-logo');
     var isDisplaySecondLevelMenu = $secondLevelMenu.hasClass('on') && !$secondLevelMenu.hasClass('hide');
 
     var isSearchResultPage = $caseListContainer.hasClass('js-for-search-result');
@@ -626,10 +637,12 @@ function CaseListSmallScreenHandler() {
           // Open main menu when second menu is opened
         animateCaseList($announcement, {marginLeft : marginValues.marginValWhenAllMenuOpen});
         animateCaseList($caseListContainer, {marginLeft : marginValues.marginValWhenAllMenuOpen});
+        animateCaseList($logo, {marginLeft : marginValues.marginValForLogoWhenAllMenuOpen});
       } else {
           // Open main menu when second menu is closed
         animateCaseList($announcement, {marginLeft : marginValues.marginValWhenMainMenuOpen});
         animateCaseList($caseListContainer, {marginLeft : marginValues.marginValWhenMainMenuOpen});
+        animateCaseList($logo, {marginLeft : marginValues.marginValWhenMainMenuOpen});
         if (isSearchResultPage) {
           var simpleSmallScreen = new SimpleSmallScreen();
           simpleSmallScreen.updateMainContainer();
@@ -640,10 +653,12 @@ function CaseListSmallScreenHandler() {
             // Close main menu when second menu is opened
           animateCaseList($announcement, {marginLeft : marginValues.marginValWhenSecondMenuOpen});
           animateCaseList($caseListContainer, {marginLeft : marginValues.marginValWhenSecondMenuOpen});
+          animateCaseList($logo, {marginLeft : marginValues.marginValWhenMainMenuOpen});
         } else {
             // Close main menu when second menu is closed
           animateCaseList($announcement, {marginLeft : marginValues.marginValWhenAllMenuClose});
           animateCaseList($caseListContainer, {marginLeft : marginValues.marginValWhenAllMenuClose});
+          animateCaseList($logo, {marginLeft : marginValues.marginValWhenAllMenuClose});
           if (isSearchResultPage) {
             var simpleSmallScreen = new SimpleSmallScreen();
             simpleSmallScreen.updateMainContainer(isSearchResultPage);
@@ -812,6 +827,7 @@ function DashboardSmallScreen() {
     var $announcement = $('.js-announcement-message');
     var $dashboardFirstCol = $('.js-dashboard-main-content-1st-col');
     var $dashboardSecondCol = $('.js-dashboard-main-content-2nd-col');
+    var $logo = $('.js-logo');
     var paddingLeft = 10;
     moveStatisticsToFirstCol();
     if ($mainMenu.hasClass('in')) {
@@ -819,11 +835,13 @@ function DashboardSmallScreen() {
       $dashboardFirstCol.animate({ marginLeft : firstCol.marginValWhenMenuOpen }, animateDuration);
       $dashboardSecondCol.animate({ width : secondCol.secondColumnSmallSize, marginLeft : secondCol.marginValWhenMenuOpen }, animateDuration);
       $announcement.animate({ marginLeft : firstCol.marginValWhenMenuOpen + paddingLeft }, animateDuration);
+      $logo.animate({ marginLeft : firstCol.marginValWhenMenuOpen + paddingLeft }, animateDuration);
     } else {
       // Close main menu
       $dashboardFirstCol.animate({ marginLeft : firstCol.marginValWhenMenuClose }, animateDuration);
       $dashboardSecondCol.animate({ width : secondCol.secondColumnLargeSize, marginLeft : secondCol.marginValWhenMenuClose }, animateDuration);
       $announcement.animate({ marginLeft : firstCol.marginValWhenMenuClose + paddingLeft }, animateDuration);
+      $logo.animate({ marginLeft : firstCol.marginValWhenMenuClose + paddingLeft }, animateDuration);
     }
   }
 }

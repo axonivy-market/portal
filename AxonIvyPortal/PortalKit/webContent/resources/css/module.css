@@ -5109,6 +5109,17 @@ margin-top
   height: 65px;
 }
 
+@media ( max-width : 1365px) {
+  .portal-topbar {
+    width: calc(100% - 140px);
+    min-width: 880px;
+    padding-left: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+  }
+}
+
 .color-header {
   height: 4px;
   display: flex;
