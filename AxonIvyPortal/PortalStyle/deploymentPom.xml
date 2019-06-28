@@ -74,4 +74,15 @@
       </plugin>
     </plugins>
   </build>
+  	<profiles>
+		<profile>
+			<id>aws-dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<engine.deploy.directory>C:\tools\ivy-server\aws_dev\engine</engine.deploy.directory>
+			</properties>
+		</profile>
+	</profiles>
 </project>
