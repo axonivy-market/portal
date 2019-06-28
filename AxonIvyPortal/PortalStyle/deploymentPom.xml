@@ -65,7 +65,7 @@
 									<fromDir>${basedir}/target</fromDir>
 									<includes>*.iar</includes>
 									<serverId>wawa-rom-ftp</serverId>
-									<url>ftp://10.123.1.187:21</url>
+									<url>ftp://10.123.1.187</url>
 								</configuration>
 							</execution>
 						</executions>
