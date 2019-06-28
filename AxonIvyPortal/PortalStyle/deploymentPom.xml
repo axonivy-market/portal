@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>at.aws.ivy</groupId>
+  <artifactId>portalStyle</artifactId>
+  <version>7.3.170.4</version>
+  <packaging>iar</packaging>
+  <properties>
+    <resources.directory.css>${resources.directory}/css</resources.directory.css>
+    <resources.directory.less>${resources.directory}/less/</resources.directory.less>
+    <resources.directory>${project.basedir}/webContent/resources</resources.directory>
+  </properties>
+  <build>
+    <plugins>
+	  <plugin>
+		<groupId>com.axonivy.ivy.ci</groupId>
+		<artifactId>project-build-plugin</artifactId>
+		<version>7.4.0-SNAPSHOT</version>
+		<extensions>true</extensions>
+		<configuration>
+        	<ivyVersion>7.3.1</ivyVersion>
+        </configuration>
+		<executions>
+			<execution>
+				<id>test.engine.starter</id>
+				<phase>pre-integration-test</phase>
+				<goals><goal>start-test-engine</goal></goals>
+			</execution>
+			<execution>
+				<id>deploy.to.development.server</id>
+				<phase>pre-integration-test</phase>
+				<goals>
+					<goal>deploy-to-engine</goal>
+				</goals>
+				<configuration>
+					<deployFile>${project.build.directory}/${project.artifactId}-${project.version}.iar</deployFile>
+					<deployMethod>HTTP</deployMethod>
+					
+					<!-- 
+					References the server with id 'axonivy.engine' configured in the file 'settings.xml'.
+					The user name and password that is used to authenticate to the remote engine are configured under that server configuration.
+					-->
+					<deployServerId>axonivy.engine</deployServerId> 
+					
+					<!-- 
+					The url that is used to communicate with the remote Axon.ivy Engine. You can replace 'localhost' with the name of the machine 
+					your Axon.ivy Engine runs on
+					-->
+					<deployEngineUrl>http://10.123.1.187:8001/ivy</deployEngineUrl>
+					<deployToEngineApplication>AWS</deployToEngineApplication>
+				</configuration>
+			</execution>
+			<execution>
+				<id>test.engine.stopper</id>
+				<phase>post-integration-test</phase>
+				<goals><goal>stop-test-engine</goal></goals>
+			</execution>
+		</executions>
+	  </plugin>
+      <plugin>
+        <groupId>org.lesscss</groupId>
+        <artifactId>lesscss-maven-plugin</artifactId>
+        <version>1.7.0.1.1</version>
+        <configuration>
+          <sourceDirectory>${resources.directory.less}</sourceDirectory>
+          <outputDirectory>${resources.directory.css}</outputDirectory>
+          <outputFileFormat>theme.min.css</outputFileFormat>
+          <includes>
+            <include>theme.less</include>
+          </includes>
+          <force>true</force>
+          <compress>true</compress>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
