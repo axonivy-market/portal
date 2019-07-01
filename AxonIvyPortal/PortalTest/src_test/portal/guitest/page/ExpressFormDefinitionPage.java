@@ -141,7 +141,8 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     if(formElementIsFileUpload(formElement)){
       position = FOOTER_POSITION;
     }
-    WebElement panel = findElementById(String.format("form:selectedFormelements%sFieldSet", position));
+    waitForElementDisplayed(String.format("form:selectedFormelements%sPanel", position), true);
+    WebElement panel = findElementById(String.format("form:selectedFormelements%sPanel", position));
     Actions builder = new Actions(driver);
     Action moveProcessSequence =
         builder.clickAndHold(formElement).moveByOffset(-1, -1).moveToElement(panel).release(formElement).build();
