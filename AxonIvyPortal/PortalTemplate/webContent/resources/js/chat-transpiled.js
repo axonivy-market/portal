@@ -63,9 +63,18 @@ function Chat(uri, view) {
           case 5:
             response = _context.sent;
             this.registerGroupResponse();
+
+            if (!(response.status === "SERVER_TIMEOUT")) {
+              _context.next = 9;
+              break;
+            }
+
+            return _context.abrupt("return");
+
+          case 9:
             view.renderGroupList(response);
 
-          case 8:
+          case 10:
           case "end":
             return _context.stop();
         }
@@ -122,13 +131,21 @@ function Chat(uri, view) {
             response = _context2.sent;
             this.registerUserResponse();
 
+            if (!(response.status === "SERVER_TIMEOUT")) {
+              _context2.next = 9;
+              break;
+            }
+
+            return _context2.abrupt("return");
+
+          case 9:
             if (response.action === "updateUserStatus") {
               view.updateUserOnlineStatus(response.content);
             } else if (response.action === "getUsers") {
               view.renderUsers(response.content);
             }
 
-          case 8:
+          case 10:
           case "end":
             return _context2.stop();
         }
@@ -214,6 +231,14 @@ function Chat(uri, view) {
               messages = _context3.sent;
               this.listen(false); // wait for next update
 
+              if (!(messages.status === "SERVER_TIMEOUT")) {
+                _context3.next = 11;
+                break;
+              }
+
+              return _context3.abrupt("return");
+
+            case 11:
               responseRecipients = messages["recipients"][0];
 
               if (responseRecipients.indexOf(chatGroupMemoryPrefix) != -1) {
@@ -258,7 +283,7 @@ function Chat(uri, view) {
                 }
               }
 
-            case 11:
+            case 13:
             case "end":
               return _context3.stop();
           }
