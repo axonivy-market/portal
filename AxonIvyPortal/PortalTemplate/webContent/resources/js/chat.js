@@ -30,6 +30,9 @@ function Chat(uri, view) {
       const jsonResponse = await fetch(uri+"/groups", { method:"POST", mode: 'cors', credentials: "include", headers: {"X-Requested-By": "ivy", "Content-Type": "application/json", "Accept": "application/json"}});
       var response = await jsonResponse.json();
       this.registerGroupResponse();
+      if (response.status === "SERVER_TIMEOUT") {// if long-polling request timeout
+        return;
+      }
       view.renderGroupList(response);
     }
 
@@ -53,6 +56,9 @@ function Chat(uri, view) {
       const jsonResponse = await fetch(uri+"/users", { method:"POST", mode: 'cors', credentials: "include", headers: {"X-Requested-By": "ivy", "Content-Type": "application/json", "Accept": "application/json"}});
       var response = await jsonResponse.json();
       this.registerUserResponse();
+      if (response.status === "SERVER_TIMEOUT") {// if long-polling request timeout
+        return;
+      }
       if (response.action === "updateUserStatus") {
         view.updateUserOnlineStatus(response.content);
       } else if (response.action === "getUsers"){
@@ -104,7 +110,9 @@ function Chat(uri, view) {
       const response = await fetch(uri+"/" + path, { method:"POST", mode: 'cors', credentials: "include", headers: {"X-Requested-By": "ivy", "Content-Type": "application/json", "Accept": "application/json"}});
       const messages = await response.json();
       this.listen(false); // wait for next update
-
+      if (messages.status === "SERVER_TIMEOUT") {// if long-polling request timeout
+        return;
+      }
       var responseRecipients = messages["recipients"][0];
       if (responseRecipients.indexOf(chatGroupMemoryPrefix) != -1) {
       	// group chat

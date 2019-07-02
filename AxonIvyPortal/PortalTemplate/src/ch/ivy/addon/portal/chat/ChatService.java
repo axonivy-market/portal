@@ -1,5 +1,7 @@
 package ch.ivy.addon.portal.chat;
 
+import static ch.ivy.addon.portalkit.enums.GlobalVariable.CHAT_RESPONSE_TIMEOUT;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,6 +13,7 @@ import java.util.Objects;
 import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import javax.inject.Singleton;
@@ -29,7 +32,11 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.GsonBuilder;
+
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
@@ -37,9 +44,6 @@ import ch.ivyteam.ivy.security.ISession;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.GsonBuilder;
 
 /**
  * Chat service uses asynchronous REST communication:
@@ -53,6 +57,7 @@ import com.google.gson.GsonBuilder;
 @Singleton
 public class ChatService {
 
+  private static final String CHAT_RESPONSE_TIMEOUT_STATUS = "SERVER_TIMEOUT";
   private static final String ERROR = "ERROR";
   private static final String NO_ASYNC_RESPONSE = "NO_ASYNC_RESPONSE";
   private static final String SUCCESSFUL = "SUCCESSFUL";
@@ -74,9 +79,9 @@ public class ChatService {
       messageQueue.clear();
     }
     String listener = sessionUserName();
+    configureResponseTimeoutIfAny(response, messageResponses);
     messageResponses.put(listener, response);
   }
-
 
   @POST
   @Path("/messages-next")
@@ -85,6 +90,7 @@ public class ChatService {
     Queue<ChatMessage> messageQueue = ConcurrentChatUtils.getPortalChatMessageQueue(sessionUserName());
     if (CollectionUtils.isEmpty(messageQueue)) {
       String listener = sessionUserName();
+      configureResponseTimeoutIfAny(response, messageResponses);
       messageResponses.put(listener, response);
     } else {
       ChatMessage message = messageQueue.remove();
@@ -166,7 +172,6 @@ public class ChatService {
     return Response.ok(SUCCESSFUL).build();
   }
 
-
   private String sessionUserName() {
     return Ivy.session().getSessionUserName();
   }
@@ -242,6 +247,7 @@ public class ChatService {
   @Produces(MediaType.APPLICATION_JSON)
   public synchronized void registerUserResponse(@Suspended AsyncResponse response) {
     String listener = sessionUserName();
+    configureResponseTimeoutIfAny(response, userResponses);
     userResponses.put(listener, response);
   }
 
@@ -291,6 +297,7 @@ public class ChatService {
   @Produces(MediaType.APPLICATION_JSON)
   public synchronized void registerGroupResponse(@Suspended AsyncResponse response) {
     String listener = sessionUserName();
+    configureResponseTimeoutIfAny(response, groupResponses);
     groupResponses.put(listener, response);
   }
   
@@ -378,5 +385,33 @@ public class ChatService {
       iterator.remove();
       response.resume(jsonChat);
     }
+  }
+
+  private void configureResponseTimeoutIfAny(AsyncResponse response, Map<String, AsyncResponse> userToResponse) {
+    if (isChatResponseTimeoutConfigured()) {
+      Long chatResponseTimeout = Long.parseLong(getChatResponseTimeoutValue());
+      response.setTimeout(chatResponseTimeout, TimeUnit.SECONDS);
+      response.setTimeoutHandler(asyncResponse -> {
+        userToResponse.entrySet().removeIf(entry -> entry.getValue().equals(asyncResponse));
+        ChatResponse chatResponse = new ChatResponse();
+        chatResponse.setStatus(CHAT_RESPONSE_TIMEOUT_STATUS);
+        String json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(chatResponse);
+        response.resume(json);
+      });
+    }
+  }
+
+  private boolean isChatResponseTimeoutConfigured() {
+    String chatResponseTimeout = getChatResponseTimeoutValue();
+    try {
+      return StringUtils.isNotBlank(chatResponseTimeout) && Long.parseLong(chatResponseTimeout) > 0;
+    } catch (NumberFormatException e) {
+      Ivy.log().error("Chat response timeout must be a Long number", e);
+    }
+    return false;
+  }
+
+  private String getChatResponseTimeoutValue() {
+    return new GlobalSettingService().findGlobalSettingValue(CHAT_RESPONSE_TIMEOUT.toString());
   }
 }
