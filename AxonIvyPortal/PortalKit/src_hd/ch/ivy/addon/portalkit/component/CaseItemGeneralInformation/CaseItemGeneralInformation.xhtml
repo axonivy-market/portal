@@ -1,7 +1,5 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
-  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
   xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
@@ -10,33 +8,35 @@
 </cc:interface>
 
 <cc:implementation>
-  <div id="#{cc.clientId}" class="case-details-item js-case-details-item js-data-column #{cc.attrs.styleClass}">
+  <div id="#{cc.clientId}" class="case-details-item #{cc.attrs.styleClass} case-details-general">
     <c:set var="case" value="#{cc.attrs.case}" />
-    <div class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/data')}</div>
-    <div class="Separator" />
-    <h:panelGrid columns="2" columnClasses="case-details-data-1st-column, case-details-data-2nd-column"
-      rowClasses="case-details-row-space">
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" />
-      <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText id="case-creator-full-name" fullname="#{case.getCreatorUser().getFullName()}"
-        username="#{case.creatorUserName}" />
+    <div class="ui-g">
+      <div class="ui-g-8 ui-xl-8 ui-lg-12 ui-md-12 ui-sm-12">
+        <h:panelGrid columns="2" columnClasses="case-details-data-1st-column, case-details-data-2nd-column" rowClasses="case-details-row-space" styleClass="case-general-info">
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" />
+          <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText id="case-creator-full-name" fullname="#{case.getCreatorUser().getFullName()}" username="#{case.creatorUserName}" />
 
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}" />
-      <h:outputText id="case-start-time" value="#{case.startTimestamp}">
-        <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
-      </h:outputText>
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}" />
+          <h:outputText id="case-start-time" value="#{case.startTimestamp}">
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+          </h:outputText>
 
-      <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Finished')}" />
-      <h:outputText id="case-end-time" value="#{case.endTimestamp}">
-        <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
-      </h:outputText>
+          <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Finished')}" />
+          <h:outputText id="case-end-time" value="#{case.endTimestamp}">
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+          </h:outputText>
 
-      <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseCategory')}" />
-      <h:outputText id="case-category" value="#{case.categoryPath}" />
-    </h:panelGrid>
-	<p:link id="show-additional-case-details-link" styleClass="additional-case-details-link" target="_blank"
-            href="#{caseWidgetBean.getAdditionalCaseDetailsPageUri(case)}" rendered="#{caseWidgetBean.showCaseDetails}">
-            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showDetail')}" />
-    </p:link>
-	</div>
+          <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseCategory')}" />
+          <h:outputText id="case-category" value="#{case.categoryPath}" />
+        </h:panelGrid>
+      </div>
+
+      <div class="ui-g-4 ui-xl-4 ui-md-12 ui-sm-12 show-addition-case-container">
+        <p:link id="show-additional-case-details-link" styleClass="additional-case-details-link" target="_blank" href="#{caseWidgetBean.getAdditionalCaseDetailsPageUri(case)}">
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showAdditionalPage')}" />
+        </p:link>
+      </div>
+    </div>
+  </div>
 </cc:implementation>
 </html>
