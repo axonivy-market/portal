@@ -43,6 +43,12 @@
 						</para>
 					</tip>
 				</listitem>
+				<listitem>
+					<para>
+						If browsers access Portal through a reverse proxy Nginx, set Global setting <emphasis role="bold">CHAT_RESPONSE_TIMEOUT</emphasis> a number less than Nginx timeout to make chat work properly.
+					</para>
+				</listitem>
+
 			</orderedlist>
 		</para>
 	</sect2>
