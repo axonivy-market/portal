@@ -27,7 +27,7 @@
       <p:dataTable value="#{data.histories}" var="history" id="case-histories" reflow="true" paginator="true" rows="5" paginatorPosition="top" pageLinks="5"
         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" sortBy="#{history.involvedFullname}" styleClass="case-history-name case-details-text-wrap">
-          <h:outputText value="#{history.involvedFullname}" styleClass="history-fullname">
+          <h:outputText value="#{empty history.involvedFullname ? history.involvedUsername:history.involvedFullname}" styleClass="history-fullname">
             <i class="fa fa-check-circle" jsf:id="done-task" jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'DONE'}" />
             <i class="fa fa-exclamation-circle" jsf:id="destroyed-task" jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'DESTROYED'}" />
             <i class="fa fa-exclamation-circle" jsf:id="zombie-task" jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'ZOMBIE'}" />
