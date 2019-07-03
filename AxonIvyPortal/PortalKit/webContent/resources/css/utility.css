@@ -190,4 +190,8 @@
 .TexAlRight { 
 	text-align:right !important;
 }
+
+.TexAlLeft { 
+	text-align: left !important;
+}
 /* For Serenity theme - End */

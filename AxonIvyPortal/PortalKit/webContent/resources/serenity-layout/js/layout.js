@@ -182,6 +182,16 @@ PrimeFaces.widget.Serenity = PrimeFaces.widget.BaseWidget.extend({
         });
         
         this.anchorButton.on('click', function(e) {
+            setTimeout(function() {
+              if (typeof TaskListToolKit !== 'undefined') {
+                var taskListToolKit = TaskListToolKit();
+                taskListToolKit.setupHeader();
+              }
+              if (typeof CaseListToolKit !== 'undefined') {
+                var caseListToolKit = CaseListToolKit();
+                caseListToolKit.setupHeader();
+              }
+            }, 450);
             $this.wrapper.removeClass('layout-wrapper-static-restore');
             $this.wrapper.toggleClass('layout-wrapper-static');
             $this.saveMenuState();

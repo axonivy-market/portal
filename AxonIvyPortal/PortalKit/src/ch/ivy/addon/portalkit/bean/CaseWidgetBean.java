@@ -25,6 +25,7 @@ import ch.ivyteam.ivy.workflow.ICase;
 public class CaseWidgetBean implements Serializable {
 
   private static final String START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE = "Start Processes/CaseWidget/showAdditionalCaseDetails.ivp";
+  private static final String START_PROCESSES_SHOW_CASE_ITEM_DETAILS_PAGE = "Start Processes/CaseWidget/showCaseItemDetails.ivp";
   
   private static final long serialVersionUID = 1L;
 
@@ -67,6 +68,11 @@ public class CaseWidgetBean implements Serializable {
     if (StringUtils.isEmpty(additionalCaseDetailsPageUri)) {
       additionalCaseDetailsPageUri = CaseUtils.getProcessStartUriWithCaseParameters(iCase, START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE);
     }
+    return removeDuplicatedPartOfUrl(additionalCaseDetailsPageUri);
+  }
+  
+  public String getCaseItemDetailsPageUri(ICase iCase) {
+    String additionalCaseDetailsPageUri = CaseUtils.getProcessStartUriWithCaseParameters(iCase, START_PROCESSES_SHOW_CASE_ITEM_DETAILS_PAGE);
     return removeDuplicatedPartOfUrl(additionalCaseDetailsPageUri);
   }
   
