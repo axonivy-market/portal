@@ -30,7 +30,6 @@ Cs0 @GridStep f17 '' #zField
 Cs0 @PushWFArc f18 '' #zField
 Cs0 @CallSub f19 '' #zField
 Cs0 @PushWFArc f20 '' #zField
-Cs0 @SJArc f21 '' #zField
 Cs0 @GridStep f2 '' #zField
 Cs0 @RichDialogProcessStart f5 '' #zField
 Cs0 @CallSub f4 '' #zField
@@ -42,6 +41,9 @@ Cs0 @PushWFArc f24 '' #zField
 Cs0 @RichDialogProcessStart f25 '' #zField
 Cs0 @CallSub f26 '' #zField
 Cs0 @PushWFArc f27 '' #zField
+Cs0 @CallSub f28 '' #zField
+Cs0 @PushWFArc f29 '' #zField
+Cs0 @SJArc f21 '' #zField
 >Proto Cs0 Cs0 CaseItemRelatedTaskProcess #zField
 Cs0 f0 guid 167E9A75EF3D0909 #txt
 Cs0 f0 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
@@ -87,7 +89,7 @@ Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f6 83 179 26 26 -41 15 #rect
 Cs0 f6 @|RichDialogMethodStartIcon #fIcon
 Cs0 f7 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
-Cs0 f7 659 179 26 26 0 12 #rect
+Cs0 f7 731 179 26 26 0 12 #rect
 Cs0 f7 @|RichDialogProcessEndIcon #fIcon
 Cs0 f8 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData out1;
 ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData out2;
@@ -104,11 +106,13 @@ Cs0 f9 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItem
 Cs0 f9 actionTable 'out=in1;
 out.relatedTasks=in1.relatedTasks;
 out.technicalCases=in2.technicalCases;
+out.totalRelatedCases=in2.totalRelatedCases;
+out.totalRelatedTasts=in1.totalRelatedTasts;
 ' #txt
-Cs0 f9 560 176 32 32 0 16 #rect
+Cs0 f9 632 176 32 32 0 16 #rect
 Cs0 f9 @|JoinIcon #fIcon
 Cs0 f10 expr out #txt
-Cs0 f10 592 192 659 192 #arcP
+Cs0 f10 664 192 731 192 #arcP
 Cs0 f12 expr out #txt
 Cs0 f12 109 192 176 192 #arcP
 Cs0 f14 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData out;
@@ -132,7 +136,9 @@ for (ITask task : in.iCase.getTasks()) {
 		in.relatedTasks.add(task);
 		count++;
 	}
-}' #txt
+}
+
+in.totalRelatedTasts = in.iCase.getTasks().size();' #txt
 Cs0 f14 security system #txt
 Cs0 f14 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 Cs0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -149,7 +155,7 @@ Cs0 f15 208 192 336 192 #arcP
 Cs0 f13 expr out #txt
 Cs0 f13 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 Cs0 f13 var in1 #txt
-Cs0 f13 448 192 560 192 #arcP
+Cs0 f13 448 192 632 192 #arcP
 Cs0 f17 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData out;
 ' #txt
 Cs0 f17 actionTable 'out=in;
@@ -196,12 +202,6 @@ Cs0 f19 408 266 112 44 -35 -8 #rect
 Cs0 f19 @|CallSubIcon #fIcon
 Cs0 f20 expr out #txt
 Cs0 f20 352 288 408 288 #arcP
-Cs0 f21 expr out #txt
-Cs0 f21 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
-Cs0 f21 var in2 #txt
-Cs0 f21 520 288 576 208 #arcP
-Cs0 f21 1 576 288 #addKink
-Cs0 f21 0 0.8623545764087797 0 0 #arcLabel
 Cs0 f2 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData out;
 ' #txt
 Cs0 f2 actionTable 'out=in;
@@ -349,6 +349,34 @@ Cs0 f26 320 554 128 44 -61 -8 #rect
 Cs0 f26 @|CallSubIcon #fIcon
 Cs0 f27 expr out #txt
 Cs0 f27 109 576 320 576 #arcP
+Cs0 f28 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
+Cs0 f28 processCall 'Ivy Data Processes/CaseService:countCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)' #txt
+Cs0 f28 doCall true #txt
+Cs0 f28 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;
+' #txt
+Cs0 f28 requestMappingAction 'param.caseSearchCriteria=in.caseSearchCriteria;
+' #txt
+Cs0 f28 responseActionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData out;
+' #txt
+Cs0 f28 responseMappingAction 'out=in;
+out.totalRelatedCases=result.totalCases.intValue();
+' #txt
+Cs0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Count technical cases</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f28 584 266 128 44 -61 -8 #rect
+Cs0 f28 @|CallSubIcon #fIcon
+Cs0 f29 expr out #txt
+Cs0 f29 520 288 584 288 #arcP
+Cs0 f29 0 NaN 0 0 #arcLabel
+Cs0 f21 expr out #txt
+Cs0 f21 var in2 #txt
+Cs0 f21 648 266 648 208 #arcP
+Cs0 f21 0 0.8623545764087797 0 0 #arcLabel
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -367,8 +395,6 @@ Cs0 f8 out f18 tail #connect
 Cs0 f18 head f17 mainIn #connect
 Cs0 f17 mainOut f20 tail #connect
 Cs0 f20 head f19 mainIn #connect
-Cs0 f19 mainOut f21 tail #connect
-Cs0 f21 head f9 in #connect
 Cs0 f5 mainOut f16 tail #connect
 Cs0 f16 head f2 mainIn #connect
 Cs0 f2 mainOut f11 tail #connect
@@ -377,3 +403,7 @@ Cs0 f22 mainOut f24 tail #connect
 Cs0 f24 head f23 mainIn #connect
 Cs0 f25 mainOut f27 tail #connect
 Cs0 f27 head f26 mainIn #connect
+Cs0 f19 mainOut f29 tail #connect
+Cs0 f29 head f28 mainIn #connect
+Cs0 f28 mainOut f21 tail #connect
+Cs0 f21 head f9 in #connect

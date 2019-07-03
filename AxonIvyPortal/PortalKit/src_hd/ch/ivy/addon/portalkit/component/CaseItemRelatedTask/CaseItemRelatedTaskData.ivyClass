@@ -12,3 +12,7 @@ caseSearchCriteria ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCrite
 caseSearchCriteria PERSISTENT #fieldModifier
 selectedTechnicalCase ch.ivyteam.ivy.workflow.ICase #field
 selectedTechnicalCase PERSISTENT #fieldModifier
+totalRelatedCases Integer #field
+totalRelatedCases PERSISTENT #fieldModifier
+totalRelatedTasts Integer #field
+totalRelatedTasts PERSISTENT #fieldModifier
