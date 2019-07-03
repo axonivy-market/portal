@@ -287,28 +287,20 @@ function TaskListSmallScreenHandler() {
         
         if(widthOfLogo > 170 ) {
     	    if ($mainMenu.hasClass('in')) {
-    	        if (isDisplaySecondLevelMenu) {
+    	        if (isSecondLevelMenuOpen) {
     	            // Open main menu when second menu is opened
-    	          animateCaseList($globalSearchInput, {width : widthOfGlobalSearch.widthWhenOpenTwoMenu});
+    	        	animateTaskList($globalSearchInput, {width : widthOfGlobalSearch.widthWhenOpenTwoMenu});
     	        } else {
     	            // Open main menu when second menu is closed
-    	          animateCaseList($globalSearchInput, {width : widthOfGlobalSearch.widthWhenOpenOneMenu});
-    	          if (isSearchResultPage) {
-    	            var simpleSmallScreen = new SimpleSmallScreen();
-    	            simpleSmallScreen.updateMainContainer();
-    	          }
+    	        	animateTaskList($globalSearchInput, {width : widthOfGlobalSearch.widthWhenOpenOneMenu});
     	        }
     	      } else {
-    	          if (isDisplaySecondLevelMenu) {
+    	          if (isSecondLevelMenuOpen) {
     	              // Close main menu when second menu is opened
-    	            animateCaseList($globalSearchInput, {width : widthOfGlobalSearch.widthWhenOpenOneMenu});
+    	        	  animateTaskList($globalSearchInput, {width : widthOfGlobalSearch.widthWhenOpenOneMenu});
     	          } else {
     	              // Close main menu when second menu is closed
-    	            animateCaseList($globalSearchInput, {width : widthOfGlobalSearch.widthWhenCloseTwoMenu});
-    	            if (isSearchResultPage) {
-    	              var simpleSmallScreen = new SimpleSmallScreen();
-    	              simpleSmallScreen.updateMainContainer(isSearchResultPage);
-    	            }
+    	        	  animateTaskList($globalSearchInput, {width : widthOfGlobalSearch.widthWhenCloseTwoMenu});
     	          }
     	      }
         }
@@ -716,10 +708,6 @@ function CaseListSmallScreenHandler() {
 	        } else {
 	            // Open main menu when second menu is closed
 	          animateCaseList($globalSearchInput, {width : widthOfGlobalSearch.widthWhenOpenOneMenu});
-	          if (isSearchResultPage) {
-	            var simpleSmallScreen = new SimpleSmallScreen();
-	            simpleSmallScreen.updateMainContainer();
-	          }
 	        }
 	      } else {
 	          if (isDisplaySecondLevelMenu) {
@@ -728,10 +716,6 @@ function CaseListSmallScreenHandler() {
 	          } else {
 	              // Close main menu when second menu is closed
 	            animateCaseList($globalSearchInput, {width : widthOfGlobalSearch.widthWhenCloseTwoMenu});
-	            if (isSearchResultPage) {
-	              var simpleSmallScreen = new SimpleSmallScreen();
-	              simpleSmallScreen.updateMainContainer(isSearchResultPage);
-	            }
 	          }
 	      }
     }
