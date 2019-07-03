@@ -238,7 +238,7 @@
     <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
       actionListener="#{caseWidgetBean.destroyCase(caseWidgetBean.selectedCase)}"
       oncomplete="caseWidget.setUpScrollbar();caseWidget.setupHeader();PF('destroy-case-dialog').hide()"
-      update="case-list" />
+      update="#{p:component('case-list')} #{p:component('case-list-scroller')}" />
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
       onclick="PF('destroy-case-dialog').hide();" type="button" styleClass="portal-cancel-button" />
   </p:confirmDialog>
