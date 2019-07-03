@@ -17,8 +17,18 @@
 /*AWS*/
 
 .aws-main-cointainer .ui-g .ui-outputlabel:not(.fluid-label) {
+	margin-top: 10px;
 	margin-left: auto;
 	float: right;
+}
+
+.aws-main-cointainer .ui-g .ui-outputlabel.textarea-label {
+	margin-top: 0;
+}
+
+.ui-g > div {
+	display: unset;
+	align-items: normal !important;
 }
 
 _:-ms-input-placeholder, :root .ui-g .ui-outputlabel.choose-users-label {
@@ -44,6 +54,10 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel.choose-users-label {
 
 .aws-button-container .ui-button {
 	margin-left: 10px;
+}
+
+.ui-widget-content .ui-inputfield.ui-state-disabled {
+	background: transparent;
 }
 
 /* RESPONSIVE MODIFICATION */
@@ -85,6 +99,7 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel.choose-users-label {
 .ui-fluid .fluid-button-container .ui-button {
 	width: auto;
 }
+
 /* END RESPONSIVE MODIFICATION */
 
 /* CHOOSE USERS DIALOG */
@@ -104,10 +119,8 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel.choose-users-label {
 }
 
 .choose-users-dialog .add-user-container .ui-button {
-	width: 100px !important;
-	margin-left: auto;
-	margin-right: 5px;
-	margin-top: 10px;
+	width: auto !important;
+	float: right;
 }
 
 .choose-users-dialog .selected-user-panel {
@@ -123,6 +136,16 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel.choose-users-label {
 	width: 1rem;
 }
 
+.choose-users-dialog .aws-button-container .ui-button {
+	width: auto !important;
+	float: right;
+}
+
+.choose-users-dialog .aws-button-container {
+	padding-right: 9px;
+	margin-top: 9px;
+}
+
 /* Small screen */
 @media (max-width: 1365px) {
 	.choose-users-label {
@@ -131,3 +154,28 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel.choose-users-label {
 }
 
 /* END CHOOSE USERS DIALOG */
+
+/* NOTE */
+.ui-fluid .fluid-button-container .ui-button.add-note-button {
+	margin-left: 0 !important;
+}
+/* END NOTE */
+
+/* DOCUMENT */
+.add-document-button-container .ui-button {
+	margin-left: 0 !important;
+}
+
+.add-document-button-container .ui-fileupload-buttonbar {
+	padding: 0 !important;
+}
+
+.add-document-button-container .ui-fileupload-choose .ui-icon {
+	display: none;
+}
+
+.add-document-button-container .ui-fileupload-choose .ui-button-text {
+	padding: 13px 0 !important;
+	border-left: 0;
+}
+/* END DOCUMENT */
