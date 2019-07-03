@@ -8,10 +8,10 @@
   <!-- TOPBAR START -->
   <h:outputScript name="global-search.js" library="js" target="head" />
   <h:outputScript name="responsive-toolkit.js" library="js" target="head"/>
-  <div class="TexAlCenter portal-topbar">
+  <div class="TexAlCenter logo-container">
 
     <p:commandLink id="logo" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(isWorkingOnATask)}" styleClass="js-logo">
-      <p:graphicImage styleClass="portal-home-logo" value="#{resource['ivy-cms:images/logo/CorporateLogo']}" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
+      <p:graphicImage id="logo-home" styleClass="portal-home-logo" value="#{resource['ivy-cms:images/logo/CorporateLogo']}" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
     </p:commandLink>
     <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask id="task-leave-warning-component" rendered="#{isWorkingOnATask}"
       leaveActionListener="#{userMenuBean.resetTaskAndNavigateToHomePage()}" reserveActionListener="#{userMenuBean.reserveTaskAndNavigateToHomePage()}"

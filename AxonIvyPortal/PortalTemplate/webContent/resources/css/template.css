@@ -112,12 +112,22 @@
     font-size: 1.4rem;
 }
 
-.global-search-input {
-	font-size: 1.4rem !important;
+@media ( min-width : 1366px) {
+  .global-search-input {
+  	font-size: 1.4rem !important;
     padding: 3px 25px 3px 0 !important;
     width: 300px !important;
+  }
 }
 
+/* Small screen */
+@media ( min-width : 992px) and ( max-width : 1365px) {
+  .global-search-input {
+  	font-size: 1.4rem !important;
+    padding: 3px 25px 3px 0 !important;
+    width: 300px;
+  }
+}
 .global-search {
     margin-right: 10px;
     position: relative;

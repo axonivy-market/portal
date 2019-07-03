@@ -5106,7 +5106,7 @@ margin-top
 }
 
 @media ( max-width : 1365px) {
-  .portal-topbar {
+  .logo-container{
     width: calc(100% - 140px);
     min-width: 880px;
     padding-left: 10px;
