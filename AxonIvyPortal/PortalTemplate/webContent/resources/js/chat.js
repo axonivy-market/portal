@@ -116,8 +116,8 @@ function Chat(uri, view) {
         path += "-next";
       }
       const response = await fetch(uri+"/" + path, { method:"POST", mode: 'cors', credentials: "include", headers: {"X-Requested-By": "ivy", "Content-Type": "application/json", "Accept": "application/json"}});
-      if (jsonResponse.status >= 400) {
-        console.error("Response error with HTTP code: " + jsonResponse.status + ", the browser stops sending long-polling request for messages.");
+      if (response.status >= 400) {
+        console.error("Response error with HTTP code: " + response.status + ", the browser stops sending long-polling request for messages.");
         return;
       }
       const messages = await response.json();

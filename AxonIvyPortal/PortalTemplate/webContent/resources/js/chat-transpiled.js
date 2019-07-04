@@ -245,12 +245,12 @@ function Chat(uri, view) {
             case 4:
               response = _context3.sent;
 
-              if (!(jsonResponse.status >= 400)) {
+              if (!(response.status >= 400)) {
                 _context3.next = 8;
                 break;
               }
 
-              console.error("Response error with HTTP code: " + jsonResponse.status + ", the browser stops sending long-polling request for messages.");
+              console.error("Response error with HTTP code: " + response.status + ", the browser stops sending long-polling request for messages.");
               return _context3.abrupt("return");
 
             case 8:
