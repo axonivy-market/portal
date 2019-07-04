@@ -128,17 +128,19 @@ import ch.ivyteam.ivy.workflow.ITask;
 in.relatedTasks.clear();
 
 int count = 1;
+in.totalRelatedTasts = 0;
 boolean excludeHiddenTasks = Boolean.parseBoolean(ivy.var.get(HiddenTasksCasesConfig.PORTAL_HIDDEN_TASK_CASE_EXCLUDED));
 for (ITask task : in.iCase.getTasks()) {
 	if ((task.getState() == TaskState.SUSPENDED || task.getState() == TaskState.RESUMED || task.getState() == TaskState.UNASSIGNED || task.getState() == TaskState.PARKED)
-				&& (excludeHiddenTasks ? StringUtils.isEmpty(task.customFields().stringField(AdditionalProperty.HIDE.toString()).getOrNull()) : true)
-				&& count <= 21) {//get only 21 tasks
-		in.relatedTasks.add(task);
+				&& (excludeHiddenTasks ? StringUtils.isEmpty(task.customFields().stringField(AdditionalProperty.HIDE.toString()).getOrNull()) : true)) {
+		in.totalRelatedTasts++;
+		if (count <= 21) {//get only 21 tasks
+				in.relatedTasks.add(task);
+		}
 		count++;
 	}
 }
-
-in.totalRelatedTasts = in.iCase.getTasks().size();' #txt
+' #txt
 Cs0 f14 security system #txt
 Cs0 f14 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 Cs0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
