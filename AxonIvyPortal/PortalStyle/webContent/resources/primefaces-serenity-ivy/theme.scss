@@ -715,7 +715,7 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 
 /*Style For Case Detail --------------------------------------------------------------------------------------*/
 
-#history, #document {
+.case-detail-body .case-details-item {
  	.ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top {
  	  background-color: rgba(0,0,0,0.05);
       border-color: #d8d8d8;
@@ -723,7 +723,7 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
  	}
  	
  	.ui-paginator a, .ui-paginator-current {
- 	  color: #212121;
+ 	  color: #212121 !important;
  	}
  	
  	.ui-paginator a.ui-paginator-page, .ui-paginator a.ui-paginator-page, a.ui-paginator-first, a.ui-paginator-prev, a.ui-paginator-next, a.ui-paginator-last {
