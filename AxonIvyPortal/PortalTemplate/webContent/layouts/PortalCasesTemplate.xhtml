@@ -63,10 +63,9 @@
               </ui:fragment>
 
               <ui:fragment rendered="#{not useOverrideBody}">
-                <ic:ch.ivy.addon.portalkit.component.CaseBody id="case-body" case="#{case}" />
+                <ic:ch.ivy.addon.portalkit.component.CaseItemDetails case="#{case}" isShowItemDetailsHeader="false" />
               </ui:fragment>
             </f:facet>
-
             <f:facet name="caseFilter">
               <ui:fragment rendered="#{useOverrideFilter}">
                 <ui:insert name="caseFilter" />

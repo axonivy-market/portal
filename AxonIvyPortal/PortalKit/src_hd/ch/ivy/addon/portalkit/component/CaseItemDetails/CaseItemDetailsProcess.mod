@@ -1,7 +1,7 @@
 [Ivy]
-164B1ACD267C825F 3.23 #module
+16BBB5787C84716D 3.26 #module
 >Proto >Proto Collection #zClass
-Cs0 CaseBodyProcess Big #zClass
+Cs0 CaseItemDetailsProcess Big #zClass
 Cs0 RD #cInfo
 Cs0 #process
 Cs0 @TextInP .ui2RdDataAction .ui2RdDataAction #zField
@@ -20,13 +20,12 @@ Cs0 @PushWFArc f2 '' #zField
 Cs0 @RichDialogProcessStart f3 '' #zField
 Cs0 @RichDialogEnd f4 '' #zField
 Cs0 @PushWFArc f5 '' #zField
->Proto Cs0 Cs0 CaseBodyProcess #zField
-Cs0 f0 guid 164B1ACD2A1E9E10 #txt
-Cs0 f0 type ch.ivy.addon.portalkit.component.CaseBody.CaseBodyData #txt
+>Proto Cs0 Cs0 CaseItemDetailsProcess #zField
+Cs0 f0 guid 16BBB5787F4A8092 #txt
+Cs0 f0 type ch.ivy.addon.portalkit.component.CaseItemDetails.CaseItemDetailsData #txt
 Cs0 f0 method start() #txt
 Cs0 f0 disableUIEvents true #txt
-Cs0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
+Cs0 f0 inParameterDecl 'ch.ivy.add.portalkit.Data out;
 ' #txt
 Cs0 f0 outParameterDecl '<> result;
 ' #txt
@@ -39,14 +38,14 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f0 83 51 26 26 -16 15 #rect
 Cs0 f0 @|RichDialogInitStartIcon #fIcon
-Cs0 f1 type ch.ivy.addon.portalkit.component.CaseBody.CaseBodyData #txt
+Cs0 f1 type ch.ivy.addon.portalkit.component.CaseItemDetails.CaseItemDetailsData #txt
 Cs0 f1 211 51 26 26 0 12 #rect
 Cs0 f1 @|RichDialogProcessEndIcon #fIcon
 Cs0 f2 expr out #txt
 Cs0 f2 109 64 211 64 #arcP
-Cs0 f3 guid 164B1ACD2E2D43E0 #txt
-Cs0 f3 type ch.ivy.addon.portalkit.component.CaseBody.CaseBodyData #txt
-Cs0 f3 actionDecl 'ch.ivy.addon.portalkit.component.CaseBody.CaseBodyData out;
+Cs0 f3 guid 16BBB578819930A1 #txt
+Cs0 f3 type ch.ivy.addon.portalkit.component.CaseItemDetails.CaseItemDetailsData #txt
+Cs0 f3 actionDecl 'ch.ivy.add.portalkit.Data out;
 ' #txt
 Cs0 f3 actionTable 'out=in;
 ' #txt
@@ -59,13 +58,13 @@ Cs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f3 83 147 26 26 -15 12 #rect
 Cs0 f3 @|RichDialogProcessStartIcon #fIcon
-Cs0 f4 type ch.ivy.addon.portalkit.component.CaseBody.CaseBodyData #txt
-Cs0 f4 guid 164B1ACD2E32D143 #txt
+Cs0 f4 type ch.ivy.addon.portalkit.component.CaseItemDetails.CaseItemDetailsData #txt
+Cs0 f4 guid 16BBB57881A7CF73 #txt
 Cs0 f4 211 147 26 26 0 12 #rect
 Cs0 f4 @|RichDialogEndIcon #fIcon
 Cs0 f5 expr out #txt
 Cs0 f5 109 160 211 160 #arcP
->Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseBody.CaseBodyData #txt
+>Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemDetails.CaseItemDetailsData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
 >Proto Cs0 '' #fIcon
