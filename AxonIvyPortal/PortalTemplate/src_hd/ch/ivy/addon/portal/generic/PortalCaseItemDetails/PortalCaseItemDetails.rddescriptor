@@ -2,10 +2,10 @@
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
     <startMethod>
-        <name>useICaseToViewDetail</name>
-        <description></description>
+        <name>start</name>
+        <description>Default dialog start method.</description>
         <inputParameter>
-            <name>iCase</name>
+            <name>caseInfo</name>
             <description></description>
             <parameterType>ch.ivyteam.ivy.workflow.ICase</parameterType>
             <nullPermitted>false</nullPermitted>
@@ -19,7 +19,7 @@
     </startMethod>
     <property>
         <name>guid</name>
-        <value>16B9DAFAD8D294A7</value>
+        <value>16BBB5AA8AFFD59F</value>
         <readOnly>true</readOnly>
     </property>
     <property>
