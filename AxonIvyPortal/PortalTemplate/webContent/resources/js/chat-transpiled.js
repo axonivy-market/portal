@@ -57,24 +57,34 @@ function Chat(uri, view) {
 
           case 2:
             jsonResponse = _context.sent;
-            _context.next = 5;
+
+            if (!(jsonResponse.status >= 400)) {
+              _context.next = 6;
+              break;
+            }
+
+            console.error("Response error with HTTP code: " + jsonResponse.status + ", the browser stops sending long-polling request for groups.");
+            return _context.abrupt("return");
+
+          case 6:
+            _context.next = 8;
             return jsonResponse.json();
 
-          case 5:
+          case 8:
             response = _context.sent;
             this.registerGroupResponse();
 
             if (!(response.status === "SERVER_TIMEOUT")) {
-              _context.next = 9;
+              _context.next = 12;
               break;
             }
 
             return _context.abrupt("return");
 
-          case 9:
+          case 12:
             view.renderGroupList(response);
 
-          case 10:
+          case 13:
           case "end":
             return _context.stop();
         }
@@ -124,28 +134,38 @@ function Chat(uri, view) {
 
           case 2:
             jsonResponse = _context2.sent;
-            _context2.next = 5;
+
+            if (!(jsonResponse.status >= 400)) {
+              _context2.next = 6;
+              break;
+            }
+
+            console.error("Response error with HTTP code: " + jsonResponse.status + ", the browser stops sending long-polling request for users.");
+            return _context2.abrupt("return");
+
+          case 6:
+            _context2.next = 8;
             return jsonResponse.json();
 
-          case 5:
+          case 8:
             response = _context2.sent;
             this.registerUserResponse();
 
             if (!(response.status === "SERVER_TIMEOUT")) {
-              _context2.next = 9;
+              _context2.next = 12;
               break;
             }
 
             return _context2.abrupt("return");
 
-          case 9:
+          case 12:
             if (response.action === "updateUserStatus") {
               view.updateUserOnlineStatus(response.content);
             } else if (response.action === "getUsers") {
               view.renderUsers(response.content);
             }
 
-          case 10:
+          case 13:
           case "end":
             return _context2.stop();
         }
@@ -224,21 +244,31 @@ function Chat(uri, view) {
 
             case 4:
               response = _context3.sent;
-              _context3.next = 7;
+
+              if (!(jsonResponse.status >= 400)) {
+                _context3.next = 8;
+                break;
+              }
+
+              console.error("Response error with HTTP code: " + jsonResponse.status + ", the browser stops sending long-polling request for messages.");
+              return _context3.abrupt("return");
+
+            case 8:
+              _context3.next = 10;
               return response.json();
 
-            case 7:
+            case 10:
               messages = _context3.sent;
               this.listen(false); // wait for next update
 
               if (!(messages.status === "SERVER_TIMEOUT")) {
-                _context3.next = 11;
+                _context3.next = 14;
                 break;
               }
 
               return _context3.abrupt("return");
 
-            case 11:
+            case 14:
               responseRecipients = messages["recipients"][0];
 
               if (responseRecipients.indexOf(chatGroupMemoryPrefix) != -1) {
@@ -283,7 +313,7 @@ function Chat(uri, view) {
                 }
               }
 
-            case 13:
+            case 16:
             case "end":
               return _context3.stop();
           }

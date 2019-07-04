@@ -28,6 +28,10 @@ function Chat(uri, view) {
     
     this.registerGroupResponse = async function() {
       const jsonResponse = await fetch(uri+"/groups", { method:"POST", mode: 'cors', credentials: "include", headers: {"X-Requested-By": "ivy", "Content-Type": "application/json", "Accept": "application/json"}});
+      if (jsonResponse.status >= 400) {
+        console.error("Response error with HTTP code: " + jsonResponse.status + ", the browser stops sending long-polling request for groups.");
+        return;
+      }
       var response = await jsonResponse.json();
       this.registerGroupResponse();
       if (response.status === "SERVER_TIMEOUT") {// if long-polling request timeout
@@ -54,6 +58,10 @@ function Chat(uri, view) {
 
     this.registerUserResponse = async function() {
       const jsonResponse = await fetch(uri+"/users", { method:"POST", mode: 'cors', credentials: "include", headers: {"X-Requested-By": "ivy", "Content-Type": "application/json", "Accept": "application/json"}});
+      if (jsonResponse.status >= 400) {
+        console.error("Response error with HTTP code: " + jsonResponse.status + ", the browser stops sending long-polling request for users.");
+        return;
+      }
       var response = await jsonResponse.json();
       this.registerUserResponse();
       if (response.status === "SERVER_TIMEOUT") {// if long-polling request timeout
@@ -108,6 +116,10 @@ function Chat(uri, view) {
         path += "-next";
       }
       const response = await fetch(uri+"/" + path, { method:"POST", mode: 'cors', credentials: "include", headers: {"X-Requested-By": "ivy", "Content-Type": "application/json", "Accept": "application/json"}});
+      if (jsonResponse.status >= 400) {
+        console.error("Response error with HTTP code: " + jsonResponse.status + ", the browser stops sending long-polling request for messages.");
+        return;
+      }
       const messages = await response.json();
       this.listen(false); // wait for next update
       if (messages.status === "SERVER_TIMEOUT") {// if long-polling request timeout
