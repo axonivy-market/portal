@@ -83,33 +83,7 @@
 						stateStyleClass="process-history process-history-list process-history-list-cell-default" />
 				</f:facet>
 				<f:facet name="caseBody">
-					<ic:ch.ivy.addon.portalkit.component.CaseItemGeneralInformation id="general-information" case="#{case}" />
-					<ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="related-tasks" case="#{case}" />
-					<ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="history" case="#{case}" />
-					<ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}" />
-					<ic:ch.ivy.addon.portalkit.component.CaseItemDescription id="description" case="#{case}" />
-					<ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer styleClass="not-display">
-						<ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
-							icon="fa fa-share-alt js-related-task-column-responsive-button" displayedSelectors="['.js-related-task-column']"
-							hiddenSelectorsInLargeScreen="['.case-details .replaced']"
-							hiddenSelectorsInMediumScreen="['.case-details .replaced']"
-							hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
-						<ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
-							icon="fa fa-align-left js-history-column-responsive-button" displayedSelectors="['.js-history-column']"
-							hiddenSelectorsInLargeScreen="['.case-details .replaced']"
-							hiddenSelectorsInMediumScreen="['.case-details .replaced']"
-							hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
-						<ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
-							icon="fa fa-file js-document-column-responsive-button" displayedSelectors="['.js-document-column']"
-							hiddenSelectorsInLargeScreen="['.case-details .replaced']"
-							hiddenSelectorsInMediumScreen="['.case-details .replaced']"
-							hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
-						<ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
-							icon="fa fa-clipboard js-description-column-responsive-button" displayedSelectors="['.js-description-column']"
-							hiddenSelectorsInLargeScreen="['.case-details .replaced']"
-							hiddenSelectorsInMediumScreen="['.case-details .replaced']"
-							hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
-					</ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer>
+					<ic:ch.ivy.addon.portalkit.component.CaseItemDetails case="#{case}" isShowItemDetailsHeader="true" />
 				</f:facet>
 			</ic:ch.ivy.addon.portalkit.component.CaseItem>
 		</p:dataScroller>
