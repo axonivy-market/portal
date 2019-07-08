@@ -152,6 +152,13 @@ public class AdminSettingsPage extends TemplatePage {
 		closeAdminSettingDialog();
 		closeInformConfigDialog();
 	}
+	
+	public void setDisableScriptCheckingGlobalVariable() {
+		openSettingTab();
+		editGlobalVariable("ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT", "false", true);
+		closeAdminSettingDialog();
+		closeInformConfigDialog();
+	}
 
 	public void setFileExtensionWhiteList() {
 		openSettingTab();
