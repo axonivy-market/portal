@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
 
 import org.primefaces.model.StreamedContent;
 
@@ -42,7 +41,6 @@ public class CaseTaskNoteHistoryBean implements Serializable {
     String redirectLink =
         RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process)
             .toString() + "?selectedTaskId=" + task.getId();
-    redirectLink = removeDuplicatedPartOfUrl(redirectLink);
     return redirectLink;
   }
 
@@ -57,13 +55,7 @@ public class CaseTaskNoteHistoryBean implements Serializable {
     String redirectLink =
         RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process)
             .toString() + "?caseId=" + caseId;
-    redirectLink = removeDuplicatedPartOfUrl(redirectLink);
     return redirectLink;
-  }
-
-  private String removeDuplicatedPartOfUrl(String redirectLink) {
-    String applicationContextPath = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
-    return redirectLink.replaceFirst(applicationContextPath, ""); // remove duplicate contextPath in URL
   }
 
   public String getCaseNoteContent(History history) {
