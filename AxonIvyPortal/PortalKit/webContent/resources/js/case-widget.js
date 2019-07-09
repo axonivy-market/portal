@@ -15,11 +15,11 @@ function CaseWidget(outerPanelId) {
         error = 55; // included margin, padding in search page
       }
 
-      var availableHeight = mainAreaPanel.outerHeight()||0 - caseWidgetHeaderContainer.outerHeight(true)||0
-          - caseWidgetSortMenuContainer.outerHeight(true)||0 - caseWidgetFilterContainer.outerHeight(true)||0
-          - globalSearchInput.outerHeight(true)||0 - globalSearchTabHeader.outerHeight(true)||0
-          - announcementMessageContainer.outerHeight(true)||0 - error;
-
+      var availableHeight = (mainAreaPanel.outerHeight()||0) - (caseWidgetHeaderContainer.outerHeight(true)||0)
+          - (caseWidgetSortMenuContainer.outerHeight(true)||0) - (caseWidgetFilterContainer.outerHeight(true)||0)
+          - (globalSearchInput.outerHeight(true)||0) - (globalSearchTabHeader.outerHeight(true)||0)
+          - (announcementMessageContainer.outerHeight(true)||0) - error;
+      
       if (!!availableHeight) {
         container.height(availableHeight);
       }
