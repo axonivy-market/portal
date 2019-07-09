@@ -21,7 +21,7 @@
     <h:outputText id="#{cc.attrs.caseNameId}" styleClass="case-header-name-cell js-name-cell #{cc.attrs.nameStyleClass}" rendered="#{!expanded or case.state eq 'DONE'}"
       value="#{empty case.getName() ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CasesNameIsNot') : case.name}" />
     <span class="case-header-name-cell">
-      <h:form id="case-name-form">
+      <h:form id="case-name-form" onsubmit="return false;">
       <p:inplace id="case-name-edit-inplace" editor="true" rendered="#{expanded and case.state ne 'DONE'}"
         disabled="#{!caseActionBean.canChangeName(case)}" saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
         cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" widgetVar="case-name-edit-inplace"
@@ -29,7 +29,7 @@
         styleClass="js-name-cell #{cc.attrs.nameStyleClass}" >
         <p:inputText id="case-name-input" value="#{case.name}" maxlength="200" styleClass="case-name-input"
           onkeypress="if(event.keyCode == 13) {PF('case-name-edit-inplace').save()}" />
-        <p:ajax event="save" process="case-name-edit-inplace" />
+        <p:ajax event="save" process="case-name-edit-inplace" update="case-name-edit-inplace" />
         <f:passThroughAttribute name="onclick" value="if('#{caseActionBean.canChangeName(case)}'=='true') {event.stopPropagation()}" />
       </p:inplace>
       </h:form>
