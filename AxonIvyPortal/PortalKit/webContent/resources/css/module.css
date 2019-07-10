@@ -5669,6 +5669,10 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   float: right;
 }
 
+.filter-selection-task-analysis {
+  display: flex !important;
+}
+
 .ui-widget.ui-button.filter-add-button.no-icon .ui-button-text {
   padding-right: 10px !important;
 }

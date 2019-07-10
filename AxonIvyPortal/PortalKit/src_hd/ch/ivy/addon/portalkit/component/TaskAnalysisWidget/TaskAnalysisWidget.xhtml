@@ -28,7 +28,7 @@
   <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} js-task-widget analysis-task-widget">
         <h:panelGroup id="filter-selection-container" layout="block" styleClass="filter-selection-container">
           <h:form id="filter-selection-form" class="filter-selection-form">
-            <p:outputPanel id="filter-selection-panel"
+            <p:outputPanel id="filter-selection-panel" styleClass="filter-selection-task-analysis"
               rendered="#{(not empty data.taskPrivateFilters or not empty data.taskPublicFilters)}">
               <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}" for="filter-name" />
               <p:commandLink id="filter-name" styleClass="filter-name"
