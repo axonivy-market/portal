@@ -1,3 +1,6 @@
+var topValue;
+var leftValue;
+
 function bindCursorChangeEvent() {
   $('.js-drilldown-cursor').bind('jqplotDataHighlight', function(ev, seriesIndex, pointIndex, data, radius) {
     $('.jqplot-event-canvas').css('cursor', 'pointer');
@@ -18,11 +21,17 @@ function bindCursorChangeEvent() {
     var index = this.className.match(/expiry-chart-(\d+)/)[1];
     var widgetVar = 'context-menu-' + index;
     PF('context-menu-' + index).show();
-    $('.' + widgetVar).css({
-      left : ev.pageX,
-      top : ev.pageY,
-      position : 'absolute'
-    });
+    topValue = ev.pageY;
+    leftValue = ev.pageX;
+  });
+}
+
+function updateDrillDownPanelPosition(panel) {
+  var widgetVar = panel.widgetVar;
+  $('.' + widgetVar).css({
+    'left' : leftValue,
+    'top' : topValue,
+    'position' : 'absolute'
   });
 }
 
