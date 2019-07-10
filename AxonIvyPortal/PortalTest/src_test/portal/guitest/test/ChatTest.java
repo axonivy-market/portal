@@ -30,6 +30,24 @@ public class ChatTest extends BaseTest {
 	}
 
 	@Test
+	public void chatGroupOnTwoInstanceOfBrowser() {
+		ChatPage chatPage = enableChatGroup();
+		createChatGroupWithPredifinedGroup(true, TestAccount.DEMO_USER);
+		joinChatGroupWhichAlreadyHadChatGroup(TestAccount.ADMIN_USER);
+		chatMessageInGroup(TestAccount.DEMO_USER, CHAT_MESSAGE_USER_DEMO);
+		launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+		ChatPage chatPage2 = chatMessageInGroup(TestAccount.ADMIN_USER, CHAT_MESSAGE_USER_ADMIN);
+		chatPage2.closeChatMessageList();
+		chatPage.sendMessage("from 1 to 2");
+		assertTrue(chatPage2.isNotificationBadgeChat());
+		assertTrue(chatPage2.isNotificationContactChat());
+		chatPage2.selectChatGroup();
+		chatPage2.sendMessage("from 2 to 1");
+		assertTrue("from 2 to 1", chatPage.getAllMessagesChatLog().contains("from 2 to 1"));
+		assertTrue("from 1 to 2", chatPage2.getAllMessagesChatLog().contains("from 1 to 2"));
+	}
+
+	@Test
 	public void chatDisplay() {
 		enableChatGroup();
 		assertTrue("Chat Shown", new HomePage().isChatDisplayed());
@@ -86,12 +104,13 @@ public class ChatTest extends BaseTest {
 		assertTrue(new HomePage().getChat().isNotificationContactChat());
 	}
 
-	private void chatMessageInGroup(TestAccount chatUser, String chatMessage) {
+	private ChatPage chatMessageInGroup(TestAccount chatUser, String chatMessage) {
 		redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
 		login(chatUser);
 		ChatPage chatPage = new HomePage().getChat();
 		chatPage.selectChatGroup();
 		chatPage.sendMessage(chatMessage);
+		return chatPage;
 	}
 
 	private void createChatGroupWithPredifinedGroup(boolean isPredifinedGroup, TestAccount creatorChatGroup) {
