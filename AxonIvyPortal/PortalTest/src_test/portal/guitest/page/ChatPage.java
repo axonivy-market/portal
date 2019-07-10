@@ -27,6 +27,10 @@ public class ChatPage extends TemplatePage {
 		return findElementById(DIALOG_TITLE).isDisplayed();
 	}
 
+	public boolean isChatGroupDisplayed(String groupChatID) {
+		return findElementByXpath("//div[contains(text(),'"+groupChatID+"')]").isDisplayed();
+	}
+	
 	public void selectChatUser(String name) {
 		findElementByXpath("//span[text()='" + name + "']").click();
 	}

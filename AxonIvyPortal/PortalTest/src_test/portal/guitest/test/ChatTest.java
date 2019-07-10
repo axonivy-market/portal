@@ -21,12 +21,30 @@ public class ChatTest extends BaseTest {
 	private static final String CHAT_MESSAGE_USER_ADMIN = "Hi i'm admin user";
 	ExpressResponsible chatUser1 = new ExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
 	ExpressResponsible chatGroup1 = new ExpressResponsible("Human resources department", true);
+	ExpressResponsible chatGroupEveryBody = new ExpressResponsible("Everybody", true);
 
 	@Override
 	@Before
 	public void setup() {
 		super.setup();
 		navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
+	}
+
+	@Test
+	public void chatAddGroup() {
+		ChatPage chatPage = enableChatGroup();
+		createChatGroupWithPredifinedGroup(true, TestAccount.DEMO_USER);
+		joinChatGroupWhichAlreadyHadChatGroup(TestAccount.ADMIN_USER);
+		chatMessageInGroup(TestAccount.DEMO_USER, CHAT_MESSAGE_USER_DEMO);
+		launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+		ChatPage chatPage2 = chatMessageInGroup(TestAccount.ADMIN_USER, CHAT_MESSAGE_USER_ADMIN);
+
+		launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+		ChatPage chatPage3 = createChatGroupWithPredifinedGroup(false, TestAccount.GUEST_USER);
+		chatPage3.addUserToChatGroup(Arrays.asList(chatUser1, chatGroupEveryBody));
+
+		assertTrue(chatPage2.isChatGroupDisplayed("Group chat of: Portal Guest User"));
+		assertTrue(chatPage.isChatGroupDisplayed("Group chat of: Portal Guest User"));
 	}
 
 	@Test
@@ -113,7 +131,8 @@ public class ChatTest extends BaseTest {
 		return chatPage;
 	}
 
-	private void createChatGroupWithPredifinedGroup(boolean isPredifinedGroup, TestAccount creatorChatGroup) {
+	private ChatPage createChatGroupWithPredifinedGroup(boolean isPredifinedGroup, TestAccount creatorChatGroup) {
+
 		if (isPredifinedGroup) {
 			navigateToUrl(createTestingTasksUrl);
 		} else {
@@ -121,10 +140,12 @@ public class ChatTest extends BaseTest {
 		}
 		redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
 		login(creatorChatGroup);
+		ChatPage chatPage = new HomePage().getChat();
 		// Create chat group via task
 		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
 		TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
 		taskTemplatePage.clickChatGroup();
+		return chatPage;
 	}
 
 	private void joinChatGroupWhichAlreadyHadChatGroup(TestAccount userJoined) {
