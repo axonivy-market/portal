@@ -1,5 +1,5 @@
 [Ivy]
-164211E97C598DAA 3.23 #module
+164211E97C598DAA 3.26 #module
 >Proto >Proto Collection #zClass
 Pt0 ExamplePortalStart Big #zClass
 Pt0 B #cInfo
@@ -117,6 +117,13 @@ Pt0 @PushWFArc f100 '' #zField
 Pt0 @PushWFArc f101 '' #zField
 Pt0 @PushWFArc f97 '' #zField
 Pt0 @RichDialog f96 '' #zField
+Pt0 @StartRequest f103 '' #zField
+Pt0 @CallSub f104 '' #zField
+Pt0 @EndTask f105 '' #zField
+Pt0 @GridStep f106 '' #zField
+Pt0 @PushWFArc f108 '' #zField
+Pt0 @PushWFArc f109 '' #zField
+Pt0 @PushWFArc f107 '' #zField
 >Proto Pt0 Pt0 ExamplePortalStart #zField
 Pt0 f18 targetWindow NEW:card: #txt
 Pt0 f18 targetDisplay TOP #txt
@@ -197,12 +204,12 @@ Pt0 f63 requestEnabled true #txt
 Pt0 f63 triggerEnabled false #txt
 Pt0 f63 callSignature startPortalTask() #txt
 Pt0 f63 persist false #txt
-Pt0 f63 taskData 'TaskTriggered.ROL=Everybody
+Pt0 f63 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Pt0 f63 caseData businessCase.attach=true #txt
 Pt0 f63 showInStartList 0 #txt
 Pt0 f63 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -316,12 +323,12 @@ Pt0 f10 requestEnabled true #txt
 Pt0 f10 triggerEnabled false #txt
 Pt0 f10 callSignature DefaultEndPage(Number) #txt
 Pt0 f10 persist false #txt
-Pt0 f10 taskData 'TaskTriggered.ROL=Everybody
+Pt0 f10 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Pt0 f10 caseData businessCase.attach=true #txt
 Pt0 f10 showInStartList 0 #txt
 Pt0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -348,12 +355,12 @@ Pt0 f31 requestEnabled true #txt
 Pt0 f31 triggerEnabled false #txt
 Pt0 f31 callSignature DefaultLoginPage(String) #txt
 Pt0 f31 persist false #txt
-Pt0 f31 taskData 'TaskTriggered.ROL=Everybody
+Pt0 f31 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Pt0 f31 caseData businessCase.attach=true #txt
 Pt0 f31 showInStartList 0 #txt
 Pt0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -407,12 +414,12 @@ Pt0 f25 requestEnabled true #txt
 Pt0 f25 triggerEnabled false #txt
 Pt0 f25 callSignature restorePortalTaskList(Number) #txt
 Pt0 f25 persist false #txt
-Pt0 f25 taskData 'TaskTriggered.ROL=Everybody
+Pt0 f25 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Pt0 f25 caseData businessCase.attach=true #txt
 Pt0 f25 showInStartList 0 #txt
 Pt0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -591,12 +598,12 @@ Pt0 f70 requestEnabled true #txt
 Pt0 f70 triggerEnabled false #txt
 Pt0 f70 callSignature startPortalStatistic() #txt
 Pt0 f70 persist false #txt
-Pt0 f70 taskData 'TaskTriggered.ROL=Everybody
+Pt0 f70 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Pt0 f70 caseData businessCase.attach=true #txt
 Pt0 f70 showInStartList 0 #txt
 Pt0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -679,19 +686,19 @@ Pt0 f0 triggerEnabled false #txt
 Pt0 f0 callSignature PortalStart(Boolean,String,String) #txt
 Pt0 f0 persist false #txt
 Pt0 f0 startName <%=ivy.cms.co("/Processes/portalHome")%> #txt
-Pt0 f0 taskData 'TaskTriggered.DESC=<%\=ivy.cms.co("/Processes/Cases/PortalInternalProcess/PortalInternalProcessDescription")%>
-TaskTriggered.EXTYPE=0
-TaskTriggered.CATEGORY=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
-TaskTriggered.TYPE=0
-TaskTriggered.PRI=2
+Pt0 f0 taskData 'TaskTriggered.CATEGORY=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
+TaskTriggered.DESC=<%\=ivy.cms.co("/Processes/Cases/PortalInternalProcess/PortalInternalProcessDescription")%>
 TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
+TaskTriggered.EXTYPE=0
 TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/portalSettingSaved")%>
+TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
-TaskTriggered.EXROL=Everybody' #txt
-Pt0 f0 caseData 'case.name=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/portalSettingSaved")%>
-case.description=<%\=ivy.cms.co("/Processes/Cases/PortalInternalProcess/PortalInternalProcessDescription")%>
+TaskTriggered.TYPE=0' #txt
+Pt0 f0 caseData 'businessCase.attach=true
 case.category=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
-businessCase.attach=true' #txt
+case.description=<%\=ivy.cms.co("/Processes/Cases/PortalInternalProcess/PortalInternalProcessDescription")%>
+case.name=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/portalSettingSaved")%>' #txt
 Pt0 f0 showInStartList 1 #txt
 Pt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -738,12 +745,12 @@ Pt0 f58 requestEnabled true #txt
 Pt0 f58 triggerEnabled false #txt
 Pt0 f58 callSignature startPortalCase() #txt
 Pt0 f58 persist false #txt
-Pt0 f58 taskData 'TaskTriggered.ROL=Everybody
+Pt0 f58 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Pt0 f58 caseData businessCase.attach=true #txt
 Pt0 f58 showInStartList 0 #txt
 Pt0 f58 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -766,12 +773,12 @@ Pt0 f28 requestEnabled true #txt
 Pt0 f28 triggerEnabled false #txt
 Pt0 f28 callSignature DefaultApplicationHomePage() #txt
 Pt0 f28 persist false #txt
-Pt0 f28 taskData 'TaskTriggered.ROL=Everybody
+Pt0 f28 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Pt0 f28 caseData businessCase.attach=true #txt
 Pt0 f28 showInStartList 0 #txt
 Pt0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -815,12 +822,12 @@ Pt0 f76 requestEnabled true #txt
 Pt0 f76 triggerEnabled false #txt
 Pt0 f76 callSignature startPortalProcess() #txt
 Pt0 f76 persist false #txt
-Pt0 f76 taskData 'TaskTriggered.ROL=Everybody
+Pt0 f76 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Pt0 f76 caseData businessCase.attach=true #txt
 Pt0 f76 showInStartList 0 #txt
 Pt0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1448,12 +1455,12 @@ Pt0 f172 requestEnabled true #txt
 Pt0 f172 triggerEnabled false #txt
 Pt0 f172 callSignature startPortalMobileTask() #txt
 Pt0 f172 persist false #txt
-Pt0 f172 taskData 'TaskTriggered.ROL=Everybody
+Pt0 f172 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Pt0 f172 caseData businessCase.attach=true #txt
 Pt0 f172 showInStartList 0 #txt
 Pt0 f172 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1634,6 +1641,75 @@ Pt0 f96 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f96 992 426 112 44 -51 -8 #rect
 Pt0 f96 @|RichDialogIcon #fIcon
+Pt0 f103 outLink startPortalCaseDetails.ivp #txt
+Pt0 f103 type ch.ivy.addon.portal.generic.CaseWidgetData #txt
+Pt0 f103 inParamDecl '<java.lang.Long caseId> param;' #txt
+Pt0 f103 inParamTable 'out.caseId=param.caseId;
+' #txt
+Pt0 f103 actionDecl 'ch.ivy.addon.portal.generic.CaseWidgetData out;
+' #txt
+Pt0 f103 guid 16BD5D42F6B954CD #txt
+Pt0 f103 requestEnabled true #txt
+Pt0 f103 triggerEnabled false #txt
+Pt0 f103 callSignature startPortalCaseDetails(Long) #txt
+Pt0 f103 persist false #txt
+Pt0 f103 caseData businessCase.attach=true #txt
+Pt0 f103 showInStartList 1 #txt
+Pt0 f103 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>startPortalCaseDetails.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f103 @C|.responsibility Everybody #txt
+Pt0 f103 49 1129 30 30 -57 17 #rect
+Pt0 f103 @|StartRequestIcon #fIcon
+Pt0 f104 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f104 processCall 'Functional Processes/OpenPortalCaseDetails:call(ch.ivyteam.ivy.workflow.ICase)' #txt
+Pt0 f104 doCall true #txt
+Pt0 f104 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseData> param;
+' #txt
+Pt0 f104 requestMappingAction 'param.caseData=in.ICase;
+' #txt
+Pt0 f104 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
+' #txt
+Pt0 f104 responseMappingAction 'out=in;
+' #txt
+Pt0 f104 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>OpenPortalCaseDetails</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f104 360 1122 144 44 -65 -8 #rect
+Pt0 f104 @|CallSubIcon #fIcon
+Pt0 f105 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f105 617 1129 30 30 0 15 #rect
+Pt0 f105 @|EndIcon #fIcon
+Pt0 f106 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
+' #txt
+Pt0 f106 actionTable 'out=in;
+' #txt
+Pt0 f106 actionCode 'out.iCase = ivy.wf.findCase(in.caseId);' #txt
+Pt0 f106 security system #txt
+Pt0 f106 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f106 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Find Case</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f106 176 1122 112 44 -28 -8 #rect
+Pt0 f106 @|StepIcon #fIcon
+Pt0 f108 expr out #txt
+Pt0 f108 79 1144 176 1144 #arcP
+Pt0 f109 expr out #txt
+Pt0 f109 504 1144 617 1144 #arcP
+Pt0 f107 expr out #txt
+Pt0 f107 288 1144 360 1144 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1738,3 +1814,9 @@ Pt0 f172 mainOut f100 tail #connect
 Pt0 f100 head f27 mainIn #connect
 Pt0 f90 mainOut f101 tail #connect
 Pt0 f101 head f174 mainIn #connect
+Pt0 f103 mainOut f108 tail #connect
+Pt0 f108 head f106 mainIn #connect
+Pt0 f106 mainOut f107 tail #connect
+Pt0 f107 head f104 mainIn #connect
+Pt0 f104 mainOut f109 tail #connect
+Pt0 f109 head f105 mainIn #connect

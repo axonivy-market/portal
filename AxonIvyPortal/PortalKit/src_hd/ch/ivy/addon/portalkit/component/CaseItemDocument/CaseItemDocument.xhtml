@@ -10,47 +10,55 @@
 <cc:implementation>
   <c:set value="#{cc.attrs.case}" var="case" />
   <f:event listener="#{logic.initData(case)}" type="preRenderComponent" />
-
-  <div id="#{cc.clientId}" class="case-details-item #{cc.attrs.styleClass}">
+  <div id="#{cc.clientId}" class="case-details-item #{cc.attrs.styleClass} ui-g">
     <p:growl id="case-document-global-messages" />
     <h:form prependId="false">
-      <h:panelGroup layout="block" styleClass="case-details-document-add ui-g-12 ui-sm-12">
-        <p:commandLink id="add-document-command" styleClass="case-details-document-add-link"
-          rendered="#{!(case.state eq 'DONE' and data.isHideUploadDocumentForDoneCase) and caseActionBean.canWriteDocument(case)}" actionListener="#{data.setICase(case)}"
-          oncomplete="PF('document-upload-dialog-#{case.id}').show()">
-          <span class="fa fa-plus-circle case-details-document-add-link-icon" />
-          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}" />
-        </p:commandLink>
-      </h:panelGroup>
+      <div class="case-detail-section-title ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12">
+        <div class="ui-g-6 ui-xl-6 ui-lg-6 ui-md-6 ui-sm-6 u-truncate-text u-padding-0">
+          <i class="fa fa-file" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/documents')}
+        </div>
+        <h:panelGroup layout="block" styleClass="case-details-document-add ui-g-6 ui-xl-6 ui-lg-6 ui-md-6 ui-sm-6 u-padding-0">
+          <p:commandLink id="add-document-command" styleClass="case-details-document-add-link"
+            rendered="#{!(case.state eq 'DONE' and data.isHideUploadDocumentForDoneCase) and caseActionBean.canWriteDocument(case)}" actionListener="#{data.setICase(case)}"
+            oncomplete="PF('document-upload-dialog-#{case.id}').show()">
+            <span class="fa fa-plus-circle case-details-document-add-link-icon" />
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}" />
+          </p:commandLink>
+        </h:panelGroup>
+      </div>
+      <div class="Separator ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0" />
 
-      <p:dataTable id="case-details-documents" var="document" value="#{data.documents}" reflow="true" paginator="true" pageLinks="5" rows="5" paginatorPosition="top" styleClass="ui-g-12 ui-sm-12">
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}" sortBy="#{document.name}" styleClass="case-details-text-wrap">
-          <h:panelGroup layout="block" rendered="#{document ne null}" styleClass="case-document-name" >
-            <p:commandLink ajax="false" id="download" styleClass="download-command js-download-command  case-document-name-text case-details-text-wrap">
-              <p:fileDownload value="#{logic.downloadDocument(document)}" />
-              <span class="fa fa-file-pdf-o case-details-document-download-icon" />
-              <h:outputText value="#{document.name}" styleClass="js-document-name" />
-            </p:commandLink>
-            <p:commandLink id="delete-file" actionListener="#{data.setDocument(document)}"
-              rendered="#{!(case.state eq 'DONE' and data.isHideUploadDocumentForDoneCase) and caseActionBean.canWriteDocument(case)}" styleClass="fa fa-times Fright case-document-download"
-              oncomplete="PF('document-deletion-dialog-#{case.id}').show()">
-              <p:tooltip for="delete-file" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/deleteFile')} #{document.name}" />
-            </p:commandLink>
-          </h:panelGroup>
-        </p:column>
+      <div class="ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12">
+        <p:dataTable id="case-details-documents" var="document" value="#{data.documents}" reflow="true" paginator="true" pageLinks="5" rows="7" paginatorPosition="top">
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}" sortBy="#{document.name}" styleClass="u-truncate-text">
+            <h:panelGroup layout="block" rendered="#{document ne null}" styleClass="case-document-name">
+              <p:commandLink ajax="false" id="download" styleClass="download-command js-download-command  case-document-name-text u-truncate-text">
+                <p:fileDownload value="#{logic.downloadDocument(document)}" />
+                <span class="fa fa-file-pdf-o case-details-document-download-icon" />
+                <h:outputText value="#{document.name}" styleClass="js-document-name" />
+              </p:commandLink>
+              <p:commandLink id="delete-file" actionListener="#{data.setDocument(document)}"
+                rendered="#{!(case.state eq 'DONE' and data.isHideUploadDocumentForDoneCase) and caseActionBean.canWriteDocument(case)}" styleClass="fa fa-times Fright case-document-download"
+                oncomplete="PF('document-deletion-dialog-#{case.id}').show()">
+                <p:tooltip for="delete-file" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/deleteFile')} #{document.name}" />
+              </p:commandLink>
+            </h:panelGroup>
+          </p:column>
 
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/date')}" styleClass="case-history-date case-details-text-wrap" sortBy="#{document.creation.timestamp}">
-          <h:outputText value="#{document.creation.timestamp}">
-            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
-          </h:outputText>
-        </p:column>
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/date')}" styleClass="case-history-date u-truncate-text" sortBy="#{document.creation.timestamp}">
+            <h:outputText value="#{document.creation.timestamp}">
+              <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+            </h:outputText>
+          </p:column>
 
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/lastEdit')}" styleClass="case-document-last-date case-details-text-wrap" sortBy="#{document.lastModification.timestamp}">
-          <h:outputText value="#{document.lastModification.timestamp}">
-            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
-          </h:outputText>
-        </p:column>
-      </p:dataTable>
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/lastEdit')}" styleClass="case-document-last-date u-truncate-text"
+            sortBy="#{document.lastModification.timestamp}">
+            <h:outputText value="#{document.lastModification.timestamp}">
+              <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+            </h:outputText>
+          </p:column>
+        </p:dataTable>
+      </div>
     </h:form>
   </div>
 

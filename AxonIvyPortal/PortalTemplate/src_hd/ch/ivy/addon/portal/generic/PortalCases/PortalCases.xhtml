@@ -47,7 +47,7 @@
 			</ui:define>
 
 			<ui:define name="caseHeader">
-				<div class="case-header-name-desc-cell">
+				<div class="case-header-name-desc-cell u-truncate-text">
 					<ic:ch.ivy.addon.portalkit.component.cases.column.CaseName caseNameId="case-header-name-cell" caseDescriptionId="description-cell" case="#{case}" dataModel="#{caseView.getDataModel()}"
 						initialActive="#{case.id eq caseView.getAutoSelectCaseId().id()}" />
 				</div>

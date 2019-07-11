@@ -194,4 +194,16 @@
 .TexAlLeft { 
 	text-align: left !important;
 }
+
+.TexAlCenter { 
+	text-align: center !important;
+}
+
+.MarTop5 {
+  margin-top: 5px !important;
+}
+
+.DispBlock {
+  display: block !important;
+}
 /* For Serenity theme - End */

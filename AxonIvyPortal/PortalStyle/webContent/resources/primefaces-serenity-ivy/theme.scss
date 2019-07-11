@@ -731,6 +731,25 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
  	      background-color: rgba(0,0,0,0.05);
  	    }
  	}
+ 	
+ 	.case-description-form .ui-inplace-display.ui-state-highlight {
+ 		background-color: $textboxBgColor;
+ 		color: $primaryTextColor;
+ 		border: 1px solid $textboxBgColor;
+ 		border-radius: $borderRadius;
+ 	}
 }
 
+.case-detail-name-inplace-edit {
+	.ui-inplace-display.ui-state-highlight {
+ 		background-color: $textboxBgColor;
+ 		color: $primaryTextColor;
+ 		padding: 3px;
+ 		border: 1px solid $textboxBgColor;
+ 		border-radius: $borderRadius;
+ 	}
+}
 
+.process-history-list .ui-widget-content {
+	border: none !important;
+}

@@ -63,10 +63,9 @@
 			scrollHeight="#{cc.attrs.scrollHeight}" chunkSize="#{cc.attrs.chunkSize}" lazy="true" mode="inline"
 			rowIndexVar="rowIndex" styleClass="js-case-list" buffer="70" widgetVar="process-history-scroller">
 			<ic:ch.ivy.addon.portalkit.component.CaseItem case="#{case}" id="case-item" enableCaseAction="false"
-				itemStyleClass="#{rowIndex % 2 == 0 ? 'case-even-row' : 'case-odd-row'}"
-				expandCallback="caseWidget.setupCaseBody();">
+				itemStyleClass="#{rowIndex % 2 == 0 ? 'case-even-row' : 'case-odd-row'}">
 				<f:facet name="caseHeader">
-					<h:panelGroup class="case-header-name-desc-cell">
+					<h:panelGroup class="case-header-name-desc-cell u-truncate-text">
 						<ic:ch.ivy.addon.portalkit.component.cases.column.CaseName case="#{case}" 
 							dataModel="#{processHistoryBean.dataModel}" 
 							initialActive="#{case.id eq caseView.getAutoSelectCaseId().id()}" />
@@ -81,9 +80,6 @@
 						styleClass="process-history process-history-list process-history-list-cell-default process-history-list-width-120" />
 					<ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="#{case}" dataModel="#{processHistoryBean.dataModel}"
 						stateStyleClass="process-history process-history-list process-history-list-cell-default" />
-				</f:facet>
-				<f:facet name="caseBody">
-					<ic:ch.ivy.addon.portalkit.component.CaseItemDetails case="#{case}" isShowItemDetailsHeader="true" />
 				</f:facet>
 			</ic:ch.ivy.addon.portalkit.component.CaseItem>
 		</p:dataScroller>

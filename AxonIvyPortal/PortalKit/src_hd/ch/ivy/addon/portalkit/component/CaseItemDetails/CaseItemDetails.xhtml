@@ -4,89 +4,122 @@
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="case" type="ch.ivyteam.ivy.workflow.ICase" required="true" />
-  <cc:attribute name="isShowItemDetailsHeader" default="true" />
-  <cc:attribute name="isShowItemDetailRelated" default="true" />
-  <cc:attribute name="isShowItemDetailsNotes" default="true" />
-  <cc:attribute name="isShowItemDetailDocuments" default="true" />
+  <cc:attribute name="showItemDetailsHeader" default="true" />
+  <cc:attribute name="showItemDetailRelated" default="true" />
+  <cc:attribute name="showItemDetailsNotes" default="true" />
+  <cc:attribute name="showItemDetailDocuments" default="true" />
+  <cc:attribute name="showItemDetailAdditional" default="true" />
+  <cc:attribute name="additionalStyleClass" />
+  <cc:attribute name="showCustomPanel" default="false" />
+  <cc:attribute name="customPanelTitleHeader" />
+  <cc:attribute name="customPanelStyleClass" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="case" value="#{cc.attrs.case}" />
   <div class="ui-g">
-    <ui:insert name="caseItemDetailHeader">
-      <h:panelGroup styleClass="ui-g-12 ui-sm-12" rendered="#{cc.attrs.isShowItemDetailsHeader}">
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}: #{case.name}" styleClass="case-detail-header" />
-        <div class="Separator" />
-      </h:panelGroup>
-    </ui:insert>
 
-    <ui:insert name="caseItemDetailBody">
-      <div class="case-detail-body">
-        <ui:insert name="caseItemDetailBodyLeft">
+    <h:panelGroup styleClass="ui-g-12 ui-sm-12" rendered="#{cc.attrs.showItemDetailsHeader}">
+      <h:form id="case-detail-name-form" styleClass="case-detail-header">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}: " styleClass="case-detail-name-prefix" />
+        <p:inplace id="case-name-edit-inplace" editor="true" disabled="#{!caseActionBean.canChangeName(case)}" saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+          cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" widgetVar="case-detail-name-edit-inplace"
+          label="#{empty case.getName() ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CasesNameIsNot') : case.name}" styleClass="case-detail-name-inplace-edit">
+          <p:inputText id="case-detail-name-input" value="#{case.name}" maxlength="200" styleClass="case-detail-name-input" onkeypress="if(event.keyCode == 13) {PF('case-name-edit-inplace').save()}" />
+          <p:ajax event="save" process="case-name-edit-inplace" />
+          <f:passThroughAttribute name="onclick" value="#{caseActionBean.canChangeName(case) ? event.stopPropagation():''}" />
+        </p:inplace>
+      </h:form>
+      <div class="Separator" />
+    </h:panelGroup>
+
+    <div class="case-detail-body ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0">
+      <div class="ui-g">
+        <!-- General & description box -->
+        <div class="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
+          <div class="card card-w-title case-detail-card">
+            <div class="case-detail-section-title u-truncate-text ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0">
+              <i class="fa fa-user-circle" /> #{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseDetail/DataDescription')}
+            </div>
+            <div class="Separator ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0" />
+<!--             <div class="ui-g"> -->
+              <div class="ui-g-12 ui-sm-12">
+                <ic:ch.ivy.addon.portalkit.component.CaseItemGeneralInformation id="general-information" case="#{case}" />
+              </div>
+              <div class="ui-g-12 ui-sm-12">
+                <ic:ch.ivy.addon.portalkit.component.CaseItemDescription id="description" case="#{case}" descriptionComponentToUpdate=":#{p:component('description-cell')}" />
+              </div>
+<!--             </div> -->
+          </div>
+        </div>
+
+        <!-- Notes box -->
+        <h:panelGroup rendered="#{cc.attrs.showItemDetailsNotes}">
           <div class="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
-            <div class="ui-g">
-              <ui:insert name="caseItemDetailGeneral">
-                <div class="ui-g-12 ui-sm-12">
-                  <div class="card card-w-title  case-detail-card">
-                    <div class="case-detail-section-title">
-                      <i class="fa fa-user-circle" /> #{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseDetail/DataDescription')}
-                    </div>
-                    <div class="Separator" />
-                    <div class="ui-g">
-                      <div class="ui-g-12 ui-sm-12">
-                        <ic:ch.ivy.addon.portalkit.component.CaseItemGeneralInformation id="general-information" case="#{case}" />
-                      </div>
-                      <div class="ui-g-12 ui-sm-12">
-                        <ic:ch.ivy.addon.portalkit.component.CaseItemDescription id="description" case="#{case}" descriptionComponentToUpdate=":#{p:component('description-cell')}" />
-                      </div>
-                    </div>
-                  </div>
+            <div class="card card-w-title case-detail-card">
+              <ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="history" case="#{case}" />
+            </div>
+          </div>
+        </h:panelGroup>
+
+        <div class="case-detail-second-content-container ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12">
+          <div class="case-detail-second-content-container ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
+            <!-- Related running box -->
+            <h:panelGroup rendered="#{cc.attrs.showItemDetailRelated}">
+              <div class="ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12">
+                <div class="card card-w-title case-detail-card case-item-details-related">
+                  <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="related-tasks" case="#{case}" />
                 </div>
-              </ui:insert>
+              </div>
+            </h:panelGroup>
 
-              <ui:insert name="caseItemDetailRelated">
-                <h:panelGroup styleClass="ui-g-12 ui-sm-12" rendered="#{cc.attrs.isShowItemDetailRelated}">
-                  <div class="card card-w-title case-related-container case-detail-card">
-                    <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="related-tasks" case="#{case}" />
-                  </div>
+            <!-- Additional box -->
+            <h:panelGroup rendered="#{cc.attrs.showItemDetailAdditional}">
+              <div class="ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12">
+                <h:panelGroup styleClass="card card-w-title case-detail-card #{not cc.attrs.showItemDetailAdditional ? 'case-item-details-related':''} #{cc.attrs.additionalStyleClass}">
+                  <h:panelGroup rendered="#{cc.attrs.showItemDetailAdditional}" class="grid-item-header">
+                    <i class="fa fa-info-circle" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/additionalCaseDetailsTitle')}
+                      </h:panelGroup>
+                  <h:panelGroup layout="block" rendered="#{not cc.attrs.showItemDetailAdditional}" styleClass="TexAlCenter">
+                    <p:link id="show-additional-case-details-link" styleClass="additional-case-details-link" target="_blank" href="#{caseWidgetBean.getAdditionalCaseDetailsPageUri(case)}">
+                      <i class="fa fa-external-link" />
+                      <h:outputText value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showAdditionalPage')}" />
+                    </p:link>
+                  </h:panelGroup>
+                  <div class="Separator" />
+                  <cc:renderFacet name="caseItemDetailsAddition" />
                 </h:panelGroup>
-              </ui:insert>
-            </div>
+              </div>
+            </h:panelGroup>
           </div>
-        </ui:insert>
 
-        <ui:insert name="caseItemDetailBodyRight">
-          <div class="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
-            <div class="ui-g">
-              <ui:insert name="caseItemDetailNotes">
-                <h:panelGroup styleClass="ui-g-12 ui-sm-12" rendered="#{cc.attrs.isShowItemDetailsNotes}">
-                  <div class="card card-w-title case-detail-card">
-                    <div class="case-detail-section-title">
-                      <i class="fa fa-history" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/taskNotes')}
-                    </div>
-                    <div class="Separator case-note-separator" />
-                    <ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="history" case="#{case}" />
-                  </div>
-                </h:panelGroup>
-              </ui:insert>
+          <div class="case-detail-second-content-container ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
+            <!-- Documents box -->
+            <h:panelGroup rendered="#{cc.attrs.showItemDetailDocuments}">
+              <div class="ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12">
+                <div class="card card-w-title case-detail-card">
+                  <ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}" componentToUpdate=":#{p:component('history')}" />
+                </div>
+              </div>
+            </h:panelGroup>
 
-              <ui:insert name="caseItemDetailDocuments">
-                <h:panelGroup styleClass="ui-g-12 ui-sm-12" rendered="#{cc.attrs.isShowItemDetailDocuments}">
-                  <div class="card card-w-title case-detail-card">
-                    <div class="case-detail-section-title">
-                      <i class="fa fa-file" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/documents')}
-                    </div>
-                    <div class="Separator case-note-separator" />
-                    <ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}" componentToUpdate=":#{p:component('history')}" />
+            <!-- Custom section box -->
+            <h:panelGroup rendered="#{cc.attrs.showCustomPanel}">
+              <div class="ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12">
+                <div class="card card-w-title case-detail-card #{cc.attrs.customPanelStyleClass}">
+                  <div class="case-detail-section-title u-truncate-text">
+                    <h:outputText value="#{empty cc.attrs.customPanelTitleHeader ? 'Custom Panel Title Header':cc.attrs.customPanelTitleHeader}" />
                   </div>
-                </h:panelGroup>
-              </ui:insert>
-            </div>
+                  <div class="Separator" />
+
+                  <cc:renderFacet name="caseItemDetailsCustomBody" />
+                </div>
+              </div>
+            </h:panelGroup>
           </div>
-        </ui:insert>
+        </div>
       </div>
-    </ui:insert>
-
+    </div>
   </div>
 </cc:implementation>
 </html>
