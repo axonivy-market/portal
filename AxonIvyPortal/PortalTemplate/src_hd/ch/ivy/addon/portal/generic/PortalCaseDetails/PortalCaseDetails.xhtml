@@ -49,22 +49,22 @@
         </f:facet>
 
         <h:outputText value="Company name (CustomVarCharField1)" />
-        <h:outputText id="custom-varchar-field-1" value="#{data.ivyCase.customFields().stringField('CustomVarCharField1').getOrNull()}" />
+        <h:outputText id="custom-varchar-field-1" value="#{data.caseInfo.customFields().stringField('CustomVarCharField1').getOrNull()}" />
 
         <h:outputText value="Request Type (CustomVarCharField2)" />
-        <h:outputText value="#{data.ivyCase.customFields().stringField('CustomVarCharField2').getOrNull()}" />
+        <h:outputText value="#{data.caseInfo.customFields().stringField('CustomVarCharField2').getOrNull()}" />
 
         <h:outputText value="Min number (CustomDecimalField1)" />
-        <h:outputText value="#{data.ivyCase.customFields().numberField('CustomDecimalField1').getOrNull()}" />
+        <h:outputText value="#{data.caseInfo.customFields().numberField('CustomDecimalField1').getOrNull()}" />
 
         <h:outputText value="Max number (CustomDecimalField1)" />
-        <h:outputText value="#{data.ivyCase.customFields().numberField('CustomDecimalField2').getOrNull()}" />
+        <h:outputText value="#{data.caseInfo.customFields().numberField('CustomDecimalField2').getOrNull()}" />
 
         <h:outputText value="Start date (CustomTimestampField1)" />
-        <h:outputText value="#{data.ivyCase.customFields().timestampField('CustomTimestamplField1').getOrNull()}" />
+        <h:outputText value="#{data.caseInfo.customFields().timestampField('CustomTimestamplField1').getOrNull()}" />
 
         <h:outputText value="Expiry date(CustomTimestampField2)" />
-        <h:outputText value="#{data.ivyCase.customFields().timestampField('CustomTimestamplField2').getOrNull()}" />
+        <h:outputText value="#{data.caseInfo.customFields().timestampField('CustomTimestamplField2').getOrNull()}" />
       </ui:define>
 
       <!-- Override content of Custom panel for Case Detail -->
