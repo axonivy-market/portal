@@ -66,7 +66,8 @@ var MainMenu = {
       ["TaskAnalysis.xhtml", ["Statistics", "Statistiken", "Statistiques", "Estadísticas"]],
       ["TaskWidget.xhtml", ["Tasks", "Aufgaben", "Tâches", "Tareas"]],
       ["CaseWidget.xhtml", ["Cases", "Vorgänge", "Dossiers", "Casos"]],
-      ["PortalCaseItemDetails.xhtml", ["Cases", "Vorgänge", "Dossiers", "Casos"]]],
+      ["PortalCaseDetails.xhtml", ["Cases", "Vorgänge", "Dossiers", "Casos"]],
+      ["CaseItemDetails.xhtml", ["Cases", "Vorgänge", "Dossiers", "Casos"]]],
 
   init : function(responsiveToolkit) {
     this.highlightFirstLevelMenu();

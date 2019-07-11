@@ -45,7 +45,7 @@
 		</ui:define>
 
 		<ui:define name="caseHeader">
-            <div class="case-header-name-desc-cell">
+            <div class="case-header-name-desc-cell u-truncate-text">
 				<ic:ch.ivy.addon.portalkit.component.cases.column.CaseName case="#{case}" caseNameId="case-header-name-cell" caseDescriptionId="description-cell"
 				  initialActive="#{case.id eq caseView.getAutoSelectCaseId().id() and case.server.id eq caseView.getAutoSelectCaseId().serverId()}" 
 				  dataModel="#{caseView.getDataModel()}" />
@@ -66,14 +66,6 @@
 				rendered="#{caseView.dataModel.isSelectedColumn('customTimestampField1')}" >
 				<f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
 			</h:outputText>
-		</ui:define>
-
-		<ui:define name="caseBody">
-			<ic:ch.ivy.addon.portalkit.component.CaseItemDetails case="#{case}" isShowItemDetailsHeader="false" />
-			<!-- Add new panel -->
-			<div class="task-details-item custom-task-details-panel">
-				<p>Custom panel</p>
-			</div>
 		</ui:define>
 
 		<ui:define name="caseFilter">

@@ -159,10 +159,8 @@
           <ic:ch.ivy.addon.portalkit.component.CaseItem case="#{case}" id="case-item"
             initialActive="#{case.id eq cc.attrs.autoSelectCaseId.id()}"
             onDestroyComplete="PF('destroy-case-dialog').show()" rowIndex="#{rowIndex}"
-            expandCallback="caseWidget.setUpScrollbar();caseWidget.setupHeader();"
             itemStyleClass="#{rowIndex % 2 == 0 ? 'case-even-row' : 'case-odd-row'}">
             <cc:insertFacet name="caseHeader" />
-            <cc:insertFacet name="caseBody" />
           </ic:ch.ivy.addon.portalkit.component.CaseItem>
         </p:dataScroller>
         <div jsf:rendered="#{data.dataModel.rowCount eq 0}" class="case-widget-empty-message">

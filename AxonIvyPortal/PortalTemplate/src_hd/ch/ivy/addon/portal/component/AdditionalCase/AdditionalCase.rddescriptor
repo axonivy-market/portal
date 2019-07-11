@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<richDialogDescriptor>
+    <autoScreenshot>true</autoScreenshot>
+    <method>
+        <name>initData</name>
+        <description></description>
+        <inputParameter>
+            <name>caseData</name>
+            <description></description>
+            <parameterType>ch.ivyteam.ivy.workflow.ICase</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
+    </method>
+    <startMethod>
+        <name>start</name>
+        <description>Default dialog start method.</description>
+    </startMethod>
+    <property>
+        <name>guid</name>
+        <value>16BCF9DE572814E4</value>
+        <readOnly>true</readOnly>
+    </property>
+    <property>
+        <name>version</name>
+        <value>1</value>
+        <readOnly>true</readOnly>
+    </property>
+    <property>
+        <name>viewTechnology</name>
+        <value>JSF</value>
+        <readOnly>true</readOnly>
+    </property>
+</richDialogDescriptor>

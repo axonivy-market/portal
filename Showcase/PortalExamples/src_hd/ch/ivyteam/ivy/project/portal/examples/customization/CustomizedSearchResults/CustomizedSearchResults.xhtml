@@ -81,7 +81,7 @@
 		</ui:define>
 		
 		<ui:define name="caseHeader">
-            <div class="case-header-name-desc-cell">
+            <div class="case-header-name-desc-cell u-truncate-text">
 				<ic:ch.ivy.addon.portalkit.component.cases.column.CaseName case="#{case}" caseNameId="case-header-name-cell" caseDescriptionId="description-cell"
 				  initialActive="#{case.id eq caseView.getAutoSelectCaseId().id() and case.server.id eq caseView.getAutoSelectCaseId().serverId()}" 
 				  dataModel="#{dataModel.caseDataModel}" />

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:param name="caseInfo" value="#{data.caseInfo}" />
+    <ui:define name="pageTitle">#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseDetail/CaseDetailTitle')}</ui:define>
+    <ui:define name="simplePageContent">
+
+      <ic:ch.ivy.addon.portalkit.component.CaseItemDetails id="case-item-details" case="#{caseInfo}"
+        showItemDetailsHeader="#{showItemDetailsHeader}"
+        showItemDetailsNotes="#{showItemDetailsNotes}"
+        showItemDetailDocuments="#{showItemDetailDocuments}"
+        showItemDetailRelated="#{showItemDetailRelated}"
+        showItemDetailAdditional="#{showItemDetailAdditional}"
+        additionalStyleClass="#{additionalStyleClass}"
+        showCustomPanel="#{showCustomPanel}"
+        customPanelTitleHeader="#{customPanelTitleHeader}"
+        customPanelStyleClass="#{customPanelStyleClass}">
+
+        <f:facet name="caseItemDetailsAddition">
+          <ui:fragment rendered="#{not overrideAdditionCase}">
+            <div class="ui-g-12 ui-xl-12 ui-md-12 ui-sm-12 show-addition-case-container">
+              <ic:ch.ivy.addon.portal.component.AdditionalCase case="#{caseInfo}" />
+            </div>
+          </ui:fragment>
+
+          <ui:fragment rendered="#{overrideAdditionCase}">
+            <ui:insert name="caseItemDetailsAddition" />
+          </ui:fragment>
+        </f:facet>
+
+        <f:facet name="caseItemDetailsCustomBody">
+          <ui:fragment rendered="#{not overrideCustomBody}">
+            <p>Custom panel for case detail</p>
+          </ui:fragment>
+
+          <ui:fragment rendered="#{overrideCustomBody}">
+            <ui:insert name="caseItemDetailsCustomBody" />
+          </ui:fragment>
+        </f:facet>
+
+      </ic:ch.ivy.addon.portalkit.component.CaseItemDetails>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

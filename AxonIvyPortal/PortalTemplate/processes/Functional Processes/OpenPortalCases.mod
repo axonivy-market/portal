@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Fri Sep 16 21:45:05 ICT 2016]
-1540379C4B7261E4 3.18 #module
+1540379C4B7261E4 3.26 #module
 >Proto >Proto Collection #zClass
 Ot0 OpenPortalCases Big #zClass
 Ot0 B #cInfo
@@ -45,7 +44,7 @@ Ot0 f3 targetDisplay TOP #txt
 Ot0 f3 richDialogId ch.ivy.addon.portal.generic.PortalCases #txt
 Ot0 f3 startMethod useViewWithStateMenu(ch.ivy.addon.portal.generic.view.CaseView,String) #txt
 Ot0 f3 type ch.ivy.addon.portal.generic.OpenPortalCasesData #txt
-Ot0 f3 requestActionDecl '<ch.ivy.addon.portal.generic.view.CaseView caseView, String menuState> param;' #txt
+Ot0 f3 requestActionDecl '<ch.ivy.addon.portal.generic.view.CaseView caseView,String menuState> param;' #txt
 Ot0 f3 requestMappingAction 'param.caseView=in.view;
 param.menuState=ch.ivy.addon.portalkit.util.MenuUtils.getMenuState();
 ' #txt

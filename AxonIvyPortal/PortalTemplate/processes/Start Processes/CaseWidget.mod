@@ -19,13 +19,6 @@ Cs0 @PushWFArc f4 '' #zField
 Cs0 @GridStep f2 '' #zField
 Cs0 @PushWFArc f3 '' #zField
 Cs0 @PushWFArc f5 '' #zField
-Cs0 @GridStep f14 '' #zField
-Cs0 @EndTask f15 '' #zField
-Cs0 @StartRequest f17 '' #zField
-Cs0 @PushWFArc f20 '' #zField
-Cs0 @RichDialog f16 '' #zField
-Cs0 @PushWFArc f18 '' #zField
-Cs0 @PushWFArc f19 '' #zField
 >Proto Cs0 Cs0 CaseWidget #zField
 Cs0 f0 outLink showAdditionalCaseDetails.ivp #txt
 Cs0 f0 type ch.ivy.addon.portal.generic.CaseWidgetData #txt
@@ -110,76 +103,6 @@ Cs0 f3 expr out #txt
 Cs0 f3 111 64 200 64 #arcP
 Cs0 f5 expr out #txt
 Cs0 f5 312 64 416 64 #arcP
-Cs0 f14 actionDecl 'ch.ivy.addon.portal.generic.CaseWidgetData out;
-' #txt
-Cs0 f14 actionTable 'out=in;
-' #txt
-Cs0 f14 actionCode 'out.iCase = ivy.wf.findCase(in.caseId);
-
-ivy.log.info(out.iCase.getName());' #txt
-Cs0 f14 security system #txt
-Cs0 f14 type ch.ivy.addon.portal.generic.CaseWidgetData #txt
-Cs0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Find case by id</name>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f14 208 178 112 44 -41 -8 #rect
-Cs0 f14 @|StepIcon #fIcon
-Cs0 f15 type ch.ivy.addon.portal.generic.CaseWidgetData #txt
-Cs0 f15 673 185 30 30 0 15 #rect
-Cs0 f15 @|EndIcon #fIcon
-Cs0 f17 outLink showCaseItemDetails.ivp #txt
-Cs0 f17 type ch.ivy.addon.portal.generic.CaseWidgetData #txt
-Cs0 f17 inParamDecl '<java.lang.Long caseId> param;' #txt
-Cs0 f17 inParamTable 'out.caseId=param.caseId;
-' #txt
-Cs0 f17 actionDecl 'ch.ivy.addon.portal.generic.CaseWidgetData out;
-' #txt
-Cs0 f17 guid 16BBBA01EBD560A2 #txt
-Cs0 f17 requestEnabled true #txt
-Cs0 f17 triggerEnabled false #txt
-Cs0 f17 callSignature showCaseItemDetails(Long) #txt
-Cs0 f17 persist false #txt
-Cs0 f17 caseData businessCase.attach=true #txt
-Cs0 f17 showInStartList 1 #txt
-Cs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>showCaseItemDetails.ivp</name>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f17 @C|.responsibility Everybody #txt
-Cs0 f17 81 185 30 30 -74 18 #rect
-Cs0 f17 @|StartRequestIcon #fIcon
-Cs0 f20 expr out #txt
-Cs0 f20 111 200 208 200 #arcP
-Cs0 f16 richDialogId ch.ivy.addon.portal.generic.PortalCaseItemDetails #txt
-Cs0 f16 startMethod start(ch.ivyteam.ivy.workflow.ICase,String) #txt
-Cs0 f16 type ch.ivy.addon.portal.generic.CaseWidgetData #txt
-Cs0 f16 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseInfo,String menuState> param;' #txt
-Cs0 f16 requestMappingAction 'param.caseInfo=in.iCase;
-' #txt
-Cs0 f16 responseActionDecl 'ch.ivy.addon.portal.generic.CaseWidgetData out;
-' #txt
-Cs0 f16 responseMappingAction 'out=in;
-' #txt
-Cs0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Show Case Item Details</name>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f16 408 178 144 44 -66 -8 #rect
-Cs0 f16 @|RichDialogIcon #fIcon
-Cs0 f18 expr out #txt
-Cs0 f18 320 200 408 200 #arcP
-Cs0 f19 expr out #txt
-Cs0 f19 552 200 673 200 #arcP
 >Proto Cs0 .type ch.ivy.addon.portal.generic.CaseWidgetData #txt
 >Proto Cs0 .processKind NORMAL #txt
 >Proto Cs0 0 0 32 24 18 0 #rect
@@ -190,9 +113,3 @@ Cs0 f0 mainOut f3 tail #connect
 Cs0 f3 head f2 mainIn #connect
 Cs0 f2 mainOut f5 tail #connect
 Cs0 f5 head f6 mainIn #connect
-Cs0 f17 mainOut f20 tail #connect
-Cs0 f20 head f14 mainIn #connect
-Cs0 f14 mainOut f18 tail #connect
-Cs0 f18 head f16 mainIn #connect
-Cs0 f16 mainOut f19 tail #connect
-Cs0 f19 head f15 mainIn #connect
