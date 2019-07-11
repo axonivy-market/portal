@@ -74,22 +74,16 @@
                     </h:panelGroup>
                   </h:panelGroup>
 
-                  <ic:ch.ivy.addon.portalkit.component.CaseItem caseItem="#{case}" id="case-item"
-                    initialActive="#{true}"
-                    itemStyleClass="case-even-row"
-                    alwaysShowDetails="true"
-                    canDestroyCase="false">
+                  <ic:ch.ivy.addon.portalkit.component.CaseItem caseItem="#{case}" id="case-item" initialActive="#{true}" itemStyleClass="case-even-row" alwaysShowDetails="true" canDestroyCase="false">
 
                     <!-- CASE HEADER -->
                     <f:facet name="caseHeader">
                       <ic:ch.ivy.addon.portalkit.component.CaseHeader id="case-header" case="#{case}" />
                     </f:facet>
-
-                    <!-- CASE BODY -->
-                    <f:facet name="caseBody">
-                      <ic:ch.ivy.addon.portalkit.component.CaseItemDetails case="#{case}" isShowItemDetailsHeader="false" />
-                    </f:facet>
                   </ic:ch.ivy.addon.portalkit.component.CaseItem>
+
+                  <!-- CASE DETAILS -->
+                  <ic:ch.ivy.addon.portalkit.component.CaseItemDetails case="#{case}" isShowItemDetailsHeader="false" />
                 </div>
               </h:form>
             </ui:insert>

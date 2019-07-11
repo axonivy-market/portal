@@ -36,7 +36,7 @@
               </ui:fragment>
 
               <ui:fragment rendered="#{not useOverrideHeader}">
-                <div class="case-header-name-desc-cell">
+                <div class="case-header-name-desc-cell u-truncate-text">
                   <ic:ch.ivy.addon.portalkit.component.cases.column.CaseName caseNameId="case-header-name-cell"
                     caseDescriptionId="description-cell" case="#{case}" dataModel="#{caseView.getDataModel()}"
                     id="case-name-component"
@@ -57,15 +57,7 @@
                   dataModel="#{caseView.getDataModel()}" />
               </ui:fragment>
             </f:facet>
-            <f:facet name="caseBody">
-              <ui:fragment rendered="#{useOverrideBody}">
-                <ui:insert name="caseBody" />
-              </ui:fragment>
 
-              <ui:fragment rendered="#{not useOverrideBody}">
-                <ic:ch.ivy.addon.portalkit.component.CaseItemDetails case="#{case}" isShowItemDetailsHeader="false" />
-              </ui:fragment>
-            </f:facet>
             <f:facet name="caseFilter">
               <ui:fragment rendered="#{useOverrideFilter}">
                 <ui:insert name="caseFilter" />

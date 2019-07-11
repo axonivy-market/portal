@@ -9,24 +9,34 @@
 <cc:implementation>
   <c:set var="case" value="#{cc.attrs.case}" />
   <f:event listener="#{logic.initData(case)}" type="preRenderComponent" />
-  <div id="#{cc.clientId}" class="case-details-item #{cc.attrs.styleClass}">
-    <h:panelGroup layout="block" styleClass="case-details-note-add ui-g-12 ui-sm-12">
-      <p:commandLink id="add-note-command" styleClass="case-details-document-add-link" rendered="#{caseTaskNoteHistoryBean.showAddNote}" onclick="PF('add-note-dialog-#{case.id}').show()"
-        actionListener="#{data.setICase(case)}">
-        <span class="fa fa-plus-circle case-details-note-add-link-icon" />
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}" />
-      </p:commandLink>
-      <p:link id="show-more-note-link" styleClass="case-details-document-add-link note-show-more-link" target="_blank" href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case)}"
-        rendered="#{caseTaskNoteHistoryBean.showMoreNote}">
-        <span class="fa fa-external-link-square note-show-more-link-icon" />
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}" />
-      </p:link>
-    </h:panelGroup>
+  <div class="case-details-item #{cc.attrs.styleClass} ui-g">
 
-    <div class="ui-g-12">
-      <p:dataTable value="#{data.histories}" var="history" id="case-histories" reflow="true" paginator="true" rows="5" paginatorPosition="top" pageLinks="5"
+    <div class="case-detail-section-title ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12">
+      <div class="ui-g-4 ui-xl-4 ui-lg-4 ui-md-4 ui-sm-4 u-truncate-text u-padding-0">
+        <i class="fa fa-history" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/taskNotes')}
+      </div>
+      <div class="case-history-button-container ui-g-8 ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 u-padding-0">
+        <h:panelGroup layout="block" styleClass="case-details-note-add">
+          <p:link id="show-more-note-link" styleClass="case-details-document-add-link note-show-more-link" target="_blank" href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case)}"
+            rendered="#{caseTaskNoteHistoryBean.showMoreNote}">
+            <span class="fa fa-external-link-square note-show-more-link-icon" />
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}" />
+          </p:link>
+          <p:commandLink id="add-note-command" styleClass="case-details-document-add-link" rendered="#{caseTaskNoteHistoryBean.showAddNote}" onclick="PF('add-note-dialog-#{case.id}').show()"
+            actionListener="#{data.setICase(case)}">
+            <span class="fa fa-plus-circle case-details-note-add-link-icon" />
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}" />
+          </p:commandLink>
+        </h:panelGroup>
+      </div>
+    </div>
+
+    <div class="Separator" />
+
+    <div class="ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12">
+      <p:dataTable value="#{data.histories}" var="history" id="case-histories" reflow="true" paginator="true" rows="7" paginatorPosition="top" pageLinks="5"
         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" sortBy="#{history.involvedFullname}" styleClass="case-history-name case-details-text-wrap">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" sortBy="#{history.involvedFullname}" styleClass="case-history-name u-truncate-text">
           <h:outputText value="#{empty history.involvedFullname ? history.involvedUsername:history.involvedFullname}" styleClass="history-fullname">
             <i class="fa fa-check-circle" jsf:id="done-task" jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'DONE'}" />
             <i class="fa fa-exclamation-circle" jsf:id="destroyed-task" jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'DESTROYED'}" />
@@ -36,18 +46,18 @@
           </h:outputText>
         </p:column>
 
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}" styleClass="case-details-text-wrap">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}" styleClass="u-truncate-text">
           <h:outputText>
             <p:link id="show-task-note-link" value="#{empty history.content ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noTaskName') : history.content}" target="_blank"
               href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case)}" rendered="#{history.type eq 'TASK'}" styleClass="task-note-link" />
             <h:panelGroup layout="block" rendered="#{history.type eq 'NOTE'}">
-              <p:commandLink id="note-content" value="#{history.content}" rendered="#{history.type eq 'NOTE'}" oncomplete="PF('view-note-dialog').show()"
-                actionListener="#{data.setFullNote(history.content)}" update="@widgetVar(view-note-dialog)" />
+              <p:commandLink value="#{history.content}" rendered="#{history.type eq 'NOTE'}" oncomplete="PF('view-note-dialog').show()" actionListener="#{data.setFullNote(history.content)}"
+                update="@widgetVar(view-note-dialog)" />
             </h:panelGroup>
           </h:outputText>
         </p:column>
 
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/date')}" sortBy="#{history.timestamp}" styleClass="case-history-date case-details-text-wrap">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/date')}" sortBy="#{history.timestamp}" styleClass="case-history-date u-truncate-text">
           <h:outputText value="#{history.timestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
           </h:outputText>

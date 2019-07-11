@@ -7,6 +7,7 @@
     /Functional-Processes.InitializeTaskDataModel "Functional Processes/InitializeTaskDataModelOverride"
     /Functional-Processes.OpenPortalSearch "Functional Processes/OpenPortalSearchOverride"
     /Functional-Processes.UploadDocument "Functional Processes/UploadDocumentOverride"
+    /Functional-Processes.OpenPortalCaseDetails "Functional Processes/OpenPortalCaseDetailsOverride"
     /Functional-Processes.BuildTaskJsonQuery "Functional Processes/BuildTaskJsonQueryOverride"
     /Functional-Processes.DownloadDocument "Functional Processes/DownloadDocumentOverride"
     /Functional-Processes.InitializeCaseDataModel "Functional Processes/InitializeCaseDataModelOverride"
