@@ -17,7 +17,7 @@
   </cc:interface>
   
   <cc:implementation>
-    <h:panelGroup id="#{cc.attrs.panelGroupId}" rendered="#{cc.attrs.dataModel.isSelectedColumn(cc.attrs.column)}" styleClass="TexAlCenter customized-case-header-column" >
+    <h:panelGroup id="#{cc.attrs.panelGroupId}" rendered="#{cc.attrs.dataModel.isSelectedColumn(cc.attrs.column)}" styleClass="TexAlCenter customized-case-header-column">
       <h:outputText id="#{cc.attrs.componentId}" value="#{cc.attrs.labelValue}" />
     </h:panelGroup>
   </cc:implementation>

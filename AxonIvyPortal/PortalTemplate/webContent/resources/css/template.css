@@ -505,8 +505,7 @@
   height: 30px;
 }
 
-.case-template-content .case-list-item,
-.task-template-content .case-list-item {
+.case-template-content .case-list-item {
   width: 100%;
   margin: 20px 0 0 0;
 }

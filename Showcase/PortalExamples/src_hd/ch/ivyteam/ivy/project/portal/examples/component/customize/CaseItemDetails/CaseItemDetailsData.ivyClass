@@ -1,5 +1,5 @@
-PortalCaseItemDetailsData #class
-ch.ivy.addon.portal.generic.PortalCaseItemDetails #namespace
+CaseItemDetailsData #class
+ch.ivyteam.ivy.project.portal.examples.component.customize.CaseItemDetails #namespace
 caseInfo ch.ivyteam.ivy.workflow.ICase #field
 caseInfo PERSISTENT #fieldModifier
 menuState String #field

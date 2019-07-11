@@ -15,3 +15,7 @@ caseDataModel ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel #field
 searchResultsDataModel ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel #field
 isMobile Boolean #field
 defaultMobilePage ch.ivy.addon.portalkit.enums.MenuKind #field
+caseId Long #field
+caseId PERSISTENT #fieldModifier
+ICase ch.ivyteam.ivy.workflow.ICase #field
+ICase PERSISTENT #fieldModifier

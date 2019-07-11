@@ -1,0 +1,75 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:body>
+  <ui:composition template="/layouts/PortalCaseDetailsTemplate.xhtml">
+    <ui:param name="menuState" value="#{data.menuState}" />
+    <ui:define name="pageTitle">#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseDetail/CaseDetailTitle')}</ui:define>
+
+    <!-- To show/hidden any sections of Case detail, you can turn true/false for below parameters -->
+    <!-- To show the header of case details. In case we turn true for alwaysShowDetails of CaseItem, we should turn this property as true as well -->
+    <ui:param name="showItemDetailsHeader" value="true" />
+    <!-- To show the Notes component inside Case details body. By default it's true -->
+    <ui:param name="showItemDetailsNotes" value="true" />
+    <!-- To show the Documents component inside Case details body. By default, it's true -->
+    <ui:param name="showItemDetailDocuments" value="true" />
+    <!-- To show the RelatedTask component inside Case details. By default, it's true -->
+    <ui:param name="showItemDetailRelated" value="true" />
+    <!-- To show the Case Additional component inside Case details. By default, it's true -->
+    <ui:param name="showItemDetailAdditional" value="true" />
+    <!-- To override the content of AdditionCase component. By default, it's false -->
+    <ui:param name="overrideAdditionCase" value="true" />
+    <!-- To show the Custom panel for Case details. By default, it's false -->
+    <ui:param name="showCustomPanel" value="true" />
+
+    <!-- If we want to override the content for Addition Case panel, please set overrideAdditionCase as true -->
+    <ui:param name="overrideAdditionCase" value="true" />
+    <!-- Set showCustomPanel as true to show Custom Panel in Case detail and if we want to add the content for this panel, please set overrideCustomBody as true -->
+    <ui:param name="showCustomPanel" value="true" />
+    <ui:param name="overrideCustomBody" value="true" />
+
+    <!-- Override content of Additional Case panel -->
+    <ui:param name="additionalStyleClass" value="custom-case-details-panel-override-height custom-case-details-panel-font-size" />
+    <ui:define name="caseItemDetailsAddition">
+      <p:panelGrid columns="2" id="additional-case-details-data-grid" styleClass="ui-g-12">
+        <f:facet name="header">
+          <h:outputText value="Investment Request Custom Fields - Custom content of Addtitional" />
+        </f:facet>
+
+        <h:outputText value="Company name (CustomVarCharField1)" />
+        <h:outputText id="custom-varchar-field-1" value="#{data.caseInfo.customFields().stringField('CustomVarCharField1').getOrNull()}" />
+
+        <h:outputText value="Request Type (CustomVarCharField2)" />
+        <h:outputText value="#{data.caseInfo.customFields().stringField('CustomVarCharField2').getOrNull()}" />
+
+        <h:outputText value="Min number (CustomDecimalField1)" />
+        <h:outputText value="#{data.caseInfo.customFields().numberField('CustomDecimalField1').getOrNull()}" />
+
+        <h:outputText value="Max number (CustomDecimalField1)" />
+        <h:outputText value="#{data.caseInfo.customFields().numberField('CustomDecimalField2').getOrNull()}" />
+
+        <h:outputText value="Start date (CustomTimestampField1)" />
+        <h:outputText value="#{data.caseInfo.customFields().timestampField('CustomTimestamplField1').getOrNull()}" />
+
+        <h:outputText value="Expiry date(CustomTimestampField2)" />
+        <h:outputText value="#{data.caseInfo.customFields().timestampField('CustomTimestamplField2').getOrNull()}" />
+      </p:panelGrid>
+    </ui:define>
+
+    <!-- Override content of Custom panel for Case Detail -->
+    <ui:param name="customPanelTitleHeader" value="This is Custom title" />
+    <ui:param name="customPanelStyleClass" value="custom-case-details-panel-override-height custom-case-details-panel-font-size" />
+    <ui:define name="caseItemDetailsCustomBody">
+      <div class="custom-task-details-panel">
+        <h1>This is custom content</h1>
+        <p>Custom height to auto</p>
+        <p>Custom font size to 1.6rem</p>
+      </div>
+    </ui:define>
+
+    <ui:define name="css">
+      <h:outputStylesheet library="css" name="examples.css" />
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>
