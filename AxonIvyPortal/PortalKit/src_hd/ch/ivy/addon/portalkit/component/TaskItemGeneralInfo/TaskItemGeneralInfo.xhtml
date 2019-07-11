@@ -108,8 +108,7 @@
             cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
             label="#{formattingNullWrapperBean.format(task.expiryTimestamp)}"
             rendered="#{taskActionBean.canChangeExpiry(task)}">
-            <p:ajax event="save" listener="#{logic.updateDeadline(task)}" update="#{cc.attrs.componentToUpdate}" />
-            <p:ajax event="cancel" resetValues="true" />
+            <p:ajax event="save" listener="#{logic.updateDeadline(task)}" update="expiry-form #{cc.attrs.componentToUpdate}" />
             <p:calendar id="expiry-calendar" styleClass="task-details-data-expiry" value="#{task.expiryTimestamp}"
               pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}">
               <f:validator validatorId="taskExpiryTimestampValidator" />
