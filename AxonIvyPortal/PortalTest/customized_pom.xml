@@ -82,7 +82,7 @@
             </goals>
             <configuration>
               <deployFile>..\PortalKitTestHelper\target\portalKitTestHelper-${portal.version}.iar</deployFile>
-              <deployToEngineApplication>DemoPortal</deployToEngineApplication>
+              <deployToEngineApplication>demo-portal</deployToEngineApplication>
             </configuration>
             <phase>process-test-classes</phase>
           </execution>
@@ -93,7 +93,7 @@
             </goals>
             <configuration>
               <deployFile>..\..\Showcase\InternalSupport\target\internalSupport-${portal.version}.iar</deployFile>
-              <deployToEngineApplication>DemoPortal</deployToEngineApplication>
+              <deployToEngineApplication>demo-portal</deployToEngineApplication>
             </configuration>
             <phase>process-test-classes</phase>
           </execution>
@@ -104,7 +104,7 @@
             </goals>
             <configuration>
               <deployFile>..\..\Showcase\PortalExamples\target\portalExamples-${portal.version}.iar</deployFile>
-              <deployToEngineApplication>DemoPortal</deployToEngineApplication>
+              <deployToEngineApplication>demo-portal</deployToEngineApplication>
             </configuration>
             <phase>process-test-classes</phase>
           </execution>
