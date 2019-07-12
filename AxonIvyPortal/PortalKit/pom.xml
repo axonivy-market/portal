@@ -8,7 +8,7 @@
   <packaging>iar</packaging>
   
   <properties>
-    <build.plugin.version>7.4.0-SNAPSHOT</build.plugin.version>
+    <build.plugin.version>7.4.0</build.plugin.version>
   </properties>
   <dependencies>
     <dependency>
