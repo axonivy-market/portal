@@ -825,6 +825,51 @@
 					</itemizedlist>
 				</para>
 			</sect3>
+			<sect3>
+				<title>How to migrate CaseBody to <link linkend="axonivyportal.customization.caseitemdetails">CaseItemDetails</link> component</title>
+				<para>On Portal version 8.0.0, we removed <code>caseBody</code> in CaseWidget. Instead of that, we are using CaseItemDetails component for showing case information with more details and responsiveness.</para>
+				<para>If you have customized <code>caseBody</code> of CaseWidget, we need to migrate the code of <code>caseBody</code> to new component as <code>CaseItemDetails</code></para>
+				<para>Please follow below check list to migrate</para>
+				<itemizedlist>
+					<listitem>
+						<para>You can take a look at <code>PortalCaseDetails.xhtml</code> to see how to use and customize <code>CaseItemDetails</code>.</para>
+						<para>There are 2 sections we need to take a look:
+							<orderedlist>
+								<listitem>
+									<para>On <code>caseItemDetailsAddition</code> section</para>
+									<para>Turn true for <code>showItemDetailAdditional</code> and <code>overrideAdditionCase</code>.</para>
+									<para>Move your customized code for Additional Case section to under this section. Finally, your code will show on Additional case box</para>
+								</listitem>
+								<listitem>
+									<para>On <code>caseItemDetailsCustomBody</code> section</para>
+									<para>Turn true <code>showCustomPanel</code> and <code>overrideCustomBody</code>.</para>
+									<para>Move your customized code for Custom panel section to under this section. Finally, your code will show on Custom panel box</para>
+								</listitem>
+							</orderedlist>
+							<para> For example:
+								<para>Old caseBody</para>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/Installation/case-body.png" />
+									</imageobject>
+								</mediaobject>
+								<para>CaseItemDetail content</para>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/Installation/case-item-details.png" />
+									</imageobject>
+								</mediaobject>
+							</para>
+						</para>
+					</listitem>
+					<listitem>
+						<para>In case we need to hidden Notes, Documents, Related running component, we can refer to <link linkend="axonivyportal.customization.caseitemdetails.howtooverideui.showhiddenui">Show/hidden component on Case Item Details</link></para>
+					</listitem>
+					<listitem>
+						<para>Additional, if we want to customize more <code>CaseItemDetails</code> component, please help refer to <link linkend="axonivyportal.customization.caseitemdetails.howtooverideui">CaseItemDetails component</link></para>
+					</listitem>
+				</itemizedlist>
+			</sect3>
 		</sect2>
 		<sect2>
 			<title>Migrate to 7.3.0</title>
