@@ -23,7 +23,7 @@
         </listitem>
         <listitem>
           <para>
-            Override the variables: @login-logo-height, @home-logo-height in
+            Override the variables: <code>@login-logo-height</code>, <code>@home-logo-height</code> in
             <code>customization.less</code>
             to scale your logos.
           </para>
@@ -36,7 +36,7 @@
     <para>
       Portal applies
       <link xlink:show="new" xlink:href="http://lesscss.org">LESS</link>
-      framework to support you in customizing the styles of Portal. There are 4 files:
+      framework to support you in customizing styles of Portal. There are 4 files:
       <code>theme.less</code>
       (shouldn't be modified),
       <code>variables.less</code>
@@ -51,14 +51,14 @@
         <listitem>
           <para>
             <code>font-faces.less</code>
-            : replace the default font url-s by your font url-s and add/change other font styles to customize the
+            : replace default font url-s by your font url-s and add/change other font styles to customize the
             Portal's font styles.
           </para>
         </listitem>
         <listitem>
           <para>
             <code>customization.less</code>
-            : to change the styles of Portal deeply. E.g. Portal's component styles.
+            : to change styles of Portal. E.g. Portal's component styles.
           </para>
           <note>
             Portal provides several variables (
@@ -72,7 +72,7 @@
             ,
             <code>@process-chain-menu-color</code>
             , etc.) to change Portal's style.
-            To override the variables, you should put overriding code (e.g.
+            To override variables, you should put overriding code (e.g.
             <code>@body-background-color: red</code>
             ) at
             <code>customization.less</code>
@@ -80,57 +80,68 @@
             <itemizedlist>
               <listitem>
                 <para>
-                  <code>@body-background-color</code>
-                  : it is the background color of Portal.
+                  <code>@body-background-color</code>: Portal background color.
                 </para>
               </listitem>
               <listitem>
                 <para>
-                  <code>@menu-color</code>
-                  : it is the color of the application menu, the color of texts and icons on the menu will be calculated
-                  based on the brightness of the menu color.
+                  <code>@menu-color</code>: application menu color, color of texts and icons on the menu will be calculated
+                  based on brightness of menu color.
                 </para>
               </listitem>
               <listitem>
                 <para>
-                  <code>@sidebar-opacity-transition-duration</code>
-                  : it is the opacity transition duration of the text on application menu.
+                  <code>@sidebar-opacity-transition-duration</code>: application menu text opacity transition duration.
                 </para>
               </listitem>
               <listitem>
                 <para>
-                  <code>@announcement-background-color</code>
-                  : it is the background color of the announcement panel.
+                  <code>@announcement-background-color</code>: announcement panel background color.
                 </para>
               </listitem>
               <listitem>
                 <para>
-                  <code>@announcement-border-color</code>
-                  : it is the border color of the announcement panel.
+                  <code>@announcement-border-color</code>: announcement panel border color.
                 </para>
               </listitem>
               <listitem>
                 <para>
-                  <code>@process-chain-menu-color</code>
-                  : it is the color of Process Chain component.
+                  <code>@process-chain-menu-color</code>: process chain component color.
                 </para>
               </listitem>
               <listitem>
                 <para>
-                  <code>@action-button-color</code>
-                  : it is the color of action button in Portal e.g: close, add, next ...
+                  <code>@action-button-color</code>: Portal action button color e.g: close, add, next ...
                 </para>
               </listitem>
               <listitem>
                 <para>
-                  <code>@action-button-border-radius</code>
-                  : it sets shape of action button, it's rectangle when set @action-button-border-radius:0px;
+                  <code>@action-button-border-radius</code>: action button shape, it's rectangle when set @action-button-border-radius:0px;
                 </para>
               </listitem>
               <listitem>
                 <para>
-                  <code>@sidebar-dimension-transition-duration</code>
-                  : it is the expanding/collapsing transition duration of the application menu.
+                  <code>@sidebar-dimension-transition-duration</code>: expanding/collapsing transition duration of application menu.
+                </para>
+              </listitem>
+              <listitem>
+                <para>
+                  <code>@cancel-button-background-color</code>: cancel button background color.
+                </para>
+              </listitem>
+              <listitem>
+                <para>
+                  <code>@first-header-bar-color</code>, <code>@second-header-bar-color</code>, <code>@third-header-bar-color</code>: 3 colors of header bar .
+                </para>
+              </listitem>
+              <listitem>
+                <para>
+                  <code>@task-priority-low-color</code>, <code>@task-priority-normal-color</code>, <code>@task-priority-high-color</code>, <code>@task-priority-exception-color</code>: task priority color.
+                </para>
+              </listitem>
+              <listitem>
+                <para>
+                  <code>@task-state-open-color</code>, <code>@task-state-in-progress-color</code>, <code>@task-state-done-color</code>, <code>@task-state-zombie-destroyed-color</code>, <code>@task-state-reserved-color</code>, <code>@task-state-system-color</code>: task state color.
                 </para>
               </listitem>
             </itemizedlist>
