@@ -804,7 +804,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .case-detail-name-prefix {
-  flex:1 0 30px;
+  flex:1 0 auto;
   margin-right: 5px;
 }
 
@@ -866,7 +866,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 a.case-details-document-add-link {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   float: right;
 }
 
@@ -887,21 +887,20 @@ a.case-details-document-add-link {
   display: block;
 }
 
-.history-note-content {
-  margin-right: 5px;
-  display: block;
-}
-
-.case-header-info {
-  flex: 20;
-}
-
 .case-header-padding {
   padding-bottom: 10px;
 }
 
-.history-note .task-note-link{
-	color: rgba(0,0,0,0.5) !important;
+.history-note a {
+  color: #212121 !important;
+}
+
+.history-note .task-note-link {
+  color: #212121 !important;
+}
+
+.history-note .task-note-link:hover {
+  color: rgba(0,0,0,0.6) !important;
 }
 
 .case-filter-component.ui-inputfield {
@@ -932,6 +931,10 @@ a.case-details-document-add-link {
   position: relative;
 }
 
+.case-document-name a {
+  color: #212121 !important;
+}
+
 .case-document-download {
   position: absolute;
   top: 2px;
@@ -943,6 +946,17 @@ a.case-details-document-add-link {
   display: inline-block !important;
   overflow-x: auto;
   height: calc(100% - 45px);
+}
+.case-document-deletion-dialog .ui-dialog-buttonpane.ui-dialog-footer.ui-widget-content {
+  padding: 6px;
+}
+
+.case-document-deletion-dialog  .ui-icon.ui-icon-alert.ui-confirm-dialog-severity {
+  margin-left: 0;
+}
+
+.document-deletion-command-buttons {
+  text-align: center !important;
 }
 /********************************** CASE ITEM SIMIlAR TO TASK ITEM CLASSES **********************************/
 .case-widget-container .case-widget-top-header {
@@ -2644,7 +2658,6 @@ _:-ms-input-placeholder, :root .case-details > * {
   word-break: normal;
   white-space: nowrap;
   font-size: 1.6rem;
-  color: rgba(0,0,0,0.4);
   line-height: 2.5rem;
 }
 
@@ -2678,6 +2691,14 @@ _:-ms-input-placeholder, :root .case-details > * {
   padding: 2px 10px !important;
 }
 
+.related-task-content .related-task {
+  color: #212121 !important;
+}
+
+.related-task-content .related-task:hover {
+  color: rgba(0,0,0,0.6) !important;
+}
+
 .case-details-document-scrollpanel > * {
   font-size: 10px;
 }
@@ -2704,7 +2725,6 @@ _:-ms-input-placeholder, :root .case-details > * {
 
 .case-details-document-download-icon {
   margin-right: 5px;
-  color: red;
 }
 
 .case-details-history-scrollpanel{
@@ -2726,7 +2746,7 @@ _:-ms-input-placeholder, :root .case-details > * {
 }
 
 .history-note {
-  line-height: 1.6rem;
+  line-height: 1.8rem;
 }
 
 .case-related-tasks-scrollpanel.ui-scrollpanel {
@@ -2796,11 +2816,10 @@ _:-ms-input-placeholder, :root .case-details > * {
   position: relative;
   display: list-item;
   line-height: 2.5rem;
-  color: black;
+  color: #212121;
   border: 1px solid #d8d8d8;
   padding: 5px 10px;
-  font-weight: bold;
-  margin-right: 1px;
+  font-size: 1.6rem;
 }
 
 .case-related-data .ui-datatable-header.ui-widget-header.ui-corner-top {

@@ -28,7 +28,7 @@
       </div>
       <div class="Separator ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0" />
 
-      <div class="ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12">
+      <div class="ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0">
         <p:dataTable id="case-details-documents" var="document" value="#{data.documents}" paginator="true" pageLinks="5" rows="7" paginatorPosition="top">
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}" sortBy="#{document.name}" styleClass="u-truncate-text">
             <h:panelGroup layout="block" rendered="#{document ne null}" styleClass="case-document-name">
@@ -74,13 +74,13 @@
     </h:form>
     <f:facet name="footer">
       <p:commandButton id="document-upload-close-command" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-        onclick="PF('document-upload-dialog-#{case.id}').hide(); scrollDocumentsToBottom()" />
+        onclick="PF('document-upload-dialog-#{case.id}').hide();" />
     </f:facet>
     <p:ajax event="close" global="false" listener="#{logic.resetDataUploadDialog()}" update="#{cc.clientId}:document-upload-form:upload-messages" />
   </p:dialog>
 
   <p:confirmDialog widgetVar="document-deletion-dialog-#{case.id}" message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmForDelete')}"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" appendTo="@(body)" severity="alert">
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" appendTo="@(body)" severity="alert" styleClass="case-document-deletion-dialog">
     <h:panelGroup layout="block" styleClass="document-deletion-command-buttons">
       <p:commandButton styleClass="document-deletion-command" id="document-deletion-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" process="@this"
         update="#{cc.clientId}:case-details-documents #{cc.attrs.componentToUpdate} #{p:component('case-document-global-messages')}" actionListener="#{logic.deleteDocument}"

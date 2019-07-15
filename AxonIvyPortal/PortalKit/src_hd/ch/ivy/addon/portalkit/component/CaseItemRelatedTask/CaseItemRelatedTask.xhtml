@@ -28,8 +28,12 @@
       <p:columnGroup type="header">
         <div class="case-related-running">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')} (#{data.totalRelatedTasts})" styleClass="Fleft" />
-          <h:panelGroup id="more-related-tasks" layout="block" rendered="#{data.relatedTasks.size() gt 20}" styleClass="Fright show-more-related-tasks-container">
-            <p:commandLink id="show-more-related-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTasks')}..." actionListener="#{logic.openPortalTasks}" styleClass="case-related-command-link"/>
+          <h:panelGroup id="more-related-tasks" layout="block" rendered="#{data.relatedTasks.size() gt 20}" styleClass="Fright show-more-technical-cases-container">
+            <p:commandLink id="show-more-related-tasks" actionListener="#{logic.openPortalTasks}" styleClass="case-related-command-link u-truncate-text">
+              <span class="fa fa-external-link-square note-show-more-link-icon" />
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTasks')}..." />
+            </p:commandLink>
+            <p:tooltip for="more-related-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTasks')}" trackMouse="true" />
           </h:panelGroup>
         </div>
       </p:columnGroup>
@@ -51,12 +55,14 @@
       <p:columnGroup type="header">
         <div class="case-related-running">
           <h:outputText styleClass="Fleft" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')} (#{data.totalRelatedCases})" />
-          <h:panelGroup id="more-related-cases" layout="block" rendered="#{data.technicalCases.size() gt 20}" styleClass="Fright show-more-technical-cases-container u-truncate-text">
-            <p:commandLink id="show-more-related-cases" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTechnicalCases')}..."
-              actionListener="#{logic.navigateToTechnicalCasesOfBusinessCase}" styleClass="case-related-command-link">
+          <h:panelGroup id="more-related-cases" layout="block" rendered="#{data.technicalCases.size() gt 20}" styleClass="Fright show-more-technical-cases-container">
+            <p:commandLink id="show-more-related-cases" actionListener="#{logic.navigateToTechnicalCasesOfBusinessCase}" styleClass="case-related-command-link u-truncate-text">
+              <span class="fa fa-external-link-square note-show-more-link-icon" />
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTechnicalCases')}..." />
               <f:attribute name="selectedCase" value="#{cc.attrs.case}" />
             </p:commandLink>
           </h:panelGroup>
+          <p:tooltip for="more-related-cases" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTechnicalCases')}" trackMouse="true" />
         </div>
       </p:columnGroup>
 

@@ -29,20 +29,12 @@
       <ui:param name="showItemDetailDocuments" value="true" />
       <!-- To show the RelatedTask component inside Case details. By default, it's true -->
       <ui:param name="showItemDetailRelated" value="true" />
+
+      <!-- Override content of Additional Case panel -->
       <!-- To show the Case Additional component inside Case details. By default, it's true -->
       <ui:param name="showItemDetailAdditional" value="true" />
       <!-- To override the content of AdditionCase component. By default, it's false -->
-      <ui:param name="overrideAdditionCase" value="false" />
-      <!-- To show the Custom panel for Case details. By default, it's false -->
-      <ui:param name="showCustomPanel" value="true" />
-
-      <!-- If we want to override the content for Addition Case panel, please set overrideAdditionCase as true -->
       <ui:param name="overrideAdditionCase" value="true" />
-      <!-- Set showCustomPanel as true to show Custom Panel in Case detail and if we want to add the content for this panel, please set overrideCustomBody as true -->
-      <ui:param name="showCustomPanel" value="true" />
-      <ui:param name="overrideCustomBody" value="true" />
-
-      <!-- Override content of Additional Case panel -->
       <ui:define name="caseItemDetailsAddition">
         <f:facet name="header">
           <h:outputText value="Investment Request Custom Fields" />
@@ -68,6 +60,12 @@
       </ui:define>
 
       <!-- Override content of Custom panel for Case Detail -->
+      <!-- To show the Custom panel for Case details. By default, it's false -->
+      <ui:param name="showCustomPanel" value="true" />
+      <!-- To show your customized title in header section of the custom box -->
+      <ui:param name="customPanelTitleHeader" value="Custom panel for case detail" />
+      <!-- Set showCustomPanel as true to show Custom Panel in Case detail and if we want to add the content for this panel, please set overrideCustomBody as true -->
+      <ui:param name="overrideCustomBody" value="true" />
       <ui:define name="caseItemDetailsCustomBody">
         <div class="custom-task-details-panel">
           <p>Custom panel for case detail</p>

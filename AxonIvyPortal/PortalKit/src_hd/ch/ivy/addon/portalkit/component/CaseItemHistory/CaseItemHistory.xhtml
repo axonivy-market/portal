@@ -17,7 +17,7 @@
       </div>
       <div class="case-history-button-container ui-g-8 ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 u-padding-0">
         <h:panelGroup layout="block" styleClass="case-details-note-add">
-          <p:link id="show-more-note-link" styleClass="case-details-document-add-link note-show-more-link" target="_blank" href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case)}"
+          <p:link id="show-more-note-link" styleClass="case-details-document-add-link note-show-more-link ui-commandlink" target="_blank" href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case)}"
             rendered="#{caseTaskNoteHistoryBean.showMoreNote}">
             <span class="fa fa-external-link-square note-show-more-link-icon" />
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}" />
@@ -33,7 +33,7 @@
 
     <div class="Separator" />
 
-    <div class="ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12">
+    <div class="ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0">
       <p:dataTable value="#{data.histories}" var="history" id="case-histories" paginator="true" rows="7" paginatorPosition="top" pageLinks="5"
         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" sortBy="#{history.involvedFullname}" styleClass="case-history-name u-truncate-text">
@@ -46,7 +46,7 @@
           </h:outputText>
         </p:column>
 
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}" styleClass="u-truncate-text">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}" styleClass="u-truncate-text history-note">
           <h:outputText>
             <p:link id="show-task-note-link" value="#{empty history.content ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noTaskName') : history.content}" target="_blank"
               href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case)}" rendered="#{history.type eq 'TASK'}" styleClass="task-note-link" />
