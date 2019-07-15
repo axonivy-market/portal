@@ -370,6 +370,7 @@
 
 .note-show-more-link {
 	color: rgba(0, 0, 0, 0.5) !important;
+	margin-left: 5px;
 }
 
 .additional-case-details-data-grid {
@@ -381,8 +382,7 @@
 	text-align: left;
 	word-break: normal;
 	white-space: nowrap;
-	font-size: 1.2rem;
-	color: rgba(0, 0, 0, 0.4);
+	font-size: 1.4rem;
 	line-height: 1.8rem;
 }
 
