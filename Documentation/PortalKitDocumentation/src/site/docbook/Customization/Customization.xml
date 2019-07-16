@@ -22,4 +22,5 @@
 	<xi:include href="MobileDefaultPage.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 	<xi:include href="DocumentProcesses.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 	<xi:include href="GroupChat.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+	<xi:include href="ChangeGroupId.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 </chapter>
