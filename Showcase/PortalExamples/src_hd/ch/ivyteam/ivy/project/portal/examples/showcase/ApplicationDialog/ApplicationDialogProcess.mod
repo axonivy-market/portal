@@ -213,18 +213,14 @@ As0 f0 guid 169C76B36E187A99 #txt
 As0 f0 type ch.ivyteam.ivy.project.portal.examples.showcase.ApplicationDialog.ApplicationDialogData #txt
 As0 f0 method start(ch.ivyteam.ivy.project.portal.examples.showcase.GdprRequest) #txt
 As0 f0 disableUIEvents true #txt
-As0 f0 inParameterDecl 'ch.ivyteam.ivy.project.portal.examples.showcase.ApplicationDialog.ApplicationDialogData out;
-' #txt
+As0 f0 inParameterDecl '<ch.ivyteam.ivy.project.portal.examples.showcase.GdprRequest gdprRequest> param;' #txt
 As0 f0 inParameterMapAction 'out.gdprRequest=param.gdprRequest;
 ' #txt
-As0 f0 outParameterDecl '<> result;
-' #txt
+As0 f0 outParameterDecl '<> result;' #txt
 As0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start()</name>
-        <nameStyle>7,5,7
-</nameStyle>
+        <name>start(GdprRequest)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -270,8 +266,7 @@ As0 f24 guid 169C76B36E1C02EC #txt
 As0 f24 type ch.ivyteam.ivy.project.portal.examples.showcase.ApplicationDialog.ApplicationDialogData #txt
 As0 f24 method handleFileUploader(org.primefaces.event.FileUploadEvent) #txt
 As0 f24 disableUIEvents false #txt
-As0 f24 inParameterDecl 'ch.ivyteam.ivy.project.portal.examples.showcase.ApplicationDialog.ApplicationDialogData out;
-' #txt
+As0 f24 inParameterDecl '<org.primefaces.event.FileUploadEvent event> param;' #txt
 As0 f24 inParameterMapAction 'out.uploadEvent=param.event;
 ' #txt
 As0 f24 inActionCode 'import ch.ivyteam.ivy.project.portal.examples.showcase.GdprRequest;
@@ -288,8 +283,7 @@ gdprFile.file = file;
 gdprFile.isNewAdded = true;
 out.gdprRequest.files.add(gdprFile);
 ' #txt
-As0 f24 outParameterDecl '<> result;
-' #txt
+As0 f24 outParameterDecl '<> result;' #txt
 As0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

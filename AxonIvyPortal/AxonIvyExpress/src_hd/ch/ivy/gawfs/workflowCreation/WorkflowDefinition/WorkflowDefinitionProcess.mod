@@ -297,8 +297,7 @@ Fs0 f16 guid 157930AFEEC5B0A0 #txt
 Fs0 f16 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f16 method initAssginement(gawfs.TaskDef) #txt
 Fs0 f16 disableUIEvents false #txt
-Fs0 f16 inParameterDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
-' #txt
+Fs0 f16 inParameterDecl '<gawfs.TaskDef taskDefinition> param;' #txt
 Fs0 f16 inParameterMapAction 'out.taskDefinition=param.taskDefinition;
 ' #txt
 Fs0 f16 inActionCode 'int indexOfSelectedTaskDef = out.data.definedTasks.indexOf(param.taskDefinition);
@@ -308,8 +307,7 @@ if (out.data.isUseDefaultUI) {
 	out.selectedResponsibleFieldId =  "form:defined-tasks-list:" + indexOfSelectedTaskDef + ":task-responsible-input-container";
 }
 ' #txt
-Fs0 f16 outParameterDecl '<> result;
-' #txt
+Fs0 f16 outParameterDecl '<> result;' #txt
 Fs0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

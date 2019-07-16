@@ -42,26 +42,22 @@ As0 @PushWFArc f2 '' #zField
 >Proto As0 As0 ApprovalFormProcess #zField
 As0 f0 guid 162F55164217492D #txt
 As0 f0 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
-As0 f0 method start(java.util.List<gawfs.TaskDef>,java.util.List<String>,java.lang.Integer,Boolean,java.lang.Long) #txt
+As0 f0 method start(java.util.List<gawfs.TaskDef>,List<String>,Integer,Boolean,Long) #txt
 As0 f0 disableUIEvents true #txt
-As0 f0 inParameterDecl 'ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData out;
-' #txt
+As0 f0 inParameterDecl '<java.util.List<gawfs.TaskDef> finishedTasks,List<java.lang.String> steps,java.lang.Integer actualStepIndex,java.lang.Boolean isAdhocProcess,java.lang.Long originalTaskId> param;' #txt
 As0 f0 inParameterMapAction 'out.actualStepIndex=param.actualStepIndex;
 out.finishedTasks=param.finishedTasks;
 out.isAdhocProcess=param.isAdhocProcess;
 out.originalTaskId=param.originalTaskId;
 out.steps=param.steps;
 ' #txt
-As0 f0 outParameterDecl '<gawfs.ApprovalTaskResult approvalResult> result;
-' #txt
+As0 f0 outParameterDecl '<gawfs.ApprovalTaskResult approvalResult> result;' #txt
 As0 f0 outParameterMapAction 'result.approvalResult=in.approvalResult;
 ' #txt
 As0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start()</name>
-        <nameStyle>7,5,7
-</nameStyle>
+        <name>start(List,List,Integer,Boolean,Long)</name>
     </language>
 </elementInfo>
 ' #txt

@@ -88,12 +88,10 @@ Ts0 f6 guid 1682717F2DAE7E7A #txt
 Ts0 f6 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 Ts0 f6 method initData(ch.ivyteam.ivy.workflow.ITask) #txt
 Ts0 f6 disableUIEvents false #txt
-Ts0 f6 inParameterDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
-' #txt
+Ts0 f6 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task> param;' #txt
 Ts0 f6 inParameterMapAction 'out.task=param.task;
 ' #txt
-Ts0 f6 outParameterDecl '<> result;
-' #txt
+Ts0 f6 outParameterDecl '<> result;' #txt
 Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -137,12 +135,10 @@ Ts0 f10 guid 16827249E7B1FA94 #txt
 Ts0 f10 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 Ts0 f10 method uploadDocument(org.primefaces.event.FileUploadEvent) #txt
 Ts0 f10 disableUIEvents false #txt
-Ts0 f10 inParameterDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
-' #txt
+Ts0 f10 inParameterDecl '<org.primefaces.event.FileUploadEvent uploadEvent> param;' #txt
 Ts0 f10 inParameterMapAction 'out.documentUploadEvent=param.uploadEvent;
 ' #txt
-Ts0 f10 outParameterDecl '<> result;
-' #txt
+Ts0 f10 outParameterDecl '<> result;' #txt
 Ts0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -203,12 +199,10 @@ Ts0 f5 guid 16827286AC6AA280 #txt
 Ts0 f5 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 Ts0 f5 method downloadDocument(ch.ivy.addon.portalkit.ivydata.bo.IvyDocument) #txt
 Ts0 f5 disableUIEvents false #txt
-Ts0 f5 inParameterDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
-' #txt
+Ts0 f5 inParameterDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyDocument document> param;' #txt
 Ts0 f5 inParameterMapAction 'out.document=param.document;
 ' #txt
-Ts0 f5 outParameterDecl '<org.primefaces.model.StreamedContent streamedContent> result;
-' #txt
+Ts0 f5 outParameterDecl '<org.primefaces.model.StreamedContent streamedContent> result;' #txt
 Ts0 f5 outParameterMapAction 'result.streamedContent=in.streamedContent;
 ' #txt
 Ts0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

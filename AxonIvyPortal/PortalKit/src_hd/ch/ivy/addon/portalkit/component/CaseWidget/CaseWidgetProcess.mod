@@ -1,5 +1,5 @@
 [Ivy]
-152E8EDB33C1BDC1 3.23 #module
+152E8EDB33C1BDC1 3.26 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseWidgetProcess Big #zClass
 Cs0 RD #cInfo
@@ -462,12 +462,10 @@ Cs0 f23 guid 168A2BE8E0F76EC9 #txt
 Cs0 f23 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 Cs0 f23 method setFilterToBeDeleted(ch.ivy.addon.portalkit.casefilter.CaseFilterData) #txt
 Cs0 f23 disableUIEvents false #txt
-Cs0 f23 inParameterDecl 'ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData out;
-' #txt
+Cs0 f23 inParameterDecl '<ch.ivy.addon.portalkit.casefilter.CaseFilterData caseFilterData> param;' #txt
 Cs0 f23 inParameterMapAction 'out.filterDataToBeDeleted=param.caseFilterData;
 ' #txt
-Cs0 f23 outParameterDecl '<> result;
-' #txt
+Cs0 f23 outParameterDecl '<> result;' #txt
 Cs0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

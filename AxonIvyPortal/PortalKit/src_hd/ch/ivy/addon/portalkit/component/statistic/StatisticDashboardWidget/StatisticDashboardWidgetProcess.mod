@@ -1,5 +1,5 @@
 [Ivy]
-1600AC95D2CA7CEA 3.23 #module
+1600AC95D2CA7CEA 3.26 #module
 >Proto >Proto Collection #zClass
 Ss0 StatisticDashboardWidgetProcess Big #zClass
 Ss0 RD #cInfo
@@ -154,15 +154,13 @@ Ss0 f1 guid 1604F3D5F5A87086 #txt
 Ss0 f1 type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 Ss0 f1 method initialize(java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>,Boolean,Boolean,Boolean) #txt
 Ss0 f1 disableUIEvents false #txt
-Ss0 f1 inParameterDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData out;
-' #txt
+Ss0 f1 inParameterDecl '<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> statisticChartList,java.lang.Boolean showTaskListImmediately,java.lang.Boolean isBackFromDrilldown,java.lang.Boolean isCompactMode> param;' #txt
 Ss0 f1 inParameterMapAction 'out.isBackFromDrilldown=param.isBackFromDrilldown;
 out.isCompactMode=param.isCompactMode;
 out.showTaskListImmediately=param.showTaskListImmediately;
 out.statisticChartList=param.statisticChartList;
 ' #txt
-Ss0 f1 outParameterDecl '<> result;
-' #txt
+Ss0 f1 outParameterDecl '<> result;' #txt
 Ss0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

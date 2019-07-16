@@ -61,12 +61,10 @@ Es0 f15 guid 16AD339444C2C97E #txt
 Es0 f15 type ch.ivy.addon.portalkit.component.statistic.ElapsedTimeChartDetails.ElapsedTimeChartDetailsData #txt
 Es0 f15 method countCases(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria) #txt
 Es0 f15 disableUIEvents false #txt
-Es0 f15 inParameterDecl 'ch.ivy.addon.portalkit.component.statistic.ElapsedTimeChartDetails.ElapsedTimeChartDetailsData out;
-' #txt
+Es0 f15 inParameterDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;' #txt
 Es0 f15 inParameterMapAction 'out.caseSearchCriteria=param.caseSearchCriteria;
 ' #txt
-Es0 f15 outParameterDecl '<java.lang.Long totalCases> result;
-' #txt
+Es0 f15 outParameterDecl '<java.lang.Long totalCases> result;' #txt
 Es0 f15 outParameterMapAction 'result.totalCases=in.totalCases;
 ' #txt
 Es0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -83,16 +81,14 @@ Es0 f20 563 339 26 26 0 12 #rect
 Es0 f20 @|RichDialogProcessEndIcon #fIcon
 Es0 f6 guid 16AD339444E6AFE5 #txt
 Es0 f6 type ch.ivy.addon.portalkit.component.statistic.ElapsedTimeChartDetails.ElapsedTimeChartDetailsData #txt
-Es0 f6 method findCases(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria,java.lang.Integer,java.lang.Integer) #txt
+Es0 f6 method findCases(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria,Integer,Integer) #txt
 Es0 f6 disableUIEvents false #txt
-Es0 f6 inParameterDecl 'ch.ivy.addon.portalkit.component.statistic.ElapsedTimeChartDetails.ElapsedTimeChartDetailsData out;
-' #txt
+Es0 f6 inParameterDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria,java.lang.Integer startIndex,java.lang.Integer count> param;' #txt
 Es0 f6 inParameterMapAction 'out.caseSearchCriteria=param.caseSearchCriteria;
 out.count=param.count;
 out.startIndex=param.startIndex;
 ' #txt
-Es0 f6 outParameterDecl '<List<ch.ivyteam.ivy.workflow.ICase> cases> result;
-' #txt
+Es0 f6 outParameterDecl '<List<ch.ivyteam.ivy.workflow.ICase> cases> result;' #txt
 Es0 f6 outParameterMapAction 'result.cases=in.cases;
 ' #txt
 Es0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -185,12 +181,10 @@ Es0 f12 guid 16AD87286B4BA607 #txt
 Es0 f12 type ch.ivy.addon.portalkit.component.statistic.ElapsedTimeChartDetails.ElapsedTimeChartDetailsData #txt
 Es0 f12 method initialize(String) #txt
 Es0 f12 disableUIEvents false #txt
-Es0 f12 inParameterDecl 'ch.ivy.addon.portalkit.component.statistic.ElapsedTimeChartDetails.ElapsedTimeChartDetailsData out;
-' #txt
+Es0 f12 inParameterDecl '<java.lang.String caseCategory> param;' #txt
 Es0 f12 inParameterMapAction 'out.category=param.caseCategory;
 ' #txt
-Es0 f12 outParameterDecl '<> result;
-' #txt
+Es0 f12 outParameterDecl '<> result;' #txt
 Es0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

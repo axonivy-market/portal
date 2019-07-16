@@ -1771,9 +1771,9 @@ Bk8 f5 320 700 320 770 #arcP
 Bk8 f14 expr out #txt
 Bk8 f14 320 814 320 882 #arcP
 Bk8 f7 richDialogId ch.ivy.gawfs.workflowExecution.ApprovalForm #txt
-Bk8 f7 startMethod start(java.util.List<gawfs.TaskDef>,java.util.List<String>,java.lang.Integer,Boolean,java.lang.Long) #txt
+Bk8 f7 startMethod start(java.util.List<gawfs.TaskDef>,List<String>,Integer,Boolean,Long) #txt
 Bk8 f7 type gawfs.ExecutePredefinedWorkflowData #txt
-Bk8 f7 requestActionDecl '<java.util.List<gawfs.TaskDef> finishedTasks,java.util.List<String> steps,java.lang.Integer actualStepIndex,Boolean isAdhocProcess,java.lang.Long originalTaskId> param;' #txt
+Bk8 f7 requestActionDecl '<java.util.List<gawfs.TaskDef> finishedTasks,List<String> steps,java.lang.Integer actualStepIndex,java.lang.Boolean isAdhocProcess,java.lang.Long originalTaskId> param;' #txt
 Bk8 f7 requestMappingAction 'param.finishedTasks=in.finishedTasks;
 param.steps=in.steps;
 param.actualStepIndex=in.actualStepIndex;

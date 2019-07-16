@@ -67,12 +67,10 @@ Ds0 f0 guid 016B0CFC3D7D6069 #txt
 Ds0 f0 type ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData #txt
 Ds0 f0 method start(ch.ivyteam.ivy.workflow.ICase) #txt
 Ds0 f0 disableUIEvents true #txt
-Ds0 f0 inParameterDecl 'ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData out;
-' #txt
+Ds0 f0 inParameterDecl '<ch.ivyteam.ivy.workflow.ICase iCase> param;' #txt
 Ds0 f0 inParameterMapAction 'out.ivyCase=param.#iCase is initialized ? param.iCase : ivy.case;
 ' #txt
-Ds0 f0 outParameterDecl '<> result;
-' #txt
+Ds0 f0 outParameterDecl '<> result;' #txt
 Ds0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -135,12 +133,10 @@ Ds0 f10 guid 16B1C99C07E95EDC #txt
 Ds0 f10 type ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData #txt
 Ds0 f10 method upload(org.primefaces.event.FileUploadEvent) #txt
 Ds0 f10 disableUIEvents false #txt
-Ds0 f10 inParameterDecl 'ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData out;
-' #txt
+Ds0 f10 inParameterDecl '<org.primefaces.event.FileUploadEvent event> param;' #txt
 Ds0 f10 inParameterMapAction 'out.event=param.event;
 ' #txt
-Ds0 f10 outParameterDecl '<> result;
-' #txt
+Ds0 f10 outParameterDecl '<> result;' #txt
 Ds0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -235,14 +231,12 @@ Ds0 f2 expr out #txt
 Ds0 f2 109 96 339 96 #arcP
 Ds0 f3 guid 16B2047AE0419DBD #txt
 Ds0 f3 type ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData #txt
-Ds0 f3 method setFileLimit(java.lang.Integer) #txt
+Ds0 f3 method setFileLimit(Integer) #txt
 Ds0 f3 disableUIEvents false #txt
-Ds0 f3 inParameterDecl 'ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData out;
-' #txt
+Ds0 f3 inParameterDecl '<java.lang.Integer fileLimit> param;' #txt
 Ds0 f3 inParameterMapAction 'out.fileLimit=param.fileLimit;
 ' #txt
-Ds0 f3 outParameterDecl '<> result;
-' #txt
+Ds0 f3 outParameterDecl '<> result;' #txt
 Ds0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -330,12 +324,10 @@ Ds0 f24 guid 16B214644C2FBAA8 #txt
 Ds0 f24 type ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData #txt
 Ds0 f24 method download(ch.ivy.addon.portalkit.ivydata.bo.IvyDocument) #txt
 Ds0 f24 disableUIEvents false #txt
-Ds0 f24 inParameterDecl 'ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData out;
-' #txt
+Ds0 f24 inParameterDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyDocument selectedDocument> param;' #txt
 Ds0 f24 inParameterMapAction 'out.selectedDocument=param.selectedDocument;
 ' #txt
-Ds0 f24 outParameterDecl '<org.primefaces.model.StreamedContent streamedContent> result;
-' #txt
+Ds0 f24 outParameterDecl '<org.primefaces.model.StreamedContent streamedContent> result;' #txt
 Ds0 f24 outParameterMapAction 'result.streamedContent=in.streamedContent;
 ' #txt
 Ds0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -472,14 +464,12 @@ Ds0 f42 guid 16B4E86E9AEE3309 #txt
 Ds0 f42 type ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData #txt
 Ds0 f42 method renderComponent(String,Boolean,ch.ivy.addon.portalkit.enums.DocumentType) #txt
 Ds0 f42 disableUIEvents false #txt
-Ds0 f42 inParameterDecl 'ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData out;
-' #txt
+Ds0 f42 inParameterDecl '<java.lang.String messageComponentId,java.lang.Boolean typeColumnRendered,ch.ivy.addon.portalkit.enums.DocumentType selectedType> param;' #txt
 Ds0 f42 inParameterMapAction 'out.messageComponentId=param.messageComponentId;
 out.typeColumnRendered=param.typeColumnRendered;
 out.typeSelection=param.selectedType;
 ' #txt
-Ds0 f42 outParameterDecl '<> result;
-' #txt
+Ds0 f42 outParameterDecl '<> result;' #txt
 Ds0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

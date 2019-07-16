@@ -1842,13 +1842,11 @@ Tt0 f130 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>SaleDepartment.ivp</name>
-        <nameStyle>18,5,7
-</nameStyle>
         <desc>Sale Information</desc>
     </language>
 </elementInfo>
 ' #txt
-Tt0 f130 @C|.responsibility Sales #txt
+Tt0 f130 @C|.responsibility Everybody #txt
 Tt0 f130 1137 801 30 30 -54 17 #rect
 Tt0 f130 @|StartRequestIcon #fIcon
 Tt0 f131 type internaltest.Data #txt

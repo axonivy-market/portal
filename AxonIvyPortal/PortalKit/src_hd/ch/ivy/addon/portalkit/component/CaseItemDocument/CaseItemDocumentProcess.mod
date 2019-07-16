@@ -112,12 +112,10 @@ Cs0 f63 guid 167E9DF0DE4FEF32 #txt
 Cs0 f63 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
 Cs0 f63 method initData(ch.ivyteam.ivy.workflow.ICase) #txt
 Cs0 f63 disableUIEvents false #txt
-Cs0 f63 inParameterDecl 'ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData out;
-' #txt
+Cs0 f63 inParameterDecl '<ch.ivyteam.ivy.workflow.ICase iCase> param;' #txt
 Cs0 f63 inParameterMapAction 'out.iCase=param.iCase;
 ' #txt
-Cs0 f63 outParameterDecl '<> result;
-' #txt
+Cs0 f63 outParameterDecl '<> result;' #txt
 Cs0 f63 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -134,12 +132,10 @@ Cs0 f7 guid 167E9E558A0D7CF1 #txt
 Cs0 f7 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
 Cs0 f7 method uploadDocument(org.primefaces.event.FileUploadEvent) #txt
 Cs0 f7 disableUIEvents false #txt
-Cs0 f7 inParameterDecl 'ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData out;
-' #txt
+Cs0 f7 inParameterDecl '<org.primefaces.event.FileUploadEvent event> param;' #txt
 Cs0 f7 inParameterMapAction 'out.documentUploadEvent=param.event;
 ' #txt
-Cs0 f7 outParameterDecl '<> result;
-' #txt
+Cs0 f7 outParameterDecl '<> result;' #txt
 Cs0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -179,12 +175,10 @@ Cs0 f8 guid 1680301B2BFFF8D6 #txt
 Cs0 f8 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
 Cs0 f8 method downloadDocument(ch.ivy.addon.portalkit.ivydata.bo.IvyDocument) #txt
 Cs0 f8 disableUIEvents false #txt
-Cs0 f8 inParameterDecl 'ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData out;
-' #txt
+Cs0 f8 inParameterDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyDocument document> param;' #txt
 Cs0 f8 inParameterMapAction 'out.document=param.document;
 ' #txt
-Cs0 f8 outParameterDecl '<org.primefaces.model.StreamedContent streamedContent> result;
-' #txt
+Cs0 f8 outParameterDecl '<org.primefaces.model.StreamedContent streamedContent> result;' #txt
 Cs0 f8 outParameterMapAction 'result.streamedContent=in.streamedContent;
 ' #txt
 Cs0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

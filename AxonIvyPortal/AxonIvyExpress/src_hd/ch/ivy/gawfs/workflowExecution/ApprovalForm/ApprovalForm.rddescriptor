@@ -13,13 +13,13 @@
         <inputParameter>
             <name>steps</name>
             <description></description>
-            <parameterType>java.util.List&lt;String&gt;</parameterType>
+            <parameterType>List&lt;String&gt;</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
         <inputParameter>
             <name>actualStepIndex</name>
             <description></description>
-            <parameterType>java.lang.Integer</parameterType>
+            <parameterType>Integer</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
         <inputParameter>
@@ -31,7 +31,7 @@
         <inputParameter>
             <name>originalTaskId</name>
             <description></description>
-            <parameterType>java.lang.Long</parameterType>
+            <parameterType>Long</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
         <outputParameter>

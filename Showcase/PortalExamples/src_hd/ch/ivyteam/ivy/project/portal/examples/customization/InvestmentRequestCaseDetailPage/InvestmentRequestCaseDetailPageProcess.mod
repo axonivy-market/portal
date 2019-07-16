@@ -1,5 +1,5 @@
 [Ivy]
-1624D1BB2301B683 3.23 #module
+1624D1BB2301B683 3.26 #module
 >Proto >Proto Collection #zClass
 Is0 InvestmentRequestCaseDetailPageProcess Big #zClass
 Is0 RD #cInfo
@@ -25,12 +25,10 @@ Is0 f0 guid 1624D1BB2437AE35 #txt
 Is0 f0 type ch.ivyteam.ivy.project.portal.examples.customization.InvestmentRequestCaseDetailPage.InvestmentRequestCaseDetailPageData #txt
 Is0 f0 method start(ch.ivyteam.ivy.workflow.ICase) #txt
 Is0 f0 disableUIEvents true #txt
-Is0 f0 inParameterDecl 'ch.ivyteam.ivy.project.portal.examples.customization.InvestmentRequestCaseDetailPage.InvestmentRequestCaseDetailPageData out;
-' #txt
+Is0 f0 inParameterDecl '<ch.ivyteam.ivy.workflow.ICase iCase> param;' #txt
 Is0 f0 inParameterMapAction 'out.ivyCase=param.iCase;
 ' #txt
-Is0 f0 outParameterDecl '<> result;
-' #txt
+Is0 f0 outParameterDecl '<> result;' #txt
 Is0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

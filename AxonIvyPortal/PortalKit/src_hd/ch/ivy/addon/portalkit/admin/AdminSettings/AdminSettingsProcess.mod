@@ -439,8 +439,7 @@ As0 f61 guid 14B76C9713AD988C #txt
 As0 f61 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f61 method onTabChange(org.primefaces.event.TabChangeEvent) #txt
 As0 f61 disableUIEvents false #txt
-As0 f61 inParameterDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
+As0 f61 inParameterDecl '<org.primefaces.event.TabChangeEvent tabEvent> param;' #txt
 As0 f61 inActionCode 'import ch.ivy.addon.portalkit.service.AnnouncementService;
 import org.primefaces.context.RequestContext;
 import org.primefaces.component.tabview.TabView;
@@ -454,8 +453,7 @@ if (out.tabIndexActive == 1) {
 	RequestContext.getCurrentInstance().execute("PF(''settingTable'').filter()");
 }
 ' #txt
-As0 f61 outParameterDecl '<> result;
-' #txt
+As0 f61 outParameterDecl '<> result;' #txt
 As0 f61 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -2082,12 +2080,10 @@ As0 f87 guid 16A33CB19C2E90CF #txt
 As0 f87 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f87 method isApplicationDefaultEmailLanguage(String) #txt
 As0 f87 disableUIEvents false #txt
-As0 f87 inParameterDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
+As0 f87 inParameterDecl '<java.lang.String language> param;' #txt
 As0 f87 inActionCode 'import ch.ivy.addon.portalkit.service.AnnouncementService;
 out.isDefaultApplicationLanguage = AnnouncementService.getInstance().isDefaultApplicationLanguage(param.language);' #txt
-As0 f87 outParameterDecl '<java.lang.Boolean result> result;
-' #txt
+As0 f87 outParameterDecl '<java.lang.Boolean result> result;' #txt
 As0 f87 outParameterMapAction 'result.result=in.isDefaultApplicationLanguage;
 ' #txt
 As0 f87 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

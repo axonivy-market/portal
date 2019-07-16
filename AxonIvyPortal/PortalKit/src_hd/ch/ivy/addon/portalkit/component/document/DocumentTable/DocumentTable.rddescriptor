@@ -39,7 +39,7 @@
         <inputParameter>
             <name>fileLimit</name>
             <description></description>
-            <parameterType>java.lang.Integer</parameterType>
+            <parameterType>Integer</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>
