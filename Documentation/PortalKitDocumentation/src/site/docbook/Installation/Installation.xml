@@ -1097,9 +1097,6 @@
 					<listitem>
 						<para>New Portal Chat is introduced, now Portal supports Group chat and Private chat, refer to <link linkend="axonivyportal.components.portalchat" endterm="axonivyportal.components.portalchat.title" /> for more detail</para>
 					</listitem>
-					<listitem>
-						<para>Portal group id is officially configurable, refer to <link linkend="axonivyportal.customization.changegroupid" endterm="axonivyportal.customization.changegroupid.title" /> for more detail</para>
-					</listitem>
 				</itemizedlist>
 			</sect2>
 			<sect2>
