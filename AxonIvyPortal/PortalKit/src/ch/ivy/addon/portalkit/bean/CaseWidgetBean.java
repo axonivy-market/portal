@@ -9,6 +9,9 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.safety.Whitelist;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
@@ -18,14 +21,14 @@ import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.NumberUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 
 @ManagedBean
 @ViewScoped
 public class CaseWidgetBean implements Serializable {
 
-  private static final String START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE = "Start Processes/CaseWidget/showAdditionalCaseDetails.ivp";
-  
+  private static final String START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE = "Start Processes/CaseWidget/showAdditionalCaseDetails.ivp";  
   private static final long serialVersionUID = 1L;
 
   private Long expandedCaseId;
@@ -68,14 +71,13 @@ public class CaseWidgetBean implements Serializable {
       additionalCaseDetailsPageUri = CaseUtils.getProcessStartUriWithCaseParameters(iCase, START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE);
     }
     return removeDuplicatedPartOfUrl(additionalCaseDetailsPageUri);
-  }
-  
+  }  
   public boolean isNaN(Number number){
     return NumberUtils.isNaN(number);
   }
 
   public boolean isHiddenCase(ICase iCase) {
-    return iCase.customFields().stringField(AdditionalProperty.HIDE.toString()).isPresent();
+    return iCase == null ? false : iCase.customFields().stringField(AdditionalProperty.HIDE.toString()).isPresent();
   }
   
   public ICase findCase(long caseId) {
@@ -88,10 +90,28 @@ public class CaseWidgetBean implements Serializable {
       return Void.class;
     });
   }
-  
+
   private String removeDuplicatedPartOfUrl(String redirectLink) {
     String applicationContextPath = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
     return redirectLink.replaceFirst(applicationContextPath, ""); // remove duplicate contextPath in URL
+  }
+  
+  public String sanitizeHTML(String text) {
+    String sanitizedText = sanitize(text);
+    if (StringUtils.isBlank(extractTextFromHtml(sanitizedText))) {
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription");
+    }
+    return sanitizedText;
+  }
+  
+  private String extractTextFromHtml(String text) {
+    String sanitizedText = sanitize(text);
+    Document doc = Jsoup.parse(sanitizedText);
+    return doc.body().text();
+  }
+  
+  private String sanitize(String text) {
+    return Jsoup.clean(text, Whitelist.relaxed().addAttributes(":all", "style"));
   }
 
   public boolean isShowCaseDetails() {

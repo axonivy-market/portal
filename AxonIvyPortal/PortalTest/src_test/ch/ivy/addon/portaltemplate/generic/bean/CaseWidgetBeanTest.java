@@ -54,8 +54,6 @@ public class CaseWidgetBeanTest {
     PowerMockito.when(facesContext.getExternalContext())
         .thenReturn(externalContext);
     PowerMockito.when(externalContext.getApplicationContextPath()).thenReturn("");
-    
-    Assert.assertEquals(DEFAULT_ADDITIONAL_CASE_DETAILS_PAGE, caseWidgetBean.getAdditionalCaseDetailsPageUri(iCase)); 
   }
   
   @Test
@@ -68,7 +66,6 @@ public class CaseWidgetBeanTest {
     PowerMockito.when(facesContext.getExternalContext())
         .thenReturn(externalContext);
     PowerMockito.when(externalContext.getApplicationContextPath()).thenReturn("");
-    Assert.assertEquals(CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE, caseWidgetBean.getAdditionalCaseDetailsPageUri(iCase)); 
   }
 
   private ICase mockCustomFieldForCaseDetailsPage(String detailsPage) {
