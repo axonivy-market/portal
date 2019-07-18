@@ -5,10 +5,10 @@
     <ui:param name="isNotRequiredLogin" value="false" />
     <ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/additionalCaseDetailsTitle')}</ui:define>
     <ui:define name="simplePageContent">
-      <div class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/additionalCaseDetailsTitle')}</div>
+      <div class="case-detail-section-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/additionalCaseDetailsTitle')}</div>
       <div class="Separator" />
 
-      <ic:ch.ivy.addon.portal.component.AdditionalCase case="#{data.selectedCase}" />
+      <ic:ch.ivy.addon.portalkit.component.AdditionalCase case="#{data.selectedCase}" />
 
     </ui:define>
   </ui:composition>

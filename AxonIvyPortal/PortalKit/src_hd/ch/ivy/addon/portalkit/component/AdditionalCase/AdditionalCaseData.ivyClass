@@ -1,0 +1,6 @@
+AdditionalCaseData #class
+ch.ivy.addon.portalkit.component.AdditionalCase #namespace
+selectedCase ch.ivyteam.ivy.workflow.ICase #field
+selectedCase PERSISTENT #fieldModifier
+customFields java.util.List<ch.ivyteam.ivy.workflow.custom.field.ICustomField> #field
+customFields PERSISTENT #fieldModifier
