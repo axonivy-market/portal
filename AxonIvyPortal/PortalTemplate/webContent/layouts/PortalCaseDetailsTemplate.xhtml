@@ -13,32 +13,24 @@
         showItemDetailsHeader="#{showItemDetailsHeader}"
         showItemDetailsNotes="#{showItemDetailsNotes}"
         showItemDetailDocuments="#{showItemDetailDocuments}"
-        showItemDetailRelated="#{showItemDetailRelated}"
-        showItemDetailAdditional="#{showItemDetailAdditional}"
-        additionalStyleClass="#{additionalStyleClass}"
-        showCustomPanel="#{showCustomPanel}"
-        customPanelTitleHeader="#{customPanelTitleHeader}"
-        customPanelStyleClass="#{customPanelStyleClass}">
+        showItemDetailRelated="#{showItemDetailRelated}">
 
-        <f:facet name="caseItemDetailsAddition">
-          <ui:fragment rendered="#{not overrideAdditionCase}">
-            <div class="ui-g-12 ui-xl-12 ui-md-12 ui-sm-12 show-addition-case-container">
-              <ic:ch.ivy.addon.portal.component.AdditionalCase case="#{caseInfo}" />
-            </div>
+        <f:facet name="caseItemDetailCustomPanel">
+          <ui:fragment rendered="#{not overrideCaseItemDetailCustomPanel}">
+            <!-- Custom section box -->
+            <h:panelGroup rendered="#{cc.attrs.showCustomPanel}" styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
+              <div class="card card-w-title case-detail-card #{cc.attrs.customPanelStyleClass}">
+                <div class="case-detail-section-title u-truncate-text">
+                  <h:outputText value="#{cc.attrs.customPanelTitleHeader}" />
+                </div>
+                <div class="Separator" />
+                <p>Custom panel for case detail</p>
+              </div>
+            </h:panelGroup>
           </ui:fragment>
 
-          <ui:fragment rendered="#{overrideAdditionCase}">
-            <ui:insert name="caseItemDetailsAddition" />
-          </ui:fragment>
-        </f:facet>
-
-        <f:facet name="caseItemDetailsCustomBody">
-          <ui:fragment rendered="#{not overrideCustomBody}">
-            <p>Custom panel for case detail</p>
-          </ui:fragment>
-
-          <ui:fragment rendered="#{overrideCustomBody}">
-            <ui:insert name="caseItemDetailsCustomBody" />
+          <ui:fragment rendered="#{overrideCaseItemDetailCustomPanel}">
+            <ui:insert name="caseItemDetailCustomPanel" />
           </ui:fragment>
         </f:facet>
 

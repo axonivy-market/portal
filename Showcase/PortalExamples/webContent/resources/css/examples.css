@@ -22,10 +22,8 @@
 }
 
 .customized-case-header-column {
-	width: 125px !important;
+	width: 150px !important;
 	display: block;
-	text-overflow: ellipsis;
-	overflow: hidden;
 }
 
 .customized-home-task-widget {

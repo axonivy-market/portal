@@ -830,6 +830,10 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   border-right: 1px solid #e0e0e0;
 }
 
+.related-task-content .related-task {
+  width: calc(100% - 20px);
+}
+
 .case-details-history {
   display: table-cell;
   width: 30%;
@@ -868,6 +872,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 a.case-details-document-add-link {
   font-size: 1.6rem;
   float: right;
+  font-weight: 400;
 }
 
 .case-details-document-add-link-icon {
@@ -909,12 +914,13 @@ a.case-details-document-add-link {
 
 .case-history-name {
   width: 150px;
-  line-height: 1.6rem;
+  line-height: 2rem;
 }
 
 .case-history-date, .case-document-last-date  {
   width: 20%;
   text-align: center !important;
+  line-height: 2rem;
 }
 
 .case-document-last-date {
@@ -955,9 +961,6 @@ a.case-details-document-add-link {
   margin-left: 0;
 }
 
-.document-deletion-command-buttons {
-  text-align: center !important;
-}
 /********************************** CASE ITEM SIMIlAR TO TASK ITEM CLASSES **********************************/
 .case-widget-container .case-widget-top-header {
   margin: 0;
@@ -1106,19 +1109,19 @@ a.case-details-document-add-link {
 }
 
 .case-header-data .case-header-default-cell {
-  flex: 0 0 80px;
+  flex: 0 0 90px;
   text-align: center;
 }
 
 .case-header-data .case-header-id-cell {
-  flex: 0 0 80px;
+  flex: 0 0 100px;
 }
 
 .case-header-data .case-header-creator-cell {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 120px;
+  width: 135px;
   padding-right: 10px;
 }
 
@@ -1325,6 +1328,7 @@ a.case-details-document-add-link {
   display: inline-block !important;
   align-content: start;
   padding: 0 !important;
+  font-weight: bold;
 }
 
 .case-detail-second-content-container {
@@ -1955,7 +1959,11 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 
 .filter-selection-form label,
 .filter-selection-form a.ui-commandlink {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
+  color: #000000 !important;
+}
+
+.filter-selection-form a.ui-commandlink:hover {
   color: #000000 !important;
 }
 
@@ -1983,7 +1991,7 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 }
 
 .filter-selection-form .filter-name-overlay-panel .user-definied-filter-container .ui-commandlink {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 /* Small screen */
@@ -1998,7 +2006,7 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 }
 
 .filter-name-overlay-panel .filter-type-label {
-   font-size: 1.2rem; 
+   font-size: 1.4rem; 
    text-align: left; 
    padding: 10px 0 10px 6px;
    color: rgba(0,0,0,0.6);
@@ -2655,10 +2663,9 @@ _:-ms-input-placeholder, :root .case-details > * {
 .case-details-data-1st-column {
   padding-right: 10px;
   text-align: left;
-  word-break: normal;
-  white-space: nowrap;
-  font-size: 1.6rem;
-  line-height: 2.5rem;
+  width: 120px;
+  font-size: 1.4rem;
+  line-height: 2.0rem;
 }
 
 .case-details-data-2nd-column {
@@ -2666,13 +2673,13 @@ _:-ms-input-placeholder, :root .case-details > * {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-  line-height: 2.5rem;
-  max-width: 150px;
+  line-height: 2.0rem;
+  max-width: calc(100% - 150px);
 }
 
 .case-details-data-2nd-column > * {
   display: inline-block;
-  font-size: 1.6rem !important;
+  font-size: 1.4rem !important;
 }
 .case-details-data-2nd-column > *:not(.case-details-priority):not(form):not(div) {
   white-space: nowrap;
@@ -2682,13 +2689,8 @@ _:-ms-input-placeholder, :root .case-details > * {
   display: block;
 }
 
-.additional-case-details-link {
-	font-size: 1.6rem;
-    color: rgba(0, 0, 0, 0.5) !important;
-}
-
 .related-task-content {
-  padding: 2px 10px !important;
+  padding: 2px 5px !important;
 }
 
 .related-task-content .related-task {
@@ -2746,7 +2748,7 @@ _:-ms-input-placeholder, :root .case-details > * {
 }
 
 .history-note {
-  line-height: 1.8rem;
+  line-height: 2rem;
 }
 
 .case-related-tasks-scrollpanel.ui-scrollpanel {
@@ -2775,7 +2777,8 @@ _:-ms-input-placeholder, :root .case-details > * {
 }
 
 .show-more-technical-cases-container {
-  max-width: 160px;
+  width: calc(100% - 120px);
+  text-align: right;
 }
 
 .no-related-task-and-case-permission{
@@ -2789,15 +2792,21 @@ _:-ms-input-placeholder, :root .case-details > * {
 .case-details-note-add-link-icon {
   margin-right: 5px;
 }
-.case-description-column .scroll-panel {
-  max-height: 120px;
-  padding-right: 10px;
-  padding-top: 5px;
-  font-size: 1.4rem;
-  overflow-x: auto; 
+
+.case-description-column {
+  margin: 4px auto auto 3px;
 }
+
+.case-description-2nd-column {
+  width: calc(100% - 135px);
+  height: 160px;
+  margin-left: 5px;
+  overflow-y: auto;
+  overflow-x: hidden; 
+}
+
 .case-detail-description-input {
-  width: calc(100% - 15px);
+  width: calc(100% - 5px);
   resize: none;
   margin-bottom: 4px !important;
 }
@@ -2835,18 +2844,10 @@ _:-ms-input-placeholder, :root .case-details > * {
 }
 .case-general-info {
   float: left;
-  margin: auto 10px 10px;
+  margin: auto;
   width: 100%;
 }
 
-.case-description-form {
-  margin-left: 10px;
-  padding-bottom: 5px;
-}
-
-.case-details-general {
-  margin: -14px !important;
-}
 /********************************** END CASE DETAIL **********************************/
 .ui-panelmenu .ui-menu-parent .ui-menuitem-link-hasicon {
   padding-left: 2.8em !important;
@@ -4736,9 +4737,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 /*********** Styles for ui-inplace ***********/
 .ui-inplace .ui-inplace-editor .ui-button.ui-inplace-save .ui-icon-check, .ui-inplace .ui-inplace-editor .ui-button.ui-inplace-cancel .ui-icon-close {
-  background-image: none !important;
-  display: inline-block;
-  font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
@@ -5167,6 +5165,7 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 
 .case-related-command-link {
   margin: auto !important;
+  font-weight: 400;
 }
 
 .case-detail-body .case-details-item .ui-commandlink {
