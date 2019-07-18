@@ -119,7 +119,7 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<ICase> {
   private void buildQueryToSearchCriteria() {
     if (criteria.getCustomCaseQuery() == null) {
       CaseQuery caseQuery = CaseQuery.create();
-      caseQuery.where().additionalProperty(AdditionalProperty.CASE_BUSINESS_ENTITY_PROPERTY.toString())
+      caseQuery.where().customField().stringField(AdditionalProperty.CASE_BUSINESS_ENTITY_PROPERTY.toString())
           .isEqual(businessEntityId);
       criteria.setCustomCaseQuery(caseQuery);
     }
