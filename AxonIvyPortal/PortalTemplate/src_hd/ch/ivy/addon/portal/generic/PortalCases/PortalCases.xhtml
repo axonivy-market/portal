@@ -14,7 +14,6 @@
 		<ui:remove>
 			<ui:param name="useOverrideListHeader" value="true" />
 			<ui:param name="useOverrideHeader" value="true" />
-			<ui:param name="useOverrideBody" value="true" />
 			<ui:param name="useOverrideFilter" value="true" />
 
 			<ui:define name="caseListHeader">
@@ -69,10 +68,6 @@
 						<f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
 					</h:outputText>
 				</h:panelGroup>
-			</ui:define>
-
-			<ui:define name="caseBody">
-				<ic:ch.ivy.addon.portalkit.component.CaseItemDetails case="#{case}" isShowItemDetailsHeader="false" />
 			</ui:define>
 
 			<ui:define name="caseFilter">

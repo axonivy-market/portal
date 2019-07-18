@@ -1753,7 +1753,7 @@ Pt0 f103 triggerEnabled false #txt
 Pt0 f103 callSignature startPortalCaseDetails(Long) #txt
 Pt0 f103 persist false #txt
 Pt0 f103 caseData businessCase.attach=true #txt
-Pt0 f103 showInStartList 1 #txt
+Pt0 f103 showInStartList 0 #txt
 Pt0 f103 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

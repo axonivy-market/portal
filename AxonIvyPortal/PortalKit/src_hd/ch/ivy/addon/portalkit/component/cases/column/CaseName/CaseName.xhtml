@@ -34,7 +34,7 @@
       </p:inplace>
       </h:form>
     </span>
-    <h:outputText id="#{cc.attrs.caseDescriptionId}" styleClass="case-header-desc-cell" value="#{case.description}" />
+    <h:outputText id="#{cc.attrs.caseDescriptionId}" styleClass="case-header-desc-cell" escape="false" value="#{caseWidgetBean.sanitizeHTML(case.description)}" />
   </h:panelGroup>
 </cc:implementation>
 </html>

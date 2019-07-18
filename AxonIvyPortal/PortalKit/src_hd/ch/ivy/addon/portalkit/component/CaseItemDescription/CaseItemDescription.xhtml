@@ -12,15 +12,19 @@
   <c:set value="#{cc.attrs.case}" var="case" />
 
   <div id="#{cc.clientId}" class="case-details-item case-description-column #{cc.attrs.styleClass}">
-    <div class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}</div>
-    <div class="Separator" />
-    <div class="scroll-panel OvAuto">
+    <div class="case-details-data-1st-column Fleft">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}</div>
+    <div class="case-description-2nd-column Fleft">
       <h:form id="case-description-form" styleClass="case-description-form">
         <p:inplace id="case-description-inplace" editor="true" disabled="#{!caseActionBean.canChangeDescription(case)}" saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" emptyLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription')}">
-          <p:ajax event="save" update="case-description-form" />
+          <p:ajax event="save" update="#{cc.attrs.descriptionComponentToUpdate} case-description-form" />
           <p:ajax event="cancel" resetValues="true" />
-          <p:inputTextarea id="case-description-input" rows="3" styleClass="case-detail-description-input" value="#{case.description}" autoResize="false" />
+          <f:facet name="input">
+            <p:inputTextarea id="case-description-input" rows="6" styleClass="case-detail-description-input" value="#{case.description}" autoResize="false" />
+          </f:facet>
+          <f:facet name="output">
+            <h:outputText id="case-description-output" escape="false" value="#{caseWidgetBean.sanitizeHTML(case.description)}" />
+          </f:facet>
         </p:inplace>
       </h:form>
     </div>
