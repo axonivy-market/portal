@@ -29,7 +29,7 @@
 		<sect2>
 			<title>Project modules</title>
 			<para>
-				The application consists of 5 process modules. For detailed information of each module, refer to
+				The application consists of 5 process modules. For detailed information of each module,  to
 				<link linkend="axonivyportal.architecture" endterm="axonivyportal.architecture.title" />
 				.
 				<itemizedlist>
@@ -833,33 +833,30 @@
 				<itemizedlist>
 					<listitem>
 						<para>You can take a look at <code>PortalCaseDetails.xhtml</code> to see how to use and customize <code>CaseItemDetails</code>.</para>
-						<para>There are 2 sections we need to take a look:
-							<orderedlist>
+						<para>There are only 1 sections we need to take a look:
+							<itemizedlist>
 								<listitem>
-									<para>On <code>caseItemDetailsAddition</code> section</para>
-									<para>Turn true for <code>showItemDetailAdditional</code> and <code>overrideAdditionCase</code>.</para>
-									<para>Move your customized code for Additional Case section to under this section. Finally, your code will show on Additional case box</para>
+									<para>On <code>caseItemDetailCustomPanel</code> section.</para>
+									<para>Move your customized code for Custom panel section to under this section.</para>
+									<para>Finally, your code will show on Custom panel box.</para>
 								</listitem>
 								<listitem>
-									<para>On <code>caseItemDetailsCustomBody</code> section</para>
-									<para>Turn true <code>showCustomPanel</code> and <code>overrideCustomBody</code>.</para>
-									<para>Move your customized code for Custom panel section to under this section. Finally, your code will show on Custom panel box</para>
+									<para> For example:
+										<para>Old caseBody</para>
+										<mediaobject>
+											<imageobject>
+												<imagedata fileref="images/Installation/case-body.png" />
+											</imageobject>
+										</mediaobject>
+										<para>CaseItemDetail content</para>
+										<mediaobject>
+											<imageobject>
+												<imagedata fileref="images/Installation/case-item-details.png" />
+											</imageobject>
+										</mediaobject>
+									</para>
 								</listitem>
-							</orderedlist>
-							<para> For example:
-								<para>Old caseBody</para>
-								<mediaobject>
-									<imageobject>
-										<imagedata fileref="images/Installation/case-body.png" />
-									</imageobject>
-								</mediaobject>
-								<para>CaseItemDetail content</para>
-								<mediaobject>
-									<imageobject>
-										<imagedata fileref="images/Installation/case-item-details.png" />
-									</imageobject>
-								</mediaobject>
-							</para>
+							</itemizedlist>
 						</para>
 					</listitem>
 					<listitem>
