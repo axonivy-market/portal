@@ -10,6 +10,8 @@
 <cc:implementation>
   <f:event listener="#{logic.initData(cc.attrs.case)}" type="preRenderComponent" />
   <c:set var="relatedRunningHeight" value="#{empty data.relatedTasks or empty data.technicalCases ? 100:0}" />
+  <c:set var="relatedRunningTasks" value="#{data.technicalCases.size() lt 3 and not empty data.technicalCases ? 90 - data.technicalCases.size()*32 : 0}" />
+  <c:set var="relatedRunningCases" value="#{data.relatedTasks.size() lt 3 and not empty data.relatedTasks ? 90 - data.relatedTasks.size()*32 : 0}" />
   <div id="#{cc.clientId}" class="case-details-item js-case-details-item js-related-task-column #{cc.attrs.styleClass}">
     <div class="case-detail-section-title">
       <i class="fa fa-tasks" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/relatedTasksAndCases')}
@@ -38,7 +40,7 @@
 
       <div class="ui-g-12 u-padding-0">
         <p:dataScroller id="tasks" rendered="#{not empty data.relatedTasks}" value="#{data.relatedTasks.size() gt 20 ? caseWidgetBean.getFirst20Items(data.relatedTasks) : data.relatedTasks}"
-          mode="inline" chunkSize="10" scrollHeight="#{data.relatedTasks.size() gt 4 ? 140 + relatedRunningHeight : data.relatedTasks.size()*32 + 15}" var="task"
+          mode="inline" chunkSize="10" scrollHeight="#{data.relatedTasks.size() gt 3 ? 100 + relatedRunningHeight + relatedRunningTasks : data.relatedTasks.size()*32 + 12}" var="task"
           styleClass="case-related-task-case-running">
           <h:panelGroup id="task" layout="block" class="grid-item-content-list-item related-task-content">
             <i class="fa #{taskBean.getStateIcon(task.state)} fa-fw related-task-list-item-status" />
@@ -67,7 +69,8 @@
 
       <div class="ui-g-12 u-padding-0">
         <p:dataScroller id="cases" rendered="#{not empty data.technicalCases}" value="#{data.technicalCases.size() gt 20 ? caseWidgetBean.getFirst20Items(data.technicalCases) : data.technicalCases}"
-          var="technicalCase" mode="inline" scrollHeight="#{data.technicalCases.size() gt 4 ? 140 + relatedRunningHeight : data.technicalCases.size()*32 + 15}" styleClass="case-related-task-case-running">
+          var="technicalCase" mode="inline" scrollHeight="#{data.technicalCases.size() gt 3 ? 100 + relatedRunningHeight + relatedRunningCases : data.technicalCases.size()*32 + 12}"
+          styleClass="case-related-task-case-running">
           <h:panelGroup id="technicalCase" layout="block" class="grid-item-content-list-item related-task-content">
             <i class="fa fa-folder-open-o fa-fw related-task-list-item-status" />
             <p:commandLink id="case-name" value="#{empty technicalCase.name ? technicalCase.id : technicalCase.name}" actionListener="#{logic.navigateToRelatedCase}" styleClass="related-task">
