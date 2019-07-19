@@ -25,7 +25,7 @@
     </h:panelGrid>
 
     <div class="ui-g-12 u-padding-0 case-detail-related-table">
-      <div class="ui-g-12 u-padding-0 case-related-running">
+      <h:panelGroup rendered="#{not empty data.relatedTasks}" styleClass="ui-g-12 u-padding-0 case-related-running">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')} (#{data.totalRelatedTasts})" styleClass="Fleft" />
         <h:panelGroup id="more-related-tasks" layout="block" rendered="#{data.relatedTasks.size() gt 20}" styleClass="Fright show-more-technical-cases-container">
           <p:commandLink id="show-more-related-tasks" actionListener="#{logic.openPortalTasks}" styleClass="case-related-command-link u-truncate-text">
@@ -34,11 +34,11 @@
           </p:commandLink>
           <p:tooltip for="more-related-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTasks')}" trackMouse="true" />
         </h:panelGroup>
-      </div>
+      </h:panelGroup>
 
       <div class="ui-g-12 u-padding-0">
         <p:dataScroller id="tasks" rendered="#{not empty data.relatedTasks}" value="#{data.relatedTasks.size() gt 20 ? caseWidgetBean.getFirst20Items(data.relatedTasks) : data.relatedTasks}"
-          mode="inline" chunkSize="10" scrollHeight="#{data.relatedTasks.size() gt 4 ? 140 + relatedRunningHeight: data.relatedTasks.size()*32 + 15}" var="task"
+          mode="inline" chunkSize="10" scrollHeight="#{data.relatedTasks.size() gt 4 ? 140 + relatedRunningHeight : data.relatedTasks.size()*32 + 15}" var="task"
           styleClass="case-related-task-case-running">
           <h:panelGroup id="task" layout="block" class="grid-item-content-list-item related-task-content">
             <i class="fa #{taskBean.getStateIcon(task.state)} fa-fw related-task-list-item-status" />
@@ -53,7 +53,7 @@
     </div>
 
     <div class="ui-g-12 u-padding-0">
-      <h:panelGroup rendered="#{not empty data.technicalCases}" class="case-related-running ui-g-12 u-padding-0">
+      <h:panelGroup rendered="#{not empty data.technicalCases}" styleClass="case-related-running ui-g-12 u-padding-0">
         <h:outputText styleClass="Fleft" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')} (#{data.totalRelatedCases})" />
         <h:panelGroup id="more-related-cases" layout="block" rendered="#{data.technicalCases.size() gt 20}" styleClass="Fright show-more-technical-cases-container">
           <p:commandLink id="show-more-related-cases" actionListener="#{logic.navigateToTechnicalCasesOfBusinessCase}" styleClass="case-related-command-link u-truncate-text">
@@ -67,7 +67,7 @@
 
       <div class="ui-g-12 u-padding-0">
         <p:dataScroller id="cases" rendered="#{not empty data.technicalCases}" value="#{data.technicalCases.size() gt 20 ? caseWidgetBean.getFirst20Items(data.technicalCases) : data.technicalCases}"
-          var="technicalCase" mode="inline" scrollHeight="#{data.technicalCases.size() gt 4 ? 140 + relatedRunningHeight: data.relatedTasks.size()*32 + 15}" styleClass="case-related-task-case-running">
+          var="technicalCase" mode="inline" scrollHeight="#{data.technicalCases.size() gt 4 ? 140 + relatedRunningHeight : data.technicalCases.size()*32 + 15}" styleClass="case-related-task-case-running">
           <h:panelGroup id="technicalCase" layout="block" class="grid-item-content-list-item related-task-content">
             <i class="fa fa-folder-open-o fa-fw related-task-list-item-status" />
             <p:commandLink id="case-name" value="#{empty technicalCase.name ? technicalCase.id : technicalCase.name}" actionListener="#{logic.navigateToRelatedCase}" styleClass="related-task">
