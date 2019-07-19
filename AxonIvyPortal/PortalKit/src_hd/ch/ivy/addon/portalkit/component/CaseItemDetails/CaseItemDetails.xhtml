@@ -15,7 +15,7 @@
   <c:set var="case" value="#{cc.attrs.case}" />
   <div class="ui-g">
 
-    <h:panelGroup styleClass="ui-g-12 ui-sm-12" rendered="#{cc.attrs.showItemDetailsHeader}">
+    <h:panelGroup styleClass="ui-g-12" rendered="#{cc.attrs.showItemDetailsHeader}">
       <h:form id="case-detail-name-form" styleClass="case-detail-header">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}: " styleClass="case-detail-name-prefix" />
         <p:inplace id="case-name-edit-inplace" editor="true" disabled="#{!caseActionBean.canChangeName(case)}" saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
@@ -29,19 +29,29 @@
       <div class="Separator" />
     </h:panelGroup>
 
-    <div class="case-detail-body ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0">
+    <div class="case-detail-body ui-g-12 u-padding-0">
       <div class="ui-g">
         <!-- General & description box -->
         <div class="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
           <div class="card card-w-title case-detail-card">
-            <div class="case-detail-section-title u-truncate-text ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0">
+          <div class="ui-g-12 u-padding-0">
+            <div class="case-detail-section-title u-truncate-text ui-g-6 u-padding-0">
               <i class="fa fa-user-circle" /> #{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseDetail/DataDescription')}
             </div>
-            <div class="Separator ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0" />
-            <div class="ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0">
+
+              <div class="ui-g-6 u-padding-0 case-history-button-container u-truncate-text">
+                <p:link id="show-additional-case-details-link" styleClass="additional-case-details-link" target="_blank" href="#{caseWidgetBean.getAdditionalCaseDetailsPageUri(case)}">
+                  <i class="fa fa-external-link-square case-details-note-add-link-icon" />
+                  <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showAdditionalPage')}" />
+                </p:link>
+                <p:tooltip for="show-additional-case-details-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showAdditionalPage')}" trackMouse="true"/>
+              </div>
+            </div>
+            <div class="Separator ui-g-12 u-padding-0" />
+            <div class="ui-g-12 u-padding-0">
               <ic:ch.ivy.addon.portalkit.component.CaseItemGeneralInformation id="general-information" case="#{case}" />
             </div>
-            <div class="ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0">
+            <div class="ui-g-12 u-padding-0">
               <ic:ch.ivy.addon.portalkit.component.CaseItemDescription id="description" case="#{case}" descriptionComponentToUpdate="#{cc.attrs.descriptionComponentToUpdate}" />
             </div>
           </div>
@@ -50,7 +60,7 @@
         <!-- Notes box -->
         <h:panelGroup id="history-container" rendered="#{cc.attrs.showItemDetailsNotes}" styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
           <div class="card card-w-title case-detail-card">
-            <ic:ch.ivy.addon.portalkit.component.CaseItemHistory case="#{case}" />
+            <ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="history" case="#{case}" />
           </div>
         </h:panelGroup>
 
