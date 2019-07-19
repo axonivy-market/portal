@@ -26,12 +26,14 @@
           </p:commandLink>
         </h:panelGroup>
       </div>
-      <div class="Separator ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0" />
+      <div class="Separator ui-g-12 u-padding-0" />
 
-      <div class="ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0">
-        <p:dataTable id="case-details-documents" var="document" value="#{data.documents}" paginator="true" pageLinks="3" rows="6" paginatorPosition="top"
-          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
-          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}" sortBy="#{document.name}" styleClass="u-truncate-text">
+      <div class="ui-g-12 u-padding-0">
+        <p:dataTable id="case-details-documents" var="document" value="#{data.documents}" paginator="#{empty data.documents ? false:true}" pageLinks="3" rows="6" paginatorPosition="top"
+          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+          emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
+          currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
+          <p:column id="document-name" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}" sortBy="#{document.name}" styleClass="u-truncate-text">
             <h:panelGroup layout="block" rendered="#{document ne null}" styleClass="case-document-name">
               <p:commandLink ajax="false" id="download" styleClass="download-command js-download-command  case-document-name-text u-truncate-text">
                 <p:fileDownload value="#{logic.downloadDocument(document)}" />
@@ -46,18 +48,18 @@
             </h:panelGroup>
           </p:column>
 
-          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/date')}" styleClass="case-history-date u-truncate-text" sortBy="#{document.creation.timestamp}">
+          <p:column id="document-user-creation" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/userCreation')}" styleClass="case-document-user-name u-truncate-text"
+            sortBy="#{document.creation.user}">
+            <h:outputText value="#{empty document.creation.user.fullName ? document.creation.user.name:document.creation.user.fullName}" />
+          </p:column>
+
+          <p:column id="document-creation" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/date')}" styleClass="case-history-date u-truncate-text"
+            sortBy="#{document.creation.timestamp}">
             <h:outputText value="#{document.creation.timestamp}">
               <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
             </h:outputText>
           </p:column>
 
-          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/lastEdit')}" styleClass="case-document-last-date u-truncate-text"
-            sortBy="#{document.lastModification.timestamp}">
-            <h:outputText value="#{document.lastModification.timestamp}">
-              <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
-            </h:outputText>
-          </p:column>
         </p:dataTable>
       </div>
     </h:form>
@@ -74,8 +76,7 @@
         sizeLimit="#{masterDataBean.fileUploadSizeLimit}" />
     </h:form>
     <f:facet name="footer">
-      <p:commandButton id="document-upload-close-command" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-        onclick="PF('document-upload-dialog-#{case.id}').hide();" />
+      <p:commandButton id="document-upload-close-command" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" onclick="PF('document-upload-dialog-#{case.id}').hide();" />
     </f:facet>
     <p:ajax event="close" global="false" listener="#{logic.resetDataUploadDialog()}" update="#{cc.clientId}:document-upload-form:upload-messages" />
   </p:dialog>

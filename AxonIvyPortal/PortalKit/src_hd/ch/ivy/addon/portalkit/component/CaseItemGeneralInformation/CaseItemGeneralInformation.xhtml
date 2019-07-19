@@ -12,7 +12,10 @@
     <c:set var="case" value="#{cc.attrs.case}" />
     <div class="ui-g">
       <div class="ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0">
-        <h:panelGrid columns="2" columnClasses="case-details-data-1st-column, case-details-data-2nd-column" rowClasses="case-details-row-space" styleClass="case-general-info">
+        <h:panelGrid id="general-info" columns="2" columnClasses="case-details-data-1st-column" rowClasses="case-details-row-space" styleClass="case-general-info">
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" />
+          <h:outputText value="#{case.id}" />
+
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" />
           <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText id="case-creator-full-name" fullname="#{case.getCreatorUser().getFullName()}" username="#{case.creatorUserName}" />
 
@@ -20,6 +23,13 @@
           <h:outputText id="case-start-time" value="#{case.startTimestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
           </h:outputText>
+
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" />
+          <h:panelGroup id="case-state" styleClass="case-header-default-cell">
+            <h:panelGroup id="#{cc.clientId}-in-progress" styleClass="fa fa-play-circle case-state-in-progress" rendered="#{case.state eq 'CREATED' or case.state eq 'RUNNING'}" />
+            <h:panelGroup id="#{cc.clientId}-done" styleClass="fa fa-check-circle case-state-done" rendered="#{case.state eq 'DONE'}" />
+            <h:outputText value="#{caseBean.getState(case)}" styleClass="case-details-state"/>
+          </h:panelGroup>
 
           <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Finished')}" />
           <h:outputText id="case-end-time" value="#{case.endTimestamp}">
