@@ -119,7 +119,7 @@ public class TaskService implements ITaskService {
     return IvyExecutor.executeAsSystem(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       try {
-        TaskQuery finalQuery = criteria.createQuery();
+        TaskQuery finalQuery = criteria.getFinalQuery();
         
         if (criteria.hasApps()) {
           if (criteria.hasInvolvedUsername()) {
