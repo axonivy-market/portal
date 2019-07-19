@@ -814,8 +814,13 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   flex-basis: calc(100% - 50px);
 }
 
+.case-detail-name-inplace-edit .ui-button.ui-widget.ui-button-icon-only.ui-inplace-save,
+ .case-description-edit-inplace .ui-button.ui-widget.ui-button-icon-only.ui-inplace-save {
+  margin-right: 0.3em;
+}
+
 .case-detail-name-input {
-  width: calc(100% - 78px);
+  width: calc(100% - 85px);
   margin-right: 5px !important;
   font-weight: bold !important;
   font-size: 1.8rem !important;
@@ -828,6 +833,10 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   vertical-align: top;
   font-size: 1.2rem;
   border-right: 1px solid #e0e0e0;
+}
+
+.case-detail-related-table {
+  margin-bottom: 10px;
 }
 
 .related-task-content .related-task {
@@ -917,14 +926,14 @@ a.case-details-document-add-link {
   line-height: 2rem;
 }
 
-.case-history-date, .case-document-last-date  {
+.case-history-date, .case-document-user-name {
   width: 20%;
   text-align: center !important;
   line-height: 2rem;
 }
 
-.case-document-last-date {
-  max-width: 170px;
+.case-document-user-name {
+  text-align: left !important;
 }
 
 .case-document-name-text {
@@ -2665,7 +2674,7 @@ _:-ms-input-placeholder, :root .case-details > * {
   text-align: left;
   width: 120px;
   font-size: 1.4rem;
-  line-height: 2.0rem;
+  line-height: 2.2rem;
 }
 
 .case-details-data-2nd-column {
@@ -2690,7 +2699,10 @@ _:-ms-input-placeholder, :root .case-details > * {
 }
 
 .related-task-content {
-  padding: 2px 5px !important;
+  border-collapse: collapse;
+  border: 1px solid #d8d8d8;
+  line-height: 2.2rem;
+  border-bottom: none;
 }
 
 .related-task-content .related-task {
@@ -2799,10 +2811,25 @@ _:-ms-input-placeholder, :root .case-details > * {
 
 .case-description-2nd-column {
   width: calc(100% - 135px);
-  height: 160px;
-  margin-left: 5px;
+  height: 130px;
+  margin-left: 3px;
   overflow-y: auto;
   overflow-x: hidden; 
+}
+
+.case-details-state {
+  margin-left: 5px;
+}
+
+.additional-case-details-link {
+  color: rgba(0,0,0,0.5) !important;
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-left: 10px;
+}
+
+.additional-case-details-link:hover {
+  color: rgba(0,0,0,0.6) !important;
 }
 
 .case-detail-description-input {
@@ -2823,11 +2850,10 @@ _:-ms-input-placeholder, :root .case-details > * {
 
 .case-related-running {
   position: relative;
-  display: list-item;
   line-height: 2.5rem;
   color: #212121;
   border: 1px solid #d8d8d8;
-  padding: 5px 10px;
+  padding: 5px 10px !important;
   font-size: 1.6rem;
 }
 

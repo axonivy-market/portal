@@ -747,6 +747,23 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
  			margin-left: 0;
  		}
  	}
+ 	
+ 	.ui-datascroller-content.ui-widget-content.ui-corner-all {
+ 		padding: 0;
+		border: none;
+ 	}
+ 	
+ 	.case-related-task-case-running ul li:first-child {
+		.related-task-content {
+			border-top: none !important;
+		}
+	}
+
+	.case-related-task-case-running ul li:last-child {
+		.related-task-content {
+			border-bottom: 1px solid #d8d8d8 !important;
+		}
+	}
 }
 
 .case-detail-name-inplace-edit {

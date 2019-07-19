@@ -33,7 +33,7 @@
       </div>
 
       <h:form styleClass="case-header-action-cell">
-        <p:commandLink rendered="#{not alwaysShowDetails}" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Detail')}" styleClass="action-item"
+        <p:commandLink rendered="#{not alwaysShowDetails}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}" styleClass="action-item"
           actionListener="#{caseBean.navigate(case)}" disabled="#{alwaysShowDetails}" />
         <h:panelGroup rendered="#{cc.attrs.enableCaseAction}">
           <ic:ch.ivy.addon.portalkit.component.ActionStep id="action-step-component" actionLinkId="action-steps-menu" actionLinkStyleClass="ui-button-text-only"
