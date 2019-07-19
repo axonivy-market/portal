@@ -20,10 +20,7 @@
 				<para>CaseItemDetailsDocuments</para>
 			</listitem>
 			<listitem>
-				<para>CaseItemDetailsAdditional</para>
-			</listitem>
-			<listitem>
-				<para>CaseCustomPanel</para>
+				<para>CaseItemDetailCustomPanel</para>
 			</listitem>
 		</itemizedlist>
 	</para>
@@ -33,10 +30,10 @@
 		</imageobject>
 	</mediaobject>
 	<important>
-		<para>Case General and description box cannot be modified (they stay where they are)</para>
+		<para>Case General and description box always display, we cannot override the content or hidden/show (they stay where they are)</para>
 	</important>
 	<sect2 xml:id="axonivyportal.customization.caseitemdetails.howtooverideui">
-		<title>How to override Case item details UI</title>
+		<title>How to custom Case item details UI</title>
 		<para>
 			Refer to <code>PortalExamples</code> project for examples
 		</para>
@@ -59,7 +56,7 @@
 				</listitem>
 				<listitem>
 					<para>
-						Override Case item details:
+						Custom the Case item details:
 						<itemizedlist>
 							<listitem>
 								<para>
@@ -81,14 +78,13 @@
 				<listitem>
 					<para>After previous steps, you can override Case item details UI elements by show/hidden element by keywords:</para>
 					<para><link linkend="axonivyportal.customization.caseitemdetails.howtooverideui.showhiddenui"><code>showItemDetailsHeader</code>, <code>showItemDetailRelated</code>, <code>showItemDetailsNotes</code>, <code>showItemDetailDocuments</code>, <code>showItemDetailAdditional</code>, <code>showCustomPanel</code></link>
-						and override UI for <link linkend="axonivyportal.customization.caseitemdetails.howtooverideui.additional">caseItemDetailsAddition</link>
-						and <link linkend="axonivyportal.customization.caseitemdetails.howtooverideui.custombody">caseItemDetailsCustomBody</link>
+						and add new element <link linkend="axonivyportal.customization.caseitemdetails.howtooverideui.custombody">caseItemDetailCustomPanel</link>
 					</para>
 				</listitem>
 			</orderedlist>
 			<sect3 xml:id="axonivyportal.customization.caseitemdetails.howtooverideui.showhiddenui">
-				<title>Show/Hidden components by Keywords</title>
-				<para>Refer to the <code>ui:param</code> list in <code>PortalCaseDetails.xhtml</code> of PortalTemplate. 
+				<title>Show/Hidden components by keywords</title>
+				<para>Refer to the <code>ui</code> tag list in <code>PortalCaseDetails.xhtml</code> of PortalTemplate.
 					In case, we want to show/hidden any elements on CaseItemDetails, we should override value of <code>ui:param</code>
 					<para>List valid parameters:
 						<itemizedlist>
@@ -109,97 +105,48 @@
 								<para>To show/hidden Case Related Tasks/Cases component, by default it's true.</para>
 							</listitem>
 							<listitem>
-								<para><code>ui:param name="showItemDetailAdditional" value="true"</code></para>
-								<para>To show/hidden Case Additional component, by default it's true.</para>
-							</listitem>
-							<listitem>
-								<para><code>ui:param name="overrideAdditionCase" value="false"</code></para>
-								<para>To override Case Additional box, by default it's false and using AdditionalCase component. Refer to <link linkend="axonivyportal.customization.caseitemdetails.howtooverideui.additional">Override Additional</link> for more details.</para>
-							</listitem>
-							<listitem>
-								<para><code>ui:param name="showCustomPanel" value="false"</code></para>
-								<para>To show/hidden Custom panel, by default it's false.</para>
-							</listitem>
-							<listitem>
-								<para><code>ui:param name="customPanelTitleHeader" value="String"</code></para>
-								<para>To show your customized title in header section of the custom box.</para>
-							</listitem>
-							<listitem>
-								<para><code>ui:param name="overrideCustomBody" value="true"</code></para>
-								<para>To override Custom panel content, by default it's false, once this param is turned true, please turn true for <code>showCustomPanel</code> as well. Refer to <link linkend="axonivyportal.customization.caseitemdetails.howtooverideui.custombody">Override Custom panel</link>.</para>
+								<para><code>ui:define name="caseItemDetailCustomPanel" value="true"</code></para>
+								<para>To add a custom panel content, by default it's hidden. Refer to <link linkend="axonivyportal.customization.caseitemdetails.howtooverideui.custombody">Add new Custom panel</link> for more details.</para>
 							</listitem>
 						</itemizedlist>
 					</para>
 				</para>
 			</sect3>
-			<sect3 xml:id="axonivyportal.customization.caseitemdetails.howtooverideui.additional">
-				<title>Override Additional</title>
-				<para>
-					Refer to the <code>caseItemDetailsAddition</code> section in <code>PortalCaseDetails.xhtml</code> of PortalTemplate.
-				</para>
-				<para>Focus on 3 parameters
-					<orderedlist>
-						<listitem>
-							<para><code>showItemDetailAdditional</code> needed turn <code>true</code></para>
-						</listitem>
-						<listitem>
-							<para><code>overrideAdditionCase</code> needed turn <code>true</code></para>
-						</listitem>
-						<listitem>
-							<para><code>additionalStyleClass</code> allow developer provides list of style class for Additional box</para>
-						</listitem>
-					</orderedlist>
-				</para>
-				<para>Below is example code for override additional box of case details</para>
-				<mediaobject>
-					<imageobject>
-						<imagedata fileref="images/CaseItemDetails/AdditionalExampleCode.png" />
-					</imageobject>
-				</mediaobject>
-				<para>After add above code into your custom page, the additional box will be display as below</para>
-				<mediaobject>
-					<imageobject>
-						<imagedata fileref="images/CaseItemDetails/AdditionalCustomized.png" />
-					</imageobject>
-				</mediaobject>
-			</sect3>
 			<sect3 xml:id="axonivyportal.customization.caseitemdetails.howtooverideui.custombody">
-				<title xml:id="axonivyportal.customization.caseitemdetails.howtooverideui.custombody.title">Override Custom panel</title>
-				<para>Refer to the <code>caseItemDetailsCustomBody</code> section in <code>PortalCaseDetails.xhtml</code> of PortalTemplate.</para>
-				<para>Focus on 4 parameters
-					<orderedlist>
-						<listitem>
-							<para><code>showCustomPanel</code> needed turn <code>true</code></para>
-						</listitem>
-						<listitem>
-							<para><code>overrideCustomBody</code> needed turn <code>true</code></para>
-						</listitem>
-						<listitem>
-							<para><code>customPanelTitleHeader</code> allow developer can provide a title header as string to top of Custom box</para>
-						</listitem>
-						<listitem>
-							<para><code>customPanelStyleClass</code> allow developer can provide list of style class for Custom box</para>
-						</listitem>
-					</orderedlist>
-				</para>
-				<para>Below is example code for override custom panel box of case details</para>
-				<mediaobject>
-					<imageobject>
-						<imagedata fileref="images/CaseItemDetails/CustomPanelExampleCode.png" />
-					</imageobject>
-				</mediaobject>
-				<para>After applied above code to your custom page, the custom panel will display as below</para>
-				<mediaobject>
-					<imageobject>
-						<imagedata fileref="images/CaseItemDetails/CustomPanelOverride.png" />
-					</imageobject>
-				</mediaobject>
-				<para>Finally, we have a custom Case details page</para>
-				<mediaobject>
-					<imageobject>
-						<imagedata fileref="images/CaseItemDetails/CaseCustomized.png" />
-					</imageobject>
-				</mediaobject>
+				<title xml:id="axonivyportal.customization.caseitemdetails.howtooverideui.custombody.title">Add new Custom panel</title>
+				<para>Refer to the <code>caseItemDetailCustomPanel</code> section in <code>PortalCaseDetails.xhtml</code> of PortalTemplate.</para>
+				<itemizedlist>
+					<listitem>
+						<para>We need to define a <code>ui:define</code> with name <code>caseItemDetailCustomPanel</code> and then add your custom code into this tag</para>
+					</listitem>
+					<listitem>
+						<para>Finally, your code will be display inside of <link linkend="axonivyportal.customization.caseitemdetails">CaseItemDetails</link> page</para>
+					</listitem>
+					<listitem>
+						<para>Below is example code for override custom panel box of case details</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/CaseItemDetails/CustomPanelExampleCode.png" />
+							</imageobject>
+						</mediaobject>
+					</listitem>
+					<listitem>
+						<para>After applied above code to your custom page, the custom panel will display as below</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/CaseItemDetails/CustomPanelOverride.png" />
+							</imageobject>
+						</mediaobject>
+					</listitem>
+					<listitem>
+						<para>Finally, we have a custom Case details page</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/CaseItemDetails/CaseCustomized.png" />
+							</imageobject>
+						</mediaobject>
+					</listitem>
+				</itemizedlist>
 			</sect3>
 		</para>
 	</sect2>
