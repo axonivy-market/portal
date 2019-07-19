@@ -9,31 +9,15 @@
     <ui:define name="pageTitle">#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseDetail/CaseDetailTitle')}</ui:define>
     <ui:define name="simplePageContent">
 
-      <ic:ch.ivy.addon.portalkit.component.CaseItemDetails case="#{caseInfo}"
+      <ic:ch.ivy.addon.portalkit.component.CaseItemDetails id="case-item-details" case="#{caseInfo}"
         showItemDetailsHeader="#{showItemDetailsHeader}"
         showItemDetailsNotes="#{showItemDetailsNotes}"
         showItemDetailDocuments="#{showItemDetailDocuments}"
         showItemDetailRelated="#{showItemDetailRelated}">
 
         <f:facet name="caseItemDetailCustomPanel">
-          <ui:fragment rendered="#{not overrideCaseItemDetailCustomPanel}">
-            <!-- Custom section box -->
-            <h:panelGroup rendered="#{cc.attrs.showCustomPanel}" styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
-              <div class="card card-w-title case-detail-card #{cc.attrs.customPanelStyleClass}">
-                <div class="case-detail-section-title u-truncate-text">
-                  <h:outputText value="#{cc.attrs.customPanelTitleHeader}" />
-                </div>
-                <div class="Separator" />
-                <p>Custom panel for case detail</p>
-              </div>
-            </h:panelGroup>
-          </ui:fragment>
-
-          <ui:fragment rendered="#{overrideCaseItemDetailCustomPanel}">
-            <ui:insert name="caseItemDetailCustomPanel" />
-          </ui:fragment>
+          <ui:insert name="caseItemDetailCustomPanel" />
         </f:facet>
-
       </ic:ch.ivy.addon.portalkit.component.CaseItemDetails>
     </ui:define>
   </ui:composition>

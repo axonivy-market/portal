@@ -2,14 +2,11 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.component.fieldset.Fieldset;
 
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.CaseUtils;
@@ -17,9 +14,6 @@ import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
-import ch.ivyteam.ivy.workflow.custom.field.ICustomField;
-import ch.ivyteam.ivy.workflow.custom.field.ICustomNumberField;
 
 @ManagedBean(name = "caseBean")
 public class CaseBean implements Serializable {
@@ -81,19 +75,6 @@ public class CaseBean implements Serializable {
     } catch (IOException ex) {
       throw new PortalException(ex);
     }
-  }
-  
-  public List<ICustomField<?>> getCaseCustomFields(ICase iCase) {
-    List<ICustomField> caseCustomFields = new ArrayList<>();
-    List<ICustomField<?>> customFields = iCase.customFields().all();
-    if (customFields != null && !customFields.isEmpty()) {
-      for (ICustomField<?> fields : customFields) {
-        ICustomField<ICustomNumberField> test = null;
-        caseCustomFields.add(fields);
-      }
-    }
-    
-    return null;
   }
   
 }
