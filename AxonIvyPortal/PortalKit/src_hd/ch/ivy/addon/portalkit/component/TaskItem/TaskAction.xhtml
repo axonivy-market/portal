@@ -7,43 +7,18 @@
 
 <ui:composition>
   <div id="action-cell-#{rowIndex}" class="action-cell #{data.isShowTaskButtonLabels? 'with-button-labels' : 'without-button-labels'}">
-    <div class="action-container">
-      <p:commandLink id="task-reset-command" onstart="event.stopPropagation();" rendered="#{taskActionBean.showResetTask}"
-        disabled="#{!taskActionBean.canReset(task)}" styleClass="task-command"
-        actionListener="#{logic.resetTask(task)}" update="@parent :#{p:component('task-start')}">
-        <span class="action-icon tmi-box-arrow-left" />
-        <h:outputText rendered="#{data.isShowTaskButtonLabels}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" />
-      </p:commandLink>
-      <p:tooltip for="task-reset-command"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/resetTaskTooltip')}"
-        styleClass="task-command-tooltip" />
-      <p:commandLink id="task-delegate-command" disabled="#{!taskActionBean.canDelegate(task)}" rendered="#{taskActionBean.showDelegateTask}"
-        styleClass="task-command" actionListener="#{logic.initDataToDelegate(task)}" onstart="event.stopPropagation();"
-        oncomplete="PF('task-delegate-dialog').show()" update="@widgetVar(task-delegate-dialog) @parent">
-        <span class="action-icon tmi-box-arrow-right" />
-        <h:outputText rendered="#{data.isShowTaskButtonLabels}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}" />
-      </p:commandLink>
-      <p:tooltip for="task-delegate-command"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTask')}"
-        styleClass="task-command-tooltip" />
-      <p:commandLink id="task-reserve-command"
-        disabled="#{!taskActionBean.canPark(task)}" rendered="#{taskActionBean.showReserveTask}"
-        onstart="event.stopPropagation();" styleClass="task-command" actionListener="#{logic.parkTask(task)}"
-        update="@parent :#{p:component('task-start')}">
-        <span class="action-icon tmi-box-arrow-toinside" />
-        <h:outputText rendered="#{data.isShowTaskButtonLabels}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}" />
-      </p:commandLink>
-      <p:tooltip for="task-reserve-command"
-        value="#{task.state eq 'PARKED'? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/freeReservationTaskTooltip'): ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/reserveTaskTooltip')}"
-        styleClass="task-command-tooltip" />
-      <p:commandLink id="task-start-command" disabled="#{!taskActionBean.canResume(task)}" styleClass="task-command">
-        <span class="action-icon tmi-chevorn-right" />
-        <h:outputText rendered="#{data.isShowTaskButtonLabels}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/openRequest')}" />
-      </p:commandLink>
-      <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" actionLinkId="task-side-steps-menu" actionLinkStyleClass="task-command #{data.isShowTaskButtonLabels? 'side-step-position' : ''}"
-        panelWidgetVar="task-side-steps-panel-#{rowIndex}" caseId="#{task.case.getId()}" taskId="#{task.getId()}" isAdhocExcluded="false" rendered="#{taskActionBean.showAdditionalOptions}" 
-        isDisabled="#{!taskActionBean.isNotDone(task)}" />
+    <div class="action-container case-header-action-cell">
+
+        <p:commandLink id="taskAction-Minh" actionListener="#{taskActionBean.navigateTask(task)}" rendered="true"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}" styleClass="action-item" />
+        <h:panelGroup rendered="true">
+           <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" actionLinkId="task-side-steps-menu"
+            actionLinkStyleClass="task-command #{data.isShowTaskButtonLabels? 'side-step-position' : ''}"
+            panelWidgetVar="task-side-steps-panel-#{rowIndex}" caseId="#{task.case.getId()}" taskId="#{task.getId()}"
+            isAdhocExcluded="false" rendered="#{taskActionBean.showAdditionalOptions}" task="#{task}"
+            isDisabled="#{!taskActionBean.isNotDone(task)}" /> 
+        </h:panelGroup>
+        
     </div>
   </div>
 </ui:composition>
