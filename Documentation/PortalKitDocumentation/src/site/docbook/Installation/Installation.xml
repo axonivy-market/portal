@@ -825,7 +825,7 @@
 					</itemizedlist>
 				</para>
 			</sect3>
-			<sect3>
+			<sect3 xml:id="axonivyportal.installation.migrationnotes.8.0.0.casebody">
 				<title>How to migrate CaseBody to <link linkend="axonivyportal.customization.caseitemdetails">CaseItemDetails</link> component</title>
 				<para>On Portal version 8.0.0, we removed <code>caseBody</code> in CaseWidget. Instead of that, we are using CaseItemDetails component for showing case information with more details and responsiveness.</para>
 				<para>If you have customized <code>caseBody</code> of CaseWidget, we need to migrate the code of <code>caseBody</code> to new component as <code>CaseItemDetails</code></para>
@@ -1206,6 +1206,24 @@
 		
 		<para>
 			This part lists all relevant changes since the last official product releases of Axon.ivy.
+			<sect2>
+				<title>Changes in 8.0</title>
+				<itemizedlist>
+					<listitem>
+						<para>Upgraded to Serenity's theme, refer to <link linkend="axonivyportal.installation.migrationnotes.8.0.0">Migration Notes</link> for more details</para>
+					</listitem>
+					<listitem>
+						<para>Remove <code>caseBody</code> inside CaseWidget, refer to <link linkend="axonivyportal.installation.migrationnotes.8.0.0.casebody">Migration Notes</link> for more details</para>
+					</listitem>
+					<listitem>
+						<para>Introduce new actions button on <link linkend="axonivyportal.customization.casewidget.howtooverideui.caseheader">CaseWidget's header</link>.</para>
+					</listitem>
+					<listitem>
+						<para>Introduce new page as the Case item details. The default page is portal case details, refer to 
+							<link linkend="axonivyportal.customization.caseitemdetails" endterm="axonivyportal.customization.caseitemdetails.title" /> for the customization.</para>
+					</listitem>
+				</itemizedlist>
+			</sect2>
 			<sect2>
 				<title>Changes in 7.3</title>
 				<itemizedlist>

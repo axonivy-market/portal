@@ -80,13 +80,11 @@ Dt0 @StartRequest f52 '' #zField
 Dt0 @RichDialog f53 '' #zField
 Dt0 @PushWFArc f54 '' #zField
 Dt0 @GridStep f58 '' #zField
-Dt0 @PushWFArc f69 '' #zField
 Dt0 @Alternative f70 '' #zField
 Dt0 @PushWFArc f71 '' #zField
 Dt0 @Trigger f72 '' #zField
 Dt0 @PushWFArc f73 '' #zField
 Dt0 @EndTask f74 '' #zField
-Dt0 @PushWFArc f75 '' #zField
 Dt0 @GridStep f76 '' #zField
 Dt0 @PushWFArc f77 '' #zField
 Dt0 @PushWFArc f78 '' #zField
@@ -124,6 +122,10 @@ Dt0 @GridStep f110 '' #zField
 Dt0 @PushWFArc f104 '' #zField
 Dt0 @PushWFArc f108 '' #zField
 Dt0 @PushWFArc f111 '' #zField
+Dt0 @PushWFArc f69 '' #zField
+Dt0 @TaskSwitch f112 '' #zField
+Dt0 @TkArc f113 '' #zField
+Dt0 @PushWFArc f75 '' #zField
 >Proto Dt0 Dt0 DataCreation #zField
 Dt0 f0 outLink createTasks.ivp #txt
 Dt0 f0 type portalKit_test.DataCreationData #txt
@@ -878,15 +880,13 @@ Dt0 f58 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Dt0 f58 1192 74 112 44 -30 -8 #rect
+Dt0 f58 1288 74 112 44 -30 -8 #rect
 Dt0 f58 @|StepIcon #fIcon
-Dt0 f69 expr out #txt
-Dt0 f69 1152 96 1192 96 #arcP
 Dt0 f70 type portalKit_test.DataCreationData #txt
-Dt0 f70 1360 80 32 32 0 16 #rect
+Dt0 f70 1456 80 32 32 0 16 #rect
 Dt0 f70 @|AlternativeIcon #fIcon
 Dt0 f71 expr out #txt
-Dt0 f71 1304 96 1360 96 #arcP
+Dt0 f71 1400 96 1456 96 #arcP
 Dt0 f72 type portalKit_test.DataCreationData #txt
 Dt0 f72 processCall 'Start Processes/DataCreation:createHiddenTaskAndCase()' #txt
 Dt0 f72 doCall true #txt
@@ -903,16 +903,14 @@ Dt0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Dt0 f72 1432 74 112 44 -36 -8 #rect
+Dt0 f72 1528 74 112 44 -36 -8 #rect
 Dt0 f72 @|TriggerIcon #fIcon
 Dt0 f73 expr in #txt
 Dt0 f73 outCond 'in.counter <= in.numberOfCases' #txt
-Dt0 f73 1392 96 1432 96 #arcP
+Dt0 f73 1488 96 1528 96 #arcP
 Dt0 f74 type portalKit_test.DataCreationData #txt
-Dt0 f74 1361 177 30 30 0 15 #rect
+Dt0 f74 1457 273 30 30 0 15 #rect
 Dt0 f74 @|EndIcon #fIcon
-Dt0 f75 expr in #txt
-Dt0 f75 1376 112 1376 177 #arcP
 Dt0 f76 actionDecl 'portalKit_test.DataCreationData out;
 ' #txt
 Dt0 f76 actionTable 'out=in;
@@ -928,14 +926,14 @@ Dt0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Dt0 f76 1576 74 112 44 -44 -8 #rect
+Dt0 f76 1672 74 112 44 -44 -8 #rect
 Dt0 f76 @|StepIcon #fIcon
 Dt0 f77 expr out #txt
-Dt0 f77 1544 96 1576 96 #arcP
+Dt0 f77 1640 96 1672 96 #arcP
 Dt0 f78 expr out #txt
-Dt0 f78 1632 74 1376 80 #arcP
-Dt0 f78 1 1632 24 #addKink
-Dt0 f78 2 1376 24 #addKink
+Dt0 f78 1728 74 1472 80 #arcP
+Dt0 f78 1 1728 24 #addKink
+Dt0 f78 2 1472 24 #addKink
 Dt0 f78 1 0.51171875 0 0 #arcLabel
 Dt0 f79 outLink createTaskAttachToBusinessCase.ivp #txt
 Dt0 f79 type portalKit_test.DataCreationData #txt
@@ -1219,6 +1217,24 @@ Dt0 f108 expr out #txt
 Dt0 f108 600 992 640 992 #arcP
 Dt0 f111 expr out #txt
 Dt0 f111 752 992 816 992 #arcP
+Dt0 f69 expr out #txt
+Dt0 f69 1152 96 1288 96 #arcP
+Dt0 f112 actionDecl 'portalKit_test.DataCreationData out;
+' #txt
+Dt0 f112 actionTable 'out=in1;
+' #txt
+Dt0 f112 outTypes "portalKit_test.DataCreationData" #txt
+Dt0 f112 outLinks "TaskA.ivp" #txt
+Dt0 f112 type portalKit_test.DataCreationData #txt
+Dt0 f112 template "" #txt
+Dt0 f112 1456 176 32 32 0 16 #rect
+Dt0 f112 @|TaskSwitchIcon #fIcon
+Dt0 f113 expr in #txt
+Dt0 f113 var in1 #txt
+Dt0 f113 1472 112 1472 176 #arcP
+Dt0 f75 expr data #txt
+Dt0 f75 outCond ivp=="TaskA.ivp" #txt
+Dt0 f75 1472 208 1472 273 #arcP
 >Proto Dt0 .type portalKit_test.DataCreationData #txt
 >Proto Dt0 .processKind NORMAL #txt
 >Proto Dt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1287,14 +1303,10 @@ Dt0 f39 mainOut f47 tail #connect
 Dt0 f47 head f44 mainIn #connect
 Dt0 f52 mainOut f54 tail #connect
 Dt0 f54 head f53 mainIn #connect
-Dt0 f53 mainOut f69 tail #connect
-Dt0 f69 head f58 mainIn #connect
 Dt0 f58 mainOut f71 tail #connect
 Dt0 f71 head f70 in #connect
 Dt0 f70 out f73 tail #connect
 Dt0 f73 head f72 mainIn #connect
-Dt0 f70 out f75 tail #connect
-Dt0 f75 head f74 mainIn #connect
 Dt0 f72 mainOut f77 tail #connect
 Dt0 f77 head f76 mainIn #connect
 Dt0 f76 mainOut f78 tail #connect
@@ -1334,3 +1346,9 @@ Dt0 f99 mainOut f108 tail #connect
 Dt0 f108 head f110 mainIn #connect
 Dt0 f110 mainOut f111 tail #connect
 Dt0 f111 head f107 in #connect
+Dt0 f53 mainOut f69 tail #connect
+Dt0 f69 head f58 mainIn #connect
+Dt0 f70 out f113 tail #connect
+Dt0 f113 head f112 in #connect
+Dt0 f112 out f75 tail #connect
+Dt0 f75 head f74 mainIn #connect

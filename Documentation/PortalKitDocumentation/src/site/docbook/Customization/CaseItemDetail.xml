@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sect1 xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="axonivyportal.customization.caseitemdetails">
-	<title>Case item details</title>
+	<title xml:id="axonivyportal.customization.caseitemdetails.title">Case item details</title>
 	<para>CaseItemDetails is a built-in component of Portal which contains the case info which users can interact with.
 		In order to show needed case's information, Portal supports overriding concept for
 		CaseItemDetails.

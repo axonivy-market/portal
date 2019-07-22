@@ -1726,7 +1726,10 @@ Pt0 f106 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f106 actionTable 'out=in;
 ' #txt
-Pt0 f106 actionCode 'out.iCase = ivy.wf.findCase(in.caseId);' #txt
+Pt0 f106 actionCode 'import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.query.CaseQuery;
+
+out.iCase = ivy.wf.getGlobalContext().getCaseQueryExecutor().getFirstResult(CaseQuery.create().where().caseId().isEqual(in.caseId)) as ICase;' #txt
 Pt0 f106 security system #txt
 Pt0 f106 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f106 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
