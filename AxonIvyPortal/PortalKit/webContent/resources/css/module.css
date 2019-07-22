@@ -5269,5 +5269,8 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
   line-height: 38px;
   display: flex;
 }
+.task-detail-general-card {
+  padding-bottom: 0px !important;
+}
 
 /*  =================== END TASK DETAIL PAGE ========================= */

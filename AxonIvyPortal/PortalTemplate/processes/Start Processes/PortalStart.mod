@@ -131,8 +131,6 @@ Pt0 @StartRequest f110 '' #zField
 Pt0 @EndTask f112 '' #zField
 Pt0 @CallSub f115 '' #zField
 Pt0 @PushWFArc f114 '' #zField
-Pt0 @GridStep f111 '' #zField
-Pt0 @GridStep f113 '' #zField
 Pt0 @GridStep f117 '' #zField
 Pt0 @PushWFArc f119 '' #zField
 Pt0 @PushWFArc f116 '' #zField
@@ -1789,7 +1787,7 @@ Pt0 f110 triggerEnabled false #txt
 Pt0 f110 callSignature startPortalTaskDetail(Long) #txt
 Pt0 f110 persist false #txt
 Pt0 f110 caseData businessCase.attach=true #txt
-Pt0 f110 showInStartList 1 #txt
+Pt0 f110 showInStartList 0 #txt
 Pt0 f110 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1825,40 +1823,6 @@ Pt0 f115 356 1320 152 48 -60 -8 #rect
 Pt0 f115 @|CallSubIcon #fIcon
 Pt0 f114 expr out #txt
 Pt0 f114 508 1344 641 1344 #arcP
-Pt0 f111 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
-' #txt
-Pt0 f111 actionTable 'out=in;
-' #txt
-Pt0 f111 actionCode 'out.iCase = ivy.wf.findCase(in.caseId);
-ivy.log.warn("Portal Start Case {0}", out.ICase.getId());' #txt
-Pt0 f111 security system #txt
-Pt0 f111 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pt0 f111 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Find Case</name>
-    </language>
-</elementInfo>
-' #txt
-Pt0 f111 248 346 112 44 -28 -8 #rect
-Pt0 f111 @|StepIcon #fIcon
-Pt0 f113 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
-' #txt
-Pt0 f113 actionTable 'out=in;
-' #txt
-Pt0 f113 actionCode 'out.iCase = ivy.wf.findCase(in.caseId);
-ivy.log.warn("Portal Start Case {0}", out.ICase.getId());' #txt
-Pt0 f113 security system #txt
-Pt0 f113 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pt0 f113 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Find Case</name>
-    </language>
-</elementInfo>
-' #txt
-Pt0 f113 240 354 112 44 -28 -8 #rect
-Pt0 f113 @|StepIcon #fIcon
 Pt0 f117 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f117 actionTable 'out=in;

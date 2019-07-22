@@ -41,8 +41,8 @@
     <div class="Separator" />
 
     <div class="ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0">
-      <p:dataTable value="#{data.notes}" var="note" id="task-note-table" paginator="true" rows="7"
-        paginatorPosition="top" pageLinks="5"
+      <p:dataTable value="#{data.notes}" var="note" id="task-note-table" paginator="true" rows="5"
+        paginatorPosition="top" pageLinks="3"
         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}"
           sortBy="#{note.creationTimestamp}" styleClass="case-history-name u-truncate-text">
