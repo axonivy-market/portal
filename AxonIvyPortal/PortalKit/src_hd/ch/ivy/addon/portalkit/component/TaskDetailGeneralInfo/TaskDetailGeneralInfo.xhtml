@@ -77,6 +77,8 @@
       <p:commandLink id="related-case" value="#{taskBean.displayCaseName(task)}"
         actionListener="#{logic.navigateToRelatedCase(task.getCase().getBusinessCase())}" />
     </div>
+  </div>
+  <div class="ui-g">
     <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-12 ui-g-2">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}" />
     </div>
@@ -95,6 +97,9 @@
       <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText fullname="#{task.getWorkerUser().getDisplayName()}"
         username="#{task.getWorkerUserName()}" />
     </div>
+  </div>
+
+  <div class="ui-g">
     <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-12 ui-g-2">
       <h:outputText id="expiryLabel"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" />
@@ -140,6 +145,8 @@
       <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText fullname="#{task.getActivator().getDisplayName()}"
         username="#{task.getActivatorName()}" />
     </div>
+  </div>
+  <div class="ui-g">
     <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-12 ui-g-2">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/delayedUntil')}" />
     </div>
@@ -156,6 +163,8 @@
     <div class="ui-xl-4 ui-lg-8 ui-md-8 ui-sm-12 ui-g-4">
       <h:outputText id="task-category" value="#{task.categoryPath}" />
     </div>
+  </div>
+  <div class="ui-g">
     <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-12 ui-g-2">
       <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseCategory')}" />
     </div>
