@@ -926,13 +926,13 @@ a.case-details-document-add-link {
   line-height: 2rem;
 }
 
-.case-history-date, .case-document-user-name {
+.case-history-date, .case-document-author {
   width: 20%;
   text-align: center !important;
   line-height: 2rem;
 }
 
-.case-document-user-name {
+.case-document-author {
   text-align: left !important;
 }
 
