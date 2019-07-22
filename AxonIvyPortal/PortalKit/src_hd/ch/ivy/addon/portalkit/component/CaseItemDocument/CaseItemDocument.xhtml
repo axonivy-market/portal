@@ -48,7 +48,7 @@
             </h:panelGroup>
           </p:column>
 
-          <p:column id="document-user-creation" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/userCreation')}" styleClass="case-document-user-name u-truncate-text"
+          <p:column id="document-author" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/author')}" styleClass="case-document-author u-truncate-text"
             sortBy="#{empty document.creation.user.fullName ? document.creation.user.name:document.creation.user.fullName}">
             <h:outputText value="#{empty document.creation.user.fullName ? document.creation.user.name:document.creation.user.fullName}" />
           </p:column>
