@@ -1,0 +1,8 @@
+TaskItemDetailsData #class
+ch.ivy.addon.portalkit.component.TaskItemDetails #namespace
+oldName String #field
+oldName PERSISTENT #fieldModifier
+changeNameNoteContent String #field
+changeNameNoteContent PERSISTENT #fieldModifier
+task ch.ivyteam.ivy.workflow.ITask #field
+task PERSISTENT #fieldModifier
