@@ -1,5 +1,5 @@
 [Ivy]
-156F869FC3FCD1D9 3.24 #module
+156F869FC3FCD1D9 3.26 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalTaskMenuProcess Big #zClass
 Ps0 RD #cInfo
@@ -347,11 +347,12 @@ Ps0 f32 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 in.myCategoryCriteria.involvedUsername = ivy.session.getSessionUserName();
-TaskQuery taskQuery = in.myCategoryCriteria.getFinalQuery();
+if (in.myCategoryCriteria.getCustomTaskQuery() == null) {
+	in.myCategoryCriteria.customTaskQuery = TaskQuery.create();
+}
 TaskQuery reservedTaskQuery = TaskQuery.create().where().activatorRoleId().isNotNull().and().state().isEqual(TaskState.PARKED);
-taskQuery.where().and().activatorUserId().isNotNull().or(reservedTaskQuery);
-
-in.myCategoryCriteria.setFinalQuery(taskQuery);' #txt
+in.myCategoryCriteria.customTaskQuery.where().and().activatorUserId().isNotNull().or(reservedTaskQuery);
+' #txt
 Ps0 f32 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -396,10 +397,12 @@ Ps0 f37 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 in.groupCategoryCriteria.involvedUsername = ivy.session.getSessionUserName();
-TaskQuery taskQuery = in.groupCategoryCriteria.getFinalQuery();
-taskQuery.where().and().activatorRoleId().isNotNull();
+if (in.groupCategoryCriteria.getCustomTaskQuery() == null) {
+	in.groupCategoryCriteria.customTaskQuery = TaskQuery.create();
+}
 
-in.groupCategoryCriteria.setFinalQuery(taskQuery);' #txt
+in.groupCategoryCriteria.customTaskQuery.where().and().activatorRoleId().isNotNull();
+' #txt
 Ps0 f37 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
