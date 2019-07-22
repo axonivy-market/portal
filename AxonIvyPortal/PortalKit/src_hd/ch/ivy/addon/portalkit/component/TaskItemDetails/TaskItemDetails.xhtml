@@ -41,23 +41,23 @@
     </h:form>
   </h:panelGroup>
   
-  <div class="ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0">
+  <div class="ui-g-12 u-padding-0">
     <div class="ui-g">
     
       <!-- General & description box -->
       <div class="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
-        <div class="card card-w-title case-detail-card">
+        <div id="task-detail-general-container" class="card card-w-title task-detail-general-card">
           <div class="case-detail-section-title u-truncate-text ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0">
             <i class="fa fa-user-circle" />
             #{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseDetail/DataDescription')}
           </div>
           <div class="Separator ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0" />
-          <div class="ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12">
+          <div  class="ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12">
             <ic:ch.ivy.addon.portalkit.component.TaskDetailGeneralInfo id="general-information" task="#{task}" />
             <ic:ch.ivy.addon.portalkit.component.TaskItemDescription id="task-general-description" task="#{task}"
               descriptionComponentToUpdate="#{p:component('task-general-description')}" />
           </div>
-          <div class="ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12"></div>
+          <div class="ui-g-12"></div>
         </div>
       </div>
 
@@ -67,15 +67,14 @@
         <div class="card card-w-title case-detail-card">
           <ic:ch.ivy.addon.portalkit.component.TaskDetailNotes id="task-notes" task="#{task}" />
         </div>
-      </h:panelGroup>
-
-      <!-- Document box -->
-      <h:panelGroup rendered="true" styleClass="ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12">
+              <!-- Document box -->
         <div class="card card-w-title case-detail-card">
           <ic:ch.ivy.addon.portalkit.component.TaskDetailDocuments id="task-documents" task="#{task}"
             componentToUpdate="#{p:component('task-detail-note-container')}" />
         </div>
       </h:panelGroup>
+
+
     </div>
   </div>
 
