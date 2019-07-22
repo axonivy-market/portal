@@ -39,7 +39,7 @@
       <p:ajax event="click" listener="#{logic.openTask(task,dataModel)}" 
         onstart="#{cc.attrs.onTaskStartCallback}" />
       <cc:renderFacet name="taskHeader" />
-      <f:subview id="task-action">
+      <f:subview id="task-action" >
         <ui:include src="TaskAction.xhtml" />
       </f:subview>
       <p:commandLink id="show-task-detail-link" class="show-task-detail-link" onstart="event.stopPropagation()" actionListener="#{taskWidgetBean.setExpandedTaskId(task.getId(), isExpanded)}" 
@@ -98,8 +98,6 @@
     </h:panelGroup>
   </p:confirmDialog>
 
-  <ui:include src="TaskDelegateDialog.xhtml">
-    <ui:param name="rowIndex" value="#{rowIndex}" />
-  </ui:include>
+
 </cc:implementation>
 </html>

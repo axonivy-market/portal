@@ -248,7 +248,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .widget-header-main-menu a.ui-widget.ui-commandlink, .widget-header-main-menu span.ui-widget.ui-commandlink.ui-state-disabled,
-  .widget-sort-menu a.ui-widget.ui-commandlink, .widget-sort-menu span.ui-widget.ui-commandlink.ui-state-disabled
+ .widget-sort-menu span.ui-widget.ui-commandlink.ui-state-disabled
   {
   font-size: 1.2rem;
 }
@@ -1962,7 +1962,8 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 }
 
 .filter-selection-form label,
-.filter-selection-form a.ui-commandlink {
+.filter-selection-form a.ui-commandlink,
+.filter-selection-form a.ui-commandlink:hover {
   font-size: 1.4rem;
   color: #000000 !important;
 }
@@ -2188,8 +2189,9 @@ a.compact-task-start-link:hover {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   display: block;
+  padding-bottom: 2px;
 }
 
 .task-start-list .description-cell {
@@ -2199,7 +2201,7 @@ a.compact-task-start-link:hover {
 
 .task-start-list .responsible-cell {
   flex: 0 0 120px;
-  padding-right: 10px;
+
 }
 
 .task-start-list .name-cell, .task-start-list .description-cell, .task-start-list .responsible-cell {
@@ -2214,6 +2216,7 @@ a.compact-task-start-link:hover {
 
 .task-start-list .action-cell {
   text-align: right;
+  display: flex;
 }
 
 .task-start-list .task-custom-field-cell {
@@ -2229,9 +2232,8 @@ a.compact-task-start-link:hover {
 }
 
 .task-start-list .action-cell .action-container {
-  padding: 0 25px 0 20px;
+  padding: 0 25px 0 0px;
   text-align: center;
-  border-left: solid 1px rgba(0,0,0,0.5);
   display: inline-block;
 }
 
@@ -2299,7 +2301,7 @@ a.compact-task-start-link:hover {
   height: 65px;
   align-items: center;
   position: relative;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   cursor: pointer;
 }
 
@@ -2339,6 +2341,7 @@ a.compact-task-start-link:hover {
   border-radius: 5px;
   webkit-box-shadow: 0px 2px 4px 0px rgba(43, 59, 93, 0.6) !important;
   box-shadow: 0px 2px 4px 0px rgba(43, 59, 93, 0.6) !important;
+  padding: 0 !important;
 }
 
 .side-steps-panel.expiry-chart-context-menu {
@@ -2374,7 +2377,7 @@ a.compact-task-start-link:hover {
   margin: 0;
   width: 160px;
   color: rgba(0, 0, 0, 0.5) !important;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
@@ -2508,7 +2511,7 @@ a.compact-task-start-link:hover {
 }
 #task-description .ui-inplace-display.ui-state-highlight {
   color: rgba(0,0,0,0.6);
-  background-color: inherit;
+  background-color: #f7f7f7;
   padding: inherit;
   border: inherit!important;
   border-radius: inherit;
@@ -4474,7 +4477,7 @@ margin-top
   margin: 0;
   width: 160px;
   color: rgba(0, 0, 0, 0.5) !important;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
@@ -5254,3 +5257,17 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 	text-align: left;
 }
 /* =================== END MESSAGES ========================= */
+
+/*  =================== TASK DETAIL PAGE ========================= */
+.task-name-panel {
+  font-size: 2rem;
+}
+
+.task-detail-header {
+  font-size: 1.8rem;
+  font-weight: bold;
+  line-height: 38px;
+  display: flex;
+}
+
+/*  =================== END TASK DETAIL PAGE ========================= */
