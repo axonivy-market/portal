@@ -1,0 +1,4 @@
+OpenPortalTaskDetailsData #class
+ch.ivy.addon.portal.generic #namespace
+taskView ch.ivyteam.ivy.workflow.ITask #field
+taskView PERSISTENT #fieldModifier
