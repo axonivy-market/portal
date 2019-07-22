@@ -127,6 +127,15 @@ Pt0 @PushWFArc f107 '' #zField
 Pt0 @GridStep f106 '' #zField
 Pt0 @PushWFArc f108 '' #zField
 Pt0 @StartRequest f103 '' #zField
+Pt0 @StartRequest f110 '' #zField
+Pt0 @EndTask f112 '' #zField
+Pt0 @CallSub f115 '' #zField
+Pt0 @PushWFArc f114 '' #zField
+Pt0 @GridStep f111 '' #zField
+Pt0 @GridStep f113 '' #zField
+Pt0 @GridStep f117 '' #zField
+Pt0 @PushWFArc f119 '' #zField
+Pt0 @PushWFArc f116 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Pt0 f0 outLink PortalStart.ivp #txt
 Pt0 f0 type ch.ivy.addon.portal.generic.PortalStartData #txt
@@ -1765,8 +1774,110 @@ Pt0 f103 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f103 @C|.responsibility Everybody #txt
-Pt0 f103 49 1217 30 30 -57 17 #rect
+Pt0 f103 49 1217 30 30 -58 19 #rect
 Pt0 f103 @|StartRequestIcon #fIcon
+Pt0 f110 outLink startPortalTaskDetail.ivp #txt
+Pt0 f110 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f110 inParamDecl '<java.lang.Long taskId> param;' #txt
+Pt0 f110 inParamTable 'out.taskId=param.taskId;
+' #txt
+Pt0 f110 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
+' #txt
+Pt0 f110 guid 16BF454B2A210531 #txt
+Pt0 f110 requestEnabled true #txt
+Pt0 f110 triggerEnabled false #txt
+Pt0 f110 callSignature startPortalTaskDetail(Long) #txt
+Pt0 f110 persist false #txt
+Pt0 f110 caseData businessCase.attach=true #txt
+Pt0 f110 showInStartList 1 #txt
+Pt0 f110 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>startPortalTaskDetail.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f110 @C|.responsibility Everybody #txt
+Pt0 f110 49 1329 30 30 -55 34 #rect
+Pt0 f110 @|StartRequestIcon #fIcon
+Pt0 f112 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f112 641 1329 30 30 0 15 #rect
+Pt0 f112 @|EndIcon #fIcon
+Pt0 f115 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f115 processCall 'Functional Processes/OpenPortalTaskDetail:call(ch.ivyteam.ivy.workflow.ITask)' #txt
+Pt0 f115 doCall true #txt
+Pt0 f115 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask taskData> param;
+' #txt
+Pt0 f115 requestMappingAction 'param.taskData=in.ITask;
+' #txt
+Pt0 f115 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
+' #txt
+Pt0 f115 responseMappingAction 'out=in;
+' #txt
+Pt0 f115 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>OpenPortalTaskDetail</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f115 356 1320 152 48 -60 -8 #rect
+Pt0 f115 @|CallSubIcon #fIcon
+Pt0 f114 expr out #txt
+Pt0 f114 508 1344 641 1344 #arcP
+Pt0 f111 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
+' #txt
+Pt0 f111 actionTable 'out=in;
+' #txt
+Pt0 f111 actionCode 'out.iCase = ivy.wf.findCase(in.caseId);
+ivy.log.warn("Portal Start Case {0}", out.ICase.getId());' #txt
+Pt0 f111 security system #txt
+Pt0 f111 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f111 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Find Case</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f111 248 346 112 44 -28 -8 #rect
+Pt0 f111 @|StepIcon #fIcon
+Pt0 f113 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
+' #txt
+Pt0 f113 actionTable 'out=in;
+' #txt
+Pt0 f113 actionCode 'out.iCase = ivy.wf.findCase(in.caseId);
+ivy.log.warn("Portal Start Case {0}", out.ICase.getId());' #txt
+Pt0 f113 security system #txt
+Pt0 f113 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f113 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Find Case</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f113 240 354 112 44 -28 -8 #rect
+Pt0 f113 @|StepIcon #fIcon
+Pt0 f117 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
+' #txt
+Pt0 f117 actionTable 'out=in;
+' #txt
+Pt0 f117 actionCode 'out.ITask = ivy.wf.findTask(in.taskId);' #txt
+Pt0 f117 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f117 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Find Task</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f117 176 1322 112 44 -27 -8 #rect
+Pt0 f117 @|StepIcon #fIcon
+Pt0 f119 expr out #txt
+Pt0 f119 79 1344 176 1344 #arcP
+Pt0 f116 expr out #txt
+Pt0 f116 288 1344 356 1344 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1879,3 +1990,9 @@ Pt0 f106 mainOut f107 tail #connect
 Pt0 f107 head f104 mainIn #connect
 Pt0 f104 mainOut f109 tail #connect
 Pt0 f109 head f105 mainIn #connect
+Pt0 f115 mainOut f114 tail #connect
+Pt0 f114 head f112 mainIn #connect
+Pt0 f110 mainOut f119 tail #connect
+Pt0 f119 head f117 mainIn #connect
+Pt0 f117 mainOut f116 tail #connect
+Pt0 f116 head f115 mainIn #connect

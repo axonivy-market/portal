@@ -16,4 +16,10 @@ searchResultsDataModel ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel #
 isMobile Boolean #field
 defaultMobilePage ch.ivy.addon.portalkit.enums.MenuKind #field
 caseId Long #field
-iCase ch.ivyteam.ivy.workflow.ICase #field
+caseId PERSISTENT #fieldModifier
+ICase ch.ivyteam.ivy.workflow.ICase #field
+ICase PERSISTENT #fieldModifier
+ITask ch.ivyteam.ivy.workflow.ITask #field
+ITask PERSISTENT #fieldModifier
+taskId Long #field
+taskId PERSISTENT #fieldModifier
