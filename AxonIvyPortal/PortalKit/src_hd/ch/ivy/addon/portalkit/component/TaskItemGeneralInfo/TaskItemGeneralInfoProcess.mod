@@ -1,5 +1,5 @@
 [Ivy]
-15493A537A91F8FC 3.23 #module
+15493A537A91F8FC 3.26 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemGeneralInfoProcess Big #zClass
 Ts0 RD #cInfo
@@ -17,11 +17,6 @@ Ts0 @TextInP .responsibility .responsibility #zField
 Ts0 @RichDialogInitStart f0 '' #zField
 Ts0 @RichDialogProcessEnd f1 '' #zField
 Ts0 @PushWFArc f2 '' #zField
-Ts0 @GridStep f7 '' #zField
-Ts0 @CallSub f9 '' #zField
-Ts0 @PushWFArc f10 '' #zField
-Ts0 @RichDialogProcessEnd f11 '' #zField
-Ts0 @PushWFArc f12 '' #zField
 Ts0 @RichDialogMethodStart f5 '' #zField
 Ts0 @GridStep f13 '' #zField
 Ts0 @PushWFArc f14 '' #zField
@@ -30,7 +25,12 @@ Ts0 @PushWFArc f17 '' #zField
 Ts0 @RichDialogProcessEnd f19 '' #zField
 Ts0 @PushWFArc f20 '' #zField
 Ts0 @RichDialogMethodStart f3 '' #zField
+Ts0 @RichDialogProcessEnd f11 '' #zField
 Ts0 @PushWFArc f4 '' #zField
+Ts0 @GridStep f7 '' #zField
+Ts0 @PushWFArc f12 '' #zField
+Ts0 @PushWFArc f10 '' #zField
+Ts0 @CallSub f9 '' #zField
 >Proto Ts0 Ts0 TaskItemGeneralInfoProcess #zField
 Ts0 f0 guid 1682691BC1A26D76 #txt
 Ts0 f0 type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
@@ -55,51 +55,6 @@ Ts0 f1 307 83 26 26 0 12 #rect
 Ts0 f1 @|RichDialogProcessEndIcon #fIcon
 Ts0 f2 expr out #txt
 Ts0 f2 109 96 307 96 #arcP
-Ts0 f7 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData out;
-' #txt
-Ts0 f7 actionTable 'out=in;
-' #txt
-Ts0 f7 actionCode 'import ch.ivy.addon.portalkit.dto.GlobalCaseId;
-
-in.globalCaseId = GlobalCaseId.caseId(in.selectedCase.getId()).build();' #txt
-Ts0 f7 type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
-Ts0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>prepare global case id</name>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f7 160 170 128 44 -61 -8 #rect
-Ts0 f7 @|StepIcon #fIcon
-Ts0 f9 type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
-Ts0 f9 processCall 'Functional Processes/Navigator:viewCase(String,ch.ivy.addon.portalkit.dto.GlobalCaseId)' #txt
-Ts0 f9 doCall true #txt
-Ts0 f9 requestActionDecl '<java.lang.String caseName,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;
-' #txt
-Ts0 f9 requestMappingAction 'param.caseName=ch.ivy.addon.portalkit.util.PermissionUtils.getCaseName(in.selectedCase);
-param.caseId=in.globalCaseId;
-' #txt
-Ts0 f9 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData out;
-' #txt
-Ts0 f9 responseMappingAction 'out=in;
-' #txt
-Ts0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Navigator</name>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f9 328 170 112 44 -26 -8 #rect
-Ts0 f9 @|CallSubIcon #fIcon
-Ts0 f10 expr out #txt
-Ts0 f10 288 192 328 192 #arcP
-Ts0 f11 type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
-Ts0 f11 499 179 26 26 0 12 #rect
-Ts0 f11 @|RichDialogProcessEndIcon #fIcon
-Ts0 f12 expr out #txt
-Ts0 f12 440 192 499 192 #arcP
 Ts0 f5 guid 16826946D7BC78E5 #txt
 Ts0 f5 type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
 Ts0 f5 method updateDeadline(ch.ivyteam.ivy.workflow.ITask) #txt
@@ -173,11 +128,11 @@ Ts0 f3 guid 168275A66748435B #txt
 Ts0 f3 type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
 Ts0 f3 method navigateToRelatedCase(ch.ivyteam.ivy.workflow.ICase) #txt
 Ts0 f3 disableUIEvents false #txt
-Ts0 f3 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivyteam.ivy.workflow.ICase iCase> param = methodEvent.getInputArguments();
+Ts0 f3 inParameterDecl 'ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData out;
 ' #txt
 Ts0 f3 inParameterMapAction 'out.selectedCase=param.iCase;
 ' #txt
+Ts0 f3 inActionCode 'ivy.log.warn("Task info OLD {0]", out.selectedCase);' #txt
 Ts0 f3 outParameterDecl '<> result;
 ' #txt
 Ts0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -189,8 +144,53 @@ Ts0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ts0 f3 83 179 26 26 -41 19 #rect
 Ts0 f3 @|RichDialogMethodStartIcon #fIcon
+Ts0 f11 type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
+Ts0 f11 499 179 26 26 0 12 #rect
+Ts0 f11 @|RichDialogProcessEndIcon #fIcon
 Ts0 f4 expr out #txt
 Ts0 f4 109 192 160 192 #arcP
+Ts0 f7 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData out;
+' #txt
+Ts0 f7 actionTable 'out=in;
+' #txt
+Ts0 f7 actionCode 'import ch.ivy.addon.portalkit.dto.GlobalCaseId;
+
+in.globalCaseId = GlobalCaseId.caseId(in.selectedCase.getId()).build();' #txt
+Ts0 f7 type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
+Ts0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>prepare global case id</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f7 160 170 128 44 -61 -8 #rect
+Ts0 f7 @|StepIcon #fIcon
+Ts0 f12 expr out #txt
+Ts0 f12 440 192 499 192 #arcP
+Ts0 f10 expr out #txt
+Ts0 f10 288 192 328 192 #arcP
+Ts0 f9 type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
+Ts0 f9 processCall 'Functional Processes/Navigator:viewCase(String,ch.ivy.addon.portalkit.dto.GlobalCaseId)' #txt
+Ts0 f9 doCall true #txt
+Ts0 f9 requestActionDecl '<java.lang.String caseName,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;
+' #txt
+Ts0 f9 requestMappingAction 'param.caseName=ch.ivy.addon.portalkit.util.PermissionUtils.getCaseName(in.selectedCase);
+param.caseId=in.globalCaseId;
+' #txt
+Ts0 f9 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData out;
+' #txt
+Ts0 f9 responseMappingAction 'out=in;
+' #txt
+Ts0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Navigator</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f9 328 170 112 44 -26 -8 #rect
+Ts0 f9 @|CallSubIcon #fIcon
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
