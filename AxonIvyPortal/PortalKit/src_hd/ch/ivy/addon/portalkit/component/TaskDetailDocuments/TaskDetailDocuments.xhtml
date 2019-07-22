@@ -17,10 +17,10 @@
 <div id="#{cc.clientId}" class="case-details-item ui-g">
     <h:form prependId="false">
       <div class="case-detail-section-title ui-g-12">
-        <div class="ui-g-6 ui-xl-6 ui-lg-6 ui-md-6 ui-sm-6 u-truncate-text u-padding-0">
+        <div class="ui-g-6 u-truncate-text u-padding-0">
           <i class="fa fa-file" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/documents')}
         </div>
-        <h:panelGroup layout="block" styleClass="case-details-document-add ui-g-6 ui-xl-6 ui-lg-6 ui-md-6 ui-sm-6 u-padding-0">
+        <h:panelGroup layout="block" styleClass="case-details-document-add ui-g-6 u-padding-0">
           <p:commandLink id="add-document-command" styleClass="case-details-document-add-link"
             rendered="#{data.businessCase.state ne 'DONE' and data.isShowUploadDocumentButton and taskActionBean.canWriteDocument(data.task)}" actionListener="#{data.setTask(task)}"
             oncomplete="PF('document-upload-dialog').show()">
@@ -32,10 +32,13 @@
       <div class="Separator ui-g-12 u-padding-0" />
 
       <div class="ui-g-12 u-padding-0">
-        <p:dataTable id="task-details-documents" var="document" value="#{data.documents}" paginator="true" pageLinks="3" rows="5" paginatorPosition="top">
+        <p:dataTable id="task-details-documents" var="document" value="#{data.documents}"  paginator="true" pageLinks="3" rows="5" paginatorPosition="top"
+        emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" 
+        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+        currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}" sortBy="#{document.name}" styleClass="u-truncate-text">
             <h:panelGroup layout="block" rendered="#{document ne null}" styleClass="case-document-name">
-              <p:commandLink ajax="false" id="download" styleClass="download-command js-download-command  case-document-name-text u-truncate-text">
+              <p:commandLink ajax="false" id="download" styleClass="download-command js-download-command case-document-name-text u-truncate-text">
                 <p:fileDownload value="#{logic.downloadDocument(document)}" />
                 <span class="fa fa-file-pdf-o case-details-document-download-icon" />
                 <h:outputText value="#{document.name}" styleClass="js-document-name" />
@@ -48,15 +51,14 @@
             </h:panelGroup>
           </p:column>
 
-          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/date')}" styleClass="case-history-date u-truncate-text" sortBy="#{document.creation.timestamp}">
-            <h:outputText value="#{document.creation.timestamp}">
-              <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
-            </h:outputText>
+          <p:column id="document-author" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/author')}" styleClass="case-document-author u-truncate-text"
+            sortBy="#{empty document.creation.user.fullName ? document.creation.user.name:document.creation.user.fullName}">
+            <h:outputText value="#{empty document.creation.user.fullName ? document.creation.user.name:document.creation.user.fullName}" />
           </p:column>
 
-          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/lastEdit')}" styleClass="case-document-last-date u-truncate-text"
-            sortBy="#{document.lastModification.timestamp}">
-            <h:outputText value="#{document.lastModification.timestamp}">
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/date')}" styleClass="case-document-last-date u-truncate-text"
+            sortBy="#{document.creation.timestamp}">
+            <h:outputText value="#{document.creation.timestamp}">
               <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
             </h:outputText>
           </p:column>
@@ -91,7 +93,7 @@
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmForDelete')}"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" appendTo="@(body)" severity="alert">
     <h:panelGroup layout="block" styleClass="document-deletion-command-buttons">
-      <p:commandButton styleClass="document-deletion-command" id="document-deletion-command"
+      <p:commandButton id="document-deletion-command"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" process="@this"
         update="#{p:component('task-details-documents')} #{cc.attrs.componentToUpdate} #{p:component('task-document-global-messages')}"
         actionListener="#{logic.deleteDocument}" oncomplete="PF('document-deletion-dialog').hide(); documentTruncation.truncate();" />
