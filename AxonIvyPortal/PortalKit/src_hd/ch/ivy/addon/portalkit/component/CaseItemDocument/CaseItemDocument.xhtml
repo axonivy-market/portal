@@ -35,7 +35,7 @@
           currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
           <p:column id="document-name" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}" sortBy="#{document.name}" styleClass="u-truncate-text">
             <h:panelGroup layout="block" rendered="#{document ne null}" styleClass="case-document-name">
-              <p:commandLink ajax="false" id="download" styleClass="download-command js-download-command  case-document-name-text u-truncate-text">
+              <p:commandLink ajax="false" id="download" styleClass="download-command js-download-command case-document-name-text u-truncate-text">
                 <p:fileDownload value="#{logic.downloadDocument(document)}" />
                 <span class="fa fa-file-pdf-o case-details-document-download-icon" />
                 <h:outputText value="#{document.name}" styleClass="js-document-name" />
