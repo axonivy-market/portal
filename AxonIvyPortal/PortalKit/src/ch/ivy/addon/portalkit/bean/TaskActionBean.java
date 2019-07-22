@@ -1,21 +1,29 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.io.IOException;
 import java.util.EnumSet;
 import java.util.Objects;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
+import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISession;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
+import ch.ivyteam.ivy.server.ServerFactory;
+import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 
@@ -27,6 +35,7 @@ public class TaskActionBean {
   private boolean isShowReserveTask;
   private boolean isShowDelegateTask;
   private boolean isShowAdditionalOptions;
+  private static final String OPEN_TASK_ITEM_DETAILS = "Start Processes/PortalStart/startPortalTaskDetail.ivp";
 
   public TaskActionBean() {
     isShowResetTask = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_RESET_ACTION);
@@ -166,4 +175,35 @@ public class TaskActionBean {
   public void setShowAdditionalOptions(boolean isShowAdditionalOptions) {
     this.isShowAdditionalOptions = isShowAdditionalOptions;
   }
+  
+
+  public void navigateTask(ITask task) {
+    String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("startPortalTaskDetail.ivp");
+    if (StringUtils.isEmpty(customizePortalFriendlyRequestPath)) {
+      customizePortalFriendlyRequestPath = OPEN_TASK_ITEM_DETAILS;
+    }
+    redirect(getProcessStartUriWithTaskParameters(task, customizePortalFriendlyRequestPath));
+  }
+
+  public void redirect(String url) {
+    try {
+      FacesContext.getCurrentInstance().getExternalContext().redirect(url);
+    } catch (IOException ex) {
+      throw new PortalException(ex);
+    }
+  }
+  
+  public static String getProcessStartUriWithTaskParameters(ITask iTask, String requestPath) {
+    ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
+    String urlParameters = "?TaskId=" + iTask.getId();
+    try {
+      return collector.findLinkByFriendlyRequestPath(requestPath) + urlParameters;
+    } catch (Exception e) {
+      Ivy.log().error(e);
+      IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(requestPath);
+      return RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString()
+          + urlParameters;
+    }
+  }
+  
 }
