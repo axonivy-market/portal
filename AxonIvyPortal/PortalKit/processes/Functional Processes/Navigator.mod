@@ -1,5 +1,5 @@
 [Ivy]
-1543CB1F7FCE2CC1 3.23 #module
+1543CB1F7FCE2CC1 3.26 #module
 >Proto >Proto Collection #zClass
 Nr0 Navigator Big #zClass
 Nr0 B #cInfo
@@ -36,18 +36,22 @@ Nr0 @StartSub f20 '' #zField
 Nr0 @EndSub f21 '' #zField
 Nr0 @PushWFArc f22 '' #zField
 Nr0 @InfoButton f53 '' #zField
+Nr0 @InfoButton f23 '' #zField
+Nr0 @StartSub f24 '' #zField
+Nr0 @EndSub f25 '' #zField
+Nr0 @PushWFArc f26 '' #zField
 >Proto Nr0 Nr0 Navigator #zField
-Nr0 f0 inParamDecl '<java.lang.String caseName,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;' #txt
+Nr0 f0 inParamDecl '<ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;' #txt
 Nr0 f0 outParamDecl '<> result;
 ' #txt
 Nr0 f0 actionDecl 'ch.ivy.add.portalkit.NavigatorData out;
 ' #txt
-Nr0 f0 callSignature viewCase(String,ch.ivy.addon.portalkit.dto.GlobalCaseId) #txt
+Nr0 f0 callSignature viewCase(ch.ivy.addon.portalkit.dto.GlobalCaseId) #txt
 Nr0 f0 type ch.ivy.add.portalkit.NavigatorData #txt
 Nr0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>viewCase(String,GlobalCaseId)</name>
+        <name>viewCase(GlobalCaseId)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -251,6 +255,48 @@ is put in PortalTemplate.</name>
 ' #txt
 Nr0 f53 1632 147 496 172 -238 -84 #rect
 Nr0 f53 @|IBIcon #fIcon
+Nr0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Technical Note
+
+This callable is introduced for clients of PortalKit
+to override and implement the functionality
+of redirecting into a HtmlDialog for viewing task.
+
+By default, this is doing nothing. The default implementation, however,
+is put in PortalTemplate.</name>
+        <nameStyle>15,0,5,8
+1,5,8
+246,5,8
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f23 1600 498 496 172 -238 -84 #rect
+Nr0 f23 @|IBIcon #fIcon
+Nr0 f24 inParamDecl '<java.lang.Long taskId> param;' #txt
+Nr0 f24 outParamDecl '<> result;' #txt
+Nr0 f24 actionDecl 'ch.ivy.add.portalkit.NavigatorData out;
+' #txt
+Nr0 f24 callSignature viewRelatedTask(Long) #txt
+Nr0 f24 type ch.ivy.add.portalkit.NavigatorData #txt
+Nr0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>viewRelatedTask(String)</name>
+        <nameStyle>23,5
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f24 1523 411 26 26 14 0 #rect
+Nr0 f24 @|StartSubIcon #fIcon
+Nr0 f25 type ch.ivy.add.portalkit.NavigatorData #txt
+Nr0 f25 1523 555 26 26 14 0 #rect
+Nr0 f25 @|EndSubIcon #fIcon
+Nr0 f26 expr out #txt
+Nr0 f26 1536 437 1536 555 #arcP
 >Proto Nr0 .type ch.ivy.add.portalkit.NavigatorData #txt
 >Proto Nr0 .processKind CALLABLE_SUB #txt
 >Proto Nr0 0 0 32 24 18 0 #rect
@@ -273,3 +319,5 @@ Nr0 f18 ao f19 tail #connect
 Nr0 f19 head f10 ai #connect
 Nr0 f20 mainOut f22 tail #connect
 Nr0 f22 head f21 mainIn #connect
+Nr0 f24 mainOut f26 tail #connect
+Nr0 f26 head f25 mainIn #connect
