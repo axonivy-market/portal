@@ -22,7 +22,7 @@
       value="#{ivy.cms.co('/Labels/Task')} : #{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}"
       rendered="#{taskBean.isDone(task)}" />
     <p:tooltip for="task-name" value="#{cc.attrs.nameId}" trackMouse="true" rendered="#{not empty task.name}" />
-    <h:form id="#{cc.attrs.nameId}-edit-form" onsubmit="return false;" class="name-cell task-detail-header">
+    <h:form id="#{cc.attrs.nameId}-edit-form" onsubmit="return false;" class="name-cell task-detail-header" rendered="#{!taskBean.isDone(task)}">
       <h:outputText value="#{ivy.cms.co('/Labels/Task')}:  " />
       <p:inplace id="#{cc.attrs.nameId}-inplace" editor="true" rendered="#{taskBean.isNotDone(task)}"
         disabled="#{!taskActionBean.canChangeName(task)}"
@@ -41,7 +41,7 @@
     </h:form>
   </h:panelGroup>
   
-  <div class="ui-g-12 u-padding-0">
+  <div class="task-item-body ui-g-12 u-padding-0">
     <div class="ui-g">
     
       <!-- General & description box -->
@@ -54,8 +54,6 @@
           <div class="Separator ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0" />
           <div  class="ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12">
             <ic:ch.ivy.addon.portalkit.component.TaskDetailGeneralInfo id="general-information" task="#{task}" />
-            <ic:ch.ivy.addon.portalkit.component.TaskItemDescription id="task-general-description" task="#{task}"
-              descriptionComponentToUpdate="#{p:component('task-general-description')}" />
           </div>
           <div class="ui-g-12"></div>
         </div>
@@ -64,19 +62,18 @@
       <!-- Notes box -->
       <h:panelGroup id="task-detail-note-container" rendered="true"
         styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
-        <div class="card card-w-title case-detail-card">
+        <div class="card card-w-title case-detail-card task-note-component">
           <ic:ch.ivy.addon.portalkit.component.TaskDetailNotes id="task-notes" task="#{task}" />
         </div>
               <!-- Document box -->
-        <div class="card card-w-title case-detail-card">
+        <div class="card card-w-title case-detail-card task-document-component">
           <ic:ch.ivy.addon.portalkit.component.TaskDetailDocuments id="task-documents" task="#{task}"
             componentToUpdate="#{p:component('task-detail-note-container')}" />
         </div>
       </h:panelGroup>
 
-
     </div>
-  </div>
 
+  </div>
 </cc:implementation>
 </html>
