@@ -29,7 +29,7 @@
     <div class="ui-g-12 u-padding-0 case-detail-related-table">
       <h:panelGroup rendered="#{not empty data.relatedTasks}" styleClass="ui-g-12 u-padding-0 case-related-running">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')} (#{data.totalRelatedTasts})" styleClass="Fleft" />
-        <h:panelGroup id="more-related-tasks" layout="block" rendered="#{data.relatedTasks.size() gt 20}" styleClass="Fright show-more-technical-cases-container">
+        <h:panelGroup id="more-related-tasks" layout="block" styleClass="Fright show-more-technical-cases-container">
           <p:commandLink id="show-more-related-tasks" actionListener="#{logic.openPortalTasks}" styleClass="case-related-command-link u-truncate-text">
             <span class="fa fa-external-link-square note-show-more-link-icon" />
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTasks')}..." />
@@ -44,9 +44,9 @@
           styleClass="case-related-task-case-running">
           <h:panelGroup id="task" layout="block" class="grid-item-content-list-item related-task-content">
             <i class="fa #{taskBean.getStateIcon(task.state)} fa-fw related-task-list-item-status" />
-            <p:commandLink id="task-name" value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}" styleClass="related-task">
+            <p:commandLink id="task-name" value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}" styleClass="related-task"
+              actionListener="#{logic.navigateToRelatedTaskDetails}">
               <f:attribute name="taskId" value="#{task.getId()}" />
-              <p:ajax event="click" listener="#{logic.openPortalTasks}" />
             </p:commandLink>
           </h:panelGroup>
           <p:tooltip for="task" value="#{taskBean.displayRelatedTaskToolTip(task)}" trackMouse="true" />
@@ -57,7 +57,7 @@
     <div class="ui-g-12 u-padding-0">
       <h:panelGroup rendered="#{not empty data.technicalCases}" styleClass="case-related-running ui-g-12 u-padding-0">
         <h:outputText styleClass="Fleft" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')} (#{data.totalRelatedCases})" />
-        <h:panelGroup id="more-related-cases" layout="block" rendered="#{data.technicalCases.size() gt 20}" styleClass="Fright show-more-technical-cases-container">
+        <h:panelGroup id="more-related-cases" layout="block" styleClass="Fright show-more-technical-cases-container">
           <p:commandLink id="show-more-related-cases" actionListener="#{logic.navigateToTechnicalCasesOfBusinessCase}" styleClass="case-related-command-link u-truncate-text">
             <span class="fa fa-external-link-square note-show-more-link-icon" />
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTechnicalCases')}..." />
@@ -73,7 +73,7 @@
           styleClass="case-related-task-case-running">
           <h:panelGroup id="technicalCase" layout="block" class="grid-item-content-list-item related-task-content">
             <i class="fa fa-folder-open-o fa-fw related-task-list-item-status" />
-            <p:commandLink id="case-name" value="#{empty technicalCase.name ? technicalCase.id : technicalCase.name}" actionListener="#{logic.navigateToRelatedCase}" styleClass="related-task">
+            <p:commandLink id="case-name" value="#{empty technicalCase.name ? technicalCase.id : technicalCase.name}" actionListener="#{logic.navigateToRelatedCaseDetails}" styleClass="related-task">
               <f:attribute name="selectedCase" value="#{technicalCase}" />
             </p:commandLink>
           </h:panelGroup>
