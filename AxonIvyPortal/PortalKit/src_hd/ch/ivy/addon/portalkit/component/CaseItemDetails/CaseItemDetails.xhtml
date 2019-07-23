@@ -18,7 +18,7 @@
     <h:panelGroup styleClass="ui-g-12" rendered="#{cc.attrs.showItemDetailsHeader}">
       <h:form id="case-detail-name-form" styleClass="case-detail-header">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}: " styleClass="case-detail-name-prefix" />
-        <p:inplace id="case-name-edit-inplace" editor="true" disabled="#{!caseActionBean.canChangeName(case)}" saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+        <p:inplace id="case-name-edit-inplace" editor="true" disabled="#{!caseActionBean.canChangeName(case) or case.state eq 'DONE'}" saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" widgetVar="case-detail-name-edit-inplace"
           label="#{empty case.getName() ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CasesNameIsNot') : case.name}" styleClass="case-detail-name-inplace-edit">
           <p:inputText id="case-detail-name-input" value="#{case.name}" maxlength="200" styleClass="case-detail-name-input" onkeypress="if(event.keyCode == 13) {PF('case-name-edit-inplace').save()}" />
