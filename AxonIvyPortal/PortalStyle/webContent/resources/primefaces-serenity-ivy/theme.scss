@@ -696,14 +696,16 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 	font-weight: bold;
 	border: 1px solid transparent !important;
 	
-	&:focus, &:hover  {
+	&:not(.ui-state-disabled) {
+		&:focus, &:hover  {
+			background-color: rgba(0, 0, 0, 0.05) !important;
+			border: 1px solid rgba(0, 0, 0, 0.05);
+		}
+	}
+	&.ui-state-hover {
 		background-color: rgba(0, 0, 0, 0.05) !important;
 		border: 1px solid rgba(0, 0, 0, 0.05);
 	}
-	&.ui-state-hover {
-	   background-color: transparent !important;
-	}
-	
 	.ui-button-text.ui-c, .ui-button-icon-right.ui-icon.ui-c {
 		color: rgba(0,0,0,0.5) !important;
 	}
@@ -780,6 +782,8 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 	border: none !important;
 }
 
+/*Style For Task Detail --------------------------------------------------------------------------------------*/
+
 .task-item-body .task-details-item-note, .task-item-body .task-details-item-document {
  	.ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top {
  	  background-color: rgba(0,0,0,0.05);
@@ -806,3 +810,13 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
  		}
  	}
 }
+
+/*Style For Advance Filter --------------------------------------------------------------------------------------*/
+
+.ui-datepicker .ui-timepicker-div dl dd {
+	margin-top: 25px !important;
+	.ui-slider.ui-slider-horizontal.ui-widget.ui-widget-content {
+		margin-right: 10px;
+	}
+}
+	

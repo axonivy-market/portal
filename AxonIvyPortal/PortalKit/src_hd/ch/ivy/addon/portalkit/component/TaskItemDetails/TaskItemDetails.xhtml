@@ -1,8 +1,7 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
-  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
-  xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="task" type="ch.ivyteam.ivy.workflow.ITask" required="true" />
@@ -25,51 +24,45 @@
     <h:form id="#{cc.attrs.nameId}-edit-form" onsubmit="return false;" class="name-cell task-detail-header" rendered="#{!taskBean.isDone(task)}">
       <h:outputText value="#{ivy.cms.co('/Labels/Task')}:  " />
       <p:inplace id="#{cc.attrs.nameId}-inplace" editor="true" rendered="#{taskBean.isNotDone(task)}"
-        disabled="#{!taskActionBean.canChangeName(task)}"
-        saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-        cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        widgetVar="#{cc.attrs.nameId}-inplace" styleClass="js-name-cell"
+        disabled="#{!taskActionBean.canChangeName(task)}" saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+        cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" widgetVar="#{cc.attrs.nameId}-inplace" styleClass="js-name-cell"
         label="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}">
         <p:inputText id="task-name-input" value="#{task.name}" styleClass="task-name-input" maxlength="200"
-          valueChangeListener="#{logic.keepOldNameValue}"
-          onkeypress="if(event.keyCode == 13) {PF('task-name-inplace').save()}" />
+          valueChangeListener="#{logic.keepOldNameValue}" onkeypress="if(event.keyCode == 13) {PF('task-name-inplace').save()}" />
         <p:ajax event="save" listener="#{logic.updateTask(task)}" process="#{cc.attrs.nameId}-edit-form"
           update="#{cc.attrs.nameId}-edit-form #{cc.attrs.componentToUpdate} #{p:component('task-detail-note-container')}" />
-        <f:passThroughAttribute name="onclick"
-          value="if('#{taskActionBean.canChangeName(task)}'=='true') {event.stopPropagation()}" />
+        <f:passThroughAttribute name="onclick" value="if('#{taskActionBean.canChangeName(task)}'=='true') {event.stopPropagation()}" />
       </p:inplace>
     </h:form>
   </h:panelGroup>
-  
+
   <div class="task-item-body ui-g-12 u-padding-0">
     <div class="ui-g">
-    
+
       <!-- General & description box -->
       <div class="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
         <div id="task-detail-general-container" class="card card-w-title task-detail-general-card">
           <div class="case-detail-section-title u-truncate-text ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0">
-            <i class="fa fa-user-circle" />
-            #{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseDetail/DataDescription')}
+            <i class="fa fa-user-circle" /> #{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseDetail/DataDescription')}
           </div>
           <div class="Separator ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0" />
-          <div  class="ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12">
+          <div class="ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12">
             <ic:ch.ivy.addon.portalkit.component.TaskDetailGeneralInfo id="general-information" task="#{task}" />
           </div>
           <div class="ui-g-12"></div>
         </div>
       </div>
 
-      <!-- Notes box -->
-      <h:panelGroup id="task-detail-note-container" rendered="true"
-        styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
-        <div class="card card-w-title case-detail-card task-note-component">
+      <h:panelGroup rendered="true" styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
+        <!-- Notes box -->
+        <h:panelGroup id="task-detail-note-container" class="card card-w-title case-detail-card task-note-component">
           <ic:ch.ivy.addon.portalkit.component.TaskDetailNotes id="task-notes" task="#{task}" />
-        </div>
-              <!-- Document box -->
-        <div class="card card-w-title case-detail-card task-document-component">
+        </h:panelGroup>
+        <!-- Document box -->
+        <h:panelGroup class="card card-w-title case-detail-card task-document-component">
           <ic:ch.ivy.addon.portalkit.component.TaskDetailDocuments id="task-documents" task="#{task}"
             componentToUpdate="#{p:component('task-detail-note-container')}" />
-        </div>
+        </h:panelGroup>
       </h:panelGroup>
 
     </div>
