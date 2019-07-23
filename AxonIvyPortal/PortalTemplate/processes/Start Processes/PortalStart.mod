@@ -1828,6 +1828,7 @@ Pt0 f117 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 Pt0 f117 actionTable 'out=in;
 ' #txt
 Pt0 f117 actionCode 'out.ITask = ivy.wf.findTask(in.taskId);' #txt
+Pt0 f117 security system #txt
 Pt0 f117 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f117 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
