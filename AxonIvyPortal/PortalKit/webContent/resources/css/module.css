@@ -666,8 +666,8 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   color: rgba(0,0,0,0.3) !important;
 }
 
-.task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content,
-.case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content {
+.task-widget .ui-overlaypanel.advanced-filter-panel, .task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content,
+.case-widget-container .ui-overlaypanel.advanced-filter-panel, .case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content {
   background-color: white;
   padding: 0 !important;
 }
@@ -962,11 +962,11 @@ a.case-details-document-add-link {
   overflow-x: auto;
   height: calc(100% - 45px);
 }
-.case-document-deletion-dialog .ui-dialog-buttonpane.ui-dialog-footer.ui-widget-content {
+.document-deletion-dialog .ui-dialog-buttonpane.ui-dialog-footer.ui-widget-content {
   padding: 6px;
 }
 
-.case-document-deletion-dialog  .ui-icon.ui-icon-alert.ui-confirm-dialog-severity {
+.document-deletion-dialog .ui-icon.ui-icon-alert.ui-confirm-dialog-severity {
   margin-left: 0;
 }
 
@@ -4730,6 +4730,11 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .config-columns-panel {
   min-width: 250px;
+  padding: 10px 6px !important;
+}
+
+.config-columns-panel .ui-button.ui-widget  {
+  min-width: 120px;
 }
 
 .config-columns-button {

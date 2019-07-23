@@ -29,7 +29,7 @@
       <div class="Separator ui-g-12 u-padding-0" />
 
       <div class="ui-g-12 u-padding-0">
-        <p:dataTable id="case-details-documents" var="document" value="#{data.documents}" paginator="#{empty data.documents ? false:true}" pageLinks="3" rows="6" paginatorPosition="top"
+        <p:dataTable id="case-details-documents" var="document" value="#{data.documents}" paginator="#{not empty data.documents}" pageLinks="3" rows="6" paginatorPosition="top"
           paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
           currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
@@ -82,7 +82,7 @@
   </p:dialog>
 
   <p:confirmDialog widgetVar="document-deletion-dialog-#{case.id}" message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmForDelete')}"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" appendTo="@(body)" severity="alert" styleClass="case-document-deletion-dialog">
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" appendTo="@(body)" severity="alert" styleClass="document-deletion-dialog">
     <h:panelGroup layout="block">
       <p:commandButton id="document-deletion-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" process="@this"
         update="#{cc.clientId}:case-details-documents #{cc.attrs.componentToUpdate} #{p:component('case-document-global-messages')}" actionListener="#{logic.deleteDocument}"
