@@ -5271,10 +5271,15 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 }
 .task-detail-general-card {
   padding-bottom: 0px !important;
+  min-height: 685px;
 }
 
 .task-note-component, .task-document-component{
   height: 335px;
+  width: 100%;
+}
+.task-detail-state {
+  padding-left: 10px;
 }
 
 /*  =================== END TASK DETAIL PAGE ========================= */
