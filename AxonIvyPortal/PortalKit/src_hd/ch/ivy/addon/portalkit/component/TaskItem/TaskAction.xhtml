@@ -9,7 +9,7 @@
   <div id="action-cell-#{rowIndex}" class="action-cell #{data.isShowTaskButtonLabels? 'with-button-labels' : 'without-button-labels'}">
     <div class="action-container case-header-action-cell">
 
-        <p:commandLink id="taskAction-Minh" actionListener="#{taskActionBean.navigateTask(task)}" rendered="true"
+        <p:commandLink id="task-action-component" actionListener="#{taskActionBean.navigateTask(task)}" rendered="true"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}" styleClass="action-item" />
         <h:panelGroup rendered="true">
            <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" actionLinkId="task-side-steps-menu"
