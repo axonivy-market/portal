@@ -779,7 +779,7 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 .process-history-list .ui-widget-content {
 	border: none !important;
 }
-
+/*Style For Task Detail --------------------------------------------------------------------------------------*/
 .task-item-body .task-details-item-note, .task-item-body .task-details-item-document {
  	.ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top {
  	  background-color: rgba(0,0,0,0.05);
@@ -806,3 +806,12 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
  		}
  	}
 }
+
+.task-desription-inplace, .edit-priority-inplace {
+	.ui-inplace-display.ui-state-highlight {
+	 		background-color: $textboxBgColor;
+	 		color: $primaryTextColor;
+	 	}
+}
+
+/*End style For Task Detail --------------------------------------------------------------------------------------*/
