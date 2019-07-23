@@ -41,9 +41,10 @@
     <div class="Separator" />
 
     <div class="ui-g-12 u-padding-0">
-      <p:dataTable value="#{data.notes}" var="note" id="task-note-table" paginator="true" rows="5"
-        paginatorPosition="top" pageLinks="3"
-        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
+      <p:dataTable value="#{data.notes}" var="note" id="task-note-table" paginator="true" pageLinks="3" rows="5" paginatorPosition="top"
+        emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" 
+        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+        currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}"
           sortBy="#{note.creationTimestamp}" styleClass="case-history-name u-truncate-text">
           <i class="fa fa-pencil-square-o" />

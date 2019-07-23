@@ -811,6 +811,13 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
  	}
 }
 
+.task-desription-inplace, .edit-priority-inplace {
+	.ui-inplace-display.ui-state-highlight {
+	 		background-color: $textboxBgColor;
+	 		color: $primaryTextColor;
+	 	}
+}
+
 /*Style For Advance Filter --------------------------------------------------------------------------------------*/
 
 .ui-datepicker .ui-timepicker-div dl dd {
@@ -819,4 +826,3 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 		margin-right: 10px;
 	}
 }
-	
