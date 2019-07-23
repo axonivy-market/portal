@@ -2495,7 +2495,7 @@ a.compact-task-start-link:hover {
 }
 
 .task-author, .task-note > * {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 .task-note {
@@ -5271,6 +5271,10 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 }
 .task-detail-general-card {
   padding-bottom: 0px !important;
+}
+
+.task-note-component, .task-document-component{
+  height: 335px;
 }
 
 /*  =================== END TASK DETAIL PAGE ========================= */
