@@ -73,12 +73,11 @@ Ts0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ts0 f7 160 170 128 44 -61 -8 #rect
 Ts0 f7 @|StepIcon #fIcon
 Ts0 f9 type ch.ivy.addon.portalkit.component.TaskDetailGeneralInfo.TaskDetailGeneralInfoData #txt
-Ts0 f9 processCall 'Functional Processes/Navigator:viewCase(String,ch.ivy.addon.portalkit.dto.GlobalCaseId)' #txt
+Ts0 f9 processCall 'Functional Processes/Navigator:viewCase(ch.ivy.addon.portalkit.dto.GlobalCaseId)' #txt
 Ts0 f9 doCall true #txt
-Ts0 f9 requestActionDecl '<java.lang.String caseName,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;
+Ts0 f9 requestActionDecl '<ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;
 ' #txt
-Ts0 f9 requestMappingAction 'param.caseName=ch.ivy.addon.portalkit.util.PermissionUtils.getCaseName(in.selectedCase);
-param.caseId=in.globalCaseId;
+Ts0 f9 requestMappingAction 'param.caseId=in.globalCaseId;
 ' #txt
 Ts0 f9 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskDetailGeneralInfo.TaskDetailGeneralInfoData out;
 ' #txt
