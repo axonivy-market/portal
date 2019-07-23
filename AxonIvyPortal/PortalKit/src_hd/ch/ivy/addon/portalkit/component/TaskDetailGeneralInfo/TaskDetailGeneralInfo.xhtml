@@ -13,12 +13,13 @@
 
 <cc:implementation>
   <c:set var="task" value="#{cc.attrs.task}" />
+  <c:set var="state" value="#{cc.attrs.task.state}" />
   <!-- PANEL GENERAL INFORMATION -->
   <div class="ui-g">
-    <div class="ui-xl-2 ui-lg-3 ui-md-4 ui-g-12 ui-sm-12">
+    <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-12 ui-g-2">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/PRIORITY')}" />
     </div>
-    <div class="ui-xl-10 ui-lg-9 ui-md-8 ui-g-12 ui-sm-12">
+    <div class="ui-xl-4 ui-lg-8 ui-md-8 ui-sm-12 ui-g-4">
       <h:panelGroup styleClass="task-details-priority">
         <ui:fragment rendered="#{taskActionBean.canChangePriority(task)}">
           <h:form id="priority-form">
@@ -67,8 +68,72 @@
     </div>
   </div>
 
+  <div class="ui-g">
+    <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-12 ui-g-2">
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" />
+    </div>
+    <div class="ui-xl-4 ui-lg-8 ui-md-8 ui-sm-12 ui-g-4">
+        <h:panelGroup id="task-detail-state"
+          styleClass="state-cell js-state-cell default-task-cell">
+          <h:panelGroup id="task-detail-state-open" rendered="#{state == 'SUSPENDED' or state == 'UNASSIGNED'}"
+            styleClass="fa fa-play-circle task-state-open " />
+          <h:panelGroup id="task-detail-state-in-progress" rendered="#{state == 'RESUMED' or state == 'CREATED'}"
+            styleClass="fa fa-play-circle task-state-in-progress" />
+          <h:panelGroup id="task-detail-state-done" rendered="#{state == 'DONE'}"
+            styleClass="fa fa-check-circle task-state-done " />
+          <h:panelGroup id="task-detail-state-reserved" rendered="#{state == 'PARKED'}"
+            styleClass="fa fa-pause-circle task-state-reserved " />
+          <h:panelGroup id="task-detail-state-destroyed" rendered="#{state == 'DESTROYED' or state == 'ZOMBIE'}"
+            styleClass="fa fa-exclamation-circle task-state-zombie-destroyed" />
+          <h:panelGroup id="task-detail-state-system"
+            rendered="#{state != 'SUSPENDED' and state != 'UNASSIGNED' and state != 'RESUMED' and state != 'CREATED'
+       and state != 'DONE' and state != 'PARKED' and state != 'DESTROYED' and state != 'ZOMBIE'}"
+            styleClass="fa fa-cog task-state-system " />
+           <h:outputText value="#{state}" styleClass="task-detail-state"/>
+        </h:panelGroup>
+    </div>
+  </div>
+  
+  <div class="ui-g">
+    <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-12 ui-g-2">
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/workingUser')}" />
+    </div>
+    <div class="ui-xl-4 ui-lg-8 ui-md-8 ui-sm-12 ui-g-4">
+      <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText fullname="#{task.getWorkerUser().getDisplayName()}"
+        username="#{task.getWorkerUserName()}" />
+    </div>
+  </div>
 
-  <!--     GENERAL INFORMATION -->
+
+  <div class="ui-g">
+    <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-12 ui-g-2">
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}" />
+    </div>
+    <div class="ui-xl-4 ui-lg-8 ui-md-8 ui-sm-12 ui-g-4">
+      <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText fullname="#{task.getActivator().getDisplayName()}"
+        username="#{task.getActivatorName()}" />
+    </div>
+  </div>
+
+  <div class="ui-g">
+    <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-12 ui-g-2">
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/afterEscalation')}" />
+    </div>
+    <div class="ui-xl-4 ui-lg-8 ui-md-8 ui-sm-12 ui-g-4">
+      <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText
+        fullname="#{task.getExpiryActivator().getDisplayName()}" username="#{task.getExpiryActivatorName()}" />
+    </div>
+  </div>
+
+  <div class="ui-g">
+    <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-12 ui-g-2">
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/taskCategory')}" />
+    </div>
+    <div class="ui-xl-4 ui-lg-8 ui-md-8 ui-sm-12 ui-g-4">
+      <h:outputText id="task-category" value="#{task.categoryPath}" />
+    </div>
+  </div>
+
   <div class="ui-g">
     <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-12 ui-g-2">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/businessCase')}" />
@@ -78,6 +143,27 @@
         actionListener="#{logic.navigateToRelatedCase(task.getCase().getBusinessCase())}" />
     </div>
   </div>
+
+  <div class="ui-g">
+    <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-12 ui-g-2">
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/technicalCase')}" rendered="true" />
+    </div>
+    <div class="ui-xl-4 ui-lg-8 ui-md-8 ui-sm-12 ui-g-4">
+      <p:commandLink id="related-technical-case" value="#{taskBean.getTechnicalCaseDisplayName(task)}"
+        actionListener="#{logic.navigateToRelatedCase(task.getCase())}"
+        rendered="#{task.getCase().getId() != task.getCase().getBusinessCase().getId()}" />
+    </div>
+  </div>
+
+  <div class="ui-g">
+    <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-12 ui-g-2">
+      <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseCategory')}" />
+    </div>
+    <div class="ui-xl-4 ui-lg-8 ui-md-8 ui-sm-12 ui-g-4">
+      <h:outputText id="case-category" value="#{task.getCase().getBusinessCase().categoryPath}" />
+    </div>
+  </div>
+
   <div class="ui-g">
     <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-12 ui-g-2">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}" />
@@ -88,16 +174,7 @@
       </h:outputText>
     </div>
   </div>
-
-  <div class="ui-g">
-    <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-12 ui-g-2">
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/workingUser')}" />
-    </div>
-    <div class="ui-xl-4 ui-lg-8 ui-md-8 ui-sm-12 ui-g-4">
-      <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText fullname="#{task.getWorkerUser().getDisplayName()}"
-        username="#{task.getWorkerUserName()}" />
-    </div>
-  </div>
+  
 
   <div class="ui-g">
     <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-12 ui-g-2">
@@ -136,16 +213,6 @@
     </div>
   </div>
 
-
-  <div class="ui-g">
-    <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-12 ui-g-2">
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}" />
-    </div>
-    <div class="ui-xl-4 ui-lg-8 ui-md-8 ui-sm-12 ui-g-4">
-      <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText fullname="#{task.getActivator().getDisplayName()}"
-        username="#{task.getActivatorName()}" />
-    </div>
-  </div>
   <div class="ui-g">
     <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-12 ui-g-2">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/delayedUntil')}" />
@@ -158,34 +225,7 @@
 
   <div class="ui-g">
     <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-12 ui-g-2">
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/taskCategory')}" />
-    </div>
-    <div class="ui-xl-4 ui-lg-8 ui-md-8 ui-sm-12 ui-g-4">
-      <h:outputText id="task-category" value="#{task.categoryPath}" />
-    </div>
-  </div>
-  <div class="ui-g">
-    <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-12 ui-g-2">
-      <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseCategory')}" />
-    </div>
-    <div class="ui-xl-4 ui-lg-8 ui-md-8 ui-sm-12 ui-g-4">
-      <h:outputText id="case-category" value="#{task.getCase().getBusinessCase().categoryPath}" />
-    </div>
-  </div>
-
-  <div class="ui-g">
-    <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-12 ui-g-2">
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/afterEscalation')}" />
-    </div>
-    <div class="ui-xl-4 ui-lg-8 ui-md-8 ui-sm-12 ui-g-4">
-      <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText
-        fullname="#{task.getExpiryActivator().getDisplayName()}" username="#{task.getExpiryActivatorName()}" />
-    </div>
- </div>
-   <div class="ui-g">
-    <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-12 ui-g-2">
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/completedOn')}"
-        rendered="true" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/completedOn')}" rendered="true" />
     </div>
     <div class="ui-xl-4 ui-lg-8 ui-md-8 ui-sm-12 ui-g-4">
       <h:outputText value="#{task.endTimestamp}" rendered="#{not empty task.endTimestamp}">
@@ -196,20 +236,7 @@
 
   <div class="ui-g">
     <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-12 ui-g-2">
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/technicalCase')}"
-        rendered="true" />
-    </div>
-    <div class="ui-xl-4 ui-lg-8 ui-md-8 ui-sm-12 ui-g-4">
-      <p:commandLink id="related-technical-case" value="#{taskBean.getTechnicalCaseDisplayName(task)}"
-        actionListener="#{logic.navigateToRelatedCase(task.getCase())}"
-        rendered="#{task.getCase().getId() != task.getCase().getBusinessCase().getId()}" />
-    </div>
-  </div>
- 
-   <div class="ui-g">
-    <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-12 ui-g-2">
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}"
-        rendered="true" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" rendered="true" />
     </div>
     <div class="ui-lg-9 ui-md-9 ui-sm-12">
       <h:form id="task-detail-description-form">
@@ -234,7 +261,7 @@
       </h:form>
     </div>
   </div>
-  
+
 
   <p:tooltip for="task-category" value="#{task.categoryPath}" trackMouse="true" />
   <p:tooltip for="case-category" value="#{task.getCase().getBusinessCase().categoryPath}" trackMouse="true" />
