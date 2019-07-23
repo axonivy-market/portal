@@ -38,6 +38,6 @@
         actionListener="#{sideStepBean.startSideStep(sideStep)}" process="@this"/>
     </ui:repeat>
   </p:overlayPanel>
-  <p:tooltip for="#{cc.attrs.actionLinkId}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" />
+  <p:tooltip for="#{cc.attrs.actionLinkId}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" trackMouse="true" />
 </cc:implementation>
 </html>

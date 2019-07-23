@@ -1,5 +1,5 @@
 [Ivy]
-1543D9E65076619B 3.23 #module
+1543D9E65076619B 3.26 #module
 >Proto >Proto Collection #zClass
 Nr0 Navigator Big #zClass
 Nr0 B #cInfo
@@ -12,28 +12,17 @@ Nr0 @MessageFlowInP-0n messageIn messageIn #zField
 Nr0 @MessageFlowOutP-0n messageOut messageOut #zField
 Nr0 @TextInP .xml .xml #zField
 Nr0 @TextInP .responsibility .responsibility #zField
-Nr0 @StartSub f0 '' #zField
-Nr0 @EndSub f1 '' #zField
-Nr0 @CallSub f5 '' #zField
-Nr0 @PushWFArc f2 '' #zField
-Nr0 @GridStep f7 '' #zField
-Nr0 @PushWFArc f6 '' #zField
 Nr0 @EndSub f10 '' #zField
 Nr0 @CallSub f12 '' #zField
 Nr0 @PushWFArc f11 '' #zField
 Nr0 @StartSub f9 '' #zField
 Nr0 @PushWFArc f13 '' #zField
 Nr0 @GridStep f14 '' #zField
-Nr0 @InfoButton f21 '' #zField
-Nr0 @AnnotationArc f3 '' #zField
 Nr0 @InfoButton f4 '' #zField
 Nr0 @AnnotationArc f22 '' #zField
 Nr0 @CallSub f16 '' #zField
 Nr0 @PushWFArc f17 '' #zField
 Nr0 @PushWFArc f15 '' #zField
-Nr0 @CallSub f18 '' #zField
-Nr0 @PushWFArc f19 '' #zField
-Nr0 @PushWFArc f8 '' #zField
 Nr0 @GridStep f20 '' #zField
 Nr0 @CallSub f23 '' #zField
 Nr0 @EndSub f24 '' #zField
@@ -66,88 +55,23 @@ Nr0 @PushWFArc f50 '' #zField
 Nr0 @PushWFArc f51 '' #zField
 Nr0 @PushWFArc f52 '' #zField
 Nr0 @InfoButton f53 '' #zField
+Nr0 @CallSub f5 '' #zField
+Nr0 @EndSub f1 '' #zField
+Nr0 @InfoButton f21 '' #zField
+Nr0 @StartSub f0 '' #zField
+Nr0 @GridStep f7 '' #zField
+Nr0 @PushWFArc f2 '' #zField
+Nr0 @PushWFArc f6 '' #zField
+Nr0 @PushWFArc f8 '' #zField
+Nr0 @StartSub f54 '' #zField
+Nr0 @InfoButton f19 '' #zField
+Nr0 @EndSub f18 '' #zField
+Nr0 @GridStep f56 '' #zField
+Nr0 @CallSub f58 '' #zField
+Nr0 @PushWFArc f57 '' #zField
+Nr0 @PushWFArc f59 '' #zField
+Nr0 @PushWFArc f55 '' #zField
 >Proto Nr0 Nr0 Navigator #zField
-Nr0 f0 inParamDecl '<java.lang.String caseName,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;' #txt
-Nr0 f0 inParamTable 'out.caseId=param.caseId;
-out.caseName=param.caseName;
-' #txt
-Nr0 f0 outParamDecl '<> result;
-' #txt
-Nr0 f0 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
-' #txt
-Nr0 f0 callSignature viewCase(String,ch.ivy.addon.portalkit.dto.GlobalCaseId) #txt
-Nr0 f0 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
-Nr0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>viewCase(String,GlobalCaseId)</name>
-        <nameStyle>29,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Nr0 f0 51 83 26 26 14 0 #rect
-Nr0 f0 @|StartSubIcon #fIcon
-Nr0 f1 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
-Nr0 f1 51 403 26 26 14 0 #rect
-Nr0 f1 @|EndSubIcon #fIcon
-Nr0 f5 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
-Nr0 f5 processCall 'Functional Processes/OpenPortalCases:useView(ch.ivy.addon.portal.generic.view.CaseView)' #txt
-Nr0 f5 doCall true #txt
-Nr0 f5 requestActionDecl '<ch.ivy.addon.portal.generic.view.CaseView view> param;
-' #txt
-Nr0 f5 requestMappingAction 'param.view=in.caseView;
-' #txt
-Nr0 f5 responseActionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
-' #txt
-Nr0 f5 responseMappingAction 'out=in;
-' #txt
-Nr0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>OpenPortalCases</name>
-        <nameStyle>15,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Nr0 f5 46 340 36 24 20 -2 #rect
-Nr0 f5 @|CallSubIcon #fIcon
-Nr0 f2 expr out #txt
-Nr0 f2 64 364 64 403 #arcP
-Nr0 f7 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
-' #txt
-Nr0 f7 actionTable 'out=in;
-' #txt
-Nr0 f7 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
-import java.util.Arrays;
-import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
-import ch.ivy.addon.portal.generic.view.CaseView;
-
-String title = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/relatedCaseHeader", Arrays.asList(in.caseId.id().toString(), in.caseName));
-
-in.caseDataModel.setCaseId(in.caseId.id());
-in.caseDataModel.getCriteria().setBusinessCase(in.caseId.isBusinessCase());
-in.caseDataModel.setNotKeepFilter(true);
-in.caseView = CaseView.create().dataModel(in.caseDataModel)
-								.hideCaseFilter(true)
-								.displayCaseCategory(PermissionUtils.checkAccessFullCaseListPermission())
-								.withTitle(title)
-								.autoSelectIfExists(in.caseId).buildNewView();' #txt
-Nr0 f7 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
-Nr0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>prepare case view</name>
-        <nameStyle>17,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Nr0 f7 46 276 36 24 20 -2 #rect
-Nr0 f7 @|StepIcon #fIcon
-Nr0 f6 expr out #txt
-Nr0 f6 64 300 64 340 #arcP
 Nr0 f10 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
 Nr0 f10 51 779 26 26 14 0 #rect
 Nr0 f10 @|EndSubIcon #fIcon
@@ -247,27 +171,6 @@ Nr0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Nr0 f14 46 628 36 24 20 -2 #rect
 Nr0 f14 @|StepIcon #fIcon
-Nr0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Technical Note
-
-This callable is introduced for clients of PortalKit
-to override and implement the functionality
-of redirecting into a HtmlDialog for viewing case.
-
-By default, this is doing nothing. The default implementation, however,
-is put in PortalTemplate.</name>
-        <nameStyle>15,0,5,8
-1,5,8
-246,5,8
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Nr0 f21 264 130 496 172 -238 -84 #rect
-Nr0 f21 @|IBIcon #fIcon
-Nr0 f3 264 216 82 340 #arcP
 Nr0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -314,32 +217,6 @@ Nr0 f17 expr out #txt
 Nr0 f17 64 485 64 538 #arcP
 Nr0 f15 expr out #txt
 Nr0 f15 64 582 64 628 #arcP
-Nr0 f18 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
-Nr0 f18 processCall 'Functional Processes/InitializeCaseDataModel:call()' #txt
-Nr0 f18 doCall true #txt
-Nr0 f18 requestActionDecl '<> param;
-' #txt
-Nr0 f18 responseActionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
-' #txt
-Nr0 f18 responseMappingAction 'out=in;
-out.caseDataModel=result.caseDataModel;
-' #txt
-Nr0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Init case
-data model</name>
-        <nameStyle>20,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Nr0 f18 8 170 112 44 -31 -20 #rect
-Nr0 f18 @|CallSubIcon #fIcon
-Nr0 f19 expr out #txt
-Nr0 f19 64 109 64 170 #arcP
-Nr0 f8 expr out #txt
-Nr0 f8 64 214 64 276 #arcP
 Nr0 f20 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 ' #txt
 Nr0 f20 actionTable 'out=in;
@@ -720,6 +597,182 @@ is put in PortalTemplate.</name>
 ' #txt
 Nr0 f53 1920 187 496 172 -238 -84 #rect
 Nr0 f53 @|IBIcon #fIcon
+Nr0 f5 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
+Nr0 f5 processCall 'Functional Processes/OpenPortalCaseDetails:call(ch.ivyteam.ivy.workflow.ICase)' #txt
+Nr0 f5 doCall true #txt
+Nr0 f5 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseData> param;
+' #txt
+Nr0 f5 requestMappingAction 'param.caseData=in.iCase;
+' #txt
+Nr0 f5 responseActionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
+' #txt
+Nr0 f5 responseMappingAction 'out=in;
+' #txt
+Nr0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>OpenPortalCaseDetails</name>
+        <nameStyle>21,5
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f5 46 292 36 24 20 -2 #rect
+Nr0 f5 @|CallSubIcon #fIcon
+Nr0 f1 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
+Nr0 f1 51 403 26 26 14 0 #rect
+Nr0 f1 @|EndSubIcon #fIcon
+Nr0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Technical Note
+
+This callable is introduced for clients of PortalKit
+to override and implement the functionality
+of redirecting into a HtmlDialog for viewing case.
+
+By default, this is doing nothing. The default implementation, however,
+is put in PortalTemplate.</name>
+        <nameStyle>15,0,5,8
+1,5,8
+246,5,8
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f21 264 130 496 172 -238 -84 #rect
+Nr0 f21 @|IBIcon #fIcon
+Nr0 f0 inParamDecl '<ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;' #txt
+Nr0 f0 inParamTable 'out.caseId=param.caseId;
+' #txt
+Nr0 f0 outParamDecl '<> result;
+' #txt
+Nr0 f0 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
+' #txt
+Nr0 f0 callSignature viewCase(ch.ivy.addon.portalkit.dto.GlobalCaseId) #txt
+Nr0 f0 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
+Nr0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>viewCase(GlobalCaseId)</name>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f0 51 83 26 26 14 0 #rect
+Nr0 f0 @|StartSubIcon #fIcon
+Nr0 f7 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
+' #txt
+Nr0 f7 actionTable 'out=in;
+' #txt
+Nr0 f7 actionCode 'import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import ch.ivyteam.ivy.workflow.ICase;
+
+out.iCase = ivy.wf.getGlobalContext().getCaseQueryExecutor().getFirstResult(CaseQuery.create().where().caseId().isEqual(in.caseId.id())) as ICase;' #txt
+Nr0 f7 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
+Nr0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>prepare case view</name>
+        <nameStyle>17,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f7 46 172 36 24 20 -2 #rect
+Nr0 f7 @|StepIcon #fIcon
+Nr0 f2 expr out #txt
+Nr0 f2 64 316 64 403 #arcP
+Nr0 f6 expr out #txt
+Nr0 f6 64 196 64 292 #arcP
+Nr0 f8 expr out #txt
+Nr0 f8 64 109 64 172 #arcP
+Nr0 f54 inParamDecl '<java.lang.Long taskId> param;' #txt
+Nr0 f54 inParamTable 'out.taskId=param.taskId;
+' #txt
+Nr0 f54 outParamDecl '<> result;
+' #txt
+Nr0 f54 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
+' #txt
+Nr0 f54 callSignature viewRelatedTask(Long) #txt
+Nr0 f54 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
+Nr0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>viewRelatedTask(String,GlobalCaseId,String)</name>
+        <nameStyle>43,5
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f54 1779 539 26 26 14 0 #rect
+Nr0 f54 @|StartSubIcon #fIcon
+Nr0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Technical Note
+
+This callable is introduced for clients of PortalKit
+to override and implement the functionality
+of redirecting into a HtmlDialog for viewing task.
+
+By default, this is doing nothing. The default implementation, however,
+is put in PortalTemplate.</name>
+        <nameStyle>15,0,5,8
+1,5,8
+246,5,8
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f19 1856 626 496 172 -238 -84 #rect
+Nr0 f19 @|IBIcon #fIcon
+Nr0 f18 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
+Nr0 f18 1779 827 26 26 14 0 #rect
+Nr0 f18 @|EndSubIcon #fIcon
+Nr0 f56 actionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
+' #txt
+Nr0 f56 actionTable 'out=in;
+' #txt
+Nr0 f56 actionCode 'import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.query.TaskQuery;
+
+out.iTask = ivy.wf.getGlobalContext().getTaskQueryExecutor().getFirstResult(TaskQuery.create().where().taskId().isEqual(in.taskId)) as ITask;' #txt
+Nr0 f56 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
+Nr0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>prepare task view</name>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f56 1736 626 112 44 -48 -8 #rect
+Nr0 f56 @|StepIcon #fIcon
+Nr0 f58 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
+Nr0 f58 processCall 'Functional Processes/OpenPortalTaskDetail:call(ch.ivyteam.ivy.workflow.ITask)' #txt
+Nr0 f58 doCall true #txt
+Nr0 f58 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask taskData> param;
+' #txt
+Nr0 f58 requestMappingAction 'param.taskData=in.iTask;
+' #txt
+Nr0 f58 responseActionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
+' #txt
+Nr0 f58 responseMappingAction 'out=in;
+' #txt
+Nr0 f58 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>OpenPortalTaskDetail</name>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f58 1768 732 48 24 -126 28 #rect
+Nr0 f58 @|CallSubIcon #fIcon
+Nr0 f57 expr out #txt
+Nr0 f57 1792 565 1792 626 #arcP
+Nr0 f59 expr out #txt
+Nr0 f59 1792 670 1792 732 #arcP
+Nr0 f55 expr out #txt
+Nr0 f55 1792 756 1792 827 #arcP
 >Proto Nr0 .type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
 >Proto Nr0 .processKind CALLABLE_SUB #txt
 >Proto Nr0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -729,26 +782,16 @@ Nr0 f53 @|IBIcon #fIcon
 ' #txt
 >Proto Nr0 0 0 32 24 18 0 #rect
 >Proto Nr0 @|BIcon #fIcon
-Nr0 f5 mainOut f2 tail #connect
-Nr0 f2 head f1 mainIn #connect
-Nr0 f7 mainOut f6 tail #connect
-Nr0 f6 head f5 mainIn #connect
 Nr0 f12 mainOut f11 tail #connect
 Nr0 f11 head f10 mainIn #connect
 Nr0 f14 mainOut f13 tail #connect
 Nr0 f13 head f12 mainIn #connect
-Nr0 f21 ao f3 tail #connect
-Nr0 f3 head f5 @CG|ai #connect
 Nr0 f4 ao f22 tail #connect
 Nr0 f22 head f12 @CG|ai #connect
 Nr0 f9 mainOut f17 tail #connect
 Nr0 f17 head f16 mainIn #connect
 Nr0 f16 mainOut f15 tail #connect
 Nr0 f15 head f14 mainIn #connect
-Nr0 f0 mainOut f19 tail #connect
-Nr0 f19 head f18 mainIn #connect
-Nr0 f18 mainOut f8 tail #connect
-Nr0 f8 head f7 mainIn #connect
 Nr0 f23 mainOut f28 tail #connect
 Nr0 f28 head f24 mainIn #connect
 Nr0 f20 mainOut f27 tail #connect
@@ -777,3 +820,15 @@ Nr0 f48 mainOut f51 tail #connect
 Nr0 f51 head f49 mainIn #connect
 Nr0 f49 mainOut f52 tail #connect
 Nr0 f52 head f45 mainIn #connect
+Nr0 f5 mainOut f2 tail #connect
+Nr0 f2 head f1 mainIn #connect
+Nr0 f7 mainOut f6 tail #connect
+Nr0 f6 head f5 mainIn #connect
+Nr0 f0 mainOut f8 tail #connect
+Nr0 f8 head f7 mainIn #connect
+Nr0 f54 mainOut f57 tail #connect
+Nr0 f57 head f56 mainIn #connect
+Nr0 f56 mainOut f59 tail #connect
+Nr0 f59 head f58 mainIn #connect
+Nr0 f58 mainOut f55 tail #connect
+Nr0 f55 head f18 mainIn #connect

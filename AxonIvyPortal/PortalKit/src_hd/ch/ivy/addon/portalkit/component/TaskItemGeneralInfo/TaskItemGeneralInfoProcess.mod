@@ -171,12 +171,11 @@ Ts0 f12 440 192 499 192 #arcP
 Ts0 f10 expr out #txt
 Ts0 f10 288 192 328 192 #arcP
 Ts0 f9 type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
-Ts0 f9 processCall 'Functional Processes/Navigator:viewCase(String,ch.ivy.addon.portalkit.dto.GlobalCaseId)' #txt
+Ts0 f9 processCall 'Functional Processes/Navigator:viewCase(ch.ivy.addon.portalkit.dto.GlobalCaseId)' #txt
 Ts0 f9 doCall true #txt
-Ts0 f9 requestActionDecl '<java.lang.String caseName,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;
+Ts0 f9 requestActionDecl '<ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;
 ' #txt
-Ts0 f9 requestMappingAction 'param.caseName=ch.ivy.addon.portalkit.util.PermissionUtils.getCaseName(in.selectedCase);
-param.caseId=in.globalCaseId;
+Ts0 f9 requestMappingAction 'param.caseId=in.globalCaseId;
 ' #txt
 Ts0 f9 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData out;
 ' #txt
