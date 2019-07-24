@@ -12,16 +12,6 @@
         </inputParameter>
     </method>
     <method>
-        <name>initDataToDelegate</name>
-        <description></description>
-        <inputParameter>
-            <name>task</name>
-            <description></description>
-            <parameterType>ch.ivyteam.ivy.workflow.ITask</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
         <name>delegateTask</name>
         <description></description>
     </method>
@@ -120,12 +110,12 @@
         </inputParameter>
     </method>
     <method>
-        <name>init</name>
+        <name>initDataToDelegate</name>
         <description></description>
         <inputParameter>
-            <name>dataModel</name>
+            <name>task</name>
             <description></description>
-            <parameterType>ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel</parameterType>
+            <parameterType>ch.ivyteam.ivy.workflow.ITask</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>
