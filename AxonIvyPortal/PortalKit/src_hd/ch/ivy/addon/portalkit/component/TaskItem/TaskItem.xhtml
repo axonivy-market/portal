@@ -28,6 +28,7 @@
     <ui:include src="CompactTaskStartLink.xhtml">
       <ui:param name="dataModel" value="#{dataModel}" />
       <ui:param name="isMobile" value="#{cc.attrs.isMobile}" />
+      <ui:param name="rowIndex" value="#{rowIndex}" />
     </ui:include>
   </h:panelGroup>
 
@@ -42,18 +43,10 @@
         </ui:include>
       </f:subview>
     </h:panelGroup>
-
-    <h:panelGroup layout="block" id="task-details-container">
-      <h:panelGroup rendered="#{isExpanded}">
-        <div class="Separator task-details-separator" />
-        <div class="task-details js-task-details">
-          <cc:renderFacet name="taskBody" />
-        </div>
-      </h:panelGroup>
-    </h:panelGroup>
+    
   </h:panelGroup>
 
-  <p:confirmDialog id="reset-task-dialog" appendTo="@(body)" widgetVar="reset-task-dialog" rendered="#{rowIndex == 0}"
+  <p:confirmDialog id="reset-task-dialog-#{rowIndex}" appendTo="@(body)" widgetVar="reset-task-dialog-#{rowIndex}"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" closeOnEscape="true">
     <f:facet name="message">
       <h:outputText escape="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
@@ -62,7 +55,7 @@
       <h:form id="reset-task-form">
         <p:commandButton actionListener="#{logic.resetAndOpenTask}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           onstart="#{cc.attrs.onTaskStartCallback}" />
-        <p:commandButton onclick="PF('reset-task-dialog').hide()" styleClass="portal-cancel-button"
+        <p:commandButton onclick="PF('reset-task-dialog-#{rowIndex}').hide()" styleClass="portal-cancel-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button" />
       </h:form>
     </h:panelGroup>
