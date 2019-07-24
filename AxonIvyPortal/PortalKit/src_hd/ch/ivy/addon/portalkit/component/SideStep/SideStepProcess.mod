@@ -99,6 +99,11 @@ Ts0 @RichDialogProcessEnd f9 '' #zField
 Ts0 @GridStep f16 '' #zField
 Ts0 @PushWFArc f18 '' #zField
 Ts0 @PushWFArc f22 '' #zField
+Ts0 @RichDialogMethodStart f27 '' #zField
+Ts0 @RichDialogProcessEnd f28 '' #zField
+Ts0 @GridStep f34 '' #zField
+Ts0 @PushWFArc f37 '' #zField
+Ts0 @PushWFArc f29 '' #zField
 >Proto Ts0 Ts0 SideStepProcess #zField
 Ts0 f94 type ch.ivy.addon.portalkit.component.SideStep.SideStepData #txt
 Ts0 f94 339 1043 26 26 0 12 #rect
@@ -927,6 +932,40 @@ Ts0 f18 expr out #txt
 Ts0 f18 109 192 168 192 #arcP
 Ts0 f22 expr out #txt
 Ts0 f22 280 192 339 192 #arcP
+Ts0 f27 guid 16C223D550BA4E02 #txt
+Ts0 f27 type ch.ivy.addon.portalkit.component.SideStep.SideStepData #txt
+Ts0 f27 method init(ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel) #txt
+Ts0 f27 disableUIEvents false #txt
+Ts0 f27 inParameterDecl 'ch.ivy.addon.portalkit.component.SideStep.SideStepData out;
+' #txt
+Ts0 f27 inParameterMapAction 'out.dataModel=param.dataModel;
+' #txt
+Ts0 f27 outParameterDecl '<> result;
+' #txt
+Ts0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>init(TaskLazyDataModel)</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f27 83 1363 26 26 -67 15 #rect
+Ts0 f27 @|RichDialogMethodStartIcon #fIcon
+Ts0 f28 type ch.ivy.addon.portalkit.component.SideStep.SideStepData #txt
+Ts0 f28 419 1363 26 26 0 12 #rect
+Ts0 f28 @|RichDialogProcessEndIcon #fIcon
+Ts0 f34 actionDecl 'ch.ivy.addon.portalkit.component.SideStep.SideStepData out;
+' #txt
+Ts0 f34 actionTable 'out=in;
+' #txt
+Ts0 f34 actionCode 'ivy.log.info("Data model on sidestep {0}", in.dataModel);' #txt
+Ts0 f34 type ch.ivy.addon.portalkit.component.SideStep.SideStepData #txt
+Ts0 f34 168 1354 112 44 0 -8 #rect
+Ts0 f34 @|StepIcon #fIcon
+Ts0 f37 expr out #txt
+Ts0 f37 109 1376 168 1376 #arcP
+Ts0 f29 expr out #txt
+Ts0 f29 280 1376 419 1376 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.SideStep.SideStepData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -1005,3 +1044,7 @@ Ts0 f6 mainOut f18 tail #connect
 Ts0 f18 head f16 mainIn #connect
 Ts0 f16 mainOut f22 tail #connect
 Ts0 f22 head f9 mainIn #connect
+Ts0 f27 mainOut f37 tail #connect
+Ts0 f37 head f34 mainIn #connect
+Ts0 f34 mainOut f29 tail #connect
+Ts0 f29 head f28 mainIn #connect

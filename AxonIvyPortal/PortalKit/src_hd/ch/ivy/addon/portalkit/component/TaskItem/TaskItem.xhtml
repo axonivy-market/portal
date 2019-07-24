@@ -38,7 +38,9 @@
     <h:panelGroup id="task-info" styleClass="task-start-link js-task-start-link" layout="block" rendered="#{task.state != 'RESUMED'}">
       <cc:renderFacet name="taskHeader" />
       <f:subview id="task-action" >
-        <ui:include src="TaskAction.xhtml" />
+        <ui:include src="TaskAction.xhtml">
+          <ui:param name="dataModel" value="#{dataModel}" />
+        </ui:include>
       </f:subview>
       <p:commandLink id="show-task-detail-link" class="show-task-detail-link" onstart="event.stopPropagation()" actionListener="#{taskWidgetBean.setExpandedTaskId(task.getId(), isExpanded)}" 
         update="task-start @(.show-task-details-mode)" oncomplete="taskWidget.setupScrollbar(); taskListToolKit.responsive();" >
