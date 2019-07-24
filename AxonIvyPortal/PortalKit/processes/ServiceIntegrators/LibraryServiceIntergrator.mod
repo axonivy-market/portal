@@ -52,7 +52,7 @@ out.errors=wsResponse.getLibrariesResponse.result.errors;
 out.libraries=wsResponse.getLibrariesResponse.result.libraries;
 ' #txt
 Ar0 f17 cache '{/cache false /invalidation false /scope 2 /groupname ""/invalidation_time_group ""/lifetime_group "0"/identifier ""/invalidation_time_entry ""/lifetime_entry "0"}' #txt
-Ar0 f17 timeout 0 #txt
+Ar0 f17 timeout 60 #txt
 Ar0 f17 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=LibraryServicePort
 KEY_WEBSERVICECONFIG_ID=16266B7AEB1665F0
@@ -99,7 +99,7 @@ out.errors=wsResponse.getLibrariesResponse.result.errors;
 out.libraries=wsResponse.getLibrariesResponse.result.libraries;
 ' #txt
 Ar0 f9 cache '{/cache false /invalidation false /scope 2 /groupname ""/invalidation_time_group ""/lifetime_group "0"/identifier ""/invalidation_time_entry ""/lifetime_entry "0"}' #txt
-Ar0 f9 timeout 0 #txt
+Ar0 f9 timeout 60 #txt
 Ar0 f9 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=LibraryServicePort
 KEY_WEBSERVICECONFIG_ID=16266B7AEB1665F0
@@ -237,7 +237,7 @@ out.errors=wsResponse.getLibrariesResponse.result.errors;
 out.libraries=wsResponse.getLibrariesResponse.result.libraries;
 ' #txt
 Ar0 f24 cache '{/cache false /invalidation false /scope 2 /groupname ""/invalidation_time_group ""/lifetime_group "0"/identifier ""/invalidation_time_entry ""/lifetime_entry "0"}' #txt
-Ar0 f24 timeout 0 #txt
+Ar0 f24 timeout 60 #txt
 Ar0 f24 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=LibraryServicePort
 KEY_WEBSERVICECONFIG_ID=16266B7AEB1665F0
@@ -331,7 +331,7 @@ out.errors=wsResponse.getLibraryResponse.result.errors;
 out.library=wsResponse.getLibraryResponse.result.library;
 ' #txt
 Ar0 f2 cache '{/cache false /invalidation false /scope 2 /groupname ""/invalidation_time_group ""/lifetime_group "0"/identifier ""/invalidation_time_entry ""/lifetime_entry "0"}' #txt
-Ar0 f2 timeout 0 #txt
+Ar0 f2 timeout 60 #txt
 Ar0 f2 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=LibraryServicePort
 KEY_WEBSERVICECONFIG_ID=16266B7AEB1665F0
@@ -366,7 +366,7 @@ out.errors=wsResponse.getLibraryResponse.result.errors;
 out.library=wsResponse.getLibraryResponse.result.library;
 ' #txt
 Ar0 f3 cache '{/cache false /invalidation false /scope 2 /groupname ""/invalidation_time_group ""/lifetime_group "0"/identifier ""/invalidation_time_entry ""/lifetime_entry "0"}' #txt
-Ar0 f3 timeout 0 #txt
+Ar0 f3 timeout 60 #txt
 Ar0 f3 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=LibraryServicePort
 KEY_WEBSERVICECONFIG_ID=16266B7AEB1665F0
@@ -405,7 +405,7 @@ out.errors=wsResponse.getLibraryResponse.result.errors;
 out.library=wsResponse.getLibraryResponse.result.library;
 ' #txt
 Ar0 f5 cache '{/cache false /invalidation false /scope 2 /groupname ""/invalidation_time_group ""/lifetime_group "0"/identifier ""/invalidation_time_entry ""/lifetime_entry "0"}' #txt
-Ar0 f5 timeout 0 #txt
+Ar0 f5 timeout 60 #txt
 Ar0 f5 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=LibraryServicePort
 KEY_WEBSERVICECONFIG_ID=16266B7AEB1665F0

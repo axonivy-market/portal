@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Tue Jul 05 10:57:11 ICT 2016]
-155B554F725A24A5 3.18 #module
+155B554F725A24A5 3.20 #module
 >Proto >Proto Collection #zClass
 Sr0 ServerServiceIntegrator Big #zClass
 Sr0 B #cInfo
@@ -62,11 +61,13 @@ out.errors=wsResponse.getExternalHostResponse.result.erros;
 out.externalPath=wsResponse.getExternalHostResponse.result.externalHost;
 ' #txt
 Sr0 f24 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Sr0 f24 timeout 0 #txt
+Sr0 f24 timeout 60 #txt
 Sr0 f24 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=ServerServicePort
 KEY_WEBSERVICECONFIG_ID=155B8E8D03D38D19
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=getExternalHost
 KEY_AUTHENTICATION_KIND=1
@@ -107,11 +108,13 @@ out.errors=wsResponse.getExternalHostResponse.result.erros;
 out.externalPath=wsResponse.getExternalHostResponse.result.externalHost;
 ' #txt
 Sr0 f9 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Sr0 f9 timeout 0 #txt
+Sr0 f9 timeout 60 #txt
 Sr0 f9 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=ServerServicePort
 KEY_WEBSERVICECONFIG_ID=155B8E8D03D38D19
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=getExternalHost
 KEY_AUTHENTICATION_KIND=4
@@ -141,11 +144,13 @@ out.errors=wsResponse.getExternalHostResponse.result.erros;
 out.externalPath=wsResponse.getExternalHostResponse.result.externalHost;
 ' #txt
 Sr0 f17 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Sr0 f17 timeout 0 #txt
+Sr0 f17 timeout 60 #txt
 Sr0 f17 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=ServerServicePort
 KEY_WEBSERVICECONFIG_ID=155B8E8D03D38D19
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=
 KEY_OPERATION=getExternalHost
 KEY_AUTHENTICATION_KIND=0

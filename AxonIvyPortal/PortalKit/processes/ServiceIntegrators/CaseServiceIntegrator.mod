@@ -304,7 +304,7 @@ out.additionalProperties=wsResponse.getAddtionalPropertiesResponse.result.addtio
 out.errors=wsResponse.getAddtionalPropertiesResponse.result.errors;
 ' #txt
 Ce0 f17 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f17 timeout 10 #txt
+Ce0 f17 timeout 60 #txt
 Ce0 f17 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -385,7 +385,7 @@ out.additionalProperties=wsResponse.getAddtionalPropertiesResponse.result.addtio
 out.errors=wsResponse.getAddtionalPropertiesResponse.result.errors;
 ' #txt
 Ce0 f26 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f26 timeout 10 #txt
+Ce0 f26 timeout 60 #txt
 Ce0 f26 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -425,7 +425,7 @@ Ce0 f22 actionTable 'out=in;
 out.errors=wsResponse.setAdditionalPropertiesResponse.errors;
 ' #txt
 Ce0 f22 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f22 timeout 10 #txt
+Ce0 f22 timeout 60 #txt
 Ce0 f22 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -458,7 +458,7 @@ Ce0 f28 actionTable 'out=in;
 out.errors=wsResponse.setAdditionalPropertiesResponse.errors;
 ' #txt
 Ce0 f28 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f28 timeout 10 #txt
+Ce0 f28 timeout 60 #txt
 Ce0 f28 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -580,7 +580,7 @@ out.documents=wsResponse.findDocumentsResponse.result.documents;
 out.errors=wsResponse.findDocumentsResponse.result.errors;
 ' #txt
 Ce0 f39 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f39 timeout 10 #txt
+Ce0 f39 timeout 60 #txt
 Ce0 f39 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -651,7 +651,7 @@ out.documents=wsResponse.findDocumentsResponse.result.documents;
 out.errors=wsResponse.findDocumentsResponse.result.errors;
 ' #txt
 Ce0 f42 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f42 timeout 10 #txt
+Ce0 f42 timeout 60 #txt
 Ce0 f42 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -704,7 +704,7 @@ out.document=wsResponse.uploadDocumentResponse.result.document;
 out.errors=wsResponse.uploadDocumentResponse.result.errors;
 ' #txt
 Ce0 f49 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f49 timeout 10 #txt
+Ce0 f49 timeout 60 #txt
 Ce0 f49 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -753,7 +753,7 @@ out.document=wsResponse.uploadDocumentResponse.result.document;
 out.errors=wsResponse.uploadDocumentResponse.result.errors;
 ' #txt
 Ce0 f52 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f52 timeout 10 #txt
+Ce0 f52 timeout 60 #txt
 Ce0 f52 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -831,7 +831,7 @@ out.documentContent=wsResponse.downloadDocumentResponse.result.documentContent;
 out.errors=wsResponse.downloadDocumentResponse.result.errors;
 ' #txt
 Ce0 f59 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f59 timeout 10 #txt
+Ce0 f59 timeout 60 #txt
 Ce0 f59 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -865,7 +865,7 @@ out.documentContent=wsResponse.downloadDocumentResponse.result.documentContent;
 out.errors=wsResponse.downloadDocumentResponse.result.errors;
 ' #txt
 Ce0 f60 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f60 timeout 10 #txt
+Ce0 f60 timeout 60 #txt
 Ce0 f60 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -955,7 +955,7 @@ Ce0 f69 actionTable 'out=in;
 out.errors=wsResponse.destroyCaseResponse.errors;
 ' #txt
 Ce0 f69 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f69 timeout 0 #txt
+Ce0 f69 timeout 60 #txt
 Ce0 f69 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -1079,7 +1079,7 @@ Ce0 f83 actionTable 'out=in;
 out.errors=wsResponse.destroyCaseResponse.errors;
 ' #txt
 Ce0 f83 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f83 timeout 0 #txt
+Ce0 f83 timeout 60 #txt
 Ce0 f83 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -1116,7 +1116,7 @@ out.cases=wsResponse.findCasesByCriteriaResponse.result.ivyCases;
 out.errors=wsResponse.findCasesByCriteriaResponse.result.errors;
 ' #txt
 Ce0 f86 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f86 timeout 0 #txt
+Ce0 f86 timeout 60 #txt
 Ce0 f86 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -1162,7 +1162,7 @@ out.cases=wsResponse.findCasesByCriteriaResponse.result.ivyCases;
 out.errors=wsResponse.findCasesByCriteriaResponse.result.errors;
 ' #txt
 Ce0 f77 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f77 timeout 0 #txt
+Ce0 f77 timeout 60 #txt
 Ce0 f77 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -1236,7 +1236,7 @@ Ce0 f91 actionTable 'out=in;
 out.errors=wsResponse.removeDocumentResponse.errors;
 ' #txt
 Ce0 f91 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f91 timeout 10 #txt
+Ce0 f91 timeout 60 #txt
 Ce0 f91 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -1269,7 +1269,7 @@ Ce0 f92 actionTable 'out=in;
 out.errors=wsResponse.removeDocumentResponse.errors;
 ' #txt
 Ce0 f92 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f92 timeout 10 #txt
+Ce0 f92 timeout 60 #txt
 Ce0 f92 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -1354,7 +1354,7 @@ out.errors=wsResponse.createNoteResponse.result.errors;
 out.note=wsResponse.createNoteResponse.result.note;
 ' #txt
 Ce0 f123 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f123 timeout 0 #txt
+Ce0 f123 timeout 60 #txt
 Ce0 f123 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -1387,7 +1387,7 @@ out.errors=wsResponse.createNoteResponse.result.errors;
 out.note=wsResponse.createNoteResponse.result.note;
 ' #txt
 Ce0 f124 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f124 timeout 0 #txt
+Ce0 f124 timeout 60 #txt
 Ce0 f124 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -1478,7 +1478,7 @@ out.errors=wsResponse.findNotesResponse.result.errors;
 out.notes=wsResponse.findNotesResponse.result.notes;
 ' #txt
 Ce0 f103 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f103 timeout 0 #txt
+Ce0 f103 timeout 60 #txt
 Ce0 f103 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -1511,7 +1511,7 @@ out.errors=wsResponse.findNotesResponse.result.errors;
 out.notes=wsResponse.findNotesResponse.result.notes;
 ' #txt
 Ce0 f104 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f104 timeout 0 #txt
+Ce0 f104 timeout 60 #txt
 Ce0 f104 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -1572,7 +1572,7 @@ out.errors=wsResponse.findCaseResponse.result.errors;
 out.ivyCase=wsResponse.findCaseResponse.result.ivyCase;
 ' #txt
 Ce0 f111 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f111 timeout 0 #txt
+Ce0 f111 timeout 60 #txt
 Ce0 f111 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -1645,7 +1645,7 @@ out.errors=wsResponse.findCaseResponse.result.errors;
 out.ivyCase=wsResponse.findCaseResponse.result.ivyCase;
 ' #txt
 Ce0 f133 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f133 timeout 0 #txt
+Ce0 f133 timeout 60 #txt
 Ce0 f133 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -1721,7 +1721,7 @@ out.caseCount=wsResponse.countCasesByCriteriaResponse.result.caseCount;
 out.errors=wsResponse.countCasesByCriteriaResponse.result.errors;
 ' #txt
 Ce0 f2 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f2 timeout 0 #txt
+Ce0 f2 timeout 60 #txt
 Ce0 f2 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -1754,7 +1754,7 @@ out.caseCount=wsResponse.countCasesByCriteriaResponse.result.caseCount;
 out.errors=wsResponse.countCasesByCriteriaResponse.result.errors;
 ' #txt
 Ce0 f3 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f3 timeout 0 #txt
+Ce0 f3 timeout 60 #txt
 Ce0 f3 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -1845,7 +1845,7 @@ Ce0 f5 actionTable 'out=in;
 out.errors=wsResponse.destroyCaseResponse.errors;
 ' #txt
 Ce0 f5 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f5 timeout 0 #txt
+Ce0 f5 timeout 60 #txt
 Ce0 f5 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -1907,7 +1907,7 @@ out.cases=wsResponse.findCasesByCriteriaResponse.result.ivyCases;
 out.errors=wsResponse.findCasesByCriteriaResponse.result.errors;
 ' #txt
 Ce0 f0 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f0 timeout 0 #txt
+Ce0 f0 timeout 60 #txt
 Ce0 f0 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -1969,7 +1969,7 @@ out.errors=wsResponse.findCaseResponse.result.errors;
 out.ivyCase=wsResponse.findCaseResponse.result.ivyCase;
 ' #txt
 Ce0 f118 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f118 timeout 0 #txt
+Ce0 f118 timeout 60 #txt
 Ce0 f118 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -2031,7 +2031,7 @@ out.caseCount=wsResponse.countCasesByCriteriaResponse.result.caseCount;
 out.errors=wsResponse.countCasesByCriteriaResponse.result.errors;
 ' #txt
 Ce0 f7 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f7 timeout 0 #txt
+Ce0 f7 timeout 60 #txt
 Ce0 f7 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -2093,7 +2093,7 @@ out.additionalProperties=wsResponse.getAddtionalPropertiesResponse.result.addtio
 out.errors=wsResponse.getAddtionalPropertiesResponse.result.errors;
 ' #txt
 Ce0 f18 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f18 timeout 10 #txt
+Ce0 f18 timeout 60 #txt
 Ce0 f18 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -2155,7 +2155,7 @@ Ce0 f31 actionTable 'out=in;
 out.errors=wsResponse.setAdditionalPropertiesResponse.errors;
 ' #txt
 Ce0 f31 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f31 timeout 10 #txt
+Ce0 f31 timeout 60 #txt
 Ce0 f31 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -2218,7 +2218,7 @@ out.documents=wsResponse.findDocumentsResponse.result.documents;
 out.errors=wsResponse.findDocumentsResponse.result.errors;
 ' #txt
 Ce0 f44 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f44 timeout 10 #txt
+Ce0 f44 timeout 60 #txt
 Ce0 f44 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -2274,7 +2274,7 @@ out.document=wsResponse.uploadDocumentResponse.result.document;
 out.errors=wsResponse.uploadDocumentResponse.result.errors;
 ' #txt
 Ce0 f54 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f54 timeout 10 #txt
+Ce0 f54 timeout 60 #txt
 Ce0 f54 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -2323,7 +2323,7 @@ out.documentContent=wsResponse.downloadDocumentResponse.result.documentContent;
 out.errors=wsResponse.downloadDocumentResponse.result.errors;
 ' #txt
 Ce0 f64 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f64 timeout 10 #txt
+Ce0 f64 timeout 60 #txt
 Ce0 f64 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -2371,7 +2371,7 @@ Ce0 f94 actionTable 'out=in;
 out.errors=wsResponse.removeDocumentResponse.errors;
 ' #txt
 Ce0 f94 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f94 timeout 10 #txt
+Ce0 f94 timeout 60 #txt
 Ce0 f94 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -2422,7 +2422,7 @@ out.errors=wsResponse.createNoteResponse.result.errors;
 out.note=wsResponse.createNoteResponse.result.note;
 ' #txt
 Ce0 f106 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f106 timeout 0 #txt
+Ce0 f106 timeout 60 #txt
 Ce0 f106 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -2468,7 +2468,7 @@ out.errors=wsResponse.findNotesResponse.result.errors;
 out.notes=wsResponse.findNotesResponse.result.notes;
 ' #txt
 Ce0 f153 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f153 timeout 0 #txt
+Ce0 f153 timeout 60 #txt
 Ce0 f153 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -2554,7 +2554,7 @@ Ce0 f169 actionTable 'out=in;
 out.errors=wsResponse.saveCaseResponse.error;
 ' #txt
 Ce0 f169 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f169 timeout 0 #txt
+Ce0 f169 timeout 60 #txt
 Ce0 f169 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -2594,7 +2594,7 @@ Ce0 f171 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegra
 Ce0 f171 actionTable 'out=in;
 ' #txt
 Ce0 f171 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f171 timeout 0 #txt
+Ce0 f171 timeout 60 #txt
 Ce0 f171 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -2630,7 +2630,7 @@ Ce0 f174 actionDecl 'ch.ivy.add.portalkit.service.integrators.CaseServiceIntegra
 Ce0 f174 actionTable 'out=in;
 ' #txt
 Ce0 f174 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f174 timeout 0 #txt
+Ce0 f174 timeout 60 #txt
 Ce0 f174 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -2671,7 +2671,7 @@ out.caseStateStatistic=wsResponse.analyzeCaseStateStatisticResponse.result.caseS
 out.errors=wsResponse.analyzeCaseStateStatisticResponse.result.errors;
 ' #txt
 Ce0 f180 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f180 timeout 0 #txt
+Ce0 f180 timeout 60 #txt
 Ce0 f180 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -2704,7 +2704,7 @@ out.caseStateStatistic=wsResponse.analyzeCaseStateStatisticResponse.result.caseS
 out.errors=wsResponse.analyzeCaseStateStatisticResponse.result.errors;
 ' #txt
 Ce0 f181 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f181 timeout 0 #txt
+Ce0 f181 timeout 60 #txt
 Ce0 f181 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -2762,7 +2762,7 @@ out.caseStateStatistic=wsResponse.analyzeCaseStateStatisticResponse.result.caseS
 out.errors=wsResponse.analyzeCaseStateStatisticResponse.result.errors;
 ' #txt
 Ce0 f183 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f183 timeout 0 #txt
+Ce0 f183 timeout 60 #txt
 Ce0 f183 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -2842,7 +2842,7 @@ out.elapsedTimeStatistic=wsResponse.analyzeElapsedTimeByCaseCategoryResponse.res
 out.errors=wsResponse.analyzeElapsedTimeByCaseCategoryResponse.result.errors;
 ' #txt
 Ce0 f193 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f193 timeout 0 #txt
+Ce0 f193 timeout 60 #txt
 Ce0 f193 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -2900,7 +2900,7 @@ out.elapsedTimeStatistic=wsResponse.analyzeElapsedTimeByCaseCategoryResponse.res
 out.errors=wsResponse.analyzeElapsedTimeByCaseCategoryResponse.result.errors;
 ' #txt
 Ce0 f195 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f195 timeout 0 #txt
+Ce0 f195 timeout 60 #txt
 Ce0 f195 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -2945,7 +2945,7 @@ out.elapsedTimeStatistic=wsResponse.analyzeElapsedTimeByCaseCategoryResponse.res
 out.errors=wsResponse.analyzeElapsedTimeByCaseCategoryResponse.result.errors;
 ' #txt
 Ce0 f197 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f197 timeout 0 #txt
+Ce0 f197 timeout 60 #txt
 Ce0 f197 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -3013,7 +3013,7 @@ out.categories=wsResponse.findCaseCategoriesByCriteriaResponse.result.categories
 out.errors=wsResponse.findCaseCategoriesByCriteriaResponse.result.errors;
 ' #txt
 Ce0 f206 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f206 timeout 0 #txt
+Ce0 f206 timeout 60 #txt
 Ce0 f206 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -3046,7 +3046,7 @@ out.categories=wsResponse.findCaseCategoriesByCriteriaResponse.result.categories
 out.errors=wsResponse.findCaseCategoriesByCriteriaResponse.result.errors;
 ' #txt
 Ce0 f207 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f207 timeout 0 #txt
+Ce0 f207 timeout 60 #txt
 Ce0 f207 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D
@@ -3119,7 +3119,7 @@ out.categories=wsResponse.findCaseCategoriesByCriteriaResponse.result.categories
 out.errors=wsResponse.findCaseCategoriesByCriteriaResponse.result.errors;
 ' #txt
 Ce0 f211 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ce0 f211 timeout 0 #txt
+Ce0 f211 timeout 60 #txt
 Ce0 f211 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=CaseServicePort
 KEY_WEBSERVICECONFIG_ID=146B9AACE506491D

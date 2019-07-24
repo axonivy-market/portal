@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Tue Jan 03 14:00:00 ICT 2017]
-14E8ABD50C85F769 3.18 #module
+14E8ABD50C85F769 3.20 #module
 >Proto >Proto Collection #zClass
 Pe0 ProcessStartServiceIntegrator Big #zClass
 Pe0 B #cInfo
@@ -63,7 +62,7 @@ out.errors=wsResponse.findProcessesStartsByCriteriaResponse.result.errors;
 out.processStarts=wsResponse.findProcessesStartsByCriteriaResponse.result.processStarts;
 ' #txt
 Pe0 f7 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Pe0 f7 timeout 10 #txt
+Pe0 f7 timeout 60 #txt
 Pe0 f7 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=ProcessStartServicePort
 KEY_WEBSERVICECONFIG_ID=1473A1D4EEBABA93
@@ -98,7 +97,7 @@ out.errors=wsResponse.findProcessesStartsByCriteriaResponse.result.errors;
 out.processStarts=wsResponse.findProcessesStartsByCriteriaResponse.result.processStarts;
 ' #txt
 Pe0 f8 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Pe0 f8 timeout 10 #txt
+Pe0 f8 timeout 60 #txt
 Pe0 f8 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=ProcessStartServicePort
 KEY_WEBSERVICECONFIG_ID=1473A1D4EEBABA93
@@ -201,7 +200,7 @@ out.errors=wsResponse.findProcessesStartsByCriteriaResponse.result.errors;
 out.processStarts=wsResponse.findProcessesStartsByCriteriaResponse.result.processStarts;
 ' #txt
 Pe0 f3 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Pe0 f3 timeout 10 #txt
+Pe0 f3 timeout 60 #txt
 Pe0 f3 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=ProcessStartServicePort
 KEY_WEBSERVICECONFIG_ID=1473A1D4EEBABA93

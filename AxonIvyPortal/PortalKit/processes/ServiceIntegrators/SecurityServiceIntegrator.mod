@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Tue Jun 14 14:01:20 ICT 2016]
-14E8AD127675284A 3.18 #module
+14E8AD127675284A 3.20 #module
 >Proto >Proto Collection #zClass
 Se0 SecurityServiceIntegrator Big #zClass
 Se0 B #cInfo
@@ -77,11 +76,13 @@ out.errors=wsResponse.findAllRolesResponse.result.errors;
 out.roles=wsResponse.findAllRolesResponse.result.roles;
 ' #txt
 Se0 f60 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Se0 f60 timeout 10 #txt
+Se0 f60 timeout 60 #txt
 Se0 f60 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=SecurityServicePort
 KEY_WEBSERVICECONFIG_ID=1485F2F441BFB375
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=findAllRoles
 KEY_AUTHENTICATION_KIND=4
@@ -148,11 +149,13 @@ out.errors=wsResponse.findAllRolesResponse.result.errors;
 out.roles=wsResponse.findAllRolesResponse.result.roles;
 ' #txt
 Se0 f0 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Se0 f0 timeout 10 #txt
+Se0 f0 timeout 60 #txt
 Se0 f0 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=SecurityServicePort
 KEY_WEBSERVICECONFIG_ID=1485F2F441BFB375
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=
 KEY_OPERATION=findAllRoles
 KEY_AUTHENTICATION_KIND=0
@@ -209,11 +212,13 @@ out.errors=wsResponse.findAllUsersResponse.result.errors;
 out.users=wsResponse.findAllUsersResponse.result.users;
 ' #txt
 Se0 f6 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Se0 f6 timeout 10 #txt
+Se0 f6 timeout 60 #txt
 Se0 f6 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=SecurityServicePort
 KEY_WEBSERVICECONFIG_ID=1485F2F441BFB375
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=
 KEY_OPERATION=findAllUsers
 KEY_AUTHENTICATION_KIND=0
@@ -282,11 +287,13 @@ out.errors=wsResponse.findAllUsersResponse.result.errors;
 out.users=wsResponse.findAllUsersResponse.result.users;
 ' #txt
 Se0 f10 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Se0 f10 timeout 10 #txt
+Se0 f10 timeout 60 #txt
 Se0 f10 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=SecurityServicePort
 KEY_WEBSERVICECONFIG_ID=1485F2F441BFB375
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=findAllUsers
 KEY_AUTHENTICATION_KIND=4
@@ -347,11 +354,13 @@ out.roles=wsResponse.findSecurityMembersToDelegateResponse.result.roles;
 out.users=wsResponse.findSecurityMembersToDelegateResponse.result.users;
 ' #txt
 Se0 f18 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Se0 f18 timeout 10 #txt
+Se0 f18 timeout 60 #txt
 Se0 f18 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=SecurityServicePort
 KEY_WEBSERVICECONFIG_ID=1485F2F441BFB375
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=
 KEY_OPERATION=findSecurityMembersToDelegate
 KEY_AUTHENTICATION_KIND=0
@@ -381,11 +390,13 @@ out.roles=wsResponse.findSecurityMembersToDelegateResponse.result.roles;
 out.users=wsResponse.findSecurityMembersToDelegateResponse.result.users;
 ' #txt
 Se0 f19 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Se0 f19 timeout 10 #txt
+Se0 f19 timeout 60 #txt
 Se0 f19 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=SecurityServicePort
 KEY_WEBSERVICECONFIG_ID=1485F2F441BFB375
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=findSecurityMembersToDelegate
 KEY_AUTHENTICATION_KIND=4
@@ -458,11 +469,13 @@ out.errors=wsResponse.findAllRolesResponse.result.errors;
 out.roles=wsResponse.findAllRolesResponse.result.roles;
 ' #txt
 Se0 f33 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Se0 f33 timeout 10 #txt
+Se0 f33 timeout 60 #txt
 Se0 f33 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=SecurityServicePort
 KEY_WEBSERVICECONFIG_ID=1485F2F441BFB375
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=findAllRoles
 KEY_AUTHENTICATION_KIND=1
@@ -508,11 +521,13 @@ out.errors=wsResponse.findAllUsersResponse.result.errors;
 out.users=wsResponse.findAllUsersResponse.result.users;
 ' #txt
 Se0 f11 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Se0 f11 timeout 10 #txt
+Se0 f11 timeout 60 #txt
 Se0 f11 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=SecurityServicePort
 KEY_WEBSERVICECONFIG_ID=1485F2F441BFB375
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=findAllUsers
 KEY_AUTHENTICATION_KIND=1
@@ -557,11 +572,13 @@ out.roles=wsResponse.findSecurityMembersToDelegateResponse.result.roles;
 out.users=wsResponse.findSecurityMembersToDelegateResponse.result.users;
 ' #txt
 Se0 f21 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Se0 f21 timeout 10 #txt
+Se0 f21 timeout 60 #txt
 Se0 f21 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=SecurityServicePort
 KEY_WEBSERVICECONFIG_ID=1485F2F441BFB375
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=findSecurityMembersToDelegate
 KEY_AUTHENTICATION_KIND=1

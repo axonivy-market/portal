@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Tue Jun 14 11:44:11 ICT 2016]
-14E8716736559EDB 3.18 #module
+14E8716736559EDB 3.20 #module
 >Proto >Proto Collection #zClass
 Ie0 IsAliveServiceIntegrator Big #zClass
 Ie0 B #cInfo
@@ -78,11 +77,13 @@ out.errors=wsResponse.isAliveResponse.result.errors;
 out.isServerAlive=wsResponse.isAliveResponse.result.isAlive;
 ' #txt
 Ie0 f3 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ie0 f3 timeout 10 #txt
+Ie0 f3 timeout 60 #txt
 Ie0 f3 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=IsAliveServicePort
 KEY_WEBSERVICECONFIG_ID=146C8FD0DD5620DA
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=isAlive
 KEY_AUTHENTICATION_KIND=4
@@ -160,11 +161,13 @@ out.errors=wsResponse.isAliveResponse.result.errors;
 out.isServerAlive=wsResponse.isAliveResponse.result.isAlive;
 ' #txt
 Ie0 f13 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ie0 f13 timeout 10 #txt
+Ie0 f13 timeout 60 #txt
 Ie0 f13 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=IsAliveServicePort
 KEY_WEBSERVICECONFIG_ID=146C8FD0DD5620DA
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=
 KEY_OPERATION=isAlive
 KEY_AUTHENTICATION_KIND=0
@@ -200,11 +203,13 @@ out.errors=wsResponse.isAliveResponse.result.errors;
 out.isServerAlive=wsResponse.isAliveResponse.result.isAlive;
 ' #txt
 Ie0 f5 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ie0 f5 timeout 10 #txt
+Ie0 f5 timeout 60 #txt
 Ie0 f5 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=IsAliveServicePort
 KEY_WEBSERVICECONFIG_ID=146C8FD0DD5620DA
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=isAlive
 KEY_AUTHENTICATION_KIND=1

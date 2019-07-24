@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Mon Jun 26 09:32:21 ICT 2017]
 15CD315921044A92 3.20 #module
 >Proto >Proto Collection #zClass
 Pe0 WebStartableServiceIntegrator Big #zClass
@@ -63,7 +62,7 @@ out.errors=wsResponse.findWebStartablesByCriteriaResponse.result.errors;
 out.webStartables=wsResponse.findWebStartablesByCriteriaResponse.result.webStartables;
 ' #txt
 Pe0 f7 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Pe0 f7 timeout 10 #txt
+Pe0 f7 timeout 60 #txt
 Pe0 f7 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=WebStartableServicePort
 KEY_WEBSERVICECONFIG_ID=15CD313699949A45
@@ -98,7 +97,7 @@ out.errors=wsResponse.findWebStartablesByCriteriaResponse.result.errors;
 out.webStartables=wsResponse.findWebStartablesByCriteriaResponse.result.webStartables;
 ' #txt
 Pe0 f8 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Pe0 f8 timeout 10 #txt
+Pe0 f8 timeout 60 #txt
 Pe0 f8 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=WebStartableServicePort
 KEY_WEBSERVICECONFIG_ID=15CD313699949A45
@@ -198,7 +197,7 @@ out.errors=wsResponse.findWebStartablesByCriteriaResponse.result.errors;
 out.webStartables=wsResponse.findWebStartablesByCriteriaResponse.result.webStartables;
 ' #txt
 Pe0 f3 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Pe0 f3 timeout 10 #txt
+Pe0 f3 timeout 60 #txt
 Pe0 f3 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=WebStartableServicePort
 KEY_WEBSERVICECONFIG_ID=15CD313699949A45

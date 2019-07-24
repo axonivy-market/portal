@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Tue Jun 14 11:35:31 ICT 2016]
-14E9127DCD7A83EF 3.18 #module
+14E9127DCD7A83EF 3.20 #module
 >Proto >Proto Collection #zClass
 Gr0 GetSupportedLanguageServiceIntegrator Big #zClass
 Gr0 B #cInfo
@@ -65,11 +64,13 @@ out.wsExceptions=wsResponse.getSupportedLanguagesResponse.result.errors;
 Gr0 f2 testData 'in.applicationName="asdjkas";
 ' #txt
 Gr0 f2 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Gr0 f2 timeout 0 #txt
+Gr0 f2 timeout 60 #txt
 Gr0 f2 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=SupportedLanguageServicePort
 KEY_WEBSERVICECONFIG_ID=14E91368EA389FD7
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=getSupportedLanguages
 KEY_AUTHENTICATION_KIND=4
@@ -122,11 +123,13 @@ out.supportedLanguages=wsResponse.getSupportedLanguagesResponse.result.supported
 out.wsExceptions=wsResponse.getSupportedLanguagesResponse.result.errors;
 ' #txt
 Gr0 f7 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Gr0 f7 timeout 0 #txt
+Gr0 f7 timeout 60 #txt
 Gr0 f7 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=SupportedLanguageServicePort
 KEY_WEBSERVICECONFIG_ID=14E91368EA389FD7
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=
 KEY_OPERATION=getSupportedLanguages
 KEY_AUTHENTICATION_KIND=0
@@ -186,11 +189,13 @@ out.wsExceptions=wsResponse.getSupportedLanguagesResponse.result.errors;
 Gr0 f6 testData 'in.applicationName="asdjkas";
 ' #txt
 Gr0 f6 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Gr0 f6 timeout 0 #txt
+Gr0 f6 timeout 60 #txt
 Gr0 f6 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=SupportedLanguageServicePort
 KEY_WEBSERVICECONFIG_ID=14E91368EA389FD7
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=getSupportedLanguages
 KEY_AUTHENTICATION_KIND=1

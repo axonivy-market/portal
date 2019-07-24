@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Mon Jun 05 10:26:49 ICT 2017]
 15C629083D38EC33 3.20 #module
 >Proto >Proto Collection #zClass
 Pe0 SideStepProcessServiceIntegrator Big #zClass
@@ -65,7 +64,7 @@ out.errors=wsResponse.findSideStepsByCriteriaResponse.result.errors;
 out.sideSteps=wsResponse.findSideStepsByCriteriaResponse.result.sideSteps;
 ' #txt
 Pe0 f7 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Pe0 f7 timeout 10 #txt
+Pe0 f7 timeout 60 #txt
 Pe0 f7 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=SideStepProcessServicePort
 KEY_WEBSERVICECONFIG_ID=15C7646A4BDA62E7
@@ -100,7 +99,7 @@ out.errors=wsResponse.findSideStepsByCriteriaResponse.result.errors;
 out.sideSteps=wsResponse.findSideStepsByCriteriaResponse.result.sideSteps;
 ' #txt
 Pe0 f8 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Pe0 f8 timeout 10 #txt
+Pe0 f8 timeout 60 #txt
 Pe0 f8 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=SideStepProcessServicePort
 KEY_WEBSERVICECONFIG_ID=15C7646A4BDA62E7
@@ -200,7 +199,7 @@ out.errors=wsResponse.findSideStepsByCriteriaResponse.result.errors;
 out.sideSteps=wsResponse.findSideStepsByCriteriaResponse.result.sideSteps;
 ' #txt
 Pe0 f3 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Pe0 f3 timeout 10 #txt
+Pe0 f3 timeout 60 #txt
 Pe0 f3 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=SideStepProcessServicePort
 KEY_WEBSERVICECONFIG_ID=15C7646A4BDA62E7

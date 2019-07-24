@@ -54,7 +54,7 @@ out.applications=wsResponse.getAllApplicationsResponse.result.applications;
 out.errors=wsResponse.getAllApplicationsResponse.result.errors;
 ' #txt
 Ar0 f17 cache '{/cache true /invalidation false /scope 2 /groupname "ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants.GET_APPLICATIONS_WS_CACHE_GROUP_NAME"/lifetime_group "ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants.GET_APPLICATIONS_WS_CACHE_LIFETIME"/invalidation_time_group ""/identifier "\"getAllApplications\""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ar0 f17 timeout 0 #txt
+Ar0 f17 timeout 60 #txt
 Ar0 f17 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=ApplicationServicePort
 KEY_WEBSERVICECONFIG_ID=154F091E0FE17F3C
@@ -101,7 +101,7 @@ out.applications=wsResponse.getAllApplicationsResponse.result.applications;
 out.errors=wsResponse.getAllApplicationsResponse.result.errors;
 ' #txt
 Ar0 f9 cache '{/cache true /invalidation false /scope 2 /groupname "ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants.GET_APPLICATIONS_WS_CACHE_GROUP_NAME"/lifetime_group "ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants.GET_APPLICATIONS_WS_CACHE_LIFETIME"/invalidation_time_group ""/identifier "\"getAllApplications\""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ar0 f9 timeout 0 #txt
+Ar0 f9 timeout 60 #txt
 Ar0 f9 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=ApplicationServicePort
 KEY_WEBSERVICECONFIG_ID=154F091E0FE17F3C
@@ -207,7 +207,7 @@ out.applications=wsResponse.getApplicationsByAppNamesResponse.result.application
 out.errors=wsResponse.getApplicationsByAppNamesResponse.result.errors;
 ' #txt
 Ar0 f7 cache '{/cache true /invalidation false /scope 2 /groupname "ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants.GET_APPLICATIONS_WS_CACHE_GROUP_NAME"/lifetime_group "ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants.GET_APPLICATIONS_WS_CACHE_LIFETIME"/invalidation_time_group ""/identifier "\"getApplicationsConfiguredOnServer\""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ar0 f7 timeout 0 #txt
+Ar0 f7 timeout 60 #txt
 Ar0 f7 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=ApplicationServicePort
 KEY_WEBSERVICECONFIG_ID=154F091E0FE17F3C
@@ -258,7 +258,7 @@ out.applications=wsResponse.getApplicationsByAppNamesResponse.result.application
 out.errors=wsResponse.getApplicationsByAppNamesResponse.result.errors;
 ' #txt
 Ar0 f11 cache '{/cache true /invalidation false /scope 2 /groupname "ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants.GET_APPLICATIONS_WS_CACHE_GROUP_NAME"/lifetime_group "ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants.GET_APPLICATIONS_WS_CACHE_LIFETIME"/invalidation_time_group ""/identifier "\"getApplicationsConfiguredOnServer\""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ar0 f11 timeout 0 #txt
+Ar0 f11 timeout 60 #txt
 Ar0 f11 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=ApplicationServicePort
 KEY_WEBSERVICECONFIG_ID=154F091E0FE17F3C
@@ -389,7 +389,7 @@ out.applications=wsResponse.getAllApplicationsResponse.result.applications;
 out.errors=wsResponse.getAllApplicationsResponse.result.errors;
 ' #txt
 Ar0 f24 cache '{/cache true /invalidation false /scope 2 /groupname "ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants.GET_APPLICATIONS_WS_CACHE_GROUP_NAME"/lifetime_group "ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants.GET_APPLICATIONS_WS_CACHE_LIFETIME"/invalidation_time_group ""/identifier "\"getAllApplications\""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ar0 f24 timeout 0 #txt
+Ar0 f24 timeout 60 #txt
 Ar0 f24 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=ApplicationServicePort
 KEY_WEBSERVICECONFIG_ID=154F091E0FE17F3C
@@ -457,7 +457,7 @@ out.applications=wsResponse.getApplicationsByAppNamesResponse.result.application
 out.errors=wsResponse.getApplicationsByAppNamesResponse.result.errors;
 ' #txt
 Ar0 f3 cache '{/cache true /invalidation false /scope 2 /groupname "ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants.GET_APPLICATIONS_WS_CACHE_GROUP_NAME"/lifetime_group "ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants.GET_APPLICATIONS_WS_CACHE_LIFETIME"/invalidation_time_group ""/identifier "\"getApplicationsConfiguredOnServer\""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ar0 f3 timeout 0 #txt
+Ar0 f3 timeout 60 #txt
 Ar0 f3 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=ApplicationServicePort
 KEY_WEBSERVICECONFIG_ID=154F091E0FE17F3C

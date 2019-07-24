@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Wed Aug 23 10:08:43 ICT 2017]
 14E8758452EA36D2 3.20 #module
 >Proto >Proto Collection #zClass
 Ue0 UserServiceIntegrator Big #zClass
@@ -210,11 +209,13 @@ out.absences=wsResponse.getAbsencesResponse.result.absences;
 out.errors=wsResponse.getAbsencesResponse.result.errors;
 ' #txt
 Ue0 f3 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f3 timeout 10 #txt
+Ue0 f3 timeout 60 #txt
 Ue0 f3 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=AbsenceServicePort
 KEY_WEBSERVICECONFIG_ID=14EFDA6C3FD72228
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=getAbsences
 KEY_AUTHENTICATION_KIND=4
@@ -279,11 +280,13 @@ out.absences=wsResponse.getAbsencesResponse.result.absences;
 out.errors=wsResponse.getAbsencesResponse.result.errors;
 ' #txt
 Ue0 f10 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f10 timeout 10 #txt
+Ue0 f10 timeout 60 #txt
 Ue0 f10 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=AbsenceServicePort
 KEY_WEBSERVICECONFIG_ID=14EFDA6C3FD72228
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=
 KEY_OPERATION=getAbsences
 KEY_AUTHENTICATION_KIND=0
@@ -352,11 +355,13 @@ Ue0 f15 actionTable 'out=in;
 out.errors=wsResponse.setAbsencesResponse.errors;
 ' #txt
 Ue0 f15 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f15 timeout 10 #txt
+Ue0 f15 timeout 60 #txt
 Ue0 f15 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=AbsenceServicePort
 KEY_WEBSERVICECONFIG_ID=14EFDA6C3FD72228
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=setAbsences
 KEY_AUTHENTICATION_KIND=4
@@ -387,11 +392,13 @@ Ue0 f17 actionTable 'out=in;
 out.errors=wsResponse.setAbsencesResponse.errors;
 ' #txt
 Ue0 f17 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f17 timeout 10 #txt
+Ue0 f17 timeout 60 #txt
 Ue0 f17 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=AbsenceServicePort
 KEY_WEBSERVICECONFIG_ID=14EFDA6C3FD72228
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=
 KEY_OPERATION=setAbsences
 KEY_AUTHENTICATION_KIND=0
@@ -472,11 +479,13 @@ Ue0 f25 actionTable 'out=in;
 out.errors=wsResponse.setAbsencesResponse.errors;
 ' #txt
 Ue0 f25 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f25 timeout 10 #txt
+Ue0 f25 timeout 60 #txt
 Ue0 f25 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=AbsenceServicePort
 KEY_WEBSERVICECONFIG_ID=14EFDA6C3FD72228
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=setAbsences
 KEY_AUTHENTICATION_KIND=4
@@ -507,11 +516,13 @@ Ue0 f27 actionTable 'out=in;
 out.errors=wsResponse.setAbsencesResponse.errors;
 ' #txt
 Ue0 f27 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f27 timeout 10 #txt
+Ue0 f27 timeout 60 #txt
 Ue0 f27 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=AbsenceServicePort
 KEY_WEBSERVICECONFIG_ID=14EFDA6C3FD72228
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=
 KEY_OPERATION=setAbsences
 KEY_AUTHENTICATION_KIND=0
@@ -559,11 +570,13 @@ out.emailSettings=wsResponse.getEmailSetttingsResponse.result.settings;
 out.errors=wsResponse.getEmailSetttingsResponse.result.errors;
 ' #txt
 Ue0 f34 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f34 timeout 10 #txt
+Ue0 f34 timeout 60 #txt
 Ue0 f34 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=UserServicePort
 KEY_WEBSERVICECONFIG_ID=14BDDEDAB1EB1D1E
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=getEmailSetttings
 KEY_AUTHENTICATION_KIND=4
@@ -642,11 +655,13 @@ out.emailSettings=wsResponse.getEmailSetttingsResponse.result.settings;
 out.errors=wsResponse.getEmailSetttingsResponse.result.errors;
 ' #txt
 Ue0 f43 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f43 timeout 10 #txt
+Ue0 f43 timeout 60 #txt
 Ue0 f43 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=UserServicePort
 KEY_WEBSERVICECONFIG_ID=14BDDEDAB1EB1D1E
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=
 KEY_OPERATION=getEmailSetttings
 KEY_AUTHENTICATION_KIND=0
@@ -678,11 +693,13 @@ Ue0 f41 actionTable 'out=in;
 out.errors=wsResponse.setEMailSettingsResponse.errors;
 ' #txt
 Ue0 f41 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f41 timeout 10 #txt
+Ue0 f41 timeout 60 #txt
 Ue0 f41 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=UserServicePort
 KEY_WEBSERVICECONFIG_ID=14BDDEDAB1EB1D1E
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=setEMailSettings
 KEY_AUTHENTICATION_KIND=4
@@ -713,11 +730,13 @@ Ue0 f45 actionTable 'out=in;
 out.errors=wsResponse.setEMailSettingsResponse.errors;
 ' #txt
 Ue0 f45 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f45 timeout 10 #txt
+Ue0 f45 timeout 60 #txt
 Ue0 f45 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=UserServicePort
 KEY_WEBSERVICECONFIG_ID=14BDDEDAB1EB1D1E
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=
 KEY_OPERATION=setEMailSettings
 KEY_AUTHENTICATION_KIND=0
@@ -835,11 +854,13 @@ out.errors=wsResponse.getLanguagesSettingsResponse.result.errors;
 out.languageSettings=wsResponse.getLanguagesSettingsResponse.result.settings;
 ' #txt
 Ue0 f56 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f56 timeout 10 #txt
+Ue0 f56 timeout 60 #txt
 Ue0 f56 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=UserServicePort
 KEY_WEBSERVICECONFIG_ID=14BDDEDAB1EB1D1E
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=
 KEY_OPERATION=getLanguagesSettings
 KEY_AUTHENTICATION_KIND=0
@@ -909,11 +930,13 @@ out.errors=wsResponse.getLanguagesSettingsResponse.result.errors;
 out.languageSettings=wsResponse.getLanguagesSettingsResponse.result.settings;
 ' #txt
 Ue0 f60 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f60 timeout 10 #txt
+Ue0 f60 timeout 60 #txt
 Ue0 f60 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=UserServicePort
 KEY_WEBSERVICECONFIG_ID=14BDDEDAB1EB1D1E
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=getLanguagesSettings
 KEY_AUTHENTICATION_KIND=4
@@ -972,11 +995,13 @@ Ue0 f68 actionTable 'out=in;
 out.errors=wsResponse.setLanguagesSettingsResponse.errors;
 ' #txt
 Ue0 f68 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f68 timeout 10 #txt
+Ue0 f68 timeout 60 #txt
 Ue0 f68 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=UserServicePort
 KEY_WEBSERVICECONFIG_ID=14BDDEDAB1EB1D1E
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=
 KEY_OPERATION=setLanguagesSettings
 KEY_AUTHENTICATION_KIND=0
@@ -1029,11 +1054,13 @@ Ue0 f70 actionTable 'out=in;
 out.errors=wsResponse.setLanguagesSettingsResponse.errors;
 ' #txt
 Ue0 f70 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f70 timeout 10 #txt
+Ue0 f70 timeout 60 #txt
 Ue0 f70 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=UserServicePort
 KEY_WEBSERVICECONFIG_ID=14BDDEDAB1EB1D1E
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=setLanguagesSettings
 KEY_AUTHENTICATION_KIND=4
@@ -1121,11 +1148,13 @@ out.substitutes=wsResponse.getSubstitutesResponse.result.substitutes;
 out.users=wsResponse.getSubstitutesResponse.result.applicationUsers;
 ' #txt
 Ue0 f80 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f80 timeout 10 #txt
+Ue0 f80 timeout 60 #txt
 Ue0 f80 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=UserServicePort
 KEY_WEBSERVICECONFIG_ID=14BDDEDAB1EB1D1E
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=getSubstitutes
 KEY_AUTHENTICATION_KIND=4
@@ -1167,11 +1196,13 @@ out.substitutes=wsResponse.getSubstitutesResponse.result.substitutes;
 out.users=wsResponse.getSubstitutesResponse.result.applicationUsers;
 ' #txt
 Ue0 f86 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f86 timeout 10 #txt
+Ue0 f86 timeout 60 #txt
 Ue0 f86 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=UserServicePort
 KEY_WEBSERVICECONFIG_ID=14BDDEDAB1EB1D1E
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=
 KEY_OPERATION=getSubstitutes
 KEY_AUTHENTICATION_KIND=0
@@ -1243,11 +1274,13 @@ Ue0 f90 actionTable 'out=in;
 out.errors=wsResponse.setSubstitutesResponse.errors;
 ' #txt
 Ue0 f90 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f90 timeout 10 #txt
+Ue0 f90 timeout 60 #txt
 Ue0 f90 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=UserServicePort
 KEY_WEBSERVICECONFIG_ID=14BDDEDAB1EB1D1E
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=setSubstitutes
 KEY_AUTHENTICATION_KIND=4
@@ -1287,11 +1320,13 @@ Ue0 f96 actionTable 'out=in;
 out.errors=wsResponse.setSubstitutesResponse.errors;
 ' #txt
 Ue0 f96 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f96 timeout 10 #txt
+Ue0 f96 timeout 60 #txt
 Ue0 f96 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=UserServicePort
 KEY_WEBSERVICECONFIG_ID=14BDDEDAB1EB1D1E
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=
 KEY_OPERATION=setSubstitutes
 KEY_AUTHENTICATION_KIND=0
@@ -1327,11 +1362,13 @@ out.absences=wsResponse.getAbsencesOfAllUsersResponse.result.absences;
 out.errors=wsResponse.getAbsencesOfAllUsersResponse.result.errors;
 ' #txt
 Ue0 f95 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f95 timeout 10 #txt
+Ue0 f95 timeout 60 #txt
 Ue0 f95 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=AbsenceServicePort
 KEY_WEBSERVICECONFIG_ID=14EFDA6C3FD72228
 KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=getAbsencesOfAllUsers
 KEY_AUTHENTICATION_KIND=4
@@ -1385,11 +1422,13 @@ out.absences=wsResponse.getAbsencesOfAllUsersResponse.result.absences;
 out.errors=wsResponse.getAbsencesOfAllUsersResponse.result.errors;
 ' #txt
 Ue0 f99 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f99 timeout 10 #txt
+Ue0 f99 timeout 60 #txt
 Ue0 f99 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=AbsenceServicePort
 KEY_WEBSERVICECONFIG_ID=14EFDA6C3FD72228
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=
 KEY_OPERATION=getAbsencesOfAllUsers
 KEY_AUTHENTICATION_KIND=0
@@ -1448,11 +1487,13 @@ out.absences=wsResponse.getAbsencesResponse.result.absences;
 out.errors=wsResponse.getAbsencesResponse.result.errors;
 ' #txt
 Ue0 f4 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f4 timeout 10 #txt
+Ue0 f4 timeout 60 #txt
 Ue0 f4 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=AbsenceServicePort
 KEY_WEBSERVICECONFIG_ID=14EFDA6C3FD72228
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=getAbsences
 KEY_AUTHENTICATION_KIND=1
@@ -1494,11 +1535,13 @@ out.absences=wsResponse.getAbsencesOfAllUsersResponse.result.absences;
 out.errors=wsResponse.getAbsencesOfAllUsersResponse.result.errors;
 ' #txt
 Ue0 f127 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f127 timeout 10 #txt
+Ue0 f127 timeout 60 #txt
 Ue0 f127 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=AbsenceServicePort
 KEY_WEBSERVICECONFIG_ID=14EFDA6C3FD72228
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=getAbsencesOfAllUsers
 KEY_AUTHENTICATION_KIND=1
@@ -1543,11 +1586,13 @@ Ue0 f18 actionTable 'out=in;
 out.errors=wsResponse.setAbsencesResponse.errors;
 ' #txt
 Ue0 f18 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f18 timeout 10 #txt
+Ue0 f18 timeout 60 #txt
 Ue0 f18 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=AbsenceServicePort
 KEY_WEBSERVICECONFIG_ID=14EFDA6C3FD72228
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=setAbsences
 KEY_AUTHENTICATION_KIND=1
@@ -1590,11 +1635,13 @@ Ue0 f28 actionTable 'out=in;
 out.errors=wsResponse.setAbsencesResponse.errors;
 ' #txt
 Ue0 f28 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f28 timeout 10 #txt
+Ue0 f28 timeout 60 #txt
 Ue0 f28 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=AbsenceServicePort
 KEY_WEBSERVICECONFIG_ID=14EFDA6C3FD72228
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=setAbsences
 KEY_AUTHENTICATION_KIND=1
@@ -1638,11 +1685,13 @@ out.emailSettings=wsResponse.getEmailSetttingsResponse.result.settings;
 out.errors=wsResponse.getEmailSetttingsResponse.result.errors;
 ' #txt
 Ue0 f38 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f38 timeout 10 #txt
+Ue0 f38 timeout 60 #txt
 Ue0 f38 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=UserServicePort
 KEY_WEBSERVICECONFIG_ID=14BDDEDAB1EB1D1E
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=getEmailSetttings
 KEY_AUTHENTICATION_KIND=1
@@ -1685,11 +1734,13 @@ Ue0 f48 actionTable 'out=in;
 out.errors=wsResponse.setEMailSettingsResponse.errors;
 ' #txt
 Ue0 f48 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f48 timeout 10 #txt
+Ue0 f48 timeout 60 #txt
 Ue0 f48 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=UserServicePort
 KEY_WEBSERVICECONFIG_ID=14BDDEDAB1EB1D1E
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=setEMailSettings
 KEY_AUTHENTICATION_KIND=1
@@ -1735,11 +1786,13 @@ out.errors=wsResponse.getLanguagesSettingsResponse.result.errors;
 out.languageSettings=wsResponse.getLanguagesSettingsResponse.result.settings;
 ' #txt
 Ue0 f71 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f71 timeout 10 #txt
+Ue0 f71 timeout 60 #txt
 Ue0 f71 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=UserServicePort
 KEY_WEBSERVICECONFIG_ID=14BDDEDAB1EB1D1E
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=getLanguagesSettings
 KEY_AUTHENTICATION_KIND=1
@@ -1780,11 +1833,13 @@ Ue0 f120 actionTable 'out=in;
 out.errors=wsResponse.setLanguagesSettingsResponse.errors;
 ' #txt
 Ue0 f120 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f120 timeout 10 #txt
+Ue0 f120 timeout 60 #txt
 Ue0 f120 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=UserServicePort
 KEY_WEBSERVICECONFIG_ID=14BDDEDAB1EB1D1E
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=setLanguagesSettings
 KEY_AUTHENTICATION_KIND=1
@@ -1831,11 +1886,13 @@ out.substitutes=wsResponse.getSubstitutesResponse.result.substitutes;
 out.users=wsResponse.getSubstitutesResponse.result.applicationUsers;
 ' #txt
 Ue0 f91 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f91 timeout 10 #txt
+Ue0 f91 timeout 60 #txt
 Ue0 f91 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=UserServicePort
 KEY_WEBSERVICECONFIG_ID=14BDDEDAB1EB1D1E
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=getSubstitutes
 KEY_AUTHENTICATION_KIND=1
@@ -1876,11 +1933,13 @@ Ue0 f124 actionTable 'out=in;
 out.errors=wsResponse.setSubstitutesResponse.errors;
 ' #txt
 Ue0 f124 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f124 timeout 10 #txt
+Ue0 f124 timeout 60 #txt
 Ue0 f124 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=UserServicePort
 KEY_WEBSERVICECONFIG_ID=14BDDEDAB1EB1D1E
 KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
 KEY_USERNAME=<%\\=in.server.username%>
 KEY_OPERATION=setSubstitutes
 KEY_AUTHENTICATION_KIND=1
@@ -1933,7 +1992,7 @@ Ue0 f137 actionTable 'out=in;
 out.errors=wsResponse.getChangePasswordResponse().errors;
 ' #txt
 Ue0 f137 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f137 timeout 10 #txt
+Ue0 f137 timeout 60 #txt
 Ue0 f137 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=UserServicePort
 KEY_WEBSERVICECONFIG_ID=14BDDEDAB1EB1D1E
@@ -1967,7 +2026,7 @@ Ue0 f138 actionTable 'out=in;
 out.errors=wsResponse.getChangePasswordResponse().errors;
 ' #txt
 Ue0 f138 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f138 timeout 10 #txt
+Ue0 f138 timeout 60 #txt
 Ue0 f138 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
 KEY_AXIS_PORTNAME=UserServicePort
 KEY_WEBSERVICECONFIG_ID=14BDDEDAB1EB1D1E
@@ -2004,7 +2063,7 @@ Ue0 f140 actionTable 'out=in;
 out.errors=wsResponse.getChangePasswordResponse().errors;
 ' #txt
 Ue0 f140 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
-Ue0 f140 timeout 10 #txt
+Ue0 f140 timeout 60 #txt
 Ue0 f140 beanConfig '"KEY_PASSWORD=
 KEY_AXIS_PORTNAME=UserServicePort
 KEY_WEBSERVICECONFIG_ID=14BDDEDAB1EB1D1E
