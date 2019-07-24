@@ -119,6 +119,16 @@
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </method>
+    <method>
+        <name>init</name>
+        <description></description>
+        <inputParameter>
+            <name>dataModel</name>
+            <description></description>
+            <parameterType>ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
+    </method>
     <startMethod>
         <name>start</name>
         <description>Default dialog start method.</description>

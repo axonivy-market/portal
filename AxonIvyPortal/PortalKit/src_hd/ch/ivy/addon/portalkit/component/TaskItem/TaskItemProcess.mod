@@ -72,10 +72,10 @@ Ts0 f94 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f94 339 1043 26 26 0 12 #rect
 Ts0 f94 @|RichDialogProcessEndIcon #fIcon
 Ts0 f46 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
-Ts0 f46 1043 467 26 26 0 12 #rect
+Ts0 f46 1043 299 26 26 0 12 #rect
 Ts0 f46 @|RichDialogProcessEndIcon #fIcon
 Ts0 f79 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
-Ts0 f79 336 656 32 32 0 16 #rect
+Ts0 f79 336 488 32 32 0 16 #rect
 Ts0 f79 @|AlternativeIcon #fIcon
 Ts0 f36 guid 16816B4C738DA4B0 #txt
 Ts0 f36 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
@@ -90,13 +90,13 @@ Ts0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f36 83 851 26 26 -47 15 #rect
+Ts0 f36 83 683 26 26 -47 15 #rect
 Ts0 f36 @|RichDialogProcessStartIcon #fIcon
 Ts0 f92 expr in #txt
 Ts0 f92 outCond in.canUserResumeTask #txt
-Ts0 f92 368 672 467 672 #arcP
+Ts0 f92 368 504 467 504 #arcP
 Ts0 f98 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
-Ts0 f98 467 659 26 26 0 12 #rect
+Ts0 f98 467 491 26 26 0 12 #rect
 Ts0 f98 @|RichDialogProcessEndIcon #fIcon
 Ts0 f17 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f17 -106 1334 20 20 13 0 #rect
@@ -132,18 +132,18 @@ Ts0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f56 424 458 112 44 -46 -8 #rect
+Ts0 f56 424 290 112 44 -46 -8 #rect
 Ts0 f56 @|StepIcon #fIcon
 Ts0 f33 guid 16816C4D9766CFA8 #txt
 Ts0 f33 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f33 method openTask(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel) #txt
 Ts0 f33 disableUIEvents false #txt
-Ts0 f33 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel> param = methodEvent.getInputArguments();
+Ts0 f33 inParameterDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
 ' #txt
 Ts0 f33 inParameterMapAction 'out.dataModel=param.dataModel;
 out.task=param.task;
 ' #txt
+Ts0 f33 inActionCode 'ivy.log.info("Data content {0}", out.dataModel);' #txt
 Ts0 f33 outParameterDecl '<> result;
 ' #txt
 Ts0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -153,10 +153,10 @@ Ts0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f33 83 467 26 26 -80 15 #rect
+Ts0 f33 83 299 26 26 -80 15 #rect
 Ts0 f33 @|RichDialogMethodStartIcon #fIcon
 Ts0 f55 expr out #txt
-Ts0 f55 536 480 576 480 #arcP
+Ts0 f55 536 312 576 312 #arcP
 Ts0 f54 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
 ' #txt
 Ts0 f54 actionTable 'out=in;
@@ -173,13 +173,13 @@ Ts0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f54 576 458 128 44 -61 -8 #rect
+Ts0 f54 576 290 128 44 -61 -8 #rect
 Ts0 f54 @|StepIcon #fIcon
 Ts0 f1 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f1 339 83 26 26 0 12 #rect
 Ts0 f1 @|RichDialogProcessEndIcon #fIcon
 Ts0 f3 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
-Ts0 f3 339 851 26 26 0 12 #rect
+Ts0 f3 339 683 26 26 0 12 #rect
 Ts0 f3 @|RichDialogProcessEndIcon #fIcon
 Ts0 f108 guid 161932E544273665 #txt
 Ts0 f108 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
@@ -200,7 +200,7 @@ Ts0 f108 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f108 83 755 26 26 -85 17 #rect
+Ts0 f108 83 587 26 26 -85 17 #rect
 Ts0 f108 @|RichDialogMethodStartIcon #fIcon
 Ts0 f30 guid 16816C2D98C57DA7 #txt
 Ts0 f30 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
@@ -218,10 +218,10 @@ Ts0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f30 83 371 26 26 -57 15 #rect
+Ts0 f30 83 203 26 26 -57 15 #rect
 Ts0 f30 @|RichDialogMethodStartIcon #fIcon
 Ts0 f87 expr out #txt
-Ts0 f87 288 672 336 672 #arcP
+Ts0 f87 288 504 336 504 #arcP
 Ts0 f80 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
 ' #txt
 Ts0 f80 actionTable 'out=in;
@@ -240,7 +240,7 @@ Ts0 f80 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f80 160 650 128 44 -56 -8 #rect
+Ts0 f80 160 482 128 44 -56 -8 #rect
 Ts0 f80 @|StepIcon #fIcon
 Ts0 f66 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
 ' #txt
@@ -283,33 +283,33 @@ Ts0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f66 424 554 112 44 -35 -8 #rect
+Ts0 f66 424 386 112 44 -35 -8 #rect
 Ts0 f66 @|StepIcon #fIcon
 Ts0 f57 expr in #txt
 Ts0 f57 outCond in.canUserResumeTask #txt
-Ts0 f57 366 480 424 480 #arcP
+Ts0 f57 366 312 424 312 #arcP
 Ts0 f77 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
-Ts0 f77 338 466 28 28 14 0 #rect
+Ts0 f77 338 298 28 28 14 0 #rect
 Ts0 f77 @|AlternativeIcon #fIcon
 Ts0 f110 expr out #txt
-Ts0 f110 109 768 339 768 #arcP
+Ts0 f110 109 600 339 600 #arcP
 Ts0 f110 0 0.49999999999999994 0 0 #arcLabel
 Ts0 f109 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
-Ts0 f109 339 755 26 26 0 12 #rect
+Ts0 f109 339 587 26 26 0 12 #rect
 Ts0 f109 @|RichDialogProcessEndIcon #fIcon
 Ts0 f101 expr in #txt
-Ts0 f101 352 656 352 592 #arcP
+Ts0 f101 352 488 352 424 #arcP
 Ts0 f67 expr in #txt
-Ts0 f67 368 576 424 576 #arcP
+Ts0 f67 368 408 424 408 #arcP
 Ts0 f67 0 0.1527488616366867 0 0 #arcLabel
 Ts0 f100 expr in #txt
-Ts0 f100 352 494 352 560 #arcP
+Ts0 f100 352 326 352 392 #arcP
 Ts0 f100 0 0.6038825846613081 0 0 #arcLabel
 Ts0 f99 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
-Ts0 f99 336 560 32 32 0 16 #rect
+Ts0 f99 336 392 32 32 0 16 #rect
 Ts0 f99 @|AlternativeIcon #fIcon
 Ts0 f78 expr out #txt
-Ts0 f78 984 480 1043 480 #arcP
+Ts0 f78 984 312 1043 312 #arcP
 Ts0 f47 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
 ' #txt
 Ts0 f47 actionTable 'out=in;
@@ -332,7 +332,7 @@ Ts0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f47 872 458 112 44 -28 -8 #rect
+Ts0 f47 872 290 112 44 -28 -8 #rect
 Ts0 f47 @|StepIcon #fIcon
 Ts0 f95 expr out #txt
 Ts0 f95 109 1152 339 1152 #arcP
@@ -363,9 +363,9 @@ Ts0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ts0 f76 83 1139 26 26 -52 12 #rect
 Ts0 f76 @|RichDialogMethodStartIcon #fIcon
 Ts0 f73 expr out #txt
-Ts0 f73 704 480 728 480 #arcP
+Ts0 f73 704 312 728 312 #arcP
 Ts0 f50 expr out #txt
-Ts0 f50 840 480 872 480 #arcP
+Ts0 f50 840 312 872 312 #arcP
 Ts0 f49 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
 ' #txt
 Ts0 f49 actionTable 'out=in;
@@ -401,10 +401,10 @@ Ts0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f49 728 458 112 44 -51 -8 #rect
+Ts0 f49 728 290 112 44 -51 -8 #rect
 Ts0 f49 @|StepIcon #fIcon
 Ts0 f81 expr out #txt
-Ts0 f81 109 672 160 672 #arcP
+Ts0 f81 109 504 160 504 #arcP
 Ts0 f97 guid 1602EFA80B079E1D #txt
 Ts0 f97 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f97 method validate(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel) #txt
@@ -424,12 +424,12 @@ Ts0 f97 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f97 83 659 26 26 -60 16 #rect
+Ts0 f97 83 491 26 26 -60 16 #rect
 Ts0 f97 @|RichDialogMethodStartIcon #fIcon
 Ts0 f71 expr out #txt
-Ts0 f71 536 576 595 576 #arcP
+Ts0 f71 536 408 595 408 #arcP
 Ts0 f68 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
-Ts0 f68 595 563 26 26 0 12 #rect
+Ts0 f68 595 395 26 26 0 12 #rect
 Ts0 f68 @|RichDialogProcessEndIcon #fIcon
 Ts0 f32 expr out #txt
 Ts0 f32 280 96 339 96 #arcP
@@ -465,9 +465,9 @@ More actions</name>
 Ts0 f2 168 66 112 60 -38 -24 #rect
 Ts0 f2 @|StepIcon #fIcon
 Ts0 f21 expr out #txt
-Ts0 f21 109 864 152 864 #arcP
+Ts0 f21 109 696 152 696 #arcP
 Ts0 f5 expr out #txt
-Ts0 f5 296 864 339 864 #arcP
+Ts0 f5 296 696 339 696 #arcP
 Ts0 f4 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
 ' #txt
 Ts0 f4 actionTable 'out=in;
@@ -484,7 +484,7 @@ to delegate</name>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f4 152 842 144 44 -54 -16 #rect
+Ts0 f4 152 674 144 44 -54 -16 #rect
 Ts0 f4 @|StepIcon #fIcon
 Ts0 f69 expr out #txt
 Ts0 f69 109 1056 339 1056 #arcP
@@ -515,11 +515,11 @@ Ts0 f96 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ts0 f96 83 1043 26 26 -56 13 #rect
 Ts0 f96 @|RichDialogMethodStartIcon #fIcon
 Ts0 f65 expr out #txt
-Ts0 f65 280 384 480 458 #arcP
-Ts0 f65 1 480 384 #addKink
+Ts0 f65 280 216 480 290 #arcP
+Ts0 f65 1 480 216 #addKink
 Ts0 f65 0 0.7241149078079877 0 0 #arcLabel
 Ts0 f64 expr out #txt
-Ts0 f64 109 384 168 384 #arcP
+Ts0 f64 109 216 168 216 #arcP
 Ts0 f35 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
 ' #txt
 Ts0 f35 actionTable 'out=in;
@@ -535,12 +535,12 @@ Ts0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f35 168 362 112 44 -29 -8 #rect
+Ts0 f35 168 194 112 44 -29 -8 #rect
 Ts0 f35 @|StepIcon #fIcon
 Ts0 f60 expr out #txt
-Ts0 f60 288 480 338 480 #arcP
+Ts0 f60 288 312 338 312 #arcP
 Ts0 f58 expr out #txt
-Ts0 f58 109 480 160 480 #arcP
+Ts0 f58 109 312 160 312 #arcP
 Ts0 f45 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
 ' #txt
 Ts0 f45 actionTable 'out=in;
@@ -559,7 +559,7 @@ Ts0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f45 160 458 128 44 -56 -8 #rect
+Ts0 f45 160 290 128 44 -56 -8 #rect
 Ts0 f45 @|StepIcon #fIcon
 Ts0 f31 expr out #txt
 Ts0 f31 109 96 168 96 #arcP
