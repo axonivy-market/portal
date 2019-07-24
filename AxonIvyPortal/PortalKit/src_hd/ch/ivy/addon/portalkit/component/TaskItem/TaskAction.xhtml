@@ -5,17 +5,16 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
 
 <ui:composition>
-  <div id="action-cell-#{rowIndex}" class="action-cell #{data.isShowTaskButtonLabels? 'with-button-labels' : 'without-button-labels'}">
-    <div class="action-container case-header-action-cell">
-
+  <div id="action-cell-#{rowIndex}" class="case-header-action-cell">
+    <div class="action-container">
       <p:commandLink id="task-action-component" actionListener="#{taskActionBean.navigateTask(task)}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}" styleClass="action-item" />
 
       <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" actionLinkId="task-side-steps-menu"
         actionLinkStyleClass="#{data.isShowTaskButtonLabels? 'side-step-position' : ''}" panelWidgetVar="task-side-steps-panel-#{rowIndex}"
-        caseId="#{task.case.getId()}" taskId="#{task.getId()}" isAdhocExcluded="false" rendered="#{taskActionBean.showAdditionalOptions}"
-        task="#{task}" isDisabled="#{!taskActionBean.isNotDone(task)}" dataModel="#{dataModel}" componentToUpdate="#{p:component('task-start')}" />
-
+        isAdhocExcluded="false" rendered="#{taskActionBean.showAdditionalOptions}"
+        task="#{task}" isDisabled="#{!taskActionBean.isNotDone(task)}" dataModel="#{dataModel}" componentToUpdate="#{p:component('task-start')}"
+        rowIndex="#{rowIndex}" />
     </div>
   </div>
 </ui:composition>
