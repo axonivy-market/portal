@@ -32,6 +32,6 @@
     </h:panelGroup>
   </h:panelGroup>
   <p:tooltip id="state-tooltip" for="#{cc.attrs.componentId}"
-    value="#{taskBean.getUserFriendlyTaskState(state)} (#{taskBean.getTranslatedState(state)})" styleClass="#{cc.attrs.stateTooltipStyleClass}" />
+    value="#{taskBean.getUserFriendlyTaskState(state)} (#{taskBean.getTranslatedState(state)})" styleClass="#{cc.attrs.stateTooltipStyleClass}" trackMouse="true" />
 </cc:implementation>
 </html>
