@@ -51,26 +51,6 @@
           dataModel="#{taskView.dataModel}" labelValue="#{task.customFields().stringField('CustomVarCharField1').getOrNull()}" />
       </ui:define>
 
-      <ui:define name="taskBody">
-        <!-- These are the default components, reuse them if you want. -->
-        <ic:ch.ivy.addon.portalkit.component.TaskItemDescription id="task-description" task="#{task}"
-          descriptionComponentToUpdate="#{p:component('task-description')}" />
-        <ic:ch.ivy.addon.portalkit.component.TaskItemGeneralInfo id="task-general-info" task="#{task}"
-          priorityComponentToUpdate="#{p:component('task-priority')}"
-          componentToUpdate="#{p:component('task-details-notes')}" />
-        <ic:ch.ivy.addon.portalkit.component.TaskItemDocuments id="task-documents" task="#{task}" />
-        <ic:ch.ivy.addon.portalkit.component.TaskItemNotes id="task-notes" task="#{task}" />
-
-        <!-- Replace the responsiveness support by your own one. -->
-        <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer styleClass="hidden-lg">
-          <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
-            icon="fa fa-file js-note-column-responsive-button" displayedSelectors="['#task-note']"
-            hiddenSelectorsInMediumScreen="['.task-details .replaced']"
-            hiddenSelectorsInSmallScreen="['.task-details .replaced']" />
-          <h:outputScript library="js" name="task-detail-default-responsiveness.js" />
-        </ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer>
-      </ui:define>
-
       <ui:define name="taskFilter">
         <c:set var="filterContainer" value="#{taskView.dataModel.filterContainer}" />
 

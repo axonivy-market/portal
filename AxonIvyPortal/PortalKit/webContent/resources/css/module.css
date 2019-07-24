@@ -2110,12 +2110,8 @@ a.compact-task-start-link .task-start-list-item {
   align-items: center;
 }
 
-a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.full-mode:hover, .task-start-list-item.full-mode.show-task-details-mode {
-  background: rgba(255, 255, 255, 1);
-  -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.8);
-  -moz-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.8);
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.8);
-  border-radius: 5px;
+a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.full-mode:hover {
+  background: #E8E9EF;
   z-index: 1;
 }
 
@@ -2176,7 +2172,7 @@ a.compact-task-start-link:hover {
 }
 
 .task-start-list .default-task-cell {
-  flex: 0 0 80px;
+  flex: 0 0 100px;
   text-align: center;
 }
 
@@ -2200,7 +2196,7 @@ a.compact-task-start-link:hover {
 }
 
 .task-start-list .responsible-cell {
-  flex: 0 0 120px;
+  flex: 0 0 135px;
 
 }
 
@@ -2232,38 +2228,7 @@ a.compact-task-start-link:hover {
 }
 
 .task-start-list .action-cell .action-container {
-  padding: 0 25px 0 0px;
-  text-align: center;
-  display: inline-block;
-}
-
-.task-start-list .action-cell .task-command {
-  display: inline-block;
-  text-align: center;
-  text-decoration: none;
-  font-size: 1.2rem;
-}
-
-.task-start-list .action-cell .task-command:not(:last-child) {
-  margin-right: 10px;
-}
-
-.task-start-list .action-cell .task-command:nth-last-child(2) {
-  margin-right: 0;
-}
-
-.task-start-list .action-cell .task-command .action-icon {
-  display: block;
-  font-size: 1.5rem;
-}
-
-.task-start-list .action-cell .task-command.side-step {
-  padding: 0.4rem 0;
-  top: 0.9rem;
-}
-
-.task-start-list .action-cell .task-command.side-step-position {
-  position: absolute;
+  padding: 0 15px;
 }
 
 .task-odd-row.full-mode {
@@ -2302,7 +2267,6 @@ a.compact-task-start-link:hover {
   align-items: center;
   position: relative;
   font-size: 1.4rem;
-  cursor: pointer;
 }
 
 .task-start-link:hover {
@@ -2385,7 +2349,7 @@ a.compact-task-start-link:hover {
   box-sizing: content-box;
 }
 
-.side-steps-panel .side-step-item:hover {
+.side-steps-panel .side-step-item:hover:not(.ui-state-disabled) {
   color: rgba(0, 0, 0, 1) !important;
   background-color: #f5f5f5;
 }
@@ -2398,10 +2362,11 @@ a.compact-task-start-link:hover {
   margin-bottom: 10px;
 }
 
-.task-start-list .action-cell .task-command .action-icon.side-step-icon {
-  width: 2rem;
-  height: 2rem;
-  margin-right: 0.2rem;
+.side-steps-panel .ui-state-disabled.side-step-item {
+  display: inline-block;
+  opacity: 0.5;
+  cursor: not-allowed !important;
+  text-decoration: none;
 }
 
 .mod-expanded-mode .widget-header-filter-input.ui-inputfield {
