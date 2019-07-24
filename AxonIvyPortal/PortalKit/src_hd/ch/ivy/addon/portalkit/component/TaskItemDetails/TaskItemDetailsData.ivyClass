@@ -6,3 +6,5 @@ changeNameNoteContent String #field
 changeNameNoteContent PERSISTENT #fieldModifier
 task ch.ivyteam.ivy.workflow.ITask #field
 task PERSISTENT #fieldModifier
+canUserResumeTask Boolean #field
+canUserResumeTask PERSISTENT #fieldModifier

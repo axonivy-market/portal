@@ -811,7 +811,7 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
  	}
 }
 
-.task-desription-inplace, .edit-priority-inplace {
+.task-desription-inplace, .edit-priority-inplace, .task-name-inplace{
 	.ui-inplace-display.ui-state-highlight {
 	 		background-color: $textboxBgColor;
 	 		color: $primaryTextColor;
