@@ -94,6 +94,11 @@ function TaskListToolKit() {
         });
       }
     },
+    
+    setupScrollbar : function() {
+      var taskWidget = new TaskWidget();
+      taskWidget.setupScrollbar();
+    },
 
     responsiveInMediumScreen : function() {
       var $mainMenu = $('.js-left-sidebar');
@@ -106,6 +111,7 @@ function TaskListToolKit() {
         displayColumnInMediumScreen($responsibleColumnHeader, $responsibleCell);
       }
       this.setupHeader();
+      this.setupScrollbar();
     },
 
     responsiveInSmallScreen : function() {
@@ -127,6 +133,7 @@ function TaskListToolKit() {
         displayColumnInSmallScreen($expiryColumnHeader, $expiryCell);
       }
       this.setupHeader();
+      this.setupScrollbar();
     },
 
     responsive : function() {
@@ -136,6 +143,7 @@ function TaskListToolKit() {
         this.responsiveInSmallScreen();
       } else {
         this.setupHeader();
+        this.setupScrollbar();
       }
     }
   }

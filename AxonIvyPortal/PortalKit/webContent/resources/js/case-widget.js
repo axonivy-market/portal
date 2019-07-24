@@ -75,8 +75,14 @@ function CaseListToolKit() {
       });
     },
     
+    setupScrollbar : function() {
+      var caseWidget = new CaseWidget();
+      caseWidget.setupScrollbar();
+    },
+    
     responsiveInLargeScreen : function(){
       this.setupHeader();
+      this.setupScrollbar();
     },
     
     responsiveInMediumScreen : function(){
@@ -90,6 +96,7 @@ function CaseListToolKit() {
         displayColumnInMediumScreen($creatorColumnHeader, $creatorCell);
       }
       this.setupHeader();
+      this.setupScrollbar();
     },
   
     responsiveInSmallScreen : function() {
@@ -115,8 +122,7 @@ function CaseListToolKit() {
         displayColumnInSmallScreen($expiryColumnHeader, $expiryCell);
       }
       this.setupHeader();
-      var caseWidget = new CaseWidget();
-      caseWidget.setUpScrollbar();
+      this.setupScrollbar();
     },
     
     responsive : function() {
@@ -126,6 +132,7 @@ function CaseListToolKit() {
         this.responsiveInSmallScreen();
       } else {
         this.setupHeader();
+        this.setupScrollbar();
       }
     }
   }
