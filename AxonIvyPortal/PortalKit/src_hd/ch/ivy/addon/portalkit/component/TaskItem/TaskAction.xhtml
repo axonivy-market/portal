@@ -14,33 +14,7 @@
       <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" actionLinkId="task-side-steps-menu"
         actionLinkStyleClass="#{data.isShowTaskButtonLabels? 'side-step-position' : ''}" panelWidgetVar="task-side-steps-panel-#{rowIndex}"
         caseId="#{task.case.getId()}" taskId="#{task.getId()}" isAdhocExcluded="false" rendered="#{taskActionBean.showAdditionalOptions}"
-        task="#{task}" isDisabled="#{!taskActionBean.isNotDone(task)}" dataModel="#{dataModel}">
-
-        <p:commandLink id="task-start-command" onstart="event.stopPropagation();" rendered="#{cc.attrs.showStartButton}"
-          disabled="#{cc.attrs.task.state eq 'DONE'}" actionListener="#{logic.openTask(task,dataModel)}" styleClass="side-step-item"
-          update="@parent :#{p:component('task-start')}">
-          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/startTask')}" />
-        </p:commandLink>
-
-        <p:commandLink id="task-reset-command" onstart="event.stopPropagation();" rendered="#{taskActionBean.showResetTask}"
-          disabled="#{!taskActionBean.canReset(task)}" styleClass="side-step-item" actionListener="#{logic.resetTask(task)}"
-          update="@parent :#{p:component('task-start')}">
-          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" />
-        </p:commandLink>
-
-        <p:commandLink id="task-delegate-command" disabled="#{!taskActionBean.canDelegate(task)}" rendered="#{taskActionBean.showDelegateTask}"
-          styleClass="side-step-item" actionListener="#{logic.initDataToDelegate(task)}" onstart="event.stopPropagation();"
-          oncomplete="PF('task-delegate-dialog').show()" update="@widgetVar(task-delegate-dialog) @parent :#{p:component('task-start')}">
-          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}" />
-        </p:commandLink>
-
-        <p:commandLink id="task-reserve-command" disabled="#{!taskActionBean.canPark(task)}" rendered="#{taskActionBean.showReserveTask}"
-          onstart="event.stopPropagation();" styleClass="side-step-item" actionListener="#{logic.parkTask(task)}"
-          update="@parent :#{p:component('task-start')}">
-          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}" />
-        </p:commandLink>
-        <p:separator styleClass="u-separator" />
-      </ic:ch.ivy.addon.portalkit.component.SideStep>
+        task="#{task}" isDisabled="#{!taskActionBean.isNotDone(task)}" dataModel="#{dataModel}" componentToUpdate="#{p:component('task-start')}" />
 
     </div>
   </div>
