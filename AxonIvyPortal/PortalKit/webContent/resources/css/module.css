@@ -1085,13 +1085,11 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
 }
 
 .ui-fieldset-legend .ui-icon-minusthick {
-    background-image: url(/ivy/faces/javax.faces.resource/images/minus-sign-gray.svg?ln=primefaces-modena-ivy);
-   
+  background-image: url("../../images/minus-sign-gray.svg?ln=primefaces-modena-ivy");
 }
 
 .ui-fieldset-legend .ui-icon-plusthick {
-    background-image: url(/ivy/faces/javax.faces.resource/images/plus-sign-gray.svg?ln=primefaces-modena-ivy);
-
+  background-image: url("../../images/plus-sign-gray.svg?ln=primefaces-modena-ivy");
 }
 
 .ui-fieldset-legend.ui-state-hover {
