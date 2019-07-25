@@ -24,7 +24,8 @@
   <p:commandButton id="#{cc.attrs.actionLinkId}" onstart="event.stopPropagation();" global="false" disabled="#{cc.attrs.isDisabled}"
     actionListener="#{sideStepBean.getSideSteps(task.getId(), task.case.getId(), cc.attrs.isAdhocExcluded)}"
     styleClass="#{cc.attrs.actionLinkStyleClass} action-button" oncomplete="PF('#{cc.attrs.panelWidgetVar}').loadContents();"
-    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="fa fa-angle-down" iconPos="right" />
+    value="#{cc.attrs.showStartButton? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" 
+    icon="#{cc.attrs.showStartButton? 'fa fa-angle-down' : 'tmi-ellipsis-v'}" iconPos="#{cc.attrs.showStartButton? 'right' : 'left'}" />
 
   <p:overlayPanel id="side-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}" for="#{cc.attrs.actionLinkId}" my="left top" at="left bottom"
     appendToBody="true" styleClass="side-steps-panel" dynamic="true" rendered="#{!cc.attrs.isDisabled}">

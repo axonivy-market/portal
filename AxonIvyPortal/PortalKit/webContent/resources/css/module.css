@@ -5250,4 +5250,8 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
   padding-left: 10px;
 }
 
+.task-name-inplace {
+  padding-left: 7px;
+}
+
 /*  =================== END TASK DETAIL PAGE ========================= */
