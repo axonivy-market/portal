@@ -28,6 +28,13 @@ Cs0 @RichDialogProcessEnd f10 '' #zField
 Cs0 @PushWFArc f11 '' #zField
 Cs0 @PushWFArc f12 '' #zField
 Cs0 @PushWFArc f13 '' #zField
+Cs0 @RichDialogMethodStart f14 '' #zField
+Cs0 @GridStep f45 '' #zField
+Cs0 @GridStep f47 '' #zField
+Cs0 @RichDialogProcessEnd f15 '' #zField
+Cs0 @PushWFArc f16 '' #zField
+Cs0 @PushWFArc f17 '' #zField
+Cs0 @PushWFArc f18 '' #zField
 >Proto Cs0 Cs0 TaskItemDetailsProcess #zField
 Cs0 f0 guid 16BBB5787F4A8092 #txt
 Cs0 f0 type ch.ivy.addon.portalkit.component.TaskItemDetails.TaskItemDetailsData #txt
@@ -140,6 +147,78 @@ Cs0 f12 expr out #txt
 Cs0 f12 312 328 371 328 #arcP
 Cs0 f13 expr out #txt
 Cs0 f13 109 232 371 232 #arcP
+Cs0 f14 guid 16C23097336B39C2 #txt
+Cs0 f14 type ch.ivy.addon.portalkit.component.TaskItemDetails.TaskItemDetailsData #txt
+Cs0 f14 method openTaskDetail(ch.ivyteam.ivy.workflow.ITask) #txt
+Cs0 f14 disableUIEvents false #txt
+Cs0 f14 inParameterDecl 'ch.ivy.addon.portalkit.component.TaskItemDetails.TaskItemDetailsData out;
+' #txt
+Cs0 f14 inParameterMapAction 'out.task=param.ITask;
+' #txt
+Cs0 f14 outParameterDecl '<> result;
+' #txt
+Cs0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>openTaskDetail(ITask)</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f14 83 419 26 26 -63 15 #rect
+Cs0 f14 @|RichDialogMethodStartIcon #fIcon
+Cs0 f45 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDetails.TaskItemDetailsData out;
+' #txt
+Cs0 f45 actionTable 'out=in;
+' #txt
+Cs0 f45 actionCode 'import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivy.addon.portalkit.bean.TaskActionBean;
+
+TaskActionBean taskActionBean = ManagedBeans.get("taskActionBean") as TaskActionBean;
+out.canUserResumeTask = taskActionBean.canResume(in.task);
+' #txt
+Cs0 f45 type ch.ivy.addon.portalkit.component.TaskItemDetails.TaskItemDetailsData #txt
+Cs0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Check if can resume</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f45 200 410 128 44 -56 -8 #rect
+Cs0 f45 @|StepIcon #fIcon
+Cs0 f47 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDetails.TaskItemDetailsData out;
+' #txt
+Cs0 f47 actionTable 'out=in;
+' #txt
+Cs0 f47 actionCode 'import ch.ivyteam.ivy.request.RequestUriFactory;
+import java.net.URI;
+import ch.ivyteam.ivy.server.ServerFactory;
+import ch.ivyteam.ivy.application.IApplicationConfigurationManager;
+import javax.faces.context.FacesContext;
+
+IApplicationConfigurationManager appConfig = ServerFactory.getServer().getApplicationConfigurationManager();
+URI taskUri = RequestUriFactory.createTaskStartUri(appConfig, in.task);
+FacesContext.getCurrentInstance().getExternalContext().redirect(taskUri.toString());' #txt
+Cs0 f47 security system #txt
+Cs0 f47 type ch.ivy.addon.portalkit.component.TaskItemDetails.TaskItemDetailsData #txt
+Cs0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Open task</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f47 432 410 112 44 -28 -8 #rect
+Cs0 f47 @|StepIcon #fIcon
+Cs0 f15 type ch.ivy.addon.portalkit.component.TaskItemDetails.TaskItemDetailsData #txt
+Cs0 f15 627 419 26 26 0 12 #rect
+Cs0 f15 @|RichDialogProcessEndIcon #fIcon
+Cs0 f16 expr out #txt
+Cs0 f16 109 432 200 432 #arcP
+Cs0 f17 expr out #txt
+Cs0 f17 328 432 432 432 #arcP
+Cs0 f18 expr out #txt
+Cs0 f18 544 432 627 432 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.TaskItemDetails.TaskItemDetailsData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -154,3 +233,9 @@ Cs0 f9 mainOut f11 tail #connect
 Cs0 f11 head f8 mainIn #connect
 Cs0 f8 mainOut f12 tail #connect
 Cs0 f12 head f10 mainIn #connect
+Cs0 f14 mainOut f16 tail #connect
+Cs0 f16 head f45 mainIn #connect
+Cs0 f45 mainOut f17 tail #connect
+Cs0 f17 head f47 mainIn #connect
+Cs0 f47 mainOut f18 tail #connect
+Cs0 f18 head f15 mainIn #connect
