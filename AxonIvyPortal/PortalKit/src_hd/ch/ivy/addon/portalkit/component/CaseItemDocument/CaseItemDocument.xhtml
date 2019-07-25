@@ -29,7 +29,7 @@
       <div class="Separator ui-g-12 u-padding-0" />
 
       <div class="ui-g-12 u-padding-0">
-        <p:dataTable id="case-details-documents" var="document" value="#{data.documents}" paginator="#{not empty data.documents}" pageLinks="3" rows="6" paginatorPosition="top"
+        <p:dataTable id="case-details-documents" var="document" value="#{data.documents}" paginator="true" paginatorAlwaysVisible="false" pageLinks="3" rows="6" paginatorPosition="top"
           paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
           currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
