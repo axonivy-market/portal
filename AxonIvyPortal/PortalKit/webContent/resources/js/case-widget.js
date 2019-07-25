@@ -77,7 +77,7 @@ function CaseListToolKit() {
     
     setupScrollbar : function() {
       var caseWidget = new CaseWidget();
-      caseWidget.setupScrollbar();
+      caseWidget.setUpScrollbar();
     },
     
     responsiveInLargeScreen : function(){
