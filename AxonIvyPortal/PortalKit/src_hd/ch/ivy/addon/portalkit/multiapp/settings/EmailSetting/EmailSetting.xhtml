@@ -51,7 +51,7 @@
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/mailNotificationOnTaskAssign')}"
               for="mail-notification-on-task-assign" rendered="#{data.settingForAllApp}" />
             <p:selectOneMenu id="mail-notification-on-task-assign" value="#{data.generalEmailSetting.mailNotification}"
-              rendered="#{data.settingForAllApp}" appendTo="@this">
+              rendered="#{data.settingForAllApp}" >
               <f:selectItem id="enable-mail-notification"
                 itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/enabled')}" itemValue="true" />
               <f:selectItem id="disable-mail-notification"
@@ -71,7 +71,7 @@
             <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/furtherEmailFromApp')}"
               for="further-mails-from-application" rendered="#{data.settingForAllApp}" />
             <p:selectOneMenu id="further-mails-from-application" value="#{data.generalEmailSetting.furtherMailFromApp}"
-              rendered="#{data.settingForAllApp}" appendTo="@this">
+              rendered="#{data.settingForAllApp}" >
               <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/enabled')}" itemValue="true" />
               <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/disabled')}"
                 itemValue="false" />
@@ -88,8 +88,7 @@
                 <p:outputLabel
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/mailNotificationOnTaskAssign')}"
                   for="mail-notification-on-task-assign" />
-                <p:selectOneMenu id="mail-notification-on-task-assign" value="#{appSetting.MailNotification}"
-                  appendTo="@this">
+                <p:selectOneMenu id="mail-notification-on-task-assign" value="#{appSetting.MailNotification}">
                   <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/enabled')}"
                     itemValue="#{true}" />
                   <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/disabled')}"
@@ -106,8 +105,7 @@
                 <!-- FURTHER MAILS FROM APPLICATION -->
                 <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/furtherEmailFromApp')}"
                   for="further-mails-from-application" />
-                <p:selectOneMenu id="further-mails-from-application" value="#{appSetting.FurtherMailFromApp}"
-                  appendTo="@this">
+                <p:selectOneMenu id="further-mails-from-application" value="#{appSetting.FurtherMailFromApp}">
                   <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/enabled')}"
                     itemValue="#{true}" />
                   <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/disabled')}"
@@ -118,7 +116,6 @@
             <br />
           </ui:repeat>
         </h:panelGrid>
-
       </h:panelGrid>
 
       <p:dialog id="exception-message-dialog" header="#{ivy.cms.co('/errors/header')}" dynamic="true"
