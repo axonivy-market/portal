@@ -2260,6 +2260,7 @@ a.compact-task-start-link:hover {
   align-items: center;
   position: relative;
   font-size: 1.4rem;
+  cursor: pointer;
 }
 
 .task-start-link:hover {
