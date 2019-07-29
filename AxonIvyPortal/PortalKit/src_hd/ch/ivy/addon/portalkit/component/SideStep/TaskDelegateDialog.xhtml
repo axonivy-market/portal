@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  
 
 <ui:composition>
   <p:dialog id="task-delegate-dialog-#{rowIndex}" closeOnEscape="true"
@@ -58,7 +59,7 @@
           <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer">
             <p:commandButton id="proceed-task-delegate-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}"
               actionListener="#{logic.delegateTask}" process=":#{p:component('activator-panel')}" disabled="#{data.disabledDelegateButton}"
-              update="@(.task-view-container)"
+              update="@(.task-view-container) #{componentToUpdate}"
               onsuccess="PF('task-delegate-dialog-#{rowIndex}').hide(); setCookie('delegated','#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/message/delegateSuccess')}');" />
             <p:spacer width="5px" />
             <p:commandButton id="cancel-task-delegate-command" styleClass="portal-cancel-button" type="button"
