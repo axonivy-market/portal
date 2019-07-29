@@ -5240,19 +5240,47 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 }
 .task-detail-general-card {
   padding-bottom: 0px !important;
-  min-height: 685px;
+  min-height: 700px;
 }
 
-.task-note-component, .task-document-component{
+.task-note-component{
   height: 335px;
   width: 100%;
 }
+
+ .task-document-component{
+  height: 335px;
+  width: 100%;
+  margin-top: 15px;
+}
+
 .task-detail-state {
   padding-left: 10px;
 }
 
 .task-name-inplace {
   padding-left: 7px;
+}
+
+.task-first-part {
+  padding-bottom: 0px !important;  
+}
+
+.task-third-part {
+  padding-top: 0px !important;  
+}
+
+.task-action-item .ui-commandlink.ui-state-disabled {
+  font-size: 1.4rem !important;
+  margin: auto;
+  font-weight: bold;
+  color: rgba(0,0,0,0.5);
+}
+
+.task-action-item {
+  font-size: 1.4rem !important;
+  margin: auto;
+  font-weight: bold;
 }
 
 /*  =================== END TASK DETAIL PAGE ========================= */

@@ -322,7 +322,8 @@ import javax.faces.context.FacesContext;
 
 IApplicationConfigurationManager appConfig = ServerFactory.getServer().getApplicationConfigurationManager();
 URI taskUri = RequestUriFactory.createTaskStartUri(appConfig, in.task);
-FacesContext.getCurrentInstance().getExternalContext().redirect(taskUri.toString());' #txt
+FacesContext.getCurrentInstance().getExternalContext().redirect(taskUri.toString());
+ivy.log.warn("Task chay ko 2: {0}", in.task.getId());' #txt
 Ts0 f47 security system #txt
 Ts0 f47 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -550,7 +551,7 @@ import ch.ivy.addon.portalkit.bean.TaskActionBean;
 
 TaskActionBean taskActionBean = ManagedBeans.get("taskActionBean") as TaskActionBean;
 out.canUserResumeTask = taskActionBean.canResume(in.task);
-' #txt
+ivy.log.warn("Task chay ko: {0}", in.task.getId());' #txt
 Ts0 f45 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

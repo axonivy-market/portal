@@ -7,8 +7,8 @@
 <ui:composition>
   <div id="action-cell-#{rowIndex}" class="case-header-action-cell">
     <div class="action-container">
-      <p:commandLink id="task-action-component" actionListener="#{taskActionBean.navigateTask(task)}"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}" styleClass="action-item" />
+      <p:commandLink id="task-action-component" actionListener="#{logic.openTask(task,dataModel)}" disabled="#{!taskActionBean.isNotDone(task)}"  
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item tmi-chevorn-right" />
 
       <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" actionLinkId="task-side-steps-menu"
         actionLinkStyleClass="#{data.isShowTaskButtonLabels? 'side-step-position' : ''}" panelWidgetVar="task-side-steps-panel-#{rowIndex}"
