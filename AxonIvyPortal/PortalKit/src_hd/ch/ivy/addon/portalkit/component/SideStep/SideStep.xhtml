@@ -5,13 +5,12 @@
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="actionLinkId" />
-  <cc:attribute name="actionLinkStyleClass" />
   <cc:attribute name="panelWidgetVar" />
   <cc:attribute name="isAdhocExcluded" default="false" type="java.lang.Boolean" shortDescription="exclude adhoc from side steps" />
   <cc:attribute name="isDisabled" default="false" type="java.lang.Boolean" />
   <cc:attribute name="task" type="ch.ivyteam.ivy.workflow.ITask" />
   <cc:attribute name="dataModel" />
-  <cc:attribute name="componentToUpdate" default=""/>
+  <cc:attribute name="componentToUpdate" default="" />
   <cc:attribute name="rowIndex" default="0" />
 </cc:interface>
 
@@ -22,9 +21,8 @@
 
   <p:commandButton id="#{cc.attrs.actionLinkId}" onstart="event.stopPropagation();" global="false" disabled="#{cc.attrs.isDisabled}"
     actionListener="#{sideStepBean.getSideSteps(task.getId(), task.case.getId(), cc.attrs.isAdhocExcluded)}"
-    styleClass="#{cc.attrs.actionLinkStyleClass} action-button task-action-item" oncomplete="PF('#{cc.attrs.panelWidgetVar}').loadContents();"
-    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" 
-    icon="tmi-ellipsis-v" iconPos="left" />
+    styleClass="action-button task-action-item" oncomplete="PF('#{cc.attrs.panelWidgetVar}').loadContents();" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}"
+    icon="fa fa-ellipsis-v" iconPos="left" />
 
   <p:overlayPanel id="side-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}" for="#{cc.attrs.actionLinkId}" my="left top" at="left bottom"
     appendToBody="true" styleClass="side-steps-panel" dynamic="true" rendered="#{!cc.attrs.isDisabled}">
@@ -39,7 +37,7 @@
     <p:commandLink id="task-delegate-command" disabled="#{!taskActionBean.canDelegate(task)}" rendered="#{taskActionBean.showDelegateTask}"
       styleClass="side-step-item" actionListener="#{logic.initDataToDelegate(task)}" onstart="event.stopPropagation();"
       oncomplete="PF('task-delegate-dialog-#{rowIndex}').show()"
-      update="@parent #{cc.attrs.componentToUpdate} @widgetVar(task-delegate-dialog-#{rowIndex}) " >
+      update="@parent #{cc.attrs.componentToUpdate} @widgetVar(task-delegate-dialog-#{rowIndex}) ">
       <span class="action-icon tmi-box-arrow-right" />
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}" styleClass="side-step-item-label" />
     </p:commandLink>
