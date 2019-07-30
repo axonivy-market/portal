@@ -5290,16 +5290,18 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 .action-button.task-action-item {
   padding: 0 10px !important;
   margin-left: 10px;
+  height: 18px;
 }
 
 .action-button.task-action-item .ui-button-icon-left.ui-icon {
   margin-top: -9px;
   left: 0;
+  color: rgba(0,0,0,0.5) !important;
 }
 
 .action-button.task-action-item .ui-button-text {
-  height: 28px;
-  line-height: 2.8rem;
+  height: 18px;
+  line-height: 1.8rem;
   margin-left: 15px;
 }
 /*  =================== END TASK DETAIL PAGE ========================= */
