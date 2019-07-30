@@ -31,6 +31,9 @@
 
     <div class="case-detail-body ui-g-12 u-padding-0">
       <div class="ui-g">
+        <!-- Custom panel at top -->
+        <cc:renderFacet name="caseItemDetailCustomTop" />
+
         <!-- General & description box -->
         <div class="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
           <div class="card card-w-title case-detail-card">
@@ -78,8 +81,8 @@
           </div>
         </h:panelGroup>
 
-        <!-- Custom panel -->
-        <cc:renderFacet name="caseItemDetailCustomPanel" />
+        <!-- Custom panel at bottom -->
+        <cc:renderFacet name="caseItemDetailCustomBottom" />
       </div>
     </div>
   </div>

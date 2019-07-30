@@ -10,6 +10,13 @@
     <ui:param name="task" value="#{data.task}" />
     <ui:define name="pageTitle">#{ivy.cms.co('/Labels/TaskItemDetail')}</ui:define>
     <ui:define name="simplePageContent">
+      <h:panelGroup layout="block">
+        <p:breadCrumb>
+          <p:menuitem value="Dashboard" url="#"/>
+          <p:menuitem value="Task List" url="#"></p:menuitem>
+          <p:menuitem value="Task ##{task.id}" url="#"/>
+        </p:breadCrumb>
+      </h:panelGroup>
       <ic:ch.ivy.addon.portalkit.component.TaskItemDetails id="task-detail-template" task="#{task}">
       </ic:ch.ivy.addon.portalkit.component.TaskItemDetails>
     </ui:define>
