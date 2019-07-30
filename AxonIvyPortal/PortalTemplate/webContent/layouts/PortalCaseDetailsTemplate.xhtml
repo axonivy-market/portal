@@ -15,8 +15,12 @@
         showItemDetailDocuments="#{showItemDetailDocuments}"
         showItemDetailRelated="#{showItemDetailRelated}">
 
-        <f:facet name="caseItemDetailCustomPanel">
-          <ui:insert name="caseItemDetailCustomPanel" />
+        <f:facet name="caseItemDetailCustomTop">
+          <ui:insert name="caseItemDetailCustomTop" />
+        </f:facet>
+
+        <f:facet name="caseItemDetailCustomBottom">
+          <ui:insert name="caseItemDetailCustomBottom" />
         </f:facet>
       </ic:ch.ivy.addon.portalkit.component.CaseItemDetails>
     </ui:define>
