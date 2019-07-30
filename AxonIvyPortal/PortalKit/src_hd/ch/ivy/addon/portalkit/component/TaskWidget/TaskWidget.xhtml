@@ -247,7 +247,6 @@
             componentToUpdate="#{p:component('task-details-notes')}"
             dataModel="#{data.dataModel}">
             <cc:insertFacet name="taskHeader" />
-            <cc:insertFacet name="taskBody" />
           </ic:ch.ivy.addon.portalkit.component.TaskItem>
         </p:dataScroller>
         <p:outputLabel styleClass="no-task-message" value="#{noTaskFoundMessage}"
@@ -316,15 +315,7 @@
     var taskListToolKit = TaskListToolKit();
     $(function(){
       taskWidget.setupScrollbar();
-      scrollToSelectedTaskItem();
       taskWidget.setupHeader();
-         
-      function scrollToSelectedTaskItem() {
-	      var expandedTaskItem = $('.show-task-details-mode');
-	      if (expandedTaskItem &amp;&amp; expandedTaskItem[0]) {
-	        expandedTaskItem[0].scrollIntoView(false);
-	      }
-      }
     });
   </script>
 

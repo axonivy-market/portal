@@ -759,45 +759,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   color: rgba(0,0,0,0.5) !important;
 }
 
-.case-show-detail-container .case-toggle-icon {
-  width: 5%;
-  display: block;
-  text-align: center;
-  font-size: 1.2rem;
-  transform: scale(1.5,1);
-  color: rgba(0,0,0,0.5) !important;
-  position: absolute;
-  bottom: 2px;
-  left: 50%;
-}
-
-.case-body {
-  border-top: solid 1px #E0E0E0;
-  padding: 10px 5px;
-  background: white;
-}
-
-.case-details-header-container {
-  display: table;
-  width: 100%;
-}
-
-.case-details-header-data {
-  width: 15%;
-}
-
-.case-details-header-notes {
-  width: 30%;
-}
-
-.case-details-header-histories {
-  width: 30%;
-}
-
-.case-details-header-documents {
-  width: 25%;
-}
-
 .case-details {
   display: table;
   vertical-align: middle;
@@ -861,15 +822,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   width: 25%;
   padding: 20px 0 20px 20px;
   vertical-align: top;
-}
-
-.case-details-document-scrollpanel.ui-scrollpanel {
-  padding: 10px !important;
-}
-
-.case-details-document-scrollpanel {
-  height: 245px;
-  font-size: 1.2rem;
 }
 
 .case-details-document-add {
@@ -2229,24 +2181,8 @@ a.compact-task-start-link:hover {
   position: relative;
 }
 
-.show-task-detail-link,
-.show-case-detail-link{
-  width: 5%;
-  margin-left: -2.5%;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  text-align: center;
-  font-size: 1.2rem;
-  transform: scale(1.5,1);
-}
-
 .task-start-list-item.full-mode .task-start-link:hover:before {
   opacity: .6;
-}
-
-.task-start-list-item.full-mode.show-task-details-mode .task-start-link:before {
-  display: none;
 }
 
 .switch-mode-command-icon {
@@ -2263,18 +2199,9 @@ a.compact-task-start-link:hover {
   cursor: pointer;
 }
 
-.task-start-link:hover {
-/*   border-bottom: none; */
-}
-
 .task-details-separator {
   margin-top: 0;
 }
-
-.task-details-content {
-  vertical-align: top;
-}
-
 
 .side-steps-panel .action-icon,
 .side-steps-panel .side-step-item-label {
@@ -2675,46 +2602,14 @@ _:-ms-input-placeholder, :root .case-details > * {
   color: rgba(0,0,0,0.6) !important;
 }
 
-.case-details-document-scrollpanel > * {
-  font-size: 10px;
-}
-
 /* override Primefaces style */
-.case-details-document-scrollpanel.ui-scrollpanel {
-  border-radius: 5px;
-  color: rgba(0,0,0,1);
-  padding: 0 !important;
-  border: none;
-  background-color: rgba(230,230,230,1);
-}
-
-/* override Primefaces style */
-.case-details-history-scrollpanel.ui-scrollpanel {
-  color: rgba(0, 0, 0, 1);
-  padding: 10px 15px !important;
-  border: 1px solid #d8d8d8;
-}
-
-.case-details-history-header {
-  border: 1px solid #d8d8d8;
-}
-
 .case-details-document-download-icon {
   margin-right: 5px;
-}
-
-.case-details-history-scrollpanel{
-  height: 225px;
-  font-size: 1.2rem;
 }
 
 .case-detail-no-related-task-case {
   height: 203px;
   align-items: baseline;
-}
-
-.case-details-history-scrollpanel .note-separator:last-child {
-  display: none;
 }
 
 .history-author, .history-note > * {
@@ -2723,31 +2618,6 @@ _:-ms-input-placeholder, :root .case-details > * {
 
 .history-note {
   line-height: 2rem;
-}
-
-.case-related-tasks-scrollpanel.ui-scrollpanel {
-  height: auto;
-  font-size: 1.4rem;
-  line-height: 2.5rem;
-  border: none;
-  padding: 0 0 7px 0 !important;
-  margin-bottom: 15px;
-}
-
-.case-related-tasks-scrollpanel .related-task{
-	white-space: nowrap;
-  	text-overflow: ellipsis;
-  	overflow: hidden;
-  	max-width: 200px;
-}
-
-.case-details-related-tasks-cases-action-container {
-	width: 250px;
-	padding-top: 18px;
-}
-
-.related-task-show-all-tasks-link {
-	margin-right: 10px;
 }
 
 .show-more-technical-cases-container {
@@ -2804,12 +2674,6 @@ _:-ms-input-placeholder, :root .case-details > * {
   margin-bottom: 30px;
 }
 
-.case-related-data {
-  align-content: start;
-  height: auto;
-  margin-top: 15px;
-}
-
 .case-related-running {
   position: relative;
   line-height: 2.5rem;
@@ -2819,17 +2683,6 @@ _:-ms-input-placeholder, :root .case-details > * {
   font-size: 1.6rem;
 }
 
-.case-related-data .ui-datatable-header.ui-widget-header.ui-corner-top {
-  background-color: transparent;
-  font-size: 1.4rem;
-  color: black;
-  border-color: #d8d8d8;
-  text-align: left;
-}
-
-.case-related-data .ui-datascroller-content.ui-widget-content.ui-corner-bottom {
-  min-height: 150px;
-}
 .case-general-info {
   float: left;
   margin: auto;
@@ -5283,14 +5136,18 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
   font-weight: bold;
 }
 
+.task-action-item:hover {
+  background-color: transparent !important;
+}
+
 .task-action-item .task-action-item-label {
   margin-left: 10px;
 }
 
 .action-button.task-action-item {
-  padding: 0 10px !important;
+  padding: 0 20px !important;
   margin-left: 10px;
-  height: 18px;
+  height: 28px;
 }
 
 .action-button.task-action-item .ui-button-icon-left.ui-icon {
@@ -5300,8 +5157,8 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 }
 
 .action-button.task-action-item .ui-button-text {
-  height: 18px;
-  line-height: 1.8rem;
-  margin-left: 15px;
+  height: 28px;
+  line-height: 2.8rem;
+  margin-left: 5px;
 }
 /*  =================== END TASK DETAIL PAGE ========================= */
