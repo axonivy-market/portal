@@ -5119,10 +5119,6 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
   padding-bottom: 0px !important;  
 }
 
-.task-third-part {
-  padding-top: 0px !important;  
-}
-
 .task-action-item .ui-commandlink.ui-state-disabled {
   font-size: 1.4rem !important;
   margin: auto;
