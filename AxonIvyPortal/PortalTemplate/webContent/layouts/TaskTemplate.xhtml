@@ -159,7 +159,7 @@
         value="#{taskTemplateBean.getAdhocCreationMessage()}" />
       <f:facet name="footer">
         <h:form prependId="false">
-          <h:panelGroup styleClass="Fs14 ui-dialog-buttonpane">
+          <h:panelGroup styleClass="ui-dialog-buttonpane">
             <p:commandButton actionListener="#{taskTemplateBean.startAdhoc()}" process="@this" update="@none" id="start-adhoc-ok-button"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
             <p:commandButton onclick="PF('adhoc-task-reset-confirmation-dialog').hide()" id="start-adhoc-cancel-button"
@@ -178,7 +178,7 @@
         value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/goToSidestepWarning')}" />
       <f:facet name="footer">
         <h:form prependId="false">
-          <h:panelGroup styleClass="Fs14 ui-dialog-buttonpane">
+          <h:panelGroup styleClass="ui-dialog-buttonpane">
             <p:commandButton actionListener="#{taskTemplateBean.startSideStep()}" process="@this" update="@none"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
             <p:commandButton onclick="PF('sidestep-task-reset-confirmation-dialog').hide()"
@@ -213,7 +213,7 @@
      </p:dataTable>
       <f:facet name="footer">
         <h:form prependId="false">
-          <h:panelGroup styleClass="Fs14 ui-dialog-buttonpane">
+          <h:panelGroup styleClass="ui-dialog-buttonpane">
             <p:commandButton onclick="PF('adhoc-task-history-dialog').hide()" id="close-adhoc-dialog-button"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button"
               styleClass="portal-cancel-button" />

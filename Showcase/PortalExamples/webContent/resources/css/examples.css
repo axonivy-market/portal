@@ -6,8 +6,15 @@
 	flex: 0 0 90px;
 }
 
+.custom-task-details-panel-top {
+  background-color: #AFCA05;
+}
+
 .custom-task-details-panel {
-	background-color: #f0c5ac;
+  background-color: #f0c5ac;
+}
+
+.custom-task-details-panel, .custom-task-details-panel-top {	
 	text-align: center;
 	font-size: 1.2rem;
 	height: 245px;
