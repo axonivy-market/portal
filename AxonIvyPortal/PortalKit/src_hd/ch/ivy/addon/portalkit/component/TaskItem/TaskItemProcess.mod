@@ -143,7 +143,6 @@ Ts0 f33 inParameterDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData 
 Ts0 f33 inParameterMapAction 'out.dataModel=param.dataModel;
 out.task=param.task;
 ' #txt
-Ts0 f33 inActionCode 'ivy.log.info("Data content {0}", out.dataModel);' #txt
 Ts0 f33 outParameterDecl '<> result;
 ' #txt
 Ts0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -322,8 +321,7 @@ import javax.faces.context.FacesContext;
 
 IApplicationConfigurationManager appConfig = ServerFactory.getServer().getApplicationConfigurationManager();
 URI taskUri = RequestUriFactory.createTaskStartUri(appConfig, in.task);
-FacesContext.getCurrentInstance().getExternalContext().redirect(taskUri.toString());
-ivy.log.warn("Task chay ko 2: {0}", in.task.getId());' #txt
+FacesContext.getCurrentInstance().getExternalContext().redirect(taskUri.toString());' #txt
 Ts0 f47 security system #txt
 Ts0 f47 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
