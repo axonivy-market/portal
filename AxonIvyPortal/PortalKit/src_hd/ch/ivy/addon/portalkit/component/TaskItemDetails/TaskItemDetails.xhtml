@@ -48,11 +48,11 @@
 
             <div class="Fright">
               <h:panelGroup>
-                <p:commandLink id="task-detail-start-command" disabled="#{!taskActionBean.canResume(task)}"
-                  styleClass="task-action-item" actionListener="#{logic.openTaskDetail(task)}">
-                  <h:outputText styleClass="tmi-chevorn-right" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" />
+                <p:commandLink id="task-detail-start-command" disabled="#{!taskActionBean.canResume(task)}" styleClass="task-action-item"
+                  actionListener="#{logic.openTaskDetail(task)}">
+                  <i class="fa fa-play-circle" />
+                  <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label" />
                 </p:commandLink>
-                <p:spacer width="10px" />
 
                 <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options"
                   actionLinkId="task-detail-more-step"

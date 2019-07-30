@@ -7,13 +7,15 @@
 <ui:composition>
   <div id="action-cell-#{rowIndex}" class="case-header-action-cell">
     <div class="action-container">
-      <p:commandLink id="task-action-component" actionListener="#{logic.openTask(task,dataModel)}" disabled="#{!taskActionBean.isNotDone(task)}"  
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" onstart="event.stopPropagation();" styleClass="task-action-item tmi-chevorn-right" />
+      <p:commandLink id="task-action-component" actionListener="#{logic.openTask(task,dataModel)}" disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)}"
+        onstart="event.stopPropagation();" styleClass="task-action-item">
+        <i class="fa fa-play-circle" />
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label"/>
+      </p:commandLink>
 
       <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" actionLinkId="task-side-steps-menu"
-        actionLinkStyleClass="#{data.isShowTaskButtonLabels? 'side-step-position' : ''}" panelWidgetVar="task-side-steps-panel-#{rowIndex}"
-        isAdhocExcluded="false" rendered="#{taskActionBean.showAdditionalOptions}"
-        task="#{task}" isDisabled="#{!taskActionBean.isNotDone(task)}" dataModel="#{dataModel}" componentToUpdate="#{p:component('task-start')}"
+        panelWidgetVar="task-side-steps-panel-#{rowIndex}" isAdhocExcluded="false" rendered="#{taskActionBean.showAdditionalOptions}" task="#{task}"
+        isDisabled="#{!taskActionBean.isNotDone(task)}" dataModel="#{dataModel}" componentToUpdate="#{p:component('task-start')}"
         rowIndex="#{rowIndex}" />
     </div>
   </div>
