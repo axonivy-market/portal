@@ -180,7 +180,7 @@ public class ProcessWidgetPage extends TemplatePage {
   }
   
   public void moveFavoriteProcess(int processToMoveIndex, int destinationProcessIndex) {
-    driver.manage().window().setSize(new Dimension(2000, 1000));
+//    driver.manage().window().setSize(new Dimension(2000, 1000));
     WebElement processToMove = findElementByCssSelector(".ui-orderlist-item:nth-child(" + processToMoveIndex + ")");
     WebElement destinationProcess =
         findElementByCssSelector(".ui-orderlist-item:nth-child(" + destinationProcessIndex + ")");
