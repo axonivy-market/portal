@@ -13,11 +13,11 @@
   <div id="#{cc.clientId}" class="case-details-item #{cc.attrs.styleClass} ui-g">
     <p:growl id="case-document-global-messages" />
     <h:form prependId="false">
-      <div class="case-detail-section-title ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12">
-        <div class="ui-g-6 ui-xl-6 ui-lg-6 ui-md-6 ui-sm-6 u-truncate-text u-padding-0">
+      <div class="case-detail-section-title ui-g-12">
+        <div class="ui-g-6 u-truncate-text u-padding-0">
           <i class="fa fa-file" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/documents')}
         </div>
-        <h:panelGroup layout="block" styleClass="case-details-document-add ui-g-6 ui-xl-6 ui-lg-6 ui-md-6 ui-sm-6 u-padding-0">
+        <h:panelGroup layout="block" styleClass="case-details-document-add ui-g-6 u-padding-0">
           <p:commandLink id="add-document-command" styleClass="case-details-document-add-link"
             rendered="#{!(case.state eq 'DONE' and data.isHideUploadDocumentForDoneCase) and caseActionBean.canWriteDocument(case)}" actionListener="#{data.setICase(case)}"
             oncomplete="PF('document-upload-dialog-#{case.id}').show()">

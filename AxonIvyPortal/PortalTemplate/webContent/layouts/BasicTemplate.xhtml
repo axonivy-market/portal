@@ -73,7 +73,7 @@
         </ui:fragment>
 
         <ui:fragment rendered="#{not deviceBean.mobile}">
-           <div class="layout-sidebar #{guestPreferences.darkMenu ? 'layout-sidebar-dark' : ''} #{currentPage} left-sidebar-color" id="left-menu">
+           <div class="layout-sidebar #{guestPreferences.darkMenu ? 'layout-sidebar-dark' : ''} #{currentPage} left-sidebar-color js-left-sidebar" id="left-menu">
               <c:choose>
                 <c:when test="#{isNotRequiredLogin}">
                   <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu startMethod="StartNotRequiredLogin" id="user-menu-without-login" />
@@ -89,7 +89,7 @@
           <ui:fragment rendered="#{not deviceBean.mobile}">
             <div class="layout-topbar">
               <a class="menu-btn">
-                <i class="material-icons fa fa-bars left-sidebar-menu-icon left-sidebar-menu-icon-font-size left-sidebar-animation" />
+                <i class="material-icons fa fa-bars left-sidebar-menu-icon left-sidebar-menu-icon-font-size" />
               </a>
               <div class="layout-topbar-menu-wrapper">
                 <ui:include src="/layouts/includes/topbar.xhtml">

@@ -11,7 +11,7 @@
   <div id="#{cc.clientId}" class="case-details-item #{cc.attrs.styleClass}">
     <c:set var="case" value="#{cc.attrs.case}" />
     <div class="ui-g">
-      <div class="ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0">
+      <div class="ui-g-12 u-padding-0">
         <h:panelGrid id="general-info" columns="2" columnClasses="case-details-data-1st-column" rowClasses="case-details-row-space" styleClass="case-general-info">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" />
           <h:outputText value="#{case.id}" />

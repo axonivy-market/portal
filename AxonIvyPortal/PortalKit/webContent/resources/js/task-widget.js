@@ -21,7 +21,6 @@ function TaskWidget(outerPanelId) {
       var childElements = $('.js-task-start-list-item');
       if (childElements.length > 0) {
         var container = $('.js-task-start-list > .ui-datascroller-content');
-        var mainAreaPanel = $('#' + outerPanelId);
         var taskWidgetHeaderContainer = $('.js-task-widget-header');
         var announcementMessageContainer = $('.js-announcement-message');
         var taskWidgetSortMenuContainer = $('.js-task-widget-sub-header');
@@ -67,16 +66,6 @@ function TaskListToolKit() {
     $cell.removeClass("hidden-md");
   }
 
-  function hideColumnInSmallScreen($header, $cell) {
-    $header.addClass("hidden-sm");
-    $cell.addClass("hidden-sm");
-  }
-
-  function displayColumnInSmallScreen($header, $cell) {
-    $header.removeClass("hidden-sm");
-    $cell.removeClass("hidden-sm");
-  }
-
   return {
     setupHeader : function() {
       var taskSortMenu = $('.js-task-widget-sort-menu');
@@ -115,23 +104,6 @@ function TaskListToolKit() {
     },
 
     responsiveInSmallScreen : function() {
-      var $mainMenu = $('.js-left-sidebar');
-      var $idColumnHeader = $('.js-id-column-header');
-      var $idCell = $('.js-id-cell');
-      var $createColumnHeader = $('.js-create-column-header');
-      var $createCell = $('.js-create-cell');
-      var $expiryColumnHeader = $('.js-expiry-column-header');
-      var $expiryCell = $('.js-expiry-cell');
-
-      if ($mainMenu.hasClass('in')) {
-        hideColumnInSmallScreen($idColumnHeader, $idCell);
-        displayColumnInSmallScreen($createColumnHeader, $createCell);
-        displayColumnInSmallScreen($expiryColumnHeader, $expiryCell);
-      } else {
-        displayColumnInSmallScreen($idColumnHeader, $idCell);
-        displayColumnInSmallScreen($createColumnHeader, $createCell);
-        displayColumnInSmallScreen($expiryColumnHeader, $expiryCell);
-      }
       this.setupHeader();
       this.setupScrollbar();
     },

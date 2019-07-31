@@ -15,7 +15,7 @@
   <c:set var="case" value="#{cc.attrs.case}" />
   <div class="ui-g">
 
-    <h:panelGroup styleClass="ui-g-12" rendered="#{cc.attrs.showItemDetailsHeader}">
+    <h:panelGroup styleClass="ui-g-12 u-padding-0" rendered="#{cc.attrs.showItemDetailsHeader}">
       <h:form id="case-detail-name-form" styleClass="case-detail-header">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}: " styleClass="case-detail-name-prefix" />
         <p:inplace id="case-name-edit-inplace" editor="true" disabled="#{!caseActionBean.canChangeName(case) or case.state eq 'DONE'}" saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
@@ -31,7 +31,7 @@
 
     <div class="case-detail-body ui-g-12 u-padding-0">
       <div class="ui-g">
-        <!-- Custom panel at top -->
+        <!-- Custom panel at top section -->
         <cc:renderFacet name="caseItemDetailCustomTop" />
 
         <!-- General & description box -->
@@ -61,27 +61,30 @@
         </div>
 
         <!-- Notes box -->
-        <h:panelGroup id="history-container" rendered="#{cc.attrs.showItemDetailsNotes}" styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
+        <h:panelGroup id="history-container" rendered="#{cc.attrs.showItemDetailsNotes}" layout="block" styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
           <div class="card card-w-title case-detail-card">
             <ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="history" case="#{case}" />
           </div>
         </h:panelGroup>
 
+        <!-- Custom panel at middle section -->
+        <cc:renderFacet name="caseItemDetailCustomMiddle" />
+
         <!-- Related running box -->
-        <h:panelGroup rendered="#{cc.attrs.showItemDetailRelated}" styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
+        <h:panelGroup rendered="#{cc.attrs.showItemDetailRelated}" layout="block" styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
           <div class="card card-w-title case-detail-card">
             <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="related-tasks" case="#{case}" />
           </div>
         </h:panelGroup>
 
         <!-- Documents box -->
-        <h:panelGroup rendered="#{cc.attrs.showItemDetailDocuments}" styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
+        <h:panelGroup rendered="#{cc.attrs.showItemDetailDocuments}" layout="block" styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
           <div class="card card-w-title case-detail-card">
             <ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}" componentToUpdate="#{p:component('history-container')}" />
           </div>
         </h:panelGroup>
 
-        <!-- Custom panel at bottom -->
+        <!-- Custom panel at bottom section -->
         <cc:renderFacet name="caseItemDetailCustomBottom" />
       </div>
     </div>
