@@ -1,0 +1,4 @@
+OpenPortalTaskDetailsOverrideData #class
+_ch.ivyteam.ivy.project.portal.examples #namespace
+task ch.ivyteam.ivy.workflow.ITask #field
+task PERSISTENT #fieldModifier
