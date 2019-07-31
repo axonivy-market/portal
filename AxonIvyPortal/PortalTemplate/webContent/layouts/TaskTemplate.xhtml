@@ -93,42 +93,10 @@
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/noCaseId')}" rendered="#{caseWidgetBean.isHiddenCase(case)}" />
               <h:panelGroup id="case-details-panel" layout="block" rendered="#{!caseWidgetBean.isHiddenCase(case)}"
                 styleClass="js-case-default-widget-container case-default-widget-container js-simple-container js-for-search-result case-details">
-                <!-- HEADER -->
+                <!-- CASE DETAIS -->
                 <div class="ui-g">
-                  <div class="ui-g-12">
-                    <h:panelGroup id="widget-column-header" class="widget-column-header js-case-widget-column-header">
-                      <h:panelGroup styleClass="case-list-unsortable-header-cell case-list-name-desc-header-cell js-unsortable-header-cell">
-                        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/NAME')}" />
-                      </h:panelGroup>
-                      <h:panelGroup styleClass="case-list-unsortable-header-cell TexAlCenter js-unsortable-header-cell">
-                        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" />
-                      </h:panelGroup>
-                      <h:panelGroup styleClass="case-list-unsortable-header-cell js-unsortable-header-cell">
-                        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" />
-                      </h:panelGroup>
-                      <h:panelGroup styleClass="case-list-unsortable-header-cell TexAlCenter js-unsortable-header-cell">
-                        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}" />
-                      </h:panelGroup>
-                      <h:panelGroup styleClass="case-list-unsortable-header-cell TexAlCenter js-unsortable-header-cell">
-                        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME')}" />
-                      </h:panelGroup>
-                      <h:panelGroup styleClass="case-list-unsortable-header-cell TexAlCenter js-unsortable-header-cell">
-                        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" />
-                      </h:panelGroup>
-                    </h:panelGroup>
-                  </div>
-
-                  <div class="ui-g-12">
-                    <ic:ch.ivy.addon.portalkit.component.CaseItem case="#{case}" id="case-item" initialActive="true" itemStyleClass="case-even-row" alwaysShowDetails="true" canDestroyCase="false">
-                      <!-- CASE HEADER -->
-                      <f:facet name="caseHeader">
-                        <ic:ch.ivy.addon.portalkit.component.CaseHeader id="case-header" case="#{case}" />
-                      </f:facet>
-                    </ic:ch.ivy.addon.portalkit.component.CaseItem>
-                  </div>
-                  <!-- CASE DETAIS -->
                   <div class="ui-g-12 u-padding-0">
-                    <ic:ch.ivy.addon.portalkit.component.CaseItemDetails case="#{case}" showItemDetailsHeader="false" descriptionComponentToUpdate=":#{p:component('description-cell')}" />
+                    <ic:ch.ivy.addon.portalkit.component.CaseItemDetails case="#{case}" />
                   </div>
                 </div>
               </h:panelGroup>
