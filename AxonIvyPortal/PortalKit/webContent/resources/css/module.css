@@ -784,7 +784,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   width: calc(100% - 85px);
   margin-right: 5px !important;
   font-weight: bold !important;
-  font-size: 1.8rem !important;
+  font-size: 1.6rem !important;
 }
 
 .case-details-related-tasks {
@@ -1052,10 +1052,6 @@ a.case-details-document-add-link {
   flex: 20;
 }
 
-.case-header-container.always-show-details .case-show-detail-container {
-	cursor: default;
-}
-
 .case-header-name-desc-cell {
   flex: 1;
   padding-left: 10px;
@@ -1279,7 +1275,7 @@ a.case-details-document-add-link {
 }
 
 .case-detail-header {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: bold;
   line-height: 38px;
   display: flex;
