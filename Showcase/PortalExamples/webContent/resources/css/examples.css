@@ -10,11 +10,15 @@
   background-color: #AFCA05;
 }
 
+.custom-task-details-panel-middle {
+  background-color: rgba(0,0,0,0.5);
+}
+
 .custom-task-details-panel {
   background-color: #f0c5ac;
 }
 
-.custom-task-details-panel, .custom-task-details-panel-top {	
+.custom-task-details-panel, .custom-task-details-panel-middle, .custom-task-details-panel-top {	
 	text-align: center;
 	font-size: 1.2rem;
 	height: 245px;

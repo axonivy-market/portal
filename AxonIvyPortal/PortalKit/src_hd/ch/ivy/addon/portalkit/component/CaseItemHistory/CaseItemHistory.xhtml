@@ -11,11 +11,11 @@
   <f:event listener="#{logic.initData(case)}" type="preRenderComponent" />
   <div class="case-details-item #{cc.attrs.styleClass} ui-g">
 
-    <div class="case-detail-section-title ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12">
-      <div class="ui-g-4 ui-xl-4 ui-lg-4 ui-md-4 ui-sm-4 u-truncate-text u-padding-0">
+    <div class="case-detail-section-title ui-g-12">
+      <div class="ui-g-4 u-truncate-text u-padding-0">
         <i class="fa fa-history" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/caseHistoriesTitle')}
       </div>
-      <div class="case-history-button-container ui-g-8 ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 u-padding-0">
+      <div class="case-history-button-container ui-g-8 u-padding-0">
         <h:panelGroup layout="block" styleClass="case-details-note-add">
           <p:link id="show-more-note-link" styleClass="case-details-document-add-link note-show-more-link ui-commandlink" target="_blank" href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case)}"
             rendered="#{caseTaskNoteHistoryBean.showMoreNote}">

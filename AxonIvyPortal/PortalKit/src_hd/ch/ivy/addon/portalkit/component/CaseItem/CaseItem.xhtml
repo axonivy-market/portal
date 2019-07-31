@@ -9,7 +9,6 @@
   <cc:attribute name="initialActive" default="false" type="java.lang.Boolean" />
   <cc:attribute name="onDestroyComplete" />
   <cc:attribute name="enableCaseAction" default="true" />
-  <cc:attribute name="alwaysShowDetails" default="false" />
   <cc:attribute name="canDestroyCase" default="true" />
   <cc:attribute name="rowIndex" />
   <cc:facet name="caseHeader" shortDescription="Header content of one case item" />
@@ -21,11 +20,10 @@
   <c:set var="rowIndex" value="#{cc.attrs.rowIndex}" />
   <c:set var="active" value="#{caseWidgetBean.expandedCaseId == -1 and cc.attrs.initialActive}" />
   <c:set var="expanded" value="#{case.id eq caseWidgetBean.expandedCaseId or active}" />
-  <c:set var="alwaysShowDetails" value="#{cc.attrs.alwaysShowDetails}" />
   <c:set var="renderDestroyAction" value="#{caseActionBean.canDestroy(case) and case.state ne 'DONE' and cc.attrs.canDestroyCase}" />
 
   <div id="#{cc.clientId}" class="js-case-item case-list-item #{expanded ? 'case-list-item-expanded' : ''} case-list-item-position #{cc.attrs.itemStyleClass} ">
-    <h:panelGroup id="case-item-container" styleClass="case-header-container #{alwaysShowDetails ? 'always-show-details' : ''}" layout="block">
+    <h:panelGroup id="case-item-container" styleClass="case-header-container" layout="block">
       <div class="case-show-detail-container">
         <h:panelGroup id="case-header-data" layout="block" styleClass="case-header-data js-case-item-header">
           <cc:renderFacet name="caseHeader" />
@@ -33,12 +31,13 @@
       </div>
 
       <h:form styleClass="case-header-action-cell">
-        <p:commandLink rendered="#{not alwaysShowDetails}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}" styleClass="action-item"
+        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}" styleClass="action-item"
           actionListener="#{caseBean.navigate(case)}" disabled="#{alwaysShowDetails}" />
         <h:panelGroup rendered="#{cc.attrs.enableCaseAction}">
-          <ic:ch.ivy.addon.portalkit.component.ActionStep id="action-step-component" actionLinkId="action-steps-menu" actionLinkStyleClass="ui-button-text-only"
-            panelWidgetVar="case-action-steps-panel-#{rowIndex}" isAdhocExcluded="true" renderDestroyAction="#{renderDestroyAction}" update="#{cc.attrs.update}"
-            onDestroyComplete="#{cc.attrs.onDestroyComplete}" case="#{cc.attrs.case}" />
+          <ic:ch.ivy.addon.portalkit.component.ActionStep id="action-step-component" actionLinkId="action-steps-menu"
+            actionLinkStyleClass="ui-button-text-only" panelWidgetVar="case-action-steps-panel-#{rowIndex}" isAdhocExcluded="true"
+            renderDestroyAction="#{renderDestroyAction}" update="#{cc.attrs.update}" onDestroyComplete="#{cc.attrs.onDestroyComplete}"
+            case="#{cc.attrs.case}" />
         </h:panelGroup>
       </h:form>
 
