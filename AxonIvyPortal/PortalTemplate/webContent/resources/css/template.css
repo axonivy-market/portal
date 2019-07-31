@@ -415,10 +415,6 @@
 	color: rgba(0, 0, 0, 1) !important;
 }
 
-.case-widget-container .ui-datascroller .ui-datascroller-content {
-	padding: 2px;
-}
-
 .process-history-list .ui-datascroller {
 	border: none;
 	border-radius: 0;
