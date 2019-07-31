@@ -47,11 +47,6 @@ function CaseListToolKit() {
     $header.addClass("hidden-sm");
     $cell.addClass("hidden-sm");
   }
-
-  function displayColumnInSmallScreen($header, $cell) {
-    $header.removeClass("hidden-sm");
-    $cell.removeClass("hidden-sm");
-  }
   
   return {
     setupHeader : function() {
@@ -100,27 +95,10 @@ function CaseListToolKit() {
     },
   
     responsiveInSmallScreen : function() {
-      var $mainMenu = $('.js-left-sidebar');
-      var $idColumnHeader = $('.js-id-column-header');
-      var $idCell = $('.js-id-cell');
       var $creatorColumnHeader = $('.js-creator-column-header');
       var $creatorCell = $('.js-creator-cell');
-      var $createColumnHeader = $('.js-create-column-header');
-      var $createCell = $('.js-create-cell');
-      var $expiryColumnHeader = $('.js-expiry-column-header');
-      var $expiryCell = $('.js-finish-cell');
+      hideColumnInSmallScreen($creatorColumnHeader, $creatorCell);
 
-      if ($mainMenu.hasClass('in')) {
-        hideColumnInSmallScreen($creatorColumnHeader, $creatorCell);
-        hideColumnInSmallScreen($idColumnHeader, $idCell);
-        displayColumnInSmallScreen($createColumnHeader, $createCell);
-        displayColumnInSmallScreen($expiryColumnHeader, $expiryCell);
-      } else {
-        hideColumnInSmallScreen($creatorColumnHeader, $creatorCell);
-        displayColumnInSmallScreen($idColumnHeader, $idCell);
-        displayColumnInSmallScreen($createColumnHeader, $createCell);
-        displayColumnInSmallScreen($expiryColumnHeader, $expiryCell);
-      }
       this.setupHeader();
       this.setupScrollbar();
     },
