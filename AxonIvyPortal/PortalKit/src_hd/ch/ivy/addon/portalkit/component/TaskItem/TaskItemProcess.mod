@@ -548,8 +548,7 @@ Ts0 f45 actionCode 'import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.bean.TaskActionBean;
 
 TaskActionBean taskActionBean = ManagedBeans.get("taskActionBean") as TaskActionBean;
-out.canUserResumeTask = taskActionBean.canResume(in.task);
-ivy.log.warn("Task chay ko: {0}", in.task.getId());' #txt
+out.canUserResumeTask = taskActionBean.canResume(in.task);' #txt
 Ts0 f45 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

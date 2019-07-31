@@ -11,7 +11,22 @@
     <ui:define name="pageTitle">#{ivy.cms.co('/Labels/TaskItemDetail')}</ui:define>
     <ui:define name="simplePageContent">
 
-      <ic:ch.ivy.addon.portalkit.component.TaskItemDetails id="task-detail-template" task="#{task}">
+      <ic:ch.ivy.addon.portalkit.component.TaskItemDetails id="task-detail-template" task="#{task}"
+        showItemDetailsHeader="#{showItemDetailsHeader}"
+        showItemDetailsNotes="#{showItemDetailsNotes}"
+        showItemDetailDocuments="#{showItemDetailDocuments}">
+
+        <f:facet name="taskItemDetailCustomPanelTop">
+          <ui:insert name="taskItemDetailCustomPanelTop" />
+        </f:facet>
+        
+         <f:facet name="taskItemDetailCustomPanelMiddle">
+          <ui:insert name="taskItemDetailCustomPanelMiddle" />
+        </f:facet>
+
+        <f:facet name="taskItemDetailCustomPanelBottom">
+          <ui:insert name="taskItemDetailCustomPanelBottom" />
+        </f:facet>
       </ic:ch.ivy.addon.portalkit.component.TaskItemDetails>
     </ui:define>
   </ui:composition>

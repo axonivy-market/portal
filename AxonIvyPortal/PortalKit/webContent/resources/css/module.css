@@ -2323,7 +2323,7 @@ a.compact-task-start-link:hover {
 }
 
 .task-detail-description-input {
-  width: 89%;
+  width: calc(100% - 6px);
 }
 
 .task-details-data-1st-column {
@@ -5039,10 +5039,6 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 /* =================== END MESSAGES ========================= */
 
 /*  =================== TASK DETAIL PAGE ========================= */
-.task-name-panel {
-  font-size: 2rem;
-}
-
 .task-detail-header {
   font-size: 1.8rem;
   font-weight: bold;
@@ -5051,7 +5047,7 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 }
 .task-detail-general-card {
   padding-bottom: 0px !important;
-  min-height: 700px;
+  min-height: 710px;
 }
 
 .task-note-component{
@@ -5073,10 +5069,6 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
   padding-left: 7px;
 }
 
-.task-first-part {
-  padding-bottom: 0px !important;  
-}
-
 .task-action-item .ui-commandlink.ui-state-disabled {
   font-size: 1.4rem !important;
   margin: auto;
@@ -5095,7 +5087,7 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 }
 
 .task-action-item .task-action-item-label {
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 .action-button.task-action-item {
@@ -5113,6 +5105,14 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 .action-button.task-action-item .ui-button-text {
   height: 28px;
   line-height: 2.8rem;
-  margin-left: 5px;
 }
+
+.task-right-component {
+  margin-top: 0px !important;
+}
+
+.task-detail-description-label {
+  align-items: start !important;
+}
+
 /*  =================== END TASK DETAIL PAGE ========================= */
