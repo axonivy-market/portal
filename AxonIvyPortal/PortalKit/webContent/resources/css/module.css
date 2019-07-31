@@ -2784,44 +2784,6 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 }
 
 /********************************** CASE VIEW **********************************/
-.case-view-title {
-  color: white;
-}
-
-.case-view-title-icon {
-  margin-right: 5px;
-}
-
-.case-view-table .fa:before {
-  font-family: 'FontAwesome';
-}
-
-.case-view-table-column {
-  width: 8%;
-}
-
-.contact-popover-container td {
-  color: #546e7a;
-}
-
-.case-notes-scrollpanel {
-  margin: 10px;
-  padding: 10px !important;
-}
-
-.case-notes-scrollpanel .u-separator:last-child {
-  display: none;
-}
-
-.note-creator {
-  font-weight: bold;
-}
-
-.case-note-add {
-  text-align: right;
-  margin: 15px 10px 0 0;
-}
-
 .case-widget-container .ui-datascroller .ui-datascroller-content {
   padding: 2px;
 }
