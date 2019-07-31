@@ -132,6 +132,9 @@
               </ui:repeat>
             </div>
           </ui:fragment>
+          <ui:fragment rendered="#{not deviceBean.mobile and empty portalValidationBean.errorMessages}">
+            <div class="layout-main-mask" />
+          </ui:fragment>
         </div>
 
         <ic:ch.ivy.addon.portalkit.component.WarningBeforeLostSession id="warning-before-lost-session"
@@ -154,11 +157,6 @@
 	    	$(function() {
 	    	  //restores menu states stores in cookies
 	          PF('main-menu').restoreMenuState();
-	          var simpleLargeScreen = new SimpleLargeScreen();
-	          var simpleMediumScreen = new SimpleMediumScreen();
-	          var simpleSmallScreen = new SimpleSmallScreen();
-	          var responsiveToolkit = ResponsiveToolkit(simpleLargeScreen, simpleMediumScreen, simpleSmallScreen);
-	          Portal.init(responsiveToolkit);
 	        });
 	    </script>
     </ui:insert>
