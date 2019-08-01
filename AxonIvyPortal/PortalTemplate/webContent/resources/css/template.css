@@ -299,6 +299,13 @@
 	width: 270px;
 }
 
+/* Small screen for case widget */
+@media ( max-width : 900px) {
+    .hidden-mobile {
+        display: none !important;
+    }
+}
+
 /* Small screen */
 @media ( min-width : 992px) and ( max-width : 1365px) {
 	.dashboard-container, .simple-container {
