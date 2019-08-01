@@ -2643,6 +2643,7 @@ _:-ms-input-placeholder, :root .case-details > * {
   margin-left: 3px;
   overflow-y: auto;
   overflow-x: hidden; 
+  word-break: break-word;
 }
 
 .case-details-state {
