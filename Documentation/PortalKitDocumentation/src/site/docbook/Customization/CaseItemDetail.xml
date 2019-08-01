@@ -14,13 +14,13 @@
 				<para>CaseItemDetailsRelated</para>
 			</listitem>
 			<listitem>
-				<para>CaseItemDetailsNotes</para>
+				<para>CaseItemDetailsHistories</para>
 			</listitem>
 			<listitem>
 				<para>CaseItemDetailsDocuments</para>
 			</listitem>
 			<listitem>
-				<para>CaseItemDetailCustomPanel</para>
+				<para>CaseItemDetail custom panel: caseItemDetailCustomTop, caseItemDetailCustomMiddle, caseItemDetailCustomBottom</para>
 			</listitem>
 		</itemizedlist>
 	</para>
@@ -35,7 +35,7 @@
 	<sect2 xml:id="axonivyportal.customization.caseitemdetails.howtooverideui">
 		<title>How to custom Case item details UI</title>
 		<para>
-			Refer to <code>PortalExamples</code> project for examples
+			Refer to <code>PortalExamples</code> project for examples.
 		</para>
 		<para>
 			<orderedlist>
@@ -76,10 +76,9 @@
 					</para>
 				</listitem>
 				<listitem>
-					<para>After previous steps, you can override Case item details UI elements by show/hidden element by keywords:</para>
-					<para><link linkend="axonivyportal.customization.caseitemdetails.howtooverideui.showhiddenui"><code>showItemDetailsHeader</code>, <code>showItemDetailRelated</code>, <code>showItemDetailsNotes</code>, <code>showItemDetailDocuments</code>, <code>showItemDetailAdditional</code>, <code>showCustomPanel</code></link>
-						and add new element <link linkend="axonivyportal.customization.caseitemdetails.howtooverideui.custombody">caseItemDetailCustomPanel</link>
-					</para>
+					<para>After previous steps, you can override Case item details UI elements as show/hidden element by keywords:</para>
+					<para>To show/hidden, please using <code>showItemDetailsHeader</code>, <code>showItemDetailRelated</code>, <code>showItemDetailsHistories</code>, <code>showItemDetailDocuments</code> code. For more details, please refer to <link linkend="axonivyportal.customization.caseitemdetails.howtooverideui.showhiddenui">Show/Hidden components</link>.</para>
+					<para>And to add a new elements, please refer to <link linkend="axonivyportal.customization.caseitemdetails.howtooverideui.custombody">Add new Custom panel</link> code</para>
 				</listitem>
 			</orderedlist>
 			<sect3 xml:id="axonivyportal.customization.caseitemdetails.howtooverideui.showhiddenui">
@@ -93,8 +92,8 @@
 								<para>To show/hidden Case header, by default it's true. You should set as false in case we set alwaysShowDetails for CaseItem.</para>
 							</listitem>
 							<listitem>
-								<para><code>ui:param name="showItemDetailsNotes" value="true"></code></para>
-								<para>To show/hidden Case Notes component, by default it's true.</para>
+								<para><code>ui:param name="showItemDetailsHistories" value="true"></code></para>
+								<para>To show/hidden Case Histories component, by default it's true.</para>
 							</listitem>
 							<listitem>
 								<para><code>ui:param name="showItemDetailDocuments" value="true"</code></para>
@@ -104,20 +103,24 @@
 								<para><code>ui:param name="showItemDetailRelated" value="true"</code></para>
 								<para>To show/hidden Case Related Tasks/Cases component, by default it's true.</para>
 							</listitem>
-							<listitem>
-								<para><code>ui:define name="caseItemDetailCustomPanel" value="true"</code></para>
-								<para>To add a custom panel content, by default it's hidden. Refer to <link linkend="axonivyportal.customization.caseitemdetails.howtooverideui.custombody">Add new Custom panel</link> for more details.</para>
-							</listitem>
 						</itemizedlist>
 					</para>
 				</para>
 			</sect3>
 			<sect3 xml:id="axonivyportal.customization.caseitemdetails.howtooverideui.custombody">
 				<title xml:id="axonivyportal.customization.caseitemdetails.howtooverideui.custombody.title">Add new Custom panel</title>
-				<para>Refer to the <code>caseItemDetailCustomPanel</code> section in <code>PortalCaseDetails.xhtml</code> of PortalTemplate.</para>
+				<para>Refer to the <code>caseItemDetailCustom*</code> section in <code>PortalCaseDetails.xhtml</code> of PortalTemplate.</para>
 				<itemizedlist>
+					<para>We have provided 3 placeholder sections for customization. Please follow up below step to do it.</para>
 					<listitem>
-						<para>We need to define a <code>ui:define</code> with name <code>caseItemDetailCustomPanel</code> and then add your custom code into this tag</para>
+						<para>We need to define the <code>ui:define</code> with the valid name such as <code>caseItemDetailCustomTop</code>, <code>caseItemDetailCustomMiddle</code> and <code>caseItemDetailCustomBottom</code>.
+							<para>The <code>caseItemDetailCustomTop</code>: will be shown on the top of the component</para>
+							<para>The <code>caseItemDetailCustomMiddle</code>: will be shown on the middle of the component</para>
+							<para>The <code>caseItemDetailCustomBottom</code>: will be shown on the bottom of the component</para>
+						</para>
+					</listitem>
+					<listitem>
+						<para>Add your custom code into that tag</para>
 					</listitem>
 					<listitem>
 						<para>Finally, your code will be display inside of <link linkend="axonivyportal.customization.caseitemdetails">CaseItemDetails</link> page</para>
@@ -143,6 +146,14 @@
 						<mediaobject>
 							<imageobject>
 								<imagedata fileref="images/CaseItemDetails/CaseCustomized.png" />
+							</imageobject>
+						</mediaobject>
+					</listitem>
+					<listitem>
+						<para>Other example, we have a full flexibility page if we use <code>ui-g-*</code> class to define the width of panel</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/CaseItemDetails/CaseCustomized-fit.png" />
 							</imageobject>
 						</mediaobject>
 					</listitem>

@@ -19,7 +19,7 @@
 		dataModel="#{dataModel}" componentToBeUpdated="" sortable="true" sortedField="ID" />
 
 	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="creator-column-header" 
-		styleClass="case-list-header-cell #{dataModel.isAutoHideColumns() ? 'js-creator-column-header' : ''}"  
+		styleClass="case-list-header-cell #{dataModel.isAutoHideColumns() ? 'js-creator-column-header hidden-mobile' : ''}"
 		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" 
 		dataModel="#{dataModel}" componentToBeUpdated="" sortable="true" sortedField="CREATOR" />
 
@@ -29,7 +29,7 @@
 		dataModel="#{dataModel}" componentToBeUpdated="" sortable="true" sortedField="CREATION_TIME" />
 
 	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="mofified-date-column-header" 
-		styleClass="TexAlCenter case-list-header-cell #{dataModel.isAutoHideColumns()?'js-expiry-column-header':''}" 
+		styleClass="TexAlCenter case-list-header-cell #{dataModel.isAutoHideColumns()?'js-expiry-column-header hidden-mobile':''}" 
 		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME')}" 
 		dataModel="#{dataModel}" componentToBeUpdated="" sortable="true" sortedField="FINISHED_TIME" />
 
