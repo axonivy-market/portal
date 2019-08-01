@@ -77,10 +77,9 @@
 
     <ui:define name="footer">
       <script type="text/javascript">
-              var dashboardLargeScreen = new DashboardLargeScreen();
-              var dashboardMediumScreen = new DashboardMediumScreen();
+              var dashboardScreen = new DashboardScreen();
               var dashboardSmallScreen = new DashboardSmallScreen();
-              var responsiveToolkit = ResponsiveToolkit(dashboardLargeScreen, dashboardMediumScreen,
+              var responsiveToolkit = ResponsiveToolkit(dashboardScreen, dashboardScreen,
                   dashboardSmallScreen);
               $(function() {
                 Portal.init(responsiveToolkit);
