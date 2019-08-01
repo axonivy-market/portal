@@ -72,6 +72,18 @@ function TaskListSmallScreenHandler() {
    }
 };
 
+/***************************Handle responsive for Simple Screen**********************************/	
+function SimpleScreen() {
+  var marginValWhenTwoMenuClose = 0;
+
+  this.updateMainContainer = function() {
+    var $announcement = $('.js-announcement-message');
+    var $simpleMainColumn = $('.js-simple-main-col');
+    $announcement.animate({ marginLeft : marginValWhenTwoMenuClose }, animateDuration);
+    $simpleMainColumn.animate({ marginLeft : marginValWhenTwoMenuClose }, animateDuration);
+  }
+}
+
 /***************************Handle responsive for Case List**********************************/
 function CaseListLargeScreenHandler() {
   this.updateMainContainer = function(){
@@ -95,7 +107,7 @@ function CaseListSmallScreenHandler() {
 };
 
 /***************************Handle responsive for Dashboard**********************************/
-function DashboardLargeScreen() {
+function DashboardScreen() {
   var marginValWhenTwoMenuClose = 0;
 
   this.updateMainContainer = function() {
@@ -103,22 +115,6 @@ function DashboardLargeScreen() {
     var $dashboard = $('.js-dashboard-default-widget-container');
     $announcement.animate({ marginLeft : marginValWhenTwoMenuClose }, animateDuration);
     $dashboard.animate({ marginLeft : marginValWhenTwoMenuClose }, animateDuration);
-  }
-}
-
-function DashboardMediumScreen() {
-  var marginValWhenMainMenuClose = 0;
-
-  this.updateMainContainer = function() {
-    updateDashboard();
-  }
-
-  function updateDashboard() {
-    var $announcement = $('.js-announcement-message');
-    var $dashboard = $('.js-dashboard-default-widget-container');
-
-    $announcement.animate({ marginLeft : marginValWhenMainMenuClose }, animateDuration);
-    $dashboard.animate({ marginLeft : marginValWhenMainMenuClose }, animateDuration);
   }
 }
 

@@ -153,17 +153,20 @@
   
   <ui:fragment rendered="#{not deviceBean.mobile}">
     <ui:insert name="footer">
-    	<script type="text/javascript">
-	    	$(function() {
-	    	  //restores menu states stores in cookies
-	          PF('main-menu').restoreMenuState();
-	        });
-	    </script>
+      <script type="text/javascript">
+        $(function() {
+          //restores menu states stores in cookies
+          PF('main-menu').restoreMenuState();
+          var simpleScreen = new SimpleScreen();
+          var responsiveToolkit = ResponsiveToolkit(simpleScreen, simpleScreen, simpleScreen);
+          Portal.init(responsiveToolkit);
+        });
+      </script>
     </ui:insert>
   </ui:fragment>
   
   <ui:fragment rendered="#{deviceBean.mobile and !ivy.wf.securityContext.currentSession.sessionUserUnknown}">
-    <div class="mobile-footer">
+    <div class="mobile-footer ui-g-12 u-padding-0">
       <p:commandLink actionListener="#{userMenuBean.switchDesktopOrMobileVersion(false)}">
         #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/switchToDesktopVersion')}
       </p:commandLink>
