@@ -5,11 +5,7 @@
   xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="task" type="ch.ivyteam.ivy.workflow.ITask" required="true" />
   <cc:attribute name="nameId" default="task-name" />
-  <cc:attribute name="descriptionId" default="task-description" />
-  <cc:attribute name="nameStyleClass" />
-  <cc:attribute name="descriptionStyleClass" />
   <cc:attribute name="task" required="true" shortDescription="Task" type="ch.ivyteam.ivy.workflow.ITask" />
   <cc:attribute name="componentToUpdate" />
   <cc:attribute name="showItemDetailsHeader" default="true" />
@@ -46,17 +42,17 @@
     </h:form>
   </h:panelGroup>
 
-  <!-- Custom panel -->
-  <cc:renderFacet name="taskItemDetailCustomPanelTop" />
+      <!-- Custom panel -->
+      <cc:renderFacet name="taskItemDetailCustomPanelTop" />
 
-  <div class="task-item-body ui-g-12 u-padding-0">
-    <div class="ui-g">
+  <div class="task-item-body u-padding-0">
+    <div class="ui-g-12">
 
       <!-- General & description box -->
       <div class="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12 custom-task-left-component">
         <h:panelGroup id="task-detail-general-container" layout="block"
           styleClass="card card-w-title task-detail-general-card custom-general-panel">
-          <div class="case-detail-section-title u-truncate-text ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0">
+          <div class="task-detail-section-title u-truncate-text ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0">
             <i class="fa fa-user-circle" /> #{ivy.cms.co('/Dialogs/Tasks/TaskDetail/DataDescription')}
 
             <div class="Fright">
@@ -70,8 +66,7 @@
 
                 <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options"
                   actionLinkId="task-detail-more-step" panelWidgetVar="task-side-steps-panel-#{rowIndex}"
-                  caseId="#{task.case.getId()}" taskId="#{task.getId()}" isAdhocExcluded="false"
-                  rendered="#{taskActionBean.showAdditionalOptions}" task="#{task}"
+                  isAdhocExcluded="false" rendered="#{taskActionBean.showAdditionalOptions}" task="#{task}"
                   isDisabled="#{!taskActionBean.isNotDone(task)}"
                   componentToUpdate="#{p:component('task-detail-general-container')} #{p:component('task-detail-note-container')}">
                 </ic:ch.ivy.addon.portalkit.component.SideStep>
@@ -89,7 +84,6 @@
 
 
       <div class="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12 task-right-component">
-
         <!-- Notes box -->
         <h:panelGroup id="task-detail-note-container" rendered="#{cc.attrs.showItemDetailsNotes}"
           styleClass="card card-w-title case-detail-card task-note-component">
@@ -106,11 +100,11 @@
             componentToUpdate="#{p:component('task-detail-note-container')}" />
         </h:panelGroup>
       </div>
-
-      <!-- Custom panel -->
-      <cc:renderFacet name="taskItemDetailCustomPanelBottom" />
-
     </div>
+    
+          <!-- Custom panel -->
+      <cc:renderFacet name="taskItemDetailCustomPanelBottom" />
+    
 
   </div>
 </cc:implementation>

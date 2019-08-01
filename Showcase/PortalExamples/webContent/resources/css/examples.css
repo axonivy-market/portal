@@ -25,13 +25,19 @@
 .custom-task-middle-container {
  padding-left: 0px !important;
  padding-right: 0px !important; 
+ padding-bottom: 18px;
 }
 
 .custom-task-panel-middle {
-  height: 335px;
+  height: 343px;
   margin-top: 15px;
+  margin :0;
 }
 
+.custom-task-panel {
+ padding-left: 14px;
+ padding-right : 14px;
+}
 .custom-task-details-panel, .custom-task-details-panel-top,.custom-task-details-panel-middle {	
 	text-align: center;
 	font-size: 1.2rem;
@@ -48,6 +54,7 @@
 .custom-task-left-component {
   padding-bottom: 15px !important;
 }
+
 .customized-case-header-column {
 	width: 150px !important;
 	display: block;
