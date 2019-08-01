@@ -77,7 +77,6 @@ public class LanguagesSettingsServiceImpl extends AbstractService implements ILa
     return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<IvyLanguageSetting>() {
       @Override
       public IvyLanguageSetting call() throws Exception {
-        Ivy.log().error("Test global variable on system app value is {0}",Ivy.var().get("PortalGroupId")); 
         IvyLanguageSetting result = new IvyLanguageSetting();
         result.setAppName(appName);
         IServer server = ServerFactory.getServer();
