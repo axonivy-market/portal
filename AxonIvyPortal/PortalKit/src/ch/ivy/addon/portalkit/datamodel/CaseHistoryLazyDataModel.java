@@ -27,6 +27,7 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<ICase> {
   private String businessEntityId;
   private final List<ICase> data;
   private CaseSearchCriteria criteria;
+  protected int rowIndex;
 
   public CaseHistoryLazyDataModel(String businessEntityId) {
     super();
@@ -65,8 +66,9 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<ICase> {
     if (first == 0) {
       initializedDataModel(criteria);
     }
-
-    return findCases(criteria, first, pageSize);
+    List<ICase> foundCases = findCases(criteria, first, pageSize);
+    data.addAll(foundCases);
+    return foundCases;
   }
 
   @SuppressWarnings("unchecked")
@@ -140,5 +142,27 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<ICase> {
   
   public boolean isAutoHideColumns() {
     return false;
+  }
+  
+  @Override
+  public void setRowIndex(int index) {
+    int idx = index;
+    if (idx >= data.size()) {
+      idx = -1;
+    }
+    this.rowIndex = idx;
+  }
+
+  @Override
+  public ICase getRowData() {
+    return data.get(rowIndex);
+  }
+
+  @Override
+  public boolean isRowAvailable() {
+    if (data == null) {
+      return false;
+    }
+    return rowIndex >= 0 && rowIndex < data.size();
   }
 }
