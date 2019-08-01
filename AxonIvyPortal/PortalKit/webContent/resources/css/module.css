@@ -1092,7 +1092,7 @@ a.case-details-document-add-link {
 .case-header-action-cell {
   flex: 0 0 auto;
   text-align: right;
-  border-left: solid 1px rgba(0, 0, 0, 0.5);
+  border-left: solid 1px rgba(0, 0, 0, 0.4);
   margin: auto;
   padding: 0 15px;
 }
@@ -1100,7 +1100,6 @@ a.case-details-document-add-link {
 .case-header-action-cell .action-item {
   margin: auto;
   padding: 5px 20px;
-  font-weight: bold;
   color: rgba(0,0,0,0.5);
 }
 
@@ -1175,7 +1174,6 @@ a.case-details-document-add-link {
   display: inline-block;
   text-align: center;
   text-decoration: none;
-  font-size: 1.2rem;
 }
 
 .case-command.side-step {
@@ -1225,6 +1223,7 @@ a.case-details-document-add-link {
 .action-steps-panel {
   max-width: 180px; 
   padding: 0 !important;
+  font-size: 1.4rem;
 }
 
 .action-steps-panel .case-action-separator,
@@ -1243,7 +1242,7 @@ a.case-details-document-add-link {
 }
 
 .action-steps-panel .action-icon {
-    margin-right: 8px;
+    margin-right: 5px;
 }
 
 .action-steps-panel .action-step-item {
@@ -1253,7 +1252,6 @@ a.case-details-document-add-link {
     margin: 0;
     width: 160px;
     color: rgba(0, 0, 0, 0.5) !important;
-    font-size: 1.2rem;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
