@@ -13,9 +13,8 @@ import org.primefaces.model.SortOrder;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
-import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
-import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -34,7 +33,7 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<ICase> {
     this.businessEntityId = businessEntityId;
     data = new ArrayList<>();
     criteria = buildInitSearchCriteria();
-    setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
+    setAdminQuery(true);
     setInvolvedApplications();
   }
 
