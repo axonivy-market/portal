@@ -1,8 +1,6 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
-  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
-  xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="nameId" default="task-name" />
@@ -16,96 +14,75 @@
 <cc:implementation>
   <c:set var="task" value="#{cc.attrs.task}" />
 
-  <h:panelGroup id="task-detail-container" rendered="#{cc.attrs.showItemDetailsHeader}"
-    styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
+  <h:panelGroup id="task-detail-container" rendered="#{cc.attrs.showItemDetailsHeader}" styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
     <h:outputText id="#{cc.attrs.nameId}" styleClass="task-detail-header"
       value="#{ivy.cms.co('/Labels/Task')} : #{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}"
       rendered="#{taskBean.isDone(task)}" />
     <p:tooltip for="task-name" value="#{cc.attrs.nameId}" trackMouse="true" rendered="#{not empty task.name}" />
-    <h:form id="#{cc.attrs.nameId}-edit-form" onsubmit="return false;" class="name-cell task-detail-header"
-      rendered="#{!taskBean.isDone(task)}">
+    <h:form id="#{cc.attrs.nameId}-edit-form" onsubmit="return false;" class="name-cell task-detail-header" rendered="#{!taskBean.isDone(task)}">
       <h:outputText value="#{ivy.cms.co('/Labels/Task')}:  " />
-      <p:inplace id="#{cc.attrs.nameId}-inplace" editor="true" rendered="#{taskBean.isNotDone(task)}"
-        disabled="#{!taskActionBean.canChangeName(task)}"
-        saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-        cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+      <p:inplace id="#{cc.attrs.nameId}-inplace" editor="true" rendered="#{taskBean.isNotDone(task)}" disabled="#{!taskActionBean.canChangeName(task)}"
+        saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         widgetVar="#{cc.attrs.nameId}-inplace" styleClass="task-name-inplace js-name-cell"
         label="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}">
-        <p:inputText id="task-name-input" value="#{task.name}" styleClass="task-name-input" maxlength="200"
-          valueChangeListener="#{logic.keepOldNameValue}"
+        <p:inputText id="task-name-input" value="#{task.name}" styleClass="task-name-input" maxlength="200" valueChangeListener="#{logic.keepOldNameValue}"
           onkeypress="if(event.keyCode == 13) {PF('task-name-inplace').save()}" />
         <p:ajax event="save" listener="#{logic.updateTask(task)}" process="#{cc.attrs.nameId}-edit-form"
           update="#{cc.attrs.nameId}-edit-form #{cc.attrs.componentToUpdate} #{p:component('task-detail-note-container')}" />
-        <f:passThroughAttribute name="onclick"
-          value="if('#{taskActionBean.canChangeName(task)}'=='true') {event.stopPropagation()}" />
+        <f:passThroughAttribute name="onclick" value="if('#{taskActionBean.canChangeName(task)}'=='true') {event.stopPropagation()}" />
       </p:inplace>
     </h:form>
   </h:panelGroup>
 
-      <!-- Custom panel -->
-      <cc:renderFacet name="taskItemDetailCustomPanelTop" />
+  <!-- Custom panel -->
+  <cc:renderFacet name="taskItemDetailCustomPanelTop" />
 
   <div class="task-item-body u-padding-0">
     <div class="ui-g-12">
 
       <!-- General & description box -->
       <div class="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12 custom-task-left-component">
-        <h:panelGroup id="task-detail-general-container" layout="block"
-          styleClass="card card-w-title task-detail-general-card custom-general-panel">
+        <h:panelGroup id="task-detail-general-container" layout="block" styleClass="card card-w-title task-detail-general-card custom-general-panel">
           <div class="task-detail-section-title u-truncate-text ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0">
             <i class="fa fa-user-circle" /> #{ivy.cms.co('/Dialogs/Tasks/TaskDetail/DataDescription')}
-
             <div class="Fright">
               <h:panelGroup>
-                <p:commandLink id="task-detail-start-command" disabled="#{!taskActionBean.canResume(task)}"
-                  styleClass="task-action-item" actionListener="#{logic.openTaskDetail(task)}">
+                <p:commandLink id="task-detail-start-command" disabled="#{!taskActionBean.canResume(task)}" styleClass="task-action-item"
+                  actionListener="#{logic.openTaskDetail(task)}">
                   <i class="fa fa-chevron-right" />
-                  <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}"
-                    styleClass="task-action-item-label" />
+                  <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label" />
                 </p:commandLink>
-
-                <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options"
-                  actionLinkId="task-detail-more-step" panelWidgetVar="task-side-steps-panel-#{rowIndex}"
-                  isAdhocExcluded="false" rendered="#{taskActionBean.showAdditionalOptions}" task="#{task}"
+                <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" actionLinkId="task-detail-more-step"
+                  panelWidgetVar="task-side-steps-panel-#{rowIndex}" isAdhocExcluded="false" rendered="#{taskActionBean.showAdditionalOptions}" task="#{task}"
                   isDisabled="#{!taskActionBean.isNotDone(task)}"
                   componentToUpdate="#{p:component('task-detail-general-container')} #{p:component('task-detail-note-container')}">
                 </ic:ch.ivy.addon.portalkit.component.SideStep>
               </h:panelGroup>
             </div>
-
           </div>
           <div class="Separator ui-g-12 task-details-separator u-padding-0" />
-          <h:panelGroup id="task-detail-data-description-container"
-            styleClass="ui-g-12">
+          <h:panelGroup id="task-detail-data-description-container" styleClass="ui-g-12">
             <ic:ch.ivy.addon.portalkit.component.TaskDetailGeneralInfo id="general-information" task="#{task}" />
           </h:panelGroup>
         </h:panelGroup>
       </div>
 
-
       <div class="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12 task-right-component">
         <!-- Notes box -->
-        <h:panelGroup id="task-detail-note-container" rendered="#{cc.attrs.showItemDetailsNotes}"
-          styleClass="card card-w-title case-detail-card task-note-component">
+        <h:panelGroup id="task-detail-note-container" rendered="#{cc.attrs.showItemDetailsNotes}" styleClass="card card-w-title case-detail-card task-note-component">
           <ic:ch.ivy.addon.portalkit.component.TaskDetailNotes id="task-notes" task="#{task}" />
         </h:panelGroup>
-
-        <!-- Custom panel -->
-        <cc:renderFacet name="taskItemDetailCustomPanelMiddle" />
 
         <!-- Document box -->
         <h:panelGroup id="task-detail-document-container" rendered="#{cc.attrs.showItemDetailDocuments}"
           styleClass="card card-w-title case-detail-card task-document-component">
-          <ic:ch.ivy.addon.portalkit.component.TaskDetailDocuments id="task-documents" task="#{task}"
-            componentToUpdate="#{p:component('task-detail-note-container')}" />
+          <ic:ch.ivy.addon.portalkit.component.TaskDetailDocuments id="task-documents" task="#{task}" componentToUpdate="#{p:component('task-detail-note-container')}" />
         </h:panelGroup>
       </div>
     </div>
-    
-          <!-- Custom panel -->
-      <cc:renderFacet name="taskItemDetailCustomPanelBottom" />
-    
-
   </div>
+
+  <!-- Custom panel -->
+  <cc:renderFacet name="taskItemDetailCustomPanelBottom" />
 </cc:implementation>
 </html>

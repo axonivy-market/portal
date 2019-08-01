@@ -1,8 +1,6 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
-  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
-  xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://java.sun.com/jsp/jstl/core">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="task" type="ch.ivyteam.ivy.workflow.ITask" />
@@ -35,44 +33,32 @@
           <ui:fragment rendered="#{taskActionBean.canChangePriority(task)}">
             <h:form id="priority-form">
               <p:inplace id="edit-priority-inplace" effectSpeed="fast" styleClass="edit-priority-inplace"
-                saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-                cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" editor="true">
+                saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                editor="true">
                 <f:facet name="output">
                   <h:panelGroup id="priority-icon">
-                    <h:panelGroup rendered="#{task.priority == 'LOW'}"
-                      styleClass="fa fa-circle task-priority-low task-details-data-priority-icon" />
-                    <h:panelGroup rendered="#{task.priority == 'NORMAL'}"
-                      styleClass="fa fa-circle task-priority-normal task-details-data-priority-icon" />
-                    <h:panelGroup rendered="#{task.priority == 'HIGH'}"
-                      styleClass="fa fa-circle task-priority-high task-details-data-priority-icon" />
-                    <h:panelGroup rendered="#{task.priority == 'EXCEPTION'}"
-                      styleClass="fa fa-circle task-priority-exception task-details-data-priority-icon" />
+                    <h:panelGroup rendered="#{task.priority == 'LOW'}" styleClass="fa fa-circle task-priority-low task-details-data-priority-icon" />
+                    <h:panelGroup rendered="#{task.priority == 'NORMAL'}" styleClass="fa fa-circle task-priority-normal task-details-data-priority-icon" />
+                    <h:panelGroup rendered="#{task.priority == 'HIGH'}" styleClass="fa fa-circle task-priority-high task-details-data-priority-icon" />
+                    <h:panelGroup rendered="#{task.priority == 'EXCEPTION'}" styleClass="fa fa-circle task-priority-exception task-details-data-priority-icon" />
                     <h:outputText value="#{taskBean.getPriority(task.priority)}" />
                   </h:panelGroup>
                 </f:facet>
                 <p:ajax event="save" update="priority-form" />
-                <p:selectOneMenu id="priority-select-menu" value="#{task.originalPriority}"
-                  styleClass="task-details-priority" rendered="#{!task.isExpired()}">
-                  <f:selectItems value="#{task.getPriority().values()}" var="priority"
-                    itemLabel="#{taskBean.getPriority(priority)}" itemValue="#{priority}" />
+                <p:selectOneMenu id="priority-select-menu" value="#{task.originalPriority}" styleClass="task-details-priority" rendered="#{!task.isExpired()}">
+                  <f:selectItems value="#{task.getPriority().values()}" var="priority" itemLabel="#{taskBean.getPriority(priority)}" itemValue="#{priority}" />
                 </p:selectOneMenu>
-                <p:selectOneMenu id="expiry-priority-select-menu" value="#{task.expiryPriority}"
-                  styleClass="task-details-priority" rendered="#{task.isExpired()}">
-                  <f:selectItems value="#{task.getPriority().values()}" var="priority"
-                    itemLabel="#{taskBean.getPriority(priority)}" itemValue="#{priority}" />
+                <p:selectOneMenu id="expiry-priority-select-menu" value="#{task.expiryPriority}" styleClass="task-details-priority" rendered="#{task.isExpired()}">
+                  <f:selectItems value="#{task.getPriority().values()}" var="priority" itemLabel="#{taskBean.getPriority(priority)}" itemValue="#{priority}" />
                 </p:selectOneMenu>
               </p:inplace>
             </h:form>
           </ui:fragment>
           <ui:fragment rendered="#{not taskActionBean.canChangePriority(task)}">
-            <h:panelGroup rendered="#{task.originalPriority == 'LOW'}"
-              styleClass="fa fa-circle task-priority-low task-details-data-priority-icon" />
-            <h:panelGroup rendered="#{task.originalPriority == 'NORMAL'}"
-              styleClass="fa fa-circle task-priority-normal task-details-data-priority-icon" />
-            <h:panelGroup rendered="#{task.originalPriority == 'HIGH'}"
-              styleClass="fa fa-circle task-priority-high task-details-data-priority-icon" />
-            <h:panelGroup rendered="#{task.originalPriority == 'EXCEPTION'}"
-              styleClass="fa fa-circle task-priority-exception task-details-data-priority-icon" />
+            <h:panelGroup rendered="#{task.originalPriority == 'LOW'}" styleClass="fa fa-circle task-priority-low task-details-data-priority-icon" />
+            <h:panelGroup rendered="#{task.originalPriority == 'NORMAL'}" styleClass="fa fa-circle task-priority-normal task-details-data-priority-icon" />
+            <h:panelGroup rendered="#{task.originalPriority == 'HIGH'}" styleClass="fa fa-circle task-priority-high task-details-data-priority-icon" />
+            <h:panelGroup rendered="#{task.originalPriority == 'EXCEPTION'}" styleClass="fa fa-circle task-priority-exception task-details-data-priority-icon" />
             <h:outputText value="#{taskBean.getPriority(task.originalPriority)}" styleClass="DispInlBlock" />
           </ui:fragment>
         </h:panelGroup>
@@ -85,14 +71,10 @@
       </div>
       <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4">
         <h:panelGroup id="task-detail-state" styleClass="state-cell js-state-cell default-task-cell">
-          <h:panelGroup id="task-detail-state-open" rendered="#{state == 'SUSPENDED' or state == 'UNASSIGNED'}"
-            styleClass="fa fa-play-circle task-state-open " />
-          <h:panelGroup id="task-detail-state-in-progress" rendered="#{state == 'RESUMED' or state == 'CREATED'}"
-            styleClass="fa fa-play-circle task-state-in-progress" />
-          <h:panelGroup id="task-detail-state-done" rendered="#{state == 'DONE'}"
-            styleClass="fa fa-check-circle task-state-done " />
-          <h:panelGroup id="task-detail-state-reserved" rendered="#{state == 'PARKED'}"
-            styleClass="fa fa-pause-circle task-state-reserved " />
+          <h:panelGroup id="task-detail-state-open" rendered="#{state == 'SUSPENDED' or state == 'UNASSIGNED'}" styleClass="fa fa-play-circle task-state-open " />
+          <h:panelGroup id="task-detail-state-in-progress" rendered="#{state == 'RESUMED' or state == 'CREATED'}" styleClass="fa fa-play-circle task-state-in-progress" />
+          <h:panelGroup id="task-detail-state-done" rendered="#{state == 'DONE'}" styleClass="fa fa-check-circle task-state-done " />
+          <h:panelGroup id="task-detail-state-reserved" rendered="#{state == 'PARKED'}" styleClass="fa fa-pause-circle task-state-reserved " />
           <h:panelGroup id="task-detail-state-destroyed" rendered="#{state == 'DESTROYED' or state == 'ZOMBIE'}"
             styleClass="fa fa-exclamation-circle task-state-zombie-destroyed" />
           <h:panelGroup id="task-detail-state-system"
@@ -109,19 +91,16 @@
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/workingUser')}" />
       </div>
       <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4">
-        <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText fullname="#{task.getWorkerUser().getDisplayName()}"
-          username="#{task.getWorkerUserName()}" />
+        <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText fullname="#{task.getWorkerUser().getDisplayName()}" username="#{task.getWorkerUserName()}" />
       </div>
     </div>
-
 
     <div class="ui-g">
       <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-5 ui-g-2 ">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}" />
       </div>
       <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4">
-        <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText fullname="#{task.getActivator().getDisplayName()}"
-          username="#{task.getActivatorName()}" />
+        <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText fullname="#{task.getActivator().getDisplayName()}" username="#{task.getActivatorName()}" />
       </div>
     </div>
 
@@ -130,8 +109,7 @@
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/afterEscalation')}" />
       </div>
       <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4">
-        <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText
-          fullname="#{task.getExpiryActivator().getDisplayName()}" username="#{task.getExpiryActivatorName()}" />
+        <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText fullname="#{task.getExpiryActivator().getDisplayName()}" username="#{task.getExpiryActivatorName()}" />
       </div>
     </div>
 
@@ -158,8 +136,7 @@
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/businessCase')}" />
       </div>
       <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4">
-        <p:commandLink id="related-case" value="#{taskBean.displayCaseName(task)}"
-          actionListener="#{logic.navigateToRelatedCase(task.getCase().getBusinessCase())}" />
+        <p:commandLink id="related-case" value="#{taskBean.displayCaseName(task)}" actionListener="#{logic.navigateToRelatedCase(task.getCase().getBusinessCase())}" />
       </div>
     </div>
 
@@ -168,8 +145,7 @@
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/technicalCase')}" rendered="true" />
       </div>
       <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4">
-        <p:commandLink id="related-technical-case" value="#{taskBean.getTechnicalCaseDisplayName(task)}"
-          actionListener="#{logic.navigateToRelatedCase(task.getCase())}"
+        <p:commandLink id="related-technical-case" value="#{taskBean.getTechnicalCaseDisplayName(task)}" actionListener="#{logic.navigateToRelatedCase(task.getCase())}"
           rendered="#{task.getCase().getId() != task.getCase().getBusinessCase().getId()}" />
       </div>
     </div>
@@ -194,24 +170,20 @@
       </div>
     </div>
 
-
     <div class="ui-g">
       <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-5 ui-g-2 ">
-        <h:outputText id="expiry-task-time"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" />
+        <h:outputText id="expiry-task-time" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" />
       </div>
       <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4">
         <ui:fragment rendered="#{taskBean.isNotDone(task)}">
           <h:form id="expiry-form">
-            <p:inplace id="edit-inplace" editor="true"
-              saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-              cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-              label="#{formattingNullWrapperBean.format(task.expiryTimestamp)}"
+            <p:inplace id="edit-inplace" editor="true" saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+              cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" label="#{formattingNullWrapperBean.format(task.expiryTimestamp)}"
               rendered="#{taskActionBean.canChangeExpiry(task)}">
               <p:ajax event="save" listener="#{logic.updateDeadline(task)}" update="#{cc.attrs.componentToUpdate}" />
               <p:ajax event="cancel" resetValues="true" />
-              <p:calendar id="expiry-calendar" styleClass="task-details-data-expiry" value="#{task.expiryTimestamp}"
-                pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}">
+              <p:calendar id="expiry-calendar" styleClass="task-details-data-expiry" value="#{task.expiryTimestamp}" pattern="#{dateTimePatternBean.configuredPattern}"
+                locale="#{localeBean.locale}">
                 <f:validator validatorId="taskExpiryTimestampValidator" />
               </p:calendar>
             </p:inplace>
@@ -226,8 +198,7 @@
           <h:outputText rendered="#{task.expiryTimestamp ne null}" value="#{task.expiryTimestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
           </h:outputText>
-          <h:outputText rendered="#{task.expiryTimestamp eq null}"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable')}" />
+          <h:outputText rendered="#{task.expiryTimestamp eq null}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable')}" />
         </ui:fragment>
       </div>
     </div>
@@ -259,24 +230,22 @@
       </div>
       <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4 task-detail-description">
         <h:form id="task-detail-description-form">
-           <div class="scroll-panel OvAuto">
+          <div class="scroll-panel OvAuto">
             <p:inplace id="task-desription-inplace" editor="true" styleClass="task-desription-inplace"
-              disabled="#{!taskActionBean.canChangeDescription(task) or taskBean.isDone(task)}"
-              saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+              disabled="#{!taskActionBean.canChangeDescription(task) or taskBean.isDone(task)}" saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
               cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
               emptyLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription')}">
               <p:ajax event="save" update="task-detail-description-form" process="task-detail-description-form" />
               <p:ajax event="cancel" resetValues="true" />
               <f:facet name="input">
-                <p:inputTextarea id="task-description-input" rows="5" styleClass="task-detail-description-input"
-                  value="#{task.description}" autoResize="false" />
+                <p:inputTextarea id="task-description-input" rows="5" styleClass="task-detail-description-input" value="#{task.description}" autoResize="false" />
               </f:facet>
               <f:facet name="output">
                 <h:outputText id="task-description-output" escape="false" styleClass="task-detail-description-output"
                   value="#{taskWidgetBean.sanitizeHTML(task.description)}" />
               </f:facet>
             </p:inplace>
-          </div> 
+          </div>
         </h:form>
       </div>
     </div>
@@ -287,11 +256,8 @@
   <p:tooltip for="related-case"
     value="##{task.getCase().getBusinessCase().id} #{task.getCase().getBusinessCase().name} (#{caseBean.getState(task.getCase().getBusinessCase()).toUpperCase()})"
     trackMouse="true" />
-  <p:tooltip for="related-technical-case"
-    value="##{task.getCase().id} #{task.getCase().name} (#{caseBean.getState(task.getCase()).toUpperCase()})"
-    trackMouse="true" />
-  <p:tooltip for="no-expiry-available expiry-task-time"
-    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/taskExpiryDisable')}" trackMouse="true"
+  <p:tooltip for="related-technical-case" value="##{task.getCase().id} #{task.getCase().name} (#{caseBean.getState(task.getCase()).toUpperCase()})" trackMouse="true" />
+  <p:tooltip for="no-expiry-available expiry-task-time" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/taskExpiryDisable')}" trackMouse="true"
     rendered="#{taskBean.isNotDone(task) and taskActionBean.notHaveExpiryHandleLogic(task)}" />
 
 </cc:implementation>
