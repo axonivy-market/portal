@@ -833,12 +833,33 @@
 				<itemizedlist>
 					<listitem>
 						<para>You can take a look at <code>PortalCaseDetails.xhtml</code> to see how to use and customize <code>CaseItemDetails</code>.</para>
-						<para>There are only 1 sections we need to take a look:
+						<para>There are 3 sections we need to take a look:
 							<itemizedlist>
 								<listitem>
-									<para>On <code>caseItemDetailCustomPanel</code> section.</para>
-									<para>Move your customized code for Custom panel section to under this section.</para>
-									<para>Finally, your code will show on Custom panel box.</para>
+									<para>On the <code>caseItemDetailCustomTop</code> section.
+										<para>This section will be shown on the top of the <code>CaseItemDetails</code> component. You can define the width of this panel as your requirement, we recommend to use <code>ui-g-*</code> class of 
+										<code>Primeface</code> to define size of the width for the box can display flexibility.
+										</para>
+									</para>
+								</listitem>
+								<listitem>
+									<para>On the <code>caseItemDetailCustomMiddle</code> section.
+										<para>This section will be shown on the middle of the <code>CaseItemDetails</code> component. You can define the width of this panel as your requirement, we recommend to use <code>ui-g-*</code> class of 
+											<code>Primeface</code> to define size of the width for the box can display flexibility.
+										</para>
+									</para>
+								</listitem>
+								<listitem>
+									<para>On the <code>caseItemDetailCustomBottom</code> section.
+										<para>This section will be shown on the bottom of the <code>CaseItemDetails</code> component. You can define the width of this panel as your requirement, we recommend to use <code>ui-g-*</code> class of 
+											<code>Primeface</code> to define size of the width for the box can display flexibility.
+										</para>
+									</para>
+								</listitem>
+								<listitem>
+									<para>After decided where we will push the custom code to <code>CaseItemDetails</code>.</para>
+									<para>Move your customized code for Custom box section from old <code>caseBody</code> to under that sections.</para>
+									<para>Finally, your code will show on the <code>CaseItemDetails</code>.</para>
 								</listitem>
 								<listitem>
 									<para> For example:

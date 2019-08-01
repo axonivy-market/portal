@@ -6,7 +6,7 @@
   <cc:attribute name="case" type="ch.ivyteam.ivy.workflow.ICase" required="true" />
   <cc:attribute name="showItemDetailsHeader" default="true" />
   <cc:attribute name="showItemDetailRelated" default="true" />
-  <cc:attribute name="showItemDetailsNotes" default="true" />
+  <cc:attribute name="showItemDetailsHistories" default="true" />
   <cc:attribute name="showItemDetailDocuments" default="true" />
   <cc:attribute name="descriptionComponentToUpdate" />
 </cc:interface>
@@ -61,7 +61,7 @@
         </div>
 
         <!-- Notes box -->
-        <h:panelGroup id="history-container" rendered="#{cc.attrs.showItemDetailsNotes}" layout="block" styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
+        <h:panelGroup id="history-container" rendered="#{cc.attrs.showItemDetailsHistories}" layout="block" styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
           <div class="card card-w-title case-detail-card">
             <ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="history" case="#{case}" />
           </div>

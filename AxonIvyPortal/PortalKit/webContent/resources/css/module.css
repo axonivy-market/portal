@@ -831,7 +831,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 a.case-details-document-add-link {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   float: right;
   font-weight: 400;
 }
@@ -2643,7 +2643,12 @@ _:-ms-input-placeholder, :root .case-details > * {
   margin-left: 3px;
   overflow-y: auto;
   overflow-x: hidden; 
-  word-break: break-word;
+  word-break: break-all;
+  margin-top: 0.2em;
+}
+
+.case-description-2nd-column .ui-inputfield.ui-inputtextarea.ui-widget.case-detail-description-input {
+  padding-top: 2px !important;
 }
 
 .case-details-state {
@@ -2652,7 +2657,7 @@ _:-ms-input-placeholder, :root .case-details > * {
 
 .additional-case-details-link {
   color: rgba(0,0,0,0.5) !important;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 400;
   margin-left: 10px;
 }
@@ -2664,7 +2669,7 @@ _:-ms-input-placeholder, :root .case-details > * {
 .case-detail-description-input {
   width: calc(100% - 5px);
   resize: none;
-  margin-bottom: 4px !important;
+  margin-bottom: 2px !important;
 }
 
 .case-detail-field-set {
@@ -2677,7 +2682,7 @@ _:-ms-input-placeholder, :root .case-details > * {
   color: #212121;
   border: 1px solid #d8d8d8;
   padding: 5px 10px !important;
-  font-size: 1.6rem;
+/*   font-size: 1.6rem; */
 }
 
 .case-general-info {
