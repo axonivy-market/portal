@@ -14,8 +14,8 @@
   <c:set var="case" value="#{cc.attrs.case}" />
   <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
 
-  <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText id="#{cc.attrs.componentId}" 
-    styleClass="case-header-creator-cell #{cc.attrs.styleClass} #{dataModel.isAutoHideColumns()?'js-creator-cell':''}" 
-    fullname="#{case.getCreatorUser().getFullName()}" username="#{case.getCreatorUserName()}" rendered="#{dataModel.isSelectedColumn('CREATOR')}"/>
+  <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText id="#{cc.attrs.componentId}"
+    styleClass="case-header-creator-cell #{cc.attrs.styleClass}" fullname="#{case.getCreatorUser().getFullName()}"
+    username="#{case.getCreatorUserName()}" rendered="#{dataModel.isSelectedColumn('CREATOR')}" />
 </cc:implementation>
 </html>
