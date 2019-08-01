@@ -23,9 +23,9 @@
     
         <!-- Add a content as Custom panel for Task Detail on top -->
     <ui:define name="taskItemDetailCustomPanelTop">
-      <h:panelGroup styleClass="ui-g-12 ui-sm-12">
+      <h:panelGroup styleClass="ui-g-12 ui-sm-12 custom-task-panel">
         <div class="card card-w-title ">
-          <div class="case-detail-section-title u-truncate-text">
+          <div class="task-detail-section-title u-truncate-text">
             <h:outputText value="This is custom panel on top section" />
           </div>
           <div class="Separator" />
@@ -44,7 +44,7 @@
     <ui:define name="taskItemDetailCustomPanelMiddle">
       <h:panelGroup styleClass="ui-g-12 ui-sm-12 custom-task-middle-container">
         <div class="card card-w-title custom-task-panel-middle ">
-          <div class="case-detail-section-title u-truncate-text">
+          <div class="task-detail-section-title u-truncate-text">
             <h:outputText value="This is custom panel on middle section" />
           </div>
           <div class="Separator" />
@@ -61,9 +61,9 @@
     
         <!-- Add content as Custom panel for Task Detail on bottom-->
     <ui:define name="taskItemDetailCustomPanelBottom">
-      <h:panelGroup styleClass="ui-g-12 ui-sm-12">
+      <h:panelGroup styleClass="ui-g-12 ui-sm-12 custom-task-panel">
         <div class="card card-w-title #{cc.attrs.customPanelStyleClass}">
-          <div class="case-detail-section-title u-truncate-text">
+          <div class="task-detail-section-title u-truncate-text">
             <h:outputText value="This is custom panel bottom section" />
           </div>
           <div class="Separator" />
