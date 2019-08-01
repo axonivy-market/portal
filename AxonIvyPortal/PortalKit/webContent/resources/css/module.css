@@ -2322,10 +2322,18 @@ a.compact-task-start-link:hover {
   height: 300px;
 }
 
-.task-detail-description-input {
+.task-detail-description-input{
   width: calc(100% - 6px);
 }
 
+.task-detail-description {
+    word-break: break-all;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 160px;
+    align-items: start !important;
+  
+}
 .task-details-data-1st-column {
   padding-right: 10px;
   text-align: right;
@@ -5057,14 +5065,19 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 }
 
 .task-note-component{
-  height: 335px;
+  height: 350px;
   width: 100%;
+  margin 0;
+  margin-bottom : 10px
+  
 }
 
  .task-document-component{
-  height: 335px;
+  height: 350px;
   width: 100%;
   margin-top: 15px;
+  margin :0;
+  margin-bottom : 10px
 }
 
 .task-detail-state {
@@ -5121,4 +5134,26 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
   align-items: start !important;
 }
 
+  @media screen and (min-width: 90.063em) {
+   .task-first-column-label  div.ui-xl-2 {
+        width: 21%;
+    }
+    .task-first-column-label  div.ui-xl-10 {
+        width: 79%;
+    }
+}
+
+  @media screen and (max-width: 1900px ) {
+.task-detail-description {
+  height: 100px;
+}
+}
+
+.task-detail-section-title, .task-history-button-container {
+  font-size: 1.6rem;
+  display: inline-block !important;
+  align-content: start;
+  padding: 0 !important;
+  font-weight: bold;
+}
 /*  =================== END TASK DETAIL PAGE ========================= */
