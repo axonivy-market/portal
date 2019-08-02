@@ -15,16 +15,27 @@
   <c:set var="case" value="#{cc.attrs.case}" />
   <div class="ui-g">
 
-    <h:panelGroup styleClass="ui-g-12 u-padding-0" rendered="#{cc.attrs.showItemDetailsHeader}">
-      <h:form id="case-detail-name-form" styleClass="case-detail-header">
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}: " styleClass="case-detail-name-prefix" />
-        <p:inplace id="case-name-edit-inplace" editor="true" disabled="#{!caseActionBean.canChangeName(case) or case.state eq 'DONE'}" saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-          cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" widgetVar="case-detail-name-edit-inplace"
-          label="#{empty case.getName() ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CasesNameIsNot') : case.name}" styleClass="case-detail-name-inplace-edit">
-          <p:inputText id="case-detail-name-input" value="#{case.name}" maxlength="200" styleClass="case-detail-name-input" onkeypress="if(event.keyCode == 13) {PF('case-name-edit-inplace').save()}" />
-          <p:ajax event="save" process="case-name-edit-inplace" />
-          <f:passThroughAttribute name="onclick" value="#{caseActionBean.canChangeName(case) ? event.stopPropagation():''}" />
-        </p:inplace>
+    <h:panelGroup styleClass="ui-g-12 u-padding-0" rendered="#{cc.attrs.showItemDetailsHeader}" layout="block">
+      <h:form id="case-detail-title-form" styleClass="case-detail-title-header-container">
+        <h:panelGroup id="case-detail-name" styleClass="case-detail-header" layout="block">
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}: " styleClass="case-detail-name-prefix" />
+          <p:inplace id="case-name-edit-inplace" editor="true" disabled="#{!caseActionBean.canChangeName(case) or case.state eq 'DONE'}"
+            saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+            widgetVar="case-detail-name-edit-inplace"
+            label="#{empty case.getName() ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CasesNameIsNot') : case.name}"
+            styleClass="case-detail-name-inplace-edit">
+            <p:inputText id="case-detail-name-input" value="#{case.name}" maxlength="200" styleClass="case-detail-name-input"
+              onkeypress="if(event.keyCode == 13) {PF('case-name-edit-inplace').save()}" />
+            <p:ajax event="save" process="case-name-edit-inplace" />
+            <f:passThroughAttribute name="onclick" value="#{caseActionBean.canChangeName(case) ? event.stopPropagation():''}" />
+          </p:inplace>
+        </h:panelGroup>
+
+        <p:commandLink id="back-to-cases" onclick="backToPrevPage();" styleClass="case-details-back-btn">
+          <i class="fa fa-reply-all" />
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
+        </p:commandLink>
+        <p:remoteCommand name="backToCasesList" actionListener="#{caseBean.backToCasesList()}" />
       </h:form>
       <div class="Separator" />
     </h:panelGroup>
@@ -89,5 +100,15 @@
       </div>
     </div>
   </div>
+
+  <script type="text/javascript">
+    function backToPrevPage() {
+      if (document.referrer) {
+         window.history.back();
+      } else {
+        backToCasesList();
+      }
+    }
+  </script>
 </cc:implementation>
 </html>
