@@ -9,7 +9,7 @@ import java.util.Objects;
 
 import javax.faces.bean.ManagedBean;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
@@ -185,20 +185,10 @@ public class TaskBean implements Serializable {
   }
 
   public String displayRelatedTaskToolTip(ITask task) {
-    String taskResponsible = "";
-    List<Object> params;
+    List<Object> params = new ArrayList<>();
     if (task != null && task.getActivator() != null) {
       ISecurityMember taskActivor = task.getActivator();
-      if (taskActivor.isUser()) {
-        taskResponsible = ((IUser) taskActivor).getFullName();
-      } else {
-        taskResponsible =
-            !((IRole) taskActivor).getDisplayName().isEmpty() ? ((IRole) taskActivor).getDisplayName()
-                : ((IRole) taskActivor).getMemberName();
-      }
-      params = Arrays.asList(getTranslatedState(task.getState()), Objects.toString(taskResponsible, ""));
-    } else {
-      params = new ArrayList<>();
+      params = Arrays.asList(getTranslatedState(task.getState()), Objects.toString(taskActivor.getDisplayName(), ""));
     }
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateAndResponsible", params);
   }
