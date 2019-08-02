@@ -5981,8 +5981,8 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 	text-align: right;
 }
 
-.unset-min-width-button-text.ui-widget.ui-button-text-icon-left .ui-button-text, 
-.ui-widget.ui-button-text-icon-right .ui-button-text {
+.unset-min-width-button-text .ui-widget.ui-button-text-icon-left .ui-button-text, 
+.unset-min-width-button-text .ui-widget.ui-button-text-icon-right .ui-button-text {
 	min-width: none;
 }
 /* ======================= END LABEL ======================= */
