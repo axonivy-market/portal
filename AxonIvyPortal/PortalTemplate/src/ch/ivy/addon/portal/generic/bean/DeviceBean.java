@@ -25,12 +25,8 @@ public class DeviceBean {
   
   @PreDestroy
   public void destroy() {
-	Ivy.log().info("stored sessionIdentifier: " + sessionIdentifier);
-	
     if (StringUtils.isNotBlank(sessionIdentifier)) {
       DeviceDetector.instance().removeVersionState(sessionIdentifier);
     }
-    
-    Ivy.log().info("ivy session Identifier: " +Ivy.session().getHttpSessionIdentifier());
   }
 }
