@@ -765,7 +765,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .case-detail-name-prefix {
-  flex:1 0 auto;
+  flex:0 0 auto;
   margin-right: 5px;
 }
 
@@ -1277,6 +1277,25 @@ a.case-details-document-add-link {
   font-weight: bold;
   line-height: 38px;
   display: flex;
+  float: left;
+  width: calc(100% - 350px);
+}
+
+.case-details-back-btn {
+  line-height: 38px;
+  font-size: 1.6rem;
+  font-weight: 400;
+  float: right;
+  margin: auto 5px; 
+}
+
+.case-details-back-btn i {
+  margin-right: 5px;
+}
+
+.case-detail-title-header-container {
+  float: left;
+  padding: 5px 0;
 }
 
 .case-detail-section-title, .case-history-button-container {
