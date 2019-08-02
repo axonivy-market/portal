@@ -50,7 +50,7 @@ Ol0 f3 168 42 112 44 0 -8 #rect
 Ol0 f3 @|StepIcon #fIcon
 Ol0 f4 expr out #txt
 Ol0 f4 111 64 168 64 #arcP
-Ol0 f7 richDialogId ch.ivy.addon.portal.generic.PortalTaskDetail #txt
+Ol0 f7 richDialogId ch.ivy.addon.portal.generic.PortalTaskDetails #txt
 Ol0 f7 startMethod start(ch.ivyteam.ivy.workflow.ITask,String) #txt
 Ol0 f7 type ch.ivy.addon.portal.generic.OpenPortalTaskDetailsData #txt
 Ol0 f7 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,String menuState> param;' #txt

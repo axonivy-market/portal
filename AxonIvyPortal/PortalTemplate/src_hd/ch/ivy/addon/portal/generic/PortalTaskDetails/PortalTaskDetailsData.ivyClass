@@ -1,5 +1,5 @@
-PortalTaskDetailData #class
-ch.ivy.addon.portal.generic.PortalTaskDetail #namespace
+PortalTaskDetailsData #class
+ch.ivy.addon.portal.generic.PortalTaskDetails #namespace
 task ch.ivyteam.ivy.workflow.ITask #field
 task PERSISTENT #fieldModifier
 menuState String #field
