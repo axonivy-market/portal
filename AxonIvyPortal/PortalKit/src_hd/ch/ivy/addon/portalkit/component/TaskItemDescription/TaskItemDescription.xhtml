@@ -1,40 +1,38 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
-  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
-  xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://java.sun.com/jsp/jstl/core">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="task" type="ch.ivyteam.ivy.workflow.ITask" />
-  <cc:attribute name="styleClass" />
-  <cc:attribute name="descriptionComponentToUpdate" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="task" value="#{cc.attrs.task}" />
-  <div id="task-description" class="js-task-details-item js-description-column #{cc.attrs.styleClass}">
-    <h:form id="task-description-form">
-      <div class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}</div>
-      <div class="Separator" />
-      <div class="scroll-panel OvAuto">
-        <p:inplace id="task-desription-inplace" editor="true"
-          disabled="#{!taskActionBean.canChangeDescription(task) or taskBean.isDone(task)}"
-          saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-          cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          emptyLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription')}">
-          <p:ajax event="save" update="task-description-form" process="task-description-form" />
-          <p:ajax event="cancel" resetValues="true" />
-          <f:facet name="input">
-            <p:inputTextarea id="task-description-input" rows="7" styleClass="task-detail-description-input"
-              value="#{task.description}" autoResize="false" />
-          </f:facet>
-          <f:facet name="output">
-            <h:outputText id="task-description-output" escape="false" value="#{taskWidgetBean.sanitizeHTML(task.description)}" />
-          </f:facet>
-        </p:inplace>
-      </div>
-    </h:form>
+  <div class="ui-g">
+    <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-5 ui-g-2 task-detail-description-label ">
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" rendered="true" />
+    </div>
+    <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4 task-detail-description">
+      <h:form id="task-detail-description-form">
+        <div class="scroll-panel OvAuto">
+          <p:inplace id="task-desription-inplace" editor="true" styleClass="task-desription-inplace"
+            disabled="#{!taskActionBean.canChangeDescription(task) or taskBean.isDone(task)}" saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+            cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+            emptyLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription')}">
+            <p:ajax event="save" update="task-detail-description-form" process="task-detail-description-form" />
+            <p:ajax event="cancel" resetValues="true" />
+            <f:facet name="input">
+              <p:inputTextarea id="task-description-input" rows="5" styleClass="task-detail-description-input" value="#{task.description}" autoResize="false" />
+            </f:facet>
+            <f:facet name="output">
+              <h:outputText id="task-description-output" escape="false" styleClass="task-detail-description-output"
+                value="#{taskWidgetBean.sanitizeHTML(task.description)}" />
+            </f:facet>
+          </p:inplace>
+        </div>
+      </h:form>
+    </div>
   </div>
 </cc:implementation>
 </html>

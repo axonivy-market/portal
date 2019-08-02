@@ -62,7 +62,7 @@
           </div>
           <div class="Separator ui-g-12 task-details-separator u-padding-0" />
           <h:panelGroup id="task-detail-data-description-container" styleClass="ui-g-12">
-            <ic:ch.ivy.addon.portalkit.component.TaskDetailGeneralInfo id="general-information" task="#{task}" />
+            <ic:ch.ivy.addon.portalkit.component.TaskItemGeneralInfo id="general-information" task="#{task}" />
           </h:panelGroup>
         </h:panelGroup>
       </div>
@@ -70,13 +70,13 @@
       <div class="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12 task-right-component">
         <!-- Notes box -->
         <h:panelGroup id="task-detail-note-container" rendered="#{cc.attrs.showItemDetailsNotes}" styleClass="card card-w-title case-detail-card task-note-component">
-          <ic:ch.ivy.addon.portalkit.component.TaskDetailNotes id="task-notes" task="#{task}" />
+          <ic:ch.ivy.addon.portalkit.component.TaskItemNotes id="task-notes" task="#{task}" />
         </h:panelGroup>
 
         <!-- Document box -->
         <h:panelGroup id="task-detail-document-container" rendered="#{cc.attrs.showItemDetailDocuments}"
           styleClass="card card-w-title case-detail-card task-document-component">
-          <ic:ch.ivy.addon.portalkit.component.TaskDetailDocuments id="task-documents" task="#{task}" componentToUpdate="#{p:component('task-detail-note-container')}" />
+          <ic:ch.ivy.addon.portalkit.component.TaskItemDocuments id="task-documents" task="#{task}" componentToUpdate="#{p:component('task-detail-note-container')}" />
         </h:panelGroup>
       </div>
     </div>
