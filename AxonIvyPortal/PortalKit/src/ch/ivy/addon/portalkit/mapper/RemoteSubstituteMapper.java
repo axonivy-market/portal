@@ -1,7 +1,10 @@
 package ch.ivy.addon.portalkit.mapper;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ch.ivy.addon.portalkit.bo.RemoteSubstitute;
 import ch.ivy.ws.addon.IvySubstitute;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.List;
 
 /**
@@ -25,7 +28,11 @@ public class RemoteSubstituteMapper {
     result.setDescription(ivySubstitute.getDescription());
     result.setForThisRole(ivySubstitute.getForThisRole());
     result.setRoleDisplayName(ivySubstitute.getRoleDisplayName());
-    result.setMySubstitute(ivySubstitute.getMySubstitute());
+    if (ivySubstitute.getMySubstitute() == null){
+      result.setMySubstitute(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy"));
+    } else {
+      result.setMySubstitute(ivySubstitute.getMySubstitute());
+    }
     result.setServerId(serverId);
     return result;
   }
@@ -67,7 +74,11 @@ public class RemoteSubstituteMapper {
     result.setAppName(remoteSubstitute.getAppName());
     result.setDescription(remoteSubstitute.getDescription());
     result.setForThisRole(remoteSubstitute.getForThisRole());
-    result.setMySubstitute(remoteSubstitute.getMySubstitute());
+    if (StringUtils.equals(remoteSubstitute.getMySubstitute(), Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy"))){
+      result.setMySubstitute(null);
+    } else {
+      result.setMySubstitute(remoteSubstitute.getMySubstitute());
+    }
     return result;
   }
 

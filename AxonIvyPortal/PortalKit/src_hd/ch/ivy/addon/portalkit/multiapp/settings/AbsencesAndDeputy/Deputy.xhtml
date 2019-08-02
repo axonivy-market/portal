@@ -29,17 +29,17 @@
       </p:column>
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/deputy')}"
         styleClass="substitude-deputy">
-				<p:autoComplete id="subsitute-username" value="#{substituteNode.substituteUser}"
-					rendered="#{substituteNode.isLeaf()}" completeMethod="#{substituteNode.autoCompleteUser}" var="user"
-					converter="pojoConverter" itemLabel="#{user.displayName}" itemValue="#{user}" cache="true" dropdown="true"
-					scrollHeight="200" maxResults="100"
-					moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
-					<p:ajax event="itemSelect" listener="#{logic.updateSubstitute(substituteNode)}" />
-					<p:column>
-						<h:outputText value="#{userFormatBean.formatWithTip(user.displayName, user.memberName)}" />
-					</p:column>
-				</p:autoComplete>
-			</p:column>
+			<p:autoComplete id="subsitute-username" value="#{substituteNode.substituteUser}"
+				rendered="#{substituteNode.isLeaf()}" completeMethod="#{substituteNode.autoCompleteUser}" var="user"
+				converter="pojoConverter" itemLabel="#{user.displayName}" itemValue="#{user}" cache="true" dropdown="true"
+				scrollHeight="200" maxResults="100"
+				moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
+				<p:ajax event="itemSelect" listener="#{logic.updateSubstitute(substituteNode)}" />
+				<p:column>
+					<h:outputText value="#{userFormatBean.formatWithTip(user.displayName, user.memberName)}" />
+				</p:column>
+			</p:autoComplete>
+		</p:column>
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/comment')}"
         styleClass="substitude-comment">
         <p:inputText id="subtitute-comment" value="#{substituteNode.getRemoteSubstitute().description}"
