@@ -6,13 +6,17 @@ import javax.faces.bean.SessionScoped;
 
 import ch.ivy.addon.portal.generic.common.DeviceDetector;
 import ch.ivyteam.ivy.environment.Ivy;
+import org.apache.commons.lang3.StringUtils;
 
 @ManagedBean
 @SessionScoped
 public class DeviceBean {
+	
+	String sessionIdentifier;
 
   public boolean isMobile() {
-    return DeviceDetector.instance().isMobile(Ivy.session().getHttpSessionIdentifier());
+    sessionIdentifier = Ivy.session().getHttpSessionIdentifier();
+    return DeviceDetector.instance().isMobile(sessionIdentifier);
   }
   
   public boolean isDesktop() {
@@ -21,7 +25,12 @@ public class DeviceBean {
   
   @PreDestroy
   public void destroy() {
-	Ivy.log().info("ivy session Identifier: " +Ivy.session().getHttpSessionIdentifier());
-    DeviceDetector.instance().removeVersionState(Ivy.session().getHttpSessionIdentifier());
+	Ivy.log().info("stored sessionIdentifier: " + sessionIdentifier);
+	
+    if (StringUtils.isNotBlank(sessionIdentifier)) {
+      DeviceDetector.instance().removeVersionState(sessionIdentifier);
+    }
+    
+    Ivy.log().info("ivy session Identifier: " +Ivy.session().getHttpSessionIdentifier());
   }
 }
