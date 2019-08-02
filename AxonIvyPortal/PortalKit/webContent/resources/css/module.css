@@ -5983,6 +5983,6 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 
 .unset-min-width-button-text .ui-widget.ui-button-text-icon-left .ui-button-text, 
 .unset-min-width-button-text .ui-widget.ui-button-text-icon-right .ui-button-text {
-	min-width: none;
+	min-width: unset;
 }
 /* ======================= END LABEL ======================= */
