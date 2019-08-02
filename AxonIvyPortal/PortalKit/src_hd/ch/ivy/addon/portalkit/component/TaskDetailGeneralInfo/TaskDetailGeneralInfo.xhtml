@@ -31,7 +31,7 @@
       <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4">
         <h:panelGroup styleClass="task-details-priority">
           <ui:fragment rendered="#{taskActionBean.canChangePriority(task)}">
-            <h:form id="priority-form">
+            <h:form id="priority-form" styleClass="task-priority-form">
               <p:inplace id="edit-priority-inplace" effectSpeed="fast" styleClass="edit-priority-inplace"
                 saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                 editor="true">
