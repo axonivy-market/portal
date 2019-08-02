@@ -1340,7 +1340,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   display: flex;
 }
 
-.filter-widget-input {
+.filter-widget .ui-inputfield.ui-inputtext.ui-widget.filter-widget-input {
   font-size: 1.4rem;
   flex-grow: 1;
   padding: 15px 25px 5px 0 !important; /* override PrimeFaces styles */
