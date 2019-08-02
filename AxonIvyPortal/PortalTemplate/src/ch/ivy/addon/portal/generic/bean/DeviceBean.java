@@ -12,17 +12,17 @@ import org.apache.commons.lang3.StringUtils;
 @SessionScoped
 public class DeviceBean {
 	
-	String sessionIdentifier;
+  String sessionIdentifier;
 
   public boolean isMobile() {
     sessionIdentifier = Ivy.session().getHttpSessionIdentifier();
     return DeviceDetector.instance().isMobile(sessionIdentifier);
   }
-  
+
   public boolean isDesktop() {
     return DeviceDetector.instance().isDesktop();
   }
-  
+
   @PreDestroy
   public void destroy() {
     if (StringUtils.isNotBlank(sessionIdentifier)) {
