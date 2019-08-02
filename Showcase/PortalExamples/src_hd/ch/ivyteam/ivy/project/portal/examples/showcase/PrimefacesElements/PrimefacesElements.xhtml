@@ -17,15 +17,15 @@
 
           <p:outputLabel styleClass="task-template-title" style="margin-left:26px">Demo Primefaces Elements</p:outputLabel>
           <div class="ui-g MarTop10">
-            <div class="ui-g-12 ui-md-3 ui-lg-2">
-              <p:outputLabel for="input" value="Input" styleClass="" />
+            <div class="ui-g-12 ui-md-3 ui-lg-2 right-align-label">
+              <p:outputLabel for="input" value="Input" />
             </div>
             <div class="ui-g-12 ui-md-9 ui-lg-3">
               <p:inputText id="input" required="true" />
             </div>
             <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
-            <div class="ui-g-12 ui-md-3 ui-lg-2">
-              <p:outputLabel for="input2" value="More Input" styleClass="" />
+            <div class="ui-g-12 ui-md-3 ui-lg-2 right-align-label">
+              <p:outputLabel for="input2" value="More Input"/>
             </div>
             <div class="ui-g-12 ui-md-9 ui-lg-3">
               <p:inputText id="input2" />
@@ -33,14 +33,14 @@
           </div>
 
           <div class="ui-g">
-            <div class="ui-g-12 ui-md-3 ui-lg-2">
+            <div class="ui-g-12 ui-md-3 ui-lg-2 right-align-label">
               <p:outputLabel for="calendar-x" value="Calendar" />
             </div>
             <div class="ui-g-12 ui-md-9 ui-lg-3">
               <p:calendar id="calendar-x" />
             </div>
             <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
-            <div class="ui-g-12 ui-md-3 ui-lg-2">
+            <div class="ui-g-12 ui-md-3 ui-lg-2 right-align-label">
               <p:outputLabel id="countryLabel" for="inputx" value="Enter Country: " />
             </div>
             <div class="ui-g-12 ui-md-9 ui-lg-3">
@@ -49,7 +49,7 @@
           </div>
 
           <div class="ui-g">
-            <div class="ui-g-12 ui-md-3 ui-lg-2">
+            <div class="ui-g-12 ui-md-3 ui-lg-2 right-align-label">
               <p:outputLabel for="comment-area" value="Comment" styleClass="alignTop" />
             </div>
             <div class="ui-g-12 ui-md-9 ui-lg-8">
@@ -59,8 +59,8 @@
 
           <p:fieldset legend="More options" styleClass="MarTop10" toggleable="true" collapsed="false">
             <div class="ui-g">
-              <div class="ui-g-12 ui-md-3 ui-lg-2">
-                <p:outputLabel for="console" value="Basic:" />
+              <div class="ui-g-12 ui-md-3 ui-lg-2 right-align-label">
+                <p:outputLabel for="console" value="Basic:" styleClass="right-align-label"/>
               </div>
               <div class="ui-g-12 ui-md-9 ui-lg-3">
                 <p:selectOneMenu id="console" value="#{selectOneMenuView.console}">
@@ -71,7 +71,7 @@
                 </p:selectOneMenu>
               </div>
               <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
-              <div class="ui-g-12 ui-md-3 ui-lg-2">
+              <div class="ui-g-12 ui-md-3 ui-lg-2 right-align-label">
                 <p:outputLabel for="spinner" value="Spinner" />
               </div>
               <div class="ui-g-12 ui-md-9 ui-lg-3">
@@ -80,7 +80,7 @@
             </div>
 
             <div class="ui-g">
-              <div class="ui-g-12 ui-md-3 ui-lg-2">
+              <div class="ui-g-12 ui-md-3 ui-lg-2 right-align-label">
                 <p:outputLabel for="radio" value="Radio" />
               </div>
               <div class="ui-g-12 ui-md-9 ui-lg-6">
@@ -99,14 +99,14 @@
           </p:fieldset>
 
           <div class="ui-g">
-            <div class="ui-g-12 ui-md-3 ui-lg-2">
+            <div class="ui-g-12 ui-md-3 ui-lg-2 right-align-label">
               <p:outputLabel for="inputy" value="One Line Input" />
             </div>
             <div class="ui-g-12 ui-md-9 ui-lg-3">
               <p:inputText id="inputy" />
             </div>
             <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
-            <div class="ui-g-12 ui-md-3 ui-lg-2">
+            <div class="ui-g-12 ui-md-3 ui-lg-2 right-align-label">
               <p:outputLabel for="area" value="Textarea" />
             </div>
             <div class="ui-g-12 ui-md-9 ui-lg-3">
@@ -115,14 +115,14 @@
           </div>
 
           <div class="ui-g">
-            <div class="ui-g-12 ui-md-3 ui-lg-2">
+            <div class="ui-g-12 ui-md-3 ui-lg-2 right-align-label">
               <p:outputLabel for="calendar-y" value="Calendar" />
             </div>
             <div class="ui-g-12 ui-md-9 ui-lg-3">
               <p:calendar id="calendar-y" />
             </div>
             <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
-            <div class="ui-g-12 ui-md-3 ui-lg-2">
+            <div class="ui-g-12 ui-md-3 ui-lg-2 right-align-label">
               <p:outputLabel for="inputz" value="AutoComplete" />
             </div>
             <div class="ui-g-12 ui-md-9 ui-lg-3">
@@ -131,14 +131,14 @@
           </div>
 
           <div class="ui-g">
-            <div class="ui-g-12 ui-md-3 ui-lg-2">
+            <div class="ui-g-12 ui-md-3 ui-lg-2 right-align-label">
               <p:outputLabel for="mask" value="Mask" />
             </div>
             <div class="ui-g-12 ui-md-9 ui-lg-3">
               <p:inputMask id="mask" mask="99/99/9999" />
             </div>
             <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
-            <div class="ui-g-12 ui-md-3 ui-lg-2">
+            <div class="ui-g-12 ui-md-3 ui-lg-2 right-align-label">
               <p:outputLabel for="pwd" value="Password" />
             </div>
             <div class="ui-g-12 ui-md-9 ui-lg-3">
@@ -147,14 +147,14 @@
           </div>
 
           <div class="ui-g">
-            <div class="ui-g-12 ui-md-3 ui-lg-2">
+            <div class="ui-g-12 ui-md-3 ui-lg-2 right-align-label">
               <p:outputLabel for="keyboard" value="Keyboard" />
             </div>
             <div class="ui-g-12 ui-md-9 ui-lg-3">
               <p:keyboard id="keyboard" />
             </div>
             <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
-            <div class="ui-g-12 ui-md-3 ui-lg-2">
+            <div class="ui-g-12 ui-md-3 ui-lg-2 right-align-label">
               <p:outputLabel for="onemenu" value="OneMenu" />
             </div>
             <div class="ui-g-12 ui-md-9 ui-lg-3">
@@ -168,7 +168,7 @@
           </div>
 
           <div class="ui-g">
-            <div class="ui-g-12 ui-md-3 ui-lg-2">
+            <div class="ui-g-12 ui-md-3 ui-lg-2 right-align-label">
               <p:outputLabel for="slider" value="Slider" />
             </div>
             <div class="ui-g-12 ui-md-9 ui-lg-3">
@@ -180,7 +180,7 @@
           </div>
 
           <div class="ui-g">
-            <div class="ui-g-12 ui-md-3 ui-lg-2">
+            <div class="ui-g-12 ui-md-3 ui-lg-2 right-align-label">
               <p:outputLabel for="chkmenu" value="CheckboxMenu" />
             </div>
             <div class="ui-g-12 ui-md-9 ui-lg-3">
@@ -189,15 +189,17 @@
               </p:selectCheckboxMenu>
             </div>
             <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
-            <div class="ui-g-12 ui-md-3 ui-lg-2">
-              <p:outputLabel for="dialog" value="Dialog" />
-            </div>
-            <div class="ui-g-12 ui-md-9 ui-lg-3">
-              <p:commandButton id="dialog" value="Show" icon="fa fa-eye" type="button" onclick="PF('dlg').show()" />
-            </div>
+	            <div class="ui-g-12 ui-md-3 ui-lg-2 right-align-label">
+	              <p:outputLabel for="dialog" value="Dialog" />
+	            </div>
+	            <div class="ui-g-12 ui-md-6 ui-lg-12">
+		            <div class="ui-g-12 ui-md-4 ui-lg-12 unset-min-width-button-text">
+		              <p:commandButton id="dialog" value="Show" icon="fa fa-eye" type="button" onclick="PF('dlg').show()" />
+		            </div>
+	            </div>
           </div>
           <div class="ui-g">
-            <div class="ui-g-12 ui-md-3 ui-lg-2">
+            <div class="ui-g-12 ui-md-3 ui-lg-2 right-align-label">
               <p:outputLabel id="listboxLabel" for="listbox" value="Listbox" />
             </div>
             <div class="ui-g-12 ui-md-9 ui-lg-3">
@@ -211,15 +213,15 @@
             </div>
             <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
             <div class="ui-g-12 ui-md-3 ui-lg-2">
-              <div class="ui-g-12 ui-md-12 ui-lg-12">
+              <div class="ui-g-12 ui-md-12 ui-lg-12 right-align-label">
                 <p:outputLabel id="booleanBtnLabel" for="booleanBtn" value="Boolean Button" />
               </div>
-              <div class="ui-g-12 ui-md-12 ui-lg-12">
+              <div class="ui-g-12 ui-md-12 ui-lg-12 right-align-label">
                 <p:outputLabel id="manyBtnLabel" for="manyBtn" value="Many Button" />
               </div>
             </div>
             <div class="ui-g-12 ui-md-9 ui-lg-3">
-              <div class="ui-g-12 ui-md-12 ui-lg-12">
+              <div class="ui-g-12 ui-md-4 ui-lg-12 unset-min-width-button-text">
                 <p:selectBooleanButton id="booleanBtn" onLabel="Yes" offLabel="No" onIcon="fa fa-check" offIcon="fa fa-close" />
               </div>
 
