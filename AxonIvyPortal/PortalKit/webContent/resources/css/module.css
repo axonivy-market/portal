@@ -773,6 +773,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   flex: 1;
   flex-grow: 0;
   flex-basis: calc(100% - 50px);
+  width: 1px;
 }
 
 .case-detail-name-inplace-edit .ui-button.ui-widget.ui-button-icon-only.ui-inplace-save,
@@ -1278,11 +1279,10 @@ a.case-details-document-add-link {
   line-height: 38px;
   display: flex;
   float: left;
-  width: calc(100% - 350px);
+  width: calc(100% - 100px);
 }
 
 .case-details-back-btn {
-  font-size: 1.6rem;
   float: right;
   margin-top: 5px;
 }
@@ -2635,6 +2635,10 @@ _:-ms-input-placeholder, :root .case-details > * {
 
 .history-note {
   line-height: 2rem;
+}
+
+.case-view-note-dialog .ui-dialog-content.ui-widget-content {
+  max-height: 40vh;
 }
 
 .show-more-technical-cases-container {
