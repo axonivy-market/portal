@@ -1282,20 +1282,14 @@ a.case-details-document-add-link {
 }
 
 .case-details-back-btn {
-  line-height: 38px;
   font-size: 1.6rem;
-  font-weight: 400;
   float: right;
-  margin: auto 5px; 
-}
-
-.case-details-back-btn i {
-  margin-right: 5px;
+  margin-top: 5px;
 }
 
 .case-detail-title-header-container {
   float: left;
-  padding: 5px 0;
+  padding: 5px 0 !important;
 }
 
 .case-detail-section-title, .case-history-button-container {
