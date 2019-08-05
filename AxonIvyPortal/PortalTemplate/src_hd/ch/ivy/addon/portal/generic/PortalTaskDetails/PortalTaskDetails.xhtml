@@ -6,12 +6,12 @@
   <ui:param name="menuState" value="#{data.menuState}" />
   <ui:define name="pageTitle">#{ivy.cms.co('/Labels/TaskItemDetail')}</ui:define>
 
-  <!-- To show/hidden any sections of Case detail, you can turn true/false for below parameters -->
-  <!-- To show the header of case details. In case we turn true for alwaysShowDetails of CaseItem, we should turn this property as true as well -->
+  <!-- To show/hidden any sections of Task detail, you can turn true/false for below parameters -->
+  <!-- To show the Header component inside Task details body. By default it's true -->
   <ui:param name="showItemDetailsHeader" value="true" />
-  <!-- To show the Notes component inside Case details body. By default it's true -->
+  <!-- To show the Notes component inside Task details body. By default it's true -->
   <ui:param name="showItemDetailsNotes" value="true" />
-  <!-- To show the Documents component inside Case details body. By default, it's true -->
+  <!-- To show the Documents component inside Task details body. By default, it's true -->
   <ui:param name="showItemDetailDocuments" value="true" />
 
   <!-- Add a content as Custom panel for Task Detail on top -->

@@ -825,19 +825,19 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   vertical-align: top;
 }
 
-.case-details-document-add {
+.case-details-document-add, .task-details-document-add  {
   display: block;
   text-align: right;
   padding-top: 0 !important;
 }
 
-a.case-details-document-add-link {
+a.case-details-document-add-link, a.task-details-document-add-link {
   font-size: 1.4rem;
   float: right;
   font-weight: 400;
 }
 
-.case-details-document-add-link-icon {
+.case-details-document-add-link-icon, .task-details-document-add-link-icon {
   margin-right: 5px;
 }
 
@@ -874,12 +874,13 @@ a.case-details-document-add-link {
   padding: 15px 25px 5px 0 !important;
 }
 
-.case-history-name {
+.case-history-name, .task-note-name {
   width: 150px;
   line-height: 2rem;
 }
 
-.case-history-date, .case-document-author {
+.case-history-date, .case-document-author,
+.task-history-date, .task-document-author {
   width: 20%;
   text-align: center !important;
   line-height: 2rem;
@@ -889,21 +890,21 @@ a.case-details-document-add-link {
   text-align: left !important;
 }
 
-.case-document-name-text {
+.case-document-name-text, .task-document-name-text {
   width: calc(100% - 20px);
   display: block;
   overflow: hidden;
 }
 
-.case-document-name {
+.case-document-name, .task-document-name {
   position: relative;
 }
 
-.case-document-name a {
+.case-document-name a , .task-document-name a {
   color: #212121 !important;
 }
 
-.case-document-download {
+.case-document-download, .task-document-download {
   position: absolute;
   top: 2px;
   right: 4px;
@@ -1090,7 +1091,7 @@ a.case-details-document-add-link {
   flex: 0 0 100px;
 }
 
-.case-header-action-cell {
+.case-header-action-cell, .task-header-action-cell {
   flex: 0 0 auto;
   text-align: right;
   border-left: solid 1px rgba(0, 0, 0, 0.4);
@@ -1292,7 +1293,7 @@ a.case-details-document-add-link {
   padding: 5px 0 !important;
 }
 
-.case-detail-section-title, .case-history-button-container {
+.case-detail-section-title, .case-history-button-container , .task-history-button-container {
   font-size: 1.6rem;
   display: inline-block !important;
   align-content: start;
@@ -1305,7 +1306,7 @@ a.case-details-document-add-link {
   padding: 0 !important;
 }
 
-.case-detail-card {
+.case-detail-card, .task-detail-card {
   display: block !important;
   float: left !important;
 }
@@ -1317,7 +1318,7 @@ a.case-details-document-add-link {
   padding-bottom: 16px;
 }
 
-.case-history-button-container {
+.case-history-button-container, .task-history-button-container{
   text-align: right;
 }
 /********************************** END CASE ITEM **********************************/
@@ -2516,21 +2517,6 @@ a.compact-task-start-link:hover {
 }
 
 .task-details-document-download-icon {
-  margin-right: 5px;
-  color: red;
-}
-
-.task-details-document-add {
-  display: block;
-  text-align: center;
-  margin-top: 10px;
-}
-
-a.task-details-document-add-link {
-  font-size: 1.2rem;
-}
-
-.task-details-document-add-link-icon {
   margin-right: 5px;
 }
 
