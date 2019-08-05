@@ -174,6 +174,9 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
       if (!isMobile) {
         RequestContext.getCurrentInstance().execute("updateTaskCount()");
       }
+      criteria.setFirstTimeLazyLoad(true);
+    } else {
+      criteria.setFirstTimeLazyLoad(false);
     }
 
     List<ITask> foundTasks = findTasks(criteria, first, pageSize);
