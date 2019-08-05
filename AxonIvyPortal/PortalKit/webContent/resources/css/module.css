@@ -801,10 +801,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   margin-bottom: 8px;
 }
 
-.related-task-content .related-task {
-  width: calc(100% - 20px);
-}
-
 .case-details-history {
   display: table-cell;
   width: 30%;
@@ -2598,7 +2594,11 @@ _:-ms-input-placeholder, :root .case-details > * {
 }
 
 .related-task-content .related-task {
+  width: calc(100% - 20px);
   color: #212121 !important;
+  word-break: break-all;
+  height: 2.2rem;
+  overflow: hidden;
 }
 
 .related-task-content .related-task:hover {
