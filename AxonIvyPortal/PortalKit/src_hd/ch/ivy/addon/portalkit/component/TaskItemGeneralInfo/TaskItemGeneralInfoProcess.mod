@@ -132,7 +132,6 @@ Ts0 f3 inParameterDecl 'ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.Tas
 ' #txt
 Ts0 f3 inParameterMapAction 'out.selectedCase=param.iCase;
 ' #txt
-Ts0 f3 inActionCode 'ivy.log.warn("Task info OLD {0]", out.selectedCase);' #txt
 Ts0 f3 outParameterDecl '<> result;
 ' #txt
 Ts0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

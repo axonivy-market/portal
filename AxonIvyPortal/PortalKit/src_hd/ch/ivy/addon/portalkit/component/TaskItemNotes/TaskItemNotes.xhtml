@@ -16,16 +16,16 @@
       <div class="ui-g-4 ui-xl-4 ui-lg-4 ui-md-4 ui-sm-4 u-truncate-text u-padding-0">
         <i class="fa fa-history" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/taskNotes')}
       </div>
-      <div class="case-history-button-container ui-g-8 u-padding-0">
-        <h:panelGroup layout="block" styleClass="case-details-note-add">
-          <p:link id="show-more-note-link" styleClass="case-details-document-add-link note-show-more-link ui-commandlink" target="_blank"
+      <div class="task-history-button-container ui-g-8 u-padding-0">
+        <h:panelGroup layout="block">
+          <p:link id="show-more-note-link" styleClass="task-details-document-add-link note-show-more-link ui-commandlink" target="_blank"
             href="#{caseTaskNoteHistoryBean.getTaskNoteHistoryLink(task)}" rendered="#{caseTaskNoteHistoryBean.showMoreNote}">
             <span class="fa fa-external-link-square note-show-more-link-icon" />
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}" />
           </p:link>
-          <p:commandLink id="add-note-command" styleClass="case-details-document-add-link" rendered="#{caseTaskNoteHistoryBean.showAddNote}"
+          <p:commandLink id="add-note-command" styleClass="task-details-document-add-link" rendered="#{caseTaskNoteHistoryBean.showAddNote}"
             oncomplete="PF('#{cc.clientId}:addNewNoteDialog').show()" actionListener="#{data.setTask(task)}">
-            <span class="fa fa-plus-circle case-details-note-add-link-icon" />
+            <span class="fa fa-plus-circle task-details-note-add-link-icon" />
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}" />
           </p:commandLink>
         </h:panelGroup>
@@ -40,7 +40,7 @@
         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
         currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" sortBy="#{note.creationTimestamp}"
-          styleClass="case-history-name u-truncate-text">
+          styleClass="task-note-name u-truncate-text">
           <i class="fa fa-pencil-square-o" />
           <p:spacer width="5" />
           <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText username="#{note.writterName}" fullname="#{note.writter.fullName}" />
@@ -53,7 +53,7 @@
         </p:column>
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/date')}" sortBy="#{note.creationTimestamp}"
-          styleClass="case-history-date u-truncate-text">
+          styleClass="task-history-date u-truncate-text">
           <h:outputText value="#{note.creationTimestamp.time}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
           </h:outputText>
@@ -80,7 +80,7 @@
         <p:messages id="task-detail-create-note-msg" for="task-detail-note-content" />
         <p:inputTextarea id="task-detail-note-content" value="#{data.noteContent}" required="true"
           requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" rows="8"
-          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addNoteHelpText')}" styleClass="note-content-textarea" autoResize="false" />
+          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addNoteHelpText')}" styleClass="note-content-textarea" autoResize="false" />
       </h:panelGroup>
 
       <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer">

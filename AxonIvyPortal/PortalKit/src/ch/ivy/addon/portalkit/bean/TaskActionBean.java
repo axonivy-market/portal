@@ -192,7 +192,7 @@ public class TaskActionBean {
       throw new PortalException(ex);
     }
   }
-  
+
   public static String getProcessStartUriWithTaskParameters(ITask iTask, String requestPath) {
     ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
     String urlParameters = "?TaskId=" + iTask.getId();
@@ -205,5 +205,5 @@ public class TaskActionBean {
           + urlParameters;
     }
   }
-  
+
 }
