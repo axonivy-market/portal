@@ -23,7 +23,7 @@
   <p:overlayPanel id="action-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}" for="#{cc.attrs.actionLinkId}" my="left top" at="left bottom" appendToBody="true" styleClass="action-steps-panel"
     dynamic="true">
     <p:link id="show-additional-case-details-link" styleClass="additional-case-details-link case-command action-step-item" target="_blank"
-      href="#{caseWidgetBean.getAdditionalCaseDetailsPageUri(case)}">
+      href="#{caseWidgetBean.getAdditionalCaseDetailsPageUri(case)}" rendered="#{caseWidgetBean.showCaseDetails}">
       <i class="fa fa-external-link-square case-details-note-add-link-icon" />
       <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/ShowBusinessDetails')}" />
     </p:link>
