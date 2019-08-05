@@ -17,13 +17,13 @@
     <h:form prependId="false">
       <div class="task-detail-section-title ui-g-12">
         <div class="ui-g-6 u-truncate-text u-padding-0">
-          <i class="fa fa-file" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/documents')}
+          <i class="fa fa-file" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/documents')}
         </div>
-        <h:panelGroup layout="block" styleClass="case-details-document-add ui-g-6 u-padding-0">
-          <p:commandLink id="add-document-command" styleClass="case-details-document-add-link"
+        <h:panelGroup layout="block" styleClass="task-details-document-add ui-g-6 u-padding-0">
+          <p:commandLink id="add-document-command" styleClass="task-details-document-add-link"
             rendered="#{data.businessCase.state ne 'DONE' and data.isShowUploadDocumentButton and taskActionBean.canWriteDocument(data.task)}"
             actionListener="#{data.setTask(task)}" oncomplete="PF('document-upload-dialog').show()">
-            <span class="fa fa-plus-circle case-details-document-add-link-icon" />
+            <span class="fa fa-plus-circle task-details-document-add-link-icon" />
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}" />
           </p:commandLink>
         </h:panelGroup>
@@ -37,27 +37,27 @@
           currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}" sortBy="#{document.name}"
             styleClass="u-truncate-text">
-            <h:panelGroup layout="block" rendered="#{document ne null}" styleClass="case-document-name">
-              <p:commandLink ajax="false" id="download" styleClass="download-command js-download-command case-document-name-text u-truncate-text">
+            <h:panelGroup layout="block" rendered="#{document ne null}" styleClass="task-document-name">
+              <p:commandLink ajax="false" id="download" styleClass="download-command js-download-command task-document-name-text u-truncate-text">
                 <p:fileDownload value="#{logic.downloadDocument(document)}" />
-                <span class="fa fa-file-pdf-o case-details-document-download-icon" />
+                <span class="fa fa-file-pdf-o task-details-document-download-icon" />
                 <h:outputText value="#{document.name}" styleClass="js-document-name" />
               </p:commandLink>
               <p:commandLink id="delete-file" actionListener="#{data.setDocument(document)}"
                 rendered="#{data.businessCase.state ne 'DONE' and data.isShowUploadDocumentButton and taskActionBean.canWriteDocument(data.task)}"
-                styleClass="fa fa-times Fright case-document-download" oncomplete="PF('document-deletion-dialog').show()">
-                <p:tooltip for="delete-file" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/deleteFile')} #{document.name}" />
+                styleClass="fa fa-times Fright task-document-download" oncomplete="PF('document-deletion-dialog').show()">
+                <p:tooltip for="delete-file" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/deleteFile')} #{document.name}" />
               </p:commandLink>
             </h:panelGroup>
           </p:column>
 
           <p:column id="document-author" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/author')}"
-            styleClass="case-document-author u-truncate-text"
+            styleClass="task-document-author u-truncate-text"
             sortBy="#{empty document.creation.user.fullName ? document.creation.user.name:document.creation.user.fullName}">
             <h:outputText value="#{empty document.creation.user.fullName ? document.creation.user.name:document.creation.user.fullName}" />
           </p:column>
 
-          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/date')}" styleClass="case-history-date u-truncate-text"
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/date')}" styleClass="task-history-date u-truncate-text"
             sortBy="#{document.creation.timestamp}">
             <h:outputText value="#{document.creation.timestamp}">
               <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
@@ -73,7 +73,7 @@
     width="800">
     <h:form id="document-upload-form">
       <p:messages id="upload-messages" />
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addDocumentHelpText')}" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addDocumentHelpText')}" />
       <p:fileUpload styleClass="document-upload" id="document-upload-panel" fileUploadListener="#{logic.uploadDocument}" mode="advanced"
         dragDropSupport="true" oncomplete="documentTruncation.truncate();" label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
         auto="true" multiple="true" sizeLimit="#{masterDataBean.fileUploadSizeLimit}"

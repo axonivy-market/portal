@@ -2,10 +2,6 @@ SideStepData #class
 ch.ivy.addon.portalkit.component.SideStep #namespace
 task ch.ivyteam.ivy.workflow.ITask #field
 task PERSISTENT #fieldModifier
-compactMode Boolean #field
-compactMode PERSISTENT #fieldModifier
-expandedTask ch.ivyteam.ivy.workflow.ITask #field
-expandedTask PERSISTENT #fieldModifier
 errors java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> #field
 errors PERSISTENT #fieldModifier
 isUserDelegated Boolean #field
@@ -18,11 +14,6 @@ canUserResumeTask Boolean #field
 canUserResumeTask PERSISTENT #fieldModifier
 delegateComment String #field
 delegateComment PERSISTENT #fieldModifier
-callbackUrl String #field
-callbackUrl 'Portal Task List url is used to be back after finish task' #fieldComment
-callbackUrl PERSISTENT #fieldModifier
-isShowTaskButtonLabels Boolean #field
-isShowTaskButtonLabels PERSISTENT #fieldModifier
 queryAutoComplete String #field
 queryAutoComplete PERSISTENT #fieldModifier
 dataModel ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel #field
