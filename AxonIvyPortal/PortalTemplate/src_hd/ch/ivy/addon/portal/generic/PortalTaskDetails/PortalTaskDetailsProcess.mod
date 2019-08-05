@@ -18,13 +18,11 @@ Ps0 @RichDialogProcessEnd f1 '' #zField
 Ps0 @RichDialogProcessStart f3 '' #zField
 Ps0 @RichDialogEnd f4 '' #zField
 Ps0 @PushWFArc f5 '' #zField
-Ps0 @GridStep f6 '' #zField
-Ps0 @PushWFArc f2 '' #zField
-Ps0 @PushWFArc f7 '' #zField
 Ps0 @RichDialogInitStart f0 '' #zField
+Ps0 @PushWFArc f2 '' #zField
 >Proto Ps0 Ps0 PortalTaskDetailsProcess #zField
 Ps0 f1 type ch.ivy.addon.portal.generic.PortalTaskDetails.PortalTaskDetailsData #txt
-Ps0 f1 339 51 26 26 0 12 #rect
+Ps0 f1 211 51 26 26 0 12 #rect
 Ps0 f1 @|RichDialogProcessEndIcon #fIcon
 Ps0 f3 guid 16BF472CAB588371 #txt
 Ps0 f3 type ch.ivy.addon.portal.generic.PortalTaskDetails.PortalTaskDetailsData #txt
@@ -47,17 +45,6 @@ Ps0 f4 211 147 26 26 0 12 #rect
 Ps0 f4 @|RichDialogEndIcon #fIcon
 Ps0 f5 expr out #txt
 Ps0 f5 109 160 211 160 #arcP
-Ps0 f6 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskDetails.PortalTaskDetailsData out;
-' #txt
-Ps0 f6 actionTable 'out=in;
-' #txt
-Ps0 f6 type ch.ivy.addon.portal.generic.PortalTaskDetails.PortalTaskDetailsData #txt
-Ps0 f6 168 42 112 44 0 -8 #rect
-Ps0 f6 @|StepIcon #fIcon
-Ps0 f2 expr out #txt
-Ps0 f2 280 64 339 64 #arcP
-Ps0 f7 expr out #txt
-Ps0 f7 109 64 168 64 #arcP
 Ps0 f0 guid 16BF472CAB02934E #txt
 Ps0 f0 type ch.ivy.addon.portal.generic.PortalTaskDetails.PortalTaskDetailsData #txt
 Ps0 f0 method start(ch.ivyteam.ivy.workflow.ITask,String) #txt
@@ -78,13 +65,13 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ps0 f0 83 51 26 26 -16 15 #rect
 Ps0 f0 @|RichDialogInitStartIcon #fIcon
+Ps0 f2 expr out #txt
+Ps0 f2 109 64 211 64 #arcP
 >Proto Ps0 .type ch.ivy.addon.portal.generic.PortalTaskDetails.PortalTaskDetailsData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
 >Proto Ps0 '' #fIcon
 Ps0 f3 mainOut f5 tail #connect
 Ps0 f5 head f4 mainIn #connect
-Ps0 f0 mainOut f7 tail #connect
-Ps0 f7 head f6 mainIn #connect
-Ps0 f6 mainOut f2 tail #connect
+Ps0 f0 mainOut f2 tail #connect
 Ps0 f2 head f1 mainIn #connect
