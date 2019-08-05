@@ -81,14 +81,14 @@
         <cc:renderFacet name="caseItemDetailCustomMiddle" />
 
         <!-- Related running box -->
-        <h:panelGroup rendered="#{cc.attrs.showItemDetailRelated}" layout="block" styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
+        <h:panelGroup rendered="#{cc.attrs.showItemDetailRelated}" styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
           <div class="card card-w-title case-detail-card">
             <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="related-tasks" case="#{case}" />
           </div>
         </h:panelGroup>
 
         <!-- Documents box -->
-        <h:panelGroup rendered="#{cc.attrs.showItemDetailDocuments}" layout="block" styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
+        <h:panelGroup rendered="#{cc.attrs.showItemDetailDocuments}" styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
           <div class="card card-w-title case-detail-card">
             <ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}" componentToUpdate="#{p:component('history-container')}" />
           </div>
