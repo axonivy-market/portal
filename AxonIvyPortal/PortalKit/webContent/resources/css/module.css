@@ -2557,6 +2557,15 @@ _:-ms-input-placeholder, :root .case-details > * {
   float: left;
 }
 
+.case-details-row-space td:not(.case-details-data-1st-column) {
+  display: inline-block;
+  width: 100%;
+  height: 2.2rem;
+  line-height: 2.2rem;
+  overflow: hidden;
+  word-break: break-all;
+}
+
 .case-details-data-1st-column {
   padding-right: 10px;
   text-align: left;
