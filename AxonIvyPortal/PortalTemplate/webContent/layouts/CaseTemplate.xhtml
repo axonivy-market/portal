@@ -10,10 +10,10 @@
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:define name="simplePageContent">
       <div>
-        <div class="Fleft Wid30 Fs20 foreground-text-color MarTop10">
+        <div class="Fleft Wid30 Fs14 foreground-text-color MarTop10">
           <ui:insert name="caseName">
-            <span class="fa fa-plane case-template-title-icon" />
-            <h:outputText title="#{caseName} (##{caseId})" value="#{caseName} (##{caseId})" />
+            <span class="fa fa-check-square-o case-template-title-icon" />
+            <h:outputText title="#{caseName} (##{caseId})" value="#{caseName} (##{caseId})" styleClass="task-template-title" />
           </ui:insert>
         </div>
         <div class="process-chain-container Fright Wid70">
