@@ -50,7 +50,7 @@
                 </listitem>
 				<listitem>
 					<para>
-						Override Task widget in: TaskList page, Task Search result, Relate tasks of a case, History tasks of a case.
+						Override Task widget in: TaskList page, Task Search result.
 						<itemizedlist>
 							<listitem>
 								<para>
@@ -68,7 +68,7 @@
 				</listitem>
 				<listitem>
 					<para>
-						After previous steps, you can override <link linkend="axonivyportal.customization.taskwidget.howtooverideui.taskheader">TaskHeader and TaskListHeader</link> and <link linkend="axonivyportal.customization.taskwidget.howtooverideui.taskfilter">TaskFilter</link>
+						After previous steps, you can override <link linkend="axonivyportal.customization.taskwidget.howtooverideui.taskheader">TaskListHeader and TaskHeader</link> and <link linkend="axonivyportal.customization.taskwidget.howtooverideui.taskfilter">TaskFilter</link>
 					</para>
 				</listitem>
 			</orderedlist>
@@ -98,7 +98,7 @@
 								<para>
 									<itemizedlist>
 										<listitem>
-											<para>In case you has new columns, override method <code>getDefaultColumns</code> of the extended class from TaskLazyDataModel to display checkboxes in Config columns panel and display/hide sortFields (see the methods' Javadoc comments)</para>
+											<para>In case you have new columns, override method <code>getDefaultColumns</code> of the extended class from TaskLazyDataModel to display checkboxes in Config columns panel and display/hide sortFields (see the methods' Javadoc comments)</para>
 										</listitem>
 										<listitem>
 											<para>To add cms for checkboxes's label, add new entries to folder <code>/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/</code> in <code>PortalStyle</code> or override method <code>getColumnLabel</code>(see the methods' Javadoc comments)</para>
