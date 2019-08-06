@@ -86,7 +86,7 @@
 						<itemizedlist>
 							<listitem>
 								<para><code>ui:param name="showItemDetailsHeader" value="true"</code></para>
-								<para>To show/hidden Task header, by default it's true. You should set as false in case we set alwaysShowDetails for TaskItem.</para>
+								<para>To show/hidden Task header, by default it's true.</para>
 							</listitem>
 							<listitem>
 								<para><code>ui:param name="showItemDetailsNotes" value="true"></code></para>
@@ -104,7 +104,7 @@
 				<title xml:id="axonivyportal.customization.taskitemdetails.howtooverideui.custombody.title">Add new Custom panel</title>
 				<para>Refer to the <code>taskItemDetailCustomPanel*</code> section in <code>PortalTaskDetails.xhtml</code> of PortalTemplate.</para>
 				<itemizedlist>
-					<para>We have provided 3 placeholder sections for customization. Please follow up below step to do it.</para>
+					<para>We have provided 2 placeholder sections for customization. Please follow up below step to do it.</para>
 					<listitem>
 						<para>We need to define the <code>ui:define</code> with the valid name such as <code>taskItemDetailCustomPanelTop</code> and <code>taskItemDetailCustomPanelBottom</code>.
 							<para>The <code>taskItemDetailCustomPanelTop</code>: will be shown on the top of the component</para>

@@ -177,7 +177,7 @@
       <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4">
         <ui:fragment rendered="#{taskBean.isNotDone(task)}">
           <h:form id="expiry-form">
-            <p:inplace id="edit-inplace" editor="true" saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+            <p:inplace id="edit-inplace" styleClass="expiry-edit-inplace" editor="true" saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
               cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" label="#{formattingNullWrapperBean.format(task.expiryTimestamp)}"
               rendered="#{taskActionBean.canChangeExpiry(task)}">
               <p:ajax event="save" listener="#{logic.updateDeadline(task)}" update="#{cc.attrs.componentToUpdate}" />

@@ -825,6 +825,62 @@
 					</itemizedlist>
 				</para>
 			</sect3>
+			<sect3 xml:id="axonivyportal.installation.migrationnotes.8.0.0.taskbody">
+				<title>How to migrate TaskBody to <link linkend="axonivyportal.customization.taskitemdetails">TaskItemDetails</link> component</title>
+				<para>On Portal version 8.0.0, we removed <code>taskBody</code> in TaskWidget. Instead of that, we will use TaskItemDetails component to show task information with more details and responsiveness.</para>
+				<para>If you have customized <code>taskBody</code> of TaskWidget, we need to migrate the code of <code>taskBody</code> to new component as <code>TaskItemDetails</code></para>
+				<para>Please follow the below steps to migrate</para>
+				<itemizedlist>
+					<listitem>
+						<para>You can take a look at <code>PortalTaskDetails.xhtml</code> to see how to use and customize <code>TaskItemDetails</code>.</para>
+						<para>There are 2 sections we need to take a look:
+							<itemizedlist>
+								<listitem>
+									<para>On the <code>taskItemDetailCustomPanelTop</code> section.
+										<para>This section will be shown on the top <code>TaskItemDetails</code> component. You can change the width of this panel as your requirement, we recommend to use <code>ui-g-*</code> class of 
+										<code>Primeface</code> to define size of the width for the box can display flexibility.
+										</para>
+									</para>
+								</listitem>
+								<listitem>
+									<para>On the <code>taskItemDetailCustomPanelBottom</code> section.
+										<para>This section will be shown on the bottom of the <code>TaskItemDetails</code> component. You can change the width of this panel as your requirement, we recommend to use <code>ui-g-*</code> class of 
+											<code>Primeface</code> to define size of the width for the box can display flexibility.
+										</para>
+									</para>
+								</listitem>
+								<listitem>
+									<para>After deciding where we will push the custom code to <code>TaskItemDetails</code>.</para>
+									<para>Move your customized code for Custom box section from old <code>taskBody</code> to under that sections.</para>
+									<para>Finally, your code will show on the <code>TaskItemDetails</code>.</para>
+								</listitem>
+								<listitem>
+									<para> For example:
+										<para>Old taskBody</para>
+										<mediaobject>
+											<imageobject>
+												<imagedata fileref="images/Installation/old-task-body.png" />
+											</imageobject>
+										</mediaobject>
+										<para>TaskItemDetail content</para>
+										<mediaobject>
+											<imageobject>
+												<imagedata fileref="images/Installation/custom-task-item-details.png" />
+											</imageobject>
+										</mediaobject>
+									</para>
+								</listitem>
+							</itemizedlist>
+						</para>
+					</listitem>
+					<listitem>
+						<para>In case we need to hidden Notes, Documents, we can refer to <link linkend="axonivyportal.customization.taskitemdetails.howtooverideui.showhiddenui">Show/hidden component on Task Item Details</link></para>
+					</listitem>
+					<listitem>
+						<para>Additional, if we want to customize more <code>TaskItemDetails</code> component, please help refer to <link linkend="axonivyportal.customization.taskitemdetails.howtooverideui">TaskItemDetails component</link></para>
+					</listitem>
+				</itemizedlist>
+			</sect3>
 			<sect3 xml:id="axonivyportal.installation.migrationnotes.8.0.0.casebody">
 				<title>How to migrate CaseBody to <link linkend="axonivyportal.customization.caseitemdetails">CaseItemDetails</link> component</title>
 				<para>On Portal version 8.0.0, we removed <code>caseBody</code> in CaseWidget. Instead of that, we are using CaseItemDetails component for showing case information with more details and responsiveness.</para>
@@ -1242,6 +1298,16 @@
 					<listitem>
 						<para>Introduce new page as the Case item details. The default page is portal case details, refer to 
 							<link linkend="axonivyportal.customization.caseitemdetails" endterm="axonivyportal.customization.caseitemdetails.title" /> for the customization.</para>
+					</listitem>
+					<listitem>
+						<para>Remove <code>taskBody</code> inside TaskWidget, refer to <link linkend="axonivyportal.installation.migrationnotes.8.0.0.taskbody">Migration Notes</link> for more details</para>
+					</listitem>
+					<listitem>
+						<para>Introduce two new actions button on <link linkend="axonivyportal.customization.taskwidget.howtooverideui.taskheader">TaskWidget's header</link>.</para>
+					</listitem>
+					<listitem>
+						<para>Introduce new page as Task item details. The default page is portal task details, refer to 
+							<link linkend="axonivyportal.customization.taskitemdetails" endterm="axonivyportal.customization.taskitemdetails.title" /> for the customization.</para>
 					</listitem>
 				</itemizedlist>
 			</sect2>
