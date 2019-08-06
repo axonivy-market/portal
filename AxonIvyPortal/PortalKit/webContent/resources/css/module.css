@@ -1279,7 +1279,7 @@ a.case-details-document-add-link, a.task-details-document-add-link {
   width: calc(100% - 100px);
 }
 
-.case-details-back-btn {
+.case-details-back-btn, .task-details-back-btn {
   float: right;
   margin-top: 5px;
 }
