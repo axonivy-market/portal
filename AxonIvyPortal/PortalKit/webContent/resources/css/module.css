@@ -5073,7 +5073,7 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 }
 .task-detail-general-card {
   padding-bottom: 0px !important;
-  min-height: 710px;
+  min-height: 720px;
 }
 
 .task-note-component{
@@ -5087,7 +5087,7 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
  .task-document-component{
   height: 350px;
   width: 100%;
-  margin-top: 15px;
+  margin-top: 10px !important;
   margin :0;
   margin-bottom : 10px
 }
@@ -5159,7 +5159,7 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 
   @media screen and (max-width: 1900px ) {
 .task-detail-description {
-  height: 100px;
+  height: 150px;
 }
 }
 
@@ -5193,4 +5193,5 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 .task-business-case {
   margin-top: 0px !important;
 }
+
 /*  =================== END TASK DETAIL PAGE ========================= */
