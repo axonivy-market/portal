@@ -244,8 +244,8 @@
 				</p:commandButton>
 				<p:spacer width="5px" />
 				<p:commandButton type="button" styleClass="portal-cancel-button"
-					value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-					actionListener="#{logic.clearSaveFilterDialog}" onclick="PF('save-filter-set-dialog').hide();">
+					value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('save-filter-set-dialog').hide();">
+					<f:ajax event="click" listener="#{logic.clearSaveFilterDialog}" resetValues="true" />
 				</p:commandButton>
 			</h:panelGroup>
 		</h:form>
