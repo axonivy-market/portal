@@ -834,6 +834,17 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 	}
 }
 
+.task-detail-header {
+	.ui-button.ui-widget.task-details-back-btn {
+		background-color: transparent;
+		box-shadow: none;
+		
+		&.ui-state-hover {
+			background-color: rgba(0,0,0,0.05) !important;
+		}
+	}
+}
+
 /*Style For Advance Filter --------------------------------------------------------------------------------------*/
 
 .ui-datepicker .ui-timepicker-div dl dd {

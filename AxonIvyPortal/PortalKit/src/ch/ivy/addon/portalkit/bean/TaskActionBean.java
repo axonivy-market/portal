@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.EnumSet;
 import java.util.Objects;
 
@@ -14,6 +15,7 @@ import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
+import ch.ivy.addon.portalkit.support.UrlDetector;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -36,6 +38,7 @@ public class TaskActionBean {
   private boolean isShowDelegateTask;
   private boolean isShowAdditionalOptions;
   private static final String OPEN_TASK_ITEM_DETAILS = "Start Processes/PortalStart/startPortalTaskDetail.ivp";
+  private static final String OPEN_TASKS_LIST = "Start Processes/PortalStart/startPortalTask.ivp";
 
   public TaskActionBean() {
     isShowResetTask = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_RESET_ACTION);
@@ -203,6 +206,19 @@ public class TaskActionBean {
       IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(requestPath);
       return RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString()
           + urlParameters;
+    }
+  }
+  
+  public void backToTasksList() throws MalformedURLException {
+    String friendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("startPortalTask.ivp");
+    if (StringUtils.isEmpty(friendlyRequestPath)) {
+      friendlyRequestPath = OPEN_TASKS_LIST;
+    }
+    String requestPath = SecurityServiceUtils.findProcessByUserFriendlyRequestPath(friendlyRequestPath);
+    if (StringUtils.isNotEmpty(requestPath)) {
+      UrlDetector urlDetector = new UrlDetector();
+      String serverUrl = urlDetector.getBaseURL(FacesContext.getCurrentInstance());
+      redirect(serverUrl + requestPath);
     }
   }
 
