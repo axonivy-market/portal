@@ -127,7 +127,7 @@ if (displayMessageAfterFinishTask) {
 	Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 	if (!flash.containsKey("overridePortalGrowl")) {
 		FacesMessage message = new FacesMessage(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskLeftSuccessful"));
-		FacesContext.getCurrentInstance().addMessage(null, message);
+		FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
 	}
 	flash.setRedirect(true);
 	flash.setKeepMessages(true);

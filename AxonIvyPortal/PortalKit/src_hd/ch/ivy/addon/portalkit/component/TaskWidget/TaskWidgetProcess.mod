@@ -454,7 +454,7 @@ if (in.numberOfNewTask > 0){
 	RequestContext requesContext = RequestContext.getCurrentInstance();
 	FacesContext facesContext = FacesContext.getCurrentInstance();
 	String notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/newTaskNotification");
-	facesContext.addMessage("portal-global-growl", new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
+	facesContext.addMessage("portal-global-growl-message", new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
 	requesContext.update("portal-global-growl");        
 }' #txt
 Ts0 f56 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt

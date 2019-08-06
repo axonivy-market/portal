@@ -40,13 +40,11 @@ Ts0 @RichDialogMethodStart f30 '' #zField
 Ts0 @PushWFArc f87 '' #zField
 Ts0 @GridStep f80 '' #zField
 Ts0 @GridStep f19 '' #zField
-Ts0 @GridStep f66 '' #zField
 Ts0 @PushWFArc f57 '' #zField
 Ts0 @Alternative f77 '' #zField
 Ts0 @PushWFArc f110 '' #zField
 Ts0 @RichDialogProcessEnd f109 '' #zField
 Ts0 @PushWFArc f101 '' #zField
-Ts0 @PushWFArc f67 '' #zField
 Ts0 @PushWFArc f100 '' #zField
 Ts0 @Alternative f99 '' #zField
 Ts0 @PushWFArc f78 '' #zField
@@ -71,7 +69,6 @@ Ts0 @RichDialogMethodStart f97 '' #zField
 Ts0 @PushWFArc f52 '' #zField
 Ts0 @PushWFArc f102 '' #zField
 Ts0 @GridStep f24 '' #zField
-Ts0 @PushWFArc f71 '' #zField
 Ts0 @RichDialogProcessEnd f68 '' #zField
 Ts0 @PushWFArc f34 '' #zField
 Ts0 @RichDialogProcessEnd f28 '' #zField
@@ -99,6 +96,9 @@ Ts0 @PushWFArc f58 '' #zField
 Ts0 @GridStep f45 '' #zField
 Ts0 @PushWFArc f31 '' #zField
 Ts0 @RichDialogInitStart f0 '' #zField
+Ts0 @GridStep f66 '' #zField
+Ts0 @PushWFArc f16 '' #zField
+Ts0 @PushWFArc f18 '' #zField
 >Proto Ts0 Ts0 TaskItemProcess #zField
 Ts0 f94 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f94 339 1043 26 26 0 12 #rect
@@ -380,49 +380,6 @@ Ts0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ts0 f19 488 1226 112 44 -38 -8 #rect
 Ts0 f19 @|StepIcon #fIcon
-Ts0 f66 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
-' #txt
-Ts0 f66 actionTable 'out=in;
-' #txt
-Ts0 f66 actionCode 'import ch.ivyteam.ivy.security.IUser;
-import org.apache.commons.lang3.StringUtils;
-import ch.ivyteam.ivy.workflow.TaskState;
-import javax.faces.context.FacesContext;
-import javax.faces.application.FacesMessage;
-import org.primefaces.context.RequestContext;
-
-RequestContext requesContext = RequestContext.getCurrentInstance();
-FacesContext facesContext = FacesContext.getCurrentInstance();
-
-String notification;
-if(in.task.getState() == TaskState.DONE){
-	notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/taskDone", [in.task.getName()]);
-} else {
-	IUser worker = in.task.getWorkerUser();
-	if (worker != null){
-		String fullName = worker.getFullName();
-		String workerName = StringUtils.isBlank(fullName) ? worker.getName() : worker.getFullName() + " (" + worker.getName() + ")";
-		notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/isAnotherUserWorking", [in.task.name, in.task.getId(), worker]);
-	} else {
-		notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/noPermission", [in.task.getName()]);
-	}
-}
-
-facesContext.validationFailed();
-facesContext.addMessage("portal-global-growl", new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
-requesContext.update("portal-global-growl");  
-' #txt
-Ts0 f66 security system #txt
-Ts0 f66 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
-Ts0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Display error</name>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f66 424 554 112 44 -35 -8 #rect
-Ts0 f66 @|StepIcon #fIcon
 Ts0 f57 expr in #txt
 Ts0 f57 outCond in.canUserResumeTask #txt
 Ts0 f57 366 480 424 480 #arcP
@@ -437,9 +394,6 @@ Ts0 f109 339 755 26 26 0 12 #rect
 Ts0 f109 @|RichDialogProcessEndIcon #fIcon
 Ts0 f101 expr in #txt
 Ts0 f101 352 656 352 592 #arcP
-Ts0 f67 expr in #txt
-Ts0 f67 368 576 424 576 #arcP
-Ts0 f67 0 0.1527488616366867 0 0 #arcLabel
 Ts0 f100 expr in #txt
 Ts0 f100 352 494 352 560 #arcP
 Ts0 f100 0 0.6038825846613081 0 0 #arcLabel
@@ -697,8 +651,6 @@ Ts0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ts0 f24 168 938 112 44 -21 -8 #rect
 Ts0 f24 @|StepIcon #fIcon
-Ts0 f71 expr out #txt
-Ts0 f71 536 576 595 576 #arcP
 Ts0 f68 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f68 595 563 26 26 0 12 #rect
 Ts0 f68 @|RichDialogProcessEndIcon #fIcon
@@ -929,6 +881,53 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ts0 f0 83 83 26 26 -16 15 #rect
 Ts0 f0 @|RichDialogInitStartIcon #fIcon
+Ts0 f66 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
+' #txt
+Ts0 f66 actionTable 'out=in;
+' #txt
+Ts0 f66 actionCode 'import ch.ivyteam.ivy.security.IUser;
+import org.apache.commons.lang3.StringUtils;
+import ch.ivyteam.ivy.workflow.TaskState;
+import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
+import org.primefaces.context.RequestContext;
+
+RequestContext requesContext = RequestContext.getCurrentInstance();
+FacesContext facesContext = FacesContext.getCurrentInstance();
+
+String notification;
+if(in.task.getState() == TaskState.DONE){
+	notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/taskDone", [in.task.getName()]);
+} else {
+	IUser worker = in.task.getWorkerUser();
+	if (worker != null){
+		String fullName = worker.getFullName();
+		String workerName = StringUtils.isBlank(fullName) ? worker.getName() : worker.getFullName() + " (" + worker.getName() + ")";
+		notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/isAnotherUserWorking", [in.task.name, in.task.getId(), worker]);
+	} else {
+		notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/noPermission", [in.task.getName()]);
+	}
+}
+
+facesContext.validationFailed();
+facesContext.addMessage("portal-global-growl-message", new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
+requesContext.update("portal-global-growl");  
+' #txt
+Ts0 f66 security system #txt
+Ts0 f66 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
+Ts0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Display error</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f66 424 554 112 44 -35 -8 #rect
+Ts0 f66 @|StepIcon #fIcon
+Ts0 f16 expr in #txt
+Ts0 f16 368 576 424 576 #arcP
+Ts0 f18 expr out #txt
+Ts0 f18 536 576 595 576 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -965,8 +964,6 @@ Ts0 f45 mainOut f60 tail #connect
 Ts0 f60 head f77 in #connect
 Ts0 f35 mainOut f65 tail #connect
 Ts0 f65 head f56 mainIn #connect
-Ts0 f66 mainOut f71 tail #connect
-Ts0 f71 head f68 mainIn #connect
 Ts0 f49 mainOut f50 tail #connect
 Ts0 f50 head f47 mainIn #connect
 Ts0 f47 mainOut f78 tail #connect
@@ -983,8 +980,6 @@ Ts0 f79 out f92 tail #connect
 Ts0 f92 head f98 mainIn #connect
 Ts0 f77 out f100 tail #connect
 Ts0 f100 head f99 in #connect
-Ts0 f99 out f67 tail #connect
-Ts0 f67 head f66 mainIn #connect
 Ts0 f79 out f101 tail #connect
 Ts0 f101 head f99 in #connect
 Ts0 f12 mainOut f102 tail #connect
@@ -1007,3 +1002,7 @@ Ts0 f19 mainOut f26 tail #connect
 Ts0 f26 head f15 mainIn #connect
 Ts0 f15 mainOut f25 tail #connect
 Ts0 f25 head f11 mainIn #connect
+Ts0 f16 head f66 mainIn #connect
+Ts0 f18 head f68 mainIn #connect
+Ts0 f99 out f16 tail #connect
+Ts0 f66 mainOut f18 tail #connect
