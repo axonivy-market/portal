@@ -80,14 +80,14 @@ public abstract class AbstractFilter<T extends Query<?>> {
   /**
    * <p>
    * Override this method if need to validate filtered values. If values are incorrect, use the methods:
-   * validationFailed and addMessage
+   * validationFailed and addMessage with clientId is "advanced-filter-error-messages"
    * </p>
    * <p>
    * <b>Example: </b> <code>
    * <pre>
    * String message = ...;
    * FacesContext.getCurrentInstance().validationFailed();
-   * FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
+   * FacesContext.getCurrentInstance().addMessage("advanced-filter-error-messages", new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
    * </pre>
    * </code>
    * </p>

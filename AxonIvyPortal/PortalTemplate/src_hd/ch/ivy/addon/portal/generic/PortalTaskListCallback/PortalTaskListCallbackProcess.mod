@@ -128,7 +128,7 @@ if (displayMessageAfterFinishTask) {
 	Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 	if (!flash.containsKey("overridePortalGrowl")) {
 		FacesMessage message = new FacesMessage(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskLeftSuccessful"));
-		FacesContext.getCurrentInstance().addMessage("portal-global-growl", message);
+		FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
 	}
 	flash.setRedirect(true);
 	flash.setKeepMessages(true);
@@ -139,7 +139,7 @@ Ps0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Display message after
 finish task</name>
-        <nameStyle>33
+        <nameStyle>33,7
 </nameStyle>
     </language>
 </elementInfo>

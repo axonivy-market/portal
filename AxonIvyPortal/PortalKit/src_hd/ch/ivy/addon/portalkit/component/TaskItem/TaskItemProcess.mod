@@ -619,7 +619,7 @@ if(in.selectedTask.state == TaskState.DONE){
 }
 
 facesContext.validationFailed();
-facesContext.addMessage("portal-global-growl", new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
+facesContext.addMessage("portal-global-growl-message", new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
 requesContext.update("portal-global-growl");  
 ' #txt
 Ts0 f79 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
@@ -627,7 +627,7 @@ Ts0 f79 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>display error</name>
-        <nameStyle>13
+        <nameStyle>13,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -1290,7 +1290,7 @@ if(!in.selectedTask.canResume) {
 	RequestContext requesContext = RequestContext.getCurrentInstance();
       FacesContext facesContext = FacesContext.getCurrentInstance();
 	facesContext.validationFailed();
-      facesContext.addMessage("portal-global-growl", new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
+      facesContext.addMessage("portal-global-growl-message", new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
       requesContext.update("portal-global-growl");        
 }
 ' #txt
@@ -1299,7 +1299,7 @@ Ts0 f100 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Validate</name>
-        <nameStyle>8
+        <nameStyle>8,7
 </nameStyle>
     </language>
 </elementInfo>

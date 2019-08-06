@@ -74,7 +74,7 @@ public class TaskCreationDateFilter extends TaskFilter {
     if (fromCreationDate != null && toCreationDate != null && (fromCreationDate.compareTo(toCreationDate) > 0)) {
       FacesContext.getCurrentInstance().validationFailed();
       FacesContext.getCurrentInstance().addMessage(
-          null,
+          "advanced-filter-error-messages",
           new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co(
               "/ch.ivy.addon.portalkit.ui.jsf/common/dateFromBiggerThanTo"), null));
     }

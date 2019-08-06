@@ -74,7 +74,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 
 FacesMessage message = new FacesMessage("Task is done successfully");
-FacesContext.getCurrentInstance().addMessage("portal-global-growl", message);
+FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
 
 Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 flash.put("overridePortalGrowl", true);
@@ -86,7 +86,7 @@ Gs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Display custom growl message
 after finish task</name>
-        <nameStyle>46
+        <nameStyle>46,7
 </nameStyle>
     </language>
 </elementInfo>
