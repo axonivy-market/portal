@@ -134,15 +134,8 @@
 						</mediaobject>
 					</listitem>
 					<listitem>
-						<para>After applied above code to your custom page, the custom panel will display as below</para>
-						<mediaobject>
-							<imageobject>
-								<imagedata fileref="images/CaseItemDetails/CustomPanelOverride.png" />
-							</imageobject>
-						</mediaobject>
-					</listitem>
-					<listitem>
-						<para>Finally, we have a custom Case details page</para>
+						<para>After applied above code to your custom page, the custom panels will be displayed as below</para>
+						<para>We have a custom Case details page</para>
 						<mediaobject>
 							<imageobject>
 								<imagedata fileref="images/CaseItemDetails/CaseCustomized.png" />
@@ -151,6 +144,7 @@
 					</listitem>
 					<listitem>
 						<para>Other example, we have a full flexibility page if we use <code>ui-g-*</code> class to define the width of panel</para>
+						<para>This page will be displayed as below if we used <code>ui-g-6</code> class to define the width for 3 custom panels</para>
 						<mediaobject>
 							<imageobject>
 								<imagedata fileref="images/CaseItemDetails/CaseCustomized-fit.png" />
