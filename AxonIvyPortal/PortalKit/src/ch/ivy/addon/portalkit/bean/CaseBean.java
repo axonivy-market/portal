@@ -64,7 +64,7 @@ public class CaseBean implements Serializable {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/" + caseState);
   }
 
-  public void navigateCaseDetails(ICase iCase) {
+  public void navigateToCaseDetails(ICase iCase) {
     String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("startPortalCaseDetails.ivp");
     if (StringUtils.isEmpty(customizePortalFriendlyRequestPath)) {
       customizePortalFriendlyRequestPath = OPEN_CASE_ITEM_DETAILS;
