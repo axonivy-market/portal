@@ -2,8 +2,6 @@ WorkflowDefinitionData #class
 ch.ivy.gawfs.workflowCreation.WorkflowDefinition #namespace
 data gawfs.Data #field
 data PERSISTENT #fieldModifier
-one Number #field
-one PERSISTENT #fieldModifier
 taskDefinition gawfs.TaskDef #field
 taskDefinition PERSISTENT #fieldModifier
 autoCompleteQuery String #field
@@ -28,3 +26,7 @@ isValidated Boolean #field
 isValidated PERSISTENT #fieldModifier
 originalProcessName String #field
 originalProcessName PERSISTENT #fieldModifier
+isDisplayAbleToStart Boolean #field
+isDisplayAbleToStart PERSISTENT #fieldModifier
+isSelectAbleToStartResponsible Boolean #field
+isSelectAbleToStartResponsible PERSISTENT #fieldModifier

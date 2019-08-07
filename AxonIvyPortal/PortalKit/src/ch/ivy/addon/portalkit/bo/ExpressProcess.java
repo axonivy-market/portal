@@ -2,6 +2,8 @@ package ch.ivy.addon.portalkit.bo;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class ExpressProcess {
 
   private String id;
@@ -13,7 +15,10 @@ public class ExpressProcess {
   private boolean isUseDefaultUI;
   private String processFolder;
   private boolean readyToExecute;
-
+  
+  @JsonIgnore
+  private boolean isAbleToEdit;
+  
   public String getId() {
     return id;
   }
@@ -86,4 +91,12 @@ public class ExpressProcess {
     this.readyToExecute = readyToExecute;
   }
 
+  public boolean isAbleToEdit() {
+    return isAbleToEdit;
+  }
+
+  public void setAbleToEdit(boolean isAbleToEdit) {
+    this.isAbleToEdit = isAbleToEdit;
+  }
+  
 }

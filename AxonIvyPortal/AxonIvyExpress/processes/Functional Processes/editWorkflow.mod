@@ -701,12 +701,16 @@ Ct0 f26 actionTable 'out=in;
 Ct0 f26 actionCode 'import ch.ivy.gawfs.enums.ProcessType;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
+import ch.ivy.gawfs.ExpressProcessUtils;
 
-ExpressProcess workflow =ExpressServiceRegistry.getProcessService().findById(in.processID) as ExpressProcess;
+ExpressProcess workflow = ExpressServiceRegistry.getProcessService().findById(in.processID) as ExpressProcess;
 
 in.processDescription = workflow.processDescription;
 in.processName = workflow.processName;
 in.processFolder = workflow.processFolder;
+in.processStartResponsibles = workflow.getProcessPermissions();
+ExpressProcessUtils util = new ExpressProcessUtils();
+in.processStartResponsiblesDisplayName = util.generateResponsibleDisplayName(workflow.getProcessPermissions());
 in.isUseDefaultUI = workflow.useDefaultUI;
 
 for(ProcessType type : ProcessType.values()) {

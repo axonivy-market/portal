@@ -88,6 +88,16 @@ Fs0 @PushWFArc f71 '' #zField
 Fs0 @GridStep f72 '' #zField
 Fs0 @PushWFArc f73 '' #zField
 Fs0 @PushWFArc f32 '' #zField
+Fs0 @RichDialogMethodStart f74 '' #zField
+Fs0 @RichDialogProcessEnd f75 '' #zField
+Fs0 @GridStep f76 '' #zField
+Fs0 @PushWFArc f77 '' #zField
+Fs0 @PushWFArc f78 '' #zField
+Fs0 @RichDialogProcessStart f79 '' #zField
+Fs0 @GridStep f80 '' #zField
+Fs0 @PushWFArc f81 '' #zField
+Fs0 @RichDialogProcessEnd f82 '' #zField
+Fs0 @PushWFArc f83 '' #zField
 >Proto Fs0 Fs0 WorkflowDefinitionProcess #zField
 Fs0 f0 guid 1576FA61C9D81A51 #txt
 Fs0 f0 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
@@ -139,7 +149,6 @@ Fs0 f4 @|RichDialogEndIcon #fIcon
 Fs0 f6 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
 ' #txt
 Fs0 f6 actionTable 'out=in;
-out.one=1;
 ' #txt
 Fs0 f6 actionCode 'import ch.ivy.gawfs.enums.TaskType;
 import ch.ivy.gawfs.enums.ProcessType;
@@ -173,6 +182,9 @@ if (!in.data.#isUseDefaultUI is initialized) {
 }
 if (!in.data.#processType is initialized) {
 	in.data.processType = ProcessType.AD_HOC;
+}
+else if(in.data.#processType is initialized && in.data.processType == ProcessType.REPEAT) {
+	in.isDisplayAbleToStart = true;
 }' #txt
 Fs0 f6 security system #txt
 Fs0 f6 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
@@ -298,7 +310,8 @@ Fs0 f16 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinition
 Fs0 f16 method initAssginement(gawfs.TaskDef) #txt
 Fs0 f16 disableUIEvents false #txt
 Fs0 f16 inParameterDecl '<gawfs.TaskDef taskDefinition> param;' #txt
-Fs0 f16 inParameterMapAction 'out.taskDefinition=param.taskDefinition;
+Fs0 f16 inParameterMapAction 'out.isSelectAbleToStartResponsible=false;
+out.taskDefinition=param.taskDefinition;
 ' #txt
 Fs0 f16 inActionCode 'int indexOfSelectedTaskDef = out.data.definedTasks.indexOf(param.taskDefinition);
 if (out.data.isUseDefaultUI) {
@@ -335,8 +348,6 @@ Fs0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>updateResponsibles()</name>
-        <nameStyle>20,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -351,19 +362,37 @@ import ch.ivyteam.ivy.security.ISecurityMember;
 import java.util.ArrayList;
 
 List<String> responsibleNames = new ArrayList();
-out.taskDefinition.responsibles.clear();
-
-for (ISecurityMember responsible : out.selectedAssigneeList) {
-		out.taskDefinition.responsibles.add(responsible.getMemberName());
-
-		if (!StringUtils.isBlank(responsible.getDisplayName())) {
-    	responsibleNames.add(responsible.getDisplayName());
-  	} else {
-    	responsibleNames.add(responsible.getName());
-  	}
+if(in.isSelectAbleToStartResponsible) {
+	out.data.processStartResponsibles.clear();
+	
+	for (ISecurityMember responsible : out.selectedAssigneeList) {
+			out.data.processStartResponsibles.add(responsible.getMemberName());
+	
+			if (!StringUtils.isBlank(responsible.getDisplayName())) {
+	    	responsibleNames.add(responsible.getDisplayName());
+	  	} else {
+	    	responsibleNames.add(responsible.getName());
+	  	}
+	}
+	
+	out.data.processStartResponsiblesDisplayName = String.join(", ", responsibleNames);
 }
-
-out.taskDefinition.responsibleDisplayName = String.join(", ", responsibleNames);' #txt
+else{
+	out.taskDefinition.responsibles.clear();
+	
+	for (ISecurityMember responsible : out.selectedAssigneeList) {
+			out.taskDefinition.responsibles.add(responsible.getMemberName());
+	
+			if (!StringUtils.isBlank(responsible.getDisplayName())) {
+	    	responsibleNames.add(responsible.getDisplayName());
+	  	} else {
+	    	responsibleNames.add(responsible.getName());
+	  	}
+	}
+	
+	out.taskDefinition.responsibleDisplayName = String.join(", ", responsibleNames);
+}
+' #txt
 Fs0 f23 security system #txt
 Fs0 f23 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -908,6 +937,87 @@ Fs0 f32 expr in #txt
 Fs0 f32 192 624 248 688 #arcP
 Fs0 f32 1 192 688 #addKink
 Fs0 f32 1 0.19396467700664802 0 0 #arcLabel
+Fs0 f74 guid 16C503BB03A8D205 #txt
+Fs0 f74 method initProcessStartResponsibles() #txt
+Fs0 f74 disableUIEvents false #txt
+Fs0 f74 inParameterDecl '<> param;' #txt
+Fs0 f74 inParameterMapAction 'out.isSelectAbleToStartResponsible=true;
+out.selectedResponsibleFieldId="form:able-to-start-content";
+' #txt
+Fs0 f74 outParameterDecl '<> result;' #txt
+Fs0 f74 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>initProcessStartResponsibles()</name>
+    </language>
+</elementInfo>
+' #txt
+Fs0 f74 83 947 26 26 -85 19 #rect
+Fs0 f74 @|RichDialogMethodStartIcon #fIcon
+Fs0 f75 435 947 26 26 0 12 #rect
+Fs0 f75 @|RichDialogProcessEndIcon #fIcon
+Fs0 f76 actionTable 'out=in;
+' #txt
+Fs0 f76 actionCode 'import javax.faces.context.FacesContext;
+import ch.ivyteam.ivy.security.ISecurityMember;
+
+for (String assigneeName : in.data.processStartResponsibles) {
+	ISecurityMember assignee = ivy.session.getSecurityContext().findSecurityMember(assigneeName);
+	if (#assignee is initialized) {
+		if (!in.selectedAssigneeList.contains(assignee)) {
+			in.selectedAssigneeList.add(assignee);
+		}
+	}
+}' #txt
+Fs0 f76 security system #txt
+Fs0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Init able to start dialog</name>
+    </language>
+</elementInfo>
+' #txt
+Fs0 f76 192 938 128 44 -60 -8 #rect
+Fs0 f76 @|StepIcon #fIcon
+Fs0 f77 109 960 192 960 #arcP
+Fs0 f78 320 960 435 960 #arcP
+Fs0 f79 guid 16C608CFC2D52583 #txt
+Fs0 f79 actionTable 'out=in;
+' #txt
+Fs0 f79 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>changeProcessType</name>
+    </language>
+</elementInfo>
+' #txt
+Fs0 f79 83 1043 26 26 -61 15 #rect
+Fs0 f79 @|RichDialogProcessStartIcon #fIcon
+Fs0 f80 actionTable 'out=in;
+' #txt
+Fs0 f80 actionCode 'import ch.ivy.gawfs.enums.ProcessType;
+import java.util.ArrayList;
+
+in.isDisplayAbleToStart = false;
+in.data.processStartResponsiblesDisplayName = null;
+in.data.processStartResponsibles = new ArrayList();
+if(in.data.processType == ProcessType.REPEAT) {
+	in.isDisplayAbleToStart = true;
+}' #txt
+Fs0 f80 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Update info when &#13;
+change process type</name>
+    </language>
+</elementInfo>
+' #txt
+Fs0 f80 184 1034 144 44 -52 -16 #rect
+Fs0 f80 @|StepIcon #fIcon
+Fs0 f81 109 1056 184 1056 #arcP
+Fs0 f82 435 1043 26 26 0 12 #rect
+Fs0 f82 @|RichDialogProcessEndIcon #fIcon
+Fs0 f83 328 1056 435 1056 #arcP
 >Proto Fs0 .type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 >Proto Fs0 .processKind HTML_DIALOG #txt
 >Proto Fs0 -8 -8 16 16 16 26 #rect
@@ -980,3 +1090,11 @@ Fs0 f70 out f73 tail #connect
 Fs0 f73 head f72 mainIn #connect
 Fs0 f70 out f32 tail #connect
 Fs0 f32 head f28 mainIn #connect
+Fs0 f74 mainOut f77 tail #connect
+Fs0 f77 head f76 mainIn #connect
+Fs0 f76 mainOut f78 tail #connect
+Fs0 f78 head f75 mainIn #connect
+Fs0 f79 mainOut f81 tail #connect
+Fs0 f81 head f80 mainIn #connect
+Fs0 f80 mainOut f83 tail #connect
+Fs0 f83 head f82 mainIn #connect

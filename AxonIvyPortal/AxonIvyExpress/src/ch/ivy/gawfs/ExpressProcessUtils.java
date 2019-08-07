@@ -60,7 +60,7 @@ public class ExpressProcessUtils {
     processRepository.setProcessType(expressData.getProcessType().getValue());
     processRepository.setUseDefaultUI(expressData.getIsUseDefaultUI());
     processRepository.setProcessOwner(Ivy.session().getSessionUser().getMemberName());
-    processRepository.setProcessPermissions(expressData.getDefinedTasks().get(0).getResponsibles());
+    processRepository.setProcessPermissions(expressData.getProcessStartResponsibles());
     processRepository.setProcessFolder(expressData.getProcessFolder());
     processRepository.setReadyToExecute(expressData.getReadyToExecute());
 
@@ -188,7 +188,6 @@ public class ExpressProcessUtils {
       taskDef.setDescription(expressTaskDef.getDescription());
       taskDef.setSubject(expressTaskDef.getSubject());
       taskDef.setUntilDays(expressTaskDef.getUntilDays());
-      taskDef.setResponsibleDisplayName(expressTaskDef.getResponsibleDisplayName());
       taskDef.setEmail(expressTaskDef.getEmail());
       taskDef.setResponsibleDisplayName(generateResponsibleDisplayName(taskDef.getResponsibles()));
 
@@ -205,7 +204,7 @@ public class ExpressProcessUtils {
    * @param responsibleNames
    * @return merged display name
    */
-  private String generateResponsibleDisplayName(List<String> responsibleNames) {
+  public String generateResponsibleDisplayName(List<String> responsibleNames) {
     List<String> responsibleDisplayNames = new ArrayList<>();
     responsibleNames.forEach(responsibleName -> {
       ISecurityMember responsible = Ivy.session().getSecurityContext().findSecurityMember(responsibleName);

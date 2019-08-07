@@ -15,10 +15,12 @@
   <h:panelGroup styleClass="process-start-list-item-action #{isExpress ? 'is-express' : ''} u-padding-0" rendered="#{isExpress}" layout="block">
     <p:panel id="express-process-logo" styleClass="express-process-logo #{processWidgetBean.mobileMode ? 'mobile-express-process-logo' : ''}" />
     <p:tooltip id="express-process-logo-tooltip" for="express-process-logo" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/expressWorkflow')}" position="top"/>
-    <ui:include src="ProcessItemExpressActions.xhtml">
-      <ui:param name="processType" value="process" />
-      <ui:param name="isMobileMode" value="#{processWidgetBean.mobileMode}" />
-    </ui:include>
+    <ui:fragment rendered="#{process.getProcess().ableToEdit}">
+     <ui:include src="ProcessItemExpressActions.xhtml">
+       <ui:param name="processType" value="process" />
+       <ui:param name="isMobileMode" value="#{processWidgetBean.mobileMode}" />
+     </ui:include>
+    </ui:fragment>
   </h:panelGroup>
   <h:panelGroup styleClass="process-start-list-item-action #{processWidgetBean.mobileMode ? 'hide-item-mobile-mode' : ''}">
     <h:outputText id="info-workflow" styleClass="fa fa-info-circle process-description process-item" />
