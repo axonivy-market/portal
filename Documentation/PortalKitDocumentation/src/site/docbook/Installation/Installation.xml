@@ -755,6 +755,16 @@
 			</sect3>
 		</sect2>
 		<sect2>
+			<title xml:id="axonivyportal.installation.migrationnotes.7.4">Migrate to 7.4.0</title>
+			<para>
+				From 7.4.0, CaseTemplate is removed from Portal. If you are using CaseTemplate, please do following steps to migrate to TaskTemplate
+				<itemizedlist>
+					<listitem>1. Add parameter <code>task</code> to use task name as template title </listitem>
+					<listitem>Move content of section <code>caseForm</code> of CaseTemplate to section <code>taskForm</code> of TaskTemplate</listitem>
+				</itemizedlist>
+			</para>
+		</sect2>
+		<sect2>
 			<title>Migrate to 7.3.0</title>
 			<para>
 				From 7.3.0, Portal supports some permissions to show/hide left menu item, if you override <code>LoadSubMenuItems</code> process and want to use these permissions, refer to 
@@ -1099,6 +1109,9 @@
 					</listitem>
 					<listitem>
 						<para>Portal group id is officially configurable, refer to <link linkend="axonivyportal.customization.changegroupid" endterm="axonivyportal.customization.changegroupid.title" /> for more detail</para>
+					</listitem>
+					<listitem>
+						<para>CaseTemplate is removed, from now on we only use TaskTemplate. Please refer to <link linkend="axonivyportal.installation.migrationnotes" endterm="axonivyportal.installation.migrationnotes.title" /> to see how to migrate CaseTemplate to TaskTemplate</para>
 					</listitem>
 				</itemizedlist>
 			</sect2>
