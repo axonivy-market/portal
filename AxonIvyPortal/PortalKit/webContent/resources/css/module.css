@@ -1276,12 +1276,13 @@ a.case-details-document-add-link, a.task-details-document-add-link {
   line-height: 38px;
   display: flex;
   float: left;
-  width: calc(100% - 100px);
+  width: calc(100% - 110px);
 }
 
 .case-details-back-btn, .task-details-back-btn {
   float: right;
   margin-top: 5px;
+  max-width: 110px;
 }
 
 .case-detail-title-header-container {
