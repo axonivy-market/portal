@@ -91,7 +91,7 @@
                           requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
                         <p:commandLink id="able-to-start-link" immediate="true" styleClass="task-responsible-link"
                           value="#{not empty data.data.processStartResponsiblesDisplayName ? data.data.processStartResponsiblesDisplayName : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"
-                          actionListener="#{logic.initProcessStartResponsibles()}" oncomplete="PF('choose-responsible-dialog').show();" process="@this"
+                          actionListener="#{logic.initProcessStartResponsibles}" oncomplete="PF('choose-responsible-dialog').show();" process="@this"
                           update="assignee-selection-form:assignee-selection-panel" global="false" />
                       </h:panelGroup>
                   </div>
