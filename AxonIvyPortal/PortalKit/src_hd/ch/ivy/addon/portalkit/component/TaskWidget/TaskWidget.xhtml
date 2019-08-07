@@ -265,6 +265,7 @@
   <p:dialog id="save-filter-set-dialog" widgetVar="save-filter-set-dialog" appendTo="@(body)" rendered="#{!isMobile}"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" resizable="false" width="575"
     modal="true" closeOnEscape="true" styleClass="save-filter-set-dialog">
+    <p:ajax event="close" listener="#{logic.clearSaveFilterDialog}" resetValues="true" />
     <p:messages autoUpdate="true" />
     <h:form id="filter-save-form">
       <h:panelGrid columns="2" styleClass="save-filter-set-panel"
@@ -294,7 +295,6 @@
         <p:spacer width="5px" />
         <p:commandButton type="button" styleClass="portal-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('save-filter-set-dialog').hide();">
-          <f:ajax event="click" listener="#{logic.clearSaveFilterDialog}" resetValues="true" />
         </p:commandButton>
       </h:panelGroup>
     </h:form>
