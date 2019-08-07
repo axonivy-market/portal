@@ -9,6 +9,10 @@
         <name>deleteProcessStep</name>
         <description></description>
     </method>
+	<method>
+        <name>initProcessStartResponsibles</name>
+        <description></description>
+    </method>
     <method>
         <name>initAssginement</name>
         <description></description>
