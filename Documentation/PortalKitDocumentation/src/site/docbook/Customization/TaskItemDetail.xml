@@ -73,28 +73,28 @@
 					</para>
 				</listitem>
 				<listitem>
-					<para>After previous steps, you can override Task item details UI elements as show/hidden element by keywords:</para>
-					<para>To show/hidden, please using <code>showItemDetailsHeader</code>, <code>showItemDetailsNotes</code>, <code>showItemDetailDocuments</code> code. For more details, please refer to <link linkend="axonivyportal.customization.taskitemdetails.howtooverideui.showhiddenui">Show/Hidden components</link>.</para>
+					<para>After previous steps, you can override Task item details UI elements as shown/hidden element by keywords:</para>
+					<para>To show/hide, please using <code>showItemDetailsHeader</code>, <code>showItemDetailsNotes</code>, <code>showItemDetailDocuments</code> code. For more details, please refer to <link linkend="axonivyportal.customization.taskitemdetails.howtooverideui.showhiddenui">Show/Hide components</link>.</para>
 					<para>And to add a new elements, please refer to <link linkend="axonivyportal.customization.taskitemdetails.howtooverideui.custombody">Add new Custom panel</link> code</para>
 				</listitem>
 			</orderedlist>
 			<sect3 xml:id="axonivyportal.customization.taskitemdetails.howtooverideui.showhiddenui">
-				<title>Show/Hidden components by keywords</title>
+				<title>Show/Hide components by keywords</title>
 				<para>Refer to the <code>ui</code> tag list in <code>PortalTaskDetails.xhtml</code> of PortalTemplate.
-					In case, we want to show/hidden any elements on TaskItemDetails, we should override value of <code>ui:param</code>
+					In case, we want to show/hide any elements on TaskItemDetails, we should override value of <code>ui:param</code>
 					<para>List valid parameters:
 						<itemizedlist>
 							<listitem>
 								<para><code>ui:param name="showItemDetailsHeader" value="true"</code></para>
-								<para>To show/hidden Task header, by default it's true.</para>
+								<para>To show/hide Task header, by default it's true.</para>
 							</listitem>
 							<listitem>
 								<para><code>ui:param name="showItemDetailsNotes" value="true"></code></para>
-								<para>To show/hidden Task Notes component, by default it's true.</para>
+								<para>To show/hide Task Notes component, by default it's true.</para>
 							</listitem>
 							<listitem>
 								<para><code>ui:param name="showItemDetailDocuments" value="true"</code></para>
-								<para>To show/hidden Task Documents component, by default it's true.</para>
+								<para>To show/hide Task Documents component, by default it's true.</para>
 							</listitem>
 						</itemizedlist>
 					</para>
@@ -104,7 +104,7 @@
 				<title xml:id="axonivyportal.customization.taskitemdetails.howtooverideui.custombody.title">Add new Custom panel</title>
 				<para>Refer to the <code>taskItemDetailCustomPanel*</code> section in <code>PortalTaskDetails.xhtml</code> of PortalTemplate.</para>
 				<itemizedlist>
-					<para>We have provided 2 placeholder sections for customization. Please follow up below step to do it.</para>
+					<para>We have provided 2 placeholder sections for customization. Please follow up below steps to do it.</para>
 					<listitem>
 						<para>We need to define the <code>ui:define</code> with the valid name such as <code>taskItemDetailCustomPanelTop</code> and <code>taskItemDetailCustomPanelBottom</code>.
 							<para>The <code>taskItemDetailCustomPanelTop</code>: will be shown on the top of the component</para>
@@ -115,7 +115,7 @@
 						<para>Add your custom code into that tag</para>
 					</listitem>
 					<listitem>
-						<para>Finally, your code will be display inside of <link linkend="axonivyportal.customization.taskitemdetails">TaskItemDetails</link> page</para>
+						<para>Finally, your custom panel will be displayed inside of <link linkend="axonivyportal.customization.taskitemdetails">TaskItemDetails</link> page</para>
 					</listitem>
 					<listitem>
 						<para>Below is example code for override custom panel box of task details</para>
