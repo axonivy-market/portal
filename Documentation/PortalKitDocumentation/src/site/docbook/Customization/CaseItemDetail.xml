@@ -30,7 +30,7 @@
 		</imageobject>
 	</mediaobject>
 	<important>
-		<para>Case General and description box always display, we cannot override the content or hidden/show (they stay where they are)</para>
+		<para>"Data and Description" panel always displays, we cannot override its content or hide/show this panel.</para>
 	</important>
 	<sect2 xml:id="axonivyportal.customization.caseitemdetails.howtooverideui">
 		<title>How to custom Case item details UI</title>
@@ -76,32 +76,32 @@
 					</para>
 				</listitem>
 				<listitem>
-					<para>After previous steps, you can override Case item details UI elements as show/hidden element by keywords:</para>
-					<para>To show/hidden, please using <code>showItemDetailsHeader</code>, <code>showItemDetailRelated</code>, <code>showItemDetailsHistories</code>, <code>showItemDetailDocuments</code> code. For more details, please refer to <link linkend="axonivyportal.customization.caseitemdetails.howtooverideui.showhiddenui">Show/Hidden components</link>.</para>
+					<para>After previous steps, you can override Case item details UI elements as shown/hidden element by keywords:</para>
+					<para>To show/hide, please using <code>showItemDetailsHeader</code>, <code>showItemDetailRelated</code>, <code>showItemDetailsHistories</code>, <code>showItemDetailDocuments</code> code. For more details, please refer to <link linkend="axonivyportal.customization.caseitemdetails.howtooverideui.showhiddenui">Show/Hide components</link>.</para>
 					<para>And to add a new elements, please refer to <link linkend="axonivyportal.customization.caseitemdetails.howtooverideui.custombody">Add new Custom panel</link> code</para>
 				</listitem>
 			</orderedlist>
 			<sect3 xml:id="axonivyportal.customization.caseitemdetails.howtooverideui.showhiddenui">
-				<title>Show/Hidden components by keywords</title>
+				<title>Show/Hide components by keywords</title>
 				<para>Refer to the <code>ui</code> tag list in <code>PortalCaseDetails.xhtml</code> of PortalTemplate.
-					In case, we want to show/hidden any elements on CaseItemDetails, we should override value of <code>ui:param</code>
+					In case, we want to show/hide any elements on CaseItemDetails, we should override value of <code>ui:param</code>
 					<para>List valid parameters:
 						<itemizedlist>
 							<listitem>
 								<para><code>ui:param name="showItemDetailsHeader" value="true"</code></para>
-								<para>To show/hidden Case header, by default it's true. You should set as false in case we set alwaysShowDetails for CaseItem.</para>
+								<para>To show/hide Case header, by default it's true. You should set as false in case we set alwaysShowDetails for CaseItem.</para>
 							</listitem>
 							<listitem>
 								<para><code>ui:param name="showItemDetailsHistories" value="true"></code></para>
-								<para>To show/hidden Case Histories component, by default it's true.</para>
+								<para>To show/hide Case Histories component, by default it's true.</para>
 							</listitem>
 							<listitem>
 								<para><code>ui:param name="showItemDetailDocuments" value="true"</code></para>
-								<para>To show/hidden Case Documents component, by default it's true.</para>
+								<para>To show/hide Case Documents component, by default it's true.</para>
 							</listitem>
 							<listitem>
 								<para><code>ui:param name="showItemDetailRelated" value="true"</code></para>
-								<para>To show/hidden Case Related Tasks/Cases component, by default it's true.</para>
+								<para>To show/hide Case Related Tasks/Cases component, by default it's true.</para>
 							</listitem>
 						</itemizedlist>
 					</para>
@@ -113,17 +113,17 @@
 				<itemizedlist>
 					<para>We have provided 3 placeholder sections for customization. Please follow up below step to do it.</para>
 					<listitem>
-						<para>We need to define the <code>ui:define</code> with the valid name such as <code>caseItemDetailCustomTop</code>, <code>caseItemDetailCustomMiddle</code> and <code>caseItemDetailCustomBottom</code>.
+						<para>We need to define <code>ui:define</code> with a valid name such as <code>caseItemDetailCustomTop</code>, <code>caseItemDetailCustomMiddle</code> and <code>caseItemDetailCustomBottom</code>.
 							<para>The <code>caseItemDetailCustomTop</code>: will be shown on the top of the component</para>
 							<para>The <code>caseItemDetailCustomMiddle</code>: will be shown on the middle of the component</para>
 							<para>The <code>caseItemDetailCustomBottom</code>: will be shown on the bottom of the component</para>
 						</para>
 					</listitem>
 					<listitem>
-						<para>Add your custom code into that tag</para>
+						<para>Add your custom code into tags above.</para>
 					</listitem>
 					<listitem>
-						<para>Finally, your code will be display inside of <link linkend="axonivyportal.customization.caseitemdetails">CaseItemDetails</link> page</para>
+						<para>Finally, your custom panel will be displayed inside of <link linkend="axonivyportal.customization.caseitemdetails">CaseItemDetails</link> page.</para>
 					</listitem>
 					<listitem>
 						<para>Below is example code for override custom panel box of case details</para>
@@ -134,8 +134,7 @@
 						</mediaobject>
 					</listitem>
 					<listitem>
-						<para>After applied above code to your custom page, the custom panels will be displayed as below</para>
-						<para>We have a custom Case details page</para>
+						<para>After applied above code to your custom page, custom panels will be displayed as below</para>
 						<mediaobject>
 							<imageobject>
 								<imagedata fileref="images/CaseItemDetails/CaseCustomized.png" />
@@ -144,7 +143,7 @@
 					</listitem>
 					<listitem>
 						<para>Other example, we have a full flexibility page if we use <code>ui-g-*</code> class to define the width of panel</para>
-						<para>This page will be displayed as below if we used <code>ui-g-6</code> class to define the width for 3 custom panels</para>
+						<para>We used <code>ui-g-6</code> class to define width for 3 custom panels in the custom page below</para>
 						<mediaobject>
 							<imageobject>
 								<imagedata fileref="images/CaseItemDetails/CaseCustomized-fit.png" />

@@ -852,7 +852,7 @@
 								<listitem>
 									<para>After deciding where we will push the custom code to <code>TaskItemDetails</code>.</para>
 									<para>Move your customized code for Custom box section from old <code>taskBody</code> to under that sections.</para>
-									<para>Finally, your code will show on the <code>TaskItemDetails</code>.</para>
+									<para>Finally, your customization will be shown in the <code>TaskItemDetails</code>.</para>
 								</listitem>
 								<listitem>
 									<para> For example:
@@ -874,10 +874,10 @@
 						</para>
 					</listitem>
 					<listitem>
-						<para>In case we need to hidden Notes, Documents, we can refer to <link linkend="axonivyportal.customization.taskitemdetails.howtooverideui.showhiddenui">Show/hidden component on Task Item Details</link></para>
+						<para>In case we need to hide Notes, Documents, we can refer to <link linkend="axonivyportal.customization.taskitemdetails.howtooverideui.showhiddenui">Show/hide component on Task Item Details</link></para>
 					</listitem>
 					<listitem>
-						<para>Additional, if we want to customize more <code>TaskItemDetails</code> component, please help refer to <link linkend="axonivyportal.customization.taskitemdetails.howtooverideui">TaskItemDetails component</link></para>
+						<para>Additional, if we want to customize more <code>TaskItemDetails</code> components, please refer to <link linkend="axonivyportal.customization.taskitemdetails.howtooverideui">TaskItemDetails component</link>.</para>
 					</listitem>
 				</itemizedlist>
 			</sect3>
@@ -915,7 +915,7 @@
 								<listitem>
 									<para>After decided where we will push the custom code to <code>CaseItemDetails</code>.</para>
 									<para>Move your customized code for Custom box section from old <code>caseBody</code> to under that sections.</para>
-									<para>Finally, your code will show on the <code>CaseItemDetails</code>.</para>
+									<para>Finally, your customization will be shown in <code>CaseItemDetails</code>.</para>
 								</listitem>
 								<listitem>
 									<para> For example:
@@ -937,7 +937,7 @@
 						</para>
 					</listitem>
 					<listitem>
-						<para>In case we need to hidden Notes, Documents, Related running component, we can refer to <link linkend="axonivyportal.customization.caseitemdetails.howtooverideui.showhiddenui">Show/hidden component on Case Item Details</link></para>
+						<para>In case we need to hide Notes, Documents, Related running component, we can refer to <link linkend="axonivyportal.customization.caseitemdetails.howtooverideui.showhiddenui">Show/hide component on Case Item Details</link></para>
 					</listitem>
 					<listitem>
 						<para>Additional, if we want to customize more <code>CaseItemDetails</code> component, please help refer to <link linkend="axonivyportal.customization.caseitemdetails.howtooverideui">CaseItemDetails component</link></para>
