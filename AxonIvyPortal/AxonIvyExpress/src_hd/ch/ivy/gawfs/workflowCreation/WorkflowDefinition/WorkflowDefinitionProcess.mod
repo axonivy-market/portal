@@ -366,13 +366,8 @@ if(in.isSelectAbleToStartResponsible) {
 	out.data.processStartResponsibles.clear();
 	
 	for (ISecurityMember responsible : out.selectedAssigneeList) {
-			out.data.processStartResponsibles.add(responsible.getMemberName());
-	
-			if (!StringUtils.isBlank(responsible.getDisplayName())) {
-	    	responsibleNames.add(responsible.getDisplayName());
-	  	} else {
-	    	responsibleNames.add(responsible.getName());
-	  	}
+		out.data.processStartResponsibles.add(responsible.getMemberName());
+		responsibleNames.add(StringUtils.defaultIfBlank(responsible.getDisplayName(), responsible.getName()).toString());				
 	}
 	
 	out.data.processStartResponsiblesDisplayName = String.join(", ", responsibleNames);
@@ -381,15 +376,9 @@ else{
 	out.taskDefinition.responsibles.clear();
 	
 	for (ISecurityMember responsible : out.selectedAssigneeList) {
-			out.taskDefinition.responsibles.add(responsible.getMemberName());
-	
-			if (!StringUtils.isBlank(responsible.getDisplayName())) {
-	    	responsibleNames.add(responsible.getDisplayName());
-	  	} else {
-	    	responsibleNames.add(responsible.getName());
-	  	}
-	}
-	
+		out.taskDefinition.responsibles.add(responsible.getMemberName());
+		responsibleNames.add(StringUtils.defaultIfBlank(responsible.getDisplayName(), responsible.getName()).toString());		
+	}	
 	out.taskDefinition.responsibleDisplayName = String.join(", ", responsibleNames);
 }
 ' #txt
@@ -1001,7 +990,7 @@ import java.util.ArrayList;
 in.isDisplayAbleToStart = false;
 in.data.processStartResponsiblesDisplayName = null;
 in.data.processStartResponsibles = new ArrayList();
-if(in.data.processType == ProcessType.REPEAT) {
+if(in.data.#processType == ProcessType.REPEAT) {
 	in.isDisplayAbleToStart = true;
 }' #txt
 Fs0 f80 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
