@@ -107,39 +107,19 @@ public class ExpressProcessUtils {
    * @param controller
    */
   private void saveFormElements(String processId, int taskPosition, DragAndDropController controller) {
-    int indexInPanel = 0;
-    if (!Optional.ofNullable(controller.getSelectedFormelementsHeader()).orElse(new ArrayList<>()).isEmpty()) {
-      for (Formelement element : controller.getSelectedFormelementsHeader()) {
+    processAndSaveFormElements(controller.getSelectedFormelementsHeader(), taskPosition, processId, HEADER_PANEL);
+    processAndSaveFormElements(controller.getSelectedFormelementsLeftPanel(), taskPosition, processId, LEFT_PANEL);
+    processAndSaveFormElements(controller.getSelectedFormelementsRightPanel(), taskPosition, processId, RIGHT_PANEL);
+    processAndSaveFormElements(controller.getSelectedFormelementsFooter(), taskPosition, processId, FOOTER_PANEL);
+  }
+  
+  private void processAndSaveFormElements(List<Formelement> formElements, int taskPosition, String processId,  String location) {
+    if (CollectionUtils.isNotEmpty(formElements)){
+      int indexInPanel = 0;
+      for (Formelement element : formElements) {
         element.setTaskPosition(taskPosition);
         element.setIndexInPanel(indexInPanel++);
-        saveFormElement(element, HEADER_PANEL, processId);
-      }
-    }
-
-    if (!Optional.ofNullable(controller.getSelectedFormelementsLeftPanel()).orElse(new ArrayList<>()).isEmpty()) {
-      indexInPanel = 0;
-      for (Formelement element : controller.getSelectedFormelementsLeftPanel()) {
-        element.setTaskPosition(taskPosition);
-        element.setIndexInPanel(indexInPanel++);
-        saveFormElement(element, LEFT_PANEL, processId);
-      }
-    }
-
-    if (!Optional.ofNullable(controller.getSelectedFormelementsRightPanel()).orElse(new ArrayList<>()).isEmpty()) {
-      indexInPanel = 0;
-      for (Formelement element : controller.getSelectedFormelementsRightPanel()) {
-        element.setTaskPosition(taskPosition);
-        element.setIndexInPanel(indexInPanel++);
-        saveFormElement(element, RIGHT_PANEL, processId);
-      }
-    }
-
-    if (!Optional.ofNullable(controller.getSelectedFormelementsFooter()).orElse(new ArrayList<>()).isEmpty()) {
-      indexInPanel = 0;
-      for (Formelement element : controller.getSelectedFormelementsFooter()) {
-        element.setTaskPosition(taskPosition);
-        element.setIndexInPanel(indexInPanel++);
-        saveFormElement(element, FOOTER_PANEL, processId);
+        saveFormElement(element, location, processId);
       }
     }
   }
@@ -473,7 +453,7 @@ public class ExpressProcessUtils {
    */
   public boolean isProcessNameDuplicated(String processName) {
     List<ExpressProcess> expressProcesses = ExpressServiceRegistry.getProcessService().findExpressProcessByName(processName);
-    return !CollectionUtils.isEmpty(expressProcesses);
+    return CollectionUtils.isNotEmpty(expressProcesses);
   }
 
   public List<ExternalDataProvider> findDataProviders() {
