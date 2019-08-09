@@ -68,4 +68,9 @@ public class ApplicationService extends AbstractService<Application> {
   public long countIvyApplications(List<Application> applications) {
     return applications.stream().filter(application -> application.getServerId() != null).count();
   }
+  
+  public boolean checkApplicationIsEdited(Application appSeleted, Application appEdited) {
+    return (!appEdited.getName().equals(appSeleted.getName())|| !appEdited.getDisplayName().equals(
+      appSeleted.getDisplayName()) || appEdited.getServerId() != appSeleted.getServerId());
+  }
 }

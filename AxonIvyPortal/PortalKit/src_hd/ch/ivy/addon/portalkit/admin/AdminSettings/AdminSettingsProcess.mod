@@ -648,6 +648,7 @@ import java.util.Locale;
 import ch.ivy.addon.portalkit.util.Locales;
 import org.primefaces.context.RequestContext;
 
+in.isEditMode = true;
 in.isAddMode = false;
 in.dialogTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/editApplication");
 if(in.selectedApp.#serverId is initialized){
@@ -661,7 +662,8 @@ if(in.selectedApp.#serverId is initialized){
 Locale currentLocale = new Locales().getCurrentLocale();
 DisplayNameAdaptor displayNameAdaptor = new DisplayNameAdaptor(in.selectedApp.displayName, currentLocale);
 in.displayNameInCurrentLanguage = displayNameAdaptor.getDisplayNameAsString();
-in.supportedLanguages = new List();' #txt
+in.supportedLanguages = new List();
+in.editAppIndex = in.applicationList.indexOf(in.selectedApp);' #txt
 As0 f54 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -946,15 +948,39 @@ As0 f93 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData
 ' #txt
 As0 f93 actionTable 'out=in;
 ' #txt
-As0 f93 actionCode 'if (in.isAddMode) {
+As0 f93 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationService;
+import ch.ivyteam.ivy.data.cache.IDataCacheEntry;
+import ch.ivyteam.ivy.data.cache.IDataCacheEntry;
+import ch.ivyteam.ivy.security.IUser;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+
+if (in.isAddMode) {
 	in.applicationList.add(in.selectedApp);	
-}' #txt
+} else if (in.isEditMode) {
+	// check if selectedApp is edited
+	ApplicationService appService = new ApplicationService();
+	
+	if (appService.checkApplicationIsEdited(in.applicationList.get(in.editAppIndex),in.selectedApp)) {
+		in.applicationList.set(in.editAppIndex, in.selectedApp);
+		// remove seleted app in session
+		SecurityServiceUtils.removeSessionAttribute(SessionAttribute.SELECTED_APP.toString());
+		SecurityServiceUtils.removeSessionAttribute(SessionAttribute.SELECTED_APP_DISPLAY_NAME.toString());
+		SecurityServiceUtils.removeSessionAttribute(SessionAttribute.SERVER_ID.toString());
+		// update session data for seleted app
+		ivy.datacache.getSessionCache().setEntry(ivy.session.getSessionUserName(), "Applications", in.applicationList);
+		SecurityServiceUtils.setSessionAttribute(SessionAttribute.SELECTED_APP.toString(),in.selectedApp.name);
+		SecurityServiceUtils.setSessionAttribute(SessionAttribute.SELECTED_APP_DISPLAY_NAME.toString(),in.selectedApp.displayName);
+		SecurityServiceUtils.setSessionAttribute(SessionAttribute.SERVER_ID.toString(),in.selectedApp.serverId);
+	}
+}
+' #txt
 As0 f93 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f93 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>add to list (if in addMode)</name>
-        <nameStyle>27,7
+        <name>add to list (if in addMode or edited)</name>
+        <nameStyle>37,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -2289,11 +2315,12 @@ As0 f40 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData
 As0 f40 actionTable 'out=in;
 ' #txt
 As0 f40 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.Application;
-
 import ch.ivy.addon.portalkit.service.ApplicationService;
 
 ApplicationService applicationService = new ApplicationService();
-in.selectedApp = applicationService.save(in.selectedApp) as Application;' #txt
+in.selectedApp = applicationService.save(in.selectedApp) as Application;
+
+' #txt
 As0 f40 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
