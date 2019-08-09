@@ -209,6 +209,19 @@
 				</listitem>
 				<listitem>
 					<para>
+						Set <code>task</code> value so that the <code>taskName</code> is available to users where they can see the task name of request. It is mandatory.
+						<para>
+							<code>&lt;ui:param name="task" value="#{ivy.task}" /&gt;</code>
+						</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/LayoutTemplates/task-name-template.png" />
+							</imageobject>
+						</mediaobject>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
 						Set <code>caseId</code> value so that the <code>Case information tab</code> is available to users where they can see info of case, documents, related tasks and history. It is mandatory.
 						<para>
 							<code>&lt;ui:param name="caseId" value="#{ivy.case.id}" /&gt;</code>
