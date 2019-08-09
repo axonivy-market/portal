@@ -1,11 +1,6 @@
 package ch.ivy.gawfs;
 
-import gawfs.Data;
-import gawfs.ExternalDataProvider;
-import gawfs.TaskDef;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
@@ -36,6 +31,9 @@ import ch.ivyteam.ivy.process.call.SubProcessSearchFilter.Builder;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
+import gawfs.Data;
+import gawfs.ExternalDataProvider;
+import gawfs.TaskDef;
 
 public class ExpressProcessUtils {
 
@@ -109,39 +107,19 @@ public class ExpressProcessUtils {
    * @param controller
    */
   private void saveFormElements(String processId, int taskPosition, DragAndDropController controller) {
-    int indexInPanel = 0;
-    if (!Optional.ofNullable(controller.getSelectedFormelementsHeader()).orElse(new ArrayList<>()).isEmpty()) {
-      for (Formelement element : controller.getSelectedFormelementsHeader()) {
+    processAndSaveFormElements(controller.getSelectedFormelementsHeader(), taskPosition, processId, HEADER_PANEL);
+    processAndSaveFormElements(controller.getSelectedFormelementsLeftPanel(), taskPosition, processId, LEFT_PANEL);
+    processAndSaveFormElements(controller.getSelectedFormelementsRightPanel(), taskPosition, processId, RIGHT_PANEL);
+    processAndSaveFormElements(controller.getSelectedFormelementsFooter(), taskPosition, processId, FOOTER_PANEL);
+  }
+  
+  private void processAndSaveFormElements(List<Formelement> formElements, int taskPosition, String processId,  String location) {
+    if (CollectionUtils.isNotEmpty(formElements)){
+      int indexInPanel = 0;
+      for (Formelement element : formElements) {
         element.setTaskPosition(taskPosition);
         element.setIndexInPanel(indexInPanel++);
-        saveFormElement(element, HEADER_PANEL, processId);
-      }
-    }
-
-    if (!Optional.ofNullable(controller.getSelectedFormelementsLeftPanel()).orElse(new ArrayList<>()).isEmpty()) {
-      indexInPanel = 0;
-      for (Formelement element : controller.getSelectedFormelementsLeftPanel()) {
-        element.setTaskPosition(taskPosition);
-        element.setIndexInPanel(indexInPanel++);
-        saveFormElement(element, LEFT_PANEL, processId);
-      }
-    }
-
-    if (!Optional.ofNullable(controller.getSelectedFormelementsRightPanel()).orElse(new ArrayList<>()).isEmpty()) {
-      indexInPanel = 0;
-      for (Formelement element : controller.getSelectedFormelementsRightPanel()) {
-        element.setTaskPosition(taskPosition);
-        element.setIndexInPanel(indexInPanel++);
-        saveFormElement(element, RIGHT_PANEL, processId);
-      }
-    }
-
-    if (!Optional.ofNullable(controller.getSelectedFormelementsFooter()).orElse(new ArrayList<>()).isEmpty()) {
-      indexInPanel = 0;
-      for (Formelement element : controller.getSelectedFormelementsFooter()) {
-        element.setTaskPosition(taskPosition);
-        element.setIndexInPanel(indexInPanel++);
-        saveFormElement(element, FOOTER_PANEL, processId);
+        saveFormElement(element, location, processId);
       }
     }
   }
@@ -205,17 +183,12 @@ public class ExpressProcessUtils {
    * @return merged display name
    */
   public String generateResponsibleDisplayName(List<String> responsibleNames) {
-    List<String> responsibleDisplayNames = new ArrayList<>();
-    responsibleNames.forEach(responsibleName -> {
-      ISecurityMember responsible = Ivy.session().getSecurityContext().findSecurityMember(responsibleName);
-      if (!StringUtils.isBlank(responsible.getDisplayName())) {
-        responsibleDisplayNames.add(responsible.getDisplayName());
-      } else {
-        responsibleDisplayNames.add(responsible.getName());
-      }
-    });
-
-    return String.join(", ", responsibleDisplayNames);
+    return CollectionUtils.emptyIfNull(responsibleNames)
+      .stream()
+      .map(responsibleName -> Ivy.session().getSecurityContext().findSecurityMember(responsibleName))
+      .filter(securityMember -> securityMember != null)
+      .map(securityMember -> StringUtils.defaultIfBlank(securityMember.getDisplayName(), securityMember.getName()))
+      .collect(Collectors.joining(", "));
   }
 
   /**
@@ -225,17 +198,10 @@ public class ExpressProcessUtils {
    * @return security members
    */
   public List<String> getValidSecurityMembers(List<String> responsibleNames) {
-    List<String> securityMembers = responsibleNames;
-    for (String responsibleName : responsibleNames) {
-      ISecurityMember securityMember = Ivy.session().getSecurityContext().findSecurityMember(responsibleName);
-      if (securityMember == null) {
-        responsibleNames.remove(responsibleName);
-      } else if (securityMember.isUser()) {
-        IUser iuser = (IUser) securityMember;
-        iuser.getEMailAddress();
-      }
-    }
-    return securityMembers;
+    return CollectionUtils.emptyIfNull(responsibleNames)
+        .stream()
+        .filter(responsibleName -> Ivy.session().getSecurityContext().findSecurityMember(responsibleName) != null)
+        .collect(Collectors.toList());
   }
 
   /**
@@ -245,34 +211,31 @@ public class ExpressProcessUtils {
    * @return email addresses
    */
   public List<String> getRecipientEmailAddresses(List<String> responsibleNames) {
-    if (responsibleNames == null) {
-      return Collections.emptyList();
-    }
-    List<String> emailAddresses = new ArrayList<>();
-    for (String responsibleName : responsibleNames) {
-      ISecurityMember securityMember = Ivy.session().getSecurityContext().findSecurityMember(responsibleName);
-      if (securityMember != null) {
-        getEmailAddressFromSecurityMemeber(emailAddresses, securityMember);
-      }
-
-    }
-    return emailAddresses;
+    return CollectionUtils.emptyIfNull(responsibleNames)
+        .stream().map(responsibleName -> getEmailAddressFromSecurityMember(responsibleName))
+        .flatMap(List::stream)
+        .collect(Collectors.toList());
   }
-
-  private void getEmailAddressFromSecurityMemeber(List<String> emailAddresses, ISecurityMember securityMember) {
-    if (securityMember.isUser()) {
-      IUser iuser = (IUser) securityMember;
-      if (StringUtils.isNoneBlank(iuser.getEMailAddress())) {
-        emailAddresses.add(iuser.getEMailAddress());
-      }
-    } else {
-      IRole irole = (IRole) securityMember;
-      for (IUser userInRole : irole.getUsers()) {
-        if (StringUtils.isNoneEmpty(userInRole.getEMailAddress())) {
-          emailAddresses.add(userInRole.getEMailAddress());
+  
+  private List<String> getEmailAddressFromSecurityMember(String memberName) {
+    List<String> emailAddresses = new ArrayList<>(); 
+    ISecurityMember securityMember = Ivy.session().getSecurityContext().findSecurityMember(memberName);
+    if (securityMember != null) {
+      if (securityMember.isUser()) {
+        IUser iuser = (IUser) securityMember;
+        if (StringUtils.isNotBlank(iuser.getEMailAddress())) {
+          emailAddresses.add(iuser.getEMailAddress());
+        }
+      } else {
+        IRole irole = (IRole) securityMember;
+        for (IUser userInRole : irole.getUsers()) {
+          if (StringUtils.isNotBlank(userInRole.getEMailAddress())) {
+            emailAddresses.add(userInRole.getEMailAddress());
+          }
         }
       }
     }
+    return emailAddresses;
   }
 
   /**
@@ -490,7 +453,7 @@ public class ExpressProcessUtils {
    */
   public boolean isProcessNameDuplicated(String processName) {
     List<ExpressProcess> expressProcesses = ExpressServiceRegistry.getProcessService().findExpressProcessByName(processName);
-    return !CollectionUtils.isEmpty(expressProcesses);
+    return CollectionUtils.isNotEmpty(expressProcesses);
   }
 
   public List<ExternalDataProvider> findDataProviders() {

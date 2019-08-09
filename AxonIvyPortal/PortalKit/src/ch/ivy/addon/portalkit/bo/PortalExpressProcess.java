@@ -2,7 +2,7 @@ package ch.ivy.addon.portalkit.bo;
 
 import java.util.Optional;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
@@ -20,7 +20,7 @@ public class PortalExpressProcess implements Process {
   public PortalExpressProcess(ExpressProcess process) {
     this.process = process;
     IUser user = Ivy.session().getSecurityContext()
-        .findUser(process.getProcessOwner() != null ? process.getProcessOwner().substring(1) : StringUtils.EMPTY);
+        .findUser(StringUtils.isNotBlank(process.getProcessOwner()) ? process.getProcessOwner().substring(1) : StringUtils.EMPTY);
     this.processOwnerDisplayName = Optional.ofNullable(user).map(IUser::getDisplayName).orElse(StringUtils.EMPTY);
   }
 
@@ -31,9 +31,13 @@ public class PortalExpressProcess implements Process {
 
   @Override
   public String getDescription() {
-    return new StringBuilder().append(process.getProcessDescription()).append(". ")
-        .append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR")).append(": ")
-        .append(this.processOwnerDisplayName).toString();
+    return new StringBuilder()
+        .append(process.getProcessDescription())
+        .append(". ")
+        .append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR"))
+        .append(": ")
+        .append(this.processOwnerDisplayName)
+        .toString();
   }
 
   private String generateWorkflowStartLink() {
