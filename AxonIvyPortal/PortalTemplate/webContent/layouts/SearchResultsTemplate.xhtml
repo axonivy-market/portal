@@ -158,10 +158,8 @@
             return;
           }
 
-          var simpleLargeScreen = new SimpleLargeScreen();
-          var simpleMediumScreen = new SimpleMediumScreen();
-          var simpleSmallScreen = new SimpleSmallScreen();
-          var responsiveToolkit = ResponsiveToolkit(simpleLargeScreen, simpleMediumScreen, simpleSmallScreen);
+          var simpleScreen = new SimpleScreen();
+          var responsiveToolkit = ResponsiveToolkit(simpleScreen, simpleScreen, simpleScreen);
           Portal.init(responsiveToolkit, true);
         }
       </script>

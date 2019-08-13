@@ -2537,13 +2537,20 @@ a.compact-task-start-link:hover {
 /********************************** END TASK DETAIL **********************************/
 
 /********************************** CASE DETAIL **********************************/
+/* Small screen */
+@media (max-width: 1024px) {
+  .case-details {
+    padding: 0 !important;
+  }
+}
+
 .case-details-separator {
   margin-top: 0;
 }
 
 .case-details {
   display: block;
-  padding: 0 18px 18px;
+  padding: 0 15px 15px;
   justify-content: center;
   position: relative
 }
@@ -2822,8 +2829,16 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 /* Small screen */
 @media (max-width: 1024px) {
   .process-chain-container {
-    display: none;
+    display: none !important;
   }
+  .task-name-vertical-process-chain, .task-name-vertical-process-chain.vertical-chain-shape-line,
+  .task-template-button.vertical-process-chain.vertical-chain-shape-line, .task-template-button.vertical-process-chain {
+    margin-left: auto !important;
+  }
+  .task-template-content.vertical-process-chain, .task-template-content.vertical-process-chain.vertical-chain-shape-line {
+    width: 100% !important;
+  }
+
 }
 
 /* CIRCLE HONRIZONTAL***/
@@ -2893,6 +2908,8 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   width: 14rem;
   height: 120px;
   font-size: 1.2rem;
+  overflow: hidden;
+  word-break: break-all;
 }
 
 .circle-process-chain .circle-vertical-process-step:not(:last-child ) .circle-vertical-step-container span:before {
@@ -2988,17 +3005,30 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 /** LINE VERTICAL*/
 .vertical-process-chain-container {
 	display: inline-block;
-	width: 6%;
+	width: 14rem;
 	float: left;
+}
+
+.vertical-process-chain-container.vertical-chain-shape-line {
+  width: 7rem;
 }
 
 .task-template-content.vertical-process-chain {
 	display: inline-block;
-	width: 94%;
+	width: calc(100% - 14rem);
+}
+
+.task-template-content.vertical-process-chain.vertical-chain-shape-line {
+  width: calc(100% - 7rem);
 }
 
 .task-name-vertical-process-chain {
-	margin-left: 6%;
+	margin-left: 14rem;
+	margin-top: 1rem;
+}
+
+.task-name-vertical-process-chain.vertical-chain-shape-line {
+  margin-left: 7rem;
 }
 
 .line-process-chain.vertical-process-chain {
@@ -3043,6 +3073,14 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   display: block;
   overflow: hidden;
   padding-top: 49px;
+}
+
+.task-template-button.vertical-process-chain {
+  margin-left: 14rem;
+}
+
+.task-template-button.vertical-process-chain.vertical-chain-shape-line {
+  margin-left: 7rem;
 }
 /********************************** END PROCESS CHAIN **********************************/
 
@@ -4238,22 +4276,30 @@ margin-top
   background-color: transparent !important;
 } 
 
-.case-action-link {
-   color: #337ab7 !important;
-   font-size: 1.2rem;
+.task-action-link {
+  font-size: 1.2rem;
+  display: block;
+  float: left;
+  line-height: 1.8rem;
+  padding: 10px;
 }
 
-.case-action-link:hover {
+.task-action-link .task-action-link-label {
+  font-size: 1.4rem;
+  margin-left: 5px;
+}
+
+.task-action-link .task-action-link-icon {
+  font-size: 1.6rem;
+}
+
+.task-action-link:hover {
   color: #337ab7 !important;
 }
 
-.case-action-link.ui-state-disabled,
-.case-action-link.ui-state-disabled.ui-state-hover {
+.task-action-link.ui-state-disabled,
+.task-action-link.ui-state-disabled.ui-state-hover {
   color: rgba(0,0,0,0.2) !important;
-}
-
-.case-action-link .side-step-icon {
-  font-size:1.5em;
 }
 
 .side-steps-container {
@@ -5196,3 +5242,21 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 }
 
 /*  =================== END TASK DETAIL PAGE ========================= */
+
+/*  =================== TASK TEMPLATE PAGE ========================= */
+.task-template-content .task-actions-button .ui-button-text.ui-c {
+  color: #fffff;
+}
+.task-actions-menu .ui-slidemenu-backward.ui-widget-header {
+  background-color: white;
+  color: #212121;
+  border: none;
+  padding: 6px;
+  line-height: 2rem;
+  margin: auto;
+}
+
+.task-actions-menu .ui-slidemenu-backward.ui-widget-header .ui-icon.ui-icon-triangle-1-w {
+  color: #212121;
+}
+/*  =================== END TASK TEMPLATE PAGE ========================= */

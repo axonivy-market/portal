@@ -8,6 +8,7 @@
   <cc:attribute name="showItemDetailRelated" default="true" />
   <cc:attribute name="showItemDetailsHistories" default="true" />
   <cc:attribute name="showItemDetailDocuments" default="true" />
+  <cc:attribute name="showItemBackButton" default="true" />
   <cc:attribute name="descriptionComponentToUpdate" />
 </cc:interface>
 
@@ -31,7 +32,7 @@
           </p:inplace>
         </h:panelGroup>
 
-        <p:commandButton id="back-to-cases" onclick="backToPrevPage();" styleClass="case-details-back-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" 
+        <p:commandButton rendered="#{cc.attrs.showItemBackButton}" id="back-to-cases" onclick="backToPrevPage();" styleClass="case-details-back-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" 
           icon="fa fa-reply-all" iconPos="left" type="button" />
         <p:remoteCommand name="backToCasesList" actionListener="#{caseBean.backToCasesList()}" />
       </h:form>
