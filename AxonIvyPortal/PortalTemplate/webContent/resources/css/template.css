@@ -190,10 +190,10 @@
 }
 
 .task-template-tasks-command {
-	z-index: 2;
+	z-index: 1;
 	position: absolute;
-	top: 28px;
-	right: 20px;
+	top: 8px;
+	right: 10px;
 }
 
 .task-template-error-zone {
@@ -469,7 +469,8 @@
 .topbar-menu li .ui-commandlink {
 	font-size: 1.4rem;
 }
-/* END SERENITY TOP BAR *//* SERENITY MAIN LAYOUT */
+/* END SERENITY TOP BAR */
+/* SERENITY MAIN LAYOUT */
 .layout-wrapper .layout-main {
   height: 100%;
 }/* END SERENITY MAIN LAYOUT */
