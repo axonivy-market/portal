@@ -206,7 +206,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .widget-header-main {
-  flex: 1 0 50%;
   position: relative;
   height: 50px;
   border-bottom: 1px solid rgba(0,0,0,0.1);
@@ -214,16 +213,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .widget-header-content-filter {
   width: 100%;
-}
-
-.widget-header-main.mod-expanded-mode {
-  flex: 1 0 45%;
-}
-
-.widget-header-content-filter.mod-expanded-mode {
-  flex: 1 0 auto;
-  margin-left: 25px;
-  align-self: flex-end;
 }
 
 .widget-header-sub {
@@ -286,7 +275,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .widget-header-filter-input.ui-inputfield {
   background-color: transparent;
-  padding: 15px 25px 5px 0 !important;
+  padding: 15px 25px 14px 0 !important;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
@@ -304,7 +293,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .widget-header-filter-input.ui-inputfield.ui-state-hover, .widget-header-filter-input.ui-inputfield.ui-state-focus {
   background-color: transparent;
-  padding: 15px 25px 5px 0 !important;
+  padding: 15px 25px 14px 0 !important;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
@@ -1662,10 +1651,6 @@ a.case-details-document-add-link, a.task-details-document-add-link {
   display: inline-block;
 }
 
-.favorite-process-input-field {
-  width: 89% !important;
-}
-
 .process-widget .default-process-title {
   font-size: 1.4rem;
   display: inline-block;
@@ -1831,25 +1816,23 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 
 /* NEED TO BE REFACTORED */
 .new-process-dialog {
-  width: 600px !important;
+  min-width: 25% !important;
+  max-width: 90% !important;
 }
 
 .field-group {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   clear: both;
-  padding: 4px 0 4px 145px;
+  padding: 4px 0 4px 0;
   position: relative;
   margin: 1px 0;
   width: 100%;
 }
 
 .field-group label {
-  float: left;
-  margin: 10px 0 0 -145px;
+  margin: 10px 0 0 0;
   position: relative;
-  text-align: right;
-  width: 130px;
   word-wrap: break-word;
 }
 
@@ -1858,18 +1841,17 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 }
 
 .field-group input, .field-group .autocomplete-group {
-  width: 90%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .field-group .process-type label {
-	float: right;
 	text-align: left;
-	transform: translateY(35%);
 	line-height: 1;
 }
 
 .ui-selectoneradio.ui-widget.process-type {
-  padding: 6px;	
+  width: 100%;
 }
 
 .widget a.border-bottom-none {
@@ -3477,12 +3459,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 .select-awesome-icon-button:hover {
   color: rgba(0, 0, 0, 1) !important;
-}
-
-.new-process-dialog .awesome-icon-selection-panel {
-  display: flex;
-  padding-top: 10px;
-  align-items: center;
 }
 
 .ui-widget-content a {
