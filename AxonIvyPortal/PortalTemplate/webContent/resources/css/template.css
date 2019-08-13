@@ -23,6 +23,17 @@
     width: 300px !important;
 }
 
+.mobile-global-search-container {
+    padding: 0 .5em;
+    margin-top: 1em;
+}
+
+@media screen and (max-width: 40em) {
+  .global-search-input {
+    width: 95% !important;
+  }
+}
+
 .global-search {
     margin-right: 10px;
     position: relative;
