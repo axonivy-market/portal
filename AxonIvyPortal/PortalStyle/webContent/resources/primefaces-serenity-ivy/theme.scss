@@ -310,11 +310,6 @@ body .ui-panelgrid tbody tr.ui-widget-content {
 }
 
 /*Style For Buttons --------------------------------------------------------------------------------------*/
-.ui-widget.ui-button {
-    border-radius: $actionButtonBorderRadius !important;
-    background-color: $actionButtonColor;
-}
-
 .ui-widget.ui-button.ui-state-hover:not(.ui-spinner-button),
 .ui-widget.ui-buttonset .ui-state-hover,
 body .ui-buttonset .ui-state-active {
@@ -871,3 +866,25 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 		top: 0;
 	}
 }
+
+
+/* Task template page -------------------------------------------------------------------------------------------- */
+.task-template-content {
+	.task-template-tabview {
+		.ui-tabs-nav.ui-helper-reset.ui-widget-header.ui-corner-all {
+		  padding: 6px 0 0;
+		}
+		
+		.ui-tabs-navscroller .ui-tabs-navscroller-btn.ui-tabs-navscroller-btn-left.ui-corner-right {
+		  border-right: none;
+		}
+		.ui-tabs-navscroller .ui-tabs-navscroller-btn.ui-tabs-navscroller-btn-right.ui-corner-left {
+		  border-left: none;
+		}
+		.ui-tabs-navscroller {
+		  padding-left: 18px;
+		  padding-right: 18px;
+		}
+	}
+}
+

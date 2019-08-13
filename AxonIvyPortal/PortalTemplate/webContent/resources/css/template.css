@@ -160,11 +160,16 @@
 }
 
 /*Task template*/
+.task-template-container {
+  min-height: 400px;
+}
 .task-template-title {
-	font-family: "Roboto","Helvetica Neue",sans-serif;
 	font-style: normal;
 	font-weight: bold;
 	font-size: 1.6rem;
+	display: flex;
+	align-items: center;
+	margin-top: 5px;
 }
 
 .ui-outputlabel.task-template-title {
@@ -177,15 +182,16 @@
 }
 
 .task-template-content {
-	margin-top: 20px;
+	margin-top: 15px;
 	position: relative;
+	margin-bottom: 10px;
 }
 
 .task-template-tasks-command {
-	z-index: 1;
+	z-index: 2;
 	position: absolute;
-	top: 9px;
-	right: 15px;
+	top: 28px;
+	right: 20px;
 }
 
 .task-template-error-zone {
@@ -538,4 +544,9 @@
 
 .topbar-menu li .ui-commandlink {
 	font-size: 1.4rem;
+}
+
+/* SERENITY MAIN LAYOUT */
+.layout-wrapper .layout-main {
+  height: 100%;
 }

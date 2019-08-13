@@ -8,7 +8,7 @@
   <packaging>iar</packaging>
   <properties>
     <resources.directory.theme>${resources.directory}/primefaces-serenity-ivy/</resources.directory.theme>
-    <resources.directory.css>${resources.directory}/css</resources.directory.css>
+    <resources.directory.css>${resources.directory}/primefaces-serenity-ivy/</resources.directory.css>
     <libsass.version>0.2.10-libsass_3.5.3</libsass.version>
     <resources.directory>${project.basedir}/webContent/resources</resources.directory>
     <build.plugin.version>7.4.0-SNAPSHOT</build.plugin.version>
@@ -36,7 +36,7 @@
         </executions>
         <configuration>
           <inputPath>${resources.directory.theme}</inputPath>
-          <outputPath>${resources.directory.css}</outputPath>
+          <outputPath>${resources.directory.theme}</outputPath>
           <generateSourceMap>false</generateSourceMap>
           <generateSourceComments>false</generateSourceComments>
           <outputStyle>compressed</outputStyle>

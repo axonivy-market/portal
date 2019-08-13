@@ -1,223 +1,177 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
-  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="isWorkingOnATask" value="true" />
     <ui:param name="announcementInvisible" value="true" />
 
-    <ui:define name="head">
-      <h:outputScript name="case-widget.js" library="js" />
-    </ui:define>
-
     <ui:define name="simplePageContent">
+      <div class="task-template-container">
+        <c:set var="case" value="#{caseWidgetBean.findCase(caseId)}" scope="request" />
+        <ui:insert name="breadCrumb" />
 
-      <c:set var="case" value="#{caseWidgetBean.findCase(caseId)}" scope="request" />
-      <ui:insert name="breadCrumb" />
+        <div class="#{processChainDirection eq 'VERTICAL' ? '' : 'task-template-title-horizontal-container'}">
+          <h:panelGroup layout="block"
+            styleClass="task-template-title #{processChainDirection eq 'VERTICAL' ? 'task-name-vertical-process-chain' : ''} #{processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
+            <ui:insert name="taskName">
+              <span class=" fa fa-check-square-o task-template-title-icon" />
+              <h:outputText id="title" title="#{task.name}" value="#{task.name}" />
+            </ui:insert>
+          </h:panelGroup>
 
-      <div class="#{processChainDirection eq 'VERTICAL' ? '' : 'task-template-title-horizontal-container'}">
-        <h:panelGroup layout="block" styleClass="task-template-title #{processChainDirection eq 'VERTICAL' ? 'task-name-vertical-process-chain' : ''}">
-          <ui:insert name="taskName">
-            <span class=" fa fa-check-square-o task-template-title-icon"></span>
-            <h:outputText id="title" title="#{task.name}" value="#{task.name}" />
-          </ui:insert>
-        </h:panelGroup>
-
-        <h:panelGroup layout="block" styleClass="process-chain-container #{processChainDirection eq 'VERTICAL' ? 'vertical-process-chain-container' : ''}" >
-          <ui:insert name="process_chain_area">
-            <ic:ch.ivy.addon.portalkit.singleapp.process.ProcessChain id="process-chain-component" startMethod="start" componentId="process-chain-component-id"
-              shape="#{processChainShape eq 'LINE' ? 'LINE' : 'CIRCLE'}"
-              direction="#{processChainDirection eq 'VERTICAL' ? 'VERTICAL' : 'HORIZONTAL'}"
-              isShowAllSteps="false"
-              actualStepIndex="#{actualStepIndex}" steps="#{steps}"
-              currentIndex="#{taskTemplateBean.getIndexOfCurrentStage(caseId)}" stages="#{taskTemplateBean.getStagesBaseOnCurrentStage(caseId)}" />
-          </ui:insert>
-        </h:panelGroup>
-      </div>
-
-      <ui:insert name="errorsZone" />
-      <ui:insert name="infoZone" />
-      <h:panelGroup layout="block" styleClass="task-template-content #{processChainDirection eq 'VERTICAL' ? 'vertical-process-chain' : ''}">
-
-        <div class="task-template-tasks-command">
-          <p:commandLink id="show-adhoc-history" rendered="#{taskTemplateBean.hasAdhocTasks()}"
-            title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/adhocHistoryTooltip')}" styleClass="case-action-link"
-            oncomplete="PF('adhoc-task-history-dialog').show()" >
-            <i class="fa fa-history fa-2x" />
-          </p:commandLink>
-          <p:spacer width="7"/>
-          <p:commandLink id="start-adhoc" rendered="#{empty isShowStartAdhocButton? taskTemplateBean.hasExpressAdhocWF(): isShowStartAdhocButton}"
-            title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHocTooltip')}" styleClass="case-action-link"
-            oncomplete="PF('adhoc-task-reset-confirmation-dialog').show()" >
-            <i class="fa fa-random fa-2x" />
-          </p:commandLink>
-          <p:spacer width="7"/>
-          <c:set var="isSideStepDisabled" value="#{!taskTemplateBean.checkSideStepsEnabled(caseId)}" />
-          <p:commandLink id="side-steps-menu"
-            styleClass="case-action-link" global="false"
-            disabled="#{isSideStepDisabled}">
-            <span class="action-icon tmi-ellipsis-h side-step-icon" 
-              title="#{ivy.cms.co(isSideStepDisabled ? '/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps' : '/ch.ivy.addon.portalkit.ui.jsf/caseDetails/sideSteps' )}" />
-          </p:commandLink>
+          <h:panelGroup layout="block"
+            styleClass="process-chain-container #{processChainDirection eq 'VERTICAL' ? 'vertical-process-chain-container' : ''} #{processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
+            <ui:insert name="process_chain_area">
+              <ic:ch.ivy.addon.portalkit.singleapp.process.ProcessChain id="process-chain-component" startMethod="start" componentId="process-chain-component-id"
+                shape="#{processChainShape eq 'LINE' ? 'LINE' : 'CIRCLE'}" direction="#{processChainDirection eq 'VERTICAL' ? 'VERTICAL' : 'HORIZONTAL'}"
+                isShowAllSteps="false" actualStepIndex="#{actualStepIndex}" steps="#{steps}" currentIndex="#{taskTemplateBean.getIndexOfCurrentStage(caseId)}"
+                stages="#{taskTemplateBean.getStagesBaseOnCurrentStage(caseId)}" />
+            </ui:insert>
+          </h:panelGroup>
         </div>
 
-      <p:overlayPanel id="side-steps-panel" widgetVar="side-steps-panel" for="side-steps-menu" my="left top" at="left bottom"
-        appendToBody="true" styleClass="side-steps-container" dynamic="false" rendered="#{taskTemplateBean.checkSideStepsEnabled(caseId)}">
-        <ui:repeat var="sidestep" value="#{taskTemplateBean.sideStepList}">
-          <p:commandLink id="side-step-item" styleClass="side-step-item" value="#{sidestep.getName()}"
-            global="false"
-            actionListener="#{taskTemplateBean.setSelectedSideStep(sidestep)}"
-            oncomplete="PF('sidestep-task-reset-confirmation-dialog').show()" />
-        </ui:repeat>
-      </p:overlayPanel>
+        <ui:insert name="errorsZone" />
+        <ui:insert name="infoZone" />
+        <h:panelGroup layout="block"
+          styleClass="task-template-content #{processChainDirection eq 'VERTICAL' ? 'vertical-process-chain' : ''} #{processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
 
-        <p:tabView id="task-template-tabview" prependId="false" onTabShow="onTabShow()">
-          <ui:insert name="dynamicTabs">
-            <!-- You can add one or many tabs here -->
-          </ui:insert>
+          <div class="task-template-tasks-command">
+            <p:commandButton id="task-actions" type="button" title="Task actions" icon="ui-icon-menu" styleClass="task-actions-button" />
+          </div>
+          <h:form>
+            <p:slideMenu overlay="true" trigger="task-actions" my="left top" at="left bottom" styleClass="action-steps-panel task-actions-menu">
+              <p:menuitem id="show-adhoc-history" rendered="#{taskTemplateBean.hasAdhocTasks()}" icon="fa fa-history fa-2x"
+                oncomplete="PF('adhoc-task-history-dialog').show()">
+              </p:menuitem>
+              <p:menuitem id="start-adhoc" rendered="#{empty isShowStartAdhocButton? taskTemplateBean.hasExpressAdhocWF(): isShowStartAdhocButton}" value="Start Adhoc"
+                title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHocTooltip')}" icon="fa fa-random fa-2x"
+                oncomplete="PF('adhoc-task-reset-confirmation-dialog').show()">
+              </p:menuitem>
+              <p:separator />
+              <p:submenu label="Side steps" icon="action-icon tmi-ellipsis-h">
+                <p:menuitem id="side-steps-menu" styleClass="task-action-link" global="false" rendered="#{!taskTemplateBean.checkSideStepsEnabled(caseId)}">
+                  <c:set var="isSideStepDisabled" value="#{!taskTemplateBean.checkSideStepsEnabled(caseId)}" />
+                  <h:outputText
+                    value="#{ivy.cms.co(isSideStepDisabled ? '/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps' : '/ch.ivy.addon.portalkit.ui.jsf/caseDetails/sideSteps' )}" />
+                </p:menuitem>
+                <c:forEach var="sidestep" items="#{taskTemplateBean.sideStepList}">
+                  <p:menuitem id="side-step-item" styleClass="side-step-item" value="#{sidestep.getName()}" global="false"
+                    actionListener="#{taskTemplateBean.setSelectedSideStep(sidestep)}" oncomplete="PF('sidestep-task-reset-confirmation-dialog').show()" />
+                </c:forEach>
+              </p:submenu>
+            </p:slideMenu>
+          </h:form>
 
-          <p:tab id="request-tab"
-            title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/requestTabTitle')}"
-            rendered="#{showTaskFormTab == null ? true : showTaskFormTab}">
-            <ui:insert name="taskForm">
-              <!--                Task Form -->
+          <p:tabView id="task-template-tabview" styleClass="task-template-tabview" prependId="false" scrollable="true">
+            <ui:insert name="dynamicTabs">
+              <!-- You can add one or many tabs here -->
             </ui:insert>
-          </p:tab>
-          <p:tab id="status-tab"
-            title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/statusTabTitle')}"
-            rendered="#{showCaseStatusInfoTab == null ? true : showCaseStatusInfoTab}">
-            <ui:insert name="caseStatusTab">
-              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/noCaseId')}" rendered="#{caseWidgetBean.isHiddenCase(case)}" />
-              <h:panelGroup id="case-details-panel" layout="block" rendered="#{!caseWidgetBean.isHiddenCase(case)}"
-                styleClass="js-case-default-widget-container case-default-widget-container js-simple-container js-for-search-result case-details">
-                <!-- CASE DETAIS -->
-                <div class="ui-g">
-                  <div class="ui-g-12 u-padding-0">
-                    <ic:ch.ivy.addon.portalkit.component.CaseItemDetails case="#{case}" />
+
+            <p:tab id="request-tab" title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/requestTabTitle')}"
+              rendered="#{showTaskFormTab == null ? true : showTaskFormTab}">
+              <ui:insert name="taskForm">
+                <!-- Task Form -->
+              </ui:insert>
+            </p:tab>
+            <p:tab id="status-tab" title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/statusTabTitle')}"
+              rendered="#{showCaseStatusInfoTab == null ? true : showCaseStatusInfoTab}">
+              <ui:insert name="caseStatusTab">
+                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/noCaseId')}" rendered="#{caseWidgetBean.isHiddenCase(case)}" />
+                <h:panelGroup id="case-details-panel" layout="block" rendered="#{!caseWidgetBean.isHiddenCase(case)}"
+                  styleClass="js-case-default-widget-container case-default-widget-container js-simple-container js-for-search-result case-details">
+                  <!-- CASE DETAIS -->
+                  <div class="ui-g">
+                    <div class="ui-g-12 u-padding-0">
+                      <ic:ch.ivy.addon.portalkit.component.CaseItemDetails case="#{case}" showItemBackButton="false" />
+                    </div>
                   </div>
-                </div>
-              </h:panelGroup>
+                </h:panelGroup>
+              </ui:insert>
+            </p:tab>
+          </p:tabView>
+        </h:panelGroup>
+
+        <div
+          class="task-template-button #{processChainDirection eq 'VERTICAL' ? 'vertical-process-chain' : ''} #{processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
+          <div class="Fleft">
+            <ui:insert name="leftButtons">
+              <!-- Left Buttons -->
             </ui:insert>
-          </p:tab>
-        </p:tabView>
-      </h:panelGroup>
+          </div>
 
-      <div>
-        <div class="Fleft">
-          <ui:insert name="leftButtons">
-            <!-- Left Buttons -->
-          </ui:insert>
+          <div class="Fright">
+            <ui:insert name="rightButtons">
+              <!-- Right Buttons -->
+            </ui:insert>
+          </div>
         </div>
 
-        <div class="Fright">
-          <ui:insert name="rightButtons">
-            <!-- Right Buttons -->
-          </ui:insert>
-        </div>
+        <p:dialog id="adhoc-task-reset-confirmation-dialog" resizable="false" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
+          widgetVar="adhoc-task-reset-confirmation-dialog" appendTo="@(body)" modal="true" dynamic="true">
+          <h:outputText escape="false" styleClass="ui-confirm-dialog-message" id="adhoc-creation-message" value="#{taskTemplateBean.getAdhocCreationMessage()}" />
+          <f:facet name="footer">
+            <h:form prependId="false">
+              <h:panelGroup styleClass="ui-dialog-buttonpane">
+                <p:commandButton actionListener="#{taskTemplateBean.startAdhoc()}" process="@this" update="@none" id="start-adhoc-ok-button"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
+                <p:commandButton onclick="PF('adhoc-task-reset-confirmation-dialog').hide()" id="start-adhoc-cancel-button"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button" styleClass="portal-cancel-button" />
+              </h:panelGroup>
+            </h:form>
+          </f:facet>
+        </p:dialog>
+
+        <p:dialog id="sidestep-task-reset-confirmation-dialog" resizable="false" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
+          widgetVar="sidestep-task-reset-confirmation-dialog" appendTo="@(body)" modal="true" dynamic="true">
+          <h:outputText escape="false" styleClass="ui-confirm-dialog-message" value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/goToSidestepWarning')}" />
+          <f:facet name="footer">
+            <h:form prependId="false">
+              <h:panelGroup styleClass="ui-dialog-buttonpane">
+                <p:commandButton actionListener="#{taskTemplateBean.startSideStep()}" process="@this" update="@none"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
+                <p:commandButton onclick="PF('sidestep-task-reset-confirmation-dialog').hide()" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                  type="button" styleClass="portal-cancel-button" />
+              </h:panelGroup>
+            </h:form>
+          </f:facet>
+        </p:dialog>
+
+        <p:dialog id="adhoc-task-history-dialog" resizable="false" visible="#{taskTemplateBean.isFirstTimeOpenOriginalAdhocTask}" styleClass="adhoc-task-history-dialog"
+          header="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/resultFromAdhocProcess')}" widgetVar="adhoc-task-history-dialog" appendTo="@(body)"
+          modal="true" dynamic="true">
+          <p:ajax event="close" listener="#{taskTemplateBean.onCloseAdhocTaskHistoryDialog()}" />
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/noteOfResultFromAdhocProcess')}" />
+          <br />
+          <p:spacer height="20"></p:spacer>
+          <p:dataTable id="adhoc-task-history-table" value="#{taskTemplateBean.allAdhocHistories}" var="history">
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/timestamp')}">
+              <h:outputText value="#{history.timestamp}">
+                <f:convertDateTime pattern="#{ivy.cms.co('/patterns/dateTimePattern')}" />
+              </h:outputText>
+            </p:column>
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/taskName')}">
+              <h:outputText value="#{history.taskName}" />
+            </p:column>
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/comment')}">
+              <h:outputText value="#{history.content}" />
+            </p:column>
+          </p:dataTable>
+          <f:facet name="footer">
+            <h:form prependId="false">
+              <h:panelGroup styleClass="ui-dialog-buttonpane">
+                <p:commandButton onclick="PF('adhoc-task-history-dialog').hide()" id="close-adhoc-dialog-button"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button" styleClass="portal-cancel-button" />
+              </h:panelGroup>
+            </h:form>
+          </f:facet>
+        </p:dialog>
+
+        <ic:ch.ivy.addon.portalkit.feature.WarnOnClosingBrowserTab
+          confirmMessage="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/browserTabClosingWarning')}" />
       </div>
-
-    <p:dialog id="adhoc-task-reset-confirmation-dialog" resizable="false"
-      header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
-      widgetVar="adhoc-task-reset-confirmation-dialog" appendTo="@(body)"
-      modal="true" dynamic="true">
-      <h:outputText escape="false" styleClass="ui-confirm-dialog-message" id="adhoc-creation-message"
-        value="#{taskTemplateBean.getAdhocCreationMessage()}" />
-      <f:facet name="footer">
-        <h:form prependId="false">
-          <h:panelGroup styleClass="ui-dialog-buttonpane">
-            <p:commandButton actionListener="#{taskTemplateBean.startAdhoc()}" process="@this" update="@none" id="start-adhoc-ok-button"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
-            <p:commandButton onclick="PF('adhoc-task-reset-confirmation-dialog').hide()" id="start-adhoc-cancel-button"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button"
-              styleClass="portal-cancel-button" />
-          </h:panelGroup>
-        </h:form>
-      </f:facet>
-    </p:dialog>
-
-    <p:dialog id="sidestep-task-reset-confirmation-dialog" resizable="false"
-      header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
-      widgetVar="sidestep-task-reset-confirmation-dialog" appendTo="@(body)"
-      modal="true" dynamic="true">
-      <h:outputText escape="false" styleClass="ui-confirm-dialog-message"
-        value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/goToSidestepWarning')}" />
-      <f:facet name="footer">
-        <h:form prependId="false">
-          <h:panelGroup styleClass="ui-dialog-buttonpane">
-            <p:commandButton actionListener="#{taskTemplateBean.startSideStep()}" process="@this" update="@none"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
-            <p:commandButton onclick="PF('sidestep-task-reset-confirmation-dialog').hide()"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button"
-              styleClass="portal-cancel-button" />
-          </h:panelGroup>
-        </h:form>
-      </f:facet>
-    </p:dialog>
-    
-     <p:dialog id="adhoc-task-history-dialog" resizable="false" visible="#{taskTemplateBean.isFirstTimeOpenOriginalAdhocTask}"
-      styleClass="adhoc-task-history-dialog"
-      header="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/resultFromAdhocProcess')}"
-      widgetVar="adhoc-task-history-dialog" appendTo="@(body)"
-      modal="true" dynamic="true">
-      <p:ajax event="close" listener="#{taskTemplateBean.onCloseAdhocTaskHistoryDialog()}" />
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/noteOfResultFromAdhocProcess')}" />
-      <br/>
-      <p:spacer height="20"></p:spacer>
-      <p:dataTable id="adhoc-task-history-table" value="#{taskTemplateBean.allAdhocHistories}" var="history">
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/timestamp')}">
-          <h:outputText value="#{history.timestamp}" >
-            <f:convertDateTime pattern="#{ivy.cms.co('/patterns/dateTimePattern')}" />
-          </h:outputText>
-        </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/taskName')}">
-          <h:outputText value="#{history.taskName}" />
-        </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/comment')}">
-          <h:outputText value="#{history.content}" />
-        </p:column>
-     </p:dataTable>
-      <f:facet name="footer">
-        <h:form prependId="false">
-          <h:panelGroup styleClass="ui-dialog-buttonpane">
-            <p:commandButton onclick="PF('adhoc-task-history-dialog').hide()" id="close-adhoc-dialog-button"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button"
-              styleClass="portal-cancel-button" />
-          </h:panelGroup>
-        </h:form>
-      </f:facet>
-    </p:dialog>
-
-      <ic:ch.ivy.addon.portalkit.feature.WarnOnClosingBrowserTab
-        confirmMessage="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/browserTabClosingWarning')}" />
-
-      <script type="text/javascript">
-        function onTabShow() {
-          var caseWidget = new CaseWidget("main-area-panel");
-          var $selectedTab = $("#task-template-tabview").find(".ui-tabs-panel").filter(function() {return $(this).css('display') == 'block'});
-          var isSelectCaseDetailsTab = $selectedTab.find('.js-case-default-widget-container').length != 0;
-
-          if (isSelectCaseDetailsTab) {
-            var caseListLargeScreen = new CaseListLargeScreenHandler();
-            var caseListMediumScreen = new CaseListMediumScreenHandler();
-            var caseListSmallScreen = new CaseListSmallScreenHandler();
-            var responsiveToolkit = ResponsiveToolkit(caseListLargeScreen, caseListMediumScreen, caseListSmallScreen);
-
-            Portal.init(responsiveToolkit, true);
-            caseWidget.setupHeader();
-            return;
-          }
-
-          var simpleLargeScreen = new SimpleLargeScreen();
-          var simpleMediumScreen = new SimpleMediumScreen();
-          var simpleSmallScreen = new SimpleSmallScreen();
-          var responsiveToolkit = ResponsiveToolkit(simpleLargeScreen, simpleMediumScreen, simpleSmallScreen);
-          Portal.init(responsiveToolkit, true);
-        }
-
-        </script>
     </ui:define>
   </ui:composition>
 </h:body>
