@@ -7,14 +7,18 @@
   xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <ui:composition>
-  <div jsf:rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled and compactProcessWidgetBean.displayShowAllProcessesLink}" class="favorite-process-title">
+  <div jsf:rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled and compactProcessWidgetBean.displayShowAllProcessesLink}" class="favorite-process-title ui-g-12">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/favoriteProcesses')}" />
+    <p:commandLink id="show-user-processes-link" styleClass="name-sort-command Fright ui-md-hidden"
+            value="Toggle" global="false" onclick="toggleShowUserProcessList();" />
   </div>
 
+
+<h:panelGroup id="user-process-container" layout="block" styleClass="ui-g-12">
   <ui:include src="UserProcessAction.xhtml" />
 
   <h:panelGroup id="process-list" layout="block" styleClass="widget-content">
-    <h:panelGroup styleClass="process-empty-container"
+    <h:panelGroup styleClass="process-empty-container" layout="block"
       rendered="#{empty compactProcessWidgetBean.userProcesses and compactProcessWidgetBean.isUserFavoritesEnabled and compactProcessWidgetBean.displayShowAllProcessesLink}">
       <p>
         <h:outputText id="empty-process-message"
@@ -64,7 +68,13 @@
           update="@form #{cc.clientId}:process-list #{cc.clientId}:header #{cc.clientId}:process-widget-action"
           styleClass="u-display-none" />
       </h:form>
+      <script>
+        function toggleShowUserProcessList() {
+          $('[id $= "user-process-container"]').toggleClass("ui-sm-hidden");
+        }
+      </script>
     </ui:fragment>
+    </h:panelGroup>
   </h:panelGroup>
 
   <p:dialog id="add-new-process-dialog" styleClass="new-process-dialog" closeOnEscape="true"
