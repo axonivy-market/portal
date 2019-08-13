@@ -285,25 +285,6 @@
     margin-top: 5px;
 }
 
-/* Responsive design */
-.dashboard-container, .simple-container, .task-list-container {
-	padding: 0;
-	margin-right: auto;
-	margin-left: auto;
-	margin-top: 0;
-	margin-bottom: 10px;
-}
-
-.dashboard-container:before, .dashboard-container:after, .simple-container:before, .simple-container:after,
-	.task-list-container:before, .task-list-container:after {
-	display: table;
-	content: " ";
-}
-
-.dashboard-container:after, .simple-container:after, .task-list-container:after {
-	clear: both;
-}
-
 /* Small screen for case widget */
 @media ( max-width : 900px) {
     .hidden-mobile {
@@ -313,9 +294,6 @@
 
 /* Small screen */
 @media ( min-width : 992px) and ( max-width : 1365px) {
-	.hidden-sm {
-		display: none !important;
-	}
 	
 	#global-search-data {
 		width: 200px;
@@ -324,18 +302,8 @@
 
 /* Medium screen */
 @media ( min-width : 1366px) and (max-width: 1919px) {
-	.hidden-md {
-		display: none !important;
-	}
 	.widget-header-filter-input.ui-inputfield {
 		width: 168px !important;
-	}
-}
-
-/* Large screen */
-@media ( min-width : 1920px) {
-	.hidden-lg {
-		display: none !important;
 	}
 }
 

@@ -249,7 +249,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .widget-sort-menu {
   color: rgba(0,0,0,0.4);
-  line-height: 45px;
 }
 
 .widget-sort-menu.full-mode {
@@ -528,6 +527,19 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 /********************************** END FILTER WIDGET **********************************/
 
 /********************************** START ADVANCED FILTER WIDGET **********************************/
+.compact-task-widget .task-widget-header {
+  margin-top: 1px;
+}
+
+.compact-task-widget .task-widget-sub-header {
+  width: 100%;
+}
+
+.compact-task-widget .filter-widget {
+  margin-top: -20px;
+  width: 99%;
+}
+
 .task-widget .advanced-filter-container,
 .case-widget-container .advanced-filter-container {
   display: flex;
