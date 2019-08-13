@@ -42,30 +42,29 @@
             <p:commandButton id="task-actions" type="button" title="Task actions" icon="ui-icon-menu" styleClass="task-actions-button" />
           </div>
           <h:form>
-            <p:slideMenu overlay="true" trigger="task-actions" my="left top" at="left bottom" styleClass="action-steps-panel task-actions-menu">
+            <p:slideMenu overlay="true" trigger="task-actions" my="right top" at="right bottom" styleClass="action-steps-panel task-actions-menu" backLabel="Back">
               <p:menuitem id="show-adhoc-history" rendered="#{taskTemplateBean.hasAdhocTasks()}" icon="fa fa-history fa-2x"
-                oncomplete="PF('adhoc-task-history-dialog').show()">
+                oncomplete="PF('adhoc-task-history-dialog').show()" value="Adhoc History">
               </p:menuitem>
               <p:menuitem id="start-adhoc" rendered="#{empty isShowStartAdhocButton? taskTemplateBean.hasExpressAdhocWF(): isShowStartAdhocButton}" value="Start Adhoc"
                 title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHocTooltip')}" icon="fa fa-random fa-2x"
                 oncomplete="PF('adhoc-task-reset-confirmation-dialog').show()">
               </p:menuitem>
-              <p:separator />
-              <p:submenu label="Side steps" icon="action-icon tmi-ellipsis-h">
-                <p:menuitem id="side-steps-menu" styleClass="task-action-link" global="false" rendered="#{!taskTemplateBean.checkSideStepsEnabled(caseId)}">
-                  <c:set var="isSideStepDisabled" value="#{!taskTemplateBean.checkSideStepsEnabled(caseId)}" />
-                  <h:outputText
-                    value="#{ivy.cms.co(isSideStepDisabled ? '/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps' : '/ch.ivy.addon.portalkit.ui.jsf/caseDetails/sideSteps' )}" />
+              <p:separator rendered="#{taskTemplateBean.hasAdhocTasks() or empty isShowStartAdhocButton? taskTemplateBean.hasExpressAdhocWF(): isShowStartAdhocButton}" />
+              <p:submenu label="Side steps" icon="action-icon tmi-ellipsis-h" rendered="#{!taskTemplateBean.checkSideStepsEnabled(caseId)}">
+                <c:set var="isSideStepDisabled" value="#{!taskTemplateBean.checkSideStepsEnabled(caseId)}" />
+                <p:menuitem id="side-steps-menu" styleClass="empty-side-steps" global="false" rendered="#{empty taskTemplateBean.sideStepList}"
+                  value="#{ivy.cms.co(isSideStepDisabled ? '/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps' : '/ch.ivy.addon.portalkit.ui.jsf/caseDetails/sideSteps' )}">
                 </p:menuitem>
-                <c:forEach var="sidestep" items="#{taskTemplateBean.sideStepList}">
-                  <p:menuitem id="side-step-item" styleClass="side-step-item" value="#{sidestep.getName()}" global="false"
+                <c:forEach var="sidestep" items="#{taskTemplateBean.sideStepList}" varStatus="taskStatus">
+                  <p:menuitem id="side-step-item-#{taskStatus.index}" styleClass="side-step-item" value="#{sidestep.getName()}" global="false"
                     actionListener="#{taskTemplateBean.setSelectedSideStep(sidestep)}" oncomplete="PF('sidestep-task-reset-confirmation-dialog').show()" />
                 </c:forEach>
               </p:submenu>
             </p:slideMenu>
           </h:form>
 
-          <p:tabView id="task-template-tabview" styleClass="task-template-tabview" prependId="false" scrollable="true">
+          <p:tabView id="task-template-tabview" styleClass="task-template-tabview" prependId="false">
             <ui:insert name="dynamicTabs">
               <!-- You can add one or many tabs here -->
             </ui:insert>
