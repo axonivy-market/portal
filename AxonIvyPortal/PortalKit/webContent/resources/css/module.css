@@ -213,7 +213,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .widget-header-content-filter {
-  flex: 1 0 100%;
+  width: 100%;
 }
 
 .widget-header-main.mod-expanded-mode {
@@ -259,7 +259,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .widget-sort-menu {
   color: rgba(0,0,0,0.4);
-  flex: 1 0 100%;
   line-height: 45px;
 }
 
@@ -293,13 +292,13 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   font-weight: 400;
   color: black;
   font-size: 1.2rem;
-  width: 185px;
+  width: 100%;
 }
 
 /* Small screen */
-@media (max-width: 1365px) {
+@media screen and (max-width: 40em) {
   .widget-header-filter-input.ui-inputfield {
-    width: 150px;
+    width: 100%;
   }
 }
 
@@ -1669,8 +1668,8 @@ a.case-details-document-add-link, a.task-details-document-add-link {
 
 .process-widget .default-process-title {
   font-size: 1.4rem;
-  margin-right: 20px;
   display: inline-block;
+  width: 100%;
 }
 
 .process-widget .user-default-process-list {
@@ -3728,10 +3727,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   justify-content: flex-start;
 }
 
-.statistic-dashboard-container-width {
-  width: 78rem;
-}
-
 .elapsed-time-detail-container-width {
   width: 100% !important;
 }
@@ -4984,10 +4979,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 	display: none;
 }
 /* =================== RESPONSIVE GRID ====================== */
-.ui-g > div {
-	display: grid;
-	align-items: center;
-}
 
 _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlink {
 	display: inline-block;
