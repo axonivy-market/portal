@@ -12,26 +12,28 @@
 }
 
 .global-search-icon {
-	position: absolute;
+    position: absolute;
     top: 25%;
     right: 5px;
     font-size: 1.4rem;
 }
 
-.global-search-input {
-	font-size: 1.4rem !important;
-    width: 300px !important;
+.mobile-global-search-container .global-search-icon {
+    right: 10px;
 }
 
 .mobile-global-search-container {
-    padding: 0 .5em;
-    margin-top: 1em;
+    padding: 0 3px 0 5px;
+    margin-top: 10px;
 }
 
-@media screen and (max-width: 40em) {
-  .global-search-input {
+.global-search-input {
+    font-size: 1.4rem !important;
+    width: 300px !important;
+}
+
+.mobile-global-search-container .global-search-input {
     width: 95% !important;
-  }
 }
 
 .global-search {
@@ -302,20 +304,6 @@
 	clear: both;
 }
 
-.layout-col {
-	position: relative;
-	float: left;
-	margin-left: 45px;
-}
-
-.layout-col:first-child {
-	margin-left: 0;
-}
-
-.dashboard-main-content-1st-col, .dashboard-main-content-3rd-col {
-	width: 270px;
-}
-
 /* Small screen for case widget */
 @media ( max-width : 900px) {
     .hidden-mobile {
@@ -325,15 +313,6 @@
 
 /* Small screen */
 @media ( min-width : 992px) and ( max-width : 1365px) {
-	.dashboard-container, .simple-container {
-		padding: 0;
-	}
-	.dashboard-main-content-2nd-col {
-		width: 520px;
-	}
-	.task-list-container {
-		max-width: 1246px;
-	}
 	.hidden-sm {
 		display: none !important;
 	}
@@ -345,17 +324,6 @@
 
 /* Medium screen */
 @media ( min-width : 1366px) and (max-width: 1919px) {
-	.dashboard-container, .simple-container, .task-list-container, .case-main-container {
-		width: initial;
-		width: auto;
-		max-width: none;
-	}
-	.dashboard-main-content-1st-col{
-		width: 25%;
-	}
-	.dashboard-main-content-2nd-col {
-		width: 43%;
-	}
 	.hidden-md {
 		display: none !important;
 	}
@@ -366,18 +334,6 @@
 
 /* Large screen */
 @media ( min-width : 1920px) {
-	.simple-container, .js-task-list-container {
-		margin-right: 15px;
-	}
-	.dashboard-main-content-1st-col, .dashboard-main-content-3rd-col {
-		width: 27%;
-	}
-	.dashboard-main-content-2nd-col {
-		width: 40%;
-	}
-	.dashboard-main-content-3rd-col {
-		display: block;
-	}
 	.hidden-lg {
 		display: none !important;
 	}
@@ -545,8 +501,7 @@
 .topbar-menu li .ui-commandlink {
 	font-size: 1.4rem;
 }
-
-/* SERENITY MAIN LAYOUT */
+/* END SERENITY TOP BAR *//* SERENITY MAIN LAYOUT */
 .layout-wrapper .layout-main {
   height: 100%;
-}
+}/* END SERENITY MAIN LAYOUT */
