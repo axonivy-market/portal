@@ -31,11 +31,11 @@
   <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
   <h:outputScript name="task-widget.js" library="js" />
 
-  <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} js-task-widget">
+  <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} js-task-widget ui-g">
     <h:panelGroup rendered="#{!cc.attrs.hideWidgetHeader and !isMobile}">
-      <h:panelGroup id="task-widget-header" styleClass="widget-header task-widget-header js-task-widget-header"
+      <h:panelGroup id="task-widget-header" styleClass="widget-header task-widget-header js-task-widget-header ui-g-12 ui-g"
         layout="block">
-        <h:panelGroup styleClass="widget-header-main #{data.dataModel.compactMode ? '' : 'mod-expanded-mode'}">
+        <h:panelGroup styleClass="widget-header-main ui-g-8 ui-md-8 ui-sm-12" layout="block">
           <h:panelGroup id="task-widget-title" styleClass="widget-header-main-title task-widget-header-content-title">
             <cc:renderFacet name="title" />
             <h:outputText rendered="#{empty cc.facets.title}" value="#{cc.attrs.title}" /> (#{data.dataModel.rowCount})
@@ -46,8 +46,8 @@
             <cc:renderFacet name="headerToolbar" />
           </h:panelGroup>
         </h:panelGroup>
-        <h:panelGroup rendered="#{!cc.attrs.hideTaskFilter and !data.dataModel.compactMode}"
-          styleClass="widget-header-content-filter mod-expanded-mode" id="expanded-mode-filter-view">
+        <h:panelGroup rendered="#{!cc.attrs.hideTaskFilter and !data.dataModel.compactMode}" layout="block"
+          styleClass="widget-header-content-filter ui-g-4 ui-md-4 ui-sm-12" id="expanded-mode-filter-view">
           <h:form id="expanded-mode-filter-form" onsubmit="return false;">
             <ic:ch.ivy.addon.portalkit.component.Filter id="expanded-mode-filter-container" icon="fa fa-filter"
               updateComponent="#{cc.clientId}:filter-selection-container #{p:component('task-view-container')}"
@@ -59,7 +59,7 @@
         </h:panelGroup>
       </h:panelGroup>
 
-      <h:panelGroup id="filter-container" styleClass="filter-container js-filter-container"
+      <h:panelGroup id="filter-container" styleClass="filter-container js-filter-container ui-g-12"
         rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter and !isMobile}">
         <h:panelGroup id="filter-selection-container" styleClass="filter-selection-container-group"
           rendered="#{(not empty data.taskPrivateFilters or not empty data.taskPublicFilters) and not data.dataModel.compactMode}"> 
@@ -181,9 +181,9 @@
       </h:panelGroup>
     </h:panelGroup>
 
-    <h:panelGroup id="task-widget-sub-header" layout="block" styleClass="js-task-widget-sub-header" rendered="#{!isMobile}">
-      <h:panelGroup id="task-widget-sort-menu" 
-        styleClass="widget-sort-menu js-task-widget-sort-menu #{!data.dataModel.compactMode ? 'full-mode' : ''} #{cc.attrs.listHeaderStyleClass}">
+    <h:panelGroup id="task-widget-sub-header" layout="block" styleClass="js-task-widget-sub-header ui-g-12 ui-g" rendered="#{!isMobile}">
+      <h:panelGroup id="task-widget-sort-menu" layout="block"
+        styleClass="widget-sort-menu js-task-widget-sort-menu #{!data.dataModel.compactMode ? 'full-mode' : 'ui-sm-hidden ui-g-3'} #{cc.attrs.listHeaderStyleClass}">
         <h:panelGroup rendered="#{data.dataModel.compactMode}">
           <ui:include src="CompactSortMenu.xhtml" />
         </h:panelGroup>
@@ -197,9 +197,9 @@
         </h:panelGroup>       
       </h:panelGroup>
 
-      <h:panelGroup id="filter-view">
+      <h:panelGroup id="filter-view" layout="block" styleClass="ui-g-9 ui-sm-12">
         <h:form id="filter-form" onsubmit="return false;"
-          styleClass="widget-header-content-filter Fright"
+          styleClass="widget-header-content-filter Fright ui-sm-12"
           rendered="#{!cc.attrs.hideTaskFilter and data.dataModel.compactMode}">
           <ic:ch.ivy.addon.portalkit.component.Filter id="filter-container" icon="fa fa-filter"
             updateComponent="#{p:component('task-view-container')}"
@@ -228,7 +228,7 @@
       </h:form>
     </h:panelGrid>
 
-    <h:panelGroup layout="block" id="task-view">
+    <h:panelGroup layout="block" id="task-view" styleClass="ui-g-12">
       <h:panelGroup id="task-view-container" layout="block" styleClass="task-view-container">
         <p:dataScroller id="task-list-scroller" 
           value="#{data.dataModel}" 

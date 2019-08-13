@@ -15,7 +15,7 @@
 
 
       <h:panelGroup layout="block" styleClass="ui-g #{dataModel.compactMode ? 'dashboard-container' : 'task-list-container js-task-list-container'}">
-        <div class="ui-g-3 ui-lg-3 ui-md-3 ui-sm-12">
+        <div class="ui-g-3 ui-lg-3 ui-md-4 ui-sm-12">
           <ui:insert name="processWidget">
             <h:panelGroup layout="block"
               rendered="#{displayProcessWidget}">
@@ -31,7 +31,7 @@
             </h:panelGroup>
           </ui:insert>
         </div>
-        <div class="ui-g-6 ui-lg-6 ui-md-6 ui-sm-12">
+        <div class="ui-g-6 ui-lg-6 ui-md-8 ui-sm-12">
           <ui:insert name="taskWidget">
             <h:panelGroup layout="block"
               rendered="#{displayTaskWidget}">
