@@ -181,7 +181,7 @@
       </h:panelGroup>
     </h:panelGroup>
 
-    <h:panelGroup id="task-widget-sub-header" layout="block" styleClass="js-task-widget-sub-header ui-g-12 ui-g" rendered="#{!isMobile}">
+    <h:panelGroup id="task-widget-sub-header" layout="block" styleClass="js-task-widget-sub-header ui-g task-widget-sub-header" rendered="#{!isMobile}">
       <h:panelGroup id="task-widget-sort-menu" layout="block"
         styleClass="widget-sort-menu js-task-widget-sort-menu #{!data.dataModel.compactMode ? 'full-mode' : 'ui-sm-hidden ui-g-3'} #{cc.attrs.listHeaderStyleClass}">
         <h:panelGroup rendered="#{data.dataModel.compactMode}">
