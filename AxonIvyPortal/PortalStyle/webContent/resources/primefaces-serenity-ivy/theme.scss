@@ -128,13 +128,16 @@ body {
 }
 
 .layout-wrapper .layout-main .layout-content {
-    padding: 60px 30px 0 30px;
-    max-height: calc(100vh - 60px);
+    padding: 70px 30px 0 30px;
+    max-height: calc(100vh - 70px);
 }
 
 @media screen and (max-width: 40em) {
     .layout-wrapper .layout-main .layout-content {
         padding: 60px 0 0 0;
+    }
+    .task-template-container {
+        margin: auto 10px;
     }
 }
 
@@ -683,7 +686,7 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 
 /*Style for Top/Side bar - override z-index */ 
 .layout-wrapper {
-	.layout-sidebar {
+	.layout-sidebar, .layout-main-mask {
 		z-index: 1000 !important;
 	}
 	.layout-topbar {
@@ -787,6 +790,7 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 	.ui-button.ui-widget.case-details-back-btn {
 		background-color: transparent;
 		box-shadow: none;
+		flex: 0 0 auto;
 		
 		&.ui-state-hover {
 			background-color: rgba(0,0,0,0.05) !important;
@@ -879,18 +883,7 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 .task-template-content {
 	.task-template-tabview {
 		.ui-tabs-nav.ui-helper-reset.ui-widget-header.ui-corner-all {
-		  padding: 6px 0 0;
-		}
-		
-		.ui-tabs-navscroller .ui-tabs-navscroller-btn.ui-tabs-navscroller-btn-left.ui-corner-right {
-		  border-right: none;
-		}
-		.ui-tabs-navscroller .ui-tabs-navscroller-btn.ui-tabs-navscroller-btn-right.ui-corner-left {
-		  border-left: none;
-		}
-		.ui-tabs-navscroller {
-		  padding-left: 18px;
-		  padding-right: 18px;
+		  padding: 6px 25px 0 0;
 		}
 	}
 }

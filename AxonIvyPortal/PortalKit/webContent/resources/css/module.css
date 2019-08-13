@@ -1277,7 +1277,8 @@ a.case-details-document-add-link, a.task-details-document-add-link {
   line-height: 38px;
   display: flex;
   float: left;
-  width: calc(100% - 110px);
+  flex: 1;
+  width: 1px;
 }
 
 .case-details-back-btn, .task-details-back-btn {
@@ -1288,7 +1289,21 @@ a.case-details-document-add-link, a.task-details-document-add-link {
 
 .case-detail-title-header-container {
   float: left;
-  padding: 5px 0 !important;
+  padding: 0 !important;
+  display: flex;
+}
+
+.case-detail-section-title-container {
+  display: flex;
+}
+
+.case-detail-section-title-container .case-detail-section-title {
+  flex: 2;
+  width: 1px;
+}
+
+.case-detail-section-title-container .case-history-button-container {
+  flex: 1;
 }
 
 .case-detail-section-title, .case-history-button-container , .task-history-button-container {
@@ -5224,8 +5239,8 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 /*  =================== END TASK DETAIL PAGE ========================= */
 
 /*  =================== TASK TEMPLATE PAGE ========================= */
-.task-template-content .task-actions-button .ui-button-text.ui-c {
-  color: #fffff;
+.task-template-content .task-actions-button:focus {
+  outline: transparent;
 }
 .task-actions-menu .ui-slidemenu-backward.ui-widget-header {
   background-color: white;
@@ -5235,7 +5250,9 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
   line-height: 2rem;
   margin: auto;
 }
-
+.task-actions-menu .empty-side-steps {
+  min-height: 40px;
+}
 .task-actions-menu .ui-slidemenu-backward.ui-widget-header .ui-icon.ui-icon-triangle-1-w {
   color: #212121;
 }
