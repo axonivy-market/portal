@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Mon Aug 22 10:39:09 ICT 2016]
-14BE3DBF5F8C376B 3.18 #module
+14BE3DBF5F8C376B 3.20 #module
 >Proto >Proto Collection #zClass
 Ls0 LoginProcess Big #zClass
 Ls0 RD #cInfo
@@ -74,7 +73,8 @@ Ls0 f5 actionDecl 'ch.ivy.addon.portalkit.singleapp.general.Login.LoginData out;
 ' #txt
 Ls0 f5 actionTable 'out=in;
 ' #txt
-Ls0 f5 actionCode 'import javax.faces.context.FacesContext;
+Ls0 f5 actionCode 'import ch.ivy.addon.portalkit.service.UserSynchronizationService;
+import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 import ch.ivyteam.ivy.security.IUser;
 import java.util.Locale;
@@ -103,7 +103,7 @@ if (!in.loginOk)
 			ivy.session.setContentLocale(l);
 			ivy.session.setFormattingLocale(l);
 	}
-	
+	UserSynchronizationService.addUserToCacheAndUserService();
 }' #txt
 Ls0 f5 type ch.ivy.addon.portalkit.singleapp.general.Login.LoginData #txt
 Ls0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -117,7 +117,7 @@ get user settings</name>
     </language>
 </elementInfo>
 ' #txt
-Ls0 f5 174 116 36 24 20 -2 #rect
+Ls0 f5 176 116 32 24 20 -2 #rect
 Ls0 f5 @|StepIcon #fIcon
 Ls0 f6 expr out #txt
 Ls0 f6 192 74 192 116 #arcP
