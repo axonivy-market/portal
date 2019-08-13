@@ -33,9 +33,9 @@
 
   <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} js-task-widget ui-g">
     <h:panelGroup rendered="#{!cc.attrs.hideWidgetHeader and !isMobile}">
-      <h:panelGroup id="task-widget-header" styleClass="widget-header task-widget-header js-task-widget-header ui-g-12"
+      <h:panelGroup id="task-widget-header" styleClass="widget-header task-widget-header js-task-widget-header ui-g-12 ui-g"
         layout="block">
-        <h:panelGroup styleClass="widget-header-main #{data.dataModel.compactMode ? '' : 'mod-expanded-mode'}">
+        <h:panelGroup styleClass="widget-header-main ui-g-8 ui-md-8 ui-sm-12" layout="block">
           <h:panelGroup id="task-widget-title" styleClass="widget-header-main-title task-widget-header-content-title">
             <cc:renderFacet name="title" />
             <h:outputText rendered="#{empty cc.facets.title}" value="#{cc.attrs.title}" /> (#{data.dataModel.rowCount})
@@ -46,8 +46,8 @@
             <cc:renderFacet name="headerToolbar" />
           </h:panelGroup>
         </h:panelGroup>
-        <h:panelGroup rendered="#{!cc.attrs.hideTaskFilter and !data.dataModel.compactMode}"
-          styleClass="widget-header-content-filter mod-expanded-mode" id="expanded-mode-filter-view">
+        <h:panelGroup rendered="#{!cc.attrs.hideTaskFilter and !data.dataModel.compactMode}" layout="block"
+          styleClass="widget-header-content-filter ui-g-4 ui-md-4 ui-sm-12" id="expanded-mode-filter-view">
           <h:form id="expanded-mode-filter-form" onsubmit="return false;">
             <ic:ch.ivy.addon.portalkit.component.Filter id="expanded-mode-filter-container" icon="fa fa-filter"
               updateComponent="#{cc.clientId}:filter-selection-container #{p:component('task-view-container')}"
