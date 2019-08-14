@@ -65,13 +65,7 @@
         listener="#{facesContext.externalContext.response.setHeader('Cache-Control', 'no-cache, no-store')}" />
 
       <div class="layout-wrapper #{guestPreferences.orientationRTL ? 'layout-rtl' : ''}">
-        <ui:fragment rendered="#{deviceBean.mobile}">
-          <div class="topbar-container #{currentPage}">
-            <ui:include src="/layouts/includes/mobileTopbar.xhtml" />
-          </div>
-        </ui:fragment>
-
-        <ui:fragment rendered="#{not deviceBean.mobile}">
+        <ui:fragment>
            <div class="layout-sidebar #{guestPreferences.darkMenu ? 'layout-sidebar-dark' : ''} #{currentPage} left-sidebar-color js-left-sidebar" id="left-menu">
               <c:choose>
                 <c:when test="#{isNotRequiredLogin}">
@@ -85,7 +79,7 @@
         </ui:fragment>
 
         <div class="layout-main">
-          <ui:fragment rendered="#{not deviceBean.mobile}">
+          <ui:fragment>
             <div class="layout-topbar">
               <a class="menu-btn">
                 <i class="material-icons fa fa-bars left-sidebar-menu-icon left-sidebar-menu-icon-font-size" />
@@ -107,7 +101,7 @@
             </div>
           </ui:fragment>
           <ui:fragment rendered="#{empty portalValidationBean.errorMessages}">
-            <div class="layout-content container #{showMainArea ne false or deviceBean.mobile ? '' : 'u-invisibility'} #{deviceBean.mobile ? 'mobile-container' : ''}" id="main-area-panel">
+            <div class="layout-content container #{showMainArea ne false ? '' : 'u-invisibility'}" id="main-area-panel">
               <h:panelGroup layout="block" rendered="#{userMenuBean.isAnnouncementActivated() and announcementInvisible ne 'true'}" styleClass="announcement-message-container #{announcementContainerStyleClass}">
                 <h:panelGroup layout="block" styleClass="announcement-message announcement-message-customizable">
                   <h:outputText value="#{userMenuBean.getAnnouncement()}" />
@@ -131,7 +125,7 @@
               </ui:repeat>
             </div>
           </ui:fragment>
-          <ui:fragment rendered="#{not deviceBean.mobile and empty portalValidationBean.errorMessages}">
+          <ui:fragment rendered="#{empty portalValidationBean.errorMessages}">
             <div class="layout-main-mask" />
           </ui:fragment>
         </div>
@@ -150,21 +144,13 @@
 
   <ui:insert name="css" />
   
-  <ui:fragment rendered="#{not deviceBean.mobile}">
+  <ui:fragment>
     <ui:insert name="footer">
     </ui:insert>
   </ui:fragment>
-  
-  <ui:fragment rendered="#{deviceBean.mobile and !ivy.wf.securityContext.currentSession.sessionUserUnknown}">
-    <div class="mobile-footer ui-g-12 u-padding-0">
-      <p:commandLink actionListener="#{userMenuBean.switchDesktopOrMobileVersion(false)}">
-        #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/switchToDesktopVersion')}
-      </p:commandLink>
-    </div>
-  </ui:fragment>
 
   <ic:ch.ivy.addon.portalkit.multiapp.general.ErrorDisplayDialog id="application-error-dialog-component" />
-  
+
   <p:growl id="portal-global-growl" widgetVar="portal-global-growl" />
 </h:body>
 </html>
