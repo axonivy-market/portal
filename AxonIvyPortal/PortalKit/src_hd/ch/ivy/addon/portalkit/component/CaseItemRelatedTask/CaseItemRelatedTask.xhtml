@@ -29,8 +29,8 @@
     <div class="ui-g-12 u-padding-0 case-detail-related-table">
       <h:panelGroup rendered="#{not empty data.relatedTasks}" styleClass="ui-g-12 u-padding-0 case-related-running">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')} (#{data.totalRelatedTasts})" styleClass="Fleft" />
-        <h:panelGroup id="more-related-tasks" layout="block" styleClass="Fright show-more-technical-cases-container">
-          <p:commandLink id="show-more-related-tasks" actionListener="#{logic.openPortalTasks}" styleClass="case-related-command-link u-truncate-text" rendered="#{caseWidgetBean.showAllTasksOfCase}">
+        <h:panelGroup id="more-related-tasks" layout="block" styleClass="Fright show-more-technical-cases-container u-truncate-text">
+          <p:commandLink id="show-more-related-tasks" actionListener="#{logic.openPortalTasks}" styleClass="case-related-command-link" rendered="#{caseWidgetBean.showAllTasksOfCase}">
             <span class="fa fa-external-link-square note-show-more-link-icon" />
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTasks')}..." />
           </p:commandLink>
@@ -57,8 +57,8 @@
     <div class="ui-g-12 u-padding-0">
       <h:panelGroup rendered="#{not empty data.technicalCases}" styleClass="case-related-running ui-g-12 u-padding-0">
         <h:outputText styleClass="Fleft" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')} (#{data.totalRelatedCases})" />
-        <h:panelGroup id="more-related-cases" layout="block" styleClass="Fright show-more-technical-cases-container">
-          <p:commandLink id="show-more-related-cases" actionListener="#{logic.navigateToTechnicalCasesOfBusinessCase}" styleClass="case-related-command-link u-truncate-text" rendered="#{not empty data.technicalCases}">
+        <h:panelGroup id="more-related-cases" layout="block" styleClass="Fright show-more-technical-cases-container u-truncate-text">
+          <p:commandLink id="show-more-related-cases" actionListener="#{logic.navigateToTechnicalCasesOfBusinessCase}" styleClass="case-related-command-link" rendered="#{not empty data.technicalCases}">
             <span class="fa fa-external-link-square note-show-more-link-icon" />
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTechnicalCases')}..." />
             <f:attribute name="selectedCase" value="#{cc.attrs.case}" />
