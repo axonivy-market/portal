@@ -105,6 +105,7 @@ if (!in.loginOk)
 	}
 	UserSynchronizationService.addUserToCacheAndUserService();
 }' #txt
+Ls0 f5 security system #txt
 Ls0 f5 type ch.ivy.addon.portalkit.singleapp.general.Login.LoginData #txt
 Ls0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

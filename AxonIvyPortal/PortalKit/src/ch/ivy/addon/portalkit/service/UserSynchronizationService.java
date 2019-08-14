@@ -2,9 +2,8 @@ package ch.ivy.addon.portalkit.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.boon.datarepo.Repo;
 
 import ch.ivy.addon.portalkit.bo.RemoteUser;
@@ -41,74 +40,69 @@ public class UserSynchronizationService {
     Server workingOnServer = detector.getServerWorkingOn();
 
     List<Application> applications = applicationService.findOnlineApplicationByServerId(workingOnServer.getId());
-    if (isSingleAppConfigured(applications)) {
+    if (applications.size() < 2) {
       return true;
     }
 
-    Application firstApplication =
-        applications.stream().sorted((app1, app2) -> app1.getName().compareTo(app2.getName()))
-            .collect(Collectors.toList()).get(0);
-    if (Ivy.request().getApplication().getName().equals(firstApplication.getName())) {
-      return true;
-    }
-    return false;
+    Application firstApplication = applications.stream()
+        .sorted((app1, app2) -> app1.getName().compareTo(app2.getName()))
+        .findFirst()
+        .orElse(new Application());
+    return Ivy.request().getApplication().getName().equals(firstApplication.getName()); 
   }
 
-  private static boolean isSingleAppConfigured(List<Application> applications) {
-    return applications.size() < 2;
-  }
-  
   public static void addUserToCacheAndUserService() {
+    Ivy.log().error("Call function user");
     // check user available
     UserService userService = new UserService();
     List<User> usersCheck = userService.findByUserName(Ivy.session().getSessionUserName());
-    Boolean uex = false;
-    for (User userchk : usersCheck) {
-      if (userchk.getApplicationName().equals(Ivy.wf().getApplication().getName())) {
-        uex = true;
-        break;
-      }
-    }
+
+    boolean uex =
+        CollectionUtils
+            .emptyIfNull(usersCheck)
+            .stream()
+            .filter(
+                userchk -> userchk.getApplicationName().equals(Ivy.wf().getApplication().getName()) && userchk.getServerId()!= -1L )
+            .findAny().isPresent();
     if (!uex) { // set user if not found
-      // Step 1 Create Remote User
-      RemoteUser remoteUser = new RemoteUser();
-      remoteUser.setId(Ivy.session().getSessionUser().getId());
-      remoteUser.setName(Ivy.session().getSessionUser().getDisplayName()); // fullname
-      remoteUser.setUsername(Ivy.session().getSessionUserName()); // name
-      remoteUser.setAppName(Ivy.wf().getApplication().getName());
-      Long serverId = SecurityServiceUtils.getServerIdFromSession();
-
-      try {
-        ServerService ses = new ServerService();
-        if (ses.findAll().size() > 0) {
-          serverId = ses.findAll().get(0).getId();
-          if (serverId == null) {
-            serverId = -1L;
+      List<Application> apps = new ApplicationService().findAllIvyApplications();
+      for (Application app : apps) {
+        List<RemoteUser> remoteUsers = new ArrayList<RemoteUser>();
+        // Step 1 Create Remote User
+        RemoteUser remoteUser = new RemoteUser();
+        remoteUser.setId(Ivy.session().getSessionUser().getId());
+        remoteUser.setName(Ivy.session().getSessionUser().getDisplayName()); // fullname
+        remoteUser.setUsername(Ivy.session().getSessionUserName()); // name
+        remoteUser.setAppName(app.getName());
+        Long serverId = SecurityServiceUtils.getServerIdFromSession();
+        try {
+          ServerService ses = new ServerService();
+          if (ses.findAll().size() > 0) {
+            serverId = ses.findAll().get(0).getId();
+            if (serverId == null) {
+              serverId = -1L;
+            }
           }
+        } catch (Exception e) {
+          Ivy.log().error(
+              "The serverId could not be determined. Using serverId 0 for saving user:"
+                  + Ivy.session().getSessionUserName());
         }
-      } catch (Exception e) {
-        Ivy.log().error(
-            "The serverId could not be determined. Using serverId 0 for saving user:"
-                + Ivy.session().getSessionUserName());
+
+        remoteUser.setServerId(serverId);
+        remoteUsers.add(remoteUser);
+        List<User> users = ApplicationUserCacheUtils.convertToEntity(remoteUsers);
+        userService.saveAll(users);
+        
+        UserDao userDao = new UserDao();
+        users.addAll(DataCache.getAllUsersFromCache());
+        Repo<Long, User> repo = userDao.buildRepoIndexedByUserName(users);
+        String applicationName = app.getName();
+        DataCache.invalidateUsersCache(applicationName);
+        DataCache.cacheAllUsers(applicationName, users);
+        DataCache.cacheUsersRepo(applicationName, repo);
       }
-      remoteUser.setServerId(serverId);
 
-      // Step 2 Convert Remote User to User and save
-      List<RemoteUser> remoteUsers = new ArrayList<RemoteUser>();
-      remoteUsers.add(remoteUser);
-      List<User> users = ApplicationUserCacheUtils.convertToEntity(remoteUsers);
-      userService.saveAll(users);
-
-      // Step 3 get cache and get users from it. Add them to the created
-      // user
-
-      UserDao userDao = new UserDao();
-      users.addAll(DataCache.getAllUsersFromCache());
-      Repo<Long, User> repo = userDao.buildRepoIndexedByUserName(users);
-      String applicationName = Ivy.wf().getApplication().getName();
-      DataCache.invalidateUsersCache(applicationName);
-      DataCache.cacheAllUsers(applicationName, users);
-      DataCache.cacheUsersRepo(applicationName, repo);
     }
   }
 }
