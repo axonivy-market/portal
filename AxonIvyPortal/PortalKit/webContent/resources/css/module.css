@@ -2526,9 +2526,9 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .no-documents-message {
   text-align: center;
-  line-height: 34px;
+  line-height: 2.5px;
   display: block;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 .document-even-row a.download-command, .document-odd-row a.download-command {
@@ -2560,13 +2560,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 /********************************** END TASK DETAIL **********************************/
 
 /********************************** CASE DETAIL **********************************/
-/* Small screen */
-@media (max-width: 1024px) {
-  .case-details {
-    padding: 0 !important;
-  }
-}
-
 .case-details-separator {
   margin-top: 0;
 }
