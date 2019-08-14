@@ -185,9 +185,8 @@
 }
 
 .task-template-content {
-	margin-top: 15px;
+	margin: 10px auto;
 	position: relative;
-	margin-bottom: 10px;
 }
 
 .task-template-tasks-command {
