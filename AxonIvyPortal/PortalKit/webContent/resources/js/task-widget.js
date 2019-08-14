@@ -1,13 +1,4 @@
-function TaskWidget(outerPanelId) {
-  var items = $('#' + outerPanelId + ' .js-widget-header-menu li');
-  $.each(items, function() {
-    $(this).click(function() {
-      if (!$(this).hasClass('js-ignore-selected-state')) {
-        $(items).removeClass('is-selected');
-        $(this).addClass('is-selected');
-      }
-    });
-  });
+function TaskWidget() {
 
   return {
 
@@ -92,7 +83,6 @@ function TaskListToolKit() {
       var remainingWidth = $('body').width() - $mainMenu.outerWidth() - 40;//exclude padding and scroll bar
       var $hiddenColumns = $('.js-hidden-when-expand-menu');
       if (remainingWidth < 1024 && $mainMenu.hasClass('in')) {
-        console.log(remainingWidth);
         hideColumnWhenExpandMenu($hiddenColumns);
       } else {
         displayColumnWhenCollapseMenu($hiddenColumns);

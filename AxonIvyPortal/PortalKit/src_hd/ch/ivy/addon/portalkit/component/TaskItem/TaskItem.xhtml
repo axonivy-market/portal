@@ -7,7 +7,6 @@
   <cc:attribute name="task" required="true" shortDescription="Task" type="ch.ivyteam.ivy.workflow.ITask" />
   <cc:attribute name="rowIndex" />
   <cc:attribute name="compactMode" type="Boolean" />
-  <cc:attribute name="isSelected" type="Boolean" />
   <cc:attribute name="componentToUpdate" />
   <cc:attribute name="onTaskStartCallback" />
   <cc:facet name="taskHeader" shortDescription="Header content of a task item" />
@@ -18,7 +17,6 @@
   <c:set var="task" value="#{cc.attrs.task}" />
   <c:set var="rowIndex" value="#{cc.attrs.rowIndex}" />
   <c:set var="compactMode" value="#{cc.attrs.compactMode}" />
-  <c:set var="isSelected" value="#{taskWidgetBean.expandedTaskId == -1 and cc.attrs.isSelected}" />
   <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
 
   <h:panelGroup rendered="#{compactMode}">
