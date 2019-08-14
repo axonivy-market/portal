@@ -8,7 +8,6 @@
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="processListStyleClass" />
-  <cc:attribute name="mobileMode" default="false" />
   <cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" />
   <cc:attribute name="hideHeader" default="false" type="java.lang.Boolean" />
   <cc:attribute name="hideExpressCreation" default="false" />
@@ -20,30 +19,16 @@
   <div id="#{cc.clientId}" class="widget process-widget">
     <div class="process-header js-process-header">
 	    <h:panelGroup id="header" styleClass="widget-header expanded" layout="block" rendered="#{!cc.attrs.hideHeader}">
-	      <h:panelGroup class="widget-header-main" rendered="#{!processWidgetBean.mobileMode}">
-	        <span class="widget-header-main-title">#{cc.attrs.title}</span>
-	        <h:panelGroup styleClass="widget-header-main-menu">
-	          <cc:renderFacet name="headerToolbar" />
-	        </h:panelGroup>
-	      </h:panelGroup>
 	      <h:panelGroup layout="block"
-	        styleClass="#{processWidgetBean.mobileMode ? 'mobile-widget-process-header-sub' : 'widget-header-sub'}">
+	        styleClass="widget-header-sub">
 	        <ic:ch.ivy.addon.portalkit.component.Filter id="process-search" listener="processWidget.filter()" ajax="false"
 	          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processFilterPlaceHolder')}"
 	          styleClass="js-filter-process-widget-list-item" />
 	      </h:panelGroup>
-	      <p:selectOneMenu id="dictionary-process-group-selection" widgetVar="dictionary-process-group-selection"
-	        rendered="#{processWidgetBean.mobileMode}" styleClass="mobile-process-list-dictionary-group-selection"
-	        panelStyleClass="hide-disabled">
-	        <f:selectItems value="#{processWidgetBean.processesByAlphabet.entrySet().toArray()}" var="dictionaryCharacter"
-	          itemValue="#{dictionaryCharacter.key}"
-	          itemLabel="#{dictionaryCharacter.key eq 'SPECIAL_CHARACTER'? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/specialCharacterGroup') : dictionaryCharacter.key}" />
-	        <p:ajax event="change" oncomplete="jumpToProcessGroup();" global="false" immediate="true" update="@none" />
-	      </p:selectOneMenu>
 	    </h:panelGroup>
 	
 	    <h:panelGroup id="process-widget-action" styleClass="process-widget-action process-navigation-container">
-	      <h:form id="axon-express-form" rendered="#{not processWidgetBean.mobileMode and !cc.attrs.hideExpressCreation}"
+	      <h:form id="axon-express-form" rendered="#{!cc.attrs.hideExpressCreation}"
 	        styleClass="process-button-position process-action-button action-create-experss-workflow">
 	        <h:panelGroup layout="block" rendered="#{processWidgetBean.canCreateExpessWorkflow()}">
 	          <p:commandLink id="create-express-workflow"
@@ -52,7 +37,7 @@
 	        </h:panelGroup>
 	      </h:form>
 	      <br/>
-	      <h:panelGroup class="expand-collapse-btns" rendered="#{not processWidgetBean.mobileMode}">
+	      <h:panelGroup class="expand-collapse-btns">
 	        <p:commandLink id="expand-all-btn"
 	          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/expandAll')}" onclick="expandOrCollapseAllCategories(true); return false;"
 	        />
@@ -63,7 +48,7 @@
 	      </h:panelGroup>
 	    </h:panelGroup>
     </div>
-    <h:panelGroup id="process-list" layout="block" styleClass="widget-content process-start-list-container js-process-start-list-container #{processWidgetBean.mobileMode ? 'mobile-process-start-list-container' : ''}">
+    <h:panelGroup id="process-list" layout="block" styleClass="widget-content process-start-list-container js-process-start-list-container">
       <ui:fragment id="full-process-list">
         <ui:repeat id="process-group-alphabet" var="entryProcess"
           value="#{processWidgetBean.processesByAlphabet.entrySet().toArray()}">
@@ -89,7 +74,7 @@
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/noProcesses')}"
           styleClass="no-process-message js-no-found-processes u-display-none" />
       </ui:fragment>
-      <h:panelGroup id="process-nav" styleClass="process-nav" rendered="#{!processWidgetBean.mobileMode and !cc.attrs.hideProcessNavigation}">
+      <h:panelGroup id="process-nav" styleClass="process-nav" rendered="#{!cc.attrs.hideProcessNavigation}">
          <ui:repeat value="#{processWidgetBean.getAllAlphabeticalCharacters().entrySet().toArray()}" var="character" >
            <p:commandLink value="#{character.value}" styleClass="process-nav-item js-process-starts-with-#{character.key}"
              onclick="jumpToProcessGroupByCharacter(event)" global="false" />

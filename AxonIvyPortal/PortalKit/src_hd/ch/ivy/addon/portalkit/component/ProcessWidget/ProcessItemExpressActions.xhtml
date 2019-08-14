@@ -7,16 +7,16 @@
   xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <ui:composition>
-  <p:commandLink id="delete-express-workflow" styleClass="fa fa-trash express-workflow process-item" rendered="#{not isMobileMode}"
+  <p:commandLink id="delete-express-workflow" styleClass="fa fa-trash express-workflow process-item"
     actionListener="#{processWidgetBean.setDeletedExpressProcess(process)}"
     oncomplete="PF('remove-express-workflow-dialog').show();"
     update=":#{p:component('remove-express-workflow-dialog')}" />
   <p:tooltip id="delete-express-workflow-tooltip" for="delete-express-workflow"
     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExpressWorkflowTooltip')}" position="top" />
 
-  <p:commandLink id="edit-express-workflow" styleClass="fa fa-pencil express-workflow process-item" rendered="#{not isMobileMode}"
+  <p:commandLink id="edit-express-workflow" styleClass="fa fa-pencil express-workflow process-item"
     actionListener="#{processWidgetBean.editExpressWorkflow(process.getProcess())}" target="_self" />
-  <p:tooltip id="edit-express-workflow-tooltip" for="edit-express-workflow" rendered="#{not isMobileMode}"
+  <p:tooltip id="edit-express-workflow-tooltip" for="edit-express-workflow"
     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editExpressWorkflowTooltip')}" position="top" />
 </ui:composition>
 </html>

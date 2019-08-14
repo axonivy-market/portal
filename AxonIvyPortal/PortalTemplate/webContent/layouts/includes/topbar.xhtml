@@ -60,13 +60,6 @@
           <li><p:link id="project-info-menu-item" href="#"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/info')}"
               onclick="rcProjectInfo(); $('#user-setting-container').click()" /></li>
-
-          <li jsf:rendered="#{not deviceBean.desktop}">
-            <p:commandLink actionListener="#{userMenuBean.switchDesktopOrMobileVersion(true)}">
-              #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/switchToMobileVersion')}
-            </p:commandLink>
-          </li>
-          
           <li><ic:ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting id="logout-setting" isWorkingOnATask="#{isWorkingOnATask}" />
           </li>
         </ul>
