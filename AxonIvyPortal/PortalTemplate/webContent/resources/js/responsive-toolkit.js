@@ -61,14 +61,14 @@ function TaskListLargeScreenHandler() {
 function TaskListMediumScreenHandler() {
   this.updateMainContainer = function(){
     var taskListToolKit = TaskListToolKit();
-    taskListToolKit.responsiveInMediumScreen();
+    taskListToolKit.responsive();
   }
 };
 
 function TaskListSmallScreenHandler() {
     this.updateMainContainer = function(){
       var taskListToolKit = TaskListToolKit();
-      taskListToolKit.responsiveInSmallScreen();
+      taskListToolKit.responsive();
    }
 };
 

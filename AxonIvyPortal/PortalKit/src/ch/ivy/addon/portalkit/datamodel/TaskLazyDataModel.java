@@ -177,9 +177,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     }
 
     List<ITask> foundTasks = findTasks(criteria, first, pageSize);
-    if (!isMobile) {
-      RequestContext.getCurrentInstance().execute("taskListToolKit.responsive()");
-    }
     data.addAll(foundTasks);
     return foundTasks;
   }

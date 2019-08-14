@@ -14,7 +14,7 @@
 
 <cc:implementation>
   <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
-  <h:panelGroup id="config-columns-container" styleClass="config-columns-button">
+  <h:panelGroup id="config-columns-container" styleClass="config-columns-button hidden-md-down">
     <p:commandButton id="#{cc.attrs.configButtonId}" type="button"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/columns')}" styleClass="filter-add-button"
       icon="fa fa-caret-down" iconPos="right" />
