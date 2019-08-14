@@ -11,7 +11,7 @@
 <cc:implementation>
   <div class="ui-g-12 hidden-sm-up">
     <p:commandLink id="toggle-task-filter" value="#{cc.attrs.dataModel.selectedFilters.size()} selected filters"
-      global="false" onclick="toggleTaskFilter();" />
+      global="false" onclick="toggleTaskFilter();taskWidget.setupScrollbar();" />
   </div>
 
   <c:set var="filterContainer" value="#{cc.attrs.dataModel.filterContainer}" />
