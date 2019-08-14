@@ -55,14 +55,14 @@
                   <ic:ch.ivy.addon.portalkit.component.task.column.TaskName id="task-name-component" task="#{task}" dataModel="#{taskView.dataModel}" />
                 </div>
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible id="task-responsible-component" dataModel="#{taskView.dataModel}"
-                  userName="#{task.getActivatorName()}" fullName="#{task.getActivator().getDisplayName()}" styleClass="activatior-column ui-md-hidden-down js-hidden-when-expand-menu" />
-                <ic:ch.ivy.addon.portalkit.component.task.column.TaskId id="task-id-component" value="#{task.getId()}" dataModel="#{taskView.dataModel}" styleClass="ui-sm-hidden" />
+                  userName="#{task.getActivatorName()}" fullName="#{task.getActivator().getDisplayName()}" styleClass="activatior-column hidden-md-down js-hidden-when-expand-menu" />
+                <ic:ch.ivy.addon.portalkit.component.task.column.TaskId id="task-id-component" value="#{task.getId()}" dataModel="#{taskView.dataModel}" styleClass="hidden-sm-down" />
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-creation-date-component" rendered="#{taskView.dataModel.isSelectedColumn('CREATION_TIME')}"
-                  componentId="creation-time" value="#{task.startTimestamp}" styleClass="ui-sm-hidden js-hidden-when-expand-menu" />
+                  componentId="creation-time" value="#{task.startTimestamp}" styleClass="hidden-sm-down js-hidden-when-expand-menu" />
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-expiry-date-component" rendered="#{taskView.dataModel.isSelectedColumn('EXPIRY_TIME')}"
-                  componentId="expiry-time" value="#{task.expiryTimestamp}" styleClass="ui-sm-hidden" />
+                  componentId="expiry-time" value="#{task.expiryTimestamp}" styleClass="hidden-sm-down" />
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state-component" dataModel="#{taskView.dataModel}"
-                  state="#{task.state}" stateStyleClass="ui-sm-hidden" />
+                  state="#{task.state}" stateStyleClass="hidden-sm-down" />
               </ui:fragment>
             </f:facet>
 
