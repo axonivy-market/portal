@@ -1296,7 +1296,7 @@ a.case-details-document-add-link, a.task-details-document-add-link {
 }
 
 .case-detail-section-title-container .case-detail-section-title {
-  flex: 2;
+  flex: 1;
   width: 1px;
 }
 
@@ -2703,7 +2703,12 @@ _:-ms-input-placeholder, :root .case-details > * {
   font-size: 1.4rem;
   font-weight: 400;
   margin-left: 10px;
+  display: inline-block;
 }
+  /* override on IE */
+_:-ms-fullscreen, :root .additional-case-details-link {
+    display: inline !important;
+  }
 
 .additional-case-details-link:hover {
   color: rgba(0,0,0,0.6) !important;
@@ -5043,12 +5048,17 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 .case-related-command-link {
   margin: auto !important;
   font-weight: 400;
+  display: inline-block;
 }
 
-.case-detail-body .case-details-item .ui-commandlink {
-  display: block !important;
-  margin-top: auto !important;
+_:-ms-fullscreen, :root .case-related-command-link {
+  display: inline !important;
 }
+
+/* .case-detail-body .case-details-item .ui-commandlink { */
+/*   display: block !important; */
+/*   margin-top: auto !important; */
+/* } */
 /* ================= END RESPONSIVE GRID ==================== */
 
 
@@ -5260,5 +5270,35 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 }
 .task-actions-menu .ui-slidemenu-backward.ui-widget-header .ui-icon.ui-icon-triangle-1-w {
   color: #212121;
+}
+
+@media screen and (max-width: 40em) {
+    .history-note {
+        border-left: 1px solid #d8d8d8 !important;
+    }
+    .ui-fileupload-buttonbar .ui-button {
+        padding: 0 14px 0 28px !important;
+    }
+    .case-details {
+        padding: 0 !important;
+    }
+    .case-upload-dialog, .case-view-note-dialog {
+        width: 80% !important;
+    }
+    .note-show-more-link {
+        float: left !important;
+        margin-left: 0 !important;
+    }
+    .adhoc-task-history-dialog .ui-dialog-content.ui-widget-content {
+        margin: 0 !important;
+        width: calc(100vw - 40px) !important;
+    }
+}
+
+@media screen and (min-width: 40.063em) and (max-width: 64.062em) {
+    .adhoc-task-history-dialog .ui-dialog-content.ui-widget-content {
+        margin: 0 !important;
+        width: calc(80vw - 40px) !important;
+    }
 }
 /*  =================== END TASK TEMPLATE PAGE ========================= */
