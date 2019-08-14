@@ -10,7 +10,7 @@
 
 <cc:implementation>
   <h:outputText id="#{cc.attrs.componentId}" value="#{cc.attrs.value}" rendered="#{cc.attrs.rendered}"
-    styleClass="datetime-cell js-datetime-cell default-task-cell #{cc.attrs.styleClass}">
+    styleClass="datetime-cell default-task-cell #{cc.attrs.styleClass}">
     <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
   </h:outputText>
 </cc:implementation>

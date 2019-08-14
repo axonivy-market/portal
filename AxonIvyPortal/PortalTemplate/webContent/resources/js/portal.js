@@ -9,7 +9,7 @@ var Portal = {
       return;
     }
     updateMainMenuMode();
-    if (mainMenuMode === "expanded") {
+    if (mainMenuMode === "collapsed") {
       $('.js-left-sidebar').addClass('in');
     }
 
