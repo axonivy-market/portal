@@ -18,27 +18,27 @@
 
   <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{cc.attrs.dataModel}"
     componentId="responsible-column-header"
-    styleClass="responsible-column-header activatior-column #{cc.attrs.dataModel.isAutoHideColumns()?'js-responsible-column-header hidden-sm':''}"
+    styleClass="responsible-column-header activatior-column hidden-md-down js-hidden-when-expand-menu"
     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}"
     sortField="#{masterDataBean.taskSortFieldActivator}" />
 
   <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{cc.attrs.dataModel}"
-    componentId="id-column-header" styleClass="id-column-header TexAlCenter #{cc.attrs.dataModel.isAutoHideColumns()?'js-id-column-header':''}"
+    componentId="id-column-header" styleClass="id-column-header TexAlCenter hidden-sm-down"
     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID')}"
     sortField="#{masterDataBean.taskSortFieldId}" />
 
   <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{cc.attrs.dataModel}"
-    componentId="create-column-header" styleClass="create-column-header TexAlCenter #{cc.attrs.dataModel.isAutoHideColumns()?'js-create-column-header':''}"
+    componentId="create-column-header" styleClass="create-column-header TexAlCenter hidden-sm-down js-hidden-when-expand-menu"
     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}"
     sortField="#{masterDataBean.taskSortFieldCreationTime}" />
 
   <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{cc.attrs.dataModel}"
-    componentId="expiry-column-header" styleClass="expiry-column-header TexAlCenter #{cc.attrs.dataModel.isAutoHideColumns()?'js-expiry-column-header':''}"
+    componentId="expiry-column-header" styleClass="expiry-column-header TexAlCenter hidden-sm-down"
     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}"
     sortField="#{masterDataBean.taskSortFieldExpiryTime}" />
 
   <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{cc.attrs.dataModel}"
-    componentId="state-column-header" styleClass="state-column-header TexAlCenter"
+    componentId="state-column-header" styleClass="state-column-header TexAlCenter hidden-sm-down"
     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}"
     sortField="#{masterDataBean.taskSortFieldState}" />
 </cc:implementation>

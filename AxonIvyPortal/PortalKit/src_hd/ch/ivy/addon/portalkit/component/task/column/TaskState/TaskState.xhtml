@@ -14,7 +14,7 @@
 <cc:implementation>
   <c:set var="state" value="#{cc.attrs.state}" />
   <h:panelGroup rendered="#{cc.attrs.dataModel.isSelectedColumn('STATE')}" >
-    <h:panelGroup id="#{cc.attrs.componentId}" styleClass="state-cell js-state-cell default-task-cell #{cc.attrs.stateStyleClass}">
+    <h:panelGroup id="#{cc.attrs.componentId}" styleClass="state-cell default-task-cell #{cc.attrs.stateStyleClass}">
       <h:panelGroup id="#{cc.attrs.componentId}-open" rendered="#{state == 'SUSPENDED' or state == 'UNASSIGNED'}"
         styleClass="fa fa-play-circle task-state-open #{cc.attrs.stateIconStyleClass}" />
       <h:panelGroup id="#{cc.attrs.componentId}-in-progress" rendered="#{state == 'RESUMED' or state == 'CREATED'}"
