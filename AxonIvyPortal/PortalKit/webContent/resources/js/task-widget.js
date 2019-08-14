@@ -17,7 +17,6 @@ function TaskWidget(outerPanelId) {
     },
 
     setupScrollbar : function() {
-
       var childElements = $('.js-task-start-list-item');
       if (childElements.length > 0) {
         var container = $('.js-task-start-list > .ui-datascroller-content');
@@ -41,7 +40,7 @@ function TaskWidget(outerPanelId) {
           error = 55; // included margin, padding in search page
         }
 
-        var mainScreenHeight = $('body').outerHeight() - $('.layout-topbar').outerHeight() - 20; // exclude margin
+        var mainScreenHeight = $('body').outerHeight() - $('.layout-topbar').outerHeight() - 25; // exclude margin
         var availableHeight = mainScreenHeight - taskWidgetHeaderContainer.outerHeight(true) - announcementMessageContainer.outerHeight(true)
             - taskWidgetSortMenuContainer.outerHeight(true) - taskWidgetFilterContainer.outerHeight(true)
             - customWidgetContainer - globalSearchInput.outerHeight(true) - globalSearchTabHeader.outerHeight(true) - error;
@@ -56,14 +55,12 @@ function TaskWidget(outerPanelId) {
 
 function TaskListToolKit() {
 
-  function hideColumnInMediumScreen($header, $cell) {
-    $header.addClass("hidden-md");
-    $cell.addClass("hidden-md");
+  function hideColumnWhenExpandMenu($columns) {
+    $columns.addClass("ui-hidden");
   }
 
-  function displayColumnInMediumScreen($header, $cell) {
-    $header.removeClass("hidden-md");
-    $cell.removeClass("hidden-md");
+  function displayColumnWhenCollapseMenu($columns) {
+    $columns.removeClass("ui-hidden");
   }
 
   return {
@@ -71,6 +68,7 @@ function TaskListToolKit() {
       var taskSortMenu = $('.js-task-widget-sort-menu');
       var taskEntry = $('.js-task-start-link').first();
       var noEntry = taskEntry.length == 0;
+      this.showHideColumnWhenMenuToggle();
       if (taskSortMenu.hasClass('full-mode')) {
         if (noEntry) {
           $(taskSortMenu).hide();
@@ -89,34 +87,21 @@ function TaskListToolKit() {
       taskWidget.setupScrollbar();
     },
 
-    responsiveInMediumScreen : function() {
+    showHideColumnWhenMenuToggle() {
       var $mainMenu = $('.js-left-sidebar');
-      var $responsibleColumnHeader = $('.js-responsible-column-header');
-      var $responsibleCell = $('.js-responsible-cell');
-
-      if ($mainMenu.hasClass('in')) {
-        hideColumnInMediumScreen($responsibleColumnHeader, $responsibleCell);
+      var remainingWidth = $('body').width() - $mainMenu.outerWidth() - 40;//exclude padding and scroll bar
+      var $hiddenColumns = $('.js-hidden-when-expand-menu');
+      if (remainingWidth < 1024 && $mainMenu.hasClass('in')) {
+        console.log(remainingWidth);
+        hideColumnWhenExpandMenu($hiddenColumns);
       } else {
-        displayColumnInMediumScreen($responsibleColumnHeader, $responsibleCell);
+        displayColumnWhenCollapseMenu($hiddenColumns);
       }
-      this.setupHeader();
-      this.setupScrollbar();
     },
-
-    responsiveInSmallScreen : function() {
-      this.setupHeader();
-      this.setupScrollbar();
-    },
-
+    
     responsive : function() {
-      if (viewPort.isMediumScreen()) {
-        this.responsiveInMediumScreen();
-      } else if (viewPort.isSmallScreen()) {
-        this.responsiveInSmallScreen();
-      } else {
         this.setupHeader();
         this.setupScrollbar();
-      }
     }
   }
 };

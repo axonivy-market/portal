@@ -28,7 +28,6 @@
   <c:set var="noTaskFoundMessage"
     value="#{empty cc.attrs.noTaskFoundMessage ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/noTask') : cc.attrs.noTaskFoundMessage}" />
   <c:set var="isMobile" value="#{deviceBean.mobile}" />
-  <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
   <h:outputScript name="task-widget.js" library="js" />
 
   <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} js-task-widget ui-g">
@@ -54,7 +53,7 @@
               listener="#{data.dataModel.onKeywordChange()}"
               placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
               keywordStoresIn="#{data.dataModel.criteria.keyword}" styleClass="widget-header-filter-input"
-              onCompletedCallback="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
+              onCompletedCallback="taskWidget.setupScrollbar();" />
           </h:form>
         </h:panelGroup>
       </h:panelGroup>
@@ -81,7 +80,7 @@
                         value="#{taskFilterData.filterName}" global="false"
                         actionListener="#{logic.applyFilter(taskFilterData)}"
                         update="#{cc.clientId}:advanced-filter-container #{cc.clientId}:task-widget-header #{cc.clientId}:filter-add-form #{cc.clientId}:filter-selection-container #{cc.clientId}:task-view-container"
-                        oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader();" />
+                        oncomplete="taskWidget.setupScrollbar();" />
                       <p:tooltip id="user-definied-filter-tooltip" for="user-definied-filter"
                         value="#{taskFilterData.filterName}" trackMouse="true" />
                       <p:commandLink id="delete-user-definied-filter-command"
@@ -105,7 +104,7 @@
                         value="#{taskFilterData.filterName}" global="false"
                         actionListener="#{logic.applyFilter(taskFilterData)}"
                         update="#{cc.clientId}:advanced-filter-container #{cc.clientId}:task-widget-header #{cc.clientId}:filter-add-form #{cc.clientId}:filter-selection-container #{cc.clientId}:task-view-container"
-                        oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
+                        oncomplete="taskWidget.setupScrollbar();" />
                       <p:tooltip id="user-definied-filter-tooltip" for="user-definied-filter"
                         value="#{taskFilterData.filterName}" trackMouse="true" />
                       <p:commandLink id="delete-user-definied-filter-command"
@@ -135,7 +134,7 @@
                 itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/display')}">
                 <p:ajax
                   update="@([id$='in-progress-filter:filter-open-form']) @form #{p:component('task-view-container')}"
-                  global="false" oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
+                  global="false" oncomplete="taskWidget.setupScrollbar();" />
               </p:selectBooleanCheckbox>
             </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>
           </h:panelGroup>
@@ -153,7 +152,7 @@
                   converter="pojoConverter">
                   <p:ajax
                     update="#{cc.clientId}:filter-selection-container #{cc.clientId}:advanced-filter-container #{cc.clientId}:task-view-container"
-                    global="false" oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
+                    global="false" oncomplete="taskWidget.setupScrollbar();" />
                   <f:selectItems value="#{data.dataModel.filters}" var="filter" itemLabel="#{filter.label()}"
                     itemValue="#{filter}" />
                 </p:selectManyCheckbox>
@@ -163,7 +162,7 @@
                   itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskState/RESUMED')}">
                   <p:ajax global="false"
                     update="#{cc.clientId}:advanced-filter-container #{cc.clientId}:task-view-container"
-                    oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
+                    oncomplete="taskWidget.setupScrollbar();" />
                 </p:selectBooleanCheckbox>
                 <p:tooltip for="in-progress-checkbox" trackMouse="true"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/DisplayTaskStartedByOtherUsersTooltip')}" />
@@ -194,7 +193,7 @@
             updatedComponent="#{cc.clientId}:task-view-container #{cc.clientId}:task-widget-sort-menu"
             dataModel="#{data.dataModel}" oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()"
             configButtonId="task-config-button" overlayPanelId="task-config-columns-panel" />
-        </h:panelGroup>       
+        </h:panelGroup>
       </h:panelGroup>
 
       <h:panelGroup id="filter-view" layout="block" styleClass="ui-g-9 ui-sm-12">
@@ -206,7 +205,7 @@
             placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
             keywordStoresIn="#{data.dataModel.criteria.keyword}" 
             styleClass="widget-header-filter-input"
-            onCompletedCallback="taskWidget.setupScrollbar(); taskWidget.setupHeader()" />
+            onCompletedCallback="taskWidget.setupScrollbar();" />
         </h:form>
       </h:panelGroup>
     </h:panelGroup>
@@ -304,19 +303,14 @@
     widgetVar="delete-filter-confirmation-dialog" appendTo="@(body)" severity="alert">
     <p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
       actionListener="#{logic.deleteFilter()}"
-      oncomplete="PF('delete-filter-confirmation-dialog').hide(); taskWidget.setupScrollbar(); taskWidget.setupHeader();"
+      oncomplete="PF('delete-filter-confirmation-dialog').hide(); taskWidget.setupScrollbar();"
       update="expanded-mode-filter-view advanced-filter-container #{cc.clientId}:filter-container task-view-container filter-add-form" />
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
       onclick="PF('delete-filter-confirmation-dialog').hide();" type="button" styleClass="portal-cancel-button" />
   </p:confirmDialog>
 
   <script type="text/javascript">
-	var taskWidget = new TaskWidget("#{cc.attrs.outerPanelId}");
-    var taskListToolKit = TaskListToolKit();
-    $(function(){
-      taskWidget.setupScrollbar();
-      taskWidget.setupHeader();
-    });
+    var taskWidget = new TaskWidget("#{cc.attrs.outerPanelId}");
   </script>
 
   <h:form>
