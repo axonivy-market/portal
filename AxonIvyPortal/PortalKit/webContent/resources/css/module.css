@@ -1633,7 +1633,7 @@ a.case-details-document-add-link, a.task-details-document-add-link {
 .process-start-list-item .ui-link,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item .ui-commandlink,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item .ui-link {
-  display: inline-flex;
+  display: inline-flex !important;
   color: black !important;
 }
 
@@ -1864,6 +1864,16 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
   word-wrap: break-word;
 }
 
+.field-group > .field-group-label {
+  text-align: right;
+}
+
+@media screen and (max-width: 40em) {
+  .field-group > .field-group-label {
+    text-align: left !important;
+  }
+}
+
 .field-group label span.ui-outputlabel-rfi {
   margin-right: -8px;
 }
@@ -2084,6 +2094,10 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 a.compact-task-start-link:hover {
   text-decoration: none;
+}
+
+_:-ms-input-placeholder, :root a.compact-task-start-link {
+  width: 100%;
 }
 
 .action-icon.icon-compact-mode {
