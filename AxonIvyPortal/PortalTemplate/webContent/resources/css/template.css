@@ -164,6 +164,7 @@
 /*Task template*/
 .task-template-container {
   min-height: 400px;
+  padding-bottom: 20px !important;
 }
 .task-template-title {
 	font-style: normal;
