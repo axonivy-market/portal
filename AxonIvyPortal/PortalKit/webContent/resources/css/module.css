@@ -223,10 +223,9 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .widget-header-main-title {
-  display: inline-block;
   font-size: 1.4rem;
   position: absolute;
-  bottom: 6px;
+  bottom: 1px;
   left: 0;
 }
 
@@ -275,12 +274,12 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .widget-header-filter-input.ui-inputfield {
   background-color: transparent;
-  padding: 15px 25px 14px 0 !important;
+  padding: 20px 25px 5px 0 !important;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   color: black;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   width: 100%;
 }
 
@@ -293,12 +292,12 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .widget-header-filter-input.ui-inputfield.ui-state-hover, .widget-header-filter-input.ui-inputfield.ui-state-focus {
   background-color: transparent;
-  padding: 15px 25px 14px 0 !important;
+  padding: 20px 25px 5px 0 !important;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   color: black !important;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 .widget-content a:hover {
@@ -537,7 +536,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .compact-task-widget .filter-widget {
   margin-top: -20px;
-  width: 99%;
 }
 
 .task-widget .advanced-filter-container,
@@ -1349,7 +1347,6 @@ a.case-details-document-add-link, a.task-details-document-add-link {
   float: left;
 }
 .process-widget-action-form {
-  margin-top: 6px;
   margin-bottom: 8px;
 }
 
@@ -1675,8 +1672,6 @@ a.case-details-document-add-link, a.task-details-document-add-link {
 .process-widget .favorite-process-title {
   font-size: 1.4rem; 
   margin-top: 8px;
-  margin-right: 20px;
-  display: inline-block;
 }
 
 .process-widget .default-process-title {
@@ -2085,6 +2080,10 @@ a.compact-task-start-link .task-start-list-item {
   padding: 10px 0;
   display: flex;
   align-items: center;
+}
+
+_:-ms-input-placeholder, :root a.compact-task-start-link .task-start-list-item {
+  margin-bottom: 0px;
 }
 
 a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.full-mode:hover {
@@ -5039,7 +5038,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlink {
 	display: inline-block;
-	margin-top: 6px;
 }
 
 .case-related-command-link {

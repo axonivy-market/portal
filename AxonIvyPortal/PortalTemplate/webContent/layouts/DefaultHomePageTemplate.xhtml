@@ -19,15 +19,13 @@
           <ui:insert name="processWidget">
             <h:panelGroup layout="block"
               rendered="#{displayProcessWidget}">
-              <h:panelGroup layout="block" styleClass="js-process-widget">
-                <ic:ch.ivy.addon.portalkit.component.CompactProcessWidget id="process-widget"
-                  title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}">
-                  <f:facet name="headerToolbar">
-                    <ic:ch.ivy.addon.portal.generic.ProcessNavigator id="process-link"
-                      label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/seeAllProcesses')}" />
-                  </f:facet>
-                </ic:ch.ivy.addon.portalkit.component.CompactProcessWidget>
-              </h:panelGroup>
+              <ic:ch.ivy.addon.portalkit.component.CompactProcessWidget id="process-widget"
+                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}">
+                <f:facet name="headerToolbar">
+                  <ic:ch.ivy.addon.portal.generic.ProcessNavigator id="process-link"
+                    label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/seeAllProcesses')}" />
+                </f:facet>
+              </ic:ch.ivy.addon.portalkit.component.CompactProcessWidget>
             </h:panelGroup>
           </ui:insert>
         </div>
@@ -65,31 +63,12 @@
         </div>
       </h:panelGroup>
 
-      <div class="js-custom-widget-container simple-container">
-        <div class="js-simple-main-col">
+      <div class="ui-g">
+        <div class="ui-g-12">
           <ui:insert name="customWidget">
-
           </ui:insert>
         </div>
       </div>
-
-    </ui:define>
-
-    <ui:define name="footer">
-      <script type="text/javascript">
-              var dashboardScreen = new DashboardScreen();
-              var dashboardSmallScreen = new DashboardSmallScreen();
-              var responsiveToolkit = ResponsiveToolkit(dashboardScreen, dashboardScreen,
-                  dashboardSmallScreen);
-              $(function() {
-                Portal.init(responsiveToolkit);
-                //when user enter HomePage, we clear menu state store in cookies
-                if(PrimeFaces.widgets['main-menu']) {
-                    PF('main-menu').clearMenuState();
-                    PF('main-menu').restoreMenuState();
-                }
-              });
-            </script>
     </ui:define>
   </ui:composition>
 </h:body>
