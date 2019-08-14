@@ -2697,8 +2697,14 @@ _:-ms-input-placeholder, :root .case-details > * {
 }
   /* override on IE */
 _:-ms-fullscreen, :root .additional-case-details-link {
+  display: inline !important;
+}
+
+@-moz-document url-prefix() {
+  .additional-case-details-link {
     display: inline !important;
   }
+}
 
 .additional-case-details-link:hover {
   color: rgba(0,0,0,0.6) !important;
@@ -4933,17 +4939,18 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
   display: inline-block;
 }
 
+/* override on IE */
 _:-ms-fullscreen, :root .case-related-command-link {
   display: inline !important;
 }
 
-/* .case-detail-body .case-details-item .ui-commandlink { */
-/*   display: block !important; */
-/*   margin-top: auto !important; */
-/* } */
+/* override on Firefox */
+@-moz-document url-prefix() {
+  .case-related-command-link {
+    display: inline !important;
+  }
+}
 /* ================= END RESPONSIVE GRID ==================== */
-
-
 .task-widget .filter-container .filter-selection-container-group,
 .case-widget-container .filter-container .filter-selection-container-group {
     border-right: solid 1px rgba(0,0,0,0.5);
