@@ -9,7 +9,7 @@
 <ui:composition>
   <div jsf:rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled and compactProcessWidgetBean.displayShowAllProcessesLink}" class="favorite-process-title ui-g-12">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/favoriteProcesses')}" />
-    <p:commandLink id="show-user-processes-link" styleClass="name-sort-command Fright ui-lg-hidden ui-xl-hidden"
+    <p:commandLink id="show-user-processes-link" styleClass="name-sort-command Fright ui-lg-hidden ui-xl-hidden ui-md-hidden"
             value="Toggle" global="false" onclick="toggleShowUserProcessList();" />
   </div>
 
@@ -83,8 +83,8 @@
     rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled}">
     <h:form prependId="false">
       <div class="field-group ui-g">
-        <div class="ui-g-3 ui-sm-12">
-          <p:outputLabel id="process-type-label"
+        <div class="ui-g-3 ui-sm-12 field-group-label">
+          <p:outputLabel id="process-type-label" styleClass="ui-vertical-align-sub"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processType')}" for="process-type" />
         </div>
         <div class="ui-g-7 ui-sm-12">
@@ -102,9 +102,9 @@
       <h:panelGroup id="process-specific-input-container">
         <h:panelGroup id="ivy-process-container" rendered="#{!compactProcessWidgetBean.editingProcess.externalLink}">
           <div class="field-group ui-g">
-            <div class="ui-g-3 ui-sm-12">
+            <div class="ui-g-3 ui-sm-12 field-group-label">
               <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}"
-                for="new-process-name" />
+                styleClass="ui-vertical-align-sub" for="new-process-name" />
             </div>
             <div class="ui-g-9 ui-sm-12">
               <p:autoComplete id="new-process-name" required="true"
@@ -134,9 +134,9 @@
         <h:panelGroup id="external-start-link-container"
           rendered="#{compactProcessWidgetBean.editingProcess.externalLink}">
           <div class="field-group ui-g">
-            <div class="ui-g-3 ui-sm-12">
+            <div class="ui-g-3 ui-sm-12 field-group-label">
               <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}"
-                for="external-process-name" />
+                styleClass="ui-vertical-align-sub" for="external-process-name" />
             </div>
             <div class="ui-g-9 ui-sm-12">
               <p:inputText id="external-process-name" value="#{compactProcessWidgetBean.editingProcess.processName}"
@@ -148,9 +148,9 @@
           </div>
         </h:panelGroup>
         <div class="field-group ui-g">
-          <div class="ui-g-3 ui-sm-12">
+          <div class="ui-g-3 ui-sm-12 field-group-label">
             <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startLink')}"
-             for="process-start-link" />
+             styleClass="ui-line-height-2" for="process-start-link" />
             </div>
           <div class="ui-g-9 ui-sm-12">
             <p:inputText id="process-start-link" value="#{compactProcessWidgetBean.editingProcess.link}" required="true"
@@ -164,8 +164,8 @@
         </div>
       </h:panelGroup>
       <div class="field-group ui-g">
-        <div class="ui-g-3">
-          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/icon')}" />
+        <div class="ui-g-3 field-group-label">
+          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/icon')}" styleClass="ui-vertical-align-sub" />
         </div>
         <div class="ui-g-9">
           <ic:ch.ivy.addon.portalkit.component.IconSelection value="#{compactProcessWidgetBean.editingProcess.icon}" />

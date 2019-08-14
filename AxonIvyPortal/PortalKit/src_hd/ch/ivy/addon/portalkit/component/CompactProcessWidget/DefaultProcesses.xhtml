@@ -11,7 +11,7 @@
     rendered="#{not empty compactProcessWidgetBean.defaultUserProcesses}">
     <div class="default-process-title" jsf:rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled}">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/defaultProcesses')}" />
-      <p:commandLink id="show-default-processes-link" styleClass="name-sort-command Fright ui-lg-hidden ui-xl-hidden" onclick="toggleShowDefaultProcessList();"
+      <p:commandLink id="show-default-processes-link" styleClass="name-sort-command Fright ui-lg-hidden ui-xl-hidden ui-md-hidden" onclick="toggleShowDefaultProcessList();"
             value="Toggle" global="false" />
     </div>
     
