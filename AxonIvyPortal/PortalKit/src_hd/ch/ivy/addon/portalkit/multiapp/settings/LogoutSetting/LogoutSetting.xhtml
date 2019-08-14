@@ -6,26 +6,18 @@
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="isWorkingOnATask" default="false" />
-  <cc:attribute name="isMobile" default="false" />
 </cc:interface>
 
 <cc:implementation>
   <div id="#{cc.clientId}">
     <p:commandLink id="logout-menu-item"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
-      rendered="#{!userMenuBean.hiddenLogout and !cc.attrs.isWorkingOnATask and !cc.attrs.isMobile}" actionListener="#{logic.logout}"
+      rendered="#{!userMenuBean.hiddenLogout and !cc.attrs.isWorkingOnATask}" actionListener="#{logic.logout}"
       oncomplete="returnHomePage()" />
 
     <p:link id="logout-confirmation-menu-item" href="#"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
-      rendered="#{!userMenuBean.hiddenLogout and cc.attrs.isWorkingOnATask and !cc.attrs.isMobile}" onclick="PF('logoutConfirmation').show()" />
-
-    <p:commandLink id="mobile-logout-menu-item" styleClass="fa fa-sign-out mobile-logout-item"
-      rendered="#{!userMenuBean.hiddenLogout and !cc.attrs.isWorkingOnATask and cc.attrs.isMobile}" actionListener="#{logic.logout}"
-      oncomplete="returnHomePage()" />
-
-    <p:link id="mobile-logout-confirmation-menu-item" href="#" styleClass="fa fa-sign-out mobile-logout-item"
-      rendered="#{!userMenuBean.hiddenLogout and cc.attrs.isWorkingOnATask and cc.attrs.isMobile}" onclick="PF('logoutConfirmation').show()" />
+      rendered="#{!userMenuBean.hiddenLogout and cc.attrs.isWorkingOnATask}" onclick="PF('logoutConfirmation').show()" />
 
     <p:confirmDialog id="logout-confirmation-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" 
       closeOnEscape="true" widgetVar="logoutConfirmation" appendTo="@(body)" rendered="#{cc.attrs.isWorkingOnATask}">

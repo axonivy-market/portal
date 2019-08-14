@@ -17,7 +17,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
@@ -46,7 +45,6 @@ public class ProcessWidgetBean implements Serializable {
 
   private String processWidgetComponentId;
   private Process deletedExpressProcess;
-  private boolean mobileMode;
   private IProcessStart createExpressWorkflowProcessStart;
   private Map<String, List<Process>> processesByAlphabet;
   List<Process> portalProcesses;
@@ -54,7 +52,6 @@ public class ProcessWidgetBean implements Serializable {
   @PostConstruct
   public void init() {
     processWidgetComponentId = Attrs.currentContext().getBuildInAttribute("clientId");
-    mobileMode = BooleanUtils.toBoolean((String) Attrs.currentContext().get("mobileMode"));
 
     ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
     createExpressWorkflowProcessStart = collector.findExpressCreationProcess();
@@ -136,10 +133,6 @@ public class ProcessWidgetBean implements Serializable {
   private void sortExpressProcesses(List<ExpressProcess> expressProcesses) {
     expressProcesses.sort(
         (process1, process2) -> StringUtils.compareIgnoreCase(process1.getProcessName(), process2.getProcessName()));
-  }
-
-  public boolean isMobileMode() {
-    return mobileMode;
   }
 
   public void editExpressWorkflow(ExpressProcess process) throws IOException {
