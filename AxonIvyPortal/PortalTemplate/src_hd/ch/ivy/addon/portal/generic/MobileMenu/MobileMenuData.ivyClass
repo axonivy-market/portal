@@ -1,6 +1,0 @@
-MobileMenuData #class
-ch.ivy.addon.portal.generic.MobileMenu #namespace
-isWorkingOnATask Boolean #field
-isWorkingOnATask PERSISTENT #fieldModifier
-menuKind ch.ivy.addon.portalkit.enums.MenuKind #field
-menuKind PERSISTENT #fieldModifier

@@ -12,7 +12,6 @@
   <cc:attribute name="onTaskStartCallback" />
   <cc:facet name="taskHeader" shortDescription="Header content of a task item" />
   <cc:attribute name="dataModel" />
-  <cc:attribute name="isMobile" type="Boolean" default="false" />
 </cc:interface>
 
 <cc:implementation>
@@ -25,7 +24,6 @@
   <h:panelGroup rendered="#{compactMode}">
     <ui:include src="CompactTaskStartLink.xhtml">
       <ui:param name="dataModel" value="#{dataModel}" />
-      <ui:param name="isMobile" value="#{cc.attrs.isMobile}" />
       <ui:param name="rowIndex" value="#{rowIndex}" />
     </ui:include>
   </h:panelGroup>

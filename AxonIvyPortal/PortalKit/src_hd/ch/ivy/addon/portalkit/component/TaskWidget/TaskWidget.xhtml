@@ -27,11 +27,10 @@
   <c:set var="showHeaderToolbar" value="#{empty cc.attrs.showHeaderToolbar ? 'true' : cc.attrs.showHeaderToolbar}" />
   <c:set var="noTaskFoundMessage"
     value="#{empty cc.attrs.noTaskFoundMessage ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/noTask') : cc.attrs.noTaskFoundMessage}" />
-  <c:set var="isMobile" value="#{deviceBean.mobile}" />
   <h:outputScript name="task-widget.js" library="js" />
 
   <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} js-task-widget ui-g">
-    <h:panelGroup rendered="#{!cc.attrs.hideWidgetHeader and !isMobile}">
+    <h:panelGroup rendered="#{!cc.attrs.hideWidgetHeader}">
       <h:panelGroup id="task-widget-header" styleClass="widget-header task-widget-header js-task-widget-header ui-g-12 ui-g"
         layout="block">
         <h:panelGroup styleClass="widget-header-main ui-g-8 ui-md-8 ui-sm-12" layout="block">
@@ -59,7 +58,7 @@
       </h:panelGroup>
 
       <h:panelGroup id="filter-container" styleClass="filter-container js-filter-container ui-g-12"
-        rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter and !isMobile}">
+        rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter}">
         <h:panelGroup id="filter-selection-container" styleClass="filter-selection-container-group"
           rendered="#{(not empty data.taskPrivateFilters or not empty data.taskPublicFilters) and not data.dataModel.compactMode}"> 
           <h:form id="filter-selection-form" class="filter-selection-form filter-selection-container">
@@ -120,7 +119,7 @@
           </h:form>
         </h:panelGroup>
 
-        <h:panelGroup id="advanced-filter-container" layout="block" styleClass="advanced-filter-container" rendered="#{!isMobile}">
+        <h:panelGroup id="advanced-filter-container" layout="block" styleClass="advanced-filter-container">
           <h:panelGroup styleClass="additional-filter-container">
             <f:event listener="#{data.dataModel.initFilters()}" type="preRenderComponent" />
             <cc:renderFacet name="taskFilter" />
@@ -139,7 +138,7 @@
             </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>
           </h:panelGroup>
         </h:panelGroup>
-        <h:panelGroup id="filter-add-container" styleClass="filter-add-container" rendered="#{!isMobile}">
+        <h:panelGroup id="filter-add-container" styleClass="filter-add-container">
           <p:commandButton id="filter-add-action"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/more')}" styleClass="filter-add-button"
             icon="fa fa-caret-down" iconPos="right" type="button" />
@@ -171,7 +170,7 @@
           </p:overlayPanel>
         </h:panelGroup>
 
-        <h:panelGroup id="filter-save-container" rendered="#{!isMobile}">
+        <h:panelGroup id="filter-save-container">
           <p:commandButton id="filter-save-action"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" styleClass="filter-add-button"
             icon="fa fa-save" iconPos="right" update="save-filter-set-dialog" resetValues="true"
@@ -180,7 +179,7 @@
       </h:panelGroup>
     </h:panelGroup>
 
-    <h:panelGroup id="task-widget-sub-header" layout="block" styleClass="js-task-widget-sub-header ui-g task-widget-sub-header" rendered="#{!isMobile}">
+    <h:panelGroup id="task-widget-sub-header" layout="block" styleClass="js-task-widget-sub-header ui-g task-widget-sub-header">
       <h:panelGroup id="task-widget-sort-menu" layout="block"
         styleClass="widget-sort-menu js-task-widget-sort-menu #{!data.dataModel.compactMode ? 'full-mode' : 'ui-sm-hidden ui-g-3'} #{cc.attrs.listHeaderStyleClass}">
         <h:panelGroup rendered="#{data.dataModel.compactMode}">
@@ -209,23 +208,6 @@
         </h:form>
       </h:panelGroup>
     </h:panelGroup>
-    
-    <h:panelGrid id="task-widget-mobile-header" rendered="#{isMobile}" columns="2" styleClass="Wid100 mobile-task-header" >
-      <h:form id="filter-form-mobile" styleClass="widget-header-content-filter js-filter-container" onsubmit="return false;">
-        <ic:ch.ivy.addon.portalkit.component.Filter id="filter-container" 
-          updateComponent="#{p:component('task-view-container')}"
-          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceHolderMobile')}"
-          keywordStoresIn="#{data.dataModel.criteria.keyword}"
-          onCompletedCallback="taskWidget.setupScrollbar();"/>
-      </h:form>
-      <h:form id="sort-form-mobile">
-        <p:selectOneMenu id="sort-task-mobile" value="#{data.mobileSelectedSort}" styleClass="Fright mobile-sort" autoWidth="false">
-          <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/sort')}" />
-          <f:selectItems value="#{data.dataModel.getPortalTaskMobileSort()}" var="item" itemLabel="#{data.dataModel.getSortFieldLabel(item)}"/>
-          <p:ajax event="change" listener="#{logic.sortOnMobile}" update="#{p:component('task-view-container')}" oncomplete="taskWidget.setupScrollbar();"/>
-        </p:selectOneMenu>
-      </h:form>
-    </h:panelGrid>
 
     <h:panelGroup layout="block" id="task-view" styleClass="ui-g-12">
       <h:panelGroup id="task-view-container" layout="block" styleClass="task-view-container">
@@ -236,11 +218,10 @@
           lazy="true" 
           mode="inline" 
           rowIndexVar="rowIndex"
-          styleClass="task-start-list js-task-start-list #{data.dataModel.compactMode ? 'compact-mode' : ''} #{isMobile ? 'mobile-task-item' : ''}">
+          styleClass="task-start-list js-task-start-list #{data.dataModel.compactMode ? 'compact-mode' : ''}">
           <ic:ch.ivy.addon.portalkit.component.TaskItem 
             id="task-item" task="#{task}" 
-            rowIndex="#{rowIndex}" 
-            isMobile="#{isMobile}"
+            rowIndex="#{rowIndex}"
             isSelected="#{cc.attrs.selectedTaskId eq task.getId()}"
             compactMode="#{data.dataModel.compactMode}" 
             componentToUpdate="#{p:component('task-details-notes')}"
@@ -260,7 +241,7 @@
     </h:panelGroup>
   </div>
 
-  <p:dialog id="save-filter-set-dialog" widgetVar="save-filter-set-dialog" appendTo="@(body)" rendered="#{!isMobile}"
+  <p:dialog id="save-filter-set-dialog" widgetVar="save-filter-set-dialog" appendTo="@(body)"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" resizable="false" width="575"
     modal="true" closeOnEscape="true" styleClass="save-filter-set-dialog">
     <p:messages autoUpdate="true" />
@@ -297,7 +278,7 @@
     </h:form>
   </p:dialog>
 
-  <p:confirmDialog id="delete-filter-confirmation-dialog" rendered="#{!isMobile}"
+  <p:confirmDialog id="delete-filter-confirmation-dialog"
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterDeletionConfirmation')}"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
     widgetVar="delete-filter-confirmation-dialog" appendTo="@(body)" severity="alert">
