@@ -19,7 +19,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.context.RequestContext;
 
-import ch.ivy.addon.portal.generic.common.DeviceDetector;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
@@ -78,12 +77,6 @@ public class UserMenuBean implements Serializable {
       return Integer.valueOf(clientSideTimeoutInMinute) * DateUtils.MILLIS_PER_MINUTE;
     }
     return getDefaultClientSideTimeout();
-  }
-
-  public void switchDesktopOrMobileVersion(boolean isMobile) throws IOException {
-    String url = String.format("%s?isMobile=%s", getHomePageURL(), isMobile);
-    getExternalContext().redirect(url);
-    DeviceDetector.instance().updateVersionState(Ivy.session().getHttpSessionIdentifier(), isMobile);
   }
 
   public String getLogoutPage() throws MalformedURLException {
