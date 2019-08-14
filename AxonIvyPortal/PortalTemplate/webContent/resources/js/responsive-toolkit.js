@@ -72,18 +72,6 @@ function TaskListSmallScreenHandler() {
    }
 };
 
-/***************************Handle responsive for Simple Screen**********************************/	
-function SimpleScreen() {
-  var marginValWhenTwoMenuClose = 0;
-
-  this.updateMainContainer = function() {
-    var $announcement = $('.js-announcement-message');
-    var $simpleMainColumn = $('.js-simple-main-col');
-    $announcement.animate({ marginLeft : marginValWhenTwoMenuClose }, animateDuration);
-    $simpleMainColumn.animate({ marginLeft : marginValWhenTwoMenuClose }, animateDuration);
-  }
-}
-
 /***************************Handle responsive for Case List**********************************/
 function CaseListLargeScreenHandler() {
   this.updateMainContainer = function(){
@@ -105,30 +93,3 @@ function CaseListSmallScreenHandler() {
     caseListToolKit.responsiveInSmallScreen();
   }
 };
-
-/***************************Handle responsive for Dashboard**********************************/
-function DashboardScreen() {
-  var marginValWhenTwoMenuClose = 0;
-
-  this.updateMainContainer = function() {
-    var $announcement = $('.js-announcement-message');
-    var $dashboard = $('.js-dashboard-default-widget-container');
-    $announcement.animate({ marginLeft : marginValWhenTwoMenuClose }, animateDuration);
-    $dashboard.animate({ marginLeft : marginValWhenTwoMenuClose }, animateDuration);
-  }
-}
-
-function DashboardSmallScreen() {
-  this.updateMainContainer = function() {
-    updateDashboard();
-  }
-
-  function moveStatisticsToFirstCol() {
-    $('.js-dashboard-main-content-1st-col').append($('.js-statistic-widget'));
-    $('.js-dashboard-main-content-3rd-col').addClass('u-hidden');
-  }
-
-  function updateDashboard() {
-    moveStatisticsToFirstCol();
-  }
-}
