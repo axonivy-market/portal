@@ -87,7 +87,7 @@ function TaskListToolKit() {
       taskWidget.setupScrollbar();
     },
 
-    showHideColumnWhenMenuToggle() {
+    showHideColumnWhenMenuToggle: function() {
       var $mainMenu = $('.js-left-sidebar');
       var remainingWidth = $('body').width() - $mainMenu.outerWidth() - 40;//exclude padding and scroll bar
       var $hiddenColumns = $('.js-hidden-when-expand-menu');
