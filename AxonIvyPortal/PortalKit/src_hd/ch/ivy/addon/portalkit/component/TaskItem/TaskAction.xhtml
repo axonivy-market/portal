@@ -5,7 +5,7 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
 
 <ui:composition>
-  <div id="action-cell-#{rowIndex}" class="task-header-action-cell ui-md-hidden-down">
+  <div id="action-cell-#{rowIndex}" class="task-header-action-cell hidden-md-down">
     <div class="action-container">
       <p:commandLink id="task-action-component" actionListener="#{logic.openTask(task,dataModel)}" disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)}"
         onstart="event.stopPropagation();" styleClass="task-action-item">
