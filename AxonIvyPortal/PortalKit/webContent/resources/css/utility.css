@@ -225,11 +225,36 @@
     .ui-sm-hidden {
         display: none;
     }
+
+    .history-note {
+        border-left: 1px solid #d8d8d8 !important;
+    }
+    .ui-fileupload-buttonbar .ui-button {
+        padding: 0 14px 0 28px !important;
+    }
+    .case-details {
+        padding: 0 !important;
+    }
+    .case-upload-dialog, .case-view-note-dialog {
+        width: 80% !important;
+    }
+    .note-show-more-link {
+        float: left !important;
+        margin-left: 0 !important;
+    }
+    .adhoc-task-history-dialog .ui-dialog-content.ui-widget-content {
+        margin: 0 !important;
+        width: calc(100vw - 40px) !important;
+    }
 }
 
 @media screen and (min-width: 40.063em) and (max-width: 64.062em) {
     .ui-md-hidden {
         display: none;
+    }
+    .adhoc-task-history-dialog .ui-dialog-content.ui-widget-content {
+        margin: 0 !important;
+        width: calc(80vw - 40px) !important;
     }
 }
 
