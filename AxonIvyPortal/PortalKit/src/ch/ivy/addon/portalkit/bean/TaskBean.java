@@ -14,7 +14,6 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityMember;
-import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;

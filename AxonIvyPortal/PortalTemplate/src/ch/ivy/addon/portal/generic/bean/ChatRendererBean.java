@@ -8,7 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.context.RequestContext;
+import org.primefaces.PrimeFaces;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
@@ -56,6 +56,6 @@ public class ChatRendererBean implements Serializable {
     Map<String, Object> response = IvyAdapterService.startSubProcess("setGroupChatName()", null,
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
     String groupChatName = response.get("name").toString();
-    RequestContext.getCurrentInstance().execute("var groupChatFormat = '" + groupChatName + "'");
+    PrimeFaces.current().executeScript("var groupChatFormat = '" + groupChatName + "'");
   }
 }

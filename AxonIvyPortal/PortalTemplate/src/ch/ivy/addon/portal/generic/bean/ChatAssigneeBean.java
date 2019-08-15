@@ -20,7 +20,7 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.context.RequestContext;
+import org.primefaces.PrimeFaces;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -179,8 +179,8 @@ public class ChatAssigneeBean implements Serializable {
           message = generateErrorMessageWhenJoinGroupChat();
         }
         FacesContext.getCurrentInstance().addMessage(TASK_TEMPLATE_GROWL_ID, message);
-        RequestContext.getCurrentInstance().update(TASK_TEMPLATE_GROWL_ID);
-        RequestContext.getCurrentInstance().execute("PF('chat-assignee-dialog').hide()");
+        PrimeFaces.current().ajax().update(TASK_TEMPLATE_GROWL_ID);
+        PrimeFaces.current().executeScript("PF('chat-assignee-dialog').hide()");
       }
     }
   }
@@ -213,7 +213,7 @@ public class ChatAssigneeBean implements Serializable {
     if (!isShowCreateGroupChatDialog && !doesGroupChatExist) {
       createGroupChat();
     } else {
-      RequestContext.getCurrentInstance().execute("PF('chat-assignee-dialog').show()");
+      PrimeFaces.current().executeScript("PF('chat-assignee-dialog').show()");
     }
   }
 
@@ -241,8 +241,8 @@ public class ChatAssigneeBean implements Serializable {
       message = generateErrorMessageWhenCreateGroupChat();
     }
     FacesContext.getCurrentInstance().addMessage(TASK_TEMPLATE_GROWL_ID, message);
-    RequestContext.getCurrentInstance().update(TASK_TEMPLATE_GROWL_ID);
-    RequestContext.getCurrentInstance().execute("PF('chat-assignee-dialog').hide()");
+    PrimeFaces.current().ajax().update(TASK_TEMPLATE_GROWL_ID);
+    PrimeFaces.current().executeScript("PF('chat-assignee-dialog').hide()");
   }
 
   private FacesMessage generateErrorMessageWhenCreateGroupChat() {
@@ -305,7 +305,7 @@ public class ChatAssigneeBean implements Serializable {
     if (doesGroupChatExist()) {
       FacesContext.getCurrentInstance().addMessage(CHAT_ASSIGNEE_ERROR_MESSAGE_ID,
           new FacesMessage(FacesMessage.SEVERITY_ERROR, "", getGroupChatExistMessage()));
-      RequestContext.getCurrentInstance().update(CHAT_ASSIGNEE_ERROR_MESSAGE_ID);
+      PrimeFaces.current().ajax().update(CHAT_ASSIGNEE_ERROR_MESSAGE_ID);
       return true;
     }
     return false;
@@ -315,7 +315,7 @@ public class ChatAssigneeBean implements Serializable {
     if (CollectionUtils.isEmpty(selectedAssignees)) {
       FacesContext.getCurrentInstance().addMessage(CHAT_ASSIGNEE_ERROR_MESSAGE_ID, new FacesMessage(
           FacesMessage.SEVERITY_ERROR, "", Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/noAssignees")));
-      RequestContext.getCurrentInstance().update(CHAT_ASSIGNEE_ERROR_MESSAGE_ID);
+      PrimeFaces.current().ajax().update(CHAT_ASSIGNEE_ERROR_MESSAGE_ID);
       return true;
     }
     return false;
