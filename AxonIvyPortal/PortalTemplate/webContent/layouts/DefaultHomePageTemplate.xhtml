@@ -11,14 +11,13 @@
     <ui:define name="pageContent">
       <c:set var="displayProcessWidget" value="#{not empty displayProcessWidget ? displayProcessWidget : true}" />
       <c:set var="displayTaskWidget" value="#{not empty displayTaskWidget ? displayTaskWidget : true}" />
-      <c:set var="displayStatisticWidget" value="#{(not empty displayStatisticWidget ? displayStatisticWidget : true) and not statisticBean.hiddenStatisticWidget}" />
-
+      <c:set var="displayStatisticWidget"
+        value="#{(not empty displayStatisticWidget ? displayStatisticWidget : true) and not statisticBean.hiddenStatisticWidget}" />
 
       <h:panelGroup layout="block" styleClass="ui-g #{dataModel.compactMode ? '' : 'task-list-container'}">
         <div class="ui-g-3 ui-lg-3 ui-md-4 ui-sm-12">
           <ui:insert name="processWidget">
-            <h:panelGroup layout="block"
-              rendered="#{displayProcessWidget}">
+            <h:panelGroup layout="block" rendered="#{displayProcessWidget}">
               <ic:ch.ivy.addon.portalkit.component.CompactProcessWidget id="process-widget"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}">
                 <f:facet name="headerToolbar">
@@ -31,8 +30,7 @@
         </div>
         <div class="ui-g-6 ui-lg-6 ui-md-8 ui-sm-12 #{dataModel.compactMode ? 'ui-no-padding compact-task-widget' : ''}">
           <ui:insert name="taskWidget">
-            <h:panelGroup layout="block"
-              rendered="#{displayTaskWidget}">
+            <h:panelGroup layout="block" rendered="#{displayTaskWidget}">
               <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" dataModel="#{dataModel}"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}"
                 keyword="#{dataModel.criteria.keyword}" compactMode="#{dataModel.compactMode}"
@@ -47,11 +45,10 @@
         </div>
         <div class="ui-g-3 ui-lg-3 ui-md-hidden ui-sm-hidden">
           <ui:insert name="statisticWidget">
-            <h:panelGroup layout="block"
-              rendered="#{displayStatisticWidget}">
+            <h:panelGroup layout="block" rendered="#{displayStatisticWidget}">
               <h:panelGroup layout="block" id="statistic-widget-container">
-                <ic:ch.ivy.addon.portalkit.component.StatisticWidget id="statistics-widget" compactMode="true" showTaskListImmediately="true"
-                  statisticChartList="#{statisticChartList}">
+                <ic:ch.ivy.addon.portalkit.component.StatisticWidget id="statistics-widget" compactMode="true"
+                  showTaskListImmediately="true" statisticChartList="#{statisticChartList}">
                   <f:facet name="headerToolbar">
                     <ic:ch.ivy.addon.portal.generic.StatisticNavigator id="statistic-link"
                       label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/showAllCharts')}" />
@@ -69,6 +66,19 @@
           </ui:insert>
         </div>
       </div>
+
+    </ui:define>
+
+    <ui:define name="footer">
+      <script type="text/javascript">
+              $(function() {
+                var simpleLargeScreen = new TaskListLargeScreenHandler();
+                var simpleMediumScreen = new TaskListMediumScreenHandler();
+                var simpleSmallScreen = new TaskListSmallScreenHandler();
+                var responsiveToolkit = ResponsiveToolkit(simpleLargeScreen, simpleMediumScreen, simpleSmallScreen);
+                Portal.init(responsiveToolkit);
+              });
+            </script>
     </ui:define>
   </ui:composition>
 </h:body>
