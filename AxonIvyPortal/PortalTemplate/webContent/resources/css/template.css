@@ -24,7 +24,6 @@
 
 .mobile-global-search-container {
     padding: 0 3px 0 5px;
-    margin-top: 10px;
 }
 
 .global-search-input {
@@ -40,6 +39,18 @@
     margin-right: 10px;
     position: relative;
     display: inline-block;
+}
+
+@media screen and (max-width: 40em) {
+  .mobile-global-search-container {
+    margin-top: 10px;
+  }
+}
+
+@media screen and (min-width: 40.063em) and (max-width: 64.062em) {
+  .mobile-global-search-container {
+    margin-top: 10px;
+  }
 }
 
 .setting-container {

@@ -26,9 +26,13 @@ var Portal = {
     });
 
     responsiveToolkit.updateLayoutWithoutAnimation();
-    $('#main-area-panel').removeClass('u-invisibility');
-    $('#left-menu').removeClass('u-invisibility');
+    this.updateLayoutContent();
   },
+  
+  // Remove u-invisibility class when DOM is pasted already
+  updateLayoutContent : function() {
+    $('#main-area-panel').removeClass('u-invisibility');
+  }
 }
 
 function searchIconByName(element) {
