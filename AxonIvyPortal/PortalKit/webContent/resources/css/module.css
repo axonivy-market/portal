@@ -737,13 +737,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 /********************************** END ADVANCED FILTER WIDGET **********************************/
 
 /********************************** START CASE ITEM **********************************/
-.case.expanded-mode {
-  color: #546e7a;
-  background-color: white;
-  cursor: default;
-}
-
-
 .case-list-name-desc-header-cell {
   padding-left: 10px;
   box-sizing: border-box;
@@ -834,14 +827,6 @@ a.case-details-document-add-link, a.task-details-document-add-link {
 
 .case-details-document-add-link-icon, .task-details-document-add-link-icon {
   margin-right: 5px;
-}
-
-.case.expanded-mode a {
-  color: #546e7a !important;
-}
-
-.case.expanded-mode .ui-outputlabel {
-  color: #546e7a;
 }
 
 .related-task-list-item-status {
