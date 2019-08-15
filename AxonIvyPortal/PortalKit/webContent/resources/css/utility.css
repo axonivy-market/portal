@@ -223,25 +223,25 @@
 
 @media screen and (max-width: 40em) {
     .ui-sm-hidden {
-        display: none;
+        display: none !important;
     }
 }
 
 @media screen and (min-width: 40.063em) and (max-width: 64.062em) {
     .ui-md-hidden {
-        display: none;
+        display: none !important;
     }
 }
 
 @media screen and (min-width: 64.063em) and (max-width: 90.062em) {
     .ui-lg-hidden {
-        display: none;
+        display: none !important;
     }
 }
 
 @media screen and (min-width: 90.063em) {
     .ui-xl-hidden {
-        display: none;
+        display: none !important;
     }
 }
 
