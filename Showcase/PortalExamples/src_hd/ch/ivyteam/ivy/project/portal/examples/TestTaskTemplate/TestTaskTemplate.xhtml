@@ -1,0 +1,180 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+<h:body>
+  <ui:composition template="/layouts/TaskTemplate.xhtml">
+    <ui:define name="pageTitle">TestTaskTemplate</ui:define>
+
+    <ui:param name="caseId" value="#{ivy.case.id}" />
+    <ui:param name="task" value="#{ivy.task}" />
+    <ui:param name="actualStepIndex" value="#{data.actualStepIndex}" />
+    <ui:param name="steps" value="#{data.steps}" />
+<!--         <ui:param name="processChainDirection" value="VERTICAL" /> -->
+        <ui:param name="processChainShape" value="LINE" />
+    <ui:param name="processChainDirection" value="HORIZONTAL" />
+    <!--       <ui:param name="processChainShape" value="#{CIRCLE}" /> -->
+
+    <ui:remove>
+      <ui:param name="processChainDirection" value="#{HORIZONTAL}" />
+      <ui:param name="processChainShape" value="#{CIRCLE}" />
+      <ui:param name="showTaskFormTab" value="false" />
+      <ui:param name="showCaseStatusInfoTab" value="true" />
+      <ui:define name="taskName">...</ui:define>
+
+      <ui:define name="errorsZone">...</ui:define>
+
+      <ui:define name="infoZone">...</ui:define>
+
+      <ui:define name="dynamicTabs">
+
+        <p:tab title="My first tab">
+
+          <p:inputText id="first-name" value="#{data.firstname}" />
+
+        </p:tab>
+
+        <p:tab title="My second tab">
+
+          <p:inputText id="last-name" value="#{data.lastname}" />
+
+        </p:tab>
+
+      </ui:define>
+    </ui:remove>
+
+    <ui:define name="breadCrumb">
+      <!--       <ic:ch.ivy.addon.portalkit.component.BreadcrumbMenu data="#{task}" listUrl="#" type="Task" /> -->
+    </ui:define>
+
+    <ui:define name="taskForm">
+
+      <h:form id="form">
+        <h:panelGrid columns="2">
+          <f:facet name="header">
+            <p:messages></p:messages>
+          </f:facet>
+
+          <p:outputLabel for="dataGdprRequestAddress" value="Address" />
+          <p:inputText id="dataGdprRequestAddress" value="#{data.data.gdprRequest.address}"></p:inputText>
+
+          <p:outputLabel for="dataGdprRequestAppliacationUserName" value="Appliacation User Name" />
+          <p:inputText id="dataGdprRequestAppliacationUserName" value="#{data.data.gdprRequest.appliacationUserName}"></p:inputText>
+
+          <!-- No 'form field [Long]' template found for field 'data.gdprRequest.caseId'. -->
+
+          <p:outputLabel for="dataGdprRequestCity" value="City" />
+          <p:inputText id="dataGdprRequestCity" value="#{data.data.gdprRequest.city}"></p:inputText>
+
+          <!-- No 'form field [ch.ivyteam.ivy.project.portal.examples.showcase.enums.Completeness]' template found for field 'data.gdprRequest.completeness'. -->
+
+          <!-- No 'form field [java.util.Date]' template found for field 'data.gdprRequest.creationDate'. -->
+
+          <!-- No 'form field [java.util.Date]' template found for field 'data.gdprRequest.dateOfReview'. -->
+
+          <p:outputLabel for="dataGdprRequestEmailAddress" value="Email Address" />
+          <p:inputText id="dataGdprRequestEmailAddress" value="#{data.data.gdprRequest.emailAddress}"></p:inputText>
+
+          <!-- No 'form field [List<ch.ivyteam.ivy.project.portal.examples.showcase.GdprFile>]' template found for field 'data.gdprRequest.files'. -->
+
+          <p:outputLabel for="dataGdprRequestId" value="Id" />
+          <p:inputText id="dataGdprRequestId" value="#{data.data.gdprRequest.id}"></p:inputText>
+
+          <p:outputLabel for="dataGdprRequestIdentificationNumer" value="Identification Numer" />
+          <p:inputText id="dataGdprRequestIdentificationNumer" value="#{data.data.gdprRequest.identificationNumer}"></p:inputText>
+
+          <p:outputLabel for="dataGdprRequestName" value="Name" />
+          <p:inputText id="dataGdprRequestName" value="#{data.data.gdprRequest.name}"></p:inputText>
+
+          <!-- No 'form field [Integer]' template found for field 'data.gdprRequest.phoneNumber'. -->
+
+          <!-- No 'form field [ch.ivyteam.ivy.project.portal.examples.showcase.enums.ProcessState]' template found for field 'data.gdprRequest.processState'. -->
+
+          <p:outputLabel for="dataGdprRequestRequestReason" value="Request Reason" />
+          <p:inputText id="dataGdprRequestRequestReason" value="#{data.data.gdprRequest.requestReason}"></p:inputText>
+
+          <p:outputLabel for="dataGdprRequestReviewedBy" value="Reviewed By" />
+          <p:inputText id="dataGdprRequestReviewedBy" value="#{data.data.gdprRequest.reviewedBy}"></p:inputText>
+
+          <p:outputLabel for="dataGdprRequestSurname" value="Surname" />
+          <p:inputText id="dataGdprRequestSurname" value="#{data.data.gdprRequest.surname}"></p:inputText>
+
+          <!-- No 'form field [Integer]' template found for field 'data.gdprRequest.zip'. -->
+
+          <br />
+          <!--           <p:commandButton actionListener="#{logic.close}" value="Proceed" update="form" icon="ui-icon-check" /> -->
+        </h:panelGrid>
+      </h:form>
+
+    </ui:define>
+
+    <ui:define name="dynamicTabs">
+
+      <p:tab title="My first tab">
+        <p:outputLabel value="first name" />
+        <p:inputText id="first-name" value="#{data.firstname}" />
+
+      </p:tab>
+
+      <p:tab title="My second tab">
+
+        <p:outputLabel value="last name" />
+        <p:inputText id="last-name" value="#{data.lastname}" />
+
+      </p:tab>
+
+      <p:tab title="My second tab">
+
+        <p:outputLabel value="last name" />
+        <p:inputText id="last-name1" value="#{data.lastname}" />
+
+      </p:tab>
+
+      <p:tab title="My third tab">
+
+        <p:outputLabel value="last name" />
+        <p:inputText id="last-name2" value="#{data.lastname}" />
+
+      </p:tab>
+      
+            <p:tab title="My first tab">
+        <p:outputLabel value="first name" />
+        <p:inputText id="first-name22" value="#{data.firstname}" />
+
+      </p:tab>
+
+      <p:tab title="My second tab">
+
+        <p:outputLabel value="last name" />
+        <p:inputText id="last-name33" value="#{data.lastname}" />
+
+      </p:tab>
+
+      <p:tab title="My second tab">
+
+        <p:outputLabel value="last name" />
+        <p:inputText id="last-name133" value="#{data.lastname}" />
+
+      </p:tab>
+
+      <p:tab title="My third tab">
+
+        <p:outputLabel value="last name" />
+        <p:inputText id="last-name244" value="#{data.lastname}" />
+
+      </p:tab>
+
+    </ui:define>
+
+    <ui:define name="leftButtons">
+
+      <p:commandButton value="Save" actionListener="#{logic.close}" partialSubmit="true" />
+
+    </ui:define>
+
+    <ui:define name="rightButtons">
+
+      <p:commandButton value="Cancel" actionListener="#{logic.close}" immediate="true" />
+
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

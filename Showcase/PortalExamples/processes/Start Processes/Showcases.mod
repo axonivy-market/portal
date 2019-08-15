@@ -32,6 +32,16 @@ Ss0 @EndTask f16 '' #zField
 Ss0 @RichDialog f17 '' #zField
 Ss0 @PushWFArc f18 '' #zField
 Ss0 @PushWFArc f19 '' #zField
+Ss0 @StartRequest f20 '' #zField
+Ss0 @EndTask f21 '' #zField
+Ss0 @RichDialog f22 '' #zField
+Ss0 @PushWFArc f23 '' #zField
+Ss0 @PushWFArc f24 '' #zField
+Ss0 @StartRequest f25 '' #zField
+Ss0 @EndTask f26 '' #zField
+Ss0 @RichDialog f28 '' #zField
+Ss0 @PushWFArc f29 '' #zField
+Ss0 @PushWFArc f27 '' #zField
 >Proto Ss0 Ss0 Showcases #zField
 Ss0 f0 outLink ApplicationShowcase.ivp #txt
 Ss0 f0 type ch.ivyteam.ivy.project.portal.examples.showcase.Data #txt
@@ -210,6 +220,97 @@ Ss0 f18 expr out #txt
 Ss0 f18 111 352 168 352 #arcP
 Ss0 f19 expr out #txt
 Ss0 f19 280 352 337 352 #arcP
+Ss0 f20 outLink startTestTaskTemplate.ivp #txt
+Ss0 f20 type ch.ivyteam.ivy.project.portal.examples.showcase.Data #txt
+Ss0 f20 inParamDecl '<> param;' #txt
+Ss0 f20 actionDecl 'ch.ivyteam.ivy.project.portal.examples.showcase.Data out;
+' #txt
+Ss0 f20 guid 16C837320B7124C8 #txt
+Ss0 f20 requestEnabled true #txt
+Ss0 f20 triggerEnabled false #txt
+Ss0 f20 callSignature startTestTaskTemplate() #txt
+Ss0 f20 persist false #txt
+Ss0 f20 taskData 'TaskTriggered.CATEGORY=Tasktemplate
+TaskTriggered.DESC=Test Tasktemplate task
+TaskTriggered.NAM=Test Tasktemplate task' #txt
+Ss0 f20 caseData businessCase.attach=true #txt
+Ss0 f20 showInStartList 1 #txt
+Ss0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>startTestTaskTemplate.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f20 @C|.responsibility Everybody #txt
+Ss0 f20 65 465 30 30 -70 29 #rect
+Ss0 f20 @|StartRequestIcon #fIcon
+Ss0 f21 type ch.ivyteam.ivy.project.portal.examples.showcase.Data #txt
+Ss0 f21 353 465 30 30 0 15 #rect
+Ss0 f21 @|EndIcon #fIcon
+Ss0 f22 richDialogId ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate #txt
+Ss0 f22 startMethod start(ch.ivyteam.ivy.project.portal.examples.showcase.Data) #txt
+Ss0 f22 type ch.ivyteam.ivy.project.portal.examples.showcase.Data #txt
+Ss0 f22 requestActionDecl '<ch.ivyteam.ivy.project.portal.examples.showcase.Data data> param;' #txt
+Ss0 f22 requestMappingAction 'param.data=in;
+' #txt
+Ss0 f22 responseActionDecl 'ch.ivyteam.ivy.project.portal.examples.showcase.Data out;
+' #txt
+Ss0 f22 responseMappingAction 'out=in;
+' #txt
+Ss0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>test page</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f22 184 458 112 44 -25 -8 #rect
+Ss0 f22 @|RichDialogIcon #fIcon
+Ss0 f23 expr out #txt
+Ss0 f23 95 480 184 480 #arcP
+Ss0 f24 expr out #txt
+Ss0 f24 296 480 353 480 #arcP
+Ss0 f25 outLink startTestTab.ivp #txt
+Ss0 f25 type ch.ivyteam.ivy.project.portal.examples.showcase.Data #txt
+Ss0 f25 inParamDecl '<> param;' #txt
+Ss0 f25 actionDecl 'ch.ivyteam.ivy.project.portal.examples.showcase.Data out;
+' #txt
+Ss0 f25 guid 16C893CFDFB96E51 #txt
+Ss0 f25 requestEnabled true #txt
+Ss0 f25 triggerEnabled false #txt
+Ss0 f25 callSignature startTestTab() #txt
+Ss0 f25 persist false #txt
+Ss0 f25 taskData TaskTriggered.NAM=ssss #txt
+Ss0 f25 caseData businessCase.attach=true #txt
+Ss0 f25 showInStartList 1 #txt
+Ss0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>startTestTab.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f25 @C|.responsibility Everybody #txt
+Ss0 f25 81 625 30 30 -21 17 #rect
+Ss0 f25 @|StartRequestIcon #fIcon
+Ss0 f26 type ch.ivyteam.ivy.project.portal.examples.showcase.Data #txt
+Ss0 f26 369 625 30 30 0 15 #rect
+Ss0 f26 @|EndIcon #fIcon
+Ss0 f28 richDialogId ch.ivyteam.ivy.project.portal.examples.TEstTab #txt
+Ss0 f28 startMethod start() #txt
+Ss0 f28 type ch.ivyteam.ivy.project.portal.examples.showcase.Data #txt
+Ss0 f28 requestActionDecl '<> param;' #txt
+Ss0 f28 responseActionDecl 'ch.ivyteam.ivy.project.portal.examples.showcase.Data out;
+' #txt
+Ss0 f28 responseMappingAction 'out=in;
+' #txt
+Ss0 f28 168 618 112 44 0 -8 #rect
+Ss0 f28 @|RichDialogIcon #fIcon
+Ss0 f29 expr out #txt
+Ss0 f29 111 640 168 640 #arcP
+Ss0 f27 expr out #txt
+Ss0 f27 280 640 369 640 #arcP
 >Proto Ss0 .type ch.ivyteam.ivy.project.portal.examples.showcase.Data #txt
 >Proto Ss0 .processKind NORMAL #txt
 >Proto Ss0 0 0 32 24 18 0 #rect
@@ -230,3 +331,11 @@ Ss0 f15 mainOut f18 tail #connect
 Ss0 f18 head f17 mainIn #connect
 Ss0 f17 mainOut f19 tail #connect
 Ss0 f19 head f16 mainIn #connect
+Ss0 f20 mainOut f23 tail #connect
+Ss0 f23 head f22 mainIn #connect
+Ss0 f22 mainOut f24 tail #connect
+Ss0 f24 head f21 mainIn #connect
+Ss0 f25 mainOut f29 tail #connect
+Ss0 f29 head f28 mainIn #connect
+Ss0 f28 mainOut f27 tail #connect
+Ss0 f27 head f26 mainIn #connect
