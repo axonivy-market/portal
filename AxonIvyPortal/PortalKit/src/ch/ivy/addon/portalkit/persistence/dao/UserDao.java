@@ -1,8 +1,9 @@
 package ch.ivy.addon.portalkit.persistence.dao;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.boon.criteria.ObjectFilter;
 import org.boon.datarepo.Repo;
 import org.boon.datarepo.Repos;
@@ -27,10 +28,11 @@ public class UserDao extends AbstractDao<User> {
   @ExecuteAsSystem
   private void getRepoIndexedByUserName() {
     repo = DataCache.getUserRepoFromCache();
+    
     if (repo == null) {
       repo = buildRepoIndexedByUserName(getAllUsers());
       DataCache.cacheUsersRepo(Ivy.wf().getApplication().getName(), repo);
-    }
+    } 
   }
 
   public Repo<Long, User> buildRepoIndexedByUserName(List<User> users) {
@@ -51,8 +53,7 @@ public class UserDao extends AbstractDao<User> {
   @ExecuteAsSystem
   public List<User> findByUserName(String userName) {
     getRepoIndexedByUserName();
-    List<User> users = repo.query(ObjectFilter.eq(EntityProperty.USER_NAME.toString(), userName));
-    return users;
+    return repo.query(ObjectFilter.eq(EntityProperty.USER_NAME.toString(), userName));
   }
 
   @ExecuteAsSystem
@@ -62,23 +63,17 @@ public class UserDao extends AbstractDao<User> {
             .searchIndex(EntityProperty.APPLICATION_NAME.toString()).searchIndex(EntityProperty.SERVER_ID.toString())
             .build(long.class, User.class).init(getAllUsers());
 
-    List<User> users =
-        repo.query(ObjectFilter.eq(EntityProperty.APPLICATION_NAME.toString(), application.getName()),
+    return repo.query(ObjectFilter.eq(EntityProperty.APPLICATION_NAME.toString(), application.getName()),
             ObjectFilter.eq(EntityProperty.SERVER_ID.toString(), application.getServerId()));
-    return users;
   }
 
   @ExecuteAsSystem
   public List<String> findApplicationNamesUserCanWorkOn(String userName, long serverId) {
     List<User> users = findByUserName(userName);
-    List<String> applicationNamesUserCanWorkOn = new ArrayList<>();
-    if (users != null) {
-      for (User user : users) {
-        if (user.getServerId() == serverId) {
-          applicationNamesUserCanWorkOn.add(user.getApplicationName());
-        }
-      }
-    }
-    return applicationNamesUserCanWorkOn;
+    return CollectionUtils.emptyIfNull(users)
+        .stream()
+        .filter(user -> user.getServerId() == serverId)
+        .map(user -> user.getApplicationName())
+        .collect(Collectors.toList());
   }
 }

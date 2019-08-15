@@ -49,44 +49,47 @@ public class UserSynchronizationService {
     return Ivy.request().getApplication().getName().equals(firstApplication.getName()); 
   }
   
-  public static void addUserToCacheAndUserService() {
+  public static void addUserToCacheAndUserService(String username) {
     // check user available
     UserService userService = new UserService();
-    List<User> usersCheck = userService.findByUserName(Ivy.session().getSessionUserName());
+    List<User> usersCheck = userService.findByUserName(username);
 
-//    demo AD2 
-//    demo AD3
-    
     List<Application> apps = new ApplicationService().findAllIvyApplications();
     List<User> users = new ArrayList<>();
+    UserDao userDao = new UserDao();
     
     CollectionUtils.emptyIfNull(apps).forEach(app -> {
       String applicationName = app.getName();
-      Ivy.log().error("START A CHECK");
-      usersCheck.forEach(x -> Ivy.log().error("app name {0}, server id {1}", x.getApplicationName(), x.getServerId()));
-      boolean x = CollectionUtils
+      boolean userExists = CollectionUtils
           .emptyIfNull(usersCheck)
           .stream()
           .filter(userchk -> userchk.getApplicationName().equals(applicationName)
               && userchk.getServerId() != -1L )
               .findAny().isPresent();
-      if (!x){
+      if (!userExists){
         User user = new User();
         user.setUserName(Ivy.session().getSessionUserName());
         user.setFullUserName(Ivy.session().getSessionUser().getDisplayName());
         user.setApplicationName(applicationName);
+        
         users.add(user);
       }
     });
-    
     if (CollectionUtils.isNotEmpty(users)){
       userService.saveAll(users);
-      UserDao userDao = new UserDao();
       users.addAll(DataCache.getAllUsersFromCache());
       Repo<Long, User> repo = userDao.buildRepoIndexedByUserName(users);
-      String applicationName = Ivy.wf().getApplication().getName();
-      DataCache.cacheAllUsers(applicationName, users);
-      DataCache.cacheUsersRepo(applicationName, repo);
+      CollectionUtils.emptyIfNull(apps).forEach(app -> {
+        refreshUserAppCache(app.getName(), users, repo);
+      });
+      refreshUserAppCache(IApplication.PORTAL_APPLICATION_NAME, users, repo);
     }
+  }
+
+  private static void refreshUserAppCache(String appName, List<User> users, Repo<Long, User> repo) {
+    DataCache.invalidateUsersCache(appName);
+    //insert entries to cache again
+    DataCache.cacheAllUsers(appName, users);
+    DataCache.cacheUsersRepo(appName, repo);
   }
 }

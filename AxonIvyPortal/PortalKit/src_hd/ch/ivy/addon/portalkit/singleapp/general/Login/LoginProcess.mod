@@ -103,7 +103,7 @@ if (!in.loginOk)
 			ivy.session.setContentLocale(l);
 			ivy.session.setFormattingLocale(l);
 	}
-	UserSynchronizationService.addUserToCacheAndUserService();
+	UserSynchronizationService.addUserToCacheAndUserService(in.username);
 }' #txt
 Ls0 f5 security system #txt
 Ls0 f5 type ch.ivy.addon.portalkit.singleapp.general.Login.LoginData #txt
