@@ -47,7 +47,6 @@ public class ExpressTest extends BaseTest{
     goToCreateExpressProcess();
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
     expressProcessPage.fillProcessProperties(true, true, "Test approval", "Test description");
-    expressProcessPage.ableToStart(Arrays.asList(responsible1));
     ExpressFormDefinitionPage formDefinition = configureExpressProcessWhenMultiApproval(expressProcessPage);
     formDefinition.executeWorkflow();
     executeExpressProcessWhenMultiApproval();
