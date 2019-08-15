@@ -19,8 +19,9 @@
           <p:graphicImage library="ivy-cms" name="/Layouts/Icons/InputFieldText" width="70"
             styleClass="form-definition-item-icon" />
         </f:facet>
-        <p:messages id="messagesInputFieldLabel" showDetail="false" autoUpdate="true" closable="true"
-          for="InputFieldLabel" />
+        <p:messages id="messagesInputFieldLabel" showDetail="false" closable="true" for="InputFieldLabel">
+          <p:autoUpdate />
+        </p:messages>
 
         <div id="createInputFieldPanelGrid" class="ui-fluid">
           <div class="ui-g">
@@ -73,8 +74,9 @@
 
       <!-- INPUT TEXT AREA TAB -->
       <p:tab title="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputArea')}" id="createInputAreaTab">
-        <p:messages id="messagesInputAreaLabel" showDetail="false" autoUpdate="true" closable="true"
-          for="InputAreaLabel" />
+        <p:messages id="messagesInputAreaLabel" showDetail="false" closable="true" for="InputAreaLabel">
+          <p:autoUpdate />
+        </p:messages>
 
         <f:facet name="title">
           <h:outputText styleClass="form-definition-item-icon"
@@ -126,7 +128,9 @@
       <!-- CHECKBOX TAB -->
       <p:tab title="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputCheckbox')}" id="createManyCheckboxTab">
 
-        <p:messages id="messagesManyCheckboxLabel" showDetail="false" autoUpdate="true" closable="true" />
+        <p:messages id="messagesManyCheckboxLabel" showDetail="false" closable="true">
+          <p:autoUpdate />
+        </p:messages>
 
         <f:facet name="title">
           <h:outputText styleClass="form-definition-item-icon"
@@ -219,7 +223,9 @@
       <!-- RADIO BUTTON TAB -->
       <p:tab title="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputOptions')}" id="createOneRadioTab">
 
-        <p:messages id="messagesOneRadioLabel" showDetail="false" autoUpdate="true" closable="true" />
+        <p:messages id="messagesOneRadioLabel" showDetail="false" closable="true">
+          <p:autoUpdate />
+        </p:messages>
 
         <f:facet name="title">
           <h:outputText styleClass="form-definition-item-icon"
@@ -292,8 +298,9 @@
 
       <!-- FILE UPLOAD TAB -->
       <p:tab title="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputFileUpload')}" id="createFileUploadTab">
-        <p:messages id="messagesFileUploadLabel" showDetail="false" autoUpdate="true" closable="true"
-          for="FileUploadLabel" />
+        <p:messages id="messagesFileUploadLabel" showDetail="false" closable="true" for="FileUploadLabel">
+          <p:autoUpdate />
+        </p:messages>
 
         <f:facet name="title">
           <h:outputText styleClass="form-definition-item-icon"

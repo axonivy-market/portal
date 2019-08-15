@@ -20,7 +20,7 @@
       icon="fa fa-caret-down" iconPos="right" />
   </h:panelGroup>
 
-  <p:overlayPanel id="#{cc.attrs.overlayPanelId}" widgetVar="#{cc.attrs.overlayPanelId}" appendToBody="true"
+  <p:overlayPanel id="#{cc.attrs.overlayPanelId}" widgetVar="#{cc.attrs.overlayPanelId}" appendTo="@(body)"
     styleClass="advanced-filter-panel filter-add-panel config-columns-panel" dismissable="true"
     for="#{cc.clientId}:#{cc.attrs.configButtonId}" my="left top" at="left bottom">
     <h:form id="select-columns-form">

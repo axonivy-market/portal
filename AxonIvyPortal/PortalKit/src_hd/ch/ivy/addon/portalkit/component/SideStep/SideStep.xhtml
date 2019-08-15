@@ -21,7 +21,7 @@
     <span class="action-icon tmi-ellipsis-v side-step-icon" />
   </p:commandLink>
   <p:overlayPanel id="side-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}" for="#{cc.attrs.actionLinkId}" 
-    my="left top" at="left bottom" appendToBody="true" styleClass="side-steps-panel" dynamic="true" 
+    my="left top" at="left bottom" appendTo="@(body)" styleClass="side-steps-panel" dynamic="true" 
     rendered="#{!cc.attrs.isDisabled}">
     <p:commandLink rendered="#{empty sideStepBean.currentSideSteps}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}" styleClass="side-step-item" />
     <ui:repeat var="sideStep" value="#{sideStepBean.currentSideSteps}" >

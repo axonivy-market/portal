@@ -70,7 +70,7 @@
             <p:ajax event="itemSelect" listener="#{logic.onSelectDrilldownTaskByExpiry}" global="false" />
           </p:chart>
           <p:overlayPanel styleClass="context-menu-#{chartStatus.index} expiry-chart-context-menu side-steps-panel" widgetVar="context-menu-#{chartStatus.index}"
-            rendered="#{statisticDashboardBean.isTaskByExpiry(chart) and !statisticDashboardBean.isTaskByExpiryHour(chart)}">
+            rendered="#{statisticDashboardBean.isTaskByExpiry(chart) and !statisticDashboardBean.isTaskByExpiryHour(chart)}" onShow="updateDrillDownPanelPosition(this);" >
             <p:commandLink id="expiry-chart-drill-down" styleClass="js-expiry-chart-drill-down side-step-item"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/contextMenuDrilldown')}"
               action="#{cc.attrs.drillDownExpiryChartListener}" actionListener="#{logic.drilldownTaskByExpiry}"

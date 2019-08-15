@@ -73,7 +73,7 @@
         </div>
 
       <p:overlayPanel id="side-steps-panel" widgetVar="side-steps-panel" for="side-steps-menu" my="left top" at="left bottom"
-        appendToBody="true" styleClass="side-steps-container" dynamic="false" rendered="#{taskTemplateBean.checkSideStepsEnabled(caseId)}">
+        appendTo="@(body)" styleClass="side-steps-container" dynamic="false" rendered="#{taskTemplateBean.checkSideStepsEnabled(caseId)}">
         <ui:repeat var="sidestep" value="#{taskTemplateBean.sideStepList}">
           <p:commandLink id="side-step-item" styleClass="side-step-item" value="#{sidestep.getName()}"
             global="false"

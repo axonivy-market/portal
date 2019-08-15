@@ -34,9 +34,8 @@
           <i class="fa #{taskBean.getStateIcon(task.state)} fa-fw related-task-list-item-status" />
           <p:commandLink id="task-name"
             value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}"
-            styleClass="related-task">
+            styleClass="related-task" actionListener="#{logic.openPortalTasks}">
             <f:attribute name="taskId" value="#{task.getId()}" />
-            <p:ajax event="click" listener="#{logic.openPortalTasks}" />
           </p:commandLink>
         </h:panelGroup>
         <p:tooltip for="task" value="#{taskBean.displayRelatedTaskToolTip(task)}" trackMouse="true" />
@@ -68,8 +67,7 @@
     </p:scrollPanel>
     <h:panelGroup>
       <p:commandLink id="show-all-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showAllTasks')}"
-        styleClass="related-task-show-all-tasks-link" rendered="#{caseWidgetBean.showAllTasksOfCase}">
-        <p:ajax event="click" listener="#{logic.openPortalTasks}" />
+        styleClass="related-task-show-all-tasks-link" actionListener="#{logic.openPortalTasks}" rendered="#{caseWidgetBean.showAllTasksOfCase}">
       </p:commandLink>
        <p:commandLink id="show-all-techinical-cases" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showAllTechnicalCases')}" rendered="#{not empty data.technicalCases}"
         actionListener="#{logic.navigateToTechnicalCasesOfBusinessCase}">

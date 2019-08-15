@@ -20,10 +20,10 @@
 
     <ui:define name="title">#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/PageTitle')} #{ivy.case.name}</ui:define>
         <ui:define name="errorsZone">
-          <p:messages id="error-messages" showDetail="false" closable="true" autoUpdate="false" />
+          <p:messages id="error-messages" showDetail="false" closable="true" />
         </ui:define>
     <ui:define name="taskForm">
-      <p:growl id="error-growl" autoUpdate="false" globalOnly="true" showDetail="false" showSummary="true" />
+      <p:growl id="error-growl" globalOnly="true" showDetail="false" showSummary="true" />
       <!-- DEFINED TASKS -->
       <h:panelGroup id="defined-task-container" layout="block" styleClass="defined-task-container">
         <c:forEach items="#{data.data.definedTasks}" var="definedTask" varStatus="status" >

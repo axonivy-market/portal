@@ -6,7 +6,9 @@
 
       <h:form id="form">
         <h:panelGrid columns="2">
-          <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+          <p:messages id="messages" showDetail="true" closable="true">
+            <p:autoUpdate />
+          </p:messages>
           <h:inputText id="task-id" value="#{data.taskId}" required="true"/>
           <p:commandButton actionListener="#{logic.destroyTask(data.taskId)}" value="Destroy" update="form">
           </p:commandButton>

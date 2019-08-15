@@ -266,7 +266,9 @@
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" resizable="false" width="575"
     modal="true" closeOnEscape="true" styleClass="save-filter-set-dialog">
     <p:ajax event="close" listener="#{logic.clearSaveFilterDialog}" resetValues="true" />
-    <p:messages autoUpdate="true" />
+    <p:messages id="save-task-filter-message">
+      <p:autoUpdate />
+    </p:messages>
     <h:form id="filter-save-form">
       <h:panelGrid columns="2" styleClass="save-filter-set-panel"
         columnClasses="save-filter-set-panel-column-1, save-filter-set-panel-column-2">

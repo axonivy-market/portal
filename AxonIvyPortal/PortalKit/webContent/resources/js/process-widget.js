@@ -20,9 +20,9 @@ function ProcessWidget() {
           error = 55; // included margin, padding in search page
         }
         var announcementMessageContainer = $('.js-announcement-message');
-    	var  availableHeight = mainAreaPanel.outerHeight() - announcementMessageContainer.outerHeight(true)
-    							- processsHeader.outerHeight(true) 
-    							- globalSearchInput.outerHeight(true) - globalSearchTabHeader.outerHeight(true)
+    	var  availableHeight = (mainAreaPanel.outerHeight()||0) - (announcementMessageContainer.outerHeight(true)||0)
+    							- (processsHeader.outerHeight(true)||0) 
+    							- (globalSearchInput.outerHeight(true)||0) - (globalSearchTabHeader.outerHeight(true)||0)
     							- error;
     	if (!!availableHeight) {
     		processStartListContainer.css("max-height", availableHeight + "px");

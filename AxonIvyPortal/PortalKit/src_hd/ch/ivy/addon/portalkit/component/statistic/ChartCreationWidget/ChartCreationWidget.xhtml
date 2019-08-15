@@ -39,7 +39,9 @@
       action="#{statisticChartCreationBean.updateCaseByFinishedTimeModel(data.statisticFilter)}"
       update="chart-list" global="false" />
 
-  	<p:growl autoUpdate="true" globalOnly="true" showDetail="true" showSummary="true" />
+    <p:growl globalOnly="true" showDetail="true" showSummary="true">
+      <p:autoUpdate />
+    </p:growl>
     <h:panelGrid columns="2" styleClass="edit-statistic-container" id="edit-statistic-container">
       <h:panelGroup id="chart-list" layout="block" styleClass="chart-list">
         <c:set var="taskByPriorityModel" value="#{statisticChartCreationBean.taskByPriorityModel}" />
@@ -125,7 +127,9 @@
       header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/addChartDialogHeader')}"
       modal="true" closeOnEscape="true" width="auto" resizable="false">
       <c:if test="#{data == null or data.isAllowedToCreateChart}">
-          <p:messages autoUpdate="true" for="chart-name-input" />
+          <p:messages for="chart-name-input">
+            <p:autoUpdate />
+          </p:messages>
           <h:form id="add-statistic-form">
             <h:panelGrid columns="2" styleClass="add-statistic-panel" columnClasses="add-statistic-panel-column-1, add-statistic-panel-column-2 ">
               <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" for="chart-name-input" />
