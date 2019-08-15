@@ -117,17 +117,8 @@
       <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-5 ui-g-2 ">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/taskCategory')}" />
       </div>
-      <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4">
+      <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4 u-truncate-text">
         <h:outputText id="task-category" value="#{task.categoryPath}" />
-      </div>
-    </div>
-
-    <div class="ui-g">
-      <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-5 ui-g-2 ">
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" />
-      </div>
-      <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4">
-        <h:outputText id="case-id" value="#{task.case.id}" />
       </div>
     </div>
 
@@ -135,8 +126,8 @@
       <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-5 ui-g-2 ">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/businessCase')}" />
       </div>
-      <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4">
-        <p:commandLink id="related-case" styleClass="task-business-case" value="#{taskBean.displayCaseName(task)}" actionListener="#{logic.navigateToRelatedCase(task.getCase().getBusinessCase())}" />
+      <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4 u-truncate-text">
+        <p:commandLink id="related-case" styleClass="task-business-case" value="##{task.getCase().getBusinessCase().id} #{taskBean.displayCaseName(task)}" actionListener="#{logic.navigateToRelatedCase(task.getCase().getBusinessCase())}" />
       </div>
     </div>
 
@@ -154,7 +145,7 @@
       <div class="ui-xl-2 ui-lg-4 ui-md-4 ui-sm-5 ui-g-2 ">
         <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseCategory')}" />
       </div>
-      <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4">
+      <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4 u-truncate-text">
         <h:outputText id="case-category" value="#{task.getCase().getBusinessCase().categoryPath}" />
       </div>
     </div>
