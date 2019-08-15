@@ -150,9 +150,6 @@ public class PortalExpressTest extends BaseTest {
 		ExpressProcessPage expressProcessPage = new ExpressProcessPage();
 		expressProcessPage.fillProcessProperties(true, true, "Test 1 Process for creator",
 				"Test description Process for creator");
-
-		ExpressResponsible responsible1 = new ExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
-
 		expressProcessPage.createTask(0, USER_TASK_INDEX, "Task for creator", "Task 1 description for creator",
 				Arrays.asList(responsible1));
 
@@ -173,6 +170,7 @@ public class PortalExpressTest extends BaseTest {
 		ExpressProcessPage expressProcessPage = new ExpressProcessPage();
 		expressProcessPage.waitForPageLoaded();
 		expressProcessPage.fillProcessProperties(true, false, "Test create default process", "Test description");
+		expressProcessPage.ableToStart(Arrays.asList(responsible1, groupHr));
 
 		ExpressResponsible demoResponsible = new ExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
 		expressProcessPage.createDefaultTask(0, "Default Task", Arrays.asList(demoResponsible));
@@ -260,7 +258,7 @@ public class PortalExpressTest extends BaseTest {
 		goToCreateExpressProcess();
 		ExpressProcessPage expressProcessPage = new ExpressProcessPage();
 		expressProcessPage.fillProcessProperties(false, true, "Test approval", "Test description");
-
+		expressProcessPage.ableToStart(Arrays.asList(responsible1, groupHr));
 		ExpressFormDefinitionPage formDefinition = configureExpressProcessWhenMultiApproval(expressProcessPage);
 		formDefinition.finishWorkflow();
 		startExpressProcess("Test approval");
@@ -272,7 +270,7 @@ public class PortalExpressTest extends BaseTest {
 		goToCreateExpressProcess();
 		ExpressProcessPage expressProcessPage = new ExpressProcessPage();
 		expressProcessPage.fillProcessProperties(true, true, "Test approval", "Test description");
-
+		expressProcessPage.ableToStart(Arrays.asList(responsible1));
 		ExpressFormDefinitionPage formDefinition = configureComplexProcess(expressProcessPage);
 		formDefinition.executeWorkflow();
 		executeComplexProcess();
