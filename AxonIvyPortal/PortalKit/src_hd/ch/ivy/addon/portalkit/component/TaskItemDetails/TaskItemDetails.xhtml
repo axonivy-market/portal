@@ -14,7 +14,7 @@
 <cc:implementation>
   <c:set var="task" value="#{cc.attrs.task}" />
 
-  <h:panelGroup id="task-detail-container" rendered="#{cc.attrs.showItemDetailsHeader}" styleClass="ui-g-12">
+  <h:panelGroup id="task-detail-container" rendered="#{cc.attrs.showItemDetailsHeader}" styleClass="ui-g-12 u-truncate-text" >
     <h:outputText id="#{cc.attrs.nameId}" styleClass="task-detail-header"
       value="#{ivy.cms.co('/Labels/Task')} : #{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}"
       rendered="#{taskBean.isDone(task)}" />
@@ -23,7 +23,7 @@
       <h:outputText value="#{ivy.cms.co('/Labels/Task')}:  " />
       <p:inplace id="#{cc.attrs.nameId}-inplace" editor="true" rendered="#{taskBean.isNotDone(task)}" disabled="#{!taskActionBean.canChangeName(task)}"
         saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        widgetVar="#{cc.attrs.nameId}-inplace" styleClass="task-name-inplace"
+        widgetVar="#{cc.attrs.nameId}-inplace" styleClass="task-name-inplace u-truncate-text"
         label="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}">
         <p:inputText id="task-name-input" value="#{task.name}" styleClass="task-name-input" maxlength="200" valueChangeListener="#{logic.keepOldNameValue}"
           onkeypress="if(event.keyCode == 13) {PF('task-name-inplace').save()}" />
