@@ -8,7 +8,7 @@
     <ui:param name="displayStatisticWidget" value="false" />
     <ui:define name="taskWidget">
       <h:panelGroup layout="block"
-        styleClass="js-dashboard-main-content-2nd-col dashboard-main-content-2nd-col layout-col customized-home-task-widget">
+        styleClass="customized-home-task-widget">
         <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" dataModel="#{dataModel}"
           title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}"
           keyword="#{dataModel.criteria.keyword}" compactMode="#{dataModel.compactMode}"
@@ -18,7 +18,7 @@
     </ui:define>
     <ui:define name="customWidget">
       <div
-        class="js-dashboard-default-widget-container customized-home-custom-widget">
+        class="customized-home-custom-widget">
         <h1>Custom Widget</h1>
       </div>
     </ui:define>
