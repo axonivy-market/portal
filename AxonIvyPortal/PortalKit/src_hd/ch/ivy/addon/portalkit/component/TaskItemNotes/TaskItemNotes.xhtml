@@ -39,7 +39,7 @@
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" paginatorAlwaysVisible="false"
         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
         currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" sortBy="#{note.creationTimestamp}"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/author')}" sortBy="#{note.creationTimestamp}"
           styleClass="task-note-name u-truncate-text">
           <i class="fa fa-pencil-square-o" />
           <p:spacer width="5" />
