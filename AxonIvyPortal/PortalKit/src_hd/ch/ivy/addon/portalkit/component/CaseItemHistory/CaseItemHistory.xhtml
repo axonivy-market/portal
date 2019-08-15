@@ -91,7 +91,7 @@
   </div>
 
   <p:dialog id="view-note-dialog" widgetVar="view-note-dialog" closeOnEscape="true"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/note')}" width="800" appendTo="@(body)"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/note')}" width="50vw" appendTo="@(body)"
     modal="true" resizable="false" dynamic="true" styleClass="case-view-note-dialog">
     <h:panelGroup layout="block">
       <h:outputText value="#{data.fullNote}" />
@@ -104,7 +104,7 @@
 
   <p:dialog id="add-note-dialog" widgetVar="add-note-dialog-#{case.id}" dynamic="true" closable="true"
     closeOnEscape="true" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}" showEffect="fade"
-    resizable="false" modal="true" width="800" appendTo="@(body)" styleClass="case-upload-dialog">
+    resizable="false" modal="true" width="50vw" appendTo="@(body)" styleClass="case-upload-dialog">
     <h:form id="add-note-form">
       <h:panelGroup layout="block">
         <p:messages id="create-note-msg" for="note-content" />
