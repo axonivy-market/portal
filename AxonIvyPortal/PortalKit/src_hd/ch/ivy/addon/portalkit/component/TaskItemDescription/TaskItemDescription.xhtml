@@ -23,7 +23,7 @@
             <p:ajax event="save" update="task-detail-description-form" process="task-detail-description-form" />
             <p:ajax event="cancel" resetValues="true" />
             <f:facet name="input">
-              <p:inputTextarea id="task-description-input" rows="5" styleClass="task-detail-description-input" value="#{task.description}" autoResize="false" />
+              <p:inputTextarea id="task-description-input" rows="3" styleClass="task-detail-description-input" value="#{task.description}" autoResize="false" />
             </f:facet>
             <f:facet name="output">
               <h:outputText id="task-description-output" escape="false" styleClass="task-detail-description-output"

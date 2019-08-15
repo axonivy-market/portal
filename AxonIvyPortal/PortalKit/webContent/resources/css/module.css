@@ -4142,14 +4142,6 @@ margin-top
 }
 
 /* ------------ VIEW CASE NOTE --------------- */
-.truncate-note {
-  width: 100%;
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 .truncate-author {
   width: 100%;
   display: inline-block;
@@ -5024,12 +5016,12 @@ _:-ms-fullscreen, :root .case-related-command-link {
 }
 
 .task-detail-state {
-  padding-left: 10px;
+  padding-left: 5px;
 }
 
 .task-name-inplace {
   padding-left: 7px;
-  width: calc(100% - 45px);
+  width: calc(100% - 110px);
   flex-grow: 0;
 }
 
@@ -5079,7 +5071,7 @@ _:-ms-fullscreen, :root .case-related-command-link {
   align-items: start !important;
 }
 
-  @media screen and (min-width: 90.063em) {
+@media screen and (min-width: 90.063em) {
    .task-first-column-label  div.ui-xl-2 {
         width: 21%;
     }
@@ -5088,10 +5080,16 @@ _:-ms-fullscreen, :root .case-related-command-link {
     }
 }
 
-  @media screen and (max-width: 1900px ) {
+@media screen and (max-width: 1900px ) {
 .task-detail-description {
   height: 150px;
+ }
 }
+
+@media screen and (max-width: 700px ) {
+.task-detail-description {
+  height: 110px;
+ }
 }
 
 .task-detail-section-title, .task-history-button-container {
@@ -5123,6 +5121,23 @@ _:-ms-fullscreen, :root .case-related-command-link {
 
 .task-business-case {
   margin-top: 0px !important;
+  display: inline !important;
+}
+
+.task-details-priority .ui-selectonemenu {
+	padding-right: 1em !important;
+}
+
+.task-details-priority .ui-inplace-editor {
+	display: inherit !important;
+}
+
+.truncate-note {
+  width: 100%;
+  display: inline;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /*  =================== END TASK DETAIL PAGE ========================= */
