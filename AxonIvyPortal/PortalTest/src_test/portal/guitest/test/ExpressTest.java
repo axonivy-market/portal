@@ -30,6 +30,7 @@ public class ExpressTest extends BaseTest{
   private HomePage homePage;
   private ProcessWidgetPage processWidget;
   private TaskWidgetPage taskWidgetPage;
+  ExpressResponsible responsible1 = new ExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
   @Override
   @Before
   public void setup() {
@@ -46,7 +47,7 @@ public class ExpressTest extends BaseTest{
     goToCreateExpressProcess();
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
     expressProcessPage.fillProcessProperties(true, true, "Test approval", "Test description");
-    
+    expressProcessPage.ableToStart(Arrays.asList(responsible1));
     ExpressFormDefinitionPage formDefinition = configureExpressProcessWhenMultiApproval(expressProcessPage);
     formDefinition.executeWorkflow();
     executeExpressProcessWhenMultiApproval();
