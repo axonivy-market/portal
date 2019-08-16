@@ -5990,4 +5990,8 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 span.ui-inputnumber.ui-widget.ui-state-error {
 	border: 0 !important;
 }
+div.ui-selectonelistbox.ui-inputfield.ui-widget.ui-state-focus {
+	background-color: transparent;
+	border: solid 1px #dedede;
+}
 /*====================END FIX FOR PRIMEFACES 7 STYLE========================*/
