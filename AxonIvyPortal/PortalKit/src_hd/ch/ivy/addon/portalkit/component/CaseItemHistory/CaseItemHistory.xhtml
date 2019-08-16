@@ -20,7 +20,7 @@
       </div>
       <div class="case-history-button-container ui-g-8 ui-sm-12 u-padding-0">
         <h:panelGroup layout="block" styleClass="case-details-note-add">
-          <p:link id="show-more-note-link"
+          <p:link id="show-more-note-link" disabled="#{empty data.histories}"
             styleClass="case-details-document-add-link note-show-more-link ui-commandlink" target="_blank"
             href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case)}"
             rendered="#{caseTaskNoteHistoryBean.showMoreNote}">
@@ -116,7 +116,7 @@
       <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer">
         <p:commandButton styleClass="add-new-note-save-command" id="save-add-note-command"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" process="note-content"
-          update="note-content create-note-msg :#{cc.clientId}:case-histories" actionListener="#{logic.createNote()}"
+          update="note-content create-note-msg #{p:component('history-container')} :#{cc.clientId}:case-histories" actionListener="#{logic.createNote()}"
           oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('add-note-dialog-#{case.id}').hide();}" />
         <p:commandButton id="cancel-add-note-command" actionListener="#{data.setNoteContent('')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this"
