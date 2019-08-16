@@ -3099,18 +3099,32 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 /********************************** END TASK TABLE **********************************/
 
-/********************************** UNIVERSAL CASE LIST **********************************/
-.filter-table-column {
-  width: 100px;
-}
-
-.filter-field-group span {
-  margin-right: 15px;
-}
-
-/********************************** END UNIVERSAL CASE LIST **********************************/
-
 /********************************** ADMIN SETTING **********************************/
+/* Responsive */
+@media screen and (max-width: 40em) {
+  .admin-ui-dialog, .change-password-dialog {
+     top: 100px !important;
+  }
+  .settings-table-action-buttons {
+    text-align: left !important;
+  }
+  .app-icon {
+    text-align: left !important;
+  }
+  .dialog-closing-information, .admin-ui-dialog, .app-dialog, .select-icon-dialog, .application-selection-dialog, .setting-dialog, .project-info-dialog, .change-password-dialog,
+  .language-setting-dialog, .applications-email-setting-dialog {
+    width: 96vw !important;
+  }
+}
+@media screen and (min-width: 40.063em) and (max-width: 64.062em) {
+  .admin-ui-dialog {
+     width: 90vw !important;
+  }
+  .dialog-closing-information, .project-info-dialog {
+    width: 80vw !important;
+  }
+}
+
 .admin-settings-no-permission-message {
   color: #E53935;
 }
@@ -3118,10 +3132,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .delete-server-warning-buttons {
   text-align: right;
   padding: 10px;
-}
- 
-.settings-table-action-buttons {
-  text-align: center;
 }
 
 .application-table-type-column, .application-table-action-column {
@@ -3148,7 +3158,8 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 .app-icon {
   text-align: center;
-  width: 100%;
+  height: 42px;
+  line-height: 2.5rem;
 }
 
 .logo-height-unit {
@@ -3157,6 +3168,12 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 .global-setting-table .ui-datatable-scrollable-header table tr th span.ui-column-title {
   display: block;
+  height: 40px;
+}
+.global-setting-table .ui-datatable-scrollable-header table tr .settings-table-action-buttons span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .global-setting-table .setting-key {
@@ -3167,6 +3184,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .announcement-information {
   margin: 1rem 0;
   float: left;
+  text-align: left;
 }
 .announcement-input {
   width: 100%;
@@ -3192,8 +3210,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   display: inline-block;
 }
 
-.appDialog {
-  width: 650px !important;
+.app-dialog {
   padding: 8px 0px !important;
 }
 
@@ -3228,6 +3245,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
  .selection-app-type {
   width: 100%;
 }
+
 /********************************** ABSENCES AND DEPUTY **********************************/
 .substituted-user-text {
   font-size: 1.4rem;
@@ -3337,7 +3355,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 /********************************** LANGUAGE SETTING DIALOG **********************************/
 @media (max-width: 1365px) {
   .language-setting-dialog {
-    left: 15% !important;
     overflow: auto !important;
     top: 35% !important;
   }
@@ -3345,67 +3362,12 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 @media (min-width: 1366px) and (max-width: 1919px) {
   .language-setting-dialog {
-    left: 250px !important;
     top: 300px !important;
     overflow: auto !important;
   }
 }
 
-/* Large screen */
-@media (min-width: 1920px) {
-  .language-setting-dialog {
-    left: 15% !important ;
-  }
-}
 /********************************** END LANGUAGE SETTING DIALOG **********************************/
-/********************************** VERSION INFORMATION DIALOG **********************************/
-
-/* Small screen */
-@media (max-width: 1365px) {
-  .project-info-dialog {
-    left: 10% !important;
-  }
-}
-
-/* Medium screen */
-@media (min-width: 1366px) and (max-width: 1919px) {
-  .project-info-dialog {
-    left: 25% !important;
-    top: 30% !important;
-  }
-}
-
-/********************************** END VERSION INFORMATION DIALOG **********************************/
-
-/********************************** UNIVERSAL TASK LIST **********************************/
-.universal-tasks-header {
-  border-bottom: 1px solid #dedede;
-}
-
-.universal-task-id-header {
-  width: 80px;
-}
-
-.universal-task-priority-header {
-  width: 80px;
-}
-
-.universal-task-state-header {
-  width: 120px;
-}
-
-.universal-task-deadline-header {
-  width: 100px;
-}
-
-.universal-task-responsible-header {
-  width: 180px;
-}
-
-.universal-task-actions-header {
-  width: 240px;
-}
-/********************************** END UNIVERSAL TASK LIST **********************************/
 
 /********************************** CASE NOTE **********************************/
 .case-note-view-container {
@@ -3420,30 +3382,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   margin-top: 20px;
 }
 /********************************** END CASE NOTE **********************************/
-
-/********************************** CASE STATUS INFORMATION **********************************/
-.case-status-proceed-remove-delay-command {
-  margin-left: 90px;
-}
-
-.case-status-general-information {
-  margin: 10px;
-}
-
-.case-status-current-tasks {
-  margin: 10px;
-}
-
-.case-status-label-column {
-  text-align: right;
-  width: 150px;
-}
-
-.case-status-current-task-icon {
-  margin-right: 5px;
-}
-
-/********************************** END CASE STATUS INFORMATION **********************************/
 
 /********************************** PROCESS STARTS **********************************/
 .process-start-container {
@@ -4075,79 +4013,6 @@ margin-top
   margin-right: 20px;
 }
 
-/*  -------HAMBURGER BUTTON--------- */
-.bt-menu-trigger {
-  float: left;
-  font-size: 12px;
-  position: relative;
-  display: inline-block;
-  width: 2em;
-  height: 40px;
-  cursor: pointer;
-  margin-right: 10px;
-  background: rgba(42, 42, 42, 0.3);
-  border-radius: 50px;
-  padding: 0 8px;
-}
-
-.bt-menu-trigger:hover {
-  background: rgba(42, 42, 42, 0.6);
-}
-
-.bt-menu-trigger span {
-  position: absolute;
-  top: 50%;
-  left: 8px;
-  display: block;
-  width: 24px;
-  height: 0.2em;
-  margin-top: -0.1em;
-  background-color: #fff;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-transition: background-color 0.3s;
-  transition: background-color 0.3s;
-}
-
-.bt-menu-trigger span:after, .bt-menu-trigger span:before {
-  position: absolute;
-  width: 24px;
-  height: 100%;
-  background: #fff;
-  content: '';
-  -webkit-transition: -webkit-transform 0.3s;
-  transition: transform 0.3s;
-}
-
-.bt-menu-trigger span:before {
-  transform: translateY(-0.5em);
-}
-
-.bt-menu-trigger span:after {
-  transform: translateY(0.5em);
-}
-
-.bt-menu-trigger.bt-menu-open span:before {
-  transform: translate(-0.6em, -0.35em) rotate(135deg) scaleX(0.6);
-}
-
-.bt-menu-trigger.bt-menu-open span:after {
-  transform: translate(-0.6em, 0.35em) rotate(225deg) scaleX(0.6);
-}
-
-/* ------------ VIEW CASE NOTE --------------- */
-.truncate-author {
-  width: 100%;
-  display: inline-block;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
 /* =================== LOGIN ====================== */
 .login {
   position: fixed;
@@ -4516,16 +4381,8 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   width: 100%;
 }
 
-@media (max-width: 1365px) {
-  .change-password-dialog {
-    left: 250px !important;
-    top: 400px !important;
-  }
-}
-
 @media (min-width: 1366px) and (max-width: 1919px) {
   .change-password-dialog {
-    left: 400px !important;
     top: 400px !important;
   }
 }
@@ -4745,10 +4602,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 	.confirm-save-setting-button, .cancel-save-setting-button {
 		min-width: 125px !important;
 	}
-}
-
-.settings-table-action-buttons {
-  text-align: center !important;
 }
 
 .select-all-checkbox, .ui-chkbox {
