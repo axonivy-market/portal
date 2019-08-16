@@ -3112,15 +3112,15 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
     text-align: left !important;
   }
   .dialog-closing-information, .admin-ui-dialog, .app-dialog, .select-icon-dialog, .application-selection-dialog, .setting-dialog, .project-info-dialog, .change-password-dialog,
-  .language-setting-dialog, .applications-email-setting-dialog {
+  .language-setting-dialog, .applications-email-setting-dialog, .deputy-dialog, .absence-settings-dialog, .add-new-absence-dialog {
     width: 96vw !important;
   }
 }
 @media screen and (min-width: 40.063em) and (max-width: 64.062em) {
-  .admin-ui-dialog {
+  .admin-ui-dialog, .deputy-dialog, .absence-settings-dialog {
      width: 90vw !important;
   }
-  .dialog-closing-information, .project-info-dialog {
+  .dialog-closing-information, .project-info-dialog, .add-new-absence-dialog {
     width: 80vw !important;
   }
 }
@@ -3338,10 +3338,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   height: auto !important;
   max-height: 55vh !important;
   overflow-x: hidden;
-}
-
-.deputy-dialog {
-  min-width: 900px;
 }
 
 .delete-absence-confirmation-dialog .confirm-action{
@@ -5009,6 +5005,11 @@ _:-ms-fullscreen, :root .case-related-command-link {
 }
 .task-actions-menu .ui-slidemenu-backward.ui-widget-header .ui-icon.ui-icon-triangle-1-w {
   color: #212121;
+}
+
+.ui-menu .ui-menu-list li.ui-widget-header h3 {
+  font-weight: 600 !important;
+  color: rgba(0, 0, 0, 0.7);
 }
 
 @media screen and (max-width: 40em) {
