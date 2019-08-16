@@ -9,14 +9,14 @@
   <p:dialog widgetVar="editDeputy" id="edit-deputy-dialog" modal="true" dynamic="true" width="60%" responsive="true"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/setDeputies')}" resizable="false"
     closable="true" appendTo="@(body)" styleClass="deputy-dialog">
-    <h:form id="edit-deputy-form">
-      <p:messages widgetVar="growl" showDetail="true" closable="true" id="edit-deputy-messages" escape="false"/>
+    <h:form id="edit-deputy-form" styleClass="ui-g">
+      <p:messages showDetail="true" closable="true" id="edit-deputy-messages" escape="false"/>
       
-      <h:panelGroup layout="block">
+      <h:panelGroup layout="block" styleClass="ui-g-12">
         <ui:include src="Deputy.xhtml" />
       </h:panelGroup>
 
-      <h:panelGroup layout="block" styleClass="u-dialog-footer ui-dialog-footer">
+      <h:panelGroup layout="block" styleClass="u-dialog-footer ui-dialog-footer ui-g-12">
         <p:commandButton process="@form" id="save-deputy"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           actionListener="#{logic.saveSubstitutes}" update=":#{p:component('absence-table')}"

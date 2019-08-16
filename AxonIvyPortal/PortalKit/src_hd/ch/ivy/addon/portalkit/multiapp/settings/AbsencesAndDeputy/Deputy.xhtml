@@ -6,7 +6,7 @@
   xmlns:pm="http://primefaces.org/mobile">
 <ui:composition>
 
-  <h:panelGroup id="username-deputy" class="substitution-user-selection-container" layout="block"
+  <h:panelGroup id="username-deputy" class="substitution-user-selection-container ui-g-12" layout="block"
     rendered="#{absenceBean.substitutionManagementCapable and !data.isLoadDeputy}">
     <h:outputText styleClass="substituted-user-text" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/substitutedUser')}:" />
     <p:spacer styleClass="u-buttons-spacer" />
@@ -20,7 +20,7 @@
     </p:autoComplete>
   </h:panelGroup>
 
-  <h:panelGroup layout="block" styleClass="substitute-container">
+  <h:panelGroup layout="block" styleClass="substitute-container ui-g-12">
     <p:treeTable id="substitute-container" widgetVar="substituteTable" value="#{data.substituteRoot}"
       var="substituteNode" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/role')}"
