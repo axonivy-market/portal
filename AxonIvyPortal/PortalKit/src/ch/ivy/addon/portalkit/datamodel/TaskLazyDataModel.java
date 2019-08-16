@@ -72,7 +72,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected boolean isDisableSelectionCheckboxes;
   protected boolean isRelatedTaskDisplayed;
   protected boolean isNotKeepFilter;
-  protected boolean isMobile;
 
   public TaskLazyDataModel(String taskWidgetComponentId) {
     super();
@@ -80,7 +79,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     selectedFilters = new ArrayList<>();
     buildCriteria();
     data = new ArrayList<>();
-    if (shouldSaveAndLoadSessionFilters() && !isMobile) {
+    if (shouldSaveAndLoadSessionFilters()) {
       selectedTaskFilterData = UserUtils.getSessionSelectedTaskFilterSetAttribute();
       inProgressFilter = UserUtils.getSessionTaskInProgressFilterAttribute();
       if (inProgressFilter != null) {
@@ -93,12 +92,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   public TaskLazyDataModel() {
     this("task-widget");
-  }
-
-  public TaskLazyDataModel(Boolean isMobile) {
-    this("task-widget");
-    this.setMobile(isMobile);
-    criteria.setMobile(isMobile);
   }
 
   /**
@@ -171,9 +164,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   public List<ITask> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
     if (first == 0) {
       initializedDataModel(criteria);
-      if (!isMobile) {
-        RequestContext.getCurrentInstance().execute("updateTaskCount()");
-      }
+      RequestContext.getCurrentInstance().execute("updateTaskCount()");
     }
 
     List<ITask> foundTasks = findTasks(criteria, first, pageSize);
@@ -732,14 +723,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   public void setQueryForUnassignedTask(boolean isQueryForOnlyUnassignedTask) {
     this.criteria.setQueryForUnassignedTask(isQueryForOnlyUnassignedTask);
-  }
-
-  public boolean isMobile() {
-    return isMobile;
-  }
-
-  public void setMobile(boolean isMobile) {
-    this.isMobile = isMobile;
   }
 
   /**

@@ -21,10 +21,6 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
   public CustomizedTaskLazyDataModel(String taskWidgetComponentId) {
     super(taskWidgetComponentId);
   }
-  
-  public CustomizedTaskLazyDataModel(Boolean isMobile) {
-    super(isMobile);
-  }
 
   //===================Basic customization, extend columns====================
   
