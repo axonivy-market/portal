@@ -133,7 +133,7 @@ input::-ms-clear {
 }
 
 .ui-commandlink.ui-state-disabled {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: rgba(0,0,0,0.2) !important;
   opacity: 1;
 } 
@@ -819,7 +819,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   padding-top: 0 !important;
 }
 
-a.case-details-document-add-link, a.task-details-document-add-link {
+a.case-details-document-add-link, a.task-details-document-add-link, span.case-details-document-add-link, span.task-details-document-add-link {
   font-size: 1.4rem;
   float: right;
   font-weight: 400;
@@ -2639,12 +2639,10 @@ _:-ms-input-placeholder, :root .case-details > * {
   text-align: right;
 }
 
-.no-related-task-and-case-permission{
+.no-related-task-and-case-permission {
 	word-break: normal ;
 	word-wrap: break-word;	
 	white-space: normal;
-	max-width: 250px;
-	min-width: 100px;	
 }
 
 .case-details-note-add-link-icon {
@@ -4966,7 +4964,6 @@ _:-ms-fullscreen, :root .case-related-command-link {
 .ui-messages-info-icon,
 .ui-messages-warn-icon,
 .ui-messages-error-icon,
-.ui-message-error-icon,
 .ui-messages-fatal-icon {
 	width: 35px !important;
 	height: 35px !important;

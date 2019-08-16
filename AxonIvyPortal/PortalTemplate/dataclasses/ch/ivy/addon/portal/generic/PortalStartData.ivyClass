@@ -14,10 +14,6 @@ isDataModelInitialized Boolean #field
 caseDataModel ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel #field
 searchResultsDataModel ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel #field
 caseId Long #field
-caseId PERSISTENT #fieldModifier
-ICase ch.ivyteam.ivy.workflow.ICase #field
-ICase PERSISTENT #fieldModifier
-ITask ch.ivyteam.ivy.workflow.ITask #field
-ITask PERSISTENT #fieldModifier
+caseSelected ch.ivyteam.ivy.workflow.ICase #field
+taskSelected ch.ivyteam.ivy.workflow.ITask #field
 taskId Long #field
-taskId PERSISTENT #fieldModifier
