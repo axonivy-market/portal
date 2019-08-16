@@ -18,8 +18,8 @@
     </div>
     <div class="Separator" />
 
-    <h:panelGrid rendered="#{empty data.relatedTasks and empty data.technicalCases}" columns="1">
-      <h:panelGroup layout="block" styleClass="grid-item-content-list-item case-detail-no-related-task-case">
+    <h:panelGrid rendered="#{empty data.relatedTasks and empty data.technicalCases}" columns="1" styleClass="ui-g-12">
+      <h:panelGroup layout="block" styleClass="u-truncate-text">
         <h:outputText rendered="#{cc.attrs.case.state eq 'DONE'}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noTasksAndCases')}" />
         <h:outputText rendered="#{cc.attrs.case.state ne 'DONE'}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noRunningTasksAndCasesPermission')}"
           styleClass="no-related-task-and-case-permission" />
