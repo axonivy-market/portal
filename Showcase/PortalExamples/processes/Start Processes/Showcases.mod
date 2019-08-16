@@ -228,6 +228,7 @@ Ss0 f20 triggerEnabled false #txt
 Ss0 f20 callSignature CustomizedTaskTemplate() #txt
 Ss0 f20 persist false #txt
 Ss0 f20 startName 'Customization for TaskTemplate' #txt
+Ss0 f20 startDescription 'Show example for how to use TaskTemplate' #txt
 Ss0 f20 taskData 'TaskTriggered.CATEGORY=Tasktemplate
 TaskTriggered.DESC=Test Tasktemplate task
 TaskTriggered.NAM=Test Tasktemplate task' #txt

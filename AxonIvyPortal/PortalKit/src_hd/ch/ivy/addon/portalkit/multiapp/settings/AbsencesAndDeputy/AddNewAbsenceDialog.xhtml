@@ -7,10 +7,10 @@
 
 <ui:composition>
   <p:dialog widgetVar="addNewAbsence" id="add-new-absence-dialog" modal="true" dynamic="true" resizable="false"
-    closable="true" appendTo="@(body)" position="center" responsive="true"
+    closable="true" appendTo="@(body)" position="center" responsive="true" styleClass="add-new-absence-dialog"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/newAbsence')}">
 
-    <h:form id="new-absence-form">
+    <h:form id="new-absence-form" styleClass="ui-g-12">
       <p:messages widgetVar="growl" showDetail="true" closable="true" id="absence-messages" escape="false"/>
       <h:panelGroup id="input-adsence-data-section" layout="block" rendered="#{not data.isLoadDeputy}">
         <ui:include src="Absence.xhtml">
