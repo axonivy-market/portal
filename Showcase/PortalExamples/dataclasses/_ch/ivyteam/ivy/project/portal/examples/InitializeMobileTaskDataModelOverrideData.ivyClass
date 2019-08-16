@@ -1,4 +1,0 @@
-InitializeMobileTaskDataModelOverrideData #class
-_ch.ivyteam.ivy.project.portal.examples #namespace
-dataModel ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel #field
-isMobile Boolean #field
