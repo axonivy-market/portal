@@ -22,6 +22,16 @@ Ts0 @PushWFArc f5 '' #zField
 Ts0 @GridStep f6 '' #zField
 Ts0 @PushWFArc f7 '' #zField
 Ts0 @PushWFArc f2 '' #zField
+Ts0 @RichDialogMethodStart f8 '' #zField
+Ts0 @RichDialogProcessEnd f9 '' #zField
+Ts0 @GridStep f11 '' #zField
+Ts0 @PushWFArc f12 '' #zField
+Ts0 @PushWFArc f10 '' #zField
+Ts0 @GridStep f21 '' #zField
+Ts0 @RichDialogMethodStart f18 '' #zField
+Ts0 @PushWFArc f22 '' #zField
+Ts0 @RichDialogProcessEnd f19 '' #zField
+Ts0 @PushWFArc f20 '' #zField
 >Proto Ts0 Ts0 TestTaskTemplateProcess #zField
 Ts0 f0 guid 16C8374337A6693D #txt
 Ts0 f0 type ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate.TestTaskTemplateData #txt
@@ -30,6 +40,8 @@ Ts0 f0 disableUIEvents true #txt
 Ts0 f0 inParameterDecl 'ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate.TestTaskTemplateData out;
 ' #txt
 Ts0 f0 inParameterMapAction 'out.data=param.data;
+out.processChainDirection=param.data.processChainDirection;
+out.processChainShape=param.data.processChainShape;
 ' #txt
 Ts0 f0 outParameterDecl '<ch.ivyteam.ivy.project.portal.examples.showcase.Data data> result;
 ' #txt
@@ -72,7 +84,9 @@ Ts0 f6 actionDecl 'ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate.TestT
 ' #txt
 Ts0 f6 actionTable 'out=in;
 ' #txt
-Ts0 f6 actionCode 'in.actualStepIndex = 0;
+Ts0 f6 actionCode 'import ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate.TestTaskTemplateData;
+
+in.actualStepIndex = 0;
 in.steps.add("Start");
 in.steps.add("Create request process testing");
 in.steps.add("Clarify process testing");
@@ -94,6 +108,102 @@ Ts0 f7 expr out #txt
 Ts0 f7 109 64 168 64 #arcP
 Ts0 f2 expr out #txt
 Ts0 f2 280 64 339 64 #arcP
+Ts0 f8 guid 16C9819838F1E711 #txt
+Ts0 f8 type ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate.TestTaskTemplateData #txt
+Ts0 f8 method saveToSession() #txt
+Ts0 f8 disableUIEvents false #txt
+Ts0 f8 inParameterDecl 'ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate.TestTaskTemplateData out;
+' #txt
+Ts0 f8 outParameterDecl '<> result;
+' #txt
+Ts0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>saveToSession()</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f8 83 259 26 26 -47 15 #rect
+Ts0 f8 @|RichDialogMethodStartIcon #fIcon
+Ts0 f9 type ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate.TestTaskTemplateData #txt
+Ts0 f9 339 259 26 26 0 12 #rect
+Ts0 f9 @|RichDialogProcessEndIcon #fIcon
+Ts0 f11 actionDecl 'ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate.TestTaskTemplateData out;
+' #txt
+Ts0 f11 actionTable 'out=in;
+' #txt
+Ts0 f11 actionCode 'ivy.session.setAttribute("taskConfigExampleProcessChainDirection", in.processChainDirection);
+ivy.session.setAttribute("taskConfigExampleProcessChainShape", in.processChainShape);' #txt
+Ts0 f11 type ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate.TestTaskTemplateData #txt
+Ts0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>save config</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f11 168 250 112 44 -31 -8 #rect
+Ts0 f11 @|StepIcon #fIcon
+Ts0 f12 expr out #txt
+Ts0 f12 109 272 168 272 #arcP
+Ts0 f10 expr out #txt
+Ts0 f10 280 272 339 272 #arcP
+Ts0 f21 actionDecl 'ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate.TestTaskTemplateData out;
+' #txt
+Ts0 f21 actionTable 'out=in;
+' #txt
+Ts0 f21 actionCode 'import javax.faces.context.FacesContext;
+import ch.ivy.addon.portalkit.support.UrlDetector;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+import org.apache.commons.lang3.StringUtils;
+
+String friendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("CustomizedTaskTemplate.ivp");
+if (StringUtils.isEmpty(friendlyRequestPath)) {
+    friendlyRequestPath = "Start Processes/Showcases/CustomizedTaskTemplate.ivp";
+}
+
+String requestPath = SecurityServiceUtils.findProcessByUserFriendlyRequestPath(friendlyRequestPath);
+if (StringUtils.isNotEmpty(requestPath)) {
+    UrlDetector urlDetector = new UrlDetector();
+    String serverUrl = urlDetector.getBaseURL(FacesContext.getCurrentInstance());
+
+    FacesContext.getCurrentInstance().getExternalContext().redirect(serverUrl + requestPath);
+}
+  ' #txt
+Ts0 f21 type ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate.TestTaskTemplateData #txt
+Ts0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>reload process</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f21 176 362 112 44 -41 -8 #rect
+Ts0 f21 @|StepIcon #fIcon
+Ts0 f18 guid 16C98491C1920D90 #txt
+Ts0 f18 type ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate.TestTaskTemplateData #txt
+Ts0 f18 method reload() #txt
+Ts0 f18 disableUIEvents false #txt
+Ts0 f18 inParameterDecl 'ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate.TestTaskTemplateData out;
+' #txt
+Ts0 f18 outParameterDecl '<> result;
+' #txt
+Ts0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>reload()</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f18 75 371 26 26 -21 15 #rect
+Ts0 f18 @|RichDialogMethodStartIcon #fIcon
+Ts0 f22 expr out #txt
+Ts0 f22 101 384 176 384 #arcP
+Ts0 f19 type ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate.TestTaskTemplateData #txt
+Ts0 f19 379 371 26 26 0 12 #rect
+Ts0 f19 @|RichDialogProcessEndIcon #fIcon
+Ts0 f20 expr out #txt
+Ts0 f20 288 384 379 384 #arcP
 >Proto Ts0 .type ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate.TestTaskTemplateData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -104,3 +214,11 @@ Ts0 f0 mainOut f7 tail #connect
 Ts0 f7 head f6 mainIn #connect
 Ts0 f6 mainOut f2 tail #connect
 Ts0 f2 head f1 mainIn #connect
+Ts0 f8 mainOut f12 tail #connect
+Ts0 f12 head f11 mainIn #connect
+Ts0 f11 mainOut f10 tail #connect
+Ts0 f10 head f9 mainIn #connect
+Ts0 f18 mainOut f22 tail #connect
+Ts0 f22 head f21 mainIn #connect
+Ts0 f21 mainOut f20 tail #connect
+Ts0 f20 head f19 mainIn #connect

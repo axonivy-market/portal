@@ -1342,7 +1342,7 @@ Pt0 f104 processCall 'Functional Processes/OpenPortalCaseDetails:call(ch.ivyteam
 Pt0 f104 doCall true #txt
 Pt0 f104 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseData> param;
 ' #txt
-Pt0 f104 requestMappingAction 'param.caseData=in.ICase;
+Pt0 f104 requestMappingAction 'param.caseData=in.caseSelected;
 ' #txt
 Pt0 f104 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
@@ -1364,7 +1364,7 @@ Pt0 f106 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f106 actionTable 'out=in;
 ' #txt
-Pt0 f106 actionCode 'out.iCase = ivy.wf.findCase(in.caseId);' #txt
+Pt0 f106 actionCode 'out.caseSelected = ivy.wf.findCase(in.caseId);' #txt
 Pt0 f106 security system #txt
 Pt0 f106 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f106 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1410,7 +1410,7 @@ Pt0 f117 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f117 actionTable 'out=in;
 ' #txt
-Pt0 f117 actionCode 'out.ITask = ivy.wf.findTask(in.taskId);' #txt
+Pt0 f117 actionCode 'out.taskSelected = ivy.wf.findTask(in.taskId);' #txt
 Pt0 f117 security system #txt
 Pt0 f117 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f117 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1430,7 +1430,7 @@ Pt0 f115 processCall 'Functional Processes/OpenPortalTaskDetail:call(ch.ivyteam.
 Pt0 f115 doCall true #txt
 Pt0 f115 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask taskData> param;
 ' #txt
-Pt0 f115 requestMappingAction 'param.taskData=in.ITask;
+Pt0 f115 requestMappingAction 'param.taskData=in.taskSelected;
 ' #txt
 Pt0 f115 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt

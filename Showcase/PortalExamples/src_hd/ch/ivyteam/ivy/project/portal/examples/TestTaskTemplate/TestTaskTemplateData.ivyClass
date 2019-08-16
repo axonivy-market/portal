@@ -10,3 +10,7 @@ actualStepIndex Integer #field
 actualStepIndex PERSISTENT #fieldModifier
 steps java.util.List<String> #field
 steps PERSISTENT #fieldModifier
+processChainShape String #field
+processChainShape PERSISTENT #fieldModifier
+processChainDirection String #field
+processChainDirection PERSISTENT #fieldModifier
