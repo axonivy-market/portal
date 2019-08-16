@@ -476,6 +476,10 @@
 }
 /* END SERENITY TOP BAR */
 /* SERENITY MAIN LAYOUT */
+.layout-wrapper {
+  -webkit-overflow-scrolling: touch;
+}
+
 .layout-wrapper .layout-main {
   height: 100%;
 }/* END SERENITY MAIN LAYOUT */
