@@ -108,21 +108,19 @@ body {
         display: inline;
     }
 
-    .appDialog {
-        left: 10% !important;
+    .app-dialog {
         top: 250px !important;
     }
 }
 
 @media (min-width: 1366px) and (max-width: 1919px) {
-    .appDialog {
-        left: 20% !important;
+    .app-dialog {
         top: 250px !important;
     }
 }
 
 @media (min-width: 1920px) {
-    .appDialog {
+    .app-dialog {
         top: 300px !important;
     }
 }
@@ -164,10 +162,7 @@ body {
     }
 
     .admin-ui-dialog {
-        width: 80% !important;
-        left: 10% !important;
         top: 160px !important;
-        height: auto !important;
     }
 }
 
@@ -181,8 +176,6 @@ body .ui-messages .ui-messages-error-icon,
 /*Style Email Setting --------------------------------------------------------------------------------*/
 @media (max-width: 1365px) {
     .applications-email-setting-dialog {
-        left: 10% !important;
-        right: 10% !important;
         top: 150px !important;
     }
 
@@ -193,8 +186,6 @@ body .ui-messages .ui-messages-error-icon,
 
 @media (min-width: 1366px) and (max-width: 1919px) {
     .applications-email-setting-dialog {
-        left: 15% !important;
-        right: 10% !important;
         top: 150px !important;
     }
 
