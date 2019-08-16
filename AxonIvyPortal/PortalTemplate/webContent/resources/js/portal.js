@@ -7,7 +7,7 @@ var storageType = detectStorage();
 var Portal = {    
   init : function(responsiveToolkit, updateFlag) {
     typeof(updateFlag) == "undefinied" ? false : updateFlag;
-    if ($('form.login-form').size() > 0) {
+    if ($('form.login-form').length > 0) {
       return;
     }
     updateMainMenuMode();

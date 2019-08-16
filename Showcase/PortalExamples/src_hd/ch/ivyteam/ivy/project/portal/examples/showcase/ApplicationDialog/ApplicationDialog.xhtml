@@ -4,8 +4,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:ic="http://ivyteam.ch/jsf/component"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:pe="http://primefaces.org/ui/extensions"
-	xmlns:pm="http://primefaces.org/mobile">
+	xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
 		<ui:composition template="/layouts/TaskTemplate.xhtml">
 		<ui:define name="title">Request</ui:define>
@@ -34,7 +33,9 @@
 		
 
 			<h:form id="form">
-				<p:growl id="growl" autoUpdate="true" />
+				<p:growl id="growl">
+					<p:autoUpdate />
+				</p:growl>
 				<div class="ui-fluid">
 				<div  class="fitDivToFieldset marginTop10px">
 					<div class="ui-g" >
@@ -169,9 +170,8 @@
 								for="requestTypeValue" />
 						</div>
 						<div class="ui-g-12 ui-md-6 ui-lg-3">
-							<p:selectOneMenu id="requestTypeValue"
-								>
-								<f:selectItem itemLabel="Select One" itemValue="" />
+							<p:selectOneMenu id="requestTypeValue" required="true">
+								<f:selectItem itemLabel="Select One" itemValue="#{null}" />
 								<f:selectItem itemLabel="Antrag 1" itemValue="Xbox One" />
 								<f:selectItem itemLabel="Antrag 2" itemValue="PS4" />
 								<f:selectItem itemLabel="Antrag 3" itemValue="Wii U" />

@@ -4,8 +4,7 @@
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions"
-  xmlns:pm="http://primefaces.org/mobile">
+  xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
   <ui:composition template="/layouts/TaskTemplate.xhtml">
   <ui:param name="caseId" value="#{ivy.case.id}" />
@@ -16,7 +15,9 @@
   <ui:param name="isShowStartAdhocButton" value="#{not data.executePredefinedWorkflowData.isAdhocProcess}" />
   <ui:define name="title" />
     <ui:define name="errorsZone">
-      <p:messages id="error-messages" showDetail="false" closable="true" autoUpdate="true" globalOnly="true" />
+      <p:messages id="error-messages" showDetail="false" closable="true" globalOnly="true">
+        <p:autoUpdate />
+      </p:messages>
     </ui:define>
   <ui:define name="taskForm">
     <h:form id="form">
@@ -25,7 +26,9 @@
       </h:panelGroup>
       
       <p:fieldset id="dynaFormFieldSet" toggleable="true" legend="#{ivy.cms.co('/Dialogs/WorkflowExecution/UserTaskForm/Formular')}">
-        <p:messages id="messagesDynaForm" showDetail="false" autoUpdate="true" closable="true" globalOnly="true" />
+        <p:messages id="messagesDynaForm" showDetail="false" closable="true" globalOnly="true">
+          <p:autoUpdate />
+        </p:messages>
 
         <pe:dynaForm id="user-task-dyna-form"
           value="#{data.executePredefinedWorkflowData.currentTask.dynaFormController.model}"

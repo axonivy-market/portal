@@ -12,7 +12,7 @@ import javax.faces.event.ValueChangeEvent;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.CollectionUtils;
-import org.primefaces.context.RequestContext;
+import org.primefaces.PrimeFaces;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
@@ -82,11 +82,11 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
       Map<String, Object> filters) {
     if (first == 0) {
       initializedDataModel();
-      RequestContext.getCurrentInstance().execute("updateCaseCount()");
+      PrimeFaces.current().executeScript("updateCaseCount()");
     }
     
     List<ICase> foundCases = findCases(criteria, first, pageSize);
-    RequestContext.getCurrentInstance().execute("caseListToolkit.responsive()");
+    PrimeFaces.current().executeScript("caseListToolkit.responsive()");
     data.addAll(foundCases);
     return foundCases;
   }

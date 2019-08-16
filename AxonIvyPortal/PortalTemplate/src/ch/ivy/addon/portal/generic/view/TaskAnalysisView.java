@@ -20,7 +20,7 @@ public class TaskAnalysisView {
     private boolean showHeaderToolbar = Boolean.TRUE;
     private String noTaskFoundMessage = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/noTask");
     private boolean compactMode = Boolean.TRUE;
-    private Integer chunkSize = new Integer(10);
+    private Integer chunkSize = 10;
 
     private MainMenuNode category;
 

@@ -8,7 +8,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang.StringUtils;
-import org.primefaces.context.RequestContext;
+import org.primefaces.context.PrimeRequestContext;
 import org.primefaces.extensions.model.dynaform.DynaFormControl;
 import org.primefaces.extensions.model.dynaform.DynaFormLabel;
 import org.primefaces.extensions.model.dynaform.DynaFormModel;
@@ -113,8 +113,7 @@ public class DynaFormController implements Serializable {
     boolean hasErrors = (sev != null && (FacesMessage.SEVERITY_ERROR
         .compareTo(sev) >= 0));
 
-    RequestContext requestContext = RequestContext.getCurrentInstance();
-    requestContext.addCallbackParam("isValid", !hasErrors);
+    PrimeRequestContext.getCurrentInstance().getCallbackParams().put("isValid", !hasErrors);
 
     return null;
   }

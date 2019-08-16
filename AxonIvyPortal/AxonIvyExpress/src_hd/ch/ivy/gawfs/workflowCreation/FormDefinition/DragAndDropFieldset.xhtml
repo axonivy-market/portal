@@ -7,7 +7,9 @@
     columnClasses="ui-g-3, ui-g-9">
     <p:fieldset id="available-formelements-field" styleClass="available-formelements-field"
       legend="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/FieldSetAvailableFormelements')}">
-      <p:messages id="DnDmessage" showDetail="false" autoUpdate="true" closable="true" for="availableFormelements" />
+      <p:messages id="DnDmessage" showDetail="false" closable="true" for="availableFormelements">
+       <p:autoUpdate />
+      </p:messages>
 
       <p:dataGrid id="availableFormelements" var="formelement" styleClass="no-border"
         emptyMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoFormelementsAvailable')}"

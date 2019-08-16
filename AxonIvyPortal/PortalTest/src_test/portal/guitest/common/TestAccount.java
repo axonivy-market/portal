@@ -9,6 +9,8 @@ public enum TestAccount {
 	DEMO_USER(nameOfDemoUser(), passwordOfDemoUser(), "Portal Demo User"),
 
 	ADMIN_USER(nameOfAdminUser(), passwordOfAdminUser(), "Portal Admin User"),
+	
+	HR_ROLE_USER(nameOfHrRoleUser(), passwordOfHrRoleUser(), "Portal Hr Role User"),
 
 	TEST_CHANGE_PASSWORD_USER("test_change_password_user", "123", "test_change_password_user"),
 
@@ -54,6 +56,16 @@ public enum TestAccount {
 		return Optional.ofNullable(password).orElse("admin");
 	}
 
+	private static String nameOfHrRoleUser() {
+		String userName = System.getProperty("hrRoleUserName");
+		return Optional.ofNullable(userName).orElse("david");
+	}
+
+	private static String passwordOfHrRoleUser() {
+		String password = System.getProperty("hrRoleUserPassword");
+		return Optional.ofNullable(password).orElse("david");
+	}
+	
 	public String getUsername() {
 		return username;
 	}

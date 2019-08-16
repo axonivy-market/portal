@@ -17,7 +17,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
-import org.primefaces.context.RequestContext;
+import org.primefaces.PrimeFaces;
 
 import ch.ivy.addon.portal.generic.common.DeviceDetector;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -128,7 +128,7 @@ public class UserMenuBean implements Serializable {
 
   public void navigateToHomePageOrDisplayWorkingTaskWarning(boolean isWorkingOnATask) throws IOException {
     if (isWorkingOnATask) {
-      RequestContext.getCurrentInstance().execute("PF('logo-task-losing-confirmation-dialog').show()");
+      PrimeFaces.current().executeScript("PF('logo-task-losing-confirmation-dialog').show()");
     } else {
       navigateToHomePage();
     }

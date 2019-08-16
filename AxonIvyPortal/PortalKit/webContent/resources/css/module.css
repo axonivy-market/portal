@@ -912,7 +912,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
   display: block;
   overflow: visible;
   text-indent: 0px !important;
-  position: relative;
+  position: relative !important;
 }
 .ui-selectonemenu .ui-selectonemenu-trigger .ui-icon:after {
   font-family: 'FontAwesome';
@@ -952,8 +952,7 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
     -webkit-font-smoothing: antialiased;
     content: "\f078";
     position: absolute;
-    left: 6px;
-    top: 12px;
+    left: -2px;
 }
 
 /* =================== END DROPDOWN ====================== */
@@ -5985,4 +5984,10 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 .unset-min-width-button-text .ui-widget.ui-button-text-icon-right .ui-button-text {
 	min-width: auto;
 }
-/* ======================= END LABEL ======================= */
+/* ======================= END LABEL ======================= *//* ======================= END MAIN AREA PANEL ========================= */
+
+/*====================FIX FOR PRIMEFACES 7 STYLE========================*/
+span.ui-inputnumber.ui-widget.ui-state-error {
+	border: 0 !important;
+}
+/*====================END FIX FOR PRIMEFACES 7 STYLE========================*/

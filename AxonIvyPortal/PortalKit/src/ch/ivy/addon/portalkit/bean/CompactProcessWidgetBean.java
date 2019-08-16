@@ -16,7 +16,7 @@ import javax.faces.convert.Converter;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.context.RequestContext;
+import org.primefaces.PrimeFaces;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.comparator.UserProcessIndexComparator;
@@ -96,7 +96,7 @@ private static final long serialVersionUID = -5889375917550618261L;
 
   public void addNewUserProcess(String clientId) {
     this.editingProcess = new UserProcess();
-    RequestContext.getCurrentInstance().reset(clientId + ":add-new-process-dialog");
+    PrimeFaces.current().resetInputs(clientId + ":add-new-process-dialog");
   }
 
   public void saveNewUserProcess() {
