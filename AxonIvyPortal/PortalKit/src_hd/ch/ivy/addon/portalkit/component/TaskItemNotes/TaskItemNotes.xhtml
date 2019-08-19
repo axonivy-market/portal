@@ -13,14 +13,14 @@
   <div class="task-details-item-note ui-g">
 
     <div class="task-detail-section-title ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12">
-      <div class="ui-g-4 ui-xl-4 ui-lg-4 ui-md-4 ui-sm-4 u-truncate-text u-padding-0">
+      <div class="ui-g-4 ui-xl-4 ui-lg-4 ui-md-4 ui-sm-6 u-truncate-text u-padding-0">
         <i class="fa fa-history" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/taskNotes')}
       </div>
-      <div class="task-history-button-container ui-g-8 u-padding-0">
+      <div class="task-history-button-container ui-g-8 ui-sm-12 u-padding-0">
         <h:panelGroup layout="block">
           <p:link id="show-more-note-link" styleClass="task-details-document-add-link note-show-more-link ui-commandlink" target="_blank"
             href="#{caseTaskNoteHistoryBean.getTaskNoteHistoryLink(task)}" rendered="#{caseTaskNoteHistoryBean.showMoreNote}">
-            <span class="fa fa-external-link-square note-show-more-link-icon" />
+            <span class="fa fa-external-link-square task-note-show-more-link-icon" />
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}" />
           </p:link>
           <p:commandLink id="add-note-command" styleClass="task-details-document-add-link" rendered="#{caseTaskNoteHistoryBean.showAddNote}"
@@ -63,9 +63,9 @@
 
   </div>
 
-  <p:dialog id="view-note-dialog" widgetVar="#{cc.clientId}:view-note-dialog" closeOnEscape="true"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/note')}" width="40%" appendTo="@(body)" modal="true" resizable="false" dynamic="true">
-    <h:panelGroup layout="block" styleClass="task-note-dialog" >
+  <p:dialog id="view-note-dialog" widgetVar="#{cc.clientId}:view-note-dialog" closeOnEscape="true" styleClass="task-note-dialog"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/note')}" width="50vw" appendTo="@(body)" modal="true" resizable="false" dynamic="true">
+    <h:panelGroup layout="block">
       <h:outputText value="#{data.fullNote}" />
     </h:panelGroup>
     <f:facet name="footer">
@@ -73,8 +73,8 @@
     </f:facet>
   </p:dialog>
 
-  <p:dialog id="add-new-note-dialog" widgetVar="#{cc.clientId}:addNewNoteDialog" dynamic="true" closable="false" closeOnEscape="true"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}" showEffect="fade" resizable="false" modal="true" width="40%" appendTo="@(body)">
+  <p:dialog id="add-new-note-dialog" widgetVar="#{cc.clientId}:addNewNoteDialog" dynamic="true" closable="false" closeOnEscape="true" styleClass="task-upload-dialog"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}" showEffect="fade" resizable="false" modal="true" width="50vw" appendTo="@(body)">
     <h:form id="task-add-new-note-form">
       <h:panelGroup layout="block">
         <p:messages id="task-detail-create-note-msg" for="task-detail-note-content" />
