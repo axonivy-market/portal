@@ -15,11 +15,12 @@
   <c:set var="task" value="#{cc.attrs.task}" />
 
   <h:panelGroup id="task-detail-container" rendered="#{cc.attrs.showItemDetailsHeader}" styleClass="ui-g-12 u-truncate-text" >
+    <h:form id="task-detail-title-form" onsubmit="return false;" styleClass="name-cell task-detail-header">
     <h:outputText id="#{cc.attrs.nameId}" styleClass="task-detail-header"
       value="#{ivy.cms.co('/Labels/Task')} : #{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}"
       rendered="#{taskBean.isDone(task)}" />
     <p:tooltip for="task-name" value="#{cc.attrs.nameId}" trackMouse="true" rendered="#{not empty task.name}" />
-    <h:form id="#{cc.attrs.nameId}-edit-form" onsubmit="return false;" class="name-cell task-detail-header" rendered="#{!taskBean.isDone(task)}">
+    <h:panelGroup id="#{cc.attrs.nameId}-edit-form" rendered="#{!taskBean.isDone(task)}" styleClass="task-name-edit u-truncate-text">
       <h:outputText value="#{ivy.cms.co('/Labels/Task')}:  " />
       <p:inplace id="#{cc.attrs.nameId}-inplace" editor="true" rendered="#{taskBean.isNotDone(task)}" disabled="#{!taskActionBean.canChangeName(task)}"
         saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
@@ -31,7 +32,7 @@
           update="#{cc.attrs.nameId}-edit-form #{cc.attrs.componentToUpdate} #{p:component('task-detail-note-container')}" />
         <f:passThroughAttribute name="onclick" value="if('#{taskActionBean.canChangeName(task)}'=='true') {event.stopPropagation()}" />
       </p:inplace>
-
+      </h:panelGroup>
         <p:commandButton id="back-to-tasks" onclick="backToPrevPage();" styleClass="task-details-back-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" 
           icon="fa fa-reply-all" iconPos="left" type="button" />
         <p:remoteCommand name="backToTasksList" actionListener="#{taskActionBean.backToTasksList()}" />
