@@ -6,10 +6,6 @@ Using reStructredText as markup language.
 
 ## Build
 
-    # download static images
-	# note neeed ì images live in same repo
-    # mvn clean package
-
 	# start docker-compose
 	docker-compose up
 
