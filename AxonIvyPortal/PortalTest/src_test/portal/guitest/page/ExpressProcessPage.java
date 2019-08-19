@@ -86,10 +86,10 @@ public class ExpressProcessPage extends TemplatePage {
 		ensureNoBackgroundRequest();
 	}
 
-	public void executeDirectly() {
-		click(By.id("form:save"));
-		waitAjaxIndicatorDisappear();
-	}
+	public HomePage executeDirectlyAndGoToHomePage() {
+    click(By.id("form:save"));
+    return new HomePage();
+  }
 
 	public void ableToStart(List<ExpressResponsible> responsibles) {
 		click(By.id("form:able-to-start-link"));
@@ -99,6 +99,8 @@ public class ExpressProcessPage extends TemplatePage {
 	private void chooseResponsible(String responsible, boolean isGroup) {
 		if (isGroup) {
 			selectCheckbox("assignee-selection-form:assignee-type:1");
+			waitAjaxIndicatorDisappear();
+			waitForElementDisplayed(By.id("assignee-selection-form:role-selection_input"), true);
 			type(By.id("assignee-selection-form:role-selection_input"), responsible);
 			waitForElementDisplayed(By.id("assignee-selection-form:role-selection_panel"), true);
 			click(By.xpath("//*[@id='assignee-selection-form:role-selection_panel']/ul/li/span"));

@@ -175,7 +175,10 @@ public class PortalExpressTest extends BaseTest {
 		expressProcessPage.createDefaultTask(0, "Default Task", Arrays.asList(demoResponsible));
 		expressProcessPage.addNewTask(0);
 		expressProcessPage.createDefaultTask(1, null, Arrays.asList(demoResponsible));
-		expressProcessPage.executeDirectly();
+		homePage = expressProcessPage.executeDirectlyAndGoToHomePage();
+    taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.filterTasksBy("Default Task");
+    taskWidgetPage.startTask(0);
 
 		DefaulExpresTaskPage defaulExpresTaskPage = new DefaulExpresTaskPage();
 		defaulExpresTaskPage.enterTextToDefaultTask("Test input");
@@ -199,6 +202,7 @@ public class PortalExpressTest extends BaseTest {
 	public void testMultiApprovalWhenMultiTask() {
 		createAdministratedWorkflow("Test approval", Arrays.asList(responsible1, groupHr), true);
 		startExpressProcess("Test approval");
+		homePage = new HomePage();
 		executeExpressProcessWhenMultiApproval();
 	}
 
@@ -290,8 +294,7 @@ public class PortalExpressTest extends BaseTest {
 	}
 
 	protected void rejectWhenMultiApproval() {
-		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
-		expressTaskPage.finish();
+	  executeUserTask();
 		assertEquals(0, new TaskWidgetPage().countTasks());
 		login(TestAccount.ADMIN_USER);
 		executeUserTask();
@@ -368,8 +371,7 @@ public class PortalExpressTest extends BaseTest {
 	}
 
 	protected void executeExpressProcessWhenMultiApproval() {
-		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
-		expressTaskPage.finish();
+	  executeUserTask();
 		assertEquals(0, new TaskWidgetPage().countTasks());
 		login(TestAccount.ADMIN_USER);
 		executeUserTask();
@@ -393,8 +395,9 @@ public class PortalExpressTest extends BaseTest {
 	}
 
 	protected void executeComplexProcess() {
+	  taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.startTask(0);
 		UserTaskWithMailFormPage userTaskWithMailFormPage = new UserTaskWithMailFormPage();
-		userTaskWithMailFormPage.waitForPageLoaded();
 		userTaskWithMailFormPage.selectEmailTab();
 		userTaskWithMailFormPage.inputData("wawa@axonivy.io", "Task information", "Task is created");
 		userTaskWithMailFormPage.finish();

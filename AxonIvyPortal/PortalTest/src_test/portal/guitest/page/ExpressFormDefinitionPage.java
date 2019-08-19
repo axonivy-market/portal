@@ -187,7 +187,6 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 
 	public void executeWorkflow() {
 		click(By.id("execute-button"));
-		waitAjaxIndicatorDisappear();
 	}
 
 	public void nextStep() {
