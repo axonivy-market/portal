@@ -2404,7 +2404,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .task-name-input {
-  width : calc(100% - 85px);
+  width : calc(100% - 135px);
   font-weight: bold !important;
   font-size: 1.6rem !important;
 }
@@ -4831,6 +4831,7 @@ _:-ms-fullscreen, :root .case-related-command-link {
   font-weight: bold;
   line-height: 38px;
   display: flex;
+  width: 100% !important;
 }
 .task-detail-general-card {
   padding-bottom: 0px !important;
@@ -4953,10 +4954,6 @@ _:-ms-fullscreen, :root .case-related-command-link {
   display: flex; 
 }
 
-.task-note-dialog {
-  max-height: 500px;
-}
-
 .task-business-case {
   margin-top: 0px !important;
   display: inline !important;
@@ -4976,6 +4973,21 @@ _:-ms-fullscreen, :root .case-related-command-link {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.task-note-show-more-link-icon {
+ margin-right: 5px;	
+}
+
+.task-name-edit {
+	width: 100%;
+}
+
+.task-details-back-btn {
+	margin-right: 5px !important;
+}
+
+.task-note-dialog .ui-dialog-content.ui-widget-content {
+  max-height: 40vh;
 }
 
 /*  =================== END TASK DETAIL PAGE ========================= */
@@ -5014,7 +5026,8 @@ _:-ms-fullscreen, :root .case-related-command-link {
     .case-details {
         padding: 0 !important;
     }
-    .case-upload-dialog, .case-view-note-dialog {
+    .case-upload-dialog, .case-view-note-dialog,
+    .task-upload-dialog, .document-upload-dialog, .task-note-dialog {
         width: 80% !important;
     }
     .note-show-more-link {
