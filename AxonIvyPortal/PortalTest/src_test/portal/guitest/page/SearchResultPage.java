@@ -3,8 +3,6 @@ package portal.guitest.page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import ch.ivy.addon.portalkit.masterdata.AwesomeIcon;
-
 public class SearchResultPage extends TemplatePage {
 
 	private final String INFO_EXPRESS_WORKFlOW = "span[id$='info-workflow']";
