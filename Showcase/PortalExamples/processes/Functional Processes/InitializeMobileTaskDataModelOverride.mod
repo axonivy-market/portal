@@ -1,10 +1,9 @@
 [Ivy]
-16740303918BFE61 3.23 #module
+16740303918BFE61 3.28 #module
 >Proto >Proto Collection #zClass
 Il0 InitializeMobileTaskDataModel Big #zClass
 Il0 B #cInfo
 Il0 #process
-Il0 @TextInP .resExport .resExport #zField
 Il0 @TextInP .type .type #zField
 Il0 @TextInP .processKind .processKind #zField
 Il0 @AnnotationInP-0n ai ai #zField
@@ -27,10 +26,7 @@ Il0 f0 outParamDecl '<ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataMod
 ' #txt
 Il0 f0 outParamTable 'result.dataModel=in.dataModel;
 ' #txt
-Il0 f0 actionDecl '_ch.ivyteam.ivy.project.portal.examples.InitializeMobileTaskDataModelOverrideData out;
-' #txt
 Il0 f0 callSignature call(Boolean) #txt
-Il0 f0 type _ch.ivyteam.ivy.project.portal.examples.InitializeMobileTaskDataModelOverrideData #txt
 Il0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -40,11 +36,8 @@ Il0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Il0 f0 81 49 30 30 -36 17 #rect
 Il0 f0 @|StartSubIcon #fIcon
-Il0 f1 type _ch.ivyteam.ivy.project.portal.examples.InitializeMobileTaskDataModelOverrideData #txt
 Il0 f1 569 49 30 30 0 15 #rect
 Il0 f1 @|EndSubIcon #fIcon
-Il0 f27 actionDecl '_ch.ivyteam.ivy.project.portal.examples.InitializeMobileTaskDataModelOverrideData out;
-' #txt
 Il0 f27 actionTable 'out=in;
 ' #txt
 Il0 f27 actionCode 'import ch.ivyteam.ivy.project.portal.examples.component.customize.CustomizedTaskLazyDataModel;
@@ -54,7 +47,6 @@ in.dataModel = new CustomizedTaskLazyDataModel(in.isMobile);
 
 
 ' #txt
-Il0 f27 type _ch.ivyteam.ivy.project.portal.examples.InitializeMobileTaskDataModelOverrideData #txt
 Il0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

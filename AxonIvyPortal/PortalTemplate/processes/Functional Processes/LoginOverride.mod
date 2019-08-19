@@ -1,10 +1,9 @@
 [Ivy]
-16B1CEA6AF5F7E2C 3.26 #module
+16B1CEA6AF5F7E2C 3.28 #module
 >Proto >Proto Collection #zClass
 Ln0 Login Big #zClass
 Ln0 B #cInfo
 Ln0 #process
-Ln0 @TextInP .resExport .resExport #zField
 Ln0 @TextInP .type .type #zField
 Ln0 @TextInP .processKind .processKind #zField
 Ln0 @AnnotationInP-0n ai ai #zField
@@ -21,10 +20,7 @@ Ln0 @PushWFArc f2 '' #zField
 Ln0 f0 inParamDecl '<> param;' #txt
 Ln0 f0 outParamDecl '<> result;
 ' #txt
-Ln0 f0 actionDecl 'portalTemplate.LoginOverrideData out;
-' #txt
 Ln0 f0 callSignature call() #txt
-Ln0 f0 type portalTemplate.LoginOverrideData #txt
 Ln0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -34,11 +30,8 @@ Ln0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ln0 f0 81 49 30 30 -13 17 #rect
 Ln0 f0 @|StartSubIcon #fIcon
-Ln0 f1 type portalTemplate.LoginOverrideData #txt
 Ln0 f1 337 49 30 30 0 15 #rect
 Ln0 f1 @|EndSubIcon #fIcon
-Ln0 f3 actionDecl 'portalTemplate.LoginOverrideData out;
-' #txt
 Ln0 f3 actionTable 'out=in;
 ' #txt
 Ln0 f3 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
@@ -51,7 +44,6 @@ boolean isEnableChat = StringUtils.isNotBlank(isEnableChatGlobalVariable) ? Bool
 if (isEnableChat && ChatServiceContainer.getChatService() != null) {
   ChatServiceContainer.getChatService().handleUserOnline(ivy.session.getSessionUserName());
 }' #txt
-Ln0 f3 type portalTemplate.LoginOverrideData #txt
 Ln0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

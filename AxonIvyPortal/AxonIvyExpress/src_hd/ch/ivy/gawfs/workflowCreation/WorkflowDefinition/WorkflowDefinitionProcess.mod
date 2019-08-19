@@ -1,12 +1,9 @@
 [Ivy]
-1576FA61C4EDC8B1 3.26 #module
+1576FA61C4EDC8B1 3.28 #module
 >Proto >Proto Collection #zClass
 Fs0 WorkflowDefinitionProcess Big #zClass
 Fs0 RD #cInfo
 Fs0 #process
-Fs0 @TextInP .ui2RdDataAction .ui2RdDataAction #zField
-Fs0 @TextInP .rdData2UIAction .rdData2UIAction #zField
-Fs0 @TextInP .resExport .resExport #zField
 Fs0 @TextInP .type .type #zField
 Fs0 @TextInP .processKind .processKind #zField
 Fs0 @AnnotationInP-0n ai ai #zField
@@ -14,31 +11,31 @@ Fs0 @MessageFlowInP-0n messageIn messageIn #zField
 Fs0 @MessageFlowOutP-0n messageOut messageOut #zField
 Fs0 @TextInP .xml .xml #zField
 Fs0 @TextInP .responsibility .responsibility #zField
-Fs0 @RichDialogInitStart f0 '' #zField
-Fs0 @RichDialogProcessEnd f1 '' #zField
-Fs0 @RichDialogProcessStart f3 '' #zField
-Fs0 @RichDialogEnd f4 '' #zField
+Fs0 @UdInit f0 '' #zField
+Fs0 @UdProcessEnd f1 '' #zField
+Fs0 @UdEvent f3 '' #zField
+Fs0 @UdExitEnd f4 '' #zField
 Fs0 @GridStep f6 '' #zField
 Fs0 @PushWFArc f7 '' #zField
-Fs0 @RichDialogMethodStart f9 '' #zField
-Fs0 @RichDialogMethodStart f8 '' #zField
+Fs0 @UdMethod f9 '' #zField
+Fs0 @UdMethod f8 '' #zField
 Fs0 @GridStep f10 '' #zField
 Fs0 @PushWFArc f11 '' #zField
 Fs0 @PushWFArc f12 '' #zField
 Fs0 @GridStep f13 '' #zField
 Fs0 @PushWFArc f14 '' #zField
 Fs0 @PushWFArc f15 '' #zField
-Fs0 @RichDialogMethodStart f16 '' #zField
-Fs0 @RichDialogProcessEnd f20 '' #zField
-Fs0 @RichDialogMethodStart f19 '' #zField
+Fs0 @UdMethod f16 '' #zField
+Fs0 @UdProcessEnd f20 '' #zField
+Fs0 @UdMethod f19 '' #zField
 Fs0 @GridStep f23 '' #zField
 Fs0 @PushWFArc f24 '' #zField
-Fs0 @RichDialogMethodStart f25 '' #zField
-Fs0 @RichDialogEnd f30 '' #zField
+Fs0 @UdMethod f25 '' #zField
+Fs0 @UdExitEnd f30 '' #zField
 Fs0 @GridStep f28 '' #zField
 Fs0 @PushWFArc f31 '' #zField
-Fs0 @RichDialogMethodStart f17 '' #zField
-Fs0 @RichDialogProcessEnd f18 '' #zField
+Fs0 @UdMethod f17 '' #zField
+Fs0 @UdProcessEnd f18 '' #zField
 Fs0 @Alternative f36 '' #zField
 Fs0 @GridStep f38 '' #zField
 Fs0 @PushWFArc f39 '' #zField
@@ -47,8 +44,8 @@ Fs0 @PushWFArc f40 '' #zField
 Fs0 @GridStep f34 '' #zField
 Fs0 @PushWFArc f35 '' #zField
 Fs0 @PushWFArc f37 '' #zField
-Fs0 @RichDialogProcessStart f41 '' #zField
-Fs0 @RichDialogProcessEnd f42 '' #zField
+Fs0 @UdEvent f41 '' #zField
+Fs0 @UdProcessEnd f42 '' #zField
 Fs0 @PushWFArc f43 '' #zField
 Fs0 @GridStep f27 '' #zField
 Fs0 @PushWFArc f29 '' #zField
@@ -59,16 +56,16 @@ Fs0 @PushWFArc f26 '' #zField
 Fs0 @GridStep f45 '' #zField
 Fs0 @PushWFArc f46 '' #zField
 Fs0 @PushWFArc f2 '' #zField
-Fs0 @RichDialogMethodStart f47 '' #zField
-Fs0 @RichDialogProcessEnd f48 '' #zField
+Fs0 @UdMethod f47 '' #zField
+Fs0 @UdProcessEnd f48 '' #zField
 Fs0 @GridStep f49 '' #zField
 Fs0 @PushWFArc f51 '' #zField
 Fs0 @GridStep f52 '' #zField
 Fs0 @PushWFArc f5 '' #zField
-Fs0 @RichDialogProcessStart f54 '' #zField
+Fs0 @UdEvent f54 '' #zField
 Fs0 @PushWFArc f55 '' #zField
-Fs0 @RichDialogProcessEnd f57 '' #zField
-Fs0 @RichDialogMethodStart f56 '' #zField
+Fs0 @UdProcessEnd f57 '' #zField
+Fs0 @UdMethod f56 '' #zField
 Fs0 @PushWFArc f58 '' #zField
 Fs0 @Alternative f59 '' #zField
 Fs0 @PushWFArc f60 '' #zField
@@ -81,28 +78,26 @@ Fs0 @PushWFArc f65 '' #zField
 Fs0 @PushWFArc f53 '' #zField
 Fs0 @GridStep f66 '' #zField
 Fs0 @PushWFArc f67 '' #zField
-Fs0 @RichDialogProcessEnd f68 '' #zField
+Fs0 @UdProcessEnd f68 '' #zField
 Fs0 @PushWFArc f69 '' #zField
 Fs0 @Alternative f70 '' #zField
 Fs0 @PushWFArc f71 '' #zField
 Fs0 @GridStep f72 '' #zField
 Fs0 @PushWFArc f73 '' #zField
 Fs0 @PushWFArc f32 '' #zField
-Fs0 @RichDialogMethodStart f74 '' #zField
-Fs0 @RichDialogProcessEnd f75 '' #zField
+Fs0 @UdMethod f74 '' #zField
+Fs0 @UdProcessEnd f75 '' #zField
 Fs0 @GridStep f76 '' #zField
 Fs0 @PushWFArc f77 '' #zField
 Fs0 @PushWFArc f78 '' #zField
-Fs0 @RichDialogProcessStart f79 '' #zField
+Fs0 @UdEvent f79 '' #zField
 Fs0 @GridStep f80 '' #zField
 Fs0 @PushWFArc f81 '' #zField
-Fs0 @RichDialogProcessEnd f82 '' #zField
+Fs0 @UdProcessEnd f82 '' #zField
 Fs0 @PushWFArc f83 '' #zField
 >Proto Fs0 Fs0 WorkflowDefinitionProcess #zField
 Fs0 f0 guid 1576FA61C9D81A51 #txt
-Fs0 f0 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f0 method start(gawfs.Data) #txt
-Fs0 f0 disableUIEvents true #txt
 Fs0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <gawfs.Data data> param = methodEvent.getInputArguments();
 ' #txt
@@ -123,14 +118,10 @@ Fs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Fs0 f0 83 51 26 26 -29 15 #rect
-Fs0 f0 @|RichDialogInitStartIcon #fIcon
-Fs0 f1 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
+Fs0 f0 @|UdInitIcon #fIcon
 Fs0 f1 531 51 26 26 0 12 #rect
-Fs0 f1 @|RichDialogProcessEndIcon #fIcon
+Fs0 f1 @|UdProcessEndIcon #fIcon
 Fs0 f3 guid 1576FA61CAF25C4A #txt
-Fs0 f3 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
-Fs0 f3 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
-' #txt
 Fs0 f3 actionTable 'out=in;
 ' #txt
 Fs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -141,13 +132,9 @@ Fs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Fs0 f3 747 579 26 26 -15 12 #rect
-Fs0 f3 @|RichDialogProcessStartIcon #fIcon
-Fs0 f4 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
-Fs0 f4 guid 1576FA61CB08591F #txt
+Fs0 f3 @|UdEventIcon #fIcon
 Fs0 f4 1379 579 26 26 0 12 #rect
-Fs0 f4 @|RichDialogEndIcon #fIcon
-Fs0 f6 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
-' #txt
+Fs0 f4 @|UdExitEndIcon #fIcon
 Fs0 f6 actionTable 'out=in;
 ' #txt
 Fs0 f6 actionCode 'import ch.ivy.gawfs.enums.TaskType;
@@ -187,7 +174,6 @@ else if(in.data.#processType is initialized && in.data.processType == ProcessTyp
 	in.isDisplayAbleToStart = true;
 }' #txt
 Fs0 f6 security system #txt
-Fs0 f6 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -202,9 +188,7 @@ Fs0 f6 @|StepIcon #fIcon
 Fs0 f7 expr out #txt
 Fs0 f7 109 64 200 64 #arcP
 Fs0 f9 guid 157748D911FE549A #txt
-Fs0 f9 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f9 method addProcessStep() #txt
-Fs0 f9 disableUIEvents false #txt
 Fs0 f9 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -218,11 +202,9 @@ Fs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Fs0 f9 83 147 26 26 -50 15 #rect
-Fs0 f9 @|RichDialogMethodStartIcon #fIcon
+Fs0 f9 @|UdMethodIcon #fIcon
 Fs0 f8 guid 157748DA5B03C33F #txt
-Fs0 f8 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f8 method deleteProcessStep() #txt
-Fs0 f8 disableUIEvents false #txt
 Fs0 f8 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -236,9 +218,7 @@ Fs0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Fs0 f8 83 243 26 26 -56 15 #rect
-Fs0 f8 @|RichDialogMethodStartIcon #fIcon
-Fs0 f10 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
-' #txt
+Fs0 f8 @|UdMethodIcon #fIcon
 Fs0 f10 actionTable 'out=in;
 ' #txt
 Fs0 f10 actionCode 'import ch.ivy.gawfs.enums.TaskType;
@@ -254,7 +234,6 @@ task.responsibles = new ArrayList();
 
 in.data.definedTasks.add(task);' #txt
 Fs0 f10 security system #txt
-Fs0 f10 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -272,8 +251,6 @@ Fs0 f12 expr out #txt
 Fs0 f12 320 160 544 77 #arcP
 Fs0 f12 1 544 160 #addKink
 Fs0 f12 0 0.768395079364037 0 0 #arcLabel
-Fs0 f13 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
-' #txt
 Fs0 f13 actionTable 'out=in;
 ' #txt
 Fs0 f13 actionCode 'import gawfs.TaskDef;
@@ -287,7 +264,6 @@ in.data.definedTasks.remove(task);
 
 ' #txt
 Fs0 f13 security system #txt
-Fs0 f13 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -306,9 +282,7 @@ Fs0 f15 328 256 544 77 #arcP
 Fs0 f15 1 544 256 #addKink
 Fs0 f15 0 0.9835526315789473 0 0 #arcLabel
 Fs0 f16 guid 157930AFEEC5B0A0 #txt
-Fs0 f16 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f16 method initAssginement(gawfs.TaskDef) #txt
-Fs0 f16 disableUIEvents false #txt
 Fs0 f16 inParameterDecl '<gawfs.TaskDef taskDefinition> param;' #txt
 Fs0 f16 inParameterMapAction 'out.isSelectAbleToStartResponsible=false;
 out.taskDefinition=param.taskDefinition;
@@ -331,14 +305,11 @@ Fs0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Fs0 f16 83 339 26 26 -70 15 #rect
-Fs0 f16 @|RichDialogMethodStartIcon #fIcon
-Fs0 f20 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
+Fs0 f16 @|UdMethodIcon #fIcon
 Fs0 f20 659 339 26 26 0 12 #rect
-Fs0 f20 @|RichDialogProcessEndIcon #fIcon
+Fs0 f20 @|UdProcessEndIcon #fIcon
 Fs0 f19 guid 1579333111525F97 #txt
-Fs0 f19 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f19 method updateResponsibles() #txt
-Fs0 f19 disableUIEvents false #txt
 Fs0 f19 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -352,9 +323,7 @@ Fs0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Fs0 f19 83 435 26 26 -62 15 #rect
-Fs0 f19 @|RichDialogMethodStartIcon #fIcon
-Fs0 f23 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
-' #txt
+Fs0 f19 @|UdMethodIcon #fIcon
 Fs0 f23 actionTable 'out=in;
 ' #txt
 Fs0 f23 actionCode 'import org.apache.commons.lang3.StringUtils;
@@ -383,7 +352,6 @@ else{
 }
 ' #txt
 Fs0 f23 security system #txt
-Fs0 f23 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -397,9 +365,7 @@ Fs0 f24 expr out #txt
 Fs0 f24 109 448 192 448 #arcP
 Fs0 f24 0 0.6592264889893998 0 0 #arcLabel
 Fs0 f25 guid 1589422E488B03CA #txt
-Fs0 f25 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f25 method cancel() #txt
-Fs0 f25 disableUIEvents false #txt
 Fs0 f25 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -415,18 +381,13 @@ Fs0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Fs0 f25 83 595 26 26 -18 15 #rect
-Fs0 f25 @|RichDialogMethodStartIcon #fIcon
-Fs0 f30 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
-Fs0 f30 guid 15AF77AA5D3C3910 #txt
+Fs0 f25 @|UdMethodIcon #fIcon
 Fs0 f30 499 675 26 26 0 12 #rect
-Fs0 f30 @|RichDialogEndIcon #fIcon
-Fs0 f28 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
-' #txt
+Fs0 f30 @|UdExitEndIcon #fIcon
 Fs0 f28 actionTable 'out=in;
 ' #txt
 Fs0 f28 actionCode 'in.data.discard = true;' #txt
 Fs0 f28 security system #txt
-Fs0 f28 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -440,9 +401,7 @@ Fs0 f31 expr out #txt
 Fs0 f31 376 688 499 688 #arcP
 Fs0 f31 0 0.7464020996890814 0 0 #arcLabel
 Fs0 f17 guid 1628E5D94C6FDB31 #txt
-Fs0 f17 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f17 method addAssignee() #txt
-Fs0 f17 disableUIEvents false #txt
 Fs0 f17 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -458,11 +417,9 @@ Fs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Fs0 f17 83 827 26 26 -40 15 #rect
-Fs0 f17 @|RichDialogMethodStartIcon #fIcon
-Fs0 f18 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
+Fs0 f17 @|UdMethodIcon #fIcon
 Fs0 f18 659 827 26 26 0 12 #rect
-Fs0 f18 @|RichDialogProcessEndIcon #fIcon
-Fs0 f36 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
+Fs0 f18 @|UdProcessEndIcon #fIcon
 Fs0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -474,15 +431,12 @@ Fs0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Fs0 f36 360 824 32 32 -27 -37 #rect
 Fs0 f36 @|AlternativeIcon #fIcon
-Fs0 f38 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
-' #txt
 Fs0 f38 actionTable 'out=in;
 ' #txt
 Fs0 f38 actionCode 'import ch.ivyteam.ivy.security.ISecurityMember;
 
 ISecurityMember selectedAssignee = in.#selectedUser is initialized ? in.selectedUser : in.selectedRole;
 in.selectedAssigneeList.add(selectedAssignee);' #txt
-Fs0 f38 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -521,8 +475,6 @@ Fs0 f40 376 856 672 853 #arcP
 Fs0 f40 1 376 896 #addKink
 Fs0 f40 2 672 896 #addKink
 Fs0 f40 1 0.17229729729729729 0 -10 #arcLabel
-Fs0 f34 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
-' #txt
 Fs0 f34 actionTable 'out=in;
 ' #txt
 Fs0 f34 actionCode 'import org.apache.commons.lang3.StringUtils;
@@ -538,7 +490,6 @@ if (!(#selectedAssignee is initialized) || in.selectedAssigneeList.contains(sele
 	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", ivy.cms.co("/Dialogs/agileBPM/define_WF/ErrorSelectInvalidAssignee")));
 }
 ' #txt
-Fs0 f34 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -553,9 +504,6 @@ Fs0 f35 109 840 192 840 #arcP
 Fs0 f37 expr out #txt
 Fs0 f37 304 840 360 840 #arcP
 Fs0 f41 guid 1628EC1A853E57B8 #txt
-Fs0 f41 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
-Fs0 f41 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
-' #txt
 Fs0 f41 actionTable 'out=in;
 ' #txt
 Fs0 f41 actionCode 'if (out.isAssignToUser) {
@@ -573,14 +521,11 @@ Fs0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Fs0 f41 83 731 26 26 -59 15 #rect
-Fs0 f41 @|RichDialogProcessStartIcon #fIcon
-Fs0 f42 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
+Fs0 f41 @|UdEventIcon #fIcon
 Fs0 f42 435 731 26 26 0 12 #rect
-Fs0 f42 @|RichDialogProcessEndIcon #fIcon
+Fs0 f42 @|UdProcessEndIcon #fIcon
 Fs0 f43 expr out #txt
 Fs0 f43 109 744 435 744 #arcP
-Fs0 f27 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
-' #txt
 Fs0 f27 actionTable 'out=in;
 ' #txt
 Fs0 f27 actionCode 'import java.util.ArrayList;
@@ -589,7 +534,6 @@ out.selectedAssigneeList = new ArrayList();
 out.selectedRole = null;
 out.selectedUser = null;
 out.isAssignToUser = true;' #txt
-Fs0 f27 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -606,8 +550,6 @@ Fs0 f22 expr out #txt
 Fs0 f22 496 448 672 365 #arcP
 Fs0 f22 1 672 448 #addKink
 Fs0 f22 0 0.6592264889893998 0 0 #arcLabel
-Fs0 f33 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
-' #txt
 Fs0 f33 actionTable 'out=in;
 ' #txt
 Fs0 f33 actionCode 'import javax.faces.context.FacesContext;
@@ -621,7 +563,6 @@ for (String assigneeName : in.taskDefinition.responsibles) {
 		}
 	}
 }' #txt
-Fs0 f33 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -635,8 +576,6 @@ Fs0 f44 expr out #txt
 Fs0 f44 109 352 192 352 #arcP
 Fs0 f26 expr out #txt
 Fs0 f26 304 352 659 352 #arcP
-Fs0 f45 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
-' #txt
 Fs0 f45 actionTable 'out=in;
 ' #txt
 Fs0 f45 actionCode 'import ch.ivy.gawfs.DragAndDropController;
@@ -645,7 +584,6 @@ import ch.ivy.gawfs.DynaFormController;
 in.defaultDragAndDropController = new DragAndDropController();
 in.defaultDragAndDropController.dynaFormController = new DynaFormController(in.defaultDragAndDropController);
 in.defaultDragAndDropController.dynaFormController.initializeDefaultUI();' #txt
-Fs0 f45 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -660,9 +598,7 @@ Fs0 f46 312 64 360 64 #arcP
 Fs0 f2 expr out #txt
 Fs0 f2 472 64 531 64 #arcP
 Fs0 f47 guid 16347C45756F58EB #txt
-Fs0 f47 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f47 method changeUISetting(Boolean) #txt
-Fs0 f47 disableUIEvents false #txt
 Fs0 f47 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <java.lang.Boolean isAgreed> param = methodEvent.getInputArguments();
 ' #txt
@@ -681,12 +617,9 @@ Fs0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Fs0 f47 819 339 26 26 -49 15 #rect
-Fs0 f47 @|RichDialogMethodStartIcon #fIcon
-Fs0 f48 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
+Fs0 f47 @|UdMethodIcon #fIcon
 Fs0 f48 1171 339 26 26 0 12 #rect
-Fs0 f48 @|RichDialogProcessEndIcon #fIcon
-Fs0 f49 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
-' #txt
+Fs0 f48 @|UdProcessEndIcon #fIcon
 Fs0 f49 actionTable 'out=in;
 ' #txt
 Fs0 f49 actionCode 'import ch.ivy.gawfs.enums.TaskType;
@@ -704,7 +637,6 @@ if (!in.data.isUseDefaultUI) {
 
 in.data.definedTasks.clear();
 in.data.definedTasks.add(task);' #txt
-Fs0 f49 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -716,8 +648,6 @@ Fs0 f49 992 330 128 44 -55 -8 #rect
 Fs0 f49 @|StepIcon #fIcon
 Fs0 f51 expr out #txt
 Fs0 f51 1120 352 1171 352 #arcP
-Fs0 f52 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
-' #txt
 Fs0 f52 actionTable 'out=in;
 ' #txt
 Fs0 f52 actionCode 'import ch.ivy.gawfs.enums.TaskType;
@@ -737,7 +667,6 @@ if (in.data.isUseDefaultUI) {
 	}
 	in.data.readyToExecute = true;
 }' #txt
-Fs0 f52 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -751,9 +680,6 @@ Fs0 f52 @|StepIcon #fIcon
 Fs0 f5 expr out #txt
 Fs0 f5 1280 592 1379 592 #arcP
 Fs0 f54 guid 163497DDEE05D6E5 #txt
-Fs0 f54 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
-Fs0 f54 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
-' #txt
 Fs0 f54 actionTable 'out=in;
 ' #txt
 Fs0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -766,18 +692,15 @@ Fs0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Fs0 f54 83 499 26 26 -33 15 #rect
-Fs0 f54 @|RichDialogProcessStartIcon #fIcon
+Fs0 f54 @|UdEventIcon #fIcon
 Fs0 f55 expr out #txt
 Fs0 f55 109 512 440 470 #arcP
 Fs0 f55 1 440 512 #addKink
 Fs0 f55 0 0.8593296567373708 0 0 #arcLabel
-Fs0 f57 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f57 1171 467 26 26 0 12 #rect
-Fs0 f57 @|RichDialogProcessEndIcon #fIcon
+Fs0 f57 @|UdProcessEndIcon #fIcon
 Fs0 f56 guid 1634EB11643305EE #txt
-Fs0 f56 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f56 method removeSelectedAssignee(ch.ivyteam.ivy.security.ISecurityMember) #txt
-Fs0 f56 disableUIEvents false #txt
 Fs0 f56 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <ch.ivyteam.ivy.security.ISecurityMember assignee> param = methodEvent.getInputArguments();
 ' #txt
@@ -794,10 +717,9 @@ Fs0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Fs0 f56 819 467 26 26 -120 15 #rect
-Fs0 f56 @|RichDialogMethodStartIcon #fIcon
+Fs0 f56 @|UdMethodIcon #fIcon
 Fs0 f58 expr out #txt
 Fs0 f58 845 480 1171 480 #arcP
-Fs0 f59 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f59 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -819,8 +741,6 @@ Fs0 f61 928 368 1184 365 #arcP
 Fs0 f61 1 928 400 #addKink
 Fs0 f61 2 1184 400 #addKink
 Fs0 f61 1 0.505859375 0 0 #arcLabel
-Fs0 f62 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
-' #txt
 Fs0 f62 actionTable 'out=in;
 ' #txt
 Fs0 f62 actionCode 'import org.apache.commons.lang.StringUtils;
@@ -835,7 +755,6 @@ else{
 	in.isValidated = !(in.data.processType == ProcessType.REPEAT && utils.isProcessNameDuplicated(in.data.processName));
 }
 ' #txt
-Fs0 f62 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -848,7 +767,6 @@ Fs0 f62 816 570 144 44 -52 -16 #rect
 Fs0 f62 @|StepIcon #fIcon
 Fs0 f63 expr out #txt
 Fs0 f63 773 592 816 592 #arcP
-Fs0 f64 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f64 1032 576 32 32 0 16 #rect
 Fs0 f64 @|AlternativeIcon #fIcon
 Fs0 f65 expr out #txt
@@ -856,8 +774,6 @@ Fs0 f65 960 592 1032 592 #arcP
 Fs0 f53 expr in #txt
 Fs0 f53 outCond in.isValidated #txt
 Fs0 f53 1064 592 1136 592 #arcP
-Fs0 f66 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
-' #txt
 Fs0 f66 actionTable 'out=in;
 ' #txt
 Fs0 f66 actionCode 'import javax.faces.context.FacesContext;
@@ -867,7 +783,6 @@ FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co(
 FacesContext context = FacesContext.getCurrentInstance();
 context.addMessage("", message);
 context.validationFailed();' #txt
-Fs0 f66 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -881,12 +796,10 @@ Fs0 f67 expr in #txt
 Fs0 f67 1048 608 1152 672 #arcP
 Fs0 f67 1 1048 672 #addKink
 Fs0 f67 1 0.1942657177753309 0 0 #arcLabel
-Fs0 f68 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f68 1379 659 26 26 0 12 #rect
-Fs0 f68 @|RichDialogProcessEndIcon #fIcon
+Fs0 f68 @|UdProcessEndIcon #fIcon
 Fs0 f69 expr out #txt
 Fs0 f69 1280 672 1379 672 #arcP
-Fs0 f70 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -898,8 +811,6 @@ Fs0 f70 176 592 32 32 -36 -42 #rect
 Fs0 f70 @|AlternativeIcon #fIcon
 Fs0 f71 expr out #txt
 Fs0 f71 109 608 176 608 #arcP
-Fs0 f72 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
-' #txt
 Fs0 f72 actionTable 'out=in;
 ' #txt
 Fs0 f72 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -909,7 +820,6 @@ TaskUtils.resetTask(ivy.task);
 PortalNavigator navigator = new PortalNavigator();
 navigator.navigateToPortalEndPage();' #txt
 Fs0 f72 security system #txt
-Fs0 f72 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -928,7 +838,6 @@ Fs0 f32 1 192 688 #addKink
 Fs0 f32 1 0.19396467700664802 0 0 #arcLabel
 Fs0 f74 guid 16C503BB03A8D205 #txt
 Fs0 f74 method initProcessStartResponsibles() #txt
-Fs0 f74 disableUIEvents false #txt
 Fs0 f74 inParameterDecl '<> param;' #txt
 Fs0 f74 inParameterMapAction 'out.isSelectAbleToStartResponsible=true;
 out.selectedResponsibleFieldId="form:able-to-start-content";
@@ -942,9 +851,9 @@ Fs0 f74 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Fs0 f74 83 947 26 26 -85 19 #rect
-Fs0 f74 @|RichDialogMethodStartIcon #fIcon
+Fs0 f74 @|UdMethodIcon #fIcon
 Fs0 f75 435 947 26 26 0 12 #rect
-Fs0 f75 @|RichDialogProcessEndIcon #fIcon
+Fs0 f75 @|UdProcessEndIcon #fIcon
 Fs0 f76 actionTable 'out=in;
 ' #txt
 Fs0 f76 actionCode 'import javax.faces.context.FacesContext;
@@ -981,7 +890,7 @@ Fs0 f79 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Fs0 f79 83 1043 26 26 -61 15 #rect
-Fs0 f79 @|RichDialogProcessStartIcon #fIcon
+Fs0 f79 @|UdEventIcon #fIcon
 Fs0 f80 actionTable 'out=in;
 ' #txt
 Fs0 f80 actionCode 'import ch.ivy.gawfs.enums.ProcessType;
@@ -1005,7 +914,7 @@ Fs0 f80 184 1034 144 44 -52 -16 #rect
 Fs0 f80 @|StepIcon #fIcon
 Fs0 f81 109 1056 184 1056 #arcP
 Fs0 f82 435 1043 26 26 0 12 #rect
-Fs0 f82 @|RichDialogProcessEndIcon #fIcon
+Fs0 f82 @|UdProcessEndIcon #fIcon
 Fs0 f83 328 1056 435 1056 #arcP
 >Proto Fs0 .type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 >Proto Fs0 .processKind HTML_DIALOG #txt

@@ -1,11 +1,9 @@
 [Ivy]
-[>Created: Fri Sep 16 21:45:05 ICT 2016]
-1540379C4B7261E4 3.18 #module
+1540379C4B7261E4 3.28 #module
 >Proto >Proto Collection #zClass
 Ot0 OpenPortalCases Big #zClass
 Ot0 B #cInfo
 Ot0 #process
-Ot0 @TextInP .resExport .resExport #zField
 Ot0 @TextInP .type .type #zField
 Ot0 @TextInP .processKind .processKind #zField
 Ot0 @AnnotationInP-0n ai ai #zField
@@ -15,7 +13,7 @@ Ot0 @TextInP .xml .xml #zField
 Ot0 @TextInP .responsibility .responsibility #zField
 Ot0 @StartSub f0 '' #zField
 Ot0 @EndSub f1 '' #zField
-Ot0 @RichDialog f3 '' #zField
+Ot0 @UserDialog f3 '' #zField
 Ot0 @PushWFArc f4 '' #zField
 Ot0 @PushWFArc f2 '' #zField
 >Proto Ot0 Ot0 OpenPortalCases #zField
@@ -24,10 +22,7 @@ Ot0 f0 inParamTable 'out.view=param.view;
 ' #txt
 Ot0 f0 outParamDecl '<> result;
 ' #txt
-Ot0 f0 actionDecl 'ch.ivy.addon.portal.generic.OpenPortalCasesData out;
-' #txt
 Ot0 f0 callSignature useView(ch.ivy.addon.portal.generic.view.CaseView) #txt
-Ot0 f0 type ch.ivy.addon.portal.generic.OpenPortalCasesData #txt
 Ot0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -37,14 +32,10 @@ Ot0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ot0 f0 179 83 26 26 14 0 #rect
 Ot0 f0 @|StartSubIcon #fIcon
-Ot0 f1 type ch.ivy.addon.portal.generic.OpenPortalCasesData #txt
 Ot0 f1 179 307 26 26 14 0 #rect
 Ot0 f1 @|EndSubIcon #fIcon
-Ot0 f3 targetWindow NEW:card: #txt
-Ot0 f3 targetDisplay TOP #txt
-Ot0 f3 richDialogId ch.ivy.addon.portal.generic.PortalCases #txt
+Ot0 f3 dialogId ch.ivy.addon.portal.generic.PortalCases #txt
 Ot0 f3 startMethod useViewWithStateMenu(ch.ivy.addon.portal.generic.view.CaseView,String) #txt
-Ot0 f3 type ch.ivy.addon.portal.generic.OpenPortalCasesData #txt
 Ot0 f3 requestActionDecl '<ch.ivy.addon.portal.generic.view.CaseView caseView, String menuState> param;' #txt
 Ot0 f3 requestMappingAction 'param.caseView=in.view;
 param.menuState=ch.ivy.addon.portalkit.util.MenuUtils.getMenuState();
@@ -53,12 +44,8 @@ Ot0 f3 responseActionDecl 'ch.ivy.addon.portal.generic.OpenPortalCasesData out;
 ' #txt
 Ot0 f3 responseMappingAction 'out=in;
 ' #txt
-Ot0 f3 windowConfiguration '* ' #txt
-Ot0 f3 isAsynch false #txt
-Ot0 f3 isInnerRd false #txt
-Ot0 f3 userContext '* ' #txt
 Ot0 f3 174 196 36 24 20 -2 #rect
-Ot0 f3 @|RichDialogIcon #fIcon
+Ot0 f3 @|UserDialogIcon #fIcon
 Ot0 f4 expr out #txt
 Ot0 f4 192 109 192 196 #arcP
 Ot0 f2 expr out #txt

@@ -1,23 +1,20 @@
 [Ivy]
-14BE3DBF5F8C376B 3.26 #module
+14BE3DBF5F8C376B 3.28 #module
 >Proto >Proto Collection #zClass
 Ls0 LoginProcess Big #zClass
 Ls0 RD #cInfo
 Ls0 #process
-Ls0 @TextInP .ui2RdDataAction .ui2RdDataAction #zField
-Ls0 @TextInP .rdData2UIAction .rdData2UIAction #zField
-Ls0 @TextInP .resExport .resExport #zField
 Ls0 @TextInP .type .type #zField
 Ls0 @TextInP .processKind .processKind #zField
 Ls0 @AnnotationInP-0n ai ai #zField
 Ls0 @TextInP .xml .xml #zField
 Ls0 @TextInP .responsibility .responsibility #zField
-Ls0 @RichDialogInitStart f0 '' #zField
-Ls0 @RichDialogProcessEnd f1 '' #zField
+Ls0 @UdInit f0 '' #zField
+Ls0 @UdProcessEnd f1 '' #zField
 Ls0 @PushWFArc f2 '' #zField
-Ls0 @RichDialogProcessStart f3 '' #zField
+Ls0 @UdEvent f3 '' #zField
 Ls0 @GridStep f5 '' #zField
-Ls0 @RichDialogEnd f4 '' #zField
+Ls0 @UdExitEnd f4 '' #zField
 Ls0 @PushWFArc f6 '' #zField
 Ls0 @Alternative f8 '' #zField
 Ls0 @PushWFArc f9 '' #zField
@@ -27,9 +24,7 @@ Ls0 @PushWFArc f7 '' #zField
 Ls0 @PushWFArc f12 '' #zField
 >Proto Ls0 Ls0 LoginProcess #zField
 Ls0 f0 guid 14739D9F00572FE2 #txt
-Ls0 f0 type ch.ivy.addon.portalkit.singleapp.general.Login.LoginData #txt
 Ls0 f0 method start() #txt
-Ls0 f0 disableUIEvents true #txt
 Ls0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -47,16 +42,12 @@ Ls0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f0 86 54 20 20 13 0 #rect
-Ls0 f0 @|RichDialogInitStartIcon #fIcon
-Ls0 f1 type ch.ivy.addon.portalkit.singleapp.general.Login.LoginData #txt
+Ls0 f0 @|UdInitIcon #fIcon
 Ls0 f1 86 182 20 20 13 0 #rect
-Ls0 f1 @|RichDialogProcessEndIcon #fIcon
+Ls0 f1 @|UdProcessEndIcon #fIcon
 Ls0 f2 expr out #txt
 Ls0 f2 96 74 96 182 #arcP
 Ls0 f3 guid 14739DB1F4253947 #txt
-Ls0 f3 type ch.ivy.addon.portalkit.singleapp.general.Login.LoginData #txt
-Ls0 f3 actionDecl 'ch.ivy.addon.portalkit.singleapp.general.Login.LoginData out;
-' #txt
 Ls0 f3 actionTable 'out=in;
 ' #txt
 Ls0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -69,9 +60,7 @@ Ls0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f3 208 54 20 20 13 0 #rect
-Ls0 f3 @|RichDialogProcessStartIcon #fIcon
-Ls0 f5 actionDecl 'ch.ivy.addon.portalkit.singleapp.general.Login.LoginData out;
-' #txt
+Ls0 f3 @|UdEventIcon #fIcon
 Ls0 f5 actionTable 'out=in;
 ' #txt
 Ls0 f5 actionCode 'import javax.faces.context.FacesContext;
@@ -105,7 +94,6 @@ if (!in.loginOk)
 	}
 	
 }' #txt
-Ls0 f5 type ch.ivy.addon.portalkit.singleapp.general.Login.LoginData #txt
 Ls0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -119,13 +107,10 @@ get user settings</name>
 ' #txt
 Ls0 f5 200 116 36 24 20 -2 #rect
 Ls0 f5 @|StepIcon #fIcon
-Ls0 f4 type ch.ivy.addon.portalkit.singleapp.general.Login.LoginData #txt
-Ls0 f4 guid 14739DB3653B702D #txt
 Ls0 f4 206 406 20 20 13 0 #rect
-Ls0 f4 @|RichDialogEndIcon #fIcon
+Ls0 f4 @|UdExitEndIcon #fIcon
 Ls0 f6 expr out #txt
 Ls0 f6 218 74 218 116 #arcP
-Ls0 f8 type ch.ivy.addon.portalkit.singleapp.general.Login.LoginData #txt
 Ls0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -137,9 +122,7 @@ Ls0 f8 200 208 32 32 0 16 #rect
 Ls0 f8 @|AlternativeIcon #fIcon
 Ls0 f9 expr out #txt
 Ls0 f9 218 140 216 208 #arcP
-Ls0 f10 type ch.ivy.addon.portalkit.singleapp.general.Login.LoginData #txt
 Ls0 f10 processCall 'Functional Processes/Login:call()' #txt
-Ls0 f10 doCall true #txt
 Ls0 f10 requestActionDecl '<> param;
 ' #txt
 Ls0 f10 responseActionDecl 'ch.ivy.addon.portalkit.singleapp.general.Login.LoginData out;

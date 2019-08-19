@@ -1,5 +1,5 @@
 [Ivy]
-150F0B4F8F3CB2CB 3.26 #module
+150F0B4F8F3CB2CB 3.28 #module
 >Proto >Proto Collection #zClass
 As0 AdminUIProcess Big #zClass
 As0 RD #cInfo
@@ -7,70 +7,67 @@ As0 #process
 Ct0 Component Big #zClass
 Ct0 B #cInfo
 As0 Ct0 S10 'Sub 1' #zField
-As0 @TextInP .ui2RdDataAction .ui2RdDataAction #zField
-As0 @TextInP .rdData2UIAction .rdData2UIAction #zField
-As0 @TextInP .resExport .resExport #zField
 As0 @TextInP .type .type #zField
 As0 @TextInP .processKind .processKind #zField
 As0 @AnnotationInP-0n ai ai #zField
 As0 @TextInP .xml .xml #zField
 As0 @TextInP .responsibility .responsibility #zField
-As0 @RichDialogInitStart f0 '' #zField
-As0 @RichDialogProcessEnd f1 '' #zField
-As0 @RichDialogProcessStart f32 '' #zField
-As0 @RichDialogProcessEnd f33 '' #zField
+As0 @UdInit f0 '' #zField
+As0 @UdProcessEnd f1 '' #zField
+As0 @UdEvent f32 '' #zField
+As0 @UdProcessEnd f33 '' #zField
 As0 @GridStep f35 '' #zField
 As0 @PushWFArc f36 '' #zField
 As0 @PushWFArc f34 '' #zField
-As0 @RichDialogProcessStart f37 '' #zField
-As0 @RichDialogProcessEnd f38 '' #zField
-As0 @RichDialogMethodStart f44 '' #zField
-As0 @RichDialogProcessEnd f45 '' #zField
+As0 @UdEvent f37 '' #zField
+As0 @UdProcessEnd f38 '' #zField
+As0 @UdMethod f44 '' #zField
+As0 @UdProcessEnd f45 '' #zField
 As0 @GridStep f52 '' #zField
 As0 @GridStep f54 '' #zField
-As0 @RichDialogMethodStart f47 '' #zField
-As0 @RichDialogProcessEnd f58 '' #zField
+As0 @UdMethod f47 '' #zField
+As0 @UdProcessEnd f58 '' #zField
 As0 @PushWFArc f59 '' #zField
-As0 @RichDialogMethodStart f61 '' #zField
-As0 @RichDialogProcessEnd f62 '' #zField
-As0 @RichDialogMethodStart f69 '' #zField
+As0 @UdMethod f61 '' #zField
+As0 @UdProcessEnd f62 '' #zField
+As0 @UdMethod f69 '' #zField
 As0 @GridStep f72 '' #zField
 As0 @PushWFArc f73 '' #zField
-As0 @RichDialogProcessStart f80 '' #zField
+As0 @UdEvent f80 '' #zField
 As0 @GridStep f93 '' #zField
 As0 @GridStep f113 '' #zField
 As0 @Alternative f115 '' #zField
 As0 @PushWFArc f116 '' #zField
 As0 @GridStep f117 '' #zField
 As0 @PushWFArc f118 '' #zField
-As0 @RichDialogProcessEnd f119 '' #zField
+As0 @UdProcessEnd f119 '' #zField
 As0 @PushWFArc f120 '' #zField
-As0 @RichDialogMethodStart f20 '' #zField
-As0 @RichDialogProcessEnd f121 '' #zField
-As0 @RichDialogProcessEnd f127 '' #zField
-As0 @RichDialogProcessStart f138 '' #zField
+As0 @UdMethod f20 '' #zField
+As0 @UdProcessEnd f121 '' #zField
+As0 @UdProcessEnd f127 '' #zField
+As0 @UdEvent f138 '' #zField
 As0 @GridStep f156 '' #zField
-As0 @RichDialogProcessEnd f157 '' #zField
-As0 @RichDialogMethodStart f158 '' #zField
+As0 @UdProcessEnd f157 '' #zField
+As0 @UdMethod f158 '' #zField
 As0 @PushWFArc f160 '' #zField
-As0 @RichDialogProcessStart f161 '' #zField
-As0 @RichDialogProcessEnd f162 '' #zField
+As0 @UdEvent f161 '' #zField
+As0 @UdProcessEnd f162 '' #zField
 As0 @PushWFArc f163 '' #zField
-As0 @RichDialogProcessStart f165 '' #zField
-As0 @RichDialogProcessStart f11 '' #zField
-As0 @RichDialogProcessEnd f17 '' #zField
+As0 @UdEvent f165 '' #zField
+As0 @UdEvent f11 '' #zField
+As0 @UdProcessEnd f17 '' #zField
 As0 @GridStep f88 '' #zField
 As0 @Alternative f170 '' #zField
-As0 @RichDialogMethodStart f176 '' #zField
-As0 @RichDialogProcessEnd f177 '' #zField
+As0 @UdMethod f176 '' #zField
+As0 @UdProcessEnd f177 '' #zField
 As0 @GridStep f179 '' #zField
 As0 @Alternative f178 '' #zField
-As0 @RichDialogProcessStart f185 '' #zField
+As0 @UdEvent f185 '' #zField
 As0 @GridStep f202 '' #zField
 As0 @GridStep f190 '' #zField
-As0 @RichDialogProcessEnd f194 '' #zField
-As0 @RichDialogProcessEnd f188 '' #zField
-As0 @RichDialogProcessStart f192 '' #zField
+As0 @UdProcessEnd f194 '' #zField
+As0 @UdProcessEnd f188 '' #zField
+As0 @UdEvent f192 '' #zField
 As0 @GridStep f193 '' #zField
 As0 @PushWFArc f195 '' #zField
 As0 @PushWFArc f197 '' #zField
@@ -84,8 +81,8 @@ As0 @PushWFArc f171 '' #zField
 As0 @GridStep f217 '' #zField
 As0 @CallSub f222 '' #zField
 As0 @PushWFArc f223 '' #zField
-As0 @RichDialogProcessStart f141 '' #zField
-As0 @RichDialogProcessEnd f142 '' #zField
+As0 @UdEvent f141 '' #zField
+As0 @UdProcessEnd f142 '' #zField
 As0 @PushWFArc f189 '' #zField
 As0 @PushWFArc f159 '' #zField
 As0 @Alternative f196 '' #zField
@@ -99,8 +96,8 @@ As0 @Alternative f209 '' #zField
 As0 @PushWFArc f213 '' #zField
 As0 @PushWFArc f214 '' #zField
 As0 @GridStep f212 '' #zField
-As0 @RichDialogProcessStart f200 '' #zField
-As0 @RichDialogProcessEnd f216 '' #zField
+As0 @UdEvent f200 '' #zField
+As0 @UdProcessEnd f216 '' #zField
 As0 @GridStep f92 '' #zField
 As0 @PushWFArc f53 '' #zField
 As0 @GridStep f40 '' #zField
@@ -115,40 +112,40 @@ As0 @GridStep f169 '' #zField
 As0 @PushWFArc f122 '' #zField
 As0 @PushWFArc f124 '' #zField
 As0 @PushWFArc f133 '' #zField
-As0 @RichDialogProcessEnd f144 '' #zField
-As0 @RichDialogMethodStart f143 '' #zField
+As0 @UdProcessEnd f144 '' #zField
+As0 @UdMethod f143 '' #zField
 As0 @PushWFArc f145 '' #zField
-As0 @RichDialogProcessEnd f48 '' #zField
-As0 @RichDialogMethodStart f2 '' #zField
-As0 @RichDialogProcessEnd f99 '' #zField
+As0 @UdProcessEnd f48 '' #zField
+As0 @UdMethod f2 '' #zField
+As0 @UdProcessEnd f99 '' #zField
 As0 @PushWFArc f153 '' #zField
 As0 @PushWFArc f263 '' #zField
 As0 @PushWFArc f41 '' #zField
 As0 @PushWFArc f265 '' #zField
-As0 @RichDialogProcessEnd f286 '' #zField
-As0 @RichDialogMethodStart f74 '' #zField
-As0 @RichDialogMethodStart f285 '' #zField
-As0 @RichDialogProcessEnd f75 '' #zField
+As0 @UdProcessEnd f286 '' #zField
+As0 @UdMethod f74 '' #zField
+As0 @UdMethod f285 '' #zField
+As0 @UdProcessEnd f75 '' #zField
 As0 @PushWFArc f76 '' #zField
 As0 @PushWFArc f287 '' #zField
 As0 @GridStep f63 '' #zField
-As0 @RichDialogProcessEnd f277 '' #zField
+As0 @UdProcessEnd f277 '' #zField
 As0 @GridStep f276 '' #zField
-As0 @RichDialogProcessStart f67 '' #zField
-As0 @RichDialogProcessStart f278 '' #zField
+As0 @UdEvent f67 '' #zField
+As0 @UdEvent f278 '' #zField
 As0 @PushWFArc f279 '' #zField
 As0 @PushWFArc f281 '' #zField
 As0 @PushWFArc f29 '' #zField
 As0 @PushWFArc f8 '' #zField
-As0 @RichDialogProcessStart f9 '' #zField
+As0 @UdEvent f9 '' #zField
 As0 @GridStep f10 '' #zField
 As0 @PushWFArc f66 '' #zField
-As0 @RichDialogProcessEnd f91 '' #zField
+As0 @UdProcessEnd f91 '' #zField
 As0 @PushWFArc f97 '' #zField
 As0 @GridStep f55 '' #zField
-As0 @RichDialogProcessStart f18 '' #zField
+As0 @UdEvent f18 '' #zField
 As0 @PushWFArc f100 '' #zField
-As0 @RichDialogProcessEnd f98 '' #zField
+As0 @UdProcessEnd f98 '' #zField
 As0 @PushWFArc f102 '' #zField
 As0 @PushWFArc f5 '' #zField
 As0 @GridStep f23 '' #zField
@@ -184,21 +181,20 @@ As0 @CallSub f21 '' #zField
 As0 @PushWFArc f60 '' #zField
 As0 @PushWFArc f70 '' #zField
 As0 @PushWFArc f71 '' #zField
-As0 @RichDialogMethodStart f64 '' #zField
-As0 @RichDialogMethodStart f65 '' #zField
-As0 @RichDialogProcessEnd f68 '' #zField
-As0 @RichDialogProcessEnd f77 '' #zField
+As0 @UdMethod f64 '' #zField
+As0 @UdMethod f65 '' #zField
+As0 @UdProcessEnd f68 '' #zField
+As0 @UdProcessEnd f77 '' #zField
 As0 @GridStep f81 '' #zField
 As0 @PushWFArc f82 '' #zField
 As0 @PushWFArc f78 '' #zField
 As0 @GridStep f85 '' #zField
 As0 @PushWFArc f86 '' #zField
 As0 @PushWFArc f79 '' #zField
-As0 @RichDialogMethodStart f87 '' #zField
-As0 @RichDialogProcessEnd f89 '' #zField
+As0 @UdMethod f87 '' #zField
+As0 @UdProcessEnd f89 '' #zField
 As0 @PushWFArc f90 '' #zField
 >Proto As0 As0 AdminUIProcess #zField
-Ct0 @TextInP .resExport .resExport #zField
 Ct0 @TextInP .type .type #zField
 Ct0 @TextInP .processKind .processKind #zField
 Ct0 @AnnotationInP-0n ai ai #zField
@@ -218,7 +214,6 @@ Ct0 @PushWFArc f3 '' #zField
 Ct0 @PushTrueWFInG-01 g4 '' #zField
 Ct0 @PushWFArc f4 '' #zField
 >Proto Ct0 Ct0 Component #zField
-As0 S10 .resExport export #txt
 As0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -229,17 +224,13 @@ As0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 S10 448 1658 176 44 -82 -8 #rect
 As0 S10 @|BIcon #fIcon
 As0 f0 guid 14B6C3C6330883A7 #txt
-As0 f0 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f0 method start() #txt
-As0 f0 disableUIEvents true #txt
-As0 f0 inParameterDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
+As0 f0 inParameterDecl '<> param;' #txt
 As0 f0 inParameterMapAction 'out.resetAllSettings=false;
 ' #txt
 As0 f0 inActionCode '
 ' #txt
-As0 f0 outParameterDecl '<> result;
-' #txt
+As0 f0 outParameterDecl '<> result;' #txt
 As0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -250,14 +241,10 @@ As0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f0 190 38 20 20 13 0 #rect
-As0 f0 @|RichDialogInitStartIcon #fIcon
-As0 f1 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f0 @|UdInitIcon #fIcon
 As0 f1 438 38 20 20 13 0 #rect
-As0 f1 @|RichDialogProcessEndIcon #fIcon
+As0 f1 @|UdProcessEndIcon #fIcon
 As0 f32 guid 14B719AF780C56D8 #txt
-As0 f32 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f32 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f32 actionTable 'out=in;
 ' #txt
 As0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -270,12 +257,9 @@ As0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f32 438 158 20 20 13 0 #rect
-As0 f32 @|RichDialogProcessStartIcon #fIcon
-As0 f33 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f32 @|UdEventIcon #fIcon
 As0 f33 438 302 20 20 13 0 #rect
-As0 f33 @|RichDialogProcessEndIcon #fIcon
-As0 f35 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
+As0 f33 @|UdProcessEndIcon #fIcon
 As0 f35 actionTable 'out=in;
 ' #txt
 As0 f35 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.Application;
@@ -294,7 +278,6 @@ in.dialogTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addNew
 in.type = ApplicationType.IVY_APPLICATION;
 in.displayNameInCurrentLanguage = null;
 in.supportedLanguages = new List();' #txt
-As0 f35 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -311,9 +294,6 @@ As0 f36 448 178 448 228 #arcP
 As0 f34 expr out #txt
 As0 f34 448 252 448 302 #arcP
 As0 f37 guid 14B71AFE89C4BE23 #txt
-As0 f37 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f37 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f37 actionTable 'out=in;
 ' #txt
 As0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -326,14 +306,11 @@ As0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f37 534 446 20 20 13 0 #rect
-As0 f37 @|RichDialogProcessStartIcon #fIcon
-As0 f38 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f37 @|UdEventIcon #fIcon
 As0 f38 534 1286 20 20 13 0 #rect
-As0 f38 @|RichDialogProcessEndIcon #fIcon
+As0 f38 @|UdProcessEndIcon #fIcon
 As0 f44 guid 14B71B8355747299 #txt
-As0 f44 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f44 method editApplication(ch.ivy.addon.portalkit.persistence.domain.Application) #txt
-As0 f44 disableUIEvents false #txt
 As0 f44 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <ch.ivy.addon.portalkit.persistence.domain.Application application> param = methodEvent.getInputArguments();
 ' #txt
@@ -351,16 +328,12 @@ As0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f44 886 142 20 20 13 0 #rect
-As0 f44 @|RichDialogMethodStartIcon #fIcon
-As0 f45 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f44 @|UdMethodIcon #fIcon
 As0 f45 886 478 20 20 13 0 #rect
-As0 f45 @|RichDialogProcessEndIcon #fIcon
-As0 f52 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
+As0 f45 @|UdProcessEndIcon #fIcon
 As0 f52 actionTable 'out=in;
 ' #txt
 As0 f52 actionCode in.applicationList.remove(in.selectedApp); #txt
-As0 f52 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -372,8 +345,6 @@ As0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f52 182 260 36 24 20 -2 #rect
 As0 f52 @|StepIcon #fIcon
-As0 f54 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f54 actionTable 'out=in;
 ' #txt
 As0 f54 actionCode 'import ch.ivy.addon.portalkit.enums.ApplicationType;
@@ -394,7 +365,6 @@ Locale currentLocale = new Locales().getCurrentLocale();
 DisplayNameAdaptor displayNameAdaptor = new DisplayNameAdaptor(in.selectedApp.displayName, currentLocale);
 in.displayNameInCurrentLanguage = displayNameAdaptor.getDisplayNameAsString();
 in.supportedLanguages = new List();' #txt
-As0 f54 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -407,9 +377,7 @@ As0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f54 878 212 36 24 20 -2 #rect
 As0 f54 @|StepIcon #fIcon
 As0 f47 guid 14B7254A2BFCA52B #txt
-As0 f47 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f47 method submitDeleteApp(ch.ivy.addon.portalkit.persistence.domain.Application) #txt
-As0 f47 disableUIEvents false #txt
 As0 f47 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <ch.ivy.addon.portalkit.persistence.domain.Application application> param = methodEvent.getInputArguments();
 ' #txt
@@ -428,17 +396,14 @@ As0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f47 2006 150 20 20 13 0 #rect
-As0 f47 @|RichDialogMethodStartIcon #fIcon
-As0 f58 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f47 @|UdMethodIcon #fIcon
 As0 f58 2006 246 20 20 13 0 #rect
-As0 f58 @|RichDialogProcessEndIcon #fIcon
+As0 f58 @|UdProcessEndIcon #fIcon
 As0 f59 expr out #txt
 As0 f59 2016 170 2016 246 #arcP
 As0 f59 0 0.5000000000000001 0 0 #arcLabel
 As0 f61 guid 14B76C9713AD988C #txt
-As0 f61 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f61 method onTabChange(org.primefaces.event.TabChangeEvent) #txt
-As0 f61 disableUIEvents false #txt
 As0 f61 inParameterDecl '<org.primefaces.event.TabChangeEvent tabEvent> param;' #txt
 As0 f61 inActionCode 'import ch.ivy.addon.portalkit.service.AnnouncementService;
 import org.primefaces.context.RequestContext;
@@ -464,14 +429,11 @@ As0 f61 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f61 1166 390 20 20 13 0 #rect
-As0 f61 @|RichDialogMethodStartIcon #fIcon
-As0 f62 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f61 @|UdMethodIcon #fIcon
 As0 f62 1166 510 20 20 13 0 #rect
-As0 f62 @|RichDialogProcessEndIcon #fIcon
+As0 f62 @|UdProcessEndIcon #fIcon
 As0 f69 guid 14B77FA478FB87A1 #txt
-As0 f69 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f69 method editSetting(ch.ivy.addon.portalkit.persistence.domain.GlobalSetting) #txt
-As0 f69 disableUIEvents false #txt
 As0 f69 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <ch.ivy.addon.portalkit.persistence.domain.GlobalSetting setting> param = methodEvent.getInputArguments();
 ' #txt
@@ -489,9 +451,7 @@ As0 f69 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f69 766 1478 20 20 13 0 #rect
-As0 f69 @|RichDialogMethodStartIcon #fIcon
-As0 f72 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
+As0 f69 @|UdMethodIcon #fIcon
 As0 f72 actionTable 'out=in;
 ' #txt
 As0 f72 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;
@@ -511,7 +471,6 @@ if (GlobalVariable.getBooleanType().contains(globalVariable)) {
 	in.settingInputType = 1; //text
 }' #txt
 As0 f72 security system #txt
-As0 f72 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -526,9 +485,6 @@ As0 f72 @|StepIcon #fIcon
 As0 f73 expr out #txt
 As0 f73 776 1498 776 1556 #arcP
 As0 f80 guid 14B784950D872997 #txt
-As0 f80 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f80 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f80 actionTable 'out=in;
 ' #txt
 As0 f80 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -541,15 +497,12 @@ As0 f80 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f80 1062 1478 20 20 13 0 #rect
-As0 f80 @|RichDialogProcessStartIcon #fIcon
-As0 f93 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
+As0 f80 @|UdEventIcon #fIcon
 As0 f93 actionTable 'out=in;
 ' #txt
 As0 f93 actionCode 'if (in.isAddMode) {
 	in.applicationList.add(in.selectedApp);	
 }' #txt
-As0 f93 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f93 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -561,8 +514,6 @@ As0 f93 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f93 526 1140 36 24 21 -10 #rect
 As0 f93 @|StepIcon #fIcon
-As0 f113 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f113 actionTable 'out=in;
 ' #txt
 As0 f113 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.Application;
@@ -583,7 +534,6 @@ for (Application app : in.applicationList) {
 		}
 	}
 }' #txt
-As0 f113 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f113 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -595,7 +545,6 @@ As0 f113 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f113 526 500 36 24 20 -2 #rect
 As0 f113 @|StepIcon #fIcon
-As0 f115 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f115 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -609,8 +558,6 @@ As0 f115 530 554 28 28 14 0 #rect
 As0 f115 @|AlternativeIcon #fIcon
 As0 f116 expr out #txt
 As0 f116 544 524 544 554 #arcP
-As0 f117 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f117 actionTable 'out=in;
 ' #txt
 As0 f117 actionCode 'import ch.ivy.addon.portalkit.enums.ApplicationType;
@@ -629,7 +576,6 @@ if(in.type == ApplicationType.IVY_APPLICATION) {
 
 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/duplicatePortalLinkMsg"), null));
 FacesContext.getCurrentInstance().validationFailed();' #txt
-As0 f117 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f117 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -654,15 +600,12 @@ As0 f118 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f118 558 568 678 568 #arcP
 As0 f118 0 0.67536365735396 4 -6 #arcLabel
-As0 f119 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f119 686 606 20 20 13 0 #rect
-As0 f119 @|RichDialogProcessEndIcon #fIcon
+As0 f119 @|UdProcessEndIcon #fIcon
 As0 f120 expr out #txt
 As0 f120 696 580 696 606 #arcP
 As0 f20 guid 14CBC65EA2BAB5DF #txt
-As0 f20 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f20 method getApplicationUserList(ch.ivy.addon.portalkit.persistence.domain.Application) #txt
-As0 f20 disableUIEvents false #txt
 As0 f20 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <ch.ivy.addon.portalkit.persistence.domain.Application app> param = methodEvent.getInputArguments();
 ' #txt
@@ -680,17 +623,12 @@ As0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f20 1166 558 20 20 13 0 #rect
-As0 f20 @|RichDialogMethodStartIcon #fIcon
-As0 f121 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f20 @|UdMethodIcon #fIcon
 As0 f121 1166 958 20 20 13 0 #rect
-As0 f121 @|RichDialogProcessEndIcon #fIcon
-As0 f127 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f121 @|UdProcessEndIcon #fIcon
 As0 f127 1510 1062 20 20 13 0 #rect
-As0 f127 @|RichDialogProcessEndIcon #fIcon
+As0 f127 @|UdProcessEndIcon #fIcon
 As0 f138 guid 14CC094CD70A6996 #txt
-As0 f138 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f138 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f138 actionTable 'out=in;
 ' #txt
 As0 f138 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -703,14 +641,11 @@ As0 f138 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f138 1510 846 20 20 13 0 #rect
-As0 f138 @|RichDialogProcessStartIcon #fIcon
-As0 f156 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
+As0 f138 @|UdEventIcon #fIcon
 As0 f156 actionTable 'out=in;
 ' #txt
 As0 f156 actionCode 'in.selectedApp.name = in.selectedIvyApplication.name;' #txt
 As0 f156 security system #txt
-As0 f156 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f156 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -721,13 +656,10 @@ for selected app</name>
 ' #txt
 As0 f156 830 980 36 24 20 -2 #rect
 As0 f156 @|StepIcon #fIcon
-As0 f157 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f157 838 1142 20 20 13 0 #rect
-As0 f157 @|RichDialogProcessEndIcon #fIcon
+As0 f157 @|UdProcessEndIcon #fIcon
 As0 f158 guid 14CC66EBC28A586A #txt
-As0 f158 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f158 method selectApplication(ch.ivy.addon.portalkit.ivydata.bo.IvyApplication) #txt
-As0 f158 disableUIEvents false #txt
 As0 f158 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <ch.ivy.addon.portalkit.ivydata.bo.IvyApplication app> param = methodEvent.getInputArguments();
 ' #txt
@@ -743,13 +675,10 @@ As0 f158 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f158 838 903 20 18 13 0 #rect
-As0 f158 @|RichDialogMethodStartIcon #fIcon
+As0 f158 @|UdMethodIcon #fIcon
 As0 f160 expr out #txt
 As0 f160 848 921 848 980 #arcP
 As0 f161 guid 14CD511E6C573620 #txt
-As0 f161 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f161 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f161 actionTable 'out=in;
 ' #txt
 As0 f161 actionCode '
@@ -766,16 +695,12 @@ As0 f161 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f161 1086 150 20 20 13 0 #rect
-As0 f161 @|RichDialogProcessStartIcon #fIcon
-As0 f162 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f161 @|UdEventIcon #fIcon
 As0 f162 1086 246 20 20 13 0 #rect
-As0 f162 @|RichDialogProcessEndIcon #fIcon
+As0 f162 @|UdProcessEndIcon #fIcon
 As0 f163 expr out #txt
 As0 f163 1096 170 1096 246 #arcP
 As0 f165 guid 14CD62A3566672A1 #txt
-As0 f165 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f165 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f165 actionTable 'out=in;
 ' #txt
 As0 f165 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -788,11 +713,8 @@ As0 f165 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f165 190 126 20 20 13 0 #rect
-As0 f165 @|RichDialogProcessStartIcon #fIcon
+As0 f165 @|UdEventIcon #fIcon
 As0 f11 guid 14DE0D8C8D0542F8 #txt
-As0 f11 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f11 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f11 actionTable 'out=in;
 ' #txt
 As0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -805,19 +727,15 @@ As0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f11 190 550 20 20 13 0 #rect
-As0 f11 @|RichDialogProcessStartIcon #fIcon
-As0 f17 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f11 @|UdEventIcon #fIcon
 As0 f17 190 782 20 20 13 0 #rect
-As0 f17 @|RichDialogProcessEndIcon #fIcon
-As0 f88 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
+As0 f17 @|UdProcessEndIcon #fIcon
 As0 f88 actionTable 'out=in;
 ' #txt
 As0 f88 actionCode 'in.selectedApp.name = in.selectedApp.displayName;
 
 
 ' #txt
-As0 f88 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f88 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -829,7 +747,6 @@ As0 f88 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f88 374 884 36 24 -74 -6 #rect
 As0 f88 @|StepIcon #fIcon
-As0 f170 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f170 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -842,9 +759,7 @@ As0 f170 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f170 530 746 28 28 14 0 #rect
 As0 f170 @|AlternativeIcon #fIcon
 As0 f176 guid 14E951D887B4F17A #txt
-As0 f176 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f176 method onApplicationReorder(org.primefaces.event.ReorderEvent) #txt
-As0 f176 disableUIEvents false #txt
 As0 f176 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <org.primefaces.event.ReorderEvent reorderEvent> param = methodEvent.getInputArguments();
 ' #txt
@@ -860,12 +775,9 @@ As0 f176 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f176 1438 390 20 20 13 0 #rect
-As0 f176 @|RichDialogMethodStartIcon #fIcon
-As0 f177 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f176 @|UdMethodIcon #fIcon
 As0 f177 1438 662 20 20 13 0 #rect
-As0 f177 @|RichDialogProcessEndIcon #fIcon
-As0 f179 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
+As0 f177 @|UdProcessEndIcon #fIcon
 As0 f179 actionTable 'out=in;
 ' #txt
 As0 f179 actionCode 'int fromIndex = in.reorderEvent.getFromIndex();
@@ -877,7 +789,6 @@ in.applicationList.add(toIndex, in.selectedApp);
 for (int i = 0; i < in.applicationList.size(); i++) {
 	in.applicationList.get(i).setMenuOrdinal(i);
 }' #txt
-As0 f179 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f179 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -889,7 +800,6 @@ As0 f179 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f179 1430 444 36 24 20 -2 #rect
 As0 f179 @|StepIcon #fIcon
-As0 f178 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f178 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -903,9 +813,6 @@ is selected</name>
 As0 f178 2338 882 28 28 -92 -11 #rect
 As0 f178 @|AlternativeIcon #fIcon
 As0 f185 guid 14E9B7FC56E87E52 #txt
-As0 f185 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f185 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f185 actionTable 'out=in;
 ' #txt
 As0 f185 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -918,9 +825,7 @@ As0 f185 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f185 1326 1094 20 20 13 0 #rect
-As0 f185 @|RichDialogProcessStartIcon #fIcon
-As0 f202 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
+As0 f185 @|UdEventIcon #fIcon
 As0 f202 actionTable 'out=in;
 ' #txt
 As0 f202 actionCode 'import ch.ivy.addon.portalkit.dto.DisplayName;
@@ -937,7 +842,6 @@ if (!in.languages.isEmpty()){
 	in.displayNameInCurrentLanguage = displayNameConvertor.toString(new Locales().getCurrentLocale());
 }
 ' #txt
-As0 f202 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f202 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -949,8 +853,6 @@ As0 f202 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f202 1318 1149 36 22 20 -2 #rect
 As0 f202 @|StepIcon #fIcon
-As0 f190 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f190 actionTable 'out=in;
 ' #txt
 As0 f190 actionCode 'import ch.ivy.addon.portalkit.loader.ApplicationMultiLanguageNameLoader;
@@ -973,7 +875,6 @@ if(in.isAddMode){
 																									 .load();
 }
 ' #txt
-As0 f190 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f190 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -985,16 +886,11 @@ As0 f190 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f190 2334 1068 36 24 -168 -6 #rect
 As0 f190 @|StepIcon #fIcon
-As0 f194 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f194 1326 1214 20 20 13 0 #rect
-As0 f194 @|RichDialogProcessEndIcon #fIcon
-As0 f188 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f194 @|UdProcessEndIcon #fIcon
 As0 f188 2342 1262 20 20 13 0 #rect
-As0 f188 @|RichDialogProcessEndIcon #fIcon
+As0 f188 @|UdProcessEndIcon #fIcon
 As0 f192 guid 14E9B7FC57888C9E #txt
-As0 f192 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f192 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f192 actionTable 'out=in;
 ' #txt
 As0 f192 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1007,13 +903,10 @@ As0 f192 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f192 2342 814 20 20 13 0 #rect
-As0 f192 @|RichDialogProcessStartIcon #fIcon
-As0 f193 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
+As0 f192 @|UdEventIcon #fIcon
 As0 f193 actionTable 'out=in;
 ' #txt
 As0 f193 actionCode 'ivy.log.error("selected application is null");' #txt
-As0 f193 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f193 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1038,15 +931,12 @@ As0 f207 expr out #txt
 As0 f207 1336 1114 1336 1149 #arcP
 As0 f208 expr out #txt
 As0 f208 1336 1171 1336 1214 #arcP
-As0 f103 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f103 530 1010 28 28 14 0 #rect
 As0 f103 @|AlternativeIcon #fIcon
 As0 f206 expr out #txt
 As0 f206 392 908 530 1024 #arcP
 As0 f206 1 392 1024 #addKink
 As0 f206 1 0.09861351404025685 0 0 #arcLabel
-As0 f173 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f173 actionTable 'out=in;
 ' #txt
 As0 f173 actionCode 'import ch.ivy.addon.portalkit.dto.DisplayName;
@@ -1076,7 +966,6 @@ if (in.supportedLanguages.isEmpty()) {
 }
 
 in.selectedApp.displayName = convertor.toJson();' #txt
-As0 f173 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f173 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1090,8 +979,6 @@ As0 f173 526 684 36 24 -63 11 #rect
 As0 f173 @|StepIcon #fIcon
 As0 f171 expr out #txt
 As0 f171 544 708 544 746 #arcP
-As0 f217 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f217 actionTable 'out=in;
 ' #txt
 As0 f217 actionCode 'import ch.ivy.addon.portalkit.enums.ApplicationType;
@@ -1103,7 +990,6 @@ if (in.type == ApplicationType.IVY_APPLICATION){
 
 
 ' #txt
-As0 f217 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f217 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1116,9 +1002,7 @@ for 3rd party application</name>
 ' #txt
 As0 f217 182 668 36 24 -37 18 #rect
 As0 f217 @|StepIcon #fIcon
-As0 f222 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f222 processCall 'Ivy Data Processes/LanguageService:loadSupportedLanguages(String)' #txt
-As0 f222 doCall true #txt
 As0 f222 requestActionDecl '<java.lang.String appName> param;
 ' #txt
 As0 f222 requestMappingAction 'param.appName=in.selectedApp.name;
@@ -1141,9 +1025,6 @@ As0 f222 @|CallSubIcon #fIcon
 As0 f223 expr out #txt
 As0 f223 848 1004 848 1052 #arcP
 As0 f141 guid 14CC18BB4746B6E3 #txt
-As0 f141 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f141 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f141 actionTable 'out=in;
 ' #txt
 As0 f141 actionCode 'import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
@@ -1157,22 +1038,18 @@ As0 f141 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f141 1854 646 20 20 13 0 #rect
-As0 f141 @|RichDialogProcessStartIcon #fIcon
-As0 f142 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f141 @|UdEventIcon #fIcon
 As0 f142 1854 734 20 20 13 0 #rect
-As0 f142 @|RichDialogProcessEndIcon #fIcon
+As0 f142 @|UdProcessEndIcon #fIcon
 As0 f189 expr out #txt
 As0 f189 200 692 200 782 #arcP
 As0 f189 0 0.5311048610309348 0 0 #arcLabel
 As0 f159 expr out #txt
 As0 f159 848 1076 848 1142 #arcP
-As0 f196 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f196 882 282 28 28 14 0 #rect
 As0 f196 @|AlternativeIcon #fIcon
 As0 f198 expr out #txt
 As0 f198 896 236 896 282 #arcP
-As0 f205 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f205 actionTable 'out=in;
 ' #txt
 As0 f205 actionCode 'import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
@@ -1182,7 +1059,6 @@ in.languages = ApplicationMultiLanguage.getThirdPartySupportedLanguage();
 
 
 ' #txt
-As0 f205 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f205 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1218,7 +1094,6 @@ As0 f211 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f211 544 646 544 684 #arcP
 As0 f211 0 0.21052631578947367 -12 0 #arcLabel
-As0 f209 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f209 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1247,8 +1122,6 @@ As0 f214 expr out #txt
 As0 f214 623 708 558 760 #arcP
 As0 f214 1 623 760 #addKink
 As0 f214 0 0.8041048185752951 0 0 #arcLabel
-As0 f212 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f212 actionTable 'out=in;
 ' #txt
 As0 f212 actionCode 'import ch.ivy.addon.portalkit.dto.DisplayName;
@@ -1283,7 +1156,6 @@ if (in.supportedLanguages.isEmpty()) {
 
 displayNameAdaptor.add(currentLocale,in.displayNameInCurrentLanguage);
 in.selectedApp.displayName = displayNameAdaptor.toJson();' #txt
-As0 f212 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f212 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1296,9 +1168,6 @@ As0 f212 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f212 607 684 35 24 -17 12 #rect
 As0 f212 @|StepIcon #fIcon
 As0 f200 guid 14ED7B5BE39B1F96 #txt
-As0 f200 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f200 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f200 actionTable 'out=in;
 ' #txt
 As0 f200 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1311,19 +1180,15 @@ As0 f200 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f200 1894 846 20 20 14 -1 #rect
-As0 f200 @|RichDialogProcessStartIcon #fIcon
-As0 f216 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f200 @|UdEventIcon #fIcon
 As0 f216 1894 950 20 20 13 0 #rect
-As0 f216 @|RichDialogProcessEndIcon #fIcon
-As0 f92 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
+As0 f216 @|UdProcessEndIcon #fIcon
 As0 f92 actionTable 'out=in;
 ' #txt
 As0 f92 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
 RegisteredApplicationService applicationService = new RegisteredApplicationService();
 applicationService.delete(in.selectedApp);' #txt
-As0 f92 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1337,8 +1202,6 @@ As0 f92 182 196 36 24 20 -2 #rect
 As0 f92 @|StepIcon #fIcon
 As0 f53 expr out #txt
 As0 f53 200 220 200 260 #arcP
-As0 f40 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f40 actionTable 'out=in;
 ' #txt
 As0 f40 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.Application;
@@ -1347,7 +1210,6 @@ import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
 RegisteredApplicationService applicationService = new RegisteredApplicationService();
 in.selectedApp = applicationService.save(in.selectedApp) as Application;' #txt
-As0 f40 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1359,15 +1221,12 @@ As0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f40 526 1084 36 24 20 -2 #rect
 As0 f40 @|StepIcon #fIcon
-As0 f225 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f225 actionTable 'out=in;
 ' #txt
 As0 f225 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
 RegisteredApplicationService applicationService = new RegisteredApplicationService();
 in.applicationList = applicationService.findAll();' #txt
-As0 f225 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f225 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1383,15 +1242,12 @@ As0 f226 expr out #txt
 As0 f226 1904 866 1904 900 #arcP
 As0 f227 expr out #txt
 As0 f227 1904 924 1904 950 #arcP
-As0 f231 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f231 actionTable 'out=in;
 ' #txt
 As0 f231 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
 RegisteredApplicationService applicationService = new RegisteredApplicationService();
 in.applicationList = applicationService.saveAll(in.applicationList);' #txt
-As0 f231 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f231 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1407,8 +1263,6 @@ As0 f180 expr out #txt
 As0 f180 1448 410 1448 444 #arcP
 As0 f181 expr out #txt
 As0 f181 1448 468 1448 508 #arcP
-As0 f15 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f15 actionTable 'out=in;
 ' #txt
 As0 f15 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.GlobalSetting;
@@ -1417,7 +1271,6 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
 GlobalSettingService globalSettingService= new GlobalSettingService();
 in.selectedSetting = globalSettingService.save(in.selectedSetting) as GlobalSetting;' #txt
-As0 f15 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1429,12 +1282,9 @@ As0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f15 1008 1556 128 40 -53 -4 #rect
 As0 f15 @|StepIcon #fIcon
-As0 f169 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f169 actionTable 'out=in;
 ' #txt
 As0 f169 actionCode 'in.filteredUsers = in.usersApplicationList;' #txt
-As0 f169 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f169 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1452,13 +1302,10 @@ As0 f133 expr in #txt
 As0 f133 530 760 392 884 #arcP
 As0 f133 1 392 760 #addKink
 As0 f133 0 0.8007004654459767 0 0 #arcLabel
-As0 f144 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f144 1237 245 22 22 14 0 #rect
-As0 f144 @|RichDialogProcessEndIcon #fIcon
+As0 f144 @|UdProcessEndIcon #fIcon
 As0 f143 guid 1503CBAF85EC7EE8 #txt
-As0 f143 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f143 method getAppNameInCurrentLocale(ch.ivy.addon.portalkit.persistence.domain.Application) #txt
-As0 f143 disableUIEvents false #txt
 As0 f143 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <ch.ivy.addon.portalkit.persistence.domain.Application application> param = methodEvent.getInputArguments();
 ' #txt
@@ -1477,20 +1324,15 @@ As0 f143 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f143 1237 149 22 22 14 0 #rect
-As0 f143 @|RichDialogMethodStartIcon #fIcon
+As0 f143 @|UdMethodIcon #fIcon
 As0 f145 expr out #txt
 As0 f145 1248 171 1248 245 #arcP
-As0 f48 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f48 190 454 20 20 13 0 #rect
-As0 f48 @|RichDialogProcessEndIcon #fIcon
+As0 f48 @|UdProcessEndIcon #fIcon
 As0 f2 guid 151E78971722E279 #txt
-As0 f2 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f2 method findAllApplication() #txt
-As0 f2 disableUIEvents false #txt
-As0 f2 inParameterDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
-As0 f2 outParameterDecl '<List<ch.ivy.addon.portalkit.persistence.domain.Application> applications> result;
-' #txt
+As0 f2 inParameterDecl '<> param;' #txt
+As0 f2 outParameterDecl '<List<ch.ivy.addon.portalkit.persistence.domain.Application> applications> result;' #txt
 As0 f2 outParameterMapAction 'result.applications=in.applicationList;
 ' #txt
 As0 f2 outActionCode 'import ch.ivy.addon.portalkit.comparator.ApplicationIndexAscendingComparator;
@@ -1511,10 +1353,9 @@ As0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f2 1669 645 22 22 14 0 #rect
-As0 f2 @|RichDialogMethodStartIcon #fIcon
-As0 f99 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f2 @|UdMethodIcon #fIcon
 As0 f99 1669 757 22 22 14 0 #rect
-As0 f99 @|RichDialogProcessEndIcon #fIcon
+As0 f99 @|UdProcessEndIcon #fIcon
 As0 f153 expr out #txt
 As0 f153 1680 667 1680 757 #arcP
 As0 f263 expr out #txt
@@ -1524,13 +1365,10 @@ As0 f41 544 1108 544 1140 #arcP
 As0 f265 expr out #txt
 As0 f265 210 48 438 48 #arcP
 As0 f265 0 0.4862440103228913 0 0 #arcLabel
-As0 f286 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f286 1782 246 20 20 13 0 #rect
-As0 f286 @|RichDialogProcessEndIcon #fIcon
+As0 f286 @|UdProcessEndIcon #fIcon
 As0 f74 guid 163DD18A566F4B85 #txt
-As0 f74 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f74 method submitResetSetting(ch.ivy.addon.portalkit.persistence.domain.GlobalSetting) #txt
-As0 f74 disableUIEvents false #txt
 As0 f74 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <ch.ivy.addon.portalkit.persistence.domain.GlobalSetting setting> param = methodEvent.getInputArguments();
 ' #txt
@@ -1547,11 +1385,9 @@ As0 f74 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f74 1510 150 20 20 13 0 #rect
-As0 f74 @|RichDialogMethodStartIcon #fIcon
+As0 f74 @|UdMethodIcon #fIcon
 As0 f285 guid 163DD18A56815DFE #txt
-As0 f285 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f285 method submitResetAllSettings() #txt
-As0 f285 disableUIEvents false #txt
 As0 f285 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -1567,23 +1403,19 @@ As0 f285 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f285 1782 150 20 20 13 0 #rect
-As0 f285 @|RichDialogMethodStartIcon #fIcon
-As0 f75 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f285 @|UdMethodIcon #fIcon
 As0 f75 1510 246 20 20 13 0 #rect
-As0 f75 @|RichDialogProcessEndIcon #fIcon
+As0 f75 @|UdProcessEndIcon #fIcon
 As0 f76 expr out #txt
 As0 f76 1520 170 1520 246 #arcP
 As0 f287 expr out #txt
 As0 f287 1792 170 1792 246 #arcP
-As0 f63 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f63 actionTable 'out=in;
 ' #txt
 As0 f63 actionCode 'import ch.ivy.addon.portalkit.service.GlobalSettingService;
 GlobalSettingService globalSettingService = new GlobalSettingService();
 globalSettingService.resetGlobalSetting(in.selectedSetting.getKey());
 in.selectedSetting.setValueToDefault();' #txt
-As0 f63 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f63 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1593,11 +1425,8 @@ As0 f63 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f63 232 1554 128 44 -59 -8 #rect
 As0 f63 @|StepIcon #fIcon
-As0 f277 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f277 523 1763 26 26 0 12 #rect
-As0 f277 @|RichDialogProcessEndIcon #fIcon
-As0 f276 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
+As0 f277 @|UdProcessEndIcon #fIcon
 As0 f276 actionTable 'out=in;
 ' #txt
 As0 f276 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
@@ -1609,7 +1438,6 @@ for (GlobalVariable globalVariable : GlobalVariable.values()) {
 	in.settingList.get(i).setValueToDefault();
 	i++;
 }' #txt
-As0 f276 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f276 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1620,9 +1448,6 @@ As0 f276 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f276 480 1554 112 44 -45 -8 #rect
 As0 f276 @|StepIcon #fIcon
 As0 f67 guid 163DD1F145199579 #txt
-As0 f67 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f67 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f67 actionTable 'out=in;
 ' #txt
 As0 f67 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1635,11 +1460,8 @@ As0 f67 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f67 283 1475 26 26 -30 -33 #rect
-As0 f67 @|RichDialogProcessStartIcon #fIcon
+As0 f67 @|UdEventIcon #fIcon
 As0 f278 guid 163DD1F1451A5EB6 #txt
-As0 f278 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f278 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f278 actionTable 'out=in;
 ' #txt
 As0 f278 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1652,7 +1474,7 @@ As0 f278 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f278 523 1475 26 26 -37 -32 #rect
-As0 f278 @|RichDialogProcessStartIcon #fIcon
+As0 f278 @|UdEventIcon #fIcon
 As0 f279 expr out #txt
 As0 f279 536 1501 536 1554 #arcP
 As0 f281 expr out #txt
@@ -1662,9 +1484,6 @@ As0 f29 1072 1498 1072 1556 #arcP
 As0 f8 expr out #txt
 As0 f8 1176 410 1176 510 #arcP
 As0 f9 guid 1640186953392B88 #txt
-As0 f9 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f9 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f9 actionTable 'out=in;
 ' #txt
 As0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1677,9 +1496,7 @@ As0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f9 1387 1483 26 26 -59 15 #rect
-As0 f9 @|RichDialogProcessStartIcon #fIcon
-As0 f10 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
+As0 f9 @|UdEventIcon #fIcon
 As0 f10 actionTable 'out=in;
 ' #txt
 As0 f10 actionCode 'import javax.faces.application.FacesMessage;
@@ -1699,7 +1516,6 @@ FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage
 	ivy.cms.co(in.isAnnouncementActivated ? "/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsEnabled"
 	: "/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsDisabled"), null));
 ' #txt
-As0 f10 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1711,13 +1527,10 @@ As0 f10 1344 1594 112 44 -21 -8 #rect
 As0 f10 @|StepIcon #fIcon
 As0 f66 expr out #txt
 As0 f66 1400 1509 1400 1594 #arcP
-As0 f91 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f91 1387 1691 26 26 0 12 #rect
-As0 f91 @|RichDialogProcessEndIcon #fIcon
+As0 f91 @|UdProcessEndIcon #fIcon
 As0 f97 expr out #txt
 As0 f97 1400 1638 1400 1691 #arcP
-As0 f55 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f55 actionTable 'out=in;
 ' #txt
 As0 f55 actionCode 'import org.primefaces.context.RequestContext;
@@ -1725,7 +1538,6 @@ As0 f55 actionCode 'import org.primefaces.context.RequestContext;
 if (in.settingTabOpened) {
 	RequestContext.getCurrentInstance().execute("PF(''settingTable'').clearFilters()");
 }' #txt
-As0 f55 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1736,9 +1548,6 @@ As0 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f55 1520 1594 112 44 -26 -8 #rect
 As0 f55 @|StepIcon #fIcon
 As0 f18 guid 164024E1B1165F19 #txt
-As0 f18 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
-As0 f18 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f18 actionTable 'out=in;
 ' #txt
 As0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1751,24 +1560,20 @@ As0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f18 1563 1483 26 26 -61 15 #rect
-As0 f18 @|RichDialogProcessStartIcon #fIcon
+As0 f18 @|UdEventIcon #fIcon
 As0 f100 expr out #txt
 As0 f100 1576 1509 1576 1594 #arcP
-As0 f98 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f98 1563 1691 26 26 0 12 #rect
-As0 f98 @|RichDialogProcessEndIcon #fIcon
+As0 f98 @|UdProcessEndIcon #fIcon
 As0 f102 expr out #txt
 As0 f102 1576 1638 1576 1691 #arcP
 As0 f5 expr in #txt
 As0 f5 544 1038 544 1084 #arcP
-As0 f23 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f23 actionTable 'out=in;
 ' #txt
 As0 f23 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.ApplicationService;
 in.ivyApplications = ApplicationService.newInstance().findAll();
 ' #txt
-As0 f23 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1782,12 +1587,9 @@ As0 f24 expr out #txt
 As0 f24 1520 866 1520 954 #arcP
 As0 f25 expr out #txt
 As0 f25 1520 998 1520 1062 #arcP
-As0 f3 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f3 actionTable 'out=in;
 ' #txt
 As0 f3 actionCode in.selectedApp.setServerId(Long.valueOf(1)); #txt
-As0 f3 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1805,9 +1607,7 @@ As0 f28 expr in #txt
 As0 f28 outCond 'in.type == ch.ivy.addon.portalkit.enums.ApplicationType.IVY_APPLICATION' #txt
 As0 f28 896 310 896 478 #arcP
 As0 f28 0 0.5226032559978508 0 0 #arcLabel
-As0 f7 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f7 processCall 'Ivy Data Processes/SecurityService:findUsers(ch.ivyteam.ivy.application.IApplication)' #txt
-As0 f7 doCall true #txt
 As0 f7 requestActionDecl '<ch.ivyteam.ivy.application.IApplication application> param;
 ' #txt
 As0 f7 requestMappingAction 'param.application=in.app;
@@ -1829,14 +1629,11 @@ As0 f7 1120 770 112 44 -41 -8 #rect
 As0 f7 @|CallSubIcon #fIcon
 As0 f12 expr out #txt
 As0 f12 1176 814 1176 852 #arcP
-As0 f14 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f14 actionTable 'out=in;
 ' #txt
 As0 f14 actionCode 'import ch.ivyteam.ivy.server.ServerFactory;
 in.app = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(in.selectedApp.name);' #txt
 As0 f14 security system #txt
-As0 f14 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1868,8 +1665,6 @@ As0 f30 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f30 544 774 544 882 #arcP
 As0 f30 0 0.2857142857142857 -22 0 #arcLabel
-As0 f26 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f26 actionTable 'out=in;
 ' #txt
 As0 f26 actionCode 'import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
@@ -1877,7 +1672,6 @@ import ch.ivy.addon.portalkit.service.IvyCacheService;
 
 IvyCacheService.newInstance().invalidateGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_BASED_ON_CONFIGURATION);
 IvyCacheService.newInstance().invalidateGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_USER_CAN_WORK_ON);' #txt
-As0 f26 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1891,8 +1685,6 @@ As0 f31 expr out #txt
 As0 f31 200 284 200 346 #arcP
 As0 f6 expr out #txt
 As0 f6 200 390 200 454 #arcP
-As0 f42 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f42 actionTable 'out=in;
 ' #txt
 As0 f42 actionCode 'import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
@@ -1901,7 +1693,6 @@ import ch.ivy.addon.portalkit.service.IvyCacheService;
 IvyCacheService.newInstance().invalidateGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_BASED_ON_CONFIGURATION);
 IvyCacheService.newInstance().invalidateGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_USER_CAN_WORK_ON);
 ' #txt
-As0 f42 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1915,8 +1706,6 @@ As0 f43 expr out #txt
 As0 f43 544 1164 544 1194 #arcP
 As0 f4 expr out #txt
 As0 f4 544 1238 544 1286 #arcP
-As0 f46 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f46 actionTable 'out=in;
 ' #txt
 As0 f46 actionCode 'import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
@@ -1924,7 +1713,6 @@ import ch.ivy.addon.portalkit.service.IvyCacheService;
 
 IvyCacheService.newInstance().invalidateGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_BASED_ON_CONFIGURATION);
 IvyCacheService.newInstance().invalidateGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_USER_CAN_WORK_ON);' #txt
-As0 f46 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1951,9 +1739,7 @@ As0 f57 expr out #txt
 As0 f57 1072 1596 624 1680 #arcP
 As0 f57 1 1072 1680 #addKink
 As0 f57 1 0.40112042914479545 0 0 #arcLabel
-As0 f21 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f21 processCall 'Ivy Data Processes/LanguageService:loadSupportedLanguages(String)' #txt
-As0 f21 doCall true #txt
 As0 f21 requestActionDecl '<java.lang.String appName> param;
 ' #txt
 As0 f21 requestMappingAction 'param.appName=in.selectedApp.name;
@@ -1982,13 +1768,9 @@ As0 f70 0 0.5000000000000001 0 0 #arcLabel
 As0 f71 expr out #txt
 As0 f71 2352 1092 2352 1262 #arcP
 As0 f64 guid 16A29A0E1F97DE40 #txt
-As0 f64 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f64 method publishAnnouncement() #txt
-As0 f64 disableUIEvents false #txt
-As0 f64 inParameterDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
-As0 f64 outParameterDecl '<> result;
-' #txt
+As0 f64 inParameterDecl '<> param;' #txt
+As0 f64 outParameterDecl '<> result;' #txt
 As0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1997,15 +1779,11 @@ As0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f64 83 1931 26 26 -59 -35 #rect
-As0 f64 @|RichDialogMethodStartIcon #fIcon
+As0 f64 @|UdMethodIcon #fIcon
 As0 f65 guid 16A29A0F2F82745C #txt
-As0 f65 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f65 method depublishAnnouncement() #txt
-As0 f65 disableUIEvents false #txt
-As0 f65 inParameterDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
-As0 f65 outParameterDecl '<> result;
-' #txt
+As0 f65 inParameterDecl '<> param;' #txt
+As0 f65 outParameterDecl '<> result;' #txt
 As0 f65 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -2014,15 +1792,11 @@ As0 f65 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f65 371 1931 26 26 -66 -35 #rect
-As0 f65 @|RichDialogMethodStartIcon #fIcon
-As0 f68 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f65 @|UdMethodIcon #fIcon
 As0 f68 83 2099 26 26 0 12 #rect
-As0 f68 @|RichDialogProcessEndIcon #fIcon
-As0 f77 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f68 @|UdProcessEndIcon #fIcon
 As0 f77 371 2099 26 26 0 12 #rect
-As0 f77 @|RichDialogProcessEndIcon #fIcon
-As0 f81 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
+As0 f77 @|UdProcessEndIcon #fIcon
 As0 f81 actionTable 'out=in;
 ' #txt
 As0 f81 actionCode 'import javax.faces.application.FacesMessage;
@@ -2035,7 +1809,6 @@ out.isAnnouncementActivated = true;
 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, 
 	ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsEnabled"), null));
 service.invalidateCache();' #txt
-As0 f81 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f81 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -2049,8 +1822,6 @@ As0 f82 expr out #txt
 As0 f82 96 1957 96 2018 #arcP
 As0 f78 expr out #txt
 As0 f78 96 2062 96 2099 #arcP
-As0 f85 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 As0 f85 actionTable 'out=in;
 ' #txt
 As0 f85 actionCode 'import javax.faces.application.FacesMessage;
@@ -2062,7 +1833,6 @@ out.isAnnouncementActivated = false;
 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, 
 	ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsDisabled"), null));
 service.invalidateCache();' #txt
-As0 f85 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f85 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -2077,9 +1847,7 @@ As0 f86 384 1957 384 2018 #arcP
 As0 f79 expr out #txt
 As0 f79 384 2062 384 2099 #arcP
 As0 f87 guid 16A33CB19C2E90CF #txt
-As0 f87 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 As0 f87 method isApplicationDefaultEmailLanguage(String) #txt
-As0 f87 disableUIEvents false #txt
 As0 f87 inParameterDecl '<java.lang.String language> param;' #txt
 As0 f87 inActionCode 'import ch.ivy.addon.portalkit.service.AnnouncementService;
 out.isDefaultApplicationLanguage = AnnouncementService.getInstance().isDefaultApplicationLanguage(param.language);' #txt
@@ -2094,10 +1862,9 @@ As0 f87 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f87 587 1931 26 26 -113 -36 #rect
-As0 f87 @|RichDialogMethodStartIcon #fIcon
-As0 f89 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
+As0 f87 @|UdMethodIcon #fIcon
 As0 f89 587 2099 26 26 0 12 #rect
-As0 f89 @|RichDialogProcessEndIcon #fIcon
+As0 f89 @|UdProcessEndIcon #fIcon
 As0 f90 expr out #txt
 As0 f90 600 1957 600 2099 #arcP
 >Proto As0 .type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
@@ -2133,8 +1900,6 @@ As0 f90 600 1957 600 2099 #arcP
 ' #txt
 >Proto As0 -8 -8 16 16 16 26 #rect
 >Proto As0 '' #fIcon
-Ct0 f51 actionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
 Ct0 f51 actionTable 'out=in;
 ' #txt
 Ct0 f51 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.Application;
@@ -2148,7 +1913,6 @@ java.util.List<Application> apps = new RegisteredApplicationService().findAllIvy
 for (Application app: apps){
 	IvyCacheService.newInstance().invalidateGlobalSettingOnApp(app.getName());
 }' #txt
-Ct0 f51 type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 Ct0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

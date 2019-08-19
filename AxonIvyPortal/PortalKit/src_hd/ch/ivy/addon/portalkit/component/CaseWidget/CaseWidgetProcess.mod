@@ -1,12 +1,9 @@
 [Ivy]
-152E8EDB33C1BDC1 3.26 #module
+152E8EDB33C1BDC1 3.28 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseWidgetProcess Big #zClass
 Cs0 RD #cInfo
 Cs0 #process
-Cs0 @TextInP .ui2RdDataAction .ui2RdDataAction #zField
-Cs0 @TextInP .rdData2UIAction .rdData2UIAction #zField
-Cs0 @TextInP .resExport .resExport #zField
 Cs0 @TextInP .type .type #zField
 Cs0 @TextInP .processKind .processKind #zField
 Cs0 @AnnotationInP-0n ai ai #zField
@@ -14,26 +11,26 @@ Cs0 @MessageFlowInP-0n messageIn messageIn #zField
 Cs0 @MessageFlowOutP-0n messageOut messageOut #zField
 Cs0 @TextInP .xml .xml #zField
 Cs0 @TextInP .responsibility .responsibility #zField
-Cs0 @RichDialogInitStart f0 '' #zField
-Cs0 @RichDialogProcessEnd f1 '' #zField
-Cs0 @RichDialogMethodStart f6 '' #zField
+Cs0 @UdInit f0 '' #zField
+Cs0 @UdProcessEnd f1 '' #zField
+Cs0 @UdMethod f6 '' #zField
 Cs0 @CallSub f7 '' #zField
 Cs0 @PushWFArc f8 '' #zField
-Cs0 @RichDialogProcessEnd f9 '' #zField
+Cs0 @UdProcessEnd f9 '' #zField
 Cs0 @PushWFArc f10 '' #zField
-Cs0 @RichDialogMethodStart f15 '' #zField
+Cs0 @UdMethod f15 '' #zField
 Cs0 @CallSub f18 '' #zField
 Cs0 @PushWFArc f19 '' #zField
-Cs0 @RichDialogProcessEnd f20 '' #zField
+Cs0 @UdProcessEnd f20 '' #zField
 Cs0 @PushWFArc f21 '' #zField
 Cs0 @GridStep f2 '' #zField
 Cs0 @PushWFArc f3 '' #zField
 Cs0 @PushWFArc f4 '' #zField
-Cs0 @RichDialogProcessStart f5 '' #zField
+Cs0 @UdEvent f5 '' #zField
 Cs0 @Alternative f47 '' #zField
-Cs0 @RichDialogProcessEnd f29 '' #zField
+Cs0 @UdProcessEnd f29 '' #zField
 Cs0 @GridStep f45 '' #zField
-Cs0 @RichDialogProcessEnd f50 '' #zField
+Cs0 @UdProcessEnd f50 '' #zField
 Cs0 @GridStep f31 '' #zField
 Cs0 @GridStep f24 '' #zField
 Cs0 @PushWFArc f25 '' #zField
@@ -42,24 +39,22 @@ Cs0 @PushWFArc f26 '' #zField
 Cs0 @PushWFArc f48 '' #zField
 Cs0 @PushWFArc f30 '' #zField
 Cs0 @PushWFArc f11 '' #zField
-Cs0 @RichDialogProcessStart f28 '' #zField
+Cs0 @UdEvent f28 '' #zField
 Cs0 @PushWFArc f12 '' #zField
 Cs0 @GridStep f35 '' #zField
-Cs0 @RichDialogProcessEnd f36 '' #zField
+Cs0 @UdProcessEnd f36 '' #zField
 Cs0 @PushWFArc f40 '' #zField
-Cs0 @RichDialogProcessStart f13 '' #zField
+Cs0 @UdEvent f13 '' #zField
 Cs0 @PushWFArc f14 '' #zField
-Cs0 @RichDialogMethodStart f16 '' #zField
-Cs0 @RichDialogProcessEnd f17 '' #zField
+Cs0 @UdMethod f16 '' #zField
+Cs0 @UdProcessEnd f17 '' #zField
 Cs0 @PushWFArc f22 '' #zField
-Cs0 @RichDialogMethodStart f23 '' #zField
-Cs0 @RichDialogProcessEnd f27 '' #zField
+Cs0 @UdMethod f23 '' #zField
+Cs0 @UdProcessEnd f27 '' #zField
 Cs0 @PushWFArc f32 '' #zField
 >Proto Cs0 Cs0 CaseWidgetProcess #zField
 Cs0 f0 guid 152E8EDB3E3A6957 #txt
-Cs0 f0 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 Cs0 f0 method start(ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel,java.lang.Long) #txt
-Cs0 f0 disableUIEvents true #txt
 Cs0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel dataModel,java.lang.Long filterGroupId> param = methodEvent.getInputArguments();
 ' #txt
@@ -78,14 +73,11 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f0 53 85 22 22 14 0 #rect
-Cs0 f0 @|RichDialogInitStartIcon #fIcon
-Cs0 f1 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
+Cs0 f0 @|UdInitIcon #fIcon
 Cs0 f1 525 85 22 22 14 0 #rect
-Cs0 f1 @|RichDialogProcessEndIcon #fIcon
+Cs0 f1 @|UdProcessEndIcon #fIcon
 Cs0 f6 guid 167E4C8566B6B6EA #txt
-Cs0 f6 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 Cs0 f6 method findCases(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria,java.lang.Integer,java.lang.Integer) #txt
-Cs0 f6 disableUIEvents false #txt
 Cs0 f6 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria,java.lang.Integer startIndex,java.lang.Integer count> param = methodEvent.getInputArguments();
 ' #txt
@@ -105,10 +97,8 @@ Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f6 51 179 26 26 -48 13 #rect
-Cs0 f6 @|RichDialogMethodStartIcon #fIcon
-Cs0 f7 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
+Cs0 f6 @|UdMethodIcon #fIcon
 Cs0 f7 processCall 'Ivy Data Processes/CaseService:findCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria,Integer,Integer)' #txt
-Cs0 f7 doCall true #txt
 Cs0 f7 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria,java.lang.Integer startIndex,java.lang.Integer count> param;
 ' #txt
 Cs0 f7 requestMappingAction 'param.caseSearchCriteria=in.caseSearchCriteria;
@@ -132,15 +122,12 @@ Cs0 f7 200 170 112 44 -35 -8 #rect
 Cs0 f7 @|CallSubIcon #fIcon
 Cs0 f8 expr out #txt
 Cs0 f8 77 192 200 192 #arcP
-Cs0 f9 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 Cs0 f9 435 179 26 26 0 12 #rect
-Cs0 f9 @|RichDialogProcessEndIcon #fIcon
+Cs0 f9 @|UdProcessEndIcon #fIcon
 Cs0 f10 expr out #txt
 Cs0 f10 312 192 435 192 #arcP
 Cs0 f15 guid 167E4DD6005674EC #txt
-Cs0 f15 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 Cs0 f15 method countCases(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria) #txt
-Cs0 f15 disableUIEvents false #txt
 Cs0 f15 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param = methodEvent.getInputArguments();
 ' #txt
@@ -158,10 +145,8 @@ Cs0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f15 51 275 26 26 -45 14 #rect
-Cs0 f15 @|RichDialogMethodStartIcon #fIcon
-Cs0 f18 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
+Cs0 f15 @|UdMethodIcon #fIcon
 Cs0 f18 processCall 'Ivy Data Processes/CaseService:countCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)' #txt
-Cs0 f18 doCall true #txt
 Cs0 f18 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;
 ' #txt
 Cs0 f18 requestMappingAction 'param.caseSearchCriteria=in.caseSearchCriteria;
@@ -183,13 +168,10 @@ Cs0 f18 200 266 112 44 -35 -8 #rect
 Cs0 f18 @|CallSubIcon #fIcon
 Cs0 f19 expr out #txt
 Cs0 f19 77 288 200 288 #arcP
-Cs0 f20 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 Cs0 f20 435 275 26 26 0 12 #rect
-Cs0 f20 @|RichDialogProcessEndIcon #fIcon
+Cs0 f20 @|UdProcessEndIcon #fIcon
 Cs0 f21 expr out #txt
 Cs0 f21 312 288 435 288 #arcP
-Cs0 f2 actionDecl 'ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData out;
-' #txt
 Cs0 f2 actionTable 'out=in;
 ' #txt
 Cs0 f2 actionCode 'import ch.ivy.addon.portalkit.service.CaseFilterService;
@@ -199,7 +181,6 @@ CaseFilterService filterService = new CaseFilterService();
 in.privateFilters = filterService.getPrivateFilterForCurrentUser(in.filterGroupId) as List;
 in.publicFilters = filterService.getPublicFilter(in.filterGroupId) as List;
 in.filterType = FilterType.ONLY_ME;' #txt
-Cs0 f2 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 Cs0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -214,9 +195,6 @@ Cs0 f3 75 96 232 96 #arcP
 Cs0 f4 expr out #txt
 Cs0 f4 344 96 525 96 #arcP
 Cs0 f5 guid 1680C6A623A9C767 #txt
-Cs0 f5 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
-Cs0 f5 actionDecl 'ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData out;
-' #txt
 Cs0 f5 actionTable 'out=in;
 ' #txt
 Cs0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -227,8 +205,7 @@ Cs0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f5 51 371 26 26 -30 17 #rect
-Cs0 f5 @|RichDialogProcessStartIcon #fIcon
-Cs0 f47 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
+Cs0 f5 @|UdEventIcon #fIcon
 Cs0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -241,11 +218,8 @@ existed?</name>
 ' #txt
 Cs0 f47 288 368 32 32 -23 18 #rect
 Cs0 f47 @|AlternativeIcon #fIcon
-Cs0 f29 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 Cs0 f29 555 467 26 26 0 12 #rect
-Cs0 f29 @|RichDialogProcessEndIcon #fIcon
-Cs0 f45 actionDecl 'ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData out;
-' #txt
+Cs0 f29 @|UdProcessEndIcon #fIcon
 Cs0 f45 actionTable 'out=in;
 ' #txt
 Cs0 f45 actionCode 'import javax.faces.application.FacesMessage;
@@ -260,7 +234,6 @@ if (service.isFilterExisted(in.filterSetName, in.filterType, in.filterGroupId)) 
 	FacesContext.getCurrentInstance().validationFailed();
 	in.isFilterExisted = true;
 }' #txt
-Cs0 f45 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 Cs0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -272,17 +245,13 @@ Cs0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f45 120 362 112 44 -21 -8 #rect
 Cs0 f45 @|StepIcon #fIcon
-Cs0 f50 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 Cs0 f50 547 323 26 26 0 12 #rect
-Cs0 f50 @|RichDialogProcessEndIcon #fIcon
-Cs0 f31 actionDecl 'ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData out;
-' #txt
+Cs0 f50 @|UdProcessEndIcon #fIcon
 Cs0 f31 actionTable 'out=in;
 ' #txt
 Cs0 f31 actionCode 'import ch.ivy.addon.portalkit.enums.FilterType;
 in.filterType = FilterType.ONLY_ME;
 in.filterSetName = "";' #txt
-Cs0 f31 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -294,8 +263,6 @@ Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f31 376 458 112 44 -28 -8 #rect
 Cs0 f31 @|StepIcon #fIcon
-Cs0 f24 actionDecl 'ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData out;
-' #txt
 Cs0 f24 actionTable 'out=in;
 ' #txt
 Cs0 f24 actionCode 'import ch.ivy.addon.portalkit.service.CaseFilterService;
@@ -313,7 +280,6 @@ if (FilterType.ONLY_ME == filterData.type) {
 }
 in.dataModel.selectedFilterData = filterData;' #txt
 Cs0 f24 security system #txt
-Cs0 f24 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 Cs0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -359,9 +325,6 @@ Cs0 f30 488 480 555 480 #arcP
 Cs0 f11 expr out #txt
 Cs0 f11 77 384 120 384 #arcP
 Cs0 f28 guid 1680C745298BE4BA #txt
-Cs0 f28 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
-Cs0 f28 actionDecl 'ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData out;
-' #txt
 Cs0 f28 actionTable 'out=in;
 ' #txt
 Cs0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -374,11 +337,9 @@ Cs0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f28 51 467 26 26 -58 15 #rect
-Cs0 f28 @|RichDialogProcessStartIcon #fIcon
+Cs0 f28 @|UdEventIcon #fIcon
 Cs0 f12 expr out #txt
 Cs0 f12 77 480 376 480 #arcP
-Cs0 f35 actionDecl 'ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData out;
-' #txt
 Cs0 f35 actionTable 'out=in;
 ' #txt
 Cs0 f35 actionCode 'import ch.ivy.addon.portalkit.enums.FilterType;
@@ -398,7 +359,6 @@ if (in.dataModel.#selectedFilterData is initialized && in.dataModel.selectedFilt
 	in.dataModel.resetFilters();
 	in.filteringKeyword = null;
 }' #txt
-Cs0 f35 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 Cs0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -410,15 +370,11 @@ Cs0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f35 160 554 112 44 -33 -8 #rect
 Cs0 f35 @|StepIcon #fIcon
-Cs0 f36 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 Cs0 f36 339 563 26 26 0 12 #rect
-Cs0 f36 @|RichDialogProcessEndIcon #fIcon
+Cs0 f36 @|UdProcessEndIcon #fIcon
 Cs0 f40 expr out #txt
 Cs0 f40 272 576 339 576 #arcP
 Cs0 f13 guid 1680C75019258C12 #txt
-Cs0 f13 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
-Cs0 f13 actionDecl 'ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData out;
-' #txt
 Cs0 f13 actionTable 'out=in;
 ' #txt
 Cs0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -429,13 +385,11 @@ Cs0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f13 51 563 26 26 -21 16 #rect
-Cs0 f13 @|RichDialogProcessStartIcon #fIcon
+Cs0 f13 @|UdEventIcon #fIcon
 Cs0 f14 expr out #txt
 Cs0 f14 77 576 160 576 #arcP
 Cs0 f16 guid 1680C78D11AA28AB #txt
-Cs0 f16 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 Cs0 f16 method applyFilter(ch.ivy.addon.portalkit.casefilter.CaseFilterData) #txt
-Cs0 f16 disableUIEvents false #txt
 Cs0 f16 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <ch.ivy.addon.portalkit.casefilter.CaseFilterData filterData> param = methodEvent.getInputArguments();
 ' #txt
@@ -452,16 +406,13 @@ Cs0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f16 51 659 26 26 -49 16 #rect
-Cs0 f16 @|RichDialogMethodStartIcon #fIcon
-Cs0 f17 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
+Cs0 f16 @|UdMethodIcon #fIcon
 Cs0 f17 339 659 26 26 0 12 #rect
-Cs0 f17 @|RichDialogProcessEndIcon #fIcon
+Cs0 f17 @|UdProcessEndIcon #fIcon
 Cs0 f22 expr out #txt
 Cs0 f22 77 672 339 672 #arcP
 Cs0 f23 guid 168A2BE8E0F76EC9 #txt
-Cs0 f23 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 Cs0 f23 method setFilterToBeDeleted(ch.ivy.addon.portalkit.casefilter.CaseFilterData) #txt
-Cs0 f23 disableUIEvents false #txt
 Cs0 f23 inParameterDecl '<ch.ivy.addon.portalkit.casefilter.CaseFilterData caseFilterData> param;' #txt
 Cs0 f23 inParameterMapAction 'out.filterDataToBeDeleted=param.caseFilterData;
 ' #txt
@@ -474,10 +425,9 @@ Cs0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f23 51 755 26 26 -58 17 #rect
-Cs0 f23 @|RichDialogMethodStartIcon #fIcon
-Cs0 f27 type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
+Cs0 f23 @|UdMethodIcon #fIcon
 Cs0 f27 339 755 26 26 0 12 #rect
-Cs0 f27 @|RichDialogProcessEndIcon #fIcon
+Cs0 f27 @|UdProcessEndIcon #fIcon
 Cs0 f32 expr out #txt
 Cs0 f32 77 768 339 768 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt

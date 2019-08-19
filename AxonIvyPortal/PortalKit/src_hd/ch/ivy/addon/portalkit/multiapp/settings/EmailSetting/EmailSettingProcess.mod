@@ -1,41 +1,38 @@
 [Ivy]
-14C2C99D7388AB9B 3.23 #module
+14C2C99D7388AB9B 3.28 #module
 >Proto >Proto Collection #zClass
 Es0 EmailSettingProcess Big #zClass
 Es0 RD #cInfo
 Es0 #process
-Es0 @TextInP .ui2RdDataAction .ui2RdDataAction #zField
-Es0 @TextInP .rdData2UIAction .rdData2UIAction #zField
-Es0 @TextInP .resExport .resExport #zField
 Es0 @TextInP .type .type #zField
 Es0 @TextInP .processKind .processKind #zField
 Es0 @AnnotationInP-0n ai ai #zField
 Es0 @TextInP .xml .xml #zField
 Es0 @TextInP .responsibility .responsibility #zField
-Es0 @RichDialogInitStart f0 '' #zField
-Es0 @RichDialogProcessEnd f3 '' #zField
+Es0 @UdInit f0 '' #zField
+Es0 @UdProcessEnd f3 '' #zField
 Es0 @PushWFArc f4 '' #zField
-Es0 @RichDialogMethodStart f5 '' #zField
+Es0 @UdMethod f5 '' #zField
 Es0 @CallSub f23 '' #zField
 Es0 @PushWFArc f24 '' #zField
 Es0 @GridStep f36 '' #zField
-Es0 @RichDialogProcessEnd f38 '' #zField
+Es0 @UdProcessEnd f38 '' #zField
 Es0 @PushWFArc f39 '' #zField
-Es0 @RichDialogProcessStart f40 '' #zField
-Es0 @RichDialogProcessEnd f41 '' #zField
+Es0 @UdEvent f40 '' #zField
+Es0 @UdProcessEnd f41 '' #zField
 Es0 @GridStep f42 '' #zField
 Es0 @PushWFArc f43 '' #zField
 Es0 @PushWFArc f44 '' #zField
-Es0 @RichDialogProcessStart f1 '' #zField
+Es0 @UdEvent f1 '' #zField
 Es0 @GridStep f2 '' #zField
 Es0 @PushWFArc f6 '' #zField
 Es0 @CallSub f7 '' #zField
 Es0 @PushWFArc f8 '' #zField
 Es0 @GridStep f9 '' #zField
-Es0 @RichDialogProcessEnd f14 '' #zField
+Es0 @UdProcessEnd f14 '' #zField
 Es0 @PushWFArc f15 '' #zField
-Es0 @RichDialogProcessStart f11 '' #zField
-Es0 @RichDialogProcessEnd f12 '' #zField
+Es0 @UdEvent f11 '' #zField
+Es0 @UdProcessEnd f12 '' #zField
 Es0 @GridStep f16 '' #zField
 Es0 @PushWFArc f17 '' #zField
 Es0 @PushWFArc f13 '' #zField
@@ -46,9 +43,7 @@ Es0 @PushWFArc f10 '' #zField
 Es0 @PushWFArc f21 '' #zField
 >Proto Es0 Es0 EmailSettingProcess #zField
 Es0 f0 guid 167961CFD377EB28 #txt
-Es0 f0 type ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData #txt
 Es0 f0 method start() #txt
-Es0 f0 disableUIEvents true #txt
 Es0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -66,16 +61,13 @@ Es0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Es0 f0 51 51 26 26 -16 15 #rect
-Es0 f0 @|RichDialogInitStartIcon #fIcon
-Es0 f3 type ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData #txt
+Es0 f0 @|UdInitIcon #fIcon
 Es0 f3 211 51 26 26 0 12 #rect
-Es0 f3 @|RichDialogProcessEndIcon #fIcon
+Es0 f3 @|UdProcessEndIcon #fIcon
 Es0 f4 expr out #txt
 Es0 f4 77 64 211 64 #arcP
 Es0 f5 guid 167965C29E430919 #txt
-Es0 f5 type ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData #txt
 Es0 f5 method findEmailSettings() #txt
-Es0 f5 disableUIEvents false #txt
 Es0 f5 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -89,10 +81,8 @@ Es0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Es0 f5 51 147 26 26 -52 15 #rect
-Es0 f5 @|RichDialogMethodStartIcon #fIcon
-Es0 f23 type ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData #txt
+Es0 f5 @|UdMethodIcon #fIcon
 Es0 f23 processCall 'Ivy Data Processes/EmailSettingService:findEmailSettings(String)' #txt
-Es0 f23 doCall true #txt
 Es0 f23 requestActionDecl '<java.lang.String username> param;
 ' #txt
 Es0 f23 requestMappingAction 'param.username=in.user;
@@ -114,8 +104,6 @@ Es0 f23 128 138 128 44 -55 -8 #rect
 Es0 f23 @|CallSubIcon #fIcon
 Es0 f24 expr out #txt
 Es0 f24 77 160 128 160 #arcP
-Es0 f36 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData out;
-' #txt
 Es0 f36 actionTable 'out=in;
 ' #txt
 Es0 f36 actionCode 'import ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting;
@@ -139,7 +127,6 @@ request.addCallbackParam("settingForAllApp", in.settingForAllApp);
 if(in.#generalEmailSetting == null){
 	out.generalEmailSetting = new IvyEmailSetting();
 }	' #txt
-Es0 f36 type ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData #txt
 Es0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -149,15 +136,11 @@ Es0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Es0 f36 296 138 128 44 -57 -8 #rect
 Es0 f36 @|StepIcon #fIcon
-Es0 f38 type ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData #txt
 Es0 f38 507 147 26 26 0 12 #rect
-Es0 f38 @|RichDialogProcessEndIcon #fIcon
+Es0 f38 @|UdProcessEndIcon #fIcon
 Es0 f39 expr out #txt
 Es0 f39 424 160 507 160 #arcP
 Es0 f40 guid 167967216E1FCB61 #txt
-Es0 f40 type ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData #txt
-Es0 f40 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData out;
-' #txt
 Es0 f40 actionTable 'out=in;
 ' #txt
 Es0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -168,18 +151,14 @@ Es0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Es0 f40 51 243 26 26 -47 15 #rect
-Es0 f40 @|RichDialogProcessStartIcon #fIcon
-Es0 f41 type ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData #txt
+Es0 f40 @|UdEventIcon #fIcon
 Es0 f41 371 243 26 26 0 12 #rect
-Es0 f41 @|RichDialogProcessEndIcon #fIcon
-Es0 f42 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData out;
-' #txt
+Es0 f41 @|UdProcessEndIcon #fIcon
 Es0 f42 actionTable 'out=in;
 ' #txt
 Es0 f42 actionCode 'import ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting;
 
 out.generalEmailSetting = new IvyEmailSetting();' #txt
-Es0 f42 type ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData #txt
 Es0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -195,9 +174,6 @@ Es0 f43 77 256 168 256 #arcP
 Es0 f44 expr out #txt
 Es0 f44 280 256 371 256 #arcP
 Es0 f1 guid 1679674F3DCE40E8 #txt
-Es0 f1 type ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData #txt
-Es0 f1 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData out;
-' #txt
 Es0 f1 actionTable 'out=in;
 ' #txt
 Es0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -208,9 +184,7 @@ Es0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Es0 f1 51 339 26 26 -47 15 #rect
-Es0 f1 @|RichDialogProcessStartIcon #fIcon
-Es0 f2 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData out;
-' #txt
+Es0 f1 @|UdEventIcon #fIcon
 Es0 f2 actionTable 'out=in;
 ' #txt
 Es0 f2 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.EmailSettingService;
@@ -218,7 +192,6 @@ Es0 f2 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.EmailSetti
 if (in.settingForAllApp) {
 	EmailSettingService.newInstance().updateIvyEmailSettings(in.generalEmailSetting, in.emailSettings);
 }' #txt
-Es0 f2 type ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData #txt
 Es0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -231,9 +204,7 @@ Es0 f2 104 330 176 44 -70 -16 #rect
 Es0 f2 @|StepIcon #fIcon
 Es0 f6 expr out #txt
 Es0 f6 77 352 104 352 #arcP
-Es0 f7 type ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData #txt
 Es0 f7 processCall 'Ivy Data Processes/EmailSettingService:saveEmailSettings(String,List<ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting>)' #txt
-Es0 f7 doCall true #txt
 Es0 f7 requestActionDecl '<java.lang.String username,java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting> emailSettings> param;
 ' #txt
 Es0 f7 requestMappingAction 'param.username=in.user;
@@ -255,14 +226,11 @@ Es0 f7 320 330 128 44 -55 -8 #rect
 Es0 f7 @|CallSubIcon #fIcon
 Es0 f8 expr out #txt
 Es0 f8 280 352 320 352 #arcP
-Es0 f9 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData out;
-' #txt
 Es0 f9 actionTable 'out=in;
 ' #txt
 Es0 f9 actionCode 'import ch.ivy.addon.portalkit.util.BeanUtils;
 
 BeanUtils.invokeBeanMethodViaMethodExpression("#{errorDisplayBean.displayErrors}", in.errors);' #txt
-Es0 f9 type ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData #txt
 Es0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -272,17 +240,13 @@ Es0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Es0 f9 568 426 128 44 -57 -8 #rect
 Es0 f9 @|StepIcon #fIcon
-Es0 f14 type ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData #txt
 Es0 f14 755 339 26 26 0 12 #rect
-Es0 f14 @|RichDialogProcessEndIcon #fIcon
+Es0 f14 @|UdProcessEndIcon #fIcon
 Es0 f15 expr out #txt
 Es0 f15 696 448 768 365 #arcP
 Es0 f15 1 768 448 #addKink
 Es0 f15 0 0.8254647321695485 0 0 #arcLabel
 Es0 f11 guid 16796FC348D700CB #txt
-Es0 f11 type ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData #txt
-Es0 f11 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData out;
-' #txt
 Es0 f11 actionTable 'out=in;
 ' #txt
 Es0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -293,19 +257,15 @@ Es0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Es0 f11 51 531 26 26 -47 15 #rect
-Es0 f11 @|RichDialogProcessStartIcon #fIcon
-Es0 f12 type ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData #txt
+Es0 f11 @|UdEventIcon #fIcon
 Es0 f12 371 531 26 26 0 12 #rect
-Es0 f12 @|RichDialogProcessEndIcon #fIcon
-Es0 f16 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData out;
-' #txt
+Es0 f12 @|UdProcessEndIcon #fIcon
 Es0 f16 actionTable 'out=in;
 ' #txt
 Es0 f16 actionCode 'import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/note"), ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/emailSetting/saveEmailSettingsSuccessfully")));' #txt
-Es0 f16 type ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData #txt
 Es0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -321,7 +281,6 @@ Es0 f13 expr out #txt
 Es0 f13 336 544 371 544 #arcP
 Es0 f18 expr out #txt
 Es0 f18 256 160 296 160 #arcP
-Es0 f19 type ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData #txt
 Es0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

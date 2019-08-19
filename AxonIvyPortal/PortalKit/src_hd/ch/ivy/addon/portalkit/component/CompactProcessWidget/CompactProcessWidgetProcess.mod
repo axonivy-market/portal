@@ -1,12 +1,9 @@
 [Ivy]
-167CFB0D927CF955 3.26 #module
+167CFB0D927CF955 3.28 #module
 >Proto >Proto Collection #zClass
 Ps0 CompactProcessWidgetProcess Big #zClass
 Ps0 RD #cInfo
 Ps0 #process
-Ps0 @TextInP .ui2RdDataAction .ui2RdDataAction #zField
-Ps0 @TextInP .rdData2UIAction .rdData2UIAction #zField
-Ps0 @TextInP .resExport .resExport #zField
 Ps0 @TextInP .type .type #zField
 Ps0 @TextInP .processKind .processKind #zField
 Ps0 @AnnotationInP-0n ai ai #zField
@@ -14,23 +11,21 @@ Ps0 @MessageFlowInP-0n messageIn messageIn #zField
 Ps0 @MessageFlowOutP-0n messageOut messageOut #zField
 Ps0 @TextInP .xml .xml #zField
 Ps0 @TextInP .responsibility .responsibility #zField
-Ps0 @RichDialogInitStart f1 '' #zField
-Ps0 @RichDialogProcessEnd f3 '' #zField
+Ps0 @UdInit f1 '' #zField
+Ps0 @UdProcessEnd f3 '' #zField
 Ps0 @PushWFArc f4 '' #zField
-Ps0 @RichDialogMethodStart f0 '' #zField
+Ps0 @UdMethod f0 '' #zField
 Ps0 @GridStep f2 '' #zField
 Ps0 @PushWFArc f5 '' #zField
 Ps0 @CallSub f6 '' #zField
 Ps0 @PushWFArc f7 '' #zField
-Ps0 @RichDialogProcessEnd f8 '' #zField
+Ps0 @UdProcessEnd f8 '' #zField
 Ps0 @GridStep f10 '' #zField
 Ps0 @PushWFArc f11 '' #zField
 Ps0 @PushWFArc f9 '' #zField
 >Proto Ps0 Ps0 CompactProcessWidgetProcess #zField
 Ps0 f1 guid 167CEF3C0BEA1F15 #txt
-Ps0 f1 type ch.ivy.addon.portalkit.component.CompactProcessWidget.CompactProcessWidgetData #txt
 Ps0 f1 method start() #txt
-Ps0 f1 disableUIEvents true #txt
 Ps0 f1 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -44,16 +39,13 @@ Ps0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f1 83 83 26 26 -32 15 #rect
-Ps0 f1 @|RichDialogInitStartIcon #fIcon
-Ps0 f3 type ch.ivy.addon.portalkit.component.CompactProcessWidget.CompactProcessWidgetData #txt
+Ps0 f1 @|UdInitIcon #fIcon
 Ps0 f3 307 83 26 26 0 12 #rect
-Ps0 f3 @|RichDialogProcessEndIcon #fIcon
+Ps0 f3 @|UdProcessEndIcon #fIcon
 Ps0 f4 expr out #txt
 Ps0 f4 109 96 307 96 #arcP
 Ps0 f0 guid 167CF9865BEC5C1B #txt
-Ps0 f0 type ch.ivy.addon.portalkit.component.CompactProcessWidget.CompactProcessWidgetData #txt
 Ps0 f0 method collectProcesses() #txt
-Ps0 f0 disableUIEvents false #txt
 Ps0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -69,9 +61,7 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f0 83 179 26 26 -48 16 #rect
-Ps0 f0 @|RichDialogMethodStartIcon #fIcon
-Ps0 f2 actionDecl 'ch.ivy.addon.portalkit.component.CompactProcessWidget.CompactProcessWidgetData out;
-' #txt
+Ps0 f0 @|UdMethodIcon #fIcon
 Ps0 f2 actionTable 'out=in;
 ' #txt
 Ps0 f2 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
@@ -81,7 +71,6 @@ java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.
 out.processSearchCriteria.apps = apps;
 out.processSearchCriteria.username = ivy.session.getSessionUserName();
 ' #txt
-Ps0 f2 type ch.ivy.addon.portalkit.component.CompactProcessWidget.CompactProcessWidgetData #txt
 Ps0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -93,9 +82,7 @@ Ps0 f2 168 170 112 44 -42 -8 #rect
 Ps0 f2 @|StepIcon #fIcon
 Ps0 f5 expr out #txt
 Ps0 f5 109 192 168 192 #arcP
-Ps0 f6 type ch.ivy.addon.portalkit.component.CompactProcessWidget.CompactProcessWidgetData #txt
 Ps0 f6 processCall 'Ivy Data Processes/ProcessService:findProcesses(ch.ivy.addon.portalkit.ivydata.searchcriteria.ProcessSearchCriteria)' #txt
-Ps0 f6 doCall true #txt
 Ps0 f6 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.ProcessSearchCriteria processSearchCriteria> param;
 ' #txt
 Ps0 f6 requestMappingAction 'param.processSearchCriteria=in.processSearchCriteria;
@@ -117,11 +104,8 @@ Ps0 f6 320 170 112 44 -43 -8 #rect
 Ps0 f6 @|CallSubIcon #fIcon
 Ps0 f7 expr out #txt
 Ps0 f7 280 192 320 192 #arcP
-Ps0 f8 type ch.ivy.addon.portalkit.component.CompactProcessWidget.CompactProcessWidgetData #txt
 Ps0 f8 651 179 26 26 0 12 #rect
-Ps0 f8 @|RichDialogProcessEndIcon #fIcon
-Ps0 f10 actionDecl 'ch.ivy.addon.portalkit.component.CompactProcessWidget.CompactProcessWidgetData out;
-' #txt
+Ps0 f8 @|UdProcessEndIcon #fIcon
 Ps0 f10 actionTable 'out=in;
 ' #txt
 Ps0 f10 actionCode 'import ch.ivy.addon.portalkit.util.ProcessStartsUtil;
@@ -150,7 +134,6 @@ if (StringUtils.isNotBlank(expressStartLink)) {
 		}
 	}
 }' #txt
-Ps0 f10 type ch.ivy.addon.portalkit.component.CompactProcessWidget.CompactProcessWidgetData #txt
 Ps0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

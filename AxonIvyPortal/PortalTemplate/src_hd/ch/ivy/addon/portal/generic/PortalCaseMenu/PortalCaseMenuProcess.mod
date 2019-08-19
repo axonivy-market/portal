@@ -1,12 +1,9 @@
 [Ivy]
-1610C9DBEDBBF46E 3.24 #module
+1610C9DBEDBBF46E 3.28 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalCaseMenuProcess Big #zClass
 Ps0 RD #cInfo
 Ps0 #process
-Ps0 @TextInP .ui2RdDataAction .ui2RdDataAction #zField
-Ps0 @TextInP .rdData2UIAction .rdData2UIAction #zField
-Ps0 @TextInP .resExport .resExport #zField
 Ps0 @TextInP .type .type #zField
 Ps0 @TextInP .processKind .processKind #zField
 Ps0 @AnnotationInP-0n ai ai #zField
@@ -14,7 +11,7 @@ Ps0 @MessageFlowInP-0n messageIn messageIn #zField
 Ps0 @MessageFlowOutP-0n messageOut messageOut #zField
 Ps0 @TextInP .xml .xml #zField
 Ps0 @TextInP .responsibility .responsibility #zField
-Ps0 @RichDialogProcessEnd f4 '' #zField
+Ps0 @UdProcessEnd f4 '' #zField
 Ps0 @GridStep f9 '' #zField
 Ps0 @CallSub f38 '' #zField
 Ps0 @GridStep f7 '' #zField
@@ -25,10 +22,10 @@ Ps0 @CallSub f33 '' #zField
 Ps0 @PushWFArc f8 '' #zField
 Ps0 @CallSub f14 '' #zField
 Ps0 @PushWFArc f23 '' #zField
-Ps0 @RichDialogInitStart f0 '' #zField
-Ps0 @RichDialogProcessEnd f1 '' #zField
+Ps0 @UdInit f0 '' #zField
+Ps0 @UdProcessEnd f1 '' #zField
 Ps0 @PushWFArc f2 '' #zField
-Ps0 @RichDialogMethodStart f3 '' #zField
+Ps0 @UdMethod f3 '' #zField
 Ps0 @PushWFArc f15 '' #zField
 Ps0 @PushWFArc f24 '' #zField
 Ps0 @CallSub f25 '' #zField
@@ -37,23 +34,19 @@ Ps0 @PushWFArc f5 '' #zField
 Ps0 @CallSub f6 '' #zField
 Ps0 @PushWFArc f11 '' #zField
 Ps0 @PushWFArc f16 '' #zField
-Ps0 @RichDialogProcessStart f12 '' #zField
+Ps0 @UdEvent f12 '' #zField
 Ps0 @PushWFArc f19 '' #zField
 Ps0 @GridStep f13 '' #zField
 Ps0 @PushWFArc f18 '' #zField
 Ps0 @PushWFArc f20 '' #zField
 >Proto Ps0 Ps0 PortalCaseMenuProcess #zField
-Ps0 f4 type ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData #txt
 Ps0 f4 1075 211 26 26 0 12 #rect
-Ps0 f4 @|RichDialogProcessEndIcon #fIcon
-Ps0 f9 actionDecl 'ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData out;
-' #txt
+Ps0 f4 @|UdProcessEndIcon #fIcon
 Ps0 f9 actionTable 'out=in;
 ' #txt
 Ps0 f9 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
 
 in.hasReadAllCasesPermisson = PermissionUtils.checkReadAllCasesPermission();' #txt
-Ps0 f9 type ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData #txt
 Ps0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -65,9 +58,7 @@ Ps0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ps0 f9 360 200 128 48 -45 -8 #rect
 Ps0 f9 @|StepIcon #fIcon
-Ps0 f38 type ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData #txt
 Ps0 f38 processCall 'Functional Processes/OpenPortalCases:useView(ch.ivy.addon.portal.generic.view.CaseView)' #txt
-Ps0 f38 doCall true #txt
 Ps0 f38 requestActionDecl '<ch.ivy.addon.portal.generic.view.CaseView view> param;
 ' #txt
 Ps0 f38 requestMappingAction 'param.view=in.caseView;
@@ -85,8 +76,6 @@ Ps0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ps0 f38 490 330 112 44 -49 -8 #rect
 Ps0 f38 @|CallSubIcon #fIcon
-Ps0 f7 actionDecl 'ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData out;
-' #txt
 Ps0 f7 actionTable 'out=in;
 ' #txt
 Ps0 f7 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
@@ -97,7 +86,6 @@ java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.
 out.criteria.apps = apps;
 
 out.criteria.includedStates = [CaseState.CREATED, CaseState.RUNNING, CaseState.DONE];' #txt
-Ps0 f7 type ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData #txt
 Ps0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -109,15 +97,11 @@ Ps0 f7 184 202 112 44 -34 -8 #rect
 Ps0 f7 @|StepIcon #fIcon
 Ps0 f17 expr out #txt
 Ps0 f17 296 224 360 224 #arcP
-Ps0 f10 type ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData #txt
 Ps0 f10 690 210 28 28 14 0 #rect
 Ps0 f10 @|AlternativeIcon #fIcon
-Ps0 f22 type ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData #txt
 Ps0 f22 882 210 28 28 14 0 #rect
 Ps0 f22 @|AlternativeIcon #fIcon
-Ps0 f33 type ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData #txt
 Ps0 f33 processCall 'Functional Processes/InitializeCaseDataModel:call()' #txt
-Ps0 f33 doCall true #txt
 Ps0 f33 requestActionDecl '<> param;
 ' #txt
 Ps0 f33 responseActionDecl 'ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData out;
@@ -136,9 +120,7 @@ Ps0 f33 152 330 144 44 -66 -8 #rect
 Ps0 f33 @|CallSubIcon #fIcon
 Ps0 f8 expr in #txt
 Ps0 f8 718 224 882 224 #arcP
-Ps0 f14 type ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData #txt
 Ps0 f14 processCall 'Functional Processes/BuildCaseQuery:buildCaseQuery()' #txt
-Ps0 f14 doCall true #txt
 Ps0 f14 requestActionDecl '<> param;
 ' #txt
 Ps0 f14 responseActionDecl 'ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData out;
@@ -158,9 +140,7 @@ Ps0 f14 @|CallSubIcon #fIcon
 Ps0 f23 expr out #txt
 Ps0 f23 488 224 544 224 #arcP
 Ps0 f0 guid 1680CAF963FE7BB5 #txt
-Ps0 f0 type ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData #txt
 Ps0 f0 method start() #txt
-Ps0 f0 disableUIEvents true #txt
 Ps0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -174,16 +154,13 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f0 83 83 26 26 -16 15 #rect
-Ps0 f0 @|RichDialogInitStartIcon #fIcon
-Ps0 f1 type ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData #txt
+Ps0 f0 @|UdInitIcon #fIcon
 Ps0 f1 307 83 26 26 0 12 #rect
-Ps0 f1 @|RichDialogProcessEndIcon #fIcon
+Ps0 f1 @|UdProcessEndIcon #fIcon
 Ps0 f2 expr out #txt
 Ps0 f2 109 96 307 96 #arcP
 Ps0 f3 guid 1680CAFE56F5E311 #txt
-Ps0 f3 type ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData #txt
 Ps0 f3 method findCaseCategory() #txt
-Ps0 f3 disableUIEvents false #txt
 Ps0 f3 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -197,14 +174,12 @@ Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f3 83 211 26 26 -53 15 #rect
-Ps0 f3 @|RichDialogMethodStartIcon #fIcon
+Ps0 f3 @|UdMethodIcon #fIcon
 Ps0 f15 expr out #txt
 Ps0 f15 109 224 184 224 #arcP
 Ps0 f24 expr out #txt
 Ps0 f24 656 224 690 224 #arcP
-Ps0 f25 type ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData #txt
 Ps0 f25 processCall 'Ivy Data Processes/CaseService:findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria)' #txt
-Ps0 f25 doCall true #txt
 Ps0 f25 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria caseCategorySearchCriteria> param;
 ' #txt
 Ps0 f25 requestMappingAction 'param.caseCategorySearchCriteria=in.criteria;
@@ -233,9 +208,7 @@ Ps0 f5 expr out #txt
 Ps0 f5 856 160 896 210 #arcP
 Ps0 f5 1 896 160 #addKink
 Ps0 f5 0 0.9741638052568026 0 0 #arcLabel
-Ps0 f6 type ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData #txt
 Ps0 f6 processCall 'Ivy Data Processes/CaseService:findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria)' #txt
-Ps0 f6 doCall true #txt
 Ps0 f6 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria caseCategorySearchCriteria> param;
 ' #txt
 Ps0 f6 requestMappingAction 'param.caseCategorySearchCriteria=in.criteria;
@@ -261,9 +234,6 @@ Ps0 f11 910 224 936 224 #arcP
 Ps0 f16 expr out #txt
 Ps0 f16 1048 224 1075 224 #arcP
 Ps0 f12 guid 1680D56C142FD50A #txt
-Ps0 f12 type ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData #txt
-Ps0 f12 actionDecl 'ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData out;
-' #txt
 Ps0 f12 actionTable 'out=in;
 ' #txt
 Ps0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -274,11 +244,9 @@ Ps0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f12 83 339 26 26 -29 15 #rect
-Ps0 f12 @|RichDialogProcessStartIcon #fIcon
+Ps0 f12 @|UdEventIcon #fIcon
 Ps0 f19 expr out #txt
 Ps0 f19 109 352 152 352 #arcP
-Ps0 f13 actionDecl 'ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData out;
-' #txt
 Ps0 f13 actionTable 'out=in;
 ' #txt
 Ps0 f13 actionCode 'import ch.ivy.addon.portal.generic.common.TreeNodeType;
@@ -300,7 +268,6 @@ if(in.selectedNode.type.startsWith(TreeNodeType.CASES_ALL_CASES)){
 }
 
 in.caseView = CaseView.create().category(categoryMenu).dataModel(in.dataModel).withTitle(categoryMenu.value).buildNewView();' #txt
-Ps0 f13 type ch.ivy.addon.portal.generic.PortalCaseMenu.PortalCaseMenuData #txt
 Ps0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

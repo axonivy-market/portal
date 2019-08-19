@@ -1,10 +1,9 @@
 [Ivy]
-15E0CEDE89CC1D0E 3.26 #module
+15E0CEDE89CC1D0E 3.28 #module
 >Proto >Proto Collection #zClass
 Pe0 PasswordService Big #zClass
 Pe0 B #cInfo
 Pe0 #process
-Pe0 @TextInP .resExport .resExport #zField
 Pe0 @TextInP .type .type #zField
 Pe0 @TextInP .processKind .processKind #zField
 Pe0 @AnnotationInP-0n ai ai #zField
@@ -29,10 +28,7 @@ out.username=param.username;
 Pe0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;' #txt
 Pe0 f0 outParamTable 'result.errors=in.errors;
 ' #txt
-Pe0 f0 actionDecl 'ch.ivyteam.wf.processes.PasswordServiceData out;
-' #txt
 Pe0 f0 callSignature updatePassword(String,String) #txt
-Pe0 f0 type ch.ivyteam.wf.processes.PasswordServiceData #txt
 Pe0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -42,11 +38,8 @@ Pe0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pe0 f0 81 81 30 30 -86 17 #rect
 Pe0 f0 @|StartSubIcon #fIcon
-Pe0 f1 type ch.ivyteam.wf.processes.PasswordServiceData #txt
 Pe0 f1 777 81 30 30 0 15 #rect
 Pe0 f1 @|EndSubIcon #fIcon
-Pe0 f10 actionDecl 'ch.ivyteam.wf.processes.PasswordServiceData out;
-' #txt
 Pe0 f10 actionTable 'out=in;
 ' #txt
 Pe0 f10 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
@@ -54,7 +47,6 @@ Pe0 f10 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationS
 RegisteredApplicationService service = new RegisteredApplicationService();
 out.apps = service.findActiveIvyAppsUserCanWorkOn(in.username);
 ' #txt
-Pe0 f10 type ch.ivyteam.wf.processes.PasswordServiceData #txt
 Pe0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -64,8 +56,6 @@ Pe0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pe0 f10 208 74 176 44 -81 -8 #rect
 Pe0 f10 @|StepIcon #fIcon
-Pe0 f6 actionDecl 'ch.ivyteam.wf.processes.PasswordServiceData out;
-' #txt
 Pe0 f6 actionTable 'out=in;
 ' #txt
 Pe0 f6 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyPasswordResultDTO;
@@ -73,7 +63,6 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.PasswordService;
 
 IvyPasswordResultDTO dto = PasswordService.newInstance().changePassword(in.username, in.newPassword, in.apps);
 out.errors = dto.errors;' #txt
-Pe0 f6 type ch.ivyteam.wf.processes.PasswordServiceData #txt
 Pe0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -83,9 +72,7 @@ Pe0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pe0 f6 440 74 112 44 -51 -8 #rect
 Pe0 f6 @|StepIcon #fIcon
-Pe0 f2 type ch.ivyteam.wf.processes.PasswordServiceData #txt
 Pe0 f2 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Pe0 f2 doCall true #txt
 Pe0 f2 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
 ' #txt
 Pe0 f2 requestMappingAction 'param.exceptions=in.errors;

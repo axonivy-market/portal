@@ -1,12 +1,9 @@
 [Ivy]
-15C67FEA143420EE 3.26 #module
+15C67FEA143420EE 3.28 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalTaskListCallbackProcess Big #zClass
 Ps0 RD #cInfo
 Ps0 #process
-Ps0 @TextInP .ui2RdDataAction .ui2RdDataAction #zField
-Ps0 @TextInP .rdData2UIAction .rdData2UIAction #zField
-Ps0 @TextInP .resExport .resExport #zField
 Ps0 @TextInP .type .type #zField
 Ps0 @TextInP .processKind .processKind #zField
 Ps0 @AnnotationInP-0n ai ai #zField
@@ -14,21 +11,19 @@ Ps0 @MessageFlowInP-0n messageIn messageIn #zField
 Ps0 @MessageFlowOutP-0n messageOut messageOut #zField
 Ps0 @TextInP .xml .xml #zField
 Ps0 @TextInP .responsibility .responsibility #zField
-Ps0 @RichDialogInitStart f0 '' #zField
-Ps0 @RichDialogProcessEnd f1 '' #zField
+Ps0 @UdInit f0 '' #zField
+Ps0 @UdProcessEnd f1 '' #zField
 Ps0 @PushWFArc f2 '' #zField
-Ps0 @RichDialogMethodStart f3 '' #zField
+Ps0 @UdMethod f3 '' #zField
 Ps0 @GridStep f4 '' #zField
-Ps0 @RichDialogProcessEnd f6 '' #zField
+Ps0 @UdProcessEnd f6 '' #zField
 Ps0 @PushWFArc f7 '' #zField
 Ps0 @GridStep f8 '' #zField
 Ps0 @PushWFArc f9 '' #zField
 Ps0 @PushWFArc f5 '' #zField
 >Proto Ps0 Ps0 PortalTaskListCallbackProcess #zField
 Ps0 f0 guid 15C67E57F20669EF #txt
-Ps0 f0 type ch.ivy.addon.portal.generic.PortalTaskListCallback.PortalTaskListCallbackData #txt
 Ps0 f0 method start(String) #txt
-Ps0 f0 disableUIEvents true #txt
 Ps0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <java.lang.String callbackUrl> param = methodEvent.getInputArguments();
 ' #txt
@@ -46,20 +41,15 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f0 83 51 26 26 -16 15 #rect
-Ps0 f0 @|RichDialogInitStartIcon #fIcon
-Ps0 f1 type ch.ivy.addon.portal.generic.PortalTaskListCallback.PortalTaskListCallbackData #txt
+Ps0 f0 @|UdInitIcon #fIcon
 Ps0 f1 211 51 26 26 0 12 #rect
-Ps0 f1 @|RichDialogProcessEndIcon #fIcon
+Ps0 f1 @|UdProcessEndIcon #fIcon
 Ps0 f2 expr out #txt
 Ps0 f2 109 64 211 64 #arcP
 Ps0 f3 guid 15C67E8753E2C68C #txt
-Ps0 f3 type ch.ivy.addon.portal.generic.PortalTaskListCallback.PortalTaskListCallbackData #txt
 Ps0 f3 method redirect() #txt
-Ps0 f3 disableUIEvents false #txt
-Ps0 f3 inParameterDecl 'ch.ivy.addon.portal.generic.PortalTaskListCallback.PortalTaskListCallbackData out;
-' #txt
-Ps0 f3 outParameterDecl '<> result;
-' #txt
+Ps0 f3 inParameterDecl '<> param;' #txt
+Ps0 f3 outParameterDecl '<> result;' #txt
 Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -68,9 +58,7 @@ Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f3 83 147 26 26 -24 15 #rect
-Ps0 f3 @|RichDialogMethodStartIcon #fIcon
-Ps0 f4 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskListCallback.PortalTaskListCallbackData out;
-' #txt
+Ps0 f3 @|UdMethodIcon #fIcon
 Ps0 f4 actionTable 'out=in;
 ' #txt
 Ps0 f4 actionCode 'import org.apache.commons.lang3.StringUtils;
@@ -95,7 +83,6 @@ if (request != null && StringUtils.isNotBlank(url) && OpenRedirectVulnerabilityU
 	PortalNavigator navigator = new PortalNavigator();
 	navigator.navigateToPortalHome();
 }' #txt
-Ps0 f4 type ch.ivy.addon.portal.generic.PortalTaskListCallback.PortalTaskListCallbackData #txt
 Ps0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -105,13 +92,10 @@ Ps0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ps0 f4 320 138 128 44 -58 -8 #rect
 Ps0 f4 @|StepIcon #fIcon
-Ps0 f6 type ch.ivy.addon.portal.generic.PortalTaskListCallback.PortalTaskListCallbackData #txt
 Ps0 f6 499 147 26 26 0 12 #rect
-Ps0 f6 @|RichDialogProcessEndIcon #fIcon
+Ps0 f6 @|UdProcessEndIcon #fIcon
 Ps0 f7 expr out #txt
 Ps0 f7 448 160 499 160 #arcP
-Ps0 f8 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskListCallback.PortalTaskListCallbackData out;
-' #txt
 Ps0 f8 actionTable 'out=in;
 ' #txt
 Ps0 f8 actionCode 'import org.apache.commons.lang3.StringUtils;
@@ -132,7 +116,6 @@ if (displayMessageAfterFinishTask) {
 	flash.setRedirect(true);
 	flash.setKeepMessages(true);
 }' #txt
-Ps0 f8 type ch.ivy.addon.portal.generic.PortalTaskListCallback.PortalTaskListCallbackData #txt
 Ps0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

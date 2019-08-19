@@ -1,10 +1,9 @@
 [Ivy]
-16B3FA08E0ADDCE6 3.26 #module
+16B3FA08E0ADDCE6 3.28 #module
 >Proto >Proto Collection #zClass
 At0 AssignRolesGroupChat Big #zClass
 At0 B #cInfo
 At0 #process
-At0 @TextInP .resExport .resExport #zField
 At0 @TextInP .type .type #zField
 At0 @TextInP .processKind .processKind #zField
 At0 @AnnotationInP-0n ai ai #zField
@@ -26,10 +25,7 @@ At0 f0 outParamDecl '<java.util.List<ch.ivyteam.ivy.security.IRole> roles> resul
 ' #txt
 At0 f0 outParamTable 'result.roles=in.roles;
 ' #txt
-At0 f0 actionDecl '_ch.ivyteam.ivy.project.portal.examples.AssignRolesGroupChatOverrideData out;
-' #txt
 At0 f0 callSignature configureRolesForGroupChat(ch.ivyteam.ivy.workflow.ITask) #txt
-At0 f0 type _ch.ivyteam.ivy.project.portal.examples.AssignRolesGroupChatOverrideData #txt
 At0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -39,7 +35,6 @@ At0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 At0 f0 57 17 30 30 5 17 #rect
 At0 f0 @|StartSubIcon #fIcon
-At0 f1 type _ch.ivyteam.ivy.project.portal.examples.AssignRolesGroupChatOverrideData #txt
 At0 f1 57 225 30 30 0 15 #rect
 At0 f1 @|EndSubIcon #fIcon
 At0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -58,8 +53,6 @@ if (processPath.contains("Start Processes/CreateTestData/CategoriedLeaveRequest.
 ' #txt
 At0 f3 136 74 512 140 -250 -64 #rect
 At0 f3 @|IBIcon #fIcon
-At0 f5 actionDecl '_ch.ivyteam.ivy.project.portal.examples.AssignRolesGroupChatOverrideData out;
-' #txt
 At0 f5 actionTable 'out=in;
 ' #txt
 At0 f5 actionCode 'import java.util.ArrayList;
@@ -68,7 +61,6 @@ if (processPath.contains("Start Processes/CreateTestData/CategoriedLeaveRequest.
 	in.roles.add(ivy.wf.getSecurityContext().findRole("HR"));
 }' #txt
 At0 f5 security system #txt
-At0 f5 type _ch.ivyteam.ivy.project.portal.examples.AssignRolesGroupChatOverrideData #txt
 At0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

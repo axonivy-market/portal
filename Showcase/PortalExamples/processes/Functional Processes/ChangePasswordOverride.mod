@@ -1,10 +1,9 @@
 [Ivy]
-1657FC622FD937C4 3.26 #module
+1657FC622FD937C4 3.28 #module
 >Proto >Proto Collection #zClass
 Cd0 ChangePassword Big #zClass
 Cd0 B #cInfo
 Cd0 #process
-Cd0 @TextInP .resExport .resExport #zField
 Cd0 @TextInP .type .type #zField
 Cd0 @TextInP .processKind .processKind #zField
 Cd0 @AnnotationInP-0n ai ai #zField
@@ -37,10 +36,7 @@ Cd0 f0 outParamDecl '<ch.ivy.addon.portalkit.enums.ChangePasswordStatus status,j
 Cd0 f0 outParamTable 'result.status=in.status;
 result.message=in.message;
 ' #txt
-Cd0 f0 actionDecl '_ch.ivyteam.ivy.project.portal.examples.ChangePasswordOverrideData out;
-' #txt
 Cd0 f0 callSignature changePassword(String,String) #txt
-Cd0 f0 type _ch.ivyteam.ivy.project.portal.examples.ChangePasswordOverrideData #txt
 Cd0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -50,12 +46,9 @@ Cd0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cd0 f0 169 49 30 30 -86 17 #rect
 Cd0 f0 @|StartSubIcon #fIcon
-Cd0 f1 type _ch.ivyteam.ivy.project.portal.examples.ChangePasswordOverrideData #txt
 Cd0 f1 169 625 30 30 0 15 #rect
 Cd0 f1 @|EndSubIcon #fIcon
-Cd0 f14 type _ch.ivyteam.ivy.project.portal.examples.ChangePasswordOverrideData #txt
 Cd0 f14 processCall 'Ivy Data Processes/PasswordService:updatePassword(String,String)' #txt
-Cd0 f14 doCall true #txt
 Cd0 f14 requestActionDecl '<java.lang.String username,java.lang.String newPassword> param;' #txt
 Cd0 f14 requestMappingAction 'param.username=ivy.session.getSessionUserName();
 param.newPassword=in.newPassword;
@@ -89,8 +82,6 @@ character.</name>
 ' #txt
 Cd0 f5 416 154 608 60 -297 -24 #rect
 Cd0 f5 @|IBIcon #fIcon
-Cd0 f6 actionDecl '_ch.ivyteam.ivy.project.portal.examples.ChangePasswordOverrideData out;
-' #txt
 Cd0 f6 actionTable 'out=in;
 ' #txt
 Cd0 f6 actionCode 'import ch.ivy.addon.portalkit.enums.ChangePasswordStatus;
@@ -106,7 +97,6 @@ if(!ivy.session.checkPassword(in.currentPassword)) {
 	in.status = ChangePasswordStatus.OK;
 }
 ' #txt
-Cd0 f6 type _ch.ivyteam.ivy.project.portal.examples.ChangePasswordOverrideData #txt
 Cd0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -120,7 +110,6 @@ Cd0 f6 97 165 176 44 -84 -8 #rect
 Cd0 f6 @|StepIcon #fIcon
 Cd0 f7 expr out #txt
 Cd0 f7 184 78 185 165 #arcP
-Cd0 f3 type _ch.ivyteam.ivy.project.portal.examples.ChangePasswordOverrideData #txt
 Cd0 f3 168 256 32 32 0 16 #rect
 Cd0 f3 @|AlternativeIcon #fIcon
 Cd0 f8 expr out #txt
@@ -128,13 +117,10 @@ Cd0 f8 185 209 184 256 #arcP
 Cd0 f10 expr in #txt
 Cd0 f10 outCond 'in.status != ch.ivy.addon.portalkit.enums.ChangePasswordStatus.FAIL' #txt
 Cd0 f10 184 288 184 330 #arcP
-Cd0 f11 type _ch.ivyteam.ivy.project.portal.examples.ChangePasswordOverrideData #txt
 Cd0 f11 168 528 32 32 0 16 #rect
 Cd0 f11 @|AlternativeIcon #fIcon
 Cd0 f2 expr in #txt
 Cd0 f2 184 560 184 625 #arcP
-Cd0 f9 actionDecl '_ch.ivyteam.ivy.project.portal.examples.ChangePasswordOverrideData out;
-' #txt
 Cd0 f9 actionTable 'out=in;
 ' #txt
 Cd0 f9 actionCode 'import ch.ivy.addon.portalkit.enums.ChangePasswordStatus;
@@ -146,7 +132,6 @@ else{
 	in.status = ChangePasswordStatus.OK;
 	in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/passwordSetting/updatePasswordSuccessfully");
 }' #txt
-Cd0 f9 type _ch.ivyteam.ivy.project.portal.examples.ChangePasswordOverrideData #txt
 Cd0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

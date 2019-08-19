@@ -1,12 +1,9 @@
 [Ivy]
-156F869FC3FCD1D9 3.26 #module
+156F869FC3FCD1D9 3.28 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalTaskMenuProcess Big #zClass
 Ps0 RD #cInfo
 Ps0 #process
-Ps0 @TextInP .ui2RdDataAction .ui2RdDataAction #zField
-Ps0 @TextInP .rdData2UIAction .rdData2UIAction #zField
-Ps0 @TextInP .resExport .resExport #zField
 Ps0 @TextInP .type .type #zField
 Ps0 @TextInP .processKind .processKind #zField
 Ps0 @AnnotationInP-0n ai ai #zField
@@ -14,7 +11,7 @@ Ps0 @MessageFlowInP-0n messageIn messageIn #zField
 Ps0 @MessageFlowOutP-0n messageOut messageOut #zField
 Ps0 @TextInP .xml .xml #zField
 Ps0 @TextInP .responsibility .responsibility #zField
-Ps0 @RichDialogProcessEnd f4 '' #zField
+Ps0 @UdProcessEnd f4 '' #zField
 Ps0 @GridStep f9 '' #zField
 Ps0 @CallSub f38 '' #zField
 Ps0 @GridStep f7 '' #zField
@@ -22,12 +19,12 @@ Ps0 @PushWFArc f17 '' #zField
 Ps0 @GridStep f28 '' #zField
 Ps0 @PushWFArc f30 '' #zField
 Ps0 @CallSub f33 '' #zField
-Ps0 @RichDialogInitStart f0 '' #zField
-Ps0 @RichDialogProcessEnd f1 '' #zField
+Ps0 @UdInit f0 '' #zField
+Ps0 @UdProcessEnd f1 '' #zField
 Ps0 @PushWFArc f2 '' #zField
-Ps0 @RichDialogMethodStart f3 '' #zField
+Ps0 @UdMethod f3 '' #zField
 Ps0 @PushWFArc f15 '' #zField
-Ps0 @RichDialogProcessStart f12 '' #zField
+Ps0 @UdEvent f12 '' #zField
 Ps0 @PushWFArc f16 '' #zField
 Ps0 @CallSub f14 '' #zField
 Ps0 @PushWFArc f19 '' #zField
@@ -62,17 +59,13 @@ Ps0 @PushWFArc f52 '' #zField
 Ps0 @SJArc f10 '' #zField
 Ps0 @PushWFArc f34 '' #zField
 >Proto Ps0 Ps0 PortalTaskMenuProcess #zField
-Ps0 f4 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f4 1139 211 26 26 0 12 #rect
-Ps0 f4 @|RichDialogProcessEndIcon #fIcon
-Ps0 f9 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out;
-' #txt
+Ps0 f4 @|UdProcessEndIcon #fIcon
 Ps0 f9 actionTable 'out=in;
 ' #txt
 Ps0 f9 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
 
 in.hasReadAllTasksPermisson = PermissionUtils.checkReadAllTasksPermission();' #txt
-Ps0 f9 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -84,9 +77,7 @@ Ps0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ps0 f9 320 200 128 48 -45 -8 #rect
 Ps0 f9 @|StepIcon #fIcon
-Ps0 f38 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f38 processCall 'Functional Processes/OpenPortalTasks:useView(ch.ivy.addon.portal.generic.view.TaskView)' #txt
-Ps0 f38 doCall true #txt
 Ps0 f38 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;
 ' #txt
 Ps0 f38 requestMappingAction 'param.taskView=in.taskView;
@@ -106,8 +97,6 @@ Ps0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ps0 f38 632 392 128 48 -48 -12 #rect
 Ps0 f38 @|CallSubIcon #fIcon
-Ps0 f7 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out;
-' #txt
 Ps0 f7 actionTable 'out=in;
 ' #txt
 Ps0 f7 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
@@ -126,7 +115,6 @@ out.groupCategoryCriteria.includedStates = [TaskState.SUSPENDED, TaskState.RESUM
 out.unassignedCategoryCriteria.includedStates = [TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE];
 
 ' #txt
-Ps0 f7 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -138,8 +126,6 @@ Ps0 f7 168 202 112 44 -34 -8 #rect
 Ps0 f7 @|StepIcon #fIcon
 Ps0 f17 expr out #txt
 Ps0 f17 280 224 320 224 #arcP
-Ps0 f28 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out;
-' #txt
 Ps0 f28 actionTable 'out=in;
 ' #txt
 Ps0 f28 actionCode 'import ch.ivy.addon.portalkit.bo.TaskNode;
@@ -147,7 +133,6 @@ import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 
 SecurityServiceUtils.setSessionAttribute(SessionAttribute.TASK_CATEGORY.toString(), in.selectedMenuItem as TaskNode);' #txt
-Ps0 f28 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -162,9 +147,7 @@ Ps0 f28 472 394 128 44 -45 -16 #rect
 Ps0 f28 @|StepIcon #fIcon
 Ps0 f30 expr out #txt
 Ps0 f30 600 416 632 416 #arcP
-Ps0 f33 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f33 processCall 'Functional Processes/InitializeTaskDataModel:call()' #txt
-Ps0 f33 doCall true #txt
 Ps0 f33 requestActionDecl '<> param;
 ' #txt
 Ps0 f33 responseActionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out;
@@ -182,9 +165,7 @@ Ps0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ps0 f33 152 394 144 44 -65 -8 #rect
 Ps0 f33 @|CallSubIcon #fIcon
 Ps0 f0 guid 16816A4A509B4B43 #txt
-Ps0 f0 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f0 method start() #txt
-Ps0 f0 disableUIEvents true #txt
 Ps0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -198,16 +179,13 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f0 83 83 26 26 -16 15 #rect
-Ps0 f0 @|RichDialogInitStartIcon #fIcon
-Ps0 f1 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
+Ps0 f0 @|UdInitIcon #fIcon
 Ps0 f1 307 83 26 26 0 12 #rect
-Ps0 f1 @|RichDialogProcessEndIcon #fIcon
+Ps0 f1 @|UdProcessEndIcon #fIcon
 Ps0 f2 expr out #txt
 Ps0 f2 109 96 307 96 #arcP
 Ps0 f3 guid 16816A4F156A6A14 #txt
-Ps0 f3 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f3 method findTaskCategory() #txt
-Ps0 f3 disableUIEvents false #txt
 Ps0 f3 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -221,13 +199,10 @@ Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f3 83 211 26 26 -52 15 #rect
-Ps0 f3 @|RichDialogMethodStartIcon #fIcon
+Ps0 f3 @|UdMethodIcon #fIcon
 Ps0 f15 expr out #txt
 Ps0 f15 109 224 168 224 #arcP
 Ps0 f12 guid 1681828FC3D718DB #txt
-Ps0 f12 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
-Ps0 f12 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out;
-' #txt
 Ps0 f12 actionTable 'out=in;
 ' #txt
 Ps0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -238,12 +213,10 @@ Ps0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f12 83 403 26 26 -26 15 #rect
-Ps0 f12 @|RichDialogProcessStartIcon #fIcon
+Ps0 f12 @|UdEventIcon #fIcon
 Ps0 f16 expr out #txt
 Ps0 f16 109 416 152 416 #arcP
-Ps0 f14 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f14 processCall 'Functional Processes/BuildTaskQuery:buildTaskQuery()' #txt
-Ps0 f14 doCall true #txt
 Ps0 f14 requestActionDecl '<> param;
 ' #txt
 Ps0 f14 responseActionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out;
@@ -265,24 +238,16 @@ Ps0 f14 480 202 112 44 -43 -8 #rect
 Ps0 f14 @|CallSubIcon #fIcon
 Ps0 f19 expr out #txt
 Ps0 f19 448 224 480 224 #arcP
-Ps0 f5 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out1;
-ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out2;
-ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out3;
-ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out4;
-' #txt
 Ps0 f5 actionTable 'out1=in;
 out1.allCategoryCriteria=in.allCategoryCriteria;
 out2.myCategoryCriteria=in.myCategoryCriteria;
 out3.groupCategoryCriteria=in.groupCategoryCriteria;
 out4.unassignedCategoryCriteria=in.unassignedCategoryCriteria;
 ' #txt
-Ps0 f5 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f5 624 208 32 32 0 16 #rect
 Ps0 f5 @|ThreadIcon #fIcon
 Ps0 f6 expr out #txt
 Ps0 f6 592 224 624 224 #arcP
-Ps0 f8 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out;
-' #txt
 Ps0 f8 actionTable 'out=in1;
 out.allTaskCategoryTree=in1.allTaskCategoryTree;
 out.groupTaskCategoryTree=in3.groupTaskCategoryTree;
@@ -291,9 +256,7 @@ out.unassignedTaskCategoryTree=in4.#unassignedTaskCategoryTree;
 ' #txt
 Ps0 f8 1072 208 32 32 0 16 #rect
 Ps0 f8 @|JoinIcon #fIcon
-Ps0 f20 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f20 processCall 'Ivy Data Processes/TaskService:findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria)' #txt
-Ps0 f20 doCall true #txt
 Ps0 f20 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria taskCategorySearchCriteria> param;
 ' #txt
 Ps0 f20 requestMappingAction 'param.taskCategorySearchCriteria=in.allCategoryCriteria;
@@ -312,9 +275,7 @@ Ps0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ps0 f20 808 106 112 44 -33 -8 #rect
 Ps0 f20 @|CallSubIcon #fIcon
-Ps0 f26 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f26 processCall 'Ivy Data Processes/TaskService:findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria)' #txt
-Ps0 f26 doCall true #txt
 Ps0 f26 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria taskCategorySearchCriteria> param;
 ' #txt
 Ps0 f26 requestMappingAction 'param.taskCategorySearchCriteria=in.myCategoryCriteria;
@@ -339,8 +300,6 @@ Ps0 f31 var in2 #txt
 Ps0 f31 1000 192 1088 208 #arcP
 Ps0 f31 1 1088 192 #addKink
 Ps0 f31 0 0.7797197062858272 0 0 #arcLabel
-Ps0 f32 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out;
-' #txt
 Ps0 f32 actionTable 'out=in;
 ' #txt
 Ps0 f32 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
@@ -353,7 +312,6 @@ if (in.myCategoryCriteria.getCustomTaskQuery() == null) {
 TaskQuery reservedTaskQuery = TaskQuery.create().where().activatorRoleId().isNotNull().and().state().isEqual(TaskState.PARKED);
 in.myCategoryCriteria.customTaskQuery.where().and().activatorUserId().isNotNull().or(reservedTaskQuery);
 ' #txt
-Ps0 f32 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -368,9 +326,7 @@ Ps0 f27 848 192 888 192 #arcP
 Ps0 f27 0 0.2202802937141729 0 0 #arcLabel
 Ps0 f35 expr out #txt
 Ps0 f35 1104 224 1139 224 #arcP
-Ps0 f36 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f36 processCall 'Ivy Data Processes/TaskService:findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria)' #txt
-Ps0 f36 doCall true #txt
 Ps0 f36 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria taskCategorySearchCriteria> param;
 ' #txt
 Ps0 f36 requestMappingAction 'param.taskCategorySearchCriteria=in.groupCategoryCriteria;
@@ -389,8 +345,6 @@ Ps0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ps0 f36 888 234 112 44 -33 -8 #rect
 Ps0 f36 @|CallSubIcon #fIcon
-Ps0 f37 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out;
-' #txt
 Ps0 f37 actionTable 'out=in;
 ' #txt
 Ps0 f37 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
@@ -403,7 +357,6 @@ if (in.groupCategoryCriteria.getCustomTaskQuery() == null) {
 
 in.groupCategoryCriteria.customTaskQuery.where().and().activatorRoleId().isNotNull();
 ' #txt
-Ps0 f37 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -433,14 +386,11 @@ Ps0 f41 var in3 #txt
 Ps0 f41 1000 256 1088 240 #arcP
 Ps0 f41 1 1088 256 #addKink
 Ps0 f41 0 0.8859746521921745 0 0 #arcLabel
-Ps0 f42 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out;
-' #txt
 Ps0 f42 actionTable 'out=in;
 ' #txt
 Ps0 f42 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
 
 in.unassignedCategoryCriteria.setIncludedStates([TaskState.UNASSIGNED]);' #txt
-Ps0 f42 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -450,9 +400,7 @@ Ps0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ps0 f42 744 298 112 44 -35 -8 #rect
 Ps0 f42 @|StepIcon #fIcon
-Ps0 f43 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f43 processCall 'Ivy Data Processes/TaskService:findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria)' #txt
-Ps0 f43 doCall true #txt
 Ps0 f43 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria taskCategorySearchCriteria> param;
 ' #txt
 Ps0 f43 requestMappingAction 'param.taskCategorySearchCriteria=in.unassignedCategoryCriteria;
@@ -474,13 +422,11 @@ Ps0 f43 @|CallSubIcon #fIcon
 Ps0 f44 expr out #txt
 Ps0 f44 856 320 896 320 #arcP
 Ps0 f44 0 0.2202802937141729 0 0 #arcLabel
-Ps0 f45 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f45 688 304 32 32 0 16 #rect
 Ps0 f45 @|AlternativeIcon #fIcon
 Ps0 f46 expr in #txt
 Ps0 f46 outCond in.hasReadAllTasksPermisson #txt
 Ps0 f46 720 320 744 320 #arcP
-Ps0 f47 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f47 1040 304 32 32 0 16 #rect
 Ps0 f47 @|AlternativeIcon #fIcon
 Ps0 f48 expr out #txt
@@ -507,8 +453,6 @@ Ps0 f51 704 336 1056 336 #arcP
 Ps0 f51 1 704 368 #addKink
 Ps0 f51 2 1056 368 #addKink
 Ps0 f51 1 0.5 0 0 #arcLabel
-Ps0 f13 actionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out;
-' #txt
 Ps0 f13 actionTable 'out=in;
 ' #txt
 Ps0 f13 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
@@ -557,7 +501,6 @@ if(in.selectedNode.type.startsWith(TreeNodeType.TASKS_ALL_TASKS)){
 }
 
 in.taskView = TaskView.create().category(categoryMenu).dataModel(in.dataModel).pageTitle(categoryMenu.value).showHeaderToolbar(false).createNewTaskView();' #txt
-Ps0 f13 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

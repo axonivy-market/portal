@@ -1,10 +1,9 @@
 [Ivy]
-1543CB1F7FCE2CC1 3.23 #module
+1543CB1F7FCE2CC1 3.28 #module
 >Proto >Proto Collection #zClass
 Nr0 Navigator Big #zClass
 Nr0 B #cInfo
 Nr0 #process
-Nr0 @TextInP .resExport .resExport #zField
 Nr0 @TextInP .type .type #zField
 Nr0 @TextInP .processKind .processKind #zField
 Nr0 @AnnotationInP-0n ai ai #zField
@@ -40,10 +39,7 @@ Nr0 @InfoButton f53 '' #zField
 Nr0 f0 inParamDecl '<java.lang.String caseName,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;' #txt
 Nr0 f0 outParamDecl '<> result;
 ' #txt
-Nr0 f0 actionDecl 'ch.ivy.add.portalkit.NavigatorData out;
-' #txt
 Nr0 f0 callSignature viewCase(String,ch.ivy.addon.portalkit.dto.GlobalCaseId) #txt
-Nr0 f0 type ch.ivy.add.portalkit.NavigatorData #txt
 Nr0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -53,7 +49,6 @@ Nr0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Nr0 f0 51 83 26 26 14 0 #rect
 Nr0 f0 @|StartSubIcon #fIcon
-Nr0 f1 type ch.ivy.add.portalkit.NavigatorData #txt
 Nr0 f1 51 339 26 26 14 0 #rect
 Nr0 f1 @|EndSubIcon #fIcon
 Nr0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -82,10 +77,7 @@ Nr0 f4 128 248 64 224 #arcP
 Nr0 f5 inParamDecl '<java.lang.Long taskId,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId,java.lang.String caseName> param;' #txt
 Nr0 f5 outParamDecl '<> result;
 ' #txt
-Nr0 f5 actionDecl 'ch.ivy.add.portalkit.NavigatorData out;
-' #txt
 Nr0 f5 callSignature viewTask(Long,ch.ivy.addon.portalkit.dto.GlobalCaseId,String) #txt
-Nr0 f5 type ch.ivy.add.portalkit.NavigatorData #txt
 Nr0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -97,7 +89,6 @@ Nr0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Nr0 f5 51 411 26 26 14 0 #rect
 Nr0 f5 @|StartSubIcon #fIcon
-Nr0 f6 type ch.ivy.add.portalkit.NavigatorData #txt
 Nr0 f6 51 555 26 26 14 0 #rect
 Nr0 f6 @|EndSubIcon #fIcon
 Nr0 f7 expr out #txt
@@ -126,10 +117,7 @@ Nr0 f12 128 584 64 496 #arcP
 Nr0 f8 inParamDecl '<java.lang.String chartName,ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;' #txt
 Nr0 f8 outParamDecl '<> result;
 ' #txt
-Nr0 f8 actionDecl 'ch.ivy.add.portalkit.NavigatorData out;
-' #txt
 Nr0 f8 callSignature viewTaskForAnalytic(String,ch.ivyteam.ivy.workflow.query.TaskQuery) #txt
-Nr0 f8 type ch.ivy.add.portalkit.NavigatorData #txt
 Nr0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -141,7 +129,6 @@ Nr0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Nr0 f8 724 407 26 26 14 0 #rect
 Nr0 f8 @|StartSubIcon #fIcon
-Nr0 f9 type ch.ivy.add.portalkit.NavigatorData #txt
 Nr0 f9 724 551 26 26 14 0 #rect
 Nr0 f9 @|EndSubIcon #fIcon
 Nr0 f10 expr out #txt
@@ -149,10 +136,7 @@ Nr0 f10 737 433 737 551 #arcP
 Nr0 f13 inParamDecl '<java.lang.String chartName,ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> param;' #txt
 Nr0 f13 outParamDecl '<> result;
 ' #txt
-Nr0 f13 actionDecl 'ch.ivy.add.portalkit.NavigatorData out;
-' #txt
 Nr0 f13 callSignature viewCaseForAnalytic(String,ch.ivyteam.ivy.workflow.query.CaseQuery) #txt
-Nr0 f13 type ch.ivy.add.portalkit.NavigatorData #txt
 Nr0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -164,7 +148,6 @@ Nr0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Nr0 f13 724 84 26 26 14 0 #rect
 Nr0 f13 @|StartSubIcon #fIcon
-Nr0 f14 type ch.ivy.add.portalkit.NavigatorData #txt
 Nr0 f14 724 340 26 26 14 0 #rect
 Nr0 f14 @|EndSubIcon #fIcon
 Nr0 f15 expr out #txt
@@ -214,10 +197,7 @@ Nr0 f19 857 583 737 492 #arcP
 Nr0 f20 inParamDecl '<java.lang.String businessCaseName,ch.ivy.addon.portalkit.dto.GlobalCaseId businessCaseId> param;' #txt
 Nr0 f20 outParamDecl '<> result;
 ' #txt
-Nr0 f20 actionDecl 'ch.ivy.add.portalkit.NavigatorData out;
-' #txt
 Nr0 f20 callSignature viewTechnicalCasesOfBusniessCase(String,ch.ivy.addon.portalkit.dto.GlobalCaseId) #txt
-Nr0 f20 type ch.ivy.add.portalkit.NavigatorData #txt
 Nr0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -227,7 +207,6 @@ Nr0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Nr0 f20 1521 81 30 30 -164 17 #rect
 Nr0 f20 @|StartSubIcon #fIcon
-Nr0 f21 type ch.ivy.add.portalkit.NavigatorData #txt
 Nr0 f21 1521 337 30 30 0 15 #rect
 Nr0 f21 @|EndSubIcon #fIcon
 Nr0 f22 expr out #txt

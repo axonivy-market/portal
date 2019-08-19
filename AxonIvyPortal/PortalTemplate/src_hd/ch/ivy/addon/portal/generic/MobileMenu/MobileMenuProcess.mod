@@ -1,12 +1,9 @@
 [Ivy]
-166CEA9D8FCAD3B5 3.23 #module
+166CEA9D8FCAD3B5 3.28 #module
 >Proto >Proto Collection #zClass
 As0 MobileMenuProcess Big #zClass
 As0 RD #cInfo
 As0 #process
-As0 @TextInP .ui2RdDataAction .ui2RdDataAction #zField
-As0 @TextInP .rdData2UIAction .rdData2UIAction #zField
-As0 @TextInP .resExport .resExport #zField
 As0 @TextInP .type .type #zField
 As0 @TextInP .processKind .processKind #zField
 As0 @AnnotationInP-0n ai ai #zField
@@ -14,26 +11,26 @@ As0 @TextInP .xml .xml #zField
 As0 @TextInP .responsibility .responsibility #zField
 As0 @Alternative f70 '' #zField
 As0 @Alternative f76 '' #zField
-As0 @RichDialogProcessEnd f81 '' #zField
+As0 @UdProcessEnd f81 '' #zField
 As0 @GridStep f83 '' #zField
-As0 @RichDialogProcessEnd f85 '' #zField
-As0 @RichDialogInitStart f87 '' #zField
+As0 @UdProcessEnd f85 '' #zField
+As0 @UdInit f87 '' #zField
 As0 @GridStep f91 '' #zField
 As0 @Alternative f98 '' #zField
 As0 @PushWFArc f109 '' #zField
 As0 @PushWFArc f114 '' #zField
 As0 @PushWFArc f122 '' #zField
 As0 @PushWFArc f125 '' #zField
-As0 @RichDialogProcessStart f1 '' #zField
+As0 @UdEvent f1 '' #zField
 As0 @PushWFArc f2 '' #zField
 As0 @GridStep f14 '' #zField
 As0 @PushWFArc f13 '' #zField
 As0 @PushWFArc f16 '' #zField
-As0 @RichDialogProcessStart f18 '' #zField
-As0 @RichDialogProcessStart f19 '' #zField
+As0 @UdEvent f18 '' #zField
+As0 @UdEvent f19 '' #zField
 As0 @PushWFArc f20 '' #zField
 As0 @PushWFArc f12 '' #zField
-As0 @RichDialogProcessEnd f34 '' #zField
+As0 @UdProcessEnd f34 '' #zField
 As0 @GridStep f17 '' #zField
 As0 @PushWFArc f27 '' #zField
 As0 @PushWFArc f28 '' #zField
@@ -41,29 +38,23 @@ As0 @GridStep f31 '' #zField
 As0 @PushWFArc f35 '' #zField
 As0 @PushWFArc f37 '' #zField
 As0 @PushWFArc f3 '' #zField
-As0 @RichDialogProcessStart f0 '' #zField
+As0 @UdEvent f0 '' #zField
 As0 @PushWFArc f4 '' #zField
 As0 @GridStep f8 '' #zField
 As0 @PushWFArc f9 '' #zField
 As0 @PushWFArc f6 '' #zField
 >Proto As0 As0 MobileMenuProcess #zField
-As0 f70 type ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData #txt
 As0 f70 432 400 32 32 0 16 #rect
 As0 f70 @|AlternativeIcon #fIcon
-As0 f76 type ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData #txt
 As0 f76 592 208 32 32 0 16 #rect
 As0 f76 @|AlternativeIcon #fIcon
-As0 f81 type ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData #txt
 As0 f81 755 307 26 26 0 12 #rect
-As0 f81 @|RichDialogProcessEndIcon #fIcon
-As0 f83 actionDecl 'ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData out;
-' #txt
+As0 f81 @|UdProcessEndIcon #fIcon
 As0 f83 actionTable 'out=in;
 ' #txt
 As0 f83 actionCode 'import org.primefaces.context.RequestContext;
 
 RequestContext.getCurrentInstance().execute("PF(''task-losing-confirmation-dialog'').show()");' #txt
-As0 f83 type ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData #txt
 As0 f83 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -76,13 +67,10 @@ dialog</name>
 ' #txt
 As0 f83 544 298 128 44 -42 -16 #rect
 As0 f83 @|StepIcon #fIcon
-As0 f85 type ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData #txt
 As0 f85 84 212 24 24 13 0 #rect
-As0 f85 @|RichDialogProcessEndIcon #fIcon
+As0 f85 @|UdProcessEndIcon #fIcon
 As0 f87 guid 15FB36E87031CAD2 #txt
-As0 f87 type ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData #txt
 As0 f87 method start(String) #txt
-As0 f87 disableUIEvents true #txt
 As0 f87 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <java.lang.String isWorkingOnATask> param = methodEvent.getInputArguments();
 ' #txt
@@ -100,15 +88,12 @@ As0 f87 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f87 84 52 24 24 13 0 #rect
-As0 f87 @|RichDialogInitStartIcon #fIcon
-As0 f91 actionDecl 'ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData out;
-' #txt
+As0 f87 @|UdInitIcon #fIcon
 As0 f91 actionTable 'out=in;
 ' #txt
 As0 f91 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
 
 TaskUtils.parkTask(ivy.task);' #txt
-As0 f91 type ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData #txt
 As0 f91 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -120,7 +105,6 @@ As0 f91 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f91 400 124 96 40 -29 -6 #rect
 As0 f91 @|StepIcon #fIcon
-As0 f98 type ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData #txt
 As0 f98 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -141,9 +125,6 @@ As0 f122 448 164 448 210 #arcP
 As0 f125 expr in #txt
 As0 f125 592 224 462 224 #arcP
 As0 f1 guid 15FB83C392F10C9D #txt
-As0 f1 type ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData #txt
-As0 f1 actionDecl 'ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData out;
-' #txt
 As0 f1 actionTable 'out=in;
 out.menuKind=ch.ivy.addon.portalkit.enums.MenuKind.TASK;
 ' #txt
@@ -155,19 +136,16 @@ As0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f1 595 51 26 26 16 -3 #rect
-As0 f1 @|RichDialogProcessStartIcon #fIcon
+As0 f1 @|UdEventIcon #fIcon
 As0 f2 expr out #txt
 As0 f2 608 77 608 208 #arcP
 As0 f2 0 0.5848472917488723 0 0 #arcLabel
-As0 f14 actionDecl 'ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData out;
-' #txt
 As0 f14 actionTable 'out=in;
 ' #txt
 As0 f14 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
 
 TaskUtils.resetTask(ivy.task);
 ' #txt
-As0 f14 type ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData #txt
 As0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -185,9 +163,6 @@ As0 f13 1 0.302020000020303 0 0 #arcLabel
 As0 f16 expr in #txt
 As0 f16 448 238 448 400 #arcP
 As0 f18 guid 163FD88EDB522F75 #txt
-As0 f18 type ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData #txt
-As0 f18 actionDecl 'ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData out;
-' #txt
 As0 f18 actionTable 'out=in;
 ' #txt
 As0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -200,11 +175,8 @@ As0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f18 275 51 26 26 21 -1 #rect
-As0 f18 @|RichDialogProcessStartIcon #fIcon
+As0 f18 @|UdEventIcon #fIcon
 As0 f19 guid 163FD891A0AB1B03 #txt
-As0 f19 type ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData #txt
-As0 f19 actionDecl 'ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData out;
-' #txt
 As0 f19 actionTable 'out=in;
 ' #txt
 As0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -217,23 +189,19 @@ As0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f19 435 51 26 26 21 -4 #rect
-As0 f19 @|RichDialogProcessStartIcon #fIcon
+As0 f19 @|UdEventIcon #fIcon
 As0 f20 expr out #txt
 As0 f20 448 77 448 124 #arcP
 As0 f12 expr out #txt
 As0 f12 288 77 288 124 #arcP
-As0 f34 type ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData #txt
 As0 f34 435 595 26 26 0 12 #rect
-As0 f34 @|RichDialogProcessEndIcon #fIcon
-As0 f17 actionDecl 'ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData out;
-' #txt
+As0 f34 @|UdProcessEndIcon #fIcon
 As0 f17 actionTable 'out=in;
 ' #txt
 As0 f17 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 PortalNavigator navigator = new PortalNavigator();
 navigator.navigateToMobilePortalTask();' #txt
 As0 f17 security system #txt
-As0 f17 type ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData #txt
 As0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -252,15 +220,12 @@ As0 f28 expr out #txt
 As0 f28 256 536 435 608 #arcP
 As0 f28 1 256 608 #addKink
 As0 f28 1 0.35157960906624564 0 0 #arcLabel
-As0 f31 actionDecl 'ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData out;
-' #txt
 As0 f31 actionTable 'out=in;
 ' #txt
 As0 f31 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 PortalNavigator navigator = new PortalNavigator();
 navigator.navigateToMobilePortalCase();' #txt
 As0 f31 security system #txt
-As0 f31 type ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData #txt
 As0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -281,9 +246,6 @@ As0 f37 1 0.8827343468967564 0 0 #arcLabel
 As0 f3 expr out #txt
 As0 f3 96 76 96 212 #arcP
 As0 f0 guid 166D246F7171F299 #txt
-As0 f0 type ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData #txt
-As0 f0 actionDecl 'ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData out;
-' #txt
 As0 f0 actionTable 'out=in;
 out.menuKind=ch.ivy.addon.portalkit.enums.MenuKind.PROCESS;
 ' #txt
@@ -295,20 +257,17 @@ As0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f0 722 52 26 26 16 -3 #rect
-As0 f0 @|RichDialogProcessStartIcon #fIcon
+As0 f0 @|UdEventIcon #fIcon
 As0 f4 expr out #txt
 As0 f4 735 77 624 224 #arcP
 As0 f4 1 736 224 #addKink
 As0 f4 0 0.9062480058623832 0 0 #arcLabel
-As0 f8 actionDecl 'ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData out;
-' #txt
 As0 f8 actionTable 'out=in;
 ' #txt
 As0 f8 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 PortalNavigator navigator = new PortalNavigator();
 navigator.navigateToMobilePortalProcess();' #txt
 As0 f8 security system #txt
-As0 f8 type ch.ivy.addon.portal.generic.MobileMenu.MobileMenuData #txt
 As0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

@@ -1,10 +1,9 @@
 [Ivy]
-162511D2577DBA88 3.26 #module
+162511D2577DBA88 3.28 #module
 >Proto >Proto Collection #zClass
 Cs0 CreateTestData Big #zClass
 Cs0 B #cInfo
 Cs0 #process
-Cs0 @TextInP .resExport .resExport #zField
 Cs0 @TextInP .type .type #zField
 Cs0 @TextInP .processKind .processKind #zField
 Cs0 @AnnotationInP-0n ai ai #zField
@@ -41,12 +40,12 @@ Cs0 @TaskSwitchSimple f47 '' #zField
 Cs0 @PushWFArc f59 '' #zField
 Cs0 @TkArc f53 '' #zField
 Cs0 @PushWFArc f55 '' #zField
-Cs0 @RichDialog f11 '' #zField
+Cs0 @UserDialog f11 '' #zField
 Cs0 @TaskSwitch f12 '' #zField
 Cs0 @StartRequest f14 '' #zField
-Cs0 @RichDialog f15 '' #zField
+Cs0 @UserDialog f15 '' #zField
 Cs0 @EndTask f16 '' #zField
-Cs0 @RichDialog f17 '' #zField
+Cs0 @UserDialog f17 '' #zField
 Cs0 @TkArc f18 '' #zField
 Cs0 @PushWFArc f19 '' #zField
 Cs0 @PushWFArc f20 '' #zField
@@ -56,11 +55,7 @@ Cs0 @PushWFArc f23 '' #zField
 Cs0 @PushWFArc f24 '' #zField
 >Proto Cs0 Cs0 CreateTestData #zField
 Cs0 f0 outLink createTasksForTaskListCustomization.ivp #txt
-Cs0 f0 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cs0 f0 inParamDecl '<> param;' #txt
-Cs0 f0 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
-' #txt
-Cs0 f0 guid 162511D258ADC37F #txt
 Cs0 f0 requestEnabled true #txt
 Cs0 f0 triggerEnabled false #txt
 Cs0 f0 callSignature createTasksForTaskListCustomization() #txt
@@ -87,20 +82,14 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f0 @C|.responsibility Everybody #txt
 Cs0 f0 81 81 30 30 -80 20 #rect
 Cs0 f0 @|StartRequestIcon #fIcon
-Cs0 f1 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cs0 f1 403 83 30 30 0 15 #rect
 Cs0 f1 @|EndIcon #fIcon
-Cs0 f4 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cs0 f4 403 19 30 30 0 15 #rect
 Cs0 f4 @|EndIcon #fIcon
-Cs0 f5 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cs0 f5 403 147 30 30 0 15 #rect
 Cs0 f5 @|EndIcon #fIcon
-Cs0 f7 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
-' #txt
 Cs0 f7 actionTable 'out=in1;
 ' #txt
-Cs0 f7 outTypes "ch.ivyteam.ivy.project.portal.examples.Data","ch.ivyteam.ivy.project.portal.examples.Data","ch.ivyteam.ivy.project.portal.examples.Data" #txt
 Cs0 f7 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp" #txt
 Cs0 f7 caseData 'case.category=LeaveRequest
 case.name=Leave Request
@@ -147,7 +136,6 @@ TaskC.TYPE=0
 TaskC.customFields.STRING.CustomVarCharField1="Interior"
 TaskC.customFields.STRING.CustomVarCharField5="Florian"
 TaskC.customFields.TIMESTAMP.CustomTimestampField1=new DateTime()' #txt
-Cs0 f7 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cs0 f7 template "" #txt
 Cs0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -193,14 +181,10 @@ This process will create 3 tasks, each task has filled customVarcharField5 and c
 Cs0 f13 632 66 592 92 -286 -40 #rect
 Cs0 f13 @|IBIcon #fIcon
 Cs0 f9 outLink createCasesForCaseListCustomization.ivp #txt
-Cs0 f9 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cs0 f9 inParamDecl '<> param;' #txt
 Cs0 f9 inParamTable 'out.caseNumber=12;
 out.count=0;
 ' #txt
-Cs0 f9 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
-' #txt
-Cs0 f9 guid 164CA43A716C4C0E #txt
 Cs0 f9 requestEnabled true #txt
 Cs0 f9 triggerEnabled false #txt
 Cs0 f9 callSignature createCasesForCaseListCustomization() #txt
@@ -229,12 +213,9 @@ Cs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f9 @C|.responsibility Everybody #txt
 Cs0 f9 81 241 30 30 -72 18 #rect
 Cs0 f9 @|StartRequestIcon #fIcon
-Cs0 f46 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cs0 f46 700 239 32 32 0 16 #rect
 Cs0 f46 @|AlternativeIcon #fIcon
-Cs0 f45 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cs0 f45 processCall 'Start Processes/CreateTestData:startACase(Integer)' #txt
-Cs0 f45 doCall true #txt
 Cs0 f45 requestActionDecl '<java.lang.Integer count> param;
 ' #txt
 Cs0 f45 requestMappingAction 'param.count=in.count;
@@ -254,18 +235,13 @@ Cs0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f45 372 233 112 44 -43 -8 #rect
 Cs0 f45 @|TriggerIcon #fIcon
-Cs0 f48 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cs0 f48 829 240 30 30 0 15 #rect
 Cs0 f48 @|EndIcon #fIcon
-Cs0 f52 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
-' #txt
 Cs0 f52 actionTable 'out=in;
 ' #txt
 Cs0 f52 actionCode in.count++; #txt
-Cs0 f52 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cs0 f52 532 233 112 44 0 -8 #rect
 Cs0 f52 @|StepIcon #fIcon
-Cs0 f50 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cs0 f50 196 239 32 32 0 16 #rect
 Cs0 f50 @|AlternativeIcon #fIcon
 Cs0 f57 expr in #txt
@@ -285,13 +261,9 @@ Cs0 f42 228 255 372 255 #arcP
 Cs0 f10 expr out #txt
 Cs0 f10 110 255 196 255 #arcP
 Cs0 f43 outLink startACase.ivp #txt
-Cs0 f43 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cs0 f43 inParamDecl '<java.lang.Integer count> param;' #txt
 Cs0 f43 inParamTable 'out.count=param.count;
 ' #txt
-Cs0 f43 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
-' #txt
-Cs0 f43 guid 164CA6A1A84CF4FF #txt
 Cs0 f43 requestEnabled false #txt
 Cs0 f43 triggerEnabled true #txt
 Cs0 f43 callSignature startACase(Integer) #txt
@@ -320,11 +292,8 @@ Cs0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f43 @C|.responsibility Everybody #txt
 Cs0 f43 77 369 30 30 -53 17 #rect
 Cs0 f43 @|StartRequestIcon #fIcon
-Cs0 f54 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cs0 f54 477 369 30 30 0 15 #rect
 Cs0 f54 @|EndIcon #fIcon
-Cs0 f58 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
-' #txt
 Cs0 f58 actionTable 'out=in;
 ' #txt
 Cs0 f58 actionCode 'String a;
@@ -339,14 +308,10 @@ if(in.count % 3 == 0){
 	in.category = "TaskGroup/Group3/TestCase" + in.count;
 }
 ivy.case.setCategoryPath(a);' #txt
-Cs0 f58 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cs0 f58 164 362 112 44 0 -8 #rect
 Cs0 f58 @|StepIcon #fIcon
-Cs0 f47 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
-' #txt
 Cs0 f47 actionTable 'out=in1;
 ' #txt
-Cs0 f47 outTypes "ch.ivyteam.ivy.project.portal.examples.Data" #txt
 Cs0 f47 outLinks "TaskA.ivp" #txt
 Cs0 f47 caseData 'case.name=TestCase <%\=in1.count%>' #txt
 Cs0 f47 taskData 'TaskA.CATEGORY=<%\=in1.category%>
@@ -358,7 +323,6 @@ TaskA.PRI=2
 TaskA.ROL=Everybody
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
-Cs0 f47 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cs0 f47 template "" #txt
 Cs0 f47 333 369 30 30 0 16 #rect
 Cs0 f47 @|TaskSwitchSimpleIcon #fIcon
@@ -371,20 +335,13 @@ Cs0 f53 276 384 333 384 #arcP
 Cs0 f55 expr data #txt
 Cs0 f55 outCond ivp=="TaskA.ivp" #txt
 Cs0 f55 363 384 477 384 #arcP
-Cs0 f11 targetWindow NEW:card: #txt
-Cs0 f11 targetDisplay TOP #txt
-Cs0 f11 richDialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
+Cs0 f11 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Cs0 f11 startMethod start() #txt
-Cs0 f11 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cs0 f11 requestActionDecl '<> param;' #txt
 Cs0 f11 responseActionDecl 'internaltest.Data out;
 ' #txt
 Cs0 f11 responseMappingAction 'out=in;
 ' #txt
-Cs0 f11 windowConfiguration '* ' #txt
-Cs0 f11 isAsynch false #txt
-Cs0 f11 isInnerRd false #txt
-Cs0 f11 userContext '* ' #txt
 Cs0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -396,12 +353,9 @@ Task Form</name>
 </elementInfo>
 ' #txt
 Cs0 f11 326 508 36 24 20 -2 #rect
-Cs0 f11 @|RichDialogIcon #fIcon
-Cs0 f12 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
-' #txt
+Cs0 f11 @|UserDialogIcon #fIcon
 Cs0 f12 actionTable 'out=in1;
 ' #txt
-Cs0 f12 outTypes "ch.ivyteam.ivy.project.portal.examples.Data","ch.ivyteam.ivy.project.portal.examples.Data","ch.ivyteam.ivy.project.portal.examples.Data" #txt
 Cs0 f12 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp" #txt
 Cs0 f12 caseData 'case.category=LeaveRequest
 case.name=Leave Request
@@ -451,7 +405,6 @@ TaskC.customFields.NUMBER.CustomDecimalField2=13
 TaskC.customFields.STRING.CustomVarCharField1="Interior"
 TaskC.customFields.STRING.CustomVarCharField5="Anh Nguyen"
 TaskC.customFields.TIMESTAMP.CustomTimestampField1=new DateTime()' #txt
-Cs0 f12 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cs0 f12 template "" #txt
 Cs0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -465,11 +418,7 @@ Cs0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f12 202 506 28 28 -39 -35 #rect
 Cs0 f12 @|TaskSwitchIcon #fIcon
 Cs0 f14 outLink CategoriedLeaveRequest.ivp #txt
-Cs0 f14 type internaltest.Data #txt
 Cs0 f14 inParamDecl '<> param;' #txt
-Cs0 f14 actionDecl 'internaltest.Data out;
-' #txt
-Cs0 f14 guid 16B3F7C18231D533 #txt
 Cs0 f14 requestEnabled true #txt
 Cs0 f14 triggerEnabled false #txt
 Cs0 f14 callSignature CategoriedLeaveRequest() #txt
@@ -502,20 +451,13 @@ Cs0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f14 @C|.responsibility Everybody #txt
 Cs0 f14 83 507 26 26 -73 16 #rect
 Cs0 f14 @|StartRequestIcon #fIcon
-Cs0 f15 targetWindow NEW:card: #txt
-Cs0 f15 targetDisplay TOP #txt
-Cs0 f15 richDialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
+Cs0 f15 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Cs0 f15 startMethod start() #txt
-Cs0 f15 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cs0 f15 requestActionDecl '<> param;' #txt
 Cs0 f15 responseActionDecl 'internaltest.Data out;
 ' #txt
 Cs0 f15 responseMappingAction 'out=in;
 ' #txt
-Cs0 f15 windowConfiguration '* ' #txt
-Cs0 f15 isAsynch false #txt
-Cs0 f15 isInnerRd false #txt
-Cs0 f15 userContext '* ' #txt
 Cs0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -527,24 +469,16 @@ Task Form</name>
 </elementInfo>
 ' #txt
 Cs0 f15 326 564 36 24 20 -2 #rect
-Cs0 f15 @|RichDialogIcon #fIcon
-Cs0 f16 type ch.ivyteam.ivy.project.portal.examples.Data #txt
+Cs0 f15 @|UserDialogIcon #fIcon
 Cs0 f16 595 507 26 26 14 0 #rect
 Cs0 f16 @|EndIcon #fIcon
-Cs0 f17 targetWindow NEW:card: #txt
-Cs0 f17 targetDisplay TOP #txt
-Cs0 f17 richDialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
+Cs0 f17 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Cs0 f17 startMethod start() #txt
-Cs0 f17 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cs0 f17 requestActionDecl '<> param;' #txt
 Cs0 f17 responseActionDecl 'internaltest.Data out;
 ' #txt
 Cs0 f17 responseMappingAction 'out=in;
 ' #txt
-Cs0 f17 windowConfiguration '* ' #txt
-Cs0 f17 isAsynch false #txt
-Cs0 f17 isInnerRd false #txt
-Cs0 f17 userContext '* ' #txt
 Cs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -557,7 +491,7 @@ Task Form</name>
 </elementInfo>
 ' #txt
 Cs0 f17 326 444 36 24 20 -2 #rect
-Cs0 f17 @|RichDialogIcon #fIcon
+Cs0 f17 @|UserDialogIcon #fIcon
 Cs0 f18 expr out #txt
 Cs0 f18 type internaltest.Data #txt
 Cs0 f18 var in1 #txt

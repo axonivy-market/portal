@@ -1,10 +1,9 @@
 [Ivy]
-160070C3BA6D3702 3.20 #module
+160070C3BA6D3702 3.28 #module
 >Proto >Proto Collection #zClass
 Ce0 HandleEndPage Big #zClass
 Ce0 B #cInfo
 Ce0 #process
-Ce0 @TextInP .resExport .resExport #zField
 Ce0 @TextInP .type .type #zField
 Ce0 @TextInP .processKind .processKind #zField
 Ce0 @AnnotationInP-0n ai ai #zField
@@ -19,17 +18,13 @@ Ce0 @PushWFArc f6 '' #zField
 Ce0 @PushWFArc f7 '' #zField
 Ce0 @InfoButton f0 '' #zField
 >Proto Ce0 Ce0 HandleEndPage #zField
-Ce0 f3 type ch.ivy.addon.express.generic.HandleEndPageData #txt
 Ce0 f3 378 233 30 30 0 15 #rect
 Ce0 f3 @|EndSubIcon #fIcon
-Ce0 f4 actionDecl 'ch.ivy.addon.express.generic.HandleEndPageData out;
-' #txt
 Ce0 f4 actionTable 'out=in;
 ' #txt
 Ce0 f4 actionCode 'in.callbackUrl = ivy.html.startref("1600BDF7CC0AE52F/start.ivp");
 
 ' #txt
-Ce0 f4 type ch.ivy.addon.express.generic.HandleEndPageData #txt
 Ce0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -46,10 +41,7 @@ Ce0 f5 outParamDecl '<java.lang.String callbackUrl> result;
 ' #txt
 Ce0 f5 outParamTable 'result.callbackUrl=in.callbackUrl;
 ' #txt
-Ce0 f5 actionDecl 'ch.ivy.addon.express.generic.HandleEndPageData out;
-' #txt
 Ce0 f5 callSignature handleEndPage() #txt
-Ce0 f5 type ch.ivy.addon.express.generic.HandleEndPageData #txt
 Ce0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

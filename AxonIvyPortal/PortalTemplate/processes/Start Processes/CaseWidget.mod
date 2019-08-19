@@ -1,10 +1,9 @@
 [Ivy]
-160FD01492D362BE 3.23 #module
+160FD01492D362BE 3.28 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseWidget Big #zClass
 Cs0 B #cInfo
 Cs0 #process
-Cs0 @TextInP .resExport .resExport #zField
 Cs0 @TextInP .type .type #zField
 Cs0 @TextInP .processKind .processKind #zField
 Cs0 @AnnotationInP-0n ai ai #zField
@@ -14,30 +13,26 @@ Cs0 @TextInP .xml .xml #zField
 Cs0 @TextInP .responsibility .responsibility #zField
 Cs0 @StartRequest f0 '' #zField
 Cs0 @EndTask f1 '' #zField
-Cs0 @RichDialog f6 '' #zField
+Cs0 @UserDialog f6 '' #zField
 Cs0 @PushWFArc f4 '' #zField
 Cs0 @GridStep f2 '' #zField
 Cs0 @PushWFArc f3 '' #zField
 Cs0 @PushWFArc f5 '' #zField
 >Proto Cs0 Cs0 CaseWidget #zField
 Cs0 f0 outLink showAdditionalCaseDetails.ivp #txt
-Cs0 f0 type ch.ivy.addon.portal.generic.CaseWidgetData #txt
 Cs0 f0 inParamDecl '<java.lang.Long caseId> param;' #txt
 Cs0 f0 inParamTable 'out.caseId=param.caseId;
 ' #txt
-Cs0 f0 actionDecl 'ch.ivy.addon.portal.generic.CaseWidgetData out;
-' #txt
-Cs0 f0 guid 160FD0149322CE4E #txt
 Cs0 f0 requestEnabled true #txt
 Cs0 f0 triggerEnabled false #txt
 Cs0 f0 callSignature showAdditionalCaseDetails(Long) #txt
 Cs0 f0 persist false #txt
-Cs0 f0 taskData 'TaskTriggered.ROL=Everybody
+Cs0 f0 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Cs0 f0 caseData businessCase.attach=true #txt
 Cs0 f0 showInStartList 0 #txt
 Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -52,14 +47,10 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f0 @C|.responsibility Everybody #txt
 Cs0 f0 81 49 30 30 -85 17 #rect
 Cs0 f0 @|StartRequestIcon #fIcon
-Cs0 f1 type ch.ivy.addon.portal.generic.CaseWidgetData #txt
 Cs0 f1 673 49 30 30 0 15 #rect
 Cs0 f1 @|EndIcon #fIcon
-Cs0 f6 targetWindow NEW #txt
-Cs0 f6 targetDisplay TOP #txt
-Cs0 f6 richDialogId ch.ivy.addon.portal.generic.AdditionalCaseDetails #txt
+Cs0 f6 dialogId ch.ivy.addon.portal.generic.AdditionalCaseDetails #txt
 Cs0 f6 startMethod start(ch.ivyteam.ivy.workflow.ICase) #txt
-Cs0 f6 type ch.ivy.addon.portal.generic.CaseWidgetData #txt
 Cs0 f6 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase iCase> param;' #txt
 Cs0 f6 requestMappingAction 'param.iCase=in.iCase;
 ' #txt
@@ -67,9 +58,6 @@ Cs0 f6 responseActionDecl 'ch.ivy.addon.portal.generic.CaseWidgetData out;
 ' #txt
 Cs0 f6 responseMappingAction 'out=in;
 ' #txt
-Cs0 f6 isAsynch false #txt
-Cs0 f6 isInnerRd false #txt
-Cs0 f6 userContext '* ' #txt
 Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -82,16 +70,13 @@ Case Details</name>
 </elementInfo>
 ' #txt
 Cs0 f6 416 42 128 44 -42 -16 #rect
-Cs0 f6 @|RichDialogIcon #fIcon
+Cs0 f6 @|UserDialogIcon #fIcon
 Cs0 f4 expr out #txt
 Cs0 f4 544 64 673 64 #arcP
-Cs0 f2 actionDecl 'ch.ivy.addon.portal.generic.CaseWidgetData out;
-' #txt
 Cs0 f2 actionTable 'out=in;
 ' #txt
 Cs0 f2 actionCode 'out.iCase = ivy.wf.findCase(in.caseId);' #txt
 Cs0 f2 security system #txt
-Cs0 f2 type ch.ivy.addon.portal.generic.CaseWidgetData #txt
 Cs0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

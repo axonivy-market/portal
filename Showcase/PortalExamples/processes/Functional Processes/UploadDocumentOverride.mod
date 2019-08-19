@@ -1,10 +1,9 @@
 [Ivy]
-16B448019DA1C83E 3.26 #module
+16B448019DA1C83E 3.28 #module
 >Proto >Proto Collection #zClass
 Ut0 UploadDocument Big #zClass
 Ut0 B #cInfo
 Ut0 #process
-Ut0 @TextInP .resExport .resExport #zField
 Ut0 @TextInP .type .type #zField
 Ut0 @TextInP .processKind .processKind #zField
 Ut0 @AnnotationInP-0n ai ai #zField
@@ -51,10 +50,7 @@ Ut0 f0 outParamTable 'result.uploadedDocument=in.uploadedDocument;
 result.message=in.message;
 result.status=in.status;
 ' #txt
-Ut0 f0 actionDecl '_ch.ivyteam.ivy.project.portal.examples.UploadDocumentOverrideData out;
-' #txt
 Ut0 f0 callSignature call(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.UploadedFile) #txt
-Ut0 f0 type _ch.ivyteam.ivy.project.portal.examples.UploadDocumentOverrideData #txt
 Ut0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -64,11 +60,8 @@ Ut0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ut0 f0 81 113 30 30 -76 15 #rect
 Ut0 f0 @|StartSubIcon #fIcon
-Ut0 f1 type _ch.ivyteam.ivy.project.portal.examples.UploadDocumentOverrideData #txt
 Ut0 f1 1361 113 30 30 0 15 #rect
 Ut0 f1 @|EndSubIcon #fIcon
-Ut0 f36 actionDecl '_ch.ivyteam.ivy.project.portal.examples.UploadDocumentOverrideData out;
-' #txt
 Ut0 f36 actionTable 'out=in;
 ' #txt
 Ut0 f36 actionCode 'import ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus;
@@ -87,7 +80,6 @@ if (in.uploadedFile == null || in.uploadedFile.getSize() == 0) {
 		in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize", Arrays.asList(FileUtils.byteCountToDisplaySize(maxFileUploadSize)));
 	}
 }' #txt
-Ut0 f36 type _ch.ivyteam.ivy.project.portal.examples.UploadDocumentOverrideData #txt
 Ut0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -97,7 +89,6 @@ Ut0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ut0 f36 200 106 112 44 -22 -8 #rect
 Ut0 f36 @|StepIcon #fIcon
-Ut0 f72 type _ch.ivyteam.ivy.project.portal.examples.UploadDocumentOverrideData #txt
 Ut0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -107,8 +98,6 @@ Ut0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ut0 f72 904 112 32 32 -27 -34 #rect
 Ut0 f72 @|AlternativeIcon #fIcon
-Ut0 f71 actionDecl '_ch.ivyteam.ivy.project.portal.examples.UploadDocumentOverrideData out;
-' #txt
 Ut0 f71 actionTable 'out=in;
 ' #txt
 Ut0 f71 actionCode 'import ch.ivy.addon.portalkit.service.CaseDocumentService;
@@ -130,7 +119,6 @@ if (out.#uploadedDocument != null) {
 	out.status = UploadDocumentCheckStatus.FAIL;
 }' #txt
 Ut0 f71 security system #txt
-Ut0 f71 type _ch.ivyteam.ivy.project.portal.examples.UploadDocumentOverrideData #txt
 Ut0 f71 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -141,8 +129,6 @@ and create note</name>
 ' #txt
 Ut0 f71 1024 106 128 44 -44 -16 #rect
 Ut0 f71 @|StepIcon #fIcon
-Ut0 f38 actionDecl '_ch.ivyteam.ivy.project.portal.examples.UploadDocumentOverrideData out;
-' #txt
 Ut0 f38 actionTable 'out=in;
 ' #txt
 Ut0 f38 actionCode 'import ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus;
@@ -157,7 +143,6 @@ if (doesDocumentExist) {
 	in.status = UploadDocumentCheckStatus.FAIL;
 }' #txt
 Ut0 f38 security system #txt
-Ut0 f38 type _ch.ivyteam.ivy.project.portal.examples.UploadDocumentOverrideData #txt
 Ut0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -167,13 +152,10 @@ Ut0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ut0 f38 736 106 112 44 -31 -8 #rect
 Ut0 f38 @|StepIcon #fIcon
-Ut0 f74 type _ch.ivyteam.ivy.project.portal.examples.UploadDocumentOverrideData #txt
 Ut0 f74 648 208 32 32 0 16 #rect
 Ut0 f74 @|AlternativeIcon #fIcon
-Ut0 f73 type _ch.ivyteam.ivy.project.portal.examples.UploadDocumentOverrideData #txt
 Ut0 f73 904 208 32 32 0 16 #rect
 Ut0 f73 @|AlternativeIcon #fIcon
-Ut0 f70 type _ch.ivyteam.ivy.project.portal.examples.UploadDocumentOverrideData #txt
 Ut0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -185,7 +167,6 @@ Ut0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ut0 f70 362 114 28 28 -30 -34 #rect
 Ut0 f70 @|AlternativeIcon #fIcon
-Ut0 f53 type _ch.ivyteam.ivy.project.portal.examples.UploadDocumentOverrideData #txt
 Ut0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -197,9 +178,7 @@ Ut0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ut0 f53 648 112 32 32 -54 -37 #rect
 Ut0 f53 @|AlternativeIcon #fIcon
-Ut0 f75 type _ch.ivyteam.ivy.project.portal.examples.UploadDocumentOverrideData #txt
 Ut0 f75 processCall 'Functional Processes/UploadDocumentChecker:call(org.primefaces.model.UploadedFile)' #txt
-Ut0 f75 doCall true #txt
 Ut0 f75 requestActionDecl '<org.primefaces.model.UploadedFile uploadFile> param;
 ' #txt
 Ut0 f75 requestMappingAction 'param.uploadFile=in.uploadedFile;
@@ -306,8 +285,6 @@ Ut0 f7 expr in #txt
 Ut0 f7 936 224 1376 143 #arcP
 Ut0 f7 1 1376 224 #addKink
 Ut0 f7 0 0.7536889668139595 0 0 #arcLabel
-Ut0 f4 actionDecl '_ch.ivyteam.ivy.project.portal.examples.UploadDocumentOverrideData out;
-' #txt
 Ut0 f4 actionTable 'out=in;
 ' #txt
 Ut0 f4 actionCode 'import java.util.Random;
@@ -315,7 +292,6 @@ Ut0 f4 actionCode 'import java.util.Random;
 Random rand = new Random();
 String customerStringField = "IvyDocumentCustomer-" + in.uploadedDocument.getId();
 in.businessCase.customFields().stringField(customerStringField).set("Customer " + rand.nextInt(50));' #txt
-Ut0 f4 type _ch.ivyteam.ivy.project.portal.examples.UploadDocumentOverrideData #txt
 Ut0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

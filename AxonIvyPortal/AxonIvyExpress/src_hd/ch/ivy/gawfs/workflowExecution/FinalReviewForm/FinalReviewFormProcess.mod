@@ -1,12 +1,9 @@
 [Ivy]
-163051859F226598 3.23 #module
+163051859F226598 3.28 #module
 >Proto >Proto Collection #zClass
 Fs0 FinalReviewFormProcess Big #zClass
 Fs0 RD #cInfo
 Fs0 #process
-Fs0 @TextInP .ui2RdDataAction .ui2RdDataAction #zField
-Fs0 @TextInP .rdData2UIAction .rdData2UIAction #zField
-Fs0 @TextInP .resExport .resExport #zField
 Fs0 @TextInP .type .type #zField
 Fs0 @TextInP .processKind .processKind #zField
 Fs0 @AnnotationInP-0n ai ai #zField
@@ -14,13 +11,13 @@ Fs0 @MessageFlowInP-0n messageIn messageIn #zField
 Fs0 @MessageFlowOutP-0n messageOut messageOut #zField
 Fs0 @TextInP .xml .xml #zField
 Fs0 @TextInP .responsibility .responsibility #zField
-Fs0 @RichDialogInitStart f0 '' #zField
-Fs0 @RichDialogProcessEnd f1 '' #zField
-Fs0 @RichDialogProcessStart f3 '' #zField
-Fs0 @RichDialogEnd f4 '' #zField
+Fs0 @UdInit f0 '' #zField
+Fs0 @UdProcessEnd f1 '' #zField
+Fs0 @UdEvent f3 '' #zField
+Fs0 @UdExitEnd f4 '' #zField
 Fs0 @PushWFArc f5 '' #zField
-Fs0 @RichDialogProcessStart f16 '' #zField
-Fs0 @RichDialogProcessEnd f19 '' #zField
+Fs0 @UdEvent f16 '' #zField
+Fs0 @UdProcessEnd f19 '' #zField
 Fs0 @GridStep f17 '' #zField
 Fs0 @PushWFArc f20 '' #zField
 Fs0 @PushWFArc f18 '' #zField
@@ -29,9 +26,7 @@ Fs0 @PushWFArc f7 '' #zField
 Fs0 @PushWFArc f2 '' #zField
 >Proto Fs0 Fs0 FinalReviewFormProcess #zField
 Fs0 f0 guid 16305185A13E9F88 #txt
-Fs0 f0 type ch.ivy.gawfs.workflowExecution.FinalReviewForm.FinalReviewFormData #txt
 Fs0 f0 method start(java.util.List<gawfs.TaskDef>,java.util.List<String>,java.lang.Integer) #txt
-Fs0 f0 disableUIEvents true #txt
 Fs0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <java.util.List<gawfs.TaskDef> finishedTasks,java.util.List<java.lang.String> steps,java.lang.Integer actualStepIndex> param = methodEvent.getInputArguments();
 ' #txt
@@ -51,14 +46,10 @@ Fs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Fs0 f0 83 51 26 26 -16 15 #rect
-Fs0 f0 @|RichDialogInitStartIcon #fIcon
-Fs0 f1 type ch.ivy.gawfs.workflowExecution.FinalReviewForm.FinalReviewFormData #txt
+Fs0 f0 @|UdInitIcon #fIcon
 Fs0 f1 531 51 26 26 0 12 #rect
-Fs0 f1 @|RichDialogProcessEndIcon #fIcon
+Fs0 f1 @|UdProcessEndIcon #fIcon
 Fs0 f3 guid 16305185A2B30A9B #txt
-Fs0 f3 type ch.ivy.gawfs.workflowExecution.FinalReviewForm.FinalReviewFormData #txt
-Fs0 f3 actionDecl 'ch.ivy.gawfs.workflowExecution.FinalReviewForm.FinalReviewFormData out;
-' #txt
 Fs0 f3 actionTable 'out=in;
 ' #txt
 Fs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -69,17 +60,12 @@ Fs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Fs0 f3 83 147 26 26 -15 12 #rect
-Fs0 f3 @|RichDialogProcessStartIcon #fIcon
-Fs0 f4 type ch.ivy.gawfs.workflowExecution.FinalReviewForm.FinalReviewFormData #txt
-Fs0 f4 guid 16305185A2BB8624 #txt
+Fs0 f3 @|UdEventIcon #fIcon
 Fs0 f4 211 147 26 26 0 12 #rect
-Fs0 f4 @|RichDialogEndIcon #fIcon
+Fs0 f4 @|UdExitEndIcon #fIcon
 Fs0 f5 expr out #txt
 Fs0 f5 109 160 211 160 #arcP
 Fs0 f16 guid 16348C318DEC020D #txt
-Fs0 f16 type ch.ivy.gawfs.workflowExecution.FinalReviewForm.FinalReviewFormData #txt
-Fs0 f16 actionDecl 'ch.ivy.gawfs.workflowExecution.FinalReviewForm.FinalReviewFormData out;
-' #txt
 Fs0 f16 actionTable 'out=in;
 ' #txt
 Fs0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -92,12 +78,9 @@ Fs0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Fs0 f16 77 251 26 26 -18 15 #rect
-Fs0 f16 @|RichDialogProcessStartIcon #fIcon
-Fs0 f19 type ch.ivy.gawfs.workflowExecution.FinalReviewForm.FinalReviewFormData #txt
+Fs0 f16 @|UdEventIcon #fIcon
 Fs0 f19 525 251 26 26 0 12 #rect
-Fs0 f19 @|RichDialogProcessEndIcon #fIcon
-Fs0 f17 actionDecl 'ch.ivy.gawfs.workflowExecution.FinalReviewForm.FinalReviewFormData out;
-' #txt
+Fs0 f19 @|UdProcessEndIcon #fIcon
 Fs0 f17 actionTable 'out=in;
 ' #txt
 Fs0 f17 actionCode 'import ch.ivy.addon.portalkit.enums.AdditionalProperty;
@@ -107,7 +90,6 @@ ivy.task.setAdditionalProperty(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toStr
 PortalNavigator navigator = new PortalNavigator();
 navigator.navigateToPortalEndPage();' #txt
 Fs0 f17 security system #txt
-Fs0 f17 type ch.ivy.gawfs.workflowExecution.FinalReviewForm.FinalReviewFormData #txt
 Fs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -121,8 +103,6 @@ Fs0 f20 expr out #txt
 Fs0 f20 362 264 525 264 #arcP
 Fs0 f18 expr out #txt
 Fs0 f18 103 264 250 264 #arcP
-Fs0 f6 actionDecl 'ch.ivy.gawfs.workflowExecution.FinalReviewForm.FinalReviewFormData out;
-' #txt
 Fs0 f6 actionTable 'out=in;
 ' #txt
 Fs0 f6 actionCode 'import gawfs.TaskDef;
@@ -131,7 +111,6 @@ for (TaskDef task : in.finishedTasks) {
 	task.actualApplicant = ivy.wf.getSecurityContext().findUser(task.actualApplicantName);
 }' #txt
 Fs0 f6 security system #txt
-Fs0 f6 type ch.ivy.gawfs.workflowExecution.FinalReviewForm.FinalReviewFormData #txt
 Fs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

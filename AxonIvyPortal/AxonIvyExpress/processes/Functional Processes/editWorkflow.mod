@@ -1,5 +1,5 @@
 [Ivy]
-15791C23B125821B 3.26 #module
+15791C23B125821B 3.28 #module
 >Proto >Proto Collection #zClass
 ew0 editWorkflow Big #zClass
 ew0 B #cInfo
@@ -7,7 +7,6 @@ ew0 #process
 Ct0 Component Big #zClass
 Ct0 B #cInfo
 ew0 Ct0 S10 'Sub 1' #zField
-ew0 @TextInP .resExport .resExport #zField
 ew0 @TextInP .type .type #zField
 ew0 @TextInP .processKind .processKind #zField
 ew0 @AnnotationInP-0n ai ai #zField
@@ -17,9 +16,9 @@ ew0 @TextInP .xml .xml #zField
 ew0 @TextInP .responsibility .responsibility #zField
 ew0 @StartSub f0 '' #zField
 ew0 @GridStep f5 '' #zField
-ew0 @RichDialog f7 '' #zField
+ew0 @UserDialog f7 '' #zField
 ew0 @GridStep f9 '' #zField
-ew0 @RichDialog f3 '' #zField
+ew0 @UserDialog f3 '' #zField
 ew0 @Alternative f11 '' #zField
 ew0 @Alternative f13 '' #zField
 ew0 @PushWFArc f14 '' #zField
@@ -72,7 +71,6 @@ ew0 @GridStep f54 '' #zField
 ew0 @PushWFArc f55 '' #zField
 ew0 @PushWFArc f58 '' #zField
 >Proto ew0 ew0 editWorkflow #zField
-Ct0 @TextInP .resExport .resExport #zField
 Ct0 @TextInP .type .type #zField
 Ct0 @TextInP .processKind .processKind #zField
 Ct0 @AnnotationInP-0n ai ai #zField
@@ -88,7 +86,6 @@ Ct0 @PushWFArc f1 '' #zField
 Ct0 @PushWFArc f0 '' #zField
 Ct0 @PushWFArc f2 '' #zField
 >Proto Ct0 Ct0 Component #zField
-ew0 S10 .resExport export #txt
 ew0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -103,10 +100,7 @@ ew0 S10 @|BIcon #fIcon
 ew0 f0 inParamDecl '<> param;' #txt
 ew0 f0 outParamDecl '<> result;
 ' #txt
-ew0 f0 actionDecl 'gawfs.Data out;
-' #txt
 ew0 f0 callSignature newWorkflow() #txt
-ew0 f0 type gawfs.Data #txt
 ew0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -118,8 +112,6 @@ ew0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 ew0 f0 65 249 30 30 -38 17 #rect
 ew0 f0 @|StartSubIcon #fIcon
-ew0 f5 actionDecl 'gawfs.Data out;
-' #txt
 ew0 f5 actionTable 'out=in;
 ' #txt
 ew0 f5 actionCode 'if(!in.isAdhocProcess) {
@@ -130,7 +122,6 @@ ew0 f5 actionCode 'if(!in.isAdhocProcess) {
 }
 in.discard = false;' #txt
 ew0 f5 security system #txt
-ew0 f5 type gawfs.Data #txt
 ew0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -142,11 +133,8 @@ ew0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 ew0 f5 312 242 112 44 -25 -8 #rect
 ew0 f5 @|StepIcon #fIcon
-ew0 f7 targetWindow NEW:card: #txt
-ew0 f7 targetDisplay TOP #txt
-ew0 f7 richDialogId ch.ivy.gawfs.workflowCreation.WorkflowDefinition #txt
+ew0 f7 dialogId ch.ivy.gawfs.workflowCreation.WorkflowDefinition #txt
 ew0 f7 startMethod start(gawfs.Data) #txt
-ew0 f7 type gawfs.Data #txt
 ew0 f7 requestActionDecl '<gawfs.Data data> param;' #txt
 ew0 f7 requestMappingAction 'param.data=in;
 ' #txt
@@ -154,10 +142,6 @@ ew0 f7 responseActionDecl 'gawfs.Data out;
 ' #txt
 ew0 f7 responseMappingAction 'out=in;
 ' #txt
-ew0 f7 windowConfiguration '* ' #txt
-ew0 f7 isAsynch false #txt
-ew0 f7 isInnerRd false #txt
-ew0 f7 userContext '* ' #txt
 ew0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -168,9 +152,7 @@ ew0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f7 568 242 144 44 -68 -8 #rect
-ew0 f7 @|RichDialogIcon #fIcon
-ew0 f9 actionDecl 'gawfs.Data out;
-' #txt
+ew0 f7 @|UserDialogIcon #fIcon
 ew0 f9 actionTable 'out=in;
 ' #txt
 ew0 f9 actionCode 'import ch.ivy.gawfs.ExpressProcessUtils;
@@ -187,7 +169,6 @@ import ch.ivy.gawfs.Formelement;
 ExpressProcessUtils utils = new ExpressProcessUtils();
 in.processRepository = utils.saveProcess(in);' #txt
 ew0 f9 security system #txt
-ew0 f9 type gawfs.Data #txt
 ew0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -197,11 +178,8 @@ ew0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 ew0 f9 1640 242 160 44 -74 -8 #rect
 ew0 f9 @|StepIcon #fIcon
-ew0 f3 targetWindow NEW:card: #txt
-ew0 f3 targetDisplay TOP #txt
-ew0 f3 richDialogId ch.ivy.gawfs.workflowCreation.FormDefinition #txt
+ew0 f3 dialogId ch.ivy.gawfs.workflowCreation.FormDefinition #txt
 ew0 f3 startMethod start(gawfs.Data) #txt
-ew0 f3 type gawfs.Data #txt
 ew0 f3 requestActionDecl '<gawfs.Data data> param;' #txt
 ew0 f3 requestMappingAction 'param.data=in;
 ' #txt
@@ -209,10 +187,6 @@ ew0 f3 responseActionDecl 'gawfs.Data out;
 ' #txt
 ew0 f3 responseMappingAction 'out=result.data;
 ' #txt
-ew0 f3 windowConfiguration '* ' #txt
-ew0 f3 isAsynch false #txt
-ew0 f3 isInnerRd false #txt
-ew0 f3 userContext '* ' #txt
 ew0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -223,24 +197,19 @@ ew0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f3 960 242 176 44 -85 -8 #rect
-ew0 f3 @|RichDialogIcon #fIcon
-ew0 f11 type gawfs.Data #txt
+ew0 f3 @|UserDialogIcon #fIcon
 ew0 f11 1256 248 32 32 0 16 #rect
 ew0 f11 @|AlternativeIcon #fIcon
-ew0 f13 type gawfs.Data #txt
 ew0 f13 488 248 32 32 0 16 #rect
 ew0 f13 @|AlternativeIcon #fIcon
 ew0 f14 expr out #txt
 ew0 f14 424 264 488 264 #arcP
 ew0 f8 expr in #txt
 ew0 f8 520 264 568 264 #arcP
-ew0 f16 actionDecl 'gawfs.Data out;
-' #txt
 ew0 f16 actionTable 'out=in;
 out.backFlag=false;
 out.savedFlag=true;
 ' #txt
-ew0 f16 type gawfs.Data #txt
 ew0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -259,7 +228,6 @@ ew0 f15 expr out #txt
 ew0 f15 840 168 504 248 #arcP
 ew0 f15 1 504 168 #addKink
 ew0 f15 1 0.5 0 0 #arcLabel
-ew0 f18 type gawfs.Data #txt
 ew0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -272,9 +240,7 @@ for AHWF</name>
 ' #txt
 ew0 f18 1552 248 32 32 -33 -49 #rect
 ew0 f18 @|AlternativeIcon #fIcon
-ew0 f20 type gawfs.Data #txt
 ew0 f20 processCall 'Functional Processes/executePredefinedWorkflow:call(List<gawfs.TaskDef>,String,String,ch.ivy.gawfs.enums.ProcessType,String,Boolean,Long)' #txt
-ew0 f20 doCall true #txt
 ew0 f20 requestActionDecl '<List<gawfs.TaskDef> definedTasks,java.lang.String processName,java.lang.String processDescription,ch.ivy.gawfs.enums.ProcessType processType,java.lang.String processID,java.lang.Boolean isAdhocProcess,java.lang.Long originalTaskId> param;
 ' #txt
 ew0 f20 requestMappingAction 'param.definedTasks=in.definedTasks;
@@ -305,10 +271,7 @@ ew0 f21 inParamTable 'out.processID=param.workflowID;
 ' #txt
 ew0 f21 outParamDecl '<> result;
 ' #txt
-ew0 f21 actionDecl 'gawfs.Data out;
-' #txt
 ew0 f21 callSignature editWorkflow(String) #txt
-ew0 f21 type gawfs.Data #txt
 ew0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -322,10 +285,8 @@ ew0 f21 65 337 30 30 -35 17 #rect
 ew0 f21 @|StartSubIcon #fIcon
 ew0 f34 368 330 368 286 #arcP
 ew0 f34 0 0.37027027027027026 0 0 #arcLabel
-ew0 f32 type gawfs.Data #txt
 ew0 f32 2193 249 30 30 0 15 #rect
 ew0 f32 @|EndSubIcon #fIcon
-ew0 f41 type gawfs.Data #txt
 ew0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -337,12 +298,10 @@ ew0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 ew0 f41 776 248 32 32 -31 -33 #rect
 ew0 f41 @|AlternativeIcon #fIcon
-ew0 f43 type gawfs.Data #txt
 ew0 f43 777 345 30 30 0 15 #rect
 ew0 f43 @|EndIcon #fIcon
 ew0 f44 expr in #txt
 ew0 f44 792 280 792 345 #arcP
-ew0 f45 type gawfs.Data #txt
 ew0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -354,7 +313,6 @@ ew0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 ew0 f45 1192 248 32 32 -12 18 #rect
 ew0 f45 @|AlternativeIcon #fIcon
-ew0 f46 type gawfs.Data #txt
 ew0 f46 1193 313 30 30 0 15 #rect
 ew0 f46 @|EndIcon #fIcon
 ew0 f47 expr in #txt
@@ -368,8 +326,6 @@ ew0 f19 expr out #txt
 ew0 f19 2144 360 2208 279 #arcP
 ew0 f19 1 2208 360 #addKink
 ew0 f19 0 0.7027137765500376 0 0 #arcLabel
-ew0 f22 actionDecl 'gawfs.Data out;
-' #txt
 ew0 f22 actionTable 'out=in;
 ' #txt
 ew0 f22 actionCode 'import ch.ivy.gawfs.ExpressProcessUtils;
@@ -380,7 +336,6 @@ if(!in.#processFolder is initialized) {
 	in.processFolder = expressProcesUtils.generateProcessFolder();
 }
 expressProcesUtils.saveAttachments(in.processFolder, in.definedTasks);' #txt
-ew0 f22 type gawfs.Data #txt
 ew0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -392,7 +347,6 @@ ew0 f22 1328 242 160 44 -73 -8 #rect
 ew0 f22 @|StepIcon #fIcon
 ew0 f26 expr out #txt
 ew0 f26 712 264 776 264 #arcP
-ew0 f27 type gawfs.Data #txt
 ew0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -440,13 +394,10 @@ ew0 f25 expr in #txt
 ew0 f25 1288 264 1328 264 #arcP
 ew0 f23 expr out #txt
 ew0 f23 1488 264 1552 264 #arcP
-ew0 f28 actionDecl 'gawfs.Data out;
-' #txt
 ew0 f28 actionTable 'out=in;
 ' #txt
 ew0 f28 actionCode 'in.readyToExecute = false;
 in.editFlag = false;' #txt
-ew0 f28 type gawfs.Data #txt
 ew0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -460,7 +411,6 @@ ew0 f31 expr out #txt
 ew0 f31 95 264 152 264 #arcP
 ew0 f6 expr out #txt
 ew0 f6 264 264 312 264 #arcP
-ew0 f35 type gawfs.Data #txt
 ew0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -474,11 +424,8 @@ ew0 f35 1872 248 32 32 -49 18 #rect
 ew0 f35 @|AlternativeIcon #fIcon
 ew0 f36 expr out #txt
 ew0 f36 1800 264 1872 264 #arcP
-ew0 f37 actionDecl 'gawfs.Data out;
-' #txt
 ew0 f37 actionTable 'out=in1;
 ' #txt
-ew0 f37 outTypes "gawfs.Data" #txt
 ew0 f37 outLinks "TaskA.ivp" #txt
 ew0 f37 taskData 'TaskA.DESC=<%\=ivy.cms.co("/Dialogs/Tasks/SaveWorkflow/TaskName")%>\: <%\=in1.processName%>
 TaskA.EXPRI=2
@@ -489,7 +436,6 @@ TaskA.PRI=2
 TaskA.ROL=CREATOR
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
-ew0 f37 type gawfs.Data #txt
 ew0 f37 template "" #txt
 ew0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -530,12 +476,9 @@ ew0 f40 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 ew0 f40 1904 264 2193 264 #arcP
 ew0 f40 0 0.410958904109589 0 -10 #arcLabel
-ew0 f1 actionDecl 'gawfs.Data out;
-' #txt
 ew0 f1 actionTable 'out=in;
 ' #txt
 ew0 f1 actionCode 'in.editFlag = true;' #txt
-ew0 f1 type gawfs.Data #txt
 ew0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -549,12 +492,9 @@ ew0 f39 expr out #txt
 ew0 f39 95 352 152 352 #arcP
 ew0 f33 expr out #txt
 ew0 f33 264 352 312 352 #arcP
-ew0 f42 actionDecl 'gawfs.Data out;
-' #txt
 ew0 f42 actionTable 'out=in;
 ' #txt
 ew0 f42 actionCode 'in.savedFlag = true;' #txt
-ew0 f42 type gawfs.Data #txt
 ew0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -581,10 +521,7 @@ out.processType=ch.ivy.gawfs.enums.ProcessType.AD_HOC;
 ' #txt
 ew0 f50 outParamDecl '<> result;
 ' #txt
-ew0 f50 actionDecl 'gawfs.Data out;
-' #txt
 ew0 f50 callSignature newAdhocWorkflow(Long) #txt
-ew0 f50 type gawfs.Data #txt
 ew0 f50 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -594,8 +531,6 @@ ew0 f50 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 ew0 f50 65 57 30 30 -74 26 #rect
 ew0 f50 @|StartSubIcon #fIcon
-ew0 f52 actionDecl 'gawfs.Data out;
-' #txt
 ew0 f52 actionTable 'out=in;
 ' #txt
 ew0 f52 actionCode 'import java.util.Arrays;
@@ -605,7 +540,6 @@ if(originalTask != null) {
 	in.processName = ivy.cms.co("/Dialogs/workflowCreation/AdhocProcessName", Arrays.asList(String.valueOf(originalTask.getId()), originalTask.getName()));
 }' #txt
 ew0 f52 security system #txt
-ew0 f52 type gawfs.Data #txt
 ew0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -621,8 +555,6 @@ ew0 f53 0 0.9833105470266609 0 0 #arcLabel
 ew0 f51 expr out #txt
 ew0 f51 208 94 208 242 #arcP
 ew0 f51 0 0.04035645403300575 0 0 #arcLabel
-ew0 f54 actionDecl 'gawfs.Data out;
-' #txt
 ew0 f54 actionTable 'out=in;
 ' #txt
 ew0 f54 actionCode 'import ch.ivy.addon.portalkit.util.AdhocUtils;
@@ -643,7 +575,6 @@ if(in.isAdhocProcess){
 	AdhocUtils.attachToBusinessCase(ivy.case, bussinessCase.getId());
 }' #txt
 ew0 f54 security system #txt
-ew0 f54 type gawfs.Data #txt
 ew0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -675,8 +606,6 @@ ew0 f58 0 0.3125 13 0 #arcLabel
 >Proto ew0 .processKind CALLABLE_SUB #txt
 >Proto ew0 0 0 32 24 18 0 #rect
 >Proto ew0 @|BIcon #fIcon
-Ct0 f25 actionDecl 'gawfs.Data out;
-' #txt
 Ct0 f25 actionTable 'out=in;
 ' #txt
 Ct0 f25 actionCode 'import ch.ivy.gawfs.ExpressProcessUtils;
@@ -684,7 +613,6 @@ Ct0 f25 actionCode 'import ch.ivy.gawfs.ExpressProcessUtils;
 ExpressProcessUtils utils = new ExpressProcessUtils();
 in.definedTasks = utils.getDefinedTasks(in.processID);' #txt
 Ct0 f25 security system #txt
-Ct0 f25 type gawfs.Data #txt
 Ct0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -694,8 +622,6 @@ Ct0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ct0 f25 152 290 112 44 -48 -8 #rect
 Ct0 f25 @|StepIcon #fIcon
-Ct0 f26 actionDecl 'gawfs.Data out;
-' #txt
 Ct0 f26 actionTable 'out=in;
 ' #txt
 Ct0 f26 actionCode 'import ch.ivy.gawfs.enums.ProcessType;
@@ -719,7 +645,6 @@ for(ProcessType type : ProcessType.values()) {
 	}
 }' #txt
 Ct0 f26 security system #txt
-Ct0 f26 type gawfs.Data #txt
 Ct0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

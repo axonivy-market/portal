@@ -1,11 +1,9 @@
 [Ivy]
-[>Created: Fri May 19 15:33:13 ICT 2017]
-15C1FA2C887C250A 3.20 #module
+15C1FA2C887C250A 3.28 #module
 >Proto >Proto Collection #zClass
 Ds0 DrillDownCharts Big #zClass
 Ds0 B #cInfo
 Ds0 #process
-Ds0 @TextInP .resExport .resExport #zField
 Ds0 @TextInP .type .type #zField
 Ds0 @TextInP .processKind .processKind #zField
 Ds0 @AnnotationInP-0n ai ai #zField
@@ -15,29 +13,25 @@ Ds0 @TextInP .xml .xml #zField
 Ds0 @TextInP .responsibility .responsibility #zField
 Ds0 @StartRequest f0 '' #zField
 Ds0 @EndTask f1 '' #zField
-Ds0 @RichDialog f3 '' #zField
+Ds0 @UserDialog f3 '' #zField
 Ds0 @PushWFArc f4 '' #zField
 Ds0 @CallSub f5 '' #zField
 Ds0 @PushWFArc f6 '' #zField
 Ds0 @PushWFArc f2 '' #zField
 >Proto Ds0 Ds0 DrillDownCharts #zField
 Ds0 f0 outLink openDrillDownCharts.ivp #txt
-Ds0 f0 type internaltest.DrillDownChartsData #txt
 Ds0 f0 inParamDecl '<> param;' #txt
-Ds0 f0 actionDecl 'internaltest.DrillDownChartsData out;
-' #txt
-Ds0 f0 guid 15C1FA2C88DCB708 #txt
 Ds0 f0 requestEnabled true #txt
 Ds0 f0 triggerEnabled false #txt
 Ds0 f0 callSignature openDrillDownCharts() #txt
 Ds0 f0 persist false #txt
 Ds0 f0 startName 'Drill down Charts' #txt
-Ds0 f0 taskData 'TaskTriggered.ROL=Everybody
+Ds0 f0 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Ds0 f0 caseData businessCase.attach=true #txt
 Ds0 f0 showInStartList 1 #txt
 Ds0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -50,30 +44,21 @@ Ds0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ds0 f0 @C|.responsibility Everybody #txt
 Ds0 f0 81 49 30 30 -68 17 #rect
 Ds0 f0 @|StartRequestIcon #fIcon
-Ds0 f1 type internaltest.DrillDownChartsData #txt
 Ds0 f1 497 49 30 30 0 15 #rect
 Ds0 f1 @|EndIcon #fIcon
-Ds0 f3 targetWindow NEW #txt
-Ds0 f3 targetDisplay TOP #txt
-Ds0 f3 richDialogId internaltest.DrillDownCharts #txt
+Ds0 f3 dialogId internaltest.DrillDownCharts #txt
 Ds0 f3 startMethod start() #txt
-Ds0 f3 type internaltest.DrillDownChartsData #txt
 Ds0 f3 requestActionDecl '<> param;' #txt
 Ds0 f3 responseActionDecl 'internaltest.DrillDownChartsData out;
 ' #txt
 Ds0 f3 responseMappingAction 'out=in;
 out.taskView=result.taskView;
 ' #txt
-Ds0 f3 isAsynch false #txt
-Ds0 f3 isInnerRd false #txt
-Ds0 f3 userContext '* ' #txt
 Ds0 f3 168 42 112 44 0 -8 #rect
-Ds0 f3 @|RichDialogIcon #fIcon
+Ds0 f3 @|UserDialogIcon #fIcon
 Ds0 f4 expr out #txt
 Ds0 f4 111 64 168 64 #arcP
-Ds0 f5 type internaltest.DrillDownChartsData #txt
 Ds0 f5 processCall 'Functional Processes/OpenPortalTasks:useView(ch.ivy.addon.portal.generic.view.TaskView)' #txt
-Ds0 f5 doCall true #txt
 Ds0 f5 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;
 ' #txt
 Ds0 f5 requestMappingAction 'param.taskView=in.taskView;

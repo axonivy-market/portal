@@ -1,12 +1,9 @@
 [Ivy]
-162F55163FD8DF16 3.26 #module
+162F55163FD8DF16 3.28 #module
 >Proto >Proto Collection #zClass
 As0 ApprovalFormProcess Big #zClass
 As0 RD #cInfo
 As0 #process
-As0 @TextInP .ui2RdDataAction .ui2RdDataAction #zField
-As0 @TextInP .rdData2UIAction .rdData2UIAction #zField
-As0 @TextInP .resExport .resExport #zField
 As0 @TextInP .type .type #zField
 As0 @TextInP .processKind .processKind #zField
 As0 @AnnotationInP-0n ai ai #zField
@@ -14,12 +11,12 @@ As0 @MessageFlowInP-0n messageIn messageIn #zField
 As0 @MessageFlowOutP-0n messageOut messageOut #zField
 As0 @TextInP .xml .xml #zField
 As0 @TextInP .responsibility .responsibility #zField
-As0 @RichDialogInitStart f0 '' #zField
-As0 @RichDialogProcessEnd f1 '' #zField
-As0 @RichDialogProcessStart f6 '' #zField
-As0 @RichDialogProcessStart f7 '' #zField
+As0 @UdInit f0 '' #zField
+As0 @UdProcessEnd f1 '' #zField
+As0 @UdEvent f6 '' #zField
+As0 @UdEvent f7 '' #zField
 As0 @GridStep f3 '' #zField
-As0 @RichDialogEnd f5 '' #zField
+As0 @UdExitEnd f5 '' #zField
 As0 @GridStep f9 '' #zField
 As0 @GridStep f10 '' #zField
 As0 @PushWFArc f11 '' #zField
@@ -27,10 +24,10 @@ As0 @PushWFArc f4 '' #zField
 As0 @PushWFArc f12 '' #zField
 As0 @GridStep f13 '' #zField
 As0 @PushWFArc f14 '' #zField
-As0 @RichDialogProcessStart f16 '' #zField
+As0 @UdEvent f16 '' #zField
 As0 @GridStep f17 '' #zField
 As0 @PushWFArc f18 '' #zField
-As0 @RichDialogProcessEnd f19 '' #zField
+As0 @UdProcessEnd f19 '' #zField
 As0 @PushWFArc f20 '' #zField
 As0 @GridStep f21 '' #zField
 As0 @PushWFArc f22 '' #zField
@@ -41,9 +38,7 @@ As0 @PushWFArc f24 '' #zField
 As0 @PushWFArc f2 '' #zField
 >Proto As0 As0 ApprovalFormProcess #zField
 As0 f0 guid 162F55164217492D #txt
-As0 f0 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
 As0 f0 method start(java.util.List<gawfs.TaskDef>,List<String>,Integer,Boolean,Long) #txt
-As0 f0 disableUIEvents true #txt
 As0 f0 inParameterDecl '<java.util.List<gawfs.TaskDef> finishedTasks,List<java.lang.String> steps,java.lang.Integer actualStepIndex,java.lang.Boolean isAdhocProcess,java.lang.Long originalTaskId> param;' #txt
 As0 f0 inParameterMapAction 'out.actualStepIndex=param.actualStepIndex;
 out.finishedTasks=param.finishedTasks;
@@ -62,14 +57,10 @@ As0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f0 83 51 26 26 -16 15 #rect
-As0 f0 @|RichDialogInitStartIcon #fIcon
-As0 f1 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
+As0 f0 @|UdInitIcon #fIcon
 As0 f1 435 51 26 26 0 12 #rect
-As0 f1 @|RichDialogProcessEndIcon #fIcon
+As0 f1 @|UdProcessEndIcon #fIcon
 As0 f6 guid 163066332FC888BC #txt
-As0 f6 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
-As0 f6 actionDecl 'ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData out;
-' #txt
 As0 f6 actionTable 'out=in;
 ' #txt
 As0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -82,11 +73,8 @@ As0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f6 83 147 26 26 -37 15 #rect
-As0 f6 @|RichDialogProcessStartIcon #fIcon
+As0 f6 @|UdEventIcon #fIcon
 As0 f7 guid 1630663828B44965 #txt
-As0 f7 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
-As0 f7 actionDecl 'ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData out;
-' #txt
 As0 f7 actionTable 'out=in;
 ' #txt
 As0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -99,9 +87,7 @@ As0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f7 83 243 26 26 -29 15 #rect
-As0 f7 @|RichDialogProcessStartIcon #fIcon
-As0 f3 actionDecl 'ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData out;
-' #txt
+As0 f7 @|UdEventIcon #fIcon
 As0 f3 actionTable 'out=in;
 ' #txt
 As0 f3 actionCode 'import ch.ivy.addon.portalkit.util.AdhocUtils;
@@ -114,7 +100,6 @@ if (in.originalTaskId != null && in.originalTaskId > 0) {
 	AdhocUtils.storeHistory(in.originalTaskId, approvalComment);
 	ivy.case.getBusinessCase().createNote(ivy.session, ivy.task.getName() + ": " + approvalComment);
 }' #txt
-As0 f3 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
 As0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -124,16 +109,11 @@ As0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f3 352 138 112 44 -39 -8 #rect
 As0 f3 @|StepIcon #fIcon
-As0 f5 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
-As0 f5 guid 1630664477BFCAF5 #txt
 As0 f5 691 147 26 26 0 12 #rect
-As0 f5 @|RichDialogEndIcon #fIcon
-As0 f9 actionDecl 'ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData out;
-' #txt
+As0 f5 @|UdExitEndIcon #fIcon
 As0 f9 actionTable 'out=in;
 ' #txt
 As0 f9 actionCode in.approvalResult.setIsApproved(false); #txt
-As0 f9 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
 As0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -143,12 +123,9 @@ As0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f9 160 234 112 44 -37 -8 #rect
 As0 f9 @|StepIcon #fIcon
-As0 f10 actionDecl 'ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData out;
-' #txt
 As0 f10 actionTable 'out=in;
 ' #txt
 As0 f10 actionCode in.approvalResult.setIsApproved(true); #txt
-As0 f10 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
 As0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -164,8 +141,6 @@ As0 f4 expr out #txt
 As0 f4 272 160 352 160 #arcP
 As0 f12 expr out #txt
 As0 f12 109 256 160 256 #arcP
-As0 f13 actionDecl 'ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData out;
-' #txt
 As0 f13 actionTable 'out=in;
 ' #txt
 As0 f13 actionCode 'import org.apache.commons.lang3.StringUtils;
@@ -178,7 +153,6 @@ if (in.originalTaskId != null && in.originalTaskId > 0) {
 	AdhocUtils.storeHistory(in.originalTaskId, approvalComment);
 	ivy.case.getBusinessCase().createNote(ivy.session, ivy.task.getName() + ": " + approvalComment);
 }' #txt
-As0 f13 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
 As0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -191,9 +165,6 @@ As0 f13 @|StepIcon #fIcon
 As0 f14 expr out #txt
 As0 f14 272 256 352 256 #arcP
 As0 f16 guid 163066874021794C #txt
-As0 f16 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
-As0 f16 actionDecl 'ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData out;
-' #txt
 As0 f16 actionTable 'out=in;
 ' #txt
 As0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -206,9 +177,7 @@ As0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f16 83 339 26 26 -18 15 #rect
-As0 f16 @|RichDialogProcessStartIcon #fIcon
-As0 f17 actionDecl 'ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData out;
-' #txt
+As0 f16 @|UdEventIcon #fIcon
 As0 f17 actionTable 'out=in;
 ' #txt
 As0 f17 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -218,7 +187,6 @@ TaskUtils.resetTask(ivy.task);
 PortalNavigator navigator = new PortalNavigator();
 navigator.navigateToPortalEndPage();' #txt
 As0 f17 security system #txt
-As0 f17 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
 As0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -230,13 +198,10 @@ As0 f17 256 330 112 44 -29 -8 #rect
 As0 f17 @|StepIcon #fIcon
 As0 f18 expr out #txt
 As0 f18 109 352 256 352 #arcP
-As0 f19 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
 As0 f19 435 339 26 26 0 12 #rect
-As0 f19 @|RichDialogProcessEndIcon #fIcon
+As0 f19 @|UdProcessEndIcon #fIcon
 As0 f20 expr out #txt
 As0 f20 368 352 435 352 #arcP
-As0 f21 actionDecl 'ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData out;
-' #txt
 As0 f21 actionTable 'out=in;
 ' #txt
 As0 f21 actionCode 'import ch.ivyteam.ivy.security.IUser;
@@ -245,7 +210,6 @@ in.approvalResult.setApproverName(ivy.session.getSessionUser().getDisplayName())
 in.approvalResult.setComment(in.comment);
 in.approvalResult.setTaskName(in.steps.get(in.actualStepIndex));
 in.approvalResult.setIndex(in.actualStepIndex);' #txt
-As0 f21 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
 As0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -264,8 +228,6 @@ As0 f23 expr out #txt
 As0 f23 464 256 576 182 #arcP
 As0 f23 1 576 256 #addKink
 As0 f23 0 0.8533831173785638 0 0 #arcLabel
-As0 f15 actionDecl 'ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData out;
-' #txt
 As0 f15 actionTable 'out=in;
 ' #txt
 As0 f15 actionCode 'import gawfs.TaskDef;
@@ -274,7 +236,6 @@ for (TaskDef task : in.finishedTasks) {
 	task.actualApplicant = ivy.wf.getSecurityContext().findUser(task.actualApplicantName);
 }' #txt
 As0 f15 security system #txt
-As0 f15 type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
 As0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

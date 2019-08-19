@@ -1,12 +1,9 @@
 [Ivy]
-16A7BB5465796F04 3.26 #module
+16A7BB5465796F04 3.28 #module
 >Proto >Proto Collection #zClass
 Gs0 GlobalGrowlProcess Big #zClass
 Gs0 RD #cInfo
 Gs0 #process
-Gs0 @TextInP .ui2RdDataAction .ui2RdDataAction #zField
-Gs0 @TextInP .rdData2UIAction .rdData2UIAction #zField
-Gs0 @TextInP .resExport .resExport #zField
 Gs0 @TextInP .type .type #zField
 Gs0 @TextInP .processKind .processKind #zField
 Gs0 @AnnotationInP-0n ai ai #zField
@@ -14,23 +11,19 @@ Gs0 @MessageFlowInP-0n messageIn messageIn #zField
 Gs0 @MessageFlowOutP-0n messageOut messageOut #zField
 Gs0 @TextInP .xml .xml #zField
 Gs0 @TextInP .responsibility .responsibility #zField
-Gs0 @RichDialogInitStart f0 '' #zField
-Gs0 @RichDialogProcessEnd f1 '' #zField
+Gs0 @UdInit f0 '' #zField
+Gs0 @UdProcessEnd f1 '' #zField
 Gs0 @PushWFArc f2 '' #zField
-Gs0 @RichDialogProcessStart f3 '' #zField
-Gs0 @RichDialogEnd f4 '' #zField
+Gs0 @UdEvent f3 '' #zField
+Gs0 @UdExitEnd f4 '' #zField
 Gs0 @GridStep f6 '' #zField
 Gs0 @PushWFArc f7 '' #zField
 Gs0 @PushWFArc f5 '' #zField
 >Proto Gs0 Gs0 GlobalGrowlProcess #zField
 Gs0 f0 guid 16A7BB54782C073F #txt
-Gs0 f0 type ch.ivyteam.ivy.project.portal.examples.GlobalGrowl.GlobalGrowlData #txt
 Gs0 f0 method start() #txt
-Gs0 f0 disableUIEvents true #txt
-Gs0 f0 inParameterDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
-' #txt
-Gs0 f0 outParameterDecl '<> result;
-' #txt
+Gs0 f0 inParameterDecl '<> param;' #txt
+Gs0 f0 outParameterDecl '<> result;' #txt
 Gs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -39,16 +32,12 @@ Gs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Gs0 f0 83 51 26 26 -16 15 #rect
-Gs0 f0 @|RichDialogInitStartIcon #fIcon
-Gs0 f1 type ch.ivyteam.ivy.project.portal.examples.GlobalGrowl.GlobalGrowlData #txt
+Gs0 f0 @|UdInitIcon #fIcon
 Gs0 f1 211 51 26 26 0 12 #rect
-Gs0 f1 @|RichDialogProcessEndIcon #fIcon
+Gs0 f1 @|UdProcessEndIcon #fIcon
 Gs0 f2 expr out #txt
 Gs0 f2 109 64 211 64 #arcP
 Gs0 f3 guid 16A7BB547A66A223 #txt
-Gs0 f3 type ch.ivyteam.ivy.project.portal.examples.GlobalGrowl.GlobalGrowlData #txt
-Gs0 f3 actionDecl 'ch.ivyteam.ivy.project.portal.examples.GlobalGrowl.GlobalGrowlData out;
-' #txt
 Gs0 f3 actionTable 'out=in;
 ' #txt
 Gs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -59,13 +48,9 @@ Gs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Gs0 f3 83 147 26 26 -15 12 #rect
-Gs0 f3 @|RichDialogProcessStartIcon #fIcon
-Gs0 f4 type ch.ivyteam.ivy.project.portal.examples.GlobalGrowl.GlobalGrowlData #txt
-Gs0 f4 guid 16A7BB547A69DD6C #txt
+Gs0 f3 @|UdEventIcon #fIcon
 Gs0 f4 403 147 26 26 0 12 #rect
-Gs0 f4 @|RichDialogEndIcon #fIcon
-Gs0 f6 actionDecl 'ch.ivyteam.ivy.project.portal.examples.GlobalGrowl.GlobalGrowlData out;
-' #txt
+Gs0 f4 @|UdExitEndIcon #fIcon
 Gs0 f6 actionTable 'out=in;
 ' #txt
 Gs0 f6 actionCode 'import javax.faces.context.Flash;
@@ -79,7 +64,6 @@ Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 flash.put("overridePortalGrowl", true);
 flash.setRedirect(true);
 flash.setKeepMessages(true);' #txt
-Gs0 f6 type ch.ivyteam.ivy.project.portal.examples.GlobalGrowl.GlobalGrowlData #txt
 Gs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

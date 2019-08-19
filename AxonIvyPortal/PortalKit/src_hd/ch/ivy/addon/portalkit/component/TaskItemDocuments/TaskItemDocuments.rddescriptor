@@ -1,54 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
-    <method>
-        <name>initData</name>
-        <description></description>
-        <inputParameter>
-            <name>task</name>
-            <description></description>
-            <parameterType>ch.ivyteam.ivy.workflow.ITask</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
-        <name>uploadDocument</name>
-        <description></description>
-        <inputParameter>
-            <name>uploadEvent</name>
-            <description></description>
-            <parameterType>org.primefaces.event.FileUploadEvent</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
-        <name>downloadDocument</name>
-        <description></description>
-        <inputParameter>
-            <name>document</name>
-            <description></description>
-            <parameterType>ch.ivy.addon.portalkit.ivydata.bo.IvyDocument</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <outputParameter>
-            <name>streamedContent</name>
-            <description></description>
-            <parameterType>org.primefaces.model.StreamedContent</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </outputParameter>
-    </method>
-    <method>
-        <name>resetMessageUploadDocument</name>
-        <description></description>
-    </method>
-    <method>
-        <name>deleteDocument</name>
-        <description></description>
-    </method>
-    <startMethod>
-        <name>start</name>
-        <description>Default dialog start method.</description>
-    </startMethod>
     <property>
         <name>guid</name>
         <value>1549452C016D5863</value>

@@ -1,46 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
-    <startMethod>
-        <name>start</name>
-        <description></description>
-        <inputParameter>
-            <name>finishedTasks</name>
-            <description></description>
-            <parameterType>java.util.List&lt;gawfs.TaskDef&gt;</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <inputParameter>
-            <name>steps</name>
-            <description></description>
-            <parameterType>List&lt;String&gt;</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <inputParameter>
-            <name>actualStepIndex</name>
-            <description></description>
-            <parameterType>Integer</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <inputParameter>
-            <name>isAdhocProcess</name>
-            <description></description>
-            <parameterType>Boolean</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <inputParameter>
-            <name>originalTaskId</name>
-            <description></description>
-            <parameterType>Long</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <outputParameter>
-            <name>approvalResult</name>
-            <description></description>
-            <parameterType>gawfs.ApprovalTaskResult</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </outputParameter>
-    </startMethod>
     <property>
         <name>guid</name>
         <value>162F551641A267F8</value>

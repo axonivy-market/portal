@@ -1,62 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
-    <method>
-        <name>preDelete</name>
-        <description></description>
-        <inputParameter>
-            <name>selectedAbsence</name>
-            <description></description>
-            <parameterType>ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
-        <name>editAbsence</name>
-        <description></description>
-        <inputParameter>
-            <name>selectedAbsence</name>
-            <description></description>
-            <parameterType>ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
-        <name>findAbsences</name>
-        <description></description>
-    </method>
-    <method>
-        <name>autoCompleteForUser</name>
-        <description></description>
-        <inputParameter>
-            <name>query</name>
-            <description></description>
-            <parameterType>String</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <outputParameter>
-            <name>users</name>
-            <description></description>
-            <parameterType>java.util.List&lt;ch.ivyteam.ivy.security.IUser&gt;</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </outputParameter>
-    </method>
-    <method>
-        <name>loadUsers</name>
-        <description></description>
-    </method>
-    <method>
-        <name>createAbsenceAndLoadDeputy</name>
-        <description></description>
-    </method>
-    <method>
-        <name>editDeputy</name>
-        <description></description>
-    </method>
-    <startMethod>
-        <name>start</name>
-        <description>Default dialog start method.</description>
-    </startMethod>
     <property>
         <name>guid</name>
         <value>14C3006646080642</value>

@@ -1,10 +1,9 @@
 [Ivy]
-161936E158EBC57F 3.20 #module
+161936E158EBC57F 3.28 #module
 >Proto >Proto Collection #zClass
 Sd0 SetBusinessEntityId Big #zClass
 Sd0 B #cInfo
 Sd0 #process
-Sd0 @TextInP .resExport .resExport #zField
 Sd0 @TextInP .type .type #zField
 Sd0 @TextInP .processKind .processKind #zField
 Sd0 @AnnotationInP-0n ai ai #zField
@@ -23,10 +22,7 @@ Sd0 f0 inParamTable 'out.businessEntityId=param.businessEntityId;
 ' #txt
 Sd0 f0 outParamDecl '<> result;
 ' #txt
-Sd0 f0 actionDecl 'ch.ivy.addon.portal.generic.SetBusinessEntityIdData out;
-' #txt
 Sd0 f0 callSignature call(String) #txt
-Sd0 f0 type ch.ivy.addon.portal.generic.SetBusinessEntityIdData #txt
 Sd0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -36,11 +32,8 @@ Sd0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Sd0 f0 81 49 30 30 -29 17 #rect
 Sd0 f0 @|StartSubIcon #fIcon
-Sd0 f1 type ch.ivy.addon.portal.generic.SetBusinessEntityIdData #txt
 Sd0 f1 417 49 30 30 0 15 #rect
 Sd0 f1 @|EndSubIcon #fIcon
-Sd0 f3 actionDecl 'ch.ivy.addon.portal.generic.SetBusinessEntityIdData out;
-' #txt
 Sd0 f3 actionTable 'out=in;
 ' #txt
 Sd0 f3 actionCode 'import ch.ivy.addon.portalkit.enums.AdditionalProperty;
@@ -48,7 +41,6 @@ import ch.ivyteam.ivy.workflow.ICase;
 
 ivy.case.getBusinessCase().setAdditionalProperty(AdditionalProperty.CASE_BUSINESS_ENTITY_PROPERTY.toString(), in.businessEntityId);' #txt
 Sd0 f3 security system #txt
-Sd0 f3 type ch.ivy.addon.portal.generic.SetBusinessEntityIdData #txt
 Sd0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

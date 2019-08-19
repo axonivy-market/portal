@@ -1,10 +1,9 @@
 [Ivy]
-16B267B1A01CFA7E 3.26 #module
+16B267B1A01CFA7E 3.28 #module
 >Proto >Proto Collection #zClass
 Ut0 UploadDocument Big #zClass
 Ut0 B #cInfo
 Ut0 #process
-Ut0 @TextInP .resExport .resExport #zField
 Ut0 @TextInP .type .type #zField
 Ut0 @TextInP .processKind .processKind #zField
 Ut0 @AnnotationInP-0n ai ai #zField
@@ -47,10 +46,7 @@ Ut0 f0 outParamTable 'result.uploadedDocument=in.uploadedDocument;
 result.message=in.message;
 result.status=in.status;
 ' #txt
-Ut0 f0 actionDecl 'gawfs.UploadDocumentOverrideData out;
-' #txt
 Ut0 f0 callSignature call(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.UploadedFile) #txt
-Ut0 f0 type gawfs.UploadDocumentOverrideData #txt
 Ut0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -60,11 +56,8 @@ Ut0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ut0 f0 81 105 30 30 -76 15 #rect
 Ut0 f0 @|StartSubIcon #fIcon
-Ut0 f1 type gawfs.UploadDocumentOverrideData #txt
 Ut0 f1 1257 105 30 30 0 15 #rect
 Ut0 f1 @|EndSubIcon #fIcon
-Ut0 f36 actionDecl 'gawfs.UploadDocumentOverrideData out;
-' #txt
 Ut0 f36 actionTable 'out=in;
 ' #txt
 Ut0 f36 actionCode 'import ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus;
@@ -83,7 +76,6 @@ if (in.uploadedFile == null || in.uploadedFile.getSize() == 0) {
 		in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize", Arrays.asList(FileUtils.byteCountToDisplaySize(maxFileUploadSize)));
 	}
 }' #txt
-Ut0 f36 type gawfs.UploadDocumentOverrideData #txt
 Ut0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -93,7 +85,6 @@ Ut0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ut0 f36 200 98 112 44 -22 -8 #rect
 Ut0 f36 @|StepIcon #fIcon
-Ut0 f72 type gawfs.UploadDocumentOverrideData #txt
 Ut0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -103,8 +94,6 @@ Ut0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ut0 f72 904 104 32 32 -27 -34 #rect
 Ut0 f72 @|AlternativeIcon #fIcon
-Ut0 f71 actionDecl 'gawfs.UploadDocumentOverrideData out;
-' #txt
 Ut0 f71 actionTable 'out=in;
 ' #txt
 Ut0 f71 actionCode 'import ch.ivy.addon.portalkit.util.DocumentFileUtils;
@@ -122,7 +111,6 @@ if (isUploaded) {
 	out.status = UploadDocumentCheckStatus.FAIL;
 }' #txt
 Ut0 f71 security system #txt
-Ut0 f71 type gawfs.UploadDocumentOverrideData #txt
 Ut0 f71 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -132,8 +120,6 @@ Ut0 f71 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ut0 f71 1008 98 112 44 -49 -8 #rect
 Ut0 f71 @|StepIcon #fIcon
-Ut0 f38 actionDecl 'gawfs.UploadDocumentOverrideData out;
-' #txt
 Ut0 f38 actionTable 'out=in;
 ' #txt
 Ut0 f38 actionCode 'import ch.ivy.addon.portalkit.util.DocumentFileUtils;
@@ -149,7 +135,6 @@ if (doesDocumentExist) {
 	in.status = UploadDocumentCheckStatus.FAIL;
 }' #txt
 Ut0 f38 security system #txt
-Ut0 f38 type gawfs.UploadDocumentOverrideData #txt
 Ut0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -159,13 +144,10 @@ Ut0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ut0 f38 736 98 112 44 -31 -8 #rect
 Ut0 f38 @|StepIcon #fIcon
-Ut0 f74 type gawfs.UploadDocumentOverrideData #txt
 Ut0 f74 648 200 32 32 0 16 #rect
 Ut0 f74 @|AlternativeIcon #fIcon
-Ut0 f73 type gawfs.UploadDocumentOverrideData #txt
 Ut0 f73 904 200 32 32 0 16 #rect
 Ut0 f73 @|AlternativeIcon #fIcon
-Ut0 f70 type gawfs.UploadDocumentOverrideData #txt
 Ut0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -177,7 +159,6 @@ Ut0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ut0 f70 362 106 28 28 -30 -34 #rect
 Ut0 f70 @|AlternativeIcon #fIcon
-Ut0 f53 type gawfs.UploadDocumentOverrideData #txt
 Ut0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -189,9 +170,7 @@ Ut0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ut0 f53 648 104 32 32 -54 -37 #rect
 Ut0 f53 @|AlternativeIcon #fIcon
-Ut0 f75 type gawfs.UploadDocumentOverrideData #txt
 Ut0 f75 processCall 'Functional Processes/UploadDocumentChecker:call(org.primefaces.model.UploadedFile)' #txt
-Ut0 f75 doCall true #txt
 Ut0 f75 requestActionDecl '<org.primefaces.model.UploadedFile uploadFile> param;
 ' #txt
 Ut0 f75 requestMappingAction 'param.uploadFile=in.uploadedFile;

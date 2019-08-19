@@ -1,10 +1,9 @@
 [Ivy]
-16B2C7BB1F583777 3.26 #module
+16B2C7BB1F583777 3.28 #module
 >Proto >Proto Collection #zClass
 Se0 SetGroupChatName Big #zClass
 Se0 B #cInfo
 Se0 #process
-Se0 @TextInP .resExport .resExport #zField
 Se0 @TextInP .type .type #zField
 Se0 @TextInP .processKind .processKind #zField
 Se0 @AnnotationInP-0n ai ai #zField
@@ -25,10 +24,7 @@ Se0 f0 outParamDecl '<java.lang.String name> result;
 ' #txt
 Se0 f0 outParamTable 'result.name=in.name;
 ' #txt
-Se0 f0 actionDecl '_ch.ivyteam.ivy.project.portal.examples.SetGroupChatNameOverrideData out;
-' #txt
 Se0 f0 callSignature setGroupChatName() #txt
-Se0 f0 type _ch.ivyteam.ivy.project.portal.examples.SetGroupChatNameOverrideData #txt
 Se0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -40,15 +36,11 @@ Se0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Se0 f0 81 49 30 30 -59 17 #rect
 Se0 f0 @|StartSubIcon #fIcon
-Se0 f1 type _ch.ivyteam.ivy.project.portal.examples.SetGroupChatNameOverrideData #txt
 Se0 f1 337 49 30 30 0 15 #rect
 Se0 f1 @|EndSubIcon #fIcon
-Se0 f3 actionDecl '_ch.ivyteam.ivy.project.portal.examples.SetGroupChatNameOverrideData out;
-' #txt
 Se0 f3 actionTable 'out=in;
 out.name="Group chat of: {groupChatCreator} - {caseId}";
 ' #txt
-Se0 f3 type _ch.ivyteam.ivy.project.portal.examples.SetGroupChatNameOverrideData #txt
 Se0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

@@ -1,10 +1,9 @@
 [Ivy]
-169B2A4D199FA6EA 3.26 #module
+169B2A4D199FA6EA 3.28 #module
 >Proto >Proto Collection #zClass
 At0 AssignRolesGroupChat Big #zClass
 At0 B #cInfo
 At0 #process
-At0 @TextInP .resExport .resExport #zField
 At0 @TextInP .type .type #zField
 At0 @TextInP .processKind .processKind #zField
 At0 @AnnotationInP-0n ai ai #zField
@@ -25,10 +24,7 @@ At0 f0 outParamDecl '<java.util.List<ch.ivyteam.ivy.security.IRole> roles> resul
 ' #txt
 At0 f0 outParamTable 'result.roles=in.roles;
 ' #txt
-At0 f0 actionDecl 'ch.ivy.addon.portal.generic.AssignRolesGroupChatData out;
-' #txt
 At0 f0 callSignature configureRolesForGroupChat(ch.ivyteam.ivy.workflow.ITask) #txt
-At0 f0 type ch.ivy.addon.portal.generic.AssignRolesGroupChatData #txt
 At0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -38,7 +34,6 @@ At0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 At0 f0 33 25 30 30 5 17 #rect
 At0 f0 @|StartSubIcon #fIcon
-At0 f1 type ch.ivy.addon.portal.generic.AssignRolesGroupChatData #txt
 At0 f1 33 233 30 30 0 15 #rect
 At0 f1 @|EndSubIcon #fIcon
 At0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

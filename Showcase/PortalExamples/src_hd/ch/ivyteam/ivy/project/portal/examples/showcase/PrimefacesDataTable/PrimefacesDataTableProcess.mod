@@ -1,12 +1,9 @@
 [Ivy]
-169C78AD20FEB2C2 3.26 #module
+169C78AD20FEB2C2 3.28 #module
 >Proto >Proto Collection #zClass
 Ps0 PrimefacesDataTableProcess Big #zClass
 Ps0 RD #cInfo
 Ps0 #process
-Ps0 @TextInP .ui2RdDataAction .ui2RdDataAction #zField
-Ps0 @TextInP .rdData2UIAction .rdData2UIAction #zField
-Ps0 @TextInP .resExport .resExport #zField
 Ps0 @TextInP .type .type #zField
 Ps0 @TextInP .processKind .processKind #zField
 Ps0 @AnnotationInP-0n ai ai #zField
@@ -15,21 +12,19 @@ Ps0 @MessageFlowOutP-0n messageOut messageOut #zField
 Ps0 @TextInP .xml .xml #zField
 Ps0 @TextInP .responsibility .responsibility #zField
 Ps0 @GridStep f11 '' #zField
-Ps0 @RichDialogProcessEnd f9 '' #zField
+Ps0 @UdProcessEnd f9 '' #zField
 Ps0 @GridStep f6 '' #zField
-Ps0 @RichDialogProcessStart f3 '' #zField
-Ps0 @RichDialogEnd f4 '' #zField
-Ps0 @RichDialogProcessStart f8 '' #zField
-Ps0 @RichDialogProcessEnd f1 '' #zField
-Ps0 @RichDialogInitStart f0 '' #zField
+Ps0 @UdEvent f3 '' #zField
+Ps0 @UdExitEnd f4 '' #zField
+Ps0 @UdEvent f8 '' #zField
+Ps0 @UdProcessEnd f1 '' #zField
+Ps0 @UdInit f0 '' #zField
 Ps0 @PushWFArc f7 '' #zField
 Ps0 @PushWFArc f5 '' #zField
 Ps0 @PushWFArc f2 '' #zField
 Ps0 @PushWFArc f10 '' #zField
 Ps0 @PushWFArc f12 '' #zField
 >Proto Ps0 Ps0 PrimefacesDataTableProcess #zField
-Ps0 f11 actionDecl 'ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesDataTable.PrimefacesDataTableData out;
-' #txt
 Ps0 f11 actionTable 'out=in;
 ' #txt
 Ps0 f11 actionCode 'import javax.faces.context.FacesContext;
@@ -41,7 +36,6 @@ if(!errmessage)
 {
 	ivy.log.debug("Item updated: {0}", in.selectedScore);
 }' #txt
-Ps0 f11 type ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesDataTable.PrimefacesDataTableData #txt
 Ps0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -53,11 +47,8 @@ Ps0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ps0 f11 176 242 112 44 -10 -8 #rect
 Ps0 f11 @|StepIcon #fIcon
-Ps0 f9 type ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesDataTable.PrimefacesDataTableData #txt
 Ps0 f9 347 251 26 26 0 12 #rect
-Ps0 f9 @|RichDialogProcessEndIcon #fIcon
-Ps0 f6 actionDecl 'ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesDataTable.PrimefacesDataTableData out;
-' #txt
+Ps0 f9 @|UdProcessEndIcon #fIcon
 Ps0 f6 actionTable 'out=in;
 ' #txt
 Ps0 f6 actionCode 'import ch.ivyteam.ivy.project.portal.examples.showcase.Score;
@@ -83,7 +74,6 @@ for(Score scr : out.scores)
 {
 	out.names.add(scr.name);	
 }' #txt
-Ps0 f6 type ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesDataTable.PrimefacesDataTableData #txt
 Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -96,9 +86,6 @@ Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ps0 f6 178 50 112 44 -26 -8 #rect
 Ps0 f6 @|StepIcon #fIcon
 Ps0 f3 guid 169DD4CD81F37B33 #txt
-Ps0 f3 type ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesDataTable.PrimefacesDataTableData #txt
-Ps0 f3 actionDecl 'ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesDataTable.PrimefacesDataTableData out;
-' #txt
 Ps0 f3 actionTable 'out=in;
 ' #txt
 Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -109,15 +96,10 @@ Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f3 91 155 26 26 -15 12 #rect
-Ps0 f3 @|RichDialogProcessStartIcon #fIcon
-Ps0 f4 type ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesDataTable.PrimefacesDataTableData #txt
-Ps0 f4 guid 153D1CC0234134B6 #txt
+Ps0 f3 @|UdEventIcon #fIcon
 Ps0 f4 219 155 26 26 0 12 #rect
-Ps0 f4 @|RichDialogEndIcon #fIcon
+Ps0 f4 @|UdExitEndIcon #fIcon
 Ps0 f8 guid 169DD4CD820AF17C #txt
-Ps0 f8 type ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesDataTable.PrimefacesDataTableData #txt
-Ps0 f8 actionDecl 'ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesDataTable.PrimefacesDataTableData out;
-' #txt
 Ps0 f8 actionTable 'out=in;
 ' #txt
 Ps0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -130,18 +112,13 @@ Ps0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f8 91 251 26 26 -13 15 #rect
-Ps0 f8 @|RichDialogProcessStartIcon #fIcon
-Ps0 f1 type ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesDataTable.PrimefacesDataTableData #txt
+Ps0 f8 @|UdEventIcon #fIcon
 Ps0 f1 347 59 26 26 0 12 #rect
-Ps0 f1 @|RichDialogProcessEndIcon #fIcon
+Ps0 f1 @|UdProcessEndIcon #fIcon
 Ps0 f0 guid 169DD4CD820471FD #txt
-Ps0 f0 type ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesDataTable.PrimefacesDataTableData #txt
 Ps0 f0 method start() #txt
-Ps0 f0 disableUIEvents true #txt
-Ps0 f0 inParameterDecl 'ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesDataTable.PrimefacesDataTableData out;
-' #txt
-Ps0 f0 outParameterDecl '<> result;
-' #txt
+Ps0 f0 inParameterDecl '<> param;' #txt
+Ps0 f0 outParameterDecl '<> result;' #txt
 Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -150,7 +127,7 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f0 91 59 26 26 -16 15 #rect
-Ps0 f0 @|RichDialogInitStartIcon #fIcon
+Ps0 f0 @|UdInitIcon #fIcon
 Ps0 f7 expr out #txt
 Ps0 f7 290 72 347 72 #arcP
 Ps0 f5 expr out #txt

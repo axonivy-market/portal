@@ -1,10 +1,9 @@
 [Ivy]
-1633E7FE0C8BCFA6 3.23 #module
+1633E7FE0C8BCFA6 3.28 #module
 >Proto >Proto Collection #zClass
 Pt0 PortalInit Big #zClass
 Pt0 B #cInfo
 Pt0 #process
-Pt0 @TextInP .resExport .resExport #zField
 Pt0 @TextInP .type .type #zField
 Pt0 @TextInP .processKind .processKind #zField
 Pt0 @AnnotationInP-0n ai ai #zField
@@ -31,7 +30,6 @@ Pt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f0 @C|.responsibility Everybody #txt
 Pt0 f0 145 145 30 30 -62 17 #rect
 Pt0 f0 @|StartEventIcon #fIcon
-Pt0 f1 type ch.ivy.add.portalkit.Data #txt
 Pt0 f1 337 145 30 30 0 15 #rect
 Pt0 f1 @|EndIcon #fIcon
 Pt0 f2 expr out #txt

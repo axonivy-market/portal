@@ -1,10 +1,9 @@
 [Ivy]
-16A7C7CEF44FB794 3.26 #module
+16A7C7CEF44FB794 3.28 #module
 >Proto >Proto Collection #zClass
 Gt0 GetDocumentList Big #zClass
 Gt0 B #cInfo
 Gt0 #process
-Gt0 @TextInP .resExport .resExport #zField
 Gt0 @TextInP .type .type #zField
 Gt0 @TextInP .processKind .processKind #zField
 Gt0 @AnnotationInP-0n ai ai #zField
@@ -27,10 +26,7 @@ Gt0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyDocume
 Gt0 f0 outParamTable 'result.documents=in.documents;
 result.message=in.message;
 ' #txt
-Gt0 f0 actionDecl 'ch.ivy.add.portalkit.GetDocumentListData out;
-' #txt
 Gt0 f0 callSignature call(ch.ivyteam.ivy.workflow.ICase) #txt
-Gt0 f0 type ch.ivy.add.portalkit.GetDocumentListData #txt
 Gt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -40,11 +36,8 @@ Gt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Gt0 f0 81 49 30 30 -32 24 #rect
 Gt0 f0 @|StartSubIcon #fIcon
-Gt0 f1 type ch.ivy.add.portalkit.GetDocumentListData #txt
 Gt0 f1 337 49 30 30 0 15 #rect
 Gt0 f1 @|EndSubIcon #fIcon
-Gt0 f3 actionDecl 'ch.ivy.add.portalkit.GetDocumentListData out;
-' #txt
 Gt0 f3 actionTable 'out=in;
 ' #txt
 Gt0 f3 actionCode 'import ch.ivy.addon.portalkit.document.DocumentCustomField;
@@ -70,7 +63,6 @@ if(in.#businessCase is initialized) {
 	}
 }' #txt
 Gt0 f3 security system #txt
-Gt0 f3 type ch.ivy.add.portalkit.GetDocumentListData #txt
 Gt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

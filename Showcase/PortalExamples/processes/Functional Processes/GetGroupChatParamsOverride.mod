@@ -1,10 +1,9 @@
 [Ivy]
-16B2C77DAA249F4E 3.26 #module
+16B2C77DAA249F4E 3.28 #module
 >Proto >Proto Collection #zClass
 Gs0 GetGroupChatParams Big #zClass
 Gs0 B #cInfo
 Gs0 #process
-Gs0 @TextInP .resExport .resExport #zField
 Gs0 @TextInP .type .type #zField
 Gs0 @TextInP .processKind .processKind #zField
 Gs0 @AnnotationInP-0n ai ai #zField
@@ -27,10 +26,7 @@ Gs0 f0 outParamDecl '<java.util.Map params> result;
 ' #txt
 Gs0 f0 outParamTable 'result.params=in.params;
 ' #txt
-Gs0 f0 actionDecl '_ch.ivyteam.ivy.project.portal.examples.GetGroupChatParamsOverrideData out;
-' #txt
 Gs0 f0 callSignature getGroupChatParams() #txt
-Gs0 f0 type _ch.ivyteam.ivy.project.portal.examples.GetGroupChatParamsOverrideData #txt
 Gs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -42,17 +38,13 @@ Gs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Gs0 f0 81 49 30 30 -64 17 #rect
 Gs0 f0 @|StartSubIcon #fIcon
-Gs0 f1 type _ch.ivyteam.ivy.project.portal.examples.GetGroupChatParamsOverrideData #txt
 Gs0 f1 337 49 30 30 0 15 #rect
 Gs0 f1 @|EndSubIcon #fIcon
-Gs0 f3 actionDecl '_ch.ivyteam.ivy.project.portal.examples.GetGroupChatParamsOverrideData out;
-' #txt
 Gs0 f3 actionTable 'out=in;
 ' #txt
 Gs0 f3 actionCode 'out.params.put("groupChatCreator", ivy.session.getSessionUser().getDisplayName());
 ' #txt
 Gs0 f3 security system #txt
-Gs0 f3 type _ch.ivyteam.ivy.project.portal.examples.GetGroupChatParamsOverrideData #txt
 Gs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

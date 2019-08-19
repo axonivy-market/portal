@@ -1,10 +1,9 @@
 [Ivy]
-16B40A95DA8F858E 3.26 #module
+16B40A95DA8F858E 3.28 #module
 >Proto >Proto Collection #zClass
 Ds0 MotorbikeProviderForPortalExpress Big #zClass
 Ds0 B #cInfo
 Ds0 #process
-Ds0 @TextInP .resExport .resExport #zField
 Ds0 @TextInP .type .type #zField
 Ds0 @TextInP .processKind .processKind #zField
 Ds0 @AnnotationInP-0n ai ai #zField
@@ -24,10 +23,7 @@ Ds0 f0 outParamDecl '<List<java.lang.String> data> result;
 ' #txt
 Ds0 f0 outParamTable 'result.data=in.items;
 ' #txt
-Ds0 f0 actionDecl 'ch.ivyteam.ivy.project.portal.examples.DataProviderForPortalExpressData out;
-' #txt
 Ds0 f0 callSignature portalExpressDataProvider() #txt
-Ds0 f0 type ch.ivyteam.ivy.project.portal.examples.DataProviderForPortalExpressData #txt
 Ds0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -37,15 +33,11 @@ Ds0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ds0 f0 81 49 30 30 24 -1 #rect
 Ds0 f0 @|StartSubIcon #fIcon
-Ds0 f1 type ch.ivyteam.ivy.project.portal.examples.DataProviderForPortalExpressData #txt
 Ds0 f1 81 273 30 30 0 15 #rect
 Ds0 f1 @|EndSubIcon #fIcon
-Ds0 f3 actionDecl 'ch.ivyteam.ivy.project.portal.examples.DataProviderForPortalExpressData out;
-' #txt
 Ds0 f3 actionTable 'out=in;
 out.items=java.util.Arrays.asList("BMW", "Harley Davidson", "Honda", "Agusta", "Triumph");
 ' #txt
-Ds0 f3 type ch.ivyteam.ivy.project.portal.examples.DataProviderForPortalExpressData #txt
 Ds0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

@@ -1,12 +1,9 @@
 [Ivy]
-169C7900CA1DBEF8 3.26 #module
+169C7900CA1DBEF8 3.28 #module
 >Proto >Proto Collection #zClass
 Ps0 PrimefacesElementsProcess Big #zClass
 Ps0 RD #cInfo
 Ps0 #process
-Ps0 @TextInP .ui2RdDataAction .ui2RdDataAction #zField
-Ps0 @TextInP .rdData2UIAction .rdData2UIAction #zField
-Ps0 @TextInP .resExport .resExport #zField
 Ps0 @TextInP .type .type #zField
 Ps0 @TextInP .processKind .processKind #zField
 Ps0 @AnnotationInP-0n ai ai #zField
@@ -14,30 +11,25 @@ Ps0 @MessageFlowInP-0n messageIn messageIn #zField
 Ps0 @MessageFlowOutP-0n messageOut messageOut #zField
 Ps0 @TextInP .xml .xml #zField
 Ps0 @TextInP .responsibility .responsibility #zField
-Ps0 @RichDialogProcessEnd f9 '' #zField
-Ps0 @RichDialogProcessEnd f8 '' #zField
-Ps0 @RichDialogProcessStart f10 '' #zField
-Ps0 @RichDialogEnd f4 '' #zField
-Ps0 @RichDialogProcessStart f3 '' #zField
-Ps0 @RichDialogInitStart f6 '' #zField
+Ps0 @UdProcessEnd f9 '' #zField
+Ps0 @UdProcessEnd f8 '' #zField
+Ps0 @UdEvent f10 '' #zField
+Ps0 @UdExitEnd f4 '' #zField
+Ps0 @UdEvent f3 '' #zField
+Ps0 @UdInit f6 '' #zField
 Ps0 @GridStep f1 '' #zField
 Ps0 @PushWFArc f5 '' #zField
 Ps0 @PushWFArc f0 '' #zField
 Ps0 @PushWFArc f11 '' #zField
 Ps0 @PushWFArc f2 '' #zField
 >Proto Ps0 Ps0 PrimefacesElementsProcess #zField
-Ps0 f9 type ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesElements.PrimefacesElementsData #txt
 Ps0 f9 531 115 26 26 0 12 #rect
-Ps0 f9 @|RichDialogProcessEndIcon #fIcon
+Ps0 f9 @|UdProcessEndIcon #fIcon
 Ps0 f9 -1|-1|-9671572 #nodeStyle
-Ps0 f8 type ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesElements.PrimefacesElementsData #txt
 Ps0 f8 207 209 26 26 0 12 #rect
-Ps0 f8 @|RichDialogProcessEndIcon #fIcon
+Ps0 f8 @|UdProcessEndIcon #fIcon
 Ps0 f8 -1|-1|-9671572 #nodeStyle
 Ps0 f10 guid 169C790C82463D89 #txt
-Ps0 f10 type ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesElements.PrimefacesElementsData #txt
-Ps0 f10 actionDecl 'ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesElements.PrimefacesElementsData out;
-' #txt
 Ps0 f10 actionTable 'out=in;
 ' #txt
 Ps0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -50,16 +42,11 @@ Ps0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f10 79 209 26 26 -14 12 #rect
-Ps0 f10 @|RichDialogProcessStartIcon #fIcon
+Ps0 f10 @|UdEventIcon #fIcon
 Ps0 f10 -1|-1|-9671572 #nodeStyle
-Ps0 f4 type ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesElements.PrimefacesElementsData #txt
-Ps0 f4 guid 165D809C306E518E #txt
 Ps0 f4 211 51 26 26 0 12 #rect
-Ps0 f4 @|RichDialogEndIcon #fIcon
+Ps0 f4 @|UdExitEndIcon #fIcon
 Ps0 f3 guid 169C790C824A369F #txt
-Ps0 f3 type ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesElements.PrimefacesElementsData #txt
-Ps0 f3 actionDecl 'ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesElements.PrimefacesElementsData out;
-' #txt
 Ps0 f3 actionTable 'out=in;
 ' #txt
 Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -70,15 +57,11 @@ Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f3 83 51 26 26 -15 12 #rect
-Ps0 f3 @|RichDialogProcessStartIcon #fIcon
+Ps0 f3 @|UdEventIcon #fIcon
 Ps0 f6 guid 169C790C82413383 #txt
-Ps0 f6 type ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesElements.PrimefacesElementsData #txt
 Ps0 f6 method start() #txt
-Ps0 f6 disableUIEvents true #txt
-Ps0 f6 inParameterDecl 'ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesElements.PrimefacesElementsData out;
-' #txt
-Ps0 f6 outParameterDecl '<> result;
-' #txt
+Ps0 f6 inParameterDecl '<> param;' #txt
+Ps0 f6 outParameterDecl '<> result;' #txt
 Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -87,10 +70,8 @@ Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f6 79 113 26 26 -16 15 #rect
-Ps0 f6 @|RichDialogInitStartIcon #fIcon
+Ps0 f6 @|UdInitIcon #fIcon
 Ps0 f6 -1|-1|-9671572 #nodeStyle
-Ps0 f1 actionDecl 'ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesElements.PrimefacesElementsData out;
-' #txt
 Ps0 f1 actionTable 'out=in;
 ' #txt
 Ps0 f1 actionCode 'import ch.ivyteam.ivy.project.portal.examples.showcase.Person;
@@ -137,7 +118,6 @@ in.cities.add("Berlin");
 in.cities.add("Paris");
 in.cities.add("Rome");
 ' #txt
-Ps0 f1 type ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesElements.PrimefacesElementsData #txt
 Ps0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

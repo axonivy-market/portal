@@ -1,10 +1,9 @@
 [Ivy]
-16AD85A0D0880667 3.26 #module
+16AD85A0D0880667 3.28 #module
 >Proto >Proto Collection #zClass
 Dt0 DeleteDocument Big #zClass
 Dt0 B #cInfo
 Dt0 #process
-Dt0 @TextInP .resExport .resExport #zField
 Dt0 @TextInP .type .type #zField
 Dt0 @TextInP .processKind .processKind #zField
 Dt0 @AnnotationInP-0n ai ai #zField
@@ -28,10 +27,7 @@ Dt0 f0 outParamDecl '<java.lang.String message> result;
 ' #txt
 Dt0 f0 outParamTable 'result.message=in.message;
 ' #txt
-Dt0 f0 actionDecl '_ch.ivyteam.ivy.project.portal.examples.DeleteDocumentOverrideData out;
-' #txt
 Dt0 f0 callSignature call(ch.ivyteam.ivy.workflow.ICase,ch.ivy.addon.portalkit.ivydata.bo.IvyDocument) #txt
-Dt0 f0 type _ch.ivyteam.ivy.project.portal.examples.DeleteDocumentOverrideData #txt
 Dt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -41,11 +37,8 @@ Dt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dt0 f0 81 49 30 30 -67 18 #rect
 Dt0 f0 @|StartSubIcon #fIcon
-Dt0 f1 type _ch.ivyteam.ivy.project.portal.examples.DeleteDocumentOverrideData #txt
 Dt0 f1 337 49 30 30 0 15 #rect
 Dt0 f1 @|EndSubIcon #fIcon
-Dt0 f3 actionDecl '_ch.ivyteam.ivy.project.portal.examples.DeleteDocumentOverrideData out;
-' #txt
 Dt0 f3 actionTable 'out=in;
 ' #txt
 Dt0 f3 actionCode 'import java.util.Arrays;
@@ -56,7 +49,6 @@ String note = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/deleteDoc
 in.businessCase.createNote(ivy.session, note);
 in.message = "Overridden: " + ivy.cms.co("/Dialogs/components/CaseDocument/deleteSucceed");' #txt
 Dt0 f3 security system #txt
-Dt0 f3 type _ch.ivyteam.ivy.project.portal.examples.DeleteDocumentOverrideData #txt
 Dt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

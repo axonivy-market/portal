@@ -1,10 +1,9 @@
 [Ivy]
-169B29B5A9636EE8 3.20 #module
+169B29B5A9636EE8 3.28 #module
 >Proto >Proto Collection #zClass
 Se0 SetGroupChatName Big #zClass
 Se0 B #cInfo
 Se0 #process
-Se0 @TextInP .resExport .resExport #zField
 Se0 @TextInP .type .type #zField
 Se0 @TextInP .processKind .processKind #zField
 Se0 @AnnotationInP-0n ai ai #zField
@@ -25,10 +24,7 @@ Se0 f0 outParamDecl '<java.lang.String name> result;
 ' #txt
 Se0 f0 outParamTable 'result.name=in.name;
 ' #txt
-Se0 f0 actionDecl 'ch.ivy.addon.portal.generic.SetGroupChatNameData out;
-' #txt
 Se0 f0 callSignature setGroupChatName() #txt
-Se0 f0 type ch.ivy.addon.portal.generic.SetGroupChatNameData #txt
 Se0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -40,15 +36,11 @@ Se0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Se0 f0 81 49 30 30 -59 17 #rect
 Se0 f0 @|StartSubIcon #fIcon
-Se0 f1 type ch.ivy.addon.portal.generic.SetGroupChatNameData #txt
 Se0 f1 337 49 30 30 0 15 #rect
 Se0 f1 @|EndSubIcon #fIcon
-Se0 f3 actionDecl 'ch.ivy.addon.portal.generic.SetGroupChatNameData out;
-' #txt
 Se0 f3 actionTable 'out=in;
 out.name=ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/case") + "-{caseId}";
 ' #txt
-Se0 f3 type ch.ivy.addon.portal.generic.SetGroupChatNameData #txt
 Se0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

@@ -1,10 +1,9 @@
 [Ivy]
-14BDEA64F884ED76 3.24 #module
+14BDEA64F884ED76 3.28 #module
 >Proto >Proto Collection #zClass
 Ee0 EmailSettingService Big #zClass
 Ee0 B #cInfo
 Ee0 #process
-Ee0 @TextInP .resExport .resExport #zField
 Ee0 @TextInP .type .type #zField
 Ee0 @TextInP .processKind .processKind #zField
 Ee0 @AnnotationInP-0n ai ai #zField
@@ -35,10 +34,7 @@ Ee0 f3 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyEmailS
 Ee0 f3 outParamTable 'result.ivyEmailSettings=in.ivyEmailSettings;
 result.errors=in.errors;
 ' #txt
-Ee0 f3 actionDecl 'ch.ivyteam.wf.processes.EmailSettingServiceData out;
-' #txt
 Ee0 f3 callSignature findEmailSettings(String) #txt
-Ee0 f3 type ch.ivyteam.wf.processes.EmailSettingServiceData #txt
 Ee0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -48,8 +44,6 @@ Ee0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ee0 f3 81 49 30 30 -55 19 #rect
 Ee0 f3 @|StartSubIcon #fIcon
-Ee0 f10 actionDecl 'ch.ivyteam.wf.processes.EmailSettingServiceData out;
-' #txt
 Ee0 f10 actionTable 'out=in;
 ' #txt
 Ee0 f10 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
@@ -57,7 +51,6 @@ Ee0 f10 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationS
 RegisteredApplicationService service = new RegisteredApplicationService();
 out.apps = service.findActiveIvyAppsUserCanWorkOn(in.username);
 ' #txt
-Ee0 f10 type ch.ivyteam.wf.processes.EmailSettingServiceData #txt
 Ee0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -67,8 +60,6 @@ Ee0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ee0 f10 192 42 176 44 -81 -8 #rect
 Ee0 f10 @|StepIcon #fIcon
-Ee0 f20 actionDecl 'ch.ivyteam.wf.processes.EmailSettingServiceData out;
-' #txt
 Ee0 f20 actionTable 'out=in;
 ' #txt
 Ee0 f20 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.EmailSettingService;
@@ -78,7 +69,6 @@ IvyEmailSettingResultDTO dto = EmailSettingService.newInstance().findEmailSettin
 out.ivyEmailSettings = dto.ivyEmailSettings;
 out.errors = dto.errors;
 ' #txt
-Ee0 f20 type ch.ivyteam.wf.processes.EmailSettingServiceData #txt
 Ee0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -88,9 +78,7 @@ Ee0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ee0 f20 424 42 112 44 -52 -8 #rect
 Ee0 f20 @|StepIcon #fIcon
-Ee0 f24 type ch.ivyteam.wf.processes.EmailSettingServiceData #txt
 Ee0 f24 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Ee0 f24 doCall true #txt
 Ee0 f24 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
 ' #txt
 Ee0 f24 requestMappingAction 'param.exceptions=in.errors;
@@ -108,7 +96,6 @@ Ee0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ee0 f24 608 42 112 44 -35 -8 #rect
 Ee0 f24 @|CallSubIcon #fIcon
-Ee0 f25 type ch.ivyteam.wf.processes.EmailSettingServiceData #txt
 Ee0 f25 785 49 30 30 0 15 #rect
 Ee0 f25 @|EndSubIcon #fIcon
 Ee0 f26 expr out #txt
@@ -127,10 +114,7 @@ Ee0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.Po
 ' #txt
 Ee0 f0 outParamTable 'result.errors=in.errors;
 ' #txt
-Ee0 f0 actionDecl 'ch.ivyteam.wf.processes.EmailSettingServiceData out;
-' #txt
 Ee0 f0 callSignature saveEmailSettings(String,List<ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting>) #txt
-Ee0 f0 type ch.ivyteam.wf.processes.EmailSettingServiceData #txt
 Ee0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -140,8 +124,6 @@ Ee0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ee0 f0 81 177 30 30 -79 14 #rect
 Ee0 f0 @|StartSubIcon #fIcon
-Ee0 f6 actionDecl 'ch.ivyteam.wf.processes.EmailSettingServiceData out;
-' #txt
 Ee0 f6 actionTable 'out=in;
 ' #txt
 Ee0 f6 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.EmailSettingService;
@@ -150,7 +132,6 @@ import ch.ivy.addon.portalkit.ivydata.dto.IvyEmailSettingResultDTO;
 IvyEmailSettingResultDTO dto = EmailSettingService.newInstance().saveEmailSetting(in.username, in.ivyEmailSettings);
 out.errors = dto.errors;
 ' #txt
-Ee0 f6 type ch.ivyteam.wf.processes.EmailSettingServiceData #txt
 Ee0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -160,9 +141,7 @@ Ee0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ee0 f6 296 170 112 44 -53 -8 #rect
 Ee0 f6 @|StepIcon #fIcon
-Ee0 f2 type ch.ivyteam.wf.processes.EmailSettingServiceData #txt
 Ee0 f2 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Ee0 f2 doCall true #txt
 Ee0 f2 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
 ' #txt
 Ee0 f2 requestMappingAction 'param.exceptions=in.errors;
@@ -180,7 +159,6 @@ Ee0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ee0 f2 520 170 112 44 -35 -8 #rect
 Ee0 f2 @|CallSubIcon #fIcon
-Ee0 f4 type ch.ivyteam.wf.processes.EmailSettingServiceData #txt
 Ee0 f4 785 177 30 30 0 15 #rect
 Ee0 f4 @|EndSubIcon #fIcon
 Ee0 f1 expr out #txt

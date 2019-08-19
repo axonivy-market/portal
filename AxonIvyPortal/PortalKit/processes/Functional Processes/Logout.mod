@@ -1,10 +1,9 @@
 [Ivy]
-15EF0843F1DB39F2 3.23 #module
+15EF0843F1DB39F2 3.28 #module
 >Proto >Proto Collection #zClass
 Lt0 Logout Big #zClass
 Lt0 B #cInfo
 Lt0 #process
-Lt0 @TextInP .resExport .resExport #zField
 Lt0 @TextInP .type .type #zField
 Lt0 @TextInP .processKind .processKind #zField
 Lt0 @AnnotationInP-0n ai ai #zField
@@ -23,10 +22,7 @@ Lt0 f0 inParamTable 'out.isTaskReserve=param.isTaskReserve;
 ' #txt
 Lt0 f0 outParamDecl '<> result;
 ' #txt
-Lt0 f0 actionDecl 'ch.ivy.add.portalkit.LogoutData out;
-' #txt
 Lt0 f0 callSignature call(Boolean) #txt
-Lt0 f0 type ch.ivy.add.portalkit.LogoutData #txt
 Lt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -36,11 +32,8 @@ Lt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Lt0 f0 81 49 30 30 -36 17 #rect
 Lt0 f0 @|StartSubIcon #fIcon
-Lt0 f1 type ch.ivy.add.portalkit.LogoutData #txt
 Lt0 f1 353 49 30 30 0 15 #rect
 Lt0 f1 @|EndSubIcon #fIcon
-Lt0 f3 actionDecl 'ch.ivy.add.portalkit.LogoutData out;
-' #txt
 Lt0 f3 actionTable 'out=in;
 ' #txt
 Lt0 f3 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
@@ -55,7 +48,6 @@ for (SessionAttribute item: SessionAttribute.values()){
 	SecurityServiceUtils.removeSessionAttribute(item.toString());
 }' #txt
 Lt0 f3 security system #txt
-Lt0 f3 type ch.ivy.add.portalkit.LogoutData #txt
 Lt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

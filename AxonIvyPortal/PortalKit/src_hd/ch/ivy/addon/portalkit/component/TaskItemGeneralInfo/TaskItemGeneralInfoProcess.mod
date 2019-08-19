@@ -1,12 +1,9 @@
 [Ivy]
-15493A537A91F8FC 3.23 #module
+15493A537A91F8FC 3.28 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemGeneralInfoProcess Big #zClass
 Ts0 RD #cInfo
 Ts0 #process
-Ts0 @TextInP .ui2RdDataAction .ui2RdDataAction #zField
-Ts0 @TextInP .rdData2UIAction .rdData2UIAction #zField
-Ts0 @TextInP .resExport .resExport #zField
 Ts0 @TextInP .type .type #zField
 Ts0 @TextInP .processKind .processKind #zField
 Ts0 @AnnotationInP-0n ai ai #zField
@@ -14,28 +11,26 @@ Ts0 @MessageFlowInP-0n messageIn messageIn #zField
 Ts0 @MessageFlowOutP-0n messageOut messageOut #zField
 Ts0 @TextInP .xml .xml #zField
 Ts0 @TextInP .responsibility .responsibility #zField
-Ts0 @RichDialogInitStart f0 '' #zField
-Ts0 @RichDialogProcessEnd f1 '' #zField
+Ts0 @UdInit f0 '' #zField
+Ts0 @UdProcessEnd f1 '' #zField
 Ts0 @PushWFArc f2 '' #zField
 Ts0 @GridStep f7 '' #zField
 Ts0 @CallSub f9 '' #zField
 Ts0 @PushWFArc f10 '' #zField
-Ts0 @RichDialogProcessEnd f11 '' #zField
+Ts0 @UdProcessEnd f11 '' #zField
 Ts0 @PushWFArc f12 '' #zField
-Ts0 @RichDialogMethodStart f5 '' #zField
+Ts0 @UdMethod f5 '' #zField
 Ts0 @GridStep f13 '' #zField
 Ts0 @PushWFArc f14 '' #zField
 Ts0 @GridStep f15 '' #zField
 Ts0 @PushWFArc f17 '' #zField
-Ts0 @RichDialogProcessEnd f19 '' #zField
+Ts0 @UdProcessEnd f19 '' #zField
 Ts0 @PushWFArc f20 '' #zField
-Ts0 @RichDialogMethodStart f3 '' #zField
+Ts0 @UdMethod f3 '' #zField
 Ts0 @PushWFArc f4 '' #zField
 >Proto Ts0 Ts0 TaskItemGeneralInfoProcess #zField
 Ts0 f0 guid 1682691BC1A26D76 #txt
-Ts0 f0 type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
 Ts0 f0 method start() #txt
-Ts0 f0 disableUIEvents true #txt
 Ts0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -49,20 +44,16 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f0 83 83 26 26 -16 15 #rect
-Ts0 f0 @|RichDialogInitStartIcon #fIcon
-Ts0 f1 type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
+Ts0 f0 @|UdInitIcon #fIcon
 Ts0 f1 307 83 26 26 0 12 #rect
-Ts0 f1 @|RichDialogProcessEndIcon #fIcon
+Ts0 f1 @|UdProcessEndIcon #fIcon
 Ts0 f2 expr out #txt
 Ts0 f2 109 96 307 96 #arcP
-Ts0 f7 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData out;
-' #txt
 Ts0 f7 actionTable 'out=in;
 ' #txt
 Ts0 f7 actionCode 'import ch.ivy.addon.portalkit.dto.GlobalCaseId;
 
 in.globalCaseId = GlobalCaseId.caseId(in.selectedCase.getId()).build();' #txt
-Ts0 f7 type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
 Ts0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -72,9 +63,7 @@ Ts0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ts0 f7 160 170 128 44 -61 -8 #rect
 Ts0 f7 @|StepIcon #fIcon
-Ts0 f9 type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
 Ts0 f9 processCall 'Functional Processes/Navigator:viewCase(String,ch.ivy.addon.portalkit.dto.GlobalCaseId)' #txt
-Ts0 f9 doCall true #txt
 Ts0 f9 requestActionDecl '<java.lang.String caseName,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;
 ' #txt
 Ts0 f9 requestMappingAction 'param.caseName=ch.ivy.addon.portalkit.util.PermissionUtils.getCaseName(in.selectedCase);
@@ -95,15 +84,12 @@ Ts0 f9 328 170 112 44 -26 -8 #rect
 Ts0 f9 @|CallSubIcon #fIcon
 Ts0 f10 expr out #txt
 Ts0 f10 288 192 328 192 #arcP
-Ts0 f11 type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
 Ts0 f11 499 179 26 26 0 12 #rect
-Ts0 f11 @|RichDialogProcessEndIcon #fIcon
+Ts0 f11 @|UdProcessEndIcon #fIcon
 Ts0 f12 expr out #txt
 Ts0 f12 440 192 499 192 #arcP
 Ts0 f5 guid 16826946D7BC78E5 #txt
-Ts0 f5 type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
 Ts0 f5 method updateDeadline(ch.ivyteam.ivy.workflow.ITask) #txt
-Ts0 f5 disableUIEvents false #txt
 Ts0 f5 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <ch.ivyteam.ivy.workflow.ITask task> param = methodEvent.getInputArguments();
 ' #txt
@@ -119,9 +105,7 @@ Ts0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f5 83 275 26 26 -63 15 #rect
-Ts0 f5 @|RichDialogMethodStartIcon #fIcon
-Ts0 f13 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData out;
-' #txt
+Ts0 f5 @|UdMethodIcon #fIcon
 Ts0 f13 actionTable 'out=in;
 ' #txt
 Ts0 f13 actionCode 'import org.apache.commons.lang3.StringUtils;
@@ -134,7 +118,6 @@ String fullName = user.getFullName();
 String userName = StringUtils.substring(user.getMemberName(), 1);
 in.changeDeadlineNoteContent = service.prepareChangeDeadlineNoteContent(fullName, userName, in.task.expiryTimestamp, in.task.getId());' #txt
 Ts0 f13 security system #txt
-Ts0 f13 type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
 Ts0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -146,13 +129,10 @@ Ts0 f13 160 266 128 44 -57 -8 #rect
 Ts0 f13 @|StepIcon #fIcon
 Ts0 f14 expr out #txt
 Ts0 f14 109 288 160 288 #arcP
-Ts0 f15 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData out;
-' #txt
 Ts0 f15 actionTable 'out=in;
 ' #txt
 Ts0 f15 actionCode 'in.task.getCase().getBusinessCase().createNote(ivy.session, in.changeDeadlineNoteContent);' #txt
 Ts0 f15 security system #txt
-Ts0 f15 type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
 Ts0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -164,15 +144,12 @@ Ts0 f15 328 266 112 44 -24 -8 #rect
 Ts0 f15 @|StepIcon #fIcon
 Ts0 f17 expr out #txt
 Ts0 f17 288 288 328 288 #arcP
-Ts0 f19 type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
 Ts0 f19 499 275 26 26 0 12 #rect
-Ts0 f19 @|RichDialogProcessEndIcon #fIcon
+Ts0 f19 @|UdProcessEndIcon #fIcon
 Ts0 f20 expr out #txt
 Ts0 f20 440 288 499 288 #arcP
 Ts0 f3 guid 168275A66748435B #txt
-Ts0 f3 type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
 Ts0 f3 method navigateToRelatedCase(ch.ivyteam.ivy.workflow.ICase) #txt
-Ts0 f3 disableUIEvents false #txt
 Ts0 f3 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <ch.ivyteam.ivy.workflow.ICase iCase> param = methodEvent.getInputArguments();
 ' #txt
@@ -188,7 +165,7 @@ Ts0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f3 83 179 26 26 -41 19 #rect
-Ts0 f3 @|RichDialogMethodStartIcon #fIcon
+Ts0 f3 @|UdMethodIcon #fIcon
 Ts0 f4 expr out #txt
 Ts0 f4 109 192 160 192 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
