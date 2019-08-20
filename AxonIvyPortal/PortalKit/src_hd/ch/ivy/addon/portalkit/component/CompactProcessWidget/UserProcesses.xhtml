@@ -9,8 +9,6 @@
 <ui:composition>
   <div jsf:rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled and compactProcessWidgetBean.displayShowAllProcessesLink}" class="favorite-process-title ui-g-12">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/favoriteProcesses')}" />
-    <p:commandLink id="show-user-processes-link" styleClass="name-sort-command Fright ui-lg-hidden ui-xl-hidden ui-md-hidden"
-            value="Toggle" global="false" onclick="toggleShowUserProcessList();" />
   </div>
 
 

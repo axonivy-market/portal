@@ -1566,6 +1566,13 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   padding-right: 40px;
 }
 
+.compact-process-widget .toggle-processes-link {
+  font-size: 1.2rem !important;
+  padding-top: 2px;
+  margin-right: 10px;
+  float: left;
+}
+
 .process-start-list-item-action.is-express {
   right: 50px;
 }
