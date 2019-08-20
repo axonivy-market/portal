@@ -2404,7 +2404,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .task-name-input {
-  width : calc(100% - 135px);
+  width : calc(100% - 155px);
   font-weight: bold !important;
   font-size: 1.6rem !important;
 }
