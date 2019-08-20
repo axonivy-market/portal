@@ -52,7 +52,8 @@
             <h:form>
               <p:menu overlay="true" trigger="task-actions" my="right top" at="right bottom"
                 styleClass="action-steps-panel task-actions-menu">
-                <p:submenu label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}">
+                <p:submenu label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
+                  rendered="#{taskTemplateBean.hasAdhocTasks() or (empty isShowStartAdhocButton? taskTemplateBean.hasExpressAdhocWF(): isShowStartAdhocButton)}">
                   <p:menuitem id="show-adhoc-history" rendered="#{taskTemplateBean.hasAdhocTasks()}"
                     icon="fa fa-history fa-2x" oncomplete="PF('adhoc-task-history-dialog').show()"
                     value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/adhocHistory')}"
