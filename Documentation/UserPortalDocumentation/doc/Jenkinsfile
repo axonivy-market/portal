@@ -16,16 +16,15 @@ pipeline {
   stages {    
     stage('build') {
       steps {        
-        script {
-          docker.build('doc-build', '-f Documentation/UserPortalDocumentation/doc/Dockerfile doc').inside('') {
-            dir ('Documentation/UserPortalDocumentation/doc') {
-              sh 'make html'
-            }
-          }       
+        dir ('Documentation/UserPortalDocumentation/doc') {
+            script {
+                docker.build('doc-build', '.').inside('') {
+                    sh 'make html'
+                }
+            }   
+            archiveArtifacts 'build/html/**/*'
+            recordIssues tools: [sphinxBuild()], unstableTotalAll: 2
         }
-
-        archiveArtifacts 'doc/build/html/**/*'
-        recordIssues tools: [sphinxBuild()], unstableTotalAll: 2
       }
     }
   }
