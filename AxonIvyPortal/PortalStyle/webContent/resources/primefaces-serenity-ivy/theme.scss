@@ -309,6 +309,11 @@ body .ui-panelgrid tbody tr.ui-widget-content {
 }
 
 /*Style For Buttons --------------------------------------------------------------------------------------*/
+.ui-widget.ui-button {
+    border-radius: $actionButtonBorderRadius !important;
+    background-color: $actionButtonColor;
+}
+
 .ui-widget.ui-button.ui-state-hover:not(.ui-spinner-button),
 .ui-widget.ui-buttonset .ui-state-hover,
 body .ui-buttonset .ui-state-active {

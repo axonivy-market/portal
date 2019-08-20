@@ -2693,7 +2693,7 @@ _:-ms-fullscreen, :root .additional-case-details-link {
   color: rgba(0,0,0,0.6) !important;
 }
 
-.case-detail-description-input {
+.case-detail-description-input.ui-inputfield.ui-inputtextarea.ui-widget {
   width: calc(100% - 5px);
   resize: none;
   margin-bottom: 2px !important;
@@ -4996,6 +4996,10 @@ _:-ms-fullscreen, :root .case-related-command-link {
 /*  =================== END TASK DETAIL PAGE ========================= */
 
 /*  =================== TASK TEMPLATE PAGE ========================= */
+.task-template-content .ui-button.ui-widget.ui-button-icon-only.task-actions-button {
+  border-radius: 50% !important;
+}
+
 .task-template-content .task-actions-button:focus {
   outline: transparent;
 }
