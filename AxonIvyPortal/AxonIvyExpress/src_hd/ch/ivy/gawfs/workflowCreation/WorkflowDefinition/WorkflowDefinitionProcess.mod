@@ -636,7 +636,9 @@ if (!in.data.isUseDefaultUI) {
 }
 
 in.data.definedTasks.clear();
-in.data.definedTasks.add(task);' #txt
+in.data.definedTasks.add(task);
+
+' #txt
 Fs0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -656,14 +658,9 @@ import gawfs.TaskDef;
 if (in.data.isUseDefaultUI) {
 	String nameOfUserTask = in.data.definedTasks.get(0).subject;
 	for (TaskDef taskDef : in.data.definedTasks) {
-		if (in.data.definedTasks.indexOf(taskDef) == 0) {
 			taskDef.taskType = TaskType.USER_TASK;
 			taskDef.dragAndDropController = in.defaultDragAndDropController;
 			taskDef.dynaFormController = in.defaultDragAndDropController.dynaFormController;
-		} else {
-			taskDef.taskType = TaskType.APPROVAL;
-			taskDef.subject = ivy.cms.co("/Dialogs/workflowCreation/TaskType/Approval") + " " + in.data.definedTasks.indexOf(taskDef) + ": " + nameOfUserTask;
-		}
 	}
 	in.data.readyToExecute = true;
 }' #txt

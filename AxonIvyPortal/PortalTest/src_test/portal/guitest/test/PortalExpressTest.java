@@ -82,7 +82,10 @@ public class PortalExpressTest extends BaseTest {
 		formDefinition.createUploadComponent("Upload");
 		formDefinition.moveAllElementToDragAndDrogPanel();
 		formDefinition.executeWorkflow();
-		Sleeper.sleepTight(2000);
+		homePage = new HomePage();
+    taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage.filterTasksBy("Task 1");
+    taskWidgetPage.startTask(0);
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		Assert.assertTrue(expressTaskPage.isDocumentTableVisible());
 		Assert.assertTrue(expressTaskPage.isDocumentUploadButtonVisible());
@@ -157,7 +160,10 @@ public class PortalExpressTest extends BaseTest {
 		formDefinition.createTextInputField("Input Text", INPUT_TEXT_TYPE_INDEX, false);
 		formDefinition.moveAllElementToDragAndDrogPanel();
 		formDefinition.executeWorkflow();
-		Sleeper.sleepTight(2000);
+		homePage = new HomePage();
+		taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage.filterTasksBy("Task for creator");
+    taskWidgetPage.startTask(0);
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		expressTaskPage.finish();
 		HomePage home = new HomePage();

@@ -135,7 +135,7 @@ public class AbstractDaoTest {
     when(abstractDao, "parseJsonToObject", jsonData).thenCallRealMethod();
     BusinessEntity businessEntity = Whitebox.invokeMethod(abstractDao, "parseJsonToObject", jsonData);
 
-    assertEquals(new Long(51L), businessEntity.getId());
+    assertEquals(Long.valueOf(51L), businessEntity.getId());
   }
   
   @Test
