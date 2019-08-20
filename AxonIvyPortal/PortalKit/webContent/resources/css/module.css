@@ -2404,7 +2404,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .task-name-input {
-  width : calc(100% - 135px);
+  width : calc(100% - 155px);
   font-weight: bold !important;
   font-size: 1.6rem !important;
 }
@@ -2693,7 +2693,7 @@ _:-ms-fullscreen, :root .additional-case-details-link {
   color: rgba(0,0,0,0.6) !important;
 }
 
-.case-detail-description-input {
+.case-detail-description-input.ui-inputfield.ui-inputtextarea.ui-widget {
   width: calc(100% - 5px);
   resize: none;
   margin-bottom: 2px !important;
@@ -3105,6 +3105,9 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   .admin-ui-dialog, .change-password-dialog {
      top: 100px !important;
   }
+  .setting-dialog, .dialog-closing-information {
+     top: 150px !important;
+  }
   .settings-table-action-buttons {
     text-align: left !important;
   }
@@ -3120,7 +3123,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   .admin-ui-dialog, .deputy-dialog, .absence-settings-dialog {
      width: 90vw !important;
   }
-  .dialog-closing-information, .project-info-dialog, .add-new-absence-dialog {
+  .dialog-closing-information, .project-info-dialog, .add-new-absence-dialog, .app-dialog {
     width: 80vw !important;
   }
 }
@@ -3135,7 +3138,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 .application-table-type-column, .application-table-action-column {
-  text-align: left;
+  text-align: left !important;
 }
 
 .action-column-icon-button {
@@ -4993,6 +4996,10 @@ _:-ms-fullscreen, :root .case-related-command-link {
 /*  =================== END TASK DETAIL PAGE ========================= */
 
 /*  =================== TASK TEMPLATE PAGE ========================= */
+.task-template-content .ui-button.ui-widget.ui-button-icon-only.task-actions-button {
+  border-radius: 50% !important;
+}
+
 .task-template-content .task-actions-button:focus {
   outline: transparent;
 }
