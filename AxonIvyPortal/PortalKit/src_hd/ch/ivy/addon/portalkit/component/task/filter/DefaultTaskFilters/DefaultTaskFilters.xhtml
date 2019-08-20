@@ -9,13 +9,15 @@
 </cc:interface>
 
 <cc:implementation>
-  <div class="ui-g-12 hidden-sm-up">
-    <p:commandLink id="toggle-task-filter" value="#{cc.attrs.dataModel.selectedFilters.size()} selected filters"
-      global="false" onclick="toggleTaskFilter();taskWidget.setupScrollbar();" />
+  <div class="ui-g-12 hidden-md-up">
+    <p:commandLink id="toggle-task-filter"
+      global="false" onclick="taskWidget.toggleTaskFilter(this);taskWidget.setupScrollbar();">
+      <i class="fa fa-plus-circle ui-state-disabled u-padding-right-5" /><h:outputText value="#{cc.attrs.dataModel.selectedFilters.size()} selected filters" />
+    </p:commandLink>
   </div>
 
   <c:set var="filterContainer" value="#{cc.attrs.dataModel.filterContainer}" />
-  <div id="toggle-task-filter-container" class="ui-g">
+  <div id="toggle-task-filter-container" class="ui-g hidden-sm-down js-task-filter-container">
     <ic:ch.ivy.addon.portalkit.component.task.filter.TaskPriorityFilter filter="#{filterContainer.priorityFilter}"
       dataModel="#{cc.attrs.dataModel}" />
     <ic:ch.ivy.addon.portalkit.component.task.filter.TaskStateFilter filter="#{filterContainer.stateFilter}"
@@ -29,11 +31,5 @@
     <ic:ch.ivy.addon.portalkit.component.task.filter.TaskResponsibleFilter filter="#{filterContainer.responsibleFilter}"
       dataModel="#{cc.attrs.dataModel}" />
   </div>
-
-  <script>
-      function toggleTaskFilter() {
-        $('[id $= "toggle-task-filter-container"]').toggleClass("ui-hidden");
-      }
-    </script>
 </cc:implementation>
 </html>
