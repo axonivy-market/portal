@@ -52,8 +52,6 @@
             <h:form>
               <p:menu overlay="true" trigger="task-actions" my="right top" at="right bottom"
                 styleClass="action-steps-panel task-actions-menu">
-                <p:submenu label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-                  rendered="#{taskTemplateBean.hasAdhocTasks() or (empty isShowStartAdhocButton? taskTemplateBean.hasExpressAdhocWF(): isShowStartAdhocButton)}">
                   <p:menuitem id="show-adhoc-history" rendered="#{taskTemplateBean.hasAdhocTasks()}"
                     icon="fa fa-history fa-2x" oncomplete="PF('adhoc-task-history-dialog').show()"
                     value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/adhocHistory')}"
@@ -65,9 +63,8 @@
                     title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHocTooltip')}"
                     icon="fa fa-random fa-2x" oncomplete="PF('adhoc-task-reset-confirmation-dialog').show()">
                   </p:menuitem>
-                </p:submenu>
 
-                <p:submenu label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/sideSteps')}">
+<p:separator rendered="#{taskTemplateBean.hasAdhocTasks() or (empty isShowStartAdhocButton? taskTemplateBean.hasExpressAdhocWF(): isShowStartAdhocButton)}" />
                   <p:menuitem id="side-steps-menu" styleClass="empty-side-steps" global="false"
                     disabled="#{empty taskTemplateBean.sideStepList}" rendered="#{empty taskTemplateBean.sideStepList}"
                     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}">
@@ -78,7 +75,6 @@
                       actionListener="#{taskTemplateBean.setSelectedSideStep(sidestep)}"
                       oncomplete="PF('sidestep-task-reset-confirmation-dialog').show()" />
                   </c:forEach>
-                </p:submenu>
               </p:menu>
             </h:form>
 
