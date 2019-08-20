@@ -13,46 +13,6 @@
 
     <build>
 		<plugins>		
-			
-		    <plugin>
-		        <groupId>org.apache.maven.plugins</groupId>
-		        <artifactId>maven-dependency-plugin</artifactId>
-		        <version>2.10</version>
-		        <executions>
-		            <execution>
-		                <id>unpack-doc-images</id>
-		                <goals><goal>unpack</goal></goals>
-		                <phase>generate-resources</phase>
-		                <configuration>
-		                    <outputDirectory>source</outputDirectory>
-		                    <artifactItems>
-		                        <artifactItem>
-		                            <groupId>ch.ivyteam.ivy</groupId>
-		                            <artifactId>doc-images</artifactId>
-		                            <type>zip</type>
-		                        </artifactItem>
-		                    </artifactItems>
-		                </configuration>
-		            </execution>
-
-					<execution>
-						<id>unpack-engine-cockpit-images</id>
-						<goals><goal>unpack</goal></goals>
-						<phase>generate-resources</phase>
-						<configuration>
-							<outputDirectory>source/engine-guide/tool-reference/images</outputDirectory>
-							<artifactItems>
-		                        <artifactItem>
-		                            <groupId>ch.ivyteam.ivy</groupId>
-		                            <artifactId>engine-cockpit-selenium-test</artifactId>
-		                            <type>zip</type>
-		                        </artifactItem>
-		                    </artifactItems>
-						</configuration>
-					</execution>
-		        </executions>
-		    </plugin>
-    
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>

@@ -28,8 +28,7 @@ add_function_parentheses = True
 
 extensions = [
     'sphinx.ext.extlinks',
-    'sphinxprettysearchresults',
-    'sphinxcontrib.httpdomain'
+    'sphinxprettysearchresults'
 ]
 
 templates_path = ['_templates']
@@ -52,25 +51,5 @@ html_favicon = '_static/images/favicon.png'
 # https://stackoverflow.com/questions/1227037/substitutions-inside-links-in-rest-sphinx
 extlinks = {
     'dev-url':  ('https://developer.axonivy.com%s', None),
-    'public-api':  ('https://developer.axonivy.com/doc/latest/PublicAPI%s', None),
-    'designer-guide': ('https://developer.axonivy.com/doc/latest/DesignerGuideHtml%s', None)
+    'public-api':  ('https://developer.axonivy.com/doc/latest/PublicAPI%s', None)
 }
-
-# token replacements
-# https://github.com/sphinx-doc/sphinx/issues/4054
-replacements = {
-    '|ivy-platform|': 'Axon.ivy Digital Business Platform',
-    '|ivy-engine|' : 'Axon.ivy Engine',
-    '|ivy-designer|': 'Axon.ivy Designer',
-    '|axon-ivy|': 'Axon.ivy',
-}
-
-def replaceToken(app, docname, source):
-    result = source[0]
-    for key in app.config.replacements:
-        result = result.replace(key, app.config.replacements[key])
-    source[0] = result
-
-def setup(app):
-    app.add_config_value('replacements', {}, True)
-    app.connect('source-read', replaceToken)

@@ -1,0 +1,31 @@
+pipeline {
+
+  agent {
+    label 'docker'
+  }
+
+  options {
+    buildDiscarder(logRotator(artifactNumToKeepStr: '50'))
+  }
+
+  triggers {
+    pollSCM 'H/10 * * * *'
+    cron '@midnight'
+  }
+
+  stages {    
+    stage('build') {
+      steps {        
+        dir ('Documentation/UserPortalDocumentation/doc') {
+            script {
+                docker.build('doc-build', '.').inside('') {
+                    sh 'make html'
+                }
+            }   
+            archiveArtifacts 'build/html/**/*'
+            recordIssues tools: [sphinxBuild()], unstableTotalAll: 2
+        }
+      }
+    }
+  }
+}
