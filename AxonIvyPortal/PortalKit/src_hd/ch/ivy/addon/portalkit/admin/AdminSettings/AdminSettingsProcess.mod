@@ -963,7 +963,7 @@ if (in.isAddMode) {
 	
 	if (appService.checkApplicationIsEdited(in.applicationList.get(in.editAppIndex),in.selectedApp)) {
 		in.applicationList.set(in.editAppIndex, in.selectedApp);
-		// remove seleted app in session
+		// remove selected app in session
 		SecurityServiceUtils.removeSessionAttribute(SessionAttribute.SELECTED_APP.toString());
 		SecurityServiceUtils.removeSessionAttribute(SessionAttribute.SELECTED_APP_DISPLAY_NAME.toString());
 		SecurityServiceUtils.removeSessionAttribute(SessionAttribute.SERVER_ID.toString());
