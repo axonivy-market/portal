@@ -23,66 +23,67 @@
 
       <ui:define name="infoZone">...</ui:define>
 
-      <ui:define name="dynamicTabs">
-
-        <p:tab title="My first tab">
-
-          <p:inputText id="first-name" value="#{data.firstname}" />
-
-        </p:tab>
-
-        <p:tab title="My second tab">
-
-          <p:inputText id="last-name" value="#{data.lastname}" />
-
-        </p:tab>
-
-      </ui:define>
     </ui:remove>
 
-    <ui:define name="breadCrumb">
-      <!--       <ic:ch.ivy.addon.portalkit.component.BreadcrumbMenu data="#{task}" listUrl="#" type="Task" /> -->
-    </ui:define>
+    <ui:define name="breadCrumb"></ui:define>
 
     <ui:define name="taskForm">
 
       <h:form id="form">
-        <h:panelGrid columns="2">
+        <h:panelGrid columns="2" columnClasses="MarRight10">
           <f:facet name="header">
             <p:messages></p:messages>
           </f:facet>
 
-          <p:outputLabel for="dataGdprRequestAddress" value="Address" />
-          <p:inputText id="dataGdprRequestAddress" value="#{data.data.gdprRequest.address}"></p:inputText>
+          <h:panelGroup styleClass="md-inputfield MarTop20">
+            <p:inputText id="dataGdprRequestAddress" value="#{data.data.gdprRequest.address}"></p:inputText>
+            <p:outputLabel for="dataGdprRequestAddress" value="Address" />
+          </h:panelGroup>
 
-          <p:outputLabel for="dataGdprRequestAppliacationUserName" value="Appliacation User Name" />
-          <p:inputText id="dataGdprRequestAppliacationUserName" value="#{data.data.gdprRequest.appliacationUserName}"></p:inputText>
+          <h:panelGroup styleClass="md-inputfield MarTop20">
+            <p:inputText id="dataGdprRequestAppliacationUserName" value="#{data.data.gdprRequest.appliacationUserName}"></p:inputText>
+            <p:outputLabel for="dataGdprRequestAppliacationUserName" value="Appliacation User Name" />
+          </h:panelGroup>
 
-          <p:outputLabel for="dataGdprRequestCity" value="City" />
-          <p:inputText id="dataGdprRequestCity" value="#{data.data.gdprRequest.city}"></p:inputText>
+          <h:panelGroup styleClass="md-inputfield MarTop20">
+            <p:inputText id="dataGdprRequestCity" value="#{data.data.gdprRequest.city}"></p:inputText>
+            <p:outputLabel for="dataGdprRequestCity" value="City" />
+          </h:panelGroup>
 
-          <p:outputLabel for="dataGdprRequestEmailAddress" value="Email Address" />
-          <p:inputText id="dataGdprRequestEmailAddress" value="#{data.data.gdprRequest.emailAddress}"></p:inputText>
+          <h:panelGroup styleClass="md-inputfield MarTop20">
+            <p:inputText id="dataGdprRequestEmailAddress" value="#{data.data.gdprRequest.emailAddress}"></p:inputText>
+            <p:outputLabel for="dataGdprRequestEmailAddress" value="Email Address" />
+          </h:panelGroup>
 
-          <p:outputLabel for="dataGdprRequestId" value="Id" />
-          <p:inputText id="dataGdprRequestId" value="#{data.data.gdprRequest.id}"></p:inputText>
+          <h:panelGroup styleClass="md-inputfield MarTop20">
+            <p:inputText id="dataGdprRequestId" value="#{data.data.gdprRequest.id}"></p:inputText>
+            <p:outputLabel for="dataGdprRequestId" value="Id" />
+          </h:panelGroup>
 
-          <p:outputLabel for="dataGdprRequestIdentificationNumer" value="Identification Numer" />
-          <p:inputText id="dataGdprRequestIdentificationNumer" value="#{data.data.gdprRequest.identificationNumer}"></p:inputText>
+          <h:panelGroup styleClass="md-inputfield MarTop20">
+            <p:inputText id="dataGdprRequestIdentificationNumer" value="#{data.data.gdprRequest.identificationNumer}"></p:inputText>
+            <p:outputLabel for="dataGdprRequestIdentificationNumer" value="Identification Numer" />
+          </h:panelGroup>
 
-          <p:outputLabel for="dataGdprRequestName" value="Name" />
-          <p:inputText id="dataGdprRequestName" value="#{data.data.gdprRequest.name}"></p:inputText>
+          <h:panelGroup styleClass="md-inputfield MarTop20">
+            <p:inputText id="dataGdprRequestName" value="#{data.data.gdprRequest.name}"></p:inputText>
+            <p:outputLabel for="dataGdprRequestName" value="Name" />
+          </h:panelGroup>
 
+          <h:panelGroup styleClass="md-inputfield MarTop20">
+            <p:inputText id="dataGdprRequestRequestReason" value="#{data.data.gdprRequest.requestReason}"></p:inputText>
+            <p:outputLabel for="dataGdprRequestRequestReason" value="Request Reason" />
+          </h:panelGroup>
 
-          <p:outputLabel for="dataGdprRequestRequestReason" value="Request Reason" />
-          <p:inputText id="dataGdprRequestRequestReason" value="#{data.data.gdprRequest.requestReason}"></p:inputText>
+          <h:panelGroup styleClass="md-inputfield MarTop20">
+            <p:inputText id="dataGdprRequestReviewedBy" value="#{data.data.gdprRequest.reviewedBy}"></p:inputText>
+            <p:outputLabel for="dataGdprRequestReviewedBy" value="Reviewed By" />
+          </h:panelGroup>
 
-          <p:outputLabel for="dataGdprRequestReviewedBy" value="Reviewed By" />
-          <p:inputText id="dataGdprRequestReviewedBy" value="#{data.data.gdprRequest.reviewedBy}"></p:inputText>
-
-          <p:outputLabel for="dataGdprRequestSurname" value="Surname" />
-          <p:inputText id="dataGdprRequestSurname" value="#{data.data.gdprRequest.surname}"></p:inputText>
-
+          <h:panelGroup styleClass="md-inputfield MarTop20">
+            <p:inputText id="dataGdprRequestSurname" value="#{data.data.gdprRequest.surname}"></p:inputText>
+            <p:outputLabel for="dataGdprRequestSurname" value="Surname" />
+          </h:panelGroup>
           <br />
         </h:panelGrid>
       </h:form>
@@ -92,23 +93,24 @@
     <ui:define name="dynamicTabs">
 
       <p:tab title="My first tab">
-        <p:outputLabel value="first name" />
-        <p:inputText id="first-name" value="#{data.firstname}" />
-
+        <h:panelGroup styleClass="md-inputfield MarTop20">
+          <p:inputText id="first-name" value="#{data.firstname}" />
+          <p:outputLabel value="first name" for="first-name" />
+        </h:panelGroup>
       </p:tab>
 
       <p:tab title="My second tab">
-
-        <p:outputLabel value="last name" />
-        <p:inputText id="last-name" value="#{data.lastname}" />
-
+        <h:panelGroup styleClass="md-inputfield MarTop20">
+          <p:inputText id="last-name" value="#{data.lastname}" />
+          <p:outputLabel value="last name" />
+        </h:panelGroup>
       </p:tab>
 
       <p:tab title="My third tab">
-
-        <p:outputLabel value="last name" />
-        <p:inputText id="last-name2" value="#{data.lastname}" />
-
+        <h:panelGroup styleClass="md-inputfield MarTop20">
+          <p:inputText id="last-name2" value="#{data.lastname}" />
+          <p:outputLabel value="last name" />
+        </h:panelGroup>
       </p:tab>
 
       <p:tab title="Customization tab">
