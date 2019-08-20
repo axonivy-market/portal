@@ -11,6 +11,7 @@
   <cc:attribute name="dataModel" />
   <cc:attribute name="componentToUpdate" default="" />
   <cc:attribute name="rowIndex" default="0" />
+  <cc:attribute name="buttonStyleClass" />
 </cc:interface>
 
 <cc:implementation>
@@ -19,7 +20,7 @@
   <c:set var="rowIndex" value="#{cc.attrs.rowIndex}" />
 
   <p:commandButton id="#{cc.attrs.actionLinkId}" onstart="event.stopPropagation();" global="false" disabled="#{cc.attrs.isDisabled}"
-    actionListener="#{sideStepBean.getSideSteps(task.getId(), task.case.getId(), cc.attrs.isAdhocExcluded)}" styleClass="action-button task-action-item"
+    actionListener="#{sideStepBean.getSideSteps(task.getId(), task.case.getId(), cc.attrs.isAdhocExcluded)}" styleClass="action-button task-action-item #{cc.attrs.buttonStyleClass}"
     oncomplete="PF('#{cc.attrs.panelWidgetVar}').loadContents();" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" icon="fa fa-ellipsis-v"
     iconPos="left" />
 
