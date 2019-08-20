@@ -3105,6 +3105,9 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   .admin-ui-dialog, .change-password-dialog {
      top: 100px !important;
   }
+  .setting-dialog, .dialog-closing-information {
+     top: 150px !important;
+  }
   .settings-table-action-buttons {
     text-align: left !important;
   }
@@ -3120,7 +3123,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   .admin-ui-dialog, .deputy-dialog, .absence-settings-dialog {
      width: 90vw !important;
   }
-  .dialog-closing-information, .project-info-dialog, .add-new-absence-dialog {
+  .dialog-closing-information, .project-info-dialog, .add-new-absence-dialog, .app-dialog {
     width: 80vw !important;
   }
 }
@@ -3135,7 +3138,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 .application-table-type-column, .application-table-action-column {
-  text-align: left;
+  text-align: left !important;
 }
 
 .action-column-icon-button {
