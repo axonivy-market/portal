@@ -41,6 +41,14 @@ function TaskWidget() {
         }
       }
     },
+    
+    toggleTaskFilter: function(toggler) {
+      $('.js-task-filter-container').toggleClass('hidden-sm-down');
+      var toggleIcon = $(toggler).find('i.fa');
+      if(toggleIcon !== undefined) {
+        toggleIcon.toggleClass('fa-plus-circle, fa-minus-circle');
+      }
+    },
   }
 }
 

@@ -303,3 +303,7 @@
     display: none !important;
   }
 }
+
+.u-padding-right-5 {
+  padding-right: 5px;
+}
