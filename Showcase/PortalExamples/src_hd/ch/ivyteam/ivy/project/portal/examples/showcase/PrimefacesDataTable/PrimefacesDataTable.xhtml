@@ -146,7 +146,7 @@
 					value="#{data.scores}" var="score" rows="8"
 					selection="#{data.selectedScore}" selectionMode="single"
 					rowKey="#{score.id}" draggableColumns="true" draggableRows="true"
-					style="width:100%">
+					style="width:100%" styleClass="MarTop20">
 					<p:ajax event="rowSelect" update=":detailDialog"
 						oncomplete="PF('detailDialog').show()" />
 					<p:rowExpansion>
