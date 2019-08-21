@@ -17,10 +17,7 @@
 		<para>
 			<orderedlist>
 				<listitem>
-					<para>Task header customization does not support responsive design, smaller resolutions (iPad, etc.)</para>
-				</listitem>
-				<listitem>
-					<para>Additional properties cannot be displayed right now as a column</para>
+					<para>Task header currently customization support responsive design. Refer to <link linkend="axonivyportal.customization.taskwidget.responsivelayout">this part</link> for more detail.</para>
 				</listitem>
 				<listitem>
 					<para>Task header's buttons cannot be modified (they stay where they are)</para>
@@ -232,21 +229,37 @@ out.taskView = TaskView.create().dataModel(dataModel)
 			</listitem>
 		</orderedlist>
 	</sect2>
-	<sect2 xml:id="axonivyportal.customization.taskwidget.customtaskfiltermobile">
-	<title>How to customize mobile task list sort</title>
-	<para>Refer to <code>PortalExamples</code> project for examples</para>
-	<orderedlist>
-		<listitem>
-			Create a customize TaskLazyDataModel extends TaskLazyDataModel and override 2 methods <code>getPortalTaskMobileSort</code> and <code>getSortFieldLabel</code>
-			<mediaobject>
-			<imageobject>
-			<imagedata fileref="images/TaskWidget/TaskSortOverride.png" />
-			</imageobject>
-			</mediaobject>
-		</listitem>
-		<listitem>
-			Use Axon.ivy Override to override the <code>InitializeMobileTaskDataModel</code> callable. Initialize this customize TaskLazyDataModel <code>in.dataModel = new CustomizedTaskLazyDataModel(true);</code>
-		</listitem>
-	</orderedlist>
-</sect2>
+	<sect2 xml:id="axonivyportal.customization.taskwidget.responsivelayout">
+		<title>How to make reponsive task list</title>
+		<para>If you have customized task list and want it responsive on different screen sizes, please follow below steps.</para>
+		<para>You can refer to <code>PortalExamples</code> project for examples</para>
+		<orderedlist>
+			<listitem>
+				<para>Add responsiveStyleClass param (in case you're using Portal component), or styleClass (in case you're using Primefaces or JSF component) with the same responsive css class for both taskListHeader and taskHeader. 
+				You can find responsive class in <link linkend="axonivyportal.customization.responsivecss">this part.</link></para>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="images/TaskWidget/ResponsiveTaskListCustomization.png" />
+					</imageobject>
+				</mediaobject>
+				<tip>
+					<para>Hint: <code>TaskCustomField</code> component has default responsiveStyleClass is <code>u-hidden-sm-down</code></para>
+				</tip>
+			</listitem>
+			<listitem>
+				<para>
+				Responsiveness could be broken when you anchor left menu. In this case, to maintain the responsiveness, you could hide some columns by add <code>js-hidden-when-expand-menu</code>
+				to responsiveStyleClass or styleClass param of taskListHeader and taskHeader.
+				</para>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="images/TaskWidget/ResponsiveTaskListHideColumn.png" />
+					</imageobject>
+				</mediaobject>
+				<tip>
+					<para>Hint: The smallest browser width you can anchor the left menu is 1025. So you could reduce width of browser to 1025 to test and decide which columns need to be hidden.</para>
+				</tip>
+			</listitem>
+		</orderedlist>
+	</sect2>
 </sect1>

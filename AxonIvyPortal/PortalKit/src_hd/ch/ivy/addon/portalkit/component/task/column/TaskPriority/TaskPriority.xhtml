@@ -7,10 +7,11 @@
   <cc:attribute name="priorityStyleClass" />
   <cc:attribute name="priorityIconStyleClass" />
   <cc:attribute name="dataModel"/>
+  <cc:attribute name="responsiveStyleClass" />
 </cc:interface>
 
 <cc:implementation>
-  <h:panelGroup id="#{cc.attrs.componentId}" styleClass="priority-cell #{cc.attrs.priorityStyleClass}"
+  <h:panelGroup id="#{cc.attrs.componentId}" styleClass="priority-cell #{cc.attrs.priorityStyleClass} #{cc.attrs.responsiveStyleClass}"
   	rendered="#{cc.attrs.dataModel.compactMode or cc.attrs.dataModel.isSelectedColumn('PRIORITY')}" >
     <h:panelGroup rendered="#{cc.attrs.priority == 'LOW'}"
       styleClass="fa fa-circle task-priority-low #{cc.attrs.priorityIconStyleClass}" />
