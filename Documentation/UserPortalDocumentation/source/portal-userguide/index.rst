@@ -156,7 +156,7 @@ HowTo: Add a process as a user favorite
                                  
    Furthermore, the list shows only processes which are not added to your user
    favourites so far. You cannot add a process multiple time.
-..
+
 HowTo: Delete a process as a user favorite
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -693,7 +693,7 @@ HowTo: Create new filter
 ------------------------
 
 1. Click on the button **More** to select one of the available filters.
-   For a list of available filters, see  :term:`Table 2: Task filter criterias`:.
+   For a list of available filters, see  `Task filter criterias`_.
 
 2. Click on the newly added filter and configure it.
 
@@ -745,7 +745,7 @@ HowTo: Create new filter
 |                                   | task state.                       |
 +-----------------------------------+-----------------------------------+
 
-.. centered:: Task filter criterias
+.. centered:: _`Task filter criterias`
 
 .. hint:: 
    You may also start the creation
