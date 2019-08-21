@@ -52,9 +52,7 @@ public final class PortalNavigator {
       String serverUrl = urlDetector.getBaseURL(FacesContext.getCurrentInstance());
       return serverUrl + requestPath;
     }
-    return SLASH + RequestUriFactory
-                    .getIvyContextName(ServerFactory.getServer().getApplicationConfigurationManager())
-            + requestPath;
+    return SLASH + RequestUriFactory.getIvyContextName() + requestPath;
   }
 
   public String getPortalStartUrlOf(PortalPage portalPage, Map<String, String> pageParameters)
@@ -143,7 +141,7 @@ public final class PortalNavigator {
     if (StringUtils.isNotEmpty(requestPath)) {
       try {
         String ivyContextName = ServerFactory.getServer().getSecurityManager().executeAsSystem(
-            () -> RequestUriFactory.getIvyContextName(ServerFactory.getServer().getApplicationConfigurationManager()));
+            () -> RequestUriFactory.getIvyContextName());
         redirect(SLASH + ivyContextName + requestPath + param);
       } catch (Exception e) {
         Ivy.log().error(e);

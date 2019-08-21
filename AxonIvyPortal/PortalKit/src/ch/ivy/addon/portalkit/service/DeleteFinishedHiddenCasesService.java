@@ -50,7 +50,7 @@ public class DeleteFinishedHiddenCasesService {
     int numOfDeletedCases = 0;
     for (int i = cases.size()-1; i >= 0; i--) {
       ICase iCase = (cases.get(i));
-      boolean isHiddenCase = ("HIDE").equals(iCase.getAdditionalProperty("HIDE"));
+      boolean isHiddenCase = ("HIDE").equals(iCase.customFields().stringField("HIDE").toString());
       if (isHiddenCase) {
         try {
           Ivy.wf().deleteCompletedCase(iCase);

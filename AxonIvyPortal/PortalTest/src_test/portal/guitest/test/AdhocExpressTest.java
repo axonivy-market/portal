@@ -10,7 +10,6 @@ import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.DefaultExpresTaskPage;
-import portal.guitest.page.ExpressApprovalPage;
 import portal.guitest.page.ExpressProcessPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
@@ -23,8 +22,6 @@ public class AdhocExpressTest extends BaseTest {
   private TaskWidgetPage taskWidgetPage;
   private TaskTemplatePage taskTemplatePage;
   private DefaultExpresTaskPage defaultExpressTaskPage;
-  private ExpressApprovalPage expressApprovalPage;
-  private HomePage homePage;
 
   @Override
   @Before
@@ -77,7 +74,6 @@ public class AdhocExpressTest extends BaseTest {
     defaultExpressTaskPage.finishDefaultTask();
     
     //approval task of adhoc
-    homePage = new HomePage();
     taskWidgetPage.filterTasksBy(defaultTaskName2);
     assertEquals(1, taskWidgetPage.countTasks());
     taskWidgetPage.startTask(0);
@@ -86,7 +82,6 @@ public class AdhocExpressTest extends BaseTest {
     defaultExpressTaskPage.finishDefaultTask();
     
     //check if task Maternity task
-    homePage = new HomePage();
     taskWidgetPage.filterTasksBy(taskNamePrefix);
     assertEquals(1, taskWidgetPage.countTasks());
     taskWidgetPage.startTask(0);

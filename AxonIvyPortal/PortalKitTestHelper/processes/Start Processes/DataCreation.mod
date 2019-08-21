@@ -751,7 +751,7 @@ Dt0 f58 actionTable 'out=in;
 Dt0 f58 actionCode 'in.counter = 1;
 
 String hide = "HIDE";
-ivy.case.setAdditionalProperty(hide, hide);' #txt
+ivy.case.customFields().stringField(hide).set(hide);' #txt
 Dt0 f58 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

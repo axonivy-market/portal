@@ -141,15 +141,6 @@
 					</p:tab>
 				</p:accordionPanel>
 	
-				<p:toolbar style="border:none">
-					<f:facet name="right" >
-						<p:commandButton value="Add new row" style="margin-right:0px"
-							styleClass="portal-cancel-button" process="@this" 
-							actionListener="#{logic.addNewRow}"
-							update="theTable" />
-					</f:facet>
-				</p:toolbar>
-	
 				<p:dataTable id="theTable" widgetVar="theTable" editable="true"
 					scrollable="true" scrollHeight="250"
 					value="#{data.scores}" var="score" rows="8"

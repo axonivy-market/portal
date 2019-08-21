@@ -18,7 +18,7 @@ public final class ExecutingExpressProcessUtils {
   public static <T> List<T> getAttributesOfTasks(String groupId, String attribute) {
     return IvyExecutor.executeAsSystem(() -> {
       TaskQuery query =
-          TaskQuery.create().where().caseId().isEqual(Ivy.wfCase().getId()).and().additionalProperty(TASK_GROUP_ID_KEY)
+          TaskQuery.create().where().caseId().isEqual(Ivy.wfCase().getId()).and().customField().textField(TASK_GROUP_ID_KEY)
               .isEqual(groupId).orderBy().endTimestamp();
       List<ITask> tasks = Ivy.wf().getTaskQueryExecutor().getResults(query);
       List<T> result = new ArrayList<>();

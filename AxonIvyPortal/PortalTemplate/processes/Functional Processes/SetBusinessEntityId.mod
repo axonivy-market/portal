@@ -39,7 +39,7 @@ Sd0 f3 actionTable 'out=in;
 Sd0 f3 actionCode 'import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivyteam.ivy.workflow.ICase;
 
-ivy.case.getBusinessCase().setAdditionalProperty(AdditionalProperty.CASE_BUSINESS_ENTITY_PROPERTY.toString(), in.businessEntityId);' #txt
+ivy.case.getBusinessCase().customFields().textField(AdditionalProperty.CASE_BUSINESS_ENTITY_PROPERTY.toString()).set(in.businessEntityId);' #txt
 Sd0 f3 security system #txt
 Sd0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

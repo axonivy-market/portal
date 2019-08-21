@@ -818,7 +818,7 @@ Bk4 f55 @|UserDialogIcon #fIcon
 Bk4 f18 actionTable 'out=in;
 ' #txt
 Bk4 f18 actionCode 'import ch.ivy.addon.portalkit.util.ExecutingExpressProcessUtils;
-ivy.task.setAdditionalProperty(ExecutingExpressProcessUtils.TASK_GROUP_ID_KEY, String.valueOf(in.actualStepIndex));' #txt
+ivy.task.customFields().textField(ExecutingExpressProcessUtils.TASK_GROUP_ID_KEY).set(String.valueOf(in.actualStepIndex));' #txt
 Bk4 f18 security system #txt
 Bk4 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1091,7 +1091,7 @@ import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 
 Map x =  IvyAdapterService.startSubProcess("handleEndPage()", null, Arrays.asList(PortalLibrary.AXON_EXPRESS.getValue()));
 String callbackUrl = x.get("callbackUrl") as String;
-ivy.task.setAdditionalProperty(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString(), callbackUrl);
+ivy.task.customFields().textField(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString()).set(callbackUrl);
 
 ' #txt
 Bk7 f28 security system #txt
@@ -1417,7 +1417,7 @@ Bk8 f2 320 926 320 963 #arcP
 Bk8 f29 actionTable 'out=in;
 ' #txt
 Bk8 f29 actionCode 'import ch.ivy.addon.portalkit.util.ExecutingExpressProcessUtils;
-ivy.task.setAdditionalProperty(ExecutingExpressProcessUtils.TASK_GROUP_ID_KEY, String.valueOf(in.actualStepIndex));' #txt
+ivy.task.customFields().textField(ExecutingExpressProcessUtils.TASK_GROUP_ID_KEY).set(String.valueOf(in.actualStepIndex));' #txt
 Bk8 f29 security system #txt
 Bk8 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

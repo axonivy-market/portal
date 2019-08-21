@@ -33,7 +33,6 @@ import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.RequestUriFactory;
-import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -170,8 +169,7 @@ public class ProcessWidgetBean implements Serializable {
   public String getCreateExpessWorkflowLink() {
     return IvyExecutor.executeAsSystem(() -> {
       if (createExpressWorkflowProcessStart != null) {
-        return RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(),
-            createExpressWorkflowProcessStart).toString();
+        return RequestUriFactory.createProcessStartUri(createExpressWorkflowProcessStart).toASCIIString();
       }
       return StringUtils.EMPTY;
     });
