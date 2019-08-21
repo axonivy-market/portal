@@ -55,25 +55,24 @@
                   <ic:ch.ivy.addon.portalkit.component.task.column.TaskName id="task-name-component" task="#{task}" dataModel="#{taskView.dataModel}" />
                 </div>
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible id="task-responsible-component" dataModel="#{taskView.dataModel}"
-                  userName="#{task.getActivatorName()}" fullName="#{task.getActivator().getDisplayName()}" styleClass="activatior-column hidden-md-down js-hidden-when-expand-menu" />
-                <ic:ch.ivy.addon.portalkit.component.task.column.TaskId id="task-id-component" value="#{task.getId()}" dataModel="#{taskView.dataModel}" styleClass="hidden-sm-down" />
+                  userName="#{task.getActivatorName()}" fullName="#{task.getActivator().getDisplayName()}" styleClass="activatior-column" />
+                <ic:ch.ivy.addon.portalkit.component.task.column.TaskId id="task-id-component" value="#{task.getId()}" dataModel="#{taskView.dataModel}" />
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-creation-date-component" rendered="#{taskView.dataModel.isSelectedColumn('CREATION_TIME')}"
-                  componentId="creation-time" value="#{task.startTimestamp}" styleClass="hidden-sm-down js-hidden-when-expand-menu" />
+                  componentId="creation-time" value="#{task.startTimestamp}" responsiveStyleClass="u-hidden-sm-down js-hidden-when-expand-menu" />
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-expiry-date-component" rendered="#{taskView.dataModel.isSelectedColumn('EXPIRY_TIME')}"
-                  componentId="expiry-time" value="#{task.expiryTimestamp}" styleClass="hidden-sm-down" />
-                <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state-component" dataModel="#{taskView.dataModel}"
-                  state="#{task.state}" stateStyleClass="hidden-sm-down" />
+                  componentId="expiry-time" value="#{task.expiryTimestamp}" />
+                <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state-component" dataModel="#{taskView.dataModel}" state="#{task.state}" />
               </ui:fragment>
             </f:facet>
 
             <f:facet name="taskFilter">
-              <div class="ui-g-12 hidden-md-up">
+              <div class="ui-g-12 u-hidden-md-up">
                 <p:commandLink id="toggle-task-filter" global="false" onclick="taskWidget.toggleTaskFilter(this);taskWidget.setupScrollbar();">
                   <i class="fa fa-plus-circle ui-state-disabled u-padding-right-5" />
                   <h:outputText value="#{taskView.dataModel.selectedFilters.size()} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/numberOfSelectedFilter')}" />
                 </p:commandLink>
               </div>
-              <div id="toggle-task-filter-container" class="ui-g hidden-sm-down js-task-filter-container">
+              <div id="toggle-task-filter-container" class="ui-g u-hidden-sm-down js-task-filter-container">
                   <ui:fragment rendered="#{useOverrideFilter}">
                     <ui:insert name="taskFilter">
                     </ui:insert>
@@ -91,10 +90,8 @@
     <ui:define name="footer">
       <script type="text/javascript">
         $(function() {
-            var simpleLargeScreen = new TaskListLargeScreenHandler();
-            var simpleMediumScreen = new TaskListMediumScreenHandler();
-            var simpleSmallScreen = new TaskListSmallScreenHandler();
-            var responsiveToolkit = ResponsiveToolkit(simpleLargeScreen, simpleMediumScreen, simpleSmallScreen);
+            var simpleScreen = new TaskListScreenHandler();
+            var responsiveToolkit = ResponsiveToolkit(simpleScreen, simpleScreen, simpleScreen);
             Portal.init(responsiveToolkit);
           });
         </script>

@@ -13,11 +13,11 @@
     <cc:attribute name="labelValue" shortDescription="Text value to show in UI"/> 
     <cc:attribute name="dataModel" />
     <cc:attribute name="column" shortDescription="column name - the value in Customize TaskLazyDatModel.getDefaultColumns()" />
-    <cc:attribute name="customFieldStyleClass" shortDescription="additional style class for custom field" />
+    <cc:attribute name="responsiveStyleClass" default="u-hidden-sm-down" shortDescription="responsive style class for custom field" />
   </cc:interface>
   
   <cc:implementation>
-    <h:panelGroup id="#{cc.attrs.componentId}" rendered="#{cc.attrs.dataModel.isSelectedColumn(cc.attrs.column)}" styleClass="TexAlCenter task-custom-field-cell #{cc.attrs.customFieldStyleClass}" >
+    <h:panelGroup id="#{cc.attrs.componentId}" rendered="#{cc.attrs.dataModel.isSelectedColumn(cc.attrs.column)}" styleClass="TexAlCenter task-custom-field-cell #{cc.attrs.responsiveStyleClass}" >
       <h:outputText value="#{cc.attrs.labelValue}" />
     </h:panelGroup>
   </cc:implementation>

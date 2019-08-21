@@ -138,7 +138,7 @@
             </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>
           </h:panelGroup>
         </h:panelGroup>
-        <h:panelGroup id="filter-add-container" styleClass="filter-add-container hidden-sm-down">
+        <h:panelGroup id="filter-add-container" styleClass="filter-add-container u-hidden-sm-down">
           <p:commandButton id="filter-add-action"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/more')}" styleClass="filter-add-button"
             icon="fa fa-caret-down" iconPos="right" type="button" />
@@ -170,7 +170,7 @@
           </p:overlayPanel>
         </h:panelGroup>
 
-        <h:panelGroup id="filter-save-container" styleClass="hidden-sm-down">
+        <h:panelGroup id="filter-save-container" styleClass="u-hidden-sm-down">
           <p:commandButton id="filter-save-action"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" styleClass="filter-add-button"
             icon="fa fa-save" iconPos="right" update="save-filter-set-dialog" resetValues="true"
@@ -292,7 +292,7 @@
   </p:confirmDialog>
 
   <script type="text/javascript">
-    var taskWidget = new TaskWidget("#{cc.attrs.outerPanelId}");
+    var taskWidget = new TaskWidget();
   </script>
 
   <h:form>

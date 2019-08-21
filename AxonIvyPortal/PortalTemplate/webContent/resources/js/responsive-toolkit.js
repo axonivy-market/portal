@@ -51,12 +51,19 @@ function ResponsiveToolkit(largeScreenToolkit, mediumScreenToolkit, smallScreenT
 };
 
 /***************************Handle responsive for Task list**********************************/
+function TaskListScreenHandler() {
+  this.updateMainContainer = function(){
+    var taskListToolKit = TaskListToolKit();
+    taskListToolKit.responsive();
+  }
+};
+
 function TaskListLargeScreenHandler() {
   this.updateMainContainer = function(){
     var taskListToolKit = TaskListToolKit();
     taskListToolKit.responsive();
   }
-}
+};
 
 function TaskListMediumScreenHandler() {
   this.updateMainContainer = function(){
