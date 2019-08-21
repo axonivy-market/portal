@@ -66,7 +66,6 @@
 					
 					<br />
 				</h:panelGrid>
-				<p:remoteCommand name="approveLeave" actionListener="#{logic.close}" update=":#{p:component('messageForm')}"/>
 		</h:form>
 		</ui:define>
 		
@@ -77,7 +76,7 @@
 		<ui:define name="rightButtons">
       <h:panelGroup styleClass="MarTop5 DispBlock">
         <h:form>
-          <p:commandButton onclick="approveLeave()" value="Approve" icon="fa fa-check-circle-o" />
+          <p:commandButton actionListener="#{logic.close}" update=":#{p:component('messageForm')}" value="Approve" icon="fa fa-check-circle-o" />
           <p:spacer width="5px" />
           <p:commandButton value="Back" styleClass="mod-cancel-button portal-cancel-button" icon="fa fa-ban"
             type="button" onclick="redirectToLastPage()" />
