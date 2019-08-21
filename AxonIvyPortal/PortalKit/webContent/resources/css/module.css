@@ -113,10 +113,7 @@ input::-ms-clear {
 .ui-dialog-footer.u-dialog-footer.u-email-dialog-footer {
   margin-top: 35px !important;
 }
-.email-setting-container {
-  overflow-y: auto;
-  height: 290px;
-}
+
 /* =================== END DIALOG ====================== */
 
 /* =================== LINK ====================== */
@@ -3110,10 +3107,9 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 /********************************** END TASK TABLE **********************************/
 
-/********************************** ADMIN SETTING **********************************/
-/* Responsive */
+/* Responsive User menu */
 @media screen and (max-width: 40em) {
-  .admin-ui-dialog, .change-password-dialog {
+  .admin-ui-dialog, .change-password-dialog, .applications-email-setting-dialog {
      top: 100px !important;
   }
   .setting-dialog, .dialog-closing-information {
@@ -3129,6 +3125,9 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   .task-template-container, .task-template-button {
     margin-bottom: 5rem !important;
   }
+  .applications-email-setting-dialog .ui-dialog-content.ui-widget-content {
+    padding: 1rem !important;
+  }
   
 }
 @media screen and (min-width: 40.063em) and (max-width: 64.062em) {
@@ -3140,6 +3139,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   }
 }
 
+/********************************** ADMIN SETTING **********************************/
 .admin-settings-no-permission-message {
   color: #E53935;
 }
@@ -3374,6 +3374,36 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 /********************************** END LANGUAGE SETTING DIALOG **********************************/
+
+/********************************** EMAIL SETTING DIALOG **********************************/
+.applications-email-setting-dialog .email-setting-container {
+  overflow-y: auto;
+  min-height: 200px;
+}
+
+.field-select-setting-options {
+  margin-left: -2px !important;
+}
+
+.applications-email-setting-dialog .daily-summary {
+  min-width: 140px;
+}
+
+.applications-email-setting-dialog .ui-dialog-footer.u-dialog-footer.u-email-dialog-footer {
+  margin: auto !important;
+  margin-top: 35px !important;
+}
+
+.applications-email-setting-dialog .ui-dialog-content.ui-widget-content {
+  font-size: 1.4rem;
+  padding: 1rem 2rem;
+}
+
+.application-email-setting-row {
+  width: 100%;
+}
+
+/********************************** END EMAIL SETTING DIALOG **********************************/
 
 /********************************** CASE NOTE **********************************/
 .case-note-view-container {
