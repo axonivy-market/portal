@@ -11,7 +11,7 @@ import org.openqa.selenium.server.browserlaunchers.Sleeper;
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
-import portal.guitest.page.DefaulExpresTaskPage;
+import portal.guitest.page.DefaultExpresTaskPage;
 import portal.guitest.page.ExpressApprovalPage;
 import portal.guitest.page.ExpressEndPage;
 import portal.guitest.page.ExpressFormDefinitionPage;
@@ -83,9 +83,9 @@ public class PortalExpressTest extends BaseTest {
 		formDefinition.moveAllElementToDragAndDrogPanel();
 		formDefinition.executeWorkflow();
 		homePage = new HomePage();
-    taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.filterTasksBy("Task 1");
-    taskWidgetPage.startTask(0);
+		taskWidgetPage = homePage.getTaskWidget();
+		taskWidgetPage.filterTasksBy("Task 1");
+		taskWidgetPage.startTask(0);
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		Assert.assertTrue(expressTaskPage.isDocumentTableVisible());
 		Assert.assertTrue(expressTaskPage.isDocumentUploadButtonVisible());
@@ -162,8 +162,8 @@ public class PortalExpressTest extends BaseTest {
 		formDefinition.executeWorkflow();
 		homePage = new HomePage();
 		taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.filterTasksBy("Task for creator");
-    taskWidgetPage.startTask(0);
+		taskWidgetPage.filterTasksBy("Task for creator");
+		taskWidgetPage.startTask(0);
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		expressTaskPage.finish();
 		HomePage home = new HomePage();
@@ -180,28 +180,29 @@ public class PortalExpressTest extends BaseTest {
 		ExpressResponsible demoResponsible = new ExpressResponsible(TestAccount.DEMO_USER.getUsername(), false);
 		expressProcessPage.createDefaultTask(0, "Default Task", Arrays.asList(demoResponsible));
 		expressProcessPage.addNewTask(0);
-		expressProcessPage.createDefaultTask(1, null, Arrays.asList(demoResponsible));
+		expressProcessPage.createDefaultTask(1, "Next Default Task", Arrays.asList(demoResponsible));
 		homePage = expressProcessPage.executeDirectlyAndGoToHomePage();
-    taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy("Default Task");
-    taskWidgetPage.startTask(0);
+		taskWidgetPage = new TaskWidgetPage();
+		taskWidgetPage.filterTasksBy("Default Task");
+		taskWidgetPage.startTask(0);
 
-		DefaulExpresTaskPage defaulExpresTaskPage = new DefaulExpresTaskPage();
-		defaulExpresTaskPage.enterTextToDefaultTask("Test input");
-		defaulExpresTaskPage.finishDefaultTask();
+		DefaultExpresTaskPage defaultExpresTaskPage = new DefaultExpresTaskPage();
+		defaultExpresTaskPage.enterTextToDefaultTask("Test input");
+		defaultExpresTaskPage.finishDefaultTask();
 
 		taskWidgetPage = new TaskWidgetPage();
-		taskWidgetPage.filterTasksBy("Approval 1: Default Task");
+		taskWidgetPage.filterTasksBy("Next Default Task");
 		taskWidgetPage.startTask(0);
-		defaulExpresTaskPage = new DefaulExpresTaskPage();
-		defaulExpresTaskPage.enterTextToComment("Comment");
-		defaulExpresTaskPage.finishApprovalTask();
+		defaultExpresTaskPage = new DefaultExpresTaskPage();
+		defaultExpresTaskPage.enterTextToDefaultTask("Comment");
+		defaultExpresTaskPage.finishDefaultTask();
 
 		taskWidgetPage = new TaskWidgetPage();
 		taskWidgetPage.filterTasksBy("Test create default process: Final Review");
 		taskWidgetPage.startTask(0);
-		defaulExpresTaskPage = new DefaulExpresTaskPage();
-		Assert.assertEquals(1, defaulExpresTaskPage.countNumberOfApproval());
+		
+		ExpressReviewPage reviewPage = new ExpressReviewPage();
+    reviewPage.finish();
 	}
 
 	@Test
@@ -300,7 +301,7 @@ public class PortalExpressTest extends BaseTest {
 	}
 
 	protected void rejectWhenMultiApproval() {
-	  executeUserTask();
+		executeUserTask();
 		assertEquals(0, new TaskWidgetPage().countTasks());
 		login(TestAccount.ADMIN_USER);
 		executeUserTask();
@@ -377,7 +378,7 @@ public class PortalExpressTest extends BaseTest {
 	}
 
 	protected void executeExpressProcessWhenMultiApproval() {
-	  executeUserTask();
+		executeUserTask();
 		assertEquals(0, new TaskWidgetPage().countTasks());
 		login(TestAccount.ADMIN_USER);
 		executeUserTask();
@@ -401,8 +402,8 @@ public class PortalExpressTest extends BaseTest {
 	}
 
 	protected void executeComplexProcess() {
-	  taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.startTask(0);
+		taskWidgetPage = new TaskWidgetPage();
+		taskWidgetPage.startTask(0);
 		UserTaskWithMailFormPage userTaskWithMailFormPage = new UserTaskWithMailFormPage();
 		userTaskWithMailFormPage.selectEmailTab();
 		userTaskWithMailFormPage.inputData("wawa@axonivy.io", "Task information", "Task is created");

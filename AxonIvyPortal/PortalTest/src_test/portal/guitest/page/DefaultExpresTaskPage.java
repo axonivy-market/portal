@@ -2,7 +2,7 @@ package portal.guitest.page;
 
 import org.openqa.selenium.By;
 
-public class DefaulExpresTaskPage extends TaskTemplatePage{
+public class DefaultExpresTaskPage extends TaskTemplatePage{
   
   public void enterTextToDefaultTask(String text) {
     type(By.id("form:user-task-dyna-form:r1c2p1reg:inputTextArea"), text);
