@@ -11,8 +11,6 @@
     rendered="#{not empty compactProcessWidgetBean.defaultUserProcesses}">
     <div class="default-process-title ui-g-12" jsf:rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled}">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/defaultProcesses')}" />
-      <p:commandLink id="show-default-processes-link" styleClass="name-sort-command Fright ui-lg-hidden ui-xl-hidden ui-md-hidden" onclick="toggleShowDefaultProcessList();"
-            value="Toggle" global="false" />
     </div>
     
     <h:panelGroup id="default-process-container" layout="block" styleClass="ui-g-12">
@@ -39,11 +37,6 @@
 	      </h:form>
 	    </ui:repeat>
     </h:panelGroup>
-    <script>
-      function toggleShowDefaultProcessList() {
-        $('[id $= "default-process-container"]').toggleClass("ui-sm-hidden").toggleClass("ui-md-hidden");
-      }
-    </script>
   </h:panelGroup>
 </ui:composition>
 </html>
