@@ -7,12 +7,14 @@
   <cc:attribute name="userName" required="true" />
   <cc:attribute name="styleClass" />
   <cc:attribute name="dataModel" />
+  <cc:attribute name="responsiveStyleClass" default="u-hidden-md-down js-hidden-when-expand-menu" 
+  shortDescription="style class support responsive layout"/>
 </cc:interface>
 
 <cc:implementation>
   <h:panelGroup rendered="#{cc.attrs.dataModel.isSelectedColumn('ACTIVATOR')}">
     <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText textId="#{cc.attrs.componentId}" fullname="#{cc.attrs.fullName}"
-      username="#{cc.attrs.userName}" styleClass="responsible-cell #{cc.attrs.styleClass}" />
+      username="#{cc.attrs.userName}" styleClass="responsible-cell #{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass}" />
   </h:panelGroup>
 </cc:implementation>
 </html>

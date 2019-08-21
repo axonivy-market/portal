@@ -10,13 +10,14 @@
   <cc:attribute name="task" required="true" shortDescription="Task" type="ch.ivyteam.ivy.workflow.ITask" />
   <cc:attribute name="componentToUpdate" />
   <cc:attribute name="dataModel" />
+  <cc:attribute name="responsiveStyleClass" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="task" value="#{cc.attrs.task}" />
 
   <h:panelGroup rendered="#{cc.attrs.dataModel.isSelectedColumn('NAME')}">
-    <h:outputText id="#{cc.attrs.nameId}" styleClass="name-cell #{cc.attrs.nameStyleClass}"
+    <h:outputText id="#{cc.attrs.nameId}" styleClass="name-cell #{cc.attrs.nameStyleClass} #{cc.attrs.responsiveStyleClass}"
       value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}" />
     <p:tooltip for="task-name" value="#{task.name}" trackMouse="true" rendered="#{not empty task.name}" />
     <h:outputText id="#{cc.attrs.descriptionId}" styleClass="description-cell #{cc.attrs.descriptionStyleClass}"
