@@ -2,14 +2,6 @@
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
     <method>
-        <name>sortByPriority</name>
-        <description></description>
-    </method>
-    <method>
-        <name>sortByExpiry</name>
-        <description></description>
-    </method>
-    <method>
         <name>findTasks</name>
         <description></description>
         <inputParameter>
@@ -88,7 +80,7 @@
         </inputParameter>
     </method>
     <method>
-        <name>sortOnMobile</name>
+        <name>sort</name>
         <description></description>
     </method>
     <startMethod>
