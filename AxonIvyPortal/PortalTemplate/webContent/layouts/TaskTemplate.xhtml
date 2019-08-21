@@ -15,6 +15,7 @@
 
         <div class="task-template-container ui-g-12 u-padding-0">
           <c:set var="case" value="#{caseWidgetBean.findCase(caseId)}" scope="request" />
+          <c:set var="isSideStepDisabled" value="#{!taskTemplateBean.checkSideStepsEnabled(caseId)}" scope="request" />
           <ui:insert name="breadCrumb" />
 
           <div class="#{processChainDirection eq 'VERTICAL' ? '' : 'task-template-title-horizontal-container'}">
@@ -66,8 +67,9 @@
 
                 <p:separator
                   rendered="#{taskTemplateBean.hasAdhocTasks() or (empty isShowStartAdhocButton? taskTemplateBean.hasExpressAdhocWF(): isShowStartAdhocButton)}" />
+
                 <p:menuitem id="side-steps-menu" styleClass="empty-side-steps" global="false"
-                  disabled="#{empty taskTemplateBean.sideStepList}" rendered="#{empty taskTemplateBean.sideStepList}"
+                  disabled="#{empty taskTemplateBean.sideStepList}" rendered="#{isSideStepDisabled}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}">
                 </p:menuitem>
                 <c:forEach var="sidestep" items="#{taskTemplateBean.sideStepList}" varStatus="taskStatus">
