@@ -1566,6 +1566,13 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   padding-right: 40px;
 }
 
+.compact-process-widget .toggle-processes-link {
+  font-size: 1.2rem !important;
+  padding-top: 2px;
+  margin-right: 10px;
+  float: left;
+}
+
 .process-start-list-item-action.is-express {
   right: 50px;
 }
@@ -2834,7 +2841,8 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   .task-template-button.vertical-process-chain.vertical-chain-shape-line, .task-template-button.vertical-process-chain {
     margin-left: auto !important;
   }
-  .task-template-content.vertical-process-chain, .task-template-content.vertical-process-chain.vertical-chain-shape-line {
+  .task-template-content.vertical-process-chain, .task-template-content.vertical-process-chain.vertical-chain-shape-line,
+  .task-template-button.vertical-process-chain, .task-template-button.vertical-process-chain.vertical-chain-shape-line {
     width: 100% !important;
   }
 
@@ -3012,12 +3020,13 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   width: 7rem;
 }
 
-.task-template-content.vertical-process-chain {
+.task-template-content.vertical-process-chain, .task-template-button.vertical-process-chain {
 	display: inline-block;
 	width: calc(100% - 14rem);
 }
 
-.task-template-content.vertical-process-chain.vertical-chain-shape-line {
+.task-template-content.vertical-process-chain.vertical-chain-shape-line,
+.task-template-button.vertical-process-chain.vertical-chain-shape-line {
   width: calc(100% - 7rem);
 }
 
@@ -3074,13 +3083,15 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   padding-top: 49px;
 }
 
-.task-template-button.vertical-process-chain {
-  margin-left: 14rem;
+.task-template-button {
+  min-height: 35px;
+  margin: auto;
+  margin-bottom: 15px;
+  float: right;
+  position: relative;
+  width: 100%;
 }
 
-.task-template-button.vertical-process-chain.vertical-chain-shape-line {
-  margin-left: 7rem;
-}
 /********************************** END PROCESS CHAIN **********************************/
 
 /********************************** ALL TASKS **********************************/
@@ -3108,16 +3119,17 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   .setting-dialog, .dialog-closing-information {
      top: 150px !important;
   }
-  .settings-table-action-buttons {
-    text-align: left !important;
-  }
-  .app-icon {
+  .settings-table-action-buttons, .app-icon {
     text-align: left !important;
   }
   .dialog-closing-information, .admin-ui-dialog, .app-dialog, .select-icon-dialog, .application-selection-dialog, .setting-dialog, .project-info-dialog, .change-password-dialog,
   .language-setting-dialog, .applications-email-setting-dialog, .deputy-dialog, .absence-settings-dialog, .add-new-absence-dialog {
     width: 96vw !important;
   }
+  .task-template-container, .task-template-button {
+    margin-bottom: 5rem !important;
+  }
+  
 }
 @media screen and (min-width: 40.063em) and (max-width: 64.062em) {
   .admin-ui-dialog, .deputy-dialog, .absence-settings-dialog {
@@ -3137,7 +3149,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   padding: 10px;
 }
 
-.application-table-type-column, .application-table-action-column {
+.application-table-type-column.td {
   text-align: left !important;
 }
 
@@ -3172,11 +3184,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .global-setting-table .ui-datatable-scrollable-header table tr th span.ui-column-title {
   display: block;
   height: 40px;
-}
-.global-setting-table .ui-datatable-scrollable-header table tr .settings-table-action-buttons span {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 .global-setting-table .setting-key {
@@ -4996,10 +5003,6 @@ _:-ms-fullscreen, :root .case-related-command-link {
 /*  =================== END TASK DETAIL PAGE ========================= */
 
 /*  =================== TASK TEMPLATE PAGE ========================= */
-.task-template-content .ui-button.ui-widget.ui-button-icon-only.task-actions-button {
-  border-radius: 50% !important;
-}
-
 .task-template-content .task-actions-button:focus {
   outline: transparent;
 }
