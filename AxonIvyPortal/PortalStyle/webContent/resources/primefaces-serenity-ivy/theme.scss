@@ -174,29 +174,26 @@ body .ui-messages .ui-messages-error-icon,
 }
 
 /*Style Email Setting --------------------------------------------------------------------------------*/
-@media (max-width: 1365px) {
+@media (min-width: 1024px) and (max-width: 1365px) {
     .applications-email-setting-dialog {
         top: 150px !important;
     }
-
- .daily-summary.ui-selectmanycheckbox.ui-widget label {
-    margin-left: 0px !important;
-  }
 }
 
 @media (min-width: 1366px) and (max-width: 1919px) {
     .applications-email-setting-dialog {
-        top: 150px !important;
+        top: 200px !important;
     }
+}
 
- .daily-summary.ui-selectmanycheckbox.ui-widget label {
+.daily-summary.ui-selectmanycheckbox.ui-widget label {
     margin-left: 0px !important;
- }
 }
 
 .application-email-setting .ui-widget-header{
     color: black !important;
 }
+
 /*Style For Process Widget --------------------------------------------------------------------------------*/
 .process-start-list-item:hover .process-start-list-item-icon {
     color: $primaryColor;
