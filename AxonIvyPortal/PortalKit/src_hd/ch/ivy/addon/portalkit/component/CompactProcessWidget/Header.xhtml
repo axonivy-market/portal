@@ -9,11 +9,21 @@
 <ui:composition>
   <h:panelGroup id="header" styleClass="widget-header" layout="block">
     <h:panelGroup class="widget-header-main">
-      <span class="widget-header-main-title">#{cc.attrs.title}</span>
+      <span class="widget-header-main-title">#{cc.attrs.title}
+      </span>
       <h:panelGroup styleClass="widget-header-main-menu" rendered="#{compactProcessWidgetBean.displayShowAllProcessesLink and not compactProcessWidgetBean.editMode}">
         <cc:renderFacet name="headerToolbar" />
+        <p:commandLink id="toggle-processes-link" styleClass="toggle-processes-link Fright ui-lg-hidden ui-xl-hidden ui-md-hidden"
+             global="false" onclick="toggleShowProcessList();">
+            <h:outputText id="toggle-processes-link-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/toogleDefault')}" />
+        </p:commandLink>
       </h:panelGroup>
     </h:panelGroup>
   </h:panelGroup>
+   <script>
+     function toggleShowProcessList() {
+       $('[id $= "all-processes-container"]').toggleClass("ui-sm-hidden").toggleClass("ui-md-hidden");
+     }
+   </script>
 </ui:composition>
 </html>
