@@ -6,18 +6,12 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
 
 <ui:composition>
-  <p:commandLink styleClass="#{data.dataModel.sortField eq masterDataBean.getTaskSortFieldPriority() ? 'is-selected' : ''}" id="priority-sort-command"
-    update="#{cc.attrs.componentToUpdateWhenInCompactMode} task-view-container task-widget-sort-menu"
-    oncomplete="taskWidget.setupScrollbar()">
-    <f:actionListener binding="#{logic.sortByPriority()}" />
-    <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/sortByPriority')}" />
-  </p:commandLink>
-  <p:spacer width="10" />
-  <p:commandLink styleClass="#{data.dataModel.sortField eq masterDataBean.getTaskSortFieldExpiryTime() ? 'is-selected' : ''}" id="expiry-sort-command"
-    update="#{cc.attrs.componentToUpdateWhenInCompactMode} task-view-container task-widget-sort-menu"
-    oncomplete="taskWidget.setupScrollbar()">
-    <f:actionListener binding="#{logic.sortByExpiry()}" />
-    <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/sortByExpiryTime')}" />
-  </p:commandLink>
+  <h:form id="sort-task-form">
+    <p:selectOneMenu id="sort-task-menu" value="#{data.mobileSelectedSort}" styleClass="sort-task-menu" autoWidth="false">
+      <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/sort')}" />
+      <f:selectItems value="#{data.dataModel.getPortalTaskMobileSort()}" var="item" itemLabel="#{data.dataModel.getSortFieldLabel(item)}"/>
+      <p:ajax event="change" listener="#{logic.sort}" update="#{p:component('task-view-container')}" oncomplete="taskWidget.setupScrollbar();"/>
+    </p:selectOneMenu>
+  </h:form>
 </ui:composition>
 </html>
