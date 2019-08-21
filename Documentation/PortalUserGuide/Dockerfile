@@ -5,6 +5,6 @@ ADD requirements.txt requirements.txt
 RUN apk add --update --no-cache make && \
     pip3 install -r requirements.txt
 
-WORKDIR /ivy-core/UserPortalDocumentation
+WORKDIR /ivy-core/PortalUserGuide
 
 USER 1000:1000

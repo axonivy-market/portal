@@ -16,7 +16,7 @@ pipeline {
   stages {    
     stage('build') {
       steps {        
-        dir ('Documentation/UserPortalDocumentation') {
+        dir ('Documentation/PortalUserGuide') {
             script {
                 docker.build('doc-build', '.').inside('') {
                     sh 'make html'
