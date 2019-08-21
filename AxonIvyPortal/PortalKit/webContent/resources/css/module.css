@@ -274,13 +274,17 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .widget-header-filter-input.ui-inputfield {
   background-color: transparent;
-  padding: 20px 25px 5px 0 !important;
+  padding: 9px 25px 5px 0 !important;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   color: black;
   font-size: 1.4rem;
   width: 100%;
+}
+
+.expanded-mode .widget-header-filter-input.ui-inputfield {
+  padding: 20px 25px 5px 0 !important;
 }
 
 /* Small screen */
@@ -292,12 +296,16 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .widget-header-filter-input.ui-inputfield.ui-state-hover, .widget-header-filter-input.ui-inputfield.ui-state-focus {
   background-color: transparent;
-  padding: 20px 25px 5px 0 !important;
+  padding: 9px 25px 5px 0 !important;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   color: black !important;
   font-size: 1.4rem;
+}
+
+.expanded-mode .widget-header-filter-input.ui-inputfield.ui-state-hover, .expanded-mode .widget-header-filter-input.ui-inputfield.ui-state-focus {
+  padding: 20px 25px 5px 0 !important;
 }
 
 .widget-content a:hover {
@@ -532,10 +540,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .task-widget-sub-header {
   width: 100%;
-}
-
-.compact-task-widget .filter-widget {
-  margin-top: -20px;
 }
 
 .task-widget .advanced-filter-container,
@@ -1894,6 +1898,10 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 .widget-header.task-widget-header .widget-header-main.mod-expanded-mode .task-widget-header-content-title {
   flex: 1 0 65%;
   position: relative;
+}
+
+.task-widget .sort-task-menu {
+  width: 100%;
 }
 
 .task-widget .filter-add-container {
