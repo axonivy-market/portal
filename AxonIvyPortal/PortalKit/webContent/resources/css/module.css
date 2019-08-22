@@ -531,6 +531,12 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 /********************************** END FILTER WIDGET **********************************/
 
 /********************************** START ADVANCED FILTER WIDGET **********************************/
+@media screen and (max-width: 40em) {
+  .compact-task-widget {
+    order: 1;
+  }
+}
+
 .compact-task-widget .task-widget-header {
   margin-top: 1px;
 }
@@ -1561,6 +1567,13 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   position: absolute;
   bottom: 35%;
   right: 27px;
+}
+
+@media screen and (max-width: 40em) {
+  .compact-process-widget {
+    order: 2;
+    margin-bottom: 40px;
+  }
 }
 
 .compact-process-widget .process-start-list-item {
