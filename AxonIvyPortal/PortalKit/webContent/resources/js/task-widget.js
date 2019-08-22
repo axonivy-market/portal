@@ -37,7 +37,13 @@ function TaskWidget() {
             - customWidgetContainer - globalSearchInput.outerHeight(true) - globalSearchTabHeader.outerHeight(true) - error;
 
         if (!!availableHeight) {
-          container.height(availableHeight);
+          var tasksHeight = container.find('.ui-datascroller-list').height();
+
+          if (tasksHeight < availableHeight) {
+            container.height(tasksHeight);
+          } else {
+            container.height(availableHeight);
+          }
         }
       }
     },
