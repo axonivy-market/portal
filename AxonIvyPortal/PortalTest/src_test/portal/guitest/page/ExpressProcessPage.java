@@ -86,10 +86,10 @@ public class ExpressProcessPage extends TemplatePage {
 		ensureNoBackgroundRequest();
 	}
 
-	public HomePage executeDirectlyAndGoToHomePage() {
-    click(By.id("form:save"));
-    return new HomePage();
-  }
+	public void executeDirectly() {
+		click(By.id("form:save"));
+		waitAjaxIndicatorDisappear();
+	}
 
 	public void ableToStart(List<ExpressResponsible> responsibles) {
 		click(By.id("form:able-to-start-link"));

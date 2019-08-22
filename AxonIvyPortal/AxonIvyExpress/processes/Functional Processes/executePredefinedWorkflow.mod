@@ -100,7 +100,25 @@ Bk4 @PushWFArc f22 '' #zField
 Bk4 @PushWFArc f3 '' #zField
 Bk4 @GridStep f11 '' #zField
 Bk4 @PushWFArc f17 '' #zField
-Bk4 @PushWFArc f41 '' #zField
+Bk4 @Alternative f23 '' #zField
+Bk4 @PushWFArc f24 '' #zField
+Bk4 @PushWFArc f15 '' #zField
+Bk4 @GridStep f25 '' #zField
+Bk4 @PushWFArc f26 '' #zField
+Bk4 @TaskSwitchSimple f29 '' #zField
+Bk4 @PushWFArc f31 '' #zField
+Bk4 @TaskSwitch f27 '' #zField
+Bk4 @TkArc f32 '' #zField
+Bk4 @Alternative f33 '' #zField
+Bk4 @TkArc f28 '' #zField
+Bk4 @EndTask f35 '' #zField
+Bk4 @PushWFArc f36 '' #zField
+Bk4 @GridStep f37 '' #zField
+Bk4 @PushWFArc f38 '' #zField
+Bk4 @PushWFArc f34 '' #zField
+Bk4 @GridStep f39 '' #zField
+Bk4 @PushWFArc f40 '' #zField
+Bk4 @PushWFArc f30 '' #zField
 >Proto Bk4 Bk0 BpmnUserTask #zField
 Bk5 @TextInP .type .type #zField
 Bk5 @TextInP .processKind .processKind #zField
@@ -869,8 +887,172 @@ Bk4 f11 232 170 112 44 -53 -8 #rect
 Bk4 f11 @|StepIcon #fIcon
 Bk4 f17 expr out #txt
 Bk4 f17 288 214 288 266 #arcP
-Bk4 f41 288 77 288 170 #arcP
-Bk4 f41 0 0.5063999557805953 0 0 #arcLabel
+Bk4 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>first task?</name>
+    </language>
+</elementInfo>
+' #txt
+Bk4 f23 272 112 32 32 -58 -22 #rect
+Bk4 f23 @|AlternativeIcon #fIcon
+Bk4 f24 288 77 288 112 #arcP
+Bk4 f15 expr in #txt
+Bk4 f15 outCond 'in.actualStepIndex != 0' #txt
+Bk4 f15 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>NO</name>
+    </language>
+</elementInfo>
+' #txt
+Bk4 f15 288 144 288 170 #arcP
+Bk4 f15 0 0.34615384615384615 -15 0 #arcLabel
+Bk4 f25 actionTable 'out=in;
+' #txt
+Bk4 f25 actionCode 'int currentUserIndex = in.currentTask.getResponsibles().indexOf(ivy.session.getSessionUser().getMemberName());
+in.doesCreatorHaveTask = currentUserIndex >= 0;
+if (in.doesCreatorHaveTask) {
+	in.currentTask.setResponsibles(in.currentTask.getResponsibles().removeAt(currentUserIndex));
+}' #txt
+Bk4 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Check if creator has task</name>
+    </language>
+</elementInfo>
+' #txt
+Bk4 f25 568 170 144 44 -67 -8 #rect
+Bk4 f25 @|StepIcon #fIcon
+Bk4 f26 expr in #txt
+Bk4 f26 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>YES</name>
+    </language>
+</elementInfo>
+' #txt
+Bk4 f26 304 128 640 170 #arcP
+Bk4 f26 1 640 128 #addKink
+Bk4 f26 0 0.5583333333333333 0 -8 #arcLabel
+Bk4 f29 actionTable 'out=in1;
+' #txt
+Bk4 f29 outLinks "TaskA.ivp" #txt
+Bk4 f29 taskData 'TaskA.DESC=<%\=in1.currentTask.description%>\n
+TaskA.EXP=new Duration(0,0,in1.currentTask.untilDays,0,0,0)
+TaskA.EXPRI=1
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.NAM=<%\=in1.currentTask.subject%>
+TaskA.PRI=2
+TaskA.ROL=SELF
+TaskA.SCRIPT=if (in1.originalTaskId \!\= null && in1.originalTaskId > 0) {\r\n  task.customFields().stringField(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString());\r\n}
+TaskA.SKIP_TASK_LIST=true
+TaskA.TYPE=0' #txt
+Bk4 f29 template "" #txt
+Bk4 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>create task for user</name>
+        <nameStyle>20,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Bk4 f29 626 514 28 28 21 -17 #rect
+Bk4 f29 @|TaskSwitchSimpleIcon #fIcon
+Bk4 f31 expr in #txt
+Bk4 f31 outCond ivp=="TaskA.ivp" #txt
+Bk4 f31 640 542 304 640 #arcP
+Bk4 f31 1 640 640 #addKink
+Bk4 f31 1 0.38458131567408715 0 0 #arcLabel
+Bk4 f27 actionTable 'out=in1;
+' #txt
+Bk4 f27 outLinks "TaskA.ivp","TaskB.ivp" #txt
+Bk4 f27 taskData 'TaskB.NAM=System\: create tasks for responsibles except current user
+TaskB.ROL=SYSTEM
+TaskB.TYPE=0
+TaskA.TYPE=0
+TaskA.ROL=SELF
+TaskA.SKIP_TASK_LIST=true
+TaskA.NAM=System\: create task for current user' #txt
+Bk4 f27 template "" #txt
+Bk4 f27 624 272 32 32 0 16 #rect
+Bk4 f27 @|TaskSwitchIcon #fIcon
+Bk4 f32 expr out #txt
+Bk4 f32 var in1 #txt
+Bk4 f32 640 214 640 272 #arcP
+Bk4 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Does current user&#xD;
+have task?</name>
+    </language>
+</elementInfo>
+' #txt
+Bk4 f33 624 432 32 32 -101 -44 #rect
+Bk4 f33 @|AlternativeIcon #fIcon
+Bk4 f28 expr in #txt
+Bk4 f28 outCond in.doesCreatorHaveTask #txt
+Bk4 f28 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>YES</name>
+    </language>
+</elementInfo>
+' #txt
+Bk4 f28 640 464 640 514 #arcP
+Bk4 f28 0 0.4298245614035088 -16 0 #arcLabel
+Bk4 f35 753 433 30 30 0 15 #rect
+Bk4 f35 @|EndIcon #fIcon
+Bk4 f36 expr in #txt
+Bk4 f36 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>NO</name>
+    </language>
+</elementInfo>
+' #txt
+Bk4 f36 656 448 753 448 #arcP
+Bk4 f36 0 0.4845360824742268 0 -8 #arcLabel
+Bk4 f37 actionTable 'out=in;
+' #txt
+Bk4 f37 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+TaskUtils.setHidePropertyToHideInPortal(ivy.task);' #txt
+Bk4 f37 security system #txt
+Bk4 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Hide system task</name>
+    </language>
+</elementInfo>
+' #txt
+Bk4 f37 584 330 112 44 -47 -8 #rect
+Bk4 f37 @|StepIcon #fIcon
+Bk4 f38 expr data #txt
+Bk4 f38 outCond ivp=="TaskA.ivp" #txt
+Bk4 f38 640 304 640 330 #arcP
+Bk4 f34 expr out #txt
+Bk4 f34 640 374 640 432 #arcP
+Bk4 f39 actionTable 'out=in;
+' #txt
+Bk4 f39 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+TaskUtils.setHidePropertyToHideInPortal(ivy.task);' #txt
+Bk4 f39 security system #txt
+Bk4 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Hide system task</name>
+    </language>
+</elementInfo>
+' #txt
+Bk4 f39 432 266 112 44 -47 -8 #rect
+Bk4 f39 @|StepIcon #fIcon
+Bk4 f40 expr data #txt
+Bk4 f40 outCond ivp=="TaskB.ivp" #txt
+Bk4 f40 624 288 544 288 #arcP
+Bk4 f30 expr out #txt
+Bk4 f30 432 288 344 288 #arcP
 >Proto Bk0 0 0 32 24 18 0 #rect
 >Proto Bk0 @|BIcon #fIcon
 Bk5 f28 actionTable 'out=in;
@@ -1535,8 +1717,28 @@ Bk4 f20 mainOut f3 tail #connect
 Bk4 f3 head g1 m #connect
 Bk4 f11 mainOut f17 tail #connect
 Bk4 f17 head f64 mainIn #connect
-Bk4 g0 m f41 tail #connect
-Bk4 f41 head f11 mainIn #connect
+Bk4 g0 m f24 tail #connect
+Bk4 f24 head f23 in #connect
+Bk4 f23 out f15 tail #connect
+Bk4 f15 head f11 mainIn #connect
+Bk4 f23 out f26 tail #connect
+Bk4 f26 head f25 mainIn #connect
+Bk4 f29 out f31 tail #connect
+Bk4 f31 head f5 in #connect
+Bk4 f25 mainOut f32 tail #connect
+Bk4 f32 head f27 in #connect
+Bk4 f33 out f28 tail #connect
+Bk4 f28 head f29 in #connect
+Bk4 f33 out f36 tail #connect
+Bk4 f36 head f35 mainIn #connect
+Bk4 f27 out f38 tail #connect
+Bk4 f38 head f37 mainIn #connect
+Bk4 f37 mainOut f34 tail #connect
+Bk4 f34 head f33 in #connect
+Bk4 f27 out f40 tail #connect
+Bk4 f40 head f39 mainIn #connect
+Bk4 f39 mainOut f30 tail #connect
+Bk4 f30 head f64 mainIn #connect
 Bk4 0 0 904 1248 0 #ivRect
 Bk5 f5 mainOut f29 tail #connect
 Bk5 f29 head f28 mainIn #connect

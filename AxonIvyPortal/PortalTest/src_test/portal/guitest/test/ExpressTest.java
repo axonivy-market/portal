@@ -71,8 +71,8 @@ public class ExpressTest extends BaseTest{
   }
 
   private void executeExpressProcessWhenMultiApproval() {
-    executeUserTask();
-    assertEquals(0, new TaskWidgetPage().countTasks());
+    ExpressTaskPage expressTaskPage = new ExpressTaskPage();
+    expressTaskPage.finish();
     login(TestAccount.ADMIN_USER);
     executeUserTask();
     assertEquals(0, new TaskWidgetPage().countTasks());

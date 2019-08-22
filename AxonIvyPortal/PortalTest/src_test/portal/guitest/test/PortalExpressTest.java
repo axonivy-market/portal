@@ -82,10 +82,7 @@ public class PortalExpressTest extends BaseTest {
 		formDefinition.createUploadComponent("Upload");
 		formDefinition.moveAllElementToDragAndDrogPanel();
 		formDefinition.executeWorkflow();
-		homePage = new HomePage();
-		taskWidgetPage = homePage.getTaskWidget();
-		taskWidgetPage.filterTasksBy("Task 1");
-		taskWidgetPage.startTask(0);
+		Sleeper.sleepTight(2000);
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		Assert.assertTrue(expressTaskPage.isDocumentTableVisible());
 		Assert.assertTrue(expressTaskPage.isDocumentUploadButtonVisible());
@@ -160,10 +157,7 @@ public class PortalExpressTest extends BaseTest {
 		formDefinition.createTextInputField("Input Text", INPUT_TEXT_TYPE_INDEX, false);
 		formDefinition.moveAllElementToDragAndDrogPanel();
 		formDefinition.executeWorkflow();
-		homePage = new HomePage();
-		taskWidgetPage = homePage.getTaskWidget();
-		taskWidgetPage.filterTasksBy("Task for creator");
-		taskWidgetPage.startTask(0);
+		Sleeper.sleepTight(2000);
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		expressTaskPage.finish();
 		HomePage home = new HomePage();
@@ -181,10 +175,7 @@ public class PortalExpressTest extends BaseTest {
 		expressProcessPage.createDefaultTask(0, "Default Task", Arrays.asList(demoResponsible));
 		expressProcessPage.addNewTask(0);
 		expressProcessPage.createDefaultTask(1, "Next Default Task", Arrays.asList(demoResponsible));
-		homePage = expressProcessPage.executeDirectlyAndGoToHomePage();
-		taskWidgetPage = new TaskWidgetPage();
-		taskWidgetPage.filterTasksBy("Default Task");
-		taskWidgetPage.startTask(0);
+		expressProcessPage.executeDirectly();
 
 		DefaultExpresTaskPage defaultExpresTaskPage = new DefaultExpresTaskPage();
 		defaultExpresTaskPage.enterTextToDefaultTask("Test input");
@@ -209,7 +200,6 @@ public class PortalExpressTest extends BaseTest {
 	public void testMultiApprovalWhenMultiTask() {
 		createAdministratedWorkflow("Test approval", Arrays.asList(responsible1, groupHr), true);
 		startExpressProcess("Test approval");
-		homePage = new HomePage();
 		executeExpressProcessWhenMultiApproval();
 	}
 
@@ -301,7 +291,8 @@ public class PortalExpressTest extends BaseTest {
 	}
 
 	protected void rejectWhenMultiApproval() {
-		executeUserTask();
+		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
+		expressTaskPage.finish();
 		assertEquals(0, new TaskWidgetPage().countTasks());
 		login(TestAccount.ADMIN_USER);
 		executeUserTask();
@@ -378,7 +369,8 @@ public class PortalExpressTest extends BaseTest {
 	}
 
 	protected void executeExpressProcessWhenMultiApproval() {
-		executeUserTask();
+		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
+		expressTaskPage.finish();
 		assertEquals(0, new TaskWidgetPage().countTasks());
 		login(TestAccount.ADMIN_USER);
 		executeUserTask();
@@ -402,9 +394,8 @@ public class PortalExpressTest extends BaseTest {
 	}
 
 	protected void executeComplexProcess() {
-		taskWidgetPage = new TaskWidgetPage();
-		taskWidgetPage.startTask(0);
 		UserTaskWithMailFormPage userTaskWithMailFormPage = new UserTaskWithMailFormPage();
+		userTaskWithMailFormPage.waitForPageLoaded();
 		userTaskWithMailFormPage.selectEmailTab();
 		userTaskWithMailFormPage.inputData("wawa@axonivy.io", "Task information", "Task is created");
 		userTaskWithMailFormPage.finish();

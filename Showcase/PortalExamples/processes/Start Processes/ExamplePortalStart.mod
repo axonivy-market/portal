@@ -785,7 +785,7 @@ String callbackUrl;
 if  (#task is initialized) {
 	isTaskStarted = task.getStartProcessData() is initialized;
 	if(#taskWithTaskEndInfo is initialized) {
-		callbackUrl = taskWithTaskEndInfo.customFields().textField(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString()).toString();
+		callbackUrl = taskWithTaskEndInfo.customFields().textField(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString()).getOrDefault("");
 	}
 }
 
