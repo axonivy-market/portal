@@ -47,7 +47,7 @@ point. In detail these are:
    
    1. The Axon.ivy Portal header on the top is always visible and provides
       you with a global search, key information about the portal and options to
-      configure your personal user account. See chapter 3 Portal Header for
+      configure your personal user account. See  :ref:`portal-header`  for
       details.
    
    2. The menu on the left side is always available and gives you access to
