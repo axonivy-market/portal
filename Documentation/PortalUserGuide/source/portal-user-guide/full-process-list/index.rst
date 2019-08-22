@@ -43,10 +43,6 @@ List`.
    this process only on a rare basis. For all processes which you use on a
    regular basis we highly recommend configuring them on your personal
    dashboard. See :ref:`howto-add-a-process-as-a-user-favorite` for an instruction.
-   
-|image7|
-
-.. centered::  Toggle portal menu
 
 .. |image0| image:: ../media/image2.png
    :width: 0.3937in

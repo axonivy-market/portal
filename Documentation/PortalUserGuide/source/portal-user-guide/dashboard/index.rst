@@ -261,10 +261,6 @@ If you require more or different charts, you need to create them first.
 Chapter :ref:`howto-create-chart` explains in detail how to create new
 charts.
 
-|image7|
-
-.. centered::  Toggle portal menu
-
 .. |image0| image:: ../media/image2.png
    :width: 0.3937in
    :height: 0.3937in
