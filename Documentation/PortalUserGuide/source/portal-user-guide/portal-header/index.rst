@@ -224,10 +224,6 @@ a tab is provided, giving you the results of your search.
    Contact your administrator for   
    more information.                
 
-|image7|
-
-.. centered::  Toggle portal menu
-
 .. |image0| image:: ../media/image2.png
    :width: 0.3937in
    :height: 0.3937in

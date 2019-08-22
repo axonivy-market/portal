@@ -232,10 +232,6 @@ Define an information email
 
 .. centered:: Express Workflow email editor
 
-|image7|
-
-.. centered::  Toggle portal menu
-
 .. |image0| image:: ../media/image2.png
    :width: 0.3937in
    :height: 0.3937in

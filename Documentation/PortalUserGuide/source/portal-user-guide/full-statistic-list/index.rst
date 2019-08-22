@@ -173,10 +173,6 @@ HowTo: Create chart
 
 .. centered:: Chart filter criterias
 
-|image7|
-
-.. centered::  Toggle portal menu
-
 .. |image0| image:: ../media/image2.png
    :width: 0.3937in
    :height: 0.3937in
