@@ -180,7 +180,7 @@
     </h:panelGroup>
 
     <h:panelGroup id="task-widget-sub-header" layout="block" styleClass="js-task-widget-sub-header ui-g task-widget-sub-header">
-      <h:panelGroup id="task-widget-column-config-menu" layout="block" rendered="#{!data.dataModel.compactMode}"
+      <h:panelGroup id="task-widget-sort-menu" layout="block" rendered="#{!data.dataModel.compactMode}"
         styleClass="widget-sort-menu js-task-widget-sort-menu full-mode #{cc.attrs.listHeaderStyleClass}">
         <h:panelGroup rendered="#{!data.dataModel.compactMode}">
           <f:event listener="#{data.dataModel.initColumnsConfiguration()}" type="preRenderComponent" />
@@ -192,7 +192,7 @@
         </h:panelGroup>
       </h:panelGroup>
 
-      <h:panelGroup id="filter-view" layout="block" styleClass="ui-g-9 ui-sm-7">
+      <h:panelGroup id="filter-view" layout="block" styleClass="ui-g-9 ui-sm-7" rendered="#{data.dataModel.compactMode}">
         <h:form id="filter-form" onsubmit="return false;"
           styleClass="widget-header-content-filter Fright"
           rendered="#{!cc.attrs.hideTaskFilter and data.dataModel.compactMode}">
@@ -204,7 +204,7 @@
             onCompletedCallback="taskWidget.setupScrollbar();" />
         </h:form>
       </h:panelGroup>
-       <h:panelGroup id="task-widget-sort-menu" layout="block" rendered="#{data.dataModel.compactMode}"
+       <h:panelGroup id="compact-task-widget-sort-menu" layout="block" rendered="#{data.dataModel.compactMode}"
         styleClass="widget-sort-menu js-task-widget-sort-menu ui-g-3 ui-sm-5">
           <ui:include src="CompactSortMenu.xhtml" />
       </h:panelGroup>
