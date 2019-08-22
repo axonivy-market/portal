@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.ILibrary;
@@ -50,7 +52,7 @@ public class DeleteFinishedHiddenCasesService {
     int numOfDeletedCases = 0;
     for (int i = cases.size()-1; i >= 0; i--) {
       ICase iCase = (cases.get(i));
-      boolean isHiddenCase = ("HIDE").equals(iCase.customFields().stringField("HIDE").toString());
+      boolean isHiddenCase = ("HIDE").equals(iCase.customFields().stringField("HIDE").getOrDefault(StringUtils.EMPTY));
       if (isHiddenCase) {
         try {
           Ivy.wf().deleteCompletedCase(iCase);
