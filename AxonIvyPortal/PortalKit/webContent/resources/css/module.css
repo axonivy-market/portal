@@ -245,6 +245,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .widget-sort-menu {
   color: rgba(0,0,0,0.4);
+  padding-top: 18px !important;
 }
 
 .widget-sort-menu.full-mode {
@@ -271,7 +272,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .widget-header-filter-input.ui-inputfield {
   background-color: transparent;
-  padding: 9px 25px 5px 0 !important;
+  padding: 20px 25px 5px 0 !important;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
@@ -293,7 +294,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .widget-header-filter-input.ui-inputfield.ui-state-hover, .widget-header-filter-input.ui-inputfield.ui-state-focus {
   background-color: transparent;
-  padding: 9px 25px 5px 0 !important;
+  padding: 20px 25px 5px 0 !important;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
