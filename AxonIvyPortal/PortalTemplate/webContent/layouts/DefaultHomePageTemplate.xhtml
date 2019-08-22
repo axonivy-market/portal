@@ -15,7 +15,7 @@
         value="#{(not empty displayStatisticWidget ? displayStatisticWidget : true) and not statisticBean.hiddenStatisticWidget}" />
 
       <h:panelGroup layout="block" styleClass="ui-g #{dataModel.compactMode ? '' : 'task-list-container'}">
-        <div class="ui-g-3 ui-lg-3 ui-md-4 ui-sm-12">
+        <div class="ui-g-3 ui-lg-3 ui-md-4 ui-sm-12 compact-process-widget">
           <ui:insert name="processWidget">
             <h:panelGroup layout="block" rendered="#{displayProcessWidget}">
               <ic:ch.ivy.addon.portalkit.component.CompactProcessWidget id="process-widget"
