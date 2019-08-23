@@ -209,6 +209,12 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
+.widget-tasklist-header {
+  position: relative;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  height: 38px;
+}
+
 .widget-header-content-filter {
   width: 100%;
 }
@@ -245,7 +251,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .widget-sort-menu {
   color: rgba(0,0,0,0.4);
-  padding-top: 18px !important;
 }
 
 .widget-sort-menu.full-mode {
@@ -272,17 +277,12 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .widget-header-filter-input.ui-inputfield {
   background-color: transparent;
-  padding: 20px 25px 5px 0 !important;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   color: black;
   font-size: 1.4rem;
   width: 100%;
-}
-
-.expanded-mode .widget-header-filter-input.ui-inputfield {
-  padding: 20px 25px 5px 0 !important;
 }
 
 /* Small screen */
@@ -294,7 +294,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .widget-header-filter-input.ui-inputfield.ui-state-hover, .widget-header-filter-input.ui-inputfield.ui-state-focus {
   background-color: transparent;
-  padding: 20px 25px 5px 0 !important;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
@@ -302,9 +301,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   font-size: 1.4rem;
 }
 
-.expanded-mode .widget-header-filter-input.ui-inputfield.ui-state-hover, .expanded-mode .widget-header-filter-input.ui-inputfield.ui-state-focus {
-  padding: 20px 25px 5px 0 !important;
-}
 
 .widget-content a:hover {
   text-decoration: none;
@@ -469,6 +465,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .filter-widget {
   position: relative;
   display: flex;
+  top: 2px;
 }
 
 .filter-widget-input {
@@ -483,7 +480,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .filter-widget-icon  {
   position: absolute;
-  top: 50%;
+  top: 35%;
   right: 5px;
   font-size: 1.4rem;
 }
@@ -1924,10 +1921,6 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
   align-items: center;
   flex-wrap: wrap;
 }
-
-.filter-container > * {
-  margin-top: 10px;
-} 
 
 .filter-selection-form {
   margin-right: 5px;

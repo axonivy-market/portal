@@ -163,6 +163,10 @@
 .u-padding-0 {
   padding: 0 !important;
 }
+
+.u-padding-top-0 {
+  padding-top: 0 !important;
+}
 /* For Serenity theme - Start */
 /*
 * Some style is removed after migrated to Serenity - need re-define
