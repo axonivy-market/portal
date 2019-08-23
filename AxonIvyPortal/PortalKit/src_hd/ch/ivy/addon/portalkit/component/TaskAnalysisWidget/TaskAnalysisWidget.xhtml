@@ -28,7 +28,7 @@
   <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} js-task-widget analysis-task-widget">
         <h:panelGroup id="filter-selection-container" layout="block" styleClass="filter-selection-container">
           <h:form id="filter-selection-form" class="filter-selection-form">
-            <p:outputPanel id="filter-selection-panel"
+            <p:outputPanel id="filter-selection-panel" styleClass="task-analysis-filter-selection-panel"
               rendered="#{(not empty data.taskPrivateFilters or not empty data.taskPublicFilters)}">
               <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}" for="filter-name" />
               <p:commandLink id="filter-name" styleClass="filter-name"
@@ -82,8 +82,9 @@
             </p:outputPanel>
           </h:form>
         </h:panelGroup>
-
-        <!-- TASK FILTERS -->
+    <p:commandButton id="back-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" icon="fa fa-reply-all" iconPos="left"
+      styleClass="buttonDelegate Fright MarTop50" actionListener="#{logic.redirectToStatisticPage}" update="@(form)" />
+    <!-- TASK FILTERS -->
         <p:fieldset id="task-filters-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskFilter')}" toggleable="false" styleClass="filter-fieldset MarTop20">
           <h:panelGroup id="task-filters-container" layout="block" styleClass="advanced-filter-container">
             <h:panelGroup id="additional-task-filter" styleClass="additional-filter-container">
@@ -114,7 +115,7 @@
                 <p:overlayPanel id="task-filter-add-panel" styleClass="filter-add-panel" for="task-filter-add-action" my="left top"
                   at="left bottom">
                   <h:form id="task-filter-add-form">
-                    <p:scrollPanel styleClass="filter-selector-container" mode="native">
+                    <p:scrollPanel styleClass="task-filter-selector-container" mode="native">
                       <p:selectManyCheckbox id="task-filter-selection" layout="pageDirection"
                         valueChangeListener="#{data.dataModel.onFilterChange}" value="#{data.dataModel.selectedTaskFilters}"
                         converter="pojoConverter">
@@ -166,8 +167,8 @@
                 <p:overlayPanel id="case-filter-add-panel" styleClass="filter-add-panel" for="case-filter-add-action" my="left top"
                   at="left bottom">
                   <h:form id="case-filter-add-form">
-                    <p:scrollPanel styleClass="filter-selector-container" mode="native">
-                      <p:selectManyCheckbox id="case-filter-selection" layout="pageDirection"
+                    <p:scrollPanel styleClass="case-filter-selector-container" mode="native">
+                      <p:selectManyCheckbox id="case-filter-selection" layout="pageDirection" styleClass="case-filter-selection-checkbox"
                         valueChangeListener="#{data.dataModel.onCaseFilterChange}" value="#{data.dataModel.selectedCaseFilters}"
                         converter="pojoConverter">
                         <p:ajax update="#{cc.clientId}:case-filters-container" global="false" />
@@ -191,12 +192,7 @@
         </div>
 
         <!-- RESULT SECTION -->
-        <ui:include src="StatisticResult.xhtml" />
-
-        <!-- FOOTER -->
-        <p:commandButton id="back-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" icon="fa fa-arrow-left"
-          styleClass="buttonDelegate floatLeft MarTop50" actionListener="#{logic.redirectToStatisticPage}" update="@(form)"/>
-        <p:spacer width="5" />
+         <ui:include src="StatisticResult.xhtml" />
   </div>
 
   <p:dialog id="save-filter-set-dialog" widgetVar="save-filter-set-dialog" appendTo="@(body)"

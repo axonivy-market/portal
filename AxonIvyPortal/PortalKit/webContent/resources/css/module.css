@@ -4719,6 +4719,18 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   float: right;
 }
 
+.task-analysis-filter-selection-panel {
+  display: flex;
+}
+
+.task-filter-selector-container {
+  width: 210px;
+}
+
+.case-filter-selection-checkbox {
+  width: 160px;
+}
+
 .ui-widget.ui-button.filter-add-button.no-icon .ui-button-text {
   padding-right: 10px !important;
 }
