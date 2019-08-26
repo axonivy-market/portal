@@ -78,7 +78,7 @@ var MainMenu = {
       $this.showMainMenu();
       // Toggle menu state
       toggleMainMenuMode();
-      $this.responsiveToolkit.updateLayoutWithoutAnimation();
+      $this.responsiveToolkit.updateLayoutWithAnimation();
     });
   },
 
