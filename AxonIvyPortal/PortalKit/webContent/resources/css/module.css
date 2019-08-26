@@ -2034,10 +2034,6 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
   width: 100%;
 }
 
-.task-compact-mode {
-  padding: 0 25px;
-}
-
 .task-widget-header-content {
   display: flex;
 }
