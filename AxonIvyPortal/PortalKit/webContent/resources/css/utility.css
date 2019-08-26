@@ -164,8 +164,12 @@
   padding: 0 !important;
 }
 
-.u-padding-top-0 {
+.u-no-padding-top {
   padding-top: 0 !important;
+}
+
+.u-no-padding-left {
+  padding-left: 0 !important;
 }
 /* For Serenity theme - Start */
 /*
