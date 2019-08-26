@@ -53,25 +53,29 @@
             <h:form>
               <p:menu overlay="true" trigger="task-actions" my="right top" at="right bottom"
                 styleClass="action-steps-panel task-actions-menu">
+                <p:menuitem rendered="#{showCaseStatusInfoTab == null or !showCaseStatusInfoTab}"
+                  actionListener="#{caseBean.navigateToCaseDetails(case)}"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/statusTabTitle')}"
+                  icon="fa fa-list-ul" />
+
                 <p:menuitem id="show-adhoc-history" rendered="#{taskTemplateBean.hasAdhocTasks()}"
                   icon="fa fa-history fa-2x" oncomplete="PF('adhoc-task-history-dialog').show()"
                   value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/adhocHistory')}"
-                  title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/adhocHistoryTooltip')}">
-                </p:menuitem>
+                  title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/adhocHistoryTooltip')}" />
+
                 <p:menuitem id="start-adhoc"
                   rendered="#{empty isShowStartAdhocButton? taskTemplateBean.hasExpressAdhocWF(): isShowStartAdhocButton}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHoc')}"
                   title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHocTooltip')}"
-                  icon="fa fa-random fa-2x" oncomplete="PF('adhoc-task-reset-confirmation-dialog').show()">
-                </p:menuitem>
+                  icon="fa fa-random fa-2x" oncomplete="PF('adhoc-task-reset-confirmation-dialog').show()" />
 
                 <p:separator
                   rendered="#{taskTemplateBean.hasAdhocTasks() or (empty isShowStartAdhocButton? taskTemplateBean.hasExpressAdhocWF(): isShowStartAdhocButton)}" />
 
                 <p:menuitem id="side-steps-menu" styleClass="empty-side-steps" global="false"
                   disabled="#{empty taskTemplateBean.sideStepList}" rendered="#{isSideStepDisabled}"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}">
-                </p:menuitem>
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}" />
+
                 <c:forEach var="sidestep" items="#{taskTemplateBean.sideStepList}" varStatus="taskStatus">
                   <p:menuitem id="side-step-item-#{taskStatus.index}" styleClass="side-step-item"
                     value="#{sidestep.getName()}" global="false"
@@ -93,6 +97,7 @@
                   <!-- Task Form -->
                 </ui:insert>
               </p:tab>
+
               <p:tab id="status-tab"
                 title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/statusTabTitle')}"
                 rendered="#{showCaseStatusInfoTab == null ? true : showCaseStatusInfoTab}">
