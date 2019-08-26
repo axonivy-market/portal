@@ -2846,7 +2846,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 
 /* Small screen */
 @media (max-width: 1024px) {
-  .process-chain-container {
+  .process-chain-container.vertical-process-chain-container {
     display: none !important;
   }
   .task-name-vertical-process-chain, .task-name-vertical-process-chain.vertical-chain-shape-line,
@@ -2860,6 +2860,76 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 
 }
 
+@media screen and (max-width: 40em) {
+  .process-chain-container {
+    flex: 1 0 100% !important;
+    text-align: center !important;
+  }
+  .circle-process-chain .circle-horizontal-process-step {
+    width: auto !important;
+    margin-top: 0.5rem !important;
+  }
+  .circle-process-chain .circle-horizontal-process-step:last-child .circle-horizontal-step-container {
+    line-height: 0.4 !important;
+  }
+  .circle-process-chain .circle-horizontal-process-step .circle-horizontal-step-container {
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+  .circle-process-chain .circle-horizontal-step-title {
+    margin-bottom: 2px !important;
+  }
+  .circle-horizontal-step-container span:before, .circle-horizontal-step-container span:after {
+    display: inline-block;
+    content: "";
+    width: 2rem;
+    margin: 0 10px;
+  }
+  .circle-horizontal-step-container span:before {
+    border-top: 3px solid #E0E0E0;
+    transform: translate(2rem, 0.5rem);
+    border-top-style: dashed;
+  }
+  .circle-horizontal-step-container span:after {
+    border-top: 3px solid #afca05;
+    transform: translate(-4rem, -0.6rem);
+    border-top-style: dashed;
+  }
+}
+
+@media screen and (min-width: 40.063em) and (max-width: 64.062em) {
+  .circle-process-chain .circle-horizontal-process-step {
+    width: auto !important;
+    margin-top: 0.5rem !important;
+  }
+  .circle-process-chain .circle-horizontal-process-step:last-child .circle-horizontal-step-container {
+    line-height: 0.4 !important;
+  }
+  .circle-process-chain .circle-horizontal-process-step .circle-horizontal-step-container {
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+  .circle-process-chain .circle-horizontal-step-title {
+    margin-bottom: 2px !important;
+  }
+  .circle-horizontal-step-container span:before, .circle-horizontal-step-container span:after {
+    display: inline-block;
+    content: "";
+    width: 2rem;
+    margin: 0 10px;
+  }
+  .circle-horizontal-step-container span:before {
+    border-top: 3px solid #E0E0E0;
+    transform: translate(2rem, 0.5rem);
+    border-top-style: dashed;
+  }
+  .circle-horizontal-step-container span:after {
+    border-top: 3px solid #afca05;
+    transform: translate(-4rem, -0.6rem);
+    border-top-style: dashed;
+  }
+}
+
 /* CIRCLE HONRIZONTAL***/
 .circle-process-chain .circle-horizontal-process-step {
   width: 14rem;
@@ -2870,7 +2940,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   padding-left: 1rem;
 }
 
-.circle-process-chain .circle-horizontal-process-step:not(:last-child ) .circle-horizontal-step-container span:before {
+.circle-horizontal-process-step:not(:last-child ) .circle-horizontal-step-container span:before {
   display: inline-block;
   content: "";
   border-top: 3px solid #E0E0E0;
@@ -2973,6 +3043,31 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 }
 
 /** LINE HORIZONTAL*/
+@media screen and (max-width: 40em) {
+  .line-process-chain .line-horizontal-process-step {
+    width: auto !important;
+  }
+  .line-process-chain .line-horizontal-process-step .line-horizontal-step-container {
+    width: 80% !important;
+    margin: auto;
+  }
+  .line-process-chain .line-horizontal-step-title {
+    margin-bottom: 2px !important;
+  }
+  .line-process-chain .line-horizontal-process-step.hide-left-steps {
+    width: 4rem !important;
+  }
+  .line-process-chain .line-horizontal-process-step.hide-left-steps.waiting {
+    background: repeating-linear-gradient(90deg, #E0E0E0, #E0E0E0 10px, #fff 10px, #fff 20px);
+  }
+}
+
+@media screen and (min-width: 40.063em) and (max-width: 64.062em) {
+  .line-process-chain .line-horizontal-process-step.hide-left-steps.waiting {
+    background: repeating-linear-gradient(90deg, #E0E0E0, #E0E0E0 10px, #fff 10px, #fff 20px);
+  }
+}
+  
 .line-process-chain .line-horizontal-process-step {
   width: 13rem;
   display: inline-block;
