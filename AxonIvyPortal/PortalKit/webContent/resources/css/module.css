@@ -492,6 +492,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .filter-category-checkbox-tree .ui-tree-container{
 	height: auto;
 	max-height: 500px;
+	overflow: auto !important;
 }
 
 .filter-category-checkbox-tree.ui-tree .ui-treenode .ui-treenode-label{
