@@ -57,7 +57,7 @@
         </h:panelGroup>
       </h:panelGroup>
 
-      <h:panelGroup id="filter-container" styleClass="filter-container js-filter-container ui-g-12 u-padding-top-0"
+      <h:panelGroup id="filter-container" styleClass="filter-container js-filter-container ui-g-12 u-no-padding-top"
         rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter}">
         <h:panelGroup id="filter-selection-container" styleClass="filter-selection-container-group"
           rendered="#{(not empty data.taskPrivateFilters or not empty data.taskPublicFilters) and not data.dataModel.compactMode}"> 
@@ -210,7 +210,7 @@
       </h:panelGroup>
     </h:panelGroup>
 
-    <h:panelGroup layout="block" id="task-view" styleClass="ui-g-12">
+    <h:panelGroup layout="block" id="task-view" styleClass="ui-g-12 u-no-padding-left">
       <h:panelGroup id="task-view-container" layout="block" styleClass="task-view-container">
         <p:dataScroller id="task-list-scroller" 
           value="#{data.dataModel}" 
