@@ -23,7 +23,7 @@
       <p:graphicImage styleClass="portal-home-logo" value="#{resource['ivy-cms:images/logo/SmallCorporateLogo']}" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
     </p:commandLink>
 
-    <p:commandLink id="toggle-menu" styleClass="sidebar-anchor" oncomplete="callResponsiveToolKit();" global="false" />
+    <p:commandLink id="toggle-menu" styleClass="sidebar-anchor" global="false" />
   </div>
 
   <!-- APPLICATION MENU -->
@@ -93,17 +93,5 @@
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/createdTaskLeave')}" />
     </f:facet>
   </p:confirmDialog>
-  <script type="text/javascript">
-    callResponsiveToolKit = function() {
-      if (typeof TaskListToolKit !== 'undefined') {
-        var taskListToolKit = TaskListToolKit();
-        taskListToolKit.responsive();
-      }
-      if (typeof CaseListToolKit !== 'undefined') {
-        var caseListToolKit = CaseListToolKit();
-        caseListToolKit.responsive();
-      }
-    };
-   </script>
 </cc:implementation>
 </html>

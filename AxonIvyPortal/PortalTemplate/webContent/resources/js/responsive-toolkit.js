@@ -39,8 +39,9 @@ function ResponsiveToolkit(largeScreenToolkit, mediumScreenToolkit, smallScreenT
 
   return {
     updateLayoutWithAnimation : function() {
-      animateDuration = 800;
-      updateLayout();
+      setTimeout(function() {
+        updateLayout();
+      }, 200);
     },
 
     updateLayoutWithoutAnimation : function() {
