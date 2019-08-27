@@ -546,6 +546,12 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   bottom: 1px;
 }
 
+@media (max-width: 991px) {
+  .compact-task-widget .widget-header-main {
+    height: 30px !important;
+  }
+}
+
 .task-widget-sub-header {
   width: 100%;
 }
@@ -1681,8 +1687,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 }
 
 .process-widget .favorite-process-title {
-  font-size: 1.4rem; 
-  margin-top: 8px;
+  font-size: 1.4rem;
 }
 
 .process-widget .default-process-title {
