@@ -249,8 +249,8 @@ charts. Each chart then provides you with the following information:
 
 3. The :guilabel:`Legend` explains the different elements of the charts.
 
-|statistics-key-information|
-
+.. figure:: images/statistics-key-information.png
+   :align: center
 .. centered:: Statistics key information
 
 If you require more or different charts, you need to create them first.
@@ -312,6 +312,4 @@ charts.
    :height: 0.15748in
 .. |pre-button| image:: images/pre-button.png
    :height: 0.15748in   
-.. |statistics-key-information| image:: images/statistics-key-information.png
-   :width: 2.35433in
-   :height: 1.97244in   
+   
