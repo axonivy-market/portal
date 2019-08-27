@@ -786,7 +786,7 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 
 /*Style For Task Detail --------------------------------------------------------------------------------------*/
 
-.task-item-body .task-details-item-note, .task-item-body .task-details-item-document , .task-table{
+.task-item-body .task-details-item-note, .task-item-body .task-details-item-document {
  	.ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top {
  	  background-color: rgba(0,0,0,0.05);
       border-color: #d8d8d8;
@@ -826,8 +826,8 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 	}
 }
 
-.task-detail-header {
-	.ui-button.ui-widget.task-details-back-btn {
+.task-detail-header, .analysis-task-widget {
+	.ui-button.ui-widget.task-details-back-btn , .ui-button.ui-widget.back-button{
 		background-color: transparent;
 		box-shadow: none;
 		
@@ -861,16 +861,5 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 		position: absolute;
 		right: 0;
 		top: 0;
-	}
-}
-
-.analysis-task-widget {
- 	.ui-button.ui-widget.buttonDelegate {
-		background-color: transparent;
-		box-shadow: none;
-		
-		&.ui-state-hover {
-			background-color: rgba(0,0,0,0.05) !important;
-		}
 	}
 }
