@@ -44,7 +44,7 @@ public class SearchCaseTest extends BaseTest {
     GlobalSearch globalSearch = homePage.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
 
-    String caseName = "Ã–sterreich Resource with ID 1212";
+    String caseName = "Österreich Resource with ID 1212";
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(caseName);
     searchResultPage.openCaseTab();
     assertEquals(caseName, searchResultPage.getCaseResult(0));
