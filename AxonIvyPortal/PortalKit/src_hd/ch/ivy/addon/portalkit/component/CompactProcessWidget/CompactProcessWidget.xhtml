@@ -8,12 +8,13 @@
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" />
+  <cc:attribute name="mobileTitle" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" />
 </cc:interface>
 
 <cc:implementation>
   <div id="#{cc.clientId}" class="widget process-widget">
     <ui:include src="Header.xhtml" />
-    <div id="all-processes-container">
+    <div id="all-processes-container" class="ui-sm-hidden ui-md-hidden">
       <ui:include src="UserProcesses.xhtml" />
       <ui:include src="DefaultProcesses.xhtml" />
     </div>

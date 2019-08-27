@@ -540,6 +540,12 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   margin-top: 1px;
 }
 
+.compact-task-widget .task-widget-header .toggle-task-link {
+  position: absolute;
+  right: 0;
+  bottom: 1px;
+}
+
 .task-widget-sub-header {
   width: 100%;
 }
@@ -1570,8 +1576,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 
 @media screen and (max-width: 40em) {
   .compact-process-widget {
-    order: 2;
-    margin-bottom: 40px;
   }
 }
 
@@ -1580,10 +1584,22 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 }
 
 .compact-process-widget .toggle-processes-link {
-  font-size: 1.2rem !important;
-  padding-top: 2px;
-  margin-right: 10px;
-  float: left;
+  font-size: 1.4rem !important;
+  position: absolute;
+  bottom: 2px;
+}
+
+.compact-process-widget .toggle-processes-link.fa-plus:before {
+  padding-right: 4px;
+  font-size: 1.4rem !important;
+  font-family: 'FontAwesome' !important;
+  content: '\f067';
+}
+.compact-process-widget .toggle-processes-link.fa-minus:before {
+  padding-right: 4px;
+  font-size: 1.4rem !important;
+  font-family: 'FontAwesome' !important;
+  content: '\f068';
 }
 
 .process-start-list-item-action.is-express {
@@ -2152,6 +2168,12 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   font-size: 1.4rem;
 }
 
+@media (max-width: 575px) {
+  .task-start-list .priority-cell {
+    padding: 0 15px !important;
+  }
+}
+
 .task-start-list .name-cell {
   font-family: 'Roboto';
   font-style: normal;
@@ -2168,7 +2190,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .task-start-list .responsible-cell {
   flex: 0 0 135px;
-
 }
 
 .task-start-list .name-cell, .task-start-list .description-cell, .task-start-list .responsible-cell {
