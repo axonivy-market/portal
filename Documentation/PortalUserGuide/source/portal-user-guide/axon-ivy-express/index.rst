@@ -30,11 +30,11 @@ of the key features of Axon.ivy Express are:
    different task types, set responsibilities and due dates and define
    user dialogs for each task.
 
-You can reach the page by either using the |image97| **Processes** link
+You can reach the page by either using the |magic-icon| **Processes** link
 in the Axon.ivy Portal menu or the quick link **Show all processes** in
 your dashboard.
 
-|image98|
+|navigate-to-axon-ivy-express|
 
 .. centered:: Navigate to Axon.ivy Express
 
@@ -43,7 +43,7 @@ workflow**. This feature is explained in detail in `Axon.ivy Express`_. Below
 you find the process category :guilabel:`Express Workflows` with a list of
 already defined processes.
 
-|image99|
+|start-link-for-axon-ivy-express|
 
 .. centered:: Start Link for Axon.ivy Express
 
@@ -77,7 +77,7 @@ HowTo: Create an Express Workflow
    encourage you to use the description to provide details about your
    process.
 
-|image100|
+|express-workflow-process-properties|
 
 .. centered:: Express Workflow process properties
 
@@ -89,7 +89,7 @@ HowTo: Create an Express Workflow
 9.  You may delete unnecessary process steps using the button **Remove
     process step**
 
-10. For each process step, select the **Task Type** (see Express Workflow task types).
+10. For each process step, select the **Task Type** (see `Express Workflow task types`_).
 
 11. For each process step provide a speaking name under **Task Name**
 
@@ -107,7 +107,7 @@ HowTo: Create an Express Workflow
 
 16. End the configuration of your process steps with the button **Next**
 
-|image101|
+|define-express-workflow-process-steps|
 
 .. centered:: Define Express Workflow process steps
 
@@ -132,7 +132,7 @@ HowTo: Create an Express Workflow
 |                                   | approval task                     |
 +-----------------------------------+-----------------------------------+
 
-.. centered:: Express Workflow task types
+.. centered:: _`Express Workflow task types`
 
 17. Depending on the task type of the first process step a different
     editor is opened. For user task / task with email the dialog editor
@@ -146,24 +146,24 @@ HowTo: Create an Express Workflow
 
 21. Select if the input of this date is required or not
 
-22. Use the button |image102| **Create** to create the input element
+22. Use the button |arrow-down-icon| **Create** to create the input element
 
 23. The created element appears in the list **Available form elements**
 
-24. You may delete input elements you don’t need using the |image103|
+24. You may delete input elements you don’t need using the |delete-icon|
     **Delete** button
 
 25. Drag and Drop the input elements into one of the areas of the dialog
     editor
 
 26. You may remove the input element from the dialog using the
-    |image104| **Delete** button
+    |delete-icon| **Delete** button
 
-27. You may preview your dialog using the |image105| **Preview** button
+27. You may preview your dialog using the |preview-icon| **Preview** button
 
-28. Use the button |image106| **Next** to define the next process step
+28. Use the button |next-icon| **Next** to define the next process step
 
-|image107|
+|express-workflow-dialog-editor|
 
 .. centered:: Express Workflow dialog editor
 
@@ -218,7 +218,7 @@ HowTo: Create an Express Workflow
 
 34. You may specify attachments to the email
 
-35. Use the button |image108| **Next** to define the next process step
+35. Use the button |next-icon| **Next** to define the next process step
 
 Define an information email
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -228,331 +228,41 @@ Define an information email
    the user must define a comma separated list of addresses. In
    addition, the user can define a “response to” email.
 
-|image109|
+|express-workflow-email-editor|
 
 .. centered:: Express Workflow email editor
 
-.. |image0| image:: ../media/image2.png
-   :width: 0.3937in
-   :height: 0.3937in
-.. |image1| image:: ../media/image2.png
-   :width: 0.3937in
-   :height: 0.3937in
-.. |image2| image:: ../media/image4.png
-   :width: 6.49606in
-   :height: 3.26772in
-.. |image3| image:: ../media/image2.png
-   :width: 0.3937in
-   :height: 0.3937in
-.. |image4| image:: ../media/image2.png
-   :width: 0.3937in
-   :height: 0.3937in
-.. |image5| image:: ../media/image5.png
-   :width: 0.1378in
-   :height: 0.15748in
-.. |image6| image:: ../media/image7.png
-   :width: 6.49606in
-   :height: 3.2874in
-.. |image7| image:: ../media/image8.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |image8| image:: ../media/image9.png
-   :width: 0.1378in
-   :height: 0.15748in
-.. |image9| image:: ../media/image11.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |image10| image:: ../media/image12.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |image11| image:: ../media/image13.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |image12| image:: ../media/image14.png
-   :width: 0.1378in
-   :height: 0.15748in
-.. |image13| image:: ../media/image16.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |image14| image:: ../media/image2.png
-   :width: 0.3937in
-   :height: 0.3937in
-.. |image15| image:: ../media/image2.png
-   :width: 0.3937in
-   :height: 0.3937in
-.. |image16| image:: ../media/image17.png
-   :width: 0.10335in
-   :height: 0.11811in
-.. |image17| image:: ../media/image19.png
-   :width: 2.69685in
-   :height: 1.54724in
-.. |image18| image:: ../media/image20.png
-   :width: 2.64961in
-   :height: 1.5315in
-.. |image19| image:: ../media/image21.png
-   :width: 2.69291in
-   :height: 1.55512in
-.. |image20| image:: ../media/image22.png
-   :width: 2.67717in
-   :height: 1.54331in
-.. |image21| image:: ../media/image23.png
-   :width: 2.68504in
-   :height: 1.55118in
-.. |image22| image:: ../media/image14.png
-   :width: 0.1378in
-   :height: 0.15748in
-.. |image23| image:: ../media/image24.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |image24| image:: ../media/image25.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |image25| image:: ../media/image26.png
-   :width: 3.40157in
-   :height: 1.77953in
-.. |image26| image:: ../media/image27.png
-   :width: 3.40157in
-   :height: 1.77953in
-.. |image27| image:: ../media/image28.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |image28| image:: ../media/image29.png
-   :height: 0.15748in
-.. |image29| image:: ../media/image31.png
-   :height: 0.15748in
-.. |image30| image:: ../media/image33.png
-   :width: 2.35433in
-   :height: 1.97244in
-.. |image31| image:: ../media/image34.png
+.. |magic-icon| image:: images/magic-icon.png
    :width: 0.15748in
    :height: 0.15748in
-.. |image32| image:: ../media/image36.png
-   :width: 6.49606in
-   :height: 0.79134in
-.. |Information| image:: ../media/image2.png
-   :width: 0.3937in
-   :height: 0.3937in
-.. |image34| image:: ../media/image37.png
+.. |navigate-to-axon-ivy-express| image:: images/navigate-to-axon-ivy-express.png
    :width: 6.49606in
    :height: 3.28346in
-.. |image35| image:: ../media/image38.png
-   :width: 0.17717in
-   :height: 0.15748in
-.. |image36| image:: ../media/image40.png
-   :width: 0.10827in
-   :height: 0.15748in
-.. |image37| image:: ../media/image42.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |image38| image:: ../media/image43.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |image39| image:: ../media/image44.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |image40| image:: ../media/image45.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |image41| image:: ../media/image46.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |image42| image:: ../media/image47.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |image43| image:: ../media/image48.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |image44| image:: ../media/image49.png
-   :width: 0.15748in
-   :height: 0.15748in
-.. |image45| image:: ../media/image51.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |image46| image:: ../media/image52.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |image47| image:: ../media/image34.png
-   :width: 0.15748in
-   :height: 0.15748in
-.. |Warnung| image:: ../media/image53.png
-   :width: 0.3937in
-   :height: 0.3937in
-.. |image49| image:: ../media/image55.png
-   :width: 0.1378in
-   :height: 0.15748in
-.. |image50| image:: ../media/image57.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |image51| image:: ../media/image58.png
-   :width: 0.15748in
-   :height: 0.15748in
-.. |image52| image:: ../media/image60.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |image53| image:: ../media/image61.png
-   :height: 0.15748in
-.. |image54| image:: ../media/image63.png
-   :height: 0.15748in
-.. |image55| image:: ../media/image65.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |image56| image:: ../media/image66.png
-   :width: 0.15748in
-   :height: 0.15748in
-.. |image57| image:: ../media/image68.png
-   :width: 6.49606in
-   :height: 1.59449in
-.. |image58| image:: ../media/image69.png
-   :width: 0.15748in
-   :height: 0.15748in
-.. |image59| image:: ../media/image71.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |image60| image:: ../media/image40.png
-   :width: 0.10827in
-   :height: 0.15748in
-.. |image61| image:: ../media/image72.png
-   :width: 6.49606in
-   :height: 3.26772in
-.. |image62| image:: ../media/image69.png
-   :width: 0.15748in
-   :height: 0.15748in
-.. |image63| image:: ../media/image73.png
-   :width: 6.49606in
-   :height: 3.27953in
-.. |image64| image:: ../media/image74.png
-   :width: 0.1378in
-   :height: 0.15748in
-.. |image65| image:: ../media/image76.png
-   :width: 6.49606in
-   :height: 2.3937in
-.. |image66| image:: ../media/image77.png
-   :width: 6.49606in
-   :height: 1.41339in
-.. |image67| image:: ../media/image78.png
-   :width: 0.15748in
-   :height: 0.15748in
-.. |image68| image:: ../media/image80.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |image69| image:: ../media/image58.png
-   :width: 0.15748in
-   :height: 0.15748in
-.. |image70| image:: ../media/image81.png
-   :width: 6.49606in
-   :height: 1.8622in
-.. |image71| image:: ../media/image40.png
-   :width: 0.10827in
-   :height: 0.15748in
-.. |image72| image:: ../media/image82.png
-   :height: 0.15748in
-.. |image73| image:: ../media/image61.png
-   :height: 0.15748in
-.. |image74| image:: ../media/image63.png
-   :height: 0.15748in
-.. |image75| image:: ../media/image84.png
-   :width: 6.49606in
-   :height: 2.5in
-.. |image76| image:: ../media/image66.png
-   :width: 0.15748in
-   :height: 0.15748in
-.. |image77| image:: ../media/image85.png
-   :width: 6.49606in
-   :height: 2.5in
-.. |image78| image:: ../media/image86.png
-   :width: 6.49606in
-   :height: 1.52756in
-.. |image79| image:: ../media/image69.png
-   :width: 0.15748in
-   :height: 0.15748in
-.. |image80| image:: ../media/image87.png
-   :width: 6.49606in
-   :height: 2.51181in
-.. |image81| image:: ../media/image66.png
-   :width: 0.15748in
-   :height: 0.15748in
-.. |image82| image:: ../media/image88.png
-   :width: 6.49606in
-   :height: 2.51575in
-.. |image83| image:: ../media/image69.png
-   :width: 0.15748in
-   :height: 0.15748in
-.. |image84| image:: ../media/image89.png
-   :width: 6.49606in
-   :height: 2.73228in
-.. |image85| image:: ../media/image74.png
-   :width: 0.1378in
-   :height: 0.15748in
-.. |image86| image:: ../media/image90.png
-   :width: 6.49606in
-   :height: 2.50787in
-.. |image87| image:: ../media/image91.png
-   :width: 6.49606in
-   :height: 1.96063in
-.. |image88| image:: ../media/image92.png
-   :width: 0.1378in
-   :height: 0.15748in
-.. |image89| image:: ../media/image94.png
-   :width: 6.49606in
-   :height: 3.53543in
-.. |image90| image:: ../media/image95.png
-   :width: 0.15748in
-   :height: 0.15748in
-.. |image91| image:: ../media/image97.png
-   :width: 0.1378in
-   :height: 0.15748in
-.. |image92| image:: ../media/image99.png
-   :width: 0.1378in
-   :height: 0.15748in
-.. |image93| image:: ../media/image101.png
-   :width: 0.1378in
-   :height: 0.15748in
-.. |image94| image:: ../media/image103.png
-   :width: 0.1378in
-   :height: 0.15748in
-.. |image95| image:: ../media/image105.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |image96| image:: ../media/image106.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |image97| image:: ../media/image49.png
-   :width: 0.15748in
-   :height: 0.15748in
-.. |image98| image:: ../media/image51.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |image99| image:: ../media/image107.png
+.. |start-link-for-axon-ivy-express| image:: images/start-link-for-axon-ivy-express.png
    :width: 6.49606in
    :height: 1.75197in
-.. |image100| image:: ../media/image108.png
+.. |express-workflow-process-properties| image:: images/express-workflow-process-properties.png
    :width: 6.49606in
    :height: 2.56693in
-.. |image101| image:: ../media/image109.png
+.. |define-express-workflow-process-steps| image:: images/define-express-workflow-process-steps.png
    :width: 6.49606in
    :height: 3.28346in
-.. |image102| image:: ../media/image99.png
+.. |arrow-down-icon| image:: images/arrow-down-icon.png
    :width: 0.1378in
    :height: 0.15748in
-.. |image103| image:: ../media/image110.png
+.. |delete-icon| image:: images/delete-icon.png
    :width: 0.10335in
    :height: 0.11811in
-.. |image104| image:: ../media/image110.png
-   :width: 0.10335in
-   :height: 0.11811in
-.. |image105| image:: ../media/image34.png
+.. |preview-icon| image:: images/preview-icon.png
    :width: 0.15748in
    :height: 0.15748in
-.. |image106| image:: ../media/image97.png
+.. |next-icon| image:: images/next-icon.png
    :width: 0.1378in
    :height: 0.15748in
-.. |image107| image:: ../media/image112.png
+.. |express-workflow-dialog-editor| image:: images/express-workflow-dialog-editor.png
    :width: 6.49606in
    :height: 3.28346in
-.. |image108| image:: ../media/image97.png
-   :width: 0.1378in
-   :height: 0.15748in
-.. |image109| image:: ../media/image113.png
+.. |express-workflow-email-editor| image:: images/express-workflow-email-editor.png
    :width: 6.49606in
    :height: 3.28346in
    
