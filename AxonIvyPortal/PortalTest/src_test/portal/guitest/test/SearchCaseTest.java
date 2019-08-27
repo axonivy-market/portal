@@ -1,7 +1,5 @@
 package portal.guitest.test;
 
-import java.io.UnsupportedEncodingException;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -42,11 +40,11 @@ public class SearchCaseTest extends BaseTest {
   }
 
   @Test
-  public void testFindCaseByNameWithSpecialCharacter() throws UnsupportedEncodingException {
+  public void testFindCaseByNameWithSpecialCharacter() {
     GlobalSearch globalSearch = homePage.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
 
-    String caseName = new String("Österreich Resource with ID 1212".getBytes(),"UTF-8");
+    String caseName = "Österreich Resource with ID 1212";
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(caseName);
     searchResultPage.openCaseTab();
     assertEquals(caseName, searchResultPage.getCaseResult(0));
