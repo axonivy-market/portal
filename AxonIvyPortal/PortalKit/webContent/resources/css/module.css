@@ -4900,6 +4900,10 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 	margin-top: -.15em;
 }
 
+.ui-tree .ui-treenode-leaf-icon {
+  width: 20px !important;
+}
+
 /*********** SEARCH ICON ***********/
 .search-icon-name-container {
   width: 100%;
