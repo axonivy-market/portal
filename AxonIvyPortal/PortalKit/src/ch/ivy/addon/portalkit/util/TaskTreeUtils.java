@@ -19,8 +19,8 @@ import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria;
-import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
@@ -29,8 +29,6 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 public class TaskTreeUtils {
 
   public static final String DELIMITER = "/";
-  
-  private static CheckboxTreeNode root;
 
   private TaskTreeUtils() {}
   
@@ -76,11 +74,7 @@ public class TaskTreeUtils {
   }
   
   public static CheckboxTreeNode buildTaskCategoryCheckboxTreeRoot() {
-    if (root != null) {
-      return root;
-    }
-    
-    root = buildRoot();
+    CheckboxTreeNode root = buildRoot();
     RegisteredApplicationService service = new RegisteredApplicationService();
     List<String> involvedApplications = service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName());
     TaskQuery taskQuery = SubProcessCall.withPath(PortalConstants.BUILD_TASK_QUERY_CALLABLE)
