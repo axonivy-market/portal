@@ -1,5 +1,5 @@
 [Ivy]
-14BDEA64F884ED76 3.24 #module
+14BDEA64F884ED76 3.26 #module
 >Proto >Proto Collection #zClass
 Ee0 EmailSettingService Big #zClass
 Ee0 B #cInfo
@@ -76,6 +76,7 @@ import ch.ivy.addon.portalkit.ivydata.dto.IvyEmailSettingResultDTO;
 
 IvyEmailSettingResultDTO dto = EmailSettingService.newInstance().findEmailSetting(in.username, in.apps);
 out.ivyEmailSettings = dto.ivyEmailSettings;
+EmailSettingService.newInstance().displayDailySummary(out.ivyEmailSettings);
 out.errors = dto.errors;
 ' #txt
 Ee0 f20 type ch.ivyteam.wf.processes.EmailSettingServiceData #txt
