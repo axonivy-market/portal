@@ -270,6 +270,10 @@
   .u-hidden-xs-down {
     display: none !important;
   }
+  
+  .u-visibility-hidden-xs-down {
+    visibility: hidden;
+  }
 }
 
 @media (min-width: 576px) {
