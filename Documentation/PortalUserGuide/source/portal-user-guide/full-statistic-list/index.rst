@@ -16,9 +16,12 @@ charts** quick link in the statistics section of your dashboard.
    from your processes is not available in these statistics and must be
    considered separately.                      
 
-|navigate-to-full-statistics-page|
+.. figure:: images/navigate-to-full-statistics-page.png
+   :width: 6.49606in
+   :height: 3.53543in
+   :align: center
 
-.. centered:: Navigate to Full Statistics page
+   Navigate to Full Statistics page
 
 On the :guilabel:`Full Statistics` page you see all charts that were previously
 created. Each chart provides you with the following features:
@@ -39,9 +42,12 @@ created. Each chart provides you with the following features:
 
 6. The legend, explaining the part of the charts
 
-|full-statistics-page|
-
-.. centered:: Full statistics page
+.. figure:: images/full-statistics-page.png
+   :width: 6.49606in
+   :height: 3.28346in
+   :align: center
+   
+   Full statistics page
 
 .. _howto-create-chart:
 
@@ -64,9 +70,12 @@ HowTo: Create chart
 
 8. Create the chart with the button **OK**
 
-|charts-configuration-page|
+.. figure:: images/charts-configuration-page.png
+   :width: 6.49606in
+   :height: 3.28346in
+   :align: center
 
-.. centered:: Charts configuration page
+   Charts configuration page
 
 +-----------------------+-----------------------+-----------------------+
 | Name                  | Type                  | Description           |
@@ -173,30 +182,4 @@ HowTo: Create chart
 
 .. centered:: Chart filter criterias
 
-.. |statistics-icon| image:: images/statistics-icon.png
-   :width: 0.1378in
-   :height: 0.15748in
-.. |navigate-to-full-statistics-page| image:: images/navigate-to-full-statistics-page.png
-   :width: 6.49606in
-   :height: 3.53543in
-.. |info-icon| image:: images/info-icon.png
-   :width: 0.15748in
-   :height: 0.15748in
-.. |arrow-right-icon| image:: images/arrow-right-icon.png
-   :width: 0.1378in
-   :height: 0.15748in
-.. |arrow-down-icon| image:: images/arrow-down-icon.png
-   :width: 0.1378in
-   :height: 0.15748in
-.. |arrow-left-icon| image:: images/arrow-left-icon.png
-   :width: 0.1378in
-   :height: 0.15748in
-.. |arrow-up-icon| image:: images/arrow-up-icon.png
-   :width: 0.1378in
-   :height: 0.15748in
-.. |full-statistics-page| image:: images/full-statistics-page.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |charts-configuration-page| image:: images/charts-configuration-page.png
-   :width: 6.49606in
-   :height: 3.28346in
+.. include:: ../includes/common-icon.rst

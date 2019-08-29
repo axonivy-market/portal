@@ -6,7 +6,7 @@ Full Task List
 The :guilabel:`Full Task List` page shows you the same tasks you see on your
 personal dashboard. However, this page provides you with extended
 information on the tasks, as well as, advanced search and filter
-capabilities. You can reach the page by using the |check-button| **Tasks**
+capabilities. You can reach the page by using the |check-icon| **Tasks**
 link in the Axon.ivy Portal menu.
 
 .. hint:: 
@@ -17,9 +17,13 @@ link in the Axon.ivy Portal menu.
    the tasks belonging to you but 
    all open tasks.                
 
-|navigate-to-full-task-list-page|
 
-.. centered:: Navigate to Full Task List page
+.. figure:: images/navigate-to-full-task-list-page.png
+   :width: 6.49606in
+   :height: 3.28346in 
+   :align: center
+
+   Navigate to Full Task List page
 
 On the top of the **Full Task List** page you see next to the heading
 **Tasks** in brackets the overall number of tasks shown to you. Further
@@ -44,9 +48,12 @@ For each task the following key information is shown in the list:
 
 7. Status
 
-|task-key-information|
+.. figure:: images/task-key-information.png
+   :width: 6.49606in
+   :height: 3.28346in 
+   :align: center
 
-.. centered:: Task key information
+   Task key information
 
 Furthermore, at the end of each column you find a set of key features in
 handling tasks:
@@ -81,9 +88,12 @@ The task details are separated in 4 different sections:
    adds notes here when a task – for example – is delegated. You may add
    additional notes which is described below.
 
-|detailed-task-information|
+.. figure:: images/detailed-task-information.png
+   :width: 6.49606in
+   :height: 3.28346in 
+   :align: center
 
-.. centered:: Detailed task information
+   Detailed task information
 
 HowTo: Use existing filter
 --------------------------
@@ -107,7 +117,7 @@ HowTo: Create new filter
 
 3. Add more filters by clicking on the button **Filter** again.
 
-4. Drop filters by clicking on the |delete-button| **Delete** button next to
+4. Drop filters by clicking on the |delete-attachment-icon| **Delete** button next to
    the filter.
 
 5. When finished defining your filter, click on the button **Save
@@ -122,9 +132,12 @@ HowTo: Create new filter
 
 9. Save the filter by clicking the button **Ok**.
 
-|how-to-create-task-filter|
+.. figure:: images/how-to-create-task-filter.png
+   :width: 6.49606in
+   :height: 1.59449in
+   :align: center
 
-.. centered:: HowTo create task filter
+   HowTo create task filter
 
 +-----------------------------------+-----------------------------------+
 | Criteria                          | Description                       |
@@ -180,25 +193,31 @@ HowTo: Attach a document to the case
 
 5. Click the button **Close** to add the attachment
 
-|how-to-upload-document|
-
-.. centered:: HowTo upload document
+.. figure:: images/how-to-upload-document.png
+   :width: 6.49606in
+   :height: 3.28346in
+   :align: center
+   
+   HowTo upload document
 
 HowTo: Remove an attachment from the case
 -----------------------------------------
 
 1. Open the task details of a task
 
-2. Click on the |delete-button| **Delete attachment** link next to the
+2. Click on the |delete-icon| **Delete attachment** link next to the
    attachment you want to remove
 
 3. A :guilabel:`Confirmation` dialog is opened
 
 4. Confirm the deletion with the button **Yes**
 
-|how-to-delete-document|
+.. figure:: images/how-to-delete-document.png
+   :width: 6.49606in
+   :height: 3.28346in
+   :align: center
 
-.. centered:: HowTo delete a document
+   HowTo delete a document
 
 HowTo: Add a note to a task
 ---------------------------
@@ -213,9 +232,12 @@ HowTo: Add a note to a task
 
 5. Confirm your note by clicking the button :guilabel:`Save`
 
-|how-to-add-note|
+.. figure:: images/how-to-add-note.png
+   :width: 6.49606in
+   :height: 3.28346in
+   :align: center
 
-.. centered:: HowTo add a note
+   HowTo add a note
 
 HowTo: Export a task history
 ----------------------------
@@ -229,57 +251,18 @@ HowTo: Export a task history
 4. You may export the history by clicking on the button **Export to
    Excel**
 
-|how-to-show-note-details|
-
-.. centered:: HowTo show note details
-
-|how-to-export-note-details|
-
-.. centered:: HowTo export note details
-
-.. |check-button| image:: images/check-button.png
-   :width: 0.1378in
-   :height: 0.15748in
-.. |navigate-to-full-task-list-page| image:: images/navigate-to-full-task-list-page.png
-   :width: 6.49606in
-   :height: 3.28346in   
-.. |filter-icon| image:: images/filter-icon.png
-   :width: 0.15748in
-   :height: 0.15748in   
-.. |task-key-information| image:: images/task-key-information.png
-   :width: 6.49606in
-   :height: 3.28346in   
-.. |down-icon| image:: images/down-icon.png
-   :height: 0.15748in
-.. |up-icon| image:: images/up-icon.png
-   :height: 0.15748in   
-.. |detailed-task-information| image:: images/detailed-task-information.png
-   :width: 6.49606in
-   :height: 3.28346in   
-.. |delete-button| image:: images/delete-button.png
-   :width: 0.15748in
-   :height: 0.15748in
-.. |how-to-create-task-filter| image:: images/how-to-create-task-filter.png
-   :width: 6.49606in
-   :height: 1.59449in
-.. |add-icon| image:: images/add-icon.png
-   :width: 0.15748in
-   :height: 0.15748in
-.. |how-to-upload-document| image:: images/how-to-upload-document.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |how-to-delete-document| image:: images/how-to-delete-document.png
-   :width: 6.49606in
-   :height: 3.26772in
-.. |how-to-add-note| image:: images/how-to-add-note.png
-   :width: 6.49606in
-   :height: 3.27953in
-.. |show-more-icon| image:: images/show-more-icon.png
-   :width: 0.1378in
-   :height: 0.15748in
-.. |how-to-show-note-details| image:: images/how-to-show-note-details.png
+.. figure:: images/how-to-show-note-details.png
    :width: 6.49606in
    :height: 2.3937in
-.. |how-to-export-note-details| image:: images/how-to-export-note-details.png
+   :align: center
+
+   HowTo show note details
+
+.. figure:: images/how-to-export-note-details.png
    :width: 6.49606in
-   :height: 1.41339in   
+   :height: 1.41339in  
+   :align: center
+
+   HowTo export note details
+
+.. include:: ../includes/common-icon.rst

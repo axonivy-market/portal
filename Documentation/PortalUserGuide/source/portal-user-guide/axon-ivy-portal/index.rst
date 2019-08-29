@@ -32,9 +32,12 @@ To start your Axon.ivy Portal experience, use the link provided to you by your
 administrator. Following the link, the Axon.ivy Portal will ask for your login
 credentials.
 
-|login-screen|
-
-.. centered:: Login screen
+.. figure:: images/login-screen.png
+   :width: 6.49606in
+   :height: 3.26772in
+   :align: center
+   
+   Login screen
 
 .. Hint:: 
    Depending on your company’s infrastructure, you might be automatically logged in
@@ -59,25 +62,20 @@ point. In detail these are:
       access to your processes, tasks and performance indicators. See
       :ref:`dashboard` for a detailed introduction.
 
-|axon-ivy-portal|
-
-.. centered::  Axon.ivy Portal
-
-|toggle-portal-menu|
-
-.. centered::  Toggle portal menu
-
-.. |login-screen| image:: images/login-screen.png
-   :width: 6.49606in
-   :height: 3.26772in
-.. |axon-ivy-portal| image:: images/axon-ivy-portal.png
+.. figure:: images/axon-ivy-portal.png
    :width: 6.49606in
    :height: 3.2874in
-.. |toggle-portal-menu| image:: images/toggle-portal-menu.png
+   :align: center
+
+   Axon.ivy Portal
+
+.. figure:: images/toggle-portal-menu.png
    :width: 6.49606in
-   :height: 3.28346in
-.. |toggle-icon| image:: images/toggle-icon.png
-   :width: 0.10335in
-   :height: 0.11811in    
+   :height: 3.2874in
+   :align: center
+   
+   Toggle portal menu
+
+.. include:: ../includes/common-icon.rst
 
    

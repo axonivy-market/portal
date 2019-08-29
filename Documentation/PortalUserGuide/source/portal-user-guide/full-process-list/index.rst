@@ -9,18 +9,25 @@ the page by either using the |magic-icon| **Processes** link in the
 Axon.ivy Portal menu or the quick link **Show all processes** in your
 dashboard.
 
-|navigate-to-full-process-list|
+.. figure:: images/navigate-to-full-process-list.png
+   :width: 6.49606in
+   :height: 3.28346in 
+   :align: center
 
-.. centered:: Navigate to Full Process List
+   Navigate to Full Process List
 
 On the :guilabel:`Full Process List` page, you see a list of all processes. They
 are sorted alphabetically and grouped by their initial character. An
 exception are the :guilabel:`Express Workflows` which are grouped under an own
 category Express Workflows. Express workflows are described in detail in :ref:`axon-ivy-express`.
 
-|portal-full-process-list-page|
+.. figure:: images/portal-full-process-list-page.png
+   :width: 6.49606in
+   :height: 3.28346in 
+   :align: center
+   
+   Axon.ivy Portal Full Process List page
 
-.. centered:: Axon.ivy Portal Full Process List page
 
 If you’re looking for a specific process, you may use the |search-icon|
 **Search** feature which is located on the right-hand side next to the
@@ -44,15 +51,4 @@ List`.
    regular basis we highly recommend configuring them on your personal
    dashboard. See :ref:`howto-add-a-process-as-a-user-favorite` for an instruction.
 
-.. |search-icon| image:: images/search-icon.png
-   :width: 0.15748in
-   :height: 0.15748in
-.. |magic-icon| image:: images/magic-icon.png
-   :width: 0.15748in
-   :height: 0.15748in
-.. |navigate-to-full-process-list| image:: images/navigate-to-full-process-list.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |portal-full-process-list-page| image:: images/portal-full-process-list-page.png
-   :width: 6.49606in
-   :height: 3.28346in   
+.. include:: ../includes/common-icon.rst

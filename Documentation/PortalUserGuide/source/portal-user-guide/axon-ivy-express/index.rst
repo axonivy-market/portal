@@ -34,18 +34,24 @@ You can reach the page by either using the |magic-icon| **Processes** link
 in the Axon.ivy Portal menu or the quick link **Show all processes** in
 your dashboard.
 
-|navigate-to-axon-ivy-express|
+.. figure:: images/navigate-to-axon-ivy-express.png
+   :width: 6.49606in
+   :height: 3.28346in
+   :align: center
 
-.. centered:: Navigate to Axon.ivy Express
+   Navigate to Axon.ivy Express
 
 Below the heading **Processes**, you see the link **Create express
 workflow**. This feature is explained in detail in `Axon.ivy Express`_. Below
 you find the process category :guilabel:`Express Workflows` with a list of
 already defined processes.
 
-|start-link-for-axon-ivy-express|
-
-.. centered:: Start Link for Axon.ivy Express
+.. figure:: images/start-link-for-axon-ivy-express.png
+   :width: 6.49606in
+   :height: 1.75197in
+   :align: center
+   
+   Start Link for Axon.ivy Express
 
 HowTo: Create an Express Workflow
 ---------------------------------
@@ -77,9 +83,12 @@ HowTo: Create an Express Workflow
    encourage you to use the description to provide details about your
    process.
 
-|express-workflow-process-properties|
+.. figure:: images/express-workflow-process-properties.png
+   :width: 6.49606in
+   :height: 2.56693in
+   :align: center
 
-.. centered:: Express Workflow process properties
+   Express Workflow process properties
 
 7.  The first process step is already available for your configuration
 
@@ -107,9 +116,12 @@ HowTo: Create an Express Workflow
 
 16. End the configuration of your process steps with the button **Next**
 
-|define-express-workflow-process-steps|
+.. figure:: images/define-express-workflow-process-steps.png
+   :width: 6.49606in
+   :height: 3.28346in
+   :align: center
 
-.. centered:: Define Express Workflow process steps
+   Define Express Workflow process steps
 
 +-----------------------------------+-----------------------------------+
 | Task type                         | Description                       |
@@ -150,22 +162,25 @@ HowTo: Create an Express Workflow
 
 23. The created element appears in the list **Available form elements**
 
-24. You may delete input elements you don’t need using the |delete-icon|
+24. You may delete input elements you don’t need using the |trash-icon|
     **Delete** button
 
 25. Drag and Drop the input elements into one of the areas of the dialog
     editor
 
 26. You may remove the input element from the dialog using the
-    |delete-icon| **Delete** button
+    |trash-icon| **Delete** button
 
-27. You may preview your dialog using the |preview-icon| **Preview** button
+27. You may preview your dialog using the |search-icon| **Preview** button
 
-28. Use the button |next-icon| **Next** to define the next process step
+28. Use the button |arrow-right-icon| **Next** to define the next process step
 
-|express-workflow-dialog-editor|
+.. figure:: images/express-workflow-dialog-editor.png
+   :width: 6.49606in
+   :height: 3.28346in
+   :align: center
 
-.. centered:: Express Workflow dialog editor
+   Express Workflow dialog editor
 
 .. hint:: 
    The results of all previous tasks
@@ -218,7 +233,7 @@ HowTo: Create an Express Workflow
 
 34. You may specify attachments to the email
 
-35. Use the button |next-icon| **Next** to define the next process step
+35. Use the button |arrow-right-icon| **Next** to define the next process step
 
 Define an information email
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -228,41 +243,12 @@ Define an information email
    the user must define a comma separated list of addresses. In
    addition, the user can define a “response to” email.
 
-|express-workflow-email-editor|
 
-.. centered:: Express Workflow email editor
+.. figure:: images/express-workflow-email-editor.png
+   :width: 6.49606in
+   :height: 3.28346in
+   :align: center
 
-.. |magic-icon| image:: images/magic-icon.png
-   :width: 0.15748in
-   :height: 0.15748in
-.. |navigate-to-axon-ivy-express| image:: images/navigate-to-axon-ivy-express.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |start-link-for-axon-ivy-express| image:: images/start-link-for-axon-ivy-express.png
-   :width: 6.49606in
-   :height: 1.75197in
-.. |express-workflow-process-properties| image:: images/express-workflow-process-properties.png
-   :width: 6.49606in
-   :height: 2.56693in
-.. |define-express-workflow-process-steps| image:: images/define-express-workflow-process-steps.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |arrow-down-icon| image:: images/arrow-down-icon.png
-   :width: 0.1378in
-   :height: 0.15748in
-.. |delete-icon| image:: images/delete-icon.png
-   :width: 0.10335in
-   :height: 0.11811in
-.. |preview-icon| image:: images/preview-icon.png
-   :width: 0.15748in
-   :height: 0.15748in
-.. |next-icon| image:: images/next-icon.png
-   :width: 0.1378in
-   :height: 0.15748in
-.. |express-workflow-dialog-editor| image:: images/express-workflow-dialog-editor.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |express-workflow-email-editor| image:: images/express-workflow-email-editor.png
-   :width: 6.49606in
-   :height: 3.28346in
-   
+   Express Workflow email editor
+
+.. include:: ../includes/common-icon.rst

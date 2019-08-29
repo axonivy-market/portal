@@ -11,13 +11,16 @@ header you find two very useful features:
    configure the Axon.ivy Portal to your personal needs. See `User Settings in
    the Axon.ivy Portal`_ for a detailed overview of the configuration options.
 
-2. Next to your username is a |search-bar| **Search Bar** providing you
+2. Next to your username is a |search-icon| **Search Bar** providing you
    with a portal-wide search. This feature is described in detail in 
    `Global Search`_.
 
-|portal-header|
+.. figure:: images/portal-header.png
+   :width: 6.49606in
+   :height: 0.79134in  
+   :align: center
 
-.. centered:: Portal header
+   Portal header
 
 User Settings in the Axon.ivy Portal
 ------------------------------------
@@ -39,13 +42,16 @@ tasks assigned to you or one of the roles you hold.
    assigned personally to you. Roles are normally held by a group of users, so if
    you’re absent one of your role members is still able to pick up the task.
 
-|portal-absences|
+.. figure:: images/portal-absences.png
+   :width: 6.49606in
+   :height: 3.28346in 
+   :align: center
 
-.. centered:: Axon.ivy Portal absences
+   Axon.ivy Portal absences
 
 The dialog shows you all current and upcoming absences. You may show also past
 absences by activating the option **Show absences in the past**. Furthermore,
-you can edit or delete absences by using the |edit-button| **Edit** or |delete-button|
+you can edit or delete absences by using the |edit-icon| **Edit** or |delete-icon|
 **Delete** action in the row of the respective absence.
 
 HowTo: Add absence
@@ -66,9 +72,12 @@ HowTo: Add absence
 7. You are forwarded to the :guilabel:`Set deputies`  dialog (see `HowTo:
    Set deputies`_).
 
-|how-to-add-an-absence|
+.. figure:: images/how-to-add-an-absence.png
+   :width: 6.49606in
+   :height: 3.28346in 
+   :align: center
 
-.. centered:: HowTo add an absence
+   HowTo add an absence
 
 HowTo: Set deputies
 ^^^^^^^^^^^^^^^^^^^
@@ -87,9 +96,12 @@ HowTo: Set deputies
 
 6. Confirm your deputies with the button **OK**.
 
-|how-to-set-absence-deputies|
+.. figure:: images/how-to-set-absence-deputies.png
+   :width: 6.49606in
+   :height: 3.28346in 
+   :align: center
 
-.. centered:: HowTo set absence deputies
+   HowTo set absence deputies
 
 Email settings
 ~~~~~~~~~~~~~~
@@ -122,9 +134,13 @@ The :guilabel:`Email settings` dialog provides you with the following configurat
 5. The option **Further emails from application** allows you to activate
    / deactivate further email notifications.
 
-|portal-email-notifications-settings|
 
-.. centered:: Axon.ivy Portal email notifications settings
+.. figure:: images/axon-ivy-portal-email-notifications-settings.png
+   :width: 6.49606in
+   :height: 3.28346in 
+   :align: center
+
+   Axon.ivy Portal email notifications settings
 
 Language Settings
 ~~~~~~~~~~~~~~~~~
@@ -156,18 +172,24 @@ Portal:
    application specific dialogs will
    still be shown in English.       
 
-|portal-language-settings|
+.. figure:: images/portal-language-settings.png
+   :width: 6.49606in
+   :height: 3.28346in 
+   :align: center
 
-.. centered:: Axon.ivy Portal language settings
+   Axon.ivy Portal language settings
 
 Change Password
 ~~~~~~~~~~~~~~~
 
 The menu entry **Change password** allows you to set a new password.
 
-|portal-password-change-dialog|
+.. figure:: images/portal-password-change-dialog.png
+   :width: 6.49606in
+   :height: 3.28346in 
+   :align: center
 
-.. centered:: Axon.ivy Portal password change dialog
+   Axon.ivy Portal password change dialog
 
 Info
 ~~~~
@@ -176,9 +198,12 @@ The menu entry **Info** provides you with detailed information about the
 Axon.ivy Engine, the Axon.ivy Portal and your companies application. You
 might be asked for this information in case you issue a support request.
 
-|portal-version-information|
+.. figure:: images/portal-version-information.png
+   :width: 6.49606in
+   :height: 3.28346in 
+   :align: center
 
-.. centered:: Axon.ivy Portal version information
+   Axon.ivy Portal version information
 
 Logout
 ~~~~~~
@@ -210,9 +235,12 @@ When you confirm the keyword you’re looking for, the Axon.ivy Portal
 will route you to the :guilabel:`Global Search Results` page. For each category
 a tab is provided, giving you the results of your search.
 
-|portal-global-search-result-page|
+.. figure:: images/portal-global-search-result-page.png
+   :width: 6.49606in
+   :height: 3.28346in 
+   :align: center
 
-.. centered:: Axon.ivy Portal global search result page
+   Axon.ivy Portal global search result page
 
 .. hint:: 
    Your company’s application may   
@@ -224,39 +252,4 @@ a tab is provided, giving you the results of your search.
    Contact your administrator for   
    more information.                
 
-.. |search-bar| image:: images/search-bar.png
-   :width: 0.15748in
-   :height: 0.15748in
-.. |portal-header| image:: images/portal-header.png
-   :width: 6.49606in
-   :height: 0.79134in   
-.. |portal-absences| image:: images/portal-absences.png
-   :width: 6.49606in
-   :height: 3.28346in   
-.. |edit-button| image:: images/edit-button.png
-   :width: 0.17717in
-   :height: 0.15748in
-.. |delete-button| image:: images/delete-button.png
-   :width: 0.10827in
-   :height: 0.15748in   
-.. |how-to-add-an-absence| image:: images/how-to-add-an-absence.png
-   :width: 6.49606in
-   :height: 3.28346in   
-.. |how-to-set-absence-deputies| image:: images/how-to-set-absence-deputies.png
-   :width: 6.49606in
-   :height: 3.28346in   
-.. |portal-email-notifications-settings| image:: images/axon-ivy-ortal-email-notifications-settings.png
-   :width: 6.49606in
-   :height: 3.28346in   
-.. |portal-language-settings| image:: images/portal-language-settings.png
-   :width: 6.49606in
-   :height: 3.28346in   
-.. |portal-password-change-dialog| image:: images/portal-password-change-dialog.png
-   :width: 6.49606in
-   :height: 3.28346in   
-.. |portal-version-information| image:: images/portal-version-information.png
-   :width: 6.49606in
-   :height: 3.28346in   
-.. |portal-global-search-result-page| image:: images/portal-global-search-result-page.png
-   :width: 6.49606in
-   :height: 3.28346in   
+.. include:: ../includes/common-icon.rst  

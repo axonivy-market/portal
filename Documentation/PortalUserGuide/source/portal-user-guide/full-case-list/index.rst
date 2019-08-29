@@ -9,16 +9,16 @@ as advanced search and filter capabilities. You can reach the page by
 using the |case-icon| **Cases** link in the Axon.ivy Portal menu.
 
 .. hint:: 
-   Depending on the roles you hold 
-   in the application and the      
-   configuration of the Axon.ivy   
-   Portal, you might see not only  
-   the cases you’re involved in but
+   Depending on the roles you hold in the application and the configuration of
+   the Axon.ivy Portal, you might see not only the cases you’re involved in but
    all cases.                      
 
-|navigate-to-full-cases-list-page|
+.. figure:: images/navigate-to-full-cases-list-page.png
+   :width: 6.49606in
+   :height: 3.28346in
+   :align: center
 
-.. centered:: Navigate to Full Cases List page
+   Navigate to Full Cases List page
 
 On the top of the :guilabel:`Full Case List` page you see next to the heading :guilabel:`Cases`
 in brackets the overall number of cases shown to you. Further to the right you
@@ -40,9 +40,12 @@ For each case the following key information is shown in the list:
 
 6. Status
 
-|case-key-information|
+.. figure:: images/case-key-information.png
+   :width: 6.49606in
+   :height: 1.8622in
+   :align: center
 
-.. centered:: Case key information
+   Case key information
 
 Furthermore, at the end of each column you find a set of key features in
 handling cases:
@@ -56,9 +59,12 @@ data by using the |down-icon| **Show Details** button in the center of
 each case column. You may hide them again using the |up-icon| **Hide
 Details** button accordingly.
 
-|case-details|
-
-.. centered:: Case details
+.. figure:: images/case-details.png
+   :width: 6.49606in
+   :height: 2.5in
+   :align: center
+   
+   Case details
 
 The case details are separated in 5 different sections:
 
@@ -120,9 +126,12 @@ HowTo: Create new filter
 
 9. Save the filter by clicking the button **Ok**.
 
-|how-to-create-case-filter|
-
-.. centered:: HowTo create case filter
+.. figure:: images/how-to-create-case-filter.png
+   :width: 6.49606in
+   :height: 2.5in
+   :align: center
+   
+   HowTo create case filter
 
 +-----------------------------------+-----------------------------------+
 | Criteria                          | Description                       |
@@ -168,9 +177,12 @@ HowTo: Show all related Tasks
    appearance and features. The shown tasks are only down selected to the ones
    related to your case already.
 
-|related-tasks-list-page|
+.. figure:: images/related-tasks-list-page.png
+   :width: 6.49606in
+   :height: 1.8in
+   :align: center
 
-.. centered:: Related Tasks List page
+   Related Tasks List page
 
 .. _howto-attach-a-document-to-the-case-1:
 
@@ -188,9 +200,12 @@ HowTo: Attach a document to the case
 
 5. Click the button **Close** to add the attachment
 
-|how-to-attach-document-to-case|
+.. figure:: images/how-to-attach-document-to-case.png
+   :width: 6.49606in
+   :height: 2.51181in
+   :align: center
 
-.. centered:: HowTo attach a document to a case
+   HowTo attach a document to a case
 
 .. _howto-remove-an-attachment-from-the-case-1:
 
@@ -206,9 +221,12 @@ HowTo: Remove an attachment from the case
 
 4. Confirm the deletion with the button **Yes**
 
-|how-to-delete-an-attachment-from-case|
+.. figure:: images/how-to-delete-an-attachment-from-case.png
+   :width: 6.49606in
+   :height: 2.51575in
+   :align: center
 
-.. centered:: HowTo delete an attachment from a case
+   HowTo delete an attachment from a case
 
 HowTo: Add a note to a case
 ---------------------------
@@ -223,9 +241,12 @@ HowTo: Add a note to a case
 
 5. Confirm your note by clicking the button **Save**.
 
-|how-to-add-task-note|
+.. figure:: images/how-to-add-task-note.png
+   :width: 6.49606in
+   :height: 2.73228in
+   :align: center
 
-.. centered:: HowTo add task note
+   HowTo add task note
 
 HowTo: Export a case history
 ----------------------------
@@ -239,65 +260,18 @@ HowTo: Export a case history
 4. You may export the history by clicking on the button **Export to
    Excel**
 
-|how-to-show-note-details|
-
-.. centered:: HowTo show note details
-
-|export-case-history|
-
-.. centered:: Export case history
-
-.. |case-icon| image:: images/case-icon.png
-   :width: 0.15748in
-   :height: 0.15748in
-.. |navigate-to-full-cases-list-page| image:: images/navigate-to-full-cases-list-page.png
-   :width: 6.49606in
-   :height: 3.28346in
-.. |filter-icon| image:: images/filter-icon.png
-   :width: 0.15748in
-   :height: 0.15748in
-.. |case-key-information| image:: images/case-key-information.png
-   :width: 6.49606in
-   :height: 1.8622in
-.. |delete-icon| image:: images/delete-icon.png
-   :width: 0.10827in
-   :height: 0.15748in
-.. |more-icon| image:: images/more-icon.png
-   :height: 0.15748in
-.. |down-icon| image:: images/down-icon.png
-   :height: 0.15748in
-.. |up-icon| image:: images/up-icon.png
-   :height: 0.15748in
-.. |case-details| image:: images/case-details.png
-   :width: 6.49606in
-   :height: 2.5in
-.. |how-to-create-case-filter| image:: images/how-to-create-case-filter.png
-   :width: 6.49606in
-   :height: 2.5in
-.. |related-tasks-list-page| image:: images/related-tasks-list-page.png
-   :width: 6.49606in
-   :height: 1.52756in
-.. |how-to-attach-document-to-case| image:: images/how-to-attach-document-to-case.png
-   :width: 6.49606in
-   :height: 2.51181in
-.. |delete-attachment-icon| image:: images/delete-attachment-icon.png
-   :width: 0.15748in
-   :height: 0.15748in
-.. |how-to-delete-an-attachment-from-case| image:: images/how-to-delete-an-attachment-from-case.png
-   :width: 6.49606in
-   :height: 2.51575in
-.. |add-icon| image:: images/add-icon.png
-   :width: 0.15748in
-   :height: 0.15748in
-.. |how-to-add-task-note| image:: images/how-to-add-task-note.png
-   :width: 6.49606in
-   :height: 2.73228in
-.. |show-more-icon| image:: images/show-more-icon.png
-   :width: 0.1378in
-   :height: 0.15748in
-.. |how-to-show-note-details| image:: images/how-to-show-note-details.png
+.. figure:: images/how-to-show-note-details.png
    :width: 6.49606in
    :height: 2.50787in
-.. |export-case-history| image:: images/export-case-history.png
+   :align: center
+
+   HowTo show note details
+
+.. figure:: images/export-case-history.png
    :width: 6.49606in
    :height: 1.96063in
+   :align: center
+
+   Export case history
+
+.. include:: ../includes/common-icon.rst
