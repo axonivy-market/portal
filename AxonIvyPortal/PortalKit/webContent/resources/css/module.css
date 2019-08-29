@@ -2284,26 +2284,13 @@ a.case-details-document-add-link {
 
 .compact-processes-container .process-start-list-item {
  margin: 2px 3px 5px 2px;
-} 
-
-@media (max-height: 1023px) {
-  .compact-processes-container {
-    max-height: 110px;
-  }
 }
 
-@media (min-height: 1024px) and (max-height: 1049px) {
+@media  screen and (min-width: 1024px) {
   .compact-processes-container {
-    max-height: 385px;
+    max-height: 275px;
   }
 }
-
-@media (min-height: 1050px) {
-  .compact-processes-container {
-    max-height: 385px;
-  }
-}
-
 .autocomplete-process-description-tooltip {
   width: 150px;
 }
