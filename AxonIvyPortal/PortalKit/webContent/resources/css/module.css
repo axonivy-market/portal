@@ -3531,6 +3531,19 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
     min-width: 420px !important;
   }
 }
+
+@media screen and (max-width: 40em) {
+  .applications-email-setting-dialog {
+    width: 80% !important;
+    height: 47% !important;
+    overflow: auto;
+  }
+  
+  .applications-email-setting-form {
+    overflow: auto;
+    height: 250px
+  }
+}
 .applications-email-setting-dialog .email-setting-container {
   overflow-y: auto;
   min-height: 200px;
@@ -3568,7 +3581,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .application-email-setting-row tbody tr td {
   padding-bottom: 10px !important;
 }
-
 /********************************** END EMAIL SETTING DIALOG **********************************/
 
 /********************************** CASE NOTE **********************************/

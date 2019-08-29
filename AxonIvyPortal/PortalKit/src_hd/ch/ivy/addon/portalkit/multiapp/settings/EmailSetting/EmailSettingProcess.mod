@@ -58,9 +58,7 @@ Es0 f0 inParameterDecl 'ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.Em
 ' #txt
 Es0 f0 inParameterMapAction 'out.user=ivy.session.getSessionUserName();
 ' #txt
-Es0 f0 inActionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.EmailSettingService;
-
-import ch.ivyteam.util.date.Weekday;
+Es0 f0 inActionCode 'import ch.ivyteam.util.date.Weekday;
 out.dailySummaryList = [Weekday.MONDAY, Weekday.TUESDAY, Weekday.WEDNESDAY, Weekday.THURSDAY, Weekday.FRIDAY, Weekday.SATURDAY, Weekday.SUNDAY];' #txt
 Es0 f0 outParameterDecl '<> result;
 ' #txt
