@@ -150,4 +150,20 @@ public class EmailSettingService implements IEmailSettingService {
       }
     }
   }
+
+  public void clearSelectedDailySummary(List<IvyEmailSetting> emailSettings) {
+    for( IvyEmailSetting ivyEmailSetting : emailSettings) {
+        if(!ivyEmailSetting.isEnableDailySummary()) {
+          ivyEmailSetting.getEmailSendDailyTaskSummary().clear();
+        }
+    }
+  }
+
+  public void displayDailySummary(List<IvyEmailSetting> emailSettings) {
+    for( IvyEmailSetting ivyEmailSetting : emailSettings) {
+        if(ivyEmailSetting.getEmailSendDailyTaskSummary().size() > 0) {
+          ivyEmailSetting.setEnableDailySummary(true);
+        }
+    }
+  }
 }

@@ -3526,6 +3526,11 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 /********************************** END LANGUAGE SETTING DIALOG **********************************/
 
 /********************************** EMAIL SETTING DIALOG **********************************/
+@media screen and (min-width: 40em) {
+  .applications-email-setting-dialog {
+    min-width: 420px !important;
+  }
+}
 .applications-email-setting-dialog .email-setting-container {
   overflow-y: auto;
   min-height: 200px;
@@ -3535,13 +3540,13 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   margin-left: -2px !important;
 }
 
-.applications-email-setting-dialog .daily-summary {
-  min-width: 140px;
+.applications-email-setting-dialog .daily-summary-checkbox {
+  min-width: 180px;
 }
 
 .applications-email-setting-dialog .ui-dialog-footer.u-dialog-footer.u-email-dialog-footer {
   margin: auto !important;
-  margin-top: 35px !important;
+  padding-right: 5px !important;
 }
 
 .applications-email-setting-dialog .ui-dialog-content.ui-widget-content {
@@ -3551,6 +3556,17 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 .application-email-setting-row {
   width: 100%;
+}
+
+.daily-summary-checkbox {
+  width: calc(100% - 3px) !important;
+}
+.daily-summary-checkbox .ui-selectcheckboxmenu-label {
+  padding-left: 3px !important;
+}
+
+.application-email-setting-row tbody tr td {
+  padding-bottom: 10px !important;
 }
 
 /********************************** END EMAIL SETTING DIALOG **********************************/
@@ -4042,6 +4058,11 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   width: 100%;
   overflow: auto;
 }
+
+.application-email-setting-container tbody tr td{
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+} 
 
 /********************************** END STATISTIC WIDGET **********************************/
 
