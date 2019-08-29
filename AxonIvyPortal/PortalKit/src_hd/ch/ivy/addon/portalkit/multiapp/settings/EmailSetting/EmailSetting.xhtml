@@ -40,76 +40,56 @@
             </p:selectOneRadio>
           </p:fieldset>
         </h:panelGrid>
-        
-        <p:panel id="all-applications-email-setting"
-          header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/forAllApplications')}" styleClass="application-email-setting ui-g-12 u-padding-0"
-          rendered="#{data.settingForAllApp}">
-          <h:panelGrid columns="2" rowClasses="application-email-setting-row" styleClass="application-email-setting-row">
-            <!-- MAIL NOTIFICATION ON TASK ASSIGNMENT -->
-            <p:outputLabel id="mail-notification-on-task-assign-text"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/mailNotificationOnTaskAssign')}"
-              for="mail-notification-on-task-assign" rendered="#{data.settingForAllApp}" />
-            <p:selectOneMenu id="mail-notification-on-task-assign" value="#{data.generalEmailSetting.emailSendOnNewWorkTasks}"
-              rendered="#{data.settingForAllApp}">
-              <f:selectItem id="enable-mail-notification"
-                itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/active')}" itemValue="true" />
-              <f:selectItem id="disable-mail-notification"
-                itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/inactive')}" itemValue="false" />
-            </p:selectOneMenu>
 
-            <!--  DAILY SUMMARY -->
-            <p:outputLabel id="daily-summary-text"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/dailySummary')}" for="daily-summary"
-              rendered="#{data.settingForAllApp}" />
-            <p:selectManyCheckbox id="daily-summary" layout="responsive" columns="7" value="#{data.generalEmailSetting.emailSendDailyTaskSummary}" rendered="#{data.settingForAllApp}" styleClass="daily-summary">
-              <f:selectItems value="#{data.dailySummaryList}" var="day" itemLabel="#{day.getLocalizedName(ivy.session.getContentLocale())}" itemValue="#{day}" />
-            </p:selectManyCheckbox>
+        <p:panel id="all-applications-email-setting" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/forAllApplications')}"
+          styleClass="application-email-setting ui-g-12 u-padding-0 application-email-setting-container" rendered="#{data.settingForAllApp}">
+          <h:panelGrid id="multi-application-email-setting" columns="2" rowClasses="application-email-setting-row" styleClass="application-email-setting-row">
+            <!-- MAIL NOTIFICATION ON TASK ASSIGNMENT -->
+            <p:outputLabel id="mail-notification-on-task-assign-text" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/mailNotificationOnTaskAssign')}"
+              for="mail-notification-on-task-assign" rendered="#{data.settingForAllApp}" />
+            <p:inputSwitch id="mail-notification-on-task-assign" value="#{data.generalEmailSetting.emailSendOnNewWorkTasks}" rendered="#{data.settingForAllApp}" />
 
             <!-- FURTHER MAILS FROM APPLICATION -->
-            <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/furtherEmailFromApp')}"
-              for="further-mails-from-application" rendered="#{data.settingForAllApp}" />
-            <p:selectOneMenu id="further-mails-from-application" value="#{data.generalEmailSetting.customMailEnabled}"
-              rendered="#{data.settingForAllApp}">
-              <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/active')}" itemValue="true" />
-              <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/inactive')}"
-                itemValue="false" />
-            </p:selectOneMenu>
+            <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/furtherEmailFromApp')}" for="further-mails-from-application"
+              rendered="#{data.settingForAllApp}" />
+            <p:inputSwitch id="further-mails-from-application" value="#{data.generalEmailSetting.customMailEnabled}" rendered="#{data.settingForAllApp}" />
+
+            <!--  DAILY SUMMARY -->
+            <p:outputLabel id="daily-summary-text" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/dailySummary')}" for="daily-summary"
+              rendered="#{data.settingForAllApp}" />
+            <p:inputSwitch id="daily-summary" value="#{data.enableDailySummary}" rendered="#{data.settingForAllApp}">
+              <p:ajax event="change" update=":#{p:component('all-applications-email-setting')}" />
+            </p:inputSwitch>
           </h:panelGrid>
+          <p:selectCheckboxMenu id="multi-app-daily-summary" value="#{data.generalEmailSetting.emailSendDailyTaskSummary}"
+            rendered="#{data.enableDailySummary}" label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/date')}" styleClass="daily-summary-checkbox">
+            <f:selectItems value="#{data.dailySummaryList}" var="day" itemLabel="#{day.getLocalizedName(ivy.session.getContentLocale())}" itemValue="#{day}" />
+          </p:selectCheckboxMenu>
         </p:panel>
         <!--  SETTING FOR DYNAMIC APPLICATIONS -->
 
-        <h:panelGrid id="application-email-setting" columns="1" rendered="#{!data.settingForAllApp}" styleClass="ui-g-12 u-padding-0">
+        <h:panelGrid id="application-email-setting" columns="1" rendered="#{!data.settingForAllApp}" styleClass="ui-g-12 u-padding-0 application-email-setting-container">
           <ui:repeat value="#{data.emailSettings}" var="appSetting" step="1">
             <p:panel header="#{appSetting.appDisplayName}" id="application-name" styleClass="application-email-setting">
               <h:panelGrid columns="2" rowClasses="application-email-setting-row" styleClass="application-email-setting-row">
                 <!-- MAIL NOTIFICATION ON TASK ASSIGNMENT -->
-                <p:outputLabel
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/mailNotificationOnTaskAssign')}"
-                  for="mail-notification-on-task-assign" />
-                <p:selectOneMenu id="mail-notification-on-task-assign" value="#{appSetting.emailSendOnNewWorkTasks}">
-                  <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/active')}"
-                    itemValue="#{true}" />
-                  <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/inactive')}"
-                    itemValue="#{false}" />
-                </p:selectOneMenu>
-
-                <!--  DAILY SUMMARY -->
-                <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/dailySummary')}"
-                  for="daily-summary" />
-                <p:selectManyCheckbox id="daily-summary" layout="responsive" columns="4" value="#{appSetting.emailSendDailyTaskSummary}" styleClass="daily-summary">
-                  <f:selectItems value="#{data.dailySummaryList}" var="day" itemLabel="#{day.getLocalizedName(ivy.session.getContentLocale())}" itemValue="#{day}" />
-                </p:selectManyCheckbox>
+                <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/mailNotificationOnTaskAssign')}" for="mail-notification-on-task-assign" />
+                <p:inputSwitch id="mail-notification-on-task-assign" value="#{appSetting.emailSendOnNewWorkTasks}" />
 
                 <!-- FURTHER MAILS FROM APPLICATION -->
-                <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/furtherEmailFromApp')}"
-                  for="further-mails-from-application" />
-                <p:selectOneMenu id="further-mails-from-application" value="#{appSetting.customMailEnabled}">
-                  <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/active')}"
-                    itemValue="#{true}" />
-                  <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/inactive')}"
-                    itemValue="#{false}" />
-                </p:selectOneMenu>
+                <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/furtherEmailFromApp')}" for="further-mails-from-application" />
+                <p:inputSwitch id="further-mails-from-application" value="#{appSetting.customMailEnabled}" />
+
+                <!--  DAILY SUMMARY -->
+                <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/dailySummary')}" for="daily-summary" />
+                <p:inputSwitch id="daily-summary" value="#{appSetting.enableDailySummary}">
+                   <p:ajax event="change" update=":#{p:component('application-email-setting')}" listener="#{logic.updateDailyList}"/>
+                </p:inputSwitch>
               </h:panelGrid>
+              <p:selectCheckboxMenu id="daily-summary-checkbox" value="#{appSetting.emailSendDailyTaskSummary}" label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/date')}"
+                styleClass="daily-summary-checkbox" rendered="#{appSetting.enableDailySummary}" >
+                <f:selectItems value="#{data.dailySummaryList}"  var="day" itemLabel="#{day.getLocalizedName(ivy.session.getContentLocale())}" itemValue="#{day}" />
+              </p:selectCheckboxMenu>
             </p:panel>
             <br />
           </ui:repeat>
@@ -117,7 +97,7 @@
       </h:panelGrid>
     </h:panelGroup>
 
-    <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer u-email-dialog-footer">
+    <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer u-email-dialog-footer email-dialog-footer">
       <p:commandButton id="save-settings"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.saveEmailSettings}"
         update="email-messages" 
