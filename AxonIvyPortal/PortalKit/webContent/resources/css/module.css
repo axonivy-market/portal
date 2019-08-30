@@ -585,6 +585,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   font-size: 1.2rem;
   position: relative;
   cursor: pointer;
+  height: 30px;
 }
 
 .task-widget .advanced-filter:hover, 
@@ -599,8 +600,8 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .task-widget .ui-widget.ui-button.advanced-filter-command, 
 .case-widget-container .ui-widget.ui-button.advanced-filter-command {
   display: inline-block;
-  height: 35px;
-  line-height: 35px;
+  height: 30px;
+  line-height: 30px;
   background: none;
   min-width: 0;
   padding: 0 25px 0 5px !important;
@@ -679,7 +680,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   position: absolute;
   font-size: 1.8rem;
   right: 5px;
-  top: 5px;
+  top: 7px;
   color: rgba(0,0,0,0.3) !important;
 }
 
@@ -787,7 +788,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .case-detail-name-inplace-edit .ui-button.ui-widget.ui-button-icon-only.ui-inplace-save,
- .case-description-edit-inplace .ui-button.ui-widget.ui-button-icon-only.ui-inplace-save {
+.case-description-edit-inplace .ui-button.ui-widget.ui-button-icon-only.ui-inplace-save {
   margin-right: 0.3em;
 }
 
@@ -1940,7 +1941,6 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 
 .filter-container {
   display: flex;
-  align-items: center;
   flex-wrap: wrap;
 }
 
@@ -2034,10 +2034,6 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 
 .save-filter-set-dialog .ui-messages-error .ui-messages-error-summary {
   margin-left: 0;
-}
-
-.save-filter-set-dialog .ui-messages-error ul {
-  margin-left: 50px !important;
 }
 
 .save-filter-set-panel {
@@ -2185,13 +2181,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   
 }
 
-.task-widget .ui-widget.ui-button.advanced-filter-command .ui-button-text, 
-.case-widget-container .ui-widget.ui-button.advanced-filter-command .ui-button-text {
-  overflow: hidden;
-  display: block;
-  text-overflow: ellipsis;
-}
-
 .no-task-message {
   padding-left: 0.5em;
 }
@@ -2244,11 +2233,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .task-start-list-item.full-mode .task-start-link:hover:before {
   opacity: .6;
-}
-
-.switch-mode-command-icon {
-  font-size: 9px;
-  padding-right: 2px;
 }
 
 .task-start-list-item.full-mode .task-start-link {
