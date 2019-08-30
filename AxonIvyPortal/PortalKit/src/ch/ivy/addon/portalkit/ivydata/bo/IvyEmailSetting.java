@@ -11,6 +11,7 @@ public class IvyEmailSetting {
   private boolean customMailEnabled;
   private String appName;
   private String appDisplayName;
+  private boolean enableDailySummary;
   
   public boolean isEmailSendOnNewWorkTasks() {
     return emailSendOnNewWorkTasks;
@@ -50,6 +51,14 @@ public class IvyEmailSetting {
 
   public void setAppDisplayName(String appDisplayName) {
     this.appDisplayName = appDisplayName;
+  }
+
+  public boolean isEnableDailySummary() {
+    return enableDailySummary;
+  }
+
+  public void setEnableDailySummary(boolean enableDailySummary) {
+    this.enableDailySummary = enableDailySummary;
   }
 
 }

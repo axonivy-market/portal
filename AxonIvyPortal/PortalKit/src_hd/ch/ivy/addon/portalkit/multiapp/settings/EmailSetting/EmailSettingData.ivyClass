@@ -16,3 +16,5 @@ emptySetting Boolean #field
 emptySetting PERSISTENT #fieldModifier
 errorLink String #field
 errorLink PERSISTENT #fieldModifier
+enableDailySummary Boolean #field
+enableDailySummary PERSISTENT #fieldModifier
