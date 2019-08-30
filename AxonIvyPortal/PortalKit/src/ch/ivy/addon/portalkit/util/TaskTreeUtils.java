@@ -29,8 +29,6 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 public class TaskTreeUtils {
 
   public static final String DELIMITER = "/";
-  
-  private static CheckboxTreeNode root;
 
   private TaskTreeUtils() {}
   
@@ -76,11 +74,8 @@ public class TaskTreeUtils {
   }
   
   public static CheckboxTreeNode buildTaskCategoryCheckboxTreeRoot() {
-    if (root != null) {
-      return root;
-    }
-    
-    root = buildRoot();
+
+    CheckboxTreeNode root = buildRoot();
     RegisteredApplicationService service = new RegisteredApplicationService();
     List<String> involvedApplications = service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName());
     TaskQuery taskQuery = SubProcessCall.withPath(PortalConstants.BUILD_TASK_QUERY_CALLABLE)

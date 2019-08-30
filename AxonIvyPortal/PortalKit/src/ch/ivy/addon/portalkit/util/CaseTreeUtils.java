@@ -33,8 +33,6 @@ public class CaseTreeUtils {
 
   public static final String DELIMITER = "/";
 
-  private static CheckboxTreeNode root;
-
   private CaseTreeUtils() {}
 
   /**
@@ -78,11 +76,8 @@ public class CaseTreeUtils {
   }
 
   public static CheckboxTreeNode buildCaseCategoryCheckboxTreeRoot() {
-    if (root != null) {
-      return root;
-    }
     
-    root = buildRoot();
+    CheckboxTreeNode root = buildRoot();
     RegisteredApplicationService service = new RegisteredApplicationService();
     List<String> involvedApplications = service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName());
     CaseQuery caseQuery = SubProcessCall.withPath(PortalConstants.BUILD_CASE_QUERY_CALLABLE)

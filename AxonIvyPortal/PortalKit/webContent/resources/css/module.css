@@ -5662,6 +5662,10 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   content: "\f002";
 }
 
+.ui-tree .ui-treenode .ui-treenode-leaf-icon {
+  width: 19px !important;
+}
+
 .task-analysis-page-navigation-link {
   float: right;
 }
