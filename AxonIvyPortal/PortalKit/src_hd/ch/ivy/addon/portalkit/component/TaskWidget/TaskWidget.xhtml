@@ -36,7 +36,7 @@
 			layout="block">
 			<div class="widget-header-main #{data.dataModel.compactMode ? '' : 'mod-expanded-mode'}">
 				<h:panelGroup id="task-widget-title" styleClass="widget-header-main-title task-widget-header-content-title"> <cc:renderFacet name="title" /> <h:outputText
-						rendered="#{empty cc.facets.title}" value="#{cc.attrs.title}" /> (#{data.dataModel.rowCount})
+						rendered="#{empty cc.facets.title}" value="#{cc.attrs.title} (#{data.dataModel.rowCount})" />
 				</h:panelGroup>
 
 				<h:form id="filter-selection-form" class="filter-selection-form" rendered="#{!cc.attrs.hideTaskFilter}">

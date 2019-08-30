@@ -38,10 +38,10 @@
               #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader')} 
               <h:commandLink value="##{taskView.dataModel.queryCriteria.caseId}" styleClass="ui-link"
                   actionListener="#{navigatorBean.navigateToCaseDetail(dataModel.caseName, taskView.dataModel.queryCriteria.caseId, dataModel.serverId)}" />
-              #{taskView.dataModel.caseName}
+              #{taskView.dataModel.caseName} (#{taskView.dataModel.rowCount})
             </h:form>
               <h:outputText rendered="#{!taskView.canLinkBackCaseDetail()}"
-                value="#{taskView.pageTitle == '' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks') : taskView.pageTitle}" />
+                value="#{taskView.pageTitle == '' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks') : taskView.pageTitle} (#{taskView.dataModel.rowCount})"/>
             </f:facet>
 
             <f:facet name="taskListHeader">
