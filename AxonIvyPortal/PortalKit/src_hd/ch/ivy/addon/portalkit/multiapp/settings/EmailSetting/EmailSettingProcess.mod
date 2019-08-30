@@ -1,5 +1,5 @@
 [Ivy]
-14C2C99D7388AB9B 3.23 #module
+14C2C99D7388AB9B 3.26 #module
 >Proto >Proto Collection #zClass
 Es0 EmailSettingProcess Big #zClass
 Es0 RD #cInfo
@@ -44,13 +44,17 @@ Es0 @Alternative f19 '' #zField
 Es0 @PushWFArc f20 '' #zField
 Es0 @PushWFArc f10 '' #zField
 Es0 @PushWFArc f21 '' #zField
+Es0 @RichDialogProcessStart f22 '' #zField
+Es0 @GridStep f25 '' #zField
+Es0 @RichDialogProcessEnd f26 '' #zField
+Es0 @PushWFArc f27 '' #zField
+Es0 @PushWFArc f28 '' #zField
 >Proto Es0 Es0 EmailSettingProcess #zField
 Es0 f0 guid 167961CFD377EB28 #txt
 Es0 f0 type ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData #txt
 Es0 f0 method start() #txt
 Es0 f0 disableUIEvents true #txt
-Es0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
+Es0 f0 inParameterDecl 'ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData out;
 ' #txt
 Es0 f0 inParameterMapAction 'out.user=ivy.session.getSessionUserName();
 ' #txt
@@ -340,6 +344,44 @@ Es0 f21 expr in #txt
 Es0 f21 512 368 568 448 #arcP
 Es0 f21 1 512 448 #addKink
 Es0 f21 1 0.13338566089674114 0 0 #arcLabel
+Es0 f22 guid 16CD236B43AFDCB4 #txt
+Es0 f22 type ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData #txt
+Es0 f22 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData out;
+' #txt
+Es0 f22 actionTable 'out=in;
+' #txt
+Es0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>updateDailyList</name>
+    </language>
+</elementInfo>
+' #txt
+Es0 f22 51 627 26 26 -47 15 #rect
+Es0 f22 @|RichDialogProcessStartIcon #fIcon
+Es0 f25 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData out;
+' #txt
+Es0 f25 actionTable 'out=in;
+' #txt
+Es0 f25 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.EmailSettingService;
+EmailSettingService.newInstance().clearSelectedDailySummary(in.emailSettings);' #txt
+Es0 f25 type ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData #txt
+Es0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Clear selected day</name>
+    </language>
+</elementInfo>
+' #txt
+Es0 f25 136 618 112 44 -51 -8 #rect
+Es0 f25 @|StepIcon #fIcon
+Es0 f26 type ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData #txt
+Es0 f26 371 627 26 26 0 12 #rect
+Es0 f26 @|RichDialogProcessEndIcon #fIcon
+Es0 f27 expr out #txt
+Es0 f27 77 640 136 640 #arcP
+Es0 f28 expr out #txt
+Es0 f28 248 640 371 640 #arcP
 >Proto Es0 .type ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData #txt
 >Proto Es0 .processKind HTML_DIALOG #txt
 >Proto Es0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -385,3 +427,7 @@ Es0 f19 out f10 tail #connect
 Es0 f10 head f14 mainIn #connect
 Es0 f19 out f21 tail #connect
 Es0 f21 head f9 mainIn #connect
+Es0 f22 mainOut f27 tail #connect
+Es0 f27 head f25 mainIn #connect
+Es0 f25 mainOut f28 tail #connect
+Es0 f28 head f26 mainIn #connect
