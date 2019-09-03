@@ -209,6 +209,13 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
+/* Small screen */
+@media screen and (max-width: 40em) {
+  .widget-header-main {
+    height: 30px;
+  }
+}
+
 .widget-tasklist-header {
   position: relative;
   border-bottom: 1px solid rgba(0,0,0,0.1);
@@ -232,6 +239,13 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   left: 0;
 }
 
+/* Small screen */
+@media screen and (max-width: 40em) {
+  .widget-header-main-title.compact-mod-title {
+    width: 100%;
+  }
+}
+
 .widget-header-main-menu {
   color: rgba(0,0,0,0.4);
   position: absolute;
@@ -249,7 +263,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .widget-sort-menu {
-  color: rgba(0,0,0,0.4);
+  color: rgba(0,0,0,0.5);
 }
 
 .widget-sort-menu.full-mode {
@@ -289,7 +303,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-  color: black !important;
   font-size: 1.4rem;
 }
 
@@ -429,7 +442,8 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 @media (max-width: 991px) {
-  .compact-task-widget .widget-header-main {
+  .compact-task-widget .widget-header-main,
+  .compact-process-widget .widget-header-main {
     height: 30px !important;
   }
 }
@@ -1396,19 +1410,22 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   padding-right: 40px;
 }
 
-.compact-process-widget .toggle-processes-link {
+.compact-process-widget .toggle-processes-link,
+.compact-toggle-tasks-link {
   font-size: 1.4rem !important;
   position: absolute;
   bottom: 2px;
 }
 
-.compact-process-widget .toggle-processes-link.fa-plus:before {
+.compact-process-widget .toggle-processes-link.fa-plus:before,
+.compact-toggle-tasks-link.fa-plus:before {
   padding-right: 4px;
   font-size: 1.4rem !important;
   font-family: 'FontAwesome' !important;
   content: '\f067';
 }
-.compact-process-widget .toggle-processes-link.fa-minus:before {
+.compact-process-widget .toggle-processes-link.fa-minus:before,
+.compact-toggle-tasks-link.fa-minus:before {
   padding-right: 4px;
   font-size: 1.4rem !important;
   font-family: 'FontAwesome' !important;
@@ -1668,7 +1685,6 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 }
 
 .field-group label {
-  margin: 10px 0 0 0;
   position: relative;
   word-wrap: break-word;
 }

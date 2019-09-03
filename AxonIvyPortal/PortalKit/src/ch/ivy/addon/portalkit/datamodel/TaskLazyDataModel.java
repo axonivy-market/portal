@@ -726,7 +726,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   /**
-   * This is default of sort item in mobile, override it if you want to customize it
+   * This is default of sort item, override it if you want to customize it
    * 
    * IMPORTANT: Item in this list must follow pattern : column name + "_ASC" or column name +
    * "_DESC"
@@ -737,15 +737,15 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    * "customVarcharField5_ASC", "customVarcharField5_DESC", "customVarcharField1_ASC",
    * "customVarcharField1_DESC"}
    * 
-   * @return list of sort criteria for mobile
+   * @return list of sort criteria
    */
-  public List<String> getPortalTaskMobileSort() {
+  public List<String> getPortalTaskSort() {
     return Arrays.asList("CREATION_TIME_ASC", "CREATION_TIME_DESC", "EXPIRY_TIME_ASC", "EXPIRY_TIME_DESC",
         "PRIORITY_ASC", "PRIORITY_DESC");
   }
 
   /**
-   * Sort field label in mobile Override this method and return cms in your project
+   * Sort field label. Override this method and return cms in your project
    * 
    * Example you have custome sort fields like Arrays.asList("CREATION_TIME_ASC",
    * "CREATION_TIME_DESC", "customVarcharField5_ASC", "customVarcharField5_DESC",
@@ -760,7 +760,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    * Override this method: return Ivy.cms().co("/sortFields/customized/" + fieldName);
    * 
    * @param fieldName
-   * @return Sort field label in mobile
+   * @return Sort field label
    */
   public String getSortFieldLabel(String fieldName) {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/sortFields/" + fieldName);
