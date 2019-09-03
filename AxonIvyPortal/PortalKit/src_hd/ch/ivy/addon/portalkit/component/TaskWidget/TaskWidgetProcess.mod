@@ -593,8 +593,8 @@ Ts0 f12 actionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData o
 Ts0 f12 actionTable 'out=in;
 ' #txt
 Ts0 f12 actionCode 'import org.apache.commons.lang3.StringUtils;
-if (StringUtils.isNotBlank(in.mobileSelectedSort)){
-	in.dataModel.sort(in.mobileSelectedSort);
+if (StringUtils.isNotBlank(in.selectedSort)){
+	in.dataModel.sort(in.selectedSort);
 }' #txt
 Ts0 f12 type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 Ts0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
