@@ -3510,7 +3510,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 /********************************** END LANGUAGE SETTING DIALOG **********************************/
 
 /********************************** EMAIL SETTING DIALOG **********************************/
-@media screen and (min-width: 40em) {
+@media screen and (min-width: 41em) {
   .applications-email-setting-dialog {
     min-width: 420px !important;
   }
@@ -3519,13 +3519,14 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 @media screen and (max-width: 40em) {
   .applications-email-setting-dialog {
     width: 80% !important;
-    height: 47% !important;
+    height: 340px !important;
     overflow: auto;
+    z-index: 9999 !important;
   }
   
   .applications-email-setting-form {
     overflow: auto;
-    height: 250px
+    height: 280px
   }
 }
 .applications-email-setting-dialog .email-setting-container {
