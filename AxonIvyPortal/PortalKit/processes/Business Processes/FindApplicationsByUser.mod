@@ -1,6 +1,5 @@
 [Ivy]
-[>Created: Wed Jul 06 14:40:22 ICT 2016]
-14C7834636E63BEA 3.18 #module
+14C7834636E63BEA 3.20 #module
 >Proto >Proto Collection #zClass
 Fr0 FindApplicationsByUser Big #zClass
 Fr0 B #cInfo
@@ -60,14 +59,19 @@ Fr0 f3 actionDecl 'ch.ivyteam.wf.processes.FindApplicationsByUserData out;
 ' #txt
 Fr0 f3 actionTable 'out=in;
 ' #txt
-Fr0 f3 actionCode 'import ch.ivyteam.ivy.data.cache.IDataCacheEntry;
+Fr0 f3 actionCode 'import ch.ivy.addon.portalkit.service.UserSynchronizationService;
+import ch.ivyteam.ivy.data.cache.IDataCacheEntry;
 
 IDataCacheEntry cacheData = ivy.datacache.getSessionCache().getEntry(in.username, "Applications");
 
 if (cacheData != null) {
 	List applications= cacheData.getValue() as List;
 	in.applications.addAll(applications);
-}' #txt
+}
+
+UserSynchronizationService.addUserToCacheAndUserService(in.username);
+' #txt
+Fr0 f3 security system #txt
 Fr0 f3 type ch.ivyteam.wf.processes.FindApplicationsByUserData #txt
 Fr0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

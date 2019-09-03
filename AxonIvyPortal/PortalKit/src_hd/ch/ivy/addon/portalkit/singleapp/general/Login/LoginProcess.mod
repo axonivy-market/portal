@@ -73,37 +73,30 @@ Ls0 f5 actionDecl 'ch.ivy.addon.portalkit.singleapp.general.Login.LoginData out;
 ' #txt
 Ls0 f5 actionTable 'out=in;
 ' #txt
-Ls0 f5 actionCode 'import ch.ivy.addon.portalkit.service.UserSynchronizationService;
-import javax.faces.context.FacesContext;
+Ls0 f5 actionCode 'import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 import ch.ivyteam.ivy.security.IUser;
 import java.util.Locale;
+
 in.loginOk = ivy.session.loginSessionUser(in.username, in.password);
 out.password = null;
-if (!in.loginOk) 
-{
+if (in.loginOk) {
+	//set language from user settings or application details
+	IUser sessionUser = ivy.session.getSessionUser();
+	
+	Locale locale = null;
+	if (sessionUser.getEMailLanguage() != null && sessionUser.getEMailLanguage() instanceof Locale) {
+		locale = ivy.session.getSessionUser().getEMailLanguage();
+	} else {
+		// Application Default
+		Locale default = ivy.request.getApplication().getDefaultEMailLanguage();
+		locale = new Locale(default.getLanguage(), default.getCountry(), "APPLICATION_DEFAULT");
+	}	
+	ivy.session.setContentLocale(locale);
+	ivy.session.setFormattingLocale(locale);	
+} else {		
 	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/login/loginFailed"), ""));
 	FacesContext.getCurrentInstance().validationFailed();
-}else{
-		
-		//set language from user settings or application details
-		IUser sessionUser = ivy.session.getSessionUser();
-		
-		if (sessionUser.getEMailLanguage() != null &&
-				sessionUser.getEMailLanguage() instanceof Locale) {
-			Locale l = ivy.session.getSessionUser().getEMailLanguage();
-			ivy.session.setContentLocale(l);
-			ivy.session.setFormattingLocale(l);
-		} else {
-			// Application Default
-			Locale default = ivy.request.getApplication().getDefaultEMailLanguage();
-			String language = default.getLanguage();
-			String country = default.getCountry();
-			Locale l = new Locale(language, country, "APPLICATION_DEFAULT");
-			ivy.session.setContentLocale(l);
-			ivy.session.setFormattingLocale(l);
-	}
-	UserSynchronizationService.addUserToCacheAndUserService(in.username);
 }' #txt
 Ls0 f5 security system #txt
 Ls0 f5 type ch.ivy.addon.portalkit.singleapp.general.Login.LoginData #txt
