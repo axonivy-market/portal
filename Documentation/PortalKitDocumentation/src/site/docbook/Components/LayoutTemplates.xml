@@ -44,7 +44,7 @@
 			</orderedlist>
 		</para>
 		<para>
-			These templates have the same header, which is a menu of applications that you configure in Administration page. Since version 6.4, Portal officially supports responsiveness for 3 resolutions: iMac (1920*1050), iPad (1366*1024) iPad Portrait: (1024*1366), every templates has its default responsiveness, you can refer to <link linkend="axonivyportal.components.layouttemplates.reponsiveness">Responsiveness</link> to override it. Besides, there are user settings like: Absences, Email, Language Settings and Administration (for admin only). Details about user settings can be found in <link linkend="axonivyportal.settings" endterm="axonivyportal.settings.title" />.
+			These templates have the same header, which is a menu of applications that you configure in Administration page. Since version 8.0, Portal officially supports responsiveness, every templates has its default responsiveness, you can refer to <link linkend="axonivyportal.components.layouttemplates.reponsiveness">Responsiveness</link> to override it. Besides, there are user settings like: Absences, Email, Language Settings and Administration (for admin only). Details about user settings can be found in <link linkend="axonivyportal.settings" endterm="axonivyportal.settings.title" />.
 			<mediaobject>
 				<imageobject>
 					<imagedata fileref="images/LayoutTemplates/portal-header.png" />

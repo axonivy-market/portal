@@ -11,7 +11,7 @@
     <h:panelGroup class="widget-header-main">
       <p:commandLink id="toggle-processes-link" styleClass="toggle-processes-link ui-lg-hidden ui-xl-hidden ui-md-hidden fa-plus"
              global="false" onclick="toggleShowProcessList();" value="#{cc.attrs.mobileTitle}" />
-      <span class="widget-header-main-title u-hidden-sm-down">#{cc.attrs.title}</span>
+      <span class="widget-header-main-title ui-sm-hidden">#{cc.attrs.title}</span>
       <h:panelGroup styleClass="widget-header-main-menu" rendered="#{compactProcessWidgetBean.displayShowAllProcessesLink and not compactProcessWidgetBean.editMode}">
         <cc:renderFacet name="headerToolbar" />
       </h:panelGroup>
