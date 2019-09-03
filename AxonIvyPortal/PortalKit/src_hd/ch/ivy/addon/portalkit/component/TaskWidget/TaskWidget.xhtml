@@ -34,9 +34,11 @@
       <h:panelGroup id="task-widget-header" styleClass="widget-header task-widget-header js-task-widget-header ui-g-12 ui-g"
         layout="block">
         <h:panelGroup styleClass="#{data.dataModel.compactMode? 'widget-header-main': 'widget-tasklist-header'} ui-g-8 ui-sm-4" layout="block">
-          <h:panelGroup id="task-widget-title" styleClass="widget-header-main-title task-widget-header-content-title">
+          <h:panelGroup id="task-widget-title" styleClass="widget-header-main-title task-widget-header-content-title #{data.dataModel.compactMode ? 'compact-mod-title' : ''}">
             <cc:renderFacet name="title" />
-            <h:outputText rendered="#{empty cc.facets.title}" value="#{cc.attrs.title} (#{data.dataModel.rowCount})" />
+            <h:outputText rendered="#{empty cc.facets.title}" value="#{cc.attrs.title} (#{data.dataModel.rowCount})" styleClass="ui-sm-hidden" />
+            <p:commandLink id="toggle-tasks-link" rendered="#{empty cc.facets.title or data.dataModel.compactMode}" styleClass="fa-minus compact-toggle-tasks-link ui-lg-hidden ui-xl-hidden ui-md-hidden"
+                value="#{cc.attrs.title} (#{data.dataModel.rowCount})" global="false" oncomplete="toggleShowTaskList();" />
           </h:panelGroup>
 
           <h:panelGroup styleClass="widget-header-main-menu js-widget-header-menu"
@@ -210,7 +212,7 @@
       </h:panelGroup>
     </h:panelGroup>
 
-    <h:panelGroup layout="block" id="task-view" styleClass="ui-g-12 u-no-padding-left">
+    <h:panelGroup layout="block" id="task-view" styleClass="ui-g-12 #{data.dataModel.compactMode ? '' : 'u-no-padding-left'}">
       <h:panelGroup id="task-view-container" layout="block" styleClass="task-view-container">
         <p:dataScroller id="task-list-scroller" 
           value="#{data.dataModel}" 
@@ -293,8 +295,12 @@
 
   <script type="text/javascript">
     var taskWidget = new TaskWidget();
+    function toggleShowTaskList() {
+       $('[id $= "task-widget-sub-header"]').toggleClass("ui-sm-hidden").toggleClass("ui-md-hidden");
+       $('[id $= "task-view"]').toggleClass("ui-sm-hidden").toggleClass("ui-md-hidden");
+       $('[id $= "toggle-tasks-link"]').toggleClass("fa-plus").toggleClass("fa-minus");
+     }
   </script>
-
   <h:form>
     <p:remoteCommand name="updateTaskCount" update="#{cc.clientId}:task-widget-title" global="false" process="@none" />
   </h:form>

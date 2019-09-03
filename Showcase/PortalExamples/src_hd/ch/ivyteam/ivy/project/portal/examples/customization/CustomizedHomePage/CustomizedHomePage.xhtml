@@ -5,7 +5,8 @@
 <h:body>
   <ui:composition template="/layouts/DefaultHomePageTemplate.xhtml">
     <ui:define name="pageTitle">Customized Home</ui:define>
-    <ui:param name="displayStatisticWidget" value="false" />
+    <ui:param name="displayStatisticWidget" value="true" />
+    <ui:param name="displayProcessWidget" value="false" />
     <ui:define name="taskWidget">
       <h:panelGroup layout="block"
         styleClass="customized-home-task-widget">
