@@ -134,38 +134,6 @@
 	margin-left: calc(98% - 65px);
 }
 
-/*Portal Home*/
-.l-widget-container {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-ms-flex-flow: row wrap;
-	flex-flow: row wrap;
-	margin: -20px;
-}
-
-.l-widget-container>* {
-	margin: 20px;
-}
-
-.l-process-widget {
-	-webkit-box-flex: 3;
-	-ms-flex: 3 200px;
-	flex: 3 200px;
-}
-
-.l-task-widget {
-	-webkit-box-flex: 6;
-	-ms-flex: 6 400px;
-	flex: 6 400px;
-}
-
-.l-statistic-widget {
-	-webkit-box-flex: 3;
-	-ms-flex: 3 300px;
-	flex: 3 300px;
-}
-
 /*Task template*/
 .task-template-container {
   min-height: 400px;
