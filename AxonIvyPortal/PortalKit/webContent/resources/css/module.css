@@ -1040,7 +1040,8 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 }
 
 .action-steps-panel {
-  max-width: 180px; 
+  max-width: 220px; 
+  width: auto !important;
   padding: 0 !important;
   font-size: 1.4rem;
 }
