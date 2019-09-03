@@ -9,6 +9,7 @@
   <cc:attribute name="stateIconStyleClass" />
   <cc:attribute name="stateTooltipStyleClass" />
   <cc:attribute name="dataModel" />
+  <cc:attribute name="responsiveStyleClass" default="u-hidden-sm-down" />
 </cc:interface>
 
 <cc:implementation>
@@ -17,7 +18,7 @@
   <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
 
   <h:panelGroup rendered="#{dataModel.isSelectedColumn('STATE')}" id="#{componentId}" 
-    styleClass="case-header-default-cell #{cc.attrs.stateStyleClass}">
+    styleClass="case-header-default-cell #{cc.attrs.stateStyleClass} #{cc.attrs.responsiveStyleClass}">
     <h:panelGroup id="#{componentId}-in-progress" styleClass="fa fa-play-circle case-state-in-progress #{cc.attrs.stateIconStyleClass}"
       rendered="#{case.state eq 'CREATED' or case.state eq 'RUNNING'}" />
     <h:panelGroup id="#{componentId}-done" styleClass="fa fa-check-circle case-state-done #{cc.attrs.stateIconStyleClass}" 

@@ -56,8 +56,7 @@
 }
 
 .customized-case-header-column {
-	width: 150px !important;
-	display: block;
+	flex: 0 0 155px;
 }
 
 .customized-home-custom-widget {

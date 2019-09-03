@@ -8,6 +8,7 @@
   <cc:attribute name="componentId" default="case-creator-cell" />
   <cc:attribute name="dataModel" />
   <cc:attribute name="styleClass" />
+  <cc:attribute name="responsiveStyleClass" default="js-hidden-when-expand-menu u-hidden-md-down" />
 </cc:interface>
 
 <cc:implementation>
@@ -15,7 +16,7 @@
   <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
 
   <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText id="#{cc.attrs.componentId}"
-    styleClass="case-header-creator-cell #{cc.attrs.styleClass}" fullname="#{case.getCreatorUser().getFullName()}"
+    styleClass="case-header-creator-cell #{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass}" fullname="#{case.getCreatorUser().getFullName()}"
     username="#{case.getCreatorUserName()}" rendered="#{dataModel.isSelectedColumn('CREATOR')}" />
 </cc:implementation>
 </html>

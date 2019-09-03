@@ -86,7 +86,6 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     }
     
     List<ICase> foundCases = findCases(criteria, first, pageSize);
-    RequestContext.getCurrentInstance().execute("caseListToolkit.responsive()");
     data.addAll(foundCases);
     return foundCases;
   }

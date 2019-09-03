@@ -27,16 +27,16 @@
   <c:set var="outerPanelId" value="#{empty cc.attrs.outerPanelId ? 'main-area-panel' : cc.attrs.outerPanelId}" />
 
   <h:outputScript name="case-widget.js" library="js" />
-  <div id="#{cc.clientId}" class="widget case-widget-container">
+  <div id="#{cc.clientId}" class="widget case-widget-container ui-g">
     <h:panelGroup rendered="#{!cc.attrs.hideWidgetHeader}">
-      <h:panelGroup id="case-widget-header" styleClass="widget-header" layout="block">
-        <div class="case-widget-top-header js-widget-header">
-          <h:panelGroup id="case-widget-title" styleClass="case-widget-top-header-main-title-container">
+      <h:panelGroup id="case-widget-header" styleClass="widget-header ui-g-12 ui-g" layout="block">
+        <div class="case-widget-top-header js-widget-header ui-g-8 ui-sm-4">
+          <h:panelGroup id="case-widget-title">
             <h:outputText styleClass="case-widget-top-header-main-title"
               value="#{cc.attrs.title} (#{data.dataModel.rowCount})" />
           </h:panelGroup>
         </div>
-        <h:panelGroup styleClass="widget-header-content-filter mod-expanded-mode" id="expanded-mode-filter-view">
+        <h:panelGroup styleClass="widget-header-content-filter mod-expanded-mode ui-g-4 ui-sm-8" id="expanded-mode-filter-view">
           <h:form id="case-basic-filter-form" onsubmit="return false;">
             <ic:ch.ivy.addon.portalkit.component.Filter id="case-filter-component" keywordStoresIn="#{data.dataModel.criteria.keyword}"
               updateComponent="#{cc.clientId}:case-list" icon="fa fa-filter"
@@ -152,12 +152,11 @@
             dataModel="#{data.dataModel}" oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader()"
             configButtonId="case-config-button" overlayPanelId="case-config-columns-panel" />
     </h:panelGroup>
-    <h:panelGroup id="case-view" layout="block" class="widget-content">
+    <h:panelGroup id="case-view" layout="block" class="ui-g-12 u-no-padding-left">
       <h:panelGroup id="case-list" layout="block" styleClass="case-list">
         <p:dataScroller id="case-list-scroller" value="#{data.dataModel}" var="case" chunkSize="#{cc.attrs.chunkSize}"
           lazy="true" mode="inline" rowIndexVar="rowIndex" styleClass="js-case-list">
           <ic:ch.ivy.addon.portalkit.component.CaseItem case="#{case}" id="case-item"
-            initialActive="#{case.id eq cc.attrs.autoSelectCaseId.id()}"
             onDestroyComplete="PF('destroy-case-dialog').show()" rowIndex="#{rowIndex}"
             itemStyleClass="#{rowIndex % 2 == 0 ? 'case-even-row' : 'case-odd-row'}">
             <cc:insertFacet name="caseHeader" />
@@ -222,13 +221,8 @@
   </p:confirmDialog>
 
   <script type="text/javascript">
-      var caseWidget = new CaseWidget("#{outerPanelId}");
-      var caseListToolkit = CaseListToolKit();
-      $(function() {
-        caseWidget.setUpScrollbar();
-        caseWidget.setupHeader();
-      });
-    </script>
+      var caseWidget = new CaseWidget();
+  </script>
   <p:confirmDialog id="destroy-case-confirmation-dialog"
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/destroyCaseMessage')}" closeOnEscape="true"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" widgetVar="destroy-case-dialog"
