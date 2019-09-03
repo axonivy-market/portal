@@ -51,7 +51,7 @@
                 styleClass="task-actions-button" />
             </div>
             <h:form>
-              <p:menu overlay="true" trigger="task-actions" my="right top" at="right bottom"
+              <p:menu id="task-action-menu" overlay="true" trigger="task-actions" my="right top" at="right bottom"
                 styleClass="action-steps-panel task-actions-menu">
                 <p:menuitem rendered="#{showCaseStatusInfoTab == null or !showCaseStatusInfoTab}"
                   actionListener="#{caseBean.navigateToCaseDetails(case)}"
