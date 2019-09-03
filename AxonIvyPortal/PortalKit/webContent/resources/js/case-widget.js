@@ -1,4 +1,9 @@
-function CaseWidget(outerPanelId) {
+function CaseWidget() {
+  this.setupHeader = function() {
+    var caseListToolKit = CaseListToolKit();
+    caseListToolKit.setupHeader();
+  }
+  
   this.setUpScrollbar = function() {
     var childElements = $('.js-case-item');
     if (childElements.length > 0) {
@@ -25,27 +30,15 @@ function CaseWidget(outerPanelId) {
       }
     }
   };
-
-  this.setupHeader = function() {
-    var caseListToolKit = CaseListToolKit();
-    caseListToolKit.setupHeader();
-  }
 }
 
 function CaseListToolKit() {
-  function hideColumnInMediumScreen($header, $cell) {
-    $header.addClass("hidden-md");
-    $cell.addClass("hidden-md");
+  function hideColumnWhenExpandMenu($columns) {
+    $columns.addClass("ui-hidden");
   }
 
-  function displayColumnInMediumScreen($header, $cell) {
-    $header.removeClass("hidden-md");
-    $cell.removeClass("hidden-md");
-  }
-
-  function hideColumnInSmallScreen($header, $cell) {
-    $header.addClass("hidden-sm");
-    $cell.addClass("hidden-sm");
+  function displayColumnWhenCollapseMenu($columns) {
+    $columns.removeClass("ui-hidden");
   }
   
   return {
@@ -53,6 +46,7 @@ function CaseListToolKit() {
       var caseSortMenu = $('.js-case-widget-column-header');
       var caseEntry = $('.js-case-item-header').first();
       var noEntry = caseEntry.length == 0;
+      this.showHideColumnWhenMenuToggle();
       if (noEntry) {
         $(caseSortMenu).hide();
       } else {
@@ -64,10 +58,6 @@ function CaseListToolKit() {
         $(header).outerWidth($(cell).outerWidth());
       });
      
-      $.each(caseSortMenu.children('.js-unsortable-header-cell'), function(i, header) {
-          var cell = $(caseEntry).children().get(i);
-          $(header).outerWidth($(cell).outerWidth());
-      });
     },
     
     setupScrollbar : function() {
@@ -75,43 +65,20 @@ function CaseListToolKit() {
       caseWidget.setUpScrollbar();
     },
     
-    responsiveInLargeScreen : function(){
-      this.setupHeader();
-      this.setupScrollbar();
-    },
-    
-    responsiveInMediumScreen : function(){
+    showHideColumnWhenMenuToggle: function() {
       var $mainMenu = $('.js-left-sidebar');
-      var $creatorColumnHeader = $('.js-creator-column-header');
-      var $creatorCell = $('.js-creator-cell');
-
-      if ($mainMenu.hasClass('in')) {
-        hideColumnInMediumScreen($creatorColumnHeader, $creatorCell);
+      var remainingWidth = $('body').width() - $mainMenu.outerWidth() - 75;//exclude padding and scroll bar
+      var $hiddenColumns = $('.js-hidden-when-expand-menu');
+      if (remainingWidth < 1024 && $mainMenu.hasClass('in')) {
+        hideColumnWhenExpandMenu($hiddenColumns);
       } else {
-        displayColumnInMediumScreen($creatorColumnHeader, $creatorCell);
+        displayColumnWhenCollapseMenu($hiddenColumns);
       }
-      this.setupHeader();
-      this.setupScrollbar();
-    },
-  
-    responsiveInSmallScreen : function() {
-      var $creatorColumnHeader = $('.js-creator-column-header');
-      var $creatorCell = $('.js-creator-cell');
-      hideColumnInSmallScreen($creatorColumnHeader, $creatorCell);
-
-      this.setupHeader();
-      this.setupScrollbar();
     },
     
     responsive : function() {
-      if (viewPort.isMediumScreen()) {
-        this.responsiveInMediumScreen();
-      } else if (viewPort.isSmallScreen()) {
-        this.responsiveInSmallScreen();
-      } else {
         this.setupHeader();
         this.setupScrollbar();
-      }
     }
   }
 }

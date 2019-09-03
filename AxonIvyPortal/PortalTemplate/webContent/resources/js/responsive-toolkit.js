@@ -91,13 +91,13 @@ function CaseListLargeScreenHandler() {
 function CaseListMediumScreenHandler() {
   this.updateMainContainer = function(){
     var caseListToolKit = CaseListToolKit();
-    caseListToolKit.responsiveInMediumScreen();
+    caseListToolKit.responsive();
   }
 };
 
 function CaseListSmallScreenHandler() {
   this.updateMainContainer = function(){
     var caseListToolKit = CaseListToolKit();
-    caseListToolKit.responsiveInSmallScreen();
+    caseListToolKit.responsive();
   }
 };

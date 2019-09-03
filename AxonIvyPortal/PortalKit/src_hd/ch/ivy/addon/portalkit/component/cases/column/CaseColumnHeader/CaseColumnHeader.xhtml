@@ -10,6 +10,7 @@
 	<cc:attribute name="sortedField" />
 	<cc:attribute name="sortable" />
 	<cc:attribute name="value" />
+    <cc:attribute name="responsiveStyleClass" default="u-hidden-sm-down"/>
 </cc:interface>
 
 <cc:implementation>
@@ -22,7 +23,7 @@
 	<c:set var="value" value="#{cc.attrs.value}" />
 
 	<f:event listener="#{data.setDataModel(dataModel)}" type="preRenderComponent" />
-	<p:commandLink id="#{id}" styleClass="#{styleClass} #{dataModel.sortField eq sortedField ? 'is-selected' : ''}" 
+	<p:commandLink id="#{id}" styleClass="#{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass} #{dataModel.sortField eq sortedField ? 'is-selected' : ''}" 
 		update="#{componentToBeUpdated} #{p:component('widget-column-header')} #{p:component('case-list')} #{p:component('case-list-scroller')}"
 		rendered="#{dataModel.isSelectedColumn(sortedField)}" oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader()">
 		<f:actionListener binding="#{logic.sort(sortedField, dataModel.sortField eq sortedField and !dataModel.isSortDescending())}" />
@@ -31,7 +32,7 @@
 		<i class="sort-icon fa fa-angle-down" jsf:rendered="#{dataModel.sortField eq sortedField and dataModel.isSortDescending()}" />
 		<i class="sort-icon fa fa-angle-up" jsf:rendered="#{dataModel.sortField eq sortedField and !dataModel.isSortDescending()}" />
 	</p:commandLink>
-	<h:panelGroup rendered="#{sortable ne true}" styleClass="#{styleClass} case-list-unsortable-header-cell">
+	<h:panelGroup rendered="#{sortable ne true}" styleClass="#{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass} case-list-unsortable-header-cell">
 		<h:outputText value="#{value}" />
 	</h:panelGroup>
 </cc:implementation>
