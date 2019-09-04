@@ -103,7 +103,7 @@ public class UserUtils {
         }
       }
   
-      return filterUsers;
+      return filterUsers.stream().sorted(Comparator.comparing(IUser::getDisplayName)).collect(Collectors.toList());
     });
   }
   
