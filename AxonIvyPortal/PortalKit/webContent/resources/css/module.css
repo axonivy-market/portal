@@ -2955,7 +2955,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
     text-align: left !important;
   }
   .dialog-closing-information, .admin-ui-dialog, .app-dialog, .select-icon-dialog, .application-selection-dialog, .setting-dialog, .project-info-dialog, .change-password-dialog,
-  .language-setting-dialog, .applications-email-setting-dialog, .deputy-dialog, .absence-settings-dialog, .add-new-absence-dialog {
+  .language-setting-dialog, .deputy-dialog, .absence-settings-dialog, .add-new-absence-dialog {
     width: 96vw !important;
   }
   .task-template-container, .task-template-button {
@@ -2963,8 +2963,8 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   }
   .applications-email-setting-dialog .ui-dialog-content.ui-widget-content {
     padding: 1rem !important;
+    overflow: unset !important;
   }
-  
 }
 @media screen and (min-width: 40.063em) and (max-width: 64.062em) {
   .admin-ui-dialog, .deputy-dialog, .absence-settings-dialog {
@@ -3212,6 +3212,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 /********************************** END LANGUAGE SETTING DIALOG **********************************/
 
 /********************************** EMAIL SETTING DIALOG **********************************/
+
 @media screen and (min-width: 41em) {
   .applications-email-setting-dialog {
     min-width: 420px !important;
@@ -3220,17 +3221,29 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 @media screen and (max-width: 40em) {
   .applications-email-setting-dialog {
-    width: 80% !important;
-    height: 340px !important;
-    overflow: auto;
-    z-index: 9999 !important;
+    min-width: 300px !important;
+    height: 345px !important;
+    margin-left: 10px;
+    margin-right: 10px;
   }
   
   .applications-email-setting-form {
-    overflow: auto;
-    height: 280px
+    height: 260px;
+    overflow: none !important;
   }
-}
+  
+  .applications-email-setting-dialog .ui-dialog .ui-dialog-content{
+     overflow: unset !important;
+  } 
+  
+  .email-setting-component {
+    max-height: 235px;
+    overflow: auto;
+    margin-bottom: 10px;
+  } 
+ 
+} 
+
 .applications-email-setting-dialog .email-setting-container {
   overflow-y: auto;
   min-height: 200px;
@@ -3241,7 +3254,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 .applications-email-setting-dialog .daily-summary-checkbox {
-  min-width: 180px;
+  width: 98%;
 }
 
 .applications-email-setting-dialog .ui-dialog-footer.u-dialog-footer.u-email-dialog-footer {
@@ -3258,9 +3271,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   width: 100%;
 }
 
-.daily-summary-checkbox {
-  width: calc(100% - 3px) !important;
-}
 .daily-summary-checkbox .ui-selectcheckboxmenu-label {
   padding-left: 3px !important;
 }
