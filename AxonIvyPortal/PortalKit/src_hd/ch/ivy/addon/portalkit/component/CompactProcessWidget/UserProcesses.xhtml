@@ -82,7 +82,7 @@
     <h:form prependId="false">
       <div class="field-group ui-g">
         <div class="ui-g-3 ui-sm-12 field-group-label">
-          <p:outputLabel id="process-type-label" styleClass="ui-vertical-align-sub"
+          <p:outputLabel id="process-type-label" styleClass="ui-line-height-2"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processType')}" for="process-type" />
         </div>
         <div class="ui-g-7 ui-sm-12">
@@ -102,7 +102,7 @@
           <div class="field-group ui-g">
             <div class="ui-g-3 ui-sm-12 field-group-label">
               <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}"
-                styleClass="ui-vertical-align-sub" for="new-process-name" />
+                styleClass="ui-line-height-2" for="new-process-name" />
             </div>
             <div class="ui-g-9 ui-sm-12">
               <p:autoComplete id="new-process-name" required="true"
@@ -134,7 +134,7 @@
           <div class="field-group ui-g">
             <div class="ui-g-3 ui-sm-12 field-group-label">
               <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}"
-                styleClass="ui-vertical-align-sub" for="external-process-name" />
+                styleClass="ui-line-height-2" for="external-process-name" />
             </div>
             <div class="ui-g-9 ui-sm-12">
               <p:inputText id="external-process-name" value="#{compactProcessWidgetBean.editingProcess.processName}"
@@ -163,7 +163,7 @@
       </h:panelGroup>
       <div class="field-group ui-g">
         <div class="ui-g-3 field-group-label">
-          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/icon')}" styleClass="ui-vertical-align-sub" />
+          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/icon')}" styleClass="ui-line-height-2" />
         </div>
         <div class="ui-g-9">
           <ic:ch.ivy.addon.portalkit.component.IconSelection value="#{compactProcessWidgetBean.editingProcess.icon}" />
