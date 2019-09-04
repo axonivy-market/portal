@@ -23,11 +23,6 @@
 				</listitem>
 				<listitem>
 					<para>
-						Case template
-					</para>
-				</listitem>
-				<listitem>
-					<para>
 						Task list template
 					</para>
 				</listitem>
@@ -368,21 +363,6 @@
 					</para>
 				</listitem>
 			</orderedlist>
-		</sect3>
-	</sect2>
-	<sect2 xml:id="axonivyportal.components.layouttemplates.casetemplate">
-		<title>Case template</title>
-		<para>
-			Case template is similar to Task Template in both UI and usage. The difference is it is used for displaying case details functionality.
-		</para>
-		<sect3 xml:id="axonivyportal.components.layouttemplates.casetemplate.howtousecasetemplate">
-			<title>How to use case template</title>
-			<para>
-				Create a new HTML User Dialog and then use <code>ui:composition</code> to define template which you use inside.
-				<para>
-					<code>&lt;ui:composition template="/layouts/CaseTemplate.xhtml"&gt;</code>
-				</para>
-			</para>
 		</sect3>
 	</sect2>
 	<sect2 xml:id="axonivyportal.components.layouttemplates.defaulthomepatetemplate">
