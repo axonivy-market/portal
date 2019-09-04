@@ -73,7 +73,7 @@ public class SubstituteNode {
       List<IUser> filteredUsers = users.stream()
           .filter(user -> StringUtils.containsIgnoreCase(user.getDisplayName(), query) || StringUtils.containsIgnoreCase(user.getMemberName(), query))
           .collect(Collectors.toList());
-      filteredUsers.set(0, null);
+      filteredUsers.add(0, null);
       return filteredUsers;
     });
   }
