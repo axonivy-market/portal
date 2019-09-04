@@ -4,14 +4,23 @@ var storageType = detectStorage();
 
 var Portal = {
   init : function(responsiveToolkit, updateFlag) {
-    typeof(updateFlag) == "undefined" ? false : updateFlag;
     if ($('form.login-form').size() > 0) {
       return;
     }
     updateMainMenuMode();
+    if (mainMenuMode === "expanded") {
+      $('.js-left-sidebar').addClass('in');
+    }
 
     // Update menuitem when access page by direct link
     MainMenu.init(responsiveToolkit);
+    
+    // Update screen when window size is changed
+    $(window).resize(function() {
+      responsiveToolkit.updateLayoutWithoutAnimation();
+    });
+
+    responsiveToolkit.updateLayoutWithoutAnimation();
     this.updateLayoutContent();
   },
   
