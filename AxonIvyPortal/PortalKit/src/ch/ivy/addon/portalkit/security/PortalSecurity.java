@@ -26,6 +26,7 @@ public enum PortalSecurity {
     private static final String ADMIN = "admin";
     private static final String DEMO = "demo";
     private static final String GUEST = "guest";
+    private static final String DEVELOPER = "Developer";
     private Username() {}
   }
   
@@ -62,6 +63,24 @@ public enum PortalSecurity {
             IPermission.USER_CREATE_OWN_SUBSTITUTE,
             IPermission.USER_DELETE_OWN_SUBSTITUTE,
             IPermission.USER_READ_OWN_SUBSTITUTIONS);
+  
+    private static final List<PortalPermission> DEVELOPER_USER_ADDTIONAL = Arrays.asList(
+            PortalPermission.TASK_WRITE_ACTIVATOR_OWN_TASKS,
+            PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS,
+            PortalPermission.STATISTIC_ADD_DASHBOARD_CHART,
+            PortalPermission.STATISTIC_ANALYZE_TASK,
+            PortalPermission.EXPRESS_CREATE_WORKFLOW,
+            PortalPermission.ACCESS_FULL_PROCESS_LIST,
+            PortalPermission.ACCESS_FULL_TASK_LIST,
+            PortalPermission.ACCESS_FULL_CASE_LIST,
+            PortalPermission.ACCESS_FULL_STATISTICS_LIST,
+            PortalPermission.SHOW_ALL_TASKS_OF_CASE,
+            PortalPermission.SHOW_CASE_DETAILS,
+            PortalPermission.TASK_CASE_ADD_NOTE,
+            PortalPermission.TASK_CASE_SHOW_MORE_NOTE,
+            PortalPermission.TASK_DISPLAY_RESET_ACTION,
+            PortalPermission.TASK_DISPLAY_RESERVE_ACTION,
+            PortalPermission.TASK_DISPLAY_DELEGATE_ACTION);
     private Permissions() {}
   }
 
@@ -92,6 +111,11 @@ public enum PortalSecurity {
         for (IPermission permission : Permissions.GUEST_USER_DENIED) {
           portalApplication.getSecurityDescriptor().denyPermission(permission, guestUser);
         }
+      }
+
+      IUser developerUser = securityContext.findUser(Username.DEVELOPER);
+      if (developerUser != null) {
+        grantPermissionsToForSecurityMember(Permissions.DEVELOPER_USER_ADDTIONAL, developerUser);
       }
     }
   }
