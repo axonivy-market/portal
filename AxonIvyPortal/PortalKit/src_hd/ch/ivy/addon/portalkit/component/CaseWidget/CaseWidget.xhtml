@@ -47,7 +47,7 @@
         </h:panelGroup>
       </h:panelGroup>
 
-      <h:panelGroup id="filter-container" styleClass="filter-container js-filter-container"
+      <h:panelGroup id="filter-container" styleClass="filter-container js-filter-container ui-g-12 u-no-padding-top"
         rendered="#{!cc.attrs.hideCaseFilter}">
         <h:panelGroup id="filter-selection-container" styleClass="filter-selection-container-group"
           rendered="#{(not empty data.privateFilters or not empty data.publicFilters)}">
@@ -115,7 +115,7 @@
             <cc:renderFacet name="caseFilter" />
           </h:panelGroup>
         </h:panelGroup>
-        <h:panelGroup id="filter-add-container" styleClass="filter-add-container">
+        <h:panelGroup id="filter-add-container" styleClass="filter-add-container u-hidden-sm-down">
           <p:commandButton id="filter-add-action" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/more')}"
             styleClass="filter-add-button" icon="fa fa-caret-down" iconPos="right" type="button" />
           <p:overlayPanel id="filter-add-panel" styleClass="filter-add-panel" for="filter-add-action" my="left top"
@@ -134,7 +134,7 @@
             </h:form>
           </p:overlayPanel>
         </h:panelGroup>
-        <h:panelGroup id="filter-save-container">
+        <h:panelGroup id="filter-save-container" styleClass="u-hidden-sm-down">
           <p:commandButton id="filter-save-action"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" styleClass="filter-add-button"
             icon="fa fa-save" iconPos="right" update="save-filter-set-dialog" resetValues="true"

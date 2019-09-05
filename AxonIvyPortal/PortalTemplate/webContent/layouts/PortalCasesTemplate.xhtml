@@ -56,14 +56,22 @@
             </f:facet>
 
             <f:facet name="caseFilter">
-              <ui:fragment rendered="#{useOverrideFilter}">
-                <ui:insert name="caseFilter" />
-              </ui:fragment>
-
-              <ui:fragment rendered="#{not useOverrideFilter}">
-                <ic:ch.ivy.addon.portalkit.component.cases.filter.DefaultCaseFilters
-                  dataModel="#{caseView.getDataModel()}" />
-              </ui:fragment>
+               <div class="ui-g-12 u-hidden-md-up">
+                <p:commandLink id="toggle-case-filter" global="false" onclick="caseWidget.toggleTaskFilter(this);caseWidget.setUpScrollbar();">
+                  <i class="fa fa-plus-circle ui-state-disabled u-padding-right-5" />
+                  <h:outputText value="#{caseView.dataModel.selectedFilters.size()} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/numberOfSelectedFilter')}" />
+                </p:commandLink>
+              </div>
+              <div id="toggle-case-filter-container" class="ui-g u-hidden-sm-down js-case-filter-container">
+                <ui:fragment rendered="#{useOverrideFilter}">
+                  <ui:insert name="caseFilter" />
+                </ui:fragment>
+  
+                <ui:fragment rendered="#{not useOverrideFilter}">
+                  <ic:ch.ivy.addon.portalkit.component.cases.filter.DefaultCaseFilters
+                    dataModel="#{caseView.getDataModel()}" />
+                </ui:fragment>
+              </div>
             </f:facet>
           </ic:ch.ivy.addon.portalkit.component.CaseWidget>
         </div>
