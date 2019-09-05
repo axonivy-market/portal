@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.bo;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -73,7 +72,8 @@ public class SubstituteNode {
     return IvyExecutor.executeAsSystem(() -> {
       List<IUser> filteredUsers = users.stream()
           .filter(user -> StringUtils.containsIgnoreCase(user.getDisplayName(), query) || StringUtils.containsIgnoreCase(user.getMemberName(), query))
-          .sorted(Comparator.comparing(IUser::getDisplayName)).collect(Collectors.toList());
+          .sorted((first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName()))
+          .collect(Collectors.toList());
       filteredUsers.add(0, null);
       return filteredUsers;
     });
