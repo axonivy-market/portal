@@ -72,10 +72,8 @@
     <ui:define name="footer">
       <script type="text/javascript">
               $(function() {
-                var simpleLargeScreen = new CaseListLargeScreenHandler();
-                var simpleMediumScreen = new CaseListMediumScreenHandler();
-                var simpleSmallScreen = new CaseListSmallScreenHandler();
-                var responsiveToolkit = ResponsiveToolkit(simpleLargeScreen, simpleMediumScreen, simpleSmallScreen);
+                var simpleScreen = new CaseListScreenHandler();
+                var responsiveToolkit = ResponsiveToolkit(simpleScreen);
                 Portal.init(responsiveToolkit);
               });
             </script>
