@@ -72,6 +72,7 @@ public class SubstituteNode {
     return IvyExecutor.executeAsSystem(() -> {
       List<IUser> filteredUsers = users.stream()
           .filter(user -> StringUtils.containsIgnoreCase(user.getDisplayName(), query) || StringUtils.containsIgnoreCase(user.getMemberName(), query))
+          .sorted((first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName()))
           .collect(Collectors.toList());
       filteredUsers.add(0, null);
       return filteredUsers;
