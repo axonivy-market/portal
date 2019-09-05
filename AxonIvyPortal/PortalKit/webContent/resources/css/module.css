@@ -943,6 +943,12 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   padding: 0 10px;
 }
 
+@media (max-width: 991px) {
+  .case-header-action-cell, .task-header-action-cell {
+    border-left: none;
+  }
+}
+
 .case-header-action-cell .action-item {
   margin: auto;
   padding: 5px 10px;
