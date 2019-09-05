@@ -67,12 +67,12 @@
 
     <ui:define name="footer">
       <script type="text/javascript">
-        $(function() {
-          var simpleScreen = new TaskListScreenHandler();
-          var responsiveToolkit = ResponsiveToolkit(simpleScreen, simpleScreen, simpleScreen);
-          Portal.init(responsiveToolkit);
-        });
-      </script>
+              $(function() {
+                var simpleScreen = new TaskListScreenHandler();
+                var responsiveToolkit = ResponsiveToolkit(simpleScreen);
+                Portal.init(responsiveToolkit);
+              });
+            </script>
     </ui:define>
   </ui:composition>
 </h:body>

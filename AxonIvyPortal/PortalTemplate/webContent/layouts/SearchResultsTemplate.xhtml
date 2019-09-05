@@ -136,10 +136,8 @@
           var $selectedTab = $("#search-results-tabview").find(".ui-tabs-panel").filter(function() {return $(this).css('display') == 'block'});
           var isSelectTaskTab = $selectedTab.find('.js-task-list-container').length != 0;
           if (isSelectTaskTab) {
-            var taskListLargeScreen = new TaskListLargeScreenHandler();
-            var taskListMediumScreen = new TaskListMediumScreenHandler();
-            var taskListSmallScreen = new TaskListSmallScreenHandler();
-            var responsiveToolkit = ResponsiveToolkit(taskListLargeScreen, taskListMediumScreen, taskListSmallScreen);
+            var taskListScreen = new TaskListScreenHandler();
+            var responsiveToolkit = ResponsiveToolkit(taskListScreen);
 
             Portal.init(responsiveToolkit, true);
             taskWidget.setupHeader();
@@ -148,19 +146,14 @@
 
           var isSelectCaseTab = $selectedTab.find('.js-case-default-widget-container').length != 0;
           if (isSelectCaseTab) {
-            var caseListLargeScreen = new CaseListLargeScreenHandler();
-            var caseListMediumScreen = new CaseListMediumScreenHandler();
-            var caseListSmallScreen = new CaseListSmallScreenHandler();
-            var responsiveToolkit = ResponsiveToolkit(caseListLargeScreen, caseListMediumScreen, caseListSmallScreen);
+            var caseListScreen = new CaseListScreenHandler();
+            var responsiveToolkit = ResponsiveToolkit(caseListScreen);
 
             Portal.init(responsiveToolkit, true);
             caseWidget.setupHeader();
             return;
           }
 
-          var simpleScreen = new SimpleScreen();
-          var responsiveToolkit = ResponsiveToolkit(simpleScreen, simpleScreen, simpleScreen);
-          Portal.init(responsiveToolkit, true);
         }
       </script>
     </ui:define>

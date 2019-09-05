@@ -1,40 +1,20 @@
  "use strict";
 var animateDuration = 0;
-function ResponsiveToolkit(largeScreenToolkit, mediumScreenToolkit, smallScreenToolkit) {
+function ResponsiveToolkit(responsiveToolkit) {
   var VALID_METHOD = "updateMainContainer";
 
   function validateArguments() {
 
     var errorMessageFormat = "{0} have to implement {1} method";
 
-    if (!largeScreenToolkit.hasOwnProperty(VALID_METHOD)) {
-      throw Error(errorMessageFormat.replace("{0}", "largeScreenToolkit").replace("{1}", VALID_METHOD));
-    }
-
-    if (!mediumScreenToolkit.hasOwnProperty(VALID_METHOD)) {
-      throw Error(errorMessageFormat.replace("{0}", "mediumScreenToolkit").replace("{1}", VALID_METHOD));
-
-    }
-
-    if (!smallScreenToolkit.hasOwnProperty(VALID_METHOD)) {
-      throw Error(errorMessageFormat.replace("{0}", "smallScreenToolkit").replace("{1}", VALID_METHOD));
+    if (!responsiveToolkit.hasOwnProperty(VALID_METHOD)) {
+      throw Error(errorMessageFormat.replace("{0}", "responsiveToolkit").replace("{1}", VALID_METHOD));
     }
   }
 
   function updateLayout() {
     validateArguments();
-    if (viewPort.isLargeScreen()) {
-      largeScreenToolkit.updateMainContainer();
-    }
-
-    if (viewPort.isMediumScreen()) {
-      mediumScreenToolkit.updateMainContainer();
-    }
-
-    if (viewPort.isSmallScreen()) {
-      smallScreenToolkit.updateMainContainer();
-    }
-
+    responsiveToolkit.updateMainContainer();
   }
 
   return {
@@ -59,45 +39,10 @@ function TaskListScreenHandler() {
   }
 };
 
-function TaskListLargeScreenHandler() {
-  this.updateMainContainer = function(){
-    var taskListToolKit = TaskListToolKit();
-    taskListToolKit.responsive();
-  }
-};
-
-function TaskListMediumScreenHandler() {
-  this.updateMainContainer = function(){
-    var taskListToolKit = TaskListToolKit();
-    taskListToolKit.responsive();
-  }
-};
-
-function TaskListSmallScreenHandler() {
-    this.updateMainContainer = function(){
-      var taskListToolKit = TaskListToolKit();
-      taskListToolKit.responsive();
-   }
-};
-
 /***************************Handle responsive for Case List**********************************/
-function CaseListLargeScreenHandler() {
+function CaseListScreenHandler() {
   this.updateMainContainer = function(){
     var caseListToolKit = CaseListToolKit();
     caseListToolKit.responsive();
   }
 }
-
-function CaseListMediumScreenHandler() {
-  this.updateMainContainer = function(){
-    var caseListToolKit = CaseListToolKit();
-    caseListToolKit.responsive();
-  }
-};
-
-function CaseListSmallScreenHandler() {
-  this.updateMainContainer = function(){
-    var caseListToolKit = CaseListToolKit();
-    caseListToolKit.responsive();
-  }
-};
