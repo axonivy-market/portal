@@ -40,7 +40,7 @@
           <h:form id="case-basic-filter-form" onsubmit="return false;">
             <ic:ch.ivy.addon.portalkit.component.Filter id="case-filter-component" keywordStoresIn="#{data.dataModel.criteria.keyword}"
               updateComponent="#{cc.clientId}:case-list" icon="fa fa-filter"
-              listener="#{data.dataModel.onKeywordChange()}"
+              listener="#{data.dataModel.onKeywordChange()}" styleClass="widget-header-filter-input"
               placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
               onCompletedCallback="caseWidget.setUpScrollbar();caseWidget.setupHeader();" />
           </h:form>
