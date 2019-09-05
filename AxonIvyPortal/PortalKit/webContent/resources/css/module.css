@@ -513,8 +513,8 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .task-widget .filter-selection-container,
 .case-widget-container .filter-selection-container{
   display: inline-block;
-  height: 35px;
-  line-height: 35px;
+  height: 30px;
+  line-height: 30px;
   background: none;
   min-width: 0;
   border: solid transparent 1px;
