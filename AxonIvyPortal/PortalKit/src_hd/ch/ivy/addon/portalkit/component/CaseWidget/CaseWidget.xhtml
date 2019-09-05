@@ -93,7 +93,7 @@
       <h:panelGroup styleClass="widget-header-content-filter mod-expanded-mode" id="expanded-mode-filter-view">
         <h:form id="case-basic-filter-form" onsubmit="return false;">
           <ic:ch.ivy.addon.portalkit.component.Filter keywordStoresIn="#{data.dataModel.queryCriteria.keyword}"
-            updateComponent="#{cc.clientId}:case-list" icon="fa fa-filter"
+            updateComponent="#{cc.clientId}:case-list" icon="fa fa-filter" styleClass="widget-header-filter-input"
             placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
             onCompletedCallback="caseWidget.setUpScrollbar();caseWidget.setupHeader();" />
         </h:form>
