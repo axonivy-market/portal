@@ -4,6 +4,14 @@ function CaseWidget() {
     caseListToolKit.setupHeader();
   }
   
+  this.toggleTaskFilter = function(toggler) {
+    $('.js-case-filter-container').toggleClass('u-hidden-sm-down');
+    var toggleIcon = $(toggler).find('i.fa');
+    if(toggleIcon !== undefined) {
+      toggleIcon.toggleClass('fa-plus-circle, fa-minus-circle');
+    }
+  }
+  
   this.setUpScrollbar = function() {
     var childElements = $('.js-case-item');
     if (childElements.length > 0) {
