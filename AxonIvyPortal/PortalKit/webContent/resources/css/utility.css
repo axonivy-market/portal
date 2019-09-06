@@ -160,3 +160,27 @@
 .u-mar-right-20 {
   margin-right: 20px !important;
 }
+
+@media screen and (max-width: 40em) {
+	.ui-sm-float-left {
+		float: left !important;
+	}
+	.ui-sm-float-right {
+		float: right !important;
+	}
+	.ui-sm-hidden {
+		display: none !important;
+	}
+}
+
+@media screen and (min-width: 40.063em) and (max-width: 64.062em) {
+	.ui-md-float-left {
+		float: left !important;
+	}
+	.ui-md-float-right {
+		float: right !important;
+	}
+	.ui-md-hidden {
+		display: none !important;
+	}
+}
