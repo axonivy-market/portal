@@ -21,6 +21,11 @@
   width: 98%;
 }
 
+.process-property-input-description {
+  width: 98%;
+  padding-top: 0px !important;
+}
+
 .process-flow-container {
   border: none;
   margin-left: -10px;
