@@ -757,11 +757,7 @@
 		<sect2>
 			<title xml:id="axonivyportal.installation.migrationnotes.7.4">Migrate to 7.4.0</title>
 			<para>
-				From 7.4.0, CaseTemplate is removed from Portal. If you are using CaseTemplate, please do following steps to migrate to TaskTemplate
-				<itemizedlist>
-					<listitem>1. Add parameter <code>task</code> to use task name as template title </listitem>
-					<listitem>Move content of section <code>caseForm</code> of CaseTemplate to section <code>taskForm</code> of TaskTemplate</listitem>
-				</itemizedlist>
+				From 7.4.0, CaseTemplate is deprecated and we don't support it anymore. If you are using CaseTemplate, please do consider to migrate to TaskTemplate manually.
 			</para>
 		</sect2>
 		<sect2>
