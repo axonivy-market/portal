@@ -863,10 +863,7 @@ _:-ms-fullscreen, :root .express-task-name,
 _:-ms-fullscreen, :root .express-input-area,
 _:-ms-fullscreen, :root .express-input-rows,
 _:-ms-fullscreen, :root .express-input-field-required,
-_:-ms-fullscreen, :root .express-input-area-required {
-  padding-top: 6px !important;
-}
-
+_:-ms-fullscreen, :root .express-input-area-required,
 _:-ms-fullscreen, :root .express-task-type .ui-selectonemenu label.ui-selectonemenu-label,
 _:-ms-fullscreen, :root .express-input-type .ui-selectonemenu label.ui-selectonemenu-label,
 _:-ms-fullscreen, :root .express-data-provider .ui-selectonemenu label.ui-selectonemenu-label {
@@ -882,19 +879,12 @@ _:-ms-fullscreen, :root .express-input-label-container,
 _:-ms-fullscreen, :root .express-input-type {
   padding-top: 0.5em !important;
 }
-
+/* end css for IE 11 */
 .express-process-type,
 .express-user-interface {
   margin-top: 4px !important;
 }
 
-.express-able-to-start,
-.express-process-name,
-.express-process-description,
-.express-default-task-name {
-  padding-top: 0px !important;
- }
- 
 .user-interface-panel.ui-panelgrid tbody tr td {
   padding-bottom: 0px !important;
 }
@@ -904,9 +894,14 @@ _:-ms-fullscreen, :root .express-input-type {
 .express-task-name,
 .express-input-area,
 .express-input-rows,
-.express-upload-file-no-rows {
+.express-upload-file-no-rows,
+.express-able-to-start,
+.express-process-name,
+.express-process-description,
+.express-default-task-name {
   padding-top: 0px !important;
 }
+
 .express-task-type .ui-selectonemenu .ui-selectonemenu-trigger .ui-icon {
   margin-top: 3px !important;
 }
