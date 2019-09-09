@@ -27,9 +27,9 @@
           <div class="ui-g">
             <div class="ui-g-12 ui-md-6 ui-lg-2">
               <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}:"
-                for="InputFieldLabel" />
+                for="InputFieldLabel" styleClass="express-label-right-align" />
             </div>
-            <div class="ui-g-12 ui-md-6 ui-lg-3">
+            <div class="ui-g-12 ui-md-6 ui-lg-3 express-input-label-container">
               <p:inputText id="InputFieldLabel" required="true" value="#{data.createInputFieldTab.label}" 
                 maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}"
                 requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
@@ -37,10 +37,10 @@
             <div class="ui-g-12 ui-md-6 ui-lg-1" />
             <div class="ui-g-12 ui-md-6 ui-lg-2">
               <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputType')}:"
-                for="InputFieldType" styleClass="margin-left-20px" />
+                for="InputFieldType" styleClass="margin-left-20px express-label-right-align" />
             </div>
 
-            <div class="ui-g-12 ui-md-6 ui-lg-3">
+            <div class="ui-g-12 ui-md-6 ui-lg-3 express-input-type">
               <p:selectOneMenu id="InputFieldType" value="#{data.createInputFieldTab.type}"
                 requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputType')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
                 <f:selectItems value="#{formDefinitionBean.inputFormElementTypes}" var="type" itemLabel="#{type.label}"
@@ -52,11 +52,11 @@
             <div class="ui-g-12 ui-md-6 ui-lg-2">
 
               <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}:"
-                for="InputFieldRequired" />
+                for="InputFieldRequired" styleClass="express-label-right-align"/>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-10">
               <p:selectBooleanCheckbox id="InputFieldRequired" 
-                value="#{data.createInputFieldTab.required}" />
+                value="#{data.createInputFieldTab.required}" styleClass="express-input-field-required" />
             </div>
           </div>
         </div>
@@ -88,30 +88,31 @@
           <div class="ui-g">
             <div class="ui-g-12 ui-md-6 ui-lg-2">
               <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}:"
-                for="InputAreaLabel" />
+                for="InputAreaLabel" styleClass="express-label-right-align"/>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-3">
               <p:inputText id="InputAreaLabel" required="true"
                 requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
-                value="#{data.createInputAreaTab.label}" 
+                value="#{data.createInputAreaTab.label}"
+                styleClass="express-input-area"
                 maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" />
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-1" />
             <div class="ui-g-12 ui-md-6 ui-lg-2">
               <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NumberOfRows')}:"
-                for="InputAreaNoRows"/>
+                for="InputAreaNoRows" styleClass="express-label-right-align"/>
             </div>
-            <div class="ui-g-12 ui-md-6 ui-lg-1">
+            <div class="ui-g-12 ui-md-6 ui-lg-1 express-input-rows">
               <p:spinner id="InputAreaNoRows" value="#{data.createInputAreaTab.intSetting}" min="0" max="10" />
             </div>
           </div>
           <div class="ui-g">
             <div class="ui-g-12 ui-md-6 ui-lg-2">
               <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}:"
-                for="InputAreaRequired" />
+                for="InputAreaRequired" styleClass="express-label-right-align"/>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-10">
-              <p:selectBooleanCheckbox id="InputAreaRequired" value="#{data.createInputAreaTab.required}" />
+              <p:selectBooleanCheckbox id="InputAreaRequired" value="#{data.createInputAreaTab.required}" styleClass="express-input-area-required" />
             </div>
           </div>
         </div>
@@ -142,16 +143,16 @@
         <div id="createManyCheckboxGrid" class="ui-g alignLabelTop ">
           <div class="ui-g-12 ui-md-6 ui-lg-5 ui-fluid">
             <div class="ui-g-12 ui-md-6 ui-lg-5">
-              <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/DataProvider')}:" for="DataProvider" />
+              <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/DataProvider')}:" for="DataProvider" styleClass="express-label-right-align" />
             </div>
-            <div class="ui-g-12 ui-md-6 ui-lg-7">
+            <div class="ui-g-12 ui-md-6 ui-lg-7 express-data-provider">
               <p:selectOneMenu id="DataProvider" converter="pojoConverter" value="#{data.selectedDataProvider}" > 
                 <f:selectItems value="#{data.dataProviders}" var="provider" itemLabel="#{provider.name}" itemValue="#{provider}" />
                 <p:ajax update="value-checkbox-label value-checkbox-container" />
               </p:selectOneMenu>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-5">
-              <p:outputLabel styleClass="marginTop6"
+              <p:outputLabel styleClass="marginTop6 express-label-right-align"
                 value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}:" for="ManyCheckboxLabel" />
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-7">
@@ -166,7 +167,7 @@
             <div class="ui-g-12 ui-md-6 ui-lg-4">
               <h:panelGroup id="value-checkbox-label">
                 <p:outputLabel rendered="#{data.selectedDataProvider.name eq ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoDataProvider')}" 
-                  styleClass="marginTop6" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CheckboxFields')}:" />
+                  styleClass="marginTop6 express-label-right-align" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CheckboxFields')}:" />
               </h:panelGroup>
             </div>
             <div class="ui-g-12 ui-md-6 ui-lg-8">
@@ -236,7 +237,7 @@
 
         <div id="createOneRadioGrid" class="ui-g alignLabelTop">
           <div class="ui-g-12 ui-md-6 ui-lg-2">
-            <p:outputLabel styleClass="marginTop6"
+            <p:outputLabel styleClass="marginTop6 express-label-right-align"
               value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}:" for="OneRadioLabel" />
           </div>
           <div class="ui-g-12 ui-md-6 ui-lg-3">
@@ -248,7 +249,7 @@
           <div class="ui-g-12 ui-md-6 ui-lg-1" />
           <div class="ui-g-12 ui-md-6 ui-lg-2">
 
-            <p:outputLabel styleClass="marginTop6"
+            <p:outputLabel styleClass="marginTop6 express-label-right-align"
               value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/OptionboxFields')}:" />
 
           </div>
@@ -310,7 +311,7 @@
         </f:facet>
         <div class="ui-g alignLabelTop ui-fluid" id="createFileUploadPanelGrid">
           <div class="ui-g-12 ui-md-6 ui-lg-2">
-            <p:outputLabel styleClass="marginTop6"
+            <p:outputLabel styleClass="marginTop6 express-label-right-align"
               value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}:" for="FileUploadLabel" />
           </div>
           <div class="ui-g-12 ui-md-6 ui-lg-3">
@@ -321,7 +322,7 @@
           </div>
           <div class="ui-g-12 ui-md-6 ui-lg-1"></div>
           <div class="ui-g-12 ui-md-6 ui-lg-2">
-            <p:outputLabel styleClass="marginTop6"
+            <p:outputLabel styleClass="marginTop6 express-label-right-align"
               value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/AllowedFiletypes')}:" for="FileFormats" />
           </div>
           <div class="ui-g-12 ui-md-6 ui-lg-4">
@@ -335,9 +336,9 @@
         <div class="ui-g">
           <div class="ui-g-12 ui-md-6 ui-lg-2">
             <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NumberOfFiles')}"
-              for="FileUploadNoRows" />
+              for="FileUploadNoRows" styleClass="express-label-right-align"/>
           </div>
-          <div class="ui-g-12 ui-md-6 ui-lg-1">
+          <div class="ui-g-12 ui-md-6 ui-lg-1 express-upload-file-no-rows">
             <p:spinner id="FileUploadNoRows" value="#{data.createFileUploadTab.intSetting}" min="0" max="10" />
           </div>
           <div class="ui-g-12 ui-md-6 ui-lg-10"></div>

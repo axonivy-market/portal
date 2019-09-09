@@ -25,9 +25,9 @@
             <!-- PROCESS TYPE -->
             <div class="ui-fluid">
               <div class="ui-g alignLabelTop">
-                <div class="ui-g-12 ui-md-12 ui-lg-2">
+                <div class="ui-g-12 ui-md-12 ui-lg-2 express-process-type">
                   <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processtype')}:"
-                    for="process-type" />
+                    for="process-type" styleClass="express-label-right-align"/>
                 </div>
                 <div class="ui-g-12 ui-md-6 ui-lg-4">
                   <p:selectOneRadio 
@@ -45,12 +45,12 @@
                 </div>
 
                 <!-- UI SETTING -->
-                <div class="ui-g-12 ui-md-12 ui-lg-2">
+                <div class="ui-g-12 ui-md-12 ui-lg-2 express-user-interface">
                   <p:outputLabel
                     value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/UserInterface')}:"
-                    for="user-interface" />
+                    for="user-interface" styleClass="express-label-right-align"/>
                 </div>
-                <div class="ui-g-12 ui-md-12 ui-lg-3">
+                <div class="ui-g-12 ui-md-12 ui-lg-3 express-user-option">
                   <p:selectOneRadio 
                   	id="user-interface" 
                   	styleClass="radio-group" 
@@ -88,10 +88,10 @@
               <h:panelGroup id="able-to-start-container">
                 <h:panelGroup id="able-to-start-content" layout="block" styleClass="ui-g" rendered="#{data.isDisplayAbleToStart}">
                   <div class="ui-g-12 ui-md-12 ui-lg-2">
-                     <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart')}:" for="able-to-start-responsible" />
+                     <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart')}:" for="able-to-start-responsible" styleClass="express-label-right-align"/>
                   </div>
                   <div class="ui-g-12 ui-md-12 ui-lg-10">
-                    <h:panelGroup id="able-to-start-block" layout="block" styleClass="ui-g-12">
+                    <h:panelGroup id="able-to-start-block" layout="block" styleClass="ui-g-12 express-able-to-start">
                    	  <h:inputHidden 
                         id="able-to-start-responsible"
                         value="#{data.data.processStartResponsiblesDisplayName}" 
@@ -115,7 +115,7 @@
               <!-- PROCESS NAME -->
               <div class="ui-g">
                 <div class="ui-g-12 ui-md-12 ui-lg-2">
-                  <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}:" for="process-name" />
+                  <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}:" for="process-name" styleClass="express-label-right-align"/>
                 </div>
                 <div class="ui-g-12 ui-md-12 ui-lg-10">
                   <p:inputText 
@@ -136,13 +136,14 @@
                 <div class="ui-g-12 ui-md-12 ui-lg-2">
                   <p:outputLabel
                     value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processdescription')}:"
-                    for="processdescription" />
+                    for="processdescription" styleClass="express-label-right-align"/>
                 </div>
                 <div class="ui-g-12 ui-md-12 ui-lg-10">
                   <p:inputTextarea 
                     id="processdescription" 
                     value="#{data.data.processDescription}" 
                     maxlength="60"
+                    styleClass="express-process-description"
                     requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processdescription')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
                     <p:ajax event="blur" partialSubmit="true" process="@this" global="false" />
                   </p:inputTextarea>
@@ -165,9 +166,9 @@
                   <div class="ui-g">
                     <!-- TASK TYPE -->
                     <div class="ui-g-12 ui-md-12 ui-lg-2">
-                      <p:outputLabel id="task-type-label" for="task-type" value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/TaskType')}:" />
+                      <p:outputLabel id="task-type-label" for="task-type" value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/TaskType')}:" styleClass="express-label-right-align"/>
                     </div>
-                    <div class="ui-g-12 ui-md-12 ui-lg-3">
+                    <div class="ui-g-12 ui-md-12 ui-lg-3 express-task-type">
                       <p:selectOneMenu 
                         id="task-type" 
                         required="true" 
@@ -187,12 +188,13 @@
                       <!-- TASK DESCRIPTION -->
 
                       <p:outputLabel id="task-description-label" for="task-description"
-                        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/taskDescription')}:" />
+                        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/taskDescription')}:" styleClass="express-label-right-align"/>
                     </h:panelGroup>
                     <h:panelGroup styleClass="ui-g-12 ui-md-12 ui-lg-3" rendered="#{gtask.taskType ne 'EMAIL'}">
                       <p:inputText 
                         id="task-description" 
                         value="#{gtask.description}"
+                        styleClass="express-task-description"
                         requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AllTasks/taskDescription')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
                         <p:ajax event="blur" partialSubmit="true" process="@this" global="false" />
                       </p:inputText>
@@ -204,7 +206,7 @@
                     <h:panelGroup layout="block" styleClass="ui-g-12 ui-md-12 ui-lg-2" rendered="#{gtask.taskType ne 'EMAIL'}">
                       <!-- TASK NAME -->
                       <p:outputLabel id="task-name-label" for="task-name"
-                        value="#{ivy.cms.co('/Dialogs/agileBPM/define_WF/TaskSubject')}:" />
+                        value="#{ivy.cms.co('/Dialogs/agileBPM/define_WF/TaskSubject')}:" styleClass="express-label-right-align" />
                     </h:panelGroup>
                     <h:panelGroup layout="block" styleClass="ui-g-12 ui-md-12 ui-lg-3" rendered="#{gtask.taskType ne 'EMAIL'}">
                       <p:inputText 
@@ -212,6 +214,7 @@
                         value="#{gtask.subject}" 
                         maxlength="30" 
                         required="true"
+                        styleClass="express-task-name"
                         requiredMessage="#{ivy.cms.co('/Dialogs/agileBPM/define_WF/TaskSubject')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
                         <p:ajax event="blur" partialSubmit="true" process="@this" global="false" />
                       </p:inputText>
@@ -220,7 +223,7 @@
                     <h:panelGroup layout="block" styleClass="ui-g-12 ui-md-12 ui-lg-2" rendered="#{gtask.taskType ne 'EMAIL'}">
                       <!-- RESPONSIBLE -->
                       <p:outputLabel for="task-responsible"
-                        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:" />
+                        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:" styleClass="express-label-right-align" />
                     </h:panelGroup>
                     <h:panelGroup layout="block" id="task-responsible-input-container" styleClass="ui-g-12 ui-md-12 ui-lg-3" rendered="#{gtask.taskType ne 'EMAIL'}">
                       <h:inputHidden 
@@ -245,7 +248,7 @@
                     <h:panelGroup layout="block" styleClass="ui-g-12 ui-md-12 ui-lg-2" rendered="#{gtask.taskType ne 'EMAIL'}">
                       <!-- NUMBER OF VALID DAYS -->
                       <p:outputLabel id="valid-days-label" for="valid-days" rendered="#{gtask.position gt 1}"
-                        value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/DueTimeInDays')}:" />
+                        value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/DueTimeInDays')}:" styleClass="express-label-right-align"/>
                       <p:tooltip for="valid-days-label" id="valid-days-label-tooltip"
                         value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UntilDaysTooltip')}" />
                     </h:panelGroup>
@@ -270,7 +273,7 @@
                     <div class="ui-g-12 ui-md-12 ui-lg-2">
                       <p:outputLabel 
                       	rendered="#{gtask.position >= 1}" 
-                      	for="default-task-responsible"
+                      	for="default-task-responsible" styleClass="express-label-right-align"
                         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:" />
                     </div>
                     <h:panelGroup layout="block" id="default-task-responsible-input-container" styleClass="ui-g-12 ui-md-12 ui-lg-3">
@@ -294,7 +297,7 @@
                       <!-- TASK NAME -->
                       <p:outputLabel 
                       	id="default-task-name-label" 
-                      	for="default-task-name"
+                      	for="default-task-name" styleClass="express-label-right-align"
                         value="#{ivy.cms.co('/Dialogs/agileBPM/define_WF/TaskSubject')}:" />
                     </div>
                     <div class="ui-g-12 ui-md-12 ui-lg-3">
@@ -302,6 +305,7 @@
                       	value="#{gtask.subject}" 
                       	maxlength="30"
                         required="true"
+                        styleClass="express-default-task-name"
                         requiredMessage="#{ivy.cms.co('/Labels/Task')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
                         <p:ajax event="blur" partialSubmit="true" process="@this" global="false" />
                       </p:inputText>
@@ -315,6 +319,7 @@
                         id="default-valid-days-label" 
                         for="default-valid-days"
                         rendered="#{gtask.position gt 1}"
+                        styleClass="express-label-right-align"
                         value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/DueTimeInDays')}:" />
                       <p:tooltip for="default-valid-days-label" id="default-valid-days-label-tooltip"
                         value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UntilDaysTooltip')}" />
