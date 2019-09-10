@@ -17,8 +17,6 @@ Pt0 @GridStep f20 '' #zField
 Pt0 @Alternative f4 '' #zField
 Pt0 @GridStep f2 '' #zField
 Pt0 @CallSub f73 '' #zField
-Pt0 @CallSub f23 '' #zField
-Pt0 @CallSub f6 '' #zField
 Pt0 @CallSub f9 '' #zField
 Pt0 @StartRequest f58 '' #zField
 Pt0 @Alternative f30 '' #zField
@@ -39,7 +37,6 @@ Pt0 @StartRequest f28 '' #zField
 Pt0 @CallSub f62 '' #zField
 Pt0 @GridStep f19 '' #zField
 Pt0 @StartRequest f63 '' #zField
-Pt0 @GridStep f17 '' #zField
 Pt0 @GridStep f11 '' #zField
 Pt0 @StartRequest f70 '' #zField
 Pt0 @StartRequest f76 '' #zField
@@ -68,15 +65,12 @@ Pt0 @PushWFArc f54 '' #zField
 Pt0 @PushWFArc f32 '' #zField
 Pt0 @PushWFArc f61 '' #zField
 Pt0 @PushWFArc f15 '' #zField
-Pt0 @PushWFArc f26 '' #zField
 Pt0 @PushWFArc f34 '' #zField
 Pt0 @PushWFArc f118 '' #zField
 Pt0 @PushWFArc f77 '' #zField
 Pt0 @PushWFArc f67 '' #zField
 Pt0 @PushWFArc f47 '' #zField
-Pt0 @PushWFArc f38 '' #zField
 Pt0 @PushWFArc f36 '' #zField
-Pt0 @PushWFArc f16 '' #zField
 Pt0 @PushWFArc f53 '' #zField
 Pt0 @PushWFArc f95 '' #zField
 Pt0 @PushWFArc f46 '' #zField
@@ -94,6 +88,10 @@ Pt0 @PushWFArc f24 '' #zField
 Pt0 @PushWFArc f5 '' #zField
 Pt0 @PushWFArc f39 '' #zField
 Pt0 @PushWFArc f27 '' #zField
+Pt0 @GridStep f29 '' #zField
+Pt0 @CallSub f42 '' #zField
+Pt0 @PushWFArc f68 '' #zField
+Pt0 @PushWFArc f72 '' #zField
 >Proto Pt0 Pt0 InternalSupportPortalStart #zField
 Pt0 f59 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
@@ -210,49 +208,6 @@ Pt0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f73 172 714 112 44 -40 -8 #rect
 Pt0 f73 @|CallSubIcon #fIcon
-Pt0 f23 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pt0 f23 processCall 'Functional Processes/OpenPortalCases:useView(ch.ivy.addon.portal.generic.view.CaseView)' #txt
-Pt0 f23 doCall true #txt
-Pt0 f23 requestActionDecl '<ch.ivy.addon.portal.generic.view.CaseView view> param;
-' #txt
-Pt0 f23 requestMappingAction 'param.view=in.caseView;
-' #txt
-Pt0 f23 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
-' #txt
-Pt0 f23 responseMappingAction 'out=in;
-' #txt
-Pt0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>OpenPortalCases</name>
-        <nameStyle>15,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Pt0 f23 1952 328 112 48 -49 -12 #rect
-Pt0 f23 @|CallSubIcon #fIcon
-Pt0 f6 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pt0 f6 processCall 'Functional Processes/InitializeCaseDataModel:call()' #txt
-Pt0 f6 doCall true #txt
-Pt0 f6 requestActionDecl '<> param;
-' #txt
-Pt0 f6 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
-' #txt
-Pt0 f6 responseMappingAction 'out=in;
-out.caseDataModel=result.caseDataModel;
-' #txt
-Pt0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>InitializeCaseDataModel</name>
-        <nameStyle>23,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Pt0 f6 1568 330 144 44 -66 -8 #rect
-Pt0 f6 @|CallSubIcon #fIcon
 Pt0 f9 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f9 processCall 'Functional Processes/InitializeTaskDataModel:call()' #txt
 Pt0 f9 doCall true #txt
@@ -718,34 +673,6 @@ Pt0 f63 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f63 @C|.responsibility Everybody #txt
 Pt0 f63 65 721 30 30 -50 17 #rect
 Pt0 f63 @|StartRequestIcon #fIcon
-Pt0 f17 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
-' #txt
-Pt0 f17 actionTable 'out=in;
-' #txt
-Pt0 f17 actionCode 'import java.util.Map;
-import org.primefaces.extensions.util.json.GsonConverter;
-import ch.ivy.addon.portalkit.dto.GlobalCaseId;
-import ch.ivy.addon.portal.generic.view.CaseView;
-
-Map caseInfor = GsonConverter.getGson().fromJson(in.parameters,Map.class) as Map;
-long caseId = Long.parseLong(caseInfor.get("caseId") as String); 
-String caseName = caseInfor.get("caseName") as String;
-String title = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/relatedCaseHeader", [caseId.toString(), caseName]);
-
-in.caseDataModel.setCaseId(caseId);
-out.caseView = CaseView.create().dataModel(in.caseDataModel).withTitle(title).hideCaseFilter(true).autoSelectIfExists(GlobalCaseId.caseId(caseId).build()).buildNewView();' #txt
-Pt0 f17 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pt0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>prepare case view</name>
-        <nameStyle>17,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Pt0 f17 1796 328 104 48 -46 -4 #rect
-Pt0 f17 @|StepIcon #fIcon
 Pt0 f11 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f11 actionTable 'out=in;
@@ -1167,8 +1094,6 @@ Pt0 f61 284 641 320 640 #arcP
 Pt0 f15 expr in #txt
 Pt0 f15 576 433 576 176 #arcP
 Pt0 f15 0 0.4763694877411137 0 0 #arcLabel
-Pt0 f26 expr out #txt
-Pt0 f26 1900 352 1952 352 #arcP
 Pt0 f34 expr in #txt
 Pt0 f34 outCond 'org.apache.commons.lang3.StringUtils.isNotBlank(in.#callbackUrl)' #txt
 Pt0 f34 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1192,9 +1117,6 @@ Pt0 f47 expr out #txt
 Pt0 f47 472 352 571 438 #arcP
 Pt0 f47 1 528 352 #addKink
 Pt0 f47 0 0.9638478923705887 0 0 #arcLabel
-Pt0 f38 expr out #txt
-Pt0 f38 1712 352 1796 352 #arcP
-Pt0 f38 0 0.5114942528735632 0 -13 #arcLabel
 Pt0 f36 expr in #txt
 Pt0 f36 outCond 'java.util.Objects.equals(ch.ivy.addon.portal.generic.navigation.PortalPage.ERROR_PAGE, in.#portalPage) ' #txt
 Pt0 f36 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1209,20 +1131,6 @@ Pt0 f36 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f36 1374 168 1592 256 #arcP
 Pt0 f36 1 1432 256 #addKink
 Pt0 f36 1 0.37012987012987014 0 -13 #arcLabel
-Pt0 f16 expr in #txt
-Pt0 f16 outCond 'java.util.Objects.equals(ch.ivy.addon.portal.generic.navigation.PortalPage.CASE_DETAIL_FROM_TASK, in.#portalPage)' #txt
-Pt0 f16 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>CASE_DETAIL_FROM_TASK</name>
-        <nameStyle>21
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Pt0 f16 1372 171 1568 352 #arcP
-Pt0 f16 1 1432 352 #addKink
-Pt0 f16 0 1.0 51 12 #arcLabel
 Pt0 f53 expr in #txt
 Pt0 f53 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1299,6 +1207,67 @@ Pt0 f39 1704 448 1796 448 #arcP
 Pt0 f39 0 0.7418894103244236 0 0 #arcLabel
 Pt0 f27 expr in #txt
 Pt0 f27 592 160 776 160 #arcP
+Pt0 f29 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
+' #txt
+Pt0 f29 actionTable 'out=in;
+' #txt
+Pt0 f29 actionCode 'import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import java.util.Map;
+import org.primefaces.extensions.util.json.GsonConverter;
+
+Map caseInfor = GsonConverter.getGson().fromJson(in.parameters,Map.class) as Map;
+long caseId = Long.parseLong(caseInfor.get("caseId") as String); 
+out.caseSelected = ivy.wf.getGlobalContext().getCaseQueryExecutor().getFirstResult(CaseQuery.create().where().caseId().isEqual(caseId)) as ICase;' #txt
+Pt0 f29 security system #txt
+Pt0 f29 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Find case</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f29 1592 330 112 44 -27 -8 #rect
+Pt0 f29 @|StepIcon #fIcon
+Pt0 f42 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f42 processCall 'Functional Processes/OpenPortalCaseDetails:call(ch.ivyteam.ivy.workflow.ICase)' #txt
+Pt0 f42 doCall true #txt
+Pt0 f42 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseData> param;
+' #txt
+Pt0 f42 requestMappingAction 'param.caseData=in.caseSelected;
+' #txt
+Pt0 f42 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
+' #txt
+Pt0 f42 responseMappingAction 'out=in;
+' #txt
+Pt0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>OpenPortalCaseDetail</name>
+        <nameStyle>20,5
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f42 1768 330 128 44 -61 -8 #rect
+Pt0 f42 @|CallSubIcon #fIcon
+Pt0 f68 expr out #txt
+Pt0 f68 1704 352 1768 352 #arcP
+Pt0 f72 expr in #txt
+Pt0 f72 outCond 'java.util.Objects.equals(ch.ivy.addon.portal.generic.navigation.PortalPage.CASE_DETAIL_FROM_TASK, in.#portalPage)' #txt
+Pt0 f72 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>CASE_DETAIL_FROM_TASK</name>
+        <nameStyle>21
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f72 1372 171 1592 352 #arcP
+Pt0 f72 1 1432 352 #addKink
+Pt0 f72 0 1.0 52 12 #arcLabel
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1315,8 +1284,6 @@ Pt0 f30 out f15 tail #connect
 Pt0 f15 head f4 in #connect
 Pt0 f21 out f36 tail #connect
 Pt0 f36 head f18 mainIn #connect
-Pt0 f17 mainOut f26 tail #connect
-Pt0 f26 head f23 mainIn #connect
 Pt0 f19 mainOut f39 tail #connect
 Pt0 f39 head f12 mainIn #connect
 Pt0 f21 out f32 tail #connect
@@ -1333,18 +1300,12 @@ Pt0 f43 out f40 tail #connect
 Pt0 f40 head f21 in #connect
 Pt0 f41 out f45 tail #connect
 Pt0 f45 head f43 in #connect
-Pt0 f21 out f16 tail #connect
-Pt0 f16 head f6 mainIn #connect
-Pt0 f6 mainOut f38 tail #connect
-Pt0 f38 head f17 mainIn #connect
 Pt0 f11 mainOut f50 tail #connect
 Pt0 f50 head f30 in #connect
 Pt0 f28 mainOut f46 tail #connect
 Pt0 f46 head f4 in #connect
 Pt0 f53 head f52 mainIn #connect
-Pt0 f21 out f56 tail #connect
 Pt0 f56 head f19 mainIn #connect
-Pt0 f21 out f53 tail #connect
 Pt0 f52 mainOut f49 tail #connect
 Pt0 f49 head f37 mainIn #connect
 Pt0 f0 mainOut f54 tail #connect
@@ -1381,3 +1342,9 @@ Pt0 f10 mainOut f48 tail #connect
 Pt0 f48 head f11 mainIn #connect
 Pt0 f4 out f27 tail #connect
 Pt0 f27 head f41 in #connect
+Pt0 f29 mainOut f68 tail #connect
+Pt0 f68 head f42 mainIn #connect
+Pt0 f21 out f72 tail #connect
+Pt0 f72 head f29 mainIn #connect
+Pt0 f21 out f56 tail #connect
+Pt0 f21 out f53 tail #connect

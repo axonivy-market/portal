@@ -17,7 +17,7 @@
 		<para>
 			<orderedlist>
 				<listitem>
-					<para>Task header currently customization support responsive design. Refer to <link linkend="axonivyportal.customization.taskwidget.responsivelayout">this part</link> for more detail.</para>
+					<para>Task header customization currently support responsive design. Refer to <link linkend="axonivyportal.customization.taskwidget.responsivelayout">this part</link> for more detail.</para>
 				</listitem>
 				<listitem>
 					<para>Task header's buttons cannot be modified (they stay where they are)</para>
