@@ -1220,13 +1220,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   padding: 10px;
 }
 
-/* Small screen */
-@media (max-width: 1365px) {
-  .process-start-list-container {
-    margin-right: -25px;
-  }
-}
-
 .process-start-list-container .process-nav {
   display: flex;
   flex-flow: column;
@@ -1569,10 +1562,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 .process-widget .ui-orderlist .ui-orderlist-list .order-list-item .order-list-item-name {
   width: 100%;
   padding-right: 5px;
-}
-
-.autocomplete-process-description-tooltip {
-  width: 150px;
 }
 
 .express-process-logo {
@@ -1995,7 +1984,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   
 }
 
-.no-task-message {
+.no-task-message, .case-widget-empty-message {
   padding-left: 0.5em;
 }
 

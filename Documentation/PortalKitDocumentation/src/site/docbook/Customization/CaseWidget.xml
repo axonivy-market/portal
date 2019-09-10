@@ -24,7 +24,7 @@
 		<para>
 			<orderedlist>
 				<listitem>
-					<para>Case header customization does not support responsive design, smaller resolutions (iPad, etc.)</para>
+					<para>Case header customization currently support responsive design. Refer to <link linkend="axonivyportal.customization.casewidget.responsivelayout">this part</link> for more detail.</para>
 				</listitem>
 				<listitem>
 					<para>Case header's buttons cannot be modified (they stay where they are)</para>
@@ -214,5 +214,38 @@ out.caseView = CaseView.create().dataModel(dataModel)
 .withTitle("My Cases").buildNewView();
 			</screen>
 		</para>
+	</sect2>
+	<sect2 xml:id="axonivyportal.customization.casewidget.responsivelayout">
+		<title>How to make reponsive case list</title>
+		<para>If you have customized case list and want it responsive on different screen sizes, please follow below steps.</para>
+		<para>You can refer to <code>PortalExamples</code> project for examples</para>
+		<orderedlist>
+			<listitem>
+				<para>Add responsiveStyleClass param (in case you're using Portal component), or styleClass (in case you're using Primefaces or JSF component) with the same responsive css class for both caseListHeader and caseHeader. 
+				You can find responsive class in <link linkend="axonivyportal.customization.responsivecss">this part.</link></para>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="images/CaseWidget/ResponsiveCaseListCustomization.png" />
+					</imageobject>
+				</mediaobject>
+				<tip>
+					<para>Hint: <code>CaseCustomField</code> component has default responsiveStyleClass is <code>u-hidden-sm-down</code></para>
+				</tip>
+			</listitem>
+			<listitem>
+				<para>
+				Responsiveness could be broken when you anchor left menu. In this case, to maintain the responsiveness, you could hide some columns by add <code>js-hidden-when-expand-menu</code>
+				to responsiveStyleClass or styleClass param of caseListHeader and caseHeader.
+				</para>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="images/CaseWidget/ResponsiveCaseListHideColumn.png" />
+					</imageobject>
+				</mediaobject>
+				<tip>
+					<para>Hint: The smallest browser width you can anchor the left menu is 1025. So you could reduce width of browser to 1025 to test and decide which columns need to be hidden.</para>
+				</tip>
+			</listitem>
+		</orderedlist>
 	</sect2>
 </sect1>
