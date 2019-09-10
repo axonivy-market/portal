@@ -14,27 +14,31 @@
 		dataModel="#{dataModel}" componentToBeUpdated="" sortable="true" sortedField="NAME" />
 
 	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="id-column-header" 
-		styleClass="TexAlCenter u-hidden-sm-down" 
+		styleClass="TexAlCenter"
+        responsiveStyleClass="u-hidden-sm-down" 
 		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" 
 		dataModel="#{dataModel}" componentToBeUpdated="" sortable="true" sortedField="ID" />
 
 	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="creator-column-header" 
-		styleClass="js-hidden-when-expand-menu u-hidden-md-down"
+		responsiveStyleClass="js-hidden-when-expand-menu u-hidden-md-down"
 		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" 
 		dataModel="#{dataModel}" componentToBeUpdated="" sortable="true" sortedField="CREATOR" />
 
 	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="created-date-column-header" 
-		styleClass="TexAlCenter u-hidden-sm-down" 
+		styleClass="TexAlCenter"
+        responsiveStyleClass="u-hidden-sm-down"
 		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}" 
 		dataModel="#{dataModel}" componentToBeUpdated="" sortable="true" sortedField="CREATION_TIME" />
 
 	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="finished-date-column-header" 
-		styleClass="TexAlCenter js-hidden-when-expand-menu u-hidden-md-down" 
+		styleClass="TexAlCenter"
+        responsiveStyleClass="js-hidden-when-expand-menu u-hidden-md-down" 
 		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME')}" 
 		dataModel="#{dataModel}" componentToBeUpdated="" sortable="true" sortedField="FINISHED_TIME" />
 
 	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="state-column-header" 
-		styleClass="TexAlCenter u-hidden-sm-down"  
+		styleClass="TexAlCenter"
+        responsiveStyleClass="u-hidden-sm-down"  
 		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" 
 		dataModel="#{dataModel}" componentToBeUpdated="" sortable="true" sortedField="STATE" />
 </cc:implementation>
