@@ -1050,7 +1050,7 @@ Bk4 f30 432 288 344 288 #arcP
 Bk4 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Is Adhoc task?</name>
+        <name>Is Adhoc process?</name>
     </language>
 </elementInfo>
 ' #txt
@@ -1088,21 +1088,22 @@ TaskA.EXTYPE=0
 TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=SELF
-TaskA.SCRIPT=if (in1.originalTaskId \!\= null && in1.originalTaskId > 0) {\r\n  task.customFields().stringField(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString());\r\n}
 TaskA.SKIP_TASK_LIST=true
 TaskA.TYPE=0' #txt
 Bk4 f43 template "" #txt
 Bk4 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>create task for user</name>
-        <nameStyle>20,7
+        <name>create task for user&#13;
+who start the process</name>
+        <nameStyle>43,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
 Bk4 f43 922 506 28 28 21 -17 #rect
 Bk4 f43 @|TaskSwitchSimpleIcon #fIcon
+Bk4 f44 expr in #txt
 Bk4 f44 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
