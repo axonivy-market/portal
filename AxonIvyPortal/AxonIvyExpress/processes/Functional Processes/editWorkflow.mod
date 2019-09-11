@@ -480,7 +480,9 @@ ew0 f37 actionTable 'out=in1;
 ' #txt
 ew0 f37 outTypes "gawfs.Data" #txt
 ew0 f37 outLinks "TaskA.ivp" #txt
-ew0 f37 taskData 'TaskA.DESC=<%\=ivy.cms.co("/Dialogs/Tasks/SaveWorkflow/TaskName")%>\: <%\=in1.processName%>
+ew0 f37 caseData case.category=CreateExpressWorkflow #txt
+ew0 f37 taskData 'TaskA.CATEGORY=CreateExpressWorkflow
+TaskA.DESC=<%\=ivy.cms.co("/Dialogs/Tasks/SaveWorkflow/TaskName")%>\: <%\=in1.processName%>
 TaskA.EXPRI=2
 TaskA.EXROL=Everybody
 TaskA.EXTYPE=0
