@@ -847,7 +847,7 @@ _:-ms-fullscreen, :root .express-user-interface {
 }
 
 _:-ms-fullscreen, :root .user-interface-panel.ui-panelgrid tbody tr td,
-_:-ms-fullscreen, :root .express-able-to-start {
+_:-ms-fullscreen, :root .express-process-owner {
 	padding-top: 0px !important;
  }
  
@@ -895,7 +895,7 @@ _:-ms-fullscreen, :root .express-input-type {
 .express-input-area,
 .express-input-rows,
 .express-upload-file-no-rows,
-.express-able-to-start,
+.express-process-owner,
 .express-process-name,
 .express-process-description,
 .express-default-task-name {

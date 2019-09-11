@@ -243,7 +243,7 @@ public class PortalExpressTest extends BaseTest {
 	}
 
 	@Test
-	public void testUserAbleToStartResponsableCanViewProcess() {
+	public void testProcessOwnerCanViewAndEditProcess() {
 		createAdministratedWorkflow("Test approval", Arrays.asList(responsible1, groupHr), false);
 		login(TestAccount.HR_ROLE_USER);
 		GlobalSearch globalSearch = homePage.getGlobalSearch();
@@ -251,14 +251,28 @@ public class PortalExpressTest extends BaseTest {
 
 		assertTrue(searchResultPage.isInfoWorkflowIcon());
 		assertTrue(searchResultPage.isExpressProcessLogo());
+		assertTrue(searchResultPage.isEditExpressWorkflow());
+		assertTrue(searchResultPage.isDeleteExpressWorkflown());
 	}
-
+	
+	@Test
+  public void testAbleToStartCanViewProcess() {
+    login(TestAccount.ADMIN_USER);
+    createAdministratedWorkflow("Test approval", Arrays.asList(groupHr), false);
+    login(TestAccount.DEMO_USER);
+    GlobalSearch globalSearch = homePage.getGlobalSearch();
+    SearchResultPage searchResultPage = globalSearch.inputSearchKeyword("Test approval");
+    
+    assertTrue(searchResultPage.isInfoWorkflowIcon());
+    assertTrue(searchResultPage.isExpressProcessLogo());
+  }
+	
 	@Test
 	public void testRejectedApprovalWhenMultiTask() {
 		goToCreateExpressProcess();
 		ExpressProcessPage expressProcessPage = new ExpressProcessPage();
 		expressProcessPage.fillProcessProperties(false, true, "Test approval", "Test description");
-		expressProcessPage.ableToStart(Arrays.asList(responsible1, groupHr));
+		expressProcessPage.fillProcessOwners(Arrays.asList(responsible1, groupHr));
 		ExpressFormDefinitionPage formDefinition = configureExpressProcessWhenMultiApproval(expressProcessPage);
 		formDefinition.finishWorkflow();
 		startExpressProcess("Test approval");
@@ -275,13 +289,13 @@ public class PortalExpressTest extends BaseTest {
 		executeComplexProcess();
 	}
 
-	private void createAdministratedWorkflow(String expressProcessName, List<ExpressResponsible> ableToStart,
+	private void createAdministratedWorkflow(String expressProcessName, List<ExpressResponsible> processOwners,
 			Boolean isMultiApproved) {
 		ExpressFormDefinitionPage formDefinition;
 		goToCreateExpressProcess();
 		ExpressProcessPage expressProcessPage = new ExpressProcessPage();
 		expressProcessPage.fillProcessProperties(false, true, expressProcessName, "Test description");
-		expressProcessPage.ableToStart(ableToStart);
+		expressProcessPage.fillProcessOwners(processOwners);
 		if (isMultiApproved) {
 			formDefinition = configureExpressProcessWhenMultiApproval(expressProcessPage);
 		} else {

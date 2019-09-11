@@ -624,7 +624,9 @@ Ct0 f25 152 290 112 44 -48 -8 #rect
 Ct0 f25 @|StepIcon #fIcon
 Ct0 f26 actionTable 'out=in;
 ' #txt
-Ct0 f26 actionCode 'import ch.ivy.gawfs.enums.ProcessType;
+Ct0 f26 actionCode 'import java.util.ArrayList;
+import org.apache.commons.collections.CollectionUtils;
+import ch.ivy.gawfs.enums.ProcessType;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.gawfs.ExpressProcessUtils;
@@ -634,9 +636,15 @@ ExpressProcess workflow = ExpressServiceRegistry.getProcessService().findById(in
 in.processDescription = workflow.processDescription;
 in.processName = workflow.processName;
 in.processFolder = workflow.processFolder;
-in.processStartResponsibles = workflow.getProcessPermissions();
+in.processCoOwners = workflow.processCoOwners;
+//Old processes won''t have process co owners, so we add process owner as default
+if(CollectionUtils.isEmpty(in.processCoOwners)) {
+	in.processCoOwners = new ArrayList();
+	in.processCoOwners.add(workflow.processOwner);
+}
+
 ExpressProcessUtils util = new ExpressProcessUtils();
-in.processStartResponsiblesDisplayName = util.generateResponsibleDisplayName(workflow.getProcessPermissions());
+in.processCoOwnersDisplayName = util.generateResponsibleDisplayName(in.processCoOwners);
 in.isUseDefaultUI = workflow.useDefaultUI;
 
 for(ProcessType type : ProcessType.values()) {

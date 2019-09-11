@@ -121,7 +121,7 @@ String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
 if (StringUtils.isNotBlank(expressStartLink)) {
 	List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findReadyToExecuteProcessOrderByName();
 	for(ExpressProcess wf : workflows) {
-		if (PermissionUtils.canStartExpressWorkflow(wf) && ProcessStartsUtil.isExpressProcessAdded(wf, in.userProcesses)) {
+		if (PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(wf) && ProcessStartsUtil.isExpressProcessAdded(wf, in.userProcesses)) {
 			UserProcess userProcess = new UserProcess();
 		  userProcess.setProcessName(wf.processName);
 		  userProcess.setUserName(wf.processOwner);

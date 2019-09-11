@@ -117,8 +117,7 @@ public class ProcessWidgetBean implements Serializable {
     if (StringUtils.isNotBlank(expressStartLink)) {
       List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findReadyToExecuteProcessOrderByName();
       for (ExpressProcess wf : workflows) {
-        if (PermissionUtils.canStartExpressWorkflow(wf)) {
-          wf.setAbleToEdit(isAbleToEditExpressProcess(wf));
+        if (PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(wf)) {
           processes.add(wf);
         }
       }
@@ -129,15 +128,6 @@ public class ProcessWidgetBean implements Serializable {
     return defaultPortalProcesses;
   }
   
-  /**
-   * Portal admin or process creator able to edit/delete express process
-   * @param process
-   * @return true if current user able to edit express process, otherwise return false
-   */
-  private boolean isAbleToEditExpressProcess(ExpressProcess process) {
-    return PermissionUtils.isSessionUserHasAdminRole() || Ivy.session().getSessionUser().getMemberName().equals(process.getProcessOwner()); 
-  }
-
   private void sortProcesses(List<IWebStartable> processes) {
     processes.sort((process1, process2) -> StringUtils.compareIgnoreCase(process1.getName(), process2.getName()));
   }

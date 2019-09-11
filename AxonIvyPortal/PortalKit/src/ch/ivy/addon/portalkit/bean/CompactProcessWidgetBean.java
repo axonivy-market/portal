@@ -147,7 +147,7 @@ private static final long serialVersionUID = -5889375917550618261L;
         ExpressServiceRegistry.getProcessService().findReadyToExecuteProcessOrderByName().stream()
             .filter(wf -> !isUserProcess(wf) && !isDefaultUserProcess(wf)).collect(Collectors.toList());
     for (ExpressProcess wf : workflows) {
-      if (PermissionUtils.canStartExpressWorkflow(wf) && StringUtils.containsIgnoreCase(wf.getProcessName(), query)) {
+      if (PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(wf) && StringUtils.containsIgnoreCase(wf.getProcessName(), query)) {
         workflow.add(new UserProcess(wf.getProcessName(), userName, generateWorkflowStartLink(wf)));
       }
     }

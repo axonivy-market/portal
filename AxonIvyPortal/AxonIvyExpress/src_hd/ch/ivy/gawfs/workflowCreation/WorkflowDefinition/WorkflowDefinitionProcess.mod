@@ -171,7 +171,7 @@ if (!in.data.#processType is initialized) {
 	in.data.processType = ProcessType.AD_HOC;
 }
 else if(in.data.#processType is initialized && in.data.processType == ProcessType.REPEAT) {
-	in.isDisplayAbleToStart = true;
+	in.isDisplayProcessOwner = true;
 }' #txt
 Fs0 f6 security system #txt
 Fs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -284,7 +284,7 @@ Fs0 f15 0 0.9835526315789473 0 0 #arcLabel
 Fs0 f16 guid 157930AFEEC5B0A0 #txt
 Fs0 f16 method initAssginement(gawfs.TaskDef) #txt
 Fs0 f16 inParameterDecl '<gawfs.TaskDef taskDefinition> param;' #txt
-Fs0 f16 inParameterMapAction 'out.isSelectAbleToStartResponsible=false;
+Fs0 f16 inParameterMapAction 'out.isSelectProcessOwnerResponsibles=false;
 out.taskDefinition=param.taskDefinition;
 ' #txt
 Fs0 f16 inActionCode 'int indexOfSelectedTaskDef = out.data.definedTasks.indexOf(param.taskDefinition);
@@ -331,15 +331,15 @@ import ch.ivyteam.ivy.security.ISecurityMember;
 import java.util.ArrayList;
 
 List<String> responsibleNames = new ArrayList();
-if(in.isSelectAbleToStartResponsible) {
-	out.data.processStartResponsibles.clear();
+if(in.isSelectProcessOwnerResponsibles) {
+	out.data.processCoOwners.clear();
 	
 	for (ISecurityMember responsible : out.selectedAssigneeList) {
-		out.data.processStartResponsibles.add(responsible.getMemberName());
+		out.data.processCoOwners.add(responsible.getMemberName());
 		responsibleNames.add(StringUtils.defaultIfBlank(responsible.getDisplayName(), responsible.getName()).toString());				
 	}
 	
-	out.data.processStartResponsiblesDisplayName = String.join(", ", responsibleNames);
+	out.data.processCoOwnersDisplayName = String.join(", ", responsibleNames);
 }
 else{
 	out.taskDefinition.responsibles.clear();
@@ -836,8 +836,8 @@ Fs0 f32 1 0.19396467700664802 0 0 #arcLabel
 Fs0 f74 guid 16C503BB03A8D205 #txt
 Fs0 f74 method initProcessStartResponsibles() #txt
 Fs0 f74 inParameterDecl '<> param;' #txt
-Fs0 f74 inParameterMapAction 'out.isSelectAbleToStartResponsible=true;
-out.selectedResponsibleFieldId="form:able-to-start-content";
+Fs0 f74 inParameterMapAction 'out.isSelectProcessOwnerResponsibles=true;
+out.selectedResponsibleFieldId="form:process-owner-content";
 ' #txt
 Fs0 f74 outParameterDecl '<> result;' #txt
 Fs0 f74 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -856,7 +856,7 @@ Fs0 f76 actionTable 'out=in;
 Fs0 f76 actionCode 'import javax.faces.context.FacesContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
 
-for (String assigneeName : in.data.processStartResponsibles) {
+for (String assigneeName : in.data.processCoOwners) {
 	ISecurityMember assignee = ivy.session.getSecurityContext().findSecurityMember(assigneeName);
 	if (#assignee is initialized) {
 		if (!in.selectedAssigneeList.contains(assignee)) {
@@ -868,14 +868,14 @@ Fs0 f76 security system #txt
 Fs0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Init able to start dialog</name>
+        <name>Init process owner dialog</name>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f76 192 938 128 44 -60 -8 #rect
+Fs0 f76 184 938 144 44 -69 -8 #rect
 Fs0 f76 @|StepIcon #fIcon
-Fs0 f77 109 960 192 960 #arcP
-Fs0 f78 320 960 435 960 #arcP
+Fs0 f77 109 960 184 960 #arcP
+Fs0 f78 328 960 435 960 #arcP
 Fs0 f79 guid 16C608CFC2D52583 #txt
 Fs0 f79 actionTable 'out=in;
 ' #txt
@@ -890,15 +890,20 @@ Fs0 f79 83 1043 26 26 -61 15 #rect
 Fs0 f79 @|UdEventIcon #fIcon
 Fs0 f80 actionTable 'out=in;
 ' #txt
-Fs0 f80 actionCode 'import ch.ivy.gawfs.enums.ProcessType;
+Fs0 f80 actionCode 'import ch.ivy.gawfs.ExpressProcessUtils;
+import ch.ivy.gawfs.enums.ProcessType;
 import java.util.ArrayList;
 
-in.isDisplayAbleToStart = false;
-in.data.processStartResponsiblesDisplayName = null;
-in.data.processStartResponsibles = new ArrayList();
+in.isDisplayProcessOwner = false;
+in.data.processCoOwnersDisplayName = null;
+in.data.processCoOwners = new ArrayList();
 if(in.data.#processType == ProcessType.REPEAT) {
-	in.isDisplayAbleToStart = true;
+	in.data.processCoOwners.add(ivy.session.getSessionUser().getMemberName());
+	ExpressProcessUtils util = new ExpressProcessUtils();
+	in.data.processCoOwnersDisplayName = util.generateResponsibleDisplayName(in.data.processCoOwners);
+	in.isDisplayProcessOwner = true;
 }' #txt
+Fs0 f80 security system #txt
 Fs0 f80 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

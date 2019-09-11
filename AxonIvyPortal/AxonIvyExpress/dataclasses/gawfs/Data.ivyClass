@@ -40,6 +40,6 @@ isAdhocProcess PERSISTENT #fieldModifier
 originalTaskId Long #field
 originalTaskId 'This field store original task id which is trigger express adhoc WF' #fieldComment
 originalTaskId PERSISTENT #fieldModifier
-processStartResponsibles List<String> #field
-processStartResponsibles 'This field store which user/role able to start express process' #fieldComment
-processStartResponsiblesDisplayName String #field
+processCoOwners List<String> #field
+processCoOwners 'This field store which user/role is co owener of express process, beside process creator' #fieldComment
+processCoOwnersDisplayName String #field

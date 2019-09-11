@@ -11,10 +11,12 @@ public class ExpressProcess {
   private String processDescription;
   private String processType;
   private List<String> processPermissions;
+  //processOwner is processCreator
   private String processOwner;
   private boolean isUseDefaultUI;
   private String processFolder;
   private boolean readyToExecute;
+  private List<String> processCoOwners;
   
   @JsonIgnore
   private boolean isAbleToEdit;
@@ -97,6 +99,14 @@ public class ExpressProcess {
 
   public void setAbleToEdit(boolean isAbleToEdit) {
     this.isAbleToEdit = isAbleToEdit;
+  }
+
+  public List<String> getProcessCoOwners() {
+    return processCoOwners;
+  }
+
+  public void setProcessCoOwners(List<String> processCoOwners) {
+    this.processCoOwners = processCoOwners;
   }
   
 }

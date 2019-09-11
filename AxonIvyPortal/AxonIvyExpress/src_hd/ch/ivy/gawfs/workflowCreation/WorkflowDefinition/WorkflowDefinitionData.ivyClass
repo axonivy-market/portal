@@ -26,7 +26,7 @@ isValidated Boolean #field
 isValidated PERSISTENT #fieldModifier
 originalProcessName String #field
 originalProcessName PERSISTENT #fieldModifier
-isDisplayAbleToStart Boolean #field
-isDisplayAbleToStart PERSISTENT #fieldModifier
-isSelectAbleToStartResponsible Boolean #field
-isSelectAbleToStartResponsible PERSISTENT #fieldModifier
+isDisplayProcessOwner Boolean #field
+isDisplayProcessOwner PERSISTENT #fieldModifier
+isSelectProcessOwnerResponsibles Boolean #field
+isSelectProcessOwnerResponsibles PERSISTENT #fieldModifier

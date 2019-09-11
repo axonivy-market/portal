@@ -91,8 +91,8 @@ public class ExpressProcessPage extends TemplatePage {
 		waitAjaxIndicatorDisappear();
 	}
 
-	public void ableToStart(List<ExpressResponsible> responsibles) {
-		click(By.id("form:able-to-start-link"));
+	public void fillProcessOwners(List<ExpressResponsible> responsibles) {
+		click(By.id("form:process-owner-link"));
 		addResponsible(responsibles);
 	}
 

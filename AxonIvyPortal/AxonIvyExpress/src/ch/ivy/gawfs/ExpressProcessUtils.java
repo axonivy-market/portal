@@ -57,8 +57,11 @@ public class ExpressProcessUtils {
     processRepository.setProcessDescription(expressData.getProcessDescription());
     processRepository.setProcessType(expressData.getProcessType().getValue());
     processRepository.setUseDefaultUI(expressData.getIsUseDefaultUI());
-    processRepository.setProcessOwner(Ivy.session().getSessionUser().getMemberName());
-    processRepository.setProcessPermissions(expressData.getProcessStartResponsibles());
+    if(StringUtils.isBlank(processRepository.getProcessOwner())) {
+      processRepository.setProcessOwner(Ivy.session().getSessionUser().getMemberName());
+    }
+    processRepository.setProcessPermissions(expressData.getDefinedTasks().get(0).getResponsibles());
+    processRepository.setProcessCoOwners(expressData.getProcessCoOwners());
     processRepository.setProcessFolder(expressData.getProcessFolder());
     processRepository.setReadyToExecute(expressData.getReadyToExecute());
 

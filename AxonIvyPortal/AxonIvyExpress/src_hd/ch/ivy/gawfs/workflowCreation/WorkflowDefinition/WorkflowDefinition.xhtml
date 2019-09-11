@@ -40,7 +40,7 @@
                     requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processtype')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
                     <f:selectItems value="#{workflowDefinitionBean.processTypes}" var="processType"
                       itemValue="#{processType}" itemLabel="#{processType.label}" />
-                    <p:ajax event="change" update="process-type able-to-start-container" listener="#{logic.changeProcessType}" />
+                    <p:ajax event="change" update="process-type process-owner-container defined-tasks-list-container" listener="#{logic.changeProcessType}" process="@this"/>
                   </p:selectOneRadio>
                 </div>
 
@@ -84,24 +84,24 @@
                 <div class="ui-g-12 ui-md-12 ui-lg-1" />
               </div>
 
-              <!-- PROCESS ABLE TO START RESPONSIBLES -->
-              <h:panelGroup id="able-to-start-container">
-                <h:panelGroup id="able-to-start-content" layout="block" styleClass="ui-g" rendered="#{data.isDisplayAbleToStart}">
+              <!-- PROCESS OWNER -->
+              <h:panelGroup id="process-owner-container">
+                <h:panelGroup id="process-owner-content" layout="block" styleClass="ui-g" rendered="#{data.isDisplayProcessOwner}">
                   <div class="ui-g-12 ui-md-12 ui-lg-2">
-                     <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart')}:" for="able-to-start-responsible" styleClass="express-label-right-align"/>
+                     <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ProcessOwner')}:" for="process-owner-responsible" styleClass="express-label-right-align"/>
                   </div>
                   <div class="ui-g-12 ui-md-12 ui-lg-10">
-                    <h:panelGroup id="able-to-start-block" layout="block" styleClass="ui-g-12 express-able-to-start">
+                    <h:panelGroup id="process-owner-block" layout="block" styleClass="ui-g-12 express-process-owner">
                    	  <h:inputHidden 
-                        id="able-to-start-responsible"
-                        value="#{data.data.processStartResponsiblesDisplayName}" 
+                        id="process-owner-responsible"
+                        value="#{data.data.processCoOwnersDisplayName}" 
                         required="true"
-                        requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
+                        requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ProcessOwner')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
                       <p:commandLink 
-                        id="able-to-start-link" 
+                        id="process-owner-link" 
                         immediate="true" 
                         styleClass="task-responsible-link" 
-                        value="#{not empty data.data.processStartResponsiblesDisplayName ? data.data.processStartResponsiblesDisplayName : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"
+                        value="#{not empty data.data.processCoOwnersDisplayName ? data.data.processCoOwnersDisplayName : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"
                         actionListener="#{logic.initProcessStartResponsibles}" 
                         oncomplete="PF('choose-responsible-dialog').show();" 
                         process="@this"
@@ -154,6 +154,7 @@
         </p:fieldset>
 
         <br />
+        <h:panelGroup id="defined-tasks-list-container">
         <ui:repeat id="defined-tasks-list" value="#{data.data.definedTasks}" var="gtask" varStatus="status">
           <p:fieldset id="process-flow-field" toggleable="true" styleClass="process-flow-field"
             legend="#{ivy.cms.co('/Dialogs/workflowCreation/processStep')} #{gtask.position}">
@@ -223,14 +224,14 @@
                     <h:panelGroup layout="block" styleClass="ui-g-12 ui-md-12 ui-lg-2" rendered="#{gtask.taskType ne 'EMAIL'}">
                       <!-- RESPONSIBLE -->
                       <p:outputLabel for="task-responsible"
-                        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:" styleClass="express-label-right-align" />
+                        value="#{data.data.processType == 'REPEAT' and gtask.position eq 1? ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart'):ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:" styleClass="express-label-right-align" />
                     </h:panelGroup>
                     <h:panelGroup layout="block" id="task-responsible-input-container" styleClass="ui-g-12 ui-md-12 ui-lg-3" rendered="#{gtask.taskType ne 'EMAIL'}">
                       <h:inputHidden 
                         id="task-responsible" 
                         value="#{gtask.responsibleDisplayName}" 
                         required="true"
-                        requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
+                        requiredMessage="#{data.data.processType == 'REPEAT' and gtask.position eq 1? ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart'):ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
                       <p:commandLink 
                         id="task-responsible-link" 
                         immediate="true" 
@@ -265,6 +266,7 @@
               <!-- FOR DEFAULT UI TEMPLATE -->
 
               <h:panelGroup id="default-dynamic-task-panel-grid"
+
                 styleClass="dynamic-task-panel-grid default-dynamic-task-panel-grid"
                 rendered="#{data.data.isUseDefaultUI}">
                 <div class="ui-fluid">
@@ -274,14 +276,14 @@
                       <p:outputLabel 
                       	rendered="#{gtask.position >= 1}" 
                       	for="default-task-responsible" styleClass="express-label-right-align"
-                        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:" />
+                        value="#{data.data.processType == 'REPEAT' and gtask.position eq 1? ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart'):ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:" />
                     </div>
                     <h:panelGroup layout="block" id="default-task-responsible-input-container" styleClass="ui-g-12 ui-md-12 ui-lg-3">
                       <h:inputHidden 
                       	id="default-task-responsible" 
                       	value="#{gtask.responsibleDisplayName}" 
                       	required="true"
-                        requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
+                        requiredMessage="#{data.data.processType == 'REPEAT' and gtask.position eq 1? ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart'):ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
                       <p:commandLink 
                       	id="default-task-responsible-link" 
                       	immediate="true" 
@@ -366,6 +368,7 @@
             </p:panelGrid>
           </p:fieldset>
         </ui:repeat>
+        </h:panelGroup>
         <br />
 
         <p:outputPanel styleClass="TexAlRight">
