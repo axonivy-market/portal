@@ -626,7 +626,8 @@ Bk4 f6 actionTable 'out=in1;
 ' #txt
 Bk4 f6 outTypes "gawfs.ExecutePredefinedWorkflowData" #txt
 Bk4 f6 outLinks "TaskA.ivp" #txt
-Bk4 f6 taskData 'TaskA.DESC=<%\=in1.currentTask.description%>\n
+Bk4 f6 taskData 'TaskA.CATEGORY=<%\=in1.workflowName%>/<%\=in1.currentTask.subject%>
+TaskA.DESC=<%\=in1.currentTask.description%>\n
 TaskA.EXP=new Duration(0,0,in1.currentTask.untilDays,0,0,0)
 TaskA.EXPRI=1
 TaskA.EXROL=Everybody
@@ -648,7 +649,7 @@ Bk4 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk4 f6 418 522 28 28 21 -17 #rect
+Bk4 f6 394 522 28 28 21 -17 #rect
 Bk4 f6 @|TaskSwitchSimpleIcon #fIcon
 Bk4 f5 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk4 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -690,8 +691,8 @@ Bk4 f14 104 762 112 44 -27 -8 #rect
 Bk4 f14 @|RichDialogIcon #fIcon
 Bk4 f10 expr data #txt
 Bk4 f10 outCond ivp=="TaskA.ivp" #txt
-Bk4 f10 432 550 304 640 #arcP
-Bk4 f10 1 432 640 #addKink
+Bk4 f10 408 550 304 640 #arcP
+Bk4 f10 1 408 640 #addKink
 Bk4 f10 1 0.991265262979699 0 0 #arcLabel
 Bk4 f7 expr data #txt
 Bk4 f7 outCond ivp=="TaskA.ivp" #txt
@@ -704,7 +705,8 @@ Bk4 f16 actionTable 'out=in1;
 ' #txt
 Bk4 f16 outTypes "gawfs.ExecutePredefinedWorkflowData" #txt
 Bk4 f16 outLinks "TaskA.ivp" #txt
-Bk4 f16 taskData 'TaskA.DESC=<%\=in1.currentTask.description%>\n
+Bk4 f16 taskData 'TaskA.CATEGORY=<%\=in1.workflowName%>/<%\=in1.currentTask.subject%>
+TaskA.DESC=<%\=in1.currentTask.description%>\n
 TaskA.EXP=new Duration(0,0,in1.currentTask.untilDays,0,0,0)
 TaskA.EXPRI=1
 TaskA.EXROL=Everybody
@@ -756,8 +758,8 @@ Bk4 f1 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk4 f1 304 472 432 522 #arcP
-Bk4 f1 1 432 472 #addKink
+Bk4 f1 304 472 408 522 #arcP
+Bk4 f1 1 408 472 #addKink
 Bk4 f1 0 0.38392857142857145 0 10 #arcLabel
 Bk4 f0 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk4 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1023,7 +1025,8 @@ Bk4 f29 actionTable 'out=in1;
 ' #txt
 Bk4 f29 outTypes "gawfs.ExecutePredefinedWorkflowData" #txt
 Bk4 f29 outLinks "TaskA.ivp" #txt
-Bk4 f29 taskData 'TaskA.DESC=<%\=in1.currentTask.description%>\n
+Bk4 f29 taskData 'TaskA.CATEGORY=<%\=in1.workflowName%>/<%\=in1.currentTask.subject%>
+TaskA.DESC=<%\=in1.currentTask.description%>\n
 TaskA.EXP=new Duration(0,0,in1.currentTask.untilDays,0,0,0)
 TaskA.EXPRI=1
 TaskA.EXROL=Everybody
@@ -1274,7 +1277,8 @@ Bk5 f11 actionCode 'ivy.task.setName(ivy.cms.co("/Dialogs/Tasks/ProcessLoaded/Ta
 ivy.task.setDescription(ivy.cms.co("/Dialogs/Tasks/ProcessLoaded/TaskName"));
 
 ivy.case.setName(in.workflowName);
-ivy.case.setDescription(in.workflowDescription);' #txt
+ivy.case.setDescription(in.workflowDescription);
+ivy.case.setCategoryPath("ExpressWorkflow/" + in.workflowName);' #txt
 Bk5 f11 security system #txt
 Bk5 f11 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk5 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1422,7 +1426,8 @@ Bk7 f7 actionTable 'out=in1;
 ' #txt
 Bk7 f7 outTypes "gawfs.ExecutePredefinedWorkflowData" #txt
 Bk7 f7 outLinks "TaskA.ivp" #txt
-Bk7 f7 taskData 'TaskA.DESC=<%\=ivy.cms.co("/Dialogs/Tasks/FinalWorkflowTask/taskDescription", java.util.Arrays.asList(in1.workflowName))%>
+Bk7 f7 taskData 'TaskA.CATEGORY=<%\=in1.workflowName%>/<%\=in1.currentTask.subject%>
+TaskA.DESC=<%\=ivy.cms.co("/Dialogs/Tasks/FinalWorkflowTask/taskDescription", java.util.Arrays.asList(in1.workflowName))%>
 TaskA.EXPRI=2
 TaskA.EXROL=Everybody
 TaskA.EXTYPE=0
@@ -1581,7 +1586,8 @@ Bk8 f18 actionTable 'out=in1;
 ' #txt
 Bk8 f18 outTypes "gawfs.ExecutePredefinedWorkflowData" #txt
 Bk8 f18 outLinks "TaskA.ivp" #txt
-Bk8 f18 taskData 'TaskA.DESC=<%\=in1.currentTask.description%>
+Bk8 f18 taskData 'TaskA.CATEGORY=<%\=in1.workflowName%>/<%\=in1.currentTask.subject%>
+TaskA.DESC=<%\=in1.currentTask.description%>
 TaskA.EXP=new Duration(0,0,in1.currentTask.untilDays,0,0,0)
 TaskA.EXPRI=1
 TaskA.EXROL=Everybody
@@ -1611,7 +1617,8 @@ Bk8 f20 actionTable 'out=in1;
 ' #txt
 Bk8 f20 outTypes "gawfs.ExecutePredefinedWorkflowData" #txt
 Bk8 f20 outLinks "TaskA.ivp" #txt
-Bk8 f20 taskData 'TaskA.DESC=<%\=in1.currentTask.description%>
+Bk8 f20 taskData 'TaskA.CATEGORY=<%\=in1.workflowName%>/<%\=in1.currentTask.subject%>
+TaskA.DESC=<%\=in1.currentTask.description%>
 TaskA.EXP=new Duration(0,0,in1.currentTask.untilDays,0,0,0)
 TaskA.EXPRI=1
 TaskA.EXROL=Everybody
