@@ -4,16 +4,16 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>ch.ivyteam.ivy.project.portal</groupId>
   <artifactId>portalExamples</artifactId>
-  <version>8.0.0.0-SNAPSHOT</version>
+  <version>7.4.179.0</version>
   <packaging>iar</packaging>  
   <properties>   
-    <build.plugin.version>7.4.0-SNAPSHOT</build.plugin.version>    
+    <build.plugin.version>7.4.0</build.plugin.version>    
   </properties>
   <dependencies>
     <dependency>
       <groupId>ch.ivyteam.ivy.project.portal</groupId>
       <artifactId>portalTemplate</artifactId>
-      <version>8.0.0.0-SNAPSHOT</version>
+      <version>7.4.179.0</version>
       <type>iar</type>
     </dependency>
   </dependencies>
