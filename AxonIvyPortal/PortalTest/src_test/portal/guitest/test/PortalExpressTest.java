@@ -307,14 +307,10 @@ public class PortalExpressTest extends BaseTest {
 	protected void rejectWhenMultiApproval() {
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		expressTaskPage.finish();
-		assertEquals(0, new TaskWidgetPage().countTasks());
-		login(TestAccount.ADMIN_USER);
-		executeUserTask();
-		assertEquals(0, new TaskWidgetPage().countTasks());
-		login(TestAccount.DEMO_USER);
+		assertEquals(1, new TaskWidgetPage().countTasks());
 		rejectApproval("Rejected at first level");
 		String approvalResult = executeReview();
-		Assert.assertEquals("Portal Demo User,Rejected at first level,No,Portal Demo User,Rejected at first level,No",
+		Assert.assertEquals("Portal Demo User,Rejected at first level,No",
 				approvalResult);
 		new ExpressEndPage().finish();
 	}
@@ -385,11 +381,6 @@ public class PortalExpressTest extends BaseTest {
 	protected void executeExpressProcessWhenMultiApproval() {
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		expressTaskPage.finish();
-		assertEquals(0, new TaskWidgetPage().countTasks());
-		login(TestAccount.ADMIN_USER);
-		executeUserTask();
-		assertEquals(0, new TaskWidgetPage().countTasks());
-		login(TestAccount.DEMO_USER);
 		executeApproval("Approved at first level");
 		executeApproval("Approved at second level");
 		assertEquals(0, new TaskWidgetPage().countTasks());
@@ -399,9 +390,6 @@ public class PortalExpressTest extends BaseTest {
 
 		String approvalResult = executeReview();
 		Assert.assertEquals("Portal Demo User,Approved at first level,Yes," + TestAccount.DEMO_USER.getFullName()
-				+ ",Approved at second level,Yes," + TestAccount.ADMIN_USER.getFullName()
-				+ ",Approved at second level,Yes," + TestAccount.DEMO_USER.getFullName()
-				+ ",Approved at first level,Yes," + TestAccount.DEMO_USER.getFullName()
 				+ ",Approved at second level,Yes," + TestAccount.ADMIN_USER.getFullName()
 				+ ",Approved at second level,Yes", approvalResult);
 		new ExpressEndPage().finish();
