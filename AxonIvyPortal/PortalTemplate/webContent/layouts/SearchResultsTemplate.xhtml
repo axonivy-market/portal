@@ -10,7 +10,6 @@
     <ui:param name="dataModel" value="#{data.dataModel}" />
     <ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/searchResults')}</ui:define>
     <ui:define name="simplePageContent">
-      <c:set property="navigationHistory" value="SEARCH_RESULTS" target="#{navigationHistoryBean}"></c:set>
       <c:set var="isShowResultTabView" value="#{compactProcessWidgetBean.displayShowAllProcessesLink or taskWidgetBean.showFullTaskList or caseWidgetBean.showFullCaseList}"></c:set>
       <h:form id="global-search-form-in-page">
         <div id="global-search-container-in-page" class="global-search">
@@ -38,7 +37,7 @@
           rendered="#{taskWidgetBean.showFullTaskList}">
           <div class="task-list-container js-task-list-container js-for-search-result">
             <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-results" listHeaderStyleClass="task-in-search"
-              keyword="#{dataModel.taskDataModel.criteria.keyword}" hideTaskFilter="true"
+              keyword="#{dataModel.taskDataModel.criteria.keyword}" hideTaskFilter="true" currentPortalPage="SEARCH_RESULTS"
               dataModel="#{dataModel.taskDataModel}" hideWidgetHeader="true" compactMode="false">
               <f:facet name="taskListHeader">
                 <ui:fragment rendered="#{useTaskOverrideListHeader}">

@@ -85,6 +85,10 @@ public final class PortalNavigator {
     return Ivy.html().startref(PORTAL_PROCESS_START_NAME);
   }
 
+  /**
+   * Navigates to PortalEndPage without finishing a task, e.g. clicking on Cancel button then back to previous page: task list or task details or global search
+   * @throws MalformedURLException
+   */
   public void navigateToPortalEndPage() throws MalformedURLException {
     String customizePortalEndPage = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("DefaultEndPage.ivp"); 
     String param = "?endedTaskId=" + Ivy.wfTask().getId();
@@ -93,6 +97,7 @@ public final class PortalNavigator {
     } else {
       navigate(PORTAL_END_PAGE, param);
     }
+    Ivy.session().setAttribute("isTaskNotFinished", true);
   }
 
   public void navigateToPortalProcess() throws MalformedURLException {

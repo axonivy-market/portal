@@ -17,3 +17,4 @@ caseId Long #field
 caseSelected ch.ivyteam.ivy.workflow.ICase #field
 taskSelected ch.ivyteam.ivy.workflow.ITask #field
 taskId Long #field
+isTaskStartedInDetails Boolean #field
