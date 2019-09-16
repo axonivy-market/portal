@@ -98,7 +98,7 @@
       </c:forEach>
     </h:panelGroup>
 
-    <h:panelGroup styleClass="ui-lg-hidden ui-xl-hidden">
+    <h:panelGroup styleClass="ui-lg-hidden ui-xl-hidden process-chain-mobile-container">
       <c:forEach items="#{cc.attrs.steps}" var="stepName" varStatus="counter">
         <c:set var="isFirstStep" value="#{counter.index eq 0}" />
         <c:set var="isLastStep" value="#{counter.index eq (cc.attrs.steps.size() - 1)}" />
