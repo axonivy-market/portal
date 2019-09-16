@@ -1438,6 +1438,12 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   cursor: pointer;
 }
 
+@media (max-width: 991px) {
+  .process-start-list-item-action .express-workflow.process-item {
+    display: none !important;
+  }
+}
+
 .process-start-list-item .open-icon {
   position: absolute;;
   color: rgba(0,0,0,0.5) !important;
@@ -2781,6 +2787,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 @media screen and (min-width: 40.063em) and (max-width: 64.062em) {
   .line-process-chain .line-horizontal-process-step.hide-left-steps.waiting {
     background: repeating-linear-gradient(90deg, #E0E0E0, #E0E0E0 10px, #fff 10px, #fff 20px);
+    margin-bottom: 4px;
   }
 }
   
@@ -2795,7 +2802,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   width: 40px;
   height: 10px;
   vertical-align: bottom;
-  margin: 0px 0px 0px 10px;
+  margin: 0px 0px 4px 10px;
 }
 
 _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step.hide-left-steps {

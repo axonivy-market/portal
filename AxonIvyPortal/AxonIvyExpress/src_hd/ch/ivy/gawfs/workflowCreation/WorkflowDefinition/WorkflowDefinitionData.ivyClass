@@ -28,3 +28,5 @@ isValidated Boolean #field
 isValidated PERSISTENT #fieldModifier
 originalProcessName String #field
 originalProcessName PERSISTENT #fieldModifier
+isProcessType Boolean #field
+isProcessType PERSISTENT #fieldModifier

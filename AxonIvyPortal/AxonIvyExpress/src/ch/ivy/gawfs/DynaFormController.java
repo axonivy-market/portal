@@ -52,60 +52,59 @@ public class DynaFormController implements Serializable {
   private void initializeHeaderOrFooterSection(List<Formelement> formElementList) {
     for (Formelement element : formElementList) {
       dragAndDropController.addFinalUsedFormelements(element);
-      tempRow = model.createRegularRow();
       String elementType = element.getType().getValue();
 
-      if(!element.getType().equals(FormElementType.FILE_UPLOAD)){
-        DynaFormLabel label = tempRow.addLabel(element.getDisplayLabel());
-        DynaFormControl control = tempRow.addControl(element, elementType,3,1);
-        label.setForControl(control);
-      } else {
-        DynaFormLabel label = tempRow.addLabel(element.getDisplayLabel(),4,1);
-        tempRow = model.createRegularRow();
-        DynaFormControl control = tempRow.addControl(element, elementType,4,1);
-        label.setForControl(control);
-      }
+      tempRow = model.createRegularRow();
+      DynaFormLabel label = tempRow.addLabel(element.getDisplayLabel(), 4, 1);
+
+      tempRow = model.createRegularRow();
+      DynaFormControl control = tempRow.addControl(element, elementType, 4, 1);
+      label.setForControl(control);
     }
   }
-  
+
   /**
    * Loop to create all Elements from the Left and Right Section
    */
   private void initializeMainSections() {
-    for (int i = 0; i < getMax(dragAndDropController.getSelectedFormelementsLeftPanel().size(), dragAndDropController.getSelectedFormelementsRightPanel().size()); i++) {
-      tempRow = model.createRegularRow();
+    DynaFormRow labelRow;
+    DynaFormRow controlRow;
+    for (int i = 0; i < getMax(dragAndDropController.getSelectedFormelementsLeftPanel().size(),
+        dragAndDropController.getSelectedFormelementsRightPanel().size()); i++) {
+      labelRow = model.createRegularRow();
+      controlRow = model.createRegularRow();
 
-      //Elements from the Left Section
-      if (dragAndDropController.getSelectedFormelementsLeftPanel().size()> i) {
+      // Elements from the Left Section
+      if (dragAndDropController.getSelectedFormelementsLeftPanel().size() > i) {
         Formelement element = dragAndDropController.getSelectedFormelementsLeftPanel().get(i);
         dragAndDropController.addFinalUsedFormelements(element);
-        
-        DynaFormLabel label = tempRow.addLabel(element.getDisplayLabel());
-        DynaFormControl control = tempRow.addControl(element, element.getType().getValue());
-        label.setForControl(control);        
+
+        DynaFormLabel label = labelRow.addLabel(element.getDisplayLabel(), 2, 1);
+
+
+        DynaFormControl control = controlRow.addControl(element, element.getType().getValue(), 2, 1);
+        label.setForControl(control);
       } else {
-        tempRow.addLabel(StringUtils.EMPTY);
-        tempRow.addControl(null, CONTROL_SPACER);
+        labelRow.addLabel(StringUtils.EMPTY);
+        controlRow.addControl(null, CONTROL_SPACER);
       }
 
-      //Elements from the Right Section
-      if (dragAndDropController.getSelectedFormelementsRightPanel().size()> i) {  
+      // Elements from the Right Section
+      if (dragAndDropController.getSelectedFormelementsRightPanel().size() > i) {
         Formelement element = dragAndDropController.getSelectedFormelementsRightPanel().get(i);
         dragAndDropController.addFinalUsedFormelements(element);
-        
-        DynaFormLabel label = tempRow.addLabel(element.getDisplayLabel());
-        DynaFormControl control = tempRow.addControl(element, element.getType().getValue());
+
+        DynaFormLabel label = labelRow.addLabel(element.getDisplayLabel(), 2, 1);
+
+        DynaFormControl control = controlRow.addControl(element, element.getType().getValue(), 2, 1);
         label.setForControl(control);
-        
+
       } else {
-        tempRow.addLabel(StringUtils.EMPTY);
-        tempRow.addControl(null, CONTROL_SPACER);
-        
+        labelRow.addLabel(StringUtils.EMPTY);
+        controlRow.addControl(null, CONTROL_SPACER);
       }
     }
   }
-
-
 
   public String submitForm() {
     FacesMessage.Severity sev = FacesContext.getCurrentInstance()
