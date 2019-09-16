@@ -47,11 +47,13 @@ Ps0 f5 expr out #txt
 Ps0 f5 109 160 211 160 #arcP
 Ps0 f0 guid 16BF472CAB02934E #txt
 Ps0 f0 type ch.ivy.addon.portal.generic.PortalTaskDetails.PortalTaskDetailsData #txt
-Ps0 f0 method start(ch.ivyteam.ivy.workflow.ITask,String) #txt
+Ps0 f0 method start(ch.ivyteam.ivy.workflow.ITask,String,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,String) #txt
 Ps0 f0 disableUIEvents true #txt
 Ps0 f0 inParameterDecl 'ch.ivy.addon.portal.generic.PortalTaskDetails.PortalTaskDetailsData out;
 ' #txt
-Ps0 f0 inParameterMapAction 'out.menuState=param.menuState;
+Ps0 f0 inParameterMapAction 'out.dataModel=param.dataModel;
+out.menuState=param.menuState;
+out.portalPage=param.portalPage;
 out.task=param.task;
 ' #txt
 Ps0 f0 outParameterDecl '<> result;
@@ -59,11 +61,11 @@ Ps0 f0 outParameterDecl '<> result;
 Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start(Itask, String)</name>
+        <name>start(ITask,String,TaskLazyDataModel)</name>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f0 83 51 26 26 -16 15 #rect
+Ps0 f0 83 51 26 26 -79 16 #rect
 Ps0 f0 @|RichDialogInitStartIcon #fIcon
 Ps0 f2 expr out #txt
 Ps0 f2 109 64 211 64 #arcP

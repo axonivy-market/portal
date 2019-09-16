@@ -8,3 +8,10 @@ task ch.ivyteam.ivy.workflow.ITask #field
 task PERSISTENT #fieldModifier
 canUserResumeTask Boolean #field
 canUserResumeTask PERSISTENT #fieldModifier
+callbackUrl String #field
+callbackUrl PERSISTENT #fieldModifier
+dataModel ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel #field
+dataModel PERSISTENT #fieldModifier
+portalPage String #field
+portalPage 'The page opened task details: TASK_LIST or SEARCH_RESULTS' #fieldComment
+portalPage PERSISTENT #fieldModifier
