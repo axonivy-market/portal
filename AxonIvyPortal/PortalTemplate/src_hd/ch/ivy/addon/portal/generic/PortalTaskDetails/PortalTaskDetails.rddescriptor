@@ -16,6 +16,18 @@
             <parameterType>String</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
+        <inputParameter>
+            <name>dataModel</name>
+            <description></description>
+            <parameterType>ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
+        <inputParameter>
+            <name>portalPage</name>
+            <description></description>
+            <parameterType>String</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
     </startMethod>
     <property>
         <name>guid</name>

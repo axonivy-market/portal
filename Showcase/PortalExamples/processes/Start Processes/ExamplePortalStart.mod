@@ -94,13 +94,6 @@ Pt0 @GridStep f106 '' #zField
 Pt0 @PushWFArc f108 '' #zField
 Pt0 @PushWFArc f109 '' #zField
 Pt0 @PushWFArc f107 '' #zField
-Pt0 @StartRequest f110 '' #zField
-Pt0 @GridStep f117 '' #zField
-Pt0 @EndTask f112 '' #zField
-Pt0 @CallSub f115 '' #zField
-Pt0 @PushWFArc f114 '' #zField
-Pt0 @PushWFArc f116 '' #zField
-Pt0 @PushWFArc f119 '' #zField
 Pt0 @PushWFArc f42 '' #zField
 Pt0 @CallSub f23 '' #zField
 Pt0 @GridStep f17 '' #zField
@@ -1287,75 +1280,6 @@ Pt0 f109 expr out #txt
 Pt0 f109 504 1024 617 1024 #arcP
 Pt0 f107 expr out #txt
 Pt0 f107 288 1024 360 1024 #arcP
-Pt0 f110 outLink startPortalTaskDetail.ivp #txt
-Pt0 f110 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pt0 f110 inParamDecl '<java.lang.Long taskId> param;' #txt
-Pt0 f110 inParamTable 'out.taskId=param.taskId;
-' #txt
-Pt0 f110 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
-' #txt
-Pt0 f110 guid 16C4217ED029B3C0 #txt
-Pt0 f110 requestEnabled true #txt
-Pt0 f110 triggerEnabled false #txt
-Pt0 f110 callSignature startPortalTaskDetail(Long) #txt
-Pt0 f110 persist false #txt
-Pt0 f110 caseData businessCase.attach=true #txt
-Pt0 f110 showInStartList 0 #txt
-Pt0 f110 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>startPortalTaskDetail.ivp</name>
-    </language>
-</elementInfo>
-' #txt
-Pt0 f110 @C|.responsibility Everybody #txt
-Pt0 f110 49 1121 30 30 -55 34 #rect
-Pt0 f110 @|StartRequestIcon #fIcon
-Pt0 f117 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
-' #txt
-Pt0 f117 actionTable 'out=in;
-' #txt
-Pt0 f117 actionCode 'out.taskSelected = ivy.wf.findTask(in.taskId);' #txt
-Pt0 f117 security system #txt
-Pt0 f117 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pt0 f117 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Find Task</name>
-    </language>
-</elementInfo>
-' #txt
-Pt0 f117 176 1114 112 44 -27 -8 #rect
-Pt0 f117 @|StepIcon #fIcon
-Pt0 f112 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pt0 f112 641 1121 30 30 0 15 #rect
-Pt0 f112 @|EndIcon #fIcon
-Pt0 f115 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pt0 f115 processCall 'Functional Processes/OpenPortalTaskDetail:call(ch.ivyteam.ivy.workflow.ITask)' #txt
-Pt0 f115 doCall true #txt
-Pt0 f115 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask taskData> param;
-' #txt
-Pt0 f115 requestMappingAction 'param.taskData=in.taskSelected;
-' #txt
-Pt0 f115 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
-' #txt
-Pt0 f115 responseMappingAction 'out=in;
-' #txt
-Pt0 f115 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>OpenPortalTaskDetail</name>
-    </language>
-</elementInfo>
-' #txt
-Pt0 f115 356 1112 152 48 -60 -8 #rect
-Pt0 f115 @|CallSubIcon #fIcon
-Pt0 f114 expr out #txt
-Pt0 f114 508 1136 641 1136 #arcP
-Pt0 f116 expr out #txt
-Pt0 f116 288 1136 356 1136 #arcP
-Pt0 f119 expr out #txt
-Pt0 f119 79 1136 176 1136 #arcP
 Pt0 f42 expr in #txt
 Pt0 f42 576 168 880 168 #arcP
 Pt0 f23 type ch.ivy.addon.portal.generic.PortalStartData #txt
@@ -1496,12 +1420,6 @@ Pt0 f106 mainOut f107 tail #connect
 Pt0 f107 head f104 mainIn #connect
 Pt0 f104 mainOut f109 tail #connect
 Pt0 f109 head f105 mainIn #connect
-Pt0 f115 mainOut f114 tail #connect
-Pt0 f114 head f112 mainIn #connect
-Pt0 f110 mainOut f119 tail #connect
-Pt0 f119 head f117 mainIn #connect
-Pt0 f117 mainOut f116 tail #connect
-Pt0 f116 head f115 mainIn #connect
 Pt0 f4 out f42 tail #connect
 Pt0 f42 head f41 in #connect
 Pt0 f17 mainOut f26 tail #connect

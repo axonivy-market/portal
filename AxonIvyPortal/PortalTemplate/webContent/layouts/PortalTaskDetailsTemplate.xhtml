@@ -5,12 +5,11 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
-    <ui:param name="task" value="#{data.task}" />
     <ui:define name="pageTitle">#{ivy.cms.co('/Labels/TaskItemDetail')}</ui:define>
     <ui:define name="simplePageContent">
-
       <ic:ch.ivy.addon.portalkit.component.TaskItemDetails id="task-detail-template" task="#{task}" showItemDetailsHeader="#{showItemDetailsHeader}"
-        showItemDetailsNotes="#{showItemDetailsNotes}" showItemDetailDocuments="#{showItemDetailDocuments}">
+        showItemDetailsNotes="#{showItemDetailsNotes}" showItemDetailDocuments="#{showItemDetailDocuments}" dataModel="#{dataModel}"
+        portalPage="#{portalPage}">
 
         <f:facet name="taskItemDetailCustomPanelTop">
           <ui:insert name="taskItemDetailCustomPanelTop" />

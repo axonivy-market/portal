@@ -4,7 +4,6 @@
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="nameId" default="task-name" />
-  <cc:attribute name="task" required="true" shortDescription="Task" type="ch.ivyteam.ivy.workflow.ITask" />
   <cc:attribute name="componentToUpdate" />
   <cc:attribute name="showItemDetailsHeader" default="true" />
   <cc:attribute name="showItemDetailDocuments" default="true" />
@@ -12,7 +11,7 @@
 </cc:interface>
 
 <cc:implementation>
-  <c:set var="task" value="#{cc.attrs.task}" />
+  <c:set var="task" value="#{data.task}" />
 
   <h:panelGroup id="task-detail-container" rendered="#{cc.attrs.showItemDetailsHeader}" styleClass="ui-g-12 u-truncate-text">
     <h:form id="task-detail-title-form" onsubmit="return false;" styleClass="name-cell task-detail-header">
@@ -24,7 +23,7 @@
           label="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}">
           <p:inputText id="task-name-input" value="#{task.name}" styleClass="task-name-input" maxlength="200" valueChangeListener="#{logic.keepOldNameValue}"
             onkeypress="if(event.keyCode == 13) {PF('task-name-inplace').save()}" />
-          <p:ajax event="save" listener="#{logic.updateTask(task)}" process="#{cc.attrs.nameId}-edit-form"
+          <p:ajax event="save" listener="#{logic.updateTask()}" process="#{cc.attrs.nameId}-edit-form"
             update="#{cc.attrs.nameId}-edit-form #{cc.attrs.componentToUpdate} #{p:component('task-detail-note-container')}" />
           <f:passThroughAttribute name="onclick" value="if('#{taskActionBean.canChangeName(task)}'=='true') {event.stopPropagation()}" />
         </p:inplace>
@@ -49,7 +48,7 @@
             <div class="Fright">
               <h:panelGroup>
                 <p:commandLink id="task-detail-start-command" disabled="#{!taskActionBean.canResume(task)}" styleClass="task-action-item"
-                  actionListener="#{logic.openTaskDetail(task)}">
+                  actionListener="#{logic.openTask()}">
                   <i class="fa fa-chevron-right" />
                   <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label" />
                 </p:commandLink>
