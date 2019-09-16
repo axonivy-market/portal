@@ -1,12 +1,24 @@
+/* Override fieldset */
+.ui-fieldset-legend {
+  padding: 10px !important;
+}
+
 /* WORKFLOW DEFINITION */
+.express-align-bottom-group {
+  display: flex !important;
+  height: 5em;
+}
+
+.express-align-bottom-group .align-bottom-child-item {
+  display: inline-block !important;
+  align-self: flex-end !important;
+}
+
 .express-work-flow {
   margin-top: 1.5rem;
 }
 
-.express-input-margintop {
-  margin-top: 22px !important;
-}
-
+/* Override fieldset style */
 .express-fieldset {
   border: none !important;
   display: block;
@@ -51,11 +63,7 @@
 .express-workflow-table-input {
   width: calc(100% - 45px) !important;
 }
-    
-.input-area-norows-panel {
-  padding-top: 5px;
-}
-    
+
 .express-work-flow .express-input-switch-selection,
 .ui-inputswitch.ui-widget.ui-widget-content.express-input-switch-selection.ui-inputswitch-checked {
   background-color: #AFCA05;
@@ -634,6 +642,10 @@
 }
 
 /* EMAIL */
+.express-action-button-icon-only {
+  width: 110px;
+}
+
 .email-attachment .ui-fileupload-buttonbar.ui-widget-header.ui-corner-top {
   float: right;
   background-color: transparent;
@@ -660,15 +672,12 @@ td.email-attachment-text {
 }
 
 .express-email-container {
-  padding: 1em;
+  padding: 0.5em;
 }
 
 @media screen and (max-width: 40em) {
   .email-attachment .ui-fileupload-content.ui-widget-content.ui-corner-bottom {
     display: none !important;
-  }
-  .express-email-container {
-    padding: 0.5em !important;
   }
 }
 
@@ -835,12 +844,8 @@ td.email-attachment-text {
 	width: 98%;
 }
 
-.preview-dialog .pe-dynaform-cell[colspan]>.ui-spinner {
-	width: auto;
-}
-
-.preview-dialog .pe-dynaform-cell[colspan="4"]>.ui-spinner>.ui-spinner-input
-	{
+.preview-dialog .pe-dynaform-cell[colspan]>.ui-spinner,
+.preview-dialog .pe-dynaform-cell[colspan]>.ui-spinner>.ui-spinner-input {
 	width: auto;
 }
 
@@ -851,10 +856,6 @@ td.email-attachment-text {
 
 .preview-dialog .pe-dynaform-cell>.ui-spinner {
 	width: 98%;
-}
-
-.preview-dialog .pe-dynaform-cell>.ui-spinner>.ui-spinner-input {
-	width: 94%;
 } 
 
 .preview-dialog .preview-dyna-container {
@@ -865,24 +866,28 @@ td.email-attachment-text {
 	overflow-y: auto;
 }
 
-.preview-dialog .pe-dynaform-cell[colspan="2"]:not(.pe-dynaform-label),
-.preview-dialog .pe-dynaform-cell[colspan="2"]:not(.pe-dynaform-label) {
-  line-height: 4rem !important;
+/* Override dynaform cell */
+.pe-dynaform-cell[colspan="2"]:not(.pe-dynaform-label),
+.pe-dynaform-cell[colspan="2"]:not(.pe-dynaform-label) {
+  height: 2.5rem !important;
+  vertical-align: bottom !important;
+}
+
+.pe-dynaform-grid tr>td.pe-dynaform-cell[colspan="2"]:first-child {
+  padding-right: 2em;
+}
+
+.pe-dynaform-grid tr>td.pe-dynaform-cell[colspan="2"]:last-child {
+  padding-left: 2em;
+}
+
+.pe-dynaform-grid .pe-dynaform-cell .md-inputfield label {
+  left: 0 !important;
 }
 
 .preview-dialog .pe-dynaform-cell[colspan="2"]:not(.pe-dynaform-label) table,
 .preview-dialog .pe-dynaform-cell[colspan="2"]:not(.pe-dynaform-label) table {
   line-height: initial !important;
-}
-
-.preview-dialog .pe-dynaform-cell[colspan="2"] .ui-spinner-button.ui-spinner-up,
-.preview-dialog .pe-dynaform-cell[colspan="2"] .ui-spinner-button.ui-spinner-up {
-  margin-top: 1rem;
-}
-
-.preview-dialog .pe-dynaform-cell[colspan="2"] .ui-spinner-button.ui-spinner-down,
-.preview-dialog .pe-dynaform-cell[colspan="2"] .ui-spinner-button.ui-spinner-down {
-  margin-bottom: 0.6rem;
 }
 
 .ui-selectmanycheckbox.ui-widget td:first-child, .ui-selectoneradio.ui-widget td:first-child
