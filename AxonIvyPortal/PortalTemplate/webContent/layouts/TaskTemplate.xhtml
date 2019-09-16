@@ -53,7 +53,7 @@
             <h:form>
               <p:menu id="task-action-menu" overlay="true" trigger="task-actions" my="right top" at="right bottom"
                 styleClass="action-steps-panel task-actions-menu">
-                <p:menuitem rendered="#{showCaseStatusInfoTab == null or !showCaseStatusInfoTab}"
+                <p:menuitem rendered="#{showCaseStatusInfoTab eq false}"
                   actionListener="#{caseBean.navigateToCaseDetails(case)}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/statusTabTitle')}"
                   icon="fa fa-list-ul" />
