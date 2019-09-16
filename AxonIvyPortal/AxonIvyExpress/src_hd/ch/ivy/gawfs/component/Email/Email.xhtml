@@ -16,7 +16,7 @@
   <h:panelGroup id="email-container" styleClass="ui-g express-email-container">
     <div class="ui-g-12 card u-padding-0">
       <div class="ui-g-12">
-        <div class="ui-g-12 md-inputfield">
+        <div class="ui-g-12 md-inputfield MarTop10">
           <p:inputText id="email-recipients" styleClass="ui-g-12" value="#{email.recipients}"
             requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailAddress')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
           <p:outputLabel for="email-recipients" styleClass="ui-g-12"
@@ -83,11 +83,11 @@
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}" styleClass="email-attachment-text" >
               <h:outputText value="#{attachment.name}" title="#{attachment.name}"/>
             </p:column>
-            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/size')}" styleClass="ui-sm-hidden">
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/size')}" styleClass="ui-sm-hidden" width="30%">
               <h:outputText value="#{attachment.size}" title="#{attachment.size}" />
             </p:column>
 
-            <p:column styleClass="u-text-align-center" headerText="#{ivy.cms.co('/Dialogs/components/CaseDocument/FileFunctions')}">
+            <p:column styleClass="u-text-align-center express-action-button-icon-only" headerText="#{ivy.cms.co('/Dialogs/components/CaseDocument/FileFunctions')}">
               <p:commandLink id="download" styleClass="fa fa-download MarRight10 email-attachment" immediate="true" ajax="false"
                 process="attachmentTableVar" actionListener="#{emailBean.downloadAttachment(attachment)}"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}">
