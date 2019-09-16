@@ -17,13 +17,14 @@
   <cc:implementation>
   	<f:event listener="#{approvalResultBean.groupingApprovalResult(cc.attrs.approvalResults)}" type="preRenderComponent" />
   	 <ui:repeat id="approval-result-container" value="#{approvalResultBean.approvalResultGroups}" var="approvalResultGroup" varStatus="approvalTaskStatus">
-	  	<p:fieldset id="approval-result-fieldset" styleClass="finished-task-fieldset" toggleable="true" collapsed="#{cc.attrs.lastApprovalCollapsed}">
+	  	<p:fieldset id="approval-result-fieldset" styleClass="finished-task-fieldset express-fieldset" toggleable="true" collapsed="#{cc.attrs.lastApprovalCollapsed}">
 	      <f:facet name="legend">
 	        <h:outputText id="approval-result-fieldset-legend" value="#{approvalResultGroup.get(0).taskName}" />
 	      </f:facet>
 	      <!-- APPROVAL RESULT -->
+        <div class="ui-g-12 card">
 	      <p:outputLabel id="form-approval-label" value="#{ivy.cms.co('/Dialogs/WorkflowExecution/FinishedTasksForm/ApprovalResult')}" styleClass="review-content-title" />
-	      <p:dataTable id="approval-result-table" value="#{approvalResultGroup}" var="approval">
+	      <p:dataTable id="approval-result-table" value="#{approvalResultGroup}" var="approval" styleClass="approval-result-table">
 	        <p:column headerText="#{ivy.cms.co('/Dialogs/WorkflowExecution/FinalReviewForm/approver')}" sortBy="#{approval.approverName}">
 	          <h:outputText value="#{approval.approverName}" />
 	        </p:column>
@@ -34,6 +35,7 @@
 	          <h:outputText value="#{approval.isApproved ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" />
 	        </p:column>
 	      </p:dataTable>
+        </div>
 	    </p:fieldset>
   	</ui:repeat>
   	
