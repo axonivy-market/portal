@@ -88,6 +88,11 @@ Fs0 @PushWFArc f71 '' #zField
 Fs0 @GridStep f72 '' #zField
 Fs0 @PushWFArc f73 '' #zField
 Fs0 @PushWFArc f32 '' #zField
+Fs0 @RichDialogMethodStart f74 '' #zField
+Fs0 @RichDialogProcessEnd f75 '' #zField
+Fs0 @GridStep f77 '' #zField
+Fs0 @PushWFArc f78 '' #zField
+Fs0 @PushWFArc f76 '' #zField
 >Proto Fs0 Fs0 WorkflowDefinitionProcess #zField
 Fs0 f0 guid 1576FA61C9D81A51 #txt
 Fs0 f0 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
@@ -173,7 +178,9 @@ if (!in.data.#isUseDefaultUI is initialized) {
 }
 if (!in.data.#processType is initialized) {
 	in.data.processType = ProcessType.AD_HOC;
-}' #txt
+}
+in.isProcessType = in.data.processType != ProcessType.AD_HOC;
+' #txt
 Fs0 f6 security system #txt
 Fs0 f6 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -910,6 +917,49 @@ Fs0 f32 expr in #txt
 Fs0 f32 192 624 248 688 #arcP
 Fs0 f32 1 192 688 #addKink
 Fs0 f32 1 0.19396467700664802 0 0 #arcLabel
+Fs0 f74 guid 16D18F9A37BFB86F #txt
+Fs0 f74 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
+Fs0 f74 method onSwitchProcessType() #txt
+Fs0 f74 disableUIEvents false #txt
+Fs0 f74 inParameterDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
+' #txt
+Fs0 f74 outParameterDecl '<> result;
+' #txt
+Fs0 f74 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>onSwitchProcessType()</name>
+    </language>
+</elementInfo>
+' #txt
+Fs0 f74 819 819 26 26 -65 15 #rect
+Fs0 f74 @|RichDialogMethodStartIcon #fIcon
+Fs0 f75 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
+Fs0 f75 1139 819 26 26 0 12 #rect
+Fs0 f75 @|RichDialogProcessEndIcon #fIcon
+Fs0 f77 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
+' #txt
+Fs0 f77 actionTable 'out=in;
+' #txt
+Fs0 f77 actionCode 'import ch.ivy.gawfs.enums.ProcessType;
+
+in.data.processType = in.isProcessType ? ProcessType.REPEAT:ProcessType.AD_HOC;
+
+ivy.log.info("Update process type {0}", in.data.processType.toString());' #txt
+Fs0 f77 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
+Fs0 f77 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Update process type</name>
+    </language>
+</elementInfo>
+' #txt
+Fs0 f77 912 810 128 44 -56 -8 #rect
+Fs0 f77 @|StepIcon #fIcon
+Fs0 f78 expr out #txt
+Fs0 f78 845 832 912 832 #arcP
+Fs0 f76 expr out #txt
+Fs0 f76 1040 832 1139 832 #arcP
 >Proto Fs0 .type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 >Proto Fs0 .processKind HTML_DIALOG #txt
 >Proto Fs0 -8 -8 16 16 16 26 #rect
@@ -982,3 +1032,7 @@ Fs0 f70 out f73 tail #connect
 Fs0 f73 head f72 mainIn #connect
 Fs0 f70 out f32 tail #connect
 Fs0 f32 head f28 mainIn #connect
+Fs0 f74 mainOut f78 tail #connect
+Fs0 f78 head f77 mainIn #connect
+Fs0 f77 mainOut f76 tail #connect
+Fs0 f76 head f75 mainIn #connect
