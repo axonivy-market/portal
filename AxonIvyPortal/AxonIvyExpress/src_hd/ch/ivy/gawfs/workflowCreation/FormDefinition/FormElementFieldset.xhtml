@@ -56,7 +56,7 @@
 
         <h:panelGroup styleClass="create-form-toolbar">
           <p:commandButton id="add-input-text-btn" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
-            actionListener="#{logic.createInputField()}" styleClass="buttonDelegate" icon="fa fa-arrow-down" resetValues="true"
+            actionListener="#{logic.createInputField()}" icon="fa fa-arrow-down" resetValues="true"
             update="form:available-form-elements form:create-tabs" process="form:create-tabs:create-input-field-tab" />
         </h:panelGroup>
       </p:tab>
@@ -161,7 +161,7 @@
 
         <h:panelGroup styleClass="create-form-toolbar">
           <p:commandButton id="add-checkbox-btn" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
-            actionListener="#{logic.createManyCheckbox}" styleClass="buttonDelegate" icon="fa fa-arrow-down" resetValues="true"
+            actionListener="#{logic.createManyCheckbox}" icon="fa fa-arrow-down" resetValues="true"
             update="form:available-form-elements form:create-tabs form:create-tabs:many-checkbox-options"
             process="form:create-tabs:create-many-checkbox-tab form:create-tabs:many-checkbox-options" />
         </h:panelGroup>
@@ -196,7 +196,7 @@
                       <p:outputLabel styleClass="marginTop6" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/OptionboxFields')}" />
                     </div>
                     <div class="express-add-option-panel">
-                      <p:commandButton id="add-radio-option-btn" styleClass="buttonDelegate" icon="fa fa-plus"
+                      <p:commandButton id="add-radio-option-btn" icon="fa fa-plus"
                         actionListener="#{data.createOneRadioTab.addOption()}" update="form:create-tabs:one-radio-options"
                         process="form:create-tabs:one-radio-options" />
                     </div>
@@ -221,7 +221,7 @@
 
         <h:panelGroup styleClass="create-form-toolbar">
           <p:commandButton id="add-radio-btn" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
-            actionListener="#{logic.createOneRadio}" styleClass="buttonDelegate" icon="fa fa-arrow-down" resetValues="true"
+            actionListener="#{logic.createOneRadio}" icon="fa fa-arrow-down" resetValues="true"
             update="form:available-form-elements form:create-tabs" process="form:create-tabs:create-one-radio-tab" />
         </h:panelGroup>
       </p:tab>
