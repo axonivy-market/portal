@@ -2612,9 +2612,14 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
     margin: 0 10px;
   }
   .circle-horizontal-step-container span:before {
-    border-top: 3px solid #E0E0E0;
     transform: translate(2rem, 0.5rem);
     border-top-style: dashed;
+  }
+  .circle-horizontal-step-container:not(.last-step) span:before {
+    border-top: 3px dashed #E0E0E0;
+  }
+  .circle-horizontal-step-container.last-step span:before {
+    border-top: 3px dashed #afca05 !important;
   }
   .circle-horizontal-step-container span:after {
     border-top: 3px solid #afca05;
