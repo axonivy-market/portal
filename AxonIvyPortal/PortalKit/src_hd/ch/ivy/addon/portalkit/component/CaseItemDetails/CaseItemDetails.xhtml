@@ -65,7 +65,7 @@
                   href="#{caseWidgetBean.getAdditionalCaseDetailsPageUri(case)}"
                   rendered="#{caseWidgetBean.showCaseDetails}">
                   <i class="fa fa-external-link-square case-details-note-add-link-icon" />
-                  <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showAdditionalPage')}" />
+                  <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showAdditionalPage')}" styleClass="ui-sm-hidden" />
                 </p:link>
                 <p:tooltip for="show-additional-case-details-link"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showAdditionalPage')}"
