@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.primefaces.model.CheckboxTreeNode;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.bo.CaseNode;
 import ch.ivy.addon.portalkit.util.CaseTreeUtils;
@@ -12,8 +15,6 @@ import ch.ivy.addon.portalkit.util.NodeUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class CaseCategoryFilter extends CaseFilter {
 
@@ -72,7 +73,11 @@ public class CaseCategoryFilter extends CaseFilter {
   }
 
   public void setCategories(CheckboxTreeNode[] categories) {
-    this.categories = categories;
+    if (ArrayUtils.isEmpty(categories)) {
+      this.categories = new CheckboxTreeNode[] {};
+    } else {
+      this.categories = categories;
+    }
   }
 
   public CheckboxTreeNode getRoot() {
@@ -81,6 +86,12 @@ public class CaseCategoryFilter extends CaseFilter {
 
   public void setRoot(CheckboxTreeNode root) {
     this.root = root;
+  }
+  
+  //This method is used for updating Category Tree and Category Paths when having session filter 
+  public void updateRootAndCategoryPaths() {
+    root = CaseTreeUtils.buildCaseCategoryCheckboxTreeRoot();
+    setCategoryPaths(this.categoryPaths);
   }
 
   public List<String> getCategoryPaths() {
