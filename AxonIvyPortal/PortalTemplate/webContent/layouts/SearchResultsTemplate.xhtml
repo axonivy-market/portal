@@ -138,7 +138,7 @@
             var taskListScreen = new TaskListScreenHandler();
             var responsiveToolkit = ResponsiveToolkit(taskListScreen);
 
-            Portal.init(responsiveToolkit, true);
+            Portal.init(responsiveToolkit);
             taskWidget.setupHeader();
             return;
           }
@@ -148,7 +148,7 @@
             var caseListScreen = new CaseListScreenHandler();
             var responsiveToolkit = ResponsiveToolkit(caseListScreen);
 
-            Portal.init(responsiveToolkit, true);
+            Portal.init(responsiveToolkit);
             caseWidget.setupHeader();
             return;
           }
