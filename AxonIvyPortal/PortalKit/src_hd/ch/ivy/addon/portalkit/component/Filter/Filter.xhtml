@@ -21,6 +21,8 @@
     <cc:attribute name="keywordStoresIn" />
     <cc:attribute name="onCompletedCallback" default="" />
     <cc:attribute name="icon" default="icon-search" />
+    <cc:attribute name="iconAsButton" default="false" />
+    <cc:attribute name="onClickIconFilter" default="" />
   </cc:interface>
   
   <cc:implementation>
@@ -30,6 +32,7 @@
       </p:inputText>
       <p:inputText id="non-ajax-keyword-filter" styleClass="filter-widget-input #{cc.attrs.styleClass}" rendered="#{not cc.attrs.ajax}" onkeyup="#{cc.attrs.listener}" placeholder="#{cc.attrs.placeholder}" />
       <i class="filter-widget-icon #{cc.attrs.icon}" />
+      <p:commandButton styleClass="mobile-filter-icon" icon="fa fa-filter" rendered="#{cc.attrs.iconAsButton}" onclick="#{cc.attrs.onClickIconFilter}" global="false" type="button" />
     </div>
   </cc:implementation>
 </html>
