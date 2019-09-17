@@ -110,10 +110,10 @@
           </h:panelGroup>
           <p:outputPanel styleClass="TexAlRight">
             <p:commandButton id="email-ok-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onclick="submitData()"
-              styleClass="buttonDelegate" type="button" icon="fa fa-check" />
+              type="button" icon="fa fa-check" />
             <p:spacer width="5" />
             <p:commandButton id="email-cancel-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" immediate="true"
-              update="request-form mail-form" actionListener="#{logic.cancel}" styleClass="buttonDelegate portal-cancel-button" icon="fa fa-times" />
+              update="request-form mail-form" actionListener="#{logic.cancel}" styleClass="portal-cancel-button" icon="fa fa-times" />
           </p:outputPanel>
           <p:remoteCommand id="submit-command" name="submitData" partialSubmit="true" process="request-form mail-form"
             update="request-form mail-form error-messages" actionListener="#{logic.close}" />

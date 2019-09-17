@@ -117,7 +117,7 @@
           <h:panelGroup layout="block" id="step-info-mobile-#{counter.index}" rendered="#{(isShowAllSteps or isDisplayedStep) and isCurrentStep}"
             class="circle-horizontal-process-step #{isHideNextSteps and !isShowAllSteps ? 'hide-steps' : ''} #{processStepTypeCssClass}">
             <span class="circle-horizontal-step-title">${stepName}</span>
-            <h:panelGroup layout="block" id="step-count-mobile-container-#{counter.index}" styleClass="circle-horizontal-step-container">
+            <h:panelGroup layout="block" id="step-count-mobile-container-#{counter.index}" styleClass="circle-horizontal-step-container #{isLastStep ? 'last-step':''}">
               <span>#{counter.index + 1}</span>
             </h:panelGroup>
           </h:panelGroup>
@@ -134,7 +134,7 @@
             <h:panelGroup layout="block" id="step-count-mobile-container-#{counter.index}" styleClass="line-horizontal-step-container" />
           </h:panelGroup>
 
-          <h:panelGroup layout="block" rendered="#{isNextCurrentStep}" styleClass="line-horizontal-process-step hide-left-steps #{isNextCurrentStep ? 'waiting':''}" />
+          <h:panelGroup layout="block" rendered="#{isNextCurrentStep}" styleClass="line-horizontal-process-step hide-left-steps #{isNextCurrentStep and !isLastStep ? 'waiting': ''}" />
         </c:if>
 
         <p:tooltip for="step-info-mobile-#{counter.index}" value="#{stepName}" trackMouse="true" />
