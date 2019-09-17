@@ -11,6 +11,7 @@ function TaskWidget() {
       var childElements = $('.js-task-start-list-item');
       if (childElements.length > 0) {
         var container = $('.js-task-start-list > .ui-datascroller-content');
+        var mainAreaPanel = $('#main-area-panel');
         var taskWidgetHeaderContainer = $('.js-task-widget-header');
         var announcementMessageContainer = $('.js-announcement-message');
         var taskWidgetSortMenuContainer = $('.js-task-widget-sub-header');
@@ -30,12 +31,10 @@ function TaskWidget() {
         if (globalSearchTabHeader.length > 0) {
           error = 55; // included margin, padding in search page
         }
-
-        var mainScreenHeight = $('body').outerHeight() - $('.layout-topbar').outerHeight() - 25; // exclude margin
+        var mainScreenHeight = mainAreaPanel.outerHeight(true) - $('.layout-topbar').outerHeight(true) - 15; //minus 15 to remove 2nd scroll bar
         var availableHeight = mainScreenHeight - taskWidgetHeaderContainer.outerHeight(true) - announcementMessageContainer.outerHeight(true)
             - taskWidgetSortMenuContainer.outerHeight(true) - taskWidgetFilterContainer.outerHeight(true)
             - customWidgetContainer - globalSearchInput.outerHeight(true) - globalSearchTabHeader.outerHeight(true) - error;
-
         if (!!availableHeight) {
           container.height(availableHeight);
         }
@@ -94,8 +93,8 @@ function TaskListToolKit() {
     },
     
     responsive : function() {
-        this.setupHeader();
         this.setupScrollbar();
+        this.setupHeader();
     }
   }
 };
