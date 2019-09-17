@@ -43,11 +43,7 @@ function TaskWidget() {
     },
     
     toggleTaskFilter: function(toggler) {
-      $('.js-task-filter-container').toggleClass('u-hidden-sm-down');
-      var toggleIcon = $(toggler).find('i.fa');
-      if(toggleIcon !== undefined) {
-        toggleIcon.toggleClass('fa-plus-circle, fa-minus-circle');
-      }
+      $('.js-filter-container').toggleClass('u-hidden-md-down');
     },
   }
 }
