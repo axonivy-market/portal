@@ -94,10 +94,10 @@
         <br />
         <p:outputPanel styleClass="TexAlRight">
           <p:commandButton id="ok-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" update="form" process="form"
-            actionListener="#{logic.close}" styleClass="buttonDelegate" icon="fa fa-check" />
+            actionListener="#{logic.close}" icon="fa fa-check" />
           <p:spacer width="5" />
           <p:commandButton id="cancel-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" immediate="true" update="form"
-            actionListener="#{logic.cancel}" styleClass="buttonDelegate portal-cancel-button" icon="fa fa-times" />
+            actionListener="#{logic.cancel}" styleClass="portal-cancel-button" icon="fa fa-times" />
         </p:outputPanel>
       </h:form>
     </ui:define>
