@@ -5,7 +5,4 @@
         <identifier>AXONIVY_PORTAL_ADMIN</identifier>
         <displayName>Portal Admin</displayName>
     </role>
-    <role>
-        <identifier>Test</identifier>
-    </role>
 </role>
