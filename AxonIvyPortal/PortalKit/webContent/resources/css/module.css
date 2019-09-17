@@ -4596,6 +4596,41 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   width: 160px;
 }
 
+/* Display icon filter on mobile as a button */
+@media (max-width: 991px) {
+  .simple-filter-icon {
+    display: none !important;
+  }
+  .widget-header-content-filter {
+    padding-right: 0 !important;
+  }
+  .filter-container {
+    padding: 0 0.5em !important;
+  }
+  .filter-widget-input.case-filter-component {
+    padding-right: 35px !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .mobile-filter-icon {
+    display: none !important;
+  }
+}
+
+.mobile-filter-icon {
+  position: absolute !important;
+  right: 0;
+  height: 25px !important;
+  width: 25px !important;
+}
+
+.mobile-filter-icon span {
+  font-size: 1.4rem !important;
+  height: 18px !important;
+  top: 58% !important;
+}
+
 .ui-widget.ui-button.filter-add-button.no-icon .ui-button-text {
   padding-right: 10px !important;
 }
