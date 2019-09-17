@@ -17,7 +17,7 @@
     <div class="ui-g-12 card u-padding-0">
       <div class="ui-g-12">
         <div class="ui-g-12 md-inputfield MarTop10">
-          <p:inputText id="email-recipients" styleClass="ui-g-12" value="#{email.recipients}"
+          <p:inputText id="email-recipients" styleClass="ui-g-12" value="#{email.recipients}" required="true"
             requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailAddress')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
           <p:outputLabel for="email-recipients" styleClass="ui-g-12"
             value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailAddress')}" />
@@ -30,7 +30,7 @@
         </div>
 
         <div class="ui-g-12 md-inputfield MarTop10">
-          <p:inputText id="email-subject" styleClass="ui-g-12" value="#{email.subject}"
+          <p:inputText id="email-subject" styleClass="ui-g-12" value="#{email.subject}" required="true"
             requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/Subject')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
           <p:outputLabel for="email-subject" styleClass="ui-g-12" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/Subject')}" />
         </div>
@@ -38,7 +38,7 @@
 
       <div class="ui-g-12">
         <p:outputLabel for="email-content" styleClass="ui-g-12" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailText')}: " />
-        <p:textEditor id="email-content" styleClass="ui-g-12 text-editor-send-email" height="300" value="#{email.content}"
+        <p:textEditor id="email-content" styleClass="ui-g-12 text-editor-send-email" height="300" value="#{email.content}" required="true"
           requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailText')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
           <f:facet name="toolbar">
             <span class="ql-formats">
