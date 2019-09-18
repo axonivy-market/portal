@@ -566,6 +566,10 @@ img[id*='additonalTaskUserAvatar'] {
     background: repeating-linear-gradient(180deg, #E0E0E0, #E0E0E0 10px, $bodyBackgroundColor 10px, $bodyBackgroundColor 20px);
 }
 
+.cicrle-step-container {
+    color: $cicrleStepContainer;
+}
+
 .task #mobile-menu .mobile-task-menu-item,
 .process #mobile-menu .mobile-process-menu-item {
     border-bottom-width: 2px;
