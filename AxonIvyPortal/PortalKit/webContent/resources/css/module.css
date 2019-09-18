@@ -315,6 +315,31 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   z-index: auto !important;
 }
 
+/********************** START MENU ITEM ***********************/
+.layout-wrapper .layout-sidebar .layout-menu>li>a.current-application {
+	border-bottom: 1px solid transparent;
+}
+
+.layout-wrapper .layout-sidebar .layout-menu>li:not(.active-menuitem)>a.current-application {
+	border-bottom-color: rgba(0,0,0,0.15) !important;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.first-sub-item {
+  margin-top: -40px !important;
+  padding-top: 46px !important;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.last-sub-item {
+	border-bottom-right-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
+}
+
+/********************** END MENU ITEM ***********************/
+
 /********************** START SUBMENU ITEM ***********************/
 .submenu-container {
 	background-color: rgba(255, 255, 255, 0.6);
@@ -334,11 +359,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .submenu-container a {
 	background-color: transparent !important;
     box-shadow: none !important;
-}
-
-.last-sub-item {
-	border-bottom-right-radius: 10px !important;
-    border-bottom-left-radius: 10px !important;
 }
 
 /********************** END SUBMENU ITEM ***********************/
