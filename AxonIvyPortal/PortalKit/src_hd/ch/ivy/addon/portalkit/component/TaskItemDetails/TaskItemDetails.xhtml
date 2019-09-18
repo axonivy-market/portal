@@ -8,6 +8,7 @@
   <cc:attribute name="showItemDetailsHeader" default="true" />
   <cc:attribute name="showItemDetailDocuments" default="true" />
   <cc:attribute name="showItemDetailsNotes" default="true" />
+  <cc:attribute name="isFromTaskList" />
 </cc:interface>
 
 <cc:implementation>
@@ -16,7 +17,7 @@
   <h:panelGroup id="task-detail-container" rendered="#{cc.attrs.showItemDetailsHeader}" styleClass="ui-g-12 u-truncate-text">
     <h:form id="task-detail-title-form" onsubmit="return false;" styleClass="name-cell task-detail-header">
       <h:panelGroup id="#{cc.attrs.nameId}-edit-form" styleClass="task-name-edit u-truncate-text">
-        <h:outputText value="#{ivy.cms.co('/Labels/Task')}:  " />
+        <h:outputText value="#{ivy.cms.co('/Labels/Task')}: " />
         <p:inplace id="#{cc.attrs.nameId}-inplace" editor="true" disabled="#{!taskActionBean.canChangeName(task)}"
           saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           widgetVar="#{cc.attrs.nameId}-inplace" styleClass="task-name-inplace u-truncate-text"
@@ -28,9 +29,11 @@
           <f:passThroughAttribute name="onclick" value="if('#{taskActionBean.canChangeName(task)}'=='true') {event.stopPropagation()}" />
         </p:inplace>
       </h:panelGroup>
-      <p:commandButton id="back-to-tasks" onclick="backToPrevPage();" styleClass="task-details-back-btn"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" icon="fa fa-reply-all" iconPos="left" type="button" />
-      <p:remoteCommand name="backToTasksList" actionListener="#{taskActionBean.backToTasksList()}" />
+      
+      <p:commandButton id="back-to-tasks-1" onclick="window.history.back();" type="button" styleClass="task-details-back-btn"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" icon="fa fa-reply-all" iconPos="left" rendered="#{cc.attrs.isFromTaskList}" />
+      <p:commandButton id="back-to-tasks-2" actionListener="#{taskActionBean.backToTaskList(task)}" styleClass="task-details-back-btn"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" icon="fa fa-reply-all" iconPos="left" rendered="#{!cc.attrs.isFromTaskList}" />
     </h:form>
   </h:panelGroup>
 
@@ -84,16 +87,5 @@
 
   <!-- Custom panel -->
   <cc:renderFacet name="taskItemDetailCustomPanelBottom" />
-  
-    <script type="text/javascript">
-    function backToPrevPage() {
-      if (document.referrer) {
-         window.history.back();
-      } else {
-        backToTasksList();
-      }
-    }
-  </script>
-  
 </cc:implementation>
 </html>

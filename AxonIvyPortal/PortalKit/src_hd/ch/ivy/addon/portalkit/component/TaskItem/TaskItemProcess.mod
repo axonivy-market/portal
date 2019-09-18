@@ -596,13 +596,14 @@ Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ts0 f6 83 787 26 26 -70 15 #rect
 Ts0 f6 @|RichDialogMethodStartIcon #fIcon
 Ts0 f7 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
-Ts0 f7 processCall 'Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,String)' #txt
+Ts0 f7 processCall 'Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,String,Boolean)' #txt
 Ts0 f7 doCall true #txt
-Ts0 f7 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,java.lang.String portalPage> param;
+Ts0 f7 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,java.lang.String portalPage,java.lang.Boolean isFromTaskList> param;
 ' #txt
 Ts0 f7 requestMappingAction 'param.task=in.task;
 param.dataModel=in.dataModel;
 param.portalPage=in.currentPortalPage;
+param.isFromTaskList=true;
 ' #txt
 Ts0 f7 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
 ' #txt

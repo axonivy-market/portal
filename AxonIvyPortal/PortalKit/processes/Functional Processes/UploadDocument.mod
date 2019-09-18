@@ -78,11 +78,13 @@ in.status = UploadDocumentCheckStatus.OK;
 
 if (in.uploadedFile == null || in.uploadedFile.getSize() == 0) {
 	in.message = ivy.cms.co("/Dialogs/components/CaseDocument/invalidFileMessage");
+	in.status = UploadDocumentCheckStatus.FAIL;
 } else {
 	Long maxFileUploadSize = MasterData.getFileUploadSizeLimit();
 	if (in.uploadedFile.getSize() > maxFileUploadSize) {
 		in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize", Arrays.asList(FileUtils.byteCountToDisplaySize(maxFileUploadSize)));
 	}
+	in.status = UploadDocumentCheckStatus.FAIL;
 }' #txt
 Ut0 f36 type ch.ivy.add.portalkit.UploadDocumentData #txt
 Ut0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
