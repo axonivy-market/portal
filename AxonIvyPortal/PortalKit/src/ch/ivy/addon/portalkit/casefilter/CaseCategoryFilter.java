@@ -94,6 +94,11 @@ public class CaseCategoryFilter extends CaseFilter {
     setCategoryPaths(this.categoryPaths);
   }
 
+  @Override
+  public boolean defaultFilter() {
+    return true;
+ }
+
   public List<String> getCategoryPaths() {
     this.categoryPaths = NodeUtils.getCategoryPaths(categories, CaseNode.class);
     return this.categoryPaths;

@@ -3,7 +3,7 @@ var FIRST_LEVEL_MENU_MODE = 'portal-first-level-menu-mode';
 var storageType = detectStorage();
 
 var Portal = {
-  init : function(responsiveToolkit, updateFlag) {
+  init : function(responsiveToolkit) {
     if ($('form.login-form').size() > 0) {
       return;
     }
