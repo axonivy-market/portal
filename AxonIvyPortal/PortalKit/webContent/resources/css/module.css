@@ -3947,81 +3947,8 @@ margin-top
 }
 
 /* =================== LOGIN ====================== */
-.login {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: rgba(0, 0, 0, .8)
-}
-
-.login-form {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 430px;
-  background-color: white;
-  border-radius: 20px;
-  text-align: center;
-  padding: 30px 20px;
-  font-size: 10px;
-}
-
-.header {
-  margin-bottom: 24px;
-}
-
-.content .title {
-  margin: 0;
-  font-size: 2rem;
-}
-
-.content .input.ui-inputfield {
-  margin: 18px auto 0;
-  padding: 0 !important;
-  text-align: center;
-  display: block;
-  width: 70%;
-  background: transparent;
-  font-size: 1.8em;
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-}
-
-.content .ui-inputfield.ui-state-hover, .content .ui-inputfield.ui-state-focus {
-  color: black !important;
-  border-bottom-color: black !important;
-}
-
-.footer {
-  margin-top: 18px;
-}
-
-.login-command {
-  font-size: 1.4rem;
-  color: black !important;
-  text-decoration: none !important;
-  outline: none !important;
-}
-
-.login-command-icon {
-  font-size: 20px;
-  padding-right: 10px;
-}
-
-.login-form .ui-messages-error {
-  border: none;
-  margin: 10px 0 0;
-  padding: 0 !important;
-  color: red !important;
-  font-size: 1.2rem;
-}
-
-.login-form .ui-messages ul {
-  margin: 0 !important;
+.login-body .login-panel .login-panel-header {
+  background-color: #F0F0F0;
 }
 
 /* --------------------------- */
