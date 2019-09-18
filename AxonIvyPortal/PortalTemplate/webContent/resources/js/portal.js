@@ -96,7 +96,7 @@ var MainMenu = {
   getFirstParentMenuActive : function() {
     var parentId = "";
     var parentMenuActive = $(".layout-menu .active-menuitem").not(".submenu-container");
-    if (parentMenuActive) {
+    if (parentMenuActive.length > 0) {
       parentId = parentMenuActive.get(0).id;
       MainMenu.getFirstSubMenuActive();
     }
