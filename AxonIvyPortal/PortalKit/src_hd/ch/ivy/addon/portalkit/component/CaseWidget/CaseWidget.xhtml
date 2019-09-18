@@ -24,7 +24,6 @@
 </cc:interface>
 
 <cc:implementation>
-  <c:set var="outerPanelId" value="#{empty cc.attrs.outerPanelId ? 'main-area-panel' : cc.attrs.outerPanelId}" />
 
   <h:outputScript name="case-widget.js" library="js" />
   <div id="#{cc.clientId}" class="widget case-widget-container ui-g">
