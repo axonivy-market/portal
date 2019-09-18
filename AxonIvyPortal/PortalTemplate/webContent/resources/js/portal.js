@@ -17,7 +17,9 @@ var Portal = {
     
     // Update screen when window size is changed
     $(window).resize(function() {
-      responsiveToolkit.updateLayoutWithoutAnimation();
+      setTimeout(function() {
+        responsiveToolkit.updateLayoutWithoutAnimation();
+      }, 250);
     });
 
     responsiveToolkit.updateLayoutWithoutAnimation();
