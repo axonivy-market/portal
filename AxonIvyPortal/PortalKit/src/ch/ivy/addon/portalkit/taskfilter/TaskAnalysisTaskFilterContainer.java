@@ -8,13 +8,11 @@ public class TaskAnalysisTaskFilterContainer extends DefaultTaskFilterContainer 
 
   private TaskNameFilter nameFilter = new TaskNameFilter();
   private TaskWorkerFilter workerFilter = new TaskWorkerFilter();
-  private TaskCategoryFilter categoryFilter = new TaskCategoryFilter();
 
   public TaskAnalysisTaskFilterContainer() {
     super();
     filters.add(nameFilter);
     filters.add(workerFilter);
-    filters.add(categoryFilter);
     Collections.sort(filters, new TaskFilterComparator());
   }
 
@@ -32,13 +30,5 @@ public class TaskAnalysisTaskFilterContainer extends DefaultTaskFilterContainer 
 
   public void setNameFilter(TaskNameFilter nameFilter) {
     this.nameFilter = nameFilter;
-  }
-
-  public TaskCategoryFilter getCategoryFilter() {
-    return categoryFilter;
-  }
-
-  public void setCategoryFilter(TaskCategoryFilter categoryFilter) {
-    this.categoryFilter = categoryFilter;
   }
 }

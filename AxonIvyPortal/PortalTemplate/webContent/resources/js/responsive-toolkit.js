@@ -21,7 +21,7 @@ function ResponsiveToolkit(responsiveToolkit) {
     updateLayoutWithAnimation : function() {
       setTimeout(function() {
         updateLayout();
-      }, 200);
+      }, 250);
     },
 
     updateLayoutWithoutAnimation : function() {
