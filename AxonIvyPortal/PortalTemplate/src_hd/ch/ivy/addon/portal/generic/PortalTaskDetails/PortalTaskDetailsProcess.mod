@@ -47,11 +47,12 @@ Ps0 f5 expr out #txt
 Ps0 f5 109 160 211 160 #arcP
 Ps0 f0 guid 16BF472CAB02934E #txt
 Ps0 f0 type ch.ivy.addon.portal.generic.PortalTaskDetails.PortalTaskDetailsData #txt
-Ps0 f0 method start(ch.ivyteam.ivy.workflow.ITask,String,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,String) #txt
+Ps0 f0 method start(ch.ivyteam.ivy.workflow.ITask,String,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,String,Boolean) #txt
 Ps0 f0 disableUIEvents true #txt
 Ps0 f0 inParameterDecl 'ch.ivy.addon.portal.generic.PortalTaskDetails.PortalTaskDetailsData out;
 ' #txt
 Ps0 f0 inParameterMapAction 'out.dataModel=param.dataModel;
+out.isFromTaskList=param.isFromTaskList;
 out.menuState=param.menuState;
 out.portalPage=param.portalPage;
 out.task=param.task;

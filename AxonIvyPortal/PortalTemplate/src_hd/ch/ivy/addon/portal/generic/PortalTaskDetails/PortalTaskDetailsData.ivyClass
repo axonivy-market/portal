@@ -9,3 +9,6 @@ dataModel PERSISTENT #fieldModifier
 portalPage String #field
 portalPage 'The page opened task details: TASK_LIST or SEARCH_RESULTS' #fieldComment
 portalPage PERSISTENT #fieldModifier
+isFromTaskList Boolean #field
+isFromTaskList 'true: opened from TASK_LIST or SEARCH_RESULTS; false: back from Task Start page' #fieldComment
+isFromTaskList PERSISTENT #fieldModifier

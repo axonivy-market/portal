@@ -1,5 +1,5 @@
 [Ivy]
-163A4BFC48261B85 3.23 #module
+163A4BFC48261B85 3.26 #module
 >Proto >Proto Collection #zClass
 Ps0 SearchResultsProcess Big #zClass
 Ps0 RD #cInfo
@@ -25,10 +25,10 @@ Ps0 f0 guid 150D5B63FE18100D #txt
 Ps0 f0 type ch.ivy.addon.portal.generic.SearchResults.SearchResultsData #txt
 Ps0 f0 method start(String) #txt
 Ps0 f0 disableUIEvents true #txt
-Ps0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.String keyword> param = methodEvent.getInputArguments();
+Ps0 f0 inParameterDecl 'ch.ivy.addon.portal.generic.SearchResults.SearchResultsData out;
 ' #txt
-Ps0 f0 inParameterMapAction 'out.dataModel.caseDataModel.notKeepFilter=true;
+Ps0 f0 inParameterMapAction 'out.activeTabIndex=0;
+out.dataModel.caseDataModel.notKeepFilter=true;
 out.dataModel.keyword=param.keyword;
 out.dataModel.taskDataModel.compactMode=false;
 out.dataModel.taskDataModel.notKeepFilter=true;

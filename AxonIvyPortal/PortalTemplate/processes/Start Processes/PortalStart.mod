@@ -227,7 +227,6 @@ if (taskEndInfo.#navigationHistory is initialized && NavigationHistory.SEARCH_RE
 } else {
 	in.portalPage = taskEndInfo.isFromPortalHome ? PortalPage.HOME_PAGE : PortalPage.LINK_TO_TASK;
 }
-SecurityServiceUtils.removeSessionAttribute(taskEndInfoSessionAttributeKey);
 ' #txt
 Pt0 f2 security system #txt
 Pt0 f2 type ch.ivy.addon.portal.generic.PortalStartData #txt
@@ -1350,13 +1349,14 @@ Pt0 f38 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f38 560 465 560 515 #arcP
 Pt0 f38 0 0.3793103448275862 14 3 #arcLabel
 Pt0 f6 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pt0 f6 processCall 'Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,String)' #txt
+Pt0 f6 processCall 'Functional Processes/OpenPortalTaskDetails:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,String,Boolean)' #txt
 Pt0 f6 doCall true #txt
-Pt0 f6 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,java.lang.String portalPage> param;
+Pt0 f6 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,java.lang.String portalPage,java.lang.Boolean isFromTaskList> param;
 ' #txt
 Pt0 f6 requestMappingAction 'param.task=ivy.wf.findTask(in.endedTaskId);
 param.dataModel=in.dataModel;
 param.portalPage=in.portalPage == ch.ivy.addon.portal.generic.navigation.PortalPage.SEARCH_RESULTS ? "SEARCH_RESULTS" : "TASK_LIST";
+param.isFromTaskList=false;
 ' #txt
 Pt0 f6 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
