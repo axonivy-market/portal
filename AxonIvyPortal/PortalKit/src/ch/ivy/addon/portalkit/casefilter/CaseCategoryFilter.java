@@ -116,11 +116,15 @@ public class CaseCategoryFilter extends CaseFilter {
       return;
     }
     CaseNode nodeData = (CaseNode) node.getData();
-    if (paths.contains(nodeData.getValue())) {
-      node.setSelected(true);
-      selectedCategories.add(node);
-    } else {
-      node.setSelected(false);
+    for(String path : paths) {
+      if (path.equals(nodeData.getCategory())) {
+        node.setSelected(true);
+        selectedCategories.add(node);
+      } else {
+        if(!selectedCategories.contains(node)) {
+          node.setSelected(false);
+        }
+      }
     }
     node.getChildren().forEach(child -> checkCategoryTreeNode((CheckboxTreeNode) child, selectedCategories, paths));
   }
