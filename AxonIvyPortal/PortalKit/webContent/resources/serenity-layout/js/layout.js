@@ -373,7 +373,7 @@ PrimeFaces.widget.Serenity = PrimeFaces.widget.BaseWidget.extend({
                 var id = this.expandedMenuitems[i];
                 if (id) {
                     var menuitem = $("#" + this.expandedMenuitems[i].replace(/:/g, "\\:"));
-                    if (menuitem[0].id.indexOf('thirdparty-menu-item') < 0) {
+                    if (menuitem.length > 0 && menuitem[0].id.indexOf('thirdparty-menu-item') < 0) {
                     	menuitem.addClass('active-menuitem');
                     }
                     
