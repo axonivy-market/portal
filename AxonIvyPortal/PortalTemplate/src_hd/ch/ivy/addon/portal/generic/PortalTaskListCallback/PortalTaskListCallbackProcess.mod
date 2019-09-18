@@ -125,7 +125,8 @@ String displayMessageAfterFinishTaskVariable = new GlobalSettingService().findGl
 boolean displayMessageAfterFinishTask = StringUtils.isNotBlank(displayMessageAfterFinishTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishTaskVariable) : true;
 if (displayMessageAfterFinishTask) {
 	Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-	if (!flash.containsKey("overridePortalGrowl")) {
+	Boolean isTaskNotFinished = ivy.session.getAttribute("isTaskNotFinished") as Boolean;
+	if (!flash.containsKey("overridePortalGrowl") && (#isTaskNotFinished == null || !isTaskNotFinished)) {
 		FacesMessage message = new FacesMessage(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskLeftSuccessful"));
 		FacesContext.getCurrentInstance().addMessage(null, message);
 	}

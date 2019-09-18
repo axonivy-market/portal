@@ -16,21 +16,21 @@ Os0 @StartSub f0 '' #zField
 Os0 @EndSub f1 '' #zField
 Os0 @PushWFArc f2 '' #zField
 >Proto Os0 Os0 OpenPortalTaskDetailsHook #zField
-Os0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,java.lang.String portalPage> param;' #txt
+Os0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,java.lang.String portalPage,java.lang.Boolean isFromTaskList> param;' #txt
 Os0 f0 inParamTable 'out.dataModel=param.dataModel;
+out.isFromTaskList=param.#isFromTaskList is initialized ? param.isFromTaskList : true;
 out.portalPage=param.portalPage;
 out.task=param.task;
 ' #txt
-Os0 f0 outParamDecl '<> result;
-' #txt
+Os0 f0 outParamDecl '<> result;' #txt
 Os0 f0 actionDecl 'ch.ivy.add.portalkit.OpenPortalTaskDetailsData out;
 ' #txt
-Os0 f0 callSignature call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,String) #txt
+Os0 f0 callSignature call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,String,Boolean) #txt
 Os0 f0 type ch.ivy.add.portalkit.OpenPortalTaskDetailsData #txt
 Os0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>call(ITask,TaskLazyDataModel,String)</name>
+        <name>call(ITask,TaskLazyDataModel,String,Boolean)</name>
     </language>
 </elementInfo>
 ' #txt

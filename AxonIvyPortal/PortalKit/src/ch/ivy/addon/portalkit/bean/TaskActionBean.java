@@ -38,7 +38,7 @@ public class TaskActionBean {
   private boolean isShowDelegateTask;
   private boolean isShowAdditionalOptions;
   private static final String OPEN_TASK_ITEM_DETAILS = "Start Processes/PortalStart/startPortalTaskDetail.ivp";
-  private static final String OPEN_TASKS_LIST = "Start Processes/PortalStart/startPortalTask.ivp";
+  private static final String OPEN_TASK_LIST = "Start Processes/PortalStart/restorePortalTaskList.ivp";
 
   public TaskActionBean() {
     isShowResetTask = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_RESET_ACTION);
@@ -209,16 +209,16 @@ public class TaskActionBean {
     }
   }
   
-  public void backToTasksList() throws MalformedURLException {
-    String friendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("startPortalTask.ivp");
+  public void backToTaskList(ITask task) throws MalformedURLException {
+    String friendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("restorePortalTaskList.ivp");
     if (StringUtils.isEmpty(friendlyRequestPath)) {
-      friendlyRequestPath = OPEN_TASKS_LIST;
+      friendlyRequestPath = OPEN_TASK_LIST;
     }
     String requestPath = SecurityServiceUtils.findProcessByUserFriendlyRequestPath(friendlyRequestPath);
     if (StringUtils.isNotEmpty(requestPath)) {
       UrlDetector urlDetector = new UrlDetector();
       String serverUrl = urlDetector.getBaseURL(FacesContext.getCurrentInstance());
-      redirect(serverUrl + requestPath);
+      redirect(serverUrl + requestPath + "?endedTaskId=" + task.getId());
     }
   }
 

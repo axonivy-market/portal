@@ -20,12 +20,13 @@
           <i class="global-search-icon fa fa-search" />
         </div>
         <p:remoteCommand name="portalGlobalSearchInPage" actionListener="#{dataModel.search}"
-          update="#{p:component('search-results-tabview')}" oncomplete="processWidget.filter()" />
+          update="#{p:component('search-results-tabview')}" oncomplete="processWidget.filter();" />
+        <p:remoteCommand autoRun="true" global="false" process="@none" onstart="PF('search-results-tabview').select(#{data.activeTabIndex})" />
       </h:form>
       <c:if test="#{!isShowResultTabView}" >
       	<h:outputText styleClass="not-display-result-tab-view" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/notDisplayResultTabView')}."/>
       </c:if>
-      <p:tabView id="search-results-tabview" onTabShow="onTabShow()" dynamic="true" styleClass="search-results-tabview" activeIndex="#{data.activeTabIndex}"
+      <p:tabView id="search-results-tabview" widgetVar="search-results-tabview" onTabShow="onTabShow()" dynamic="true" styleClass="search-results-tabview"
         rendered="#{isShowResultTabView}">
         <p:tab id="process-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" titleStyleClass="process-tab-title"
           rendered="#{compactProcessWidgetBean.displayShowAllProcessesLink}">
@@ -129,6 +130,7 @@
         </p:tab>
         
         <ui:insert name="custom-search"></ui:insert>
+        
       </p:tabView>
       <script>
         function onTabShow() {
