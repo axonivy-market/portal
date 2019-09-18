@@ -56,16 +56,14 @@
             </f:facet>
 
             <f:facet name="caseFilter">
-              <div id="toggle-case-filter-container" class="ui-g js-case-filter-container">
-                <ui:fragment rendered="#{useOverrideFilter}">
-                  <ui:insert name="caseFilter" />
-                </ui:fragment>
-  
-                <ui:fragment rendered="#{not useOverrideFilter}">
-                  <ic:ch.ivy.addon.portalkit.component.cases.filter.DefaultCaseFilters
-                    dataModel="#{caseView.getDataModel()}" />
-                </ui:fragment>
-              </div>
+              <ui:fragment rendered="#{useOverrideFilter}">
+                <ui:insert name="caseFilter" />
+              </ui:fragment>
+
+              <ui:fragment rendered="#{not useOverrideFilter}">
+                <ic:ch.ivy.addon.portalkit.component.cases.filter.DefaultCaseFilters
+                  dataModel="#{caseView.getDataModel()}" />
+              </ui:fragment>
             </f:facet>
           </ic:ch.ivy.addon.portalkit.component.CaseWidget>
         </div>
