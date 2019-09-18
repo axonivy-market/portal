@@ -688,12 +688,18 @@ Cs0 f62 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDo
 ' #txt
 Cs0 f62 actionTable 'out=in;
 ' #txt
-Cs0 f62 actionCode 'in.uploadDocumentCheckMessage = ivy.cms.co("/Dialogs/components/CaseDocument/invalidFileMessage");' #txt
+Cs0 f62 actionCode 'if (in.documentUploadEvent.getFile().getSize() <= 0) {
+	in.uploadDocumentCheckMessage = ivy.cms.co("/Dialogs/components/CaseDocument/emptyFileMessage");
+} else {
+	in.uploadDocumentCheckMessage = ivy.cms.co("/Dialogs/components/CaseDocument/invalidFileMessage");
+}' #txt
 Cs0 f62 type ch.ivy.addon.portalkit.component.CaseItemDocument.CaseItemDocumentData #txt
 Cs0 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Create error message</name>
+        <nameStyle>20,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt

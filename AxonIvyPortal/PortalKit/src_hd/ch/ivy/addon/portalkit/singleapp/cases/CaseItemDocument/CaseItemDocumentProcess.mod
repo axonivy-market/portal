@@ -501,7 +501,7 @@ Cs0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f54 480 230 160 44 -71 -8 #rect
 Cs0 f54 @|CallSubIcon #fIcon
 Cs0 f35 expr in #txt
-Cs0 f35 outCond 'in.documentUploadEvent.getFile() != null' #txt
+Cs0 f35 outCond 'in.documentUploadEvent.getFile() != null && in.documentUploadEvent.getFile().getSize() > 0' #txt
 Cs0 f35 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -529,12 +529,18 @@ Cs0 f62 actionDecl 'ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.Case
 ' #txt
 Cs0 f62 actionTable 'out=in;
 ' #txt
-Cs0 f62 actionCode 'in.uploadDocumentCheckMessage = ivy.cms.co("/Dialogs/components/CaseDocument/invalidFileMessage");' #txt
+Cs0 f62 actionCode 'if (in.documentUploadEvent.getFile().getSize() <= 0) {
+	in.uploadDocumentCheckMessage = ivy.cms.co("/Dialogs/components/CaseDocument/emptyFileMessage");
+} else {
+	in.uploadDocumentCheckMessage = ivy.cms.co("/Dialogs/components/CaseDocument/invalidFileMessage");
+}' #txt
 Cs0 f62 type ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument.CaseItemDocumentData #txt
 Cs0 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Create error message</name>
+        <nameStyle>20,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
