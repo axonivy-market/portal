@@ -59,7 +59,7 @@
               <span class="circle-horizontal-step-title">${stepName}</span>
             </c:if>
             <h:panelGroup layout="block" id="step-count-container-#{counter.index}"
-              styleClass="#{isDirectionHorizontal ? 'circle-horizontal-step-container' : 'circle-vertical-step-container'}">
+              styleClass="#{isDirectionHorizontal ? 'circle-horizontal-step-container' : 'circle-vertical-step-container'} cicrle-step-container">
               <span>#{counter.index + 1}</span>
             </h:panelGroup>
             <c:if test="#{!isDirectionHorizontal}">
