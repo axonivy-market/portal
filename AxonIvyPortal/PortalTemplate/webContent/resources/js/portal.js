@@ -29,6 +29,7 @@ var Portal = {
   // Remove u-invisibility class when DOM is pasted already
   updateLayoutContent : function() {
     $('#main-area-panel').removeClass('u-invisibility');
+    $("[id$='main-navigator']").removeClass('u-invisibility');
   }
 }
 
@@ -97,7 +98,7 @@ var MainMenu = {
     var parentId = "";
     var parentMenuActive = $(".layout-menu .active-menuitem").not(".submenu-container");
     if (parentMenuActive.length > 0) {
-      parentId = parentMenuActive.get(0).id;
+      parentId = parentMenuActive[0].id;
       MainMenu.getFirstSubMenuActive();
     }
     return parentId;
