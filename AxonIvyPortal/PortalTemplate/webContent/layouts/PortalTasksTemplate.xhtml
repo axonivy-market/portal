@@ -66,16 +66,14 @@
             </f:facet>
 
             <f:facet name="taskFilter">
-              <div id="toggle-task-filter-container" class="ui-g js-task-filter-container">
-                  <ui:fragment rendered="#{useOverrideFilter}">
-                    <ui:insert name="taskFilter">
-                    </ui:insert>
-                  </ui:fragment>
-    
-                  <ui:fragment rendered="#{not useOverrideFilter}">
-                      <ic:ch.ivy.addon.portalkit.component.task.filter.DefaultTaskFilters dataModel="#{taskView.dataModel}" />
-                  </ui:fragment>
-              </div>
+              <ui:fragment rendered="#{useOverrideFilter}">
+                <ui:insert name="taskFilter">
+                </ui:insert>
+              </ui:fragment>
+
+              <ui:fragment rendered="#{not useOverrideFilter}">
+                  <ic:ch.ivy.addon.portalkit.component.task.filter.DefaultTaskFilters dataModel="#{taskView.dataModel}" />
+              </ui:fragment>
             </f:facet>
           </ic:ch.ivy.addon.portalkit.component.TaskWidget>
       </div>
