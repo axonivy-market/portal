@@ -1353,7 +1353,7 @@ Pt0 f6 processCall 'Functional Processes/OpenPortalTaskDetails:call(ch.ivyteam.i
 Pt0 f6 doCall true #txt
 Pt0 f6 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,java.lang.String portalPage,java.lang.Boolean isFromTaskList> param;
 ' #txt
-Pt0 f6 requestMappingAction 'param.task=ivy.wf.findTask(in.endedTaskId);
+Pt0 f6 requestMappingAction 'param.task=in.taskSelected;
 param.dataModel=in.dataModel;
 param.portalPage=in.portalPage == ch.ivy.addon.portal.generic.navigation.PortalPage.SEARCH_RESULTS ? "SEARCH_RESULTS" : "TASK_LIST";
 param.isFromTaskList=false;
@@ -1390,16 +1390,19 @@ Pt0 f68 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f68 actionTable 'out=in;
 ' #txt
-Pt0 f68 actionCode ivy.session.removeAttribute("isTaskNotFinished"); #txt
+Pt0 f68 actionCode 'ivy.session.removeAttribute("isTaskNotFinished");
+out.taskSelected = ivy.wf.findTask(in.endedTaskId);' #txt
+Pt0 f68 security system #txt
 Pt0 f68 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Remove session attribute</name>
+        <name>Remove session attribute&#xD;
+and find task by id</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f68 1264 74 160 44 -70 -8 #rect
+Pt0 f68 1256 74 176 44 -67 -16 #rect
 Pt0 f68 @|StepIcon #fIcon
 Pt0 f72 expr in #txt
 Pt0 f72 outCond 'in.isTaskStartedInDetails && ivy.session.getAttribute("isTaskNotFinished") as Boolean' #txt
@@ -1410,11 +1413,11 @@ Pt0 f72 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f72 1216 144 1264 96 #arcP
+Pt0 f72 1216 144 1256 96 #arcP
 Pt0 f72 1 1216 96 #addKink
 Pt0 f72 1 0.075 0 -9 #arcLabel
 Pt0 f42 expr out #txt
-Pt0 f42 1424 96 1464 96 #arcP
+Pt0 f42 1432 96 1464 96 #arcP
 Pt0 f42 0 0.075 0 -9 #arcLabel
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
