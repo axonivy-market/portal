@@ -122,6 +122,11 @@
                   <code>@task-state-open-color</code>, <code>@task-state-in-progress-color</code>, <code>@task-state-done-color</code>, <code>@task-state-zombie-destroyed-color</code>, <code>@task-state-reserved-color</code>, <code>@task-state-system-color</code>: task state color.
                 </para>
               </listitem>
+              <listitem>
+                <para>
+                  <code>@circle-step-container</code>: circle process chain number step color.
+                </para>
+              </listitem>
             </itemizedlist>
           </note>
         </listitem>
