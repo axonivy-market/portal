@@ -179,7 +179,7 @@ if (!in.data.#isUseDefaultUI is initialized) {
 if (!in.data.#processType is initialized) {
 	in.data.processType = ProcessType.AD_HOC;
 }
-in.isProcessType = in.data.processType != ProcessType.AD_HOC;
+in.isRepeatable = in.data.processType != ProcessType.AD_HOC;
 ' #txt
 Fs0 f6 security system #txt
 Fs0 f6 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
@@ -654,8 +654,7 @@ Fs0 f47 guid 16347C45756F58EB #txt
 Fs0 f47 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f47 method changeUISetting(Boolean) #txt
 Fs0 f47 disableUIEvents false #txt
-Fs0 f47 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.Boolean isAgreed> param = methodEvent.getInputArguments();
+Fs0 f47 inParameterDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
 ' #txt
 Fs0 f47 inActionCode 'out.resetData = param.isAgreed;
 out.data.isUseDefaultUI = out.resetData ?  out.data.isUseDefaultUI : !out.data.isUseDefaultUI;
@@ -943,9 +942,8 @@ Fs0 f77 actionTable 'out=in;
 ' #txt
 Fs0 f77 actionCode 'import ch.ivy.gawfs.enums.ProcessType;
 
-in.data.processType = in.isProcessType ? ProcessType.REPEAT:ProcessType.AD_HOC;
-
-ivy.log.info("Update process type {0}", in.data.processType.toString());' #txt
+in.data.processType = in.isRepeatable ? ProcessType.REPEAT:ProcessType.AD_HOC;
+' #txt
 Fs0 f77 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f77 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

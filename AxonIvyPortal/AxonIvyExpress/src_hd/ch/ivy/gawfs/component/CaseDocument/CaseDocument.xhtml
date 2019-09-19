@@ -11,36 +11,43 @@
 
   <div id="document-table-div">
 
-    <p:dataTable id="document-table" value="#{data.caseDocuments}" var="document"
-      emptyMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/NoFiles')}" styleClass="MarTop5 express-case-document" widgetVar="fileTableVar">
-      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}" styleClass="document-name">
-        <h:outputText value="#{document.fileName}" title="#{document.fileName}" />
-      </p:column>
-      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/size')}" styleClass="ui-sm-hidden">
-        <h:outputText value="#{document.fileSize}" title="#{document.fileSize}" />
-      </p:column>
-      <p:column headerText="#{ivy.cms.co('/Dialogs/components/CaseDocument/FileDate')}" styleClass="ui-sm-hidden">
-        <h:outputText value="#{dateFormats.format(document.modifiedDate)}" title="#{document.modifiedDate}">
-        </h:outputText>
-      </p:column>
+    <h:panelGroup id="document-container" layout="block">
+      <h:panelGroup rendered="#{empty data.caseDocuments}" layout="block" styleClass="TexAlLeft">
+        <h:outputText value="#{ivy.cms.co('/Dialogs/components/CaseDocument/NoFiles')}" />
+      </h:panelGroup>
 
-      <p:column styleClass="u-text-align-center express-action-button-icon-only" headerText="#{ivy.cms.co('/Dialogs/components/CaseDocument/FileFunctions')}">
-        <p:commandLink id="download" styleClass="fa fa-download MarRight10" immediate="true" ajax="false" process="@widgetVar(fileTableVar)"
-          actionListener="#{logic.downloadFile(document.downloadPath, document.fileName)}"
-          title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}">
-          <p:fileDownload value="#{data.downloadFile}" />
-        </p:commandLink>
-        <p:spacer width="20px" />
-        <p:commandLink id="document-delete" styleClass="fa fa-trash-o" actionListener="#{logic.deleteFile(document.downloadPath)}"
-          rendered="#{cc.attrs.uploadPossible}" update="document-table" immediate="true"
-          title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}">
-        </p:commandLink>
-      </p:column>
-    </p:dataTable>
+      <p:dataTable id="document-table" value="#{data.caseDocuments}" var="document" rendered="#{not empty data.caseDocuments}"
+        styleClass="MarTop5 express-case-document" widgetVar="fileTableVar">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}" styleClass="document-name">
+          <h:outputText value="#{document.fileName}" title="#{document.fileName}" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/size')}" styleClass="ui-sm-hidden">
+          <h:outputText value="#{document.fileSize}" title="#{document.fileSize}" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/Dialogs/components/CaseDocument/FileDate')}" styleClass="ui-sm-hidden">
+          <h:outputText value="#{dateFormats.format(document.modifiedDate)}" title="#{document.modifiedDate}">
+          </h:outputText>
+        </p:column>
+
+        <p:column styleClass="u-text-align-center express-action-button-icon-only"
+          headerText="#{ivy.cms.co('/Dialogs/components/CaseDocument/FileFunctions')}">
+          <p:commandLink id="download" styleClass="fa fa-download MarRight10" immediate="true" ajax="false" process="@widgetVar(fileTableVar)"
+            actionListener="#{logic.downloadFile(document.downloadPath, document.fileName)}"
+            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}">
+            <p:fileDownload value="#{data.downloadFile}" />
+          </p:commandLink>
+          <p:spacer width="20px" />
+          <p:commandLink id="document-delete" styleClass="fa fa-trash-o" oncomplete="PF('document-delete-dialog').show()"
+            rendered="#{cc.attrs.uploadPossible}" update="document-table" actionListener="#{data.setSelectedFilePath(document.downloadPath)}"
+            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}">
+          </p:commandLink>
+        </p:column>
+      </p:dataTable>
+    </h:panelGroup>
 
     <div class="MarTop10 TexAlRight">
       <p:fileUpload id="choose-uploading-file" value="#{data.selectedFile}" mode="advanced" auto="true" dragDropSupport="true"
-        fileUploadListener="#{logic.submitUpload}" update="document-table error-messages"
+        fileUploadListener="#{logic.submitUpload}" update="document-table document-container error-messages"
         label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/upload')}"
         invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}" rendered="#{cc.attrs.uploadPossible}"
         styleClass="uploading-file-message" cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
@@ -48,5 +55,17 @@
       </p:fileUpload>
     </div>
   </div>
+
+  <p:dialog id="document-delete-dialog" widgetVar="document-delete-dialog" appendTo="@(body)" closable="true" closeOnEscape="true" modal="true"
+    draggable="false" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" resizable="false">
+      #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmForDelete')}
+      <f:facet name="footer">
+      <p:commandButton id="document-deletion-yes" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" process="@this"
+        update="document-table document-container" actionListener="#{logic.deleteFile()}" oncomplete="PF('document-delete-dialog').hide();" />
+      <p:spacer width="5px" />
+      <p:commandButton id="document-deletion-no" styleClass="portal-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
+        type="button" onclick="PF('document-delete-dialog').hide()" />
+    </f:facet>
+  </p:dialog>
 </cc:implementation>
 </html>
