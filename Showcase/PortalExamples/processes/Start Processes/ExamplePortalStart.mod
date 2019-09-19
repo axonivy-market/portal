@@ -454,24 +454,17 @@ import ch.ivy.addon.portalkit.bo.TaskNode;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
-import ch.ivy.addon.portalkit.bo.MainMenuNode;
 import ch.ivy.addon.portal.generic.view.TaskView;
 import java.util.Map;
 import org.primefaces.extensions.util.json.GsonConverter;
 import java.util.Arrays;
 
 if (!in.isDataModelInitialized) {
-	TaskNode taskCategory;
-	try {
-		taskCategory = SecurityServiceUtils.getSessionAttribute(SessionAttribute.TASK_CATEGORY.toString()) as TaskNode;
-	} catch (Exception e) {}
 	boolean canLinkBackToCaseDetail = in.#dataModel.#criteria.#caseId is initialized; 
 	
-	in.taskView = TaskView.create().category(#taskCategory).dataModel(in.dataModel)
+	in.taskView = TaskView.create().dataModel(in.dataModel)
 												.canLinkBackCaseDetail(canLinkBackToCaseDetail).showHeaderToolbar(false)
 												.taskId(in.selectedTaskId).createNewTaskView();
-	
-	SecurityServiceUtils.removeSessionAttribute(SessionAttribute.TASK_CATEGORY.toString());
 } else {
 	in.dataModel.compactMode = false;
 	in.dataModel.getCriteria().setNewQueryCreated(true);
@@ -483,11 +476,9 @@ if (!in.isDataModelInitialized) {
 	in.dataModel.setTaskId(taskId);
 		
 	String pageTitle = ivy.cms.co("/Labels/Task");
-	MainMenuNode category = new MainMenuNode();
-	category.value = pageTitle;
 	String noTaskMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskWarning/taskNotFound");
 		
-	out.taskView = TaskView.create().dataModel(in.dataModel).pageTitle(pageTitle).category(category).taskId(taskId).hideTaskFilter(true).showHeaderToolbar(false).noTaskFoundMessage(noTaskMessage).createNewTaskView();
+	out.taskView = TaskView.create().dataModel(in.dataModel).pageTitle(pageTitle).taskId(taskId).hideTaskFilter(true).showHeaderToolbar(false).noTaskFoundMessage(noTaskMessage).createNewTaskView();
 }' #txt
 Pt0 f19 security system #txt
 Pt0 f19 type ch.ivy.addon.portal.generic.PortalStartData #txt
