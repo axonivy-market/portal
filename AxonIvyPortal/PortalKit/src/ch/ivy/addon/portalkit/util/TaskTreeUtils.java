@@ -74,17 +74,18 @@ public class TaskTreeUtils {
   }
   
   public static CheckboxTreeNode buildTaskCategoryCheckboxTreeRoot() {
-    CheckboxTreeNode root = buildRoot();
-    RegisteredApplicationService service = new RegisteredApplicationService();
-    List<String> involvedApplications = service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName());
-    TaskQuery taskQuery = SubProcessCall.withPath(PortalConstants.BUILD_TASK_QUERY_CALLABLE)
-        .withStartSignature("buildTaskQuery()")
-        .call()
-        .get("taskQuery", TaskQuery.class);
-    CategoryTree allTaskCategoryTree = findAllTaskCategoryTree(involvedApplications, taskQuery);
-    convertToCheckboxTreeNode(root, allTaskCategoryTree);
-    sortNode(root);
-    return root;
+    return IvyExecutor.executeAsSystem(() -> {
+      CheckboxTreeNode root = buildRoot();
+      RegisteredApplicationService service = new RegisteredApplicationService();
+      List<String> involvedApplications =
+          service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName());
+      TaskQuery taskQuery = SubProcessCall.withPath(PortalConstants.BUILD_TASK_QUERY_CALLABLE)
+          .withStartSignature("buildTaskQuery()").call().get("taskQuery", TaskQuery.class);
+      CategoryTree allTaskCategoryTree = findAllTaskCategoryTree(involvedApplications, taskQuery);
+      convertToCheckboxTreeNode(root, allTaskCategoryTree);
+      sortNode(root);
+      return root;
+    });
   }
   
   private static CategoryTree findAllTaskCategoryTree(List<String> involvedApplications, TaskQuery taskQuery) {
