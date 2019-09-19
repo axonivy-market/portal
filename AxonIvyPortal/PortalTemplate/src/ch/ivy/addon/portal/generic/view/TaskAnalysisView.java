@@ -2,7 +2,6 @@ package ch.ivy.addon.portal.generic.view;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.addon.portalkit.bo.MainMenuNode;
 import ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -21,8 +20,6 @@ public class TaskAnalysisView {
     private String noTaskFoundMessage = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/noTask");
     private boolean compactMode = Boolean.TRUE;
     private Integer chunkSize = new Integer(10);
-
-    private MainMenuNode category;
 
     public Builder pageTitle(String pageTitle) {
       this.pageTitle = pageTitle;
@@ -51,11 +48,6 @@ public class TaskAnalysisView {
 
     public Builder canLinkBackCaseDetail(boolean canLinkBackCaseDetail) {
       this.canLinkBackCaseDetail = canLinkBackCaseDetail;
-      return this;
-    }
-
-    public Builder category(MainMenuNode category) {
-      this.category = category;
       return this;
     }
 
@@ -95,7 +87,6 @@ public class TaskAnalysisView {
   private final long taskId;
   private final String caseName;
   private final boolean canLinkBackCaseDetail;
-  private final MainMenuNode category;
   private final boolean hideTaskFilter;
   private final boolean showHeaderToolbar;
   private final String noTaskFoundMessage;
@@ -107,7 +98,6 @@ public class TaskAnalysisView {
     dataModel = builder.dataModel;
     keyword = builder.keyword;
     taskId = builder.taskId;
-    category = builder.category;
     canLinkBackCaseDetail = builder.canLinkBackCaseDetail;
     caseName = builder.caseName;
     hideTaskFilter = builder.hideTaskFilter;
@@ -147,10 +137,6 @@ public class TaskAnalysisView {
 
   public boolean canLinkBackCaseDetail() {
     return canLinkBackCaseDetail;
-  }
-
-  public MainMenuNode getCategory() {
-    return category;
   }
 
   public String getCaseName() {
