@@ -10,11 +10,12 @@
     <ui:param name="actualStepIndex" value="#{data.actualStepIndex}" />
     <ui:param name="isNotRequiredLogin" value="false" />
     <ui:param name="isShowStartAdhocButton" value="#{not data.isAdhocProcess}" />
+    <ui:param name="processChainShape" value="LINE" />
 
     <ui:define name="title"></ui:define>
     <ui:define name="taskForm">
 
-      <h:form id="form">
+      <h:form id="form" styleClass="ui-g">
         <ic:ch.ivy.gawfs.component.FinishedUserTasksForm id="finished-tasks-component" finishedTasks="#{data.finishedTasks}" />
 
         <div class="approval-comment-container">
@@ -25,7 +26,7 @@
           </h:panelGroup>
         </div>
 
-        <h:panelGrid columns="2" styleClass="case-view-footer Wid100 u-no-border">
+        <h:panelGrid columns="2" styleClass="case-view-footer ui-g-12 u-no-border">
           <h:panelGroup>
             <p:commandButton id="cancel-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" immediate="true" update="form"
               actionListener="#{logic.cancel}" styleClass="portal-cancel-button" icon="fa fa-times" />
