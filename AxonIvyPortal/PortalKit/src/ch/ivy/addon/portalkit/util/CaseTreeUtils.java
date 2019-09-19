@@ -76,16 +76,18 @@ public class CaseTreeUtils {
   }
 
   public static CheckboxTreeNode buildCaseCategoryCheckboxTreeRoot() {
-
-    CheckboxTreeNode root = buildRoot();
-    RegisteredApplicationService service = new RegisteredApplicationService();
-    List<String> involvedApplications = service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName());
-    CaseQuery caseQuery = SubProcessCall.withPath(PortalConstants.BUILD_CASE_QUERY_CALLABLE)
-        .withStartSignature("buildCaseQuery()").call().get("caseQuery", CaseQuery.class);
-    CategoryTree allCaseCategories = findAllCaseCategoryTree(involvedApplications, caseQuery);
-    convertToCheckboxTreeNode(root, allCaseCategories);
-    sortNode(root);
-    return root;
+    return IvyExecutor.executeAsSystem(() -> {
+      CheckboxTreeNode root = buildRoot();
+      RegisteredApplicationService service = new RegisteredApplicationService();
+      List<String> involvedApplications =
+          service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName());
+      CaseQuery caseQuery = SubProcessCall.withPath(PortalConstants.BUILD_CASE_QUERY_CALLABLE)
+          .withStartSignature("buildCaseQuery()").call().get("caseQuery", CaseQuery.class);
+      CategoryTree allCaseCategories = findAllCaseCategoryTree(involvedApplications, caseQuery);
+      convertToCheckboxTreeNode(root, allCaseCategories);
+      sortNode(root);
+      return root;
+    });
   }
 
   private static CategoryTree findAllCaseCategoryTree(List<String> involvedApplications, CaseQuery caseQuery) {
