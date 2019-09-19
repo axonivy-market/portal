@@ -134,11 +134,9 @@ import ch.ivy.addon.portal.generic.navigation.PortalPage;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
-import ch.ivy.addon.portalkit.bo.MainMenuNode;
 import ch.ivy.addon.portal.generic.view.TaskView;
 import java.util.Arrays;
 
-MainMenuNode category = new MainMenuNode();
 String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader", Arrays.asList("#" + in.caseId.toString(), in.caseName));
 
 in.taskDataModel.setCaseId(in.caseId.id());
@@ -150,12 +148,10 @@ in.taskDataModel.setInvolvedUsername(ivy.session.getSessionUserName());
 in.taskDataModel.setRelatedTaskDisplayed(true);
 
 in.taskView = TaskView.create()
-											.category(category)
 											.canLinkBackCaseDetail(true)
 											.taskId(in.taskId)
 											.pageTitle(pageTitle)
 											.showHeaderToolbar(false)
-											.displayTaskCategory(PermissionUtils.checkAccessFullTaskListPermission())
 											.dataModel(in.taskDataModel).createNewTaskView();								
 											' #txt
 Nr0 f14 security system #txt
@@ -240,7 +236,6 @@ in.taskView = TaskView
 								.create()
 								.pageTitle(pageTitle)
 								.showHeaderToolbar(false)
-								.displayTaskCategory(PermissionUtils.checkAccessFullTaskListPermission())
 								.dataModel(in.taskDataModel)
 								.createNewTaskView();' #txt
 Nr0 f20 security system #txt
@@ -347,7 +342,6 @@ in.caseDataModel.setNotKeepFilter(true);
 
 in.caseView = CaseView.create()
 								.dataModel(in.caseDataModel)
-								.displayCaseCategory(PermissionUtils.checkAccessFullCaseListPermission())
 								.withTitle(pageTitle)
 								.buildNewView();' #txt
 Nr0 f31 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
