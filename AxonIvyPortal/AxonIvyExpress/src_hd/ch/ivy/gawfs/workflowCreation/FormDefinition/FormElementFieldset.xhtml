@@ -3,280 +3,280 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:body>
 
-  <p:panel id="create-tabs-field" header="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/FieldSetFormelements')}" toggleable="true"
-    toggleSpeed="500" closeSpeed="500" styleClass="ui-g-12 express-ui-elements-panel u-no-padding-top">
+  <p:fieldset id="create-tabs-field" legend="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/FieldSetFormelements')}" toggleable="true"
+    styleClass="ui-g express-fieldset u-padding-0">
+    <div class="card ui-g-12">
+      <p:tabView effect="" id="create-tabs" styleClass="form-create-tabs" activeIndex="#{data.activeTab}" dynamic="false">
+        <p:ajax event="tabChange" resetValues="true" global="false" update="create-tabs" />
 
-    <p:tabView effect="" id="create-tabs" styleClass="form-create-tabs" activeIndex="#{data.activeTab}" dynamic="false">
-      <p:ajax event="tabChange" resetValues="true" global="false" update="create-tabs" />
+        <!-- INPUT FIELD TAB -->
+        <p:tab title="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputField')}" id="create-input-field-tab">
+          <p:messages id="messages-input-field-label" showDetail="false" autoUpdate="true" closable="true" for="input-field-label" />
+          <f:facet name="title">
+            <h:outputText styleClass="form-definition-item-icon" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputField')}" />
+            <p:graphicImage library="ivy-cms" name="/Layouts/Icons/InputFieldText" width="65" styleClass="form-definition-item-icon" />
+          </f:facet>
 
-      <!-- INPUT FIELD TAB -->
-      <p:tab title="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputField')}" id="create-input-field-tab">
-        <p:messages id="messages-input-field-label" showDetail="false" autoUpdate="true" closable="true" for="input-field-label" />
-        <f:facet name="title">
-          <h:outputText styleClass="form-definition-item-icon" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputField')}" />
-          <p:graphicImage library="ivy-cms" name="/Layouts/Icons/InputFieldText" width="65" styleClass="form-definition-item-icon" />
-        </f:facet>
+          <div id="create-input-field-panel-grid" class="ui-fluid">
+            <div class="ui-g">
+              <div class="ui-g-12 u-no-padding-top express-align-bottom-group">
+                <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
 
-        <div id="create-input-field-panel-grid" class="ui-fluid">
-          <div class="ui-g">
-            <div class="ui-g-12 u-no-padding-top express-align-bottom-group">
-              <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
+                <h:panelGroup styleClass="ui-g-5 ui-lg-5 ui-md-6 md-inputfield align-bottom-child-item">
+                  <p:inputText id="input-field-label" required="true" value="#{data.createInputFieldTab.label}"
+                    maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" styleClass="express-workflow-input"
+                    requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
+                  <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}" for="input-field-label" />
+                </h:panelGroup>
 
-              <h:panelGroup styleClass="ui-g-5 ui-lg-5 ui-md-6 md-inputfield align-bottom-child-item">
-                <p:inputText id="input-field-label" required="true" value="#{data.createInputFieldTab.label}"
-                  maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" styleClass="express-workflow-input"
-                  requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
-                <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}" for="input-field-label" />
-              </h:panelGroup>
-
-              <h:panelGroup styleClass="ui-g-5 ui-lg-5 ui-md-6 u-no-padding-top align-bottom-child-item">
-                <div class="ui-g-12 u-no-padding-top">
-                  <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputType')}" for="input-field-type" />
-                </div>
-                <div class="ui-g-12 u-no-padding-top no-padding-bottom">
-                  <p:selectOneMenu id="input-field-type" value="#{data.createInputFieldTab.type}" styleClass="express-workflow-input"
-                    requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputType')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
-                    <f:selectItems value="#{formDefinitionBean.inputFormElementTypes}" var="type" itemLabel="#{type.label}" itemValue="#{type}" />
-                  </p:selectOneMenu>
-                </div>
-              </h:panelGroup>
-            </div>
-
-            <div class="ui-g-12 u-no-padding-top">
-              <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
-              <h:panelGroup styleClass="ui-g-5 ui-lg-5 ui-md-6 u-no-padding-top">
-                <h:panelGrid columns="2">
-                  <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" for="input-field-required" />
-                  <p:inputSwitch id="input-field-required" value="#{data.createInputFieldTab.required}" />
-                </h:panelGrid>
-              </h:panelGroup>
-            </div>
-          </div>
-        </div>
-
-        <h:panelGroup styleClass="create-form-toolbar">
-          <p:commandButton id="add-input-text-btn" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
-            actionListener="#{logic.createInputField()}" icon="fa fa-arrow-down" resetValues="true"
-            update="form:available-form-elements form:create-tabs" process="form:create-tabs:create-input-field-tab" />
-        </h:panelGroup>
-      </p:tab>
-
-      <!-- INPUT TEXT AREA TAB -->
-      <p:tab title="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputArea')}" id="create-input-area-tab">
-        <p:messages id="messages-input-area-label" showDetail="false" autoUpdate="true" closable="true" for="input-area-label" />
-        <f:facet name="title">
-          <h:outputText styleClass="form-definition-item-icon" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputArea')}" />
-          <p:graphicImage library="ivy-cms" name="/Layouts/Icons/InputTextArea" width="65" styleClass="form-definition-item-icon" />
-        </f:facet>
-
-        <div id="create-input-area-panel-grid" class="ui-fluid">
-          <div class="ui-g">
-            <div class="ui-g-12 u-no-padding-top express-align-bottom-group">
-              <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
-
-              <h:panelGroup styleClass="ui-g-5 ui-lg-5 ui-md-6 md-inputfield align-bottom-child-item">
-                <p:inputText id="input-area-label" required="true" styleClass="express-workflow-input"
-                  requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
-                  value="#{data.createInputAreaTab.label}" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" />
-                <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}" for="input-area-label" />
-              </h:panelGroup>
-
-              <h:panelGroup styleClass="ui-g-5 ui-lg-5 ui-md-6 align-bottom-child-item">
-                <div class="ui-g-12 u-no-padding-top">
-                  <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NumberOfRows')}" for="input-area-norows" />
-                </div>
-                <div class="ui-g-12 u-no-padding-top no-padding-bottom">
-                  <p:spinner id="input-area-norows" value="#{data.createInputAreaTab.intSetting}" min="0" max="10" />
-                </div>
-              </h:panelGroup>
-            </div>
-
-            <div class="ui-g-12 u-no-padding-top">
-              <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
-              <div class="ui-g-5 ui-lg-5 ui-md-6 u-no-padding-top">
-                <h:panelGrid columns="2">
-                  <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" for="input-area-required" />
-                  <p:inputSwitch id="input-area-required" value="#{data.createInputAreaTab.required}" />
-                </h:panelGrid>
+                <h:panelGroup styleClass="ui-g-5 ui-lg-5 ui-md-6 u-no-padding-top align-bottom-child-item">
+                  <div class="ui-g-12 u-no-padding-top">
+                    <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputType')}" for="input-field-type" />
+                  </div>
+                  <div class="ui-g-12 u-no-padding-top no-padding-bottom">
+                    <p:selectOneMenu id="input-field-type" value="#{data.createInputFieldTab.type}" styleClass="express-workflow-input"
+                      requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputType')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
+                      <f:selectItems value="#{formDefinitionBean.inputFormElementTypes}" var="type" itemLabel="#{type.label}" itemValue="#{type}" />
+                    </p:selectOneMenu>
+                  </div>
+                </h:panelGroup>
               </div>
-            </div>
-          </div>
-        </div>
 
-        <h:panelGroup styleClass="create-form-toolbar">
-          <p:commandButton id="add-text-area-btn" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
-            actionListener="#{logic.createInputTextArea}" icon="fa fa-arrow-down" resetValues="true"
-            update="form:available-form-elements form:create-tabs" process="form:create-tabs:create-input-area-tab" />
-        </h:panelGroup>
-      </p:tab>
-
-      <!-- CHECKBOX TAB -->
-      <p:tab title="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputCheckbox')}" id="create-many-checkbox-tab">
-        <p:messages id="messages-many-checkbox-label" showDetail="false" autoUpdate="true" closable="true" />
-        <f:facet name="title">
-          <h:outputText styleClass="form-definition-item-icon" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputCheckbox')}" />
-          <p:graphicImage library="ivy-cms" name="/Layouts/Icons/ManyCheckbox" width="65" styleClass="form-definition-item-icon" />
-        </f:facet>
-
-        <div id="create-many-checkbox-grid" class="ui-g alignLabelTop">
-          <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
-
-          <h:panelGroup styleClass="ui-g-5 ui-lg-5 ui-md-6 md-inputfield MarTop20">
-            <p:inputText id="many-checkbox-label" required="true" styleClass="express-workflow-input"
-              requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
-              value="#{data.createManyCheckboxTab.label}" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" />
-            <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}" for="many-checkbox-label" />
-          </h:panelGroup>
-
-          <div class="ui-g-5 ui-lg-5 ui-md-6">
-            <p:dataTable id="many-checkbox-options" var="option" value="#{data.createManyCheckboxTab.options}" styleClass="express-table-no-header"
-              emptyMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoCheckboxFieldYet')}">
-              <f:facet name="header">
-                <div class="ui-g">
-                  <div class="ui-g-12">
-                    <div class="express-table-header-title">
-                      <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CheckboxFields')}" styleClass="marginTop6" />
-                    </div>
-                    <div class="express-add-option-panel">
-                      <p:commandButton id="add-checkbox-option-btn" icon="fa fa-plus" actionListener="#{data.createManyCheckboxTab.addOption()}"
-                        update="form:create-tabs:many-checkbox-options" process="form:create-tabs:many-checkbox-options" />
-                    </div>
-                  </div>
-                </div>
-              </f:facet>
-
-              <p:column styleClass="vertical-align-middle">
-                <p:inputText value="#{option.value}" styleClass="express-workflow-table-input" required="true"
-                  requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputCheckbox')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
-                  placeholder="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputCheckbox')}"
-                  maxlength="#{ivy.cms.co('/Dialogs/general/maxOptionsLength')}" />
-                <p:commandButton icon="fa fa-trash-o fa-2x" styleClass="placement-form-element-remove-btn"
-                  actionListener="#{data.createManyCheckboxTab.deleteOption(option)}" process="form:create-tabs:many-checkbox-options"
-                  update="form:create-tabs:many-checkbox-options" immediate="true">
-                </p:commandButton>
-              </p:column>
-            </p:dataTable>
-          </div>
-        </div>
-
-        <h:panelGroup styleClass="create-form-toolbar">
-          <p:commandButton id="add-checkbox-btn" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
-            actionListener="#{logic.createManyCheckbox}" icon="fa fa-arrow-down" resetValues="true"
-            update="form:available-form-elements form:create-tabs form:create-tabs:many-checkbox-options"
-            process="form:create-tabs:create-many-checkbox-tab form:create-tabs:many-checkbox-options" />
-        </h:panelGroup>
-      </p:tab>
-
-      <!-- RADIO BUTTON TAB -->
-      <p:tab title="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputOptions')}" id="create-one-radio-tab">
-        <p:messages id="messages-one-radio-label" showDetail="false" autoUpdate="true" closable="true" />
-
-        <f:facet name="title">
-          <h:outputText styleClass="form-definition-item-icon" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputOptions')}" />
-          <p:graphicImage library="ivy-cms" name="/Layouts/Icons/OneRadio" width="65" styleClass="form-definition-item-icon" />
-        </f:facet>
-
-        <div id="create-one-radio-grid" class="ui-g alignLabelTop">
-          <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
-
-          <div class="ui-g-5 ui-lg-5 ui-md-6 md-inputfield MarTop20">
-            <p:inputText id="one-radio-label" required="true" styleClass="express-workflow-input"
-              requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}  #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
-              value="#{data.createOneRadioTab.label}" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" />
-            <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}" for="one-radio-label" />
-          </div>
-
-          <div class="ui-g-5 ui-lg-5 ui-md-6">
-            <p:dataTable id="one-radio-options" var="option" value="#{data.createOneRadioTab.options}"
-              emptyMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoOptionboxFieldsYet')}" styleClass="express-table-no-header">
-              <f:facet name="header">
-                <div class="ui-g">
-                  <div class="ui-g-12">
-                    <div class="express-table-header-title">
-                      <p:outputLabel styleClass="marginTop6" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/OptionboxFields')}" />
-                    </div>
-                    <div class="express-add-option-panel">
-                      <p:commandButton id="add-radio-option-btn" icon="fa fa-plus"
-                        actionListener="#{data.createOneRadioTab.addOption()}" update="form:create-tabs:one-radio-options"
-                        process="form:create-tabs:one-radio-options" />
-                    </div>
-                  </div>
-                </div>
-              </f:facet>
-
-              <p:column>
-                <p:inputText value="#{option.value}" styleClass="express-workflow-table-input"
-                  requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputOptions')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
-                  placeholder="Option" required="true" maxlength="#{ivy.cms.co('/Dialogs/general/maxOptionsLength')}" />
-
-                <p:commandButton icon="fa fa-trash-o" styleClass="placement-form-element-remove-btn"
-                  actionListener="#{data.createOneRadioTab.deleteOption(option)}" process="form:create-tabs:one-radio-options"
-                  update="form:create-tabs:one-radio-options" immediate="true">
-                </p:commandButton>
-              </p:column>
-            </p:dataTable>
-          </div>
-
-        </div>
-
-        <h:panelGroup styleClass="create-form-toolbar">
-          <p:commandButton id="add-radio-btn" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
-            actionListener="#{logic.createOneRadio}" icon="fa fa-arrow-down" resetValues="true"
-            update="form:available-form-elements form:create-tabs" process="form:create-tabs:create-one-radio-tab" />
-        </h:panelGroup>
-      </p:tab>
-
-      <!-- FILE UPLOAD TAB -->
-      <p:tab title="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputFileUpload')}" id="create-file-upload-tab">
-        <p:messages id="messages-file-upload-label" showDetail="false" autoUpdate="true" closable="true" for="file-upload-label" />
-        <f:facet name="title">
-          <h:outputText styleClass="form-definition-item-icon" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputFileUpload')}" />
-          <p:graphicImage library="ivy-cms" name="/Layouts/Icons/FileUpload" width="65" styleClass="form-definition-item-icon" />
-        </f:facet>
-
-        <div class="ui-g alignLabelTop ui-fluid" id="create-file-upload-panel-grid">
-          <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
-
-          <div class="ui-g-7 ui-sm-12 u-padding-0 express-align-bottom-group">
-            <h:panelGroup styleClass="ui-g-8 md-inputfield align-bottom-child-item">
-              <p:inputText id="file-upload-label" required="true" styleClass="express-workflow-input"
-                requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
-                value="#{data.createFileUploadTab.label}" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" />
-              <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}" for="file-upload-label" />
-            </h:panelGroup>
-
-            <h:panelGroup styleClass="ui-g-4 align-bottom-child-item">
               <div class="ui-g-12 u-no-padding-top">
-                <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NumberOfFiles')}" for="file-upload-norows" />
+                <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
+                <h:panelGroup styleClass="ui-g-5 ui-lg-5 ui-md-6 u-no-padding-top">
+                  <h:panelGrid columns="2">
+                    <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" for="input-field-required" />
+                    <p:inputSwitch id="input-field-required" value="#{data.createInputFieldTab.required}" />
+                  </h:panelGrid>
+                </h:panelGroup>
               </div>
-              <div class="ui-g-12 u-no-padding-top no-padding-bottom">
-                <p:spinner id="file-upload-norows" value="#{data.createFileUploadTab.intSetting}" min="0" max="10" />
-              </div>
-            </h:panelGroup>
+            </div>
           </div>
 
-          <h:panelGroup styleClass="ui-g-3 u-no-padding-top">
-            <div class="ui-g-12 u-no-padding-top">
-              <p:outputLabel styleClass="marginTop6" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/AllowedFiletypes')}:"
-                for="file-formats" />
-            </div>
-            <div class="ui-g-12 u-no-padding-top">
-              <p:selectManyCheckbox id="file-formats" value="#{data.createFileUploadTab.optionsStr}" layout="pageDirection" disabled="true">
-                <f:selectItems value="#{data.createFileUploadTab.options}" var="format" itemLabel="#{format.value}" itemValue="#{format.value}" />
-              </p:selectManyCheckbox>
-            </div>
+          <h:panelGroup styleClass="create-form-toolbar">
+            <p:commandButton id="add-input-text-btn" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
+              actionListener="#{logic.createInputField()}" icon="fa fa-arrow-down" resetValues="true"
+              update="form:available-form-elements form:create-tabs" process="form:create-tabs:create-input-field-tab" />
           </h:panelGroup>
+        </p:tab>
 
-        </div>
+        <!-- INPUT TEXT AREA TAB -->
+        <p:tab title="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputArea')}" id="create-input-area-tab">
+          <p:messages id="messages-input-area-label" showDetail="false" autoUpdate="true" closable="true" for="input-area-label" />
+          <f:facet name="title">
+            <h:outputText styleClass="form-definition-item-icon" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputArea')}" />
+            <p:graphicImage library="ivy-cms" name="/Layouts/Icons/InputTextArea" width="65" styleClass="form-definition-item-icon" />
+          </f:facet>
 
-        <h:panelGroup styleClass="create-form-toolbar">
-          <p:commandButton id="add-upload-file-btn" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
-            actionListener="#{logic.createFileUpload}" icon="fa fa-arrow-down" resetValues="true"
-            update="form:available-form-elements form:create-tabs" process="form:create-tabs:create-file-upload-tab" />
-        </h:panelGroup>
-      </p:tab>
+          <div id="create-input-area-panel-grid" class="ui-fluid">
+            <div class="ui-g">
+              <div class="ui-g-12 u-no-padding-top express-align-bottom-group">
+                <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
 
-    </p:tabView>
-  </p:panel>
+                <h:panelGroup styleClass="ui-g-5 ui-lg-5 ui-md-6 md-inputfield align-bottom-child-item">
+                  <p:inputText id="input-area-label" required="true" styleClass="express-workflow-input"
+                    requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
+                    value="#{data.createInputAreaTab.label}" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" />
+                  <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}" for="input-area-label" />
+                </h:panelGroup>
+
+                <h:panelGroup styleClass="ui-g-5 ui-lg-5 ui-md-6 align-bottom-child-item">
+                  <div class="ui-g-12 u-no-padding-top">
+                    <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NumberOfRows')}" for="input-area-norows" />
+                  </div>
+                  <div class="ui-g-12 u-no-padding-top no-padding-bottom">
+                    <p:spinner id="input-area-norows" value="#{data.createInputAreaTab.intSetting}" min="0" max="10" />
+                  </div>
+                </h:panelGroup>
+              </div>
+
+              <div class="ui-g-12 u-no-padding-top">
+                <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
+                <div class="ui-g-5 ui-lg-5 ui-md-6 u-no-padding-top">
+                  <h:panelGrid columns="2">
+                    <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" for="input-area-required" />
+                    <p:inputSwitch id="input-area-required" value="#{data.createInputAreaTab.required}" />
+                  </h:panelGrid>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h:panelGroup styleClass="create-form-toolbar">
+            <p:commandButton id="add-text-area-btn" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
+              actionListener="#{logic.createInputTextArea}" icon="fa fa-arrow-down" resetValues="true"
+              update="form:available-form-elements form:create-tabs" process="form:create-tabs:create-input-area-tab" />
+          </h:panelGroup>
+        </p:tab>
+
+        <!-- CHECKBOX TAB -->
+        <p:tab title="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputCheckbox')}" id="create-many-checkbox-tab">
+          <p:messages id="messages-many-checkbox-label" showDetail="false" autoUpdate="true" closable="true" for="many-checkbox-label" />
+          <f:facet name="title">
+            <h:outputText styleClass="form-definition-item-icon" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputCheckbox')}" />
+            <p:graphicImage library="ivy-cms" name="/Layouts/Icons/ManyCheckbox" width="65" styleClass="form-definition-item-icon" />
+          </f:facet>
+
+          <div id="create-many-checkbox-grid" class="ui-g alignLabelTop">
+            <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
+
+            <h:panelGroup styleClass="ui-g-5 ui-lg-5 ui-md-6 md-inputfield MarTop20">
+              <p:inputText id="many-checkbox-label" required="true" styleClass="express-workflow-input"
+                requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
+                value="#{data.createManyCheckboxTab.label}" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" />
+              <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}" for="many-checkbox-label" />
+            </h:panelGroup>
+
+            <div class="ui-g-5 ui-lg-5 ui-md-6">
+              <p:dataTable id="many-checkbox-options" var="option" value="#{data.createManyCheckboxTab.options}" styleClass="express-table-no-header"
+                emptyMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoCheckboxFieldYet')}">
+                <f:facet name="header">
+                  <div class="ui-g">
+                    <div class="ui-g-12">
+                      <div class="express-table-header-title">
+                        <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CheckboxFields')}" styleClass="marginTop6" />
+                      </div>
+                      <div class="express-add-option-panel">
+                        <p:commandButton id="add-checkbox-option-btn" icon="fa fa-plus" actionListener="#{data.createManyCheckboxTab.addOption()}"
+                          update="form:create-tabs:many-checkbox-options" process="form:create-tabs:many-checkbox-options" />
+                      </div>
+                    </div>
+                  </div>
+                </f:facet>
+
+                <p:column styleClass="vertical-align-middle">
+                  <p:inputText value="#{option.value}" styleClass="express-workflow-table-input" required="true"
+                    requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputCheckbox')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
+                    placeholder="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputCheckbox')}"
+                    maxlength="#{ivy.cms.co('/Dialogs/general/maxOptionsLength')}" />
+                  <p:commandButton icon="fa fa-trash-o fa-2x" styleClass="placement-form-element-remove-btn"
+                    actionListener="#{data.createManyCheckboxTab.deleteOption(option)}" process="form:create-tabs:many-checkbox-options"
+                    update="form:create-tabs:many-checkbox-options" immediate="true">
+                  </p:commandButton>
+                </p:column>
+              </p:dataTable>
+            </div>
+          </div>
+
+          <h:panelGroup styleClass="create-form-toolbar">
+            <p:commandButton id="add-checkbox-btn" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
+              actionListener="#{logic.createManyCheckbox}" icon="fa fa-arrow-down" resetValues="true"
+              update="form:available-form-elements form:create-tabs form:create-tabs:many-checkbox-options"
+              process="form:create-tabs:create-many-checkbox-tab form:create-tabs:many-checkbox-options" />
+          </h:panelGroup>
+        </p:tab>
+
+        <!-- RADIO BUTTON TAB -->
+        <p:tab title="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputOptions')}" id="create-one-radio-tab">
+          <p:messages id="messages-one-radio-label" showDetail="false" autoUpdate="true" closable="true" for="one-radio-label" />
+
+          <f:facet name="title">
+            <h:outputText styleClass="form-definition-item-icon" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputOptions')}" />
+            <p:graphicImage library="ivy-cms" name="/Layouts/Icons/OneRadio" width="65" styleClass="form-definition-item-icon" />
+          </f:facet>
+
+          <div id="create-one-radio-grid" class="ui-g alignLabelTop">
+            <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
+
+            <div class="ui-g-5 ui-lg-5 ui-md-6 md-inputfield MarTop20">
+              <p:inputText id="one-radio-label" required="true" styleClass="express-workflow-input"
+                requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}  #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
+                value="#{data.createOneRadioTab.label}" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" />
+              <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}" for="one-radio-label" />
+            </div>
+
+            <div class="ui-g-5 ui-lg-5 ui-md-6">
+              <p:dataTable id="one-radio-options" var="option" value="#{data.createOneRadioTab.options}"
+                emptyMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoOptionboxFieldsYet')}" styleClass="express-table-no-header">
+                <f:facet name="header">
+                  <div class="ui-g">
+                    <div class="ui-g-12">
+                      <div class="express-table-header-title">
+                        <p:outputLabel styleClass="marginTop6" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/OptionboxFields')}" />
+                      </div>
+                      <div class="express-add-option-panel">
+                        <p:commandButton id="add-radio-option-btn" icon="fa fa-plus" actionListener="#{data.createOneRadioTab.addOption()}"
+                          update="form:create-tabs:one-radio-options" process="form:create-tabs:one-radio-options" />
+                      </div>
+                    </div>
+                  </div>
+                </f:facet>
+
+                <p:column>
+                  <p:inputText value="#{option.value}" styleClass="express-workflow-table-input"
+                    requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputOptions')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
+                    placeholder="Option" required="true" maxlength="#{ivy.cms.co('/Dialogs/general/maxOptionsLength')}" />
+
+                  <p:commandButton icon="fa fa-trash-o" styleClass="placement-form-element-remove-btn"
+                    actionListener="#{data.createOneRadioTab.deleteOption(option)}" process="form:create-tabs:one-radio-options"
+                    update="form:create-tabs:one-radio-options" immediate="true">
+                  </p:commandButton>
+                </p:column>
+              </p:dataTable>
+            </div>
+
+          </div>
+
+          <h:panelGroup styleClass="create-form-toolbar">
+            <p:commandButton id="add-radio-btn" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
+              actionListener="#{logic.createOneRadio}" icon="fa fa-arrow-down" resetValues="true"
+              update="form:available-form-elements form:create-tabs" process="form:create-tabs:create-one-radio-tab" />
+          </h:panelGroup>
+        </p:tab>
+
+        <!-- FILE UPLOAD TAB -->
+        <p:tab title="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputFileUpload')}" id="create-file-upload-tab">
+          <p:messages id="messages-file-upload-label" showDetail="false" autoUpdate="true" closable="true" for="file-upload-label" />
+          <f:facet name="title">
+            <h:outputText styleClass="form-definition-item-icon" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputFileUpload')}" />
+            <p:graphicImage library="ivy-cms" name="/Layouts/Icons/FileUpload" width="65" styleClass="form-definition-item-icon" />
+          </f:facet>
+
+          <div class="ui-g alignLabelTop ui-fluid" id="create-file-upload-panel-grid">
+            <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
+
+            <div class="ui-g-7 ui-sm-12 u-padding-0 express-align-bottom-group">
+              <h:panelGroup styleClass="ui-g-8 md-inputfield align-bottom-child-item">
+                <p:inputText id="file-upload-label" required="true" styleClass="express-workflow-input"
+                  requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
+                  value="#{data.createFileUploadTab.label}" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" />
+                <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}" for="file-upload-label" />
+              </h:panelGroup>
+
+              <h:panelGroup styleClass="ui-g-4 align-bottom-child-item">
+                <div class="ui-g-12 u-no-padding-top">
+                  <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NumberOfFiles')}" for="file-upload-norows" />
+                </div>
+                <div class="ui-g-12 u-no-padding-top no-padding-bottom">
+                  <p:spinner id="file-upload-norows" value="#{data.createFileUploadTab.intSetting}" min="0" max="10" />
+                </div>
+              </h:panelGroup>
+            </div>
+
+            <h:panelGroup styleClass="ui-g-3 u-no-padding-top">
+              <div class="ui-g-12 u-no-padding-top">
+                <p:outputLabel styleClass="marginTop6" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/AllowedFiletypes')}:"
+                  for="file-formats" />
+              </div>
+              <div class="ui-g-12 u-no-padding-top">
+                <p:selectManyCheckbox id="file-formats" value="#{data.createFileUploadTab.optionsStr}" layout="pageDirection" disabled="true">
+                  <f:selectItems value="#{data.createFileUploadTab.options}" var="format" itemLabel="#{format.value}" itemValue="#{format.value}" />
+                </p:selectManyCheckbox>
+              </div>
+            </h:panelGroup>
+
+          </div>
+
+          <h:panelGroup styleClass="create-form-toolbar">
+            <p:commandButton id="add-upload-file-btn" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
+              actionListener="#{logic.createFileUpload}" icon="fa fa-arrow-down" resetValues="true"
+              update="form:available-form-elements form:create-tabs" process="form:create-tabs:create-file-upload-tab" />
+          </h:panelGroup>
+        </p:tab>
+
+      </p:tabView>
+    </div>
+  </p:fieldset>
 </h:body>
 </html>

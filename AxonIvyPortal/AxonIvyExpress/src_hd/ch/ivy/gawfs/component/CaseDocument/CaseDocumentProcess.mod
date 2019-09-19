@@ -306,20 +306,17 @@ Ds0 f29 490 122 28 28 -66 -9 #rect
 Ds0 f29 @|AlternativeIcon #fIcon
 Ds0 f12 guid 14DD7586B15ADC83 #txt
 Ds0 f12 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
-Ds0 f12 method deleteFile(String) #txt
+Ds0 f12 method deleteFile() #txt
 Ds0 f12 disableUIEvents false #txt
-Ds0 f12 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.String filePath> param = methodEvent.getInputArguments();
-' #txt
-Ds0 f12 inParameterMapAction 'out.selectedFilePath=param.filePath;
+Ds0 f12 inParameterDecl 'ch.ivy.gawfs.component.CaseDocument.CaseDocumentData out;
 ' #txt
 Ds0 f12 outParameterDecl '<> result;
 ' #txt
 Ds0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>deleteFile(String)</name>
-        <nameStyle>18,5,7
+        <name>deleteFile</name>
+        <nameStyle>10,5
 </nameStyle>
     </language>
 </elementInfo>
@@ -523,7 +520,7 @@ Ds0 f41 actionTable 'out=in;
 Ds0 f41 actionCode 'import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-FacesContext.getCurrentInstance().addMessage("messagesDynaForm", new FacesMessage(FacesMessage.SEVERITY_ERROR, in.uploadDocumentCheckMessage, null));' #txt
+FacesContext.getCurrentInstance().addMessage("messages-dynaform", new FacesMessage(FacesMessage.SEVERITY_ERROR, in.uploadDocumentCheckMessage, null));' #txt
 Ds0 f41 type ch.ivy.gawfs.component.CaseDocument.CaseDocumentData #txt
 Ds0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

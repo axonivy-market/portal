@@ -34,7 +34,7 @@ public class SixPanelDragAndDropController extends CommonDragAndDropController i
   private static final String SELECTED_FORM_ELEMENTS_LEFT_PANEL_DATA_GRID = "selectedFormelementsLeftPanelDataGrid";
   private static final String SELECTED_FORM_ELEMENTS_RIGHT_PANEL_DATA_GRID = "selectedFormelementsRightPanelDataGrid";
   private static final String SELECTED_FORM_ELEMENTS_FOOTERPANEL_DATA_GRID = "selectedFormelementsFooterPanelDataGrid";
-  private static final String AVAILABLE_FORM_ELEMENTS = "availableFormelements";
+  private static final String AVAILABLE_FORM_ELEMENTS = "available-form-elements";
 
   private List<Formelement> selectedFormelementsHeader1;
   private List<Formelement> selectedFormelementsHeader2;

@@ -9,13 +9,16 @@
     <ui:param name="steps" value="#{data.steps}" />
     <ui:param name="actualStepIndex" value="#{data.actualStepIndex}" />
     <ui:param name="isNotRequiredLogin" value="false" />
+    <ui:param name="processChainShape" value="LINE" />
     <ui:define name="title" />
     <ui:define name="taskForm">
 
-      <h:form id="form" styleClass="final-review-form">
-        <ic:ch.ivy.gawfs.component.FinishedUserTasksForm id="finished-tasks-component" finishedTasks="#{data.finishedTasks}" />
+      <h:form id="form" styleClass="ui-g">
+        <div class="ui-g-12 u-padding-0">
+          <ic:ch.ivy.gawfs.component.FinishedUserTasksForm id="finished-tasks-component" finishedTasks="#{data.finishedTasks}" />
+        </div>
         <br />
-        <h:panelGrid columns="1" styleClass="case-view-footer Wid100 u-no-border">
+        <h:panelGrid columns="1" styleClass="case-view-footer ui-g-12 u-no-border">
           <h:panelGroup>
 
           </h:panelGroup>
