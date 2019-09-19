@@ -166,6 +166,7 @@ import ch.ivy.addon.portalkit.bean.TaskActionBean;
 TaskActionBean taskActionBean = ManagedBeans.get("taskActionBean") as TaskActionBean;
 out.canUserResumeTask = taskActionBean.canResume(in.task);
 ' #txt
+Cs0 f45 security system #txt
 Cs0 f45 type ch.ivy.addon.portalkit.component.TaskItemDetails.TaskItemDetailsData #txt
 Cs0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
