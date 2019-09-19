@@ -30,12 +30,6 @@
     <method>
         <name>deleteFile</name>
         <description></description>
-        <inputParameter>
-            <name>filePath</name>
-            <description></description>
-            <parameterType>String</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
     </method>
     <method>
         <name>overrideFile</name>
