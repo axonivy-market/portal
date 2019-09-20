@@ -2601,10 +2601,6 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   text-align: right;
 }
 
-.process-chain-mobile-container {
-  margin-right: 2rem;
-}
-
 /* Small screen */
 @media (max-width: 1024px) {
   .process-chain-container.vertical-process-chain-container {
@@ -2640,6 +2636,9 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   .circle-process-chain .circle-horizontal-step-title {
     margin-bottom: 2px !important;
   }
+  .circle-horizontal-step-container:not(.right-steps) span:before {
+    border-top-color: #afca05 !important;
+  }
   .circle-horizontal-step-container span:before, .circle-horizontal-step-container span:after {
     display: inline-block;
     content: "";
@@ -2664,12 +2663,8 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 }
 
 @media screen and (min-width: 40.063em) and (max-width: 64.062em) {
-  .circle-process-chain .circle-horizontal-process-step {
-    width: auto !important;
-    margin-top: 0.5rem !important;
-  }
   .circle-process-chain .circle-horizontal-process-step:last-child .circle-horizontal-step-container {
-    line-height: 0.4 !important;
+    line-height: 0.5 !important;
   }
   .circle-process-chain .circle-horizontal-process-step .circle-horizontal-step-container {
     width: 2rem !important;
@@ -2678,11 +2673,25 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   .circle-process-chain .circle-horizontal-step-title {
     margin-bottom: 2px !important;
   }
-  .circle-horizontal-step-container span:before, .circle-horizontal-step-container span:after {
+  .circle-horizontal-process-step.left-steps {
+    padding-right: 5px;
+  }
+  .circle-horizontal-process-step.left-steps .circle-horizontal-step-title {
+    text-align: right;
+  }
+  .circle-horizontal-step-container.left-steps:not(.right-steps) {
+    margin-right: 0 !important;
+  }
+  .circle-horizontal-step-container span:before,
+  .circle-horizontal-step-container.right-steps span:before,
+  .circle-horizontal-step-container.left-steps span:after {
     display: inline-block;
     content: "";
     width: 2rem;
     margin: 0 10px;
+  }
+  .circle-horizontal-step-container:not(.right-steps) span:before {
+    width: 0 !important;
   }
   .circle-horizontal-step-container span:before {
     transform: translate(2rem, 0.5rem);
@@ -2696,26 +2705,30 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   }
   .circle-horizontal-step-container span:after {
     border-top: 3px solid #afca05;
-    transform: translate(-4rem, -0.6rem);
+    transform: translate(-4rem, -0.8rem);
     border-top-style: dashed;
   }
 }
 
 /* CIRCLE HONRIZONTAL***/
-.circle-process-chain .circle-horizontal-process-step {
+.circle-process-chain .circle-horizontal-process-step,
+.circle-process-chain .circle-vertical-process-step {
   width: 14rem;
+  font-size: 1.2rem;
+}
+
+.circle-process-chain .circle-horizontal-process-step,
+.circle-process-chain .circle-vertical-process-step {
   display: inline-block;
   margin: -2px;
   text-align: center;
-  font-size: 1.2rem;
-  padding-left: 1rem;
 }
 
 .circle-horizontal-process-step:not(:last-child ) .circle-horizontal-step-container span:before {
   display: inline-block;
   content: "";
   border-top: 3px solid #E0E0E0;
-  width: 102px;
+  width: 88px;
   margin: 0 10px;
   transform: translate(3.2rem, 1rem);
 }
@@ -2727,13 +2740,13 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   background-color: transparent;
 }
 
-.circle-process-chain .circle-horizontal-process-step .circle-horizontal-step-container {
-  width: 4rem;
-  height: 4rem;
+.circle-process-chain .circle-horizontal-process-step .circle-horizontal-step-container,
+.circle-process-chain .circle-vertical-process-step .circle-vertical-step-container {
+  width: 3.5rem;
+  height: 3.5rem;
   border-radius: 50%;
   border: solid 2px transparent;
   text-align: center;
-  font-size: 1.4rem;
   line-height: 1;
   margin: auto;
 }
@@ -2743,7 +2756,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 }
 
 .circle-process-chain .circle-horizontal-step-title {
-  margin-bottom: 10px;
+  margin-bottom: 4px;
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -2765,9 +2778,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 }
 
 .circle-process-chain .circle-vertical-process-step {
-  width: 14rem;
-  height: 120px;
-  font-size: 1.2rem;
+  height: 100px;
   overflow: hidden;
   word-break: break-all;
 }
@@ -2776,9 +2787,8 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   display: block;
   content: "";
   border-left: 3px solid #E0E0E0;
-  height: 77px;
-  margin: 42px 0px -106px 19px;
-}
+  height: 50px;
+  margin: 42px 0px -80px 16px;}
 
 .circle-process-chain .circle-vertical-process-step.hide-steps:not(:last-child ) .circle-vertical-step-container span:before {
   border-left-style: dashed;
@@ -2789,13 +2799,6 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 }
 
 .circle-process-chain .circle-vertical-process-step .circle-vertical-step-container {
-  width: 4rem;
-  height: 4rem;
-  border-radius: 50%;
-  border: solid 2px transparent;
-  text-align: center;
-  font-size: 1.4rem;
-  line-height: 1;
   float: left;
 }
 
@@ -2804,9 +2807,11 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 }
 
 .circle-process-chain .circle-vertical-step-title {
-  padding-top: 14px;
-  padding-left: 10px;
+  padding-top: 12px;
+  padding-left: 5px;
   display: flex;
+  width: calc(100% - 50px);
+  text-align: left;
 }
 
 .circle-process-chain .circle-vertical-process-step.current .circle-vertical-step-title {
@@ -2815,9 +2820,6 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 
 /** LINE HORIZONTAL*/
 @media screen and (max-width: 40em) {
-  .line-process-chain .line-horizontal-process-step {
-    width: auto !important;
-  }
   .line-process-chain .line-horizontal-process-step .line-horizontal-step-container {
     width: 80% !important;
     margin: auto;
@@ -2836,10 +2838,9 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 @media screen and (min-width: 40.063em) and (max-width: 64.062em) {
   .line-process-chain .line-horizontal-process-step.hide-left-steps.waiting {
     background: repeating-linear-gradient(90deg, #E0E0E0, #E0E0E0 10px, #fff 10px, #fff 20px);
-
   }
 }
-  
+
 .line-process-chain .line-horizontal-process-step {
   width: 13rem;
   display: inline-block;
@@ -2884,7 +2885,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 .line-process-chain .line-horizontal-step-title {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   display: block;
   overflow: hidden;
 }

@@ -54,7 +54,7 @@
 
         <c:if test="#{isShapeCircle}">
           <h:panelGroup layout="block" id="step-info-#{counter.index}" rendered="#{isShowAllSteps or isDisplayedStep}"
-            class="#{isDirectionHorizontal ? 'circle-horizontal-process-step' : 'circle-vertical-process-step'} #{isHideNextSteps and !isShowAllSteps ? 'hide-steps' : ''} #{processStepTypeCssClass}">
+            styleClass="ui-sm-hidden ui-md-hidden #{isDirectionHorizontal ? 'circle-horizontal-process-step' : 'circle-vertical-process-step'} #{isHideNextSteps and !isShowAllSteps ? 'hide-steps' : ''} #{processStepTypeCssClass}">
             <c:if test="#{isDirectionHorizontal}">
               <span class="circle-horizontal-step-title">${stepName}</span>
             </c:if>
@@ -73,7 +73,7 @@
           <c:set var="isHideRightSteps" value="#{isNextCurrentStep and isStepNeedMoreThreeSteps}" />
 
           <h:panelGroup rendered="#{isHideLeftSteps and !isShowAllSteps}" layout="block" id="hide-steps-#{counter.index}"
-            styleClass="#{isDirectionHorizontal ? 'line-horizontal-process-step' : 'line-vertical-process-step'} hide-left-steps" />
+            styleClass="ui-sm-hidden ui-md-hidden #{isDirectionHorizontal ? 'line-horizontal-process-step' : 'line-vertical-process-step'} hide-left-steps" />
 
           <c:if test="#{isDirectionHorizontal}">
             <h:panelGroup rendered="#{isShowAllSteps or isDisplayedStep}" layout="block" id="step-info-#{counter.index}"
@@ -99,46 +99,34 @@
     </h:panelGroup>
 
     <h:panelGroup styleClass="ui-lg-hidden ui-xl-hidden process-chain-mobile-container">
-      <c:forEach items="#{cc.attrs.steps}" var="stepName" varStatus="counter">
-        <c:set var="isFirstStep" value="#{counter.index eq 0}" />
-        <c:set var="isLastStep" value="#{counter.index eq (cc.attrs.steps.size() - 1)}" />
-        <c:set var="isCurrentStep" value="#{counter.index eq cc.attrs.actualStepIndex}" />
-        <c:set var="isPreCurrentStep" value="#{counter.index eq (cc.attrs.actualStepIndex - 1)}" />
-        <c:set var="isNextCurrentStep" value="#{counter.index eq (cc.attrs.actualStepIndex + 1)}" />
+      <c:set var="currentIndex" value="#{cc.attrs.actualStepIndex}" />
+      <c:set var="stepSize" value="#{cc.attrs.steps.size()}" />
+      <c:set var="stepName" value="#{cc.attrs.steps.get(currentIndex)}" />
+      <c:set var="isHideLeftSteps" value="#{currentIndex eq 0}" />
+      <c:set var="isHideRightSteps" value="#{currentIndex eq (stepSize - 1)}" />
 
-        <c:set var="isVisitedStep" value="#{cc.attrs.actualStepIndex > counter.index}" />
-        <c:set var="isCurrentStepPassedThreeSteps" value="#{cc.attrs.actualStepIndex > 2}" />
-        <c:set var="isStepNeedMoreThreeSteps" value="#{counter.index lt (cc.attrs.steps.size()-2)}" />
-        <c:set var="isHideNextSteps" value="#{(isFirstStep and isCurrentStepPassedThreeSteps) or (isNextCurrentStep and isStepNeedMoreThreeSteps)}" />
-        <c:set var="isDisplayedStep" value="#{isFirstStep or isLastStep or isCurrentStep or isNextCurrentStep or isPreCurrentStep}" />
-        <c:set var="processStepTypeCssClass" value="#{isCurrentStep ? 'current' :  isVisitedStep ? 'visited' : 'waiting'}" />
-
-        <c:if test="#{isShapeCircle}">
-          <h:panelGroup layout="block" id="step-info-mobile-#{counter.index}" rendered="#{(isShowAllSteps or isDisplayedStep) and isCurrentStep}"
-            class="circle-horizontal-process-step #{isHideNextSteps and !isShowAllSteps ? 'hide-steps' : ''} #{processStepTypeCssClass}">
-            <span class="circle-horizontal-step-title">${stepName}</span>
-            <h:panelGroup layout="block" id="step-count-mobile-container-#{counter.index}" styleClass="circle-horizontal-step-container #{isLastStep ? 'last-step':''}">
-              <span>#{counter.index + 1}</span>
-            </h:panelGroup>
+      <c:if test="#{isShapeCircle}">
+        <h:panelGroup layout="block" id="step-info-mobile-#{currentIndex}" styleClass="circle-horizontal-process-step #{isHideLeftSteps ? '':'left-steps'} #{isHideRightSteps ? '':'right-steps'}">
+          <h:outputText value="${stepName}" styleClass="circle-horizontal-step-title ui-sm-hidden" />
+          <h:panelGroup layout="block" id="step-count-mobile-container-#{currentIndex}"
+            styleClass="circle-horizontal-step-container #{isHideLeftSteps ? '':'left-steps'} #{isHideRightSteps ? '':'right-steps'}">
+            <span>#{currentIndex}</span>
           </h:panelGroup>
-        </c:if>
+        </h:panelGroup>
+      </c:if>
 
-        <c:if test="#{!isShapeCircle}">
-          <c:set var="isHideLeftSteps" value="#{isPreCurrentStep and isCurrentStepPassedThreeSteps}" />
-          <c:set var="isHideRightSteps" value="#{isNextCurrentStep and isStepNeedMoreThreeSteps}" />
-          <h:panelGroup layout="block" rendered="#{isPreCurrentStep}" styleClass="line-horizontal-process-step hide-left-steps" />
+      <c:if test="#{!isShapeCircle}">
+        <h:panelGroup id="step-before" layout="block" rendered="#{!isHideLeftSteps}" styleClass="line-horizontal-process-step hide-left-steps" />
 
-          <h:panelGroup rendered="#{(isShowAllSteps or isDisplayedStep) and isCurrentStep}" layout="block" id="step-info-mobile-#{counter.index}"
-            class="line-horizontal-process-step #{isCurrentStep ? 'current' : isVisitedStep ? 'visited' : 'waiting'}">
-            <span class="line-horizontal-step-title u-truncate-text">${stepName}</span>
-            <h:panelGroup layout="block" id="step-count-mobile-container-#{counter.index}" styleClass="line-horizontal-step-container" />
-          </h:panelGroup>
+        <h:panelGroup layout="block" id="step-info-mobile-#{currentIndex}" class="line-horizontal-process-step">
+          <h:outputText value="${stepName}" styleClass="line-horizontal-step-title u-truncate-text" />
+          <h:panelGroup layout="block" id="step-count-mobile-container-#{currentIndex}" styleClass="line-horizontal-step-container" />
+        </h:panelGroup>
 
-          <h:panelGroup layout="block" rendered="#{isNextCurrentStep}" styleClass="line-horizontal-process-step hide-left-steps #{isNextCurrentStep and !isLastStep ? 'waiting': ''}" />
-        </c:if>
+        <h:panelGroup id="step-after" layout="block" rendered="#{!isHideRightSteps}" styleClass="line-horizontal-process-step hide-right-steps" />
+      </c:if>
 
-        <p:tooltip for="step-info-mobile-#{counter.index}" value="#{stepName}" trackMouse="true" />
-      </c:forEach>
+      <p:tooltip for="step-info-mobile-#{currentIndex}" value="#{stepName}" trackMouse="true" />
     </h:panelGroup>
   </h:panelGroup>
 
