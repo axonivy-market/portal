@@ -930,14 +930,14 @@ td.email-attachment-text {
   table-layout: fixed;
 }
 
-.express-case-document .document-name {
-  min-width: 
-}
-
 .express-case-document td.document-name {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.express-action-button-icon-only {
+  text-align: center;
 }
 
 /* Adjust style on mobile */
@@ -955,5 +955,8 @@ td.email-attachment-text {
 
   .approval-comment-container {
     margin: auto 7px !important;
+  }
+  .express-action-button-icon-only {
+    text-align: left;
   }
 }
