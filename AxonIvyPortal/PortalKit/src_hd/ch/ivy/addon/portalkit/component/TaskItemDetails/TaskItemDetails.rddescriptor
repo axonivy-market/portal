@@ -19,6 +19,20 @@
         <name>openTask</name>
         <description></description>
     </method>
+    <method>
+        <name>resetAndOpenTask</name>
+        <description></description>
+    </method>
+    <method>
+        <name>validate</name>
+        <description></description>
+        <inputParameter>
+            <name>task</name>
+            <description></description>
+            <parameterType>ch.ivyteam.ivy.workflow.ITask</parameterType>
+            <nullPermitted>false</nullPermitted>
+        </inputParameter>
+    </method>
     <startMethod>
         <name>start</name>
         <description>Default dialog start method.</description>
