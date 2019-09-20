@@ -39,7 +39,8 @@ Ts0 f0 method start(ch.ivyteam.ivy.project.portal.examples.showcase.Data) #txt
 Ts0 f0 disableUIEvents true #txt
 Ts0 f0 inParameterDecl 'ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate.TestTaskTemplateData out;
 ' #txt
-Ts0 f0 inParameterMapAction 'out.data=param.data;
+Ts0 f0 inParameterMapAction 'out.actualStepIndex=param.data.actuaStepIndex;
+out.data=param.data;
 out.processChainDirection=param.data.processChainDirection;
 out.processChainShape=param.data.processChainShape;
 ' #txt
@@ -86,7 +87,6 @@ Ts0 f6 actionTable 'out=in;
 ' #txt
 Ts0 f6 actionCode 'import ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate.TestTaskTemplateData;
 
-in.actualStepIndex = 0;
 in.steps.add("Start");
 in.steps.add("Create request process testing");
 in.steps.add("Clarify process testing");
@@ -132,7 +132,8 @@ Ts0 f11 actionDecl 'ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate.Test
 ' #txt
 Ts0 f11 actionTable 'out=in;
 ' #txt
-Ts0 f11 actionCode 'ivy.session.setAttribute("taskConfigExampleProcessChainDirection", in.processChainDirection);
+Ts0 f11 actionCode 'ivy.session.setAttribute("taskConfigExampleActualStepIndex", in.actualStepIndex);
+ivy.session.setAttribute("taskConfigExampleProcessChainDirection", in.processChainDirection);
 ivy.session.setAttribute("taskConfigExampleProcessChainShape", in.processChainShape);' #txt
 Ts0 f11 type ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate.TestTaskTemplateData #txt
 Ts0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

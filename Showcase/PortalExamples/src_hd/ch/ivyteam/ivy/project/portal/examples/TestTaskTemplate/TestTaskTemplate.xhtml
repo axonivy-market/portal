@@ -11,7 +11,7 @@
     <ui:param name="task" value="#{ivy.task}" />
     <ui:param name="actualStepIndex" value="#{data.actualStepIndex}" />
     <ui:param name="steps" value="#{data.steps}" />
-    <ui:param name="processChainShape" value="#{LINE}" />
+    <ui:param name="processChainShape" value="#{data.processChainShape}" />
     <ui:param name="processChainDirection" value="#{data.processChainDirection}" />
 
     <ui:remove>
@@ -115,8 +115,12 @@
 
       <p:tab title="Customization tab">
         <h:form id="custom-form" styleClass="MarTop20 ui-g">
-          <h:panelGrid columns="2" styleClass="ui-g-12">
+          <h:panelGroup styleClass="ui-g-12 ui-fluid">
+            <div class="ui-g-1" />
             <h:panelGrid styleClass="ui-g-6 ui-sm-12" columns="2">
+              <p:outputLabel value="Actual step" />
+              <p:inputNumber id="actual-step" value="#{data.actualStepIndex}" maxValue="#{data.steps.size() - 1}"  />
+
               <p:outputLabel value="Process Chain Direction" for="processChainDirection" />
               <p:selectOneMenu id="processChainDirection" value="#{data.processChainDirection}">
                 <f:selectItem itemLabel="VERTICAL" itemValue="VERTICAL" />
@@ -130,7 +134,7 @@
               </p:selectOneMenu>
             </h:panelGrid>
 
-          </h:panelGrid>
+          </h:panelGroup>
           <br />
           <div class="Separator ui-g-12 MarTop20"></div>
 
