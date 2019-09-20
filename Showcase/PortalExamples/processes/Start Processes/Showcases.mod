@@ -278,6 +278,7 @@ Ss0 f25 actionTable 'out=in;
 Ss0 f25 actionCode 'import org.apache.commons.lang3.StringUtils;
 import ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate.TestTaskTemplateData;
 
+in.actuaStepIndex = ivy.session.getAttribute("taskConfigExampleActualStepIndex") as Integer;
 in.processChainDirection = ivy.session.getAttribute("taskConfigExampleProcessChainDirection") as String;
 in.processChainShape = ivy.session.getAttribute("taskConfigExampleProcessChainShape") as String;
 if (StringUtils.isEmpty(in.processChainDirection)) {
