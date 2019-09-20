@@ -1,48 +1,87 @@
-function CaseRelatedTask(relatedTask, technicalCase) {
-    var relatedTaskSize = relatedTask || 0;
-    var technicalCaseSize = technicalCase || 0;
+var CaseRelatedTask = {
+  maxItems : 3,
+  paddingBottom : 8,
+  taskHeight : 0, caseHeight : 0,
+  taskScrollHeight : 0, caseScrollHeight : 0,
+  relatedTaskSize : 0, technicalCaseSize : 0,
+  spaceToExpandTasksList : 0, spaceToExpandCasesList : 0,
+
+  init : function(relatedTask, technicalCase) {
+    this.relatedTaskSize = relatedTask || 0;
+    this.technicalCaseSize = technicalCase || 0;
+
+    this.taskHeight = this.getHeightOfRelatedTaskRow();
+    this.caseHeight = this.getHeightOfTechnicalRow();
     
-    var maxScrollHeight = 100;
-    var maxSpaceToExpand = 90;
-    var rowHeight = 32;
-    var maxItems = 3;
-    var paddingBottom = 12;
+    this.taskScrollHeight = this.taskHeight*this.maxItems;
+    this.caseScrollHeight = this.caseHeight*this.maxItems;
 
-    var spaceToExpand = 0;
-    if (relatedTaskSize == 0 || technicalCase == 0) {
-      spaceToExpand = maxScrollHeight;
+    if (this.technicalCaseSize < this.maxItems) {
+      this.spaceToExpandTasksList = this.caseScrollHeight - (this.technicalCaseSize*this.caseHeight);
     }
 
-    var spaceToExpandTasksList = 0;
-    if (technicalCaseSize < maxItems) {
-      spaceToExpandTasksList = maxSpaceToExpand - technicalCaseSize*rowHeight;
+    if (this.relatedTaskSize < this.maxItems) {
+      this.spaceToExpandCasesList = this.taskScrollHeight - (this.relatedTaskSize*this.taskHeight);
     }
-
-    var spaceToExpandCasesList = 0;
-    if (relatedTaskSize < maxItems) {
-      spaceToExpandCasesList = maxSpaceToExpand - relatedTaskSize*rowHeight;
+    
+    if (this.technicalCaseSize == 0 || this.relatedTaskSize == 0) {
+      this.paddingBottom = 20;
     }
+  },
 
-    this.setUpScrollBarForRelatedTask = function() {
-      var scrollHeightTask = relatedTaskSize*rowHeight + paddingBottom;
-      if (relatedTaskSize > maxItems) {
-        scrollHeightTask = maxScrollHeight + spaceToExpand + spaceToExpandTasksList;  
+  setUpScrollBar : function() {
+    this.scrollBarForTasks();
+    this.scrollBarForTechnicalCase();
+  },
+  
+  scrollBarForTasks : function() {
+    if (this.relatedTaskSize == 0) {
+      return;
+    }
+    var scrollHeightTask = this.relatedTaskSize * this.taskHeight;
+    if (this.relatedTaskSize > this.maxItems) {
+      scrollHeightTask = this.taskScrollHeight + this.spaceToExpandTasksList;
+
+      if (this.technicalCaseSize < this.maxItems) {
+        scrollHeightTask = scrollHeightTask + this.taskHeight;
       }
-      var taskList = $('[id$="case-item-details:related-tasks:tasks"]');
-      var taskListBody = taskList.find('.ui-datascroller-content.ui-widget-content.ui-corner-all');
-
-      taskListBody.css("height", scrollHeightTask);
     }
+    scrollHeightTask = scrollHeightTask + this.paddingBottom;
 
-    this.setUpScrollBarForTechnicalCase = function() {
-     var scrollHeightCases = technicalCaseSize*rowHeight + paddingBottom;
-     if (technicalCaseSize > maxItems) {
-       scrollHeightCases = maxScrollHeight + spaceToExpand + spaceToExpandCasesList;
-     }
-     var caseList = $('[id$="case-item-details:related-tasks:cases"]');
-     var caseListBody = caseList.find('.ui-datascroller-content.ui-widget-content.ui-corner-all');
+    var taskList = $('[id$="case-item-details:related-tasks:tasks"]');
+    var taskListBody = taskList.find('.ui-datascroller-content.ui-widget-content.ui-corner-all');
 
-      caseListBody.css("height", scrollHeightCases);
+    taskListBody.css("height", scrollHeightTask);
+  },
+
+  scrollBarForTechnicalCase : function() {
+    if (this.technicalCaseSize == 0) {
+      return;
     }
+    var scrollHeightCases = this.technicalCaseSize * this.caseHeight;
+    if (this.technicalCaseSize > this.maxItems) {
+      scrollHeightCases = this.caseScrollHeight + this.spaceToExpandCasesList;
+
+      if (this.relatedTaskSize < this.maxItems) {
+        scrollHeightCases = scrollHeightCases + this.caseHeight;
+      }
+    }
+    scrollHeightCases = scrollHeightCases + this.paddingBottom;
+
+    var caseList = $('[id$="case-item-details:related-tasks:cases"]');
+    var caseListBody = caseList.find('.ui-datascroller-content.ui-widget-content.ui-corner-all');
+
+    caseListBody.css("height", scrollHeightCases);
+  },
+
+  getHeightOfRelatedTaskRow : function() {
+    var taskRow = $('.grid-item-content-list-item.related-task-content.js-related-task');
+    return taskRow.length > 0 ? taskRow.outerHeight(true) : 32;
+  },
+
+  getHeightOfTechnicalRow : function() {
+    var caseRow = $('.grid-item-content-list-item.related-task-content.js-technical-case');
+    return caseRow.length > 0 ? caseRow.outerHeight(true) : 32;
+  }
 
 }

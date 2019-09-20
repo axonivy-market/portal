@@ -350,10 +350,10 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .first-sub-item {
-  margin-top: -40px !important;
-  padding-top: 46px !important;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  margin-top: -42px !important;
+  padding-top: 48px !important;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 
 .last-sub-item {
@@ -742,7 +742,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   border-right: 1px solid #e0e0e0;
 }
 
-.case-detail-related-table {
+.case-detail-related-table .case-related-task-case-running {
   margin-bottom: 8px;
 }
 
@@ -4584,7 +4584,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 .mobile-filter-icon {
   position: absolute !important;
   right: 0;
-  height: 25px !important;
+  height: 27px !important;
   width: 25px !important;
 }
 
