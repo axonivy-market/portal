@@ -47,7 +47,7 @@ function searchIconByName(element) {
 }
 
 var MainMenu = {
-  urlToFirstLevelMenu : [["Processes.xhtml", ["Processes", "Prozesse", "Processus", "Procesos"]],
+  urlToMenu : [["Processes.xhtml", ["Processes", "Prozesse", "Processus", "Procesos"]],
       ["PortalTasks.xhtml", ["Tasks", "Aufgaben", "Tâches", "Tareas"]],
       ["PortalCases.xhtml", ["Cases", "Vorgänge", "Dossiers", "Casos"]],
       ["PortalDashBoard.xhtml", ["Statistics", "Statistiken", "Statistiques", "Estadísticas"]],
@@ -56,10 +56,10 @@ var MainMenu = {
       ["CaseWidget.xhtml", ["Cases", "Vorgänge", "Dossiers", "Casos"]],
       ["PortalCaseDetails.xhtml", ["Cases", "Vorgänge", "Dossiers", "Casos"]],
       ["CaseItemDetails.xhtml", ["Cases", "Vorgänge", "Dossiers", "Casos"]],
-      ["PortalTaskDetail.xhtml", ["Tasks", "Aufgaben", "Tâches", "Tareas"]]],
+      ["PortalTaskDetails.xhtml", ["Tasks", "Aufgaben", "Tâches", "Tareas"]]],
 
   init : function(responsiveToolkit) {
-    this.highlightFirstLevelMenu();
+    this.highlightMenuItem();
     this.responsiveToolkit = responsiveToolkit;
     this.$mainMenu = $('.js-left-sidebar');
     this.$mainMenuToggle = $('.sidebar-anchor');
@@ -80,18 +80,18 @@ var MainMenu = {
     });
   },
 
-  highlightFirstLevelMenu : function() {
-    var firstLevelMenu = MainMenu.getFirstLevelMenuBasedOnPageUrl();
+  highlightMenuItem : function() {
+    var firstLevelMenu = MainMenu.getMenuBasedOnPageUrl();
     var parentActiveMenuId = MainMenu.getFirstParentMenuActive();
 
-    var $activeFirstLevelMenu = $(".layout-menu li[id^='" + parentActiveMenuId + "'] .menuitem-text").filter(
+    var $activeMenuItem = $(".layout-menu li[id^='" + parentActiveMenuId + "'] .menuitem-text").filter(
         function(index) {
           if (firstLevelMenu) {
             return (firstLevelMenu.indexOf($(this).text()) > -1);
           }
         });
     
-    $activeFirstLevelMenu.parent().parent().addClass('active-menuitem');
+    $activeMenuItem.parent().parent().addClass('active-menuitem');
   },
 
   getFirstParentMenuActive : function() {
@@ -99,12 +99,12 @@ var MainMenu = {
     var parentMenuActive = $(".layout-menu .active-menuitem").not(".submenu-container");
     if (parentMenuActive.length > 0) {
       parentId = parentMenuActive[0].id;
-      MainMenu.getFirstSubMenuActive();
+      MainMenu.getSubMenuActive();
     }
     return parentId;
   },
 
-  getFirstSubMenuActive : function() {
+  getSubMenuActive : function() {
     var subMenuActive = $(".layout-menu .active-menuitem.submenu-container");
 
     for (var i = 0; i < subMenuActive.length; i++) {
@@ -117,11 +117,11 @@ var MainMenu = {
     }
   },
 
-  getFirstLevelMenuBasedOnPageUrl : function() {
+  getMenuBasedOnPageUrl : function() {
     var pageUrl = window.location.pathname;
-    for (var i = 0; i < MainMenu.urlToFirstLevelMenu.length; i++) {
-      if (pageUrl.indexOf(MainMenu.urlToFirstLevelMenu[i][0]) > -1) {
-        return MainMenu.urlToFirstLevelMenu[i][1];
+    for (var i = 0; i < MainMenu.urlToMenu.length; i++) {
+      if (pageUrl.indexOf(MainMenu.urlToMenu[i][0]) > -1) {
+        return MainMenu.urlToMenu[i][1];
       }
     }
   }
