@@ -12,24 +12,21 @@
   <div id="document-table-div">
 
     <h:panelGroup id="document-container" layout="block">
-      <h:panelGroup rendered="#{empty data.caseDocuments}" layout="block" styleClass="TexAlLeft">
-        <h:outputText value="#{ivy.cms.co('/Dialogs/components/CaseDocument/NoFiles')}" />
-      </h:panelGroup>
 
-      <p:dataTable id="document-table" value="#{data.caseDocuments}" var="document" rendered="#{not empty data.caseDocuments}"
-        styleClass="MarTop5 express-case-document" widgetVar="fileTableVar">
+      <p:dataTable id="document-table" value="#{data.caseDocuments}" var="document" reflow="true"
+        emptyMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/NoFiles')}" styleClass="MarTop5 express-case-document" widgetVar="fileTableVar">
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}" styleClass="document-name">
           <h:outputText value="#{document.fileName}" title="#{document.fileName}" />
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/size')}" styleClass="ui-sm-hidden">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/size')}" styleClass="">
           <h:outputText value="#{document.fileSize}" title="#{document.fileSize}" />
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/Dialogs/components/CaseDocument/FileDate')}" styleClass="ui-sm-hidden">
+        <p:column headerText="#{ivy.cms.co('/Dialogs/components/CaseDocument/FileDate')}" styleClass="">
           <h:outputText value="#{dateFormats.format(document.modifiedDate)}" title="#{document.modifiedDate}">
           </h:outputText>
         </p:column>
 
-        <p:column styleClass="u-text-align-center express-action-button-icon-only"
+        <p:column styleClass="express-action-button-icon-only"
           headerText="#{ivy.cms.co('/Dialogs/components/CaseDocument/FileFunctions')}">
           <p:commandLink id="download" styleClass="fa fa-download MarRight10" immediate="true" ajax="false" process="@widgetVar(fileTableVar)"
             actionListener="#{logic.downloadFile(document.downloadPath, document.fileName)}"

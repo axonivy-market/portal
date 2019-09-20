@@ -22,7 +22,7 @@
       <h:form id="form" styleClass="express-work-flow">
 
         <p:fieldset id="process-setting-fieldset" legend="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processdetails')}"
-          toggleable="true" styleClass="MarTop5 express-fieldset">
+          toggleable="true" styleClass="MarTop5 express-fieldset fieldset-no-border">
 
           <h:panelGroup styleClass="ui-g-12 card">
             <h:panelGroup id="process-setting-grid" styleClass="process-property-container u-no-padding-top">
@@ -108,7 +108,7 @@
 
         <h:panelGroup id="defined-tasks-list-container">
           <ui:repeat id="defined-tasks-list" value="#{data.data.definedTasks}" var="gtask" varStatus="status">
-            <p:fieldset id="process-flow-field" toggleable="true" styleClass="express-fieldset"
+            <p:fieldset id="process-flow-field" toggleable="true" styleClass="express-fieldset fieldset-no-border"
               legend="#{ivy.cms.co('/Dialogs/workflowCreation/processStep')} #{gtask.position}">
               <h:panelGroup styleClass="ui-g-12 card u-padding-0">
 
@@ -325,13 +325,12 @@
       <p:confirmDialog id="delete-all-defined-tasks-warning" widgetVar="delete-all-defined-tasks-warning"
         message="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/ChangeSettingWarning')}" appendTo="@(body)"
         header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" severity="alert" closable="false">
-        <div class="delete-server-warning-buttons">
-          <p:commandButton id="delete-all-defined-tasks-warning-ok" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
-            actionListener="#{logic.changeUISetting(true)}" oncomplete="PF('delete-all-defined-tasks-warning').hide()" update="form" global="false" />
-          <p:commandButton id="delete-all-defined-tasks-warning-cancel" styleClass="portal-cancel-button"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" actionListener="#{logic.changeUISetting(false)}"
-            oncomplete="PF('delete-all-defined-tasks-warning').hide()" update="form" global="false" />
-        </div>
+        <p:commandButton id="delete-all-defined-tasks-warning-ok" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
+          resetValues="true" actionListener="#{logic.changeUISetting(true)}" oncomplete="PF('delete-all-defined-tasks-warning').hide()"
+          update="#{p:component('defined-tasks-list-container')}" global="false" />
+        <p:commandButton id="delete-all-defined-tasks-warning-cancel" styleClass="portal-cancel-button"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" actionListener="#{logic.changeUISetting(false)}"
+          oncomplete="PF('delete-all-defined-tasks-warning').hide()" update="form" global="false" />
       </p:confirmDialog>
     </ui:define>
 
