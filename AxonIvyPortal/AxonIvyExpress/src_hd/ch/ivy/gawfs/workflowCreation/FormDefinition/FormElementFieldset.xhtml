@@ -4,7 +4,7 @@
 <h:body>
 
   <p:fieldset id="create-tabs-field" legend="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/FieldSetFormelements')}" toggleable="true"
-    styleClass="ui-g express-fieldset u-padding-0">
+    styleClass="ui-g express-fieldset fieldset-no-border u-padding-0">
     <div class="card ui-g-12">
       <p:tabView effect="" id="create-tabs" styleClass="form-create-tabs" activeIndex="#{data.activeTab}" dynamic="false">
         <p:ajax event="tabChange" resetValues="true" global="false" update="create-tabs" />
@@ -45,10 +45,10 @@
               <div class="ui-g-12 u-no-padding-top">
                 <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
                 <h:panelGroup styleClass="ui-g-5 ui-lg-5 ui-md-6 u-no-padding-top">
-                  <h:panelGrid columns="2">
-                    <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" for="input-field-required" />
-                    <p:inputSwitch id="input-field-required" value="#{data.createInputFieldTab.required}" />
-                  </h:panelGrid>
+                  <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" for="input-field-required"
+                    styleClass="Fleft" />
+                  <p:spacer width="5px" />
+                  <p:inputSwitch id="input-field-required" value="#{data.createInputFieldTab.required}" />
                 </h:panelGroup>
               </div>
             </div>
@@ -94,10 +94,9 @@
               <div class="ui-g-12 u-no-padding-top">
                 <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
                 <div class="ui-g-5 ui-lg-5 ui-md-6 u-no-padding-top">
-                  <h:panelGrid columns="2">
-                    <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" for="input-area-required" />
-                    <p:inputSwitch id="input-area-required" value="#{data.createInputAreaTab.required}" />
-                  </h:panelGrid>
+                  <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" for="input-area-required" styleClass="Fleft" />
+                  <p:spacer width="5px" />
+                  <p:inputSwitch id="input-area-required" value="#{data.createInputAreaTab.required}" />
                 </div>
               </div>
             </div>
