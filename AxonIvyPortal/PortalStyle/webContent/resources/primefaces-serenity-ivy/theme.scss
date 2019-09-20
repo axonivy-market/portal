@@ -216,17 +216,6 @@ body .ui-messages .ui-messages-error-icon,
     color: $primaryColor !important;
 }
 
-.process-widget .process-group .ui-fieldset-toggler:before,
-.express-fieldset .ui-fieldset-toggler.ui-icon:before {
-    font-family: 'FontAwesome';
-    font-size: 1.4rem;
-    color: $black !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 3px;
-}
-
 .ui-fieldset {
     .ui-fieldset-legend {
         color: $black !important;

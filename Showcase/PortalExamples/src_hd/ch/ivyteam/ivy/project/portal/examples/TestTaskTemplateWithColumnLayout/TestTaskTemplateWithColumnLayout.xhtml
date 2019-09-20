@@ -1,0 +1,66 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+<h:body>
+  <ui:composition template="/layouts/TaskColumnTemplate.xhtml">
+    <ui:define name="pageTitle">Test TaskTemplate With Column Layout</ui:define>
+
+    <ui:param name="caseId" value="#{ivy.case.id}" />
+    <ui:param name="task" value="#{ivy.task}" />
+
+    <h:form id="form">
+      <f:facet name="header">
+        <p:messages></p:messages>
+      </f:facet>
+
+      <ui:define name="taskForm">
+
+        <p:outputLabel for="dataGdprRequestAddress" value="Address" />
+        <p:inputText id="dataGdprRequestAddress" value="#{data.data.gdprRequest.address}"></p:inputText>
+
+        <p:outputLabel for="dataGdprRequestAppliacationUserName" value="Appliacation User Name" />
+        <p:inputText id="dataGdprRequestAppliacationUserName" value="#{data.data.gdprRequest.appliacationUserName}"></p:inputText>
+
+        <p:outputLabel for="dataGdprRequestCity" value="City" />
+        <p:inputText id="dataGdprRequestCity" value="#{data.data.gdprRequest.city}"></p:inputText>
+
+        <p:outputLabel for="dataGdprRequestEmailAddress" value="Email Address" />
+        <p:inputText id="dataGdprRequestEmailAddress" value="#{data.data.gdprRequest.emailAddress}"></p:inputText>
+
+        <!-- No 'form field [List<ch.ivyteam.ivy.project.portal.examples.showcase.GdprFile>]' template found for field 'data.gdprRequest.files'. -->
+
+        <p:outputLabel for="dataGdprRequestId" value="Id" />
+        <p:inputText id="dataGdprRequestId" value="#{data.data.gdprRequest.id}"></p:inputText>
+
+        <p:outputLabel for="dataGdprRequestIdentificationNumer" value="Identification Numer" />
+        <p:inputText id="dataGdprRequestIdentificationNumer" value="#{data.data.gdprRequest.identificationNumer}"></p:inputText>
+
+        <p:outputLabel for="dataGdprRequestName" value="Name" />
+        <p:inputText id="dataGdprRequestName" value="#{data.data.gdprRequest.name}"></p:inputText>
+
+        <p:outputLabel for="dataGdprRequestRequestReason" value="Request Reason" />
+        <p:inputText id="dataGdprRequestRequestReason" value="#{data.data.gdprRequest.requestReason}"></p:inputText>
+
+        <p:outputLabel for="dataGdprRequestReviewedBy" value="Reviewed By" />
+        <p:inputText id="dataGdprRequestReviewedBy" value="#{data.data.gdprRequest.reviewedBy}"></p:inputText>
+
+        <p:outputLabel for="dataGdprRequestSurname" value="Surname" />
+        <p:inputText id="dataGdprRequestSurname" value="#{data.data.gdprRequest.surname}"></p:inputText>
+
+        <p:outputLabel for="dataProcessChainDirection" value="Process Chain Direction" />
+        <p:inputText id="dataProcessChainDirection" value="#{data.data.processChainDirection}"></p:inputText>
+
+        <p:outputLabel for="dataProcessChainShape" value="Process Chain Shape" />
+        <p:inputText id="dataProcessChainShape" value="#{data.data.processChainShape}"></p:inputText>
+
+        <p:outputLabel for="dataShowCaseStatusInfoTab" value="Show Case Status Info Tab" />
+        <p:inputText id="dataShowCaseStatusInfoTab" value="#{data.data.showCaseStatusInfoTab}"></p:inputText>
+      </ui:define>
+
+      <br />
+      <p:commandButton actionListener="#{logic.close}" value="Proceed" update="form" icon="ui-icon-check" />
+    </h:form>
+
+  </ui:composition>
+</h:body>
+</html>

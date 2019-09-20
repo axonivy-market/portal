@@ -195,6 +195,29 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
     background-color: #ffffff;
 }
 
+.fieldset-no-border {
+  border: none !important;
+  padding: .6em 0;
+  background-color: transparent !important;
+}
+
+.fieldset-no-border .ui-fieldset-toggler.ui-icon-minusthick:before {
+  content: "\f0d7";
+}
+
+.fieldset-no-border .ui-fieldset-toggler.ui-icon-plusthick:before {
+  content: "\f0da";
+}
+
+.fieldset-no-border .ui-fieldset-toggler:before {
+    font-family: 'FontAwesome';
+    font-size: 1.4rem;
+    color: #212121 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
+}
 /* =================== END FIELDSET ====================== */
 
 .widget-header {
@@ -1509,22 +1532,8 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   opacity: 1;
 }
 
-.process-widget .process-group,
-.express-fieldset {
-  border: none !important;
+.process-widget .process-group {
   width: calc(100% - 80px);
-  padding: .6em 0;
-  background-color: transparent !important;
-}
-
-.process-widget .process-group .ui-fieldset-toggler.ui-icon-minusthick:before,
-.express-fieldset .ui-fieldset-toggler.ui-icon.ui-icon-minusthick:before {
-  content: "\f0d7";
-}
-
-.process-widget .process-group .ui-fieldset-toggler.ui-icon-plusthick:before,
-.express-fieldset .ui-fieldset-toggler.ui-icon.ui-icon-plusthick:before {
-  content: "\f0da";
 }
 
 .process-widget .favorite-process-title {
@@ -3016,11 +3025,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 /********************************** ADMIN SETTING **********************************/
 .admin-settings-no-permission-message {
   color: #E53935;
-}
-
-.delete-server-warning-buttons {
-  text-align: right;
-  padding: 10px;
 }
 
 .application-table-type-column.td {
