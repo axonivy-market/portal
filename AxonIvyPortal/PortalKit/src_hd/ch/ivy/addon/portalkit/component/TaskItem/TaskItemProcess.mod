@@ -232,8 +232,8 @@ Ts0 f80 actionCode 'import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.bean.TaskActionBean;
 
 TaskActionBean taskActionBean = ManagedBeans.get("taskActionBean") as TaskActionBean;
-out.canUserResumeTask = taskActionBean.canResume(in.task);
-' #txt
+out.canUserResumeTask = taskActionBean.canResume(in.task);' #txt
+Ts0 f80 security system #txt
 Ts0 f80 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 Ts0 f80 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
