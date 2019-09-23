@@ -124,7 +124,7 @@
               </listitem>
               <listitem>
                 <para>
-                  <code>@circle-step-container</code>: circle process chain number step color.
+                  <code>@circle-step-number-color</code>: circle process chain number step color.
                 </para>
               </listitem>
             </itemizedlist>
