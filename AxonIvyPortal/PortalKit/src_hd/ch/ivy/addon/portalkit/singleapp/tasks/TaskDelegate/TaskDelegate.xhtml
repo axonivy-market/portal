@@ -81,7 +81,7 @@
             icon="fa fa-mail-forward" actionListener="#{logic.delegateTask(cc.attrs.task)}"
             process=":#{p:component('activatorPanel')}" update="#{cc.attrs.updateElement}"
             disabled="#{data.disabledDelegateButton}" styleClass=""
-            onsuccess="setCookie('delegated','#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/message/delegateSuccess')}');redirectToLastPage()" />
+            onsuccess="setCookie('delegated','#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/message/delegateSuccess')}')" />
           <p:commandButton id="cancel-task-delegate-command"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" icon="fa fa-remove"
             actionListener="#{logic.cancel}" immediate="true" styleClass="portal-cancel-button"
