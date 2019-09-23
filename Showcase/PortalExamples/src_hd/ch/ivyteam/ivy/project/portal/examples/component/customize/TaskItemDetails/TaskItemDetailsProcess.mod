@@ -23,11 +23,14 @@ Ps0 @PushWFArc f2 '' #zField
 >Proto Ps0 Ps0 TaskItemDetailsProcess #zField
 Ps0 f0 guid 16C421FBB76376F6 #txt
 Ps0 f0 type ch.ivyteam.ivy.project.portal.examples.component.customize.TaskItemDetails.TaskItemDetailsData #txt
-Ps0 f0 method start(ch.ivyteam.ivy.workflow.ITask,String) #txt
+Ps0 f0 method start(ch.ivyteam.ivy.workflow.ITask,String,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,String,Boolean) #txt
 Ps0 f0 disableUIEvents true #txt
 Ps0 f0 inParameterDecl 'ch.ivyteam.ivy.project.portal.examples.component.customize.TaskItemDetails.TaskItemDetailsData out;
 ' #txt
-Ps0 f0 inParameterMapAction 'out.menuState=param.menuState;
+Ps0 f0 inParameterMapAction 'out.dataModel=param.dataModel;
+out.isFromTaskList=param.isFromTaskList;
+out.menuState=param.menuState;
+out.portalPage=param.portalPage;
 out.task=param.task;
 ' #txt
 Ps0 f0 outParameterDecl '<> result;
@@ -35,17 +38,17 @@ Ps0 f0 outParameterDecl '<> result;
 Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start(ITask, String)</name>
+        <name>start(ITask,String,TaskLazyDataModel,String,Boolean)</name>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f0 67 211 26 26 -16 15 #rect
+Ps0 f0 83 83 26 26 -16 15 #rect
 Ps0 f0 @|RichDialogInitStartIcon #fIcon
 Ps0 f4 type ch.ivyteam.ivy.project.portal.examples.component.customize.TaskItemDetails.TaskItemDetailsData #txt
-Ps0 f4 195 211 26 26 0 12 #rect
+Ps0 f4 211 83 26 26 0 12 #rect
 Ps0 f4 @|RichDialogProcessEndIcon #fIcon
 Ps0 f5 expr out #txt
-Ps0 f5 93 224 195 224 #arcP
+Ps0 f5 109 96 211 96 #arcP
 Ps0 f3 guid 16C45AE394A575BF #txt
 Ps0 f3 type ch.ivyteam.ivy.project.portal.examples.component.customize.TaskItemDetails.TaskItemDetailsData #txt
 Ps0 f3 actionDecl 'ch.ivyteam.ivy.project.portal.examples.component.customize.TaskItemDetails.TaskItemDetailsData out;
@@ -59,14 +62,14 @@ Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f3 67 307 26 26 -15 12 #rect
+Ps0 f3 83 179 26 26 -15 12 #rect
 Ps0 f3 @|RichDialogProcessStartIcon #fIcon
 Ps0 f1 type ch.ivyteam.ivy.project.portal.examples.component.customize.TaskItemDetails.TaskItemDetailsData #txt
 Ps0 f1 guid 16BD5C61E82555D2 #txt
-Ps0 f1 195 307 26 26 0 12 #rect
+Ps0 f1 211 179 26 26 0 12 #rect
 Ps0 f1 @|RichDialogEndIcon #fIcon
 Ps0 f2 expr out #txt
-Ps0 f2 93 320 195 320 #arcP
+Ps0 f2 109 192 211 192 #arcP
 >Proto Ps0 .type ch.ivyteam.ivy.project.portal.examples.component.customize.TaskItemDetails.TaskItemDetailsData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect

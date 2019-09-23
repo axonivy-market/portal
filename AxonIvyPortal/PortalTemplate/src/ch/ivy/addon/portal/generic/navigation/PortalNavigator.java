@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.extensions.util.json.GsonConverter;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.support.UrlDetector;
@@ -97,7 +98,7 @@ public final class PortalNavigator {
     } else {
       navigate(PORTAL_END_PAGE, param);
     }
-    Ivy.session().setAttribute("isTaskNotFinished", true);
+    Ivy.session().setAttribute(SessionAttribute.IS_TASK_NOT_FINISHED.toString(), true);
   }
 
   public void navigateToPortalProcess() throws MalformedURLException {
