@@ -109,6 +109,12 @@
                   : it sets shape of action button, it's rectangle when set $actionButtonBorderRadius:0px;
                 </para>
               </listitem>
+              <listitem>
+                <para>
+                  <code>$circleStepNumberColor</code>
+                  : circle process chain number step color;
+                </para>
+              </listitem>
             </itemizedlist>
           </note>
         </listitem>
