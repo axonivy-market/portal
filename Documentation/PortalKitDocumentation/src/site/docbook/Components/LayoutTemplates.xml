@@ -538,31 +538,18 @@
 	<sect2 xml:id="axonivyportal.components.layouttemplates.reponsiveness">
 		<title xml:id="axonivyportal.components.layouttemplates.reponsiveness.title">Responsiveness</title>
 		<para>
-			Since version 6.4, Portal officially supports responsiveness for 3 screen widths: iMac(width 1920), iPad landscape(width 1366) and iPad portrait(width 1024).
+			Since version 8.0, Portal has simplified ResponsiveToolKit and now Portal supports various screen solutions, not fit to 3 screen widths as before.
 		</para>
 		<para>
-			To apply your styles for the above resolutions, you can add your own media query css:
+			To apply your styles for the specific resolution, you can add your own media query css:
 			<para>
 				<code>
-					/* Small screen */
 					@media screen and (max-width: 1365px) {/*.....*/}
-				</code>
-			</para>
-			<para>
-				<code>
-					/* Medium screen */
-					@media screen and (min-width: 1366px) and (max-width: 1919px) {/*.....*/},
-				</code>
-			</para>
-			<para>
-				<code>
-					/* Large screen */
-					@media screen and (min-width: 1920px) {/*......*/}
 				</code>
 			</para>
 			<para>	
 				<para>In Portal's new design, the main container's width should be changed according to menu state (expand/colapse).</para> 
-				<para>To adapt the change, you need to initialize the <code>ResponsiveToolkit</code> Javascript object and introduce 3 objects to handle 3 screen resolutions and each object has to implement the <code>updateMainContainer</code> method.</para> Portal templates define their own responsiveness, you can redefine the footer section to override:
+				<para>To adapt the change, you need to initialize the <code>ResponsiveToolkit</code> Javascript object and introduce 1 object to handle screen resolutions and your object has to implement the <code>updateMainContainer</code> method.</para> Portal templates define their own responsiveness, you can redefine the footer section to override:
 				<para>
 					<para>E.g. Initialize <code>ResponsiveToolkit</code> for TaskList page.</para>
 					<para>
@@ -576,16 +563,10 @@
 							<code>$(function(){</code>
 						</para>
 						<para>
-							<code>var taskListLargeScreen = new TaskListLargeScreenHandler();</code>
+							<code>var simpleScreen = new TaskListScreenHandler();</code>
 						</para>
 						<para>
-							<code>var taskListMediumScreen = new TaskListMediumScreenHandler();</code>
-						</para>
-						<para>
-							<code>var taskListSmallScreen = new TaskListSmallScreenHandler();</code>
-						</para>
-						<para>
-							<code>var responsiveToolkit = ResponsiveToolkit(taskListLargeScreen, taskListMediumScreen, taskListSmallScreen);</code>
+							<code>var responsiveToolkit = ResponsiveToolkit(simpleScreen);</code>
 						</para>
 						<para>
 							<code>Portal.init(responsiveToolkit);</code>
