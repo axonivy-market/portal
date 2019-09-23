@@ -1340,7 +1340,7 @@ Pt0 f38 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f38 560 465 560 515 #arcP
 Pt0 f38 0 0.3793103448275862 14 3 #arcLabel
 Pt0 f6 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pt0 f6 processCall 'Functional Processes/OpenPortalTaskDetails:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,String,Boolean)' #txt
+Pt0 f6 processCall 'Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,String,Boolean)' #txt
 Pt0 f6 doCall true #txt
 Pt0 f6 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,java.lang.String portalPage,java.lang.Boolean isFromTaskList> param;
 ' #txt
@@ -1356,11 +1356,11 @@ Pt0 f6 responseMappingAction 'out=in;
 Pt0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>OpenPortalTaskDetails</name>
+        <name>OpenPortalTaskDetailsHook</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f6 1464 74 144 44 -64 -8 #rect
+Pt0 f6 1448 74 176 44 -78 -8 #rect
 Pt0 f6 @|CallSubIcon #fIcon
 Pt0 f16 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1381,7 +1381,7 @@ Pt0 f68 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f68 actionTable 'out=in;
 ' #txt
-Pt0 f68 actionCode 'ivy.session.removeAttribute("isTaskNotFinished");
+Pt0 f68 actionCode 'ivy.session.removeAttribute(ch.ivy.addon.portalkit.enums.SessionAttribute.IS_TASK_NOT_FINISHED.toString());
 out.taskSelected = ivy.wf.findTask(in.endedTaskId);' #txt
 Pt0 f68 security system #txt
 Pt0 f68 type ch.ivy.addon.portal.generic.PortalStartData #txt
@@ -1396,7 +1396,7 @@ and find task by id</name>
 Pt0 f68 1256 74 176 44 -67 -16 #rect
 Pt0 f68 @|StepIcon #fIcon
 Pt0 f72 expr in #txt
-Pt0 f72 outCond 'in.isTaskStartedInDetails && ivy.session.getAttribute("isTaskNotFinished") as Boolean' #txt
+Pt0 f72 outCond 'in.isTaskStartedInDetails && ivy.session.getAttribute(ch.ivy.addon.portalkit.enums.SessionAttribute.IS_TASK_NOT_FINISHED.toString()) as Boolean' #txt
 Pt0 f72 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1408,7 +1408,7 @@ Pt0 f72 1216 144 1256 96 #arcP
 Pt0 f72 1 1216 96 #addKink
 Pt0 f72 1 0.075 0 -9 #arcLabel
 Pt0 f42 expr out #txt
-Pt0 f42 1432 96 1464 96 #arcP
+Pt0 f42 1432 96 1448 96 #arcP
 Pt0 f42 0 0.075 0 -9 #arcLabel
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
