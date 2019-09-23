@@ -742,11 +742,11 @@ Nr0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Nr0 f56 1736 626 112 44 -48 -8 #rect
 Nr0 f56 @|StepIcon #fIcon
 Nr0 f58 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
-Nr0 f58 processCall 'Functional Processes/OpenPortalTaskDetail:call(ch.ivyteam.ivy.workflow.ITask)' #txt
+Nr0 f58 processCall 'Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,String,Boolean)' #txt
 Nr0 f58 doCall true #txt
-Nr0 f58 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask taskData> param;
+Nr0 f58 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,java.lang.String portalPage,java.lang.Boolean isFromTaskList> param;
 ' #txt
-Nr0 f58 requestMappingAction 'param.taskData=in.iTask;
+Nr0 f58 requestMappingAction 'param.task=in.iTask;
 ' #txt
 Nr0 f58 responseActionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 ' #txt
@@ -755,7 +755,7 @@ Nr0 f58 responseMappingAction 'out=in;
 Nr0 f58 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>OpenPortalTaskDetail</name>
+        <name>OpenPortalTaskDetailsHook</name>
     </language>
 </elementInfo>
 ' #txt
