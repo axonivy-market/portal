@@ -109,6 +109,12 @@
                   : it sets shape of action button, it's rectangle when set $actionButtonBorderRadius:0px;
                 </para>
               </listitem>
+              <listitem>
+                <para>
+                  <code>$actionButtonBorderRadius</code>
+                  : it sets shape of action button, it's rectangle when set $actionButtonBorderRadius:0px;
+                </para>
+              </listitem>
             </itemizedlist>
           </note>
         </listitem>

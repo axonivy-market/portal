@@ -557,8 +557,8 @@ img[id*='additonalTaskUserAvatar'] {
     background: repeating-linear-gradient(180deg, #E0E0E0, #E0E0E0 10px, $bodyBackgroundColor 10px, $bodyBackgroundColor 20px);
 }
 
-.cicrle-step-container {
-    color: $cicrleStepContainer;
+.current .cicrle-step-container, .visited .cicrle-step-container {
+    color: $circleStepNumberColor;
 }
 
 .task #mobile-menu .mobile-task-menu-item,
