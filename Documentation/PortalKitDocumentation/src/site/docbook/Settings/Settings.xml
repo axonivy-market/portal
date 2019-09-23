@@ -681,6 +681,17 @@
 		<itemizedlist>
 			<listitem>
 				<para>
+					Language setting precedence:
+				</para>
+				<para>
+					If user email language setting is application default, language would be applied by application email language setting.
+				</para>
+				<para>
+					If user selects a language in email setting, language would be appplied by this selection. 
+				</para>
+			</listitem>
+			<listitem>
+				<para>
 					To configure languages of Portal applications, select
 					<code>Language Settings</code>
 					in
