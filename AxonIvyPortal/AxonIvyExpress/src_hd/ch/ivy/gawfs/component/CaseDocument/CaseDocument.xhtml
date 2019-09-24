@@ -18,12 +18,8 @@
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}" styleClass="document-name">
           <h:outputText value="#{document.fileName}" title="#{document.fileName}" />
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/size')}" styleClass="">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/size')}" width="20%">
           <h:outputText value="#{document.fileSize}" title="#{document.fileSize}" />
-        </p:column>
-        <p:column headerText="#{ivy.cms.co('/Dialogs/components/CaseDocument/FileDate')}" styleClass="">
-          <h:outputText value="#{dateFormats.format(document.modifiedDate)}" title="#{document.modifiedDate}">
-          </h:outputText>
         </p:column>
 
         <p:column styleClass="express-action-button-icon-only"
@@ -36,7 +32,7 @@
           <p:spacer width="20px" />
           <p:commandLink id="document-delete" styleClass="fa fa-trash-o" oncomplete="PF('document-delete-dialog').show()"
             rendered="#{cc.attrs.uploadPossible}" update="document-table" actionListener="#{data.setSelectedFilePath(document.downloadPath)}"
-            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}">
+            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" immediate="true">
           </p:commandLink>
         </p:column>
       </p:dataTable>

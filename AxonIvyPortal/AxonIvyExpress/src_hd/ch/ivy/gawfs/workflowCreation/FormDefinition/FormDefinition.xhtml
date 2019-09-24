@@ -39,7 +39,7 @@
               </h:panelGroup>
             </h:panelGroup>
             <p:tooltip id="defined-task-button-tooltip-#{status.index}" for="defined-task-button-container-#{status.index}"
-              value="#{definedTask.subject} (#{definedTask.taskType.label})" trackMouse="true" />
+              value="#{definedTask.subject} (#{definedTask.taskType.label})" trackMouse="true" hideEvent="mouseleave click" />
           </c:forEach>
         </h:panelGroup>
       </div>
