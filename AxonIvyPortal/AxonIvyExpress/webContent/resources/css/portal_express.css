@@ -6,7 +6,7 @@
 /* WORKFLOW DEFINITION */
 .express-align-bottom-group {
   display: flex !important;
-  height: 5em;
+  height: 5.5em;
 }
 
 .express-align-bottom-group .align-bottom-child-item {
@@ -641,6 +641,10 @@ td.email-attachment-text {
 }
 
 /* Form Creation Tab */
+.create-tabs-field .ui-fieldset-content {
+  width: 100%;
+}
+
 .form-create-tabs {
   border: none !important;
 }
@@ -744,10 +748,13 @@ td.email-attachment-text {
 }
 
 /* Override dynaform cell */
-.pe-dynaform-cell[colspan="2"]:not(.pe-dynaform-label),
 .pe-dynaform-cell[colspan="2"]:not(.pe-dynaform-label) {
   height: 2.5rem !important;
-  vertical-align: bottom !important;
+  vertical-align: bottom;
+}
+
+.pe-dynaform-cell[colspan="2"]:not(.pe-dynaform-label).text-area ~ .pe-dynaform-cell[colspan="2"]:not(.pe-dynaform-label) {
+  vertical-align: top !important;
 }
 
 .pe-dynaform-grid tr>td.pe-dynaform-cell[colspan="2"]:first-child {
