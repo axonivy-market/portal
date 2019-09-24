@@ -163,7 +163,7 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public CaseWidgetPage selectCaseMenu() {
-    findElementByCssSelector("a.left-sidebar-sub-menu-item:nth-of-type(" + CASE_MENU_ICON_POSITION + ")").click();
+	findElementByCssSelector("li.submenu-container:nth-child(4) > a.ripplelink.submenu").click();
     waitAjaxIndicatorDisappear();
     return new CaseWidgetPage();
   }

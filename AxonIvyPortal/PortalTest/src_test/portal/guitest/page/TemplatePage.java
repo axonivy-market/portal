@@ -197,9 +197,10 @@ protected boolean isIntegrationTestRun() {
   }
   
   public MainMenuPage openMainMenu() {
-    WebElement mainMenuToggle = findDisplayedElementBySelector(".js-left-sidebar-toggle");
+    WebElement mainMenuToggle = findDisplayedElementBySelector(" #left-menu");
     if (!isMainMenuOpen()) {
       click(mainMenuToggle);
+      click(By.xpath("//a[@id='user-menu-required-login:toggle-menu']"));
     }
     return new MainMenuPage();
   }
@@ -250,7 +251,7 @@ protected boolean isIntegrationTestRun() {
   }
 
   public boolean isMainMenuOpen() {
-    WebElement mainMenu = findDisplayedElementBySelector(".js-left-sidebar-toggle");
+    WebElement mainMenu = findDisplayedElementBySelector("#left-menu");
     return mainMenu.getAttribute(CLASS_PROPERTY).indexOf("in") > 0;
   }
 
