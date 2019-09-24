@@ -41,7 +41,7 @@
 /* Express switch button */
 .express-work-flow .express-input-switch-selection,
 .ui-inputswitch.ui-widget.ui-widget-content.express-input-switch-selection.ui-inputswitch-checked {
-  background-color: #AFCA05;
+  background-color: #c7d426;
   border-color: #DCF91F;
   top: 3px;
   margin: auto 8px;
@@ -657,7 +657,7 @@ td.email-attachment-text {
   position: absolute;
   left: 6px;
   top: 14px;
-  background: #AFCA05;
+  background: #c7d426;
   z-index: 2;
   width: 20px;
   height: 20px;
