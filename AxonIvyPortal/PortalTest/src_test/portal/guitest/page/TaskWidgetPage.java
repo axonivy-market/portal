@@ -83,20 +83,15 @@ public class TaskWidgetPage extends TemplatePage {
     click(driver.findElement(By.cssSelector("a[id$='show-more-note-link']")));
   }
 
-  private void clickOnTaskEntryInFullMode(int index, boolean isDetailsShown) {
-    WebElement taskShowHideDetailsLink = findElementByXpath(
-        "//a[contains(@id, '" + index + ":task-item:resume-task-show-task-detail-link') or contains(@id, '" + index
-            + ":task-item:show-task-detail-link')]");
-    taskShowHideDetailsLink.click();
-    waitAjaxIndicatorDisappear();
-    waitForElementDisplayed(By.cssSelector(ID_END + index + ":task-item:task-details-container']"), isDetailsShown,
-        DEFAULT_TIMEOUT);
+  private TaskDetailsPage clickOnTaskEntryInFullMode(int index, boolean isDetailsShown) {
+    findElementByCssSelector("div[id$='" + index + "\\:task-item\\:task-info']").click();
+    TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
+    return taskDetailsPage;
   }
 
   public TaskDetailsPage getTaskDetailsElement(int index) {
     waitForElementDisplayed(By.cssSelector(ID_END + index + TASK_ITEM_TASK_INFO), true, DEFAULT_TIMEOUT);
-    WebElement taskDetailsItem = findElementByCssSelector(ID_END + index + ":task-item:task-start']");
-    return new TaskDetailsPage(taskDetailsItem);
+    return new TaskDetailsPage();
   }
 
   public boolean isTaskShowDetails(int index) {
@@ -157,14 +152,13 @@ public class TaskWidgetPage extends TemplatePage {
     return Long.valueOf(text);
   }
 
-  public CaseWidgetPage openRelatedCaseOfTask() {
-    click(findElementByCssSelector("*[id$='task-details-container'] *[id$='related-case']"));
-    waitForElementDisplayed(By.cssSelector("*[id$='case-list']"), true);
-    return new CaseWidgetPage();
+  public CaseDetailsPage openRelatedCaseOfTask() {
+    click(findElementByCssSelector("a[id$='related-case']"));
+    return new CaseDetailsPage();
   }
 
   public String getRelatedCase() {
-    WebElement relatedCaseLink = findElementByCssSelector("*[id$='task-details-container'] *[id$='related-case']");
+    WebElement relatedCaseLink = findElementByCssSelector("a[id$='related-case']");
     return relatedCaseLink.getText();
   }
 

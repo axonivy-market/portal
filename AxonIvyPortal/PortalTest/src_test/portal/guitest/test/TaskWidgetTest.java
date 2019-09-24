@@ -11,7 +11,7 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.DateTimePattern;
 import portal.guitest.common.TaskState;
 import portal.guitest.common.TestAccount;
-import portal.guitest.page.CaseWidgetPage;
+import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.TaskDetailsPage;
@@ -59,7 +59,7 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testOpenRelatedCaseOfTask() {
+  public void testOpenRelatedCaseOfTask() { //SERENITY_PASSED
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
@@ -67,10 +67,10 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage.openTaskDetails(0);
 
     String relatedCaseName = taskWidgetPage.getRelatedCase();
-    CaseWidgetPage casePage = taskWidgetPage.openRelatedCaseOfTask();
+    CaseDetailsPage casePage = taskWidgetPage.openRelatedCaseOfTask();
 
     String caseName = casePage.getCaseName();
-    assertEquals(relatedCaseName, caseName);
+    assertTrue(relatedCaseName.contains(caseName));
   }
 
   @Test
