@@ -92,9 +92,9 @@ public class CaseWidgetPage extends TemplatePage {
 		List<WebElement> caseItems = findListElementsByCssSelector(CASE_ITEM_LIST_SELECTOR);
 		for (WebElement caseItem : caseItems) {
 			if (caseItem.findElement(By.cssSelector(CASE_NAME_CSS_SELECTOR)).getText().equals(caseName)) {
-			  caseItem.findElement(By.cssSelector(CASE_NAME_CSS_SELECTOR)).click();
-				waitAjaxIndicatorDisappear();
-				CaseDetailsPage detailsPage = new CaseDetailsPage(caseItem);
+			  caseItem.findElement(By.cssSelector("a[id*='case-item:j_id_v_2_jb:j_id_v_2_jc']")).click();
+				waitAjaxIndicatorDisappear();		
+				CaseDetailsPage detailsPage = new CaseDetailsPage();
 				return detailsPage;
 			}
 		}

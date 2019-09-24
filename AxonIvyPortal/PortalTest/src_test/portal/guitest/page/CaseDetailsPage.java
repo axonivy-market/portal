@@ -23,8 +23,7 @@ public class CaseDetailsPage extends TemplatePage {
   private static final String RELATED_TASKS_COMPONENT_ID =
       "case-widget:case-list-scroller:0:case-item:case-body:related-tasks";
   private static final String HISTORY_LIST_CSS_SELECTOR = "div[id$='case-histories'] .author";
-  private static final String GENERAL_INFORMATION_COMPONENT_ID =
-      "case-widget:case-list-scroller:0:case-item:case-body:general-information";
+  private static final String GENERAL_INFORMATION_COMPONENT_ID ="table[id='general-information:general-info']";
   private static final String HISTORY_NOTE_CONTENT_CSS_SELECTOR = "a[id$='note-content']";
   private static final String ADDITIONAL_CASE_DETAILS_URL_CSS_SELECTOR = "a[id$='additional-case-details-link']";
   private static final String AUTHOR_USER_CSS_SELECTOR = "span[id$='user-full-name:user']";
@@ -38,19 +37,25 @@ public class CaseDetailsPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "id('case-widget:case-list')";
+    return "id('case-item-details:case-detail-title-form:case-detail-name')";
   }
 
   public CaseDetailsPage(WebElement caseItem) {
     this.caseItem = caseItem;
   }
 
-  public String getCaseCategory() {
-    return caseItem.findElement(By.cssSelector("span[id$='case-category']")).getText();
+  public CaseDetailsPage() {
+	// TODO Auto-generated constructor stub
+	  findElementByCssSelector("div[class^='case-detail-body']");
+}
+
+
+public String getCaseCategory() {
+	return findElementByCssSelector("span[id$='case-category']").getText();
   }
 
   public int getNumberOfHistory() {
-    return caseItem.findElements(By.cssSelector(HISTORY_LIST_CSS_SELECTOR)).size();
+	  return caseItem.findElements(By.cssSelector(HISTORY_LIST_CSS_SELECTOR)).size();
   }
 
   public int countRelatedTasks() {
@@ -97,7 +102,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   private WebElement getGeneralInformationComponent() {
-    return findChildElementById(caseItem, GENERAL_INFORMATION_COMPONENT_ID);
+    return findElementById(GENERAL_INFORMATION_COMPONENT_ID);
   }
 
   public boolean isGeneralInformationComponentPresented() {
