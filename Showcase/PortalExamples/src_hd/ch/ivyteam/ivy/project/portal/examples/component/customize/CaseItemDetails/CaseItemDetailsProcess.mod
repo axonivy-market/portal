@@ -23,12 +23,12 @@ Cs0 @PushWFArc f5 '' #zField
 >Proto Cs0 Cs0 CaseItemDetailsProcess #zField
 Cs0 f0 guid 16BD5C61E57370F7 #txt
 Cs0 f0 type ch.ivyteam.ivy.project.portal.examples.component.customize.CaseItemDetails.CaseItemDetailsData #txt
-Cs0 f0 method start(ch.ivyteam.ivy.workflow.ICase,String) #txt
+Cs0 f0 method start(ch.ivyteam.ivy.workflow.ICase,Boolean) #txt
 Cs0 f0 disableUIEvents true #txt
 Cs0 f0 inParameterDecl 'ch.ivyteam.ivy.project.portal.examples.component.customize.CaseItemDetails.CaseItemDetailsData out;
 ' #txt
 Cs0 f0 inParameterMapAction 'out.caseInfo=param.caseInfo;
-out.menuState=param.menuState;
+out.isShowBackButton=param.isShowBackButton;
 ' #txt
 Cs0 f0 outParameterDecl '<> result;
 ' #txt

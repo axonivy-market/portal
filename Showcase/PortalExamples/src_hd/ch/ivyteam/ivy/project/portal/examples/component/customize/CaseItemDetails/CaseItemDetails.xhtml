@@ -3,7 +3,8 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:body>
   <ui:composition template="/layouts/PortalCaseDetailsTemplate.xhtml">
-    <ui:param name="menuState" value="#{data.menuState}" />
+    <ui:param name="caseInfo" value="#{data.caseInfo}" />
+    <ui:param name="isShowBackButton" value="#{data.isShowBackButton}" />
     <ui:define name="pageTitle">#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseDetail/CaseDetailTitle')}</ui:define>
 
     <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 

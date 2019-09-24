@@ -372,18 +372,15 @@ Ts0 f49 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
 ' #txt
 Ts0 f49 actionTable 'out=in;
 ' #txt
-Ts0 f49 actionCode 'import ch.ivy.addon.portalkit.enums.NavigationHistory;
+Ts0 f49 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPage;
+import ch.ivy.addon.portalkit.enums.NavigationHistory;
 import ch.ivy.addon.portalkit.dto.TaskEndInfo;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 
 TaskEndInfo taskEndInfo = new TaskEndInfo();
 taskEndInfo.setDataModel(in.dataModel);
-taskEndInfo.setIsFromPortalHome(in.dataModel.compactMode);
-
-if ("SEARCH_RESULTS".equals(in.currentPortalPage)) {
-	taskEndInfo.setNavigationHistory(NavigationHistory.SEARCH_RESULTS);
-}
+taskEndInfo.setPortalPage(PortalPage.valueOf(in.currentPortalPage));
 
 String taskDataModelSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(in.task.getId());
 SecurityServiceUtils.setSessionAttribute(taskDataModelSessionAttributeKey, taskEndInfo);' #txt
@@ -597,13 +594,13 @@ Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ts0 f6 83 787 26 26 -70 15 #rect
 Ts0 f6 @|RichDialogMethodStartIcon #fIcon
 Ts0 f7 type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
-Ts0 f7 processCall 'Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,String,Boolean)' #txt
+Ts0 f7 processCall 'Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)' #txt
 Ts0 f7 doCall true #txt
-Ts0 f7 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,java.lang.String portalPage,java.lang.Boolean isFromTaskList> param;
+Ts0 f7 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,java.lang.Boolean isFromTaskList> param;
 ' #txt
 Ts0 f7 requestMappingAction 'param.task=in.task;
 param.dataModel=in.dataModel;
-param.portalPage=in.currentPortalPage;
+param.portalPage=ch.ivy.addon.portalkit.enums.PortalPage.valueOf(in.currentPortalPage);
 param.isFromTaskList=true;
 ' #txt
 Ts0 f7 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;

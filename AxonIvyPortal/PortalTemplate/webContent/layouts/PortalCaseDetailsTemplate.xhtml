@@ -5,7 +5,6 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
-    <ui:param name="caseInfo" value="#{data.caseInfo}" />
     <ui:define name="pageTitle">#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseDetail/CaseDetailTitle')}</ui:define>
     <ui:define name="simplePageContent">
 
@@ -13,7 +12,8 @@
         showItemDetailsHeader="#{showItemDetailsHeader}"
         showItemDetailsHistories="#{showItemDetailsHistories}"
         showItemDetailDocuments="#{showItemDetailDocuments}"
-        showItemDetailRelated="#{showItemDetailRelated}">
+        showItemDetailRelated="#{showItemDetailRelated}"
+        showItemBackButton="#{isShowBackButton}">
 
         <f:facet name="caseItemDetailCustomTop">
           <ui:insert name="caseItemDetailCustomTop" />

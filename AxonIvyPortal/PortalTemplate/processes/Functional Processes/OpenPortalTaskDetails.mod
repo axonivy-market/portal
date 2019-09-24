@@ -18,7 +18,7 @@ Os0 @RichDialog f2 '' #zField
 Os0 @PushWFArc f3 '' #zField
 Os0 @PushWFArc f4 '' #zField
 >Proto Os0 Os0 OpenPortalTaskDetailsHook #zField
-Os0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,java.lang.String portalPage,java.lang.Boolean isFromTaskList> param;' #txt
+Os0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,java.lang.Boolean isFromTaskList> param;' #txt
 Os0 f0 inParamTable 'out.dataModel=param.dataModel;
 out.isFromTaskList=param.#isFromTaskList is initialized ? param.isFromTaskList : true;
 out.portalPage=param.portalPage;
@@ -28,12 +28,12 @@ Os0 f0 outParamDecl '<> result;
 ' #txt
 Os0 f0 actionDecl 'ch.ivy.addon.portal.generic.OpenPortalTaskDetailsData out;
 ' #txt
-Os0 f0 callSignature call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,String,Boolean) #txt
+Os0 f0 callSignature call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean) #txt
 Os0 f0 type ch.ivy.addon.portal.generic.OpenPortalTaskDetailsData #txt
 Os0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>call(ITask,TaskLazyDataModel,String,Boolean)</name>
+        <name>call(ITask,TaskLazyDataModel,PortalPage,Boolean)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -43,11 +43,10 @@ Os0 f1 type ch.ivy.addon.portal.generic.OpenPortalTaskDetailsData #txt
 Os0 f1 433 49 30 30 0 15 #rect
 Os0 f1 @|EndSubIcon #fIcon
 Os0 f2 richDialogId ch.ivy.addon.portal.generic.PortalTaskDetails #txt
-Os0 f2 startMethod start(ch.ivyteam.ivy.workflow.ITask,String,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,String,Boolean) #txt
+Os0 f2 startMethod start(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean) #txt
 Os0 f2 type ch.ivy.addon.portal.generic.OpenPortalTaskDetailsData #txt
-Os0 f2 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,String menuState,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,String portalPage,Boolean isFromTaskList> param;' #txt
+Os0 f2 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,Boolean isFromTaskList> param;' #txt
 Os0 f2 requestMappingAction 'param.task=in.task;
-param.menuState=ch.ivy.addon.portalkit.util.MenuUtils.getMenuState();
 param.dataModel=in.dataModel;
 param.portalPage=in.portalPage;
 param.isFromTaskList=in.isFromTaskList;
@@ -59,16 +58,16 @@ Os0 f2 responseMappingAction 'out=in;
 Os0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Task details</name>
+        <name>Task Details</name>
     </language>
 </elementInfo>
 ' #txt
-Os0 f2 264 42 112 44 -33 -8 #rect
+Os0 f2 296 42 112 44 -34 -8 #rect
 Os0 f2 @|RichDialogIcon #fIcon
 Os0 f3 expr out #txt
-Os0 f3 111 64 264 64 #arcP
+Os0 f3 111 64 296 64 #arcP
 Os0 f4 expr out #txt
-Os0 f4 376 64 433 64 #arcP
+Os0 f4 408 64 433 64 #arcP
 >Proto Os0 .type ch.ivy.addon.portal.generic.OpenPortalTaskDetailsData #txt
 >Proto Os0 .processKind CALLABLE_SUB #txt
 >Proto Os0 0 0 32 24 18 0 #rect
