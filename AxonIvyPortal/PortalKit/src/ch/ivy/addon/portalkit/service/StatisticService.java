@@ -928,14 +928,14 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
         case CASES_BY_STATE:
           CaseStateStatistic caseStateData = new CaseStateStatistic();
           if(statisticChart.getFilter() != null) {
-            caseStateData = getCaseStateStatisticData(StatisticChartQueryUtils.generateCaseQuery(statisticChart.getFilter(), false).asJson());
+            caseStateData = getCaseStateStatisticData(StatisticChartQueryUtils.generateCaseQueryForCaseChart(statisticChart.getFilter(), false).asJson());
           }
           statisticChart.setDonutChartModel(generateCaseByStateModel(caseStateData, StatisticChartType.CASES_BY_STATE,  true));
           break;
         case ELAPSED_TIME_BY_CASE_CATEGORY:
           List<ElapsedTimeStatistic> elapsedTimeData = new ArrayList<>();
           if(statisticChart.getFilter() != null) {
-            elapsedTimeData = getElapsedTimeStatisticData(StatisticChartQueryUtils.generateCaseQuery(statisticChart.getFilter(), true).asJson());
+            elapsedTimeData = getElapsedTimeStatisticData(StatisticChartQueryUtils.generateCaseQueryForCaseChart(statisticChart.getFilter(), true).asJson());
           }
           statisticChart.setDonutChartModel(generateElapsedTimeModel(elapsedTimeData, true));
           break;

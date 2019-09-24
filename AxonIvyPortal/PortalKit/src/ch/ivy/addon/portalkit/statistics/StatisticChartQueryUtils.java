@@ -242,7 +242,6 @@ public class StatisticChartQueryUtils {
     } else if (selectedValue.equals(Ivy.cms().co(FAILED_CASE_KEY))) {
       query.where().state().isEqual(CaseState.DESTROYED).or().state().isEqual(CaseState.ZOMBIE);
     }
-
     return query;
   }
 
@@ -354,6 +353,19 @@ public class StatisticChartQueryUtils {
     // Filter by case category
     generateCaseQueryForCaseCategory(filter, caseQuery);
 
+    return caseQuery;
+  }
+
+  /**
+   * Generate case query for statistic
+   * 
+   * @param filter statistic filter
+   * @param isElapsedStatistic for elapsed statistic
+   * @return generated case query
+   */
+  public static CaseQuery generateCaseQueryForCaseChart(StatisticFilter filter, boolean isElapsedStatistic) {
+    CaseQuery caseQuery = generateCaseQuery(filter, isElapsedStatistic);
+    generateCaseQueryForRole(filter, caseQuery);
     return caseQuery;
   }
 
@@ -471,6 +483,7 @@ public class StatisticChartQueryUtils {
     caseQuery.where().and(subCaseQueryForSelectedCaseStates);
     
     generateCaseQueryForCaseCategory(filter, caseQuery);
+    generateCaseQueryForRole(filter, caseQuery);
 
     return caseQuery;
   }
