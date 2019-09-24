@@ -3973,6 +3973,10 @@ margin-top
 }
 
 /* =================== LOGIN ====================== */
+.login-body .login-panel {
+  height: auto;
+}
+
 .login-body .login-panel .login-panel-header {
   background-color: #F0F0F0;
 }
