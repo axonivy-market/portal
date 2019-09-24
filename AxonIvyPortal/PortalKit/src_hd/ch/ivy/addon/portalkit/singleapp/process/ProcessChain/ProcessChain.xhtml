@@ -98,7 +98,7 @@
       </c:forEach>
     </h:panelGroup>
 
-    <h:panelGroup styleClass="ui-lg-hidden ui-xl-hidden process-chain-mobile-container">
+    <h:panelGroup styleClass="ui-lg-hidden ui-xl-hidden process-chain-mobile-container" rendered="#{cc.attrs.steps ne null and not empty cc.attrs.steps}">
       <c:set var="currentIndex" value="#{cc.attrs.actualStepIndex}" />
       <c:set var="stepSize" value="#{cc.attrs.steps.size()}" />
       <c:set var="stepName" value="#{cc.attrs.steps.get(currentIndex)}" />
