@@ -130,7 +130,7 @@ Nr0 f14 actionTable 'out=in;
 Nr0 f14 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portal.generic.navigation.PortalPage;
+import ch.ivy.addon.portalkit.enums.PortalPage;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
@@ -224,7 +224,7 @@ import ch.ivy.addon.portal.generic.view.TaskView;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import ch.ivy.addon.portal.generic.navigation.PortalPage;
+import ch.ivy.addon.portalkit.enums.PortalPage;
 
 String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedStatisticHeader") + in.chartName;
 
@@ -592,11 +592,12 @@ is put in PortalTemplate.</name>
 Nr0 f53 1920 187 496 172 -238 -84 #rect
 Nr0 f53 @|IBIcon #fIcon
 Nr0 f5 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
-Nr0 f5 processCall 'Functional Processes/OpenPortalCaseDetails:call(ch.ivyteam.ivy.workflow.ICase)' #txt
+Nr0 f5 processCall 'Functional Processes/OpenPortalCaseDetails:call(ch.ivyteam.ivy.workflow.ICase,Boolean)' #txt
 Nr0 f5 doCall true #txt
-Nr0 f5 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseData> param;
+Nr0 f5 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseData,java.lang.Boolean isShowBackButton> param;
 ' #txt
 Nr0 f5 requestMappingAction 'param.caseData=in.iCase;
+param.isShowBackButton=true;
 ' #txt
 Nr0 f5 responseActionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 ' #txt
@@ -742,11 +743,12 @@ Nr0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Nr0 f56 1736 626 112 44 -48 -8 #rect
 Nr0 f56 @|StepIcon #fIcon
 Nr0 f58 type ch.ivy.addon.portal.generic.NavigatorOverrideData #txt
-Nr0 f58 processCall 'Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,String,Boolean)' #txt
+Nr0 f58 processCall 'Functional Processes/OpenPortalTaskDetails:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)' #txt
 Nr0 f58 doCall true #txt
-Nr0 f58 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,java.lang.String portalPage,java.lang.Boolean isFromTaskList> param;
+Nr0 f58 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,java.lang.Boolean isFromTaskList> param;
 ' #txt
 Nr0 f58 requestMappingAction 'param.task=in.iTask;
+param.portalPage=ch.ivy.addon.portalkit.enums.PortalPage.CASE_DETAIL_FROM_TASK;
 ' #txt
 Nr0 f58 responseActionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 ' #txt
@@ -755,7 +757,7 @@ Nr0 f58 responseMappingAction 'out=in;
 Nr0 f58 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>OpenPortalTaskDetailsHook</name>
+        <name>OpenPortalTaskDetails</name>
     </language>
 </elementInfo>
 ' #txt

@@ -2,9 +2,7 @@ TaskItemDetailsData #class
 ch.ivyteam.ivy.project.portal.examples.component.customize.TaskItemDetails #namespace
 task ch.ivyteam.ivy.workflow.ITask #field
 task PERSISTENT #fieldModifier
-menuState String #field
-menuState PERSISTENT #fieldModifier
-portalPage String #field
+portalPage ch.ivy.addon.portalkit.enums.PortalPage #field
 portalPage PERSISTENT #fieldModifier
 dataModel ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel #field
 dataModel PERSISTENT #fieldModifier

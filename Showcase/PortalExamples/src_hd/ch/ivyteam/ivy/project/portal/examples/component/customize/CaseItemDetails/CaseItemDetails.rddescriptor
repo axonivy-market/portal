@@ -11,9 +11,9 @@
             <nullPermitted>false</nullPermitted>
         </inputParameter>
         <inputParameter>
-            <name>menuState</name>
+            <name>isShowBackButton</name>
             <description></description>
-            <parameterType>String</parameterType>
+            <parameterType>Boolean</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </startMethod>
