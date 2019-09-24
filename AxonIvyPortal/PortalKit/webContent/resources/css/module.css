@@ -50,6 +50,10 @@ input::-ms-clear {
   display: none;
 }
 
+body .ui-state-active, body .ui-state-highlight {
+	color: black !important;
+}
+
 /* =================== TABLE ====================== */
 .ui-datatable .ui-column-filter.ui-widget {
   width: 100%;
@@ -369,10 +373,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
     box-shadow: none;
     margin: auto 10px;
     padding-right: 0 !important;
-}
-
-.submenu-container a:hover {
-	background-color: #AFCA05 !important;
 }
 
 .submenu-container.active-menuitem a:hover {
@@ -1287,7 +1287,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   content: "";
   display: table;
   position: absolute;
-  border-left: 3px solid #afca05;
+  border-left: 3px solid #c7d426;
   height: 3rem;
   left: -2px;
   transform: translateY(-20%);
@@ -2637,7 +2637,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
     margin-bottom: 2px !important;
   }
   .circle-horizontal-step-container:not(.right-steps) span:before {
-    border-top-color: #afca05 !important;
+    border-top-color: #c7d426 !important;
   }
   .circle-horizontal-step-container span:before, .circle-horizontal-step-container span:after {
     display: inline-block;
@@ -2653,10 +2653,10 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
     border-top: 3px dashed #E0E0E0;
   }
   .circle-horizontal-step-container.last-step span:before {
-    border-top: 3px dashed #afca05 !important;
+    border-top: 3px dashed #c7d426 !important;
   }
   .circle-horizontal-step-container span:after {
-    border-top: 3px solid #afca05;
+    border-top: 3px solid #c7d426;
     transform: translate(-4rem, -0.6rem);
     border-top-style: dashed;
   }
@@ -2701,10 +2701,10 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
     border-top: 3px dashed #E0E0E0;
   }
   .circle-horizontal-step-container.last-step span:before {
-    border-top: 3px dashed #afca05 !important;
+    border-top: 3px dashed #c7d426 !important;
   }
   .circle-horizontal-step-container span:after {
-    border-top: 3px solid #afca05;
+    border-top: 3px solid #c7d426;
     transform: translate(-4rem, -0.8rem);
     border-top-style: dashed;
   }
@@ -3234,7 +3234,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 .delete-absence-confirmation-dialog .confirm-action:hover {
-  background-color: #AFCA05 !important;
+  background-color: #c7d426 !important;
 }
 
 /********************************** LANGUAGE SETTING DIALOG **********************************/
@@ -4368,7 +4368,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 .statistic-filter-accordion-panel .ui-accordion-header,
 .statistic-filter-accordion-panel .ui-accordion-header:hover,
 .statistic-filter-accordion-panel .ui-accordion-header.ui-state-active {
-	background-color: #afca05;
+	background-color: #c7d426;
 }
 
 .statistic-filter-accordion-panel .ui-accordion-content {
