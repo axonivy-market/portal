@@ -12,11 +12,10 @@ public class TaskDetailsPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "id('task-widget:task-list-scroller')";
+    return "id('task-detail-template:task-detail-container')";
   }
 
-  public TaskDetailsPage(WebElement taskDetailsItem) {
-    this.taskDetailsItem = taskDetailsItem;
+  public TaskDetailsPage() {
   }
 
   public String getCreatedOnDateText() {

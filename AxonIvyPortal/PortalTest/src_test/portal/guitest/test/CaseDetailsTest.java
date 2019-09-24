@@ -35,7 +35,7 @@ public class CaseDetailsTest extends BaseTest {
   }
 
   @Test
-  public void testDisplayCaseProperties() {
+  public void testDisplayCaseProperties() { //SERENITY_PASSED
     assertTrue(StringUtils.equalsIgnoreCase("LeaveRequest", detailsPage.getCaseCategory()));
   }
 
