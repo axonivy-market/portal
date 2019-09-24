@@ -46,12 +46,12 @@ public class CaseDetailsPage extends TemplatePage {
 
   public CaseDetailsPage() {
 	// TODO Auto-generated constructor stub
-	  findElementByCssSelector("div[class^='case-detail-body']");
+	  this.caseItem=findElementByCssSelector("#main-area-panel");
 }
 
 
-public String getCaseCategory() {
-	return findElementByCssSelector("span[id$='case-category']").getText();
+  public String getCaseCategory() {
+    return caseItem.findElement(By.cssSelector("span[id$='case-category']")).getText();
   }
 
   public int getNumberOfHistory() {
@@ -381,4 +381,8 @@ public String getCaseCategory() {
     return caseItem.findElements(By.id(DELETE_DOCUMENT_BUTTON_ID)).size() > 0;
   }
 
+  public String getCaseName() {
+    WebElement selectedCaseNameElement = findElementByCssSelector("#case-item-details\\:case-detail-title-form\\:case-name-edit-inplace_display");
+    return selectedCaseNameElement.getText();
+  }
 }
