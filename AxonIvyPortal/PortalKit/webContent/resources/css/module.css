@@ -1602,9 +1602,9 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 
 .express-process-logo {
   cursor: default;
-  border: none;
+  border: none !important;
   opacity: 0.8;
-  background-color: transparent;
+  background-color: transparent !important;
   background-repeat: no-repeat;
   width: 1.1rem;
   height: 1.1rem;
