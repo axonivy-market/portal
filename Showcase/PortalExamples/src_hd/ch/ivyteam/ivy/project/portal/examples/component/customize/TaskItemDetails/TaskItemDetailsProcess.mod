@@ -23,13 +23,12 @@ Ps0 @PushWFArc f2 '' #zField
 >Proto Ps0 Ps0 TaskItemDetailsProcess #zField
 Ps0 f0 guid 16C421FBB76376F6 #txt
 Ps0 f0 type ch.ivyteam.ivy.project.portal.examples.component.customize.TaskItemDetails.TaskItemDetailsData #txt
-Ps0 f0 method start(ch.ivyteam.ivy.workflow.ITask,String,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,String,Boolean) #txt
+Ps0 f0 method start(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean) #txt
 Ps0 f0 disableUIEvents true #txt
 Ps0 f0 inParameterDecl 'ch.ivyteam.ivy.project.portal.examples.component.customize.TaskItemDetails.TaskItemDetailsData out;
 ' #txt
 Ps0 f0 inParameterMapAction 'out.dataModel=param.dataModel;
 out.isFromTaskList=param.isFromTaskList;
-out.menuState=param.menuState;
 out.portalPage=param.portalPage;
 out.task=param.task;
 ' #txt
@@ -38,7 +37,7 @@ Ps0 f0 outParameterDecl '<> result;
 Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start(ITask,String,TaskLazyDataModel,String,Boolean)</name>
+        <name>start(ITask,TaskLazyDataModel,PortalPage,Boolean)</name>
     </language>
 </elementInfo>
 ' #txt
