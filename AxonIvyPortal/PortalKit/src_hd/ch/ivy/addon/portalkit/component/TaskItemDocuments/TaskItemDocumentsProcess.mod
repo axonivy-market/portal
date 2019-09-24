@@ -696,12 +696,18 @@ Ts0 f37 actionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemD
 ' #txt
 Ts0 f37 actionTable 'out=in;
 ' #txt
-Ts0 f37 actionCode 'in.uploadDocumentCheckMessage = ivy.cms.co("/Dialogs/components/CaseDocument/invalidFileMessage");' #txt
+Ts0 f37 actionCode 'if (in.documentUploadEvent.getFile().getSize() <= 0) {
+	in.uploadDocumentCheckMessage = ivy.cms.co("/Dialogs/components/CaseDocument/emptyFileMessage");
+} else {
+	in.uploadDocumentCheckMessage = ivy.cms.co("/Dialogs/components/CaseDocument/invalidFileMessage");
+}' #txt
 Ts0 f37 type ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData #txt
 Ts0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Set error message</name>
+        <nameStyle>17,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
