@@ -148,7 +148,7 @@
                           <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
                           <!-- TASK TYPE -->
                           <div class="ui-g-5 ui-lg-5 ui-md-6 u-padding-0">
-                            <div class="ui-g-12 u-no-padding-top">
+                            <div class="ui-g-12">
                               <p:outputLabel id="task-type-label" for="task-type"
                                 value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/TaskType')}" styleClass="express-title-header" />
                             </div>
@@ -166,7 +166,7 @@
 
                           <div class="ui-g-5 ui-lg-5 ui-md-6 u-padding-0">
                             <!--  RESPONSIBLE -->
-                            <h:panelGroup layout="block" styleClass="ui-g-12 u-no-padding-top" rendered="#{gtask.taskType ne 'EMAIL'}">
+                            <h:panelGroup layout="block" styleClass="ui-g-12" rendered="#{gtask.taskType ne 'EMAIL'}">
                               <p:outputLabel for="task-responsible"
                                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}"
                                 styleClass="express-title-header task-responsible-label" />
@@ -243,7 +243,7 @@
 
                         <h:panelGroup styleClass="ui-g-5 ui-lg-5 ui-md-6">
                           <!-- RESPONSIBLE -->
-                          <div class="ui-g-12 u-no-padding-top">
+                          <div class="ui-g-12">
                             <p:outputLabel rendered="#{gtask.position gt 1}" for="default-task-responsible"
                               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:" />
                             <p:outputLabel rendered="#{gtask.position == 1}" for="default-task-responsible"
@@ -327,7 +327,7 @@
         header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" severity="alert" closable="false">
         <p:commandButton id="delete-all-defined-tasks-warning-ok" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
           resetValues="true" actionListener="#{logic.changeUISetting(true)}" oncomplete="PF('delete-all-defined-tasks-warning').hide()"
-          update="#{p:component('defined-tasks-list-container')}" global="false" />
+          update="#{p:component('defined-tasks-list-container')} #{p:component('express-button-container')}" global="false" />
         <p:commandButton id="delete-all-defined-tasks-warning-cancel" styleClass="portal-cancel-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" actionListener="#{logic.changeUISetting(false)}"
           oncomplete="PF('delete-all-defined-tasks-warning').hide()" update="form" global="false" />
