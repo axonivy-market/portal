@@ -4588,8 +4588,9 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 .mobile-filter-icon {
   position: absolute !important;
   right: 0;
-  height: 27px !important;
+  height: 25px !important;
   width: 25px !important;
+  padding: 0 13px !important;
 }
 
 .mobile-filter-icon span {
