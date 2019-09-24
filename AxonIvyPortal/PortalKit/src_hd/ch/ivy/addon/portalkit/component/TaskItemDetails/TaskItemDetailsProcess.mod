@@ -61,7 +61,7 @@ Cs0 @PushWFArc f4 '' #zField
 >Proto Cs0 Cs0 TaskItemDetailsProcess #zField
 Cs0 f0 guid 16BBB5787F4A8092 #txt
 Cs0 f0 type ch.ivy.addon.portalkit.component.TaskItemDetails.TaskItemDetailsData #txt
-Cs0 f0 method start(ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivyteam.ivy.workflow.ITask,String) #txt
+Cs0 f0 method start(ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.enums.PortalPage) #txt
 Cs0 f0 disableUIEvents true #txt
 Cs0 f0 inParameterDecl 'ch.ivy.addon.portalkit.component.TaskItemDetails.TaskItemDetailsData out;
 ' #txt
@@ -326,12 +326,8 @@ import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 
 TaskEndInfo taskEndInfo = new TaskEndInfo();
 taskEndInfo.setDataModel(in.dataModel);
-taskEndInfo.setIsFromPortalHome(in.dataModel.compactMode);
+taskEndInfo.setPortalPage(in.portalPage);
 taskEndInfo.setIsStartedInTaskDetails(true);
-
-if ("SEARCH_RESULTS".equals(in.portalPage)) {
-	taskEndInfo.setNavigationHistory(NavigationHistory.SEARCH_RESULTS);
-}
 
 String taskDataModelSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(in.task.getId());
 SecurityServiceUtils.setSessionAttribute(taskDataModelSessionAttributeKey, taskEndInfo);' #txt

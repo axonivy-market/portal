@@ -157,7 +157,7 @@ import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.dto.TaskEndInfo;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
-import ch.ivy.addon.portal.generic.navigation.PortalPage;
+import ch.ivy.addon.portalkit.enums.PortalPage;
 
 ITask task = ivy.wf.findTask(in.endedTaskId);
 ITask taskWithTaskEndInfo = StickyTaskListService.service().getPreviousTaskWithTaskEndInfo(task);
@@ -165,11 +165,7 @@ String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskE
 TaskEndInfo taskEndInfo = SecurityServiceUtils.getSessionAttribute(taskEndInfoSessionAttributeKey) as TaskEndInfo;
 
 in.dataModel = taskEndInfo.dataModel;
-if (taskEndInfo.#navigationHistory is initialized && NavigationHistory.SEARCH_RESULTS == taskEndInfo.navigationHistory) {
-	in.portalPage = PortalPage.SEARCH_RESULTS;
-} else {
-	in.portalPage = taskEndInfo.isFromPortalHome ? PortalPage.HOME_PAGE : PortalPage.LINK_TO_TASK;
-}
+in.portalPage = taskEndInfo.portalPage;
 SecurityServiceUtils.removeSessionAttribute(taskEndInfoSessionAttributeKey);
 
 ' #txt
@@ -672,7 +668,7 @@ Pt0 f11 actionTable 'out=in;
 Pt0 f11 actionCode 'import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
-import ch.ivy.addon.portal.generic.navigation.PortalPage;
+import ch.ivy.addon.portalkit.enums.PortalPage;
 import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -946,7 +942,7 @@ Pt0 f0 outLink PortalStart.ivp #txt
 Pt0 f0 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f0 inParamDecl '<java.lang.String parameters,java.lang.String portalNavigator> param;' #txt
 Pt0 f0 inParamTable 'out.parameters=param.parameters;
-out.portalPage=param.parameters.isEmpty() ? ch.ivy.addon.portal.generic.navigation.PortalPage.HOME_PAGE : ch.ivy.addon.portal.generic.navigation.PortalPage.valueOf(param.portalNavigator);
+out.portalPage=param.parameters.isEmpty() ? ch.ivy.addon.portalkit.enums.PortalPage.HOME_PAGE : ch.ivy.addon.portalkit.enums.PortalPage.valueOf(param.portalNavigator);
 ' #txt
 Pt0 f0 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
@@ -1069,7 +1065,7 @@ Pt0 f35 0 0.4305555555555556 0 -10 #arcLabel
 Pt0 f54 expr out #txt
 Pt0 f54 93 160 168 160 #arcP
 Pt0 f32 expr in #txt
-Pt0 f32 outCond 'java.util.Objects.equals(ch.ivy.addon.portal.generic.navigation.PortalPage.HOME_PAGE, in.#portalPage) || java.util.Objects.isNull(in.#portalPage)' #txt
+Pt0 f32 outCond 'java.util.Objects.equals(ch.ivy.addon.portalkit.enums.PortalPage.HOME_PAGE, in.#portalPage) || java.util.Objects.isNull(in.#portalPage)' #txt
 Pt0 f32 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1110,7 +1106,7 @@ Pt0 f47 472 352 571 438 #arcP
 Pt0 f47 1 528 352 #addKink
 Pt0 f47 0 0.9638478923705887 0 0 #arcLabel
 Pt0 f36 expr in #txt
-Pt0 f36 outCond 'java.util.Objects.equals(ch.ivy.addon.portal.generic.navigation.PortalPage.ERROR_PAGE, in.#portalPage) ' #txt
+Pt0 f36 outCond 'java.util.Objects.equals(ch.ivy.addon.portalkit.enums.PortalPage.ERROR_PAGE, in.#portalPage) ' #txt
 Pt0 f36 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1174,11 +1170,11 @@ Pt0 f66 632 641 805 641 #arcP
 Pt0 f49 expr out #txt
 Pt0 f49 1696 544 1792 544 #arcP
 Pt0 f56 expr in #txt
-Pt0 f56 outCond 'java.util.Objects.equals(ch.ivy.addon.portal.generic.navigation.PortalPage.LINK_TO_TASK, in.#portalPage)' #txt
+Pt0 f56 outCond 'java.util.Objects.equals(ch.ivy.addon.portalkit.enums.PortalPage.TASK_LIST, in.#portalPage)' #txt
 Pt0 f56 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>LINK_TO_TASK</name>
+        <name>TASK_LIST</name>
         <nameStyle>12
 </nameStyle>
     </language>
@@ -1223,11 +1219,12 @@ Pt0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f29 1592 330 112 44 -27 -8 #rect
 Pt0 f29 @|StepIcon #fIcon
 Pt0 f42 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pt0 f42 processCall 'Functional Processes/OpenPortalCaseDetails:call(ch.ivyteam.ivy.workflow.ICase)' #txt
+Pt0 f42 processCall 'Functional Processes/OpenPortalCaseDetailsOverride:call(ch.ivyteam.ivy.workflow.ICase,Boolean)' #txt
 Pt0 f42 doCall true #txt
-Pt0 f42 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseData> param;
+Pt0 f42 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseData,java.lang.Boolean isShowBackButton> param;
 ' #txt
 Pt0 f42 requestMappingAction 'param.caseData=in.caseSelected;
+param.isShowBackButton=false;
 ' #txt
 Pt0 f42 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
@@ -1247,7 +1244,7 @@ Pt0 f42 @|CallSubIcon #fIcon
 Pt0 f68 expr out #txt
 Pt0 f68 1704 352 1768 352 #arcP
 Pt0 f72 expr in #txt
-Pt0 f72 outCond 'java.util.Objects.equals(ch.ivy.addon.portal.generic.navigation.PortalPage.CASE_DETAIL_FROM_TASK, in.#portalPage)' #txt
+Pt0 f72 outCond 'java.util.Objects.equals(ch.ivy.addon.portalkit.enums.PortalPage.CASE_DETAIL_FROM_TASK, in.#portalPage)' #txt
 Pt0 f72 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

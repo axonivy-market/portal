@@ -10,7 +10,6 @@
   <ui:composition template="/layouts/PortalTaskDetailsTemplate.xhtml">
     <ui:param name="task" value="#{data.task}" />
     <ui:param name="dataModel" value="#{data.dataModel}" />
-    <ui:param name="menuState" value="#{data.menuState}" />
     <ui:param name="portalPage" value="#{data.portalPage}" />
     <ui:param name="isFromTaskList" value="#{data.isFromTaskList}" />
     <ui:define name="pageTitle">#{ivy.cms.co('/Labels/TaskItemDetail')}</ui:define>

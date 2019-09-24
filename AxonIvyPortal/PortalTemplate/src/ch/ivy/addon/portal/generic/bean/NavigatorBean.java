@@ -9,7 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-import ch.ivy.addon.portal.generic.navigation.PortalPage;
+import ch.ivy.addon.portalkit.enums.PortalPage;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 
 @ManagedBean

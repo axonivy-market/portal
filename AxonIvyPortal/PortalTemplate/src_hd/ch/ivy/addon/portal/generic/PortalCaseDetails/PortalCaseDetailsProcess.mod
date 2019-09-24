@@ -23,12 +23,12 @@ Ps0 @PushWFArc f5 '' #zField
 >Proto Ps0 Ps0 PortalCaseDetailsProcess #zField
 Ps0 f0 guid 16BBB5AA8B6BE5B7 #txt
 Ps0 f0 type ch.ivy.addon.portal.generic.PortalCaseDetails.PortalCaseDetailsData #txt
-Ps0 f0 method start(ch.ivyteam.ivy.workflow.ICase,String) #txt
+Ps0 f0 method start(ch.ivyteam.ivy.workflow.ICase,Boolean) #txt
 Ps0 f0 disableUIEvents true #txt
 Ps0 f0 inParameterDecl 'ch.ivy.addon.portal.generic.PortalCaseDetails.PortalCaseDetailsData out;
 ' #txt
 Ps0 f0 inParameterMapAction 'out.caseInfo=param.caseInfo;
-out.menuState=param.menuState;
+out.isShowBackButton=param.isShowBackButton;
 ' #txt
 Ps0 f0 outParameterDecl '<> result;
 ' #txt

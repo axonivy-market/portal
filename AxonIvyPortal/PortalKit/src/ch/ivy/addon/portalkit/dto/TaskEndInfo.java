@@ -2,12 +2,13 @@ package ch.ivy.addon.portalkit.dto;
 
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.NavigationHistory;
+import ch.ivy.addon.portalkit.enums.PortalPage;
 
 public class TaskEndInfo {
 
   private TaskLazyDataModel dataModel;
   private NavigationHistory navigationHistory;
-  private Boolean isFromPortalHome;
+  private PortalPage portalPage;
   private Boolean isStartedInTaskDetails;
 
   public TaskLazyDataModel getDataModel() {
@@ -18,12 +19,12 @@ public class TaskEndInfo {
     this.dataModel = dataModel;
   }
 
-  public Boolean getIsFromPortalHome() {
-    return isFromPortalHome;
+  public PortalPage getPortalPage() {
+    return portalPage;
   }
 
-  public void setIsFromPortalHome(Boolean isFromPortalHome) {
-    this.isFromPortalHome = isFromPortalHome;
+  public void setPortalPage(PortalPage portalPage) {
+    this.portalPage = portalPage;
   }
 
   public NavigationHistory getNavigationHistory() {

@@ -14,23 +14,23 @@ Os0 @TextInP .xml .xml #zField
 Os0 @TextInP .responsibility .responsibility #zField
 Os0 @StartSub f0 '' #zField
 Os0 @EndSub f1 '' #zField
-Os0 @RichDialog f3 '' #zField
+Os0 @RichDialog f2 '' #zField
+Os0 @PushWFArc f3 '' #zField
 Os0 @PushWFArc f4 '' #zField
-Os0 @PushWFArc f2 '' #zField
 >Proto Os0 Os0 OpenPortalCaseDetails #zField
-Os0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ICase caseData> param;' #txt
+Os0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ICase caseData,java.lang.Boolean isShowBackButton> param;' #txt
 Os0 f0 inParamTable 'out.caseView=param.caseData;
 ' #txt
 Os0 f0 outParamDecl '<> result;
 ' #txt
 Os0 f0 actionDecl '_ch.ivyteam.ivy.project.portal.examples.OpenPortalCaseDetailsOverrideData out;
 ' #txt
-Os0 f0 callSignature call(ch.ivyteam.ivy.workflow.ICase) #txt
+Os0 f0 callSignature call(ch.ivyteam.ivy.workflow.ICase,Boolean) #txt
 Os0 f0 type _ch.ivyteam.ivy.project.portal.examples.OpenPortalCaseDetailsOverrideData #txt
 Os0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>call(ICase)</name>
+        <name></name>
     </language>
 </elementInfo>
 ' #txt
@@ -39,35 +39,35 @@ Os0 f0 @|StartSubIcon #fIcon
 Os0 f1 type _ch.ivyteam.ivy.project.portal.examples.OpenPortalCaseDetailsOverrideData #txt
 Os0 f1 337 49 30 30 0 15 #rect
 Os0 f1 @|EndSubIcon #fIcon
-Os0 f3 richDialogId ch.ivyteam.ivy.project.portal.examples.component.customize.CaseItemDetails #txt
-Os0 f3 startMethod start(ch.ivyteam.ivy.workflow.ICase,String) #txt
-Os0 f3 type _ch.ivyteam.ivy.project.portal.examples.OpenPortalCaseDetailsOverrideData #txt
-Os0 f3 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseInfo,String menuState> param;' #txt
-Os0 f3 requestMappingAction 'param.caseInfo=in.caseView;
-param.menuState=ch.ivy.addon.portalkit.util.MenuUtils.getMenuState();
+Os0 f2 richDialogId ch.ivyteam.ivy.project.portal.examples.component.customize.CaseItemDetails #txt
+Os0 f2 startMethod start(ch.ivyteam.ivy.workflow.ICase,Boolean) #txt
+Os0 f2 type _ch.ivyteam.ivy.project.portal.examples.OpenPortalCaseDetailsOverrideData #txt
+Os0 f2 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseInfo,Boolean isShowBackButton> param;' #txt
+Os0 f2 requestMappingAction 'param.caseInfo=in.caseView;
+param.isShowBackButton=in.isShowBackButton;
 ' #txt
-Os0 f3 responseActionDecl '_ch.ivyteam.ivy.project.portal.examples.OpenPortalCaseDetailsOverrideData out;
+Os0 f2 responseActionDecl '_ch.ivyteam.ivy.project.portal.examples.OpenPortalCaseDetailsOverrideData out;
 ' #txt
-Os0 f3 responseMappingAction 'out=in;
+Os0 f2 responseMappingAction 'out=in;
 ' #txt
-Os0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+Os0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Open portal case detail</name>
+        <name>Case Details</name>
     </language>
 </elementInfo>
 ' #txt
-Os0 f3 152 42 144 44 -63 -8 #rect
-Os0 f3 @|RichDialogIcon #fIcon
+Os0 f2 168 42 112 44 -36 -8 #rect
+Os0 f2 @|RichDialogIcon #fIcon
+Os0 f3 expr out #txt
+Os0 f3 111 64 168 64 #arcP
 Os0 f4 expr out #txt
-Os0 f4 111 64 152 64 #arcP
-Os0 f2 expr out #txt
-Os0 f2 296 64 337 64 #arcP
+Os0 f4 280 64 337 64 #arcP
 >Proto Os0 .type _ch.ivyteam.ivy.project.portal.examples.OpenPortalCaseDetailsOverrideData #txt
 >Proto Os0 .processKind CALLABLE_SUB #txt
 >Proto Os0 0 0 32 24 18 0 #rect
 >Proto Os0 @|BIcon #fIcon
-Os0 f0 mainOut f4 tail #connect
-Os0 f4 head f3 mainIn #connect
-Os0 f3 mainOut f2 tail #connect
-Os0 f2 head f1 mainIn #connect
+Os0 f0 mainOut f3 tail #connect
+Os0 f3 head f2 mainIn #connect
+Os0 f2 mainOut f4 tail #connect
+Os0 f4 head f1 mainIn #connect

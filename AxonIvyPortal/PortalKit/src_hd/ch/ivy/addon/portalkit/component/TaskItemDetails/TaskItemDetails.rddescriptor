@@ -51,7 +51,7 @@
         <inputParameter>
             <name>portalPage</name>
             <description></description>
-            <parameterType>String</parameterType>
+            <parameterType>ch.ivy.addon.portalkit.enums.PortalPage</parameterType>
             <nullPermitted>false</nullPermitted>
         </inputParameter>
     </startMethod>
