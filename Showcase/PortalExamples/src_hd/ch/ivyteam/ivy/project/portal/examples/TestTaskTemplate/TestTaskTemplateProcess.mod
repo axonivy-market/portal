@@ -39,7 +39,7 @@ Ts0 f0 method start(ch.ivyteam.ivy.project.portal.examples.showcase.Data) #txt
 Ts0 f0 disableUIEvents true #txt
 Ts0 f0 inParameterDecl 'ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate.TestTaskTemplateData out;
 ' #txt
-Ts0 f0 inParameterMapAction 'out.actualStepIndex=param.data.actuaStepIndex;
+Ts0 f0 inParameterMapAction 'out.actualStepIndex=param.data.actuaStepIndex + 1;
 out.data=param.data;
 out.processChainDirection=param.data.processChainDirection;
 out.processChainShape=param.data.processChainShape;
@@ -132,7 +132,7 @@ Ts0 f11 actionDecl 'ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate.Test
 ' #txt
 Ts0 f11 actionTable 'out=in;
 ' #txt
-Ts0 f11 actionCode 'ivy.session.setAttribute("taskConfigExampleActualStepIndex", in.actualStepIndex);
+Ts0 f11 actionCode 'ivy.session.setAttribute("taskConfigExampleActualStepIndex", in.actualStepIndex - 1);
 ivy.session.setAttribute("taskConfigExampleProcessChainDirection", in.processChainDirection);
 ivy.session.setAttribute("taskConfigExampleProcessChainShape", in.processChainShape);' #txt
 Ts0 f11 type ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate.TestTaskTemplateData #txt
