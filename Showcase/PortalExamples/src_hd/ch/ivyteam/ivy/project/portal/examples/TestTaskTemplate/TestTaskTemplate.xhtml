@@ -9,7 +9,7 @@
 
     <ui:param name="caseId" value="#{ivy.case.id}" />
     <ui:param name="task" value="#{ivy.task}" />
-    <ui:param name="actualStepIndex" value="#{data.actualStepIndex}" />
+    <ui:param name="actualStepIndex" value="#{data.actualStepIndex - 1}" />
     <ui:param name="steps" value="#{data.steps}" />
     <ui:param name="processChainShape" value="#{data.processChainShape}" />
     <ui:param name="processChainDirection" value="#{data.processChainDirection}" />
@@ -116,18 +116,19 @@
       <p:tab title="Customization tab">
         <h:form id="custom-form" styleClass="MarTop20 ui-g">
           <h:panelGroup styleClass="ui-g-12 ui-fluid">
-            <div class="ui-g-1" />
-            <h:panelGrid styleClass="ui-g-6 ui-sm-12" columns="2">
+            <h:panelGrid styleClass="ui-g-6 ui-sm-12" columns="1">
               <p:outputLabel value="Actual step" />
-              <p:inputNumber id="actual-step" value="#{data.actualStepIndex}" maxValue="#{data.steps.size() - 1}"  />
+              <h:panelGroup>
+	            <p:spinner id="actual-step" value="#{data.actualStepIndex}" min="1" max="#{data.steps.size()}" />
+              </h:panelGroup>
 
-              <p:outputLabel value="Process Chain Direction" for="processChainDirection" />
+              <p:outputLabel value="Process Chain Direction" for="processChainDirection" styleClass="ui-g-12"/>
               <p:selectOneMenu id="processChainDirection" value="#{data.processChainDirection}">
                 <f:selectItem itemLabel="VERTICAL" itemValue="VERTICAL" />
                 <f:selectItem itemLabel="HORIZONTAL" itemValue="HORIZONTAL" />
               </p:selectOneMenu>
 
-              <p:outputLabel value="Process Chain Shape" for="processChainShape" />
+              <p:outputLabel value="Process Chain Shape" for="processChainShape" styleClass="ui-g-12"/>
               <p:selectOneMenu id="processChainShape" value="#{data.processChainShape}">
                 <f:selectItem itemLabel="LINE" itemValue="LINE" />
                 <f:selectItem itemLabel="CIRCLE" itemValue="CIRCLE" />
@@ -135,15 +136,12 @@
             </h:panelGrid>
 
           </h:panelGroup>
-          <br />
-          <div class="Separator ui-g-12 MarTop20"></div>
 
           <h:panelGroup styleClass="ui-g-12">
-            <h:panelGroup styleClass="ui-g-6 ui-sm-12">
-              <p:commandButton value="Save" icon="fa fa-play" actionListener="#{logic.saveToSession()}"
-                process="@(custom-form)" />
-              <p:spacer width="10px" />
-              <p:commandButton actionListener="#{logic.reload()}" value="Reload" icon="fa fa-refresh" process="@this" />
+            <h:panelGroup styleClass="ui-g-6 ui-sm-12 TexAlRight">
+              <p:commandButton value="Save and reload" icon="fa fa-play" actionListener="#{logic.saveToSession()}"
+                process="@(custom-form)" oncomplete="reloadPage();"/>
+              <p:remoteCommand name="reloadPage" actionListener="#{logic.reload()}" />
             </h:panelGroup>
           </h:panelGroup>
         </h:form>

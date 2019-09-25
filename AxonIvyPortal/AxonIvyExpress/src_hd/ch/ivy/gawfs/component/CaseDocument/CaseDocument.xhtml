@@ -24,12 +24,12 @@
 
         <p:column styleClass="express-action-button-icon-only"
           headerText="#{ivy.cms.co('/Dialogs/components/CaseDocument/FileFunctions')}">
-          <p:commandLink id="download" styleClass="fa fa-download MarRight10" immediate="true" ajax="false" process="@widgetVar(fileTableVar)"
+          <p:commandLink id="download" styleClass="fa fa-download" immediate="true" ajax="false" process="@widgetVar(fileTableVar)"
             actionListener="#{logic.downloadFile(document.downloadPath, document.fileName)}"
             title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}">
             <p:fileDownload value="#{data.downloadFile}" />
           </p:commandLink>
-          <p:spacer width="20px" />
+          <p:spacer width="20px" rendered="#{cc.attrs.uploadPossible}"/>
           <p:commandLink id="document-delete" styleClass="fa fa-trash-o" oncomplete="PF('document-delete-dialog').show()"
             rendered="#{cc.attrs.uploadPossible}" update="document-table" actionListener="#{data.setSelectedFilePath(document.downloadPath)}"
             title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" immediate="true">
