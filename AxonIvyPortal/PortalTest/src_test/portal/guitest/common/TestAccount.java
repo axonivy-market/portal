@@ -10,9 +10,9 @@ public enum TestAccount {
 
   TEST_CHANGE_PASSWORD_USER("test_change_password_user", "123", "test_change_password_user"),
   
-  TEST_RELATED_TASKS_USER("test_related_tasks_user", "+d3m0++", "test_related_tasks_user");
+  TEST_RELATED_TASKS_USER("test_related_tasks_user", "+d3m0++", "test_related_tasks_user"),
   
-  
+  CASE_OWNER_USER("caseOwnerUser", "caseOwnerUser", "Case Owner User");
   
   private String username;
   private String password;
