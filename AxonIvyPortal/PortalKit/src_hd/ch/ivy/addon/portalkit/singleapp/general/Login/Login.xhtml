@@ -40,7 +40,7 @@
             </h:panelGroup>
           </div>
           <div class="ui-g-12">
-            <p:commandButton update="@form" id="login" actionListener="#{logic.login}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/login')}"
+            <p:commandButton update="@form" id="login-command" actionListener="#{logic.login}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/login')}"
               icon="ui-icon-person" oncomplete="if (args &amp;&amp; !args.validationFailed){location.reload()}" />
           </div>
         </div>
