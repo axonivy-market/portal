@@ -920,7 +920,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   align-items: center;
   position: relative;
   font-size: 1.4rem;
-  cursor: pointer;
 }
 
 .case-header-name-desc-cell .case-header-name-cell {
