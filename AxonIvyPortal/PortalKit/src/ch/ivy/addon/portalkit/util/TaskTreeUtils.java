@@ -35,14 +35,14 @@ public class TaskTreeUtils {
     RegisteredApplicationService service = new RegisteredApplicationService();
     List<String> involvedApplications =
         service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName());
-    return IvyExecutor.executeAsSystem(() -> {
-      TaskQuery taskQuery = SubProcessCall.withPath(PortalConstants.BUILD_TASK_QUERY_CALLABLE)
-          .withStartSignature("buildTaskQuery()").call().get("taskQuery", TaskQuery.class);
-      CategoryTree allTaskCategoryTree = findAllTaskCategoryTree(involvedApplications, taskQuery);
-      convertToCheckboxTreeNode(root, allTaskCategoryTree);
-      sortNode(root);
-      return root;
+    TaskQuery taskQuery = IvyExecutor.executeAsSystem(() -> {
+      return SubProcessCall.withPath(PortalConstants.BUILD_TASK_QUERY_CALLABLE).withStartSignature("buildTaskQuery()")
+          .call().get("taskQuery", TaskQuery.class);
     });
+    CategoryTree allTaskCategoryTree = findAllTaskCategoryTree(involvedApplications, taskQuery);
+    convertToCheckboxTreeNode(root, allTaskCategoryTree);
+    sortNode(root);
+    return root;
   }
   
   private static CategoryTree findAllTaskCategoryTree(List<String> involvedApplications, TaskQuery taskQuery) {
