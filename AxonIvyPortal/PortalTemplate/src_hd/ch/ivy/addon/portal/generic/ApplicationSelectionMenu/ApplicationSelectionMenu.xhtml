@@ -29,7 +29,7 @@
   </div>
 
   <!-- APPLICATION MENU -->
-  <div class="nano">
+  <h:panelGroup id="main-navigator-container" layout="block" styleClass="nano #{showMainArea eq true ? '' : 'u-invisibility'}">
     <div id="#{cc.clientId}" class="nano-content sidebar-scroll-content">
       <div class="layout-menu-container">
         <div class="ui-xl-hidden ui-lg-hidden mobile-global-search-container">
@@ -39,7 +39,7 @@
         </div>
 
         <!-- Application menu -->
-        <h:form id="main-navigator" styleClass="#{showMainArea eq true ? '' : 'u-invisibility'}">
+        <h:form id="main-navigator">
 
           <!-- Remote-command will be called when language changed -->
           <p:remoteCommand name="reloadMenuItem" actionListener="#{menuView.init}"
@@ -96,7 +96,7 @@
     <div class="nano-pane">
       <div class="nano-slider" />
     </div>
-  </div>
+  </h:panelGroup>
 
   <p:confirmDialog id="task-leave-warning-dialog" rendered="#{data.isWorkingOnATask}" 
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"

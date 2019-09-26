@@ -29,7 +29,7 @@ var Portal = {
   // Remove u-invisibility class when DOM is pasted already
   updateLayoutContent : function() {
     $('#main-area-panel').removeClass('u-invisibility');
-    $("[id$='main-navigator']").removeClass('u-invisibility');
+    $("[id$='main-navigator-container']").removeClass('u-invisibility');
   }
 }
 
