@@ -46,11 +46,11 @@
         <pe:dynaForm id="dyna-form" value="#{wfTask.dynaFormController.model}" var="dynaData" columnClasses="label-container, field-container"
           styleClass="user-task-dyna-form ui-fluid">
 
-          <pe:dynaFormControl type="InputFieldText" for="input-field-text">
+          <pe:dynaFormControl type="InputFieldText" for="input-field-text" styleClass="input-text-field">
             <p:inputText id="input-field-text" value="#{dynaData.value}" required="#{dynaData.required}" disabled="true" />
           </pe:dynaFormControl>
 
-          <pe:dynaFormControl type="InputFieldNumber" for="input-field-number">
+          <pe:dynaFormControl type="InputFieldNumber" for="input-field-number" styleClass="input-field-number">
             <p:spinner id="input-field-number" value="#{dynaData.value}" required="#{dynaData.required}" min="0" readonly="true" />
           </pe:dynaFormControl>
 
@@ -64,13 +64,13 @@
               autoResize="false" disabled="true" readonly="true" />
           </pe:dynaFormControl>
 
-          <pe:dynaFormControl type="ManyCheckbox" for="many-checkbox" styleClass="dyna-form-dl-div">
+          <pe:dynaFormControl type="ManyCheckbox" for="many-checkbox" styleClass="dyna-form-dl-div many-checkbox">
             <p:dataList value="#{dynaData.value}" var="checkItem" type="definition">
               <i class="fa fa-check-square-o" aria-hidden="true" /> #{checkItem}
             </p:dataList>
           </pe:dynaFormControl>
 
-          <pe:dynaFormControl type="OneRadio" for="one-radio" styleClass="dyna-form-dl-div">
+          <pe:dynaFormControl type="OneRadio" for="one-radio" styleClass="dyna-form-dl-div one-radio">
             <p:dataList value="#{dynaData.value}" var="checkItem" type="definition"
               emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}">
               <i class="fa fa-dot-circle-o" aria-hidden="true" /> #{checkItem}

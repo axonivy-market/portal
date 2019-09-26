@@ -32,7 +32,7 @@
             <pe:dynaForm id="user-task-dyna-form" value="#{data.executePredefinedWorkflowData.currentTask.dynaFormController.model}" var="dynaData"
               styleClass="ui-g-12">
 
-              <pe:dynaFormControl type="InputFieldText" for="hidden-input-field-text">
+              <pe:dynaFormControl type="InputFieldText" for="hidden-input-field-text" styleClass="input-text-field">
                 <h:inputHidden id="hidden-input-field-text" />
 
                 <h:panelGroup styleClass="md-inputfield">
@@ -42,7 +42,7 @@
                 </h:panelGroup>
               </pe:dynaFormControl>
 
-              <pe:dynaFormControl type="InputFieldNumber" for="input-field-number">
+              <pe:dynaFormControl type="InputFieldNumber" for="input-field-number" styleClass="input-field-number">
                 <p:spinner id="input-field-number" value="#{dynaData.value}" styleClass="inputFieldNrSpinner" required="#{dynaData.required}" min="0"
                   requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
               </pe:dynaFormControl>
@@ -58,14 +58,14 @@
                   autoResize="false" requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
               </pe:dynaFormControl>
 
-              <pe:dynaFormControl type="ManyCheckbox" for="many-checkbox" styleClass="ui-sm-12">
+              <pe:dynaFormControl type="ManyCheckbox" for="many-checkbox" styleClass="ui-sm-12 many-checkbox">
                 <p:selectManyCheckbox id="many-checkbox" value="#{dynaData.value}" required="#{dynaData.required}" layout="pageDirection"
                   requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
                   <f:selectItems value="#{dynaData.optionsStr}" />
                 </p:selectManyCheckbox>
               </pe:dynaFormControl>
 
-              <pe:dynaFormControl type="OneRadio" for="one-radio" styleClass="ui-sm-12">
+              <pe:dynaFormControl type="OneRadio" for="one-radio" styleClass="ui-sm-12 one-radio">
                 <p:selectOneRadio id="one-radio" value="#{dynaData.value}" required="#{dynaData.required}" layout="pageDirection"
                   requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
                   <f:selectItems value="#{dynaData.optionsStr}" />
