@@ -725,8 +725,12 @@ td.email-attachment-text {
 	width: 98%;
 }
 
-.preview-dialog .pe-dynaform-cell[colspan]>.ui-spinner,
-.preview-dialog .pe-dynaform-cell[colspan]>.ui-spinner>.ui-spinner-input {
+.pe-dynaform-cell[colspan="2"] .ui-spinner .ui-spinner-input {
+  width: calc(100% - 35px);
+}
+
+.preview-dialog .pe-dynaform-cell[colspan="4"]>.ui-spinner,
+.preview-dialog .pe-dynaform-cell[colspan="4"]>.ui-spinner>.ui-spinner-input {
 	width: auto;
 }
 
@@ -750,11 +754,6 @@ td.email-attachment-text {
 /* Override dynaform cell */
 .pe-dynaform-cell[colspan="2"]:not(.pe-dynaform-label) {
   height: 2.5rem !important;
-  vertical-align: bottom;
-}
-
-.pe-dynaform-cell[colspan="2"]:not(.pe-dynaform-label).text-area ~ .pe-dynaform-cell[colspan="2"]:not(.pe-dynaform-label) {
-  vertical-align: top !important;
 }
 
 .pe-dynaform-grid tr>td.pe-dynaform-cell[colspan="2"]:first-child {
@@ -785,6 +784,22 @@ td.email-attachment-text {
 
 .approval-result-table {
   margin: auto 14px;
+}
+
+.pe-dynaform-cell.input-field-number {
+  padding-top: 7px;
+}
+
+.pe-dynaform-cell.input-text-field {
+  padding-top: 6px;
+}
+
+_:-ms-fullscreen, :root .pe-dynaform-cell.input-field-number {
+  padding-top: 3.5px !important;
+}
+
+_:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
+  padding-top: 2.5px !important;
 }
 
 /*fix checkbox menu*/
