@@ -5,7 +5,7 @@
   <h:panelGroup layout="block" styleClass="preview-dyna-container">
     <pe:dynaForm id="dyna-form" value="#{data.dynaFormController.model}" var="dynaData">
 
-      <pe:dynaFormControl type="InputFieldText" for="hidden-input-field-text">
+      <pe:dynaFormControl type="InputFieldText" for="hidden-input-field-text" styleClass="input-text-field">
         <h:inputHidden id="hidden-input-field-text" />
 
         <h:panelGroup styleClass="md-inputfield">
@@ -15,7 +15,7 @@
         </h:panelGroup>
       </pe:dynaFormControl>
 
-      <pe:dynaFormControl type="InputFieldNumber" for="input-field-number">
+      <pe:dynaFormControl type="InputFieldNumber" for="input-field-number" styleClass="input-field-number">
         <p:spinner id="input-field-number" value="#{dynaData.value}" required="#{dynaData.required}"
           requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" min="0" />
       </pe:dynaFormControl>
@@ -32,14 +32,14 @@
           rows="#{dynaData.intSetting}" autoResize="false" />
       </pe:dynaFormControl>
 
-      <pe:dynaFormControl type="ManyCheckbox" for="many-checkbox">
+      <pe:dynaFormControl type="ManyCheckbox" for="many-checkbox" styleClass="many-checkbox">
         <p:selectManyCheckbox id="many-checkbox" value="#{dynaData.value}" required="#{dynaData.required}"
           requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" layout="pageDirection">
           <f:selectItems value="#{dynaData.optionsStr}" />
         </p:selectManyCheckbox>
       </pe:dynaFormControl>
 
-      <pe:dynaFormControl type="OneRadio" for="one-radio">
+      <pe:dynaFormControl type="OneRadio" for="one-radio" styleClass="one-radio">
         <p:selectOneRadio id="one-radio" value="#{dynaData.value}" required="#{dynaData.required}"
           requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" layout="pageDirection">
           <f:selectItems value="#{dynaData.optionsStr}" />
