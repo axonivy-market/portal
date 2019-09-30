@@ -26,7 +26,7 @@ public class CaseDetailsTest extends BaseTest {
     navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
-    
+
     HomePage homePage = new HomePage();
     grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
     MainMenuPage mainMenuPage = homePage.openMainMenu();
@@ -35,12 +35,12 @@ public class CaseDetailsTest extends BaseTest {
   }
 
   @Test
-  public void testDisplayCaseProperties() { //SERENITY_PASSED
+  public void testDisplayCaseProperties() { // SERENITY_PASSED
     assertTrue(StringUtils.equalsIgnoreCase("LeaveRequest", detailsPage.getCaseCategory()));
   }
 
   @Test
-  public void testAddCaseNote() {
+  public void testAddCaseNote() { // SERENITY_PASSED
     detailsPage.onClickHistoryIcon();
     assertEquals(1, detailsPage.getNumberOfHistory());
     detailsPage.addNote("Consider the remaining annual leaves before the approval");
@@ -49,29 +49,26 @@ public class CaseDetailsTest extends BaseTest {
   }
 
   @Test
-  public void testShowCaseDetail() {
+  public void testShowCaseDetail() { // SERENITY_PASSED
     assertTrue(detailsPage.isGeneralInformationComponentPresented());
     assertTrue(detailsPage.isRelatedTasksComponentPresented());
-    detailsPage.onClickHistoryIcon();
     assertTrue(detailsPage.isHistoryComponentPresented());
-    detailsPage.onClickDocumentIcon();
     assertTrue(detailsPage.isDocumentComponentPresented());
   }
-  
+
   @Test
-  public void testHistoryAuthorIsUserFullName() {
+  public void testHistoryAuthorIsUserFullName() { // SERENITY_PASSED
     detailsPage.addNote("Sample case note");
     assertEquals(TestAccount.DEMO_USER.getFullName(), detailsPage.getHistoryAuthor());
   }
-  
+
   @Test
-  public void testOpenViewNoteDialog() {
+  public void testOpenViewNoteDialog() { // SERENITY_PASSED
     detailsPage.addNote("Consider the remaining annual leaves before the approval");
     detailsPage.clickViewNote();
     assertTrue(detailsPage.isViewNoteDialogPresented());
-    
   }
-  
+
   @After
   public void teardown() {
     denySpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);

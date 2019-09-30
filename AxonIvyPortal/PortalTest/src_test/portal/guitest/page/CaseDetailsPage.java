@@ -16,19 +16,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 public class CaseDetailsPage extends TemplatePage {
-  private static final String DOCUMENT_COMPONENT_ID = "case-widget:case-list-scroller:0:case-item:case-body:document";
+  private static final String DOCUMENT_COMPONENT_ID = "div[id='case-item-details:document']";
   private static final String CASE_ICONS_CONTAINER_COMPONENT_CSS_SELECTOR = "span[id$='responsive-handle-container']";
-  private static final String HISTORY_COMPONENT_ID =
-      "case-widget:case-list-scroller:0:case-item:case-body:history:case-histories";
-  private static final String RELATED_TASKS_COMPONENT_ID =
-      "case-widget:case-list-scroller:0:case-item:case-body:related-tasks";
-  private static final String HISTORY_LIST_CSS_SELECTOR = "div[id$='case-histories'] .author";
-  private static final String GENERAL_INFORMATION_COMPONENT_ID ="table[id='general-information:general-info']";
-  private static final String HISTORY_NOTE_CONTENT_CSS_SELECTOR = "a[id$='note-content']";
+  private static final String HISTORY_COMPONENT_ID = "div[class*='case-history-button-container']";
+  private static final String RELATED_TASKS_COMPONENT_ID = "div[id='case-item-details:related-tasks']";
+  private static final String HISTORY_LIST_CSS_SELECTOR = "a[id^='case-item-details:case-histories:case-histories']";
+  private static final String LATEST_HISTORY_LIST_CSS_SELECTOR =
+      "a[id^='case-item-details:case-histories:case-histories:0']";
+  private static final String GENERAL_INFORMATION_COMPONENT_ID = "div[class$='case-detail-section-title-container']";
   private static final String ADDITIONAL_CASE_DETAILS_URL_CSS_SELECTOR = "a[id$='additional-case-details-link']";
-  private static final String AUTHOR_USER_CSS_SELECTOR = "span[id$='user-full-name:user']";
-  private static final String VIEW_NOTE_DIALOG_ID =
-      "case-widget:case-list-scroller:0:case-item:case-body:history:view-note-dialog";
+  private static final String AUTHOR_USER_CSS_SELECTOR = "span[class='history-fullname']";
+  private static final String VIEW_NOTE_DIALOG_ID = "case-item-details:case-histories:view-note-dialog";
   private static final String UPLOAD_DOCUMENT_BUTTON_ID =
       "case-widget:case-list-scroller:0:case-item:case-body:document:add-document-command";
   private static final String DELETE_DOCUMENT_BUTTON_ID =
@@ -45,9 +43,9 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public CaseDetailsPage() {
-	// TODO Auto-generated constructor stub
-	  this.caseItem=findElementByCssSelector("#main-area-panel");
-}
+    // TODO Auto-generated constructor stub
+    this.caseItem = findElementByCssSelector("#main-area-panel");
+  }
 
 
   public String getCaseCategory() {
@@ -55,7 +53,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public int getNumberOfHistory() {
-	  return caseItem.findElements(By.cssSelector(HISTORY_LIST_CSS_SELECTOR)).size();
+    return caseItem.findElements(By.cssSelector(HISTORY_LIST_CSS_SELECTOR)).size();
   }
 
   public int countRelatedTasks() {
@@ -69,12 +67,8 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void addNote(String content) {
     onClickHistoryIcon();
-    caseItem.findElement(By.cssSelector("a[id$='add-note-command']")).click();
     waitAjaxIndicatorDisappear();
-    String engineUrl = System.getProperty("engineUrl");
-    if (ENGINE_URL_LOCAL.equals(engineUrl)) {
-      Sleeper.sleepTight(2000);
-    }
+
     WebElement addNoteDialog = findElementByCssSelector("div.ui-dialog[aria-hidden='false']");
     waitForElementDisplayed(addNoteDialog, true);
     addNoteDialog.findElement(By.cssSelector("textarea[id$='note-content']")).sendKeys(content);
@@ -87,14 +81,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public String getLatestHistoryContent() {
-    WebElement historyComponent = caseItem.findElement(By.id(HISTORY_COMPONENT_ID));
-    if (historyComponent != null) {
-      List<WebElement> noteContents = historyComponent.findElements(By.cssSelector(HISTORY_NOTE_CONTENT_CSS_SELECTOR));
-      if (noteContents.size() >= 1) {
-        return noteContents.get(0).getText();
-      }
-    }
-    return "";
+    return caseItem.findElement(By.cssSelector(LATEST_HISTORY_LIST_CSS_SELECTOR)).getText();
   }
 
   public void openAdditionalCaseDetailsPage() {
@@ -102,7 +89,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   private WebElement getGeneralInformationComponent() {
-    return findElementById(GENERAL_INFORMATION_COMPONENT_ID);
+    return findElementByCssSelector(GENERAL_INFORMATION_COMPONENT_ID);
   }
 
   public boolean isGeneralInformationComponentPresented() {
@@ -110,7 +97,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   private WebElement getRelatedTasksComponent() {
-    return findChildElementById(caseItem, RELATED_TASKS_COMPONENT_ID);
+    return findElementByCssSelector(RELATED_TASKS_COMPONENT_ID);
   }
 
   public boolean isRelatedTasksComponentPresented() {
@@ -123,7 +110,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   private WebElement getHistoryComponent() {
-    WebElement historyComponent = findChildElementById(caseItem, HISTORY_COMPONENT_ID);
+    WebElement historyComponent = findElementByCssSelector(HISTORY_COMPONENT_ID);
     return historyComponent;
   }
 
@@ -133,7 +120,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   private WebElement getDocumentComponent() {
-    WebElement documentComponent = findChildElementById(caseItem, DOCUMENT_COMPONENT_ID);
+    WebElement documentComponent = findElementByCssSelector(DOCUMENT_COMPONENT_ID);
     return documentComponent;
   }
 
@@ -154,7 +141,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void clickViewNote() {
-    findElementByCssSelector(HISTORY_NOTE_CONTENT_CSS_SELECTOR).click();
+    findElementByCssSelector(LATEST_HISTORY_LIST_CSS_SELECTOR).click();
     waitAjaxIndicatorDisappear();
     WebElement noteDialog = getViewNoteDialog();
     waitForElementDisplayed(noteDialog, true);
@@ -199,8 +186,8 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public boolean isCaseNameChangeComponentPresented(int caseIndex) {
-    return isElementPresent(By.id(String
-        .format("case-widget:case-list-scroller:%d:case-item:case-name-component:case-name-form:case-name-input", caseIndex)));
+    return isElementPresent(By.id(String.format(
+        "case-widget:case-list-scroller:%d:case-item:case-name-component:case-name-form:case-name-input", caseIndex)));
   }
 
   public String getDescriptionOfCaseAt(int caseIndex) {
@@ -260,15 +247,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void onClickHistoryIcon() {
-    try {
-      WebElement caseIcons = caseItem.findElement(By.cssSelector(CASE_ICONS_CONTAINER_COMPONENT_CSS_SELECTOR));
-      WebElement noteIcon = caseIcons.findElement(By.cssSelector("a[class*='fa fa-align-left']"));
-      if (noteIcon != null) {
-        noteIcon.click();
-      }
-    } catch (Exception e) {
-      return;
-    }
+    findElementById("case-item-details:case-histories:add-note-command").click();
   }
 
   public void onClickDocumentIcon() {
@@ -293,8 +272,8 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   private void onChangeNameInput(String newCaseName, int caseIndex) {
-    String caseNameInputId = String
-        .format("case-widget:case-list-scroller:%d:case-item:case-name-component:case-name-form:case-name-input", caseIndex);
+    String caseNameInputId = String.format(
+        "case-widget:case-list-scroller:%d:case-item:case-name-component:case-name-form:case-name-input", caseIndex);
     WebElement caseNameInput = findElementById(caseNameInputId);
     waitForElementDisplayed(caseNameInput, true);
     caseNameInput.clear();
@@ -367,9 +346,9 @@ public class CaseDetailsPage extends TemplatePage {
     }
     // currently haven't found solution to check when the file upload finish, we have to wait
     if (isIntegrationTestRun()) {
-    	Sleeper.sleepTight(10000);
+      Sleeper.sleepTight(10000);
     } else {
-    	Sleeper.sleepTight(5000);
+      Sleeper.sleepTight(5000);
     }
   }
 
@@ -382,7 +361,8 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public String getCaseName() {
-    WebElement selectedCaseNameElement = findElementByCssSelector("#case-item-details\\:case-detail-title-form\\:case-name-edit-inplace_display");
+    WebElement selectedCaseNameElement =
+        findElementByCssSelector("#case-item-details\\:case-detail-title-form\\:case-name-edit-inplace_display");
     return selectedCaseNameElement.getText();
   }
 }
