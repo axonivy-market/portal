@@ -334,6 +334,16 @@ Te0 @PushWFArc f320 '' #zField
 Te0 @PushWFArc f321 '' #zField
 Te0 @PushWFArc f322 '' #zField
 Te0 @PushWFArc f323 '' #zField
+Te0 @GridStep f324 '' #zField
+Te0 @CallSub f325 '' #zField
+Te0 @StartSub f326 '' #zField
+Te0 @GridStep f327 '' #zField
+Te0 @PushWFArc f328 '' #zField
+Te0 @PushWFArc f329 '' #zField
+Te0 @PushWFArc f330 '' #zField
+Te0 @GridStep f332 '' #zField
+Te0 @PushWFArc f333 '' #zField
+Te0 @PushWFArc f331 '' #zField
 >Proto Te0 Te0 TaskService #zField
 Te0 f3 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f3 1347 995 26 26 14 0 #rect
@@ -4222,6 +4232,141 @@ Te0 f323 3827 181 1374 880 #arcP
 Te0 f323 1 3712 181 #addKink
 Te0 f323 2 3712 880 #addKink
 Te0 f323 2 0.3593429158110883 0 0 #arcLabel
+Te0 f324 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
+' #txt
+Te0 f324 actionTable 'out=in;
+' #txt
+Te0 f324 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.Application;
+import ch.ivy.addon.portalkit.bo.RemoteTask;
+import ch.ivy.addon.portalkit.mapper.RemoteTaskMapper;
+
+String host = "";
+List<RemoteTask> remoteTasks = RemoteTaskMapper.mapTasks(in.ivyTasks, host);
+for (RemoteTask remoteTask : remoteTasks) {
+	Application app = new Application();
+	app.setServerId(in.server.id);
+	app.setServer(in.server);
+	remoteTask.setApplicationRegister(app);
+}
+in.tasks.addAll(remoteTasks);' #txt
+Te0 f324 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f324 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>map to RemoteTask</name>
+        <nameStyle>17,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f324 4750 269 36 24 20 -2 #rect
+Te0 f324 @|StepIcon #fIcon
+Te0 f325 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f325 processCall ServiceIntegrators/TaskServiceIntegrator:findTasksByCase(ch.ivy.addon.portalkit.persistence.domain.Server,String,Long,String) #txt
+Te0 f325 doCall true #txt
+Te0 f325 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint,java.lang.Long caseId,java.lang.String involvedUserName> param;
+' #txt
+Te0 f325 requestMappingAction 'param.server=in.server;
+param.endpoint=in.endpoint;
+param.caseId=in.caseId;
+param.involvedUserName=in.userName;
+' #txt
+Te0 f325 responseActionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
+' #txt
+Te0 f325 responseMappingAction 'out=in;
+out.errors=result.errors;
+out.ivyTasks=result.tasks;
+' #txt
+Te0 f325 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>TaskServiceIntegrator</name>
+        <nameStyle>21,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f325 4750 189 36 24 20 -2 #rect
+Te0 f325 @|CallSubIcon #fIcon
+Te0 f326 inParamDecl '<java.lang.Long caseId,java.lang.String involvedUserName,ch.ivy.addon.portalkit.persistence.domain.Server server> param;' #txt
+Te0 f326 inParamTable 'out.caseId=param.caseId;
+out.server=param.server;
+out.userName=param.involvedUserName;
+' #txt
+Te0 f326 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.bo.RemoteTask> tasks,java.util.List<ch.ivy.ws.addon.WsException> errors> result;
+' #txt
+Te0 f326 outParamTable 'result.tasks=in.tasks;
+result.errors=in.errors;
+' #txt
+Te0 f326 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
+' #txt
+Te0 f326 callSignature findTasksByCase(Long,String,ch.ivy.addon.portalkit.persistence.domain.Server) #txt
+Te0 f326 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f326 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>findTasksByCase(Long,String,Server)</name>
+        <nameStyle>35,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f326 4755 52 26 26 14 0 #rect
+Te0 f326 @|StartSubIcon #fIcon
+Te0 f327 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
+' #txt
+Te0 f327 actionTable 'out=in;
+' #txt
+Te0 f327 actionCode 'import ch.ivy.addon.portalkit.service.PortalConnectorDetector;
+import ch.ivy.addon.portalkit.enums.WebServiceEndPoint;
+
+PortalConnectorDetector detector = new PortalConnectorDetector();
+in.endpoint = detector.getPortalConnectorURLOf(in.server) + WebServiceEndPoint.TASK.toString();' #txt
+Te0 f327 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f327 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>init ws endpoint</name>
+        <nameStyle>16,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f327 4750 125 36 24 20 -2 #rect
+Te0 f327 @|StepIcon #fIcon
+Te0 f328 expr out #txt
+Te0 f328 4768 149 4768 189 #arcP
+Te0 f329 expr out #txt
+Te0 f329 4768 78 4768 125 #arcP
+Te0 f330 expr out #txt
+Te0 f330 4768 213 4768 269 #arcP
+Te0 f332 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
+' #txt
+Te0 f332 actionTable 'out=in;
+' #txt
+Te0 f332 actionCode 'import ch.ivy.ws.addon.WsException;
+for(WsException error : in.errors){
+	error.server = in.server.name;
+}' #txt
+Te0 f332 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f332 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>utils</name>
+        <nameStyle>5
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f332 4712 330 112 44 -11 -8 #rect
+Te0 f332 @|StepIcon #fIcon
+Te0 f333 expr out #txt
+Te0 f333 4768 293 4768 330 #arcP
+Te0 f333 0 0.47518302636543885 0 0 #arcLabel
+Te0 f331 expr out #txt
+Te0 f331 4768 374 1374 880 #arcP
+Te0 f331 1 4768 880 #addKink
+Te0 f331 1 0.47518302636543885 0 0 #arcLabel
 >Proto Te0 .type ch.ivyteam.wf.processes.TaskServiceData #txt
 >Proto Te0 .processKind CALLABLE_SUB #txt
 >Proto Te0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -4628,3 +4773,13 @@ Te0 f307 mainOut f311 tail #connect
 Te0 f311 head f300 mainIn #connect
 Te0 f302 out f323 tail #connect
 Te0 f323 head f148 in #connect
+Te0 f325 mainOut f330 tail #connect
+Te0 f330 head f324 mainIn #connect
+Te0 f326 mainOut f329 tail #connect
+Te0 f329 head f327 mainIn #connect
+Te0 f327 mainOut f328 tail #connect
+Te0 f328 head f325 mainIn #connect
+Te0 f324 mainOut f333 tail #connect
+Te0 f333 head f332 mainIn #connect
+Te0 f332 mainOut f331 tail #connect
+Te0 f331 head f148 in #connect

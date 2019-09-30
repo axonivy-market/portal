@@ -18,3 +18,5 @@ taskId Long #field
 taskId PERSISTENT #fieldModifier
 fullNote String #field
 fullNote PERSISTENT #fieldModifier
+cacheEntry ch.ivyteam.ivy.data.cache.IDataCacheEntry #field
+cacheEntry PERSISTENT #fieldModifier

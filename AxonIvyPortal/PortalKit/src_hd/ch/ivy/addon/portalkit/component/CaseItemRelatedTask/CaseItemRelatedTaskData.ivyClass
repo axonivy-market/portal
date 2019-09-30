@@ -4,8 +4,6 @@ remoteCase ch.ivy.addon.portalkit.bo.RemoteCase #field
 remoteCase PERSISTENT #fieldModifier
 relatedTasks List<ch.ivy.addon.portalkit.bo.RemoteTask> #field
 relatedTasks PERSISTENT #fieldModifier
-taskSearchCriteria ch.ivy.ws.addon.TaskSearchCriteria #field
-taskSearchCriteria PERSISTENT #fieldModifier
 taskId Long #field
 taskId PERSISTENT #fieldModifier
 caseName String #field
@@ -20,3 +18,5 @@ selectedCase ch.ivy.addon.portalkit.bo.RemoteCase #field
 selectedCase PERSISTENT #fieldModifier
 selectedGlobalCaseId ch.ivy.addon.portalkit.dto.GlobalCaseId #field
 selectedGlobalCaseId PERSISTENT #fieldModifier
+cacheEntry ch.ivyteam.ivy.data.cache.IDataCacheEntry #field
+cacheEntry PERSISTENT #fieldModifier

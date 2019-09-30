@@ -231,6 +231,19 @@ Te0 @PushWFArc f217 '' #zField
 Te0 @PushWFArc f218 '' #zField
 Te0 @PushWFArc f219 '' #zField
 Te0 @PushWFArc f220 '' #zField
+Te0 @WSElement f221 '' #zField
+Te0 @EndSub f222 '' #zField
+Te0 @WSElement f223 '' #zField
+Te0 @WSElement f224 '' #zField
+Te0 @Alternative f226 '' #zField
+Te0 @StartSub f227 '' #zField
+Te0 @PushWFArc f228 '' #zField
+Te0 @PushWFArc f231 '' #zField
+Te0 @PushWFArc f232 '' #zField
+Te0 @PushWFArc f233 '' #zField
+Te0 @PushWFArc f234 '' #zField
+Te0 @PushWFArc f235 '' #zField
+Te0 @PushWFArc f225 '' #zField
 >Proto Te0 Te0 TaskServiceIntegrator #zField
 Te0 f7 .resExport export #txt
 Te0 f7 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
@@ -3241,6 +3254,184 @@ Te0 f219 1 2625 769 #addKink
 Te0 f219 1 0.20679742620065877 0 0 #arcLabel
 Te0 f220 expr out #txt
 Te0 f220 2785 494 2785 563 #arcP
+Te0 f221 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
+Te0 f221 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
+' #txt
+Te0 f221 actionTable 'out=in;
+out.errors=wsResponse.findTasksByCaseResponse.result.errors;
+out.tasks=wsResponse.findTasksByCaseResponse.result.ivyTasks;
+' #txt
+Te0 f221 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Te0 f221 timeout 60 #txt
+Te0 f221 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
+KEY_AXIS_PORTNAME=TaskServicePort
+KEY_WEBSERVICECONFIG_ID=146B90974252183F
+KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=<%\\=in.server.username%>
+KEY_OPERATION=findTasksByCase
+KEY_AUTHENTICATION_KIND=1
+KEY_HOST=
+KEY_USE_AUTHENTICATION=true
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findTasksByCase.caseId__@@__Long__@@__in.caseId"",""arg0.findTasksByCase.involvedUserName__@@__String__@@__in.taskSearchCriteria.involvedUsername"""' #txt
+Te0 f221 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
+Te0 f221 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
+Te0 f221 returningObjectList '[wsResponse]' #txt
+Te0 f221 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>HTTP Basic</name>
+        <nameStyle>10,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f221 558 1108 36 24 20 -2 #rect
+Te0 f221 @|WebServiceIcon #fIcon
+Te0 f222 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
+Te0 f222 723 1203 26 26 14 0 #rect
+Te0 f222 @|EndSubIcon #fIcon
+Te0 f223 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
+Te0 f223 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
+' #txt
+Te0 f223 actionTable 'out=in;
+out.errors=wsResponse.findTasksByCaseResponse.result.errors;
+out.tasks=wsResponse.findTasksByCaseResponse.result.ivyTasks;
+' #txt
+Te0 f223 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Te0 f223 timeout 60 #txt
+Te0 f223 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
+KEY_AXIS_PORTNAME=TaskServicePort
+KEY_WEBSERVICECONFIG_ID=146B90974252183F
+KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=<%\\=in.server.username%>
+KEY_OPERATION=findTasksByCase
+KEY_AUTHENTICATION_KIND=4
+KEY_HOST=<%\\=in.server.host%>
+KEY_USE_AUTHENTICATION=true
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findTasksByCase.caseId__@@__Long__@@__in.caseId"",""arg0.findTasksByCase.involvedUserName__@@__String__@@__in.taskSearchCriteria.involvedUsername"""' #txt
+Te0 f223 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
+Te0 f223 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
+Te0 f223 returningObjectList '[wsResponse]' #txt
+Te0 f223 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>NTLM</name>
+        <nameStyle>4,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f223 718 1108 36 24 20 -2 #rect
+Te0 f223 @|WebServiceIcon #fIcon
+Te0 f224 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
+Te0 f224 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
+' #txt
+Te0 f224 actionTable 'out=in;
+out.errors=wsResponse.findTasksByCaseResponse.result.errors;
+out.tasks=wsResponse.findTasksByCaseResponse.result.ivyTasks;
+' #txt
+Te0 f224 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Te0 f224 timeout 60 #txt
+Te0 f224 beanConfig '"KEY_PASSWORD=
+KEY_AXIS_PORTNAME=TaskServicePort
+KEY_WEBSERVICECONFIG_ID=146B90974252183F
+KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=
+KEY_OPERATION=findTasksByCase
+KEY_AUTHENTICATION_KIND=0
+KEY_HOST=
+KEY_USE_AUTHENTICATION=false
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.findTasksByCase.caseId__@@__Long__@@__in.caseId"",""arg0.findTasksByCase.involvedUserName__@@__String__@@__in.taskSearchCriteria.involvedUsername"""' #txt
+Te0 f224 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
+Te0 f224 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
+Te0 f224 returningObjectList '[wsResponse]' #txt
+Te0 f224 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>default settings</name>
+        <nameStyle>16,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f224 878 1108 36 24 20 -2 #rect
+Te0 f224 @|WebServiceIcon #fIcon
+Te0 f226 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
+Te0 f226 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Authentication Type?</name>
+        <nameStyle>20,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f226 722 1010 28 28 14 -22 #rect
+Te0 f226 @|AlternativeIcon #fIcon
+Te0 f227 inParamDecl '<ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint,java.lang.Long caseId,java.lang.String involvedUserName> param;' #txt
+Te0 f227 inParamTable 'out.caseId=param.caseId;
+out.endpoint=param.endpoint;
+out.server=param.server;
+out.taskSearchCriteria.involvedUsername=param.involvedUserName;
+' #txt
+Te0 f227 outParamDecl '<List<ch.ivy.ws.addon.WsException> errors,List<ch.ivy.ws.addon.IvyTask> tasks> result;
+' #txt
+Te0 f227 outParamTable 'result.errors=in.errors;
+result.tasks=in.tasks;
+' #txt
+Te0 f227 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
+' #txt
+Te0 f227 callSignature findTasksByCase(ch.ivy.addon.portalkit.persistence.domain.Server,String,Long,String) #txt
+Te0 f227 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
+Te0 f227 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>findTasksByCase(Server,String,Long,String)</name>
+        <nameStyle>42,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f227 723 883 26 26 14 0 #rect
+Te0 f227 @|StartSubIcon #fIcon
+Te0 f228 expr out #txt
+Te0 f228 576 1132 723 1216 #arcP
+Te0 f228 1 576 1216 #addKink
+Te0 f228 1 0.20679742620065877 0 0 #arcLabel
+Te0 f231 expr in #txt
+Te0 f231 750 1024 896 1108 #arcP
+Te0 f231 1 896 1024 #addKink
+Te0 f231 0 0.7875410210393261 0 0 #arcLabel
+Te0 f232 expr in #txt
+Te0 f232 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.NTLM == in.server.wsAuthenticationType' #txt
+Te0 f232 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name></name>
+    </language>
+</elementInfo>
+' #txt
+Te0 f232 736 1038 736 1108 #arcP
+Te0 f232 0 0.4857142857142857 0 0 #arcLabel
+Te0 f233 expr out #txt
+Te0 f233 896 1132 749 1216 #arcP
+Te0 f233 1 896 1216 #addKink
+Te0 f233 1 0.3198727889829455 0 0 #arcLabel
+Te0 f234 expr in #txt
+Te0 f234 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.HTTP_BASIC == in.server.wsAuthenticationType' #txt
+Te0 f234 722 1024 576 1108 #arcP
+Te0 f234 1 576 1024 #addKink
+Te0 f234 0 0.7302200350148694 0 0 #arcLabel
+Te0 f235 expr out #txt
+Te0 f235 736 1132 736 1203 #arcP
+Te0 f225 expr out #txt
+Te0 f225 736 909 736 1010 #arcP
 >Proto Te0 .type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 >Proto Te0 .processKind CALLABLE_SUB #txt
 >Proto Te0 0 0 32 24 18 0 #rect
@@ -3481,3 +3672,17 @@ Te0 f211 mainOut f219 tail #connect
 Te0 f219 head f208 mainIn #connect
 Te0 f213 out f215 tail #connect
 Te0 f215 head f212 mainIn #connect
+Te0 f226 out f232 tail #connect
+Te0 f232 head f223 mainIn #connect
+Te0 f223 mainOut f235 tail #connect
+Te0 f235 head f222 mainIn #connect
+Te0 f224 mainOut f233 tail #connect
+Te0 f233 head f222 mainIn #connect
+Te0 f226 out f234 tail #connect
+Te0 f234 head f221 mainIn #connect
+Te0 f221 mainOut f228 tail #connect
+Te0 f228 head f222 mainIn #connect
+Te0 f226 out f231 tail #connect
+Te0 f231 head f224 mainIn #connect
+Te0 f227 mainOut f225 tail #connect
+Te0 f225 head f226 in #connect

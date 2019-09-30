@@ -72,6 +72,16 @@ public interface ITaskService {
       Integer count, Boolean isUrlBuiltFromSystemProperties) throws WSException;
 
   /**
+   * Finds tasks by caseId
+   * Is used to open case details, not full feature
+   * @param caseId
+   * @param involvedUserName
+   * @return
+   * @throws WSException
+   */
+  public TaskServiceResult findTasksByCase(final Integer caseId, final String involvedUserName) throws WSException;
+  
+  /**
    * Check if the given user can resume the given task
    * @param taskId 
    * @param userName 

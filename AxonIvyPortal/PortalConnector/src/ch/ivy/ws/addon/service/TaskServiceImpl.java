@@ -49,12 +49,14 @@ import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
+import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.ITaskQueryExecutor;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
@@ -322,6 +324,102 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
     boolean isAdhocIncluded = (isAdmin && isOpenTask) || canUserResumeTask;
     SideStepServiceImpl sideStepService = new SideStepServiceImpl();
     return sideStepService.hasSideSteps(task.getCase(), isAdhocIncluded);
+  }
+  
+  @Override
+  public TaskServiceResult findTasksByCase(final Integer caseId, final String involvedUserName) throws WSException {
+    try {
+      return executeAsSystem(() -> {
+        if (caseId == null) {
+          return result(noErrors());
+        }
+        
+        CaseQuery caseQuery = Ivy.wf().getCaseQueryExecutor().createCaseQuery().where().caseId().isEqual(caseId);
+        ICase iCase = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getFirstResult(caseQuery);
+        List<ITask> tasks = iCase.getTasks();
+        List<IvyTask> ivyTasks = new ArrayList<>();
+        IvyTaskTransformer transformer = new IvyTaskTransformer(false);
+        String app = iCase.getApplication().getName();
+        tasks.forEach(task -> {
+          if (!isHiddenTask(task, app)) {
+            // involvedUserName is empty if current session is an admin
+            if (StringUtils.isNotBlank(involvedUserName)) {
+              boolean canUserResumeTask = canUserResumeTask(involvedUserName, task);
+              if (canUserResumeTask) {
+                IvyTask ivyTask = transformer.transform(task);
+                ivyTasks.add(ivyTask);
+              }
+            } else {
+              IvyTask ivyTask = transformer.transform(task);
+              ivyTasks.add(ivyTask);
+            }
+          }
+        });
+        
+        return result(ivyTasks, null, noErrors());
+      });
+    } catch (Exception e) {
+      throw new WSException(10016, e);
+    }
+  }
+  
+  private boolean isHiddenTask(ITask task, String app) {
+    List<String> apps = Arrays.asList(app);
+    boolean isHidden = false;
+    if (isHiddenTasksCasesExcluded(apps)){
+      String customField = HiddenTasksCasesConfig.getHiddenTasksCasesField(apps);
+      switch (customField.toLowerCase()){
+        case CustomField.CUSTOM_VARCHAR_FIELD1:
+          isHidden = task.getCustomVarCharField1() != null;
+          break;
+        case CustomField.CUSTOM_VARCHAR_FIELD2:
+          isHidden = task.getCustomVarCharField2() != null;
+          break;
+        case CustomField.CUSTOM_VARCHAR_FIELD3:
+          isHidden = task.getCustomVarCharField3() != null;
+          break;
+        case CustomField.CUSTOM_VARCHAR_FIELD4:
+          isHidden = task.getCustomVarCharField4() != null;
+          break;
+        case CustomField.CUSTOM_VARCHAR_FIELD5:
+          isHidden = task.getCustomVarCharField5() != null;
+          break;
+        case CustomField.CUSTOM_DECIMAL_FIELD1:
+          isHidden = task.getCustomDecimalField1() != null;
+          break;
+        case CustomField.CUSTOM_DECIMAL_FIELD2:
+          isHidden = task.getCustomDecimalField2() != null;
+          break;
+        case CustomField.CUSTOM_DECIMAL_FIELD3:
+          isHidden = task.getCustomDecimalField3() != null;
+          break;
+        case CustomField.CUSTOM_DECIMAL_FIELD4:
+          isHidden = task.getCustomDecimalField4() != null;
+          break;
+        case CustomField.CUSTOM_DECIMAL_FIELD5:
+          isHidden = task.getCustomDecimalField5() != null;
+          break;
+        case CustomField.CUSTOM_TIMESTAMP_FIELD1:
+          isHidden = task.getCustomTimestampField1() != null;
+          break;
+        case CustomField.CUSTOM_TIMESTAMP_FIELD2:
+          isHidden = task.getCustomTimestampField2() != null;
+          break;
+        case CustomField.CUSTOM_TIMESTAMP_FIELD3:
+          isHidden = task.getCustomTimestampField3() != null;
+          break;
+        case CustomField.CUSTOM_TIMESTAMP_FIELD4:
+          isHidden = task.getCustomTimestampField4() != null;
+          break;
+        case CustomField.CUSTOM_TIMESTAMP_FIELD5:
+          isHidden = task.getCustomTimestampField5() != null;
+          break;  
+        default:
+          isHidden = task.getAdditionalProperty("HIDE") != null;
+          break;
+      }
+    }
+    return isHidden;
   }
 
   @Override

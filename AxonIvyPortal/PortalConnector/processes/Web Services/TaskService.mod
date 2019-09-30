@@ -86,6 +86,10 @@ Te0 @StartWS f2 '' #zField
 Te0 @GridStep f3 '' #zField
 Te0 @PushWFArc f5 '' #zField
 Te0 @PushWFArc f6 '' #zField
+Te0 @StartWS f7 '' #zField
+Te0 @GridStep f12 '' #zField
+Te0 @PushWFArc f29 '' #zField
+Te0 @PushWFArc f30 '' #zField
 >Proto Te0 Te0 TaskService #zField
 Te0 f8 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
@@ -1151,6 +1155,66 @@ Te0 f6 expr out #txt
 Te0 f6 2977 150 1526 312 #arcP
 Te0 f6 1 2977 312 #addKink
 Te0 f6 1 0.440986432042152 0 0 #arcLabel
+Te0 f7 inParamDecl '<java.lang.Long caseId,java.lang.String involvedUserName> param;' #txt
+Te0 f7 inParamTable 'out.ivyCase.id=param.caseId;
+out.taskSearchCriteria.involvedUsername=param.involvedUserName;
+' #txt
+Te0 f7 outParamDecl '<java.util.List<ch.ivy.ws.addon.types.IvyTask> ivyTasks,java.util.List<ch.ivy.ws.addon.WSException> errors> result;
+' #txt
+Te0 f7 outParamTable 'result.ivyTasks=in.ivyTasks;
+result.errors=in.errors;
+' #txt
+Te0 f7 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
+' #txt
+Te0 f7 callSignature findTasksByCase(Long,String) #txt
+Te0 f7 useUserDefinedException false #txt
+Te0 f7 taskData TaskTriggered.PRI=2 #txt
+Te0 f7 type ch.ivy.ws.addon.TaskServiceData #txt
+Te0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>findTasksByCase(Long,String)</name>
+        <nameStyle>28,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f7 @C|.responsibility Everybody #txt
+Te0 f7 3697 49 30 30 21 8 #rect
+Te0 f7 @|StartWSIcon #fIcon
+Te0 f12 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
+' #txt
+Te0 f12 actionTable 'out=in;
+' #txt
+Te0 f12 actionCode 'import ch.ivy.ws.addon.bo.TaskServiceResult;
+import ch.ivy.ws.addon.WsServiceFactory;
+import ch.ivy.ws.addon.WSException;
+
+try{
+	TaskServiceResult tsResult = WsServiceFactory.getTaskService().findTasksByCase(in.ivyCase.getId(), in.taskSearchCriteria.involvedUsername);
+	in.ivyTasks = tsResult.getTasks();
+	in.errors = tsResult.getErrors();
+}catch(WSException e){
+	in.errors.add(e);
+}' #txt
+Te0 f12 type ch.ivy.ws.addon.TaskServiceData #txt
+Te0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>findTasksByCase</name>
+        <nameStyle>15,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f12 3694 116 36 24 20 -2 #rect
+Te0 f12 @|StepIcon #fIcon
+Te0 f29 expr out #txt
+Te0 f29 3712 79 3712 116 #arcP
+Te0 f30 expr out #txt
+Te0 f30 3712 140 1526 312 #arcP
+Te0 f30 1 3712 320 #addKink
+Te0 f30 1 0.45591214648301137 0 0 #arcLabel
 >Proto Te0 .webServiceName ch.ivy.ws.addon.TaskService #txt
 >Proto Te0 .authenticationType 'HTTP Basic' #txt
 >Proto Te0 .type ch.ivy.ws.addon.TaskServiceData #txt
@@ -1294,3 +1358,7 @@ Te0 f2 mainOut f5 tail #connect
 Te0 f5 head f3 mainIn #connect
 Te0 f3 mainOut f6 tail #connect
 Te0 f6 head f58 in #connect
+Te0 f7 mainOut f29 tail #connect
+Te0 f29 head f12 mainIn #connect
+Te0 f12 mainOut f30 tail #connect
+Te0 f30 head f58 in #connect
