@@ -10,6 +10,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.StopWatch;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.safety.Whitelist;
@@ -39,6 +40,7 @@ public class CaseWidgetBean implements Serializable {
 
   private Long expandedCaseId;
   private RemoteCase deletingCase;
+  private StopWatch sc;
 
   public CaseWidgetBean() {
     expandedCaseId = -1L;
@@ -49,11 +51,18 @@ public class CaseWidgetBean implements Serializable {
   }
 
   public void setExpandedCaseId(Long expandedCaseId, boolean alreadyExpanded) {
+    sc = new StopWatch();
+    sc.start();
     if (alreadyExpanded) {
       this.expandedCaseId = 0L;
     } else {
       this.expandedCaseId = expandedCaseId;
     }
+  }
+  
+  public void finishOpenCaseDetails() {
+    sc.stop();
+    Ivy.log().info("TIME TO OPEN CASE DETAILS: {0}", sc.getTime());
   }
 
   public RemoteCase getDeletingCase() {
