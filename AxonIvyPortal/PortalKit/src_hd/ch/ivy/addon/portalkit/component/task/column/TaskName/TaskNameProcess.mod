@@ -1,12 +1,9 @@
 [Ivy]
-15AE9A62C6A66DD8 3.23 #module
+15AE9A62C6A66DD8 3.28 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskNameProcess Big #zClass
 Ts0 RD #cInfo
 Ts0 #process
-Ts0 @TextInP .ui2RdDataAction .ui2RdDataAction #zField
-Ts0 @TextInP .rdData2UIAction .rdData2UIAction #zField
-Ts0 @TextInP .resExport .resExport #zField
 Ts0 @TextInP .type .type #zField
 Ts0 @TextInP .processKind .processKind #zField
 Ts0 @AnnotationInP-0n ai ai #zField
@@ -14,22 +11,20 @@ Ts0 @MessageFlowInP-0n messageIn messageIn #zField
 Ts0 @MessageFlowOutP-0n messageOut messageOut #zField
 Ts0 @TextInP .xml .xml #zField
 Ts0 @TextInP .responsibility .responsibility #zField
-Ts0 @RichDialogInitStart f0 '' #zField
-Ts0 @RichDialogProcessEnd f1 '' #zField
+Ts0 @UdInit f0 '' #zField
+Ts0 @UdProcessEnd f1 '' #zField
 Ts0 @PushWFArc f2 '' #zField
-Ts0 @RichDialogMethodStart f3 '' #zField
-Ts0 @RichDialogProcessEnd f4 '' #zField
+Ts0 @UdMethod f3 '' #zField
+Ts0 @UdProcessEnd f4 '' #zField
 Ts0 @PushWFArc f5 '' #zField
-Ts0 @RichDialogMethodStart f6 '' #zField
+Ts0 @UdMethod f6 '' #zField
 Ts0 @GridStep f7 '' #zField
 Ts0 @PushWFArc f8 '' #zField
-Ts0 @RichDialogProcessEnd f9 '' #zField
+Ts0 @UdProcessEnd f9 '' #zField
 Ts0 @PushWFArc f10 '' #zField
 >Proto Ts0 Ts0 TaskNameProcess #zField
 Ts0 f0 guid 1681204703950395 #txt
-Ts0 f0 type ch.ivy.addon.portalkit.component.task.column.TaskName.TaskNameData #txt
 Ts0 f0 method start() #txt
-Ts0 f0 disableUIEvents true #txt
 Ts0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -43,16 +38,13 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f0 83 83 26 26 -16 15 #rect
-Ts0 f0 @|RichDialogInitStartIcon #fIcon
-Ts0 f1 type ch.ivy.addon.portalkit.component.task.column.TaskName.TaskNameData #txt
+Ts0 f0 @|UdInitIcon #fIcon
 Ts0 f1 371 83 26 26 0 12 #rect
-Ts0 f1 @|RichDialogProcessEndIcon #fIcon
+Ts0 f1 @|UdProcessEndIcon #fIcon
 Ts0 f2 expr out #txt
 Ts0 f2 109 96 371 96 #arcP
 Ts0 f3 guid 1681204C698BF8C7 #txt
-Ts0 f3 type ch.ivy.addon.portalkit.component.task.column.TaskName.TaskNameData #txt
 Ts0 f3 method keepOldNameValue(javax.faces.event.ValueChangeEvent) #txt
-Ts0 f3 disableUIEvents false #txt
 Ts0 f3 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <javax.faces.event.ValueChangeEvent event> param = methodEvent.getInputArguments();
 ' #txt
@@ -68,16 +60,13 @@ Ts0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f3 83 179 26 26 -86 15 #rect
-Ts0 f3 @|RichDialogMethodStartIcon #fIcon
-Ts0 f4 type ch.ivy.addon.portalkit.component.task.column.TaskName.TaskNameData #txt
+Ts0 f3 @|UdMethodIcon #fIcon
 Ts0 f4 371 179 26 26 0 12 #rect
-Ts0 f4 @|RichDialogProcessEndIcon #fIcon
+Ts0 f4 @|UdProcessEndIcon #fIcon
 Ts0 f5 expr out #txt
 Ts0 f5 109 192 371 192 #arcP
 Ts0 f6 guid 16812056797ABC4C #txt
-Ts0 f6 type ch.ivy.addon.portalkit.component.task.column.TaskName.TaskNameData #txt
 Ts0 f6 method updateTask(ch.ivyteam.ivy.workflow.ITask) #txt
-Ts0 f6 disableUIEvents false #txt
 Ts0 f6 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <ch.ivyteam.ivy.workflow.ITask task> param = methodEvent.getInputArguments();
 ' #txt
@@ -93,16 +82,13 @@ Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f6 83 275 26 26 -51 15 #rect
-Ts0 f6 @|RichDialogMethodStartIcon #fIcon
-Ts0 f7 actionDecl 'ch.ivy.addon.portalkit.component.task.column.TaskName.TaskNameData out;
-' #txt
+Ts0 f6 @|UdMethodIcon #fIcon
 Ts0 f7 actionTable 'out=in;
 ' #txt
 Ts0 f7 actionCode 'import java.util.Arrays;
 
 out.task.getCase().createNote(ivy.session, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/setNameNote", Arrays.asList(ivy.session.getSessionUser().getDisplayName(), in.oldName, in.task.getName())));' #txt
 Ts0 f7 security system #txt
-Ts0 f7 type ch.ivy.addon.portalkit.component.task.column.TaskName.TaskNameData #txt
 Ts0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -114,9 +100,8 @@ Ts0 f7 200 266 112 44 -24 -8 #rect
 Ts0 f7 @|StepIcon #fIcon
 Ts0 f8 expr out #txt
 Ts0 f8 109 288 200 288 #arcP
-Ts0 f9 type ch.ivy.addon.portalkit.component.task.column.TaskName.TaskNameData #txt
 Ts0 f9 371 275 26 26 0 12 #rect
-Ts0 f9 @|RichDialogProcessEndIcon #fIcon
+Ts0 f9 @|UdProcessEndIcon #fIcon
 Ts0 f10 expr out #txt
 Ts0 f10 312 288 371 288 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.task.column.TaskName.TaskNameData #txt

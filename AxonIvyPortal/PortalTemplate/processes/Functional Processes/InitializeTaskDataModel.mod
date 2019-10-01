@@ -1,11 +1,9 @@
 [Ivy]
-[>Created: Mon Aug 07 15:19:13 ICT 2017]
-15DBBB9E9FC55C0A 3.20 #module
+15DBBB9E9FC55C0A 3.28 #module
 >Proto >Proto Collection #zClass
 Il0 InitializeTaskDataModel Big #zClass
 Il0 B #cInfo
 Il0 #process
-Il0 @TextInP .resExport .resExport #zField
 Il0 @TextInP .type .type #zField
 Il0 @TextInP .processKind .processKind #zField
 Il0 @AnnotationInP-0n ai ai #zField
@@ -26,10 +24,7 @@ Il0 f0 outParamDecl '<ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataMod
 ' #txt
 Il0 f0 outParamTable 'result.dataModel=in.dataModel;
 ' #txt
-Il0 f0 actionDecl 'ch.ivy.addon.portal.generic.InitializeTaskDataModelData out;
-' #txt
 Il0 f0 callSignature call() #txt
-Il0 f0 type ch.ivy.addon.portal.generic.InitializeTaskDataModelData #txt
 Il0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -41,17 +36,13 @@ Il0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Il0 f0 81 49 30 30 -13 17 #rect
 Il0 f0 @|StartSubIcon #fIcon
-Il0 f1 type ch.ivy.addon.portal.generic.InitializeTaskDataModelData #txt
 Il0 f1 337 49 30 30 0 15 #rect
 Il0 f1 @|EndSubIcon #fIcon
-Il0 f3 actionDecl 'ch.ivy.addon.portal.generic.InitializeTaskDataModelData out;
-' #txt
 Il0 f3 actionTable 'out=in;
 ' #txt
 Il0 f3 actionCode 'import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 
 in.dataModel = new TaskLazyDataModel();' #txt
-Il0 f3 type ch.ivy.addon.portal.generic.InitializeTaskDataModelData #txt
 Il0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

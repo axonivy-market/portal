@@ -58,7 +58,7 @@ class AbstractService<T extends BusinessEntity> {
           return (U) c.newInstance();
         }
       }
-      return abstractDaoClassType.newInstance();
+      return abstractDaoClassType.getDeclaredConstructor().newInstance();
     } catch (Exception e) {
       throw new PortalException("Cannot instantiate Dao instance", e);
     }

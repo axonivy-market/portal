@@ -1,11 +1,9 @@
 [Ivy]
-[>Created: Wed Nov 18 15:01:33 ICT 2015]
-14B2A3DC7173EA26 3.18 #module
+14B2A3DC7173EA26 3.28 #module
 >Proto >Proto Collection #zClass
 cs0 createARangeOfTasks Big #zClass
 cs0 B #cInfo
 cs0 #process
-cs0 @TextInP .resExport .resExport #zField
 cs0 @TextInP .type .type #zField
 cs0 @TextInP .processKind .processKind #zField
 cs0 @AnnotationInP-0n ai ai #zField
@@ -48,64 +46,20 @@ cs0 @TkArc f34 '' #zField
 cs0 @PushWFArc f32 '' #zField
 >Proto cs0 cs0 createARangeOfTasks #zField
 cs0 f0 outLink generateTask.ivp #txt
-cs0 f0 type ch.ivy.add.portalkit.task.TaskGenerationDataRange #txt
 cs0 f0 inParamDecl '<ch.ivy.add.portalkit.task.TaskGenerationDataRange rangeData> param;' #txt
 cs0 f0 inParamTable 'out=param.rangeData;
 ' #txt
-cs0 f0 actionDecl 'ch.ivy.add.portalkit.task.TaskGenerationDataRange out;
-' #txt
-cs0 f0 guid 14AEB787055701D8 #txt
 cs0 f0 requestEnabled false #txt
 cs0 f0 triggerEnabled true #txt
 cs0 f0 callSignature generateTask(ch.ivy.add.portalkit.task.TaskGenerationDataRange) #txt
 cs0 f0 persist false #txt
-cs0 f0 taskData '#
-#Fri Feb 27 16:22:46 ICT 2015
-TaskTriggered.ROL=SYSTEM
-TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
-TaskTriggered.PRI=2
+cs0 f0 taskData 'TaskTriggered.EXPRI=2
 TaskTriggered.EXROL=Everybody
-' #txt
-cs0 f0 caseData '#
-#Fri Feb 27 16:22:46 ICT 2015
-businessCalendarName=
-businessCreator.user=
-businessMilestone.timestamp=
-businessObject.code=
-businessObject.docDb.code=
-businessObject.folder.id=
-businessObject.name=
-businessPriority=
-businessStart.timestamp=
-case.description=
-case.name=
-correspondent.id=
-mainContact.docDb.code=
-mainContact.folder.id=
-mainContact.id=
-mainContact.name=
-mainContact.type=
-process.code=
-process.name=
-processCategory.code=
-processCategory.name=
-subType.code=
-subType.name=
-type.code=
-type.name=
-' #txt
+TaskTriggered.EXTYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.ROL=SYSTEM
+TaskTriggered.TYPE=0' #txt
 cs0 f0 showInStartList 1 #txt
-cs0 f0 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -118,7 +72,6 @@ cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 cs0 f0 @C|.responsibility Everybody #txt
 cs0 f0 195 211 26 26 14 0 #rect
 cs0 f0 @|StartRequestIcon #fIcon
-cs0 f1 type ch.ivy.add.portalkit.task.TaskGenerationDataRange #txt
 cs0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -130,44 +83,12 @@ cs0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 cs0 f1 194 330 28 28 14 0 #rect
 cs0 f1 @|AlternativeIcon #fIcon
-cs0 f2 actionDecl 'ch.ivy.add.portalkit.task.TaskGenerationDataRange out;
-' #txt
 cs0 f2 actionTable 'out=in1;
 ' #txt
-cs0 f2 outTypes "ch.ivy.add.portalkit.task.TaskGenerationDataRange","ch.ivy.add.portalkit.task.TaskGenerationDataRange" #txt
 cs0 f2 outLinks "TaskA.ivp","TaskB.ivp" #txt
-cs0 f2 caseData '#
-#Thu Apr 02 10:29:49 ICT 2015
-businessCalendarName=
-businessCreator.user=
-businessMilestone.timestamp=
-businessObject.code=
-businessObject.docDb.code=
-businessObject.folder.id=
-businessObject.name=
-businessPriority=
-businessStart.timestamp=
-case.description=
-case.name=CASE<%\=in1.taskCounter%>_<%\=in1.structuredData%>
-correspondent.id=
-customFields.varchar.5=in1.structuredData
-mainContact.docDb.code=
-mainContact.folder.id=
-mainContact.id=
-mainContact.name=
-mainContact.type=
-process.code=
-process.name=
-processCategory.code=
-processCategory.name=
-subType.code=
-subType.name=
-type.code=
-type.name=
-' #txt
-cs0 f2 taskData '#
-#Thu Apr 02 10:29:49 ICT 2015
-TaskA.EXPRI=2
+cs0 f2 caseData 'case.name=CASE<%\=in1.taskCounter%>_<%\=in1.structuredData%>
+customFields.STRING.CustomVarCharField5=in1.structuredData' #txt
+cs0 f2 taskData 'TaskA.EXPRI=2
 TaskA.EXROL=Everybody
 TaskA.EXTYPE=0
 TaskA.NAM=TASK<%\=in1.taskCounter%>_<%\=in1.structuredData%>
@@ -175,48 +96,19 @@ TaskA.PRI=2
 TaskA.ROL=Everybody
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0
-TaskA.customFields.varchar.5=in1.structuredData
+TaskA.customFields.STRING.CustomVarCharField5=in1.structuredData
 TaskB.EXPRI=2
 TaskB.EXROL=Everybody
 TaskB.EXTYPE=0
 TaskB.PRI=2
 TaskB.ROL=SYSTEM
 TaskB.SKIP_TASK_LIST=false
-TaskB.TYPE=0
-' #txt
-cs0 f2 taskAction 'ivy.case.setName(engine.expandMacros("CASE<%=in1.taskCounter%>_<%=in1.structuredData%>"));
-ivy.case.setCustomVarCharField5(in1.structuredData);
-import ch.ivyteam.ivy.workflow.TaskDefinition;
-List<TaskDefinition> taskDefinitions;
-TaskDefinition taskDef;import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskDef = new TaskDefinition();
-taskDef.setStartRequestPath("TaskA.ivp");
-taskDef.setName(engine.expandMacros("TASK<%=in1.taskCounter%>_<%=in1.structuredData%>"));
-taskDef.setAutoStartTask(false);
-taskDef.setActivator("Everybody");
-taskDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setExpiryActivator("Everybody");
-taskDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setCustomVarCharField5(in1.structuredData);
-taskDefinitions.add(taskDef);
-taskDef = new TaskDefinition();
-taskDef.setStartRequestPath("TaskB.ivp");
-taskDef.setAutoStartTask(false);
-taskDef.setActivator("SYSTEM");
-taskDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setExpiryActivator("Everybody");
-taskDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDefinitions.add(taskDef);
-' #txt
-cs0 f2 type ch.ivy.add.portalkit.task.TaskGenerationDataRange #txt
+TaskB.TYPE=0' #txt
 cs0 f2 template "" #txt
 cs0 f2 194 418 28 28 14 0 #rect
 cs0 f2 @|TaskSwitchIcon #fIcon
-cs0 f3 type ch.ivy.add.portalkit.task.TaskGenerationDataRange #txt
 cs0 f3 83 331 26 26 14 0 #rect
 cs0 f3 @|EndIcon #fIcon
-cs0 f4 type ch.ivy.add.portalkit.task.TaskGenerationDataRange #txt
 cs0 f4 195 483 26 26 14 0 #rect
 cs0 f4 @|EndIcon #fIcon
 cs0 f6 expr in #txt
@@ -229,12 +121,9 @@ cs0 f7 outCond ivp=="TaskA.ivp" #txt
 cs0 f7 208 446 208 483 #arcP
 cs0 f8 expr in #txt
 cs0 f8 194 344 109 344 #arcP
-cs0 f9 actionDecl 'ch.ivy.add.portalkit.task.TaskGenerationDataRange out;
-' #txt
 cs0 f9 actionTable 'out=in;
 ' #txt
 cs0 f9 actionCode 'in.taskCounter += 1;' #txt
-cs0 f9 type ch.ivy.add.portalkit.task.TaskGenerationDataRange #txt
 cs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -253,12 +142,9 @@ cs0 f11 expr out #txt
 cs0 f11 352 420 222 344 #arcP
 cs0 f11 1 352 344 #addKink
 cs0 f11 1 0.058532623964912746 0 0 #arcLabel
-cs0 f12 actionDecl 'ch.ivy.add.portalkit.task.TaskGenerationDataRange out;
-' #txt
 cs0 f12 actionTable 'out=in;
 ' #txt
 cs0 f12 actionCode 'in.taskCounter = in.from;' #txt
-cs0 f12 type ch.ivy.add.portalkit.task.TaskGenerationDataRange #txt
 cs0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -274,7 +160,6 @@ cs0 f13 expr out #txt
 cs0 f13 208 237 208 276 #arcP
 cs0 f5 expr out #txt
 cs0 f5 208 300 208 330 #arcP
-cs0 f14 type ch.ivy.add.portalkit.task.TaskGenerationDataRange #txt
 cs0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -286,46 +171,12 @@ cs0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 cs0 f14 594 338 28 28 14 0 #rect
 cs0 f14 @|AlternativeIcon #fIcon
-cs0 f15 type ch.ivy.add.portalkit.task.TaskGenerationDataRange #txt
 cs0 f15 595 547 26 26 14 0 #rect
 cs0 f15 @|EndIcon #fIcon
-cs0 f16 actionDecl 'ch.ivy.add.portalkit.task.TaskGenerationDataRange out;
-' #txt
 cs0 f16 actionTable 'out=in1;
 ' #txt
-cs0 f16 outTypes "ch.ivy.add.portalkit.task.TaskGenerationDataRange","ch.ivy.add.portalkit.task.TaskGenerationDataRange" #txt
 cs0 f16 outLinks "TaskA.ivp","TaskB.ivp" #txt
-cs0 f16 caseData '#
-#Thu Jan 15 10:15:22 ICT 2015
-businessCalendarName=
-businessCreator.user=
-businessMilestone.timestamp=
-businessObject.code=
-businessObject.docDb.code=
-businessObject.folder.id=
-businessObject.name=
-businessPriority=
-businessStart.timestamp=
-case.description=
-case.name=
-correspondent.id=
-mainContact.docDb.code=
-mainContact.folder.id=
-mainContact.id=
-mainContact.name=
-mainContact.type=
-process.code=
-process.name=
-processCategory.code=
-processCategory.name=
-subType.code=
-subType.name=
-type.code=
-type.name=
-' #txt
-cs0 f16 taskData '#
-#Thu Jan 15 10:15:22 ICT 2015
-TaskA.EXPRI=2
+cs0 f16 taskData 'TaskA.EXPRI=2
 TaskA.EXROL=Everybody
 TaskA.EXTYPE=0
 TaskA.PRI=2
@@ -338,40 +189,14 @@ TaskB.EXTYPE=0
 TaskB.PRI=2
 TaskB.ROL=SYSTEM
 TaskB.SKIP_TASK_LIST=false
-TaskB.TYPE=0
-' #txt
-cs0 f16 taskAction 'import ch.ivyteam.ivy.workflow.TaskDefinition;
-List<TaskDefinition> taskDefinitions;
-TaskDefinition taskDef;import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskDef = new TaskDefinition();
-taskDef.setStartRequestPath("TaskA.ivp");
-taskDef.setAutoStartTask(false);
-taskDef.setActivator("SYSTEM");
-taskDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setExpiryActivator("Everybody");
-taskDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDefinitions.add(taskDef);
-taskDef = new TaskDefinition();
-taskDef.setStartRequestPath("TaskB.ivp");
-taskDef.setAutoStartTask(false);
-taskDef.setActivator("SYSTEM");
-taskDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setExpiryActivator("Everybody");
-taskDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDefinitions.add(taskDef);
-' #txt
-cs0 f16 type ch.ivy.add.portalkit.task.TaskGenerationDataRange #txt
+TaskB.TYPE=0' #txt
 cs0 f16 template "" #txt
 cs0 f16 594 426 28 28 14 0 #rect
 cs0 f16 @|TaskSwitchIcon #fIcon
-cs0 f17 actionDecl 'ch.ivy.add.portalkit.task.TaskGenerationDataRange out;
-' #txt
 cs0 f17 actionTable 'out=in;
 ' #txt
 cs0 f17 actionCode 'in.from += 10;
 in.taskCounter += 10;' #txt
-cs0 f17 type ch.ivy.add.portalkit.task.TaskGenerationDataRange #txt
 cs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -384,68 +209,23 @@ from + 10</name>
 ' #txt
 cs0 f17 734 428 36 24 20 -2 #rect
 cs0 f17 @|StepIcon #fIcon
-cs0 f18 type ch.ivy.add.portalkit.task.TaskGenerationDataRange #txt
 cs0 f18 483 339 26 26 14 0 #rect
 cs0 f18 @|EndIcon #fIcon
 cs0 f19 outLink splitTaskGeneration.ivp #txt
-cs0 f19 type ch.ivy.add.portalkit.task.TaskGenerationDataRange #txt
 cs0 f19 inParamDecl '<ch.ivy.add.portalkit.task.TaskGenerationDataRange rangeData> param;' #txt
 cs0 f19 inParamTable 'out=param.rangeData;
 ' #txt
-cs0 f19 actionDecl 'ch.ivy.add.portalkit.task.TaskGenerationDataRange out;
-' #txt
-cs0 f19 guid 14AEB80426364AF4 #txt
 cs0 f19 requestEnabled false #txt
 cs0 f19 triggerEnabled true #txt
 cs0 f19 callSignature splitTaskGeneration(ch.ivy.add.portalkit.task.TaskGenerationDataRange) #txt
 cs0 f19 persist false #txt
-cs0 f19 taskData '#
-#Tue Jan 27 14:20:30 ICT 2015
-TaskTriggered.ROL=SYSTEM
-TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
-TaskTriggered.PRI=2
+cs0 f19 taskData 'TaskTriggered.EXPRI=2
 TaskTriggered.EXROL=Everybody
-' #txt
-cs0 f19 caseData '#
-#Tue Jan 27 14:20:30 ICT 2015
-businessCalendarName=
-businessCreator.user=
-businessMilestone.timestamp=
-businessObject.code=
-businessObject.docDb.code=
-businessObject.folder.id=
-businessObject.name=
-businessPriority=
-businessStart.timestamp=
-case.description=
-case.name=
-correspondent.id=
-mainContact.docDb.code=
-mainContact.folder.id=
-mainContact.id=
-mainContact.name=
-mainContact.type=
-process.code=
-process.name=
-processCategory.code=
-processCategory.name=
-subType.code=
-subType.name=
-type.code=
-type.name=
-' #txt
+TaskTriggered.EXTYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.ROL=SYSTEM
+TaskTriggered.TYPE=0' #txt
 cs0 f19 showInStartList 1 #txt
-cs0 f19 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 cs0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -458,12 +238,9 @@ cs0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 cs0 f19 @C|.responsibility Everybody #txt
 cs0 f19 595 211 26 26 14 0 #rect
 cs0 f19 @|StartRequestIcon #fIcon
-cs0 f20 actionDecl 'ch.ivy.add.portalkit.task.TaskGenerationDataRange out;
-' #txt
 cs0 f20 actionTable 'out=in;
 ' #txt
 cs0 f20 actionCode 'in.taskCounter = in.from+10;' #txt
-cs0 f20 type ch.ivy.add.portalkit.task.TaskGenerationDataRange #txt
 cs0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -493,9 +270,7 @@ cs0 f26 expr out #txt
 cs0 f26 608 237 608 276 #arcP
 cs0 f27 expr out #txt
 cs0 f27 608 300 608 338 #arcP
-cs0 f28 type ch.ivy.add.portalkit.task.TaskGenerationDataRange #txt
 cs0 f28 processCall 'Business Processes/createARangeOfTasks:generateTask(ch.ivy.add.portalkit.task.TaskGenerationDataRange)' #txt
-cs0 f28 doCall true #txt
 cs0 f28 requestActionDecl '<ch.ivy.add.portalkit.task.TaskGenerationDataRange rangeData> param;
 ' #txt
 cs0 f28 requestMappingAction 'param.rangeData.from=in.from;
@@ -525,33 +300,20 @@ cs0 f29 608 454 608 484 #arcP
 cs0 f22 expr out #txt
 cs0 f22 608 508 608 547 #arcP
 cs0 f30 outLink generateTasks.ivp #txt
-cs0 f30 type ch.ivy.add.portalkit.task.TaskGenerationDataRange #txt
 cs0 f30 inParamDecl '<java.lang.Number counter> param;' #txt
 cs0 f30 inParamTable 'out.taskCounter=param.counter;
 ' #txt
-cs0 f30 actionDecl 'ch.ivy.add.portalkit.task.TaskGenerationDataRange out;
-' #txt
-cs0 f30 guid 15118E20D421D75B #txt
 cs0 f30 requestEnabled false #txt
 cs0 f30 triggerEnabled true #txt
 cs0 f30 callSignature generateTasks(Number) #txt
 cs0 f30 persist false #txt
-cs0 f30 taskData 'TaskTriggered.ROL=SYSTEM
+cs0 f30 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=SYSTEM
+TaskTriggered.TYPE=0' #txt
 cs0 f30 showInStartList 1 #txt
-cs0 f30 taskAndCaseSetupAction 'import ch.ivyteam.ivy.workflow.TaskUpdateDefinition;
-ch.ivyteam.ivy.workflow.TaskUpdateDefinition taskUpdDef = new ch.ivyteam.ivy.workflow.TaskUpdateDefinition();
-import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskUpdDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskUpdDef.setExpiryActivator("Everybody");
-taskUpdDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-engine.updateCurrentTask(taskUpdDef);
-' #txt
 cs0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -564,14 +326,10 @@ cs0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 cs0 f30 @C|.responsibility Everybody #txt
 cs0 f30 947 211 26 26 14 0 #rect
 cs0 f30 @|StartRequestIcon #fIcon
-cs0 f31 type ch.ivy.add.portalkit.task.TaskGenerationDataRange #txt
 cs0 f31 947 419 26 26 14 0 #rect
 cs0 f31 @|EndIcon #fIcon
-cs0 f33 actionDecl 'ch.ivy.add.portalkit.task.TaskGenerationDataRange out;
-' #txt
 cs0 f33 actionTable 'out=in1;
 ' #txt
-cs0 f33 outTypes "ch.ivy.add.portalkit.task.TaskGenerationDataRange" #txt
 cs0 f33 outLinks "TaskA.ivp" #txt
 cs0 f33 taskData 'TaskA.DESC=Sample description <%\=in1.taskCounter%>
 TaskA.EXP=''P2h3m''
@@ -583,23 +341,6 @@ TaskA.PRI=2
 TaskA.ROL=Everybody
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
-cs0 f33 taskAction 'import ch.ivyteam.ivy.workflow.TaskDefinition;
-List<TaskDefinition> taskDefinitions;
-TaskDefinition taskDef;import ch.ivyteam.ivy.request.impl.DefaultCalendarProxy;
-DefaultCalendarProxy calendarProxy = ivy.cal as DefaultCalendarProxy;
-taskDef = new TaskDefinition();
-taskDef.setStartRequestPath("TaskA.ivp");
-taskDef.setName(engine.expandMacros("Task <%=in1.taskCounter%>"));
-taskDef.setDescription(engine.expandMacros("Sample description <%=in1.taskCounter%>"));
-taskDef.setAutoStartTask(false);
-taskDef.setActivator("Everybody");
-taskDef.setPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDef.setExpiryPeriod(1000 * (''P2h3m'').toNumber());
-taskDef.setExpiryActivator("Everybody");
-taskDef.setExpiryPriority(ch.ivyteam.ivy.workflow.WorkflowPriority.valueOf(2));
-taskDefinitions.add(taskDef);
-' #txt
-cs0 f33 type ch.ivy.add.portalkit.task.TaskGenerationDataRange #txt
 cs0 f33 template "" #txt
 cs0 f33 947 307 26 26 13 0 #rect
 cs0 f33 @|TaskSwitchSimpleIcon #fIcon

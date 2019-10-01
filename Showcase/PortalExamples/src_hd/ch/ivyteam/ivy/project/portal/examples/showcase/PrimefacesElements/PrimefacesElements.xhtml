@@ -1,24 +1,11 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:ic="http://ivyteam.ch/jsf/component"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pe="http://primefaces.org/ui/extensions"
-	xmlns:pm="http://primefaces.org/mobile">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
-	<ui:composition template="/layouts/TaskTemplate.xhtml">
-		<ui:define name="title">Datatable</ui:define>
-		<ui:param name="caseId" value="#{ivy.case.id}" />
-		<ui:param name="task" value="#{ivy.task}" />
-   
-		<ui:define name="taskForm">
-		<ui:define name="taskName"/> 
-		<h:form id="form"> 
-			<div class="ui-fluid">
-				<f:facet name="header">
-					<p:messages></p:messages>
-				</f:facet>
+  <ui:composition template="/layouts/TaskTemplate.xhtml">
+    <ui:define name="pageTitle">Datatable</ui:define>
+    <ui:param name="caseId" value="#{ivy.case.id}" />
+    <ui:param name="task" value="#{ivy.task}" />
 
 				<p:outputLabel styleClass="task-template-title" style="margin-left:26px">Demo Primefaces Elements</p:outputLabel>
 				 <div class="ui-g MarTop10">
@@ -136,72 +123,74 @@
 					<div class="ui-g-12 ui-md-9 ui-lg-3" ><p:inputText id="inputz" /></div>
 				</div>
 
-				<div class="ui-g" >		
-					<div class="ui-g-12 ui-md-3 ui-lg-2" ><p:outputLabel for="mask" value="Mask" /></div>
-					<div class="ui-g-12 ui-md-9 ui-lg-3" ><p:inputMask id="mask" mask="99/99/9999" /></div>
-					<div class="ui-g-12 ui-md-0 ui-lg-1" ></div>
-					<div class="ui-g-12 ui-md-3 ui-lg-2" ><p:outputLabel for="pwd" value="Password" /></div>
-					<div class="ui-g-12 ui-md-9 ui-lg-3" ><p:password id="pwd" /></div>
-				</div>
+          <div class="ui-g">
+            <div class="ui-g-12 ui-md-3 ui-lg-2 right-align-label">
+              <p:outputLabel for="inputy" value="One Line Input" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-3">
+              <p:inputText id="inputy" />
+            </div>
+            <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
+            <div class="ui-g-12 ui-md-3 ui-lg-2 right-align-label">
+              <p:outputLabel for="area" value="Textarea" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-3">
+              <p:inputTextarea id="area" />
+            </div>
+          </div>
 
-				<div class="ui-g" >		
-					<div class="ui-g-12 ui-md-3 ui-lg-2" ><p:outputLabel for="keyboard" value="Keyboard" /></div>
-					<div class="ui-g-12 ui-md-9 ui-lg-3" ><p:keyboard id="keyboard" /></div>
-					<div class="ui-g-12 ui-md-0 ui-lg-1" ></div>
-					<div class="ui-g-12 ui-md-3 ui-lg-2" ><p:outputLabel for="onemenu" value="OneMenu" /></div>
-					<div class="ui-g-12 ui-md-9 ui-lg-3" >
-						<p:selectOneMenu id="onemenu">
-							<f:selectItem itemLabel="Select One" itemValue="" />
-							<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
-							<f:selectItem itemLabel="PS4" itemValue="PS4" />
-							<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
-						</p:selectOneMenu>
-					</div>
-				</div>
+          <div class="ui-g">
+            <div class="ui-g-12 ui-md-3 ui-lg-2 right-align-label">
+              <p:outputLabel for="calendar-y" value="Calendar" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-3">
+              <p:calendar id="calendar-y" />
+            </div>
+            <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
+            <div class="ui-g-12 ui-md-3 ui-lg-2 right-align-label">
+              <p:outputLabel for="inputz" value="AutoComplete" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-3">
+              <p:inputText id="inputz" />
+            </div>
+          </div>
 
-				<div class="ui-g" >
-					<div class="ui-g-12 ui-md-3 ui-lg-2" ><p:outputLabel for="slider" value="Slider" /></div>
-					<div class="ui-g-12 ui-md-9 ui-lg-3" >
-						<p:outputPanel>
-							<p:inputText id="slider" />
-							<p:slider for="slider" />
-						</p:outputPanel>
-					</div>
-				</div>
+          <div class="ui-g">
+            <div class="ui-g-12 ui-md-3 ui-lg-2 right-align-label">
+              <p:outputLabel for="mask" value="Mask" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-3">
+              <p:inputMask id="mask" mask="99/99/9999" />
+            </div>
+            <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
+            <div class="ui-g-12 ui-md-3 ui-lg-2 right-align-label">
+              <p:outputLabel for="pwd" value="Password" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-3">
+              <p:password id="pwd" />
+            </div>
+          </div>
 
-					<div class="ui-g" >		
-						<div class="ui-g-12 ui-md-3 ui-lg-2" ><p:outputLabel for="chkmenu" value="CheckboxMenu" /></div>
-						<div class="ui-g-12 ui-md-9 ui-lg-3" ><p:selectCheckboxMenu id="chkmenu" label="Cities">
-							<f:selectItems value="#{checkboxView.cities}" />
-						</p:selectCheckboxMenu></div>
-						<div class="ui-g-12 ui-md-0 ui-lg-1" ></div>
-						<div class="ui-g-12 ui-md-3 ui-lg-2" ><p:outputLabel for="dialog" value="Dialog" /></div>
-						<div class="ui-g-12 ui-md-9 ui-lg-3" ><p:commandButton id="dialog" value="Show" icon="fa fa-eye"
-							type="button" onclick="PF('dlg').show()" /></div>
-					</div>
-					<div class="ui-g" >		
-						<div class="ui-g-12 ui-md-3 ui-lg-2" ><p:outputLabel id="listboxLabel" for="listbox" value="Listbox" /></div>
-						<div class="ui-g-12 ui-md-9 ui-lg-3" ><p:selectOneListbox id="listbox">
-							<f:selectItem itemLabel="Sentinel" itemValue="Sentinel" />
-							<f:selectItem itemLabel="Spark" itemValue="Spark" />
-							<f:selectItem itemLabel="Ronin" itemValue="Ronin" />
-							<f:selectItem itemLabel="Rio" itemValue="Rio" />
-							<f:selectItem itemLabel="Primus" itemValue="Primus" />
-						</p:selectOneListbox></div>
-						<div class="ui-g-12 ui-md-0 ui-lg-1" ></div>
-						<div class="ui-g-12 ui-md-3 ui-lg-2" >
-							<div class="ui-g-12 ui-md-12 ui-lg-12" >
-								<p:outputLabel id="booleanBtnLabel" for="booleanBtn" value="Boolean Button" />
-							</div>
-							<div class="ui-g-12 ui-md-12 ui-lg-12" >
-								<p:outputLabel id= "manyBtnLabel" for="manyBtn" value="Many Button" />
-							</div>
-						</div>
-						<div class="ui-g-12 ui-md-9 ui-lg-3" >
-							<div class="ui-g-12 ui-md-12 ui-lg-12" >
-								<p:selectBooleanButton id="booleanBtn" onLabel="Yes" offLabel="No"
-									onIcon="fa fa-check" offIcon="fa fa-close" />
-							</div>
+          <div class="ui-g">
+            <div class="ui-g-12 ui-md-3 ui-lg-2 right-align-label">
+              <p:outputLabel for="keyboard" value="Keyboard" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-3">
+              <p:keyboard id="keyboard" />
+            </div>
+            <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
+            <div class="ui-g-12 ui-md-3 ui-lg-2 right-align-label">
+              <p:outputLabel for="onemenu" value="OneMenu" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-3">
+              <p:selectOneMenu id="onemenu">
+                <f:selectItem itemLabel="Select One" itemValue="" />
+                <f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
+                <f:selectItem itemLabel="PS4" itemValue="PS4" />
+                <f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+              </p:selectOneMenu>
+            </div>
+          </div>
 
 							<div class="ui-g-12 ui-md-12 ui-lg-12" >
 								<p:selectOneButton id="manyBtn">

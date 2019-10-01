@@ -1,6 +1,11 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
-  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://java.sun.com/jsp/jstl/core">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:body>
 
   <ui:composition template="/layouts/TaskTemplate.xhtml">
@@ -17,8 +22,12 @@
       <p:messages id="error-messages" showDetail="false" closable="true" autoUpdate="false" />
     </ui:define>
 
+    <ui:define name="title">#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/PageTitle')} #{ivy.case.name}</ui:define>
+        <ui:define name="errorsZone">
+          <p:messages id="error-messages" showDetail="false" closable="true" />
+        </ui:define>
     <ui:define name="taskForm">
-      <p:growl id="error-growl" autoUpdate="false" globalOnly="true" showDetail="false" showSummary="true" />
+      <p:growl id="error-growl" globalOnly="true" showDetail="false" showSummary="true" />
       <div class="ui-g-12">
         <!-- DEFINED TASKS -->
         <h:panelGroup id="defined-task-container" layout="block" styleClass="defined-task-container card">

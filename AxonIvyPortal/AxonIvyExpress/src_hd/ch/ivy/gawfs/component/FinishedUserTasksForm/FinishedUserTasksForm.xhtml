@@ -1,6 +1,11 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
-  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:cc="http://java.sun.com/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:cc="http://java.sun.com/jsf/composite"
+  xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="finishedTasks" required="true" />
 </cc:interface>
@@ -77,10 +82,16 @@
             </p:dataList>
           </pe:dynaFormControl>
 
-          <pe:dynaFormControl type="FileUpload" for="file-upload">
-            <ic:ch.ivy.gawfs.component.CaseDocument uploadPossible="false" fileLimit="#{dynaData.intSetting}" startMethod="start(#{dynaData.options})"
-              allowFiletypes="#{dynaData.options}" />
-          </pe:dynaFormControl>
+        <pe:dynaFormControl type="OneRadio" for="oneRadio">
+          <p:dataList value="#{dynaData.value}" var="checkItem" type="definition" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}">
+            <i class="fa fa-dot-circle-o" aria-hidden="true"></i> #{checkItem}
+          </p:dataList>
+        </pe:dynaFormControl>
+        
+        <pe:dynaFormControl type="FileUpload" for="fileUpload">
+          <ic:ch.ivy.addon.portalkit.component.document.DocumentTable uploadRendered="false" deleteRendered="false" typeColumnRendered="false"
+            fileLimit="#{dynaData.intSetting}" />
+        </pe:dynaFormControl>
 
           <pe:dynaFormControl type="Spacer" for="spacer">
             <p:spacer width="50" height="16" id="spacer" />

@@ -1,10 +1,9 @@
 [Ivy]
-16D5C32CD8527DA7 3.26 #module
+16D5C32CD8527DA7 3.28 #module
 >Proto >Proto Collection #zClass
 Os0 OpenPortalTaskDetailsHook Big #zClass
 Os0 B #cInfo
 Os0 #process
-Os0 @TextInP .resExport .resExport #zField
 Os0 @TextInP .type .type #zField
 Os0 @TextInP .processKind .processKind #zField
 Os0 @AnnotationInP-0n ai ai #zField
@@ -14,7 +13,7 @@ Os0 @TextInP .xml .xml #zField
 Os0 @TextInP .responsibility .responsibility #zField
 Os0 @StartSub f0 '' #zField
 Os0 @EndSub f1 '' #zField
-Os0 @RichDialog f2 '' #zField
+Os0 @UserDialog f2 '' #zField
 Os0 @PushWFArc f3 '' #zField
 Os0 @PushWFArc f4 '' #zField
 >Proto Os0 Os0 OpenPortalTaskDetailsHook #zField
@@ -26,10 +25,7 @@ out.task=param.task;
 ' #txt
 Os0 f0 outParamDecl '<> result;
 ' #txt
-Os0 f0 actionDecl '_ch.ivyteam.ivy.project.portal.examples.OpenPortalTaskDetailsOverrideData out;
-' #txt
 Os0 f0 callSignature call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean) #txt
-Os0 f0 type _ch.ivyteam.ivy.project.portal.examples.OpenPortalTaskDetailsOverrideData #txt
 Os0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -39,12 +35,10 @@ Os0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Os0 f0 81 49 30 30 -64 15 #rect
 Os0 f0 @|StartSubIcon #fIcon
-Os0 f1 type _ch.ivyteam.ivy.project.portal.examples.OpenPortalTaskDetailsOverrideData #txt
 Os0 f1 465 49 30 30 0 15 #rect
 Os0 f1 @|EndSubIcon #fIcon
-Os0 f2 richDialogId ch.ivyteam.ivy.project.portal.examples.component.customize.TaskItemDetails #txt
+Os0 f2 dialogId ch.ivyteam.ivy.project.portal.examples.component.customize.TaskItemDetails #txt
 Os0 f2 startMethod start(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean) #txt
-Os0 f2 type _ch.ivyteam.ivy.project.portal.examples.OpenPortalTaskDetailsOverrideData #txt
 Os0 f2 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,Boolean isFromTaskList> param;' #txt
 Os0 f2 requestMappingAction 'param.task=in.task;
 param.dataModel=in.dataModel;
@@ -63,7 +57,7 @@ Os0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Os0 f2 296 42 112 44 -34 -8 #rect
-Os0 f2 @|RichDialogIcon #fIcon
+Os0 f2 @|UserDialogIcon #fIcon
 Os0 f3 expr out #txt
 Os0 f3 111 64 296 64 #arcP
 Os0 f4 expr out #txt

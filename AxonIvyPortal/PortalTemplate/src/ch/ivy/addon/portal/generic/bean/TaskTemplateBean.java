@@ -28,6 +28,7 @@ public class TaskTemplateBean implements Serializable{
 
   private List<IStartableSideStep> sideStepList;
   private IStartableSideStep selectedSideStep;
+  private List<AdhocHistory> adhocHistories;
 
   public List<IStartableSideStep> getSideStepList() {
     return sideStepList;
@@ -91,10 +92,12 @@ public class TaskTemplateBean implements Serializable{
   }
   
   public List<AdhocHistory> getAllAdhocHistories() {
-    AdhocHistoryService adhocHistoryService = new AdhocHistoryService();
-    List<AdhocHistory> histories = adhocHistoryService.getHistoriesByTaskID(Ivy.wfTask().getId());
-    histories.sort((first, second) -> second.getTimestamp().compareTo(first.getTimestamp()));
-	return histories;
+    if (adhocHistories == null) {
+      AdhocHistoryService adhocHistoryService = new AdhocHistoryService();
+      adhocHistories = adhocHistoryService.getHistoriesByTaskID(Ivy.wfTask().getId());
+      adhocHistories.sort((first, second) -> second.getTimestamp().compareTo(first.getTimestamp()));
+    }
+    return adhocHistories;
   }
 
   public boolean checkSideStepsEnabled(String caseId) {

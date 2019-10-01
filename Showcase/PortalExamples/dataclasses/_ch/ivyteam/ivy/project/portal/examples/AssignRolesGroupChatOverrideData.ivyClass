@@ -1,0 +1,4 @@
+AssignRolesGroupChatOverrideData #class
+_ch.ivyteam.ivy.project.portal.examples #namespace
+roles java.util.List<ch.ivyteam.ivy.security.IRole> #field
+task ch.ivyteam.ivy.workflow.ITask #field

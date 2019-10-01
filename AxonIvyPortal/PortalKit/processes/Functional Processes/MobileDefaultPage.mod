@@ -1,10 +1,9 @@
 [Ivy]
-166D409FCC5FB4BD 3.23 #module
+166D409FCC5FB4BD 3.28 #module
 >Proto >Proto Collection #zClass
 Mu0 MobileDefaultPage Big #zClass
 Mu0 B #cInfo
 Mu0 #process
-Mu0 @TextInP .resExport .resExport #zField
 Mu0 @TextInP .type .type #zField
 Mu0 @TextInP .processKind .processKind #zField
 Mu0 @AnnotationInP-0n ai ai #zField
@@ -25,10 +24,7 @@ Mu0 f0 outParamDecl '<ch.ivy.addon.portalkit.enums.MenuKind page> result;
 ' #txt
 Mu0 f0 outParamTable 'result.page=in.page;
 ' #txt
-Mu0 f0 actionDecl 'ch.ivy.add.portalkit.MobileDefaultPageData out;
-' #txt
 Mu0 f0 callSignature call() #txt
-Mu0 f0 type ch.ivy.add.portalkit.MobileDefaultPageData #txt
 Mu0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -38,15 +34,11 @@ Mu0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Mu0 f0 81 49 30 30 -13 17 #rect
 Mu0 f0 @|StartSubIcon #fIcon
-Mu0 f1 type ch.ivy.add.portalkit.MobileDefaultPageData #txt
 Mu0 f1 337 49 30 30 0 15 #rect
 Mu0 f1 @|EndSubIcon #fIcon
-Mu0 f3 actionDecl 'ch.ivy.add.portalkit.MobileDefaultPageData out;
-' #txt
 Mu0 f3 actionTable 'out=in;
 ' #txt
 Mu0 f3 actionCode 'out.page = ch.ivy.addon.portalkit.enums.MenuKind.TASK;' #txt
-Mu0 f3 type ch.ivy.add.portalkit.MobileDefaultPageData #txt
 Mu0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

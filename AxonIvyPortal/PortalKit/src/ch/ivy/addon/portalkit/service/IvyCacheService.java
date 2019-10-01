@@ -114,7 +114,7 @@ public class IvyCacheService {
       ServerFactory.getServer().getSecurityManager().executeAsSystem(() ->{
         IApplication findApplication = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(applicationName);
         if (findApplication != null) {
-          IDataCache cache = (IDataCache) findApplication .getAdapter(IDataCache.class);
+          IDataCache cache = findApplication .getAdapter(IDataCache.class);
           if (cache != null) {
             IDataCacheGroup wsGroupName = cache.getGroup(IvyCacheIdentifier.GLOBAL_SETTING_CACHE_GROUP_NAME);
             if (wsGroupName != null){

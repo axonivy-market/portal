@@ -1,10 +1,9 @@
 [Ivy]
-1657E6622F0C0122 3.26 #module
+1657E6622F0C0122 3.28 #module
 >Proto >Proto Collection #zClass
 Ls0 LoadSubMenuItems Big #zClass
 Ls0 B #cInfo
 Ls0 #process
-Ls0 @TextInP .resExport .resExport #zField
 Ls0 @TextInP .type .type #zField
 Ls0 @TextInP .processKind .processKind #zField
 Ls0 @AnnotationInP-0n ai ai #zField
@@ -25,10 +24,7 @@ Ls0 f0 outParamDecl '<List<ch.addon.portal.generic.menu.SubMenuItem> subMenuItem
 ' #txt
 Ls0 f0 outParamTable 'result.subMenuItems=in.subMenuItems;
 ' #txt
-Ls0 f0 actionDecl '_ch.ivyteam.ivy.project.portal.examples.LoadSubMenuItemsOverrideData out;
-' #txt
 Ls0 f0 callSignature loadSubMenuItems() #txt
-Ls0 f0 type _ch.ivyteam.ivy.project.portal.examples.LoadSubMenuItemsOverrideData #txt
 Ls0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -38,11 +34,8 @@ Ls0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ls0 f0 81 137 30 30 16 11 #rect
 Ls0 f0 @|StartSubIcon #fIcon
-Ls0 f1 type _ch.ivyteam.ivy.project.portal.examples.LoadSubMenuItemsOverrideData #txt
 Ls0 f1 81 361 30 30 0 15 #rect
 Ls0 f1 @|EndSubIcon #fIcon
-Ls0 f3 actionDecl '_ch.ivyteam.ivy.project.portal.examples.LoadSubMenuItemsOverrideData out;
-' #txt
 Ls0 f3 actionTable 'out=in;
 ' #txt
 Ls0 f3 actionCode 'import org.apache.commons.lang3.StringUtils;
@@ -97,7 +90,6 @@ if(process != null) {
 	in.subMenuItems.add(selfService);
 }' #txt
 Ls0 f3 security system #txt
-Ls0 f3 type _ch.ivyteam.ivy.project.portal.examples.LoadSubMenuItemsOverrideData #txt
 Ls0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

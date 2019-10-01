@@ -1,10 +1,9 @@
 [Ivy]
-16A684441A0EF157 3.26 #module
+16A684441A0EF157 3.28 #module
 >Proto >Proto Collection #zClass
 Dd0 DefaultStatisticCustomField Big #zClass
 Dd0 B #cInfo
 Dd0 #process
-Dd0 @TextInP .resExport .resExport #zField
 Dd0 @TextInP .type .type #zField
 Dd0 @TextInP .processKind .processKind #zField
 Dd0 @AnnotationInP-0n ai ai #zField
@@ -24,10 +23,7 @@ Dd0 f0 outParamDecl '<java.util.List<java.lang.String> customFields> result;
 ' #txt
 Dd0 f0 outParamTable 'result.customFields=in.customFields;
 ' #txt
-Dd0 f0 actionDecl 'ch.ivy.addon.portalkit.DefaultStatisticCustomFieldData out;
-' #txt
 Dd0 f0 callSignature createDefaultStatisticCustomFields() #txt
-Dd0 f0 type ch.ivy.addon.portalkit.DefaultStatisticCustomFieldData #txt
 Dd0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -37,17 +33,13 @@ Dd0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dd0 f0 81 49 30 30 28 -7 #rect
 Dd0 f0 @|StartSubIcon #fIcon
-Dd0 f1 type ch.ivy.addon.portalkit.DefaultStatisticCustomFieldData #txt
 Dd0 f1 81 297 30 30 0 15 #rect
 Dd0 f1 @|EndSubIcon #fIcon
-Dd0 f3 actionDecl 'ch.ivy.addon.portalkit.DefaultStatisticCustomFieldData out;
-' #txt
 Dd0 f3 actionTable 'out=in;
 ' #txt
 Dd0 f3 actionCode 'import java.util.Arrays;
 
 in.customFields = Arrays.asList("CustomVarCharField1", "CustomVarCharField2", "CustomVarCharField3", "CustomVarCharField4", "CustomVarCharField5");' #txt
-Dd0 f3 type ch.ivy.addon.portalkit.DefaultStatisticCustomFieldData #txt
 Dd0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

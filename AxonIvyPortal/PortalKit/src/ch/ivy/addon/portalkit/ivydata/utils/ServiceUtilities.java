@@ -75,7 +75,29 @@ public class ServiceUtilities {
   private static void requireNonNull(IApplication app) {
     Objects.requireNonNull(app, "The application must not be null");
   }
-
+  
+  /**
+   * Finds all of the users within the given app, except the system user and current user
+   * @param app
+   * @return users
+   */
+  @SuppressWarnings("unchecked")
+  public static List<IUser> findAllUsersExceptCurrentUser(IApplication app) {
+    Objects.requireNonNull(app, "The application must not be null");
+    
+    Optional<Object> cacheValueOpt = IvyCacheService.newInstance().getSessionCacheValue(app.getName(), IvyCacheIdentifier.USERS_IN_APPLICATION_EXCEPT_CURRENT_USER);
+    if (cacheValueOpt.isPresent()) {
+      return (List<IUser>) cacheValueOpt.get();
+    }
+    
+    List<IUser> users = new ArrayList<>(app.getSecurityContext().getUsers());
+    users.removeIf(user -> StringUtils.equals(ISecurityConstants.SYSTEM_USER_NAME, user.getName()) 
+        || StringUtils.equals(Ivy.session().getSessionUserName(), user.getName()));
+    
+    IvyCacheService.newInstance().setSessionCache(app.getName(), IvyCacheIdentifier.USERS_IN_APPLICATION_EXCEPT_CURRENT_USER, users);
+    return users;
+  }
+  
   /**
    * Finds all of the users within the given app, except the system user
    * @param app
