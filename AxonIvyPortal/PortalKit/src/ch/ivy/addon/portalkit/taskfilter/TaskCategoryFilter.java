@@ -116,12 +116,12 @@ public class TaskCategoryFilter extends TaskFilter {
       return;
     }
     TaskNode nodeData = (TaskNode) node.getData();
-    for(String path : paths) {
+    for (String path : paths) {
       if (path.equals(nodeData.getCategory())) {
         node.setSelected(true);
         selectedCategories.add(node);
       } else {
-        if(!selectedCategories.contains(node)) {
+        if (!selectedCategories.contains(node)) {
           node.setSelected(false);
         }
       }

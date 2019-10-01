@@ -8,7 +8,7 @@
 }
 
 #logo>img {
-	margin: 5px 0 0 10px;
+	margin: 5px 0 0 0px;
 }
 
 .global-search-icon {
@@ -430,8 +430,22 @@
 .ui-confirm-dialog-message li {
 	list-style-type: circle;
 }
+/******** CHAT ********/
+.ui-autocomplete.chat-user-selection, .ui-autocomplete.chat-role-selection {
+  width: 100%;
+}
 
-/* SERENITY SIDE BAR */
+.ui-autocomplete-input.chat-user-selection-input, .ui-autocomplete-input.chat-role-selection-input {
+  width: calc(100% - 25px);
+}
+
+.chat-add-assignee-button-grid, .chat-action-container {
+ text-align: right; 
+}
+
+.chat-delete-assignee {
+  float: right;
+}/* SERENITY SIDE BAR */
 
 
 /* SERENITY TOP BAR */

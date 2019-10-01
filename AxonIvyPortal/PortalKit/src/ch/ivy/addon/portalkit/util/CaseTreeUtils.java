@@ -33,6 +33,7 @@ public class CaseTreeUtils {
   private CaseTreeUtils() {}
 
   public static CheckboxTreeNode buildCaseCategoryCheckboxTreeRoot() {
+
     CheckboxTreeNode root = buildRoot();
     RegisteredApplicationService service = new RegisteredApplicationService();
     List<String> involvedApplications =

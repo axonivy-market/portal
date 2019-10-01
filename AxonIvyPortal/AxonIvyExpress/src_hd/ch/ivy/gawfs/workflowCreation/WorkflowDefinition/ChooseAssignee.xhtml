@@ -15,7 +15,7 @@
 					itemValue="true" itemDisabled="#{empty workflowDefinitionBean.availableUsers}" />
 				<f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/toGroup')}"
 					itemValue="false" itemDisabled="#{empty workflowDefinitionBean.availableRoles}" />
-				<p:ajax event="change" listener="#{logic.changeAssigneeType}" update="assignee-selection-form" />
+				<p:ajax event="change" listener="#{logic.changeAssigneeType}" update="assignee-selection-form" process="@this" />
 			</p:selectOneRadio>
 
 			<h:panelGroup id="select-assignee" layout="block" styleClass="select-assignee">

@@ -1,10 +1,9 @@
 [Ivy]
-16A914CEF46EA5B8 3.26 #module
+16A914CEF46EA5B8 3.28 #module
 >Proto >Proto Collection #zClass
 Dd0 DefaultStatisticCustomField Big #zClass
 Dd0 B #cInfo
 Dd0 #process
-Dd0 @TextInP .resExport .resExport #zField
 Dd0 @TextInP .type .type #zField
 Dd0 @TextInP .processKind .processKind #zField
 Dd0 @AnnotationInP-0n ai ai #zField
@@ -24,10 +23,7 @@ Dd0 f0 outParamDecl '<java.util.List<java.lang.String> customFields> result;
 ' #txt
 Dd0 f0 outParamTable 'result.customFields=in.customFields;
 ' #txt
-Dd0 f0 actionDecl '_ch.ivyteam.ivy.project.portal.examples.DefaultStatisticCustomFieldOverrideData out;
-' #txt
 Dd0 f0 callSignature createDefaultStatisticCustomFields() #txt
-Dd0 f0 type _ch.ivyteam.ivy.project.portal.examples.DefaultStatisticCustomFieldOverrideData #txt
 Dd0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -37,17 +33,13 @@ Dd0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dd0 f0 81 49 30 30 34 -10 #rect
 Dd0 f0 @|StartSubIcon #fIcon
-Dd0 f1 type _ch.ivyteam.ivy.project.portal.examples.DefaultStatisticCustomFieldOverrideData #txt
 Dd0 f1 81 305 30 30 0 15 #rect
 Dd0 f1 @|EndSubIcon #fIcon
-Dd0 f3 actionDecl '_ch.ivyteam.ivy.project.portal.examples.DefaultStatisticCustomFieldOverrideData out;
-' #txt
 Dd0 f3 actionTable 'out=in;
 ' #txt
 Dd0 f3 actionCode 'import java.util.Arrays;
 
 in.customFields = Arrays.asList("CustomVarCharField1", "CompanyName");' #txt
-Dd0 f3 type _ch.ivyteam.ivy.project.portal.examples.DefaultStatisticCustomFieldOverrideData #txt
 Dd0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

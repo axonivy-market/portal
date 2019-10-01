@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -71,7 +70,8 @@ public class CaseWidgetBean implements Serializable {
       additionalCaseDetailsPageUri = CaseUtils.getProcessStartUriWithCaseParameters(iCase, START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE);
     }
     return removeDuplicatedPartOfUrl(additionalCaseDetailsPageUri);
-  }  
+  }
+
   public boolean isNaN(Number number){
     return NumberUtils.isNaN(number);
   }
@@ -95,7 +95,6 @@ public class CaseWidgetBean implements Serializable {
     String applicationContextPath = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
     return redirectLink.replaceFirst(applicationContextPath, ""); // remove duplicate contextPath in URL
   }
-  
   public String sanitizeHTML(String text) {
     String sanitizedText = sanitize(text);
     if (StringUtils.isBlank(extractTextFromHtml(sanitizedText))) {

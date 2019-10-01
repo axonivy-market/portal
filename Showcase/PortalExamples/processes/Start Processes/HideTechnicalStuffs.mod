@@ -1,10 +1,9 @@
 [Ivy]
-16583F0F73864543 3.23 #module
+16583F0F73864543 3.28 #module
 >Proto >Proto Collection #zClass
 Hs0 HideTechnicalStuffs Big #zClass
 Hs0 B #cInfo
 Hs0 #process
-Hs0 @TextInP .resExport .resExport #zField
 Hs0 @TextInP .type .type #zField
 Hs0 @TextInP .processKind .processKind #zField
 Hs0 @AnnotationInP-0n ai ai #zField
@@ -44,22 +43,18 @@ Hs0 @PushWFArc f36 '' #zField
 Hs0 @TkArc f6 '' #zField
 >Proto Hs0 Hs0 HideTechnicalStuffs #zField
 Hs0 f0 outLink HideTechnicalRole.ivp #txt
-Hs0 f0 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Hs0 f0 inParamDecl '<> param;' #txt
-Hs0 f0 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
-' #txt
-Hs0 f0 guid 16583F0F73A9A951 #txt
 Hs0 f0 requestEnabled true #txt
 Hs0 f0 triggerEnabled false #txt
 Hs0 f0 callSignature HideTechnicalRole() #txt
 Hs0 f0 persist false #txt
 Hs0 f0 startName 'Hide Technical Role' #txt
-Hs0 f0 taskData 'TaskTriggered.ROL=Everybody
+Hs0 f0 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Hs0 f0 caseData businessCase.attach=true #txt
 Hs0 f0 showInStartList 1 #txt
 Hs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -72,26 +67,21 @@ Hs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Hs0 f0 @C|.responsibility Everybody #txt
 Hs0 f0 153 57 30 30 -61 17 #rect
 Hs0 f0 @|StartRequestIcon #fIcon
-Hs0 f1 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Hs0 f1 545 57 30 30 0 15 #rect
 Hs0 f1 @|EndIcon #fIcon
 Hs0 f3 outLink createHiddenTechnicalTask.ivp #txt
-Hs0 f3 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Hs0 f3 inParamDecl '<> param;' #txt
-Hs0 f3 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
-' #txt
-Hs0 f3 guid 1658409D1A0E3AB4 #txt
 Hs0 f3 requestEnabled true #txt
 Hs0 f3 triggerEnabled false #txt
 Hs0 f3 callSignature createHiddenTechnicalTask() #txt
 Hs0 f3 persist false #txt
 Hs0 f3 startName 'Create hidden technical task' #txt
-Hs0 f3 taskData 'TaskTriggered.ROL=Everybody
+Hs0 f3 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Hs0 f3 caseData businessCase.attach=true #txt
 Hs0 f3 showInStartList 1 #txt
 Hs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -104,11 +94,8 @@ Hs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Hs0 f3 @C|.responsibility Everybody #txt
 Hs0 f3 144 320 32 32 -86 17 #rect
 Hs0 f3 @|StartRequestIcon #fIcon
-Hs0 f4 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Hs0 f4 696 320 32 32 0 15 #rect
 Hs0 f4 @|EndIcon #fIcon
-Hs0 f9 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
-' #txt
 Hs0 f9 actionTable 'out=in;
 ' #txt
 Hs0 f9 actionCode 'import ch.ivy.addon.portalkit.util.RoleUtils;
@@ -117,7 +104,6 @@ IRole role = ivy.session.getSecurityContext().findRole("PortalSystem");
 if(#role is initialized) {
 	RoleUtils.setProperty(role, RoleUtils.HIDE, "hide");
 }' #txt
-Hs0 f9 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Hs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -131,8 +117,6 @@ Hs0 f10 expr out #txt
 Hs0 f10 183 72 296 72 #arcP
 Hs0 f2 expr out #txt
 Hs0 f2 440 72 545 72 #arcP
-Hs0 f11 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
-' #txt
 Hs0 f11 actionTable 'out=in;
 ' #txt
 Hs0 f11 actionCode 'import ch.ivy.addon.portalkit.util.RoleUtils;
@@ -141,7 +125,6 @@ IRole role = ivy.session.getSecurityContext().findRole("PortalSystem");
 if(#role is initialized) {
 	RoleUtils.removeProperty(role, RoleUtils.HIDE);
 }' #txt
-Hs0 f11 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Hs0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -152,22 +135,18 @@ Hs0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Hs0 f11 287 151 160 44 -74 -8 #rect
 Hs0 f11 @|StepIcon #fIcon
 Hs0 f12 outLink UnhideTechnicalRole.ivp #txt
-Hs0 f12 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Hs0 f12 inParamDecl '<> param;' #txt
-Hs0 f12 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
-' #txt
-Hs0 f12 guid 1658463A54153593 #txt
 Hs0 f12 requestEnabled true #txt
 Hs0 f12 triggerEnabled false #txt
 Hs0 f12 callSignature UnhideTechnicalRole() #txt
 Hs0 f12 persist false #txt
 Hs0 f12 startName 'Unhide Technical Role' #txt
-Hs0 f12 taskData 'TaskTriggered.ROL=Everybody
+Hs0 f12 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Hs0 f12 caseData businessCase.attach=true #txt
 Hs0 f12 showInStartList 1 #txt
 Hs0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -180,21 +159,17 @@ Hs0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Hs0 f12 @C|.responsibility Everybody #txt
 Hs0 f12 152 158 30 30 -68 17 #rect
 Hs0 f12 @|StartRequestIcon #fIcon
-Hs0 f13 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Hs0 f13 544 158 30 30 0 15 #rect
 Hs0 f13 @|EndIcon #fIcon
 Hs0 f14 expr out #txt
 Hs0 f14 182 173 287 173 #arcP
 Hs0 f15 expr out #txt
 Hs0 f15 447 173 544 173 #arcP
-Hs0 f16 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
-' #txt
 Hs0 f16 actionTable 'out=in;
 ' #txt
 Hs0 f16 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
 TaskUtils.setHidePropertyToHideInPortal(ivy.task);' #txt
 Hs0 f16 security system #txt
-Hs0 f16 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Hs0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -204,11 +179,8 @@ Hs0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Hs0 f16 508 312 120 48 -26 -8 #rect
 Hs0 f16 @|StepIcon #fIcon
-Hs0 f18 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
-' #txt
 Hs0 f18 actionTable 'out=in1;
 ' #txt
-Hs0 f18 outTypes "ch.ivyteam.ivy.project.portal.examples.Data" #txt
 Hs0 f18 outLinks "TaskA.ivp" #txt
 Hs0 f18 caseData 'case.name=Case contains hidden task' #txt
 Hs0 f18 taskData 'TaskA.DESC=Task, which has the HIDE additional property, won''t be displayed in Portal
@@ -220,7 +192,6 @@ TaskA.PRI=2
 TaskA.ROL=Everybody
 TaskA.SKIP_TASK_LIST=true
 TaskA.TYPE=0' #txt
-Hs0 f18 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Hs0 f18 template "" #txt
 Hs0 f18 424 320 32 32 0 16 #rect
 Hs0 f18 @|TaskSwitchSimpleIcon #fIcon
@@ -230,14 +201,11 @@ Hs0 f20 456 336 508 336 #arcP
 Hs0 f21 expr out #txt
 Hs0 f21 628 336 696 336 #arcP
 Hs0 f21 0 0.4999999999999999 0 0 #arcLabel
-Hs0 f17 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
-' #txt
 Hs0 f17 actionTable 'out=in;
 ' #txt
 Hs0 f17 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
 TaskUtils.setHidePropertyToHideInPortal(ivy.task);' #txt
 Hs0 f17 security system #txt
-Hs0 f17 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Hs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -305,24 +273,20 @@ The tasks of the case should be hidden also in every Portal task lists. </name>
 Hs0 f26 798 452 960 108 -477 -48 #rect
 Hs0 f26 @|IBIcon #fIcon
 Hs0 f27 outLink createHiddenTechnicalCase.ivp #txt
-Hs0 f27 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Hs0 f27 inParamDecl '<> param;' #txt
-Hs0 f27 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
-' #txt
-Hs0 f27 guid 16588C2D3F04CBD6 #txt
 Hs0 f27 requestEnabled true #txt
 Hs0 f27 triggerEnabled false #txt
 Hs0 f27 callSignature createHiddenTechnicalCase() #txt
 Hs0 f27 persist false #txt
 Hs0 f27 startName 'Create hidden technical case' #txt
-Hs0 f27 taskData 'TaskTriggered.ROL=Everybody
+Hs0 f27 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
-Hs0 f27 caseData 'case.name=Repair Computer
-businessCase.attach=true' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Hs0 f27 caseData 'businessCase.attach=true
+case.name=Repair Computer' #txt
 Hs0 f27 showInStartList 1 #txt
 Hs0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -334,12 +298,9 @@ Hs0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Hs0 f27 @C|.responsibility Everybody #txt
 Hs0 f27 121 471 30 30 -87 17 #rect
 Hs0 f27 @|StartRequestIcon #fIcon
-Hs0 f29 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Hs0 f29 713 471 30 30 0 15 #rect
 Hs0 f29 @|EndIcon #fIcon
-Hs0 f30 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Hs0 f30 processCall 'Functional Processes/HideSystemCase:call(Boolean)' #txt
-Hs0 f30 doCall true #txt
 Hs0 f30 requestActionDecl '<java.lang.Boolean hideBusinessCase> param;
 ' #txt
 Hs0 f30 requestMappingAction 'param.hideBusinessCase=true;
@@ -359,11 +320,8 @@ Hs0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Hs0 f30 536 464 112 44 -48 -8 #rect
 Hs0 f30 @|CallSubIcon #fIcon
-Hs0 f31 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
-' #txt
 Hs0 f31 actionTable 'out=in1;
 ' #txt
-Hs0 f31 outTypes "ch.ivyteam.ivy.project.portal.examples.Data","ch.ivyteam.ivy.project.portal.examples.Data" #txt
 Hs0 f31 outLinks "TaskA.ivp","TaskB.ivp" #txt
 Hs0 f31 taskData 'TaskA.DESC=Report and hide case
 TaskA.EXPRI=2
@@ -383,7 +341,6 @@ TaskB.PRI=2
 TaskB.ROL=CREATOR
 TaskB.SKIP_TASK_LIST=false
 TaskB.TYPE=0' #txt
-Hs0 f31 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Hs0 f31 template "" #txt
 Hs0 f31 456 470 32 32 0 16 #rect
 Hs0 f31 @|TaskSwitchIcon #fIcon

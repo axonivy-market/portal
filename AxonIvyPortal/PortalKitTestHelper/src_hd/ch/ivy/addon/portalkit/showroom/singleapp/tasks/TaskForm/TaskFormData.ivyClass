@@ -1,4 +1,0 @@
-TaskFormData #class
-ch.ivy.addon.portalkit.showroom.singleapp.tasks.TaskForm #namespace
-treeNode org.primefaces.model.TreeNode #field
-treeNode PERSISTENT #fieldModifier

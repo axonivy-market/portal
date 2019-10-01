@@ -1,10 +1,9 @@
 [Ivy]
-1538898FE5F1C3BA 3.26 #module
+1538898FE5F1C3BA 3.28 #module
 >Proto >Proto Collection #zClass
 Ds0 DefaultUserProcess Big #zClass
 Ds0 B #cInfo
 Ds0 #process
-Ds0 @TextInP .resExport .resExport #zField
 Ds0 @TextInP .type .type #zField
 Ds0 @TextInP .processKind .processKind #zField
 Ds0 @AnnotationInP-0n ai ai #zField
@@ -24,10 +23,7 @@ Ds0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.persistence.domain.U
 ' #txt
 Ds0 f0 outParamTable 'result.defaultUserProcesses=in.defaultUserProcesses;
 ' #txt
-Ds0 f0 actionDecl 'ch.ivy.add.portalkit.DefaultUserProcessData out;
-' #txt
 Ds0 f0 callSignature createDefaultUserProcesses() #txt
-Ds0 f0 type ch.ivy.add.portalkit.DefaultUserProcessData #txt
 Ds0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -39,14 +35,10 @@ Ds0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ds0 f0 51 83 26 26 14 0 #rect
 Ds0 f0 @|StartSubIcon #fIcon
-Ds0 f1 type ch.ivy.add.portalkit.DefaultUserProcessData #txt
 Ds0 f1 51 339 26 26 14 0 #rect
 Ds0 f1 @|EndSubIcon #fIcon
-Ds0 f3 actionDecl 'ch.ivy.add.portalkit.DefaultUserProcessData out;
-' #txt
 Ds0 f3 actionTable 'out=in;
 ' #txt
-Ds0 f3 type ch.ivy.add.portalkit.DefaultUserProcessData #txt
 Ds0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

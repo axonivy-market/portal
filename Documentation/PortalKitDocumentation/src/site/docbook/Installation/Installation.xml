@@ -50,11 +50,6 @@
 					</listitem>
 					<listitem>
 						<para>
-							SelfServiceBpm
-						</para>
-					</listitem>
-					<listitem>
-						<para>
 							AxonIvyExpress
 						</para>
 					</listitem>
@@ -77,39 +72,6 @@
 						</para>
 					</listitem>
 				</itemizedlist>
-			</para>
-		</sect2>
-		<sect2 xml:id="axonivyportal.installation.basicinstallation.addlibraries">
-			<title xml:id="axonivyportal.installation.basicinstallation.addlibraries.title">Add required libraries</title>
-			<para>
-				Portal needs <link xlink:show="new" xlink:href="https://poi.apache.org">Apache POI</link> for exporting to Excel features. Follow these steps to add Apache POI libraries:
-				<orderedlist>
-					<listitem>
-						<para>
-							Copy libraries below and then paste into <code>webapps/ivy/WEB-INF/lib</code> folder located on <code>AxonIvyEngine, AxonIvyDesigner.</code>
-							<note>
-								You can find libraries inside <code>AxonIvyDesigner</code> folder, under <code>configuration/org.eclipse.osgi</code> (search libraries in this directory), or download from this site.
-							</note>
-							<itemizedlist>
-								<listitem>
-								<para><link xlink:href="documents/Export/poi-3.15.jar">poi-3.15.jar</link></para>
-								</listitem>
-								<listitem>
-									<para><link xlink:href="documents/Export/poi-ooxml-3.15.jar">poi-ooxml-3.15.jar</link></para>
-								</listitem>
-								<listitem>
-									<para><link xlink:href="documents/Export/poi-ooxml-schemas-3.15.jar">poi-ooxml-schemas-3.15.jar</link></para>
-								</listitem>
-								<listitem>
-									<para><link xlink:href="documents/Export/xmlbeans-2.6.0.jar">xmlbeans-2.6.0.jar</link></para>
-								</listitem>
-							</itemizedlist>
-						</para>
-					</listitem>
-					<listitem>
-						Restart AxonIvy Designer/Engine.
-					</listitem>
-				</orderedlist>
 			</para>
 		</sect2>
 		<sect2>
@@ -742,10 +704,6 @@
 				<link xlink:href="http://www.primefaces.org/eos/modena/">Modena</link>
 				theme from version 6.3.
 			</para>
-			<para>
-				All dialogs in Portal and screens of <emphasis role="bold">Self service BPM</emphasis> 
-				and <emphasis role="bold">Axon.ivy Express</emphasis> have following buttons orders:
-			</para>
 			<itemizedlist>
 				<listitem>
 					<para>
@@ -946,6 +904,12 @@
 			</sect3>
 		</sect2>
 		<sect2>
+			<title xml:id="axonivyportal.installation.migrationnotes.7.4">Migrate to 7.4.0</title>
+			<para>
+				From 7.4.0, CaseTemplate is deprecated and we don't support it anymore. If you are using CaseTemplate, please do consider to migrate to TaskTemplate manually.
+			</para>
+		</sect2>
+		<sect2>
 			<title>Migrate to 7.3.0</title>
 			<para>
 				From 7.3.0, Portal supports some permissions to show/hide left menu item, if you override <code>LoadSubMenuItems</code> process and want to use these permissions, refer to 
@@ -986,7 +950,6 @@
 			<title>Migrate 7.1.0 to 7.2.0</title>
 			<para>
 				Portal needs <link xlink:show="new" xlink:href="https://poi.apache.org">Apache POI</link> for exporting to Excel features.
-				Refer to <link linkend="axonivyportal.installation.basicinstallation.addlibraries" endterm="axonivyportal.installation.basicinstallation.addlibraries.title" />.
 			</para>
 			<para>
 				If you override task widget's data query described at <link linkend="axonivyportal.customization.taskwidget.howtooverridedataquery" endterm="axonivyportal.customization.taskwidget.howtooverridedataquery.title" />, 
@@ -1316,6 +1279,20 @@
 					<listitem>
 						<para>Case list customization now support responsiveness. refer to 
 							<link linkend="axonivyportal.customization.casewidget.responsivelayout"> this part </link> for more detail.</para>
+					</listitem>
+				</itemizedlist>
+			</sect2>
+			<sect2>
+				<title>Changes in 7.4</title>
+				<itemizedlist>
+					<listitem>
+						<para>New Portal Chat is introduced, now Portal supports Group chat and Private chat, refer to <link linkend="axonivyportal.components.portalchat" endterm="axonivyportal.components.portalchat.title" /> for more detail</para>
+					</listitem>
+					<listitem>
+						<para>Portal group id is officially configurable, refer to <link linkend="axonivyportal.customization.changegroupid" endterm="axonivyportal.customization.changegroupid.title" /> for more detail</para>
+					</listitem>
+					<listitem>
+						<para>CaseTemplate is removed, from now on we only use TaskTemplate. Please refer to <link linkend="axonivyportal.installation.migrationnotes" endterm="axonivyportal.installation.migrationnotes.title" /> to see how to migrate CaseTemplate to TaskTemplate</para>
 					</listitem>
 				</itemizedlist>
 			</sect2>

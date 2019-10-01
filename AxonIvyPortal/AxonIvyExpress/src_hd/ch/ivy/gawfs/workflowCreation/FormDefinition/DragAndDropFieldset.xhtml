@@ -10,6 +10,9 @@
 
     <p:fieldset id="available-formelements-field" styleClass="available-formelements-field"
       legend="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/FieldSetAvailableFormelements')}">
+      <p:messages id="DnDmessage" showDetail="false" closable="true" for="availableFormelements">
+       <p:autoUpdate />
+      </p:messages>
 
       <p:dataGrid id="available-form-elements" var="formelement" styleClass="available-form-elements"
         emptyMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoFormelementsAvailable')}"

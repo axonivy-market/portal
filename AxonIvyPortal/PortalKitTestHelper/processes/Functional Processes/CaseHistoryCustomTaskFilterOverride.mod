@@ -1,11 +1,9 @@
 [Ivy]
-[>Created: Tue Jul 07 17:32:19 ICT 2015]
-14E53233041A883D 3.17 #module
+14E53233041A883D 3.28 #module
 >Proto >Proto Collection #zClass
 Cr0 CaseHistoryCustomTaskFilter Big #zClass
 Cr0 B #cInfo
 Cr0 #process
-Cr0 @TextInP .resExport .resExport #zField
 Cr0 @TextInP .type .type #zField
 Cr0 @TextInP .processKind .processKind #zField
 Cr0 @AnnotationInP-0n ai ai #zField
@@ -27,10 +25,7 @@ Cr0 f0 outParamDecl '<java.util.List<ch.ivyteam.ivy.workflow.ITask> tasks> resul
 ' #txt
 Cr0 f0 outParamTable 'result.tasks=in.filterdTasks;
 ' #txt
-Cr0 f0 actionDecl 'portalKit_test.CaseHistoryCustomTaskFilterOverrideData out;
-' #txt
 Cr0 f0 callSignature call(List<ch.ivyteam.ivy.workflow.ITask>) #txt
-Cr0 f0 type portalKit_test.CaseHistoryCustomTaskFilterOverrideData #txt
 Cr0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -42,7 +37,6 @@ Cr0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cr0 f0 51 83 26 26 17 -6 #rect
 Cr0 f0 @|StartSubIcon #fIcon
-Cr0 f1 type portalKit_test.CaseHistoryCustomTaskFilterOverrideData #txt
 Cr0 f1 51 323 26 26 14 0 #rect
 Cr0 f1 @|EndSubIcon #fIcon
 Cr0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -60,8 +54,6 @@ in between. (e.g. remove system tasks)</name>
 ' #txt
 Cr0 f7 168 154 224 92 -107 -40 #rect
 Cr0 f7 @|IBIcon #fIcon
-Cr0 f3 actionDecl 'portalKit_test.CaseHistoryCustomTaskFilterOverrideData out;
-' #txt
 Cr0 f3 actionTable 'out=in;
 ' #txt
 Cr0 f3 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
@@ -75,7 +67,6 @@ for(ITask itask:in.tasks){
 		in.filterdTasks.remove(itask);		
 	}
 }' #txt
-Cr0 f3 type portalKit_test.CaseHistoryCustomTaskFilterOverrideData #txt
 Cr0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

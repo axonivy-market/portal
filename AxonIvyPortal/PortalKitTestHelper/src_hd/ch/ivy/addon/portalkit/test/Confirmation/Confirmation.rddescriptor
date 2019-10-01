@@ -1,28 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
-    <startMethod>
-        <name>start</name>
-        <description>Default dialog start method.</description>
-        <inputParameter>
-            <name>message</name>
-            <description></description>
-            <parameterType>String</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <inputParameter>
-            <name>title</name>
-            <description></description>
-            <parameterType>String</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <outputParameter>
-            <name>approved</name>
-            <description></description>
-            <parameterType>Boolean</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </outputParameter>
-    </startMethod>
     <property>
         <name>guid</name>
         <value>14B7775CB819863D</value>

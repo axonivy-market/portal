@@ -5,12 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
-import ch.ivy.addon.portalkit.casefilter.CaseFilter;
-import ch.ivy.addon.portalkit.casefilter.CaseFilterContainer;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
@@ -19,20 +18,15 @@ import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
-import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
+import ch.ivyteam.ivy.workflow.query.CaseQuery.OrderByColumnQuery;
 
 public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
   private static final long serialVersionUID = 1L;
-
   protected final List<ICase> data;
 
   protected String caseWidgetComponentId;
   protected int rowIndex;
   protected CaseSearchCriteria criteria;
-
-//  protected List<CaseFilter> selectedFilters;
-//  protected CaseFilterContainer filterContainer;
-
   public ElapsedTimeLazyDataModel() {
     this("statistics-widget:statistic-dashboard-widget:elapsed-time-chart-details");
   }
@@ -40,7 +34,6 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
   public ElapsedTimeLazyDataModel(String caseWidgetComponentId) {
     super();
     data = new ArrayList<>();
-//    selectedFilters = new ArrayList<>();
     this.caseWidgetComponentId = caseWidgetComponentId;
     buildCriteria();
   }
@@ -48,6 +41,8 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
   @Override
   public List<ICase> load(int first, int pageSize, String sortField, SortOrder sortOrder,
       Map<String, Object> filters) {
+    criteria.setSortField(sortField);
+    criteria.setSortDescending(sortOrder == SortOrder.ASCENDING);
     if (first == 0) {
       initializedDataModel();
     }
@@ -67,28 +62,21 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
           .get("caseQuery", CaseQuery.class);
       criteria.setCustomCaseQuery(customCaseQuery);
     }
-//    if (filterContainer != null) {
-//      if (selectedFilters.contains(filterContainer.getStateFilter())) {
-//        criteria.setIncludedStates(new ArrayList<>());
-//      } else {
-//        criteria.setIncludedStates(filterContainer.getStateFilter().getSelectedFilteredStates());
-//      }
-//    }
     CaseQuery caseQuery = buildCaseQuery();
+    
+    /**
+     * Filter CaseSearchCriteria with noCategory
+     */
+    if (StringUtils.isEmpty(criteria.getCategory())) {
+      caseQuery.where().and().category().isEqual("");
+    }
+    buildSortCaseQuery(caseQuery);
     this.criteria.setFinalCaseQuery(caseQuery);
   }
 
 
   private CaseQuery buildCaseQuery() {
-    CaseQuery caseQuery = criteria.createQuery();
-//    IFilterQuery filterQuery = caseQuery.where();
-//    selectedFilters.forEach(selectedFilter -> {
-//      CaseQuery subQuery = selectedFilter.buildQuery();
-//      if (subQuery != null) {
-//        filterQuery.and(subQuery);
-//      }
-//    });
-    return caseQuery;
+    return criteria.createQuery();
   }
 
   private List<ICase> findCases(CaseSearchCriteria criteria, int first, int pageSize) {
@@ -123,15 +111,23 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
     criteria.setSortField(CaseSortField.ID.toString());
     criteria.setSortDescending(true);
   }
-//
-//  public CaseFilterContainer getFilterContainer() {
-//    return filterContainer;
-//  }
-//
-//  public void setFilterContainer(CaseFilterContainer filterContainer) {
-//    this.filterContainer = filterContainer;
-//  }
+  
+  private void buildSortCaseQuery(CaseQuery caseQuery) {
+    CaseSortField sortColumn = CaseSortField.valueOf(criteria.getSortField());
+    OrderByColumnQuery orderQuery = null;
+    if (sortColumn.equals(CaseSortField.ELAPSED_TIME)) {
+      orderQuery = caseQuery.orderBy().businessRuntime();
+    } else {
+      orderQuery = caseQuery.orderBy().caseId();
+    }
 
+    if (criteria.isSortDescending()) {
+      orderQuery.descending();
+    } else {
+      orderQuery.ascending();
+    }
+  }
+  
   public void setCategory(String category) {
     criteria.setCategory(category);
   }

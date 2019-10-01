@@ -1,10 +1,9 @@
 [Ivy]
-163D2D12302195CE 3.23 #module
+163D2D12302195CE 3.28 #module
 >Proto >Proto Collection #zClass
 Dt0 DefaultChart Big #zClass
 Dt0 B #cInfo
 Dt0 #process
-Dt0 @TextInP .resExport .resExport #zField
 Dt0 @TextInP .type .type #zField
 Dt0 @TextInP .processKind .processKind #zField
 Dt0 @AnnotationInP-0n ai ai #zField
@@ -24,10 +23,7 @@ Dt0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.statistics.Statistic
 ' #txt
 Dt0 f0 outParamTable 'result.charts=in.defaultCharts;
 ' #txt
-Dt0 f0 actionDecl '_ch.ivyteam.ivy.project.portal.examples.DefaultChartOverrideData out;
-' #txt
 Dt0 f0 callSignature createDefaultChart() #txt
-Dt0 f0 type _ch.ivyteam.ivy.project.portal.examples.DefaultChartOverrideData #txt
 Dt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -39,11 +35,8 @@ Dt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dt0 f0 81 49 30 30 23 -6 #rect
 Dt0 f0 @|StartSubIcon #fIcon
-Dt0 f1 type _ch.ivyteam.ivy.project.portal.examples.DefaultChartOverrideData #txt
 Dt0 f1 81 241 30 30 0 15 #rect
 Dt0 f1 @|EndSubIcon #fIcon
-Dt0 f3 actionDecl '_ch.ivyteam.ivy.project.portal.examples.DefaultChartOverrideData out;
-' #txt
 Dt0 f3 actionTable 'out=in;
 ' #txt
 Dt0 f3 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticFilter;
@@ -66,7 +59,6 @@ if (!service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().
   StatisticChart newChart2 = service.createStatisticChart(statisticFilter, chartName2, chartType, ivy.session.getSessionUser().getId(), true);
   in.defaultCharts.add(newChart2);		
 }' #txt
-Dt0 f3 type _ch.ivyteam.ivy.project.portal.examples.DefaultChartOverrideData #txt
 Dt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

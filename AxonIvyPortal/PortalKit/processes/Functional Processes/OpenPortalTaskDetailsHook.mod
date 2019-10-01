@@ -1,10 +1,9 @@
 [Ivy]
-16D289860FF9CFCA 3.26 #module
+16D289860FF9CFCA 3.28 #module
 >Proto >Proto Collection #zClass
 Os0 OpenPortalTaskDetailsHook Big #zClass
 Os0 B #cInfo
 Os0 #process
-Os0 @TextInP .resExport .resExport #zField
 Os0 @TextInP .type .type #zField
 Os0 @TextInP .processKind .processKind #zField
 Os0 @AnnotationInP-0n ai ai #zField
@@ -24,10 +23,7 @@ out.task=param.task;
 ' #txt
 Os0 f0 outParamDecl '<> result;
 ' #txt
-Os0 f0 actionDecl 'ch.ivy.add.portalkit.OpenPortalTaskDetailsData out;
-' #txt
 Os0 f0 callSignature call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean) #txt
-Os0 f0 type ch.ivy.add.portalkit.OpenPortalTaskDetailsData #txt
 Os0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -37,7 +33,6 @@ Os0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Os0 f0 81 49 30 30 -64 15 #rect
 Os0 f0 @|StartSubIcon #fIcon
-Os0 f1 type ch.ivy.add.portalkit.OpenPortalTaskDetailsData #txt
 Os0 f1 337 49 30 30 0 15 #rect
 Os0 f1 @|EndSubIcon #fIcon
 Os0 f2 expr out #txt

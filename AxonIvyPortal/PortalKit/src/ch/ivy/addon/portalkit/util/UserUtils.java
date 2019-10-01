@@ -103,7 +103,7 @@ public class UserUtils {
         }
       }
   
-      return filterUsers;
+      return filterUsers.stream().sorted((first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName())).collect(Collectors.toList());
     });
   }
   

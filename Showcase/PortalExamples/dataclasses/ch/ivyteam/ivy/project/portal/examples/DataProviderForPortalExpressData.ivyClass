@@ -1,0 +1,3 @@
+DataProviderForPortalExpressData #class
+ch.ivyteam.ivy.project.portal.examples #namespace
+items List<String> #field
