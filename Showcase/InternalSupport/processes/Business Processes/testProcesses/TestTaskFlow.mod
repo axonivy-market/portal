@@ -189,6 +189,36 @@ Tt0 @GridStep f175 '' #zField
 Tt0 @PushWFArc f176 '' #zField
 Tt0 @EndTask f177 '' #zField
 Tt0 @PushWFArc f178 '' #zField
+Tt0 @StartRequest f179 '' #zField
+Tt0 @Alternative f184 '' #zField
+Tt0 @EndTask f187 '' #zField
+Tt0 @PushWFArc f188 '' #zField
+Tt0 @TaskSwitch f189 '' #zField
+Tt0 @TaskSwitchSimple f183 '' #zField
+Tt0 @PushWFArc f185 '' #zField
+Tt0 @TkArc f191 '' #zField
+Tt0 @TkArc f190 '' #zField
+Tt0 @PushWFArc f181 '' #zField
+Tt0 @Alternative f180 '' #zField
+Tt0 @PushWFArc f186 '' #zField
+Tt0 @GridStep f192 '' #zField
+Tt0 @PushWFArc f193 '' #zField
+Tt0 @PushWFArc f182 '' #zField
+Tt0 @Alternative f194 '' #zField
+Tt0 @TaskSwitch f195 '' #zField
+Tt0 @Alternative f196 '' #zField
+Tt0 @StartRequest f197 '' #zField
+Tt0 @EndTask f198 '' #zField
+Tt0 @TaskSwitchSimple f199 '' #zField
+Tt0 @GridStep f200 '' #zField
+Tt0 @TkArc f201 '' #zField
+Tt0 @PushWFArc f202 '' #zField
+Tt0 @PushWFArc f203 '' #zField
+Tt0 @PushWFArc f204 '' #zField
+Tt0 @TkArc f205 '' #zField
+Tt0 @PushWFArc f206 '' #zField
+Tt0 @PushWFArc f207 '' #zField
+Tt0 @PushWFArc f208 '' #zField
 >Proto Tt0 Tt0 TestTaskFlow #zField
 Tt0 f5 outLink CategoriedLeaveRequest.ivp #txt
 Tt0 f5 type internaltest.Data #txt
@@ -2680,6 +2710,286 @@ Tt0 f177 2065 881 30 30 0 15 #rect
 Tt0 f177 @|EndIcon #fIcon
 Tt0 f178 expr out #txt
 Tt0 f178 2024 896 2065 896 #arcP
+Tt0 f179 outLink create200Tasks.ivp #txt
+Tt0 f179 type internaltest.Data #txt
+Tt0 f179 inParamDecl '<> param;' #txt
+Tt0 f179 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f179 guid 16D81832E8B94501 #txt
+Tt0 f179 requestEnabled true #txt
+Tt0 f179 triggerEnabled false #txt
+Tt0 f179 callSignature create200Tasks() #txt
+Tt0 f179 persist false #txt
+Tt0 f179 startName 'Create 200 Tasks' #txt
+Tt0 f179 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Tt0 f179 caseData 'case.name=Case has 200 tasks
+businessCase.attach=true' #txt
+Tt0 f179 showInStartList 1 #txt
+Tt0 f179 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>create200Tasks.ivp</name>
+        <nameStyle>18,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f179 @C|.responsibility Everybody #txt
+Tt0 f179 113 1457 30 30 -53 17 #rect
+Tt0 f179 @|StartRequestIcon #fIcon
+Tt0 f184 type internaltest.Data #txt
+Tt0 f184 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>counter &lt;= 200?</name>
+        <nameStyle>15
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f184 592 1456 32 32 -89 45 #rect
+Tt0 f184 @|AlternativeIcon #fIcon
+Tt0 f187 type internaltest.Data #txt
+Tt0 f187 689 1457 30 30 0 15 #rect
+Tt0 f187 @|EndIcon #fIcon
+Tt0 f188 expr in #txt
+Tt0 f188 624 1472 689 1472 #arcP
+Tt0 f189 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f189 actionTable 'out=in1;
+' #txt
+Tt0 f189 outTypes "internaltest.Data","internaltest.Data" #txt
+Tt0 f189 outLinks "TaskA.ivp","TaskB.ivp" #txt
+Tt0 f189 taskData 'TaskA.EXPRI=2
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.PRI=2
+TaskA.ROL=SYSTEM
+TaskA.SKIP_TASK_LIST=false
+TaskA.TYPE=0
+TaskB.EXPRI=2
+TaskB.EXROL=Everybody
+TaskB.EXTYPE=0
+TaskB.PRI=2
+TaskB.ROL=SYSTEM
+TaskB.SKIP_TASK_LIST=false
+TaskB.TYPE=0' #txt
+Tt0 f189 type internaltest.Data #txt
+Tt0 f189 template "" #txt
+Tt0 f189 336 1456 32 32 0 16 #rect
+Tt0 f189 @|TaskSwitchIcon #fIcon
+Tt0 f183 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f183 actionTable 'out=in1;
+' #txt
+Tt0 f183 outTypes "internaltest.Data" #txt
+Tt0 f183 outLinks "TaskA.ivp" #txt
+Tt0 f183 taskData 'TaskA.EXPRI=2
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.NAM=Task <%\=in1.counter%>
+TaskA.PRI=2
+TaskA.ROL=Everybody
+TaskA.SKIP_TASK_LIST=false
+TaskA.TYPE=0' #txt
+Tt0 f183 type internaltest.Data #txt
+Tt0 f183 template "" #txt
+Tt0 f183 593 1393 30 30 0 16 #rect
+Tt0 f183 @|TaskSwitchSimpleIcon #fIcon
+Tt0 f185 expr data #txt
+Tt0 f185 outCond ivp=="TaskA.ivp" #txt
+Tt0 f185 623 1408 704 1457 #arcP
+Tt0 f185 1 704 1408 #addKink
+Tt0 f185 0 0.6277723816144283 0 0 #arcLabel
+Tt0 f191 expr data #txt
+Tt0 f191 outCond ivp=="TaskB.ivp" #txt
+Tt0 f191 type internaltest.Data #txt
+Tt0 f191 var in1 #txt
+Tt0 f191 352 1456 593 1408 #arcP
+Tt0 f191 1 352 1408 #addKink
+Tt0 f191 1 0.14708279481184308 0 0 #arcLabel
+Tt0 f190 expr in #txt
+Tt0 f190 type internaltest.Data #txt
+Tt0 f190 var in1 #txt
+Tt0 f190 272 1472 336 1472 #arcP
+Tt0 f181 expr out #txt
+Tt0 f181 143 1472 240 1472 #arcP
+Tt0 f180 type internaltest.Data #txt
+Tt0 f180 240 1456 32 32 0 16 #rect
+Tt0 f180 @|AlternativeIcon #fIcon
+Tt0 f186 expr in #txt
+Tt0 f186 outCond 'in.counter <= 200' #txt
+Tt0 f186 608 1488 256 1488 #arcP
+Tt0 f186 1 608 1536 #addKink
+Tt0 f186 2 256 1536 #addKink
+Tt0 f186 1 0.5 0 0 #arcLabel
+Tt0 f192 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f192 actionTable 'out=in;
+' #txt
+Tt0 f192 actionCode in.counter++; #txt
+Tt0 f192 type internaltest.Data #txt
+Tt0 f192 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Increase counter</name>
+        <nameStyle>16
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f192 424 1450 112 44 -46 -8 #rect
+Tt0 f192 @|StepIcon #fIcon
+Tt0 f193 expr data #txt
+Tt0 f193 outCond ivp=="TaskA.ivp" #txt
+Tt0 f193 368 1472 424 1472 #arcP
+Tt0 f182 expr out #txt
+Tt0 f182 536 1472 592 1472 #arcP
+Tt0 f194 type internaltest.Data #txt
+Tt0 f194 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>counter &lt;= 50?</name>
+        <nameStyle>14
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f194 592 1680 32 32 -90 55 #rect
+Tt0 f194 @|AlternativeIcon #fIcon
+Tt0 f195 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f195 actionTable 'out=in1;
+' #txt
+Tt0 f195 outTypes "internaltest.Data","internaltest.Data" #txt
+Tt0 f195 outLinks "TaskA.ivp","TaskB.ivp" #txt
+Tt0 f195 taskData 'TaskA.EXPRI=2
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.PRI=2
+TaskA.ROL=SYSTEM
+TaskA.SKIP_TASK_LIST=false
+TaskA.TYPE=0
+TaskB.EXPRI=2
+TaskB.EXROL=Everybody
+TaskB.EXTYPE=0
+TaskB.PRI=2
+TaskB.ROL=SYSTEM
+TaskB.SKIP_TASK_LIST=false
+TaskB.TYPE=0' #txt
+Tt0 f195 type internaltest.Data #txt
+Tt0 f195 template "" #txt
+Tt0 f195 336 1680 32 32 0 16 #rect
+Tt0 f195 @|TaskSwitchIcon #fIcon
+Tt0 f196 type internaltest.Data #txt
+Tt0 f196 240 1680 32 32 0 16 #rect
+Tt0 f196 @|AlternativeIcon #fIcon
+Tt0 f197 outLink create50Tasks.ivp #txt
+Tt0 f197 type internaltest.Data #txt
+Tt0 f197 inParamDecl '<> param;' #txt
+Tt0 f197 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f197 guid 16D8525A1C79F6B1 #txt
+Tt0 f197 requestEnabled true #txt
+Tt0 f197 triggerEnabled false #txt
+Tt0 f197 callSignature create50Tasks() #txt
+Tt0 f197 persist false #txt
+Tt0 f197 startName 'Create 50 Tasks' #txt
+Tt0 f197 taskData 'TaskTriggered.ROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.EXPRI=2
+TaskTriggered.TYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.EXROL=Everybody' #txt
+Tt0 f197 caseData 'case.name=Case has 50 tasks
+businessCase.attach=true' #txt
+Tt0 f197 showInStartList 1 #txt
+Tt0 f197 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>create50Tasks.ivp</name>
+        <nameStyle>17,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f197 @C|.responsibility Everybody #txt
+Tt0 f197 113 1681 30 30 -50 17 #rect
+Tt0 f197 @|StartRequestIcon #fIcon
+Tt0 f198 type internaltest.Data #txt
+Tt0 f198 689 1681 30 30 0 15 #rect
+Tt0 f198 @|EndIcon #fIcon
+Tt0 f199 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f199 actionTable 'out=in1;
+' #txt
+Tt0 f199 outTypes "internaltest.Data" #txt
+Tt0 f199 outLinks "TaskA.ivp" #txt
+Tt0 f199 taskData 'TaskA.EXPRI=2
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.NAM=Task <%\=in1.counter%>
+TaskA.PRI=2
+TaskA.ROL=Everybody
+TaskA.SKIP_TASK_LIST=false
+TaskA.TYPE=0' #txt
+Tt0 f199 type internaltest.Data #txt
+Tt0 f199 template "" #txt
+Tt0 f199 593 1617 30 30 0 16 #rect
+Tt0 f199 @|TaskSwitchSimpleIcon #fIcon
+Tt0 f200 actionDecl 'internaltest.Data out;
+' #txt
+Tt0 f200 actionTable 'out=in;
+' #txt
+Tt0 f200 actionCode in.counter++; #txt
+Tt0 f200 type internaltest.Data #txt
+Tt0 f200 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Increase counter</name>
+        <nameStyle>16
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f200 424 1674 112 44 -46 -8 #rect
+Tt0 f200 @|StepIcon #fIcon
+Tt0 f201 expr data #txt
+Tt0 f201 outCond ivp=="TaskB.ivp" #txt
+Tt0 f201 type internaltest.Data #txt
+Tt0 f201 var in1 #txt
+Tt0 f201 352 1680 593 1632 #arcP
+Tt0 f201 1 352 1632 #addKink
+Tt0 f201 1 0.14708279481184308 0 0 #arcLabel
+Tt0 f202 expr out #txt
+Tt0 f202 536 1696 592 1696 #arcP
+Tt0 f203 expr data #txt
+Tt0 f203 outCond ivp=="TaskA.ivp" #txt
+Tt0 f203 623 1632 704 1681 #arcP
+Tt0 f203 1 704 1632 #addKink
+Tt0 f203 0 0.6277723816144283 0 0 #arcLabel
+Tt0 f204 expr in #txt
+Tt0 f204 outCond 'in.counter <= 50' #txt
+Tt0 f204 608 1712 256 1712 #arcP
+Tt0 f204 1 608 1776 #addKink
+Tt0 f204 2 256 1776 #addKink
+Tt0 f204 1 0.5 0 0 #arcLabel
+Tt0 f205 expr in #txt
+Tt0 f205 type internaltest.Data #txt
+Tt0 f205 var in1 #txt
+Tt0 f205 272 1696 336 1696 #arcP
+Tt0 f206 expr in #txt
+Tt0 f206 624 1696 689 1696 #arcP
+Tt0 f207 expr out #txt
+Tt0 f207 143 1696 240 1696 #arcP
+Tt0 f208 expr data #txt
+Tt0 f208 outCond ivp=="TaskA.ivp" #txt
+Tt0 f208 368 1696 424 1696 #arcP
 >Proto Tt0 .type internaltest.Data #txt
 >Proto Tt0 .processKind NORMAL #txt
 >Proto Tt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -2871,3 +3181,35 @@ Tt0 f171 out f176 tail #connect
 Tt0 f176 head f175 mainIn #connect
 Tt0 f175 mainOut f178 tail #connect
 Tt0 f178 head f177 mainIn #connect
+Tt0 f179 mainOut f181 tail #connect
+Tt0 f181 head f180 in #connect
+Tt0 f184 out f186 tail #connect
+Tt0 f186 head f180 in #connect
+Tt0 f184 out f188 tail #connect
+Tt0 f188 head f187 mainIn #connect
+Tt0 f180 out f190 tail #connect
+Tt0 f190 head f189 in #connect
+Tt0 f183 out f185 tail #connect
+Tt0 f185 head f187 mainIn #connect
+Tt0 f191 head f183 in #connect
+Tt0 f189 out f193 tail #connect
+Tt0 f193 head f192 mainIn #connect
+Tt0 f189 out f191 tail #connect
+Tt0 f192 mainOut f182 tail #connect
+Tt0 f182 head f184 in #connect
+Tt0 f197 mainOut f207 tail #connect
+Tt0 f207 head f196 in #connect
+Tt0 f194 out f204 tail #connect
+Tt0 f204 head f196 in #connect
+Tt0 f194 out f206 tail #connect
+Tt0 f206 head f198 mainIn #connect
+Tt0 f196 out f205 tail #connect
+Tt0 f205 head f195 in #connect
+Tt0 f199 out f203 tail #connect
+Tt0 f203 head f198 mainIn #connect
+Tt0 f201 head f199 in #connect
+Tt0 f195 out f208 tail #connect
+Tt0 f208 head f200 mainIn #connect
+Tt0 f195 out f201 tail #connect
+Tt0 f200 mainOut f202 tail #connect
+Tt0 f202 head f194 in #connect

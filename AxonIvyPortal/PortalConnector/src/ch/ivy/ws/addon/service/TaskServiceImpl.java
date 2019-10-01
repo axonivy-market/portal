@@ -355,7 +355,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             }
           }
         });
-        
+        ivyTasks.sort((t1, t2) -> StringUtils.compareIgnoreCase(t1.getName(), t2.getName()));
         return result(ivyTasks, null, noErrors());
       });
     } catch (Exception e) {

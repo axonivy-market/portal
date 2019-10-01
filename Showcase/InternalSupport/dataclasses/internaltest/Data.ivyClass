@@ -7,3 +7,5 @@ expiredDate Duration #field
 taskPriority ch.ivyteam.ivy.workflow.WorkflowPriority #field
 taskName String #field
 caseName String #field
+counter Number #field
+counter PERSISTENT #fieldModifier
