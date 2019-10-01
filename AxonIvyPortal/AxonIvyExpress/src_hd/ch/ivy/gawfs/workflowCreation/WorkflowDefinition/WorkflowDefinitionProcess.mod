@@ -541,7 +541,8 @@ Fs0 f27 actionCode 'import java.util.ArrayList;
 out.selectedAssigneeList = new ArrayList();
 out.selectedRole = null;
 out.selectedUser = null;
-out.isAssignToUser = true;' #txt
+out.isAssignToUser = true;
+out.isSelectProcessOwnerResponsibles = false;' #txt
 Fs0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -922,7 +923,7 @@ Fs0 f82 @|StepIcon #fIcon
 Fs0 f83 109 1120 192 1120 #arcP
 Fs0 f81 336 1120 435 1120 #arcP
 Fs0 f84 guid 16D8516BA7070FC4 #txt
-Fs0 f84 method method() #txt
+Fs0 f84 method initProcessStartResponsibles() #txt
 Fs0 f84 inParameterDecl '<> param;' #txt
 Fs0 f84 inParameterMapAction 'out.isSelectProcessOwnerResponsibles=true;
 out.selectedResponsibleFieldId="form:process-owner-content";
