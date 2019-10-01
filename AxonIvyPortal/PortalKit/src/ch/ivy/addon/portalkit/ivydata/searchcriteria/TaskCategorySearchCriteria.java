@@ -18,8 +18,6 @@ public class TaskCategorySearchCriteria {
   
   private TaskQuery customTaskQuery;
   
-  private TaskQuery finalQuery;
-  
   public TaskQuery createQuery() {
     TaskQuery query = TaskQuery.create();
     if (customTaskQuery != null) {
@@ -91,17 +89,6 @@ public class TaskCategorySearchCriteria {
 
   public boolean hasInvolvedUsername() {
     return StringUtils.isNotBlank(involvedUsername);
-  }
-
-  public TaskQuery getFinalQuery() {
-    if (finalQuery == null) {
-      finalQuery = createQuery();
-    }
-    return finalQuery;
-  }
-
-  public void setFinalQuery(TaskQuery finalQuery) {
-    this.finalQuery = finalQuery;
   }
   
 }

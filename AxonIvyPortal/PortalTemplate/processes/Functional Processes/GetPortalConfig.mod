@@ -1,11 +1,9 @@
 [Ivy]
-[>Created: Wed Sep 09 14:28:37 ICT 2015]
-14BFF07A8307A43D 3.17 #module
+14BFF07A8307A43D 3.28 #module
 >Proto >Proto Collection #zClass
 Gg0 GetPortalConfig Big #zClass
 Gg0 B #cInfo
 Gg0 #process
-Gg0 @TextInP .resExport .resExport #zField
 Gg0 @TextInP .type .type #zField
 Gg0 @TextInP .processKind .processKind #zField
 Gg0 @AnnotationInP-0n ai ai #zField
@@ -25,10 +23,7 @@ Gg0 f0 outParamDecl '<ch.ivy.addon.portal.generic.PortalConfig portalConfig> res
 ' #txt
 Gg0 f0 outParamTable 'result.portalConfig=in.portalConfig;
 ' #txt
-Gg0 f0 actionDecl 'ch.ivy.addon.portal.generic.GetPortalConfigData out;
-' #txt
 Gg0 f0 callSignature call() #txt
-Gg0 f0 type ch.ivy.addon.portal.generic.GetPortalConfigData #txt
 Gg0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -40,12 +35,9 @@ Gg0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Gg0 f0 81 49 30 30 -13 17 #rect
 Gg0 f0 @|StartSubIcon #fIcon
-Gg0 f1 type ch.ivy.addon.portal.generic.GetPortalConfigData #txt
 Gg0 f1 553 49 30 30 0 15 #rect
 Gg0 f1 @|EndSubIcon #fIcon
-Gg0 f5 type ch.ivy.addon.portal.generic.GetPortalConfigData #txt
 Gg0 f5 processCall 'Functional Processes/CustomPortalConfig:call(ch.ivy.addon.portal.generic.PortalConfig)' #txt
-Gg0 f5 doCall true #txt
 Gg0 f5 requestActionDecl '<ch.ivy.addon.portal.generic.PortalConfig portalConfig> param;
 ' #txt
 Gg0 f5 requestMappingAction 'param.portalConfig=in.portalConfig;

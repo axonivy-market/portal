@@ -7,7 +7,8 @@
 
   <!-- TOPBAR START -->
   <h:outputScript name="global-search.js" library="js" target="head" />
-  <div class="TexAlCenter">
+  <h:outputScript name="responsive-toolkit.js" library="js" target="head"/>
+  <div class="TexAlCenter logo-container">
 
     <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask id="task-leave-warning-component" rendered="#{isWorkingOnATask}"
       leaveActionListener="#{userMenuBean.resetTaskAndNavigateToHomePage()}" reserveActionListener="#{userMenuBean.reserveTaskAndNavigateToHomePage()}"
@@ -120,7 +121,7 @@
     </p:dialog>
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/languageSetting')}" styleClass="language-setting-dialog"
-      width="70%" closeOnEscape="true" widgetVar="languageDialogVar" id="language-setting-dialog" resizable="false"  
+      width="50%" closeOnEscape="true" widgetVar="languageDialogVar" id="language-setting-dialog" resizable="false"  
       modal="true" dynamic="true" appendTo="@(body)" >
       <h:form id="language-settings-form" styleClass="language-settings-form">
         <ic:ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage id="language-settings" startMethod="start"
@@ -142,7 +143,7 @@
       <p:remoteCommand name="rcProjectInfo" actionListener="#{projectVersionBean.loadProjectVesion}" oncomplete="PF('project-info-dialog').show()" update="project-info-dialog" />
     </h:form>
   </ui:insert>
-  <c:if test="#{enablesChat eq true}">
+  <c:if test="#{chatRendererBean.isChatRendered}">
     <ui:include src="/layouts/includes/chat.xhtml" />
   </c:if>
   <!-- TOPBAR END -->

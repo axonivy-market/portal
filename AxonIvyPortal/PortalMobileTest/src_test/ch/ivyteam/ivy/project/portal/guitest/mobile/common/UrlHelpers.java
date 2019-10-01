@@ -7,9 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 public class UrlHelpers {
 
   public static String generateAbsoluteProcessStartLink(String relativeProcessStartLink) {
-    if (!isServerMode() || System.getProperty("engineUrl") != null) {
-      relativeProcessStartLink = StringUtils.capitalize(relativeProcessStartLink);
-    }
+    relativeProcessStartLink = StringUtils.capitalize(relativeProcessStartLink);
     if (relativeProcessStartLink.endsWith(".icm")) {
       return getEngineUrl() + "/casemap/" + getApplicationName() + "/" + relativeProcessStartLink;
     }
@@ -30,10 +28,6 @@ public class UrlHelpers {
   
   public static String getAppiumServerUrl() {
     return PropertyLoader.getAppiumAddress() + ":" + PropertyLoader.getAppiumPort();
-  }
-  
-  private static boolean isServerMode() {
-    return SystemProperties.isInServerMode() || PropertyLoader.getServerMode();
   }
   
   public static String getLogoutURLOnDesigner() {

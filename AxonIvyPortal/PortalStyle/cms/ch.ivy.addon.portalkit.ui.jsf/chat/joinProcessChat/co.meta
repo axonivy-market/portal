@@ -1,0 +1,5 @@
+co: name={joinProcessChat} description={} changed={2019-07-10 09:52:10 CEST} changedby={nqhoan} visualorder={0} guid={16947F854A97D122} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16947F854B446DD0} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-07-10 09:52:10 CEST} validto={} changed={2019-07-10 09:52:10 CEST} changedby={nqhoan} properties={} id={}
+val: guid={16947F854ACD5455} datatype={} isdefault={true} langid={en} description={} validfrom={2019-02-20 04:45:06 CET} validto={} changed={2019-03-04 10:12:47 CET} changedby={dhtlong} properties={} id={}
+val: guid={16B1CB72139344BA} datatype={} isdefault={false} langid={es} description={} validfrom={2019-07-10 09:52:10 CEST} validto={} changed={2019-07-10 09:52:10 CEST} changedby={nqhoan} properties={} id={}
+val: guid={16947F854BCA96E0} datatype={} isdefault={false} langid={de} description={} validfrom={2019-07-10 09:52:10 CEST} validto={} changed={2019-07-10 09:52:10 CEST} changedby={nqhoan} properties={} id={}

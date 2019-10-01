@@ -10,6 +10,7 @@ import org.junit.runners.model.Statement;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 import ch.xpertline.base.client.Browser;
 
@@ -28,7 +29,13 @@ public class ScreenshotFailedTestRule implements MethodRule {
           captureScreenshot(frameworkMethod.getName());
           throw t;
         } finally {
-          Browser.getBrowser().shutdown();
+          try {
+            Browser.getBrowser().shutdown();
+          } catch (Exception e) {
+            captureScreenshot(frameworkMethod.getName() + "-shutdown-error");
+            Sleeper.sleepTight(5000);
+            Browser.getBrowser().shutdown();
+          }
         }
       }
 

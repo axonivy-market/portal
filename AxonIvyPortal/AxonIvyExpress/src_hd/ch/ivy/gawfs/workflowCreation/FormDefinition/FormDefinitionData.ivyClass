@@ -26,3 +26,7 @@ isAbleToExecute Boolean #field
 isAbleToExecute PERSISTENT #fieldModifier
 displayNextBtn Boolean #field
 displayNextBtn PERSISTENT #fieldModifier
+selectedDataProvider gawfs.ExternalDataProvider #field
+selectedDataProvider PERSISTENT #fieldModifier
+dataProviders List<gawfs.ExternalDataProvider> #field
+dataProviders PERSISTENT #fieldModifier

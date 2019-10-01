@@ -1,7 +1,6 @@
-
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+  xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
   <ui:composition template="/layouts/TaskTemplate.xhtml">
     <ui:param name="caseId" value="#{ivy.case.id}" />
@@ -67,7 +66,7 @@
                           <p:inputSwitch id="process-type" styleClass="express-input-switch-selection"
                             disabled="#{not empty data.data.processID or data.data.isAdhocProcess}" value="#{data.isRepeatable}"
                             requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processtype')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
-                            <p:ajax listener="#{logic.onSwitchProcessType}" update="process-type-group process-type express-button-container" />
+                            <p:ajax listener="#{logic.onSwitchProcessType}" update="process-type-group process-type express-button-container process-owner-container defined-tasks-list-container" />
                           </p:inputSwitch>
                           <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ProcesstypeRepeating')}" styleClass="#{data.isRepeatable ? 'switch-active':''}" />
                         </h:panelGroup>
@@ -99,6 +98,30 @@
                         </h:panelGroup>
                       </div>
                     </div>
+                  </div>
+
+                  <div class="ui-g-12 u-padding-0">
+                    <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
+
+                    <!-- PROCESS OWNER -->
+                    <h:panelGroup id="process-owner-container" styleClass="ui-g-5 ui-lg-5 ui-md-6 ui-sm-12 u-no-padding-top u-no-padding-left">
+                      <h:panelGroup id="process-owner-content" layout="block" styleClass="ui-g" rendered="#{data.isDisplayProcessOwner}">
+                        <div class="ui-g-12">
+                          <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ProcessOwner')}"
+                            for="process-owner-responsible" styleClass="express-title-header task-responsible-label" />
+                        </div>
+                        <div class="ui-g-12">
+                          <h:panelGroup id="process-owner-block" layout="block" styleClass="express-process-owner">
+                            <h:inputHidden id="process-owner-responsible" value="#{data.data.processCoOwnersDisplayName}" required="true"
+                              requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ProcessOwner')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
+                            <p:commandLink id="process-owner-link" immediate="true" styleClass="task-responsible-link"
+                              value="#{not empty data.data.processCoOwnersDisplayName ? data.data.processCoOwnersDisplayName : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"
+                              actionListener="#{logic.initProcessStartResponsibles}" oncomplete="PF('choose-responsible-dialog').show();"
+                              process="@this" update="assignee-selection-form:assignee-selection-panel" global="false" />
+                          </h:panelGroup>
+                        </div>
+                      </h:panelGroup>
+                    </h:panelGroup>
                   </div>
                 </div>
               </div>
@@ -168,13 +191,13 @@
                             <!--  RESPONSIBLE -->
                             <h:panelGroup layout="block" styleClass="ui-g-12" rendered="#{gtask.taskType ne 'EMAIL'}">
                               <p:outputLabel for="task-responsible"
-                                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}"
+                                value="#{data.data.processType == 'REPEAT' and gtask.position eq 1? ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart'):ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:"
                                 styleClass="express-title-header task-responsible-label" />
                             </h:panelGroup>
                             <h:panelGroup layout="block" id="task-responsible-input-container" styleClass="ui-g-12"
                               rendered="#{gtask.taskType ne 'EMAIL'}">
                               <h:inputHidden id="task-responsible" value="#{gtask.responsibleDisplayName}" required="true"
-                                requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
+                                requiredMessage="#{data.data.processType == 'REPEAT' and gtask.position eq 1 ? ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart'):ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
                               <p:commandLink id="task-responsible-link" immediate="true" styleClass="task-responsible-link"
                                 value="#{not empty gtask.responsibleDisplayName ? gtask.responsibleDisplayName : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"
                                 actionListener="#{logic.initAssginement(gtask)}" oncomplete="PF('choose-responsible-dialog').show();"
@@ -244,14 +267,12 @@
                         <h:panelGroup styleClass="ui-g-5 ui-lg-5 ui-md-6">
                           <!-- RESPONSIBLE -->
                           <div class="ui-g-12">
-                            <p:outputLabel rendered="#{gtask.position gt 1}" for="default-task-responsible"
-                              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:" />
-                            <p:outputLabel rendered="#{gtask.position == 1}" for="default-task-responsible"
-                              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:" />
+                            <p:outputLabel rendered="#{gtask.position >= 1}" for="default-task-responsible"
+                              value="#{data.data.processType == 'REPEAT' and gtask.position eq 1? ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart'):ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:" />
                           </div>
                           <h:panelGroup layout="block" id="default-task-responsible-input-container" styleClass="ui-g-12">
                             <h:inputHidden id="default-task-responsible" value="#{gtask.responsibleDisplayName}" required="true"
-                              requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
+                              requiredMessage="#{data.data.processType == 'REPEAT' and gtask.position eq 1 ? ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart'):ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
                             <p:commandLink id="default-task-responsible-link" immediate="true" styleClass="task-responsible-link"
                               value="#{not empty gtask.responsibleDisplayName ? gtask.responsibleDisplayName : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"
                               actionListener="#{logic.initAssginement(gtask)}" oncomplete="PF('choose-responsible-dialog').show();"

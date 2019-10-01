@@ -1,22 +1,19 @@
 [Ivy]
-14C30066460AD7AA 3.23 #module
+14C30066460AD7AA 3.28 #module
 >Proto >Proto Collection #zClass
 As0 AbsencesAndDeputyProcess Big #zClass
 As0 RD #cInfo
 As0 #process
-As0 @TextInP .ui2RdDataAction .ui2RdDataAction #zField
-As0 @TextInP .rdData2UIAction .rdData2UIAction #zField
-As0 @TextInP .resExport .resExport #zField
 As0 @TextInP .type .type #zField
 As0 @TextInP .processKind .processKind #zField
 As0 @AnnotationInP-0n ai ai #zField
 As0 @TextInP .xml .xml #zField
 As0 @TextInP .responsibility .responsibility #zField
-As0 @RichDialogInitStart f0 '' #zField
-As0 @RichDialogProcessEnd f18 '' #zField
+As0 @UdInit f0 '' #zField
+As0 @UdProcessEnd f18 '' #zField
 As0 @PushWFArc f58 '' #zField
-As0 @RichDialogMethodStart f79 '' #zField
-As0 @RichDialogProcessEnd f80 '' #zField
+As0 @UdMethod f79 '' #zField
+As0 @UdProcessEnd f80 '' #zField
 As0 @GridStep f142 '' #zField
 As0 @PushWFArc f143 '' #zField
 As0 @Alternative f83 '' #zField
@@ -28,44 +25,44 @@ As0 @Alternative f149 '' #zField
 As0 @GridStep f152 '' #zField
 As0 @GridStep f154 '' #zField
 As0 @PushWFArc f156 '' #zField
-As0 @RichDialogMethodStart f11 '' #zField
+As0 @UdMethod f11 '' #zField
 As0 @GridStep f37 '' #zField
-As0 @RichDialogProcessEnd f130 '' #zField
+As0 @UdProcessEnd f130 '' #zField
 As0 @PushWFArc f131 '' #zField
 As0 @PushWFArc f132 '' #zField
-As0 @RichDialogMethodStart f12 '' #zField
-As0 @RichDialogProcessEnd f23 '' #zField
+As0 @UdMethod f12 '' #zField
+As0 @UdProcessEnd f23 '' #zField
 As0 @PushWFArc f30 '' #zField
-As0 @RichDialogProcessStart f31 '' #zField
-As0 @RichDialogProcessEnd f35 '' #zField
+As0 @UdEvent f31 '' #zField
+As0 @UdProcessEnd f35 '' #zField
 As0 @GridStep f5 '' #zField
 As0 @PushWFArc f14 '' #zField
 As0 @PushWFArc f36 '' #zField
-As0 @RichDialogProcessStart f6 '' #zField
+As0 @UdEvent f6 '' #zField
 As0 @GridStep f7 '' #zField
-As0 @RichDialogProcessEnd f13 '' #zField
+As0 @UdProcessEnd f13 '' #zField
 As0 @PushWFArc f134 '' #zField
-As0 @RichDialogProcessStart f157 '' #zField
-As0 @RichDialogProcessStart f33 '' #zField
+As0 @UdEvent f157 '' #zField
+As0 @UdEvent f33 '' #zField
 As0 @GridStep f44 '' #zField
 As0 @PushWFArc f46 '' #zField
-As0 @RichDialogProcessEnd f52 '' #zField
+As0 @UdProcessEnd f52 '' #zField
 As0 @PushWFArc f53 '' #zField
-As0 @RichDialogProcessStart f54 '' #zField
+As0 @UdEvent f54 '' #zField
 As0 @GridStep f55 '' #zField
 As0 @PushWFArc f56 '' #zField
-As0 @RichDialogProcessEnd f57 '' #zField
+As0 @UdProcessEnd f57 '' #zField
 As0 @PushWFArc f87 '' #zField
-As0 @RichDialogProcessStart f38 '' #zField
+As0 @UdEvent f38 '' #zField
 As0 @CallSub f39 '' #zField
-As0 @RichDialogProcessEnd f61 '' #zField
+As0 @UdProcessEnd f61 '' #zField
 As0 @PushWFArc f63 '' #zField
 As0 @GridStep f88 '' #zField
 As0 @PushWFArc f64 '' #zField
 As0 @Alternative f90 '' #zField
 As0 @PushWFArc f91 '' #zField
 As0 @PushWFArc f128 '' #zField
-As0 @RichDialogProcessStart f32 '' #zField
+As0 @UdEvent f32 '' #zField
 As0 @CallSub f111 '' #zField
 As0 @PushWFArc f119 '' #zField
 As0 @GridStep f120 '' #zField
@@ -77,16 +74,16 @@ As0 @GridStep f9 '' #zField
 As0 @PushWFArc f10 '' #zField
 As0 @PushWFArc f15 '' #zField
 As0 @PushWFArc f16 '' #zField
-As0 @RichDialogProcessEnd f40 '' #zField
-As0 @RichDialogMethodStart f34 '' #zField
-As0 @RichDialogMethodStart f42 '' #zField
-As0 @RichDialogProcessEnd f43 '' #zField
+As0 @UdProcessEnd f40 '' #zField
+As0 @UdMethod f34 '' #zField
+As0 @UdMethod f42 '' #zField
+As0 @UdProcessEnd f43 '' #zField
 As0 @CallSub f47 '' #zField
 As0 @PushWFArc f48 '' #zField
 As0 @GridStep f45 '' #zField
 As0 @PushWFArc f50 '' #zField
-As0 @RichDialogMethodStart f51 '' #zField
-As0 @RichDialogProcessEnd f59 '' #zField
+As0 @UdMethod f51 '' #zField
+As0 @UdProcessEnd f59 '' #zField
 As0 @CallSub f62 '' #zField
 As0 @Alternative f68 '' #zField
 As0 @GridStep f60 '' #zField
@@ -95,11 +92,11 @@ As0 @GridStep f70 '' #zField
 As0 @PushWFArc f71 '' #zField
 As0 @PushWFArc f72 '' #zField
 As0 @PushWFArc f41 '' #zField
-As0 @RichDialogMethodStart f73 '' #zField
+As0 @UdMethod f73 '' #zField
 As0 @Alternative f74 '' #zField
 As0 @PushWFArc f65 '' #zField
 As0 @GridStep f77 '' #zField
-As0 @RichDialogProcessStart f81 '' #zField
+As0 @UdEvent f81 '' #zField
 As0 @Alternative f92 '' #zField
 As0 @PushWFArc f93 '' #zField
 As0 @CallSub f94 '' #zField
@@ -107,8 +104,8 @@ As0 @PushWFArc f95 '' #zField
 As0 @Alternative f97 '' #zField
 As0 @PushWFArc f98 '' #zField
 As0 @PushWFArc f99 '' #zField
-As0 @RichDialogProcessStart f96 '' #zField
-As0 @RichDialogProcessEnd f100 '' #zField
+As0 @UdEvent f96 '' #zField
+As0 @UdProcessEnd f100 '' #zField
 As0 @CallSub f101 '' #zField
 As0 @GridStep f104 '' #zField
 As0 @PushWFArc f103 '' #zField
@@ -120,7 +117,7 @@ As0 @PushWFArc f82 '' #zField
 As0 @PushWFArc f84 '' #zField
 As0 @Alternative f85 '' #zField
 As0 @PushWFArc f86 '' #zField
-As0 @RichDialogProcessEnd f89 '' #zField
+As0 @UdProcessEnd f89 '' #zField
 As0 @GridStep f109 '' #zField
 As0 @PushWFArc f110 '' #zField
 As0 @PushWFArc f107 '' #zField
@@ -132,7 +129,7 @@ As0 @PushWFArc f114 '' #zField
 As0 @PushWFArc f118 '' #zField
 As0 @PushWFArc f122 '' #zField
 As0 @PushWFArc f123 '' #zField
-As0 @RichDialogProcessEnd f125 '' #zField
+As0 @UdProcessEnd f125 '' #zField
 As0 @PushWFArc f126 '' #zField
 As0 @CallSub f22 '' #zField
 As0 @Alternative f28 '' #zField
@@ -159,9 +156,7 @@ As0 @PushWFArc f20 '' #zField
 As0 @PushWFArc f116 '' #zField
 >Proto As0 As0 AbsencesAndDeputyProcess #zField
 As0 f0 guid 1679C986E063D36E #txt
-As0 f0 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f0 method start() #txt
-As0 f0 disableUIEvents true #txt
 As0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -175,16 +170,13 @@ As0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f0 83 51 26 26 -16 15 #rect
-As0 f0 @|RichDialogInitStartIcon #fIcon
-As0 f18 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
+As0 f0 @|UdInitIcon #fIcon
 As0 f18 277 51 26 26 0 12 #rect
-As0 f18 @|RichDialogProcessEndIcon #fIcon
+As0 f18 @|UdProcessEndIcon #fIcon
 As0 f58 expr out #txt
 As0 f58 109 64 277 64 #arcP
 As0 f79 guid 1679C9C2A1FF6686 #txt
-As0 f79 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f79 method findAbsences() #txt
-As0 f79 disableUIEvents false #txt
 As0 f79 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -198,12 +190,9 @@ As0 f79 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f79 83 147 26 26 -41 15 #rect
-As0 f79 @|RichDialogMethodStartIcon #fIcon
-As0 f80 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
+As0 f79 @|UdMethodIcon #fIcon
 As0 f80 1395 147 26 26 0 12 #rect
-As0 f80 @|RichDialogProcessEndIcon #fIcon
-As0 f142 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
+As0 f80 @|UdProcessEndIcon #fIcon
 As0 f142 actionTable 'out=in;
 ' #txt
 As0 f142 actionCode 'import ch.ivy.addon.portalkit.service.PermissionCheckerService;
@@ -211,7 +200,6 @@ import ch.ivyteam.ivy.security.IPermission;
 
 PermissionCheckerService permissionChecker = new PermissionCheckerService();
 in.isSupervisor = permissionChecker.hasAllPermissions(IPermission.USER_CREATE_ABSENCE, IPermission.USER_READ_ABSENCES, IPermission.USER_DELETE_ABSENCE);' #txt
-As0 f142 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f142 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -224,7 +212,6 @@ As0 f142 176 138 224 44 -92 -16 #rect
 As0 f142 @|StepIcon #fIcon
 As0 f143 expr out #txt
 As0 f143 109 160 176 160 #arcP
-As0 f83 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f83 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -234,9 +221,7 @@ As0 f83 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f83 720 144 32 32 -37 -33 #rect
 As0 f83 @|AlternativeIcon #fIcon
-As0 f145 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f145 processCall 'Ivy Data Processes/AbsenceService:findAbsencesOfAllUsers(String)' #txt
-As0 f145 doCall true #txt
 As0 f145 requestActionDecl '<java.lang.String username> param;
 ' #txt
 As0 f145 requestMappingAction 'param.username=ivy.session.getSessionUserName();
@@ -257,9 +242,7 @@ of all users</name>
 ' #txt
 As0 f145 832 138 112 44 -41 -20 #rect
 As0 f145 @|CallSubIcon #fIcon
-As0 f146 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f146 processCall 'Ivy Data Processes/AbsenceService:findAbsences(String)' #txt
-As0 f146 doCall true #txt
 As0 f146 requestActionDecl '<java.lang.String username> param;
 ' #txt
 As0 f146 requestMappingAction 'param.username=ivy.session.getSessionUserName();
@@ -306,11 +289,8 @@ As0 f148 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f148 736 176 832 256 #arcP
 As0 f148 1 736 256 #addKink
 As0 f148 1 0.40389801867577546 -1 -10 #arcLabel
-As0 f149 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f149 1136 144 32 32 0 16 #rect
 As0 f149 @|AlternativeIcon #fIcon
-As0 f152 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
 As0 f152 actionTable 'out=in;
 ' #txt
 As0 f152 actionCode 'import java.util.ArrayList;
@@ -329,7 +309,6 @@ if (!in.absenceInThePastShown) {
 } else {
 	out.displayedAbsences = new ArrayList(ivyAbsences);
 }' #txt
-As0 f152 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f152 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -340,14 +319,11 @@ of current user</name>
 ' #txt
 As0 f152 984 234 128 44 -44 -16 #rect
 As0 f152 @|StepIcon #fIcon
-As0 f154 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
 As0 f154 actionTable 'out=in;
 ' #txt
 As0 f154 actionCode 'import ch.ivy.addon.portalkit.util.BeanUtils;
 
 BeanUtils.invokeBeanMethodViaMethodExpression("#{errorDisplayBean.displayErrors}", in.errors);' #txt
-As0 f154 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f154 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -361,9 +337,7 @@ As0 f154 @|StepIcon #fIcon
 As0 f156 expr out #txt
 As0 f156 1352 160 1395 160 #arcP
 As0 f11 guid 167A13CB376C246A #txt
-As0 f11 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f11 method editAbsence(ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence) #txt
-As0 f11 disableUIEvents false #txt
 As0 f11 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence selectedAbsence> param = methodEvent.getInputArguments();
 ' #txt
@@ -381,9 +355,7 @@ As0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f11 83 595 26 26 -68 15 #rect
-As0 f11 @|RichDialogMethodStartIcon #fIcon
-As0 f37 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
+As0 f11 @|UdMethodIcon #fIcon
 As0 f37 actionTable 'out=in;
 ' #txt
 As0 f37 actionCode 'out.backupAbsence.setUser(in.selectedAbsence.getUser());
@@ -392,7 +364,6 @@ out.backupAbsence.setUntil(in.selectedAbsence.getUntil());
 out.backupAbsence.setComment(in.selectedAbsence.getComment());
 out.selectedUser = in.selectedAbsence.getUser();
 ' #txt
-As0 f37 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -402,17 +373,14 @@ As0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f37 200 586 112 44 -46 -8 #rect
 As0 f37 @|StepIcon #fIcon
-As0 f130 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f130 403 595 26 26 0 12 #rect
-As0 f130 @|RichDialogProcessEndIcon #fIcon
+As0 f130 @|UdProcessEndIcon #fIcon
 As0 f131 expr out #txt
 As0 f131 109 608 200 608 #arcP
 As0 f132 expr out #txt
 As0 f132 312 608 403 608 #arcP
 As0 f12 guid 167A141E9FBD4F48 #txt
-As0 f12 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f12 method preDelete(ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence) #txt
-As0 f12 disableUIEvents false #txt
 As0 f12 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence selectedAbsence> param = methodEvent.getInputArguments();
 ' #txt
@@ -428,16 +396,12 @@ As0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f12 83 1171 26 26 -61 15 #rect
-As0 f12 @|RichDialogMethodStartIcon #fIcon
-As0 f23 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
+As0 f12 @|UdMethodIcon #fIcon
 As0 f23 371 1171 26 26 0 12 #rect
-As0 f23 @|RichDialogProcessEndIcon #fIcon
+As0 f23 @|UdProcessEndIcon #fIcon
 As0 f30 expr out #txt
 As0 f30 109 1184 371 1184 #arcP
 As0 f31 guid 167A1481754FE0E1 #txt
-As0 f31 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
-As0 f31 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
 As0 f31 actionTable 'out=in;
 ' #txt
 As0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -448,12 +412,9 @@ As0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f31 83 787 26 26 -10 15 #rect
-As0 f31 @|RichDialogProcessStartIcon #fIcon
-As0 f35 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
+As0 f31 @|UdEventIcon #fIcon
 As0 f35 403 787 26 26 0 12 #rect
-As0 f35 @|RichDialogProcessEndIcon #fIcon
-As0 f5 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
+As0 f35 @|UdProcessEndIcon #fIcon
 As0 f5 actionTable 'out=in;
 ' #txt
 As0 f5 actionCode 'import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
@@ -467,7 +428,6 @@ in.selectedUser = ivy.session.getSessionUser();
 
 in.validationError = false;
 in.isLoadDeputy = false;' #txt
-As0 f5 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -482,9 +442,6 @@ As0 f14 109 800 200 800 #arcP
 As0 f36 expr out #txt
 As0 f36 312 800 403 800 #arcP
 As0 f6 guid 167A149D01ECA4B9 #txt
-As0 f6 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
-As0 f6 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
 As0 f6 actionTable 'out=in;
 ' #txt
 As0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -495,9 +452,7 @@ As0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f6 83 883 26 26 -36 15 #rect
-As0 f6 @|RichDialogProcessStartIcon #fIcon
-As0 f7 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
+As0 f6 @|UdEventIcon #fIcon
 As0 f7 actionTable 'out=in;
 ' #txt
 As0 f7 actionCode 'import ch.ivy.addon.portalkit.util.UserUtils;
@@ -525,7 +480,6 @@ if (doesNewAbsenceOverlap) {
 }
 ' #txt
 As0 f7 security system #txt
-As0 f7 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -535,15 +489,11 @@ As0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f7 248 874 112 44 -27 -8 #rect
 As0 f7 @|StepIcon #fIcon
-As0 f13 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f13 403 883 26 26 0 12 #rect
-As0 f13 @|RichDialogProcessEndIcon #fIcon
+As0 f13 @|UdProcessEndIcon #fIcon
 As0 f134 expr out #txt
 As0 f134 360 896 403 896 #arcP
 As0 f157 guid 167A14F56A293F29 #txt
-As0 f157 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
-As0 f157 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
 As0 f157 actionTable 'out=in;
 ' #txt
 As0 f157 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -554,11 +504,8 @@ As0 f157 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f157 83 979 26 26 -48 14 #rect
-As0 f157 @|RichDialogProcessStartIcon #fIcon
+As0 f157 @|UdEventIcon #fIcon
 As0 f33 guid 167A15801CB2F006 #txt
-As0 f33 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
-As0 f33 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
 As0 f33 actionTable 'out=in;
 ' #txt
 As0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -569,16 +516,13 @@ As0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f33 83 1075 26 26 -47 15 #rect
-As0 f33 @|RichDialogProcessStartIcon #fIcon
-As0 f44 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
+As0 f33 @|UdEventIcon #fIcon
 As0 f44 actionTable 'out=in;
 ' #txt
 As0 f44 actionCode 'import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/information"), ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/saveSuccessfully")));' #txt
-As0 f44 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -591,15 +535,11 @@ As0 f44 160 1066 144 44 -52 -16 #rect
 As0 f44 @|StepIcon #fIcon
 As0 f46 expr out #txt
 As0 f46 109 1088 160 1088 #arcP
-As0 f52 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f52 371 1075 26 26 0 12 #rect
-As0 f52 @|RichDialogProcessEndIcon #fIcon
+As0 f52 @|UdProcessEndIcon #fIcon
 As0 f53 expr out #txt
 As0 f53 304 1088 371 1088 #arcP
 As0 f54 guid 167A15933233F778 #txt
-As0 f54 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
-As0 f54 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
 As0 f54 actionTable 'out=in;
 ' #txt
 As0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -610,9 +550,7 @@ As0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f54 83 691 26 26 -19 16 #rect
-As0 f54 @|RichDialogProcessStartIcon #fIcon
-As0 f55 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
+As0 f54 @|UdEventIcon #fIcon
 As0 f55 actionTable 'out=in;
 ' #txt
 As0 f55 actionCode 'out.selectedAbsence.setUser(in.backupAbsence.getUser());
@@ -620,7 +558,6 @@ out.selectedAbsence.setFrom(in.backupAbsence.getFrom());
 out.selectedAbsence.setUntil(in.backupAbsence.getUntil());
 out.selectedAbsence.setComment(in.backupAbsence.getComment());
 ' #txt
-As0 f55 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -632,15 +569,11 @@ As0 f55 168 682 112 44 -16 -8 #rect
 As0 f55 @|StepIcon #fIcon
 As0 f56 expr out #txt
 As0 f56 109 704 168 704 #arcP
-As0 f57 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f57 371 691 26 26 0 12 #rect
-As0 f57 @|RichDialogProcessEndIcon #fIcon
+As0 f57 @|UdProcessEndIcon #fIcon
 As0 f87 expr out #txt
 As0 f87 280 704 371 704 #arcP
 As0 f38 guid 167A16B0B3C6E78A #txt
-As0 f38 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
-As0 f38 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
 As0 f38 actionTable 'out=in;
 ' #txt
 As0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -651,10 +584,8 @@ As0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f38 83 1267 26 26 -47 15 #rect
-As0 f38 @|RichDialogProcessStartIcon #fIcon
-As0 f39 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
+As0 f38 @|UdEventIcon #fIcon
 As0 f39 processCall 'Ivy Data Processes/AbsenceService:deleteAbsence(ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence)' #txt
-As0 f39 doCall true #txt
 As0 f39 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence ivyAbsence> param;
 ' #txt
 As0 f39 requestMappingAction 'param.ivyAbsence=in.selectedAbsence;
@@ -673,19 +604,15 @@ As0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f39 184 1258 112 44 -44 -8 #rect
 As0 f39 @|CallSubIcon #fIcon
-As0 f61 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f61 627 1267 26 26 0 12 #rect
-As0 f61 @|RichDialogProcessEndIcon #fIcon
+As0 f61 @|UdProcessEndIcon #fIcon
 As0 f63 expr out #txt
 As0 f63 109 1280 184 1280 #arcP
-As0 f88 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
 As0 f88 actionTable 'out=in;
 ' #txt
 As0 f88 actionCode 'import ch.ivy.addon.portalkit.util.BeanUtils;
 
 BeanUtils.invokeBeanMethodViaMethodExpression("#{errorDisplayBean.displayErrors}", in.errors);' #txt
-As0 f88 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f88 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -700,7 +627,6 @@ As0 f64 expr out #txt
 As0 f64 568 1376 640 1293 #arcP
 As0 f64 1 640 1376 #addKink
 As0 f64 0 0.7951798915758104 0 0 #arcLabel
-As0 f90 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f90 176 880 32 32 0 16 #rect
 As0 f90 @|AlternativeIcon #fIcon
 As0 f91 expr out #txt
@@ -708,9 +634,6 @@ As0 f91 109 896 176 896 #arcP
 As0 f128 expr in #txt
 As0 f128 208 896 248 896 #arcP
 As0 f32 guid 167A58955C54C4C0 #txt
-As0 f32 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
-As0 f32 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
 As0 f32 actionTable 'out=in;
 ' #txt
 As0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -721,10 +644,8 @@ As0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f32 83 499 26 26 -47 15 #rect
-As0 f32 @|RichDialogProcessStartIcon #fIcon
-As0 f111 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
+As0 f32 @|UdEventIcon #fIcon
 As0 f111 processCall 'Ivy Data Processes/AbsenceService:updateAbsences(String,java.util.Set)' #txt
-As0 f111 doCall true #txt
 As0 f111 requestActionDecl '<java.lang.String username,java.util.Set ivyAbsences> param;
 ' #txt
 As0 f111 requestMappingAction 'param.username=ch.ivy.addon.portalkit.util.UserUtils.getUserName(in.selectedUser);
@@ -746,14 +667,11 @@ As0 f111 168 490 112 44 -44 -8 #rect
 As0 f111 @|CallSubIcon #fIcon
 As0 f119 expr out #txt
 As0 f119 109 512 168 512 #arcP
-As0 f120 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
 As0 f120 actionTable 'out=in;
 ' #txt
 As0 f120 actionCode 'import ch.ivy.addon.portalkit.util.BeanUtils;
 
 BeanUtils.invokeBeanMethodViaMethodExpression("#{errorDisplayBean.displayErrors}", in.errors);' #txt
-As0 f120 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f120 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -766,8 +684,6 @@ As0 f120 328 490 128 44 -40 -16 #rect
 As0 f120 @|StepIcon #fIcon
 As0 f121 expr out #txt
 As0 f121 280 512 328 512 #arcP
-As0 f1 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
 As0 f1 actionTable 'out=in;
 ' #txt
 As0 f1 actionCode 'import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
@@ -777,7 +693,6 @@ java.util.Date endOfDate = Dates.toEndOfDate(in.selectedAbsence.getUntil());
 in.selectedAbsence.setUntil(endOfDate);
 
 in.isAbsenceBeingCreated = true;' #txt
-As0 f1 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -788,7 +703,6 @@ to selected absence</name>
 ' #txt
 As0 f1 144 1738 144 44 -51 -16 #rect
 As0 f1 @|StepIcon #fIcon
-As0 f4 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -800,8 +714,6 @@ As0 f4 336 1264 32 32 -32 -30 #rect
 As0 f4 @|AlternativeIcon #fIcon
 As0 f8 expr out #txt
 As0 f8 296 1280 336 1280 #arcP
-As0 f9 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
 As0 f9 actionTable 'out=in;
 ' #txt
 As0 f9 actionCode 'import ch.ivy.addon.portalkit.util.UserUtils;
@@ -813,7 +725,6 @@ out.displayedAbsences.remove(in.selectedAbsence);
 Set<IvyAbsence> ivyAbsences = out.absencesByUser.get(UserUtils.getUserName(in.selectedAbsence.user)) as Set;
 ivyAbsences.remove(in.selectedAbsence);' #txt
 As0 f9 security system #txt
-As0 f9 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -851,13 +762,10 @@ As0 f16 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f16 352 1296 440 1376 #arcP
 As0 f16 1 352 1376 #addKink
 As0 f16 1 0.3875 0 -8 #arcLabel
-As0 f40 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f40 627 1555 26 26 0 12 #rect
-As0 f40 @|RichDialogProcessEndIcon #fIcon
+As0 f40 @|UdProcessEndIcon #fIcon
 As0 f34 guid 167BF687DE4A5596 #txt
-As0 f34 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f34 method autoCompleteForUser(String) #txt
-As0 f34 disableUIEvents false #txt
 As0 f34 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <java.lang.String query> param = methodEvent.getInputArguments();
 ' #txt
@@ -881,11 +789,9 @@ As0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f34 83 1555 26 26 -81 15 #rect
-As0 f34 @|RichDialogMethodStartIcon #fIcon
+As0 f34 @|UdMethodIcon #fIcon
 As0 f42 guid 167BF6E4DCD5D7B8 #txt
-As0 f42 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f42 method loadUsers() #txt
-As0 f42 disableUIEvents false #txt
 As0 f42 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -899,13 +805,10 @@ As0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f42 83 1459 26 26 -33 15 #rect
-As0 f42 @|RichDialogMethodStartIcon #fIcon
-As0 f43 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
+As0 f42 @|UdMethodIcon #fIcon
 As0 f43 627 1459 26 26 0 12 #rect
-As0 f43 @|RichDialogProcessEndIcon #fIcon
-As0 f47 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
+As0 f43 @|UdProcessEndIcon #fIcon
 As0 f47 processCall 'Ivy Data Processes/SecurityService:findUsersOverAllApplications(String)' #txt
-As0 f47 doCall true #txt
 As0 f47 requestActionDecl '<java.lang.String username> param;
 ' #txt
 As0 f47 requestMappingAction 'param.username=ivy.session.getSessionUserName();
@@ -927,14 +830,11 @@ As0 f47 192 1450 112 44 -41 -8 #rect
 As0 f47 @|CallSubIcon #fIcon
 As0 f48 expr out #txt
 As0 f48 109 1472 192 1472 #arcP
-As0 f45 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
 As0 f45 actionTable 'out=in;
 ' #txt
 As0 f45 actionCode 'import ch.ivy.addon.portalkit.util.BeanUtils;
 
 BeanUtils.invokeBeanMethodViaMethodExpression("#{errorDisplayBean.displayErrors}", in.errors);' #txt
-As0 f45 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -948,9 +848,7 @@ As0 f45 @|StepIcon #fIcon
 As0 f50 expr out #txt
 As0 f50 504 1472 627 1472 #arcP
 As0 f51 guid 167C062278F2D07A #txt
-As0 f51 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f51 method createAbsenceAndLoadDeputy() #txt
-As0 f51 disableUIEvents false #txt
 As0 f51 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -964,13 +862,10 @@ As0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f51 83 1747 26 26 -79 19 #rect
-As0 f51 @|RichDialogMethodStartIcon #fIcon
-As0 f59 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
+As0 f51 @|UdMethodIcon #fIcon
 As0 f59 1651 1747 26 26 0 12 #rect
-As0 f59 @|RichDialogProcessEndIcon #fIcon
-As0 f62 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
+As0 f59 @|UdProcessEndIcon #fIcon
 As0 f62 processCall 'Ivy Data Processes/SubstituteService:findSubstitutes(String)' #txt
-As0 f62 doCall true #txt
 As0 f62 requestActionDecl '<java.lang.String username> param;
 ' #txt
 As0 f62 requestMappingAction 'param.username=ch.ivy.addon.portalkit.util.UserUtils.getUserName(in.selectedUser);
@@ -990,7 +885,6 @@ As0 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f62 832 1738 112 44 -47 -8 #rect
 As0 f62 @|CallSubIcon #fIcon
-As0 f68 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1000,15 +894,12 @@ As0 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f68 1336 1744 32 32 -32 -37 #rect
 As0 f68 @|AlternativeIcon #fIcon
-As0 f60 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
 As0 f60 actionTable 'out=in;
 ' #txt
 As0 f60 actionCode 'import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
 
 out.substituteRoot = AbsenceAndSubstituteUtils.buildSustitute(in.selectedUser, in.substitutesByApp, in.usersByApp);' #txt
 As0 f60 security system #txt
-As0 f60 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1031,14 +922,11 @@ As0 f66 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f66 1368 1760 1440 1760 #arcP
 As0 f66 0 0.4431818181818182 0 -9 #arcLabel
-As0 f70 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
 As0 f70 actionTable 'out=in;
 ' #txt
 As0 f70 actionCode 'import ch.ivy.addon.portalkit.util.BeanUtils;
 
 BeanUtils.invokeBeanMethodViaMethodExpression("#{errorDisplayBean.displayErrors}", in.errors);' #txt
-As0 f70 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1069,9 +957,7 @@ As0 f72 0 0.3118477277014128 0 0 #arcLabel
 As0 f41 expr out #txt
 As0 f41 109 1568 627 1568 #arcP
 As0 f73 guid 167C46A1401C51E0 #txt
-As0 f73 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f73 method editDeputy() #txt
-As0 f73 disableUIEvents false #txt
 As0 f73 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -1085,14 +971,11 @@ As0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f73 83 1843 26 26 -33 15 #rect
-As0 f73 @|RichDialogMethodStartIcon #fIcon
-As0 f74 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
+As0 f73 @|UdMethodIcon #fIcon
 As0 f74 752 1744 32 32 0 16 #rect
 As0 f74 @|AlternativeIcon #fIcon
 As0 f65 expr in #txt
 As0 f65 784 1760 832 1760 #arcP
-As0 f77 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
 As0 f77 actionTable 'out=in;
 ' #txt
 As0 f77 actionCode 'import ch.ivy.addon.portalkit.util.UserUtils;
@@ -1116,7 +999,6 @@ if (doesNewAbsenceOverlap) {
 	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/overlappingAbsence"), ""));
 }' #txt
 As0 f77 security system #txt
-As0 f77 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f77 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1127,9 +1009,6 @@ As0 f77 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f77 332 1738 112 44 -27 -8 #rect
 As0 f77 @|StepIcon #fIcon
 As0 f81 guid 167C46DCB44F7DCB #txt
-As0 f81 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
-As0 f81 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
 As0 f81 actionTable 'out=in;
 ' #txt
 As0 f81 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1140,8 +1019,7 @@ As0 f81 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f81 83 1939 26 26 -47 15 #rect
-As0 f81 @|RichDialogProcessStartIcon #fIcon
-As0 f92 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
+As0 f81 @|UdEventIcon #fIcon
 As0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1153,9 +1031,7 @@ As0 f92 992 1744 32 32 -55 -36 #rect
 As0 f92 @|AlternativeIcon #fIcon
 As0 f93 expr out #txt
 As0 f93 944 1760 992 1760 #arcP
-As0 f94 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f94 processCall 'Ivy Data Processes/SecurityService:findUsersOverAllApplications(String)' #txt
-As0 f94 doCall true #txt
 As0 f94 requestActionDecl '<java.lang.String username> param;
 ' #txt
 As0 f94 requestMappingAction 'param.username=ivy.session.getSessionUserName();
@@ -1178,7 +1054,6 @@ As0 f94 @|CallSubIcon #fIcon
 As0 f95 expr in #txt
 As0 f95 outCond 'in.usersByApp == null || in.usersByApp.isEmpty()' #txt
 As0 f95 1024 1760 1072 1760 #arcP
-As0 f97 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f97 1240 1744 32 32 0 16 #rect
 As0 f97 @|AlternativeIcon #fIcon
 As0 f98 expr out #txt
@@ -1189,9 +1064,6 @@ As0 f99 1 1008 1856 #addKink
 As0 f99 2 1256 1856 #addKink
 As0 f99 1 0.5 0 0 #arcLabel
 As0 f96 guid 167C594D283DE9BA #txt
-As0 f96 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
-As0 f96 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
 As0 f96 actionTable 'out=in;
 ' #txt
 As0 f96 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1202,13 +1074,10 @@ As0 f96 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f96 83 339 26 26 -47 15 #rect
-As0 f96 @|RichDialogProcessStartIcon #fIcon
-As0 f100 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
+As0 f96 @|UdEventIcon #fIcon
 As0 f100 915 339 26 26 0 12 #rect
-As0 f100 @|RichDialogProcessEndIcon #fIcon
-As0 f101 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
+As0 f100 @|UdProcessEndIcon #fIcon
 As0 f101 processCall 'Ivy Data Processes/SubstituteService:saveSubstitutes(String,java.util.Map)' #txt
-As0 f101 doCall true #txt
 As0 f101 requestActionDecl '<java.lang.String username,java.util.Map substitutesByApp> param;
 ' #txt
 As0 f101 requestMappingAction 'param.username=ch.ivy.addon.portalkit.util.UserUtils.getUserName(in.selectedUser);
@@ -1228,14 +1097,11 @@ As0 f101 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f101 464 330 112 44 -47 -8 #rect
 As0 f101 @|CallSubIcon #fIcon
-As0 f104 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
 As0 f104 actionTable 'out=in;
 ' #txt
 As0 f104 actionCode 'import ch.ivy.addon.portalkit.util.BeanUtils;
 
 BeanUtils.invokeBeanMethodViaMethodExpression("#{errorDisplayBean.displayErrors}", in.errors);' #txt
-As0 f104 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f104 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1247,12 +1113,9 @@ As0 f104 728 330 112 44 -38 -8 #rect
 As0 f104 @|StepIcon #fIcon
 As0 f103 expr out #txt
 As0 f103 840 352 915 352 #arcP
-As0 f106 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
 As0 f106 actionTable 'out=in;
 ' #txt
 As0 f106 actionCode 'out.selectedUser = ivy.session.getSessionUser();' #txt
-As0 f106 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f106 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1280,7 +1143,6 @@ As0 f84 expr out #txt
 As0 f84 109 992 192 912 #arcP
 As0 f84 1 192 992 #addKink
 As0 f84 0 0.7150846925125054 0 0 #arcLabel
-As0 f85 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f85 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1292,17 +1154,13 @@ As0 f85 496 1744 32 32 0 16 #rect
 As0 f85 @|AlternativeIcon #fIcon
 As0 f86 expr out #txt
 As0 f86 444 1760 496 1760 #arcP
-As0 f89 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f89 627 1651 26 26 0 12 #rect
-As0 f89 @|RichDialogProcessEndIcon #fIcon
-As0 f109 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
+As0 f89 @|UdProcessEndIcon #fIcon
 As0 f109 actionTable 'out=in;
 ' #txt
 As0 f109 actionCode 'import javax.faces.context.FacesContext;
 FacesContext.getCurrentInstance().validationFailed();
 in.isLoadDeputy = false;' #txt
-As0 f109 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f109 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1325,8 +1183,6 @@ As0 f3 288 1760 332 1760 #arcP
 As0 f78 expr out #txt
 As0 f78 944 256 984 256 #arcP
 As0 f78 0 0.6865900143900335 0 0 #arcLabel
-As0 f113 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
 As0 f113 actionTable 'out=in;
 ' #txt
 As0 f113 actionCode 'import java.util.ArrayList;
@@ -1345,7 +1201,6 @@ if (!in.absenceInThePastShown) {
 } else {
 	out.displayedAbsences = new ArrayList(ivyAbsences);
 }' #txt
-As0 f113 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f113 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1366,15 +1221,12 @@ As0 f123 expr out #txt
 As0 f123 1112 256 1152 176 #arcP
 As0 f123 1 1152 256 #addKink
 As0 f123 0 0.51542288529873 0 0 #arcLabel
-As0 f125 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f125 531 499 26 26 0 12 #rect
-As0 f125 @|RichDialogProcessEndIcon #fIcon
+As0 f125 @|UdProcessEndIcon #fIcon
 As0 f126 expr out #txt
 As0 f126 456 512 531 512 #arcP
 As0 f126 0 0.41717001380558716 0 0 #arcLabel
-As0 f22 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f22 processCall 'Ivy Data Processes/AbsenceService:createAbsence(ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence)' #txt
-As0 f22 doCall true #txt
 As0 f22 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence absence> param;
 ' #txt
 As0 f22 requestMappingAction 'param.absence=in.selectedAbsence;
@@ -1393,7 +1245,6 @@ As0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f22 240 330 112 44 -44 -8 #rect
 As0 f22 @|CallSubIcon #fIcon
-As0 f28 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1405,15 +1256,12 @@ As0 f28 400 336 32 32 -43 16 #rect
 As0 f28 @|AlternativeIcon #fIcon
 As0 f115 expr out #txt
 As0 f115 352 352 400 352 #arcP
-As0 f124 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
 As0 f124 actionTable 'out=in;
 ' #txt
 As0 f124 actionCode 'import org.primefaces.context.RequestContext;
 
 in.isLoadDeputy = true;
 RequestContext.getCurrentInstance().execute("PF(''addNewAbsence'').initPosition();");' #txt
-As0 f124 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f124 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1425,14 +1273,12 @@ As0 f124 584 1738 112 44 -53 -8 #rect
 As0 f124 @|StepIcon #fIcon
 As0 f117 expr out #txt
 As0 f117 696 1760 752 1760 #arcP
-As0 f17 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f17 624 144 32 32 0 16 #rect
 As0 f17 @|AlternativeIcon #fIcon
 As0 f19 expr out #txt
 As0 f19 400 160 624 160 #arcP
 As0 f21 expr in #txt
 As0 f21 656 160 720 160 #arcP
-As0 f24 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1456,8 +1302,6 @@ As0 f29 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f29 656 352 728 352 #arcP
 As0 f29 0 0.4642857142857143 0 -12 #arcLabel
-As0 f69 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
 As0 f69 actionTable 'out=in;
 ' #txt
 As0 f69 actionCode 'import org.primefaces.context.RequestContext;
@@ -1467,7 +1311,6 @@ RequestContext.getCurrentInstance().execute("PF(''addNewAbsence'').hide()");
 out.isLoadDeputy = false;
 out.isAbsenceBeingCreated = false;
 out.selectedAbsence = null;' #txt
-As0 f69 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f69 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1508,7 +1351,6 @@ As0 f27 416 368 784 374 #arcP
 As0 f27 1 416 416 #addKink
 As0 f27 2 784 416 #addKink
 As0 f27 1 0.49184782608695654 0 0 #arcLabel
-As0 f75 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f75 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

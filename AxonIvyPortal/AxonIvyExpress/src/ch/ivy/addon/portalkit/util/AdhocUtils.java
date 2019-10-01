@@ -17,7 +17,13 @@ import gawfs.TaskDef;
 public class AdhocUtils {
 
   public static String getDescriptionOfFirstTask(ExecutePredefinedWorkflowData data) {
-    Object dynaData = Optional.ofNullable(data.getCurrentTask()).map(TaskDef::getDynaFormController).map(DynaFormController::getModel).map(DynaFormModel::getControls).map(controls -> controls.get(0)).map(DynaFormControl::getData).orElse(null);
+    Object dynaData = Optional.ofNullable(data.getCurrentTask())
+    		.map(TaskDef::getDynaFormController)
+    		.map(DynaFormController::getModel)
+    		.map(DynaFormModel::getControls)
+    		.map(controls -> controls.get(0))
+    		.map(DynaFormControl::getData)
+    		.orElse(null);
     return Optional.ofNullable((Formelement) dynaData).map(Formelement::getValue).map(String::valueOf).orElse(null);
   }
   

@@ -1,10 +1,9 @@
 [Ivy]
-165801CAE71C2982 3.23 #module
+165801CAE71C2982 3.28 #module
 >Proto >Proto Collection #zClass
 He0 HandleEndPageOverride Big #zClass
 He0 B #cInfo
 He0 #process
-He0 @TextInP .resExport .resExport #zField
 He0 @TextInP .type .type #zField
 He0 @TextInP .processKind .processKind #zField
 He0 @AnnotationInP-0n ai ai #zField
@@ -24,10 +23,7 @@ He0 f0 outParamDecl '<java.lang.String callbackUrl> result;
 ' #txt
 He0 f0 outParamTable 'result.callbackUrl=in.callbackUrl;
 ' #txt
-He0 f0 actionDecl 'ch.ivyteam.ivy.project.portal.examples.HandleEndPageData out;
-' #txt
 He0 f0 callSignature handleEndPage() #txt
-He0 f0 type ch.ivyteam.ivy.project.portal.examples.HandleEndPageData #txt
 He0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -37,11 +33,8 @@ He0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 He0 f0 81 49 30 30 -48 17 #rect
 He0 f0 @|StartSubIcon #fIcon
-He0 f1 type ch.ivyteam.ivy.project.portal.examples.HandleEndPageData #txt
 He0 f1 337 49 30 30 0 15 #rect
 He0 f1 @|EndSubIcon #fIcon
-He0 f3 actionDecl 'ch.ivyteam.ivy.project.portal.examples.HandleEndPageData out;
-' #txt
 He0 f3 actionTable 'out=in;
 ' #txt
 He0 f3 actionCode 'import ch.ivy.addon.portalkit.service.ProcessStartCollector;
@@ -49,7 +42,6 @@ He0 f3 actionCode 'import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 ProcessStartCollector collector = new ProcessStartCollector(ivy.wf.getApplication());
 String ourNewEndPageFriendlyRequestPath = "Start Processes/ToCustomizedExpressEndPage/start.ivp";
 in.callbackUrl = collector.findLinkByFriendlyRequestPath(ourNewEndPageFriendlyRequestPath);' #txt
-He0 f3 type ch.ivyteam.ivy.project.portal.examples.HandleEndPageData #txt
 He0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

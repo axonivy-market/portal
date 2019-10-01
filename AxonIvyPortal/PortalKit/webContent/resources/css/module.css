@@ -53,7 +53,6 @@ input::-ms-clear {
 body .ui-state-active, body .ui-state-highlight {
 	color: black !important;
 }
-
 /* =================== TABLE ====================== */
 .ui-datatable .ui-column-filter.ui-widget {
   width: 100%;
@@ -157,6 +156,33 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   background: white !important;
   border-radius: 50%;
 }
+.ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+}
+.ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-filter-container .ui-icon-search, .ui-picklist .ui-picklist-filter-container .ui-icon, .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon {
+	background: transparent;
+    overflow: visible;
+    text-indent: 5px;
+    color: grey;
+}
+.ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-filter-container .ui-icon:before, .ui-picklist .ui-picklist-filter-container .ui-icon:before {
+    font: normal normal normal 18px/1 FontAwesome;
+    -webkit-font-smoothing: antialiased;
+    content: "\f002";
+    position: absolute;
+    left: 0;
+    top: 5px;
+}
+.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon:after {
+    font: normal normal normal 1.4rem/1 FontAwesome;
+    -webkit-font-smoothing: antialiased;
+    content: "\f078";
+    position: absolute;
+    left: -2px;
+}
+
 /* =================== END DROPDOWN ====================== */
 
 /* =================== AUTOCOMPLETE ====================== */
@@ -1268,9 +1294,9 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   text-align: center;
   position: absolute;
   right: 25px;
-  height: 80%;
+  height: calc(95% - 210px);
   border-left: 1px solid rgba(0,0,0,0.1);
-  top: 15%;
+  top: 210px;
 }
 
 .process-start-list-container .process-nav .process-nav-item {
@@ -3446,6 +3472,60 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   margin: auto;
 }
 
+.ui-carousel .ui-carousel-header .ui-carousel-header-title {
+  width: calc(100% - 64px) !important;
+  max-width: 78%;
+}
+
+.ui-carousel-header-title {
+  float: left;
+  padding-left: 2px;
+}
+
+.ui-carousel-header-title .chart-name-container {
+	width: 100%;
+    position: relative;
+    float: left;
+    display: inline-block;
+}
+
+.ui-carousel .ui-carousel-header .ui-carousel-header-title .chart-info {
+	color: white !important;
+    font-size: 1.5rem;
+    margin-right: 5px;
+    float: left;
+    margin-top: 3px;
+    width: 20px;
+    height: 20px;
+}
+
+.ui-carousel-header-title .chart-name {
+	width: calc(100% - 28px);
+	max-width: 88%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	text-align: left;
+	float: left;
+	overflow: hidden;
+}
+
+.hidden-carousel-title {
+	height: 0;
+	display: none;
+}
+
+.ui-carousel-item .ui-dialog-content .ui-panelgrid, .ui-carousel-item .ui-dialog-content .ui-panelgrid tbody tr .ui-panelgrid-cell {
+	border: solid 1px #E0E0E0 !important;
+	text-align: left;
+}
+
+.ui-carousel-item .ui-dialog-content .ui-panelgrid tbody tr .ui-panelgrid-cell {
+	padding: 4px 10px !important;
+}
+.ui-carousel-item .ui-dialog-content .chart-info-header {
+	text-align: left;
+}
+
 /* Small screen */
 @media (max-width: 1365px) {
   .statistic-carousel {
@@ -3454,6 +3534,9 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   }
   .compact-mode .jqplot-target {
     width: 25rem;
+  }
+  .ui-carousel .ui-carousel-header .ui-carousel-header-title {
+    max-width: 70% !important;
   }
 }
 
@@ -3466,6 +3549,10 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
   .compact-mode .jqplot-target {
     width: 26rem;
+  }
+  
+  .ui-carousel .ui-carousel-header .ui-carousel-header-title {
+    max-width: 72% !important;
   }
 }
 
@@ -3997,6 +4084,17 @@ margin-top
   height: 65px;
 }
 
+@media ( max-width : 1365px) {
+  .logo-container{
+    width: calc(100% - 140px);
+    min-width: 880px;
+    padding-left: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+  }
+}
+
 .color-header {
   height: 4px;
   display: flex;
@@ -4381,6 +4479,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .statistic-filter-accordion-panel .ui-accordion-content {
 	border: solid 1px #E0E0E0 !important;
+	overflow-y: hidden !important;
 }
 
 .statistic-filter-container.ui-scrollpanel {
@@ -4555,6 +4654,10 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   content: "\f002";
 }
 
+.ui-tree .ui-treenode .ui-treenode-leaf-icon {
+  width: 19px !important;
+}
+
 .task-analysis-page-navigation-link {
   float: right;
 }
@@ -4627,6 +4730,9 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   box-sizing: border-box;
 }
 
+.elapsed-time-result-list {
+  width: 100%;
+}
 .elapsed-time-result-list .case-table .ui-datatable-scrollable-body {
   max-height: 500px;
 }
@@ -4635,10 +4741,28 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   box-sizing: border-box;
 }
 .elapsed-time-result-list .export-excel {
-  left:93%;
   margin-bottom: 8px;
 }
+.elapsed-time-result-list .case-table {
+  display: inline-block !important;
+  width: 100%;
 
+}
+.elapsed-time-detail-form {
+  width: 80%;
+}
+
+.elapsed-time-result-list .case-table .case-id,
+.elapsed-time-result-list .case-table .case-creator,
+.elapsed-time-result-list .case-table .case-created,
+.elapsed-time-result-list .case-table .case-finished {
+  width: 10%;
+}
+
+.elapsed-time-result-list .case-table .case-name,
+.elapsed-time-result-list .case-table .case-elapsed-time{
+  width: 20%;
+}
 .ui-columntoggler[id$='task-table-toggler'] {
   min-width: 200px;
   padding: 0 !important;
@@ -5001,3 +5125,23 @@ _:-ms-fullscreen, :root .case-related-command-link {
     }
 }
 /*  =================== END TASK TEMPLATE PAGE ========================= */
+/*====================FIX FOR PRIMEFACES 7 STYLE========================*/
+span.ui-inputnumber.ui-widget.ui-state-error {
+	border: 0 !important;
+}
+div.ui-selectonelistbox.ui-inputfield.ui-widget.ui-state-focus {
+	background-color: transparent;
+	border: solid 1px #dedede;
+}
+/*====================END FIX FOR PRIMEFACES 7 STYLE========================*/
+.upload-container {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+}

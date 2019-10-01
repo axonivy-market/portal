@@ -20,15 +20,18 @@ $processChainMenuColor: $primaryColor;
 $loginLogoHeight: 50px;
 $homeLogoHeight: 42px;
 
+/*3 colors of header bar*/
 $firstHeaderBarColor: $primaryColor;
 $secondHeaderBarColor: $primaryColor;
 $thirdHeaderBarColor: $primaryColor;
 
+/*task priority color*/
 $taskPriorityLowColor: #D4D4D4;
 $taskPriorityNormalColor: #96DC82;
 $taskPriorityHighColor: #FFC0C0;
 $taskPriorityExceptionColor: #FF5A5A;
 
+/*task state color*/
 $taskStateOpenColor: #078CFF;
 $taskStateInProgressColor: #4EB41C;
 $taskStateDoneColor: #4EB41C;
