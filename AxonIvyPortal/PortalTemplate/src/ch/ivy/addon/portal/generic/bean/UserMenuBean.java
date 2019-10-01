@@ -7,12 +7,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.StopWatch;
 import org.primefaces.context.RequestContext;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -36,7 +37,7 @@ import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.system.ISystemProperty;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class UserMenuBean implements Serializable {
   private static final long NON_EXISTED_ID = -1L;
 
@@ -51,8 +52,20 @@ public class UserMenuBean implements Serializable {
   public static final int SECONND_TO_MILLISECOND = 1000;
   public static final int TIME_BEFORE_LOST_SESSION = 180000; // 3 minutes
   public static final int MAX_NUMBER_OF_RESULTS_IN_TASK_CASE_GLOBAL_SEARCH = 20;
+  
+  private StopWatch sc;
 
   private boolean hasNoRecordsFound;
+  
+  public void openCase() {
+    sc = new StopWatch();
+    sc.start();
+  }
+  
+  public void finishOpeningCase() {
+    sc.stop();
+    Ivy.log().info("TIME TO OPEN CASE LIST: {0}", sc.getTime());
+  }
 
   public String getUserName() {
     userName = Ivy.session().getSessionUserName();

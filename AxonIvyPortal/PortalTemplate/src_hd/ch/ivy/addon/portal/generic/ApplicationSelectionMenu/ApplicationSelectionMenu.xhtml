@@ -19,6 +19,7 @@
       <i class="fa fa-bars left-sidebar-menu-icon left-sidebar-menu-icon-font-size left-sidebar-animation" />
     </div>
     <h:form id="main-navigator">
+      <p:remoteCommand actionListener="#{userMenuBean.openCase()}" name="openCase" />
       <h:inputHidden id="first-level-menu-state-info" value="#{menuStateBean.menuState}" />
       <c:forEach items="#{data.menuItems}" var="menuItem" varStatus="theCount">
         <p:commandLink actionListener="#{logic.openApp(menuItem.href)}" disabled="#{menuItem.disabled}"
@@ -47,7 +48,7 @@
             <c:set var="isIvyLink"
               value="#{(fn:contains(process.link, '.ivp?') or fn:endsWith(subMenuItem.link, '.ivp') or fn:endsWith(subMenuItem.link, '.icm')) or subMenuItem.link eq NULL}" />
             <p:commandLink id="sub-menu-item-link" styleClass="left-sidebar-sub-menu-item left-sidebar-animation" rendered="#{isIvyLink}"
-              actionListener="#{logic.onClickSubMenuItem}" onclick="saveMenuState(this)">
+              actionListener="#{logic.onClickSubMenuItem}" onclick="saveMenuState(this)" onstart="openCase()">
               <h:outputText class="#{subMenuItem.icon} left-sidebar-menu-icon left-sidebar-sub-menu-icon-font-size left-sidebar-animation left-sidebar-sub-menu-item-#{status.index}-#{theCount.index}" />
               <h:outputText value="#{subMenuItem.label}" styleClass="left-sidebar-sub-menu-name left-sidebar-animation" />
               <f:attribute name="selectedSubMenuItem" value="#{subMenuItem}" />

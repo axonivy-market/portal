@@ -90,6 +90,9 @@
           </ic:ch.ivy.addon.portalkit.component.CaseWidget>
         </div>
       </div>
+      <h:form>
+      <p:remoteCommand actionListener="#{userMenuBean.finishOpeningCase()}" autoRun="true" />
+      </h:form>
     </ui:define>
     <ui:define name="footer">
       <script type="text/javascript">
