@@ -1,30 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
-    <method>
-        <name>keepOldNameValue</name>
-        <description></description>
-        <inputParameter>
-            <name>event</name>
-            <description></description>
-            <parameterType>javax.faces.event.ValueChangeEvent</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
-        <name>updateTask</name>
-        <description></description>
-        <inputParameter>
-            <name>task</name>
-            <description></description>
-            <parameterType>ch.ivyteam.ivy.workflow.ITask</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <startMethod>
-        <name>start</name>
-        <description>Default dialog start method.</description>
-    </startMethod>
     <property>
         <name>guid</name>
         <value>15AE9A62C6A79F0B</value>

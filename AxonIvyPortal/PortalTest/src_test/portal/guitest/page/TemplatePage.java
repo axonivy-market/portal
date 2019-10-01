@@ -242,7 +242,7 @@ protected boolean isIntegrationTestRun() {
     String newPageHandle = ((String) newWindows.toArray()[0]);
 
     String createTestingTasksUrl =
-        UrlHelpers.generateAbsoluteProcessStartLink("internalSupport/14B2FC03D2E87141/CategoriedLeaveRequest.ivp");
+        UrlHelpers.generateAbsoluteProcessStartLink("portalExamples/162511D2577DBA88/CategoriedLeaveRequest.ivp");
     driver.switchTo().window(newPageHandle);
     driver.get(createTestingTasksUrl);
 

@@ -1,10 +1,9 @@
 [Ivy]
-1624D1F5CBEA5332 3.23 #module
+1624D1F5CBEA5332 3.28 #module
 >Proto >Proto Collection #zClass
 Ae0 AdditionalCaseDetailPage Big #zClass
 Ae0 B #cInfo
 Ae0 #process
-Ae0 @TextInP .resExport .resExport #zField
 Ae0 @TextInP .type .type #zField
 Ae0 @TextInP .processKind .processKind #zField
 Ae0 @AnnotationInP-0n ai ai #zField
@@ -21,7 +20,7 @@ Ae0 @PushWFArc f6 '' #zField
 Ae0 @TkArc f4 '' #zField
 Ae0 @StartRequest f7 '' #zField
 Ae0 @EndTask f8 '' #zField
-Ae0 @RichDialog f9 '' #zField
+Ae0 @UserDialog f9 '' #zField
 Ae0 @PushWFArc f11 '' #zField
 Ae0 @InfoButton f13 '' #zField
 Ae0 @GridStep f10 '' #zField
@@ -29,32 +28,28 @@ Ae0 @PushWFArc f12 '' #zField
 Ae0 @PushWFArc f14 '' #zField
 >Proto Ae0 Ae0 AdditionalCaseDetailPage #zField
 Ae0 f0 outLink createInvestmentRequest.ivp #txt
-Ae0 f0 type ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage #txt
 Ae0 f0 inParamDecl '<> param;' #txt
-Ae0 f0 actionDecl 'ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage out;
-' #txt
-Ae0 f0 guid 1624D1F5CC087F20 #txt
 Ae0 f0 requestEnabled true #txt
 Ae0 f0 triggerEnabled false #txt
 Ae0 f0 callSignature createInvestmentRequest() #txt
 Ae0 f0 persist false #txt
 Ae0 f0 startName 'Investment Request for Customized Case Detail Page example' #txt
 Ae0 f0 startDescription 'Investment Request for Customized Case Detail Page example' #txt
-Ae0 f0 taskData 'TaskTriggered.ROL=Everybody
+Ae0 f0 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
-Ae0 f0 caseData 'customFields.decimal.1=100
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Ae0 f0 caseData 'businessCase.attach=true
 case.description=Investment Request for Customized Case Detail Page example
-businessCase.attach=true
-customFields.varchar.2="Request for new computer"
-customFields.varchar.1="Apartment A"
-customFields.timestamp.2=new DateTime(2018, 2, 2, 2, 2, 2)
-customFields.timestamp.1=new DateTime(2018, 1, 1, 1, 1, 1)
 case.name=Investment Request
-customFields.decimal.2=2000' #txt
+customFields.NUMBER.CustomDecimalField1=100
+customFields.NUMBER.CustomDecimalField2=2000
+customFields.STRING.CustomVarCharField1="Apartment A"
+customFields.STRING.CustomVarCharField2="Request for new computer"
+customFields.TIMESTAMP.CustomTimestampField1=new DateTime(2018, 1, 1, 1, 1, 1)
+customFields.TIMESTAMP.CustomTimestampField2=new DateTime(2018, 2, 2, 2, 2, 2)' #txt
 Ae0 f0 showInStartList 1 #txt
 Ae0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -69,14 +64,10 @@ Ae0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ae0 f0 @C|.responsibility Everybody #txt
 Ae0 f0 121 169 30 30 -79 17 #rect
 Ae0 f0 @|StartRequestIcon #fIcon
-Ae0 f1 type ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage #txt
 Ae0 f1 537 169 30 30 0 15 #rect
 Ae0 f1 @|EndIcon #fIcon
-Ae0 f3 actionDecl 'ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage out;
-' #txt
 Ae0 f3 actionTable 'out=in1;
 ' #txt
-Ae0 f3 outTypes "ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage" #txt
 Ae0 f3 outLinks "TaskA.ivp" #txt
 Ae0 f3 taskData 'TaskA.EXPRI=2
 TaskA.EXROL=Everybody
@@ -86,16 +77,13 @@ TaskA.PRI=2
 TaskA.ROL=Everybody
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
-Ae0 f3 type ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage #txt
 Ae0 f3 template "" #txt
 Ae0 f3 441 169 30 30 0 16 #rect
 Ae0 f3 @|TaskSwitchSimpleIcon #fIcon
 Ae0 f2 expr data #txt
 Ae0 f2 outCond ivp=="TaskA.ivp" #txt
 Ae0 f2 471 184 537 184 #arcP
-Ae0 f5 type ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage #txt
 Ae0 f5 processCall 'Functional Processes/SetAdditonalCaseDetailPage:call(String)' #txt
-Ae0 f5 doCall true #txt
 Ae0 f5 requestActionDecl '<java.lang.String linkToAddtionalCaseDetailPage> param;
 ' #txt
 Ae0 f5 requestMappingAction 'param.linkToAddtionalCaseDetailPage="Start Processes/AdditionalCaseDetailPage/showInvestmentRequestCustomFields.ivp";
@@ -122,23 +110,19 @@ Ae0 f4 type ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseD
 Ae0 f4 var in1 #txt
 Ae0 f4 408 184 441 184 #arcP
 Ae0 f7 outLink showInvestmentRequestCustomFields.ivp #txt
-Ae0 f7 type ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage #txt
 Ae0 f7 inParamDecl '<java.lang.Long caseId> param;' #txt
 Ae0 f7 inParamTable 'out.caseId=param.caseId;
 ' #txt
-Ae0 f7 actionDecl 'ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage out;
-' #txt
-Ae0 f7 guid 1624D26B5D1EB34D #txt
 Ae0 f7 requestEnabled true #txt
 Ae0 f7 triggerEnabled false #txt
 Ae0 f7 callSignature showInvestmentRequestCustomFields(Long) #txt
 Ae0 f7 persist false #txt
-Ae0 f7 taskData 'TaskTriggered.ROL=Everybody
+Ae0 f7 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Ae0 f7 caseData businessCase.attach=true #txt
 Ae0 f7 showInStartList 0 #txt
 Ae0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -153,14 +137,10 @@ Ae0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ae0 f7 @C|.responsibility Everybody #txt
 Ae0 f7 129 49 30 30 -116 17 #rect
 Ae0 f7 @|StartRequestIcon #fIcon
-Ae0 f8 type ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage #txt
 Ae0 f8 701 49 30 30 0 15 #rect
 Ae0 f8 @|EndIcon #fIcon
-Ae0 f9 targetWindow NEW #txt
-Ae0 f9 targetDisplay TOP #txt
-Ae0 f9 richDialogId ch.ivyteam.ivy.project.portal.examples.customization.InvestmentRequestCaseDetailPage #txt
+Ae0 f9 dialogId ch.ivyteam.ivy.project.portal.examples.customization.InvestmentRequestCaseDetailPage #txt
 Ae0 f9 startMethod start(ch.ivyteam.ivy.workflow.ICase) #txt
-Ae0 f9 type ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage #txt
 Ae0 f9 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase iCase> param;' #txt
 Ae0 f9 requestMappingAction 'param.iCase=in.iCase;
 ' #txt
@@ -168,9 +148,6 @@ Ae0 f9 responseActionDecl 'ch.ivyteam.ivy.project.portal.examples.customization.
 ' #txt
 Ae0 f9 responseMappingAction 'out=in;
 ' #txt
-Ae0 f9 isAsynch false #txt
-Ae0 f9 isInnerRd false #txt
-Ae0 f9 userContext '* ' #txt
 Ae0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -182,7 +159,7 @@ Additional Case Details Page</name>
 </elementInfo>
 ' #txt
 Ae0 f9 476 42 192 44 -76 -16 #rect
-Ae0 f9 @|RichDialogIcon #fIcon
+Ae0 f9 @|UserDialogIcon #fIcon
 Ae0 f11 expr out #txt
 Ae0 f11 668 64 701 64 #arcP
 Ae0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -212,13 +189,10 @@ HOW TO RUN THIS EXAMPLE:
 ' #txt
 Ae0 f13 784 2 896 268 -438 -128 #rect
 Ae0 f13 @|IBIcon #fIcon
-Ae0 f10 actionDecl 'ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage out;
-' #txt
 Ae0 f10 actionTable 'out=in;
 ' #txt
 Ae0 f10 actionCode 'import ch.ivy.addon.portalkit.util.CaseUtils;
 out.iCase = CaseUtils.findCase(in.caseId);' #txt
-Ae0 f10 type ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage #txt
 Ae0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

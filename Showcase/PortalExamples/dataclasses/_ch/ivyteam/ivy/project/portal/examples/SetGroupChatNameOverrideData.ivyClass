@@ -1,0 +1,3 @@
+SetGroupChatNameOverrideData #class
+_ch.ivyteam.ivy.project.portal.examples #namespace
+name String #field

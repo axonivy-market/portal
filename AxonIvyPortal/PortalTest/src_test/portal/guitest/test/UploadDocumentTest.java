@@ -46,22 +46,28 @@ public class UploadDocumentTest extends BaseTest{
     casePage = homePage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     String error = caseDetailsPage.uploadDocumentWithError(getAbsolutePathToTestFile("test-with-macro.doc"));
-    assertEquals(error, "This file is not allowed to upload because it contains some script!");
+    assertEquals("This file is not allowed to upload because it contains some script!", error);
     
     error = caseDetailsPage.uploadDocumentWithError(getAbsolutePathToTestFile("test-with-macro.xls"));
-    assertEquals(error, "This file is not allowed to upload because it contains some script!");
+    assertEquals("This file is not allowed to upload because it contains some script!", error);
     
     error = caseDetailsPage.uploadDocumentWithError(getAbsolutePathToTestFile("test-no-files-with-js.pdf"));
-    assertEquals(error, "This file is not allowed to upload because it contains some script!");
+    assertEquals("This file is not allowed to upload because it contains some script!", error);
+    adminSettingsPage = homePage.openAdminSettings();
+    adminSettingsPage.setDisableScriptCheckingGlobalVariable();
   }
   
   @Test
   public void uploadUnsupportedFileType(){
     initHomePage(TestAccount.ADMIN_USER);
+    adminSettingsPage = homePage.openAdminSettings();
+    adminSettingsPage.setEnableScriptCheckingGlobalVariable();
     casePage = homePage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     String error = caseDetailsPage.uploadDocumentWithError(getAbsolutePathToTestFile("unsupportedExtension.abc"));
-    assertEquals(error, "This file type is not accepted!");
+    assertEquals("This file type is not accepted!", error);
+    adminSettingsPage = homePage.openAdminSettings();
+    adminSettingsPage.setDisableScriptCheckingGlobalVariable();
   }
   
   @Test

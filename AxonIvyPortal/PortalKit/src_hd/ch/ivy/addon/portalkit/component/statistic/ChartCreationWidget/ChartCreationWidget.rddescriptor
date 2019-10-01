@@ -1,48 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
-    <method>
-        <name>createStatisticChart</name>
-        <description></description>
-        <inputParameter>
-            <name>statisticChartList</name>
-            <description></description>
-            <parameterType>java.util.List&lt;ch.ivy.addon.portalkit.statistics.StatisticChart&gt;</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
-        <name>updateBeforeAddCaseByState</name>
-        <description></description>
-    </method>
-    <method>
-        <name>updateBeforeAddTaskByPriority</name>
-        <description></description>
-    </method>
-    <method>
-        <name>updateBeforeAddTaskByExpiry</name>
-        <description></description>
-    </method>
-    <method>
-        <name>initialize</name>
-        <description></description>
-    </method>
-    <method>
-        <name>updateBeforeAddElapsedTime</name>
-        <description></description>
-    </method>
-    <method>
-        <name>updateBeforeAddCaseByFinishedTask</name>
-        <description></description>
-    </method>
-    <method>
-        <name>updateBeforeAddCaseByFinishedTime</name>
-        <description></description>
-    </method>
-    <startMethod>
-        <name>start</name>
-        <description>Default dialog start method.</description>
-    </startMethod>
     <property>
         <name>guid</name>
         <value>15FFC669C9DA2860</value>

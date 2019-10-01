@@ -1,46 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
-    <method>
-        <name>delete</name>
-        <description></description>
-        <inputParameter>
-            <name>file</name>
-            <description></description>
-            <parameterType>ch.ivyteam.ivy.project.portal.examples.showcase.GdprFile</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
-        <name>handleFileUploader</name>
-        <description></description>
-        <inputParameter>
-            <name>event</name>
-            <description></description>
-            <parameterType>org.primefaces.event.FileUploadEvent</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
-        <name>show</name>
-        <description></description>
-        <inputParameter>
-            <name>file</name>
-            <description></description>
-            <parameterType>ch.ivyteam.ivy.project.portal.examples.showcase.GdprFile</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <startMethod>
-        <name>start</name>
-        <description>Default dialog start method.</description>
-        <inputParameter>
-            <name>gdprRequest</name>
-            <description></description>
-            <parameterType>ch.ivyteam.ivy.project.portal.examples.showcase.GdprRequest</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </startMethod>
     <property>
         <name>guid</name>
         <value>169C767D4A2A1C15</value>

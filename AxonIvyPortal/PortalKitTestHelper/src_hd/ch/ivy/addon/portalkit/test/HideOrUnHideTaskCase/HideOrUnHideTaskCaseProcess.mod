@@ -1,12 +1,9 @@
 [Ivy]
-169137A20654C01B 3.23 #module
+169137A20654C01B 3.28 #module
 >Proto >Proto Collection #zClass
 Hs0 HideOrUnHideTaskCaseProcess Big #zClass
 Hs0 RD #cInfo
 Hs0 #process
-Hs0 @TextInP .ui2RdDataAction .ui2RdDataAction #zField
-Hs0 @TextInP .rdData2UIAction .rdData2UIAction #zField
-Hs0 @TextInP .resExport .resExport #zField
 Hs0 @TextInP .type .type #zField
 Hs0 @TextInP .processKind .processKind #zField
 Hs0 @AnnotationInP-0n ai ai #zField
@@ -14,31 +11,27 @@ Hs0 @MessageFlowInP-0n messageIn messageIn #zField
 Hs0 @MessageFlowOutP-0n messageOut messageOut #zField
 Hs0 @TextInP .xml .xml #zField
 Hs0 @TextInP .responsibility .responsibility #zField
-Hs0 @RichDialogInitStart f0 '' #zField
-Hs0 @RichDialogProcessEnd f1 '' #zField
+Hs0 @UdInit f0 '' #zField
+Hs0 @UdProcessEnd f1 '' #zField
 Hs0 @PushWFArc f2 '' #zField
-Hs0 @RichDialogProcessStart f3 '' #zField
-Hs0 @RichDialogEnd f4 '' #zField
+Hs0 @UdEvent f3 '' #zField
+Hs0 @UdExitEnd f4 '' #zField
 Hs0 @PushWFArc f5 '' #zField
-Hs0 @RichDialogProcessStart f6 '' #zField
-Hs0 @RichDialogEnd f7 '' #zField
+Hs0 @UdEvent f6 '' #zField
+Hs0 @UdExitEnd f7 '' #zField
 Hs0 @GridStep f8 '' #zField
 Hs0 @PushWFArc f9 '' #zField
 Hs0 @PushWFArc f10 '' #zField
-Hs0 @RichDialogProcessStart f11 '' #zField
-Hs0 @RichDialogEnd f12 '' #zField
+Hs0 @UdEvent f11 '' #zField
+Hs0 @UdExitEnd f12 '' #zField
 Hs0 @GridStep f13 '' #zField
 Hs0 @PushWFArc f14 '' #zField
 Hs0 @PushWFArc f15 '' #zField
 >Proto Hs0 Hs0 HideOrUnHideTaskCaseProcess #zField
 Hs0 f0 guid 169137A2086B150F #txt
-Hs0 f0 type ch.ivy.addon.portalkit.test.HideOrUnHideTaskCase.HideOrUnHideTaskCaseData #txt
 Hs0 f0 method start() #txt
-Hs0 f0 disableUIEvents true #txt
-Hs0 f0 inParameterDecl 'portalKit_test.Data out;
-' #txt
-Hs0 f0 outParameterDecl '<> result;
-' #txt
+Hs0 f0 inParameterDecl '<> param;' #txt
+Hs0 f0 outParameterDecl '<> result;' #txt
 Hs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -47,16 +40,12 @@ Hs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Hs0 f0 83 51 26 26 -16 15 #rect
-Hs0 f0 @|RichDialogInitStartIcon #fIcon
-Hs0 f1 type ch.ivy.addon.portalkit.test.HideOrUnHideTaskCase.HideOrUnHideTaskCaseData #txt
+Hs0 f0 @|UdInitIcon #fIcon
 Hs0 f1 211 51 26 26 0 12 #rect
-Hs0 f1 @|RichDialogProcessEndIcon #fIcon
+Hs0 f1 @|UdProcessEndIcon #fIcon
 Hs0 f2 expr out #txt
 Hs0 f2 109 64 211 64 #arcP
 Hs0 f3 guid 169137A20B7C72B8 #txt
-Hs0 f3 type ch.ivy.addon.portalkit.test.HideOrUnHideTaskCase.HideOrUnHideTaskCaseData #txt
-Hs0 f3 actionDecl 'ch.ivy.addon.portalkit.test.HideOrUnHideTaskCase.HideOrUnHideTaskCaseData out;
-' #txt
 Hs0 f3 actionTable 'out=in;
 ' #txt
 Hs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -67,17 +56,12 @@ Hs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Hs0 f3 83 147 26 26 -15 12 #rect
-Hs0 f3 @|RichDialogProcessStartIcon #fIcon
-Hs0 f4 type ch.ivy.addon.portalkit.test.HideOrUnHideTaskCase.HideOrUnHideTaskCaseData #txt
-Hs0 f4 guid 169137A20B898C08 #txt
+Hs0 f3 @|UdEventIcon #fIcon
 Hs0 f4 211 147 26 26 0 12 #rect
-Hs0 f4 @|RichDialogEndIcon #fIcon
+Hs0 f4 @|UdExitEndIcon #fIcon
 Hs0 f5 expr out #txt
 Hs0 f5 109 160 211 160 #arcP
 Hs0 f6 guid 169137C690A4E7BD #txt
-Hs0 f6 type ch.ivy.addon.portalkit.test.HideOrUnHideTaskCase.HideOrUnHideTaskCaseData #txt
-Hs0 f6 actionDecl 'ch.ivy.addon.portalkit.test.HideOrUnHideTaskCase.HideOrUnHideTaskCaseData out;
-' #txt
 Hs0 f6 actionTable 'out=in;
 ' #txt
 Hs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -88,13 +72,9 @@ Hs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Hs0 f6 83 243 26 26 -9 20 #rect
-Hs0 f6 @|RichDialogProcessStartIcon #fIcon
-Hs0 f7 type ch.ivy.addon.portalkit.test.HideOrUnHideTaskCase.HideOrUnHideTaskCaseData #txt
-Hs0 f7 guid 169137C921E72957 #txt
+Hs0 f6 @|UdEventIcon #fIcon
 Hs0 f7 371 243 26 26 0 12 #rect
-Hs0 f7 @|RichDialogEndIcon #fIcon
-Hs0 f8 actionDecl 'ch.ivy.addon.portalkit.test.HideOrUnHideTaskCase.HideOrUnHideTaskCaseData out;
-' #txt
+Hs0 f7 @|UdExitEndIcon #fIcon
 Hs0 f8 actionTable 'out=in;
 ' #txt
 Hs0 f8 actionCode 'import ch.ivy.addon.portalkit.util.CaseUtils;
@@ -115,7 +95,6 @@ ICase case = ivy.wf.getGlobalContext().getCaseQueryExecutor().getResults(caseQue
 if (case != null){
 	CaseUtils.setHidePropertyToHideInPortal(case);
 }' #txt
-Hs0 f8 type ch.ivy.addon.portalkit.test.HideOrUnHideTaskCase.HideOrUnHideTaskCaseData #txt
 Hs0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -130,9 +109,6 @@ Hs0 f9 109 256 184 256 #arcP
 Hs0 f10 expr out #txt
 Hs0 f10 296 256 371 256 #arcP
 Hs0 f11 guid 169138F1D5AEA255 #txt
-Hs0 f11 type ch.ivy.addon.portalkit.test.HideOrUnHideTaskCase.HideOrUnHideTaskCaseData #txt
-Hs0 f11 actionDecl 'ch.ivy.addon.portalkit.test.HideOrUnHideTaskCase.HideOrUnHideTaskCaseData out;
-' #txt
 Hs0 f11 actionTable 'out=in;
 ' #txt
 Hs0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -143,13 +119,9 @@ Hs0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Hs0 f11 83 339 26 26 -20 16 #rect
-Hs0 f11 @|RichDialogProcessStartIcon #fIcon
-Hs0 f12 type ch.ivy.addon.portalkit.test.HideOrUnHideTaskCase.HideOrUnHideTaskCaseData #txt
-Hs0 f12 guid 169138F2E8F3E067 #txt
+Hs0 f11 @|UdEventIcon #fIcon
 Hs0 f12 371 339 26 26 0 12 #rect
-Hs0 f12 @|RichDialogEndIcon #fIcon
-Hs0 f13 actionDecl 'ch.ivy.addon.portalkit.test.HideOrUnHideTaskCase.HideOrUnHideTaskCaseData out;
-' #txt
+Hs0 f12 @|UdExitEndIcon #fIcon
 Hs0 f13 actionTable 'out=in;
 ' #txt
 Hs0 f13 actionCode 'import ch.ivy.addon.portalkit.util.CaseUtils;
@@ -170,7 +142,6 @@ ICase case = ivy.wf.getGlobalContext().getCaseQueryExecutor().getResults(caseQue
 if (case != null){
 	CaseUtils.removeHidePropertyToDisplayInPortal(case);
 }' #txt
-Hs0 f13 type ch.ivy.addon.portalkit.test.HideOrUnHideTaskCase.HideOrUnHideTaskCaseData #txt
 Hs0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

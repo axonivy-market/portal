@@ -1,10 +1,9 @@
 [Ivy]
-16583DA46E986FE1 3.23 #module
+16583DA46E986FE1 3.28 #module
 >Proto >Proto Collection #zClass
 Cn0 CreateTaskWithNavigateBackButton Big #zClass
 Cn0 B #cInfo
 Cn0 #process
-Cn0 @TextInP .resExport .resExport #zField
 Cn0 @TextInP .type .type #zField
 Cn0 @TextInP .processKind .processKind #zField
 Cn0 @AnnotationInP-0n ai ai #zField
@@ -16,28 +15,24 @@ Cn0 @StartRequest f0 '' #zField
 Cn0 @EndTask f1 '' #zField
 Cn0 @TaskSwitchSimple f3 '' #zField
 Cn0 @TkArc f4 '' #zField
-Cn0 @RichDialog f5 '' #zField
+Cn0 @UserDialog f5 '' #zField
 Cn0 @PushWFArc f6 '' #zField
 Cn0 @PushWFArc f2 '' #zField
 Cn0 @InfoButton f7 '' #zField
 >Proto Cn0 Cn0 CreateTaskWithNavigateBackButton #zField
 Cn0 f0 outLink CreateTaskWithNavigateBackButton.ivp #txt
-Cn0 f0 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cn0 f0 inParamDecl '<> param;' #txt
-Cn0 f0 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
-' #txt
-Cn0 f0 guid 16583DA46F37E3A0 #txt
 Cn0 f0 requestEnabled true #txt
 Cn0 f0 triggerEnabled false #txt
 Cn0 f0 callSignature CreateTaskWithNavigateBackButton() #txt
 Cn0 f0 persist false #txt
 Cn0 f0 startName 'Create task with navigate back button' #txt
-Cn0 f0 taskData 'TaskTriggered.ROL=Everybody
+Cn0 f0 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Cn0 f0 caseData businessCase.attach=true #txt
 Cn0 f0 showInStartList 1 #txt
 Cn0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -50,14 +45,10 @@ Cn0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cn0 f0 @C|.responsibility Everybody #txt
 Cn0 f0 169 49 30 30 -108 17 #rect
 Cn0 f0 @|StartRequestIcon #fIcon
-Cn0 f1 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cn0 f1 681 49 30 30 0 15 #rect
 Cn0 f1 @|EndIcon #fIcon
-Cn0 f3 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
-' #txt
 Cn0 f3 actionTable 'out=in1;
 ' #txt
-Cn0 f3 outTypes "ch.ivyteam.ivy.project.portal.examples.Data" #txt
 Cn0 f3 outLinks "TaskA.ivp" #txt
 Cn0 f3 taskData 'TaskA.DESC=This is an example of a task with a button which use the Navigate back feature of Portal
 TaskA.EXPRI=2
@@ -68,7 +59,6 @@ TaskA.PRI=2
 TaskA.ROL=Everybody
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
-Cn0 f3 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cn0 f3 template "" #txt
 Cn0 f3 337 49 30 30 0 16 #rect
 Cn0 f3 @|TaskSwitchSimpleIcon #fIcon
@@ -76,19 +66,13 @@ Cn0 f4 expr out #txt
 Cn0 f4 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cn0 f4 var in1 #txt
 Cn0 f4 199 64 337 64 #arcP
-Cn0 f5 targetWindow NEW #txt
-Cn0 f5 targetDisplay TOP #txt
-Cn0 f5 richDialogId ch.ivyteam.ivy.project.portal.examples.NavigateBackTaskPage #txt
+Cn0 f5 dialogId ch.ivyteam.ivy.project.portal.examples.NavigateBackTaskPage #txt
 Cn0 f5 startMethod start() #txt
-Cn0 f5 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cn0 f5 requestActionDecl '<> param;' #txt
 Cn0 f5 responseActionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
 ' #txt
 Cn0 f5 responseMappingAction 'out=in;
 ' #txt
-Cn0 f5 isAsynch false #txt
-Cn0 f5 isInnerRd false #txt
-Cn0 f5 userContext '* ' #txt
 Cn0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -97,7 +81,7 @@ Cn0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cn0 f5 432 42 176 44 -84 -8 #rect
-Cn0 f5 @|RichDialogIcon #fIcon
+Cn0 f5 @|UserDialogIcon #fIcon
 Cn0 f6 expr data #txt
 Cn0 f6 outCond ivp=="TaskA.ivp" #txt
 Cn0 f6 367 64 432 64 #arcP

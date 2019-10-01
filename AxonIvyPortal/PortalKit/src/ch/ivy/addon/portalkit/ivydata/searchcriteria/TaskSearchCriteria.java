@@ -34,7 +34,7 @@ public class TaskSearchCriteria {
   private boolean isMobile;
   private String sortField;
   private boolean sortDescending;
-
+  private boolean isFirstTimeLazyLoad = true;
   private boolean isSorted = true;
   private TaskQuery customTaskQuery;
 
@@ -452,6 +452,14 @@ public class TaskSearchCriteria {
 
   public void setFinalTaskQuery(TaskQuery finalTaskQuery) {
     this.finalTaskQuery = finalTaskQuery;
+  }
+
+  public boolean isFirstTimeLazyLoad() {
+    return isFirstTimeLazyLoad;
+  }
+
+  public void setFirstTimeLazyLoad(boolean isFirstTimeLazyLoad) {
+    this.isFirstTimeLazyLoad = isFirstTimeLazyLoad;
   }
 
 }

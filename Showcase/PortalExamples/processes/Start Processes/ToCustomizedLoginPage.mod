@@ -1,10 +1,9 @@
 [Ivy]
-1657B2041502A14A 3.23 #module
+1657B2041502A14A 3.28 #module
 >Proto >Proto Collection #zClass
 Te0 ToCustomizedLoginPage Big #zClass
 Te0 B #cInfo
 Te0 #process
-Te0 @TextInP .resExport .resExport #zField
 Te0 @TextInP .type .type #zField
 Te0 @TextInP .processKind .processKind #zField
 Te0 @AnnotationInP-0n ai ai #zField
@@ -14,28 +13,24 @@ Te0 @TextInP .xml .xml #zField
 Te0 @TextInP .responsibility .responsibility #zField
 Te0 @StartRequest f0 '' #zField
 Te0 @EndTask f1 '' #zField
-Te0 @RichDialog f3 '' #zField
+Te0 @UserDialog f3 '' #zField
 Te0 @PushWFArc f4 '' #zField
 Te0 @PushWFArc f2 '' #zField
 Te0 @InfoButton f5 '' #zField
 >Proto Te0 Te0 ToCustomizedLoginPage #zField
 Te0 f0 outLink toPageWithCustomLoginPage.ivp #txt
-Te0 f0 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Te0 f0 inParamDecl '<> param;' #txt
-Te0 f0 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
-' #txt
-Te0 f0 guid 1657B20415D610AC #txt
 Te0 f0 requestEnabled true #txt
 Te0 f0 triggerEnabled false #txt
 Te0 f0 callSignature toPageWithCustomLoginPage() #txt
 Te0 f0 persist false #txt
 Te0 f0 startName 'Open page with custom login' #txt
-Te0 f0 taskData 'TaskTriggered.ROL=Everybody
+Te0 f0 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Te0 f0 caseData businessCase.attach=true #txt
 Te0 f0 showInStartList 1 #txt
 Te0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -48,22 +43,15 @@ Te0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Te0 f0 @C|.responsibility Everybody #txt
 Te0 f0 81 49 30 30 -92 17 #rect
 Te0 f0 @|StartRequestIcon #fIcon
-Te0 f1 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Te0 f1 433 49 30 30 0 15 #rect
 Te0 f1 @|EndIcon #fIcon
-Te0 f3 targetWindow NEW #txt
-Te0 f3 targetDisplay TOP #txt
-Te0 f3 richDialogId ch.ivyteam.ivy.project.portal.examples.WelcomePage #txt
+Te0 f3 dialogId ch.ivyteam.ivy.project.portal.examples.WelcomePage #txt
 Te0 f3 startMethod start() #txt
-Te0 f3 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Te0 f3 requestActionDecl '<> param;' #txt
 Te0 f3 responseActionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
 ' #txt
 Te0 f3 responseMappingAction 'out=in;
 ' #txt
-Te0 f3 isAsynch false #txt
-Te0 f3 isInnerRd false #txt
-Te0 f3 userContext '* ' #txt
 Te0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -72,7 +60,7 @@ Te0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Te0 f3 208 42 192 44 -88 -8 #rect
-Te0 f3 @|RichDialogIcon #fIcon
+Te0 f3 @|UserDialogIcon #fIcon
 Te0 f4 expr out #txt
 Te0 f4 111 64 208 64 #arcP
 Te0 f2 expr out #txt

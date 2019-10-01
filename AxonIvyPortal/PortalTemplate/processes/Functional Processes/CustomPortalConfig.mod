@@ -1,11 +1,9 @@
 [Ivy]
-[>Created: Mon May 23 10:23:31 ICT 2016]
-14BFF00E59993BEC 3.18 #module
+14BFF00E59993BEC 3.28 #module
 >Proto >Proto Collection #zClass
 Cg0 CustomPortalConfig Big #zClass
 Cg0 B #cInfo
 Cg0 #process
-Cg0 @TextInP .resExport .resExport #zField
 Cg0 @TextInP .type .type #zField
 Cg0 @TextInP .processKind .processKind #zField
 Cg0 @AnnotationInP-0n ai ai #zField
@@ -33,10 +31,7 @@ Cg0 f0 outParamDecl '<ch.ivy.addon.portal.generic.PortalConfig portalConfig> res
 ' #txt
 Cg0 f0 outParamTable 'result.portalConfig=in.portalConfig;
 ' #txt
-Cg0 f0 actionDecl 'ch.ivy.addon.portal.generic.CustomPortalConfigData out;
-' #txt
 Cg0 f0 callSignature call(ch.ivy.addon.portal.generic.PortalConfig) #txt
-Cg0 f0 type ch.ivy.addon.portal.generic.CustomPortalConfigData #txt
 Cg0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -46,11 +41,8 @@ Cg0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cg0 f0 81 201 30 30 -47 17 #rect
 Cg0 f0 @|StartSubIcon #fIcon
-Cg0 f1 type ch.ivy.addon.portal.generic.CustomPortalConfigData #txt
 Cg0 f1 369 201 30 30 0 15 #rect
 Cg0 f1 @|EndSubIcon #fIcon
-Cg0 f5 actionDecl 'ch.ivy.addon.portal.generic.CustomPortalConfigData out;
-' #txt
 Cg0 f5 actionTable 'out=in;
 ' #txt
 Cg0 f5 actionCode 'import ch.ivy.addon.portal.generic.CustomPortalLink;
@@ -62,7 +54,6 @@ in.portalConfig.hideShowAllCaseMenuItem = false;
 in.portalConfig.hideDashboardMenuItem = false;
 in.portalConfig.hideShowTaskMenuItem = false;
 in.portalConfig.hideShowCaseMenuItem = false;' #txt
-Cg0 f5 type ch.ivy.addon.portal.generic.CustomPortalConfigData #txt
 Cg0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
