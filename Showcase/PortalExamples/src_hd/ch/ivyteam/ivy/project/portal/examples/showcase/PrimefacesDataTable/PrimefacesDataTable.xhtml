@@ -1,10 +1,6 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:ic="http://ivyteam.ch/jsf/component"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pe="http://primefaces.org/ui/extensions">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
 <h:body>
 	<ui:composition template="/layouts/TaskTemplate.xhtml">
 		<ui:define name="pageTitle">Datatable</ui:define>
@@ -212,6 +208,16 @@
 									</div>
 								</p:tab>
 							</p:accordionPanel>
+						</div>
+
+						<div class="card card-w-title">
+							<h4>Toolbar component</h4>
+							<p:toolbar style="border:none">
+								<f:facet name="right">
+									<p:commandButton value="Add new row" style="margin-right:0px" styleClass="portal-cancel-button" process="@this"
+										actionListener="#{logic.addNewRow}" update="theTable" />
+								</f:facet>
+							</p:toolbar>
 						</div>
 
 						<div class="card card-w-title">
@@ -434,98 +440,7 @@
 								<p:password id="pwd8" />
 							</div>
 						</div>
-<p:dataTable id="theTable" widgetVar="theTable" editable="true"
-					scrollable="true" scrollHeight="250"
-					value="#{data.scores}" var="score" rows="8"
-					selection="#{data.selectedScore}" selectionMode="single"
-					rowKey="#{score.id}" draggableColumns="true" draggableRows="true"
-					style="width:100%" styleClass="MarTop20">
-					<p:ajax event="rowSelect" update=":detailDialog"
-						oncomplete="PF('detailDialog').show()" />
-					<p:rowExpansion>
-						<p:panelGrid columns="2" style="width:400px">
-							<p:outputLabel>No</p:outputLabel>
-							<p:inputText value="#{score.id}" disabled="true" />
-							<p:outputLabel for="name">Name</p:outputLabel>
-							<p:inputText id="name" value="#{score.name}" required="true" />
-							<p:outputLabel for="points">Points</p:outputLabel>
-							<p:inputText id="points" value="#{score.points}" required="true" />
-							<br></br>
-							<p:commandButton value="Save" update=":form:theTable"
-								actionListener="#{logic.save}" id="saveButton" />
-						</p:panelGrid>
-					</p:rowExpansion>
-	
-					<p:column headerText="No" sortBy="#{score.id}" style="width:60px"
-						id="scoreId">
-						<p:outputLabel value="#{score.id}" />
-					</p:column>
-	
-					<p:column headerText="Name" filterMatchMode="exact"
-						filterBy="#{score.name}" styleClass="filterColumn"
-						style="width:200px">
-						<f:facet name="filter">
-							<p:selectOneMenu onchange="PF('theTable').filter()"
-								id="nameFilter">
-								<f:selectItem itemLabel="All" itemValue="#{null}"
-									noSelectionOption="true" />
-								<f:selectItems value="#{data.names}" />
-							</p:selectOneMenu>
-						</f:facet>
-						<p:outputLabel id="colName" value="#{score.name}" />
-					</p:column>
-	
-					<p:column headerText="Points" filterMatchMode="startsWith"
-						filterBy="#{score.points}" style="width:180px"
-						styleClass="filterColumn" id="scorePointFilter">
-						<p:outputLabel value="#{score.points}"></p:outputLabel>
-					</p:column>
-	
-					<p:column headerText="Date" filterBy="#{score.date}"
-						style="width:200px">
-						<f:facet name="filter">
-							<p:calendar onchange="PF('theTable').filter()"
-								pattern="dd.MM.yyyy">
-								<p:ajax event="dateSelect" oncomplete="PF('theTable').filter()"
-									update="theTable" />
-							</p:calendar>
-						</f:facet>
-						<p:outputLabel value="#{score.date}">
-							<f:convertDateTime pattern="dd.MM.yyyy" />
-						</p:outputLabel>
-					</p:column>
-	
-					<p:column style="width:32px;text-align: center">
-						<p:commandLink update=":detailDialog" styleClass="fa fa-edit"
-							oncomplete="PF('detailDialog').show()" title="Edit"
-							style="height:20px;" id="dialogEditButton">
-							<f:setPropertyActionListener value="#{score}"
-								target="#{data.selectedScore}" />
-						</p:commandLink>
-						<p:commandLink update=":detailDialog" styleClass="fa fa-trash"
-							oncomplete="PF('detailDialog').show()" title="Delete"
-							style="height:20px;margin-left:10px" id="dialogDeleteButton">
-							<f:setPropertyActionListener value="#{score}"
-								target="#{data.selectedScore}" />
-						</p:commandLink>
-					</p:column>
-	
-				</p:dataTable></div>
-	
-			</h:form>
-			<ui:include src="DetailsDialog.xhtml"></ui:include>
-		</p:tab>
-	</ui:define>
-	<ui:define name="taskForm">
-		<p:tabView>
-			<p:tab title="First">
-				<div class="ui-fluid">
-					<div class="ui-g">
-					    <div class="ui-g-12 ui-md-3 ui-lg-2"><p:outputLabel for="input8" value="Input" style="text-align:top" /></div>
-					    <div class="ui-g-12 ui-md-9 ui-lg-3"><p:inputText id="input8" /></div>
-					    <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
-					    <div class="ui-g-12 ui-md-3 ui-lg-2"><p:outputLabel for="input9" value="Input" style="text-align:top" /></div>
-					    <div class="ui-g-12 ui-md-9 ui-lg-3"><p:inputText id="input9" /></div>					</div>
+					</div>
 				</p:tab>
 				<p:tab title="Second">
 					<p:panelGrid columns="1" styleClass="ui-panelgrid-blank">
