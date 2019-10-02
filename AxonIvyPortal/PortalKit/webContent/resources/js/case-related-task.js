@@ -25,7 +25,7 @@ var CaseRelatedTask = {
     }
     
     if (this.technicalCaseSize == 0 || this.relatedTaskSize == 0) {
-      this.paddingBottom = 20;
+      this.paddingBottom = 10;
     }
   },
 
@@ -38,15 +38,17 @@ var CaseRelatedTask = {
     if (this.relatedTaskSize == 0) {
       return;
     }
-    var scrollHeightTask = this.relatedTaskSize * this.taskHeight;
+    var scrollHeightTask = 0;
     if (this.relatedTaskSize > this.maxItems) {
       scrollHeightTask = this.taskScrollHeight + this.spaceToExpandTasksList;
 
       if (this.technicalCaseSize < this.maxItems) {
         scrollHeightTask = scrollHeightTask + this.taskHeight;
       }
+    } else {
+        scrollHeightTask = this.relatedTaskSize * this.taskHeight;
+        scrollHeightTask = scrollHeightTask + this.paddingBottom;
     }
-    scrollHeightTask = scrollHeightTask + this.paddingBottom;
 
     var taskList = $('[id$="case-item-details:related-tasks:tasks"]');
     var taskListBody = taskList.find('.ui-datascroller-content.ui-widget-content.ui-corner-all');
@@ -58,15 +60,17 @@ var CaseRelatedTask = {
     if (this.technicalCaseSize == 0) {
       return;
     }
-    var scrollHeightCases = this.technicalCaseSize * this.caseHeight;
+    var scrollHeightCases = 0;
     if (this.technicalCaseSize > this.maxItems) {
       scrollHeightCases = this.caseScrollHeight + this.spaceToExpandCasesList;
 
       if (this.relatedTaskSize < this.maxItems) {
         scrollHeightCases = scrollHeightCases + this.caseHeight;
       }
+    } else {
+        scrollHeightCases = this.technicalCaseSize * this.caseHeight;
+        scrollHeightCases = scrollHeightCases + this.paddingBottom;
     }
-    scrollHeightCases = scrollHeightCases + this.paddingBottom;
 
     var caseList = $('[id$="case-item-details:related-tasks:cases"]');
     var caseListBody = caseList.find('.ui-datascroller-content.ui-widget-content.ui-corner-all');
@@ -76,12 +80,12 @@ var CaseRelatedTask = {
 
   getHeightOfRelatedTaskRow : function() {
     var taskRow = $('.grid-item-content-list-item.related-task-content.js-related-task');
-    return taskRow.length > 0 ? taskRow.outerHeight(true) : 32;
+    return taskRow.length > 0 ? taskRow[taskRow.length - 1].offsetHeight : 32;
   },
 
   getHeightOfTechnicalRow : function() {
     var caseRow = $('.grid-item-content-list-item.related-task-content.js-technical-case');
-    return caseRow.length > 0 ? caseRow.outerHeight(true) : 32;
+    return caseRow.length > 0 ? caseRow[caseRow.length - 1].offsetHeight : 32;
   }
 
 }

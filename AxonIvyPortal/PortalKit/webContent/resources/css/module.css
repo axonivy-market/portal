@@ -3488,13 +3488,15 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 .ui-carousel-header-title .chart-name {
-	width: calc(100% - 28px);
-	max-width: 88%;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	text-align: left;
-	float: left;
-	overflow: hidden;
+  width: calc(100% - 28px);
+  max-width: 88%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: left;
+  float: left;
+  overflow: hidden;
+  font-weight: 600;
+  margin-top: 2px;
 }
 
 .hidden-carousel-title {
