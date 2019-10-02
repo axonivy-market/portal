@@ -16,7 +16,7 @@
     </snapshotRepository>
   </distributionManagement>
   <properties>
-    <build.plugin.version>7.3.0</build.plugin.version>
+    <build.plugin.version>7.4.0</build.plugin.version>
   </properties>
   <dependencies>
     <dependency>
@@ -33,6 +33,10 @@
         <artifactId>project-build-plugin</artifactId>
         <version>${build.plugin.version}</version>
         <extensions>true</extensions>
+        <configuration>
+        	<ivyVersion>7.3.1</ivyVersion>
+          <timeoutEngineStartInSeconds>120</timeoutEngineStartInSeconds>
+        </configuration>
       </plugin>
     </plugins>
   </build>
