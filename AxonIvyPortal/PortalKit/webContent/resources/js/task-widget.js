@@ -20,9 +20,9 @@ function TaskWidget() {
         var taskWidgetFilterContainer = $('.js-filter-container');
         var customWidgetContainer = $('.js-custom-widget-container');
         if (customWidgetContainer.height() > 0) {
-        	customWidgetContainer = customWidgetContainer.outerHeight(true);
+        	customWidgetContainer = customWidgetContainer.outerHeight(true)||0;
         } else {
-        	customWidgetContainer = customWidgetContainer.height();
+        	customWidgetContainer = customWidgetContainer.height()||0;
         }
         var error = 5;
         var globalSearchInput = $('.js-global-search');
@@ -30,10 +30,10 @@ function TaskWidget() {
         if (globalSearchTabHeader.length > 0) {
           error = 55; // included margin, padding in search page
         }
-        var mainScreenHeight = $('body').outerHeight(true) - $('.layout-topbar').outerHeight(true) - 15; //minus 15 to remove 2nd scroll bar
-        var availableHeight = mainScreenHeight - taskWidgetHeaderContainer.outerHeight(true) - announcementMessageContainer.outerHeight(true)
-            - taskWidgetSortMenuContainer.outerHeight(true) - taskWidgetFilterContainer.outerHeight(true)
-            - customWidgetContainer - globalSearchInput.outerHeight(true) - globalSearchTabHeader.outerHeight(true) - error;
+        var mainScreenHeight = ($('body').outerHeight(true)||0) - ($('.layout-topbar').outerHeight(true)||0) - 15; //minus 15 to remove 2nd scroll bar
+        var availableHeight = mainScreenHeight - (taskWidgetHeaderContainer.outerHeight(true)||0) - (announcementMessageContainer.outerHeight(true)||0)
+            - (taskWidgetSortMenuContainer.outerHeight(true)||0) - (taskWidgetFilterContainer.outerHeight(true)||0)
+            - customWidgetContainer - (globalSearchInput.outerHeight(true)||0) - (globalSearchTabHeader.outerHeight(true)||0) - error;
         if (!!availableHeight) {
           container.height(availableHeight);
         }
