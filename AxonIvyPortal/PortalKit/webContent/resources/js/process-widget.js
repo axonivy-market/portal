@@ -20,9 +20,9 @@ function ProcessWidget() {
         }
         var announcementMessageContainer = $('.js-announcement-message');
         var mainScreenHeight = $('body').outerHeight() - $('.layout-topbar').outerHeight() - 30; // exclude margin
-    	var availableHeight = mainScreenHeight - announcementMessageContainer.outerHeight(true)
-    							- processsHeader.outerHeight(true) 
-    							- globalSearchInput.outerHeight(true) - globalSearchTabHeader.outerHeight(true)
+    	var availableHeight = mainScreenHeight - (announcementMessageContainer.outerHeight(true)||0)
+    							- (processsHeader.outerHeight(true)||0) 
+    							- (globalSearchInput.outerHeight(true)||0) - (globalSearchTabHeader.outerHeight(true)||0)
     							- error;
     	if (!!availableHeight) {
     		processStartListContainer.css("max-height", availableHeight + "px");
