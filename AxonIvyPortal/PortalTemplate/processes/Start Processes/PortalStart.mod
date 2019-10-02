@@ -24,7 +24,6 @@ Pt0 @GridStep f3 '' #zField
 Pt0 @Alternative f30 '' #zField
 Pt0 @StartRequest f10 '' #zField
 Pt0 @GridStep f11 '' #zField
-Pt0 @PushWFArc f15 '' #zField
 Pt0 @CallSub f12 '' #zField
 Pt0 @GridStep f22 '' #zField
 Pt0 @GridStep f17 '' #zField
@@ -103,6 +102,9 @@ Pt0 @PushWFArc f32 '' #zField
 Pt0 @PushWFArc f29 '' #zField
 Pt0 @PushWFArc f56 '' #zField
 Pt0 @PushWFArc f75 '' #zField
+Pt0 @UserDialog f53 '' #zField
+Pt0 @PushWFArc f80 '' #zField
+Pt0 @PushWFArc f79 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Pt0 f0 outLink PortalStart.ivp #txt
 Pt0 f0 inParamDecl '<java.lang.String parameters,java.lang.String portalNavigator> param;' #txt
@@ -323,9 +325,6 @@ Pt0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f11 160 427 112 44 -47 -8 #rect
 Pt0 f11 @|StepIcon #fIcon
-Pt0 f15 expr in #txt
-Pt0 f15 560 433 560 176 #arcP
-Pt0 f15 0 0.4763694877411137 0 0 #arcLabel
 Pt0 f12 processCall 'Functional Processes/OpenPortalTasks:useView(ch.ivy.addon.portal.generic.view.TaskView)' #txt
 Pt0 f12 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;
 ' #txt
@@ -1210,6 +1209,36 @@ Pt0 f75 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f75 1280 174 1496 544 #arcP
 Pt0 f75 1 1280 544 #addKink
 Pt0 f75 1 0.3472222222222222 0 -21 #arcLabel
+Pt0 f53 dialogId ch.ivy.addon.portal.generic.PortalTaskListCallback #txt
+Pt0 f53 startMethod start(String) #txt
+Pt0 f53 requestActionDecl '<java.lang.String callbackUrl> param;' #txt
+Pt0 f53 requestMappingAction 'param.callbackUrl=in.callbackUrl;
+' #txt
+Pt0 f53 responseMappingAction 'out=in;
+' #txt
+Pt0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Redirect to&#13;
+callbackUrl</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f53 504 522 112 44 -30 -16 #rect
+Pt0 f53 @|UserDialogIcon #fIcon
+Pt0 f80 expr in #txt
+Pt0 f80 outCond 'org.apache.commons.lang3.StringUtils.isNotBlank(in.#callbackUrl)' #txt
+Pt0 f80 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>YES</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f80 560 465 560 522 #arcP
+Pt0 f80 0 0.40350877192982454 -20 0 #arcLabel
+Pt0 f79 expr in #txt
+Pt0 f79 560 433 560 176 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1220,7 +1249,6 @@ Pt0 f20 mainOut f5 tail #connect
 Pt0 f5 head f4 in #connect
 Pt0 f2 mainOut f7 tail #connect
 Pt0 f7 head f4 in #connect
-Pt0 f15 head f4 in #connect
 Pt0 f17 mainOut f26 tail #connect
 Pt0 f26 head f23 mainIn #connect
 Pt0 f19 mainOut f39 tail #connect
@@ -1275,7 +1303,6 @@ Pt0 f104 mainOut f109 tail #connect
 Pt0 f109 head f105 mainIn #connect
 Pt0 f4 out f27 tail #connect
 Pt0 f27 head f41 in #connect
-Pt0 f30 out f15 tail #connect
 Pt0 f43 out f34 tail #connect
 Pt0 f34 head f16 in #connect
 Pt0 f40 head f21 in #connect
@@ -1300,3 +1327,7 @@ Pt0 f21 out f56 tail #connect
 Pt0 f56 head f74 mainIn #connect
 Pt0 f21 out f75 tail #connect
 Pt0 f75 head f52 mainIn #connect
+Pt0 f30 out f80 tail #connect
+Pt0 f80 head f53 mainIn #connect
+Pt0 f30 out f79 tail #connect
+Pt0 f79 head f4 in #connect
