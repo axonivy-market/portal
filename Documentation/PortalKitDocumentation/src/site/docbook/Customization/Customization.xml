@@ -21,7 +21,6 @@
 	<xi:include href="HideTechnicalStuffs.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 	<xi:include href="ShowAdditionalCaseDetails.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 	<xi:include href="GlobalSearchResult.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
-	<xi:include href="MobileDefaultPage.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 	<xi:include href="DocumentProcesses.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 	<xi:include href="ResponsiveCss.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 	<xi:include href="GroupChat.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
