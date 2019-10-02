@@ -42,7 +42,7 @@ Cs0 @CallSub f28 '' #zField
 Cs0 @PushWFArc f29 '' #zField
 Cs0 @SJArc f21 '' #zField
 Cs0 @CallSub f31 '' #zField
-Cs0 @RichDialogProcessStart f30 '' #zField
+Cs0 @UdEvent f30 '' #zField
 Cs0 @PushWFArc f32 '' #zField
 >Proto Cs0 Cs0 CaseItemRelatedTaskProcess #zField
 Cs0 f0 guid 167E9A75EF3D0909 #txt
@@ -312,9 +312,7 @@ Cs0 f26 312 570 128 44 -61 -8 #rect
 Cs0 f26 @|CallSubIcon #fIcon
 Cs0 f27 expr out #txt
 Cs0 f27 109 592 312 592 #arcP
-Cs0 f28 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 Cs0 f28 processCall 'Ivy Data Processes/CaseService:countCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)' #txt
-Cs0 f28 doCall true #txt
 Cs0 f28 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;
 ' #txt
 Cs0 f28 requestMappingAction 'param.caseSearchCriteria=in.caseSearchCriteria;
@@ -340,9 +338,7 @@ Cs0 f21 expr out #txt
 Cs0 f21 var in2 #txt
 Cs0 f21 648 266 648 208 #arcP
 Cs0 f21 0 0.8623545764087797 0 0 #arcLabel
-Cs0 f31 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 Cs0 f31 processCall 'Functional Processes/Navigator:viewRelatedTask(Long)' #txt
-Cs0 f31 doCall true #txt
 Cs0 f31 requestActionDecl '<java.lang.Long taskId> param;
 ' #txt
 Cs0 f31 requestMappingAction 'param.taskId=in.taskId;
@@ -360,10 +356,7 @@ Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f31 312 466 144 44 -66 -8 #rect
 Cs0 f31 @|CallSubIcon #fIcon
-Cs0 f30 guid 16C1C63B2E6E0337 #txt
-Cs0 f30 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
-Cs0 f30 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData out;
-' #txt
+Cs0 f30 guid 16D8A8E9B8ABB666 #txt
 Cs0 f30 actionTable 'out=in;
 ' #txt
 Cs0 f30 actionCode 'import ch.ivyteam.ivy.workflow.ICase;
@@ -378,9 +371,8 @@ Cs0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f30 83 475 26 26 -47 15 #rect
-Cs0 f30 @|RichDialogProcessStartIcon #fIcon
-Cs0 f32 expr out #txt
+Cs0 f30 83 475 26 26 -72 20 #rect
+Cs0 f30 @|UdEventIcon #fIcon
 Cs0 f32 109 488 312 488 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
