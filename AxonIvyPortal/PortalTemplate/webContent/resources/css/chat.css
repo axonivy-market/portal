@@ -285,7 +285,7 @@
 }
 
 /*Need to add "data-badge" attribute to element*/
-.notification-badge {
+.notification-badge i.fa.fa-comment {
   position: relative;
   line-height: 30px;
   font-size: 20px !important;
@@ -474,3 +474,7 @@ _:-ms-fullscreen, :root .chat-message {
 	white-space: pre-wrap;
 }
 /* END */
+.close-chat {
+  margin-left: 10px;
+  margin-top: 10px;
+}
