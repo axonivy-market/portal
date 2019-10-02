@@ -25,7 +25,7 @@
           <p:inputText id="task-name-input" value="#{task.name}" styleClass="task-name-input" maxlength="200" valueChangeListener="#{logic.keepOldNameValue}"
             onkeypress="if(event.keyCode == 13) {PF('task-name-inplace').save()}" />
           <p:ajax event="save" listener="#{logic.updateTask()}" process="#{cc.attrs.nameId}-edit-form"
-            update="#{cc.attrs.nameId}-edit-form #{cc.attrs.componentToUpdate} #{p:component('task-detail-note-container')}" />
+            update="task-detail-title-form #{cc.attrs.nameId}-edit-form #{cc.attrs.componentToUpdate} #{p:component('task-detail-note-container')}" />
           <f:passThroughAttribute name="onclick" value="if('#{taskActionBean.canChangeName(task)}'=='true') {event.stopPropagation()}" />
         </p:inplace>
       </h:panelGroup>
