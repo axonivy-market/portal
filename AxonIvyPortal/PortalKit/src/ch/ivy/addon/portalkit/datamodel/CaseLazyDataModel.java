@@ -87,7 +87,6 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     }
     
     List<ICase> foundCases = findCases(criteria, first, pageSize);
-    PrimeFaces.current().executeScript("caseListToolkit.responsive()");
     data.addAll(foundCases);
     return foundCases;
   }
