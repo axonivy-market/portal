@@ -42,6 +42,10 @@ Es0 @PushWFArc f20 '' #zField
 Es0 @PushWFArc f10 '' #zField
 Es0 @PushWFArc f21 '' #zField
 Es0 @GridStep f25 '' #zField
+Es0 @UdEvent f22 '' #zField
+Es0 @PushWFArc f26 '' #zField
+Es0 @UdProcessEnd f27 '' #zField
+Es0 @PushWFArc f28 '' #zField
 >Proto Es0 Es0 EmailSettingProcess #zField
 Es0 f0 guid 167961CFD377EB28 #txt
 Es0 f0 method start() #txt
@@ -312,6 +316,22 @@ Es0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Es0 f25 136 618 112 44 -51 -8 #rect
 Es0 f25 @|StepIcon #fIcon
+Es0 f22 guid 16D8A994508AA2CD #txt
+Es0 f22 actionTable 'out=in;
+' #txt
+Es0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>updateDailyList</name>
+    </language>
+</elementInfo>
+' #txt
+Es0 f22 51 627 26 26 -14 15 #rect
+Es0 f22 @|UdEventIcon #fIcon
+Es0 f26 77 640 136 640 #arcP
+Es0 f27 371 627 26 26 0 12 #rect
+Es0 f27 @|UdProcessEndIcon #fIcon
+Es0 f28 248 640 371 640 #arcP
 >Proto Es0 .type ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData #txt
 >Proto Es0 .processKind HTML_DIALOG #txt
 >Proto Es0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -357,3 +377,7 @@ Es0 f19 out f10 tail #connect
 Es0 f10 head f14 mainIn #connect
 Es0 f19 out f21 tail #connect
 Es0 f21 head f9 mainIn #connect
+Es0 f22 mainOut f26 tail #connect
+Es0 f26 head f25 mainIn #connect
+Es0 f25 mainOut f28 tail #connect
+Es0 f28 head f27 mainIn #connect
