@@ -18,7 +18,6 @@
         <p:inplace id="case-description-inplace" editor="true" disabled="#{!caseActionBean.canChangeDescription(case)}" saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" emptyLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription')}" styleClass="case-description-edit-inplace">
           <p:ajax event="save" update="#{cc.attrs.descriptionComponentToUpdate} case-description-form" />
-          <p:ajax event="cancel" resetValues="true" />
           <f:facet name="input">
             <p:inputTextarea id="case-description-input" rows="4" styleClass="case-detail-description-input" value="#{case.description}" autoResize="false" />
           </f:facet>
