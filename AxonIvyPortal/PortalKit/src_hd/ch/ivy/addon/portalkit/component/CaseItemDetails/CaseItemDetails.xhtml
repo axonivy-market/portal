@@ -33,7 +33,7 @@
             <p:inputText id="case-detail-name-input" value="#{case.name}" maxlength="200"
               styleClass="case-detail-name-input"
               onkeypress="if(event.keyCode == 13) {PF('case-name-edit-inplace').save()}" />
-<!--             <p:ajax event="save" process="case-name-edit-inplace" /> -->
+            <p:ajax event="save" update="case-detail-title-form" />
             <f:passThroughAttribute name="onclick"
               value="#{caseActionBean.canChangeName(case) ? event.stopPropagation():''}" />
           </p:inplace>
