@@ -156,11 +156,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   background: white !important;
   border-radius: 50%;
 }
-.ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-close {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-}
 .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-filter-container .ui-icon-search, .ui-picklist .ui-picklist-filter-container .ui-icon, .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon {
 	background: transparent;
     overflow: visible;
@@ -174,13 +169,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
     position: absolute;
     left: 0;
     top: 5px;
-}
-.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon:after {
-    font: normal normal normal 1.4rem/1 FontAwesome;
-    -webkit-font-smoothing: antialiased;
-    content: "\f078";
-    position: absolute;
-    left: -2px;
 }
 
 /* =================== END DROPDOWN ====================== */
@@ -3752,7 +3740,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   margin: 1rem;
 }
 
-.dashboard-chart-panel .ui-panel-titlebar {
+.dashboard-chart-panel .ui-panel-titlebar.ui-widget-header {
   padding: 5px 10px !important;
 }
 

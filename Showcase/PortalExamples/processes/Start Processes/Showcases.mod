@@ -248,6 +248,8 @@ Ss0 f26 95 480 136 480 #arcP
 Ss0 f23 dialogId ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate #txt
 Ss0 f23 startMethod start(ch.ivyteam.ivy.project.portal.examples.showcase.Data) #txt
 Ss0 f23 requestActionDecl '<ch.ivyteam.ivy.project.portal.examples.showcase.Data data> param;' #txt
+Ss0 f23 requestMappingAction 'param.data=in;
+' #txt
 Ss0 f23 responseMappingAction 'out=in;
 ' #txt
 Ss0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
