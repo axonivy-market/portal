@@ -19,128 +19,116 @@
   </div>
 
   <ui:insert name="menu-bar">
-  <ul id="top-menu" class="topbar-menu animated">
-    <li>
-      <a href="#" jsf:rendered="#{not userMenuBean.showServerInformation}" id="user-settings-menu"> <span
+    <ul id="top-menu" class="topbar-menu animated js-top-menu">
+      <li jsf:rendered="#{chatRendererBean.isChatRendered}"><p:commandLink id="toggle-chat-panel-command" global="false"
+          styleClass="notification-badge mod-chat-menu js-toggle-chat-panel">
+          <i class="fa fa-comment" />
+        </p:commandLink></li>
+
+      <li><a href="#" jsf:rendered="#{not userMenuBean.showServerInformation}" id="user-settings-menu"> <span
           class="dropdown-icon user-name js-user-name">#{userMenuBean.userName}</span>
       </a>
-      <ul id="user-setting-container">
-          <li>
-            <p:commandLink id="adminui-menu-item" resetValues="true" rendered="#{permissionBean.hasAdminPermission()}"
-              	value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}"
-              	update="admin-ui-dialog" oncomplete="PF('adminUI').show(); $('#user-setting-container').click()"/></li>
-          <li><p:link id="absence-menu-item" href="#"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}"
+        <ul id="user-setting-container">
+          <li><p:commandLink id="adminui-menu-item" resetValues="true" rendered="#{permissionBean.hasAdminPermission()}"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}" update="admin-ui-dialog"
+              oncomplete="PF('adminUI').show(); $('#user-setting-container').click()" /></li>
+          <li><p:link id="absence-menu-item" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}"
               onclick="PF('absenceSetting').show(); $('#user-setting-container').click()" rendered="#{absenceBean.ownAbsencesReadable}" /></li>
 
-          <li><p:commandLink id="email-setting-menu-item"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/emailSetting')}"
-              oncomplete="PF('emailSetting').show(); $('#user-settings-menu').click()"
-              resetValues="true" update="applications-email-setting-form">
-                <p:resetInput target=":applications-email-setting-dialog" />
-              </p:commandLink>
-            
-          </li>
+          <li><p:commandLink id="email-setting-menu-item" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/emailSetting')}"
+              oncomplete="PF('emailSetting').show(); $('#user-settings-menu').click()" resetValues="true" update="applications-email-setting-form">
+              <p:resetInput target=":applications-email-setting-dialog" />
+            </p:commandLink></li>
           <li><p:commandLink id="language-setting-menu-item"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/languageSetting')}" 
-              oncomplete="PF('languageDialogVar').show(); $('#user-setting-container').click()" 
-              resetValues="true" update="language-settings-form" >
-                <p:resetInput target=":language-setting-dialog" />
-              </p:commandLink>
-          </li>
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/languageSetting')}"
+              oncomplete="PF('languageDialogVar').show(); $('#user-setting-container').click()" resetValues="true" update="language-settings-form">
+              <p:resetInput target=":language-setting-dialog" />
+            </p:commandLink></li>
 
           <li><p:commandLink id="change-password-menu-item"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" 
-              rendered="#{not userMenuBean.hiddenChangePassword}"
-              oncomplete="PF('changePasswordDialog').show(); $('#user-setting-container').click()" 
-              resetValues="true" update="change-password-form" >
-                <p:resetInput target=":change-password-dialog" />
-              </p:commandLink>
-          </li>
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}"
+              rendered="#{not userMenuBean.hiddenChangePassword}" oncomplete="PF('changePasswordDialog').show(); $('#user-setting-container').click()"
+              resetValues="true" update="change-password-form">
+              <p:resetInput target=":change-password-dialog" />
+            </p:commandLink></li>
 
-          <li><p:link id="project-info-menu-item" href="#"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/info')}"
+          <li><p:link id="project-info-menu-item" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/info')}"
               onclick="rcProjectInfo(); $('#user-setting-container').click()" /></li>
-          <li><ic:ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting id="logout-setting" isWorkingOnATask="#{isWorkingOnATask}" />
-          </li>
-        </ul>
-    </li>
-    <li class="ui-sm-hidden ui-md-hidden">
-      <h:form prependId="false" rendered="#{showGlobalSearch}">
-        <ic:ch.ivy.addon.portal.generic.GlobalSearch id="global-search-component" />
-      </h:form>
-    </li>
-  </ul>
+          <li><ic:ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting id="logout-setting" isWorkingOnATask="#{isWorkingOnATask}" /></li>
+        </ul></li>
 
-    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" 
-      width="500" closeOnEscape="true" widgetVar="changePasswordDialog" id="change-password-dialog" resizable="false" 
-      modal="true" draggable="false" appendTo="@(body)" dynamic="true" styleClass="change-password-dialog">
-      <h:form id="change-password-form" >
+      <li class="ui-sm-hidden ui-md-hidden"><h:form prependId="false" rendered="#{showGlobalSearch}">
+          <ic:ch.ivy.addon.portal.generic.GlobalSearch id="global-search-component" />
+        </h:form></li>
+    </ul>
+
+    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" width="500" closeOnEscape="true"
+      widgetVar="changePasswordDialog" id="change-password-dialog" resizable="false" modal="true" draggable="false" appendTo="@(body)" dynamic="true"
+      styleClass="change-password-dialog">
+      <h:form id="change-password-form">
         <ic:ch.ivy.addon.portalkit.multiapp.settings.PasswordSetting id="password-setting" dialogName="changePasswordDialog" />
       </h:form>
     </p:dialog>
 
-    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}" 
-     closeOnEscape="true" widgetVar="adminUI" id="admin-ui-dialog" resizable="false" styleClass="admin-ui-dialog"
-      modal="true" draggable="false" appendTo="@(body)" dynamic="true" onShow="initAdminSettingsData()" 
-      onHide="PF('dialogClosingInformation').show();" width="80vw">
-      <ic:ch.ivy.addon.portalkit.admin.AdminSettings id="adminui" /> 
+    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}" closeOnEscape="true" widgetVar="adminUI"
+      id="admin-ui-dialog" resizable="false" styleClass="admin-ui-dialog" modal="true" draggable="false" appendTo="@(body)" dynamic="true"
+      onShow="initAdminSettingsData()" onHide="PF('dialogClosingInformation').show();" width="80vw">
+      <ic:ch.ivy.addon.portalkit.admin.AdminSettings id="adminui" />
       <f:facet name="footer">
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" 
-          id="close-button" type="button" onclick="clearFilter(); PF('adminUI').hide();" />
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" id="close-button" type="button"
+          onclick="clearFilter(); PF('adminUI').hide();" />
       </f:facet>
     </p:dialog>
 
-    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/dialogclosinginformation/dialogHeader')}" 
-      width="50%" closeOnEscape="true" widgetVar="dialogClosingInformation" id="dialog-closing-information" resizable="false" 
-      modal="true" draggable="false" appendTo="@(body)" dynamic="true" styleClass="dialog-closing-information">
+    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/dialogclosinginformation/dialogHeader')}" width="50%"
+      closeOnEscape="true" widgetVar="dialogClosingInformation" id="dialog-closing-information" resizable="false" modal="true" draggable="false"
+      appendTo="@(body)" dynamic="true" styleClass="dialog-closing-information">
       <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/dialogclosinginformation/informMessage')}" />
       <f:facet name="footer">
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" styleClass="portal-ok-button"
-          id="close-dialog-button" type="button" onclick="window.location.reload();" />
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" styleClass="portal-ok-button" id="close-dialog-button"
+          type="button" onclick="window.location.reload();" />
       </f:facet>
     </p:dialog>
 
-    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}" styleClass="absence-settings-dialog"
-      width="80%" height="420" closeOnEscape="true" widgetVar="absenceSetting" id="absence-settings-dialog" resizable="false" 
-      modal="true" draggable="true" appendTo="@(body)" dynamic="true" responsive="true">
+    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}" styleClass="absence-settings-dialog" width="80%"
+      height="420" closeOnEscape="true" widgetVar="absenceSetting" id="absence-settings-dialog" resizable="false" modal="true" draggable="true"
+      appendTo="@(body)" dynamic="true" responsive="true">
       <ic:ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy id="absence-settings" dialogName="absenceSetting" />
       <f:facet name="footer">
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" 
-          id="cancel-absences-command" type="button" onclick="PF('absenceSetting').hide();" styleClass="cancel-absences-command"/>
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" id="cancel-absences-command" type="button"
+          onclick="PF('absenceSetting').hide();" styleClass="cancel-absences-command" />
       </f:facet>
     </p:dialog>
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/emailSetting')}" styleClass="applications-email-setting-dialog"
-      closeOnEscape="true" widgetVar="emailSetting" id="applications-email-setting-dialog" resizable="false"
-      modal="true" appendTo="@(body)" dynamic="true" fitViewport="true">
+      closeOnEscape="true" widgetVar="emailSetting" id="applications-email-setting-dialog" resizable="false" modal="true" appendTo="@(body)"
+      dynamic="true" fitViewport="true">
       <h:form id="applications-email-setting-form" styleClass="applications-email-setting-form">
-        <ic:ch.ivy.addon.portalkit.multiapp.settings.EmailSetting id="applications-email-setting"
-          dialogName="emailSetting" />
+        <ic:ch.ivy.addon.portalkit.multiapp.settings.EmailSetting id="applications-email-setting" dialogName="emailSetting" />
       </h:form>
     </p:dialog>
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/languageSetting')}" styleClass="language-setting-dialog"
-      width="50%" closeOnEscape="true" widgetVar="languageDialogVar" id="language-setting-dialog" resizable="false"  
-      modal="true" dynamic="true" appendTo="@(body)" >
+      width="50%" closeOnEscape="true" widgetVar="languageDialogVar" id="language-setting-dialog" resizable="false" modal="true" dynamic="true"
+      appendTo="@(body)">
       <h:form id="language-settings-form" styleClass="language-settings-form">
-        <ic:ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage id="language-settings" startMethod="start"
-          dialogName="languageDialogVar" />
+        <ic:ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage id="language-settings" startMethod="start" dialogName="languageDialogVar" />
       </h:form>
     </p:dialog>
 
-    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/header')}" styleClass="project-info-dialog"
-      width="800" closeOnEscape="true" widgetVar="project-info-dialog" id="project-info-dialog" resizable="false" 
-      modal="true" draggable="false" appendTo="@(body)" dynamic="true" >
+    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/header')}" styleClass="project-info-dialog" width="800"
+      closeOnEscape="true" widgetVar="project-info-dialog" id="project-info-dialog" resizable="false" modal="true" draggable="false"
+      appendTo="@(body)" dynamic="true">
       <ic:ch.ivy.addon.portalkit.component.ProjectVersion id="project-version" />
       <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer u-email-dialog-footer">
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" 
-          id="project-version-close-button" type="button" onclick="PF('project-info-dialog').hide();" />
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" id="project-version-close-button" type="button"
+          onclick="PF('project-info-dialog').hide();" />
       </h:panelGroup>
     </p:dialog>
-    
+
     <h:form>
-      <p:remoteCommand name="rcProjectInfo" actionListener="#{projectVersionBean.loadProjectVesion}" oncomplete="PF('project-info-dialog').show()" update="project-info-dialog" />
+      <p:remoteCommand name="rcProjectInfo" actionListener="#{projectVersionBean.loadProjectVesion}" oncomplete="PF('project-info-dialog').show()"
+        update="project-info-dialog" />
     </h:form>
   </ui:insert>
   <c:if test="#{chatRendererBean.isChatRendered}">

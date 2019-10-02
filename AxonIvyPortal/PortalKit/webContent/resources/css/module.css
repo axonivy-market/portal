@@ -3006,7 +3006,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 /* Responsive User menu */
 @media screen and (max-width: 40em) {
-  .admin-ui-dialog, .change-password-dialog, .applications-email-setting-dialog {
+  .change-password-dialog, .applications-email-setting-dialog {
      top: 100px !important;
   }
   .setting-dialog, .dialog-closing-information {
@@ -3037,6 +3037,10 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 /********************************** ADMIN SETTING **********************************/
+.admin-ui-dialog {
+  top: 25vh !important;
+}
+
 .admin-settings-no-permission-message {
   color: #E53935;
 }
