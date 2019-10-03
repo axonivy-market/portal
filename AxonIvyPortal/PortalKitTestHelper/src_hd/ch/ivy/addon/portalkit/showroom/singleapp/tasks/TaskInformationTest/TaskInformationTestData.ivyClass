@@ -1,6 +1,0 @@
-TaskInformationTestData #class
-ch.ivy.addon.portalkit.showroom.singleapp.tasks.TaskInformationTest #namespace
-selectedTask ch.ivyteam.ivy.workflow.ITask #field
-selectedTask PERSISTENT #fieldModifier
-visible Boolean #field
-visible PERSISTENT #fieldModifier

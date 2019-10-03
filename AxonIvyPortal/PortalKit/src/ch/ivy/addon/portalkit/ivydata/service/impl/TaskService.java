@@ -51,7 +51,10 @@ public class TaskService implements ITaskService {
     return IvyExecutor.executeAsSystem(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       try {
-        TaskQuery finalQuery = extendQueryWithInvolvedUser(criteria);
+        TaskQuery finalQuery = criteria.getFinalTaskQuery();
+        if (criteria.isFirstTimeLazyLoad()) {
+          finalQuery = extendQueryWithInvolvedUser(criteria);
+        }
         result.setTasks(executeTaskQuery(finalQuery, startIndex, count));
       } catch (Exception ex) {
         Ivy.log().error("Error in getting tasks", ex);

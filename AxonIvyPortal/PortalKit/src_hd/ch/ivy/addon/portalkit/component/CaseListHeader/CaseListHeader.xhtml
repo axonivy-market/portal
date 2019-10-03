@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
-	xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
 	<cc:attribute name="dataModel" type="ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel" />
@@ -9,33 +9,37 @@
 <cc:implementation>
 	<c:set var="dataModel" value="#{cc.attrs.dataModel}" />
 	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="name-desc-column-header" 
-		styleClass="case-list-header-cell case-list-name-desc-header-cell" 
+		styleClass="case-list-name-desc-header-cell" 
 		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/NAME')}" 
-		dataModel="#{dataModel}" componentToBeUpdated="" sortable="true" sortedField="NAME" />
+		dataModel="#{dataModel}" sortable="true" sortedField="NAME" />
 
 	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="id-column-header" 
-		styleClass="TexAlCenter case-list-header-cell #{dataModel.isAutoHideColumns()?'js-id-column-header':''}" 
+		styleClass="TexAlCenter"
+        responsiveStyleClass="u-hidden-sm-down" 
 		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" 
-		dataModel="#{dataModel}" componentToBeUpdated="" sortable="true" sortedField="ID" />
+		dataModel="#{dataModel}" sortable="true" sortedField="ID" />
 
 	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="creator-column-header" 
-		styleClass="case-list-header-cell #{dataModel.isAutoHideColumns() ? 'js-creator-column-header' : ''}"  
+		responsiveStyleClass="js-hidden-when-expand-menu u-hidden-md-down"
 		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" 
-		dataModel="#{dataModel}" componentToBeUpdated="" sortable="true" sortedField="CREATOR" />
+		dataModel="#{dataModel}" sortable="true" sortedField="CREATOR" />
 
 	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="created-date-column-header" 
-		styleClass="TexAlCenter case-list-header-cell #{dataModel.isAutoHideColumns()?'js-create-column-header':''}" 
+		styleClass="TexAlCenter"
+        responsiveStyleClass="u-hidden-sm-down"
 		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}" 
-		dataModel="#{dataModel}" componentToBeUpdated="" sortable="true" sortedField="CREATION_TIME" />
+		dataModel="#{dataModel}" sortable="true" sortedField="CREATION_TIME" />
 
-	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="mofified-date-column-header" 
-		styleClass="TexAlCenter case-list-header-cell #{dataModel.isAutoHideColumns()?'js-expiry-column-header':''}" 
+	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="finished-date-column-header" 
+		styleClass="TexAlCenter"
+        responsiveStyleClass="js-hidden-when-expand-menu u-hidden-md-down" 
 		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME')}" 
-		dataModel="#{dataModel}" componentToBeUpdated="" sortable="true" sortedField="FINISHED_TIME" />
+		dataModel="#{dataModel}" sortable="true" sortedField="FINISHED_TIME" />
 
 	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="state-column-header" 
-		styleClass="case-list-header-cell TexAlCenter"  
+		styleClass="TexAlCenter"
+        responsiveStyleClass="u-hidden-sm-down"  
 		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" 
-		dataModel="#{dataModel}" componentToBeUpdated="" sortable="true" sortedField="STATE" />
+		dataModel="#{dataModel}" sortable="true" sortedField="STATE" />
 </cc:implementation>
 </html>

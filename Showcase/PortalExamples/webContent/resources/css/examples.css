@@ -6,20 +6,58 @@
 	flex: 0 0 90px;
 }
 
+.custom-task-details-panel-top {
+  background-color: #c7d426;
+}
+
+.custom-task-details-panel-middle {
+  background-color: rgba(0,0,0,0.5);
+}
+
 .custom-task-details-panel {
-	background-color: #f0c5ac;
+  background-color: #f0c5ac;
+}
+
+.custom-general-panel {
+  height: 100%;
+}
+
+.custom-task-middle-container {
+ padding-left: 0px !important;
+ padding-right: 0px !important; 
+ padding-bottom: 18px;
+}
+
+.custom-task-panel-middle {
+  height: 343px;
+  margin-top: 15px;
+  margin :0;
+}
+
+.custom-task-panel {
+ padding-left: 14px;
+ padding-right : 14px;
+}
+.custom-task-details-panel, .custom-task-details-panel-top,.custom-task-details-panel-middle {	
 	text-align: center;
 	font-size: 1.2rem;
 	height: 245px;
 }
 
-.customized-case-header-column {
-	width: 125px !important;
-	display: block;
+.custom-case-details-panel-override-height {
+  height: auto !important;
 }
 
-.customized-home-task-widget {
-	width: 70%;
+.custom-case-details-panel-font-size {
+  font-size: 1.6rem !important;
+}
+.custom-task-left-component {
+  padding-bottom: 15px !important;
+}
+
+.customized-case-header-column {
+	flex: 0 0 155px;
+	text-align: center;
 }
 
 .customized-home-custom-widget {
@@ -38,7 +76,7 @@
 	right: 0;
 	bottom: 0;
 	left: 0;
-	background: #afca05;
+	background: #c7d426;
 }
 
 .customized-login-form {

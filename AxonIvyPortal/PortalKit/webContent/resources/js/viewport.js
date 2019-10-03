@@ -21,7 +21,7 @@ var viewPort = (function(){
 	      if (screenWidth >= 1920) {
 	        return LARGE_SCREEN;
 	      }
-	      if (screenWidth >= 1366) {
+	      if (screenWidth > 1024) {
 	        return MEDIUM_SCREEN;
 	      } else {
 	        return SMALL_SCREEN;

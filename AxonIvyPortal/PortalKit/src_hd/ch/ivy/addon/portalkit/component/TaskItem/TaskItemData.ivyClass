@@ -35,3 +35,6 @@ canDelegateTask Boolean #field
 canDelegateTask PERSISTENT #fieldModifier
 application ch.ivyteam.ivy.application.IApplication #field
 application PERSISTENT #fieldModifier
+currentPortalPage String #field
+currentPortalPage 'Sticky task list after open task details: TASK_LIST or SEARCH_RESULTS' #fieldComment
+currentPortalPage PERSISTENT #fieldModifier

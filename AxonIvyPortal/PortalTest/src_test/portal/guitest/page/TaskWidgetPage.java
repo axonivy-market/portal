@@ -108,16 +108,33 @@ public class TaskWidgetPage extends TemplatePage {
     }
   }
 
-  public TaskTemplatePage startTask(int index) {
-    WebElement taskListElement = findElementById(taskWidgetId + ":task-list-scroller");
-    if (taskListElement.getAttribute(CLASS).contains("compact-mode")) {
-      findElementByCssSelector(ID_CONTAIN + index + TASK_ITEM).click();
-    } else {
-      findElementByCssSelector(ID_END + index + TASK_ITEM_TASK_INFO).click();
-    }
-    waitForElementPresent(By.id(SIDE_STEP_MENU), true);
-    return new TaskTemplatePage();
-  }
+	public TaskTemplatePage startTask(int index) {
+		WebElement taskListElement = findElementById(taskWidgetId + ":task-list-scroller");
+		if (taskListElement.getAttribute(CLASS).contains("compact-mode")) {
+			String cssSelector = ID_CONTAIN + index + TASK_ITEM;
+			refreshAndWaitElement(cssSelector);
+			waitForElementPresent(By.cssSelector(cssSelector), true);
+			findElementByCssSelector(cssSelector).click();
+		} else {
+			String cssSelector = ID_END + index + TASK_ITEM_TASK_INFO;
+			refreshAndWaitElement(cssSelector);
+			waitForElementPresent(By.cssSelector(cssSelector), true);
+			findElementByCssSelector(cssSelector).click();
+		}
+		waitForElementPresent(By.id(SIDE_STEP_MENU), true);
+		return new TaskTemplatePage();
+	}
+
+	private void refreshAndWaitElement(String cssSelector) {
+		Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> {
+			if (findListElementsByCssSelector(cssSelector).isEmpty()) {
+				refresh();
+				return false;
+			} else {
+				return true;
+			}
+		});
+	}
 
   public boolean isTaskDelegateOptionDisable(int index) {
     WebElement delegateButton =
@@ -178,6 +195,13 @@ public class TaskWidgetPage extends TemplatePage {
     String resetCommandButton =
         String.format(taskWidgetId + ":task-list-scroller:%s:task-item:task-action:task-reset-command", taskId);
     click(findElementById(resetCommandButton));
+  }
+
+  public void resetReservedTask(int taskId) {
+    String resetCommandButton =
+        String.format(taskWidgetId + ":task-list-scroller:%s:task-item:resume-task-action:task-reset-command", taskId);
+    click(findElementById(resetCommandButton));
+    waitAjaxIndicatorDisappear();
   }
 
   public boolean isTaskStartEnabled(int taskId) {
@@ -454,6 +478,22 @@ public class TaskWidgetPage extends TemplatePage {
     return isElementDisplayed(
         By.cssSelector("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']"));
   }
+  
+  public String getFilterValue(String filterId) {
+    WebElement filterElement =
+        findElementByCssSelector("button[id$='" + filterId + ":filter-open-form:advanced-filter-command']");
+    return filterElement.getText();
+  }
+  
+  public String getStateFilterSelection(int pos) {
+    WebElement stateFilterSelectionElement =
+        findElementByCssSelector("label[for$='state-filter:filter-input-form:state-selection:" + pos + "']");
+    return stateFilterSelectionElement.getText();
+  }
+  
+  public void openStateFilter() {
+    click(By.cssSelector("button[id$='state-filter:filter-open-form:advanced-filter-command']"));
+  }
 
   public void filterByDescription(String text) {
     click(By.cssSelector("button[id$='description-filter:filter-open-form:advanced-filter-command']"));
@@ -490,6 +530,13 @@ public class TaskWidgetPage extends TemplatePage {
     return descriptionInput.getText();
   }
 
+  public String getTaskId() {
+    String taskTitleCssSelection = "span[id$='task-start-task-id']";
+    String taskTitle = findElementByCssSelector(taskTitleCssSelection).getText();
+    String taskId = taskTitle.substring(taskTitle.indexOf("#") + 1, taskTitle.indexOf(")"));
+    return taskId;
+  }
+  
   public boolean hasNoTask() {
     WebElement noTaskMessage = findElementByCssSelector("label[class*='no-task-message']");
     return noTaskMessage.isDisplayed();

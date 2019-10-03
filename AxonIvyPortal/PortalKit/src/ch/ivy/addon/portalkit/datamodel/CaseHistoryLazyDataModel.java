@@ -13,8 +13,9 @@ import org.primefaces.model.SortOrder;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
-import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
+import ch.ivy.addon.portalkit.service.IvyAdapterService;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -34,7 +35,7 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<ICase> {
     this.businessEntityId = businessEntityId;
     data = new ArrayList<>();
     criteria = buildInitSearchCriteria();
-    setAdminQuery(true);
+    setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
     setInvolvedApplications();
   }
 
@@ -66,6 +67,7 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<ICase> {
     if (first == 0) {
       initializedDataModel(criteria);
     }
+
     List<ICase> foundCases = findCases(criteria, first, pageSize);
     data.addAll(foundCases);
     return foundCases;
@@ -120,7 +122,7 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<ICase> {
   private void buildQueryToSearchCriteria() {
     if (criteria.getCustomCaseQuery() == null) {
       CaseQuery caseQuery = CaseQuery.create();
-      caseQuery.where().customField().stringField(AdditionalProperty.CASE_BUSINESS_ENTITY_PROPERTY.toString())
+      caseQuery.where().customField().textField(AdditionalProperty.CASE_BUSINESS_ENTITY_PROPERTY.toString())
           .isEqual(businessEntityId);
       criteria.setCustomCaseQuery(caseQuery);
     }

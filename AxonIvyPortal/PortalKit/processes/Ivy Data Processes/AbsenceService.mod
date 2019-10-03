@@ -1,10 +1,9 @@
 [Ivy]
-14BDDCD00C5EA267 3.24 #module
+14BDDCD00C5EA267 3.28 #module
 >Proto >Proto Collection #zClass
 Se0 AbsenceService Big #zClass
 Se0 B #cInfo
 Se0 #process
-Se0 @TextInP .resExport .resExport #zField
 Se0 @TextInP .type .type #zField
 Se0 @TextInP .processKind .processKind #zField
 Se0 @AnnotationInP-0n ai ai #zField
@@ -64,10 +63,7 @@ Se0 f81 outParamDecl '<java.util.Map absencesByUser,java.util.List<ch.ivy.addon.
 Se0 f81 outParamTable 'result.absencesByUser=in.absencesByUser;
 result.errors=in.errors;
 ' #txt
-Se0 f81 actionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
-' #txt
 Se0 f81 callSignature findAbsences(String) #txt
-Se0 f81 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f81 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -77,11 +73,8 @@ Se0 f81 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Se0 f81 81 49 30 30 -57 17 #rect
 Se0 f81 @|StartSubIcon #fIcon
-Se0 f82 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f82 683 49 30 30 0 15 #rect
 Se0 f82 @|EndSubIcon #fIcon
-Se0 f84 actionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
-' #txt
 Se0 f84 actionTable 'out=in;
 ' #txt
 Se0 f84 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
@@ -89,7 +82,6 @@ Se0 f84 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationS
 RegisteredApplicationService service = new RegisteredApplicationService();
 out.apps = service.findActiveIvyAppsUserCanWorkOn(in.username);
 ' #txt
-Se0 f84 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f84 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -101,8 +93,6 @@ Se0 f84 144 42 176 44 -81 -8 #rect
 Se0 f84 @|StepIcon #fIcon
 Se0 f85 expr out #txt
 Se0 f85 111 64 144 64 #arcP
-Se0 f86 actionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
-' #txt
 Se0 f86 actionTable 'out=in;
 ' #txt
 Se0 f86 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyAbsenceResultDTO;
@@ -111,7 +101,6 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.AbsenceService;
 IvyAbsenceResultDTO dto = AbsenceService.newInstance().findAbsences(in.username, in.apps);
 out.absencesByUser = dto.getIvyAbsencesByUser();
 out.errors = dto.errors;' #txt
-Se0 f86 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f86 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -123,9 +112,7 @@ Se0 f86 354 42 112 44 -41 -8 #rect
 Se0 f86 @|StepIcon #fIcon
 Se0 f87 expr out #txt
 Se0 f87 320 64 354 64 #arcP
-Se0 f88 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f88 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Se0 f88 doCall true #txt
 Se0 f88 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
 ' #txt
 Se0 f88 requestMappingAction 'param.exceptions=in.errors;
@@ -155,10 +142,7 @@ Se0 f90 outParamDecl '<java.util.Map absencesByUser,java.util.List<ch.ivy.addon.
 Se0 f90 outParamTable 'result.absencesByUser=in.absencesByUser;
 result.errors=in.errors;
 ' #txt
-Se0 f90 actionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
-' #txt
 Se0 f90 callSignature findAbsencesOfAllUsers(String) #txt
-Se0 f90 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f90 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -176,10 +160,7 @@ Se0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.Po
 ' #txt
 Se0 f0 outParamTable 'result.errors=in.errors;
 ' #txt
-Se0 f0 actionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
-' #txt
 Se0 f0 callSignature updateAbsences(String,java.util.Set) #txt
-Se0 f0 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -189,8 +170,6 @@ Se0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Se0 f0 81 337 30 30 -70 18 #rect
 Se0 f0 @|StartSubIcon #fIcon
-Se0 f1 actionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
-' #txt
 Se0 f1 actionTable 'out=in;
 ' #txt
 Se0 f1 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
@@ -198,7 +177,6 @@ Se0 f1 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationSe
 RegisteredApplicationService service = new RegisteredApplicationService();
 out.apps = service.findActiveIvyAppsUserCanWorkOn(in.username);
 ' #txt
-Se0 f1 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -210,8 +188,6 @@ Se0 f1 160 330 176 44 -81 -8 #rect
 Se0 f1 @|StepIcon #fIcon
 Se0 f2 expr out #txt
 Se0 f2 111 352 160 352 #arcP
-Se0 f3 actionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
-' #txt
 Se0 f3 actionTable 'out=in;
 ' #txt
 Se0 f3 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyAbsenceResultDTO;
@@ -219,7 +195,6 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.AbsenceService;
 
 IvyAbsenceResultDTO dto = AbsenceService.newInstance().updateAbsences(in.username, in.absences, in.apps);
 out.errors = dto.errors;' #txt
-Se0 f3 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -231,9 +206,7 @@ Se0 f3 376 330 112 44 -42 -8 #rect
 Se0 f3 @|StepIcon #fIcon
 Se0 f4 expr out #txt
 Se0 f4 336 352 376 352 #arcP
-Se0 f5 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f5 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Se0 f5 doCall true #txt
 Se0 f5 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
 ' #txt
 Se0 f5 requestMappingAction 'param.exceptions=in.errors;
@@ -253,7 +226,6 @@ Se0 f5 538 330 112 44 -35 -8 #rect
 Se0 f5 @|CallSubIcon #fIcon
 Se0 f6 expr out #txt
 Se0 f6 488 352 538 352 #arcP
-Se0 f7 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f7 689 337 30 30 0 15 #rect
 Se0 f7 @|EndSubIcon #fIcon
 Se0 f8 expr out #txt
@@ -265,10 +237,7 @@ Se0 f9 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.Po
 ' #txt
 Se0 f9 outParamTable 'result.errors=in.errors;
 ' #txt
-Se0 f9 actionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
-' #txt
 Se0 f9 callSignature deleteAbsence(ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence) #txt
-Se0 f9 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -278,11 +247,8 @@ Se0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Se0 f9 81 433 30 30 -75 17 #rect
 Se0 f9 @|StartSubIcon #fIcon
-Se0 f10 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f10 689 433 30 30 0 15 #rect
 Se0 f10 @|EndSubIcon #fIcon
-Se0 f13 actionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
-' #txt
 Se0 f13 actionTable 'out=in;
 ' #txt
 Se0 f13 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyAbsenceResultDTO;
@@ -290,7 +256,6 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.AbsenceService;
 
 IvyAbsenceResultDTO dto = AbsenceService.newInstance().deleteAbsence(in.absence, in.apps);
 out.errors = dto.errors;' #txt
-Se0 f13 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -300,9 +265,7 @@ Se0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Se0 f13 376 426 112 44 -43 -8 #rect
 Se0 f13 @|StepIcon #fIcon
-Se0 f15 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f15 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Se0 f15 doCall true #txt
 Se0 f15 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
 ' #txt
 Se0 f15 requestMappingAction 'param.exceptions=in.errors;
@@ -324,12 +287,9 @@ Se0 f16 expr out #txt
 Se0 f16 488 448 522 448 #arcP
 Se0 f17 expr out #txt
 Se0 f17 634 448 689 448 #arcP
-Se0 f18 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f18 689 241 30 30 0 15 #rect
 Se0 f18 @|EndSubIcon #fIcon
-Se0 f19 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f19 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Se0 f19 doCall true #txt
 Se0 f19 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
 ' #txt
 Se0 f19 requestMappingAction 'param.exceptions=in.errors;
@@ -347,8 +307,6 @@ Se0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Se0 f19 538 234 112 44 -35 -8 #rect
 Se0 f19 @|CallSubIcon #fIcon
-Se0 f20 actionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
-' #txt
 Se0 f20 actionTable 'out=in;
 ' #txt
 Se0 f20 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyAbsenceResultDTO;
@@ -356,7 +314,6 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.AbsenceService;
 
 IvyAbsenceResultDTO dto = AbsenceService.newInstance().createAbsence(in.absence, in.apps);
 out.errors = dto.errors;' #txt
-Se0 f20 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -373,10 +330,7 @@ Se0 f21 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.P
 ' #txt
 Se0 f21 outParamTable 'result.errors=in.errors;
 ' #txt
-Se0 f21 actionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
-' #txt
 Se0 f21 callSignature createAbsence(ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence) #txt
-Se0 f21 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -386,8 +340,6 @@ Se0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Se0 f21 81 241 30 30 -75 19 #rect
 Se0 f21 @|StartSubIcon #fIcon
-Se0 f22 actionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
-' #txt
 Se0 f22 actionTable 'out=in;
 ' #txt
 Se0 f22 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
@@ -396,7 +348,6 @@ RegisteredApplicationService service = new RegisteredApplicationService();
 out.apps = service.findActiveIvyAppsUserCanWorkOn(in.absence.getUsername());
 ' #txt
 Se0 f22 security system #txt
-Se0 f22 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -414,8 +365,6 @@ Se0 f25 expr out #txt
 Se0 f25 650 256 689 256 #arcP
 Se0 f26 expr out #txt
 Se0 f26 488 256 538 256 #arcP
-Se0 f27 actionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
-' #txt
 Se0 f27 actionTable 'out=in;
 ' #txt
 Se0 f27 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
@@ -423,7 +372,6 @@ Se0 f27 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationS
 RegisteredApplicationService service = new RegisteredApplicationService();
 out.apps = service.findActiveIvyAppsUserCanWorkOn(in.username);
 ' #txt
-Se0 f27 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -433,8 +381,6 @@ Se0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Se0 f27 152 138 176 44 -81 -8 #rect
 Se0 f27 @|StepIcon #fIcon
-Se0 f28 actionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
-' #txt
 Se0 f28 actionTable 'out=in;
 ' #txt
 Se0 f28 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyAbsenceResultDTO;
@@ -443,7 +389,6 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.AbsenceService;
 IvyAbsenceResultDTO dto = AbsenceService.newInstance().findAbsences(null, in.apps);
 out.absencesByUser = dto.getIvyAbsencesByUser();
 out.errors = dto.errors;' #txt
-Se0 f28 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -453,9 +398,7 @@ Se0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Se0 f28 362 138 112 44 -41 -8 #rect
 Se0 f28 @|StepIcon #fIcon
-Se0 f29 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f29 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Se0 f29 doCall true #txt
 Se0 f29 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
 ' #txt
 Se0 f29 requestMappingAction 'param.exceptions=in.errors;
@@ -480,7 +423,6 @@ Se0 f31 328 160 362 160 #arcP
 Se0 f32 expr out #txt
 Se0 f32 111 160 152 160 #arcP
 Se0 f32 0 0.49492365927107135 0 0 #arcLabel
-Se0 f33 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f33 691 145 30 30 0 15 #rect
 Se0 f33 @|EndSubIcon #fIcon
 Se0 f34 expr out #txt
@@ -489,8 +431,6 @@ Se0 f14 expr out #txt
 Se0 f14 344 448 376 448 #arcP
 Se0 f12 expr out #txt
 Se0 f12 111 448 168 448 #arcP
-Se0 f11 actionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
-' #txt
 Se0 f11 actionTable 'out=in;
 ' #txt
 Se0 f11 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
@@ -499,7 +439,6 @@ RegisteredApplicationService service = new RegisteredApplicationService();
 out.apps = service.findActiveIvyAppsUserCanWorkOn(in.absence.getUsername());
 ' #txt
 Se0 f11 security system #txt
-Se0 f11 type ch.ivyteam.wf.processes.AbsenceServiceData #txt
 Se0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

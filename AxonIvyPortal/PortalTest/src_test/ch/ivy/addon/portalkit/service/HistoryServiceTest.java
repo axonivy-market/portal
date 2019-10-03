@@ -16,12 +16,15 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import ch.ivy.addon.portalkit.bo.History;
+import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.INote;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
+import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
+import ch.ivyteam.ivy.workflow.custom.field.ICustomStringField;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({Ivy.class, UserUtils.class})
@@ -56,23 +59,31 @@ public class HistoryServiceTest {
 
   private List<ITask> createITasks() {
     ITask mockTask = Mockito.mock(ITask.class);
+    ICustomFields customFields = Mockito.mock(ICustomFields.class);
+    ICustomStringField stringField = Mockito.mock(ICustomStringField.class);
     Mockito.when(mockTask.getId()).thenReturn(Long.valueOf(4));
     Mockito.when(mockTask.getName()).thenReturn("Sample task");
     Mockito.when(mockTask.getState()).thenReturn(TaskState.SUSPENDED);
 
     Mockito.when(mockTask.getActivatorName()).thenReturn("demo");
     Mockito.when(mockTask.getStartTimestamp()).thenReturn(new Date());
+    Mockito.when(mockTask.customFields()).thenReturn(customFields);
+    Mockito.when(mockTask.customFields().stringField(AdditionalProperty.ADHOC_EXPRESS_TASK.toString())).thenReturn(stringField);
     return Arrays.asList(mockTask);
   }
 
   private List<ITask> createTechnicalITasks() {
     ITask mockTask = Mockito.mock(ITask.class);
+    ICustomFields customFields = Mockito.mock(ICustomFields.class);
+    ICustomStringField stringField = Mockito.mock(ICustomStringField.class);
     Mockito.when(mockTask.getId()).thenReturn(Long.valueOf(4));
     Mockito.when(mockTask.getName()).thenReturn("Sample task");
     Mockito.when(mockTask.getState()).thenReturn(TaskState.SUSPENDED);
     Mockito.when(mockTask.getActivatorName()).thenReturn(SYSTEM_USER_NAME);
     Mockito.when(mockTask.getWorkerUserName()).thenReturn(SYSTEM_USER_NAME);
     Mockito.when(mockTask.getStartTimestamp()).thenReturn(new Date());
+    Mockito.when(mockTask.customFields()).thenReturn(customFields);
+    Mockito.when(mockTask.customFields().stringField(AdditionalProperty.ADHOC_EXPRESS_TASK.toString())).thenReturn(stringField);
     return Arrays.asList(mockTask);
   }
 

@@ -1,6 +1,5 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile"
-	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+	xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:body>
 	<ui:composition template="/layouts/PortalCasesTemplate.xhtml">
 		<ui:param name="menuState" value="#{data.menuState}" />
@@ -14,85 +13,80 @@
 		<ui:remove>
 			<ui:param name="useOverrideListHeader" value="true" />
 			<ui:param name="useOverrideHeader" value="true" />
-			<ui:param name="useOverrideBody" value="true" />
 			<ui:param name="useOverrideFilter" value="true" />
 
 			<ui:define name="caseListHeader">
-				<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="name-desc-column-header" styleClass="case-list-header-cell case-list-name-desc-header-cell" componentToBeUpdated=""
-					sortedField="NAME" sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/NAME')}" dataModel="#{caseView.dataModel}" />
-
-				<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="id-column-header" styleClass="TexAlCenter case-list-header-cell" componentToBeUpdated="" sortedField="ID" sortable="true"
-					value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" dataModel="#{caseView.dataModel}" />
-
-				<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="creator-column-header" componentToBeUpdated="" sortedField="CREATOR" sortable="true"
-					styleClass="case-list-header-cell #{caseView.dataModel.isAutoHideColumns()?'js-creator-column-header':''}"
-					value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" dataModel="#{caseView.dataModel}" />
-
-				<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="created-date-column-header" componentToBeUpdated="" sortedField="CREATION_TIME"
-					styleClass="TexAlCenter case-list-header-cell js-create-column-header #{caseView.dataModel.isAutoHideColumns()?'js-create-column-header':''}" 
-					sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}" dataModel="#{caseView.dataModel}" />
-
-				<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="mofified-date-column-header" componentToBeUpdated="" sortedField="FINISHED_TIME"
-					styleClass="TexAlCenter case-list-header-cell js-finish-column-header #{caseView.dataModel.isAutoHideColumns()?'js-expiry-column-header':''}" 
-					sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME')}" dataModel="#{caseView.dataModel}" />
-
-				<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="state-column-header" styleClass="case-list-header-cell TexAlCenter" componentToBeUpdated="" sortedField="STATE"
-					sortable="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" dataModel="#{caseView.dataModel}" />
+				<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="name-desc-column-header" 
+            		styleClass="case-list-name-desc-header-cell" 
+            		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/NAME')}" 
+            		dataModel="#{caseView.dataModel}" sortable="true" sortedField="NAME" />
+            
+            	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="id-column-header" 
+            		styleClass="TexAlCenter"
+                    responsiveStyleClass="u-hidden-sm-down" 
+            		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" 
+            		dataModel="#{caseView.dataModel}" sortable="true" sortedField="ID" />
+            
+            	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="creator-column-header" 
+            		responsiveStyleClass="js-hidden-when-expand-menu u-hidden-md-down"
+            		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" 
+            		dataModel="#{caseView.dataModel}" sortable="true" sortedField="CREATOR" />
+            
+            	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="created-date-column-header" 
+            		styleClass="TexAlCenter"
+                    responsiveStyleClass="u-hidden-sm-down"
+            		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}" 
+            		dataModel="#{caseView.dataModel}" sortable="true" sortedField="CREATION_TIME" />
+            
+            	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="finished-date-column-header" 
+            		styleClass="TexAlCenter"
+                    responsiveStyleClass="js-hidden-when-expand-menu u-hidden-md-down" 
+            		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME')}" 
+            		dataModel="#{caseView.dataModel}" sortable="true" sortedField="FINISHED_TIME" />
+            
+            	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="state-column-header" 
+            		styleClass="TexAlCenter"
+                    responsiveStyleClass="u-hidden-sm-down"  
+            		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" 
+            		dataModel="#{caseView.dataModel}" sortable="true" sortedField="STATE" />
 
 				<!-- New field -->
-				<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customVarCharField1-column-header" styleClass="case-list-header-cell TexAlCenter customized-case-header-column"
-					componentToBeUpdated="" sortedField="customVarCharField1" sortable="true" value="customVarCharField1" dataModel="#{caseView.dataModel}" />
-				<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customTimestampField1-column-header" styleClass="case-list-header-cell TexAlCenter customized-case-header-column"
-					componentToBeUpdated="" sortedField="customTimestampField1" sortable="true" value="customTimestampField1" dataModel="#{caseView.dataModel}" />
+				<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customVarCharField1-column-header" styleClass="TexAlCenter customized-case-header-column"
+                    responsiveStyleClass="js-hidden-when-expand-menu u-hidden-lg-down"
+					sortedField="customVarCharField1" sortable="true" value="Custom text" dataModel="#{caseView.dataModel}" />
+				<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customTimestampField1-column-header" styleClass="TexAlCenter customized-case-header-column"
+                    responsiveStyleClass="js-hidden-when-expand-menu u-hidden-lg-down"
+					sortedField="customTimestampField1" sortable="true" value="Custom date" dataModel="#{caseView.dataModel}" />
 			</ui:define>
 
 			<ui:define name="caseHeader">
-				<div class="case-header-name-desc-cell">
-					<ic:ch.ivy.addon.portalkit.component.cases.column.CaseName caseNameId="case-header-name-cell" caseDescriptionId="description-cell" case="#{case}" dataModel="#{caseView.getDataModel()}"
-						initialActive="#{case.id eq caseView.getAutoSelectCaseId().id()}" />
-				</div>
-				<ic:ch.ivy.addon.portalkit.component.cases.column.CaseId componentId="case-id-cell" case="#{case}" dataModel="#{caseView.getDataModel()}" />
-				<ic:ch.ivy.addon.portalkit.component.cases.column.CaseCreator componentId="case-creator-cell" case="#{case}" dataModel="#{caseView.getDataModel()}"
-					styleClass="#{caseView.dataModel.isAutoHideColumns()?'hidden-sm':''}" />
-				<ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-creation-date-cell" rendered="#{caseView.dataModel.isSelectedColumn('CREATION_TIME')}" 
-					value="#{case.startTimestamp}" styleClass="#{caseView.dataModel.isAutoHideColumns()?'js-create-cell':''}"/>
-				<ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-expiry-date-cell" rendered="#{caseView.dataModel.isSelectedColumn('FINISHED_TIME')}" 
-					value="#{case.endTimestamp}" styleClass="#{caseView.dataModel.isAutoHideColumns()?'js-finish-cell':''}"/>
-				<ic:ch.ivy.addon.portalkit.component.cases.column.CaseState componentId="case-state-cell" case="#{case}" dataModel="#{caseView.getDataModel()}"/>
-
+                <div class="case-header-name-desc-cell u-truncate-text">
+                  <ic:ch.ivy.addon.portalkit.component.cases.column.CaseName caseNameId="case-header-name-cell"
+                    caseDescriptionId="description-cell" case="#{case}" dataModel="#{caseView.dataModel}" />
+                </div>
+                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseId componentId="case-id-cell" case="#{case}"
+                  dataModel="#{caseView.dataModel}" />
+                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCreator componentId="case-creator-cell"
+                  case="#{case}" dataModel="#{caseView.dataModel}" responsiveStyleClass="js-hidden-when-expand-menu u-hidden-md-down" />
+                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-creation-date-cell"
+                  rendered="#{caseView.dataModel.isSelectedColumn('CREATION_TIME')}" value="#{case.startTimestamp}" />
+                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-expiry-date-cell"
+                  rendered="#{caseView.dataModel.isSelectedColumn('FINISHED_TIME')}" value="#{case.endTimestamp}"
+                  responsiveStyleClass="js-hidden-when-expand-menu u-hidden-md-down" />
+                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState componentId="case-state-cell" case="#{case}"
+                  dataModel="#{caseView.dataModel}" />
+      
 				<!-- New field -->
 				<h:panelGroup styleClass="customized-case-header-column">
-					<h:outputText value="#{case.customVarCharField1}" styleClass="case-header-default-cell customized-case-header-column" />
+					<h:outputText value="#{case.customFields().stringField('CustomVarcharField1').getOrNull()}" 
+                    styleClass="case-header-default-cell customized-case-header-column js-hidden-when-expand-menu u-hidden-lg-down" />
 				</h:panelGroup>
 				<h:panelGroup styleClass="customized-case-header-column">
-					<h:outputText value="#{case.customTimestampField1}" styleClass="case-header-end-time-cell case-header-default-cell customized-case-header-column">
+					<h:outputText value="#{case.customFields().timestampField('CustomTimestampField1').getOrNull()}" 
+                    styleClass="case-header-default-cell customized-case-header-column js-hidden-when-expand-menu u-hidden-lg-down">
 						<f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
 					</h:outputText>
 				</h:panelGroup>
-			</ui:define>
-
-			<ui:define name="caseBody">
-				<ic:ch.ivy.addon.portalkit.component.CaseItemGeneralInformation id="general-information" case="#{case}" />
-				<ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="related-tasks" case="#{case}" />
-				<ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="history" case="#{case}" />
-				<ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}" componentToUpdate="#{p:component('history')}" />
-				<ic:ch.ivy.addon.portalkit.component.CaseItemDescription id="description" case="#{case}" descriptionComponentToUpdate="#{p:component('description-cell')}" />
-				<ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer styleClass="hidden-lg">
-					<ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton icon="fa fa-share-alt js-related-task-column-responsive-button" displayedSelectors="['.js-related-task-column']"
-						hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
-					<ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton icon="fa fa-align-left js-history-column-responsive-button" displayedSelectors="['.js-history-column']"
-						hiddenSelectorsInMediumScreen="['.case-details .replaced']" hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
-					<ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton icon="fa fa-file js-document-column-responsive-button" displayedSelectors="['.js-document-column']"
-						hiddenSelectorsInLargeScreen="['.case-details .replaced']" hiddenSelectorsInMediumScreen="['.case-details .replaced']" hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
-					<ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton icon="fa fa-clipboard js-description-column-responsive-button" displayedSelectors="['.js-description-column']"
-						hiddenSelectorsInMediumScreen="['.case-details .replaced']" hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
-					<h:outputScript library="js" name="case-detail-default-responsiveness.js" />
-				</ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer>
-
-				<!-- Add new panel -->
-				<div class="task-details-item custom-task-details-panel">
-					<p>Custom panel</p>
-				</div>
 			</ui:define>
 
 			<ui:define name="caseFilter">

@@ -165,6 +165,11 @@ protected boolean isIntegrationTestRun() {
     return new ChangePasswordPage();
   }
   
+  public LanguagePage openLanguagePage() {
+    clickUserMenuItem("language-setting-menu-item");
+    return new LanguagePage();
+  }
+  
   public ProjectVersionPage openProjectVersionPage() {
     clickUserMenuItem("project-info-menu-item");
     return new ProjectVersionPage();
@@ -237,7 +242,7 @@ protected boolean isIntegrationTestRun() {
     String newPageHandle = ((String) newWindows.toArray()[0]);
 
     String createTestingTasksUrl =
-        UrlHelpers.generateAbsoluteProcessStartLink("internalSupport/14B2FC03D2E87141/CategoriedLeaveRequest.ivp");
+        UrlHelpers.generateAbsoluteProcessStartLink("portalExamples/162511D2577DBA88/CategoriedLeaveRequest.ivp");
     driver.switchTo().window(newPageHandle);
     driver.get(createTestingTasksUrl);
 
@@ -263,6 +268,10 @@ protected boolean isIntegrationTestRun() {
     caseListToggle.click();
     waitForElementPresent(By.cssSelector("div.js-case-default-widget-container"), true);
     return new CaseWidgetPage();
+  }
+  
+  public String getGlobalGrowlMessage() {
+    return findElementById("portal-global-growl_container").getText();
   }
 
   public GlobalSearch getGlobalSearch() {

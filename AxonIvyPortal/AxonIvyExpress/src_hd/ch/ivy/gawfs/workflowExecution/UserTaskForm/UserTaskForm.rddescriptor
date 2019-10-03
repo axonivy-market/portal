@@ -1,26 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
-    <method>
-        <name>cancel</name>
-        <description></description>
-    </method>
-    <startMethod>
-        <name>start</name>
-        <description>Default dialog start method.</description>
-        <inputParameter>
-            <name>executePredefinedWorkflowData</name>
-            <description></description>
-            <parameterType>gawfs.ExecutePredefinedWorkflowData</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <outputParameter>
-            <name>executePredefinedWorkflowData</name>
-            <description></description>
-            <parameterType>gawfs.ExecutePredefinedWorkflowData</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </outputParameter>
-    </startMethod>
     <property>
         <name>guid</name>
         <value>162F0A4FA1B80C24</value>

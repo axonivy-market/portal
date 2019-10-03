@@ -1,0 +1,1 @@
+ce qui signifie qu'il n'y a pas de délai d'attente. Si les messages de chat passent par Nginx proxy inversé, le délai de réponse au chat doit être inférieur au délai de réponse Nginx, par exemple inférieur à 60s. 

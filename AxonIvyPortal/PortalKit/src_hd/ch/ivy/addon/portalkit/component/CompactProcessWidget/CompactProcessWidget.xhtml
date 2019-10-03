@@ -1,20 +1,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile"
+  xmlns:pe="http://primefaces.org/ui/extensions"
   xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:jsf="http://xmlns.jcp.org/jsf"
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
   xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" />
+  <cc:attribute name="mobileTitle" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" />
 </cc:interface>
 
 <cc:implementation>
   <div id="#{cc.clientId}" class="widget process-widget">
     <ui:include src="Header.xhtml" />
-    <ui:include src="UserProcesses.xhtml" />
-    <ui:include src="DefaultProcesses.xhtml" />
+    <div id="all-processes-container" class="ui-sm-hidden">
+      <ui:include src="UserProcesses.xhtml" />
+      <ui:include src="DefaultProcesses.xhtml" />
+    </div>
   </div>
 </cc:implementation>
 </html>

@@ -2,48 +2,32 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <ui:composition>
-  <div id="action-cell-#{rowIndex}" class="action-cell #{data.isShowTaskButtonLabels? 'with-button-labels' : 'without-button-labels'}">
+  <div id="action-cell-#{rowIndex}" class="task-header-action-cell">
     <div class="action-container">
-      <p:commandLink id="task-reset-command" onstart="event.stopPropagation();" rendered="#{taskActionBean.showResetTask}"
-        disabled="#{!taskActionBean.canReset(task)}" styleClass="task-command"
-        actionListener="#{logic.resetTask(task)}" update="@parent :#{p:component('task-start')}">
-        <span class="action-icon tmi-box-arrow-left" />
-        <h:outputText rendered="#{data.isShowTaskButtonLabels}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" />
+      <p:commandLink id="task-action-component" actionListener="#{logic.openTask(task,dataModel)}"
+        disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)}" rendered="#{task.state != 'RESUMED'}" onstart="event.stopPropagation();"
+        styleClass="task-action-item">
+        <i class="tmi-chevorn-right icon-compact-mode" />
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label u-hidden-md-down" />
       </p:commandLink>
-      <p:tooltip for="task-reset-command"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/resetTaskTooltip')}"
-        styleClass="task-command-tooltip" />
-      <p:commandLink id="task-delegate-command" disabled="#{!taskActionBean.canDelegate(task)}" rendered="#{taskActionBean.showDelegateTask}"
-        styleClass="task-command" actionListener="#{logic.initDataToDelegate(task)}" onstart="event.stopPropagation();"
-        oncomplete="PF('task-delegate-dialog').show()" update="@widgetVar(task-delegate-dialog) @parent">
-        <span class="action-icon tmi-box-arrow-right" />
-        <h:outputText rendered="#{data.isShowTaskButtonLabels}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}" />
+
+      <p:commandLink id="resume-task-action-component" disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)}"
+        rendered="#{task.state == 'RESUMED'}" styleClass="task-action-item">
+        <p:ajax event="click" listener="#{logic.validate(task, dataModel)}" onstart="event.stopPropagation();"
+          oncomplete="if (args &amp;&amp; !args.validationFailed) PF('reset-task-dialog-#{rowIndex}').show()" />
+        <i class="tmi-chevorn-right icon-compact-mode" />
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label u-hidden-md-down" />
       </p:commandLink>
-      <p:tooltip for="task-delegate-command"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTask')}"
-        styleClass="task-command-tooltip" />
-      <p:commandLink id="task-reserve-command"
-        disabled="#{!taskActionBean.canPark(task)}" rendered="#{taskActionBean.showReserveTask}"
-        onstart="event.stopPropagation();" styleClass="task-command" actionListener="#{logic.parkTask(task)}"
-        update="@parent :#{p:component('task-start')}">
-        <span class="action-icon tmi-box-arrow-toinside" />
-        <h:outputText rendered="#{data.isShowTaskButtonLabels}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}" />
-      </p:commandLink>
-      <p:tooltip for="task-reserve-command"
-        value="#{task.state eq 'PARKED'? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/freeReservationTaskTooltip'): ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/reserveTaskTooltip')}"
-        styleClass="task-command-tooltip" />
-      <p:commandLink id="task-start-command" disabled="#{!taskActionBean.canResume(task)}" styleClass="task-command">
-        <span class="action-icon tmi-chevorn-right" />
-        <h:outputText rendered="#{data.isShowTaskButtonLabels}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/openRequest')}" />
-      </p:commandLink>
-      <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" actionLinkId="task-side-steps-menu" actionLinkStyleClass="task-command #{data.isShowTaskButtonLabels? 'side-step-position' : ''}"
-        panelWidgetVar="task-side-steps-panel-#{rowIndex}" caseId="#{task.case.getId()}" taskId="#{task.getId()}" isAdhocExcluded="false" rendered="#{taskActionBean.showAdditionalOptions}" 
-        isDisabled="#{!taskActionBean.isNotDone(task)}" />
+
+      <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" actionLinkId="task-side-steps-menu"
+        panelWidgetVar="task-side-steps-panel-#{rowIndex}" isAdhocExcluded="false" rendered="#{taskActionBean.showAdditionalOptions}" task="#{task}"
+        isDisabled="#{!taskActionBean.isNotDone(task)}" dataModel="#{dataModel}" componentToUpdate="#{p:component('task-start')}" buttonStyleClass="u-hidden-md-down"
+        rowIndex="#{rowIndex}" />
     </div>
   </div>
 </ui:composition>

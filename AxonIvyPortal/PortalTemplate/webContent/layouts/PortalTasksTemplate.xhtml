@@ -9,40 +9,25 @@
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="taskView" value="#{data.taskView}" />
     <ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
+    <ui:param name="announcementContainerStyleClass" value="announcement-container-in-task-list" />
     <ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}</ui:define>
-	
-	<ui:define name="secondLevelMenu">
-		<h:panelGroup id="second-level-menu" styleClass="second-level-menu js-left-sidebar-second left-sidebar-animation" rendered="#{taskView.displayTaskCategory}">
-          <a href="#" class="second-level-menu-header"> 
-            <i class="fa fa-angle-left icon-left left-sidebar-animation" /> 
-            <span class="header-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}</span>
-            <i class="fa fa-angle-right icon-right left-sidebar-animation" />
-          </a> 
-          <div class="second-level-menu-body">
-            <h:form prependId="false">
-              <ic:ch.ivy.addon.portal.generic.PortalTaskMenu menuState="#{menuState}"/>
-            </h:form>
-          </div>
-        </h:panelGroup>			
-	</ui:define>
-	
     <ui:define name="pageContent">
     <div class="task-list-container js-task-list-container">
       <div>
         <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" keyword="#{taskView.dataModel.criteria.keyword}"
           hideTaskFilter="#{taskView.hideTaskFilter}" dataModel="#{taskView.dataModel}" filterGroupId="#{filterGroupId}"
           showHeaderToolbar="#{taskView.showHeaderToolbar}" compactMode="false" selectedTaskId="#{taskView.taskId}" 
-          noTaskFoundMessage="#{taskView.noTaskFoundMessage}" 
-          hideWidgetHeader="#{hideWidgetHeader}">
+          noTaskFoundMessage="#{taskView.noTaskFoundMessage}"
+          hideWidgetHeader="#{hideWidgetHeader}" currentPortalPage="TASK_LIST">
             <f:facet name="title">
               <h:form rendered="#{taskView.canLinkBackCaseDetail()}" prependId="false">
               #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader')} 
               <h:commandLink value="##{taskView.dataModel.criteria.caseId}" styleClass="ui-link"
                   actionListener="#{navigatorBean.navigateToCaseDetail(taskView.dataModel.caseName, taskView.dataModel.criteria.caseId)}" />
-              #{taskView.dataModel.caseName}
+              #{taskView.dataModel.caseName} (#{taskView.dataModel.rowCount})
             </h:form>
               <h:outputText rendered="#{!taskView.canLinkBackCaseDetail()}"
-                value="#{taskView.pageTitle == '' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks') : taskView.pageTitle}" />
+                value="#{taskView.pageTitle == '' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks') : taskView.pageTitle}  (#{taskView.dataModel.rowCount})" />
             </f:facet>
 
             <f:facet name="taskListHeader">
@@ -67,58 +52,16 @@
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority id="task-priority-component"
                   priority="#{task.priority}" dataModel="#{taskView.dataModel}" />
                 <div class="task-start-info">
-                  <ic:ch.ivy.addon.portalkit.component.task.column.TaskName id="task-name-component" task="#{task}" dataModel="#{taskView.dataModel}"
-                    isSelected="#{taskView.taskId eq task.getId()}" componentToUpdate="@([id='task-note'])" />
+                  <ic:ch.ivy.addon.portalkit.component.task.column.TaskName id="task-name-component" task="#{task}" dataModel="#{taskView.dataModel}" />
                 </div>
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible id="task-responsible-component" dataModel="#{taskView.dataModel}"
-                  userName="#{task.getActivatorName()}" fullName="#{task.getActivator().getDisplayName()}" styleClass="activatior-column #{taskView.dataModel.isAutoHideColumns()? 'hidden-sm':''}" />
+                  userName="#{task.getActivatorName()}" fullName="#{task.getActivator().getDisplayName()}" styleClass="activatior-column" />
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskId id="task-id-component" value="#{task.getId()}" dataModel="#{taskView.dataModel}" />
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-creation-date-component" rendered="#{taskView.dataModel.isSelectedColumn('CREATION_TIME')}"
-                  componentId="creation-time" value="#{task.startTimestamp}" styleClass="#{taskView.dataModel.isAutoHideColumns()?'js-create-cell':''}" />
+                  componentId="creation-time" value="#{task.startTimestamp}" responsiveStyleClass="u-hidden-md-down js-hidden-when-expand-menu" />
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-expiry-date-component" rendered="#{taskView.dataModel.isSelectedColumn('EXPIRY_TIME')}"
-                  componentId="expiry-time" value="#{task.expiryTimestamp}" styleClass="#{taskView.dataModel.isAutoHideColumns()?'js-expiry-cell':''}" />
-                <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state-component" dataModel="#{taskView.dataModel}"
-                  state="#{task.state}" />
-              </ui:fragment>
-            </f:facet>
-
-            <f:facet name="taskBody">
-              <ui:fragment rendered="#{useOverrideBody}">
-                <ui:insert name="taskBody">
-                </ui:insert>
-              </ui:fragment>
-
-              <ui:fragment rendered="#{not useOverrideBody}">
-                <ic:ch.ivy.addon.portalkit.component.TaskItemDescription id="description" task="#{task}"
-                  descriptionComponentToUpdate="#{p:component('task-description')}" />
-                <ic:ch.ivy.addon.portalkit.component.TaskItemGeneralInfo id="general-info" task="#{task}"
-                  priorityComponentToUpdate="#{p:component('task-priority')}"
-                  componentToUpdate="#{p:component('task-details-notes')} #{p:component('expiry-time')}" />
-                <ic:ch.ivy.addon.portalkit.component.TaskItemDocuments id="documents" task="#{task}" componentToUpdate="#{p:component('task-details-notes')}"/>
-                <ic:ch.ivy.addon.portalkit.component.TaskItemNotes id="notes" task="#{task}" >
-                  <f:facet name="showTaskNoteHistory">
-                    <p:link id="show-more-note-link" styleClass="task-details-note-add-link note-show-more-link"
-                      target="_blank" href="#{caseTaskNoteHistoryBean.getTaskNoteHistoryLink(task)}" rendered="#{caseTaskNoteHistoryBean.showMoreNote}">
-                      <span class="fa fa-external-link-square note-show-more-link-icon" />
-                      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}" />
-                    </p:link>
-                  </f:facet>
-                </ic:ch.ivy.addon.portalkit.component.TaskItemNotes>
-                <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer id="responsiveness-container"
-                  styleClass="hidden-lg">
-                  <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
-                    icon="fa fa-info-circle js-data-column-responsive-button" displayedSelectors="['#task-data']"
-                    hiddenSelectorsInSmallScreen="['.task-details .replaced']" />
-                  <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
-                    icon="fa fa-file js-document-column-responsive-button" displayedSelectors="['#task-document']"
-                    hiddenSelectorsInMediumScreen="['.task-details .replaced']"
-                    hiddenSelectorsInSmallScreen="['.task-details .replaced']" />
-                  <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
-                    icon="fa fa-align-left js-note-column-responsive-button" displayedSelectors="['#task-note']"
-                    hiddenSelectorsInMediumScreen="['.task-details .replaced']"
-                    hiddenSelectorsInSmallScreen="['.task-details .replaced']" />
-                  <h:outputScript library="js" name="task-detail-default-responsiveness.js" />
-                </ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer>
+                  componentId="expiry-time" value="#{task.expiryTimestamp}" />
+                <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state-component" dataModel="#{taskView.dataModel}" state="#{task.state}" />
               </ui:fragment>
             </f:facet>
 
@@ -129,7 +72,7 @@
               </ui:fragment>
 
               <ui:fragment rendered="#{not useOverrideFilter}">
-                <ic:ch.ivy.addon.portalkit.component.task.filter.DefaultTaskFilters dataModel="#{taskView.dataModel}" />
+                  <ic:ch.ivy.addon.portalkit.component.task.filter.DefaultTaskFilters dataModel="#{taskView.dataModel}" />
               </ui:fragment>
             </f:facet>
           </ic:ch.ivy.addon.portalkit.component.TaskWidget>
@@ -139,13 +82,11 @@
     <ui:define name="footer">
       <script type="text/javascript">
         $(function() {
-          var taskListLargeScreen = new TaskListLargeScreenHandler();
-          var taskListMediumScreen = new TaskListMediumScreenHandler();
-          var taskListSmallScreen = new TaskListSmallScreenHandler();
-          var responsiveToolkit = ResponsiveToolkit(taskListLargeScreen, taskListMediumScreen, taskListSmallScreen);
-          Portal.init(responsiveToolkit);
-        });
-      </script>
+            var simpleScreen = new TaskListScreenHandler();
+            var responsiveToolkit = ResponsiveToolkit(simpleScreen);
+            Portal.init(responsiveToolkit);
+          });
+        </script>
     </ui:define>
   </ui:composition>
 </h:body>

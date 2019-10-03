@@ -1,0 +1,6 @@
+Address #class
+ch.ivyteam.ivy.project.portal.examples.showcase #namespace
+street String #field
+street PERSISTENT #fieldModifier
+country String #field
+country PERSISTENT #fieldModifier

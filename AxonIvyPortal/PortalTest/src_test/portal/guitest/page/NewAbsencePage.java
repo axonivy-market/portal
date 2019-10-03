@@ -15,9 +15,9 @@ public class NewAbsencePage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "id('absence-settings:add-new-absence-dialog')";
+    return "id('absence-settings:add-new-absence-dialog_title')";
   }
-
+  
   public void input(LocalDate absenceFrom, LocalDate absenceTill, String comment) {
     inputDate(absenceFrom, "input[id*='absence-start-date']");
     inputDate(absenceTill, "input[id*='absence-end-date']");
@@ -63,10 +63,10 @@ public class NewAbsencePage extends TemplatePage {
     return errorMessage.getText();
   }
 
-  public SettingDeputyPage proceed() {
+  public AddAbsencePage proceed() {
     WebElement proceedElement = findElementByCssSelector("button[id*='next-to-deputy']");
     proceedElement.click();
-    return new SettingDeputyPage();
+    return new AddAbsencePage();
   }
 
 }

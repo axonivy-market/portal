@@ -1,0 +1,3 @@
+co: name={zip} description={} changed={2018-11-21 15:01:28 CET} changedby={Oliver} visualorder={0} guid={16711CC5E91449C6} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1673693655E17182} datatype={} isdefault={false} langid={de} description={} validfrom={2018-11-21 15:00:59 CET} validto={} changed={2018-11-21 15:01:28 CET} changedby={Oliver} properties={} id={}
+val: guid={16711CC5E9550F7D} datatype={} isdefault={true} langid={en} description={} validfrom={2018-11-14 11:37:45 CET} validto={} changed={2018-11-21 15:01:28 CET} changedby={Oliver} properties={} id={}

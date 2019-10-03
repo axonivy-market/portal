@@ -35,12 +35,6 @@
 			Provides default portal's templates and pages. This module contains templates page for Portal's user to use as composition, then they will have supporting features such as : top menu, application menu, user menu. It also contains some start process links to default page such as : Portal home, Portal task list, Portal case list... . Portal's user is advised to depend on this module to use Portal easily.
 		</para>
 	</sect1>
-	<sect1 xml:id="axonivyportal.architecture.selfservicebpm">
-		<title>Self service BPM</title>
-		<para>
-			This project extends PortalTemplate and is a utility which implements concept of Adaptive Case Management. The idea is that user can start any cases and add simultaneously new roles and tasks while doing his process work.
-		</para>
-	</sect1>
 	<sect1 xml:id="axonivyportal.architecture.axonivyexpress">
 		<title>Axon.ivy Express</title>
 		<para>

@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
-    <method>
-        <name>collectProcesses</name>
-        <description></description>
-        <outputParameter>
-            <name>processes</name>
-            <description></description>
-            <parameterType>java.util.List&lt;ch.ivyteam.ivy.workflow.start.IWebStartable&gt;</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </outputParameter>
-    </method>
-    <startMethod>
-        <name>start</name>
-        <description></description>
-    </startMethod>
     <property>
         <name>guid</name>
         <value>14FEEC13F8B71DA3</value>

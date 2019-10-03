@@ -1,10 +1,9 @@
 [Ivy]
-15F999559D09FFA4 3.20 #module
+15F999559D09FFA4 3.28 #module
 >Proto >Proto Collection #zClass
 He0 HideSystemCase Big #zClass
 He0 B #cInfo
 He0 #process
-He0 @TextInP .resExport .resExport #zField
 He0 @TextInP .type .type #zField
 He0 @TextInP .processKind .processKind #zField
 He0 @AnnotationInP-0n ai ai #zField
@@ -23,10 +22,7 @@ He0 f0 inParamTable 'out.hideBusinessCase=param.#hideBusinessCase is initialized
 ' #txt
 He0 f0 outParamDecl '<> result;
 ' #txt
-He0 f0 actionDecl 'ch.ivy.add.portalkit.HideSystemCaseData out;
-' #txt
 He0 f0 callSignature call(Boolean) #txt
-He0 f0 type ch.ivy.add.portalkit.HideSystemCaseData #txt
 He0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -36,11 +32,8 @@ He0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 He0 f0 81 113 30 30 -36 17 #rect
 He0 f0 @|StartSubIcon #fIcon
-He0 f1 type ch.ivy.add.portalkit.HideSystemCaseData #txt
 He0 f1 465 113 30 30 0 15 #rect
 He0 f1 @|EndSubIcon #fIcon
-He0 f3 actionDecl 'ch.ivy.add.portalkit.HideSystemCaseData out;
-' #txt
 He0 f3 actionTable 'out=in;
 ' #txt
 He0 f3 actionCode 'import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -65,7 +58,6 @@ for(ITask task : selectedCase.getTasks()) {
 	TaskUtils.setHidePropertyToHideInPortal(task);
 }' #txt
 He0 f3 security system #txt
-He0 f3 type ch.ivy.add.portalkit.HideSystemCaseData #txt
 He0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

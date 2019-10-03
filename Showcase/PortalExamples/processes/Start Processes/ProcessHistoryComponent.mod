@@ -1,10 +1,9 @@
 [Ivy]
-1624C1C79661758C 3.20 #module
+1624C1C79661758C 3.28 #module
 >Proto >Proto Collection #zClass
 Pt0 ProcessHistoryComponent Big #zClass
 Pt0 B #cInfo
 Pt0 #process
-Pt0 @TextInP .resExport .resExport #zField
 Pt0 @TextInP .type .type #zField
 Pt0 @TextInP .processKind .processKind #zField
 Pt0 @AnnotationInP-0n ai ai #zField
@@ -14,7 +13,7 @@ Pt0 @TextInP .xml .xml #zField
 Pt0 @TextInP .responsibility .responsibility #zField
 Pt0 @StartRequest f0 '' #zField
 Pt0 @EndTask f1 '' #zField
-Pt0 @RichDialog f3 '' #zField
+Pt0 @UserDialog f3 '' #zField
 Pt0 @PushWFArc f4 '' #zField
 Pt0 @PushWFArc f2 '' #zField
 Pt0 @CallSub f5 '' #zField
@@ -27,7 +26,7 @@ Pt0 @TkArc f10 '' #zField
 Pt0 @PushWFArc f20 '' #zField
 Pt0 @PushWFArc f11 '' #zField
 Pt0 @EndTask f12 '' #zField
-Pt0 @RichDialog f13 '' #zField
+Pt0 @UserDialog f13 '' #zField
 Pt0 @StartRequest f14 '' #zField
 Pt0 @PushWFArc f15 '' #zField
 Pt0 @PushWFArc f16 '' #zField
@@ -49,22 +48,18 @@ Pt0 @InfoButton f33 '' #zField
 Pt0 @InfoButton f34 '' #zField
 >Proto Pt0 Pt0 ProcessHistoryComponent #zField
 Pt0 f0 outLink viewProcessHistoryOfAlphaCompany.ivp #txt
-Pt0 f0 type ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData #txt
 Pt0 f0 inParamDecl '<> param;' #txt
-Pt0 f0 actionDecl 'ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData out;
-' #txt
-Pt0 f0 guid 1624C1C79758E6C7 #txt
 Pt0 f0 requestEnabled true #txt
 Pt0 f0 triggerEnabled false #txt
 Pt0 f0 callSignature viewProcessHistoryOfAlphaCompany() #txt
 Pt0 f0 persist false #txt
 Pt0 f0 startName 'View Process History of Alpha Company in new page' #txt
-Pt0 f0 taskData 'TaskTriggered.ROL=Everybody
+Pt0 f0 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Pt0 f0 caseData businessCase.attach=true #txt
 Pt0 f0 showInStartList 1 #txt
 Pt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -79,22 +74,15 @@ Pt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f0 @C|.responsibility Everybody #txt
 Pt0 f0 129 49 30 30 -111 17 #rect
 Pt0 f0 @|StartRequestIcon #fIcon
-Pt0 f1 type ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData #txt
 Pt0 f1 617 49 30 30 0 15 #rect
 Pt0 f1 @|EndIcon #fIcon
-Pt0 f3 targetWindow NEW #txt
-Pt0 f3 targetDisplay TOP #txt
-Pt0 f3 richDialogId ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponent #txt
+Pt0 f3 dialogId ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponent #txt
 Pt0 f3 startMethod start() #txt
-Pt0 f3 type ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData #txt
 Pt0 f3 requestActionDecl '<> param;' #txt
 Pt0 f3 responseActionDecl 'ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData out;
 ' #txt
 Pt0 f3 responseMappingAction 'out=in;
 ' #txt
-Pt0 f3 isAsynch false #txt
-Pt0 f3 isInnerRd false #txt
-Pt0 f3 userContext '* ' #txt
 Pt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -105,14 +93,12 @@ Pt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f3 368 42 192 44 -88 -8 #rect
-Pt0 f3 @|RichDialogIcon #fIcon
+Pt0 f3 @|UserDialogIcon #fIcon
 Pt0 f4 expr out #txt
 Pt0 f4 159 64 368 64 #arcP
 Pt0 f2 expr out #txt
 Pt0 f2 560 64 617 64 #arcP
-Pt0 f5 type ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData #txt
 Pt0 f5 processCall 'Functional Processes/SetBusinessEntityId:call(String)' #txt
-Pt0 f5 doCall true #txt
 Pt0 f5 requestActionDecl '<java.lang.String businessEntityId> param;
 ' #txt
 Pt0 f5 requestMappingAction 'param.businessEntityId="alpha";
@@ -133,24 +119,20 @@ Pt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f5 439 147 128 44 -55 -8 #rect
 Pt0 f5 @|CallSubIcon #fIcon
 Pt0 f6 outLink createAlphaCompany.ivp #txt
-Pt0 f6 type ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData #txt
 Pt0 f6 inParamDecl '<> param;' #txt
-Pt0 f6 actionDecl 'ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData out;
-' #txt
-Pt0 f6 guid 1624C747CBB8E704 #txt
 Pt0 f6 requestEnabled true #txt
 Pt0 f6 triggerEnabled false #txt
 Pt0 f6 callSignature createAlphaCompany() #txt
 Pt0 f6 persist false #txt
 Pt0 f6 startName 'Create Alpha Company' #txt
-Pt0 f6 taskData 'TaskTriggered.ROL=Everybody
+Pt0 f6 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
-Pt0 f6 caseData 'case.name=Alpha Company
-businessCase.attach=true' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Pt0 f6 caseData 'businessCase.attach=true
+case.name=Alpha Company' #txt
 Pt0 f6 showInStartList 1 #txt
 Pt0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -164,14 +146,10 @@ Pt0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f6 @C|.responsibility Everybody #txt
 Pt0 f6 129 154 30 30 -68 17 #rect
 Pt0 f6 @|StartRequestIcon #fIcon
-Pt0 f8 type ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData #txt
 Pt0 f8 808 154 30 30 0 15 #rect
 Pt0 f8 @|EndIcon #fIcon
-Pt0 f7 actionDecl 'ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData out;
-' #txt
 Pt0 f7 actionTable 'out=in1;
 ' #txt
-Pt0 f7 outTypes "ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData" #txt
 Pt0 f7 outLinks "TaskA.ivp" #txt
 Pt0 f7 taskData 'TaskA.EXPRI=2
 TaskA.EXROL=Everybody
@@ -181,7 +159,6 @@ TaskA.PRI=2
 TaskA.ROL=Everybody
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
-Pt0 f7 type ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData #txt
 Pt0 f7 template "" #txt
 Pt0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -194,13 +171,10 @@ Pt0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f7 680 154 30 30 -43 17 #rect
 Pt0 f7 @|TaskSwitchSimpleIcon #fIcon
-Pt0 f19 actionDecl 'ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData out;
-' #txt
 Pt0 f19 actionTable 'out=in;
 ' #txt
 Pt0 f19 actionCode 'ivy.case.setProcess("Alpha Company", "Alpha Company");' #txt
 Pt0 f19 security system #txt
-Pt0 f19 type ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData #txt
 Pt0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -222,22 +196,15 @@ Pt0 f20 159 169 287 169 #arcP
 Pt0 f11 expr data #txt
 Pt0 f11 outCond ivp=="TaskA.ivp" #txt
 Pt0 f11 710 169 808 169 #arcP
-Pt0 f12 type ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData #txt
 Pt0 f12 617 321 30 30 0 15 #rect
 Pt0 f12 @|EndIcon #fIcon
-Pt0 f13 targetWindow NEW #txt
-Pt0 f13 targetDisplay TOP #txt
-Pt0 f13 richDialogId ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryDialogComponent #txt
+Pt0 f13 dialogId ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryDialogComponent #txt
 Pt0 f13 startMethod start() #txt
-Pt0 f13 type ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData #txt
 Pt0 f13 requestActionDecl '<> param;' #txt
 Pt0 f13 responseActionDecl 'ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData out;
 ' #txt
 Pt0 f13 responseMappingAction 'out=in;
 ' #txt
-Pt0 f13 isAsynch false #txt
-Pt0 f13 isInnerRd false #txt
-Pt0 f13 userContext '* ' #txt
 Pt0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -248,24 +215,20 @@ Pt0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f13 376 314 176 44 -85 -8 #rect
-Pt0 f13 @|RichDialogIcon #fIcon
+Pt0 f13 @|UserDialogIcon #fIcon
 Pt0 f14 outLink viewProcessHistoryOfBetaCompany.ivp #txt
-Pt0 f14 type ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData #txt
 Pt0 f14 inParamDecl '<> param;' #txt
-Pt0 f14 actionDecl 'ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData out;
-' #txt
-Pt0 f14 guid 1624C8223E32BAB1 #txt
 Pt0 f14 requestEnabled true #txt
 Pt0 f14 triggerEnabled false #txt
 Pt0 f14 callSignature viewProcessHistoryOfBetaCompany() #txt
 Pt0 f14 persist false #txt
 Pt0 f14 startName 'View Process history of beta company in dialog' #txt
-Pt0 f14 taskData 'TaskTriggered.ROL=Everybody
+Pt0 f14 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Pt0 f14 caseData businessCase.attach=true #txt
 Pt0 f14 showInStartList 1 #txt
 Pt0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -285,24 +248,20 @@ Pt0 f15 552 336 617 336 #arcP
 Pt0 f16 expr out #txt
 Pt0 f16 159 336 376 336 #arcP
 Pt0 f17 outLink createBetaCompany.ivp #txt
-Pt0 f17 type ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData #txt
 Pt0 f17 inParamDecl '<> param;' #txt
-Pt0 f17 actionDecl 'ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData out;
-' #txt
-Pt0 f17 guid 1624C8BAAED7352A #txt
 Pt0 f17 requestEnabled true #txt
 Pt0 f17 triggerEnabled false #txt
 Pt0 f17 callSignature createBetaCompany() #txt
 Pt0 f17 persist false #txt
 Pt0 f17 startName 'Create Beta Company' #txt
-Pt0 f17 taskData 'TaskTriggered.ROL=Everybody
+Pt0 f17 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
-Pt0 f17 caseData 'case.name=Beta Company
-businessCase.attach=true' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Pt0 f17 caseData 'businessCase.attach=true
+case.name=Beta Company' #txt
 Pt0 f17 showInStartList 1 #txt
 Pt0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -316,16 +275,12 @@ Pt0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f17 @C|.responsibility Everybody #txt
 Pt0 f17 129 449 30 30 -65 17 #rect
 Pt0 f17 @|StartRequestIcon #fIcon
-Pt0 f18 type ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData #txt
 Pt0 f18 769 449 30 30 0 15 #rect
 Pt0 f18 @|EndIcon #fIcon
-Pt0 f23 actionDecl 'ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData out;
-' #txt
 Pt0 f23 actionTable 'out=in;
 ' #txt
 Pt0 f23 actionCode 'ivy.case.setProcess("Beta Company", "Beta Company");' #txt
 Pt0 f23 security system #txt
-Pt0 f23 type ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData #txt
 Pt0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -338,9 +293,7 @@ Pt0 f23 248 442 112 44 -33 -16 #rect
 Pt0 f23 @|StepIcon #fIcon
 Pt0 f25 expr out #txt
 Pt0 f25 159 464 248 464 #arcP
-Pt0 f21 type ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData #txt
 Pt0 f21 processCall 'Functional Processes/SetBusinessEntityId:call(String)' #txt
-Pt0 f21 doCall true #txt
 Pt0 f21 requestActionDecl '<java.lang.String businessEntityId> param;
 ' #txt
 Pt0 f21 requestMappingAction 'param.businessEntityId="beta";
@@ -360,11 +313,8 @@ Pt0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f21 232 578 128 44 -55 -8 #rect
 Pt0 f21 @|CallSubIcon #fIcon
-Pt0 f22 actionDecl 'ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData out;
-' #txt
 Pt0 f22 actionTable 'out=in1;
 ' #txt
-Pt0 f22 outTypes "ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData" #txt
 Pt0 f22 outLinks "TaskA.ivp" #txt
 Pt0 f22 taskData 'TaskA.EXPRI=2
 TaskA.EXROL=Everybody
@@ -374,7 +324,6 @@ TaskA.PRI=2
 TaskA.ROL=Everybody
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
-Pt0 f22 type ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData #txt
 Pt0 f22 template "" #txt
 Pt0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -391,9 +340,6 @@ Pt0 f24 expr out #txt
 Pt0 f24 type ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData #txt
 Pt0 f24 var in1 #txt
 Pt0 f24 360 600 457 600 #arcP
-Pt0 f31 actionDecl 'ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData out;
-' #txt
-Pt0 f31 type ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData #txt
 Pt0 f31 signalCode ch:axonivy:portal:example:createbetacompany #txt
 Pt0 f31 attachToBusinessCase true #txt
 Pt0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -408,15 +354,12 @@ Pt0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f31 129 585 30 30 -78 17 #rect
 Pt0 f31 @|SignalStartEventIcon #fIcon
 Pt0 f32 159 600 232 600 #arcP
-Pt0 f26 actionDecl 'ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData out;
-' #txt
 Pt0 f26 actionTable 'out=in;
 ' #txt
 Pt0 f26 actionCode 'import ch.ivyteam.ivy.process.model.value.SignalCode;
 
 SignalCode code = new SignalCode("ch:axonivy:portal:example:createbetacompany");
 ivy.wf.signals().send(code);' #txt
-Pt0 f26 type ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData #txt
 Pt0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -430,7 +373,6 @@ Pt0 f27 expr out #txt
 Pt0 f27 360 464 424 464 #arcP
 Pt0 f28 expr out #txt
 Pt0 f28 600 464 769 464 #arcP
-Pt0 f29 type ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData #txt
 Pt0 f29 753 585 30 30 0 15 #rect
 Pt0 f29 @|EndIcon #fIcon
 Pt0 f30 expr data #txt

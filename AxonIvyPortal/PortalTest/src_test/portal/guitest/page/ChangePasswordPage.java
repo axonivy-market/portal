@@ -4,6 +4,12 @@ import org.openqa.selenium.WebElement;
 
 public class ChangePasswordPage extends TemplatePage {
 
+  
+  @Override
+  protected String getLoadedLocator() {
+    return "id('change-password-dialog_title')";
+  }
+
   public void changePassword(String currentPassword, String newPassword) {
     inputCurrentPassword(currentPassword);
     inputConfirmNewPassword(newPassword);
