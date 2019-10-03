@@ -57,7 +57,6 @@ Pt0 @CallSub f23 '' #zField
 Pt0 @GridStep f93 '' #zField
 Pt0 @EndTask f64 '' #zField
 Pt0 @PushWFArc f35 '' #zField
-Pt0 @PushWFArc f15 '' #zField
 Pt0 @PushWFArc f34 '' #zField
 Pt0 @PushWFArc f54 '' #zField
 Pt0 @PushWFArc f60 '' #zField
@@ -103,6 +102,9 @@ Pt0 @PushWFArc f56 '' #zField
 Pt0 @PushWFArc f38 '' #zField
 Pt0 @UserDialog f53 '' #zField
 Pt0 @PushWFArc f75 '' #zField
+Pt0 @UserDialog f78 '' #zField
+Pt0 @PushWFArc f80 '' #zField
+Pt0 @PushWFArc f79 '' #zField
 >Proto Pt0 Pt0 ExamplePortalStart #zField
 Pt0 f28 outLink DefaultApplicationHomePage.ivp #txt
 Pt0 f28 inParamDecl '<> param;' #txt
@@ -974,9 +976,6 @@ Pt0 f35 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f35 688 160 744 160 #arcP
 Pt0 f35 0 0.4305555555555556 0 -10 #arcLabel
-Pt0 f15 expr in #txt
-Pt0 f15 560 433 560 176 #arcP
-Pt0 f15 0 0.4763694877411137 0 0 #arcLabel
 Pt0 f34 expr in #txt
 Pt0 f34 1168 160 1200 160 #arcP
 Pt0 f54 expr out #txt
@@ -1210,6 +1209,28 @@ Pt0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f53 1704 138 112 44 -33 -8 #rect
 Pt0 f53 @|UserDialogIcon #fIcon
 Pt0 f75 1608 160 1704 160 #arcP
+Pt0 f78 dialogId ch.ivy.addon.portal.generic.PortalTaskListCallback #txt
+Pt0 f78 startMethod start(String) #txt
+Pt0 f78 requestActionDecl '<java.lang.String callbackUrl> param;' #txt
+Pt0 f78 requestMappingAction 'param.callbackUrl=in.callbackUrl;
+' #txt
+Pt0 f78 responseMappingAction 'out=in;
+' #txt
+Pt0 f78 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Redirect to&#13;
+callbackUrl</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f78 504 522 112 44 -30 -16 #rect
+Pt0 f78 @|UserDialogIcon #fIcon
+Pt0 f80 expr in #txt
+Pt0 f80 outCond 'org.apache.commons.lang3.StringUtils.isNotBlank(in.#callbackUrl)' #txt
+Pt0 f80 560 465 560 522 #arcP
+Pt0 f79 expr in #txt
+Pt0 f79 560 433 560 176 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1220,7 +1241,6 @@ Pt0 f20 mainOut f5 tail #connect
 Pt0 f5 head f4 in #connect
 Pt0 f2 mainOut f7 tail #connect
 Pt0 f7 head f4 in #connect
-Pt0 f15 head f4 in #connect
 Pt0 f17 mainOut f26 tail #connect
 Pt0 f26 head f23 mainIn #connect
 Pt0 f19 mainOut f39 tail #connect
@@ -1275,7 +1295,6 @@ Pt0 f104 mainOut f109 tail #connect
 Pt0 f109 head f105 mainIn #connect
 Pt0 f4 out f27 tail #connect
 Pt0 f27 head f41 in #connect
-Pt0 f30 out f15 tail #connect
 Pt0 f43 out f34 tail #connect
 Pt0 f34 head f16 in #connect
 Pt0 f40 head f21 in #connect
@@ -1300,3 +1319,7 @@ Pt0 f21 out f38 tail #connect
 Pt0 f38 head f52 mainIn #connect
 Pt0 f22 mainOut f75 tail #connect
 Pt0 f75 head f53 mainIn #connect
+Pt0 f30 out f80 tail #connect
+Pt0 f80 head f78 mainIn #connect
+Pt0 f30 out f79 tail #connect
+Pt0 f79 head f4 in #connect
