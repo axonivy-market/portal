@@ -74,7 +74,7 @@ public class TaskExpiredDateFilter extends TaskFilter {
     if (fromExpiredDate != null && toExpiredDate != null && (fromExpiredDate.compareTo(toExpiredDate) > 0)) {
       FacesContext.getCurrentInstance().validationFailed();
       FacesContext.getCurrentInstance().addMessage(
-          null,
+          "advanced-filter-error-messages",
           new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co(
               "/ch.ivy.addon.portalkit.ui.jsf/common/dateFromBiggerThanTo"), null));
     }
@@ -95,4 +95,9 @@ public class TaskExpiredDateFilter extends TaskFilter {
   public void setToExpiredDate(Date toExpiredDate) {
     this.toExpiredDate = toExpiredDate;
   }
+  
+  @Override
+  public boolean defaultFilter() {
+    return true;
+ }
 }

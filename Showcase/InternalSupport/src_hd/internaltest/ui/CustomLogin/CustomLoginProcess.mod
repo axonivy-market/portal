@@ -1,31 +1,25 @@
 [Ivy]
-[>Created: Tue Jul 21 11:17:12 ICT 2015]
-14E9B792756E0040 3.17 #module
+14E9B792756E0040 3.28 #module
 >Proto >Proto Collection #zClass
 Ls0 CustomLoginProcess Big #zClass
 Ls0 RD #cInfo
 Ls0 #process
-Ls0 @TextInP .ui2RdDataAction .ui2RdDataAction #zField
-Ls0 @TextInP .rdData2UIAction .rdData2UIAction #zField
-Ls0 @TextInP .resExport .resExport #zField
 Ls0 @TextInP .type .type #zField
 Ls0 @TextInP .processKind .processKind #zField
 Ls0 @AnnotationInP-0n ai ai #zField
 Ls0 @TextInP .xml .xml #zField
 Ls0 @TextInP .responsibility .responsibility #zField
-Ls0 @RichDialogInitStart f0 '' #zField
-Ls0 @RichDialogProcessEnd f1 '' #zField
+Ls0 @UdInit f0 '' #zField
+Ls0 @UdProcessEnd f1 '' #zField
 Ls0 @PushWFArc f2 '' #zField
-Ls0 @RichDialogProcessStart f3 '' #zField
-Ls0 @RichDialogEnd f4 '' #zField
+Ls0 @UdEvent f3 '' #zField
+Ls0 @UdExitEnd f4 '' #zField
 Ls0 @GridStep f5 '' #zField
 Ls0 @PushWFArc f6 '' #zField
 Ls0 @PushWFArc f7 '' #zField
 >Proto Ls0 Ls0 CustomLoginProcess #zField
 Ls0 f0 guid 14739D9F00572FE2 #txt
-Ls0 f0 type internaltest.ui.CustomLogin.CustomLoginData #txt
 Ls0 f0 method start() #txt
-Ls0 f0 disableUIEvents true #txt
 Ls0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -43,16 +37,12 @@ Ls0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f0 86 54 20 20 13 0 #rect
-Ls0 f0 @|RichDialogInitStartIcon #fIcon
-Ls0 f1 type internaltest.ui.CustomLogin.CustomLoginData #txt
+Ls0 f0 @|UdInitIcon #fIcon
 Ls0 f1 86 182 20 20 13 0 #rect
-Ls0 f1 @|RichDialogProcessEndIcon #fIcon
+Ls0 f1 @|UdProcessEndIcon #fIcon
 Ls0 f2 expr out #txt
 Ls0 f2 96 74 96 182 #arcP
 Ls0 f3 guid 14739DB1F4253947 #txt
-Ls0 f3 type internaltest.ui.CustomLogin.CustomLoginData #txt
-Ls0 f3 actionDecl 'internaltest.ui.CustomLogin.CustomLoginData out;
-' #txt
 Ls0 f3 actionTable 'out=in;
 ' #txt
 Ls0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -65,13 +55,9 @@ Ls0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f3 182 54 20 20 13 0 #rect
-Ls0 f3 @|RichDialogProcessStartIcon #fIcon
-Ls0 f4 type internaltest.ui.CustomLogin.CustomLoginData #txt
-Ls0 f4 guid 14739DB3653B702D #txt
+Ls0 f3 @|UdEventIcon #fIcon
 Ls0 f4 182 198 20 20 13 0 #rect
-Ls0 f4 @|RichDialogEndIcon #fIcon
-Ls0 f5 actionDecl 'internaltest.ui.CustomLogin.CustomLoginData out;
-' #txt
+Ls0 f4 @|UdExitEndIcon #fIcon
 Ls0 f5 actionTable 'out=in;
 ' #txt
 Ls0 f5 actionCode 'import javax.faces.context.FacesContext;
@@ -107,7 +93,6 @@ if (!in.loginOk)
 	}
 	
 }' #txt
-Ls0 f5 type internaltest.ui.CustomLogin.CustomLoginData #txt
 Ls0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

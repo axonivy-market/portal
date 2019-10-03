@@ -49,8 +49,7 @@ public class BaseTest extends SeleneseTestBase {
     }
     return "./resources/IEDriverServer.exe";
   }
-  
-  protected String createTestingTasksUrl = "internalSupport/14B2FC03D2E87141/CategoriedLeaveRequest.ivp";
+  protected String createTestingTasksUrl = "portalExamples/162511D2577DBA88/CategoriedLeaveRequest.ivp";
   protected String businessCaseUrl = "internalSupport/15B1EA24CCF377E8/updateCheckInTime.ivp";
   protected String hideCaseUrl = "portalExamples/16583F0F73864543/createHiddenTechnicalCase.ivp";
   protected String createTestingCaseMapUrl = "internalSupport/764871e4-cf70-401f-83fb-9e99fa897fc4.icm";

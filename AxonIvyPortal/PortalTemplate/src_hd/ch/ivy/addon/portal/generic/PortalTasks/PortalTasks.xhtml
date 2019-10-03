@@ -1,8 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile"
-  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:body>
   <ui:composition template="/layouts/PortalTasksTemplate.xhtml">
     <ui:param name="menuState" value="#{data.menuState}" />
@@ -23,52 +22,31 @@
         <!-- use the TaskListHeader component to keep default columns, and add a new one with TaskColumnHeader. -->
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskListHeader dataModel="#{taskView.dataModel}" />
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
-          componentId="task-custom" sortField="customVarcharField5" value="CustomVarcharField5" />
+          componentId="customer-name-header" sortField="customVarcharField5" value="CustomVarcharField5" responsiveStyleClass="u-hidden-sm-down" />
+        <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
+          componentId="customer-type-header" sortField="customVarcharField1" value="CustomVarcharField1" responsiveStyleClass="u-hidden-sm-down" />
       </ui:define>
 
       <ui:define name="taskHeader">
         <!-- Flexbox is applied, so please set your column's width by flex style. The TaskName column takes the remaining width. -->
-        <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority
-          priority="#{task.priority}" dataModel="#{taskView.dataModel}" />
+        <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority priority="#{task.priority}" dataModel="#{taskView.dataModel}" />
         <div class="task-start-info">
-          <ic:ch.ivy.addon.portalkit.component.task.column.TaskName task="#{task}" dataModel="#{taskView.dataModel}"
-            isSelected="#{taskView.taskId eq task.getId()}" />
+          <ic:ch.ivy.addon.portalkit.component.task.column.TaskName task="#{task}" dataModel="#{taskView.dataModel}" />
         </div>
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible dataModel="#{taskView.dataModel}"
-          userName="#{task.getActivatorName()}" fullName="#{task.getActivator().getDisplayName()}" styleClass="activatior-column #{taskView.dataModel.isAutoHideColumns()? 'hidden-sm':''}" />
+          userName="#{task.getActivatorName()}" fullName="#{task.getActivator().getDisplayName()}" styleClass="activatior-column" />
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskId value="#{task.getId()}" dataModel="#{taskView.dataModel}" />
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate rendered="#{taskView.dataModel.isSelectedColumn('CREATION_TIME')}"
-          componentId="creation-time" value="#{task.startTimestamp}" styleClass="#{taskView.dataModel.isAutoHideColumns()?'js-create-cell':''}" />
+          componentId="creation-time" value="#{task.startTimestamp}" responsiveStyleClass="u-hidden-sm-down js-hidden-when-expand-menu" />
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate rendered="#{taskView.dataModel.isSelectedColumn('EXPIRY_TIME')}"
-          componentId="expiry-time" value="#{task.expiryTimestamp}" styleClass="#{taskView.dataModel.isAutoHideColumns()?'js-expiry-cell':''}" />
-        <ic:ch.ivy.addon.portalkit.component.task.column.TaskState dataModel="#{taskView.dataModel}"
-          state="#{task.state}" />
+          componentId="expiry-time" value="#{task.expiryTimestamp}" />
+        <ic:ch.ivy.addon.portalkit.component.task.column.TaskState dataModel="#{taskView.dataModel}" state="#{task.state}" />
 
         <!-- New field -->
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskCustomField id="customer-name-component" componentId="customer-name" column="customVarCharField5"
-          dataModel="#{taskView.dataModel}" labelValue="#{task.customVarCharField5}" />
+          dataModel="#{taskView.dataModel}" labelValue="#{task.customFields().stringField('CustomVarCharField5').getOrNull()}" responsiveStyleClass="u-hidden-sm-down" />
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskCustomField id="customer-type-component" componentId="customer-type" column="customVarCharField1"
-          dataModel="#{taskView.dataModel}" labelValue="#{task.customVarCharField1}" />
-      </ui:define>
-
-      <ui:define name="taskBody">
-        <!-- These are the default components, reuse them if you want. -->
-        <ic:ch.ivy.addon.portalkit.component.TaskItemDescription id="task-description" task="#{task}"
-          descriptionComponentToUpdate="#{p:component('task-description')}" />
-        <ic:ch.ivy.addon.portalkit.component.TaskItemGeneralInfo id="task-general-info" task="#{task}"
-          priorityComponentToUpdate="#{p:component('task-priority')}"
-          componentToUpdate="#{p:component('task-details-notes')}" />
-        <ic:ch.ivy.addon.portalkit.component.TaskItemDocuments id="task-documents" task="#{task}" />
-        <ic:ch.ivy.addon.portalkit.component.TaskItemNotes id="task-notes" task="#{task}" />
-
-        <!-- Replace the responsiveness support by your own one. -->
-        <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer styleClass="hidden-lg">
-          <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
-            icon="fa fa-file js-note-column-responsive-button" displayedSelectors="['#task-note']"
-            hiddenSelectorsInMediumScreen="['.task-details .replaced']"
-            hiddenSelectorsInSmallScreen="['.task-details .replaced']" />
-          <h:outputScript library="js" name="task-detail-default-responsiveness.js" />
-        </ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer>
+          dataModel="#{taskView.dataModel}" labelValue="#{task.customFields().stringField('CustomVarCharField1').getOrNull()}" responsiveStyleClass="u-hidden-sm-down" />
       </ui:define>
 
       <ui:define name="taskFilter">

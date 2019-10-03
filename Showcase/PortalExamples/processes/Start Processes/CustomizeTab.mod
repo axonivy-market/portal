@@ -1,10 +1,9 @@
 [Ivy]
-1628525DF58D688F 3.23 #module
+1628525DF58D688F 3.28 #module
 >Proto >Proto Collection #zClass
 Cb0 CustomizeTab Big #zClass
 Cb0 B #cInfo
 Cb0 #process
-Cb0 @TextInP .resExport .resExport #zField
 Cb0 @TextInP .type .type #zField
 Cb0 @TextInP .processKind .processKind #zField
 Cb0 @AnnotationInP-0n ai ai #zField
@@ -14,10 +13,10 @@ Cb0 @TextInP .xml .xml #zField
 Cb0 @TextInP .responsibility .responsibility #zField
 Cb0 @StartRequest f0 '' #zField
 Cb0 @EndTask f1 '' #zField
-Cb0 @RichDialog f3 '' #zField
+Cb0 @UserDialog f3 '' #zField
 Cb0 @PushWFArc f4 '' #zField
 Cb0 @TaskSwitchSimple f5 '' #zField
-Cb0 @RichDialog f7 '' #zField
+Cb0 @UserDialog f7 '' #zField
 Cb0 @PushWFArc f2 '' #zField
 Cb0 @PushWFArc f10 '' #zField
 Cb0 @Alternative f9 '' #zField
@@ -29,23 +28,19 @@ Cb0 @PushWFArc f13 '' #zField
 Cb0 @InfoButton f14 '' #zField
 >Proto Cb0 Cb0 CustomizeTab #zField
 Cb0 f0 outLink CustomizeTab.ivp #txt
-Cb0 f0 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cb0 f0 inParamDecl '<> param;' #txt
-Cb0 f0 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
-' #txt
-Cb0 f0 guid 1628525DF6E49878 #txt
 Cb0 f0 requestEnabled true #txt
 Cb0 f0 triggerEnabled false #txt
 Cb0 f0 callSignature CustomizeTab() #txt
 Cb0 f0 persist false #txt
 Cb0 f0 startName 'Customize tab on same level. Check process for more detail' #txt
 Cb0 f0 startDescription 'In designer, please create database before run this process, go to start process CustomizeTab for more detail' #txt
-Cb0 f0 taskData 'TaskTriggered.ROL=Everybody
+Cb0 f0 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Cb0 f0 caseData businessCase.attach=true #txt
 Cb0 f0 showInStartList 1 #txt
 Cb0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -60,14 +55,10 @@ Cb0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cb0 f0 @C|.responsibility Everybody #txt
 Cb0 f0 81 97 30 30 -49 17 #rect
 Cb0 f0 @|StartRequestIcon #fIcon
-Cb0 f1 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cb0 f1 937 97 30 30 0 15 #rect
 Cb0 f1 @|EndIcon #fIcon
-Cb0 f3 targetWindow NEW #txt
-Cb0 f3 targetDisplay TOP #txt
-Cb0 f3 richDialogId ch.ivyteam.ivy.project.portal.examples.customization.EmployeeInfoPage #txt
+Cb0 f3 dialogId ch.ivyteam.ivy.project.portal.examples.customization.EmployeeInfoPage #txt
 Cb0 f3 startMethod start() #txt
-Cb0 f3 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cb0 f3 requestActionDecl '<> param;' #txt
 Cb0 f3 responseActionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
 ' #txt
@@ -76,9 +67,6 @@ out.employeeInfo=result.employeeInfo;
 out.userAction=result.userAction;
 ' #txt
 Cb0 f3 responseActionCode '	' #txt
-Cb0 f3 isAsynch false #txt
-Cb0 f3 isInnerRd false #txt
-Cb0 f3 userContext '* ' #txt
 Cb0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -89,14 +77,11 @@ Cb0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cb0 f3 192 90 112 44 -39 -8 #rect
-Cb0 f3 @|RichDialogIcon #fIcon
+Cb0 f3 @|UserDialogIcon #fIcon
 Cb0 f4 expr out #txt
 Cb0 f4 111 112 192 112 #arcP
-Cb0 f5 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
-' #txt
 Cb0 f5 actionTable 'out=in1;
 ' #txt
-Cb0 f5 outTypes "ch.ivyteam.ivy.project.portal.examples.Data" #txt
 Cb0 f5 outLinks "TaskA.ivp" #txt
 Cb0 f5 caseData 'case.name=Employee Information' #txt
 Cb0 f5 taskData 'TaskA.EXPRI=2
@@ -107,15 +92,11 @@ TaskA.PRI=2
 TaskA.ROL=Everybody
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
-Cb0 f5 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cb0 f5 template "" #txt
 Cb0 f5 497 97 30 30 0 16 #rect
 Cb0 f5 @|TaskSwitchSimpleIcon #fIcon
-Cb0 f7 targetWindow NEW #txt
-Cb0 f7 targetDisplay TOP #txt
-Cb0 f7 richDialogId ch.ivyteam.ivy.project.portal.examples.customization.EmployeeInfoPage #txt
+Cb0 f7 dialogId ch.ivyteam.ivy.project.portal.examples.customization.EmployeeInfoPage #txt
 Cb0 f7 startMethod start(ch.ivyteam.ivy.project.portal.examples.Employee) #txt
-Cb0 f7 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cb0 f7 requestActionDecl '<ch.ivyteam.ivy.project.portal.examples.Employee employeeInfo> param;' #txt
 Cb0 f7 requestMappingAction 'param.employeeInfo=in.employeeInfo;
 ' #txt
@@ -125,9 +106,6 @@ Cb0 f7 responseMappingAction 'out=in;
 out.employeeInfo=result.employeeInfo;
 out.userAction=result.userAction;
 ' #txt
-Cb0 f7 isAsynch false #txt
-Cb0 f7 isInnerRd false #txt
-Cb0 f7 userContext '* ' #txt
 Cb0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -138,12 +116,11 @@ Cb0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cb0 f7 760 90 112 44 -39 -8 #rect
-Cb0 f7 @|RichDialogIcon #fIcon
+Cb0 f7 @|UserDialogIcon #fIcon
 Cb0 f2 expr out #txt
 Cb0 f2 872 112 937 112 #arcP
 Cb0 f10 expr out #txt
 Cb0 f10 304 112 344 112 #arcP
-Cb0 f9 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cb0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -184,13 +161,10 @@ Cb0 f6 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cb0 f6 376 112 497 112 #arcP
 Cb0 f6 0 0.5076923076923077 0 -11 #arcLabel
-Cb0 f12 actionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
-' #txt
 Cb0 f12 actionTable 'out=in;
 ' #txt
 Cb0 f12 actionCode 'import ch.ivyteam.ivy.project.portal.examples.Employee;
 in.employeeInfo = ivy.persistence.PersistenceSample.find(Employee.class, in.employeeInfo.getId()) as Employee;' #txt
-Cb0 f12 type ch.ivyteam.ivy.project.portal.examples.Data #txt
 Cb0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

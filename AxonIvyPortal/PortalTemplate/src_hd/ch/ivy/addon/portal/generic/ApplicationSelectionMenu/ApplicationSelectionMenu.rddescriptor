@@ -1,34 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
-    <method>
-        <name>openApp</name>
-        <description></description>
-        <inputParameter>
-            <name>appUrl</name>
-            <description></description>
-            <parameterType>String</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
-        <name>init</name>
-        <description></description>
-    </method>
-    <startMethod>
-        <name>start</name>
-        <description>Default dialog start method.</description>
-        <inputParameter>
-            <name>isWorkingOnATask</name>
-            <description></description>
-            <parameterType>String</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </startMethod>
-    <startMethod>
-        <name>StartNotRequiredLogin</name>
-        <description></description>
-    </startMethod>
     <property>
         <name>guid</name>
         <value>156A1AA176D3D11B</value>

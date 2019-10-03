@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
+import portal.guitest.page.LanguagePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.StatisticWidgetPage;
@@ -34,6 +35,11 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     grantPermissionOfPortal();
 
     homePage = new HomePage();
+
+    LanguagePage languagePage = homePage.openLanguagePage();
+    languagePage.selectLanguage(1);
+    languagePage.save();
+
     mainMenuPage = homePage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     statisticWidgetPage.waitForPageLoaded();
@@ -64,17 +70,17 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     WebElement toggler = taskAnalysisWidgetPage.findColumnToggler();
     toggler.click();
 
-    WebElement columnContainer = taskAnalysisWidgetPage.getDriver().findElement(By.tagName("body")).findElement(By.cssSelector(".ui-columntoggler"));
+    WebElement columnContainer = taskAnalysisWidgetPage.getDriver().findElement(By.tagName("body"))
+        .findElement(By.cssSelector(".ui-columntoggler"));
     int numberOfCheckboxes = columnContainer.findElements(By.cssSelector(".ui-chkbox-box")).size();
-    List<WebElement> unselectedColumnCheckboxes = columnContainer.findElements(By.cssSelector(".ui-chkbox-box:not(.ui-state-active)"));
+    List<WebElement> unselectedColumnCheckboxes =
+        columnContainer.findElements(By.cssSelector(".ui-chkbox-box:not(.ui-state-active)"));
 
     unselectedColumnCheckboxes.forEach(elem -> elem.click());
     taskAnalysisWidgetPage.waitForPageLoaded();
 
-    int numberOfColumns = taskAnalysisWidgetPage
-        .findElementById("task-widget:statistic-result-form:task-table_head")
+    int numberOfColumns = taskAnalysisWidgetPage.findElementById("task-widget:statistic-result-form:task-table_head")
         .findElements(By.cssSelector("th[scope='col']:not(.ui-helper-hidden)")).size();
-
     assertEquals(numberOfColumns, numberOfCheckboxes);
   }
 
@@ -85,8 +91,10 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     WebElement toggler = taskAnalysisWidgetPage.findColumnToggler();
     toggler.click();
 
-    WebElement columnContainer = taskAnalysisWidgetPage.getDriver().findElement(By.tagName("body")).findElement(By.cssSelector(".ui-columntoggler"));
-    List<WebElement> selectedColumnCheckboxes = columnContainer.findElements(By.cssSelector(".ui-chkbox-box.ui-state-active"));
+    WebElement columnContainer = taskAnalysisWidgetPage.getDriver().findElement(By.tagName("body"))
+        .findElement(By.cssSelector(".ui-columntoggler"));
+    List<WebElement> selectedColumnCheckboxes =
+        columnContainer.findElements(By.cssSelector(".ui-chkbox-box.ui-state-active"));
 
     selectedColumnCheckboxes.get(0).click();
     selectedColumnCheckboxes.get(1).click();
@@ -95,8 +103,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
 
     taskAnalysisWidgetPage.waitForPageLoaded();
 
-    int numberOfColumns = taskAnalysisWidgetPage
-        .findElementById("task-widget:statistic-result-form:task-table_head")
+    int numberOfColumns = taskAnalysisWidgetPage.findElementById("task-widget:statistic-result-form:task-table_head")
         .findElements(By.cssSelector("th[scope='col']:not(.ui-helper-hidden)")).size();
 
     assertEquals(numberOfColumns, selectedColumnCheckboxes.size());
@@ -120,9 +127,9 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     applyFilterButton.click();
     taskAnalysisWidgetPage.waitAjaxIndicatorDisappear();
 
-    List<WebElement> results = taskAnalysisWidgetPage
-        .findElementById("task-widget:statistic-result-form:task-table_data")
-        .findElements(By.cssSelector("tr[role='row']"));
+    List<WebElement> results =
+        taskAnalysisWidgetPage.findElementById("task-widget:statistic-result-form:task-table_data")
+            .findElements(By.cssSelector("tr[role='row']"));
 
     assertEquals(2, results.size());
 
@@ -151,9 +158,9 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     applyFilterButton.click();
     taskAnalysisWidgetPage.waitAjaxIndicatorDisappear();
 
-    List<WebElement> results = taskAnalysisWidgetPage
-        .findElementById("task-widget:statistic-result-form:task-table_data")
-        .findElements(By.cssSelector("tr[role='row']"));
+    List<WebElement> results =
+        taskAnalysisWidgetPage.findElementById("task-widget:statistic-result-form:task-table_data")
+            .findElements(By.cssSelector("tr[role='row']"));
 
     assertEquals(4, results.size());
 
@@ -174,9 +181,9 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     applyFilterButton.click();
     taskAnalysisWidgetPage.waitAjaxIndicatorDisappear();
 
-    List<WebElement> results = taskAnalysisWidgetPage
-        .findElementById("task-widget:statistic-result-form:task-table_data")
-        .findElements(By.cssSelector("tr[role='row']"));
+    List<WebElement> results =
+        taskAnalysisWidgetPage.findElementById("task-widget:statistic-result-form:task-table_data")
+            .findElements(By.cssSelector("tr[role='row']"));
 
     assertEquals(2, results.size());
   }
@@ -191,9 +198,9 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     applyFilterButton.click();
     taskAnalysisWidgetPage.waitAjaxIndicatorDisappear();
 
-    List<WebElement> results = taskAnalysisWidgetPage
-        .findElementById("task-widget:statistic-result-form:task-table_data")
-        .findElements(By.cssSelector("tr[role='row']"));
+    List<WebElement> results =
+        taskAnalysisWidgetPage.findElementById("task-widget:statistic-result-form:task-table_data")
+            .findElements(By.cssSelector("tr[role='row']"));
 
     assertEquals(4, results.size());
   }
@@ -210,9 +217,9 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
     taskAnalysisWidgetPage.loadFilterSet(filterSetName, false);
 
-    List<WebElement> results = taskAnalysisWidgetPage
-        .findElementById("task-widget:statistic-result-form:task-table_data")
-        .findElements(By.cssSelector("tr[role='row']"));
+    List<WebElement> results =
+        taskAnalysisWidgetPage.findElementById("task-widget:statistic-result-form:task-table_data")
+            .findElements(By.cssSelector("tr[role='row']"));
 
     assertEquals(1, results.size());
 
@@ -234,9 +241,9 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
     taskAnalysisWidgetPage.loadFilterSet(filterSetName, true);
 
-    List<WebElement> results = taskAnalysisWidgetPage
-        .findElementById("task-widget:statistic-result-form:task-table_data")
-        .findElements(By.cssSelector("tr[role='row']"));
+    List<WebElement> results =
+        taskAnalysisWidgetPage.findElementById("task-widget:statistic-result-form:task-table_data")
+            .findElements(By.cssSelector("tr[role='row']"));
 
     assertEquals(1, results.size());
 

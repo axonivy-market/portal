@@ -1,5 +1,7 @@
 package ch.internalsupport;
 
+import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_VARCHAR_FIELD5;
+
 import org.apache.commons.lang.StringUtils;
 
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
@@ -26,7 +28,7 @@ public class CustomerNameFilter extends TaskFilter {
     }
     
     String containingKeyword = String.format("%%%s%%", customerName.trim());
-    return TaskQuery.create().where().customVarCharField5().isLikeIgnoreCase(containingKeyword);
+    return TaskQuery.create().where().customField().stringField(CUSTOM_VARCHAR_FIELD5).isLikeIgnoreCase(containingKeyword);
   }
 
   @Override

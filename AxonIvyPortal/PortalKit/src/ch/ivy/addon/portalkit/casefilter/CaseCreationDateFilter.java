@@ -73,12 +73,16 @@ public class CaseCreationDateFilter extends CaseFilter {
     if (fromCreationDate != null && toCreationDate != null && (fromCreationDate.compareTo(toCreationDate) > 0)) {
       FacesContext.getCurrentInstance().validationFailed();
       FacesContext.getCurrentInstance().addMessage(
-          null,
+          "advanced-filter-error-messages",
           new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co(
               "/ch.ivy.addon.portalkit.ui.jsf/common/dateFromBiggerThanTo"), null));
     }
   }
 
+  @Override
+  public boolean defaultFilter() {
+    return true;
+ }
   public Date getFromCreationDate() {
     return fromCreationDate;
   }

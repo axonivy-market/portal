@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
 
 import org.primefaces.model.StreamedContent;
 
@@ -16,12 +15,12 @@ import ch.ivy.addon.portalkit.util.NoteHistoryExporter;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.RequestUriFactory;
-import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
+import ch.ivyteam.util.Pair;
 
 @ManagedBean(name = "caseTaskNoteHistoryBean")
 public class CaseTaskNoteHistoryBean implements Serializable {
@@ -39,10 +38,9 @@ public class CaseTaskNoteHistoryBean implements Serializable {
     ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
     IProcessStart process =
         collector.findProcessStartByUserFriendlyRequestPath("Start Processes/TaskNoteHistory/showTaskNoteHistory.ivp");
-    String redirectLink =
-        RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process)
-            .toString() + "?selectedTaskId=" + task.getId();
-    redirectLink = removeDuplicatedPartOfUrl(redirectLink);
+    String redirectLink = RequestUriFactory
+        .createProcessStartUri(process, new Pair<String, String>("selectedTaskId", String.valueOf(task.getId())))
+        .toASCIIString();
     return redirectLink;
   }
 
@@ -54,16 +52,9 @@ public class CaseTaskNoteHistoryBean implements Serializable {
     ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
     IProcessStart process =
         collector.findProcessStartByUserFriendlyRequestPath("Start Processes/CaseNoteHistory/showCaseNoteHistory.ivp");
-    String redirectLink =
-        RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process)
-            .toString() + "?caseId=" + caseId;
-    redirectLink = removeDuplicatedPartOfUrl(redirectLink);
+    String redirectLink = RequestUriFactory
+        .createProcessStartUri(process, new Pair<String, String>("caseId", String.valueOf(caseId))).toASCIIString();
     return redirectLink;
-  }
-
-  private String removeDuplicatedPartOfUrl(String redirectLink) {
-    String applicationContextPath = FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath();
-    return redirectLink.replaceFirst(applicationContextPath, ""); // remove duplicate contextPath in URL
   }
 
   public String getCaseNoteContent(History history) {

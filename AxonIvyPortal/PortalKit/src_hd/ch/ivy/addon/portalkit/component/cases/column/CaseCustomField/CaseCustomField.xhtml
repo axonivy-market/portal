@@ -5,8 +5,7 @@
       xmlns:cc="http://xmlns.jcp.org/jsf/composite"
       xmlns:ic="http://ivyteam.ch/jsf/component"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions"
-      xmlns:pm="http://primefaces.org/mobile">
+      xmlns:pe="http://primefaces.org/ui/extensions">
       
   <cc:interface componentType="IvyComponent">
     <cc:attribute name="componentId" />
@@ -14,10 +13,11 @@
     <cc:attribute name="labelValue" shortDescription="Text value to show in UI"/> 
     <cc:attribute name="dataModel" />
     <cc:attribute name="column" shortDescription="column name - the value in Customize CaseLazyDatModel.getDefaultColumns()" />
+    <cc:attribute name="responsiveStyleClass" default="u-hidden-sm-down"/>
   </cc:interface>
   
   <cc:implementation>
-    <h:panelGroup id="#{cc.attrs.panelGroupId}" rendered="#{cc.attrs.dataModel.isSelectedColumn(cc.attrs.column)}" styleClass="TexAlCenter customized-case-header-column" >
+    <h:panelGroup id="#{cc.attrs.panelGroupId}" rendered="#{cc.attrs.dataModel.isSelectedColumn(cc.attrs.column)}" styleClass="TexAlCenter customized-case-header-column #{cc.attrs.responsiveStyleClass}">
       <h:outputText id="#{cc.attrs.componentId}" value="#{cc.attrs.labelValue}" />
     </h:panelGroup>
   </cc:implementation>

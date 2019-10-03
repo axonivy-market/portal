@@ -1,0 +1,60 @@
+/* Theme Colors */
+$primaryColor:#c7d426;
+$primaryDarkColor:#97AE04;
+$primaryLightColor:#DCF91F;
+$primaryLightestColor:#FFFFFF;
+$primaryTextColor:#212121;
+$accentColor:#c7d426;
+$accentDarkColor: #97AE04;
+$accentLightColor: #DCF91F;
+$accentTextColor: #ECFC82;
+$inputLabelText: 14px;
+$dataTableRowBgColorEven: rgba(255, 255, 255, 1);
+$headerPadding: 14px 1em;
+$greyLineColor: #d8d8d8;
+
+$bodyBackgroundColor: #FFFFFF;
+$menuColor: #F0F0F0;
+$processChainMenuColor: $primaryColor;
+
+$loginLogoHeight: 50px;
+$homeLogoHeight: 42px;
+
+/*3 colors of header bar*/
+$firstHeaderBarColor: $primaryColor;
+$secondHeaderBarColor: $primaryColor;
+$thirdHeaderBarColor: $primaryColor;
+
+/*task priority color*/
+$taskPriorityLowColor: #D4D4D4;
+$taskPriorityNormalColor: #96DC82;
+$taskPriorityHighColor: #FFC0C0;
+$taskPriorityExceptionColor: #FF5A5A;
+
+/*task state color*/
+$taskStateOpenColor: #078CFF;
+$taskStateInProgressColor: #4EB41C;
+$taskStateDoneColor: #4EB41C;
+$taskStateZombieDestroyedColor: #FF6464;
+$taskStateReservedColor: rgba(0,0,0,0.4);
+$taskStateSystemColor: rgba(0,0,0,0.4);
+
+/*Color and border radius of Portal button e.g Add, Close, New, Save, OK ..*/
+$actionButtonColor: $primaryColor;
+$cancelButtonBackgroundColor: #D3D3D3;
+$actionButtonBorderRadius:0px;
+
+/*Color and border radius of context button, 
+it only affects when button has attribute styleClass="context-button"*/
+$contextButtonColor: #7C7C7C;
+$contextButtonBorderRadius:$actionButtonBorderRadius;
+
+/*Announcement panel color*/
+$announcementBackgroundColor: #ffff80;
+$announcementBorderColor: red;
+
+/*Circle process chain number step color*/
+$circleStepNumberColor: #212121;
+
+/* Menu color */
+$menuItemHoverBackgroundColor: rgba(0, 0, 0, 0.15);

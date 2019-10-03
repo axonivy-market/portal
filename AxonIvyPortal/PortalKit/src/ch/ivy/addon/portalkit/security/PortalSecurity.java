@@ -26,6 +26,7 @@ public enum PortalSecurity {
     private static final String ADMIN = "admin";
     private static final String DEMO = "demo";
     private static final String GUEST = "guest";
+    private static final String DEVELOPER = "Developer";
     private Username() {}
   }
   
@@ -62,6 +63,8 @@ public enum PortalSecurity {
             IPermission.USER_CREATE_OWN_SUBSTITUTE,
             IPermission.USER_DELETE_OWN_SUBSTITUTE,
             IPermission.USER_READ_OWN_SUBSTITUTIONS);
+  
+    private static final List<PortalPermission> DEVELOPER_USER_ADDTIONAL = Arrays.asList(PortalPermission.values());
     private Permissions() {}
   }
 
@@ -92,6 +95,11 @@ public enum PortalSecurity {
         for (IPermission permission : Permissions.GUEST_USER_DENIED) {
           portalApplication.getSecurityDescriptor().denyPermission(permission, guestUser);
         }
+      }
+
+      IUser developerUser = securityContext.findUser(Username.DEVELOPER);
+      if (developerUser != null) {
+        grantPermissionsToForSecurityMember(Permissions.DEVELOPER_USER_ADDTIONAL, developerUser);
       }
     }
   }

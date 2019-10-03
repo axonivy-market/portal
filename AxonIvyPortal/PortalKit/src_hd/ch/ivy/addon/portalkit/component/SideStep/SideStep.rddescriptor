@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
-    <startMethod>
-        <name>start</name>
-        <description>Default dialog start method.</description>
-    </startMethod>
     <property>
         <name>guid</name>
-        <value>167F427F063D5B93</value>
+        <value>16BF516D50A279F9</value>
         <readOnly>true</readOnly>
     </property>
     <property>

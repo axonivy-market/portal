@@ -1,10 +1,9 @@
 package ch.ivy.addon.portalkit.persistence.dao;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import org.boon.criteria.ObjectFilter;
-import org.boon.datarepo.Repos;
+import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivyteam.ivy.application.IApplication;
@@ -19,16 +18,10 @@ public class UserProcessDao extends AbstractDao<UserProcess> {
     super(application);
   }
 
-  @SuppressWarnings("unchecked")
   @ExecuteAsSystem
   public List<UserProcess> findByUserName(String userName) {
-    repo =
-        Repos.builder().primaryKey(EntityProperty.ID.toString()).searchIndex(EntityProperty.USER_NAME.toString())
-            .build(long.class, UserProcess.class).init(findAll());
-
-    List<UserProcess> userProcesses =
-        repo.query(ObjectFilter.eq(EntityProperty.USER_NAME.toString(), userName),
-            ObjectFilter.eqBoolean(EntityProperty.DEFAULT_PROCESS.toString(), false));
-    return new ArrayList<>(userProcesses);
+    return findAll().stream()
+        .filter(userProcess -> StringUtils.equals(userProcess.getUserName(), userName) && !userProcess.isDefaultProcess())
+        .collect(Collectors.toList());
   }
 }

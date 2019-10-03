@@ -8,7 +8,6 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="outerPanelId" default="main-area-panel" />
   <cc:attribute name="styleClass" />
   <cc:attribute name="chunkSize" shortDescription="Number of items to fetch for each lazy load" default="20" />
   <cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}" />
@@ -26,11 +25,9 @@
   <h:outputScript name="task-widget.js" library="js" />
 
   <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} js-task-widget analysis-task-widget">
-    <p:growl id="cannot-start-task-notification" autoUpdate="false" severity="info" />
-
         <h:panelGroup id="filter-selection-container" layout="block" styleClass="filter-selection-container">
           <h:form id="filter-selection-form" class="filter-selection-form">
-            <p:outputPanel id="filter-selection-panel"
+            <p:outputPanel id="filter-selection-panel" styleClass="task-analysis-filter-selection-panel"
               rendered="#{(not empty data.taskPrivateFilters or not empty data.taskPublicFilters)}">
               <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}" for="filter-name" />
               <p:commandLink id="filter-name" styleClass="filter-name"
@@ -84,11 +81,12 @@
             </p:outputPanel>
           </h:form>
         </h:panelGroup>
-
-        <!-- TASK FILTERS -->
+    <p:commandButton id="back-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" icon="fa fa-reply-all" iconPos="left"
+      styleClass="back-button Fright MarTop50" actionListener="#{logic.redirectToStatisticPage}"/>
+    <!-- TASK FILTERS -->
         <p:fieldset id="task-filters-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskFilter')}" toggleable="false" styleClass="filter-fieldset MarTop20">
           <h:panelGroup id="task-filters-container" layout="block" styleClass="advanced-filter-container">
-            <h:panelGroup id="additional-task-filter" styleClass="additional-filter-container js-additional-filter-container">
+            <h:panelGroup id="additional-task-filter" styleClass="additional-filter-container">
               <c:set var="filterContainer" value="#{data.dataModel.taskFilterContainer}" />
               <ic:ch.ivy.addon.portalkit.component.task.filter.TaskPriorityFilter filter="#{filterContainer.priorityFilter}"
                 dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
@@ -116,7 +114,7 @@
                 <p:overlayPanel id="task-filter-add-panel" styleClass="filter-add-panel" for="task-filter-add-action" my="left top"
                   at="left bottom">
                   <h:form id="task-filter-add-form">
-                    <p:scrollPanel styleClass="filter-selector-container" mode="native">
+                    <p:scrollPanel styleClass="task-filter-selector-container" mode="native">
                       <p:selectManyCheckbox id="task-filter-selection" layout="pageDirection"
                         valueChangeListener="#{data.dataModel.onFilterChange}" value="#{data.dataModel.selectedTaskFilters}"
                         converter="pojoConverter">
@@ -142,7 +140,7 @@
         <!-- CASE FILTERS -->
         <p:fieldset id="case-filters-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseFilter')}" toggleable="false" styleClass="MarTop20 filter-fieldset">
           <h:panelGroup id="case-filters-container" layout="block" styleClass="advanced-filter-container">
-            <h:panelGroup id="additional-case-filter" styleClass="additional-filter-container js-additional-filter-container">
+            <h:panelGroup id="additional-case-filter" styleClass="additional-filter-container">
               <c:set var="caseFilterContainer" value="#{data.dataModel.caseFilterContainer}" />
               <cc:attribute name="filterContainerId" default="#{p:component('task-filters-container')}" />
               <cc:attribute name="filterAddingContainerId" default="#{p:component('filter-add-container')}" />
@@ -168,8 +166,8 @@
                 <p:overlayPanel id="case-filter-add-panel" styleClass="filter-add-panel" for="case-filter-add-action" my="left top"
                   at="left bottom">
                   <h:form id="case-filter-add-form">
-                    <p:scrollPanel styleClass="filter-selector-container" mode="native">
-                      <p:selectManyCheckbox id="case-filter-selection" layout="pageDirection"
+                    <p:scrollPanel styleClass="case-filter-selector-container" mode="native">
+                      <p:selectManyCheckbox id="case-filter-selection" layout="pageDirection" styleClass="case-filter-selection-checkbox"
                         valueChangeListener="#{data.dataModel.onCaseFilterChange}" value="#{data.dataModel.selectedCaseFilters}"
                         converter="pojoConverter">
                         <p:ajax update="#{cc.clientId}:case-filters-container" global="false" />
@@ -193,18 +191,15 @@
         </div>
 
         <!-- RESULT SECTION -->
-        <ui:include src="StatisticResult.xhtml" />
-
-        <!-- FOOTER -->
-        <p:commandButton id="back-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" icon="fa fa-arrow-left"
-          styleClass="buttonDelegate floatLeft MarTop50" actionListener="#{logic.redirectToStatisticPage}" update="@(form)"/>
-        <p:spacer width="5" />
+         <ui:include src="StatisticResult.xhtml" />
   </div>
 
   <p:dialog id="save-filter-set-dialog" widgetVar="save-filter-set-dialog" appendTo="@(body)"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" resizable="false"
     width="575" modal="true" closeOnEscape="true" styleClass="save-filter-set-dialog">
-    <p:messages autoUpdate="true" />
+    <p:messages id="save-filter-message">
+      <p:autoUpdate />
+    </p:messages>
     <h:form id="filter-save-form">
       <h:panelGrid columns="2" styleClass="save-filter-set-panel"
         columnClasses="save-filter-set-panel-column-1, save-filter-set-panel-column-2">

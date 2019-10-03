@@ -15,3 +15,5 @@ numberOfCases Integer #field
 caseStructureInfo String #field
 caseStructureInfo 'contain information of category, sub category of tasks. E.g. CAT1/SUBCAT1' #fieldComment
 attachToBusinessCase Boolean #field
+caseCatagories java.util.List<String> #field
+caseCategory String #field

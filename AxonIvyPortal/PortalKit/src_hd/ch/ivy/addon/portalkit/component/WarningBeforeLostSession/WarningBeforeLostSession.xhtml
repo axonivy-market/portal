@@ -1,8 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
-  xmlns:pm="http://primefaces.org/mobile">
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="clientSideTimeOut" />
@@ -13,8 +12,7 @@
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/warningMessage')}"
     widgetVar="timeout-warning-dialog" appendTo="@(body)" closable="false" width="auto">
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/extend')}"
-      styleClass="" actionListener="#{logic.extendSession}"
-      oncomplete="PortalSessionWarning.hideWarningDialog();PortalSessionWarning.resetCounterAndTimeout();" />
+      actionListener="#{logic.extendSession}" oncomplete="PortalSessionWarning.hideWarningDialog();PortalSessionWarning.resetCounterAndTimeout();" />
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
       styleClass="portal-cancel-button" actionListener="#{logic.logout}" oncomplete="returnHomePage()" />
   </p:confirmDialog>
@@ -25,7 +23,7 @@
 		message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/sessionExpried')}"
 		widgetVar="timeout-dialog" appendTo="@(body)" closable="false">
 		<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onclick="redirectDefaultPage();"
-			type="button" styleClass="" />
+			type="button" />
 	</p:confirmDialog>
 
   <h:form>

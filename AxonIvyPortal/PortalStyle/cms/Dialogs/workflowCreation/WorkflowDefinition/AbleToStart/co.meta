@@ -1,0 +1,5 @@
+co: name={AbleToStart} description={} changed={2019-09-12 04:40:47 CEST} changedby={ldnam} visualorder={0} guid={16C5FB61522C32FA} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16C5FB68D66EEC68} datatype={} isdefault={false} langid={de} description={} validfrom={2019-08-05 04:57:54 CEST} validto={} changed={2019-08-05 04:58:15 CEST} changedby={ldnam} properties={} id={}
+val: guid={16C5FB6152FEF0C2} datatype={} isdefault={true} langid={en} description={} validfrom={2019-08-05 04:57:44 CEST} validto={} changed={2019-08-05 04:57:44 CEST} changedby={ldnam} properties={} id={}
+val: guid={16C5FB68EA323066} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-09-12 04:40:47 CEST} validto={} changed={2019-09-12 04:40:47 CEST} changedby={ldnam} properties={} id={}
+val: guid={16C5FB68E9A7FFC1} datatype={} isdefault={false} langid={es} description={} validfrom={2019-08-05 04:58:04 CEST} validto={} changed={2019-08-05 04:58:15 CEST} changedby={ldnam} properties={} id={}

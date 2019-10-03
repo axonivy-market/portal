@@ -3,14 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:pe="http://primefaces.org/ui/extensions"
-  xmlns:pm="http://primefaces.org/mobile">
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="dataModel" value="#{data.dataModel}" />
     <ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/searchResults')}</ui:define>
     <ui:define name="simplePageContent">
-      <c:set property="navigationHistory" value="SEARCH_RESULTS" target="#{navigationHistoryBean}"></c:set>
       <c:set var="isShowResultTabView" value="#{compactProcessWidgetBean.displayShowAllProcessesLink or taskWidgetBean.showFullTaskList or caseWidgetBean.showFullCaseList}"></c:set>
       <h:form id="global-search-form-in-page">
         <div id="global-search-container-in-page" class="global-search">
@@ -21,16 +19,17 @@
           <i class="global-search-icon fa fa-search" />
         </div>
         <p:remoteCommand name="portalGlobalSearchInPage" actionListener="#{dataModel.search}"
-          update="#{p:component('search-results-tabview')}" oncomplete="processWidget.filter()" />
+          update="#{p:component('search-results-tabview')}" oncomplete="processWidget.filter();" />
+        <p:remoteCommand autoRun="true" delay="1" global="false" process="@none" onstart="PF('search-results-tabview').select(#{data.activeTabIndex})" />
       </h:form>
       <c:if test="#{!isShowResultTabView}" >
       	<h:outputText styleClass="not-display-result-tab-view" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/notDisplayResultTabView')}."/>
       </c:if>
-      <p:tabView id="search-results-tabview" onTabShow="onTabShow()" dynamic="true" styleClass="search-results-tabview" activeIndex="#{data.activeTabIndex}"
+      <p:tabView id="search-results-tabview" widgetVar="search-results-tabview" onTabShow="onTabShow()" dynamic="true" styleClass="search-results-tabview"
         rendered="#{isShowResultTabView}">
         <p:tab id="process-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" titleStyleClass="process-tab-title"
           rendered="#{compactProcessWidgetBean.displayShowAllProcessesLink}">
-          <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-results"
+          <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-results" hideProcessNavigation="true"
             hideHeader="true" hideExpressCreation="true" processListStyleClass="process-in-search" />
         </p:tab>
         
@@ -38,7 +37,7 @@
           rendered="#{taskWidgetBean.showFullTaskList}">
           <div class="task-list-container js-task-list-container js-for-search-result">
             <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-results" listHeaderStyleClass="task-in-search"
-              keyword="#{dataModel.taskDataModel.criteria.keyword}" hideTaskFilter="true"
+              keyword="#{dataModel.taskDataModel.criteria.keyword}" hideTaskFilter="true" currentPortalPage="SEARCH_RESULTS"
               dataModel="#{dataModel.taskDataModel}" hideWidgetHeader="true" compactMode="false">
               <f:facet name="taskListHeader">
                 <ui:fragment rendered="#{useTaskOverrideListHeader}">
@@ -83,47 +82,6 @@
                     dataModel="#{dataModel.taskDataModel}" state="#{task.state}" />
                 </ui:fragment>
               </f:facet>
-  
-              <f:facet name="taskBody">
-                <ui:fragment rendered="#{useTaskOverrideBody}">
-                  <ui:insert name="taskBody">
-                  </ui:insert>
-                </ui:fragment>
-  
-                <ui:fragment rendered="#{not useTaskOverrideBody}">
-                  <ic:ch.ivy.addon.portalkit.component.TaskItemDescription id="description" task="#{task}"
-                    descriptionComponentToUpdate="#{p:component('task-description')}" />
-                  <ic:ch.ivy.addon.portalkit.component.TaskItemGeneralInfo id="general-info" task="#{task}"
-                    priorityComponentToUpdate="#{p:component('task-priority')}"
-                    componentToUpdate="#{p:component('task-details-notes')} #{p:component('expiry-time')}" />
-                  <ic:ch.ivy.addon.portalkit.component.TaskItemDocuments id="documents" task="#{task}"
-                    componentToUpdate="#{p:component('task-details-notes')}" />
-                  <ic:ch.ivy.addon.portalkit.component.TaskItemNotes id="notes" task="#{task}">
-                    <f:facet name="showTaskNoteHistory">
-                      <p:link id="show-more-note-link" styleClass="task-details-note-add-link note-show-more-link"
-                        target="_blank" href="#{caseTaskNoteHistoryBean.getTaskNoteHistoryLink(task)}" rendered="#{caseTaskNoteHistoryBean.showMoreNote}">
-                        <span class="fa fa-external-link-square note-show-more-link-icon" />
-                        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}" />
-                      </p:link>
-                    </f:facet>
-                  </ic:ch.ivy.addon.portalkit.component.TaskItemNotes>
-                  <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer id="responsiveness-container"
-                    styleClass="hidden-lg">
-                    <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
-                      icon="fa fa-info-circle js-data-column-responsive-button" displayedSelectors="['#task-data']"
-                      hiddenSelectorsInSmallScreen="['.task-details .replaced']" />
-                    <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
-                      icon="fa fa-file js-document-column-responsive-button" displayedSelectors="['#task-document']"
-                      hiddenSelectorsInMediumScreen="['.task-details .replaced']"
-                      hiddenSelectorsInSmallScreen="['.task-details .replaced']" />
-                    <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
-                      icon="fa fa-align-left js-note-column-responsive-button" displayedSelectors="['#task-note']"
-                      hiddenSelectorsInMediumScreen="['.task-details .replaced']"
-                      hiddenSelectorsInSmallScreen="['.task-details .replaced']" />
-                    <h:outputScript library="js" name="task-detail-default-responsiveness.js" />
-                  </ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer>
-                </ui:fragment>
-              </f:facet>
             </ic:ch.ivy.addon.portalkit.component.TaskWidget>
           </div>
         </p:tab>
@@ -150,7 +108,7 @@
                 </ui:fragment>
                 
                 <ui:fragment rendered="#{not useCaseOverrideHeader}">
-	                <div class="case-header-name-desc-cell">
+	                <div class="case-header-name-desc-cell u-truncate-text">
 	                  <ic:ch.ivy.addon.portalkit.component.cases.column.CaseName id="case-name-component" caseNameId="case-header-name-cell" caseDescriptionId="description-cell"
 	                    case="#{case}" dataModel="#{dataModel.caseDataModel}" />
 	                </div>
@@ -166,81 +124,36 @@
 	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState componentId="case-state-cell" case="#{case}" dataModel="#{dataModel.caseDataModel}"/>
               	</ui:fragment>
               </f:facet>
-              <f:facet name="caseBody">
-                <ui:fragment rendered="#{not useCaseOverrideBody}">
-                  <ic:ch.ivy.addon.portalkit.component.CaseItemGeneralInformation id="general-information" case="#{case}" />
-                  <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="related-tasks" case="#{case}" />
-                  <ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="history" case="#{case}" />
-                  <ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}" componentToUpdate="#{p:component('history')}"/>
-                  <ic:ch.ivy.addon.portalkit.component.CaseItemDescription id="description" case="#{case}"
-                    descriptionComponentToUpdate="#{p:component('description-cell')}" />
-                  <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer styleClass="hidden-lg">
-                    <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
-                      icon="fa fa-share-alt js-related-task-column-responsive-button"
-                      displayedSelectors="['.js-related-task-column']"
-                      hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
-                    <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
-                      icon="fa fa-align-left js-history-column-responsive-button" displayedSelectors="['.js-history-column']"
-                      hiddenSelectorsInMediumScreen="['.case-details .replaced']"
-                      hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
-                    <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
-                      icon="fa fa-file js-document-column-responsive-button" displayedSelectors="['.js-document-column']"
-                      hiddenSelectorsInLargeScreen="['.case-details .replaced']"
-                      hiddenSelectorsInMediumScreen="['.case-details .replaced']"
-                      hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
-                    <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
-                      icon="fa fa-clipboard js-description-column-responsive-button"
-                      displayedSelectors="['.js-description-column']"
-                      hiddenSelectorsInMediumScreen="['.case-details .replaced']"
-                      hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
-                    <h:outputScript library="js" name="case-detail-default-responsiveness.js" />
-                  </ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer>
-                </ui:fragment>
-  
-                <ui:fragment rendered="#{useCaseOverrideBody}">
-                  <ui:insert name="caseBody">
-                    <!-- Put customized XHTMLs here -->
-                  </ui:insert>
-                </ui:fragment>
-              </f:facet>
             </ic:ch.ivy.addon.portalkit.component.CaseWidget>
           </div>
         </p:tab>
         
         <ui:insert name="custom-search"></ui:insert>
+        
       </p:tabView>
       <script>
         function onTabShow() {
           var $selectedTab = $("#search-results-tabview").find(".ui-tabs-panel").filter(function() {return $(this).css('display') == 'block'});
           var isSelectTaskTab = $selectedTab.find('.js-task-list-container').length != 0;
           if (isSelectTaskTab) {
-            var taskListLargeScreen = new TaskListLargeScreenHandler();
-            var taskListMediumScreen = new TaskListMediumScreenHandler();
-            var taskListSmallScreen = new TaskListSmallScreenHandler();
-            var responsiveToolkit = ResponsiveToolkit(taskListLargeScreen, taskListMediumScreen, taskListSmallScreen);
+            var taskListScreen = new TaskListScreenHandler();
+            var responsiveToolkit = ResponsiveToolkit(taskListScreen);
 
-            Portal.init(responsiveToolkit, true);
+            Portal.init(responsiveToolkit);
             taskWidget.setupHeader();
             return;
           }
 
           var isSelectCaseTab = $selectedTab.find('.js-case-default-widget-container').length != 0;
           if (isSelectCaseTab) {
-            var caseListLargeScreen = new CaseListLargeScreenHandler();
-            var caseListMediumScreen = new CaseListMediumScreenHandler();
-            var caseListSmallScreen = new CaseListSmallScreenHandler();
-            var responsiveToolkit = ResponsiveToolkit(caseListLargeScreen, caseListMediumScreen, caseListSmallScreen);
+            var caseListScreen = new CaseListScreenHandler();
+            var responsiveToolkit = ResponsiveToolkit(caseListScreen);
 
-            Portal.init(responsiveToolkit, true);
+            Portal.init(responsiveToolkit);
             caseWidget.setupHeader();
             return;
           }
 
-          var simpleLargeScreen = new SimpleLargeScreen();
-          var simpleMediumScreen = new SimpleMediumScreen();
-          var simpleSmallScreen = new SimpleSmallScreen();
-          var responsiveToolkit = ResponsiveToolkit(simpleLargeScreen, simpleMediumScreen, simpleSmallScreen);
-          Portal.init(responsiveToolkit, true);
         }
       </script>
     </ui:define>

@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
-    <method>
-        <name>destroyTask</name>
-        <description></description>
-        <inputParameter>
-            <name>taskId</name>
-            <description></description>
-            <parameterType>java.lang.Long</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <startMethod>
-        <name>start</name>
-        <description>Default dialog start method.</description>
-    </startMethod>
     <property>
         <name>guid</name>
         <value>1559AE0A784E4067</value>

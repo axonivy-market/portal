@@ -2,12 +2,16 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.DonutChartModel;
@@ -16,7 +20,6 @@ import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
 import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
 import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
 import ch.ivy.addon.portalkit.bo.PriorityStatistic;
-import ch.ivy.addon.portalkit.enums.CustomVarCharField;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
 import ch.ivy.addon.portalkit.service.StatisticService;
@@ -42,11 +45,11 @@ public class StatisticChartCreationBean implements Serializable {
   private DonutChartModel caseByFinishedTaskModel;
   private BarChartModel taskByExpiryModel;
   private BarChartModel elapsedTimeModel;
-  private List<String> availableCustomValues;
   StatisticService statisticService = new StatisticService();
+  private Map<String, List<String>> customFieldFilters = new HashMap<>();
 
   public static final int CASE_CATEGORIES_TYPE = 0;
-
+  
   /**
    * Update filters
    * 
@@ -54,6 +57,7 @@ public class StatisticChartCreationBean implements Serializable {
    * @param oldFilter 
    */
   public void updateFilters(StatisticFilter filter, StatisticFilter oldFilter) {
+    filter.setCustomFieldFilters(this.customFieldFilters);
     if(filter.getTimePeriodSelection() != StatisticTimePeriodSelection.CUSTOM) {
       filter.setCreatedDateFrom(null);
       filter.setCreatedDateTo(null);
@@ -94,11 +98,7 @@ public class StatisticChartCreationBean implements Serializable {
     if (!filter.getIsAllTaskPrioritiesSelected()) {
       updateOldListToNewList(oldFilter.getSelectedTaskPriorities(), filter.getSelectedTaskPriorities());
     }
-    updateOldListToNewList(oldFilter.getSelectedCustomVarCharFields1(), filter.getSelectedCustomVarCharFields1());
-    updateOldListToNewList(oldFilter.getSelectedCustomVarCharFields2(), filter.getSelectedCustomVarCharFields2());
-    updateOldListToNewList(oldFilter.getSelectedCustomVarCharFields3(), filter.getSelectedCustomVarCharFields3());
-    updateOldListToNewList(oldFilter.getSelectedCustomVarCharFields4(), filter.getSelectedCustomVarCharFields4());
-    updateOldListToNewList(oldFilter.getSelectedCustomVarCharFields5(), filter.getSelectedCustomVarCharFields5());
+    oldFilter.setCustomFieldFilters(filter.getCustomFieldFilters());
   }
 
   public boolean checkIfAnyFilterChanges(StatisticFilter filter, StatisticFilter oldFilter) {
@@ -123,7 +123,7 @@ public class StatisticChartCreationBean implements Serializable {
     if (checkIfAnyRoleChanged(filter, oldFilter)) {
       return true;
     }
-    return checkIfAnyCustomVarcharChanged(filter, oldFilter);
+    return checkIfAnyCustomFieldChanged(filter, oldFilter);
   }
 
   private boolean checkIfAnyCaseStateChanged(StatisticFilter filter, StatisticFilter oldFilter) {
@@ -162,25 +162,14 @@ public class StatisticChartCreationBean implements Serializable {
     return !filter.getIsAllRolesSelected() && !oldFilter.getSelectedRoles().equals(filter.getSelectedRoles());
   }
 
-  private boolean checkIfAnyCustomVarcharChanged(StatisticFilter filter, StatisticFilter oldFilter) {
-    //compare check boxes of custom varchar 1
-    if (!oldFilter.getSelectedCustomVarCharFields1().equals(filter.getSelectedCustomVarCharFields1())) {
-      return true;
+  private boolean checkIfAnyCustomFieldChanged(StatisticFilter filter, StatisticFilter oldFilter) {
+    for (Map.Entry<String, List<String>> entry : filter.getCustomFieldFilters().entrySet()) {
+      List<String> list = oldFilter.getCustomFieldFilters().get(entry.getKey());
+      if (list != null && entry.getValue() != null && !CollectionUtils.isEqualCollection(list, entry.getValue())) {
+        return true;
+      }
     }
-    //compare check boxes of custom varchar 2
-    if (!oldFilter.getSelectedCustomVarCharFields2().equals(filter.getSelectedCustomVarCharFields2())) {
-      return true;
-    }
-    //compare check boxes of custom varchar 3
-    if (!oldFilter.getSelectedCustomVarCharFields3().equals(filter.getSelectedCustomVarCharFields3())) {
-      return true;
-    }
-    //compare check boxes of custom varchar 4
-    if (!oldFilter.getSelectedCustomVarCharFields4().equals(filter.getSelectedCustomVarCharFields4())) {
-      return true;
-    }
-    //compare check boxes of custom varchar 5
-    return !oldFilter.getSelectedCustomVarCharFields5().equals(filter.getSelectedCustomVarCharFields5());
+    return false;
   }
 
   private boolean isDateChanged(Date oldDate, Date currentDate) {
@@ -196,7 +185,7 @@ public class StatisticChartCreationBean implements Serializable {
   public void updateCaseCategoriesCheckboxes(StatisticFilter filter) {
     List<String> selectedCaseCategories = filter.getSelectedCaseCategories();
     if (filter.getIsAllCategoriesSelected()) {
-      for (String category : filter.getCaseCategoryTree().getAllChildren().stream().map(CategoryTree::getRawPath).collect(Collectors.toList())) {
+      for (String category : filter.getCaseCategories().stream().map(CategoryTree::getRawPath).collect(Collectors.toList())) {
         addToListIfNotExist(selectedCaseCategories, category);
       }
     } else {
@@ -368,75 +357,13 @@ public class StatisticChartCreationBean implements Serializable {
     this.caseByFinishedTimeModel = caseByFinishedTimeModel;
   }
 
-  public List<String> getAvailableCustomValues() {
-    return availableCustomValues;
-  }
-
-  public void setAvailableCustomValues(List<String> availableCustomValues) {
-    this.availableCustomValues = availableCustomValues;
-  }
-
-  /**
-   * Populate values for Auto Complete of cutomVarCharField1
-   * 
-   * @param query
-   * @return values of available customVarCharField1
-   */
-  public List<String> populateCustomVarChar1AutoComplete(String query) {
-    return populateCustomVarCharAutoComplete(query, CustomVarCharField.CUSTOM_VAR_CHAR_1);
+  public List<String> populateCustomStringFieldAutoComplete(String query) {
+    Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+    String fieldName = params.get("fieldName");
+    return statisticService.getCustomFields(fieldName, query);
   }
   
-  /**
-   * Populate values for Auto Complete of cutomVarCharField2
-   * 
-   * @param query
-   * @return values of available customVarCharField2
-   */
-  public List<String> populateCustomVarChar2AutoComplete(String query) {
-    return populateCustomVarCharAutoComplete(query, CustomVarCharField.CUSTOM_VAR_CHAR_2);
-  }
-  
-  /**
-   * Populate values for Auto Complete of cutomVarCharField3
-   * 
-   * @param query
-   * @return values of available customVarCharField3
-   */
-  public List<String> populateCustomVarChar3AutoComplete(String query) {
-    return populateCustomVarCharAutoComplete(query, CustomVarCharField.CUSTOM_VAR_CHAR_3);
-  }
-  
-  /**
-   * Populate values for Auto Complete of cutomVarCharField4
-   * 
-   * @param query
-   * @return values of available customVarCharField4
-   */
-  public List<String> populateCustomVarChar4AutoComplete(String query) {
-    return populateCustomVarCharAutoComplete(query, CustomVarCharField.CUSTOM_VAR_CHAR_4);
-  }
-  
-  /**
-   * Populate values for Auto Complete of cutomVarCharField5
-   * 
-   * @param query
-   * @return values of available customVarCharField5
-   */
-  public List<String> populateCustomVarChar5AutoComplete(String query) {
-    return populateCustomVarCharAutoComplete(query, CustomVarCharField.CUSTOM_VAR_CHAR_5);
-  }
-  
-  private List<String> populateCustomVarCharAutoComplete(String query, CustomVarCharField type) {
-    List<String> result = null;
-    if (StringUtils.isEmpty(query)) {
-      result = statisticService.getCustomVarCharFields(type, StringUtils.EMPTY, 11);
-    }
-    else {
-      result = statisticService.getCustomVarCharFields(type, query, 11);
-    }
-    result.sort((first, second) -> first.toLowerCase()
-        .compareTo(second.toLowerCase()));
-
-    return result;
+  public void setCustomFieldFilter(String customFieldName, List<String> values) {
+    this.customFieldFilters.put(customFieldName, values);
   }
 }

@@ -1,10 +1,9 @@
 [Ivy]
-165A2A9C745EDB5F 3.26 #module
+165A2A9C745EDB5F 3.28 #module
 >Proto >Proto Collection #zClass
 Ee0 ToCustomizedExpressEndPage Big #zClass
 Ee0 B #cInfo
 Ee0 #process
-Ee0 @TextInP .resExport .resExport #zField
 Ee0 @TextInP .type .type #zField
 Ee0 @TextInP .processKind .processKind #zField
 Ee0 @AnnotationInP-0n ai ai #zField
@@ -14,18 +13,14 @@ Ee0 @TextInP .xml .xml #zField
 Ee0 @TextInP .responsibility .responsibility #zField
 Ee0 @StartRequest f0 '' #zField
 Ee0 @EndTask f1 '' #zField
-Ee0 @RichDialog f3 '' #zField
+Ee0 @UserDialog f3 '' #zField
 Ee0 @PushWFArc f2 '' #zField
 Ee0 @GridStep f5 '' #zField
 Ee0 @PushWFArc f6 '' #zField
 Ee0 @PushWFArc f4 '' #zField
 >Proto Ee0 Ee0 ToCustomizedExpressEndPage #zField
 Ee0 f0 outLink start.ivp #txt
-Ee0 f0 type ch.ivyteam.ivy.project.portal.examples.HandleEndPageData #txt
 Ee0 f0 inParamDecl '<> param;' #txt
-Ee0 f0 actionDecl 'ch.ivyteam.ivy.project.portal.examples.HandleEndPageData out;
-' #txt
-Ee0 f0 guid 1600BDF7CC023643 #txt
 Ee0 f0 requestEnabled true #txt
 Ee0 f0 triggerEnabled false #txt
 Ee0 f0 callSignature start() #txt
@@ -50,22 +45,15 @@ Ee0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ee0 f0 @C|.responsibility Everybody #txt
 Ee0 f0 81 49 30 30 -21 17 #rect
 Ee0 f0 @|StartRequestIcon #fIcon
-Ee0 f1 type ch.ivyteam.ivy.project.portal.examples.HandleEndPageData #txt
 Ee0 f1 497 49 30 30 0 15 #rect
 Ee0 f1 @|EndIcon #fIcon
-Ee0 f3 targetWindow NEW #txt
-Ee0 f3 targetDisplay TOP #txt
-Ee0 f3 richDialogId ch.ivyteam.ivy.project.portal.examples.customization.CustomizedExpressEndPage #txt
+Ee0 f3 dialogId ch.ivyteam.ivy.project.portal.examples.customization.CustomizedExpressEndPage #txt
 Ee0 f3 startMethod start() #txt
-Ee0 f3 type ch.ivyteam.ivy.project.portal.examples.HandleEndPageData #txt
 Ee0 f3 requestActionDecl '<> param;' #txt
 Ee0 f3 responseActionDecl 'ch.ivyteam.ivy.project.portal.examples.HandleEndPageData out;
 ' #txt
 Ee0 f3 responseMappingAction 'out=in;
 ' #txt
-Ee0 f3 isAsynch false #txt
-Ee0 f3 isInnerRd false #txt
-Ee0 f3 userContext '* ' #txt
 Ee0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -76,11 +64,9 @@ Ee0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ee0 f3 328 42 112 44 -48 -8 #rect
-Ee0 f3 @|RichDialogIcon #fIcon
+Ee0 f3 @|UserDialogIcon #fIcon
 Ee0 f2 expr out #txt
 Ee0 f2 440 64 497 64 #arcP
-Ee0 f5 actionDecl 'ch.ivyteam.ivy.project.portal.examples.HandleEndPageData out;
-' #txt
 Ee0 f5 actionTable 'out=in;
 ' #txt
 Ee0 f5 actionCode 'import javax.faces.context.FacesContext;
@@ -89,7 +75,6 @@ FacesContext context = null;
 ch.ivy.addon.portalkit.support.UrlDetector detector = new ch.ivy.addon.portalkit.support.UrlDetector();
 detector.getBaseURL(context);
 ' #txt
-Ee0 f5 type ch.ivyteam.ivy.project.portal.examples.HandleEndPageData #txt
 Ee0 f5 168 42 112 44 0 -8 #rect
 Ee0 f5 @|StepIcon #fIcon
 Ee0 f6 expr out #txt

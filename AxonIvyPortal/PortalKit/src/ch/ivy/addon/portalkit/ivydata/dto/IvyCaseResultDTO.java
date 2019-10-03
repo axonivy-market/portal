@@ -14,7 +14,7 @@ public class IvyCaseResultDTO extends AbstractResultDTO {
   private CategoryTree categoryTree;
   private CaseStateStatistic caseStateStatistic;
   private ElapsedTimeStatistic elapsedTimeStatistic;
-  private List<String> customVarChars;
+  private List<String> customFields;
 
   public List<ICase> getCases() {
     return cases;
@@ -56,12 +56,11 @@ public class IvyCaseResultDTO extends AbstractResultDTO {
     this.elapsedTimeStatistic = elapsedTimeStatistic;
   }
 
-  public List<String> getCustomVarChars() {
-    return customVarChars;
+  public List<String> getCustomFields() {
+    return customFields;
   }
 
-  public void setCustomVarChars(List<String> customVarChars) {
-    this.customVarChars = customVarChars;
+  public void setCustomFields(List<String> customFields) {
+    this.customFields = customFields;
   }
-
 }

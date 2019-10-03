@@ -1,10 +1,9 @@
 [Ivy]
-163D97C604D3D4C9 3.23 #module
+163D97C604D3D4C9 3.28 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskAnalysis Big #zClass
 Ts0 B #cInfo
 Ts0 #process
-Ts0 @TextInP .resExport .resExport #zField
 Ts0 @TextInP .type .type #zField
 Ts0 @TextInP .processKind .processKind #zField
 Ts0 @AnnotationInP-0n ai ai #zField
@@ -14,7 +13,7 @@ Ts0 @TextInP .xml .xml #zField
 Ts0 @TextInP .responsibility .responsibility #zField
 Ts0 @StartRequest f0 '' #zField
 Ts0 @EndTask f1 '' #zField
-Ts0 @RichDialog f5 '' #zField
+Ts0 @UserDialog f5 '' #zField
 Ts0 @PushWFArc f2 '' #zField
 Ts0 @Alternative f3 '' #zField
 Ts0 @PushWFArc f6 '' #zField
@@ -24,21 +23,17 @@ Ts0 @PushWFArc f9 '' #zField
 Ts0 @PushWFArc f4 '' #zField
 >Proto Ts0 Ts0 TaskAnalysis #zField
 Ts0 f0 outLink start.ivp #txt
-Ts0 f0 type ch.ivy.addon.portal.generic.TaskAnalysisData #txt
 Ts0 f0 inParamDecl '<> param;' #txt
-Ts0 f0 actionDecl 'ch.ivy.addon.portal.generic.TaskAnalysisData out;
-' #txt
-Ts0 f0 guid 163D97C608CA7B65 #txt
 Ts0 f0 requestEnabled true #txt
 Ts0 f0 triggerEnabled false #txt
 Ts0 f0 callSignature start() #txt
 Ts0 f0 persist false #txt
-Ts0 f0 taskData 'TaskTriggered.ROL=Everybody
+Ts0 f0 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Ts0 f0 caseData businessCase.attach=true #txt
 Ts0 f0 showInStartList 0 #txt
 Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -53,14 +48,10 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ts0 f0 @C|.responsibility Everybody #txt
 Ts0 f0 81 49 30 30 -21 17 #rect
 Ts0 f0 @|StartRequestIcon #fIcon
-Ts0 f1 type ch.ivy.addon.portal.generic.TaskAnalysisData #txt
 Ts0 f1 617 49 30 30 0 15 #rect
 Ts0 f1 @|EndIcon #fIcon
-Ts0 f5 targetWindow NEW #txt
-Ts0 f5 targetDisplay TOP #txt
-Ts0 f5 richDialogId ch.ivy.addon.portal.generic.TaskAnalysis #txt
+Ts0 f5 dialogId ch.ivy.addon.portal.generic.TaskAnalysis #txt
 Ts0 f5 startMethod start(String) #txt
-Ts0 f5 type ch.ivy.addon.portal.generic.TaskAnalysisData #txt
 Ts0 f5 requestActionDecl '<String menuState> param;' #txt
 Ts0 f5 requestMappingAction 'param.menuState=ch.ivy.addon.portalkit.util.MenuUtils.getMenuState();
 ' #txt
@@ -68,9 +59,6 @@ Ts0 f5 responseActionDecl 'ch.ivy.addon.portal.generic.TaskAnalysisData out;
 ' #txt
 Ts0 f5 responseMappingAction 'out=in;
 ' #txt
-Ts0 f5 isAsynch false #txt
-Ts0 f5 isInnerRd false #txt
-Ts0 f5 userContext '* ' #txt
 Ts0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -81,10 +69,9 @@ Ts0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f5 440 42 128 44 -56 -8 #rect
-Ts0 f5 @|RichDialogIcon #fIcon
+Ts0 f5 @|UserDialogIcon #fIcon
 Ts0 f2 expr out #txt
 Ts0 f2 568 64 617 64 #arcP
-Ts0 f3 type ch.ivy.addon.portal.generic.TaskAnalysisData #txt
 Ts0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -123,15 +110,12 @@ Ts0 f7 336 80 632 79 #arcP
 Ts0 f7 1 336 112 #addKink
 Ts0 f7 2 632 112 #addKink
 Ts0 f7 1 0.23529411764705882 0 -10 #arcLabel
-Ts0 f8 actionDecl 'ch.ivy.addon.portal.generic.TaskAnalysisData out;
-' #txt
 Ts0 f8 actionTable 'out=in;
 ' #txt
 Ts0 f8 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.service.PermissionCheckerService;
 PermissionCheckerService service = new PermissionCheckerService();
 in.hasPermission = service.hasPermission(PortalPermission.STATISTIC_ANALYZE_TASK.getPermission());' #txt
-Ts0 f8 type ch.ivy.addon.portal.generic.TaskAnalysisData #txt
 Ts0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

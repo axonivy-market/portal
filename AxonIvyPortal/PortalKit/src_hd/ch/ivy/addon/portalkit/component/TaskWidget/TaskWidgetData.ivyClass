@@ -20,8 +20,8 @@ latestTaskDate java.util.Date #field
 latestTaskDate PERSISTENT #fieldModifier
 latestTasks java.util.List<ch.ivyteam.ivy.workflow.ITask> #field
 latestTasks PERSISTENT #fieldModifier
-mobileSelectedSort String #field
-mobileSelectedSort PERSISTENT #fieldModifier
+selectedSort String #field
+selectedSort PERSISTENT #fieldModifier
 newTaskSearchCriteria ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria #field
 newTaskSearchCriteria PERSISTENT #fieldModifier
 numberOfNewTask Long #field
