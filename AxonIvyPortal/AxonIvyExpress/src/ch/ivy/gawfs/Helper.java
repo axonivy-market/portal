@@ -111,7 +111,7 @@ public class Helper {
 
   public static java.util.List<IUser> filterUsers(java.util.List<IUser> users, String query) {
     if (StringUtils.isEmpty(query)) {
-      return users;
+      return sortUsers(users);
     }
 
     java.util.List<IUser> result = new ArrayList<>();
@@ -129,7 +129,7 @@ public class Helper {
 
   public static java.util.List<IRole> filterRoles(java.util.List<IRole> roles, String query) {
     if (StringUtils.isEmpty(query)) {
-      return roles;
+      return sortRoles(roles);
     }
 
     java.util.List<IRole> result = new ArrayList<>();

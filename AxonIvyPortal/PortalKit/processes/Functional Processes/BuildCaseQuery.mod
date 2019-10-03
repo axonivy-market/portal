@@ -1,10 +1,9 @@
 [Ivy]
-15F95D721D0C7224 3.23 #module
+15F95D721D0C7224 3.28 #module
 >Proto >Proto Collection #zClass
 By0 BuildCaseQuery Big #zClass
 By0 B #cInfo
 By0 #process
-By0 @TextInP .resExport .resExport #zField
 By0 @TextInP .type .type #zField
 By0 @TextInP .processKind .processKind #zField
 By0 @AnnotationInP-0n ai ai #zField
@@ -25,10 +24,7 @@ By0 f0 outParamDecl '<ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> result;
 ' #txt
 By0 f0 outParamTable 'result.caseQuery=in.#caseQuery;
 ' #txt
-By0 f0 actionDecl 'ch.ivy.add.portalkit.BuildCaseQueryData out;
-' #txt
 By0 f0 callSignature buildCaseQuery() #txt
-By0 f0 type ch.ivy.add.portalkit.BuildCaseQueryData #txt
 By0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -40,7 +36,6 @@ By0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 By0 f0 77 49 30 30 -48 17 #rect
 By0 f0 @|StartSubIcon #fIcon
-By0 f1 type ch.ivy.add.portalkit.BuildCaseQueryData #txt
 By0 f1 469 49 30 30 0 15 #rect
 By0 f1 @|EndSubIcon #fIcon
 By0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -49,19 +44,16 @@ By0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <name>HINT: build your case query
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
-out.caseQuery = CaseQuery.create().where().customVarCharField5().isLike("%HELLO WORLD%");</name>
-        <nameStyle>166,7
+out.caseQuery = CaseQuery.create().where().customField().stringField("CustomVarCharField5").isLike("%HELLO WORLD%");</name>
+        <nameStyle>193,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-By0 f5 92 148 544 76 -269 -32 #rect
+By0 f5 12 148 704 76 -344 -32 #rect
 By0 f5 @|IBIcon #fIcon
-By0 f2 actionDecl 'ch.ivy.add.portalkit.BuildCaseQueryData out;
-' #txt
 By0 f2 actionTable 'out=in;
 ' #txt
-By0 f2 type ch.ivy.add.portalkit.BuildCaseQueryData #txt
 By0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -75,7 +67,7 @@ By0 f3 expr out #txt
 By0 f3 107 64 232 64 #arcP
 By0 f4 expr out #txt
 By0 f4 344 64 469 64 #arcP
-By0 f6 364 148 288 86 #arcP
+By0 f6 364 148 238 86 #arcP
 >Proto By0 .type ch.ivy.add.portalkit.BuildCaseQueryData #txt
 >Proto By0 .processKind CALLABLE_SUB #txt
 >Proto By0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

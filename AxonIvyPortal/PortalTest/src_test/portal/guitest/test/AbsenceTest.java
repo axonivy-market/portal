@@ -8,6 +8,7 @@ import org.junit.Test;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AbsencePage;
+import portal.guitest.page.AddAbsencePage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.NewAbsencePage;
@@ -89,8 +90,8 @@ public class AbsenceTest extends BaseTest {
     AbsencePage absencePage = new AbsencePage();
     NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
     newAbsencePage.input(username, from, till, comment);
-    SettingDeputyPage settingDeputyPage = newAbsencePage.proceed();
-    settingDeputyPage.proceedWhenCreatingAbsence();
+    AddAbsencePage addAbsencePage = newAbsencePage.proceed();
+    addAbsencePage.proceedWhenCreatingAbsence();
   }
 
 }

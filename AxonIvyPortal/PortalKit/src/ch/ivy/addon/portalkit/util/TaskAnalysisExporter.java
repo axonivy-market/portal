@@ -71,7 +71,7 @@ public class TaskAnalysisExporter {
       case CASE_STATE:
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseState");
       case TASK_NAME:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskName");
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/taskName");
       case TASK_ID:
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskID");
       case TASK_CATEGORY:

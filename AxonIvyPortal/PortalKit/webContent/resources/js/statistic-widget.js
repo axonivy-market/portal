@@ -1,3 +1,6 @@
+var topValue;
+var leftValue;
+
 function bindCursorChangeEvent() {
   $('.js-drilldown-cursor').bind('jqplotDataHighlight', function(ev, seriesIndex, pointIndex, data, radius) {
     $('.jqplot-event-canvas').css('cursor', 'pointer');
@@ -6,14 +9,29 @@ function bindCursorChangeEvent() {
     $('.jqplot-event-canvas').css('cursor', 'default');
   });
   $('.js-expiry-chart').bind('jqplotDataClick', function(ev, seriesIndex, pointIndex, data) {
+    var $expiryChartDrillDown = $('.js-expiry-chart-drill-down');
+    var $expiryChartTaskList = $('.js-expiry-chart-task-list');
+    if (pointIndex === 0) { // Expired bar
+      $expiryChartDrillDown.hide();
+      $expiryChartTaskList.css('margin-top', '10px');
+    } else {
+      $expiryChartDrillDown.show();
+      $expiryChartTaskList.css('margin-top', '0px');
+    }
     var index = this.className.match(/expiry-chart-(\d+)/)[1];
     var widgetVar = 'context-menu-' + index;
     PF('context-menu-' + index).show();
-    $('.' + widgetVar).css({
-      left : ev.pageX,
-      top : ev.pageY,
-      position : 'absolute'
-    });
+    topValue = ev.pageY;
+    leftValue = ev.pageX;
+  });
+}
+
+function updateDrillDownPanelPosition(panel) {
+  var widgetVar = panel.widgetVar;
+  $('.' + widgetVar).css({
+    'left' : leftValue,
+    'top' : topValue,
+    'position' : 'absolute'
   });
 }
 
@@ -52,7 +70,7 @@ function barChartExtender() {
 function elapsedTimeBarChartExtender() {
   var currentAngle;
   var showLabel = !isNaN(this.cfg.data[0][0]);
-  if (window.screen.availWidth < 1366 || this.cfg.data[0].length > 3) {
+  if (window.screen.availWidth < 1366 || this.cfg.data[0].length > 2) {
     currentAngle = -70;
   } else {
     currentAngle = 0;

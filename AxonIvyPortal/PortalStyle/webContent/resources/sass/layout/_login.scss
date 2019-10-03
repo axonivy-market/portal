@@ -1,0 +1,82 @@
+.login-body {
+    background-image: url("\#{resource['serenity-layout:images/login/login-bg.jpg']}");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .login-panel {
+        width: 550px;
+        height: 480px;
+        background-color: #ffffff;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -275px;
+        margin-top: -240px;
+        padding: 0;
+        @include border-radius(2px);
+        @include multi-shadow(0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 6px 10px 0 rgba(0, 0, 0, 0.14));
+
+        .login-panel-header {
+            background-color: $primaryColor;
+            text-align: center;
+            padding: 8px 14px;
+
+            img {
+                vertical-align: middle;
+                width: 50px;
+            }
+        }
+
+        .login-panel-content {
+            padding: 50px 100px;
+
+            h1 {
+                font-size: 16px;
+                margin-top: 0;
+                margin-bottom: 16px;
+                text-align: center;
+            }
+
+            .ui-g-12, .ui-g-6 {
+                padding: 1em;
+
+                &:last-child {
+                    text-align: center;
+
+                    a {
+                        color: $accentColor;
+                    }
+                }
+            }
+
+            .password-reset {
+                text-align: right;
+
+                a {
+                    color: $textSecondaryColor;
+                }
+            }
+
+            .ui-chkbox-label {
+                margin: 0 0 0 8px;
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+@media (max-width: 640px) {
+    .login-body {
+        .login-panel {
+            left: 0;
+            margin-left: 0;
+            width: 100%;
+            
+            .login-panel-content {
+                padding: 50px 25px;
+            }
+        }
+    }
+}

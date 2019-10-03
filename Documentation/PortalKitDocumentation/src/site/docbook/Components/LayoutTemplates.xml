@@ -23,11 +23,6 @@
 				</listitem>
 				<listitem>
 					<para>
-						Case template
-					</para>
-				</listitem>
-				<listitem>
-					<para>
 						Task list template
 					</para>
 				</listitem>
@@ -44,7 +39,7 @@
 			</orderedlist>
 		</para>
 		<para>
-			These templates have the same header, which is a menu of applications that you configure in Administration page. Since version 6.4, Portal officially supports responsiveness for 3 resolutions: iMac (1920*1050), iPad (1366*1024) iPad Portrait: (1024*1366), every templates has its default responsiveness, you can refer to <link linkend="axonivyportal.components.layouttemplates.reponsiveness">Responsiveness</link> to override it. Besides, there are user settings like: Absences, Email, Language Settings and Administration (for admin only). Details about user settings can be found in <link linkend="axonivyportal.settings" endterm="axonivyportal.settings.title" />.
+			These templates have the same header, which is a menu of applications that you configure in Administration page. Since version 8.0, Portal officially supports responsiveness, every templates has its default responsiveness, you can refer to <link linkend="axonivyportal.components.layouttemplates.reponsiveness">Responsiveness</link> to override it. Besides, there are user settings like: Absences, Email, Language Settings and Administration (for admin only). Details about user settings can be found in <link linkend="axonivyportal.settings" endterm="axonivyportal.settings.title" />.
 			<mediaobject>
 				<imageobject>
 					<imagedata fileref="images/LayoutTemplates/portal-header.png" />
@@ -209,6 +204,19 @@
 				</listitem>
 				<listitem>
 					<para>
+						Set <code>task</code> value so that the <code>taskName</code> is available to users where they can see the task name of request. It is mandatory.
+						<para>
+							<code>&lt;ui:param name="task" value="#{ivy.task}" /&gt;</code>
+						</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/LayoutTemplates/task-name-template.png" />
+							</imageobject>
+						</mediaobject>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
 						Set <code>caseId</code> value so that the <code>Case information tab</code> is available to users where they can see info of case, documents, related tasks and history. It is mandatory.
 						<para>
 							<code>&lt;ui:param name="caseId" value="#{ivy.case.id}" /&gt;</code>
@@ -242,7 +250,7 @@
 						There are two values: "HORIZONTAL" and "VERTICAL".
 						Direction of ProcessChain component is "HORIZONTAL" by default.
 						<para>
-							<code>&lt;ui:param name="processChainDirection" value="#{VERTICAL}" /&gt;</code>
+							<code>&lt;ui:param name="processChainDirection" value="VERTICAL" /&gt;</code>
 						</para>
 					</para>
 				</listitem>
@@ -252,7 +260,7 @@
 						There are two values: "CIRCLE" and "LINE".
 						Shape of ProcessChain component is "CIRCLE" by default.
 						<para>
-							<code>&lt;ui:param name="processChainShape" value="#{LINE}" /&gt;</code>
+							<code>&lt;ui:param name="processChainShape" value="LINE" /&gt;</code>
 						</para>
 						<mediaobject>
 							<imageobject>
@@ -370,21 +378,6 @@
 			</orderedlist>
 		</sect3>
 	</sect2>
-	<sect2 xml:id="axonivyportal.components.layouttemplates.casetemplate">
-		<title>Case template</title>
-		<para>
-			Case template is similar to Task Template in both UI and usage. The difference is it is used for displaying case details functionality.
-		</para>
-		<sect3 xml:id="axonivyportal.components.layouttemplates.casetemplate.howtousecasetemplate">
-			<title>How to use case template</title>
-			<para>
-				Create a new HTML User Dialog and then use <code>ui:composition</code> to define template which you use inside.
-				<para>
-					<code>&lt;ui:composition template="/layouts/CaseTemplate.xhtml"&gt;</code>
-				</para>
-			</para>
-		</sect3>
-	</sect2>
 	<sect2 xml:id="axonivyportal.components.layouttemplates.defaulthomepatetemplate">
 		<title>Default homepage template</title>
 		<para>
@@ -461,7 +454,8 @@
 							<code/>
 						</para>
 						<para>
-							<code>out.taskView = TaskView.create().dataModel(dataModel).pageTitle("My Task List").hideTaskFilter(true).category(category).showHeaderToolbar(false).createNewTaskView();</code>
+							<code>out.taskView = TaskView.create().dataModel(dataModel).pageTitle("My Task List").hideTaskFilter(true).category(category)</code>
+							<code>.showHeaderToolbar(false).createNewTaskView();</code>
 						</para>
 					</para>
 				</listitem>
@@ -557,31 +551,18 @@
 	<sect2 xml:id="axonivyportal.components.layouttemplates.reponsiveness">
 		<title xml:id="axonivyportal.components.layouttemplates.reponsiveness.title">Responsiveness</title>
 		<para>
-			Since version 6.4, Portal officially supports responsiveness for 3 screen widths: iMac(width 1920), iPad landscape(width 1366) and iPad portrait(width 1024).
+			Since version 8.0, Portal has simplified ResponsiveToolKit and now Portal supports various screen solutions, not fit to 3 screen widths as before.
 		</para>
 		<para>
-			To apply your styles for the above resolutions, you can add your own media query css:
+			To apply your styles for the specific resolution, you can add your own media query css:
 			<para>
 				<code>
-					/* Small screen */
 					@media screen and (max-width: 1365px) {/*.....*/}
-				</code>
-			</para>
-			<para>
-				<code>
-					/* Medium screen */
-					@media screen and (min-width: 1366px) and (max-width: 1919px) {/*.....*/},
-				</code>
-			</para>
-			<para>
-				<code>
-					/* Large screen */
-					@media screen and (min-width: 1920px) {/*......*/}
 				</code>
 			</para>
 			<para>	
 				<para>In Portal's new design, the main container's width should be changed according to menu state (expand/colapse).</para> 
-				<para>To adapt the change, you need to initialize the <code>ResponsiveToolkit</code> Javascript object and introduce 3 objects to handle 3 screen resolutions and each object has to implement the <code>updateMainContainer</code> method.</para> Portal templates define their own responsiveness, you can redefine the footer section to override:
+				<para>To adapt the change, you need to initialize the <code>ResponsiveToolkit</code> Javascript object and introduce 1 object to handle screen resolutions and your object has to implement the <code>updateMainContainer</code> method.</para> Portal templates define their own responsiveness, you can redefine the footer section to override:
 				<para>
 					<para>E.g. Initialize <code>ResponsiveToolkit</code> for TaskList page.</para>
 					<para>
@@ -595,16 +576,10 @@
 							<code>$(function(){</code>
 						</para>
 						<para>
-							<code>var taskListLargeScreen = new TaskListLargeScreenHandler();</code>
+							<code>var simpleScreen = new TaskListScreenHandler();</code>
 						</para>
 						<para>
-							<code>var taskListMediumScreen = new TaskListMediumScreenHandler();</code>
-						</para>
-						<para>
-							<code>var taskListSmallScreen = new TaskListSmallScreenHandler();</code>
-						</para>
-						<para>
-							<code>var responsiveToolkit = ResponsiveToolkit(taskListLargeScreen, taskListMediumScreen, taskListSmallScreen);</code>
+							<code>var responsiveToolkit = ResponsiveToolkit(simpleScreen);</code>
 						</para>
 						<para>
 							<code>Portal.init(responsiveToolkit);</code>

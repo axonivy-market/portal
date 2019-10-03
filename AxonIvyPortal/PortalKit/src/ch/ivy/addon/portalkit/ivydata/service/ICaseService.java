@@ -2,7 +2,7 @@ package ch.ivy.addon.portalkit.ivydata.service;
 
 import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria;
-import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomVarCharSearchCriteria;
+import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 
 public interface ICaseService {
@@ -17,5 +17,5 @@ public interface ICaseService {
   
   IvyCaseResultDTO analyzeElapsedTimeByCaseCategory(CaseSearchCriteria criteria);
   
-  IvyCaseResultDTO findValuesOfCustomVarChar(CaseCustomVarCharSearchCriteria criteria);
+  IvyCaseResultDTO findValuesOfCustomString(CaseCustomFieldSearchCriteria criteria);
 }

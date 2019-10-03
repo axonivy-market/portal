@@ -1,10 +1,9 @@
 [Ivy]
-152AA5CA98B525F2 3.23 #module
+152AA5CA98B525F2 3.28 #module
 >Proto >Proto Collection #zClass
 Er0 ErrorHandler Big #zClass
 Er0 B #cInfo
 Er0 #process
-Er0 @TextInP .resExport .resExport #zField
 Er0 @TextInP .type .type #zField
 Er0 @TextInP .processKind .processKind #zField
 Er0 @AnnotationInP-0n ai ai #zField
@@ -23,10 +22,7 @@ Er0 f0 inParamTable 'out.exceptions=param.exceptions;
 ' #txt
 Er0 f0 outParamDecl '<> result;
 ' #txt
-Er0 f0 actionDecl 'ch.ivy.add.portalkit.ErrorHandlerData out;
-' #txt
 Er0 f0 callSignature handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>) #txt
-Er0 f0 type ch.ivy.add.portalkit.ErrorHandlerData #txt
 Er0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -36,11 +32,8 @@ Er0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Er0 f0 51 35 26 26 14 0 #rect
 Er0 f0 @|StartSubIcon #fIcon
-Er0 f1 type ch.ivy.add.portalkit.ErrorHandlerData #txt
 Er0 f1 51 227 26 26 14 0 #rect
 Er0 f1 @|EndSubIcon #fIcon
-Er0 f3 actionDecl 'ch.ivy.add.portalkit.ErrorHandlerData out;
-' #txt
 Er0 f3 actionTable 'out=in;
 ' #txt
 Er0 f3 actionCode 'import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
@@ -49,7 +42,6 @@ import ch.ivy.addon.portalkit.util.ErrorHandler;
 for (PortalIvyDataException exception : in.exceptions) {
 	ErrorHandler.addError(org.apache.log4j.Priority.ERROR, exception);
 }' #txt
-Er0 f3 type ch.ivy.add.portalkit.ErrorHandlerData #txt
 Er0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

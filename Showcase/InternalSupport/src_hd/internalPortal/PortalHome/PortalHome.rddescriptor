@@ -1,36 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
-    <method>
-        <name>getDataModel</name>
-        <description></description>
-        <outputParameter>
-            <name>dataModel</name>
-            <description></description>
-            <parameterType>ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </outputParameter>
-    </method>
-    <method>
-        <name>getStatisticCharts</name>
-        <description></description>
-        <outputParameter>
-            <name>statisticChartList</name>
-            <description></description>
-            <parameterType>java.util.List&lt;ch.ivy.addon.portalkit.statistics.StatisticChart&gt;</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </outputParameter>
-    </method>
-    <startMethod>
-        <name>start</name>
-        <description>Default dialog start method.</description>
-        <inputParameter>
-            <name>taskView</name>
-            <description></description>
-            <parameterType>ch.ivy.addon.portal.generic.view.TaskView</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </startMethod>
     <property>
         <name>guid</name>
         <value>15B0ED8770C44D41</value>

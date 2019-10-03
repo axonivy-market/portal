@@ -1,25 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>at.aws.ivy</groupId>
+  <groupId>ch.ivyteam.ivy.project.portal</groupId>
   <artifactId>portalStyle</artifactId>
-  <version>7.3.170.4</version>
+  <version>8.0.0.0-SNAPSHOT</version>
   <packaging>iar</packaging>
-  <distributionManagement>
-    <repository>
-      <id>central</id>
-      <url>https://repo.axonivy.io/artifactory/ext-release-local/</url>
-    </repository>
-    <snapshotRepository>
-      <id>central</id>
-      <url>https://repo.axonivy.io/artifactory/ext-snapshot-local/</url>
-    </snapshotRepository>
-  </distributionManagement>
   <properties>
-    <resources.directory.css>${resources.directory}/css</resources.directory.css>
-    <resources.directory.less>${resources.directory}/less/</resources.directory.less>
+    <resources.directory.theme>${resources.directory}/primefaces-serenity-ivy/</resources.directory.theme>
+    <resources.directory.css>${resources.directory}/primefaces-serenity-ivy/</resources.directory.css>
+    <libsass.version>0.2.10-libsass_3.5.3</libsass.version>
     <resources.directory>${project.basedir}/webContent/resources</resources.directory>
-    <build.plugin.version>7.4.0</build.plugin.version>
+    <build.plugin.version>7.4.1-SNAPSHOT</build.plugin.version>
   </properties>
   <build>
     <plugins>
@@ -28,24 +20,26 @@
         <artifactId>project-build-plugin</artifactId>
         <version>${build.plugin.version}</version>
         <extensions>true</extensions>
-        <configuration>
-        	<ivyVersion>7.3.1</ivyVersion>
-          <timeoutEngineStartInSeconds>120</timeoutEngineStartInSeconds>
-        </configuration>
       </plugin>
       <plugin>
-        <groupId>org.lesscss</groupId>
-        <artifactId>lesscss-maven-plugin</artifactId>
-        <version>1.7.0.1.1</version>
+        <groupId>com.github.warmuuh</groupId>
+        <artifactId>libsass-maven-plugin</artifactId>
+        <version>${libsass.version}</version>
+        <executions>
+          <execution>
+            <id>scss</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+        </executions>
         <configuration>
-          <sourceDirectory>${resources.directory.less}</sourceDirectory>
-          <outputDirectory>${resources.directory.css}</outputDirectory>
-          <outputFileFormat>theme.min.css</outputFileFormat>
-          <includes>
-            <include>theme.less</include>
-          </includes>
-          <force>true</force>
-          <compress>true</compress>
+          <inputPath>${resources.directory.theme}</inputPath>
+          <outputPath>${resources.directory.theme}</outputPath>
+          <generateSourceMap>false</generateSourceMap>
+          <generateSourceComments>false</generateSourceComments>
+          <outputStyle>compressed</outputStyle>
         </configuration>
       </plugin>
     </plugins>

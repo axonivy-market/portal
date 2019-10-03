@@ -164,7 +164,7 @@ public class DragAndDropController implements Serializable{
 
 	private void displayFileUploadPositionNotice() {
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, Ivy.cms().co("/Dialogs/components/CaseDocument/fileUploadElementPosition"), "");
-		  FacesContext.getCurrentInstance().addMessage("availableFormelements", message);
+		  FacesContext.getCurrentInstance().addMessage("available-form-elements", message);
 	}
     
     public void resetFormelementFooter(Formelement formelement){

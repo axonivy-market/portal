@@ -68,7 +68,7 @@ public class CaseFilterTest extends BaseTest {
     casePage.filterByDescription("Sick");
     casePage.saveFilter(filterName);
 
-    redirectToRelativeLink(HomePage.INTERNAL_SUPPORT_HOME_PAGE_URL);
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     casePage = mainMenuPage.selectCaseMenu();
 
     assertFalse(casePage.isFilterSelectionVisible());

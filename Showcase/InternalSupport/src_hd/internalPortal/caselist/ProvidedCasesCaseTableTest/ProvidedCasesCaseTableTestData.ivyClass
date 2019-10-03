@@ -1,4 +1,0 @@
-ProvidedCasesCaseTableTestData #class
-internalPortal.caselist.ProvidedCasesCaseTableTest #namespace
-cases java.util.List<ch.ivyteam.ivy.workflow.ICase> #field
-cases PERSISTENT #fieldModifier

@@ -1,0 +1,12 @@
+ShowcaseEntity2 #class
+ch.ivyteam.ivy.project.portal.examples.showcase #namespace
+objectNumber String #field
+objectNumber PERSISTENT #fieldModifier
+objectName String #field
+objectName PERSISTENT #fieldModifier
+startDate String #field
+startDate PERSISTENT #fieldModifier
+endDate String #field
+endDate PERSISTENT #fieldModifier
+type String #field
+type PERSISTENT #fieldModifier

@@ -10,7 +10,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.primefaces.context.RequestContext;
+import org.primefaces.PrimeFaces;
 
 import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -28,7 +28,7 @@ public class ErrorDisplayBean {
   public void displayErrors(List<PortalIvyDataException> errors) {
     setErrors(errors);
     if (CollectionUtils.isNotEmpty(errors)) {
-      RequestContext.getCurrentInstance().update("application-error-dialog-component:application-error-dialog");
+      PrimeFaces.current().ajax().update("application-error-dialog-component:application-error-dialog");
       String errorLink = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/found") + errors.size() + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/clickToShowDetail");
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/errorNotification"), "<span style=\"cursor:pointer\"><a onclick=\"PF('application-error-dialog').show(); hideGrowl()\">"+errorLink+"</a></span>"));
       FacesContext.getCurrentInstance().validationFailed();

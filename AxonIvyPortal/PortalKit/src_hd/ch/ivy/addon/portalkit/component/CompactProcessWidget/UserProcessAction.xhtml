@@ -3,25 +3,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile"
-  xmlns:cc="http://xmlns.jcp.org/jsf/composite">
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:cc="http://xmlns.jcp.org/jsf/composite">
 
 <ui:composition>
-  <h:panelGroup id="process-widget-action" styleClass="process-widget-action" rendered="#{compactProcessWidgetBean.displayShowAllProcessesLink}">
+  <h:panelGroup id="process-widget-action" styleClass="process-widget-action u-hidden-md-down" layout="block" rendered="#{compactProcessWidgetBean.displayShowAllProcessesLink}">
     <h:form id="user-process-action-form" rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled}"
       styleClass="js-compact-mode-element process-button-position process-action-button process-widget-action-form">
       <h:panelGroup layout="block" rendered="#{not compactProcessWidgetBean.editMode}">
         <p:commandLink id="show-adding-dialog-commmand" rendered="#{compactProcessWidgetBean.displayShowAllProcessesLink}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addNewProcess')}"
-          actionListener="#{compactProcessWidgetBean.addNewUserProcess(cc.clientId)}"
+          actionListener="#{compactProcessWidgetBean.addNewUserProcess(cc.clientId)}" styleClass="ui-sm-hidden ui-md-hidden"
           update="#{cc.clientId}:add-new-process-dialog" oncomplete="PF('add-new-process-dialog').show()" />
-        <p:spacer width="10" />
-        <p:commandLink id="editing-switch-command"
+        <p:spacer width="10" styleClass="ui-sm-hidden ui-md-hidden" />
+        <p:commandLink id="editing-switch-command" styleClass="ui-sm-hidden ui-md-hidden"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editProcesses')}"
           actionListener="#{compactProcessWidgetBean.switchEditMode}"
           rendered="#{not empty compactProcessWidgetBean.userProcesses}"
           update="@form #{cc.clientId}:process-list #{cc.clientId}:header" />
-        <p:spacer width="10" />
+        <p:spacer width="10" styleClass="ui-sm-hidden ui-md-hidden" />
         <p:commandLink id="name-sort-command" styleClass="name-sort-command"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/sortByName')}"
           actionListener="#{compactProcessWidgetBean.sortUserProcessList(compactProcessWidgetBean.userProcesses)}"

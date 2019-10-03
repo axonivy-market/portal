@@ -95,8 +95,8 @@ public class CaseSearchCriteria {
   }
 
   private CaseQuery queryForCategory(String keyword) {
-    String startingWithCategory = String.format("%s%%", keyword);
-    return CaseQuery.create().where().category().isLike(startingWithCategory);
+      String startingWithCategory = String.format("%s%%", keyword);
+      return CaseQuery.create().where().category().isLike(startingWithCategory);
   }
 
   private static final class CaseSortingQueryAppender {

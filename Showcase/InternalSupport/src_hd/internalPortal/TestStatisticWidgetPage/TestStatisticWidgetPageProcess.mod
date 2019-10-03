@@ -1,12 +1,9 @@
 [Ivy]
-16150F8167BC0EF5 3.24 #module
+16150F8167BC0EF5 3.28 #module
 >Proto >Proto Collection #zClass
 Ts0 TestStatisticWidgetPageProcess Big #zClass
 Ts0 RD #cInfo
 Ts0 #process
-Ts0 @TextInP .ui2RdDataAction .ui2RdDataAction #zField
-Ts0 @TextInP .rdData2UIAction .rdData2UIAction #zField
-Ts0 @TextInP .resExport .resExport #zField
 Ts0 @TextInP .type .type #zField
 Ts0 @TextInP .processKind .processKind #zField
 Ts0 @AnnotationInP-0n ai ai #zField
@@ -16,16 +13,14 @@ Ts0 @TextInP .xml .xml #zField
 Ts0 @TextInP .responsibility .responsibility #zField
 Ts0 @GridStep f4 '' #zField
 Ts0 @GridStep f2 '' #zField
-Ts0 @RichDialogInitStart f0 '' #zField
-Ts0 @RichDialogProcessEnd f1 '' #zField
+Ts0 @UdInit f0 '' #zField
+Ts0 @UdProcessEnd f1 '' #zField
 Ts0 @CallSub f8 '' #zField
 Ts0 @PushWFArc f10 '' #zField
 Ts0 @PushWFArc f5 '' #zField
 Ts0 @PushWFArc f9 '' #zField
 Ts0 @PushWFArc f3 '' #zField
 >Proto Ts0 Ts0 TestStatisticWidgetPageProcess #zField
-Ts0 f4 actionDecl 'internalPortal.TestStatisticWidgetPage.TestStatisticWidgetPageData out;
-' #txt
 Ts0 f4 actionTable 'out=in;
 ' #txt
 Ts0 f4 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
@@ -33,7 +28,6 @@ Ts0 f4 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationSe
 RegisteredApplicationService service = new RegisteredApplicationService();
 java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
 in.involvedApplications = apps;' #txt
-Ts0 f4 type internalPortal.TestStatisticWidgetPage.TestStatisticWidgetPageData #txt
 Ts0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -45,8 +39,6 @@ Ts0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ts0 f4 162 54 36 24 -47 19 #rect
 Ts0 f4 @|StepIcon #fIcon
-Ts0 f2 actionDecl 'internalPortal.TestStatisticWidgetPage.TestStatisticWidgetPageData out;
-' #txt
 Ts0 f2 actionTable 'out=in;
 ' #txt
 Ts0 f2 actionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
@@ -55,7 +47,6 @@ Ts0 f2 actionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
 StatisticService service = new StatisticService();
 in.statisticChartList = service.findStatisticChartsByUserId(ivy.session.getSessionUser().getId());
 ' #txt
-Ts0 f2 type internalPortal.TestStatisticWidgetPage.TestStatisticWidgetPageData #txt
 Ts0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -68,9 +59,7 @@ Ts0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ts0 f2 453 54 36 24 -49 14 #rect
 Ts0 f2 @|StepIcon #fIcon
 Ts0 f0 guid 16150F9B6D41C56F #txt
-Ts0 f0 type internalPortal.TestStatisticWidgetPage.TestStatisticWidgetPageData #txt
 Ts0 f0 method start() #txt
-Ts0 f0 disableUIEvents true #txt
 Ts0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -84,13 +73,10 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f0 57 55 22 22 -16 13 #rect
-Ts0 f0 @|RichDialogInitStartIcon #fIcon
-Ts0 f1 type internalPortal.TestStatisticWidgetPage.TestStatisticWidgetPageData #txt
+Ts0 f0 @|UdInitIcon #fIcon
 Ts0 f1 569 55 22 22 14 0 #rect
-Ts0 f1 @|RichDialogProcessEndIcon #fIcon
-Ts0 f8 type internalPortal.TestStatisticWidgetPage.TestStatisticWidgetPageData #txt
+Ts0 f1 @|UdProcessEndIcon #fIcon
 Ts0 f8 processCall 'Functional Processes/BuildTaskQuery:buildTaskQuery()' #txt
-Ts0 f8 doCall true #txt
 Ts0 f8 requestActionDecl '<> param;
 ' #txt
 Ts0 f8 responseActionDecl 'internalPortal.TestStatisticWidgetPage.TestStatisticWidgetPageData out;

@@ -1,0 +1,129 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="case" type="ch.ivyteam.ivy.workflow.ICase" required="true" />
+  <cc:attribute name="showItemDetailsHeader" default="true" />
+  <cc:attribute name="showItemDetailRelated" default="true" />
+  <cc:attribute name="showItemDetailsHistories" default="true" />
+  <cc:attribute name="showItemDetailDocuments" default="true" />
+  <cc:attribute name="showItemBackButton" default="true" />
+  <cc:attribute name="descriptionComponentToUpdate" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="case" value="#{cc.attrs.case}" />
+  <div class="ui-g">
+
+    <h:panelGroup styleClass="ui-g-12" rendered="#{cc.attrs.showItemDetailsHeader}" layout="block">
+      <h:form id="case-detail-title-form" styleClass="ui-g-12 case-detail-title-header-container">
+        <h:panelGroup id="case-detail-name" styleClass="case-detail-header" layout="block">
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}: "
+            styleClass="case-detail-name-prefix" />
+          <p:inplace id="case-name-edit-inplace" editor="true"
+            disabled="#{!caseActionBean.canChangeName(case) or case.state eq 'DONE'}"
+            saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+            cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+            widgetVar="case-detail-name-edit-inplace"
+            label="#{empty case.getName() ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CasesNameIsNot') : case.name}"
+            styleClass="case-detail-name-inplace-edit u-truncate-text">
+            <p:inputText id="case-detail-name-input" value="#{case.name}" maxlength="200"
+              styleClass="case-detail-name-input"
+              onkeypress="if(event.keyCode == 13) {PF('case-name-edit-inplace').save()}" />
+            <p:ajax event="save" update="case-detail-title-form" />
+            <f:passThroughAttribute name="onclick"
+              value="#{caseActionBean.canChangeName(case) ? event.stopPropagation():''}" />
+          </p:inplace>
+        </h:panelGroup>
+
+        <p:commandButton rendered="#{cc.attrs.showItemBackButton}" id="back-to-cases" onclick="backToPrevPage();"
+          styleClass="case-details-back-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
+          icon="fa fa-reply-all" iconPos="left" type="button" />
+        <p:remoteCommand name="backToCasesList" actionListener="#{caseBean.backToCasesList()}" />
+      </h:form>
+    </h:panelGroup>
+    <div class="Separator MarTop0" />
+    <div class="case-detail-body ui-g-12 u-padding-0">
+      <div class="ui-g">
+        <!-- Custom panel at top section -->
+        <cc:renderFacet name="caseItemDetailCustomTop" />
+
+        <!-- General & description box -->
+        <div class="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
+          <div class="card card-w-title case-detail-card">
+            <div class="ui-g-12 u-padding-0 case-detail-section-title-container">
+              <div class="case-detail-section-title u-truncate-text u-padding-0">
+                <i class="fa fa-user-circle" />
+                #{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseDetail/DataDescription')}
+              </div>
+
+              <h:panelGroup class="u-padding-0 case-history-button-container u-truncate-text" rendered="#{caseWidgetBean.showCaseDetails}" layout="block">
+                <p:link id="show-additional-case-details-link" styleClass="additional-case-details-link" target="_blank"
+                  href="#{caseWidgetBean.getAdditionalCaseDetailsPageUri(case)}"
+                  rendered="#{caseWidgetBean.showCaseDetails}">
+                  <i class="fa fa-external-link-square case-details-note-add-link-icon" />
+                  <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showAdditionalPage')}" styleClass="ui-sm-hidden" />
+                </p:link>
+                <p:tooltip for="show-additional-case-details-link"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showAdditionalPage')}"
+                  trackMouse="true" />
+              </h:panelGroup>
+            </div>
+            <div class="Separator ui-g-12 u-padding-0" />
+            <div class="ui-g-12 u-padding-0">
+              <ic:ch.ivy.addon.portalkit.component.CaseItemGeneralInformation id="general-information" case="#{case}" />
+            </div>
+            <div class="ui-g-12 u-padding-0">
+              <ic:ch.ivy.addon.portalkit.component.CaseItemDescription id="description" case="#{case}"
+                descriptionComponentToUpdate="#{cc.attrs.descriptionComponentToUpdate}" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Histories box -->
+        <h:panelGroup id="history-container" rendered="#{cc.attrs.showItemDetailsHistories}" layout="block"
+          styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
+          <div class="card card-w-title case-detail-card">
+            <ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="case-histories" case="#{case}" />
+          </div>
+        </h:panelGroup>
+
+        <!-- Custom panel at middle section -->
+        <cc:renderFacet name="caseItemDetailCustomMiddle" />
+
+        <!-- Related running box -->
+        <h:panelGroup rendered="#{cc.attrs.showItemDetailRelated}" styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
+          <div class="card card-w-title case-detail-card">
+            <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="related-tasks" case="#{case}" />
+          </div>
+        </h:panelGroup>
+
+        <!-- Documents box -->
+        <h:panelGroup rendered="#{cc.attrs.showItemDetailDocuments}"
+          styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
+          <div class="card card-w-title case-detail-card">
+            <ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}"
+              componentToUpdate="#{p:component('history-container')}" />
+          </div>
+        </h:panelGroup>
+
+        <!-- Custom panel at bottom section -->
+        <cc:renderFacet name="caseItemDetailCustomBottom" />
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+      function backToPrevPage() {
+        if (document.referrer) {
+          window.history.back();
+        } else {
+          backToCasesList();
+        }
+      }
+    </script>
+</cc:implementation>
+</html>

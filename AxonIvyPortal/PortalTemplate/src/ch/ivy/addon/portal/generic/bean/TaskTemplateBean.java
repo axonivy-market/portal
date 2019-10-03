@@ -10,6 +10,9 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.bo.AdhocHistory;
+import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+import ch.ivy.addon.portalkit.service.AdhocHistoryService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivyteam.ivy.casemap.runtime.ICaseMapService;
 import ch.ivyteam.ivy.casemap.runtime.model.ICaseMap;
@@ -25,6 +28,7 @@ public class TaskTemplateBean implements Serializable{
 
   private List<IStartableSideStep> sideStepList;
   private IStartableSideStep selectedSideStep;
+  private List<AdhocHistory> adhocHistories;
 
   public List<IStartableSideStep> getSideStepList() {
     return sideStepList;
@@ -37,7 +41,7 @@ public class TaskTemplateBean implements Serializable{
   public void startAdhoc() {
     PortalNavigator portalNavigator = new PortalNavigator();
     ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.wf().getApplication());
-    String url = processStartCollector.findACMLink();
+    String url = processStartCollector.findExpressAdhocWFLink();
     url = url + "?originalTaskId=" + Ivy.wfTask().getId();
     portalNavigator.redirect(url);
   }
@@ -47,9 +51,9 @@ public class TaskTemplateBean implements Serializable{
     portalNavigator.redirect(selectedSideStep.getStartLink().getAbsoluteEncoded());
   }
 
-  public boolean hasSelfService() {
+  public boolean hasExpressAdhocWF() {
     ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.wf().getApplication());
-    String adhocUrl = processStartCollector.findACMLink();
+    String adhocUrl = processStartCollector.findExpressAdhocWFLink();
     return !adhocUrl.isEmpty();
   }
 
@@ -67,6 +71,33 @@ public class TaskTemplateBean implements Serializable{
       sortSideStepsByName(sideStepList);
     }
     return sideStepList;
+  }
+  
+  public boolean hasAdhocTasks() {
+    return AdditionalProperty.ORIGINAL_ADHOC_EXPRESS_TASK.toString().equals(Ivy.wfTask().customFields().stringField(AdditionalProperty.ORIGINAL_ADHOC_EXPRESS_TASK.toString()).getOrNull());
+  }
+  
+  public boolean getIsFirstTimeOpenOriginalAdhocTask() {
+    return AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString().equals(Ivy.wfTask().customFields().stringField(AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString()).getOrNull());
+  }
+  
+  public void onCloseAdhocTaskHistoryDialog() {
+    Ivy.wfTask().customFields().stringField(AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString()).delete();
+  }
+  
+  public String getAdhocCreationMessage() {
+    AdhocHistoryService adhocHistoryService = new AdhocHistoryService();
+    boolean hasAdhocHistory = adhocHistoryService.hasAdhocHistory(Ivy.wfTask().getId());
+    return hasAdhocHistory ? Ivy.cms().co("/ch.ivy.addon.portal.generic/OpenTaskTemplate/reCreateAdhocWarning") : Ivy.cms().co("/ch.ivy.addon.portal.generic/OpenTaskTemplate/goToAdhocWarning");
+  }
+  
+  public List<AdhocHistory> getAllAdhocHistories() {
+    if (adhocHistories == null) {
+      AdhocHistoryService adhocHistoryService = new AdhocHistoryService();
+      adhocHistories = adhocHistoryService.getHistoriesByTaskID(Ivy.wfTask().getId());
+      adhocHistories.sort((first, second) -> second.getTimestamp().compareTo(first.getTimestamp()));
+    }
+    return adhocHistories;
   }
 
   public boolean checkSideStepsEnabled(String caseId) {
