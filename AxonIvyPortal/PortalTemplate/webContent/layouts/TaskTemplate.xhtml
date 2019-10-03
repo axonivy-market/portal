@@ -18,7 +18,7 @@
           <ui:insert name="breadCrumb" />
 
           <div class="#{processChainDirection eq 'VERTICAL' ? '' : 'task-template-title-horizontal-container'}">
-            <h:panelGroup layout="block"
+            <h:panelGroup layout="block" rendered="#{task ne null}"
               styleClass="task-template-title #{processChainDirection eq 'VERTICAL' ? 'task-name-vertical-process-chain' : ''} #{processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
               <ui:insert name="taskName">
                 <span class=" fa fa-check-square-o task-template-title-icon" />
@@ -106,8 +106,8 @@
                 rendered="#{showCaseStatusInfoTab == null ? true : showCaseStatusInfoTab}">
                 <ui:insert name="caseStatusTab">
                   <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/noCaseId')}"
-                    rendered="#{caseWidgetBean.isHiddenCase(case)}" />
-                  <h:panelGroup id="case-details-panel" layout="block" rendered="#{!caseWidgetBean.isHiddenCase(case)}"
+                    rendered="#{case ne null and caseWidgetBean.isHiddenCase(case)}" />
+                  <h:panelGroup id="case-details-panel" layout="block" rendered="#{case ne null and !caseWidgetBean.isHiddenCase(case)}"
                     styleClass="js-case-default-widget-container case-default-widget-container js-simple-container js-for-search-result case-details">
                     <!-- CASE DETAIS -->
                     <div class="ui-g">

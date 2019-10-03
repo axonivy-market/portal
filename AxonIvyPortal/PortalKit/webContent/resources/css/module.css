@@ -1619,23 +1619,18 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 
 .compact-processes-container .process-start-list-item {
  margin: 2px 3px 5px 2px;
-} 
+}
 
-@media (max-height: 1023px) {
+/* Fix for screen Full HD */
+@media  screen and (min-device-height: 1024px) {
   .compact-processes-container {
-    max-height: 110px;
+    max-height: 275px;
   }
 }
 
-@media (min-height: 1024px) and (max-height: 1049px) {
+@media  screen and (min-width: 1024px) {
   .compact-processes-container {
-    max-height: 385px;
-  }
-}
-
-@media (min-height: 1050px) {
-  .compact-processes-container {
-    max-height: 385px;
+    max-height: 275px;
   }
 }
 
@@ -5148,10 +5143,6 @@ _:-ms-fullscreen, :root .case-related-command-link {
 /*====================FIX FOR PRIMEFACES 7 STYLE========================*/
 span.ui-inputnumber.ui-widget.ui-state-error {
 	border: 0 !important;
-}
-div.ui-selectonelistbox.ui-inputfield.ui-widget.ui-state-focus {
-	background-color: transparent;
-	border: solid 1px #dedede;
 }
 /*====================END FIX FOR PRIMEFACES 7 STYLE========================*/
 .upload-container {
