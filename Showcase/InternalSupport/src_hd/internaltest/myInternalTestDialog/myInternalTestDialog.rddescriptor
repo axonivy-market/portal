@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
-    <startMethod>
-        <name>start</name>
-        <description>Default dialog start method.</description>
-        <inputParameter>
-            <name>cases</name>
-            <description></description>
-            <parameterType>java.util.List&lt;ch.ivyteam.ivy.workflow.ICase&gt;</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <outputParameter>
-            <name>cases</name>
-            <description></description>
-            <parameterType>java.util.List&lt;ch.ivyteam.ivy.workflow.ICase&gt;</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </outputParameter>
-    </startMethod>
     <property>
         <name>guid</name>
         <value>146AEAC5C8A5BF79</value>

@@ -63,14 +63,14 @@ public class SideStepService implements ISideStepService {
   private IvySideStep createAdhocSideStep(ICase iCase) {
     IApplication application = iCase.getApplication();
     ProcessStartCollector collector = new ProcessStartCollector(application);
-    String acmLink = collector.findACMLink();
-    if (StringUtils.isBlank(acmLink)) {
+    String expressAdhocWFLink = collector.findExpressAdhocWFLink();
+    if (StringUtils.isBlank(expressAdhocWFLink)) {
       return null;
     }
     
     IvySideStep adhoc = new IvySideStep();
     adhoc.setName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/sidestep/addAdhocTask"));
-    adhoc.setStartLink(acmLink);
+    adhoc.setStartLink(expressAdhocWFLink);
     adhoc.setAdhoc(true);
     return adhoc;
   }

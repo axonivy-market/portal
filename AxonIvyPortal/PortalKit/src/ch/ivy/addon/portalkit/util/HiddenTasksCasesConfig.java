@@ -9,7 +9,7 @@ import ch.ivyteam.ivy.bpm.error.BpmError;
 import ch.ivyteam.ivy.server.ServerFactory;
 
 public class HiddenTasksCasesConfig {
-  private static final String PORTAL_HIDDEN_TASK_CASE_EXCLUDED = "PortalHiddenTaskCaseExcluded";
+  public static final String PORTAL_HIDDEN_TASK_CASE_EXCLUDED = "PortalHiddenTaskCaseExcluded";
 
   private HiddenTasksCasesConfig() {
     

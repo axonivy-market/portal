@@ -70,6 +70,11 @@ public class IvyCacheService {
     return entry == null ? null : entry.getValue();
   }
   
+  public Object getAnnouncementSettingsFromCache(String attributeName){
+    IDataCacheEntry entry = applicationCache().getEntry(IvyCacheIdentifier.PORTAL_ANNOUNCEMENT_CACHE_GROUP_NAME, attributeName);
+    return entry == null ? null : entry.getValue();
+  }
+  
   public List<IDataCacheEntry> getAllGlobalSettingsFromCache(){
     IDataCacheGroup group = applicationCache().getGroup(IvyCacheIdentifier.GLOBAL_SETTING_CACHE_GROUP_NAME);
     if (group != null && CollectionUtils.isNotEmpty(group.getEntries())){
@@ -82,6 +87,10 @@ public class IvyCacheService {
     applicationCache().setEntry(IvyCacheIdentifier.GLOBAL_SETTING_CACHE_GROUP_NAME, name, value);
   }
   
+  public void cacheAnnouncementSettings(String name, Object value){
+    applicationCache().setEntry(IvyCacheIdentifier.PORTAL_ANNOUNCEMENT_CACHE_GROUP_NAME, name, value);
+  }
+  
   public void invalidateGlobalSettingCache(){
     IDataCacheGroup groupNameCurrentApp = applicationCache().getGroup(IvyCacheIdentifier.GLOBAL_SETTING_CACHE_GROUP_NAME);
     if (groupNameCurrentApp != null){
@@ -91,12 +100,21 @@ public class IvyCacheService {
     invalidateGlobalSettingOnApp(PortalConstants.PORTAL_APPLICATION_NAME);
   }
 
+  public void invalidateCacheGroupOfAllPortalApps(String groupName) {
+    List<IApplication> apps = ServerService.getInstance().getApplicationsRelatedToPortal();
+    apps.stream().map(app -> app.getAdapter(IDataCache.class)).filter(Objects::nonNull)
+        .map(dataCache -> dataCache.getGroup(groupName)).filter(Objects::nonNull).forEach(cacheGroup -> {
+          cacheGroup.invalidateAllEntries();
+        });
+    Ivy.log().info("CLEAR CACHE GROUP {0} OF ALL ALLICATIONS RELATED TO PORTAL", groupName);
+  }
+
   public void invalidateGlobalSettingOnApp(String applicationName) {
     try {
       ServerFactory.getServer().getSecurityManager().executeAsSystem(() ->{
         IApplication findApplication = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(applicationName);
         if (findApplication != null) {
-          IDataCache cache = (IDataCache) findApplication .getAdapter(IDataCache.class);
+          IDataCache cache = findApplication .getAdapter(IDataCache.class);
           if (cache != null) {
             IDataCacheGroup wsGroupName = cache.getGroup(IvyCacheIdentifier.GLOBAL_SETTING_CACHE_GROUP_NAME);
             if (wsGroupName != null){

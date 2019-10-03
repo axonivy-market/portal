@@ -6,17 +6,19 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.faces.event.ValueChangeEvent;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.CollectionUtils;
-import org.primefaces.context.RequestContext;
+import org.primefaces.PrimeFaces;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bo.CaseColumnsConfiguration;
+import ch.ivy.addon.portalkit.casefilter.CaseCategoryFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterContainer;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
@@ -25,9 +27,9 @@ import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
-import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.service.CaseColumnsConfigurationService;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
@@ -81,11 +83,10 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
       Map<String, Object> filters) {
     if (first == 0) {
       initializedDataModel();
-      RequestContext.getCurrentInstance().execute("updateCaseCount()");
+      PrimeFaces.current().executeScript("updateCaseCount()");
     }
     
     List<ICase> foundCases = findCases(criteria, first, pageSize);
-    RequestContext.getCurrentInstance().execute("caseListToolkit.responsive()");
     data.addAll(foundCases);
     return foundCases;
   }
@@ -243,9 +244,9 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
    * <b>Example: </b> <code><pre>
    * if ("CustomVarcharField5".equalsIgnoreCase(criteria.getSortField())) {
    *   if (criteria.isSortDescending()) {
-   *     caseQuery.orderBy().customVarCharField5().descending();
+   *     caseQuery.orderBy().customField().stringField("CustomVarCharField5").descending();
    *   } else {
-   *     caseQuery.orderBy().customVarCharField5();
+   *     caseQuery.orderBy().customField().stringField("CustomVarCharField5");
    *   }
    * }
    * </pre></code>
@@ -325,9 +326,13 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   private void restoreSessionAdvancedFilters() throws IllegalAccessException, InvocationTargetException {
     if (!isNotKeepFilter) {
       List<CaseFilter> sessionCaseFilters = UserUtils.getSessionCaseAdvancedFilterAttribute();
-      for (CaseFilter filter : filters) {
-        for (CaseFilter sessionCaseFilter : sessionCaseFilters) {
-          copyProperties(sessionCaseFilter, filter);
+      if(sessionCaseFilters.isEmpty()) {
+        selectedFilters.addAll(filters.stream().filter(CaseFilter::defaultFilter).collect(Collectors.toList()));
+      } else {
+        for (CaseFilter filter : filters) {
+          for (CaseFilter sessionCaseFilter : sessionCaseFilters) {
+            copyProperties(sessionCaseFilter, filter);
+          }
         }
       }
     }
@@ -337,6 +342,9 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
       throws IllegalAccessException, InvocationTargetException {
     if (sessionCaseFilter.getClass() == filter.getClass()) {
       BeanUtils.copyProperties(filter, sessionCaseFilter);
+      if (filter instanceof CaseCategoryFilter) {
+        ((CaseCategoryFilter) filter).updateRootAndCategoryPaths();
+      }
       selectedFilters.add(filter);
     }
   }

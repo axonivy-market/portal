@@ -1,5 +1,7 @@
 package ch.internalsupport;
 
+import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_VARCHAR_FIELD1;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,7 +37,7 @@ public class CustomerTypeFilter extends TaskFilter {
     }
 
     String containingKeyword = String.format("%%%s%%", selectedCustomerType.trim());
-    return TaskQuery.create().where().customVarCharField1().isLikeIgnoreCase(containingKeyword);
+    return TaskQuery.create().where().customField().stringField(CUSTOM_VARCHAR_FIELD1).isLikeIgnoreCase(containingKeyword);
   }
 
   @Override

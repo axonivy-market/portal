@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
-    <startMethod>
-        <name>useTaskViewWithMenuState</name>
-        <description></description>
-        <inputParameter>
-            <name>taskView</name>
-            <description></description>
-            <parameterType>ch.ivy.addon.portal.generic.view.TaskView</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <inputParameter>
-            <name>menuState</name>
-            <description></description>
-            <parameterType>String</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </startMethod>
     <property>
         <name>guid</name>
         <value>1520FC1119BEEF41</value>

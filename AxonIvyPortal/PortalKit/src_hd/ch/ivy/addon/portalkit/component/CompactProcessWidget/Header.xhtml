@@ -3,17 +3,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile"
-  xmlns:cc="http://xmlns.jcp.org/jsf/composite">
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:cc="http://xmlns.jcp.org/jsf/composite">
 
 <ui:composition>
   <h:panelGroup id="header" styleClass="widget-header" layout="block">
     <h:panelGroup class="widget-header-main">
-      <span class="widget-header-main-title">#{cc.attrs.title}</span>
+      <p:commandLink id="toggle-processes-link" styleClass="toggle-processes-link ui-lg-hidden ui-xl-hidden ui-md-hidden fa-plus"
+             global="false" onclick="toggleShowProcessList();" value="#{cc.attrs.mobileTitle}" />
+      <span class="widget-header-main-title ui-sm-hidden">#{cc.attrs.title}</span>
       <h:panelGroup styleClass="widget-header-main-menu" rendered="#{compactProcessWidgetBean.displayShowAllProcessesLink and not compactProcessWidgetBean.editMode}">
         <cc:renderFacet name="headerToolbar" />
       </h:panelGroup>
     </h:panelGroup>
   </h:panelGroup>
+   <script>
+     function toggleShowProcessList() {
+       $('[id $= "all-processes-container"]').toggleClass("ui-sm-hidden").toggleClass("ui-md-hidden");
+       $('[id $= "toggle-processes-link"]').toggleClass("fa-plus").toggleClass("fa-minus");
+     }
+   </script>
 </ui:composition>
 </html>

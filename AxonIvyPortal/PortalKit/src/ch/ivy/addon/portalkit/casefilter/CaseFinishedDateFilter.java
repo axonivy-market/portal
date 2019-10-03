@@ -74,12 +74,17 @@ public class CaseFinishedDateFilter extends CaseFilter {
     if (fromFinishedDate != null && toFinishedDate != null && (fromFinishedDate.compareTo(toFinishedDate) > 0)) {
       FacesContext.getCurrentInstance().validationFailed();
       FacesContext.getCurrentInstance().addMessage(
-          null,
+          "advanced-filter-error-messages",
           new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co(
               "/ch.ivy.addon.portalkit.ui.jsf/common/dateFromBiggerThanTo"), null));
     }
   }
 
+  @Override
+  public boolean defaultFilter() {
+    return true;
+  }
+  
   public Date getFromFinishedDate() {
     return fromFinishedDate;
   }

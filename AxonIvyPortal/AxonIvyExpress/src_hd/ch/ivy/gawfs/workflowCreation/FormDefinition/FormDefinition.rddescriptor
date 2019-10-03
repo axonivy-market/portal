@@ -1,56 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
-    <method>
-        <name>createInputField</name>
-        <description></description>
-    </method>
-    <method>
-        <name>createInputTextArea</name>
-        <description></description>
-    </method>
-    <method>
-        <name>createManyCheckbox</name>
-        <description></description>
-    </method>
-    <method>
-        <name>createOneRadio</name>
-        <description></description>
-    </method>
-    <method>
-        <name>createFileUpload</name>
-        <description></description>
-    </method>
-    <method>
-        <name>moveNextTask</name>
-        <description></description>
-    </method>
-    <method>
-        <name>moveToTask</name>
-        <description></description>
-        <inputParameter>
-            <name>index</name>
-            <description></description>
-            <parameterType>java.lang.Integer</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <startMethod>
-        <name>start</name>
-        <description>Default dialog start method.</description>
-        <inputParameter>
-            <name>data</name>
-            <description></description>
-            <parameterType>gawfs.Data</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <outputParameter>
-            <name>data</name>
-            <description></description>
-            <parameterType>gawfs.Data</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </outputParameter>
-    </startMethod>
     <property>
         <name>guid</name>
         <value>1574EBDBE95EEDFF</value>

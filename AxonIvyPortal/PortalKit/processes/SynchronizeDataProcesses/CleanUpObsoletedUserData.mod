@@ -1,10 +1,9 @@
 [Ivy]
-1626C02D46BF5153 3.23 #module
+1626C02D46BF5153 3.28 #module
 >Proto >Proto Collection #zClass
 Ca0 CleanUpObsoletedUserData Big #zClass
 Ca0 B #cInfo
 Ca0 #process
-Ca0 @TextInP .resExport .resExport #zField
 Ca0 @TextInP .type .type #zField
 Ca0 @TextInP .processKind .processKind #zField
 Ca0 @AnnotationInP-0n ai ai #zField
@@ -20,8 +19,6 @@ Ca0 @GridStep f2 '' #zField
 Ca0 @PushWFArc f3 '' #zField
 Ca0 @PushWFArc f1 '' #zField
 >Proto Ca0 Ca0 CleanUpObsoletedUserData #zField
-Ca0 f7 actionDecl 'ch.ivy.add.portalkit.Data out;
-' #txt
 Ca0 f7 actionTable 'out=in;
 ' #txt
 Ca0 f7 actionCode 'import ch.ivy.addon.portalkit.service.CleanUpObsoletedUserDataService;
@@ -29,7 +26,6 @@ Ca0 f7 actionCode 'import ch.ivy.addon.portalkit.service.CleanUpObsoletedUserDat
 ivy.log.info("Start to clean up data of obsoleted users");
 CleanUpObsoletedUserDataService cleanUpObsoletedUserDataService = new CleanUpObsoletedUserDataService();
 cleanUpObsoletedUserDataService.cleanUpData();' #txt
-Ca0 f7 type ch.ivy.add.portalkit.Data #txt
 Ca0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -39,7 +35,6 @@ Ca0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ca0 f7 102 117 36 24 20 -2 #rect
 Ca0 f7 @|StepIcon #fIcon
-Ca0 f6 type ch.ivy.add.portalkit.Data #txt
 Ca0 f6 107 307 26 26 14 0 #rect
 Ca0 f6 @|EndIcon #fIcon
 Ca0 f5 outerBean "ch.ivy.addon.portalkit.util.CronByGlobalVariableTriggerStartEventBean" #txt
@@ -61,15 +56,12 @@ Ca0 f5 107 36 26 26 14 0 #rect
 Ca0 f5 @|StartEventIcon #fIcon
 Ca0 f0 expr out #txt
 Ca0 f0 120 62 120 117 #arcP
-Ca0 f2 actionDecl 'ch.ivy.add.portalkit.Data out;
-' #txt
 Ca0 f2 actionTable 'out=in;
 ' #txt
 Ca0 f2 actionCode 'import ch.ivy.addon.portalkit.service.DeleteFinishedHiddenCasesService;
 DeleteFinishedHiddenCasesService deletFinishedHiddenCasesService = new DeleteFinishedHiddenCasesService();
 deletFinishedHiddenCasesService.deleteFinishedHiddenCases();' #txt
 Ca0 f2 security system #txt
-Ca0 f2 type ch.ivy.add.portalkit.Data #txt
 Ca0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

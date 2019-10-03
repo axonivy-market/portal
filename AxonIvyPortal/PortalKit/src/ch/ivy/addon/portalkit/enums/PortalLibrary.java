@@ -1,12 +1,14 @@
 package ch.ivy.addon.portalkit.enums;
 
-public enum PortalLibrary {
-  PORTAL_STYLE("at.aws.ivy:portalStyle"),
-  PORTAL_KIT("at.aws.ivy:portalKit"), 
-  PORTAL_TEMPLATE("at.aws.ivy:portalTemplate"),
-  AXON_EXPRESS("at.aws.ivy:axonIvyExpress"),
-  SELF_SERVICE("at.aws.ivy:selfService");
+import ch.ivyteam.ivy.environment.Ivy;
 
+public enum PortalLibrary {
+  PORTAL_STYLE("portalStyle"),
+  PORTAL_KIT("portalKit"), 
+  PORTAL_TEMPLATE("portalTemplate"),
+  AXON_EXPRESS("axonIvyExpress"),
+  SELF_SERVICE("selfService");
+  private static final String PORTAL_GROUP_ID = "PortalGroupId";
   private String value;
 
   private PortalLibrary(String value) {
@@ -14,6 +16,6 @@ public enum PortalLibrary {
   }
 
   public String getValue() {
-    return value;
+    return Ivy.var().get(PORTAL_GROUP_ID) + ":" + value;
   }
 }

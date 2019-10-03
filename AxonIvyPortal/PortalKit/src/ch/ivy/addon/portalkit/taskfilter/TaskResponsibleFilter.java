@@ -55,6 +55,11 @@ public class TaskResponsibleFilter extends TaskFilter {
     selectedResponsibleMemberName = null;
   }
 
+  @Override
+  public boolean defaultFilter() {
+    return true;
+  }
+
   public String formatName(ISecurityMember responsible) {
     if (StringUtils.isBlank(responsible.getDisplayName())) {
       return responsible.getName();

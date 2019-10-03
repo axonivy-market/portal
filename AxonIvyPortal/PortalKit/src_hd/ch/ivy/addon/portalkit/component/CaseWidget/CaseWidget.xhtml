@@ -7,7 +7,6 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="outerPanelId" default="main-area-panel" />
   <cc:attribute name="dataModel" shortDescription="List of cases to be displayed" />
   <cc:attribute name="chunkSize" shortDescription="Number of items to fetch for each lazy load" default="20" />
   <cc:attribute name="emptyMessage"
@@ -24,40 +23,36 @@
 </cc:interface>
 
 <cc:implementation>
-  <c:set var="outerPanelId" value="#{empty cc.attrs.outerPanelId ? 'main-area-panel' : cc.attrs.outerPanelId}" />
 
   <h:outputScript name="case-widget.js" library="js" />
-  <div id="#{cc.clientId}" class="widget case-widget-container">
+  <div id="#{cc.clientId}" class="widget case-widget-container ui-g">
     <h:panelGroup rendered="#{!cc.attrs.hideWidgetHeader}">
-      <h:panelGroup id="case-widget-header" styleClass="widget-header" layout="block">
-        <div class="case-widget-top-header js-widget-header">
-          <h:panelGroup id="case-widget-title" styleClass="case-widget-top-header-main-title-container">
+      <h:panelGroup id="case-widget-header" styleClass="widget-header ui-g-12 ui-g" layout="block">
+        <div class="case-widget-top-header js-widget-header ui-g-8 ui-sm-4">
+          <h:panelGroup id="case-widget-title">
             <h:outputText styleClass="case-widget-top-header-main-title"
               value="#{cc.attrs.title} (#{data.dataModel.rowCount})" />
           </h:panelGroup>
         </div>
-        <h:panelGroup styleClass="widget-header-content-filter mod-expanded-mode" id="expanded-mode-filter-view">
+        <h:panelGroup styleClass="widget-header-content-filter mod-expanded-mode ui-g-4 ui-sm-8" id="expanded-mode-filter-view">
           <h:form id="case-basic-filter-form" onsubmit="return false;">
             <ic:ch.ivy.addon.portalkit.component.Filter id="case-filter-component" keywordStoresIn="#{data.dataModel.criteria.keyword}"
-              updateComponent="#{cc.clientId}:case-list" icon="fa fa-filter"
-              listener="#{data.dataModel.onKeywordChange()}"
+              updateComponent="#{cc.clientId}:case-list" icon="fa fa-filter simple-filter-icon"
+              listener="#{data.dataModel.onKeywordChange()}" styleClass="case-filter-component"
               placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
-              onCompletedCallback="caseWidget.setUpScrollbar();caseWidget.setupHeader();" />
+              onCompletedCallback="caseWidget.setUpScrollbar();caseWidget.setupHeader();" iconAsButton="true" onClickIconFilter="caseWidget.toggleTaskFilter(this);caseWidget.setUpScrollbar();" />
           </h:form>
         </h:panelGroup>
       </h:panelGroup>
 
-      <h:panelGroup styleClass="filter-container js-filter-container"
+      <h:panelGroup id="filter-container" styleClass="filter-container js-filter-container ui-g-12 u-no-padding-top u-hidden-md-down"
         rendered="#{!cc.attrs.hideCaseFilter}">
-        <h:panelGroup id="filter-selection-container">
-          <h:form id="filter-selection-form" class="filter-selection-form"
-            rendered="#{not empty data.privateFilters or not empty data.publicFilters}">
-            <p:outputPanel id="filter-selection-panel"
-              rendered="#{(not empty data.privateFilters or not empty data.publicFilters)}">
-              <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}"
-                for="filter-name" />
+        <h:panelGroup id="filter-selection-container" styleClass="filter-selection-container-group"
+          rendered="#{(not empty data.privateFilters or not empty data.publicFilters)}">
+          <h:form id="filter-selection-form" class="filter-selection-form filter-selection-container">
+            <p:outputPanel id="filter-selection-panel">
               <p:commandLink id="filter-name" styleClass="filter-name"
-                value="#{data.dataModel.selectedFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection') : data.dataModel.selectedFilterData.filterName}"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/savedFilters')} #{data.dataModel.selectedFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection') : data.dataModel.selectedFilterData.filterName}"
                 global="false" />
               <p:overlayPanel id="filter-name-overlay-panel" styleClass="filter-name-overlay-panel" for="filter-name"
                 hideEffect="fade" my="left top" at="left bottom">
@@ -111,38 +106,43 @@
             </p:outputPanel>
           </h:form>
         </h:panelGroup>
-        <h:panelGroup id="filter-add-container" styleClass="filter-add-container">
-          <f:event listener="#{data.dataModel.initFilters()}" type="preRenderComponent" />
 
-          <p:commandButton id="filter-add-action" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/filter')}"
-            styleClass="filter-add-button" icon="fa fa-caret-down" iconPos="right" type="button" />
-          <p:overlayPanel id="filter-add-panel" styleClass="filter-add-panel" for="filter-add-action" my="left top"
-            at="left bottom">
-            <h:form id="filter-add-form">
-              <p:scrollPanel styleClass="filter-selector-container" mode="native">
-                <p:selectManyCheckbox id="filter-selection" layout="pageDirection"
-                  valueChangeListener="#{data.dataModel.onFilterChange}" value="#{data.dataModel.selectedFilters}"
-                  converter="pojoConverter">
-                  <p:ajax update="#{cc.clientId}:filter-selection-container #{cc.clientId}:advanced-filter-container #{cc.clientId}:case-list" global="false"
-                    oncomplete="caseWidget.setUpScrollbar();caseWidget.setupHeader();" />
-                  <f:selectItems value="#{data.dataModel.filters}" var="filter" itemLabel="#{filter.label()}"
-                    itemValue="#{filter}" />
-                </p:selectManyCheckbox>
-              </p:scrollPanel>
-            </h:form>
-          </p:overlayPanel>
-        </h:panelGroup>
         <h:panelGroup id="advanced-filter-container" layout="block" styleClass="advanced-filter-container">
-          <h:panelGroup styleClass="additional-filter-container js-additional-filter-container">
+          <f:event listener="#{data.dataModel.initFilters()}" type="preRenderComponent" />
+          <h:panelGroup styleClass="additional-filter-container">
             <cc:renderFacet name="caseFilter" />
+            
+            <!-- Add more filters button -->
+            <h:panelGroup id="filter-add-container" style="order: 1000" styleClass="filter-add-container">
+              <p:commandButton id="filter-add-action" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/more')}"
+                styleClass="filter-add-button" icon="fa fa-caret-down" iconPos="right" type="button" />
+              <p:overlayPanel id="filter-add-panel" styleClass="filter-add-panel" for="filter-add-action" my="left top"
+                at="left bottom">
+                <h:form id="filter-add-form">
+                  <p:scrollPanel styleClass="filter-selector-container" mode="native">
+                    <p:selectManyCheckbox id="filter-selection" layout="pageDirection"
+                      valueChangeListener="#{data.dataModel.onFilterChange}" value="#{data.dataModel.selectedFilters}"
+                      converter="pojoConverter">
+                      <p:ajax update="#{cc.clientId}:filter-selection-container #{cc.clientId}:advanced-filter-container #{cc.clientId}:case-list" global="false"
+                        oncomplete="caseWidget.setUpScrollbar();caseWidget.setupHeader();" />
+                      <f:selectItems value="#{data.dataModel.filters}" var="filter" itemLabel="#{filter.label()}"
+                        itemValue="#{filter}" />
+                    </p:selectManyCheckbox>
+                  </p:scrollPanel>
+                </h:form>
+              </p:overlayPanel>
+            </h:panelGroup>
+            
+            <!-- Save filter button -->
+            <h:panelGroup id="filter-save-container" style="order: 1001" styleClass="u-hidden-sm-down">
+              <p:commandButton id="filter-save-action"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" styleClass="filter-add-button"
+                icon="fa fa-save" iconPos="right" update="save-filter-set-dialog" resetValues="true"
+                oncomplete="PF('save-filter-set-dialog').show();" />
+            </h:panelGroup>
           </h:panelGroup>
         </h:panelGroup>
-        <h:panelGroup id="filter-save-container">
-          <p:commandButton id="filter-save-action"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" styleClass="filter-add-button"
-            icon="fa fa-save" iconPos="right" update="save-filter-set-dialog" resetValues="true"
-            oncomplete="PF('save-filter-set-dialog').show();" />
-        </h:panelGroup>
+        
       </h:panelGroup>
     </h:panelGroup>
 
@@ -155,17 +155,14 @@
             dataModel="#{data.dataModel}" oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader()"
             configButtonId="case-config-button" overlayPanelId="case-config-columns-panel" />
     </h:panelGroup>
-    <h:panelGroup id="case-view" layout="block" class="widget-content">
+    <h:panelGroup id="case-view" layout="block" class="ui-g-12 u-no-padding-left">
       <h:panelGroup id="case-list" layout="block" styleClass="case-list">
         <p:dataScroller id="case-list-scroller" value="#{data.dataModel}" var="case" chunkSize="#{cc.attrs.chunkSize}"
           lazy="true" mode="inline" rowIndexVar="rowIndex" styleClass="js-case-list">
           <ic:ch.ivy.addon.portalkit.component.CaseItem case="#{case}" id="case-item"
-            initialActive="#{case.id eq cc.attrs.autoSelectCaseId.id()}"
             onDestroyComplete="PF('destroy-case-dialog').show()" rowIndex="#{rowIndex}"
-            expandCallback="caseWidget.setUpScrollbar();caseWidget.setupHeader();"
             itemStyleClass="#{rowIndex % 2 == 0 ? 'case-even-row' : 'case-odd-row'}">
             <cc:insertFacet name="caseHeader" />
-            <cc:insertFacet name="caseBody" />
           </ic:ch.ivy.addon.portalkit.component.CaseItem>
         </p:dataScroller>
         <div jsf:rendered="#{data.dataModel.rowCount eq 0}" class="case-widget-empty-message">
@@ -180,7 +177,10 @@
   <p:dialog id="save-filter-set-dialog" widgetVar="save-filter-set-dialog"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" resizable="false" width="575"
     modal="true" closeOnEscape="true" styleClass="save-filter-set-dialog">
-    <p:messages autoUpdate="true" />
+    <p:ajax event="close" listener="#{logic.clearSaveFilterDialog}" resetValues="true" />
+    <p:messages id="save-case-filter-message">
+      <p:autoUpdate />
+    </p:messages>
     <h:form id="filter-save-form">
       <h:panelGrid columns="2" styleClass="save-filter-set-panel"
         columnClasses="save-filter-set-panel-column-1, save-filter-set-panel-column-2">
@@ -199,16 +199,16 @@
         </p:selectOneRadio>
       </h:panelGrid>
       <h:panelGroup layout="block" class="u-dialog-footer ui-dialog-footer">
-        <p:commandButton styleClass="" id="filter-save-command"
+        <p:commandButton id="filter-save-command"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" process="@form"
-          oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('save-filter-set-dialog').hide();}"
-          actionListener="#{logic.saveFilter}"
-          update="#{cc.clientId}:filter-selection-container #{cc.clientId}:filter-save-form">
+          oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('save-filter-set-dialog').hide(); updateFilterContainer();}"
+          actionListener="#{logic.saveFilter}">
         </p:commandButton>
+        <p:remoteCommand name="updateFilterContainer" update="#{cc.clientId}:filter-selection-container #{cc.clientId}:filter-save-form #{cc.clientId}:filter-container" 
+          actionListener="#{logic.clearSaveFilterDialog}"/>
         <p:spacer width="5px" />
-        <p:commandButton type="button" styleClass="portal-cancel-button"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          actionListener="#{logic.clearSaveFilterDialog}" onclick="PF('save-filter-set-dialog').hide();">
+        <p:commandButton type="button" styleClass="portal-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          onclick="PF('save-filter-set-dialog').hide();">
         </p:commandButton>
       </h:panelGroup>
     </h:form>
@@ -221,19 +221,14 @@
     <p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
       actionListener="#{logic.deleteFilter}"
       oncomplete="PF('delete-filter-confirmation-dialog').hide(); caseWidget.setUpScrollbar(); caseWidget.setupHeader();"
-      update="case-basic-filter-form advanced-filter-container filter-selection-container case-list filter-add-form" />
+      update="case-basic-filter-form advanced-filter-container #{cc.clientId}:filter-container case-list filter-add-form" />
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
       onclick="PF('delete-filter-confirmation-dialog').hide();" type="button" styleClass="portal-cancel-button" />
   </p:confirmDialog>
 
   <script type="text/javascript">
-      var caseWidget = new CaseWidget("#{outerPanelId}");
-      var caseListToolkit = CaseListToolKit();
-      $(function() {
-        caseWidget.setUpScrollbar();
-        caseWidget.setupHeader();
-      });
-    </script>
+      var caseWidget = new CaseWidget();
+  </script>
   <p:confirmDialog id="destroy-case-confirmation-dialog"
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/destroyCaseMessage')}" closeOnEscape="true"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" widgetVar="destroy-case-dialog"
@@ -241,7 +236,7 @@
     <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
       actionListener="#{caseWidgetBean.destroyCase(caseWidgetBean.selectedCase)}"
       oncomplete="caseWidget.setUpScrollbar();caseWidget.setupHeader();PF('destroy-case-dialog').hide()"
-      update="case-list" />
+      update="#{p:component('case-list')} #{p:component('case-list-scroller')}" />
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
       onclick="PF('destroy-case-dialog').hide();" type="button" styleClass="portal-cancel-button" />
   </p:confirmDialog>

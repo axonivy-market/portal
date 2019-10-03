@@ -51,3 +51,9 @@ errors java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataExce
 errors PERSISTENT #fieldModifier
 app ch.ivyteam.ivy.application.IApplication #field
 app PERSISTENT #fieldModifier
+announcements java.util.List<ch.ivy.addon.portalkit.bo.Announcement> #field
+announcements PERSISTENT #fieldModifier
+isDefaultApplicationLanguage Boolean #field
+isDefaultApplicationLanguage PERSISTENT #fieldModifier
+isAnnouncementActivated Boolean #field
+isAnnouncementActivated PERSISTENT #fieldModifier

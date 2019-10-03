@@ -16,11 +16,20 @@ import ch.ivyteam.ivy.server.ServerFactory;
 
 public class ApplicationService implements IApplicationService {
 
+  private static ApplicationService instance;
+
   private ApplicationService() {
   }
   
   public static ApplicationService newInstance() {
     return new ApplicationService();
+  }
+
+  public static final ApplicationService getInstance() {
+    if (instance == null) {
+      instance = new ApplicationService();
+    }
+    return instance;
   }
   
   @Override

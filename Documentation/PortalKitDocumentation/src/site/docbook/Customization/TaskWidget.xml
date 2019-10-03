@@ -7,7 +7,7 @@
 	</para>
 	<orderedlist>
 		<listitem>
-			<para><link linkend="axonivyportal.customization.taskwidget.howtooverideui">UI</link>: TaskHeader and TaskListHeader and TaskBody and TaskFilter</para>
+			<para><link linkend="axonivyportal.customization.taskwidget.howtooverideui">UI</link>: TaskHeader and TaskListHeader and TaskFilter</para>
 		</listitem>
 		<listitem>
 			<para><link linkend="axonivyportal.customization.taskwidget.howtooverridedataquery">Data query</link>: display the tasks as you want</para>
@@ -17,10 +17,7 @@
 		<para>
 			<orderedlist>
 				<listitem>
-					<para>Task header customization does not support responsive design, smaller resolutions (iPad, etc.)</para>
-				</listitem>
-				<listitem>
-					<para>Additional properties cannot be displayed right now as a column</para>
+					<para>Task header customization currently support responsive design. Refer to <link linkend="axonivyportal.customization.taskwidget.responsivelayout">this part</link> for more detail.</para>
 				</listitem>
 				<listitem>
 					<para>Task header's buttons cannot be modified (they stay where they are)</para>
@@ -50,7 +47,7 @@
                 </listitem>
 				<listitem>
 					<para>
-						Override Task widget in: TaskList page, Task Search result, Relate tasks of a case, History tasks of a case.
+						Override Task widget in: TaskList page, Task Search result.
 						<itemizedlist>
 							<listitem>
 								<para>
@@ -68,15 +65,20 @@
 				</listitem>
 				<listitem>
 					<para>
-						After previous steps, you can override <link linkend="axonivyportal.customization.taskwidget.howtooverideui.taskheader">TaskHeader and TaskListHeader</link> and <link linkend="axonivyportal.customization.taskwidget.howtooverideui.taskbody">TaskBody</link> and <link linkend="axonivyportal.customization.taskwidget.howtooverideui.taskfilter">TaskFilter</link>
+						After previous steps, you can override <link linkend="axonivyportal.customization.taskwidget.howtooverideui.taskheader">TaskListHeader and TaskHeader</link> and <link linkend="axonivyportal.customization.taskwidget.howtooverideui.taskfilter">TaskFilter</link>
 					</para>
 				</listitem>
 			</orderedlist>
 			<sect3 xml:id="axonivyportal.customization.taskwidget.howtooverideui.taskheader">
-				<title>Task header</title>
+				<title>Task List Header and Task header</title>
 				<para>
 					Refer to the <code>taskListHeader</code> and <code>taskHeader</code> sections in <code>PortalTasks.xhtml</code> of PortalTemplate. In case your task widget has new columns, you should override TaskLazyDataModel to make the sort function of these columns work:
 					<itemizedlist>
+						<mediaobject>
+								<imageobject>
+										<imagedata fileref="images/TaskWidget/TaskList.png" />
+								</imageobject>
+						</mediaobject>
 						<listitem>
 							<para>Introduce a java class extends TaskLazyDataModel</para>
 						</listitem>
@@ -93,7 +95,7 @@
 								<para>
 									<itemizedlist>
 										<listitem>
-											<para>In case you has new columns, override method <code>getDefaultColumns</code> of the extended class from TaskLazyDataModel to display checkboxes in Config columns panel and display/hide sortFields (see the methods' Javadoc comments)</para>
+											<para>In case you have new columns, override method <code>getDefaultColumns</code> of the extended class from TaskLazyDataModel to display checkboxes in Config columns panel and display/hide sortFields (see the methods' Javadoc comments)</para>
 										</listitem>
 										<listitem>
 											<para>To add cms for checkboxes's label, add new entries to folder <code>/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/</code> in <code>PortalStyle</code> or override method <code>getColumnLabel</code>(see the methods' Javadoc comments)</para>
@@ -122,109 +124,6 @@
 							<para>In your customized portal tasks HTMLDialog, the customized data model should be passed as a parameter to components (refer to <code>PortalTasks.xhtml</code>).</para>
 						</listitem>
 					</itemizedlist>
-				</para>
-			</sect3>
-			<sect3 xml:id="axonivyportal.customization.taskwidget.howtooverideui.taskbody">
-				<title>Task body</title>
-				<para>
-					Refer to the <code>taskBody</code> section in <code>PortalTasks.xhtml</code> of PortalTemplate.
-				</para>
-				<para>
-					If you need to apply the responsiveness behavior of Portal for task details, there are 2 components which can be used: <code>ResponsivenessHandleContainer</code> and <code>ResponsivenessHandleButton</code>:
-					<itemizedlist>
-						<listitem>
-							<para>
-								ResponsivenessHandleContainer: a container contains <code>ResponsivenessHandleButton</code> and your javascript which contains the onstart and oncomplete function of <code>ResponsivenessHandleButton</code>.
-							</para>
-						</listitem>
-						<listitem>
-							<para>
-								ResponsivenessHandleButton: contains the params which handle responsiveness:
-								<para>
-									<itemizedlist>
-										<listitem>
-											<para>
-												icon: the icon of button
-											</para>
-										</listitem>
-										<listitem>
-											<para>
-												displayedSelectors: css selectors of the components which need to be displayed.
-											</para>
-										</listitem>
-										<listitem>
-											<para>
-												hiddenSelectorsInLargeScreen: css selectors of the components which need to be hidden in large screen (width: 1920).
-											</para>
-										</listitem>
-										<listitem>
-											<para>
-												hiddenSelectorsInMediumScreen: css selectors of the components which need to be hidden in medium screen (width: 1366).
-											</para>
-										</listitem>
-										<listitem>
-											<para>
-												hiddenSelectorsInSmallScreen: css selectors of the components which need to be hidden in small screen (width: 1024).
-											</para>
-										</listitem>
-										<listitem>
-											<para>
-												fadeTime: the fade in/out time.
-											</para>
-										</listitem>
-										<listitem>
-											<para>
-												onstart: client side callback to execute before responsiveness execution.
-											</para>
-										</listitem>
-										<listitem>
-											<para>
-												oncomplete: client side callback to execute after responsiveness execution.
-											</para>
-										</listitem>
-									</itemizedlist>
-								</para> 
-							</para>
-						</listitem>
-					</itemizedlist>
-					<para>
-						For example:
-						<para>
-								<code>&lt;ui:composition template="/layouts/PortalTasksTemplate.xhtml"&gt;</code>
-						</para>
-						<para>
-								<code>&lt;ui:param name="useOverrideBody" value="true" /&gt;</code>
-						</para>
-						<para>
-								<code>&lt;ui:define name="taskBody"&gt;</code>
-						</para>
-						<para>
-								<code>Customized content</code>
-						</para>
-						<para>
-								<code>&lt;ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer styleClass="hidden-lg"&gt;</code>
-						</para>
-						<para>
-								<code>&lt;ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton icon="fa fa-file js-note-column-responsive-button" displayedSelectors="['#task-note']" hiddenSelectorsInMediumScreen="['.task-details .replaced']" hiddenSelectorsInSmallScreen="['.task-details .replaced']" /&gt;</code>
-						</para>
-						<para>
-								<code>&lt;h:outputScript library="js" name="task-detail-default-responsiveness.js" /&gt;</code>
-						</para>
-						<para>
-								<code>&lt;/ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer&gt;</code>
-						</para>
-						<para>
-								<code>&lt;/ui:define&gt;</code>
-						</para>
-						<para>
-								<code>&lt;/ui:composition&gt;</code>
-						</para>
-					</para>
-					<mediaobject>
-						<imageobject>
-							<imagedata fileref="images/TaskWidget/TaskDetailsResponsiveness.png" />
-						</imageobject>
-					</mediaobject>
 				</para>
 			</sect3>
 			<sect3 xml:id="axonivyportal.customization.taskwidget.howtooverideui.taskfilter">
@@ -298,9 +197,12 @@ if (in.isQueryForHomePage) { // in home page
 				</itemizedlist>
 <screen>
 TaskLazyDataModel dataModel = new TaskLazyDataModel();
-dataModel.getCriteria().setCustomTaskQuery(YOUR_TASK_QUERY); // Set your TaskQuery
-dataModel.getCriteria().setAdminQuery(true); // Display the tasks of all users
-out.taskView = TaskView.create().dataModel(dataModel).showHeaderToolbar(false).createNewTaskView();
+// Set your TaskQuery
+dataModel.getCriteria().setCustomTaskQuery(YOUR_TASK_QUERY); 
+// Display the tasks of all users
+dataModel.getCriteria().setAdminQuery(true); 
+out.taskView = TaskView.create().dataModel(dataModel)
+.showHeaderToolbar(false).createNewTaskView();
 </screen>
 			</listitem>
 		</itemizedlist>
@@ -327,21 +229,37 @@ out.taskView = TaskView.create().dataModel(dataModel).showHeaderToolbar(false).c
 			</listitem>
 		</orderedlist>
 	</sect2>
-	<sect2 xml:id="axonivyportal.customization.taskwidget.customtaskfiltermobile">
-	<title>How to customize mobile task list sort</title>
-	<para>Refer to <code>PortalExamples</code> project for examples</para>
-	<orderedlist>
-		<listitem>
-			Create a customize TaskLazyDataModel extends TaskLazyDataModel and override 2 methods <code>getPortalTaskMobileSort</code> and <code>getSortFieldLabel</code>
-			<mediaobject>
-			<imageobject>
-			<imagedata fileref="images/TaskWidget/TaskSortOverride.png" />
-			</imageobject>
-			</mediaobject>
-		</listitem>
-		<listitem>
-			Use Axon.ivy Override to override the <code>InitializeMobileTaskDataModel</code> callable. Initialize this customize TaskLazyDataModel <code>in.dataModel = new CustomizedTaskLazyDataModel(true);</code>
-		</listitem>
-	</orderedlist>
-</sect2>
+	<sect2 xml:id="axonivyportal.customization.taskwidget.responsivelayout">
+		<title>How to make reponsive task list</title>
+		<para>If you have customized task list and want it responsive on different screen sizes, please follow below steps.</para>
+		<para>You can refer to <code>PortalExamples</code> project for examples</para>
+		<orderedlist>
+			<listitem>
+				<para>Add responsiveStyleClass param (in case you're using Portal component), or styleClass (in case you're using Primefaces or JSF component) with the same responsive css class for both taskListHeader and taskHeader. 
+				You can find responsive class in <link linkend="axonivyportal.customization.responsivecss">this part.</link></para>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="images/TaskWidget/ResponsiveTaskListCustomization.png" />
+					</imageobject>
+				</mediaobject>
+				<tip>
+					<para>Hint: <code>TaskCustomField</code> component has default responsiveStyleClass is <code>u-hidden-sm-down</code></para>
+				</tip>
+			</listitem>
+			<listitem>
+				<para>
+				Responsiveness could be broken when you anchor left menu. In this case, to maintain the responsiveness, you could hide some columns by add <code>js-hidden-when-expand-menu</code>
+				to responsiveStyleClass or styleClass param of taskListHeader and taskHeader.
+				</para>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="images/TaskWidget/ResponsiveTaskListHideColumn.png" />
+					</imageobject>
+				</mediaobject>
+				<tip>
+					<para>Hint: The smallest browser width you can anchor the left menu is 1025. So you could reduce width of browser to 1025 to test and decide which columns need to be hidden.</para>
+				</tip>
+			</listitem>
+		</orderedlist>
+	</sect2>
 </sect1>

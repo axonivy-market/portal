@@ -80,17 +80,33 @@ public abstract class AbstractFilter<T extends Query<?>> {
   /**
    * <p>
    * Override this method if need to validate filtered values. If values are incorrect, use the methods:
-   * validationFailed and addMessage
+   * validationFailed and addMessage with clientId is "advanced-filter-error-messages"
    * </p>
    * <p>
    * <b>Example: </b> <code>
    * <pre>
    * String message = ...;
    * FacesContext.getCurrentInstance().validationFailed();
-   * FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
+   * FacesContext.getCurrentInstance().addMessage("advanced-filter-error-messages", new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
    * </pre>
    * </code>
    * </p>
    */
   public void validate() {}
+  
+  /**
+   * <p>
+   * Check filter category show default in Task/Case List
+   * </p>
+   * <p>
+   * <b>Example: </b>
+   * Default categories of Task list: Expiry, Responsible, State
+   * Default categories of Case list: Created, Finished, State
+   * </p>
+   * @return is default filter
+   */
+  public boolean defaultFilter() {
+    return false;
+  }
+
 }

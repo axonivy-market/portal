@@ -10,53 +10,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
   </f:facet>
+  
+  <f:attribute name="primefaces.THEME" value="serenity-ivy" />
+  
   <title><ui:insert name="pageTitle">Axon.Ivy Portal</ui:insert></title>
   <ui:fragment rendered="#{resource['ivy-webcontent:layouts/images/favicon.png'] != null}">
     <link rel="shortcut icon" href="#{resource['ivy-webcontent:layouts/images/favicon.png']}" type="image/png" />
   </ui:fragment>
-
-  <h:outputStylesheet name="css/animate.css" library="modena-layout" />
-  <h:outputStylesheet name="css/modena-font.css" library="modena-layout" />
-  <h:outputStylesheet name="css/ripple-effect.css" library="modena-layout" />
-  <h:outputStylesheet name="css/perfect-scrollbar.css" library="modena-layout" />
-  <h:outputStylesheet name="css/modena-layout.css" library="modena-layout" />
-  <h:outputStylesheet name="css/core-layout.css" library="modena-layout" />
 
   <h:outputStylesheet library="css" name="base.css" />
   <h:outputStylesheet library="css" name="state.css" />
   <h:outputStylesheet library="css" name="layout.css" />
   <h:outputStylesheet library="css" name="utility.css" />
 
-  <h:outputScript name="js/ripple-effect.js" library="modena-layout" />
-  <h:outputScript name="js/perfect-scrollbar.js" library="modena-layout" />
-  <h:outputScript name="js/layout.js" library="modena-layout" />
+  <h:outputStylesheet name="css/nanoscroller.css" library="serenity-layout" />
+  <h:outputStylesheet name="css/ripple.css" library="serenity-layout" />
+  <h:outputStylesheet name="css/layout-lime.css" library="serenity-layout" />
 
   <h:outputStylesheet library="css" name="template.css" />
   <h:outputStylesheet library="css" name="module.css" />
 
+  <h:outputScript name="js/nanoscroller.js" library="serenity-layout" />
+  <h:outputScript name="js/ripple.js" library="serenity-layout" />
   <script src="#{resource['ivy-webcontent:layouts/js/cookie-helper.js']}" />
   <script src="#{resource['ivy-webcontent:layouts/js/primefaces-calendar-en-us.js']}" />
-
-  <h:outputScript library="js" name="jquery.colourbrightness.min.js" />
-
+  <script src="#{resource['ivy-webcontent:resources/serenity-layout/js/layout.js']}" />
+  
+  <h:outputScript name="viewport.js" library="js"  />
   <h:outputScript name="responsive-toolkit.js" library="js" />
   <h:outputScript name="main.js" library="js" />
   <h:outputScript name="portal-components.js" library="js" />
   <h:outputScript name="portal.js" library="js" />
-  <h:outputScript name="viewport.js" library="js" />
   <ui:insert name="head" />
 </h:head>
 
 <h:body>
   <f:facet name="last">
-    <h:outputStylesheet library="css" name="theme.min.css" />
+    <h:outputStylesheet library="primefaces-serenity-ivy" name="theme.css" />
   </f:facet>
   
   <c:set var="isNotRequiredLogin" value="#{isNotRequiredLogin == null ? false : isNotRequiredLogin}" />
   <c:choose>
     <c:when test="#{ivy.wf.securityContext.currentSession.sessionUserUnknown and !isNotRequiredLogin}">
       <ui:insert name="login">
-        <ic:ch.ivy.addon.portalkit.singleapp.general.Login id="login" />
+        <div class="login-body">
+          <ic:ch.ivy.addon.portalkit.singleapp.general.Login id="login" />
+        </div>
       </ui:insert>
     </c:when>
     <c:otherwise>
@@ -65,68 +64,78 @@
 
       <f:event type="preRenderView"
         listener="#{facesContext.externalContext.response.setHeader('Cache-Control', 'no-cache, no-store')}" />
-      <f:event listener="#{menuStateBean.initMenuState(menuState)}" type="preRenderView" />
 
-      <ui:fragment rendered="#{deviceBean.mobile}">
-        <div class="topbar-container topbar-container-mobile #{currentPage}">
-          <ui:include src="/layouts/includes/mobileTopbar.xhtml">
-            <ui:param name="isWorkingOnATask" value="#{isWorkingOnATask}" />
-          </ui:include>
-        </div>
-      </ui:fragment>
-
-      <ui:fragment rendered="#{not deviceBean.mobile}">
-        <div class="topbar-container">
-          <ui:include src="/layouts/includes/topbar.xhtml">
-            <ui:param name="isWorkingOnATask" value="#{isWorkingOnATask}" />
-            <ui:param name="isNotRequiredLogin" value="#{isNotRequiredLogin}" />
-            <ui:param name="hasMainMenu" value="#{empty hasMainMenu ? true : hasMainMenu}" />
-            <ui:param name="enablesChat" value="#{enablesChat}" />
-          </ui:include>
-          <div class="color-header">
-            <div class="first-header-bar" />
-            <div class="second-header-bar" />
-            <div class="third-header-bar" />
+      <div class="layout-wrapper #{guestPreferences.orientationRTL ? 'layout-rtl' : ''}">
+        <ui:fragment>
+           <div class="layout-sidebar #{guestPreferences.darkMenu ? 'layout-sidebar-dark' : ''} #{currentPage} left-sidebar-color js-left-sidebar" id="left-menu">
+              <c:choose>
+                <c:when test="#{isNotRequiredLogin}">
+                  <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu startMethod="StartNotRequiredLogin" id="user-menu-without-login" showGlobalSearch="#{empty portalValidationBean.errorMessages}" />
+                </c:when>
+                <c:otherwise>
+                  <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu id="user-menu-required-login" isWorkingOnATask="#{isWorkingOnATask}" showGlobalSearch="#{empty portalValidationBean.errorMessages}" />
+                </c:otherwise>
+              </c:choose>
           </div>
-        </div>
-  
-  
-        <div class="left-sidebar-container u-invisibility #{currentPage}" id="left-menu">
-          <h:outputText id="output-menu-state-info" value="#{menuStateBean.menuState}" styleClass="hide" />
-          <div id="app-menu-panel"
-            class="left-sidebar js-left-sidebar u-shadow-effect left-sidebar-color left-sidebar-animation">
-            <c:choose>
-              <c:when test="#{isNotRequiredLogin}">
-                <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu
-                  onClickTaskMenuItemCallback="SecondLevelMenu.show(true);" startMethod="StartNotRequiredLogin"
-                  id="user-menu-without-login" />
-              </c:when>
-              <c:otherwise>
-                <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu menuState="#{menuState}"
-                  onClickTaskMenuItemCallback="SecondLevelMenu.show(true);" isWorkingOnATask="#{isWorkingOnATask}"
-                  id="user-menu-required-login" />
-              </c:otherwise>
-            </c:choose>
-          </div>
-  
-          <ui:insert name="secondLevelMenu" />
-        </div>
-      </ui:fragment>
+        </ui:fragment>
 
-      <ui:fragment>
-        <div class="container #{showMainArea eq true or deviceBean.mobile ? '' : 'u-invisibility'} #{deviceBean.mobile ? 'mobile-container' : ''}" id="main-area-panel">
-          <ui:insert name="pageContent">
-            <div class="simple-container js-simple-container #{simpleContainerClass}">
-              <div class="js-simple-main-col #{simpleMainColClass}">
-                <ui:insert name="simplePageContent" />
+        <div class="layout-main">
+          <ui:fragment>
+            <div class="layout-topbar">
+              <a class="menu-btn">
+                <i class="material-icons fa fa-bars left-sidebar-menu-icon left-sidebar-menu-icon-font-size" />
+              </a>
+              <div class="layout-topbar-menu-wrapper">
+                <ui:include src="/layouts/includes/topbar.xhtml">
+                  <ui:param name="isWorkingOnATask" value="#{isWorkingOnATask}" />
+                  <ui:param name="isNotRequiredLogin" value="#{isNotRequiredLogin}" />
+                  <ui:param name="hasMainMenu" value="#{empty hasMainMenu ? true : hasMainMenu}" />
+                  <ui:param name="showGlobalSearch" value="#{empty portalValidationBean.errorMessages}" />
+                  <ui:param name="enablesChat" value="#{enablesChat}" />
+                </ui:include>
+                <div class="color-header">
+                  <div class="first-header-bar" />
+                  <div class="second-header-bar" />
+                  <div class="third-header-bar" />
+                </div>
               </div>
             </div>
-          </ui:insert>
+          </ui:fragment>
+          <ui:fragment>
+            <!-- If showMainArea indicator is true, the layout content will be rendered by the schedule loading of JS file-->
+            <!-- Otherwise, the layout content will be rendered by once DOM is pasted already -->
+            <div class="layout-content container #{showMainArea eq true ? '' : 'u-invisibility'}" id="main-area-panel">
+              <h:panelGroup layout="block" rendered="#{userMenuBean.isAnnouncementActivated() and announcementInvisible ne 'true'}" styleClass="announcement-message-container #{announcementContainerStyleClass}">
+                <h:panelGroup layout="block" styleClass="announcement-message announcement-message-customizable">
+                  <h:outputText value="#{userMenuBean.getAnnouncement()}" />
+                </h:panelGroup>
+              </h:panelGroup>
+              <ui:insert name="pageContent">
+                <div class="#{simpleContainerClass}">
+                  <div class="#{simpleMainColClass}">
+                    <ui:insert name="simplePageContent" />
+                  </div>
+                </div>
+              </ui:insert>
+            </div>
+          </ui:fragment>
+          <ui:fragment rendered="#{not empty portalValidationBean.errorMessages}">
+            <div class="error-container">
+              <ui:repeat var="error" value="#{portalValidationBean.errorMessages}">
+                <div class="message">
+                  <div class="message-container">#{error}</div>
+                </div>
+              </ui:repeat>
+            </div>
+          </ui:fragment>
+          <ui:fragment>
+            <div class="layout-main-mask" />
+          </ui:fragment>
         </div>
-      </ui:fragment>
 
-      <ic:ch.ivy.addon.portalkit.component.WarningBeforeLostSession id="warning-before-lost-session"
-        clientSideTimeOut="#{userMenuBean.clientSideTimeout}" />
+        <ic:ch.ivy.addon.portalkit.component.WarningBeforeLostSession id="warning-before-lost-session"
+          clientSideTimeOut="#{userMenuBean.clientSideTimeout}" />
+      </div>
     </c:otherwise>
   </c:choose>
 
@@ -138,28 +147,19 @@
 
   <ui:insert name="css" />
   
-  <ui:fragment rendered="#{not deviceBean.mobile}">
+  <ui:fragment>
     <ui:insert name="footer">
       <script type="text/javascript">
         $(function() {
-          var simpleLargeScreen = new SimpleLargeScreen();
-          var simpleMediumScreen = new SimpleMediumScreen();
-          var simpleSmallScreen = new SimpleSmallScreen();
-          var responsiveToolkit = ResponsiveToolkit(simpleLargeScreen, simpleMediumScreen, simpleSmallScreen);
-          Portal.init(responsiveToolkit);
+          Portal.updateLayoutContent();
+          MainMenu.highlightMenuItem();
         });
       </script>
     </ui:insert>
   </ui:fragment>
-  
-  <ui:fragment rendered="#{deviceBean.mobile and !ivy.wf.securityContext.currentSession.sessionUserUnknown}">
-    <div class="mobile-footer Wid100">
-      <p:commandLink actionListener="#{userMenuBean.switchDesktopOrMobileVersion(false)}">
-        #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/switchToDesktopVersion')}
-      </p:commandLink>
-    </div>
-  </ui:fragment>
 
   <ic:ch.ivy.addon.portalkit.multiapp.general.ErrorDisplayDialog id="application-error-dialog-component" />
+
+  <p:growl id="portal-global-growl" widgetVar="portal-global-growl" for="portal-global-growl-message" />
 </h:body>
 </html>

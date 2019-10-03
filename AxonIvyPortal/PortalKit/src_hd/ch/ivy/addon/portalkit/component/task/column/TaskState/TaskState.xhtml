@@ -9,12 +9,13 @@
   <cc:attribute name="stateIconStyleClass" />
   <cc:attribute name="stateTooltipStyleClass" />
   <cc:attribute name="dataModel" />
+  <cc:attribute name="responsiveStyleClass" default="u-hidden-sm-down" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="state" value="#{cc.attrs.state}" />
   <h:panelGroup rendered="#{cc.attrs.dataModel.isSelectedColumn('STATE')}" >
-    <h:panelGroup id="#{cc.attrs.componentId}" styleClass="state-cell js-state-cell default-task-cell #{cc.attrs.stateStyleClass}">
+    <h:panelGroup id="#{cc.attrs.componentId}" styleClass="state-cell default-task-cell #{cc.attrs.stateStyleClass} #{cc.attrs.responsiveStyleClass}">
       <h:panelGroup id="#{cc.attrs.componentId}-open" rendered="#{state == 'SUSPENDED' or state == 'UNASSIGNED'}"
         styleClass="fa fa-play-circle task-state-open #{cc.attrs.stateIconStyleClass}" />
       <h:panelGroup id="#{cc.attrs.componentId}-in-progress" rendered="#{state == 'RESUMED' or state == 'CREATED'}"
@@ -32,6 +33,6 @@
     </h:panelGroup>
   </h:panelGroup>
   <p:tooltip id="state-tooltip" for="#{cc.attrs.componentId}"
-    value="#{taskBean.getUserFriendlyTaskState(state)} (#{taskBean.getTranslatedState(state)})" styleClass="#{cc.attrs.stateTooltipStyleClass}" />
+    value="#{taskBean.getUserFriendlyTaskState(state)} (#{taskBean.getTranslatedState(state)})" styleClass="#{cc.attrs.stateTooltipStyleClass}" trackMouse="true" />
 </cc:implementation>
 </html>

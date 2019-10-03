@@ -2,7 +2,7 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
 	xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
 	<cc:attribute name="businessEntityId" required="true" />
@@ -63,10 +63,9 @@
 			scrollHeight="#{cc.attrs.scrollHeight}" chunkSize="#{cc.attrs.chunkSize}" lazy="true" mode="inline"
 			rowIndexVar="rowIndex" styleClass="js-case-list" buffer="70" widgetVar="process-history-scroller">
 			<ic:ch.ivy.addon.portalkit.component.CaseItem case="#{case}" id="case-item" enableCaseAction="false"
-				itemStyleClass="#{rowIndex % 2 == 0 ? 'case-even-row' : 'case-odd-row'}"
-				expandCallback="caseWidget.setupCaseBody();">
+				itemStyleClass="#{rowIndex % 2 == 0 ? 'case-even-row' : 'case-odd-row'}">
 				<f:facet name="caseHeader">
-					<h:panelGroup class="case-header-name-desc-cell">
+					<h:panelGroup class="case-header-name-desc-cell u-truncate-text">
 						<ic:ch.ivy.addon.portalkit.component.cases.column.CaseName case="#{case}" 
 							dataModel="#{processHistoryBean.dataModel}" 
 							initialActive="#{case.id eq caseView.getAutoSelectCaseId().id()}" />
@@ -81,35 +80,6 @@
 						styleClass="process-history process-history-list process-history-list-cell-default process-history-list-width-120" />
 					<ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="#{case}" dataModel="#{processHistoryBean.dataModel}"
 						stateStyleClass="process-history process-history-list process-history-list-cell-default" />
-				</f:facet>
-				<f:facet name="caseBody">
-					<ic:ch.ivy.addon.portalkit.component.CaseItemGeneralInformation id="general-information" case="#{case}" />
-					<ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="related-tasks" case="#{case}" />
-					<ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="history" case="#{case}" />
-					<ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}" />
-					<ic:ch.ivy.addon.portalkit.component.CaseItemDescription id="description" case="#{case}" />
-					<ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer styleClass="not-display">
-						<ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
-							icon="fa fa-share-alt js-related-task-column-responsive-button" displayedSelectors="['.js-related-task-column']"
-							hiddenSelectorsInLargeScreen="['.case-details .replaced']"
-							hiddenSelectorsInMediumScreen="['.case-details .replaced']"
-							hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
-						<ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
-							icon="fa fa-align-left js-history-column-responsive-button" displayedSelectors="['.js-history-column']"
-							hiddenSelectorsInLargeScreen="['.case-details .replaced']"
-							hiddenSelectorsInMediumScreen="['.case-details .replaced']"
-							hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
-						<ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
-							icon="fa fa-file js-document-column-responsive-button" displayedSelectors="['.js-document-column']"
-							hiddenSelectorsInLargeScreen="['.case-details .replaced']"
-							hiddenSelectorsInMediumScreen="['.case-details .replaced']"
-							hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
-						<ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton
-							icon="fa fa-clipboard js-description-column-responsive-button" displayedSelectors="['.js-description-column']"
-							hiddenSelectorsInLargeScreen="['.case-details .replaced']"
-							hiddenSelectorsInMediumScreen="['.case-details .replaced']"
-							hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
-					</ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer>
 				</f:facet>
 			</ic:ch.ivy.addon.portalkit.component.CaseItem>
 		</p:dataScroller>

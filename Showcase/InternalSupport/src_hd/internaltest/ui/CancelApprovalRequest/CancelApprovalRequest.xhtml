@@ -4,8 +4,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:ic="http://ivyteam.ch/jsf/component"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:pe="http://primefaces.org/ui/extensions"
-	xmlns:pm="http://primefaces.org/mobile">
+	xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
 	<ui:composition template="/layouts/TaskTemplate.xhtml">
 		<ui:param name="businessMainContactFolderId"
@@ -46,7 +45,7 @@
 					<p:inputText id="cancelReason" value="#{data.cancelReason}"></p:inputText>
 				</h:panelGrid>
 				 <h:panelGroup styleClass="MarTop20 DispBlock">
-					<p:commandButton value="Submit" styleClass=""
+					<p:commandButton value="Submit"
 						icon="fa fa-paper-plane" actionListener="#{logic.cancelApprovalRequest(ivy.case.getBusinessCase().getId())}" />
 					<p:spacer width="5px"/>
 	      		</h:panelGroup>

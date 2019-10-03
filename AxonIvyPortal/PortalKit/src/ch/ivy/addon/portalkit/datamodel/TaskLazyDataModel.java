@@ -6,13 +6,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.faces.event.ValueChangeEvent;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.context.RequestContext;
+import org.primefaces.PrimeFaces;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
@@ -27,6 +28,7 @@ import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.service.TaskColumnsConfigurationService;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.taskfilter.DefaultTaskFilterContainer;
+import ch.ivy.addon.portalkit.taskfilter.TaskCategoryFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
@@ -71,7 +73,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected boolean isDisableSelectionCheckboxes;
   protected boolean isRelatedTaskDisplayed;
   protected boolean isNotKeepFilter;
-  protected boolean isMobile;
 
   public TaskLazyDataModel(String taskWidgetComponentId) {
     super();
@@ -79,7 +80,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     selectedFilters = new ArrayList<>();
     buildCriteria();
     data = new ArrayList<>();
-    if (shouldSaveAndLoadSessionFilters() && !isMobile) {
+    if (shouldSaveAndLoadSessionFilters()) {
       selectedTaskFilterData = UserUtils.getSessionSelectedTaskFilterSetAttribute();
       inProgressFilter = UserUtils.getSessionTaskInProgressFilterAttribute();
       if (inProgressFilter != null) {
@@ -92,12 +93,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   public TaskLazyDataModel() {
     this("task-widget");
-  }
-
-  public TaskLazyDataModel(Boolean isMobile) {
-    this("task-widget");
-    this.setMobile(isMobile);
-    criteria.setMobile(isMobile);
   }
 
   /**
@@ -127,9 +122,11 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
       initFilterContainer();
       filters = filterContainer.getFilters();
       setValuesForStateFilter(criteria);
+      TaskStateFilter stateFilter = filterContainer.getStateFilter();
       if (criteria.isAdminQuery() && !isRelatedTaskDisplayed) {
-        TaskStateFilter stateFilter = filterContainer.getStateFilter();
         stateFilter.setSelectedFilteredStatesAtBeginning(new ArrayList<>(stateFilter.getSelectedFilteredStates()));
+      } else if (!stateFilter.getFilteredStates().contains(TaskState.DONE)) {
+        stateFilter.addFilteredState(TaskState.DONE);
       }
       restoreSessionAdvancedFilters();
     }
@@ -138,9 +135,13 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   private void restoreSessionAdvancedFilters() throws IllegalAccessException, InvocationTargetException {
     if (shouldSaveAndLoadSessionFilters()) {
       List<TaskFilter> sessionTaskFilters = UserUtils.getSessionTaskAdvancedFilterAttribute();
-      for (TaskFilter filter : filters) {
-        for (TaskFilter sessionTaskFilter : sessionTaskFilters) {
-          copyProperties(sessionTaskFilter, filter);
+      if(sessionTaskFilters.isEmpty()) {
+        selectedFilters.addAll(filters.stream().filter(TaskFilter::defaultFilter).collect(Collectors.toList()));
+      } else {
+        for (TaskFilter filter : filters) {
+          for (TaskFilter sessionTaskFilter : sessionTaskFilters) {
+            copyProperties(sessionTaskFilter, filter);
+          }
         }
       }
     }
@@ -150,6 +151,9 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
       throws IllegalAccessException, InvocationTargetException {
     if (sessionTaskFilter.getClass() == filter.getClass()) {
       BeanUtils.copyProperties(filter, sessionTaskFilter);
+      if (filter instanceof TaskCategoryFilter) {
+        ((TaskCategoryFilter) filter).updateRootAndCategoryPaths();
+      }
       selectedFilters.add(filter);
     }
   }
@@ -164,15 +168,13 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   public List<ITask> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
     if (first == 0) {
       initializedDataModel(criteria);
-      if (!isMobile) {
-        RequestContext.getCurrentInstance().execute("updateTaskCount()");
-      }
+      PrimeFaces.current().executeScript("updateTaskCount()");
+      criteria.setFirstTimeLazyLoad(true);
+    } else {
+      criteria.setFirstTimeLazyLoad(false);
     }
 
     List<ITask> foundTasks = findTasks(criteria, first, pageSize);
-    if (!isMobile) {
-      RequestContext.getCurrentInstance().execute("taskListToolKit.responsive()");
-    }
     data.addAll(foundTasks);
     return foundTasks;
   }
@@ -240,9 +242,9 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    * <b>Example: </b> <code><pre>
    * if ("CustomVarcharField5".equalsIgnoreCase(criteria.getSortField())) {
    *   if (criteria.isSortDescending()) {
-   *     taskQuery.orderBy().customVarCharField5().descending();
+   *     taskQuery.orderBy().customField().stringField("CustomVarCharField5").descending();
    *   } else {
-   *     taskQuery.orderBy().customVarCharField5();
+   *     taskQuery.orderBy().customField().stringField("CustomVarCharField5");
    *   }
    * }
    * </pre></code>
@@ -587,7 +589,11 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   @Override
   public ITask getRowData() {
-    return data.get(rowIndex);
+    if (rowIndex >= 0 && rowIndex < data.size()) {
+      return data.get(rowIndex);
+    } else {
+      return null;
+    }
   }
 
   @Override
@@ -726,16 +732,8 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     this.criteria.setQueryForUnassignedTask(isQueryForOnlyUnassignedTask);
   }
 
-  public boolean isMobile() {
-    return isMobile;
-  }
-
-  public void setMobile(boolean isMobile) {
-    this.isMobile = isMobile;
-  }
-
   /**
-   * This is default of sort item in mobile, override it if you want to customize it
+   * This is default of sort item, override it if you want to customize it
    * 
    * IMPORTANT: Item in this list must follow pattern : column name + "_ASC" or column name +
    * "_DESC"
@@ -746,15 +744,15 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    * "customVarcharField5_ASC", "customVarcharField5_DESC", "customVarcharField1_ASC",
    * "customVarcharField1_DESC"}
    * 
-   * @return list of sort criteria for mobile
+   * @return list of sort criteria
    */
-  public List<String> getPortalTaskMobileSort() {
+  public List<String> getPortalTaskSort() {
     return Arrays.asList("CREATION_TIME_ASC", "CREATION_TIME_DESC", "EXPIRY_TIME_ASC", "EXPIRY_TIME_DESC",
         "PRIORITY_ASC", "PRIORITY_DESC");
   }
 
   /**
-   * Sort field label in mobile Override this method and return cms in your project
+   * Sort field label. Override this method and return cms in your project
    * 
    * Example you have custome sort fields like Arrays.asList("CREATION_TIME_ASC",
    * "CREATION_TIME_DESC", "customVarcharField5_ASC", "customVarcharField5_DESC",
@@ -769,7 +767,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    * Override this method: return Ivy.cms().co("/sortFields/customized/" + fieldName);
    * 
    * @param fieldName
-   * @return Sort field label in mobile
+   * @return Sort field label
    */
   public String getSortFieldLabel(String fieldName) {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/sortFields/" + fieldName);

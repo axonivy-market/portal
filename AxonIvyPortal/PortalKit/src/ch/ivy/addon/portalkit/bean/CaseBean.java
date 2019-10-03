@@ -1,9 +1,18 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.net.MalformedURLException;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 
+import org.apache.commons.lang3.StringUtils;
+
+import ch.ivy.addon.portalkit.service.exception.PortalException;
+import ch.ivy.addon.portalkit.support.UrlDetector;
+import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -11,6 +20,9 @@ import ch.ivyteam.ivy.workflow.ICase;
 @ManagedBean(name = "caseBean")
 public class CaseBean implements Serializable {
   private static final long serialVersionUID = 1L;
+
+  private static final String OPEN_CASE_ITEM_DETAILS = "Start Processes/PortalStart/startPortalCaseDetails.ivp";
+  private static final String OPEN_CASES_LIST = "Start Processes/PortalStart/startPortalCase.ivp";
 
   /**
    * Get the font-awesome class of specified CaseState
@@ -52,4 +64,33 @@ public class CaseBean implements Serializable {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/" + caseState);
   }
 
+  public void navigateToCaseDetails(ICase iCase) {
+    String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("startPortalCaseDetails.ivp");
+    if (StringUtils.isEmpty(customizePortalFriendlyRequestPath)) {
+      customizePortalFriendlyRequestPath = OPEN_CASE_ITEM_DETAILS;
+    }
+    redirect(CaseUtils.getProcessStartUriWithCaseParameters(iCase, customizePortalFriendlyRequestPath));
+  }
+
+  public void backToCasesList() throws MalformedURLException {
+    String friendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("startPortalCase.ivp");
+    if (StringUtils.isEmpty(friendlyRequestPath)) {
+      friendlyRequestPath = OPEN_CASES_LIST;
+    }
+    String requestPath = SecurityServiceUtils.findProcessByUserFriendlyRequestPath(friendlyRequestPath);
+    if (StringUtils.isNotEmpty(requestPath)) {
+      UrlDetector urlDetector = new UrlDetector();
+      String serverUrl = urlDetector.getBaseURL(FacesContext.getCurrentInstance());
+      redirect(serverUrl + requestPath);
+    }
+  }
+
+  public void redirect(String url) {
+    try {
+      FacesContext.getCurrentInstance().getExternalContext().redirect(url);
+    } catch (IOException ex) {
+      throw new PortalException(ex);
+    }
+  }
+  
 }

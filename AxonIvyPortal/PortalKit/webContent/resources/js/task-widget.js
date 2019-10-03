@@ -1,13 +1,4 @@
-function TaskWidget(outerPanelId) {
-  var items = $('#' + outerPanelId + ' .js-widget-header-menu li');
-  $.each(items, function() {
-    $(this).click(function() {
-      if (!$(this).hasClass('js-ignore-selected-state')) {
-        $(items).removeClass('is-selected');
-        $(this).addClass('is-selected');
-      }
-    });
-  });
+function TaskWidget() {
 
   return {
 
@@ -17,56 +8,52 @@ function TaskWidget(outerPanelId) {
     },
 
     setupScrollbar : function() {
-
       var childElements = $('.js-task-start-list-item');
       if (childElements.length > 0) {
         var container = $('.js-task-start-list > .ui-datascroller-content');
-        var mainAreaPanel = $('#' + outerPanelId);
         var taskWidgetHeaderContainer = $('.js-task-widget-header');
+        var announcementMessageContainer = $('.js-announcement-message');
         var taskWidgetSortMenuContainer = $('.js-task-widget-sub-header');
         if (taskWidgetSortMenuContainer.outerHeight(true) == 0) {
           taskWidgetSortMenuContainer = $('.js-task-widget-sort-menu');
         }
         var taskWidgetFilterContainer = $('.js-filter-container');
         var customWidgetContainer = $('.js-custom-widget-container');
+        if (customWidgetContainer.height() > 0) {
+        	customWidgetContainer = customWidgetContainer.outerHeight(true)||0;
+        } else {
+        	customWidgetContainer = customWidgetContainer.height()||0;
+        }
         var error = 5;
         var globalSearchInput = $('.js-global-search');
         var globalSearchTabHeader = $('.ui-tabs-nav');
         if (globalSearchTabHeader.length > 0) {
           error = 55; // included margin, padding in search page
         }
-        var availableHeight = mainAreaPanel.outerHeight() - taskWidgetHeaderContainer.outerHeight(true)
-            - taskWidgetSortMenuContainer.outerHeight(true) - taskWidgetFilterContainer.outerHeight(true)
-            - customWidgetContainer.outerHeight(true) - globalSearchInput.outerHeight(true) - globalSearchTabHeader.outerHeight(true) - error;
-
+        var mainScreenHeight = ($('body').outerHeight(true)||0) - ($('.layout-topbar').outerHeight(true)||0) - 15; //minus 15 to remove 2nd scroll bar
+        var availableHeight = mainScreenHeight - (taskWidgetHeaderContainer.outerHeight(true)||0) - (announcementMessageContainer.outerHeight(true)||0)
+            - (taskWidgetSortMenuContainer.outerHeight(true)||0) - (taskWidgetFilterContainer.outerHeight(true)||0)
+            - customWidgetContainer - (globalSearchInput.outerHeight(true)||0) - (globalSearchTabHeader.outerHeight(true)||0) - error;
         if (!!availableHeight) {
           container.height(availableHeight);
         }
       }
+    },
+    
+    toggleTaskFilter: function(toggler) {
+      $('.js-filter-container').toggleClass('u-hidden-md-down');
     },
   }
 }
 
 function TaskListToolKit() {
 
-  function hideColumnInMediumScreen($header, $cell) {
-    $header.addClass("hidden-md");
-    $cell.addClass("hidden-md");
+  function hideColumnWhenExpandMenu($columns) {
+    $columns.addClass("ui-hidden");
   }
 
-  function displayColumnInMediumScreen($header, $cell) {
-    $header.removeClass("hidden-md");
-    $cell.removeClass("hidden-md");
-  }
-
-  function hideColumnInSmallScreen($header, $cell) {
-    $header.addClass("hidden-sm");
-    $cell.addClass("hidden-sm");
-  }
-
-  function displayColumnInSmallScreen($header, $cell) {
-    $header.removeClass("hidden-sm");
-    $cell.removeClass("hidden-sm");
+  function displayColumnWhenCollapseMenu($columns) {
+    $columns.removeClass("ui-hidden");
   }
 
   return {
@@ -74,6 +61,7 @@ function TaskListToolKit() {
       var taskSortMenu = $('.js-task-widget-sort-menu');
       var taskEntry = $('.js-task-start-link').first();
       var noEntry = taskEntry.length == 0;
+      this.showHideColumnWhenMenuToggle();
       if (taskSortMenu.hasClass('full-mode')) {
         if (noEntry) {
           $(taskSortMenu).hide();
@@ -86,55 +74,26 @@ function TaskListToolKit() {
         });
       }
     },
-
-    responsiveInMediumScreen : function() {
-      var $mainMenu = $('.js-left-sidebar');
-      var $secondLevelMenu = $('#second-level-menu');
-      var $responsibleColumnHeader = $('.js-responsible-column-header');
-      var $responsibleCell = $('.js-responsible-cell');
-
-      if ($mainMenu.hasClass('in') && $secondLevelMenu.hasClass('on')) {
-        hideColumnInMediumScreen($responsibleColumnHeader, $responsibleCell);
-      } else {
-        displayColumnInMediumScreen($responsibleColumnHeader, $responsibleCell);
-      }
-      this.setupHeader();
+    
+    setupScrollbar : function() {
+      var taskWidget = new TaskWidget();
+      taskWidget.setupScrollbar();
     },
 
-    responsiveInSmallScreen : function() {
+    showHideColumnWhenMenuToggle: function() {
       var $mainMenu = $('.js-left-sidebar');
-      var $secondLevelMenu = $('#second-level-menu');
-      var $idColumnHeader = $('.js-id-column-header');
-      var $idCell = $('.js-id-cell');
-      var $createColumnHeader = $('.js-create-column-header');
-      var $createCell = $('.js-create-cell');
-      var $expiryColumnHeader = $('.js-expiry-column-header');
-      var $expiryCell = $('.js-expiry-cell');
-
-      if ($mainMenu.hasClass('in') && $secondLevelMenu.hasClass('on')) {
-        hideColumnInSmallScreen($idColumnHeader, $idCell);
-        hideColumnInSmallScreen($createColumnHeader, $createCell);
-        hideColumnInSmallScreen($expiryColumnHeader, $expiryCell);
-      } else if ($mainMenu.hasClass('in') || $secondLevelMenu.hasClass('on')) {
-        hideColumnInSmallScreen($idColumnHeader, $idCell);
-        displayColumnInSmallScreen($createColumnHeader, $createCell);
-        displayColumnInSmallScreen($expiryColumnHeader, $expiryCell);
+      var remainingWidth = $('body').width() - $mainMenu.outerWidth() - 75;//exclude padding and scroll bar
+      var $hiddenColumns = $('.js-hidden-when-expand-menu');
+      if (remainingWidth < 1024 && $mainMenu.hasClass('in')) {
+        hideColumnWhenExpandMenu($hiddenColumns);
       } else {
-        displayColumnInSmallScreen($idColumnHeader, $idCell);
-        displayColumnInSmallScreen($createColumnHeader, $createCell);
-        displayColumnInSmallScreen($expiryColumnHeader, $expiryCell);
+        displayColumnWhenCollapseMenu($hiddenColumns);
       }
-      this.setupHeader();
     },
-
+    
     responsive : function() {
-      if (viewPort.isMediumScreen()) {
-        this.responsiveInMediumScreen();
-      } else if (viewPort.isSmallScreen()) {
-        this.responsiveInSmallScreen();
-      } else {
+        this.setupScrollbar();
         this.setupHeader();
-      }
     }
   }
 };
