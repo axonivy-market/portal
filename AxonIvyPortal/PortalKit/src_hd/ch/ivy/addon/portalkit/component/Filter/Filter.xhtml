@@ -7,8 +7,7 @@
       xmlns:cc="http://xmlns.jcp.org/jsf/composite"
       xmlns:ic="http://ivyteam.ch/jsf/component"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions"
-      xmlns:pm="http://primefaces.org/mobile">
+      xmlns:pe="http://primefaces.org/ui/extensions">
       
   <cc:interface componentType="IvyComponent">
     <cc:attribute name="event" default="keyup"  />
@@ -21,6 +20,8 @@
     <cc:attribute name="keywordStoresIn" />
     <cc:attribute name="onCompletedCallback" default="" />
     <cc:attribute name="icon" default="icon-search" />
+    <cc:attribute name="iconAsButton" default="false" />
+    <cc:attribute name="onClickIconFilter" default="" />
   </cc:interface>
   
   <cc:implementation>
@@ -30,6 +31,7 @@
       </p:inputText>
       <p:inputText id="non-ajax-keyword-filter" styleClass="filter-widget-input #{cc.attrs.styleClass}" rendered="#{not cc.attrs.ajax}" onkeyup="#{cc.attrs.listener}" placeholder="#{cc.attrs.placeholder}" />
       <i class="filter-widget-icon #{cc.attrs.icon}" />
+      <p:commandButton id="mobile-filter-icon" styleClass="mobile-filter-icon" icon="fa fa-filter" rendered="#{cc.attrs.iconAsButton}" onclick="#{cc.attrs.onClickIconFilter}" global="false" type="button" />
     </div>
   </cc:implementation>
 </html>

@@ -1,5 +1,8 @@
 package ch.internalsupport;
 
+import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_VARCHAR_FIELD1;
+import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_VARCHAR_FIELD5;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,15 +27,15 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
   public void extendSort(TaskQuery taskQuery) {
     if ("customVarcharField5".equalsIgnoreCase(criteria.getSortField())) {
       if (criteria.isSortDescending()) {
-        taskQuery.orderBy().customVarCharField5().descending();
+        taskQuery.orderBy().customField().stringField(CUSTOM_VARCHAR_FIELD5).descending();
       } else {
-        taskQuery.orderBy().customVarCharField5();
+        taskQuery.orderBy().customField().stringField(CUSTOM_VARCHAR_FIELD5);
       }
     } else if ("customVarcharField1".equalsIgnoreCase(criteria.getSortField())) {
       if (criteria.isSortDescending()) {
-        taskQuery.orderBy().customVarCharField1().descending();
+        taskQuery.orderBy().customField().stringField(CUSTOM_VARCHAR_FIELD1).descending();
       } else {
-        taskQuery.orderBy().customVarCharField1();
+        taskQuery.orderBy().customField().stringField(CUSTOM_VARCHAR_FIELD1);
       }
     }
   }

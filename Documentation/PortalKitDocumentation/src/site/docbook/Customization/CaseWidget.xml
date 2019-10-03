@@ -10,7 +10,7 @@
 		<listitem>
 			<para>
 				<link linkend="axonivyportal.customization.casewidget.howtooverideui">UI</link>
-				: CaseListHeader, CaseHeader, CaseBody and CaseFilter
+				: CaseListHeader, CaseHeader and CaseFilter
 			</para>
 		</listitem>
 		<listitem>
@@ -24,10 +24,7 @@
 		<para>
 			<orderedlist>
 				<listitem>
-					<para>Case header customization does not support responsive design, smaller resolutions (iPad, etc.)</para>
-				</listitem>
-				<listitem>
-					<para>Additional properties cannot be displayed right now as a column</para>
+					<para>Case header customization currently support responsive design. Refer to <link linkend="axonivyportal.customization.casewidget.responsivelayout">this part</link> for more detail.</para>
 				</listitem>
 				<listitem>
 					<para>Case header's buttons cannot be modified (they stay where they are)</para>
@@ -82,7 +79,6 @@
 					<para>
 						After previous steps, you can override
 						<link linkend="axonivyportal.customization.casewidget.howtooverideui.caseheader">CaseHeader and CaseListHeader</link>
-						and <link linkend="axonivyportal.customization.casewidget.howtooverideui.casebody">CaseBody</link>
 						and <link linkend="axonivyportal.customization.casewidget.howtooverideui.casefilter">CaseFilter</link>
 					</para>
 				</listitem>
@@ -92,6 +88,11 @@
 				<para>
 					Refer to the <code>caseListHeader</code> and <code>caseHeader</code> sections in <code>PortalCases.xhtml</code> of PortalTemplate. 
 					In case your case widget has new columns, you should override CaseLazyDataModel to make the sort function of these columns work:
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="images/CaseWidget/Case-list.png" />
+						</imageobject>
+					</mediaobject>
 					<itemizedlist>
 						<listitem>
 							<para>Introduce a java class extends CaseLazyDataModel</para>
@@ -144,76 +145,6 @@
 							</para>
 						</listitem>
 					</itemizedlist>
-				</para>
-			</sect3>
-			<sect3 xml:id="axonivyportal.customization.casewidget.howtooverideui.casebody">
-				<title>Case body</title>
-				<para>
-					Refer to the <code>caseBody</code> section in <code>PortalCases.xhtml</code> of PortalTemplate.
-				</para>
-				<para>
-					If you need to apply the responsiveness behavior of Portal for case details, there are 2 components which can be used: <code>ResponsivenessHandleContainer</code> and <code>ResponsivenessHandleButton</code>:
-					<itemizedlist>
-						<listitem>
-							<para>
-								ResponsivenessHandleContainer: a container contains <code>ResponsivenessHandleButton</code> and your javascript which contains the onstart and oncomplete function of <code>ResponsivenessHandleButton</code>.
-							</para>
-						</listitem>
-						<listitem>
-							<para>
-								ResponsivenessHandleButton: contains the params which handle responsiveness:
-								<para>
-									<itemizedlist>
-										<listitem>
-											<para>
-												icon: the icon of button
-											</para>
-										</listitem>
-										<listitem>
-											<para>
-												displayedSelectors: css selectors of the components which need to be displayed.
-											</para>
-										</listitem>
-										<listitem>
-											<para>
-												hiddenSelectorsInLargeScreen: css selectors of the components which need to be hidden in large screen (width: 1920px).
-											</para>
-										</listitem>
-										<listitem>
-											<para>
-												hiddenSelectorsInMediumScreen: css selectors of the components which need to be displayed in medium screen (width: 1366px).
-											</para>
-										</listitem>
-										<listitem>
-											<para>
-												hiddenSelectorsInSmallScreen: css selectors of the components which need to be displayed in small screen (width: 1024px).
-											</para>
-										</listitem>
-										<listitem>
-											<para>
-												fadeTime: the fade in/out time. (metric: millisecond)
-											</para>
-										</listitem>
-										<listitem>
-											<para>
-												onstart: client side callback to execute before responsiveness execution.
-											</para>
-										</listitem>
-										<listitem>
-											<para>
-												oncomplete: client side callback to execute after responsiveness execution.
-											</para>
-										</listitem>
-									</itemizedlist>
-								</para>
-							</para>
-						</listitem>
-					</itemizedlist>
-					<mediaobject>
-						<imageobject>
-							<imagedata fileref="images/CaseWidget/CaseDetailsResponsiveness.png" />
-						</imageobject>
-					</mediaobject>
 				</para>
 			</sect3>
 			<sect3 xml:id="axonivyportal.customization.casewidget.howtooverridecasefilter">
@@ -279,8 +210,42 @@
 CaseLazyDataModel dataModel = new CaseLazyDataModel();
 dataModel.getCriteria().setCustomCaseQuery(YOUR_CASE_QUERY); // Set your CaseQuery
 dataModel.getCriteria().setAdminQuery(true); // Display the cases of all users
-out.caseView = CaseView.create().dataModel(dataModel).withTitle("My Cases").buildNewView();
+out.caseView = CaseView.create().dataModel(dataModel)
+.withTitle("My Cases").buildNewView();
 			</screen>
 		</para>
+	</sect2>
+	<sect2 xml:id="axonivyportal.customization.casewidget.responsivelayout">
+		<title>How to make reponsive case list</title>
+		<para>If you have customized case list and want it responsive on different screen sizes, please follow below steps.</para>
+		<para>You can refer to <code>PortalExamples</code> project for examples</para>
+		<orderedlist>
+			<listitem>
+				<para>Add responsiveStyleClass param (in case you're using Portal component), or styleClass (in case you're using Primefaces or JSF component) with the same responsive css class for both caseListHeader and caseHeader. 
+				You can find responsive class in <link linkend="axonivyportal.customization.responsivecss">this part.</link></para>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="images/CaseWidget/ResponsiveCaseListCustomization.png" />
+					</imageobject>
+				</mediaobject>
+				<tip>
+					<para>Hint: <code>CaseCustomField</code> component has default responsiveStyleClass is <code>u-hidden-sm-down</code></para>
+				</tip>
+			</listitem>
+			<listitem>
+				<para>
+				Responsiveness could be broken when you anchor left menu. In this case, to maintain the responsiveness, you could hide some columns by add <code>js-hidden-when-expand-menu</code>
+				to responsiveStyleClass or styleClass param of caseListHeader and caseHeader.
+				</para>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="images/CaseWidget/ResponsiveCaseListHideColumn.png" />
+					</imageobject>
+				</mediaobject>
+				<tip>
+					<para>Hint: The smallest browser width you can anchor the left menu is 1025. So you could reduce width of browser to 1025 to test and decide which columns need to be hidden.</para>
+				</tip>
+			</listitem>
+		</orderedlist>
 	</sect2>
 </sect1>

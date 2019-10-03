@@ -1,0 +1,6 @@
+PortalCaseDetailsData #class
+ch.ivy.addon.portal.generic.PortalCaseDetails #namespace
+caseInfo ch.ivyteam.ivy.workflow.ICase #field
+caseInfo PERSISTENT #fieldModifier
+isShowBackButton Boolean #field
+isShowBackButton PERSISTENT #fieldModifier

@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
-    <startMethod>
-        <name>start</name>
-        <description></description>
-        <inputParameter>
-            <name>menuState</name>
-            <description></description>
-            <parameterType>String</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </startMethod>
     <property>
         <name>guid</name>
         <value>150D5B63FD15FE77</value>

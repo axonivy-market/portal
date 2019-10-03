@@ -17,11 +17,3 @@ function getCookie(cname) {
 function deleteCookie(name) {
 	document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
-function redirectToLastPage() {
-	var cookie = getCookie('lastWorkingApp');
-	if (cookie != '') {
-		window.location.href = cookie;
-	}else{
-		console.log('no end point url defined');
-	}
-}

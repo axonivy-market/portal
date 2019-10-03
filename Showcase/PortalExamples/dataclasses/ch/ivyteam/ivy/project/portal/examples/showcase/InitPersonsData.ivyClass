@@ -1,0 +1,4 @@
+InitPersonsData #class
+ch.ivyteam.ivy.project.portal.examples.showcase #namespace
+persons java.util.List<ch.ivyteam.ivy.project.portal.examples.showcase.Person> #field
+persons PERSISTENT #fieldModifier

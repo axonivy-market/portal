@@ -1,8 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile"
-  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:body>
   <ui:composition template="/layouts/PortalTasksTemplate.xhtml">
     <ui:param name="menuState" value="#{data.menuState}" />
@@ -73,9 +72,9 @@
         rendered="#{taskView.dataModel.isSelectedColumn('EXPIRY_TIME')}" />
 
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskCustomField id="customer-name-component" componentId="customer-name" column="customVarCharField5" dataModel="#{taskView.dataModel}"
-        labelValue="#{task.customVarCharField5}" />
+        labelValue="#{task.customFields().stringField('CustomVarCharField5').getOrNull()}" />
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskCustomField id="customer-type-component" componentId="customer-type" column="customVarCharField1" dataModel="#{taskView.dataModel}"
-        labelValue="#{task.customVarCharField1}" />
+        labelValue="#{task.customFields().stringField('CustomVarCharField1').getOrNull()}" />
     </ui:define>
 
     <ui:define name="taskFilter">

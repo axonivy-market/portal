@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
-    <startMethod>
-        <name>start</name>
-        <description>Default dialog start method.</description>
-        <outputParameter>
-            <name>numberOfCases</name>
-            <description></description>
-            <parameterType>java.lang.Integer</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </outputParameter>
-    </startMethod>
     <property>
         <name>guid</name>
         <value>167BAF785F98D0A7</value>

@@ -17,14 +17,14 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
-import org.primefaces.context.RequestContext;
+import org.primefaces.PrimeFaces;
 
-import ch.ivy.addon.portal.generic.common.DeviceDetector;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
+import ch.ivy.addon.portalkit.service.AnnouncementService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
@@ -79,12 +79,6 @@ public class UserMenuBean implements Serializable {
     return getDefaultClientSideTimeout();
   }
 
-  public void switchDesktopOrMobileVersion(boolean isMobile) throws IOException {
-    String url = String.format("%s?isMobile=%s", getHomePageURL(), isMobile);
-    getExternalContext().redirect(url);
-    DeviceDetector.instance().updateVersionState(Ivy.session().getHttpSessionIdentifier(), isMobile);
-  }
-
   public String getLogoutPage() throws MalformedURLException {
     IvyCacheService cacheService = IvyCacheService.newInstance();
     String logoutPageUrl = cacheService.getLogoutPageFromCache();
@@ -127,7 +121,7 @@ public class UserMenuBean implements Serializable {
 
   public void navigateToHomePageOrDisplayWorkingTaskWarning(boolean isWorkingOnATask) throws IOException {
     if (isWorkingOnATask) {
-      RequestContext.getCurrentInstance().execute("PF('logo-task-losing-confirmation-dialog').show()");
+      PrimeFaces.current().executeScript("PF('logo-task-losing-confirmation-dialog').show()");
     } else {
       navigateToHomePage();
     }
@@ -152,6 +146,13 @@ public class UserMenuBean implements Serializable {
     return true;
   }
 
+  public String getAnnouncement() {
+    return AnnouncementService.getInstance().getAnnouncement();
+  }
+
+  public boolean isAnnouncementActivated() {
+    return AnnouncementService.getInstance().isAnnouncementActivated();
+  }
   private void navigateToHomePage() throws IOException {
     getExternalContext().redirect(getHomePageURL());
   }

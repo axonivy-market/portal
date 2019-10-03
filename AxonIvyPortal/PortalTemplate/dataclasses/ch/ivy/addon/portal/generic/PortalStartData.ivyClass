@@ -1,6 +1,6 @@
 PortalStartData #class
 ch.ivy.addon.portal.generic #namespace
-portalPage ch.ivy.addon.portal.generic.navigation.PortalPage #field
+portalPage ch.ivy.addon.portalkit.enums.PortalPage #field
 parameters String #field
 caseView ch.ivy.addon.portal.generic.view.CaseView #field
 taskView ch.ivy.addon.portal.generic.view.TaskView #field
@@ -13,5 +13,8 @@ callbackUrl String #field
 isDataModelInitialized Boolean #field
 caseDataModel ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel #field
 searchResultsDataModel ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel #field
-isMobile Boolean #field
-defaultMobilePage ch.ivy.addon.portalkit.enums.MenuKind #field
+caseId Long #field
+caseSelected ch.ivyteam.ivy.workflow.ICase #field
+taskSelected ch.ivyteam.ivy.workflow.ITask #field
+taskId Long #field
+isTaskStartedInDetails Boolean #field

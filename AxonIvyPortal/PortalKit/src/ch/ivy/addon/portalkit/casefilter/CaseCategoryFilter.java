@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.primefaces.model.CheckboxTreeNode;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.bo.CaseNode;
 import ch.ivy.addon.portalkit.util.CaseTreeUtils;
@@ -12,8 +15,6 @@ import ch.ivy.addon.portalkit.util.NodeUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class CaseCategoryFilter extends CaseFilter {
 
@@ -72,7 +73,11 @@ public class CaseCategoryFilter extends CaseFilter {
   }
 
   public void setCategories(CheckboxTreeNode[] categories) {
-    this.categories = categories;
+    if (ArrayUtils.isEmpty(categories)) {
+      this.categories = new CheckboxTreeNode[] {};
+    } else {
+      this.categories = categories;
+    }
   }
 
   public CheckboxTreeNode getRoot() {
@@ -82,6 +87,17 @@ public class CaseCategoryFilter extends CaseFilter {
   public void setRoot(CheckboxTreeNode root) {
     this.root = root;
   }
+  
+  //This method is used for updating Category Tree and Category Paths when having session filter 
+  public void updateRootAndCategoryPaths() {
+    root = CaseTreeUtils.buildCaseCategoryCheckboxTreeRoot();
+    setCategoryPaths(this.categoryPaths);
+  }
+
+  @Override
+  public boolean defaultFilter() {
+    return true;
+ }
 
   public List<String> getCategoryPaths() {
     this.categoryPaths = NodeUtils.getCategoryPaths(categories, CaseNode.class);
@@ -100,11 +116,15 @@ public class CaseCategoryFilter extends CaseFilter {
       return;
     }
     CaseNode nodeData = (CaseNode) node.getData();
-    if (paths.contains(nodeData.getValue())) {
-      node.setSelected(true);
-      selectedCategories.add(node);
-    } else {
-      node.setSelected(false);
+    for(String path : paths) {
+      if (path.equals(nodeData.getCategory())) {
+        node.setSelected(true);
+        selectedCategories.add(node);
+      } else {
+        if(!selectedCategories.contains(node)) {
+          node.setSelected(false);
+        }
+      }
     }
     node.getChildren().forEach(child -> checkCategoryTreeNode((CheckboxTreeNode) child, selectedCategories, paths));
   }

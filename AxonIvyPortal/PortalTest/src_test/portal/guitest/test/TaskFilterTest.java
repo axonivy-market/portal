@@ -49,6 +49,22 @@ public class TaskFilterTest extends BaseTest {
   }
   
   @Test
+  public void testShowDoneStateFilterForNormalUser() {
+    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
+    loginPage.login();
+
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+    assertEquals(3, taskWidgetPage.countTasks());
+
+    String stateFilterValue = taskWidgetPage.getFilterValue("state-filter");
+    assertEquals("State: Suspended, In progress, Reserved", stateFilterValue);
+    
+    taskWidgetPage.openStateFilter();
+    assertEquals("Done", taskWidgetPage.getStateFilterSelection(3));
+  }
+  
+  @Test
   public void testKeepSessionFilter() {
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
@@ -95,7 +111,7 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.filterByDescription("Sick");
     taskWidgetPage.saveFilter(filterName);
 
-    redirectToRelativeLink(HomePage.INTERNAL_SUPPORT_HOME_PAGE_URL);
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     taskWidgetPage = mainMenuPage.openTaskList();
 
     assertFalse(taskWidgetPage.isFilterSelectionVisible());

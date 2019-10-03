@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
-    <startMethod>
-        <name>start</name>
-        <description>Default dialog start method.</description>
-        <outputParameter>
-            <name>loginOk</name>
-            <description></description>
-            <parameterType>Boolean</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </outputParameter>
-    </startMethod>
     <property>
         <name>guid</name>
         <value>14BE3DBF5F82C442</value>

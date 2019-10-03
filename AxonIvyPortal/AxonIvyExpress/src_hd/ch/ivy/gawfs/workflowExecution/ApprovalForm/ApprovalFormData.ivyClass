@@ -10,3 +10,7 @@ comment String #field
 comment PERSISTENT #fieldModifier
 finishedTasks java.util.List<gawfs.TaskDef> #field
 finishedTasks PERSISTENT #fieldModifier
+isAdhocProcess Boolean #field
+isAdhocProcess PERSISTENT #fieldModifier
+originalTaskId Long #field
+originalTaskId PERSISTENT #fieldModifier

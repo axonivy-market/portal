@@ -1,10 +1,9 @@
 [Ivy]
-14BECA923C1F4A4B 3.24 #module
+14BECA923C1F4A4B 3.28 #module
 >Proto >Proto Collection #zClass
 Se0 SubstituteService Big #zClass
 Se0 B #cInfo
 Se0 #process
-Se0 @TextInP .resExport .resExport #zField
 Se0 @TextInP .type .type #zField
 Se0 @TextInP .processKind .processKind #zField
 Se0 @AnnotationInP-0n ai ai #zField
@@ -35,10 +34,7 @@ Se0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.Po
 Se0 f0 outParamTable 'result.errors=in.errors;
 result.substitutesByApp=in.substitutesByApp;
 ' #txt
-Se0 f0 actionDecl 'ch.ivyteam.wf.processes.SubstituteServiceData out;
-' #txt
 Se0 f0 callSignature findSubstitutes(String) #txt
-Se0 f0 type ch.ivyteam.wf.processes.SubstituteServiceData #txt
 Se0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -48,12 +44,9 @@ Se0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Se0 f0 81 49 30 30 -61 17 #rect
 Se0 f0 @|StartSubIcon #fIcon
-Se0 f1 type ch.ivyteam.wf.processes.SubstituteServiceData #txt
 Se0 f1 721 49 30 30 0 15 #rect
 Se0 f1 @|EndSubIcon #fIcon
-Se0 f88 type ch.ivyteam.wf.processes.SubstituteServiceData #txt
 Se0 f88 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Se0 f88 doCall true #txt
 Se0 f88 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
 ' #txt
 Se0 f88 requestMappingAction 'param.exceptions=in.errors;
@@ -71,8 +64,6 @@ Se0 f88 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Se0 f88 530 42 112 44 -35 -8 #rect
 Se0 f88 @|CallSubIcon #fIcon
-Se0 f84 actionDecl 'ch.ivyteam.wf.processes.SubstituteServiceData out;
-' #txt
 Se0 f84 actionTable 'out=in;
 ' #txt
 Se0 f84 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
@@ -80,7 +71,6 @@ Se0 f84 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationS
 RegisteredApplicationService service = new RegisteredApplicationService();
 out.apps = service.findActiveIvyAppsUserCanWorkOn(in.username);
 ' #txt
-Se0 f84 type ch.ivyteam.wf.processes.SubstituteServiceData #txt
 Se0 f84 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -90,8 +80,6 @@ Se0 f84 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Se0 f84 160 42 176 44 -81 -8 #rect
 Se0 f84 @|StepIcon #fIcon
-Se0 f86 actionDecl 'ch.ivyteam.wf.processes.SubstituteServiceData out;
-' #txt
 Se0 f86 actionTable 'out=in;
 ' #txt
 Se0 f86 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvySubstituteResultDTO;
@@ -100,7 +88,6 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.SubstituteService;
 IvySubstituteResultDTO dto = SubstituteService.newInstance().findSubstitutes(in.username, in.apps);
 out.substitutesByApp = dto.getIvySubstitutesByApp();
 out.errors = dto.errors;' #txt
-Se0 f86 type ch.ivyteam.wf.processes.SubstituteServiceData #txt
 Se0 f86 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -126,10 +113,7 @@ Se0 f4 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.Po
 ' #txt
 Se0 f4 outParamTable 'result.errors=in.errors;
 ' #txt
-Se0 f4 actionDecl 'ch.ivyteam.wf.processes.SubstituteServiceData out;
-' #txt
 Se0 f4 callSignature saveSubstitutes(String,java.util.Map) #txt
-Se0 f4 type ch.ivyteam.wf.processes.SubstituteServiceData #txt
 Se0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -139,11 +123,8 @@ Se0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Se0 f4 81 177 30 30 -74 20 #rect
 Se0 f4 @|StartSubIcon #fIcon
-Se0 f5 type ch.ivyteam.wf.processes.SubstituteServiceData #txt
 Se0 f5 721 177 30 30 0 15 #rect
 Se0 f5 @|EndSubIcon #fIcon
-Se0 f8 actionDecl 'ch.ivyteam.wf.processes.SubstituteServiceData out;
-' #txt
 Se0 f8 actionTable 'out=in;
 ' #txt
 Se0 f8 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvySubstituteResultDTO;
@@ -151,7 +132,6 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.SubstituteService;
 
 IvySubstituteResultDTO dto = SubstituteService.newInstance().saveSubstitutes(in.username, in.substitutesByApp);
 out.errors = dto.errors;' #txt
-Se0 f8 type ch.ivyteam.wf.processes.SubstituteServiceData #txt
 Se0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -161,9 +141,7 @@ Se0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Se0 f8 232 170 112 44 -45 -8 #rect
 Se0 f8 @|StepIcon #fIcon
-Se0 f9 type ch.ivyteam.wf.processes.SubstituteServiceData #txt
 Se0 f9 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Se0 f9 doCall true #txt
 Se0 f9 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
 ' #txt
 Se0 f9 requestMappingAction 'param.exceptions=in.errors;

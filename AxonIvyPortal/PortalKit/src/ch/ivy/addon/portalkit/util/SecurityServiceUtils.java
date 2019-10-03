@@ -81,8 +81,7 @@ public class SecurityServiceUtils {
                 .findProcessStartByUserFriendlyRequestPath("Start Processes/PortalStart/PortalStart.ivp");
         if (processStart != null) {
           try {
-            return String.format("/%s/pro/%s",
-                RequestUriFactory.getIvyContextName(getServer().getApplicationConfigurationManager()),
+            return String.format("/%s/pro/%s", RequestUriFactory.getIvyContextName(),
                 processStart.getFullRequestPath());
           } catch (Exception e) {
             Ivy.log().error(e);

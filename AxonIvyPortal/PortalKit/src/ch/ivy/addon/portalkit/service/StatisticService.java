@@ -9,7 +9,9 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CASE_QUE
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CREATED_CASE_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DECEMBER_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DONE_CASE_KEY;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.ELAPSED_TIME_DETAIL_CHART_NAME_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.EXCEPTION_PRIORITY_KEY;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.EXPIRED_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.EXPIRY_PERIOD_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.FAILED_CASE_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.FEBRUARY_CMS;
@@ -40,7 +42,6 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NORMAL_P
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NOVEMBER_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NO_CATEGORY_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.OCTOBER_CMS;
-import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.PERCENTAGE_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.RESULT;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.RUNNING_CASE_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SATURDAY_CMS;
@@ -95,10 +96,9 @@ import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
 import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
 import ch.ivy.addon.portalkit.bo.PriorityStatistic;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
-import ch.ivy.addon.portalkit.enums.CustomVarCharField;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
-import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomVarCharSearchCriteria;
+import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria;
 import ch.ivy.addon.portalkit.statistics.Colors;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
@@ -248,25 +248,14 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     return (ElapsedTimeStatistic) response.get(RESULT);
   }
 
-  /**
-   * Get customVarChar fields
-   * 
-   * @param customVarCharField
-   * @param keyword
-   * @param limit
-   * @return list of customVarChar
-   */
   @SuppressWarnings("unchecked")
-  public List<String> getCustomVarCharFields(CustomVarCharField customVarCharField, String keyword,
-      int limit) {
-    CaseCustomVarCharSearchCriteria criteria = new CaseCustomVarCharSearchCriteria();
-    criteria.setCustomVarCharField(customVarCharField);
+  public List<String> getCustomFields(String fieldName, String keyword){
+    CaseCustomFieldSearchCriteria criteria = new CaseCustomFieldSearchCriteria();
     criteria.setKeyword(keyword);
-    criteria.setLimit(limit);
+    criteria.setFieldName(fieldName);
     return SubProcessCall.withPath(PortalConstants.ANALYZE_STATISTIC_CALLABLE)
-        .withStartSignature("findCaseCustomVarChars(CaseCustomVarCharSearchCriteria)")
-        .withParam("caseCustomVarCharSearchCriteria", criteria).call().get(RESULT, List.class);
-
+        .withStartSignature("findCaseCustomFields(CaseCustomFieldSearchCriteria)")
+        .withParam("caseCustomFieldSearchCriteria", criteria).call().get(RESULT, List.class);
   }
 
   /**
@@ -575,6 +564,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   private Map<Object, Number> generateDefaultExpiryModel(Map<Date, Long> numberOfTasksByExpiryTime) {
     Map<Object, Number> chartData = new LinkedHashMap<>();
     // Calculate result
+    Long expiredTasks = 0L;
     Long taskExpireToday = 0L;
     Long taskExpireThisWeek = 0L;
     Long taskExpireThisMonth = 0L;
@@ -593,11 +583,16 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     if (numberOfTasksByExpiryTime != null) {
       for (Entry<Date, Long> result : numberOfTasksByExpiryTime.entrySet()) {
         Date resultDate = StatisticChartTimeUtils.truncateMinutesPart(result.getKey());
-  
+
+        if (new Date().after(result.getKey())) {
+          expiredTasks += result.getValue();
+          continue; // Not include expired tasks to other bars
+        }
+        
         if (today.compareTo(resultDate) == 0) {
           taskExpireToday += result.getValue();
         }
-  
+
         if (firstDateOfWeek.compareTo(resultDate) <= 0 && firstDateOfNextWeek.compareTo(resultDate) > 0) {
           taskExpireThisWeek += result.getValue();
         }
@@ -610,6 +605,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       }
     }
 
+    chartData.put(Ivy.cms().co(EXPIRED_KEY), expiredTasks);
     chartData.put(Ivy.cms().co(TODAY_EXPIRY_KEY), taskExpireToday);
     chartData.put(Ivy.cms().co(THIS_WEEK_EXPIRY_KEY), taskExpireThisWeek);
     chartData.put(Ivy.cms().co(THIS_MONTH_EXPIRY_KEY), taskExpireThisMonth);
@@ -836,6 +832,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       if(chartData.size() == 1) {
         model.setBarWidth(80);
       }
+      model.setBarMargin(1);
       chartSeries.setData(new HashMap<>(chartData));
       model.setExtender("elapsedTimeBarChartExtender");
       model.setShadow(false);
@@ -844,7 +841,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       xAxis.setLabel(Ivy.cms().co(CASE_CATEGORIES_CMS));
 
       Axis yAxis = model.getAxis(AxisType.Y);
-      yAxis.setLabel(Ivy.cms().co(PERCENTAGE_CMS));
+      yAxis.setLabel(Ivy.cms().co(ELAPSED_TIME_DETAIL_CHART_NAME_CMS));
     }
     if (isSetDefaultName) {
       model.setTitle(Ivy.cms().co(StatisticChartType.ELAPSED_TIME_BY_CASE_CATEGORY.getCmsUri()));
@@ -860,27 +857,11 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       caseCategoryToElapsedTime.put("", 0);
     }
 
-    float totalValue = 0f;
-    float otherValue = 0f;
-
-    for (Number number : caseCategoryToElapsedTime.values()) {
-      totalValue += number.floatValue();
-    }
-
     for (Iterator<Entry<String, Number>> iterator = caseCategoryToElapsedTime.entrySet().iterator(); iterator.hasNext();) {
       Entry<String, Number> chartDataEntry = iterator.next();
-      float floatValueOfChartData = chartDataEntry.getValue().floatValue();
-      if (floatValueOfChartData < totalValue * 0.02) {
-        otherValue += floatValueOfChartData;
-        iterator.remove();
-      } else {
-        chartDataEntry.setValue(floatValueOfChartData * 100 / totalValue);
-      }
-    }
+      float floatValueOfChartData = chartDataEntry.getValue().floatValue()/3600;
 
-    if (Float.compare(otherValue, 0f) != 0) {
-      caseCategoryToElapsedTime.put(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/other"), otherValue
-          * 100 / totalValue);
+        chartDataEntry.setValue(floatValueOfChartData);
     }
 
     return new HashMap<>(caseCategoryToElapsedTime);

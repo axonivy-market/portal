@@ -1,26 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
-    <method>
-        <name>itemSelect</name>
-        <description></description>
-        <inputParameter>
-            <name>event</name>
-            <description></description>
-            <parameterType>org.primefaces.event.ItemSelectEvent</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <startMethod>
-        <name>start</name>
-        <description>Default dialog start method.</description>
-        <outputParameter>
-            <name>taskView</name>
-            <description></description>
-            <parameterType>ch.ivy.addon.portal.generic.view.TaskView</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </outputParameter>
-    </startMethod>
     <property>
         <name>guid</name>
         <value>15C1FA307E0A24E4</value>

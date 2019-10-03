@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 
 public class TaskTemplatePage extends TemplatePage {
 
+  String ADHOC_HISTORY_TABLE_CSS_SELECTOR = "div[id*='adhoc-task-history-table'] table>tbody>tr";
+
   @Override
   protected String getLoadedLocator() {
     return "id('side-steps-menu')";
@@ -96,5 +98,86 @@ public class TaskTemplatePage extends TemplatePage {
   
   public String getCaseName(){
     return findElementById("case-item:case-name-component:case-header-name-cell").getText();
+  }
+  
+  public void clickAdhocCreationButton() {
+    String adhocButtonCssSelection = "a[id$='start-adhoc']";
+    findElementByCssSelector(adhocButtonCssSelection).click();
+    waitAjaxIndicatorDisappear();
+  }
+  
+  public void clickAdhocOkButton() {
+    String adhocButtonCssSelection = "button[id$='start-adhoc-ok-button']";
+    findElementByCssSelector(adhocButtonCssSelection).click();
+    waitAjaxIndicatorDisappear();
+  }
+  
+  public void clickAdhocCancelButton() {
+    String adhocButtonCssSelection = "button[id$='start-adhoc-cancel-button']";
+    findElementByCssSelector(adhocButtonCssSelection).click();
+    waitAjaxIndicatorDisappear();
+  }
+  
+  
+  public boolean isShowAdhocHistoryBtnNotExist() {
+    String adhocHistoryBtnCSSSelection = "a[id$='show-adhoc-history']";
+    return driver.findElements(By.cssSelector(adhocHistoryBtnCSSSelection)).isEmpty();
+  }
+  
+  public boolean isAdhocHistoryDialogExist() {
+    String adhocHistoryBtnCSSSelection = "div[id$='adhoc-task-history-dialog']";
+    return findElementByCssSelector(adhocHistoryBtnCSSSelection).isDisplayed();
+  }
+  
+  public void clickShowAdhocHistoryBtn() {
+    String adhocHistoryBtnCSSSelection = "a[id$='show-adhoc-history']";
+    findElementByCssSelector(adhocHistoryBtnCSSSelection).click();
+    waitAjaxIndicatorDisappear();
+  }
+
+  public String getTaskNameOfAdhocHistoryRow(int index) {
+    WebElement row = driver.findElements(By.cssSelector(ADHOC_HISTORY_TABLE_CSS_SELECTOR)).get(index);
+    return row.findElements(By.xpath("td")).get(1).getText();
+  }
+  
+  public String getCommentOfAdhocHistoryRow(int index) {
+    WebElement row = driver.findElements(By.cssSelector(ADHOC_HISTORY_TABLE_CSS_SELECTOR)).get(index);
+    return row.findElements(By.xpath("td")).get(2).getText();
+  }
+  
+  public void closeAdhocHistoryDialog() {
+    String adhocButtonCssSelection = "button[id$='close-adhoc-dialog-button']";
+    findElementByCssSelector(adhocButtonCssSelection).click();
+    waitAjaxIndicatorDisappear();
+  }
+  
+  public String getAdhocCreationMessage() {
+    String adhocCreationMessageCSSSelector = "span[id$='adhoc-creation-message']";
+    return findDisplayedElementBySelector(adhocCreationMessageCSSSelector).getText();
+  }
+
+  public void clickSubmitButton() {
+    String submitButton = "button[id$='command-form:button-submit']";
+    findElementByCssSelector(submitButton).click();
+    waitAjaxIndicatorDisappear();
+  }
+  
+  public void clickChatGroup() {
+    String chatGroup = "a[id$='chat-group']";
+    findElementByCssSelector(chatGroup).click();
+    waitAjaxIndicatorDisappear();
+  }
+  
+  public void joinProcessChatAlreadyCreated() {
+  	waitForElementDisplayed(By.id("chat-group-join-form:chat-group-join-button"), true);
+  	click(By.id("chat-group-join-form:chat-group-join-button"));
+  	waitAjaxIndicatorDisappear();
+  }
+  
+  public void inputFields(String employee, String from, String to, String representation) {
+    type(By.id("leave-request:fullname"), employee);
+    type(By.id("leave-request:from_input"), from);
+    type(By.id("leave-request:to_input"), to);
+    type(By.id("leave-request:substitute"), representation);
   }
 }

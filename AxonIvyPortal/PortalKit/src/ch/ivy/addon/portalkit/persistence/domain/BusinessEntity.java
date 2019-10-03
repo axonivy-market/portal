@@ -1,6 +1,6 @@
 package ch.ivy.addon.portalkit.persistence.domain;
 
-import org.boon.json.annotations.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.persistence.variable.PropertyKey;
 

@@ -1,14 +1,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+  xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
   <ui:composition template="/layouts/DefaultHomePageTemplate.xhtml">
     <ui:define name="pageTitle">Customized Home</ui:define>
-    <ui:param name="displayStatisticWidget" value="false" />
+    <ui:param name="displayStatisticWidget" value="true" />
+    <ui:param name="displayProcessWidget" value="false" />
     <ui:define name="taskWidget">
       <h:panelGroup layout="block"
-        styleClass="js-dashboard-main-content-2nd-col dashboard-main-content-2nd-col layout-col customized-home-task-widget">
+        styleClass="customized-home-task-widget">
         <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" dataModel="#{dataModel}"
           title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}"
           keyword="#{dataModel.criteria.keyword}" compactMode="#{dataModel.compactMode}"
@@ -18,7 +19,7 @@
     </ui:define>
     <ui:define name="customWidget">
       <div
-        class="js-dashboard-default-widget-container customized-home-custom-widget">
+        class="customized-home-custom-widget">
         <h1>Custom Widget</h1>
       </div>
     </ui:define>
