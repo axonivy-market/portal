@@ -40,7 +40,7 @@
       <div class="chat-contact">
         <div class="close-chat">
           <p:commandButton icon="ui-icon-circle-close" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" global="false"
-            oncomplete="view.renderChatMessagePanelUIWhenOpen(); view.closeChatMessagePanel;"/>
+            oncomplete="view.closeChatPanel();"/>
         </div>
         <div class="chat-contact-content-contact-list js-chat-contact-list">
           <div class="chat-contact-type-header" jsf:rendered="#{chatRendererBean.isGroupChatRendered and chatRendererBean.isPrivateChatRendered}">
