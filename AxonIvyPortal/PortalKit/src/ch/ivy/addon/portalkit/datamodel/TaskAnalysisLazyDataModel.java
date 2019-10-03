@@ -234,7 +234,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     taskQuery = taskQuery.where().cases(caseQuery);
 
     String sortField = criteria.getSortField();
-    if (sortField != null && sortField.startsWith(TASK_COLUMN_PREFIX)) {
+    if (sortField.startsWith(TASK_COLUMN_PREFIX)) {
       buildSortTaskQuery(taskQuery);
     }
 
