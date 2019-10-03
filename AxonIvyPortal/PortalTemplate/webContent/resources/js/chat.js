@@ -733,6 +733,11 @@ function View(uri)
       $(".js-chat-message-container").removeClass("active");
     }
 
+    this.closeChatPanel = function() {
+        closeChatMessagePanel();
+        this.renderChatMessagePanelUIWhenOpen();
+    }
+
     function updateExistingGroups() {
       var groupContainer = document.getElementsByClassName("js-group-chat-container")[0];
       var groupId = groupContainer.getElementsByClassName("js-case-id");
