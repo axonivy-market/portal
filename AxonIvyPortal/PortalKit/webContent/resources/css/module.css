@@ -1226,19 +1226,106 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   text-align: right;
 }
 /********************************** END CASE ITEM **********************************/
-.process-widget-action {
-  line-height: 15px;
-  display: inline-block;
-  width: 100%;
+
+/********************************** START PROCESSES **********************************/
+
+/* Mobile screen */
+@media screen and (max-width: 40em) {
+  .process-start-list-container .process-nav .process-nav-item  {
+    padding: 0 10px !important;
+  }
+  .process-widget .process-group {
+    width: calc(100% - 35px) !important;
+  }
+  .process-start-list-item-name-text {
+    width: calc(100vw - 100px) !important;
+  }
 }
 
-.process-navigation-container {
-  text-align: center;
+/* Small screen */
+@media screen and (min-width: 40.063em) and (max-width: 64.062em) {
+  .delegation-select-panel {
+    max-width: 36% !important;
+  }
+  .process-start-list-container .process-nav .process-nav-item  {
+    padding: 0 15px !important;
+  }
+}
+
+/* Medium screen */
+@media screen and (min-width: 64.063em) and (max-width: 90.062em) {
+  .delegation-select-panel {
+    max-width: 32% !important;
+  }
+  .process-start-list-container .process-nav .process-nav-item  {
+    padding: 0 20px !important;
+  }
+}
+
+/* Large screen */
+@media screen and (min-width: 90.063em) {
+  .delegation-select-panel {
+    max-width: 23% !important;
+  }
+}
+
+.process-widget .widget-header.expanded {
+  display: flex;
+  vertical-align: bottom;
+}
+
+.process-widget .widget-header.expanded>div {
+  align-self: flex-end;
+}
+
+.process-header .process-header-title-container {
+  padding: 6px 6px 6px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.process-header .widget-header-sub .filter-widget {
+  top: 0 !important;
+}
+
+.process-header .create-express-link {
+  display: inline-block;
+  float: right;
+}
+
+.process-header .create-express-link a:hover i {
+  opacity: 0.6;
+}
+
+.process-header .create-express-workflow-icon {
+  margin-right: 4px;
+  height: 1.6rem;
+  width: 1.6rem;
+  background-size: 100%;
+  background-image: url(#{ resource [ 'ivy-webcontent:images/expressLogo/icon_express_process_120x120.png' ]});
 }
 
 .expand-collapse-btns {
   float: left;
 }
+
+.expand-collapse-btns .express-expand-collapse-btn {
+  background-color: rgba(0, 0, 0, 0.10);
+  padding: 5px 10px;
+  border-radius: 15px;
+  color: #212121 !important;
+  float: left;
+  margin-right: 5px;
+}
+
+.expand-collapse-btns a.express-expand-collapse-btn:hover {
+  background-color: rgba(0, 0, 0, 0.20);
+}
+
+.process-widget-action {
+  display: inline-block;
+  width: 100%;
+}
+
 .process-widget-action-form {
   margin-bottom: 8px;
 }
@@ -1258,7 +1345,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 }
 
 .process-start-list, .process-in-search {
-  margin: 15px 0 10px 0;
+  margin: 5px 0 10px 0;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
@@ -1268,11 +1355,9 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
-  margin-right: -30px;
-  padding-right: 80px;
   overflow: auto;
   height: auto !important;
-  padding: 10px;
+  padding: 0;
 }
 
 .process-start-list-container .process-nav {
@@ -1281,10 +1366,9 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   justify-content: space-between;
   text-align: center;
   position: absolute;
-  right: 25px;
-  height: calc(95% - 210px);
+  right: 0;
+  height: auto;
   border-left: 1px solid rgba(0,0,0,0.1);
-  top: 210px;
 }
 
 .process-start-list-container .process-nav .process-nav-item {
@@ -1312,56 +1396,8 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   color: rgba(0,0,0,0.3) !important;
 }
 
-.process-start-list-item-wrapper {
-  min-width: 300px;
-  margin-right: 5px;
-}
-
-.process-header {
-  margin-bottom: 15px;
-}
-
-/* Small screen */
-@media (max-width: 1365px) {
-  .process-start-list-item-wrapper {
-    flex: 0 1 49.3%;
-  }
-  .process-widget .widget-header.expanded {
-    margin-right: 5px;
-  }
-  .delegation-select-panel{
-    max-width: 36% !important;
-  }
-}
-
-/* Medium screen */
-@media (min-width: 1366px) and (max-width: 1919px) {
-  .process-start-list-item-wrapper {
-    flex: 0 1 32.8%;
-  }
-  .process-widget .widget-header.expanded {
-    margin-right: 8px;
-  }
-  .delegation-select-panel{
-    max-width: 32% !important;
-  }
-}
-
-/* Large screen */
-@media (min-width: 1920px) {
-  .process-start-list-item-wrapper {
-    flex: 0 1 32.9%;
-  }
-  .process-widget .widget-header.expanded {
-    margin-right: 5px;
-  }
-  .delegation-select-panel{
-    max-width: 23% !important;
-  }
-}
 .process-start-list-item {
   height: 50px;
-  margin-bottom: 5px;
   background: rgba(0, 0, 0, 0.05);
   border-radius: 5px;
   color: black;
@@ -1395,7 +1431,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 }
 
 .process-start-list-item-icon {
-  font-size: 20px;
+  font-size: 2rem;
   opacity: 0.3;
   display: flex;
   align-items: center;
@@ -1425,20 +1461,14 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 .process-start-list-item-name {
   font-size: 1.2rem;
   overflow: hidden;
-  display: flex;
-  width: 100%;
+  display: inline-flex;
+  width: calc(100% - 55px);
   align-items: center;
 }
 
 .process-start-list-item:hover .process-start-list-item-name,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-name {
-  font-family: 'Roboto';
-  font-style: normal;
   font-weight: 400;
-}
-
-.process-start-list-item-name-text {
-  display: block;
 }
 
 .process-start-list-item-action {
@@ -1448,11 +1478,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   position: absolute;
   bottom: 35%;
   right: 27px;
-}
-
-@media screen and (max-width: 40em) {
-  .compact-process-widget {
-  }
 }
 
 .compact-process-widget .process-start-list-item {
@@ -1546,7 +1571,13 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 }
 
 .process-widget .process-group {
-  width: calc(100% - 80px);
+  width: calc(100% - 75px);
+  padding-left: 0;
+  float: left;
+}
+
+.search-results-tabview .process-widget .process-group {
+  width: calc(100% - 20px)  !important;
 }
 
 .process-widget .favorite-process-title {
@@ -1637,11 +1668,10 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 .express-process-logo {
   cursor: default;
   border: none !important;
-  opacity: 0.8;
   background-color: transparent !important;
   background-repeat: no-repeat;
-  width: 1.1rem;
-  height: 1.1rem;
+  width: 1.5rem;
+  height: 1.5rem;
   background-size: 100%;
   background-image: url(#{resource['ivy-webcontent:images/expressLogo/icon_express_process_120x120.png']});
 }
@@ -1663,6 +1693,8 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
   height: auto;
   margin: 0;
 }
+
+/********************************** END PROCESSES **********************************/
 
 .ui-autocomplete-panel .ui-autocomplete-table.ui-autocomplete-items {
   box-sizing: border-box;
