@@ -13,7 +13,6 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.time.StopWatch;
 import org.primefaces.context.RequestContext;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -53,20 +52,8 @@ public class UserMenuBean implements Serializable {
   public static final int TIME_BEFORE_LOST_SESSION = 180000; // 3 minutes
   public static final int MAX_NUMBER_OF_RESULTS_IN_TASK_CASE_GLOBAL_SEARCH = 20;
   
-  private StopWatch sc;
-
   private boolean hasNoRecordsFound;
   
-  public void openCase() {
-    sc = new StopWatch();
-    sc.start();
-  }
-  
-  public void finishOpeningCase() {
-    sc.stop();
-    Ivy.log().info("TIME TO OPEN CASE LIST: {0}", sc.getTime());
-  }
-
   public String getUserName() {
     userName = Ivy.session().getSessionUserName();
     return userName;

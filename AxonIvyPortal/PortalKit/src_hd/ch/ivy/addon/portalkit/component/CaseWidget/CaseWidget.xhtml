@@ -25,11 +25,15 @@
   <c:set var="outerPanelId" value="#{empty cc.attrs.outerPanelId ? 'main-area-panel' : cc.attrs.outerPanelId}" />
 
   <h:outputScript name="case-widget.js" library="js" />
+  <h:outputScript name="datascroller.js" library="js" />
   <div id="#{cc.clientId}" class="widget case-widget-container">
     <h:panelGroup id="case-widget-header" styleClass="widget-header" layout="block">
       <div class="case-widget-top-header js-widget-header">
         <h:panelGroup id="case-widget-title" styleClass="case-widget-top-header-main-title-container">
-          <h:outputText styleClass="case-widget-top-header-main-title" value="#{cc.attrs.title} (#{data.dataModel.rowCount})" />
+          <h:outputText styleClass="case-widget-top-header-main-title" rendered="#{!data.dataModel.disableCaseCount}" 
+            value="#{cc.attrs.title} (#{data.dataModel.rowCount})" />
+          <h:outputText styleClass="case-widget-top-header-main-title" rendered="#{data.dataModel.disableCaseCount}" 
+            value="#{cc.attrs.title}" />
         </h:panelGroup>
 
         <h:form id="filter-selection-form" class="filter-selection-form" rendered="#{!cc.attrs.hideCaseFilter}">
@@ -193,7 +197,7 @@
     <div class="widget-content">
       <h:panelGroup id="case-list" layout="block" styleClass="case-list">
         <p:dataScroller id="case-list-scroller" value="#{data.dataModel}" var="case" chunkSize="#{cc.attrs.chunkSize}"
-          lazy="true" mode="inline" rowIndexVar="rowIndex" styleClass="js-case-list">
+          lazy="true" mode="inline" rowIndexVar="rowIndex" styleClass="js-case-list" widgetVar="case-list-scroller">
           <ic:ch.ivy.addon.portalkit.component.CaseItem caseItem="#{case}" id="case-item"
             initialActive="#{case.id eq cc.attrs.autoSelectCaseId.id() and case.server.id eq cc.attrs.autoSelectCaseId.serverId()}"
             onDestroyComplete="PF('destroy-case-dialog').show()" expandCallback="caseWidget.setUpScrollbar();caseWidget.setupHeader();"
@@ -279,7 +283,7 @@
   </p:confirmDialog>
   
   <h:form>
-  	<p:remoteCommand name="updateCaseCount" update="#{cc.clientId}:case-widget-title" global="false" />
+    <p:remoteCommand name="updateCaseCount" update="#{cc.clientId}:case-widget-title" global="false" />
   </h:form>
 </cc:implementation>
 </html>

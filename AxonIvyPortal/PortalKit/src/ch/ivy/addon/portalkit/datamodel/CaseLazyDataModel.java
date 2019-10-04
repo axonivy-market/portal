@@ -33,8 +33,10 @@ import ch.ivy.addon.portalkit.dto.GlobalCaseId;
 import ch.ivy.addon.portalkit.enums.CaseAssigneeType;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.FilterType;
+import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
 import ch.ivy.addon.portalkit.service.CaseQueryService;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.support.CaseQueryCriteria;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
@@ -64,6 +66,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
   protected CaseFilterContainer filterContainer;
   private CaseFilterData selectedFilterData;
   private boolean isNotKeepFilter = false;
+  protected boolean disableCaseCount;
 
   public CaseLazyDataModel() {
     this("case-widget");
@@ -80,6 +83,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     queryCriteria = buildInitQueryCriteria();
     setIgnoreInvolvedUser(PermissionUtils.checkReadAllCasesPermission());
     selectedFilterData = UserUtils.getSessionSelectedCaseFilterSetAttribute();
+    disableCaseCount = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.DISABLE_CASE_COUNT);
   }
 
   @Override
@@ -87,10 +91,22 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
       Map<String, Object> filters) {
     if (first == 0) {
       initializedDataModel(searchCriteria);
-      RequestContext.getCurrentInstance().execute("updateCaseCount()");
+      if (!disableCaseCount) {
+        RequestContext.getCurrentInstance().execute("updateCaseCount()");
+      }
     }
 
     List<RemoteCase> foundCases = findCases(first, pageSize, searchCriteria);
+    if (disableCaseCount) {
+      int rowCount = 0;
+      if (foundCases.size() >= pageSize) {
+        rowCount = first + pageSize + 1;
+      } else {
+        rowCount = first + foundCases.size();
+      }
+      setRowCount(rowCount);
+      RequestContext.getCurrentInstance().execute("PF('case-list-scroller').updateTotalSize(" + rowCount + ")");
+    }
     putCasesToNotDisplayedTaskMap(foundCases);
     List<RemoteCase> notDisplayedCases = new ArrayList<>();
     notDisplayedCases.addAll(notDisplayedCaseMap.values());
@@ -189,7 +205,11 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
     displayedCaseMap.clear();
     notDisplayedCaseMap.clear();
     buildQueryToSearchCriteria();
-    setRowCount(getCaseCount(criteria));
+    if (disableCaseCount) {
+      setRowCount(0);
+    } else {
+      setRowCount(getCaseCount(criteria));
+    }
   }
 
   private List<RemoteCase> getDisplayedCases(List<RemoteCase> notDisplayedCases, int pageSize) {
@@ -478,4 +498,13 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
       }
     }
   }
+
+  public boolean getDisableCaseCount() {
+    return disableCaseCount;
+  }
+
+  public void setDisableCaseCount(boolean disableCaseCount) {
+    this.disableCaseCount = disableCaseCount;
+  }
+  
 }

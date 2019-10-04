@@ -25,4 +25,6 @@ public class GlobalVariable {
   public static final String UPLOAD_DOCUMENT_WHITELIST_EXTENSION = "UPLOAD_DOCUMENT_WHITELIST_EXTENSION";
   
   public static final String DISPLAY_MESSAGE_AFTER_FINISH_TASK = "DISPLAY_MESSAGE_AFTER_FINISH_TASK";
+  
+  public static final String DISABLE_CASE_COUNT = "DISABLE_CASE_COUNT";
 }

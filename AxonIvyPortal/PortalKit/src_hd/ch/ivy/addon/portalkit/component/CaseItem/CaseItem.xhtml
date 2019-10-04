@@ -23,16 +23,13 @@
 	<c:set var="active" value="#{caseWidgetBean.expandedCaseId == -1 and cc.attrs.initialActive}" />
 	<c:set var="expanded" value="#{caseItem.id eq caseWidgetBean.expandedCaseId or active}" />
 
-<h:form>
-  <p:remoteCommand actionListener="#{caseWidgetBean.finishOpenCaseDetails()}" name="finishOpenDetails" />
-  </h:form>
 	<h:panelGroup id="case-details"
 		class="js-case-item case-list-item #{expanded ? 'case-list-item-expanded show-case-details-mode' : ''} case-list-item-position #{cc.attrs.itemStyleClass} ">
 		<h:panelGroup id="case-item-container" class="case-header-container" layout="block">
 			<div class="case-show-detail-container">
 				<h:panelGroup id="show-case-details" layout="block" styleClass="case-header-data js-case-item-header">
 					<p:ajax event="click" listener="#{caseWidgetBean.setExpandedCaseId(case.id,expanded)}" update="case-details @(.show-case-details-mode)"
-						oncomplete="#{cc.attrs.expandCallback}; finishOpenDetails()" />
+						oncomplete="#{cc.attrs.expandCallback};" />
 					<cc:renderFacet name="caseHeader" />
 					<h:panelGroup layout="block" rendered="#{expanded}">
 						<i class="fa fa-angle-double-up case-toggle-icon" />
