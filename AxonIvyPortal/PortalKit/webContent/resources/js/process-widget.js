@@ -1,5 +1,7 @@
 function ProcessWidget() {
 
+  excludeMarginBottom = 30;
+
   function contain(s, keyword) {
     return s.indexOf(keyword) >= 0;
   }
@@ -8,28 +10,60 @@ function ProcessWidget() {
     clearSearchField : function() {
       $('.js-filter-process-widget-list-item').val('');
     },
-    
+
+    // setup scroll-bar for process list
     setupScrollbar : function () {
-    	var processsHeader = $('.js-process-header');
-    	var processStartListContainer = $('.js-process-start-list-container');
-    	var error = 0;
-        var globalSearchInput = $('.js-global-search');
-        var globalSearchTabHeader = $('.ui-tabs-nav');
-        if (globalSearchTabHeader.length > 0) {
-          error = 55; // included margin, padding in search page
-        }
-        var announcementMessageContainer = $('.js-announcement-message');
-        var mainScreenHeight = $('body').outerHeight() - $('.layout-topbar').outerHeight() - 30; // exclude margin
-    	var availableHeight = mainScreenHeight - (announcementMessageContainer.outerHeight(true)||0)
-    							- (processsHeader.outerHeight(true)||0) 
-    							- (globalSearchInput.outerHeight(true)||0) - (globalSearchTabHeader.outerHeight(true)||0)
-    							- error;
-    	if (!!availableHeight) {
-    		processStartListContainer.css("max-height", availableHeight + "px");
-    	}
-    	processStartListContainer.on("scroll", function() {
-    		$(".process-nav-item.selected").removeClass("selected");
-    	});
+      var processsHeader = $('.js-process-header');
+      var processStartListContainer = $('.js-process-start-list-container');
+      var error = 0;
+      var globalSearchInput = $('.js-global-search');
+      var globalSearchTabHeader = $('.ui-tabs-nav');
+      if (globalSearchTabHeader.length > 0) {
+        error = 55; // included margin, padding in search page
+      }
+      var announcementMessageContainer = $('.js-announcement-message');
+      var mainScreenHeight = $('body').outerHeight() - $('.layout-topbar').outerHeight() - excludeMarginBottom;
+      var availableHeight = mainScreenHeight - (announcementMessageContainer.outerHeight(true)||0)
+                              - (processsHeader.outerHeight(true)||0) 
+                              - (globalSearchInput.outerHeight(true)||0) - (globalSearchTabHeader.outerHeight(true)||0)
+                              - error;
+      if (!!availableHeight) {
+        processStartListContainer.css("max-height", availableHeight + "px");
+        this.setupProcessNav(processStartListContainer, availableHeight);
+      }
+      processStartListContainer.on("scroll", function() {
+        $(".process-nav-item.selected").removeClass("selected");
+      });
+    },
+
+    // setup scroll-bar for process navigator
+    setupProcessNav: function(processStartListContainer, availableHeight) {
+      var processNav = $('.js-process-nav');
+      var searchTab = $('.search-results-tabview');
+      var marginRightProcessWidget = 0;
+      if (searchTab.length > 0) {
+        marginRightProcessWidget = ((searchTab.width()||0) - (processStartListContainer.width()||0))/2;
+      } else {
+        var layoutContent = $('.layout-content');
+        var processWidget = $('.process-widget');
+        marginRightProcessWidget = ((layoutContent.outerWidth(true)||0) - (layoutContent.width()||0))/2
+                                    + ((processWidget.outerWidth(true)||0) - (processWidget.width()||0));
+
+        var scrollBarWidth = this.detechScrollBarWidth();
+        processNav.css("right", scrollBarWidth + "px");
+      }
+      processStartListContainer.css("margin-right", -marginRightProcessWidget + "px");
+      processNav.css("height", (availableHeight  - excludeMarginBottom) + "px");
+      processNav.css("top", (($('.js-process-header').outerHeight()||0) + ($('.layout-topbar').outerHeight()||0) + excludeMarginBottom) + "px");
+    },
+
+    detechScrollBarWidth : function() {
+      var scrollbarWidth = 0;
+      var processWidget = document.getElementById("process-widget:process-list");
+      if (processWidget != null) {
+        scrollbarWidth= processWidget.offsetWidth - processWidget.clientWidth;
+      }
+      return scrollbarWidth;
     },
 
     filter : function() {
@@ -82,6 +116,12 @@ function ProcessWidget() {
 $(document).ready(function() {
   processWidget = ProcessWidget();
   processWidget.filter();
+});
+
+// Update scroll-bar when window size is changed
+$(window).resize(function() {
+  processWidget = ProcessWidget();
+  processWidget.setupScrollbar();
 });
 
 function expandOrCollapseAllCategories(shouldExpand) {
