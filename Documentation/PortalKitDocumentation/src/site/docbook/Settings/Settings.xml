@@ -227,6 +227,15 @@
 								to display a feedback message after finishing a task.
 							</entry>
 						</row>
+						<row>
+							<entry>DISABLE_CASE_COUNT</entry>
+							<entry>TRUE/FALSE</entry>
+							<entry>
+								Set to
+								<code>TRUE</code>
+								to disable calling the Case Count web service to improve performance in case of big database.
+							</entry>
+						</row>
 					</tbody>
 				</tgroup>
 			</table>

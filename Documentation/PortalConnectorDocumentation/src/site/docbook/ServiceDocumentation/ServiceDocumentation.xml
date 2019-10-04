@@ -1256,6 +1256,34 @@
 						<row>
 							<entry>
 								<para>
+									findTasksByCase
+								</para>
+							</entry>
+							<entry>
+								<para>
+									caseId (Integer)
+								</para>
+								<para>
+									involvedUserName (String)
+								</para>
+							</entry>
+							<entry>
+								<para>
+									ivyTask (List of IvyTask)
+								</para>
+								<para>
+									errors (List of WSExceptions)
+								</para>
+							</entry>
+							<entry>
+								<para>
+									Find tasks by caseId.
+								</para>
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<para>
 									findTaskNotes
 								</para>
 							</entry>
