@@ -127,6 +127,12 @@ $(document).ready(function() {
   processWidget.filter();
 });
 
+//Update scroll-bar when window size is changed
+$(window).resize(function() {
+  processWidget = ProcessWidget();
+  processWidget.setupScrollbar();
+});
+
 function expandOrCollapseAllCategories(shouldExpand) {
   var allFieldsets = $("fieldset[id$='alphabet-process-index-fieldset']");
   allFieldsets.each(function() {
