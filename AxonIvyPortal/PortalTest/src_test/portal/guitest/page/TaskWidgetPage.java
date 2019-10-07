@@ -78,7 +78,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void clickBackButtonFromTaskDetails() {
-    findElementById("task-detail-template:task-detail-title-form:back-to-tasks").click();;
+    findElementById("task-detail-template:task-detail-title-form:back-to-previous-page").click();
   }
 
   public void showNoteHistory() {
