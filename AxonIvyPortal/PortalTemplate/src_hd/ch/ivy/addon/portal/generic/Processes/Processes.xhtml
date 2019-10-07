@@ -12,6 +12,16 @@
     <ui:define name="simplePageContent">
       <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-widget" processListStyleClass="process-start-list" />
     </ui:define>
+
+    <ui:define name="footer">
+      <script type="text/javascript">
+        $(function() {
+           var simpleScreen = new ProcessListScreenHandler();
+           var responsiveToolkit = ResponsiveToolkit(simpleScreen);
+           Portal.init(responsiveToolkit);
+        });
+      </script>
+    </ui:define>
   </ui:composition>
 </h:body>
 </html>
