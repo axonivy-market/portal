@@ -48,7 +48,7 @@
         <h:panelGroup id="task-detail-general-container" layout="block" styleClass="card card-w-title task-detail-general-card custom-general-panel">
           <div class="task-detail-section-title u-truncate-text ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0">
             <i class="fa fa-user-circle" /> #{ivy.cms.co('/Dialogs/Tasks/TaskDetail/DataDescription')}
-            <div class="Fright">
+            <div class="task-details-action-container">
               <h:panelGroup>
 
                 <p:commandLink id="task-detail-start-command" disabled="#{!taskActionBean.canResume(task)}" styleClass="task-action-item"
@@ -73,7 +73,7 @@
               </h:panelGroup>
             </div>
           </div>
-          <div class="Separator ui-g-12 task-details-separator u-padding-0" />
+          <div class="Separator ui-g-12 u-padding-0" />
           <h:panelGroup id="task-detail-data-description-container" styleClass="ui-g-12">
             <ic:ch.ivy.addon.portalkit.component.TaskItemGeneralInfo id="general-information" task="#{task}" />
           </h:panelGroup>
