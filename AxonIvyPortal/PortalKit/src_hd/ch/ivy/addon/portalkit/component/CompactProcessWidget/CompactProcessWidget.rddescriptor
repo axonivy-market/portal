@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
-    <method>
-        <name>collectProcesses</name>
-        <description></description>
-        <outputParameter>
-            <name>userProcesses</name>
-            <description></description>
-            <parameterType>java.util.List&lt;ch.ivy.addon.portalkit.persistence.domain.UserProcess&gt;</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </outputParameter>
-    </method>
-    <startMethod>
-        <name>start</name>
-        <description></description>
-    </startMethod>
     <property>
         <name>guid</name>
         <value>167CFB0D927DEA3D</value>

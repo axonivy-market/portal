@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
-    <method>
-        <name>addCustomVal</name>
-        <description></description>
-    </method>
-    <method>
-        <name>cleanUp</name>
-        <description></description>
-    </method>
-    <startMethod>
-        <name>start</name>
-        <description>Default dialog start method.</description>
-    </startMethod>
     <property>
         <name>guid</name>
         <value>16A76A01EFF93A8D</value>

@@ -1,46 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
-    <method>
-        <name>keepOldNameValue</name>
-        <description></description>
-        <inputParameter>
-            <name>valueChangeEvent</name>
-            <description></description>
-            <parameterType>javax.faces.event.ValueChangeEvent</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
-        <name>updateTask</name>
-        <description></description>
-    </method>
-    <method>
-        <name>openTask</name>
-        <description></description>
-    </method>
-    <startMethod>
-        <name>start</name>
-        <description>Default dialog start method.</description>
-        <inputParameter>
-            <name>dataModel</name>
-            <description></description>
-            <parameterType>ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <inputParameter>
-            <name>task</name>
-            <description></description>
-            <parameterType>ch.ivyteam.ivy.workflow.ITask</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-        <inputParameter>
-            <name>portalPage</name>
-            <description></description>
-            <parameterType>String</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </startMethod>
     <property>
         <name>guid</name>
         <value>16BFA568D9514E50</value>

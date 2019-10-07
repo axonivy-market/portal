@@ -1,10 +1,9 @@
 [Ivy]
-14C7834636E63BEA 3.24 #module
+14C7834636E63BEA 3.28 #module
 >Proto >Proto Collection #zClass
 Fr0 FindApplicationsByUser Big #zClass
 Fr0 B #cInfo
 Fr0 #process
-Fr0 @TextInP .resExport .resExport #zField
 Fr0 @TextInP .type .type #zField
 Fr0 @TextInP .processKind .processKind #zField
 Fr0 @AnnotationInP-0n ai ai #zField
@@ -23,10 +22,7 @@ Fr0 f0 outParamDecl '<List<ch.ivy.addon.portalkit.persistence.domain.Application
 ' #txt
 Fr0 f0 outParamTable 'result.applications=in.applications;
 ' #txt
-Fr0 f0 actionDecl 'ch.ivyteam.wf.processes.FindApplicationsByUserData out;
-' #txt
 Fr0 f0 callSignature findApplicationsByUser(String) #txt
-Fr0 f0 type ch.ivyteam.wf.processes.FindApplicationsByUserData #txt
 Fr0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -38,18 +34,14 @@ Fr0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Fr0 f0 171 51 26 26 14 0 #rect
 Fr0 f0 @|StartSubIcon #fIcon
-Fr0 f1 type ch.ivyteam.wf.processes.FindApplicationsByUserData #txt
 Fr0 f1 171 243 26 26 14 0 #rect
 Fr0 f1 @|EndSubIcon #fIcon
-Fr0 f3 actionDecl 'ch.ivyteam.wf.processes.FindApplicationsByUserData out;
-' #txt
 Fr0 f3 actionTable 'out=in;
 ' #txt
 Fr0 f3 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
 RegisteredApplicationService service = new RegisteredApplicationService();
 in.applications = service.findApplicationByUser(in.username);' #txt
-Fr0 f3 type ch.ivyteam.wf.processes.FindApplicationsByUserData #txt
 Fr0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

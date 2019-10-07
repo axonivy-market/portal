@@ -13,7 +13,7 @@ import javax.faces.event.ValueChangeEvent;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.context.RequestContext;
+import org.primefaces.PrimeFaces;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
@@ -168,7 +168,10 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   public List<ITask> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
     if (first == 0) {
       initializedDataModel(criteria);
-      RequestContext.getCurrentInstance().execute("updateTaskCount()");
+      PrimeFaces.current().executeScript("updateTaskCount()");
+      criteria.setFirstTimeLazyLoad(true);
+    } else {
+      criteria.setFirstTimeLazyLoad(false);
     }
 
     List<ITask> foundTasks = findTasks(criteria, first, pageSize);

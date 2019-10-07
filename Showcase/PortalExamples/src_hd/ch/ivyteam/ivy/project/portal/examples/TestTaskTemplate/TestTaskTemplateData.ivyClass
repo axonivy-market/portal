@@ -1,7 +1,5 @@
 TestTaskTemplateData #class
 ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate #namespace
-data ch.ivyteam.ivy.project.portal.examples.showcase.Data #field
-data PERSISTENT #fieldModifier
 firstname String #field
 firstname PERSISTENT #fieldModifier
 lastname String #field
@@ -14,3 +12,5 @@ processChainShape String #field
 processChainShape PERSISTENT #fieldModifier
 processChainDirection String #field
 processChainDirection PERSISTENT #fieldModifier
+data ch.ivyteam.ivy.project.portal.examples.showcase.Data #field
+data PERSISTENT #fieldModifier

@@ -1,11 +1,9 @@
 [Ivy]
-[>Created: Tue Jun 06 08:56:56 ICT 2017]
-15C7B1E826E6485F 3.20 #module
+15C7B1E826E6485F 3.28 #module
 >Proto >Proto Collection #zClass
 Sn0 SubmitLeaveReason Big #zClass
 Sn0 B #cInfo
 Sn0 #process
-Sn0 @TextInP .resExport .resExport #zField
 Sn0 @TextInP .type .type #zField
 Sn0 @TextInP .processKind .processKind #zField
 Sn0 @AnnotationInP-0n ai ai #zField
@@ -18,11 +16,7 @@ Sn0 @EndTask f1 '' #zField
 Sn0 @PushWFArc f2 '' #zField
 >Proto Sn0 Sn0 SubmitLeaveReason #zField
 Sn0 f0 outLink start.ivp #txt
-Sn0 f0 type internaltest.Data #txt
 Sn0 f0 inParamDecl '<> param;' #txt
-Sn0 f0 actionDecl 'internaltest.Data out;
-' #txt
-Sn0 f0 guid 15C7B1E8270C8E5D #txt
 Sn0 f0 requestEnabled true #txt
 Sn0 f0 triggerEnabled false #txt
 Sn0 f0 callSignature start() #txt
@@ -37,7 +31,6 @@ Sn0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Sn0 f0 @C|.responsibility Everybody #txt
 Sn0 f0 81 49 30 30 -21 17 #rect
 Sn0 f0 @|StartRequestIcon #fIcon
-Sn0 f1 type internaltest.Data #txt
 Sn0 f1 337 49 30 30 0 15 #rect
 Sn0 f1 @|EndIcon #fIcon
 Sn0 f2 111 64 337 64 #arcP

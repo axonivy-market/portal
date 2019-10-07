@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:pe="http://primefaces.org/ui/extensions"
-  xmlns:pm="http://primefaces.org/mobile">
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="dataModel" value="#{data.dataModel}" />
@@ -12,20 +11,23 @@
     <ui:define name="simplePageContent">
       <c:set var="isShowResultTabView" value="#{compactProcessWidgetBean.displayShowAllProcessesLink or taskWidgetBean.showFullTaskList or caseWidgetBean.showFullCaseList}"></c:set>
       <h:form id="global-search-form-in-page">
-        <div id="global-search-container-in-page" class="global-search">
-          <p:inputText id="global-search-data" styleClass="global-search-input js-global-search js-filter-process-widget-list-item" value="#{dataModel.keyword}"
-            placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/search')}"
-            onkeypress="if (event.keyCode == 13) { portalGlobalSearchInPage(); return false; }">
-          </p:inputText>
-          <i class="global-search-icon fa fa-search" />
+        <div id="global-search-container-in-page" class="global-search js-global-search">
+          <h:panelGroup styleClass="md-inputfield">
+            <p:inputText id="global-search-data" styleClass="global-search-input js-filter-process-widget-list-item" value="#{dataModel.keyword}"
+              onkeypress="if (event.keyCode == 13) { portalGlobalSearchInPage(); return false; }">
+            </p:inputText>
+            <p:outputLabel for="global-search-data" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/search')}" />
+            <i class="global-search-icon fa fa-search" />
+          </h:panelGroup>
         </div>
         <p:remoteCommand name="portalGlobalSearchInPage" actionListener="#{dataModel.search}"
-          update="#{p:component('search-results-tabview')}" oncomplete="processWidget.filter()" />
+          update="#{p:component('search-results-tabview')}" oncomplete="processWidget.filter();" />
+        <p:remoteCommand autoRun="true" delay="1" global="false" process="@none" onstart="PF('search-results-tabview').select(#{data.activeTabIndex})" />
       </h:form>
       <c:if test="#{!isShowResultTabView}" >
       	<h:outputText styleClass="not-display-result-tab-view" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/notDisplayResultTabView')}."/>
       </c:if>
-      <p:tabView id="search-results-tabview" onTabShow="onTabShow()" dynamic="true" styleClass="search-results-tabview" activeIndex="#{data.activeTabIndex}"
+      <p:tabView id="search-results-tabview" widgetVar="search-results-tabview" onTabShow="onTabShow()" dynamic="true" styleClass="search-results-tabview"
         rendered="#{isShowResultTabView}">
         <p:tab id="process-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" titleStyleClass="process-tab-title"
           rendered="#{compactProcessWidgetBean.displayShowAllProcessesLink}">
@@ -67,17 +69,16 @@
                   <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible id="task-responsible-component"
                     dataModel="#{dataModel.taskDataModel}" userName="#{task.getActivatorName()}"
                     fullName="#{task.getActivator().getDisplayName()}"
-                    styleClass="activatior-column #{dataModel.taskDataModel.isAutoHideColumns()? 'hidden-sm':''}" />
+                    styleClass="activatior-column" />
                   <ic:ch.ivy.addon.portalkit.component.task.column.TaskId id="task-id-component" value="#{task.getId()}"
                     dataModel="#{dataModel.taskDataModel}" />
                   <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-creation-date-component"
                     rendered="#{dataModel.taskDataModel.isSelectedColumn('CREATION_TIME')}" componentId="creation-time"
-                    value="#{task.startTimestamp}"
-                    styleClass="#{dataModel.taskDataModel.isAutoHideColumns()?'js-create-cell':''}" />
+                    responsiveStyleClass="u-hidden-md-down js-hidden-when-expand-menu"
+                    value="#{task.startTimestamp}" />
                   <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-expiry-date-component"
                     rendered="#{dataModel.taskDataModel.isSelectedColumn('EXPIRY_TIME')}" componentId="expiry-time"
-                    value="#{task.expiryTimestamp}"
-                    styleClass="#{dataModel.taskDataModel.isAutoHideColumns()?'js-expiry-cell':''}" />
+                    value="#{task.expiryTimestamp}" />
                   <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state-component"
                     dataModel="#{dataModel.taskDataModel}" state="#{task.state}" />
                 </ui:fragment>
@@ -113,14 +114,12 @@
 	                    case="#{case}" dataModel="#{dataModel.caseDataModel}" />
 	                </div>
 	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseId componentId="case-id-cell" case="#{case}" dataModel="#{dataModel.caseDataModel}" />
-	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCreator componentId="case-creator-cell" case="#{case}" dataModel="#{dataModel.caseDataModel}" 
-	                  styleClass="#{caseView.dataModel.isAutoHideColumns()? 'hidden-sm':''}" />
+	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCreator componentId="case-creator-cell" case="#{case}" dataModel="#{dataModel.caseDataModel}" />
 	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-creation-date-cell" 
-	                  rendered="#{dataModel.caseDataModel.isSelectedColumn('CREATION_TIME')}" value="#{case.startTimestamp}"
-	                  styleClass="#{dataModel.caseDataModel.isAutoHideColumns()?'js-create-cell':''}" />
-	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-expiry-date-cell" 
-	                  rendered="#{dataModel.caseDataModel.isSelectedColumn('FINISHED_TIME')}" value="#{case.endTimestamp}"
-	                  styleClass="#{dataModel.caseDataModel.isAutoHideColumns()?'js-finish-cell':''}"  />
+	                  rendered="#{dataModel.caseDataModel.isSelectedColumn('CREATION_TIME')}" value="#{case.startTimestamp}" />
+	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-expiry-date-cell"
+                      responsiveStyleClass="js-hidden-when-expand-menu u-hidden-md-down"
+	                  rendered="#{dataModel.caseDataModel.isSelectedColumn('FINISHED_TIME')}" value="#{case.endTimestamp}" />
 	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState componentId="case-state-cell" case="#{case}" dataModel="#{dataModel.caseDataModel}"/>
               	</ui:fragment>
               </f:facet>
@@ -129,6 +128,7 @@
         </p:tab>
         
         <ui:insert name="custom-search"></ui:insert>
+        
       </p:tabView>
       <script>
         function onTabShow() {
@@ -139,7 +139,6 @@
             var responsiveToolkit = ResponsiveToolkit(taskListScreen);
 
             Portal.init(responsiveToolkit);
-            taskWidget.setupHeader();
             return;
           }
 
@@ -149,7 +148,6 @@
             var responsiveToolkit = ResponsiveToolkit(caseListScreen);
 
             Portal.init(responsiveToolkit);
-            caseWidget.setupHeader();
             return;
           }
 

@@ -2,5 +2,6 @@
   /PROCESS {
     /Functional-Processes.Navigator "Functional Processes/NavigatorOverride"
     /Functional-Processes.OpenPortalTaskDetailsHook "Functional Processes/OpenPortalTaskDetails"
+    /Functional-Processes.Login "Functional Processes/LoginOverride"
   }
 }

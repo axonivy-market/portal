@@ -1,26 +1,20 @@
 [Ivy]
-[>Created: Thu Mar 05 09:46:22 ICT 2015]
-14BE7D039833DCD3 3.17 #module
+14BE7D039833DCD3 3.28 #module
 >Proto >Proto Collection #zClass
 Es0 CentralLanguageHomeProcess Big #zClass
 Es0 RD #cInfo
 Es0 #process
-Es0 @TextInP .ui2RdDataAction .ui2RdDataAction #zField
-Es0 @TextInP .rdData2UIAction .rdData2UIAction #zField
-Es0 @TextInP .resExport .resExport #zField
 Es0 @TextInP .type .type #zField
 Es0 @TextInP .processKind .processKind #zField
 Es0 @AnnotationInP-0n ai ai #zField
 Es0 @TextInP .xml .xml #zField
 Es0 @TextInP .responsibility .responsibility #zField
-Es0 @RichDialogInitStart f0 '' #zField
-Es0 @RichDialogProcessEnd f1 '' #zField
+Es0 @UdInit f0 '' #zField
+Es0 @UdProcessEnd f1 '' #zField
 Es0 @PushWFArc f2 '' #zField
 >Proto Es0 Es0 CentralLanguageHomeProcess #zField
 Es0 f0 guid 14BD990DBF28E3B3 #txt
-Es0 f0 type ch.ivy.addon.portalkit.showroom.multiapp.setting.CentralLanguageHome.CentralLanguageHomeData #txt
 Es0 f0 method start() #txt
-Es0 f0 disableUIEvents true #txt
 Es0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -34,10 +28,9 @@ Es0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Es0 f0 30 30 20 20 13 0 #rect
-Es0 f0 @|RichDialogInitStartIcon #fIcon
-Es0 f1 type ch.ivy.addon.portalkit.showroom.multiapp.setting.CentralLanguageHome.CentralLanguageHomeData #txt
+Es0 f0 @|UdInitIcon #fIcon
 Es0 f1 30 126 20 20 13 0 #rect
-Es0 f1 @|RichDialogProcessEndIcon #fIcon
+Es0 f1 @|UdProcessEndIcon #fIcon
 Es0 f2 expr out #txt
 Es0 f2 40 50 40 126 #arcP
 >Proto Es0 .type ch.ivy.addon.portalkit.showroom.multiapp.setting.CentralLanguageHome.CentralLanguageHomeData #txt

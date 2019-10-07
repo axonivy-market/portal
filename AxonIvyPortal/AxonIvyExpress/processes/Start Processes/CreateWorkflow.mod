@@ -1,10 +1,9 @@
 [Ivy]
-15798655494F25E1 3.26 #module
+15798655494F25E1 3.28 #module
 >Proto >Proto Collection #zClass
 cw0 CreateWorkflow Big #zClass
 cw0 B #cInfo
 cw0 #process
-cw0 @TextInP .resExport .resExport #zField
 cw0 @TextInP .type .type #zField
 cw0 @TextInP .processKind .processKind #zField
 cw0 @AnnotationInP-0n ai ai #zField
@@ -24,11 +23,7 @@ cw0 @EndTask f8 '' #zField
 cw0 @PushWFArc f9 '' #zField
 >Proto cw0 cw0 CreateWorkflow #zField
 cw0 f0 outLink AxonIvyExpressWF.ivp #txt
-cw0 f0 type gawfs.createWorkflowData #txt
 cw0 f0 inParamDecl '<> param;' #txt
-cw0 f0 actionDecl 'gawfs.createWorkflowData out;
-' #txt
-cw0 f0 guid 15798655499443C8 #txt
 cw0 f0 requestEnabled true #txt
 cw0 f0 triggerEnabled false #txt
 cw0 f0 callSignature AxonIvyExpressWF() #txt
@@ -58,12 +53,9 @@ cw0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 cw0 f0 @C|.responsibility Everybody #txt
 cw0 f0 81 49 30 30 -60 17 #rect
 cw0 f0 @|StartRequestIcon #fIcon
-cw0 f1 type gawfs.createWorkflowData #txt
 cw0 f1 401 49 30 30 0 15 #rect
 cw0 f1 @|EndIcon #fIcon
-cw0 f3 type gawfs.createWorkflowData #txt
 cw0 f3 processCall 'Functional Processes/editWorkflow:newWorkflow()' #txt
-cw0 f3 doCall true #txt
 cw0 f3 requestActionDecl '<> param;
 ' #txt
 cw0 f3 responseActionDecl 'gawfs.createWorkflowData out;
@@ -86,13 +78,9 @@ cw0 f2 328 64 401 64 #arcP
 cw0 f4 expr out #txt
 cw0 f4 111 64 216 64 #arcP
 cw0 f5 outLink AxonIvyExpressAdhocWF.ivp #txt
-cw0 f5 type gawfs.createWorkflowData #txt
 cw0 f5 inParamDecl '<java.lang.Long originalTaskId> param;' #txt
 cw0 f5 inParamTable 'out.originalTaskId=param.originalTaskId;
 ' #txt
-cw0 f5 actionDecl 'gawfs.createWorkflowData out;
-' #txt
-cw0 f5 guid 169E291E4256939E #txt
 cw0 f5 requestEnabled true #txt
 cw0 f5 triggerEnabled false #txt
 cw0 f5 callSignature AxonIvyExpressAdhocWF(Long) #txt
@@ -109,9 +97,7 @@ cw0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 cw0 f5 @C|.responsibility Everybody #txt
 cw0 f5 81 177 30 30 -73 24 #rect
 cw0 f5 @|StartRequestIcon #fIcon
-cw0 f6 type gawfs.createWorkflowData #txt
 cw0 f6 processCall 'Functional Processes/editWorkflow:newAdhocWorkflow(Long)' #txt
-cw0 f6 doCall true #txt
 cw0 f6 requestActionDecl '<java.lang.Long originalTaskId> param;
 ' #txt
 cw0 f6 requestMappingAction 'param.originalTaskId=in.originalTaskId;
@@ -131,7 +117,6 @@ cw0 f6 216 170 112 44 -46 -8 #rect
 cw0 f6 @|CallSubIcon #fIcon
 cw0 f7 expr out #txt
 cw0 f7 111 192 216 192 #arcP
-cw0 f8 type gawfs.createWorkflowData #txt
 cw0 f8 401 177 30 30 0 15 #rect
 cw0 f8 @|EndIcon #fIcon
 cw0 f9 expr out #txt

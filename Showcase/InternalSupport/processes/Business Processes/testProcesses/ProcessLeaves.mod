@@ -1,5 +1,5 @@
 [Ivy]
-1470062B2127AF92 3.24 #module
+1470062B2127AF92 3.28 #module
 >Proto >Proto Collection #zClass
 Ps0 ProcessLeaves Big #zClass
 Ps0 B #cInfo
@@ -10,7 +10,6 @@ Ct2 Component Big #zClass
 Ct2 B #cInfo
 Ct3 Component Big #zClass
 Ct3 B #cInfo
-Ps0 @TextInP .resExport .resExport #zField
 Ps0 @TextInP .type .type #zField
 Ps0 @TextInP .processKind .processKind #zField
 Ps0 @AnnotationInP-0n ai ai #zField
@@ -41,13 +40,12 @@ Ps0 @PushWFArc f5 '' #zField
 Ps0 @TaskSwitchSimple f14 '' #zField
 Ps0 @TkArc f19 '' #zField
 >Proto Ps0 Ps0 ProcessLeaves #zField
-Ct1 @TextInP .resExport .resExport #zField
 Ct1 @TextInP .type .type #zField
 Ct1 @TextInP .processKind .processKind #zField
 Ct1 @AnnotationInP-0n ai ai #zField
 Ct1 @TextInP .xml .xml #zField
 Ct1 @TextInP .responsibility .responsibility #zField
-Ct1 @RichDialog f1 '' #zField
+Ct1 @UserDialog f1 '' #zField
 Ct1 @PushTrueWFInG-01 g0 '' #zField
 Ct1 @PushTrueWFOutG-01 g1 '' #zField
 Ct1 @PushTrueWFInG-01 g2 '' #zField
@@ -55,7 +53,6 @@ Ct1 @PushWFArc f0 '' #zField
 Ct1 @PushWFArc f2 '' #zField
 Ct1 @PushWFArc f3 '' #zField
 >Proto Ct1 Ct0 Component #zField
-Ct2 @TextInP .resExport .resExport #zField
 Ct2 @TextInP .type .type #zField
 Ct2 @TextInP .processKind .processKind #zField
 Ct2 @AnnotationInP-0n ai ai #zField
@@ -63,10 +60,10 @@ Ct2 @TextInP .xml .xml #zField
 Ct2 @TextInP .responsibility .responsibility #zField
 Ct2 @PushTrueWFInG-01 g0 '' #zField
 Ct2 @PushTrueWFOutG-01 g1 '' #zField
-Ct2 @RichDialog f1 '' #zField
+Ct2 @UserDialog f1 '' #zField
 Ct2 @TaskSwitch f5 '' #zField
 Ct2 @TkArc f6 '' #zField
-Ct2 @RichDialog f2 '' #zField
+Ct2 @UserDialog f2 '' #zField
 Ct2 @PushWFArc f8 '' #zField
 Ct2 @PushWFArc f12 '' #zField
 Ct2 @Alternative f0 '' #zField
@@ -74,7 +71,6 @@ Ct2 @PushWFArc f3 '' #zField
 Ct2 @PushWFArc f7 '' #zField
 Ct2 @PushWFArc f4 '' #zField
 >Proto Ct2 Ct1 Component #zField
-Ct3 @TextInP .resExport .resExport #zField
 Ct3 @TextInP .type .type #zField
 Ct3 @TextInP .processKind .processKind #zField
 Ct3 @AnnotationInP-0n ai ai #zField
@@ -82,18 +78,14 @@ Ct3 @TextInP .xml .xml #zField
 Ct3 @TextInP .responsibility .responsibility #zField
 Ct3 @PushTrueWFInG-01 g0 '' #zField
 Ct3 @PushTrueWFOutG-01 g1 '' #zField
-Ct3 @RichDialog f3 '' #zField
+Ct3 @UserDialog f3 '' #zField
 Ct3 @TaskSwitchSimple f12 '' #zField
 Ct3 @PushWFArc f1 '' #zField
 Ct3 @TkArc f0 '' #zField
 Ct3 @PushWFArc f2 '' #zField
 >Proto Ct3 Ct2 Component #zField
 Ps0 f0 outLink LeaveRequest.ivp #txt
-Ps0 f0 type internaltest.ProcessLeaves #txt
 Ps0 f0 inParamDecl '<> param;' #txt
-Ps0 f0 actionDecl 'internaltest.ProcessLeaves out;
-' #txt
-Ps0 f0 guid 147006A95B0932EE #txt
 Ps0 f0 requestEnabled true #txt
 Ps0 f0 triggerEnabled false #txt
 Ps0 f0 callSignature LeaveRequest() #txt
@@ -110,7 +102,7 @@ TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
 Ps0 f0 caseData 'case.name=Process Leave Management Case
-processCategory.code=HolidayRequested' #txt
+customFields.STRING.ProcessCategoryCode="HolidayRequested"' #txt
 Ps0 f0 showInStartList 1 #txt
 Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -125,7 +117,6 @@ Ps0 f0 @C|.responsibility Everybody #txt
 Ps0 f0 89 57 30 30 16 0 #rect
 Ps0 f0 @|StartRequestIcon #fIcon
 Ps0 f0 -1|-1|-9671572 #nodeStyle
-Ps0 f9 type internaltest.ProcessLeaves #txt
 Ps0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -138,7 +129,6 @@ Ps0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ps0 f9 528 464 32 32 16 0 #rect
 Ps0 f9 @|AlternativeIcon #fIcon
 Ps0 f9 -1|-1|-9671572 #nodeStyle
-Ps0 1b0 .resExport export #txt
 Ps0 1b0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -153,7 +143,6 @@ Ps0 1b0 @|BIcon #fIcon
 Ps0 1b0 g0 0 -16 #fFoot
 Ps0 1b0 g1 -2 16 #fFoot
 Ps0 1b0 g2 64 8 #fFoot
-Ps0 2b0 .resExport export #txt
 Ps0 2b0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -168,7 +157,6 @@ Ps0 2b0 @|BIcon #fIcon
 Ps0 2b0 g0 -37 -8 #fFoot
 Ps0 2b0 g1 0 16 #fFoot
 Ps0 f6 544 416 544 464 #arcP
-Ps0 3b0 .resExport export #txt
 Ps0 3b0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -182,8 +170,6 @@ Ps0 3b0 284 536 89 32 -14 -8 #rect
 Ps0 3b0 @|BIcon #fIcon
 Ps0 3b0 g0 0 -16 #fFoot
 Ps0 3b0 g1 -1 16 #fFoot
-Ps0 f3 actionDecl 'internaltest.ProcessLeaves out;
-' #txt
 Ps0 f3 actionTable 'out=in;
 ' #txt
 Ps0 f3 actionCode 'in.processState.steps.add("Create Leave");
@@ -192,7 +178,6 @@ in.processState.steps.add("Book");
 in.processState.steps.add("Finished");
 
 in.processState.actualStepIndex = 0;' #txt
-Ps0 f3 type internaltest.ProcessLeaves #txt
 Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -208,12 +193,9 @@ Ps0 f3 86 228 36 24 26 -10 #rect
 Ps0 f3 @|StepIcon #fIcon
 Ps0 f7 expr out #txt
 Ps0 f7 104 252 104 296 #arcP
-Ps0 f10 actionDecl 'internaltest.ProcessLeaves out;
-' #txt
 Ps0 f10 actionTable 'out=in;
 ' #txt
 Ps0 f10 actionCode 'in.processState.actualStepIndex = 1;' #txt
-Ps0 f10 type internaltest.ProcessLeaves #txt
 Ps0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -232,12 +214,9 @@ Ps0 f11 1 102 392 #addKink
 Ps0 f11 1 0.39756061714119 0 0 #arcLabel
 Ps0 f1 expr out #txt
 Ps0 f1 482 392 507 392 #arcP
-Ps0 f12 actionDecl 'internaltest.ProcessLeaves out;
-' #txt
 Ps0 f12 actionTable 'out=in;
 ' #txt
 Ps0 f12 actionCode 'in.processState.actualStepIndex = 2;' #txt
-Ps0 f12 type internaltest.ProcessLeaves #txt
 Ps0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -258,12 +237,9 @@ Ps0 f13 1 328 480 #addKink
 Ps0 f13 0 0.6141304347826088 0 0 #arcLabel
 Ps0 f8 expr out #txt
 Ps0 f8 328 516 328 536 #arcP
-Ps0 f15 actionDecl 'internaltest.ProcessLeaves out;
-' #txt
 Ps0 f15 actionTable 'out=in;
 ' #txt
 Ps0 f15 actionCode 'in.processState.actualStepIndex = 0;' #txt
-Ps0 f15 type internaltest.ProcessLeaves #txt
 Ps0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -285,8 +261,6 @@ Ps0 f16 0 0.8676470588235295 0 0 #arcLabel
 Ps0 f2 expr out #txt
 Ps0 f2 206 320 168 320 #arcP
 Ps0 f2 0 0.5098157051282051 0 0 #arcLabel
-Ps0 f34 actionDecl 'internaltest.ProcessLeaves out;
-' #txt
 Ps0 f34 actionTable 'out=in;
 ' #txt
 Ps0 f34 actionCode 'ivy.case.customFields().stringField("CASE_DETAIL_PROCESS").set(ivy.html.startref("Start Processes/InternalSupportPortalHome/caseDetails.ivp"));
@@ -294,7 +268,6 @@ Ps0 f34 actionCode 'ivy.case.customFields().stringField("CASE_DETAIL_PROCESS").s
 
 
 ' #txt
-Ps0 f34 type internaltest.ProcessLeaves #txt
 Ps0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -310,11 +283,8 @@ Ps0 f4 expr out #txt
 Ps0 f4 104 87 104 156 #arcP
 Ps0 f5 expr out #txt
 Ps0 f5 104 180 104 228 #arcP
-Ps0 f14 actionDecl 'internaltest.ProcessLeaves out;
-' #txt
 Ps0 f14 actionTable 'out=in1;
 ' #txt
-Ps0 f14 type internaltest.ProcessLeaves #txt
 Ps0 f14 template "" #txt
 Ps0 f14 330 626 28 28 14 0 #rect
 Ps0 f14 @|TaskSwitchSimpleIcon #fIcon
@@ -349,11 +319,8 @@ Ps0 f19 1 0.9581297872967439 0 0 #arcLabel
 ' #txt
 >Proto Ps0 0 0 32 24 18 0 #rect
 >Proto Ps0 @|BIcon #fIcon
-Ct1 f1 targetWindow NEW:card: #txt
-Ct1 f1 targetDisplay TOP #txt
-Ct1 f1 richDialogId internaltest.ui.ProcessLeaves2 #txt
+Ct1 f1 dialogId internaltest.ui.ProcessLeaves2 #txt
 Ct1 f1 startMethod start(internalPortal.ProcessStatus) #txt
-Ct1 f1 type internaltest.ProcessLeaves #txt
 Ct1 f1 requestActionDecl '<internalPortal.ProcessStatus processStatus> param;' #txt
 Ct1 f1 requestMappingAction 'param.processStatus=in.processState;
 ' #txt
@@ -367,10 +334,6 @@ out.processState=result.processStatus;
 out.Vertretung=result.Vertretung;
 out.Von=result.Von;
 ' #txt
-Ct1 f1 windowConfiguration '* ' #txt
-Ct1 f1 isAsynch false #txt
-Ct1 f1 isInnerRd false #txt
-Ct1 f1 userContext '* ' #txt
 Ct1 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -381,7 +344,7 @@ Ct1 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct1 f1 328 290 112 44 -41 -8 #rect
-Ct1 f1 @|RichDialogIcon #fIcon
+Ct1 f1 @|UserDialogIcon #fIcon
 Ct1 f1 -1|-1|-9671572 #nodeStyle
 Ct1 g0 325 85 6 6 -135 -21 #rect
 Ct1 g0 @|MIGIcon #fIcon
@@ -399,11 +362,8 @@ Ct2 g0 221 21 6 6 10 12 #rect
 Ct2 g0 @|MIGIcon #fIcon
 Ct2 g1 221 365 6 6 5 -3 #rect
 Ct2 g1 @|MOGIcon #fIcon
-Ct2 f1 targetWindow NEW:card: #txt
-Ct2 f1 targetDisplay TOP #txt
-Ct2 f1 richDialogId internaltest.ui.approveLeave #txt
+Ct2 f1 dialogId internaltest.ui.approveLeave #txt
 Ct2 f1 startMethod start(String,Date,Date,Boolean,String,internalPortal.ProcessStatus) #txt
-Ct2 f1 type internaltest.ProcessLeaves #txt
 Ct2 f1 requestActionDecl '<String Mitarbeiter, Date Von, Date Bis, Boolean beantragt, String Vertretung, internalPortal.ProcessStatus processStatus> param;' #txt
 Ct2 f1 requestMappingAction 'param.Mitarbeiter=in.Mitarbeiter;
 param.Von=in.Von;
@@ -420,10 +380,6 @@ out.genehmigt=result.genehmigt;
 out.Mitarbeiter=result.Mitarbeiter;
 out.processState=result.processStatus;
 ' #txt
-Ct2 f1 windowConfiguration '* ' #txt
-Ct2 f1 isAsynch false #txt
-Ct2 f1 isInnerRd false #txt
-Ct2 f1 userContext '* ' #txt
 Ct2 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -434,13 +390,10 @@ Ct2 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct2 f1 18 202 140 44 -67 -8 #rect
-Ct2 f1 @|RichDialogIcon #fIcon
+Ct2 f1 @|UserDialogIcon #fIcon
 Ct2 f1 -1|-1|-9671572 #nodeStyle
-Ct2 f5 actionDecl 'internaltest.ProcessLeaves out;
-' #txt
 Ct2 f5 actionTable 'out=in1;
 ' #txt
-Ct2 f5 outTypes "internaltest.ProcessLeaves","internaltest.ProcessLeaves" #txt
 Ct2 f5 outLinks "TaskA.ivp","TaskB.ivp" #txt
 Ct2 f5 taskData 'TaskA.CATEGORY=CategoryDemo/ApprovedByCREATOR
 TaskA.DESC=<u><i>Manager approves Request by checking application and signing approve checkbox</i></u>
@@ -467,7 +420,6 @@ TaskB.PRI=2
 TaskB.ROL=Manager
 TaskB.SKIP_TASK_LIST=false
 TaskB.TYPE=0' #txt
-Ct2 f5 type internaltest.ProcessLeaves #txt
 Ct2 f5 template "/ProcessPages/portalHome.ivc" #txt
 Ct2 f5 210 98 28 28 14 0 #rect
 Ct2 f5 @|TaskSwitchIcon #fIcon
@@ -476,11 +428,8 @@ Ct2 f6 var in1 #txt
 Ct2 f6 template /ProcessPages/portalHome.ivc #txt
 Ct2 f6 224 27 224 98 #arcP
 Ct2 f6 0 0.4913622158543621 0 0 #arcLabel
-Ct2 f2 targetWindow NEW:card: #txt
-Ct2 f2 targetDisplay TOP #txt
-Ct2 f2 richDialogId internaltest.ui.approveLeave #txt
+Ct2 f2 dialogId internaltest.ui.approveLeave #txt
 Ct2 f2 startMethod start(String,Date,Date,Boolean,String,internalPortal.ProcessStatus) #txt
-Ct2 f2 type internaltest.ProcessLeaves #txt
 Ct2 f2 requestActionDecl '<String Mitarbeiter, Date Von, Date Bis, Boolean beantragt, String Vertretung, internalPortal.ProcessStatus processStatus> param;' #txt
 Ct2 f2 requestMappingAction 'param.Mitarbeiter=in.Mitarbeiter;
 param.Von=in.Von;
@@ -497,10 +446,6 @@ out.genehmigt=result.genehmigt;
 out.Mitarbeiter=result.Mitarbeiter;
 out.processState=result.processStatus;
 ' #txt
-Ct2 f2 windowConfiguration '* ' #txt
-Ct2 f2 isAsynch false #txt
-Ct2 f2 isInnerRd false #txt
-Ct2 f2 userContext '* ' #txt
 Ct2 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -511,7 +456,7 @@ Ct2 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct2 f2 272 202 144 44 -67 -8 #rect
-Ct2 f2 @|RichDialogIcon #fIcon
+Ct2 f2 @|UserDialogIcon #fIcon
 Ct2 f2 -1|-1|-9671572 #nodeStyle
 Ct2 f8 expr data #txt
 Ct2 f8 outCond ivp=="TaskB.ivp" #txt
@@ -523,7 +468,6 @@ Ct2 f12 outCond ivp=="TaskA.ivp" #txt
 Ct2 f12 210 112 88 202 #arcP
 Ct2 f12 1 88 112 #addKink
 Ct2 f12 0 0.8364472043448651 0 0 #arcLabel
-Ct2 f0 type internaltest.ProcessLeaves #txt
 Ct2 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -551,11 +495,8 @@ Ct3 g0 245 53 6 6 10 16 #rect
 Ct3 g0 @|MIGIcon #fIcon
 Ct3 g1 245 341 6 6 10 16 #rect
 Ct3 g1 @|MOGIcon #fIcon
-Ct3 f3 targetWindow NEW:card: #txt
-Ct3 f3 targetDisplay TOP #txt
-Ct3 f3 richDialogId internaltest.ui.bookRequest #txt
+Ct3 f3 dialogId internaltest.ui.bookRequest #txt
 Ct3 f3 startMethod start(String,Date,Date,String,Boolean,Boolean,String,String,internalPortal.ProcessStatus) #txt
-Ct3 f3 type internaltest.ProcessLeaves #txt
 Ct3 f3 requestActionDecl '<String Mitarbeiter, Date Von, Date Bis, String Art, Boolean beantragt, Boolean genehmigt, String Ablehnungsgrund, String Vertretung, internalPortal.ProcessStatus processStatus> param;' #txt
 Ct3 f3 requestMappingAction 'param.Mitarbeiter=in.Mitarbeiter;
 param.Von=in.Von;
@@ -575,10 +516,6 @@ out.processState=result.processStatus;
 out.Resturlaubstage=result.Resturlaubstage;
 out.storniert=result.storniert;
 ' #txt
-Ct3 f3 windowConfiguration '* ' #txt
-Ct3 f3 isAsynch false #txt
-Ct3 f3 isInnerRd false #txt
-Ct3 f3 userContext '* ' #txt
 Ct3 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -589,13 +526,10 @@ Ct3 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct3 f3 192 218 112 44 -39 -8 #rect
-Ct3 f3 @|RichDialogIcon #fIcon
+Ct3 f3 @|UserDialogIcon #fIcon
 Ct3 f3 -1|-1|-9671572 #nodeStyle
-Ct3 f12 actionDecl 'internaltest.ProcessLeaves out;
-' #txt
 Ct3 f12 actionTable 'out=in1;
 ' #txt
-Ct3 f12 outTypes "internaltest.ProcessLeaves" #txt
 Ct3 f12 outLinks "TaskA.ivp" #txt
 Ct3 f12 caseData 'case.name=Leavers Request' #txt
 Ct3 f12 taskData 'TaskA.EXPRI=2
@@ -611,7 +545,6 @@ TaskA.customFields.NUMBER.CustomDecimalField2=in1.Bis.toNumber()
 TaskA.customFields.NUMBER.CustomDecimalField3=in1.Bis.toNumber()-in1.Von.toNumber()
 TaskA.customFields.STRING.CustomVarCharField1=in1.Mitarbeiter
 TaskA.customFields.STRING.CustomVarCharField5="CategoryDemo/BookByHR"' #txt
-Ct3 f12 type internaltest.ProcessLeaves #txt
 Ct3 f12 template "/ProcessPages/portalHome.ivc" #txt
 Ct3 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

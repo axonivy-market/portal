@@ -1,10 +1,9 @@
 [Ivy]
-16AD35D75A4DFC51 3.26 #module
+16AD35D75A4DFC51 3.28 #module
 >Proto >Proto Collection #zClass
 Dt0 DownloadDocument Big #zClass
 Dt0 B #cInfo
 Dt0 #process
-Dt0 @TextInP .resExport .resExport #zField
 Dt0 @TextInP .type .type #zField
 Dt0 @TextInP .processKind .processKind #zField
 Dt0 @AnnotationInP-0n ai ai #zField
@@ -28,10 +27,7 @@ Dt0 f0 outParamDecl '<org.primefaces.model.StreamedContent streamedContent> resu
 ' #txt
 Dt0 f0 outParamTable 'result.streamedContent=in.streamedContent;
 ' #txt
-Dt0 f0 actionDecl '_ch.ivyteam.ivy.project.portal.examples.DownloadDocumentOverrideData out;
-' #txt
 Dt0 f0 callSignature call(ch.ivyteam.ivy.workflow.ICase,ch.ivy.addon.portalkit.ivydata.bo.IvyDocument) #txt
-Dt0 f0 type _ch.ivyteam.ivy.project.portal.examples.DownloadDocumentOverrideData #txt
 Dt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -41,11 +37,8 @@ Dt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dt0 f0 81 49 30 30 -61 28 #rect
 Dt0 f0 @|StartSubIcon #fIcon
-Dt0 f1 type _ch.ivyteam.ivy.project.portal.examples.DownloadDocumentOverrideData #txt
 Dt0 f1 337 49 30 30 0 15 #rect
 Dt0 f1 @|EndSubIcon #fIcon
-Dt0 f3 actionDecl '_ch.ivyteam.ivy.project.portal.examples.DownloadDocumentOverrideData out;
-' #txt
 Dt0 f3 actionTable 'out=in;
 ' #txt
 Dt0 f3 actionCode 'import ch.ivy.addon.portalkit.service.CaseDocumentService;
@@ -53,7 +46,6 @@ Dt0 f3 actionCode 'import ch.ivy.addon.portalkit.service.CaseDocumentService;
 ivy.log.warn("Call to override process download document");
 out.streamedContent = CaseDocumentService.newInstance(in.businessCase).download(in.document);' #txt
 Dt0 f3 security system #txt
-Dt0 f3 type _ch.ivyteam.ivy.project.portal.examples.DownloadDocumentOverrideData #txt
 Dt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

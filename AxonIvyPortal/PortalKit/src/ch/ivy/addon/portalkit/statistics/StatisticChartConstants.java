@@ -73,7 +73,7 @@ public class StatisticChartConstants {
   public static final String CASE_CATEGORIES_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/caseCategoriesLabel";
   public static final String NO_CATEGORY_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory";
 
-  public static final String ELAPSED_TIME_DETAIL_CHART_NAME_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/elapsedTimeInSeconds";
+  public static final String ELAPSED_TIME_DETAIL_CHART_NAME_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/elapsedTimeInHours";
 
   public static final String USER_ID = "userId";
   public static final String NAME = "name";

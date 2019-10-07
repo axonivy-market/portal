@@ -1,6 +1,9 @@
 package ch.ivy.addon.portalkit.util;
 
+import java.util.Collection;
 import java.util.Objects;
+
+import org.apache.commons.collections4.CollectionUtils;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
@@ -74,29 +77,44 @@ public class PermissionUtils {
 
   /**
    * Check if user can start an Express workflow
+   * and set permission if user able to edit/delete express WF
    * 
    * @param workflow
    * @return True: has permission to start Express workflow, False: Do not have permission to start Express workflow
    */
-  public static boolean canStartExpressWorkflow(ExpressProcess workflow) {
+  public static boolean checkAbleToStartAndAbleToEditExpressWorkflow(ExpressProcess workflow) {
     boolean isWorkflowOwner = Ivy.session().canActAsUser(
         Ivy.request().getApplication().getSecurityContext().findUser(workflow.getProcessOwner().substring(1)));
     boolean hasAdminRole = isSessionUserHasAdminRole();
 
     if (isWorkflowOwner || hasAdminRole) {
+      workflow.setAbleToEdit(true);
       return true;
     }
-
-    for (String memberName : workflow.getProcessPermissions()) {
-      ISecurityMember member = Ivy.session().getSecurityContext().findSecurityMember(memberName);
-      boolean isAssignedUser = member.isUser() && Ivy.session().canActAsUser((IUser) member);
-      boolean hasAssignedRole = !member.isUser() && Ivy.session().hasRole((IRole) member, false);
-      if (isAssignedUser || hasAssignedRole) {
+    Collection<String> ableToStartResponsibles = CollectionUtils.emptyIfNull(workflow.getProcessPermissions());
+    Collection<String> processOwners = CollectionUtils.emptyIfNull(workflow.getProcessCoOwners());
+    
+    for (String memberName : processOwners) {
+      if(isSessionUserBelongsToPermissionGroup(memberName)) {
+        workflow.setAbleToEdit(true);
+        return true;
+      }
+    }
+    
+    for (String memberName : ableToStartResponsibles) {
+      if(isSessionUserBelongsToPermissionGroup(memberName)) {
         return true;
       }
     }
 
     return false;
+  }
+
+  private static boolean isSessionUserBelongsToPermissionGroup(String memberName) {
+    ISecurityMember member = Ivy.session().getSecurityContext().findSecurityMember(memberName);
+    boolean isAssignedUser = member.isUser() && Ivy.session().canActAsUser((IUser) member);
+    boolean hasAssignedRole = !member.isUser() && Ivy.session().hasRole((IRole) member, false);
+    return isAssignedUser || hasAssignedRole;
   }
 
   public static boolean isSessionUserHasAdminRole() {
@@ -116,13 +134,13 @@ public class PermissionUtils {
     }
     return Ivy.session().hasPermission(Ivy.request().getApplication().getSecurityDescriptor(), iPermission);
   }
-  
+
   public static boolean hasPermission(IApplication application, String username, IPermission permission) {
     IPermissionAccess permissionAccess = null;
     try {
       IUser user = application.getSecurityContext().findUser(username);
       ISecurityDescriptor securityDescriptor = application.getSecurityDescriptor();
-      if (user != null){
+      if (user != null) {
         permissionAccess = securityDescriptor.getPermissionAccess(permission, user);
         return permissionAccess.isGranted();
       }
@@ -132,42 +150,47 @@ public class PermissionUtils {
     }
     return false;
   }
-  
+
   /**
    * Check if current user has permission to see full process list
+   * 
    * @return true if user has permission to see full process list, otherwise return false
    */
   public static boolean checkAccessFullProcessListPermission() {
     return hasPortalPermission(PortalPermission.ACCESS_FULL_PROCESS_LIST);
   }
+
   /**
    * Check if current user has permission to see full task list
+   * 
    * @return true if current user has permission to see full task list, otherwise return false
    */
   public static boolean checkAccessFullTaskListPermission() {
     return hasPortalPermission(PortalPermission.ACCESS_FULL_TASK_LIST);
   }
-  
+
   /**
    * Check if current user has permission to see full case list
+   * 
    * @return true if current user has permission to see full case list, otherwise return false
    */
   public static boolean checkAccessFullCaseListPermission() {
     return hasPortalPermission(PortalPermission.ACCESS_FULL_CASE_LIST);
   }
-  
+
   /**
    * Check if current user has permission to see full statistic list
+   * 
    * @return true if current user has permission to see full statistic list, otherwise return false
    */
   public static boolean checkAccessFullStatisticsListPermission() {
     return hasPortalPermission(PortalPermission.ACCESS_FULL_STATISTICS_LIST);
   }
-  
+
   public static String getCaseName(ICase iCase) {
     return IvyExecutor.executeAsSystem(iCase::getName);
   }
-  
+
   public static String getTaskName(ITask task) {
     return IvyExecutor.executeAsSystem(task::getName);
   }

@@ -1,10 +1,9 @@
 [Ivy]
-1685475D840E6170 3.26 #module
+1685475D840E6170 3.28 #module
 >Proto >Proto Collection #zClass
 By0 BuildCaseQuery Big #zClass
 By0 B #cInfo
 By0 #process
-By0 @TextInP .resExport .resExport #zField
 By0 @TextInP .type .type #zField
 By0 @TextInP .processKind .processKind #zField
 By0 @AnnotationInP-0n ai ai #zField
@@ -25,10 +24,7 @@ By0 f0 outParamDecl '<ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> result;
 ' #txt
 By0 f0 outParamTable 'result.caseQuery=in.#caseQuery;
 ' #txt
-By0 f0 actionDecl 'internaltest.BuildCaseQueryOverrideData out;
-' #txt
 By0 f0 callSignature buildCaseQuery() #txt
-By0 f0 type internaltest.BuildCaseQueryOverrideData #txt
 By0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -40,7 +36,6 @@ By0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 By0 f0 77 49 30 30 -48 17 #rect
 By0 f0 @|StartSubIcon #fIcon
-By0 f1 type internaltest.BuildCaseQueryOverrideData #txt
 By0 f1 469 49 30 30 0 15 #rect
 By0 f1 @|EndSubIcon #fIcon
 By0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -57,13 +52,10 @@ CaseQuery.create().where().customField().stringField("CustomVarCharField5").isLi
 ' #txt
 By0 f5 60 148 608 76 -298 -32 #rect
 By0 f5 @|IBIcon #fIcon
-By0 f2 actionDecl 'internaltest.BuildCaseQueryOverrideData out;
-' #txt
 By0 f2 actionTable 'out=in;
 ' #txt
 By0 f2 actionCode 'import ch.ivyteam.ivy.workflow.query.CaseQuery;
 out.caseQuery = CaseQuery.create().where().name().isEqual("Leave Request");' #txt
-By0 f2 type internaltest.BuildCaseQueryOverrideData #txt
 By0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

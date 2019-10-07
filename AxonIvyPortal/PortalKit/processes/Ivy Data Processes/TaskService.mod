@@ -1,10 +1,9 @@
 [Ivy]
-146C8E81DE07F973 3.23 #module
+146C8E81DE07F973 3.28 #module
 >Proto >Proto Collection #zClass
 Te0 TaskService Big #zClass
 Te0 B #cInfo
 Te0 #process
-Te0 @TextInP .resExport .resExport #zField
 Te0 @TextInP .type .type #zField
 Te0 @TextInP .processKind .processKind #zField
 Te0 @AnnotationInP-0n ai ai #zField
@@ -63,10 +62,7 @@ Te0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.Po
 Te0 f0 outParamTable 'result.errors=in.errors;
 result.tasks=in.tasks;
 ' #txt
-Te0 f0 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
-' #txt
 Te0 f0 callSignature findTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria,Integer,Integer) #txt
-Te0 f0 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -76,8 +72,6 @@ Te0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Te0 f0 81 81 30 30 -68 21 #rect
 Te0 f0 @|StartSubIcon #fIcon
-Te0 f6 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
-' #txt
 Te0 f6 actionTable 'out=in;
 ' #txt
 Te0 f6 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyTaskResultDTO;
@@ -86,7 +80,6 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;
 IvyTaskResultDTO dto = TaskService.newInstance().findTasksByCriteria(in.taskSearchCriteria, in.startIndex, in.count);
 out.tasks = dto.tasks;
 out.errors = dto.errors;' #txt
-Te0 f6 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -96,12 +89,9 @@ Te0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Te0 f6 192 74 112 44 -28 -8 #rect
 Te0 f6 @|StepIcon #fIcon
-Te0 f8 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f8 561 81 30 30 0 15 #rect
 Te0 f8 @|EndSubIcon #fIcon
-Te0 f10 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f10 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Te0 f10 doCall true #txt
 Te0 f10 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
 ' #txt
 Te0 f10 requestMappingAction 'param.exceptions=in.errors;
@@ -123,7 +113,6 @@ Te0 f14 expr out #txt
 Te0 f14 304 96 376 96 #arcP
 Te0 f15 expr out #txt
 Te0 f15 488 96 561 96 #arcP
-Te0 f21 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f21 569 273 30 30 0 15 #rect
 Te0 f21 @|EndSubIcon #fIcon
 Te0 f18 inParamDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria> param;' #txt
@@ -134,10 +123,7 @@ Te0 f18 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.P
 Te0 f18 outParamTable 'result.errors=in.errors;
 result.totalTasks=in.totalTasks;
 ' #txt
-Te0 f18 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
-' #txt
 Te0 f18 callSignature countTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria) #txt
-Te0 f18 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -147,8 +133,6 @@ Te0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Te0 f18 81 177 30 30 -89 26 #rect
 Te0 f18 @|StartSubIcon #fIcon
-Te0 f22 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
-' #txt
 Te0 f22 actionTable 'out=in;
 ' #txt
 Te0 f22 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyTaskResultDTO;
@@ -157,7 +141,6 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;
 IvyTaskResultDTO dto = TaskService.newInstance().findCategoriesByCriteria(in.taskCategorySearchCriteria);
 out.categoryTree = dto.#categoryTree;
 out.errors = dto.errors;' #txt
-Te0 f22 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -167,7 +150,6 @@ Te0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Te0 f22 200 266 112 44 -42 -8 #rect
 Te0 f22 @|StepIcon #fIcon
-Te0 f25 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f25 569 177 30 30 0 15 #rect
 Te0 f25 @|EndSubIcon #fIcon
 Te0 f26 inParamDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria taskCategorySearchCriteria> param;' #txt
@@ -177,10 +159,7 @@ Te0 f26 outParamDecl '<ch.ivyteam.ivy.workflow.category.CategoryTree categoryTre
 ' #txt
 Te0 f26 outParamTable 'result.categoryTree=in.#categoryTree;
 ' #txt
-Te0 f26 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
-' #txt
 Te0 f26 callSignature findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria) #txt
-Te0 f26 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -190,8 +169,6 @@ Te0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Te0 f26 81 273 30 30 -89 28 #rect
 Te0 f26 @|StartSubIcon #fIcon
-Te0 f27 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
-' #txt
 Te0 f27 actionTable 'out=in;
 ' #txt
 Te0 f27 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyTaskResultDTO;
@@ -200,7 +177,6 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;
 IvyTaskResultDTO dto = TaskService.newInstance().countTasksByCriteria(in.taskSearchCriteria);
 out.totalTasks = dto.totalTasks;
 out.errors = dto.errors;' #txt
-Te0 f27 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -210,9 +186,7 @@ Te0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Te0 f27 200 170 112 44 -33 -8 #rect
 Te0 f27 @|StepIcon #fIcon
-Te0 f28 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f28 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Te0 f28 doCall true #txt
 Te0 f28 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
 ' #txt
 Te0 f28 requestMappingAction 'param.exceptions=in.errors;
@@ -230,9 +204,7 @@ Te0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Te0 f28 384 170 112 44 -35 -8 #rect
 Te0 f28 @|CallSubIcon #fIcon
-Te0 f29 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f29 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Te0 f29 doCall true #txt
 Te0 f29 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
 ' #txt
 Te0 f29 requestMappingAction 'param.exceptions=in.errors;
@@ -266,10 +238,7 @@ Te0 f1 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.Po
 Te0 f1 outParamTable 'result.errors=in.errors;
 result.priorityStatistic=in.priorityStatistic;
 ' #txt
-Te0 f1 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
-' #txt
 Te0 f1 callSignature analyzePriorityStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria) #txt
-Te0 f1 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -279,8 +248,6 @@ Te0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Te0 f1 81 369 30 30 -68 21 #rect
 Te0 f1 @|StartSubIcon #fIcon
-Te0 f2 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
-' #txt
 Te0 f2 actionTable 'out=in;
 ' #txt
 Te0 f2 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyTaskResultDTO;
@@ -289,7 +256,6 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;
 IvyTaskResultDTO dto = TaskService.newInstance().analyzePriorityStatistic(in.taskSearchCriteria);
 out.priorityStatistic = dto.priorityStatistic;
 out.errors = dto.errors;' #txt
-Te0 f2 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -299,12 +265,9 @@ Te0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Te0 f2 176 362 144 44 -62 -8 #rect
 Te0 f2 @|StepIcon #fIcon
-Te0 f3 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f3 561 369 30 30 0 15 #rect
 Te0 f3 @|EndSubIcon #fIcon
-Te0 f4 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f4 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Te0 f4 doCall true #txt
 Te0 f4 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
 ' #txt
 Te0 f4 requestMappingAction 'param.exceptions=in.errors;
@@ -326,9 +289,7 @@ Te0 f9 expr out #txt
 Te0 f9 488 384 561 384 #arcP
 Te0 f16 expr out #txt
 Te0 f16 320 384 376 384 #arcP
-Te0 f20 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f20 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Te0 f20 doCall true #txt
 Te0 f20 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
 ' #txt
 Te0 f20 requestMappingAction 'param.exceptions=in.errors;
@@ -346,8 +307,6 @@ Te0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Te0 f20 376 458 112 44 -35 -8 #rect
 Te0 f20 @|CallSubIcon #fIcon
-Te0 f24 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
-' #txt
 Te0 f24 actionTable 'out=in;
 ' #txt
 Te0 f24 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyTaskResultDTO;
@@ -356,7 +315,6 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;
 IvyTaskResultDTO dto = TaskService.newInstance().analyzeExpiryStatistic(in.taskSearchCriteria);
 out.expiryStatistic = dto.expiryStatistic;
 out.errors = dto.errors;' #txt
-Te0 f24 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -374,10 +332,7 @@ Te0 f39 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.P
 Te0 f39 outParamTable 'result.errors=in.errors;
 result.expiryStatistic=in.expiryStatistic;
 ' #txt
-Te0 f39 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
-' #txt
 Te0 f39 callSignature analyzeExpiryStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria) #txt
-Te0 f39 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -387,15 +342,12 @@ Te0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Te0 f39 81 465 30 30 -68 21 #rect
 Te0 f39 @|StartSubIcon #fIcon
-Te0 f40 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f40 561 465 30 30 0 15 #rect
 Te0 f40 @|EndSubIcon #fIcon
 Te0 f42 expr out #txt
 Te0 f42 488 480 561 480 #arcP
 Te0 f44 expr out #txt
 Te0 f44 312 480 376 480 #arcP
-Te0 f46 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
-' #txt
 Te0 f46 actionTable 'out=in;
 ' #txt
 Te0 f46 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyTaskResultDTO;
@@ -404,7 +356,6 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;
 IvyTaskResultDTO dto = TaskService.newInstance().analyzeElapsedTimeOfTasks(in.taskSearchCriteria);
 out.elapsedTimeStatistic = dto.elapsedTimeStatistic;
 out.errors = dto.errors;' #txt
-Te0 f46 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -414,7 +365,6 @@ Te0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Te0 f46 160 554 176 44 -80 -8 #rect
 Te0 f46 @|StepIcon #fIcon
-Te0 f47 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f47 561 561 30 30 0 15 #rect
 Te0 f47 @|EndSubIcon #fIcon
 Te0 f48 inParamDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria> param;' #txt
@@ -425,10 +375,7 @@ Te0 f48 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.P
 Te0 f48 outParamTable 'result.errors=in.errors;
 result.elapsedTimeStatistic=in.elapsedTimeStatistic;
 ' #txt
-Te0 f48 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
-' #txt
 Te0 f48 callSignature analyzeElapsedTime(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria) #txt
-Te0 f48 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -438,9 +385,7 @@ Te0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Te0 f48 81 561 30 30 -68 21 #rect
 Te0 f48 @|StartSubIcon #fIcon
-Te0 f49 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f49 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Te0 f49 doCall true #txt
 Te0 f49 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
 ' #txt
 Te0 f49 requestMappingAction 'param.exceptions=in.errors;
