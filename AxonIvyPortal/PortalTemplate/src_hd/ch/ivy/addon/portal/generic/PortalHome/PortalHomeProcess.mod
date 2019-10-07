@@ -1,12 +1,9 @@
 [Ivy]
-14BEF201D2E3FF7D 3.23 #module
+14BEF201D2E3FF7D 3.28 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalHomeProcess Big #zClass
 Ps0 RD #cInfo
 Ps0 #process
-Ps0 @TextInP .ui2RdDataAction .ui2RdDataAction #zField
-Ps0 @TextInP .rdData2UIAction .rdData2UIAction #zField
-Ps0 @TextInP .resExport .resExport #zField
 Ps0 @TextInP .type .type #zField
 Ps0 @TextInP .processKind .processKind #zField
 Ps0 @AnnotationInP-0n ai ai #zField
@@ -14,20 +11,18 @@ Ps0 @MessageFlowInP-0n messageIn messageIn #zField
 Ps0 @MessageFlowOutP-0n messageOut messageOut #zField
 Ps0 @TextInP .xml .xml #zField
 Ps0 @TextInP .responsibility .responsibility #zField
-Ps0 @RichDialogInitStart f0 '' #zField
-Ps0 @RichDialogProcessEnd f10 '' #zField
+Ps0 @UdInit f0 '' #zField
+Ps0 @UdProcessEnd f10 '' #zField
 Ps0 @PushWFArc f11 '' #zField
-Ps0 @RichDialogMethodStart f1 '' #zField
-Ps0 @RichDialogProcessEnd f2 '' #zField
+Ps0 @UdMethod f1 '' #zField
+Ps0 @UdProcessEnd f2 '' #zField
 Ps0 @PushWFArc f3 '' #zField
-Ps0 @RichDialogProcessEnd f4 '' #zField
-Ps0 @RichDialogMethodStart f5 '' #zField
+Ps0 @UdProcessEnd f4 '' #zField
+Ps0 @UdMethod f5 '' #zField
 Ps0 @PushWFArc f6 '' #zField
 >Proto Ps0 Ps0 PortalHomeProcess #zField
 Ps0 f0 guid 14BEF201D4239EF7 #txt
-Ps0 f0 type ch.ivy.addon.portal.generic.PortalHome.PortalHomeData #txt
 Ps0 f0 method start(ch.ivy.addon.portal.generic.view.TaskView) #txt
-Ps0 f0 disableUIEvents true #txt
 Ps0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <ch.ivy.addon.portal.generic.view.TaskView taskView> param = methodEvent.getInputArguments();
 ' #txt
@@ -46,17 +41,14 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f0 83 51 26 26 -16 15 #rect
-Ps0 f0 @|RichDialogInitStartIcon #fIcon
-Ps0 f10 type ch.ivy.addon.portal.generic.PortalHome.PortalHomeData #txt
+Ps0 f0 @|UdInitIcon #fIcon
 Ps0 f10 213 53 22 22 14 0 #rect
-Ps0 f10 @|RichDialogProcessEndIcon #fIcon
+Ps0 f10 @|UdProcessEndIcon #fIcon
 Ps0 f11 expr out #txt
 Ps0 f11 109 64 213 64 #arcP
 Ps0 f11 0 0.49999999999999994 0 0 #arcLabel
 Ps0 f1 guid 15BA979D15878BE6 #txt
-Ps0 f1 type ch.ivy.addon.portal.generic.PortalHome.PortalHomeData #txt
 Ps0 f1 method getDataModel() #txt
-Ps0 f1 disableUIEvents false #txt
 Ps0 f1 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -81,19 +73,15 @@ Ps0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f1 85 149 22 22 14 0 #rect
-Ps0 f1 @|RichDialogMethodStartIcon #fIcon
-Ps0 f2 type ch.ivy.addon.portal.generic.PortalHome.PortalHomeData #txt
+Ps0 f1 @|UdMethodIcon #fIcon
 Ps0 f2 213 149 22 22 14 0 #rect
-Ps0 f2 @|RichDialogProcessEndIcon #fIcon
+Ps0 f2 @|UdProcessEndIcon #fIcon
 Ps0 f3 expr out #txt
 Ps0 f3 107 160 213 160 #arcP
-Ps0 f4 type ch.ivy.addon.portal.generic.PortalHome.PortalHomeData #txt
 Ps0 f4 210 210 22 22 14 0 #rect
-Ps0 f4 @|RichDialogProcessEndIcon #fIcon
+Ps0 f4 @|UdProcessEndIcon #fIcon
 Ps0 f5 guid 1604F4CCC363BD5A #txt
-Ps0 f5 type ch.ivy.addon.portal.generic.PortalHome.PortalHomeData #txt
 Ps0 f5 method getStatisticCharts() #txt
-Ps0 f5 disableUIEvents false #txt
 Ps0 f5 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -115,7 +103,7 @@ Ps0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f5 82 210 22 22 14 0 #rect
-Ps0 f5 @|RichDialogMethodStartIcon #fIcon
+Ps0 f5 @|UdMethodIcon #fIcon
 Ps0 f6 expr out #txt
 Ps0 f6 104 221 210 221 #arcP
 >Proto Ps0 .type ch.ivy.addon.portal.generic.PortalHome.PortalHomeData #txt

@@ -78,14 +78,17 @@ public class EmailBean {
 
   private String checkFileSize(UploadedFile uploadedFile) {
     String uploadDocumentCheckMessage = "";
-    if(uploadedFile == null || uploadedFile.getSize() == 0) {
+    if(uploadedFile == null) {
       uploadDocumentCheckMessage =  Ivy.cms().co("/Dialogs/components/CaseDocument/invalidFileMessage");
+    } else if (uploadedFile.getSize() == 0) {
+      uploadDocumentCheckMessage = Ivy.cms().co("/Dialogs/components/CaseDocument/emptyFileMessage");
     } else {
       Long maxFileUploadSize = MasterData.getFileUploadSizeLimit();
       if(uploadedFile.getSize() > maxFileUploadSize) {
         uploadDocumentCheckMessage = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize", Arrays.asList(FileUtils.byteCountToDisplaySize(maxFileUploadSize)));
       }
     }
+    
     return uploadDocumentCheckMessage;
   }
 

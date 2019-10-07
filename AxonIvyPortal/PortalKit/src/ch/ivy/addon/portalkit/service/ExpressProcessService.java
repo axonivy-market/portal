@@ -10,13 +10,13 @@ import ch.ivyteam.ivy.business.data.store.search.Filter;
 public class ExpressProcessService extends BusinessDataService<ExpressProcess> {
 
   public List<ExpressProcess> findReadyToExecuteProcessOrderByName() {
-    List<ExpressProcess> result = repo().search(getType()).orderBy().textField("processName").ascending().execute().getAll();
+    List<ExpressProcess> result = repo().search(getType()).orderBy().textField("processName").ascending().limit(100).execute().getAll();
     return result.stream().filter(ExpressProcess::isReadyToExecute).collect(Collectors.toList());
   }
   
   public List<ExpressProcess> findExpressProcessByName(String processName) {
     Filter<ExpressProcess> filter = repo().search(getType()).textField("processName").isEqualToIgnoringCase(processName);
-    return filter.execute().getAll();
+    return filter.limit(100).execute().getAll();
   }
   
   @Override

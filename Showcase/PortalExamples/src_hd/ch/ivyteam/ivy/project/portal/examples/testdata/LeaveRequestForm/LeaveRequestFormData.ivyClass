@@ -1,0 +1,10 @@
+LeaveRequestFormData #class
+ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #namespace
+treeNode org.primefaces.model.TreeNode #field
+treeNode PERSISTENT #fieldModifier
+steps List<String> #field
+steps PERSISTENT #fieldModifier
+actualStepIndex Number #field
+actualStepIndex PERSISTENT #fieldModifier
+homeCaseId String #field
+homeCaseId PERSISTENT #fieldModifier

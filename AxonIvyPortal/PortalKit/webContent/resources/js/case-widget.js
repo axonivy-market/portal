@@ -12,7 +12,6 @@ function CaseWidget() {
     var childElements = $('.js-case-item');
     if (childElements.length > 0) {
       var container = $('.js-case-list > .ui-datascroller-content');
-      var mainAreaPanel = $('#main-area-panel');
       var caseWidgetHeaderContainer = $('.widget-header');
       var announcementMessageContainer = $('.js-announcement-message');
       var caseWidgetSortMenuContainer = $('.js-case-widget-column-header');
@@ -24,11 +23,11 @@ function CaseWidget() {
         error = 55; // included margin, padding in search page
       }
 
-      var mainScreenHeight = mainAreaPanel.outerHeight(true) - $('.layout-topbar').outerHeight(true) - 15;//minus 15 to remove 2nd scroll bar
-      var availableHeight = mainScreenHeight - caseWidgetHeaderContainer.outerHeight(true)
-          - caseWidgetSortMenuContainer.outerHeight(true) - caseWidgetFilterContainer.outerHeight(true)
-          - globalSearchInput.outerHeight(true) - globalSearchTabHeader.outerHeight(true)
-          - announcementMessageContainer.outerHeight(true) - error;
+      var mainScreenHeight = ($('body').outerHeight(true)||0) - ($('.layout-topbar').outerHeight(true)||0) - 15;//minus 15 to remove 2nd scroll bar
+      var availableHeight = mainScreenHeight - (caseWidgetHeaderContainer.outerHeight(true)||0)
+          - (caseWidgetSortMenuContainer.outerHeight(true)||0) - (caseWidgetFilterContainer.outerHeight(true)||0)
+          - (globalSearchInput.outerHeight(true)||0) - (globalSearchTabHeader.outerHeight(true)||0)
+          - (announcementMessageContainer.outerHeight(true)||0) - error;
 
       if (!!availableHeight) {
         container.height(availableHeight);

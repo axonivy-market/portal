@@ -1,10 +1,9 @@
 [Ivy]
-15F80B590709168C 3.20 #module
+15F80B590709168C 3.28 #module
 >Proto >Proto Collection #zClass
 Cy0 CreateUsersManually Big #zClass
 Cy0 B #cInfo
 Cy0 #process
-Cy0 @TextInP .resExport .resExport #zField
 Cy0 @TextInP .type .type #zField
 Cy0 @TextInP .processKind .processKind #zField
 Cy0 @AnnotationInP-0n ai ai #zField
@@ -24,21 +23,17 @@ Cy0 @PushWFArc f8 '' #zField
 Cy0 @PushWFArc f9 '' #zField
 >Proto Cy0 Cy0 CreateUsersManually #zField
 Cy0 f0 outLink createTestUsers.ivp #txt
-Cy0 f0 type internaltest.Data #txt
 Cy0 f0 inParamDecl '<> param;' #txt
-Cy0 f0 actionDecl 'internaltest.Data out;
-' #txt
-Cy0 f0 guid 15F80B59081D7F16 #txt
 Cy0 f0 requestEnabled true #txt
 Cy0 f0 triggerEnabled false #txt
 Cy0 f0 callSignature createTestUsers() #txt
 Cy0 f0 persist false #txt
-Cy0 f0 taskData 'TaskTriggered.ROL=Everybody
+Cy0 f0 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Cy0 f0 caseData businessCase.attach=true #txt
 Cy0 f0 showInStartList 1 #txt
 Cy0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -53,11 +48,8 @@ Cy0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cy0 f0 @C|.responsibility Everybody #txt
 Cy0 f0 81 49 30 30 -53 17 #rect
 Cy0 f0 @|StartRequestIcon #fIcon
-Cy0 f1 type internaltest.Data #txt
 Cy0 f1 337 49 30 30 0 15 #rect
 Cy0 f1 @|EndIcon #fIcon
-Cy0 f3 actionDecl 'internaltest.Data out;
-' #txt
 Cy0 f3 actionTable 'out=in;
 ' #txt
 Cy0 f3 actionCode 'for (int i = 1; i < 30001; i++) {
@@ -104,7 +96,6 @@ for (int i = 1; i < 301; i++) {
 	}
 }' #txt
 Cy0 f3 security system #txt
-Cy0 f3 type internaltest.Data #txt
 Cy0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -121,21 +112,17 @@ Cy0 f4 111 64 160 64 #arcP
 Cy0 f2 expr out #txt
 Cy0 f2 288 64 337 64 #arcP
 Cy0 f5 outLink deleteTestUsers.ivp #txt
-Cy0 f5 type internaltest.Data #txt
 Cy0 f5 inParamDecl '<> param;' #txt
-Cy0 f5 actionDecl 'internaltest.Data out;
-' #txt
-Cy0 f5 guid 15F9FE43D661A106 #txt
 Cy0 f5 requestEnabled true #txt
 Cy0 f5 triggerEnabled false #txt
 Cy0 f5 callSignature deleteTestUsers() #txt
 Cy0 f5 persist false #txt
-Cy0 f5 taskData 'TaskTriggered.ROL=Everybody
+Cy0 f5 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
 TaskTriggered.PRI=2
-TaskTriggered.EXROL=Everybody' #txt
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Cy0 f5 caseData businessCase.attach=true #txt
 Cy0 f5 showInStartList 1 #txt
 Cy0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -150,8 +137,6 @@ Cy0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cy0 f5 @C|.responsibility Everybody #txt
 Cy0 f5 81 145 30 30 -55 17 #rect
 Cy0 f5 @|StartRequestIcon #fIcon
-Cy0 f6 actionDecl 'internaltest.Data out;
-' #txt
 Cy0 f6 actionTable 'out=in;
 ' #txt
 Cy0 f6 actionCode 'for (int i = 1; i < 30001; i++) {
@@ -186,7 +171,6 @@ for (int i = 1; i < 301; i++) {
 	}
 }' #txt
 Cy0 f6 security system #txt
-Cy0 f6 type internaltest.Data #txt
 Cy0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -198,7 +182,6 @@ Cy0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cy0 f6 160 138 112 44 -47 -8 #rect
 Cy0 f6 @|StepIcon #fIcon
-Cy0 f7 type internaltest.Data #txt
 Cy0 f7 337 145 30 30 0 15 #rect
 Cy0 f7 @|EndIcon #fIcon
 Cy0 f8 expr out #txt

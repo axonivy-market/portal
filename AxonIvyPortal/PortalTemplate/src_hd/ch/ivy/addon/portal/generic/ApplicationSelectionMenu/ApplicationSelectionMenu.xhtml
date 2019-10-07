@@ -4,8 +4,8 @@
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile"
-  xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:ps="http://primefaces.org/serenity">
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+  xmlns:ps="http://primefaces.org/serenity">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="menuState" />
@@ -14,6 +14,7 @@
 </cc:interface>
 
 <cc:implementation>
+
   <!-- LOGO  -->
   <div class="sidebar-logo">
     <p:commandLink id="logo" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(isWorkingOnATask)}">
@@ -28,7 +29,7 @@
   </div>
 
   <!-- APPLICATION MENU -->
-  <div>
+  <h:panelGroup id="main-navigator-container" layout="block" styleClass="nano #{showMainArea eq true ? '' : 'u-invisibility'}">
     <div id="#{cc.clientId}" class="nano-content sidebar-scroll-content">
       <div class="layout-menu-container">
         <div class="ui-xl-hidden ui-lg-hidden mobile-global-search-container">
@@ -36,38 +37,67 @@
             <ic:ch.ivy.addon.portal.generic.GlobalSearchLeftMenu id="global-search-component-mobile" />
           </h:form>
         </div>
-        <h:form id="main-navigator">
-          <ps:menu id="main-menu" widgetVar="main-menu">
-            <c:forEach var="menuItem" items="#{data.menuItems}" varStatus="menuItemStatus">
-              <p:menuitem id="menu-item-#{menuItemStatus.index}" rendered="#{empty menuItem.getAttributes().get('isThirdPartyApp')}"
-                actionListener="#{logic.openApp(menuItem.href)}" disabled="#{menuItem.disabled}" update="main-menu" process="main-menu" onclick="PF('main-menu').clearActiveMenuState();"
-                icon="#{menuItem.icon}" value="#{menuItem.value}" iconPos="right" containerStyleClass="#{menuItem.styleClass}" />
-  
-              <p:menuitem id="thirdparty-menu-item-#{menuItemStatus.index}" rendered="#{not empty menuItem.getAttributes().get('isThirdPartyApp')}" update="main-menu" process="main-menu"
-                actionListener="#{logic.openApp(menuItem.href)}" ajax="false" target="_blank" onclick="event.stopPropagation(); location.reload();" disabled="#{menuItem.disabled}" 
-                icon="#{menuItem.icon}" value="#{menuItem.value}" iconPos="right" containerStyleClass="#{menuItem.styleClass}" />
 
-              <c:forEach var="subMenuItem" items="#{data.subMenuItems}" varStatus="subMenuItemStatus" >
-              	<c:set var="isThirdPartyApp" value="#{empty menuItem.getAttributes().get('isThirdPartyApp')}"/>
-              	<c:set var="islastSubItem" value="#{subMenuItemStatus.index == data.subMenuItems.size() - 1 ? 'last-sub-item':''}" />
-                <c:set var="isIvyLink"
-                  value="#{(fn:contains(process.link, '.ivp?') or fn:endsWith(subMenuItem.link, '.ivp') or fn:endsWith(subMenuItem.link, '.icm')) or subMenuItem.link eq NULL}" />
-                <p:menuitem id="menu-item-#{menuItemStatus.index}-sub-menu-item-#{subMenuItemStatus.index}" rendered="#{isThirdPartyApp and isIvyLink}" actionListener="#{logic.onClickSubMenuItem}"
-                  value="#{subMenuItem.label}" icon="#{subMenuItem.icon}" iconPos="right" styleClass="submenu" update="main-menu" process="main-menu" containerStyleClass="submenu-container #{islastSubItem}">
-                  <f:attribute name="selectedSubMenuItem" value="#{subMenuItem}" />
-                </p:menuitem>
-                
-                <p:menuitem id="thirdparty-menu-item-#{menuItemStatus.index}-sub-menu-item-#{subMenuItemStatus.index}" rendered="#{isThirdPartyApp and !isIvyLink}" target="_blank" url="#{subMenuItem.externalLink}" value="#{subMenuItem.label}"
-                  styleClass="submenu" icon="#{subMenuItem.icon}" update="main-menu" process="main-menu" containerStyleClass="submenu-container #{islastSubItem}" onclick="location.reload();"/>
-                 
-              </c:forEach>
-              
+        <!-- Application menu -->
+        <h:form id="main-navigator">
+
+          <!-- Remote-command will be called when language changed -->
+          <p:remoteCommand name="reloadMenuItem" actionListener="#{menuView.init}"
+            oncomplete="if (args &amp;&amp; !args.validationFailed) { window.location.reload();}" />
+
+          <ps:menu id="main-menu" widgetVar="main-menu">
+            <!-- Loop menu applications -->
+            <c:forEach var="menuItem" items="#{menuView.menuItems}" varStatus="menuItemStatus">
+
+              <p:menuitem id="menu-item-#{menuItemStatus.index}" rendered="#{empty menuItem.getAttributes().get('isThirdPartyApp')}"
+                actionListener="#{logic.openApp(menuItem.href)}" disabled="#{menuItem.disabled}" update="main-menu" process="main-menu"
+                onclick="PF('main-menu').clearActiveMenuState();" icon="#{menuItem.icon}" value="#{menuItem.value}" iconPos="right"
+                containerStyleClass="#{menuItem.styleClass}" styleClass="#{menuItem.styleClass eq 'active-menuitem' ? 'current-application':''}" 
+                url="#{menuItem.href}"/>
+
+              <p:menuitem id="thirdparty-menu-item-#{menuItemStatus.index}" rendered="#{not empty menuItem.getAttributes().get('isThirdPartyApp')}"
+                update="main-menu" process="main-menu" actionListener="#{logic.openApp(menuItem.href)}" ajax="false" target="_blank"
+                onclick="event.stopPropagation(); location.reload();" disabled="#{menuItem.disabled}" icon="#{menuItem.icon}"
+                value="#{menuItem.value}" iconPos="right" containerStyleClass="#{menuItem.styleClass}" url="#{menuItem.href}"/>
+
+              <!-- Loop sub-menu based on application -->
+              <!-- Only show submenu for current application -->
+              <c:if test="#{menuItem.styleClass eq 'active-menuitem'}">
+                <c:set var="subMenuItemNumber" value="#{menuView.subMenuItems.size() - 1}" />
+
+                <c:forEach var="subMenuItem" items="#{menuView.subMenuItems}" varStatus="subMenuItemStatus">
+                  <c:set var="isThirdPartyApp" value="#{empty menuItem.getAttributes().get('isThirdPartyApp')}" />
+                  <c:set var="firstSubItem" value="#{subMenuItemStatus.index == 0 ? 'first-sub-item':''}" />
+                  <c:set var="lastSubItem" value="#{subMenuItemStatus.index == subMenuItemNumber ? 'last-sub-item':''}" />
+                  <c:set var="isIvyLink"
+                    value="#{(fn:contains(process.link, '.ivp?') or fn:endsWith(subMenuItem.link, '.ivp') or fn:endsWith(subMenuItem.link, '.icm')) or subMenuItem.link eq NULL}" />
+
+                  <p:menuitem id="menu-item-#{menuItemStatus.index}-sub-menu-item-#{subMenuItemStatus.index}" url="#{subMenuItem.link}"
+                    rendered="#{isThirdPartyApp and isIvyLink}" actionListener="#{logic.onClickSubMenuItem}" value="#{subMenuItem.label}"
+                    icon="#{subMenuItem.icon}" iconPos="right" styleClass="submenu" update="main-menu" process="main-menu"
+                    containerStyleClass="submenu-container #{firstSubItem} #{lastSubItem}" global="false">
+                    <f:attribute name="selectedSubMenuItem" value="#{subMenuItem}" />
+                  </p:menuitem>
+
+                  <p:menuitem id="thirdparty-menu-item-#{menuItemStatus.index}-sub-menu-item-#{subMenuItemStatus.index}"
+                    rendered="#{isThirdPartyApp and !isIvyLink}" target="_blank" url="#{subMenuItem.externalLink}" value="#{subMenuItem.label}"
+                    styleClass="submenu" icon="#{subMenuItem.icon}" update="main-menu" process="main-menu"
+                    containerStyleClass="submenu-container #{firstSubItem} #{lastSubItem}" onclick="location.reload();" />
+
+                </c:forEach>
+              </c:if>
+
             </c:forEach>
           </ps:menu>
         </h:form>
       </div>
     </div>
-  </div>
+
+    <!-- Add a nano scrollbar of serenity style -->
+    <div class="nano-pane">
+      <div class="nano-slider" />
+    </div>
+  </h:panelGroup>
 
   <p:confirmDialog id="task-leave-warning-dialog" rendered="#{data.isWorkingOnATask}" 
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"

@@ -54,8 +54,9 @@ body {
 .layout-wrapper .layout-sidebar .layout-menu .submenu-container {
 	padding: 4px 0;
 	a:hover {
-    	background-color: $primaryLightestColor !important;
-    }
+		background-color: $menuItemHoverBackgroundColor !important;
+		border-radius: 0 !important;
+	}
 }
 
 .layout-wrapper .layout-sidebar {
@@ -87,7 +88,7 @@ body {
 	}
 }
 
-.submenu-container.active-menuitem a i, .submenu-container.active-menuitem a {
+.submenu-container.active-menuitem a:not(:hover) i, .submenu-container.active-menuitem a:not(:hover) {
   color: $accentColor !important;
 }
 
@@ -136,7 +137,7 @@ body {
         padding: 60px 0 0 0;
     }
     .task-template-container {
-        margin: auto 10px;
+        padding: 0 10px !important;
     }
 }
 
@@ -160,10 +161,6 @@ body {
                 font-size: 19px;
             }
         }
-    }
-
-    .admin-ui-dialog {
-        top: 100px !important;
     }
 }
 
@@ -207,22 +204,14 @@ body .ui-messages .ui-messages-error-icon,
 .process-group.ui-fieldset .ui-fieldset-legend {
     font-size: 1.4rem;
     color: $primaryColor;
+    padding: 14px 10px 10px 0 !important;
+    margin-left: -1px;
 }
 
 .process-widget .process-group .ui-fieldset-toggler {
     background-image: none !important;
     text-indent: 0;
     color: $primaryColor !important;
-}
-
-.process-widget .process-group .ui-fieldset-toggler:before {
-    font-family: 'FontAwesome';
-    font-size: 1.4rem;
-    color: $black !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 3px;
 }
 
 .ui-fieldset {
@@ -564,6 +553,10 @@ img[id*='additonalTaskUserAvatar'] {
 
 .line-process-chain .line-vertical-process-step.hide-right-steps {
     background: repeating-linear-gradient(180deg, #E0E0E0, #E0E0E0 10px, $bodyBackgroundColor 10px, $bodyBackgroundColor 20px);
+}
+
+.current .cicrle-step-container, .visited .cicrle-step-container {
+    color: $circleStepNumberColor;
 }
 
 .task #mobile-menu .mobile-task-menu-item,

@@ -32,7 +32,6 @@ import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.RequestUriFactory;
-import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -115,7 +114,7 @@ public class ProcessWidgetBean implements Serializable {
     if (StringUtils.isNotBlank(expressStartLink)) {
       List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findReadyToExecuteProcessOrderByName();
       for (ExpressProcess wf : workflows) {
-        if (PermissionUtils.canStartExpressWorkflow(wf)) {
+        if (PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(wf)) {
           processes.add(wf);
         }
       }
@@ -125,7 +124,7 @@ public class ProcessWidgetBean implements Serializable {
     processes.forEach(process -> defaultPortalProcesses.add(new PortalExpressProcess(process)));
     return defaultPortalProcesses;
   }
-
+  
   private void sortProcesses(List<IWebStartable> processes) {
     processes.sort((process1, process2) -> StringUtils.compareIgnoreCase(process1.getName(), process2.getName()));
   }
@@ -153,8 +152,7 @@ public class ProcessWidgetBean implements Serializable {
   public String getCreateExpessWorkflowLink() {
     return IvyExecutor.executeAsSystem(() -> {
       if (createExpressWorkflowProcessStart != null) {
-        return RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(),
-            createExpressWorkflowProcessStart).toString();
+        return RequestUriFactory.createProcessStartUri(createExpressWorkflowProcessStart).toASCIIString();
       }
       return StringUtils.EMPTY;
     });

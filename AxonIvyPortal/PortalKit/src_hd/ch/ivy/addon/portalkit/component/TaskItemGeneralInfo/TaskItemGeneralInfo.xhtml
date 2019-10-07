@@ -1,6 +1,8 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://java.sun.com/jsp/jstl/core">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="task" type="ch.ivyteam.ivy.workflow.ITask" />
@@ -127,7 +129,9 @@
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/businessCase')}" />
       </div>
       <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4 u-truncate-text">
-        <p:commandLink id="related-case" styleClass="task-business-case" value="##{task.getCase().getBusinessCase().id} #{taskBean.displayCaseName(task)}" actionListener="#{logic.navigateToRelatedCase(task.getCase().getBusinessCase())}" />
+        <p:commandLink id="related-case" styleClass="task-business-case" value="##{task.getCase().getBusinessCase().id} #{taskBean.displayCaseName(task)}" actionListener="#{logic.navigateToRelatedCase}">
+          <f:attribute name="caseView" value="#{task.getCase().getBusinessCase()}" />
+        </p:commandLink>
       </div>
     </div>
 
@@ -136,8 +140,10 @@
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/technicalCase')}" rendered="true" />
       </div>
       <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4 u-truncate-text">
-        <p:commandLink id="related-technical-case" value="#{taskBean.getTechnicalCaseDisplayName(task)}" actionListener="#{logic.navigateToRelatedCase(task.getCase())}"
-          rendered="#{task.getCase().getId() != task.getCase().getBusinessCase().getId()}" />
+        <p:commandLink id="related-technical-case" value="#{taskBean.getTechnicalCaseDisplayName(task)}" actionListener="#{logic.navigateToRelatedCase}"
+          rendered="#{task.getCase().getId() != task.getCase().getBusinessCase().getId()}">
+          <f:attribute name="caseView" value="#{task.getCase()}" />
+        </p:commandLink>
       </div>
     </div>
 
@@ -171,8 +177,7 @@
             <p:inplace id="edit-inplace" styleClass="expiry-edit-inplace" editor="true" saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
               cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" label="#{formattingNullWrapperBean.format(task.expiryTimestamp)}"
               rendered="#{taskActionBean.canChangeExpiry(task)}">
-              <p:ajax event="save" listener="#{logic.updateDeadline(task)}" update="#{cc.attrs.componentToUpdate}" />
-              <p:ajax event="cancel" resetValues="true" />
+              <p:ajax event="save" listener="#{logic.updateDeadline(task)}" update="expiry-form #{cc.attrs.componentToUpdate}" />
               <p:calendar id="expiry-calendar" styleClass="task-details-data-expiry" value="#{task.expiryTimestamp}" pattern="#{dateTimePatternBean.configuredPattern}"
                 locale="#{localeBean.locale}">
                 <f:validator validatorId="taskExpiryTimestampValidator" />

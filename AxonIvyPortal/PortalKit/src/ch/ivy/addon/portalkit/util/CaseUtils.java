@@ -12,10 +12,10 @@ import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.security.ISecurityConstants;
-import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
 import ch.ivyteam.ivy.workflow.IProcessStart;
+import ch.ivyteam.util.Pair;
 
 public final class CaseUtils {
   private CaseUtils() {
@@ -51,8 +51,7 @@ public final class CaseUtils {
     } catch (Exception e) {
       Ivy.log().error(e);
       IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(requestPath);
-      return RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString()
-          + urlParameters;
+      return RequestUriFactory.createProcessStartUri(process, new Pair<String, String>("caseId", String.valueOf(iCase.getId()))).toASCIIString();
     }
   }
   

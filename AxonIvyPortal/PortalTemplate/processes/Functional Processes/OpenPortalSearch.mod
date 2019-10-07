@@ -1,10 +1,9 @@
 [Ivy]
-163AFDEDB4167156 3.23 #module
+163AFDEDB4167156 3.28 #module
 >Proto >Proto Collection #zClass
 Oh0 OpenPortalSearch Big #zClass
 Oh0 B #cInfo
 Oh0 #process
-Oh0 @TextInP .resExport .resExport #zField
 Oh0 @TextInP .type .type #zField
 Oh0 @TextInP .processKind .processKind #zField
 Oh0 @AnnotationInP-0n ai ai #zField
@@ -14,12 +13,12 @@ Oh0 @TextInP .xml .xml #zField
 Oh0 @TextInP .responsibility .responsibility #zField
 Oh0 @StartSub f0 '' #zField
 Oh0 @EndSub f1 '' #zField
-Oh0 @RichDialog f3 '' #zField
+Oh0 @UserDialog f3 '' #zField
 Oh0 @PushWFArc f4 '' #zField
 Oh0 @PushWFArc f2 '' #zField
 Oh0 @StartSub f5 '' #zField
 Oh0 @EndSub f6 '' #zField
-Oh0 @RichDialog f7 '' #zField
+Oh0 @UserDialog f7 '' #zField
 Oh0 @PushWFArc f8 '' #zField
 Oh0 @PushWFArc f9 '' #zField
 >Proto Oh0 Oh0 OpenPortalSearch #zField
@@ -28,10 +27,7 @@ Oh0 f0 inParamTable 'out.keyword=param.keyword;
 ' #txt
 Oh0 f0 outParamDecl '<> result;
 ' #txt
-Oh0 f0 actionDecl 'ch.ivy.addon.portal.generic.OpenPortalSearchData out;
-' #txt
 Oh0 f0 callSignature call(String) #txt
-Oh0 f0 type ch.ivy.addon.portal.generic.OpenPortalSearchData #txt
 Oh0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -41,14 +37,10 @@ Oh0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Oh0 f0 81 49 30 30 -29 17 #rect
 Oh0 f0 @|StartSubIcon #fIcon
-Oh0 f1 type ch.ivy.addon.portal.generic.OpenPortalSearchData #txt
 Oh0 f1 337 49 30 30 0 15 #rect
 Oh0 f1 @|EndSubIcon #fIcon
-Oh0 f3 targetWindow NEW #txt
-Oh0 f3 targetDisplay TOP #txt
-Oh0 f3 richDialogId ch.ivy.addon.portal.generic.SearchResults #txt
+Oh0 f3 dialogId ch.ivy.addon.portal.generic.SearchResults #txt
 Oh0 f3 startMethod start(String) #txt
-Oh0 f3 type ch.ivy.addon.portal.generic.OpenPortalSearchData #txt
 Oh0 f3 requestActionDecl '<String keyword> param;' #txt
 Oh0 f3 requestMappingAction 'param.keyword=in.keyword;
 ' #txt
@@ -56,9 +48,6 @@ Oh0 f3 responseActionDecl 'ch.ivy.addon.portal.generic.OpenPortalSearchData out;
 ' #txt
 Oh0 f3 responseMappingAction 'out=in;
 ' #txt
-Oh0 f3 isAsynch false #txt
-Oh0 f3 isInnerRd false #txt
-Oh0 f3 userContext '* ' #txt
 Oh0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -69,7 +58,7 @@ Oh0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Oh0 f3 168 42 112 44 -41 -8 #rect
-Oh0 f3 @|RichDialogIcon #fIcon
+Oh0 f3 @|UserDialogIcon #fIcon
 Oh0 f4 expr out #txt
 Oh0 f4 111 64 168 64 #arcP
 Oh0 f2 expr out #txt
@@ -80,10 +69,7 @@ out.searchResultsDataModel=param.searchResultsDataModel;
 ' #txt
 Oh0 f5 outParamDecl '<> result;
 ' #txt
-Oh0 f5 actionDecl 'ch.ivy.addon.portal.generic.OpenPortalSearchData out;
-' #txt
 Oh0 f5 callSignature call(ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel,Number) #txt
-Oh0 f5 type ch.ivy.addon.portal.generic.OpenPortalSearchData #txt
 Oh0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -95,14 +81,10 @@ Oh0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Oh0 f5 81 177 30 30 -69 19 #rect
 Oh0 f5 @|StartSubIcon #fIcon
-Oh0 f6 type ch.ivy.addon.portal.generic.OpenPortalSearchData #txt
 Oh0 f6 337 177 30 30 0 15 #rect
 Oh0 f6 @|EndSubIcon #fIcon
-Oh0 f7 targetWindow NEW #txt
-Oh0 f7 targetDisplay TOP #txt
-Oh0 f7 richDialogId ch.ivy.addon.portal.generic.SearchResults #txt
+Oh0 f7 dialogId ch.ivy.addon.portal.generic.SearchResults #txt
 Oh0 f7 startMethod start(ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel,Number) #txt
-Oh0 f7 type ch.ivy.addon.portal.generic.OpenPortalSearchData #txt
 Oh0 f7 requestActionDecl '<ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel dataModel, Number activeTabIndex> param;' #txt
 Oh0 f7 requestMappingAction 'param.dataModel=in.searchResultsDataModel;
 param.activeTabIndex=in.activeTabIndex;
@@ -111,9 +93,6 @@ Oh0 f7 responseActionDecl 'ch.ivy.addon.portal.generic.OpenPortalSearchData out;
 ' #txt
 Oh0 f7 responseMappingAction 'out=in;
 ' #txt
-Oh0 f7 isAsynch false #txt
-Oh0 f7 isInnerRd false #txt
-Oh0 f7 userContext '* ' #txt
 Oh0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -124,7 +103,7 @@ Oh0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Oh0 f7 162 170 112 44 -41 -8 #rect
-Oh0 f7 @|RichDialogIcon #fIcon
+Oh0 f7 @|UserDialogIcon #fIcon
 Oh0 f8 expr out #txt
 Oh0 f8 111 192 162 192 #arcP
 Oh0 f9 expr out #txt
