@@ -31,8 +31,10 @@
         rendered="#{isShowResultTabView}">
         <p:tab id="process-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" titleStyleClass="process-tab-title"
           rendered="#{compactProcessWidgetBean.displayShowAllProcessesLink}">
-          <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-results" hideProcessNavigation="true"
-            hideHeader="true" hideExpressCreation="true" processListStyleClass="process-in-search" />
+          <div class="js-process-list-container">
+            <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-results" hideProcessNavigation="true" hideHeader="true"
+              hideExpressCreation="true" processListStyleClass="process-in-search" />
+          </div>
         </p:tab>
         
         <p:tab id="task-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}" titleStyleClass="task-tab-title"
@@ -133,6 +135,15 @@
       <script>
         function onTabShow() {
           var $selectedTab = $("#search-results-tabview").find(".ui-tabs-panel").filter(function() {return $(this).css('display') == 'block'});
+          var isSelectTaskTab = $selectedTab.find('.js-process-list-container').length != 0;
+          if (isSelectTaskTab) {
+            var processListScreen = new ProcessListScreenHandler();
+            var responsiveToolkit = ResponsiveToolkit(processListScreen);
+
+            Portal.init(responsiveToolkit);
+            return;
+          }
+
           var isSelectTaskTab = $selectedTab.find('.js-task-list-container').length != 0;
           if (isSelectTaskTab) {
             var taskListScreen = new TaskListScreenHandler();
