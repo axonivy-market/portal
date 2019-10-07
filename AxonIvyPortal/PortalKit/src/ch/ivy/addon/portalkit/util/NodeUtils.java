@@ -52,9 +52,9 @@ public class NodeUtils {
 
     for (CheckboxTreeNode node : nodes) {
       if (isCaseNode) {
-        nodePaths.add(((CaseNode) node.getData()).getValue());
+        nodePaths.add(((CaseNode) node.getData()).getCategory());
       } else {
-        nodePaths.add(((TaskNode) node.getData()).getValue());
+        nodePaths.add(((TaskNode) node.getData()).getCategory());
       }
     }
     return nodePaths;

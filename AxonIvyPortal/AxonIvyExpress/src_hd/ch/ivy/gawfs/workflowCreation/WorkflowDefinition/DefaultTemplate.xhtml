@@ -11,9 +11,9 @@
 	
 	<pe:dynaForm id="default-template-dyna-form" value="#{data.defaultDragAndDropController.dynaFormController.model}"
 		var="dynaData" columnClasses="label-container, field-container"
-		styleClass="Wid100 default-template-dyna-form">
+		styleClass="ui-g-12 default-template-dyna-form">
 
-		<pe:dynaFormControl type="InputTextArea" for="input-text-area">
+		<pe:dynaFormControl type="InputTextArea" for="input-text-area" styleClass="text-area">
 			<p:inputTextarea id="input-text-area" value="#{dynaData.value}" styleClass="default-template-text-area" disabled="true"
 				required="#{dynaData.required}" requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
 				rows="#{dynaData.intSetting}" autoResize="false" />

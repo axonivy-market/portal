@@ -1,34 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <richDialogDescriptor>
     <autoScreenshot>true</autoScreenshot>
-    <method>
-        <name>setCompactMode</name>
-        <description></description>
-        <inputParameter>
-            <name>compactMode</name>
-            <description></description>
-            <parameterType>Boolean</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </method>
-    <method>
-        <name>switchMode</name>
-        <description></description>
-    </method>
-    <method>
-        <name>drillDownExpiryListener</name>
-        <description></description>
-    </method>
-    <startMethod>
-        <name>start</name>
-        <description>Default dialog start method.</description>
-        <inputParameter>
-            <name>statisticChartList</name>
-            <description></description>
-            <parameterType>java.util.List&lt;ch.ivy.addon.portalkit.statistics.StatisticChart&gt;</parameterType>
-            <nullPermitted>false</nullPermitted>
-        </inputParameter>
-    </startMethod>
     <property>
         <name>guid</name>
         <value>1521B28EEBCA85A3</value>

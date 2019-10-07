@@ -1,8 +1,0 @@
-PortalCaseDetailsHomeData #class
-ch.ivy.addon.portalkit.showroom.singleapp.cases.PortalCaseDetailsHome #namespace
-homeCaseId Number #field
-homeCaseId PERSISTENT #fieldModifier
-steps java.util.List<String> #field
-steps PERSISTENT #fieldModifier
-actualStepIndex Number #field
-actualStepIndex PERSISTENT #fieldModifier

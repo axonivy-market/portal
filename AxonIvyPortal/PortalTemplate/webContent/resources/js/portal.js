@@ -4,7 +4,7 @@ var storageType = detectStorage();
 
 var Portal = {
   init : function(responsiveToolkit) {
-    if ($('form.login-form').size() > 0) {
+    if ($('form.login-form').length > 0) {
       return;
     }
     updateMainMenuMode();
@@ -17,7 +17,9 @@ var Portal = {
     
     // Update screen when window size is changed
     $(window).resize(function() {
-      responsiveToolkit.updateLayoutWithoutAnimation();
+      setTimeout(function() {
+        responsiveToolkit.updateLayoutWithoutAnimation();
+      }, 250);
     });
 
     responsiveToolkit.updateLayoutWithoutAnimation();
@@ -27,6 +29,7 @@ var Portal = {
   // Remove u-invisibility class when DOM is pasted already
   updateLayoutContent : function() {
     $('#main-area-panel').removeClass('u-invisibility');
+    $("[id$='main-navigator-container']").removeClass('u-invisibility');
   }
 }
 
@@ -44,7 +47,7 @@ function searchIconByName(element) {
 }
 
 var MainMenu = {
-  urlToFirstLevelMenu : [["Processes.xhtml", ["Processes", "Prozesse", "Processus", "Procesos"]],
+  urlToMenu : [["Processes.xhtml", ["Processes", "Prozesse", "Processus", "Procesos"]],
       ["PortalTasks.xhtml", ["Tasks", "Aufgaben", "Tâches", "Tareas"]],
       ["PortalCases.xhtml", ["Cases", "Vorgänge", "Dossiers", "Casos"]],
       ["PortalDashBoard.xhtml", ["Statistics", "Statistiken", "Statistiques", "Estadísticas"]],
@@ -53,10 +56,10 @@ var MainMenu = {
       ["CaseWidget.xhtml", ["Cases", "Vorgänge", "Dossiers", "Casos"]],
       ["PortalCaseDetails.xhtml", ["Cases", "Vorgänge", "Dossiers", "Casos"]],
       ["CaseItemDetails.xhtml", ["Cases", "Vorgänge", "Dossiers", "Casos"]],
-      ["PortalTaskDetail.xhtml", ["Tasks", "Aufgaben", "Tâches", "Tareas"]]],
+      ["PortalTaskDetails.xhtml", ["Tasks", "Aufgaben", "Tâches", "Tareas"]]],
 
   init : function(responsiveToolkit) {
-    this.highlightFirstLevelMenu();
+    this.highlightMenuItem();
     this.responsiveToolkit = responsiveToolkit;
     this.$mainMenu = $('.js-left-sidebar');
     this.$mainMenuToggle = $('.sidebar-anchor');
@@ -77,31 +80,31 @@ var MainMenu = {
     });
   },
 
-  highlightFirstLevelMenu : function() {
-    var firstLevelMenu = MainMenu.getFirstLevelMenuBasedOnPageUrl();
+  highlightMenuItem : function() {
+    var firstLevelMenu = MainMenu.getMenuBasedOnPageUrl();
     var parentActiveMenuId = MainMenu.getFirstParentMenuActive();
 
-    var $activeFirstLevelMenu = $(".layout-menu li[id^='" + parentActiveMenuId + "'] .menuitem-text").filter(
+    var $activeMenuItem = $(".layout-menu li[id^='" + parentActiveMenuId + "'] .menuitem-text").filter(
         function(index) {
           if (firstLevelMenu) {
             return (firstLevelMenu.indexOf($(this).text()) > -1);
           }
         });
     
-    $activeFirstLevelMenu.parent().parent().addClass('active-menuitem');
+    $activeMenuItem.parent().parent().addClass('active-menuitem');
   },
 
   getFirstParentMenuActive : function() {
     var parentId = "";
     var parentMenuActive = $(".layout-menu .active-menuitem").not(".submenu-container");
-    if (parentMenuActive) {
-      parentId = parentMenuActive.get(0).id;
-      MainMenu.getFirstSubMenuActive();
+    if (parentMenuActive.length > 0) {
+      parentId = parentMenuActive[0].id;
+      MainMenu.getSubMenuActive();
     }
     return parentId;
   },
 
-  getFirstSubMenuActive : function() {
+  getSubMenuActive : function() {
     var subMenuActive = $(".layout-menu .active-menuitem.submenu-container");
 
     for (var i = 0; i < subMenuActive.length; i++) {
@@ -114,11 +117,11 @@ var MainMenu = {
     }
   },
 
-  getFirstLevelMenuBasedOnPageUrl : function() {
+  getMenuBasedOnPageUrl : function() {
     var pageUrl = window.location.pathname;
-    for (var i = 0; i < MainMenu.urlToFirstLevelMenu.length; i++) {
-      if (pageUrl.indexOf(MainMenu.urlToFirstLevelMenu[i][0]) > -1) {
-        return MainMenu.urlToFirstLevelMenu[i][1];
+    for (var i = 0; i < MainMenu.urlToMenu.length; i++) {
+      if (pageUrl.indexOf(MainMenu.urlToMenu[i][0]) > -1) {
+        return MainMenu.urlToMenu[i][1];
       }
     }
   }
@@ -186,4 +189,51 @@ function getItemFromStorage(item){
     return sessionStorage.getItem(item);
   }
   return null;
+}
+
+function handleError(xhr, renderDetail){
+  if (renderDetail){
+    document.getElementById('ajax-indicator:show-more').onclick = function (){
+      document.getElementById('ajax-indicator:error-code').innerHTML = xhr.status;
+      document.getElementById('ajax-indicator:error-text').innerHTML = xhr.statusText;
+      document.getElementById('ajax-indicator:error-url').innerHTML = xhr.pfSettings.url;
+      document.getElementById('ajax-indicator:error-ready-state').innerHTML = xhr.readyState;
+      document.getElementById('ajax-indicator:error-type').innerHTML = xhr.pfSettings.type;
+      document.getElementById('ajax-indicator:error-args').innerHTML = JSON.stringify(xhr.pfArgs);
+      document.getElementById('ajax-indicator:pfSettings-source').innerHTML = xhr.pfSettings.source.id;
+      document.getElementById('ajax-indicator:form-data').innerHTML = decodeURIComponent(xhr.pfSettings.data);
+      document.getElementById('ajax-indicator:response-text').innerHTML = xhr.responseText;
+      document.getElementById('ajax-indicator:xhr').innerHTML = JSON.stringify(xhr);
+      PF('detail-error-dialog').show();
+    }
+  }
+  PF('error-ajax-dialog').show();
+}
+
+/* Portal's Main Area panel */
+var MainArea = {
+  urlToUseMenuArea : [["Processes.xhtml", ["Processes", "Prozesse", "Processus", "Procesos"]],
+      ["PortalTasks.xhtml", ["Tasks", "Aufgaben", "Tâches", "Tareas"]],
+      ["PortalCases.xhtml", ["Cases", "Vorgänge", "Dossiers", "Casos"]]],
+
+  init : function() {
+    var curentFrame = this.detectCurentFrame();
+    this.hiddenScrollBar(curentFrame);
+  },
+
+  detectCurentFrame : function() {
+    var pageUrl = window.location.pathname;
+    for (var i = 0; i < MainArea.urlToUseMenuArea.length; i++) {
+      if (pageUrl.indexOf(MainArea.urlToUseMenuArea[i][0]) > -1) {
+        return MainArea.urlToUseMenuArea[i][1];
+      }
+    }
+  },
+
+  hiddenScrollBar : function(curentFrame) {
+    var mainArea = $('#main-area-panel');
+    if (typeof curentFrame !== 'undefined' && typeof mainArea !== 'undefined' && curentFrame.length > 0) {
+      $(mainArea).addClass('hidden-scroll-bar');
+    }
+  }
 }

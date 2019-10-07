@@ -1,11 +1,9 @@
 [Ivy]
-[>Created: Mon May 15 15:15:16 ICT 2017]
-15C0A4B1BA58DEA3 3.20 #module
+15C0A4B1BA58DEA3 3.28 #module
 >Proto >Proto Collection #zClass
 Hk0 HiddenTask Big #zClass
 Hk0 B #cInfo
 Hk0 #process
-Hk0 @TextInP .resExport .resExport #zField
 Hk0 @TextInP .type .type #zField
 Hk0 @TextInP .processKind .processKind #zField
 Hk0 @AnnotationInP-0n ai ai #zField
@@ -24,25 +22,21 @@ Hk0 @PushWFArc f7 '' #zField
 Hk0 @PushWFArc f2 '' #zField
 >Proto Hk0 Hk0 HiddenTask #zField
 Hk0 f0 outLink start.ivp #txt
-Hk0 f0 type internaltest.Data #txt
 Hk0 f0 inParamDecl '<> param;' #txt
-Hk0 f0 actionDecl 'internaltest.Data out;
-' #txt
-Hk0 f0 guid 15C0A4B1BBCB4944 #txt
 Hk0 f0 requestEnabled true #txt
 Hk0 f0 triggerEnabled false #txt
 Hk0 f0 callSignature start() #txt
 Hk0 f0 persist false #txt
 Hk0 f0 startName 'Process contains hidden task' #txt
 Hk0 f0 startDescription 'Task, which has the HIDE additional property, won''t be displayed in Portal' #txt
-Hk0 f0 taskData 'TaskTriggered.ROL=Everybody
-TaskTriggered.EXTYPE=0
+Hk0 f0 taskData 'TaskTriggered.DESC=Task, which has the HIDE additional property, won''t be displayed in Portal
 TaskTriggered.EXPRI=2
-TaskTriggered.TYPE=0
-TaskTriggered.PRI=2
 TaskTriggered.EXROL=Everybody
+TaskTriggered.EXTYPE=0
 TaskTriggered.NAM=First hidden Task
-TaskTriggered.DESC=Task, which has the HIDE additional property, won''t be displayed in Portal' #txt
+TaskTriggered.PRI=2
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
 Hk0 f0 caseData businessCase.attach=true #txt
 Hk0 f0 showInStartList 1 #txt
 Hk0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -57,14 +51,10 @@ Hk0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Hk0 f0 @C|.responsibility Everybody #txt
 Hk0 f0 81 49 30 30 -21 17 #rect
 Hk0 f0 @|StartRequestIcon #fIcon
-Hk0 f1 type internaltest.Data #txt
 Hk0 f1 529 49 30 30 0 15 #rect
 Hk0 f1 @|EndIcon #fIcon
-Hk0 f3 actionDecl 'internaltest.Data out;
-' #txt
 Hk0 f3 actionTable 'out=in1;
 ' #txt
-Hk0 f3 outTypes "internaltest.Data" #txt
 Hk0 f3 outLinks "TaskA.ivp" #txt
 Hk0 f3 caseData 'case.name=Case contains hidden task' #txt
 Hk0 f3 taskData 'TaskA.DESC=Task, which has the HIDE additional property, won''t be displayed in Portal
@@ -76,18 +66,14 @@ TaskA.PRI=2
 TaskA.ROL=Everybody
 TaskA.SKIP_TASK_LIST=true
 TaskA.TYPE=0' #txt
-Hk0 f3 type internaltest.Data #txt
 Hk0 f3 template "" #txt
 Hk0 f3 321 49 30 30 0 16 #rect
 Hk0 f3 @|TaskSwitchSimpleIcon #fIcon
-Hk0 f5 actionDecl 'internaltest.Data out;
-' #txt
 Hk0 f5 actionTable 'out=in;
 ' #txt
 Hk0 f5 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
 TaskUtils.setHidePropertyToHideInPortal(ivy.task);' #txt
 Hk0 f5 security system #txt
-Hk0 f5 type internaltest.Data #txt
 Hk0 f5 160 42 112 44 0 -8 #rect
 Hk0 f5 @|StepIcon #fIcon
 Hk0 f9 expr out #txt
@@ -96,14 +82,11 @@ Hk0 f4 expr out #txt
 Hk0 f4 type internaltest.Data #txt
 Hk0 f4 var in1 #txt
 Hk0 f4 272 64 321 64 #arcP
-Hk0 f6 actionDecl 'internaltest.Data out;
-' #txt
 Hk0 f6 actionTable 'out=in;
 ' #txt
 Hk0 f6 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
 TaskUtils.setHidePropertyToHideInPortal(ivy.task);' #txt
 Hk0 f6 security system #txt
-Hk0 f6 type internaltest.Data #txt
 Hk0 f6 394 42 112 44 0 -8 #rect
 Hk0 f6 @|StepIcon #fIcon
 Hk0 f7 expr data #txt

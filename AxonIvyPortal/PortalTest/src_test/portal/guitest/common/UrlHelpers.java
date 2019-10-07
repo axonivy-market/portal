@@ -7,9 +7,7 @@ import org.apache.commons.lang.WordUtils;
 public class UrlHelpers {
 
   public static String generateAbsoluteProcessStartLink(String relativeProcessStartLink) {
-    if (!SystemProperties.isInServerMode() || System.getProperty("engineUrl") != null) {
-      relativeProcessStartLink = WordUtils.capitalize(relativeProcessStartLink);
-    }
+    relativeProcessStartLink = WordUtils.capitalize(relativeProcessStartLink);
     if (relativeProcessStartLink.endsWith(".icm")) {
       return getEngineUrl() + "/casemap/" + getApplicationName() + "/" + relativeProcessStartLink;
     }

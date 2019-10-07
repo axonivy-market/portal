@@ -1,12 +1,9 @@
 [Ivy]
-15FFC669C88F7E0B 3.26 #module
+15FFC669C88F7E0B 3.28 #module
 >Proto >Proto Collection #zClass
 Cs0 ChartCreationWidgetProcess Big #zClass
 Cs0 RD #cInfo
 Cs0 #process
-Cs0 @TextInP .ui2RdDataAction .ui2RdDataAction #zField
-Cs0 @TextInP .rdData2UIAction .rdData2UIAction #zField
-Cs0 @TextInP .resExport .resExport #zField
 Cs0 @TextInP .type .type #zField
 Cs0 @TextInP .processKind .processKind #zField
 Cs0 @AnnotationInP-0n ai ai #zField
@@ -14,36 +11,36 @@ Cs0 @MessageFlowInP-0n messageIn messageIn #zField
 Cs0 @MessageFlowOutP-0n messageOut messageOut #zField
 Cs0 @TextInP .xml .xml #zField
 Cs0 @TextInP .responsibility .responsibility #zField
-Cs0 @RichDialogInitStart f0 '' #zField
-Cs0 @RichDialogProcessEnd f1 '' #zField
-Cs0 @RichDialogProcessStart f3 '' #zField
-Cs0 @RichDialogEnd f4 '' #zField
+Cs0 @UdInit f0 '' #zField
+Cs0 @UdProcessEnd f1 '' #zField
+Cs0 @UdEvent f3 '' #zField
+Cs0 @UdExitEnd f4 '' #zField
 Cs0 @PushWFArc f5 '' #zField
-Cs0 @RichDialogMethodStart f35 '' #zField
-Cs0 @RichDialogMethodStart f40 '' #zField
-Cs0 @RichDialogMethodStart f42 '' #zField
-Cs0 @RichDialogProcessEnd f43 '' #zField
+Cs0 @UdMethod f35 '' #zField
+Cs0 @UdMethod f40 '' #zField
+Cs0 @UdMethod f42 '' #zField
+Cs0 @UdProcessEnd f43 '' #zField
 Cs0 @PushWFArc f45 '' #zField
 Cs0 @PushWFArc f46 '' #zField
-Cs0 @RichDialogMethodStart f6 '' #zField
+Cs0 @UdMethod f6 '' #zField
 Cs0 @GridStep f15 '' #zField
-Cs0 @RichDialogProcessEnd f7 '' #zField
-Cs0 @RichDialogProcessEnd f11 '' #zField
+Cs0 @UdProcessEnd f7 '' #zField
+Cs0 @UdProcessEnd f11 '' #zField
 Cs0 @PushWFArc f44 '' #zField
-Cs0 @RichDialogMethodStart f41 '' #zField
+Cs0 @UdMethod f41 '' #zField
 Cs0 @GridStep f13 '' #zField
 Cs0 @PushWFArc f12 '' #zField
-Cs0 @RichDialogMethodStart f17 '' #zField
+Cs0 @UdMethod f17 '' #zField
 Cs0 @PushWFArc f18 '' #zField
 Cs0 @Alternative f21 '' #zField
 Cs0 @PushWFArc f16 '' #zField
 Cs0 @PushWFArc f19 '' #zField
 Cs0 @PushWFArc f20 '' #zField
 Cs0 @PushWFArc f14 '' #zField
-Cs0 @RichDialogProcessStart f10 '' #zField
-Cs0 @RichDialogMethodStart f22 '' #zField
+Cs0 @UdEvent f10 '' #zField
+Cs0 @UdMethod f22 '' #zField
 Cs0 @PushWFArc f23 '' #zField
-Cs0 @RichDialogMethodStart f24 '' #zField
+Cs0 @UdMethod f24 '' #zField
 Cs0 @PushWFArc f25 '' #zField
 Cs0 @PushWFArc f26 '' #zField
 Cs0 @PushWFArc f8 '' #zField
@@ -54,15 +51,11 @@ Cs0 @PushWFArc f29 '' #zField
 Cs0 @PushWFArc f2 '' #zField
 >Proto Cs0 Cs0 ChartCreationWidgetProcess #zField
 Cs0 f0 guid 15FFC669CAD8BE32 #txt
-Cs0 f0 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 Cs0 f0 method start() #txt
-Cs0 f0 disableUIEvents true #txt
-Cs0 f0 inParameterDecl 'ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData out;
-' #txt
+Cs0 f0 inParameterDecl '<> param;' #txt
 Cs0 f0 inParameterMapAction 'out.isAllowedToCreateChart=true;
 ' #txt
-Cs0 f0 outParameterDecl '<> result;
-' #txt
+Cs0 f0 outParameterDecl '<> result;' #txt
 Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -73,14 +66,10 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f0 115 51 26 26 -16 15 #rect
-Cs0 f0 @|RichDialogInitStartIcon #fIcon
-Cs0 f1 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
+Cs0 f0 @|UdInitIcon #fIcon
 Cs0 f1 803 51 26 26 0 12 #rect
-Cs0 f1 @|RichDialogProcessEndIcon #fIcon
+Cs0 f1 @|UdProcessEndIcon #fIcon
 Cs0 f3 guid 15FFC669CBAE4804 #txt
-Cs0 f3 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
-Cs0 f3 actionDecl 'ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData out;
-' #txt
 Cs0 f3 actionTable 'out=in;
 ' #txt
 Cs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -91,17 +80,13 @@ Cs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f3 115 147 26 26 -15 12 #rect
-Cs0 f3 @|RichDialogProcessStartIcon #fIcon
-Cs0 f4 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
-Cs0 f4 guid 15FFC669CBAFD69D #txt
+Cs0 f3 @|UdEventIcon #fIcon
 Cs0 f4 435 147 26 26 0 12 #rect
-Cs0 f4 @|RichDialogEndIcon #fIcon
+Cs0 f4 @|UdExitEndIcon #fIcon
 Cs0 f5 expr out #txt
 Cs0 f5 141 160 435 160 #arcP
 Cs0 f35 guid 1601F664C9C78C71 #txt
-Cs0 f35 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 Cs0 f35 method createStatisticChart(java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>) #txt
-Cs0 f35 disableUIEvents false #txt
 Cs0 f35 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> statisticChartList> param = methodEvent.getInputArguments();
 ' #txt
@@ -145,11 +130,9 @@ Cs0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f35 115 859 26 26 -111 15 #rect
-Cs0 f35 @|RichDialogMethodStartIcon #fIcon
+Cs0 f35 @|UdMethodIcon #fIcon
 Cs0 f40 guid 1601F9BADD2EC1C0 #txt
-Cs0 f40 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 Cs0 f40 method updateBeforeAddCaseByState() #txt
-Cs0 f40 disableUIEvents false #txt
 Cs0 f40 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -176,11 +159,9 @@ Cs0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f40 115 435 26 26 -87 15 #rect
-Cs0 f40 @|RichDialogMethodStartIcon #fIcon
+Cs0 f40 @|UdMethodIcon #fIcon
 Cs0 f42 guid 1601F9BBC3E25AD8 #txt
-Cs0 f42 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 Cs0 f42 method updateBeforeAddTaskByExpiry() #txt
-Cs0 f42 disableUIEvents false #txt
 Cs0 f42 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -207,10 +188,9 @@ Cs0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f42 115 531 26 26 -87 15 #rect
-Cs0 f42 @|RichDialogMethodStartIcon #fIcon
-Cs0 f43 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
+Cs0 f42 @|UdMethodIcon #fIcon
 Cs0 f43 435 483 26 26 0 12 #rect
-Cs0 f43 @|RichDialogProcessEndIcon #fIcon
+Cs0 f43 @|UdProcessEndIcon #fIcon
 Cs0 f45 expr out #txt
 Cs0 f45 141 448 448 483 #arcP
 Cs0 f45 1 448 448 #addKink
@@ -220,13 +200,9 @@ Cs0 f46 141 544 448 509 #arcP
 Cs0 f46 1 448 544 #addKink
 Cs0 f46 0 0.7534182567993608 0 0 #arcLabel
 Cs0 f6 guid 160358C7FBCD2AE2 #txt
-Cs0 f6 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 Cs0 f6 method initialize() #txt
-Cs0 f6 disableUIEvents false #txt
-Cs0 f6 inParameterDecl 'ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData out;
-' #txt
-Cs0 f6 outParameterDecl '<> result;
-' #txt
+Cs0 f6 inParameterDecl '<> param;' #txt
+Cs0 f6 outParameterDecl '<> result;' #txt
 Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -237,9 +213,7 @@ Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f6 115 243 26 26 -26 15 #rect
-Cs0 f6 @|RichDialogMethodStartIcon #fIcon
-Cs0 f15 actionDecl 'ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData out;
-' #txt
+Cs0 f6 @|UdMethodIcon #fIcon
 Cs0 f15 actionTable 'out=in;
 ' #txt
 Cs0 f15 actionCode 'import org.apache.commons.lang3.ObjectUtils;
@@ -254,7 +228,6 @@ in.statisticFilter = new StatisticFilter().init();
 in.oldStatisticFilter = ObjectUtils.clone(in.statisticFilter) as StatisticFilter;
 ' #txt
 Cs0 f15 security system #txt
-Cs0 f15 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 Cs0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -266,20 +239,16 @@ Cs0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f15 222 42 112 44 -22 -8 #rect
 Cs0 f15 @|StepIcon #fIcon
-Cs0 f7 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 Cs0 f7 435 243 26 26 0 12 #rect
-Cs0 f7 @|RichDialogProcessEndIcon #fIcon
-Cs0 f11 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
+Cs0 f7 @|UdProcessEndIcon #fIcon
 Cs0 f11 435 955 26 26 0 12 #rect
-Cs0 f11 @|RichDialogProcessEndIcon #fIcon
+Cs0 f11 @|UdProcessEndIcon #fIcon
 Cs0 f44 expr out #txt
 Cs0 f44 141 352 448 483 #arcP
 Cs0 f44 1 448 352 #addKink
 Cs0 f44 0 0.7890617926546363 0 0 #arcLabel
 Cs0 f41 guid 1601F9BB6832261A #txt
-Cs0 f41 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 Cs0 f41 method updateBeforeAddTaskByPriority() #txt
-Cs0 f41 disableUIEvents false #txt
 Cs0 f41 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -308,13 +277,10 @@ Cs0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f41 115 339 26 26 -90 15 #rect
-Cs0 f41 @|RichDialogMethodStartIcon #fIcon
-Cs0 f13 actionDecl 'ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData out;
-' #txt
+Cs0 f41 @|UdMethodIcon #fIcon
 Cs0 f13 actionTable 'out=in;
 ' #txt
 Cs0 f13 actionCode 'in.chartName = "";' #txt
-Cs0 f13 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 Cs0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -329,9 +295,7 @@ Cs0 f13 @|StepIcon #fIcon
 Cs0 f12 expr out #txt
 Cs0 f12 344 968 435 968 #arcP
 Cs0 f17 guid 160485D2143D0001 #txt
-Cs0 f17 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 Cs0 f17 method updateBeforeAddElapsedTime() #txt
-Cs0 f17 disableUIEvents false #txt
 Cs0 f17 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -358,12 +322,11 @@ Cs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f17 115 627 26 26 -88 15 #rect
-Cs0 f17 @|RichDialogMethodStartIcon #fIcon
+Cs0 f17 @|UdMethodIcon #fIcon
 Cs0 f18 expr out #txt
 Cs0 f18 141 640 448 509 #arcP
 Cs0 f18 1 448 640 #addKink
 Cs0 f18 0 0.8015192349629681 0 0 #arcLabel
-Cs0 f21 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 Cs0 f21 272 856 32 32 0 16 #rect
 Cs0 f21 @|AlternativeIcon #fIcon
 Cs0 f16 expr out #txt
@@ -378,9 +341,6 @@ Cs0 f20 0 0.7991119562493567 0 0 #arcLabel
 Cs0 f14 expr out #txt
 Cs0 f14 141 968 232 968 #arcP
 Cs0 f10 guid 160911F3882D9937 #txt
-Cs0 f10 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
-Cs0 f10 actionDecl 'ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData out;
-' #txt
 Cs0 f10 actionTable 'out=in;
 ' #txt
 Cs0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -393,11 +353,9 @@ Cs0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f10 115 955 26 26 -42 15 #rect
-Cs0 f10 @|RichDialogProcessStartIcon #fIcon
+Cs0 f10 @|UdEventIcon #fIcon
 Cs0 f22 guid 1621EDBADBEB0978 #txt
-Cs0 f22 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 Cs0 f22 method updateBeforeAddCaseByFinishedTask() #txt
-Cs0 f22 disableUIEvents false #txt
 Cs0 f22 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -424,15 +382,13 @@ Cs0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f22 99 723 26 26 -95 16 #rect
-Cs0 f22 @|RichDialogMethodStartIcon #fIcon
+Cs0 f22 @|UdMethodIcon #fIcon
 Cs0 f23 expr out #txt
 Cs0 f23 125 736 448 509 #arcP
 Cs0 f23 1 448 736 #addKink
 Cs0 f23 0 0.8576523140311042 0 0 #arcLabel
 Cs0 f24 guid 162233637AE65F94 #txt
-Cs0 f24 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 Cs0 f24 method updateBeforeAddCaseByFinishedTime() #txt
-Cs0 f24 disableUIEvents false #txt
 Cs0 f24 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -459,7 +415,7 @@ Cs0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f24 99 795 26 26 -111 15 #rect
-Cs0 f24 @|RichDialogMethodStartIcon #fIcon
+Cs0 f24 @|UdMethodIcon #fIcon
 Cs0 f25 expr out #txt
 Cs0 f25 125 808 448 509 #arcP
 Cs0 f25 1 448 808 #addKink
@@ -468,9 +424,7 @@ Cs0 f26 expr out #txt
 Cs0 f26 141 64 222 64 #arcP
 Cs0 f8 expr out #txt
 Cs0 f8 141 256 435 256 #arcP
-Cs0 f9 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 Cs0 f9 processCall 'Functional Processes/DefaultStatisticCustomField:createDefaultStatisticCustomFields()' #txt
-Cs0 f9 doCall true #txt
 Cs0 f9 requestActionDecl '<> param;
 ' #txt
 Cs0 f9 responseActionDecl 'ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData out;
@@ -489,8 +443,6 @@ Cs0 f9 424 42 112 44 -47 -8 #rect
 Cs0 f9 @|CallSubIcon #fIcon
 Cs0 f27 expr out #txt
 Cs0 f27 334 64 424 64 #arcP
-Cs0 f28 actionDecl 'ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData out;
-' #txt
 Cs0 f28 actionTable 'out=in;
 ' #txt
 Cs0 f28 actionCode 'import java.util.ArrayList;
@@ -498,7 +450,6 @@ for (String field : in.customFields){
 	in.statisticFilter.customFieldFilters.put(field, new ArrayList());	
 }
 ' #txt
-Cs0 f28 type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 Cs0 f28 616 42 112 44 0 -8 #rect
 Cs0 f28 @|StepIcon #fIcon
 Cs0 f29 expr out #txt

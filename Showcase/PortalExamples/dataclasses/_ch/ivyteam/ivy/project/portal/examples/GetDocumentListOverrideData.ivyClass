@@ -2,4 +2,4 @@ GetDocumentListOverrideData #class
 _ch.ivyteam.ivy.project.portal.examples #namespace
 businessCase ch.ivyteam.ivy.workflow.ICase #field
 message String #field
-documents java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyDocument> #field
+documents java.util.List<ch.ivyteam.ivy.project.portal.examples.component.customize.CustomizedIvyDocument> #field

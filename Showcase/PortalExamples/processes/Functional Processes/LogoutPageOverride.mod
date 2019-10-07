@@ -1,10 +1,9 @@
 [Ivy]
-1657EA461CE412A1 3.23 #module
+1657EA461CE412A1 3.28 #module
 >Proto >Proto Collection #zClass
 Le0 LogoutPage Big #zClass
 Le0 B #cInfo
 Le0 #process
-Le0 @TextInP .resExport .resExport #zField
 Le0 @TextInP .type .type #zField
 Le0 @TextInP .processKind .processKind #zField
 Le0 @AnnotationInP-0n ai ai #zField
@@ -24,10 +23,7 @@ Le0 f0 outParamDecl '<java.lang.String logoutPage> result;
 ' #txt
 Le0 f0 outParamTable 'result.logoutPage=in.logoutPage;
 ' #txt
-Le0 f0 actionDecl '_ch.ivyteam.ivy.project.portal.examples.LogoutPageOverrideData out;
-' #txt
 Le0 f0 callSignature getLogoutPage() #txt
-Le0 f0 type _ch.ivyteam.ivy.project.portal.examples.LogoutPageOverrideData #txt
 Le0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -37,7 +33,6 @@ Le0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Le0 f0 81 49 30 30 -46 17 #rect
 Le0 f0 @|StartSubIcon #fIcon
-Le0 f1 type _ch.ivyteam.ivy.project.portal.examples.LogoutPageOverrideData #txt
 Le0 f1 337 49 30 30 0 15 #rect
 Le0 f1 @|EndSubIcon #fIcon
 Le0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -52,15 +47,12 @@ So whenever user logout of Portal, he will be redirected to the overview page.</
 ' #txt
 Le0 f3 456 34 736 44 -361 -16 #rect
 Le0 f3 @|IBIcon #fIcon
-Le0 f5 actionDecl '_ch.ivyteam.ivy.project.portal.examples.LogoutPageOverrideData out;
-' #txt
 Le0 f5 actionTable 'out=in;
 ' #txt
 Le0 f5 actionCode 'import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.support.UrlDetector;
 
 in.logoutPage = new UrlDetector().getBaseURL(FacesContext.getCurrentInstance());' #txt
-Le0 f5 type _ch.ivyteam.ivy.project.portal.examples.LogoutPageOverrideData #txt
 Le0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

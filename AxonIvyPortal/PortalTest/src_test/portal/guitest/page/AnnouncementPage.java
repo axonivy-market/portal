@@ -1,23 +1,15 @@
 package portal.guitest.page;
 
-import java.util.List;
-
-import org.apache.commons.collections.CollectionUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.By.ByCssSelector;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-import ch.xpertline.base.client.Browser;
 
 public class AnnouncementPage extends TemplatePage {
 
 
   public static final String DE_LANGUAGE = "lies mich";
   public static final String EN_LANGUAGE = "read me";
-  private static final String FR_LANGUAGE = "lis moi";
-  private static final String PT_LANGUAGE = "me leia";
+//  private static final String FR_LANGUAGE = "lis moi";
+//  private static final String PT_LANGUAGE = "me leia";
 
   public String getInfoSummary() {
     return driver.findElement(By.cssSelector("div[id$='messages'] span[class$='summary']")).getText();
@@ -42,7 +34,7 @@ public class AnnouncementPage extends TemplatePage {
 
 
   public void setAnnoucement(int Language, String content) {
-    findElementByCssSelector("input[id$='"+Language+":announcement-input']").sendKeys(content);;
+    findElementByCssSelector("input[id$='"+Language+":announcement-input']").sendKeys(content);
     
   }
 

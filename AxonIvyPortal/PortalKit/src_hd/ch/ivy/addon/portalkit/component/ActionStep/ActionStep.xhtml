@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
-  xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="actionLinkId" />
@@ -20,7 +20,7 @@
     oncomplete="PF('#{cc.attrs.panelWidgetVar}').loadContents();" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="fa fa-angle-down"
     iconPos="right" />
 
-  <p:overlayPanel id="action-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}" for="#{cc.attrs.actionLinkId}" my="left top" at="left bottom" appendToBody="true" styleClass="action-steps-panel"
+  <p:overlayPanel id="action-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}" for="#{cc.attrs.actionLinkId}" my="left top" at="left bottom" appendTo="@(body)" styleClass="action-steps-panel"
     dynamic="true">
     <p:link id="show-additional-case-details-link" styleClass="additional-case-details-link case-command action-step-item" target="_blank"
       href="#{caseWidgetBean.getAdditionalCaseDetailsPageUri(case)}" rendered="#{caseWidgetBean.showCaseDetails}">

@@ -9,9 +9,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
 import ch.ivy.addon.portalkit.service.exception.PortalException;
-import ch.ivyteam.ivy.application.IApplicationConfigurationManager;
 import ch.ivyteam.ivy.request.RequestUriFactory;
-import ch.ivyteam.ivy.server.ServerFactory;
 
 public class UrlDetector {
 
@@ -31,10 +29,8 @@ public class UrlDetector {
    */
   public String getBaseURL(final FacesContext facesContext) throws MalformedURLException {
     if (facesContext == null) {
-      IApplicationConfigurationManager configManager = ServerFactory.getServer().getApplicationConfigurationManager();
       try {
-        return RequestUriFactory.createLocalHostServerUri().toString() + "/"
-            + RequestUriFactory.getIvyContextName(configManager);
+        return RequestUriFactory.createLocalHostServerUri().toString() + "/" + RequestUriFactory.getIvyContextName();
       } catch (URISyntaxException e) {
         throw new PortalException(e);
       }

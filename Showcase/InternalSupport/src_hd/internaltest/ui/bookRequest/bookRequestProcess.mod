@@ -1,13 +1,9 @@
 [Ivy]
-[>Created: Tue Apr 07 15:27:53 ICT 2015]
-1475D6ED2115CF9C 3.17 #module
+1475D6ED2115CF9C 3.28 #module
 >Proto >Proto Collection #zClass
 bs0 bookRequestProcess Big #zClass
 bs0 RD #cInfo
 bs0 #process
-bs0 @TextInP .ui2RdDataAction .ui2RdDataAction #zField
-bs0 @TextInP .rdData2UIAction .rdData2UIAction #zField
-bs0 @TextInP .resExport .resExport #zField
 bs0 @TextInP .type .type #zField
 bs0 @TextInP .processKind .processKind #zField
 bs0 @AnnotationInP-0n ai ai #zField
@@ -15,17 +11,15 @@ bs0 @MessageFlowInP-0n messageIn messageIn #zField
 bs0 @MessageFlowOutP-0n messageOut messageOut #zField
 bs0 @TextInP .xml .xml #zField
 bs0 @TextInP .responsibility .responsibility #zField
-bs0 @RichDialogInitStart f0 '' #zField
-bs0 @RichDialogProcessEnd f1 '' #zField
+bs0 @UdInit f0 '' #zField
+bs0 @UdProcessEnd f1 '' #zField
 bs0 @PushWFArc f2 '' #zField
-bs0 @RichDialogProcessStart f3 '' #zField
-bs0 @RichDialogEnd f4 '' #zField
+bs0 @UdEvent f3 '' #zField
+bs0 @UdExitEnd f4 '' #zField
 bs0 @PushWFArc f5 '' #zField
 >Proto bs0 bs0 bookRequestProcess #zField
 bs0 f0 guid 1475D6ED239FD8D7 #txt
-bs0 f0 type internaltest.ui.bookRequest.bookRequestData #txt
 bs0 f0 method start(String,Date,Date,String,Boolean,Boolean,String,String,internalPortal.ProcessStatus) #txt
-bs0 f0 disableUIEvents true #txt
 bs0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <java.lang.String Mitarbeiter,ch.ivyteam.ivy.scripting.objects.Date Von,ch.ivyteam.ivy.scripting.objects.Date Bis,java.lang.String Art,java.lang.Boolean beantragt,java.lang.Boolean genehmigt,java.lang.String Ablehnungsgrund,java.lang.String Vertretung,internalPortal.ProcessStatus processStatus> param = methodEvent.getInputArguments();
 ' #txt
@@ -58,18 +52,14 @@ bs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 bs0 f0 51 51 26 26 -162 15 #rect
-bs0 f0 @|RichDialogInitStartIcon #fIcon
+bs0 f0 @|UdInitIcon #fIcon
 bs0 f0 -1|-1|-9671572 #nodeStyle
-bs0 f1 type internaltest.ui.bookRequest.bookRequestData #txt
 bs0 f1 243 51 26 26 0 12 #rect
-bs0 f1 @|RichDialogProcessEndIcon #fIcon
+bs0 f1 @|UdProcessEndIcon #fIcon
 bs0 f1 -1|-1|-9671572 #nodeStyle
 bs0 f2 expr out #txt
 bs0 f2 77 64 243 64 #arcP
 bs0 f3 guid 1475D6ED2416CE2A #txt
-bs0 f3 type internaltest.ui.bookRequest.bookRequestData #txt
-bs0 f3 actionDecl 'internaltest.ui.bookRequest.bookRequestData out;
-' #txt
 bs0 f3 actionTable 'out=in;
 ' #txt
 bs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -82,12 +72,10 @@ bs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 bs0 f3 51 147 26 26 -15 12 #rect
-bs0 f3 @|RichDialogProcessStartIcon #fIcon
+bs0 f3 @|UdEventIcon #fIcon
 bs0 f3 -1|-1|-9671572 #nodeStyle
-bs0 f4 type internaltest.ui.bookRequest.bookRequestData #txt
-bs0 f4 guid 1475D6ED241E6F50 #txt
 bs0 f4 243 147 26 26 0 12 #rect
-bs0 f4 @|RichDialogEndIcon #fIcon
+bs0 f4 @|UdExitEndIcon #fIcon
 bs0 f4 -1|-1|-9671572 #nodeStyle
 bs0 f5 expr out #txt
 bs0 f5 77 160 243 160 #arcP

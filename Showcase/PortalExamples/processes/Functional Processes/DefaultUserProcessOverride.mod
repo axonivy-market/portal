@@ -1,10 +1,9 @@
 [Ivy]
-1657E93190721001 3.26 #module
+1657E93190721001 3.28 #module
 >Proto >Proto Collection #zClass
 Ds0 DefaultUserProcess Big #zClass
 Ds0 B #cInfo
 Ds0 #process
-Ds0 @TextInP .resExport .resExport #zField
 Ds0 @TextInP .type .type #zField
 Ds0 @TextInP .processKind .processKind #zField
 Ds0 @AnnotationInP-0n ai ai #zField
@@ -24,10 +23,7 @@ Ds0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.persistence.domain.U
 ' #txt
 Ds0 f0 outParamTable 'result.defaultUserProcesses=in.defaultUserProcesses;
 ' #txt
-Ds0 f0 actionDecl '_ch.ivyteam.ivy.project.portal.examples.DefaultUserProcessOverrideData out;
-' #txt
 Ds0 f0 callSignature createDefaultUserProcesses() #txt
-Ds0 f0 type _ch.ivyteam.ivy.project.portal.examples.DefaultUserProcessOverrideData #txt
 Ds0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -39,11 +35,8 @@ Ds0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ds0 f0 51 83 26 26 14 0 #rect
 Ds0 f0 @|StartSubIcon #fIcon
-Ds0 f1 type _ch.ivyteam.ivy.project.portal.examples.DefaultUserProcessOverrideData #txt
 Ds0 f1 51 339 26 26 14 0 #rect
 Ds0 f1 @|EndSubIcon #fIcon
-Ds0 f3 actionDecl '_ch.ivyteam.ivy.project.portal.examples.DefaultUserProcessOverrideData out;
-' #txt
 Ds0 f3 actionTable 'out=in;
 ' #txt
 Ds0 f3 actionCode 'import org.apache.commons.lang3.StringUtils;
@@ -95,7 +88,6 @@ if (!StringUtils.isEmpty(viewBetaHistoryLink)){
 	userProcess.setIndex(4);
 	in.defaultUserProcesses.add(userProcess);
 }' #txt
-Ds0 f3 type _ch.ivyteam.ivy.project.portal.examples.DefaultUserProcessOverrideData #txt
 Ds0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
