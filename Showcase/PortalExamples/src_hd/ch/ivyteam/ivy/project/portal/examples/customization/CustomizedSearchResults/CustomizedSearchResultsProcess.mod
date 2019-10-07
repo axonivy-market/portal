@@ -26,7 +26,8 @@ Ps0 f0 method start(String) #txt
 Ps0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <java.lang.String keyword> param = methodEvent.getInputArguments();
 ' #txt
-Ps0 f0 inParameterMapAction 'out.dataModel.caseDataModel.criteria.keyword=param.keyword;
+Ps0 f0 inParameterMapAction 'out.activeTabIndex=0;
+out.dataModel.caseDataModel.criteria.keyword=param.keyword;
 out.dataModel.caseDataModel.notKeepFilter=true;
 out.dataModel.keyword=param.keyword;
 out.dataModel.taskDataModel.compactMode=false;
