@@ -1,10 +1,9 @@
 [Ivy]
-1511A66AF619A768 3.26 #module
+1511A66AF619A768 3.28 #module
 >Proto >Proto Collection #zClass
 Ca0 CleanData Big #zClass
 Ca0 B #cInfo
 Ca0 #process
-Ca0 @TextInP .resExport .resExport #zField
 Ca0 @TextInP .type .type #zField
 Ca0 @TextInP .processKind .processKind #zField
 Ca0 @AnnotationInP-0n ai ai #zField
@@ -49,11 +48,7 @@ Ca0 @PushWFArc f29 '' #zField
 Ca0 @PushWFArc f27 '' #zField
 >Proto Ca0 Ca0 CleanData #zField
 Ca0 f0 outLink cleanCompletedCases.ivp #txt
-Ca0 f0 type portalKit_test.Data #txt
 Ca0 f0 inParamDecl '<> param;' #txt
-Ca0 f0 actionDecl 'portalKit_test.Data out;
-' #txt
-Ca0 f0 guid 1511A66AF64BC0C6 #txt
 Ca0 f0 requestEnabled true #txt
 Ca0 f0 triggerEnabled false #txt
 Ca0 f0 callSignature cleanCompletedCases() #txt
@@ -78,42 +73,30 @@ Ca0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ca0 f0 @C|.responsibility Everybody #txt
 Ca0 f0 51 83 26 26 -57 -34 #rect
 Ca0 f0 @|StartRequestIcon #fIcon
-Ca0 f1 type portalKit_test.Data #txt
 Ca0 f1 51 275 26 26 14 0 #rect
 Ca0 f1 @|EndIcon #fIcon
-Ca0 f3 actionDecl 'portalKit_test.Data out;
-' #txt
 Ca0 f3 actionTable 'out=in;
 ' #txt
 Ca0 f3 actionCode 'import ch.ivy.addon.portalkit.test.util.TaskUtils;
 TaskUtils.deleteCompletedCases();' #txt
-Ca0 f3 type portalKit_test.Data #txt
 Ca0 f3 46 188 36 24 20 -2 #rect
 Ca0 f3 @|StepIcon #fIcon
 Ca0 f4 expr out #txt
 Ca0 f4 64 109 64 188 #arcP
 Ca0 f2 expr out #txt
 Ca0 f2 64 212 64 275 #arcP
-Ca0 f5 actionDecl 'portalKit_test.Data out;
-' #txt
 Ca0 f5 actionTable 'out=in;
 ' #txt
 Ca0 f5 actionCode 'import ch.ivy.addon.portalkit.service.UserProcessService;
 UserProcessService userProcess =new UserProcessService();
 userProcess.deleteAll(userProcess.findAll());' #txt
 Ca0 f5 security system #txt
-Ca0 f5 type portalKit_test.Data #txt
 Ca0 f5 222 188 36 24 20 -2 #rect
 Ca0 f5 @|StepIcon #fIcon
-Ca0 f6 type portalKit_test.Data #txt
 Ca0 f6 227 275 26 26 14 0 #rect
 Ca0 f6 @|EndIcon #fIcon
 Ca0 f7 outLink CleanFavoriteProcess.ivp #txt
-Ca0 f7 type portalKit_test.Data #txt
 Ca0 f7 inParamDecl '<> param;' #txt
-Ca0 f7 actionDecl 'portalKit_test.Data out;
-' #txt
-Ca0 f7 guid 1511A77910D26F49 #txt
 Ca0 f7 requestEnabled true #txt
 Ca0 f7 triggerEnabled false #txt
 Ca0 f7 callSignature CleanFavoriteProcess() #txt
@@ -143,11 +126,8 @@ Ca0 f8 expr out #txt
 Ca0 f8 240 109 240 188 #arcP
 Ca0 f9 expr out #txt
 Ca0 f9 240 212 240 275 #arcP
-Ca0 f59 type portalKit_test.Data #txt
 Ca0 f59 395 275 26 26 14 0 #rect
 Ca0 f59 @|EndIcon #fIcon
-Ca0 f57 actionDecl 'portalKit_test.Data out;
-' #txt
 Ca0 f57 actionTable 'out=in;
 ' #txt
 Ca0 f57 actionCode 'import ch.ivy.addon.portalkit.test.util.BusinessDataUtils;
@@ -157,7 +137,6 @@ import ch.ivy.addon.portalkit.test.util.TaskUtils;
 TaskConcurrencyUtils.setInProcess(true);
 TaskUtils.destroyAllCase();
 BusinessDataUtils.clearAllBusinessData();' #txt
-Ca0 f57 type portalKit_test.Data #txt
 Ca0 f57 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -170,11 +149,7 @@ Ca0 f57 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ca0 f57 390 188 36 24 20 -2 #rect
 Ca0 f57 @|StepIcon #fIcon
 Ca0 f61 outLink cleanAllCasesByDestroying.ivp #txt
-Ca0 f61 type portalKit_test.Data #txt
 Ca0 f61 inParamDecl '<> param;' #txt
-Ca0 f61 actionDecl 'portalKit_test.Data out;
-' #txt
-Ca0 f61 guid 1511A783AA4A9FBC #txt
 Ca0 f61 requestEnabled true #txt
 Ca0 f61 triggerEnabled false #txt
 Ca0 f61 callSignature cleanAllCasesByDestroying() #txt
@@ -206,11 +181,7 @@ Ca0 f60 408 212 408 275 #arcP
 Ca0 f56 expr out #txt
 Ca0 f56 408 109 408 188 #arcP
 Ca0 f10 outLink cleanAbsences.ivp #txt
-Ca0 f10 type portalKit_test.Data #txt
 Ca0 f10 inParamDecl '<> param;' #txt
-Ca0 f10 actionDecl 'portalKit_test.Data out;
-' #txt
-Ca0 f10 guid 15215DD536E39BDA #txt
 Ca0 f10 requestEnabled true #txt
 Ca0 f10 triggerEnabled false #txt
 Ca0 f10 callSignature cleanAbsences() #txt
@@ -235,17 +206,13 @@ Ca0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ca0 f10 @C|.responsibility Everybody #txt
 Ca0 f10 587 83 26 26 -57 -34 #rect
 Ca0 f10 @|StartRequestIcon #fIcon
-Ca0 f11 actionDecl 'portalKit_test.Data out;
-' #txt
 Ca0 f11 actionTable 'out=in;
 ' #txt
 Ca0 f11 actionCode 'import ch.ivy.addon.portalkit.test.util.AbsenceUtils;
 AbsenceUtils.cleanAllAbsences();' #txt
 Ca0 f11 security system #txt
-Ca0 f11 type portalKit_test.Data #txt
 Ca0 f11 582 188 36 24 20 -2 #rect
 Ca0 f11 @|StepIcon #fIcon
-Ca0 f12 type portalKit_test.Data #txt
 Ca0 f12 587 275 26 26 14 0 #rect
 Ca0 f12 @|EndIcon #fIcon
 Ca0 f13 expr out #txt
@@ -253,11 +220,7 @@ Ca0 f13 600 109 600 188 #arcP
 Ca0 f14 expr out #txt
 Ca0 f14 600 212 600 275 #arcP
 Ca0 f15 outLink cleanupCases.ivp #txt
-Ca0 f15 type portalKit_test.Data #txt
 Ca0 f15 inParamDecl '<> param;' #txt
-Ca0 f15 actionDecl 'portalKit_test.Data out;
-' #txt
-Ca0 f15 guid 15234E4AE8E69E5B #txt
 Ca0 f15 requestEnabled true #txt
 Ca0 f15 triggerEnabled false #txt
 Ca0 f15 callSignature cleanupCases() #txt
@@ -283,8 +246,6 @@ Ca0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ca0 f15 @C|.responsibility Everybody #txt
 Ca0 f15 723 83 26 26 -43 -32 #rect
 Ca0 f15 @|StartRequestIcon #fIcon
-Ca0 f16 actionDecl 'portalKit_test.Data out;
-' #txt
 Ca0 f16 actionTable 'out=in;
 ' #txt
 Ca0 f16 actionCode 'import ch.ivy.addon.portalkit.test.util.BusinessDataUtils;
@@ -293,22 +254,16 @@ CaseUtils.deleteAllCases();
 BusinessDataUtils.clearAllBusinessData();
 ivy.datacache.getAppCache().invalidate();' #txt
 Ca0 f16 security system #txt
-Ca0 f16 type portalKit_test.Data #txt
 Ca0 f16 718 180 36 24 20 -2 #rect
 Ca0 f16 @|StepIcon #fIcon
 Ca0 f18 expr out #txt
 Ca0 f18 736 109 736 180 #arcP
-Ca0 f17 type portalKit_test.Data #txt
 Ca0 f17 723 275 26 26 14 0 #rect
 Ca0 f17 @|EndIcon #fIcon
 Ca0 f19 expr out #txt
 Ca0 f19 736 204 736 275 #arcP
 Ca0 f20 outLink cleanupGlobalVars.ivp #txt
-Ca0 f20 type portalKit_test.Data #txt
 Ca0 f20 inParamDecl '<> param;' #txt
-Ca0 f20 actionDecl 'portalKit_test.Data out;
-' #txt
-Ca0 f20 guid 15F9B59618135CB9 #txt
 Ca0 f20 requestEnabled true #txt
 Ca0 f20 triggerEnabled false #txt
 Ca0 f20 callSignature cleanupGlobalVars() #txt
@@ -333,18 +288,14 @@ Ca0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ca0 f20 @C|.responsibility Everybody #txt
 Ca0 f20 849 81 30 30 -57 -32 #rect
 Ca0 f20 @|StartRequestIcon #fIcon
-Ca0 f21 type portalKit_test.Data #txt
 Ca0 f21 849 273 30 30 0 15 #rect
 Ca0 f21 @|EndIcon #fIcon
-Ca0 f23 actionDecl 'portalKit_test.Data out;
-' #txt
 Ca0 f23 actionTable 'out=in;
 ' #txt
 Ca0 f23 actionCode 'import ch.ivy.addon.portalkit.service.GlobalSettingService;
 GlobalSettingService globalSettingService = new GlobalSettingService();
 globalSettingService.deleteAll(globalSettingService.findAll());' #txt
 Ca0 f23 security system #txt
-Ca0 f23 type portalKit_test.Data #txt
 Ca0 f23 808 170 112 44 0 -8 #rect
 Ca0 f23 @|StepIcon #fIcon
 Ca0 f24 expr out #txt
@@ -352,11 +303,7 @@ Ca0 f24 864 111 864 170 #arcP
 Ca0 f22 expr out #txt
 Ca0 f22 864 214 864 273 #arcP
 Ca0 f25 outLink cleanPortalPermissions.ivp #txt
-Ca0 f25 type portalKit_test.Data #txt
 Ca0 f25 inParamDecl '<> param;' #txt
-Ca0 f25 actionDecl 'portalKit_test.Data out;
-' #txt
-Ca0 f25 guid 1633EA2ABD942A83 #txt
 Ca0 f25 requestEnabled true #txt
 Ca0 f25 triggerEnabled false #txt
 Ca0 f25 callSignature cleanPortalPermissions() #txt
@@ -382,11 +329,8 @@ Ca0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ca0 f25 @C|.responsibility Everybody #txt
 Ca0 f25 1041 81 30 30 -65 -38 #rect
 Ca0 f25 @|StartRequestIcon #fIcon
-Ca0 f26 type portalKit_test.Data #txt
 Ca0 f26 1041 273 30 30 0 15 #rect
 Ca0 f26 @|EndIcon #fIcon
-Ca0 f28 actionDecl 'portalKit_test.Data out;
-' #txt
 Ca0 f28 actionTable 'out=in;
 ' #txt
 Ca0 f28 actionCode 'import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
@@ -410,7 +354,6 @@ for (PortalPermissionGroup group : PortalPermissionGroup.values()) {
   	IPermissionGroupRepository.get().delete(permissionGroup);
   }
 }' #txt
-Ca0 f28 type portalKit_test.Data #txt
 Ca0 f28 1000 170 112 44 0 -8 #rect
 Ca0 f28 @|StepIcon #fIcon
 Ca0 f29 expr out #txt

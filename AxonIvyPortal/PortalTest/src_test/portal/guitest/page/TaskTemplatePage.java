@@ -162,6 +162,18 @@ public class TaskTemplatePage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
   
+  public void clickChatGroup() {
+    String chatGroup = "a[id$='chat-group']";
+    findElementByCssSelector(chatGroup).click();
+    waitAjaxIndicatorDisappear();
+  }
+  
+  public void joinProcessChatAlreadyCreated() {
+  	waitForElementDisplayed(By.id("chat-group-join-form:chat-group-join-button"), true);
+  	click(By.id("chat-group-join-form:chat-group-join-button"));
+  	waitAjaxIndicatorDisappear();
+  }
+  
   public void inputFields(String employee, String from, String to, String representation) {
     type(By.id("leave-request:fullname"), employee);
     type(By.id("leave-request:from_input"), from);

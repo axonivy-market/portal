@@ -4,3 +4,4 @@ gdprRequest ch.ivyteam.ivy.project.portal.examples.showcase.GdprRequest #field
 gdprRequest PERSISTENT #fieldModifier
 processChainDirection String #field
 processChainShape String #field
+actuaStepIndex Integer #field

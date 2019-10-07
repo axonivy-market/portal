@@ -1,10 +1,9 @@
 [Ivy]
-16854B53D2D387A2 3.26 #module
+16854B53D2D387A2 3.28 #module
 >Proto >Proto Collection #zClass
 By0 BuildTaskQuery Big #zClass
 By0 B #cInfo
 By0 #process
-By0 @TextInP .resExport .resExport #zField
 By0 @TextInP .type .type #zField
 By0 @TextInP .processKind .processKind #zField
 By0 @AnnotationInP-0n ai ai #zField
@@ -27,10 +26,7 @@ By0 f0 outParamDecl '<ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> result;
 ' #txt
 By0 f0 outParamTable 'result.taskQuery=in.#taskQuery;
 ' #txt
-By0 f0 actionDecl '_ch.ivyteam.ivy.project.portal.examples.BuildTaskQueryOverrideData out;
-' #txt
 By0 f0 callSignature buildTaskQuery() #txt
-By0 f0 type _ch.ivyteam.ivy.project.portal.examples.BuildTaskQueryOverrideData #txt
 By0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -42,7 +38,6 @@ By0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 By0 f0 77 49 30 30 -47 17 #rect
 By0 f0 @|StartSubIcon #fIcon
-By0 f1 type _ch.ivyteam.ivy.project.portal.examples.BuildTaskQueryOverrideData #txt
 By0 f1 469 49 30 30 0 15 #rect
 By0 f1 @|EndSubIcon #fIcon
 By0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -65,8 +60,6 @@ if (in.isQueryForHomePage) { // in home page
 ' #txt
 By0 f5 204 140 688 172 -340 -80 #rect
 By0 f5 @|IBIcon #fIcon
-By0 f2 actionDecl '_ch.ivyteam.ivy.project.portal.examples.BuildTaskQueryOverrideData out;
-' #txt
 By0 f2 actionTable 'out=in;
 ' #txt
 By0 f2 actionCode 'import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -74,7 +67,6 @@ By0 f2 actionCode 'import ch.ivyteam.ivy.workflow.query.TaskQuery;
 if (in.isQueryForHomePage) { // in home page
 	in.taskQuery = TaskQuery.create().where().activatorUserId().isNotNull();
 }' #txt
-By0 f2 type _ch.ivyteam.ivy.project.portal.examples.BuildTaskQueryOverrideData #txt
 By0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -96,10 +88,7 @@ By0 f7 outParamDecl '<ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> result;
 ' #txt
 By0 f7 outParamTable 'result.taskQuery=in.#taskQuery;
 ' #txt
-By0 f7 actionDecl '_ch.ivyteam.ivy.project.portal.examples.BuildTaskQueryOverrideData out;
-' #txt
 By0 f7 callSignature buildTaskQuery(Boolean) #txt
-By0 f7 type _ch.ivyteam.ivy.project.portal.examples.BuildTaskQueryOverrideData #txt
 By0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

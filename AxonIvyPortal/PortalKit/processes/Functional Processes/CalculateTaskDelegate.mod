@@ -1,10 +1,9 @@
 [Ivy]
-15B8089000CE1FF7 3.23 #module
+15B8089000CE1FF7 3.28 #module
 >Proto >Proto Collection #zClass
 Ce0 CalculateTaskDelegate Big #zClass
 Ce0 B #cInfo
 Ce0 #process
-Ce0 @TextInP .resExport .resExport #zField
 Ce0 @TextInP .type .type #zField
 Ce0 @TextInP .processKind .processKind #zField
 Ce0 @AnnotationInP-0n ai ai #zField
@@ -31,10 +30,7 @@ Ce0 f0 outParamDecl '<java.util.List<ch.ivyteam.ivy.security.IUser> users,java.u
 Ce0 f0 outParamTable 'result.users=in.users;
 result.roles=in.roles;
 ' #txt
-Ce0 f0 actionDecl 'ch.ivy.add.portalkit.CaculateTaskDelegateData out;
-' #txt
 Ce0 f0 callSignature call(List<ch.ivyteam.ivy.security.IRole>,List<ch.ivyteam.ivy.security.IUser>,ch.ivyteam.ivy.security.ISecurityMember,ch.ivyteam.ivy.workflow.ITask) #txt
-Ce0 f0 type ch.ivy.add.portalkit.CaculateTaskDelegateData #txt
 Ce0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -60,11 +56,8 @@ if ("admin".equalsIgnoreCase(in.currentUser.getDisplayName()) &amp;&amp; "System
 ' #txt
 Ce0 f7 120 151 688 108 -335 -48 #rect
 Ce0 f7 @|IBIcon #fIcon
-Ce0 f6 actionDecl 'ch.ivy.add.portalkit.CaculateTaskDelegateData out;
-' #txt
 Ce0 f6 actionTable 'out=in;
 ' #txt
-Ce0 f6 type ch.ivy.add.portalkit.CaculateTaskDelegateData #txt
 Ce0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -77,7 +70,6 @@ Ce0 f6 @|StepIcon #fIcon
 Ce0 f1 expr out #txt
 Ce0 f1 77 96 160 96 #arcP
 Ce0 f2 464 151 216 118 #arcP
-Ce0 f3 type ch.ivy.add.portalkit.CaculateTaskDelegateData #txt
 Ce0 f3 337 81 30 30 0 15 #rect
 Ce0 f3 @|EndSubIcon #fIcon
 Ce0 f4 expr out #txt

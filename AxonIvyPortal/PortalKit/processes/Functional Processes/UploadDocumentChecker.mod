@@ -1,10 +1,9 @@
 [Ivy]
-16285772A1F890EE 3.20 #module
+16285772A1F890EE 3.28 #module
 >Proto >Proto Collection #zClass
 Ur0 UploadDocumentChecker Big #zClass
 Ur0 B #cInfo
 Ur0 #process
-Ur0 @TextInP .resExport .resExport #zField
 Ur0 @TextInP .type .type #zField
 Ur0 @TextInP .processKind .processKind #zField
 Ur0 @AnnotationInP-0n ai ai #zField
@@ -31,10 +30,7 @@ Ur0 f0 outParamDecl '<ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus upl
 Ur0 f0 outParamTable 'result.uploadDocumentCheckStatus=in.checkStatus;
 result.message=in.message;
 ' #txt
-Ur0 f0 actionDecl 'ch.ivy.add.portalkit.UploadDocumentCheckerData out;
-' #txt
 Ur0 f0 callSignature call(org.primefaces.model.UploadedFile) #txt
-Ur0 f0 type ch.ivy.add.portalkit.UploadDocumentCheckerData #txt
 Ur0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -46,11 +42,8 @@ Ur0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ur0 f0 81 49 30 30 -50 17 #rect
 Ur0 f0 @|StartSubIcon #fIcon
-Ur0 f1 type ch.ivy.add.portalkit.UploadDocumentCheckerData #txt
 Ur0 f1 81 513 30 30 0 15 #rect
 Ur0 f1 @|EndSubIcon #fIcon
-Ur0 f3 actionDecl 'ch.ivy.add.portalkit.UploadDocumentCheckerData out;
-' #txt
 Ur0 f3 actionTable 'out=in;
 ' #txt
 Ur0 f3 actionCode 'import ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus;
@@ -65,7 +58,6 @@ else{
 }
 ' #txt
 Ur0 f3 security system #txt
-Ur0 f3 type ch.ivy.add.portalkit.UploadDocumentCheckerData #txt
 Ur0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -77,8 +69,6 @@ Ur0 f3 24 346 144 44 -67 -8 #rect
 Ur0 f3 @|StepIcon #fIcon
 Ur0 f2 expr out #txt
 Ur0 f2 96 390 96 513 #arcP
-Ur0 f5 actionDecl 'ch.ivy.add.portalkit.UploadDocumentCheckerData out;
-' #txt
 Ur0 f5 actionTable 'out=in;
 ' #txt
 Ur0 f5 actionCode 'import ch.ivy.addon.portalkit.service.CaseDocumentService;
@@ -91,7 +81,6 @@ if(!CaseDocumentService.isDocumentTypeValid(in.uploadedFile.getFileName())) {
 	in.message = ivy.cms.co("/Dialogs/components/CaseDocument/invalidFileMessage");
 }
 ' #txt
-Ur0 f5 type ch.ivy.add.portalkit.UploadDocumentCheckerData #txt
 Ur0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -104,7 +93,6 @@ Ur0 f5 24 154 144 44 -51 -16 #rect
 Ur0 f5 @|StepIcon #fIcon
 Ur0 f6 expr out #txt
 Ur0 f6 96 79 96 154 #arcP
-Ur0 f7 type ch.ivy.add.portalkit.UploadDocumentCheckerData #txt
 Ur0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

@@ -68,6 +68,10 @@ public class TaskCategoryFilter extends TaskFilter {
     root.setSelected(false);
   }
 
+  @Override
+  public boolean defaultFilter() {
+    return true;
+ }
 
   public CheckboxTreeNode[] getCategories() {
     return categories;
@@ -75,9 +79,9 @@ public class TaskCategoryFilter extends TaskFilter {
 
   public void setCategories(CheckboxTreeNode[] categories) {
     if (ArrayUtils.isEmpty(categories)) {
-    	this.categories = new CheckboxTreeNode[] {};
+      this.categories = new CheckboxTreeNode[] {};
     } else {
-    	this.categories = categories;
+      this.categories = categories;
     }
   }
 
@@ -112,11 +116,15 @@ public class TaskCategoryFilter extends TaskFilter {
       return;
     }
     TaskNode nodeData = (TaskNode) node.getData();
-    if (paths.contains(nodeData.getValue())) {
-      node.setSelected(true);
-      selectedCategories.add(node);
-    } else {
-      node.setSelected(false);
+    for (String path : paths) {
+      if (path.equals(nodeData.getCategory())) {
+        node.setSelected(true);
+        selectedCategories.add(node);
+      } else {
+        if (!selectedCategories.contains(node)) {
+          node.setSelected(false);
+        }
+      }
     }
     node.getChildren().forEach(child -> checkCategoryTreeNode((CheckboxTreeNode) child, selectedCategories, paths));
   }

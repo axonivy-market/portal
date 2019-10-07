@@ -8,7 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Matchers;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mock;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -46,7 +46,7 @@ public class CaseWidgetBeanTest {
   public void testGetAdditionalCaseDetailsPageUri() throws Exception {
     PowerMockito.mockStatic(CaseUtils.class);
     ICase iCase = mockCustomFieldForCaseDetailsPage(StringUtils.EMPTY);
-    PowerMockito.when(CaseUtils.getProcessStartUriWithCaseParameters(Matchers.any(ICase.class), Matchers.anyString())).thenReturn(DEFAULT_ADDITIONAL_CASE_DETAILS_PAGE);
+    PowerMockito.when(CaseUtils.getProcessStartUriWithCaseParameters(ArgumentMatchers.any(ICase.class), ArgumentMatchers.anyString())).thenReturn(DEFAULT_ADDITIONAL_CASE_DETAILS_PAGE);
     
     PowerMockito.mockStatic(FacesContext.class);
 

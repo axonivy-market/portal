@@ -18,16 +18,16 @@
           hideTaskFilter="#{taskView.hideTaskFilter}" dataModel="#{taskView.dataModel}" filterGroupId="#{filterGroupId}"
           showHeaderToolbar="#{taskView.showHeaderToolbar}" compactMode="false" selectedTaskId="#{taskView.taskId}" 
           noTaskFoundMessage="#{taskView.noTaskFoundMessage}"
-          hideWidgetHeader="#{hideWidgetHeader}">
+          hideWidgetHeader="#{hideWidgetHeader}" currentPortalPage="TASK_LIST">
             <f:facet name="title">
               <h:form rendered="#{taskView.canLinkBackCaseDetail()}" prependId="false">
               #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader')} 
               <h:commandLink value="##{taskView.dataModel.criteria.caseId}" styleClass="ui-link"
                   actionListener="#{navigatorBean.navigateToCaseDetail(taskView.dataModel.caseName, taskView.dataModel.criteria.caseId)}" />
-              (#{taskView.dataModel.rowCount})
+              #{taskView.dataModel.caseName} (#{taskView.dataModel.rowCount})
             </h:form>
               <h:outputText rendered="#{!taskView.canLinkBackCaseDetail()}"
-                value="#{taskView.pageTitle == '' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks') : taskView.pageTitle} (#{taskView.dataModel.rowCount})" />
+                value="#{taskView.pageTitle == '' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks') : taskView.pageTitle}  (#{taskView.dataModel.rowCount})" />
             </f:facet>
 
             <f:facet name="taskListHeader">
@@ -66,16 +66,14 @@
             </f:facet>
 
             <f:facet name="taskFilter">
-              <div id="toggle-task-filter-container" class="ui-g js-task-filter-container">
-                  <ui:fragment rendered="#{useOverrideFilter}">
-                    <ui:insert name="taskFilter">
-                    </ui:insert>
-                  </ui:fragment>
-    
-                  <ui:fragment rendered="#{not useOverrideFilter}">
-                      <ic:ch.ivy.addon.portalkit.component.task.filter.DefaultTaskFilters dataModel="#{taskView.dataModel}" />
-                  </ui:fragment>
-              </div>
+              <ui:fragment rendered="#{useOverrideFilter}">
+                <ui:insert name="taskFilter">
+                </ui:insert>
+              </ui:fragment>
+
+              <ui:fragment rendered="#{not useOverrideFilter}">
+                  <ic:ch.ivy.addon.portalkit.component.task.filter.DefaultTaskFilters dataModel="#{taskView.dataModel}" />
+              </ui:fragment>
             </f:facet>
           </ic:ch.ivy.addon.portalkit.component.TaskWidget>
       </div>

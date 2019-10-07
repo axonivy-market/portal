@@ -3,7 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
+  xmlns:pe="http://primefaces.org/ui/extensions">
+
+<!-- This template is deprecated. We will not support it anymore. Please use TaskTemplate instead -->
 
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
@@ -15,8 +17,10 @@
       <div>
         <div class="Fleft Wid50 Fs20 foreground-text-color MarTop10">
           <ui:insert name="caseName">
-            <span class="fa fa-plane case-template-title-icon"></span>
-            <h:outputText title="#{case.name} (#{case.id})" value="#{case.name} (#{case.id})" rendered="#{!caseWidgetBean.isHiddenCase(case)}" />
+            <h:panelGroup rendered="#{case ne null}" styleClass="task-template-title">
+              <span class="fa fa-check-square-o case-template-title-icon"></span>
+              <h:outputText title="#{case.name} (#{case.id})" value="#{case.name} (#{case.id})" rendered="#{!caseWidgetBean.isHiddenCase(case)}" />
+            </h:panelGroup>
           </ui:insert>
         </div>
         <div class="process-chain-container Fright Wid70">
@@ -32,7 +36,7 @@
         <ui:insert name="errorsZone" />
         <ui:insert name="infoZone" />
 
-        <p:tabView id="case-template-tabview" prependId="false" onTabShow="onTabShow()">
+        <p:tabView id="case-template-tabview" prependId="false" onTabShow="onTabShow(); onStatusTabShow();">
           <ui:insert name="dynamicTabs">
             <!-- You can add one or many tabs here -->
           </ui:insert>
@@ -49,8 +53,8 @@
             title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/statusTabTitle')}"
             rendered="#{showCaseStatusInfoTab == null ? true : showCaseStatusInfoTab}">
             <ui:insert name="caseStatusTab">
-              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/noCaseId')}" rendered="#{caseWidgetBean.isHiddenCase(case)}" />
-              <h:form id="case-details-form" prependId="false" rendered="#{!caseWidgetBean.isHiddenCase(case)}">
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/noCaseId')}" rendered="#{case ne null and caseWidgetBean.isHiddenCase(case)}" />
+              <h:form id="case-details-form" prependId="false" rendered="#{case ne null and !caseWidgetBean.isHiddenCase(case)}">
                 <div class="js-case-default-widget-container case-default-widget-container js-simple-container js-for-search-result case-details">
                   <!-- HEADER -->
                   <h:panelGroup id="widget-column-header" class="widget-column-header js-case-widget-column-header">
@@ -104,6 +108,7 @@
           </ui:insert>
         </div>
       </div>
+      <h:outputScript library="js" name="document-truncation.js" />
       <script type="text/javascript">
         $(document).ready(function(){
           setTimeout(function(){onTabShow();}, 1 );
@@ -130,6 +135,10 @@
           var simpleSmallScreen = new SimpleSmallScreen();
           var responsiveToolkit = ResponsiveToolkit(simpleLargeScreen, simpleMediumScreen, simpleSmallScreen);
           Portal.init(responsiveToolkit, true);
+        }
+
+        function onStatusTabShow() {
+          documentTruncation.truncate();
         }
 
         </script>

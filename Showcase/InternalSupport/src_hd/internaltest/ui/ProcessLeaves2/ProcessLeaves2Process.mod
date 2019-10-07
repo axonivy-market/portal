@@ -1,13 +1,9 @@
 [Ivy]
-[>Created: Tue Apr 07 15:27:33 ICT 2015]
-1475D5B079CBD2F2 3.17 #module
+1475D5B079CBD2F2 3.28 #module
 >Proto >Proto Collection #zClass
 Ps0 ProcessLeaves2Process Big #zClass
 Ps0 RD #cInfo
 Ps0 #process
-Ps0 @TextInP .ui2RdDataAction .ui2RdDataAction #zField
-Ps0 @TextInP .rdData2UIAction .rdData2UIAction #zField
-Ps0 @TextInP .resExport .resExport #zField
 Ps0 @TextInP .type .type #zField
 Ps0 @TextInP .processKind .processKind #zField
 Ps0 @AnnotationInP-0n ai ai #zField
@@ -15,17 +11,15 @@ Ps0 @MessageFlowInP-0n messageIn messageIn #zField
 Ps0 @MessageFlowOutP-0n messageOut messageOut #zField
 Ps0 @TextInP .xml .xml #zField
 Ps0 @TextInP .responsibility .responsibility #zField
-Ps0 @RichDialogInitStart f0 '' #zField
-Ps0 @RichDialogProcessEnd f1 '' #zField
+Ps0 @UdInit f0 '' #zField
+Ps0 @UdProcessEnd f1 '' #zField
 Ps0 @PushWFArc f2 '' #zField
-Ps0 @RichDialogProcessStart f3 '' #zField
-Ps0 @RichDialogEnd f4 '' #zField
+Ps0 @UdEvent f3 '' #zField
+Ps0 @UdExitEnd f4 '' #zField
 Ps0 @PushWFArc f5 '' #zField
 >Proto Ps0 Ps0 ProcessLeaves2Process #zField
 Ps0 f0 guid 1475D5B07CAF2F91 #txt
-Ps0 f0 type internaltest.ui.ProcessLeaves2.ProcessLeaves2Data #txt
 Ps0 f0 method start(internalPortal.ProcessStatus) #txt
-Ps0 f0 disableUIEvents true #txt
 Ps0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <internalPortal.ProcessStatus processStatus> param = methodEvent.getInputArguments();
 ' #txt
@@ -53,18 +47,14 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f0 51 51 26 26 -16 15 #rect
-Ps0 f0 @|RichDialogInitStartIcon #fIcon
+Ps0 f0 @|UdInitIcon #fIcon
 Ps0 f0 -1|-1|-9671572 #nodeStyle
-Ps0 f1 type internaltest.ui.ProcessLeaves2.ProcessLeaves2Data #txt
 Ps0 f1 243 51 26 26 0 12 #rect
-Ps0 f1 @|RichDialogProcessEndIcon #fIcon
+Ps0 f1 @|UdProcessEndIcon #fIcon
 Ps0 f1 -1|-1|-9671572 #nodeStyle
 Ps0 f2 expr out #txt
 Ps0 f2 77 64 243 64 #arcP
 Ps0 f3 guid 1475D5B07D2F80B2 #txt
-Ps0 f3 type internaltest.ui.ProcessLeaves2.ProcessLeaves2Data #txt
-Ps0 f3 actionDecl 'internaltest.ui.ProcessLeaves2.ProcessLeaves2Data out;
-' #txt
 Ps0 f3 actionTable 'out=in;
 ' #txt
 Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -77,12 +67,10 @@ Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f3 51 147 26 26 -15 12 #rect
-Ps0 f3 @|RichDialogProcessStartIcon #fIcon
+Ps0 f3 @|UdEventIcon #fIcon
 Ps0 f3 -1|-1|-9671572 #nodeStyle
-Ps0 f4 type internaltest.ui.ProcessLeaves2.ProcessLeaves2Data #txt
-Ps0 f4 guid 1475D5B07D26B3C4 #txt
 Ps0 f4 243 147 26 26 0 12 #rect
-Ps0 f4 @|RichDialogEndIcon #fIcon
+Ps0 f4 @|UdExitEndIcon #fIcon
 Ps0 f4 -1|-1|-9671572 #nodeStyle
 Ps0 f5 expr out #txt
 Ps0 f5 77 160 243 160 #arcP

@@ -20,17 +20,17 @@ public class FourPanelDragAndDropController extends CommonDragAndDropController 
   private static final long serialVersionUID = 2896675125359151717L;
 
   // Panel DropId
-  private static final String SELECTED_FORM_ELEMENTS_FOOTER_FIELD_SET = "selectedFormelementsFooterFieldSet";
-  private static final String SELECTED_FORM_ELEMENTS_RIGHT_PANEL_FIELD_SET = "selectedFormelementsRightPanelFieldSet";
-  private static final String SELECTED_FORM_ELEMENTS_LEFT_PANEL_FIELD_SET = "selectedFormelementsLeftPanelFieldSet";
-  private static final String SELECTED_FORM_ELEMENTS_HEADER_FIELD_SET = "selectedFormelementsHeaderFieldSet";
-  private static final String AVAILABLE_FORM_ELEMENTS_FIELD = "availableFormelementsField";
+  private static final String SELECTED_FORM_ELEMENTS_FOOTER_FIELD_SET = "selected-formelements-footer-fieldset";
+  private static final String SELECTED_FORM_ELEMENTS_RIGHT_PANEL_FIELD_SET = "selected-formelements-rightpanel-fieldset";
+  private static final String SELECTED_FORM_ELEMENTS_LEFT_PANEL_FIELD_SET = "selected-form-elements-left-panel-fieldset";
+  private static final String SELECTED_FORM_ELEMENTS_HEADER_FIELD_SET = "selected-form-elements-header-fieldset";
+  private static final String AVAILABLE_FORM_ELEMENTS_FIELD = "available-formelements-field";
   // Panel DragId
-  private static final String SELECTED_FORM_ELEMENTS_FOOTER = "selectedFormelementsFooter";
-  private static final String SELECTED_FORM_ELEMENTS_RIGHT_PANEL = "selectedFormelementsRightPanel";
-  private static final String SELECTED_FORM_ELEMENTS_LEFT_PANEL = "selectedFormelementsLeftPanel";
-  private static final String SELECTED_FORM_ELEMENTS_HEADER = "selectedFormelementsHeader";
-  private static final String AVAILABLE_FORM_ELEMENTS = "availableFormelements";
+  private static final String SELECTED_FORM_ELEMENTS_FOOTER = "selected-formelements-footer";
+  private static final String SELECTED_FORM_ELEMENTS_RIGHT_PANEL = "selected-formelements-right-panel";
+  private static final String SELECTED_FORM_ELEMENTS_LEFT_PANEL = "selected-formelements-left-panel";
+  private static final String SELECTED_FORM_ELEMENTS_HEADER = "selected-formelements-header";
+  private static final String AVAILABLE_FORM_ELEMENTS = "available-form-elements";
 
   private List<Formelement> selectedFormelementsHeader;
   private List<Formelement> selectedFormelementsLeftPanel;

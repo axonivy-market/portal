@@ -1,0 +1,9 @@
+version: '3.3'
+services:
+  builder:
+    build: .
+    entrypoint: "make livehtml"
+    volumes:
+     - "./..:/ivy-core"     
+    ports:
+     - "8000:8000"

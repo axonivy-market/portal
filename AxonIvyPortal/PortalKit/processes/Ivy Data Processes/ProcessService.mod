@@ -1,10 +1,9 @@
 [Ivy]
-1473A12DE00609FB 3.23 #module
+1473A12DE00609FB 3.28 #module
 >Proto >Proto Collection #zClass
 Pt0 ProcessService Big #zClass
 Pt0 B #cInfo
 Pt0 #process
-Pt0 @TextInP .resExport .resExport #zField
 Pt0 @TextInP .type .type #zField
 Pt0 @TextInP .processKind .processKind #zField
 Pt0 @AnnotationInP-0n ai ai #zField
@@ -26,10 +25,7 @@ Pt0 f15 outParamDecl '<java.util.List<ch.ivyteam.ivy.workflow.start.IWebStartabl
 Pt0 f15 outParamTable 'result.processes=in.processes;
 result.errors=in.errors;
 ' #txt
-Pt0 f15 actionDecl 'ch.ivyteam.wf.processes.ProcessServiceData out;
-' #txt
 Pt0 f15 callSignature findProcesses(ch.ivy.addon.portalkit.ivydata.searchcriteria.ProcessSearchCriteria) #txt
-Pt0 f15 type ch.ivyteam.wf.processes.ProcessServiceData #txt
 Pt0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -39,11 +35,8 @@ Pt0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f15 81 81 30 30 -80 19 #rect
 Pt0 f15 @|StartSubIcon #fIcon
-Pt0 f19 type ch.ivyteam.wf.processes.ProcessServiceData #txt
 Pt0 f19 513 81 30 30 0 15 #rect
 Pt0 f19 @|EndSubIcon #fIcon
-Pt0 f24 actionDecl 'ch.ivyteam.wf.processes.ProcessServiceData out;
-' #txt
 Pt0 f24 actionTable 'out=in;
 ' #txt
 Pt0 f24 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessResultDTO;
@@ -52,7 +45,6 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
 IvyProcessResultDTO dto = ProcessService.newInstance().findProcesses(in.processSearchCriteria);
 out.processes = dto.processes;
 out.errors = dto.errors;' #txt
-Pt0 f24 type ch.ivyteam.wf.processes.ProcessServiceData #txt
 Pt0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -62,9 +54,7 @@ Pt0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f24 176 74 112 44 -43 -8 #rect
 Pt0 f24 @|StepIcon #fIcon
-Pt0 f26 type ch.ivyteam.wf.processes.ProcessServiceData #txt
 Pt0 f26 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Pt0 f26 doCall true #txt
 Pt0 f26 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
 ' #txt
 Pt0 f26 requestMappingAction 'param.exceptions=in.errors;
