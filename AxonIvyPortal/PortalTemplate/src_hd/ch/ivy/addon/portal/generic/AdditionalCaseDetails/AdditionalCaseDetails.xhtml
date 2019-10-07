@@ -13,8 +13,7 @@
       <div class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/additionalCaseDetailsTitle')}</div>
       <div class="Separator" />
       <h:panelGrid id="additional-case-details-data-grid" styleClass="additional-case-details-data-grid" columns="2"
-        columnClasses="additional-case-details-data-1st-column, additional-case-details-data-2nd-column"
-        rowClasses="case-details-row-space">
+        columnClasses="additional-case-details-data-1st-column, additional-case-details-data-2nd-column">
         <h:outputText value="Custom Varchar Field 1" />
         <h:outputText id="custom-varchar-field-1" value="#{data.selectedCase.customFields().stringField('CustomVarCharField1').getOrNull()}" />
         <h:outputText value="Custom Varchar Field 2" />
