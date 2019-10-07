@@ -13,7 +13,8 @@ public class MainMenuPage extends TemplatePage {
   private final static String CASE_MENU_ICON_POSITION = "3";
   private final static String STATISTIC_MENU_ICON_POSITION = "4";
   private final static String CASE_MENU_ID = "main-menu-container:main-menu-form:main-menu-container_node_2";
-  private final static String SUB_MENU_ITEM_ID = "user-menu-required-login:main-navigator:menu-item:0:sub-menu-item:%d:sub-menu-item-link";
+  private final static String SUB_MENU_ITEM_ID =
+      "user-menu-required-login:main-navigator:menu-item:0:sub-menu-item:%d:sub-menu-item-link";
 
   @Override
   protected String getLoadedLocator() {
@@ -40,30 +41,31 @@ public class MainMenuPage extends TemplatePage {
       toggleTaskMenu();
     }
   }
-  
+
   public boolean isProcessesDisplayed() {
     return isElementDisplayedById(String.format(SUB_MENU_ITEM_ID, 0));
   }
-  
-  //When hiding all 4 sub menu items: Processes, Cases, Tasks and Statistics.
+
+  // When hiding all 4 sub menu items: Processes, Cases, Tasks and Statistics.
   public boolean isTasksDisplayed() {
     String taskItemId = String.format(SUB_MENU_ITEM_ID, 1);
     if (isElementDisplayedById(taskItemId)) {
-      if (findChildElementByClassName(findElementById(taskItemId),"left-sidebar-sub-menu-name").getText().equals("Tasks") ) {
+      if (findChildElementByClassName(findElementById(taskItemId), "left-sidebar-sub-menu-name").getText()
+          .equals("Tasks")) {
         return true;
       }
     }
     return false;
   }
-  
+
   public boolean isCasesDisplayed() {
     return isElementDisplayedById(String.format(SUB_MENU_ITEM_ID, 2));
   }
-  
+
   public boolean isStatisticsDisplayed() {
     return isElementDisplayedById(String.format(SUB_MENU_ITEM_ID, 3));
   }
-  
+
   public ProcessWidgetPage selectProcessesMenu() {
     findElementByCssSelector("a.left-sidebar-sub-menu-item:nth-of-type(" + PROCESSES_MENU_ICON_POSITION + ")").click();
     waitForProcessesPageAfterSelectProcessesCategory();
@@ -130,7 +132,7 @@ public class MainMenuPage extends TemplatePage {
   private void waitForTasksLoadedAfterSelectTaskCategory() {
     waitForElementDisplayed(By.cssSelector("*[id$='0:task-item:task-action:task-delegate-command']"), true);
   }
-  
+
   private void waitForProcessesPageAfterSelectProcessesCategory() {
     waitForElementDisplayed(By.id("process-widget:process-search:non-ajax-keyword-filter"), true);
   }
@@ -155,15 +157,14 @@ public class MainMenuPage extends TemplatePage {
     WebElement secondSubCaseMenuItem = findElementById(CASE_MENU_ID + "_1");
     String secondSubCaseMenuItemLable = findChildElementsByTagName(secondSubCaseMenuItem, "span").get(2).getText();
 
-    boolean isReadAllCasePermission =
-        ("My Cases".equalsIgnoreCase(firstSubCaseMenuItemLable) && "All cases"
-            .equalsIgnoreCase(secondSubCaseMenuItemLable));
+    boolean isReadAllCasePermission = ("My Cases".equalsIgnoreCase(firstSubCaseMenuItemLable)
+        && "All cases".equalsIgnoreCase(secondSubCaseMenuItemLable));
 
     return isReadAllCasePermission;
   }
 
   public CaseWidgetPage selectCaseMenu() {
-	findElementByCssSelector("li.submenu-container:nth-child(4) > a.ripplelink.submenu").click();
+    findElementByCssSelector("li.submenu-container:nth-child(4) > a.ripplelink.submenu").click();
     waitAjaxIndicatorDisappear();
     return new CaseWidgetPage();
   }
@@ -174,8 +175,8 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public boolean isMenuItemHighlighted(int menuItemPosition) {
-    return findElementByCssSelector("a.left-sidebar-sub-menu-item:nth-of-type(" + menuItemPosition + ")").getCssValue(
-        "opacity").equals("1");
+    return findElementByCssSelector("a.left-sidebar-sub-menu-item:nth-of-type(" + menuItemPosition + ")")
+        .getCssValue("opacity").equals("1");
   }
 
   private WebElement getPlusIconOnCaseMenu() {

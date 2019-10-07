@@ -117,8 +117,10 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public boolean isTaskDelegateOptionDisable(int index) {
+    sideStepMenuOnMoreButton(index);
+    waitForElementDisplayed(By.id(taskWidgetId + ":task-list-scroller:" + index + ":task-item:task-action:additional-options:task-delegate-command"), true);
     WebElement delegateButton =
-        findElementById(taskWidgetId + ":task-list-scroller:" + index + ":task-item:task-action:task-delegate-command");
+        findElementById(taskWidgetId + ":task-list-scroller:" + index + ":task-item:task-action:additional-options:task-delegate-command");
     return delegateButton.getAttribute(CLASS).contains("ui-state-disabled");
   }
 
@@ -195,7 +197,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public boolean isTaskStartEnabled(int taskId) {
     String startCommandButton =
-        String.format(taskWidgetId + ":task-list-scroller:%d:task-item:task-action:task-start-command", taskId);
+        String.format(taskWidgetId + ":task-list-scroller:%d:task-item:task-action:task-action-component", taskId);
     WebElement element = findElementById(startCommandButton);
     return !element.getAttribute(CLASS).contains("ui-state-disabled");
   }
@@ -210,28 +212,20 @@ public class TaskWidgetPage extends TemplatePage {
     return null;
   }
 
-  public void changeExpiryOfTaskAt(int index, String dateStringLiteral) {
-    WebElement taskExpiry = findElementById(String.format(
-        taskWidgetId + ":task-list-scroller:%d:task-item:general-info:expiry-form:edit-inplace_display", index));
-    taskExpiry.click();
-
-    String taskExpiryInlineId = String.format(
-        taskWidgetId + ":task-list-scroller:%d:task-item:general-info:expiry-form:expiry-calendar_input", index);
-    waitForElementDisplayed(By.id(taskExpiryInlineId), true);
-    WebElement taskExpiryInlineEdit = findElementById(taskExpiryInlineId);
+  public void changeExpiryOfTaskAt(String dateStringLiteral) {
+    click(findElementById("task-detail-template:general-information:expiry-form:edit-inplace_display"));
+    waitForElementDisplayed(By.id("task-detail-template:general-information:expiry-form:expiry-calendar"), true);
+    WebElement taskExpiryInlineEdit = findElementById("task-detail-template:general-information:expiry-form:expiry-calendar");
     taskExpiryInlineEdit.sendKeys(dateStringLiteral);
 
-    WebElement editor = findElementById(String
-        .format(taskWidgetId + ":task-list-scroller:%d:task-item:general-info:expiry-form:edit-inplace_editor", index));
+    WebElement editor = findElementById("task-detail-template:general-information:expiry-form:edit-inplace_editor");
     WebElement saveButton = findChildElementByClassName(editor, UI_INPLACE_SAVE);
     saveButton.click();
   }
 
   public String getExpiryOfTaskAt(int index) {
-    String taskExpiryId = String
-        .format(taskWidgetId + ":task-list-scroller:%d:task-item:general-info:expiry-form:edit-inplace_display", index);
-    waitForElementDisplayed(By.id(taskExpiryId), true);
-    WebElement taskExpiry = findElementById(taskExpiryId);
+    waitForElementDisplayed(By.id("task-detail-template:general-information:expiry-form:edit-inplace_display"), true);
+    WebElement taskExpiry = findElementById("task-detail-template:general-information:expiry-form:edit-inplace_display");
     return taskExpiry.getText();
   }
 
@@ -351,6 +345,14 @@ public class TaskWidgetPage extends TemplatePage {
     return taskName.getText();
   }
 
+  public String getTaskCategory() {
+    return findElementByCssSelector("span[id$='task-category']").getText();
+  }
+
+  public String getCaseCategory() {
+    return findElementByCssSelector("span[id$='case-category']").getText();
+  }
+  
   public boolean isTaskDescriptionChangeComponentPresented(int index) {
     return isElementPresent(By.id(String.format(
         taskWidgetId + ":task-list-scroller:%d:task-item:description:task-description-form:task-description-input",
