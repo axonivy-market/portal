@@ -257,9 +257,8 @@ protected boolean isIntegrationTestRun() {
 
   public TaskWidgetPage openTaskList() {
     openMainMenu();
-    WebElement taskListToggle = findListElementsByCssSelector("a.left-sidebar-sub-menu-item").get(1);
-    taskListToggle.click();
-    waitForElementPresent(By.cssSelector("div.js-task-list-container"), true);
+    findElementByCssSelector("li.submenu-container:nth-child(3) > a.ripplelink.submenu").click();
+    waitAjaxIndicatorDisappear();
     return new TaskWidgetPage();
   }
   

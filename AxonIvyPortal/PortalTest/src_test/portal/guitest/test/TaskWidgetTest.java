@@ -5,7 +5,6 @@ import java.time.format.DateTimeFormatter;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
@@ -15,7 +14,6 @@ import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
-import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class TaskWidgetTest extends BaseTest {
@@ -91,7 +89,7 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testChangeTaskDeadline() {
+  public void testChangeTaskDeadline() { // SERENITY_PASSED
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
     int firstTask = 0;
@@ -102,13 +100,13 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage.expand();
     taskWidgetPage.openTaskDetails(firstTask);
     taskWidgetPage.waitAjaxIndicatorDisappear();
-    taskWidgetPage.changeExpiryOfTaskAt(firstTask, tomorrowStringLiteral);
+    taskWidgetPage.changeExpiryOfTaskAt(tomorrowStringLiteral);
     taskWidgetPage.waitAjaxIndicatorDisappear();
     assertEquals(tomorrowStringLiteral, taskWidgetPage.getExpiryOfTaskAt(firstTask));
   }
 
   @Test
-  public void testStartButtonStatus() {
+  public void testStartButtonStatus() { // SERENITY_PASSED
     LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
     loginPage.login();
     HomePage homePage = new HomePage();
@@ -121,7 +119,7 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testDisplayDelegateButton() {
+  public void testDisplayDelegateButton() { // SERENITY_PASSED
     LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
     loginPage.login();
     redirectToRelativeLink(GRANT_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL);
@@ -141,9 +139,8 @@ public class TaskWidgetTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     taskWidgetPage.openTaskList();
     taskWidgetPage.openTaskDetails(0);
-    TaskDetailsPage taskDetailsPage = taskWidgetPage.getTaskDetailsElement(0);
-    assertEquals("OtherLeave/Maternity", taskDetailsPage.getTaskCategory());
-    assertEquals("LeaveRequest", taskDetailsPage.getCaseCategory());
+    assertEquals("OtherLeave/Maternity", taskWidgetPage.getTaskCategory());
+    assertEquals("LeaveRequest", taskWidgetPage.getCaseCategory());
   }
 
   @Test

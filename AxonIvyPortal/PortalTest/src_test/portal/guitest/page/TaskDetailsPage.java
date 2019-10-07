@@ -15,21 +15,12 @@ public class TaskDetailsPage extends TemplatePage {
     return "id('task-detail-template:task-detail-container')";
   }
 
-  public TaskDetailsPage() {
-  }
+  public TaskDetailsPage() {}
 
   public String getCreatedOnDateText() {
     WebElement findElement = taskDetailsItem
         .findElement(By.cssSelector("#task-data > table > tbody > tr:nth-child(8) > td.task-details-data-2nd-column"));
     return findElement.getText();
-  }
-
-  public String getTaskCategory() {
-    return taskDetailsItem.findElement(By.cssSelector("span[id$='task-category']")).getText();
-  }
-
-  public String getCaseCategory() {
-    return taskDetailsItem.findElement(By.cssSelector("span[id$='case-category']")).getText();
   }
 
   public List<String> getTaskNoteAuthors() {
