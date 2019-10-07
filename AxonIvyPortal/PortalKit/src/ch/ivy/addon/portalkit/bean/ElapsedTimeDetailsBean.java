@@ -20,7 +20,6 @@ public class ElapsedTimeDetailsBean implements Serializable {
   private static final String MINUTES_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/minutes";
   private static final String SECONDS_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/seconds";
 
-  @SuppressWarnings("unchecked")
   public void initialize(String caseCategory, StatisticChart statisticChart) {
     setSelectedCaseCategory(caseCategory);
     chartName = statisticChart.getName();

@@ -1,14 +1,7 @@
 /*Uses for customize modena layout (modena-layout.css) */
-#layout-portlets-cover {
-	height: calc(100% - 80px);
-}
-
-#layout-portlets-cover>div {
-	height: 100%;
-}
 
 #logo>img {
-	margin: 5px 0 0 10px;
+	margin: 5px 0 0 0px;
 }
 
 .global-search-icon {
@@ -36,29 +29,16 @@
 }
 
 .global-search {
+	margin-top: 20px;
     margin-right: 10px;
     position: relative;
     display: inline-block;
 }
 
-@media screen and (max-width: 40em) {
+@media screen and (max-width: 64.062em) {
   .mobile-global-search-container {
-    margin-top: 10px;
+    margin-top: 20px;
   }
-}
-
-@media screen and (min-width: 40.063em) and (max-width: 64.062em) {
-  .mobile-global-search-container {
-    margin-top: 10px;
-  }
-}
-
-.setting-container {
-	transform: translateY(15%);
-}
-
-#user-setting-container.active-menu {
-	margin: 0 0 0 -150px !important;
 }
 
 #user-setting-container {
@@ -169,13 +149,6 @@
 	right: 10px;
 }
 
-.task-template-error-zone {
-	z-index: -1;
-	position: absolute;
-	top: 15px;
-	right: 15px;
-}
-
 /*ERROR PAGE*/
 .error-container {
 	width: 33.3%;
@@ -258,28 +231,6 @@
     margin-top: 5px;
 }
 
-/* Small screen for case widget */
-@media ( max-width : 900px) {
-    .hidden-mobile {
-        display: none !important;
-    }
-}
-
-/* Small screen */
-@media ( min-width : 992px) and ( max-width : 1365px) {
-	
-	#global-search-data {
-		width: 200px;
-	}
-}
-
-/* Medium screen */
-@media ( min-width : 1366px) and (max-width: 1919px) {
-	.widget-header-filter-input.ui-inputfield {
-		width: 168px !important;
-	}
-}
-
 .note-history-export-button {
 	margin-top: 10px;
 }
@@ -303,17 +254,10 @@
 	text-align: left;
 	word-break: normal;
 	white-space: nowrap;
-	font-size: 1.4rem;
-	line-height: 1.8rem;
 }
 
 .additional-case-details-data-2nd-column {
 	text-align: left;
-	font-family: 'Roboto';
-	font-style: normal;
-	font-weight: 400;
-	line-height: 1.8rem;
-	font-size: 1.2rem;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
@@ -364,8 +308,7 @@
 }
 
 .process-history.process-history-list.process-history-list-cell-default.process-history-list-width-120,
-.process-history-list-header-default.process-history-list-width-120
-{
+.process-history-list-header-default.process-history-list-width-120 {
 	flex: 0 0 120px;
 }
 
@@ -374,33 +317,13 @@
 	padding-left: 10px;
 }
 
-.not-display {
-	display: none;
-}
-
 .process-history-empty-message .ui-outputlabel {
 	font-size: 1.2rem;
 	color: black;
 }
 
-.login-logo-chooser .ui-fileupload-content, .home-logo-chooser .ui-fileupload-content {
-  display: none;
-}
-
-.underline-section {
-	display: block;
-    width: 100%;
-	border-bottom: 1px solid #D1D3D4;
-	margin: 10px 0;
-	line-height: 3;
-}
-
-.underline-section:first-child {
-	margin-top: 0;
-}
-
 .search-results-tabview {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .search-results-tabview .task-list-container,
@@ -430,8 +353,22 @@
 .ui-confirm-dialog-message li {
 	list-style-type: circle;
 }
+/******** CHAT ********/
+.ui-autocomplete.chat-user-selection, .ui-autocomplete.chat-role-selection {
+  width: 100%;
+}
 
-/* SERENITY SIDE BAR */
+.ui-autocomplete-input.chat-user-selection-input, .ui-autocomplete-input.chat-role-selection-input {
+  width: calc(100% - 25px);
+}
+
+.chat-add-assignee-button-grid, .chat-action-container {
+ text-align: right; 
+}
+
+.chat-delete-assignee {
+  float: right;
+}/* SERENITY SIDE BAR */
 
 
 /* SERENITY TOP BAR */

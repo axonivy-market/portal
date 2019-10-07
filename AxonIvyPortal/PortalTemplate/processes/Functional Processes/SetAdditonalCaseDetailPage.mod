@@ -1,10 +1,9 @@
 [Ivy]
-1624CFE2532EF6BE 3.26 #module
+1624CFE2532EF6BE 3.28 #module
 >Proto >Proto Collection #zClass
 Se0 SetAdditonalCaseDetailPage Big #zClass
 Se0 B #cInfo
 Se0 #process
-Se0 @TextInP .resExport .resExport #zField
 Se0 @TextInP .type .type #zField
 Se0 @TextInP .processKind .processKind #zField
 Se0 @AnnotationInP-0n ai ai #zField
@@ -23,10 +22,7 @@ Se0 f0 inParamTable 'out.linkToAdditonalCaseDetailPage=param.linkToAddtionalCase
 ' #txt
 Se0 f0 outParamDecl '<> result;
 ' #txt
-Se0 f0 actionDecl 'ch.ivy.addon.portal.generic.SetAdditonalCaseDetailPageData out;
-' #txt
 Se0 f0 callSignature call(String) #txt
-Se0 f0 type ch.ivy.addon.portal.generic.SetAdditonalCaseDetailPageData #txt
 Se0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -38,11 +34,8 @@ Se0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Se0 f0 81 49 30 30 -29 17 #rect
 Se0 f0 @|StartSubIcon #fIcon
-Se0 f1 type ch.ivy.addon.portal.generic.SetAdditonalCaseDetailPageData #txt
 Se0 f1 337 49 30 30 0 15 #rect
 Se0 f1 @|EndSubIcon #fIcon
-Se0 f3 actionDecl 'ch.ivy.addon.portal.generic.SetAdditonalCaseDetailPageData out;
-' #txt
 Se0 f3 actionTable 'out=in;
 ' #txt
 Se0 f3 actionCode 'import ch.ivy.addon.portalkit.service.ProcessStartCollector;
@@ -55,7 +48,6 @@ String casePageUrl = collector.findLinkByFriendlyRequestPath(in.linkToAdditonalC
 											
 ivy.case.customFields().textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).set(casePageUrl);' #txt
 Se0 f3 security system #txt
-Se0 f3 type ch.ivy.addon.portal.generic.SetAdditonalCaseDetailPageData #txt
 Se0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

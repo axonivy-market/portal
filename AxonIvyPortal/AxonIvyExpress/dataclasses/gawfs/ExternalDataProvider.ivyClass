@@ -1,0 +1,5 @@
+ExternalDataProvider #class
+gawfs #namespace
+libraryId String #field
+signature String #field
+name String #field

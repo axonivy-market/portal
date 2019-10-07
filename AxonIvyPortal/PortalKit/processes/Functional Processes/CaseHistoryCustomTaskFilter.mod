@@ -1,11 +1,9 @@
 [Ivy]
-[>Created: Thu Oct 08 10:13:22 ICT 2015]
-14E52ACF4B6D37BF 3.17 #module
+14E52ACF4B6D37BF 3.28 #module
 >Proto >Proto Collection #zClass
 Cr0 CaseHistoryCustomTaskFilter Big #zClass
 Cr0 B #cInfo
 Cr0 #process
-Cr0 @TextInP .resExport .resExport #zField
 Cr0 @TextInP .type .type #zField
 Cr0 @TextInP .processKind .processKind #zField
 Cr0 @AnnotationInP-0n ai ai #zField
@@ -25,10 +23,7 @@ Cr0 f0 outParamDecl '<java.util.List<ch.ivyteam.ivy.workflow.ITask> tasks> resul
 ' #txt
 Cr0 f0 outParamTable 'result.tasks=in.tasks;
 ' #txt
-Cr0 f0 actionDecl 'ch.ivy.add.portalkit.CaseHistoryCustomTaskFilterData out;
-' #txt
 Cr0 f0 callSignature call(List<ch.ivyteam.ivy.workflow.ITask>) #txt
-Cr0 f0 type ch.ivy.add.portalkit.CaseHistoryCustomTaskFilterData #txt
 Cr0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -40,7 +35,6 @@ Cr0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cr0 f0 51 83 26 26 17 -6 #rect
 Cr0 f0 @|StartSubIcon #fIcon
-Cr0 f1 type ch.ivy.add.portalkit.CaseHistoryCustomTaskFilterData #txt
 Cr0 f1 51 339 26 26 14 0 #rect
 Cr0 f1 @|EndSubIcon #fIcon
 Cr0 f2 expr out #txt

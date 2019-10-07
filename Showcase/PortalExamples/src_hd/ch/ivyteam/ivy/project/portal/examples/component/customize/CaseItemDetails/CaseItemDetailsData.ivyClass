@@ -2,5 +2,5 @@ CaseItemDetailsData #class
 ch.ivyteam.ivy.project.portal.examples.component.customize.CaseItemDetails #namespace
 caseInfo ch.ivyteam.ivy.workflow.ICase #field
 caseInfo PERSISTENT #fieldModifier
-menuState String #field
-menuState PERSISTENT #fieldModifier
+isShowBackButton Boolean #field
+isShowBackButton PERSISTENT #fieldModifier

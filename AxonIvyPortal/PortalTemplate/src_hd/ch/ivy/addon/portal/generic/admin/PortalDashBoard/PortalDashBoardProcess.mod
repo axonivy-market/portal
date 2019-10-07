@@ -1,12 +1,9 @@
 [Ivy]
-14EB4D799BBF04C8 3.23 #module
+14EB4D799BBF04C8 3.28 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalDashBoardProcess Big #zClass
 Ps0 RD #cInfo
 Ps0 #process
-Ps0 @TextInP .ui2RdDataAction .ui2RdDataAction #zField
-Ps0 @TextInP .rdData2UIAction .rdData2UIAction #zField
-Ps0 @TextInP .resExport .resExport #zField
 Ps0 @TextInP .type .type #zField
 Ps0 @TextInP .processKind .processKind #zField
 Ps0 @AnnotationInP-0n ai ai #zField
@@ -14,18 +11,16 @@ Ps0 @MessageFlowInP-0n messageIn messageIn #zField
 Ps0 @MessageFlowOutP-0n messageOut messageOut #zField
 Ps0 @TextInP .xml .xml #zField
 Ps0 @TextInP .responsibility .responsibility #zField
-Ps0 @RichDialogInitStart f0 '' #zField
-Ps0 @RichDialogProcessEnd f1 '' #zField
-Ps0 @RichDialogInitStart f6 '' #zField
+Ps0 @UdInit f0 '' #zField
+Ps0 @UdProcessEnd f1 '' #zField
+Ps0 @UdInit f6 '' #zField
 Ps0 @GridStep f2 '' #zField
 Ps0 @PushWFArc f9 '' #zField
 Ps0 @PushWFArc f11 '' #zField
 Ps0 @PushWFArc f7 '' #zField
 >Proto Ps0 Ps0 PortalDashBoardProcess #zField
 Ps0 f0 guid 14EB4D799DA15883 #txt
-Ps0 f0 type ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData #txt
 Ps0 f0 method start() #txt
-Ps0 f0 disableUIEvents true #txt
 Ps0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <> param = methodEvent.getInputArguments();
 ' #txt
@@ -41,14 +36,11 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f0 101 53 22 22 -16 12 #rect
-Ps0 f0 @|RichDialogInitStartIcon #fIcon
-Ps0 f1 type ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData #txt
+Ps0 f0 @|UdInitIcon #fIcon
 Ps0 f1 309 53 22 22 14 0 #rect
-Ps0 f1 @|RichDialogProcessEndIcon #fIcon
+Ps0 f1 @|UdProcessEndIcon #fIcon
 Ps0 f6 guid 157336D81FC73158 #txt
-Ps0 f6 type ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData #txt
 Ps0 f6 method startWithMenuState(String) #txt
-Ps0 f6 disableUIEvents true #txt
 Ps0 f6 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
 <java.lang.String menuState> param = methodEvent.getInputArguments();
 ' #txt
@@ -66,16 +58,13 @@ Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f6 101 133 22 22 -73 13 #rect
-Ps0 f6 @|RichDialogInitStartIcon #fIcon
-Ps0 f2 actionDecl 'ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData out;
-' #txt
+Ps0 f6 @|UdInitIcon #fIcon
 Ps0 f2 actionTable 'out=in;
 ' #txt
 Ps0 f2 actionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
 
 StatisticService service = new StatisticService();
 in.statisticChartList = service.findStatisticChartsByUserId(ivy.session.getSessionUser().getId());' #txt
-Ps0 f2 type ch.ivy.addon.portal.generic.admin.PortalDashBoard.PortalDashBoardData #txt
 Ps0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

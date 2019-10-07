@@ -24,7 +24,6 @@ import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISession;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
-import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -38,7 +37,7 @@ public class TaskActionBean {
   private boolean isShowDelegateTask;
   private boolean isShowAdditionalOptions;
   private static final String OPEN_TASK_ITEM_DETAILS = "Start Processes/PortalStart/startPortalTaskDetail.ivp";
-  private static final String OPEN_TASKS_LIST = "Start Processes/PortalStart/startPortalTask.ivp";
+  private static final String OPEN_TASK_LIST = "Start Processes/PortalStart/restorePortalTaskList.ivp";
 
   public TaskActionBean() {
     isShowResetTask = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_RESET_ACTION);
@@ -48,6 +47,10 @@ public class TaskActionBean {
   }
 
   public boolean canReset(ITask task) {
+    if (task == null) {
+      return false;
+    }
+    
     TaskState taskState = task.getState();
     if (taskState != TaskState.RESUMED && taskState != TaskState.PARKED) {
       return false;
@@ -79,6 +82,10 @@ public class TaskActionBean {
   }
 
   public boolean canResume(ITask task) {
+    if (task == null) {
+      return false;
+    }
+    
     ISession session = null;
     try {
       session = ServiceUtilities.findUserWorkflowSession(Ivy.session().getSessionUserName(), task.getApplication());
@@ -92,7 +99,7 @@ public class TaskActionBean {
   }
 
   public boolean canPark(ITask task) {
-    if ((task.getState() != TaskState.SUSPENDED && task.getState() != TaskState.CREATED && task.getState() != TaskState.RESUMED) 
+    if (task == null || (task.getState() != TaskState.SUSPENDED && task.getState() != TaskState.CREATED && task.getState() != TaskState.RESUMED) 
         || !canResume(task)) {
       return false;
     }
@@ -204,21 +211,21 @@ public class TaskActionBean {
     } catch (Exception e) {
       Ivy.log().error(e);
       IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(requestPath);
-      return RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString()
+      return RequestUriFactory.createProcessStartUri(process).toASCIIString()
           + urlParameters;
     }
   }
   
-  public void backToTasksList() throws MalformedURLException {
-    String friendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("startPortalTask.ivp");
+  public void backToTaskList(ITask task) throws MalformedURLException {
+    String friendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("restorePortalTaskList.ivp");
     if (StringUtils.isEmpty(friendlyRequestPath)) {
-      friendlyRequestPath = OPEN_TASKS_LIST;
+      friendlyRequestPath = OPEN_TASK_LIST;
     }
     String requestPath = SecurityServiceUtils.findProcessByUserFriendlyRequestPath(friendlyRequestPath);
     if (StringUtils.isNotEmpty(requestPath)) {
       UrlDetector urlDetector = new UrlDetector();
       String serverUrl = urlDetector.getBaseURL(FacesContext.getCurrentInstance());
-      redirect(serverUrl + requestPath);
+      redirect(serverUrl + requestPath + "?endedTaskId=" + task.getId());
     }
   }
 
