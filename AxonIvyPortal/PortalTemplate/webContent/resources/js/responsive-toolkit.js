@@ -31,6 +31,14 @@ function ResponsiveToolkit(responsiveToolkit) {
   };
 };
 
+/***************************Handle responsive for Process list**********************************/
+function ProcessListScreenHandler() {
+  this.updateMainContainer = function(){
+    processWidget = ProcessWidget();
+    processWidget.setupScrollbar();
+  }
+};
+
 /***************************Handle responsive for Task list**********************************/
 function TaskListScreenHandler() {
   this.updateMainContainer = function(){
