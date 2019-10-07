@@ -132,7 +132,7 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testDisplayTaskAndCaseCategory() {
+  public void testDisplayTaskAndCaseCategory() { // SERENITY_PASSED
     LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
     loginPage.login();
     HomePage homePage = new HomePage();
@@ -144,7 +144,7 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testShowTaskCount() {
+  public void testShowTaskCount() {  // SERENITY_PASSED
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
     HomePage homePage = new HomePage();
