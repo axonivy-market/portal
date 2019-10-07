@@ -2040,6 +2040,10 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   width: 100%;
 }
 
+.icon-compact-mode {
+  vertical-align: middle;
+}
+
 .action-icon.icon-compact-mode {
   font-size: 1.2rem;
   margin-right: 20px;
@@ -2165,15 +2169,16 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   cursor: pointer;
 }
 
-
-.task-details-separator {
-  margin-top: 0;
-}
-
 .side-steps-panel .action-icon,
 .side-steps-panel .side-step-item-label {
   display: inline-block;
   float: left;
+}
+
+.task-detail-general-card .task-details-action-container {
+  position: absolute;
+  top: -5px;
+  right: -10px;
 }
 
 .side-steps-panel .action-icon {
@@ -5086,6 +5091,7 @@ _:-ms-fullscreen, :root .case-related-command-link {
   align-content: start;
   padding: 0 !important;
   font-weight: bold;
+  position: relative;
 }
 
 .task-desription-inplace .ui-button.ui-widget.ui-button-icon-only.ui-inplace-save {
