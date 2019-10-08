@@ -875,7 +875,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   font-size: 1.4rem;
   position: absolute;
   bottom: 1px;
-  left: 0;
+  left: 2px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
