@@ -18,7 +18,6 @@ Cs0 @RichDialogInitStart f0 '' #zField
 Cs0 @RichDialogProcessEnd f1 '' #zField
 Cs0 @CallSub f66 '' #zField
 Cs0 @RichDialogMethodStart f6 '' #zField
-Cs0 @PushWFArc f8 '' #zField
 Cs0 @RichDialogProcessStart f2 '' #zField
 Cs0 @CallSub f4 '' #zField
 Cs0 @GridStep f23 '' #zField
@@ -63,6 +62,7 @@ Cs0 @PushWFArc f38 '' #zField
 Cs0 @GridStep f39 '' #zField
 Cs0 @PushWFArc f40 '' #zField
 Cs0 @PushWFArc f14 '' #zField
+Cs0 @PushWFArc f43 '' #zField
 >Proto Cs0 Cs0 CaseItemRelatedTaskProcess #zField
 Cs0 f0 guid 153358BE9322E3ED #txt
 Cs0 f0 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
@@ -133,8 +133,6 @@ Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f6 245 85 22 22 14 0 #rect
 Cs0 f6 @|RichDialogMethodStartIcon #fIcon
-Cs0 f8 expr out #txt
-Cs0 f8 64 107 64 605 #arcP
 Cs0 f2 guid 15498D4175D375D1 #txt
 Cs0 f2 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 Cs0 f2 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData out;
@@ -563,7 +561,7 @@ Cs0 f39 actionTable 'out=in;
 ' #txt
 Cs0 f39 actionCode 'import ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants;
 
-ivy.datacache.getSessionCache().setEntry(PortalCacheConstants.TASK_IN_CASE_DETAILS_CACHE_GROUP_NAME, PortalCacheConstants.TASK_IN_CASE_DETAILS_CACHE_ENTRY_NAME + in.remoteCase.id, in.relatedTasks);' #txt
+ivy.datacache.getSessionCache().setEntry(PortalCacheConstants.TASK_IN_CASE_DETAILS_CACHE_GROUP_NAME, PortalCacheConstants.TASK_IN_CASE_DETAILS_CACHE_ENTRY_NAME + in.remoteCase.id, 10, in.relatedTasks);' #txt
 Cs0 f39 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 Cs0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -582,12 +580,12 @@ Cs0 f40 0 0.8128777323151737 0 0 #arcLabel
 Cs0 f14 expr out #txt
 Cs0 f14 384 470 384 532 #arcP
 Cs0 f14 0 0.8128777323151737 0 0 #arcLabel
+Cs0 f43 expr out #txt
+Cs0 f43 64 107 64 605 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
 >Proto Cs0 '' #fIcon
-Cs0 f0 mainOut f8 tail #connect
-Cs0 f8 head f1 mainIn #connect
 Cs0 f2 mainOut f11 tail #connect
 Cs0 f11 head f23 mainIn #connect
 Cs0 f23 mainOut f5 tail #connect
@@ -634,3 +632,5 @@ Cs0 f66 mainOut f40 tail #connect
 Cs0 f40 head f39 mainIn #connect
 Cs0 f39 mainOut f14 tail #connect
 Cs0 f14 head f10 mainIn #connect
+Cs0 f0 mainOut f43 tail #connect
+Cs0 f43 head f1 mainIn #connect

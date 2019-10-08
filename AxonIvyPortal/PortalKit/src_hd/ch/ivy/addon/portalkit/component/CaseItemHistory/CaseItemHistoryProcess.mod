@@ -16,7 +16,6 @@ Cs0 @TextInP .xml .xml #zField
 Cs0 @TextInP .responsibility .responsibility #zField
 Cs0 @RichDialogInitStart f0 '' #zField
 Cs0 @RichDialogProcessEnd f1 '' #zField
-Cs0 @PushWFArc f2 '' #zField
 Cs0 @RichDialogMethodStart f3 '' #zField
 Cs0 @RichDialogProcessEnd f4 '' #zField
 Cs0 @GridStep f78 '' #zField
@@ -58,6 +57,7 @@ Cs0 @PushWFArc f25 '' #zField
 Cs0 @GridStep f26 '' #zField
 Cs0 @PushWFArc f27 '' #zField
 Cs0 @PushWFArc f8 '' #zField
+Cs0 @PushWFArc f30 '' #zField
 >Proto Cs0 Cs0 CaseItemHistoryProcess #zField
 Cs0 f0 guid 153362B0ADC5C7D8 #txt
 Cs0 f0 type ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData #txt
@@ -78,10 +78,8 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f0 53 85 22 22 14 0 #rect
 Cs0 f0 @|RichDialogInitStartIcon #fIcon
 Cs0 f1 type ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData #txt
-Cs0 f1 53 213 22 22 14 0 #rect
+Cs0 f1 53 309 22 22 14 0 #rect
 Cs0 f1 @|RichDialogProcessEndIcon #fIcon
-Cs0 f2 expr out #txt
-Cs0 f2 64 107 64 213 #arcP
 Cs0 f3 guid 153362E296C125C3 #txt
 Cs0 f3 type ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData #txt
 Cs0 f3 method initData(ch.ivy.addon.portalkit.bo.RemoteCase) #txt
@@ -102,10 +100,10 @@ Cs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f3 165 85 22 22 14 0 #rect
+Cs0 f3 181 85 22 22 14 0 #rect
 Cs0 f3 @|RichDialogMethodStartIcon #fIcon
 Cs0 f4 type ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData #txt
-Cs0 f4 165 621 22 22 14 0 #rect
+Cs0 f4 181 621 22 22 14 0 #rect
 Cs0 f4 @|RichDialogProcessEndIcon #fIcon
 Cs0 f78 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData out;
 ' #txt
@@ -130,10 +128,10 @@ from tasks and notes</name>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f78 158 564 36 24 20 -1 #rect
+Cs0 f78 174 564 36 24 20 -1 #rect
 Cs0 f78 @|StepIcon #fIcon
 Cs0 f7 expr out #txt
-Cs0 f7 176 588 176 621 #arcP
+Cs0 f7 192 588 192 621 #arcP
 Cs0 f64 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData out;
 ' #txt
 Cs0 f64 actionTable 'out=in;
@@ -420,10 +418,10 @@ Cs0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f15 136 492 80 40 -35 -8 #rect
+Cs0 f15 152 492 80 40 -35 -8 #rect
 Cs0 f15 @|CallSubIcon #fIcon
 Cs0 f5 expr out #txt
-Cs0 f5 176 532 176 564 #arcP
+Cs0 f5 192 532 192 564 #arcP
 Cs0 f6 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData out;
 ' #txt
 Cs0 f6 actionTable 'out=in;
@@ -450,7 +448,7 @@ Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f6 158 436 36 24 20 -2 #rect
+Cs0 f6 174 436 36 24 20 -2 #rect
 Cs0 f6 @|StepIcon #fIcon
 Cs0 f66 type ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData #txt
 Cs0 f66 processCall MultiPortal/TaskService:findTasksByCase(Long,String,ch.ivy.addon.portalkit.persistence.domain.Server) #txt
@@ -476,10 +474,10 @@ Cs0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f66 158 308 36 24 20 -2 #rect
+Cs0 f66 174 308 36 24 20 -2 #rect
 Cs0 f66 @|CallSubIcon #fIcon
 Cs0 f9 expr out #txt
-Cs0 f9 176 460 176 492 #arcP
+Cs0 f9 192 460 192 492 #arcP
 Cs0 f18 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData out;
 ' #txt
 Cs0 f18 actionTable 'out=in;
@@ -497,10 +495,10 @@ Cs0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f18 120 146 112 44 -27 -8 #rect
+Cs0 f18 136 146 112 44 -27 -8 #rect
 Cs0 f18 @|StepIcon #fIcon
 Cs0 f19 expr out #txt
-Cs0 f19 176 107 176 146 #arcP
+Cs0 f19 192 107 192 146 #arcP
 Cs0 f20 type ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData #txt
 Cs0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -511,13 +509,13 @@ Cs0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f20 160 240 32 32 -28 18 #rect
+Cs0 f20 176 240 32 32 -28 18 #rect
 Cs0 f20 @|AlternativeIcon #fIcon
 Cs0 f21 expr out #txt
-Cs0 f21 176 190 176 240 #arcP
+Cs0 f21 192 190 192 240 #arcP
 Cs0 f17 expr in #txt
 Cs0 f17 outCond 'in.cacheEntry == null' #txt
-Cs0 f17 176 272 176 308 #arcP
+Cs0 f17 192 272 192 308 #arcP
 Cs0 f22 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData out;
 ' #txt
 Cs0 f22 actionTable 'out=in;
@@ -537,15 +535,15 @@ and invalidate it</name>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f22 288 290 128 44 -41 -16 #rect
+Cs0 f22 304 290 128 44 -41 -16 #rect
 Cs0 f22 @|StepIcon #fIcon
 Cs0 f24 expr in #txt
-Cs0 f24 192 256 352 290 #arcP
-Cs0 f24 1 352 256 #addKink
+Cs0 f24 208 256 368 290 #arcP
+Cs0 f24 1 368 256 #addKink
 Cs0 f24 0 0.740259798223094 0 0 #arcLabel
 Cs0 f25 expr out #txt
-Cs0 f25 352 334 194 448 #arcP
-Cs0 f25 1 352 448 #addKink
+Cs0 f25 368 334 210 448 #arcP
+Cs0 f25 1 368 448 #addKink
 Cs0 f25 1 0.29266251721548964 0 0 #arcLabel
 Cs0 f26 actionDecl 'ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData out;
 ' #txt
@@ -553,7 +551,7 @@ Cs0 f26 actionTable 'out=in;
 ' #txt
 Cs0 f26 actionCode 'import ch.ivy.addon.portalkit.persistence.variable.PortalCacheConstants;
 
-ivy.datacache.getSessionCache().setEntry(PortalCacheConstants.TASK_IN_CASE_DETAILS_CACHE_GROUP_NAME, PortalCacheConstants.TASK_IN_CASE_DETAILS_CACHE_ENTRY_NAME + in.remoteCase.id, in.remoteTasks);' #txt
+ivy.datacache.getSessionCache().setEntry(PortalCacheConstants.TASK_IN_CASE_DETAILS_CACHE_GROUP_NAME, PortalCacheConstants.TASK_IN_CASE_DETAILS_CACHE_ENTRY_NAME + in.remoteCase.id, 10, in.remoteTasks);' #txt
 Cs0 f26 type ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData #txt
 Cs0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -564,20 +562,20 @@ Cs0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f26 120 362 112 44 -39 -8 #rect
+Cs0 f26 136 362 112 44 -39 -8 #rect
 Cs0 f26 @|StepIcon #fIcon
 Cs0 f27 expr out #txt
-Cs0 f27 176 332 176 362 #arcP
+Cs0 f27 192 332 192 362 #arcP
 Cs0 f27 0 0.8128777323151737 0 0 #arcLabel
 Cs0 f8 expr out #txt
-Cs0 f8 176 406 176 436 #arcP
+Cs0 f8 192 406 192 436 #arcP
 Cs0 f8 0 0.8128777323151737 0 0 #arcLabel
+Cs0 f30 expr out #txt
+Cs0 f30 64 107 64 309 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
 >Proto Cs0 '' #fIcon
-Cs0 f0 mainOut f2 tail #connect
-Cs0 f2 head f1 mainIn #connect
 Cs0 f78 mainOut f7 tail #connect
 Cs0 f7 head f4 mainIn #connect
 Cs0 f63 mainOut f68 tail #connect
@@ -618,3 +616,5 @@ Cs0 f66 mainOut f27 tail #connect
 Cs0 f27 head f26 mainIn #connect
 Cs0 f26 mainOut f8 tail #connect
 Cs0 f8 head f6 mainIn #connect
+Cs0 f0 mainOut f30 tail #connect
+Cs0 f30 head f1 mainIn #connect
