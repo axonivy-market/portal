@@ -39,6 +39,10 @@
   .mobile-global-search-container {
     margin-top: 20px;
   }
+  .global-search,
+  .search-results-tabview-container {
+    padding: 0 10px 0 10px;
+  }
 }
 
 #user-setting-container {
