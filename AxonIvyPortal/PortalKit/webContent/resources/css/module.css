@@ -875,7 +875,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   font-size: 1.4rem;
   position: absolute;
   bottom: 1px;
-  left: 0;
+  left: 2px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -1237,6 +1237,9 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   .process-start-list-item-name-text {
     width: calc(100vw - 100px) !important;
   }
+  .process-widget .widget-header-sub {
+    margin-left: 0 !important;
+  }
 }
 
 /* Small screen */
@@ -1297,8 +1300,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   margin-right: 4px;
   height: 1.6rem;
   width: 1.6rem;
-  background-size: 100%;
-  background-image: url(#{ resource [ 'ivy-webcontent:images/expressLogo/icon_express_process_120x120.png' ]});
 }
 
 .expand-collapse-btns {
@@ -1307,7 +1308,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 
 .expand-collapse-btns .express-expand-collapse-btn {
   background-color: rgba(0, 0, 0, 0.10);
-  padding: 5px 10px;
+  padding: 4px 8px;
   border-radius: 15px;
   color: #212121 !important;
   float: left;
@@ -1459,8 +1460,14 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   font-size: 1.2rem;
   overflow: hidden;
   display: inline-flex;
-  width: calc(100% - 55px);
+  width: calc(100% - 75px);
   align-items: center;
+  padding-left: 15px;
+}
+
+.compact-processes-container .process-start-list-item-name {
+  padding-left: 0 !important;
+  width: calc(100% - 55px) !important;
 }
 
 .process-start-list-item:hover .process-start-list-item-name,
@@ -1472,9 +1479,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   display: inline-flex;
   align-items: center;
   font-size: 1.2rem;
-  position: absolute;
-  bottom: 35%;
-  right: 27px;
+  flex: 1 0 20px;
 }
 
 .compact-process-widget .process-start-list-item {
@@ -1505,6 +1510,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 
 .process-start-list-item-action.is-express {
   right: 50px;
+  flex: 1 0 auto;
 }
 
 .process-start-list-item-action .process-item {
@@ -1521,11 +1527,29 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   }
 }
 
+.process-item-action-container {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.4rem;
+  position: absolute;
+  vertical-align: middle;
+  height: 100%;
+  right: 18px;
+}
+
+.process-start-list-item .process-item-action-container .open-icon {
+  position: relative !important;
+  bottom: auto !important;
+  right: auto !important;
+  flex: 1 0 20px;
+}
+
 .process-start-list-item .open-icon {
-  position: absolute;;
+  position: absolute;
   color: rgba(0,0,0,0.5) !important;
   bottom: 27%;
   right: 15px;
+  padding-top: 5px;
 }
 
 .process-start-list-item .express-icon.open-icon {
@@ -1535,8 +1559,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 .process-start-list-item .process-start-list-item-action .process-description {
   display: inline-block;
   font-size: 1.5rem;
-  padding-right: 7px;
-  padding-left: 5px;
+  padding: 0 5px;
   float: left;
 }
 
@@ -1662,13 +1685,21 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   }
 }
 
+.process-start-list-item-action>div.express-process-logo {
+  opacity: 0.3;
+}
+
 .express-process-logo {
   cursor: default;
   border: none !important;
-  background-color: transparent !important;
   background-repeat: no-repeat;
   width: 1.5rem;
   height: 1.5rem;
+}
+
+.process-header .create-express-workflow-icon,
+.express-process-logo {
+  background-color: transparent !important;
   background-size: 100%;
   background-image: url(#{resource['ivy-webcontent:images/expressLogo/icon_express_process_120x120.png']});
 }
@@ -2009,6 +2040,10 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   width: 100%;
 }
 
+.icon-compact-mode {
+  vertical-align: middle;
+}
+
 .action-icon.icon-compact-mode {
   font-size: 1.2rem;
   margin-right: 20px;
@@ -2134,15 +2169,16 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   cursor: pointer;
 }
 
-
-.task-details-separator {
-  margin-top: 0;
-}
-
 .side-steps-panel .action-icon,
 .side-steps-panel .side-step-item-label {
   display: inline-block;
   float: left;
+}
+
+.task-detail-general-card .task-details-action-container {
+  position: absolute;
+  top: -5px;
+  right: -10px;
 }
 
 .side-steps-panel .action-icon {
@@ -5055,6 +5091,7 @@ _:-ms-fullscreen, :root .case-related-command-link {
   align-content: start;
   padding: 0 !important;
   font-weight: bold;
+  position: relative;
 }
 
 .task-desription-inplace .ui-button.ui-widget.ui-button-icon-only.ui-inplace-save {

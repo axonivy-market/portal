@@ -6,19 +6,24 @@
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="case" type="ch.ivyteam.ivy.workflow.ICase" required="true" />
-  <cc:attribute name="showItemDetailsHeader" default="true" />
-  <cc:attribute name="showItemDetailRelated" default="true" />
-  <cc:attribute name="showItemDetailsHistories" default="true" />
-  <cc:attribute name="showItemDetailDocuments" default="true" />
-  <cc:attribute name="showItemBackButton" default="true" />
+  <cc:attribute name="showItemDetailsHeader" />
+  <cc:attribute name="showItemDetailRelated" />
+  <cc:attribute name="showItemDetailsHistories" />
+  <cc:attribute name="showItemDetailDocuments" />
+  <cc:attribute name="showItemBackButton" />
   <cc:attribute name="descriptionComponentToUpdate" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="case" value="#{cc.attrs.case}" />
+  <c:set var="showItemDetailsHeader" value="#{cc.attrs.showItemDetailsHeader == null ? true:cc.attrs.showItemDetailsHeader}" />
+  <c:set var="showItemDetailRelated" value="#{cc.attrs.showItemDetailRelated == null ? true:cc.attrs.showItemDetailRelated}"/>
+  <c:set var="showItemDetailsHistories" value="#{cc.attrs.showItemDetailsHistories == null ?  true:cc.attrs.showItemDetailsHistories}"/>
+  <c:set var="showItemDetailDocuments" value="#{cc.attrs.showItemDetailDocuments == null ? true:cc.attrs.showItemDetailDocuments}"/>
+  <c:set var="showItemBackButton" value="#{cc.attrs.showItemBackButton == null ? true:cc.attrs.showItemBackButton}"/>
   <div class="ui-g">
 
-    <h:panelGroup styleClass="ui-g-12" rendered="#{cc.attrs.showItemDetailsHeader}" layout="block">
+    <h:panelGroup styleClass="ui-g-12" rendered="#{showItemDetailsHeader}" layout="block">
       <h:form id="case-detail-title-form" styleClass="ui-g-12 case-detail-title-header-container">
         <h:panelGroup id="case-detail-name" styleClass="case-detail-header" layout="block">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}: "
@@ -39,7 +44,7 @@
           </p:inplace>
         </h:panelGroup>
 
-        <p:commandButton rendered="#{cc.attrs.showItemBackButton}" id="back-to-cases" onclick="backToPrevPage();"
+        <p:commandButton rendered="#{showItemBackButton}" id="back-to-cases" onclick="backToPrevPage();"
           styleClass="case-details-back-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
           icon="fa fa-reply-all" iconPos="left" type="button" />
         <p:remoteCommand name="backToCasesList" actionListener="#{caseBean.backToCasesList()}" />
@@ -84,7 +89,7 @@
         </div>
 
         <!-- Histories box -->
-        <h:panelGroup id="history-container" rendered="#{cc.attrs.showItemDetailsHistories}" layout="block"
+        <h:panelGroup id="history-container" rendered="#{showItemDetailsHistories}" layout="block"
           styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
           <div class="card card-w-title case-detail-card">
             <ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="case-histories" case="#{case}" />
@@ -95,14 +100,14 @@
         <cc:renderFacet name="caseItemDetailCustomMiddle" />
 
         <!-- Related running box -->
-        <h:panelGroup rendered="#{cc.attrs.showItemDetailRelated}" styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
+        <h:panelGroup rendered="#{showItemDetailRelated}" styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
           <div class="card card-w-title case-detail-card">
             <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="related-tasks" case="#{case}" />
           </div>
         </h:panelGroup>
 
         <!-- Documents box -->
-        <h:panelGroup rendered="#{cc.attrs.showItemDetailDocuments}"
+        <h:panelGroup rendered="#{showItemDetailDocuments}"
           styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
           <div class="card card-w-title case-detail-card">
             <ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}"
