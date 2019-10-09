@@ -27,112 +27,125 @@
       <c:if test="#{!isShowResultTabView}" >
       	<h:outputText styleClass="not-display-result-tab-view" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/notDisplayResultTabView')}."/>
       </c:if>
-      <p:tabView id="search-results-tabview" widgetVar="search-results-tabview" onTabShow="onTabShow()" dynamic="true" styleClass="search-results-tabview"
-        rendered="#{isShowResultTabView}">
-        <p:tab id="process-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" titleStyleClass="process-tab-title"
-          rendered="#{compactProcessWidgetBean.displayShowAllProcessesLink}">
-          <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-results" hideProcessNavigation="true"
-            hideHeader="true" hideExpressCreation="true" processListStyleClass="process-in-search" />
-        </p:tab>
-        
-        <p:tab id="task-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}" titleStyleClass="task-tab-title"
-          rendered="#{taskWidgetBean.showFullTaskList}">
-          <div class="task-list-container js-task-list-container js-for-search-result">
-            <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-results" listHeaderStyleClass="task-in-search"
-              keyword="#{dataModel.taskDataModel.criteria.keyword}" hideTaskFilter="true" currentPortalPage="SEARCH_RESULTS"
-              dataModel="#{dataModel.taskDataModel}" hideWidgetHeader="true" compactMode="false">
-              <f:facet name="taskListHeader">
-                <ui:fragment rendered="#{useTaskOverrideListHeader}">
-                  <ui:insert name="taskListHeader">
-                  </ui:insert>
-                </ui:fragment>
-  
-                <ui:fragment rendered="#{not useTaskOverrideListHeader}">
-                  <ic:ch.ivy.addon.portalkit.component.task.column.TaskListHeader id="task-list-header-component"
-                    dataModel="#{dataModel.taskDataModel}" />
-                </ui:fragment>
-              </f:facet>
-  
-              <f:facet name="taskHeader">
-                <ui:fragment rendered="#{useTaskOverrideHeader}">
-                  <ui:insert name="taskHeader">
-                  </ui:insert>
-                </ui:fragment>
-  
-                <ui:fragment rendered="#{not useTaskOverrideHeader}">
-                  <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority id="task-priority-component"
-                    priority="#{task.priority}" dataModel="#{dataModel.taskDataModel}" />
-                  <div class="task-start-info">
-                    <ic:ch.ivy.addon.portalkit.component.task.column.TaskName id="task-name-component" task="#{task}"
+      <div id="search-results-tabview-container" class="search-results-tabview-container">
+        <p:tabView id="search-results-tabview" widgetVar="search-results-tabview" onTabShow="onTabShow()" dynamic="true" styleClass="search-results-tabview"
+          rendered="#{isShowResultTabView}">
+          <p:tab id="process-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" titleStyleClass="process-tab-title"
+            rendered="#{compactProcessWidgetBean.displayShowAllProcessesLink}">
+            <div class="js-process-list-container">
+              <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-results" hideProcessNavigation="true" hideHeader="true"
+                hideExpressCreation="true" processListStyleClass="process-in-search" />
+            </div>
+          </p:tab>
+          
+          <p:tab id="task-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}" titleStyleClass="task-tab-title"
+            rendered="#{taskWidgetBean.showFullTaskList}">
+            <div class="task-list-container js-task-list-container js-for-search-result">
+              <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-results" listHeaderStyleClass="task-in-search"
+                keyword="#{dataModel.taskDataModel.criteria.keyword}" hideTaskFilter="true" currentPortalPage="SEARCH_RESULTS"
+                dataModel="#{dataModel.taskDataModel}" hideWidgetHeader="true" compactMode="false">
+                <f:facet name="taskListHeader">
+                  <ui:fragment rendered="#{useTaskOverrideListHeader}">
+                    <ui:insert name="taskListHeader">
+                    </ui:insert>
+                  </ui:fragment>
+    
+                  <ui:fragment rendered="#{not useTaskOverrideListHeader}">
+                    <ic:ch.ivy.addon.portalkit.component.task.column.TaskListHeader id="task-list-header-component"
                       dataModel="#{dataModel.taskDataModel}" />
-                  </div>
-                  <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible id="task-responsible-component"
-                    dataModel="#{dataModel.taskDataModel}" userName="#{task.getActivatorName()}"
-                    fullName="#{task.getActivator().getDisplayName()}"
-                    styleClass="activatior-column" />
-                  <ic:ch.ivy.addon.portalkit.component.task.column.TaskId id="task-id-component" value="#{task.getId()}"
-                    dataModel="#{dataModel.taskDataModel}" />
-                  <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-creation-date-component"
-                    rendered="#{dataModel.taskDataModel.isSelectedColumn('CREATION_TIME')}" componentId="creation-time"
-                    responsiveStyleClass="u-hidden-md-down js-hidden-when-expand-menu"
-                    value="#{task.startTimestamp}" />
-                  <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-expiry-date-component"
-                    rendered="#{dataModel.taskDataModel.isSelectedColumn('EXPIRY_TIME')}" componentId="expiry-time"
-                    value="#{task.expiryTimestamp}" />
-                  <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state-component"
-                    dataModel="#{dataModel.taskDataModel}" state="#{task.state}" />
-                </ui:fragment>
-              </f:facet>
-            </ic:ch.ivy.addon.portalkit.component.TaskWidget>
-          </div>
-        </p:tab>
-        
-        <p:tab id="case-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}" titleStyleClass="case-tab-title"
-          rendered="#{caseWidgetBean.showFullCaseList}">
-          <div class="js-case-default-widget-container case-default-widget-container js-simple-container js-for-search-result">
-            <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-results" hideWidgetHeader="true"
-              dataModel="#{dataModel.caseDataModel}" hideCaseFilter="true" listHeaderStyleClass="case-in-search">
-              <f:facet name="caseListHeader">
-                <ui:fragment rendered="#{useCaseOverrideListHeader}">
-                  <ui:insert name="caseListHeader" />
-                </ui:fragment>
-
-                <ui:fragment rendered="#{not useCaseOverrideListHeader}">
-                  <ic:ch.ivy.addon.portalkit.component.CaseListHeader id="case-list-header"
-                    dataModel="#{dataModel.caseDataModel}" />
-                </ui:fragment>
-              </f:facet>
-              <f:facet name="caseHeader">
-              	<ui:fragment rendered="#{useCaseOverrideHeader}">
-                  <ui:insert name="caseHeader">
-                  </ui:insert>
-                </ui:fragment>
-                
-                <ui:fragment rendered="#{not useCaseOverrideHeader}">
-	                <div class="case-header-name-desc-cell u-truncate-text">
-	                  <ic:ch.ivy.addon.portalkit.component.cases.column.CaseName id="case-name-component" caseNameId="case-header-name-cell" caseDescriptionId="description-cell"
-	                    case="#{case}" dataModel="#{dataModel.caseDataModel}" />
-	                </div>
-	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseId componentId="case-id-cell" case="#{case}" dataModel="#{dataModel.caseDataModel}" />
-	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCreator componentId="case-creator-cell" case="#{case}" dataModel="#{dataModel.caseDataModel}" />
-	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-creation-date-cell" 
-	                  rendered="#{dataModel.caseDataModel.isSelectedColumn('CREATION_TIME')}" value="#{case.startTimestamp}" />
-	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-expiry-date-cell"
-                      responsiveStyleClass="js-hidden-when-expand-menu u-hidden-md-down"
-	                  rendered="#{dataModel.caseDataModel.isSelectedColumn('FINISHED_TIME')}" value="#{case.endTimestamp}" />
-	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState componentId="case-state-cell" case="#{case}" dataModel="#{dataModel.caseDataModel}"/>
-              	</ui:fragment>
-              </f:facet>
-            </ic:ch.ivy.addon.portalkit.component.CaseWidget>
-          </div>
-        </p:tab>
-        
-        <ui:insert name="custom-search"></ui:insert>
-        
-      </p:tabView>
+                  </ui:fragment>
+                </f:facet>
+    
+                <f:facet name="taskHeader">
+                  <ui:fragment rendered="#{useTaskOverrideHeader}">
+                    <ui:insert name="taskHeader">
+                    </ui:insert>
+                  </ui:fragment>
+    
+                  <ui:fragment rendered="#{not useTaskOverrideHeader}">
+                    <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority id="task-priority-component"
+                      priority="#{task.priority}" dataModel="#{dataModel.taskDataModel}" />
+                    <div class="task-start-info">
+                      <ic:ch.ivy.addon.portalkit.component.task.column.TaskName id="task-name-component" task="#{task}"
+                        dataModel="#{dataModel.taskDataModel}" />
+                    </div>
+                    <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible id="task-responsible-component"
+                      dataModel="#{dataModel.taskDataModel}" userName="#{task.getActivatorName()}"
+                      fullName="#{task.getActivator().getDisplayName()}"
+                      styleClass="activatior-column" />
+                    <ic:ch.ivy.addon.portalkit.component.task.column.TaskId id="task-id-component" value="#{task.getId()}"
+                      dataModel="#{dataModel.taskDataModel}" />
+                    <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-creation-date-component"
+                      rendered="#{dataModel.taskDataModel.isSelectedColumn('CREATION_TIME')}" componentId="creation-time"
+                      responsiveStyleClass="u-hidden-md-down js-hidden-when-expand-menu"
+                      value="#{task.startTimestamp}" />
+                    <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-expiry-date-component"
+                      rendered="#{dataModel.taskDataModel.isSelectedColumn('EXPIRY_TIME')}" componentId="expiry-time"
+                      value="#{task.expiryTimestamp}" />
+                    <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state-component"
+                      dataModel="#{dataModel.taskDataModel}" state="#{task.state}" />
+                  </ui:fragment>
+                </f:facet>
+              </ic:ch.ivy.addon.portalkit.component.TaskWidget>
+            </div>
+          </p:tab>
+          
+          <p:tab id="case-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}" titleStyleClass="case-tab-title"
+            rendered="#{caseWidgetBean.showFullCaseList}">
+            <div class="js-case-default-widget-container case-default-widget-container js-simple-container js-for-search-result">
+              <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-results" hideWidgetHeader="true"
+                dataModel="#{dataModel.caseDataModel}" hideCaseFilter="true" listHeaderStyleClass="case-in-search">
+                <f:facet name="caseListHeader">
+                  <ui:fragment rendered="#{useCaseOverrideListHeader}">
+                    <ui:insert name="caseListHeader" />
+                  </ui:fragment>
+  
+                  <ui:fragment rendered="#{not useCaseOverrideListHeader}">
+                    <ic:ch.ivy.addon.portalkit.component.CaseListHeader id="case-list-header"
+                      dataModel="#{dataModel.caseDataModel}" />
+                  </ui:fragment>
+                </f:facet>
+                <f:facet name="caseHeader">
+                	<ui:fragment rendered="#{useCaseOverrideHeader}">
+                    <ui:insert name="caseHeader">
+                    </ui:insert>
+                  </ui:fragment>
+                  
+                  <ui:fragment rendered="#{not useCaseOverrideHeader}">
+  	                <div class="case-header-name-desc-cell u-truncate-text">
+  	                  <ic:ch.ivy.addon.portalkit.component.cases.column.CaseName id="case-name-component" caseNameId="case-header-name-cell" caseDescriptionId="description-cell"
+  	                    case="#{case}" dataModel="#{dataModel.caseDataModel}" />
+  	                </div>
+  	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseId componentId="case-id-cell" case="#{case}" dataModel="#{dataModel.caseDataModel}" />
+  	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCreator componentId="case-creator-cell" case="#{case}" dataModel="#{dataModel.caseDataModel}" />
+  	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-creation-date-cell" 
+  	                  rendered="#{dataModel.caseDataModel.isSelectedColumn('CREATION_TIME')}" value="#{case.startTimestamp}" />
+  	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-expiry-date-cell"
+                        responsiveStyleClass="js-hidden-when-expand-menu u-hidden-md-down"
+  	                  rendered="#{dataModel.caseDataModel.isSelectedColumn('FINISHED_TIME')}" value="#{case.endTimestamp}" />
+  	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState componentId="case-state-cell" case="#{case}" dataModel="#{dataModel.caseDataModel}"/>
+                	</ui:fragment>
+                </f:facet>
+              </ic:ch.ivy.addon.portalkit.component.CaseWidget>
+            </div>
+          </p:tab>
+          
+          <ui:insert name="custom-search"></ui:insert>
+          
+        </p:tabView>
+      </div>
       <script>
         function onTabShow() {
           var $selectedTab = $("#search-results-tabview").find(".ui-tabs-panel").filter(function() {return $(this).css('display') == 'block'});
+          var isSelectTaskTab = $selectedTab.find('.js-process-list-container').length != 0;
+          if (isSelectTaskTab) {
+            var processListScreen = new ProcessListScreenHandler();
+            var responsiveToolkit = ResponsiveToolkit(processListScreen);
+
+            Portal.init(responsiveToolkit);
+            return;
+          }
+
           var isSelectTaskTab = $selectedTab.find('.js-task-list-container').length != 0;
           if (isSelectTaskTab) {
             var taskListScreen = new TaskListScreenHandler();
