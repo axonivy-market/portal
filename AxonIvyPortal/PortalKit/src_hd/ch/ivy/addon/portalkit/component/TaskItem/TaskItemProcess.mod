@@ -1,5 +1,5 @@
 [Ivy]
-150CB86EFC2F2972 3.23 #module
+150CB86EFC2F2972 3.26 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemProcess Big #zClass
 Ts0 RD #cInfo
@@ -480,8 +480,9 @@ Ts0 f7 actionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
 ' #txt
 Ts0 f7 actionTable 'out=in;
 ' #txt
-Ts0 f7 actionCode 'String newResponsibleName = in.delegatedSecurityMember.getDisplayName();
-String oldResponsibleName = in.task.getActivator().getDisplayName();
+Ts0 f7 actionCode 'import org.apache.commons.lang3.StringUtils;
+String newResponsibleName = in.delegatedSecurityMember.getDisplayName();
+String oldResponsibleName = in.task.getActivator() != null? in.task.getActivator().getDisplayName() : StringUtils.stripStart(in.task.getActivatorName(), "#");
 
 in.delegateComment = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateComment", [in.task.getId(), oldResponsibleName, newResponsibleName]);' #txt
 Ts0 f7 security system #txt

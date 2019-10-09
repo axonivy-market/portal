@@ -184,12 +184,13 @@ public class TaskBean implements Serializable {
   }
 
   public String displayRelatedTaskToolTip(ITask task) {
-    List<Object> params = new ArrayList<>();
-    if (task != null && task.getActivator() != null) {
-      ISecurityMember taskActivor = task.getActivator();
-      params = Arrays.asList(getTranslatedState(task.getState()), Objects.toString(taskActivor.getDisplayName(), ""));
-    }
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateAndResponsible", params);
+  	 List<Object> params = new ArrayList<>();
+     if (task != null) {
+       ISecurityMember taskActivator = task.getActivator();
+       String taskActivatorName = taskActivator != null? taskActivator.getDisplayName() : StringUtils.stripStart(task.getActivatorName(), "#");
+       params = Arrays.asList(getTranslatedState(task.getState()), Objects.toString(taskActivatorName, ""));
+     }
+     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateAndResponsible", params);
   }
 
   public String getUserFriendlyTaskState(TaskState state) {
