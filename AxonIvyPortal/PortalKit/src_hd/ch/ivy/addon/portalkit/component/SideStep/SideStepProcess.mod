@@ -159,8 +159,10 @@ Ts0 f8 expr out #txt
 Ts0 f8 448 768 488 768 #arcP
 Ts0 f7 actionTable 'out=in;
 ' #txt
-Ts0 f7 actionCode 'String newResponsibleName = in.delegatedSecurityMember.getDisplayName();
-String oldResponsibleName = in.task.getActivator().getDisplayName();
+Ts0 f7 actionCode 'import org.apache.commons.lang.StringUtils;
+
+String newResponsibleName = in.delegatedSecurityMember.getDisplayName();
+String oldResponsibleName = in.task.getActivator() != null? in.task.getActivator().getDisplayName() : StringUtils.stripStart(in.task.getActivatorName(), "#");
 
 in.delegateComment = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateComment", [in.task.getId(), oldResponsibleName, newResponsibleName]);' #txt
 Ts0 f7 security system #txt
