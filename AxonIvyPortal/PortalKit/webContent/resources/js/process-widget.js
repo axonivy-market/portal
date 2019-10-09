@@ -24,9 +24,8 @@ function ProcessWidget() {
       var announcementMessageContainer = $('.js-announcement-message');
       var mainScreenHeight = $('body').outerHeight() - $('.layout-topbar').outerHeight() - excludeMarginBottom;
       var availableHeight = mainScreenHeight - (announcementMessageContainer.outerHeight(true)||0)
-                              - (processsHeader.outerHeight(true)||0) 
-                              - (globalSearchInput.outerHeight(true)||0) - (globalSearchTabHeader.outerHeight(true)||0)
-                              - error;
+                              - (processsHeader.outerHeight(true)||0) - (globalSearchInput.outerHeight(true)||0)
+                              - (globalSearchTabHeader.outerHeight(true)||0) - error;
       if (!!availableHeight) {
         processStartListContainer.css("max-height", availableHeight + "px");
         this.setupProcessNav(processStartListContainer, availableHeight);
@@ -41,24 +40,29 @@ function ProcessWidget() {
       var processNav = $('.js-process-nav');
       var searchTab = $('.search-results-tabview');
       var marginRightProcessWidget = 0;
-
+        // For search form tab
         if (searchTab.length > 0) {
-          marginRightProcessWidget = ((searchTab.width()||0) - (processStartListContainer.width()||0))/2;
-          if (processStartListContainer.css("margin-right") != "0px") {
-            marginRightProcessWidget = marginRightProcessWidget + 8;
+          marginRightProcessWidget = 20;
+          if (searchTab.width() > processStartListContainer.width()) {
+            marginRightProcessWidget = ((searchTab.width()||0) - (processStartListContainer.width()||0))/2;
+            // if first time call, ignore outer padding
+            if (processStartListContainer.css("margin-right") != "0px") {
+              marginRightProcessWidget = marginRightProcessWidget + 8;
+            }
           }
         } else {
+          // For process list page
           var layoutContent = $('.layout-content');
           var processWidget = $('.process-widget');
           marginRightProcessWidget = ((layoutContent.outerWidth(true)||0) - (layoutContent.width()||0))/2
-                                      + ((processWidget.outerWidth(true)||0) - (processWidget.width()||0));
-  
+                                       + ((processWidget.outerWidth(true)||0) - (processWidget.width()||0));
+
           var scrollBarWidth = this.detechScrollBarWidth();
           processNav.css("right", scrollBarWidth + "px");
         }
         processStartListContainer.css("margin-right", -marginRightProcessWidget + "px");
 
-      processNav.css("height", (availableHeight  - excludeMarginBottom) + "px");
+      processNav.css("height", (availableHeight  - excludeMarginBottom*2) + "px");
       processNav.css("top", (($('.js-process-header').outerHeight()||0) + ($('.layout-topbar').outerHeight()||0) + excludeMarginBottom) + "px");
     },
 
@@ -123,7 +127,7 @@ $(document).ready(function() {
   processWidget.filter();
 });
 
-// Update scroll-bar when window size is changed
+//Update scroll-bar when window size is changed
 $(window).resize(function() {
   processWidget = ProcessWidget();
   processWidget.setupScrollbar();
