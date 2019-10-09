@@ -69,6 +69,7 @@ public class CaseDetailsPage extends TemplatePage {
     onClickHistoryIcon();
     waitAjaxIndicatorDisappear();
 
+    waitForElementDisplayed(By.cssSelector("div.ui-dialog[aria-hidden='false']"), true);
     WebElement addNoteDialog = findElementByCssSelector("div.ui-dialog[aria-hidden='false']");
     waitForElementDisplayed(addNoteDialog, true);
     addNoteDialog.findElement(By.cssSelector("textarea[id$='note-content']")).sendKeys(content);
