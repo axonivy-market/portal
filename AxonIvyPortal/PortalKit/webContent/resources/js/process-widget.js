@@ -62,7 +62,7 @@ function ProcessWidget() {
         }
         processStartListContainer.css("margin-right", -marginRightProcessWidget + "px");
 
-      processNav.css("height", (availableHeight  - excludeMarginBottom*2) + "px");
+      processNav.css("height", (availableHeight  - excludeMarginBottom) + "px");
       processNav.css("top", (($('.js-process-header').outerHeight()||0) + ($('.layout-topbar').outerHeight()||0) + excludeMarginBottom) + "px");
     },
 
