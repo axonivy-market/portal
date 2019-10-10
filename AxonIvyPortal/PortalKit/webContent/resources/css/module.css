@@ -1687,6 +1687,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 
 .process-start-list-item-action>div.express-process-logo {
   opacity: 0.3;
+  margin: 0 5px;
 }
 
 .express-process-logo {
