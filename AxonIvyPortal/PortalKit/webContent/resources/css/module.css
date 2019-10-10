@@ -1275,6 +1275,13 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   vertical-align: bottom;
 }
 
+.process-header {
+  float: right;
+  width: 100%;
+  display: block;
+  position: relative;
+}
+
 .process-widget .widget-header.expanded>div {
   align-self: flex-end;
 }
