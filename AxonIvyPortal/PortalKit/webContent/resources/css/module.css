@@ -434,10 +434,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   font-size: 1.4rem;
 }
 
-.filter-category-checkbox-tree {
-  color: rgba(0, 0, 0, 1);
-}
-
 .filter-category-checkbox-tree .ui-tree-container {
   height: 300px;
   overflow: auto !important;
@@ -445,21 +441,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .filter-category-checkbox-tree.ui-tree .ui-treenode .ui-treenode-label {
   font-size: 1.2rem;
-}
-
-.filter-category-checkbox-tree .ui-chkbox .ui-chkbox-box {
-  width: 1.2rem !important;
-  height: 1.2rem !important;
-}
-
-.filter-category-checkbox-tree .ui-chkbox .ui-chkbox-box .ui-chkbox-icon {
-  margin-left: -3px !important;
-}
-
-.filter-category-checkbox-tree.ui-tree .ui-treenode-content .ui-chkbox-box .ui-icon-minus {
-  background-size: 70%;
-  margin-top: -2px;
-  margin-left: -2px;
 }
 
 .filter-category-checkbox-tree .ui-tree-filter.ui-inputfield {
@@ -474,6 +455,10 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .filter-category-checkbox-tree .ui-icon.ui-icon-search:before {
   font-family: 'FontAwesome' !important;
   content: "\f002";
+}
+
+.ui-tree .ui-treenode-leaf-icon {
+  width: 20px !important;
 }
 
 /********************************** END FILTER WIDGET **********************************/
@@ -4703,10 +4688,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   display: block !important;
 }
 
-.ui-tree .ui-treenode .ui-treenode-leaf-icon {
-  width: 19px !important;
-}
-
 .task-analysis-page-navigation-link {
   float: right;
 }
@@ -4836,10 +4817,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 .ui-panel .ui-panel-titlebar {
 	padding: .3em .3em .3em .5em !important;
 	margin-top: -.15em;
-}
-
-.ui-tree .ui-treenode-leaf-icon {
-  width: 20px !important;
 }
 
 /*********** SEARCH ICON ***********/
