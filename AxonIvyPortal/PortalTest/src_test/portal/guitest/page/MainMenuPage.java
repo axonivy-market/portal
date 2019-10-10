@@ -8,10 +8,6 @@ import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 public class MainMenuPage extends TemplatePage {
 
-  private final static String PROCESSES_MENU_ICON_POSITION = "1";
-  private final static String TASK_MENU_ICON_POSITION = "2";
-  private final static String CASE_MENU_ICON_POSITION = "3";
-  private final static String STATISTIC_MENU_ICON_POSITION = "4";
   private final static String CASE_MENU_ID = "main-menu-container:main-menu-form:main-menu-container_node_2";
   private final static String SUB_MENU_ITEM_ID =
       "user-menu-required-login:main-navigator:menu-item:0:sub-menu-item:%d:sub-menu-item-link";
@@ -23,23 +19,6 @@ public class MainMenuPage extends TemplatePage {
 
   public void moveToTaskList() {
     openTaskList();
-  }
-
-  public void toggleTaskMenu() {
-    findElementByCssSelector("a.second-level-menu-header").click();
-    Sleeper.sleepTight(1000);
-  }
-
-  public void openTaskMenu() {
-    if (!isTaskMenuOpen()) {
-      toggleTaskMenu();
-    }
-  }
-
-  public void closeTaskMenu() {
-    if (isTaskMenuOpen()) {
-      toggleTaskMenu();
-    }
   }
 
   public boolean isProcessesDisplayed() {
@@ -67,15 +46,21 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public ProcessWidgetPage selectProcessesMenu() {
-    findElementByCssSelector("a.left-sidebar-sub-menu-item:nth-of-type(" + PROCESSES_MENU_ICON_POSITION + ")").click();
+    findElementByCssSelector("li.submenu-container:nth-child(2) > a.ripplelink.submenu").click();
     waitForProcessesPageAfterSelectProcessesCategory();
     return new ProcessWidgetPage();
   }
 
   public TaskWidgetPage selectTaskMenu() {
-    findElementByCssSelector("a.left-sidebar-sub-menu-item:nth-of-type(" + TASK_MENU_ICON_POSITION + ")").click();
-    waitForTasksLoadedAfterSelectTaskCategory();
+    findElementByCssSelector("li.submenu-container:nth-child(3) > a.ripplelink.submenu").click();
     return new TaskWidgetPage();
+  }
+
+  public StatisticWidgetPage selectStatisticDashboard() {
+    findElementByCssSelector("li.submenu-container:nth-child(5) > a.ripplelink.submenu").click();
+    ensureNoBackgroundRequest();
+    waitForPageLoaded();
+    return new StatisticWidgetPage();
   }
 
   public TaskWidgetPage selectTaskCategory(String category) {
@@ -129,19 +114,8 @@ public class MainMenuPage extends TemplatePage {
     return ".second-level-menu-body .ui-treetable-data ." + path + ".on";
   }
 
-  private void waitForTasksLoadedAfterSelectTaskCategory() {
-    waitForElementDisplayed(By.cssSelector("*[id$='0:task-item:task-action:task-delegate-command']"), true);
-  }
-
   private void waitForProcessesPageAfterSelectProcessesCategory() {
     waitForElementDisplayed(By.id("process-widget:process-search:non-ajax-keyword-filter"), true);
-  }
-
-  public StatisticWidgetPage selectStatisticDashboard() {
-    findElementByCssSelector("a.left-sidebar-sub-menu-item:nth-of-type(" + STATISTIC_MENU_ICON_POSITION + ")").click();
-    ensureNoBackgroundRequest();
-    waitForPageLoaded();
-    return new StatisticWidgetPage();
   }
 
   public boolean hasReadAllCasePermission() {
@@ -181,10 +155,5 @@ public class MainMenuPage extends TemplatePage {
 
   private WebElement getPlusIconOnCaseMenu() {
     return findElementByXpath("id('" + CASE_MENU_ID + "')//span[contains(@class, 'ui-treetable-toggler')]");
-  }
-
-  public boolean isTaskMenuOpen() {
-    WebElement taskMenu = findElementById("second-level-menu");
-    return taskMenu.getAttribute(CLASS_PROPERTY).contains(" on");
   }
 }
