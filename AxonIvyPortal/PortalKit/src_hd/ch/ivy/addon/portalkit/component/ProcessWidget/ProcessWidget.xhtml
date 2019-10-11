@@ -18,7 +18,7 @@
   <div class="ui-g">
     <div id="#{cc.clientId}" class="widget process-widget ui-g-12">
       <!-- Process header -->
-      <div class="process-header js-process-header ui-g">
+      <div class="process-header js-process-header">
         <h:panelGroup id="header" styleClass="widget-header expanded ui-g-12 u-padding-0" layout="block" rendered="#{!cc.attrs.hideHeader}">
           <h:panelGroup layout="block" styleClass="ui-g-8 ui-md-6 ui-sm-4">
             <div class="process-header-title-container">
@@ -57,45 +57,41 @@
       </div>
 
       <!-- Process body -->
-      <div class="ui-g">
-        <div class="ui-g-12">
-          <h:panelGroup id="process-list" layout="block" styleClass="widget-content process-start-list-container js-process-start-list-container ui-g">
-            <ui:fragment id="full-process-list">
-              <div class="ui-g-12 u-padding-0">
-                <ui:repeat id="process-group-alphabet" var="entryProcess" value="#{processWidgetBean.processesByAlphabet.entrySet().toArray()}">
-                  <p:fieldset id="alphabet-process-index-fieldset"
-                    legend="#{entryProcess.key eq 'SPECIAL_CHARACTER' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/specialCharacterGroup') : entryProcess.key}" 
-                    toggleable="true" styleClass="fieldset-no-border process-group js-process-index-group js-process-group-#{entryProcess.key}">
-                    <h:panelGroup id="process-container" layout="block" styleClass="ui-g">
-                      <ui:repeat id="processes" varStatus="status" var="process" value="#{entryProcess.value}">
-                        <div class="ui-g-4 ui-lg-4 ui-md-6 ui-sm-12 u-no-padding-top u-no-padding-left js-process-start-list-item">
-                          <h:form id="process-item-form"
-                            styleClass="process-start-list-item #{processWidgetBean.isExpressProcess(process) ? 'express-workflow' : ''}">
-                            <ui:include src="ProcessItemLink.xhtml">
-                              <ui:param name="processName" value="#{process.name}" />
-                              <ui:param name="processLink" value="#{process.getStartLink()}" />
-                              <ui:param name="isExpress" value="#{processWidgetBean.isExpressProcess(process)}" />
-                              <ui:param name="processDescription" value="#{process.getDescription()}" />
-                            </ui:include>
-                          </h:form>
-                        </div>
-                      </ui:repeat>
-                    </h:panelGroup>
-                  </p:fieldset>
+      <h:panelGroup id="process-list" layout="block" styleClass="widget-content process-start-list-container js-process-start-list-container ui-g-12">
+        <ui:fragment id="full-process-list">
+          <ui:repeat id="process-group-alphabet" var="entryProcess" value="#{processWidgetBean.processesByAlphabet.entrySet().toArray()}">
+            <p:fieldset id="alphabet-process-index-fieldset"
+              legend="#{entryProcess.key eq 'SPECIAL_CHARACTER' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/specialCharacterGroup') : entryProcess.key}"
+              toggleable="true" styleClass="fieldset-no-border process-group js-process-index-group js-process-group-#{entryProcess.key}">
+              <h:panelGroup id="process-container" layout="block" styleClass="ui-g">
+                <ui:repeat id="processes" varStatus="status" var="process" value="#{entryProcess.value}">
+                  <div class="ui-g-4 ui-lg-4 ui-md-6 ui-sm-12 u-no-padding-top u-no-padding-left js-process-start-list-item">
+                    <h:form id="process-item-form"
+                      styleClass="process-start-list-item #{processWidgetBean.isExpressProcess(process) ? 'express-workflow' : ''}">
+                      <ui:include src="ProcessItemLink.xhtml">
+                        <ui:param name="processName" value="#{process.name}" />
+                        <ui:param name="processLink" value="#{process.getStartLink()}" />
+                        <ui:param name="isExpress" value="#{processWidgetBean.isExpressProcess(process)}" />
+                        <ui:param name="processDescription" value="#{process.getDescription()}" />
+                      </ui:include>
+                    </h:form>
+                  </div>
                 </ui:repeat>
-                <h:outputText id="no-found-processes" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/noProcesses')}"
-                  styleClass="no-process-message js-no-found-processes u-display-none" />
-              </div>
-            </ui:fragment>
-            <h:panelGroup id="process-nav" styleClass="process-nav js-process-nav" rendered="#{!cc.attrs.hideProcessNavigation}">
-              <ui:repeat value="#{processWidgetBean.getAllAlphabeticalCharacters().entrySet().toArray()}" var="character">
-                <p:commandLink value="#{character.value}" styleClass="process-nav-item js-process-starts-with-#{character.key}"
-                  onclick="jumpToProcessGroupByCharacter(event)" global="false" />
-              </ui:repeat>
-            </h:panelGroup>
-          </h:panelGroup>
-        </div>
-      </div>
+              </h:panelGroup>
+            </p:fieldset>
+          </ui:repeat>
+
+          <h:outputText id="no-found-processes" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/noProcesses')}"
+            styleClass="no-process-message js-no-found-processes u-display-none" />
+        </ui:fragment>
+      </h:panelGroup>
+      <!-- Process navigator -->
+      <h:panelGroup id="process-nav" styleClass="process-nav js-process-nav" rendered="#{!cc.attrs.hideProcessNavigation}">
+        <ui:repeat value="#{processWidgetBean.getAllAlphabeticalCharacters().entrySet().toArray()}" var="character">
+          <p:commandLink value="#{character.value}" styleClass="process-nav-item js-process-starts-with-#{character.key}"
+            onclick="jumpToProcessGroupByCharacter(event)" global="false" />
+        </ui:repeat>
+      </h:panelGroup>
     </div>
   </div>
 
