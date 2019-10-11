@@ -36,35 +36,35 @@ function updateDrillDownPanelPosition(panel) {
 }
 
 function barChartExtender() {
-  var currentAngle;
-  if (window.screen.availWidth < 1366) {
-    currentAngle = -30;
-  } else {
-    currentAngle = 0;
-  }
-  this.cfg.grid = {
-    gridLineColor : 'transparent',
-    background : 'rgba(255,255,255, 0)',
-    drawBorder : true,
-    shadow : false
-  };
-  this.cfg.axes.yaxis.labelOptions = {
-    textColor : 'black',
-    fontSize : '11.4px',
-  };
-  this.cfg.axes.xaxis.labelOptions = {
-    textColor : 'black',
-    fontSize : '11.4px'
-  };
-  this.cfg.axes.xaxis.tickOptions = {
-    textColor : 'black',
-    fontSize : '11.4px',
-    angle : currentAngle
-  };
-  this.cfg.axes.yaxis.tickOptions = {
-    textColor : 'black',
-    fontSize : '11.4px'
-  };
+//  var currentAngle;
+//  if (window.screen.availWidth < 1366) {
+//    currentAngle = -30;
+//  } else {
+//    currentAngle = 0;
+//  }
+//  this.cfg.grid = {
+//    gridLineColor : 'transparent',
+//    background : 'rgba(255,255,255, 0)',
+//    drawBorder : true,
+//    shadow : false
+//  };
+//  this.cfg.axes.yaxis.labelOptions = {
+//    textColor : 'black',
+//    fontSize : '11.4px',
+//  };
+//  this.cfg.axes.xaxis.labelOptions = {
+//    textColor : 'black',
+//    fontSize : '11.4px'
+//  };
+//  this.cfg.axes.xaxis.tickOptions = {
+//    textColor : 'black',
+//    fontSize : '11.4px',
+//    angle : currentAngle
+//  };
+//  this.cfg.axes.yaxis.tickOptions = {
+//    textColor : 'black',
+//    fontSize : '11.4px'
+//  };
 }
 
 function elapsedTimeBarChartExtender() {
