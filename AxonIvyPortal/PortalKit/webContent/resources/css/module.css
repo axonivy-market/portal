@@ -45,7 +45,7 @@
   left: 0px;
   right: 0px;
  }
- 
+
 input::-ms-clear {
   display: none;
 }
@@ -434,45 +434,31 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   font-size: 1.4rem;
 }
 
-.filter-category-checkbox-tree{
-	color: rgba(0, 0, 0, 1);
+.filter-category-checkbox-tree .ui-tree-container {
+  height: 300px;
+  overflow: auto !important;
 }
 
-.filter-category-checkbox-tree .ui-tree-container{
-	height: 300px;
-	overflow: auto !important;
+.filter-category-checkbox-tree.ui-tree .ui-treenode .ui-treenode-label {
+  font-size: 1.2rem;
 }
 
-.filter-category-checkbox-tree.ui-tree .ui-treenode .ui-treenode-label{
-	font-size: 1.2rem;	
-}
-
-.filter-category-checkbox-tree .ui-chkbox .ui-chkbox-box {
-	width: 1.2rem !important;
-    height: 1.2rem !important;
-}
-
-.filter-category-checkbox-tree.ui-tree .ui-treenode-content .ui-chkbox-box .ui-icon-minus{
-	background-size: 70%;
-    margin-top: -2px;
-    margin-left: -2px;
-}
-
-.filter-category-checkbox-tree .ui-tree-filter.ui-inputfield{
-	box-shadow: inset 0 -1px 0px 0px rgba(0,0,0,0.3);
+.filter-category-checkbox-tree .ui-tree-filter.ui-inputfield {
+  box-shadow: inset 0 -1px 0px 0px rgba(0, 0, 0, 0.3);
 }
 
 .filter-category-checkbox-tree .ui-icon.ui-icon-search {
-	background-image: none !important;
-}
-
-.filter-category-checkbox-tree .ui-icon.ui-icon-search {
-	text-indent: 0 !important;
+  background-image: none !important;
+  text-indent: 0 !important;
 }
 
 .filter-category-checkbox-tree .ui-icon.ui-icon-search:before {
-	font-family: 'FontAwesome' !important;
-	content: "\f002";
+  font-family: 'FontAwesome' !important;
+  content: "\f002";
+}
+
+.ui-tree .ui-treenode-leaf-icon {
+  width: 20px !important;
 }
 
 /********************************** END FILTER WIDGET **********************************/
@@ -1228,7 +1214,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 
 /* Mobile screen */
 @media screen and (max-width: 40em) {
-  .process-start-list-container .process-nav .process-nav-item  {
+  .process-widget .process-nav .process-nav-item  {
     padding: 0 10px !important;
   }
   .process-widget .process-group {
@@ -1247,7 +1233,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   .delegation-select-panel {
     max-width: 36% !important;
   }
-  .process-start-list-container .process-nav .process-nav-item  {
+  .process-widget .process-nav .process-nav-item  {
     padding: 0 15px !important;
   }
 }
@@ -1257,7 +1243,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   .delegation-select-panel {
     max-width: 32% !important;
   }
-  .process-start-list-container .process-nav .process-nav-item  {
+  .process-widget .process-nav .process-nav-item  {
     padding: 0 20px !important;
   }
 }
@@ -1272,6 +1258,13 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 .process-widget .widget-header.expanded {
   display: flex;
   vertical-align: bottom;
+}
+
+.process-header {
+  float: right;
+  width: 100%;
+  display: block;
+  position: relative;
 }
 
 .process-widget .widget-header.expanded>div {
@@ -1350,35 +1343,35 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 }
 
 .process-start-list-container {
-  position: relative !important;
   flex-flow: row wrap;
   justify-content: flex-start;
   overflow: auto;
   height: auto !important;
   padding: 0;
+  -webkit-overflow-scroll: touch;
 }
 
-.process-start-list-container .process-nav {
+.process-widget .process-nav {
   display: flex;
   flex-flow: column;
   justify-content: space-between;
   text-align: center;
-  position: fixed !important;
+  position: absolute !important;
   right: 0;
   height: auto;
   border-left: 1px solid rgba(0,0,0,0.1);
 }
 
-.process-start-list-container .process-nav .process-nav-item {
+.process-widget .process-nav .process-nav-item {
   padding: 0 30px;
   color: rgba(0,0,0,1) !important;
 }
 
-.process-start-list-container .process-nav .process-nav-item.selected {
+.process-widget .process-nav .process-nav-item.selected {
   font-weight: bold;
 }
 
-.process-start-list-container .process-nav .process-nav-item.selected:before {
+.process-widget .process-nav .process-nav-item.selected:before {
   content: "";
   display: table;
   position: absolute;
@@ -1388,7 +1381,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   transform: translateY(-20%);
 }
 
-.process-nav .process-nav-item.disabled {
+.process-widget .process-nav .process-nav-item.disabled {
   pointer-events: none;
   cursor: default;
   color: rgba(0,0,0,0.3) !important;
@@ -1687,6 +1680,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 
 .process-start-list-item-action>div.express-process-logo {
   opacity: 0.3;
+  margin: 0 5px;
 }
 
 .express-process-logo {
@@ -4694,46 +4688,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   display: block !important;
 }
 
-.filter-category-checkbox-tree{
-  color: rgba(0, 0, 0, 1);
-}
-
-.filter-category-checkbox-tree.ui-tree .ui-treenode .ui-treenode-label{
-  font-size: 1.2rem;	
-}
-
-.filter-category-checkbox-tree .ui-chkbox .ui-chkbox-box {
-  width: 1.2rem !important;
-  height: 1.2rem !important;
-}
-
-.filter-category-checkbox-tree.ui-tree .ui-treenode-content .ui-chkbox-box .ui-icon-minus{
-  background-size: 70%;
-  margin-top: -2px;
-  margin-left: -2px;
-}
-
-.filter-category-checkbox-tree .ui-tree-filter.ui-inputfield{
-  box-shadow: inset 0 -1px 0px 0px rgba(0,0,0,0.3);
-}
-
-.filter-category-checkbox-tree .ui-icon.ui-icon-search {
-  background-image: none !important;
-}
-
-.filter-category-checkbox-tree .ui-icon.ui-icon-search {
-  text-indent: 0 !important;
-}
-
-.filter-category-checkbox-tree .ui-icon.ui-icon-search:before {
-  font-family: 'FontAwesome' !important;
-  content: "\f002";
-}
-
-.ui-tree .ui-treenode .ui-treenode-leaf-icon {
-  width: 19px !important;
-}
-
 .task-analysis-page-navigation-link {
   float: right;
 }
@@ -4863,10 +4817,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 .ui-panel .ui-panel-titlebar {
 	padding: .3em .3em .3em .5em !important;
 	margin-top: -.15em;
-}
-
-.ui-tree .ui-treenode-leaf-icon {
-  width: 20px !important;
 }
 
 /*********** SEARCH ICON ***********/

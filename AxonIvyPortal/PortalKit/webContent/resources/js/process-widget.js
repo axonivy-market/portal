@@ -28,7 +28,7 @@ function ProcessWidget() {
                               - (globalSearchTabHeader.outerHeight(true)||0) - error;
       if (!!availableHeight) {
         processStartListContainer.css("max-height", availableHeight + "px");
-        this.setupProcessNav(processStartListContainer, availableHeight);
+        this.setupProcessNav(processStartListContainer, availableHeight, announcementMessageContainer);
       }
       processStartListContainer.on("scroll", function() {
         $(".process-nav-item.selected").removeClass("selected");
@@ -36,7 +36,7 @@ function ProcessWidget() {
     },
 
     // setup scroll-bar for process navigator
-    setupProcessNav: function(processStartListContainer, availableHeight) {
+    setupProcessNav: function(processStartListContainer, availableHeight, announcementMessageContainer) {
       var processNav = $('.js-process-nav');
       var searchTab = $('.search-results-tabview');
       var marginRightProcessWidget = 0;
@@ -55,15 +55,18 @@ function ProcessWidget() {
           var layoutContent = $('.layout-content');
           var processWidget = $('.process-widget');
           marginRightProcessWidget = ((layoutContent.outerWidth(true)||0) - (layoutContent.width()||0))/2
-                                       + ((processWidget.outerWidth(true)||0) - (processWidget.width()||0));
+                                       + ((processWidget.outerWidth(true)||0) - (processWidget.width()||0))/2;
 
           var scrollBarWidth = this.detechScrollBarWidth();
           processNav.css("right", scrollBarWidth + "px");
         }
-        processStartListContainer.css("margin-right", -marginRightProcessWidget + "px");
+        processStartListContainer.css("width", "calc(100% + " + marginRightProcessWidget + "px)");
 
-      processNav.css("height", (availableHeight  - excludeMarginBottom*2) + "px");
-      processNav.css("top", (($('.js-process-header').outerHeight()||0) + ($('.layout-topbar').outerHeight()||0) + excludeMarginBottom) + "px");
+      processNav.css("height", (availableHeight  - excludeMarginBottom) + "px");
+      
+      var availableHeightProcessNavTop = (($('.js-process-header').outerHeight(true)||0) + ($('.layout-topbar').outerHeight(true)||0)
+                                          + (announcementMessageContainer.outerHeight(true)||0) + excludeMarginBottom);
+      processNav.css("top", availableHeightProcessNavTop + "px");
     },
 
     detechScrollBarWidth : function() {
@@ -153,7 +156,9 @@ function jumpToProcessGroupByCharacter(event) {
   var clickedCharacter = getClassNameStartsWith(event.target.className, prefix).slice(prefix.length);
   $(".process-nav-item.selected").removeClass("selected");
   var selectedItem = document.getElementById(event.target.id);
-  document.getElementsByClassName("js-process-group-" + clickedCharacter)[0].scrollIntoView();
+  var processGroupSeleted = document.getElementsByClassName("js-process-group-" + clickedCharacter)[0];
+
+  processGroupSeleted.parentNode.scrollTop = processGroupSeleted.offsetTop - processGroupSeleted.parentNode.offsetTop;
   setTimeout(function(){ selectedItem.classList.add("selected"); }, 1);
 }
 
