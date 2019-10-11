@@ -20,9 +20,9 @@ public class LoginPage extends AbstractPage {
 
   public LoginPage(TestAccount testAccount) {
     waitForPageLoaded();
-    this.usernameTextField = findElementById("login:login-form:username");
-    this.passwordField = findElementById("login:login-form:password");
-    this.loginButton = findElementById("login:login-form:login-command");
+    this.usernameTextField = findElementByCssSelector("input[id='login:login-form:username']");
+    this.passwordField = findElementByCssSelector("input[id='login:login-form:password']");
+    this.loginButton = findElementByCssSelector("button[id='login:login-form:login-command']");
     this.testAccount = testAccount;
   }
 

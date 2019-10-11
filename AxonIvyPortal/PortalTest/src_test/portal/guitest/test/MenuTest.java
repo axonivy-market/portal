@@ -23,7 +23,7 @@ public class MenuTest extends BaseTest {
   }
 
   @Test
-  public void testKeepOpenStateWhenNavigateToAnotherPage() {
+  public void testKeepOpenStateWhenNavigateToAnotherPage() {  // SERENITY_PASSED
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
 
@@ -34,22 +34,7 @@ public class MenuTest extends BaseTest {
   }
 
   @Test
-  public void testKeepTaskMenuStateWhenNavigateBackToTaskPage() throws Exception {
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
-
-    MainMenuPage mainMenuPage = new MainMenuPage();
-    TaskWidgetPage taskWidgetPage = mainMenuPage.selectTaskMenu();
-    mainMenuPage.openTaskMenu();
-
-    taskWidgetPage.goToHomePage();
-    mainMenuPage.selectTaskMenu();
-
-    assertTrue(mainMenuPage.isTaskMenuOpen());
-  }
-
-  @Test
-  public void testKeepClosedStateWhenNavigateToAnotherPage() {
+  public void testKeepClosedStateWhenNavigateToAnotherPage() {  // SERENITY_PASSED
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
 
@@ -57,24 +42,9 @@ public class MenuTest extends BaseTest {
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     StatisticWidgetPage dashboardPage = mainMenuPage.selectStatisticDashboard();
     dashboardPage.waitForPageLoaded();
-    dashboardPage.waitForElementDisplayed(By.cssSelector(".js-left-sidebar-toggle"), true, 30);
+
     dashboardPage.closeMainMenu();
     homePage = dashboardPage.goToHomePage();
     assertFalse(homePage.isMainMenuOpen());
-  }
-
-  @Test
-  public void testSelectedTaskCategoryHighlighted() {
-    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
-    loginPage.login();
-
-    HomePage homePage = new HomePage();
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
-    mainMenuPage.openTaskList();
-    mainMenuPage.openTaskMenu();
-    mainMenuPage.expandTaskCategory("Group_Tasks", "Other_Leave", "Sick_Leave");
-    mainMenuPage.selectTaskCategory("Long");
-    assertTrue(mainMenuPage
-        .isTaskCategoryPathExpandedAndHighlighted("Group_Tasks", "Other_Leave", "Sick_Leave", "Long"));
   }
 }
