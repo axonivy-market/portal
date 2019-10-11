@@ -74,6 +74,17 @@
 <!--             <f:attribute name="selectedChartId" value="#{chart.id}" /> -->
 <!--             <p:ajax event="itemSelect" listener="#{logic.onSelectDrilldownTaskByExpiry}" global="false" /> -->
 <!--           </p:chart> -->
+          <p:barChart
+            styleClass="statistic-chart js-drilldown-cursor #{!statisticDashboardBean.isTaskByExpiryHour(chart) ? 'js-expiry-chart' : ''} expiry-chart-#{chartStatus.index}"
+            id="expiry-chart" 
+            style="#{statisticDashboardBean.getChartWidthStyle(data.statisticChartList)}" 
+            model="#{chart.barChartModel}"
+            rendered="#{statisticDashboardBean.isTaskByExpiry(chart)}">
+            <f:attribute name="selectedChartId" value="#{chart.id}" />
+            <p:ajax event="itemSelect" listener="#{logic.onSelectDrilldownTaskByExpiry}" global="false" />
+          </p:barChart>
+
+
           <p:overlayPanel styleClass="context-menu-#{chartStatus.index} expiry-chart-context-menu side-steps-panel" widgetVar="context-menu-#{chartStatus.index}"
             rendered="#{statisticDashboardBean.isTaskByExpiry(chart) and !statisticDashboardBean.isTaskByExpiryHour(chart)}" onShow="updateDrillDownPanelPosition(this);" >
             <p:commandLink id="expiry-chart-drill-down" styleClass="js-expiry-chart-drill-down side-step-item"
