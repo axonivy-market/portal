@@ -1,8 +1,9 @@
 package ch.ivy.addon.portalkit.statistics;
 
-import org.primefaces.model.chart.BarChartModel;
-import org.primefaces.model.chart.DonutChartModel;
+
 import org.primefaces.model.chart.PieChartModel;
+import org.primefaces.model.charts.bar.BarChartModel;
+import org.primefaces.model.charts.donut.DonutChartModel;
 
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
 

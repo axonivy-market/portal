@@ -11,13 +11,14 @@
     /Functional-Processes.OpenPortalCaseDetails "Functional Processes/OpenPortalCaseDetailsOverride"
     /Functional-Processes.BuildTaskJsonQuery "Functional Processes/BuildTaskJsonQueryOverride"
     /Functional-Processes.DownloadDocument "Functional Processes/DownloadDocumentOverride"
+    /Functional-Processes.SetGroupChatName "Functional Processes/SetGroupChatNameOverride"
     /Functional-Processes.InitializeCaseDataModel "Functional Processes/InitializeCaseDataModelOverride"
     /Functional-Processes.GetDocumentList "Functional Processes/GetDocumentListOverride"
-    /Functional-Processes.SetGroupChatName "Functional Processes/SetGroupChatNameOverride"
     /Functional-Processes.OpenPortalTasks "Functional Processes/OpenPortalTasksOverride"
+    /Functional-Processes.DefaultChartColors "Functional Processes/DefaultChartColorsOverride"
     /Functional-Processes.BuildTaskQuery "Functional Processes/BuildTaskQueryOverride"
+    /Functional-Processes.OpenPortalTaskDetailsHook "Functional Processes/OpenPortalTaskDetailsOverride"
     /Functional-Processes.DefaultStatisticCustomField "Functional Processes/DefaultStatisticCustomFieldOverride"
     /Functional-Processes.OpenPortalCases "Functional Processes/OpenPortalCasesOverride"
-    /Functional-Processes.OpenPortalTaskDetailsHook "Functional Processes/OpenPortalTaskDetailsOverride"
   }
 }

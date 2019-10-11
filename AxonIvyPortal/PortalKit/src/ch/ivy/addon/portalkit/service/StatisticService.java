@@ -85,11 +85,19 @@ import org.primefaces.component.chart.Chart;
 import org.primefaces.event.ItemSelectEvent;
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
-import org.primefaces.model.chart.BarChartModel;
+
 import org.primefaces.model.chart.ChartSeries;
-import org.primefaces.model.chart.DonutChartModel;
 import org.primefaces.model.chart.LegendPlacement;
 import org.primefaces.model.chart.PieChartModel;
+import org.primefaces.model.charts.ChartData;
+import org.primefaces.model.charts.ChartDataSet;
+import org.primefaces.model.charts.bar.BarChartDataSet;
+import org.primefaces.model.charts.bar.BarChartModel;
+import org.primefaces.model.charts.donut.DonutChartDataSet;
+import org.primefaces.model.charts.donut.DonutChartModel;
+import org.primefaces.model.charts.donut.DonutChartOptions;
+import org.primefaces.model.charts.optionconfig.legend.Legend;
+import org.primefaces.model.charts.optionconfig.title.Title;
 
 import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
 import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
@@ -103,7 +111,9 @@ import ch.ivy.addon.portalkit.statistics.Colors;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
 import ch.ivy.addon.portalkit.statistics.StatisticChartTimeUtils;
+import ch.ivy.addon.portalkit.statistics.StatisticColors;
 import ch.ivy.addon.portalkit.statistics.StatisticFilter;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.business.data.store.search.Filter;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -112,6 +122,8 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class StatisticService extends BusinessDataService<StatisticChart> {
+  
+  private static final String DEFAULT_CHART_COLORS_PROCESS = "Functional Processes/DefaultChartColors";
 
   @Override
   public Class<StatisticChart> getType() {
@@ -699,15 +711,27 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
   private DonutChartModel createDonutChartModel(Map<String, Number> chartData, String extender) {
     DonutChartModel model = new DonutChartModel();
-    model.addCircle(chartData);
-    model.setLegendPosition("s");
-    model.setShowDataLabels(true);
+    ChartData data = new ChartData();
+    DonutChartOptions options = new DonutChartOptions();
+    data.setLabels(chartData.keySet().stream().collect(Collectors.toList()));
+    
+    Legend legend = new Legend();
+    legend.setPosition("bottom");
+    legend.setDisplay(true);
+    options.setLegend(legend);
+    
+    model.setData(data);
     model.setExtender(extender);
-    model.setShadow(false);
-    model.setDataFormat("percent");
-    model.setSliceMargin(3);
-    model.setLegendRows(1);
-    model.setLegendPlacement(LegendPlacement.OUTSIDEGRID);
+    model.setOptions(options);
+
+//    model.setLegendPosition("s");
+//    model.setShowDataLabels(true);
+//    model.setExtender(extender);
+//    model.setShadow(false);
+//    model.setDataFormat("percent");
+//    model.setSliceMargin(3);
+//    model.setLegendRows(1);
+//    model.setLegendPlacement(LegendPlacement.OUTSIDEGRID);
     return model;
   }
 
@@ -727,14 +751,38 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     }
 
     DonutChartModel model = createDonutChartModel(chartData, "chartExtender");
-    if (!isEmptyData) {
-      model.setSeriesColors(Colors.getPriorityColors(chartData));
-    }
+    
+    DonutChartDataSet dataSet = createDonutChartDataSet(Colors.PRIORITY_COLOR, chartData, isEmptyData); 
+
     if (isSetDefaultName) {
-      model.setTitle(Ivy.cms().co(StatisticChartType.TASK_BY_PRIORITY.getCmsUri()));
+      Title title = new Title();
+      title.setDisplay(true);
+      title.setText(Ivy.cms().co(StatisticChartType.TASK_BY_PRIORITY.getCmsUri()));
+      model.getOptions().setTitle(title);
     }
 
     return model;
+  }
+
+  private DonutChartDataSet createDonutChartDataSet(String priorityColor, Map<String, Number> chartData,
+      boolean isEmptyData) {
+    DonutChartDataSet dataSet = new DonutChartDataSet();
+    dataSet.setData(chartData.values().stream().collect(Collectors.toList()));
+
+    if (!isEmptyData) {
+      StatisticColors chartColor = getStatisticsColors();
+      if (priorityColor == Colors.PRIORITY_COLOR) {
+      dataSet.setBackgroundColor(Colors.getPriorityColors(chartData, chartColor));
+      } else {
+        dataSet.setBackgroundColor(Colors.getCaseStateColors(chartData, chartColor));
+      }
+    }
+    return dataSet;
+  }
+
+  private StatisticColors getStatisticsColors() {
+    return IvyExecutor.executeAsSystem(() -> SubProcessCall.withPath(DEFAULT_CHART_COLORS_PROCESS).withStartSignature("defaultChartColors()").call()
+        .get("chartColors", StatisticColors.class));
   }
 
   /**
@@ -754,30 +802,31 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
             previousSelectedWeek);
     BarChartModel model = new BarChartModel();
     ChartSeries chartSeries = new ChartSeries();
+    BarChartDataSet dateSet = new BarChartDataSet();
 
     if (chartData.size() != 0) {
 
       chartSeries.setData(chartData);
       model.setExtender("barChartExtender");
-      model.setShadow(false);
+//      model.setShadow(false);
 
-      Axis xAxis = model.getAxis(AxisType.X);
-      String label = Ivy.cms().co(EXPIRY_PERIOD_CMS);
-      if (selectDayOfWeek(selectedValue)) {
-        label = label + " " + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/hour");
-      }
-      xAxis.setLabel(label);
-
-      Axis yAxis = model.getAxis(AxisType.Y);
-      yAxis.setLabel(Ivy.cms().co(TASK_CMS));
-
-      String datatipFormat = StringUtils.join("%2$.0f ", Ivy.cms().co(TASK_DATATIP_CMS));
-      model.setDatatipFormat(datatipFormat);
-    }
-    if (isSetDefaultName) {
-      model.setTitle(Ivy.cms().co(StatisticChartType.TASK_BY_EXPIRY.getCmsUri()));
-    }
-    model.addSeries(chartSeries);
+//      Axis xAxis = model.getAxis(AxisType.X);
+//      String label = Ivy.cms().co(EXPIRY_PERIOD_CMS);
+//      if (selectDayOfWeek(selectedValue)) {
+//        label = label + " " + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/hour");
+//      }
+//      xAxis.setLabel(label);
+//
+//      Axis yAxis = model.getAxis(AxisType.Y);
+//      yAxis.setLabel(Ivy.cms().co(TASK_CMS));
+//
+//      String datatipFormat = StringUtils.join("%2$.0f ", Ivy.cms().co(TASK_DATATIP_CMS));
+//      model.setDatatipFormat(datatipFormat);
+//    }
+//    if (isSetDefaultName) {
+//      model.setTitle(Ivy.cms().co(StatisticChartType.TASK_BY_EXPIRY.getCmsUri()));
+//    }
+//    model.addSeries(chartSeries);
     return model;
   }
 
@@ -800,15 +849,15 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
     DonutChartModel model = createDonutChartModel(chartData, "chartExtender");
     if (!isEmptyData) {
-      model.setSeriesColors(Colors.getCaseStateColors(chartData));
+//      model.setSeriesColors(Colors.getCaseStateColors(chartData));
     }
     if (isSetDefaultName) {
       if (chartType == StatisticChartType.CASES_BY_STATE) {
-        model.setTitle(Ivy.cms().co(StatisticChartType.CASES_BY_STATE.getCmsUri()));
+        model.getData().setLabels(Ivy.cms().co(StatisticChartType.CASES_BY_STATE.getCmsUri()));
       } else if (chartType == StatisticChartType.CASES_BY_FINISHED_TASK) {
-        model.setTitle(Ivy.cms().co(StatisticChartType.CASES_BY_FINISHED_TASK.getCmsUri()));
+        model.getData().setLabels(Ivy.cms().co(StatisticChartType.CASES_BY_FINISHED_TASK.getCmsUri()));
       } else if (chartType == StatisticChartType.CASES_BY_FINISHED_TIME) {
-        model.setTitle(Ivy.cms().co(StatisticChartType.CASES_BY_FINISHED_TIME.getCmsUri()));
+        model.getData().setLabels(Ivy.cms().co(StatisticChartType.CASES_BY_FINISHED_TIME.getCmsUri()));
       }
     }
 
@@ -1058,9 +1107,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
   public static String getSelectedValueOfDonutChart(ItemSelectEvent event) {
     try {
-      DonutChartModel model = (DonutChartModel) ((Chart) event.getSource()).getModel();
+      DonutChartModel model = (DonutChartModel) ((ChartData) event.getSource()).getDataSet();
       int index = event.getItemIndex();
-      return model.getData().get(0).keySet().toArray()[index].toString();
+      return model.getData().getDataSet().toArray()[index].toString();
     } catch (Exception e) {
       Ivy.log().error(e);
       return "";
