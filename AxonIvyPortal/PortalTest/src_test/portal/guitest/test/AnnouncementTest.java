@@ -42,7 +42,7 @@ public class AnnouncementTest extends BaseTest {
     languagePage.selectLanguage(0);
     languagePage.save();
     assertEquals("lies mich", homePage.getAnnouncementMessage());
-    
+
     homePage = new HomePage();
     languagePage = homePage.openLanguagePage();
     languagePage.selectLanguage(1);
@@ -65,26 +65,22 @@ public class AnnouncementTest extends BaseTest {
   @Test
   public void shouldNotification() {
     HomePage homePage = new HomePage();
-    assertTrue("Admin Settings menu item is not displayed", homePage.isAdminSettingsMenuItemPresent());
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
     AnnouncementPage announcementPage = adminSettingsPage.openAnnouncementTab();
     assertTrue("Admin Settings dialog is displayed", announcementPage.isDisplayed());
+    
     adminSettingsPage.openAnnouncementTab();
-
-    announcementPage.setAnnoucement(0, "Readme");
     announcementPage.setAnnoucement(1, "Readme1");
-
-    announcementPage.setAnnoucement(3, "Readme3");
     announcementPage.publish();
     adminSettingsPage.closeAdminSettingDialog();
     adminSettingsPage.closeInformConfigDialog();
+    
     assertEquals("Readme1", homePage.getAnnouncementMessage());
   }
 
   @Test
   public void depulishNotification() {
     HomePage homePage = new HomePage();
-    assertTrue("Admin Settings menu item is not displayed", homePage.isAdminSettingsMenuItemPresent());
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
     AnnouncementPage announcementPage = adminSettingsPage.openAnnouncementTab();
     assertTrue("Admin Settings dialog is displayed", announcementPage.isDisplayed());
