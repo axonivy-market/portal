@@ -11,10 +11,9 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.DateTimePattern;
 import portal.guitest.common.TaskState;
 import portal.guitest.common.TestAccount;
-import portal.guitest.page.CaseWidgetPage;
+import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
-import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class TaskWidgetTest extends BaseTest {
@@ -32,22 +31,22 @@ public class TaskWidgetTest extends BaseTest {
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
 
-  @Test
-  public void testShowHideTaskDetailOnExpandedMode() {
+  @Test // obsolete testShowHideTaskDetailOnExpandedMode update by testShowTaskDetailAndBackFromTaskDetail
+  public void testShowTaskDetailAndBackFromTaskDetail() { // SERENITY_PASSED
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
 
     taskWidgetPage.expand();
     taskWidgetPage.openTaskDetails(0);
-    assertTrue(taskWidgetPage.isTaskShowDetails(0));
+    assertTrue(taskWidgetPage.isTaskShowDetails());
 
-    taskWidgetPage.closeTaskDetails(0);
-    assertFalse(taskWidgetPage.isTaskShowDetails(0));
+    taskWidgetPage.clickBackButtonFromTaskDetails();
+    assertFalse(taskWidgetPage.isTaskShowDetails());
   }
 
   @Test
-  public void testTasksInPortalHomePageUpdatedAfterExpandToFullMode() {
+  public void testTasksInPortalHomePageUpdatedAfterExpandToFullMode() { // SERENITY_PASSED
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
@@ -59,7 +58,7 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testOpenRelatedCaseOfTask() {
+  public void testOpenRelatedCaseOfTask() { // SERENITY_PASSED
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
@@ -67,28 +66,30 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage.openTaskDetails(0);
 
     String relatedCaseName = taskWidgetPage.getRelatedCase();
-    CaseWidgetPage casePage = taskWidgetPage.openRelatedCaseOfTask();
+    CaseDetailsPage casePage = taskWidgetPage.openRelatedCaseOfTask();
 
     String caseName = casePage.getCaseName();
-    assertEquals(relatedCaseName, caseName);
+    assertTrue(relatedCaseName.contains(caseName));
   }
 
   @Test
-  public void testReserveTask() {
+  public void testReserveTask() { // SERENITY_PASSED
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
+    taskWidgetPage.sideStepMenuOnMoreButton(0);
     taskWidgetPage.reserveTask(0);
     taskWidgetPage.waitAjaxIndicatorDisappear();
     assertEquals(TaskState.RESERVED, taskWidgetPage.getTaskState(0));
+    taskWidgetPage.sideStepMenuOnMoreButton(0);
     taskWidgetPage.resetTask(0);
     taskWidgetPage.waitAjaxIndicatorDisappear();
     assertEquals(TaskState.OPEN, taskWidgetPage.getTaskState(0));
   }
 
   @Test
-  public void testChangeTaskDeadline() {
+  public void testChangeTaskDeadline() { // SERENITY_PASSED
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
     int firstTask = 0;
@@ -99,13 +100,13 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage.expand();
     taskWidgetPage.openTaskDetails(firstTask);
     taskWidgetPage.waitAjaxIndicatorDisappear();
-    taskWidgetPage.changeExpiryOfTaskAt(firstTask, tomorrowStringLiteral);
+    taskWidgetPage.changeExpiryOfTaskAt(tomorrowStringLiteral);
     taskWidgetPage.waitAjaxIndicatorDisappear();
     assertEquals(tomorrowStringLiteral, taskWidgetPage.getExpiryOfTaskAt(firstTask));
   }
 
   @Test
-  public void testStartButtonStatus() {
+  public void testStartButtonStatus() { // SERENITY_PASSED
     LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
     loginPage.login();
     HomePage homePage = new HomePage();
@@ -118,7 +119,7 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testDisplayDelegateButton() {
+  public void testDisplayDelegateButton() { // SERENITY_PASSED
     LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
     loginPage.login();
     redirectToRelativeLink(GRANT_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL);
@@ -129,22 +130,21 @@ public class TaskWidgetTest extends BaseTest {
     assertTrue(taskWidgetPage.isTaskDelegateOptionDisable(2));
     redirectToRelativeLink(DENY_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL);
   }
-  
+
   @Test
-  public void testDisplayTaskAndCaseCategory() {
+  public void testDisplayTaskAndCaseCategory() { // SERENITY_PASSED
     LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
     loginPage.login();
     HomePage homePage = new HomePage();
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     taskWidgetPage.openTaskList();
     taskWidgetPage.openTaskDetails(0);
-    TaskDetailsPage taskDetailsPage = taskWidgetPage.getTaskDetailsElement(0);
-    assertEquals("OtherLeave/Maternity", taskDetailsPage.getTaskCategory());
-    assertEquals("LeaveRequest", taskDetailsPage.getCaseCategory());
+    assertEquals("OtherLeave/Maternity", taskWidgetPage.getTaskCategory());
+    assertEquals("LeaveRequest", taskWidgetPage.getCaseCategory());
   }
-  
+
   @Test
-  public void testShowTaskCount() {
+  public void testShowTaskCount() {  // SERENITY_PASSED
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
     HomePage homePage = new HomePage();
