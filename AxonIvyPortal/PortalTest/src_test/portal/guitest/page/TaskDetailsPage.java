@@ -12,25 +12,15 @@ public class TaskDetailsPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "id('task-widget:task-list-scroller')";
+    return "id('task-detail-template:task-detail-container')";
   }
 
-  public TaskDetailsPage(WebElement taskDetailsItem) {
-    this.taskDetailsItem = taskDetailsItem;
-  }
+  public TaskDetailsPage() {}
 
   public String getCreatedOnDateText() {
     WebElement findElement = taskDetailsItem
         .findElement(By.cssSelector("#task-data > table > tbody > tr:nth-child(8) > td.task-details-data-2nd-column"));
     return findElement.getText();
-  }
-
-  public String getTaskCategory() {
-    return taskDetailsItem.findElement(By.cssSelector("span[id$='task-category']")).getText();
-  }
-
-  public String getCaseCategory() {
-    return taskDetailsItem.findElement(By.cssSelector("span[id$='case-category']")).getText();
   }
 
   public List<String> getTaskNoteAuthors() {

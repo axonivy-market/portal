@@ -28,7 +28,7 @@ public class AbsenceTest extends BaseTest {
   }
 
   @Test
-  public void whenLoginAsNormalUserThenManageAbsencesOfThatUser() {
+  public void whenLoginAsNormalUserThenManageAbsencesOfThatUser() { // SERENITY_PASSED
     new LoginPage(TestAccount.DEMO_USER).login();
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel");
@@ -43,7 +43,7 @@ public class AbsenceTest extends BaseTest {
   }
 
   @Test
-  public void whenLoginAsAdminUserThenManageAbsencesOfAllUsers() {
+  public void whenLoginAsAdminUserThenManageAbsencesOfAllUsers() { // SERENITY_PASSED
     new LoginPage(TestAccount.ADMIN_USER).login();
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(TODAY, TODAY, "For party");
@@ -61,7 +61,7 @@ public class AbsenceTest extends BaseTest {
   }
 
   @Test
-  public void displayMessageWhenInputOverlappingAbsence() {
+  public void displayMessageWhenInputOverlappingAbsence() { // SERENITY_PASSED
     LocalDate chosenDay = LocalDate.now();
     LocalDate theNextDayOfChosenDay = chosenDay.plusDays(1);
     new LoginPage(TestAccount.DEMO_USER).login();
