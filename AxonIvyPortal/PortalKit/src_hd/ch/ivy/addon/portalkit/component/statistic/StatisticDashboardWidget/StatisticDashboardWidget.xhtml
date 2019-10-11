@@ -57,18 +57,23 @@
             </h:panelGroup>
           </f:facet>
 
-          <p:chart type="donut" styleClass="statistic-chart js-drilldown-cursor" model="#{chart.donutChartModel}"
-            rendered="#{statisticDashboardBean.isTaskByPriority(chart)}">
+<!--           <p:chart type="donut" styleClass="statistic-chart js-drilldown-cursor" model="#{chart.donutChartModel}" -->
+<!--             rendered="#{statisticDashboardBean.isTaskByPriority(chart)}"> -->
+<!--             <f:attribute name="selectedChartId" value="#{chart.id}" /> -->
+<!--             <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByPriority}" /> -->
+<!--           </p:chart> -->
+
+          <p:donutChart model="#{chart.donutChartModel}" rendered="#{statisticDashboardBean.isTaskByPriority(chart)}" style="width: 100%; height: 340px;">
             <f:attribute name="selectedChartId" value="#{chart.id}" />
             <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByPriority}" />
-          </p:chart>
+          </p:donutChart>
 
-          <p:chart type="bar" styleClass="statistic-chart js-drilldown-cursor #{!statisticDashboardBean.isTaskByExpiryHour(chart) ? 'js-expiry-chart' : ''} expiry-chart-#{chartStatus.index}" id="expiry-chart"
-            style="#{statisticDashboardBean.getChartWidthStyle(data.statisticChartList)}" model="#{chart.barChartModel}"
-            rendered="#{statisticDashboardBean.isTaskByExpiry(chart)}">
-            <f:attribute name="selectedChartId" value="#{chart.id}" />
-            <p:ajax event="itemSelect" listener="#{logic.onSelectDrilldownTaskByExpiry}" global="false" />
-          </p:chart>
+<!--           <p:chart type="bar" styleClass="statistic-chart js-drilldown-cursor #{!statisticDashboardBean.isTaskByExpiryHour(chart) ? 'js-expiry-chart' : ''} expiry-chart-#{chartStatus.index}" id="expiry-chart" -->
+<!--             style="#{statisticDashboardBean.getChartWidthStyle(data.statisticChartList)}" model="#{chart.barChartModel}" -->
+<!--             rendered="#{statisticDashboardBean.isTaskByExpiry(chart)}"> -->
+<!--             <f:attribute name="selectedChartId" value="#{chart.id}" /> -->
+<!--             <p:ajax event="itemSelect" listener="#{logic.onSelectDrilldownTaskByExpiry}" global="false" /> -->
+<!--           </p:chart> -->
           <p:overlayPanel styleClass="context-menu-#{chartStatus.index} expiry-chart-context-menu side-steps-panel" widgetVar="context-menu-#{chartStatus.index}"
             rendered="#{statisticDashboardBean.isTaskByExpiry(chart) and !statisticDashboardBean.isTaskByExpiryHour(chart)}" onShow="updateDrillDownPanelPosition(this);" >
             <p:commandLink id="expiry-chart-drill-down" styleClass="js-expiry-chart-drill-down side-step-item"
@@ -80,31 +85,31 @@
               actionListener="#{logic.toTaskByExpiryTaskList}" />
           </p:overlayPanel>
 
-          <p:chart type="donut" styleClass="statistic-chart js-drilldown-cursor" model="#{chart.donutChartModel}"
-            rendered="#{statisticDashboardBean.isCaseByState(chart)}">
-            <f:attribute name="selectedChartId" value="#{chart.id}" />
-            <p:ajax event="itemSelect" listener="#{logic.drilldownCaseByState}" />
-          </p:chart>
+<!--           <p:chart type="donut" styleClass="statistic-chart js-drilldown-cursor" model="#{chart.donutChartModel}" -->
+<!--             rendered="#{statisticDashboardBean.isCaseByState(chart)}"> -->
+<!--             <f:attribute name="selectedChartId" value="#{chart.id}" /> -->
+<!--             <p:ajax event="itemSelect" listener="#{logic.drilldownCaseByState}" /> -->
+<!--           </p:chart> -->
 
-          <p:chart type="bar" styleClass="statistic-chart js-drilldown-cursor" model="#{chart.barChartModel}"
-            rendered="#{statisticDashboardBean.isElapsedTimeByCaseCategory(chart)}">
-            <f:attribute name="selectedChartId" value="#{chart.id}" />
-            <p:ajax listener="#{cc.attrs.drilldownListener}" update="@([id$='create-chart-header'])" />
-            <p:ajax event="itemSelect" listener="#{logic.drilldownElapsedTime}"
-              update="#{p:component('widget-container')}" />
-          </p:chart>
+<!--           <p:chart type="bar" styleClass="statistic-chart js-drilldown-cursor" model="#{chart.barChartModel}" -->
+<!--             rendered="#{statisticDashboardBean.isElapsedTimeByCaseCategory(chart)}"> -->
+<!--             <f:attribute name="selectedChartId" value="#{chart.id}" /> -->
+<!--             <p:ajax listener="#{cc.attrs.drilldownListener}" update="@([id$='create-chart-header'])" /> -->
+<!--             <p:ajax event="itemSelect" listener="#{logic.drilldownElapsedTime}" -->
+<!--               update="#{p:component('widget-container')}" /> -->
+<!--           </p:chart> -->
 
-          <p:chart type="donut" styleClass="statistic-chart js-drilldown-cursor" model="#{chart.donutChartModel}"
-            rendered="#{statisticDashboardBean.isCaseByFinishedTask(chart)}">
-            <f:attribute name="selectedChartId" value="#{chart.id}" />
-            <p:ajax event="itemSelect" listener="#{logic.drilldownCaseByState}" />
-          </p:chart>
+<!--           <p:chart type="donut" styleClass="statistic-chart js-drilldown-cursor" model="#{chart.donutChartModel}" -->
+<!--             rendered="#{statisticDashboardBean.isCaseByFinishedTask(chart)}"> -->
+<!--             <f:attribute name="selectedChartId" value="#{chart.id}" /> -->
+<!--             <p:ajax event="itemSelect" listener="#{logic.drilldownCaseByState}" /> -->
+<!--           </p:chart> -->
 
-          <p:chart type="donut" styleClass="statistic-chart js-drilldown-cursor" model="#{chart.donutChartModel}"
-            rendered="#{statisticDashboardBean.isCaseByFinishedTime(chart)}">
-            <f:attribute name="selectedChartId" value="#{chart.id}" />
-            <p:ajax event="itemSelect" listener="#{logic.drilldownCaseByState}" />
-          </p:chart>
+<!--           <p:chart type="donut" styleClass="statistic-chart js-drilldown-cursor" model="#{chart.donutChartModel}" -->
+<!--             rendered="#{statisticDashboardBean.isCaseByFinishedTime(chart)}"> -->
+<!--             <f:attribute name="selectedChartId" value="#{chart.id}" /> -->
+<!--             <p:ajax event="itemSelect" listener="#{logic.drilldownCaseByState}" /> -->
+<!--           </p:chart> -->
         </p:panel>
         <ui:include src="ChartDetailsDialog.xhtml" >
           <ui:param name="chartDetailDialogId" value="chart-details-dialog" />

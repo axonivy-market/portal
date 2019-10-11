@@ -371,6 +371,7 @@ if (in.statisticChartList.size() != 0) {
 	in.hasStatistic = false;
 }
 in.isFinishLoadCharts = true;' #txt
+Ss0 f30 security system #txt
 Ss0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
