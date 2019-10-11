@@ -13,7 +13,7 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.model.chart.BarChartModel;
+import org.primefaces.model.charts.bar.BarChartModel;
 import org.primefaces.model.charts.donut.DonutChartModel;
 
 import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
