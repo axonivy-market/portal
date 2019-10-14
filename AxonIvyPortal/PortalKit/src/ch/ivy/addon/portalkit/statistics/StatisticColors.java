@@ -9,10 +9,10 @@ public class StatisticColors implements Serializable {
   public static final String DEFAULT_NORMAL_PRIORITY_COLOR = "rgb(150, 220, 130)";
   public static final String DEFAULT_LOW_PRIORITY_COLOR = "rgb(212, 212, 212)";
 
-  public static final String DEFAULT_CREATED_CASE_COLOR = "96dc82";
-  public static final String DEFAULT_RUNNING_CASE_COLOR = "4bb2c5";
-  public static final String DEFAULT_DONE_CASE_COLOR = "eaa228";
-  public static final String DEFAULT_FAILED_CASE_COLOR = "c5b47f";
+  public static final String DEFAULT_CREATED_CASE_COLOR = "rgb(150,220,130)";
+  public static final String DEFAULT_RUNNING_CASE_COLOR = "rgb(75,178,197)";
+  public static final String DEFAULT_DONE_CASE_COLOR = "rgb(234,162,40)";
+  public static final String DEFAULT_FAILED_CASE_COLOR = "rgb(197,180,127)";
 
   private String taskExceptionPriority;
   private String taskHighPriority;
