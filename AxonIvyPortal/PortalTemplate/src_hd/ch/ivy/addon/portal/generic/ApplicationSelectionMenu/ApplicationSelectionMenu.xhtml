@@ -51,14 +51,14 @@
 
               <p:menuitem id="menu-item-#{menuItemStatus.index}" rendered="#{empty menuItem.getAttributes().get('isThirdPartyApp')}"
                 actionListener="#{logic.openApp(menuItem.href)}" disabled="#{menuItem.disabled}" update="main-menu" process="main-menu"
-                onclick="PF('main-menu').clearActiveMenuState();" icon="#{menuItem.icon}" value="#{menuItem.value}" iconPos="right"
+                icon="#{menuItem.icon}" value="#{menuItem.value}" iconPos="right"
                 containerStyleClass="#{menuItem.styleClass}" styleClass="#{menuItem.styleClass eq 'active-menuitem' ? 'current-application':''}" 
-                url="#{menuItem.href}"/>
+                />
 
               <p:menuitem id="thirdparty-menu-item-#{menuItemStatus.index}" rendered="#{not empty menuItem.getAttributes().get('isThirdPartyApp')}"
                 update="main-menu" process="main-menu" actionListener="#{logic.openApp(menuItem.href)}" ajax="false" target="_blank"
                 onclick="event.stopPropagation(); location.reload();" disabled="#{menuItem.disabled}" icon="#{menuItem.icon}"
-                value="#{menuItem.value}" iconPos="right" containerStyleClass="#{menuItem.styleClass}" url="#{menuItem.href}"/>
+                value="#{menuItem.value}" iconPos="right" containerStyleClass="#{menuItem.styleClass}" />
 
               <!-- Loop sub-menu based on application -->
               <!-- Only show submenu for current application -->
@@ -72,7 +72,7 @@
                   <c:set var="isIvyLink"
                     value="#{(fn:contains(process.link, '.ivp?') or fn:endsWith(subMenuItem.link, '.ivp') or fn:endsWith(subMenuItem.link, '.icm')) or subMenuItem.link eq NULL}" />
 
-                  <p:menuitem id="menu-item-#{menuItemStatus.index}-sub-menu-item-#{subMenuItemStatus.index}" url="#{subMenuItem.link}"
+                  <p:menuitem id="menu-item-#{menuItemStatus.index}-sub-menu-item-#{subMenuItemStatus.index}" 
                     rendered="#{isThirdPartyApp and isIvyLink}" actionListener="#{logic.onClickSubMenuItem}" value="#{subMenuItem.label}"
                     icon="#{subMenuItem.icon}" iconPos="right" styleClass="submenu" update="main-menu" process="main-menu"
                     containerStyleClass="submenu-container #{firstSubItem} #{lastSubItem}" global="false">
