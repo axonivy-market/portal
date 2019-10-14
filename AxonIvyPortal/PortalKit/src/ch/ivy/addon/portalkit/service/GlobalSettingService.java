@@ -85,4 +85,13 @@ public class GlobalSettingService extends AbstractService<GlobalSetting> {
     String settingValue = findGlobalSettingValue(globalVariable.toString());
     return StringUtils.isBlank(settingValue) ? Boolean.valueOf(globalVariable.getDefaultValue()) : Boolean.valueOf(settingValue);
   }
+  
+  @Override
+  public GlobalSetting save(GlobalSetting entity) {
+    GlobalSetting persistedGlobalSetting = getDao().findGlobalSetting(entity.getKey());
+      if (persistedGlobalSetting != null) {
+        entity.setId(persistedGlobalSetting.getId());
+      }
+    return super.save(entity);
+  }
 }
