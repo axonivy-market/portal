@@ -4,12 +4,10 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.AFTER_18
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.APRIL_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.AUGUST_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.BEFORE_8;
-import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CASE_CATEGORIES_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CASE_QUERY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.CREATED_CASE_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DECEMBER_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.DONE_CASE_KEY;
-import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.ELAPSED_TIME_DETAIL_CHART_NAME_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.EXCEPTION_PRIORITY_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.EXPIRED_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.EXPIRY_PERIOD_CMS;
@@ -50,7 +48,6 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SEPTEMBE
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SIXTHWEEK_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SUNDAY_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.TASK_CMS;
-import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.TASK_DATATIP_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.TASK_QUERY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.THIRDWEEK_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.THIS_MONTH_EXPIRY_KEY;
@@ -83,15 +80,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.component.chart.Chart;
 import org.primefaces.event.ItemSelectEvent;
-import org.primefaces.model.chart.Axis;
-import org.primefaces.model.chart.AxisType;
-
 import org.primefaces.model.chart.ChartSeries;
-import org.primefaces.model.chart.LegendPlacement;
 import org.primefaces.model.chart.PieChartModel;
 import org.primefaces.model.charts.ChartData;
-import org.primefaces.model.charts.ChartDataSet;
-import org.primefaces.model.charts.axes.cartesian.CartesianAxes;
 import org.primefaces.model.charts.axes.cartesian.CartesianScaleLabel;
 import org.primefaces.model.charts.axes.cartesian.CartesianScales;
 import org.primefaces.model.charts.axes.cartesian.linear.CartesianLinearAxes;
@@ -761,13 +752,18 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     model.getData().addChartDataSet(dataSet);
 
     if (isSetDefaultName) {
-      Title title = new Title();
-      title.setDisplay(true);
-      title.setText(Ivy.cms().co(StatisticChartType.TASK_BY_PRIORITY.getCmsUri()));
+      Title title = generateChartTitle(StatisticChartType.TASK_BY_PRIORITY);
       model.getOptions().setTitle(title);
     }
 
     return model;
+  }
+
+  private Title generateChartTitle(StatisticChartType chartType) {
+    Title title = new Title();
+    title.setDisplay(true);
+    title.setText(Ivy.cms().co(chartType.getCmsUri()));
+    return title;
   }
 
   private DonutChartDataSet createDonutChartDataSet(String priorityColor, Map<String, Number> chartData,
@@ -924,19 +920,19 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     }
 
     DonutChartModel model = createDonutChartModel(chartData, "chartExtender");
-    if (!isEmptyData) {
-//      model.setSeriesColors(Colors.getCaseStateColors(chartData));
-    }
+    DonutChartDataSet dataSet = createDonutChartDataSet(Colors.STATE_COLOR, chartData, isEmptyData);
+    model.getData().addChartDataSet(dataSet);
     if (isSetDefaultName) {
+      Title title = null;
       if (chartType == StatisticChartType.CASES_BY_STATE) {
-        model.getData().setLabels(Ivy.cms().co(StatisticChartType.CASES_BY_STATE.getCmsUri()));
+        title = generateChartTitle(StatisticChartType.CASES_BY_STATE);
       } else if (chartType == StatisticChartType.CASES_BY_FINISHED_TASK) {
-        model.getData().setLabels(Ivy.cms().co(StatisticChartType.CASES_BY_FINISHED_TASK.getCmsUri()));
+        title = generateChartTitle(StatisticChartType.CASES_BY_FINISHED_TASK);
       } else if (chartType == StatisticChartType.CASES_BY_FINISHED_TIME) {
-        model.getData().setLabels(Ivy.cms().co(StatisticChartType.CASES_BY_FINISHED_TIME.getCmsUri()));
+        title = generateChartTitle(StatisticChartType.CASES_BY_FINISHED_TIME);
       }
+      model.getOptions().setTitle(title);
     }
-
     return model;
   }
 
