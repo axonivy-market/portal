@@ -32,7 +32,7 @@
 
       <div class="ui-g-12 u-padding-0">
         <p:dataTable id="case-details-documents" rendered="#{not empty data.documents}" var="document"
-          value="#{data.documents}" paginator="true" paginatorAlwaysVisible="false" pageLinks="3" rows="6"
+          value="#{data.documents}" paginator="true" paginatorAlwaysVisible="false" pageLinks="3" rows="5"
           paginatorPosition="top"
           paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
