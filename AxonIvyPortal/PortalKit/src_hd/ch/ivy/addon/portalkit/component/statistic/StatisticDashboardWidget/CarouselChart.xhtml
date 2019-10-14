@@ -41,23 +41,25 @@
               <p:ajax event="itemSelect" listener="#{logic.toTaskByExpiryTaskListFromHomePage}" update="#{p:component('widget-container')}" />
            </p:barChart>
 
-<!--       <p:chart type="donut" styleClass="statistic-chart" model="#{chart.donutChartModel}" rendered="#{statisticDashboardBean.isCaseByState(chart)}"> -->
-<!--         <f:attribute name="selectedChartId" value="#{chart.id}" /> -->
-<!--         <p:ajax event="itemSelect" listener="#{logic.drilldownCaseByState}" /> -->
-<!--       </p:chart> -->
+      <p:donutChart styleClass="statistic-chart" model="#{chart.donutChartModel}" rendered="#{statisticDashboardBean.isCaseByState(chart)}"  style="width: 100%; height: 340px;">
+        <f:attribute name="selectedChartId" value="#{chart.id}" />
+        <p:ajax event="itemSelect" listener="#{logic.drilldownCaseByState}" />
+      </p:donutChart>
 
       <!--       <p:chart type="bar" styleClass="statistic-chart" model="#{chart.barChartModel}" -->
 <!--         rendered="#{statisticDashboardBean.isElapsedTimeByCaseCategory(chart)}" /> -->
 
-<!--       <p:chart type="donut" styleClass="statistic-chart" model="#{chart.donutChartModel}" -->
-<!--         rendered="#{statisticDashboardBean.isCaseByFinishedTask(chart)}"> -->
-<!--       </p:chart> -->
+      <p:donutChart styleClass="statistic-chart" model="#{chart.donutChartModel}"
+        style="width: 100%; height: 340px;"
+        rendered="#{statisticDashboardBean.isCaseByFinishedTask(chart)}">
+      </p:donutChart>
 
-<!--       <p:chart type="donut" styleClass="statistic-chart" model="#{chart.donutChartModel}" -->
-<!--         rendered="#{statisticDashboardBean.isCaseByFinishedTime(chart)}"> -->
-<!--       </p:chart> -->
+      <p:donutChart styleClass="statistic-chart" model="#{chart.donutChartModel}"
+         style="width: 100%; height: 340px;"
+        rendered="#{statisticDashboardBean.isCaseByFinishedTime(chart)}">
+      </p:donutChart>
     </p:panel>
-<!--   </p:panelGrid> -->
+ <!--  </p:panelGrid> -->
 
   <ui:include src="ChartDetailsDialog.xhtml">
     <ui:param name="chartDetailDialogId" value="chart-dashboard-details-dialog" />
