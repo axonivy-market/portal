@@ -112,9 +112,6 @@ var MainMenu = {
       $(item).removeClass('active-menuitem');
     }
 
-    if (subMenuActive.length > 0) {
-      PF('main-menu').clearActiveMenuState();
-    }
   },
 
   getMenuBasedOnPageUrl : function() {
