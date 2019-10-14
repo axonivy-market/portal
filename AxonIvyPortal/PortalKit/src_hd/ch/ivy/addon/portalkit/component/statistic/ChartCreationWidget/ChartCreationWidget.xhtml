@@ -66,7 +66,7 @@
             <p:ajax event="click" update="add-chart-dialog" resetValues="true" global="false"
               listener="#{logic.updateBeforeAddCaseByState}" oncomplete="PF('add-chart-dialog').show();" />
           </p:commandLink>
-<!--           <p:chart type="donut" model="#{caseByStateModel}" styleClass="statistic-chart" /> -->
+        <p:donutChart model="#{caseByStateModel}" styleClass="statistic-chart" />
         </h:panelGroup>
 
         <c:set var="taskByExpiryModel" value="#{statisticChartCreationBean.taskByExpiryModel}" />
@@ -103,7 +103,7 @@
             <p:ajax event="click" update="add-chart-dialog" resetValues="true" global="false"
               listener="#{logic.updateBeforeAddCaseByFinishedTask}" oncomplete="PF('add-chart-dialog').show();" />
           </p:commandLink>
-<!--           <p:chart type="donut" model="#{caseByFinishedTaskModel}" styleClass="statistic-chart" /> -->
+        <p:donutChart model="#{caseByFinishedTaskModel}" styleClass="statistic-chart" />
         </h:panelGroup>
 
         <c:set var="caseByFinishedTimeModel" value="#{statisticChartCreationBean.caseByFinishedTimeModel}" />
@@ -115,7 +115,7 @@
             <p:ajax event="click" update="add-chart-dialog" resetValues="true" global="false"
               listener="#{logic.updateBeforeAddCaseByFinishedTime}" oncomplete="PF('add-chart-dialog').show();" />
           </p:commandLink>
-<!--           <p:chart type="donut" model="#{caseByFinishedTimeModel}" styleClass="statistic-chart" /> -->
+	     <p:donutChart model="#{caseByFinishedTimeModel}" styleClass="statistic-chart" />
         </h:panelGroup>
       </h:panelGroup>
 
