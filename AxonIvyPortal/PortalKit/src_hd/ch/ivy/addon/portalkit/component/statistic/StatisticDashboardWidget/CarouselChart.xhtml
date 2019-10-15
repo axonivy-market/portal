@@ -21,11 +21,15 @@
         <h:outputText id="carousel-effect-duration" value="#{carouselStatistic.effectDuration}" />
       </p:panel>
 
-    <p:donutChart styleClass="statistic-chart" model="#{chart.donutChartModel}" rendered="#{statisticDashboardBean.isTaskByPriority(chart)}"
-      style="width: 100%; height: 340px;">
-      <f:attribute name="selectedChartId" value="#{chart.id}" />
-      <p:ajax event="itemSelect" listener="#{logic.drilldownCaseByState}" />
-    </p:donutChart>
+<!--       <p:chart type="donut" styleClass="statistic-chart" model="#{chart.donutChartModel}" rendered="#{statisticDashboardBean.isTaskByPriority(chart)}"> -->
+<!--         <f:attribute name="selectedChartId" value="#{chart.id}" /> -->
+<!--         <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByPriority}" /> -->
+<!--       </p:chart> -->
+      <p:donutChart styleClass="statistic-chart" model="#{chart.donutChartModel}" rendered="#{statisticDashboardBean.isTaskByPriority(chart)}"
+        style="width: 100%; height: 340px;">
+        <f:attribute name="selectedChartId" value="#{chart.id}" />
+        <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByExpiry}" />
+      </p:donutChart>
 
     <p:barChart styleClass="statistic-chart" model="#{chart.barChartModel}" rendered="#{statisticDashboardBean.isTaskByExpiry(chart)}"
       style="width: 100%; height: 340px;">
@@ -36,10 +40,6 @@
     <!--       <p:chart type="donut" styleClass="statistic-chart" model="#{chart.donutChartModel}" rendered="#{statisticDashboardBean.isCaseByState(chart)}"> -->
 <!--         <f:attribute name="selectedChartId" value="#{chart.id}" /> -->
 <!--       </p:chart> -->
-           <p:barChart styleClass="statistic-chart" model="#{chart.barChartModel}" rendered="#{statisticDashboardBean.isTaskByExpiry(chart)}" style="width: 100%; height: 340px;">
-                     <f:attribute name="selectedChartId" value="#{chart.id}" />
-              <p:ajax event="itemSelect" listener="#{logic.toTaskByExpiryTaskListFromHomePage}" update="#{p:component('widget-container')}" />
-           </p:barChart>
 
       <p:donutChart styleClass="statistic-chart" model="#{chart.donutChartModel}" rendered="#{statisticDashboardBean.isCaseByState(chart)}"  style="width: 100%; height: 340px;">
         <f:attribute name="selectedChartId" value="#{chart.id}" />
