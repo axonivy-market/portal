@@ -50,22 +50,22 @@ public class Colors {
   }
 
   public static List<String> getCaseStateColors(Map<String, Number> chartData, StatisticColors colors) {
-    Number exceptionPriorities = chartData.get(Ivy.cms().co(CREATED_CASE_KEY));
-    Number highPriorities = chartData.get(Ivy.cms().co(RUNNING_CASE_KEY));
-    Number normalPriorities = chartData.get(Ivy.cms().co(DONE_CASE_KEY));
-    Number lowPriorities = chartData.get(Ivy.cms().co(FAILED_CASE_KEY));
+    Number createdCases = chartData.get(Ivy.cms().co(CREATED_CASE_KEY));
+    Number runningCases = chartData.get(Ivy.cms().co(RUNNING_CASE_KEY));
+    Number doneCases = chartData.get(Ivy.cms().co(DONE_CASE_KEY));
+    Number failedCases = chartData.get(Ivy.cms().co(FAILED_CASE_KEY));
 
     List<String> seriesColors = new ArrayList<>();
-    if (existData(exceptionPriorities)) {
+    if (existData(createdCases)) {
       seriesColors.add(colors.getCreatedCase());
     }
-    if (existData(highPriorities)) {
+    if (existData(runningCases)) {
       seriesColors.add(colors.getRunningCase());
     }
-    if (existData(normalPriorities)) {
+    if (existData(doneCases)) {
       seriesColors.add(colors.getDoneCase());
     }
-    if (existData(lowPriorities)) {
+    if (existData(failedCases)) {
       seriesColors.add(colors.getFailedCase());
     }
 

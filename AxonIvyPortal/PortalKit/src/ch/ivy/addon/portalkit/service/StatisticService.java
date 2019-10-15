@@ -78,11 +78,14 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
+import org.primefaces.component.barchart.BarChart;
 import org.primefaces.component.chart.Chart;
+import org.primefaces.component.donutchart.DonutChart;
 import org.primefaces.event.ItemSelectEvent;
 import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.PieChartModel;
 import org.primefaces.model.charts.ChartData;
+import org.primefaces.model.charts.ChartDataSet;
 import org.primefaces.model.charts.axes.cartesian.CartesianScaleLabel;
 import org.primefaces.model.charts.axes.cartesian.CartesianScales;
 import org.primefaces.model.charts.axes.cartesian.linear.CartesianLinearAxes;
@@ -636,16 +639,16 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       chartData.put(Ivy.cms().co(CREATED_CASE_KEY), caseStateStatistic.getCreated());
     }
 
+    if (caseStateStatistic.getRunning() > 0) {
+      chartData.put(Ivy.cms().co(RUNNING_CASE_KEY), caseStateStatistic.getRunning());
+    }
+    
     if (caseStateStatistic.getDone() > 0) {
       chartData.put(Ivy.cms().co(DONE_CASE_KEY), caseStateStatistic.getDone());
     }
 
     if (caseStateStatistic.getFailed() > 0) {
       chartData.put(Ivy.cms().co(FAILED_CASE_KEY), caseStateStatistic.getFailed());
-    }
-
-    if (caseStateStatistic.getRunning() > 0) {
-      chartData.put(Ivy.cms().co(RUNNING_CASE_KEY), caseStateStatistic.getRunning());
     }
 
     return chartData;
@@ -762,7 +765,6 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       boolean isEmptyData) {
     DonutChartDataSet dataSet = new DonutChartDataSet();
     dataSet.setData(chartData.values().stream().collect(Collectors.toList()));
-
     if (!isEmptyData) {
       StatisticColors chartColor = getStatisticsColors();
       if (priorityColor == Colors.PRIORITY_COLOR) {
@@ -1147,9 +1149,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
   public static String getSelectedValueOfDonutChart(ItemSelectEvent event) {
     try {
-      DonutChartModel model = (DonutChartModel) ((ChartData) event.getSource()).getDataSet();
+      List<String> labels = (List<String>) ((DonutChart) event.getSource()).getModel().getData().getLabels();
       int index = event.getItemIndex();
-      return model.getData().getDataSet().toArray()[index].toString();
+      return labels.get(index);
     } catch (Exception e) {
       Ivy.log().error(e);
       return "";
@@ -1158,21 +1160,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
   public static String getSelectedValueOfBarChart(ItemSelectEvent event) {
     try {
-//      BarChartModel model = (BarChartModel) ((Chart) event.getSource()).getModel();
-//      int index = event.getItemIndex();
-//      return model.getSeries().get(0).getData().keySet().toArray()[index].toString();
-      return "";
-    } catch (Exception e) {
-      Ivy.log().error(e);
-      return "";
-    }
-  }
-
-  public static String getSelectedValueOfPieChart(ItemSelectEvent event) {
-    try {
-      PieChartModel model = (PieChartModel) ((Chart) event.getSource()).getModel();
+      List<String> labels = (List<String>) ((BarChart) event.getSource()).getModel().getData().getLabels();
       int index = event.getItemIndex();
-      return model.getData().keySet().toArray()[index].toString();
+      return labels.get(index);
     } catch (Exception e) {
       Ivy.log().error(e);
       return "";
