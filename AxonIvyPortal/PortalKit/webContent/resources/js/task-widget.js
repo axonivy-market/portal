@@ -30,7 +30,9 @@ function TaskWidget() {
         if (globalSearchTabHeader.length > 0) {
           error = 55; // included margin, padding in search page
         }
-        var mainScreenHeight = ($('body').outerHeight(true)||0) - ($('.layout-topbar').outerHeight(true)||0) - 15; //minus 15 to remove 2nd scroll bar
+          var additionalHeight = window.matchMedia("(max-width: 40em)").matches == true ? 100 : 15;
+
+        var mainScreenHeight = ($('body').outerHeight(true)||0) - ($('.layout-topbar').outerHeight(true)||0) - additionalHeight; //minus additionalHeight to remove 2nd scroll bar
         var availableHeight = mainScreenHeight - (taskWidgetHeaderContainer.outerHeight(true)||0) - (announcementMessageContainer.outerHeight(true)||0)
             - (taskWidgetSortMenuContainer.outerHeight(true)||0) - (taskWidgetFilterContainer.outerHeight(true)||0)
             - customWidgetContainer - (globalSearchInput.outerHeight(true)||0) - (globalSearchTabHeader.outerHeight(true)||0) - error;
