@@ -30,14 +30,13 @@ public class CaseDescriptionChangeTest extends BaseTest {
   @Test
   public void testChangeCaseDescription() {
     String newCaseDescription = "New Case Description";
-    int caseIndex = 0;
     login(TestAccount.ADMIN_USER);
     HomePage homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     CaseDetailsPage detailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
-    detailsPage.changeCaseDescription(newCaseDescription, caseIndex);
-    String updatedDescription = detailsPage.getDescriptionOfCaseAt(caseIndex);
+    detailsPage.changeCaseDescription(newCaseDescription);
+    String updatedDescription = detailsPage.getDescriptionOfCaseAt();
     assertEquals(newCaseDescription, updatedDescription);
   }
   
