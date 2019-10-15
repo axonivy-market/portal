@@ -170,11 +170,11 @@ public class CaseDetailsPage extends TemplatePage {
     waitForPageLoaded();
   }
 
-  public void changeCaseDescription(String newDescription, int caseIndex) {
+  public void changeCaseDescription(String newDescription) {
     onClickDescriptionEditIcon();
-    onClickDescriptionInplace(caseIndex);
-    onChangeDescriptionInput(newDescription, caseIndex);
-    onSubmitDescriptionInplaceEditor(caseIndex);
+    onClickDescriptionInplace();
+    onChangeDescriptionInput(newDescription);
+    onSubmitDescriptionInplaceEditor();
     waitForPageLoaded();
   }
 
@@ -191,9 +191,8 @@ public class CaseDetailsPage extends TemplatePage {
         "case-widget:case-list-scroller:%d:case-item:case-name-component:case-name-form:case-name-input", caseIndex)));
   }
 
-  public String getDescriptionOfCaseAt(int caseIndex) {
-    WebElement caseDescription = findElementById(
-        String.format("case-widget:case-list-scroller:%d:case-item:case-name-component:description-cell", caseIndex));
+  public String getDescriptionOfCaseAt() {
+    WebElement caseDescription = findElementById("case-item-details:description:case-description-form:case-description-output");
     waitForElementDisplayed(caseDescription, true);
     return caseDescription.getText();
   }
@@ -203,34 +202,29 @@ public class CaseDetailsPage extends TemplatePage {
         .id(String.format("case-widget:case-list-scroller:%d:case-item:case-body:case-description-input", caseIndex)));
   }
 
-  private void onSubmitDescriptionInplaceEditor(int caseIndex) {
-    WebElement editor = findElementById(String.format(
-        "case-widget:case-list-scroller:%d:case-item:case-body:description:case-description-form:case-description-inplace_editor",
-        caseIndex));
+  private void onSubmitDescriptionInplaceEditor() {
+    WebElement editor = findElementById("case-item-details:description:case-description-form:case-description-inplace_editor");
     WebElement saveButton = findChildElementByClassName(editor, "ui-inplace-save");
     saveButton.click();
     waitAjaxIndicatorDisappear();
   }
 
-  private void onChangeDescriptionInput(String newDescription, int caseIndex) {
+  private void onChangeDescriptionInput(String newDescription) {
     try {
       Thread.sleep(2000);
     } catch (InterruptedException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
-    WebElement caseDescriptionInput = findElementById(String.format(
-        "case-widget:case-list-scroller:%d:case-item:case-body:description:case-description-form:case-description-input",
-        caseIndex));
+   // WebElement caseDescriptionInput = findElementById("case-item-details:description:case-description-form:case-description-output");
+    WebElement caseDescriptionInput = findElementByCssSelector("textarea[id='case-item-details:description:case-description-form:case-description-input']");
     waitForElementDisplayed(caseDescriptionInput, true);
     caseDescriptionInput.clear();
     caseDescriptionInput.sendKeys(newDescription);
   }
 
-  private void onClickDescriptionInplace(int caseIndex) {
-    WebElement caseDescriptionInplace = findElementById(String.format(
-        "case-widget:case-list-scroller:%d:case-item:case-body:description:case-description-form:case-description-inplace_display",
-        caseIndex));
+  private void onClickDescriptionInplace() {
+    WebElement caseDescriptionInplace = findElementById("case-item-details:description:case-description-form:case-description-output");
     waitForElementDisplayed(caseDescriptionInplace, true);
     caseDescriptionInplace.click();
   }
