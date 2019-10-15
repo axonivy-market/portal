@@ -8,6 +8,7 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.Callable;
 
 import org.primefaces.model.DefaultTreeNode;
@@ -16,11 +17,13 @@ import org.primefaces.model.TreeNode;
 
 import ch.ivy.add.portalkit.admin.Task;
 import ch.ivy.addon.portalkit.bo.NodeObject;
+import ch.ivy.addon.portalkit.bo.RemoteApplication;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.persistence.variable.CustomField;
 import ch.ivy.addon.portalkit.persistence.variable.IvyVariable;
 import ch.ivy.addon.portalkit.vo.TaskVO;
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.IQueryResult;
@@ -816,5 +819,14 @@ public final class TaskUtils {
         task.setAdditionalProperty(HIDE, null);
         break;
     }
+  }
+  
+  public static boolean isRemoteTaskCurrentOpeningTask(RemoteTask remoteTask){
+    ITask wfTask = Ivy.wfTask();
+    String currentTaskAppName = Optional.of(wfTask).map(ITask::getApplication).map(IApplication::getName).orElse("");
+    String remoteTaskAppName = Optional.of(remoteTask).map(RemoteTask::getApplication).map(RemoteApplication::getName).orElse("");
+    return remoteTask.getState() == TaskState.RESUMED &&
+        remoteTask.getId() == wfTask.getId() &&
+        remoteTaskAppName.equals(currentTaskAppName);
   }
 }

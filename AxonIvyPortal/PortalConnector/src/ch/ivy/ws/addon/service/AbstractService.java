@@ -258,10 +258,6 @@ public abstract class AbstractService {
     return getServer().getApplicationConfigurationManager().getApplications();
   }
   
-  protected List<WSException> createExceptions(WSErrorType type, int code, String userText) {
-    return Arrays.asList(new WSException(type, code, Arrays.asList(userText), null));
-  }
-  
   protected WSException createException(WSErrorType wsErrorType, int code, Object... textParams){
     List<Object> userTextParams = new ArrayList<>();
     for (Object item : textParams){

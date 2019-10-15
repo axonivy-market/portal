@@ -127,28 +127,25 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
             errors.add(new WSException(WARNING, 10027, null, null));
           } else if (securityMember == null) {
             // Wrong securityMember
-            List<Object> userText = new ArrayList<Object>();
-            userText.add("");
-            errors.add(new WSException(WARNING, 10028, userText, null));
+            errors.add(createException(WARNING, 10028, "")); 
+            
           } else {
 
             TaskQuery query = TaskQuery.create().where().taskId().isEqual(taskId);
-            ITask t = null;
+            ITask task = null;
             ISecurityMember member = null;
             try {
-              t = executeTaskQuery(query, 0, -1).get(0);
-              member = t.getApplication().getSecurityContext().findSecurityMember(securityMember.getMemberName());
+              task = executeTaskQuery(query, 0, -1).get(0);
+              member = task.getApplication().getSecurityContext().findSecurityMember(securityMember.getMemberName());
             } catch (Exception e) {
               // Wrong securityMember
-              List<Object> userText = new ArrayList<Object>();
-              userText.add(taskId);
-              errors.add(new WSException(WARNING, 10028, e, userText, null));
+              errors.add(createException(WARNING, 10029, e, taskId));
             }
-            if (t != null) {
-              t.setActivator(member);
-              t.setCustomTimestampField5(new Date());
+            if (task != null) {
+              task.setActivator(member);
+              task.setCustomTimestampField5(new Date());
             }
-            IvyTask ivyTask = new IvyTaskTransformer(isUrlBuiltFromSystemProperties).transform(t);
+            IvyTask ivyTask = new IvyTaskTransformer(isUrlBuiltFromSystemProperties).transform(task);
             result.setTask(ivyTask);
           }
 
@@ -764,7 +761,7 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   @Override
   public ITask findTask(final Integer taskId, List<WSException> errors) {
     if (taskId == null) {
-      errors.add(createException(WARNING, 10028, taskId));
+      errors.add(createException(WARNING, 10027, taskId));
       return null;
     }
 
