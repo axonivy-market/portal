@@ -12,8 +12,10 @@
     <ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portal.generic/CustomLinkGenerator/dashboard')}</ui:define>
 
     <ui:define name="simplePageContent">
+      <div class="ui-g-12">
       <ic:ch.ivy.addon.portalkit.component.StatisticWidget id="statistics-widget" compactMode="false" showTaskListImmediately="false"
         statisticChartList="#{data.statisticChartList}"/>
+        </div>
     </ui:define>
   </ui:composition>
 </h:body>
