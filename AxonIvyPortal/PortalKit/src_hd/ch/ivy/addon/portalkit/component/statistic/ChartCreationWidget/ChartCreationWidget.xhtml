@@ -47,14 +47,13 @@
         <c:set var="taskByPriorityModel" value="#{statisticChartCreationBean.taskByPriorityModel}" />
         <h:panelGroup id="task-by-priority-chart" layout="block" styleClass="chart-container" rendered="#{taskByPriorityModel ne null}">
           <p:outputLabel id="task-by-priority-label" styleClass="label"
-           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}" />
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}" />
           <p:commandLink id="create-task-by-priority-link" styleClass="add-link fa fa-plus-circle" global="false"
             value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
-            <p:ajax event="click" update="add-chart-dialog" resetValues="true" global="false"
-              listener="#{logic.updateBeforeAddTaskByPriority}" oncomplete="PF('add-chart-dialog').show();" />
+            <p:ajax event="click" update="add-chart-dialog" resetValues="true" global="false" listener="#{logic.updateBeforeAddTaskByPriority}"
+              oncomplete="PF('add-chart-dialog').show();" />
           </p:commandLink>
-<!--           <p:chart type="donut" model="#{taskByPriorityModel}" styleClass="statistic-chart" /> -->
-<p:donutChart model="#{taskByPriorityModel}" styleClass="statistic-chart" ></p:donutChart>
+          <p:donutChart model="#{taskByPriorityModel}" styleClass="statistic-chart" style="width: 100%; height: 340px;" />
         </h:panelGroup>
 
         <c:set var="caseByStateModel" value="#{statisticChartCreationBean.caseByStateModel}" />
@@ -63,8 +62,8 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')}" />
           <p:commandLink id="create-case-by-state-link" styleClass="add-link fa fa-plus-circle" global="false"
             value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
-            <p:ajax event="click" update="add-chart-dialog" resetValues="true" global="false"
-              listener="#{logic.updateBeforeAddCaseByState}" oncomplete="PF('add-chart-dialog').show();" />
+            <p:ajax event="click" update="add-chart-dialog" resetValues="true" global="false" listener="#{logic.updateBeforeAddCaseByState}"
+              oncomplete="PF('add-chart-dialog').show();" />
           </p:commandLink>
         <p:donutChart model="#{caseByStateModel}" styleClass="statistic-chart" />
         </h:panelGroup>
@@ -75,11 +74,10 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}" />
           <p:commandLink id="create-task-by-expiry-link" styleClass="add-link fa fa-plus-circle" global="false"
             value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
-            <p:ajax event="click" update="add-chart-dialog" resetValues="true" global="false"
-              listener="#{logic.updateBeforeAddTaskByExpiry}" oncomplete="PF('add-chart-dialog').show();" />
+            <p:ajax event="click" update="add-chart-dialog" resetValues="true" global="false" listener="#{logic.updateBeforeAddTaskByExpiry}"
+              oncomplete="PF('add-chart-dialog').show();" />
           </p:commandLink>
-<!--           <p:chart type="bar" model="#{taskByExpiryModel}" styleClass="statistic-chart" /> -->
-<p:barChart model="#{taskByExpiryModel}" styleClass="statistic-chart" ></p:barChart>
+          <p:barChart model="#{taskByExpiryModel}" styleClass="statistic-chart" style="width: 100%; height: 340px;" />
         </h:panelGroup>
 
         <c:set var="elapsedTimeModel" value="#{statisticChartCreationBean.elapsedTimeModel}" />
