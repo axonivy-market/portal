@@ -13,6 +13,8 @@ public class StatisticColors implements Serializable {
   public static final String DEFAULT_RUNNING_CASE_COLOR = "rgb(75,178,197)";
   public static final String DEFAULT_DONE_CASE_COLOR = "rgb(234,162,40)";
   public static final String DEFAULT_FAILED_CASE_COLOR = "rgb(197,180,127)";
+  
+  public static final String DEFAULT_ELAPSED_TIME_COLOR = "rgba(54, 162, 235, 0.2)";
 
   private String taskExceptionPriority;
   private String taskHighPriority;
@@ -23,6 +25,16 @@ public class StatisticColors implements Serializable {
   private String runningCase;
   private String doneCase;
   private String failedCase;
+  
+  private String elapsedTime;
+
+  public String getElapsedTime() {
+    return elapsedTime;
+  }
+
+  public void setElapsedTime(String elapsedTime) {
+    this.elapsedTime = elapsedTime;
+  }
 
   public String getTaskExceptionPriority() {
     return taskExceptionPriority;
@@ -87,7 +99,5 @@ public class StatisticColors implements Serializable {
   public void setFailedCase(String failedCase) {
     this.failedCase = failedCase;
   }
-
-
 
 }
