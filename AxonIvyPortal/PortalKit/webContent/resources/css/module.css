@@ -5184,3 +5184,7 @@ span.ui-inputnumber.ui-widget.ui-state-error {
   width: 20px !important;
   height: 20px !important;
 }
+
+.case-note-history-container {
+  padding-bottom: 20px;
+}
