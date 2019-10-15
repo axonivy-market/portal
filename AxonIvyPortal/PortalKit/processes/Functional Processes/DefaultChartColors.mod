@@ -46,6 +46,8 @@ chartColor.runningCase = StatisticColors.DEFAULT_RUNNING_CASE_COLOR;
 chartColor.doneCase = StatisticColors.DEFAULT_DONE_CASE_COLOR;
 chartColor.failedCase = StatisticColors.DEFAULT_FAILED_CASE_COLOR;
 
+chartColor.elapsedTime = StatisticColors.DEFAULT_ELAPSED_TIME_COLOR;
+
 in.chartColors = chartColor;' #txt
 Ds0 f3 security system #txt
 Ds0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

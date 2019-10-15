@@ -71,7 +71,7 @@ public class Colors {
 
     return seriesColors;
   }
-
+  
   private static boolean existData(Number data) {
     return data != null && data.intValue() > 0;
   }
