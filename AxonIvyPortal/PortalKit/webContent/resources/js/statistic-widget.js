@@ -8,16 +8,16 @@ function bindCursorChangeEvent() {
   $('.js-drilldown-cursor').bind('jqplotDataUnhighlight', function(ev) {
     $('.jqplot-event-canvas').css('cursor', 'default');
   });
-  $('.js-expiry-chart').bind('jqplotDataClick', function(ev, seriesIndex, pointIndex, data) {
+  $('.js-expiry-chart').bind('click', function(ev) {
     var $expiryChartDrillDown = $('.js-expiry-chart-drill-down');
     var $expiryChartTaskList = $('.js-expiry-chart-task-list');
-    if (pointIndex === 0) { // Expired bar
+   /* if (pointIndex === 0) { // Expired bar
       $expiryChartDrillDown.hide();
       $expiryChartTaskList.css('margin-top', '10px');
-    } else {
+    } else {*/
       $expiryChartDrillDown.show();
       $expiryChartTaskList.css('margin-top', '0px');
-    }
+    /*}*/
     var index = this.className.match(/expiry-chart-(\d+)/)[1];
     var widgetVar = 'context-menu-' + index;
     PF('context-menu-' + index).show();
@@ -27,6 +27,7 @@ function bindCursorChangeEvent() {
 }
 
 function updateDrillDownPanelPosition(panel) {
+  console.log(panel);
   var widgetVar = panel.widgetVar;
   $('.' + widgetVar).css({
     'left' : leftValue,
