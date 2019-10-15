@@ -3511,9 +3511,17 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 /********************************** STATISTIC WIDGET **********************************/
+.statistic-widget-container {
+  padding: 0.5em;
+}
+
+.statistic-widget-container .widget-header-main {
+  height: 40px !important;
+}
+
 .statistic-widget {
   margin-top: 20px;
-  display: flex;
+  margin-right: -1.5rem;
   justify-content: space-around;
   flex-direction: row;
 }
@@ -3579,7 +3587,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   text-align: left;
   float: left;
   overflow: hidden;
-  font-weight: 600;
+  font-size: 2rem;
   margin-top: 2px;
 }
 
@@ -3778,8 +3786,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
     max-width: 50rem;
   }
   .statistic-chart {
-    width: 24rem;
-    height: 24rem;
     margin: auto;
   }
 
@@ -3795,17 +3801,18 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 /* Medium screen */
 @media (min-width: 1366px) and (max-width: 1919px) {
-  .statistic-chart {
-    width: 34rem;
-    height: 34rem;
-  }
+
 }
 
 /* Large screen */
 @media (min-width: 1920px) {
   .statistic-chart {
-    width: 34rem;
-    height: 34rem;
+    width: 100%;
+    height: 100%;
+  }
+  .compact-mode .statistic-chart {
+    width: 100%;
+    height: 38rem;
   }
 }
 
@@ -3816,14 +3823,24 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   justify-content: flex-start;
 }
 
+.statistic-chart {
+  margin-bottom: -16px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
 .elapsed-time-detail-container-width {
   width: 100% !important;
 }
 
 .dashboard-chart-panel {
-  display: inline-block;
-  flex: 0 1 30%;
-  margin: 1rem;
+/*   display: inline-block; */
+/*   flex: 0 1 30%; */
+  position: relative;
+  height: 100%;
+  margin: auto 1rem 1rem 0;
+  padding-right: 0.5rem;
 }
 
 .dashboard-chart-panel .ui-panel-titlebar.ui-widget-header {
@@ -3833,7 +3850,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .dashboard-chart-panel .ui-panel-titlebar .ui-panel-title {
   display: flex;
   justify-content: flex-end;
-  width: 34rem;
+  width: 100%;
 }
 
 .dashboard-chart-panel .chart-name-container {
@@ -3848,11 +3865,12 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 .dashboard-chart-panel .chart-name-container {
   flex: 1 0 50%;
-  padding-left: 3px;
+  padding: 0;
 }
 
 .dashboard-chart-panel .chart-actions-container {
-  float: right;
+  text-align: right;
+  margin-top: 5px;
 }
 
 .dashboard-chart-panel .chart-actions-container .chart-action {
@@ -3860,7 +3878,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 .dashboard-chart-panel .chart-actions-container .chart-action {
-  color: #FFFFFF !important;
   font-size: 1.5rem;
   margin: 4px;
 }
@@ -3870,13 +3887,27 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 .dashboard-chart-panel .chart-info {
-  color: #FFFFFF !important;
   font-size: 1.5rem;
   margin-right: 10px;
 }
 
 .dashboard-chart-panel .chart-info {
-  color: #FFFFFF !important;
+  align-self: baseline;
+  margin-left: 5px;
+}
+
+.dashboard-chart-panel .card {
+  padding: 16px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2),
+              0 2px 4px 0 rgba(0, 0, 0, 0.14),
+              0 4px 2px -1px rgba(0, 0, 0, 0.12);
+}
+
+.dashboard-chart-panel .chart-name {
+  font-size: 2rem;
+  margin-top: 8px !important;
+  margin-bottom: 0;
+  display: flex;
 }
 
 .add-statistic-panel {
