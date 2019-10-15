@@ -6,7 +6,8 @@
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="isNotRequiredLogin" value="false" />
     <ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/caseHistoryPageTitle')}</ui:define>
-    <ui:define name="simplePageContent">
+    <ui:define name="simplePageContent case-note-history-container">
+      <div class=" ">
       <h:form id="form" onkeypress="if (event.keyCode == 13) { return false; }">
         <p:panelGrid columns="2" styleClass="u-no-border" layout="grid" columnClasses="ui-grid-col-2, ui-grid-col-10">
           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}"/>
@@ -79,6 +80,7 @@
           <p:fileDownload value="#{caseTaskNoteHistoryBean.getStreamedContentOfCaseNoteHistory(data.filteredHistories, data.ivyCase, data.exportedFileName)}" />
         </p:commandButton>
       </h:form>
+      </div>
 
     </ui:define>
   </ui:composition>
