@@ -13,7 +13,7 @@
 <cc:implementation>
   <h:outputScript library="js" name="statistic-widget.js" />
   <f:event listener="#{logic.setCompactMode(cc.attrs.compactMode)}" type="preRenderComponent" />
-  <div id="#{cc.clientId}" class="widget">
+  <div id="#{cc.clientId}" class="widget statistic-widget-container">
     <h:panelGroup id="header" layout="block" styleClass="widget-header">
       <div class="widget-header-main">
         <span class="widget-header-main-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/statistics')}</span>
@@ -28,6 +28,9 @@
       styleClass="statistic-actions-panel">
       <p:commandLink id="create-chart-link" actionListener="#{logic.switchCreateMode}" update="widget-container create-chart-header" 
         rendered="#{!data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart}">
+        <h:outputText styleClass="fa fa-plus" rendered="#{!data.createMode and data.canCreateNewCharts}" />
+        <h:outputText styleClass="fa fa-reply" rendered="#{data.createMode}" />
+        <p:spacer width="3px"/>
         <h:outputText id="create-chart-link-label" rendered="#{!data.createMode and data.canCreateNewCharts}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/addChart')}" />
         <h:outputText id="back-to-dashboard-link-label" rendered="#{data.createMode}"
@@ -37,6 +40,8 @@
         rendered="#{!data.createMode and !data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart 
           and data.hasDefaultChart and data.canCreateNewCharts}">
         <p:spacer width="10px"/>
+        <i class="fa fa-refresh" />
+        <p:spacer width="3px"/>
         <h:outputText id="restore-default-chart-link-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/restoreDefaultChartHeader')}" />
       </p:commandLink>
       <p:commandLink id="back-from-drilldown-link" actionListener="#{logic.switchDrilldownMode}" rendered="#{data.isDrilldownElapsedTime}"
@@ -54,9 +59,9 @@
     </h:panelGroup>
 
     <h:panelGroup id="widget-container" layout="block"
-      styleClass="statistic-widget js-statistic-widget-container #{data.compactMode? 'compact-mode': ''}">
+      styleClass="ui-g statistic-widget js-statistic-widget-container #{data.compactMode? 'compact-mode': ''}">
 
-      <h:panelGroup id="statistic-dashboard-container" layout="block" styleClass="statistic-dashboard-container #{data.isDrilldownElapsedTime ? 'elapsed-time-detail-container-width' : 'statistic-dashboard-container-width'}"
+      <h:panelGroup id="statistic-dashboard-container" layout="block" styleClass="ui-g-12 u-padding-0 statistic-dashboard-container #{data.isDrilldownElapsedTime ? 'elapsed-time-detail-container-width' : 'statistic-dashboard-container-width'}"
         rendered="#{!data.createMode}">
         <ic:ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget id="statistic-dashboard-widget" showTaskListImmediately="#{cc.attrs.showTaskListImmediately}"
           compactMode="#{data.compactMode}" statisticChartList="#{data.statisticChartList}"
@@ -72,7 +77,6 @@
         </h:panelGroup>
       </c:if>
 
-
     </h:panelGroup>
     
     <p:confirmDialog id="restore-confirmation-dialog"
@@ -86,5 +90,6 @@
     </p:confirmDialog>
     
   </div>
+
 </cc:implementation>
 </html>

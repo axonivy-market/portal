@@ -711,24 +711,16 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     ChartData data = new ChartData();
     DonutChartOptions options = new DonutChartOptions();
     data.setLabels(chartData.keySet().stream().collect(Collectors.toList()));
-    
+
     Legend legend = new Legend();
-    legend.setPosition("bottom");
+    legend.setPosition("left");
     legend.setDisplay(true);
     options.setLegend(legend);
-    
+
     model.setData(data);
     model.setExtender(extender);
     model.setOptions(options);
 
-//    model.setLegendPosition("s");
-//    model.setShowDataLabels(true);
-//    model.setExtender(extender);
-//    model.setShadow(false);
-//    model.setDataFormat("percent");
-//    model.setSliceMargin(3);
-//    model.setLegendRows(1);
-//    model.setLegendPlacement(LegendPlacement.OUTSIDEGRID);
     return model;
   }
 
@@ -774,7 +766,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     if (!isEmptyData) {
       StatisticColors chartColor = getStatisticsColors();
       if (priorityColor == Colors.PRIORITY_COLOR) {
-      dataSet.setBackgroundColor(Colors.getPriorityColors(chartData, chartColor));
+        dataSet.setBackgroundColor(Colors.getPriorityColors(chartData, chartColor));
       } else {
         dataSet.setBackgroundColor(Colors.getCaseStateColors(chartData, chartColor));
       }
@@ -799,107 +791,82 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    */
   public BarChartModel generateTaskByExpiryModel(ExpiryStatistic statisticData, boolean isSetDefaultName,
       String selectedValue, String previousSelectedMonth, String previousSelectedWeek) {
-    Map<Object, Number> chartData =
-        generateDataForTaskByExpiryOverviewChart(statisticData, selectedValue, previousSelectedMonth,
-            previousSelectedWeek);
+    Map<Object, Number> chartData = generateDataForTaskByExpiryOverviewChart(statisticData, selectedValue,
+        previousSelectedMonth, previousSelectedWeek);
+
     BarChartModel model = new BarChartModel();
-    ChartSeries chartSeries = new ChartSeries();
-    
     ChartData data = new ChartData();
     BarChartDataSet dateSet = new BarChartDataSet();
-    
     BarChartOptions options = new BarChartOptions();
     CartesianScales scales = new CartesianScales();
+
     Legend legend = new Legend();
     legend.setPosition("bottom");
     legend.setDisplay(true);
     options.setLegend(legend);
-    
-    if (chartData.size() != 0) {
 
-      dateSet.setData(chartData.values().stream().collect(Collectors.toList()));
-      chartSeries.setData(chartData);
+    if (chartData.size() != 0) {
       model.setExtender("barChartExtender");
-      
+      dateSet.setData(chartData.values().stream().collect(Collectors.toList()));
       data.setLabels(chartData.keySet().stream().collect(Collectors.toList()));
-      
+
       List<String> bgColor = new ArrayList<>();
-      bgColor.add("rgba(255, 99, 132, 0.2)");
+      bgColor.add(StatisticColors.DEFAULT_RUNNING_CASE_COLOR);
       bgColor.add("rgba(255, 159, 64, 0.2)");
       bgColor.add("rgba(255, 205, 86, 0.2)");
       bgColor.add("rgba(75, 192, 192, 0.2)");
       bgColor.add("rgba(54, 162, 235, 0.2)");
-      bgColor.add("rgba(153, 102, 255, 0.2)");
-      bgColor.add("rgba(201, 203, 207, 0.2)");
-      
+
       dateSet.setBackgroundColor(bgColor);
       List<String> borderColor = new ArrayList<>();
-      borderColor.add("rgb(255, 99, 132)");
+      borderColor.add(StatisticColors.DEFAULT_RUNNING_CASE_COLOR);
       borderColor.add("rgb(255, 159, 64)");
       borderColor.add("rgb(255, 205, 86)");
       borderColor.add("rgb(75, 192, 192)");
       borderColor.add("rgb(54, 162, 235)");
-      borderColor.add("rgb(153, 102, 255)");
-      borderColor.add("rgb(201, 203, 207)");
       dateSet.setBorderColor(borderColor);
       dateSet.setBorderWidth(1);
-//      model.setShadow(false);
-//
+
       String label = Ivy.cms().co(EXPIRY_PERIOD_CMS);
       if (selectDayOfWeek(selectedValue)) {
         label = label + " " + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/hour");
       }
-//      xAxis.setLabel(label);
-//
 
-      CartesianLinearAxes newXAxesData = new CartesianLinearAxes();
-      newXAxesData.setPosition("left");
-      CartesianLinearTicks ticks = new CartesianLinearTicks();
-      ticks.setBeginAtZero(true);
-      newXAxesData.setTicks(ticks);
-      
-      CartesianScaleLabel scaleLabel = new CartesianScaleLabel();
-      scaleLabel.setDisplay(true);
-      scaleLabel.setLabelString(label);
-      
-      newXAxesData.setScaleLabel(scaleLabel);
-      scales.addXAxesData(newXAxesData);
-      
-      
-//      Axis yAxis = model.getAxis(AxisType.Y);
-//      yAxis.setLabel(Ivy.cms().co(TASK_CMS));
-//
-//      String datatipFormat = StringUtils.join("%2$.0f ", Ivy.cms().co(TASK_DATATIP_CMS));
-//      model.setDatatipFormat(datatipFormat);
-//      Ivy.cms().co(TASK_CMS);
-      CartesianLinearAxes newYAxesData = new CartesianLinearAxes();
-      newYAxesData.setPosition("bottom");
-      ticks = new CartesianLinearTicks();
-      ticks.setBeginAtZero(true);
-      newYAxesData.setTicks(ticks);
-      
-      scaleLabel = new CartesianScaleLabel();
-      scaleLabel.setDisplay(true);
-      scaleLabel.setLabelString(Ivy.cms().co(TASK_CMS));
-      newYAxesData.setScaleLabel(scaleLabel);
-      scales.addYAxesData(newYAxesData);
+      scales.addXAxesData(createLinearAxes("left", label));
+      scales.addYAxesData(createLinearAxes("bottom", Ivy.cms().co(TASK_CMS)));
     }
-    
+
     dateSet.setLabel(Ivy.cms().co(StatisticChartType.TASK_BY_EXPIRY.getCmsUri()));
     data.addChartDataSet(dateSet);
-    
+
     if (isSetDefaultName) {
       Title title = new Title();
       title.setDisplay(true);
       title.setText(Ivy.cms().co(StatisticChartType.TASK_BY_EXPIRY.getCmsUri()));
       options.setTitle(title);
     }
+
     options.setScales(scales);
-//    model.addSeries(chartSeries);
     model.setData(data);
     model.setOptions(options);
-    
+
     return model;
+  }
+
+  private CartesianLinearAxes createLinearAxes(String position, String axesLabel) {
+    CartesianLinearAxes newAxesData = new CartesianLinearAxes();
+    newAxesData.setPosition(position);
+    CartesianLinearTicks ticks = new CartesianLinearTicks();
+    ticks.setBeginAtZero(true);
+    newAxesData.setTicks(ticks);
+
+    CartesianScaleLabel scaleLabel = new CartesianScaleLabel();
+    scaleLabel.setDisplay(true);
+    scaleLabel.setLabelString(axesLabel);
+
+    newAxesData.setScaleLabel(scaleLabel);
+
+    return newAxesData;
   }
 
   /**
