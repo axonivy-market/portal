@@ -9,8 +9,6 @@ import org.openqa.selenium.server.browserlaunchers.Sleeper;
 public class MainMenuPage extends TemplatePage {
 
   private final static String CASE_MENU_ID = "main-menu-container:main-menu-form:main-menu-container_node_2";
-  private final static String SUB_MENU_ITEM_ID =
-      "user-menu-required-login:main-navigator:menu-item:0:sub-menu-item:%d:sub-menu-item-link";
 
   @Override
   protected String getLoadedLocator() {
@@ -22,27 +20,26 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public boolean isProcessesDisplayed() {
-    return isElementDisplayedById(String.format(SUB_MENU_ITEM_ID, 0));
+    return isMenuItemDisplayed("Processes");
+  }
+
+  private boolean isMenuItemDisplayed(String menuItemName) {
+    return findListElementsByCssSelector("li.submenu-container").stream()
+        .filter(element -> element.getText().equals(menuItemName)).findFirst().map(WebElement::isDisplayed)
+        .orElse(false);
   }
 
   // When hiding all 4 sub menu items: Processes, Cases, Tasks and Statistics.
   public boolean isTasksDisplayed() {
-    String taskItemId = String.format(SUB_MENU_ITEM_ID, 1);
-    if (isElementDisplayedById(taskItemId)) {
-      if (findChildElementByClassName(findElementById(taskItemId), "left-sidebar-sub-menu-name").getText()
-          .equals("Tasks")) {
-        return true;
-      }
-    }
-    return false;
+    return isMenuItemDisplayed("Tasks");
   }
 
   public boolean isCasesDisplayed() {
-    return isElementDisplayedById(String.format(SUB_MENU_ITEM_ID, 2));
+    return isMenuItemDisplayed("Cases");
   }
 
   public boolean isStatisticsDisplayed() {
-    return isElementDisplayedById(String.format(SUB_MENU_ITEM_ID, 3));
+    return isMenuItemDisplayed("Statistics");
   }
 
   public ProcessWidgetPage selectProcessesMenu() {
