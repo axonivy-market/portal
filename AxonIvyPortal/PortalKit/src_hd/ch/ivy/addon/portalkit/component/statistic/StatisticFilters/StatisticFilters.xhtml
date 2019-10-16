@@ -14,12 +14,18 @@
 <cc:implementation>
   <h:outputScript library="js" name="statistic-widget.js" />
   <c:set var="filter" value="#{cc.attrs.filter}" />
-  <h:panelGrid columns="1">
-    <p:commandButton id="apply-filter-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/applyFilter')}" styleClass="apply-filters-btn"
-                       process="statistic-filter-accordion-panel" actionListener="#{cc.attrs.updateListener}" oncomplete="clearChartModels(); updateChartModels();" />
-    <p:accordionPanel id="statistic-filter-accordion-panel" styleClass="statistic-filter-accordion-panel" multiple="true" activeIndex="0,1,2,3">
+<!--   <h:panelGrid columns="1"> -->
+<div class="ui-g">
+    <div class="ui-g-12">
+      <h:outputText value="Filters"></h:outputText>
+      <p:commandButton id="apply-filter-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/applyFilter')}"
+        styleClass="apply-filters-btn" process="statistic-filter-accordion-panel" actionListener="#{cc.attrs.updateListener}"
+        oncomplete="clearChartModels(); updateChartModels();" />
+    </div>
+
+    <p:accordionPanel id="statistic-filter-accordion-panel" styleClass="statistic-filter-accordion-panel ui-g-12" multiple="true" activeIndex="0,1,2,3">
       <!-- PERIOD TIME FILTER -->
-      <p:tab id="period-time-filter-tab">
+      <p:tab id="period-time-filter-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/timePeriod')}">
   
         <f:facet name="title">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/timePeriod')}" />
@@ -175,24 +181,27 @@
         </p:scrollPanel>
       </p:tab>
 
-    <c:forEach items="#{cc.attrs.customFields}" var="tabVar" varStatus="status">
-	   	<p:tab title="#{tabVar}" id="custom-field-filter-#{status.index}">
-	   		<f:facet name="title">
-	         <h:outputText value="#{tabVar}" />
-	         <p:outputLabel id="case-custom-#{status.index}" styleClass="chart-filter-info-icon"><span class="fa fa-info-circle filter-info"/></p:outputLabel>
-	         <p:tooltip for="case-custom-#{status.index}">
-	           #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')},
-	           #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory')},
-	           #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTime')}
-	         </p:tooltip>
-	       </f:facet>
-	      <ic:ch.ivy.addon.portalkit.component.statistic.CustomField id="#{tabVar}" fieldName="#{tabVar}"	      	
-	          completeMethod="#{statisticChartCreationBean.populateCustomStringFieldAutoComplete}" /> 
-    	</p:tab>
-  	</c:forEach>
-  
+      <c:forEach items="#{cc.attrs.customFields}" var="tabVar" varStatus="status">
+        <p:tab title="#{tabVar}" id="custom-field-filter-#{status.index}">
+          <f:facet name="title">
+            <h:outputText value="#{tabVar}" />
+            <p:outputLabel id="case-custom-#{status.index}" styleClass="chart-filter-info-icon">
+              <span class="fa fa-info-circle filter-info" />
+            </p:outputLabel>
+            <p:tooltip for="case-custom-#{status.index}">
+               #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')},
+               #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory')},
+               #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTime')}
+            </p:tooltip>
+          </f:facet>
+          <ic:ch.ivy.addon.portalkit.component.statistic.CustomField id="#{tabVar}" fieldName="#{tabVar}"
+            completeMethod="#{statisticChartCreationBean.populateCustomStringFieldAutoComplete}" />
+        </p:tab>
+      </c:forEach>
+
     </p:accordionPanel>
-  </h:panelGrid>
+<!--   </h:panelGrid> -->
+</div>
 
 </cc:implementation>
 </html>
