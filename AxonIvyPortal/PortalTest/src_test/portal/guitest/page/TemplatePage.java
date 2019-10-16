@@ -22,7 +22,7 @@ import portal.guitest.common.UrlHelpers;
 
 public abstract class TemplatePage extends AbstractPage {
 
-  private static final String TEMPLATE_PAGE_LOCATOR = "id('logo')";
+  private static final String TEMPLATE_PAGE_LOCATOR = "id('user-menu-required-login:logo')";
   public static final String CLASS_PROPERTY = "class";
   protected static final String ENGINE_URL_LOCAL = "http://localhost:8081/ivy";
 
