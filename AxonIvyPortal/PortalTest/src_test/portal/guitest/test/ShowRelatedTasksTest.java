@@ -102,7 +102,8 @@ public class ShowRelatedTasksTest extends BaseTest {
   public void testShowRelatedTasksWhenClickingRelatedTask() {
     grantTaskReadOwnCaseTaskPermissionsToCurrentUser();
     openCaseDetail();
-    TaskWidgetPage taskWidgetPage = detailsPage.openTasksOfCasePage(0);
+    detailsPage.openTasksOfCasePage(0);
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     int numberOfTasks = taskWidgetPage.countTasks();
     assertTrue(numberOfTasks == 4);
     boolean hasDoneTask = false;
