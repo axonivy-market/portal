@@ -822,11 +822,18 @@ public final class TaskUtils {
   }
   
   public static boolean isRemoteTaskCurrentOpeningTask(RemoteTask remoteTask){
-    ITask wfTask = Ivy.wfTask();
-    String currentTaskAppName = Optional.of(wfTask).map(ITask::getApplication).map(IApplication::getName).orElse("");
-    String remoteTaskAppName = Optional.of(remoteTask).map(RemoteTask::getApplication).map(RemoteApplication::getName).orElse("");
-    return remoteTask.getState() == TaskState.RESUMED &&
-        remoteTask.getId() == wfTask.getId() &&
-        remoteTaskAppName.equals(currentTaskAppName);
+    try {
+      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+        ITask wfTask = Ivy.wfTask();
+        String currentTaskAppName = Optional.of(wfTask).map(ITask::getApplication).map(IApplication::getName).orElse("");
+        String remoteTaskAppName = Optional.of(remoteTask).map(RemoteTask::getApplication).map(RemoteApplication::getName).orElse("");
+        return remoteTask.getState() == TaskState.RESUMED &&
+            remoteTask.getId() == wfTask.getId() &&
+            remoteTaskAppName.equals(currentTaskAppName);
+      });
+    } catch (Exception e) {
+      Ivy.log().error(e);
+      return false;
+    }
   }
 }
