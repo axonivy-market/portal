@@ -951,9 +951,19 @@ ul.ui-selectonemenu-list li.ui-selectonemenu-item.ui-state-hover {
     -webkit-font-smoothing: antialiased;
     content: "\f078";
     position: absolute;
-    left: 6px;
+    left: 8px;
     top: 12px;
 }
+
+.ui-selectcheckboxmenu-multiple .ui-selectcheckboxmenu-trigger .ui-icon {
+  position: relative !important;
+  top: 0 !important;
+}
+.ui-selectcheckboxmenu-multiple.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon:after {
+  left: -4px !important;
+  top: 2px !important;
+}
+	
 /* =================== END DROPDOWN ====================== */
 
 /* =================== AUTOCOMPLETE ====================== */
