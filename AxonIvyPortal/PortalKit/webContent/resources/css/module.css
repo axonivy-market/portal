@@ -306,7 +306,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .widget-sort-menu.full-mode {
   flex: 1 0 100%;
-  height: 30px;
   display: flex;
   align-items: flex-end;
   line-height: normal;
@@ -1663,7 +1662,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 }
 
 .compact-processes-container .process-start-list-item {
- margin: 2px 3px 5px 2px;
+  margin: 2px 3px 5px 2px;
 }
 
 /* Fix for screen Full HD */
@@ -1676,6 +1675,12 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 @media  screen and (min-width: 1024px) {
   .compact-processes-container {
     max-height: 275px;
+  }
+}
+
+@media  screen and (max-height: 1023px) {
+  .compact-processes-container {
+    max-height: 165px;
   }
 }
 
@@ -3116,10 +3121,15 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
     width: 80vw !important;
   }
 }
-
 /********************************** ADMIN SETTING **********************************/
 .admin-ui-dialog {
   top: 25vh !important;
+}
+
+@media  screen and (max-height: 615px) {
+  .admin-ui-dialog .ui-dialog-content {
+    height: 55vh !important;
+  }
 }
 
 .admin-settings-no-permission-message {
