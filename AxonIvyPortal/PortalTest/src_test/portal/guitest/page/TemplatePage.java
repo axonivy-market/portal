@@ -263,11 +263,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public CaseWidgetPage openCaseList() {
-    openMainMenu();
-    WebElement caseListToggle = findListElementsByCssSelector("a.left-sidebar-sub-menu-item").get(2);
-    caseListToggle.click();
-    waitForElementPresent(By.cssSelector("div.js-case-default-widget-container"), true);
-    return new CaseWidgetPage();
+    return openMainMenu().selectCaseMenu();
   }
 
   public String getGlobalGrowlMessage() {

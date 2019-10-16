@@ -30,21 +30,11 @@ public class TaskWidgetPage extends TemplatePage {
       "task-widget:task-list-scroller:%d:task-item:task-state-component:task-state-open";
   private static final String TASK_STATE_RESERVED_ID =
       "task-widget:task-list-scroller:%d:task-item:task-state-component:task-state-reserved";
-  private static final String TASK_ADDITIONAL_OPTIONS_ID =
-      "task-widget:task-list-scroller:%d:task-item:task-action:additional-options:task-side-steps-menu";
-  private static final String TASK_RESET_ACTION_ID =
-      "task-widget:task-list-scroller:%d:task-item:task-action:task-reset-command";
-  private static final String TASK_DELEGATE_ACTION_ID =
-      "task-widget:task-list-scroller:%d:task-item:task-action:task-delegate-command";
-  private static final String TASK_RESERVE_ACTION_ID =
-      "task-widget:task-list-scroller:%d:task-item:task-action:task-reserve-command";
   private static final String KEYWORD_FILTER_SELECTOR =
       "input[id='task-widget:filter-form:filter-container:ajax-keyword-filter']";
   private static final String KEYWORD_FILTER_SELECTOR_EXPANDED_MODE =
       "input[id='task-widget:expanded-mode-filter-form:expanded-mode-filter-container:ajax-keyword-filter']";
   private static final String ADD_NOTE_BUTTON_ID = "task-widget:task-list-scroller:%d:task-item:notes:add-note-command";
-  private static final String SHOW_MORE_NOTES_BUTTON_ID =
-      "task-widget:task-list-scroller:%d:task-item:notes:show-more-note-link";
   private static final String ADD_DOCUMENT_LINK_ID =
       "task-widget:task-list-scroller:%d:task-item:documents:add-document-command";
 
@@ -188,6 +178,7 @@ public class TaskWidgetPage extends TemplatePage {
         taskWidgetId + ":task-list-scroller:%d:task-item:task-action:additional-options:task-side-steps-menu", taskId);
     click(findElementById(moreButton));
     waitAjaxIndicatorDisappear();
+    waitForElementDisplayed(By.cssSelector("a[id$='adhoc-side-step-item']"), true);
   }
 
   public void reserveTask(int taskId) {
@@ -602,24 +593,25 @@ public class TaskWidgetPage extends TemplatePage {
     return true;
   }
 
-  public boolean isTaskActionDisplayed(String actionId, int index) {
-    return isElementDisplayedById(String.format(actionId, index));
+  public boolean isTaskActionDisplayed(String action, int taskIndex) {
+    return isElementDisplayedById(String
+        .format("task-widget:task-list-scroller:%d:task-item:task-action:additional-options:%s", taskIndex, action));
   }
 
   public boolean isTaskResetDisplayed() {
-    return isTaskActionDisplayed(TASK_RESET_ACTION_ID, 0);
+    return isTaskActionDisplayed("task-reset-command", 0);
   }
 
   public boolean isTaskDelegateDisplayed() {
-    return isTaskActionDisplayed(TASK_DELEGATE_ACTION_ID, 0);
+    return isTaskActionDisplayed("task-delegate-command", 0);
   }
 
   public boolean isTaskReserverDisplayed() {
-    return isTaskActionDisplayed(TASK_RESERVE_ACTION_ID, 0);
+    return isTaskActionDisplayed("task-reserve-command", 0);
   }
 
-  public boolean isTaskAdditionalOptionsDisplayed() {
-    return isTaskActionDisplayed(TASK_ADDITIONAL_OPTIONS_ID, 0);
+  public boolean isAdhocSideStepDisplayed() {
+    return isElementDisplayed(By.cssSelector("a[id$='adhoc-side-step-item']"));
   }
 
   public boolean isAddNoteButtonDisplayed() {
@@ -627,7 +619,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public boolean isShowMoreNoteButtonDisplayed() {
-    return isElementDisplayedById(String.format(SHOW_MORE_NOTES_BUTTON_ID, 0));
+    return isTaskActionDisplayed("task-side-steps-menu", 0);
   }
 
   public boolean isAddDocumentLinkDisplayed() {
