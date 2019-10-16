@@ -1,11 +1,15 @@
 package portal.guitest.page;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.server.browserlaunchers.Sleeper;
+
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
 
 public class CaseWidgetPage extends TemplatePage {
 
@@ -67,11 +71,10 @@ public class CaseWidgetPage extends TemplatePage {
   }
 
   private WebElement getDestroyButtonOfCaseItem(WebElement caseItem) {
-    String caseItemId = caseItem.getAttribute("id");
-    String destroyButtonId = String.format("%s:destroy-case", caseItemId);
-    WebElement destroyButton = findElementById(destroyButtonId);
-    findElementById(destroyButtonId);
-    return destroyButton;
+    caseItem.findElement(By.cssSelector("button[id$='action-steps-menu']")).click();
+    waitForElementDisplayed(By.cssSelector("a[id$='destroy-case']"), true);
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> findElementByCssSelector("a[id$='destroy-case']").isDisplayed());
+    return findElementByCssSelector("a[id$='destroy-case']");
   }
 
   public void clickDestroyButton(WebElement caseItem) {
@@ -153,12 +156,14 @@ public class CaseWidgetPage extends TemplatePage {
   public void openAdvancedFilter(String filterName, String filterIdName) {
     click(By.id(caseWidgetId + ":filter-add-action"));
     WebElement filterSelectionElement = findElementById(caseWidgetId + ":filter-add-form:filter-selection");
-    findChildElementsByTagName(filterSelectionElement, "LABEL").forEach(filterElement -> {
-      if (filterName.equals(filterElement.getText())) {
-        filterElement.click();
-        return;
+
+    List<WebElement> elements = findChildElementsByTagName(filterSelectionElement, "LABEL");
+    for (WebElement element : elements) {
+      if (element.getText().equals(filterName)) {
+        element.click();
+        break;
       }
-    });
+    }
     waitForElementDisplayed(
         By.cssSelector("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']"),
         true);
