@@ -107,14 +107,6 @@
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" 
         onclick="PF('#{cc.attrs.dialogName}').hide();" styleClass="portal-cancel-button" />
     </h:panelGroup>
-    <script>
-    function changeWidthDailySummaryPanel() {
-        var dailySummary = $('[id $= ":daily-summary-checkbox"]').get(0);
-        if(dailySummary != null) {
-        $('[id $= ":daily-summary-checkbox_panel"]').width(dailySummary.offsetWidth);
-        }
-    } 
-</script>
 </cc:implementation>
 
 </html>
