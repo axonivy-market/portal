@@ -16,6 +16,17 @@ public class StatisticColors implements Serializable {
   
   public static final String DEFAULT_ELAPSED_TIME_COLOR = "rgba(54, 162, 235, 0.2)";
 
+  public static final String DEFAULT_TASK_EXPIRIED_COLOR = "rgba(255, 99, 132, 0.2)";
+  public static final String DEFAULT_TASK_TODAY_COLOR = "rgba(255, 159, 64, 0.2)";
+  public static final String DEFAULT_TASK_WEEK_COLOR = "rgba(255, 205, 86, 0.2)";
+  public static final String DEFAULT_TASK_MONTH_COLOR = "rgba(75, 192, 192, 0.2)";
+  public static final String DEFAULT_TASK_YEAR_COLOR = "rgba(54, 162, 235, 0.2)";
+  public static final String DEFAULT_TASK_EXPIRIED_BORDER = "rgb(255, 99, 132)";
+  public static final String DEFAULT_TASK_TODAY_BORDER = "rgb(255, 159, 64)";
+  public static final String DEFAULT_TASK_WEEK_BORDER = "rgb(255, 205, 86)";
+  public static final String DEFAULT_TASK_MONTH_BORDER = "rgb(75, 192, 192)";
+  public static final String DEFAULT_TASK_YEAR_BORDER = "rgb(54, 162, 235)";
+
   private String taskExceptionPriority;
   private String taskHighPriority;
   private String taskNormalPriority;

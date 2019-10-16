@@ -796,36 +796,36 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
     BarChartModel model = new BarChartModel();
     ChartData data = new ChartData();
-    BarChartDataSet dateSet = new BarChartDataSet();
+    BarChartDataSet dataSet = new BarChartDataSet();
     BarChartOptions options = new BarChartOptions();
     CartesianScales scales = new CartesianScales();
 
     Legend legend = new Legend();
     legend.setPosition("bottom");
-    legend.setDisplay(true);
+    legend.setDisplay(false);
     options.setLegend(legend);
 
     if (chartData.size() != 0) {
       model.setExtender("barChartExtender");
-      dateSet.setData(chartData.values().stream().collect(Collectors.toList()));
+      dataSet.setData(chartData.values().stream().collect(Collectors.toList()));
       data.setLabels(chartData.keySet().stream().collect(Collectors.toList()));
 
       List<String> bgColor = new ArrayList<>();
-      bgColor.add(StatisticColors.DEFAULT_RUNNING_CASE_COLOR);
-      bgColor.add("rgba(255, 159, 64, 0.2)");
-      bgColor.add("rgba(255, 205, 86, 0.2)");
-      bgColor.add("rgba(75, 192, 192, 0.2)");
-      bgColor.add("rgba(54, 162, 235, 0.2)");
+      bgColor.add(StatisticColors.DEFAULT_TASK_EXPIRIED_COLOR);
+      bgColor.add(StatisticColors.DEFAULT_TASK_TODAY_COLOR);
+      bgColor.add(StatisticColors.DEFAULT_TASK_WEEK_COLOR);
+      bgColor.add(StatisticColors.DEFAULT_TASK_MONTH_COLOR);
+      bgColor.add(StatisticColors.DEFAULT_TASK_YEAR_COLOR);
 
-      dateSet.setBackgroundColor(bgColor);
+      dataSet.setBackgroundColor(bgColor);
       List<String> borderColor = new ArrayList<>();
-      borderColor.add(StatisticColors.DEFAULT_RUNNING_CASE_COLOR);
-      borderColor.add("rgb(255, 159, 64)");
-      borderColor.add("rgb(255, 205, 86)");
-      borderColor.add("rgb(75, 192, 192)");
-      borderColor.add("rgb(54, 162, 235)");
-      dateSet.setBorderColor(borderColor);
-      dateSet.setBorderWidth(1);
+      borderColor.add(StatisticColors.DEFAULT_TASK_EXPIRIED_BORDER);
+      borderColor.add(StatisticColors.DEFAULT_TASK_TODAY_BORDER);
+      borderColor.add(StatisticColors.DEFAULT_TASK_WEEK_BORDER);
+      borderColor.add(StatisticColors.DEFAULT_TASK_MONTH_BORDER);
+      borderColor.add(StatisticColors.DEFAULT_TASK_YEAR_BORDER);
+      dataSet.setBorderColor(borderColor);
+      dataSet.setBorderWidth(1);
 
       String label = Ivy.cms().co(EXPIRY_PERIOD_CMS);
       if (selectDayOfWeek(selectedValue)) {
@@ -836,8 +836,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       scales.addYAxesData(createLinearAxes("bottom", Ivy.cms().co(TASK_CMS)));
     }
 
-    dateSet.setLabel(Ivy.cms().co(StatisticChartType.TASK_BY_EXPIRY.getCmsUri()));
-    data.addChartDataSet(dateSet);
+    data.addChartDataSet(dataSet);
 
     if (isSetDefaultName) {
       options.setTitle(generateChartTitle(StatisticChartType.TASK_BY_EXPIRY));
