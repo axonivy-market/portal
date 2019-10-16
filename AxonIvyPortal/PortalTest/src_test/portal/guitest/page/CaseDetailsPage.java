@@ -125,9 +125,9 @@ public class CaseDetailsPage extends TemplatePage {
     return documentComponent;
   }
 
-  public TaskWidgetPage openTasksOfCasePage(int index) {
+  public TaskDetailsPage openTasksOfCasePage(int index) {
     click(By.cssSelector("a[id$='tasks:" + index + ":task-name']"));
-    return new TaskWidgetPage();
+    return new TaskDetailsPage();
   }
 
   public String openDoneTask(int index) {
