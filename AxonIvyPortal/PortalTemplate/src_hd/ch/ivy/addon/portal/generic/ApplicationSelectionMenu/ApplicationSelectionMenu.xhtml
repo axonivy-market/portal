@@ -11,17 +11,18 @@
   <cc:attribute name="menuState" />
   <cc:attribute name="onClickTaskMenuItemCallback" />
   <cc:attribute name="showGlobalSearch" />
+  <cc:attribute name="isWorkingOnATask"/>
 </cc:interface>
 
 <cc:implementation>
 
   <!-- LOGO  -->
   <div class="sidebar-logo">
-    <p:commandLink id="logo" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(isWorkingOnATask)}">
+    <p:commandLink id="logo" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(cc.attrs.isWorkingOnATask)}">
       <p:graphicImage styleClass="portal-home-logo" value="#{resource['ivy-cms:images/logo/CorporateLogo']}" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
     </p:commandLink>
 
-    <p:commandLink id="logo-small" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(isWorkingOnATask)}" styleClass="portal-home-logo-small">
+    <p:commandLink id="logo-small" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(cc.attrs.isWorkingOnATask)}" styleClass="portal-home-logo-small">
       <p:graphicImage styleClass="portal-home-logo" value="#{resource['ivy-cms:images/logo/SmallCorporateLogo']}" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
     </p:commandLink>
 
