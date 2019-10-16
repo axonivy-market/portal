@@ -71,7 +71,7 @@
     </p:dialog>
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}" closeOnEscape="true" widgetVar="adminUI"
-      id="admin-ui-dialog" resizable="false" styleClass="admin-ui-dialog" modal="true" draggable="false" appendTo="@(body)" dynamic="true"
+      id="admin-ui-dialog" resizable="false" styleClass="admin-ui-dialog" modal="true" draggable="true" appendTo="@(body)" dynamic="true"
       onShow="initAdminSettingsData()" onHide="PF('dialogClosingInformation').show();" width="80vw">
       <ic:ch.ivy.addon.portalkit.admin.AdminSettings id="adminui" />
       <f:facet name="footer">
@@ -102,10 +102,18 @@
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/emailSetting')}" styleClass="applications-email-setting-dialog"
       closeOnEscape="true" widgetVar="emailSetting" id="applications-email-setting-dialog" resizable="false" modal="true" appendTo="@(body)"
-      dynamic="true" fitViewport="true">
+      dynamic="true" fitViewport="true" onShow="changeWidthDailySummaryPanel()">
       <h:form id="applications-email-setting-form" styleClass="applications-email-setting-form">
         <ic:ch.ivy.addon.portalkit.multiapp.settings.EmailSetting id="applications-email-setting" dialogName="emailSetting" />
       </h:form>
+          <script>
+    function changeWidthDailySummaryPanel() {
+        var dailySummary = $('[id $= ":daily-summary-checkbox"]').get(0);
+        if(dailySummary != null) {
+        $('[id $= ":daily-summary-checkbox_panel"]').width(dailySummary.offsetWidth);
+        }
+    } 
+</script>
     </p:dialog>
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/languageSetting')}" styleClass="language-setting-dialog"
