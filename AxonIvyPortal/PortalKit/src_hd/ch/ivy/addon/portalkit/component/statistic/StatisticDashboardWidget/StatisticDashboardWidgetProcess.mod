@@ -357,7 +357,7 @@ if (in.isBackFromDrilldown) {
 
 if (in.statisticChartList.size() != 0) {
 	in.hasStatistic = true;
-	RequestContext.getCurrentInstance().execute("bindCursorChangeEvent()");
+	//RequestContext.getCurrentInstance().execute("bindCursorChangeEvent()");
 	if(in.selectedItemOfDrilldown.isEmpty()){
 		service.generateChartModelForStatisticCharts(in.statisticChartList);
 	}else{
