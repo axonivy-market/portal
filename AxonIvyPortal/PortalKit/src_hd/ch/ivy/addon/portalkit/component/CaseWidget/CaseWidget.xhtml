@@ -174,7 +174,7 @@
     </h:panelGroup>
   </div>
 
-  <p:dialog id="save-filter-set-dialog" widgetVar="save-filter-set-dialog"
+  <p:dialog id="save-filter-set-dialog" widgetVar="save-filter-set-dialog" appendTo="@(body)"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" resizable="false" width="575"
     modal="true" closeOnEscape="true" styleClass="save-filter-set-dialog">
     <p:ajax event="close" listener="#{logic.clearSaveFilterDialog}" resetValues="true" />
