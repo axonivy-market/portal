@@ -14,7 +14,7 @@
     type="preRenderComponent" />
   <f:event listener="#{logic.initialize(cc.attrs.caseCategory)}" type="preRenderComponent" />
   <h:panelGroup id="elapsed-time-details-category" layout="block" styleClass="elapsed-time-result-list MarTop10">
-    <h:form id="elapsed-time-detail-form" styleClass="elapsed-time-detail-form">
+    <h:form id="elapsed-time-detail-form">
     
       <p:commandButton id="export-button" ajax="false" styleClass="export-excel Fright"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}">
@@ -22,7 +22,7 @@
       </p:commandButton>
 
       <p:dataTable id="case-table" widgetVar="case-table" var="elapsedTimeDetail" value="#{data.dataModel}" sortBy="ID" sortField="ID" 
-        rowKey="#{elapsedTimeDetail.getId()}" sortMode="single" lazy="true" scrollable="true" liveScroll="true" rows="20"
+        rowKey="#{elapsedTimeDetail.getId()}" sortMode="single" lazy="true" rows="20" scrollHeight="150"
         scrollRows="20" styleClass="case-table">
 
         <p:ajax event="sort" update="case-table" onstart="liveScroll()" />
@@ -62,15 +62,15 @@
         </p:column>
       </p:dataTable>
     </h:form>
-     <script type="text/javascript">
+    <script type="text/javascript">
       $(document).ready(function(){
         setTimeout(function(){initializeScrollbar();}, 100);
       });
     
     function liveScroll(){
       PF('case-table').scrollOffset=0;    
-        PF('case-table').scrollBody.scrollTop(1);   
-        PF('case-table').allLoadedLiveScroll = false; 
+      PF('case-table').scrollBody.scrollTop(1);   
+      PF('case-table').allLoadedLiveScroll = false; 
     }
     
       function initializeScrollbar() {
