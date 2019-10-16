@@ -64,6 +64,7 @@ var MainMenu = {
     this.$mainMenu = $('.js-left-sidebar');
     this.$mainMenuToggle = $('.sidebar-anchor');
     this.bindEvents();
+    toggleMenu();
   },
   
   showMainMenu : function() {
@@ -112,9 +113,6 @@ var MainMenu = {
       $(item).removeClass('active-menuitem');
     }
 
-    if (subMenuActive.length > 0) {
-      PF('main-menu').clearActiveMenuState();
-    }
   },
 
   getMenuBasedOnPageUrl : function() {
@@ -133,15 +131,27 @@ function toggleMainMenuMode() {
 }
 
 function getReversedState(state) {
-  if (state == "expanded") {
+  var staticMenu = $('.layout-wrapper-static').length;
+  if (state == "expanded" && staticMenu == 0) {
     return "collapsed";
-  } else {
+  } 
+  if (state == "collapsed" && staticMenu != 0) {
     return "expanded";
   }
+  return state;
 }
 
 function updateMainMenuMode() {
   mainMenuMode = getItemFromStorage(FIRST_LEVEL_MENU_MODE);
+}
+
+function toggleMenu() {
+  var leftMenu = $('.layout-wrapper');
+  if (mainMenuMode == "expanded" && !leftMenu.hasClass('layout-wrapper-static')) {
+    document.getElementsByClassName("sidebar-anchor")[0].click();
+  } else if (mainMenuMode == "collapsed" && leftMenu.hasClass('layout-wrapper-static')){
+    document.getElementsByClassName("sidebar-anchor")[0].click();
+  }
 }
 
 function detectStorage(){

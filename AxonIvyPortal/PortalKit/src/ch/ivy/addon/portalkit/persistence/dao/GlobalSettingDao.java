@@ -25,7 +25,7 @@ public class GlobalSettingDao extends AbstractDao<GlobalSetting> {
   }
 
   @ExecuteAsSystem
-  private GlobalSetting findGlobalSetting(String variableName) {
+  public GlobalSetting findGlobalSetting(String variableName) {
     return findAll().stream()
         .filter(globalSetting -> StringUtils.equals(variableName, globalSetting.getKey()))
         .findFirst()

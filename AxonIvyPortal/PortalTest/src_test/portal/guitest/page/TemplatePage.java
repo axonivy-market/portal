@@ -37,27 +37,27 @@ public abstract class TemplatePage extends AbstractPage {
   protected void waitForLocatorDisplayed(String locator) {
     // instead of using waitForPageLoaded(), wait for displaying instead of waiting for presenting
     if (isIntegrationTestRun()) {
-        waitForElementDisplayed(locator, true,  getTimeOutForLocator() + 200L);
+      waitForElementDisplayed(locator, true, getTimeOutForLocator() + 200L);
     } else {
-        waitForElementDisplayed(locator, true, getTimeOutForLocator());
+      waitForElementDisplayed(locator, true, getTimeOutForLocator());
     }
   }
 
-  
+
   @Override
   public <T> void waitForElementDisplayed(T locator, boolean expected, long timeout) {
     Awaitility.await().atMost(new Duration(timeout, TimeUnit.SECONDS)).until(() -> {
       try {
-          super.waitForElementDisplayed(locator, expected, timeout);
-          return;
-        } catch (WebDriverException e) {
-          System.out.println("Exception when waiting, try again.");
-          e.printStackTrace();
-        }
+        super.waitForElementDisplayed(locator, expected, timeout);
+        return;
+      } catch (WebDriverException e) {
+        System.out.println("Exception when waiting, try again.");
+        e.printStackTrace();
+      }
     });
   }
 
-protected boolean isIntegrationTestRun() {
+  protected boolean isIntegrationTestRun() {
     String engineUrl = System.getProperty("engineUrl");
     return ENGINE_URL_LOCAL.equals(engineUrl);
   }
@@ -73,18 +73,19 @@ protected boolean isIntegrationTestRun() {
       if (System.currentTimeMillis() - startTime < minMilliSeconds) {
         return false;
       }
-      Object ajaxQueueIsEmpty = ((JavascriptExecutor)getDriver()).executeScript("return PrimeFaces.ajax.Queue.isEmpty()");
+      Object ajaxQueueIsEmpty =
+          ((JavascriptExecutor) getDriver()).executeScript("return PrimeFaces.ajax.Queue.isEmpty()");
       if (Boolean.TRUE.toString().equalsIgnoreCase(String.valueOf(ajaxQueueIsEmpty))) {
         return true;
       }
       return false;
     };
     try {
-		wait.until(myPredicate);
-	} catch (WebDriverException e) {
-		System.out.println("Error when ensuring not background request");
-		e.printStackTrace();
-	}
+      wait.until(myPredicate);
+    } catch (WebDriverException e) {
+      System.out.println("Error when ensuring not background request");
+      e.printStackTrace();
+    }
   }
 
   @Override
@@ -159,34 +160,34 @@ protected boolean isIntegrationTestRun() {
     clickUserMenuItem("absence-menu-item");
     return new AbsencePage();
   }
-  
+
   public ChangePasswordPage openChangePasswordPage() {
     clickUserMenuItem("change-password-menu-item");
     return new ChangePasswordPage();
   }
-  
+
   public LanguagePage openLanguagePage() {
     clickUserMenuItem("language-setting-menu-item");
     return new LanguagePage();
   }
-  
+
   public ProjectVersionPage openProjectVersionPage() {
     clickUserMenuItem("project-info-menu-item");
     return new ProjectVersionPage();
   }
-  
+
   private void clickUserMenuItem(String menuItemSelector) {
     waitForElementDisplayed(By.id("user-settings-menu"), true);
     findElementById("user-settings-menu").click();
     waitForElementDisplayed(By.id(menuItemSelector), true);
     findElementById(menuItemSelector).click();
-    waitAjaxIndicatorDisappear(); 
+    waitAjaxIndicatorDisappear();
   }
 
   public boolean isAdminSettingsMenuItemPresent() {
     return isElementPresent("id('adminui-menu-item')");
   }
-  
+
   public boolean isElementDisplayedById(String id) {
     try {
       findElementById(id);
@@ -195,19 +196,18 @@ protected boolean isIntegrationTestRun() {
       return false;
     }
   }
-  
+
   public MainMenuPage openMainMenu() {
-    WebElement mainMenuToggle = findDisplayedElementBySelector(".js-left-sidebar-toggle");
+    WebElement mainMenuToggle = findDisplayedElementBySelector("#left-menu");
     if (!isMainMenuOpen()) {
       click(mainMenuToggle);
+      click(By.xpath("//a[@id='user-menu-required-login:toggle-menu']"));
     }
     return new MainMenuPage();
   }
-  
+
   public void clickOnLogo() {
-    WebElement logo = findElementById("logo");
-    waitForElementDisplayed(logo, true);
-    logo.click();
+    findElementByCssSelector("a[id$='logo']").click();
     waitAjaxIndicatorDisappear();
   }
 
@@ -224,9 +224,10 @@ protected boolean isIntegrationTestRun() {
   }
 
   public void closeMainMenu() {
-    WebElement mainMenuToggle = findDisplayedElementBySelector(".js-left-sidebar-toggle");
+    WebElement mainMenuToggle = findDisplayedElementBySelector("#left-menu");
     if (isMainMenuOpen()) {
-      click(mainMenuToggle);
+      click(By.cssSelector("a[id$='toggle-menu']"));
+      click(By.id("top-menu"));
       waitForPageLoaded(2);
     }
   }
@@ -250,18 +251,17 @@ protected boolean isIntegrationTestRun() {
   }
 
   public boolean isMainMenuOpen() {
-    WebElement mainMenu = findDisplayedElementBySelector(".js-left-sidebar-toggle");
-    return mainMenu.getAttribute(CLASS_PROPERTY).indexOf("in") > 0;
+    WebElement mainMenu = findDisplayedElementBySelector(".layout-wrapper");
+    return mainMenu.getAttribute(CLASS_PROPERTY).indexOf("static") > 0;
   }
 
   public TaskWidgetPage openTaskList() {
     openMainMenu();
-    WebElement taskListToggle = findListElementsByCssSelector("a.left-sidebar-sub-menu-item").get(1);
-    taskListToggle.click();
-    waitForElementPresent(By.cssSelector("div.js-task-list-container"), true);
+    findElementByCssSelector("li.submenu-container:nth-child(3) > a.ripplelink.submenu").click();
+    waitAjaxIndicatorDisappear();
     return new TaskWidgetPage();
   }
-  
+
   public CaseWidgetPage openCaseList() {
     openMainMenu();
     WebElement caseListToggle = findListElementsByCssSelector("a.left-sidebar-sub-menu-item").get(2);
@@ -269,7 +269,7 @@ protected boolean isIntegrationTestRun() {
     waitForElementPresent(By.cssSelector("div.js-case-default-widget-container"), true);
     return new CaseWidgetPage();
   }
-  
+
   public String getGlobalGrowlMessage() {
     return findElementById("portal-global-growl_container").getText();
   }
