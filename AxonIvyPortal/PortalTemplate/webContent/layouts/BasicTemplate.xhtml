@@ -70,7 +70,7 @@
            <div class="layout-sidebar #{guestPreferences.darkMenu ? 'layout-sidebar-dark' : ''} #{currentPage} left-sidebar-color js-left-sidebar" id="left-menu">
               <c:choose>
                 <c:when test="#{isNotRequiredLogin}">
-                  <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu startMethod="StartNotRequiredLogin" id="user-menu-without-login" showGlobalSearch="#{empty portalValidationBean.errorMessages}" />
+                  <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu startMethod="StartNotRequiredLogin" id="user-menu-without-login" isWorkingOnATask="#{isWorkingOnATask}" showGlobalSearch="#{empty portalValidationBean.errorMessages}" />
                 </c:when>
                 <c:otherwise>
                   <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu id="user-menu-required-login" isWorkingOnATask="#{isWorkingOnATask}" showGlobalSearch="#{empty portalValidationBean.errorMessages}" />

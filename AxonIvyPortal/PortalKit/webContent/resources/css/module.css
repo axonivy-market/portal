@@ -1612,10 +1612,11 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   
 }
 
-.process-widget .order-list-items.ui-orderlist .ui-orderlist-list{
+.process-widget .order-list-items.ui-orderlist .ui-orderlist-list {
   height: auto;
   overflow: visible;
-  margin: 0px !important
+  margin: 0px !important;
+  border: none;
 }
 
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item {
@@ -2011,7 +2012,7 @@ a.compact-task-start-link .task-start-list-item {
   background-color: rgba(0, 0, 0, 0.05);
   border-radius: 5px;
   margin-bottom: 5px;
-  height: 55px;
+  height: 75px;
   padding: 10px 0;
   display: flex;
   align-items: center;
@@ -2238,7 +2239,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 .side-steps-panel .side-step-item {
   clear: both;
   float: left;
-  padding: 10px 20px;
+  padding: 10px 18px 10px 20px;
   margin: 0;
   width: 160px;
   color: rgba(0, 0, 0, 0.5) !important;
@@ -3194,6 +3195,10 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 .admin-table {
   display: inline-block;
+}
+
+.admin-table.application-table {
+  width: 100%;
 }
 
 .app-dialog {
@@ -4791,6 +4796,10 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   margin: 0 0 10px 10px;
 }
 
+.statistic-result-list .task-table {
+	width: 100%;
+}
+
 .statistic-result-list .task-table .ui-datatable-scrollable-body {
   max-height: 500px;
 }
@@ -5206,4 +5215,15 @@ span.ui-inputnumber.ui-widget.ui-state-error {
   -ms-flex-wrap: wrap;
   align-items: center;
   justify-content: flex-end;
+}
+
+/*====================FIX FOR SERENITY 2.0 STYLE========================*/
+
+.process-widget .ui-fieldset .ui-fieldset-legend .ui-fieldset-toggler {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.case-note-history-container {
+  padding-bottom: 20px;
 }

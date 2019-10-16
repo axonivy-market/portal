@@ -121,6 +121,14 @@
     box-shadow: $value1, $value2, $value3;
 }
 
+@mixin translateX($val) {
+    -webkit-transform: translateX($val);
+    -moz-transform: translateX($val);
+    -o-transform: translateX($val);
+    -ms-transform: translateX($val);
+    transform: translateX($val);
+}
+
 @mixin box-sizing($box-model) {
     -webkit-box-sizing: $box-model;
     -moz-box-sizing: $box-model;
