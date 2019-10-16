@@ -1,19 +1,22 @@
-/******************************/
-/*           Common           */
-/******************************/
+//general
 $fontSize:14px;
 $fontFamily:"Roboto","Helvetica Neue",sans-serif;
 $textColor:#212121;
 $textSecondaryColor:#757575;
 $textboxBgColor:#f7f7f7;
 $lineHeight:18px;
-$borderRadius:3px;
-$dividerColor:#dbdbdb;
-$dividerLightColor:#f8f8f8;
+$borderRadius:2px;
+$letterSpacing:.25px;
 $transitionDuration:.3s;
+
+//icons
 $iconWidth:20px;
 $iconHeight:20px;
 $iconFontSize:20px;
+
+//list item hover
+$dividerColor:#dbdbdb;
+$dividerLightColor:#f8f8f8;
 $hoverBgColor:#e8e8e8;
 $hoverTextColor:#000000;
 
