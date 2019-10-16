@@ -927,6 +927,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     options.getLegend().setDisplay(false);
     model.setData(data);
     model.setOptions(options);
+    model.setExtender("elapsedTimeChartExtender");
     return model;
   }
 
