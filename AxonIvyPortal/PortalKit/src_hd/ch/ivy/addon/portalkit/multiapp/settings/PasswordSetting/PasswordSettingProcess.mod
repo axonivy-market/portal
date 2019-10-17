@@ -1,5 +1,5 @@
 [Ivy]
-15DBB7002BEF4583 3.28 #module
+15DBB7002BEF4583 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ps0 PasswordSettingProcess Big #zClass
 Ps0 RD #cInfo
@@ -24,11 +24,8 @@ Ps0 @PushWFArc f5 '' #zField
 >Proto Ps0 Ps0 PasswordSettingProcess #zField
 Ps0 f0 guid 15DBB70037BA9E81 #txt
 Ps0 f0 method start() #txt
-Ps0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ps0 f0 outParameterDecl '<> result;
-' #txt
+Ps0 f0 inParameterDecl '<> param;' #txt
+Ps0 f0 outParameterDecl '<> result;' #txt
 Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -44,11 +41,8 @@ Ps0 f2 expr out #txt
 Ps0 f2 109 64 275 64 #arcP
 Ps0 f6 guid 15DBB787242E846A #txt
 Ps0 f6 method updatePassword() #txt
-Ps0 f6 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ps0 f6 outParameterDecl '<> result;
-' #txt
+Ps0 f6 inParameterDecl '<> param;' #txt
+Ps0 f6 outParameterDecl '<> result;' #txt
 Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

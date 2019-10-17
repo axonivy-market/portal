@@ -1,5 +1,5 @@
 [Ivy]
-153CBA4AE9F19221 3.28 #module
+153CBA4AE9F19221 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ds0 DataCreationProcess Big #zClass
 Ds0 RD #cInfo
@@ -20,11 +20,8 @@ Ds0 @PushWFArc f5 '' #zField
 >Proto Ds0 Ds0 DataCreationProcess #zField
 Ds0 f0 guid 153CBA4AED16956D #txt
 Ds0 f0 method start() #txt
-Ds0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ds0 f0 outParameterDecl '<java.lang.Integer numOfCats,java.lang.Integer numOfSubCats,java.lang.Integer numOfCasesPerSubCat,java.lang.Boolean attachToBussinessCase> result;
-' #txt
+Ds0 f0 inParameterDecl '<> param;' #txt
+Ds0 f0 outParameterDecl '<Integer numOfCats,Integer numOfSubCats,Integer numOfCasesPerSubCat,Boolean attachToBussinessCase> result;' #txt
 Ds0 f0 outParameterMapAction 'result.numOfCats=in.numOfCats;
 result.numOfSubCats=in.numOfSubCats;
 result.numOfCasesPerSubCat=in.numOfCasesPerSubCat;

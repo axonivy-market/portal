@@ -1,5 +1,5 @@
 [Ivy]
-160451A075522446 3.28 #module
+160451A075522446 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskNoteHistoryProcess Big #zClass
 Ts0 RD #cInfo
@@ -17,15 +17,12 @@ Ts0 @PushWFArc f2 '' #zField
 >Proto Ts0 Ts0 TaskNoteHistoryProcess #zField
 Ts0 f0 guid 160451A076641B8C #txt
 Ts0 f0 method start(java.util.List<ch.ivyteam.ivy.workflow.INote>,String) #txt
-Ts0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.util.List<ch.ivyteam.ivy.workflow.INote> notes,java.lang.String exportedFileName> param = methodEvent.getInputArguments();
-' #txt
+Ts0 f0 inParameterDecl '<java.util.List<ch.ivyteam.ivy.workflow.INote> notes,String exportedFileName> param;' #txt
 Ts0 f0 inParameterMapAction 'out.exportedFileName=param.exportedFileName;
 out.filteredNotes=param.notes;
 out.notes=param.notes;
 ' #txt
-Ts0 f0 outParameterDecl '<> result;
-' #txt
+Ts0 f0 outParameterDecl '<> result;' #txt
 Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

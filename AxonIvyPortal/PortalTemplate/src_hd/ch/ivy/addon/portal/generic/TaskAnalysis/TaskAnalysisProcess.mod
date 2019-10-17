@@ -1,5 +1,5 @@
 [Ivy]
-163DD37A38FA2BC8 3.28 #module
+163DD37A38FA2BC8 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskAnalysisProcess Big #zClass
 Ts0 RD #cInfo
@@ -22,13 +22,10 @@ Ts0 @PushWFArc f2 '' #zField
 >Proto Ts0 Ts0 TaskAnalysisProcess #zField
 Ts0 f0 guid 163DD37A3BC5BFD2 #txt
 Ts0 f0 method start(String) #txt
-Ts0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.String menuState> param = methodEvent.getInputArguments();
-' #txt
+Ts0 f0 inParameterDecl '<String menuState> param;' #txt
 Ts0 f0 inParameterMapAction 'out.menuState=param.menuState;
 ' #txt
-Ts0 f0 outParameterDecl '<> result;
-' #txt
+Ts0 f0 outParameterDecl '<> result;' #txt
 Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

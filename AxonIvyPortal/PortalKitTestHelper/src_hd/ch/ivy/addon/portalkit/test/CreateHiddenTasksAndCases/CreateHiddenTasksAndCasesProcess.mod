@@ -1,5 +1,5 @@
 [Ivy]
-167BAF785E543C28 3.28 #module
+167BAF785E543C28 7.5.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CreateHiddenTasksAndCasesProcess Big #zClass
 Cs0 RD #cInfo
@@ -20,11 +20,8 @@ Cs0 @PushWFArc f5 '' #zField
 >Proto Cs0 Cs0 CreateHiddenTasksAndCasesProcess #zField
 Cs0 f0 guid 167BAF78603C6CCA #txt
 Cs0 f0 method start() #txt
-Cs0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Cs0 f0 outParameterDecl '<java.lang.Integer numberOfCases> result;
-' #txt
+Cs0 f0 inParameterDecl '<> param;' #txt
+Cs0 f0 outParameterDecl '<Integer numberOfCases> result;' #txt
 Cs0 f0 outParameterMapAction 'result.numberOfCases=in.numberOfCases;
 ' #txt
 Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

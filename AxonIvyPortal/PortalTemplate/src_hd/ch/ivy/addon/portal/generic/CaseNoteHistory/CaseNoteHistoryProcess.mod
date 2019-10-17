@@ -1,5 +1,5 @@
 [Ivy]
-160347990F681701 3.28 #module
+160347990F681701 7.5.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseNoteHistoryProcess Big #zClass
 Cs0 RD #cInfo
@@ -17,16 +17,13 @@ Cs0 @PushWFArc f8 '' #zField
 >Proto Cs0 Cs0 CaseNoteHistoryProcess #zField
 Cs0 f6 guid 163D96CAE1553778 #txt
 Cs0 f6 method start(java.util.List<ch.ivy.addon.portalkit.bo.History>,String,ch.ivyteam.ivy.workflow.ICase) #txt
-Cs0 f6 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.util.List<ch.ivy.addon.portalkit.bo.History> histories,java.lang.String exportedFileName,ch.ivyteam.ivy.workflow.ICase ivyCase> param = methodEvent.getInputArguments();
-' #txt
+Cs0 f6 inParameterDecl '<java.util.List<ch.ivy.addon.portalkit.bo.History> histories,String exportedFileName,ch.ivyteam.ivy.workflow.ICase ivyCase> param;' #txt
 Cs0 f6 inParameterMapAction 'out.exportedFileName=param.exportedFileName;
 out.filteredHistories=param.histories;
 out.histories=param.histories;
 out.ivyCase=param.ivyCase;
 ' #txt
-Cs0 f6 outParameterDecl '<> result;
-' #txt
+Cs0 f6 outParameterDecl '<> result;' #txt
 Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
