@@ -2,6 +2,7 @@ package portal.guitest.test;
 
 import java.util.concurrent.TimeUnit;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -16,6 +17,7 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.NoteHistoryPage;
+import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
 
 import com.jayway.awaitility.Awaitility;
@@ -102,18 +104,8 @@ public class ShowRelatedTasksTest extends BaseTest {
   public void testShowRelatedTasksWhenClickingRelatedTask() {
     grantTaskReadOwnCaseTaskPermissionsToCurrentUser();
     openCaseDetail();
-    detailsPage.openTasksOfCasePage(0);
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    int numberOfTasks = taskWidgetPage.countTasks();
-    assertTrue(numberOfTasks == 4);
-    boolean hasDoneTask = false;
-    for (int i = 0; i < numberOfTasks; i++) {
-      if (taskWidgetPage.getTaskState(i).equals(TaskState.DONE)) {
-        hasDoneTask = true;
-        break;
-      }
-    }
-    assertTrue(hasDoneTask);
+    TaskDetailsPage taskDetailsPage = detailsPage.openTasksOfCasePage(0);
+    assertEquals("Task Item Detail", taskDetailsPage.getPageTitle());
   }
   
   @Test
