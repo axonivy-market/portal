@@ -142,7 +142,12 @@ function getReversedState(state) {
 }
 
 function updateMainMenuMode() {
-  mainMenuMode = getItemFromStorage(FIRST_LEVEL_MENU_MODE);
+  var mainMenuModeFromStorage = getItemFromStorage(FIRST_LEVEL_MENU_MODE);
+  if (mainMenuModeFromStorage == null) {
+	mainMenuMode = 'collapsed';
+  } else {
+	mainMenuMode = mainMenuModeFromStorage;
+  }
 }
 
 function toggleMenu() {

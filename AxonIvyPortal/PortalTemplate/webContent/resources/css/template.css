@@ -75,11 +75,31 @@
 	color: rgba(0, 0, 0, 0.6) !important;
 }
 
+#user-setting-container .server-information {
+	padding: 0 0 0 20px !important;
+	height: 36px !important;
+	line-height: 36px;
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1.4rem;
+}
+
 #user-setting-container li a:hover {
 	font-family: 'Roboto';
 	font-style: normal;
 	font-weight: 400;
 	color: rgba(0, 0, 0, 1) !important;
+}
+
+.show-environment-info {
+	font-size: 11px;
+	height: 16px;
+}
+
+.user-name-show-environment-info {
+	height: 18px;
+	font-weight: bold;
 }
 /*
 	Overide default state of ui-layout-container in Internet Explorer
