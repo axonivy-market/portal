@@ -306,6 +306,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .widget-sort-menu.full-mode {
   flex: 1 0 100%;
+  height: 30px;
   display: flex;
   align-items: flex-end;
   line-height: normal;
@@ -333,7 +334,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   color: black;
   font-size: 1.4rem;
   width: 100%;
-  padding: 6px 0 6px 6px !important;
 }
 
 .widget-header-filter-input.ui-inputfield.ui-state-hover, .widget-header-filter-input.ui-inputfield.ui-state-focus {
@@ -895,6 +895,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 .case-widget-container .widget-column-header,
 .case-default-widget-container .widget-column-header {
   flex: 1 0 100%;
+  height: 30px;
   display: flex;
   align-items: flex-end;
   line-height: normal;
@@ -1662,7 +1663,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 }
 
 .compact-processes-container .process-start-list-item {
-  margin: 2px 3px 5px 2px;
+ margin: 2px 3px 5px 2px;
 }
 
 /* Fix for screen Full HD */
@@ -1675,12 +1676,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 @media  screen and (min-width: 1024px) {
   .compact-processes-container {
     max-height: 275px;
-  }
-}
-
-@media  screen and (max-height: 1023px) {
-  .compact-processes-container {
-    max-height: 165px;
   }
 }
 
@@ -1866,7 +1861,6 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 
 .task-widget .sort-task-menu {
   width: 100%;
-  margin-top: 8px;
 }
 
 .task-widget .filter-add-container {
@@ -3122,15 +3116,10 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
     width: 80vw !important;
   }
 }
+
 /********************************** ADMIN SETTING **********************************/
 .admin-ui-dialog {
   top: 25vh !important;
-}
-
-@media  screen and (max-height: 615px) {
-  .admin-ui-dialog .ui-dialog-content {
-    height: 55vh !important;
-  }
 }
 
 .admin-settings-no-permission-message {
@@ -3396,8 +3385,12 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
     max-height: 235px;
     overflow: auto;
     margin-bottom: 10px;
-  } 
- 
+  }
+}
+
+.application-email-setting-container tbody tr td {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 } 
 
 .applications-email-setting-dialog .email-setting-container {
@@ -3527,17 +3520,20 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 /********************************** STATISTIC WIDGET **********************************/
-.statistic-widget-container {
+.statistic-widget-container:not(.statistic-widget-compact-mode-container) {
   padding: 0.5em;
 }
 
-.statistic-widget-container .widget-header-main {
+.statistic-widget-container:not(.statistic-widget-compact-mode-container) .widget-header-main {
   height: 35px !important;
+}
+
+.statistic-widget:not(.compact-mode) {
+  margin-right: -1.5rem;
 }
 
 .statistic-widget {
   margin-top: 20px;
-  margin-right: -1.5rem;
   justify-content: space-around;
   flex-direction: row;
 }
@@ -3545,57 +3541,45 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .statistic-widget-empty-message {
   margin: auto;
   margin-top: 20px;
-}
-
-.statistic-widget-empty-message.not-compact-mode {
   text-align: center;
-}
-
-.jqplot-target .jqplot-data-label {
-  color: #5f5f5f;
-}
-
-.jqplot-target .jqplot-highlighter-tooltip {
-  font-size: 1.2rem;
-  color: #1A1A1A;
-}
-
-.statistic-widget .jqplot-target, .jqplot-target table.jqplot-table-legend {
-  font-size: 1.2rem;
 }
 
 .statistic-carousel {
   margin: auto;
+  position: relative;
 }
 
-.ui-carousel .ui-carousel-header .ui-carousel-header-title {
-  width: calc(100% - 64px) !important;
+.statistic-carousel.ui-carousel .ui-carousel-header .ui-carousel-header-title {
+  width: calc(100% - 50px);
   max-width: 78%;
 }
 
-.ui-carousel-header-title {
+.statistic-carousel .ui-carousel-viewport .ui-carousel-items .ui-widget-content {
+  border: none !important;
+}
+
+.statistic-carousel .ui-carousel-header-title {
   float: left;
   padding-left: 2px;
 }
 
-.ui-carousel-header-title .chart-name-container {
-	width: 100%;
-    position: relative;
-    float: left;
-    display: inline-block;
+.statistic-carousel .ui-carousel-header-title .chart-name-container {
+  width: 100%;
+  position: relative;
+  float: left;
+  display: inline-block;
 }
 
-.ui-carousel .ui-carousel-header .ui-carousel-header-title .chart-info {
-	color: white !important;
-    font-size: 1.5rem;
-    margin-right: 5px;
-    float: left;
-    margin-top: 3px;
-    width: 20px;
-    height: 20px;
+.statistic-carousel.ui-carousel .ui-carousel-header .ui-carousel-header-title .chart-info {
+  font-size: 1.5rem;
+  margin-right: 5px;
+  float: left;
+  margin-top: 3px;
+  width: 20px;
+  height: 20px;
 }
 
-.ui-carousel-header-title .chart-name {
+.statistic-carousel .ui-carousel-header-title .chart-name {
   width: calc(100% - 28px);
   max-width: 88%;
   white-space: nowrap;
@@ -3603,36 +3587,35 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   text-align: left;
   float: left;
   overflow: hidden;
-  font-size: 2rem;
+  font-size: 1.6rem;
   margin-top: 2px;
 }
 
-.hidden-carousel-title {
-	height: 0;
-	display: none;
+.statistic-carousel .statistic-chart {
+  margin-bottom: 1rem !important;
 }
 
-.ui-carousel-item .ui-dialog-content .ui-panelgrid, .ui-carousel-item .ui-dialog-content .ui-panelgrid tbody tr .ui-panelgrid-cell {
-	border: solid 1px #E0E0E0 !important;
-	text-align: left;
+.hidden-carousel-title {
+  height: 0;
+  display: none;
+}
+
+.ui-carousel-item .ui-dialog-content .ui-panelgrid,
+.ui-carousel-item .ui-dialog-content .ui-panelgrid tbody tr .ui-panelgrid-cell  {
+  border: solid 1px #E0E0E0 !important;
+  text-align: left;
 }
 
 .ui-carousel-item .ui-dialog-content .ui-panelgrid tbody tr .ui-panelgrid-cell {
-	padding: 4px 10px !important;
+  padding: 4px 10px !important;
 }
+
 .ui-carousel-item .ui-dialog-content .chart-info-header {
-	text-align: left;
+  text-align: left;
 }
 
 /* Small screen */
 @media (max-width: 1365px) {
-  .statistic-carousel {
-    width: 27rem;
-    text-align: center;
-  }
-  .compact-mode .jqplot-target {
-    width: 25rem;
-  }
   .ui-carousel .ui-carousel-header .ui-carousel-header-title {
     max-width: 70% !important;
   }
@@ -3640,15 +3623,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 /* Medium screen */
 @media (min-width: 1366px) and (max-width: 1919px) {
-  .statistic-carousel {
-    width: 28rem !important;
-    text-align: center;
-  }
-
-  .compact-mode .jqplot-target {
-    width: 26rem;
-  }
-  
   .ui-carousel .ui-carousel-header .ui-carousel-header-title {
     max-width: 72% !important;
   }
@@ -3657,13 +3631,14 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 /* Large screen */
 @media (min-width: 1920px) {
   .statistic-carousel {
-    width: 35rem;
-    text-align: center;
+    width: 85% !important;
   }
+}
 
-  .compact-mode .jqplot-target {
-    width: 320px;
-  }
+.statistic-carousel {
+  width: 100%;
+  text-align: center;
+  float: right;
 }
 
 .statistic-carousel .ui-carousel-item .ui-panelgrid {
@@ -3673,7 +3648,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .statistic-carousel .ui-carousel-header {
   padding: 5px !important;
 }
-
 
 .statistic-carousel .ui-carousel-header .ui-carousel-dropdown,
 .statistic-carousel .ui-carousel-header .ui-carousel-mobiledropdown {
@@ -3690,14 +3664,8 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   display: none;
 }
 
-.statistic-carousel .ui-panelgrid .ui-panelgrid-cell,
-.statistic-carousel .ui-panelgrid .ui-panel {
-  padding: 0 !important;
-  border: none !important;
-}
-
-.statistic-carousel .ui-panelgrid {
-  border: none !important;
+.statistic-carousel-content {
+  position: relative;
 }
 
 .statistic-actions-panel {
@@ -3734,17 +3702,13 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   margin-top: -0.5em;
 }
 
-/* Medium screen */
-@media (min-width: 1366px) and (max-width: 1919px) {
-
-}
-
 .edit-statistic-container .chart-container {
   height: 100%;
 }
 
-.edit-statistic-container .chart-list .chart-container .label {
-  font-size: 1.8rem;
+.edit-statistic-container .chart-list .chart-container .label,
+.chart-filter-header-text {
+  font-size: 1.8rem !important;
   text-align: left;
 }
 
@@ -3759,7 +3723,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   margin-top: 5px;
   font-family: 'Roboto';
   font-style: normal;
-  font-weight: 400;
   width: 50%;
   float: left;
 }
@@ -3803,9 +3766,13 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 .statistic-filter-container {
-  max-height: 20rem;
-  max-width: 26rem;
-  margin-top: 1rem;
+  height: 18rem;
+  padding: 0 !important;
+}
+
+.custom-field-panel.statistic-filter-container {
+  height: auto;
+  max-height: 18rem;
 }
 
 /* Small screen */
@@ -3819,23 +3786,10 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   }
 }
 
-/* Medium screen */
-@media (min-width: 1366px) and (max-width: 1919px) {
-
-}
-
 /* Large screen */
 @media (min-width: 1920px) {
   .edit-statistic-container .chart-list {
     width: 85%;
-  }
-  .statistic-chart {
-    width: 100%;
-    height: 100%;
-  }
-  .compact-mode .statistic-chart {
-    width: 100%;
-    height: 38rem;
   }
 }
 
@@ -3858,8 +3812,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 .dashboard-chart-panel {
-/*   display: inline-block; */
-/*   flex: 0 1 30%; */
   position: relative;
   height: 100%;
   margin: auto 1rem 1rem 0;
@@ -3920,11 +3872,16 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 .dashboard-chart-panel .card,
-.edit-statistic-container .card {
+.edit-statistic-container .card,
+.statistic-widget.compact-mode .statistic-carousel.card {
   padding: 16px;
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2),
               0 2px 4px 0 rgba(0, 0, 0, 0.14),
               0 4px 2px -1px rgba(0, 0, 0, 0.12);
+}
+
+.statistic-widget.compact-mode .statistic-carousel.card {
+  padding: 0 0 0.5em 0 !important;
 }
 
 .dashboard-chart-panel .chart-name {
@@ -3954,28 +3911,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .task-by-expiry-drilldown-mode .ui-panel-titlebar.ui-widget-header .ui-panel-title {
   width: 100%;
   text-align: left;
-}
-
-.compare-roles-panel .ui-outputlabel {
-  margin-right: 20px;
-}
-
-.compare-items-panel .ui-widget.ui-button {
-  float: right;
-  margin-top: 10px;
-}
-
-.big-horizontal-statistic-chart {
-  width: 50%;
-}
-
-.compare-result-panel {
-  width: 50%;
-}
-
-.compare-result-panel .export-button {
-  float: right;
-  margin-bottom: 10px;
 }
 
 .chart-info-header {
@@ -4019,11 +3954,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   width: 100%;
   overflow: auto;
 }
-
-.application-email-setting-container tbody tr td{
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-} 
 
 /********************************** END STATISTIC WIDGET **********************************/
 
@@ -4580,31 +4510,24 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   width: 32rem;
 }
 
-.chart-list-container .filter-container .ui-accordion .ui-accordion-header {
-  margin-top: 4px;
-}
-
-.chart-list-container .filter-container .ui-accordion .ui-accordion-header {
-  outline: none !important;
-}
-
 .apply-filters-btn {
 	float: right;
 }
 
 .statistic-filter-accordion-panel {
-	border: none !important;
+  border: none !important;
+  padding: 0.5em 0 !important;
 }
 
 .statistic-filter-accordion-panel .ui-accordion-header {
-	padding: 5px 5px 5px 30px !important;
+/* 	padding: 5px 5px 5px 30px !important; */
 }
 
-.statistic-filter-accordion-panel .ui-accordion-header,
-.statistic-filter-accordion-panel .ui-accordion-header:hover,
-.statistic-filter-accordion-panel .ui-accordion-header.ui-state-active {
-	background-color: #c7d426;
-}
+/* .statistic-filter-accordion-panel .ui-accordion-header, */
+/* .statistic-filter-accordion-panel .ui-accordion-header:hover, */
+/* .statistic-filter-accordion-panel .ui-accordion-header.ui-state-active { */
+/* 	background-color: #c7d426; */
+/* } */
 
 .statistic-filter-accordion-panel .ui-accordion-content {
 	border: solid 1px #E0E0E0 !important;
@@ -4617,6 +4540,10 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 	width: 100%;
 	padding-top: 5px;
 	padding-bottom: 5px;
+}
+
+.statistic-filter-accordion-panel .item-label {
+  padding-bottom: 0;
 }
 
 .statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
@@ -4680,8 +4607,16 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 /* Small screen */
 @media (max-width: 1365px) {
 	.statistic-filter-accordion-panel {
-		width: 23.5rem !important;
+/* 		width: 23.5rem !important; */
 	}
+  
+  .chart-list-container .filter-container {
+    width: 23.5rem !important;
+  }
+  
+  .edit-statistic-container {
+  padding-right: 23.5rem !important;
+}
 
 	.statistic-filter-accordion-panel .ui-accordion-header {
 /* 		width: 20rem; */
@@ -4837,7 +4772,21 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   width: 100%;
 
 }
+.elapsed-time-detail-form {
+  width: 80%;
+}
 
+.elapsed-time-result-list .case-table .case-id,
+.elapsed-time-result-list .case-table .case-creator,
+.elapsed-time-result-list .case-table .case-created,
+.elapsed-time-result-list .case-table .case-finished {
+  width: 10%;
+}
+
+.elapsed-time-result-list .case-table .case-name,
+.elapsed-time-result-list .case-table .case-elapsed-time{
+  width: 20%;
+}
 .ui-columntoggler[id$='task-table-toggler'] {
   min-width: 200px;
   padding: 0 !important;
