@@ -1,5 +1,5 @@
 [Ivy]
-163FDC32C09892B4 3.28 #module
+163FDC32C09892B4 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskWorkerFilterProcess Big #zClass
 Ts0 RD #cInfo
@@ -20,13 +20,10 @@ Ts0 @PushWFArc f2 '' #zField
 >Proto Ts0 Ts0 TaskWorkerFilterProcess #zField
 Ts0 f6 guid 15FB4A9997759979 #txt
 Ts0 f6 method autoCompleteForWorker(String) #txt
-Ts0 f6 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.String query> param = methodEvent.getInputArguments();
-' #txt
+Ts0 f6 inParameterDecl '<String query> param;' #txt
 Ts0 f6 inParameterMapAction 'out.queryAutoComplete=param.query;
 ' #txt
-Ts0 f6 outParameterDecl '<java.util.List<ch.ivyteam.ivy.security.IUser> workers> result;
-' #txt
+Ts0 f6 outParameterDecl '<java.util.List<ch.ivyteam.ivy.security.IUser> workers> result;' #txt
 Ts0 f6 outActionCode 'import ch.ivy.addon.portalkit.util.UserUtils;
 
 result.workers = UserUtils.filterUsers(in.workers, in.queryAutoComplete);' #txt
@@ -45,11 +42,8 @@ Ts0 f8 expr out #txt
 Ts0 f8 109 192 243 192 #arcP
 Ts0 f0 guid 01682B5D2AAFD90C #txt
 Ts0 f0 method start() #txt
-Ts0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ts0 f0 outParameterDecl '<> result;
-' #txt
+Ts0 f0 inParameterDecl '<> param;' #txt
+Ts0 f0 outParameterDecl '<> result;' #txt
 Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

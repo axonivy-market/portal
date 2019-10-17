@@ -1,5 +1,5 @@
 [Ivy]
-1624CFE2532EF6BE 3.28 #module
+1624CFE2532EF6BE 7.5.0 #module
 >Proto >Proto Collection #zClass
 Se0 SetAdditonalCaseDetailPage Big #zClass
 Se0 B #cInfo
@@ -17,11 +17,10 @@ Se0 @GridStep f3 '' #zField
 Se0 @PushWFArc f4 '' #zField
 Se0 @PushWFArc f2 '' #zField
 >Proto Se0 Se0 SetAdditonalCaseDetailPage #zField
-Se0 f0 inParamDecl '<java.lang.String linkToAddtionalCaseDetailPage> param;' #txt
+Se0 f0 inParamDecl '<String linkToAddtionalCaseDetailPage> param;' #txt
 Se0 f0 inParamTable 'out.linkToAdditonalCaseDetailPage=param.linkToAddtionalCaseDetailPage;
 ' #txt
-Se0 f0 outParamDecl '<> result;
-' #txt
+Se0 f0 outParamDecl '<> result;' #txt
 Se0 f0 callSignature call(String) #txt
 Se0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

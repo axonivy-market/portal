@@ -1,5 +1,5 @@
 [Ivy]
-1549EAD7E9C3125A 3.28 #module
+1549EAD7E9C3125A 7.5.0 #module
 >Proto >Proto Collection #zClass
 Pl0 ParallelTasksUtil Big #zClass
 Pl0 B #cInfo
@@ -96,11 +96,10 @@ TaskB.TYPE=0' #txt
 Pl0 f18 template "" #txt
 Pl0 f18 130 258 28 28 14 0 #rect
 Pl0 f18 @|TaskSwitchIcon #fIcon
-Pl0 f23 inParamDecl '<java.lang.Number numberOfTasks> param;' #txt
+Pl0 f23 inParamDecl '<Number numberOfTasks> param;' #txt
 Pl0 f23 inParamTable 'out.numberOfTasks=param.numberOfTasks;
 ' #txt
-Pl0 f23 outParamDecl '<java.lang.Number counter> result;
-' #txt
+Pl0 f23 outParamDecl '<Number counter> result;' #txt
 Pl0 f23 outParamTable 'result.counter=in.counter;
 ' #txt
 Pl0 f23 callSignature splitTasks(Number) #txt
@@ -154,8 +153,7 @@ Pl0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pl0 f34 515 166 28 28 -45 -42 #rect
 Pl0 f34 @|AlternativeIcon #fIcon
 Pl0 f35 inParamDecl '<> param;' #txt
-Pl0 f35 outParamDecl '<> result;
-' #txt
+Pl0 f35 outParamDecl '<> result;' #txt
 Pl0 f35 callSignature join() #txt
 Pl0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

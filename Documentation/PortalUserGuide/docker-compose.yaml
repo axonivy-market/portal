@@ -1,9 +1,10 @@
 version: '3.3'
 services:
   builder:
-    build: .
-    entrypoint: "make livehtml"
-    volumes:
-     - "./..:/ivy-core"     
+    image: axonivy/build-container:read-the-docs-1.1
     ports:
      - "8000:8000"
+    volumes:
+     - "./:/portal"     
+    entrypoint: "make livehtml BASEDIR=/portal"
+

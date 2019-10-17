@@ -1,5 +1,5 @@
 [Ivy]
-15AE9CC2C41A3F66 3.28 #module
+15AE9CC2C41A3F66 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskResponsibleProcess Big #zClass
 Ts0 RD #cInfo
@@ -20,11 +20,8 @@ Ts0 @PushWFArc f5 '' #zField
 >Proto Ts0 Ts0 TaskResponsibleProcess #zField
 Ts0 f0 guid 15AE9A0BAA4D09B7 #txt
 Ts0 f0 method start() #txt
-Ts0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ts0 f0 outParameterDecl '<> result;
-' #txt
+Ts0 f0 inParameterDecl '<> param;' #txt
+Ts0 f0 outParameterDecl '<> result;' #txt
 Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
