@@ -1,5 +1,5 @@
 [Ivy]
-14E53233041A883D 3.28 #module
+14E53233041A883D 7.5.0 #module
 >Proto >Proto Collection #zClass
 Cr0 CaseHistoryCustomTaskFilter Big #zClass
 Cr0 B #cInfo
@@ -21,8 +21,7 @@ Cr0 @PushWFArc f2 '' #zField
 Cr0 f0 inParamDecl '<java.util.List<ch.ivyteam.ivy.workflow.ITask> tasks> param;' #txt
 Cr0 f0 inParamTable 'out.tasks=param.tasks;
 ' #txt
-Cr0 f0 outParamDecl '<java.util.List<ch.ivyteam.ivy.workflow.ITask> tasks> result;
-' #txt
+Cr0 f0 outParamDecl '<java.util.List<ch.ivyteam.ivy.workflow.ITask> tasks> result;' #txt
 Cr0 f0 outParamTable 'result.tasks=in.filterdTasks;
 ' #txt
 Cr0 f0 callSignature call(List<ch.ivyteam.ivy.workflow.ITask>) #txt

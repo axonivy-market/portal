@@ -1,5 +1,5 @@
 [Ivy]
-15F954914B8785D1 3.28 #module
+15F954914B8785D1 7.5.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseCreatorFilterProcess Big #zClass
 Cs0 RD #cInfo
@@ -20,11 +20,8 @@ Cs0 @PushWFArc f8 '' #zField
 >Proto Cs0 Cs0 CaseCreatorFilterProcess #zField
 Cs0 f0 guid 15F954914E422B7F #txt
 Cs0 f0 method start() #txt
-Cs0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Cs0 f0 outParameterDecl '<> result;
-' #txt
+Cs0 f0 inParameterDecl '<> param;' #txt
+Cs0 f0 outParameterDecl '<> result;' #txt
 Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -40,13 +37,10 @@ Cs0 f2 expr out #txt
 Cs0 f2 109 64 211 64 #arcP
 Cs0 f6 guid 15FB4DDD4631366E #txt
 Cs0 f6 method autoCompleteForCreator(String) #txt
-Cs0 f6 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.String query> param = methodEvent.getInputArguments();
-' #txt
+Cs0 f6 inParameterDecl '<String query> param;' #txt
 Cs0 f6 inParameterMapAction 'out.queryAutoComplete=param.query;
 ' #txt
-Cs0 f6 outParameterDecl '<java.util.List<ch.ivyteam.ivy.security.IUser> creators> result;
-' #txt
+Cs0 f6 outParameterDecl '<java.util.List<ch.ivyteam.ivy.security.IUser> creators> result;' #txt
 Cs0 f6 outActionCode 'import ch.ivy.addon.portalkit.util.UserUtils;
 
 result.creators = UserUtils.filterUsers(in.creators, in.queryAutoComplete);' #txt

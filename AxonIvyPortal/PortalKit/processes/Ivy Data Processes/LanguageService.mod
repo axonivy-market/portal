@@ -1,5 +1,5 @@
 [Ivy]
-14BE80F25BC9033C 3.28 #module
+14BE80F25BC9033C 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ee0 LanguageService Big #zClass
 Ee0 B #cInfo
@@ -33,11 +33,10 @@ Ee0 @PushWFArc f21 '' #zField
 Ee0 @StartSub f23 '' #zField
 Ee0 @PushWFArc f16 '' #zField
 >Proto Ee0 Ee0 LanguageService #zField
-Ee0 f0 inParamDecl '<java.lang.String username> param;' #txt
+Ee0 f0 inParamDecl '<String username> param;' #txt
 Ee0 f0 inParamTable 'out.username=param.username;
 ' #txt
-Ee0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage> languages,java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;
-' #txt
+Ee0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage> languages,java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;' #txt
 Ee0 f0 outParamTable 'result.languages=in.languages;
 result.errors=in.errors;
 ' #txt
@@ -89,8 +88,7 @@ Ee0 f6 @|StepIcon #fIcon
 Ee0 f7 expr out #txt
 Ee0 f7 344 64 392 64 #arcP
 Ee0 f2 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Ee0 f2 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
-' #txt
+Ee0 f2 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
 Ee0 f2 requestMappingAction 'param.exceptions=in.errors;
 ' #txt
 Ee0 f2 responseActionDecl 'ch.ivyteam.wf.processes.LanguageServiceData out;
@@ -112,12 +110,11 @@ Ee0 f4 753 49 30 30 0 15 #rect
 Ee0 f4 @|EndSubIcon #fIcon
 Ee0 f5 expr out #txt
 Ee0 f5 696 64 753 64 #arcP
-Ee0 f8 inParamDecl '<java.lang.String username,java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage> languages> param;' #txt
+Ee0 f8 inParamDecl '<String username,java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage> languages> param;' #txt
 Ee0 f8 inParamTable 'out.languages=param.languages;
 out.username=param.username;
 ' #txt
-Ee0 f8 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;
-' #txt
+Ee0 f8 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;' #txt
 Ee0 f8 outParamTable 'result.errors=in.errors;
 ' #txt
 Ee0 f8 callSignature saveUserLanguages(String,List<ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage>) #txt
@@ -151,8 +148,7 @@ Ee0 f12 @|StepIcon #fIcon
 Ee0 f13 expr out #txt
 Ee0 f13 111 192 224 192 #arcP
 Ee0 f14 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Ee0 f14 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
-' #txt
+Ee0 f14 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
 Ee0 f14 requestMappingAction 'param.exceptions=in.errors;
 ' #txt
 Ee0 f14 responseActionDecl 'ch.ivyteam.wf.processes.LanguageServiceData out;
@@ -192,8 +188,7 @@ Ee0 f17 @|StepIcon #fIcon
 Ee0 f18 761 305 30 30 0 15 #rect
 Ee0 f18 @|EndSubIcon #fIcon
 Ee0 f19 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Ee0 f19 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
-' #txt
+Ee0 f19 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
 Ee0 f19 requestMappingAction 'param.exceptions=in.errors;
 ' #txt
 Ee0 f19 responseActionDecl 'ch.ivyteam.wf.processes.LanguageServiceData out;
@@ -213,11 +208,10 @@ Ee0 f20 expr out #txt
 Ee0 f20 616 320 761 320 #arcP
 Ee0 f21 expr out #txt
 Ee0 f21 392 320 504 320 #arcP
-Ee0 f23 inParamDecl '<java.lang.String appName> param;' #txt
+Ee0 f23 inParamDecl '<String appName> param;' #txt
 Ee0 f23 inParamTable 'out.apps=java.util.Arrays.asList(param.appName);
 ' #txt
-Ee0 f23 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage supportedLanguge> result;
-' #txt
+Ee0 f23 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage supportedLanguge> result;' #txt
 Ee0 f23 outParamTable 'result.errors=in.errors;
 result.supportedLanguge=org.apache.commons.collections4.CollectionUtils.isNotEmpty(in.languages) ? in.languages.get(0) : null;
 ' #txt

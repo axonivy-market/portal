@@ -1,5 +1,5 @@
 [Ivy]
-1574EBDBE9576CED 3.28 #module
+1574EBDBE9576CED 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ds0 FormDefinitionProcess Big #zClass
 Ds0 RD #cInfo
@@ -85,13 +85,10 @@ Ds0 @PushWFArc f54 '' #zField
 >Proto Ds0 Ds0 FormDefinitionProcess #zField
 Ds0 f0 guid 156E35E680453115 #txt
 Ds0 f0 method start(gawfs.Data) #txt
-Ds0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<gawfs.Data data> param = methodEvent.getInputArguments();
-' #txt
+Ds0 f0 inParameterDecl '<gawfs.Data data> param;' #txt
 Ds0 f0 inParameterMapAction 'out.data=param.data;
 ' #txt
-Ds0 f0 outParameterDecl '<gawfs.Data data> result;
-' #txt
+Ds0 f0 outParameterDecl '<gawfs.Data data> result;' #txt
 Ds0 f0 outParameterMapAction 'result.data=in.data;
 ' #txt
 Ds0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -133,11 +130,8 @@ Ds0 f6 640 42 112 44 -40 -8 #rect
 Ds0 f6 @|StepIcon #fIcon
 Ds0 f8 guid 15749D9D5247FA7C #txt
 Ds0 f8 method createInputField() #txt
-Ds0 f8 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ds0 f8 outParameterDecl '<> result;
-' #txt
+Ds0 f8 inParameterDecl '<> param;' #txt
+Ds0 f8 outParameterDecl '<> result;' #txt
 Ds0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -167,11 +161,8 @@ Ds0 f10 expr out #txt
 Ds0 f10 109 160 193 160 #arcP
 Ds0 f12 guid 1574A296AECB0DD4 #txt
 Ds0 f12 method createInputTextArea() #txt
-Ds0 f12 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ds0 f12 outParameterDecl '<> result;
-' #txt
+Ds0 f12 inParameterDecl '<> param;' #txt
+Ds0 f12 outParameterDecl '<> result;' #txt
 Ds0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -183,11 +174,8 @@ Ds0 f12 83 211 26 26 -58 15 #rect
 Ds0 f12 @|UdMethodIcon #fIcon
 Ds0 f14 guid 1574A2979225007A #txt
 Ds0 f14 method createManyCheckbox() #txt
-Ds0 f14 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ds0 f14 outParameterDecl '<> result;
-' #txt
+Ds0 f14 inParameterDecl '<> param;' #txt
+Ds0 f14 outParameterDecl '<> result;' #txt
 Ds0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -199,11 +187,8 @@ Ds0 f14 83 275 26 26 -62 15 #rect
 Ds0 f14 @|UdMethodIcon #fIcon
 Ds0 f15 guid 1574A2984D932DE0 #txt
 Ds0 f15 method createOneRadio() #txt
-Ds0 f15 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ds0 f15 outParameterDecl '<> result;
-' #txt
+Ds0 f15 inParameterDecl '<> param;' #txt
+Ds0 f15 outParameterDecl '<> result;' #txt
 Ds0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -215,11 +200,8 @@ Ds0 f15 83 339 26 26 -49 15 #rect
 Ds0 f15 @|UdMethodIcon #fIcon
 Ds0 f16 guid 1574A2991F562461 #txt
 Ds0 f16 method createFileUpload() #txt
-Ds0 f16 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ds0 f16 outParameterDecl '<> result;
-' #txt
+Ds0 f16 inParameterDecl '<> param;' #txt
+Ds0 f16 outParameterDecl '<> result;' #txt
 Ds0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -471,9 +453,7 @@ Ds0 f13 expr out #txt
 Ds0 f13 304 64 384 64 #arcP
 Ds0 f49 guid 162BD04BAE6408C4 #txt
 Ds0 f49 method moveNextTask() #txt
-Ds0 f49 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
+Ds0 f49 inParameterDecl '<> param;' #txt
 Ds0 f49 inActionCode 'import ch.ivy.gawfs.ExpressProcessUtils;
 import ch.ivy.gawfs.enums.TaskType;
 if(out.data.definedTasks.get(out.activeTaskIndex).getTaskType() != TaskType.EMAIL) {
@@ -483,8 +463,7 @@ if(out.data.definedTasks.get(out.activeTaskIndex).getTaskType() != TaskType.EMAI
 }
 ExpressProcessUtils expressUtils = new ExpressProcessUtils();
 out.activeTaskIndex = expressUtils.nextAvailableTaskIndex(out.data.definedTasks, out.activeTaskIndex);' #txt
-Ds0 f49 outParameterDecl '<> result;
-' #txt
+Ds0 f49 outParameterDecl '<> result;' #txt
 Ds0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -526,9 +505,7 @@ Ds0 f55 expr out #txt
 Ds0 f55 304 480 563 480 #arcP
 Ds0 f58 guid 162BD1499F4DC89A #txt
 Ds0 f58 method moveToTask(java.lang.Integer) #txt
-Ds0 f58 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.Integer index> param = methodEvent.getInputArguments();
-' #txt
+Ds0 f58 inParameterDecl '<Integer index> param;' #txt
 Ds0 f58 inActionCode 'import ch.ivy.gawfs.enums.TaskType;
 if(out.data.definedTasks.get(out.activeTaskIndex).getTaskType() != TaskType.EMAIL) {
 	out.data.definedTasks.get(out.activeTaskIndex).setDynaFormController(out.dynaFormController);
@@ -536,8 +513,7 @@ if(out.data.definedTasks.get(out.activeTaskIndex).getTaskType() != TaskType.EMAI
 
 }
 out.activeTaskIndex =param.index;' #txt
-Ds0 f58 outParameterDecl '<> result;
-' #txt
+Ds0 f58 outParameterDecl '<> result;' #txt
 Ds0 f58 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

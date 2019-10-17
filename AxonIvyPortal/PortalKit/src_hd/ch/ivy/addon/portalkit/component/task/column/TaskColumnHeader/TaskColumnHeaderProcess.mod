@@ -1,5 +1,5 @@
 [Ivy]
-15AF019B09976068 3.28 #module
+15AF019B09976068 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskColumnHeaderProcess Big #zClass
 Ts0 RD #cInfo
@@ -24,13 +24,10 @@ Ts0 @PushWFArc f2 '' #zField
 >Proto Ts0 Ts0 TaskColumnHeaderProcess #zField
 Ts0 f0 guid 15AE9A0BAA4D09B7 #txt
 Ts0 f0 method start(ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel) #txt
-Ts0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel> param = methodEvent.getInputArguments();
-' #txt
+Ts0 f0 inParameterDecl '<ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel> param;' #txt
 Ts0 f0 inParameterMapAction 'out.dataModel=param.#dataModel;
 ' #txt
-Ts0 f0 outParameterDecl '<> result;
-' #txt
+Ts0 f0 outParameterDecl '<> result;' #txt
 Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -46,14 +43,11 @@ Ts0 f1 53 213 22 22 14 0 #rect
 Ts0 f1 @|UdProcessEndIcon #fIcon
 Ts0 f4 guid 15AF4FD86A995BBD #txt
 Ts0 f4 method sort(String,Boolean) #txt
-Ts0 f4 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.String field,java.lang.Boolean isDescending> param = methodEvent.getInputArguments();
-' #txt
+Ts0 f4 inParameterDecl '<String field,Boolean isDescending> param;' #txt
 Ts0 f4 inParameterMapAction 'out.field=param.field;
 out.isDescending=param.isDescending;
 ' #txt
-Ts0 f4 outParameterDecl '<> result;
-' #txt
+Ts0 f4 outParameterDecl '<> result;' #txt
 Ts0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
