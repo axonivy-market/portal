@@ -420,11 +420,11 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .filter-widget-input {
   font-size: 1.4rem;
   flex-grow: 1;
-  padding: 15px 25px 5px 0 !important; /* override PrimeFaces styles */
 }
 
 .filter-widget .filter-widget-input {
   color: rgba(0,0,0,0.5);
+  padding: 6px 0 6px 6px !important;
 }
 
 .filter-widget-icon  {
