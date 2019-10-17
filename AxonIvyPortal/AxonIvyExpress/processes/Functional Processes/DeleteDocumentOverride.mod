@@ -1,5 +1,5 @@
 [Ivy]
-16B266ED2EA90665 3.28 #module
+16B266ED2EA90665 7.5.0 #module
 >Proto >Proto Collection #zClass
 Dt0 DeleteDocument Big #zClass
 Dt0 B #cInfo
@@ -21,8 +21,7 @@ Dt0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ICase businessCase,ch.ivy.addon.por
 Dt0 f0 inParamTable 'out.businessCase=param.businessCase;
 out.document=param.document;
 ' #txt
-Dt0 f0 outParamDecl '<java.lang.String message> result;
-' #txt
+Dt0 f0 outParamDecl '<String message> result;' #txt
 Dt0 f0 outParamTable 'result.message=in.message;
 ' #txt
 Dt0 f0 callSignature call(ch.ivyteam.ivy.workflow.ICase,ch.ivy.addon.portalkit.ivydata.bo.IvyDocument) #txt

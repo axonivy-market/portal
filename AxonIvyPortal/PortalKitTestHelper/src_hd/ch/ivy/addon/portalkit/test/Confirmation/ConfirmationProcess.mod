@@ -1,5 +1,5 @@
 [Ivy]
-14B7775CB7A22AF4 3.28 #module
+14B7775CB7A22AF4 7.5.0 #module
 >Proto >Proto Collection #zClass
 Cs0 ConfirmationProcess Big #zClass
 Cs0 RD #cInfo
@@ -21,14 +21,11 @@ Cs0 @PushWFArc f8 '' #zField
 >Proto Cs0 Cs0 ConfirmationProcess #zField
 Cs0 f0 guid 14B7775CB8651CD0 #txt
 Cs0 f0 method start(String,String) #txt
-Cs0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.String message,java.lang.String title> param = methodEvent.getInputArguments();
-' #txt
+Cs0 f0 inParameterDecl '<String message,String title> param;' #txt
 Cs0 f0 inParameterMapAction 'out.message=param.message;
 out.title=param.title;
 ' #txt
-Cs0 f0 outParameterDecl '<java.lang.Boolean approved> result;
-' #txt
+Cs0 f0 outParameterDecl '<Boolean approved> result;' #txt
 Cs0 f0 outParameterMapAction 'result.approved=in.approved;
 ' #txt
 Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

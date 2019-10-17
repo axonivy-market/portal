@@ -1,5 +1,5 @@
 [Ivy]
-14BFF07A8307A43D 3.28 #module
+14BFF07A8307A43D 7.5.0 #module
 >Proto >Proto Collection #zClass
 Gg0 GetPortalConfig Big #zClass
 Gg0 B #cInfo
@@ -19,8 +19,7 @@ Gg0 @InfoButton f11 '' #zField
 Gg0 @PushWFArc f3 '' #zField
 >Proto Gg0 Gg0 GetPortalConfig #zField
 Gg0 f0 inParamDecl '<> param;' #txt
-Gg0 f0 outParamDecl '<ch.ivy.addon.portal.generic.PortalConfig portalConfig> result;
-' #txt
+Gg0 f0 outParamDecl '<ch.ivy.addon.portal.generic.PortalConfig portalConfig> result;' #txt
 Gg0 f0 outParamTable 'result.portalConfig=in.portalConfig;
 ' #txt
 Gg0 f0 callSignature call() #txt
@@ -38,8 +37,7 @@ Gg0 f0 @|StartSubIcon #fIcon
 Gg0 f1 553 49 30 30 0 15 #rect
 Gg0 f1 @|EndSubIcon #fIcon
 Gg0 f5 processCall 'Functional Processes/CustomPortalConfig:call(ch.ivy.addon.portal.generic.PortalConfig)' #txt
-Gg0 f5 requestActionDecl '<ch.ivy.addon.portal.generic.PortalConfig portalConfig> param;
-' #txt
+Gg0 f5 requestActionDecl '<ch.ivy.addon.portal.generic.PortalConfig portalConfig> param;' #txt
 Gg0 f5 requestMappingAction 'param.portalConfig=in.portalConfig;
 ' #txt
 Gg0 f5 responseActionDecl 'ch.ivy.addon.portal.generic.GetPortalConfigData out;

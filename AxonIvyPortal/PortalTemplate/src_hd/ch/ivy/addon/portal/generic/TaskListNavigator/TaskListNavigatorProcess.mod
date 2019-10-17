@@ -1,5 +1,5 @@
 [Ivy]
-15F6ACE164737414 3.28 #module
+15F6ACE164737414 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ss0 TaskListNavigatorProcess Big #zClass
 Ss0 RD #cInfo
@@ -24,11 +24,8 @@ Ss0 @PushWFArc f3 '' #zField
 >Proto Ss0 Ss0 TaskListNavigatorProcess #zField
 Ss0 f0 guid 15F6ACE17192667A #txt
 Ss0 f0 method start() #txt
-Ss0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ss0 f0 outParameterDecl '<> result;
-' #txt
+Ss0 f0 inParameterDecl '<> param;' #txt
+Ss0 f0 outParameterDecl '<> result;' #txt
 Ss0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -43,8 +40,7 @@ Ss0 f1 @|UdProcessEndIcon #fIcon
 Ss0 f2 expr out #txt
 Ss0 f2 109 64 211 64 #arcP
 Ss0 f40 processCall 'Functional Processes/OpenPortalTasks:useView(ch.ivy.addon.portal.generic.view.TaskView)' #txt
-Ss0 f40 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;
-' #txt
+Ss0 f40 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;' #txt
 Ss0 f40 requestMappingAction 'param.taskView=in.taskView;
 ' #txt
 Ss0 f40 responseActionDecl 'ch.ivy.addon.portal.generic.TaskListNavigator.TaskListNavigatorData out;
@@ -77,8 +73,7 @@ Ss0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ss0 f8 83 147 26 26 -27 15 #rect
 Ss0 f8 @|UdEventIcon #fIcon
 Ss0 f7 processCall 'Functional Processes/InitializeTaskDataModel:call()' #txt
-Ss0 f7 requestActionDecl '<> param;
-' #txt
+Ss0 f7 requestActionDecl '<> param;' #txt
 Ss0 f7 responseActionDecl 'ch.ivy.addon.portal.generic.TaskListNavigator.TaskListNavigatorData out;
 ' #txt
 Ss0 f7 responseMappingAction 'out=in;

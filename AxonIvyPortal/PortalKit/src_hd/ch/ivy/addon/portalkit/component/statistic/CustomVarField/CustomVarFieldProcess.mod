@@ -1,5 +1,5 @@
 [Ivy]
-163B018AA65AA403 3.28 #module
+163B018AA65AA403 7.5.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CustomVarFieldProcess Big #zClass
 Cs0 RD #cInfo
@@ -25,11 +25,8 @@ Cs0 @PushWFArc f11 '' #zField
 >Proto Cs0 Cs0 CustomVarFieldProcess #zField
 Cs0 f0 guid 163B018AAA51EB1F #txt
 Cs0 f0 method start() #txt
-Cs0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Cs0 f0 outParameterDecl '<> result;
-' #txt
+Cs0 f0 inParameterDecl '<> param;' #txt
+Cs0 f0 outParameterDecl '<> result;' #txt
 Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -63,11 +60,8 @@ Cs0 f10 340 245 26 26 0 12 #rect
 Cs0 f10 @|UdProcessEndIcon #fIcon
 Cs0 f9 guid 163B02A2C957AD5F #txt
 Cs0 f9 method addCustomVal() #txt
-Cs0 f9 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Cs0 f9 outParameterDecl '<> result;
-' #txt
+Cs0 f9 inParameterDecl '<> param;' #txt
+Cs0 f9 outParameterDecl '<> result;' #txt
 Cs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
