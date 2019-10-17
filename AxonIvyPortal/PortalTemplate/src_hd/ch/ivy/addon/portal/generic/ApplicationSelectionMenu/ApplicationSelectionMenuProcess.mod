@@ -1,5 +1,5 @@
 [Ivy]
-156A1AA176DE2A21 3.28 #module
+156A1AA176DE2A21 7.5.0 #module
 >Proto >Proto Collection #zClass
 As0 ApplicationSelectionMenuProcess Big #zClass
 As0 RD #cInfo
@@ -87,14 +87,11 @@ As0 f70 848 368 32 32 0 16 #rect
 As0 f70 @|AlternativeIcon #fIcon
 As0 f72 guid 15FB36E87007F717 #txt
 As0 f72 method openApp(String) #txt
-As0 f72 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.String appUrl> param = methodEvent.getInputArguments();
-' #txt
+As0 f72 inParameterDecl '<String appUrl> param;' #txt
 As0 f72 inParameterMapAction 'out.applicationUrl=param.appUrl;
 out.selectedSubMenuItem=null;
 ' #txt
-As0 f72 outParameterDecl '<> result;
-' #txt
+As0 f72 outParameterDecl '<> result;' #txt
 As0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -144,7 +141,7 @@ As0 f83 960 266 128 44 -42 -16 #rect
 As0 f83 @|StepIcon #fIcon
 As0 f87 guid 15FB36E87031CAD2 #txt
 As0 f87 method start(String) #txt
-As0 f87 inParameterDecl '<java.lang.String isWorkingOnATask> param;' #txt
+As0 f87 inParameterDecl '<String isWorkingOnATask> param;' #txt
 As0 f87 inParameterMapAction 'out.isWorkingOnATask=Boolean.parseBoolean(param.isWorkingOnATask);
 ' #txt
 As0 f87 outParameterDecl '<> result;' #txt
@@ -209,8 +206,7 @@ selected app</name>
 As0 f95 644 512 120 48 -33 -16 #rect
 As0 f95 @|StepIcon #fIcon
 As0 f97 processCall 'Business Processes/FindApplicationsByUser:findApplicationsByUser(String)' #txt
-As0 f97 requestActionDecl '<java.lang.String username> param;
-' #txt
+As0 f97 requestActionDecl '<String username> param;' #txt
 As0 f97 requestMappingAction 'param.username=ivy.session.getSessionUserName();
 ' #txt
 As0 f97 responseActionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;

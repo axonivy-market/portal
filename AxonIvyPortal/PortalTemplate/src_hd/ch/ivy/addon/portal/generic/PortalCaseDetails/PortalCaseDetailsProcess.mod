@@ -1,5 +1,5 @@
 [Ivy]
-16BBB5AA8A5CD43A 3.28 #module
+16BBB5AA8A5CD43A 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalCaseDetailsProcess Big #zClass
 Ps0 RD #cInfo
@@ -20,7 +20,7 @@ Ps0 @PushWFArc f5 '' #zField
 >Proto Ps0 Ps0 PortalCaseDetailsProcess #zField
 Ps0 f0 guid 16BBB5AA8B6BE5B7 #txt
 Ps0 f0 method start(ch.ivyteam.ivy.workflow.ICase,Boolean) #txt
-Ps0 f0 inParameterDecl '<ch.ivyteam.ivy.workflow.ICase caseInfo,java.lang.Boolean isShowBackButton> param;' #txt
+Ps0 f0 inParameterDecl '<ch.ivyteam.ivy.workflow.ICase caseInfo,Boolean isShowBackButton> param;' #txt
 Ps0 f0 inParameterMapAction 'out.caseInfo=param.caseInfo;
 out.isShowBackButton=param.isShowBackButton;
 ' #txt

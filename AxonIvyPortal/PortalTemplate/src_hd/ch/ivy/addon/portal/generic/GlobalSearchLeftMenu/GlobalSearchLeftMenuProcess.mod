@@ -1,5 +1,5 @@
 [Ivy]
-16CF626AB4B6E5B2 3.28 #module
+16CF626AB4B6E5B2 7.5.0 #module
 >Proto >Proto Collection #zClass
 Gs0 GlobalSearchLeftMenuProcess Big #zClass
 Gs0 RD #cInfo
@@ -38,8 +38,7 @@ Gs0 f1 @|UdProcessEndIcon #fIcon
 Gs0 f2 expr out #txt
 Gs0 f2 109 64 211 64 #arcP
 Gs0 f6 processCall 'Functional Processes/OpenPortalSearch:call(String)' #txt
-Gs0 f6 requestActionDecl '<java.lang.String keyword> param;
-' #txt
+Gs0 f6 requestActionDecl '<String keyword> param;' #txt
 Gs0 f6 requestMappingAction 'param.keyword=in.keyword;
 ' #txt
 Gs0 f6 responseActionDecl 'ch.ivy.addon.portal.generic.GlobalSearchLeftMenu.GlobalSearchLeftMenuData out;

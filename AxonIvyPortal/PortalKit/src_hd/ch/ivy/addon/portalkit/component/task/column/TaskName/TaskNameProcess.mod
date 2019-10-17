@@ -1,5 +1,5 @@
 [Ivy]
-15AE9A62C6A66DD8 3.28 #module
+15AE9A62C6A66DD8 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskNameProcess Big #zClass
 Ts0 RD #cInfo
@@ -25,11 +25,8 @@ Ts0 @PushWFArc f10 '' #zField
 >Proto Ts0 Ts0 TaskNameProcess #zField
 Ts0 f0 guid 1681204703950395 #txt
 Ts0 f0 method start() #txt
-Ts0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ts0 f0 outParameterDecl '<> result;
-' #txt
+Ts0 f0 inParameterDecl '<> param;' #txt
+Ts0 f0 outParameterDecl '<> result;' #txt
 Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -45,13 +42,10 @@ Ts0 f2 expr out #txt
 Ts0 f2 109 96 371 96 #arcP
 Ts0 f3 guid 1681204C698BF8C7 #txt
 Ts0 f3 method keepOldNameValue(javax.faces.event.ValueChangeEvent) #txt
-Ts0 f3 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<javax.faces.event.ValueChangeEvent event> param = methodEvent.getInputArguments();
-' #txt
+Ts0 f3 inParameterDecl '<javax.faces.event.ValueChangeEvent event> param;' #txt
 Ts0 f3 inParameterMapAction 'out.oldName=param.event.getOldValue() as String;
 ' #txt
-Ts0 f3 outParameterDecl '<> result;
-' #txt
+Ts0 f3 outParameterDecl '<> result;' #txt
 Ts0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -67,13 +61,10 @@ Ts0 f5 expr out #txt
 Ts0 f5 109 192 371 192 #arcP
 Ts0 f6 guid 16812056797ABC4C #txt
 Ts0 f6 method updateTask(ch.ivyteam.ivy.workflow.ITask) #txt
-Ts0 f6 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivyteam.ivy.workflow.ITask task> param = methodEvent.getInputArguments();
-' #txt
+Ts0 f6 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task> param;' #txt
 Ts0 f6 inParameterMapAction 'out.task=param.task;
 ' #txt
-Ts0 f6 outParameterDecl '<> result;
-' #txt
+Ts0 f6 outParameterDecl '<> result;' #txt
 Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

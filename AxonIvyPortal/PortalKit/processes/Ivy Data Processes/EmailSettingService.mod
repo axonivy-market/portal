@@ -1,5 +1,5 @@
 [Ivy]
-14BDEA64F884ED76 3.28 #module
+14BDEA64F884ED76 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ee0 EmailSettingService Big #zClass
 Ee0 B #cInfo
@@ -26,11 +26,10 @@ Ee0 @PushWFArc f1 '' #zField
 Ee0 @PushWFArc f5 '' #zField
 Ee0 @PushWFArc f7 '' #zField
 >Proto Ee0 Ee0 EmailSettingService #zField
-Ee0 f3 inParamDecl '<java.lang.String username> param;' #txt
+Ee0 f3 inParamDecl '<String username> param;' #txt
 Ee0 f3 inParamTable 'out.username=param.username;
 ' #txt
-Ee0 f3 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting> ivyEmailSettings,java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;
-' #txt
+Ee0 f3 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting> ivyEmailSettings,java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;' #txt
 Ee0 f3 outParamTable 'result.ivyEmailSettings=in.ivyEmailSettings;
 result.errors=in.errors;
 ' #txt
@@ -80,8 +79,7 @@ Ee0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ee0 f20 424 42 112 44 -52 -8 #rect
 Ee0 f20 @|StepIcon #fIcon
 Ee0 f24 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Ee0 f24 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
-' #txt
+Ee0 f24 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
 Ee0 f24 requestMappingAction 'param.exceptions=in.errors;
 ' #txt
 Ee0 f24 responseActionDecl 'ch.ivyteam.wf.processes.EmailSettingServiceData out;
@@ -107,12 +105,11 @@ Ee0 f37 expr out #txt
 Ee0 f37 720 64 785 64 #arcP
 Ee0 f38 expr out #txt
 Ee0 f38 111 64 192 64 #arcP
-Ee0 f0 inParamDecl '<java.lang.String username,java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting> emailSettings> param;' #txt
+Ee0 f0 inParamDecl '<String username,java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting> emailSettings> param;' #txt
 Ee0 f0 inParamTable 'out.ivyEmailSettings=param.emailSettings;
 out.username=param.username;
 ' #txt
-Ee0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;
-' #txt
+Ee0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;' #txt
 Ee0 f0 outParamTable 'result.errors=in.errors;
 ' #txt
 Ee0 f0 callSignature saveEmailSettings(String,List<ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting>) #txt
@@ -143,8 +140,7 @@ Ee0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ee0 f6 296 170 112 44 -53 -8 #rect
 Ee0 f6 @|StepIcon #fIcon
 Ee0 f2 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Ee0 f2 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
-' #txt
+Ee0 f2 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
 Ee0 f2 requestMappingAction 'param.exceptions=in.errors;
 ' #txt
 Ee0 f2 responseActionDecl 'ch.ivyteam.wf.processes.EmailSettingServiceData out;

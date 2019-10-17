@@ -1,5 +1,5 @@
 [Ivy]
-163A4BFC48261B85 3.28 #module
+163A4BFC48261B85 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ps0 SearchResultsProcess Big #zClass
 Ps0 RD #cInfo
@@ -20,7 +20,7 @@ Ps0 @PushWFArc f5 '' #zField
 >Proto Ps0 Ps0 SearchResultsProcess #zField
 Ps0 f0 guid 150D5B63FE18100D #txt
 Ps0 f0 method start(String) #txt
-Ps0 f0 inParameterDecl '<java.lang.String keyword> param;' #txt
+Ps0 f0 inParameterDecl '<String keyword> param;' #txt
 Ps0 f0 inParameterMapAction 'out.activeTabIndex=0;
 out.dataModel.caseDataModel.notKeepFilter=true;
 out.dataModel.keyword=param.keyword;
@@ -44,14 +44,11 @@ Ps0 f2 expr out #txt
 Ps0 f2 75 96 333 96 #arcP
 Ps0 f3 guid 163AFE8CC44DFD15 #txt
 Ps0 f3 method start(ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel,Number) #txt
-Ps0 f3 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel dataModel,java.lang.Number activeTabIndex> param = methodEvent.getInputArguments();
-' #txt
+Ps0 f3 inParameterDecl '<ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel dataModel,Number activeTabIndex> param;' #txt
 Ps0 f3 inParameterMapAction 'out.activeTabIndex=param.activeTabIndex;
 out.dataModel=param.dataModel;
 ' #txt
-Ps0 f3 outParameterDecl '<> result;
-' #txt
+Ps0 f3 outParameterDecl '<> result;' #txt
 Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

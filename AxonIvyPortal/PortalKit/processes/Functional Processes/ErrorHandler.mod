@@ -1,5 +1,5 @@
 [Ivy]
-152AA5CA98B525F2 3.28 #module
+152AA5CA98B525F2 7.5.0 #module
 >Proto >Proto Collection #zClass
 Er0 ErrorHandler Big #zClass
 Er0 B #cInfo
@@ -20,8 +20,7 @@ Er0 @PushWFArc f2 '' #zField
 Er0 f0 inParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
 Er0 f0 inParamTable 'out.exceptions=param.exceptions;
 ' #txt
-Er0 f0 outParamDecl '<> result;
-' #txt
+Er0 f0 outParamDecl '<> result;' #txt
 Er0 f0 callSignature handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>) #txt
 Er0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

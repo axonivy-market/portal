@@ -1,5 +1,5 @@
 [Ivy]
-15E0CEDE89CC1D0E 3.28 #module
+15E0CEDE89CC1D0E 7.5.0 #module
 >Proto >Proto Collection #zClass
 Pe0 PasswordService Big #zClass
 Pe0 B #cInfo
@@ -21,7 +21,7 @@ Pe0 @PushWFArc f3 '' #zField
 Pe0 @PushWFArc f4 '' #zField
 Pe0 @PushWFArc f5 '' #zField
 >Proto Pe0 Pe0 PasswordService #zField
-Pe0 f0 inParamDecl '<java.lang.String username,java.lang.String newPassword> param;' #txt
+Pe0 f0 inParamDecl '<String username,String newPassword> param;' #txt
 Pe0 f0 inParamTable 'out.newPassword=param.newPassword;
 out.username=param.username;
 ' #txt
@@ -73,8 +73,7 @@ Pe0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pe0 f6 440 74 112 44 -51 -8 #rect
 Pe0 f6 @|StepIcon #fIcon
 Pe0 f2 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Pe0 f2 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
-' #txt
+Pe0 f2 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
 Pe0 f2 requestMappingAction 'param.exceptions=in.errors;
 ' #txt
 Pe0 f2 responseActionDecl 'ch.ivyteam.wf.processes.PasswordServiceData out;
