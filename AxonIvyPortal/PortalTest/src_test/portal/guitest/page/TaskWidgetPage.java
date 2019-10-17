@@ -34,9 +34,6 @@ public class TaskWidgetPage extends TemplatePage {
       "input[id='task-widget:filter-form:filter-container:ajax-keyword-filter']";
   private static final String KEYWORD_FILTER_SELECTOR_EXPANDED_MODE =
       "input[id='task-widget:expanded-mode-filter-form:expanded-mode-filter-container:ajax-keyword-filter']";
-  private static final String ADD_NOTE_BUTTON_ID = "task-widget:task-list-scroller:%d:task-item:notes:add-note-command";
-  private static final String ADD_DOCUMENT_LINK_ID =
-      "task-widget:task-list-scroller:%d:task-item:documents:add-document-command";
 
   public TaskWidgetPage() {
     this("task-widget");
@@ -182,6 +179,12 @@ public class TaskWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("a[id$='adhoc-side-step-item']"), true);
   }
 
+  public boolean isMoreButtonDisplayed(int taskId) {
+    String moreButton = String.format(
+        taskWidgetId + ":task-list-scroller:%d:task-item:task-action:additional-options:task-side-steps-menu", taskId);
+    return isElementDisplayedById(moreButton);
+  }
+  
   public void reserveTask(int taskId) {
     String reserveCommandButton = String.format(
         taskWidgetId + ":task-list-scroller:%d:task-item:task-action:additional-options:task-reserve-command", taskId);
@@ -248,37 +251,18 @@ public class TaskWidgetPage extends TemplatePage {
         String.format(taskWidgetId + ":task-list-scroller:%d:task-item:task-name-edit-form:task-name-input", index)));
   }
 
-  public void changeDescriptionOfTask(int index, String description) {
-    String taskDescriptionId = String.format(
-        taskWidgetId
-            + ":task-list-scroller:%d:task-item:description:task-description-form:task-desription-inplace_display",
-        index);
-    WebElement taskDescription = findElementById(taskDescriptionId);
-    taskDescription.click();
-    String taskDescriptionInputId = String.format(
-        taskWidgetId + ":task-list-scroller:%d:task-item:description:task-description-form:task-description-input",
-        index);
-    WebElement taskDescriptionInput = findElementById(taskDescriptionInputId);
-    waitForElementDisplayed(taskDescriptionInput, true);
-    taskDescriptionInput.clear();
-    taskDescriptionInput.sendKeys(description);
-    WebElement editor = findElementById(String.format(
-        taskWidgetId
-            + ":task-list-scroller:%d:task-item:description:task-description-form:task-desription-inplace_editor",
-        index));
-    WebElement saveButton = findChildElementByClassName(editor, UI_INPLACE_SAVE);
-    saveButton.click();
+  public void changeDescriptionOfTask(String description) {
+    findElementByCssSelector("span[id$='task-desription-inplace_display']").click();
+    WebElement taskNameInput = findElementByCssSelector("textarea[id$='task-description-input']");
+    waitForElementDisplayed(taskNameInput, true);
+    taskNameInput.clear();
+    taskNameInput.sendKeys(description);
+    findElementByCssSelector("span[id$='task-desription-inplace_editor']  .ui-inplace-save").click();
     waitAjaxIndicatorDisappear();
   }
 
-  public String getDescriptionOfTaskAt(int index) {
-    String taskNameId = String.format(
-        taskWidgetId
-            + ":task-list-scroller:%d:task-item:description:task-description-form:task-desription-inplace_display",
-        index);
-    waitForElementDisplayed(By.id(taskNameId), true);
-    WebElement taskName = findElementById(taskNameId);
-    return taskName.getText();
+  public String getTaskDescription() {
+    return findElementByCssSelector("span[id$='task-description-output']").getText();
   }
 
   public String getDescriptionInHeaderOfTaskAt(int index) {
@@ -551,15 +535,4 @@ public class TaskWidgetPage extends TemplatePage {
     return isElementDisplayed(By.cssSelector("a[id$='adhoc-side-step-item']"));
   }
 
-  public boolean isAddNoteButtonDisplayed() {
-    return isElementDisplayedById(String.format(ADD_NOTE_BUTTON_ID, 0));
-  }
-
-  public boolean isShowMoreNoteButtonDisplayed() {
-    return isTaskActionDisplayed("task-side-steps-menu", 0);
-  }
-
-  public boolean isAddDocumentLinkDisplayed() {
-    return isElementDisplayedById(String.format(ADD_DOCUMENT_LINK_ID, 0));
-  }
 }

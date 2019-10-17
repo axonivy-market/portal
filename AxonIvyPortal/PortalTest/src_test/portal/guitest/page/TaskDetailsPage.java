@@ -65,4 +65,15 @@ public class TaskDetailsPage extends TemplatePage {
     return findElementByCssSelector("span[id$='task-name-inplace_display']").getText();
   }
 
+  public boolean isAddNoteButtonDisplayed() {
+    return isElementDisplayedById("task-detail-template:task-notes:add-note-command");
+  }
+
+  public boolean isShowMoreNoteButtonDisplayed() {
+    return isElementDisplayedById("task-detail-template:task-notes:show-more-note-link");
+  }
+
+  public boolean isAddDocumentLinkDisplayed() {
+    return isElementDisplayedById("task-detail-template:task-documents:add-document-command");
+  }
 }
