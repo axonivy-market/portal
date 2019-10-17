@@ -51,9 +51,10 @@ function elapsedTimeChartExtender() {
     scales : {
       xAxes : [{
         ticks : {
+          maxTicksLimit: 5,
           callback : function(value) {
-            if (value.length > 30) {
-              return value.substr(0, 30) + '...';
+            if (value.length > 15) {
+              return value.substr(0, 15) + '...';
             } else {
               return value;
             }
