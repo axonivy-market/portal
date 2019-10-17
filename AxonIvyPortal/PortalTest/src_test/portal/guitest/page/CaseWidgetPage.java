@@ -24,16 +24,6 @@ public class CaseWidgetPage extends TemplatePage {
   private static final String CANCEL_BUTTON_CSS_SELECTOR = "button[id$='cancel-command']";
   private static final String DEFAULT_COLUMNS_XPATH =
       "//*[@id=\"case-widget:case-columns-configuration:select-columns-form:default-columns\"]/div[2]";
-  private static final String ADD_NOTE_BUTTON_ID =
-      "case-widget:case-list-scroller:%d:case-item:case-body:history:add-note-command";
-  private static final String SHOW_MORE_NOTE_LINK_ID =
-      "case-widget:case-list-scroller:%d:case-item:case-body:history:show-more-note-link";
-  private static final String SHOW_DETAILS_LINK_ID =
-      "case-widget:case-list-scroller:%d:case-item:case-body:general-information:show-additional-case-details-link";
-  private static final String SHOW_ALL_TASKS_ID =
-      "case-widget:case-list-scroller:%d:case-item:case-body:related-tasks:show-all-tasks";
-  private static final String ADD_DOCUMENT_LINK_ID =
-      "case-widget:case-list-scroller:%d:case-item:case-body:document:add-document-command";
 
   public CaseWidgetPage() {
     this("case-widget");
@@ -255,23 +245,4 @@ public class CaseWidgetPage extends TemplatePage {
     applyButton.click();
   }
 
-  public boolean isAddNoteButtonDisplayed() {
-    return isElementDisplayedById(String.format(ADD_NOTE_BUTTON_ID, 0));
-  }
-
-  public boolean isShowMoreNoteButtonDisplayed() {
-    return isElementDisplayedById(String.format(SHOW_MORE_NOTE_LINK_ID, 0));
-  }
-
-  public boolean isShowDetailsDisplayed() {
-    return isElementDisplayedById(String.format(SHOW_DETAILS_LINK_ID, 0));
-  }
-
-  public boolean isShowAllTasksDisplayed() {
-    return isElementDisplayedById(String.format(SHOW_ALL_TASKS_ID, 0));
-  }
-
-  public boolean isAddDocumentLinkDisplayed() {
-    return isElementDisplayedById(String.format(ADD_DOCUMENT_LINK_ID, 0));
-  }
 }

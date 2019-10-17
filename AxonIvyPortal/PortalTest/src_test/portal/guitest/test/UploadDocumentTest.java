@@ -33,9 +33,9 @@ public class UploadDocumentTest extends BaseTest{
     initHomePage(TestAccount.ADMIN_USER);
     casePage = homePage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
-    int numberOfDocument = countNumberOfDocument();
+    int numberOfDocument = caseDetailsPage.countNumberOfDocument();
     caseDetailsPage.uploadDocumentWithoutError(getAbsolutePathToTestFile("test-no-files-no-js.pdf"));
-    assertEquals(numberOfDocument + 1, countNumberOfDocument());
+    assertEquals(numberOfDocument + 1, caseDetailsPage.countNumberOfDocument());
   }
   
   @Test
@@ -77,21 +77,15 @@ public class UploadDocumentTest extends BaseTest{
     adminSettingsPage.setFileExtensionWhiteList();
     casePage = homePage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
-    int numberOfDocument = countNumberOfDocument();
+    int numberOfDocument = caseDetailsPage.countNumberOfDocument();
     caseDetailsPage.uploadDocumentWithoutError(getAbsolutePathToTestFile("unsupportedExtension.abc"));
-    assertEquals(numberOfDocument + 1, countNumberOfDocument());
-    
+    assertEquals(numberOfDocument + 1, caseDetailsPage.countNumberOfDocument());
   }
   
   private void initHomePage(TestAccount account) {
     LoginPage loginPage = new LoginPage(account);
     loginPage.login();
     homePage = new HomePage();
-  }
-  
-  private int countNumberOfDocument() {
-    WebElement caseDocument = caseDetailsPage.findElementById("case-widget:case-list-scroller:0:case-item:case-body:document");
-    return caseDocument.findElements(By.cssSelector(".case-details-document-scrollpanel form")).size();
   }
   
   private String getAbsolutePathToTestFile(String fileName){

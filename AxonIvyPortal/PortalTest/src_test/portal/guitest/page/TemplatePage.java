@@ -196,6 +196,17 @@ public abstract class TemplatePage extends AbstractPage {
       return false;
     }
   }
+  
+  
+
+  @Override
+  public <T> boolean isElementDisplayed(T locator) {
+    try {
+      return super.isElementDisplayed(locator);
+    } catch (Exception e) {
+      return false;
+    }
+  }
 
   public MainMenuPage openMainMenu() {
     WebElement mainMenuToggle = findDisplayedElementBySelector("#left-menu");
