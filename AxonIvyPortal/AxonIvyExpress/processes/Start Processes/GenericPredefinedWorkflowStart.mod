@@ -1,5 +1,5 @@
 [Ivy]
-15797DC22608DA55 3.28 #module
+15797DC22608DA55 7.5.0 #module
 >Proto >Proto Collection #zClass
 Gt0 GenericPredefinedWorkflowStart Big #zClass
 Gt0 B #cInfo
@@ -24,7 +24,7 @@ Gt0 @EndTask f17 '' #zField
 Gt0 @PushWFArc f1 '' #zField
 >Proto Gt0 Gt0 GenericPredefinedWorkflowStart #zField
 Gt0 f0 outLink GenericPredefinedProcessStart.ivp #txt
-Gt0 f0 inParamDecl '<java.lang.Integer actualStepIndex,java.lang.String workflowID> param;' #txt
+Gt0 f0 inParamDecl '<Integer actualStepIndex,String workflowID> param;' #txt
 Gt0 f0 inParamTable 'out.actualStepIndex=param.actualStepIndex;
 out.workflowID=param.workflowID;
 ' #txt
@@ -56,8 +56,7 @@ Gt0 f0 @C|.responsibility Everybody #txt
 Gt0 f0 81 49 30 30 -96 17 #rect
 Gt0 f0 @|StartRequestIcon #fIcon
 Gt0 f3 processCall 'Functional Processes/executePredefinedWorkflow:call(Integer,String)' #txt
-Gt0 f3 requestActionDecl '<java.lang.Integer actualStepIndex,java.lang.String workflowID> param;
-' #txt
+Gt0 f3 requestActionDecl '<Integer actualStepIndex,String workflowID> param;' #txt
 Gt0 f3 requestMappingAction 'param.actualStepIndex=in.actualStepIndex;
 param.workflowID=in.workflowID;
 ' #txt
@@ -79,7 +78,7 @@ Gt0 f3 @|CallSubIcon #fIcon
 Gt0 f4 expr out #txt
 Gt0 f4 111 64 200 64 #arcP
 Gt0 f6 outLink GenericEditProcessStart.ivp #txt
-Gt0 f6 inParamDecl '<java.lang.String workflowID> param;' #txt
+Gt0 f6 inParamDecl '<String workflowID> param;' #txt
 Gt0 f6 inParamTable 'out.workflowID=param.workflowID;
 ' #txt
 Gt0 f6 requestEnabled true #txt
@@ -114,8 +113,7 @@ Gt0 f6 @C|.responsibility Everybody #txt
 Gt0 f6 81 145 30 30 -76 17 #rect
 Gt0 f6 @|StartRequestIcon #fIcon
 Gt0 f12 processCall 'Functional Processes/editWorkflow:editWorkflow(String)' #txt
-Gt0 f12 requestActionDecl '<java.lang.String workflowID> param;
-' #txt
+Gt0 f12 requestActionDecl '<String workflowID> param;' #txt
 Gt0 f12 requestMappingAction 'param.workflowID=in.workflowID;
 ' #txt
 Gt0 f12 responseActionDecl 'gawfs.GenericPredefinedWorkflowStartData out;

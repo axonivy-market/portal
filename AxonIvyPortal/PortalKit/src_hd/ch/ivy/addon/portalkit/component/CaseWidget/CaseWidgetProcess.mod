@@ -1,5 +1,5 @@
 [Ivy]
-152E8EDB33C1BDC1 3.28 #module
+152E8EDB33C1BDC1 7.5.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseWidgetProcess Big #zClass
 Cs0 RD #cInfo
@@ -55,14 +55,11 @@ Cs0 @PushWFArc f32 '' #zField
 >Proto Cs0 Cs0 CaseWidgetProcess #zField
 Cs0 f0 guid 152E8EDB3E3A6957 #txt
 Cs0 f0 method start(ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel,java.lang.Long) #txt
-Cs0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel dataModel,java.lang.Long filterGroupId> param = methodEvent.getInputArguments();
-' #txt
+Cs0 f0 inParameterDecl '<ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel dataModel,Long filterGroupId> param;' #txt
 Cs0 f0 inParameterMapAction 'out.dataModel=param.dataModel;
 out.filterGroupId=param.filterGroupId;
 ' #txt
-Cs0 f0 outParameterDecl '<> result;
-' #txt
+Cs0 f0 outParameterDecl '<> result;' #txt
 Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -78,15 +75,12 @@ Cs0 f1 525 85 22 22 14 0 #rect
 Cs0 f1 @|UdProcessEndIcon #fIcon
 Cs0 f6 guid 167E4C8566B6B6EA #txt
 Cs0 f6 method findCases(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria,java.lang.Integer,java.lang.Integer) #txt
-Cs0 f6 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria,java.lang.Integer startIndex,java.lang.Integer count> param = methodEvent.getInputArguments();
-' #txt
+Cs0 f6 inParameterDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria,Integer startIndex,Integer count> param;' #txt
 Cs0 f6 inParameterMapAction 'out.caseSearchCriteria=param.caseSearchCriteria;
 out.count=param.count;
 out.startIndex=param.startIndex;
 ' #txt
-Cs0 f6 outParameterDecl '<java.util.List<ch.ivyteam.ivy.workflow.ICase> cases> result;
-' #txt
+Cs0 f6 outParameterDecl '<java.util.List<ch.ivyteam.ivy.workflow.ICase> cases> result;' #txt
 Cs0 f6 outParameterMapAction 'result.cases=in.cases;
 ' #txt
 Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -99,8 +93,7 @@ Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f6 51 179 26 26 -48 13 #rect
 Cs0 f6 @|UdMethodIcon #fIcon
 Cs0 f7 processCall 'Ivy Data Processes/CaseService:findCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria,Integer,Integer)' #txt
-Cs0 f7 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria,java.lang.Integer startIndex,java.lang.Integer count> param;
-' #txt
+Cs0 f7 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria,Integer startIndex,Integer count> param;' #txt
 Cs0 f7 requestMappingAction 'param.caseSearchCriteria=in.caseSearchCriteria;
 param.startIndex=in.startIndex;
 param.count=in.count;
@@ -128,13 +121,10 @@ Cs0 f10 expr out #txt
 Cs0 f10 312 192 435 192 #arcP
 Cs0 f15 guid 167E4DD6005674EC #txt
 Cs0 f15 method countCases(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria) #txt
-Cs0 f15 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param = methodEvent.getInputArguments();
-' #txt
+Cs0 f15 inParameterDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;' #txt
 Cs0 f15 inParameterMapAction 'out.caseSearchCriteria=param.caseSearchCriteria;
 ' #txt
-Cs0 f15 outParameterDecl '<java.lang.Long totalCases> result;
-' #txt
+Cs0 f15 outParameterDecl '<Long totalCases> result;' #txt
 Cs0 f15 outParameterMapAction 'result.totalCases=in.totalCases;
 ' #txt
 Cs0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -147,8 +137,7 @@ Cs0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f15 51 275 26 26 -45 14 #rect
 Cs0 f15 @|UdMethodIcon #fIcon
 Cs0 f18 processCall 'Ivy Data Processes/CaseService:countCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)' #txt
-Cs0 f18 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;
-' #txt
+Cs0 f18 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;' #txt
 Cs0 f18 requestMappingAction 'param.caseSearchCriteria=in.caseSearchCriteria;
 ' #txt
 Cs0 f18 responseActionDecl 'ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData out;
@@ -390,14 +379,11 @@ Cs0 f14 expr out #txt
 Cs0 f14 77 576 160 576 #arcP
 Cs0 f16 guid 1680C78D11AA28AB #txt
 Cs0 f16 method applyFilter(ch.ivy.addon.portalkit.casefilter.CaseFilterData) #txt
-Cs0 f16 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.casefilter.CaseFilterData filterData> param = methodEvent.getInputArguments();
-' #txt
+Cs0 f16 inParameterDecl '<ch.ivy.addon.portalkit.casefilter.CaseFilterData filterData> param;' #txt
 Cs0 f16 inParameterMapAction 'out.filteringKeyword=param.filterData.keyword;
 ' #txt
 Cs0 f16 inActionCode out.dataModel.applyFilter(param.filterData); #txt
-Cs0 f16 outParameterDecl '<> result;
-' #txt
+Cs0 f16 outParameterDecl '<> result;' #txt
 Cs0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

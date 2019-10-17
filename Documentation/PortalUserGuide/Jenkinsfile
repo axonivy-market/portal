@@ -18,14 +18,15 @@ pipeline {
       steps {        
         dir ('Documentation/PortalUserGuide') {
             script {
-                docker.build('doc-build', '.').inside('') {
-                    sh 'make html'
+                docker.image('axonivy/build-container:read-the-docs-1.1').inside {
+                    sh "make -C /doc-build html BASEDIR='${env.WORKSPACE}/Documentation/PortalUserGuide'"
                 }
-            }   
+            }
             archiveArtifacts 'build/html/**/*'
-            recordIssues tools: [sphinxBuild()], unstableTotalAll: 2
+            recordIssues tools: [sphinxBuild()], unstableTotalAll: 1
         }
       }
     }
   }
 }
+

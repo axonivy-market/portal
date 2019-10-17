@@ -1,5 +1,5 @@
 [Ivy]
-14DE09882B540AD5 3.28 #module
+14DE09882B540AD5 7.5.0 #module
 >Proto >Proto Collection #zClass
 Is0 GrantPermissions Big #zClass
 Is0 B #cInfo
@@ -759,7 +759,7 @@ Is0 f53 security system #txt
 Is0 f53 452 324 40 24 0 -8 #rect
 Is0 f53 @|StepIcon #fIcon
 Is0 f60 outLink denySpecificPortalPermission.ivp #txt
-Is0 f60 inParamDecl '<java.lang.String portalPermission> param;' #txt
+Is0 f60 inParamDecl '<String portalPermission> param;' #txt
 Is0 f60 inParamTable 'out.portalPermission=param.portalPermission;
 ' #txt
 Is0 f60 requestEnabled true #txt
@@ -885,7 +885,7 @@ Is0 f46 220 1040 408 543 #arcP
 Is0 f46 1 408 1040 #addKink
 Is0 f46 1 0.2992533122461412 0 0 #arcLabel
 Is0 f61 outLink grantSpecificPortalPermission.ivp #txt
-Is0 f61 inParamDecl '<java.lang.String portalPermission> param;' #txt
+Is0 f61 inParamDecl '<String portalPermission> param;' #txt
 Is0 f61 inParamTable 'out.portalPermission=param.portalPermission;
 ' #txt
 Is0 f61 requestEnabled true #txt
@@ -1013,7 +1013,7 @@ Is0 f54 @|StepIcon #fIcon
 Is0 f65 expr out #txt
 Is0 f65 63 1296 180 1296 #arcP
 Is0 f68 outLink denySpecificPermission.ivp #txt
-Is0 f68 inParamDecl '<java.lang.String portalPermission> param;' #txt
+Is0 f68 inParamDecl '<String portalPermission> param;' #txt
 Is0 f68 inParamTable 'out.portalPermission=param.portalPermission;
 ' #txt
 Is0 f68 requestEnabled true #txt
@@ -1047,7 +1047,7 @@ Is0 f69 security system #txt
 Is0 f69 284 1476 40 24 0 -8 #rect
 Is0 f69 @|StepIcon #fIcon
 Is0 f70 outLink grantSpecificPermission.ivp #txt
-Is0 f70 inParamDecl '<java.lang.String portalPermission> param;' #txt
+Is0 f70 inParamDecl '<String portalPermission> param;' #txt
 Is0 f70 inParamTable 'out.portalPermission=param.portalPermission;
 ' #txt
 Is0 f70 requestEnabled true #txt

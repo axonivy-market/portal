@@ -1,5 +1,5 @@
 [Ivy]
-15F80B73A255C137 3.28 #module
+15F80B73A255C137 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ws0 WarningBeforeLostSessionProcess Big #zClass
 Ws0 RD #cInfo
@@ -28,11 +28,8 @@ Ws0 @PushWFArc f10 '' #zField
 >Proto Ws0 Ws0 WarningBeforeLostSessionProcess #zField
 Ws0 f0 guid 15F80B73AFE43AE4 #txt
 Ws0 f0 method start() #txt
-Ws0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ws0 f0 outParameterDecl '<> result;
-' #txt
+Ws0 f0 inParameterDecl '<> param;' #txt
+Ws0 f0 outParameterDecl '<> result;' #txt
 Ws0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -64,11 +61,8 @@ Ws0 f5 expr out #txt
 Ws0 f5 109 160 211 160 #arcP
 Ws0 f6 guid 15F8F475530B4DA3 #txt
 Ws0 f6 method logout() #txt
-Ws0 f6 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ws0 f6 outParameterDecl '<> result;
-' #txt
+Ws0 f6 inParameterDecl '<> param;' #txt
+Ws0 f6 outParameterDecl '<> result;' #txt
 Ws0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -81,8 +75,7 @@ Ws0 f6 @|UdMethodIcon #fIcon
 Ws0 f7 347 243 26 26 0 12 #rect
 Ws0 f7 @|UdProcessEndIcon #fIcon
 Ws0 f9 processCall 'Functional Processes/Logout:call(Boolean)' #txt
-Ws0 f9 requestActionDecl '<java.lang.Boolean isTaskReserve> param;
-' #txt
+Ws0 f9 requestActionDecl '<Boolean isTaskReserve> param;' #txt
 Ws0 f9 requestMappingAction 'param.isTaskReserve=false;
 ' #txt
 Ws0 f9 responseActionDecl 'ch.ivy.addon.portalkit.component.WarningBeforeLostSession.WarningBeforeLostSessionData out;
@@ -104,11 +97,8 @@ Ws0 f8 expr out #txt
 Ws0 f8 288 256 347 256 #arcP
 Ws0 f11 guid 15F94574C89A91BA #txt
 Ws0 f11 method extendSession() #txt
-Ws0 f11 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ws0 f11 outParameterDecl '<> result;
-' #txt
+Ws0 f11 inParameterDecl '<> param;' #txt
+Ws0 f11 outParameterDecl '<> result;' #txt
 Ws0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
