@@ -1,5 +1,5 @@
 [Ivy]
-14BE3DBF5F8C376B 3.28 #module
+14BE3DBF5F8C376B 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ls0 LoginProcess Big #zClass
 Ls0 RD #cInfo
@@ -25,11 +25,8 @@ Ls0 @PushWFArc f12 '' #zField
 >Proto Ls0 Ls0 LoginProcess #zField
 Ls0 f0 guid 14739D9F00572FE2 #txt
 Ls0 f0 method start() #txt
-Ls0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ls0 f0 outParameterDecl '<java.lang.Boolean loginOk> result;
-' #txt
+Ls0 f0 inParameterDecl '<> param;' #txt
+Ls0 f0 outParameterDecl '<Boolean loginOk> result;' #txt
 Ls0 f0 outParameterMapAction 'result.loginOk=in.loginOk;
 ' #txt
 Ls0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -123,8 +120,7 @@ Ls0 f8 @|AlternativeIcon #fIcon
 Ls0 f9 expr out #txt
 Ls0 f9 218 140 216 208 #arcP
 Ls0 f10 processCall 'Functional Processes/Login:call()' #txt
-Ls0 f10 requestActionDecl '<> param;
-' #txt
+Ls0 f10 requestActionDecl '<> param;' #txt
 Ls0 f10 responseActionDecl 'ch.ivy.addon.portalkit.singleapp.general.Login.LoginData out;
 ' #txt
 Ls0 f10 responseMappingAction 'out=in;

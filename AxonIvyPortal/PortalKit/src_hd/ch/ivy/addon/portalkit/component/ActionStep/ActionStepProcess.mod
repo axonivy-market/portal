@@ -1,5 +1,5 @@
 [Ivy]
-16B6880352B52912 3.28 #module
+16B6880352B52912 7.5.0 #module
 >Proto >Proto Collection #zClass
 As0 ActionStepProcess Big #zClass
 As0 RD #cInfo
@@ -22,8 +22,7 @@ As0 f0 guid 16B6880355C388FF #txt
 As0 f0 method start() #txt
 As0 f0 inParameterDecl 'ch.ivy.add.portalkit.Data out;
 ' #txt
-As0 f0 outParameterDecl '<> result;
-' #txt
+As0 f0 outParameterDecl '<> result;' #txt
 As0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

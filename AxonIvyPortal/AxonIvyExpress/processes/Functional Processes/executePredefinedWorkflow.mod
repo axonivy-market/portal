@@ -1,5 +1,5 @@
 [Ivy]
-163729F2CBAE7BE4 3.28 #module
+163729F2CBAE7BE4 7.5.0 #module
 >Proto >Proto Collection #zClass
 ew0 executePredefinedWorkflow Big #zClass
 ew0 B #cInfo
@@ -244,12 +244,11 @@ ew0 U21 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 ew0 U21 470 140 112 44 -31 -8 #rect
 ew0 U21 @|BpmnUserTaskIcon #fIcon
-ew0 f0 inParamDecl '<java.lang.Integer actualStepIndex,java.lang.String workflowID> param;' #txt
+ew0 f0 inParamDecl '<Integer actualStepIndex,String workflowID> param;' #txt
 ew0 f0 inParamTable 'out.actualStepIndex=param.#actualStepIndex is initialized ? param.actualStepIndex : 0;
 out.workflowID=param.workflowID;
 ' #txt
-ew0 f0 outParamDecl '<> result;
-' #txt
+ew0 f0 outParamDecl '<> result;' #txt
 ew0 f0 callSignature call(Integer,String) #txt
 ew0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -304,7 +303,7 @@ ew0 S31 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 ew0 S31 874 138 112 44 -26 -8 #rect
 ew0 S31 @|BpmnUserTaskIcon #fIcon
-ew0 f16 inParamDecl '<List<gawfs.TaskDef> definedTasks,java.lang.String processName,java.lang.String processDescription,ch.ivy.gawfs.enums.ProcessType processType,java.lang.String processID,java.lang.Boolean isAdhocProcess,java.lang.Long originalTaskId> param;' #txt
+ew0 f16 inParamDecl '<List<gawfs.TaskDef> definedTasks,String processName,String processDescription,ch.ivy.gawfs.enums.ProcessType processType,String processID,Boolean isAdhocProcess,Long originalTaskId> param;' #txt
 ew0 f16 inParamTable 'out.definedTasks=param.definedTasks;
 out.isAdhocProcess=param.isAdhocProcess;
 out.originalTaskId=param.originalTaskId;
@@ -433,8 +432,7 @@ ew0 f34 @|AlternativeIcon #fIcon
 ew0 f35 inParamDecl '<gawfs.ExecutePredefinedWorkflowData data> param;' #txt
 ew0 f35 inParamTable 'out=param.data;
 ' #txt
-ew0 f35 outParamDecl '<> result;
-' #txt
+ew0 f35 outParamDecl '<> result;' #txt
 ew0 f35 callSignature join(gawfs.ExecutePredefinedWorkflowData) #txt
 ew0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -753,8 +751,7 @@ Bk4 f50 288 656 216 784 #arcP
 Bk4 f50 1 288 784 #addKink
 Bk4 f50 1 0.463235294117647 1 -7 #arcLabel
 Bk4 f64 processCall 'Functional Processes/ParallelTasksUtil:splitTasks(Number)' #txt
-Bk4 f64 requestActionDecl '<java.lang.Number numberOfTasks> param;
-' #txt
+Bk4 f64 requestActionDecl '<Number numberOfTasks> param;' #txt
 Bk4 f64 requestMappingAction 'param.numberOfTasks=in.currentTask.getResponsibles().size();
 ' #txt
 Bk4 f64 responseActionDecl 'gawfs.ExecutePredefinedWorkflowData out;
@@ -783,8 +780,7 @@ Bk4 f57 160 806 272 888 #arcP
 Bk4 f57 1 160 888 #addKink
 Bk4 f57 1 0.40436755213021147 0 0 #arcLabel
 Bk4 f4 processCall 'Functional Processes/executePredefinedWorkflow:join(gawfs.ExecutePredefinedWorkflowData)' #txt
-Bk4 f4 requestActionDecl '<gawfs.ExecutePredefinedWorkflowData data> param;
-' #txt
+Bk4 f4 requestActionDecl '<gawfs.ExecutePredefinedWorkflowData data> param;' #txt
 Bk4 f4 requestMappingAction 'param.data=in;
 ' #txt
 Bk4 f4 responseActionDecl 'gawfs.ExecutePredefinedWorkflowData out;
@@ -1282,7 +1278,7 @@ Bk6 f0 328 192 611 192 #arcP
 >Proto Bk2 @|BIcon #fIcon
 Bk7 f21 dialogId ch.ivy.gawfs.workflowExecution.FinalReviewForm #txt
 Bk7 f21 startMethod start(java.util.List<gawfs.TaskDef>,java.util.List<String>,java.lang.Integer) #txt
-Bk7 f21 requestActionDecl '<java.util.List<gawfs.TaskDef> finishedTasks, java.util.List<String> steps, java.lang.Integer actualStepIndex> param;' #txt
+Bk7 f21 requestActionDecl '<java.util.List<gawfs.TaskDef> finishedTasks,java.util.List<String> steps,Integer actualStepIndex> param;' #txt
 Bk7 f21 requestMappingAction 'param.finishedTasks=in.finishedTasks;
 param.steps=in.steps;
 param.actualStepIndex=in.actualStepIndex;
@@ -1467,8 +1463,7 @@ Bk8 g0 @|MIGIcon #fIcon
 Bk8 g1 307 963 26 26 19 -15 #rect
 Bk8 g1 @|MOGIcon #fIcon
 Bk8 f64 processCall 'Functional Processes/ParallelTasksUtil:splitTasks(Number)' #txt
-Bk8 f64 requestActionDecl '<java.lang.Number numberOfTasks> param;
-' #txt
+Bk8 f64 requestActionDecl '<Number numberOfTasks> param;' #txt
 Bk8 f64 requestMappingAction 'param.numberOfTasks=in.currentTask.getResponsibles().size();
 ' #txt
 Bk8 f64 responseActionDecl 'gawfs.ExecutePredefinedWorkflowData out;
@@ -1616,8 +1611,7 @@ Bk8 f8 336 349 411 406 #arcP
 Bk8 f8 1 411 349 #addKink
 Bk8 f8 0 0.45796837519732153 0 10 #arcLabel
 Bk8 f1 processCall 'Functional Processes/executePredefinedWorkflow:join(gawfs.ExecutePredefinedWorkflowData)' #txt
-Bk8 f1 requestActionDecl '<gawfs.ExecutePredefinedWorkflowData data> param;
-' #txt
+Bk8 f1 requestActionDecl '<gawfs.ExecutePredefinedWorkflowData data> param;' #txt
 Bk8 f1 requestMappingAction 'param.data=in;
 ' #txt
 Bk8 f1 responseActionDecl 'gawfs.ExecutePredefinedWorkflowData out;
@@ -1687,7 +1681,7 @@ Bk8 f14 expr out #txt
 Bk8 f14 320 814 320 882 #arcP
 Bk8 f7 dialogId ch.ivy.gawfs.workflowExecution.ApprovalForm #txt
 Bk8 f7 startMethod start(java.util.List<gawfs.TaskDef>,List<String>,Integer,Boolean,Long) #txt
-Bk8 f7 requestActionDecl '<java.util.List<gawfs.TaskDef> finishedTasks,List<String> steps,java.lang.Integer actualStepIndex,java.lang.Boolean isAdhocProcess,java.lang.Long originalTaskId> param;' #txt
+Bk8 f7 requestActionDecl '<java.util.List<gawfs.TaskDef> finishedTasks,List<String> steps,Integer actualStepIndex,Boolean isAdhocProcess,Long originalTaskId> param;' #txt
 Bk8 f7 requestMappingAction 'param.finishedTasks=in.finishedTasks;
 param.steps=in.steps;
 param.actualStepIndex=in.actualStepIndex;

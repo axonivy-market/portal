@@ -1,5 +1,5 @@
 [Ivy]
-14715F955CC5A35F 3.28 #module
+14715F955CC5A35F 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ce0 CaseService Big #zClass
 Ce0 B #cInfo
@@ -52,13 +52,12 @@ Ce0 @PushWFArc f20 '' #zField
 Ce0 @PushWFArc f25 '' #zField
 Ce0 @PushWFArc f31 '' #zField
 >Proto Ce0 Ce0 CaseService #zField
-Ce0 f0 inParamDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria,java.lang.Integer startIndex,java.lang.Integer count> param;' #txt
+Ce0 f0 inParamDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria,Integer startIndex,Integer count> param;' #txt
 Ce0 f0 inParamTable 'out.caseSearchCriteria=param.caseSearchCriteria;
 out.count=param.count;
 out.startIndex=param.startIndex;
 ' #txt
-Ce0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,java.util.List<ch.ivyteam.ivy.workflow.ICase> cases> result;
-' #txt
+Ce0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,java.util.List<ch.ivyteam.ivy.workflow.ICase> cases> result;' #txt
 Ce0 f0 outParamTable 'result.errors=in.errors;
 result.cases=in.cases;
 ' #txt
@@ -92,8 +91,7 @@ Ce0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ce0 f6 192 74 112 44 -30 -8 #rect
 Ce0 f6 @|StepIcon #fIcon
 Ce0 f5 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Ce0 f5 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
-' #txt
+Ce0 f5 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
 Ce0 f5 requestMappingAction 'param.exceptions=in.errors;
 ' #txt
 Ce0 f5 responseActionDecl 'ch.ivyteam.wf.processes.CaseServiceData out;
@@ -135,8 +133,7 @@ Ce0 f11 @|StepIcon #fIcon
 Ce0 f12 inParamDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;' #txt
 Ce0 f12 inParamTable 'out.caseSearchCriteria=param.caseSearchCriteria;
 ' #txt
-Ce0 f12 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,java.lang.Long totalCases> result;
-' #txt
+Ce0 f12 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,Long totalCases> result;' #txt
 Ce0 f12 outParamTable 'result.errors=in.errors;
 result.totalCases=in.totalCases;
 ' #txt
@@ -151,8 +148,7 @@ Ce0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ce0 f12 81 177 30 30 -89 26 #rect
 Ce0 f12 @|StartSubIcon #fIcon
 Ce0 f13 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Ce0 f13 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
-' #txt
+Ce0 f13 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
 Ce0 f13 requestMappingAction 'param.exceptions=in.errors;
 ' #txt
 Ce0 f13 responseActionDecl 'ch.ivyteam.wf.processes.CaseServiceData out;
@@ -175,8 +171,7 @@ Ce0 f16 304 192 376 192 #arcP
 Ce0 f18 inParamDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria caseCategorySearchCriteria> param;' #txt
 Ce0 f18 inParamTable 'out.caseCategorySearchCriteria=param.caseCategorySearchCriteria;
 ' #txt
-Ce0 f18 outParamDecl '<ch.ivyteam.ivy.workflow.category.CategoryTree categoryTree> result;
-' #txt
+Ce0 f18 outParamDecl '<ch.ivyteam.ivy.workflow.category.CategoryTree categoryTree> result;' #txt
 Ce0 f18 outParamTable 'result.categoryTree=in.#categoryTree;
 ' #txt
 Ce0 f18 callSignature findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria) #txt
@@ -190,8 +185,7 @@ Ce0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ce0 f18 81 273 30 30 -89 28 #rect
 Ce0 f18 @|StartSubIcon #fIcon
 Ce0 f19 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Ce0 f19 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
-' #txt
+Ce0 f19 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
 Ce0 f19 requestMappingAction 'param.exceptions=in.errors;
 ' #txt
 Ce0 f19 responseActionDecl 'ch.ivyteam.wf.processes.CaseServiceData out;
@@ -233,8 +227,7 @@ Ce0 f24 304 288 376 288 #arcP
 Ce0 f40 553 465 30 30 0 15 #rect
 Ce0 f40 @|EndSubIcon #fIcon
 Ce0 f27 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Ce0 f27 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
-' #txt
+Ce0 f27 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
 Ce0 f27 requestMappingAction 'param.exceptions=in.errors;
 ' #txt
 Ce0 f27 responseActionDecl 'ch.ivyteam.wf.processes.CaseServiceData out;
@@ -255,8 +248,7 @@ Ce0 f28 @|EndSubIcon #fIcon
 Ce0 f29 inParamDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;' #txt
 Ce0 f29 inParamTable 'out.caseSearchCriteria=param.caseSearchCriteria;
 ' #txt
-Ce0 f29 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,ch.ivy.addon.portalkit.bo.CaseStateStatistic caseStateStatistic> result;
-' #txt
+Ce0 f29 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,ch.ivy.addon.portalkit.bo.CaseStateStatistic caseStateStatistic> result;' #txt
 Ce0 f29 outParamTable 'result.errors=in.errors;
 result.caseStateStatistic=in.caseStateStatistic;
 ' #txt
@@ -273,8 +265,7 @@ Ce0 f29 @|StartSubIcon #fIcon
 Ce0 f39 inParamDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;' #txt
 Ce0 f39 inParamTable 'out.caseSearchCriteria=param.caseSearchCriteria;
 ' #txt
-Ce0 f39 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic elapsedTimeStatistic> result;
-' #txt
+Ce0 f39 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic elapsedTimeStatistic> result;' #txt
 Ce0 f39 outParamTable 'result.errors=in.errors;
 result.elapsedTimeStatistic=in.elapsedTimeStatistic;
 ' #txt
@@ -289,8 +280,7 @@ Ce0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ce0 f39 81 465 30 30 -68 21 #rect
 Ce0 f39 @|StartSubIcon #fIcon
 Ce0 f30 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Ce0 f30 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
-' #txt
+Ce0 f30 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
 Ce0 f30 requestMappingAction 'param.exceptions=in.errors;
 ' #txt
 Ce0 f30 responseActionDecl 'ch.ivyteam.wf.processes.CaseServiceData out;
@@ -361,8 +351,7 @@ Ce0 f37 111 480 152 480 #arcP
 Ce0 f4 inParamDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria caseCustomFieldSearchCriteria> param;' #txt
 Ce0 f4 inParamTable 'out.caseCustomFieldSearchCriteria=param.caseCustomFieldSearchCriteria;
 ' #txt
-Ce0 f4 outParamDecl '<java.util.List<java.lang.String> customFields> result;
-' #txt
+Ce0 f4 outParamDecl '<java.util.List<String> customFields> result;' #txt
 Ce0 f4 outParamTable 'result.customFields=in.customFields;
 ' #txt
 Ce0 f4 callSignature findValuesOfCustomField(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria) #txt
@@ -395,8 +384,7 @@ Ce0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ce0 f10 168 554 144 44 -66 -8 #rect
 Ce0 f10 @|StepIcon #fIcon
 Ce0 f14 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Ce0 f14 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
-' #txt
+Ce0 f14 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
 Ce0 f14 requestMappingAction 'param.exceptions=in.errors;
 ' #txt
 Ce0 f14 responseActionDecl 'ch.ivyteam.wf.processes.CaseServiceData out;

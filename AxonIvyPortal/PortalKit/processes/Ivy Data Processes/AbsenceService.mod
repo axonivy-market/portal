@@ -1,5 +1,5 @@
 [Ivy]
-14BDDCD00C5EA267 3.28 #module
+14BDDCD00C5EA267 7.5.0 #module
 >Proto >Proto Collection #zClass
 Se0 AbsenceService Big #zClass
 Se0 B #cInfo
@@ -55,11 +55,10 @@ Se0 @PushWFArc f14 '' #zField
 Se0 @PushWFArc f12 '' #zField
 Se0 @GridStep f11 '' #zField
 >Proto Se0 Se0 AbsenceService #zField
-Se0 f81 inParamDecl '<java.lang.String username> param;' #txt
+Se0 f81 inParamDecl '<String username> param;' #txt
 Se0 f81 inParamTable 'out.username=param.username;
 ' #txt
-Se0 f81 outParamDecl '<java.util.Map absencesByUser,java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;
-' #txt
+Se0 f81 outParamDecl '<java.util.Map absencesByUser,java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;' #txt
 Se0 f81 outParamTable 'result.absencesByUser=in.absencesByUser;
 result.errors=in.errors;
 ' #txt
@@ -113,8 +112,7 @@ Se0 f86 @|StepIcon #fIcon
 Se0 f87 expr out #txt
 Se0 f87 320 64 354 64 #arcP
 Se0 f88 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Se0 f88 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
-' #txt
+Se0 f88 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
 Se0 f88 requestMappingAction 'param.exceptions=in.errors;
 ' #txt
 Se0 f88 responseActionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
@@ -134,11 +132,10 @@ Se0 f89 expr out #txt
 Se0 f89 466 64 514 64 #arcP
 Se0 f83 expr out #txt
 Se0 f83 626 64 683 64 #arcP
-Se0 f90 inParamDecl '<java.lang.String username> param;' #txt
+Se0 f90 inParamDecl '<String username> param;' #txt
 Se0 f90 inParamTable 'out.username=param.username;
 ' #txt
-Se0 f90 outParamDecl '<java.util.Map absencesByUser,java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;
-' #txt
+Se0 f90 outParamDecl '<java.util.Map absencesByUser,java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;' #txt
 Se0 f90 outParamTable 'result.absencesByUser=in.absencesByUser;
 result.errors=in.errors;
 ' #txt
@@ -152,12 +149,11 @@ Se0 f90 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Se0 f90 81 145 30 30 -87 17 #rect
 Se0 f90 @|StartSubIcon #fIcon
-Se0 f0 inParamDecl '<java.lang.String username,java.util.Set ivyAbsences> param;' #txt
+Se0 f0 inParamDecl '<String username,java.util.Set ivyAbsences> param;' #txt
 Se0 f0 inParamTable 'out.absences=param.ivyAbsences;
 out.username=param.username;
 ' #txt
-Se0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;
-' #txt
+Se0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;' #txt
 Se0 f0 outParamTable 'result.errors=in.errors;
 ' #txt
 Se0 f0 callSignature updateAbsences(String,java.util.Set) #txt
@@ -207,8 +203,7 @@ Se0 f3 @|StepIcon #fIcon
 Se0 f4 expr out #txt
 Se0 f4 336 352 376 352 #arcP
 Se0 f5 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Se0 f5 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
-' #txt
+Se0 f5 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
 Se0 f5 requestMappingAction 'param.exceptions=in.errors;
 ' #txt
 Se0 f5 responseActionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
@@ -233,8 +228,7 @@ Se0 f8 650 352 689 352 #arcP
 Se0 f9 inParamDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence ivyAbsence> param;' #txt
 Se0 f9 inParamTable 'out.absence=param.ivyAbsence;
 ' #txt
-Se0 f9 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;
-' #txt
+Se0 f9 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;' #txt
 Se0 f9 outParamTable 'result.errors=in.errors;
 ' #txt
 Se0 f9 callSignature deleteAbsence(ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence) #txt
@@ -266,8 +260,7 @@ Se0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Se0 f13 376 426 112 44 -43 -8 #rect
 Se0 f13 @|StepIcon #fIcon
 Se0 f15 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Se0 f15 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
-' #txt
+Se0 f15 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
 Se0 f15 requestMappingAction 'param.exceptions=in.errors;
 ' #txt
 Se0 f15 responseActionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
@@ -290,8 +283,7 @@ Se0 f17 634 448 689 448 #arcP
 Se0 f18 689 241 30 30 0 15 #rect
 Se0 f18 @|EndSubIcon #fIcon
 Se0 f19 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Se0 f19 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
-' #txt
+Se0 f19 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
 Se0 f19 requestMappingAction 'param.exceptions=in.errors;
 ' #txt
 Se0 f19 responseActionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;
@@ -326,8 +318,7 @@ Se0 f20 @|StepIcon #fIcon
 Se0 f21 inParamDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence absence> param;' #txt
 Se0 f21 inParamTable 'out.absence=param.absence;
 ' #txt
-Se0 f21 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;
-' #txt
+Se0 f21 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;' #txt
 Se0 f21 outParamTable 'result.errors=in.errors;
 ' #txt
 Se0 f21 callSignature createAbsence(ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence) #txt
@@ -399,8 +390,7 @@ Se0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Se0 f28 362 138 112 44 -41 -8 #rect
 Se0 f28 @|StepIcon #fIcon
 Se0 f29 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Se0 f29 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
-' #txt
+Se0 f29 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
 Se0 f29 requestMappingAction 'param.exceptions=in.errors;
 ' #txt
 Se0 f29 responseActionDecl 'ch.ivyteam.wf.processes.AbsenceServiceData out;

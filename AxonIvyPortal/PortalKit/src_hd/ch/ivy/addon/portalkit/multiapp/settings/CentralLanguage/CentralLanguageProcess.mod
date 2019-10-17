@@ -1,5 +1,5 @@
 [Ivy]
-14C2C99A2B54EEF3 3.28 #module
+14C2C99A2B54EEF3 7.5.0 #module
 >Proto >Proto Collection #zClass
 Es0 CentralLanguageProcess Big #zClass
 Es0 RD #cInfo
@@ -36,11 +36,8 @@ Es0 @PushWFArc f19 '' #zField
 >Proto Es0 Es0 CentralLanguageProcess #zField
 Es0 f0 guid 16781C1477C10928 #txt
 Es0 f0 method start() #txt
-Es0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Es0 f0 outParameterDecl '<> result;
-' #txt
+Es0 f0 inParameterDecl '<> param;' #txt
+Es0 f0 outParameterDecl '<> result;' #txt
 Es0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -57,8 +54,7 @@ Es0 f3 109 64 275 64 #arcP
 Es0 f6 627 147 26 26 0 12 #rect
 Es0 f6 @|UdProcessEndIcon #fIcon
 Es0 f8 processCall 'Ivy Data Processes/LanguageService:findUserLanguages(String)' #txt
-Es0 f8 requestActionDecl '<java.lang.String username> param;
-' #txt
+Es0 f8 requestActionDecl '<String username> param;' #txt
 Es0 f8 requestMappingAction 'param.username=ivy.session.getSessionUserName();
 ' #txt
 Es0 f8 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage.CentralLanguageData out;
@@ -113,11 +109,8 @@ Es0 f17 expr out #txt
 Es0 f17 592 160 627 160 #arcP
 Es0 f2 guid 16781CDB54BEA49E #txt
 Es0 f2 method findUserLanguages() #txt
-Es0 f2 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Es0 f2 outParameterDecl '<> result;
-' #txt
+Es0 f2 inParameterDecl '<> param;' #txt
+Es0 f2 outParameterDecl '<> result;' #txt
 Es0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -131,11 +124,8 @@ Es0 f4 expr out #txt
 Es0 f4 109 160 168 160 #arcP
 Es0 f5 guid 16786B6BAC43695F #txt
 Es0 f5 method saveUserLanguages() #txt
-Es0 f5 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Es0 f5 outParameterDecl '<> result;
-' #txt
+Es0 f5 inParameterDecl '<> param;' #txt
+Es0 f5 outParameterDecl '<> result;' #txt
 Es0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -148,8 +138,7 @@ Es0 f5 @|UdMethodIcon #fIcon
 Es0 f7 723 243 26 26 0 12 #rect
 Es0 f7 @|UdProcessEndIcon #fIcon
 Es0 f10 processCall 'Ivy Data Processes/LanguageService:saveUserLanguages(String,List<ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage>)' #txt
-Es0 f10 requestActionDecl '<java.lang.String username,java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage> languages> param;
-' #txt
+Es0 f10 requestActionDecl '<String username,java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage> languages> param;' #txt
 Es0 f10 requestMappingAction 'param.username=ivy.session.getSessionUserName();
 param.languages=in.languages;
 ' #txt

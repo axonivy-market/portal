@@ -1,5 +1,5 @@
 [Ivy]
-16B1B70EE89C4939 3.28 #module
+16B1B70EE89C4939 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ds0 DocumentTableProcess Big #zClass
 Ds0 RD #cInfo
@@ -91,8 +91,7 @@ Ds0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ds0 f5 83 275 26 26 -25 17 #rect
 Ds0 f5 @|UdMethodIcon #fIcon
 Ds0 f6 processCall 'Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)' #txt
-Ds0 f6 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase businessCase> param;
-' #txt
+Ds0 f6 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase businessCase> param;' #txt
 Ds0 f6 requestMappingAction 'param.businessCase=in.ivyCase;
 ' #txt
 Ds0 f6 responseActionDecl 'ch.ivy.addon.portalkit.component.document.DocumentTable.DocumentTableData out;
@@ -160,8 +159,7 @@ Ds0 f51 @|UdProcessEndIcon #fIcon
 Ds0 f15 755 467 26 26 0 12 #rect
 Ds0 f15 @|UdProcessEndIcon #fIcon
 Ds0 f13 processCall 'Functional Processes/UploadDocument:call(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.UploadedFile)' #txt
-Ds0 f13 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase businessCase,org.primefaces.model.UploadedFile uploadedFile> param;
-' #txt
+Ds0 f13 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase businessCase,org.primefaces.model.UploadedFile uploadedFile> param;' #txt
 Ds0 f13 requestMappingAction 'param.businessCase=in.ivyCase;
 param.uploadedFile=in.event.getFile();
 ' #txt
@@ -205,7 +203,7 @@ Ds0 f2 expr out #txt
 Ds0 f2 109 96 339 96 #arcP
 Ds0 f3 guid 16B2047AE0419DBD #txt
 Ds0 f3 method setFileLimit(Integer) #txt
-Ds0 f3 inParameterDecl '<java.lang.Integer fileLimit> param;' #txt
+Ds0 f3 inParameterDecl '<Integer fileLimit> param;' #txt
 Ds0 f3 inParameterMapAction 'out.fileLimit=param.fileLimit;
 ' #txt
 Ds0 f3 outParameterDecl '<> result;' #txt
@@ -238,8 +236,7 @@ Ds0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ds0 f19 83 627 26 26 -21 15 #rect
 Ds0 f19 @|UdMethodIcon #fIcon
 Ds0 f20 processCall 'Functional Processes/DeleteDocument:call(ch.ivyteam.ivy.workflow.ICase,ch.ivy.addon.portalkit.ivydata.bo.IvyDocument)' #txt
-Ds0 f20 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase businessCase,ch.ivy.addon.portalkit.ivydata.bo.IvyDocument document> param;
-' #txt
+Ds0 f20 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase businessCase,ch.ivy.addon.portalkit.ivydata.bo.IvyDocument document> param;' #txt
 Ds0 f20 requestMappingAction 'param.businessCase=in.ivyCase;
 param.document=in.selectedDocument;
 ' #txt
@@ -299,8 +296,7 @@ Ds0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ds0 f24 83 723 26 26 -66 15 #rect
 Ds0 f24 @|UdMethodIcon #fIcon
 Ds0 f25 processCall 'Functional Processes/DownloadDocument:call(ch.ivyteam.ivy.workflow.ICase,ch.ivy.addon.portalkit.ivydata.bo.IvyDocument)' #txt
-Ds0 f25 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase bussinessCase,ch.ivy.addon.portalkit.ivydata.bo.IvyDocument document> param;
-' #txt
+Ds0 f25 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase bussinessCase,ch.ivy.addon.portalkit.ivydata.bo.IvyDocument document> param;' #txt
 Ds0 f25 requestMappingAction 'param.bussinessCase=in.ivyCase;
 param.document=in.selectedDocument;
 ' #txt
@@ -410,7 +406,7 @@ Ds0 f41 712 384 736 384 #arcP
 Ds0 f41 0 0.2857142857142857 0 -7 #arcLabel
 Ds0 f42 guid 16B4E86E9AEE3309 #txt
 Ds0 f42 method renderComponent(String,Boolean,ch.ivy.addon.portalkit.enums.DocumentType) #txt
-Ds0 f42 inParameterDecl '<java.lang.String messageComponentId,java.lang.Boolean typeColumnRendered,ch.ivy.addon.portalkit.enums.DocumentType selectedType> param;' #txt
+Ds0 f42 inParameterDecl '<String messageComponentId,Boolean typeColumnRendered,ch.ivy.addon.portalkit.enums.DocumentType selectedType> param;' #txt
 Ds0 f42 inParameterMapAction 'out.messageComponentId=param.messageComponentId;
 out.typeColumnRendered=param.typeColumnRendered;
 out.typeSelection=param.selectedType;
