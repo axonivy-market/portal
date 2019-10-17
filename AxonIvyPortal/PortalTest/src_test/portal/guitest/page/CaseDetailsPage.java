@@ -27,10 +27,6 @@ public class CaseDetailsPage extends TemplatePage {
   private static final String ADDITIONAL_CASE_DETAILS_URL_CSS_SELECTOR = "a[id$='additional-case-details-link']";
   private static final String AUTHOR_USER_CSS_SELECTOR = "span[class='history-fullname']";
   private static final String VIEW_NOTE_DIALOG_ID = "case-item-details:case-histories:view-note-dialog";
-  private static final String UPLOAD_DOCUMENT_BUTTON_ID =
-      "case-widget:case-list-scroller:0:case-item:case-body:document:add-document-command";
-  private static final String DELETE_DOCUMENT_BUTTON_ID =
-      "case-widget:case-list-scroller:0:case-item:case-body:document:document-list:0:delete-file";
   private WebElement caseItem;
 
   @Override
@@ -284,41 +280,29 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public TaskWidgetPage clickShowAllTasks() {
-    caseItem.findElement(By.cssSelector("a[id$='show-all-tasks']")).click();
+    caseItem.findElement(By.cssSelector("a[id$='show-more-related-tasks']")).click();
     return new TaskWidgetPage();
   }
 
   public void uploadDocumentWithoutError(String pathToFile) {
     openAddDocumentDialogAndUploadDocument(0, pathToFile);
-    click(By.id(String
-        .format("case-widget:case-list-scroller:%d:case-item:case-body:document:document-upload-close-command", 0)));
+    click(By.cssSelector("button[id$='case-item-details:document:document-upload-close-command']"));
   }
 
   public String uploadDocumentWithError(String pathToFile) {
     openAddDocumentDialogAndUploadDocument(0, pathToFile);
-    WebElement errorMsg = findElementByXpath(String.format(
-        "//*[@id='case-widget:case-list-scroller:%d:case-item:case-body:document:document-upload-form:upload-messages']/div/ul/li/span",
-        0));
+    WebElement errorMsg = findElementByCssSelector("div[id$='upload-messages']");
     String returnMsg = StringUtils.EMPTY;
     if (errorMsg.isDisplayed()) {
       returnMsg = errorMsg.getText();
     }
-    click(By.id(String
-        .format("case-widget:case-list-scroller:%d:case-item:case-body:document:document-upload-close-command", 0)));
+    click(By.cssSelector("button[id$='document-upload-close-command']"));
     return returnMsg;
   }
 
   private void openAddDocumentDialogAndUploadDocument(int index, String pathToFile) {
-    try {
-      click(By.id(
-          String.format("case-widget:case-list-scroller:%d:case-item:case-body:document:add-document-command", index)));
-    } catch (UnhandledAlertException e) {
-      Alert alert = driver.switchTo().alert();
-      alert.accept();
-    }
-    String uploadDialogId =
-        String.format("case-widget:case-list-scroller:%d:case-item:case-body:document:document-upload-dialog", index);
-    waitForElementDisplayed(By.id(uploadDialogId), true);
+    findElementByCssSelector("a[id$='add-document-command']").click();
+    waitForElementDisplayed(By.cssSelector("span[id$='document-upload-dialog_title']"), true);
     try {
       click(By.className("ui-fileupload-choose"));
     } catch (UnhandledAlertException e) {
@@ -347,12 +331,8 @@ public class CaseDetailsPage extends TemplatePage {
     }
   }
 
-  public boolean isUploadDocumentButtonPresented() {
-    return caseItem.findElements(By.id(UPLOAD_DOCUMENT_BUTTON_ID)).size() > 0;
-  }
-
   public boolean isDeleteDocumentButtonPresented() {
-    return caseItem.findElements(By.id(DELETE_DOCUMENT_BUTTON_ID)).size() > 0;
+    return isElementDisplayed(By.cssSelector("a[id$='delete-file']"));
   }
 
   public String getCaseName() {
@@ -360,4 +340,29 @@ public class CaseDetailsPage extends TemplatePage {
         findElementByCssSelector("#case-item-details\\:case-detail-title-form\\:case-name-edit-inplace_display");
     return selectedCaseNameElement.getText();
   }
+  public boolean isAddNoteButtonDisplayed() {
+    return isElementDisplayedById("case-item-details:case-histories:add-note-command");
+  }
+
+  public boolean isShowMoreNoteButtonDisplayed() {
+    return isElementDisplayedById("case-item-details:case-histories:show-more-note-link");
+  }
+
+  public boolean isShowDetailsDisplayed() {
+    return isElementDisplayedById("case-item-details:show-additional-case-details-link");
+  }
+
+  public boolean isShowAllTasksDisplayed() {
+    return isElementDisplayedById("case-item-details:related-tasks:show-more-related-tasks");
+  }
+
+  public boolean isAddDocumentLinkDisplayed() {
+    return isElementDisplayedById("case-item-details:document:add-document-command");
+  }
+  
+  public int countNumberOfDocument() {
+    return findListElementsByCssSelector("a[id$='download']").size();
+  }
+  
+
 }
