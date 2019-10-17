@@ -36,11 +36,11 @@
       <p:autoUpdate />
     </p:growl>
 
-    <!--     <h:panelGrid columns="2" styleClass="edit-statistic-container" id="edit-statistic-container"> -->
     <h:panelGroup id="edit-statistic-container" styleClass="edit-statistic-container ui-g-12 u-padding-0">
       <h:panelGroup id="chart-list" layout="block" styleClass="chart-list ui-g">
         <c:set var="taskByPriorityModel" value="#{statisticChartCreationBean.taskByPriorityModel}" />
-        <h:panelGroup id="task-by-priority-chart" layout="block" styleClass="ui-g-4 ui-md-6 ui-sm-12" rendered="#{taskByPriorityModel ne null}">
+        <h:panelGroup id="task-by-priority-chart" layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12"
+          rendered="#{taskByPriorityModel ne null}">
           <div class="card ui-g-12 chart-container ">
             <div class="ui-g-12">
               <p:outputLabel id="task-by-priority-label" styleClass="label"
@@ -58,7 +58,8 @@
         </h:panelGroup>
 
         <c:set var="caseByStateModel" value="#{statisticChartCreationBean.caseByStateModel}" />
-        <h:panelGroup id="case-by-state-chart" layout="block" styleClass="ui-g-4 ui-md-6 ui-sm-12" rendered="#{caseByStateModel ne null}">
+        <h:panelGroup id="case-by-state-chart" layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12"
+          rendered="#{caseByStateModel ne null}">
           <div class="card ui-g-12 chart-container">
             <div class="ui-g-12">
               <p:outputLabel id="case-by-state-label" styleClass="label"
@@ -76,7 +77,8 @@
         </h:panelGroup>
 
         <c:set var="taskByExpiryModel" value="#{statisticChartCreationBean.taskByExpiryModel}" />
-        <h:panelGroup id="task-by-expiry-chart" layout="block" styleClass="ui-g-4 ui-md-6 ui-sm-12" rendered="#{taskByExpiryModel ne null}">
+        <h:panelGroup id="task-by-expiry-chart" layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12"
+          rendered="#{taskByExpiryModel ne null}">
           <div class="card ui-g-12 chart-container">
             <div class="ui-g-12">
               <p:outputLabel id="task-by-expiry-label" styleClass="label"
@@ -94,7 +96,8 @@
         </h:panelGroup>
 
         <c:set var="elapsedTimeModel" value="#{statisticChartCreationBean.elapsedTimeModel}" />
-        <h:panelGroup id="elapsed-time-by-case-category" layout="block" styleClass="ui-g-4 ui-md-6 ui-sm-12" rendered="#{elapsedTimeModel ne null}">
+        <h:panelGroup id="elapsed-time-by-case-category" layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12"
+          rendered="#{elapsedTimeModel ne null}">
           <div class="card ui-g-12 chart-container">
             <div class="ui-g-12">
               <p:outputLabel id="elapsed-time-by-case-category-label" styleClass="label"
@@ -106,13 +109,14 @@
               </p:commandLink>
             </div>
             <div class="ui-g-12">
-              <p:barChart model="#{elapsedTimeModel}" styleClass="statistic-chart" />
+              <p:barChart model="#{elapsedTimeModel}" styleClass="statistic-chart" style="width: 100%; height: 340px;" />
             </div>
           </div>
         </h:panelGroup>
 
         <c:set var="caseByFinishedTaskModel" value="#{statisticChartCreationBean.caseByFinishedTaskModel}" />
-        <h:panelGroup id="case-by-finished-task-chart" layout="block" styleClass="ui-g-4 ui-md-6 ui-sm-12" rendered="#{caseByFinishedTaskModel ne null}">
+        <h:panelGroup id="case-by-finished-task-chart" layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12"
+          rendered="#{caseByFinishedTaskModel ne null}">
           <div class="card ui-g-12 chart-container">
             <div class="ui-g-12">
               <p:outputLabel id="case-by-finished-task-label" styleClass="label"
@@ -130,7 +134,8 @@
         </h:panelGroup>
 
         <c:set var="caseByFinishedTimeModel" value="#{statisticChartCreationBean.caseByFinishedTimeModel}" />
-        <h:panelGroup id="case-by-finished-time-chart" layout="block" styleClass="ui-g-4 ui-md-6 ui-sm-12" rendered="#{caseByFinishedTimeModel ne null}">
+        <h:panelGroup id="case-by-finished-time-chart" layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12"
+          rendered="#{caseByFinishedTimeModel ne null}">
           <div class="card ui-g-12 chart-container">
             <div class="ui-g-12">
               <p:outputLabel id="case-by-finished-time-label" styleClass="label"
@@ -153,7 +158,6 @@
       <ic:ch.ivy.addon.portalkit.component.statistic.StatisticFilters id="statistic-filter" customFields="#{data.customFields}"
         filter="#{data.statisticFilter}" updateListener="#{statisticChartCreationBean.updateFilters(data.statisticFilter, data.oldStatisticFilter)}" />
     </h:panelGroup>
-    <!--     </h:panelGrid> -->
   </h:form>
 
   <p:dialog id="add-chart-dialog" widgetVar="add-chart-dialog" styleClass="add-chart-dialog"

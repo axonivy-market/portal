@@ -16,14 +16,14 @@
   <c:set var="filter" value="#{cc.attrs.filter}" />
 <!--   <h:panelGrid columns="1"> -->
 <div class="ui-g">
-    <div class="ui-g-12">
-      <h:outputText value="Filters"></h:outputText>
+    <div class="ui-g-12 u-padding-0">
+      <h:outputText value="Filters" styleClass="chart-filter-header-text"/>
       <p:commandButton id="apply-filter-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/applyFilter')}"
         styleClass="apply-filters-btn" process="statistic-filter-accordion-panel" actionListener="#{cc.attrs.updateListener}"
         oncomplete="clearChartModels(); updateChartModels();" />
     </div>
 
-    <p:accordionPanel id="statistic-filter-accordion-panel" styleClass="statistic-filter-accordion-panel ui-g-12" multiple="true" activeIndex="0,1,2,3">
+    <p:accordionPanel id="statistic-filter-accordion-panel" styleClass="statistic-filter-accordion-panel ui-g-12 ui-fluid" multiple="true" activeIndex="0,1,2,3">
       <!-- PERIOD TIME FILTER -->
       <p:tab id="period-time-filter-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/timePeriod')}">
   
@@ -37,37 +37,32 @@
             #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/description")}: #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/timePeriodFilterDescription")}
           </p:tooltip>
         </f:facet>
-  
-        <h:panelGrid columns="1" cellpadding="10">
-          <p:row>
-            <p:column>
-              <p:selectOneMenu id="period-time-selection" styleClass="period-time-selection" value="#{filter.timePeriodSelection}">
-                <f:selectItems value="#{filter.allTimePeriodSelection}" var="period" itemLabel="#{period.label}" itemValue="#{period}" />
-                <p:ajax global="false" update="@([id$='filter-from']) @([id$='filter-to'])" />
-              </p:selectOneMenu>
-            </p:column>
-  
-            <p:column>
-              <h:panelGrid columns="2" columnClasses="align-bottom, align-bottom">
-  
-                <p:outputLabel styleClass="item-label" for="filter-from" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')} " />
-                <p:calendar id="filter-from" value="#{filter.createdDateFrom}" disabled="#{filter.timePeriodSelection ne 'CUSTOM'}"
-                  pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"
-                  converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}">
-                  <p:ajax global="false" />
-                </p:calendar>
-  
-                <p:outputLabel for="filter-to" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')} " />
-                <p:calendar id="filter-to" value="#{filter.createdDateTo}" disabled="#{filter.timePeriodSelection ne 'CUSTOM'}"
-                  pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"
-                  converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}">
-                  <p:ajax global="false" />
-                </p:calendar>
-  
-              </h:panelGrid>
-            </p:column>
-          </p:row>
+
+        <h:panelGroup styleClass="ui-g-12">
+          <p:selectOneMenu id="period-time-selection" styleClass="period-time-selection" value="#{filter.timePeriodSelection}">
+            <f:selectItems value="#{filter.allTimePeriodSelection}" var="period" itemLabel="#{period.label}" itemValue="#{period}" />
+            <p:ajax global="false" update="@([id$='filter-from']) @([id$='filter-to'])" />
+          </p:selectOneMenu>
+        </h:panelGroup>
+
+        <h:panelGrid columns="1" columnClasses="ui-g-12 u-padding-0" styleClass="ui-g-12">
+
+          <p:outputLabel styleClass="item-label ui-g-12" for="filter-from" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')} " />
+          <p:calendar id="filter-from" value="#{filter.createdDateFrom}" disabled="#{filter.timePeriodSelection ne 'CUSTOM'}"
+            pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"
+            converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}">
+            <p:ajax global="false" />
+          </p:calendar>
+
+          <p:outputLabel for="filter-to" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')} " styleClass="item-label ui-g-12"/>
+          <p:calendar id="filter-to" value="#{filter.createdDateTo}" disabled="#{filter.timePeriodSelection ne 'CUSTOM'}"
+            pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"
+            converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}">
+            <p:ajax global="false" />
+          </p:calendar>
+
         </h:panelGrid>
+
       </p:tab>
   
       <!-- CASE CATEGORY FILTER -->
@@ -97,6 +92,13 @@
             <p:ajax global="false" />
           </p:selectManyCheckbox>
         </p:scrollPanel>
+
+<!--         <p:tree id="task-category-filter-tree" value="#{filter.caseCategories}" var="node" selectionMode="checkbox" -->
+<!--           filterBy="#{node}" filterMatchMode="contains" styleClass="filter-category-checkbox-tree"> -->
+<!--           <p:treeNode> -->
+<!--             <h:outputText value="#{node.value}" /> -->
+<!--           </p:treeNode> -->
+<!--         </p:tree> -->
       </p:tab>
   
       <!-- ROLE FILTER -->
