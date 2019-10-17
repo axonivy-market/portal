@@ -1,5 +1,5 @@
 [Ivy]
-1485F329FE84F01E 3.28 #module
+1485F329FE84F01E 7.5.0 #module
 >Proto >Proto Collection #zClass
 Pt0 SecurityService Big #zClass
 Pt0 B #cInfo
@@ -58,11 +58,10 @@ Pt0 @PushWFArc f45 '' #zField
 Pt0 @PushWFArc f46 '' #zField
 Pt0 @PushWFArc f47 '' #zField
 >Proto Pt0 Pt0 SecurityService #zField
-Pt0 f0 inParamDecl '<java.lang.String username> param;' #txt
+Pt0 f0 inParamDecl '<String username> param;' #txt
 Pt0 f0 inParamTable 'out.username=param.username;
 ' #txt
-Pt0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,java.util.Map usersByApp> result;
-' #txt
+Pt0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,java.util.Map usersByApp> result;' #txt
 Pt0 f0 outParamTable 'result.errors=in.errors;
 result.usersByApp=in.usersByApp;
 ' #txt
@@ -95,8 +94,7 @@ Pt0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f10 160 74 176 44 -81 -8 #rect
 Pt0 f10 @|StepIcon #fIcon
 Pt0 f24 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Pt0 f24 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
-' #txt
+Pt0 f24 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
 Pt0 f24 requestMappingAction 'param.exceptions=in.errors;
 ' #txt
 Pt0 f24 responseActionDecl 'ch.ivyteam.wf.processes.SecurityServiceData out;
@@ -141,8 +139,7 @@ Pt0 f3 656 96 721 96 #arcP
 Pt0 f4 inParamDecl '<ch.ivyteam.ivy.application.IApplication application> param;' #txt
 Pt0 f4 inParamTable 'out.application=param.application;
 ' #txt
-Pt0 f4 outParamDecl '<java.util.List<ch.ivyteam.ivy.security.IUser> users,java.util.List<ch.ivyteam.ivy.security.IRole> roles,java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;
-' #txt
+Pt0 f4 outParamDecl '<java.util.List<ch.ivyteam.ivy.security.IUser> users,java.util.List<ch.ivyteam.ivy.security.IRole> roles,java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;' #txt
 Pt0 f4 outParamTable 'result.users=in.users;
 result.roles=in.roles;
 result.errors=in.errors;
@@ -181,8 +178,7 @@ Pt0 f6 111 576 248 576 #arcP
 Pt0 f7 593 561 30 30 0 15 #rect
 Pt0 f7 @|EndSubIcon #fIcon
 Pt0 f8 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Pt0 f8 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
-' #txt
+Pt0 f8 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
 Pt0 f8 requestMappingAction 'param.exceptions=in.errors;
 ' #txt
 Pt0 f8 responseActionDecl 'ch.ivyteam.wf.processes.SecurityServiceData out;
@@ -202,11 +198,10 @@ Pt0 f9 expr out #txt
 Pt0 f9 544 576 593 576 #arcP
 Pt0 f11 expr out #txt
 Pt0 f11 392 576 432 576 #arcP
-Pt0 f12 inParamDecl '<java.lang.String username> param;' #txt
+Pt0 f12 inParamDecl '<String username> param;' #txt
 Pt0 f12 inParamTable 'out.username=param.username;
 ' #txt
-Pt0 f12 outParamDecl '<java.util.List<ch.ivyteam.ivy.security.IUser> users,java.util.List<ch.ivyteam.ivy.security.IRole> roles,java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;
-' #txt
+Pt0 f12 outParamDecl '<java.util.List<ch.ivyteam.ivy.security.IUser> users,java.util.List<ch.ivyteam.ivy.security.IRole> roles,java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;' #txt
 Pt0 f12 outParamTable 'result.users=in.users;
 result.roles=in.roles;
 result.errors=in.errors;
@@ -259,8 +254,7 @@ Pt0 f14 @|StepIcon #fIcon
 Pt0 f16 729 465 30 30 0 15 #rect
 Pt0 f16 @|EndSubIcon #fIcon
 Pt0 f17 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Pt0 f17 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
-' #txt
+Pt0 f17 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
 Pt0 f17 requestMappingAction 'param.exceptions=in.errors;
 ' #txt
 Pt0 f17 responseActionDecl 'ch.ivyteam.wf.processes.SecurityServiceData out;
@@ -287,8 +281,7 @@ Pt0 f15 111 480 168 480 #arcP
 Pt0 f19 inParamDecl '<ch.ivyteam.ivy.application.IApplication application> param;' #txt
 Pt0 f19 inParamTable 'out.application=param.application;
 ' #txt
-Pt0 f19 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,java.util.List<ch.ivyteam.ivy.security.IUser> users> result;
-' #txt
+Pt0 f19 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,java.util.List<ch.ivyteam.ivy.security.IUser> users> result;' #txt
 Pt0 f19 outParamTable 'result.errors=in.errors;
 result.users=in.users;
 ' #txt
@@ -321,8 +314,7 @@ Pt0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f25 248 170 112 44 -29 -8 #rect
 Pt0 f25 @|StepIcon #fIcon
 Pt0 f28 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Pt0 f28 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
-' #txt
+Pt0 f28 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
 Pt0 f28 requestMappingAction 'param.exceptions=in.errors;
 ' #txt
 Pt0 f28 responseActionDecl 'ch.ivyteam.wf.processes.SecurityServiceData out;
@@ -383,8 +375,7 @@ Pt0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f34 160 266 176 44 -81 -8 #rect
 Pt0 f34 @|StepIcon #fIcon
 Pt0 f35 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Pt0 f35 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
-' #txt
+Pt0 f35 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
 Pt0 f35 requestMappingAction 'param.exceptions=in.errors;
 ' #txt
 Pt0 f35 responseActionDecl 'ch.ivyteam.wf.processes.SecurityServiceData out;
@@ -401,8 +392,7 @@ Pt0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f35 544 266 112 44 -35 -8 #rect
 Pt0 f35 @|CallSubIcon #fIcon
 Pt0 f36 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Pt0 f36 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
-' #txt
+Pt0 f36 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
 Pt0 f36 requestMappingAction 'param.exceptions=in.errors;
 ' #txt
 Pt0 f36 responseActionDecl 'ch.ivyteam.wf.processes.SecurityServiceData out;
@@ -438,11 +428,10 @@ Pt0 f37 248 362 112 44 -27 -8 #rect
 Pt0 f37 @|StepIcon #fIcon
 Pt0 f38 585 369 30 30 0 15 #rect
 Pt0 f38 @|EndSubIcon #fIcon
-Pt0 f39 inParamDecl '<java.lang.String username> param;' #txt
+Pt0 f39 inParamDecl '<String username> param;' #txt
 Pt0 f39 inParamTable 'out.username=param.username;
 ' #txt
-Pt0 f39 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,java.util.Map rolesByApp> result;
-' #txt
+Pt0 f39 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,java.util.Map rolesByApp> result;' #txt
 Pt0 f39 outParamTable 'result.errors=in.errors;
 result.rolesByApp=in.rolesByApp;
 ' #txt
@@ -459,8 +448,7 @@ Pt0 f39 @|StartSubIcon #fIcon
 Pt0 f40 inParamDecl '<ch.ivyteam.ivy.application.IApplication application> param;' #txt
 Pt0 f40 inParamTable 'out.application=param.application;
 ' #txt
-Pt0 f40 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,java.util.List<ch.ivyteam.ivy.security.IRole> roles> result;
-' #txt
+Pt0 f40 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,java.util.List<ch.ivyteam.ivy.security.IRole> roles> result;' #txt
 Pt0 f40 outParamTable 'result.errors=in.errors;
 result.roles=in.roles;
 ' #txt

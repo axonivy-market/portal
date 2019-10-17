@@ -1,5 +1,5 @@
 [Ivy]
-16044EDBC0E23859 3.28 #module
+16044EDBC0E23859 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ty0 TaskNoteHistory Big #zClass
 Ty0 B #cInfo
@@ -22,7 +22,7 @@ Ty0 @PushWFArc f3 '' #zField
 Ty0 @PushWFArc f4 '' #zField
 >Proto Ty0 Ty0 TaskNoteHistory #zField
 Ty0 f0 outLink showTaskNoteHistory.ivp #txt
-Ty0 f0 inParamDecl '<java.lang.Long selectedTaskId> param;' #txt
+Ty0 f0 inParamDecl '<Long selectedTaskId> param;' #txt
 Ty0 f0 inParamTable 'out.taskId=param.selectedTaskId;
 ' #txt
 Ty0 f0 requestEnabled true #txt
@@ -69,7 +69,7 @@ Ty0 f9 376 42 112 44 -27 -8 #rect
 Ty0 f9 @|StepIcon #fIcon
 Ty0 f11 dialogId ch.ivy.addon.portal.generic.TaskNoteHistory #txt
 Ty0 f11 startMethod start(java.util.List<ch.ivyteam.ivy.workflow.INote>,String) #txt
-Ty0 f11 requestActionDecl '<java.util.List<ch.ivyteam.ivy.workflow.INote> notes, String exportedFileName> param;' #txt
+Ty0 f11 requestActionDecl '<java.util.List<ch.ivyteam.ivy.workflow.INote> notes,String exportedFileName> param;' #txt
 Ty0 f11 requestMappingAction 'param.notes=in.notes;
 param.exportedFileName=ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/noteHistory/taskExportedFileNamePrefix", java.util.Arrays.asList(ch.ivy.addon.portalkit.util.PermissionUtils.getTaskName(in.task)));
 ' #txt

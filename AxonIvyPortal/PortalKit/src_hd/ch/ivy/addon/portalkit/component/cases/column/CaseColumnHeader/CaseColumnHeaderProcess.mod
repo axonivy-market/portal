@@ -1,5 +1,5 @@
 [Ivy]
-164B1B767672DF33 3.28 #module
+164B1B767672DF33 7.5.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseColumnHeaderProcess Big #zClass
 Cs0 RD #cInfo
@@ -25,11 +25,8 @@ Cs0 @PushWFArc f39 '' #zField
 >Proto Cs0 Cs0 CaseColumnHeaderProcess #zField
 Cs0 f0 guid 164B1B76780607CC #txt
 Cs0 f0 method start() #txt
-Cs0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Cs0 f0 outParameterDecl '<> result;
-' #txt
+Cs0 f0 inParameterDecl '<> param;' #txt
+Cs0 f0 outParameterDecl '<> result;' #txt
 Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -76,14 +73,11 @@ Cs0 f35 302 212 36 24 20 14 #rect
 Cs0 f35 @|StepIcon #fIcon
 Cs0 f15 guid 164B1DA81F9E6733 #txt
 Cs0 f15 method sort(String,Boolean) #txt
-Cs0 f15 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.String sortedField,java.lang.Boolean isSortingDescending> param = methodEvent.getInputArguments();
-' #txt
+Cs0 f15 inParameterDecl '<String sortedField,Boolean isSortingDescending> param;' #txt
 Cs0 f15 inParameterMapAction 'out.isSortingDescending=param.isSortingDescending;
 out.sortedField=param.sortedField;
 ' #txt
-Cs0 f15 outParameterDecl '<> result;
-' #txt
+Cs0 f15 outParameterDecl '<> result;' #txt
 Cs0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

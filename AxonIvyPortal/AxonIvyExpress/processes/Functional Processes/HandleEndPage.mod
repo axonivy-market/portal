@@ -1,5 +1,5 @@
 [Ivy]
-160070C3BA6D3702 3.28 #module
+160070C3BA6D3702 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ce0 HandleEndPage Big #zClass
 Ce0 B #cInfo
@@ -37,8 +37,7 @@ Ce0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ce0 f4 209 226 112 44 -44 -8 #rect
 Ce0 f4 @|StepIcon #fIcon
 Ce0 f5 inParamDecl '<> param;' #txt
-Ce0 f5 outParamDecl '<java.lang.String callbackUrl> result;
-' #txt
+Ce0 f5 outParamDecl '<String callbackUrl> result;' #txt
 Ce0 f5 outParamTable 'result.callbackUrl=in.callbackUrl;
 ' #txt
 Ce0 f5 callSignature handleEndPage() #txt

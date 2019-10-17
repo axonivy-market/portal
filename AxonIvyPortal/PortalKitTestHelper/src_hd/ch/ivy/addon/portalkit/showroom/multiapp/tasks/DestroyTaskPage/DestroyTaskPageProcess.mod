@@ -1,5 +1,5 @@
 [Ivy]
-1559AE0A76284C44 3.28 #module
+1559AE0A76284C44 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ds0 DestroyTaskPageProcess Big #zClass
 Ds0 RD #cInfo
@@ -25,11 +25,8 @@ Ds0 @PushWFArc f8 '' #zField
 >Proto Ds0 Ds0 DestroyTaskPageProcess #zField
 Ds0 f0 guid 1559AE0A7933579C #txt
 Ds0 f0 method start() #txt
-Ds0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ds0 f0 outParameterDecl '<> result;
-' #txt
+Ds0 f0 inParameterDecl '<> param;' #txt
+Ds0 f0 outParameterDecl '<> result;' #txt
 Ds0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -61,11 +58,8 @@ Ds0 f5 expr out #txt
 Ds0 f5 160 107 160 213 #arcP
 Ds0 f6 guid 1559AE82C10CF58D #txt
 Ds0 f6 method destroyTask(java.lang.Long) #txt
-Ds0 f6 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.Long taskId> param = methodEvent.getInputArguments();
-' #txt
-Ds0 f6 outParameterDecl '<> result;
-' #txt
+Ds0 f6 inParameterDecl '<Long taskId> param;' #txt
+Ds0 f6 outParameterDecl '<> result;' #txt
 Ds0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

@@ -1,5 +1,5 @@
 [Ivy]
-14C2C99D7388AB9B 3.28 #module
+14C2C99D7388AB9B 7.5.0 #module
 >Proto >Proto Collection #zClass
 Es0 EmailSettingProcess Big #zClass
 Es0 RD #cInfo
@@ -55,8 +55,7 @@ Es0 f0 inParameterMapAction 'out.user=ivy.session.getSessionUserName();
 ' #txt
 Es0 f0 inActionCode 'import ch.ivyteam.util.date.Weekday;
 out.dailySummaryList = [Weekday.MONDAY, Weekday.TUESDAY, Weekday.WEDNESDAY, Weekday.THURSDAY, Weekday.FRIDAY, Weekday.SATURDAY, Weekday.SUNDAY];' #txt
-Es0 f0 outParameterDecl '<> result;
-' #txt
+Es0 f0 outParameterDecl '<> result;' #txt
 Es0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -72,11 +71,8 @@ Es0 f4 expr out #txt
 Es0 f4 77 64 211 64 #arcP
 Es0 f5 guid 167965C29E430919 #txt
 Es0 f5 method findEmailSettings() #txt
-Es0 f5 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Es0 f5 outParameterDecl '<> result;
-' #txt
+Es0 f5 inParameterDecl '<> param;' #txt
+Es0 f5 outParameterDecl '<> result;' #txt
 Es0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -87,8 +83,7 @@ Es0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Es0 f5 51 147 26 26 -52 15 #rect
 Es0 f5 @|UdMethodIcon #fIcon
 Es0 f23 processCall 'Ivy Data Processes/EmailSettingService:findEmailSettings(String)' #txt
-Es0 f23 requestActionDecl '<java.lang.String username> param;
-' #txt
+Es0 f23 requestActionDecl '<String username> param;' #txt
 Es0 f23 requestMappingAction 'param.username=in.user;
 ' #txt
 Es0 f23 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData out;
@@ -209,8 +204,7 @@ Es0 f2 @|StepIcon #fIcon
 Es0 f6 expr out #txt
 Es0 f6 77 352 104 352 #arcP
 Es0 f7 processCall 'Ivy Data Processes/EmailSettingService:saveEmailSettings(String,List<ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting>)' #txt
-Es0 f7 requestActionDecl '<java.lang.String username,java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting> emailSettings> param;
-' #txt
+Es0 f7 requestActionDecl '<String username,java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting> emailSettings> param;' #txt
 Es0 f7 requestMappingAction 'param.username=in.user;
 param.emailSettings=in.emailSettings;
 ' #txt

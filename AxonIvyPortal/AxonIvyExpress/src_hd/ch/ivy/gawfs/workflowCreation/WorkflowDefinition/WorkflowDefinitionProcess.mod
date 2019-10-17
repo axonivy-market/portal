@@ -1,5 +1,5 @@
 [Ivy]
-1576FA61C4EDC8B1 3.28 #module
+1576FA61C4EDC8B1 7.5.0 #module
 >Proto >Proto Collection #zClass
 Fs0 WorkflowDefinitionProcess Big #zClass
 Fs0 RD #cInfo
@@ -103,14 +103,11 @@ Fs0 @PushWFArc f86 '' #zField
 >Proto Fs0 Fs0 WorkflowDefinitionProcess #zField
 Fs0 f0 guid 1576FA61C9D81A51 #txt
 Fs0 f0 method start(gawfs.Data) #txt
-Fs0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<gawfs.Data data> param = methodEvent.getInputArguments();
-' #txt
+Fs0 f0 inParameterDecl '<gawfs.Data data> param;' #txt
 Fs0 f0 inParameterMapAction 'out.data=param.data;
 out.originalProcessName=param.data.processName;
 ' #txt
-Fs0 f0 outParameterDecl '<gawfs.Data data> result;
-' #txt
+Fs0 f0 outParameterDecl '<gawfs.Data data> result;' #txt
 Fs0 f0 outParameterMapAction 'result.data=in.data;
 ' #txt
 Fs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -196,11 +193,8 @@ Fs0 f7 expr out #txt
 Fs0 f7 109 64 200 64 #arcP
 Fs0 f9 guid 157748D911FE549A #txt
 Fs0 f9 method addProcessStep() #txt
-Fs0 f9 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Fs0 f9 outParameterDecl '<> result;
-' #txt
+Fs0 f9 inParameterDecl '<> param;' #txt
+Fs0 f9 outParameterDecl '<> result;' #txt
 Fs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -212,11 +206,8 @@ Fs0 f9 83 147 26 26 -50 15 #rect
 Fs0 f9 @|UdMethodIcon #fIcon
 Fs0 f8 guid 157748DA5B03C33F #txt
 Fs0 f8 method deleteProcessStep() #txt
-Fs0 f8 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Fs0 f8 outParameterDecl '<> result;
-' #txt
+Fs0 f8 inParameterDecl '<> param;' #txt
+Fs0 f8 outParameterDecl '<> result;' #txt
 Fs0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -316,11 +307,8 @@ Fs0 f20 659 339 26 26 0 12 #rect
 Fs0 f20 @|UdProcessEndIcon #fIcon
 Fs0 f19 guid 1579333111525F97 #txt
 Fs0 f19 method updateResponsibles() #txt
-Fs0 f19 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Fs0 f19 outParameterDecl '<> result;
-' #txt
+Fs0 f19 inParameterDecl '<> param;' #txt
+Fs0 f19 outParameterDecl '<> result;' #txt
 Fs0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -374,11 +362,8 @@ Fs0 f24 109 448 192 448 #arcP
 Fs0 f24 0 0.6592264889893998 0 0 #arcLabel
 Fs0 f25 guid 1589422E488B03CA #txt
 Fs0 f25 method cancel() #txt
-Fs0 f25 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Fs0 f25 outParameterDecl '<> result;
-' #txt
+Fs0 f25 inParameterDecl '<> param;' #txt
+Fs0 f25 outParameterDecl '<> result;' #txt
 Fs0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -410,11 +395,8 @@ Fs0 f31 376 688 499 688 #arcP
 Fs0 f31 0 0.7464020996890814 0 0 #arcLabel
 Fs0 f17 guid 1628E5D94C6FDB31 #txt
 Fs0 f17 method addAssignee() #txt
-Fs0 f17 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Fs0 f17 outParameterDecl '<> result;
-' #txt
+Fs0 f17 inParameterDecl '<> param;' #txt
+Fs0 f17 outParameterDecl '<> result;' #txt
 Fs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -608,7 +590,7 @@ Fs0 f2 expr out #txt
 Fs0 f2 472 64 531 64 #arcP
 Fs0 f47 guid 16347C45756F58EB #txt
 Fs0 f47 method changeUISetting(Boolean) #txt
-Fs0 f47 inParameterDecl '<java.lang.Boolean isAgreed> param;' #txt
+Fs0 f47 inParameterDecl '<Boolean isAgreed> param;' #txt
 Fs0 f47 inActionCode 'out.resetData = param.isAgreed;
 out.data.isUseDefaultUI = out.resetData ?  out.data.isUseDefaultUI : !out.data.isUseDefaultUI;
 out.data.processType = out.data.processType;' #txt
@@ -700,12 +682,9 @@ Fs0 f57 1171 467 26 26 0 12 #rect
 Fs0 f57 @|UdProcessEndIcon #fIcon
 Fs0 f56 guid 1634EB11643305EE #txt
 Fs0 f56 method removeSelectedAssignee(ch.ivyteam.ivy.security.ISecurityMember) #txt
-Fs0 f56 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivyteam.ivy.security.ISecurityMember assignee> param = methodEvent.getInputArguments();
-' #txt
+Fs0 f56 inParameterDecl '<ch.ivyteam.ivy.security.ISecurityMember assignee> param;' #txt
 Fs0 f56 inActionCode out.selectedAssigneeList.remove(param.assignee); #txt
-Fs0 f56 outParameterDecl '<> result;
-' #txt
+Fs0 f56 outParameterDecl '<> result;' #txt
 Fs0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

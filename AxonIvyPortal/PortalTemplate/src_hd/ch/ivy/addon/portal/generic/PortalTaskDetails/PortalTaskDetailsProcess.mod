@@ -1,5 +1,5 @@
 [Ivy]
-16BF472CA9DB7AAE 3.28 #module
+16BF472CA9DB7AAE 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalTaskDetailsProcess Big #zClass
 Ps0 RD #cInfo
@@ -38,7 +38,7 @@ Ps0 f5 expr out #txt
 Ps0 f5 109 160 211 160 #arcP
 Ps0 f0 guid 16BF472CAB02934E #txt
 Ps0 f0 method start(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean) #txt
-Ps0 f0 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,java.lang.Boolean isFromTaskList> param;' #txt
+Ps0 f0 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,Boolean isFromTaskList> param;' #txt
 Ps0 f0 inParameterMapAction 'out.dataModel=param.dataModel;
 out.isFromTaskList=param.isFromTaskList;
 out.portalPage=param.portalPage;
