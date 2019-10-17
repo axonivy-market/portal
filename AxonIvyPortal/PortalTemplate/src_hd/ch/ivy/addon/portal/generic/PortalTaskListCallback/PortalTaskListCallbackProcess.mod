@@ -1,5 +1,5 @@
 [Ivy]
-15C67FEA143420EE 3.28 #module
+15C67FEA143420EE 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalTaskListCallbackProcess Big #zClass
 Ps0 RD #cInfo
@@ -24,13 +24,10 @@ Ps0 @PushWFArc f5 '' #zField
 >Proto Ps0 Ps0 PortalTaskListCallbackProcess #zField
 Ps0 f0 guid 15C67E57F20669EF #txt
 Ps0 f0 method start(String) #txt
-Ps0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.String callbackUrl> param = methodEvent.getInputArguments();
-' #txt
+Ps0 f0 inParameterDecl '<String callbackUrl> param;' #txt
 Ps0 f0 inParameterMapAction 'out.callbackUrl=param.callbackUrl;
 ' #txt
-Ps0 f0 outParameterDecl '<> result;
-' #txt
+Ps0 f0 outParameterDecl '<> result;' #txt
 Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

@@ -1,5 +1,5 @@
 [Ivy]
-161936E158EBC57F 3.28 #module
+161936E158EBC57F 7.5.0 #module
 >Proto >Proto Collection #zClass
 Sd0 SetBusinessEntityId Big #zClass
 Sd0 B #cInfo
@@ -17,11 +17,10 @@ Sd0 @GridStep f3 '' #zField
 Sd0 @PushWFArc f4 '' #zField
 Sd0 @PushWFArc f2 '' #zField
 >Proto Sd0 Sd0 SetBusinessEntityId #zField
-Sd0 f0 inParamDecl '<java.lang.String businessEntityId> param;' #txt
+Sd0 f0 inParamDecl '<String businessEntityId> param;' #txt
 Sd0 f0 inParamTable 'out.businessEntityId=param.businessEntityId;
 ' #txt
-Sd0 f0 outParamDecl '<> result;
-' #txt
+Sd0 f0 outParamDecl '<> result;' #txt
 Sd0 f0 callSignature call(String) #txt
 Sd0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

@@ -1,5 +1,5 @@
 [Ivy]
-160FD01492D362BE 3.28 #module
+160FD01492D362BE 7.5.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseWidget Big #zClass
 Cs0 B #cInfo
@@ -20,7 +20,7 @@ Cs0 @PushWFArc f3 '' #zField
 Cs0 @PushWFArc f5 '' #zField
 >Proto Cs0 Cs0 CaseWidget #zField
 Cs0 f0 outLink showAdditionalCaseDetails.ivp #txt
-Cs0 f0 inParamDecl '<java.lang.Long caseId> param;' #txt
+Cs0 f0 inParamDecl '<Long caseId> param;' #txt
 Cs0 f0 inParamTable 'out.caseId=param.caseId;
 ' #txt
 Cs0 f0 requestEnabled true #txt
