@@ -132,12 +132,6 @@ body {
     overflow-x: hidden;
 }
 
-@media  screen and (max-height: 500px) {
-  .layout-wrapper .layout-main .layout-content {
-    height: 80vh !important;
-  }
-}
-
 @media screen and (max-width: 40em) {
     .layout-wrapper .layout-main .layout-content {
         padding: 60px 0 0 0;
@@ -287,12 +281,13 @@ body .ui-panelgrid tbody tr.ui-widget-content {
 
 /*Style For Statistic Widget -----------------------------------------------------------------------------*/
 .statistic-carousel .ui-carousel-header {
-    background-color: $primaryColor;
+    background-color: $statisticCarouselHeader;
+    border-color: $statisticCarouselHeaderBorder;
 }
 
 .statistic-carousel .ui-carousel-header .ui-carousel-next-button:hover,
 .statistic-carousel .ui-carousel-header .ui-carousel-prev-button:hover {
-    background-color: rgba($primaryColor, 0.2) !important;
+    color: rgba($statisticCarouselHeaderText, 1) !important;;
 }
 
 .dashboard-chart-panel .ui-panel-titlebar {
@@ -301,6 +296,12 @@ body .ui-panelgrid tbody tr.ui-widget-content {
 
 .statistic-selection .add-link:hover {
     color: $primaryColor !important;
+}
+
+.statistic-carousel .ui-carousel-header-title .chart-name,
+.statistic-carousel .ui-carousel-header .ui-carousel-button.ui-icon,
+.statistic-carousel .ui-carousel .ui-carousel-header .ui-carousel-header-title .chart-info {
+  color: $statisticCarouselHeaderText;
 }
 
 /*Style For Buttons --------------------------------------------------------------------------------------*/
@@ -607,6 +608,10 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 
 .ui-widget-content.ui-tabs-panel {
     padding: 7px !important;
+}
+
+.ui-inputfield {
+    padding: 6px 0 6px 6px !important;
 }
 
 .ui-spinner {

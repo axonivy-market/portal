@@ -707,7 +707,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     return findById(info.getId());
   }
 
-  private DonutChartModel createDonutChartModel(Map<String, Number> chartData) {
+  private DonutChartModel createDonutChartModel(Map<String, Number> chartData, String extender) {
     DonutChartModel model = new DonutChartModel();
     ChartData data = new ChartData();
     DonutChartOptions options = new DonutChartOptions();
@@ -719,6 +719,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     options.setLegend(legend);
 
     model.setData(data);
+    model.setExtender(extender);
     model.setOptions(options);
 
     return model;
@@ -739,7 +740,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       chartData.put(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/tasks"), 0);
     }
 
-    DonutChartModel model = createDonutChartModel(chartData);
+    DonutChartModel model = createDonutChartModel(chartData, "chartExtender");
     DonutChartDataSet dataSet = createDonutChartDataSet(Colors.PRIORITY_COLOR, chartData, isEmptyData);
     model.getData().addChartDataSet(dataSet);
 
@@ -805,7 +806,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     options.setLegend(legend);
 
     if (chartData.size() != 0) {
-      
+      model.setExtender("barChartExtender");
       dataSet.setData(chartData.values().stream().collect(Collectors.toList()));
       data.setLabels(chartData.keySet().stream().collect(Collectors.toList()));
 
@@ -844,7 +845,6 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     options.setScales(scales);
     model.setData(data);
     model.setOptions(options);
-    model.setExtender("taskByExpiryChartExtender");
 
     return model;
   }
@@ -882,7 +882,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       chartData.put(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/cases"), 0);
     }
 
-    DonutChartModel model = createDonutChartModel(chartData);
+    DonutChartModel model = createDonutChartModel(chartData, "chartExtender");
     DonutChartDataSet dataSet = createDonutChartDataSet(Colors.STATE_COLOR, chartData, isEmptyData);
     model.getData().addChartDataSet(dataSet);
     if (isSetDefaultName) {
@@ -927,7 +927,6 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     options.getLegend().setDisplay(false);
     model.setData(data);
     model.setOptions(options);
-    model.setExtender("elapsedTimeChartExtender");
     return model;
   }
 
