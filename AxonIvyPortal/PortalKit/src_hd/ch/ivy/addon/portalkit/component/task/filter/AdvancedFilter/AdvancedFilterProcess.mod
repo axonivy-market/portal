@@ -1,5 +1,5 @@
 [Ivy]
-15DC16CB8B32F2B4 3.28 #module
+15DC16CB8B32F2B4 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ss0 AdvancedFilterProcess Big #zClass
 Ss0 RD #cInfo
@@ -22,11 +22,8 @@ Ss0 @PushWFArc f7 '' #zField
 >Proto Ss0 Ss0 AdvancedFilterProcess #zField
 Ss0 f0 guid 152EE20AC7136182 #txt
 Ss0 f0 method start() #txt
-Ss0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ss0 f0 outParameterDecl '<> result;
-' #txt
+Ss0 f0 inParameterDecl '<> param;' #txt
+Ss0 f0 outParameterDecl '<> result;' #txt
 Ss0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -42,13 +39,10 @@ Ss0 f2 expr out #txt
 Ss0 f2 75 96 213 96 #arcP
 Ss0 f3 guid 15DA7A98A57644D7 #txt
 Ss0 f3 method updateTasksByFilter(String) #txt
-Ss0 f3 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.String taskContainerId> param = methodEvent.getInputArguments();
-' #txt
+Ss0 f3 inParameterDecl '<String taskContainerId> param;' #txt
 Ss0 f3 inParameterMapAction 'out.taskContainerId=param.taskContainerId;
 ' #txt
-Ss0 f3 outParameterDecl '<> result;
-' #txt
+Ss0 f3 outParameterDecl '<> result;' #txt
 Ss0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

@@ -1,5 +1,5 @@
 [Ivy]
-15268544244B73B8 3.28 #module
+15268544244B73B8 7.5.0 #module
 >Proto >Proto Collection #zClass
 Es0 ErrorPageProcess Big #zClass
 Es0 RD #cInfo
@@ -20,13 +20,10 @@ Es0 @PushWFArc f5 '' #zField
 >Proto Es0 Es0 ErrorPageProcess #zField
 Es0 f0 guid 1526854426E48AD9 #txt
 Es0 f0 method start(String) #txt
-Es0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.String errorCode> param = methodEvent.getInputArguments();
-' #txt
+Es0 f0 inParameterDecl '<String errorCode> param;' #txt
 Es0 f0 inParameterMapAction 'out.errorCode=param.errorCode;
 ' #txt
-Es0 f0 outParameterDecl '<> result;
-' #txt
+Es0 f0 outParameterDecl '<> result;' #txt
 Es0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

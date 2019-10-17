@@ -1,5 +1,5 @@
 [Ivy]
-14BECA923C1F4A4B 3.28 #module
+14BECA923C1F4A4B 7.5.0 #module
 >Proto >Proto Collection #zClass
 Se0 SubstituteService Big #zClass
 Se0 B #cInfo
@@ -26,11 +26,10 @@ Se0 @PushWFArc f11 '' #zField
 Se0 @PushWFArc f6 '' #zField
 Se0 @PushWFArc f7 '' #zField
 >Proto Se0 Se0 SubstituteService #zField
-Se0 f0 inParamDecl '<java.lang.String username> param;' #txt
+Se0 f0 inParamDecl '<String username> param;' #txt
 Se0 f0 inParamTable 'out.username=param.username;
 ' #txt
-Se0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,java.util.Map substitutesByApp> result;
-' #txt
+Se0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,java.util.Map substitutesByApp> result;' #txt
 Se0 f0 outParamTable 'result.errors=in.errors;
 result.substitutesByApp=in.substitutesByApp;
 ' #txt
@@ -47,8 +46,7 @@ Se0 f0 @|StartSubIcon #fIcon
 Se0 f1 721 49 30 30 0 15 #rect
 Se0 f1 @|EndSubIcon #fIcon
 Se0 f88 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Se0 f88 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
-' #txt
+Se0 f88 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
 Se0 f88 requestMappingAction 'param.exceptions=in.errors;
 ' #txt
 Se0 f88 responseActionDecl 'ch.ivyteam.wf.processes.SubstituteServiceData out;
@@ -105,12 +103,11 @@ Se0 f2 expr out #txt
 Se0 f2 111 64 160 64 #arcP
 Se0 f3 expr out #txt
 Se0 f3 642 64 721 64 #arcP
-Se0 f4 inParamDecl '<java.lang.String username,java.util.Map substitutesByApp> param;' #txt
+Se0 f4 inParamDecl '<String username,java.util.Map substitutesByApp> param;' #txt
 Se0 f4 inParamTable 'out.substitutesByApp=param.substitutesByApp;
 out.username=param.username;
 ' #txt
-Se0 f4 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;
-' #txt
+Se0 f4 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;' #txt
 Se0 f4 outParamTable 'result.errors=in.errors;
 ' #txt
 Se0 f4 callSignature saveSubstitutes(String,java.util.Map) #txt
@@ -142,8 +139,7 @@ Se0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Se0 f8 232 170 112 44 -45 -8 #rect
 Se0 f8 @|StepIcon #fIcon
 Se0 f9 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Se0 f9 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
-' #txt
+Se0 f9 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
 Se0 f9 requestMappingAction 'param.exceptions=in.errors;
 ' #txt
 Se0 f9 responseActionDecl 'ch.ivyteam.wf.processes.SubstituteServiceData out;

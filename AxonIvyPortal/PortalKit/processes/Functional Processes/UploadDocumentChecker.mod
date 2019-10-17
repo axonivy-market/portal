@@ -1,5 +1,5 @@
 [Ivy]
-16285772A1F890EE 3.28 #module
+16285772A1F890EE 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ur0 UploadDocumentChecker Big #zClass
 Ur0 B #cInfo
@@ -25,8 +25,7 @@ Ur0 @PushWFArc f9 '' #zField
 Ur0 f0 inParamDecl '<org.primefaces.model.UploadedFile uploadFile> param;' #txt
 Ur0 f0 inParamTable 'out.uploadedFile=param.uploadFile;
 ' #txt
-Ur0 f0 outParamDecl '<ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus uploadDocumentCheckStatus,java.lang.String message> result;
-' #txt
+Ur0 f0 outParamDecl '<ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus uploadDocumentCheckStatus,String message> result;' #txt
 Ur0 f0 outParamTable 'result.uploadDocumentCheckStatus=in.checkStatus;
 result.message=in.message;
 ' #txt

@@ -1,5 +1,5 @@
 [Ivy]
-15791C23B125821B 3.28 #module
+15791C23B125821B 7.5.0 #module
 >Proto >Proto Collection #zClass
 ew0 editWorkflow Big #zClass
 ew0 B #cInfo
@@ -98,8 +98,7 @@ ew0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ew0 S10 312 330 112 44 -37 -8 #rect
 ew0 S10 @|BIcon #fIcon
 ew0 f0 inParamDecl '<> param;' #txt
-ew0 f0 outParamDecl '<> result;
-' #txt
+ew0 f0 outParamDecl '<> result;' #txt
 ew0 f0 callSignature newWorkflow() #txt
 ew0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -241,8 +240,7 @@ for AHWF</name>
 ew0 f18 1552 248 32 32 -33 -49 #rect
 ew0 f18 @|AlternativeIcon #fIcon
 ew0 f20 processCall 'Functional Processes/executePredefinedWorkflow:call(List<gawfs.TaskDef>,String,String,ch.ivy.gawfs.enums.ProcessType,String,Boolean,Long)' #txt
-ew0 f20 requestActionDecl '<List<gawfs.TaskDef> definedTasks,java.lang.String processName,java.lang.String processDescription,ch.ivy.gawfs.enums.ProcessType processType,java.lang.String processID,java.lang.Boolean isAdhocProcess,java.lang.Long originalTaskId> param;
-' #txt
+ew0 f20 requestActionDecl '<List<gawfs.TaskDef> definedTasks,String processName,String processDescription,ch.ivy.gawfs.enums.ProcessType processType,String processID,Boolean isAdhocProcess,Long originalTaskId> param;' #txt
 ew0 f20 requestMappingAction 'param.definedTasks=in.definedTasks;
 param.processName=in.processName;
 param.processDescription=in.processDescription;
@@ -266,11 +264,10 @@ ew0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 ew0 f20 1968 338 176 44 -84 -8 #rect
 ew0 f20 @|CallSubIcon #fIcon
-ew0 f21 inParamDecl '<java.lang.String workflowID> param;' #txt
+ew0 f21 inParamDecl '<String workflowID> param;' #txt
 ew0 f21 inParamTable 'out.processID=param.workflowID;
 ' #txt
-ew0 f21 outParamDecl '<> result;
-' #txt
+ew0 f21 outParamDecl '<> result;' #txt
 ew0 f21 callSignature editWorkflow(String) #txt
 ew0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -515,14 +512,13 @@ ew0 f10 expr out #txt
 ew0 f10 1480 72 504 248 #arcP
 ew0 f10 1 504 72 #addKink
 ew0 f10 1 0.4647529069767442 0 0 #arcLabel
-ew0 f50 inParamDecl '<java.lang.Long originalTaskId> param;' #txt
+ew0 f50 inParamDecl '<Long originalTaskId> param;' #txt
 ew0 f50 inParamTable 'out.isAdhocProcess=true;
 out.isUseDefaultUI=true;
 out.originalTaskId=param.originalTaskId;
 out.processType=ch.ivy.gawfs.enums.ProcessType.AD_HOC;
 ' #txt
-ew0 f50 outParamDecl '<> result;
-' #txt
+ew0 f50 outParamDecl '<> result;' #txt
 ew0 f50 callSignature newAdhocWorkflow(Long) #txt
 ew0 f50 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

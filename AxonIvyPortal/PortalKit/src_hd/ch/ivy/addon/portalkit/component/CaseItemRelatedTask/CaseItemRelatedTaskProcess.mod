@@ -1,5 +1,5 @@
 [Ivy]
-153358BE9219FD4C 3.28 #module
+153358BE9219FD4C 7.5.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemRelatedTaskProcess Big #zClass
 Cs0 RD #cInfo
@@ -47,11 +47,8 @@ Cs0 @PushWFArc f32 '' #zField
 >Proto Cs0 Cs0 CaseItemRelatedTaskProcess #zField
 Cs0 f0 guid 167E9A75EF3D0909 #txt
 Cs0 f0 method start() #txt
-Cs0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Cs0 f0 outParameterDecl '<> result;
-' #txt
+Cs0 f0 inParameterDecl '<> param;' #txt
+Cs0 f0 outParameterDecl '<> result;' #txt
 Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -67,13 +64,10 @@ Cs0 f3 expr out #txt
 Cs0 f3 109 96 275 96 #arcP
 Cs0 f6 guid 167E9A777AB171EA #txt
 Cs0 f6 method initData(ch.ivyteam.ivy.workflow.ICase) #txt
-Cs0 f6 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivyteam.ivy.workflow.ICase iCase> param = methodEvent.getInputArguments();
-' #txt
+Cs0 f6 inParameterDecl '<ch.ivyteam.ivy.workflow.ICase iCase> param;' #txt
 Cs0 f6 inParameterMapAction 'out.iCase=param.iCase;
 ' #txt
-Cs0 f6 outParameterDecl '<> result;
-' #txt
+Cs0 f6 outParameterDecl '<> result;' #txt
 Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -162,8 +156,7 @@ Cs0 f18 192 208 240 288 #arcP
 Cs0 f18 1 192 288 #addKink
 Cs0 f18 1 0.08437593569205071 0 0 #arcLabel
 Cs0 f19 processCall 'Ivy Data Processes/CaseService:findCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria,Integer,Integer)' #txt
-Cs0 f19 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria,java.lang.Integer startIndex,java.lang.Integer count> param;
-' #txt
+Cs0 f19 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria,Integer startIndex,Integer count> param;' #txt
 Cs0 f19 requestMappingAction 'param.caseSearchCriteria=in.caseSearchCriteria;
 param.startIndex=0;
 param.count=21;
@@ -214,8 +207,7 @@ Cs0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f5 83 371 26 26 -47 15 #rect
 Cs0 f5 @|UdEventIcon #fIcon
 Cs0 f4 processCall 'Functional Processes/Navigator:viewTask(Long,ch.ivy.addon.portalkit.dto.GlobalCaseId,String)' #txt
-Cs0 f4 requestActionDecl '<java.lang.Long taskId,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId,java.lang.String caseName> param;
-' #txt
+Cs0 f4 requestActionDecl '<Long taskId,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId,String caseName> param;' #txt
 Cs0 f4 requestMappingAction 'param.taskId=in.taskId;
 param.caseId=ch.ivy.addon.portalkit.dto.GlobalCaseId.caseId(in.iCase.getId()).isBusinessCase(in.iCase.isBusinessCase()).build();
 param.caseName=ch.ivy.addon.portalkit.util.PermissionUtils.getCaseName(in.iCase);
@@ -255,8 +247,7 @@ Cs0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f22 83 683 26 26 -47 15 #rect
 Cs0 f22 @|UdEventIcon #fIcon
 Cs0 f23 processCall 'Functional Processes/Navigator:viewCase(ch.ivy.addon.portalkit.dto.GlobalCaseId)' #txt
-Cs0 f23 requestActionDecl '<ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;
-' #txt
+Cs0 f23 requestActionDecl '<ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;' #txt
 Cs0 f23 requestMappingAction 'param.caseId=ch.ivy.addon.portalkit.dto.GlobalCaseId.caseId(in.selectedTechnicalCase.getId()).isBusinessCase(in.selectedTechnicalCase.isBusinessCase()).build();
 ' #txt
 Cs0 f23 responseActionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData out;
@@ -292,8 +283,7 @@ Cs0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f25 83 579 26 26 -88 17 #rect
 Cs0 f25 @|UdEventIcon #fIcon
 Cs0 f26 processCall 'Functional Processes/Navigator:viewTechnicalCasesOfBusniessCase(String,ch.ivy.addon.portalkit.dto.GlobalCaseId)' #txt
-Cs0 f26 requestActionDecl '<java.lang.String businessCaseName,ch.ivy.addon.portalkit.dto.GlobalCaseId businessCaseId> param;
-' #txt
+Cs0 f26 requestActionDecl '<String businessCaseName,ch.ivy.addon.portalkit.dto.GlobalCaseId businessCaseId> param;' #txt
 Cs0 f26 requestMappingAction 'param.businessCaseName=ch.ivy.addon.portalkit.util.PermissionUtils.getCaseName(in.selectedTechnicalCase);
 param.businessCaseId=ch.ivy.addon.portalkit.dto.GlobalCaseId.caseId(in.selectedTechnicalCase.getId()).isBusinessCase(in.selectedTechnicalCase.isBusinessCase()).build();
 ' #txt
@@ -313,8 +303,7 @@ Cs0 f26 @|CallSubIcon #fIcon
 Cs0 f27 expr out #txt
 Cs0 f27 109 592 312 592 #arcP
 Cs0 f28 processCall 'Ivy Data Processes/CaseService:countCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)' #txt
-Cs0 f28 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;
-' #txt
+Cs0 f28 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;' #txt
 Cs0 f28 requestMappingAction 'param.caseSearchCriteria=in.caseSearchCriteria;
 ' #txt
 Cs0 f28 responseActionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData out;
@@ -339,8 +328,7 @@ Cs0 f21 var in2 #txt
 Cs0 f21 648 266 648 208 #arcP
 Cs0 f21 0 0.8623545764087797 0 0 #arcLabel
 Cs0 f31 processCall 'Functional Processes/Navigator:viewRelatedTask(Long)' #txt
-Cs0 f31 requestActionDecl '<java.lang.Long taskId> param;
-' #txt
+Cs0 f31 requestActionDecl '<Long taskId> param;' #txt
 Cs0 f31 requestMappingAction 'param.taskId=in.taskId;
 ' #txt
 Cs0 f31 responseActionDecl 'ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData out;
