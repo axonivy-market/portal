@@ -1,0 +1,4 @@
+.. _axonivyportal.components:
+
+Components
+==========
