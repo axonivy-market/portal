@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0"
+	xml:id="axonivyportal.settings">
+	<title xml:id="axonivyportal.settings.title">Settings</title>
+	<sect1 xml:id="axonivyportal.settings.thefirstsection">
+		<para>
+			User Settings provide options for configuring Portal applications:
+			<itemizedlist>
+				<listitem>
+					<para>
+						<link linkend="axonivyportal.settings.adminsettings" endterm="axonivyportal.settings.adminsettings.title" />
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						<link linkend="axonivyportal.settings.absenceandsubstitutesettings" endterm="axonivyportal.settings.absenceandsubstitutesettings.title" />
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						<link linkend="axonivyportal.settings.emailsettings" endterm="axonivyportal.settings.emailsettings.title" />
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						<link linkend="axonivyportal.settings.languagesettings" endterm="axonivyportal.settings.languagesettings.title" />
+					</para>
+				</listitem>
+			</itemizedlist>
+		</para>
+		<mediaobject>
+			<imageobject>
+				<imagedata fileref="images/Settings/portal-header.png" />
+			</imageobject>
+		</mediaobject>
+	</sect1>
+	<sect1 xml:id="axonivyportal.settings.adminsettings">
+		<title xml:id="axonivyportal.settings.adminsettings.title">Admin settings</title>
+		<para>
+			User needs to have role
+			<code>AXONIVY_PORTAL_ADMIN</code>
+			to see this menu item, it is used to configure Portal configuration,
+			see different Portal configurations in
+			<link linkend="axonivyportal.installation.basicinstallation.specifyservers.generalConcept" endterm="axonivyportal.installation.basicinstallation.specifyservers.generalConcept.title" />
+		</para>
+		<sect2>
+			<title>Global settings</title>
+			<para>Global settings for Portal can be set in Settings tab. All available settings with their default value and description are listed in this place.</para>
+			<mediaobject>
+				<imageobject>
+				<imagedata fileref="images/Settings/global-settings.png" />
+				</imageobject>
+			</mediaobject>
+			<para></para>
+			<para>You can edit value for a specific setting</para>
+			<mediaobject>
+				<imageobject>
+				<imagedata fileref="images/Settings/global-setting-edit.png" />
+				</imageobject>
+			</mediaobject>
+			<para></para>
+			<para>You can also get back the default value for each setting by clicking reset button on each row, or reset all values of all settings by clicking <code>Restore All To Defaults</code> button</para>
+		</sect2>
+		<sect2 xml:id="axonivyportal.settings.adminsettings.setupmultiportals">
+			<title xml:id="axonivyportal.settings.adminsettings.setupmultiportals.title">Setup multi portals</title>
+			<important>
+				<para> There are 2 ways to configure portals: <code>two levels</code> and <code>single level</code></para>
+				<itemizedlist>
+					<listitem>
+						<para>Two levels portal</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/Settings/multi-application-with-portal.png" />
+							</imageobject>
+						</mediaobject>
+						<itemizedlist>
+							<listitem>
+								<para>Used for related applications which we need an overview of all tasks and cases.</para>
+							</listitem>
+							<listitem>
+								<para>Create a new application named Portal. Deploy portal (kit, template ..) to this application.</para>
+							</listitem>
+							<listitem>
+								<para>Create new applications: App1, App2, App3... Deploy portal (kit, template ..) to new applications.</para>
+							</listitem>
+							<listitem>
+								<para>Configure multi-apps Portal on single server: login by Portal Admin. Configure 1 server then configure applications: App1, App2, App3...</para>
+							</listitem>
+							<listitem>
+								<para>Note that, <code>do not</code> add Portal application, it is reserved for displaying all tasks/cases... from all configured applications.</para>
+							</listitem>
+							<listitem>
+								<para>Dashboard menu is only visible when logged-in user exists in Portal application.</para>
+							</listitem>
+						</itemizedlist>
+					</listitem>
+					<listitem>
+						<para>Single level portal</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/Settings/multi-application-without-portal.png" />
+							</imageobject>
+						</mediaobject>
+						<itemizedlist>
+							<listitem>
+								<para>Used for independent applications.</para>
+							</listitem>
+							<listitem>
+								<para>Create new applications: App1, App2, App3... Deploy portal(kit, template ..) to new applications. Note: must not create an application named Portal.</para>
+							</listitem>
+							<listitem>
+								<para>Configure multi-apps Portal on single server: login by Portal Admin. Configure 1 server then configure applications: App1, App2, App3...</para>
+							</listitem>
+						</itemizedlist>
+					</listitem>
+				</itemizedlist>
+			</important>
+			<para>
+				<para>
+					Open
+					<code>Admin Settings</code>
+					by selecting the item in
+					<code>UserMenu</code>
+					on the topbar, if your page using layout of
+					<code>PortalTemplate</code>
+					.
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="images/Settings/multi-portal-open-settings.png" />
+						</imageobject>
+					</mediaobject>
+				</para>
+				<important>
+					If your application does not use templates of
+					<code>PortalTemplate</code>
+					project, you have to create a page and use
+					<code>AdminSettings</code>
+					component inside.
+				</important>
+				<tip>
+					To be able to open Admin Settings dialog, user needs to have
+					role
+					<code>AXONIVY_PORTAL_ADMIN</code>
+					.
+				</tip>
+				<para>
+					Add a new application
+					<para>
+						Choose
+						<code>Application</code>
+						tab on
+						<code>Admin Settings</code>
+						dialog and click on
+						<code>New</code>
+						button to add new application. Here you can choose application
+						type either as Ivy application or Third Party
+						application.
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/Settings/multi-portal-add-application.png" />
+							</imageobject>
+						</mediaobject>
+					</para>
+				</para>
+				<tip>
+					<itemizedlist>
+						<listitem>
+							<para>
+								<code>Application name</code>
+								is the name of the application when you create it.
+								<code>Display name</code>
+								is the name of the application to be shown on Portal UI.
+							</para>
+						</listitem>
+						<listitem>
+							<para>
+								<code>Portal link</code>
+								specifies the link will be redirected when selecting the application on the application menu. It could be an absolute link (e.g. http://10.123.1.30:8000/ivy/pro/.../PortalStart.ivp)
+								or relative link (e.g. /ivy/pro/.../PortalStart.ivp). If your application could be accessed from multiple domains, use relative link so that you can access the link from different domains.
+							</para>
+						</listitem>
+						<listitem>
+							<para>
+								For multiple languages of application display name, you need to create the "AppInfo/SupportedLanguages"
+								CMS
+								which defines how
+								many languages your application supports. See the below "Language settings" for more
+								details.
+							</para>
+						</listitem>
+					</itemizedlist>
+				</tip>
+			</para>
+		</sect2>
+	</sect1>
+	<sect1 xml:id="axonivyportal.settings.absenceandsubstitutesettings">
+		<title xml:id="axonivyportal.settings.absenceandsubstitutesettings.title">Absence and substitute settings</title>
+		<itemizedlist>
+			<listitem>
+				<para>
+					Choose
+					<code>Absences</code>
+					from
+					<code>User Settings</code>
+					options.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					To create new Absence, click
+					<code>New Absence</code>
+					to open the dialog as below:
+				</para>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="images/Settings/absence-settings.png" />
+					</imageobject>
+				</mediaobject>
+				<itemizedlist>
+					<listitem>
+						<para>
+							<code>till/from date</code>
+							must not be empty.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							<code>till date</code>
+							must be greater than or equal
+							<code>from</code>
+							.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							<code>till date</code>
+							must not be in the past (greater than or equal today).
+						</para>
+					</listitem>
+				</itemizedlist>
+			</listitem>
+			<listitem>
+				<para>
+					User can edit or delete Absences by click edit/delete on the
+					Absences list.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Deputies area will display all the information of deputy on
+					each application.
+				</para>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="images/Settings/deputy-settings.png" />
+					</imageobject>
+				</mediaobject>
+			</listitem>
+			<listitem>
+				<para>
+					User cannot set deputies for hidden roles.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					All the items will be saved after click Save button.
+				</para>
+			</listitem>
+		</itemizedlist>
+	</sect1>
+	<sect1 xml:id="axonivyportal.settings.emailsettings">
+		<title xml:id="axonivyportal.settings.emailsettings.title">Email settings</title>
+		<itemizedlist>
+			<listitem>
+				<para>
+					To configure mails of Portal applications, select
+					<code>Email Settings</code>
+					in
+					<code>User Settings</code>
+					.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					You can configure one email setting for all applications or each application separately.
+				</para>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="images/Settings/email-settings.png" />
+					</imageobject>
+				</mediaobject>
+			</listitem>
+            <listitem> 
+                <para>There are 2 types of emails notification: Ivy email notification sent when task is assigned (More information about the email notification can be found
+                <link xlink:href="http://developer.axonivy.com/doc/latest/EngineGuideHtml/administration.html#administration.emailnotification">here</link>) and other emails sent from 
+                processes of customer project.</para>
+            </listitem>
+			<listitem>
+				<para>
+					All the items will be saved when click save button.
+				</para>
+			</listitem>
+		</itemizedlist>
+	</sect1>
+	<sect1 xml:id="axonivyportal.settings.languagesettings">
+		<title xml:id="axonivyportal.settings.languagesettings.title">Language settings</title>
+		<itemizedlist>
+			<listitem>
+				<para>
+					Below is applied language setting precedence:
+				</para>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="images/Settings/language-precedence.png" />
+					</imageobject>
+				</mediaobject>
+				<para>
+					If user email language setting is application default, language would be applied by application email language setting.
+				</para>
+				<para>
+					If user selects a language in email setting, language would be appplied by this selection. 
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					To configure languages of Portal applications, select
+					<code>Language Settings</code>
+					in
+					<code>User Settings</code>
+					.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					UI reads current languages settings for all applications.
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					To change language for application, select one in the
+					languages dropdown list of application. When the change
+					is saved,
+					the language will be set for application (Click on the application
+					in header menu to reload application and
+					see the change of
+					language).
+				</para>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="images/Settings/language-settings.png" />
+					</imageobject>
+				</mediaobject>
+			</listitem>
+			<listitem>
+				<para>
+					For multiple languages, the CMS key
+					<code>/AppInfo/SupportedLanguages</code>
+					must exist in your application. From Portal 7.1, this CMS entry is moved to Portal Style.
+					It contains list of all languages supported by your application, separated
+					by comma.
+				</para>
+				<itemizedlist>
+					<listitem>Must not contain spaces</listitem>
+					<listitem>Same as display name of Locale</listitem>
+					<listitem>Separated by comma</listitem>
+					<listitem>Process model version, which has this CMS, must active</listitem>
+				</itemizedlist>
+			</listitem>
+			<listitem>
+				<para>
+					To add new language to Portal, what you have to do is					
+				</para>
+				<itemizedlist>
+					<listitem>Add new language locale to cms entry of Portal Style <code>/AppInfo/SupportedLanguages</code> </listitem>
+					<listitem>Export all CMS entries of Portal Style to excel file</listitem>
+					<listitem>Add translation of new language for all CMS entries</listitem>
+					<listitem>Import file excel back, then redeploy Portal Style</listitem>
+                    <listitem>
+                      <para>
+                      This is sample how to add new Spanish to portal
+                      </para>
+                      <mediaobject>
+                        <imageobject>
+                          <imagedata fileref="images/Settings/add-new-language.png" />
+                        </imageobject>
+                      </mediaobject>
+                    </listitem>
+				</itemizedlist>
+			</listitem>
+		</itemizedlist>
+	</sect1>
+</chapter>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sect1 xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="axonivyportal.customization.buildyourownportal">
+	<title xml:id="axonivyportal.customization.buildyourownportal.title">Build your own portal</title>
+	<sect2 xml:id="axonivyportal.customization.buildyourownportal.buildyourownportalusingportalkit">
+		<title>Build your own portal using Portal kit</title>
+		<para>
+			<orderedlist>
+				<listitem>
+					<para>
+						Create a new project that depends on <code>PortalTemplate</code>.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Create new home page
+						<orderedlist>
+							<listitem>
+								<para>
+									Create a new <code>HTML Dialog</code> for your home page and then use <code>ui:composition</code> to define template which you use inside. If you want to keep the look of default homepage, then choose <code>DefaultHomePageTemplate</code>.
+									
+									<tip>
+										Find more information about templates at <link linkend="axonivyportal.components.layouttemplates" endterm="axonivyportal.components.layouttemplates.title" />.
+									</tip>
+                                    <important>
+                                      Portal uses some template files in the folder <code>"webContent/layouts"</code> in Portal Template project. Do not create files with the same path and name in your project as they can override the Portal files.
+                                    </important>
+								</para>
+							</listitem>
+							<listitem>
+								<para>
+									Create a new <code>Start process</code> and connect to <code>User Dialog</code> for your home page.
+									<mediaobject>
+										<imageobject>
+											<imagedata fileref="images/BuildYourOwnPortal/new-home-page-connect-process.png" />
+										</imageobject>
+									</mediaobject>
+								</para>
+							</listitem>
+							<listitem>
+								<para>
+									Run your application, start your newly created process and see result.
+									<mediaobject>
+										<imageobject>
+											<imagedata fileref="images/BuildYourOwnPortal/custom-portal-home.png" />
+										</imageobject>
+									</mediaobject>
+                                    <tip>
+                                    Your new homepage is the default portal homepage. You can customize it. Reference at <link linkend="axonivyportal.customization.portalhome" endterm="axonivyportal.customization.portalhome.title" />.
+                                    </tip>
+								</para>
+							</listitem>
+						</orderedlist>						
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Set category for tasks
+						<para>
+							To categorize tasks, set values for <code>Category</code> field. Task category can be multi-level if it is separated by slash <code>/</code> signs, as below.
+							<mediaobject>
+								<imageobject>
+									<imagedata fileref="images/BuildYourOwnPortal/task-category-config.png" />
+								</imageobject>
+							</mediaobject>
+						</para>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						How to use feature warning on closing browser/tab
+						<para>
+							Sometimes when users are working on a task, if they close tab, browser or refresh page then they may lose their current work. It's a good idea to ask users to verify that they truly want to proceed with the action they just invoke. To use this feature, add <code>WarnOnClosingBrowserTab</code> component to the page you want to be affected.
+							<para>
+								<code>&lt;ic:ch.ivy.addon.portalkit.feature.WarnOnClosingBrowserTab confirmMessage="You may lose your work in progress. Do you want to continue?" /&gt;</code>
+							</para>
+						</para>
+						<para>
+							Depending on browser, content of <code>confirmMessage</code> and names of buttons may vary.
+							<mediaobject>
+								<imageobject>
+									<imagedata fileref="images/BuildYourOwnPortal/warn-on-closing-browser-tab.png" />
+								</imageobject>
+							</mediaobject>
+							<tip>
+								<para>
+									Normally, when using this component, actions that user invoked outside Portal area like closing tab/browser, refreshing page, clicking on a link on bookmark bar of browser will cause browser to display a confirmation dialog. That might cause the feature work incorrectly.
+								</para>
+								<para>
+									Actions that lead to navigation that user invoke inside Portal area like clicking on a link/button, submitting a form will not display any confirmation popup.
+								</para>
+								<para>
+									In some cases, user might use javascript to navigate to another page, for example: set value for <code>window.location.href</code> or call <code>location.reload()</code>.
+								</para>
+								<para>
+									If that happens, add this to your javascript function: <code>showConfirmDialogBeforeUnload = false;</code>
+								</para>
+							</tip>
+						</para>
+					</para>
+				</listitem>
+			</orderedlist>
+		</para>
+	</sect2>
+</sect1>

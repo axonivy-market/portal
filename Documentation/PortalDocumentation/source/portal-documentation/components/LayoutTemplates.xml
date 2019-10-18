@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sect1 xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="axonivyportal.components.layouttemplates">
+	<title xml:id="axonivyportal.components.layouttemplates.title">Layout templates</title>
+	<sect2 xml:id="axonivyportal.components.layouttemplates.templatesfordevelopment">
+		<title>Templates for development</title>
+		<para>
+			Your Portal Project is dependent on PortalTemplate project, in which there are 7 templates that can be used directly.
+			<orderedlist>
+				<listitem>
+					<para>
+						Basic template
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Two column template
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Task template
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Task list template
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Case list template
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Default homepage template
+					</para>
+				</listitem>
+			</orderedlist>
+		</para>
+		<para>
+			These templates have the same header, which is a menu of applications that you configure in Administration page. Since version 8.0, Portal officially supports responsiveness, every templates has its default responsiveness, you can refer to <link linkend="axonivyportal.components.layouttemplates.reponsiveness">Responsiveness</link> to override it. Besides, there are user settings like: Absences, Email, Language Settings and Administration (for admin only). Details about user settings can be found in <link linkend="axonivyportal.settings" endterm="axonivyportal.settings.title" />.
+			<mediaobject>
+				<imageobject>
+					<imagedata fileref="images/LayoutTemplates/portal-header.png" />
+				</imageobject>
+			</mediaobject>
+		</para>
+	</sect2>
+	<sect2 xml:id="axonivyportal.components.layouttemplates.basictemplate">
+		<title>Basic template</title>
+		<para>
+			Basic template provides basic layout where user can put their custom content. It lacks Portal menu and Case details. We recommend to use task template for your process.
+		</para>
+		<sect3 xml:id="axonivyportal.components.layouttemplates.basictemplate.howtousebasictemplate">
+			<title>How to use Basic template</title>
+			<orderedlist>
+				<listitem>
+					<para>
+						Create a new HTML User Dialog and then use <code>ui:composition</code> to define the template inside and reuse the default responsiveness behavior. To override it, please use <code>pageContent</code> instead of <code>simplePageContent</code> and <link linkend="axonivyportal.components.layouttemplates.reponsiveness">Responsiveness</link>.
+						<para>
+							<code>&lt;ui:composition template="/layouts/BasicTemplate.xhtml"&gt;</code>
+						</para>
+						<para>
+							<code>&lt;ui:define name="pageTitle"&gt;Sample Page&lt;/ui:define&gt;</code>
+						</para>
+						<para>
+							<code>&lt;ui:define name="simplePageContent"&gt;</code>
+						</para>
+						<para>
+							<code>This is sample content.</code>
+						</para>
+						<para>
+							<code>&lt;/ui:define&gt;</code>
+						</para>
+						<para>
+							<code>&lt;/ui:composition&gt;</code>
+						</para>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						See the result after using Basic template for example:
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/LayoutTemplates/basic-template.png" />
+							</imageobject>
+						</mediaobject>
+					</para>
+				</listitem>
+			</orderedlist>
+		</sect3>
+	</sect2>
+	<sect2 xml:id="axonivyportal.components.layouttemplates.twocolumntemplate">
+		<title>Two column template</title>
+		<para>
+			Two column template inherits Basic Template. It has 2 columns which user can customize their contents. Normally, the first column is for navigation, the second for displaying corresponding content.
+		</para>
+		<sect3 xml:id="axonivyportal.components.layouttemplates.twocolumntemplate.howtousetwocolumntemplate">
+			<title>How to use Two column template</title>
+			<orderedlist>
+				<listitem>
+					<para>
+						Create a HTML User Dialog, define template in <code>ui:composition</code> and insert content of second column and third column using <code>ui:define</code>.
+						<para>
+							<code>&lt;ui:composition template="/layouts/TwoColumnTemplate.xhtml"&gt;</code>
+						</para>
+						<para>
+							<code>&lt;ui:define name="pageTitle"&gt;Sample Page&lt;/ui:define&gt;</code>
+						</para>
+						<para>
+							<code>&lt;ui:define name="navigationRegion"&gt;</code>
+						</para>
+						<para>
+							<code>Navigation Region</code>
+						</para>
+						<para>
+							<code>&lt;/ui:define&gt;</code>
+						</para>
+						<para>
+							<code>&lt;ui:define name="contentRegion"&gt;</code>
+						</para>
+						<para>
+							<code>Content Region</code>
+						</para>
+						<para>
+							<code>&lt;/ui:define&gt;</code>
+						</para>
+						<para>
+							<code>&lt;/ui:composition&gt;</code>
+						</para>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						See the result after using Two column template for example:
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/LayoutTemplates/two-column-template.png" />
+							</imageobject>
+						</mediaobject>
+					</para>
+				</listitem>
+			</orderedlist>
+		</sect3>
+	</sect2>
+	<sect2 xml:id="axonivyportal.components.layouttemplates.tasktemplate">
+		<title>Task template</title>
+		<para>
+			Task template is used for displaying task functionality and related information to support completing the task. There are a lot of regions to be filled with your custom content:
+			<itemizedlist>
+				<listitem>
+					<para>
+						Request name
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Process chain
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Errors
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Information
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Dynamic tabs
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Request form
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Case information tab
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Buttons at footer
+					</para>
+				</listitem>
+			</itemizedlist>
+		</para>
+		<sect3 xml:id="axonivyportal.components.layouttemplates.tasktemplate.howtousetasktemplate">
+			<title>How to use template TaskTemplate.xhtml</title>
+			<orderedlist>
+				<listitem>
+					<para>
+						Create a new HTML User Dialog and then use <code>ui:composition</code> to define template which you use inside.
+						<para>
+							<code>&lt;ui:composition template="/layouts/TaskTemplate.xhtml"&gt;</code>
+						</para>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Set <code>task</code> value so that the <code>taskName</code> is available to users where they can see the task name of request. It is mandatory.
+						<para>
+							<code>&lt;ui:param name="task" value="#{ivy.task}" /&gt;</code>
+						</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/LayoutTemplates/task-name-template.png" />
+							</imageobject>
+						</mediaobject>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Set <code>caseId</code> value so that the <code>Case information tab</code> is available to users where they can see info of case, documents, related tasks and history. It is mandatory.
+						<para>
+							<code>&lt;ui:param name="caseId" value="#{ivy.case.id}" /&gt;</code>
+						</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/LayoutTemplates/task-template-case-info.png" />
+							</imageobject>
+						</mediaobject>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Set data to <code>actualStepIndex</code> and <code>steps</code> variables which are used for ProcessChain component in template. It is mandatory.
+						<para>
+							<code>&lt;ui:param name="actualStepIndex" value="#{data.actualStepIndex}" /&gt;</code>
+						</para>
+						<para>
+							<code>&lt;ui:param name="steps" value="#{data.steps}" /&gt;</code>
+						</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/LayoutTemplates/task-template-process-chain.png" />
+							</imageobject>
+						</mediaobject>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Set data to <code>processChainDirection</code> variable to set direction for for ProcessChain component in template.
+						There are two values: "HORIZONTAL" and "VERTICAL".
+						Direction of ProcessChain component is "HORIZONTAL" by default.
+						<para>
+							<code>&lt;ui:param name="processChainDirection" value="VERTICAL" /&gt;</code>
+						</para>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Set data to <code>processChainShape</code> variable to set shape for for ProcessChain component in template.
+						There are two values: "CIRCLE" and "LINE".
+						Shape of ProcessChain component is "CIRCLE" by default.
+						<para>
+							<code>&lt;ui:param name="processChainShape" value="LINE" /&gt;</code>
+						</para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/LayoutTemplates/process-chain-shape.png" />
+							</imageobject>
+						</mediaobject>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Inserts contents for <code>taskName</code>, <code>errorsZone</code>, <code>infoZone</code>. It is optional.
+						<para>
+							<code>&lt;ui:define name="taskName"&gt;...&lt;/ui:define&gt;</code>
+						</para>
+						<para>
+							<code>&lt;ui:define name="errorsZone"&gt;...&lt;/ui:define&gt;</code>
+						</para>
+						<para>
+							<code>&lt;ui:define name="infoZone"&gt;...&lt;/ui:define&gt;</code>
+						</para>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Inserts some new tabs, refers some segment of code as below. If your application has multiple tabs, use it and turn off request form by set <code>showTaskFormTab</code> to false.
+                        <para>
+                          <code>&lt;ui:param name="showTaskFormTab" value="false" /&gt;</code>
+                        </para>
+						<para>
+                          <code>&lt;ui:define name="dynamicTabs"&gt;</code>
+                        </para>
+                        <para>
+                          <code>&lt;p:tab title="My first tab"&gt;</code> 
+                        </para>
+                        <para>
+                          <code>&lt;p:inputText id="first-name" value="#{data.firstname}"/&gt;</code>
+                        </para>
+                        <para>
+                          <code>&lt;/p:tab&gt;</code>
+                        </para>
+                        <para>
+                          <code>&lt;p:tab title="My second tab"&gt;</code>
+                        </para>
+                        <para>
+                          <code>&lt;p:inputText id="last-name" value="#{data.lastname}"/&gt;</code>
+                        </para>
+                        <para>
+                          <code>&lt;/p:tab&gt;</code>
+                        </para>
+                        <para>
+                          <code>&lt;/ui:define&gt;</code>
+                        </para>
+					</para>
+				</listitem>
+                <listitem>
+                  <para>
+                    Overwrite contents of default tab. Use it when your application need only 1 tab.
+                    <para>
+                      <code>&lt;ui:define name="taskForm"&gt;</code>
+                    </para>
+                    <para>
+                      <code>&lt;h:form&gt;</code>
+                    </para>
+                    <para>
+                      <code>&lt;p:outputLabel name="myCustomLabel" /&gt;</code>
+                    </para>
+                    <para>
+                      <code>...</code>
+                    </para>
+                    <para>
+                      <code>&lt;/h:form&gt;</code>
+                    </para>
+                    <para>
+                      <code>&lt;/ui:define&gt;</code>
+                    </para>
+                    <mediaobject>
+                      <imageobject>
+                        <imagedata fileref="images/LayoutTemplates/task-template-task-form.png" />
+                      </imageobject>
+                    </mediaobject>
+                  </para>
+                </listitem>
+                <listitem>
+                  <para>
+                    Set visible/invisible for default tab case information. Set following variables as <code>true</code> if you want to visible and vice versa.
+                    <para>
+                      <code>&lt;ui:param name="showCaseStatusInfoTab" value="true" /&gt;</code>
+                    </para>
+                  </para>
+                </listitem>
+				<listitem>
+					<para>
+						Inserts left buttons and right buttons which stay at the bottom of the page. It is optional. You can use it to define your action button. Consider using <code>partialSubmit</code> to submit your data im tabs.    
+						<para>
+							<code>&lt;ui:define name="leftButtons"&gt;</code>
+						</para>
+						<para>
+							<code>&lt;p:commandButton value="Save" actionListener="#{logic.save}" partialSubmit="true" 
+                            process="first-name last-name" update="first-name last-name" /&gt;</code>
+						</para>
+						<para>
+							<code>&lt;/ui:define&gt;</code>
+						</para>
+						<para>
+							<code>&lt;ui:define name="rightButtons"&gt;</code>
+						</para>
+						<para>
+							<code>&lt;p:commandButton value="Cancel" actionListener="#{logic.cancel}" immediate="true" /&gt;</code>
+						</para>
+						<para>
+							<code>&lt;/ui:define&gt;</code>
+						</para>
+					</para>
+				</listitem>
+			</orderedlist>
+		</sect3>
+	</sect2>
+	<sect2 xml:id="axonivyportal.components.layouttemplates.defaulthomepatetemplate">
+		<title>Default homepage template</title>
+		<para>
+			Default homepage template is used to create pages that have the look as default homepage of Portal. Besides, users can customize it by disabling default widgets, add new widgets, change position of widgets. For more details including basic and advanced customization, refer to <link linkend="axonivyportal.customization.portalhome" endterm="axonivyportal.customization.portalhome.title" />
+		</para>
+		<sect3 xml:id="axonivyportal.components.layouttemplates.defaulthomepatetemplate.howtousedefaulthomepagetemplate">
+			<title>How to use default homepage template</title>
+			<para>
+				Create a new HTML User Dialog and then use <code>ui:composition</code> to define template.
+				<para>
+					<code>&lt;ui:composition template="/layouts/DefaultHomePageTemplate.xhtml"&gt;</code>
+				</para>
+			</para>
+		</sect3>
+	</sect2>
+	<sect2 xml:id="axonivyportal.components.layouttemplates.tasklisttemplate">
+		<title>Task list template</title>
+		<para>
+			Task list template is used to display task list where user can see tasks and their details.
+			<mediaobject>
+				<imageobject>
+					<imagedata fileref="images/LayoutTemplates/task-list-template.png" />
+				</imageobject>
+			</mediaobject>
+		</para>
+		<sect3 xml:id="axonivyportal.components.layouttemplates.tasklisttemplate.howtousetasklisttemplate">
+			<title>How to use task list template</title>
+			<orderedlist>
+				<listitem>
+					<para>
+						Create a new HTML User Dialog and then use <code>ui:composition</code> to define template.
+						<para>
+							<code>&lt;ui:composition template="/layouts/PortalTasksTemplate.xhtml"&gt;</code>
+						</para>
+						<para>
+							<code>&lt;/ui:composition&gt;</code>
+						</para>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Data class of this dialog should have an attribute named <code>taskView</code> with type <code>ch.ivy.addon.portal.generic.view.TaskView</code>. By changing this attribute, user can modify title of the task list widget, collected tasks (through <code>dataModel</code>) and more. The following is a sample to build a taskView.
+						<para>
+							<code>import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;</code>
+						</para>
+						<para>
+							<code>import ch.ivy.addon.portalkit.bo.MainMenuNode;</code>
+						</para>
+						<para>
+							<code>import ch.ivy.addon.portal.generic.view.TaskView;</code>
+						</para>
+						<para>
+							<code/>
+						</para>
+						<para>
+							<code>TaskLazyDataModel dataModel = new TaskLazyDataModel();</code>
+						</para>
+						<para>
+							<code>dataModel.setAdminQuery(true);</code>
+						</para>
+						<para>
+							<code>dataModel.setSortField(ch.ivy.addon.portalkit.enums.TaskSortField.PRIORITY.toString(), true);</code>
+						</para>
+						<para>
+							<code/>
+						</para>
+						<para>
+							<code>MainMenuNode category = new MainMenuNode();</code>
+						</para>
+						<para>
+							<code>category.setValue("My Task List");</code>
+						</para>
+						<para>
+							<code/>
+						</para>
+						<para>
+							<code>out.taskView = TaskView.create().dataModel(dataModel).pageTitle("My Task List").hideTaskFilter(true).category(category)</code>
+							<code>.showHeaderToolbar(false).createNewTaskView();</code>
+						</para>
+					</para>
+				</listitem>
+			</orderedlist>
+		</sect3>
+	</sect2>
+	<sect2 xml:id="axonivyportal.components.layouttemplates.caselisttemplate">
+		<title>Case list template</title>
+		<para>
+			Case list template is used to display case list where user can see cases and their details.
+			<mediaobject>
+				<imageobject>
+					<imagedata fileref="images/LayoutTemplates/case-list-template.png" />
+				</imageobject>
+			</mediaobject>
+		</para>
+		<sect3 xml:id="axonivyportal.components.layouttemplates.caselisttemplate.howtousecaselisttemplate">
+			<title>How to use case list template</title>
+			<orderedlist>
+				<listitem>
+					<para>
+						Create a new HTML User Dialog and then use <code>ui:composition</code> to define template.
+						<para>
+							<code>&lt;ui:composition template="/layouts/PortalCasesTemplate.xhtml"&gt;</code>
+						</para>
+						<para>
+							<code>&lt;/ui:composition&gt;</code>
+						</para>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Data class of this dialog should have an attribute named <code>caseView</code> with type <code>ch.ivy.addon.portal.generic.view.CaseView</code>. By changing this attribute, user can modify title of the case list widget, collected cases (through <code>dataModel</code>) and more. The following is an example to build a caseView.
+						<para>
+							<code>import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;</code>
+						</para>
+						<para>
+							<code>import ch.ivy.addon.portal.generic.view.CaseView;</code>
+						</para>
+						<para>
+							<code/>
+						</para>
+						<para>
+							<code>CaseLazyDataModel dataModel = new CaseLazyDataModel();</code>
+						</para>
+						<para>
+							<code>out.caseView = CaseView.create().dataModel(dataModel).withTitle("My Cases").buildNewView();</code>
+						</para>
+					</para>
+				</listitem>
+			</orderedlist>
+		</sect3>
+	</sect2>
+	<sect2 xml:id="axonivyportal.components.layouttemplates.handlerequiredloginintemplates">
+		<title>Handle required Login in templates</title>
+		<para>
+			All templates require login to access by default. But templates also provide functionality to access page without login by adding the <code>isNotRequiredLogin</code> parameter.
+		</para>
+		<sect3 xml:id="axonivyportal.components.layouttemplates.handlerequiredloginintemplates.howtohandlerequiredloginintemplate">
+			<title>How to handle required login in template</title>
+			<orderedlist>
+				<listitem>
+					<para>
+						Create a new <emphasis role="bold">HTML User Dialog</emphasis> and then use <code>ui:param</code> to define the template inside
+						<para>
+							<code>&lt;ui:composition template="/layouts/BasicTemplate.xhtml"&gt;</code>
+						</para>
+						<para>
+							<code>&lt;ui:param name="isNotRequiredLogin" value="#{data.isNotRequiredLogin}" /&gt;</code>
+						</para>
+						<para>
+							<code>&lt;ui:define name="pageContent"&gt;</code>
+						</para>
+						<para>
+							<code>This is sample content.</code>
+						</para>
+						<para>
+							<code>&lt;/ui:define&gt;</code>
+						</para>
+						<para>
+							<code>&lt;/ui:composition&gt;</code>
+						</para>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Result after using template for example (All user settings and application menus will not visible).
+					</para>
+				</listitem>
+			</orderedlist>
+		</sect3>
+	</sect2>
+	<sect2 xml:id="axonivyportal.components.layouttemplates.reponsiveness">
+		<title xml:id="axonivyportal.components.layouttemplates.reponsiveness.title">Responsiveness</title>
+		<para>
+			Since version 8.0, Portal has simplified ResponsiveToolKit and now Portal supports various screen solutions, not fit to 3 screen widths as before.
+		</para>
+		<para>
+			To apply your styles for the specific resolution, you can add your own media query css:
+			<para>
+				<code>
+					@media screen and (max-width: 1365px) {/*.....*/}
+				</code>
+			</para>
+			<para>	
+				<para>In Portal's new design, the main container's width should be changed according to menu state (expand/colapse).</para> 
+				<para>To adapt the change, you need to initialize the <code>ResponsiveToolkit</code> Javascript object and introduce 1 object to handle screen resolutions and your object has to implement the <code>updateMainContainer</code> method.</para> Portal templates define their own responsiveness, you can redefine the footer section to override:
+				<para>
+					<para>E.g. Initialize <code>ResponsiveToolkit</code> for TaskList page.</para>
+					<para>
+						<para>
+							<code>&lt;ui:define name="footer"&gt;</code>
+						</para>
+						<para>
+							<code>&lt;script type="text/javascript"&gt;</code>
+						</para>
+						<para>
+							<code>$(function(){</code>
+						</para>
+						<para>
+							<code>var simpleScreen = new TaskListScreenHandler();</code>
+						</para>
+						<para>
+							<code>var responsiveToolkit = ResponsiveToolkit(simpleScreen);</code>
+						</para>
+						<para>
+							<code>Portal.init(responsiveToolkit);</code>
+						</para>
+						<para>
+							<code>});</code>
+						</para>
+						<para>
+							<code>&lt;/script&gt;</code>
+						</para>
+						<para>
+							<code>&lt;/ui:define&gt;</code>
+						</para>
+					</para>
+				</para>
+			</para>
+		</para>
+	</sect2>
+</sect1>
