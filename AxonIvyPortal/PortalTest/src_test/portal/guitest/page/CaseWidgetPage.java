@@ -38,16 +38,9 @@ public class CaseWidgetPage extends TemplatePage {
     return CASE_PAGE_LOCATION;
   }
 
-  public void openSideStepPopup(int index) {
-    click(By.id("case-widget:case-list-scroller:" + index + ":case-item:side-step-component:case-side-steps-menu"));
-    waitForElementDisplayed(
-        By.id("case-widget:case-list-scroller:" + index + ":case-item:side-step-component:side-steps-panel"), true);
-  }
-
   public int countSideStepItems(int index) {
-    WebElement sideStepPanel =
-        findElementById("case-widget:case-list-scroller:" + index + ":case-item:side-step-component:side-steps-panel");
-    return sideStepPanel.findElements(By.tagName("a")).size();
+    WebElement actionsPanel = getMoreActionsPanel(findElementById(String.format("case-widget:case-list-scroller:%d:case-item", index)));
+    return actionsPanel.findElements(By.cssSelector("a[id$='side-step-item']")).size();
   }
 
   public WebElement selectCaseItem(int index) {
@@ -67,6 +60,13 @@ public class CaseWidgetPage extends TemplatePage {
     return findElementByCssSelector("a[id$='destroy-case']");
   }
 
+  private WebElement getMoreActionsPanel(WebElement caseItem) {
+    caseItem.findElement(By.cssSelector("button[id$='action-steps-menu']")).click();
+    waitForElementDisplayed(By.cssSelector("div[id$='action-steps-panel']"), true);
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> findElementByCssSelector("div[id$='action-steps-panel']").isDisplayed());
+    return findElementByCssSelector("div[id$='action-steps-panel']");
+  }
+  
   public void clickDestroyButton(WebElement caseItem) {
     WebElement destroyButton = getDestroyButtonOfCaseItem(caseItem);
     destroyButton.click();
