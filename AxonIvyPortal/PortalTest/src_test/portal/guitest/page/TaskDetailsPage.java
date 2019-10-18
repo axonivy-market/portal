@@ -24,8 +24,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public List<String> getTaskNoteAuthors() {
-    WebElement taskHistoriesDiv = findElementById("task-note");
-    List<WebElement> noteAuthorElements = taskHistoriesDiv.findElements(By.cssSelector("span[id$=user]"));
+    List<WebElement> noteAuthorElements = findListElementsByCssSelector("td.task-note-name");
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }
 
