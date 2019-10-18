@@ -149,9 +149,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public List<String> getCaseNoteAuthors() {
-    WebElement caseHistoriesDiv = findElementById(HISTORY_COMPONENT_ID);
-    List<WebElement> noteAuthorElements =
-        caseHistoriesDiv.findElements(By.cssSelector("span[id$=user-full-name\\:user]"));
+    List<WebElement> noteAuthorElements = findListElementsByCssSelector(".fa-pencil-square-o + span.history-fullname");
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }
 
