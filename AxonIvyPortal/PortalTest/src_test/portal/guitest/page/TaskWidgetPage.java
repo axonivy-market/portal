@@ -79,11 +79,6 @@ public class TaskWidgetPage extends TemplatePage {
     return taskDetailsPage;
   }
 
-  public TaskDetailsPage getTaskDetailsElement(int index) {
-    waitForElementDisplayed(By.cssSelector(ID_END + index + TASK_ITEM_TASK_INFO), true, DEFAULT_TIMEOUT);
-    return new TaskDetailsPage();
-  }
-
   public boolean isTaskShowDetails() {
     try {
       WebElement taskDetails = findElementByCssSelector("span[id='task-detail-template:task-detail-container']");

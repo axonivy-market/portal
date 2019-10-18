@@ -218,6 +218,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public void clickOnLogo() {
+    openMainMenu();
     findElementByCssSelector("a[id$='logo']").click();
     waitAjaxIndicatorDisappear();
   }
