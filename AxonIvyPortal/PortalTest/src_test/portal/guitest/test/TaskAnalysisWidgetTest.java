@@ -33,13 +33,8 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
     loginPage.login();
     grantPermissionOfPortal();
-
+    resetLanguageOfCurrentUser();
     homePage = new HomePage();
-
-    LanguagePage languagePage = homePage.openLanguagePage();
-    languagePage.selectLanguage(1);
-    languagePage.save();
-
     mainMenuPage = homePage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     statisticWidgetPage.waitForPageLoaded();
