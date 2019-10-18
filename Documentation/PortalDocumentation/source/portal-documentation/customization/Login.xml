@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sect1 xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="axonivyportal.customization.login">
+	<title>Login</title>
+	<sect2>
+		<title>Login page</title>
+		<mediaobject>
+			<imageobject>
+				<imagedata fileref="images/Login/LoginDefault.png" />
+			</imageobject>
+		</mediaobject>
+		<para>To replace default login page, extends existing templates with <code>ui:define name="login"</code> to define your new login component like below
+			<para>
+				<code>&lt;ui:composition template="/layouts/BasicTemplate.xhtml"&gt;</code>
+			</para>
+			<para>
+				<code>&lt;ui:define name="login"&gt;</code>
+			</para>
+			<para>
+				<code>&lt;ic:internaltest.ui.YourOwnLoginComponent /&gt;</code>
+			</para>
+			<para>
+				<code>&lt;/ui:define&gt;</code>
+			</para>
+			<para>
+				<code>&lt;/ui:composition&gt;</code>
+			</para>
+		</para>
+	</sect2>
+</sect1>
