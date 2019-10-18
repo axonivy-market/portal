@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xmlns="http://docbook.org/ns/docbook" version="5.0"
+	xml:id="axonivyportal.introduction">
+	<title>Introduction</title>
+	<sect1 xml:id="axonivyportal.introduction.mainfeatures">
+		<title>Main features</title>
+		<itemizedlist>
+			<listitem>
+				<para>
+					Repository of reusable components
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Fast integration of process applications to the portal
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					Provide customers and other system vendors the flexibility to
+					build their own portals, but reuse portal components of Ivy
+				</para>
+			</listitem>
+		</itemizedlist>
+	</sect1>
+	<sect1 xml:id="axonivyportal.introduction.newandnoteworthy">
+		<title>New and Noteworthy</title>
+		<sect2
+			xml:id="axonivyportal.introduction.newandnoteworthy.portalgroupchat">
+			<title>Portal Group Chat</title>
+			<mediaobject>
+				<imageobject>
+					<imagedata fileref="images/PortalGroupChat.png" />
+				</imageobject>
+			</mediaobject>
+			<itemizedlist>
+				<listitem>
+					<para>
+						Specific Case Related Chat
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Activate/Deactivate independently
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Define a Chat Group on runtime
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Define a Chat Group during design
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Customize the Group Chat Name
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Chat information is stored and can be used for reporting
+					</para>
+				</listitem>
+			</itemizedlist>
+		</sect2>
+		<sect2
+			xml:id="axonivyportal.introduction.newandnoteworthy.dataproviderexpress">
+			<title>Data Provider for Express</title>
+			<mediaobject>
+				<imageobject>
+					<imagedata fileref="images/DataProviderExpress.png" />
+				</imageobject>
+			</mediaobject>
+			<itemizedlist>
+				<listitem>
+					<para>
+						Developers can prepare several Data Providers for Express
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Citizen Developer can use these libraries as Data Provider in Express
+						Workflow creation
+					</para>
+				</listitem>
+			</itemizedlist>
+		</sect2>
+		<sect2
+			xml:id="axonivyportal.introduction.newandnoteworthy.announcementportal">
+			<title>Announcements in Portal</title>
+			<mediaobject>
+				<imageobject>
+					<imagedata fileref="images/AnnouncementPortal.png" />
+				</imageobject>
+			</mediaobject>
+			<itemizedlist>
+				<listitem>
+					<para>
+						Announce some important information like Downtimes directly in the portal
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Multilanguage support
+					</para>
+				</listitem>
+			</itemizedlist>
+		</sect2>
+		<sect2
+			xml:id="axonivyportal.introduction.newandnoteworthy.furtherimprovement">
+			<title>Further Improvements</title>
+			<itemizedlist>
+				<listitem>
+					<para>
+						Enhance Filter Selection in Task and Case List
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Chart Title in Dashboard
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Visibility of Done Tasks and Cases
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Enhanced Process List Navigation
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Integrated AdHoc Workflows available
+					</para>
+				</listitem>
+			</itemizedlist>
+		</sect2>
+	</sect1>
+</chapter>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:id="axonivyportal.troubleshooting">
+	<title>Troubleshooting</title>
+	<sect1>
+		<para>
+			Here you will find solutions to some of the most common problems related to Axon.ivy Portal.
+		</para>
+		<para>
+			If you can't find your solution here there are some other sources which could help:
+			<itemizedlist>
+				<listitem>
+					<para>
+						Axon.ivy Q&amp;A
+					</para>
+					<para>
+						The <link xlink:href="http://answers.axonivy.com/">Axon.ivy Q&amp;A</link> contains a considerable amount of questions and answers related to Axon.ivy Designer and Engine.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Stack Overflow
+					</para>
+					<para>
+						Problems related to common technologies like Java, JSF, Primefaces are answered on the web, e.g. on <link xlink:href="http://www.stackoverflow.com/">Stack Overflow</link>.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Support
+					</para>
+					<para>
+						You can get support via support@axonivy.com (support may be subject to charging, depending on your licence agreement).
+					</para>
+				</listitem>
+			</itemizedlist>
+		</para>
+	</sect1>
+	<sect1 xml:id="axonivyportal.troubleshooting.iesecurityproblem">
+		<title>IE Security Problem</title>
+		<para>
+			If you start Portal in Internet Explorer installed on Windows Server then Portal application may not work correctly. The reason could be <emphasis role="bold">Internet Explorer Enhanced Security Configuration</emphasis> is enabled by default which means ActiveX Controls and scripting are disabled, so Internet sites may not display in Internet Explorer as you expect.
+		</para>
+		<para>
+			To fix this, you may turn off <emphasis role="bold">Internet Explorer Enhanced Security Configuration</emphasis> if you are running in Windows Server. Another way is adding that site to the Trusted sites zone in Internet Explorer.
+		</para>
+	</sect1>
+	<sect1 xml:id="axonivyportal.troubleshooting.portalinstallwithiis">
+		<title>Portal install with IIS</title>
+		<para>
+			It could be a problem when install portal with IIS with proxy, depends on your environment. Consider to configure if your IIS is called via proxy. Add <code>-Dhttp.proxyHost</code> to <code>VM argument</code> could help.
+		</para>		
+	</sect1>
+</chapter>
