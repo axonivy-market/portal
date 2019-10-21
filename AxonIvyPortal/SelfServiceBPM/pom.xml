@@ -1,33 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>ch.ivyteam.ivy.project.portal</groupId>
-	<artifactId>selfService</artifactId>
-	<version>7.0.181.0</version>
-	<packaging>iar</packaging>
-
-	<properties>
-        <ivy.engine.version>7.0.14</ivy.engine.version>
-		<build.plugin.version>7.0.4</build.plugin.version>
-	</properties>
-	<dependencies>
-		<dependency>
-			<groupId>ch.ivyteam.ivy.project.portal</groupId>
-			<artifactId>portalTemplate</artifactId>
-			<version>7.0.181.0</version>
-			<type>iar</type>
-		</dependency>
-	</dependencies>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>com.axonivy.ivy.ci</groupId>
-				<artifactId>project-build-plugin</artifactId>
-				<version>${build.plugin.version}</version>
-				<extensions>true</extensions>
-			</plugin>
-		</plugins>
-	</build>
+<?xml version="1.0" encoding="utf-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>ch.ivyteam.ivy.project.portal</groupId>
+  <artifactId>selfService</artifactId>
+  <version>7.0.181.0</version>
+  <packaging>iar</packaging>
+  <properties>
+    <ivy.engine.version>7.0.14</ivy.engine.version>
+    <build.plugin.version>7.0.4</build.plugin.version>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>ch.ivyteam.ivy.project.portal</groupId>
+      <artifactId>portalTemplate</artifactId>
+      <version>7.0.181.0</version>
+      <type>iar</type>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.axonivy.ivy.ci</groupId>
+        <artifactId>project-build-plugin</artifactId>
+        <version>${build.plugin.version}</version>
+        <extensions>true</extensions>
+      </plugin>
+    </plugins>
+  </build>
 </project>
