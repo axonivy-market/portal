@@ -92,6 +92,10 @@
 	color: rgba(0, 0, 0, 1) !important;
 }
 
+.show-environment-info-link {
+	top: -5px;
+}
+
 .show-environment-info {
 	font-size: 11px;
 	height: 16px;
