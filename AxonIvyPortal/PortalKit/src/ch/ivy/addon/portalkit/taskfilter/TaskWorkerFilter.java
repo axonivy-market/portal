@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.taskfilter;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
@@ -82,9 +83,7 @@ public class TaskWorkerFilter extends TaskFilter {
 
   public void setSelectedWorker(IUser selectedWorker) {
     this.selectedWorker = selectedWorker;
-    if (selectedWorker != null) {
-      this.selectedWorkerMemberName = selectedWorker.getMemberName();
-    }
+    this.selectedWorkerMemberName = Optional.ofNullable(selectedWorker).map(IUser::getMemberName).orElse(StringUtils.EMPTY);
   }
 
   public String getSelectedWorkerMemberName() {
