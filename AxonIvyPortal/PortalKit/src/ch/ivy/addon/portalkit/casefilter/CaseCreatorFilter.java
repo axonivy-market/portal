@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.casefilter;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
@@ -81,9 +82,7 @@ public class CaseCreatorFilter extends CaseFilter {
 
   public void setSelectedCreator(IUser selectedCreator) {
     this.selectedCreator = selectedCreator;
-    if (selectedCreator != null) {
-      this.selectedCreatorMemberName = selectedCreator.getMemberName();
-    }
+    this.selectedCreatorMemberName = Optional.ofNullable(selectedCreator).map(IUser::getMemberName).orElse(StringUtils.EMPTY);
   }
 
   public String getSelectedCreatorMemberName() {
