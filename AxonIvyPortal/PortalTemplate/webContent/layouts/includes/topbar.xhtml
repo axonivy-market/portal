@@ -67,13 +67,15 @@
             </h:panelGroup>
           </p:overlayPanel>
         </h:form></li>
-      <li class="setting-container"><a href="#" jsf:rendered="#{userMenuBean.showServerInformation}"> <span
+      <li class="setting-container">
+      	<a href="#" jsf:rendered="#{userMenuBean.showServerInformation}"> <span
           jsf:id="server-infor" class="TexAlLeft DispBlock Fs11"> Host: #{serverInformationBean.host}
             Env:#{serverInformationBean.environment} </span> <span class="TexAlLeft DispBlock Fs17"><b
             class="dropdown-icon">#{userMenuBean.userName}</b></span>
-      </a> <a href="#" jsf:rendered="#{not userMenuBean.showServerInformation}" id="user-settings-menu"> <span
+      	</a>
+     	 <a href="#" jsf:rendered="#{not userMenuBean.showServerInformation}" id="user-settings-menu"> <span
           class="dropdown-icon user-name js-user-name">#{userMenuBean.userName}</span>
-      </a>
+      	</a>
         <ul id="user-setting-container">
           <li><p:commandLink id="adminui-menu-item" resetValues="true"
               rendered="#{permissionBean.hasAdminPermission()}"

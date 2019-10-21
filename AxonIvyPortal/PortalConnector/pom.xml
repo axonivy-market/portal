@@ -5,10 +5,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ch.ivyteam.ivy.project.system</groupId>
 	<artifactId>portalConnector</artifactId>
-	<version>7.0.0.0-SNAPSHOT</version>
+	<version>7.0.181.0</version>
 	<packaging>iar</packaging>
 	<properties>
-        <ivy.engine.version>7.0.13</ivy.engine.version>
+        <ivy.engine.version>7.0.14</ivy.engine.version>
 		<build.plugin.version>7.0.4</build.plugin.version>
 	</properties>
 	<build>
