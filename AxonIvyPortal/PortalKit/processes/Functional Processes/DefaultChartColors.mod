@@ -1,5 +1,5 @@
 [Ivy]
-16DAF6D5E1E85FC9 3.28 #module
+16DAF6D5E1E85FC9 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ds0 DefaultChartColors Big #zClass
 Ds0 B #cInfo
@@ -36,17 +36,23 @@ Ds0 f3 actionTable 'out=in;
 Ds0 f3 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticColors;
 
 StatisticColors chartColor = new StatisticColors();
+// Color for Tasks
 chartColor.taskExceptionPriority = StatisticColors.DEFAULT_EXCEPTION_PRIORITY_COLOR;
 chartColor.taskHighPriority = StatisticColors.DEFAULT_HIGH_PRIORITY_COLOR;
 chartColor.taskNormalPriority = StatisticColors.DEFAULT_NORMAL_PRIORITY_COLOR;
 chartColor.taskLowPriority = StatisticColors.DEFAULT_LOW_PRIORITY_COLOR;
 
+// Color for Cases
 chartColor.createdCase = StatisticColors.DEFAULT_CREATED_CASE_COLOR;
 chartColor.runningCase = StatisticColors.DEFAULT_RUNNING_CASE_COLOR;
 chartColor.doneCase = StatisticColors.DEFAULT_DONE_CASE_COLOR;
 chartColor.failedCase = StatisticColors.DEFAULT_FAILED_CASE_COLOR;
 
+// Color for Elapsed time
 chartColor.elapsedTime = StatisticColors.DEFAULT_ELAPSED_TIME_COLOR;
+
+// Color for Legend
+chartColor.legendColor = StatisticColors.DEFAULT_LEGEND_COLOR;
 
 in.chartColors = chartColor;' #txt
 Ds0 f3 security system #txt

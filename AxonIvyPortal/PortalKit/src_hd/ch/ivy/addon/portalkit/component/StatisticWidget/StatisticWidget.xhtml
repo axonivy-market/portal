@@ -11,6 +11,7 @@
 
 <cc:implementation>
   <h:outputScript library="js" name="statistic-widget.js" />
+  <h:outputScript library="chartjs-plugin" name="chartjs-plugin-datalabels.min.js"/>
   <f:event listener="#{logic.setCompactMode(cc.attrs.compactMode)}" type="preRenderComponent" />
   <div id="#{cc.clientId}" class="widget statistic-widget-container #{!cc.attrs.compactMode ? '':'statistic-widget-compact-mode-container'}">
     <h:panelGroup id="header" layout="block" styleClass="widget-header">

@@ -16,18 +16,13 @@ import org.apache.commons.lang3.StringUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
-import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
-import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria;
-import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
-import ch.ivyteam.ivy.workflow.category.CategoryTree;
-import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 public class StatisticFilter implements Cloneable {
   
@@ -38,7 +33,7 @@ public class StatisticFilter implements Cloneable {
   private Date createdDateTo;
 
   @JsonIgnore
-  private List<CategoryTree> caseCategories;
+  private StatisticCaseCategoryFilter caseCategories;
   private List<String> selectedCaseCategories = new ArrayList<>();
   private boolean isAllCategoriesSelected = true;
 
@@ -86,22 +81,8 @@ public class StatisticFilter implements Cloneable {
     this.selectedTaskPriorities = new ArrayList<>(this.taskPriorities);
 
     // Initialize list of case categories
-    Map<String, Object> params = new HashMap<>();
-    CaseQuery query = CaseQuery.create();
-    query.where().state().isNotEqual(CaseState.ZOMBIE).and().state().isNotEqual(CaseState.DESTROYED);
-    CaseCategorySearchCriteria criteria = new CaseCategorySearchCriteria();
-    criteria.setCustomCaseQuery(query);
-    params.put("caseCategorySearchCriteria", criteria);
-    Map<String, Object> response = IvyAdapterService.startSubProcess("findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria)", params,
-        Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
-    CategoryTree caseCategoryTree = (CategoryTree) response.get("categoryTree");
-    if(caseCategoryTree != null) {
-      this.caseCategories = caseCategoryTree.getAllChildren();
-    }
-    if (this.caseCategories != null && !this.caseCategories.isEmpty()) {
-      this.caseCategories.sort(Comparator.comparing(item -> item.getCategory().getPath()));
-      this.selectedCaseCategories = this.caseCategories.stream().map(CategoryTree::getRawPath).collect(Collectors.toList());
-    }
+    caseCategories = new StatisticCaseCategoryFilter();
+    caseCategories.getRoot().setSelected(isAllCategoriesSelected);
     this.selectedCaseCategories.add(StringUtils.EMPTY);
 
     this.timePeriodSelection = StatisticTimePeriodSelection.CUSTOM;
@@ -143,21 +124,13 @@ public class StatisticFilter implements Cloneable {
   public void setCreatedDateTo(Date createdDateTo) {
     this.createdDateTo = createdDateTo;
   }
-  
-  public List<CategoryTree> getCaseCategories() {
+
+  public StatisticCaseCategoryFilter getCaseCategories() {
     return caseCategories;
   }
 
-  public void setCaseCategories(List<CategoryTree> caseCategories) {
+  public void setCaseCategories(StatisticCaseCategoryFilter caseCategories) {
     this.caseCategories = caseCategories;
-  }
-
-  public List<String> getSelectedCaseCategories() {
-    return selectedCaseCategories;
-  }
-
-  public void setSelectedCaseCategories(List<String> selectedCaseCategories) {
-    this.selectedCaseCategories = selectedCaseCategories;
   }
 
   public List<Object> getRoles() {
@@ -238,6 +211,14 @@ public class StatisticFilter implements Cloneable {
 
   public void setIsAllCategoriesSelected(boolean isAllCategoriesSelected) {
     this.isAllCategoriesSelected = isAllCategoriesSelected;
+  }
+
+  public List<String> getSelectedCaseCategories() {
+    return selectedCaseCategories;
+  }
+
+  public void setSelectedCaseCategories(List<String> selectedCaseCategories) {
+    this.selectedCaseCategories = selectedCaseCategories;
   }
 
   public boolean getIsAllRolesSelected() {
