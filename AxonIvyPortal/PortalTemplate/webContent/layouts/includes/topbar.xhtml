@@ -26,7 +26,7 @@
         </p:commandLink></li>
 
       <li class="setting-container" >
-      	<a href="#" jsf:rendered="#{userMenuBean.showServerInformation}">
+      	<a href="#" jsf:rendered="#{userMenuBean.showServerInformation}" class="show-environment-info-link">
       		<span jsf:id="server-infor" class="TexAlLeft DispBlock show-environment-info"> Host: #{serverInformationBean.host}
             Env:#{serverInformationBean.environment} </span>
             <span class="TexAlLeft DispBlock user-name-show-environment-info">#{userMenuBean.userName}</span>

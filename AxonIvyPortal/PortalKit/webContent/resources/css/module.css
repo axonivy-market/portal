@@ -3148,6 +3148,11 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   padding-top: 5px;
 }
 
+.admin-settings-portal-link-label, .admin-settings-display-name-3rd-label {
+  float: right;
+  padding-top: 2px;
+}
+
 .app-icon {
   text-align: center;
   height: 42px;
