@@ -1,7 +1,6 @@
 .. _axonivyportal.installation:
-
 Installation
-============
+************
 
 .. _axonivyportal.installation.releaseinstallation:
 
@@ -75,10 +74,10 @@ Portal has 2 different configurations:
 
 ..
 
-   **Important**
+   .. important::
 
-   -  In multi applications mode, if you need overall dashboard, create
-      the standard Portal application with the Portal modules.
+      -  In multi applications mode, if you need overall dashboard, create
+         the standard Portal application with the Portal modules.
 
 Manually configure applications
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -87,11 +86,11 @@ Refer
 `#axonivyportal.settings.adminsettings.setupmultiportals <#axonivyportal.settings.adminsettings.setupmultiportals>`__
 .
 
-   **Important**
+   .. important::
 
-   The engine, installed in the demo mode, automatically deploys the
-   Portal application with default users. You need to deploy it in
-   production mode.
+      The engine, installed in the demo mode, automatically deploys the
+      Portal application with default users. You need to deploy it in
+      production mode.
 
 Default user credentials in demo mode
 -------------------------------------
@@ -198,17 +197,10 @@ Personal task permission
    default). User can delegate all the tasks he see in his task list if
    he has permission ``IPermission.TASK_WRITE_ACTIVATOR`` .
 
-      **Important**
+      .. important::
 
-      Task state cannot be one of the following:
-      DONE
-      ,
-      DESTROYED
-      ,
-      RESUMED
-      ,
-      FAILED
-      .
+         Task state cannot be one of the following:
+         DONE, DESTROYED, RESUMED, FAILED.
 
    This function will be hidden if session user does not have permission
    ``PortalPermission.TASK_DISPLAY_DELEGATE_ACTION`` .
@@ -217,17 +209,10 @@ Personal task permission
 
    No permission requires.
 
-      **Important**
+      .. important::
 
-      Task state cannot be one of the following:
-      DONE
-      ,
-      DESTROYED
-      ,
-      RESUMED
-      ,
-      FAILED
-      .
+         Task state cannot be one of the following:
+         DONE, DESTROYED, RESUMED, FAILED .
 
 -  RESET
 
@@ -235,13 +220,13 @@ Personal task permission
    ``IPermission.TASK_RESET_OWN_WORKING_TASK`` or
    ``IPermission.TASK_RESET`` .
 
-      **Important**
+      .. important::
 
-      Task state has to be one of following:
-      RESUMED
-      ,
-      PARKED
-      .
+         Task state has to be one of following:
+         RESUMED
+         ,
+         PARKED
+         .
 
    This function will be hidden if session user does not have permission
    ``PortalPermission.TASK_DISPLAY_RESET_ACTION`` .
@@ -251,11 +236,11 @@ Personal task permission
    This function will be enabled if session user has permission
    ``IPermission.TASK_PARK_OWN_WORKING_TASK`` .
 
-      **Important**
+      .. important::
 
-      Task state has to be
-      RESUMED
-      .
+         Task state has to be
+         RESUMED
+         .
 
    This function will be hidden if session user does not have permission
    ``PortalPermission.TASK_DISPLAY_RESERVE_ACTION`` .
@@ -265,60 +250,60 @@ Personal task permission
    This function will be enabled if session user has
    ``IPermission.TASK_WRITE_NAME`` .
 
-      **Important**
+      .. important::
 
-      Task state cannot be one of following values:
-      DONE
-      ,
-      DESTROYED
-      ,
-      FAILED
-      .
+         Task state cannot be one of following values:
+         DONE
+         ,
+         DESTROYED
+         ,
+         FAILED
+         .
 
 -  CHANGE TASK DESCRIPTION
 
    This function will be enabled if session user has
    ``IPermission.TASK_WRITE_DESCRIPTION`` .
 
-      **Important**
+      .. important::
 
-      Task state cannot be one of following values:
-      DONE
-      ,
-      DESTROYED
-      ,
-      FAILED
-      .
+         Task state cannot be one of following values:
+         DONE
+         ,
+         DESTROYED
+         ,
+         FAILED
+         .
 
 -  CHANGE DEADLINE
 
    This function will be enabled if session user has
    ``IPermission.TASK_WRITE_EXPIRY_TIMESTAMP`` .
 
-      **Important**
+      .. important::
 
-      Task state cannot be one of following values:
-      DONE
-      ,
-      DESTROYED
-      ,
-      FAILED
-      .
+         Task state cannot be one of following values:
+         DONE
+         ,
+         DESTROYED
+         ,
+         FAILED
+         .
 
 -  CHANGE PRIORITY
 
    This function will be disabled if session user does not have
    ``IPermission.TASK_WRITE_ORIGINAL_PRIORITY`` .
 
-      **Important**
+      .. important::
 
-      Task state cannot be one of following:
-      DONE
-      ,
-      DESTROYED
-      ,
-      FAILED
-      .
+         Task state cannot be one of following:
+         DONE
+         ,
+         DESTROYED
+         ,
+         FAILED
+         .
 
 -  DISPLAY ADDITIONAL OPTIONS
 
@@ -337,33 +322,33 @@ Personal case permission
    Delete case function will be enabled if session user has
    ``IPermission.CASE_DESTROY`` .
 
-      **Important**
+      .. important::
 
-      Case state has to be
-      RUNNING
-      .
+         Case state has to be
+         RUNNING
+         .
 
 -  CHANGE CASE NAME
 
    Delete case function will be enabled if session user has
    ``IPermission.CASE_WRITE_NAME`` .
 
-      **Important**
+      .. important::
 
-      Case state cannot to be:
-      DESTROYED
-      .
+         Case state cannot to be:
+         DESTROYED
+         .
 
 -  CHANGE CASE DESCRIPTION
 
    Delete case function will be enabled if session user has
    ``IPermission.CASE_WRITE_DESCRIPTION`` .
 
-      **Important**
+      .. important::
 
-      Case state cannot to be:
-      DESTROYED
-      .
+         Case state cannot to be:
+         DESTROYED
+         .
 
 -  SEE RELATED TASKS OF CASE
 
@@ -371,11 +356,11 @@ Personal case permission
    ``IPermission.TASK_READ_OWN_CASE_TASKS`` or
    ``IPermission.TASK_READ_ALL`` .
 
-      **Important**
+      .. important::
 
-      Case state cannot to be:
-      DESTROYED
-      .
+         Case state cannot to be:
+         DESTROYED
+         .
 
    Link to show all tasks of case will be hidden if session user does
    not have permission ``PortalPermission.SHOW_ALL_TASKS_OF_CASE`` .
@@ -541,17 +526,17 @@ to make your existing Portal working with current Axon.ivy engine.
 
 How to migrate
 --------------
+   
+   .. important:: 
+   
+      If you call any Portal API which is not mentioned in document. It
+      could be changed or removed. Re-implement it in your own project.
 
-   **Important**
-
-   If you call any Portal API which is not mentioned in document. It
-   could be changed or removed. Re-implement it in your own project.
-
-   In order to migrate Portal, you need to migrate Axon.ivy, refer
-   `Axon.ivy migration
-   notes <https://developer.axonivy.com/doc/latest/MigrationNotes.html>`__.
-   Changes in Axon.ivy could lead to problems if customer project is not
-   migrated properly.
+      In order to migrate Portal, you need to migrate Axon.ivy, refer
+      `Axon.ivy migration
+      notes <https://developer.axonivy.com/doc/latest/MigrationNotes.html>`__.
+      Changes in Axon.ivy could lead to problems if customer project is not
+      migrated properly.
 
 In designer
 ~~~~~~~~~~~
@@ -567,17 +552,17 @@ In designer
 
 ..
 
-   **Important**
+   .. important::
 
-   -  Scenario migrating one customer project without customization:
-      Follow guidelines to step 2.
-   -  Scenario migrating one customer project with supported
-      customization: Follow the guidelines.
-   -  Scenario migrating one customer project with (un)supported
-      customization: Follow guidelines for supported customization. If
-      unsupported customization needs copying code from Portal, merge
-      changes between 2 versions of Portal for copied code. Take care
-      your own unsupported customization.
+      -  Scenario migrating one customer project without customization:
+         Follow guidelines to step 2.
+      -  Scenario migrating one customer project with supported
+         customization: Follow the guidelines.
+      -  Scenario migrating one customer project with (un)supported
+         customization: Follow guidelines for supported customization. If
+         unsupported customization needs copying code from Portal, merge
+         changes between 2 versions of Portal for copied code. Take care
+         your own unsupported customization.
 
 In engine
 ~~~~~~~~~
@@ -878,16 +863,16 @@ GlobalSearch) in PortalStart process of Portal Template. If you have
 customized this process in your project, copy the new PortalStart from
 Portal Template to your project and re-apply your customization.
 
-   **Important**
+   .. important::
 
-   In case you already have PortalStart process in your project, delete
-   all elements in that process and copy everything from PortalStart
-   process of Portal Template (to prevent start link id change).
-   ``Do not delete`` PortalStart proccess in your project and copy new
-   again.
+      In case you already have PortalStart process in your project, delete
+      all elements in that process and copy everything from PortalStart
+      process of Portal Template (to prevent start link id change).
+      ``Do not delete`` PortalStart proccess in your project and copy new
+      again.
 
-   Check map param result of callable process after copy to make sure
-   it's the same as original process.
+      Check map param result of callable process after copy to make sure
+      it's the same as original process.
 
 EXPIRY_CHART_LAST_DRILLDOWN_LEVEL global variable is removed. User now
 can use a context menu to drilldown Task By Expiry chart.
@@ -906,16 +891,16 @@ We introduce new method
 use this method to generate link to your process. If user doesn't have
 permission to start the process, this method will return empty string.
 
-   **Important**
+   .. important::
 
-   In case you already have PortalStart process in your project, delete
-   all elements in that process and copy everything from PortalStart
-   process of Portal Template (to prevent start link id change).
-   ``Do not delete`` PortalStart proccess in your project and copy new
-   again.
+      In case you already have PortalStart process in your project, delete
+      all elements in that process and copy everything from PortalStart
+      process of Portal Template (to prevent start link id change).
+      ``Do not delete`` PortalStart proccess in your project and copy new
+      again.
 
-   Check map param result of callable process after copy to make sure
-   it's the same as original process.
+      Check map param result of callable process after copy to make sure
+      it's the same as original process.
 
 Migrate 7.0.2 to 7.0.3
 ----------------------
