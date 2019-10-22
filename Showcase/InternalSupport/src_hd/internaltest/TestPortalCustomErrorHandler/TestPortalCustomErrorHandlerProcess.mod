@@ -1,5 +1,5 @@
 [Ivy]
-15DE4F365CA95344 3.28 #module
+15DE4F365CA95344 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TestPortalCustomErrorHandlerProcess Big #zClass
 Ts0 RD #cInfo
@@ -23,11 +23,8 @@ Ts0 @PushWFArc f8 '' #zField
 >Proto Ts0 Ts0 TestPortalCustomErrorHandlerProcess #zField
 Ts0 f0 guid 15DE4F365EDA155D #txt
 Ts0 f0 method start() #txt
-Ts0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ts0 f0 outParameterDecl '<> result;
-' #txt
+Ts0 f0 inParameterDecl '<> param;' #txt
+Ts0 f0 outParameterDecl '<> result;' #txt
 Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -59,11 +56,8 @@ Ts0 f5 expr out #txt
 Ts0 f5 109 160 211 160 #arcP
 Ts0 f6 guid 15DE4F4065DB22D0 #txt
 Ts0 f6 method errorMethod() #txt
-Ts0 f6 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ts0 f6 outParameterDecl '<> result;
-' #txt
+Ts0 f6 inParameterDecl '<> param;' #txt
+Ts0 f6 outParameterDecl '<> result;' #txt
 Ts0 f6 outActionCode 'int a = 1;
 int b = a/0;' #txt
 Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

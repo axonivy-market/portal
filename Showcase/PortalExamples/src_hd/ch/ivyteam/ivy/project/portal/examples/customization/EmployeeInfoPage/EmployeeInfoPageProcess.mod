@@ -1,5 +1,5 @@
 [Ivy]
-16285274E701918B 3.28 #module
+16285274E701918B 7.5.0 #module
 >Proto >Proto Collection #zClass
 Es0 EmployeeInfoPageProcess Big #zClass
 Es0 RD #cInfo
@@ -40,14 +40,11 @@ Es0 @PushWFArc f12 '' #zField
 >Proto Es0 Es0 EmployeeInfoPageProcess #zField
 Es0 f0 guid 16285274E802BB78 #txt
 Es0 f0 method start() #txt
-Es0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
+Es0 f0 inParameterDecl '<> param;' #txt
 Es0 f0 inActionCode 'import ch.ivyteam.ivy.project.portal.examples.Employee;
 
 out.employeeInfo = new Employee();' #txt
-Es0 f0 outParameterDecl '<ch.ivyteam.ivy.project.portal.examples.enums.UserAction userAction,ch.ivyteam.ivy.project.portal.examples.Employee employeeInfo> result;
-' #txt
+Es0 f0 outParameterDecl '<ch.ivyteam.ivy.project.portal.examples.enums.UserAction userAction,ch.ivyteam.ivy.project.portal.examples.Employee employeeInfo> result;' #txt
 Es0 f0 outParameterMapAction 'result.userAction=in.userAction;
 result.employeeInfo=in.employeeInfo;
 ' #txt
@@ -104,14 +101,11 @@ Es0 f6 83 291 26 26 -13 15 #rect
 Es0 f6 @|UdEventIcon #fIcon
 Es0 f9 guid 16285AC67CD29971 #txt
 Es0 f9 method start(ch.ivyteam.ivy.project.portal.examples.Employee) #txt
-Es0 f9 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivyteam.ivy.project.portal.examples.Employee employeeInfo> param = methodEvent.getInputArguments();
-' #txt
+Es0 f9 inParameterDecl '<ch.ivyteam.ivy.project.portal.examples.Employee employeeInfo> param;' #txt
 Es0 f9 inParameterMapAction 'out.employeeInfo=param.employeeInfo;
 out.userAction=ch.ivyteam.ivy.project.portal.examples.enums.UserAction.CANCEL;
 ' #txt
-Es0 f9 outParameterDecl '<ch.ivyteam.ivy.project.portal.examples.Employee employeeInfo,ch.ivyteam.ivy.project.portal.examples.enums.UserAction userAction> result;
-' #txt
+Es0 f9 outParameterDecl '<ch.ivyteam.ivy.project.portal.examples.Employee employeeInfo,ch.ivyteam.ivy.project.portal.examples.enums.UserAction userAction> result;' #txt
 Es0 f9 outParameterMapAction 'result.employeeInfo=in.employeeInfo;
 result.userAction=in.userAction;
 ' #txt
