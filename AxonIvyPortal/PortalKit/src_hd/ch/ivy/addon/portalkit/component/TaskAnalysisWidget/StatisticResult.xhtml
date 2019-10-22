@@ -11,7 +11,7 @@
           <p:fileDownload value="#{logic.getExportedFile(taskAnalysisWidgetBean.getColumns())}" />
         </p:commandButton>
   
-        <p:commandButton id="toggler" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/columns')}"/>
+        <p:commandButton id="toggler" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/columns')}" icon="fa fa-caret-down" iconPos="right" />
         <p:columnToggler id="task-table-toggler" datasource="task-table" trigger="toggler">
           <p:ajax event="toggle" listener="#{taskAnalysisWidgetBean.onToggleColumns}" oncomplete="initializeScrollbar();" />
         </p:columnToggler>
@@ -124,13 +124,13 @@
       $(document).ready(function(){
         setTimeout(function(){initializeScrollbar();}, 100);
       });
-		
-	  function liveScroll(){
-	  	PF('task-table').scrollOffset=0;    
+    
+    function liveScroll(){
+      PF('task-table').scrollOffset=0;    
         PF('task-table').scrollBody.scrollTop(1);   
         PF('task-table').allLoadedLiveScroll = false; 
-	  }
-	  
+    }
+    
       function initializeScrollbar() {
         var $taskTable = $("[id$='statistic-result-form:task-table']");
         var resultTableBody = $taskTable.find(".ui-datatable-scrollable-body").get(0);
