@@ -1,5 +1,6 @@
-Portal User Guide
-*****************
+.. _portal-document:
+Portal Document
+***************
 
 .. toctree::
    :maxdepth: 2
