@@ -36,11 +36,11 @@ available when user click on show details button.
 Stacktrace on error messages can be showed/hid depend on ivy system
 property ``Errors.ShowDetailsToEndUser``.
 
-   **Note**
+   .. note:: 
 
-   This feature is only available if using the portal default template:
-   BasicTemplate
-   or its extension.
+      This feature is only available if using the portal default template:
+      BasicTemplate
+      or its extension.
 
 .. _axonivyportal.components.errorhandling.ajaxerrorhandling.result:
 
@@ -77,9 +77,8 @@ How to configure
 Download the zip file below to configure on your own engine (or
 designer).
 
-   **Important**
-
-   Read README.txt
+   .. important:: 
+      Read README.txt
 
 `PortalErrorPageConfiguration.zip <documents/ErrorHandling/PortalErrorPageConfiguration.zip>`__
 
