@@ -50,31 +50,31 @@ this by setting the attribute ``chunkSize`` to the number you want . You
 should use this attribute alongside with the attribute ``scrollHeight``
 to configure the scroll bar of the list.
 
-   **Note**
+   .. note:: 
 
-   If you use this component in a dialog, you must run this script
-   processHistory.setup();
-   when the dialog is shown. For example:
-   ``<p:dialog widgetVar="process-history-dialog" id="process-history-dialog" width="800" height="500"
-                           header="Process history of Resource A247" onShow="processHistory.setup();">``
+      If you use this component in a dialog, you must run this script
+      processHistory.setup();
+      when the dialog is shown. For example:
+      ``<p:dialog widgetVar="process-history-dialog" id="process-history-dialog" width="800" height="500"
+                              header="Process history of Resource A247" onShow="processHistory.setup();">``
 
-   ``<ic:ch.ivy.addon.portal.component.ProcessHistory businessEntityId="resourceA247"
-                           chunkSize="6"
-                           scrollHeight="400" />``
+      ``<ic:ch.ivy.addon.portal.component.ProcessHistory businessEntityId="resourceA247"
+                              chunkSize="6"
+                              scrollHeight="400" />``
 
-   ``</p:dialog>``
+      ``</p:dialog>``
 
 ..
 
-   **Important**
-
-   If your process has a Trigger component or sends a signal to start
-   another process with the option "Attach to Business Case that
-   triggered this process" selected, the current case of the process
-   will become a technical case and will not be loaded into the process
-   history list. In this case You need to call the
-   SetBusinessEntityId
-   subprocess after the first Trigger or signal sending step.
+   .. important:: 
+   
+      If your process has a Trigger component or sends a signal to start
+      another process with the option "Attach to Business Case that
+      triggered this process" selected, the current case of the process
+      will become a technical case and will not be loaded into the process
+      history list. In this case You need to call the
+      SetBusinessEntityId
+      subprocess after the first Trigger or signal sending step.
 
 .. _axonivyportal.components.additionalcomponent.taskanalysis:
 

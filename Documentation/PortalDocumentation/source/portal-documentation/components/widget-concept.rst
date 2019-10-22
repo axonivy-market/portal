@@ -80,22 +80,20 @@ layers like below:
    are detail. We keep these thing on the outside where they can do
    little harm.
 
-..
+   .. tip:: 
+   
+      There's no rule that says you must always have just the four layers
+      above. However, you should always apply that the source code
+      dependencies point from mechanisms to policies:
 
-   **Tip**
+      Frameworks and Drivers > Interfaces Adapters > User Cases > Entities
 
-   There's no rule that says you must always have just the four layers
-   above. However, you should always apply that the source code
-   dependencies point from mechanisms to policies:
-
-   Frameworks and Drivers > Interfaces Adapters > User Cases > Entities
-
-   By doing so, you will create a widget that is intrinsically testable,
-   independent of frameworks, independent of UI, independent of
-   database, and independent of any external agency. When any of the
-   external parts of the system become obsolete, like the database, or
-   the web framework, you can replace those obsolete elements with a
-   minimum of fuss.
+      By doing so, you will create a widget that is intrinsically testable,
+      independent of frameworks, independent of UI, independent of
+      database, and independent of any external agency. When any of the
+      external parts of the system become obsolete, like the database, or
+      the web framework, you can replace those obsolete elements with a
+      minimum of fuss.
 
 .. _axonivyportal.components.concept.maintechnologyandconcept:
 

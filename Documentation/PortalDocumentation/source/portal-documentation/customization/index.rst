@@ -10,7 +10,9 @@ Customization
    menu
    portal-home
    task-widget
+   task-item-details
    case-widget
+   case-item-details
    default-user-process
    default-chart
    default-statistic-custom-field
@@ -23,5 +25,6 @@ Customization
    additional-case-details-page
    global-search-result
    document-processes
+   responsive-css
    group-chat-customization
    change-group-id
