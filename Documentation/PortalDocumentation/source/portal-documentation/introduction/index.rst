@@ -1,12 +1,12 @@
 .. _axonivyportal.introduction:
 
 Introduction
-============
+************
 
 .. _axonivyportal.introduction.mainfeatures:
 
 Main features
-=============
+-------------
 
 -  Repository of reusable components
 
@@ -18,12 +18,12 @@ Main features
 .. _axonivyportal.introduction.newandnoteworthy:
 
 New and Noteworthy
-==================
+-----------------
 
 .. _axonivyportal.introduction.newandnoteworthy.portalgroupchat:
 
 Portal Group Chat
------------------
+~~~~~~~~~~~~~~~~~
 
 |image0|
 
@@ -42,7 +42,7 @@ Portal Group Chat
 .. _axonivyportal.introduction.newandnoteworthy.dataproviderexpress:
 
 Data Provider for Express
--------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 |image1|
 
@@ -54,7 +54,7 @@ Data Provider for Express
 .. _axonivyportal.introduction.newandnoteworthy.announcementportal:
 
 Announcements in Portal
------------------------
+~~~~~~~~~~~~~~~~~~~~~~~
 
 |image2|
 
@@ -66,7 +66,7 @@ Announcements in Portal
 .. _axonivyportal.introduction.newandnoteworthy.furtherimprovement:
 
 Further Improvements
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 -  Enhance Filter Selection in Task and Case List
 

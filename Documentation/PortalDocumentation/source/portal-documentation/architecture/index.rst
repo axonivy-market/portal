@@ -1,7 +1,7 @@
 .. _axonivyportal.architecture:
 
 Architecture
-============
+************
 
 .. _axonivyportal.architecture.portalprocessmodulesstructure:
 

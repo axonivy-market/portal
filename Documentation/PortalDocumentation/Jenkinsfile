@@ -16,10 +16,10 @@ pipeline {
   stages {    
     stage('build') {
       steps {        
-        dir ('Documentation/PortalUserGuide') {
+        dir ('Documentation/PortalDocumentation') {
             script {
                 docker.image('axonivy/build-container:read-the-docs-1.1').inside {
-                    sh "make -C /doc-build html BASEDIR='${env.WORKSPACE}/Documentation/PortalUserGuide'"
+                    sh "make -C /doc-build html BASEDIR='${env.WORKSPACE}/Documentation/PortalDocumentation'"
                 }
             }
             archiveArtifacts 'build/html/**/*'
