@@ -1,5 +1,5 @@
 [Ivy]
-15FA421D253C6746 3.28 #module
+15FA421D253C6746 7.5.0 #module
 >Proto >Proto Collection #zClass
 Sy0 SearchByCaseJsonQuery Big #zClass
 Sy0 B #cInfo
@@ -64,8 +64,7 @@ Sy0 f3 @|StepIcon #fIcon
 Sy0 f4 expr out #txt
 Sy0 f4 111 64 168 64 #arcP
 Sy0 f23 processCall 'Functional Processes/OpenPortalCases:useView(ch.ivy.addon.portal.generic.view.CaseView)' #txt
-Sy0 f23 requestActionDecl '<ch.ivy.addon.portal.generic.view.CaseView view> param;
-' #txt
+Sy0 f23 requestActionDecl '<ch.ivy.addon.portal.generic.view.CaseView view> param;' #txt
 Sy0 f23 requestMappingAction 'param.view=in.caseView;
 ' #txt
 Sy0 f23 responseActionDecl 'internaltest.SearchByCaseJsonQueryData out;

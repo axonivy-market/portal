@@ -1,5 +1,5 @@
 [Ivy]
-16B2C77DAA249F4E 3.28 #module
+16B2C77DAA249F4E 7.5.0 #module
 >Proto >Proto Collection #zClass
 Gs0 GetGroupChatParams Big #zClass
 Gs0 B #cInfo
@@ -22,8 +22,7 @@ Gs0 @AnnotationArc f6 '' #zField
 Gs0 f0 inParamDecl '<> param;' #txt
 Gs0 f0 inParamTable 'out.params=new java.util.HashMap();
 ' #txt
-Gs0 f0 outParamDecl '<java.util.Map params> result;
-' #txt
+Gs0 f0 outParamDecl '<java.util.Map params> result;' #txt
 Gs0 f0 outParamTable 'result.params=in.params;
 ' #txt
 Gs0 f0 callSignature getGroupChatParams() #txt
