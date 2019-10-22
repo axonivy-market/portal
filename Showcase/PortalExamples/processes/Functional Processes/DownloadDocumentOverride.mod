@@ -1,5 +1,5 @@
 [Ivy]
-16AD35D75A4DFC51 3.28 #module
+16AD35D75A4DFC51 7.5.0 #module
 >Proto >Proto Collection #zClass
 Dt0 DownloadDocument Big #zClass
 Dt0 B #cInfo
@@ -23,8 +23,7 @@ Dt0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ICase bussinessCase,ch.ivy.addon.po
 Dt0 f0 inParamTable 'out.businessCase=param.bussinessCase;
 out.document=param.document;
 ' #txt
-Dt0 f0 outParamDecl '<org.primefaces.model.StreamedContent streamedContent> result;
-' #txt
+Dt0 f0 outParamDecl '<org.primefaces.model.StreamedContent streamedContent> result;' #txt
 Dt0 f0 outParamTable 'result.streamedContent=in.streamedContent;
 ' #txt
 Dt0 f0 callSignature call(ch.ivyteam.ivy.workflow.ICase,ch.ivy.addon.portalkit.ivydata.bo.IvyDocument) #txt
