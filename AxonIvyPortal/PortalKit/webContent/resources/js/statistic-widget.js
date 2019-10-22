@@ -1,33 +1,7 @@
 var topValue;
 var leftValue;
 
-function bindCursorChangeEvent() {
-  $('.js-drilldown-cursor').bind('jqplotDataHighlight', function(ev, seriesIndex, pointIndex, data, radius) {
-    $('.jqplot-event-canvas').css('cursor', 'pointer');
-  });
-  $('.js-drilldown-cursor').bind('jqplotDataUnhighlight', function(ev) {
-    $('.jqplot-event-canvas').css('cursor', 'default');
-  });
-  $('.js-expiry-chart').bind('click', function(ev) {
-    var $expiryChartDrillDown = $('.js-expiry-chart-drill-down');
-    var $expiryChartTaskList = $('.js-expiry-chart-task-list');
-   /* if (pointIndex === 0) { // Expired bar
-      $expiryChartDrillDown.hide();
-      $expiryChartTaskList.css('margin-top', '10px');
-    } else {*/
-      $expiryChartDrillDown.show();
-      $expiryChartTaskList.css('margin-top', '0px');
-    /*}*/
-    var index = this.className.match(/expiry-chart-(\d+)/)[1];
-    var widgetVar = 'context-menu-' + index;
-    PF('context-menu-' + index).show();
-    topValue = ev.pageY;
-    leftValue = ev.pageX;
-  });
-}
-
 function updateDrillDownPanelPosition(panel) {
-  console.log(panel);
   var widgetVar = panel.widgetVar;
   $('.' + widgetVar).css({
     'left' : leftValue,
@@ -36,81 +10,128 @@ function updateDrillDownPanelPosition(panel) {
   });
 }
 
-function barChartExtender() {
-  var currentAngle;
-  if (window.screen.availWidth < 1366) {
-    currentAngle = -30;
-  } else {
-    currentAngle = 0;
+function taskByExpiryChartExtender() {
+  // copy the config options into a variable
+  let options = jQuery.extend(true, {}, this.cfg.config.options);
+  options = {
+    hover : {
+      onHover : function(event, activeElement) {
+        event.target.style.cursor = activeElement[0] ? 'pointer' : 'default';
+      }
+    },
+    onClick : taskByExpiryChartClickEvent,
+    
+    plugins: {
+      datalabels: {
+        color: function(context) {
+          let legendColor = context.chart.legend.options.labels.fontColor;
+          var index = context.dataIndex;
+          var value = context.dataset.data[index];
+          return value <= 0 ? 'transparent' : legendColor;
+          },
+      }
+    }
+  };
+
+  // merge all options into the main chart options
+  jQuery.extend(true, this.cfg.config.options, options);
+}
+
+function taskByExpiryChartClickEvent(event, activeElement) {
+  var $expiryChartDrillDown = $('.js-expiry-chart-drill-down');
+  var $expiryChartTaskList = $('.js-expiry-chart-task-list');
+  if (activeElement[0]) {
+    if (activeElement[0]._index === 0) {
+      $expiryChartDrillDown.hide();
+    } else {
+      $expiryChartDrillDown.show();
+    }
+    var chartId = $(event.path[0]).attr('id');
+    var indexOfChart = chartId.lastIndexOf(":");
+    var widgetVar = 'context-menu-' + chartId.substring(indexOfChart - 1, indexOfChart);
+    PF(widgetVar).show();
+    topValue = event.offsetY + 50;
+    leftValue = event.offsetX;
   }
-  this.cfg.grid = {
-    gridLineColor : 'transparent',
-    background : 'rgba(255,255,255, 0)',
-    drawBorder : true,
-    shadow : false
-  };
-//  this.cfg.axes.yaxis.labelOptions = {
-//    textColor : 'black',
-//    fontSize : '11.4px',
-//  };
-//  this.cfg.axes.xaxis.labelOptions = {
-//    textColor : 'black',
-//    fontSize : '11.4px'
-//  };
-//  this.cfg.axes.xaxis.tickOptions = {
-//    textColor : 'black',
-//    fontSize : '11.4px',
-//    angle : currentAngle
-//  };
-//  this.cfg.axes.yaxis.tickOptions = {
-//    textColor : 'black',
-//    fontSize : '11.4px'
-//  };
 }
 
-function elapsedTimeBarChartExtender() {
- /* var currentAngle;
-  var showLabel = !isNaN(this.cfg.data[0][0]);
-  if (window.screen.availWidth < 1366 || this.cfg.data[0].length > 2) {
-    currentAngle = -70;
-  } else {
-    currentAngle = 0;
-  }*/
+function elapsedTimeChartExtender() {
+  // copy the config options into a variable
+  let options = jQuery.extend(true, {}, this.cfg.config.options);
+  options = {
+    scales : {
+      xAxes : [{
+        ticks : {
+          maxTicksLimit: 5,
+          callback : function(value) {
+            if (value.length > 15) {
+              return value.substr(0, 15) + '...';
+            } else {
+              return value;
+            }
+          },
+        }
+      }],
+      yAxes : [{}]
+    },
+    tooltips: {
+      enabled: true,
+      mode: 'label',
+      callbacks: {
+        title: function(tooltipItems, data) {
+          var idx = tooltipItems[0].index;
+          return data.labels[idx];
+        }
+      }
+    },
+    plugins: {
+      datalabels: {
+        color: function(context) {
+          let legendColor = context.chart.legend.options.labels.fontColor;
+          var index = context.dataIndex;
+          var value = context.dataset.data[index];
+          return value <= 0 ? 'transparent' : legendColor;
+          },
+      }
+    }
+  };
 
- /* this.cfg.axes.yaxis.labelOptions = {
-    textColor : 'black',
-    fontSize : '11.4px'
-  };
-  this.cfg.axes.xaxis.labelOptions = {
-    textColor : 'black',
-    fontSize : '11.4px'
-  };
-  this.cfg.axes.xaxis.tickOptions = {
-    textColor : 'black',
-    fontSize : '11.4px',
-    angle : currentAngle,
-    showLabel: showLabel
-  };
-  this.cfg.axes.yaxis.tickOptions = {
-    textColor : 'black',
-    fontSize : '11.4px'
-  };
-  this.cfg.highlighter = {
-    show : true,
-    tooltipAxes : 'y',
-    useAxesFormatters : false,
-    tooltipFormatString : "%.2f"
-  };*/
+  // merge all options into the main chart options
+  jQuery.extend(true, this.cfg.config.options, options);
 }
 
-function chartExtender() {
-  this.cfg.grid = {
-    background : 'rgba(255,255,255, 0)',
-    drawGridlines : false,
-    drawBorder : false,
-    shadow : false
-  };
-//  this.cfg.seriesDefaults.rendererOptions.dataLabelFormatString = '%.4s%%';
-//  this.cfg.seriesDefaults.rendererOptions.dataLabelThreshold = 0;
-}
+function donutExtender() {
+  // copy the config options into a variable
+  let options = jQuery.extend(true, {}, this.cfg.config.options);
+  options = {
+    hover : {
+      onHover : function(event, activeElement) {
+        event.target.style.cursor = activeElement[0] ? 'pointer' : 'default';
+      }
+    },
 
+    plugins: {
+        datalabels: {
+          color: function(context) {
+            let legendColor = context.chart.legend.options.labels.fontColor;
+            var index = context.dataIndex;
+            var value = context.dataset.data[index];
+            return value <= 0 ? 'transparent' : legendColor;
+            },
+
+            formatter: function(value, context) {
+              let sum = 0;
+              let dataArr = context.dataset.data;
+              dataArr.map(data => {
+                  sum += data;
+              });
+              let percentage = (value*100 / sum).toFixed(2)+"%";
+              return percentage;
+            }
+        }
+    }
+  };
+
+  // merge all options into the main chart options
+  jQuery.extend(true, this.cfg.config.options, options);
+}

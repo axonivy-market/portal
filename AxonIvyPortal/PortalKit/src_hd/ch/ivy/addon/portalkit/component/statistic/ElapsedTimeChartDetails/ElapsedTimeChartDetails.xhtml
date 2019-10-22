@@ -61,25 +61,25 @@
       </p:dataTable>
     </h:form>
     <script type="text/javascript">
-      $(document).ready(function(){
-        setTimeout(function(){initializeScrollbar();}, 100);
-      });
-    
-    function liveScroll(){
-      PF('case-table').scrollOffset=0;    
-        PF('case-table').scrollBody.scrollTop(1);   
-        PF('case-table').allLoadedLiveScroll = false; 
-    }
-    
-      function initializeScrollbar() {
-        var $caseTable = $("[id$='elapsed-time-chart-details:elapsed-time-detail-form:case-table']");
-        var resultTableBody = $caseTable.find(".ui-datatable-scrollable-body").get(0);
-
-        if (resultTableBody.scrollHeight > resultTableBody.clientHeight) {
-          var scrollbarWidth = resultTableBody.offsetWidth - resultTableBody.clientWidth
-          $caseTable.find(".ui-datatable-scrollable-header").css("width", "calc(100% - " + scrollbarWidth + "px)" );
+        $(document).ready(function(){
+          setTimeout(function(){initializeScrollbar();}, 100);
+        });
+      
+        function liveScroll(){
+          PF('case-table').scrollOffset=0;    
+            PF('case-table').scrollBody.scrollTop(1);   
+            PF('case-table').allLoadedLiveScroll = false; 
         }
-      };
+        
+        function initializeScrollbar() {
+          var $caseTable = $("[id$='elapsed-time-chart-details:elapsed-time-detail-form:case-table']");
+          var resultTableBody = $caseTable.find(".ui-datatable-scrollable-body").get(0);
+  
+          if (resultTableBody.scrollHeight > resultTableBody.clientHeight) {
+            var scrollbarWidth = resultTableBody.offsetWidth - resultTableBody.clientWidth
+            $caseTable.find(".ui-datatable-scrollable-header").css("width", "calc(100% - " + scrollbarWidth + "px)" );
+          }
+        };
     </script>
   </h:panelGroup>
 </cc:implementation>
