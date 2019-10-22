@@ -23,7 +23,7 @@
       <p:donutChart styleClass="statistic-chart ui-g-12" model="#{chart.donutChartModel}" rendered="#{statisticDashboardBean.isTaskByPriority(chart)}"
         style="width: 100%; height:200px;">
         <f:attribute name="selectedChartId" value="#{chart.id}" />
-        <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByExpiry}" />
+        <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByPriority}" />
       </p:donutChart>
 
       <p:barChart styleClass="statistic-chart ui-g-12" model="#{chart.barChartModel}" rendered="#{statisticDashboardBean.isTaskByExpiry(chart)}"

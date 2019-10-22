@@ -3633,13 +3633,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   }
 }
 
-/* Large screen */
-@media (min-width: 1920px) {
-  .statistic-carousel {
-    width: 85% !important;
-  }
-}
-
 .statistic-carousel {
   width: 100%;
   text-align: center;
@@ -3978,18 +3971,8 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   animation: show-notification 15s;
 }
 
-@
-keyframes show-notification { 5% {
-  margin-top: 0;
-}
+@keyframes show-notification { 5% { margin-top: 0;} 95% { margin-top:0; }}
 
-95%
-{
-margin-top
-:
-0;
-}
-}
 .notification-content {
   flex-grow: 1;
   width: 430px;
@@ -4498,7 +4481,8 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: none repeat scroll 0 0 transparent !important;
-  text-indent: 0 !important;}
+  text-indent: 0 !important;
+}
 
 .ui-inplace .ui-inplace-editor .ui-button.ui-inplace-save .ui-icon-check:before {
   font-family: 'FontAwesome' !important;
@@ -4515,8 +4499,12 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   width: 32rem;
 }
 
+.statistic-case-category-tree .ui-tree-container {
+  max-width: 25.5rem;
+}
+
 .apply-filters-btn {
-	float: right;
+  float: right;
 }
 
 .statistic-filter-accordion-panel {
@@ -4524,27 +4512,29 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   padding: 0.5em 0 !important;
 }
 
-.statistic-filter-accordion-panel .ui-accordion-header {
-/* 	padding: 5px 5px 5px 30px !important; */
-}
-
-/* .statistic-filter-accordion-panel .ui-accordion-header, */
-/* .statistic-filter-accordion-panel .ui-accordion-header:hover, */
-/* .statistic-filter-accordion-panel .ui-accordion-header.ui-state-active { */
-/* 	background-color: #c7d426; */
-/* } */
-
 .statistic-filter-accordion-panel .ui-accordion-content {
-	border: solid 1px #E0E0E0 !important;
-	overflow-y: hidden !important;
+  border: solid 1px #E0E0E0 !important;
+  overflow-y: hidden !important;
 }
 
 .statistic-filter-container.ui-scrollpanel {
-	border: none;
-	padding: 0;
-	width: 100%;
-	padding-top: 5px;
-	padding-bottom: 5px;
+  border: none;
+  padding: 0;
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.statistic-case-category-tree {
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+}
+
+.statistic-case-category-tree .ui-tree-container {
+  height: 30rem;
+  width: 100%;
+  overflow: auto !important;
 }
 
 .statistic-filter-accordion-panel .item-label {
@@ -4552,122 +4542,112 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 
 .statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
-	background: none;
-	width: 20rem;
-	padding: 8px 0 !important;
+  background: none;
+  width: 20rem;
+  padding: 8px 0 !important;
 }
 
 .statistic-filter-main-container .ui-calendar .ui-inputfield.hasDatepicker {
-	transition: none !important;
-	width: 20rem;
+  transition: none !important;
+  width: 20rem;
 }
 
 .statistic-filter-main-container .period-time-selection {
-	margin-bottom: 10px;
-	display: block;
+  margin-bottom: 10px;
+  display: block;
 }
 
 .custom-field-panel-header-container {
-	padding: 0 10px;
+  padding: 0 10px;
 }
 
 .custom-val-selection {
-	width: 100% !important;
-	margin-bottom: 20px;
+  width: 100% !important;
+  margin-bottom: 20px;
 }
 
 .custom-val-selection .ui-autocomplete-input {
-	width: 90%;
+  width: 90%;
 }
 
 .add-custom-val {
-	float: right;
-	margin-top: 10px;
-	min-width: 10px !important;
-	height: 30px !important;
+  float: right;
+  margin-top: 10px;
+  min-width: 10px !important;
+  height: 30px !important;
 }
 
 .add-custom-val .ui-button-text {
-	min-width: 40px !important;
+  min-width: 40px !important;
 }
 
 .statistic-filter-accordion-panel .ui-selectmanycheckbox label {
-	display: inline-block;
-	margin-right: 0 !important;
+  display: inline-block;
+  margin-right: 0 !important;
 }
 
-.statistic-filter-container table.ui-selectmanycheckbox td > * {
-	vertical-align: middle !important;
+.statistic-filter-container table.ui-selectmanycheckbox td>* {
+  vertical-align: middle !important;
 }
 
 /* Medium screen */
-@media (min-width: 1366px) and (max-width: 1919px) {
-	.statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
-		background: none;
-		width: 20rem;
-		padding: 8px 0 !important;
-	}
+@media ( min-width : 1366px) and (max-width: 1919px) {
+  .statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
+    background: none;
+    width: 20rem;
+    padding: 8px 0 !important;
+  }
 }
 
 /* Small screen */
-@media (max-width: 1365px) {
-	.statistic-filter-accordion-panel {
-/* 		width: 23.5rem !important; */
-	}
-  
+@media ( max-width : 1365px) {
   .chart-list-container .filter-container {
     width: 23.5rem !important;
   }
-  
+  .statistic-case-category-tree .ui-tree-container {
+    max-width: 17.5rem;
+  }
   .edit-statistic-container {
-  padding-right: 23.5rem !important;
-}
-
-	.statistic-filter-accordion-panel .ui-accordion-header {
-/* 		width: 20rem; */
-	}
-
-	.statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
-		background: none;
-		width: 21rem;
-		padding: 8px 0 !important;
-	}
-
-	.filter-container .ui-inputfield.hasDatepicker {
-		width: 15.5rem !important;
-		}
-
-	.statistic-filter-container {
-		max-height: 20rem;
-		width: 18rem;
-		margin-top: 1rem;
-	}
-
-	.custom-val-selection .ui-autocomplete-input {
-		width: 86%;
-	}
+    padding-right: 23.5rem !important;
+  }
+  .statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
+    background: none;
+    width: 21rem;
+    padding: 8px 0 !important;
+  }
+  .filter-container .ui-inputfield.hasDatepicker {
+    width: 15.5rem !important;
+  }
+  .statistic-filter-container {
+    max-height: 20rem;
+    width: 18rem;
+    margin-top: 1rem;
+  }
+  .custom-val-selection .ui-autocomplete-input {
+    width: 86%;
+  }
 }
 
 .value-setting-dropdown .ui-selectonemenu-trigger.ui-state-default.ui-corner-right {
-	padding-left: 30px !important;
+  padding-left: 30px !important;
 }
 
-@media (max-width: 1080px) {
-	.confirm-save-setting-button, .cancel-save-setting-button {
-		min-width: 125px !important;
-	}
+@media ( max-width : 1080px) {
+  .confirm-save-setting-button, .cancel-save-setting-button {
+    min-width: 125px !important;
+  }
 }
 
 .select-all-checkbox, .ui-chkbox {
-	width: auto !important;
+  width: auto !important;
 }
 
 .select-all-checkbox {
-	padding-left: 3px;
+  padding-left: 3px;
 }
 
 .select-all-checkbox .ui-chkbox-box {
-	margin-right: 0px;
+  margin-right: 0px;
 }
 
 /*********** CASE AND TASK STATISTIC PAGE ***********/
@@ -4708,7 +4688,10 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
     padding-right: 0 !important;
   }
   .filter-container {
-    padding: 0 0.5em !important;
+    padding: 0.5em !important;
+  }
+  .statistic-case-category-tree .ui-tree-container {
+    max-width: 19rem !important;
   }
   .filter-widget-input.case-filter-component {
     padding-right: 35px !important;
