@@ -1,5 +1,5 @@
 [Ivy]
-16B40A95DA8F858E 3.28 #module
+16B40A95DA8F858E 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ds0 MotorbikeProviderForPortalExpress Big #zClass
 Ds0 B #cInfo
@@ -19,8 +19,7 @@ Ds0 @PushWFArc f2 '' #zField
 Ds0 @InfoButton f5 '' #zField
 >Proto Ds0 Ds0 MotorbikeProviderForPortalExpress #zField
 Ds0 f0 inParamDecl '<> param;' #txt
-Ds0 f0 outParamDecl '<List<java.lang.String> data> result;
-' #txt
+Ds0 f0 outParamDecl '<List<String> data> result;' #txt
 Ds0 f0 outParamTable 'result.data=in.items;
 ' #txt
 Ds0 f0 callSignature portalExpressDataProvider() #txt

@@ -1,5 +1,5 @@
-co: name={TaskItemDetail} description={} changed={2019-07-18 09:21:45 CEST} changedby={ntminh01} visualorder={0} guid={16C03F444D85CE3F} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={16C03F556DD30B76} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-07-18 09:21:20 CEST} validto={} changed={2019-07-18 09:21:45 CEST} changedby={ntminh01} properties={} id={}
-val: guid={16C03F444EBC2EE0} datatype={} isdefault={true} langid={en} description={} validfrom={2019-07-18 09:20:35 CEST} validto={} changed={2019-07-18 09:20:35 CEST} changedby={ntminh01} properties={} id={}
-val: guid={16C03F556D02986E} datatype={} isdefault={false} langid={es} description={} validfrom={2019-07-18 09:21:34 CEST} validto={} changed={2019-07-18 09:21:45 CEST} changedby={ntminh01} properties={} id={}
-val: guid={16C03F555FA8922B} datatype={} isdefault={false} langid={de} description={} validfrom={2019-07-18 09:21:30 CEST} validto={} changed={2019-07-18 09:21:45 CEST} changedby={ntminh01} properties={} id={}
+co: name={TaskItemDetail} description={} changed={2019-10-18 13:07:18 CEST} changedby={ttthai} visualorder={0} guid={16C03F444D85CE3F} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16C03F556DD30B76} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-10-18 13:07:18 CEST} validto={} changed={2019-10-18 13:07:18 CEST} changedby={ttthai} properties={} id={}
+val: guid={16C03F444EBC2EE0} datatype={} isdefault={true} langid={en} description={} validfrom={2019-10-18 13:07:18 CEST} validto={} changed={2019-10-18 13:07:18 CEST} changedby={ttthai} properties={} id={}
+val: guid={16C03F556D02986E} datatype={} isdefault={false} langid={es} description={} validfrom={2019-10-18 13:07:18 CEST} validto={} changed={2019-10-18 13:07:18 CEST} changedby={ttthai} properties={} id={}
+val: guid={16C03F555FA8922B} datatype={} isdefault={false} langid={de} description={} validfrom={2019-10-18 13:07:18 CEST} validto={} changed={2019-10-18 13:07:18 CEST} changedby={ttthai} properties={} id={}

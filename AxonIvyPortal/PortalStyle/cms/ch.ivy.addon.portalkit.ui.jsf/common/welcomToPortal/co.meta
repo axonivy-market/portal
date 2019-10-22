@@ -1,5 +1,5 @@
-co: name={welcomToPortal} description={} changed={2019-09-25 04:20:44 CEST} changedby={dhtlong} visualorder={0} guid={15F713A6D0C2EF04} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={welcomToPortal} description={} changed={2019-10-18 13:07:19 CEST} changedby={ttthai} visualorder={0} guid={15F713A6D0C2EF04} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={15F713A6D0EC8F9B} datatype={} isdefault={true} langid={en} description={} validfrom={2016-08-19 10:13:26 CEST} validto={} changed={2019-09-25 04:20:29 CEST} changedby={dhtlong} properties={} id={}
-val: guid={15F713A6D138C01D} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:04 CEST} validto={} changed={2019-09-25 04:20:43 CEST} changedby={dhtlong} properties={} id={}
-val: guid={168DA54BD85FE76E} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:33 CET} validto={} changed={2019-09-25 04:20:43 CEST} changedby={dhtlong} properties={} id={}
+val: guid={15F713A6D138C01D} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-10-18 13:07:19 CEST} validto={} changed={2019-10-18 13:07:19 CEST} changedby={ttthai} properties={} id={}
+val: guid={168DA54BD85FE76E} datatype={} isdefault={false} langid={es} description={} validfrom={2019-10-18 13:07:19 CEST} validto={} changed={2019-10-18 13:07:19 CEST} changedby={ttthai} properties={} id={}
 val: guid={15F713A6D17B7A9C} datatype={} isdefault={false} langid={de} description={} validfrom={2016-08-19 10:14:23 CEST} validto={} changed={2019-09-25 04:20:29 CEST} changedby={dhtlong} properties={} id={}
