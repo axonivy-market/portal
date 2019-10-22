@@ -1,5 +1,5 @@
 [Ivy]
-1624D16247B4E149 3.28 #module
+1624D16247B4E149 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ps0 TaskWidgetProcess Big #zClass
 Ps0 RD #cInfo
@@ -19,14 +19,11 @@ Ps0 f1 229 133 22 22 14 0 #rect
 Ps0 f1 @|UdProcessEndIcon #fIcon
 Ps0 f2 guid 1573377403EC1C55 #txt
 Ps0 f2 method useTaskViewWithMenuState(ch.ivy.addon.portal.generic.view.TaskView,String) #txt
-Ps0 f2 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portal.generic.view.TaskView taskView,java.lang.String menuState> param = methodEvent.getInputArguments();
-' #txt
+Ps0 f2 inParameterDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView,String menuState> param;' #txt
 Ps0 f2 inParameterMapAction 'out.menuState=param.menuState;
 out.taskView=param.taskView;
 ' #txt
-Ps0 f2 outParameterDecl '<> result;
-' #txt
+Ps0 f2 outParameterDecl '<> result;' #txt
 Ps0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

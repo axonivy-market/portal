@@ -1,5 +1,5 @@
 [Ivy]
-16250B8F9D64A11E 3.28 #module
+16250B8F9D64A11E 7.5.0 #module
 >Proto >Proto Collection #zClass
 Il0 InitializeTaskDataModel Big #zClass
 Il0 B #cInfo
@@ -20,8 +20,7 @@ Il0 @PushWFArc f4 '' #zField
 Il0 @GridStep f3 '' #zField
 >Proto Il0 Il0 InitializeTaskDataModel #zField
 Il0 f0 inParamDecl '<> param;' #txt
-Il0 f0 outParamDecl '<ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel> result;
-' #txt
+Il0 f0 outParamDecl '<ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel> result;' #txt
 Il0 f0 outParamTable 'result.dataModel=in.dataModel;
 ' #txt
 Il0 f0 callSignature call() #txt

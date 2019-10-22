@@ -1,5 +1,5 @@
 [Ivy]
-1475D5B079CBD2F2 3.28 #module
+1475D5B079CBD2F2 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ps0 ProcessLeaves2Process Big #zClass
 Ps0 RD #cInfo
@@ -20,14 +20,11 @@ Ps0 @PushWFArc f5 '' #zField
 >Proto Ps0 Ps0 ProcessLeaves2Process #zField
 Ps0 f0 guid 1475D5B07CAF2F91 #txt
 Ps0 f0 method start(internalPortal.ProcessStatus) #txt
-Ps0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<internalPortal.ProcessStatus processStatus> param = methodEvent.getInputArguments();
-' #txt
+Ps0 f0 inParameterDecl '<internalPortal.ProcessStatus processStatus> param;' #txt
 Ps0 f0 inParameterMapAction 'out.actualStepIndex=param.processStatus.actualStepIndex;
 out.steps=param.processStatus.steps;
 ' #txt
-Ps0 f0 outParameterDecl '<java.lang.String Mitarbeiter,ch.ivyteam.ivy.scripting.objects.Date Von,ch.ivyteam.ivy.scripting.objects.Date Bis,java.lang.String Art,java.lang.Boolean beantragt,java.lang.String Vertretung,internalPortal.ProcessStatus processStatus> result;
-' #txt
+Ps0 f0 outParameterDecl '<String Mitarbeiter,Date Von,Date Bis,String Art,Boolean beantragt,String Vertretung,internalPortal.ProcessStatus processStatus> result;' #txt
 Ps0 f0 outParameterMapAction 'result.Mitarbeiter=in.Mitarbeiter;
 result.Von=in.Von;
 result.Bis=in.Bis;
