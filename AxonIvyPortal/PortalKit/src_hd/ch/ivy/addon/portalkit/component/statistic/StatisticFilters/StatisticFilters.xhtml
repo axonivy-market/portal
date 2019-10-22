@@ -14,10 +14,10 @@
 <cc:implementation>
   <h:outputScript library="js" name="statistic-widget.js" />
   <c:set var="filter" value="#{cc.attrs.filter}" />
-<!--   <h:panelGrid columns="1"> -->
+
 <div class="ui-g">
     <div class="ui-g-12 u-padding-0">
-      <h:outputText value="Filters" styleClass="chart-filter-header-text"/>
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/filter')}" styleClass="chart-filter-header-text"/>
       <p:commandButton id="apply-filter-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/applyFilter')}"
         styleClass="apply-filters-btn" process="statistic-filter-accordion-panel" actionListener="#{cc.attrs.updateListener}"
         oncomplete="clearChartModels(); updateChartModels();" />
@@ -78,27 +78,13 @@
             #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/description")}: #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/caseCategoryFilterDescription")}
           </p:tooltip>
         </f:facet>
-  
-        <p:scrollPanel mode="native" rendered="#{not empty filter.caseCategories}" styleClass="statistic-filter-container scrollable">
-          <p:selectBooleanCheckbox id="categories-select-all" styleClass="select-all-checkbox"
-            itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll')}" value="#{filter.isAllCategoriesSelected}" >
-            <p:ajax global="false" listener="#{statisticChartCreationBean.updateCaseCategoriesCheckboxes(filter)}" update="categories" />
-          </p:selectBooleanCheckbox>
-          <p:selectManyCheckbox id="categories" disabled="#{filter.isAllCategoriesSelected}"
-            value="#{filter.selectedCaseCategories}" layout="grid" columns="1">
-            <f:selectItems value="#{filter.caseCategories}" var="category" itemValue="#{category.rawPath}" 
-              itemLabel="#{category.category.path}" />
-            <f:selectItem itemValue="" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory')}" />
-            <p:ajax global="false" />
-          </p:selectManyCheckbox>
-        </p:scrollPanel>
 
-<!--         <p:tree id="task-category-filter-tree" value="#{filter.caseCategories}" var="node" selectionMode="checkbox" -->
-<!--           filterBy="#{node}" filterMatchMode="contains" styleClass="filter-category-checkbox-tree"> -->
-<!--           <p:treeNode> -->
-<!--             <h:outputText value="#{node.value}" /> -->
-<!--           </p:treeNode> -->
-<!--         </p:tree> -->
+        <p:tree id="task-category-filter-tree" value="#{filter.caseCategories.root}" var="node" selectionMode="checkbox"
+          filterBy="#{node}" filterMatchMode="contains" styleClass="statistic-case-category-tree" selection="#{filter.caseCategories.categories}" >
+          <p:treeNode>
+            <h:outputText value="#{node.value}" />
+          </p:treeNode>
+        </p:tree>
       </p:tab>
   
       <!-- ROLE FILTER -->
@@ -202,7 +188,7 @@
       </c:forEach>
 
     </p:accordionPanel>
-<!--   </h:panelGrid> -->
+
 </div>
 
 </cc:implementation>
