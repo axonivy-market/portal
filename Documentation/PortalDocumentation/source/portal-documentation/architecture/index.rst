@@ -5,11 +5,11 @@ Architecture
 
 .. _axonivyportal.architecture.portalprocessmodulesstructure:
 
-   **Important**
+   .. important:: 
 
-   The css styles, java methods, etc., which are not documented, are
-   only used internally in Portal. Don't use them because they can be
-   changed in next versions.
+      The css styles, java methods, etc., which are not documented, are
+      only used internally in Portal. Don't use them because they can be
+      changed in next versions.
 
 Currently Portal system contains the following modules:
 
@@ -38,10 +38,10 @@ such as: background color, text color, border color, button color,
 focus/hover color. In the current version you have to change each color
 one by one. There are no common color definitions.
 
-   **Note**
+   .. note:: 
 
-   This module is prepared for process developers to override and keep
-   customer styles by editing CSS file, CMS's style.
+      This module is prepared for process developers to override and keep
+      customer styles by editing CSS file, CMS's style.
 
 .. _axonivyportal.architecture.portaltemplate:
 
