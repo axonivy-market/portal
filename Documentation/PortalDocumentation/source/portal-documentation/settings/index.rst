@@ -1,7 +1,7 @@
 .. _axonivyportal.settings:
-========
+
 Settings
-========
+********
 
 .. _axonivyportal.settings.thefirstsection:
 

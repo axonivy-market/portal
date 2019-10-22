@@ -1,8 +1,7 @@
 .. _axonivyportal.installation:
+
 Installation
 ************
-
-.. _axonivyportal.installation.releaseinstallation:
 
 Release installation
 ====================
