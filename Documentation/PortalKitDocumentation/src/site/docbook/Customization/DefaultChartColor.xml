@@ -11,24 +11,24 @@
 	<sect2 xml:id="axonivyportal.customization.defaultchartcolor.customization">
 		<title>Customization</title>
 		<para>
-			Create an override which overrides sub process <code>DefaultChartColor</code> in Portal Kit. This sub process return a list of default chart colors. Follow instruction to create chart color.
+			Create an override which overrides sub process <code>DefaultChartColors</code> in Portal Kit. This sub process return a list of default chart colors. Follow instruction to create chart color.
 			<mediaobject>
 				<imageobject>
-					<imagedata fileref="images/DefaultChart/DefaultChartColor.png" />
+					<imagedata fileref="images/DefaultChartColor/DefaultChartColor.png" />
 				</imageobject>
 			</mediaobject>
 		</para>
-		<para>Portal introduces <code>StatisticColors</code> object. We use it to provide color, also provide some default constant, you can reuse
+		<para>Portal introduces <code>StatisticColors</code> object. We use it to build <code>DataSet</code> color, also provide some default constant, you can refer.
 			<mediaobject>
 				<imageobject>
-					<imagedata fileref="images/DefaultChart/StatisticColor.png" />
+					<imagedata fileref="images/DefaultChartColor/StatisticColor.png" />
 				</imageobject>
 			</mediaobject>
 		</para>
 		<para>In Portal home, you can override color of Statistic Carousel header by re-define value of below variables in customization.scss:
 			<orderedlist>
 				<listitem><para><code>$statisticPanelHeader</code> to override background color of Carousel header</para></listitem>
-				<listitem><para><code>$statisticPanelHeaderBorder</code></para> to override border color of Carousel header</listitem>
+				<listitem><para><code>$statisticPanelHeaderBorder</code> to override border color of Carousel header</para></listitem>
 				<listitem><para><code>$statisticPanelHeaderText</code> to override text color of Carousel header</para></listitem>
 			</orderedlist>
 		</para>
