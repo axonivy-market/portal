@@ -160,11 +160,19 @@ public final class TaskUtils {
   }
   
   public static boolean isTaskCurrentOpeningTask(ITask task){
-	    var wfTask = Ivy.wfTask();
-	    var currentTaskAppName = Optional.of(wfTask).map(ITask::getApplication).map(IApplication::getName).orElse("");
-	    var taskAppName = Optional.of(task).map(ITask::getApplication).map(IApplication::getName).orElse("");
-	    return task.getState() == TaskState.RESUMED &&
-	        task.getId() == wfTask.getId() &&
-	        taskAppName.equals(currentTaskAppName);
-	  }
+	  try {
+  		return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+  			  var wfTask = Ivy.wfTask();
+  			  var currentTaskAppName = Optional.of(wfTask).map(ITask::getApplication).map(IApplication::getName).orElse("");
+  			  var taskAppName = Optional.of(task).map(ITask::getApplication).map(IApplication::getName).orElse("");
+  			  return task.getState() == TaskState.RESUMED &&
+  					  task.getId() == wfTask.getId() &&
+  					  taskAppName.equals(currentTaskAppName);
+  		});
+  	} catch (Exception e) {
+  		// TODO Auto-generated catch block
+  		Ivy.log().error(e);
+  		return false;
+  	}
+  }
 }
