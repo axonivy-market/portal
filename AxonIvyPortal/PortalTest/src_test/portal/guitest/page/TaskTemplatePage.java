@@ -96,8 +96,9 @@ public class TaskTemplatePage extends TemplatePage {
   }
   
   public void clickAdhocCreationButton() {
-    String adhocButtonCssSelection = "a[id$='start-adhoc']";
-    findElementByCssSelector(adhocButtonCssSelection).click();
+    findElementByCssSelector("#task-actions").click();
+    waitForElementDisplayed(By.cssSelector("a[id$='start-adhoc']"), true);
+    findElementByCssSelector("a[id$='start-adhoc']").click();
     waitAjaxIndicatorDisappear();
   }
   
@@ -120,13 +121,13 @@ public class TaskTemplatePage extends TemplatePage {
   }
   
   public boolean isAdhocHistoryDialogExist() {
-    String adhocHistoryBtnCSSSelection = "div[id$='adhoc-task-history-dialog']";
-    return findElementByCssSelector(adhocHistoryBtnCSSSelection).isDisplayed();
+    return findElementByCssSelector("div[id$='adhoc-task-history-dialog']").isDisplayed();
   }
   
   public void clickShowAdhocHistoryBtn() {
-    String adhocHistoryBtnCSSSelection = "a[id$='show-adhoc-history']";
-    findElementByCssSelector(adhocHistoryBtnCSSSelection).click();
+    findElementByCssSelector("#task-actions").click();
+    waitForElementDisplayed(By.cssSelector("a[id$='show-adhoc-history']"), true);
+    findElementByCssSelector("a[id$='show-adhoc-history']").click();
     waitAjaxIndicatorDisappear();
   }
 
@@ -141,8 +142,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
   
   public void closeAdhocHistoryDialog() {
-    String adhocButtonCssSelection = "button[id$='close-adhoc-dialog-button']";
-    findElementByCssSelector(adhocButtonCssSelection).click();
+    findElementByCssSelector("button[id$='close-adhoc-dialog-button']").click();
     waitAjaxIndicatorDisappear();
   }
   

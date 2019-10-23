@@ -138,6 +138,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void filterTasksInExpendedModeBy(String keyword) {
+    waitForElementDisplayed(By.cssSelector(KEYWORD_FILTER_SELECTOR_EXPANDED_MODE), true);
     WebElement keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR_EXPANDED_MODE);
     keywordFilter.clear();
     keywordFilter.sendKeys(keyword);
@@ -283,7 +284,9 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public boolean isTaskListColumnExist(String columnHeaderText) {
-    WebElement taskListHeader = findElementById(taskWidgetId + ":task-widget-sort-menu");
+    String taskListHeaderSelector = taskWidgetId + ":task-widget-sort-menu";
+    waitForElementDisplayed(By.id(taskListHeaderSelector), true);
+    WebElement taskListHeader = findElementById(taskListHeaderSelector);
     for (WebElement column : taskListHeader.findElements(By.tagName("a"))) {
       if (columnHeaderText.equals(column.getText())) {
         return true;
