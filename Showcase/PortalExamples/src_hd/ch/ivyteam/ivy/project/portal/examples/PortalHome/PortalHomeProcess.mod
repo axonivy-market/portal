@@ -1,5 +1,5 @@
 [Ivy]
-1624C8263F9A746E 3.28 #module
+1624C8263F9A746E 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalHomeProcess Big #zClass
 Ps0 RD #cInfo
@@ -32,11 +32,8 @@ Ps0 f0 83 51 26 26 -16 15 #rect
 Ps0 f0 @|UdInitIcon #fIcon
 Ps0 f1 guid 1681819D0CB59915 #txt
 Ps0 f1 method checkValue() #txt
-Ps0 f1 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ps0 f1 outParameterDecl '<> result;
-' #txt
+Ps0 f1 inParameterDecl '<> param;' #txt
+Ps0 f1 outParameterDecl '<> result;' #txt
 Ps0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

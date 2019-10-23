@@ -40,7 +40,7 @@
           
           <p:tab id="task-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}" titleStyleClass="task-tab-title"
             rendered="#{taskWidgetBean.showFullTaskList}">
-            <div class="task-list-container js-task-list-container js-for-search-result MarTop20">
+            <div class="task-list-container js-task-list-container js-for-search-result">
               <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-results" listHeaderStyleClass="task-in-search"
                 keyword="#{dataModel.taskDataModel.criteria.keyword}" hideTaskFilter="true" currentPortalPage="SEARCH_RESULTS"
                 dataModel="#{dataModel.taskDataModel}" hideWidgetHeader="true" compactMode="false">

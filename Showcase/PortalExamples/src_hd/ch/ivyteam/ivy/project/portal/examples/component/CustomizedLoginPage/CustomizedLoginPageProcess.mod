@@ -1,5 +1,5 @@
 [Ivy]
-1657E0FF6C38F055 3.28 #module
+1657E0FF6C38F055 7.5.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CustomizedLoginPageProcess Big #zClass
 Cs0 RD #cInfo
@@ -66,11 +66,8 @@ Cs0 f5 165 91 36 24 20 -2 #rect
 Cs0 f5 @|StepIcon #fIcon
 Cs0 f0 guid 1657B2902F8447B8 #txt
 Cs0 f0 method start() #txt
-Cs0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Cs0 f0 outParameterDecl '<> result;
-' #txt
+Cs0 f0 inParameterDecl '<> param;' #txt
+Cs0 f0 outParameterDecl '<> result;' #txt
 Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
