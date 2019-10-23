@@ -19,36 +19,35 @@
 
       <h:outputText id="carousel-effect-duration" value="#{carouselStatistic.effectDuration}" />
     </h:panelGroup>
-    <h:panelGroup styleClass="ui-g-12">
-      <p:donutChart styleClass="statistic-chart ui-g-12" model="#{chart.donutChartModel}" rendered="#{statisticDashboardBean.isTaskByPriority(chart)}"
-        style="width: 100%; height:200px;">
-        <f:attribute name="selectedChartId" value="#{chart.id}" />
-        <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByPriority}" />
-      </p:donutChart>
 
-      <p:barChart styleClass="statistic-chart ui-g-12" model="#{chart.barChartModel}" rendered="#{statisticDashboardBean.isTaskByExpiry(chart)}"
-        style="width: 100%; height:200px;">
-        <f:attribute name="selectedChartId" value="#{chart.id}" />
-        <p:ajax event="itemSelect" listener="#{logic.toTaskByExpiryTaskListFromHomePage}" update="#{p:component('widget-container')}" />
-      </p:barChart>
+    <p:donutChart styleClass="statistic-chart ui-g-12" model="#{chart.donutChartModel}" rendered="#{statisticDashboardBean.isTaskByPriority(chart)}"
+      style="width: 100%; height:200px;">
+      <f:attribute name="selectedChartId" value="#{chart.id}" />
+      <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByPriority}" />
+    </p:donutChart>
 
-      <p:donutChart styleClass="statistic-chart ui-g-12" model="#{chart.donutChartModel}" rendered="#{statisticDashboardBean.isCaseByState(chart)}"
-        style="width: 100%; height:200px;">
-        <f:attribute name="selectedChartId" value="#{chart.id}" />
-        <p:ajax event="itemSelect" listener="#{logic.drilldownCaseByState}" />
-      </p:donutChart>
+    <p:barChart styleClass="statistic-chart ui-g-12" model="#{chart.barChartModel}" rendered="#{statisticDashboardBean.isTaskByExpiry(chart)}"
+      style="width: 100%; height:200px;">
+      <f:attribute name="selectedChartId" value="#{chart.id}" />
+      <p:ajax event="itemSelect" listener="#{logic.toTaskByExpiryTaskListFromHomePage}" update="#{p:component('widget-container')}" />
+    </p:barChart>
 
-      <p:barChart styleClass="statistic-chart ui-g-12" model="#{chart.barChartModel}" style="width: 100%; height:200px;"
-        rendered="#{statisticDashboardBean.isElapsedTimeByCaseCategory(chart)}" />
+    <p:donutChart styleClass="statistic-chart ui-g-12" model="#{chart.donutChartModel}" rendered="#{statisticDashboardBean.isCaseByState(chart)}"
+      style="width: 100%; height:200px;">
+      <f:attribute name="selectedChartId" value="#{chart.id}" />
+      <p:ajax event="itemSelect" listener="#{logic.drilldownCaseByState}" />
+    </p:donutChart>
 
-      <p:donutChart styleClass="statistic-chart ui-g-12" model="#{chart.donutChartModel}" style="width: 100%; height:200px;"
-        rendered="#{statisticDashboardBean.isCaseByFinishedTask(chart)}">
-      </p:donutChart>
+    <p:barChart styleClass="statistic-chart ui-g-12" model="#{chart.barChartModel}" style="width: 100%; height:200px;"
+      rendered="#{statisticDashboardBean.isElapsedTimeByCaseCategory(chart)}" />
 
-      <p:donutChart styleClass="statistic-chart ui-g-12" model="#{chart.donutChartModel}" style="width: 100%; height:200px;"
-        rendered="#{statisticDashboardBean.isCaseByFinishedTime(chart)}">
-      </p:donutChart>
-    </h:panelGroup>
+    <p:donutChart styleClass="statistic-chart ui-g-12" model="#{chart.donutChartModel}" style="width: 100%; height:200px;"
+      rendered="#{statisticDashboardBean.isCaseByFinishedTask(chart)}">
+    </p:donutChart>
+
+    <p:donutChart styleClass="statistic-chart ui-g-12" model="#{chart.donutChartModel}" style="width: 100%; height:200px;"
+      rendered="#{statisticDashboardBean.isCaseByFinishedTime(chart)}">
+    </p:donutChart>
   </h:panelGroup>
 
   <ui:include src="ChartDetailsDialog.xhtml">
