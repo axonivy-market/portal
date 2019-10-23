@@ -306,7 +306,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .widget-sort-menu.full-mode {
   flex: 1 0 100%;
-  height: 30px;
   display: flex;
   align-items: flex-end;
   line-height: normal;
@@ -895,7 +894,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 .case-widget-container .widget-column-header,
 .case-default-widget-container .widget-column-header {
   flex: 1 0 100%;
-  height: 30px;
   display: flex;
   align-items: flex-end;
   line-height: normal;
@@ -1663,7 +1661,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 }
 
 .compact-processes-container .process-start-list-item {
- margin: 2px 3px 5px 2px;
+  margin: 2px 3px 5px 2px;
 }
 
 /* Fix for screen Full HD */
@@ -1676,6 +1674,12 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 @media  screen and (min-width: 1024px) {
   .compact-processes-container {
     max-height: 275px;
+  }
+}
+
+@media  screen and (max-height: 1023px) {
+  .compact-processes-container {
+    max-height: 165px;
   }
 }
 
@@ -1861,6 +1865,7 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 
 .task-widget .sort-task-menu {
   width: 100%;
+  margin-top: 8px;
 }
 
 .task-widget .filter-add-container {
@@ -3122,6 +3127,12 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   top: 25vh !important;
 }
 
+@media  screen and (max-height: 615px) {
+  .admin-ui-dialog .ui-dialog-content {
+    height: 55vh !important;
+  }
+}
+
 .admin-settings-no-permission-message {
   color: #E53935;
 }
@@ -3620,14 +3631,14 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 /* Small screen */
-@media (max-width: 1365px) {
+@media screen and (max-width: 64.062em) {
   .ui-carousel .ui-carousel-header .ui-carousel-header-title {
     max-width: 70% !important;
   }
 }
 
 /* Medium screen */
-@media (min-width: 1366px) and (max-width: 1919px) {
+@media screen and (min-width: 64.063em) and (max-width: 90.062em) {
   .ui-carousel .ui-carousel-header .ui-carousel-header-title {
     max-width: 72% !important;
   }
@@ -3774,7 +3785,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 /* Small screen */
-@media (max-width: 1365px) {
+@media screen and (max-width: 64.062em) {
   .statistic-chart {
     margin: auto;
   }
@@ -3785,7 +3796,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 /* Large screen */
-@media (min-width: 1920px) {
+@media screen and (min-width: 90.063em) {
   .edit-statistic-container .chart-list {
     width: 85%;
   }
