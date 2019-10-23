@@ -13,6 +13,7 @@
     /Functional-Processes.SetGroupChatName "Functional Processes/SetGroupChatNameOverride"
     /Functional-Processes.InitializeCaseDataModel "Functional Processes/InitializeCaseDataModelOverride"
     /Functional-Processes.GetDocumentList "Functional Processes/GetDocumentListOverride"
+    /Functional-Processes.OpenPortalCaseDetailsHook "Functional Processes/OpenPortalCaseDetailsOverride"
     /Functional-Processes.OpenPortalTasks "Functional Processes/OpenPortalTasksOverride"
     /Functional-Processes.DefaultChartColors "Functional Processes/DefaultChartColorsOverride"
     /Functional-Processes.BuildTaskQuery "Functional Processes/BuildTaskQueryOverride"
