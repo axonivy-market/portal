@@ -27,14 +27,14 @@
     <h:panelGroup id="create-chart-header" layout="block" rendered="#{!cc.attrs.compactMode}" styleClass="statistic-actions-panel ui-g">
       <h:panelGroup layout="block" rendered="#{!data.createMode}" styleClass="ui-g-12 u-padding-0">
         <p:commandLink id="create-chart-link" actionListener="#{logic.switchCreateMode}" update="widget-container create-chart-header"
-          rendered="#{!data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart and !data.createMode and data.canCreateNewCharts}">
-          <h:outputText styleClass="fa fa-plus" rendered="#{!data.createMode and data.canCreateNewCharts}" />
+          rendered="#{!data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart and data.canCreateNewCharts}">
+          <h:outputText styleClass="fa fa-plus" rendered="#{data.canCreateNewCharts}" />
           <p:spacer width="3px" />
-          <h:outputText id="create-chart-link-label" rendered="#{!data.createMode and data.canCreateNewCharts}"
+          <h:outputText id="create-chart-link-label" rendered="#{data.canCreateNewCharts}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/addChart')}" />
         </p:commandLink>
         <p:commandLink id="restore-default-chart-link" onclick="PF('restore-confirmation-dialog').show();"
-          rendered="#{!data.createMode and !data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart 
+          rendered="#{!data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart 
           and data.hasDefaultChart and data.canCreateNewCharts}">
           <p:spacer width="10px" />
           <i class="fa fa-refresh" />
@@ -51,7 +51,7 @@
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/backToDashboard')}" />
         </p:commandLink>
         <p:commandLink id="task-analysis-page-navigation-link" actionListener="#{logic.navigateToTaskAnalysisPage}"
-          rendered="#{!data.createMode and data.canAnalyzeTask and !data.isDrilldownElapsedTime}" styleClass="task-analysis-page-navigation-link">
+          rendered="#{data.canAnalyzeTask and !data.isDrilldownElapsedTime}" styleClass="task-analysis-page-navigation-link">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/navigationLink')}" />
         </p:commandLink>
       </h:panelGroup>
