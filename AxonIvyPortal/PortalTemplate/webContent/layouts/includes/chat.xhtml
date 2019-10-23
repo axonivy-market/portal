@@ -38,10 +38,6 @@
     <h:outputStylesheet library="css" name="chat.css" />
     <div id="chat-panel" class="chat-panel js-chat-panel">
       <div class="chat-contact">
-        <div class="close-chat">
-          <p:commandButton icon="ui-icon-circle-close" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" global="false"
-            oncomplete="view.closeChatPanel();"/>
-        </div>
         <div class="chat-contact-content-contact-list js-chat-contact-list">
           <div class="chat-contact-type-header" jsf:rendered="#{chatRendererBean.isGroupChatRendered and chatRendererBean.isPrivateChatRendered}">
             #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/groupChatHeader')}
@@ -51,6 +47,10 @@
             #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/personalChatHeader')}
           </div>
           <h:panelGroup id="private-chat-container" class="js-private-chat-container" layout="block" rendered="#{chatRendererBean.isPrivateChatRendered}" />
+        </div>
+        <div class="close-chat">
+          <p:commandButton icon="fa fa-chevron-right" global="false"
+            oncomplete="view.closeChatPanel();"/>
         </div>
       </div>
       <div class="message-list js-chat-message-container">
