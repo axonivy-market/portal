@@ -2,89 +2,93 @@ body {
     /* Messages */
     .ui-messages {
         > div {
-            padding: 10px 16px;
+            padding: 1em;
         }
-        
+
         ul {
             display: inline-block;
             margin-left: 0;
         }
-        
+
         .ui-messages-info {
             background-color: #2196F3;
             border-color: #2196F3;
             color: #ffffff;
-            
+
             .ui-messages-close:hover {
                 background-color: lighten(#2196F3,15%);
             }
         }
-        
+
         .ui-messages-warn {
             background-color: #ffc107;
             border-color: #ffc107;
             color: #000000;
-            
+
             .ui-messages-close:hover {
                 background-color: lighten(#ffc107,15%);
             }
         }
-        
+
         .ui-messages-error {
             background-color: #e62a10;
             border-color: #e62a10;
             color: #ffffff;
-            
+
             .ui-messages-close:hover {
                 background-color: lighten(#e62a10,15%);
             }
         }
-        
+
         .ui-messages-fatal {
             background-color: #212121;
             border-color: #212121;
             color: #ffffff;
-            
+
             .ui-messages-close:hover {
                 background-color: lighten(#212121,15%);
             }
         }
     }
 
-    .ui-message {  
+    .ui-message {
         padding: 4px 8px;
-              
+
         &.ui-message-info {
             background-color: #2196F3;
             border-color: #2196F3;
             color: #ffffff;
         }
-        
+
         &.ui-message-warn {
             background-color: #ffc107;
             border-color: #ffc107;
             color: #ffffff;
         }
-        
+
         &.ui-message-error {
             background-color: #e62a10;
             border-color: #e62a10;
             color: #ffffff;
         }
-        
+
         &.ui-message-fatal {
             background-color: #212121;
             border-color: #212121;
             color: #ffffff;
         }
-        
+
         &.ui-message-icon-only {
             text-align: center;
-            
+            width: 2.571em;
+            height: 1.857em;
+
             span {
                 float: none;
-                margin-top: -1px;
+                margin-top: 0;
                 position: static;
+                position: relative;
+                top: -2px;
             }
         }
     }
@@ -124,10 +128,10 @@ body {
         font-size: 24px;
         color: $textColor;
     }
-    
+
     .ui-messages .ui-messages-warn {
         .ui-messages-close {
-            color: $textColor; 
+            color: $textColor;
         }
     }
 
@@ -159,7 +163,7 @@ body {
         @include border-radius(50%);
         @include transition(background-color $transitionDuration);
     }
-    
+
     .md-inputfield {
         .ui-message {
             &.ui-message-error {
@@ -168,7 +172,7 @@ body {
                 margin: 0px;
                 color: $inputErrorTextColor;
                 font-size: $errorMessageFontSize;
-                
+
                 .ui-message-error-icon {
                     color: $inputErrorTextColor;
                     font-size: $errorMessageIconFontSize;
@@ -179,10 +183,10 @@ body {
 
     .ui-growl {
         top: 90px;
-        
+
         > .ui-growl-item-container {
             opacity: 1;
-            
+
             &.ui-growl-info {
                 background-color: #2196F3;
             }
@@ -198,48 +202,48 @@ body {
             &.ui-growl-fatal {
                 background-color: #212121;
             }
-            
+
             &.ui-shadow {
                 @include overlay-content-shadow();
             }
         }
-        
+
         .ui-growl-item {
             .ui-growl-image {
                 background: none;
                 color: #ffffff;
-                padding: 4px;         
-    
+                padding: 4px;
+
                 &.ui-growl-image-info {
-                    @include material-icon("\e88e");        
+                    @include material-icon("\e88e");
                     font-size: 36px;
                 }
-                
+
                 &.ui-growl-image-error {
                     @include material-icon("\e000");
                     font-size: 36px;
                 }
-                
+
                 &.ui-growl-image-warn {
                     @include material-icon("\e002");
                     font-size: 36px;
                 }
-                
+
                 &.ui-growl-image-fatal {
                     @include material-icon("\e000");
                     font-size: 36px;
                 }
             }
-            
+
             .ui-growl-message {
                 color: #ffffff;
             }
-            
+
             .ui-growl-icon-close {
                 @include material-icon("\e5cd");
                 font-size: 24px;
                 color: #ffffff;
-            }        
+            }
         }
     }
 }

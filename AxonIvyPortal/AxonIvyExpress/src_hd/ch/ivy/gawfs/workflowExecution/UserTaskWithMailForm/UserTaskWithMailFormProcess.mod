@@ -1,5 +1,5 @@
 [Ivy]
-16343BD885A12720 3.28 #module
+16343BD885A12720 7.5.0 #module
 >Proto >Proto Collection #zClass
 Us0 UserTaskWithMailFormProcess Big #zClass
 Us0 RD #cInfo
@@ -31,13 +31,10 @@ Us0 @PushWFArc f5 '' #zField
 >Proto Us0 Us0 UserTaskWithMailFormProcess #zField
 Us0 f0 guid 162F0A4FA20C17F1 #txt
 Us0 f0 method start(gawfs.ExecutePredefinedWorkflowData) #txt
-Us0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<gawfs.ExecutePredefinedWorkflowData executePredefinedWorkflowData> param = methodEvent.getInputArguments();
-' #txt
+Us0 f0 inParameterDecl '<gawfs.ExecutePredefinedWorkflowData executePredefinedWorkflowData> param;' #txt
 Us0 f0 inParameterMapAction 'out.executePredefinedWorkflowData=param.executePredefinedWorkflowData;
 ' #txt
-Us0 f0 outParameterDecl '<gawfs.ExecutePredefinedWorkflowData executePredefinedWorkflowData> result;
-' #txt
+Us0 f0 outParameterDecl '<gawfs.ExecutePredefinedWorkflowData executePredefinedWorkflowData> result;' #txt
 Us0 f0 outParameterMapAction 'result.executePredefinedWorkflowData=in.executePredefinedWorkflowData;
 ' #txt
 Us0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -69,11 +66,8 @@ Us0 f4 595 147 26 26 0 12 #rect
 Us0 f4 @|UdExitEndIcon #fIcon
 Us0 f8 guid 162F0A6B9E82BE32 #txt
 Us0 f8 method cancel() #txt
-Us0 f8 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Us0 f8 outParameterDecl '<> result;
-' #txt
+Us0 f8 inParameterDecl '<> param;' #txt
+Us0 f8 outParameterDecl '<> result;' #txt
 Us0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

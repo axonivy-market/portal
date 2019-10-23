@@ -1,5 +1,5 @@
 [Ivy]
-16A68510A341BE6E 3.28 #module
+16A68510A341BE6E 7.5.0 #module
 >Proto >Proto Collection #zClass
 Cr0 CaseOwner Big #zClass
 Cr0 B #cInfo
@@ -28,11 +28,7 @@ Cr0 @TkArc f12 '' #zField
 Cr0 @PushWFArc f13 '' #zField
 >Proto Cr0 Cr0 CaseOwner #zField
 Cr0 f0 outLink userIsOwner.ivp #txt
-Cr0 f0 type internaltest.CaseOwnerData #txt
 Cr0 f0 inParamDecl '<> param;' #txt
-Cr0 f0 actionDecl 'internaltest.CaseOwnerData out;
-' #txt
-Cr0 f0 guid 16A68510A49B15B3 #txt
 Cr0 f0 requestEnabled true #txt
 Cr0 f0 triggerEnabled false #txt
 Cr0 f0 callSignature userIsOwner() #txt
@@ -51,16 +47,12 @@ Cr0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cr0 f0 @C|.responsibility Everybody #txt
 Cr0 f0 81 49 30 30 -38 15 #rect
 Cr0 f0 @|StartRequestIcon #fIcon
-Cr0 f1 type internaltest.CaseOwnerData #txt
 Cr0 f1 433 49 30 30 0 15 #rect
 Cr0 f1 @|EndIcon #fIcon
-Cr0 f3 actionDecl 'internaltest.CaseOwnerData out;
-' #txt
 Cr0 f3 actionTable 'out=in;
 ' #txt
 Cr0 f3 actionCode ivy.case.setOwner(ivy.wf.getSecurityContext().findUser("demo")); #txt
 Cr0 f3 security system #txt
-Cr0 f3 type internaltest.CaseOwnerData #txt
 Cr0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -73,17 +65,13 @@ Cr0 f3 160 42 128 44 -40 -16 #rect
 Cr0 f3 @|StepIcon #fIcon
 Cr0 f4 expr out #txt
 Cr0 f4 111 64 160 64 #arcP
-Cr0 f5 actionDecl 'internaltest.CaseOwnerData out;
-' #txt
 Cr0 f5 actionTable 'out=in1;
 ' #txt
-Cr0 f5 outTypes "internaltest.CaseOwnerData" #txt
 Cr0 f5 outLinks "TaskA.ivp" #txt
 Cr0 f5 caseData 'case.name=demo user is owner' #txt
 Cr0 f5 taskData 'TaskA.NAM=demo user is owner
 TaskA.ROL=CREATOR
 TaskA.TYPE=0' #txt
-Cr0 f5 type internaltest.CaseOwnerData #txt
 Cr0 f5 template "" #txt
 Cr0 f5 336 48 32 32 0 16 #rect
 Cr0 f5 @|TaskSwitchIcon #fIcon
@@ -94,11 +82,7 @@ Cr0 f2 expr data #txt
 Cr0 f2 outCond ivp=="TaskA.ivp" #txt
 Cr0 f2 368 64 433 64 #arcP
 Cr0 f7 outLink roleIsOwner.ivp #txt
-Cr0 f7 type internaltest.CaseOwnerData #txt
 Cr0 f7 inParamDecl '<> param;' #txt
-Cr0 f7 actionDecl 'internaltest.CaseOwnerData out;
-' #txt
-Cr0 f7 guid 16A68752357E9CDF #txt
 Cr0 f7 requestEnabled true #txt
 Cr0 f7 triggerEnabled false #txt
 Cr0 f7 callSignature roleIsOwner() #txt
@@ -117,30 +101,22 @@ Cr0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cr0 f7 @C|.responsibility Everybody #txt
 Cr0 f7 81 145 30 30 -45 17 #rect
 Cr0 f7 @|StartRequestIcon #fIcon
-Cr0 f8 actionDecl 'internaltest.CaseOwnerData out;
-' #txt
 Cr0 f8 actionTable 'out=in1;
 ' #txt
-Cr0 f8 outTypes "internaltest.CaseOwnerData" #txt
 Cr0 f8 outLinks "TaskA.ivp" #txt
 Cr0 f8 caseData 'case.name=Test role is owner' #txt
 Cr0 f8 taskData 'TaskA.NAM=Test role is owner
 TaskA.ROL=CREATOR
 TaskA.TYPE=0' #txt
-Cr0 f8 type internaltest.CaseOwnerData #txt
 Cr0 f8 template "" #txt
 Cr0 f8 336 144 32 32 0 16 #rect
 Cr0 f8 @|TaskSwitchIcon #fIcon
-Cr0 f9 type internaltest.CaseOwnerData #txt
 Cr0 f9 433 145 30 30 0 15 #rect
 Cr0 f9 @|EndIcon #fIcon
-Cr0 f10 actionDecl 'internaltest.CaseOwnerData out;
-' #txt
 Cr0 f10 actionTable 'out=in;
 ' #txt
 Cr0 f10 actionCode ivy.case.setOwner(ivy.wf.getSecurityContext().findRole("CaseOwner")); #txt
 Cr0 f10 security system #txt
-Cr0 f10 type internaltest.CaseOwnerData #txt
 Cr0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

@@ -91,8 +91,6 @@
 	<h:outputScript name="process-history.js" library="js" />
 	<script type="text/javascript">
     var caseWidget = new CaseWidget();
-    var processHistory = new processHistory;
-    processHistory.setup();
     caseWidget.hideListIfEmptyCase(#{processHistoryBean.dataModel.rowCount eq 0});
   </script>
 </cc:implementation>

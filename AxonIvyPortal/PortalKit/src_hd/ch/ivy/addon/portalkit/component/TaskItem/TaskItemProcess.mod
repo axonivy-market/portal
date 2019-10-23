@@ -1,5 +1,5 @@
 [Ivy]
-150CB86EFC2F2972 3.28 #module
+150CB86EFC2F2972 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemProcess Big #zClass
 Ts0 RD #cInfo
@@ -161,14 +161,11 @@ Ts0 f3 339 683 26 26 0 12 #rect
 Ts0 f3 @|UdProcessEndIcon #fIcon
 Ts0 f108 guid 161932E544273665 #txt
 Ts0 f108 method setSelectedTaskAndDataModel(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel) #txt
-Ts0 f108 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel> param = methodEvent.getInputArguments();
-' #txt
+Ts0 f108 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel> param;' #txt
 Ts0 f108 inParameterMapAction 'out.dataModel=param.dataModel;
 out.task=param.task;
 ' #txt
-Ts0 f108 outParameterDecl '<> result;
-' #txt
+Ts0 f108 outParameterDecl '<> result;' #txt
 Ts0 f108 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -180,11 +177,8 @@ Ts0 f108 83 587 26 26 -85 17 #rect
 Ts0 f108 @|UdMethodIcon #fIcon
 Ts0 f30 guid 16816C2D98C57DA7 #txt
 Ts0 f30 method resetAndOpenTask() #txt
-Ts0 f30 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ts0 f30 outParameterDecl '<> result;
-' #txt
+Ts0 f30 inParameterDecl '<> param;' #txt
+Ts0 f30 outParameterDecl '<> result;' #txt
 Ts0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -300,13 +294,10 @@ Ts0 f95 expr out #txt
 Ts0 f95 109 992 339 992 #arcP
 Ts0 f76 guid 15F8F5A744248DE3 #txt
 Ts0 f76 method autoCompleteForUserDelegate(String) #txt
-Ts0 f76 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.String query> param = methodEvent.getInputArguments();
-' #txt
+Ts0 f76 inParameterDecl '<String query> param;' #txt
 Ts0 f76 inParameterMapAction 'out.queryAutoComplete=param.query;
 ' #txt
-Ts0 f76 outParameterDecl '<java.util.List<ch.ivyteam.ivy.security.IUser> usersToDelegate> result;
-' #txt
+Ts0 f76 outParameterDecl '<java.util.List<ch.ivyteam.ivy.security.IUser> usersToDelegate> result;' #txt
 Ts0 f76 outActionCode 'import ch.ivy.addon.portalkit.util.UserUtils;
 
 result.usersToDelegate = UserUtils.filterUsers(in.usersToDelegate, in.queryAutoComplete);
@@ -353,14 +344,11 @@ Ts0 f81 expr out #txt
 Ts0 f81 109 504 160 504 #arcP
 Ts0 f97 guid 1602EFA80B079E1D #txt
 Ts0 f97 method validate(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel) #txt
-Ts0 f97 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel> param = methodEvent.getInputArguments();
-' #txt
+Ts0 f97 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel> param;' #txt
 Ts0 f97 inParameterMapAction 'out.dataModel=param.dataModel;
 out.task=param.task;
 ' #txt
-Ts0 f97 outParameterDecl '<> result;
-' #txt
+Ts0 f97 outParameterDecl '<> result;' #txt
 Ts0 f97 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -428,13 +416,10 @@ Ts0 f69 109 896 339 896 #arcP
 Ts0 f69 0 0.61063400144005 0 0 #arcLabel
 Ts0 f96 guid 15F940442EBC4F26 #txt
 Ts0 f96 method autoCompleteForRoleDelegate(String) #txt
-Ts0 f96 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.String query> param = methodEvent.getInputArguments();
-' #txt
+Ts0 f96 inParameterDecl '<String query> param;' #txt
 Ts0 f96 inParameterMapAction 'out.queryAutoComplete=param.query;
 ' #txt
-Ts0 f96 outParameterDecl '<java.util.List<ch.ivyteam.ivy.security.IRole> rolesToDelegate> result;
-' #txt
+Ts0 f96 outParameterDecl '<java.util.List<ch.ivyteam.ivy.security.IRole> rolesToDelegate> result;' #txt
 Ts0 f96 outActionCode 'import ch.ivy.addon.portalkit.util.RoleUtils;
 
 result.rolesToDelegate = RoleUtils.filterRoles(in.rolesToDelegate, in.queryAutoComplete);' #txt
@@ -494,7 +479,7 @@ Ts0 f31 expr out #txt
 Ts0 f31 109 96 168 96 #arcP
 Ts0 f0 guid 16816B3D5FE7A2CB #txt
 Ts0 f0 method start(String) #txt
-Ts0 f0 inParameterDecl '<java.lang.String currentPortalPage> param;' #txt
+Ts0 f0 inParameterDecl '<String currentPortalPage> param;' #txt
 Ts0 f0 inParameterMapAction 'out.currentPortalPage=param.currentPortalPage;
 ' #txt
 Ts0 f0 outParameterDecl '<> result;' #txt
@@ -524,8 +509,7 @@ Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ts0 f6 83 787 26 26 -70 15 #rect
 Ts0 f6 @|UdMethodIcon #fIcon
 Ts0 f7 processCall 'Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)' #txt
-Ts0 f7 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,java.lang.Boolean isFromTaskList> param;
-' #txt
+Ts0 f7 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,Boolean isFromTaskList> param;' #txt
 Ts0 f7 requestMappingAction 'param.task=in.task;
 param.dataModel=in.dataModel;
 param.portalPage=ch.ivy.addon.portalkit.enums.PortalPage.valueOf(in.currentPortalPage);

@@ -1,5 +1,5 @@
 [Ivy]
-167CFB0D927CF955 3.28 #module
+167CFB0D927CF955 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ps0 CompactProcessWidgetProcess Big #zClass
 Ps0 RD #cInfo
@@ -26,11 +26,8 @@ Ps0 @PushWFArc f9 '' #zField
 >Proto Ps0 Ps0 CompactProcessWidgetProcess #zField
 Ps0 f1 guid 167CEF3C0BEA1F15 #txt
 Ps0 f1 method start() #txt
-Ps0 f1 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ps0 f1 outParameterDecl '<> result;
-' #txt
+Ps0 f1 inParameterDecl '<> param;' #txt
+Ps0 f1 outParameterDecl '<> result;' #txt
 Ps0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -46,11 +43,8 @@ Ps0 f4 expr out #txt
 Ps0 f4 109 96 307 96 #arcP
 Ps0 f0 guid 167CF9865BEC5C1B #txt
 Ps0 f0 method collectProcesses() #txt
-Ps0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ps0 f0 outParameterDecl '<java.util.List<ch.ivy.addon.portalkit.persistence.domain.UserProcess> userProcesses> result;
-' #txt
+Ps0 f0 inParameterDecl '<> param;' #txt
+Ps0 f0 outParameterDecl '<java.util.List<ch.ivy.addon.portalkit.persistence.domain.UserProcess> userProcesses> result;' #txt
 Ps0 f0 outParameterMapAction 'result.userProcesses=in.userProcesses;
 ' #txt
 Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -83,8 +77,7 @@ Ps0 f2 @|StepIcon #fIcon
 Ps0 f5 expr out #txt
 Ps0 f5 109 192 168 192 #arcP
 Ps0 f6 processCall 'Ivy Data Processes/ProcessService:findProcesses(ch.ivy.addon.portalkit.ivydata.searchcriteria.ProcessSearchCriteria)' #txt
-Ps0 f6 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.ProcessSearchCriteria processSearchCriteria> param;
-' #txt
+Ps0 f6 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.ProcessSearchCriteria processSearchCriteria> param;' #txt
 Ps0 f6 requestMappingAction 'param.processSearchCriteria=in.processSearchCriteria;
 ' #txt
 Ps0 f6 responseActionDecl 'ch.ivy.addon.portalkit.component.CompactProcessWidget.CompactProcessWidgetData out;

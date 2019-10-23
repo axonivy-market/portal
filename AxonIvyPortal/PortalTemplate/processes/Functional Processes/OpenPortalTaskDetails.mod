@@ -1,5 +1,5 @@
 [Ivy]
-16D28A867A2A1802 3.28 #module
+16D28A867A2A1802 7.5.0 #module
 >Proto >Proto Collection #zClass
 Os0 OpenPortalTaskDetailsHook Big #zClass
 Os0 B #cInfo
@@ -18,14 +18,13 @@ Os0 @UserDialog f2 '' #zField
 Os0 @PushWFArc f3 '' #zField
 Os0 @PushWFArc f4 '' #zField
 >Proto Os0 Os0 OpenPortalTaskDetailsHook #zField
-Os0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,java.lang.Boolean isFromTaskList> param;' #txt
+Os0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,Boolean isFromTaskList> param;' #txt
 Os0 f0 inParamTable 'out.dataModel=param.dataModel;
 out.isFromTaskList=param.#isFromTaskList is initialized ? param.isFromTaskList : true;
 out.portalPage=param.portalPage;
 out.task=param.task;
 ' #txt
-Os0 f0 outParamDecl '<> result;
-' #txt
+Os0 f0 outParamDecl '<> result;' #txt
 Os0 f0 callSignature call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean) #txt
 Os0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -40,7 +39,7 @@ Os0 f1 433 49 30 30 0 15 #rect
 Os0 f1 @|EndSubIcon #fIcon
 Os0 f2 dialogId ch.ivy.addon.portal.generic.PortalTaskDetails #txt
 Os0 f2 startMethod start(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean) #txt
-Os0 f2 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,java.lang.Boolean isFromTaskList> param;' #txt
+Os0 f2 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,Boolean isFromTaskList> param;' #txt
 Os0 f2 requestMappingAction 'param.task=in.task;
 param.dataModel=in.dataModel;
 param.portalPage=in.portalPage;

@@ -1,5 +1,5 @@
 [Ivy]
-1473A12DE00609FB 3.28 #module
+1473A12DE00609FB 7.5.0 #module
 >Proto >Proto Collection #zClass
 Pt0 ProcessService Big #zClass
 Pt0 B #cInfo
@@ -20,8 +20,7 @@ Pt0 @PushWFArc f0 '' #zField
 Pt0 f15 inParamDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.ProcessSearchCriteria processSearchCriteria> param;' #txt
 Pt0 f15 inParamTable 'out.processSearchCriteria=param.processSearchCriteria;
 ' #txt
-Pt0 f15 outParamDecl '<java.util.List<ch.ivyteam.ivy.workflow.start.IWebStartable> processes,java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;
-' #txt
+Pt0 f15 outParamDecl '<java.util.List<ch.ivyteam.ivy.workflow.start.IWebStartable> processes,java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;' #txt
 Pt0 f15 outParamTable 'result.processes=in.processes;
 result.errors=in.errors;
 ' #txt
@@ -55,8 +54,7 @@ Pt0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f24 176 74 112 44 -43 -8 #rect
 Pt0 f24 @|StepIcon #fIcon
 Pt0 f26 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Pt0 f26 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
-' #txt
+Pt0 f26 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
 Pt0 f26 requestMappingAction 'param.exceptions=in.errors;
 ' #txt
 Pt0 f26 responseActionDecl 'ch.ivyteam.wf.processes.ProcessServiceData out;

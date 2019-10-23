@@ -1,5 +1,5 @@
 [Ivy]
-1600AC95D2CA7CEA 3.28 #module
+1600AC95D2CA7CEA 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ss0 StatisticDashboardWidgetProcess Big #zClass
 Ss0 RD #cInfo
@@ -136,7 +136,7 @@ Ss0 f0 expr out #txt
 Ss0 f0 141 64 243 64 #arcP
 Ss0 f1 guid 1604F3D5F5A87086 #txt
 Ss0 f1 method initialize(java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>,Boolean,Boolean,Boolean) #txt
-Ss0 f1 inParameterDecl '<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> statisticChartList,java.lang.Boolean showTaskListImmediately,java.lang.Boolean isBackFromDrilldown,java.lang.Boolean isCompactMode> param;' #txt
+Ss0 f1 inParameterDecl '<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> statisticChartList,Boolean showTaskListImmediately,Boolean isBackFromDrilldown,Boolean isCompactMode> param;' #txt
 Ss0 f1 inParameterMapAction 'out.isBackFromDrilldown=param.isBackFromDrilldown;
 out.isCompactMode=param.isCompactMode;
 out.showTaskListImmediately=param.showTaskListImmediately;
@@ -158,17 +158,14 @@ Ss0 f2 1099 51 26 26 0 12 #rect
 Ss0 f2 @|UdProcessEndIcon #fIcon
 Ss0 f13 guid 16052B0A98BF3B09 #txt
 Ss0 f13 method moveUp(ch.ivy.addon.portalkit.statistics.StatisticChart) #txt
-Ss0 f13 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.statistics.StatisticChart statisticChart> param = methodEvent.getInputArguments();
-' #txt
+Ss0 f13 inParameterDecl '<ch.ivy.addon.portalkit.statistics.StatisticChart statisticChart> param;' #txt
 Ss0 f13 inParameterMapAction 'out.selectedStatisticChart=param.statisticChart;
 ' #txt
 Ss0 f13 inActionCode 'import java.util.Collections;
 
 int index = out.statisticChartList.indexOf(out.selectedStatisticChart);
 Collections.swap(out.statisticChartList, index, index - 2);' #txt
-Ss0 f13 outParameterDecl '<> result;
-' #txt
+Ss0 f13 outParameterDecl '<> result;' #txt
 Ss0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -182,9 +179,7 @@ Ss0 f13 107 659 26 26 -63 15 #rect
 Ss0 f13 @|UdMethodIcon #fIcon
 Ss0 f15 guid 16052B0AD987D1FF #txt
 Ss0 f15 method moveDown(ch.ivy.addon.portalkit.statistics.StatisticChart) #txt
-Ss0 f15 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.statistics.StatisticChart statisticChart> param = methodEvent.getInputArguments();
-' #txt
+Ss0 f15 inParameterDecl '<ch.ivy.addon.portalkit.statistics.StatisticChart statisticChart> param;' #txt
 Ss0 f15 inParameterMapAction 'out.selectedStatisticChart=param.statisticChart;
 ' #txt
 Ss0 f15 inActionCode 'import java.util.Collections;
@@ -192,8 +187,7 @@ Ss0 f15 inActionCode 'import java.util.Collections;
 int index = out.statisticChartList.indexOf(out.selectedStatisticChart);
 Collections.swap(out.statisticChartList, index, index + 2);
 ' #txt
-Ss0 f15 outParameterDecl '<> result;
-' #txt
+Ss0 f15 outParameterDecl '<> result;' #txt
 Ss0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -207,17 +201,14 @@ Ss0 f15 107 755 26 26 -71 15 #rect
 Ss0 f15 @|UdMethodIcon #fIcon
 Ss0 f16 guid 16052B0B212D3060 #txt
 Ss0 f16 method moveLeft(ch.ivy.addon.portalkit.statistics.StatisticChart) #txt
-Ss0 f16 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.statistics.StatisticChart statisticChart> param = methodEvent.getInputArguments();
-' #txt
+Ss0 f16 inParameterDecl '<ch.ivy.addon.portalkit.statistics.StatisticChart statisticChart> param;' #txt
 Ss0 f16 inParameterMapAction 'out.selectedStatisticChart=param.statisticChart;
 ' #txt
 Ss0 f16 inActionCode 'import java.util.Collections;
 
 int index = out.statisticChartList.indexOf(out.selectedStatisticChart);
 Collections.swap(out.statisticChartList, index, index -1);' #txt
-Ss0 f16 outParameterDecl '<> result;
-' #txt
+Ss0 f16 outParameterDecl '<> result;' #txt
 Ss0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -231,17 +222,14 @@ Ss0 f16 107 851 26 26 -65 15 #rect
 Ss0 f16 @|UdMethodIcon #fIcon
 Ss0 f17 guid 16052B0B70AD24B1 #txt
 Ss0 f17 method moveRight(ch.ivy.addon.portalkit.statistics.StatisticChart) #txt
-Ss0 f17 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.statistics.StatisticChart statisticChart> param = methodEvent.getInputArguments();
-' #txt
+Ss0 f17 inParameterDecl '<ch.ivy.addon.portalkit.statistics.StatisticChart statisticChart> param;' #txt
 Ss0 f17 inParameterMapAction 'out.selectedStatisticChart=param.statisticChart;
 ' #txt
 Ss0 f17 inActionCode 'import java.util.Collections;
 
 int index = out.statisticChartList.indexOf(out.selectedStatisticChart);
 Collections.swap(out.statisticChartList, index, index + 1);' #txt
-Ss0 f17 outParameterDecl '<> result;
-' #txt
+Ss0 f17 outParameterDecl '<> result;' #txt
 Ss0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -296,11 +284,8 @@ Ss0 f24 1 344 960 #addKink
 Ss0 f24 0 0.7583859937504577 0 0 #arcLabel
 Ss0 f25 guid 16052B8CCBF953C6 #txt
 Ss0 f25 method deleteChart() #txt
-Ss0 f25 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ss0 f25 outParameterDecl '<> result;
-' #txt
+Ss0 f25 inParameterDecl '<> param;' #txt
+Ss0 f25 outParameterDecl '<> result;' #txt
 Ss0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -385,8 +370,7 @@ Ss0 f30 @|StepIcon #fIcon
 Ss0 f12 expr out #txt
 Ss0 f12 1000 64 1099 64 #arcP
 Ss0 f7 processCall 'Functional Processes/Navigator:viewTaskForAnalytic(String,ch.ivyteam.ivy.workflow.query.TaskQuery)' #txt
-Ss0 f7 requestActionDecl '<java.lang.String chartName,ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;
-' #txt
+Ss0 f7 requestActionDecl '<String chartName,ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;' #txt
 Ss0 f7 requestMappingAction 'param.chartName=in.taskListName;
 param.taskQuery=in.taskQuery;
 ' #txt
@@ -472,8 +456,7 @@ Ss0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ss0 f40 280 482 112 44 -45 -8 #rect
 Ss0 f40 @|StepIcon #fIcon
 Ss0 f42 processCall 'Functional Processes/Navigator:viewCaseForAnalytic(String,ch.ivyteam.ivy.workflow.query.CaseQuery)' #txt
-Ss0 f42 requestActionDecl '<java.lang.String chartName,ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> param;
-' #txt
+Ss0 f42 requestActionDecl '<String chartName,ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> param;' #txt
 Ss0 f42 requestMappingAction 'param.chartName=in.selectedStatisticChart.name;
 param.caseQuery=in.caseQuery;
 ' #txt
@@ -572,13 +555,10 @@ Ss0 f45 107 491 26 26 -60 15 #rect
 Ss0 f45 @|UdEventIcon #fIcon
 Ss0 f32 guid 160E2C0243084AFE #txt
 Ss0 f32 method selectChart(ch.ivy.addon.portalkit.statistics.StatisticChart) #txt
-Ss0 f32 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.statistics.StatisticChart chart> param = methodEvent.getInputArguments();
-' #txt
+Ss0 f32 inParameterDecl '<ch.ivy.addon.portalkit.statistics.StatisticChart chart> param;' #txt
 Ss0 f32 inParameterMapAction 'out.selectedStatisticChart=param.chart;
 ' #txt
-Ss0 f32 outParameterDecl '<> result;
-' #txt
+Ss0 f32 outParameterDecl '<> result;' #txt
 Ss0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

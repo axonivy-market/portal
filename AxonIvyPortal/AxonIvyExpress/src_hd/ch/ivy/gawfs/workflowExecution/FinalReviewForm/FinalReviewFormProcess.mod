@@ -1,5 +1,5 @@
 [Ivy]
-163051859F226598 3.28 #module
+163051859F226598 7.5.0 #module
 >Proto >Proto Collection #zClass
 Fs0 FinalReviewFormProcess Big #zClass
 Fs0 RD #cInfo
@@ -27,15 +27,12 @@ Fs0 @PushWFArc f2 '' #zField
 >Proto Fs0 Fs0 FinalReviewFormProcess #zField
 Fs0 f0 guid 16305185A13E9F88 #txt
 Fs0 f0 method start(java.util.List<gawfs.TaskDef>,java.util.List<String>,java.lang.Integer) #txt
-Fs0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.util.List<gawfs.TaskDef> finishedTasks,java.util.List<java.lang.String> steps,java.lang.Integer actualStepIndex> param = methodEvent.getInputArguments();
-' #txt
+Fs0 f0 inParameterDecl '<java.util.List<gawfs.TaskDef> finishedTasks,java.util.List<String> steps,Integer actualStepIndex> param;' #txt
 Fs0 f0 inParameterMapAction 'out.actualStepIndex=param.actualStepIndex;
 out.finishedTasks=param.finishedTasks;
 out.steps=param.steps;
 ' #txt
-Fs0 f0 outParameterDecl '<> result;
-' #txt
+Fs0 f0 outParameterDecl '<> result;' #txt
 Fs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

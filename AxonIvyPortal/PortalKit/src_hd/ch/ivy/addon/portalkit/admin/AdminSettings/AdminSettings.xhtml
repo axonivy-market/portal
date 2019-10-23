@@ -40,20 +40,20 @@
         <h:panelGroup id="applicationPanel" layout="block">
           <p:messages id="applicationMsg" showDetail="true" escape="false" closable="true" />
           <p:dataTable value="#{logic.findAllApplication()}" var="app" id="applicationTable" draggableRows="true"
-            reflow="true" styleClass="admin-table"
+            reflow="true" styleClass="admin-table application-table"
             emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" scrollable="true"
             scrollHeight="150">
             <p:ajax event="rowReorder" listener="#{logic.onApplicationReorder}" update="applicationTable" />
 
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/type')}"
-              styleClass="application-table-type-column">
+              styleClass="application-table-type-column" width="20%">
               <h:outputText rendered="#{not empty app.serverId}"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationtype/ivyApplication')}" />
               <h:outputText rendered="#{empty app.serverId}"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationtype/thirdPartyApplication')}" />
             </p:column>
 
-            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}">
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" width="60%">
               <h:outputText value="#{logic.getAppNameInCurrentLocale(app)}" />
             </p:column>
 
@@ -261,7 +261,7 @@
                 <p:inputText value="#{data.selectedApp.link}" id="portalLink" required="true"
                   styleClass="admin-settings-form-input"
                   requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/portalLinkRequiredMsg')}" />
-                <p:outputLabel styleClass="admin-settings-form-input-label"
+                <p:outputLabel styleClass="admin-settings-portal-link-label"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/portalLink')}" for="portalLink" />
               </h:panelGroup>
             </div>
@@ -277,7 +277,7 @@
                   <f:converter converterId="displayNameConvertor" />
                   <f:validator validatorId="displayNameValidator" />
                 </p:inputText>
-                <p:outputLabel styleClass="admin-settings-form-input-label"
+                <p:outputLabel styleClass="admin-settings-display-name-3rd-label"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/appDisplayName')}"
                   for="appDisplayName3rd"></p:outputLabel>
               </h:panelGroup>
@@ -300,7 +300,7 @@
                 <p:inputText value="#{data.selectedApp.link}" id="portalLink3rd" required="true"
                   styleClass="admin-settings-form-input"
                   requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/portalLinkRequiredMsg')}" />
-                <p:outputLabel styleClass="admin-settings-form-input-label"
+                <p:outputLabel styleClass="admin-settings-portal-link-label"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/link')} :" for="portalLink3rd" />
               </h:panelGroup>
             </div>
