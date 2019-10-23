@@ -1,5 +1,5 @@
 [Ivy]
-1694805B8DB28D00 3.28 #module
+1694805B8DB28D00 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ln0 Login Big #zClass
 Ln0 B #cInfo
@@ -16,8 +16,7 @@ Ln0 @EndSub f1 '' #zField
 Ln0 @PushWFArc f2 '' #zField
 >Proto Ln0 Ln0 Login #zField
 Ln0 f0 inParamDecl '<> param;' #txt
-Ln0 f0 outParamDecl '<> result;
-' #txt
+Ln0 f0 outParamDecl '<> result;' #txt
 Ln0 f0 callSignature call() #txt
 Ln0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

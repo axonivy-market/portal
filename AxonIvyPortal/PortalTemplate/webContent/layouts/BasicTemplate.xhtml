@@ -10,8 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
   </f:facet>
-  
-  <f:attribute name="primefaces.THEME" value="serenity-ivy" />
+
+  <f:attribute name="primefaces.THEME" value="none" />
   
   <title><ui:insert name="pageTitle">Axon.Ivy Portal</ui:insert></title>
   <ui:fragment rendered="#{resource['ivy-webcontent:layouts/images/favicon.png'] != null}">
@@ -29,7 +29,7 @@
 
   <h:outputStylesheet library="css" name="template.css" />
   <h:outputStylesheet library="css" name="module.css" />
-
+ 
   <h:outputScript name="js/nanoscroller.js" library="serenity-layout" />
   <h:outputScript name="js/ripple.js" library="serenity-layout" />
   <script src="#{resource['ivy-webcontent:layouts/js/cookie-helper.js']}" />
@@ -46,7 +46,7 @@
 
 <h:body>
   <f:facet name="last">
-    <h:outputStylesheet library="primefaces-serenity-ivy" name="theme.css" />
+    <h:outputStylesheet library="serenity-portal" name="theme.css" />
   </f:facet>
   
   <c:set var="isNotRequiredLogin" value="#{isNotRequiredLogin == null ? false : isNotRequiredLogin}" />
@@ -70,7 +70,7 @@
            <div class="layout-sidebar #{guestPreferences.darkMenu ? 'layout-sidebar-dark' : ''} #{currentPage} left-sidebar-color js-left-sidebar" id="left-menu">
               <c:choose>
                 <c:when test="#{isNotRequiredLogin}">
-                  <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu startMethod="StartNotRequiredLogin" id="user-menu-without-login" showGlobalSearch="#{empty portalValidationBean.errorMessages}" />
+                  <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu startMethod="StartNotRequiredLogin" id="user-menu-without-login" isWorkingOnATask="#{isWorkingOnATask}" showGlobalSearch="#{empty portalValidationBean.errorMessages}" />
                 </c:when>
                 <c:otherwise>
                   <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu id="user-menu-required-login" isWorkingOnATask="#{isWorkingOnATask}" showGlobalSearch="#{empty portalValidationBean.errorMessages}" />

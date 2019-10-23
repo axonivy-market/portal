@@ -1,5 +1,5 @@
 [Ivy]
-14EAA804A7FC487F 3.28 #module
+14EAA804A7FC487F 7.5.0 #module
 >Proto >Proto Collection #zClass
 As0 InternalPortalHomeNotRequiredLoginProcess Big #zClass
 As0 RD #cInfo
@@ -20,13 +20,10 @@ As0 @PushWFArc f5 '' #zField
 >Proto As0 As0 InternalPortalHomeNotRequiredLoginProcess #zField
 As0 f0 guid 14BEE52D5FCBA4F5 #txt
 As0 f0 method start() #txt
-As0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
+As0 f0 inParameterDecl '<> param;' #txt
 As0 f0 inParameterMapAction 'out.isNotRequiredLogin=true;
 ' #txt
-As0 f0 outParameterDecl '<> result;
-' #txt
+As0 f0 outParameterDecl '<> result;' #txt
 As0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

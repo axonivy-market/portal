@@ -1,5 +1,5 @@
 [Ivy]
-1540379C4B7261E4 3.28 #module
+1540379C4B7261E4 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ot0 OpenPortalCases Big #zClass
 Ot0 B #cInfo
@@ -20,8 +20,7 @@ Ot0 @PushWFArc f2 '' #zField
 Ot0 f0 inParamDecl '<ch.ivy.addon.portal.generic.view.CaseView view> param;' #txt
 Ot0 f0 inParamTable 'out.view=param.view;
 ' #txt
-Ot0 f0 outParamDecl '<> result;
-' #txt
+Ot0 f0 outParamDecl '<> result;' #txt
 Ot0 f0 callSignature useView(ch.ivy.addon.portal.generic.view.CaseView) #txt
 Ot0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

@@ -40,6 +40,10 @@
   -webkit-border-radius : 5px;
   border-radius         : 5px;
 }
+.nano > .nano-pane.nano-pane-rtl {
+    right: auto;
+    left: 0;
+}
 .nano > .nano-pane > .nano-slider {
   background:rgba(255,255,255,0.1);
   position              : relative;

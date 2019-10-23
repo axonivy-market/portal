@@ -1,5 +1,5 @@
 [Ivy]
-15FFC669C88F7E0B 3.28 #module
+15FFC669C88F7E0B 7.5.0 #module
 >Proto >Proto Collection #zClass
 Cs0 ChartCreationWidgetProcess Big #zClass
 Cs0 RD #cInfo
@@ -87,9 +87,7 @@ Cs0 f5 expr out #txt
 Cs0 f5 141 160 435 160 #arcP
 Cs0 f35 guid 1601F664C9C78C71 #txt
 Cs0 f35 method createStatisticChart(java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>) #txt
-Cs0 f35 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> statisticChartList> param = methodEvent.getInputArguments();
-' #txt
+Cs0 f35 inParameterDecl '<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> statisticChartList> param;' #txt
 Cs0 f35 inParameterMapAction 'out.statisticChartList=param.statisticChartList;
 ' #txt
 Cs0 f35 inActionCode 'import org.apache.commons.lang3.StringUtils;
@@ -118,8 +116,7 @@ if (service.checkStatisticChartNameExisted(ivy.session.getSessionUser().getId(),
 	FacesContext.getCurrentInstance().addMessage(null, message);
 	
 }' #txt
-Cs0 f35 outParameterDecl '<> result;
-' #txt
+Cs0 f35 outParameterDecl '<> result;' #txt
 Cs0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -133,9 +130,7 @@ Cs0 f35 115 859 26 26 -111 15 #rect
 Cs0 f35 @|UdMethodIcon #fIcon
 Cs0 f40 guid 1601F9BADD2EC1C0 #txt
 Cs0 f40 method updateBeforeAddCaseByState() #txt
-Cs0 f40 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
+Cs0 f40 inParameterDecl '<> param;' #txt
 Cs0 f40 inActionCode 'import ch.ivy.addon.portalkit.bean.StatisticChartCreationBean;
 import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
@@ -147,8 +142,7 @@ out.isAllowedToCreateChart = !chartCreationBean.checkIfAnyFilterChanges(out.stat
 if (out.isAllowedToCreateChart) {
 	out.chartType  = StatisticChartType.CASES_BY_STATE;
 }' #txt
-Cs0 f40 outParameterDecl '<> result;
-' #txt
+Cs0 f40 outParameterDecl '<> result;' #txt
 Cs0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -162,9 +156,7 @@ Cs0 f40 115 435 26 26 -87 15 #rect
 Cs0 f40 @|UdMethodIcon #fIcon
 Cs0 f42 guid 1601F9BBC3E25AD8 #txt
 Cs0 f42 method updateBeforeAddTaskByExpiry() #txt
-Cs0 f42 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
+Cs0 f42 inParameterDecl '<> param;' #txt
 Cs0 f42 inActionCode 'import ch.ivy.addon.portalkit.bean.StatisticChartCreationBean;
 import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
@@ -176,8 +168,7 @@ out.isAllowedToCreateChart = !chartCreationBean.checkIfAnyFilterChanges(out.stat
 if (out.isAllowedToCreateChart) {
 	out.chartType  = StatisticChartType.TASK_BY_EXPIRY;
 }' #txt
-Cs0 f42 outParameterDecl '<> result;
-' #txt
+Cs0 f42 outParameterDecl '<> result;' #txt
 Cs0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -249,9 +240,7 @@ Cs0 f44 1 448 352 #addKink
 Cs0 f44 0 0.7890617926546363 0 0 #arcLabel
 Cs0 f41 guid 1601F9BB6832261A #txt
 Cs0 f41 method updateBeforeAddTaskByPriority() #txt
-Cs0 f41 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
+Cs0 f41 inParameterDecl '<> param;' #txt
 Cs0 f41 inActionCode 'import ch.ivy.addon.portalkit.bean.StatisticChartCreationBean;
 import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
@@ -265,8 +254,7 @@ if (out.isAllowedToCreateChart) {
 }
 
 	' #txt
-Cs0 f41 outParameterDecl '<> result;
-' #txt
+Cs0 f41 outParameterDecl '<> result;' #txt
 Cs0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -296,9 +284,7 @@ Cs0 f12 expr out #txt
 Cs0 f12 344 968 435 968 #arcP
 Cs0 f17 guid 160485D2143D0001 #txt
 Cs0 f17 method updateBeforeAddElapsedTime() #txt
-Cs0 f17 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
+Cs0 f17 inParameterDecl '<> param;' #txt
 Cs0 f17 inActionCode 'import ch.ivy.addon.portalkit.bean.StatisticChartCreationBean;
 import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
@@ -310,8 +296,7 @@ out.isAllowedToCreateChart = !chartCreationBean.checkIfAnyFilterChanges(out.stat
 if (out.isAllowedToCreateChart) {
 	out.chartType  = StatisticChartType.ELAPSED_TIME_BY_CASE_CATEGORY;
 }' #txt
-Cs0 f17 outParameterDecl '<> result;
-' #txt
+Cs0 f17 outParameterDecl '<> result;' #txt
 Cs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -356,9 +341,7 @@ Cs0 f10 115 955 26 26 -42 15 #rect
 Cs0 f10 @|UdEventIcon #fIcon
 Cs0 f22 guid 1621EDBADBEB0978 #txt
 Cs0 f22 method updateBeforeAddCaseByFinishedTask() #txt
-Cs0 f22 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
+Cs0 f22 inParameterDecl '<> param;' #txt
 Cs0 f22 inActionCode 'import ch.ivy.addon.portalkit.bean.StatisticChartCreationBean;
 import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
@@ -370,8 +353,7 @@ out.isAllowedToCreateChart = !chartCreationBean.checkIfAnyFilterChanges(out.stat
 if (out.isAllowedToCreateChart) {
 	out.chartType  = StatisticChartType.CASES_BY_FINISHED_TASK;
 }' #txt
-Cs0 f22 outParameterDecl '<> result;
-' #txt
+Cs0 f22 outParameterDecl '<> result;' #txt
 Cs0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -389,9 +371,7 @@ Cs0 f23 1 448 736 #addKink
 Cs0 f23 0 0.8576523140311042 0 0 #arcLabel
 Cs0 f24 guid 162233637AE65F94 #txt
 Cs0 f24 method updateBeforeAddCaseByFinishedTime() #txt
-Cs0 f24 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
+Cs0 f24 inParameterDecl '<> param;' #txt
 Cs0 f24 inActionCode 'import ch.ivy.addon.portalkit.bean.StatisticChartCreationBean;
 import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
@@ -403,8 +383,7 @@ out.isAllowedToCreateChart = !chartCreationBean.checkIfAnyFilterChanges(out.stat
 if (out.isAllowedToCreateChart) {
 	out.chartType  = StatisticChartType.CASES_BY_FINISHED_TIME;
 }' #txt
-Cs0 f24 outParameterDecl '<> result;
-' #txt
+Cs0 f24 outParameterDecl '<> result;' #txt
 Cs0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -425,8 +404,7 @@ Cs0 f26 141 64 222 64 #arcP
 Cs0 f8 expr out #txt
 Cs0 f8 141 256 435 256 #arcP
 Cs0 f9 processCall 'Functional Processes/DefaultStatisticCustomField:createDefaultStatisticCustomFields()' #txt
-Cs0 f9 requestActionDecl '<> param;
-' #txt
+Cs0 f9 requestActionDecl '<> param;' #txt
 Cs0 f9 responseActionDecl 'ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData out;
 ' #txt
 Cs0 f9 responseMappingAction 'out=in;

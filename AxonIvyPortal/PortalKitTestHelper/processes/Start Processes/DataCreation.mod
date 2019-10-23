@@ -1,5 +1,5 @@
 [Ivy]
-153CACC26D0D4C3D 3.28 #module
+153CACC26D0D4C3D 7.5.0 #module
 >Proto >Proto Collection #zClass
 Dt0 DataCreation Big #zClass
 Dt0 B #cInfo
@@ -127,7 +127,7 @@ Dt0 @TkArc f113 '' #zField
 Dt0 @PushWFArc f75 '' #zField
 >Proto Dt0 Dt0 DataCreation #zField
 Dt0 f0 outLink createTasks.ivp #txt
-Dt0 f0 inParamDecl '<java.lang.String taskStructureInfo> param;' #txt
+Dt0 f0 inParamDecl '<String taskStructureInfo> param;' #txt
 Dt0 f0 inParamTable 'out.taskStructureInfo=param.taskStructureInfo;
 ' #txt
 Dt0 f0 requestEnabled false #txt
@@ -205,8 +205,7 @@ Dt0 f25 @C|.responsibility Everybody #txt
 Dt0 f25 35 83 26 26 -39 20 #rect
 Dt0 f25 @|StartRequestIcon #fIcon
 Dt0 f28 processCall 'Start Processes/DataCreation:createTasks(String)' #txt
-Dt0 f28 requestActionDecl '<java.lang.String taskStructureInfo> param;
-' #txt
+Dt0 f28 requestActionDecl '<String taskStructureInfo> param;' #txt
 Dt0 f28 requestMappingAction 'param.taskStructureInfo=in.handler.getNextTaskStructureInfo();
 ' #txt
 Dt0 f28 responseActionDecl 'portalKit_test.DataCreationData out;
@@ -770,8 +769,7 @@ Dt0 f70 @|AlternativeIcon #fIcon
 Dt0 f71 expr out #txt
 Dt0 f71 1400 96 1456 96 #arcP
 Dt0 f72 processCall 'Start Processes/DataCreation:createHiddenTaskAndCase()' #txt
-Dt0 f72 requestActionDecl '<> param;
-' #txt
+Dt0 f72 requestActionDecl '<> param;' #txt
 Dt0 f72 responseActionDecl 'portalKit_test.DataCreationData out;
 ' #txt
 Dt0 f72 responseMappingAction 'out=in;
@@ -812,7 +810,7 @@ Dt0 f78 1 1728 24 #addKink
 Dt0 f78 2 1472 24 #addKink
 Dt0 f78 1 0.51171875 0 0 #arcLabel
 Dt0 f79 outLink createTaskAttachToBusinessCase.ivp #txt
-Dt0 f79 inParamDecl '<java.lang.String taskStructureInfo> param;' #txt
+Dt0 f79 inParamDecl '<String taskStructureInfo> param;' #txt
 Dt0 f79 inParamTable 'out.taskStructureInfo=param.taskStructureInfo;
 ' #txt
 Dt0 f79 requestEnabled false #txt
@@ -850,8 +848,7 @@ Dt0 f29 expr in #txt
 Dt0 f29 outCond !in.attachToBusinessCase #txt
 Dt0 f29 528 96 622 96 #arcP
 Dt0 f83 processCall 'Start Processes/DataCreation:createTaskAttachToBusinessCase(String)' #txt
-Dt0 f83 requestActionDecl '<java.lang.String taskStructureInfo> param;
-' #txt
+Dt0 f83 requestActionDecl '<String taskStructureInfo> param;' #txt
 Dt0 f83 requestMappingAction 'param.taskStructureInfo=in.handler.getNextTaskStructureInfo();
 ' #txt
 Dt0 f83 responseActionDecl 'portalKit_test.DataCreationData out;
@@ -938,7 +935,7 @@ Dt0 f91 @C|.responsibility Everybody #txt
 Dt0 f91 57 977 30 30 -99 26 #rect
 Dt0 f91 @|StartRequestIcon #fIcon
 Dt0 f92 outLink createCaseWithSpecificCategory.ivp #txt
-Dt0 f92 inParamDecl '<java.lang.String caseCategory> param;' #txt
+Dt0 f92 inParamDecl '<String caseCategory> param;' #txt
 Dt0 f92 inParamTable 'out.caseCategory=param.caseCategory;
 ' #txt
 Dt0 f92 requestEnabled true #txt
@@ -983,8 +980,7 @@ Dt0 f98 expr in #txt
 Dt0 f98 outCond ivp=="TaskA.ivp" #txt
 Dt0 f98 895 736 1073 736 #arcP
 Dt0 f99 processCall 'Start Processes/DataCreation:createCaseWithSpecificCategory(String)' #txt
-Dt0 f99 requestActionDecl '<java.lang.String caseCategory> param;
-' #txt
+Dt0 f99 requestActionDecl '<String caseCategory> param;' #txt
 Dt0 f99 requestMappingAction 'param.caseCategory=in.caseCatagories.get(in.counter);
 ' #txt
 Dt0 f99 responseActionDecl 'portalKit_test.DataCreationData out;
@@ -1057,13 +1053,9 @@ Dt0 f111 expr out #txt
 Dt0 f111 752 992 816 992 #arcP
 Dt0 f69 expr out #txt
 Dt0 f69 1152 96 1288 96 #arcP
-Dt0 f112 actionDecl 'portalKit_test.DataCreationData out;
-' #txt
 Dt0 f112 actionTable 'out=in1;
 ' #txt
-Dt0 f112 outTypes "portalKit_test.DataCreationData" #txt
 Dt0 f112 outLinks "TaskA.ivp" #txt
-Dt0 f112 type portalKit_test.DataCreationData #txt
 Dt0 f112 template "" #txt
 Dt0 f112 1456 176 32 32 0 16 #rect
 Dt0 f112 @|TaskSwitchIcon #fIcon

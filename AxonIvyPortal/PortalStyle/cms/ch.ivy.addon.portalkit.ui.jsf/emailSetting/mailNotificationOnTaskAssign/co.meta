@@ -1,5 +1,5 @@
-co: name={mailNotificationOnTaskAssign} description={} changed={2019-09-03 06:18:24 CEST} changedby={ntminh01} visualorder={0} guid={15F713A731345C64} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F713A7315662B5} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-10 10:24:11 CEST} validto={} changed={2019-09-03 06:18:23 CEST} changedby={ntminh01} properties={} id={}
-val: guid={168DA54BF7A3E833} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:33 CET} validto={} changed={2019-09-03 06:18:24 CEST} changedby={ntminh01} properties={} id={}
-val: guid={15F713A731A979ED} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:05 CEST} validto={} changed={2019-09-03 06:18:16 CEST} changedby={ntminh01} properties={} id={}
+co: name={mailNotificationOnTaskAssign} description={} changed={2019-10-18 13:07:19 CEST} changedby={ttthai} visualorder={0} guid={15F713A731345C64} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713A7315662B5} datatype={} isdefault={false} langid={de} description={} validfrom={2019-10-18 13:07:19 CEST} validto={} changed={2019-10-18 13:07:19 CEST} changedby={ttthai} properties={} id={}
+val: guid={168DA54BF7A3E833} datatype={} isdefault={false} langid={es} description={} validfrom={2019-10-18 13:07:19 CEST} validto={} changed={2019-10-18 13:07:19 CEST} changedby={ttthai} properties={} id={}
+val: guid={15F713A731A979ED} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-10-18 13:07:19 CEST} validto={} changed={2019-10-18 13:07:19 CEST} changedby={ttthai} properties={} id={}
 val: guid={15F713A7320A21B5} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:21:02 CET} validto={} changed={2019-09-03 06:18:09 CEST} changedby={ntminh01} properties={} id={}

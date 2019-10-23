@@ -1,5 +1,5 @@
 [Ivy]
-163D2D12302195CE 3.28 #module
+163D2D12302195CE 7.5.0 #module
 >Proto >Proto Collection #zClass
 Dt0 DefaultChart Big #zClass
 Dt0 B #cInfo
@@ -19,8 +19,7 @@ Dt0 @PushWFArc f2 '' #zField
 Dt0 @InfoButton f5 '' #zField
 >Proto Dt0 Dt0 DefaultChart #zField
 Dt0 f0 inParamDecl '<> param;' #txt
-Dt0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> charts> result;
-' #txt
+Dt0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> charts> result;' #txt
 Dt0 f0 outParamTable 'result.charts=in.defaultCharts;
 ' #txt
 Dt0 f0 callSignature createDefaultChart() #txt

@@ -1,5 +1,5 @@
 [Ivy]
-16BD4CADD9FCEB4E 3.28 #module
+16BD4CADD9FCEB4E 7.5.0 #module
 >Proto >Proto Collection #zClass
 Os0 OpenPortalCaseDetails Big #zClass
 Os0 B #cInfo
@@ -18,12 +18,11 @@ Os0 @UserDialog f2 '' #zField
 Os0 @PushWFArc f3 '' #zField
 Os0 @PushWFArc f4 '' #zField
 >Proto Os0 Os0 OpenPortalCaseDetails #zField
-Os0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ICase caseData,java.lang.Boolean isShowBackButton> param;' #txt
+Os0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ICase caseData,Boolean isShowBackButton> param;' #txt
 Os0 f0 inParamTable 'out.caseView=param.caseData;
 out.isShowBackButton=param.isShowBackButton;
 ' #txt
-Os0 f0 outParamDecl '<> result;
-' #txt
+Os0 f0 outParamDecl '<> result;' #txt
 Os0 f0 callSignature call(ch.ivyteam.ivy.workflow.ICase,Boolean) #txt
 Os0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -38,7 +37,7 @@ Os0 f1 337 49 30 30 0 15 #rect
 Os0 f1 @|EndSubIcon #fIcon
 Os0 f2 dialogId ch.ivy.addon.portal.generic.PortalCaseDetails #txt
 Os0 f2 startMethod start(ch.ivyteam.ivy.workflow.ICase,Boolean) #txt
-Os0 f2 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseInfo,java.lang.Boolean isShowBackButton> param;' #txt
+Os0 f2 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseInfo,Boolean isShowBackButton> param;' #txt
 Os0 f2 requestMappingAction 'param.caseInfo=in.caseView;
 param.isShowBackButton=in.isShowBackButton;
 ' #txt

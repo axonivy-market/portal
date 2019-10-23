@@ -7,7 +7,7 @@
                 }
             }
         }
-        
+
         .ui-steps {
             .ui-steps-item {
                 .ui-menuitem-link {
@@ -17,26 +17,26 @@
                 }
             }
         }
-        
+
         .ui-picklist {
             &.ui-picklist-responsive {
                 .ui-picklist-list-wrapper {
-                    margin-bottom: 8px;
+                    margin-bottom: .5em;
                 }
                 .ui-picklist-buttons {
                     .ui-button {
                         &.ui-button-icon-only {
                             display: inline-block;
-                            margin-right: 4px;
+                            margin-right: .286em;
                         }
                     }
-                    
+
                     .ui-icon-arrow-1-e {
                         @include icon-override("\e037"); @include rotate(90deg);
                     }
                     .ui-icon-arrowstop-1-e {
                         @include icon-override("\e045"); @include rotate(-90deg);
-                        
+
                     }
                     .ui-icon-arrow-1-w {
                         @include icon-override("\e037"); @include rotate(-90deg);
@@ -47,30 +47,30 @@
                 }
             }
         }
-        
+
         .ui-orderlist {
             &.ui-grid-responsive {
                 .ui-orderlist-controls {
                     text-align: center;
-                    width: auto;
-                    margin-bottom: 8px;
-                    
+                    width: 100%;
+                    margin-bottom: .5em;
+
                     .ui-button {
-                        margin-right: 4px;  
+                        margin-right: .286em;
                     }
                 }
             }
         }
-        
+
         .ui-buttonset {
             > .ui-button {
                 display: block;
                 @include border-radius(0);
-                
+
                 &:first-child {
                     @include border-radius-top(3px);
                 }
-                
+
                 &:last-child {
                     @include border-radius-bottom(3px);
                 }

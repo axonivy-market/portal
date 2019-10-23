@@ -1,5 +1,5 @@
 [Ivy]
-14C7834636E63BEA 3.28 #module
+14C7834636E63BEA 7.5.0 #module
 >Proto >Proto Collection #zClass
 Fr0 FindApplicationsByUser Big #zClass
 Fr0 B #cInfo
@@ -15,11 +15,10 @@ Fr0 @GridStep f3 '' #zField
 Fr0 @PushWFArc f4 '' #zField
 Fr0 @PushWFArc f2 '' #zField
 >Proto Fr0 Fr0 FindApplicationsByUser #zField
-Fr0 f0 inParamDecl '<java.lang.String username> param;' #txt
+Fr0 f0 inParamDecl '<String username> param;' #txt
 Fr0 f0 inParamTable 'out.username=param.username;
 ' #txt
-Fr0 f0 outParamDecl '<List<ch.ivy.addon.portalkit.persistence.domain.Application> applications> result;
-' #txt
+Fr0 f0 outParamDecl '<List<ch.ivy.addon.portalkit.persistence.domain.Application> applications> result;' #txt
 Fr0 f0 outParamTable 'result.applications=in.applications;
 ' #txt
 Fr0 f0 callSignature findApplicationsByUser(String) #txt

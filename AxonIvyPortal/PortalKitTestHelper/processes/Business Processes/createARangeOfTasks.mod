@@ -1,5 +1,5 @@
 [Ivy]
-14B2A3DC7173EA26 3.28 #module
+14B2A3DC7173EA26 7.5.0 #module
 >Proto >Proto Collection #zClass
 cs0 createARangeOfTasks Big #zClass
 cs0 B #cInfo
@@ -271,8 +271,7 @@ cs0 f26 608 237 608 276 #arcP
 cs0 f27 expr out #txt
 cs0 f27 608 300 608 338 #arcP
 cs0 f28 processCall 'Business Processes/createARangeOfTasks:generateTask(ch.ivy.add.portalkit.task.TaskGenerationDataRange)' #txt
-cs0 f28 requestActionDecl '<ch.ivy.add.portalkit.task.TaskGenerationDataRange rangeData> param;
-' #txt
+cs0 f28 requestActionDecl '<ch.ivy.add.portalkit.task.TaskGenerationDataRange rangeData> param;' #txt
 cs0 f28 requestMappingAction 'param.rangeData.from=in.from;
 param.rangeData.structuredData=in.structuredData;
 param.rangeData.taskCounter=in.taskCounter;
@@ -300,7 +299,7 @@ cs0 f29 608 454 608 484 #arcP
 cs0 f22 expr out #txt
 cs0 f22 608 508 608 547 #arcP
 cs0 f30 outLink generateTasks.ivp #txt
-cs0 f30 inParamDecl '<java.lang.Number counter> param;' #txt
+cs0 f30 inParamDecl '<Number counter> param;' #txt
 cs0 f30 inParamTable 'out.taskCounter=param.counter;
 ' #txt
 cs0 f30 requestEnabled false #txt

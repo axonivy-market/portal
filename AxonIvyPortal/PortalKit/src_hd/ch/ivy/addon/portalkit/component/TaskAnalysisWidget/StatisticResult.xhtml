@@ -11,7 +11,7 @@
           <p:fileDownload value="#{logic.getExportedFile(taskAnalysisWidgetBean.getColumns())}" />
         </p:commandButton>
   
-        <p:commandButton id="toggler" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/columns')}"/>
+        <p:commandButton id="toggler" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/columns')}" icon="fa fa-caret-down" iconPos="right" />
         <p:columnToggler id="task-table-toggler" datasource="task-table" trigger="toggler">
           <p:ajax event="toggle" listener="#{taskAnalysisWidgetBean.onToggleColumns}" oncomplete="initializeScrollbar();" />
         </p:columnToggler>

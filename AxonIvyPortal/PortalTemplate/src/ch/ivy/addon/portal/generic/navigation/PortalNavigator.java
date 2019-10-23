@@ -153,10 +153,6 @@ public final class PortalNavigator {
     navigateByKeyword("PortalStart.ivp", PORTAL_PROCESS_START_NAME);
   }
 
-  public void navigateToPortalCaseDetails() {
-    navigateByKeyword("startPortalCaseDetails.ivp", PORTAL_CASE_ITEM_DETAILS);
-  }
-
   private void navigateByKeyword(String keyword, String defaultFriendlyRequestPath) {
     String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword(keyword);
     if (StringUtils.isNotEmpty(customizePortalFriendlyRequestPath)) {

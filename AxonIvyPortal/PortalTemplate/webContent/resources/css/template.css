@@ -75,11 +75,35 @@
 	color: rgba(0, 0, 0, 0.6) !important;
 }
 
+#user-setting-container .server-information {
+	padding: 0 0 0 20px !important;
+	height: 36px !important;
+	line-height: 36px;
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1.4rem;
+}
+
 #user-setting-container li a:hover {
 	font-family: 'Roboto';
 	font-style: normal;
 	font-weight: 400;
 	color: rgba(0, 0, 0, 1) !important;
+}
+
+.show-environment-info-link {
+	top: -5px;
+}
+
+.show-environment-info {
+	font-size: 11px;
+	height: 16px;
+}
+
+.user-name-show-environment-info {
+	height: 18px;
+	font-weight: bold;
 }
 /*
 	Overide default state of ui-layout-container in Internet Explorer
@@ -330,8 +354,6 @@
   margin-top: 10px;
 }
 
-.search-results-tabview .task-list-container,
-.search-results-tabview .case-default-widget-container,
 .case-template-content .case-details,
 .task-template-content .case-details {
   margin: 0 !important;
@@ -343,10 +365,6 @@
 
 .search-results-tabview .process-in-search {
   margin-top: 10px;
-}
-
-.search-results-tabview .widget-sort-menu.full-mode.task-in-search, .search-results-tabview .widget-column-header.case-in-search {
-  height: 30px;
 }
 
 .case-template-content .case-list-item {

@@ -1,5 +1,5 @@
 [Ivy]
-168DF9B20193A93C 3.28 #module
+168DF9B20193A93C 7.5.0 #module
 >Proto >Proto Collection #zClass
 Gs0 GrantOrDenySpecificPermissionProcess Big #zClass
 Gs0 RD #cInfo
@@ -20,10 +20,10 @@ Gs0 @PushWFArc f5 '' #zField
 >Proto Gs0 Gs0 GrantOrDenySpecificPermissionProcess #zField
 Gs0 f0 guid 168DF9B203F80ECE #txt
 Gs0 f0 method start(Boolean) #txt
-Gs0 f0 inParameterDecl '<java.lang.Boolean isGrantPermission> param;' #txt
+Gs0 f0 inParameterDecl '<Boolean isGrantPermission> param;' #txt
 Gs0 f0 inParameterMapAction 'out.isGrantPermission=param.isGrantPermission;
 ' #txt
-Gs0 f0 outParameterDecl '<java.lang.String permission> result;' #txt
+Gs0 f0 outParameterDecl '<String permission> result;' #txt
 Gs0 f0 outParameterMapAction 'result.permission=in.permission;
 ' #txt
 Gs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
