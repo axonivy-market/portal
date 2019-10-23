@@ -18,7 +18,7 @@ Each TaskItemDetails contains
 -  TaskItemDetail custom panel: taskItemDetailCustomPanelTop ,
    taskItemDetailCustomPanelBottom
 
-|image0|
+|task-standard|
 
    **Important**
 
@@ -133,19 +133,19 @@ Refer to the ``taskItemDetailCustomPanel*`` section in
 
 -  Below is example code for override custom panel box of task details
 
-   |image1|
+   |custom-panel-example-code|
 
 -  After applied above code to your custom page, the custom panel will
    display as below
 
-   |image2|
+   |custom-panel-override|
 
 -  Finally, we have a custom Task details page
 
-   |image3|
+   |task-customized|
 
-.. |image0| image:: images/TaskItemDetails/TaskStandard.png
-.. |image1| image:: images/TaskItemDetails/CustomPanelExampleCode.png
-.. |image2| image:: images/TaskItemDetails/CustomPanelOverride.png
-.. |image3| image:: images/TaskItemDetails/TaskCustomized.png
+.. |task-standard| image:: images/task-item-details/task-standard.png
+.. |custom-panel-example-code| image:: images/task-item-details/custom-panel-example-code.png
+.. |custom-panel-override| image:: images/task-item-details/custom-panel-override.png
+.. |task-customized| image:: images/task-item-details/task-customized.png
 

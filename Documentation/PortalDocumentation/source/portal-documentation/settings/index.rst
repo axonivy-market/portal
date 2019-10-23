@@ -15,7 +15,7 @@ User Settings provide options for configuring Portal applications:
 
 -  `#axonivyportal.settings.languagesettings <#axonivyportal.settings.languagesettings>`__
 
-|image0|
+|portal-header|
 
 .. _axonivyportal.settings.adminsettings:
 
@@ -34,11 +34,11 @@ Global settings for Portal can be set in Settings tab. All available
 settings with their default value and description are listed in this
 place.
 
-|image1|
+|global-settings|
 
 You can edit value for a specific setting
 
-|image2|
+|global-setting-edit|
 
 You can also get back the default value for each setting by clicking
 reset button on each row, or reset all values of all settings by
@@ -56,7 +56,7 @@ Setup multi portals
 
    -  Two levels portal
 
-      |image3|
+      |multi-application-with-portal|
 
       -  Used for related applications which we need an overview of all
          tasks and cases.
@@ -80,7 +80,7 @@ Setup multi portals
 
    -  Single level portal
 
-      |image4|
+      |multi-application-without-portal|
 
       -  Used for independent applications.
 
@@ -146,7 +146,7 @@ Absence and substitute settings
 -  To create new Absence, click ``New Absence`` to open the dialog as
    below:
 
-   |image5|
+   |absence-settings|
 
    -  ``till/from date`` must not be empty.
 
@@ -161,7 +161,7 @@ Absence and substitute settings
 -  Deputies area will display all the information of deputy on each
    application.
 
-   |image6|
+   |deputy-settings|
 
 -  User cannot set deputies for hidden roles.
 
@@ -178,7 +178,7 @@ Email settings
 -  You can configure one email setting for all applications or each
    application separately.
 
-   |image7|
+   |email-settings|
 
 -  There are 2 types of emails notification: Ivy email notification sent
    when task is assigned (More information about the email notification
@@ -195,7 +195,7 @@ Language settings
 
 -  Below is applied language setting precedence:
 
-   |image8|
+   |language-precedence|
 
    If user email language setting is application default, language would
    be applied by application email language setting.
@@ -213,7 +213,7 @@ Language settings
    will be set for application (Click on the application in header menu
    to reload application and see the change of language).
 
-   |image9|
+   |language-settings|
 
 -  For multiple languages, the CMS key ``/AppInfo/SupportedLanguages``
    must exist in your application. From Portal 7.1, this CMS entry is
@@ -234,17 +234,17 @@ Language settings
    -  Import file excel back, then redeploy Portal Style
    -  This is sample how to add new Spanish to portal
 
-      |image10|
+      |add-new-language|
 
-.. |image0| image:: images/Settings/portal-header.png
-.. |image1| image:: images/Settings/global-settings.png
-.. |image2| image:: images/Settings/global-setting-edit.png
-.. |image3| image:: images/Settings/multi-application-with-portal.png
-.. |image4| image:: images/Settings/multi-application-without-portal.png
-.. |image5| image:: images/Settings/absence-settings.png
-.. |image6| image:: images/Settings/deputy-settings.png
-.. |image7| image:: images/Settings/email-settings.png
-.. |image8| image:: images/Settings/language-precedence.png
-.. |image9| image:: images/Settings/language-settings.png
-.. |image10| image:: images/Settings/add-new-language.png
+.. |portal-header| image:: images/settings/portal-header.png
+.. |global-settings| image:: images/settings/global-settings.png
+.. |global-setting-edit| image:: images/settings/global-setting-edit.png
+.. |multi-application-with-portal| image:: images/settings/multi-application-with-portal.png
+.. |multi-application-without-portal| image:: images/settings/multi-application-without-portal.png
+.. |absence-settings| image:: images/settings/absence-settings.png
+.. |deputy-settings| image:: images/settings/deputy-settings.png
+.. |email-settings| image:: images/settings/email-settings.png
+.. |language-precedence| image:: images/settings/language-precedence.png
+.. |language-settings| image:: images/settings/language-settings.png
+.. |add-new-language| image:: images/settings/add-new-language.png
 
