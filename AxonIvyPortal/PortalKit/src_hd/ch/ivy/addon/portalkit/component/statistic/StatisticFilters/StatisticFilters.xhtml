@@ -45,16 +45,16 @@
           </p:selectOneMenu>
         </h:panelGroup>
 
-        <h:panelGrid columns="1" columnClasses="ui-g-12 u-padding-0" styleClass="ui-g-12">
+        <h:panelGrid columns="1" columnClasses="ui-g-12 u-padding-0" styleClass="ui-g-12 u-no-padding-top">
 
-          <p:outputLabel styleClass="item-label ui-g-12" for="filter-from" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')} " />
+          <p:outputLabel styleClass="item-label" for="filter-from" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')} " />
           <p:calendar id="filter-from" value="#{filter.createdDateFrom}" disabled="#{filter.timePeriodSelection ne 'CUSTOM'}"
             pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"
             converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}">
             <p:ajax global="false" />
           </p:calendar>
 
-          <p:outputLabel for="filter-to" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')} " styleClass="item-label ui-g-12"/>
+          <p:outputLabel for="filter-to" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')} " styleClass="item-label"/>
           <p:calendar id="filter-to" value="#{filter.createdDateTo}" disabled="#{filter.timePeriodSelection ne 'CUSTOM'}"
             pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"
             converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}">
