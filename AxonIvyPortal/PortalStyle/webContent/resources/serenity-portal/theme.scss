@@ -897,3 +897,9 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
 		margin-right: 10px;
 	}
 }
+
+body .ui-picklist .ui-picklist-filter-container .ui-icon {
+	top: unset;
+	bottom: 5px;
+	right: 7px;
+}
