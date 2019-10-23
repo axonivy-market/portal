@@ -53,15 +53,14 @@ to configure the scroll bar of the list.
    .. note:: 
 
       If you use this component in a dialog, you must run this script
-      processHistory.setup();
-      when the dialog is shown. For example:
-      ``<p:dialog widgetVar="process-history-dialog" id="process-history-dialog" width="800" height="500"
-                              header="Process history of Resource A247" onShow="processHistory.setup();">``
-
-      ``<ic:ch.ivy.addon.portal.component.ProcessHistory businessEntityId="resourceA247"
-                              chunkSize="6"
-                              scrollHeight="400" />``
-
+      ``processHistory.setup();`` when the dialog is shown. For example:
+      ``<p:dialog widgetVar="process-history-dialog"``
+      ``id="process-history-dialog" width="800" height="500"``
+      ``header="Process history of Resource A247"``
+      ``onShow="processHistory.setup();">``
+      ``<ic:ch.ivy.addon.portal.component.ProcessHistory``
+      ``businessEntityId="resourceA247"``
+      ``chunkSize="6" scrollHeight="400" />``
       ``</p:dialog>``
 
 ..
