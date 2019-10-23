@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 public class DefaultExpresTaskPage extends TaskTemplatePage{
   
   public void enterTextToDefaultTask(String text) {
-    type(By.id("form:user-task-dyna-form:r1c2p1reg:inputTextArea"), text);
+    type(By.cssSelector("#form\\:user-task-dyna-form textarea[id$='input-text-area']"), text);
   }
   
   public void enterTextToComment(String comment) {

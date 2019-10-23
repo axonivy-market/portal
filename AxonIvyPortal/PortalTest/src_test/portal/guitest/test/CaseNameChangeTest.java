@@ -30,14 +30,13 @@ public class CaseNameChangeTest extends BaseTest {
   @Test
   public void testChangeCaseName() {
     String newCaseName = "New Case Name";
-    int caseIndex = 0;
     login(TestAccount.ADMIN_USER);
     HomePage homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     CaseDetailsPage detailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
-    detailsPage.changeCaseName(newCaseName, caseIndex);
-    String updatedCaseName = detailsPage.getNameOfCaseAt(caseIndex);
+    detailsPage.changeCaseName(newCaseName);
+    String updatedCaseName = detailsPage.getNameOfCaseAt();
     assertEquals(newCaseName, updatedCaseName);
   }
   
