@@ -122,9 +122,10 @@ function donutExtender() {
             formatter: function(value, context) {
               let sum = 0;
               let dataArr = context.dataset.data;
-              dataArr.map(data => {
-                  sum += data;
-              });
+              for (var index = 0;index < dataArr.length; index++) {
+                  sum += dataArr[index];
+              }
+
               let percentage = (value*100 / sum).toFixed(2)+"%";
               return percentage;
             }
