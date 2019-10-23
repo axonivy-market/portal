@@ -105,18 +105,13 @@ public class StatisticChartCreationBean implements Serializable {
   }
 
   private void updateCaseCategory(StatisticFilter filter, StatisticFilter oldFilter) {
-    buildSelectedCaseCategory(filter);
-    oldFilter.setIsAllCategoriesSelected(filter.getIsAllCategoriesSelected());
-    updateOldListToNewList(oldFilter.getCaseCategories().getCategoryPaths(), filter.getCaseCategories().getCategoryPaths());
-    updateOldListToNewList(oldFilter.getSelectedCaseCategories(), filter.getSelectedCaseCategories());
-  }
-
-  private void buildSelectedCaseCategory(StatisticFilter filter) {
-    // Update case category paths
-    filter.getCaseCategories().getCategoryPaths();
-
     filter.setIsAllCategoriesSelected(filter.getCaseCategories().getRoot().isSelected());
     filter.setSelectedCaseCategories(filter.getCaseCategories().getCategoryPaths());
+
+    oldFilter.setIsAllCategoriesSelected(filter.getIsAllCategoriesSelected());
+    updateOldListToNewList(oldFilter.getCaseCategories().getCategoryPaths(),
+        filter.getCaseCategories().getCategoryPaths());
+    updateOldListToNewList(oldFilter.getSelectedCaseCategories(), filter.getSelectedCaseCategories());
   }
 
   public boolean checkIfAnyFilterChanges(StatisticFilter filter, StatisticFilter oldFilter) {

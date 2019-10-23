@@ -631,6 +631,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
   /**
    * generate data for "Case by State" chart
+   * Build with correct order: CREATED, RUNNING, DONE, FAILED
    * 
    * @param caseStateStatistic statistic data
    * @return generated data
@@ -698,12 +699,13 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     statisticChart.setDefaultChart(String.valueOf(isDefault));
     if (filter.getIsAllCaseStatesSelected() || filter.getIsAllCategoriesSelected()) {
       StatisticFilter newFilter = ObjectUtils.clone(filter);
+      if (filter.getIsAllCategoriesSelected()) {
+          newFilter.setSelectedCaseCategories(new ArrayList<>());
+      }
       if (filter.getIsAllRolesSelected()) {
         newFilter.setSelectedRoles(new ArrayList<>());
       }
-      if (filter.getIsAllCategoriesSelected()) {
-        newFilter.setSelectedCaseCategories(new ArrayList<>());
-      }
+
       statisticChart.setFilter(newFilter);
     } else {
       statisticChart.setFilter(filter);
@@ -774,7 +776,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       boolean isEmptyData) {
     DonutChartDataSet dataSet = new DonutChartDataSet();
     dataSet.setData(chartData.values().stream().collect(Collectors.toList()));
-    if (!isEmptyData) { 
+    if (!isEmptyData) {
       if (priorityColor == Colors.PRIORITY_COLOR) {
         dataSet.setBackgroundColor(Colors.getPriorityColors(chartData, statisticColors));
       } else {
@@ -813,27 +815,21 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     options.setLegend(buildChartLegend(CHART_LEGEND_POSITION_BOTTOM, false));
 
     if (chartData.size() != 0) {
-      
-      dataSet.setData(chartData.values().stream().collect(Collectors.toList()));
-      data.setLabels(chartData.keySet().stream().collect(Collectors.toList()));
-
+      buildBarChartDataSet(chartData, data, dataSet);
       buildExpiryColorBySelectedValue(selectedValue, dataSet);
 
       String label = Ivy.cms().co(EXPIRY_PERIOD_CMS);
       if (selectDayOfWeek(selectedValue)) {
         label = label + " " + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/hour");
       }
-
       scales.addXAxesData(createLinearAxes(CHART_LEGEND_POSITION_LEFT, label));
       scales.addYAxesData(createLinearAxes(CHART_LEGEND_POSITION_BOTTOM, Ivy.cms().co(TASK_CMS)));
     }
-
     data.addChartDataSet(dataSet);
 
     if (isSetDefaultName) {
       options.setTitle(generateChartTitle(StatisticChartType.TASK_BY_EXPIRY));
     }
-
     options.setScales(scales);
     model.setData(data);
     model.setOptions(options);
@@ -842,15 +838,20 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     return model;
   }
 
+  private void buildBarChartDataSet(Map<Object, Number> chartData, ChartData data, BarChartDataSet dataSet) {
+    dataSet.setData(chartData.values().stream().collect(Collectors.toList()));
+    data.setLabels(chartData.keySet().stream().collect(Collectors.toList()));
+  }
+
   private BarChartDataSet buildExpiryColorBySelectedValue(String selectedValue, BarChartDataSet dataSet) {
     List<String> bgColor = new ArrayList<>();
-    List<String> borderColor = new ArrayList<>();
     String today = Ivy.cms().co(TODAY_EXPIRY_KEY);
     String week = Ivy.cms().co(THIS_WEEK_EXPIRY_KEY);
     String month = Ivy.cms().co(THIS_MONTH_EXPIRY_KEY);
     String year = Ivy.cms().co(THIS_YEAR_EXPIRY_KEY);
 
     if (selectedValue.equalsIgnoreCase(today)) {
+      // Build column color by hours
       bgColor.add(statisticColors.getTaskExpiriedTodayBefore8Color());
       bgColor.add(statisticColors.getTaskExpiriedToday8Color());
       bgColor.add(statisticColors.getTaskExpiriedToday9Color());
@@ -868,6 +869,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       bgColor.add(statisticColors.getTaskExpiriedToday17Color());
       bgColor.add(statisticColors.getTaskExpiriedTodayAfter18Color());
     } else if (selectedValue.equalsIgnoreCase(week)) {
+      // Build column color by weekdays
       bgColor.add(statisticColors.getTaskExpiriedMonColor());
       bgColor.add(statisticColors.getTaskExpiriedTueColor());
       bgColor.add(statisticColors.getTaskExpiriedWedColor());
@@ -876,12 +878,14 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       bgColor.add(statisticColors.getTaskExpiriedSatColor());
       bgColor.add(statisticColors.getTaskExpiriedSunColor());
     } else if (selectedValue.equalsIgnoreCase(month)) {
+      // Build column color by week of the month
       bgColor.add(statisticColors.getTaskExpiriedFirstWeekColor());
       bgColor.add(statisticColors.getTaskExpiriedSecondWeekColor());
       bgColor.add(statisticColors.getTaskExpiriedThirdWeekColor());
       bgColor.add(statisticColors.getTaskExpiriedFourthWeekColor());
       bgColor.add(statisticColors.getTaskExpiriedFifthWeekColor());
     } else if (selectedValue.equalsIgnoreCase(year)) {
+      // Build column color by the month of the year
       bgColor.add(statisticColors.getTaskExpiriedJanColor());
       bgColor.add(statisticColors.getTaskExpiriedFebColor());
       bgColor.add(statisticColors.getTaskExpiriedMarColor());
@@ -895,21 +899,23 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       bgColor.add(statisticColors.getTaskExpiriedNovColor());
       bgColor.add(statisticColors.getTaskExpiriedDecColor());
     } else {
+      // Build default column color
       bgColor.add(statisticColors.getTaskExpiriedColor());
       bgColor.add(statisticColors.getTaskExpiriedTodayColor());
       bgColor.add(statisticColors.getTaskExpiriedThisWeekColor());
       bgColor.add(statisticColors.getTaskExpiriedThisMonthColor());
       bgColor.add(statisticColors.getTaskExpiriedThisYearColor());
 
+      List<String> borderColor = new ArrayList<>();
       borderColor.add(StatisticColors.DEFAULT_TASK_EXPIRIED_BORDER);
       borderColor.add(StatisticColors.DEFAULT_TASK_TODAY_BORDER);
       borderColor.add(StatisticColors.DEFAULT_TASK_WEEK_BORDER);
       borderColor.add(StatisticColors.DEFAULT_TASK_MONTH_BORDER);
       borderColor.add(StatisticColors.DEFAULT_TASK_YEAR_BORDER);
+      dataSet.setBorderColor(borderColor);
     }
 
     dataSet.setBackgroundColor(bgColor);
-    dataSet.setBorderColor(borderColor);
     dataSet.setBorderWidth(1);
     return dataSet;
   }
@@ -972,9 +978,8 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     BarChartOptions options = new BarChartOptions();
     CartesianScales scales = new CartesianScales();
     if (chartData.size() != 0) {
-      dataSet.setData(chartData.values().stream().collect(Collectors.toList()));
-      data.setLabels(chartData.keySet().stream().collect(Collectors.toList()));
-      
+      buildBarChartDataSet(new HashMap<>(chartData), data, dataSet);
+
       dataSet.setBackgroundColor(statisticColors.getElapsedTime());
       dataSet.setBorderColor(statisticColors.getElapsedTime());
       
