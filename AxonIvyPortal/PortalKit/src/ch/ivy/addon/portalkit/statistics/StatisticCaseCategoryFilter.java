@@ -24,25 +24,35 @@ public class StatisticCaseCategoryFilter {
   @JsonIgnore
   private CheckboxTreeNode root;
 
-  // Only using in saving filters, don't use anymore because getter/setter were changed
+  /**
+   * Only using in saving filters, don't use anymore because getter/setter were changed
+   */
   private List<String> categoryPaths = new ArrayList<>();
 
+  /**
+   * StatisticCaseCategoryFilter's constructor will generate Case's Category as an TreeRoot
+   * And add two options such as SelectAll, No Category
+   * 
+   */
   public StatisticCaseCategoryFilter() {
     super();
     CheckboxTreeNode caseCategoryTree = CaseTreeUtils.buildCaseCategoryCheckboxTreeRoot();
+    if (caseCategoryTree != null && caseCategoryTree.getChildCount() > 0) {
+      root = buildRoot();
+      CheckboxTreeNode checkboxTreeNode = buildCaseCategoryCheckBoxTreeNode(root,
+          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll"),
+          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll"));
+      checkboxTreeNode.getChildren().addAll(caseCategoryTree.getChildren());
 
-    root = buildRoot();
-    CheckboxTreeNode checkboxTreeNode = buildCaseCategoryCheckBoxTreeNode(root,
-        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll"),
-        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll"));
-    checkboxTreeNode.getChildren().addAll(caseCategoryTree.getChildren());
-
-    CheckboxTreeNode noCategory = buildCaseCategoryCheckBoxTreeNode(root,
-        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory"),
-        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory"));
-    checkboxTreeNode.getChildren().add(noCategory);
-    root.setChildren(new ArrayList<>());
-    root.getChildren().add(checkboxTreeNode);
+      CheckboxTreeNode noCategory = buildCaseCategoryCheckBoxTreeNode(root,
+          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory"),
+          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory"));
+      checkboxTreeNode.getChildren().add(noCategory);
+      root.setChildren(new ArrayList<>());
+      root.getChildren().add(checkboxTreeNode);
+    } else {
+      root = new CheckboxTreeNode();
+    }
   }
 
   private static CheckboxTreeNode buildRoot() {
@@ -115,17 +125,28 @@ public class StatisticCaseCategoryFilter {
     this.root = root;
   }
 
-  // This method is used for updating Category Tree and Category Paths when having session filter
+  /**
+   * This method is used for updating Category Tree 
+   * and Category Paths when having session filter
+   */
   public void updateRootAndCategoryPaths() {
     root = CaseTreeUtils.buildCaseCategoryCheckboxTreeRoot();
     setCategoryPaths(this.categoryPaths);
   }
 
+  /**
+   * get Case's category path by data from Tree node component
+   * @return list of paths for case's category
+   */
   public List<String> getCategoryPaths() {
     this.categoryPaths = NodeUtils.getCategoryPaths(categories, CaseNode.class);
     return this.categoryPaths;
   }
 
+  /**
+   * set Case's category path to categoryPaths is provided and update categories by the change on Tree
+   * @param categoryPaths
+   */
   public void setCategoryPaths(List<String> categoryPaths) {
     this.categoryPaths = categoryPaths;
     List<CheckboxTreeNode> selectedCategories = new ArrayList<>();

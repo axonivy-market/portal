@@ -29,16 +29,16 @@ public class StatisticColors implements Serializable {
 
   public static final String DEFAULT_LEGEND_COLOR = "#212121";
 
-  // Common
+  // Color for Legend and DataSet label
   private String legendColor = DEFAULT_LEGEND_COLOR;
 
-  // For task
+  // For Tasks
   private String taskExceptionPriority = DEFAULT_EXCEPTION_PRIORITY_COLOR;
   private String taskHighPriority = DEFAULT_HIGH_PRIORITY_COLOR;
   private String taskNormalPriority = DEFAULT_NORMAL_PRIORITY_COLOR;
   private String taskLowPriority = DEFAULT_LOW_PRIORITY_COLOR;
 
-  // For case
+  // For Cases
   private String createdCase = DEFAULT_CREATED_CASE_COLOR;
   private String runningCase = DEFAULT_RUNNING_CASE_COLOR;
   private String doneCase = DEFAULT_DONE_CASE_COLOR;
@@ -47,14 +47,14 @@ public class StatisticColors implements Serializable {
   // For Elapse time
   private String elapsedTime = DEFAULT_ELAPSED_TIME_COLOR;
 
-  // For Expiry
+  // For Task's expire
   private String taskExpiriedColor = DEFAULT_TASK_EXPIRIED_COLOR;
   private String taskExpiriedTodayColor = DEFAULT_TASK_TODAY_COLOR;
   private String taskExpiriedThisWeekColor = DEFAULT_TASK_WEEK_COLOR;
   private String taskExpiriedThisMonthColor = DEFAULT_TASK_MONTH_COLOR;
   private String taskExpiriedThisYearColor = DEFAULT_TASK_YEAR_COLOR;
 
-  // For Expiry in day
+  // For Task's expire in day
   private String taskExpiriedTodayBefore8Color = DEFAULT_TASK_TODAY_COLOR;
   private String taskExpiriedToday8Color = DEFAULT_TASK_TODAY_COLOR;
   private String taskExpiriedToday9Color = DEFAULT_TASK_TODAY_COLOR;
@@ -68,7 +68,7 @@ public class StatisticColors implements Serializable {
   private String taskExpiriedToday17Color = DEFAULT_TASK_TODAY_COLOR;
   private String taskExpiriedTodayAfter18Color = DEFAULT_TASK_TODAY_COLOR;
 
-  // For Expiry in week
+  // For Task's expire in week
   private String taskExpiriedMonColor = DEFAULT_TASK_WEEK_COLOR;
   private String taskExpiriedTueColor = DEFAULT_TASK_WEEK_COLOR;
   private String taskExpiriedWedColor = DEFAULT_TASK_WEEK_COLOR;
@@ -77,14 +77,14 @@ public class StatisticColors implements Serializable {
   private String taskExpiriedSatColor = DEFAULT_TASK_WEEK_COLOR;
   private String taskExpiriedSunColor = DEFAULT_TASK_WEEK_COLOR;
 
-  // For Expiry in month
+  // For Task's expire in month
   private String taskExpiriedFirstWeekColor = DEFAULT_TASK_MONTH_COLOR;
   private String taskExpiriedSecondWeekColor = DEFAULT_TASK_MONTH_COLOR;
   private String taskExpiriedThirdWeekColor = DEFAULT_TASK_MONTH_COLOR;
   private String taskExpiriedFourthWeekColor = DEFAULT_TASK_MONTH_COLOR;
   private String taskExpiriedFifthWeekColor = DEFAULT_TASK_MONTH_COLOR;
 
-  // For Expiry in year
+  // For Task's expire in year
   private String taskExpiriedJanColor = DEFAULT_TASK_YEAR_COLOR;
   private String taskExpiriedFebColor = DEFAULT_TASK_YEAR_COLOR;
   private String taskExpiriedMarColor = DEFAULT_TASK_YEAR_COLOR;
