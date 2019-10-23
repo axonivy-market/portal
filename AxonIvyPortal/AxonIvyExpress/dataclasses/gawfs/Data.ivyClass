@@ -42,4 +42,6 @@ originalTaskId 'This field store original task id which is trigger express adhoc
 originalTaskId PERSISTENT #fieldModifier
 processCoOwners List<String> #field
 processCoOwners 'This field store which user/role is co owener of express process, beside process creator' #fieldComment
+processCoOwners PERSISTENT #fieldModifier
 processCoOwnersDisplayName String #field
+processCoOwnersDisplayName PERSISTENT #fieldModifier
