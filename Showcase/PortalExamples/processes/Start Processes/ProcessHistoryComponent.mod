@@ -1,5 +1,5 @@
 [Ivy]
-1624C1C79661758C 3.28 #module
+1624C1C79661758C 7.5.0 #module
 >Proto >Proto Collection #zClass
 Pt0 ProcessHistoryComponent Big #zClass
 Pt0 B #cInfo
@@ -99,8 +99,7 @@ Pt0 f4 159 64 368 64 #arcP
 Pt0 f2 expr out #txt
 Pt0 f2 560 64 617 64 #arcP
 Pt0 f5 processCall 'Functional Processes/SetBusinessEntityId:call(String)' #txt
-Pt0 f5 requestActionDecl '<java.lang.String businessEntityId> param;
-' #txt
+Pt0 f5 requestActionDecl '<String businessEntityId> param;' #txt
 Pt0 f5 requestMappingAction 'param.businessEntityId="alpha";
 ' #txt
 Pt0 f5 responseActionDecl 'ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData out;
@@ -294,8 +293,7 @@ Pt0 f23 @|StepIcon #fIcon
 Pt0 f25 expr out #txt
 Pt0 f25 159 464 248 464 #arcP
 Pt0 f21 processCall 'Functional Processes/SetBusinessEntityId:call(String)' #txt
-Pt0 f21 requestActionDecl '<java.lang.String businessEntityId> param;
-' #txt
+Pt0 f21 requestActionDecl '<String businessEntityId> param;' #txt
 Pt0 f21 requestMappingAction 'param.businessEntityId="beta";
 ' #txt
 Pt0 f21 responseActionDecl 'ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData out;
