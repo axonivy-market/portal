@@ -167,8 +167,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
     -webkit-font-smoothing: antialiased;
     content: "\f002";
     position: absolute;
-    left: 0;
-    top: 5px;
 }
 
 /* =================== END DROPDOWN ====================== */
@@ -449,7 +447,9 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .filter-category-checkbox-tree .ui-icon.ui-icon-search {
   background-image: none !important;
-  text-indent: 0 !important;
+  text-indent: 2px !important;
+  bottom: 8px;
+  top: unset;
 }
 
 .filter-category-checkbox-tree .ui-icon.ui-icon-search:before {
