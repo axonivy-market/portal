@@ -84,6 +84,7 @@ import org.primefaces.component.barchart.BarChart;
 import org.primefaces.component.donutchart.DonutChart;
 import org.primefaces.event.ItemSelectEvent;
 import org.primefaces.model.charts.ChartData;
+import org.primefaces.model.charts.axes.cartesian.CartesianAxes;
 import org.primefaces.model.charts.axes.cartesian.CartesianScaleLabel;
 import org.primefaces.model.charts.axes.cartesian.CartesianScales;
 import org.primefaces.model.charts.axes.cartesian.linear.CartesianLinearAxes;
@@ -1028,9 +1029,17 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
 
   public boolean isTaskByExpiryHour(StatisticChart statisticChart) {
+    String taskScaleLabel = StringUtils.EMPTY;
+
+    List<CartesianAxes> scales = Optional.ofNullable(statisticChart.getBarChartModel()).map(BarChartModel::getOptions)
+        .map(BarChartOptions::getScales).map(CartesianScales::getXAxes).orElse(new ArrayList<>());
+    if (!scales.isEmpty()) {
+      taskScaleLabel = Optional.ofNullable(scales.get(0)).map(CartesianAxes::getScaleLabel)
+          .map(CartesianScaleLabel::getLabelString).orElse(StringUtils.EMPTY);
+    }
+
     return statisticChart.getType() == StatisticChartType.TASK_BY_EXPIRY
-        && statisticChart.getBarChartModel().getOptions().getScales().getXAxes().get(0).getScaleLabel().getLabelString()
-        .contains(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/hour"));
+        && taskScaleLabel.contains(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/hour"));
   }
 
   public boolean isCaseByState(StatisticChart statisticChart) {
