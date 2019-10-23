@@ -20,11 +20,11 @@ Customization
 1. Create a callable subprocess that has signature
    "portalExpressDataProvider"
 
-   |image0|
+   |callable-sub-process|
 
    The subprocess return the list of String:
 
-   |image1|
+   |callable-sub-process-result|
 
    Below is an example that use Database element to read the data from
    DB as a data provider.
@@ -40,13 +40,13 @@ Customization
    -  Fields: choose "Specified Fields" and tick one column that use for
       data provider.
 
-   |image2|
+   |database|
 
    In the Output tab, set the value for the output variable:
 
    ``out.items = recordset.getColumn("[name of the column]")``
 
-   |image3|
+   |database-output|
 
 2. Create new Express Workflow
 
@@ -59,11 +59,11 @@ Customization
    provider", it means that user will provide the values of the checkbox
    manually.
 
-   |image4|
+   |express-workflow|
 
-.. |image0| image:: images/ExpressExternaldataprovider/CallableSubProcess.png
-.. |image1| image:: images/ExpressExternaldataprovider/CallableSubProcessResult.png
-.. |image2| image:: images/ExpressExternaldataprovider/Database.png
-.. |image3| image:: images/ExpressExternaldataprovider/DatabaseOutput.png
-.. |image4| image:: images/ExpressExternaldataprovider/ExpressWorkflow.png
+.. |callable-sub-process| image:: images/express-external-data-provider/callable-sub-process.png
+.. |callable-sub-process-result| image:: images/express-external-data-provider/callable-sub-process-result.png
+.. |database| image:: images/express-external-data-provider/database.png
+.. |database-output| image:: images/express-external-data-provider/database-output.png
+.. |express-workflow| image:: images/express-external-data-provider/express-workflow.png
 

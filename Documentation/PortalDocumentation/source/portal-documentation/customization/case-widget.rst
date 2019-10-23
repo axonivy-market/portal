@@ -140,7 +140,7 @@ Case filter
 -  In order to introduce new filter, create a new java class extends
    CaseFilter and override its methods (see javadoc comments)
 
-   |image0|
+   |case-filter|
 
 -  Introduce a java class extends CaseFilterContainer. This filter
    container contains your filters, you can reuse default filters, refer
@@ -223,7 +223,7 @@ You can refer to ``PortalExamples`` project for examples
    and caseHeader. You can find responsive class in `this
    part. <#axonivyportal.customization.responsivecss>`__
 
-   |image1|
+   |responsive-case-list-customization|
 
       **Tip**
 
@@ -235,7 +235,7 @@ You can refer to ``PortalExamples`` project for examples
    add ``js-hidden-when-expand-menu`` to responsiveStyleClass or
    styleClass param of caseListHeader and caseHeader.
 
-   |image2|
+   |responsive-case-list-hide-column|
 
       **Tip**
 
@@ -243,7 +243,7 @@ You can refer to ``PortalExamples`` project for examples
       1025. So you could reduce width of browser to 1025 to test and
       decide which columns need to be hidden.
 
-.. |image0| image:: images/CaseWidget/CaseFilter.png
-.. |image1| image:: images/CaseWidget/ResponsiveCaseListCustomization.png
-.. |image2| image:: images/CaseWidget/ResponsiveCaseListHideColumn.png
+.. |case-filter| image:: images/case-widget/case-filter.png
+.. |responsive-case-list-customization| image:: images/case-widget/responsive-case-list-customization.png
+.. |responsive-case-list-hide-column| image:: images/case-widget/responsive-case-list-hide-column.png
 
