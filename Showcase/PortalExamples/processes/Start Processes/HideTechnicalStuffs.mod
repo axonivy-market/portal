@@ -1,5 +1,5 @@
 [Ivy]
-16583F0F73864543 3.28 #module
+16583F0F73864543 7.5.0 #module
 >Proto >Proto Collection #zClass
 Hs0 HideTechnicalStuffs Big #zClass
 Hs0 B #cInfo
@@ -301,8 +301,7 @@ Hs0 f27 @|StartRequestIcon #fIcon
 Hs0 f29 713 471 30 30 0 15 #rect
 Hs0 f29 @|EndIcon #fIcon
 Hs0 f30 processCall 'Functional Processes/HideSystemCase:call(Boolean)' #txt
-Hs0 f30 requestActionDecl '<java.lang.Boolean hideBusinessCase> param;
-' #txt
+Hs0 f30 requestActionDecl '<Boolean hideBusinessCase> param;' #txt
 Hs0 f30 requestMappingAction 'param.hideBusinessCase=true;
 ' #txt
 Hs0 f30 responseActionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
