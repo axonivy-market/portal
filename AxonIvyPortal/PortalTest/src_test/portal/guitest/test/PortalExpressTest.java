@@ -369,6 +369,7 @@ public class PortalExpressTest extends BaseTest {
 		formDefinition.createTextInputField("Input Text", INPUT_TEXT_TYPE_INDEX, false);
 		formDefinition.moveAllElementToDragAndDrogPanel();
 		formDefinition.nextStep();
+		formDefinition.inputMailRecipient("wawa@axonivy.io");
 		formDefinition.inputMailSubject("Information for task 2");
 		formDefinition.inputMailContent("Task is finished");
 		formDefinition.nextStep();
