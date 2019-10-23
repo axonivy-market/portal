@@ -35,7 +35,7 @@
             <h:panelGroup id="defined-task-button-container-#{status.index}" layout="block" styleClass="defined-task-button-container">
               <p:commandButton id="defined-task-button-#{status.index}" partialSubmit="true"
                 value="#{definedTask.taskType == 'EMAIL' ? definedTask.taskType.label : definedTask.subject.concat('&#10;(').concat(definedTask.taskType.label).concat(')')}"
-                styleClass="defined-task-button #{status.index == data.activeTaskIndex ? 'active' : ''} #{status.index lt data.activeTaskIndex ? 'visited' : ''}"
+                styleClass="defined-task-button #{status.index == data.activeTaskIndex ? 'active' : ''}"
                 disabled="#{(status.index == data.activeTaskIndex) || (definedTask.taskType == 'APPROVAL')}"
                 actionListener="#{logic.moveToTask(status.index)}" update="form defined-task-container buttons-container"
                 process="form:selected-formelements-field form:information-email:email-container">
@@ -44,7 +44,7 @@
 
               <h:panelGroup id="defined-task-label-#{status.index}"
                 styleClass="defined-task-label #{status.index == data.activeTaskIndex or status.index lt data.activeTaskIndex ? 'active' : ''}">
-                <h:outputLabel value="#{status.index + 1}" />
+                <h:outputLabel value="#{status.index + 1}" for="defined-task-label-#{status.index}" />
               </h:panelGroup>
             </h:panelGroup>
             <p:tooltip id="defined-task-button-tooltip-#{status.index}" for="defined-task-button-container-#{status.index}"
