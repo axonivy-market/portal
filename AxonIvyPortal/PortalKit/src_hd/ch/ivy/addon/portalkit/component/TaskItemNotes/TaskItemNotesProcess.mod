@@ -1,5 +1,5 @@
 [Ivy]
-15493BD80A4C7D12 3.28 #module
+15493BD80A4C7D12 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemNotesProcess Big #zClass
 Ts0 RD #cInfo
@@ -28,11 +28,8 @@ Ts0 @PushWFArc f8 '' #zField
 >Proto Ts0 Ts0 TaskItemNotesProcess #zField
 Ts0 f0 guid 1682705E65C6C417 #txt
 Ts0 f0 method start() #txt
-Ts0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ts0 f0 outParameterDecl '<> result;
-' #txt
+Ts0 f0 inParameterDecl '<> param;' #txt
+Ts0 f0 outParameterDecl '<> result;' #txt
 Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -48,13 +45,10 @@ Ts0 f2 expr out #txt
 Ts0 f2 109 96 307 96 #arcP
 Ts0 f3 guid 168270608CC35DAF #txt
 Ts0 f3 method initData(ch.ivyteam.ivy.workflow.ITask) #txt
-Ts0 f3 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivyteam.ivy.workflow.ITask task> param = methodEvent.getInputArguments();
-' #txt
+Ts0 f3 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task> param;' #txt
 Ts0 f3 inParameterMapAction 'out.task=param.task;
 ' #txt
-Ts0 f3 outParameterDecl '<> result;
-' #txt
+Ts0 f3 outParameterDecl '<> result;' #txt
 Ts0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -110,11 +104,8 @@ Ts0 f23 expr out #txt
 Ts0 f23 424 192 467 192 #arcP
 Ts0 f6 guid 16827078DBAC9718 #txt
 Ts0 f6 method createNote() #txt
-Ts0 f6 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ts0 f6 outParameterDecl '<> result;
-' #txt
+Ts0 f6 inParameterDecl '<> param;' #txt
+Ts0 f6 outParameterDecl '<> result;' #txt
 Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

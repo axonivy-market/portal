@@ -1,5 +1,5 @@
 [Ivy]
-164B687E2E746821 3.28 #module
+164B687E2E746821 7.5.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseWidgetProcess Big #zClass
 Cs0 RD #cInfo
@@ -20,14 +20,11 @@ Cs0 @PushWFArc f5 '' #zField
 >Proto Cs0 Cs0 CaseWidgetProcess #zField
 Cs0 f0 guid 164B687E2FC4D5CF #txt
 Cs0 f0 method start(ch.ivy.addon.portal.generic.view.CaseView,String) #txt
-Cs0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portal.generic.view.CaseView caseView,java.lang.String menuState> param = methodEvent.getInputArguments();
-' #txt
+Cs0 f0 inParameterDecl '<ch.ivy.addon.portal.generic.view.CaseView caseView,String menuState> param;' #txt
 Cs0 f0 inParameterMapAction 'out.caseView=param.caseView;
 out.menuState=param.menuState;
 ' #txt
-Cs0 f0 outParameterDecl '<> result;
-' #txt
+Cs0 f0 outParameterDecl '<> result;' #txt
 Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

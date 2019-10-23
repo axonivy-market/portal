@@ -1,5 +1,5 @@
 [Ivy]
-14FEEC123381CEF1 3.28 #module
+14FEEC123381CEF1 7.5.0 #module
 >Proto >Proto Collection #zClass
 Is0 IconSelectionProcess Big #zClass
 Is0 RD #cInfo
@@ -20,11 +20,8 @@ Is0 @PushWFArc f5 '' #zField
 >Proto Is0 Is0 IconSelectionProcess #zField
 Is0 f0 guid 14FEDE843831B16D #txt
 Is0 f0 method start() #txt
-Is0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Is0 f0 outParameterDecl '<> result;
-' #txt
+Is0 f0 inParameterDecl '<> param;' #txt
+Is0 f0 outParameterDecl '<> result;' #txt
 Is0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

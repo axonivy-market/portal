@@ -1,5 +1,5 @@
 [Ivy]
-1543D9E65076619B 3.28 #module
+1543D9E65076619B 7.5.0 #module
 >Proto >Proto Collection #zClass
 Nr0 Navigator Big #zClass
 Nr0 B #cInfo
@@ -75,8 +75,7 @@ Nr0 @AnnotationArc f3 '' #zField
 Nr0 f10 51 779 26 26 14 0 #rect
 Nr0 f10 @|EndSubIcon #fIcon
 Nr0 f12 processCall 'Functional Processes/OpenPortalTasks:useView(ch.ivy.addon.portal.generic.view.TaskView)' #txt
-Nr0 f12 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;
-' #txt
+Nr0 f12 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;' #txt
 Nr0 f12 requestMappingAction 'param.taskView=in.taskView;
 ' #txt
 Nr0 f12 responseActionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
@@ -96,13 +95,12 @@ Nr0 f12 46 700 36 24 20 -2 #rect
 Nr0 f12 @|CallSubIcon #fIcon
 Nr0 f11 expr out #txt
 Nr0 f11 64 724 64 779 #arcP
-Nr0 f9 inParamDecl '<java.lang.Long taskId,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId,java.lang.String caseName> param;' #txt
+Nr0 f9 inParamDecl '<Long taskId,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId,String caseName> param;' #txt
 Nr0 f9 inParamTable 'out.caseId=param.caseId;
 out.caseName=param.caseName;
 out.taskId=param.taskId;
 ' #txt
-Nr0 f9 outParamDecl '<> result;
-' #txt
+Nr0 f9 outParamDecl '<> result;' #txt
 Nr0 f9 callSignature viewTask(Long,ch.ivy.addon.portalkit.dto.GlobalCaseId,String) #txt
 Nr0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -183,8 +181,7 @@ Nr0 f4 224 586 496 172 -238 -84 #rect
 Nr0 f4 @|IBIcon #fIcon
 Nr0 f22 224 672 82 712 #arcP
 Nr0 f16 processCall 'Functional Processes/InitializeTaskDataModel:call()' #txt
-Nr0 f16 requestActionDecl '<> param;
-' #txt
+Nr0 f16 requestActionDecl '<> param;' #txt
 Nr0 f16 responseActionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 ' #txt
 Nr0 f16 responseMappingAction 'out=in;
@@ -244,8 +241,7 @@ Nr0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Nr0 f20 847 631 36 24 20 -2 #rect
 Nr0 f20 @|StepIcon #fIcon
 Nr0 f23 processCall 'Functional Processes/OpenPortalTasks:useView(ch.ivy.addon.portal.generic.view.TaskView)' #txt
-Nr0 f23 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;
-' #txt
+Nr0 f23 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;' #txt
 Nr0 f23 requestMappingAction 'param.taskView=in.taskView;
 ' #txt
 Nr0 f23 responseActionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
@@ -265,12 +261,11 @@ Nr0 f23 847 703 36 24 20 -2 #rect
 Nr0 f23 @|CallSubIcon #fIcon
 Nr0 f24 852 782 26 26 14 0 #rect
 Nr0 f24 @|EndSubIcon #fIcon
-Nr0 f25 inParamDecl '<java.lang.String chartName,ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;' #txt
+Nr0 f25 inParamDecl '<String chartName,ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;' #txt
 Nr0 f25 inParamTable 'out.chartName=param.chartName;
 out.taskQuery=param.taskQuery;
 ' #txt
-Nr0 f25 outParamDecl '<> result;
-' #txt
+Nr0 f25 outParamDecl '<> result;' #txt
 Nr0 f25 callSignature viewTaskForAnalytic(String,ch.ivyteam.ivy.workflow.query.TaskQuery) #txt
 Nr0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -284,8 +279,7 @@ Nr0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Nr0 f25 852 462 26 26 14 0 #rect
 Nr0 f25 @|StartSubIcon #fIcon
 Nr0 f26 processCall 'Functional Processes/InitializeTaskDataModel:call()' #txt
-Nr0 f26 requestActionDecl '<> param;
-' #txt
+Nr0 f26 requestActionDecl '<> param;' #txt
 Nr0 f26 responseActionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 ' #txt
 Nr0 f26 responseMappingAction 'out=in;
@@ -340,12 +334,11 @@ Nr0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Nr0 f31 848 275 36 24 20 -2 #rect
 Nr0 f31 @|StepIcon #fIcon
-Nr0 f32 inParamDecl '<java.lang.String chartName,ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> param;' #txt
+Nr0 f32 inParamDecl '<String chartName,ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> param;' #txt
 Nr0 f32 inParamTable 'out.caseQuery=param.caseQuery;
 out.chartName=param.chartName;
 ' #txt
-Nr0 f32 outParamDecl '<> result;
-' #txt
+Nr0 f32 outParamDecl '<> result;' #txt
 Nr0 f32 callSignature viewCaseForAnalytic(String,ch.ivyteam.ivy.workflow.query.CaseQuery) #txt
 Nr0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -361,8 +354,7 @@ Nr0 f32 @|StartSubIcon #fIcon
 Nr0 f33 853 402 26 26 14 0 #rect
 Nr0 f33 @|EndSubIcon #fIcon
 Nr0 f34 processCall 'Functional Processes/InitializeCaseDataModel:call()' #txt
-Nr0 f34 requestActionDecl '<> param;
-' #txt
+Nr0 f34 requestActionDecl '<> param;' #txt
 Nr0 f34 responseActionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 ' #txt
 Nr0 f34 responseMappingAction 'out=in;
@@ -381,8 +373,7 @@ data model</name>
 Nr0 f34 810 169 112 44 -31 -20 #rect
 Nr0 f34 @|CallSubIcon #fIcon
 Nr0 f35 processCall 'Functional Processes/OpenPortalCases:useView(ch.ivy.addon.portal.generic.view.CaseView)' #txt
-Nr0 f35 requestActionDecl '<ch.ivy.addon.portal.generic.view.CaseView view> param;
-' #txt
+Nr0 f35 requestActionDecl '<ch.ivy.addon.portal.generic.view.CaseView view> param;' #txt
 Nr0 f35 requestMappingAction 'param.view=in.caseView;
 ' #txt
 Nr0 f35 responseActionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
@@ -451,12 +442,11 @@ is put in PortalTemplate.</name>
 Nr0 f42 1059 556 496 172 -238 -84 #rect
 Nr0 f42 @|IBIcon #fIcon
 Nr0 f43 1059 642 883 715 #arcP
-Nr0 f44 inParamDecl '<java.lang.String businessCaseName,ch.ivy.addon.portalkit.dto.GlobalCaseId businessCaseId> param;' #txt
+Nr0 f44 inParamDecl '<String businessCaseName,ch.ivy.addon.portalkit.dto.GlobalCaseId businessCaseId> param;' #txt
 Nr0 f44 inParamTable 'out.caseId=param.businessCaseId;
 out.caseName=param.businessCaseName;
 ' #txt
-Nr0 f44 outParamDecl '<> result;
-' #txt
+Nr0 f44 outParamDecl '<> result;' #txt
 Nr0 f44 callSignature viewTechnicalCasesOfBusniessCase(String,ch.ivy.addon.portalkit.dto.GlobalCaseId) #txt
 Nr0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -470,8 +460,7 @@ Nr0 f44 @|StartSubIcon #fIcon
 Nr0 f45 1777 465 30 30 0 15 #rect
 Nr0 f45 @|EndSubIcon #fIcon
 Nr0 f46 processCall 'Functional Processes/InitializeCaseDataModel:call()' #txt
-Nr0 f46 requestActionDecl '<> param;
-' #txt
+Nr0 f46 requestActionDecl '<> param;' #txt
 Nr0 f46 responseActionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 ' #txt
 Nr0 f46 responseMappingAction 'out=in;
@@ -516,8 +505,7 @@ Nr0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Nr0 f48 1736 266 112 44 -50 -8 #rect
 Nr0 f48 @|StepIcon #fIcon
 Nr0 f49 processCall 'Functional Processes/OpenPortalCases:useView(ch.ivy.addon.portal.generic.view.CaseView)' #txt
-Nr0 f49 requestActionDecl '<ch.ivy.addon.portal.generic.view.CaseView view> param;
-' #txt
+Nr0 f49 requestActionDecl '<ch.ivy.addon.portal.generic.view.CaseView view> param;' #txt
 Nr0 f49 requestMappingAction 'param.view=in.caseView;
 ' #txt
 Nr0 f49 responseActionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
@@ -558,9 +546,8 @@ is put in PortalTemplate.</name>
 ' #txt
 Nr0 f53 1920 187 496 172 -238 -84 #rect
 Nr0 f53 @|IBIcon #fIcon
-Nr0 f5 processCall 'Functional Processes/OpenPortalCaseDetails:call(ch.ivyteam.ivy.workflow.ICase,Boolean)' #txt
-Nr0 f5 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseData,java.lang.Boolean isShowBackButton> param;
-' #txt
+Nr0 f5 processCall 'Functional Processes/OpenPortalCaseDetailsHook:call(ICase,Boolean)' #txt
+Nr0 f5 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseData,Boolean isShowBackButton> param;' #txt
 Nr0 f5 requestMappingAction 'param.caseData=in.iCase;
 param.isShowBackButton=true;
 ' #txt
@@ -638,11 +625,10 @@ Nr0 f6 expr out #txt
 Nr0 f6 64 196 64 292 #arcP
 Nr0 f8 expr out #txt
 Nr0 f8 64 109 64 172 #arcP
-Nr0 f54 inParamDecl '<java.lang.Long taskId> param;' #txt
+Nr0 f54 inParamDecl '<Long taskId> param;' #txt
 Nr0 f54 inParamTable 'out.taskId=param.taskId;
 ' #txt
-Nr0 f54 outParamDecl '<> result;
-' #txt
+Nr0 f54 outParamDecl '<> result;' #txt
 Nr0 f54 callSignature viewRelatedTask(Long) #txt
 Nr0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -692,9 +678,8 @@ Nr0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Nr0 f56 1736 626 112 44 -48 -8 #rect
 Nr0 f56 @|StepIcon #fIcon
-Nr0 f58 processCall 'Functional Processes/OpenPortalTaskDetails:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)' #txt
-Nr0 f58 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,java.lang.Boolean isFromTaskList> param;
-' #txt
+Nr0 f58 processCall 'Functional Processes/OpenPortalTaskDetailsHook:call(ITask,TaskLazyDataModel,PortalPage,Boolean)' #txt
+Nr0 f58 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,Boolean isFromTaskList> param;' #txt
 Nr0 f58 requestMappingAction 'param.task=in.iTask;
 param.portalPage=ch.ivy.addon.portalkit.enums.PortalPage.CASE_DETAIL_FROM_TASK;
 ' #txt

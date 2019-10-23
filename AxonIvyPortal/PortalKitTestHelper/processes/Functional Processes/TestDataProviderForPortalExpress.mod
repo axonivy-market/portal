@@ -1,5 +1,5 @@
 [Ivy]
-16B3F9C285F4279D 3.28 #module
+16B3F9C285F4279D 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ss0 TestDataProviderForPortalExpress Big #zClass
 Ss0 B #cInfo
@@ -16,8 +16,7 @@ Ss0 @EndSub f1 '' #zField
 Ss0 @PushWFArc f2 '' #zField
 >Proto Ss0 Ss0 TestDataProviderForPortalExpress #zField
 Ss0 f0 inParamDecl '<> param;' #txt
-Ss0 f0 outParamDecl '<List<java.lang.String> data> result;
-' #txt
+Ss0 f0 outParamDecl '<List<String> data> result;' #txt
 Ss0 f0 outParamTable 'result.data=java.util.Arrays.asList("Data Provider Item 1", "Data Provider Item 2", "Data Provider Item 3");
 ' #txt
 Ss0 f0 callSignature portalExpressDataProvider() #txt

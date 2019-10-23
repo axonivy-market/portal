@@ -1,5 +1,5 @@
 [Ivy]
-15798655494F25E1 3.28 #module
+15798655494F25E1 7.5.0 #module
 >Proto >Proto Collection #zClass
 cw0 CreateWorkflow Big #zClass
 cw0 B #cInfo
@@ -56,8 +56,7 @@ cw0 f0 @|StartRequestIcon #fIcon
 cw0 f1 401 49 30 30 0 15 #rect
 cw0 f1 @|EndIcon #fIcon
 cw0 f3 processCall 'Functional Processes/editWorkflow:newWorkflow()' #txt
-cw0 f3 requestActionDecl '<> param;
-' #txt
+cw0 f3 requestActionDecl '<> param;' #txt
 cw0 f3 responseActionDecl 'gawfs.createWorkflowData out;
 ' #txt
 cw0 f3 responseMappingAction 'out=in;
@@ -78,7 +77,7 @@ cw0 f2 328 64 401 64 #arcP
 cw0 f4 expr out #txt
 cw0 f4 111 64 216 64 #arcP
 cw0 f5 outLink AxonIvyExpressAdhocWF.ivp #txt
-cw0 f5 inParamDecl '<java.lang.Long originalTaskId> param;' #txt
+cw0 f5 inParamDecl '<Long originalTaskId> param;' #txt
 cw0 f5 inParamTable 'out.originalTaskId=param.originalTaskId;
 ' #txt
 cw0 f5 requestEnabled true #txt
@@ -98,8 +97,7 @@ cw0 f5 @C|.responsibility Everybody #txt
 cw0 f5 81 177 30 30 -73 24 #rect
 cw0 f5 @|StartRequestIcon #fIcon
 cw0 f6 processCall 'Functional Processes/editWorkflow:newAdhocWorkflow(Long)' #txt
-cw0 f6 requestActionDecl '<java.lang.Long originalTaskId> param;
-' #txt
+cw0 f6 requestActionDecl '<Long originalTaskId> param;' #txt
 cw0 f6 requestMappingAction 'param.originalTaskId=in.originalTaskId;
 ' #txt
 cw0 f6 responseActionDecl 'gawfs.createWorkflowData out;

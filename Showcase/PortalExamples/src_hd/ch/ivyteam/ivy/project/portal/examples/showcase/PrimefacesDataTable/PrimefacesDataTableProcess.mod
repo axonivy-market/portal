@@ -1,5 +1,5 @@
 [Ivy]
-169C78AD20FEB2C2 3.28 #module
+169C78AD20FEB2C2 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ps0 PrimefacesDataTableProcess Big #zClass
 Ps0 RD #cInfo
@@ -24,11 +24,7 @@ Ps0 @PushWFArc f5 '' #zField
 Ps0 @PushWFArc f2 '' #zField
 Ps0 @PushWFArc f10 '' #zField
 Ps0 @PushWFArc f12 '' #zField
-Ps0 @RichDialogProcessStart f13 '' #zField
-Ps0 @RichDialogProcessEnd f14 '' #zField
 Ps0 @GridStep f16 '' #zField
-Ps0 @PushWFArc f17 '' #zField
-Ps0 @PushWFArc f15 '' #zField
 >Proto Ps0 Ps0 PrimefacesDataTableProcess #zField
 Ps0 f11 actionTable 'out=in;
 ' #txt
@@ -146,26 +142,6 @@ Ps0 f10 expr out #txt
 Ps0 f10 288 264 347 264 #arcP
 Ps0 f12 expr out #txt
 Ps0 f12 117 264 176 264 #arcP
-Ps0 f13 guid 16B44B3AFF397CD1 #txt
-Ps0 f13 type ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesDataTable.PrimefacesDataTableData #txt
-Ps0 f13 actionDecl 'ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesDataTable.PrimefacesDataTableData out;
-' #txt
-Ps0 f13 actionTable 'out=in;
-' #txt
-Ps0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>addNewRow</name>
-    </language>
-</elementInfo>
-' #txt
-Ps0 f13 83 403 26 26 -47 15 #rect
-Ps0 f13 @|RichDialogProcessStartIcon #fIcon
-Ps0 f14 type ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesDataTable.PrimefacesDataTableData #txt
-Ps0 f14 339 403 26 26 0 12 #rect
-Ps0 f14 @|RichDialogProcessEndIcon #fIcon
-Ps0 f16 actionDecl 'ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesDataTable.PrimefacesDataTableData out;
-' #txt
 Ps0 f16 actionTable 'out=in;
 ' #txt
 Ps0 f16 actionCode 'import ch.ivyteam.ivy.project.portal.examples.showcase.Score;
@@ -175,7 +151,6 @@ Ps0 f16 actionCode 'import ch.ivyteam.ivy.project.portal.examples.showcase.Score
 out.scores.add((new Score()).setId(999).setName("New Row").setPoints(2563).setDate(new Date()));
 
 ' #txt
-Ps0 f16 type ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesDataTable.PrimefacesDataTableData #txt
 Ps0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -188,10 +163,6 @@ Ps0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ps0 f16 170 394 112 44 -25 -8 #rect
 Ps0 f16 @|StepIcon #fIcon
-Ps0 f17 expr out #txt
-Ps0 f17 109 416 170 416 #arcP
-Ps0 f15 expr out #txt
-Ps0 f15 282 416 339 416 #arcP
 >Proto Ps0 .type ch.ivyteam.ivy.project.portal.examples.showcase.PrimefacesDataTable.PrimefacesDataTableData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
@@ -206,7 +177,3 @@ Ps0 f0 mainOut f2 tail #connect
 Ps0 f2 head f6 mainIn #connect
 Ps0 f6 mainOut f7 tail #connect
 Ps0 f7 head f1 mainIn #connect
-Ps0 f13 mainOut f17 tail #connect
-Ps0 f17 head f16 mainIn #connect
-Ps0 f16 mainOut f15 tail #connect
-Ps0 f15 head f14 mainIn #connect

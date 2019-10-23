@@ -1,5 +1,5 @@
 [Ivy]
-15EF07D454EF13E4 3.28 #module
+15EF07D454EF13E4 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ps0 LogoutSettingProcess Big #zClass
 Ps0 RD #cInfo
@@ -27,11 +27,8 @@ Ps0 @PushWFArc f6 '' #zField
 >Proto Ps0 Ps0 LogoutSettingProcess #zField
 Ps0 f0 guid 15EF07DBEF876B54 #txt
 Ps0 f0 method start() #txt
-Ps0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ps0 f0 outParameterDecl '<> result;
-' #txt
+Ps0 f0 inParameterDecl '<> param;' #txt
+Ps0 f0 outParameterDecl '<> result;' #txt
 Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -47,11 +44,8 @@ Ps0 f2 expr out #txt
 Ps0 f2 77 64 307 64 #arcP
 Ps0 f3 guid 15EF07E1D7F2C49C #txt
 Ps0 f3 method logout() #txt
-Ps0 f3 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ps0 f3 outParameterDecl '<> result;
-' #txt
+Ps0 f3 inParameterDecl '<> param;' #txt
+Ps0 f3 outParameterDecl '<> result;' #txt
 Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -64,8 +58,7 @@ Ps0 f3 @|UdMethodIcon #fIcon
 Ps0 f4 307 147 26 26 0 12 #rect
 Ps0 f4 @|UdProcessEndIcon #fIcon
 Ps0 f8 processCall 'Functional Processes/Logout:call(Boolean)' #txt
-Ps0 f8 requestActionDecl '<java.lang.Boolean isTaskReserve> param;
-' #txt
+Ps0 f8 requestActionDecl '<Boolean isTaskReserve> param;' #txt
 Ps0 f8 requestMappingAction 'param.isTaskReserve=false;
 ' #txt
 Ps0 f8 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting.LogoutSettingData out;
@@ -87,11 +80,8 @@ Ps0 f9 expr out #txt
 Ps0 f9 77 160 136 160 #arcP
 Ps0 f10 guid 15EF0CF6DE58BE72 #txt
 Ps0 f10 method reserveTask() #txt
-Ps0 f10 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ps0 f10 outParameterDecl '<> result;
-' #txt
+Ps0 f10 inParameterDecl '<> param;' #txt
+Ps0 f10 outParameterDecl '<> result;' #txt
 Ps0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -102,8 +92,7 @@ Ps0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ps0 f10 51 245 26 26 -38 15 #rect
 Ps0 f10 @|UdMethodIcon #fIcon
 Ps0 f11 processCall 'Functional Processes/Logout:call(Boolean)' #txt
-Ps0 f11 requestActionDecl '<java.lang.Boolean isTaskReserve> param;
-' #txt
+Ps0 f11 requestActionDecl '<Boolean isTaskReserve> param;' #txt
 Ps0 f11 requestMappingAction 'param.isTaskReserve=true;
 ' #txt
 Ps0 f11 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting.LogoutSettingData out;

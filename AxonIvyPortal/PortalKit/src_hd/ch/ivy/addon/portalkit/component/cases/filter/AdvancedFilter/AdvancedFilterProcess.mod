@@ -1,5 +1,5 @@
 [Ivy]
-15F9451DFD921A3D 3.28 #module
+15F9451DFD921A3D 7.5.0 #module
 >Proto >Proto Collection #zClass
 As0 AdvancedFilterProcess Big #zClass
 As0 RD #cInfo
@@ -22,11 +22,8 @@ As0 @PushWFArc f7 '' #zField
 >Proto As0 As0 AdvancedFilterProcess #zField
 As0 f0 guid 15F9451E014B2097 #txt
 As0 f0 method start() #txt
-As0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-As0 f0 outParameterDecl '<> result;
-' #txt
+As0 f0 inParameterDecl '<> param;' #txt
+As0 f0 outParameterDecl '<> result;' #txt
 As0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -42,13 +39,10 @@ As0 f2 expr out #txt
 As0 f2 109 64 211 64 #arcP
 As0 f3 guid 15F946685C4600B5 #txt
 As0 f3 method updateCasesByFilter(String) #txt
-As0 f3 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.String caseFilterContainerId> param = methodEvent.getInputArguments();
-' #txt
+As0 f3 inParameterDecl '<String caseFilterContainerId> param;' #txt
 As0 f3 inParameterMapAction 'out.caseContainerId=param.caseFilterContainerId;
 ' #txt
-As0 f3 outParameterDecl '<> result;
-' #txt
+As0 f3 outParameterDecl '<> result;' #txt
 As0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

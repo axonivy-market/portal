@@ -1,5 +1,5 @@
 [Ivy]
-15493A537A91F8FC 3.28 #module
+15493A537A91F8FC 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemGeneralInfoProcess Big #zClass
 Ts0 RD #cInfo
@@ -31,11 +31,8 @@ Ts0 @PushWFArc f3 '' #zField
 >Proto Ts0 Ts0 TaskItemGeneralInfoProcess #zField
 Ts0 f0 guid 1682691BC1A26D76 #txt
 Ts0 f0 method start() #txt
-Ts0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ts0 f0 outParameterDecl '<> result;
-' #txt
+Ts0 f0 inParameterDecl '<> param;' #txt
+Ts0 f0 outParameterDecl '<> result;' #txt
 Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -51,13 +48,10 @@ Ts0 f2 expr out #txt
 Ts0 f2 109 96 307 96 #arcP
 Ts0 f5 guid 16826946D7BC78E5 #txt
 Ts0 f5 method updateDeadline(ch.ivyteam.ivy.workflow.ITask) #txt
-Ts0 f5 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivyteam.ivy.workflow.ITask task> param = methodEvent.getInputArguments();
-' #txt
+Ts0 f5 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task> param;' #txt
 Ts0 f5 inParameterMapAction 'out.task=param.task;
 ' #txt
-Ts0 f5 outParameterDecl '<> result;
-' #txt
+Ts0 f5 outParameterDecl '<> result;' #txt
 Ts0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -130,8 +124,7 @@ Ts0 f12 440 192 499 192 #arcP
 Ts0 f10 expr out #txt
 Ts0 f10 288 192 328 192 #arcP
 Ts0 f9 processCall 'Functional Processes/Navigator:viewCase(ch.ivy.addon.portalkit.dto.GlobalCaseId)' #txt
-Ts0 f9 requestActionDecl '<ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;
-' #txt
+Ts0 f9 requestActionDecl '<ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;' #txt
 Ts0 f9 requestMappingAction 'param.caseId=in.globalCaseId;
 ' #txt
 Ts0 f9 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData out;

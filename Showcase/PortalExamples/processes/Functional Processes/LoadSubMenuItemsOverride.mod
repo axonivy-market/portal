@@ -1,5 +1,5 @@
 [Ivy]
-1657E6622F0C0122 3.28 #module
+1657E6622F0C0122 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ls0 LoadSubMenuItems Big #zClass
 Ls0 B #cInfo
@@ -20,8 +20,7 @@ Ls0 @InfoButton f5 '' #zField
 Ls0 @AnnotationArc f6 '' #zField
 >Proto Ls0 Ls0 LoadSubMenuItems #zField
 Ls0 f0 inParamDecl '<> param;' #txt
-Ls0 f0 outParamDecl '<List<ch.addon.portal.generic.menu.SubMenuItem> subMenuItems> result;
-' #txt
+Ls0 f0 outParamDecl '<List<ch.addon.portal.generic.menu.SubMenuItem> subMenuItems> result;' #txt
 Ls0 f0 outParamTable 'result.subMenuItems=in.subMenuItems;
 ' #txt
 Ls0 f0 callSignature loadSubMenuItems() #txt

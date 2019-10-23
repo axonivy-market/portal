@@ -3,59 +3,64 @@ body {
         &.ui-shadow {
             @include overlay-content-shadow();
         }
-        
+
         .ui-dialog-titlebar {
             background-color: #ffffff;
             color: $textColor;
             padding: $headerPadding;
-            
+
             .ui-dialog-title {
-                font-weight: 700;
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 32px;
+                margin: 0;
             }
-            
+
             .ui-dialog-titlebar-icon {
                 padding: 0;
+                margin-top: .4em;
                 @include border-radius(50%);
                 @include transition(background-color $transitionDuration);
-                
+
                 &.ui-state-hover, &.ui-state-focus {
                     @include hover-element();
                 }
-                
+
                 .ui-icon {
                     color: $textSecondaryColor;
                 }
-                
+
                 .ui-icon-extlink {
                     @include icon_override('fullscreen');
                 }
-                
+
                 .ui-icon-newwin {
                     @include icon_override('fullscreen_exit');
                 }
             }
         }
-        
+
         .ui-dialog-buttonpane, .ui-dialog-footer {
             text-align: right;
-            
+            padding: $headerPadding;
+            border: 0 none;
+
             .ui-button {
-                background-color: #ffffff;
-                color: $textColor;
-                @include no-shadow();
-                
-                .ui-icon {
-                    color: $textSecondaryColor;
-                }
-                
-                &.ui-state-hover {
-                    @include hover-element();
+                width: auto;
+                margin-right: .5em;
+
+                &:last-child {
+                    margin-right: 0;
                 }
             }
         }
-        
+
         .ui-confirm-dialog-severity {
             margin: 0px 12px;
+        }
+
+        p {
+            line-height: $panelContentLineHeight;
         }
     }
 
@@ -70,19 +75,19 @@ body {
             width: auto;
         }
     }
-    
+
     .ui-lightbox {
         &.ui-shadow {
             @include overlay-content-shadow();
         }
-        
+
         .ui-lightbox-caption {
             padding: $headerPadding;
-            
+
             .ui-lightbox-caption-text {
                 margin: 0;
             }
-            
+
             .ui-lightbox-close {
                 @include border-radius(50%);
                 @include transition(background-color $transitionDuration);
@@ -90,42 +95,42 @@ body {
                 margin: 0;
                 width: $iconWidth;
                 height: $iconHeight;
-                            
+
                 &.ui-state-hover {
                     @include hover-element-primary();
                     padding: 0;
                 }
             }
         }
-        
+
         .ui-lightbox-content-wrapper {
             .ui-lightbox-nav-right, .ui-lightbox-nav-left {
                 top: 40%;
-                
+
                 .ui-icon {
                     @include transition(color $transitionDuration);
                     font-size: 48px;
                     color: $primaryLightColor;
                 }
-                
+
                 &:hover {
                     .ui-icon {
                         color: #ffffff;
                     }
                 }
             }
-            
+
             .ui-lightbox-nav-right {
                 right: 24px;
             }
         }
     }
-    
+
     .ui-overlaypanel {
         &.ui-shadow {
             @include overlay-content-shadow();
         }
-        
+
         .ui-overlaypanel-close {
             background-color: $accentColor;
             @include border-radius(50%);
@@ -134,59 +139,59 @@ body {
             right: -16px;
             top: -16px;
             @include content-shadow();
-            
+
             span {
                 color: $accentTextColor;
-                
+
                 &:before {
                     position: relative;
                     top: 2px;
                 }
             }
-            
+
             &.ui-state-hover {
                 background-color: $accentDarkColor;
             }
         }
     }
-    
+
     .ui-tooltip {
         @include opacity(.9);
         font-size: $fontSize - 2px;
-        
+
         .ui-tooltip-text {
             background-color: #323232;
             @include overlay-content-shadow();
         }
-        
+
         &.ui-tooltip-top {
             .ui-tooltip-arrow {
                 border-top-color: #323232;
             }
         }
-        
+
         &.ui-tooltip-bottom {
             .ui-tooltip-arrow {
                 border-bottom-color: #323232;
             }
         }
-        
+
         &.ui-tooltip-left {
             .ui-tooltip-arrow {
                 border-left-color: #323232;
             }
         }
-        
+
         &.ui-tooltip-right {
             .ui-tooltip-arrow {
                 border-right-color: #323232;
             }
         }
     }
-    
+
     .ui-state-error,
     .ui-widget.ui-state-error,
-    .ui-widget-content .ui-state-error, 
+    .ui-widget-content .ui-state-error,
     .ui-widget-header .ui-state-error {
         border-color: #e62a10;
     }

@@ -128,8 +128,14 @@ body {
 
 .layout-wrapper .layout-main .layout-content {
     padding: 60px 30px 0 30px;
-    height: calc(100vh - 60px);
+    height: 100vh;
     overflow-x: hidden;
+}
+
+@media  screen and (max-height: 500px) {
+  .layout-wrapper .layout-main .layout-content {
+    height: 80vh !important;
+  }
 }
 
 @media screen and (max-width: 40em) {
@@ -223,6 +229,8 @@ body .ui-messages .ui-messages-error-icon,
             padding: 0px !important;
             background-color: #eee !important;
             color: $black !important;
+            width: 20px;
+            height: 20px;
         }
     }
 }
@@ -599,10 +607,6 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 
 .ui-widget-content.ui-tabs-panel {
     padding: 7px !important;
-}
-
-.ui-inputfield {
-    padding: 6px 0 6px 6px !important;
 }
 
 .ui-spinner {

@@ -1,5 +1,74 @@
 @import './common';
 
+$headerPadding:.714em 1em;
+$headerTextColor:#ffffff;
+$headerFontWeight:500;
+
+$contentPadding:.857em 1em;
+$contentBorderColor:#d8d8d8;
+$contentBgColor:#ffffff;
+
+$inputBorderColor:#bdbdbd;
+$inputInvalidBorderColor:#e62a10;
+$inputBgColor:#ffffff;
+$inputErrorTextColor:#e62a10;
+$inputHeaderPadding:.714em 1em;
+$inputBorderErrorColor:#e62a10;
+$inputFieldLabelTextColor:#999999;
+$inputFieldBoxBgColor:#f7f7f7;
+$inputFieldFillBgColor:#f7f7f7;
+$inputAutoFillBorderColor:#bdbdbd;
+$textboxBgColor:#f7f7f7;
+
+//inputs with lists
+$inputListPadding: .5em 0;
+
+//groups
+$inputGroupBorderColor:#bdbdbd;
+$inputGroupBgColor:transparent;
+$inputGroupTextColor:#757575;
+$inputGroupIconColor:#bdbdbd;
+$inputGroupAddonMinWidth:2*$fontSize;
+$checkboxWidth:18px;
+$checkboxHeight:18px;
+$inputGroupPadding:2px 2px 1px 2px;
+$inputGroupIconFontSize: 1.5em;
+
+//panels
+$accordionHeaderBgColor:$primaryColor;
+$accordionHeaderTextColor:$primaryTextColor;
+$accordionHeaderHoverBgColor:$primaryDarkColor;
+$accordionHeaderHoverTextColor:$primaryTextColor;
+
+$panelContentLineHeight:1.5;
+
+$buttonTextColor:#ffffff;
+
+$listItemPadding:.571em .857em;
+
+$radioButtonBorderColor:#757575;
+$checkboxBorderColor:#757575;
+
+$errorMessageFontSize:11px;
+$errorMessageIconFontSize:13px;
+
+//data
+$dataTableHeaderPadding:.857em;
+$dataTableCellPadding:.714em .857em;
+$dataTableRowBgColorEven:#f4f4f4;
+$paginatorPadding:.714em 1em;
+
+//menus
+$menuitemPadding:.571em .857em;
+$menuListPadding: .5em 0;
+
+
+
+
+
+
+
+/*
 $headerPadding:8px 14px;
 $headerTextColor:#ffffff;
 
@@ -43,3 +112,4 @@ $errorMessageIconFontSize:13px;
 $dataTableRowBgColorEven:#f4f4f4;
 $paginatorPadding:6px 10px;
 $menuitemPadding:6px 10px;
+*/

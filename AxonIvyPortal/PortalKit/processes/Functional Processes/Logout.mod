@@ -1,5 +1,5 @@
 [Ivy]
-15EF0843F1DB39F2 3.28 #module
+15EF0843F1DB39F2 7.5.0 #module
 >Proto >Proto Collection #zClass
 Lt0 Logout Big #zClass
 Lt0 B #cInfo
@@ -17,11 +17,10 @@ Lt0 @GridStep f3 '' #zField
 Lt0 @PushWFArc f2 '' #zField
 Lt0 @PushWFArc f4 '' #zField
 >Proto Lt0 Lt0 Logout #zField
-Lt0 f0 inParamDecl '<java.lang.Boolean isTaskReserve> param;' #txt
+Lt0 f0 inParamDecl '<Boolean isTaskReserve> param;' #txt
 Lt0 f0 inParamTable 'out.isTaskReserve=param.isTaskReserve;
 ' #txt
-Lt0 f0 outParamDecl '<> result;
-' #txt
+Lt0 f0 outParamDecl '<> result;' #txt
 Lt0 f0 callSignature call(Boolean) #txt
 Lt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

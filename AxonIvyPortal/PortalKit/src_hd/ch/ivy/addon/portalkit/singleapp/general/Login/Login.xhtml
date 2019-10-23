@@ -49,5 +49,14 @@
       </h:form>
     </div>
   </div>
+  <script type="text/javascript">
+    $(function() {
+      $('[id $= "login-form:password"]').on('change', function(e){
+        if($(e.target).val() != '') {
+          $(e.target).addClass('ui-state-filled');
+        }
+      });
+    });
+  </script>
 </cc:implementation>
 </html>

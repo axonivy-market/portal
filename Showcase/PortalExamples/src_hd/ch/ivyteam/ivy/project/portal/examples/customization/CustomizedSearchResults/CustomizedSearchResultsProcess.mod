@@ -1,5 +1,5 @@
 [Ivy]
-163AF3C65466F6F9 3.28 #module
+163AF3C65466F6F9 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ps0 CustomizedSearchResultsProcess Big #zClass
 Ps0 RD #cInfo
@@ -23,9 +23,7 @@ Ps0 @PushWFArc f8 '' #zField
 >Proto Ps0 Ps0 CustomizedSearchResultsProcess #zField
 Ps0 f0 guid 150D5B63FE18100D #txt
 Ps0 f0 method start(String) #txt
-Ps0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.String keyword> param = methodEvent.getInputArguments();
-' #txt
+Ps0 f0 inParameterDecl '<String keyword> param;' #txt
 Ps0 f0 inParameterMapAction 'out.activeTabIndex=0;
 out.dataModel.caseDataModel.criteria.keyword=param.keyword;
 out.dataModel.caseDataModel.notKeepFilter=true;
@@ -35,8 +33,7 @@ out.dataModel.taskDataModel.criteria.keyword=param.keyword;
 out.dataModel.taskDataModel.notKeepFilter=true;
 ' #txt
 Ps0 f0 inActionCode out.dataModel.search(); #txt
-Ps0 f0 outParameterDecl '<> result;
-' #txt
+Ps0 f0 outParameterDecl '<> result;' #txt
 Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -54,13 +51,10 @@ Ps0 f2 expr out #txt
 Ps0 f2 75 96 333 96 #arcP
 Ps0 f3 guid 163B050731AD1F6C #txt
 Ps0 f3 method openDetails(ch.ivyteam.ivy.project.portal.examples.Employee) #txt
-Ps0 f3 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivyteam.ivy.project.portal.examples.Employee employee> param = methodEvent.getInputArguments();
-' #txt
+Ps0 f3 inParameterDecl '<ch.ivyteam.ivy.project.portal.examples.Employee employee> param;' #txt
 Ps0 f3 inParameterMapAction 'out.emp=param.employee;
 ' #txt
-Ps0 f3 outParameterDecl '<> result;
-' #txt
+Ps0 f3 outParameterDecl '<> result;' #txt
 Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -87,14 +81,11 @@ Ps0 f5 expr out #txt
 Ps0 f5 77 288 152 288 #arcP
 Ps0 f6 guid 163B5B169EAD48FF #txt
 Ps0 f6 method start(ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel,Number) #txt
-Ps0 f6 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel searchResultsDataModel,java.lang.Number activeTabIndex> param = methodEvent.getInputArguments();
-' #txt
+Ps0 f6 inParameterDecl '<ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel searchResultsDataModel,Number activeTabIndex> param;' #txt
 Ps0 f6 inParameterMapAction 'out.activeTabIndex=param.activeTabIndex;
 out.dataModel=param.searchResultsDataModel as ch.ivyteam.ivy.project.portal.examples.component.customize.CustomizedSearchResultsDataModel;
 ' #txt
-Ps0 f6 outParameterDecl '<> result;
-' #txt
+Ps0 f6 outParameterDecl '<> result;' #txt
 Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
