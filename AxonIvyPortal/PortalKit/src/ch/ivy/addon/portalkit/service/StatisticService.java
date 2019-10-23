@@ -113,7 +113,6 @@ import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
 import ch.ivy.addon.portalkit.statistics.StatisticChartTimeUtils;
 import ch.ivy.addon.portalkit.statistics.StatisticColors;
 import ch.ivy.addon.portalkit.statistics.StatisticFilter;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.business.data.store.search.Filter;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -125,7 +124,6 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   
   private static final String CHART_LEGEND_POSITION_LEFT = "left";
   private static final String CHART_LEGEND_POSITION_BOTTOM = "bottom";
-  private static final String DEFAULT_CHART_COLORS_PROCESS = "Functional Processes/DefaultChartColors";
   private static StatisticColors statisticColors;
 
   @Override
@@ -786,9 +784,13 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     return dataSet;
   }
 
-  private StatisticColors getStatisticsColors() {
-    return IvyExecutor.executeAsSystem(() -> SubProcessCall.withPath(DEFAULT_CHART_COLORS_PROCESS).withStartSignature("defaultChartColors()").call()
-        .get("chartColors", StatisticColors.class));
+  /**
+   * set StatisticColors to session cache
+   * @param statisticColors
+   */
+  public void setStatisticsColors(StatisticColors statisticColors) {
+    IvyCacheService.newInstance().setSessionCache(IvyCacheIdentifier.STATISTIC_COLOR,
+        IvyCacheIdentifier.STATISTIC_COLOR, statisticColors);
   }
 
   /**
@@ -1089,12 +1091,6 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
         IvyCacheIdentifier.STATISTIC_COLOR);
     if (chartColor.isPresent()) {
       statisticColors = (StatisticColors) chartColor.get();
-    }
-    if (statisticColors == null) {
-      statisticColors = getStatisticsColors();
-      IvyCacheService.newInstance().setSessionCache(IvyCacheIdentifier.STATISTIC_COLOR,
-          IvyCacheIdentifier.STATISTIC_COLOR, statisticColors);
-      Ivy.session().setAttribute("statisticColors", statisticColors);
     }
   }
 
