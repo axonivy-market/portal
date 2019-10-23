@@ -1,65 +1,65 @@
 body {
-    .ui-breadcrumb {        
+    .ui-breadcrumb {
         a {
             color: #ffffff;
         }
-        
+
         li:first-child {
             a {
                 position: relative;
                 font-size: $iconFontSize;
                 margin-top: 0;
-                
+
                 span {
                     display: none;
                 }
             }
         }
     }
-    
+
     .ui-steps {
         position: relative;
-        
+
         .ui-steps-item {
             background-color: transparent;
-            
+
             &.ui-state-disabled {
                 @include opacity(1);
             }
-            
+
             .ui-menuitem-link {
                 display: inline-block;
                 text-align: left;
                 background-color: #ffffff;
                 overflow: hidden;
-                
+
                 .ui-steps-number {
                     display: inline-block;
-                    background-color: $grayBgColor;
+                    background-color: #757575;
                     @include border-radius(50%);
                     padding: 4px 8px;
                     font-size: 16px;
                     color: #ffffff;
                 }
-                
+
                 .ui-steps-title {
                     display: inline;
                     margin-left: 10px;
                     color: $textSecondaryColor;
                 }
             }
-            
-            &.ui-state-highlight {            
+
+            &.ui-state-highlight {
                 .ui-steps-number {
                     background-color: $primaryColor;
                 }
-                
-                .ui-steps-title { 
+
+                .ui-steps-title {
                     font-weight: 700;
                     color: $textColor;
                 }
             }
-            
+
             &:last-child {
                 .ui-menuitem-link {
                     display: block;
@@ -77,18 +77,18 @@ body {
             position: absolute;
         }
     }
-    
+
     .ui-menu {
-        padding: 8px 0;
-        
+        padding: $menuListPadding;
+
         .ui-shadow, &.ui-shadow {
-            @include overlay-input-shadow();    
+            @include overlay-input-shadow();
         }
-        
+
         .ui-menu-list {
             padding: 0;
             margin: 0;
-            
+
             li {
                 &.ui-widget-header {
                     margin: 0 0 1px 0;
@@ -97,30 +97,30 @@ body {
                     width: 100%;
                     box-sizing: border-box;
                     padding: 0;
-                    
+
                     h3 {
                         display: block;
                         float: none;
                         font-size: $fontSize;
                         padding: $menuitemPadding;
                         font-weight: 400;
-                        
-                        .ui-icon {                            
+
+                        .ui-icon {
                             &.ui-icon-triangle-1-s, &.ui-icon-triangle-1-e {
                                 margin: -12px 0 0 0;
                             }
                         }
                     }
                 }
-                
+
                 &.ui-menuitem {
                     margin: 0;
                     @include border-radius(0);
-                    
+
                     &.ui-state-hover {
                         @include hover-element();
                     }
-                    
+
                     .ui-menuitem-link {
                         border: 0 none;
                         padding: $menuitemPadding;
@@ -130,20 +130,20 @@ body {
                         color: $textColor;
                         @include border-radius(0);
                         position: relative;
-                        
+
                         &.ui-state-hover {
                             @include hover-element();
                         }
-                        
+
                         .ui-menuitem-icon {
-                            margin-right: 8px; 
+                            margin-right: 8px;
                             display: inline-block;
                             vertical-align: middle;
                             float: none;
                             font-size: $iconFontSize - 2;
                             height: auto;
                         }
-                        
+
                         .ui-menuitem-text {
                             display: inline-block;
                             vertical-align: middle;
@@ -152,37 +152,37 @@ body {
                     }
                 }
             }
-            
+
             .ui-separator {
                 height: 1px;
                 background-color: $dividerColor;
                 width: 100%;
-                box-sizing: border-box;
+                margin: .5em 0;
             }
         }
-        
+
         &.ui-menu-toggleable {
             .ui-menu-list {
                 li {
                     &.ui-widget-header {
                         padding-left: 30px;
-                        
+
                         .ui-icon {
                             color: #ffffff;
-                            
+
                             &.ui-icon-triangle-1-s {
                                 margin-top: -10px;
                             }
-                            
+
                             &.ui-icon-triangle-1-e {
                                 margin-top: -10px;
                             }
                         }
                     }
                 }
-            }    
+            }
         }
-        
+
         &.ui-tieredmenu {
             .ui-icon-triangle-1-e {
                 position: absolute;
@@ -190,23 +190,23 @@ body {
                 top: 6px;
                 float: none;
             }
-            
+
             .ui-menu-child {
                 padding: 8px 0;
             }
         }
-        
+
         &.ui-menubar {
             padding: 0;
-            
+
             .ui-menu-child {
                 padding: 8px 0;
             }
-            
+
             .ui-menubar-options {
-                padding: 0 10px;
+                padding: .5em 1em 0 0;
             }
-            
+
             &.ui-megamenu {
                 &.ui-megamenu-vertical {
                     > .ui-menu-list {
@@ -215,16 +215,16 @@ body {
                 }
             }
         }
-        
+
         &.ui-slidemenu {
-            
+
             .ui-menu-parent {
                 .ui-menu-child {
                     padding: 0;
                     @include no-shadow();
                 }
             }
-            
+
             .ui-slidemenu-backward {
                 width: 100%;
                 @include border-box-sizing();
@@ -232,106 +232,131 @@ body {
             }
         }
     }
-    
+
     .ui-tabmenu {
-         padding: 0;
-         
-         .ui-tabmenu-nav {
-             padding: 0;
-             background-color: #ffffff;
-             border: 0 none;
-             @include border-radius(0px);
-             
-             > .ui-tabmenuitem {
-               top: auto;
-               margin: 0 4px 0 0;
-               padding: 0;
-               border-style: solid;
-               border-width: 0 0 2px 0;
-               @include transition(border-color $transitionDuration);
-               
-               > a {        
-                   padding: $headerPadding;
-                              
-                   &:focus {
-                       outline: 0 none;
-                   }
-                   
-                   .ui-menuitem-icon, .ui-menuitem-text {
-                       float: none;
-                       display: inline-block;
-                       vertical-align: middle;
-                   }
-                   
-                   .ui-menuitem-icon {
-                       margin-right: 12px;
-                   }
-               }
-                              
-               &.ui-state-default {
-                   a {
-                       color: $textSecondaryColor;
-                       
-                       .ui-icon {
-                           color: $textSecondaryColor;
-                       }
-                   }
-               }
-               
-               &.ui-state-hover {
-                   background-color: #ffffff;
-               }
-               
-               &.ui-state-active {
-                   background-color: #ffffff;
-                   border-color: $accentColor;
-                   border-style: solid;
-                   
-                   a {
-                       color: $primaryColor;
-                       
-                       .ui-icon {
-                           color: $primaryColor;
-                       }
-                   }
-               }
-           }
+        padding: 0;
+
+        .ui-tabmenu-nav {
+            padding: 0;
+            background-color: #ffffff;
+            border: 0 none;
+            @include border-radius(0px);
+
+            > .ui-tabmenuitem {
+                top: auto;
+                margin: 0 4px 0 0;
+                padding: 0;
+                border-style: solid;
+                border-width: 0 0 2px 0;
+                @include transition(border-color $transitionDuration);
+
+                > a {
+                    padding: $headerPadding;
+
+                    &:focus {
+                        outline: 0 none;
+                    }
+
+                    .ui-menuitem-icon, .ui-menuitem-text {
+                        float: none;
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+
+                    .ui-menuitem-icon {
+                        margin-right: 12px;
+                    }
+                }
+
+                &.ui-state-default {
+                    a {
+                        color: $textSecondaryColor;
+
+                        .ui-icon {
+                            color: $textSecondaryColor;
+                        }
+                    }
+                }
+
+                &.ui-state-hover {
+                    background-color: #ffffff;
+                }
+
+                &.ui-state-active {
+                    background-color: #ffffff;
+                    border-color: $accentColor;
+                    border-style: solid;
+
+                    a {
+                        color: $primaryColor;
+
+                        .ui-icon {
+                            color: $primaryColor;
+                        }
+                    }
+                }
+            }
         }
     }
-    
+
     .ui-panelmenu {
         .ui-panelmenu-header {
-            background-color: $primaryColor;
-            margin-bottom: 1px;
-            
+            background-color: $accordionHeaderBgColor;
+            margin-top: .25em;
+
             a {
-                padding: 6px 10px 6px 36px;
-                color: #ffffff;
+                padding: $headerPadding;
+                padding-left: 2.75em;
+                color: $primaryTextColor;
                 font-size: $fontSize;
+                font-weight: $headerFontWeight;
             }
-            
+
             .ui-icon {
-                color: #ffffff;
-                margin-top: -10px;
+                font-weight: $headerFontWeight;
+                color: $primaryTextColor;
+                margin-top: -.5em;
                 font-size: $iconFontSize - 2;
                 height: auto;
+                left: 0.75em;
             }
-            
+
+            &.ui-state-hover {
+                background-color: $accordionHeaderHoverBgColor;
+                color: $accordionHeaderHoverTextColor;
+
+                a, .ui-icon {
+                    color: $accordionHeaderHoverTextColor;
+                }
+            }
+
+            &.ui-menuitem-outline {
+                background-color: $accordionHeaderHoverBgColor;
+                color: $accordionHeaderHoverTextColor;
+                outline: 0 none;
+
+                a, .ui-icon {
+                    color: $accordionHeaderHoverTextColor;
+                }
+            }
+
             &.ui-state-active {
                 background-color: $accentColor;
+                color: $accentTextColor;
                 @include border-radius-bottom(0);
+
                 a, .ui-icon {
                     color: $accentTextColor;
                 }
             }
         }
-        
+
         .ui-panelmenu-content {
             padding: 0;
-            
+
             .ui-menuitem {
                 margin: 0;
-                
+
                 .ui-menuitem-link {
                     border: 0 none;
                     padding: $menuitemPadding;
@@ -341,17 +366,17 @@ body {
                     color: $textColor;
                     @include border-radius(0);
                     position: relative;
-                    
+
                     &.ui-state-hover {
                         @include hover-element();
                     }
-                                        
+
                     .ui-menuitem-text {
                         display: inline-block;
                         vertical-align: middle;
                         float: none;
                     }
-                    
+
                     .ui-icon {
                         position: static;
                         display: inline-block;

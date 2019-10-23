@@ -1,5 +1,5 @@
 [Ivy]
-1549452C001D8A69 3.28 #module
+1549452C001D8A69 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemDocumentsProcess Big #zClass
 Ts0 RD #cInfo
@@ -62,11 +62,8 @@ Ts0 @PushWFArc f26 '' #zField
 >Proto Ts0 Ts0 TaskItemDocumentsProcess #zField
 Ts0 f0 guid 1682717B951993D3 #txt
 Ts0 f0 method start() #txt
-Ts0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ts0 f0 outParameterDecl '<> result;
-' #txt
+Ts0 f0 inParameterDecl '<> param;' #txt
+Ts0 f0 outParameterDecl '<> result;' #txt
 Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -192,11 +189,8 @@ Ts0 f5 83 435 26 26 -89 15 #rect
 Ts0 f5 @|UdMethodIcon #fIcon
 Ts0 f12 guid 168272AA0A252382 #txt
 Ts0 f12 method resetMessageUploadDocument() #txt
-Ts0 f12 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ts0 f12 outParameterDecl '<> result;
-' #txt
+Ts0 f12 inParameterDecl '<> param;' #txt
+Ts0 f12 outParameterDecl '<> result;' #txt
 Ts0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -294,8 +288,7 @@ message</name>
 Ts0 f50 384 618 128 44 -40 -16 #rect
 Ts0 f50 @|StepIcon #fIcon
 Ts0 f30 processCall 'Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)' #txt
-Ts0 f30 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase businessCase> param;
-' #txt
+Ts0 f30 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase businessCase> param;' #txt
 Ts0 f30 requestMappingAction 'param.businessCase=in.businessCase;
 ' #txt
 Ts0 f30 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
@@ -332,8 +325,7 @@ Ts0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ts0 f9 208 170 128 44 -54 -8 #rect
 Ts0 f9 @|StepIcon #fIcon
 Ts0 f16 processCall 'Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)' #txt
-Ts0 f16 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase businessCase> param;
-' #txt
+Ts0 f16 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase businessCase> param;' #txt
 Ts0 f16 requestMappingAction 'param.businessCase=in.businessCase;
 ' #txt
 Ts0 f16 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
@@ -357,8 +349,7 @@ Ts0 f33 808 288 859 288 #arcP
 Ts0 f34 expr out #txt
 Ts0 f34 109 192 208 192 #arcP
 Ts0 f32 processCall 'Functional Processes/UploadDocument:call(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.UploadedFile)' #txt
-Ts0 f32 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase businessCase,org.primefaces.model.UploadedFile uploadedFile> param;
-' #txt
+Ts0 f32 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase businessCase,org.primefaces.model.UploadedFile uploadedFile> param;' #txt
 Ts0 f32 requestMappingAction 'param.businessCase=in.businessCase;
 param.uploadedFile=in.documentUploadEvent.getFile();
 ' #txt
@@ -382,8 +373,7 @@ Ts0 f35 109 288 216 288 #arcP
 Ts0 f36 expr out #txt
 Ts0 f36 328 288 392 288 #arcP
 Ts0 f7 processCall 'Functional Processes/DownloadDocument:call(ch.ivyteam.ivy.workflow.ICase,ch.ivy.addon.portalkit.ivydata.bo.IvyDocument)' #txt
-Ts0 f7 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase bussinessCase,ch.ivy.addon.portalkit.ivydata.bo.IvyDocument document> param;
-' #txt
+Ts0 f7 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase bussinessCase,ch.ivy.addon.portalkit.ivydata.bo.IvyDocument document> param;' #txt
 Ts0 f7 requestMappingAction 'param.bussinessCase=in.businessCase;
 param.document=in.document;
 ' #txt
@@ -406,8 +396,7 @@ Ts0 f11 109 448 192 448 #arcP
 Ts0 f20 expr out #txt
 Ts0 f20 320 448 403 448 #arcP
 Ts0 f38 processCall 'Functional Processes/GetDocumentList:call(ch.ivyteam.ivy.workflow.ICase)' #txt
-Ts0 f38 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase businessCase> param;
-' #txt
+Ts0 f38 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase businessCase> param;' #txt
 Ts0 f38 requestMappingAction 'param.businessCase=in.businessCase;
 ' #txt
 Ts0 f38 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskItemDocuments.TaskItemDocumentsData out;
@@ -429,8 +418,7 @@ Ts0 f39 512 640 576 640 #arcP
 Ts0 f24 expr out #txt
 Ts0 f24 688 640 755 640 #arcP
 Ts0 f19 processCall 'Functional Processes/DeleteDocument:call(ch.ivyteam.ivy.workflow.ICase,ch.ivy.addon.portalkit.ivydata.bo.IvyDocument)' #txt
-Ts0 f19 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase businessCase,ch.ivy.addon.portalkit.ivydata.bo.IvyDocument document> param;
-' #txt
+Ts0 f19 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase businessCase,ch.ivy.addon.portalkit.ivydata.bo.IvyDocument document> param;' #txt
 Ts0 f19 requestMappingAction 'param.businessCase=in.businessCase;
 param.document=in.document;
 ' #txt

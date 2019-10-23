@@ -1,5 +1,5 @@
 [Ivy]
-167F3CD1442A57A4 3.28 #module
+167F3CD1442A57A4 7.5.0 #module
 >Proto >Proto Collection #zClass
 Se0 SideStepService Big #zClass
 Se0 B #cInfo
@@ -22,8 +22,7 @@ Se0 @PushWFArc f2 '' #zField
 Se0 f0 inParamDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.SideStepSearchCriteria sideStepSearchCriteria> param;' #txt
 Se0 f0 inParamTable 'out.sideStepSearchCriteria=param.sideStepSearchCriteria;
 ' #txt
-Se0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySideStep> sideSteps,java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;
-' #txt
+Se0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySideStep> sideSteps,java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;' #txt
 Se0 f0 outParamTable 'result.sideSteps=in.sideSteps;
 result.errors=in.errors;
 ' #txt
@@ -59,8 +58,7 @@ Se0 f3 @|StepIcon #fIcon
 Se0 f4 expr out #txt
 Se0 f4 111 64 248 64 #arcP
 Se0 f88 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Se0 f88 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;
-' #txt
+Se0 f88 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
 Se0 f88 requestMappingAction 'param.exceptions=in.errors;
 ' #txt
 Se0 f88 responseActionDecl 'ch.ivyteam.wf.processes.SideStepServiceData out;

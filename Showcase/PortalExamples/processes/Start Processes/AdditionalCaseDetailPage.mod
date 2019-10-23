@@ -1,5 +1,5 @@
 [Ivy]
-1624D1F5CBEA5332 3.28 #module
+1624D1F5CBEA5332 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ae0 AdditionalCaseDetailPage Big #zClass
 Ae0 B #cInfo
@@ -84,8 +84,7 @@ Ae0 f2 expr data #txt
 Ae0 f2 outCond ivp=="TaskA.ivp" #txt
 Ae0 f2 471 184 537 184 #arcP
 Ae0 f5 processCall 'Functional Processes/SetAdditonalCaseDetailPage:call(String)' #txt
-Ae0 f5 requestActionDecl '<java.lang.String linkToAddtionalCaseDetailPage> param;
-' #txt
+Ae0 f5 requestActionDecl '<String linkToAddtionalCaseDetailPage> param;' #txt
 Ae0 f5 requestMappingAction 'param.linkToAddtionalCaseDetailPage="Start Processes/AdditionalCaseDetailPage/showInvestmentRequestCustomFields.ivp";
 ' #txt
 Ae0 f5 responseActionDecl 'ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseDetailPage out;
@@ -110,7 +109,7 @@ Ae0 f4 type ch.ivyteam.ivy.project.portal.examples.customization.AdditionalCaseD
 Ae0 f4 var in1 #txt
 Ae0 f4 408 184 441 184 #arcP
 Ae0 f7 outLink showInvestmentRequestCustomFields.ivp #txt
-Ae0 f7 inParamDecl '<java.lang.Long caseId> param;' #txt
+Ae0 f7 inParamDecl '<Long caseId> param;' #txt
 Ae0 f7 inParamTable 'out.caseId=param.caseId;
 ' #txt
 Ae0 f7 requestEnabled true #txt

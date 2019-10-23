@@ -83,7 +83,7 @@
     </h:form>
     <f:facet name="footer">
       <p:commandButton id="document-upload-close-command" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-        onclick="PF('document-upload-dialog').hide(); scrollTaskDocumentsToBottom()" />
+        onclick="PF('document-upload-dialog').hide();" />
     </f:facet>
     <p:ajax event="close" global="false" listener="#{logic.resetMessageUploadDocument}" update="#{p:component('upload-messages')}" />
   </p:dialog>

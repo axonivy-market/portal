@@ -1,5 +1,5 @@
 [Ivy]
-15F999559D09FFA4 3.28 #module
+15F999559D09FFA4 7.5.0 #module
 >Proto >Proto Collection #zClass
 He0 HideSystemCase Big #zClass
 He0 B #cInfo
@@ -17,11 +17,10 @@ He0 @GridStep f3 '' #zField
 He0 @PushWFArc f5 '' #zField
 He0 @PushWFArc f2 '' #zField
 >Proto He0 He0 HideSystemCase #zField
-He0 f0 inParamDecl '<java.lang.Boolean hideBusinessCase> param;' #txt
+He0 f0 inParamDecl '<Boolean hideBusinessCase> param;' #txt
 He0 f0 inParamTable 'out.hideBusinessCase=param.#hideBusinessCase is initialized ? param.hideBusinessCase : false;
 ' #txt
-He0 f0 outParamDecl '<> result;
-' #txt
+He0 f0 outParamDecl '<> result;' #txt
 He0 f0 callSignature call(Boolean) #txt
 He0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

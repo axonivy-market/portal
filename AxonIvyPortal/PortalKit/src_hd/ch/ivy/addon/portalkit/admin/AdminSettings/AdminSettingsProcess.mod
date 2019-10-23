@@ -1,5 +1,5 @@
 [Ivy]
-150F0B4F8F3CB2CB 3.28 #module
+150F0B4F8F3CB2CB 7.5.0 #module
 >Proto >Proto Collection #zClass
 As0 AdminUIProcess Big #zClass
 As0 RD #cInfo
@@ -311,13 +311,10 @@ As0 f38 534 1286 20 20 13 0 #rect
 As0 f38 @|UdProcessEndIcon #fIcon
 As0 f44 guid 14B71B8355747299 #txt
 As0 f44 method editApplication(ch.ivy.addon.portalkit.persistence.domain.Application) #txt
-As0 f44 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.persistence.domain.Application application> param = methodEvent.getInputArguments();
-' #txt
+As0 f44 inParameterDecl '<ch.ivy.addon.portalkit.persistence.domain.Application application> param;' #txt
 As0 f44 inParameterMapAction 'out.selectedApp=param.application;
 ' #txt
-As0 f44 outParameterDecl '<> result;
-' #txt
+As0 f44 outParameterDecl '<> result;' #txt
 As0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -378,14 +375,11 @@ As0 f54 878 212 36 24 20 -2 #rect
 As0 f54 @|StepIcon #fIcon
 As0 f47 guid 14B7254A2BFCA52B #txt
 As0 f47 method submitDeleteApp(ch.ivy.addon.portalkit.persistence.domain.Application) #txt
-As0 f47 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.persistence.domain.Application application> param = methodEvent.getInputArguments();
-' #txt
+As0 f47 inParameterDecl '<ch.ivy.addon.portalkit.persistence.domain.Application application> param;' #txt
 As0 f47 inActionCode 'out.selectedApp = param.application;
 out.confirmMsg  = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/deleteAppConfirmation");
 //out.objToDelete = 2;' #txt
-As0 f47 outParameterDecl '<> result;
-' #txt
+As0 f47 outParameterDecl '<> result;' #txt
 As0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -434,13 +428,10 @@ As0 f62 1166 510 20 20 13 0 #rect
 As0 f62 @|UdProcessEndIcon #fIcon
 As0 f69 guid 14B77FA478FB87A1 #txt
 As0 f69 method editSetting(ch.ivy.addon.portalkit.persistence.domain.GlobalSetting) #txt
-As0 f69 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.persistence.domain.GlobalSetting setting> param = methodEvent.getInputArguments();
-' #txt
+As0 f69 inParameterDecl '<ch.ivy.addon.portalkit.persistence.domain.GlobalSetting setting> param;' #txt
 As0 f69 inParameterMapAction 'out.selectedSetting=param.setting;
 ' #txt
-As0 f69 outParameterDecl '<> result;
-' #txt
+As0 f69 outParameterDecl '<> result;' #txt
 As0 f69 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -606,13 +597,10 @@ As0 f120 expr out #txt
 As0 f120 696 580 696 606 #arcP
 As0 f20 guid 14CBC65EA2BAB5DF #txt
 As0 f20 method getApplicationUserList(ch.ivy.addon.portalkit.persistence.domain.Application) #txt
-As0 f20 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.persistence.domain.Application app> param = methodEvent.getInputArguments();
-' #txt
+As0 f20 inParameterDecl '<ch.ivy.addon.portalkit.persistence.domain.Application app> param;' #txt
 As0 f20 inParameterMapAction 'out.selectedApp=param.app;
 ' #txt
-As0 f20 outParameterDecl '<> result;
-' #txt
+As0 f20 outParameterDecl '<> result;' #txt
 As0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -660,13 +648,10 @@ As0 f157 838 1142 20 20 13 0 #rect
 As0 f157 @|UdProcessEndIcon #fIcon
 As0 f158 guid 14CC66EBC28A586A #txt
 As0 f158 method selectApplication(ch.ivy.addon.portalkit.ivydata.bo.IvyApplication) #txt
-As0 f158 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.ivydata.bo.IvyApplication app> param = methodEvent.getInputArguments();
-' #txt
+As0 f158 inParameterDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyApplication app> param;' #txt
 As0 f158 inParameterMapAction 'out.selectedIvyApplication=param.app;
 ' #txt
-As0 f158 outParameterDecl '<> result;
-' #txt
+As0 f158 outParameterDecl '<> result;' #txt
 As0 f158 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -760,13 +745,10 @@ As0 f170 530 746 28 28 14 0 #rect
 As0 f170 @|AlternativeIcon #fIcon
 As0 f176 guid 14E951D887B4F17A #txt
 As0 f176 method onApplicationReorder(org.primefaces.event.ReorderEvent) #txt
-As0 f176 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<org.primefaces.event.ReorderEvent reorderEvent> param = methodEvent.getInputArguments();
-' #txt
+As0 f176 inParameterDecl '<org.primefaces.event.ReorderEvent reorderEvent> param;' #txt
 As0 f176 inParameterMapAction 'out.reorderEvent=param.reorderEvent;
 ' #txt
-As0 f176 outParameterDecl '<> result;
-' #txt
+As0 f176 outParameterDecl '<> result;' #txt
 As0 f176 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1003,8 +985,7 @@ for 3rd party application</name>
 As0 f217 182 668 36 24 -37 18 #rect
 As0 f217 @|StepIcon #fIcon
 As0 f222 processCall 'Ivy Data Processes/LanguageService:loadSupportedLanguages(String)' #txt
-As0 f222 requestActionDecl '<java.lang.String appName> param;
-' #txt
+As0 f222 requestActionDecl '<String appName> param;' #txt
 As0 f222 requestMappingAction 'param.appName=in.selectedApp.name;
 ' #txt
 As0 f222 responseActionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
@@ -1306,12 +1287,9 @@ As0 f144 1237 245 22 22 14 0 #rect
 As0 f144 @|UdProcessEndIcon #fIcon
 As0 f143 guid 1503CBAF85EC7EE8 #txt
 As0 f143 method getAppNameInCurrentLocale(ch.ivy.addon.portalkit.persistence.domain.Application) #txt
-As0 f143 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.persistence.domain.Application application> param = methodEvent.getInputArguments();
-' #txt
+As0 f143 inParameterDecl '<ch.ivy.addon.portalkit.persistence.domain.Application application> param;' #txt
 As0 f143 inActionCode 'out.application = param.application;' #txt
-As0 f143 outParameterDecl '<java.lang.String name> result;
-' #txt
+As0 f143 outParameterDecl '<String name> result;' #txt
 As0 f143 outActionCode 'import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
 result.name = ApplicationMultiLanguage.getDisplayNameInCurrentLocale(in.application);' #txt
 As0 f143 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1369,14 +1347,11 @@ As0 f286 1782 246 20 20 13 0 #rect
 As0 f286 @|UdProcessEndIcon #fIcon
 As0 f74 guid 163DD18A566F4B85 #txt
 As0 f74 method submitResetSetting(ch.ivy.addon.portalkit.persistence.domain.GlobalSetting) #txt
-As0 f74 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.persistence.domain.GlobalSetting setting> param = methodEvent.getInputArguments();
-' #txt
+As0 f74 inParameterDecl '<ch.ivy.addon.portalkit.persistence.domain.GlobalSetting setting> param;' #txt
 As0 f74 inActionCode 'out.selectedSetting = param.setting;
 out.confirmMsg  = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/resetSettingConfirmation");
 out.resetAllSettings = false;' #txt
-As0 f74 outParameterDecl '<> result;
-' #txt
+As0 f74 outParameterDecl '<> result;' #txt
 As0 f74 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1388,13 +1363,10 @@ As0 f74 1510 150 20 20 13 0 #rect
 As0 f74 @|UdMethodIcon #fIcon
 As0 f285 guid 163DD18A56815DFE #txt
 As0 f285 method submitResetAllSettings() #txt
-As0 f285 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
+As0 f285 inParameterDecl '<> param;' #txt
 As0 f285 inActionCode 'out.confirmMsg  = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/resetAllSettingsConfirmation");
 out.resetAllSettings = true;' #txt
-As0 f285 outParameterDecl '<> result;
-' #txt
+As0 f285 outParameterDecl '<> result;' #txt
 As0 f285 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1608,8 +1580,7 @@ As0 f28 outCond 'in.type == ch.ivy.addon.portalkit.enums.ApplicationType.IVY_APP
 As0 f28 896 310 896 478 #arcP
 As0 f28 0 0.5226032559978508 0 0 #arcLabel
 As0 f7 processCall 'Ivy Data Processes/SecurityService:findUsers(ch.ivyteam.ivy.application.IApplication)' #txt
-As0 f7 requestActionDecl '<ch.ivyteam.ivy.application.IApplication application> param;
-' #txt
+As0 f7 requestActionDecl '<ch.ivyteam.ivy.application.IApplication application> param;' #txt
 As0 f7 requestMappingAction 'param.application=in.app;
 ' #txt
 As0 f7 responseActionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
@@ -1740,8 +1711,7 @@ As0 f57 1072 1596 624 1680 #arcP
 As0 f57 1 1072 1680 #addKink
 As0 f57 1 0.40112042914479545 0 0 #arcLabel
 As0 f21 processCall 'Ivy Data Processes/LanguageService:loadSupportedLanguages(String)' #txt
-As0 f21 requestActionDecl '<java.lang.String appName> param;
-' #txt
+As0 f21 requestActionDecl '<String appName> param;' #txt
 As0 f21 requestMappingAction 'param.appName=in.selectedApp.name;
 ' #txt
 As0 f21 responseActionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
@@ -1848,10 +1818,10 @@ As0 f79 expr out #txt
 As0 f79 384 2062 384 2099 #arcP
 As0 f87 guid 16A33CB19C2E90CF #txt
 As0 f87 method isApplicationDefaultEmailLanguage(String) #txt
-As0 f87 inParameterDecl '<java.lang.String language> param;' #txt
+As0 f87 inParameterDecl '<String language> param;' #txt
 As0 f87 inActionCode 'import ch.ivy.addon.portalkit.service.AnnouncementService;
 out.isDefaultApplicationLanguage = AnnouncementService.getInstance().isDefaultApplicationLanguage(param.language);' #txt
-As0 f87 outParameterDecl '<java.lang.Boolean result> result;' #txt
+As0 f87 outParameterDecl '<Boolean result> result;' #txt
 As0 f87 outParameterMapAction 'result.result=in.isDefaultApplicationLanguage;
 ' #txt
 As0 f87 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

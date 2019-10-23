@@ -306,7 +306,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .widget-sort-menu.full-mode {
   flex: 1 0 100%;
-  height: 30px;
   display: flex;
   align-items: flex-end;
   line-height: normal;
@@ -334,6 +333,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   color: black;
   font-size: 1.4rem;
   width: 100%;
+  padding: 6px 0 6px 6px !important;
 }
 
 .widget-header-filter-input.ui-inputfield.ui-state-hover, .widget-header-filter-input.ui-inputfield.ui-state-focus {
@@ -420,11 +420,11 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .filter-widget-input {
   font-size: 1.4rem;
   flex-grow: 1;
-  padding: 15px 25px 5px 0 !important; /* override PrimeFaces styles */
 }
 
 .filter-widget .filter-widget-input {
   color: rgba(0,0,0,0.5);
+  padding: 6px 0 6px 6px !important;
 }
 
 .filter-widget-icon  {
@@ -895,7 +895,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 .case-widget-container .widget-column-header,
 .case-default-widget-container .widget-column-header {
   flex: 1 0 100%;
-  height: 30px;
   display: flex;
   align-items: flex-end;
   line-height: normal;
@@ -1612,10 +1611,11 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   
 }
 
-.process-widget .order-list-items.ui-orderlist .ui-orderlist-list{
+.process-widget .order-list-items.ui-orderlist .ui-orderlist-list {
   height: auto;
   overflow: visible;
-  margin: 0px !important
+  margin: 0px !important;
+  border: none;
 }
 
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item {
@@ -1662,7 +1662,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 }
 
 .compact-processes-container .process-start-list-item {
- margin: 2px 3px 5px 2px;
+  margin: 2px 3px 5px 2px;
 }
 
 /* Fix for screen Full HD */
@@ -1675,6 +1675,12 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 @media  screen and (min-width: 1024px) {
   .compact-processes-container {
     max-height: 275px;
+  }
+}
+
+@media  screen and (max-height: 1023px) {
+  .compact-processes-container {
+    max-height: 165px;
   }
 }
 
@@ -1860,6 +1866,7 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 
 .task-widget .sort-task-menu {
   width: 100%;
+  margin-top: 8px;
 }
 
 .task-widget .filter-add-container {
@@ -2011,7 +2018,7 @@ a.compact-task-start-link .task-start-list-item {
   background-color: rgba(0, 0, 0, 0.05);
   border-radius: 5px;
   margin-bottom: 5px;
-  height: 55px;
+  height: 75px;
   padding: 10px 0;
   display: flex;
   align-items: center;
@@ -2238,7 +2245,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 .side-steps-panel .side-step-item {
   clear: both;
   float: left;
-  padding: 10px 20px;
+  padding: 10px 18px 10px 20px;
   margin: 0;
   width: 160px;
   color: rgba(0, 0, 0, 0.5) !important;
@@ -3115,10 +3122,15 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
     width: 80vw !important;
   }
 }
-
 /********************************** ADMIN SETTING **********************************/
 .admin-ui-dialog {
   top: 25vh !important;
+}
+
+@media  screen and (max-height: 615px) {
+  .admin-ui-dialog .ui-dialog-content {
+    height: 55vh !important;
+  }
 }
 
 .admin-settings-no-permission-message {
@@ -3145,6 +3157,11 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .admin-settings-form-input-label {
   float: right;
   padding-top: 5px;
+}
+
+.admin-settings-portal-link-label, .admin-settings-display-name-3rd-label {
+  float: right;
+  padding-top: 2px;
 }
 
 .app-icon {
@@ -3194,6 +3211,10 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 .admin-table {
   display: inline-block;
+}
+
+.admin-table.application-table {
+  width: 100%;
 }
 
 .app-dialog {
@@ -4752,6 +4773,10 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   margin: 0 0 10px 10px;
 }
 
+.statistic-result-list .task-table {
+	width: 100%;
+}
+
 .statistic-result-list .task-table .ui-datatable-scrollable-body {
   max-height: 500px;
 }
@@ -5167,4 +5192,15 @@ span.ui-inputnumber.ui-widget.ui-state-error {
   -ms-flex-wrap: wrap;
   align-items: center;
   justify-content: flex-end;
+}
+
+/*====================FIX FOR SERENITY 2.0 STYLE========================*/
+
+.process-widget .ui-fieldset .ui-fieldset-legend .ui-fieldset-toggler {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.case-note-history-container {
+  padding-bottom: 20px;
 }

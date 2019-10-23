@@ -60,7 +60,7 @@
           <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer">
             <p:commandButton id="proceed-task-delegate-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}"
               actionListener="#{logic.delegateTask}" process=":#{p:component('activator-panel')}" disabled="#{data.disabledDelegateButton}"
-              update="@(.task-view-container) #{componentToUpdate}" oncomplete="#{empty dataModel != null ? taskWidget.setupScrollbar():''}"
+              update="@(.task-view-container) #{componentToUpdate}" oncomplete="if (#{dataModel != null}){taskWidget.setupScrollbar();}"
               onsuccess="PF('task-delegate-dialog-#{rowIndex}').hide(); setCookie('delegated','#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/message/delegateSuccess')}');" />
             <p:spacer width="5px" />
             <p:commandButton id="cancel-task-delegate-command" styleClass="portal-cancel-button" type="button"

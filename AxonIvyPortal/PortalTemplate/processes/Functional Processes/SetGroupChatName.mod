@@ -1,5 +1,5 @@
 [Ivy]
-169B29B5A9636EE8 3.28 #module
+169B29B5A9636EE8 7.5.0 #module
 >Proto >Proto Collection #zClass
 Se0 SetGroupChatName Big #zClass
 Se0 B #cInfo
@@ -20,8 +20,7 @@ Se0 @InfoButton f5 '' #zField
 Se0 @AnnotationArc f6 '' #zField
 >Proto Se0 Se0 SetGroupChatName #zField
 Se0 f0 inParamDecl '<> param;' #txt
-Se0 f0 outParamDecl '<java.lang.String name> result;
-' #txt
+Se0 f0 outParamDecl '<String name> result;' #txt
 Se0 f0 outParamTable 'result.name=in.name;
 ' #txt
 Se0 f0 callSignature setGroupChatName() #txt

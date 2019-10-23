@@ -1,5 +1,5 @@
 [Ivy]
-163AFDE4C30836BD 3.28 #module
+163AFDE4C30836BD 7.5.0 #module
 >Proto >Proto Collection #zClass
 Cs0 GlobalSearchProcess Big #zClass
 Cs0 RD #cInfo
@@ -22,11 +22,8 @@ Cs0 @UdEvent f3 '' #zField
 >Proto Cs0 Cs0 GlobalSearchProcess #zField
 Cs0 f0 guid 163AFD8B43132CEB #txt
 Cs0 f0 method start() #txt
-Cs0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Cs0 f0 outParameterDecl '<> result;
-' #txt
+Cs0 f0 inParameterDecl '<> param;' #txt
+Cs0 f0 outParameterDecl '<> result;' #txt
 Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -43,8 +40,7 @@ Cs0 f2 77 96 307 96 #arcP
 Cs0 f4 307 211 26 26 0 12 #rect
 Cs0 f4 @|UdProcessEndIcon #fIcon
 Cs0 f6 processCall 'Functional Processes/OpenPortalSearch:call(String)' #txt
-Cs0 f6 requestActionDecl '<java.lang.String keyword> param;
-' #txt
+Cs0 f6 requestActionDecl '<String keyword> param;' #txt
 Cs0 f6 requestMappingAction 'param.keyword=in.keyword;
 ' #txt
 Cs0 f6 responseActionDecl 'ch.ivy.addon.portal.generic.GlobalSearch.GlobalSearchData out;

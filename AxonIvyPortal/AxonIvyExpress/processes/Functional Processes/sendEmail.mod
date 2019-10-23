@@ -1,5 +1,5 @@
 [Ivy]
-1635D8A3ACBA233D 3.28 #module
+1635D8A3ACBA233D 7.5.0 #module
 >Proto >Proto Collection #zClass
 sl0 sendEmail Big #zClass
 sl0 B #cInfo
@@ -17,12 +17,11 @@ sl0 @EMail f3 '' #zField
 sl0 @PushWFArc f2 '' #zField
 sl0 @PushWFArc f4 '' #zField
 >Proto sl0 sl0 sendEmail #zField
-sl0 f0 inParamDecl '<ch.ivyteam.ivy.components.config.EmailConfiguration emailConfig,java.util.List<ch.ivyteam.ivy.scripting.objects.File> attachmentFiles> param;' #txt
+sl0 f0 inParamDecl '<ch.ivyteam.ivy.components.config.EmailConfiguration emailConfig,java.util.List<File> attachmentFiles> param;' #txt
 sl0 f0 inParamTable 'out.attachmentFiles=param.attachmentFiles;
 out.emailConfig=param.emailConfig;
 ' #txt
-sl0 f0 outParamDecl '<> result;
-' #txt
+sl0 f0 outParamDecl '<> result;' #txt
 sl0 f0 callSignature call(ch.ivyteam.ivy.components.config.EmailConfiguration,List<File>) #txt
 sl0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

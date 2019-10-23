@@ -1,4 +1,12 @@
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
 body {
+    letter-spacing: $letterSpacing;
+
     .ui-widget,
     .ui-widget .ui-widget {
         font-family:$fontFamily;
@@ -20,6 +28,7 @@ body {
         color: $headerTextColor;
         border: 1px solid $primaryColor;
         padding: $headerPadding;
+        font-weight: $headerFontWeight;
         
         .ui-icon {
             color: $headerTextColor;
@@ -135,7 +144,4 @@ body {
         text-decoration: none;
     }
     
-    .ui-outputlabel {
-    	font-size: $inputLabelText;
-    }
 }

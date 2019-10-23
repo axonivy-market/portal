@@ -1,5 +1,5 @@
 [Ivy]
-1602F513613E1225 3.28 #module
+1602F513613E1225 7.5.0 #module
 >Proto >Proto Collection #zClass
 ac0 AnalyzeStatistic Big #zClass
 ac0 B #cInfo
@@ -64,8 +64,7 @@ ac0 @PushWFArc f55 '' #zField
 ac0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;' #txt
 ac0 f0 inParamTable 'out.taskSearchCriteria.customTaskQuery=param.taskQuery;
 ' #txt
-ac0 f0 outParamDecl '<ch.ivy.addon.portalkit.bo.PriorityStatistic result> result;
-' #txt
+ac0 f0 outParamDecl '<ch.ivy.addon.portalkit.bo.PriorityStatistic result> result;' #txt
 ac0 f0 outParamTable 'result.result=in.priorityStatisticResult;
 ' #txt
 ac0 f0 callSignature analyzePriorityStatistic(ch.ivyteam.ivy.workflow.query.TaskQuery) #txt
@@ -83,8 +82,7 @@ ac0 f1 @|EndSubIcon #fIcon
 ac0 f3 inParamDecl '<ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> param;' #txt
 ac0 f3 inParamTable 'out.caseSearchCriteria.customCaseQuery=param.caseQuery;
 ' #txt
-ac0 f3 outParamDecl '<ch.ivy.addon.portalkit.bo.CaseStateStatistic result> result;
-' #txt
+ac0 f3 outParamDecl '<ch.ivy.addon.portalkit.bo.CaseStateStatistic result> result;' #txt
 ac0 f3 outParamTable 'result.result=in.caseStateStatisticResult;
 ' #txt
 ac0 f3 callSignature analyzeCaseStateStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery) #txt
@@ -100,8 +98,7 @@ ac0 f3 @|StartSubIcon #fIcon
 ac0 f4 inParamDecl '<ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;' #txt
 ac0 f4 inParamTable 'out.taskSearchCriteria.customTaskQuery=param.taskQuery;
 ' #txt
-ac0 f4 outParamDecl '<ch.ivy.addon.portalkit.bo.ExpiryStatistic result> result;
-' #txt
+ac0 f4 outParamDecl '<ch.ivy.addon.portalkit.bo.ExpiryStatistic result> result;' #txt
 ac0 f4 outParamTable 'result.result=in.expiryStatisticResult;
 ' #txt
 ac0 f4 callSignature analyzeExpiryStatistic(ch.ivyteam.ivy.workflow.query.TaskQuery) #txt
@@ -119,8 +116,7 @@ ac0 f5 @|EndSubIcon #fIcon
 ac0 f6 561 241 30 30 0 15 #rect
 ac0 f6 @|EndSubIcon #fIcon
 ac0 f11 processCall 'Ivy Data Processes/TaskService:analyzePriorityStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)' #txt
-ac0 f11 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria> param;
-' #txt
+ac0 f11 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria> param;' #txt
 ac0 f11 requestMappingAction 'param.taskSearchCriteria=in.taskSearchCriteria;
 ' #txt
 ac0 f11 responseActionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
@@ -142,8 +138,7 @@ ac0 f11 @|CallSubIcon #fIcon
 ac0 f2 expr out #txt
 ac0 f2 496 64 561 64 #arcP
 ac0 f15 processCall 'Ivy Data Processes/CaseService:analyzeCaseStateStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)' #txt
-ac0 f15 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;
-' #txt
+ac0 f15 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;' #txt
 ac0 f15 requestMappingAction 'param.caseSearchCriteria=in.caseSearchCriteria;
 ' #txt
 ac0 f15 responseActionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
@@ -165,8 +160,7 @@ ac0 f15 @|CallSubIcon #fIcon
 ac0 f7 expr out #txt
 ac0 f7 496 160 561 160 #arcP
 ac0 f19 processCall 'Ivy Data Processes/TaskService:analyzeExpiryStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)' #txt
-ac0 f19 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria> param;
-' #txt
+ac0 f19 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria> param;' #txt
 ac0 f19 requestMappingAction 'param.taskSearchCriteria=in.taskSearchCriteria;
 ' #txt
 ac0 f19 responseActionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
@@ -190,8 +184,7 @@ ac0 f8 496 256 561 256 #arcP
 ac0 f27 inParamDecl '<ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> param;' #txt
 ac0 f27 inParamTable 'out.caseSearchCriteria.customCaseQuery=param.caseQuery;
 ' #txt
-ac0 f27 outParamDecl '<ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic result> result;
-' #txt
+ac0 f27 outParamDecl '<ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic result> result;' #txt
 ac0 f27 outParamTable 'result.result=in.elapsedTimeStatisticResult;
 ' #txt
 ac0 f27 callSignature analyzeElapsedTimeStatistic(ch.ivyteam.ivy.workflow.query.CaseQuery) #txt
@@ -205,8 +198,7 @@ ac0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ac0 f27 113 337 30 30 -114 17 #rect
 ac0 f27 @|StartSubIcon #fIcon
 ac0 f28 processCall 'Ivy Data Processes/CaseService:analyzeElapsedTimeByCaseCategory(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)' #txt
-ac0 f28 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;
-' #txt
+ac0 f28 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;' #txt
 ac0 f28 requestMappingAction 'param.caseSearchCriteria=in.caseSearchCriteria;
 ' #txt
 ac0 f28 responseActionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
@@ -232,8 +224,7 @@ ac0 f33 498 352 563 352 #arcP
 ac0 f36 inParamDecl '<ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> param;' #txt
 ac0 f36 inParamTable 'out.caseSearchCriteria.customCaseQuery=param.caseQuery;
 ' #txt
-ac0 f36 outParamDecl '<ch.ivyteam.ivy.workflow.category.CategoryTree result> result;
-' #txt
+ac0 f36 outParamDecl '<ch.ivyteam.ivy.workflow.category.CategoryTree result> result;' #txt
 ac0 f36 outParamTable 'result.result=in.caseCategoryTree;
 ' #txt
 ac0 f36 callSignature findCaseCategories(ch.ivyteam.ivy.workflow.query.CaseQuery) #txt
@@ -249,8 +240,7 @@ ac0 f36 @|StartSubIcon #fIcon
 ac0 f37 561 433 30 30 0 15 #rect
 ac0 f37 @|EndSubIcon #fIcon
 ac0 f39 processCall 'Ivy Data Processes/CaseService:findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria)' #txt
-ac0 f39 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria caseCategorySearchCriteria> param;
-' #txt
+ac0 f39 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria caseCategorySearchCriteria> param;' #txt
 ac0 f39 responseActionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
 ' #txt
 ac0 f39 responseMappingAction 'out=in;
@@ -391,8 +381,7 @@ ac0 f41 @|StepIcon #fIcon
 ac0 f45 inParamDecl '<ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;' #txt
 ac0 f45 inParamTable 'out.taskSearchCriteria.customTaskQuery=param.taskQuery;
 ' #txt
-ac0 f45 outParamDecl '<ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic result> result;
-' #txt
+ac0 f45 outParamDecl '<ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic result> result;' #txt
 ac0 f45 outParamTable 'result.result=in.elapsedTimeStatisticResult;
 ' #txt
 ac0 f45 callSignature analyzeElapsedTimeOfTasks(ch.ivyteam.ivy.workflow.query.TaskQuery) #txt
@@ -427,8 +416,7 @@ ac0 f46 @|StepIcon #fIcon
 ac0 f47 561 529 30 30 0 15 #rect
 ac0 f47 @|EndSubIcon #fIcon
 ac0 f49 processCall 'Ivy Data Processes/TaskService:analyzeElapsedTime(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)' #txt
-ac0 f49 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria> param;
-' #txt
+ac0 f49 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria> param;' #txt
 ac0 f49 requestMappingAction 'param.taskSearchCriteria=in.taskSearchCriteria;
 ' #txt
 ac0 f49 responseActionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
@@ -466,8 +454,7 @@ ac0 f38 @|EndSubIcon #fIcon
 ac0 f40 inParamDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria caseCustomFieldSearchCriteria> param;' #txt
 ac0 f40 inParamTable 'out.caseCustomFieldSearchCriteria=param.caseCustomFieldSearchCriteria;
 ' #txt
-ac0 f40 outParamDecl '<java.util.List<java.lang.String> result> result;
-' #txt
+ac0 f40 outParamDecl '<java.util.List<String> result> result;' #txt
 ac0 f40 outParamTable 'result.result=in.caseCustomFields;
 ' #txt
 ac0 f40 callSignature findCaseCustomFields(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria) #txt
@@ -499,8 +486,7 @@ ac0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ac0 f42 224 618 112 44 -22 -8 #rect
 ac0 f42 @|StepIcon #fIcon
 ac0 f51 processCall 'Ivy Data Processes/CaseService:findValuesOfCustomField(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria)' #txt
-ac0 f51 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria caseCustomFieldSearchCriteria> param;
-' #txt
+ac0 f51 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria caseCustomFieldSearchCriteria> param;' #txt
 ac0 f51 requestMappingAction 'param.caseCustomFieldSearchCriteria=in.caseCustomFieldSearchCriteria;
 ' #txt
 ac0 f51 responseActionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;

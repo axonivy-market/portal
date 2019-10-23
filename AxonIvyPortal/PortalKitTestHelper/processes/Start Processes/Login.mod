@@ -1,5 +1,5 @@
 [Ivy]
-1636734E13CEC872 3.28 #module
+1636734E13CEC872 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ln0 Login Big #zClass
 Ln0 B #cInfo
@@ -37,7 +37,7 @@ Ln0 f2 280 64 337 64 #arcP
 Ln0 f4 expr out #txt
 Ln0 f4 111 64 168 64 #arcP
 Ln0 f0 outLink login.ivp #txt
-Ln0 f0 inParamDecl '<java.lang.String username,java.lang.String password> param;' #txt
+Ln0 f0 inParamDecl '<String username,String password> param;' #txt
 Ln0 f0 inParamTable 'out.password=param.password;
 out.username=param.username;
 ' #txt

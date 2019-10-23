@@ -1,5 +1,5 @@
 [Ivy]
-1543CB1F7FCE2CC1 3.28 #module
+1543CB1F7FCE2CC1 7.5.0 #module
 >Proto >Proto Collection #zClass
 Nr0 Navigator Big #zClass
 Nr0 B #cInfo
@@ -41,8 +41,7 @@ Nr0 @EndSub f25 '' #zField
 Nr0 @PushWFArc f26 '' #zField
 >Proto Nr0 Nr0 Navigator #zField
 Nr0 f0 inParamDecl '<ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;' #txt
-Nr0 f0 outParamDecl '<> result;
-' #txt
+Nr0 f0 outParamDecl '<> result;' #txt
 Nr0 f0 callSignature viewCase(ch.ivy.addon.portalkit.dto.GlobalCaseId) #txt
 Nr0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -78,9 +77,8 @@ Nr0 f3 @|IBIcon #fIcon
 Nr0 f2 expr out #txt
 Nr0 f2 64 109 64 339 #arcP
 Nr0 f4 128 248 64 224 #arcP
-Nr0 f5 inParamDecl '<java.lang.Long taskId,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId,java.lang.String caseName> param;' #txt
-Nr0 f5 outParamDecl '<> result;
-' #txt
+Nr0 f5 inParamDecl '<Long taskId,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId,String caseName> param;' #txt
+Nr0 f5 outParamDecl '<> result;' #txt
 Nr0 f5 callSignature viewTask(Long,ch.ivy.addon.portalkit.dto.GlobalCaseId,String) #txt
 Nr0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -118,9 +116,8 @@ is put in PortalTemplate.</name>
 Nr0 f11 128 498 496 172 -238 -84 #rect
 Nr0 f11 @|IBIcon #fIcon
 Nr0 f12 128 584 64 496 #arcP
-Nr0 f8 inParamDecl '<java.lang.String chartName,ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;' #txt
-Nr0 f8 outParamDecl '<> result;
-' #txt
+Nr0 f8 inParamDecl '<String chartName,ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;' #txt
+Nr0 f8 outParamDecl '<> result;' #txt
 Nr0 f8 callSignature viewTaskForAnalytic(String,ch.ivyteam.ivy.workflow.query.TaskQuery) #txt
 Nr0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -137,9 +134,8 @@ Nr0 f9 724 551 26 26 14 0 #rect
 Nr0 f9 @|EndSubIcon #fIcon
 Nr0 f10 expr out #txt
 Nr0 f10 737 433 737 551 #arcP
-Nr0 f13 inParamDecl '<java.lang.String chartName,ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> param;' #txt
-Nr0 f13 outParamDecl '<> result;
-' #txt
+Nr0 f13 inParamDecl '<String chartName,ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> param;' #txt
+Nr0 f13 outParamDecl '<> result;' #txt
 Nr0 f13 callSignature viewCaseForAnalytic(String,ch.ivyteam.ivy.workflow.query.CaseQuery) #txt
 Nr0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -198,9 +194,8 @@ is put in PortalTemplate.</name>
 Nr0 f18 857 497 496 172 -238 -84 #rect
 Nr0 f18 @|IBIcon #fIcon
 Nr0 f19 857 583 737 492 #arcP
-Nr0 f20 inParamDecl '<java.lang.String businessCaseName,ch.ivy.addon.portalkit.dto.GlobalCaseId businessCaseId> param;' #txt
-Nr0 f20 outParamDecl '<> result;
-' #txt
+Nr0 f20 inParamDecl '<String businessCaseName,ch.ivy.addon.portalkit.dto.GlobalCaseId businessCaseId> param;' #txt
+Nr0 f20 outParamDecl '<> result;' #txt
 Nr0 f20 callSignature viewTechnicalCasesOfBusniessCase(String,ch.ivy.addon.portalkit.dto.GlobalCaseId) #txt
 Nr0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -254,12 +249,9 @@ is put in PortalTemplate.</name>
 ' #txt
 Nr0 f23 1600 498 496 172 -238 -84 #rect
 Nr0 f23 @|IBIcon #fIcon
-Nr0 f24 inParamDecl '<java.lang.Long taskId> param;' #txt
+Nr0 f24 inParamDecl '<Long taskId> param;' #txt
 Nr0 f24 outParamDecl '<> result;' #txt
-Nr0 f24 actionDecl 'ch.ivy.add.portalkit.NavigatorData out;
-' #txt
 Nr0 f24 callSignature viewRelatedTask(Long) #txt
-Nr0 f24 type ch.ivy.add.portalkit.NavigatorData #txt
 Nr0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -271,7 +263,6 @@ Nr0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Nr0 f24 1523 411 26 26 14 0 #rect
 Nr0 f24 @|StartSubIcon #fIcon
-Nr0 f25 type ch.ivy.add.portalkit.NavigatorData #txt
 Nr0 f25 1523 555 26 26 14 0 #rect
 Nr0 f25 @|EndSubIcon #fIcon
 Nr0 f26 expr out #txt
