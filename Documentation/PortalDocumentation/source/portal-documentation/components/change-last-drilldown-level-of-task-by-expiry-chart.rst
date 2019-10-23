@@ -8,7 +8,7 @@ Change Last Drilldown Level Of Task By Expiry Chart
 Task by expiry chart
 --------------------
 
-|image0|
+|task-by-expiry-chart|
 
 .. _axonivyportal.components.expirychart.foruserswhowanttochangelastdrilldownlevel:
 
@@ -26,8 +26,8 @@ To change this last drilldown level, users can set the value of
 For example, to navigate to task list immediately when clicking on a
 week column, set ``EXPIRY_CHART_LAST_DRILLDOWN_LEVEL = WEEK``:
 
-|image1|
+|related-tasks-of-expiry-chart|
 
-.. |image0| image:: images/TaskByExpiryChart/task-by-expiry-chart.png
-.. |image1| image:: images/TaskByExpiryChart/related-tasks-of-expiry-chart.png
+.. |task-by-expiry-chart| image:: images/task-by-expiry-chart/task-by-expiry-chart.png
+.. |related-tasks-of-expiry-chart| image:: images/task-by-expiry-chart/related-tasks-of-expiry-chart.png
 

@@ -25,7 +25,7 @@ New and Noteworthy
 Portal Group Chat
 ~~~~~~~~~~~~~~~~~
 
-|image0|
+|portal-group-chat|
 
 -  Specific Case Related Chat
 
@@ -44,7 +44,7 @@ Portal Group Chat
 Data Provider for Express
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-|image1|
+|data-provider-express|
 
 -  Developers can prepare several Data Providers for Express
 
@@ -56,7 +56,7 @@ Data Provider for Express
 Announcements in Portal
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-|image2|
+|announcement-portal|
 
 -  Announce some important information like Downtimes directly in the
    portal
@@ -78,7 +78,7 @@ Further Improvements
 
 -  Integrated AdHoc Workflows available
 
-.. |image0| image:: images/PortalGroupChat.png
-.. |image1| image:: images/DataProviderExpress.png
-.. |image2| image:: images/AnnouncementPortal.png
+.. |portal-group-chat| image:: images/portal-group-chat.png
+.. |data-provider-express| image:: images/data-provider-express.png
+.. |announcement-portal| image:: images/announcement-portal.png
 

@@ -19,11 +19,11 @@ everywhere:
 
 In a page
 
-|image0|
+|process-history-example|
 
 In a dialog
 
-|image1|
+|process-history-dialog-example|
 
 .. _axonivyportal.components.additionalcomponent.processhistory.howtouse:
 
@@ -36,7 +36,7 @@ linked and input an identifier unique to your business entity. The
 subprocess will set the id to the additional property
 "CASE_BUSINESS_ENTITY_PROPERTY" of the business case.
 
-|image2|
+|set-business-entity-id-sub-process|
 
 Include the process history component into your page:
 
@@ -97,7 +97,7 @@ not only tasks but also cases. These features are:
 3. Support export result as Excel files (currently we only support .xlsx
    extension).
 
-|image3|
+|task-analysis|
 
 .. _axonivyportal.components.additionalcomponent.taskanalysis.howtouse:
 
@@ -136,7 +136,7 @@ done, these steps is not done. These features are:
 
 3. Support to change direction of process chain: horizontal or vertical.
 
-|image4|
+|process-chain|
 
 .. _axonivyportal.components.additionalcomponent.processchain.howtouse:
 
@@ -181,9 +181,9 @@ Introduction
 This component is a global growl introduced in BasicTemplate, you can
 use it to display your messages in Portal.
 
-|image5|
+|global-growl|
 
-|image6|
+|example-global-growl|
 
 .. _axonivyportal.components.additionalcomponent.globalgrowl.growlafterfinishtask:
 
@@ -233,7 +233,7 @@ Introduction
 This component is case document table with the features: upload,
 download and delete.
 
-|image7|
+|document-table|
 
 You can override the ``GetDocumentList``, ``UploadDocument``,
 ``DeleteDocument``, ``DownloadDocument`` sub processes to extend these
@@ -241,12 +241,12 @@ features, and add more columns, remove default columns in document
 table. Refer to the ``DocumentTableComponent`` process in PortalExamples
 project
 
-.. |image0| image:: images/AdditionalComponent/processHistoryExample.png
-.. |image1| image:: images/AdditionalComponent/processHistoryDialogExample.png
-.. |image2| image:: images/AdditionalComponent/setBusinessEntityIdSubProcess.png
-.. |image3| image:: images/AdditionalComponent/taskAnalysis.png
-.. |image4| image:: images/AdditionalComponent/processChain.png
-.. |image5| image:: images/AdditionalComponent/globalGrowl.png
-.. |image6| image:: images/AdditionalComponent/exampleGlobalGrowl.png
-.. |image7| image:: images/AdditionalComponent/documentTable.png
+.. |process-history-example| image:: images/additional-component/process-history-example.png
+.. |process-history-dialog-example| image:: images/additional-component/process-history-dialog-example.png
+.. |set-business-entity-id-sub-process| image:: images/additional-component/set-business-entity-id-sub-process.png
+.. |task-analysis| image:: images/additional-component/task-analysis.png
+.. |process-chain| image:: images/additional-component/process-chain.png
+.. |global-growl| image:: images/additional-component/global-growl.png
+.. |example-global-growl| image:: images/additional-component/example-global-growl.png
+.. |document-table| image:: images/additional-component/document-table.png
 

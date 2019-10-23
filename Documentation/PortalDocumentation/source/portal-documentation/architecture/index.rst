@@ -13,7 +13,7 @@ Architecture
 
 Currently Portal system contains the following modules:
 
-|image0|
+|process-module-structure|
 
 .. _axonivyportal.architecture.portalkit:
 
@@ -69,5 +69,5 @@ This project is an extended project from PortalTemplate. It provides:
 
 -  Tools to create and modify the web form for his workflow
 
-.. |image0| image:: images/Architecture/process-module-structure.png
+.. |process-module-structure| image:: images/process-module-structure.png
 

@@ -16,7 +16,7 @@ Navigate back
 -  Just call ``PortalNavigator.navigateToPortalEndPage()`` in your
    button function
 
-   |image0|
+   |navigate-back|
 
-.. |image0| image:: images/NavigateBack/navigate-back.png
+.. |navigate-back| image:: images/navigate-back/navigate-back.png
 

@@ -6,7 +6,7 @@ Login
 Login page
 ----------
 
-|image0|
+|login-default|
 
 To replace default login page, extends existing templates with
 ``ui:define name="login"`` to define your new login component like below
@@ -21,5 +21,5 @@ To replace default login page, extends existing templates with
 
 ``</ui:composition>``
 
-.. |image0| image:: images/Login/LoginDefault.png
+.. |login-default| image:: images/login/login-default.png
 

@@ -20,7 +20,7 @@ Each CaseItemDetails contains
 -  CaseItemDetail custom panel: caseItemDetailCustomTop,
    caseItemDetailCustomMiddle, caseItemDetailCustomBottom
 
-|image0|
+|case-standard|
 
    **Important**
 
@@ -145,12 +145,12 @@ Refer to the ``caseItemDetailCustom*`` section in
 
 -  Below is example code for override custom panel box of case details
 
-   |image1|
+   |custom-panel-example-code|
 
 -  After applied above code to your custom page, custom panels will be
    displayed as below
 
-   |image2|
+   |case-customized|
 
 -  Other example, we have a full flexibility page if we use ``ui-g-*``
    class to define the width of panel
@@ -158,10 +158,10 @@ Refer to the ``caseItemDetailCustom*`` section in
    We used ``ui-g-6`` class to define width for 3 custom panels in the
    custom page below
 
-   |image3|
+   |case-customized-fit|
 
-.. |image0| image:: images/CaseItemDetails/CaseStandard.png
-.. |image1| image:: images/CaseItemDetails/CustomPanelExampleCode.png
-.. |image2| image:: images/CaseItemDetails/CaseCustomized.png
-.. |image3| image:: images/CaseItemDetails/CaseCustomized-fit.png
+.. |case-standard| image:: images/case-item-details/case-standard.png
+.. |custom-panel-example-code| image:: images/case-item-details/custom-panel-example-code.png
+.. |case-customized| image:: images/case-item-details/case-customized.png
+.. |case-customized-fit| image:: images/case-item-details/case-customized-fit.png
 
