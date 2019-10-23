@@ -1,5 +1,5 @@
 [Ivy]
-15035F535EFB1618 3.28 #module
+15035F535EFB1618 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskWidgetProcess Big #zClass
 Ts0 RD #cInfo
@@ -76,17 +76,14 @@ Ts0 @PushWFArc f70 '' #zField
 >Proto Ts0 Ts0 TaskWidgetProcess #zField
 Ts0 f0 guid 14FDF92006C61D35 #txt
 Ts0 f0 method start(String,Boolean,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,java.lang.Long) #txt
-Ts0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.String keyword,java.lang.Boolean compactMode,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,java.lang.Long filterGroupId> param = methodEvent.getInputArguments();
-' #txt
+Ts0 f0 inParameterDecl '<String keyword,Boolean compactMode,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,Long filterGroupId> param;' #txt
 Ts0 f0 inParameterMapAction 'out.keyword=param.#keyword;
 out.taskFilterGroupId=param.filterGroupId;
 ' #txt
 Ts0 f0 inActionCode 'if (param.#dataModel is initialized){
 	out.dataModel = param.dataModel;
 }' #txt
-Ts0 f0 outParameterDecl '<> result;
-' #txt
+Ts0 f0 outParameterDecl '<> result;' #txt
 Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -206,11 +203,8 @@ Ts0 f3 499 83 26 26 0 12 #rect
 Ts0 f3 @|UdProcessEndIcon #fIcon
 Ts0 f34 guid 15F5C0F9B77406B4 #txt
 Ts0 f34 method deleteFilter() #txt
-Ts0 f34 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ts0 f34 outParameterDecl '<> result;
-' #txt
+Ts0 f34 inParameterDecl '<> param;' #txt
+Ts0 f34 outParameterDecl '<> result;' #txt
 Ts0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -255,13 +249,10 @@ Ts0 f40 expr out #txt
 Ts0 f40 304 576 371 576 #arcP
 Ts0 f41 guid 15F5C9F2AA5C9BA1 #txt
 Ts0 f41 method setFilterToBeDeleted(ch.ivy.addon.portalkit.taskfilter.TaskFilterData) #txt
-Ts0 f41 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.taskfilter.TaskFilterData taskFilterData> param = methodEvent.getInputArguments();
-' #txt
+Ts0 f41 inParameterDecl '<ch.ivy.addon.portalkit.taskfilter.TaskFilterData taskFilterData> param;' #txt
 Ts0 f41 inParameterMapAction 'out.taskFilterDataToBeRemoved=param.taskFilterData;
 ' #txt
-Ts0 f41 outParameterDecl '<> result;
-' #txt
+Ts0 f41 outParameterDecl '<> result;' #txt
 Ts0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -344,14 +335,11 @@ Ts0 f51 1 352 336 #addKink
 Ts0 f51 1 0.5061728395061729 0 -11 #arcLabel
 Ts0 f16 guid 15F772190BB92384 #txt
 Ts0 f16 method applyFilter(ch.ivy.addon.portalkit.taskfilter.TaskFilterData) #txt
-Ts0 f16 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.taskfilter.TaskFilterData taskFilterData> param = methodEvent.getInputArguments();
-' #txt
+Ts0 f16 inParameterDecl '<ch.ivy.addon.portalkit.taskfilter.TaskFilterData taskFilterData> param;' #txt
 Ts0 f16 inParameterMapAction 'out.keyword=param.taskFilterData.keyword;
 ' #txt
 Ts0 f16 inActionCode out.dataModel.applyFilter(param.taskFilterData); #txt
-Ts0 f16 outParameterDecl '<> result;
-' #txt
+Ts0 f16 outParameterDecl '<> result;' #txt
 Ts0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -457,13 +445,10 @@ Ts0 f72 outCond 'in.numberOfNewTask > 0' #txt
 Ts0 f72 528 864 584 864 #arcP
 Ts0 f13 guid 15F99790EE1F6D5A #txt
 Ts0 f13 method refreshTaskList(java.lang.Long) #txt
-Ts0 f13 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.Long expandedTaskId> param = methodEvent.getInputArguments();
-' #txt
+Ts0 f13 inParameterDecl '<Long expandedTaskId> param;' #txt
 Ts0 f13 inParameterMapAction 'out.expandedTaskId=param.expandedTaskId;
 ' #txt
-Ts0 f13 outParameterDecl '<> result;
-' #txt
+Ts0 f13 outParameterDecl '<> result;' #txt
 Ts0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -552,15 +537,12 @@ Ts0 f37 expr out #txt
 Ts0 f37 304 960 371 960 #arcP
 Ts0 f9 guid 16811CF9CAADF848 #txt
 Ts0 f9 method findTasks(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria,Integer,Integer) #txt
-Ts0 f9 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria criteria,java.lang.Integer startIndex,java.lang.Integer count> param = methodEvent.getInputArguments();
-' #txt
+Ts0 f9 inParameterDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria criteria,Integer startIndex,Integer count> param;' #txt
 Ts0 f9 inParameterMapAction 'out.count=param.count;
 out.startIndex=param.startIndex;
 out.taskSearchCriteria=param.criteria;
 ' #txt
-Ts0 f9 outParameterDecl '<java.util.List<ch.ivyteam.ivy.workflow.ITask> tasks> result;
-' #txt
+Ts0 f9 outParameterDecl '<java.util.List<ch.ivyteam.ivy.workflow.ITask> tasks> result;' #txt
 Ts0 f9 outParameterMapAction 'result.tasks=in.tasks;
 ' #txt
 Ts0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -573,8 +555,7 @@ Ts0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ts0 f9 83 179 26 26 -89 18 #rect
 Ts0 f9 @|UdMethodIcon #fIcon
 Ts0 f19 processCall 'Ivy Data Processes/TaskService:findTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria,Integer,Integer)' #txt
-Ts0 f19 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria,java.lang.Integer startIndex,java.lang.Integer count> param;
-' #txt
+Ts0 f19 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria,Integer startIndex,Integer count> param;' #txt
 Ts0 f19 requestMappingAction 'param.taskSearchCriteria=in.taskSearchCriteria;
 param.startIndex=in.startIndex;
 param.count=in.count;
@@ -602,13 +583,10 @@ Ts0 f52 expr out #txt
 Ts0 f52 312 192 403 192 #arcP
 Ts0 f2 guid 16811D75407A9053 #txt
 Ts0 f2 method countTasks(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria) #txt
-Ts0 f2 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria criteria> param = methodEvent.getInputArguments();
-' #txt
+Ts0 f2 inParameterDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria criteria> param;' #txt
 Ts0 f2 inParameterMapAction 'out.taskSearchCriteria=param.criteria;
 ' #txt
-Ts0 f2 outParameterDecl '<java.lang.Long totalTasks> result;
-' #txt
+Ts0 f2 outParameterDecl '<Long totalTasks> result;' #txt
 Ts0 f2 outParameterMapAction 'result.totalTasks=in.totalTasks;
 ' #txt
 Ts0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -621,8 +599,7 @@ Ts0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ts0 f2 83 275 26 26 -89 15 #rect
 Ts0 f2 @|UdMethodIcon #fIcon
 Ts0 f7 processCall 'Ivy Data Processes/TaskService:countTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)' #txt
-Ts0 f7 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria> param;
-' #txt
+Ts0 f7 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria> param;' #txt
 Ts0 f7 requestMappingAction 'param.taskSearchCriteria=in.taskSearchCriteria;
 ' #txt
 Ts0 f7 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
@@ -647,8 +624,7 @@ Ts0 f55 109 288 200 288 #arcP
 Ts0 f60 expr out #txt
 Ts0 f60 312 288 403 288 #arcP
 Ts0 f21 processCall 'Ivy Data Processes/TaskService:countTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)' #txt
-Ts0 f21 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria> param;
-' #txt
+Ts0 f21 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria> param;' #txt
 Ts0 f21 requestMappingAction 'param.taskSearchCriteria=in.newTaskSearchCriteria;
 ' #txt
 Ts0 f21 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;

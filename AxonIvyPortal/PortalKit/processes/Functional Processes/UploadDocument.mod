@@ -1,5 +1,5 @@
 [Ivy]
-16AB53A8F6EAADFB 3.28 #module
+16AB53A8F6EAADFB 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ut0 UploadDocument Big #zClass
 Ut0 B #cInfo
@@ -42,8 +42,7 @@ Ut0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ICase businessCase,org.primefaces.m
 Ut0 f0 inParamTable 'out.businessCase=param.businessCase;
 out.uploadedFile=param.uploadedFile;
 ' #txt
-Ut0 f0 outParamDecl '<ch.ivyteam.ivy.workflow.document.IDocument uploadedDocument,java.lang.String message,ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus status> result;
-' #txt
+Ut0 f0 outParamDecl '<ch.ivyteam.ivy.workflow.document.IDocument uploadedDocument,String message,ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus status> result;' #txt
 Ut0 f0 outParamTable 'result.uploadedDocument=in.uploadedDocument;
 result.message=in.message;
 result.status=in.status;
@@ -182,8 +181,7 @@ Ut0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ut0 f53 648 112 32 32 -54 -37 #rect
 Ut0 f53 @|AlternativeIcon #fIcon
 Ut0 f75 processCall 'Functional Processes/UploadDocumentChecker:call(org.primefaces.model.UploadedFile)' #txt
-Ut0 f75 requestActionDecl '<org.primefaces.model.UploadedFile uploadFile> param;
-' #txt
+Ut0 f75 requestActionDecl '<org.primefaces.model.UploadedFile uploadFile> param;' #txt
 Ut0 f75 requestMappingAction 'param.uploadFile=in.uploadedFile;
 ' #txt
 Ut0 f75 responseActionDecl 'ch.ivy.add.portalkit.UploadDocumentData out;

@@ -1,5 +1,5 @@
 [Ivy]
-164211FF9482BB44 3.28 #module
+164211FF9482BB44 7.5.0 #module
 >Proto >Proto Collection #zClass
 Pt0 InternalSupportPortalStart Big #zClass
 Pt0 B #cInfo
@@ -173,8 +173,7 @@ list''s configuration</name>
 Pt0 f2 168 234 128 44 -44 -16 #rect
 Pt0 f2 @|StepIcon #fIcon
 Pt0 f73 processCall 'Functional Processes/InitializeTaskDataModel:call()' #txt
-Pt0 f73 requestActionDecl '<> param;
-' #txt
+Pt0 f73 requestActionDecl '<> param;' #txt
 Pt0 f73 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f73 responseMappingAction 'out=in;
@@ -192,8 +191,7 @@ Pt0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f73 172 714 112 44 -40 -8 #rect
 Pt0 f73 @|CallSubIcon #fIcon
 Pt0 f9 processCall 'Functional Processes/InitializeTaskDataModel:call()' #txt
-Pt0 f9 requestActionDecl '<> param;
-' #txt
+Pt0 f9 requestActionDecl '<> param;' #txt
 Pt0 f9 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f9 responseMappingAction 'out=in;
@@ -281,8 +279,7 @@ callbackUrl</name>
 Pt0 f33 520 523 112 44 -30 -16 #rect
 Pt0 f33 @|UserDialogIcon #fIcon
 Pt0 f84 processCall 'Functional Processes/OpenPortalTasks:useView(ch.ivy.addon.portal.generic.view.TaskView)' #txt
-Pt0 f84 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;
-' #txt
+Pt0 f84 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;' #txt
 Pt0 f84 requestMappingAction 'param.taskView=in.taskView;
 ' #txt
 Pt0 f84 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
@@ -449,8 +446,7 @@ Pt0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f52 1584 522 112 44 -46 -8 #rect
 Pt0 f52 @|StepIcon #fIcon
 Pt0 f37 processCall 'Functional Processes/OpenPortalSearch:call(ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel,Number)' #txt
-Pt0 f37 requestActionDecl '<ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel searchResultsDataModel,java.lang.Number activeTabIndex> param;
-' #txt
+Pt0 f37 requestActionDecl '<ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel searchResultsDataModel,Number activeTabIndex> param;' #txt
 Pt0 f37 requestMappingAction 'param.searchResultsDataModel=in.searchResultsDataModel;
 param.activeTabIndex=1;
 ' #txt
@@ -492,8 +488,7 @@ Pt0 f28 @C|.responsibility Everybody #txt
 Pt0 f28 65 49 30 30 -45 18 #rect
 Pt0 f28 @|StartRequestIcon #fIcon
 Pt0 f62 processCall 'Functional Processes/InitializeCaseDataModel:call()' #txt
-Pt0 f62 requestActionDecl '<> param;
-' #txt
+Pt0 f62 requestActionDecl '<> param;' #txt
 Pt0 f62 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f62 responseMappingAction 'out=in;
@@ -669,7 +664,7 @@ Pt0 f76 @C|.responsibility Everybody #txt
 Pt0 f76 65 913 30 30 -60 17 #rect
 Pt0 f76 @|StartRequestIcon #fIcon
 Pt0 f31 outLink DefaultLoginPage.ivp #txt
-Pt0 f31 inParamDecl '<java.lang.String originalUrl> param;' #txt
+Pt0 f31 inParamDecl '<String originalUrl> param;' #txt
 Pt0 f31 inParamTable 'out.callbackUrl=param.#originalUrl is initialized ? param.originalUrl : null;
 ' #txt
 Pt0 f31 requestEnabled true #txt
@@ -714,7 +709,7 @@ pmv </name>
 Pt0 f92 168 330 128 44 -43 -16 #rect
 Pt0 f92 @|StepIcon #fIcon
 Pt0 f25 outLink restorePortalTaskList.ivp #txt
-Pt0 f25 inParamDecl '<java.lang.Number endedTaskId> param;' #txt
+Pt0 f25 inParamDecl '<Number endedTaskId> param;' #txt
 Pt0 f25 inParamTable 'out.endedTaskId=param.endedTaskId;
 ' #txt
 Pt0 f25 requestEnabled true #txt
@@ -804,8 +799,7 @@ Pt0 f74 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f74 176 908 104 40 -22 -8 #rect
 Pt0 f74 @|UserDialogIcon #fIcon
 Pt0 f12 processCall 'Functional Processes/OpenPortalTasks:useView(ch.ivy.addon.portal.generic.view.TaskView)' #txt
-Pt0 f12 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;
-' #txt
+Pt0 f12 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;' #txt
 Pt0 f12 requestMappingAction 'param.taskView=in.taskView;
 ' #txt
 Pt0 f12 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
@@ -822,7 +816,7 @@ Pt0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f12 1796 424 104 48 -46 -6 #rect
 Pt0 f12 @|CallSubIcon #fIcon
 Pt0 f0 outLink PortalStart.ivp #txt
-Pt0 f0 inParamDecl '<java.lang.String parameters,java.lang.String portalNavigator> param;' #txt
+Pt0 f0 inParamDecl '<String parameters,String portalNavigator> param;' #txt
 Pt0 f0 inParamTable 'out.parameters=param.parameters;
 out.portalPage=param.parameters.isEmpty() ? ch.ivy.addon.portalkit.enums.PortalPage.HOME_PAGE : ch.ivy.addon.portalkit.enums.PortalPage.valueOf(param.portalNavigator);
 ' #txt
@@ -856,7 +850,7 @@ Pt0 f0 @C|.responsibility Everybody #txt
 Pt0 f0 67 147 26 26 -31 17 #rect
 Pt0 f0 @|StartRequestIcon #fIcon
 Pt0 f10 outLink DefaultEndPage.ivp #txt
-Pt0 f10 inParamDecl '<java.lang.Number endedTaskId> param;' #txt
+Pt0 f10 inParamDecl '<Number endedTaskId> param;' #txt
 Pt0 f10 inParamTable 'out.endedTaskId=param.endedTaskId;
 ' #txt
 Pt0 f10 requestEnabled true #txt
@@ -886,8 +880,7 @@ Pt0 f10 @|StartRequestIcon #fIcon
 Pt0 f64 805 721 30 30 0 15 #rect
 Pt0 f64 @|EndIcon #fIcon
 Pt0 f55 processCall 'Functional Processes/OpenPortalCases:useView(ch.ivy.addon.portal.generic.view.CaseView)' #txt
-Pt0 f55 requestActionDecl '<ch.ivy.addon.portal.generic.view.CaseView view> param;
-' #txt
+Pt0 f55 requestActionDecl '<ch.ivy.addon.portal.generic.view.CaseView view> param;' #txt
 Pt0 f55 requestMappingAction 'param.view=in.caseView;
 ' #txt
 Pt0 f55 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
@@ -1087,9 +1080,8 @@ Pt0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f29 1592 330 112 44 -27 -8 #rect
 Pt0 f29 @|StepIcon #fIcon
-Pt0 f42 processCall 'Functional Processes/OpenPortalCaseDetailsOverride:call(ch.ivyteam.ivy.workflow.ICase,Boolean)' #txt
-Pt0 f42 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseData,java.lang.Boolean isShowBackButton> param;
-' #txt
+Pt0 f42 processCall 'Functional Processes/OpenPortalCaseDetailsHook:call(ICase,Boolean)' #txt
+Pt0 f42 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseData,Boolean isShowBackButton> param;' #txt
 Pt0 f42 requestMappingAction 'param.caseData=in.caseSelected;
 param.isShowBackButton=false;
 ' #txt

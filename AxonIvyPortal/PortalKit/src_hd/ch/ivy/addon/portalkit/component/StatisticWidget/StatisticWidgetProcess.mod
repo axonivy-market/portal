@@ -1,5 +1,5 @@
 [Ivy]
-1521B28EE98E8444 3.28 #module
+1521B28EE98E8444 7.5.0 #module
 >Proto >Proto Collection #zClass
 Cs0 StatisticWidgetProcess Big #zClass
 Cs0 RD #cInfo
@@ -60,9 +60,7 @@ Cs0 @PushWFArc f6 '' #zField
 >Proto Cs0 Cs0 StatisticWidgetProcess #zField
 Cs0 f0 guid 16034D800DC77D9C #txt
 Cs0 f0 method start(java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>) #txt
-Cs0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> statisticChartList> param = methodEvent.getInputArguments();
-' #txt
+Cs0 f0 inParameterDecl '<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> statisticChartList> param;' #txt
 Cs0 f0 inParameterMapAction 'out.createMode=false;
 ' #txt
 Cs0 f0 inActionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
@@ -74,8 +72,7 @@ if(!param.#statisticChartList is initialized) {
 	out.statisticChartList = param.statisticChartList;
 }
 StatisticService service = new StatisticService();' #txt
-Cs0 f0 outParameterDecl '<> result;
-' #txt
+Cs0 f0 outParameterDecl '<> result;' #txt
 Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -89,12 +86,9 @@ Cs0 f0 81 51 26 26 -69 15 #rect
 Cs0 f0 @|UdInitIcon #fIcon
 Cs0 f1 guid 16034D80ACC379F5 #txt
 Cs0 f1 method switchMode() #txt
-Cs0 f1 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
+Cs0 f1 inParameterDecl '<> param;' #txt
 Cs0 f1 inActionCode 'out.compactMode = !out.compactMode;' #txt
-Cs0 f1 outParameterDecl '<> result;
-' #txt
+Cs0 f1 outParameterDecl '<> result;' #txt
 Cs0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -112,13 +106,10 @@ Cs0 f3 expr out #txt
 Cs0 f3 107 240 251 240 #arcP
 Cs0 f4 guid 16034D8582DD119E #txt
 Cs0 f4 method setCompactMode(Boolean) #txt
-Cs0 f4 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.Boolean compactMode> param = methodEvent.getInputArguments();
-' #txt
+Cs0 f4 inParameterDecl '<Boolean compactMode> param;' #txt
 Cs0 f4 inParameterMapAction 'out.compactMode=param.compactMode;
 ' #txt
-Cs0 f4 outParameterDecl '<> result;
-' #txt
+Cs0 f4 outParameterDecl '<> result;' #txt
 Cs0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -213,14 +204,11 @@ Cs0 f14 expr out #txt
 Cs0 f14 107 623 251 623 #arcP
 Cs0 f21 guid 1625100B1C7D96D2 #txt
 Cs0 f21 method drillDownExpiryListener() #txt
-Cs0 f21 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
+Cs0 f21 inParameterDecl '<> param;' #txt
 Cs0 f21 inParameterMapAction 'out.isBackFromDrilldown=false;
 out.isDrilldownExpiryChart=true;
 ' #txt
-Cs0 f21 outParameterDecl '<> result;
-' #txt
+Cs0 f21 outParameterDecl '<> result;' #txt
 Cs0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -237,8 +225,7 @@ Cs0 f22 @|UdProcessEndIcon #fIcon
 Cs0 f23 expr out #txt
 Cs0 f23 107 688 251 688 #arcP
 Cs0 f24 processCall 'Functional Processes/DefaultChart:createDefaultChart()' #txt
-Cs0 f24 requestActionDecl '<> param;
-' #txt
+Cs0 f24 requestActionDecl '<> param;' #txt
 Cs0 f24 responseActionDecl 'ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData out;
 ' #txt
 Cs0 f24 responseMappingAction 'out=in;

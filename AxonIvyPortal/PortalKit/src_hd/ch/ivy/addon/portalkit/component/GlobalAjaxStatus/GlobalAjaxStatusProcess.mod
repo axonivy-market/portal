@@ -1,5 +1,5 @@
 [Ivy]
-1511EBF05C5FCFDA 3.28 #module
+1511EBF05C5FCFDA 7.5.0 #module
 >Proto >Proto Collection #zClass
 Gs0 GlobalAjaxStatusProcess Big #zClass
 Gs0 RD #cInfo
@@ -20,11 +20,8 @@ Gs0 @PushWFArc f5 '' #zField
 >Proto Gs0 Gs0 GlobalAjaxStatusProcess #zField
 Gs0 f0 guid 1511EBF0605F14EC #txt
 Gs0 f0 method start() #txt
-Gs0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Gs0 f0 outParameterDecl '<> result;
-' #txt
+Gs0 f0 inParameterDecl '<> param;' #txt
+Gs0 f0 outParameterDecl '<> result;' #txt
 Gs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

@@ -244,12 +244,11 @@ PrimeFaces.widget.Serenity = PrimeFaces.widget.BaseWidget.extend({
     },
         
     activate: function(item) {
-        if (item[0].id.indexOf('thirdparty-menu-item') < 0) {
-            var submenu = item.children('ul');
-            item.addClass('active-menuitem');
-            if(submenu.length) {
-                submenu.slideDown();
-            }
+        var submenu = item.children('ul');
+        item.addClass('active-menuitem');
+
+        if(submenu.length) {
+            submenu.slideDown();
         }
     },
     
@@ -341,30 +340,6 @@ PrimeFaces.widget.Serenity = PrimeFaces.widget.BaseWidget.extend({
         $.removeCookie('serenity_menu_static', {path: '/'});
     },
     
-    clearActiveMenuState: function() {
-        $.removeCookie('serenity_expandeditems', {path: '/'});
-    },
-    
-  //Just remove active state of thirdparty item
-    removeActiveMenuItemSelection: function() {
-    	var activeMenuItems = this.jq.find("li.active-menuitem");
-    	
-    	if(activeMenuItems.length > 0) {
-    		activeMenuItems.removeClass('active-menuitem');
-    	}
-    },
-    
-    //Just remove selection item on menu, not remove state of side bar
-    clearMenuStateItemSelection: function() {
-    	var activeMenuItems = this.jq.find("li.active-menuitem");
-    	
-    	if(activeMenuItems.length > 1) {
-    		var lastItem = this.jq.find("li.active-menuitem").last()
-    		this.removeMenuitem(lastItem.attr('id'));
-    		lastItem.removeClass('active-menuitem');
-    	}
-    },
-    
     restoreMenuState: function() {
         var menuCookie = $.cookie('serenity_expandeditems');
         if (menuCookie) {
@@ -373,9 +348,7 @@ PrimeFaces.widget.Serenity = PrimeFaces.widget.BaseWidget.extend({
                 var id = this.expandedMenuitems[i];
                 if (id) {
                     var menuitem = $("#" + this.expandedMenuitems[i].replace(/:/g, "\\:"));
-                    if (menuitem.length > 0 && menuitem[0].id.indexOf('thirdparty-menu-item') < 0) {
-                    	menuitem.addClass('active-menuitem');
-                    }
+                    menuitem.addClass('active-menuitem');
                     
                     var submenu = menuitem.children('ul');
                     if(submenu.length) {

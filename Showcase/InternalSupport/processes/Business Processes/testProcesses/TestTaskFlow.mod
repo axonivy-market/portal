@@ -1,5 +1,5 @@
 [Ivy]
-14B2FC03D2E87141 3.28 #module
+14B2FC03D2E87141 7.5.0 #module
 >Proto >Proto Collection #zClass
 Tt0 TestTaskFlow Big #zClass
 Tt0 B #cInfo
@@ -1697,8 +1697,7 @@ Tt0 f139 expr data #txt
 Tt0 f139 outCond ivp=="TaskA.ivp" #txt
 Tt0 f139 208 1263 208 1329 #arcP
 Tt0 f83 processCall 'Functional Processes/SetAdditonalCaseDetailPage:call(String)' #txt
-Tt0 f83 requestActionDecl '<java.lang.String linkToAddtionalCaseDetailPage> param;
-' #txt
+Tt0 f83 requestActionDecl '<String linkToAddtionalCaseDetailPage> param;' #txt
 Tt0 f83 requestMappingAction 'param.linkToAddtionalCaseDetailPage="Start Processes/AdditionalCaseDetails/showAdditionalCaseDetails.ivp";
 ' #txt
 Tt0 f83 responseActionDecl 'internaltest.Data out;

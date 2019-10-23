@@ -1,5 +1,5 @@
 [Ivy]
-14C30066460AD7AA 3.28 #module
+14C30066460AD7AA 7.5.0 #module
 >Proto >Proto Collection #zClass
 As0 AbsencesAndDeputyProcess Big #zClass
 As0 RD #cInfo
@@ -157,11 +157,8 @@ As0 @PushWFArc f116 '' #zField
 >Proto As0 As0 AbsencesAndDeputyProcess #zField
 As0 f0 guid 1679C986E063D36E #txt
 As0 f0 method start() #txt
-As0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-As0 f0 outParameterDecl '<> result;
-' #txt
+As0 f0 inParameterDecl '<> param;' #txt
+As0 f0 outParameterDecl '<> result;' #txt
 As0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -177,11 +174,8 @@ As0 f58 expr out #txt
 As0 f58 109 64 277 64 #arcP
 As0 f79 guid 1679C9C2A1FF6686 #txt
 As0 f79 method findAbsences() #txt
-As0 f79 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-As0 f79 outParameterDecl '<> result;
-' #txt
+As0 f79 inParameterDecl '<> param;' #txt
+As0 f79 outParameterDecl '<> result;' #txt
 As0 f79 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -222,8 +216,7 @@ As0 f83 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f83 720 144 32 32 -37 -33 #rect
 As0 f83 @|AlternativeIcon #fIcon
 As0 f145 processCall 'Ivy Data Processes/AbsenceService:findAbsencesOfAllUsers(String)' #txt
-As0 f145 requestActionDecl '<java.lang.String username> param;
-' #txt
+As0 f145 requestActionDecl '<String username> param;' #txt
 As0 f145 requestMappingAction 'param.username=ivy.session.getSessionUserName();
 ' #txt
 As0 f145 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
@@ -243,8 +236,7 @@ of all users</name>
 As0 f145 832 138 112 44 -41 -20 #rect
 As0 f145 @|CallSubIcon #fIcon
 As0 f146 processCall 'Ivy Data Processes/AbsenceService:findAbsences(String)' #txt
-As0 f146 requestActionDecl '<java.lang.String username> param;
-' #txt
+As0 f146 requestActionDecl '<String username> param;' #txt
 As0 f146 requestMappingAction 'param.username=ivy.session.getSessionUserName();
 ' #txt
 As0 f146 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
@@ -338,15 +330,12 @@ As0 f156 expr out #txt
 As0 f156 1352 160 1395 160 #arcP
 As0 f11 guid 167A13CB376C246A #txt
 As0 f11 method editAbsence(ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence) #txt
-As0 f11 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence selectedAbsence> param = methodEvent.getInputArguments();
-' #txt
+As0 f11 inParameterDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence selectedAbsence> param;' #txt
 As0 f11 inParameterMapAction 'out.isLoadDeputy=false;
 out.selectedAbsence=param.selectedAbsence;
 out.validationError=false;
 ' #txt
-As0 f11 outParameterDecl '<> result;
-' #txt
+As0 f11 outParameterDecl '<> result;' #txt
 As0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -381,13 +370,10 @@ As0 f132 expr out #txt
 As0 f132 312 608 403 608 #arcP
 As0 f12 guid 167A141E9FBD4F48 #txt
 As0 f12 method preDelete(ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence) #txt
-As0 f12 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence selectedAbsence> param = methodEvent.getInputArguments();
-' #txt
+As0 f12 inParameterDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence selectedAbsence> param;' #txt
 As0 f12 inParameterMapAction 'out.selectedAbsence=param.selectedAbsence;
 ' #txt
-As0 f12 outParameterDecl '<> result;
-' #txt
+As0 f12 outParameterDecl '<> result;' #txt
 As0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -586,8 +572,7 @@ As0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f38 83 1267 26 26 -47 15 #rect
 As0 f38 @|UdEventIcon #fIcon
 As0 f39 processCall 'Ivy Data Processes/AbsenceService:deleteAbsence(ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence)' #txt
-As0 f39 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence ivyAbsence> param;
-' #txt
+As0 f39 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence ivyAbsence> param;' #txt
 As0 f39 requestMappingAction 'param.ivyAbsence=in.selectedAbsence;
 ' #txt
 As0 f39 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
@@ -646,8 +631,7 @@ As0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f32 83 499 26 26 -47 15 #rect
 As0 f32 @|UdEventIcon #fIcon
 As0 f111 processCall 'Ivy Data Processes/AbsenceService:updateAbsences(String,java.util.Set)' #txt
-As0 f111 requestActionDecl '<java.lang.String username,java.util.Set ivyAbsences> param;
-' #txt
+As0 f111 requestActionDecl '<String username,java.util.Set ivyAbsences> param;' #txt
 As0 f111 requestMappingAction 'param.username=ch.ivy.addon.portalkit.util.UserUtils.getUserName(in.selectedUser);
 param.ivyAbsences=in.absencesByUser.get(ch.ivy.addon.portalkit.util.UserUtils.getUserName(in.selectedUser)) as java.util.Set;
 ' #txt
@@ -766,13 +750,10 @@ As0 f40 627 1555 26 26 0 12 #rect
 As0 f40 @|UdProcessEndIcon #fIcon
 As0 f34 guid 167BF687DE4A5596 #txt
 As0 f34 method autoCompleteForUser(String) #txt
-As0 f34 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.String query> param = methodEvent.getInputArguments();
-' #txt
+As0 f34 inParameterDecl '<String query> param;' #txt
 As0 f34 inParameterMapAction 'out.queryAutoComplete=param.query;
 ' #txt
-As0 f34 outParameterDecl '<java.util.List<ch.ivyteam.ivy.security.IUser> users> result;
-' #txt
+As0 f34 outParameterDecl '<java.util.List<ch.ivyteam.ivy.security.IUser> users> result;' #txt
 As0 f34 outActionCode 'import org.apache.commons.collections4.CollectionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 
@@ -792,11 +773,8 @@ As0 f34 83 1555 26 26 -81 15 #rect
 As0 f34 @|UdMethodIcon #fIcon
 As0 f42 guid 167BF6E4DCD5D7B8 #txt
 As0 f42 method loadUsers() #txt
-As0 f42 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-As0 f42 outParameterDecl '<> result;
-' #txt
+As0 f42 inParameterDecl '<> param;' #txt
+As0 f42 outParameterDecl '<> result;' #txt
 As0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -809,8 +787,7 @@ As0 f42 @|UdMethodIcon #fIcon
 As0 f43 627 1459 26 26 0 12 #rect
 As0 f43 @|UdProcessEndIcon #fIcon
 As0 f47 processCall 'Ivy Data Processes/SecurityService:findUsersOverAllApplications(String)' #txt
-As0 f47 requestActionDecl '<java.lang.String username> param;
-' #txt
+As0 f47 requestActionDecl '<String username> param;' #txt
 As0 f47 requestMappingAction 'param.username=ivy.session.getSessionUserName();
 ' #txt
 As0 f47 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
@@ -849,11 +826,8 @@ As0 f50 expr out #txt
 As0 f50 504 1472 627 1472 #arcP
 As0 f51 guid 167C062278F2D07A #txt
 As0 f51 method createAbsenceAndLoadDeputy() #txt
-As0 f51 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-As0 f51 outParameterDecl '<> result;
-' #txt
+As0 f51 inParameterDecl '<> param;' #txt
+As0 f51 outParameterDecl '<> result;' #txt
 As0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -866,8 +840,7 @@ As0 f51 @|UdMethodIcon #fIcon
 As0 f59 1651 1747 26 26 0 12 #rect
 As0 f59 @|UdProcessEndIcon #fIcon
 As0 f62 processCall 'Ivy Data Processes/SubstituteService:findSubstitutes(String)' #txt
-As0 f62 requestActionDecl '<java.lang.String username> param;
-' #txt
+As0 f62 requestActionDecl '<String username> param;' #txt
 As0 f62 requestMappingAction 'param.username=ch.ivy.addon.portalkit.util.UserUtils.getUserName(in.selectedUser);
 ' #txt
 As0 f62 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
@@ -958,11 +931,8 @@ As0 f41 expr out #txt
 As0 f41 109 1568 627 1568 #arcP
 As0 f73 guid 167C46A1401C51E0 #txt
 As0 f73 method editDeputy() #txt
-As0 f73 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-As0 f73 outParameterDecl '<> result;
-' #txt
+As0 f73 inParameterDecl '<> param;' #txt
+As0 f73 outParameterDecl '<> result;' #txt
 As0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1032,8 +1002,7 @@ As0 f92 @|AlternativeIcon #fIcon
 As0 f93 expr out #txt
 As0 f93 944 1760 992 1760 #arcP
 As0 f94 processCall 'Ivy Data Processes/SecurityService:findUsersOverAllApplications(String)' #txt
-As0 f94 requestActionDecl '<java.lang.String username> param;
-' #txt
+As0 f94 requestActionDecl '<String username> param;' #txt
 As0 f94 requestMappingAction 'param.username=ivy.session.getSessionUserName();
 ' #txt
 As0 f94 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
@@ -1078,8 +1047,7 @@ As0 f96 @|UdEventIcon #fIcon
 As0 f100 915 339 26 26 0 12 #rect
 As0 f100 @|UdProcessEndIcon #fIcon
 As0 f101 processCall 'Ivy Data Processes/SubstituteService:saveSubstitutes(String,java.util.Map)' #txt
-As0 f101 requestActionDecl '<java.lang.String username,java.util.Map substitutesByApp> param;
-' #txt
+As0 f101 requestActionDecl '<String username,java.util.Map substitutesByApp> param;' #txt
 As0 f101 requestMappingAction 'param.username=ch.ivy.addon.portalkit.util.UserUtils.getUserName(in.selectedUser);
 param.substitutesByApp=in.substitutesByApp;
 ' #txt
@@ -1227,8 +1195,7 @@ As0 f126 expr out #txt
 As0 f126 456 512 531 512 #arcP
 As0 f126 0 0.41717001380558716 0 0 #arcLabel
 As0 f22 processCall 'Ivy Data Processes/AbsenceService:createAbsence(ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence)' #txt
-As0 f22 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence absence> param;
-' #txt
+As0 f22 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence absence> param;' #txt
 As0 f22 requestMappingAction 'param.absence=in.selectedAbsence;
 ' #txt
 As0 f22 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;

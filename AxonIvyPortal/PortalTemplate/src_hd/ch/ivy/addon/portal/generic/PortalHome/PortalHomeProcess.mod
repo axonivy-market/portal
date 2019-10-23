@@ -1,5 +1,5 @@
 [Ivy]
-14BEF201D2E3FF7D 3.28 #module
+14BEF201D2E3FF7D 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalHomeProcess Big #zClass
 Ps0 RD #cInfo
@@ -23,14 +23,11 @@ Ps0 @PushWFArc f6 '' #zField
 >Proto Ps0 Ps0 PortalHomeProcess #zField
 Ps0 f0 guid 14BEF201D4239EF7 #txt
 Ps0 f0 method start(ch.ivy.addon.portal.generic.view.TaskView) #txt
-Ps0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<ch.ivy.addon.portal.generic.view.TaskView taskView> param = methodEvent.getInputArguments();
-' #txt
+Ps0 f0 inParameterDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;' #txt
 Ps0 f0 inParameterMapAction 'out.isNotLogin=ivy.session.isSessionUserUnknown();
 out.taskView=param.taskView;
 ' #txt
-Ps0 f0 outParameterDecl '<> result;
-' #txt
+Ps0 f0 outParameterDecl '<> result;' #txt
 Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -49,9 +46,7 @@ Ps0 f11 109 64 213 64 #arcP
 Ps0 f11 0 0.49999999999999994 0 0 #arcLabel
 Ps0 f1 guid 15BA979D15878BE6 #txt
 Ps0 f1 method getDataModel() #txt
-Ps0 f1 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
+Ps0 f1 inParameterDecl '<> param;' #txt
 Ps0 f1 inActionCode 'import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 
 TaskSearchCriteria criteria = out.taskView.dataModel.criteria;
@@ -59,8 +54,7 @@ if (out.isNotLogin) {
 	criteria.setInvolvedUsername(ivy.session.getSessionUserName());
 	out.isNotLogin = false;
 }' #txt
-Ps0 f1 outParameterDecl '<ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel> result;
-' #txt
+Ps0 f1 outParameterDecl '<ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel> result;' #txt
 Ps0 f1 outParameterMapAction 'result.dataModel=in.taskView.dataModel;
 ' #txt
 Ps0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -82,15 +76,12 @@ Ps0 f4 210 210 22 22 14 0 #rect
 Ps0 f4 @|UdProcessEndIcon #fIcon
 Ps0 f5 guid 1604F4CCC363BD5A #txt
 Ps0 f5 method getStatisticCharts() #txt
-Ps0 f5 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
+Ps0 f5 inParameterDecl '<> param;' #txt
 Ps0 f5 inActionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
 
 StatisticService service = new StatisticService();
 out.statisticChartList = service.findStatisticChartsByUserId(ivy.session.getSessionUser().getId());' #txt
-Ps0 f5 outParameterDecl '<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> statisticChartList> result;
-' #txt
+Ps0 f5 outParameterDecl '<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> statisticChartList> result;' #txt
 Ps0 f5 outParameterMapAction 'result.statisticChartList=in.statisticChartList;
 ' #txt
 Ps0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

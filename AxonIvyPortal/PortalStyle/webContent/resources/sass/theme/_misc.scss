@@ -2,39 +2,39 @@ body {
     .jqplot-target {
         font-family: $fontFamily;
     }
-    
+
     .ui-progressbar {
-        height: 16px;
+        height: 1.5em;
         padding: 0;
         border-color: $contentBorderColor;
-        
+
         .ui-progressbar-value {
-            height: 16px;
+            height: 1.5em;
             padding: 0;
         }
-        
-        .ui-progressbar-label {
-            color: $accentColor;
-        }
     }
-    
+
     .ui-galleria {
         padding: 0;
-        
+
         .ui-galleria-nav-prev {
             left: 2px;
         }
-        
+
         .ui-galleria-nav-next {
             right: 2px;
         }
+
+        h4, p {
+            color: #ffffff;
+        }
     }
-    
+
     .ui-log {
         .ui-log-header {
             padding: $headerPadding;
             height: auto;
-            
+
             > .ui-log-button {
                 line-height: 16px;
                 position: static;
@@ -45,45 +45,49 @@ body {
                 padding: 1px 3px;
                 @include border-radius(50%);
                 @include transition(background-color $transitionDuration);
-                
+
                 &.ui-state-hover {
                     background-color: $primaryLightColor;
                 }
             }
         }
     }
-    
+
     .ui-tagcloud {
         li {
             margin: 4px 0px;
-            
+
             a {
                 @include transition(background-color $transitionDuration);
                 @include border-radius(3px);
-                
+
                 &:hover {
                     @include hover-element();
                 }
-            } 
+            }
         }
     }
-    
+
+    .ui-clock {
+        display: inline-block;
+    }
+
     .timeline-frame {
         .timeline-event {
             border-color: $contentBorderColor;
             background-color: $contentBgColor;
-            
+
             &.ui-state-active {
                 background-color: $accentColor;
                 border-color: $accentColor;
                 color: $accentTextColor;
             }
         }
-        
+
         .timeline-axis {
             border-color: $dividerColor;
         }
-        
+
         .timeline-navigation {
             height: 36px;
         }

@@ -1,5 +1,5 @@
 [Ivy]
-156455501228CE44 3.28 #module
+156455501228CE44 7.5.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseHeaderProcess Big #zClass
 Cs0 RD #cInfo
@@ -17,11 +17,8 @@ Cs0 @PushWFArc f2 '' #zField
 >Proto Cs0 Cs0 CaseHeaderProcess #zField
 Cs0 f0 guid 167E95B9185E76EF #txt
 Cs0 f0 method start() #txt
-Cs0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Cs0 f0 outParameterDecl '<> result;
-' #txt
+Cs0 f0 inParameterDecl '<> param;' #txt
+Cs0 f0 outParameterDecl '<> result;' #txt
 Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

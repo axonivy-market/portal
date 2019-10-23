@@ -1,5 +1,5 @@
 [Ivy]
-14CE96E80B89A88F 3.28 #module
+14CE96E80B89A88F 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ls0 SetLanguageProcess Big #zClass
 Ls0 RD #cInfo
@@ -17,11 +17,8 @@ Ls0 @PushWFArc f2 '' #zField
 >Proto Ls0 Ls0 SetLanguageProcess #zField
 Ls0 f0 guid 14739D9F00572FE2 #txt
 Ls0 f0 method start() #txt
-Ls0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ls0 f0 outParameterDecl '<> result;
-' #txt
+Ls0 f0 inParameterDecl '<> param;' #txt
+Ls0 f0 outParameterDecl '<> result;' #txt
 Ls0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

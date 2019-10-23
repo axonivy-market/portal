@@ -1,5 +1,5 @@
 [Ivy]
-1603506A872272C6 3.28 #module
+1603506A872272C6 7.5.0 #module
 >Proto >Proto Collection #zClass
 Cy0 CaseNoteHistory Big #zClass
 Cy0 B #cInfo
@@ -61,7 +61,7 @@ Cy0 f16 593 81 30 30 0 15 #rect
 Cy0 f16 @|EndIcon #fIcon
 Cy0 f20 dialogId ch.ivy.addon.portal.generic.CaseNoteHistory #txt
 Cy0 f20 startMethod start(java.util.List<ch.ivy.addon.portalkit.bo.History>,String,ch.ivyteam.ivy.workflow.ICase) #txt
-Cy0 f20 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.bo.History> histories, String exportedFileName, ch.ivyteam.ivy.workflow.ICase ivyCase> param;' #txt
+Cy0 f20 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.bo.History> histories,String exportedFileName,ch.ivyteam.ivy.workflow.ICase ivyCase> param;' #txt
 Cy0 f20 requestMappingAction 'param.histories=in.histories;
 param.exportedFileName=ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/noteHistory/caseExportedFileNamePrefix", java.util.Arrays.asList(ch.ivy.addon.portalkit.util.PermissionUtils.getCaseName(in.internalCase)));
 param.ivyCase=in.internalCase;
@@ -86,7 +86,7 @@ Cy0 f21 360 96 424 96 #arcP
 Cy0 f19 expr out #txt
 Cy0 f19 536 96 593 96 #arcP
 Cy0 f0 outLink showCaseNoteHistory.ivp #txt
-Cy0 f0 inParamDecl '<java.lang.Long caseId> param;' #txt
+Cy0 f0 inParamDecl '<Long caseId> param;' #txt
 Cy0 f0 inParamTable 'out.caseId=param.caseId;
 ' #txt
 Cy0 f0 requestEnabled true #txt

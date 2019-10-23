@@ -1,5 +1,5 @@
 [Ivy]
-15C1FA2C887C250A 3.28 #module
+15C1FA2C887C250A 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ds0 DrillDownCharts Big #zClass
 Ds0 B #cInfo
@@ -59,8 +59,7 @@ Ds0 f3 @|UserDialogIcon #fIcon
 Ds0 f4 expr out #txt
 Ds0 f4 111 64 168 64 #arcP
 Ds0 f5 processCall 'Functional Processes/OpenPortalTasks:useView(ch.ivy.addon.portal.generic.view.TaskView)' #txt
-Ds0 f5 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;
-' #txt
+Ds0 f5 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;' #txt
 Ds0 f5 requestMappingAction 'param.taskView=in.taskView;
 ' #txt
 Ds0 f5 responseActionDecl 'internaltest.DrillDownChartsData out;

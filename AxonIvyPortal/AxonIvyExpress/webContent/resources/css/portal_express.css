@@ -293,7 +293,7 @@
 }
 
 .assignee-selection-panel .select-assignee .ui-autocomplete-input {
-	width: 95%;
+	width: 100%;
 }
 
 .assignee-selection-panel .add-assignee-button {
@@ -671,7 +671,8 @@ td.email-attachment-text {
 
 .defined-task-label label {
   font-size: 1.2rem;
-  margin-top: 3px;
+  margin-top: 1px;
+  display: block;
 }
 
 .defined-task-button-container .ui-state-hover ~ span.defined-task-label,
@@ -1077,4 +1078,9 @@ _:-ms-fullscreen, :root .express-input-type {
   .express-email-label-right-align {
     text-align: right;
   }
+}
+
+body .ui-fieldset .ui-fieldset-legend .ui-fieldset-toggler {
+  width: 20px !important;
+  height: 20px !important;
 }

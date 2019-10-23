@@ -5,11 +5,11 @@ body {
         background-size: 0 2px, 100% 1px;
         background-position: 50% 100%, 50% 100%;
         transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
-        border-width: 0;  
+        border-width: 0;
         padding: 2px 2px 2px 2px;
         font-size: $fontSize;
         @include border-radius(0px);
-        
+
         &.ui-state-focus {
             border-width: 0;
             background-size: 100% 2px, 100% 1px;
@@ -20,26 +20,26 @@ body {
         &.ui-state-disabled {
             border-bottom: 1px dotted;
         }
-        
+
         &.ui-widget-content {
             border-width: 1px;
             background: transparent;
             background-image: none;
         }
-        
+
         &.ui-state-error {
             border-color: $inputInvalidBorderColor;
             background-image: linear-gradient(to bottom, $inputInvalidBorderColor, $inputInvalidBorderColor), linear-gradient(to bottom, $inputInvalidBorderColor, $inputInvalidBorderColor);
         }
     }
-    
+
     .ui-widget-header, .ui-selectlistbox-filter-container {
         .ui-inputfield {
             background-image: linear-gradient(to bottom, #ffffff, #ffffff), linear-gradient(to bottom, desaturate(lighten($primaryColor,25%), 25%), desaturate(lighten($primaryColor,25%), 25%));
             padding-bottom: 2px;
         }
     }
-    
+
     .ui-inputfield:-webkit-autofill {
         border-color: $inputBorderColor;
         border-style: solid;
@@ -49,11 +49,11 @@ body {
             padding-bottom: 0px;
         }
     }
-    
+
     .md-inputfield {
         display: block;
-        position:relative; 
-        
+        position:relative;
+
         input:focus ~ label,
         input.ui-state-filled ~ label,
         textarea:focus ~ label,
@@ -62,35 +62,44 @@ body {
         .ui-selectonemenu.ui-state-filled ~ label,
         .md-inputwrapper-focus ~ label,
         .md-inputwrapper-filled ~ label{
-          top:-20px;
-          font-size:12px;
-          color:$primaryColor;
+            top:-20px;
+            font-size:12px;
+            color:$primaryColor;
         }
 
         input:-webkit-autofill ~ label {
-          top:-20px;
-          font-size:12px;
-          color:$primaryColor;
+            top:-20px;
+            font-size:12px;
+            color:$primaryColor;
         }
         
-        label:not(.ui-selectonemenu-label) {
-          color:#999; 
-          font-weight:normal;
-          position:absolute;
-          pointer-events:none;
-          left:5px;
-          top:1px;
-          transition: $transitionDuration ease all; 
-          -moz-transition: $transitionDuration ease all; 
-          -webkit-transition: $transitionDuration ease all;
+        label {
+            position:absolute;
+            left:5px;
+            top:1px;
+
+            &:not(.ui-selectonemenu-label) {
+                color:#999; 
+                font-weight:normal;
+                pointer-events:none;
+                transition: $transitionDuration ease all; 
+                -moz-transition: $transitionDuration ease all; 
+                -webkit-transition: $transitionDuration ease all;
+            }
+
+            &.ui-selectonemenu-label {
+                position: static;
+                left: auto;
+                top: auto;
+            }
         }
-        
+
         input.ui-state-error ~ label,
         .ui-selectonemenu.ui-state-focus.ui-state-error ~ label,
         .ui-selectonemenu.ui-state-filled.ui-state-error ~ label {
             color: $inputErrorTextColor;
         }
-        
+
         .ui-message {
             &.ui-message-error {
                 background-color: transparent;
@@ -120,13 +129,13 @@ body {
             }
 
             input:focus ~ label,
-                input.ui-state-filled ~ label,
-                textarea:focus ~ label,
-                textarea.ui-state-filled ~ label,
-                .ui-selectonemenu.ui-state-focus ~ label,
-                .ui-selectonemenu.ui-state-filled ~ label,
-                .md-inputwrapper-focus ~ label,
-                .md-inputwrapper-filled ~ label {
+            input.ui-state-filled ~ label,
+            textarea:focus ~ label,
+            textarea.ui-state-filled ~ label,
+            .ui-selectonemenu.ui-state-focus ~ label,
+            .ui-selectonemenu.ui-state-filled ~ label,
+            .md-inputwrapper-focus ~ label,
+            .md-inputwrapper-filled ~ label {
                 top:-20px;
                 font-size:12px;
                 color:$primaryColor;
@@ -148,13 +157,13 @@ body {
             }
 
             input:focus ~ label,
-                input.ui-state-filled ~ label,
-                textarea:focus ~ label,
-                textarea.ui-state-filled ~ label,
-                .ui-selectonemenu.ui-state-focus ~ label,
-                .ui-selectonemenu.ui-state-filled ~ label,
-                .md-inputwrapper-focus ~ label,
-                .md-inputwrapper-filled ~ label {
+            input.ui-state-filled ~ label,
+            textarea:focus ~ label,
+            textarea.ui-state-filled ~ label,
+            .ui-selectonemenu.ui-state-focus ~ label,
+            .ui-selectonemenu.ui-state-filled ~ label,
+            .md-inputwrapper-focus ~ label,
+            .md-inputwrapper-filled ~ label {
                 top:1px;
             }
 
@@ -163,53 +172,52 @@ body {
             }
         }
     }
-    
+
     .ui-selectonelistbox {
         background-color: $inputBgColor;
         border: 0 none;
         @include border-radius($borderRadius);
-        
+
         &.ui-inputfield {
             padding: 0;
         }
-        
+
         .ui-selectlistbox-list {
-            padding: 0;
+            padding: $inputListPadding;
             border: 1px solid $contentBorderColor;
         }
-        
+
         .ui-selectlistbox-item {
             overflow: hidden;
             padding: $listItemPadding;
             margin: 0;
             @include rippleitem();
-            @include transition(background-color $transitionDuration);
             @include border-radius(0);
 
             &.ui-state-hover {
                 @include hover-element();
             }
         }
-        
+
         .ui-selectlistbox-filter-container {
             margin: 0;
             padding: $inputHeaderPadding;
             background-color: $primaryColor;
             @include border-radius-top($borderRadius);
-                 
+
             .ui-inputfield {
                 border-color: darken($headerTextColor, 15%);
                 color: $headerTextColor;
                 width: 100%;
                 padding-left: 2px;
-                padding-right: $iconWidth;                
+                padding-right: $iconWidth;
                 @include border-box-sizing();
-                
+
                 &.ui-state-focus {
                     border-color: $headerTextColor;
                 }
-            }         
-            
+            }
+
             .ui-icon {
                 color: $headerTextColor;
                 top: 6px;
@@ -217,32 +225,31 @@ body {
             }
         }
     }
-    
-    .ui-multiselectlistbox {   
+
+    .ui-multiselectlistbox {
         .ui-multiselectlistbox-header {
             padding: $inputHeaderPadding;
             position: relative;
             bottom: -1px;
         }
-        
+
         .ui-multiselectlistbox-list {
-            padding: 0;
+            padding: $inputListPadding;
             background-color: $contentBgColor;
         }
-        
+
         li.ui-multiselectlistbox-item {
             padding: $listItemPadding;
             margin: 0;
             @include rippleitem();
-            @include transition(background-color $transitionDuration);
             @include border-radius(0px);
-            
+
             &.ui-state-hover {
                 @include hover-element();
             }
         }
     }
-    
+
     .ui-button {
         overflow: hidden;
         background-color: $primaryColor;
@@ -252,332 +259,391 @@ body {
         border: 0 none;
         -moz-box-shadow: 0 1px 2.5px 0 rgba(0, 0, 0, 0.26), 0 1px 5px 0 rgba(0, 0, 0, 0.16);
         -webkit-box-shadow: 0 1px 2.5px 0 rgba(0, 0, 0, 0.26), 0 1px 5px 0 rgba(0, 0, 0, 0.16);
-    	box-shadow: 0 1px 2.5px 0 rgba(0, 0, 0, 0.26), 0 1px 5px 0 rgba(0, 0, 0, 0.16);
+        box-shadow: 0 1px 2.5px 0 rgba(0, 0, 0, 0.26), 0 1px 5px 0 rgba(0, 0, 0, 0.16);
         @include transition(background-color $transitionDuration);
-        
+
         &.ui-state-hover {
-            background-color: $primaryDarkColor;   
+            background-color: $primaryDarkColor;
         }
-        
+
         &.ui-state-focus {
             outline: 0 none;
             background-color: lighten($primaryColor,10%);
         }
-        
+
         .ui-button-text {
             padding: 0;
             line-height: 30px;
             font-size: $fontSize;
         }
-        
+
         .ui-icon {
             color: #ffffff;
         }
-        
+
         &.ui-button-icon-only {
             @include border-radius(50%);
             width: 30px;
             height: 30px;
-            
+
             .ui-icon {
                 margin-top: -1 * $iconWidth / 2;
                 margin-left: -1 * $iconHeight / 2;
             }
         }
-        
+
         &.ui-button-text-icon-left,
         &.ui-button-text-icon-right {
             .ui-icon {
                 margin-top: -1 * $iconWidth / 2;
             }
         }
-        
+
         &.ui-button-text-icon-left {
             padding-left: 36px;
         }
-        
+
         &.ui-button-text-icon-right {
             padding-right: 36px;
         }
-                
+
         &.secondary-btn {
             background-color: $accentColor;
             color: $accentTextColor;
-            
             &.ui-state-hover {
-                background-color: $accentDarkColor;   
+                background-color: $accentDarkColor;
             }
-            
             &.ui-state-focus {
                 outline: 0 none;
                 background-color: lighten($accentColor,10%);
             }
-            
             .ui-icon {
                 color: $accentTextColor;
             }
         }
-        
+
+        &.accent-btn {
+            background-color: $accentColor;
+            color: $accentTextColor;
+
+            &.ui-state-hover {
+                background-color: $accentDarkColor;
+            }
+
+            &.ui-state-focus {
+                outline: 0 none;
+                background-color: lighten($accentColor,10%);
+            }
+
+            .ui-icon {
+                color: $accentTextColor;
+            }
+        }
+
         &.blue-grey-btn {
             background-color: #607D8B;
-            
+
             &.ui-state-hover {
-                background-color: #37474F;   
+                background-color: #37474F;
             }
-            
+
             &.ui-state-focus {
                 outline: 0 none;
                 background-color: lighten(#607D8B,10%);
             }
         }
-        
+
         &.cyan-btn {
             background-color: #00BCD4;
-            
+
             &.ui-state-hover {
-                background-color: #00838F;   
+                background-color: #00838F;
             }
-            
+
             &.ui-state-focus {
                 outline: 0 none;
                 background-color: lighten(#00BCD4,10%);
             }
         }
-        
+
         &.teal-btn {
             background-color: #009688;
-            
+
             &.ui-state-hover {
-                background-color: #00695C;   
+                background-color: #00695C;
             }
-            
+
             &.ui-state-focus {
                 outline: 0 none;
                 background-color: lighten(#009688,10%);
             }
         }
-        
+
         &.red-btn {
             background-color: #F44336;
-            
+
             &.ui-state-hover {
-                background-color: #C62828;   
+                background-color: #C62828;
             }
-            
+
             &.ui-state-focus {
                 outline: 0 none;
                 background-color: lighten(#F44336,10%);
             }
         }
-        
+
         &.green-btn {
             background-color: #4CAF50;
-            
+
             &.ui-state-hover {
-                background-color: #2E7D32;   
+                background-color: #2E7D32;
             }
-            
+
             &.ui-state-focus {
                 outline: 0 none;
                 background-color: lighten(#4CAF50,10%);
             }
         }
-        
+
         &.deep-orange-btn {
             background-color: #FF5722;
-            
+
             &.ui-state-hover {
-                background-color: #D84315;   
+                background-color: #D84315;
             }
-            
+
             &.ui-state-focus {
                 outline: 0 none;
                 background-color: lighten(#FF5722,10%);
             }
         }
-        
+
         &.purple-btn {
             background-color: #673AB7;
-            
+
             &.ui-state-hover {
-                background-color: #4527A0;   
+                background-color: #4527A0;
             }
-            
+
             &.ui-state-focus {
                 outline: 0 none;
                 background-color: lighten(#673AB7,10%);
             }
         }
-        
+
         &.pink-btn {
             background-color: #E91E63;
-            
+
             &.ui-state-hover {
-                background-color: #AD1457;   
+                background-color: #AD1457;
             }
-            
+
             &.ui-state-focus {
                 outline: 0 none;
                 background-color: lighten(#E91E63,10%);
             }
         }
-        
+
         &.amber-btn {
             background-color: #FFC107;
             color: #212121;
-            
+
             &.ui-state-hover {
-                background-color: #FF8F00;   
+                background-color: #FF8F00;
             }
-            
+
             &.ui-state-focus {
                 outline: 0 none;
                 background-color: lighten(#FFC107,10%);
             }
         }
-        
+
         &.orange-btn {
             background-color: #FF9800;
-            
+
             &.ui-state-hover {
-                background-color: #EF6C00;   
+                background-color: #EF6C00;
             }
-            
+
             &.ui-state-focus {
                 outline: 0 none;
                 background-color: lighten(#FF9800,10%);
             }
         }
-        
+
         &.brown-btn {
             background-color: #795548;
-            
+
             &.ui-state-hover {
-                background-color: #4E342E;   
+                background-color: #4E342E;
             }
-            
+
             &.ui-state-focus {
                 outline: 0 none;
                 background-color: lighten(#795548,10%);
             }
         }
-        
+
         &.flat {
             @include no-shadow();
         }
     }
-    
+
     .ui-buttonset {
         .ui-state-active {
             background-color: $accentColor;
             color: $accentTextColor;
         }
     }
-    
+
     .ui-splitbutton {
         @include border-radius($borderRadius);
         -moz-box-shadow: 0 1px 2.5px 0 rgba(0, 0, 0, 0.26), 0 1px 5px 0 rgba(0, 0, 0, 0.16);
         -webkit-box-shadow: 0 1px 2.5px 0 rgba(0, 0, 0, 0.26), 0 1px 5px 0 rgba(0, 0, 0, 0.16);
-    	box-shadow: 0 1px 2.5px 0 rgba(0, 0, 0, 0.26), 0 1px 5px 0 rgba(0, 0, 0, 0.16);
+        box-shadow: 0 1px 2.5px 0 rgba(0, 0, 0, 0.26), 0 1px 5px 0 rgba(0, 0, 0, 0.16);
 
         > .ui-button {
             @include no-shadow();
-            
+
             &.ui-state-active {
                 background-color: lighten($primaryColor,10%);
             }
         }
-        
+
         .ui-splitbutton-menubutton {
             height: 30px;
             @include border-radius-left(0);
             @include border-radius-right(3px);
         }
     }
-    
+
     .ui-selectbooleanbutton {
         @include border-box-sizing();
-        
+
         &.ui-state-active {
             background-color: $accentColor;
             color: $accentTextColor;
-            
+
             .ui-icon {
                 color: $accentTextColor;
             }
         }
     }
-    
+
     .ui-chkbox {
         display: inline-block;
         vertical-align: middle;
-        width: $iconWidth - 2px;
-        height: $iconHeight - 2px;
         cursor: default;
-        margin: 0 4px 0 0;
-        
+        margin: 0 .5em 0 0;
+
         .ui-chkbox-box {
             border: 2px solid $checkboxBorderColor;
-            width: $iconWidth - 6px;
-            height: $iconHeight - 6px;
-            
+            width: 20px;
+            height: 20px;
+            position: relative;
             @include transition(background-color $transitionDuration);
-            
+
+            &:before {
+                position: absolute;
+                left: 6px;
+                top: 6px;
+                content: "";
+                background-color: $primaryLightColor;
+                height: 4px;
+                width: 4px;
+                border-radius: 100%;
+                z-index: 1;
+                opacity: 0;
+                margin: 0;
+            }
+
             .ui-chkbox-icon {
                 font-size: $fontSize + 4;
-                margin-left: -2px;
-                margin-top: -2px;
+                margin-left: -1px;
+                margin-top: -1px;
             }
-            
+
+            .ui-icon-blank {
+                @include material-icon("\e5ca");
+                font-size: $iconFontSize - 2;
+                visibility: hidden;
+            }
+
             &.ui-state-active {
                 border-color: $primaryColor;
                 background-color: $primaryColor;
-                
+
                 .ui-chkbox-icon {
                     color: $primaryTextColor;
                 }
-                
+
                 &.ui-state-focus {
                     .ui-chkbox-icon {
                         color: $primaryTextColor;
-                    } 
+                    }
+                }
+
+                &:before {
+                    -webkit-animation: rippleOn 400ms forwards ease-out;
+                    animation: rippleOn 400ms forwards ease-out;
                 }
             }
-            
+
             &.ui-state-focus {
                 border-color: $primaryColor;
                 @include content-shadow();
                 @include transition(box-shadow $transitionDuration);
-                
+
                 .ui-chkbox-icon {
-                   color: $primaryColor; 
+                    color: $primaryColor;
                 }
             }
         }
     }
-    
+
     .ui-radiobutton {
         position: relative;
-        margin: 0 4px 0 0;
+        margin: 0 .5em 0 0;
         display: inline-block;
         vertical-align: middle;
-        
+        width: 20px;
+        height: 20px;
+
         .ui-radiobutton-box {
-            width: $fontSize -1px;
-            height: $fontSize -1px;
+            width: 20px;
+            height: 20px;
             border: 2px solid $radioButtonBorderColor;
             @include transition(box-shadow $transitionDuration);
             @include border-radius(50%);
-            
+
+            &:before {
+                position: absolute;
+                left: 8px;
+                top: 8px;
+                content: "";
+                background-color: $primaryLightColor;
+                height: 4px;
+                width: 4px;
+                border-radius: 100%;
+                z-index: 1;
+                opacity: 0;
+                margin: 0;
+            }
+
             &.ui-state-focus {
                 @include content-shadow();
             }
-            
+
             &.ui-state-active {
                 border-color: $primaryColor;
                 background-color: transparent;
+
+                &:before {
+                    -webkit-animation: rippleOn 400ms forwards ease-out;
+                    animation: rippleOn 400ms forwards ease-out;
+                }
             }
-    
+
             .ui-radiobutton-icon {
                 top: 0;
                 left: 0;
@@ -592,7 +658,7 @@ body {
                 -webkit-transform: scale(0);
                 transform: scale(0);
             }
-            
+
             .ui-icon-bullet {
                 background-color: $primaryColor;
                 -webkit-transform: scale(0.5);
@@ -601,98 +667,103 @@ body {
             }
         }
     }
-    
+
     .ui-selectmanycheckbox, .ui-selectoneradio {
         &.ui-widget {
             label {
                 display: inline-block;
                 vertical-align: middle;
                 margin-top: 0;
-            }  
+            }
         }
     }
-    
+
+    .ui-selectoneradio label,
+    .ui-selectmanycheckbox label {
+        margin: 0;
+    }
+
     .ui-autocomplete-panel {
         padding: 0;
         border: 0 none;
         @include border-radius(0);
-        
+
         &.ui-shadow {
             @include overlay-input-shadow();
         }
-        
+
         .ui-autocomplete-list {
-            padding: 0;
-            
+            padding: $inputListPadding;
+
             .ui-autocomplete-item {
                 padding: $listItemPadding;
                 margin: 0;
                 @include border-radius(0);
-                @include transition(background-color $transitionDuration);
-                
+
                 .ui-autocomplete-query {
                     font-weight: 700;
                 }
             }
-            
+
             .ui-autocomplete-group {
                 padding: $listItemPadding;
             }
         }
     }
-    
+
     .ui-autocomplete {
         .ui-autocomplete-dropdown {
             right: 0;
             margin-right: 0;
-            
+
             &.ui-button.ui-button-icon-only {
                 background-color: transparent;
                 @include no-shadow();
                 height: 20px;
                 width: 20px;
                 padding: 0;
-                
+                top: -1px;
+
                 .ui-button-text {
                     display: none;
                 }
-                
+
                 .ui-icon {
                     color: $textSecondaryColor;
                 }
             }
         }
-        
+
         &.ui-autocomplete-multiple {
             .ui-autocomplete-multiple-container {
                 &.ui-inputfield {
                     @include border-box-sizing();
                     padding: 2px 2px 1px 2px;
                 }
-                
+
                 &.ui-state-focus {
                     padding-bottom: 0;
                 }
             }
-            
+
             .ui-autocomplete-input-token {
                 float: none;
                 display: inline-block;
                 margin: 0 1px;
                 vertical-align: middle;
-                
+
                 > input {
                     padding: 0;
                     font-size: $fontSize;
                     margin: 0;
                 }
             }
-            
+
             .ui-autocomplete-token {
                 display: inline-block;
                 float: none;
                 vertical-align: middle;
-                
+
                 .ui-autocomplete-token-icon {
                     margin-top: -10px;
                 }
@@ -709,14 +780,14 @@ body {
         transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
         padding-bottom: 2px;
         box-sizing: border-box;
-        @include border-radius(0);  
-        
+        @include border-radius(0);
+
         &.ui-state-focus {
             border-width: 0;
             background-size: 100% 2px, 100% 1px;
             outline: none;
             padding-bottom: 2px;
-            
+
             &.ui-state-error {
                 .ui-selectonemenu-trigger {
                     .ui-icon {
@@ -725,7 +796,7 @@ body {
                 }
             }
         }
-        
+
         .ui-selectonemenu-trigger {
             height: $iconHeight;
             width:  $iconWidth;
@@ -734,7 +805,7 @@ body {
             padding: 0;
             top: 0;
             margin-right: 0;
-            
+
             .ui-icon {
                 height: $iconHeight;
                 width: $iconWidth;
@@ -742,46 +813,45 @@ body {
                 color: $textSecondaryColor;
             }
         }
-        
+
         .ui-selectonemenu-label {
             &.ui-inputfield {
                 background: none;
                 font-family: $fontFamily;
             }
         }
-        
+
         &.ui-state-error {
             background-image: linear-gradient(to bottom, $inputInvalidBorderColor, $inputInvalidBorderColor), linear-gradient(to bottom, $inputInvalidBorderColor, $inputInvalidBorderColor);
         }
     }
-    
+
     .ui-selectonemenu-panel {
         padding: 0;
         @include border-radius(0);
 
         .ui-selectonemenu-list {
-            padding: 0;
+            padding: $inputListPadding;
         }
-        
+
         .ui-selectonemenu-item {
             margin: 0;
             padding: $listItemPadding;
-            @include transition(background-color $transitionDuration);
             @include border-radius(0);
-            
+
             &.ui-state-hover {
                 @include hover-element();
             }
         }
-        
+
         .ui-selectonemenu-item-group {
             padding: 8px;
         }
-        
+
         &.ui-shadow {
             @include overlay-input-shadow();
         }
-        
+
         .ui-selectonemenu-filter-container {
             .ui-icon {
                 top: 5px;
@@ -789,7 +859,7 @@ body {
             }
         }
     }
-    
+
     .ui-selectcheckboxmenu {
         border-width: 0;
         background: transparent no-repeat;
@@ -799,81 +869,85 @@ body {
         transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
         padding-bottom: 2px;
         @include border-box-sizing();
-        @include border-radius(0);  
-        
+        @include border-radius(0);
+
         .ui-selectcheckboxmenu-label-container {
             display: block;
-            
+
             .ui-selectcheckboxmenu-label {
                 padding: 2px;
             }
-        }  
-        
+        }
+
         &.ui-state-focus {
             border-width: 0;
             background-size: 100% 2px, 100% 1px;
             outline: none;
             padding-bottom: 2px;
         }
-        
+
         &.ui-state-error {
             background-image: linear-gradient(to bottom, $inputInvalidBorderColor, $inputInvalidBorderColor), linear-gradient(to bottom, $inputInvalidBorderColor, $inputInvalidBorderColor);
-            
+
             .ui-selectcheckboxmenu-trigger {
                 .ui-icon {
                     color: $inputErrorTextColor;
                 }
             }
         }
-        
+
         .ui-selectcheckboxmenu-trigger {
             height: $iconHeight;
             width:  $iconWidth;
             font-size: $iconFontSize;
             padding: 0;
-            
+
             .ui-icon {
                 height: $iconHeight;
                 width:  $iconWidth;
                 margin-top: 0;
                 color: $textSecondaryColor;
             }
-        } 
+        }
     }
-    
+
     .ui-selectcheckboxmenu-panel {
         padding: 0;
         border: 0 none;
         @include border-radius(0);
         @include overlay-input-shadow();
-                
+
         .ui-selectcheckboxmenu-header {
             padding: $inputHeaderPadding;
             margin: 0;
+            border: 0 none;
             @include border-radius(0);
-            
+
             .ui-chkbox {
                 float: none;
                 margin: 0 8px 0 1px;
-                
+
                 .ui-chkbox-box {
                     border-color: $headerTextColor;
-                    
+
                     .ui-chkbox-icon {
                         border-color: $headerTextColor;
                     }
-                    
+
                     &.ui-state-active {
                         .ui-chkbox-icon {
                             border-color: $headerTextColor;
                         }
                     }
-                    
+
                     &.ui-state-focus {
                         background-color: $primaryLightColor;
-                        @include transition(background-color $transitionDuration);
                     }
                 }
+            }
+
+            > label {
+                vertical-align: middle;
             }
 
             .ui-selectcheckboxmenu-filter-container {
@@ -881,131 +955,140 @@ body {
                 display: inline-block;
                 vertical-align: middle;
                 float: none;
-                
+
                 .ui-icon {
                     top: -2px;
                     right: 0px;
                     color: $headerTextColor;
-                }  
-                
+                }
+
                 .ui-inputfield {
                     padding-right: 30px;
                     width: 100%;
                     color: $headerTextColor;
                     @include border-box-sizing();
-                }  
+                }
             }
-            
+
             .ui-selectcheckboxmenu-close {
                 margin-right: -6px;
-                
+                @include transition(background-color $transitionDuration);
+                @include border-radius(50%);
+
                 span {
-                    color: #ffffff;
+                    color: $primaryTextColor;
+                    @include icon_override('close');
                     @include transition(color $transitionDuration);
                 }
-                
+
                 &.ui-state-hover {
                     padding: 1px;
-                    
-                    span {
-                        color: $accentColor;
-                    }
+                    background-color: $primaryLightColor;
                 }
             }
         }
-        
+
         .ui-selectcheckboxmenu-items-wrapper {
-            padding: 0;
-            
+            padding: $inputListPadding;
+
             .ui-selectcheckboxmenu-items {
                 padding: 0;
             }
         }
-        
+
         .ui-selectcheckboxmenu-item {
-            padding: $listItemPadding;
-            
+            padding: 0.571em 1em;
+
             label {
-                vertical-align: middle;
                 display: inline-block;
+                padding-left: 0;
             }
-            
+
             .ui-chkbox {
                 margin-left: 2px;
+                position: static;
+                margin: 0 .5em 0 0;
             }
         }
     }
-    
+
     .ui-fluid {
-        .ui-selectonemenu {            
+        .ui-selectonemenu {
             .ui-selectonemenu-trigger {
                 width: $iconWidth;
                 padding: 0;
             }
         }
     }
-    
-    #keypad-div {
+
+    #keypad-div,
+    .keypad-popup {
         @include border-radius(0);
-        
-        .keypad-key {
+        padding: $contentPadding;
+
+        .keypad-key,
+        .keypad-special {
             border: 0 none;
-            background-color: #ffffff;
+            background-color: $contentBgColor;
             font-size: $fontSize;
-            padding: 4px;
+            padding: .25em;
             @include border-radius(50%);
-            @include transition(background-color $transitionDuration);
-            
+
             &.ui-state-hover {
                 @include hover-element();
             }
         }
-        
+
         .keypad-shift, .keypad-enter, .keypad-spacebar, .keypad-back, .keypad-close, .keypad-clear {
             @include border-radius(0);
             background-color: $primaryColor;
-            color: #ffffff;
-            
+            color: $primaryTextColor;
+
             &.ui-state-hover {
                 background-color: $primaryDarkColor;
-                color: #ffffff;
+                color: $primaryTextColor;
             }
         }
-        
+
         &.ui-shadow {
             @include overlay-input-shadow();
         }
     }
-    
+
     .ui-selectmanymenu {
-        padding: 0;
+        padding: $inputListPadding;
         background-color: $inputBgColor;
         @include border-radius($borderRadius);
-        
+
         .ui-selectlistbox-item {
             padding: $listItemPadding;
             margin: 0;
             position: relative;
             overflow: hidden;
             @include border-radius(0);
-            
+
             &.ui-state-hover {
                 @include hover-element();
             }
-            
+
             .ui-chkbox {
                 background-color: transparent;
-                margin: -2px 8px 0 0;
-                
+                vertical-align: middle;
+                margin-right: .5em;
+
                 .ui-chkbox-box {
                     &.ui-state-active {
-                        border-color: #ffffff;
+                        border-color: $accentTextColor;
                         background-color: $accentColor;
+
+                        .ui-icon {
+                            color: $accentTextColor;
+                        }
                     }
                 }
             }
         }
-        
+
         .ui-selectlistbox-filter-container {
             margin: 0;
             padding: $inputHeaderPadding;
@@ -1017,13 +1100,13 @@ body {
                 color: $headerTextColor;
                 width: 100%;
                 padding-left: 2px;
-                padding-right: $iconWidth;                
+                padding-right: $iconWidth;
                 @include border-box-sizing();
 
                 &.ui-state-focus {
                     border-color: $headerTextColor;
                 }
-            }         
+            }
 
             .ui-icon {
                 color: $headerTextColor;
@@ -1031,7 +1114,7 @@ body {
                 right: 12px;
             }
         }
-        
+
         tr {
             &.ui-selectlistbox-item {
                 td {
@@ -1040,7 +1123,7 @@ body {
             }
         }
     }
-    
+
     .ui-spinner {
         .ui-spinner-button {
             width: 18px;
@@ -1051,52 +1134,52 @@ body {
             color: $textColor;
             z-index: auto;
             @include no-shadow();
-            
+
             .ui-icon-triangle-1-n {
                 color: $textColor;
             }
-            
+
             .ui-icon-triangle-1-s {
                 color: $textColor;
-            }    
-            
+            }
+
             .ui-icon {
                 top: 0px;
                 height: 12px;
                 color: $textSecondaryColor;
             }
         }
-        
+
         .ui-spinner-up {
             .ui-icon {
                 top: 4px;
             }
         }
-        
+
         .ui-spinner-down {
             .ui-icon {
                 top: 2px;
             }
         }
-        
+
         .ui-spinner-input {
             padding-right: 30px;
         }
     }
-    
+
     .ui-fluid {
         .ui-spinner {
             .ui-spinner-button {
                 width: 25px;
                 height: 10px;
             }
-            
+
             .ui-spinner-input {
                 padding-right: 30px;
             }
         }
     }
-    
+
     .ui-inputswitch {
         height: 14px;
         width: 34px !important;
@@ -1105,89 +1188,126 @@ body {
         border-color: rgb(158,158,158);
         padding: 0;
         @include border-radius(8px);
-    
+
         .ui-inputswitch-handle {
-            top: -3px;
-            background-color: #ffffff;
+            top: -4px;
+            background-color: $inputBgColor;
             @include border-radius(50%);
-            @include transition(background-color $transitionDuration);
             width: 20px !important;
             height: 20px !important;
             -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.137255) 0px 1px 1px 0px, rgba(0, 0, 0, 0.117647) 0px 2px 1px -1px;
             -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.137255) 0px 1px 1px 0px, rgba(0, 0, 0, 0.117647) 0px 2px 1px -1px;
             box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.137255) 0px 1px 1px 0px, rgba(0, 0, 0, 0.117647) 0px 2px 1px -1px;
         }
-        
+
         .ui-inputswitch-on {
             visibility: hidden;
         }
-        
+
         .ui-inputswitch-off, .ui-inputswitch-on {
             span {
                 visibility: hidden;
             }
         }
-        
+
         &.ui-inputswitch-checked {
             background-color: $accentLightColor;
             border-color: $accentLightColor;
-            
+
             .ui-inputswitch-handle {
                 background-color: $accentColor;
                 color: $accentTextColor;
             }
         }
     }
-    
-    .ui-slider { 
+
+    .ui-toggleswitch {
+        height: 16px;
+        width: 36px !important;
+
+        .ui-toggleswitch-slider {
+            @include transition(background-color .3s);
+            background-color: rgb(158,158,158);
+            border: 1px solid rgb(158,158,158);
+            @include border-radius(8px);
+
+            &:before {
+                background-color: #ffffff;
+                @include border-radius(50%);
+                @include transition(.3s);
+                width: 20px !important;
+                height: 20px !important;
+                -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.137255) 0px 1px 1px 0px, rgba(0, 0, 0, 0.117647) 0px 2px 1px -1px;
+                -moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.137255) 0px 1px 1px 0px, rgba(0, 0, 0, 0.117647) 0px 2px 1px -1px;
+                box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(0, 0, 0, 0.137255) 0px 1px 1px 0px, rgba(0, 0, 0, 0.117647) 0px 2px 1px -1px;
+                left: auto;
+                bottom: -3px;
+            }
+        }
+
+        &.ui-toggleswitch-checked {
+            .ui-toggleswitch-slider {
+                background-color: $accentLightColor;
+                border-color: $accentLightColor;
+
+                &:before {
+                    background-color: $accentColor;
+                    color: $accentTextColor;
+                    @include translateX(14px);
+                }
+            }
+        }
+    }
+
+    .ui-slider {
         padding: 0;
-               
+
         .ui-slider-handle {
             background-color: $accentColor;
             color: $accentTextColor;
             @include border-radius(50%);
             width: 20px;
-            height: 20px; 
+            height: 20px;
             transform: scale(.7);
             @include transition(all .4s cubic-bezier(.25,.8,.25,1));
-            
+
             &.ui-state-hover,
             &.ui-state-focus {
                 transform: scale(1);
-            } 
-            
+            }
+
             &:focus {
                 outline: 0 none;
             }
         }
-        
+
         &.ui-slider-horizontal {
             height: 2px;
             border: 0 none;
-            background-color: #bdbdbd;
-            
+            background-color: $inputBorderColor;
+
             .ui-slider-handle {
                 top: -.65em;
             }
         }
-        
+
         &.ui-slider-vertical {
             width: 2px;
             border: 0 none;
-            background-color: #bdbdbd;
-            
+            background-color: $inputBorderColor;
+
             .ui-slider-handle {
                 left: -9px;
             }
         }
-        
+
         .ui-slider-range {
             padding: 0;
             background-color: $accentColor;
             color: $accentTextColor;
         }
     }
-    
+
     .ui-calendar {
         .ui-datepicker-trigger {
             top: 7px;
@@ -1198,125 +1318,140 @@ body {
             width: $iconWidth;
             @include no-shadow();
             @include border-radius(0);
-            
+
             .ui-icon {
                 color: $textSecondaryColor;
             }
         }
     }
-    
+
     .ui-datepicker {
         padding: 0;
-        width: 275px;
-        
-        &.ui-shadow {
+        width: 24em;
+
+        &.ui-input-overlay {
+            border: 0 none;
             @include overlay-input-shadow();
         }
-        
+
         .ui-datepicker-header {
             padding: $headerPadding;
             background: $primaryDarkColor;
             border-color: $primaryDarkColor;
             @include border-radius-top(2px);
             @include border-radius-bottom(0);
-                        
+
             .ui-datepicker-next {
                 cursor: pointer;
-                top: 8px;
+                top: .4em;
                 font-size: $iconFontSize;
-                right: 8px;
-                color: #ffffff;
-                @include material-icon("\e039");
-                
+                right: .5em;
+                color: $primaryTextColor;
+                @include border-radius(50%);
+                @include material-icon("\e5cc");
+
                 .ui-icon {
                     display: none;
                 }
-                
+
                 &.ui-datepicker-next-hover {
-                    right: 8px;    
+                    right: .5em;
+                    background-color: $primaryColor;
                 }
             }
-            
+
             .ui-datepicker-prev {
                 cursor: pointer;
-                top: 8px;
+                top: .4em;
                 font-size: $iconFontSize;
-                @include material-icon("\e039");
-                @include rotate(180deg);
-                left: 8px;
-                color: #ffffff;
-                
+                @include material-icon("\e5cb");
+                left: .5em;
+                color: $primaryTextColor;
+                @include border-radius(50%);
+
                 .ui-icon {
                     display: none;
                 }
-                
+
                 &.ui-datepicker-prev-hover {
-                    left: 8px;    
+                    left: .5em;
+                    background-color: $primaryColor;
+                }
+
+                &:hover {
+                    background-color: $primaryColor;
                 }
             }
         }
-        
+
         table {
             table-layout: fixed;
             border-spacing: 0;
             border-collapse: collapse;
+            margin: 0;
         }
-        
+
         thead {
             tr {
-                color: #ffffff;
+                color: $primaryTextColor;
                 background: $primaryColor;
             }
         }
-        
+
         tbody {
             td {
-                padding: 2px;
-                box-sizing: border-box;
-                
+                padding: .25em;
+                text-align: center;
+
                 a,span {
-                    padding: .2em;
+                    padding: 0;
                     margin: 0;
                     text-align: center;
                     color: $textColor;
                     display: inline-block;
-                    height: 28px;
-                    width: 28px;
-                    line-height: 28px;
+                    height: 3em;
+                    width: 3em;
+                    line-height: 3em;
                     @include border-radius(50%);
-                    
+
                     &.ui-state-hover {
                         @include hover-element();
                     }
-                    
+
                     &.ui-state-active {
-                        color: #ffffff;
                         background-color: $accentColor;
                         color: $accentTextColor;
                     }
                 }
-                
+
                 &.ui-datepicker-today {
                     a,span {
                         color: $textColor;
-                        background-color: #ffffff;
+                        background-color: $contentBgColor;
                         border: 1px solid $accentColor;
-                        
+
                         &.ui-state-active {
-                            color: #ffffff;
                             background-color: $accentColor;
                             color: $accentTextColor;
                         }
                     }
                 }
             }
+
+            tr:first-child td {
+                padding-top: .321em;
+            }
+
+            tr:last-child td {
+                padding-bottom: .321em;
+            }
         }
-        
+
         &.ui-datepicker-multi {
             .ui-datepicker-header {
                 @include border-radius(0);
             }
-            
+
             .ui-datepicker-group {
                 table {
                     width: 100%;
@@ -1324,40 +1459,40 @@ body {
                 }
             }
         }
-        
-        .ui-timepicker-div {                      
+
+        .ui-timepicker-div {
             .ui_tpicker_time {
                 input {
-                    border-color: #bdbdbd;
+                    border-color: $inputBorderColor;
                     @include transition(border-color $transitionDuration);
                     width: 100%;
                     position: relative;
                     top: 5px;
                     left: -5px;
-                    
+
                     &.ui-state-focus {
                         border-width: 0 0 2px 0;
-                        border-color: $primaryColor;  
+                        border-color: $primaryColor;
                         padding-bottom: 0px;
                     }
                 }
             }
-            
+
             dl {
                 margin: -16px 0 40px 0;
-                
+
                 dt {
                     padding: $listItemPadding;
                 }
-                
+
                 dd {
                     margin-top: 42px;
                 }
             }
         }
-        
+
     }
-    
+
     .ui-fluid {
         .ui-calendar {
             .ui-datepicker-trigger.ui-button {
@@ -1366,11 +1501,141 @@ body {
             }
         }
     }
-    
+
+    .p-datepicker-panel {
+        border: 0 none;
+
+        .ui-datepicker-group {
+            padding: 0;
+        }
+
+        table {
+            td {
+                a {
+                    &:hover {
+                        @include hover-element();
+                    }
+
+                    &.ui-state-active {
+                        color: #ffffff;
+                        background-color: $accentColor;
+                        color: $accentTextColor;
+                    }
+                }
+            }
+        }
+
+        &.ui-datepicker-multiple-month {
+            .ui-datepicker-group {
+                width: 17em;
+                border: 0 none;
+
+                .ui-datepicker-header {
+                    @include border-radius(0);
+                }
+
+                .ui-datepicker-calendar-container {
+                    padding: 0 .1em;
+                }
+
+                &:first-child {
+                    .ui-datepicker-calendar-container {
+                        padding-left: 0;
+                    }
+                }
+
+                &:last-child {
+                    .ui-datepicker-calendar-container {
+                        padding-right: 0;
+                    }
+                }
+            }
+        }
+
+        &.ui-datepicker-monthpicker {
+            .ui-monthpicker {
+                .ui-monthpicker-month {
+                    color: $textColor;
+                    @include box-sizing(border-box);
+
+                    &:hover {
+                        @include hover-element();
+                    }
+
+                    &.ui-state-active {
+                        color: #ffffff;
+                        background-color: $accentColor;
+                        color: $accentTextColor;
+                    }
+                }
+            }
+        }
+
+        .ui-timepicker {
+            font-weight: normal;
+            border-top: 0 none;
+
+            .ui-picker-up {
+                cursor: pointer;
+                font-size: $iconFontSize;
+                color: #ffffff;
+                @include material-icon("\e316");
+                display: block;
+                margin-bottom: .2em;
+
+                &:hover {
+                    background-color: $primaryLightColor;
+                    @include border-radius(50%);
+                    @include transition(background-color .3s);
+                }
+
+                span {
+                    display: none;
+                }
+            }
+
+            .ui-picker-down {
+                cursor: pointer;
+                font-size: $iconFontSize;
+                color: #ffffff;
+                @include material-icon("\e313");
+                display: block;
+                margin-top: .2em;
+
+                &:hover {
+                    background-color: $primaryLightColor;
+                    @include border-radius(50%);
+                    @include transition(background-color .3s);
+                }
+
+                span {
+                    display: none;
+                }
+            }
+        }
+
+        .ui-datepicker-buttonbar {
+            border-top: 0 none;
+
+            .ui-button {
+                width: auto;
+
+                &:hover {
+                    background-color: $primaryDarkColor;
+                }
+
+                &:focus {
+                    outline: 0 none;
+                    background-color: lighten($primaryColor,10%);
+                }
+            }
+        }
+    }
+
     .ui-rating {
         .ui-rating-cancel {
             text-indent: 0;
-            
+
             a {
                 color: $textSecondaryColor;
                 background: none;
@@ -1378,10 +1643,10 @@ body {
                 font-size: $iconFontSize;
             }
         }
-        
+
         .ui-rating-star {
             text-indent: 0;
-            
+
             a {
                 font-size: $iconFontSize;
                 color: $textSecondaryColor;
@@ -1389,7 +1654,7 @@ body {
                 @include material-icon("\e83a");
                 font-size: $iconFontSize;
             }
-            
+
             &.ui-rating-star-on {
                 a {
                     color: $accentColor;
@@ -1399,36 +1664,36 @@ body {
             }
         }
     }
-    
+
     .ui-password-panel {
         &.ui-shadow {
             @include overlay-input-shadow();
         }
     }
-    
+
     .ui-fileupload {
         .ui-fileupload-buttonbar {
             padding: $headerPadding;
-            
+
             .ui-icon-arrowreturnthick-1-n {
                 @include icon_override('file_upload');
             }
-            
+
             .ui-button {
                 background-color: $accentColor;
                 color: $accentTextColor;
                 margin-right: 6px;
-                
+
                 .ui-icon {
                     color: $accentTextColor;
                 }
-                
+
                 &.ui-state-hover {
                     background-color: $accentDarkColor;
                 }
             }
         }
-        
+
         .ui-fileupload-content {
             .ui-messages-error {
                 .ui-icon {
@@ -1437,8 +1702,8 @@ body {
             }
         }
     }
-    
-    .ui-editor { 
+
+    .ui-editor {
         &.ui-widget-content {
             padding: 0px;
         }
@@ -1466,17 +1731,17 @@ body {
                 @include border-radius-right($borderRadius);
             }
         }
-        
+
         .ui-inputgroup-addon {
             align-self: flex-end;
-            
+
             > i {
                 @include flex();
                 align-self: flex-end;
                 font-size: $inputGroupIconFontSize;
             }
         }
-        
+
         .ui-inputtext {
             align-self: flex-end;
         }
@@ -1491,6 +1756,10 @@ body {
             label {
                 top: 5px;
             }
+
+            .ui-inputfield {
+                padding: 4px;
+            }
         }
 
         .ui-button {
@@ -1502,24 +1771,24 @@ body {
         .ui-inputgroup-addon-checkbox {
             padding: 0;
             position: relative;
-            
+
             .ui-chkbox {
                 vertical-align: baseline;
                 position: absolute;
-                top: 50%;
-                left: 50%;
-                margin-top: -1 * $checkboxHeight / 2;
-                margin-left: -1 * $checkboxWidth / 2;
+                top: .25em;
+                left: .25em;
+                margin-top: 0;
+                margin-left: 0;
             }
         }
     }
-    
+
     .ui-fluid {
         .ui-inputgroup {
             .ui-button {
                 &.ui-button-icon-only {
-                    width: 1.643em;
-                    height: 1.643em;
+                    width: 30px;
+                    height: 30px;
                     min-width: 0;
                     padding: 0;
 

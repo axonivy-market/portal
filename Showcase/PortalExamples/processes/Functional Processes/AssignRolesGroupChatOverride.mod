@@ -1,5 +1,5 @@
 [Ivy]
-16B3FA08E0ADDCE6 3.28 #module
+16B3FA08E0ADDCE6 7.5.0 #module
 >Proto >Proto Collection #zClass
 At0 AssignRolesGroupChat Big #zClass
 At0 B #cInfo
@@ -21,8 +21,7 @@ At0 @PushWFArc f2 '' #zField
 At0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ITask task> param;' #txt
 At0 f0 inParamTable 'out.task=param.task;
 ' #txt
-At0 f0 outParamDecl '<java.util.List<ch.ivyteam.ivy.security.IRole> roles> result;
-' #txt
+At0 f0 outParamDecl '<java.util.List<ch.ivyteam.ivy.security.IRole> roles> result;' #txt
 At0 f0 outParamTable 'result.roles=in.roles;
 ' #txt
 At0 f0 callSignature configureRolesForGroupChat(ch.ivyteam.ivy.workflow.ITask) #txt

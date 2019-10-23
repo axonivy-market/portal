@@ -1,5 +1,5 @@
 [Ivy]
-161504784DDFCFC7 3.28 #module
+161504784DDFCFC7 7.5.0 #module
 >Proto >Proto Collection #zClass
 Es0 ElapsedTimeChartDetailsProcess Big #zClass
 Es0 RD #cInfo
@@ -54,7 +54,7 @@ Es0 f15 method countCases(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSear
 Es0 f15 inParameterDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;' #txt
 Es0 f15 inParameterMapAction 'out.caseSearchCriteria=param.caseSearchCriteria;
 ' #txt
-Es0 f15 outParameterDecl '<java.lang.Long totalCases> result;' #txt
+Es0 f15 outParameterDecl '<Long totalCases> result;' #txt
 Es0 f15 outParameterMapAction 'result.totalCases=in.totalCases;
 ' #txt
 Es0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -70,7 +70,7 @@ Es0 f20 563 339 26 26 0 12 #rect
 Es0 f20 @|UdProcessEndIcon #fIcon
 Es0 f6 guid 16AD339444E6AFE5 #txt
 Es0 f6 method findCases(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria,Integer,Integer) #txt
-Es0 f6 inParameterDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria,java.lang.Integer startIndex,java.lang.Integer count> param;' #txt
+Es0 f6 inParameterDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria,Integer startIndex,Integer count> param;' #txt
 Es0 f6 inParameterMapAction 'out.caseSearchCriteria=param.caseSearchCriteria;
 out.count=param.count;
 out.startIndex=param.startIndex;
@@ -88,8 +88,7 @@ Es0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Es0 f6 84 244 24 24 -74 14 #rect
 Es0 f6 @|UdMethodIcon #fIcon
 Es0 f7 processCall 'Ivy Data Processes/CaseService:findCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria,Integer,Integer)' #txt
-Es0 f7 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria,java.lang.Integer startIndex,java.lang.Integer count> param;
-' #txt
+Es0 f7 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria,Integer startIndex,Integer count> param;' #txt
 Es0 f7 requestMappingAction 'param.caseSearchCriteria=in.caseSearchCriteria;
 param.startIndex=in.startIndex;
 param.count=in.count;
@@ -111,8 +110,7 @@ Es0 f7 @|CallSubIcon #fIcon
 Es0 f9 563 243 26 26 0 12 #rect
 Es0 f9 @|UdProcessEndIcon #fIcon
 Es0 f18 processCall 'Ivy Data Processes/CaseService:countCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)' #txt
-Es0 f18 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;
-' #txt
+Es0 f18 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;' #txt
 Es0 f18 requestMappingAction 'param.caseSearchCriteria=in.caseSearchCriteria;
 ' #txt
 Es0 f18 responseActionDecl 'ch.ivy.addon.portalkit.component.statistic.ElapsedTimeChartDetails.ElapsedTimeChartDetailsData out;
@@ -156,7 +154,7 @@ Es0 f10 expr out #txt
 Es0 f10 416 256 563 256 #arcP
 Es0 f12 guid 16AD87286B4BA607 #txt
 Es0 f12 method initialize(String) #txt
-Es0 f12 inParameterDecl '<java.lang.String caseCategory> param;' #txt
+Es0 f12 inParameterDecl '<String caseCategory> param;' #txt
 Es0 f12 inParameterMapAction 'out.category=param.caseCategory;
 ' #txt
 Es0 f12 outParameterDecl '<> result;' #txt

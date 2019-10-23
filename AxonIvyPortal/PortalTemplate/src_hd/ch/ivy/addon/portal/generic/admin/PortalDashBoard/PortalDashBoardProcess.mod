@@ -1,5 +1,5 @@
 [Ivy]
-14EB4D799BBF04C8 3.28 #module
+14EB4D799BBF04C8 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ps0 PortalDashBoardProcess Big #zClass
 Ps0 RD #cInfo
@@ -21,11 +21,8 @@ Ps0 @PushWFArc f7 '' #zField
 >Proto Ps0 Ps0 PortalDashBoardProcess #zField
 Ps0 f0 guid 14EB4D799DA15883 #txt
 Ps0 f0 method start() #txt
-Ps0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ps0 f0 outParameterDecl '<> result;
-' #txt
+Ps0 f0 inParameterDecl '<> param;' #txt
+Ps0 f0 outParameterDecl '<> result;' #txt
 Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -41,13 +38,10 @@ Ps0 f1 309 53 22 22 14 0 #rect
 Ps0 f1 @|UdProcessEndIcon #fIcon
 Ps0 f6 guid 157336D81FC73158 #txt
 Ps0 f6 method startWithMenuState(String) #txt
-Ps0 f6 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.String menuState> param = methodEvent.getInputArguments();
-' #txt
+Ps0 f6 inParameterDecl '<String menuState> param;' #txt
 Ps0 f6 inParameterMapAction 'out.menuState=param.menuState;
 ' #txt
-Ps0 f6 outParameterDecl '<> result;
-' #txt
+Ps0 f6 outParameterDecl '<> result;' #txt
 Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
