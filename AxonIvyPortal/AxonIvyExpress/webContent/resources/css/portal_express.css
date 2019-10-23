@@ -313,7 +313,7 @@
 .assignee-selection-panel .selected-assignee-panel .assignee-selection {
 	width: 100%;
 	border: none !important;
-	margin: 10px 0;
+	margin: 0;
 }
 
 .selected-assignee-panel .ui-fieldset-content {
@@ -329,6 +329,7 @@
 
 .assignee-selection-panel .assignee-name-col {
 	width: 90%;
+	padding-left: 0 !important;
 }
 
 .assignee-selection-panel .assignee-type-col .fa {
