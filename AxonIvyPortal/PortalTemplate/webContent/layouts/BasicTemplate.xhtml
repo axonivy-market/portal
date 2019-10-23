@@ -10,8 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
   </f:facet>
-  
-  <f:attribute name="primefaces.THEME" value="serenity-ivy" />
+
+  <f:attribute name="primefaces.THEME" value="none" />
   
   <title><ui:insert name="pageTitle">Axon.Ivy Portal</ui:insert></title>
   <ui:fragment rendered="#{resource['ivy-webcontent:layouts/images/favicon.png'] != null}">
@@ -29,14 +29,13 @@
 
   <h:outputStylesheet library="css" name="template.css" />
   <h:outputStylesheet library="css" name="module.css" />
-
+ 
   <h:outputScript name="js/nanoscroller.js" library="serenity-layout" />
   <h:outputScript name="js/ripple.js" library="serenity-layout" />
   <script src="#{resource['ivy-webcontent:layouts/js/cookie-helper.js']}" />
   <script src="#{resource['ivy-webcontent:layouts/js/primefaces-calendar-en-us.js']}" />
   <script src="#{resource['ivy-webcontent:resources/serenity-layout/js/layout.js']}" />
   
-  <h:outputScript name="viewport.js" library="js"  />
   <h:outputScript name="responsive-toolkit.js" library="js" />
   <h:outputScript name="main.js" library="js" />
   <h:outputScript name="portal-components.js" library="js" />
@@ -46,7 +45,7 @@
 
 <h:body>
   <f:facet name="last">
-    <h:outputStylesheet library="primefaces-serenity-ivy" name="theme.css" />
+    <h:outputStylesheet library="serenity-portal" name="theme.css" />
   </f:facet>
   
 <!--   <c:set var="isNotRequiredLogin" value="#{isNotRequiredLogin == null ? false : isNotRequiredLogin}" /> -->

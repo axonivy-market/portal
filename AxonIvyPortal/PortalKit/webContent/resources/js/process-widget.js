@@ -90,7 +90,7 @@ function ProcessWidget() {
           $(this).hide();
         }
         var expressKeyToSearch = "express";
-        if (contain(expressKeyToSearch, keyword.trim()) && $(this).hasClass("express-workflow")) {
+        if (contain(expressKeyToSearch, keyword.trim()) && $(this.children).hasClass("express-workflow")) {
         	$(this).show();
         }
       });

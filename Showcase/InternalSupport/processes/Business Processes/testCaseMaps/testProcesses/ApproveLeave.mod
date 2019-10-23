@@ -1,5 +1,5 @@
 [Ivy]
-15C7B30FB93C827E 3.28 #module
+15C7B30FB93C827E 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ae0 ApproveLeave Big #zClass
 Ae0 B #cInfo
@@ -93,7 +93,7 @@ Ae0 f1 337 49 30 30 0 15 #rect
 Ae0 f1 @|EndIcon #fIcon
 Ae0 f3 dialogId internaltest.ui.approveLeave #txt
 Ae0 f3 startMethod start(String,Date,Date,Boolean,String,internalPortal.ProcessStatus) #txt
-Ae0 f3 requestActionDecl '<String Mitarbeiter, Date Von, Date Bis, Boolean beantragt, String Vertretung, internalPortal.ProcessStatus processStatus> param;' #txt
+Ae0 f3 requestActionDecl '<String Mitarbeiter,Date Von,Date Bis,Boolean beantragt,String Vertretung,internalPortal.ProcessStatus processStatus> param;' #txt
 Ae0 f3 responseActionDecl 'internaltest.Data out;
 ' #txt
 Ae0 f3 responseMappingAction 'out=in;
@@ -164,8 +164,7 @@ Ae0 f13 @|StartRequestIcon #fIcon
 Ae0 f14 513 265 30 30 0 15 #rect
 Ae0 f14 @|EndIcon #fIcon
 Ae0 f16 processCall 'Business Processes/testCaseMaps/testProcesses/ApproveLeave:installOperationSystem()' #txt
-Ae0 f16 requestActionDecl '<> param;
-' #txt
+Ae0 f16 requestActionDecl '<> param;' #txt
 Ae0 f16 responseActionDecl 'internaltest.Data out;
 ' #txt
 Ae0 f16 responseMappingAction 'out=in;
@@ -208,8 +207,7 @@ Ae0 f19 expr data #txt
 Ae0 f19 outCond ivp=="TaskA.ivp" #txt
 Ae0 f19 375 280 513 280 #arcP
 Ae0 f25 processCall 'Functional Processes/HideSystemCase:call(Boolean)' #txt
-Ae0 f25 requestActionDecl '<java.lang.Boolean hideBusinessCase> param;
-' #txt
+Ae0 f25 requestActionDecl '<Boolean hideBusinessCase> param;' #txt
 Ae0 f25 requestMappingAction 'param.hideBusinessCase=false;
 ' #txt
 Ae0 f25 responseActionDecl 'internaltest.Data out;
@@ -257,8 +255,7 @@ Ae0 f27 @C|.responsibility Everybody #txt
 Ae0 f27 73 361 30 30 -35 17 #rect
 Ae0 f27 @|StartRequestIcon #fIcon
 Ae0 f29 processCall 'Business Processes/testCaseMaps/testProcesses/ApproveLeave:RequestForm()' #txt
-Ae0 f29 requestActionDecl '<> param;
-' #txt
+Ae0 f29 requestActionDecl '<> param;' #txt
 Ae0 f29 responseActionDecl 'internaltest.Data out;
 ' #txt
 Ae0 f29 responseMappingAction 'out=in;
@@ -334,8 +331,7 @@ Ae0 f36 expr data #txt
 Ae0 f36 outCond ivp=="TaskA.ivp" #txt
 Ae0 f36 359 456 441 456 #arcP
 Ae0 f37 processCall 'Functional Processes/HideSystemCase:call(Boolean)' #txt
-Ae0 f37 requestActionDecl '<java.lang.Boolean hideBusinessCase> param;
-' #txt
+Ae0 f37 requestActionDecl '<Boolean hideBusinessCase> param;' #txt
 Ae0 f37 requestMappingAction 'param.hideBusinessCase=true;
 ' #txt
 Ae0 f37 responseActionDecl 'internaltest.Data out;
@@ -358,8 +354,7 @@ Ae0 f34 type internaltest.Data #txt
 Ae0 f34 var in1 #txt
 Ae0 f34 272 456 329 456 #arcP
 Ae0 f39 processCall 'Functional Processes/HideSystemCase:call(Boolean)' #txt
-Ae0 f39 requestActionDecl '<java.lang.Boolean hideBusinessCase> param;
-' #txt
+Ae0 f39 requestActionDecl '<Boolean hideBusinessCase> param;' #txt
 Ae0 f39 requestMappingAction 'param.hideBusinessCase=false;
 ' #txt
 Ae0 f39 responseActionDecl 'internaltest.Data out;
@@ -423,8 +418,7 @@ Ae0 f50 @|AlternativeIcon #fIcon
 Ae0 f51 expr out #txt
 Ae0 f51 103 616 168 616 #arcP
 Ae0 f45 processCall 'Business Processes/testCaseMaps/testProcesses/ApproveLeave:startACase(Integer)' #txt
-Ae0 f45 requestActionDecl '<java.lang.Integer count> param;
-' #txt
+Ae0 f45 requestActionDecl '<Integer count> param;' #txt
 Ae0 f45 requestMappingAction 'param.count=in.count;
 ' #txt
 Ae0 f45 responseActionDecl 'internaltest.Data out;
@@ -445,7 +439,7 @@ Ae0 f45 @|TriggerIcon #fIcon
 Ae0 f42 expr in #txt
 Ae0 f42 200 616 344 616 #arcP
 Ae0 f43 outLink startACase.ivp #txt
-Ae0 f43 inParamDecl '<java.lang.Integer count> param;' #txt
+Ae0 f43 inParamDecl '<Integer count> param;' #txt
 Ae0 f43 inParamTable 'out.count=param.count;
 ' #txt
 Ae0 f43 requestEnabled false #txt
