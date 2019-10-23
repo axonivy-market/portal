@@ -51,16 +51,15 @@ Cs0 @PushWFArc f29 '' #zField
 Cs0 @PushWFArc f2 '' #zField
 >Proto Cs0 Cs0 ChartCreationWidgetProcess #zField
 Cs0 f0 guid 15FFC669CAD8BE32 #txt
-Cs0 f0 method start(List<StatisticChart>) #txt
-Cs0 f0 inParameterDecl '<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> statisticChartList> param;' #txt
+Cs0 f0 method start() #txt
+Cs0 f0 inParameterDecl '<> param;' #txt
 Cs0 f0 inParameterMapAction 'out.isAllowedToCreateChart=true;
-out.statisticChartList=param.statisticChartList;
 ' #txt
 Cs0 f0 outParameterDecl '<> result;' #txt
 Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start(List&lt;StatisticChart&gt;)</name>
+        <name>start()</name>
     </language>
 </elementInfo>
 ' #txt

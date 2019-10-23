@@ -13,8 +13,13 @@
     <p:remoteCommand id="init-filter-command" name="initFilter" autoRun="true" update="statistic-filter" global="false"
       action="#{statisticChartCreationBean.updateFilters(data.statisticFilter, data.oldStatisticFilter)}" oncomplete="updateChartModels();" />
 
+    <!-- updateChartModels function will update charts by the schedule such as updateTaskByPriorityModel(), updateCaseByStateModel(), updateTaskByExpiryModel(), updateElapsedTimeByCaseCategory(), updateCaseByFinishedTaskModel() and updateCaseByFinishedTimeModel()
+         Then call updateChartList() to update Creation form by updateCaseByFinishedTimeModel() itself.
+         Note: If we update any specific chart, please call updateChartList() after complete.
+    -->
     <p:remoteCommand id="update-chart-models-command" name="updateChartModels" global="false" process="@this"
       oncomplete="updateTaskByPriorityModel(); updateCaseByStateModel(); updateTaskByExpiryModel(); updateElapsedTimeByCaseCategory(); updateCaseByFinishedTaskModel(); updateCaseByFinishedTimeModel();" />
+    <!-- For clean up data of charts inside Creation form -->
     <p:remoteCommand id="clear-chart-models-command" name="clearChartModels" global="false" process="@this"
       action="#{statisticChartCreationBean.clearChartModels()}" />
 
@@ -31,6 +36,7 @@
     <p:remoteCommand id="update-case-by-finished-time-model-command" name="updateCaseByFinishedTimeModel" process="@this"
       action="#{statisticChartCreationBean.updateCaseByFinishedTimeModel(data.statisticFilter)}" global="false" oncomplete="updateChartList();" />
 
+    <!-- updateChartList will update  chart-list panel, needed if we want to show data of chart after updated data -->
     <p:remoteCommand name="updateChartList" update="chart-list" />
 
     <p:growl globalOnly="true" showDetail="true" showSummary="true">

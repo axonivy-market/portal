@@ -4532,7 +4532,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 
 .statistic-case-category-tree .ui-tree-container {
-  height: 30rem;
+  height: 26rem;
   width: 100%;
   overflow: auto !important;
 }

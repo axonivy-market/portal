@@ -26,6 +26,13 @@ public class Colors {
 
   private Colors() {}
 
+  /**
+   * get color for Task's priority chart
+   * Build with correct order: EXCEPTION, HIGH, NORMAL, LOW
+   * @param chartData
+   * @param colors
+   * @return list of colors
+   */
   public static List<String> getPriorityColors(Map<String, Number> chartData, StatisticColors colors) {
     Number exceptionPriorities = chartData.get(Ivy.cms().co(EXCEPTION_PRIORITY_KEY));
     Number highPriorities = chartData.get(Ivy.cms().co(HIGH_PRIORITY_KEY));
@@ -49,6 +56,13 @@ public class Colors {
     return seriesColors;
   }
 
+  /**
+   * get color for Case's state chart
+   * Build with correct order: CREATED, RUNNING, DONE, FAILED
+   * @param chartData
+   * @param colors
+   * @return list of colors
+   */
   public static List<String> getCaseStateColors(Map<String, Number> chartData, StatisticColors colors) {
     Number createdCases = chartData.get(Ivy.cms().co(CREATED_CASE_KEY));
     Number runningCases = chartData.get(Ivy.cms().co(RUNNING_CASE_KEY));
