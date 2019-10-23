@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.statistics;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +18,9 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
 
-public class StatisticCaseCategoryFilter {
+public class StatisticCaseCategoryFilter implements Serializable {
+
+  private static final long serialVersionUID = -1200590667880254731L;
 
   @JsonIgnore
   private CheckboxTreeNode[] categories = new CheckboxTreeNode[] {};
@@ -35,7 +38,6 @@ public class StatisticCaseCategoryFilter {
    * 
    */
   public StatisticCaseCategoryFilter() {
-    super();
     CheckboxTreeNode caseCategoryTree = CaseTreeUtils.buildCaseCategoryCheckboxTreeRoot();
     if (caseCategoryTree != null && caseCategoryTree.getChildCount() > 0) {
       root = buildRoot();
