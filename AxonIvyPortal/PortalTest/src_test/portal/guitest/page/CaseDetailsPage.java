@@ -39,7 +39,6 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public CaseDetailsPage() {
-    // TODO Auto-generated constructor stub
     this.caseItem = findElementByCssSelector("#main-area-panel");
   }
 
@@ -208,7 +207,6 @@ public class CaseDetailsPage extends TemplatePage {
     try {
       Thread.sleep(2000);
     } catch (InterruptedException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
    // WebElement caseDescriptionInput = findElementById("case-item-details:description:case-description-form:case-description-output");
@@ -250,25 +248,6 @@ public class CaseDetailsPage extends TemplatePage {
     } catch (Exception e) {
       return;
     }
-  }
-
-  private void onSubmitNameInplaceEditor(int caseIndex) {
-    WebElement editor = findElementById(String.format(
-        "case-widget:case-list-scroller:%d:case-item:case-name-component:case-name-form:case-name-edit-inplace_editor",
-        caseIndex));
-    WebElement saveButton = findChildElementByClassName(editor, "ui-inplace-save");
-    saveButton.click();
-    waitAjaxIndicatorDisappear();
-  }
-
-  private void onClickNameInplace(String newCaseName) {
-    findElementByCssSelector("span[id$='case-name-edit-inplace_display']").click();
-    WebElement taskNameInput = findElementByCssSelector("input[id$='case-detail-name-input']");
-    waitForElementDisplayed(taskNameInput, true);
-    taskNameInput.clear();
-    taskNameInput.sendKeys(newCaseName);
-    findElementByCssSelector("#case-item-details\\:case-detail-title-form\\:case-name-edit-inplace_editor .ui-inplace-save").click();
-    waitAjaxIndicatorDisappear();
   }
 
   public TaskWidgetPage clickShowAllTasks() {
