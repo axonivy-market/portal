@@ -198,8 +198,12 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		ensureNoBackgroundRequest();
 	}
 
+	public void inputMailRecipient(String content) {
+		findElementById("form:information-email:email-recipients").sendKeys(content);
+	}
+
 	public void inputMailSubject(String content) {
-		findElementById("form:information-email:email-subject").sendKeys(content);
+	  findElementById("form:information-email:email-subject").sendKeys(content);
 	}
 
 	public void inputMailContent(String content) {

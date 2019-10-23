@@ -157,11 +157,14 @@ public class CaseDetailsPage extends TemplatePage {
     return findElementById(VIEW_NOTE_DIALOG_ID);
   }
 
-  public void changeCaseName(String newCaseName, int caseIndex) {
-    onClickNameInplace(caseIndex);
-    onChangeNameInput(newCaseName, caseIndex);
-    onSubmitNameInplaceEditor(caseIndex);
-    waitForPageLoaded();
+  public void changeCaseName(String newCaseName) {
+    findElementByCssSelector("span[id$='case-name-edit-inplace_display']").click();
+    WebElement taskNameInput = findElementByCssSelector("input[id$='case-detail-name-input']");
+    waitForElementDisplayed(taskNameInput, true);
+    taskNameInput.clear();
+    taskNameInput.sendKeys(newCaseName);
+    findElementByCssSelector("#case-item-details\\:case-detail-title-form\\:case-name-edit-inplace_editor .ui-inplace-save").click();
+    waitAjaxIndicatorDisappear();
   }
 
   public void changeCaseDescription(String newDescription) {
@@ -172,10 +175,8 @@ public class CaseDetailsPage extends TemplatePage {
     waitForPageLoaded();
   }
 
-  public String getNameOfCaseAt(int caseIndex) {
-    WebElement taskName = findElementById(String.format(
-        "case-widget:case-list-scroller:%d:case-item:case-name-component:case-name-form:case-name-edit-inplace_display",
-        caseIndex));
+  public String getNameOfCaseAt() {
+    WebElement taskName = findElementByCssSelector("span[id$='case-name-edit-inplace_display']");
     waitForElementDisplayed(taskName, true);
     return taskName.getText();
   }
@@ -260,21 +261,14 @@ public class CaseDetailsPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
 
-  private void onChangeNameInput(String newCaseName, int caseIndex) {
-    String caseNameInputId = String.format(
-        "case-widget:case-list-scroller:%d:case-item:case-name-component:case-name-form:case-name-input", caseIndex);
-    WebElement caseNameInput = findElementById(caseNameInputId);
-    waitForElementDisplayed(caseNameInput, true);
-    caseNameInput.clear();
-    caseNameInput.sendKeys(newCaseName);
-  }
-
-  private void onClickNameInplace(int caseIndex) {
-    String caseNameInplaceId = String.format(
-        "case-widget:case-list-scroller:%d:case-item:case-name-component:case-name-form:case-name-edit-inplace_display",
-        caseIndex);
-    WebElement caseNameInplace = findElementById(caseNameInplaceId);
-    caseNameInplace.click();
+  private void onClickNameInplace(String newCaseName) {
+    findElementByCssSelector("span[id$='case-name-edit-inplace_display']").click();
+    WebElement taskNameInput = findElementByCssSelector("input[id$='case-detail-name-input']");
+    waitForElementDisplayed(taskNameInput, true);
+    taskNameInput.clear();
+    taskNameInput.sendKeys(newCaseName);
+    findElementByCssSelector("#case-item-details\\:case-detail-title-form\\:case-name-edit-inplace_editor .ui-inplace-save").click();
+    waitAjaxIndicatorDisappear();
   }
 
   public TaskWidgetPage clickShowAllTasks() {
