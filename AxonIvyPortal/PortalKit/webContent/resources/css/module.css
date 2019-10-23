@@ -4549,7 +4549,8 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 
 .statistic-filter-accordion-panel .item-label {
-  padding-bottom: 0;
+  padding-top: 0.5em;
+  float: left;
 }
 
 .statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
