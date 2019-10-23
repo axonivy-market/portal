@@ -34,6 +34,14 @@
     background-color: $thirdHeaderBarColor;
 }
 
+body .md-inputfield .ui-calendar.ui-trigger-calendar ~ label {
+	top: 10px;
+}
+
+body .md-inputfield .ui-calendar.ui-trigger-calendar.md-inputwrapper-focus ~ label, body .md-inputfield .ui-calendar.ui-trigger-calendar.md-inputwrapper-filled ~ label {
+	top: -10px;
+}
+
 /*Style For Background --------------------------------------------------------------------------------------*/
 body {
     background: $bodyBackgroundColor;
@@ -601,10 +609,6 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 }
 
 /*Style For Input field --------------------------------------------------------------------------------------*/
-.ui-outputlabel {
-    font-size: $inputLabelText !important;
-}
-
 .ui-widget-content.ui-tabs-panel {
     padding: 7px !important;
 }
@@ -637,6 +641,10 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
     right: 0;
 }
 
+body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span.md-inputwrapper-filled ~ label {
+    color: $primaryColor;
+}
+
 /*Style For Accordion header --------------------------------------------------------------------------------------*/
 .ui-accordion {
     .ui-accordion-header {
@@ -661,6 +669,52 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
   .ui-growl-title {
     padding: 10px 0px 0px 0px !important;
   }
+}
+
+/*Style For Tabs --------------------------------------------------------------------------------------*/
+.ui-tabs.ui-widget.ui-widget-content {
+	> .ui-tabs-nav {
+		> li {
+			border-style: solid;
+			border-width: 0 0 0 0;
+		}
+	}
+	&.ui-tabs-top {
+		> .ui-tabs-nav {
+			> li {
+				&.ui-state-active {
+					border-width: 0 0 2px 0;
+				}
+			}
+		}
+	}
+	&.ui-tabs-bottom {
+		> .ui-tabs-nav {
+			> li {
+				&.ui-state-active {
+					border-width: 2px 0 0 0;
+				}
+			}
+		}
+	}
+	&.ui-tabs-left {
+		> .ui-tabs-nav {
+			> li {
+				&.ui-state-active {
+					border-width: 0 2px 0 0;
+				}
+			}
+		}
+	}
+	&.ui-tabs-right {
+		> .ui-tabs-nav {
+			> li {
+				&.ui-state-active {
+					border-width: 0 0 0 2px;
+				}
+			}
+		}
+	}
 }
 
 /*Style For Panel --------------------------------------------------------------------------------------*/
@@ -841,23 +895,5 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 	margin-top: 25px !important;
 	.ui-slider.ui-slider-horizontal.ui-widget.ui-widget-content {
 		margin-right: 10px;
-	}
-}
-
-.task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content,
-.case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content {
-	.ui-overlaypanel-filter-content {
-		.ui-calendar.ui-trigger-calendar {
-			position: relative;
-		}
-	}
-	
-	.ui-calendar.ui-trigger-calendar.ui-inputfield.hasDatepicker {
-		width: calc(100% - 6px);
-	}
-	.ui-datepicker-trigger.ui-button.ui-button-icon-only {
-		position: absolute;
-		right: 0;
-		top: 0;
 	}
 }

@@ -5,18 +5,15 @@
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
 
 <ui:composition>
-  <p:panelGrid id="absence-panel-grid" styleClass="new-absence-container">
-    <p:row rendered="#{data.isSupervisor}">
-      <p:column styleClass="new-absence-label">
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}:" />
-      </p:column>
-      <p:column>
-       <p:autoComplete scrollHeight="200" dropdown="true" id="username" size="35" 
+  <div id="absence-panel-grid" class="ui-g absence-panel-grid">
+    <h:panelGroup layout="block" styleClass="ui-g-12" rendered="#{data.isSupervisor}">
+      <div class="md-inputfield">
+        <p:autoComplete scrollHeight="200" dropdown="true" id="username" size="35" 
           completeMethod="#{logic.autoCompleteForUser}"
           value="#{data.selectedUser}"
           var="user" itemValue="#{user}" itemLabel="#{user.displayName}"
           converter="pojoConverter"
-          rendered="#{uneditedUserName eq 'false'}" required="true"
+          disabled="#{uneditedUserName eq 'false'}" required="true"
           cache="true" maxResults="100"
           requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/userNameRequired')}"
           moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
@@ -25,17 +22,12 @@
           <p:ajax event="itemSelect" listener="#{logic.userSelectInAbsence}"
             process="@this comment absence-start-date absence-end-date" update="#{updateComponent}" />
         </p:autoComplete>
-        <h:outputText rendered="#{empty data.selectedAbsence.fullname and uneditedUserName}" 
-        	value="#{data.selectedAbsence.username}" />
-        <h:outputText rendered="#{not empty data.selectedAbsence.fullname and uneditedUserName}"  
-        	value="#{data.selectedAbsence.fullname} (#{data.selectedAbsence.username})"/>
-      </p:column>
-    </p:row>
-    <p:row>
-      <p:column styleClass="new-absence-label">
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/from')}:" />
-      </p:column>
-      <p:column>
+        <p:outputLabel for="username" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}" />
+      </div>
+    </h:panelGroup>
+    
+    <div class="ui-g-6 ui-sm-12">
+      <div class="md-inputfield">
         <p:calendar id="absence-start-date" value="#{data.selectedAbsence.from}" locale="#{localeBean.locale}"
           showOn="button"
           converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}"
@@ -44,7 +36,11 @@
           <p:ajax event="dateSelect" listener="#{logic.dateChange}" process="@this username absence-start-date comment"
             update="#{updateComponent}" />
         </p:calendar>
-        <h:outputLabel for="absence-end-date" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/till')}:" styleClass="new-absence-till-label" />
+        <h:outputLabel for="absence-start-date" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/from')}:" />
+      </div>
+    </div>
+    <div class="ui-g-6 ui-sm-12">
+      <div class="md-inputfield">
         <p:calendar id="absence-end-date" value="#{data.selectedAbsence.until}" showOn="button" locale="#{localeBean.locale}"
           converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}"
           pattern="#{dateTimePatternBean.datePattern}" required="true"
@@ -52,18 +48,17 @@
           <p:ajax event="dateSelect" listener="#{logic.dateChange}" process="@this username comment absence-start-date"
             update="#{updateComponent}" />
         </p:calendar>
-      </p:column>
-    </p:row>
+        <h:outputLabel for="absence-end-date" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/till')}:" />
+      </div>
+    </div>
 
-    <p:row>
-      <p:column styleClass="new-absence-label">
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/comment')}:" />
-      </p:column>
-      <p:column>
+    <div class="ui-g-12">
+      <div class="md-inputfield">
         <p:inputText value="#{data.selectedAbsence.comment}" maxlength="100" id="comment"
           styleClass="add-absences-dialog-input-comment" />
-      </p:column>
-    </p:row>
-  </p:panelGrid>
+        <p:outputLabel for="comment" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/comment')}:" />
+      </div>
+    </div>
+  </div>
 </ui:composition>
 </html>
