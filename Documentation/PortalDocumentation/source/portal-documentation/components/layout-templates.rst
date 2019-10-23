@@ -229,8 +229,8 @@ How to use template TaskTemplate.xhtml
 
     ``<ui:define name="leftButtons">``
 
-    ``<p:commandButton value="Save" actionListener="#{logic.save}" partialSubmit="true" 
-                                process="first-name last-name" update="first-name last-name" />``
+    ``<p:commandButton value="Save" actionListener="#{logic.save}" partialSubmit="true"`` 
+    ``process="first-name last-name" update="first-name last-name" />``
 
     ``</ui:define>``
 
@@ -293,21 +293,15 @@ How to use task list template
 
    ``import ch.ivy.addon.portal.generic.view.TaskView;``
 
-   ````
-
    ``TaskLazyDataModel dataModel = new TaskLazyDataModel();``
 
    ``dataModel.setAdminQuery(true);``
 
    ``dataModel.setSortField(ch.ivy.addon.portalkit.enums.TaskSortField.PRIORITY.toString(), true);``
 
-   ````
-
    ``MainMenuNode category = new MainMenuNode();``
 
    ``category.setValue("My Task List");``
-
-   ````
 
    ``out.taskView = TaskView.create().dataModel(dataModel).pageTitle("My Task List").hideTaskFilter(true).category(category)``
    ``.showHeaderToolbar(false).createNewTaskView();``
@@ -341,8 +335,6 @@ How to use case list template
    ``import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;``
 
    ``import ch.ivy.addon.portal.generic.view.CaseView;``
-
-   ````
 
    ``CaseLazyDataModel dataModel = new CaseLazyDataModel();``
 

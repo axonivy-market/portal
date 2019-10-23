@@ -6,8 +6,7 @@ Installation
 Release installation
 ====================
 
-Installation
-------------
+**Installation** 
 
 The installation section describes all the steps, that are necessary to
 install and setup the Process Application.
@@ -18,8 +17,7 @@ start with the
 . It describes all the initial steps, that must be done for the first
 installation.
 
-Release Installation
---------------------
+**Release Installation** 
 
 If the application is already installed and initial prepared, than refer
 to the Release Installation Steps, that are provided, here you will only
@@ -127,16 +125,9 @@ Role configuration
    |                                   | the internal role properties,     |
    |                                   | create public filters. Users who  |
    |                                   | own this role need some           |
-   |                                   | permissions. See                  |
-   |                                   | `#axonivyportal.installation.basi |
-   |                                   | cinstallation.permissionsettings  |
-   |                                   | <#axonivyportal.installation.basi |
-   |                                   | cinstallation.permissionsettings> |
-   |                                   | `__                               |
-   |                                   | .                                 |
+   |                                   | permissions.                      |
    +-----------------------------------+-----------------------------------+
 
-.. _axonivyportal.installation.basicinstallation.permissionsettings:
 
 Permission settings
 -------------------

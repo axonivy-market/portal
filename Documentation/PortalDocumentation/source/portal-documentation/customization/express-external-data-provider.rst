@@ -61,9 +61,9 @@ Customization
 
    |image4|
 
-.. |image0| image:: images/expressexternaldataprovider/CallableSubProcess.png
-.. |image1| image:: images/expressexternaldataprovider/CallableSubProcessResult.png
-.. |image2| image:: images/expressexternaldataprovider/Database.png
-.. |image3| image:: images/expressexternaldataprovider/DatabaseOutput.png
-.. |image4| image:: images/expressexternaldataprovider/ExpressWorkflow.png
+.. |image0| image:: images/ExpressExternaldataprovider/CallableSubProcess.png
+.. |image1| image:: images/ExpressExternaldataprovider/CallableSubProcessResult.png
+.. |image2| image:: images/ExpressExternaldataprovider/Database.png
+.. |image3| image:: images/ExpressExternaldataprovider/DatabaseOutput.png
+.. |image4| image:: images/ExpressExternaldataprovider/ExpressWorkflow.png
 

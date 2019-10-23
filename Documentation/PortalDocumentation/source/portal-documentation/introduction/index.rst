@@ -18,7 +18,7 @@ Main features
 .. _axonivyportal.introduction.newandnoteworthy:
 
 New and Noteworthy
------------------
+------------------
 
 .. _axonivyportal.introduction.newandnoteworthy.portalgroupchat:
 
