@@ -163,9 +163,7 @@ Portal comes with some useful widgets:
    template:
 
    ``<ui:define name="taskWidget">``
-
    ``<ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" tasks="#{logic.getTasksOfSessionUser()}" ... />``
-
    ``</ui:define>``
 
 2. Process widget
@@ -176,7 +174,7 @@ Portal comes with some useful widgets:
    ``<ui:define name="processWidget">``
 
    ``<ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-widget" compactMode="true" ... .>``
-
+   
    ``</ui:define>``
 
 3. Statistic widget

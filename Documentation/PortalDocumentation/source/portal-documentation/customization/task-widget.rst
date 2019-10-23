@@ -140,7 +140,7 @@ Task filter
 -  In order to introduce new filter, create a new java class extends
    TaskFilter and override its methods (see javadoc comments)
 
-   |image0|
+   |task-filter|
 
 -  Introduce a java class extends TaskFilterContainer. This filter
    container contains your filters, you can reuse default filters, refer
@@ -238,7 +238,7 @@ be delegated to. This can be done following these steps:
 2. In your project, override the callable subprocess
    ``CalculateTaskDelegate``
 
-   |image1|
+   |calculate-task-delegate|
 
 3. The callable subprocess data contains the current user
    ``in.currentUser`` and the current task to be delegated ``in.task``.
@@ -262,7 +262,7 @@ You can refer to ``PortalExamples`` project for examples
    and taskHeader. You can find responsive class in `this
    part. <#axonivyportal.customization.responsivecss>`__
 
-   |image2|
+   |responsive-task-list-customization|
 
       **Tip**
 
@@ -274,7 +274,7 @@ You can refer to ``PortalExamples`` project for examples
    add ``js-hidden-when-expand-menu`` to responsiveStyleClass or
    styleClass param of taskListHeader and taskHeader.
 
-   |image3|
+   |responsive-task-list-hide-column|
 
       **Tip**
 
@@ -282,8 +282,8 @@ You can refer to ``PortalExamples`` project for examples
       1025. So you could reduce width of browser to 1025 to test and
       decide which columns need to be hidden.
 
-.. |image0| image:: images/TaskWidget/TaskFilter.png
-.. |image1| image:: images/TaskWidget/CalculateTaskDelegate.png
-.. |image2| image:: images/TaskWidget/ResponsiveTaskListCustomization.png
-.. |image3| image:: images/TaskWidget/ResponsiveTaskListHideColumn.png
+.. |task-filter| image:: images/task-widget/task-filter.png
+.. |calculate-task-delegate| image:: images/task-widget/calculate-task-delegate.png
+.. |responsive-task-list-customization| image:: images/task-widget/responsive-task-list-customization.png
+.. |responsive-task-list-hide-column| image:: images/task-widget/responsive-task-list-hide-column.png
 

@@ -47,7 +47,7 @@ property ``Errors.ShowDetailsToEndUser``.
 Result
 ~~~~~~
 
-|image0|
+|portal-ajax-error-handler|
 
 .. _axonivyportal.components.errorhandling.nonajaxerrorhandling:
 
@@ -95,5 +95,5 @@ HTTP 500 Error
 
 Example testing URL: 500
 
-.. |image0| image:: images/ErrorHandling/portalAjaxErrorHandler.png
+.. |portal-ajax-error-handler| image:: images/error-handling/portal-ajax-error-handler.png
 
