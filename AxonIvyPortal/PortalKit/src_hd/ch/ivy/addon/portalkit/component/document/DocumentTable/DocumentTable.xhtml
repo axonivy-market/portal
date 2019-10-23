@@ -92,7 +92,8 @@
           invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}" 
           label="#{not empty cc.attrs.uploadText ? cc.attrs.uploadText : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/upload')}"
           cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          onstart="#{logic.setFileLimit(cc.attrs.fileLimit)}" sizeLimit="#{masterDataBean.fileUploadSizeLimit}">
+          onstart="#{logic.setFileLimit(cc.attrs.fileLimit)}" sizeLimit="#{masterDataBean.fileUploadSizeLimit}"
+          styleClass="ui-g-12 u-padding-0">
         </p:fileUpload>
       </h:panelGroup>
     </div>

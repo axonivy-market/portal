@@ -863,8 +863,8 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
 	padding: 0 !important;
 }
 
-.pe-dynaform-cell[colspan="4"]>input, .pe-dynaform-cell[colspan="4"]>textarea,
-	.pe-dynaform-cell[colspan="4"]>select {
+.pe-dynaform-cell[colspan="4"]>input,
+.pe-dynaform-cell[colspan="4"]>select {
 	width: 99%;
 }
 
@@ -876,16 +876,12 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
 	width: 100%;
 }
 
-.preview-dialog .pe-dynaform-cell[colspan="4"]>textarea {
-	width: 100%;
-}
-
 .preview-dialog .pe-dynaform-cell[colspan="4"]>input.ui-inputtext {
 	width: 98%;
 }
 
 .pe-dynaform-cell[colspan="4"]>textarea {
-	width: 98%;
+	width: 100%;
 }
 
 .preview-dialog .pe-dynaform-cell>input.ui-inputtext {
@@ -898,7 +894,7 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
 	white-space: pre;
 }
 
-.pe-dynaform-cell input, .pe-dynaform-cell[colspan="4"] textarea {
+.pe-dynaform-cell input {
 	width: 98%;
 }
 
