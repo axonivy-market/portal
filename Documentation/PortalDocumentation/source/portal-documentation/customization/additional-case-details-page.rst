@@ -22,14 +22,14 @@ Customization
 1. Create a new additional case details UI and a start process which
    will display the new UI.
 
-   |image0|
+   |customization-additional-case-details-page|
 
 2. Store the URL of start process in
    "CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE" additional property of
    case. You could use ``SetAdditonalCaseDetailPage.mod`` callable
    process, and input the friendly URL of process as parameter.
 
-   |image1|
+   |set-additonal-case-detail-page-callable-process|
 
 ..
 
@@ -39,6 +39,6 @@ Customization
    external link to "CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE"
    additional property of case.
 
-.. |image0| image:: images/AdditionalCaseDetailsPage/CustomizationAdditionalCaseDetailsPage.png
-.. |image1| image:: images/AdditionalCaseDetailsPage/SetAdditonalCaseDetailPageCallableProcess.png
+.. |customization-additional-case-details-page| image:: images/additional-case-details-page/customization-additional-case-details-page.png
+.. |set-additonal-case-detail-page-callable-process| image:: images/additional-case-details-page/set-additonal-case-detail-page-callable-process.png
 

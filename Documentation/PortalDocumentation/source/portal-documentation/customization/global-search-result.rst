@@ -6,7 +6,7 @@ Global Search Result
 Global Search Result
 --------------------
 
-|image0|
+|global-search-result|
 
 Follow these steps to customize the global search page:
 
@@ -35,11 +35,11 @@ Follow these steps to customize the global search page:
    ``SearchResults`` HTML dialog in PortalTemplate. In dataclass, change
    the ``dataModel`` to the above one, and in logic, also cast it.
 
-   |image1|
+   |customized-data-model-cast|
 
 6. Define the ``custom-search`` section to add your customized tabs:
 
-   |image2|
+   |customized-search-results|
 
 7. Override the ``OpenPortalSearch`` callable process and change the
    HTML dialog to your customized one.
@@ -52,7 +52,7 @@ Follow these steps to customize the global search page:
    CustomizedSearchResultsDataModel.java, CustomizedSearchResults HTML
    dialog, OpenPortalSearchOverride callable process
 
-.. |image0| image:: images/GlobalSearchResult/GlobalSearchResult.png
-.. |image1| image:: images/GlobalSearchResult/CustomizedDataModelCast.png
-.. |image2| image:: images/GlobalSearchResult/CustomizedSearchResults.png
+.. |global-search-result| image:: images/global-search-result/global-search-result.png
+.. |customized-data-model-cast| image:: images/global-search-result/customized-data-model-cast.png
+.. |customized-search-results| image:: images/global-search-result/customized-search-results.png
 

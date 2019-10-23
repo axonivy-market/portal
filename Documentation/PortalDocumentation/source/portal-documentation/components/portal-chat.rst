@@ -8,7 +8,7 @@ Portal chat
 Chat feature
 ------------
 
-|image0|
+|chat|
 
 .. _axonivyportal.components.portalchat.information:
 
@@ -54,5 +54,5 @@ Limitation of current Portal chat
    users in current application, cannot chat with users in other
    application.
 
-.. |image0| image:: images/PortalChat/chat.png
+.. |chat| image:: images/portal-chat/chat.png
 

@@ -18,7 +18,7 @@ Bootstrap based responsive css
 
 These classes was created base on bootstrap responsive.
 
-|image0|
+|responsive-bootstrap-classes|
 
-.. |image0| image:: images/ResponsiveCss/ResponsiveBootstrapClasses.png
+.. |responsive-bootstrap-classes| image:: images/responsive-css/responsive-bootstrap-classes.png
 
