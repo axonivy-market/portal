@@ -236,7 +236,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public void closeMainMenu() {
-    WebElement mainMenuToggle = findDisplayedElementBySelector("#left-menu");
+    findDisplayedElementBySelector("#left-menu");
     if (isMainMenuOpen()) {
       click(By.cssSelector("a[id$='toggle-menu']"));
       click(By.id("top-menu"));
