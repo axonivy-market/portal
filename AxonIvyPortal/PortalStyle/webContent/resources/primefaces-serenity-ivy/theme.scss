@@ -869,3 +869,45 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 		top: 0;
 	}
 }
+
+/*Style For Tree node - Override standard Serenity ------------------------------------------------------------*/
+.ui-tree-container .ui-treenode-content {
+	.ui-treenode-label.ui-state-highlight {
+		background-color: transparent !important;
+	}
+	.ui-treenode-label.ui-treenode-outline {
+		outline: 0 solid transparent !important;
+	}
+	.ui-chkbox.ui-widget.ui-selection {
+		.ui-chkbox-icon.ui-icon.ui-icon-check, .ui-chkbox-icon.ui-icon.ui-icon-minus {
+			color: $primaryLightestColor !important;
+		}
+	}
+}
+
+li.ui-treenode.ui-treenode-selected .ui-chkbox.ui-widget.ui-selection {
+	.ui-chkbox-box.ui-widget.ui-state-default {
+		&:before {
+			animation: rippleOn 400ms forwards ease-out;
+			height: 0.3rem;
+		}
+	}
+}
+
+.ui-treenode.ui-treenode-parent.ui-treenode-selected,
+.ui-treenode.ui-treenode-parent.ui-treenode-hasselected span.ui-treenode-content.ui-tree-selectable:first-child div.ui-chkbox.ui-widget.ui-selection,
+li.ui-treenode.ui-treenode-selected .ui-chkbox.ui-widget.ui-selection,
+li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectable:first-child .ui-chkbox.ui-widget.ui-selection,
+li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectable:first-child .ui-chkbox.ui-widget.ui-selection {
+	div.ui-chkbox-box.ui-widget.ui-state-default {
+		border-color: $primaryColor;
+		background-color: $primaryColor;
+	}
+}
+
+li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectable:first-child {
+	.ui-chkbox.ui-widget.ui-selection .ui-chkbox-box.ui-widget.ui-state-default {
+		border-color: $checkboxBorderColor !important;
+		background-color: transparent !important;
+	}
+}
