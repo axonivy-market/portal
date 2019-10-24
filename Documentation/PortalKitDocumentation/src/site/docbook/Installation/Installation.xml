@@ -1285,6 +1285,9 @@
 						<para>Case list customization now support responsiveness. refer to 
 							<link linkend="axonivyportal.customization.casewidget.responsivelayout"> this part </link> for more detail.</para>
 					</listitem>
+					<listitem>
+						<para>Remove <code>ResponsivenessHandleContainer</code> component. Because Portal is using new responsiveness layout.</para>
+					</listitem>
 				</itemizedlist>
 			</sect2>
 			<sect2>
