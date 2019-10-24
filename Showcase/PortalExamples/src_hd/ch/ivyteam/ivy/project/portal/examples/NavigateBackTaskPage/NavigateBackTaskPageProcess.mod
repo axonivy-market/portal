@@ -1,5 +1,5 @@
 [Ivy]
-16583DC1ADB95AD5 3.28 #module
+16583DC1ADB95AD5 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ns0 NavigateBackTaskPageProcess Big #zClass
 Ns0 RD #cInfo
@@ -27,11 +27,8 @@ Ns0 @AnnotationArc f12 '' #zField
 >Proto Ns0 Ns0 NavigateBackTaskPageProcess #zField
 Ns0 f0 guid 16583DC1AEFC0C09 #txt
 Ns0 f0 method start() #txt
-Ns0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ns0 f0 outParameterDecl '<> result;
-' #txt
+Ns0 f0 inParameterDecl '<> param;' #txt
+Ns0 f0 outParameterDecl '<> result;' #txt
 Ns0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

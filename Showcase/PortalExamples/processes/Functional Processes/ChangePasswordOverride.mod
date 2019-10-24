@@ -1,5 +1,5 @@
 [Ivy]
-1657FC622FD937C4 3.28 #module
+1657FC622FD937C4 7.5.0 #module
 >Proto >Proto Collection #zClass
 Cd0 ChangePassword Big #zClass
 Cd0 B #cInfo
@@ -27,12 +27,11 @@ Cd0 @PushWFArc f12 '' #zField
 Cd0 @PushWFArc f4 '' #zField
 Cd0 @PushWFArc f17 '' #zField
 >Proto Cd0 Cd0 ChangePassword #zField
-Cd0 f0 inParamDecl '<java.lang.String currentPassword,java.lang.String newPassword> param;' #txt
+Cd0 f0 inParamDecl '<String currentPassword,String newPassword> param;' #txt
 Cd0 f0 inParamTable 'out.currentPassword=param.currentPassword;
 out.newPassword=param.newPassword;
 ' #txt
-Cd0 f0 outParamDecl '<ch.ivy.addon.portalkit.enums.ChangePasswordStatus status,java.lang.String message> result;
-' #txt
+Cd0 f0 outParamDecl '<ch.ivy.addon.portalkit.enums.ChangePasswordStatus status,String message> result;' #txt
 Cd0 f0 outParamTable 'result.status=in.status;
 result.message=in.message;
 ' #txt
@@ -49,7 +48,7 @@ Cd0 f0 @|StartSubIcon #fIcon
 Cd0 f1 169 625 30 30 0 15 #rect
 Cd0 f1 @|EndSubIcon #fIcon
 Cd0 f14 processCall 'Ivy Data Processes/PasswordService:updatePassword(String,String)' #txt
-Cd0 f14 requestActionDecl '<java.lang.String username,java.lang.String newPassword> param;' #txt
+Cd0 f14 requestActionDecl '<String username,String newPassword> param;' #txt
 Cd0 f14 requestMappingAction 'param.username=ivy.session.getSessionUserName();
 param.newPassword=in.newPassword;
 ' #txt
