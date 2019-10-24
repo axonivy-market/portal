@@ -167,8 +167,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
     -webkit-font-smoothing: antialiased;
     content: "\f002";
     position: absolute;
-    left: 0;
-    top: 5px;
 }
 
 /* =================== END DROPDOWN ====================== */
@@ -448,7 +446,9 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .filter-category-checkbox-tree .ui-icon.ui-icon-search {
   background-image: none !important;
-  text-indent: 0 !important;
+  text-indent: 2px !important;
+  bottom: 8px;
+  top: unset;
 }
 
 .filter-category-checkbox-tree .ui-icon.ui-icon-search:before {
@@ -1745,14 +1745,8 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
   width: 100%;
 }
 
-.select-delegate-panel .ui-autocomplete {
-  min-width: 100%;
-}
-
-.select-delegate-panel .ui-autocomplete .ui-autocomplete-input {
-  width: auto;
-  min-width: 94%;
-  padding-right: 3.4rem !important;
+.select-delegate-panel .ui-autocomplete, .select-delegate-panel .ui-autocomplete .ui-autocomplete-input {
+  width: 100%;
 }
 
 /* Small screen */
@@ -3120,6 +3114,10 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   .dialog-closing-information, .project-info-dialog, .add-new-absence-dialog, .app-dialog {
     width: 80vw !important;
   }
+  
+  .new-absence-date input {
+    width: 140px;
+  }
 }
 
 /********************************** ADMIN SETTING **********************************/
@@ -3284,16 +3282,12 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   text-align: center;
 }
 
-.new-absence-container td {
-  border-style: hidden !important;
+.absence-panel-grid {
+  max-width: 450px;
 }
 
-.new-absence-label {
-  text-align: right;
-}
-
-.new-absence-till-label {
-  margin: 0 10px;
+.absence-panel-grid > div {
+  padding: 12px 0;
 }
 
 .absences-table-action-column-icon-button {
@@ -4145,7 +4139,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .color-header {
   height: 4px;
   display: flex;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 /* Small screen */
@@ -4957,7 +4951,6 @@ _:-ms-fullscreen, :root .case-related-command-link {
 }
 
 .task-name-inplace {
-  padding-left: 7px;
   width: calc(100% - 110px);
   flex-grow: 0;
 }

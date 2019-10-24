@@ -1,5 +1,5 @@
 [Ivy]
-163AF40A52CD810B 3.28 #module
+163AF40A52CD810B 7.5.0 #module
 >Proto >Proto Collection #zClass
 Oh0 OpenPortalSearch Big #zClass
 Oh0 B #cInfo
@@ -22,11 +22,10 @@ Oh0 @UserDialog f7 '' #zField
 Oh0 @PushWFArc f8 '' #zField
 Oh0 @PushWFArc f9 '' #zField
 >Proto Oh0 Oh0 OpenPortalSearch #zField
-Oh0 f0 inParamDecl '<java.lang.String keyword> param;' #txt
+Oh0 f0 inParamDecl '<String keyword> param;' #txt
 Oh0 f0 inParamTable 'out.keyword=param.keyword;
 ' #txt
-Oh0 f0 outParamDecl '<> result;
-' #txt
+Oh0 f0 outParamDecl '<> result;' #txt
 Oh0 f0 callSignature call(String) #txt
 Oh0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -63,12 +62,11 @@ Oh0 f4 expr out #txt
 Oh0 f4 111 64 161 64 #arcP
 Oh0 f2 expr out #txt
 Oh0 f2 273 64 337 64 #arcP
-Oh0 f5 inParamDecl '<ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel searchResultsDataModel,java.lang.Number activeTabIndex> param;' #txt
+Oh0 f5 inParamDecl '<ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel searchResultsDataModel,Number activeTabIndex> param;' #txt
 Oh0 f5 inParamTable 'out.activeTabIndex=param.activeTabIndex;
 out.searchResultsDataModel=param.searchResultsDataModel;
 ' #txt
-Oh0 f5 outParamDecl '<> result;
-' #txt
+Oh0 f5 outParamDecl '<> result;' #txt
 Oh0 f5 callSignature call(ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel,Number) #txt
 Oh0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -85,7 +83,7 @@ Oh0 f6 337 178 30 30 0 15 #rect
 Oh0 f6 @|EndSubIcon #fIcon
 Oh0 f7 dialogId ch.ivyteam.ivy.project.portal.examples.customization.CustomizedSearchResults #txt
 Oh0 f7 startMethod start(ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel,Number) #txt
-Oh0 f7 requestActionDecl '<ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel searchResultsDataModel, Number activeTabIndex> param;' #txt
+Oh0 f7 requestActionDecl '<ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel searchResultsDataModel,Number activeTabIndex> param;' #txt
 Oh0 f7 requestMappingAction 'param.searchResultsDataModel=in.searchResultsDataModel;
 param.activeTabIndex=in.activeTabIndex;
 ' #txt
