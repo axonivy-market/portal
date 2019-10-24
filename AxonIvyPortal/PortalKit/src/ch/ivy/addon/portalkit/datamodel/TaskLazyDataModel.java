@@ -266,8 +266,13 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   public void setAdminQuery(boolean isAdminQuery) {
-    if (isAdminQuery && !criteria.getIncludedStates().contains(TaskState.DONE)) {
-      criteria.addIncludedStates(Arrays.asList(TaskState.DONE));
+    if (isAdminQuery && (!criteria.getIncludedStates().contains(TaskState.DONE) || !criteria.getIncludedStates().contains(TaskState.UNASSIGNED))) {
+      if(!criteria.getIncludedStates().contains(TaskState.DONE)) {
+        criteria.addIncludedStates(Arrays.asList(TaskState.DONE));
+      }
+      if(!criteria.getIncludedStates().contains(TaskState.UNASSIGNED)) {
+        criteria.addIncludedStates(Arrays.asList(TaskState.UNASSIGNED));
+      }
       setValuesForStateFilter(criteria);
     }
     criteria.setAdminQuery(isAdminQuery);

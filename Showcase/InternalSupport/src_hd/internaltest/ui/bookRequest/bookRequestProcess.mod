@@ -1,5 +1,5 @@
 [Ivy]
-1475D6ED2115CF9C 3.28 #module
+1475D6ED2115CF9C 7.5.0 #module
 >Proto >Proto Collection #zClass
 bs0 bookRequestProcess Big #zClass
 bs0 RD #cInfo
@@ -20,9 +20,7 @@ bs0 @PushWFArc f5 '' #zField
 >Proto bs0 bs0 bookRequestProcess #zField
 bs0 f0 guid 1475D6ED239FD8D7 #txt
 bs0 f0 method start(String,Date,Date,String,Boolean,Boolean,String,String,internalPortal.ProcessStatus) #txt
-bs0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.String Mitarbeiter,ch.ivyteam.ivy.scripting.objects.Date Von,ch.ivyteam.ivy.scripting.objects.Date Bis,java.lang.String Art,java.lang.Boolean beantragt,java.lang.Boolean genehmigt,java.lang.String Ablehnungsgrund,java.lang.String Vertretung,internalPortal.ProcessStatus processStatus> param = methodEvent.getInputArguments();
-' #txt
+bs0 f0 inParameterDecl '<String Mitarbeiter,Date Von,Date Bis,String Art,Boolean beantragt,Boolean genehmigt,String Ablehnungsgrund,String Vertretung,internalPortal.ProcessStatus processStatus> param;' #txt
 bs0 f0 inParameterMapAction 'out.Ablehnungsgrund=param.Ablehnungsgrund;
 out.actualStepIndex=param.processStatus.actualStepIndex;
 out.Art=param.Art;
@@ -34,8 +32,7 @@ out.steps=param.processStatus.steps;
 out.Vertretung=param.Vertretung;
 out.Von=param.Von;
 ' #txt
-bs0 f0 outParameterDecl '<java.lang.Number AnzahlTage,java.lang.Number Resturlaubstage,java.lang.Boolean storniert,internalPortal.ProcessStatus processStatus> result;
-' #txt
+bs0 f0 outParameterDecl '<Number AnzahlTage,Number Resturlaubstage,Boolean storniert,internalPortal.ProcessStatus processStatus> result;' #txt
 bs0 f0 outParameterMapAction 'result.AnzahlTage=in.AnzahlTage;
 result.Resturlaubstage=in.Resturlaubstage;
 result.storniert=in.storniert;
