@@ -151,7 +151,7 @@
                       valueChangeListener="#{data.dataModel.onFilterChange}" value="#{data.dataModel.selectedFilters}"
                       converter="pojoConverter">
                       <p:ajax
-                        update="#{cc.clientId}:filter-selection-container #{cc.clientId}:advanced-filter-container #{cc.clientId}:task-view-container"
+                        update="#{cc.clientId}:filter-selection-container @(.advanced-filter-component) #{cc.clientId}:task-view-container"
                         global="false" oncomplete="taskWidget.setupScrollbar();" />
                       <f:selectItems value="#{data.dataModel.filters}" var="filter" itemLabel="#{filter.label()}"
                         itemValue="#{filter}" />
