@@ -587,7 +587,7 @@ https://www.npmjs.com/package/less2sass.
 
    ``C:\Projects\Portal\axonivyportal\AxonIvyPortal\PortalStyle\webContent\resources\less\customization.less``
 
-   |less2sass|
+   |less-2-sass|
 
 -  After run above command, you also see a new
    \*.scss file is created into same folder.
@@ -599,7 +599,7 @@ https://www.npmjs.com/package/less2sass.
 
 .. _installation-migration-notes-8-0-0-task-body:
 
-How to migrate TaskBody to  :ref:`axonivyportal.customization.taskitemdetails` component
+How to migrate TaskBody to  :ref:`customization-task-item-details` component
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 On Portal version 8.0.0, we removed ``taskBody`` in TaskWidget. Instead
