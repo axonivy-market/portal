@@ -1,0 +1,3 @@
+DefaultChartColorsData #class
+ch.ivy.addon.portalkit #namespace
+chartColors ch.ivy.addon.portalkit.statistics.StatisticColors #field
