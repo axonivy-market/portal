@@ -75,7 +75,6 @@
 	font-family: 'Roboto';
 	font-style: normal;
 	font-weight: 400;
-	font-size: 1.4rem;
 	color: rgba(0, 0, 0, 0.6) !important;
 }
 
@@ -86,7 +85,6 @@
 	font-family: 'Roboto';
 	font-style: normal;
 	font-weight: 400;
-	font-size: 1.4rem;
 }
 
 #user-setting-container li a:hover {
@@ -155,7 +153,6 @@
 .task-template-title {
 	font-style: normal;
 	font-weight: bold;
-	font-size: 1.6rem;
 	display: flex;
 	align-items: center;
 	margin-top: 5px;
@@ -163,7 +160,6 @@
 
 .ui-outputlabel.task-template-title {
 	font-weight: 400;
-	font-size: 1.6rem !important;
 }
 
 .task-template-title-icon {
@@ -199,7 +195,6 @@
 
 .message .message-header {
 	margin: 16px 0px;
-	font-size: 2rem;
 	color: #E67163;
 }
 
@@ -211,10 +206,6 @@
 .message .message-container {
 	font-size: 1.4em;
 	margin: 16px 0px;
-}
-
-.message .message-container .message-detail {
-	font-size: 1.2rem;
 }
 
 .message .message-container .message-detail:hover {
@@ -351,7 +342,6 @@
 }
 
 .process-history-empty-message .ui-outputlabel {
-	font-size: 1.2rem;
 	color: black;
 }
 
@@ -403,9 +393,6 @@
 	line-height: 2;
 }
 
-.topbar-menu li .ui-commandlink {
-	font-size: 1.4rem;
-}
 /* END SERENITY TOP BAR */
 /* SERENITY MAIN LAYOUT */
 .layout-wrapper {
