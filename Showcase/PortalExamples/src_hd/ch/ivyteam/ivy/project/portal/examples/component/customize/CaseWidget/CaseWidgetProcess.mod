@@ -19,10 +19,9 @@ Cs0 @UdExitEnd f4 '' #zField
 Cs0 @PushWFArc f5 '' #zField
 >Proto Cs0 Cs0 CaseWidgetProcess #zField
 Cs0 f0 guid 164B687E2FC4D5CF #txt
-Cs0 f0 method start(ch.ivy.addon.portal.generic.view.CaseView,String) #txt
-Cs0 f0 inParameterDecl '<ch.ivy.addon.portal.generic.view.CaseView caseView,String menuState> param;' #txt
+Cs0 f0 method start(CaseView) #txt
+Cs0 f0 inParameterDecl '<ch.ivy.addon.portal.generic.view.CaseView caseView> param;' #txt
 Cs0 f0 inParameterMapAction 'out.caseView=param.caseView;
-out.menuState=param.menuState;
 ' #txt
 Cs0 f0 outParameterDecl '<> result;' #txt
 Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

@@ -1064,10 +1064,8 @@ Pt0 f42 0 0.075 0 -9 #arcLabel
 Pt0 f1 expr out #txt
 Pt0 f1 79 256 152 256 #arcP
 Pt0 f13 dialogId ch.ivy.addon.portal.generic.admin.PortalDashBoard #txt
-Pt0 f13 startMethod startWithMenuState(String) #txt
-Pt0 f13 requestActionDecl '<String menuState> param;' #txt
-Pt0 f13 requestMappingAction 'param.menuState=ch.ivy.addon.portalkit.util.MenuUtils.getMenuState();
-' #txt
+Pt0 f13 startMethod start() #txt
+Pt0 f13 requestActionDecl '<> param;' #txt
 Pt0 f13 responseMappingAction 'out=in;
 ' #txt
 Pt0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1081,10 +1079,8 @@ Pt0 f13 160 810 112 44 -47 -8 #rect
 Pt0 f13 @|UserDialogIcon #fIcon
 Pt0 f18 78 832 160 832 #arcP
 Pt0 f24 dialogId ch.ivy.addon.portal.generic.Processes #txt
-Pt0 f24 startMethod start(String) #txt
-Pt0 f24 requestActionDecl '<String menuState> param;' #txt
-Pt0 f24 requestMappingAction 'param.menuState=ch.ivy.addon.portalkit.util.MenuUtils.getMenuState();
-' #txt
+Pt0 f24 startMethod start() #txt
+Pt0 f24 requestActionDecl '<> param;' #txt
 Pt0 f24 responseMappingAction 'out=in;
 ' #txt
 Pt0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

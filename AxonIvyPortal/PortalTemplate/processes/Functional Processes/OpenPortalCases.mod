@@ -34,10 +34,9 @@ Ot0 f0 @|StartSubIcon #fIcon
 Ot0 f1 179 307 26 26 14 0 #rect
 Ot0 f1 @|EndSubIcon #fIcon
 Ot0 f3 dialogId ch.ivy.addon.portal.generic.PortalCases #txt
-Ot0 f3 startMethod useViewWithStateMenu(ch.ivy.addon.portal.generic.view.CaseView,String) #txt
-Ot0 f3 requestActionDecl '<ch.ivy.addon.portal.generic.view.CaseView caseView,String menuState> param;' #txt
+Ot0 f3 startMethod useView(CaseView) #txt
+Ot0 f3 requestActionDecl '<ch.ivy.addon.portal.generic.view.CaseView caseView> param;' #txt
 Ot0 f3 requestMappingAction 'param.caseView=in.view;
-param.menuState=ch.ivy.addon.portalkit.util.MenuUtils.getMenuState();
 ' #txt
 Ot0 f3 responseActionDecl 'ch.ivy.addon.portal.generic.OpenPortalCasesData out;
 ' #txt
