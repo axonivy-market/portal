@@ -72,6 +72,6 @@ public class BusinessCaseTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
     taskWidgetPage.openTaskDetails(firstTask);
-    assertEquals(BUSINESS_CASE_NAME, taskWidgetPage.getRelatedCase());
+    assertTrue(taskWidgetPage.getRelatedCase().contains(BUSINESS_CASE_NAME));
   }
 }
