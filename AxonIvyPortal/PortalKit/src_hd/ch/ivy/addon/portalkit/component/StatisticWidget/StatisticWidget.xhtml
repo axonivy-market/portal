@@ -28,10 +28,9 @@
       <h:panelGroup layout="block" rendered="#{!data.createMode}" styleClass="ui-g-12 u-padding-0">
         <p:commandLink id="create-chart-link" actionListener="#{logic.switchCreateMode}" update="widget-container create-chart-header"
           rendered="#{!data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart and data.canCreateNewCharts}">
-          <h:outputText styleClass="fa fa-plus" rendered="#{data.canCreateNewCharts}" />
+          <i class="fa fa-plus" />
           <p:spacer width="3px" />
-          <h:outputText id="create-chart-link-label" rendered="#{data.canCreateNewCharts}"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/addChart')}" />
+          <h:outputText id="create-chart-link-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/addChart')}" />
         </p:commandLink>
         <p:commandLink id="restore-default-chart-link" onclick="PF('restore-confirmation-dialog').show();"
           rendered="#{!data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart 
