@@ -171,6 +171,7 @@
 .u-no-padding-left {
   padding-left: 0 !important;
 }
+
 /* For Serenity theme - Start */
 /*
 * Some style is removed after migrated to Serenity - need re-define
@@ -255,10 +256,6 @@
     .ui-xl-hidden {
         display: none !important;
     }
-}
-
-.ui-no-padding {
-    padding: 0 !important;
 }
 
 .ui-vertical-align-sub {
