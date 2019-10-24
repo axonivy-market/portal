@@ -46,6 +46,11 @@ Ca0 @EndTask f26 '' #zField
 Ca0 @GridStep f28 '' #zField
 Ca0 @PushWFArc f29 '' #zField
 Ca0 @PushWFArc f27 '' #zField
+Ca0 @StartRequest f30 '' #zField
+Ca0 @GridStep f31 '' #zField
+Ca0 @EndTask f32 '' #zField
+Ca0 @PushWFArc f33 '' #zField
+Ca0 @PushWFArc f34 '' #zField
 >Proto Ca0 Ca0 CleanData #zField
 Ca0 f0 outLink cleanCompletedCases.ivp #txt
 Ca0 f0 inParamDecl '<> param;' #txt
@@ -360,6 +365,46 @@ Ca0 f29 expr out #txt
 Ca0 f29 1056 111 1056 170 #arcP
 Ca0 f27 expr out #txt
 Ca0 f27 1056 214 1056 273 #arcP
+Ca0 f30 outLink resetLanguageOfCurrentUser.ivp #txt
+Ca0 f30 inParamDecl '<> param;' #txt
+Ca0 f30 requestEnabled true #txt
+Ca0 f30 triggerEnabled false #txt
+Ca0 f30 callSignature resetLanguageOfCurrentUser() #txt
+Ca0 f30 persist false #txt
+Ca0 f30 startName 'Reset language of current user' #txt
+Ca0 f30 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Ca0 f30 caseData businessCase.attach=true #txt
+Ca0 f30 showInStartList 1 #txt
+Ca0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>resetLanguageOfCurrentUser</name>
+    </language>
+</elementInfo>
+' #txt
+Ca0 f30 @C|.responsibility Everybody #txt
+Ca0 f30 1209 81 30 30 -65 -38 #rect
+Ca0 f30 @|StartRequestIcon #fIcon
+Ca0 f31 actionTable 'out=in;
+' #txt
+Ca0 f31 actionCode 'import java.util.Locale;
+
+Locale default = ivy.request.getApplication().getDefaultEMailLanguage();
+ivy.session.getSessionUser().setEMailLanguage(default);
+' #txt
+Ca0 f31 1168 170 112 44 0 -8 #rect
+Ca0 f31 @|StepIcon #fIcon
+Ca0 f32 1209 273 30 30 0 15 #rect
+Ca0 f32 @|EndIcon #fIcon
+Ca0 f33 expr out #txt
+Ca0 f33 1224 111 1224 170 #arcP
+Ca0 f34 expr out #txt
+Ca0 f34 1224 214 1224 273 #arcP
 >Proto Ca0 .type portalKit_test.Data #txt
 >Proto Ca0 .processKind NORMAL #txt
 >Proto Ca0 0 0 32 24 18 0 #rect
@@ -392,3 +437,7 @@ Ca0 f25 mainOut f29 tail #connect
 Ca0 f29 head f28 mainIn #connect
 Ca0 f28 mainOut f27 tail #connect
 Ca0 f27 head f26 mainIn #connect
+Ca0 f30 mainOut f33 tail #connect
+Ca0 f33 head f31 mainIn #connect
+Ca0 f31 mainOut f34 tail #connect
+Ca0 f34 head f32 mainIn #connect
