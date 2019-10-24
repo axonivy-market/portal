@@ -35,11 +35,11 @@
 }
 
 body .md-inputfield .ui-calendar.ui-trigger-calendar ~ label {
-	top: 10px;
+  top: 10px;
 }
 
 body .md-inputfield .ui-calendar.ui-trigger-calendar.md-inputwrapper-focus ~ label, body .md-inputfield .ui-calendar.ui-trigger-calendar.md-inputwrapper-filled ~ label {
-	top: -10px;
+  top: -10px;
 }
 
 /*Style For Background --------------------------------------------------------------------------------------*/
@@ -172,7 +172,7 @@ body {
 
             .ui-dialog-title {
                 padding-left: 2px;
-                font-size: $largeFontSize;
+                font-size: 19px;
             }
         }
     }
@@ -232,7 +232,6 @@ body .ui-messages .ui-messages-error-icon,
     .ui-fieldset-legend {
         color: $black !important;
         line-height: 0.3rem;
-        background-color: $white;
 
         .ui-fieldset-toggler {
             padding: 0px !important;
@@ -682,48 +681,48 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
 
 /*Style For Tabs --------------------------------------------------------------------------------------*/
 .ui-tabs.ui-widget.ui-widget-content {
-	> .ui-tabs-nav {
-		> li {
-			border-style: solid;
-			border-width: 0 0 0 0;
-		}
-	}
-	&.ui-tabs-top {
-		> .ui-tabs-nav {
-			> li {
-				&.ui-state-active {
-					border-width: 0 0 2px 0;
-				}
-			}
-		}
-	}
-	&.ui-tabs-bottom {
-		> .ui-tabs-nav {
-			> li {
-				&.ui-state-active {
-					border-width: 2px 0 0 0;
-				}
-			}
-		}
-	}
-	&.ui-tabs-left {
-		> .ui-tabs-nav {
-			> li {
-				&.ui-state-active {
-					border-width: 0 2px 0 0;
-				}
-			}
-		}
-	}
-	&.ui-tabs-right {
-		> .ui-tabs-nav {
-			> li {
-				&.ui-state-active {
-					border-width: 0 0 0 2px;
-				}
-			}
-		}
-	}
+  > .ui-tabs-nav {
+    > li {
+      border-style: solid;
+      border-width: 0 0 0 0;
+    }
+  }
+  &.ui-tabs-top {
+    > .ui-tabs-nav {
+      > li {
+        &.ui-state-active {
+          border-width: 0 0 2px 0;
+        }
+      }
+    }
+  }
+  &.ui-tabs-bottom {
+    > .ui-tabs-nav {
+      > li {
+        &.ui-state-active {
+          border-width: 2px 0 0 0;
+        }
+      }
+    }
+  }
+  &.ui-tabs-left {
+    > .ui-tabs-nav {
+      > li {
+        &.ui-state-active {
+          border-width: 0 2px 0 0;
+        }
+      }
+    }
+  }
+  &.ui-tabs-right {
+    > .ui-tabs-nav {
+      > li {
+        &.ui-state-active {
+          border-width: 0 0 0 2px;
+        }
+      }
+    }
+  }
 }
 
 /*Style For Panel --------------------------------------------------------------------------------------*/
@@ -883,6 +882,7 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
 
 .expiry-edit-inplace {
   .ui-widget.ui-button {
+    margin-left: 5px !important;
   }
 }
 
@@ -897,16 +897,6 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
   }
 }
 
-.task-detail-header,
-.task-action-item,
-.task-detail-section-title, .task-history-button-container {
-  font-size: $largeFontSize;
-}
-
-.task-start-list .name-cell {
-  font-size: $largeFontSize;
-}
-
 /*Style For Advance Filter --------------------------------------------------------------------------------------*/
 
 .ui-datepicker .ui-timepicker-div dl dd {
@@ -917,33 +907,33 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
 }
 
 body .ui-picklist .ui-picklist-filter-container .ui-icon {
-	top: unset;
-	bottom: 5px;
-	right: 7px;
+  top: unset;
+  bottom: 5px;
+  right: 7px;
 }
 
 /*Style For Tree node - Override standard Serenity ------------------------------------------------------------*/
 .ui-tree-container .ui-treenode-content {
-	.ui-treenode-label.ui-state-highlight {
-		background-color: transparent !important;
-	}
-	.ui-treenode-label.ui-treenode-outline {
-		outline: 0 solid transparent !important;
-	}
-	.ui-chkbox.ui-widget.ui-selection {
-		.ui-chkbox-icon.ui-icon.ui-icon-check, .ui-chkbox-icon.ui-icon.ui-icon-minus {
-			color: $primaryLightestColor !important;
-		}
-	}
+  .ui-treenode-label.ui-state-highlight {
+    background-color: transparent !important;
+  }
+  .ui-treenode-label.ui-treenode-outline {
+    outline: 0 solid transparent !important;
+  }
+  .ui-chkbox.ui-widget.ui-selection {
+    .ui-chkbox-icon.ui-icon.ui-icon-check, .ui-chkbox-icon.ui-icon.ui-icon-minus {
+      color: $primaryLightestColor !important;
+    }
+  }
 }
 
 li.ui-treenode.ui-treenode-selected .ui-chkbox.ui-widget.ui-selection {
-	.ui-chkbox-box.ui-widget.ui-state-default {
-		&:before {
-			animation: rippleOn 400ms forwards ease-out;
-			height: 0.3rem;
-		}
-	}
+  .ui-chkbox-box.ui-widget.ui-state-default {
+    &:before {
+      animation: rippleOn 400ms forwards ease-out;
+      height: 0.3rem;
+    }
+  }
 }
 
 .ui-treenode.ui-treenode-parent.ui-treenode-selected,
@@ -951,34 +941,19 @@ li.ui-treenode.ui-treenode-selected .ui-chkbox.ui-widget.ui-selection {
 li.ui-treenode.ui-treenode-selected .ui-chkbox.ui-widget.ui-selection,
 li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectable:first-child .ui-chkbox.ui-widget.ui-selection,
 li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectable:first-child .ui-chkbox.ui-widget.ui-selection {
-	div.ui-chkbox-box.ui-widget.ui-state-default {
-		border-color: $primaryColor;
-		background-color: $primaryColor;
-	}
-.task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content,
-.case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content {
-  .ui-overlaypanel-filter-content {
-    .ui-calendar.ui-trigger-calendar {
-      position: relative;
-    }
-  }
-  
-  .ui-calendar.ui-trigger-calendar.ui-inputfield.hasDatepicker {
-    width: calc(100% - 6px);
-  }
-  .ui-datepicker-trigger.ui-button.ui-button-icon-only {
-    position: absolute;
-    right: 0;
-    top: 0;
+  div.ui-chkbox-box.ui-widget.ui-state-default {
+    border-color: $primaryColor;
+    background-color: $primaryColor;
   }
 }
 
 li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectable:first-child {
-	.ui-chkbox.ui-widget.ui-selection .ui-chkbox-box.ui-widget.ui-state-default {
-		border-color: $checkboxBorderColor !important;
-		background-color: transparent !important;
-	}
+  .ui-chkbox.ui-widget.ui-selection .ui-chkbox-box.ui-widget.ui-state-default {
+    border-color: $checkboxBorderColor !important;
+    background-color: transparent !important;
+  }
 }
+
 /**=====================================FONT SIZE==================================================**/
 
 /*Font size for dialog --------------------------------------------------------------------------------------*/
@@ -1373,4 +1348,4 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 .side-steps-panel,
 .side-steps-panel.ui-overlaypanel .ui-overlaypanel-content {
   background-color: $white;
-  }
+}
