@@ -50,6 +50,7 @@ public class MainMenuPage extends TemplatePage {
 
   public TaskWidgetPage selectTaskMenu() {
     findElementByCssSelector("li.submenu-container:nth-child(3) > a.ripplelink.submenu").click();
+    waitAjaxIndicatorDisappear();
     return new TaskWidgetPage();
   }
 
