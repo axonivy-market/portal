@@ -1,4 +1,4 @@
-.. _axonivyportal.troubleshooting:
+.. _troubleshooting:
 
 ===============
 Troubleshooting
@@ -27,7 +27,7 @@ could help:
    You can get support via support@axonivy.com (support may be subject
    to charging, depending on your licence agreement).
 
-.. _axonivyportal.troubleshooting.iesecurityproblem:
+.. _troubleshooting-ie-security-problem:
 
 IE Security Problem
 ===================
@@ -42,7 +42,7 @@ To fix this, you may turn off **Internet Explorer Enhanced Security
 Configuration** if you are running in Windows Server. Another way is
 adding that site to the Trusted sites zone in Internet Explorer.
 
-.. _axonivyportal.troubleshooting.portalinstallwithiis:
+.. _troubleshooting-portal-install-with-iis:
 
 Portal install with IIS
 =======================

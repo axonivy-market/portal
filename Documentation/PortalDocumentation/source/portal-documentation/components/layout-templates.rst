@@ -1,9 +1,9 @@
-.. _axonivyportal.components.layouttemplates:
+.. _components-layout-templates:
 
 Layout templates
 ================
 
-.. _axonivyportal.components.layouttemplates.templatesfordevelopment:
+.. _components-layout-templates-templates-for-development:
 
 Templates for development
 -------------------------
@@ -33,7 +33,7 @@ Language Settings and Administration (for admin only). Details about
 user settings can be found in
 `#axonivyportal.settings <#axonivyportal.settings>`__.
 
-.. _axonivyportal.components.layouttemplates.basictemplate:
+.. _components-layout-templates-basic-template:
 
 Basic template
 --------------
@@ -42,7 +42,7 @@ Basic template provides basic layout where user can put their custom
 content. It lacks Portal menu and Case details. We recommend to use task
 template for your process.
 
-.. _axonivyportal.components.layouttemplates.basictemplate.howtousebasictemplate:
+.. _components-layout-templates-basic-template-how-to-use-basic-template:
 
 How to use Basic template
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -67,7 +67,7 @@ How to use Basic template
 
 2. See the result after using Basic template for example:
 
-.. _axonivyportal.components.layouttemplates.twocolumntemplate:
+.. _components-layout-templates-two-column-template:
 
 Two column template
 -------------------
@@ -76,7 +76,7 @@ Two column template inherits Basic Template. It has 2 columns which user
 can customize their contents. Normally, the first column is for
 navigation, the second for displaying corresponding content.
 
-.. _axonivyportal.components.layouttemplates.twocolumntemplate.howtousetwocolumntemplate:
+.. _components-layout-templates-two-column-template-how-to-use-two-columntemplate:
 
 How to use Two column template
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -104,7 +104,7 @@ How to use Two column template
 
 2. See the result after using Two column template for example:
 
-.. _axonivyportal.components.layouttemplates.tasktemplate:
+.. _components-layout-templates-task-template:
 
 Task template
 -------------
@@ -129,7 +129,7 @@ to be filled with your custom content:
 
 -  Buttons at footer
 
-.. _axonivyportal.components.layouttemplates.tasktemplate.howtousetasktemplate:
+.. _components-layout-templates-task-template-how-to-use-task-template:
 
 How to use template TaskTemplate.xhtml
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -240,7 +240,7 @@ How to use template TaskTemplate.xhtml
 
     ``</ui:define>``
 
-.. _axonivyportal.components.layouttemplates.defaulthomepatetemplate:
+.. _components-layout-templates-default-homepage-template:
 
 Default homepage template
 -------------------------
@@ -251,7 +251,7 @@ default widgets, add new widgets, change position of widgets. For more
 details including basic and advanced customization, refer to
 `#axonivyportal.customization.portalhome <#axonivyportal.customization.portalhome>`__
 
-.. _axonivyportal.components.layouttemplates.defaulthomepatetemplate.howtousedefaulthomepagetemplate:
+.. _components-layout-templates-default-homepage-template-how-to-use-default-homepage-template:
 
 How to use default homepage template
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -261,7 +261,7 @@ template.
 
 ``<ui:composition template="/layouts/DefaultHomePageTemplate.xhtml">``
 
-.. _axonivyportal.components.layouttemplates.tasklisttemplate:
+.. _components-layout-templates-task-list-template:
 
 Task list template
 ------------------
@@ -269,7 +269,7 @@ Task list template
 Task list template is used to display task list where user can see tasks
 and their details.
 
-.. _axonivyportal.components.layouttemplates.tasklisttemplate.howtousetasklisttemplate:
+.. _components-layout-templates-task-list-template-how-to-use-task-list-template:
 
 How to use task list template
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -306,7 +306,7 @@ How to use task list template
    ``out.taskView = TaskView.create().dataModel(dataModel).pageTitle("My Task List").hideTaskFilter(true).category(category)``
    ``.showHeaderToolbar(false).createNewTaskView();``
 
-.. _axonivyportal.components.layouttemplates.caselisttemplate:
+.. _components-layout-templates-case-list-template:
 
 Case list template
 ------------------
@@ -314,7 +314,7 @@ Case list template
 Case list template is used to display case list where user can see cases
 and their details.
 
-.. _axonivyportal.components.layouttemplates.caselisttemplate.howtousecaselisttemplate:
+.. _components-layout-templates-case-list-template-how-to-use-case-list-template:
 
 How to use case list template
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -340,7 +340,7 @@ How to use case list template
 
    ``out.caseView = CaseView.create().dataModel(dataModel).withTitle("My Cases").buildNewView();``
 
-.. _axonivyportal.components.layouttemplates.handlerequiredloginintemplates:
+.. _components-layout-templates-handle-required-login-in-templates:
 
 Handle required Login in templates
 ----------------------------------
@@ -349,7 +349,7 @@ All templates require login to access by default. But templates also
 provide functionality to access page without login by adding the
 ``isNotRequiredLogin`` parameter.
 
-.. _axonivyportal.components.layouttemplates.handlerequiredloginintemplates.howtohandlerequiredloginintemplate:
+.. _components-layout-templates-handle-required-login-in-templates-how-to-handle-required-login-in-template:
 
 How to handle required login in template
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -372,7 +372,7 @@ How to handle required login in template
 2. Result after using template for example (All user settings and
    application menus will not visible).
 
-.. _axonivyportal.components.layouttemplates.reponsiveness:
+.. _components-layout-templates-reponsiveness:
 
 Responsiveness
 --------------

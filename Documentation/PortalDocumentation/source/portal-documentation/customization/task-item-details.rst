@@ -1,4 +1,4 @@
-.. _axonivyportal.customization.taskitemdetails:
+.. _customization-task-item-details:
 
 Task item details
 =================
@@ -25,7 +25,7 @@ Each TaskItemDetails contains
    Task Data and Description box always display, we cannot override the
    content or hidden/show (they stay where they are)
 
-.. _axonivyportal.customization.taskitemdetails.howtooverideui:
+.. _customization-task-item-details-how-to-overide-ui:
 
 How to custom Task item details UI
 ----------------------------------
@@ -78,13 +78,13 @@ Refer to ``PortalExamples`` project for examples.
    To show/hide, please using ``showItemDetailsHeader``,
    ``showItemDetailsNotes``, ``showItemDetailDocuments`` code. For more
    details, please refer to `Show/Hide
-   components <#axonivyportal.customization.taskitemdetails.howtooverideui.showhiddenui>`__.
+   components <#customization-task-item-details-howtooverideui.showhiddenui>`__.
 
    And to add a new elements, please refer to `Add new Custom
-   panel <#axonivyportal.customization.taskitemdetails.howtooverideui.custombody>`__
+   panel <#customization-task-item-details-howtooverideui.custombody>`__
    code
 
-.. _axonivyportal.customization.taskitemdetails.howtooverideui.showhiddenui:
+.. _customization-task-item-details-how-to-overide-ui-show-hidden-ui:
 
 Show/Hide components by keywords
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -107,7 +107,7 @@ List valid parameters:
 
    To show/hide Task Documents component, by default it's true.
 
-.. _axonivyportal.customization.taskitemdetails.howtooverideui.custombody:
+.. _customization-task-item-details-how-to-overide-ui-custom-body:
 
 Add new Custom panel
 ~~~~~~~~~~~~~~~~~~~~
@@ -128,7 +128,7 @@ Refer to the ``taskItemDetailCustomPanel*`` section in
 -  Add your custom code into that tag
 
 -  Finally, your custom panel will be displayed inside of
-   `TaskItemDetails <#axonivyportal.customization.taskitemdetails>`__
+   `TaskItemDetails <#customization-task-item-details->`__
    page
 
 -  Below is example code for override custom panel box of task details

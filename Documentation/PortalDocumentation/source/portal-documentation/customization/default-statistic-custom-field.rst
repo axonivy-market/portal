@@ -1,9 +1,9 @@
-.. _axonivyportal.customization.defaultcustomfield:
+.. _customization-default-custom-field:
 
 Default statistic custom field
 ==============================
 
-.. _axonivyportal.customization.defaultcustomfield.introduction:
+.. _customization-default-custom-field-introduction:
 
 Introduction
 ------------
@@ -13,7 +13,7 @@ displays default 5 custom string fields ``CustomVarCharField1`` to
 ``CustomVarCharField5`` , you can customize them by your own custom
 string fields.
 
-.. _axonivyportal.customization.defaultcustomfield.customization:
+.. _customization-default-custom-field-customization:
 
 Customization
 -------------

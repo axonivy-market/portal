@@ -1,16 +1,16 @@
-.. _axonivyportal.components.portalchat:
+.. _components-portal-chat:
 
 Portal chat
 ===========
 
-.. _axonivyportal.components.portalchat.portalchatfeature:
+.. _components-portal-chat-chat-feature:
 
 Chat feature
 ------------
 
 |chat|
 
-.. _axonivyportal.components.portalchat.information:
+.. _components-portal-chat-information:
 
 Information
 -----------
@@ -35,14 +35,14 @@ are disabled by default.
       **Tip**
 
       Group chat supports some customizations, refer to
-      `#axonivyportal.customization.groupchat <#axonivyportal.customization.groupchat>`__
+      `#customization.groupchat <#customization.groupchat>`__
       for more details.
 
 3. If browsers access Portal through a reverse proxy Nginx, set Global
    setting **CHAT_RESPONSE_TIMEOUT** a number less than Nginx timeout to
    make chat work properly.
 
-.. _axonivyportal.components.portalchat.limitation:
+.. _components-portal-chat-limitation:
 
 Limitation of current Portal chat
 ---------------------------------

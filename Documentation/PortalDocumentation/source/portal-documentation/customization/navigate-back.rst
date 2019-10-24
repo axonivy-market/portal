@@ -1,9 +1,9 @@
-.. _axonivyportal.customization.navigateback:
+.. _customization-navigateback:
 
 Navigate back
 =============
 
-.. _axonivyportal.customization.navigateback.introduction:
+.. _customization-navigateback.introduction:
 
 -  When a task finish, Portal will navigate back to previous page. For
    example if a task is started from homepage, then go back to homepage.
