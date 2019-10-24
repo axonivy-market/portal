@@ -1,9 +1,9 @@
-.. _axonivyportal.customization.portalhome:
+.. _customization-portal-home:
 
 Portal home
 ===========
 
-.. _axonivyportal.customization.portalhome.beforebeginning:
+.. _customization-portal-home-before-beginning:
 
 Before beginning
 ----------------
@@ -11,7 +11,7 @@ Before beginning
 This guide assumes that you are already familiar with CSS to integrate
 your own widgets.
 
-.. _axonivyportal.customization.portalhome.introduction:
+.. _customization-portal-home-introduction:
 
 Introduction
 ------------
@@ -21,7 +21,7 @@ The default home page of Portal has three built-in widgets in order:
 not fit your needs, you can replace it by your own one. We decided that
 based on screen size, widget may become hidden, not smaller.
 
-.. _axonivyportal.customization.portalhome.basicusage:
+.. _customization-portal-home-basic-usage:
 
 Basic usage
 -----------
@@ -61,7 +61,7 @@ Following these steps to have your own Portal Home:
 
    Currently, responsive custom home page is not supported.
 
-.. _axonivyportal.customization.portalhome.advancedusage:
+.. _customization-portal-home-advanced-usage:
 
 Advanced usage
 --------------
@@ -69,7 +69,7 @@ Advanced usage
 The ``DefaultHomePageTemplate.xhtml`` template supports some
 customizations.
 
-.. _axonivyportal.customization.portalhome.advancedusage.displayhidethedefaultwidgets:
+.. _customization-portal-home-advanced-usage-display-hide-the-default-widgets:
 
 Display/hide the default widgets
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -89,7 +89,7 @@ boolean values (true/false) to display or hide them as you need.
 
    Task widget now is hidden.
 
-.. _axonivyportal.customization.portalhome.advancedusage.customizethedefaultwidgetssections:
+.. _customization-portal-home-advanced-usage-customize-the-default-widget-sections:
 
 Customize the default widget's sections
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -121,7 +121,7 @@ sections.
 
 ``</ui:composition>``
 
-.. _axonivyportal.customization.portalhome.advancedusage.addyourownwidgets:
+.. _customization-portal-home-advanced-usage-add-your-own-widgets:
 
 Add your own widgets
 ~~~~~~~~~~~~~~~~~~~~
@@ -144,7 +144,7 @@ them by setting the default widgets' positions.
 
    This custom widget will show below the 3 default widget
 
-.. _axonivyportal.customization.portalhome.advancedusage.changethepagestitle:
+.. _customization-portal-home-advanced-usage-change-the-pages-title:
 
 Change the page's title
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -157,3 +157,7 @@ it:
 ``<ui:define name="pageTitle">YOUR PAGE'S TITLE</ui:define>``
 
 ``</ui:composition>``
+
+
+.. |home-page-template| image:: images/portal-home/home-page-template.png
+.. |set-home-page-url| image:: images/portal-home/set-home-page-url.png

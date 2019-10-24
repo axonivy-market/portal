@@ -1,9 +1,9 @@
-.. _axonivyportal.customization.responsivecss:
+.. _customization-responsive-css:
 
 Responsive CSS
 ==============
 
-.. _axonivyportal.customization.responsivecss.introduction:
+.. _customization-responsive-css-introduction:
 
 Introduction
 ------------
@@ -11,7 +11,7 @@ Introduction
 Portal has some utility css classes to support show/hide elements on
 different resolutions.
 
-.. _axonivyportal.customization.responsivecss.detail:
+.. _customization-responsive-css-detail:
 
 Bootstrap based responsive css
 ------------------------------

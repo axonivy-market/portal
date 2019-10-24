@@ -1,9 +1,9 @@
-.. _axonivyportal.customization.changegroupid:
+.. _customization-change-group-id:
 
 Change group id
 ===============
 
-.. _axonivyportal.customization.changegroupid.introduction:
+.. _customization-change-group-id-introduction:
 
 Portal group id is ``ch.ivyteam.ivy.project.portal``. If you change it,
 you have to update ivy global variable ``PortalGroupId`` accordingly.

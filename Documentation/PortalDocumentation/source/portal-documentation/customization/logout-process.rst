@@ -1,4 +1,4 @@
-.. _axonivyportal.customization.logout:
+.. _customization-logout:
 
 Logout process
 ==============
@@ -11,7 +11,7 @@ Logout process
    register this link by global
 
 3. Refer to `Customize Portal
-   home <#axonivyportal.customization.portalhome>`__ to set new home
+   home <#customization-portalhome>`__ to set new home
    page.
 
 4. Override the ``Logout`` process to customize the logout behavior.

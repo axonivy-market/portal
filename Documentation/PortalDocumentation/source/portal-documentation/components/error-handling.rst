@@ -1,4 +1,4 @@
-.. _axonivyportal.components.errorhandling:
+.. _components-error-handling:
 
 Error handling
 ==============
@@ -17,12 +17,12 @@ them in Portal.
    being navigated by a corrupted url. For example, when the user clicks
    on a link to start a task which does not exist.
 
-.. _axonivyportal.components.errorhandling.ajaxerrorhandling:
+.. _components-error-handling-ajax-error-handling:
 
 Ajax error handling
 -------------------
 
-.. _axonivyportal.components.errorhandling.ajaxerrorhandling.introduction:
+.. _components-error-handling-ajax-error-handling-introduction:
 
 Introduction
 ~~~~~~~~~~~~
@@ -42,19 +42,19 @@ property ``Errors.ShowDetailsToEndUser``.
       BasicTemplate
       or its extension.
 
-.. _axonivyportal.components.errorhandling.ajaxerrorhandling.result:
+.. _components-error-handling-ajax-error-handling-result:
 
 Result
 ~~~~~~
 
 |portal-ajax-error-handler|
 
-.. _axonivyportal.components.errorhandling.nonajaxerrorhandling:
+.. _components-error-handling-nonajax-error-handling:
 
 Non-ajax error handling
 -----------------------
 
-.. _axonivyportal.components.errorhandling.nonajaxerrorhandling.introduction:
+.. _components-error-handling-nonajax-error-handling-introduction:
 
 Introduction
 ~~~~~~~~~~~~
@@ -69,7 +69,7 @@ error page is not user friendly, too much technical information that
 normal user may not understand. Thus, Axon Ivy Portal provides an
 alternative solution to make this page nicer.
 
-.. _axonivyportal.components.errorhandling.nonajaxerrorhandling.howtoconfigure:
+.. _components-error-handling-nonajax-error-handling-howtoconfigure:
 
 How to configure
 ~~~~~~~~~~~~~~~~
@@ -82,7 +82,7 @@ designer).
 
 `PortalErrorPageConfiguration.zip <documents/ErrorHandling/PortalErrorPageConfiguration.zip>`__
 
-.. _axonivyportal.components.errorhandling.nonajaxerrorhandling.result:
+.. _components-error-handling-nonajax-error-handling-result:
 
 Result
 ~~~~~~

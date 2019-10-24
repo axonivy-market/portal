@@ -1,9 +1,9 @@
-.. _axonivyportal.customization.documentprocesses:
+.. _customization-document-processes:
 
 Document processes
 ==================
 
-.. _axonivyportal.customization.documentprocesses.introduction:
+.. _customization-document-processes-introduction:
 
 Introduction
 ------------
@@ -12,7 +12,7 @@ When you upload document, but want to manage them outside ivy, for
 example: in Document Management System (DMS), you should follow this
 section to override document functions of Portal.
 
-.. _axonivyportal.customization.documentprocesses.customization:
+.. _customization-document-processes-customization:
 
 Customization
 -------------
@@ -25,7 +25,7 @@ Customization
    register this link by global
 
 3. Refer to `Customize Portal
-   home <#axonivyportal.customization.portalhome>`__ to set new home
+   home <#customization-portalhome>`__ to set new home
    page.
 
 4. Override 4 ``Document sub processes`` described in table below to
