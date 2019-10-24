@@ -25,5 +25,5 @@ override this process in PortalKit):
 
 .. |change-password-input| image:: images/change-password/change-password-input.png
 .. |change-password-ounput| image:: images/change-password/change-password-output.png
-.. |change-password-ounput| image:: images/change-password/change-password-process.png
+.. |change-password-process| image:: images/change-password/change-password-process.png
 
