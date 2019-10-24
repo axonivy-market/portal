@@ -58,18 +58,6 @@ body .ui-state-active, body .ui-state-highlight {
   width: 100%;
 }
 
-.ui-datatable table tbody tr.ui-datatable-even {
-  background-color: rgba(255, 255, 255, 1) !important;
-}
-
-.ui-datatable table tbody tr.ui-datatable-odd {
-  background-color: rgba(247, 247, 247, 1);
-}
-
-.ui-datatable table tbody tr.ui-datatable-odd td {
-  background-color: rgba(247, 247, 247, 1);
-}
-
 .ui-treetable table {
   border-collapse: separate !important;
   border: none;
@@ -77,8 +65,6 @@ body .ui-state-active, body .ui-state-highlight {
 }
 
 .ui-treetable table thead tr th {
-  color: rgba(0,0,0,1) !important;
-  background-color: rgba(236,236,236,1) !important;
   border: none;
   padding-left: 10px;
   padding-right: 10px;
@@ -98,19 +84,10 @@ body .ui-state-active, body .ui-state-highlight {
 .ui-treetable table tbody tr td:not(:last-child) {
     border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
-
-.ui-treetable-data tr:nth-child(odd) {
-  background-color: rgba(255, 255, 255, 1);
-}
-
-.ui-treetable-data tr:nth-child(even) {
-  background-color: rgba(247, 247, 247, 1);
-}
 /* =================== END TABLE ====================== */
 
 /* =================== DIALOG ====================== */
 .ui-widget.ui-dialog .ui-dialog-content {
-  font-size: 14px;
   padding: 1rem 2rem 2rem;
 }
 .ui-dialog-footer.u-dialog-footer.u-email-dialog-footer {
@@ -120,21 +97,8 @@ body .ui-state-active, body .ui-state-highlight {
 /* =================== END DIALOG ====================== */
 
 /* =================== LINK ====================== */
-.ui-commandlink {
-  color: rgba(0,0,0,0.5) !important;
-}
-
-.ui-commandlink:hover {
-  color: rgba(0,0,0,0.6) !important;
-}
-
-.ui-commandlink:active {
-  color: rgba(0,0,0,0.8) !important;
-}
 
 .ui-commandlink.ui-state-disabled {
-  font-size: 1.4rem;
-  color: rgba(0,0,0,0.2) !important;
   opacity: 1;
 } 
 
@@ -153,7 +117,6 @@ body .ui-selectonemenu-panel .ui-selectonemenu-item.ui-state-focus {
 }
 
 body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-close.ui-state-hover {
-  background: white !important;
   border-radius: 50%;
 }
 .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-filter-container .ui-icon-search, .ui-picklist .ui-picklist-filter-container .ui-icon, .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon {
@@ -178,11 +141,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   transition: background-color 0.3s ease 0s;
 }
 
-.ui-autocomplete-panel .ui-autocomplete-items.ui-autocomplete-table tr:hover {
-  background: #E8E8E8;
-  color: #000;
-}
-
 .ui-autocomplete-panel .ui-autocomplete-items.ui-autocomplete-table td {
   padding: 6px 10px;
 }
@@ -194,18 +152,12 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 /* =================== FIELDSET ====================== */
 .ui-fieldset-legend {
-  background-color: #fff;
-  color: #000;
   padding: 0 10px !important;
 }
 
 
 .ui-fieldset-toggler:hover {
 	background-color: transparent !important;
-}
-
-.ui-fieldset-legend.ui-state-hover {
-    background-color: #ffffff;
 }
 
 .fieldset-no-border {
@@ -224,8 +176,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .fieldset-no-border .ui-fieldset-toggler:before {
     font-family: 'FontAwesome';
-    font-size: 1.4rem;
-    color: #212121 !important;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -269,7 +219,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .widget-header-main-title {
-  font-size: 1.4rem;
   position: absolute;
   bottom: 1px;
   left: 0;
@@ -283,15 +232,9 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .widget-header-main-menu {
-  color: rgba(0,0,0,0.4);
   position: absolute;
   bottom: 1px;
   right: 0;
-}
-
-.widget-header-main-menu a.ui-widget.ui-commandlink, .widget-header-main-menu span.ui-widget.ui-commandlink.ui-state-disabled,
-.widget-sort-menu span.ui-widget.ui-commandlink.ui-state-disabled {
-  font-size: 1.2rem;
 }
 
 .widget-header-main-menu a:hover {
@@ -329,7 +272,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   font-style: normal;
   font-weight: 400;
   color: black;
-  font-size: 1.4rem;
   width: 100%;
 }
 
@@ -338,7 +280,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-  font-size: 1.4rem;
 }
 
 .widget-content a:hover {
@@ -377,7 +318,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 /********************** START SUBMENU ITEM ***********************/
 .submenu-container {
-	background-color: rgba(255, 255, 255, 0.6);
     box-shadow: none;
     margin: auto 10px;
     padding-right: 0 !important;
@@ -396,7 +336,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 /********************** START CASE BOX ***********************/
 .grid-item-header {
-  font-size: 1.6rem;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
@@ -415,12 +354,10 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .filter-widget-input {
-  font-size: 1.4rem;
   flex-grow: 1;
 }
 
 .filter-widget .filter-widget-input {
-  color: rgba(0,0,0,0.5);
   padding: 6px 0 6px 6px !important;
 }
 
@@ -434,10 +371,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .filter-category-checkbox-tree .ui-tree-container {
   height: 300px;
   overflow: auto !important;
-}
-
-.filter-category-checkbox-tree.ui-tree .ui-treenode .ui-treenode-label {
-  font-size: 1.2rem;
 }
 
 .filter-category-checkbox-tree .ui-tree-filter.ui-inputfield {
@@ -516,7 +449,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   display: inline-block;
   margin-right: 10px;
   border: solid transparent 1px;
-  font-size: 1.2rem;
   position: relative;
   cursor: pointer;
   height: 30px;
@@ -526,7 +458,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .case-widget-container .advanced-filter:hover,
 .task-widget .filter-selection-container:hover,
 .case-widget-container .filter-selection-container:hover {
-  background-color: rgba(0,0,0,0.04);
   border-color: #d5d5d5;
   border-radius: 5px;
 }
@@ -586,15 +517,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   margin-right: 5px;
 }
 
-.task-widget .error-filter-input,
-.case-widget-container .error-filter-input {
-  position: absolute;
-  font-size: 1.8rem;
-  right: 23px;
-  top: 9px;
-  color: red;
-}
-
 .task-widget .advanced-filter .ui-button-text-only .ui-button-text,
 .case-widget-container .advanced-filter .ui-button-text-only .ui-button-text {
   padding: 0 !important;
@@ -615,12 +537,10 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   font-size: 1.8rem;
   right: 5px;
   top: 7px;
-  color: rgba(0,0,0,0.3) !important;
 }
 
 .task-widget .ui-overlaypanel.advanced-filter-panel, .task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content,
 .case-widget-container .ui-overlaypanel.advanced-filter-panel, .case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content {
-  background-color: white;
   padding: 0 !important;
 }
 
@@ -648,7 +568,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .task-widget .ui-overlaypanel.filter-add-panel .ui-overlaypanel-content,
 .case-widget-container .ui-overlaypanel.filter-add-panel .ui-overlaypanel-content {
-  background-color: white;
   min-width: 140px;
   padding: 10px !important;
 }
@@ -695,11 +614,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   box-sizing: border-box;
 }
 
-.case-list-unsortable-header-cell {
-  font-size: 1.2rem;
-  color: rgba(0,0,0,0.5) !important;
-}
-
 .case-details {
   display: table;
   vertical-align: middle;
@@ -726,29 +640,10 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   width: calc(100% - 85px);
   margin-right: 5px !important;
   font-weight: bold !important;
-  font-size: 1.6rem !important;
-}
-
-.case-details-related-tasks {
-  display: table-cell;
-  width: 30%;
-  padding: 30px;
-  vertical-align: top;
-  font-size: 1.2rem;
-  border-right: 1px solid #e0e0e0;
 }
 
 .case-detail-related-table .case-related-task-case-running {
   margin-bottom: 8px;
-}
-
-.case-details-history {
-  display: table-cell;
-  width: 30%;
-  padding: 20px;
-  vertical-align: top;
-  font-size: 1.2rem;
-  border-right: 1px solid #e0e0e0;
 }
 
 .history-fullname {
@@ -769,7 +664,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 a.case-details-document-add-link, a.task-details-document-add-link, span.case-details-document-add-link, span.task-details-document-add-link {
-  font-size: 1.4rem;
   float: right;
   font-weight: 400;
 }
@@ -785,18 +679,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 
 .case-header-padding {
   padding-bottom: 10px;
-}
-
-.history-note a {
-  color: #212121 !important;
-}
-
-.history-note .task-note-link {
-  color: #212121 !important;
-}
-
-.history-note .task-note-link:hover {
-  color: rgba(0,0,0,0.6) !important;
 }
 
 .case-history-name, .task-note-name {
@@ -823,10 +705,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 
 .case-document-name, .task-document-name {
   position: relative;
-}
-
-.case-document-name a , .task-document-name a {
-  color: #212121 !important;
 }
 
 .case-document-download, .task-document-download {
@@ -857,7 +735,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 }
 
 .case-widget-top-header-main-title {
-  font-size: 1.4rem;
   position: absolute;
   bottom: 1px;
   left: 2px;
@@ -873,23 +750,9 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   margin-top: 11px;
 }
 
-.case-list-item {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
 .case-list-item:hover {
-  background: #E8E9EF;
   z-index: 1;
 }
-
-.case-list-item.case-odd-row {
-  background-color: rgba(0,0,0,0.04);
-}
-
-.case-list-item.case-odd-row:hover {
-  background: #E8E9EF;
-}
-
 
 .case-widget-container .widget-column-header,
 .case-default-widget-container .widget-column-header {
@@ -901,10 +764,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
-.case-widget-container .widget-column-header .is-selected {
-  color: rgba(0,0,0,1) !important;
-}
-
 .case-widget-container .sort-icon {
   margin-left: 2px;
 }
@@ -914,7 +773,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   height: 65px;
   align-items: center;
   position: relative;
-  font-size: 1.4rem;
 }
 
 .case-header-name-desc-cell .case-header-name-cell {
@@ -932,7 +790,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 }
 
 .case-header-name-desc-cell .case-header-desc-cell {
-  color: rgba(0,0,0,0.4);
   display: block;
   white-space: nowrap;
   overflow: hidden;
@@ -988,7 +845,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 .case-header-action-cell .action-item {
   margin: auto;
   padding: 5px 10px;
-  color: rgba(0,0,0,0.5);
 }
 
 .case-header-action-cell .action-item .ui-button {
@@ -1001,7 +857,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 .case-header-action-cell .action-item .ui-button.ui-widget.ui-state-hover .ui-button-icon-left.ui-icon.ui-icon-triangle-1-s:before,
 .case-header-action-cell .action-item .ui-button.ui-widget.ui-state-focus .ui-button-text,
 .case-header-action-cell .action-item .ui-button.ui-widget.ui-state-focus .ui-button-icon-left.ui-icon.ui-icon-triangle-1-s:before {
-  color: #212121 !important;
+   color: #212121 !important; 
 }
 
 .case-header-action-cell .action-item .ui-button .ui-button-text,
@@ -1023,17 +879,9 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   font-size: 1.2rem;
 }
 
-.case-info-header {
-  font-size: 1.2rem;
-}
-
 .case-info-content {
   margin: .4em 0;
   font-weight: bold;
-}
-
-.case-info-footer {
-  font-size: 1.2rem;
 }
 
 .case-header-action-cell .case-command:not(:last-child) {
@@ -1108,7 +956,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 .action-steps-panel .ui-overlaypanel-content {
     padding: 0 !important;
     width: 180px;
-    background-color: #FFFFFF;
     display: grid;
 }
 
@@ -1131,10 +978,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
     text-align: left;
 }
 
-.action-steps-panel .action-step-item:hover {
-  background-color: #E8E9EF;
-}
-
 .ui-fieldset-content table {
   width: 100%;
 }
@@ -1144,7 +987,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 }
 
 .case-detail-header {
-  font-size: 1.6rem;
   font-weight: bold;
   line-height: 38px;
   display: flex;
@@ -1179,7 +1021,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 }
 
 .case-detail-section-title, .case-history-button-container , .task-history-button-container {
-  font-size: 1.6rem;
   display: inline-block !important;
   align-content: start;
   padding: 0 !important;
@@ -1298,16 +1139,10 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 }
 
 .expand-collapse-btns .express-expand-collapse-btn {
-  background-color: rgba(0, 0, 0, 0.10);
   padding: 4px 8px;
   border-radius: 15px;
-  color: #212121 !important;
   float: left;
   margin-right: 5px;
-}
-
-.expand-collapse-btns a.express-expand-collapse-btn:hover {
-  background-color: rgba(0, 0, 0, 0.20);
 }
 
 .process-widget-action {
@@ -1327,10 +1162,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 
 .process-widget-action .name-sort-command {
   white-space: nowrap;
-}
-
-.process-empty-container {
-  font-size: 1.2rem;
 }
 
 .process-start-list, .process-in-search {
@@ -1362,7 +1193,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 
 .process-widget .process-nav .process-nav-item {
   padding: 0 30px;
-  color: rgba(0,0,0,1) !important;
 }
 
 .process-widget .process-nav .process-nav-item.selected {
@@ -1382,32 +1212,23 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 .process-widget .process-nav .process-nav-item.disabled {
   pointer-events: none;
   cursor: default;
-  color: rgba(0,0,0,0.3) !important;
 }
 
 .process-start-list-item {
   height: 50px;
-  background: rgba(0, 0, 0, 0.05);
   border-radius: 5px;
-  color: black;
   display: flex;
   position: relative;
 }
 
 .process-start-list-item:hover,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover {
-  background: rgba(255, 255, 255, 1);
   -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.8);
   -moz-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.8);
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.8);
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-}
-
-.process-start-list-item.highlighted-item {
-  background-color: #fff;
-  color: #546e7a;
 }
 
 .process-start-list-item:before, .process-start-list-item:after {
@@ -1448,7 +1269,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 }
 
 .process-start-list-item-name {
-  font-size: 1.2rem;
   overflow: hidden;
   display: inline-flex;
   width: calc(100% - 75px);
@@ -1469,7 +1289,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 .process-start-list-item-action {
   display: inline-flex;
   align-items: center;
-  font-size: 1.2rem;
   flex: 1 0 20px;
 }
 
@@ -1479,7 +1298,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 
 .compact-process-widget .toggle-processes-link,
 .compact-toggle-tasks-link {
-  font-size: 1.4rem !important;
   position: absolute;
   bottom: 2px;
 }
@@ -1537,14 +1355,9 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 
 .process-start-list-item .open-icon {
   position: absolute;
-  color: rgba(0,0,0,0.5) !important;
   bottom: 27%;
   right: 15px;
   padding-top: 5px;
-}
-
-.process-start-list-item .express-icon.open-icon {
-  color: rgba(0,0,0,0.5) !important;
 }
 
 .process-start-list-item .process-start-list-item-action .process-description {
@@ -1559,7 +1372,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item .ui-commandlink,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item .ui-link {
   display: inline-flex !important;
-  color: black !important;
 }
 
 .process-start-list-item .ui-commandlink.process-item {
@@ -1591,12 +1403,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   width: calc(100% - 20px)  !important;
 }
 
-.process-widget .favorite-process-title {
-  font-size: 1.4rem;
-}
-
 .process-widget .default-process-title {
-  font-size: 1.4rem;
   display: inline-block;
   width: 100%;
 }
@@ -1621,10 +1428,8 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   height: 50px;
   margin-bottom: 5px !important;
   padding: 0px !important;
-  background: rgba(0, 0, 0, 0.05);
   background-image: none;
   border-radius: 5px;
-  color: black;
   display: flex;
   position: relative;
   align-items: center;
@@ -1632,14 +1437,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover {
   cursor: move;	
-}
-
-.process-widget .order-list-items.ui-orderlist .ui-orderlist-list table tr td {
-  color: black !important;
-}
-
-.process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item.ui-state-hover tr td{
-  color: black !important;
 }
 
 .process-widget .ui-orderlist .ui-orderlist-list table {
@@ -1876,24 +1673,12 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
   padding: 0 !important;
 }
 
-.filter-selection-form label,
-.filter-selection-form a.ui-commandlink,
-.filter-selection-form a.ui-commandlink:hover {
-  font-size: 1.4rem;
-  color: #000000 !important;
-}
-
-.filter-selection-form a.ui-commandlink:hover {
-  color: #000000 !important;
-}
-
 .filter-selection-form label {
   margin-right: 5px;
 }
 
 .filter-selection-form .filter-name-overlay-panel .ui-overlaypanel-content {
   padding: 15px 0 !important;
-  background-color: white;
   max-height: 70vh;
   overflow-y: auto;
   overflow-x: hidden;
@@ -1904,14 +1689,6 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
   width: 16rem;
   flex-flow: row;
   align-items: center;
-}
-
-.filter-selection-form .filter-name-overlay-panel .user-definied-filter-container:hover {
-  background-color: #f5f5f5;
-}
-
-.filter-selection-form .filter-name-overlay-panel .user-definied-filter-container .ui-commandlink {
-  font-size: 1.4rem;
 }
 
 /* Small screen */
@@ -1925,11 +1702,9 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
   border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
-.filter-name-overlay-panel .filter-type-label {
-   font-size: 1.4rem; 
+.filter-name-overlay-panel .filter-type-label { 
    text-align: left; 
    padding: 10px 0 10px 6px;
-   color: rgba(0,0,0,0.6);
 }
 
 .filter-selection-form .filter-name-overlay-panel .user-definied-filter-container:hover .ui-commandlink {
@@ -2008,7 +1783,6 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 }
 
 a.compact-task-start-link .task-start-list-item {
-  background-color: rgba(0, 0, 0, 0.05);
   border-radius: 5px;
   margin-bottom: 5px;
   height: 75px;
@@ -2022,7 +1796,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link .task-start-list-item {
 }
 
 a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.full-mode:hover {
-  background: #E8E9EF;
   z-index: 1;
 }
 
@@ -2044,13 +1817,11 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .task-start-info-header {
-  font-size: 1.4rem;
   font-weight: bold;
   display: flex;
 }
 
 .task-start-info-header, .task-start-info-content, .task-start-info-footer {
-  color: rgba(0,0,0,1);
   width: 100%;
 }
 
@@ -2060,10 +1831,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .task-start-info-content {
   margin: .4rem 0;
-}
-
-.task-start-info-footer, .task-start-info-content {
-  font-size: 1.2rem;
 }
 
 .task-start-info-task-name {
@@ -2108,13 +1875,11 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-  font-size: 1.4rem;
   display: block;
   padding-bottom: 2px;
 }
 
 .task-start-list .description-cell {
-  color: rgba(0,0,0,0.4);
   display: block;
 }
 
@@ -2146,7 +1911,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .task-odd-row.full-mode {
-  background-color: rgba(0,0,0,0.04);
   position: relative;
 }
 
@@ -2159,7 +1923,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   height: 65px;
   align-items: center;
   position: relative;
-  font-size: 1.4rem;
   cursor: pointer;
 }
 
@@ -2201,7 +1964,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .side-steps-panel {
-  background-color: #FFFFFF;
   width: 200px;
   border-top: solid 1px rgba(43, 59, 93, 0.2);
   border-radius: 5px;
@@ -2231,7 +1993,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .side-steps-panel.ui-overlaypanel .ui-overlaypanel-content {
   padding: 0 !important;
-  background-color: #FFFFFF;
   display: grid;
 }
 
@@ -2242,7 +2003,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   margin: 0;
   width: 160px;
   color: rgba(0, 0, 0, 0.5) !important;
-  font-size: 1.4rem;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
@@ -2259,14 +2019,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   display: inline-block;
   opacity: 0.5;
   text-decoration: none;
-}
-
-.mod-expanded-mode .widget-header-filter-input.ui-inputfield {
-  font-size: 1.4rem;
-}
-
-.mod-expanded-mode .widget-header-filter-input.ui-inputfield.ui-state-hover, .mod-expanded-mode .widget-header-filter-input.ui-inputfield.ui-state-focus {
-  font-size: 1.4rem;
 }
 
 /** Handle case list, task list for mobile screen, under 576px**/
@@ -2319,7 +2071,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 .task-name-input {
   width : calc(100% - 155px);
   font-weight: bold !important;
-  font-size: 1.6rem !important;
 }
 
 #task-description .scroll-panel.OvAuto li {
@@ -2350,34 +2101,11 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   padding: 15px;
 }
 
-.document-even-row {
-  background-color: rgba(230,230,230,1);
-  padding: 0 15px;
-  height: 35px;
-}
-
-.document-odd-row {
-  background-color: rgba(255,255,255,0.8);
-  padding: 0 15px;
-  height: 35px;
-}
-
-.document-even-row a.ui-widget.ui-commandlink, .document-odd-row a.ui-widget.ui-commandlink {
-  line-height: 34px;
-  display: inline-block;
-  font-size: 1.2rem;
-}
-
 .no-documents-message {
   text-align: center;
   line-height: 2.5px;
   display: block;
   font-size: 1.4rem;
-}
-
-.document-even-row a.download-command, .document-odd-row a.download-command {
-  width: 90%;
-  color: rgba(0,0,0,1) !important;
 }
 
 .task-details-document-download-icon {
@@ -2438,7 +2166,6 @@ _:-ms-input-placeholder, :root .case-details > * {
   padding-right: 10px;
   text-align: left;
   width: 120px;
-  font-size: 1.4rem;
   line-height: 2.2rem;
 }
 
@@ -2453,7 +2180,6 @@ _:-ms-input-placeholder, :root .case-details > * {
 
 .case-details-data-2nd-column > * {
   display: inline-block;
-  font-size: 1.4rem !important;
 }
 .case-details-data-2nd-column > *:not(.case-details-priority):not(form):not(div) {
   white-space: nowrap;
@@ -2490,10 +2216,6 @@ _:-ms-input-placeholder, :root .case-details > * {
 .case-detail-no-related-task-case {
   height: 203px;
   align-items: baseline;
-}
-
-.history-author, .history-note > * {
-  font-size: 1.4rem;
 }
 
 .history-note {
@@ -2543,7 +2265,6 @@ _:-ms-input-placeholder, :root .case-details > * {
 
 .additional-case-details-link {
   color: rgba(0,0,0,0.5) !important;
-  font-size: 1.4rem;
   font-weight: 400;
   margin-left: 10px;
   display: inline-block;
@@ -2808,10 +2529,6 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 .circle-process-chain .circle-vertical-process-step {
   width: 14rem;
   font-size: 1.2rem;
-}
-
-.circle-process-chain .circle-horizontal-process-step,
-.circle-process-chain .circle-vertical-process-step {
   display: inline-block;
   margin: -2px;
   text-align: center;
@@ -2938,7 +2655,6 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   width: 13rem;
   display: inline-block;
   text-align: center;
-  font-size: 1.2rem;
   vertical-align: bottom !important;
 }
 
@@ -3192,7 +2908,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 .announcement-message {
-  font-size: 1.4rem;
   border-radius: 5px;
   padding: 2px 10px;
   margin-top: 1px;
@@ -3253,7 +2968,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 /********************************** ABSENCES AND DEPUTY **********************************/
 .substituted-user-text {
-  font-size: 1.4rem;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
@@ -3462,10 +3176,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 .process-starts-global-filter {
   width: 95%;
-}
-
-.process-starts-link {
-  font-size: 8pt;
 }
 
 .process-starts-icon {
@@ -3867,9 +3577,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .dashboard-chart-panel .chart-info {
   font-size: 1.5rem;
   margin-right: 10px;
-}
-
-.dashboard-chart-panel .chart-info {
   align-self: baseline;
   margin-left: 5px;
 }
@@ -3922,7 +3629,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-  font-size: 1.6rem;
   font-weight: bold;
   margin-top: 20px;
   margin-bottom: 10px;
@@ -4157,27 +3863,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 .ui-widget.ui-datepicker-trigger.ui-button.ui-state-hover, .ui-widget.ui-autocomplete-dropdown.ui-button.ui-state-hover, .ui-widget.ui-datepicker-trigger.ui-button.ui-state-focus, .ui-widget.ui-autocomplete-dropdown.ui-button.ui-state-focus {
   background-color: transparent !important;
-} 
-
-.task-action-link {
-  font-size: 1.2rem;
-  display: block;
-  float: left;
-  line-height: 1.8rem;
-  padding: 10px;
-}
-
-.task-action-link .task-action-link-label {
-  font-size: 1.4rem;
-  margin-left: 5px;
-}
-
-.task-action-link .task-action-link-icon {
-  font-size: 1.6rem;
-}
-
-.task-action-link:hover {
-  color: #337ab7 !important;
 }
 
 .task-action-link.ui-state-disabled,
@@ -4208,7 +3893,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   margin: 0;
   width: 160px;
   color: rgba(0, 0, 0, 0.5) !important;
-  font-size: 1.4rem;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
@@ -4832,7 +4516,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 .not-display-result-tab-view {
   display: block;
   margin: 12px 0;
-  font-size: 1.2rem;	
 }
 
 /* =================== RESPONSIVE GRID ====================== */
@@ -4919,7 +4602,6 @@ _:-ms-fullscreen, :root .case-related-command-link {
 
 /*  =================== TASK DETAIL PAGE ========================= */
 .task-detail-header {
-  font-size: 1.6rem;
   font-weight: bold;
   line-height: 38px;
   display: flex;
@@ -4963,7 +4645,6 @@ _:-ms-fullscreen, :root .case-related-command-link {
 }
 
 .task-action-item {
-  font-size: 1.4rem !important;
   margin: auto;
 }
 
@@ -5023,7 +4704,6 @@ _:-ms-fullscreen, :root .case-related-command-link {
 }
 
 .task-detail-section-title, .task-history-button-container {
-  font-size: 1.6rem;
   display: inline-block !important;
   align-content: start;
   padding: 0 !important;
