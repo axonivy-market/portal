@@ -35,12 +35,12 @@ public class CaseDetailsTest extends BaseTest {
   }
 
   @Test
-  public void testDisplayCaseProperties() { // SERENITY_PASSED
+  public void testDisplayCaseProperties() {
     assertTrue(StringUtils.equalsIgnoreCase("LeaveRequest", detailsPage.getCaseCategory()));
   }
 
   @Test
-  public void testAddCaseNote() { // SERENITY_PASSED
+  public void testAddCaseNote() {
     detailsPage.onClickHistoryIcon();
     assertEquals(1, detailsPage.getNumberOfHistory());
     detailsPage.addNote("Consider the remaining annual leaves before the approval");
@@ -49,7 +49,7 @@ public class CaseDetailsTest extends BaseTest {
   }
 
   @Test
-  public void testShowCaseDetail() { // SERENITY_PASSED
+  public void testShowCaseDetail() {
     assertTrue(detailsPage.isGeneralInformationComponentPresented());
     assertTrue(detailsPage.isRelatedTasksComponentPresented());
     assertTrue(detailsPage.isHistoryComponentPresented());
@@ -57,13 +57,13 @@ public class CaseDetailsTest extends BaseTest {
   }
 
   @Test
-  public void testHistoryAuthorIsUserFullName() { // SERENITY_PASSED
+  public void testHistoryAuthorIsUserFullName() {
     detailsPage.addNote("Sample case note");
     assertEquals(TestAccount.DEMO_USER.getFullName(), detailsPage.getHistoryAuthor());
   }
 
   @Test
-  public void testOpenViewNoteDialog() { // SERENITY_PASSED
+  public void testOpenViewNoteDialog() {
     detailsPage.addNote("Consider the remaining annual leaves before the approval");
     detailsPage.clickViewNote();
     assertTrue(detailsPage.isViewNoteDialogPresented());

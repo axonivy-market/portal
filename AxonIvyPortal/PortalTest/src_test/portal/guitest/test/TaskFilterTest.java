@@ -99,7 +99,7 @@ public class TaskFilterTest extends BaseTest {
   }
 
   @Test
-  public void testSaveTaskFilterOnDifferentTaskList() {
+  public void testSaveTaskFilterOnDifferentTaskList() {  //TODO FEATURE BROKEN
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
     MainMenuPage mainMenuPage = new MainMenuPage();

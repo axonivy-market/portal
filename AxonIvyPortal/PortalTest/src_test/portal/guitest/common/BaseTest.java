@@ -178,6 +178,10 @@ public class BaseTest extends SeleneseTestBase {
     redirectToRelativeLink(cleanUpURL);
   }
   
+  public void resetLanguageOfCurrentUser(){
+    redirectToRelativeLink("portalKitTestHelper/1511A66AF619A768/resetLanguageOfCurrentUser.ivp");
+  }
+  
   public void refreshPage(){
     browser.getDriver().navigate().refresh();
   }

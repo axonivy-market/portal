@@ -69,8 +69,7 @@ public class HideSystemNoteTest extends BaseTest {
     HomePage homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     TaskWidgetPage taskWidget = mainMenuPage.selectTaskMenu();
-    taskWidget.openTaskDetails(0);
-    TaskDetailsPage taskDetailsPage = taskWidget.getTaskDetailsElement(0);
+    TaskDetailsPage taskDetailsPage = taskWidget.openTaskDetails(0);
     List<String> taskNoteAuthors = taskDetailsPage.getTaskNoteAuthors();
     return taskNoteAuthors;
   }
