@@ -2,5 +2,3 @@ TaskWidgetData #class
 ch.ivyteam.ivy.project.portal.examples.component.customize.TaskWidget #namespace
 taskView ch.ivy.addon.portal.generic.view.TaskView #field
 taskView PERSISTENT #fieldModifier
-menuState String #field
-menuState PERSISTENT #fieldModifier
