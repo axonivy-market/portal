@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class StatisticColors implements Serializable {
 
+  private static final long serialVersionUID = -3714369331118699382L;
   public static final String DEFAULT_EXCEPTION_PRIORITY_COLOR = "rgb(255, 90, 90)";
   public static final String DEFAULT_HIGH_PRIORITY_COLOR = "rgb(255, 192, 192)";
   public static final String DEFAULT_NORMAL_PRIORITY_COLOR = "rgb(150, 220, 130)";
