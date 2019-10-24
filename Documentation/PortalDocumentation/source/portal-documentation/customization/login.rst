@@ -1,4 +1,4 @@
-.. _axonivyportal.customization.login:
+.. _customization-login:
 
 Login
 =====

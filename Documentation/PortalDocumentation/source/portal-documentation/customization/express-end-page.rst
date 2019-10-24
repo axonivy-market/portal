@@ -1,9 +1,9 @@
-.. _axonivyportal.customization.expressendpage:
+.. _customization-express-endpage:
 
 Express end page
 ================
 
-.. _axonivyportal.customization.expressendpage.introduction:
+.. _customization-express-endpage-introduction:
 
 Introduction
 ------------
@@ -11,7 +11,7 @@ Introduction
 When the last task of Axon Express finish, express end page will be
 displayed. You can customize this by provide your own page.
 
-.. _axonivyportal.customization.expressendpage.customization:
+.. _customization-express-endpage-customization:
 
 Customization
 -------------

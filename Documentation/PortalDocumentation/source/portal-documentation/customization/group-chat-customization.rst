@@ -1,9 +1,9 @@
-.. _axonivyportal.customization.groupchat:
+.. _customization-group-chat:
 
 Group chat customization
 ========================
 
-.. _axonivyportal.customization.groupchat.introduction:
+.. _customization-group-chat-introduction:
 
 Introduction
 ------------
@@ -11,14 +11,14 @@ Introduction
 Group chat feature supports us to customize Group chat header, Group
 chat name, Confirgured role list for each process.
 
-.. _axonivyportal.customization.groupchat.customize.groupchatheader:
+.. _customization-group-chat-customize-group-chat-header:
 
 Customize group chat header
 ---------------------------
 
 Override group chat title/header via "groupChatHeader" CMS entry.
 
-.. _axonivyportal.customization.groupchat.customize.groupchatname:
+.. _customization-group-chat-customize-group-chat-name:
 
 Customize group chat name
 -------------------------
@@ -32,10 +32,15 @@ Customize group chat name
 3. If you have parameters which are not available in GroupChat.java,
    override ``GetGroupChatParams`` callable process and follow its note.
 
-.. _axonivyportal.customization.groupchat.customize.predefinedroles:
+.. _customization-group-chat-customize-predefined-roles:
 
 Customize predefined responsible roles
 --------------------------------------
 
 Override ``AssignRolesGroupChat`` process to customize predefined
 responsible roles, follow its note to configure.
+
+.. |customize-group-chat-header| image:: images/group-chat/customize-group-chat-header.png
+.. |customize-group-chat-name-params| image:: images/group-chat/customize-group-chat-name-params.png
+.. |customize-group-chat-name| image:: images/group-chat/customize-group-chat-name.png
+.. |customize-predefined-roles| image:: images/group-chat/customize-predefined-roles.png

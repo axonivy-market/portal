@@ -1,16 +1,16 @@
-.. _axonivyportal.components.drilldown:
+.. _components-drilldown:
 
 Change Last Drilldown Level Of Task By Expiry Chart
 ===================================================
 
-.. _axonivyportal.components.expirychart.taskbyexpirychart:
+.. _components-expiry-chart-task-by-expiry-chart:
 
 Task by expiry chart
 --------------------
 
 |task-by-expiry-chart|
 
-.. _axonivyportal.components.expirychart.foruserswhowanttochangelastdrilldownlevel:
+.. _components-expiry-chart-for-users-who-want-to-change-last-drill-down-level:
 
 For users who want to change last drilldown level of Task by expiry chart
 -------------------------------------------------------------------------

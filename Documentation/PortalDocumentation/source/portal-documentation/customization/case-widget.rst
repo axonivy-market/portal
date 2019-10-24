@@ -1,4 +1,4 @@
-.. _axonivyportal.customization.casewidget:
+.. _customization-case-widget:
 
 Case widget
 ===========
@@ -8,11 +8,11 @@ which users can interact with. In order to show needed case's
 information, Portal supports overriding concept for CaseWidget. Each
 CaseWidget contains 2 parts:
 
-1. `UI <#axonivyportal.customization.casewidget.howtooverideui>`__ :
+1. `UI <#customization-case-widget-.howtooverideui>`__ :
    CaseListHeader, CaseHeader and CaseFilter
 
 2. `Data
-   query <#axonivyportal.customization.casewidget.howtooverridedataquery>`__
+   query <#customization-case-widget-.howtooverridedataquery>`__
    : display the cases as you want by modifying data query
 
 ..
@@ -21,13 +21,13 @@ CaseWidget contains 2 parts:
 
    1. Case header customization currently support responsive design.
       Refer to `this
-      part <#axonivyportal.customization.casewidget.responsivelayout>`__
+      part <#customization-case-widget-.responsivelayout>`__
       for more detail.
 
    2. Case header's buttons cannot be modified (they stay where they
       are)
 
-.. _axonivyportal.customization.casewidget.howtooverideui:
+.. _customization-case-widget-how-to-override-ui:
 
 How to override case widget's UI
 --------------------------------
@@ -76,11 +76,11 @@ Refer to ``PortalExamples`` project for examples
       .
 
 5. After previous steps, you can override `CaseHeader and
-   CaseListHeader <#axonivyportal.customization.casewidget.howtooverideui.caseheader>`__
+   CaseListHeader <#customization-case-widget-.howtooverideui.caseheader>`__
    and
-   `CaseFilter <#axonivyportal.customization.casewidget.howtooverideui.casefilter>`__
+   `CaseFilter <#customization-case-widget-.howtooverideui.casefilter>`__
 
-.. _axonivyportal.customization.casewidget.howtooverideui.caseheader:
+.. _customization-case-widget-how-to-override-ui-case-header:
 
 Case List Header and Case Header
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -129,7 +129,7 @@ function of these columns work:
    should be passed as a parameter to components (refer to
    ``PortalCases.xhtml``).
 
-.. _axonivyportal.customization.casewidget.howtooverridecasefilter:
+.. _customization-case-widget-how-to-override-case-filter:
 
 Case filter
 ~~~~~~~~~~~
@@ -181,7 +181,7 @@ Case filter
       set ``filterGroupId`` to an unique identifier for each of your
       ``PortalCases.xhtml`` across your projects
 
-.. _axonivyportal.customization.casewidget.howtooverridedataquery:
+.. _customization-case-widget-how-to-override-data-query:
 
 How to override case widget's data query
 ----------------------------------------
@@ -207,7 +207,7 @@ case list after navigating to case list from your page:
    .withTitle("My Cases").buildNewView();
                
 
-.. _axonivyportal.customization.casewidget.responsivelayout:
+.. _customization-case-widget-responsive-layout:
 
 How to make reponsive case list
 -------------------------------

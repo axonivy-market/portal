@@ -1,14 +1,14 @@
-.. _axonivyportal.components.additionalcomponent:
+.. _components-additional-component:
 
 Additional Components
 =====================
 
-.. _axonivyportal.components.additionalcomponent.processhistory:
+.. _components-additional-component-process-history:
 
 Process history
 ---------------
 
-.. _axonivyportal.components.additionalcomponent.processhistory.introduction:
+.. _components-additional-component-process-history-introduction:
 
 Introduction
 ~~~~~~~~~~~~
@@ -25,7 +25,7 @@ In a dialog
 
 |process-history-dialog-example|
 
-.. _axonivyportal.components.additionalcomponent.processhistory.howtouse:
+.. _components-additional-component-process-history-how-to-use:
 
 How to use
 ~~~~~~~~~~
@@ -75,12 +75,12 @@ to configure the scroll bar of the list.
       SetBusinessEntityId
       subprocess after the first Trigger or signal sending step.
 
-.. _axonivyportal.components.additionalcomponent.taskanalysis:
+.. _components-additional-component-task-analysis:
 
 Task Analysis
 -------------
 
-.. _axonivyportal.components.additionalcomponent.taskanalysis.introduction:
+.. _components-additional-component-task-analysis-introduction:
 
 Introduction
 ~~~~~~~~~~~~
@@ -99,7 +99,7 @@ not only tasks but also cases. These features are:
 
 |task-analysis|
 
-.. _axonivyportal.components.additionalcomponent.taskanalysis.howtouse:
+.. _components-additional-component-task-analysis-how-to-use:
 
 How to use
 ~~~~~~~~~~
@@ -115,12 +115,12 @@ with following code:
 
 ``FacesContext.getCurrentInstance().getExternalContext().redirect(taskAnalysisUrl);``
 
-.. _axonivyportal.components.additionalcomponent.processchain:
+.. _components-additional-component-process-chain:
 
 Process Chain
 -------------
 
-.. _axonivyportal.components.additionalcomponent.processchain.introduction:
+.. _components-additional-component-process-chain-introduction:
 
 Introduction
 ~~~~~~~~~~~~
@@ -138,7 +138,7 @@ done, these steps is not done. These features are:
 
 |process-chain|
 
-.. _axonivyportal.components.additionalcomponent.processchain.howtouse:
+.. _components-additional-component-process-chain-how-to-use:
 
 How to use
 ~~~~~~~~~~
@@ -168,12 +168,12 @@ include this component to this page with following code:
 5. Can change ``isShowAllSteps`` parameter to ``TRUE`` or ``FALSE``
    based on the requirement. Default value of this is ``FALSE``.
 
-.. _axonivyportal.components.additionalcomponent.globalgrowl:
+.. _components-additional-component-global-growl:
 
 Global growl
 ------------
 
-.. _axonivyportal.components.additionalcomponent.globalgrowl.introduction:
+.. _components-additional-component-global-growl-introduction:
 
 Introduction
 ~~~~~~~~~~~~
@@ -185,7 +185,7 @@ use it to display your messages in Portal.
 
 |example-global-growl|
 
-.. _axonivyportal.components.additionalcomponent.globalgrowl.growlafterfinishtask:
+.. _components-additional-component-global-growl-growl-after-finish-task:
 
 Display growl after finish task
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -220,12 +220,12 @@ It's enough if you want to turn it off. To override the message, add
    flash.setRedirect(true);
    flash.setKeepMessages(true);
 
-.. _axonivyportal.components.additionalcomponent.documenttable:
+.. _components-additional-component-document-table:
 
 Document table
 --------------
 
-.. _axonivyportal.components.additionalcomponent.documenttable.introduction:
+.. _components-additional-component-document-table-introduction:
 
 Introduction
 ~~~~~~~~~~~~
