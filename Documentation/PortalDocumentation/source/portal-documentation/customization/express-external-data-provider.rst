@@ -1,9 +1,9 @@
-.. _axonivyportal.customization.expressexternaldataprovider:
+.. _customization-express-external-data-provider:
 
 Express external data provider
 ==============================
 
-.. _axonivyportal.customization.expressexternaldataprovider.introduction:
+.. _customization-express-external-data-provider-introduction:
 
 Introduction
 ------------
@@ -12,7 +12,7 @@ In portal express we can provide the external data for checkbox values
 when creating form, like a product catalogue can be maintained in the
 background and the process calls this data provider.
 
-.. _axonivyportal.customization.expressexternaldataprovider.customization:
+.. _customization-express-external-data-provider-customization:
 
 Customization
 -------------

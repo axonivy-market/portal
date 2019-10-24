@@ -1,4 +1,4 @@
-.. _axonivyportal.installation:
+.. _installation:
 
 Installation
 ************
@@ -11,19 +11,15 @@ Release installation
 The installation section describes all the steps, that are necessary to
 install and setup the Process Application.
 
-If you install the application for the first time than it's important to
-start with the
-`#axonivyportal.installation.basicinstallation <#axonivyportal.installation.basicinstallation>`__
-. It describes all the initial steps, that must be done for the first
-installation.
+If you install the application for the first time than it's important to start
+with the `Basic installation`_ . It describes all the initial steps, that must
+be done for the first installation.
 
 **Release Installation** 
 
 If the application is already installed and initial prepared, than refer
 to the Release Installation Steps, that are provided, here you will only
 find those steps, that are necessary to install this release.
-
-.. _axonivyportal.installation.basicinstallation:
 
 Basic installation
 ==================
@@ -32,8 +28,7 @@ Project modules
 ---------------
 
 The application consists of 5 process modules. For detailed information
-of each module, refer to
-`#axonivyportal.architecture <#axonivyportal.architecture>`__ .
+of each module, refer to :ref:`architecture` .
 
 -  PortalStyle
 
@@ -55,21 +50,18 @@ Server configuration
 Specify applications used in Portal
 -----------------------------------
 
-.. _axonivyportal.installation.basicinstallation.specifyservers.generalConcept:
+.. _installation-basic-installation-specifyservers-general-concept:
 
 General concept
 ~~~~~~~~~~~~~~~
 
 Portal has 2 different configurations:
 
--  Single mode
-   : The working application must include portalKit, portalTemplate and
-   portalStyle modules.
--  Multi applications mode
-   : Multiple Portal applications on one engine. Each Portal application
-   must include portalKit, portalTemplate and portalStyle modules.
+   -  **Single mode**  : The working application must include portalKit,
+      portalTemplate and portalStyle modules.
 
-..
+   -  **Multi applications mode** : Multiple Portal applications on one engine.
+      Each Portal application must include portalKit, portalTemplate and portalStyle modules.
 
    .. important::
 
@@ -79,8 +71,7 @@ Portal has 2 different configurations:
 Manually configure applications
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Refer
-`#axonivyportal.settings.adminsettings.setupmultiportals <#axonivyportal.settings.adminsettings.setupmultiportals>`__
+Refer :ref:`settings-admin-settings-setup-multi-portals` 
 .
 
    .. important::
@@ -94,7 +85,7 @@ Default user credentials in demo mode
 
 Portal provides 3 default users:
 
-.. table:: Default user credentials
+.. table:: 
 
    +-----------------------+-----------------------+-----------------------+
    | Username              | Password              | Description           |
@@ -115,7 +106,7 @@ Portal provides 3 default users:
 Role configuration
 ------------------
 
-.. table:: Role configuration
+.. table:: 
 
    +-----------------------------------+-----------------------------------+
    | PortalKit roles                   | Rights                            |
@@ -126,6 +117,7 @@ Role configuration
    |                                   | create public filters. Users who  |
    |                                   | own this role need some           |
    |                                   | permissions.                      |
+   |                                   |                                   |   
    +-----------------------------------+-----------------------------------+
 
 
@@ -453,7 +445,7 @@ application.
 Global variables
 ----------------
 
-.. table:: Global variables
+.. table:: 
 
    +---------------------------+-------------+---------------------------+
    | Variable                  | Default     | Description               |
@@ -505,7 +497,7 @@ theme from version 6.3.
 
 -  Yes/Ok buttons on the left, No/Cancel buttons on the right
 
-.. _axonivyportal.installation.migrationnotes:
+.. _installation-migration-notes:
 
 Migration notes
 ===============
@@ -564,7 +556,7 @@ In engine
    project.
 4. Follow migration notes to migrate data, if any.
 
-.. _axonivyportal.installation.migrationnotes.8.0.0:
+.. _installation-migrationnotes-8-0-0:
 
 Migrate to 8.0.0
 ----------------
@@ -584,9 +576,8 @@ The **less2sass** converter is pretty good and maintained
 https://www.npmjs.com/package/less2sass.
 
 -  Install
-   NoteJS
-   on your system (can get by this page
-   ). Once installed, restart your system as well.
+   NoteJS on your system (can get by this page  https://nodejs.org/en/download). Once installed, restart your
+   system as well.
 -  Open Cmd command line and run command:
    npm install -g less2sass
 -  Once installed you can simply run:
@@ -596,26 +587,20 @@ https://www.npmjs.com/package/less2sass.
 
    ``C:\Projects\Portal\axonivyportal\AxonIvyPortal\PortalStyle\webContent\resources\less\customization.less``
 
+   |less2sass|
+
 -  After run above command, you also see a new
-   \*.scss
-   file is created into same folder.
+   \*.scss file is created into same folder.
    ``C:\Projects\Portal\axonivyportal\AxonIvyPortal\PortalStyle\webContent\resources\less\customization.scss``
 
-   Copy ``*.scss`` files to new folder as
-   ``..\webContent\resources\sass\ivy``
+   Copy ``*.scss`` files to new folder as ``..\webContent\resources\sass\ivy``
 
--  Run
-   mvn libsass:compile
-   to compile your
-   scss
-   to
-   css
-   file.
+-  Run ``mvn libsass:compile`` to compile your ``scss`` to ``css`` file.
 
-.. _axonivyportal.installation.migrationnotes.8.0.0.taskbody:
+.. _installation-migration-notes-8-0-0-task-body:
 
-How to migrate TaskBody to `TaskItemDetails <#axonivyportal.customization.taskitemdetails>`__ component
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+How to migrate TaskBody to  :ref:`axonivyportal.customization.taskitemdetails` component
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 On Portal version 8.0.0, we removed ``taskBody`` in TaskWidget. Instead
 of that, we will use TaskItemDetails component to show task information
@@ -659,19 +644,23 @@ Please follow the below steps to migrate
 
       Old taskBody
 
+      |old-task-body|
+
       TaskItemDetail content
+
+      |custom-task-item-details|
 
 -  In case we need to hide Notes, Documents, we can refer to `Show/hide
    component on Task Item
-   Details <#axonivyportal.customization.taskitemdetails.howtooverideui.showhiddenui>`__
+   Details <#customization.taskitemdetails.howtooverideui.showhiddenui>`__
 
 -  Additional, if we want to customize more ``TaskItemDetails``
    components, please refer to `TaskItemDetails
-   component <#axonivyportal.customization.taskitemdetails.howtooverideui>`__.
+   component <#customization.taskitemdetails.howtooverideui>`__.
 
-.. _axonivyportal.installation.migrationnotes.8.0.0.casebody:
+.. _installation-migration-notes-8-0-0-case-body:
 
-How to migrate CaseBody to `CaseItemDetails <#axonivyportal.customization.caseitemdetails>`__ component
+How to migrate CaseBody to `CaseItemDetails <#customization.caseitemdetails>`__ component
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 On Portal version 8.0.0, we removed ``caseBody`` in CaseWidget. Instead
@@ -727,11 +716,11 @@ Please follow below check list to migrate
 
 -  In case we need to hide Notes, Documents, Related running component,
    we can refer to `Show/hide component on Case Item
-   Details <#axonivyportal.customization.caseitemdetails.howtooverideui.showhiddenui>`__
+   Details <#customization.caseitemdetails.howtooverideui.showhiddenui>`__
 
 -  Additional, if we want to customize more ``CaseItemDetails``
    component, please help refer to `CaseItemDetails
-   component <#axonivyportal.customization.caseitemdetails.howtooverideui>`__
+   component <#customization.caseitemdetails.howtooverideui>`__
 
 Migrate to 7.4.0
 ----------------
@@ -746,7 +735,7 @@ Migrate to 7.3.0
 From 7.3.0, Portal supports some permissions to show/hide left menu
 item, if you override ``LoadSubMenuItems`` process and want to use these
 permissions, refer to
-`#axonivyportal.customization.menu.customization <#axonivyportal.customization.menu.customization>`__
+`#customization.menu.customization <#customization.menu.customization>`__
 for more detail.
 
 There is a small change when initializing statistic chart, so if you
@@ -830,7 +819,7 @@ Portal needs `Apache POI <https://poi.apache.org>`__ for exporting to
 Excel features.
 
 If you override task widget's data query described at
-`#axonivyportal.customization.taskwidget.howtooverridedataquery <#axonivyportal.customization.taskwidget.howtooverridedataquery>`__,
+`#customization.taskwidget.howtooverridedataquery <#customization.taskwidget.howtooverridedataquery>`__,
 follow these steps to migrate
 
 -  Add new start method with signature
@@ -877,7 +866,7 @@ from Portal Template to your project and re-apply your customization.
 We introduce new method
 ``findStartableLinkByUserFriendlyRequestPath(String requestPath)`` in
 ``ProcessStartCollector`` class. If your project has customized
-`#axonivyportal.customization.defaultuserprocess <#axonivyportal.customization.defaultuserprocess>`__,
+`#customization.defaultuserprocess <#customization.defaultuserprocess>`__,
 use this method to generate link to your process. If user doesn't have
 permission to start the process, this method will return empty string.
 
@@ -897,7 +886,7 @@ Migrate 7.0.2 to 7.0.3
 
 If you have additional columns in your customized task widget, refer
 `Task
-widget <#axonivyportal.customization.taskwidget.howtooverideui.taskheader>`__
+widget <#customization.taskwidget.howtooverideui.taskheader>`__
 to adapt your customization in ``taskHeader`` section.
 
 Migrate 7.0.1 to 7.0.2
@@ -1017,7 +1006,7 @@ From ``6.4`` , Portal applies `LESS <http://lesscss.org/>`__ to support
 customizing Portal styles. You can customize colors, fonts and Portal's
 component styles. For more information about customizing Portal's style
 with LESS, refer to
-`#axonivyportal.customization.portallogosandcolors <#axonivyportal.customization.portallogosandcolors>`__
+`#customization.portallogosandcolors <#customization.portallogosandcolors>`__
 .
 
 Steps to migrate
@@ -1061,7 +1050,7 @@ theme, it's a big difference to previous ``6.0`` . Therefore many things
 in Portal ``5.0`` and ``6.0`` will not look the same in new Portal. Many
 things have been redesigned like menu, task list, case list ...
 
-.. _axonivyportal.installation.releasenotes:
+.. _installation-release-notes:
 
 Release notes
 =============
@@ -1073,39 +1062,39 @@ Changes in 8.0
 --------------
 
 -  Upgraded to Serenity's theme, refer to `Migration
-   Notes <#axonivyportal.installation.migrationnotes.8.0.0>`__ for more
+   Notes <#installation.migrationnotes.8.0.0>`__ for more
    details
 
 -  Remove ``caseBody`` inside CaseWidget, refer to `Migration
-   Notes <#axonivyportal.installation.migrationnotes.8.0.0.casebody>`__
+   Notes <#installation.migrationnotes.8.0.0.casebody>`__
    for more details
 
 -  Introduce new actions button on `CaseWidget's
-   header <#axonivyportal.customization.casewidget.howtooverideui.caseheader>`__.
+   header <#customization.casewidget.howtooverideui.caseheader>`__.
 
 -  Introduce new page as the Case item details. The default page is
    portal case details, refer to
-   `#axonivyportal.customization.caseitemdetails <#axonivyportal.customization.caseitemdetails>`__
+   `#customization.caseitemdetails <#customization.caseitemdetails>`__
    for the customization.
 
 -  Remove ``taskBody`` inside TaskWidget, refer to `Migration
-   Notes <#axonivyportal.installation.migrationnotes.8.0.0.taskbody>`__
+   Notes <#installation.migrationnotes.8.0.0.taskbody>`__
    for more details
 
 -  Introduce two new actions button on `TaskWidget's
-   header <#axonivyportal.customization.taskwidget.howtooverideui.taskheader>`__.
+   header <#customization.taskwidget.howtooverideui.taskheader>`__.
 
 -  Introduce new page as Task item details. The default page is portal
    task details, refer to
-   `#axonivyportal.customization.taskitemdetails <#axonivyportal.customization.taskitemdetails>`__
+   `#customization.taskitemdetails <#customization.taskitemdetails>`__
    for the customization.
 
 -  Task list customization now support responsiveness. refer to `this
-   part <#axonivyportal.customization.taskwidget.responsivelayout>`__
+   part <#customization.taskwidget.responsivelayout>`__
    for more detail.
 
 -  Case list customization now support responsiveness. refer to `this
-   part <#axonivyportal.customization.casewidget.responsivelayout>`__
+   part <#customization.casewidget.responsivelayout>`__
    for more detail.
 
 Changes in 7.4
@@ -1113,16 +1102,16 @@ Changes in 7.4
 
 -  New Portal Chat is introduced, now Portal supports Group chat and
    Private chat, refer to
-   `#axonivyportal.components.portalchat <#axonivyportal.components.portalchat>`__
+   `#components.portalchat <#components.portalchat>`__
    for more detail
 
 -  Portal group id is officially configurable, refer to
-   `#axonivyportal.customization.changegroupid <#axonivyportal.customization.changegroupid>`__
+   `#customization.changegroupid <#customization.changegroupid>`__
    for more detail
 
 -  CaseTemplate is removed, from now on we only use TaskTemplate. Please
    refer to
-   `#axonivyportal.installation.migrationnotes <#axonivyportal.installation.migrationnotes>`__
+   `#installation.migrationnotes <#installation.migrationnotes>`__
    to see how to migrate CaseTemplate to TaskTemplate
 
 Changes in 7.3
@@ -1132,12 +1121,12 @@ Changes in 7.3
    performance, refer to Migration Notes
 
 -  Provide the mobile pages. The default page is task list, refer to
-   `#axonivyportal.customization.mobiledefaultpage <#axonivyportal.customization.mobiledefaultpage>`__
+   `#customization.mobiledefaultpage <#customization.mobiledefaultpage>`__
    for the customization.
 
 -  Provide more permissions to show/hide menu, button and link in
    Portal, refer to
-   `#axonivyportal.installation.basicinstallation.permissionsettings <#axonivyportal.installation.basicinstallation.permissionsettings>`__
+   `#installation.basicinstallation.permissionsettings <#installation.basicinstallation.permissionsettings>`__
    for more detail.
 
 -  Hide Statistic widget can be configured in Admin setting.
@@ -1192,7 +1181,7 @@ Changes in 7.1
    customize.
 
 -  User can add new language. Refer to
-   `#axonivyportal.settings.languagesettings <#axonivyportal.settings.languagesettings>`__
+   `#settings.languagesettings <#settings.languagesettings>`__
    for detail.
 
 -  Axon ivy express has custom end page. It can be turned off or
@@ -1201,7 +1190,7 @@ Changes in 7.1
 -  User can create default start process with permission check. If the
    user doesn't have permission to start the process, it won't appear in
    favorite processes. Refer to
-   `#axonivyportal.customization.defaultuserprocess <#axonivyportal.customization.defaultuserprocess>`__
+   `#customization.defaultuserprocess <#customization.defaultuserprocess>`__
    for detail.
 
 Changes in 7.0 (Jakobshorn)
@@ -1219,7 +1208,7 @@ Changes in 7.0 (Jakobshorn)
    ivy.
 
    Refer to
-   `#axonivyportal.installation.migrationnotes <#axonivyportal.installation.migrationnotes>`__
+   `#installation.migrationnotes <#installation.migrationnotes>`__
    to learn how to migrate data from ``customVarCharField5`` to new
    ``category`` field.
 
@@ -1227,7 +1216,7 @@ Changes in 7.0 (Jakobshorn)
    they are not displayed in any Portal task lists.
 
 -  Change password is supported to be customized. Refer to
-   `#axonivyportal.customization.changepasswordprocess <#axonivyportal.customization.changepasswordprocess>`__
+   `#customization.changepasswordprocess <#customization.changepasswordprocess>`__
    to know how to customize this feature.
 
 Changes in 6.6 (Jakobshorn)
@@ -1250,8 +1239,16 @@ Changes in 6.0 (Säntis)
 
 -  Support responsiveness with 3 screen widths: 1920, 1366 and 1024.
    Refer to
-   `#axonivyportal.components.layouttemplates.reponsiveness <#axonivyportal.components.layouttemplates.reponsiveness>`__
+   `#components.layouttemplates.reponsiveness <#components.layouttemplates.reponsiveness>`__
    for more details.
 
 -  Some customizations are not supported in this release: main menu,
    case header.
+
+.. |less-2-sass| image:: images/installation/less-2-sass.png
+.. |case-body| image:: images/installation/case-body.png
+.. |case-item-details| image:: images/installation/case-item-details.png
+.. |copy-start-process| image:: images/installation/copy-start-process.png
+.. |custom-task-item-details| image:: images/installation/custom-task-item-details.png
+.. |old-task-body| image:: images/installation/old-task-body.png
+.. |server-address-settings| image:: images/installation/server-address-settings.png

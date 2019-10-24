@@ -1,4 +1,4 @@
-.. _axonivyportal.customization.hideTechnicalStuffs:
+.. _customization-hideTechnicalStuffs:
 
 Hide technical stuffs
 =====================

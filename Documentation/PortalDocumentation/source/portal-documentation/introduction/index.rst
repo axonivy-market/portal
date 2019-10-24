@@ -1,9 +1,9 @@
-.. _axonivyportal.introduction:
+.. _introduction:
 
 Introduction
 ************
 
-.. _axonivyportal.introduction.mainfeatures:
+.. _introduction-mainfeatures:
 
 Main features
 -------------
@@ -15,12 +15,12 @@ Main features
 -  Provide customers and other system vendors the flexibility to build
    their own portals, but reuse portal components of Ivy
 
-.. _axonivyportal.introduction.newandnoteworthy:
+.. _introduction-new-and-note-worthy:
 
 New and Noteworthy
 ------------------
 
-.. _axonivyportal.introduction.newandnoteworthy.portalgroupchat:
+.. _introduction-new-and-note-worthy-portal-group-chat:
 
 Portal Group Chat
 ~~~~~~~~~~~~~~~~~
@@ -39,7 +39,7 @@ Portal Group Chat
 
 -  Chat information is stored and can be used for reporting
 
-.. _axonivyportal.introduction.newandnoteworthy.dataproviderexpress:
+.. _introduction-new-and-note-worthy-data-provider-express:
 
 Data Provider for Express
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -51,7 +51,7 @@ Data Provider for Express
 -  Citizen Developer can use these libraries as Data Provider in Express
    Workflow creation
 
-.. _axonivyportal.introduction.newandnoteworthy.announcementportal:
+.. _introduction-new-and-note-worthy-announcement-portal:
 
 Announcements in Portal
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -63,7 +63,7 @@ Announcements in Portal
 
 -  Multilanguage support
 
-.. _axonivyportal.introduction.newandnoteworthy.furtherimprovement:
+.. _introduction-new-and-note-worthy-further-improvement:
 
 Further Improvements
 ~~~~~~~~~~~~~~~~~~~~

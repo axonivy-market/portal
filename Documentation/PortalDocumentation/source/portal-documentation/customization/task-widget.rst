@@ -1,4 +1,4 @@
-.. _axonivyportal.customization.taskdetails:
+.. _customization-task-widget:
 
 Task widget
 ===========
@@ -8,11 +8,11 @@ users can interact with. In order to show needed task's information,
 Portal supports overriding concept for TaskWidget. Each TaskWidget
 contains 2 parts:
 
-1. `UI <#axonivyportal.customization.taskwidget.howtooverideui>`__:
+1. `UI <#customization-task-widget-howtooverideui>`__:
    TaskHeader and TaskListHeader and TaskFilter
 
 2. `Data
-   query <#axonivyportal.customization.taskwidget.howtooverridedataquery>`__:
+   query <#customization-task-widget-howtooverridedataquery>`__:
    display the tasks as you want
 
 ..
@@ -21,13 +21,13 @@ contains 2 parts:
 
    1. Task header customization currently support responsive design.
       Refer to `this
-      part <#axonivyportal.customization.taskwidget.responsivelayout>`__
+      part <#customization-task-widget-responsivelayout>`__
       for more detail.
 
    2. Task header's buttons cannot be modified (they stay where they
       are)
 
-.. _axonivyportal.customization.taskwidget.howtooverideui:
+.. _customization-task-widget-how-to-overide-ui:
 
 How to override task widget's UI
 --------------------------------
@@ -76,11 +76,11 @@ Refer to ``PortalExamples`` project for examples
       .
 
 5. After previous steps, you can override `TaskListHeader and
-   TaskHeader <#axonivyportal.customization.taskwidget.howtooverideui.taskheader>`__
+   TaskHeader <#customization-task-widget-howtooverideui.taskheader>`__
    and
-   `TaskFilter <#axonivyportal.customization.taskwidget.howtooverideui.taskfilter>`__
+   `TaskFilter <#customization-task-widget-howtooverideui.taskfilter>`__
 
-.. _axonivyportal.customization.taskwidget.howtooverideui.taskheader:
+.. _customization-task-widget-how-to-overide-ui-task-header:
 
 Task List Header and Task header
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -129,7 +129,7 @@ function of these columns work:
    should be passed as a parameter to components (refer to
    ``PortalTasks.xhtml``).
 
-.. _axonivyportal.customization.taskwidget.howtooverideui.taskfilter:
+.. _customization-task-widget-how-to-overide-ui-task-filter:
 
 Task filter
 ~~~~~~~~~~~
@@ -181,7 +181,7 @@ Task filter
       set ``filterGroupId`` to an unique identifier for each of your
       ``PortalTasks.xhtml across your projects``
 
-.. _axonivyportal.customization.taskwidget.howtooverridedataquery:
+.. _customization-task-widget-how-to-override-data-query:
 
 How to override task widget's data query
 ----------------------------------------
@@ -222,7 +222,7 @@ How to override task widget's data query
       out.taskView = TaskView.create().dataModel(dataModel)
       .showHeaderToolbar(false).createNewTaskView();
 
-.. _axonivyportal.customization.taskwidget.customtaskdelegate:
+.. _customization-task-widget-custom-task-delegate:
 
 Custom task delegate
 --------------------
@@ -233,7 +233,7 @@ be delegated to. This can be done following these steps:
 1. Introduce a Axon.ivy project which has ``PortalTemplate`` as a
    required library and its own ``PortalStart`` process. Refer to step
    1, 2, 3, 4 in `override task widget's
-   UI <#axonivyportal.customization.taskwidget.howtooverideui>`__ guide.
+   UI <#customization-task-widget-howtooverideui>`__ guide.
 
 2. In your project, override the callable subprocess
    ``CalculateTaskDelegate``
@@ -246,7 +246,7 @@ be delegated to. This can be done following these steps:
    and roles that the task can be delegated to. Modify those two to have
    your own delegate list.
 
-.. _axonivyportal.customization.taskwidget.responsivelayout:
+.. _customization-task-widget-responsive-layout:
 
 How to make reponsive task list
 -------------------------------
@@ -282,8 +282,8 @@ You can refer to ``PortalExamples`` project for examples
       1025. So you could reduce width of browser to 1025 to test and
       decide which columns need to be hidden.
 
-.. |task-filter| image:: images/task-widget/task-filter.png
-.. |calculate-task-delegate| image:: images/task-widget/calculate-task-delegate.png
-.. |responsive-task-list-customization| image:: images/task-widget/responsive-task-list-customization.png
-.. |responsive-task-list-hide-column| image:: images/task-widget/responsive-task-list-hide-column.png
+.. |task-filter| image:: images/-task-widget/task-filter.png
+.. |calculate-task-delegate| image:: images/-task-widget/calculate-task-delegate.png
+.. |responsive-task-list-customization| image:: images/-task-widget/responsive-task-list-customization.png
+.. |responsive-task-list-hide-column| image:: images/-task-widget/responsive-task-list-hide-column.png
 
