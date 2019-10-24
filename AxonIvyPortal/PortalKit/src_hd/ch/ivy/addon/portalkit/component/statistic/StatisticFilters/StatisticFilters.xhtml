@@ -14,12 +14,18 @@
 <cc:implementation>
   <h:outputScript library="js" name="statistic-widget.js" />
   <c:set var="filter" value="#{cc.attrs.filter}" />
-  <h:panelGrid columns="1">
-    <p:commandButton id="apply-filter-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/applyFilter')}" styleClass="apply-filters-btn"
-                       process="statistic-filter-accordion-panel" actionListener="#{cc.attrs.updateListener}" oncomplete="clearChartModels(); updateChartModels();" />
-    <p:accordionPanel id="statistic-filter-accordion-panel" styleClass="statistic-filter-accordion-panel" multiple="true" activeIndex="0,1,2,3">
+
+<div class="ui-g">
+    <div class="ui-g-12 u-padding-0">
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/filter')}" styleClass="chart-filter-header-text"/>
+      <p:commandButton id="apply-filter-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/applyFilter')}"
+        styleClass="apply-filters-btn" process="statistic-filter-accordion-panel" actionListener="#{cc.attrs.updateListener}"
+        oncomplete="clearChartModels(); updateChartModels();" />
+    </div>
+
+    <p:accordionPanel id="statistic-filter-accordion-panel" styleClass="statistic-filter-accordion-panel ui-g-12 ui-fluid" multiple="true" activeIndex="0,1,2,3">
       <!-- PERIOD TIME FILTER -->
-      <p:tab id="period-time-filter-tab">
+      <p:tab id="period-time-filter-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/timePeriod')}">
   
         <f:facet name="title">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/timePeriod')}" />
@@ -31,37 +37,32 @@
             #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/description")}: #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/timePeriodFilterDescription")}
           </p:tooltip>
         </f:facet>
-  
-        <h:panelGrid columns="1" cellpadding="10">
-          <p:row>
-            <p:column>
-              <p:selectOneMenu id="period-time-selection" styleClass="period-time-selection" value="#{filter.timePeriodSelection}">
-                <f:selectItems value="#{filter.allTimePeriodSelection}" var="period" itemLabel="#{period.label}" itemValue="#{period}" />
-                <p:ajax global="false" update="@([id$='filter-from']) @([id$='filter-to'])" />
-              </p:selectOneMenu>
-            </p:column>
-  
-            <p:column>
-              <h:panelGrid columns="2" columnClasses="align-bottom, align-bottom">
-  
-                <p:outputLabel styleClass="item-label" for="filter-from" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')} " />
-                <p:calendar id="filter-from" value="#{filter.createdDateFrom}" disabled="#{filter.timePeriodSelection ne 'CUSTOM'}"
-                  pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"
-                  converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}">
-                  <p:ajax global="false" />
-                </p:calendar>
-  
-                <p:outputLabel for="filter-to" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')} " />
-                <p:calendar id="filter-to" value="#{filter.createdDateTo}" disabled="#{filter.timePeriodSelection ne 'CUSTOM'}"
-                  pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"
-                  converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}">
-                  <p:ajax global="false" />
-                </p:calendar>
-  
-              </h:panelGrid>
-            </p:column>
-          </p:row>
+
+        <h:panelGroup styleClass="ui-g-12">
+          <p:selectOneMenu id="period-time-selection" styleClass="period-time-selection" value="#{filter.timePeriodSelection}">
+            <f:selectItems value="#{filter.allTimePeriodSelection}" var="period" itemLabel="#{period.label}" itemValue="#{period}" />
+            <p:ajax global="false" update="@([id$='filter-from']) @([id$='filter-to'])" />
+          </p:selectOneMenu>
+        </h:panelGroup>
+
+        <h:panelGrid columns="1" columnClasses="ui-g-12 u-padding-0" styleClass="ui-g-12 u-no-padding-top">
+
+          <p:outputLabel styleClass="item-label" for="filter-from" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')} " />
+          <p:calendar id="filter-from" value="#{filter.createdDateFrom}" disabled="#{filter.timePeriodSelection ne 'CUSTOM'}"
+            pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"
+            converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}">
+            <p:ajax global="false" />
+          </p:calendar>
+
+          <p:outputLabel for="filter-to" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')} " styleClass="item-label"/>
+          <p:calendar id="filter-to" value="#{filter.createdDateTo}" disabled="#{filter.timePeriodSelection ne 'CUSTOM'}"
+            pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}"
+            converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}">
+            <p:ajax global="false" />
+          </p:calendar>
+
         </h:panelGrid>
+
       </p:tab>
   
       <!-- CASE CATEGORY FILTER -->
@@ -77,20 +78,13 @@
             #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/description")}: #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/caseCategoryFilterDescription")}
           </p:tooltip>
         </f:facet>
-  
-        <p:scrollPanel mode="native" rendered="#{not empty filter.caseCategories}" styleClass="statistic-filter-container scrollable">
-          <p:selectBooleanCheckbox id="categories-select-all" styleClass="select-all-checkbox"
-            itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll')}" value="#{filter.isAllCategoriesSelected}" >
-            <p:ajax global="false" listener="#{statisticChartCreationBean.updateCaseCategoriesCheckboxes(filter)}" update="categories" />
-          </p:selectBooleanCheckbox>
-          <p:selectManyCheckbox id="categories" disabled="#{filter.isAllCategoriesSelected}"
-            value="#{filter.selectedCaseCategories}" layout="grid" columns="1">
-            <f:selectItems value="#{filter.caseCategories}" var="category" itemValue="#{category.rawPath}" 
-              itemLabel="#{category.category.path}" />
-            <f:selectItem itemValue="" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory')}" />
-            <p:ajax global="false" />
-          </p:selectManyCheckbox>
-        </p:scrollPanel>
+
+        <p:tree id="task-category-filter-tree" value="#{filter.caseCategories.root}" var="node" selectionMode="checkbox"
+          filterBy="#{node}" filterMatchMode="contains" styleClass="statistic-case-category-tree" selection="#{filter.caseCategories.categories}" >
+          <p:treeNode>
+            <h:outputText value="#{node.value}" />
+          </p:treeNode>
+        </p:tree>
       </p:tab>
   
       <!-- ROLE FILTER -->
@@ -175,24 +169,27 @@
         </p:scrollPanel>
       </p:tab>
 
-    <c:forEach items="#{cc.attrs.customFields}" var="tabVar" varStatus="status">
-	   	<p:tab title="#{tabVar}" id="custom-field-filter-#{status.index}">
-	   		<f:facet name="title">
-	         <h:outputText value="#{tabVar}" />
-	         <p:outputLabel id="case-custom-#{status.index}" styleClass="chart-filter-info-icon"><span class="fa fa-info-circle filter-info"/></p:outputLabel>
-	         <p:tooltip for="case-custom-#{status.index}">
-	           #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')},
-	           #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory')},
-	           #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTime')}
-	         </p:tooltip>
-	       </f:facet>
-	      <ic:ch.ivy.addon.portalkit.component.statistic.CustomField id="#{tabVar}" fieldName="#{tabVar}"	      	
-	          completeMethod="#{statisticChartCreationBean.populateCustomStringFieldAutoComplete}" /> 
-    	</p:tab>
-  	</c:forEach>
-  
+      <c:forEach items="#{cc.attrs.customFields}" var="tabVar" varStatus="status">
+        <p:tab title="#{tabVar}" id="custom-field-filter-#{status.index}">
+          <f:facet name="title">
+            <h:outputText value="#{tabVar}" />
+            <p:outputLabel id="case-custom-#{status.index}" styleClass="chart-filter-info-icon">
+              <span class="fa fa-info-circle filter-info" />
+            </p:outputLabel>
+            <p:tooltip for="case-custom-#{status.index}">
+               #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')},
+               #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory')},
+               #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTime')}
+            </p:tooltip>
+          </f:facet>
+          <ic:ch.ivy.addon.portalkit.component.statistic.CustomField id="#{tabVar}" fieldName="#{tabVar}"
+            completeMethod="#{statisticChartCreationBean.populateCustomStringFieldAutoComplete}" />
+        </p:tab>
+      </c:forEach>
+
     </p:accordionPanel>
-  </h:panelGrid>
+
+</div>
 
 </cc:implementation>
 </html>
