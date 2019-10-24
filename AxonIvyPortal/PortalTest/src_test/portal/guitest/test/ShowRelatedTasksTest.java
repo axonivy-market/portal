@@ -104,7 +104,7 @@ public class ShowRelatedTasksTest extends BaseTest {
     grantTaskReadOwnCaseTaskPermissionsToCurrentUser();
     openCaseDetail();
     TaskDetailsPage taskDetailsPage = detailsPage.openTasksOfCasePage(0);
-    assertEquals("Task Item Detail", taskDetailsPage.getPageTitle());
+    assertEquals("Task Details", taskDetailsPage.getPageTitle());
   }
   
   @Test
