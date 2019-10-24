@@ -5,16 +5,16 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.model.chart.BarChartModel;
-import org.primefaces.model.chart.DonutChartModel;
+import org.primefaces.model.charts.bar.BarChartModel;
+import org.primefaces.model.charts.donut.DonutChartModel;
 
 import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
 import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
@@ -29,7 +29,6 @@ import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
-import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
@@ -49,6 +48,11 @@ public class StatisticChartCreationBean implements Serializable {
   private Map<String, List<String>> customFieldFilters = new HashMap<>();
 
   public static final int CASE_CATEGORIES_TYPE = 0;
+  
+  @PostConstruct
+  public void init() {
+    statisticService.fetchStatisticColor();
+  }
   
   /**
    * Update filters
@@ -83,12 +87,11 @@ public class StatisticChartCreationBean implements Serializable {
     oldFilter.setCreatedDateFrom(createdDateFrom == null ? null : new Date(createdDateFrom.getTime()));
     oldFilter.setCreatedDateTo(createdDateTo == null ? null : new Date(createdDateTo.getTime()));
     oldFilter.setIsAllCaseStatesSelected(filter.getIsAllCaseStatesSelected());
-    oldFilter.setIsAllCategoriesSelected(filter.getIsAllCategoriesSelected());
     oldFilter.setIsAllRolesSelected(filter.getIsAllRolesSelected());
     oldFilter.setIsAllTaskPrioritiesSelected(filter.getIsAllTaskPrioritiesSelected());
-    if (!filter.getIsAllCategoriesSelected()) {
-      updateOldListToNewList(oldFilter.getSelectedCaseCategories(), filter.getSelectedCaseCategories());
-    }
+
+    updateCaseCategory(filter, oldFilter);
+
     if (!filter.getIsAllRolesSelected()) {
       updateOldListToNewList(oldFilter.getSelectedRoles(), filter.getSelectedRoles());
     }
@@ -99,6 +102,16 @@ public class StatisticChartCreationBean implements Serializable {
       updateOldListToNewList(oldFilter.getSelectedTaskPriorities(), filter.getSelectedTaskPriorities());
     }
     oldFilter.setCustomFieldFilters(filter.getCustomFieldFilters());
+  }
+
+  private void updateCaseCategory(StatisticFilter filter, StatisticFilter oldFilter) {
+    filter.setIsAllCategoriesSelected(filter.getCaseCategories().getRoot().isSelected());
+    filter.setSelectedCaseCategories(filter.getCaseCategories().getCategoryPaths());
+
+    oldFilter.setIsAllCategoriesSelected(filter.getIsAllCategoriesSelected());
+    updateOldListToNewList(oldFilter.getCaseCategories().getCategoryPaths(),
+        filter.getCaseCategories().getCategoryPaths());
+    updateOldListToNewList(oldFilter.getSelectedCaseCategories(), filter.getSelectedCaseCategories());
   }
 
   public boolean checkIfAnyFilterChanges(StatisticFilter filter, StatisticFilter oldFilter) {
@@ -150,7 +163,7 @@ public class StatisticChartCreationBean implements Serializable {
       return true;
     }
     //compare other check box of case categories if select all is not checked
-    return !filter.getIsAllCategoriesSelected() && !oldFilter.getSelectedCaseCategories().equals(filter.getSelectedCaseCategories());
+    return !filter.getIsAllCategoriesSelected() && !oldFilter.getCaseCategories().getCategories().equals(filter.getCaseCategories().getCategories());
   }
 
   private boolean checkIfAnyRoleChanged(StatisticFilter filter, StatisticFilter oldFilter) {
@@ -180,17 +193,6 @@ public class StatisticChartCreationBean implements Serializable {
       return true;
     }
     return oldDate.compareTo(currentDate) != 0;
-  }
-
-  public void updateCaseCategoriesCheckboxes(StatisticFilter filter) {
-    List<String> selectedCaseCategories = filter.getSelectedCaseCategories();
-    if (filter.getIsAllCategoriesSelected()) {
-      for (String category : filter.getCaseCategories().stream().map(CategoryTree::getRawPath).collect(Collectors.toList())) {
-        addToListIfNotExist(selectedCaseCategories, category);
-      }
-    } else {
-      selectedCaseCategories.clear();
-    }
   }
 
   public void updateRolesCheckboxes(StatisticFilter filter) {
