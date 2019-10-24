@@ -16,15 +16,13 @@ Ps0 @UdProcessEnd f1 '' #zField
 Ps0 @PushWFArc f2 '' #zField
 >Proto Ps0 Ps0 ProcessesProcess #zField
 Ps0 f0 guid 167DF312477FF26A #txt
-Ps0 f0 method start(String) #txt
-Ps0 f0 inParameterDecl '<String menuState> param;' #txt
-Ps0 f0 inParameterMapAction 'out.menuState=param.menuState;
-' #txt
+Ps0 f0 method start() #txt
+Ps0 f0 inParameterDecl '<> param;' #txt
 Ps0 f0 outParameterDecl '<> result;' #txt
 Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name></name>
+        <name>start()</name>
     </language>
 </elementInfo>
 ' #txt
