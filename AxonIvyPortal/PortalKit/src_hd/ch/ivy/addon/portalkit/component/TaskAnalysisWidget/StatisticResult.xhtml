@@ -124,13 +124,13 @@
       $(document).ready(function(){
         setTimeout(function(){initializeScrollbar();}, 100);
       });
-		
-	  function liveScroll(){
-	  	PF('task-table').scrollOffset=0;    
+    
+    function liveScroll(){
+      PF('task-table').scrollOffset=0;    
         PF('task-table').scrollBody.scrollTop(1);   
         PF('task-table').allLoadedLiveScroll = false; 
-	  }
-	  
+    }
+    
       function initializeScrollbar() {
         var $taskTable = $("[id$='statistic-result-form:task-table']");
         var resultTableBody = $taskTable.find(".ui-datatable-scrollable-body").get(0);

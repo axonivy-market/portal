@@ -294,13 +294,15 @@ body .ui-panelgrid tbody tr.ui-widget-content {
 }
 
 /*Style For Statistic Widget -----------------------------------------------------------------------------*/
-.statistic-carousel .ui-carousel-header {
-    background-color: $primaryColor;
+.statistic-carousel .ui-carousel-header,
+.chart-list-container .filter-container .ui-accordion-header.ui-state-default {
+    background-color: $statisticPanelHeader;
+    border-color: $statisticPanelHeaderBorder;
 }
 
 .statistic-carousel .ui-carousel-header .ui-carousel-next-button:hover,
 .statistic-carousel .ui-carousel-header .ui-carousel-prev-button:hover {
-    background-color: rgba($primaryColor, 0.2) !important;
+    color: rgba($statisticPanelHeaderText, 1) !important;;
 }
 
 .dashboard-chart-panel .ui-panel-titlebar {
@@ -309,6 +311,12 @@ body .ui-panelgrid tbody tr.ui-widget-content {
 
 .statistic-selection .add-link:hover {
     color: $primaryColor !important;
+}
+
+.statistic-carousel .ui-carousel-header-title .chart-name,
+.statistic-carousel .ui-carousel-header .ui-carousel-button.ui-icon,
+.statistic-carousel .ui-carousel .ui-carousel-header .ui-carousel-header-title .chart-info {
+  color: $statisticPanelHeaderText;
 }
 
 /*Style For Buttons --------------------------------------------------------------------------------------*/
@@ -878,7 +886,7 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
 	}
 }
 
-.task-detail-header, .analysis-task-widget {
+.task-detail-header, .analysis-task-widget, .statistic-widget-container {
 	.ui-button.ui-widget.task-details-back-btn , .ui-button.ui-widget.back-button{
 		background-color: transparent;
 		box-shadow: none;
@@ -902,4 +910,46 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
 	top: unset;
 	bottom: 5px;
 	right: 7px;
+}
+
+/*Style For Tree node - Override standard Serenity ------------------------------------------------------------*/
+.ui-tree-container .ui-treenode-content {
+	.ui-treenode-label.ui-state-highlight {
+		background-color: transparent !important;
+	}
+	.ui-treenode-label.ui-treenode-outline {
+		outline: 0 solid transparent !important;
+	}
+	.ui-chkbox.ui-widget.ui-selection {
+		.ui-chkbox-icon.ui-icon.ui-icon-check, .ui-chkbox-icon.ui-icon.ui-icon-minus {
+			color: $primaryLightestColor !important;
+		}
+	}
+}
+
+li.ui-treenode.ui-treenode-selected .ui-chkbox.ui-widget.ui-selection {
+	.ui-chkbox-box.ui-widget.ui-state-default {
+		&:before {
+			animation: rippleOn 400ms forwards ease-out;
+			height: 0.3rem;
+		}
+	}
+}
+
+.ui-treenode.ui-treenode-parent.ui-treenode-selected,
+.ui-treenode.ui-treenode-parent.ui-treenode-hasselected span.ui-treenode-content.ui-tree-selectable:first-child div.ui-chkbox.ui-widget.ui-selection,
+li.ui-treenode.ui-treenode-selected .ui-chkbox.ui-widget.ui-selection,
+li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectable:first-child .ui-chkbox.ui-widget.ui-selection,
+li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectable:first-child .ui-chkbox.ui-widget.ui-selection {
+	div.ui-chkbox-box.ui-widget.ui-state-default {
+		border-color: $primaryColor;
+		background-color: $primaryColor;
+	}
+}
+
+li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectable:first-child {
+	.ui-chkbox.ui-widget.ui-selection .ui-chkbox-box.ui-widget.ui-state-default {
+		border-color: $checkboxBorderColor !important;
+		background-color: transparent !important;
+	}
 }

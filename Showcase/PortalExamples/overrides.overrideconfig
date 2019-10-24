@@ -15,6 +15,7 @@
     /Functional-Processes.GetDocumentList "Functional Processes/GetDocumentListOverride"
     /Functional-Processes.OpenPortalCaseDetailsHook "Functional Processes/OpenPortalCaseDetailsOverride"
     /Functional-Processes.OpenPortalTasks "Functional Processes/OpenPortalTasksOverride"
+    /Functional-Processes.DefaultChartColors "Functional Processes/DefaultChartColorsOverride"
     /Functional-Processes.BuildTaskQuery "Functional Processes/BuildTaskQueryOverride"
     /Functional-Processes.OpenPortalTaskDetailsHook "Functional Processes/OpenPortalTaskDetailsOverride"
     /Functional-Processes.DefaultStatisticCustomField "Functional Processes/DefaultStatisticCustomFieldOverride"
