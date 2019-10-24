@@ -402,10 +402,8 @@ Pt0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f13 1788 136 120 48 -45 -8 #rect
 Pt0 f13 @|UserDialogIcon #fIcon
 Pt0 f82 dialogId ch.ivy.addon.portal.generic.admin.PortalDashBoard #txt
-Pt0 f82 startMethod startWithMenuState(String) #txt
-Pt0 f82 requestActionDecl '<String menuState> param;' #txt
-Pt0 f82 requestMappingAction 'param.menuState=ch.ivy.addon.portalkit.util.MenuUtils.getMenuState();
-' #txt
+Pt0 f82 startMethod start() #txt
+Pt0 f82 requestActionDecl '<> param;' #txt
 Pt0 f82 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f82 responseMappingAction 'out=in;
@@ -779,10 +777,8 @@ and task view</name>
 Pt0 f69 328 712 112 48 -39 -16 #rect
 Pt0 f69 @|StepIcon #fIcon
 Pt0 f74 dialogId ch.ivy.addon.portal.generic.Processes #txt
-Pt0 f74 startMethod start(String) #txt
-Pt0 f74 requestActionDecl '<String menuState> param;' #txt
-Pt0 f74 requestMappingAction 'param.menuState=ch.ivy.addon.portalkit.util.MenuUtils.getMenuState();
-' #txt
+Pt0 f74 startMethod start() #txt
+Pt0 f74 requestActionDecl '<> param;' #txt
 Pt0 f74 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f74 responseMappingAction 'out=in;
