@@ -17,18 +17,21 @@
       <h:panelGroup layout="block" styleClass="ui-g #{dataModel.compactMode ? '' : 'task-list-container'}">
         <h:panelGroup layout="block" class="ui-g-3 ui-lg-3 ui-md-4 ui-sm-12 compact-process-widget" rendered="#{displayProcessWidget}">
           <ui:insert name="processWidget">
-              <ic:ch.ivy.addon.portalkit.component.CompactProcessWidget id="process-widget"
-                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}"
-                mobileTitle="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/myProcesses')}">
-                <f:facet name="headerToolbar">
-                  <ic:ch.ivy.addon.portal.generic.ProcessNavigator id="process-link"
-                    label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/seeAllProcesses')}" />
-                </f:facet>
-              </ic:ch.ivy.addon.portalkit.component.CompactProcessWidget>
+            <ic:ch.ivy.addon.portalkit.component.CompactProcessWidget id="process-widget"
+              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}"
+              mobileTitle="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/myProcesses')}">
+              <f:facet name="headerToolbar">
+                <ic:ch.ivy.addon.portal.generic.ProcessNavigator id="process-link"
+                  label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/seeAllProcesses')}" />
+              </f:facet>
+            </ic:ch.ivy.addon.portalkit.component.CompactProcessWidget>
           </ui:insert>
         </h:panelGroup>
         <h:panelGroup layout="block" rendered="#{displayTaskWidget}"
-          styleClass="ui-g-6 ui-lg-6 ui-md-8 ui-sm-12 #{dataModel.compactMode ? 'ui-no-padding compact-task-widget' : ''} #{not displayProcessWidget or not displayStatisticWidget ? 'ui-g-9 ui-lg-9 ui-md-8' : ''} #{not displayProcessWidget and not displayStatisticWidget ? 'ui-g-12 ui-lg-12 ui-md-12' : ''}">
+          styleClass="ui-g-6 ui-lg-6 ui-md-8 ui-sm-12 dashboard-task-widget-container
+          #{dataModel.compactMode ? 'compact-task-widget' : ''}
+          #{not displayProcessWidget or not displayStatisticWidget ? 'ui-g-9 ui-lg-9 ui-md-8' : ''}
+          #{not displayProcessWidget and not displayStatisticWidget ? 'ui-g-12 ui-lg-12 ui-md-12' : ''}">
           <ui:insert name="taskWidget">
             <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" dataModel="#{dataModel}"
               title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}" currentPortalPage="HOME_PAGE"
@@ -44,8 +47,8 @@
         <h:panelGroup layout="block" class="ui-g-3 ui-lg-3 ui-md-hidden ui-sm-hidden" rendered="#{displayStatisticWidget}">
           <ui:insert name="statisticWidget">
             <h:panelGroup layout="block" id="statistic-widget-container">
-              <ic:ch.ivy.addon.portalkit.component.StatisticWidget id="statistics-widget" compactMode="true"
-                showTaskListImmediately="true" statisticChartList="#{statisticChartList}">
+              <ic:ch.ivy.addon.portalkit.component.StatisticWidget id="statistics-widget" compactMode="true" showTaskListImmediately="true"
+                statisticChartList="#{statisticChartList}">
                 <f:facet name="headerToolbar">
                   <ic:ch.ivy.addon.portal.generic.StatisticNavigator id="statistic-link"
                     label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/showAllCharts')}" />
@@ -56,23 +59,12 @@
         </h:panelGroup>
       </h:panelGroup>
 
-      <div class="js-custom-widget-container ui-g">
+      <h:panelGroup layout="block" class="js-custom-widget-container ui-g">
         <div class="ui-g-12 u-padding-0">
           <ui:insert name="customWidget">
           </ui:insert>
         </div>
-      </div>
-
-    </ui:define>
-
-    <ui:define name="footer">
-      <script type="text/javascript">
-              $(function() {
-                var simpleScreen = new TaskListScreenHandler();
-                var responsiveToolkit = ResponsiveToolkit(simpleScreen);
-                Portal.init(responsiveToolkit);
-              });
-            </script>
+      </h:panelGroup>
     </ui:define>
   </ui:composition>
 </h:body>
