@@ -38,7 +38,7 @@ public class CaseWidgetCustomizationTest extends BaseTest {
 	  caseWidgetPage.sortCaseListByColumn(CUSTOMER_NAME_CASE_LIST_HEADER_ID);
 	  assertFalse(caseWidgetPage.isCaseListColumnExist(STATE_COLUMN_HEADER));
     assertTrue(caseWidgetPage.isCaseListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
-    assertTrue("CustomVarcharField10".equals(caseWidgetPage.getCaseListCustomCellValue(CUSTOMER_NAME_HEADER_TEXT_ID)));
+    assertEquals("CustomVarcharField10", caseWidgetPage.getCaseListFirstCustomCellValue());
 	}
 	
 	@Test
@@ -63,8 +63,6 @@ public class CaseWidgetCustomizationTest extends BaseTest {
 		CaseWidgetPage caseWidgetPage = mainMenuPage.selectCaseMenu();
 		caseWidgetPage
 				.sortCaseListByColumn(CUSTOMER_NAME_CASE_LIST_HEADER_ID);
-		assertTrue("CustomVarcharField10"
-				.equals(caseWidgetPage
-						.getCaseListCustomCellValue(CUSTOMER_NAME_HEADER_TEXT_ID)));
+    assertEquals("CustomVarcharField10", caseWidgetPage.getCaseListFirstCustomCellValue());
 	}
 }

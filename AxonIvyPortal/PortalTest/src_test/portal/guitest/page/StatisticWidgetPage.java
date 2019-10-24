@@ -44,11 +44,15 @@ public class StatisticWidgetPage extends TemplatePage {
   }
 
   public void switchCreateMode() {
-    waitForElementDisplayed(By.id("statistics-widget:create-chart-link"), true, DEFAULT_TIMEOUT);
-    WebElement switchLink = findElementById("statistics-widget:create-chart-link");
-    switchLink.click();
+    waitForElementDisplayed(By.cssSelector("a[id$='create-chart-link']"), true, DEFAULT_TIMEOUT);
+    findElementByCssSelector("a[id$='create-chart-link']").click();
   }
 
+  public void backToDashboard() {
+    waitForElementDisplayed(By.cssSelector("button[id$='back-from-chart-creation']"), true);
+    findElementByCssSelector("button[id$='back-from-chart-creation']").click();
+  }
+  
   public TaskAnalysisWidgetPage navigateToTaskAnalysisPage() {
     String taskAnalysisLinkString = "statistics-widget:task-analysis-page-navigation-link";
     waitForElementDisplayed(By.id(taskAnalysisLinkString), true, DEFAULT_TIMEOUT);
@@ -82,5 +86,22 @@ public class StatisticWidgetPage extends TemplatePage {
 
   public boolean hasTaskAnalysisLink() {
     return isElementPresent(By.id("statistics-widget:task-analysis-page-navigation-link"));
+  }
+
+  public String getChartName(int chartIndex) {
+    return findElementByCssSelector(String.format("div[id$='%d:chart-name-container'] #chart-name", chartIndex)).getText();
+  }
+  
+  public String getRestoreDefaultButtonName() {
+    return findElementByCssSelector("span[id$='restore-default-chart-link-label']").getText();
+  }
+
+  public void restoreDefaultCharts() {
+    findElementByCssSelector("span[id$='restore-default-chart-link-label']").click();
+    waitAjaxIndicatorDisappear();
+    waitForElementDisplayed(By.id("statistics-widget:restore-confirmation-dialog"), true, 30);
+    WebElement okButton = findElementById("statistics-widget:confirm-restore");
+    okButton.click();
+    waitAjaxIndicatorDisappear();
   }
 }
