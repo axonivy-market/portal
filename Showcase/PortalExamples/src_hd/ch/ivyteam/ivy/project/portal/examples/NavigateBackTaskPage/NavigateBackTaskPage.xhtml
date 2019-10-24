@@ -13,33 +13,46 @@
     <ui:define name="dynamicTabs">
       <!-- Define your tabs here -->
       <p:tab title="Employee information">
-        <h:panelGrid columns="3" id="employee-info">
-          <p:outputLabel value="First name" for="first-name" />
-          <p:inputText id="first-name" value="#{data.employeeInfo.firstName}" required="true"
-            requiredMessage="This field is required" />
+        <h:panelGrid columns="2" columnClasses="TexAlLeft ui-g-6, ui-g-6" styleClass="ui-g-4 ui-sm-12 ui-fluid" id="employee-info">
+          <h:panelGroup class="md-inputfield MarTop10">
+            <p:inputText id="first-name" value="#{data.employeeInfo.firstName}" required="true" requiredMessage="This field is required" />
+            <p:outputLabel value="First name" for="first-name" />
+          </h:panelGroup>
           <p:message id="first-name-msg" for="first-name" />
 
-          <p:outputLabel value="Last name" />
-          <p:inputText value="#{data.employeeInfo.lastName}" />
-          <br />
+          <h:panelGroup class="md-inputfield MarTop20">
+            <p:inputText  value="#{data.employeeInfo.lastName}" />
+            <p:outputLabel value="Last name" />
+          </h:panelGroup>
+          <p:spacer />
 
-          <p:outputLabel value="Birthday" />
-          <p:calendar value="#{data.employeeInfo.birthDay}" />
+          <h:panelGrid columns="1">
+            <p:outputLabel value="Birthday" />
+            <p:calendar value="#{data.employeeInfo.birthDay}" />
+          </h:panelGrid>
+          <p:spacer />
         </h:panelGrid>
       </p:tab>
 
       <p:tab title="Company information">
-        <h:panelGrid columns="3" id="company-info">
-          <p:outputLabel value="City" />
-          <p:inputText value="#{data.employeeInfo.city}" />
-          <br />
-
-          <p:outputLabel value="Country" for="country" />
-          <p:inputText id="country" value="#{data.employeeInfo.country}" />
+        <h:panelGrid columns="2" columnClasses="TexAlLeft ui-g-6, ui-g-6" styleClass="ui-g-4 ui-sm-12 ui-fluid" id="company-info">
+          <h:panelGroup class="md-inputfield MarTop10">
+            <p:inputText id="country" value="#{data.employeeInfo.country}" required="true" />
+            <p:outputLabel value="Country" for="country" />
+          </h:panelGroup>
           <p:message id="country-msg" for="country" />
 
-          <p:outputLabel value="Email" />
-          <p:inputText value="#{data.employeeInfo.email}" />
+          <h:panelGroup class="md-inputfield MarTop20">
+            <p:inputText id="city" value="#{data.employeeInfo.city}" />
+            <p:outputLabel value="City" for="city" />
+          </h:panelGroup>
+          <p:spacer />
+
+          <h:panelGroup class="md-inputfield MarTop20">
+            <p:inputText value="#{data.employeeInfo.email}" type="email" id="email" />
+            <p:outputLabel value="Email" />
+          </h:panelGroup>
+          <p:spacer/>
         </h:panelGrid>
       </p:tab>
     </ui:define>
@@ -48,11 +61,9 @@
       <!-- Define action buttons -->
       <h:panelGroup styleClass="MarTop5 DispBlock" id="command-group">
         <p:commandButton value="Finish" actionListener="#{logic.finish}" id="finish-button" partialSubmit="true"
-          process="employee-info company-info" update="employee-info company-info">
-        </p:commandButton>
-
+          process="employee-info company-info" update="employee-info company-info" />
+        <p:spacer width="5"/>
         <p:commandButton value="Back" actionListener="#{logic.back}" id="back-button" immediate="true" />
-
       </h:panelGroup>
     </ui:define>
 
