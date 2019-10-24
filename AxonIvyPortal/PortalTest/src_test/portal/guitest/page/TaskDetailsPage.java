@@ -18,9 +18,7 @@ public class TaskDetailsPage extends TemplatePage {
   public TaskDetailsPage() {}
 
   public String getCreatedOnDateText() {
-    WebElement findElement = taskDetailsItem
-        .findElement(By.cssSelector("#task-data > table > tbody > tr:nth-child(8) > td.task-details-data-2nd-column"));
-    return findElement.getText();
+    return findElementByCssSelector("span[id$='start-date']").getText();
   }
 
   public List<String> getTaskNoteAuthors() {

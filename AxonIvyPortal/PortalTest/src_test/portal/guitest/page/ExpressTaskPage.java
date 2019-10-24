@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 
 public class ExpressTaskPage extends TaskTemplatePage {
   public void finish() {
-    click(By.id("form:ok-btn"));
+    clickByCssSelector("button[id$='ok-btn']");
   }
 
   public boolean isDocumentTableVisible() {
