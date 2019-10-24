@@ -312,4 +312,9 @@ public abstract class TemplatePage extends AbstractPage {
       return new SearchResultPage();
     }
   }
+  
+  public void clickByCssSelector(String cssSelector) {
+    waitForElementDisplayed(By.cssSelector(cssSelector), true);
+    findElementByCssSelector(cssSelector).click();
+  }
 }

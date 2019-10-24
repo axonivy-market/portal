@@ -207,9 +207,9 @@ public class CaseWidgetPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
 
-  public String getCaseListCustomCellValue(String columnId) {
-    WebElement columnHeader = findElementById(columnId);
-    return columnHeader.getText();
+  public String getCaseListFirstCustomCellValue() {
+    return findElementByCssSelector(
+        "div[id$=':0\\:case-item\\:case-item-container'] span.customized-case-header-column").getText();
   }
 
   public int getCaseCount() {
