@@ -175,7 +175,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .fieldset-no-border .ui-fieldset-toggler:before {
-    font-family: 'FontAwesome';
     display: flex;
     justify-content: center;
     align-items: center;
@@ -268,7 +267,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .widget-header-filter-input.ui-inputfield {
   background-color: transparent;
-  font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   color: black;
@@ -277,7 +275,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .widget-header-filter-input.ui-inputfield.ui-state-hover, .widget-header-filter-input.ui-inputfield.ui-state-focus {
   background-color: transparent;
-  font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
 }
@@ -336,7 +333,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 /********************** START CASE BOX ***********************/
 .grid-item-header {
-  font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
 }
@@ -385,7 +381,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .filter-category-checkbox-tree .ui-icon.ui-icon-search:before {
-  font-family: 'FontAwesome' !important;
   content: "\f002";
 }
 
@@ -780,7 +775,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
 }
@@ -970,7 +964,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
     margin: 0;
     width: 160px;
     color: rgba(0, 0, 0, 0.5) !important;
-    font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
     line-height: 1.4rem;
@@ -1226,7 +1219,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.8);
   -moz-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.8);
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.8);
-  font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
 }
@@ -1306,14 +1298,12 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 .compact-toggle-tasks-link.fa-plus:before {
   padding-right: 4px;
   font-size: 1.4rem !important;
-  font-family: 'FontAwesome' !important;
   content: '\f067';
 }
 .compact-process-widget .toggle-processes-link.fa-minus:before,
 .compact-toggle-tasks-link.fa-minus:before {
   padding-right: 4px;
   font-size: 1.4rem !important;
-  font-family: 'FontAwesome' !important;
   content: '\f068';
 }
 
@@ -1872,7 +1862,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .task-start-list .name-cell {
-  font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   display: block;
@@ -2003,7 +1992,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   margin: 0;
   width: 160px;
   color: rgba(0, 0, 0, 0.5) !important;
-  font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   line-height: 1.2rem;
@@ -2171,7 +2159,6 @@ _:-ms-input-placeholder, :root .case-details > * {
 
 .case-details-data-2nd-column {
   text-align: left;
-  font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   line-height: 2.0rem;
@@ -2968,7 +2955,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 /********************************** ABSENCES AND DEPUTY **********************************/
 .substituted-user-text {
-  font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   color: #757575;
@@ -3434,7 +3420,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .edit-statistic-container .chart-list .chart-container .add-link {
   display: block;
   margin-top: 5px;
-  font-family: 'Roboto';
   font-style: normal;
   width: 50%;
   float: left;
@@ -3626,9 +3611,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .chart-info-header {
   display: block;
   color: #656565;
-  font-family: 'Roboto';
   font-style: normal;
-  font-weight: 400;
   font-weight: bold;
   margin-top: 20px;
   margin-bottom: 10px;
@@ -3893,7 +3876,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   margin: 0;
   width: 160px;
   color: rgba(0, 0, 0, 0.5) !important;
-  font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   line-height: 36px;
@@ -4174,12 +4156,10 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 
 .ui-inplace .ui-inplace-editor .ui-button.ui-inplace-save .ui-icon-check:before {
-  font-family: 'FontAwesome' !important;
   content: '\f00c';
 }
 
 .ui-inplace .ui-inplace-editor .ui-button.ui-inplace-cancel .ui-icon-close:before {
-  font-family: 'FontAwesome' !important;
   content: '\f00d';
 }
 
