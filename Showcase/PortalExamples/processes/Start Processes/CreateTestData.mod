@@ -276,7 +276,7 @@ TaskTriggered.TYPE=0' #txt
 Cs0 f43 caseData 'businessCase.attach=false
 case.description=TestCase Description <%\=param.count%>
 case.name=TestCase Name <%\=param.count%>
-customFields.STRING.CustomVarCharField1="CustomVarcharField1" + param.count
+customFields.STRING.CustomVarcharField1="CustomVarcharField1" + param.count
 customFields.TIMESTAMP.CustomTimestampField1=new DateTime()' #txt
 Cs0 f43 showInStartList 1 #txt
 Cs0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -306,7 +306,8 @@ if(in.count % 3 == 0){
 	a = "CaseGroup/Group3/TestCase" + in.count;
 	in.category = "TaskGroup/Group3/TestCase" + in.count;
 }
-ivy.case.setCategoryPath(a);' #txt
+ivy.case.setCategoryPath(a);
+' #txt
 Cs0 f58 164 362 112 44 0 -8 #rect
 Cs0 f58 @|StepIcon #fIcon
 Cs0 f47 actionTable 'out=in1;
