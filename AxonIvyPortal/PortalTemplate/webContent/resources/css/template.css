@@ -11,12 +11,8 @@
     font-size: 1.4rem;
 }
 
-.mobile-global-search-container .global-search-icon {
-    right: 15px;
-}
-
 .mobile-global-search-container {
-    padding: 0 3px 0 5px;
+    margin: 0 9px;
 }
 
 .global-search-input {
@@ -25,7 +21,7 @@
 }
 
 .mobile-global-search-container .global-search-input {
-    width: 95% !important;
+    width: 100% !important;
 }
 
 .global-search {
