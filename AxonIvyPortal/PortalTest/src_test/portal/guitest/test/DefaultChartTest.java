@@ -40,17 +40,9 @@ public class DefaultChartTest extends BaseTest {
     Sleeper.sleepTight(20000);
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     
-    WebElement taskByExpiryChartName1
-      = statisticWidgetPage.findElementById("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:0:chart-name");
-    
-    WebElement taskByExpiryChartName2
-      = statisticWidgetPage.findElementById("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:1:chart-name");
-    
-    WebElement restoreDefault = statisticWidgetPage.findElementById("statistics-widget:restore-default-chart-link-label");
-    
-    assertEquals(DEFAULT_NAME_1, taskByExpiryChartName1.getText());
-    assertEquals(DEFAULT_NAME_2, taskByExpiryChartName2.getText());
-    assertEquals(RESTORE_DEFAULT, restoreDefault.getText());
+    assertEquals(DEFAULT_NAME_1, statisticWidgetPage.getChartName(0));
+    assertEquals(DEFAULT_NAME_2, statisticWidgetPage.getChartName(1));
+    assertEquals(RESTORE_DEFAULT, statisticWidgetPage.getRestoreDefaultButtonName());
   }
   
   @Test
@@ -63,49 +55,30 @@ public class DefaultChartTest extends BaseTest {
     statisticWidgetPage.switchCreateMode();
     Sleeper.sleepTight(5000);
     createCaseByFinishedTask(statisticWidgetPage);
-    statisticWidgetPage.switchCreateMode();
+    statisticWidgetPage.backToDashboard();
     Sleeper.sleepTight(5000);
-    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:0:chart-name"), true);
-    WebElement restoreDefault = statisticWidgetPage.findElementById("statistics-widget:restore-default-chart-link-label");
-    
-    restoreDefault.click();
-    statisticWidgetPage.waitAjaxIndicatorDisappear();
-    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:restore-confirmation-dialog"), true, 30);
-    
-    WebElement okButton = statisticWidgetPage.findElementById("statistics-widget:confirm-restore");
-    okButton.click();
-    
-    statisticWidgetPage.waitAjaxIndicatorDisappear();
-    
-    WebElement taskByExpiryChartName1
-    = statisticWidgetPage.findElementById("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:0:chart-name");
-    
-    WebElement taskByExpiryChartName2
-    = statisticWidgetPage.findElementById("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:1:chart-name");
-    
+    statisticWidgetPage.restoreDefaultCharts();
+
     WebElement taskByExpiryChartName3 = null ;
     try {
       taskByExpiryChartName3 = statisticWidgetPage.findElementById("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:2:chart-name");
     } catch (Exception ex) {
     }
     
-    assertEquals(DEFAULT_NAME_1, taskByExpiryChartName1.getText());
-    assertEquals(DEFAULT_NAME_2, taskByExpiryChartName2.getText());
+    assertEquals(DEFAULT_NAME_1, statisticWidgetPage.getChartName(0));
+    assertEquals(DEFAULT_NAME_2, statisticWidgetPage.getChartName(1));
     assertEquals(null, taskByExpiryChartName3);
   }
   
   private void createCaseByFinishedTask(StatisticWidgetPage statisticWidgetPage) {
-    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-finished-task-link"), true, 30);
-    WebElement createCaseByFinishedTaskLink
-      = statisticWidgetPage.findElementById("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-finished-task-link");
-    createCaseByFinishedTaskLink.click();
+    statisticWidgetPage.waitForElementDisplayed(By.cssSelector("a[id$='create-case-by-finished-task-link']"), true, 30);
+    statisticWidgetPage.findElementByCssSelector("a[id$='create-case-by-finished-task-link']").click();
     statisticWidgetPage.waitAjaxIndicatorDisappear();
 
-    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:add-chart-dialog"), true, 30);
-    WebElement chartNameInput
-      = statisticWidgetPage.findElementById("statistics-widget:chart-creation-widget:chart-management-form:add-statistic-form:chart-name-input");
+    statisticWidgetPage.waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), true, 30);
+    WebElement chartNameInput = statisticWidgetPage.findElementByCssSelector("input[id$='chart-name-input']");
     WebElement createChartButton
-      = statisticWidgetPage.findElementById("statistics-widget:chart-creation-widget:chart-management-form:add-statistic-form:chart-save-command");
+      = statisticWidgetPage.findElementByCssSelector("button[id$='chart-save-command']");
 
     chartNameInput.sendKeys("User chart");
     createChartButton.click();
