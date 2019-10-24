@@ -17,21 +17,16 @@ public class ExpressProcessPage extends TemplatePage {
 
 	public void fillProcessProperties(boolean isAdhocWF, boolean isCreateOwn, String processName,
 			String processDescription) {
-		if (isAdhocWF) {
-			selectCheckbox("form:process-type:0");
-		} else {
-			selectCheckbox("form:process-type:1");
+		if (!isAdhocWF) {
+		  click(By.cssSelector("div[id='form:process-type']"));
 		}
-
-		if (isCreateOwn) {
-			selectCheckbox("form:own-option");
-		} else {
-			selectCheckbox("form:default-option");
-			agreeToDeleteAllDefineTasks();
-		}
-
+		
+    if (!isCreateOwn) {
+      click(By.cssSelector("div[id='form:user-interface-type']"));
+      agreeToDeleteAllDefineTasks();
+    } 
 		type(By.id("form:process-name"), processName);
-		type(By.id("form:processdescription"), processDescription);
+		type(By.id("form:process-description"), processDescription);
 	}
 
 	public void selectCheckbox(String forAttribute) {

@@ -27,11 +27,8 @@ Cs0 @GridStep f17 '' #zField
 Cs0 @PushWFArc f18 '' #zField
 Cs0 @CallSub f19 '' #zField
 Cs0 @PushWFArc f20 '' #zField
-Cs0 @GridStep f2 '' #zField
 Cs0 @UdEvent f5 '' #zField
 Cs0 @CallSub f4 '' #zField
-Cs0 @PushWFArc f11 '' #zField
-Cs0 @PushWFArc f16 '' #zField
 Cs0 @UdEvent f22 '' #zField
 Cs0 @CallSub f23 '' #zField
 Cs0 @PushWFArc f24 '' #zField
@@ -44,6 +41,7 @@ Cs0 @SJArc f21 '' #zField
 Cs0 @CallSub f31 '' #zField
 Cs0 @UdEvent f30 '' #zField
 Cs0 @PushWFArc f32 '' #zField
+Cs0 @PushWFArc f2 '' #zField
 >Proto Cs0 Cs0 CaseItemRelatedTaskProcess #zField
 Cs0 f0 guid 167E9A75EF3D0909 #txt
 Cs0 f0 method start() #txt
@@ -177,20 +175,6 @@ Cs0 f19 408 266 112 44 -35 -8 #rect
 Cs0 f19 @|CallSubIcon #fIcon
 Cs0 f20 expr out #txt
 Cs0 f20 352 288 408 288 #arcP
-Cs0 f2 actionTable 'out=in;
-' #txt
-Cs0 f2 actionCode 'import ch.ivy.addon.portalkit.util.MenuUtils;
-
-MenuUtils.clearMenuState();' #txt
-Cs0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Clear menu state</name>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f2 168 362 112 44 -47 -8 #rect
-Cs0 f2 @|StepIcon #fIcon
 Cs0 f5 guid 1682B962CA36E3CC #txt
 Cs0 f5 actionTable 'out=in;
 ' #txt
@@ -225,10 +209,6 @@ Cs0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f4 320 362 128 44 -60 -8 #rect
 Cs0 f4 @|CallSubIcon #fIcon
-Cs0 f11 expr out #txt
-Cs0 f11 280 384 320 384 #arcP
-Cs0 f16 expr out #txt
-Cs0 f16 109 384 168 384 #arcP
 Cs0 f22 guid 1682B96F9503687C #txt
 Cs0 f22 actionTable 'out=in;
 ' #txt
@@ -362,6 +342,7 @@ Cs0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f30 83 475 26 26 -72 20 #rect
 Cs0 f30 @|UdEventIcon #fIcon
 Cs0 f32 109 488 312 488 #arcP
+Cs0 f2 109 384 320 384 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -380,10 +361,6 @@ Cs0 f8 out f18 tail #connect
 Cs0 f18 head f17 mainIn #connect
 Cs0 f17 mainOut f20 tail #connect
 Cs0 f20 head f19 mainIn #connect
-Cs0 f5 mainOut f16 tail #connect
-Cs0 f16 head f2 mainIn #connect
-Cs0 f2 mainOut f11 tail #connect
-Cs0 f11 head f4 mainIn #connect
 Cs0 f22 mainOut f24 tail #connect
 Cs0 f24 head f23 mainIn #connect
 Cs0 f25 mainOut f27 tail #connect
@@ -394,3 +371,5 @@ Cs0 f28 mainOut f21 tail #connect
 Cs0 f21 head f9 in #connect
 Cs0 f30 mainOut f32 tail #connect
 Cs0 f32 head f31 mainIn #connect
+Cs0 f5 mainOut f2 tail #connect
+Cs0 f2 head f4 mainIn #connect

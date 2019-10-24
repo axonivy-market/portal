@@ -1,11 +1,15 @@
 package portal.guitest.page;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.server.browserlaunchers.Sleeper;
+
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
 
 public class CaseWidgetPage extends TemplatePage {
 
@@ -20,16 +24,6 @@ public class CaseWidgetPage extends TemplatePage {
   private static final String CANCEL_BUTTON_CSS_SELECTOR = "button[id$='cancel-command']";
   private static final String DEFAULT_COLUMNS_XPATH =
       "//*[@id=\"case-widget:case-columns-configuration:select-columns-form:default-columns\"]/div[2]";
-  private static final String ADD_NOTE_BUTTON_ID =
-      "case-widget:case-list-scroller:%d:case-item:case-body:history:add-note-command";
-  private static final String SHOW_MORE_NOTE_LINK_ID =
-      "case-widget:case-list-scroller:%d:case-item:case-body:history:show-more-note-link";
-  private static final String SHOW_DETAILS_LINK_ID =
-      "case-widget:case-list-scroller:%d:case-item:case-body:general-information:show-additional-case-details-link";
-  private static final String SHOW_ALL_TASKS_ID =
-      "case-widget:case-list-scroller:%d:case-item:case-body:related-tasks:show-all-tasks";
-  private static final String ADD_DOCUMENT_LINK_ID =
-      "case-widget:case-list-scroller:%d:case-item:case-body:document:add-document-command";
 
   public CaseWidgetPage() {
     this("case-widget");
@@ -44,16 +38,9 @@ public class CaseWidgetPage extends TemplatePage {
     return CASE_PAGE_LOCATION;
   }
 
-  public void openSideStepPopup(int index) {
-    click(By.id("case-widget:case-list-scroller:" + index + ":case-item:side-step-component:case-side-steps-menu"));
-    waitForElementDisplayed(
-        By.id("case-widget:case-list-scroller:" + index + ":case-item:side-step-component:side-steps-panel"), true);
-  }
-
   public int countSideStepItems(int index) {
-    WebElement sideStepPanel =
-        findElementById("case-widget:case-list-scroller:" + index + ":case-item:side-step-component:side-steps-panel");
-    return sideStepPanel.findElements(By.tagName("a")).size();
+    WebElement actionsPanel = getMoreActionsPanel(findElementById(String.format("case-widget:case-list-scroller:%d:case-item", index)));
+    return actionsPanel.findElements(By.cssSelector("a[id$='side-step-item']")).size();
   }
 
   public WebElement selectCaseItem(int index) {
@@ -67,13 +54,19 @@ public class CaseWidgetPage extends TemplatePage {
   }
 
   private WebElement getDestroyButtonOfCaseItem(WebElement caseItem) {
-    String caseItemId = caseItem.getAttribute("id");
-    String destroyButtonId = String.format("%s:destroy-case", caseItemId);
-    WebElement destroyButton = findElementById(destroyButtonId);
-    findElementById(destroyButtonId);
-    return destroyButton;
+    caseItem.findElement(By.cssSelector("button[id$='action-steps-menu']")).click();
+    waitForElementDisplayed(By.cssSelector("a[id$='destroy-case']"), true);
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> findElementByCssSelector("a[id$='destroy-case']").isDisplayed());
+    return findElementByCssSelector("a[id$='destroy-case']");
   }
 
+  private WebElement getMoreActionsPanel(WebElement caseItem) {
+    caseItem.findElement(By.cssSelector("button[id$='action-steps-menu']")).click();
+    waitForElementDisplayed(By.cssSelector("div[id$='action-steps-panel']"), true);
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> findElementByCssSelector("div[id$='action-steps-panel']").isDisplayed());
+    return findElementByCssSelector("div[id$='action-steps-panel']");
+  }
+  
   public void clickDestroyButton(WebElement caseItem) {
     WebElement destroyButton = getDestroyButtonOfCaseItem(caseItem);
     destroyButton.click();
@@ -153,12 +146,14 @@ public class CaseWidgetPage extends TemplatePage {
   public void openAdvancedFilter(String filterName, String filterIdName) {
     click(By.id(caseWidgetId + ":filter-add-action"));
     WebElement filterSelectionElement = findElementById(caseWidgetId + ":filter-add-form:filter-selection");
-    findChildElementsByTagName(filterSelectionElement, "LABEL").forEach(filterElement -> {
-      if (filterName.equals(filterElement.getText())) {
-        filterElement.click();
-        return;
+
+    List<WebElement> elements = findChildElementsByTagName(filterSelectionElement, "LABEL");
+    for (WebElement element : elements) {
+      if (element.getText().equals(filterName)) {
+        element.click();
+        break;
       }
-    });
+    }
     waitForElementDisplayed(
         By.cssSelector("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']"),
         true);
@@ -250,23 +245,4 @@ public class CaseWidgetPage extends TemplatePage {
     applyButton.click();
   }
 
-  public boolean isAddNoteButtonDisplayed() {
-    return isElementDisplayedById(String.format(ADD_NOTE_BUTTON_ID, 0));
-  }
-
-  public boolean isShowMoreNoteButtonDisplayed() {
-    return isElementDisplayedById(String.format(SHOW_MORE_NOTE_LINK_ID, 0));
-  }
-
-  public boolean isShowDetailsDisplayed() {
-    return isElementDisplayedById(String.format(SHOW_DETAILS_LINK_ID, 0));
-  }
-
-  public boolean isShowAllTasksDisplayed() {
-    return isElementDisplayedById(String.format(SHOW_ALL_TASKS_ID, 0));
-  }
-
-  public boolean isAddDocumentLinkDisplayed() {
-    return isElementDisplayedById(String.format(ADD_DOCUMENT_LINK_ID, 0));
-  }
 }
