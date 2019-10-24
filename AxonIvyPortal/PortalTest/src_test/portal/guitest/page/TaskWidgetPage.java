@@ -170,9 +170,9 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void sideStepMenuOnMoreButton(int taskId) {
-    String moreButton = String.format(
-        taskWidgetId + ":task-list-scroller:%d:task-item:task-action:additional-options:task-side-steps-menu", taskId);
-    click(findElementById(moreButton));
+    String moreButton = String.format("button[id$='%d\\:task-item\\:task-action\\:additional-options\\:task-side-steps-menu'] span.fa-ellipsis-v", taskId);
+    waitForElementDisplayed(By.cssSelector(moreButton), true);
+    findElementByCssSelector(moreButton).click();;
     waitAjaxIndicatorDisappear();
     waitForElementDisplayed(By.cssSelector("a[id$='adhoc-side-step-item']"), true);
   }
@@ -324,30 +324,25 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void openTaskDelegateDialog(int index) {
+    sideStepMenuOnMoreButton(index);
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
-        .until(() -> findElementById(
-            String.format(taskWidgetId + ":task-list-scroller:%d:task-item:task-action:task-delegate-command", index))
-                .isDisplayed());
-
-    WebElement delegateButton = findElementById(
-        String.format(taskWidgetId + ":task-list-scroller:%d:task-item:task-action:task-delegate-command", index));
-    delegateButton.click();
+        .until(() -> findElementByCssSelector("a[id$='task-delegate-command']").isDisplayed());
+    findElementByCssSelector("a[id$='task-delegate-command']").click();
   }
 
   public boolean isDelegateTypeSelectAvailable() {
-    return isElementPresent(By.id(taskWidgetId + ":task-list-scroller:0:task-item:task-delegate-form:activator-panel"));
+    return isElementPresent(By.cssSelector("div[id$=':activator-panel']"));
   }
 
   public boolean isDelegateTypeDisabled(int taskIndex, int index) {
-    WebElement delegateTypeRadioButton = findElementById(
-        String.format(taskWidgetId + ":task-list-scroller:%d:task-item:task-delegate-form:activator-type-select:%d",
-            taskIndex, index));
+    WebElement delegateTypeRadioButton = findElementByCssSelector(String.format(
+        "input[id$='%d\\:task-item\\:task-action\\:additional-options\\:task-delegate-form\\:activator-type-select\\:%d']", taskIndex, index));
+    
     return Optional.ofNullable(delegateTypeRadioButton.getAttribute("disabled")).isPresent();
   }
 
   public boolean isDelegateListSelectionAvailable() {
-    return isElementPresent(
-        By.id(taskWidgetId + ":task-list-scroller:0:task-item:task-delegate-form:select-delegate-panel"));
+    return isElementPresent(By.cssSelector("div[id$='select-delegate-panel']"));
   }
 
   public AdhocPage addAdhoc(int taskIndex) {
