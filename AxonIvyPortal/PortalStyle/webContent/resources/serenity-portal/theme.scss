@@ -989,7 +989,11 @@ li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectabl
   font-family: $iconFontFamily !important;
 }
 
-.widget-header-filter-input.ui-inputfield,
+.widget-header-filter-input.ui-inputfield {
+  font-size: $largeFontSize;
+  color: $black;
+}
+
 .widget-header-filter-input.ui-inputfield.ui-state-hover, 
 .widget-header-filter-input.ui-inputfield.ui-state-focus,
 .mod-expanded-mode .widget-header-filter-input.ui-inputfield,
@@ -1013,6 +1017,29 @@ li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectabl
   font-size: $largeFontSize ;
 }
 
+.widget-sort-menu {
+  color: $taskWidgetSortMenuColor;
+}
+
+.widget-sort-menu.full-mode a.ui-widget.ui-commandlink { 
+  color : $taskWidgetSortMenuLinkColor !important;
+}
+
+.widget-sort-menu a.ui-widget.ui-commandlink.is-selected {
+  color: $taskWidgetSortMenuLinkIsSelectedColor !important;
+}
+
+.task-widget .ui-widget.ui-button.advanced-filter-command:after, 
+.case-widget-container .ui-widget.ui-button.advanced-filter-command:after,
+.filter-selection-form a.filter-name.ui-commandlink:after {
+  color: $black;
+}
+
+.task-widget .ui-widget.ui-button.advanced-filter-command.error-filter:before, 
+.case-widget-container .ui-widget.ui-button.advanced-filter-command.error-filter:before {
+  color: red;
+}
+
 /*Font size for START CASE ITEM --------------------------------------------------------------------------------------*/
 
 .case-list-unsortable-header-cell {
@@ -1033,6 +1060,13 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   font-size: $largeFontSize ;
 }
 
+.case-header-action-cell .action-item .ui-button.ui-widget.ui-state-hover .ui-button-text,
+.case-header-action-cell .action-item .ui-button.ui-widget.ui-state-hover .ui-button-icon-left.ui-icon.ui-icon-triangle-1-s:before,
+.case-header-action-cell .action-item .ui-button.ui-widget.ui-state-focus .ui-button-text,
+.case-header-action-cell .action-item .ui-button.ui-widget.ui-state-focus .ui-button-icon-left.ui-icon.ui-icon-triangle-1-s:before {
+   color: $primaryTextColor !important; 
+}
+
 /*Font size for Case Widget-------------------------------------------------------------------------------------*/ 
 .case-widget-top-header-main-title, .case-header-container {
   font-size: $largeFontSize;
@@ -1050,8 +1084,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 .case-details-data-2nd-column {
   font-family: $portalFontFamily;
 }
-
-.process-empty-container ,
+.process-empty-container,
 .process-start-list-item-action,
 .process-start-list-item-name {
   font-size: $smallFontSize;
@@ -1095,13 +1128,17 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 }
 
 /** ABSENCES AND DEPUTY * --------------------------------------*/
-.substituted-user-text,
+.substituted-user-text {
+  font-size: $largeFontSize;
+}
+
 .chart-info-header {
   font-size: $largeFontSize;
   font-family: $portalFontFamily;
+  color: $chartInfoHeaderColor;
 }
 
-.side-steps-container .side-step-item,
+
 .not-display-result-tab-view {
   font-size: $smallFontSize;
 }
@@ -1109,6 +1146,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 .side-steps-panel .side-step-item {
   font-size: $largeFontSize;
   font-family: $portalFontFamily;
+  color: $sideStepItemColor !important;
 }
 
 .side-steps-container .side-step-item {
@@ -1154,6 +1192,10 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 
 /**=====================================END FONT SIZE==================================================**/
 /**==========================================COLOR =============================================**/
+body .ui-state-active, body .ui-state-highlight {
+  color: $black !important;
+}
+
 /* Table -----------------------------------  */
 
 .ui-datatable table tbody tr.ui-datatable-even {
@@ -1197,7 +1239,10 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 
 /* Dropdown----------------------------- */
 body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-close.ui-state-hover {
-  background: white !important;
+  background: $white !important;
+}
+.ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-filter-container .ui-icon-search, .ui-picklist .ui-picklist-filter-container .ui-icon, .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon {
+  color: grey;
 }
 
 /* AutoComplete----------------------------- */
@@ -1294,6 +1339,12 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .action-steps-panel .action-step-item {
   font-family: $portalFontFamily;
+  color: $caseItemActionStepsItemColor !important;
+}
+
+.case-header-action-cell .action-item .ui-button .ui-button-text,
+.case-header-action-cell .action-item .ui-button .ui-button-icon-right.ui-icon.ui-icon-triangle-1-s:before {
+  color: $caseItemActionStepsItemColor !important;
 }
 
 /*Process --------------------------------------*/
@@ -1406,4 +1457,115 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 .ui-inplace .ui-inplace-editor .ui-button.ui-inplace-cancel .ui-icon-close:before {
   font-family: $iconFontFamily;
+}
+
+.side-steps-panel .side-step-item:hover:not(.ui-state-disabled) {
+  color: $sideStepItemHoverColor !important;
+  background-color: $sideStepItemHoverBackgroundColor;
+}
+
+/*Case detail-----------------------------*/
+.related-task-content .related-task,
+.case-related-running {
+  color: $caseRelatedTaskColor !important;
+}
+
+.related-task-content .related-task:hover,
+.additional-case-details-link:hover {
+  color: $caseRelatedTaskHoverColor !important;
+}
+
+.additional-case-details-link {
+  color: $caseAdditionalDetailLinkColor !important;
+}
+
+/** Process chain----------------------------*/
+.line-process-chain .line-horizontal-process-step.waiting .line-horizontal-step-container,
+.line-process-chain .line-vertical-process-step.waiting .line-vertical-step-container {
+  background-color: $lineWaitingStepBackgroundColor;
+}
+
+/* Admin Setting--------------------------*/
+.admin-settings-no-permission-message {
+  color: $adminSettingNoPermissionMessageColor;
+}
+
+/* Absences and Debuty -------------------------*/
+.substituted-user-text {
+  color: $substitutedUserTextColor;
+}
+
+/*Awesome Icon Selection--------------------------*/
+.select-awesome-icon-button {
+  color: $linkChangeAwesomeIconColor !important;
+}
+
+.ui-widget-content a {
+  color: $contentLinkChangeAwesomeIconColor
+}
+
+.chart-filter-info-icon {
+  color: $chartFilterInfoIconColor;
+}
+
+/*Start Notification ----------------------------*/
+.notification-content {
+  background: $notificationContentBackgroundColor;
+}
+
+.notification-content-message,
+.notification-content-action-more-details {
+  color: $white;
+}
+
+.notification-content-action-close:before, .notification-content-action-close:after {
+  background: $white;
+}
+
+.notification-content-action-close:hover:before, .notification-content-action-close:hover:after {
+  background: $black;
+}
+
+/* Login--------------------------*/
+.login-body .login-panel .login-panel-header {
+  background-color: $loginPanelHeaderBackgroundColor;
+}
+
+/* Stages breadcrumb -------------------*/
+.stages-chain .visited i {
+  color: $stagesChainVisitedColor;
+}
+
+.stages-chain .waiting i {
+  color: $stagesChainWaitingColor;
+}
+
+.stages-chain .process-flow .flow-txt .visible {
+  background: $stagesChainProcessFlowVisibleBackgroundColor;
+}
+
+.ui-columntoggler label {
+  color: $black;
+}
+
+/* Task Action Item-----------------------*/
+.task-action-item .ui-commandlink.ui-state-disabled {
+  color: $taskActionItemDisabledStateColor;
+ }
+ 
+.action-button.task-action-item .ui-button-icon-left.ui-icon {
+  color: $taskActionItemLeftIconColor !important;
+}
+
+.task-actions-menu .ui-slidemenu-backward.ui-widget-header { 
+  background-color: $white;
+  color: $primaryTextColor;
+}
+
+.task-actions-menu .ui-slidemenu-backward.ui-widget-header .ui-icon.ui-icon-triangle-1-w {
+  color: $primaryTextColor;
+}
+
+.ui-menu .ui-menu-list li.ui-widget-header h3 {
+  color: $menuListWidgetHeaderColor;
 }
