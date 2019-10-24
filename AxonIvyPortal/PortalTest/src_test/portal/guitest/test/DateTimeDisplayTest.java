@@ -36,8 +36,7 @@ public class DateTimeDisplayTest extends BaseTest {
     TaskWidgetPage taskWidget = homePage.getTaskWidget();
     taskWidget.waitForPageLoaded();
     taskWidget.expand();
-    taskWidget.openTaskDetails(0);
-    TaskDetailsPage taskDetailsPage = taskWidget.getTaskDetailsElement(0);
+    TaskDetailsPage taskDetailsPage = taskWidget.openTaskDetails(0);
     String createdDateLiteral = taskDetailsPage.getCreatedOnDateText();
     boolean matches = Pattern.matches(DATE_TIME_REGEX_PATTERN, createdDateLiteral);
     Assert.assertTrue(matches);
