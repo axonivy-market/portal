@@ -1,9 +1,9 @@
-.. _axonivyportal.customization.additionalcasedetailspage:
+.. _customization-additionalcasedetailspage:
 
 Additional case details page
 ============================
 
-.. _axonivyportal.customization.additionalcasedetailspage.introduction:
+.. _customization-additionalcasedetailspage.introduction:
 
 Introduction
 ------------
@@ -14,7 +14,7 @@ clicking on "Show details" link in case details.
 You can customize this page for each case by providing a relative URL to
 case.
 
-.. _axonivyportal.customization.additionalcasedetailspage.customization:
+.. _customization-additionalcasedetailspage.customization:
 
 Customization
 -------------

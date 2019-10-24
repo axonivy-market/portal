@@ -1,4 +1,4 @@
-.. _axonivyportal.customization.caseitemdetails:
+.. _customization-case-item-details:
 
 Case item details
 =================
@@ -27,7 +27,7 @@ Each CaseItemDetails contains
    "Data and Description" panel always displays, we cannot override its
    content or hide/show this panel.
 
-.. _axonivyportal.customization.caseitemdetails.howtooverideui:
+.. _customization-case-item-details-how-to-override-ui:
 
 How to custom Case item details UI
 ----------------------------------
@@ -81,13 +81,13 @@ Refer to ``PortalExamples`` project for examples.
    ``showItemDetailRelated``, ``showItemDetailsHistories``,
    ``showItemDetailDocuments`` code. For more details, please refer to
    `Show/Hide
-   components <#axonivyportal.customization.caseitemdetails.howtooverideui.showhiddenui>`__.
+   components <#customization-case-item-details-.howtooverideui.showhiddenui>`__.
 
    And to add a new elements, please refer to `Add new Custom
-   panel <#axonivyportal.customization.caseitemdetails.howtooverideui.custombody>`__
+   panel <#customization-case-item-details-.howtooverideui.custombody>`__
    code
 
-.. _axonivyportal.customization.caseitemdetails.howtooverideui.showhiddenui:
+.. _customization-case-item-details-how-to-override-ui-show-hidden-ui:
 
 Show/Hide components by keywords
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -116,7 +116,7 @@ List valid parameters:
    To show/hide Case Related Tasks/Cases component, by default it's
    true.
 
-.. _axonivyportal.customization.caseitemdetails.howtooverideui.custombody:
+.. _customization-case-item-details-how-to-overide-ui-custom-body:
 
 Add new Custom panel
 ~~~~~~~~~~~~~~~~~~~~
@@ -140,7 +140,7 @@ Refer to the ``caseItemDetailCustom*`` section in
 -  Add your custom code into tags above.
 
 -  Finally, your custom panel will be displayed inside of
-   `CaseItemDetails <#axonivyportal.customization.caseitemdetails>`__
+   `CaseItemDetails <#customization-case-item-details->`__
    page.
 
 -  Below is example code for override custom panel box of case details

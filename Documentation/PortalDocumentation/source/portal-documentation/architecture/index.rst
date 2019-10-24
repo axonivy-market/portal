@@ -1,9 +1,9 @@
-.. _axonivyportal.architecture:
+.. _architecture:
 
 Architecture
 ************
 
-.. _axonivyportal.architecture.portalprocessmodulesstructure:
+.. _architecture-portal-process-modules-structure:
 
    .. important:: 
 
@@ -15,7 +15,7 @@ Currently Portal system contains the following modules:
 
 |process-module-structure|
 
-.. _axonivyportal.architecture.portalkit:
+.. _architecture-portalkit:
 
 Portal kit
 ==========
@@ -27,7 +27,7 @@ component and theme library. This is the most important module that user
 needs to use Portal. This module also contains AdminSettings component
 that is used to configure Portal.
 
-.. _axonivyportal.architecture.portalstyle:
+.. _architecture-portal-style:
 
 Portal style
 ============
@@ -43,7 +43,7 @@ one by one. There are no common color definitions.
       This module is prepared for process developers to override and keep
       customer styles by editing CSS file, CMS's style.
 
-.. _axonivyportal.architecture.portaltemplate:
+.. _architecture-portal-template:
 
 Portal template
 ===============
@@ -55,7 +55,7 @@ menu. It also contains some start process links to default page such as
 : Portal home, Portal task list, Portal case list... . Portal's user is
 advised to depend on this module to use Portal easily.
 
-.. _axonivyportal.architecture.axonivyexpress:
+.. _architecture-axonivy-express:
 
 Axon.ivy Express
 ================

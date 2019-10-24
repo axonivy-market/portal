@@ -1,9 +1,9 @@
-.. _axonivyportal.components.concept:
+.. _components-widget-concept:
 
 Widget concept
 ==============
 
-.. _axonivyportal.components.concept.beforebeginning:
+.. _components-widget-concept-before-beginning:
 
 Before beginning
 ----------------
@@ -11,7 +11,7 @@ Before beginning
 This guide assumes that you are already familiar with concepts inherent
 in JSF programming and in Ivy development.
 
-.. _axonivyportal.components.concept.introduction:
+.. _components-widget-concept-introduction:
 
 Introduction
 ------------
@@ -28,7 +28,7 @@ following:
    manipulate Portal data, such as: cases, tasks, process starts,
    users,...
 
-.. _axonivyportal.components.concept.howitis:
+.. _components-widget-concept-how-it-is:
 
 How it is
 ---------
@@ -95,7 +95,7 @@ layers like below:
       the web framework, you can replace those obsolete elements with a
       minimum of fuss.
 
-.. _axonivyportal.components.concept.maintechnologyandconcept:
+.. _components-widget-concept-main-technology-and-concept:
 
 Main technology and concept
 ---------------------------
@@ -120,7 +120,7 @@ as you build your widget:
    -  View of an Html Dialog is defined with the means of an XHTML
       document.
 
-.. _axonivyportal.components.concept.services:
+.. _components-widget-concept-services:
 
 Services
 --------
@@ -150,7 +150,7 @@ There are separate services for working with each type of data:
 -  Portal Configuration Services: set of services for controlling the
    Portal configuration.
 
-.. _axonivyportal.components.concept.builtinwidgets:
+.. _components-widget-concept-built-in-widgets:
 
 Built-in widgets
 ----------------
@@ -203,7 +203,7 @@ ui:define container empty like this:
 
 ``</ui:define>``
 
-.. _axonivyportal.components.concept.predefinedstyles:
+.. _components-widget-concept-predefined-styles:
 
 Predefined styles
 -----------------
@@ -255,7 +255,7 @@ widget has a consistent structure and appearance:
 
 ``</div>``
 
-.. _axonivyportal.components.concept.flow:
+.. _components-widget-concept-flow:
 
 Flow
 ----
@@ -300,7 +300,7 @@ The general flow for developing a widget for portal is as follows:
    -  You can load your widget configuration by calling
       ``loadSettings()``.
 
-.. _axonivyportal.components.concept.integration:
+.. _components-widget-concept-integration:
 
 Integration
 -----------
@@ -348,7 +348,7 @@ follows:
 For more details, visit
 `#axonivyportal.customization.portalhome <#axonivyportal.customization.portalhome>`__.
 
-.. _axonivyportal.components.concept.exceptionhandling:
+.. _components-widget-concept-exception-handling:
 
 Exception handling
 ------------------

@@ -1,9 +1,9 @@
-.. _axonivyportal.customization.defaultuserprocess:
+.. _customization-default-user-process:
 
 Default user process
 ====================
 
-.. _axonivyportal.customization.defaultuserprocess.introduction:
+.. _customization-default-user-process-introduction:
 
 Introduction
 ------------
@@ -11,7 +11,7 @@ Introduction
 In Portal homepage, the ``Process widget`` displays default processes,
 you can customize them so that project important starts are displayed.
 
-.. _axonivyportal.customization.defaultuserprocess.customization:
+.. _customization-default-user-process-customization:
 
 Customization
 -------------
@@ -29,3 +29,6 @@ list of user processes. Follow instruction to create default processes.
    findStartableLinkByUserFriendlyRequestPath(String requestPath)
    . This method will return startable link if user has permission to
    start the process, otherwise return emtpy string.
+
+.. |default-process-return| image:: images/default-user-process/default-process-return.png
+.. |default-user-processes| image:: images/default-user-process/default-user-processes.png

@@ -1,9 +1,9 @@
-.. _axonivyportal.customization.portallogosandcolors:
+.. _customization-portal-logos-and-colors:
 
 PortalStyle customization (logos, colors, date patterns)
 ========================================================
 
-.. _axonivyportal.customization.portallogosandcolors.changeportallogos:
+.. _customization-portal-logos-and-colors-change-portal-logos:
 
 Change Portal's logos
 ---------------------
@@ -20,7 +20,7 @@ PortalStyle project.
 -  Override the variables: $loginLogoHeight, $homeLogoHeight in
    ``variables.scss`` into of ``ivy`` folder to scale your logos.
 
-.. _axonivyportal.customization.portallogosandcolors.changeportalbackground:
+.. _customization-portal-logos-and-colors-change-portal-background:
 
 Change Portal styles
 --------------------
@@ -125,7 +125,7 @@ Please help put it at
 You are highly recommended to run the ``mvn libsass:compile`` maven
 command in PortalStyle to do it quickly.
 
-.. _axonivyportal.customization.portallogosandcolors.changedatepatterns:
+.. _customization-portal-logos-and-colors-changedatepatterns:
 
 Change date time pattern
 ------------------------

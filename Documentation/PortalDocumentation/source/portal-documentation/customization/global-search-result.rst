@@ -1,4 +1,4 @@
-.. _axonivyportal.customization.globalsearchresult:
+.. _customization-global-search-result:
 
 Global Search Result
 ====================
@@ -18,7 +18,7 @@ Follow these steps to customize the global search page:
    register this link by global
 
 3. Refer to `Customize Portal
-   home <#axonivyportal.customization.portalhome>`__ to set new home
+   home <#customization-portalhome>`__ to set new home
    page.
 
 4. Create the customized search data model extends

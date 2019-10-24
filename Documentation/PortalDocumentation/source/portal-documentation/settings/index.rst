@@ -1,23 +1,23 @@
-.. _axonivyportal.settings:
+.. _settings:
 
 Settings
 ********
 
-.. _axonivyportal.settings.thefirstsection:
+.. _settings-the-first-section:
 
 User Settings provide options for configuring Portal applications:
 
--  `#axonivyportal.settings.adminsettings <#axonivyportal.settings.adminsettings>`__
+-  `#settings.adminsettings <#settings.adminsettings>`__
 
--  `#axonivyportal.settings.absenceandsubstitutesettings <#axonivyportal.settings.absenceandsubstitutesettings>`__
+-  `#settings.absenceandsubstitutesettings <#settings.absenceandsubstitutesettings>`__
 
--  `#axonivyportal.settings.emailsettings <#axonivyportal.settings.emailsettings>`__
+-  `#settings.emailsettings <#settings.emailsettings>`__
 
--  `#axonivyportal.settings.languagesettings <#axonivyportal.settings.languagesettings>`__
+-  `#settings.languagesettings <#settings.languagesettings>`__
 
 |portal-header|
 
-.. _axonivyportal.settings.adminsettings:
+.. _settings-admin-settings:
 
 Admin settings
 ==============
@@ -25,7 +25,7 @@ Admin settings
 User needs to have role ``AXONIVY_PORTAL_ADMIN`` to see this menu item,
 it is used to configure Portal configuration, see different Portal
 configurations in
-`#axonivyportal.installation.basicinstallation.specifyservers.generalConcept <#axonivyportal.installation.basicinstallation.specifyservers.generalConcept>`__
+`#installation.basicinstallation.specifyservers.generalConcept <#installation.basicinstallation.specifyservers.generalConcept>`__
 
 Global settings
 ---------------
@@ -44,7 +44,7 @@ You can also get back the default value for each setting by clicking
 reset button on each row, or reset all values of all settings by
 clicking ``Restore All To Defaults`` button
 
-.. _axonivyportal.settings.adminsettings.setupmultiportals:
+.. _settings-admin-settings-setup-multi-portals:
 
 Setup multi portals
 -------------------
@@ -136,7 +136,7 @@ type either as Ivy application or Third Party application.
       languages your application supports. See the below "Language
       settings" for more details.
 
-.. _axonivyportal.settings.absenceandsubstitutesettings:
+.. _settings-absence-and-substitute-settings:
 
 Absence and substitute settings
 ===============================
@@ -167,7 +167,7 @@ Absence and substitute settings
 
 -  All the items will be saved after click Save button.
 
-.. _axonivyportal.settings.emailsettings:
+.. _settings-email:
 
 Email settings
 ==============
@@ -188,7 +188,7 @@ Email settings
 
 -  All the items will be saved when click save button.
 
-.. _axonivyportal.settings.languagesettings:
+.. _settings-language:
 
 Language settings
 =================
