@@ -556,7 +556,7 @@ In engine
    project.
 4. Follow migration notes to migrate data, if any.
 
-.. _installation-migrationnotes-8-0-0:
+.. _installation-migration-notes-8-0-0:
 
 Migrate to 8.0.0
 ----------------
@@ -600,7 +600,7 @@ https://www.npmjs.com/package/less2sass.
 .. _installation-migration-notes-8-0-0-task-body:
 
 How to migrate TaskBody to  :ref:`customization-task-item-details` component
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 On Portal version 8.0.0, we removed ``taskBody`` in TaskWidget. Instead
 of that, we will use TaskItemDetails component to show task information
@@ -650,18 +650,17 @@ Please follow the below steps to migrate
 
       |custom-task-item-details|
 
--  In case we need to hide Notes, Documents, we can refer to `Show/hide
-   component on Task Item
-   Details <#customization.taskitemdetails.howtooverideui.showhiddenui>`__
+-  In case we need to hide Notes, Documents, we can refer to
+   :ref:`Show/hide component on Task Item Details
+   <customization-task-item-details-how-to-overide-ui-show-hidden-ui>` 
 
 -  Additional, if we want to customize more ``TaskItemDetails``
-   components, please refer to `TaskItemDetails
-   component <#customization.taskitemdetails.howtooverideui>`__.
+   components, please refer to :ref:`TaskItemDetails component <customization-task-item-details-how-to-overide-ui>` 
 
 .. _installation-migration-notes-8-0-0-case-body:
 
-How to migrate CaseBody to `CaseItemDetails <#customization.caseitemdetails>`__ component
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+How to migrate CaseBody to :ref:`customization-case-item-details`  component
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 On Portal version 8.0.0, we removed ``caseBody`` in CaseWidget. Instead
 of that, we are using CaseItemDetails component for showing case
@@ -712,15 +711,19 @@ Please follow below check list to migrate
 
       Old caseBody
 
+      |case-body|
+
       CaseItemDetail content
 
+      |case-item-details|
+
 -  In case we need to hide Notes, Documents, Related running component,
-   we can refer to `Show/hide component on Case Item
-   Details <#customization.caseitemdetails.howtooverideui.showhiddenui>`__
+   we can refer to :ref:`Show/hide component on Case Item Details
+   <customization-case-item-details-how-to-override-ui-show-hidden-ui>` 
 
 -  Additional, if we want to customize more ``CaseItemDetails``
-   component, please help refer to `CaseItemDetails
-   component <#customization.caseitemdetails.howtooverideui>`__
+   component, please help refer to :ref:`CaseItemDetails
+   component <customization-case-item-details-how-to-override-ui>`
 
 Migrate to 7.4.0
 ----------------
@@ -735,7 +738,7 @@ Migrate to 7.3.0
 From 7.3.0, Portal supports some permissions to show/hide left menu
 item, if you override ``LoadSubMenuItems`` process and want to use these
 permissions, refer to
-`#customization.menu.customization <#customization.menu.customization>`__
+:ref:`Customization Menu <customization-menu-customization>`
 for more detail.
 
 There is a small change when initializing statistic chart, so if you
@@ -745,50 +748,21 @@ changed.
 Portal connector is removed, so there are many things related to it must
 be adjusted. Check this list below
 
--  All
-   Remote\*
-   classes are removed, replaced by the Ivy classes: ICase, ITask,
+-  All ``Remote*`` classes are removed, replaced by the Ivy classes: ICase, ITask,
    IUser, IApplication, etc..
--  Use
-   BuildTaskQuery
-   and
-   BuildCaseQuery
-   callable process instead of
-   BuildTaskJsonQuery
-   and
-   BuildCaseJsonQuery
-   .
+-  Use ``BuildTaskQuery`` and ``BuildCaseQuery`` callable process instead of
+   ``BuildTaskJsonQuery``  and  ``BuildCaseJsonQuery``  .
 -  If you override TaskLazyDataModel, remove
-   extendSortTasksInNotDisplayedTaskMap
-   method. Use
-   criteria
-   field instead of
-   queryCriteria
-   or
-   searchCriteria
-   , use
-   adminQuery
-   field instead of
-   ignoreInvolvedUser
-   .
+   ``extendSortTasksInNotDisplayedTaskMap`` method. Use ``criteria`` field instead of
+   ``queryCriteria`` or ``searchCriteria``, use ``adminQuery`` field instead of
+   ``ignoreInvolvedUser`` .
 -  If you override CaseLazyDataModel: remove
-   extendSortCasesInNotDisplayedTaskMap
-   method. Use
-   criteria
-   field instead of
-   queryCriteria
-   or
-   searchCriteria
-   , use
-   adminQuery
-   field instead of
-   ignoreInvolvedUser
-   .
+   ``extendSortCasesInNotDisplayedTaskMap`` method. Use ``criteria`` field instead of
+   ``queryCriteria`` or ``searchCriteria``, use ``adminQuery`` field instead of
+   ``ignoreInvolvedUser`` .
 -  If you override ChangePassword.mod: change process call from
-   MultiPortal/PasswordService:changePasswordService(String,String)
-   to
-   Ivy Data Processes/PasswordService:changePassword(String,String)
-   .
+   ``MultiPortal/PasswordService:changePasswordService(String,String)``  to  ``Ivy Data
+   Processes/PasswordService:changePassword(String,String)``  .
 
 Migrate hidden task and case to 7.3.0
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -799,18 +773,15 @@ Other versions of Portal store these info in additional property.
 
 If you use hide task/case feature, you need to follow these steps:
 
-1. Deploy this project
-   MigrateHiddenTaskCase.iar
+1. Deploy this project :download:`MigrateHiddenTaskCase.iar <documents/MigrateHiddenTaskCase.iar>` 
    to all your portal applications.
 2. In each application, run start process
-   MigrateHiddenTaskCase
-   to migrate.
+   ``MigrateHiddenTaskCase``  to migrate.
 3. It's optional to clean up redundant data. After migration finishes
-   successfully, run start process
-   RemoveHideAdditionalProperty
-   in each application to clean up HIDE additional property. It will
-   delete HIDE additional property of all tasks and cases in current
-   application, so be careful with it.
+   successfully, run start process  ``RemoveHideAdditionalProperty``  in each
+   application to clean up HIDE additional property. It will delete HIDE
+   additional property of all tasks and cases in current application, so be
+   careful with it.
 
 Migrate 7.1.0 to 7.2.0
 ----------------------
@@ -819,23 +790,16 @@ Portal needs `Apache POI <https://poi.apache.org>`__ for exporting to
 Excel features.
 
 If you override task widget's data query described at
-`#customization.taskwidget.howtooverridedataquery <#customization.taskwidget.howtooverridedataquery>`__,
+:ref:`How to override task widget's data query <customization-task-widget-how-to-override-data-query>`,
 follow these steps to migrate
 
 -  Add new start method with signature
-   buildTaskJsonQuery(Boolean)
-   in your overridden file of BuildTaskJsonQuery.mod (refer to original
-   file BuildTaskJsonQuery.mod).
+   ``buildTaskJsonQuery(Boolean)``  in your overridden file of BuildTaskJsonQuery.mod
+   (refer to original file BuildTaskJsonQuery.mod).
 -  If you customized
-   TaskLazyDataModel
-   , change
-   withStartSignature("buildTaskJsonQuery()
-   to
-   withStartSignature("buildTaskJsonQuery(Boolean)").withParam("isQueryForHomePage",
-   compactMode)
-   in your customized
-   TaskLazyDataModel
-   class.
+   ``TaskLazyDataModel,``  change  ``withStartSignature("buildTaskJsonQuery()``  to
+   ``withStartSignature("buildTaskJsonQuery(Boolean)").withParam("isQueryForHomePage",
+   compactMode)``  in your customized  ``TaskLazyDataModel``  class.
 
 There are some changes (DefaultApplicationHomePage, DefaultLoginPage,
 GlobalSearch) in PortalStart process of Portal Template. If you have
@@ -852,6 +816,7 @@ Portal Template to your project and re-apply your customization.
 
       Check map param result of callable process after copy to make sure
       it's the same as original process.
+      |copy-start-process|
 
 EXPIRY_CHART_LAST_DRILLDOWN_LEVEL global variable is removed. User now
 can use a context menu to drilldown Task By Expiry chart.
@@ -866,7 +831,7 @@ from Portal Template to your project and re-apply your customization.
 We introduce new method
 ``findStartableLinkByUserFriendlyRequestPath(String requestPath)`` in
 ``ProcessStartCollector`` class. If your project has customized
-`#customization.defaultuserprocess <#customization.defaultuserprocess>`__,
+:ref:`Default user process <customization-default-user-process>`,
 use this method to generate link to your process. If user doesn't have
 permission to start the process, this method will return empty string.
 
@@ -881,13 +846,14 @@ permission to start the process, this method will return empty string.
       Check map param result of callable process after copy to make sure
       it's the same as original process.
 
+      |copy-start-process|
+
 Migrate 7.0.2 to 7.0.3
 ----------------------
 
-If you have additional columns in your customized task widget, refer
-`Task
-widget <#customization.taskwidget.howtooverideui.taskheader>`__
-to adapt your customization in ``taskHeader`` section.
+If you have additional columns in your customized task widget, refer 
+:ref:`Task widget  <customization-task-widget-how-to-overide-ui-task-header>`  to adapt your
+customization in ``taskHeader`` section.
 
 Migrate 7.0.1 to 7.0.2
 ----------------------
@@ -944,7 +910,7 @@ From Portal ``7.0`` , we use standard axon.ivy Task Category field to
 store task category.
 
 To migrate task categories, deploy
-`MigrateTaskCategorySample.iar <documents/MigrateTaskCategorySample.iar>`__
+:download:`MigrateTaskCategorySample.iar <documents/MigrateTaskCategorySample.iar>`
 to your application and run ``Migrate Task Category`` process to:
 
 1. Migrate data from column ``customVarCharField5`` to ``category`` for
@@ -962,32 +928,21 @@ Migrate 6.4 or 6.5 to 6.6
 -------------------------
 
 -  Task header is supported to be customized. The
-   useOverride
-   param, which is used to override the task item's body, is changed to
-   useOverrideBody
--  If you customize
-   TaskLazyDataModel
-   , remove that customized class and customize as
-   .
-
+   ``useOverride``  param, which is used to override the task item's body, is changed
+   to  ``useOverrideBody`` 
+-  If you customize  ``TaskLazyDataModel`` , remove that customized class and customize as
+   :ref:`How to override task widget's data query. <customization-task-widget-how-to-override-data-query>` . 
 Migrate 6.4 to 6.5
 ------------------
 
 -  If compilation error "The type org.apache.axis2.databinding.ADBBean
-   cannot be resolved" occurs, refer
-   Project compilation classpath
-   to fix.
+   cannot be resolved" occurs, refer  `Project compilation classpath <https://developer.axonivy.com/doc/latest/doc/migrationNotes/MigrationNotesDesigner7.0.html#projectClasspath>`_  to fix.
 -  The relative link in default user processes starts with ivy context
-   path instead of "pro". If there are customized default user proceses,
-   append context path at the beginning. E.g. in Portal
-   6.4
-   , it is /pro/.../PortalStart.ivp. In Portal
-   6.5
-   , change it to /ivy/pro/.../PortalStart.ivp. You may use :
-   ivy.html.startref(...)
-   or
-   RequestUriFactory.createProcessStartUri(...)
-   to generate links.
+   path instead of "pro". If there are customized default user proceses, append
+   context path at the beginning. E.g. in Portal  ``6.4`` , it is
+   /pro/.../PortalStart.ivp. In Portal  ``6.5`` , change it to
+   /ivy/pro/.../PortalStart.ivp. You may use :  ``ivy.html.startref(...)``  or
+   ``RequestUriFactory.createProcessStartUri(...)``  to generate links.
 
 Migrate 6.x (x < 4) to 6.4 (Jakobshorn)
 ---------------------------------------
@@ -1006,7 +961,7 @@ From ``6.4`` , Portal applies `LESS <http://lesscss.org/>`__ to support
 customizing Portal styles. You can customize colors, fonts and Portal's
 component styles. For more information about customizing Portal's style
 with LESS, refer to
-`#customization.portallogosandcolors <#customization.portallogosandcolors>`__
+:ref:`PortalStyle customization (logos, colors, date patterns) <customization-portal-logos-and-colors>`
 .
 
 Steps to migrate
@@ -1061,40 +1016,40 @@ releases of Axon.ivy.
 Changes in 8.0
 --------------
 
--  Upgraded to Serenity's theme, refer to `Migration
-   Notes <#installation.migrationnotes.8.0.0>`__ for more
+-  Upgraded to Serenity's theme, refer to :ref:`Migration
+   Notes <installation-migration-notes-8-0-0>` for more
    details
 
--  Remove ``caseBody`` inside CaseWidget, refer to `Migration
-   Notes <#installation.migrationnotes.8.0.0.casebody>`__
+-  Remove ``caseBody`` inside CaseWidget, refer to :ref:`Migration
+   Notes <installation-migration-notes-8-0-0-case-body>`
    for more details
 
--  Introduce new actions button on `CaseWidget's
-   header <#customization.casewidget.howtooverideui.caseheader>`__.
+-  Introduce new actions button on :ref:`CaseWidget's
+   header <customization-case-widget-how-to-override-ui-case-header>`.
 
 -  Introduce new page as the Case item details. The default page is
    portal case details, refer to
-   `#customization.caseitemdetails <#customization.caseitemdetails>`__
+   :ref:`Case item details <customization-case-item-details>`
    for the customization.
 
--  Remove ``taskBody`` inside TaskWidget, refer to `Migration
-   Notes <#installation.migrationnotes.8.0.0.taskbody>`__
+-  Remove ``taskBody`` inside TaskWidget, refer to :ref:`Migration
+   Notes <installation-migration-notes-8-0-0-task-body>`
    for more details
 
--  Introduce two new actions button on `TaskWidget's
-   header <#customization.taskwidget.howtooverideui.taskheader>`__.
+-  Introduce two new actions button on :ref:`TaskWidget's
+   header <customization-task-widget-how-to-overide-ui-task-header>`.
 
 -  Introduce new page as Task item details. The default page is portal
    task details, refer to
-   `#customization.taskitemdetails <#customization.taskitemdetails>`__
+   :ref:`Task item details <customization-task-item-details>`
    for the customization.
 
--  Task list customization now support responsiveness. refer to `this
-   part <#customization.taskwidget.responsivelayout>`__
+-  Task list customization now support responsiveness. refer to :ref:`this
+   part <customization-task-widget-responsive-layout>`
    for more detail.
 
--  Case list customization now support responsiveness. refer to `this
-   part <#customization.casewidget.responsivelayout>`__
+-  Case list customization now support responsiveness. refer to  :ref:`this
+   part <customization-case-widget-responsive-layout>`
    for more detail.
 
 Changes in 7.4
@@ -1102,16 +1057,16 @@ Changes in 7.4
 
 -  New Portal Chat is introduced, now Portal supports Group chat and
    Private chat, refer to
-   `#components.portalchat <#components.portalchat>`__
+   :ref:`Portal chat<components-portal-chat>`
    for more detail
 
 -  Portal group id is officially configurable, refer to
-   `#customization.changegroupid <#customization.changegroupid>`__
+   :ref:`Change group id <customization-change-group-id>`
    for more detail
 
 -  CaseTemplate is removed, from now on we only use TaskTemplate. Please
    refer to
-   `#installation.migrationnotes <#installation.migrationnotes>`__
+   :ref:`Migration notes <installation-migration-notes>`
    to see how to migrate CaseTemplate to TaskTemplate
 
 Changes in 7.3
@@ -1121,12 +1076,11 @@ Changes in 7.3
    performance, refer to Migration Notes
 
 -  Provide the mobile pages. The default page is task list, refer to
-   `#customization.mobiledefaultpage <#customization.mobiledefaultpage>`__
+   :ref:`??? <installation>`
    for the customization.
 
 -  Provide more permissions to show/hide menu, button and link in
-   Portal, refer to
-   `#installation.basicinstallation.permissionsettings <#installation.basicinstallation.permissionsettings>`__
+   Portal, refer to `Permission settings`_
    for more detail.
 
 -  Hide Statistic widget can be configured in Admin setting.
@@ -1181,7 +1135,7 @@ Changes in 7.1
    customize.
 
 -  User can add new language. Refer to
-   `#settings.languagesettings <#settings.languagesettings>`__
+   :ref:`Language settings <settings-language>`
    for detail.
 
 -  Axon ivy express has custom end page. It can be turned off or
@@ -1190,7 +1144,7 @@ Changes in 7.1
 -  User can create default start process with permission check. If the
    user doesn't have permission to start the process, it won't appear in
    favorite processes. Refer to
-   `#customization.defaultuserprocess <#customization.defaultuserprocess>`__
+   :ref:`Default user process  <customization-default-user-process>`
    for detail.
 
 Changes in 7.0 (Jakobshorn)
@@ -1208,7 +1162,7 @@ Changes in 7.0 (Jakobshorn)
    ivy.
 
    Refer to
-   `#installation.migrationnotes <#installation.migrationnotes>`__
+   :ref:`Migration notes  <installation-migration-notes>`
    to learn how to migrate data from ``customVarCharField5`` to new
    ``category`` field.
 
@@ -1216,7 +1170,7 @@ Changes in 7.0 (Jakobshorn)
    they are not displayed in any Portal task lists.
 
 -  Change password is supported to be customized. Refer to
-   `#customization.changepasswordprocess <#customization.changepasswordprocess>`__
+   :ref:`Change password process <customization-change-password-process>`
    to know how to customize this feature.
 
 Changes in 6.6 (Jakobshorn)
@@ -1239,7 +1193,7 @@ Changes in 6.0 (Säntis)
 
 -  Support responsiveness with 3 screen widths: 1920, 1366 and 1024.
    Refer to
-   `#components.layouttemplates.reponsiveness <#components.layouttemplates.reponsiveness>`__
+   :ref:`Responsiveness <components-layout-templates-reponsiveness>`
    for more details.
 
 -  Some customizations are not supported in this release: main menu,
