@@ -26,10 +26,10 @@ public class TaskStateFilter extends TaskFilter {
    * Initialize the values of filteredStates: SUSPENDED, RESUMED, PARKED.
    */
   public TaskStateFilter() {
-    if (PermissionUtils.checkReadAllTasksPermission()) {
-      this.filteredStates = Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE, TaskState.UNASSIGNED);
-    } else {
-      this.filteredStates = Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE);
+    this.filteredStates = new ArrayList<>();
+    this.filteredStates.addAll(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE));
+    if(PermissionUtils.checkReadAllTasksPermission()) {
+      this.filteredStates.add(TaskState.UNASSIGNED);
     }
     this.selectedFilteredStatesAtBeginning = new ArrayList<>(filteredStates);
     this.selectedFilteredStates = new ArrayList<>();

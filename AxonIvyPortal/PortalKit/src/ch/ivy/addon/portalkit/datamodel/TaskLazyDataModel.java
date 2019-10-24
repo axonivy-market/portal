@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import javax.faces.event.ValueChangeEvent;
 
@@ -395,13 +396,13 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
   public void setIgnoreInvolvedUser(boolean ignoreInvolvedUser) {
-    if (ignoreInvolvedUser && (!queryCriteria.getIncludedStates().contains(TaskState.DONE)||!queryCriteria.getIncludedStates().contains(TaskState.UNASSIGNED))) {
-      if(!queryCriteria.getIncludedStates().contains(TaskState.DONE)) {
-        queryCriteria.addIncludedStates(Arrays.asList(TaskState.DONE));
-      }
-      if(!queryCriteria.getIncludedStates().contains(TaskState.UNASSIGNED)) {
-        queryCriteria.addIncludedStates(Arrays.asList(TaskState.UNASSIGNED));
-      }
+    List<TaskState> includedStates = queryCriteria.getIncludedStates();
+    List<TaskState> adminStateNotIncluded = Arrays.asList(TaskState.DONE, TaskState.UNASSIGNED)
+        .stream()
+        .filter(item -> !includedStates.contains(item))
+        .collect(Collectors.toList());
+    if (ignoreInvolvedUser && !adminStateNotIncluded.isEmpty()) {
+      queryCriteria.addIncludedStates(adminStateNotIncluded);
       setValuesForStateFilter(queryCriteria);
     }
     searchCriteria.setIgnoreInvolvedUser(ignoreInvolvedUser);
