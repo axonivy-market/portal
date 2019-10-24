@@ -10,7 +10,7 @@ public class TaskTemplatePage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "id('side-steps-menu')";
+    return "id('task-actions')";
   }
 
   public void openStatusTab() {
@@ -20,30 +20,25 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public boolean containsCaseDetails() {
-    WebElement caseDetails = findElementByCssSelector("div[id$='case-item']");
+    WebElement caseDetails = findElementByCssSelector("div[id$='case-details-panel']");
     return caseDetails.isDisplayed();
   }
 
   public void addNewNote(String content) {
-    String addNoteButtonId = "case-item:history:add-note-command";
-    String addNoteDialogId = "case-item:history:add-note-dialog";
-    findElementById(addNoteButtonId).click();
-    waitForElementDisplayed(By.cssSelector("div[id^='" + addNoteDialogId + "']"), true);
-    WebElement addNoteDialog = findElementByCssSelector("div[id^='" + addNoteDialogId + "']");
-    addNoteDialog.findElement(By.cssSelector("textarea[id$='note-content']")).sendKeys(content);
-    addNoteDialog.findElement(By.cssSelector("button[id$='save-add-note-command']")).click();
+    findElementByCssSelector("a[id$='add-note-command']").click();
+    waitForElementDisplayed(By.cssSelector("div[id$='add-note-dialog']"), true);
+    findElementByCssSelector("textarea[id$='note-content']").sendKeys(content);
+    findElementByCssSelector("button[id$='save-add-note-command']").click();
     waitAjaxIndicatorDisappear();
   }
 
   public void openDocumentUploadingDialog() {
-    findElementById("case-item:document:add-document-command").click();
-    String documentUploadingDialogId = "case-item:document:document-upload-dialog";
-    waitForElementDisplayed(By.cssSelector("[id^='" + documentUploadingDialogId +"']"), true);
+    findElementByCssSelector("a[id$='add-document-command']").click();
+    waitForElementDisplayed(By.cssSelector("a[id$='add-document-command']"), true);
   }
 
   public Boolean isDocumentUploadingDialogDisplayed() {
-    String documentUploadingDialogId = "case-item:document:document-upload-dialog";
-    return findElementByCssSelector("[id^='" + documentUploadingDialogId +"']").isDisplayed();
+	return findElementByCssSelector("div[id$='document-upload-dialog']").isDisplayed();
   }
 
   public void openFinishedTaskInHistoryArea() {
@@ -52,19 +47,19 @@ public class TaskTemplatePage extends TemplatePage {
     ((JavascriptExecutor) driver).executeScript("window.open('"+ url +"','_blank');");
   }
 
-  public TaskWidgetPage openFirstRelatedTaskInHistoryArea() {
-    String firstFinishedTaskCssSelector = "div[id='case-item:related-tasks'] a";
+  public TaskDetailsPage openFirstRelatedTaskInHistoryArea() {
+    String firstFinishedTaskCssSelector = "a[id$='task-name']";
     return openATaskInCaseDetails(firstFinishedTaskCssSelector);
   }
 
-  public TaskWidgetPage openATaskInCaseDetails(String taskCssSelector) {
+  public TaskDetailsPage openATaskInCaseDetails(String taskCssSelector) {
     WebElement task = findElementByCssSelector(taskCssSelector);
     task.click();
-    return new TaskWidgetPage();
+    return new TaskDetailsPage();
   }
 
   public int countNoteItems() {
-    return findListElementsByCssSelector("a[id$='note-content']").size();
+    return findListElementsByCssSelector("a[id$=':note-link']").size();
   }
 
   public int countHistoryItems() {
@@ -73,7 +68,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public int countRelatedTasks() {
-    return findListElementsByCssSelector("div[id='case-item:related-tasks'] a").size();
+    return findListElementsByCssSelector("a[id$='task-name']").size();
   }
 
   public void openSideStepMenu() {
@@ -101,8 +96,9 @@ public class TaskTemplatePage extends TemplatePage {
   }
   
   public void clickAdhocCreationButton() {
-    String adhocButtonCssSelection = "a[id$='start-adhoc']";
-    findElementByCssSelector(adhocButtonCssSelection).click();
+    findElementByCssSelector("#task-actions").click();
+    waitForElementDisplayed(By.cssSelector("a[id$='start-adhoc']"), true);
+    findElementByCssSelector("a[id$='start-adhoc']").click();
     waitAjaxIndicatorDisappear();
   }
   
@@ -125,13 +121,13 @@ public class TaskTemplatePage extends TemplatePage {
   }
   
   public boolean isAdhocHistoryDialogExist() {
-    String adhocHistoryBtnCSSSelection = "div[id$='adhoc-task-history-dialog']";
-    return findElementByCssSelector(adhocHistoryBtnCSSSelection).isDisplayed();
+    return findElementByCssSelector("div[id$='adhoc-task-history-dialog']").isDisplayed();
   }
   
   public void clickShowAdhocHistoryBtn() {
-    String adhocHistoryBtnCSSSelection = "a[id$='show-adhoc-history']";
-    findElementByCssSelector(adhocHistoryBtnCSSSelection).click();
+    findElementByCssSelector("#task-actions").click();
+    waitForElementDisplayed(By.cssSelector("a[id$='show-adhoc-history']"), true);
+    findElementByCssSelector("a[id$='show-adhoc-history']").click();
     waitAjaxIndicatorDisappear();
   }
 
@@ -146,8 +142,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
   
   public void closeAdhocHistoryDialog() {
-    String adhocButtonCssSelection = "button[id$='close-adhoc-dialog-button']";
-    findElementByCssSelector(adhocButtonCssSelection).click();
+    findElementByCssSelector("button[id$='close-adhoc-dialog-button']").click();
     waitAjaxIndicatorDisappear();
   }
   
