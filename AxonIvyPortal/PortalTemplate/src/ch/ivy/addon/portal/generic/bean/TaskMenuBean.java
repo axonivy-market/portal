@@ -22,7 +22,6 @@ import ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData;
 import ch.ivy.addon.portal.generic.common.TreeNodeType;
 import ch.ivy.addon.portalkit.bo.TaskNode;
 import ch.ivy.addon.portalkit.enums.MenuKind;
-import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskTreeUtils;
 import ch.ivy.ws.addon.CategoryData;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -72,11 +71,6 @@ public class TaskMenuBean implements Serializable {
     DefaultTreeNode groupTask = buildGroupTaskTree(portalTaskMenuData.getGroupTaskCategories(), menuState);
     rootNode.getChildren().add(groupTask);
 
-    if (PermissionUtils.checkReadAllTasksPermission()) {
-      DefaultTreeNode unassignedTask =
-          buildUnassignedTaskTree(portalTaskMenuData.getUnassignedTaskCategories(), menuState);
-      rootNode.getChildren().add(unassignedTask);
-    }
   }
 
   private DefaultTreeNode buildAllTaskTree(List<CategoryData> allTaskCategories, String menuState) {
@@ -114,13 +108,6 @@ public class TaskMenuBean implements Serializable {
             TreeNodeType.TASKS_GROUP_TASKS, menuState);
 
     return groupTasks;
-  }
-
-  private DefaultTreeNode buildUnassignedTaskTree(List<CategoryData> unassignedTaskCategories, String menuState) {
-    DefaultTreeNode unassignedTasks =
-        buildTaskTree(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/UNASSIGNED"),
-            unassignedTaskCategories, TreeNodeType.TASKS_UNASSIGNED_TASKS, menuState);
-    return unassignedTasks;
   }
 
   private DefaultTreeNode buildTaskTree(String nodeDisplayName, List<CategoryData> categories, String firstCategory,

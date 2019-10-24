@@ -44,12 +44,10 @@ Ps0 @PushWFArc f14 '' #zField
 Ps0 @GridStep f28 '' #zField
 Ps0 @PushWFArc f29 '' #zField
 Ps0 @PushWFArc f30 '' #zField
-Ps0 @CallSub f31 '' #zField
-Ps0 @PushWFArc f32 '' #zField
-Ps0 @PushWFArc f23 '' #zField
 Ps0 @CallSub f33 '' #zField
 Ps0 @PushWFArc f34 '' #zField
 Ps0 @PushWFArc f18 '' #zField
+Ps0 @PushWFArc f35 '' #zField
 >Proto Ps0 Ps0 PortalTaskMenuProcess #zField
 Ps0 f0 guid 156F869FC6B3D9ED #txt
 Ps0 f0 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
@@ -211,12 +209,7 @@ if(in.selectedNode.type.startsWith(TreeNodeType.TASKS_ALL_TASKS)){
 		in.dataModel.addIncludedStates(Arrays.asList(TaskState.DONE));
 	}
 	in.dataModel.setQueryForUnassignedTask(false);
-} else if(in.selectedNode.type.startsWith(TreeNodeType.TASKS_UNASSIGNED_TASKS)) {
-	in.dataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
-	in.dataModel.setIgnoreInvolvedUser(true);
-	in.dataModel.setIncludedStates(Arrays.asList(TaskState.DONE));
-	in.dataModel.setQueryForUnassignedTask(true);
-}
+} 
 
 in.taskView = TaskView.create().category(categoryMenu).dataModel(in.dataModel).pageTitle(categoryMenu.value).showHeaderToolbar(false).createNewTaskView();' #txt
 Ps0 f13 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
@@ -429,40 +422,6 @@ Ps0 f29 346 352 384 352 #arcP
 Ps0 f29 0 0.24467500942153303 0 0 #arcLabel
 Ps0 f30 expr out #txt
 Ps0 f30 512 352 544 352 #arcP
-Ps0 f31 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
-Ps0 f31 processCall MultiPortal/TaskService:findUnassignedCategories(String,List<String>,Long) #txt
-Ps0 f31 doCall true #txt
-Ps0 f31 requestActionDecl '<java.lang.String jsonQuery,List<java.lang.String> apps,java.lang.Long serverId> param;
-' #txt
-Ps0 f31 requestMappingAction 'param.jsonQuery=in.jsonQuery;
-param.apps=in.involvedApplications;
-param.serverId=ch.ivy.addon.portalkit.util.SecurityServiceUtils.getServerIdFromSession();
-' #txt
-Ps0 f31 responseActionDecl 'ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData out;
-' #txt
-Ps0 f31 responseMappingAction 'out=in;
-out.errors=result.errors;
-out.unassignedTaskCategories=result.categories;
-' #txt
-Ps0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>FindUnassignedCategories of
-all unassigned tasks</name>
-        <nameStyle>48,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ps0 f31 792 140 36 24 -54 -48 #rect
-Ps0 f31 @|CallSubIcon #fIcon
-Ps0 f32 expr out #txt
-Ps0 f32 714 152 792 152 #arcP
-Ps0 f32 0 0.6929059362572698 0 0 #arcLabel
-Ps0 f23 expr out #txt
-Ps0 f23 828 152 896 186 #arcP
-Ps0 f23 1 896 152 #addKink
-Ps0 f23 0 0.7656103032438362 0 0 #arcLabel
 Ps0 f33 type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 Ps0 f33 processCall 'Functional Processes/InitializeTaskDataModel:call()' #txt
 Ps0 f33 doCall true #txt
@@ -486,6 +445,10 @@ Ps0 f34 expr out #txt
 Ps0 f34 67 352 112 352 #arcP
 Ps0 f18 expr out #txt
 Ps0 f18 256 352 310 352 #arcP
+Ps0 f35 expr out #txt
+Ps0 f35 714 152 896 186 #arcP
+Ps0 f35 1 896 152 #addKink
+Ps0 f35 0 0.8692731089448356 0 0 #arcLabel
 >Proto Ps0 .type ch.ivy.addon.portal.generic.PortalTaskMenu.PortalTaskMenuData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
@@ -516,11 +479,9 @@ Ps0 f13 mainOut f29 tail #connect
 Ps0 f29 head f28 mainIn #connect
 Ps0 f28 mainOut f30 tail #connect
 Ps0 f30 head f38 mainIn #connect
-Ps0 f21 mainOut f32 tail #connect
-Ps0 f32 head f31 mainIn #connect
-Ps0 f31 mainOut f23 tail #connect
-Ps0 f23 head f22 in #connect
 Ps0 f12 mainOut f34 tail #connect
 Ps0 f34 head f33 mainIn #connect
 Ps0 f33 mainOut f18 tail #connect
 Ps0 f18 head f13 mainIn #connect
+Ps0 f21 mainOut f35 tail #connect
+Ps0 f35 head f22 in #connect

@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
+import org.apache.commons.lang.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.server.browserlaunchers.Sleeper;
@@ -143,14 +145,24 @@ public class TaskWidgetPage extends TemplatePage {
     click(findElementById(resetCommandButton));
   }
 
-  public TaskState getTaskState(int taskId) {
+  public TaskState getTaskState(int taskRowIndex) {
     WebElement stateCell =
-        findElementById("task-widget:task-list-scroller:" + taskId + ":task-item:task-state-component:task-state");
+        findElementById("task-widget:task-list-scroller:" + taskRowIndex + ":task-item:task-state-component:task-state");
     if (stateCell != null) {
       String stateClass = stateCell.findElement(By.className("fa")).getAttribute("class");
       return TaskState.fromClass(stateClass.substring(stateClass.indexOf("task-state-")));
     }
     return null;
+  }
+  
+  public String getTaskStateTooltip(int taskRowIndex) {
+    WebElement stateTooltip =
+        findElementById("task-widget:task-list-scroller:" + taskRowIndex + ":task-item:task-state-component:state-tooltip");
+    if (stateTooltip != null) {
+      WebElement stateContent = findChildElementByClassName(stateTooltip, "ui-tooltip-text");
+      return stateContent.getAttribute("innerText");
+    }
+    return StringUtils.EMPTY;
   }
 
   public void changeExpiryOfTaskAt(int index, String dateStringLiteral) {
@@ -439,6 +451,32 @@ public class TaskWidgetPage extends TemplatePage {
         findElementByCssSelector("input[id$='customer-name-filter:filter-input-form:customVarChar5']");
     enterKeys(customerNameInput, text);
     click(By.cssSelector("button[id$='task-widget:customer-name-filter:filter-input-form:update-command']"));
+    Sleeper.sleepTight(2000);
+  }
+  
+  public void openStateFilterOverlayPanel() {
+    click(By.cssSelector("button[id$='state-filter:filter-open-form:advanced-filter-command']"));
+  }
+  
+  public String getDisplayStateInStateFilter() {
+    WebElement stateFilter = findElementByCssSelector("div[id$='state-filter:filter-input-form:advanced-filter-panel']");
+    List<WebElement> elements = findChildElementsByTagName(stateFilter, "LABEL");
+    List<String> states = elements.stream().map(WebElement::getText).collect(Collectors.toList());
+    return StringUtils.join(states, ",");
+  }
+  
+  public void clickOnTaskStatesAndApply(List<String> states) {
+    WebElement stateFilter = findElementByCssSelector("div[id$='state-filter:filter-input-form:advanced-filter-panel']");
+    List<WebElement> elements = findChildElementsByTagName(stateFilter, "LABEL");
+    for(String state : states) {
+      for(WebElement ele : elements){
+        if (state.equals(ele.getText())) {
+          ele.click();
+          break;
+        }
+      }
+    }
+    click(By.cssSelector("button[id$='state-filter:filter-input-form:update-command']"));
     Sleeper.sleepTight(2000);
   }
 

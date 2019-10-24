@@ -1,5 +1,7 @@
 package portal.guitest.test;
 
+import java.util.Arrays;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -107,5 +109,38 @@ public class TaskFilterTest extends BaseTest {
     mainMenuPage.selectCaseMenu();
     taskWidgetPage = mainMenuPage.openTaskList();
     assertEquals(filterName, taskWidgetPage.getFilterName());
+  }
+  
+  @Test
+  public void testShowUnassignedTaskToPersonHaveTaskReadAllPermission() {
+    navigateToUrl(createUnassignedTaskUrl);
+    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
+    loginPage.login();
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+    assertEquals(6, taskWidgetPage.countTasks());
+    
+    taskWidgetPage.openAdvancedFilter("State", "state");
+    taskWidgetPage.openStateFilterOverlayPanel();
+    assertEquals("Suspended,In progress,Reserved,Done,Unassigned", taskWidgetPage.getDisplayStateInStateFilter());
+    
+    taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Suspended","In progress","Reserved","Done"));
+    assertEquals(1, taskWidgetPage.countTasks());
+    assertEquals("OPEN (Unassigned)", taskWidgetPage.getTaskStateTooltip(0));
+  }
+  
+  @Test
+  public void testNotShowUnassignedTaskToPersonNotHaveTaskReadAllPermission() {
+    navigateToUrl(createUnassignedTaskUrl);
+    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
+    loginPage.login();
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+    
+    assertEquals(3, taskWidgetPage.countTasks());
+    taskWidgetPage.openAdvancedFilter("State", "state");
+    taskWidgetPage.openStateFilterOverlayPanel();
+    assertEquals("Suspended,In progress,Reserved", taskWidgetPage.getDisplayStateInStateFilter());
+    
   }
 }

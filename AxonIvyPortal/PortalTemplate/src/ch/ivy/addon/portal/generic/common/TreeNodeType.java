@@ -9,5 +9,4 @@ public class TreeNodeType {
   public static final String TASKS_MY_TASKS = "My_Tasks";
   public static final String TASKS_ALL_TASKS = "All_Tasks";
   public static final String TASKS_GROUP_TASKS = "Group_Tasks";
-  public static final String TASKS_UNASSIGNED_TASKS = "Unassigned_Tasks";
 }
