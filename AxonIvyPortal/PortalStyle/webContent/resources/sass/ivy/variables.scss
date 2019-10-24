@@ -98,6 +98,7 @@ $caseWidgetColumnHeaderIsSelectedColor: rgba(0,0,0,1);
 $caseItemDescriptionColor: rgba(0,0,0,0.4);
 $caseItemActionDetailColor: rgba(0,0,0,0.5);
 $caseItemActionStepsItemHoverBackgroundColor: #E8E9EF;
+$caseItemActionStepsItemColor: rgba(0, 0, 0, 0.5);
 
 /*Process */
 $expressExpandCollapseButtonColor: $primaryTextColor;
@@ -117,9 +118,55 @@ $compactTaskStartListItemHoverBackgroundColor: #E8E9EF;
 $compactTaskStartInfoColor: rgba(0,0,0,1);
 $taskListDescriptionCellColor: rgba(0,0,0,0.4);
 $taskOddRowBackgroundColor: rgba(0,0,0,0.04);
+$sideStepItemColor: rgba(0, 0, 0, 0.5);
+$sideStepItemHoverColor: rgba(0, 0, 0, 1);
+$sideStepItemHoverBackgroundColor: #f5f5f5;
+$taskWidgetSortMenuColor: rgba(0,0,0,0.5);
+$taskWidgetSortMenuLinkColor: rgba(0,0,0,0.6);
+$taskWidgetSortMenuLinkIsSelectedColor: rgba(0,0,0,1);
+
+/* Case Detail*/
+$caseRelatedTaskColor: $primaryTextColor;
+$caseRelatedTaskHoverColor: rgba(0,0,0,0.6);
+$caseAdditionalDetailLinkColor: rgba(0,0,0,0.5);
+
+/*Process chain */
+$lineWaitingStepBackgroundColor: #E0E0E0;
+
+
+/* Admin Setting */
+$adminSettingNoPermissionMessageColor: #E53935;
+
+/* Absences and Debuty */
+$substitutedUserTextColor: #757575;
+
+/*Awesome Icon Selection */
+$linkChangeAwesomeIconColor: rgba(0, 0, 0, 1);
+$contentLinkChangeAwesomeIconColor: #337ab7;
+
+/*Chart */
+$chartFilterInfoIconColor: rgba(0, 0, 0, 0.75);
+$chartInfoHeaderColor: #656565;
+
+/*Start Notification */
+$notificationContentBackgroundColor: rgb(230, 113, 99);
+
+/*Login */
+$loginPanelHeaderBackgroundColor: #F0F0F0;
+
+/* Stages breadcrumb */
+$stagesChainVisitedColor: #555555;
+$stagesChainWaitingColor: #cccccc;
+$stagesChainProcessFlowVisibleBackgroundColor: #cccccc;
+
+/* Task Action Item*/
+$taskActionItemDisabledStateColor: rgba(0,0,0,0.5);
+$taskActionItemLeftIconColor: rgba(0,0,0,0.5);
+
+/* Task Template */
+$menuListWidgetHeaderColor: rgba(0, 0, 0, 0.7);
 
 /*---------------------------------Font family----------------------------------------*/
 $portalFontFamily: "Roboto";
 $fieldSetNoBorderTogglerFontFamily: "FontAwesome";
 $iconFontFamily: "FontAwesome";
-
