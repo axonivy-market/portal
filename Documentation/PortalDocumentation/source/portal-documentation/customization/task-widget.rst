@@ -282,8 +282,13 @@ You can refer to ``PortalExamples`` project for examples
       1025. So you could reduce width of browser to 1025 to test and
       decide which columns need to be hidden.
 
-.. |task-filter| image:: images/-task-widget/task-filter.png
-.. |calculate-task-delegate| image:: images/-task-widget/calculate-task-delegate.png
-.. |responsive-task-list-customization| image:: images/-task-widget/responsive-task-list-customization.png
-.. |responsive-task-list-hide-column| image:: images/-task-widget/responsive-task-list-hide-column.png
+.. |task-filter| image:: images/task-widget/task-filter.png
+.. |calculate-task-delegate| image:: images/task-widget/calculate-task-delegate.png
+.. |responsive-task-list-customization| image:: images/task-widget/responsive-task-list-customization.png
+.. |responsive-task-list-hide-column| image:: images/task-widget/responsive-task-list-hide-column.png
+.. |task-columns-configuration| image:: images/task-widget/task-columns-configuration.png
+.. |task-details-responsiveness| image:: images/task-widget/task-details-responsiveness.png
+.. |task-list| image:: images/task-widget/task-list.png
+.. |task-sort-override| image:: images/task-widget/task-sort-override.png
+
 
