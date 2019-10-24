@@ -1,5 +1,5 @@
 [Ivy]
-162511D2577DBA88 3.28 #module
+162511D2577DBA88 7.5.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CreateTestData Big #zClass
 Cs0 B #cInfo
@@ -216,8 +216,7 @@ Cs0 f9 @|StartRequestIcon #fIcon
 Cs0 f46 700 239 32 32 0 16 #rect
 Cs0 f46 @|AlternativeIcon #fIcon
 Cs0 f45 processCall 'Start Processes/CreateTestData:startACase(Integer)' #txt
-Cs0 f45 requestActionDecl '<java.lang.Integer count> param;
-' #txt
+Cs0 f45 requestActionDecl '<Integer count> param;' #txt
 Cs0 f45 requestMappingAction 'param.count=in.count;
 ' #txt
 Cs0 f45 responseActionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
@@ -261,7 +260,7 @@ Cs0 f42 228 255 372 255 #arcP
 Cs0 f10 expr out #txt
 Cs0 f10 110 255 196 255 #arcP
 Cs0 f43 outLink startACase.ivp #txt
-Cs0 f43 inParamDecl '<java.lang.Integer count> param;' #txt
+Cs0 f43 inParamDecl '<Integer count> param;' #txt
 Cs0 f43 inParamTable 'out.count=param.count;
 ' #txt
 Cs0 f43 requestEnabled false #txt

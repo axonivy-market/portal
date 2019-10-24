@@ -1,5 +1,5 @@
 [Ivy]
-1624C80AC16261CE 3.28 #module
+1624C80AC16261CE 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ps0 ProcessHistoryDialogComponentProcess Big #zClass
 Ps0 RD #cInfo
@@ -20,11 +20,8 @@ Ps0 @PushWFArc f5 '' #zField
 >Proto Ps0 Ps0 ProcessHistoryDialogComponentProcess #zField
 Ps0 f0 guid 1624C80AC2A7C784 #txt
 Ps0 f0 method start() #txt
-Ps0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ps0 f0 outParameterDecl '<> result;
-' #txt
+Ps0 f0 inParameterDecl '<> param;' #txt
+Ps0 f0 outParameterDecl '<> result;' #txt
 Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

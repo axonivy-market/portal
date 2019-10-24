@@ -1,5 +1,5 @@
 [Ivy]
-15D4E5494B0DFC50 3.28 #module
+15D4E5494B0DFC50 7.5.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CancelApprovalRequestProcess Big #zClass
 Cs0 RD #cInfo
@@ -22,11 +22,8 @@ Cs0 @PushWFArc f7 '' #zField
 >Proto Cs0 Cs0 CancelApprovalRequestProcess #zField
 Cs0 f0 guid 15D4E5494D1802E5 #txt
 Cs0 f0 method start() #txt
-Cs0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Cs0 f0 outParameterDecl '<> result;
-' #txt
+Cs0 f0 inParameterDecl '<> param;' #txt
+Cs0 f0 outParameterDecl '<> result;' #txt
 Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -70,13 +67,10 @@ Cs0 f5 expr out #txt
 Cs0 f5 328 160 419 160 #arcP
 Cs0 f8 guid 15D4E6C813AA1993 #txt
 Cs0 f8 method cancelApprovalRequest(java.lang.Long) #txt
-Cs0 f8 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.Long caseId> param = methodEvent.getInputArguments();
-' #txt
+Cs0 f8 inParameterDecl '<Long caseId> param;' #txt
 Cs0 f8 inParameterMapAction 'out.caseId=param.caseId;
 ' #txt
-Cs0 f8 outParameterDecl '<> result;
-' #txt
+Cs0 f8 outParameterDecl '<> result;' #txt
 Cs0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
