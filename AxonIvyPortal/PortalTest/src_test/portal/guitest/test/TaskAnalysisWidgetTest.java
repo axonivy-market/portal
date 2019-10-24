@@ -11,7 +11,6 @@ import org.openqa.selenium.WebElement;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LanguagePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.StatisticWidgetPage;
@@ -33,13 +32,8 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
     loginPage.login();
     grantPermissionOfPortal();
-
+    resetLanguageOfCurrentUser();
     homePage = new HomePage();
-
-    LanguagePage languagePage = homePage.openLanguagePage();
-    languagePage.selectLanguage(1);
-    languagePage.save();
-
     mainMenuPage = homePage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     statisticWidgetPage.waitForPageLoaded();
