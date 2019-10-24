@@ -1,5 +1,5 @@
 [Ivy]
-16193718E2B3D6C4 3.28 #module
+16193718E2B3D6C4 7.5.0 #module
 >Proto >Proto Collection #zClass
 Pt0 ProcessHistoryTest Big #zClass
 Pt0 B #cInfo
@@ -88,8 +88,7 @@ Pt0 f3 @C|.responsibility Everybody #txt
 Pt0 f3 105 265 30 30 -56 17 #rect
 Pt0 f3 @|StartRequestIcon #fIcon
 Pt0 f4 processCall 'Functional Processes/SetBusinessEntityId:call(String)' #txt
-Pt0 f4 requestActionDecl '<java.lang.String businessEntityId> param;
-' #txt
+Pt0 f4 requestActionDecl '<String businessEntityId> param;' #txt
 Pt0 f4 requestMappingAction 'param.businessEntityId="resource1";
 ' #txt
 Pt0 f4 responseActionDecl 'internaltest.Data out;

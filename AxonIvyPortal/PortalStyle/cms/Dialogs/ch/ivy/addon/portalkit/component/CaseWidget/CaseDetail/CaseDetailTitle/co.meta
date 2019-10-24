@@ -1,5 +1,5 @@
-co: name={CaseDetailTitle} description={} changed={2019-07-19 05:00:39 CEST} changedby={nqhoan} visualorder={0} guid={16BAB6DC70970407} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={16BB74451F93D463} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-07-03 11:55:59 CEST} validto={} changed={2019-07-19 05:00:39 CEST} changedby={nqhoan} properties={} id={}
-val: guid={16BAB6DC70CA5620} datatype={} isdefault={true} langid={en} description={} validfrom={2019-07-01 04:07:30 CEST} validto={} changed={2019-07-01 04:47:06 CEST} changedby={nqhoan} properties={} id={}
-val: guid={16BB7445133CED05} datatype={} isdefault={false} langid={es} description={} validfrom={2019-07-03 11:56:43 CEST} validto={} changed={2019-07-19 05:00:39 CEST} changedby={nqhoan} properties={} id={}
-val: guid={16BB744505FCDB39} datatype={} isdefault={false} langid={de} description={} validfrom={2019-07-03 11:56:30 CEST} validto={} changed={2019-07-19 05:00:39 CEST} changedby={nqhoan} properties={} id={}
+co: name={CaseDetailTitle} description={} changed={2019-10-18 13:07:17 CEST} changedby={ttthai} visualorder={0} guid={16BAB6DC70970407} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16BB74451F93D463} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-10-18 13:07:17 CEST} validto={} changed={2019-10-18 13:07:17 CEST} changedby={ttthai} properties={} id={}
+val: guid={16BAB6DC70CA5620} datatype={} isdefault={true} langid={en} description={} validfrom={2019-10-18 13:07:17 CEST} validto={} changed={2019-10-18 13:07:17 CEST} changedby={ttthai} properties={} id={}
+val: guid={16BB7445133CED05} datatype={} isdefault={false} langid={es} description={} validfrom={2019-10-18 13:07:17 CEST} validto={} changed={2019-10-18 13:07:17 CEST} changedby={ttthai} properties={} id={}
+val: guid={16BB744505FCDB39} datatype={} isdefault={false} langid={de} description={} validfrom={2019-10-18 13:07:17 CEST} validto={} changed={2019-10-18 13:07:17 CEST} changedby={ttthai} properties={} id={}

@@ -1,5 +1,5 @@
 [Ivy]
-164B5BE6623EDE15 3.28 #module
+164B5BE6623EDE15 7.5.0 #module
 >Proto >Proto Collection #zClass
 Il0 InitializeCaseDataModel Big #zClass
 Il0 B #cInfo
@@ -18,8 +18,7 @@ Il0 @PushWFArc f4 '' #zField
 Il0 @PushWFArc f2 '' #zField
 >Proto Il0 Il0 InitializeCaseDataModel #zField
 Il0 f0 inParamDecl '<> param;' #txt
-Il0 f0 outParamDecl '<ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel caseDataModel> result;
-' #txt
+Il0 f0 outParamDecl '<ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel caseDataModel> result;' #txt
 Il0 f0 outParamTable 'result.caseDataModel=in.dataModel;
 ' #txt
 Il0 f0 callSignature call() #txt
