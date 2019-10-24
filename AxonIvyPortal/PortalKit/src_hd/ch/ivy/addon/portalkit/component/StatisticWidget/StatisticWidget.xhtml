@@ -56,7 +56,7 @@
       </h:panelGroup>
       <h:panelGroup layout="block" rendered="#{data.createMode}">
         <div class="ui-g-12 u-padding-0">
-          <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/backToDashboard')}" styleClass="back-button Fright"
+          <p:commandButton id="back-from-chart-creation" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/backToDashboard')}" styleClass="back-button Fright"
             icon="fa fa-reply" actionListener="#{logic.switchCreateMode}" update="widget-container create-chart-header" />
         </div>
       </h:panelGroup>

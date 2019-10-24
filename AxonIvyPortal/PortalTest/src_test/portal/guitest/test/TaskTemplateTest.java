@@ -74,7 +74,7 @@ public class TaskTemplateTest extends BaseTest {
     TaskTemplatePage taskTemplatePage = startATask();
     assertTrue(taskTemplatePage.countRelatedTasks() > 0);
     TaskDetailsPage taskDetailsPage = taskTemplatePage.openFirstRelatedTaskInHistoryArea();
-    assertEquals("Task Item Detail", taskDetailsPage.getPageTitle());
+    assertEquals("Task Details", taskDetailsPage.getPageTitle());
   }
 
   @Test
