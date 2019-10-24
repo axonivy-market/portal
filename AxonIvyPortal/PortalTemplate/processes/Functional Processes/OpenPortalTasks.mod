@@ -34,10 +34,9 @@ Os0 f0 @|StartSubIcon #fIcon
 Os0 f1 83 259 26 26 14 0 #rect
 Os0 f1 @|EndSubIcon #fIcon
 Os0 f3 dialogId ch.ivy.addon.portal.generic.PortalTasks #txt
-Os0 f3 startMethod useTaskViewWithMenuState(ch.ivy.addon.portal.generic.view.TaskView,String) #txt
-Os0 f3 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView,String menuState> param;' #txt
+Os0 f3 startMethod useTaskView(TaskView) #txt
+Os0 f3 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;' #txt
 Os0 f3 requestMappingAction 'param.taskView=in.taskView;
-param.menuState=ch.ivy.addon.portalkit.util.MenuUtils.getMenuState();
 ' #txt
 Os0 f3 responseActionDecl 'ch.ivy.addon.portal.generic.OpenPortalTasksData out;
 ' #txt
