@@ -1,34 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
-  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:p="http://primefaces.org/ui"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions">
 
 <cc:interface componentType="IvyComponent">
 </cc:interface>
 
 <cc:implementation>
-  <div id="login" class="customized-login">
-    <h:form id="login-form" class="customized-login-form">
-      <div class="content">
-        <p class="title">WELCOME</p>
-        <p:inputText id="username" styleClass="input" placeholder="username" value="#{data.username}" />
-        <p:password id="password" styleClass="input" placeholder="password" value="#{data.password}" />
-        <p:messages id="error-message" showDetail="true" showIcon="false" escape="false" />
+  <div id="login" class="login-container">
+      <div class="customized-login-bg" />
+      <div class="customized-login">
+          <h:form id="login-form" class="customized-login-form">
+        <div class="ui-g">
+          <p class="title ui-g-12">WELCOME</p>
+          <p:inputText id="username" styleClass="input ui-g-12" placeholder="username" value="#{data.username}" />
+          <p:password id="password" styleClass="input ui-g-12" placeholder="password" value="#{data.password}" />
+          <p:messages id="error-message" showDetail="true" showIcon="false" escape="false" styleClass="ui-g-12" />
+        </div>
+        <div class="footer ui-g MarTop20">
+          <p:commandLink id="login-command" styleClass="login-command ui-g-12" actionListener="#{logic.login}" value="login" update="error-message"
+            oncomplete="if (args &amp;&amp; !args.validationFailed){location.reload()}">
+          </p:commandLink>
+          <p:defaultCommand target="login-command" />
+        </div>
+            </h:form>
       </div>
-      <div class="footer">
-        <p:commandLink id="login-command" styleClass="login-command" actionListener="#{logic.login}" value="login"
-          update="error-message" oncomplete="if (args &amp;&amp; !args.validationFailed){location.reload()}">
-        </p:commandLink>
-        <p:defaultCommand target="login-command" />
-      </div>
-    </h:form>
-    <script>
+
+  </div>
+  <script>
       $.extend($.ui.keyCode, {
         NUMPAD_ENTER : 108
       });
     </script>
-  </div>
 </cc:implementation>
 </html>
