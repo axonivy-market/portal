@@ -2,7 +2,6 @@ package portal.guitest.test;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
@@ -23,7 +22,7 @@ public class MenuTest extends BaseTest {
   }
 
   @Test
-  public void testKeepOpenStateWhenNavigateToAnotherPage() {  // SERENITY_PASSED
+  public void testKeepOpenStateWhenNavigateToAnotherPage() {
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
 
@@ -34,7 +33,7 @@ public class MenuTest extends BaseTest {
   }
 
   @Test
-  public void testKeepClosedStateWhenNavigateToAnotherPage() {  // SERENITY_PASSED
+  public void testKeepClosedStateWhenNavigateToAnotherPage() {
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
 

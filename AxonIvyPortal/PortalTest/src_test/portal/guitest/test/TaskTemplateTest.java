@@ -16,6 +16,7 @@ import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.NoteHistoryPage;
+import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.WorkingTaskDialogPage;
@@ -72,8 +73,8 @@ public class TaskTemplateTest extends BaseTest {
   public void testOpeningRelatedTask() {
     TaskTemplatePage taskTemplatePage = startATask();
     assertTrue(taskTemplatePage.countRelatedTasks() > 0);
-    TaskWidgetPage taskWidget = taskTemplatePage.openFirstRelatedTaskInHistoryArea();
-    assertTrue(taskWidget.countTasks() > 0);
+    TaskDetailsPage taskDetailsPage = taskTemplatePage.openFirstRelatedTaskInHistoryArea();
+    assertEquals("Task Details", taskDetailsPage.getPageTitle());
   }
 
   @Test
@@ -84,7 +85,7 @@ public class TaskTemplateTest extends BaseTest {
   }
   
   @Test
-  public void testLeaveWorkingTaskByClickingOnLogo() {
+  public void testLeaveWorkingTaskByClickingOnLogo() { // TODO FEATURE BROKEN
     TaskTemplatePage taskTemplatePage = startATask();
     taskTemplatePage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
@@ -95,7 +96,7 @@ public class TaskTemplateTest extends BaseTest {
   }
   
   @Test
-  public void testReserveWorkingTaskByClickingOnLogo() {
+  public void testReserveWorkingTaskByClickingOnLogo() {// TODO FEATURE BROKEN
     TaskTemplatePage taskTemplatePage = startATask();
     taskTemplatePage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();

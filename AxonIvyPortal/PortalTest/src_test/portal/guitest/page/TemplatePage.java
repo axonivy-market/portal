@@ -22,7 +22,7 @@ import portal.guitest.common.UrlHelpers;
 
 public abstract class TemplatePage extends AbstractPage {
 
-  private static final String TEMPLATE_PAGE_LOCATOR = "id('logo')";
+  private static final String TEMPLATE_PAGE_LOCATOR = "id('user-menu-required-login:logo')";
   public static final String CLASS_PROPERTY = "class";
   protected static final String ENGINE_URL_LOCAL = "http://localhost:8081/ivy";
 
@@ -196,6 +196,17 @@ public abstract class TemplatePage extends AbstractPage {
       return false;
     }
   }
+  
+  
+
+  @Override
+  public <T> boolean isElementDisplayed(T locator) {
+    try {
+      return super.isElementDisplayed(locator);
+    } catch (Exception e) {
+      return false;
+    }
+  }
 
   public MainMenuPage openMainMenu() {
     WebElement mainMenuToggle = findDisplayedElementBySelector("#left-menu");
@@ -207,6 +218,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public void clickOnLogo() {
+    openMainMenu();
     findElementByCssSelector("a[id$='logo']").click();
     waitAjaxIndicatorDisappear();
   }
@@ -224,7 +236,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public void closeMainMenu() {
-    WebElement mainMenuToggle = findDisplayedElementBySelector("#left-menu");
+    findDisplayedElementBySelector("#left-menu");
     if (isMainMenuOpen()) {
       click(By.cssSelector("a[id$='toggle-menu']"));
       click(By.id("top-menu"));
@@ -263,11 +275,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public CaseWidgetPage openCaseList() {
-    openMainMenu();
-    WebElement caseListToggle = findListElementsByCssSelector("a.left-sidebar-sub-menu-item").get(2);
-    caseListToggle.click();
-    waitForElementPresent(By.cssSelector("div.js-case-default-widget-container"), true);
-    return new CaseWidgetPage();
+    return openMainMenu().selectCaseMenu();
   }
 
   public String getGlobalGrowlMessage() {
@@ -303,5 +311,10 @@ public abstract class TemplatePage extends AbstractPage {
       type(getSearchInputData(), keyword + Keys.ENTER);
       return new SearchResultPage();
     }
+  }
+  
+  public void clickByCssSelector(String cssSelector) {
+    waitForElementDisplayed(By.cssSelector(cssSelector), true);
+    findElementByCssSelector(cssSelector).click();
   }
 }
