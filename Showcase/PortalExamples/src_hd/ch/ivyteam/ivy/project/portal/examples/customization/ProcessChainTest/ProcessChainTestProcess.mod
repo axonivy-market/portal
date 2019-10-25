@@ -1,5 +1,5 @@
 [Ivy]
-164DB519052DCBE0 3.28 #module
+164DB519052DCBE0 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ps0 ProcessChainTestProcess Big #zClass
 Ps0 RD #cInfo
@@ -25,11 +25,8 @@ Ps0 @PushWFArc f2 '' #zField
 >Proto Ps0 Ps0 ProcessChainTestProcess #zField
 Ps0 f0 guid 164DB51906823131 #txt
 Ps0 f0 method start() #txt
-Ps0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ps0 f0 outParameterDecl '<> result;
-' #txt
+Ps0 f0 inParameterDecl '<> param;' #txt
+Ps0 f0 outParameterDecl '<> result;' #txt
 Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

@@ -1,5 +1,5 @@
-TestTaskTemplateData #class
-ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate #namespace
+CustomTaskTemplateData #class
+ch.ivyteam.ivy.project.portal.examples.CustomTaskTemplate #namespace
 firstname String #field
 firstname PERSISTENT #fieldModifier
 lastname String #field

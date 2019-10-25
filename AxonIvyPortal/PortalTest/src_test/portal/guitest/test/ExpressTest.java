@@ -77,6 +77,7 @@ public class ExpressTest extends BaseTest{
     executeUserTask();
     assertEquals(0, new TaskWidgetPage().countTasks());
     login(TestAccount.DEMO_USER);
+    executeUserTask();
     executeApproval("Approved at first level");
     executeApproval("Approved at second level");
     assertEquals(0, new TaskWidgetPage().countTasks());
