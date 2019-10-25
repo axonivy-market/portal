@@ -19,12 +19,7 @@ public class AnnouncementTest extends BaseTest {
     navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
     LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
     loginPage.login();
-    HomePage homePage = new HomePage();
-    assertTrue("Admin Settings menu item is  displayed", homePage.isAdminSettingsMenuItemPresent());
-    LanguagePage languagePage = homePage.openLanguagePage();
-
-    languagePage.selectLanguage(1);
-    languagePage.save();
+    resetLanguageOfCurrentUser();
   }
 
   @Test

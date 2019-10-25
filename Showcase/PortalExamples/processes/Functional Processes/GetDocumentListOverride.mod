@@ -1,5 +1,5 @@
 [Ivy]
-16AC49C381377D01 3.28 #module
+16AC49C381377D01 7.5.0 #module
 >Proto >Proto Collection #zClass
 Gt0 GetDocumentList Big #zClass
 Gt0 B #cInfo
@@ -22,7 +22,7 @@ Gt0 @AnnotationArc f6 '' #zField
 Gt0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ICase businessCase> param;' #txt
 Gt0 f0 inParamTable 'out.businessCase=param.businessCase;
 ' #txt
-Gt0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyDocument> documents,java.lang.String message> result;' #txt
+Gt0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyDocument> documents,String message> result;' #txt
 Gt0 f0 outParamTable 'result.documents=in.documents;
 result.message=in.message;
 ' #txt

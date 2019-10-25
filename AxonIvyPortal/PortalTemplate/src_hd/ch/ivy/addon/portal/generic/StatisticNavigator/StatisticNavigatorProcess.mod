@@ -69,10 +69,8 @@ Ss0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ss0 f6 80 132 26 26 -35 15 #rect
 Ss0 f6 @|UdEventIcon #fIcon
 Ss0 f32 dialogId ch.ivy.addon.portal.generic.admin.PortalDashBoard #txt
-Ss0 f32 startMethod startWithMenuState(String) #txt
-Ss0 f32 requestActionDecl '<String menuState> param;' #txt
-Ss0 f32 requestMappingAction 'param.menuState=ch.ivy.addon.portalkit.util.MenuUtils.getMenuState();
-' #txt
+Ss0 f32 startMethod start() #txt
+Ss0 f32 requestActionDecl '<> param;' #txt
 Ss0 f32 responseActionDecl 'ch.ivy.addon.portal.generic.StatisticNavigator.StatisticNavigatorData out;
 ' #txt
 Ss0 f32 responseMappingAction 'out=in;

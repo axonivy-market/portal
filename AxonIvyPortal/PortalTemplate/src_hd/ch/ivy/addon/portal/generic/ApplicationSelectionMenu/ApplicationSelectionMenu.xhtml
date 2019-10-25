@@ -8,7 +8,6 @@
   xmlns:ps="http://primefaces.org/serenity">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="menuState" />
   <cc:attribute name="onClickTaskMenuItemCallback" />
   <cc:attribute name="showGlobalSearch" />
   <cc:attribute name="isWorkingOnATask"/>
@@ -23,7 +22,8 @@
     </p:commandLink>
 
     <p:commandLink id="logo-small" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(cc.attrs.isWorkingOnATask)}" styleClass="portal-home-logo-small">
-      <p:graphicImage styleClass="portal-home-logo" value="#{resource['ivy-cms:images/logo/SmallCorporateLogo']}" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
+      <p:graphicImage styleClass="portal-home-logo portal-home-logo-small" value="#{resource['ivy-cms:images/logo/SmallCorporateLogo']}" 
+        alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
     </p:commandLink>
 
     <p:commandLink id="toggle-menu" styleClass="sidebar-anchor" global="false" />
