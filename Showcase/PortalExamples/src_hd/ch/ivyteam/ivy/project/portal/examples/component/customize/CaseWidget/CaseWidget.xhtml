@@ -49,7 +49,7 @@
       <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customVarCharField1-column-header"
         styleClass="TexAlCenter customized-case-header-column"
         responsiveStyleClass="js-hidden-when-expand-menu u-hidden-lg-down"
-        value="#{ivy.cms.co('/DefaultColumns/caseList/customVarcharField1')}" sortedField="customVarCharField1"
+        value="#{ivy.cms.co('/DefaultColumns/caseList/customVarCharField1')}" sortedField="customVarCharField1"
         sortable="true" dataModel="#{caseView.dataModel}" />
       <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customTimestampField1-column-header"
         styleClass="TexAlCenter customized-case-header-column"
@@ -77,7 +77,7 @@
 
       <!-- New field -->
       <h:panelGroup styleClass="customized-case-header-column js-hidden-when-expand-menu u-hidden-lg-down">
-        <h:outputText value="#{case.customFields().stringField('CustomVarcharField1').getOrNull()}"
+        <h:outputText value="#{case.customFields().stringField('CustomVarCharField1').getOrNull()}"
           styleClass="case-header-default-cell customized-case-header-column" />
       </h:panelGroup>
       <h:panelGroup styleClass="customized-case-header-column js-hidden-when-expand-menu u-hidden-lg-down">
