@@ -22,11 +22,9 @@ Each CaseItemDetails contains
 
 |case-standard|
 
-   **Important**
-
-   "Data and Description" panel always displays, we cannot override its
-   content or hide/show this panel.
-
+   .. important:: "Data and Description" panel always displays, we cannot override its
+                 content or hide/show this panel.
+   
 .. _customization-case-item-details-how-to-override-ui:
 
 How to custom Case item details UI
@@ -38,8 +36,8 @@ Refer to ``PortalExamples`` project for examples.
    required library.
 
 2. To customize case item detail, you must customize Portal Home first.
-   Refer to `Customize Portal
-   home <#axonivyportal.customization.portalhome>`__ to set new home
+   Refer to :ref:`Customize Portal
+   home <customization-portal-home>` to set new home
    page.
 
 3. Copy the ``PortalStart`` process from ``PortalTemplate`` to your
@@ -53,26 +51,16 @@ Refer to ``PortalExamples`` project for examples.
       ``/layouts/PortalCaseDetailsTemplate.xhtml``. You can take a look
       at ``PortalCaseDetails.xhtml`` to see how to customize it.
 
-         **Tip**
-
-         Highly recommend to copy the ``PortalCaseDetails`` HTMLDialog
-         in PortalTemplate. Remove ``ui:remove`` and change the copied
-         one's view.
+         .. tip:: Highly recommend to copy the ``PortalCaseDetails`` HTMLDialog
+            in PortalTemplate. Remove ``ui:remove`` and change the copied
+            one's view.
 
    -  Use Axon.ivy Override to override the
-      OpenPortalCaseDetails
-      callable. The original implementation of this callable is calling
-      PortalCaseDetails
-      , change it to call the customized Page introduced in the step
-      above. The signature of this callable is
-      call(ICase)
-      and customized page must receive this
-      ICase
-      instance, put in the dialog's
-      Data
-      with the exact name
-      caseData
-      .
+      ``OpenPortalCaseDetails`` callable. The original implementation of this
+      callable is calling ``PortalCaseDetails``, change it to call the customized
+      Page introduced in the step above. The signature of this callable is
+      ``call(ICase)`` and customized page must receive this ICase instance, put in
+      the dialog's ``Data`` with the exact name ``caseData`` .
 
 5. After previous steps, you can override Case item details UI elements
    as shown/hidden element by keywords:
@@ -80,11 +68,11 @@ Refer to ``PortalExamples`` project for examples.
    To show/hide, please using ``showItemDetailsHeader``,
    ``showItemDetailRelated``, ``showItemDetailsHistories``,
    ``showItemDetailDocuments`` code. For more details, please refer to
-   `Show/Hide
-   components <#customization-case-item-details-.howtooverideui.showhiddenui>`__.
+   :ref:`Show/Hide
+   components <customization-case-item-details-how-to-override-ui-show-hidden-ui>`.
 
-   And to add a new elements, please refer to `Add new Custom
-   panel <#customization-case-item-details-.howtooverideui.custombody>`__
+   And to add a new elements, please refer to :ref:`Add new Custom
+   panel <customization-case-item-details-how-to-overide-ui-custom-body>`
    code
 
 .. _customization-case-item-details-how-to-override-ui-show-hidden-ui:
@@ -140,7 +128,7 @@ Refer to the ``caseItemDetailCustom*`` section in
 -  Add your custom code into tags above.
 
 -  Finally, your custom panel will be displayed inside of
-   `CaseItemDetails <#customization-case-item-details->`__
+   :ref:`CaseItemDetails <customization-case-item-details>`
    page.
 
 -  Below is example code for override custom panel box of case details

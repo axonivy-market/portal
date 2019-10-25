@@ -39,72 +39,63 @@ you in customizing styles of Portal. There are 4 files: ``theme.scss``
 -  ``customization.scss`` : to change styles of Portal. E.g. Portal's
    component styles.
 
-      **Note**
+   .. note:: 
+      
+               Portal provides several variables ( ``$bodyBackgroundColor``, ``$menuColor`` ,  ``$processChainMenuColor`` , etc.) to change Portal's
+               style. To override variables, you should put overriding code
+               (e.g.  ``$bodyBackgroundColor: red`` ) at  ``customization.scss``  file.
 
-      Portal provides several variables (
-      $bodyBackgroundColor
-      ,
-      $menuColor
-      ,
-      $processChainMenuColor
-      , etc.) to change Portal's style. To override variables, you
-      should put overriding code (e.g.
-      $bodyBackgroundColor: red
-      ) at
-      customization.scss
-      file.
+                  -  ``@body-background-color``: Portal background color.
 
-      -  ``@body-background-color``: Portal background color.
+                  -  ``@menu-color``: application menu color, color of texts and
+                     icons on the menu will be calculated based on brightness of
+                     menu color.
 
-      -  ``@menu-color``: application menu color, color of texts and
-         icons on the menu will be calculated based on brightness of
-         menu color.
+                  -  ``$announcementBorderColor`` : it is the border color of the
+                     announcement panel. ``@sidebar-opacity-transition-duration``:
+                     application menu text opacity transition duration.
 
-      -  ``$announcementBorderColor`` : it is the border color of the
-         announcement panel. ``@sidebar-opacity-transition-duration``:
-         application menu text opacity transition duration.
+                  -  ``@announcement-background-color``: announcement panel
+                     background color.
 
-      -  ``@announcement-background-color``: announcement panel
-         background color.
+                  -  ``@announcement-border-color``: announcement panel border
+                     color.
 
-      -  ``@announcement-border-color``: announcement panel border
-         color.
+                  -  ``@process-chain-menu-color``: process chain component color.
 
-      -  ``@process-chain-menu-color``: process chain component color.
+                  -  ``@action-button-color``: Portal action button color e.g:
+                     close, add, next ...
 
-      -  ``@action-button-color``: Portal action button color e.g:
-         close, add, next ...
+                  -  ``@action-button-border-radius``: action button shape, it's
+                     rectangle when set @action-button-border-radius:0px;
 
-      -  ``@action-button-border-radius``: action button shape, it's
-         rectangle when set @action-button-border-radius:0px;
+                  -  ``@sidebar-dimension-transition-duration``:
+                     expanding/collapsing transition duration of application menu.
 
-      -  ``@sidebar-dimension-transition-duration``:
-         expanding/collapsing transition duration of application menu.
+                  -  ``@cancel-button-background-color``: cancel button background
+                     color.
 
-      -  ``@cancel-button-background-color``: cancel button background
-         color.
+                  -  ``@first-header-bar-color``, ``@second-header-bar-color``,
+                     ``@third-header-bar-color``: 3 colors of header bar .
 
-      -  ``@first-header-bar-color``, ``@second-header-bar-color``,
-         ``@third-header-bar-color``: 3 colors of header bar .
+                  -  ``@task-priority-low-color``, ``@task-priority-normal-color``,
+                     ``@task-priority-high-color``,
+                     ``@task-priority-exception-color``: task priority color.
 
-      -  ``@task-priority-low-color``, ``@task-priority-normal-color``,
-         ``@task-priority-high-color``,
-         ``@task-priority-exception-color``: task priority color.
-
-      -  ``@task-state-open-color``, ``@task-state-in-progress-color``,
-         ``@task-state-done-color``,
-         ``@task-state-zombie-destroyed-color``,
-         ``@task-state-reserved-color``, ``@task-state-system-color``:
-         task state color.
+                  -  ``@task-state-open-color``, ``@task-state-in-progress-color``,
+                     ``@task-state-done-color``,
+                     ``@task-state-zombie-destroyed-color``,
+                     ``@task-state-reserved-color``, ``@task-state-system-color``:
+                     task state color.
 
 ..
 
-   **Important**
-
-   -  Do not change ``font-family`` property values.
-
-   -  Limitation: the task priority color customization hasn't changed
-      the task priority colors in statistic.
+   .. important:: 
+   
+                  -  Do not change ``font-family`` property values.
+               
+                  -  Limitation: the task priority color customization hasn't changed
+                     the task priority colors in statistic.
 
 There is additional button type allows developer to configure its color
 and shape. Use it when you need different button types in your own
