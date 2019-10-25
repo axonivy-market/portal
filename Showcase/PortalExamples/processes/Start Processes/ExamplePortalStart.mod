@@ -1178,8 +1178,8 @@ Pt0 f38 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f38 1280 174 1496 544 #arcP
 Pt0 f38 1 1280 544 #addKink
 Pt0 f38 1 0.4624493299386954 0 -20 #arcLabel
-Pt0 f53 dialogId ch.ivy.addon.portal.generic.PortalHome #txt
-Pt0 f53 startMethod start(ch.ivy.addon.portal.generic.view.TaskView) #txt
+Pt0 f53 dialogId ch.ivyteam.ivy.project.portal.examples.PortalHome #txt
+Pt0 f53 startMethod start(TaskView) #txt
 Pt0 f53 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;' #txt
 Pt0 f53 requestMappingAction 'param.taskView=in.taskView;
 ' #txt
