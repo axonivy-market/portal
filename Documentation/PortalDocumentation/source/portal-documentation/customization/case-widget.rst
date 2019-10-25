@@ -8,24 +8,23 @@ which users can interact with. In order to show needed case's
 information, Portal supports overriding concept for CaseWidget. Each
 CaseWidget contains 2 parts:
 
-1. `UI <#customization-case-widget-.howtooverideui>`__ :
+1. :ref:`UI <customization-case-widget-how-to-override-ui>` :
    CaseListHeader, CaseHeader and CaseFilter
 
-2. `Data
-   query <#customization-case-widget-.howtooverridedataquery>`__
+2. :ref:`Data
+   query <customization-case-widget-how-to-override-data-query>`
    : display the cases as you want by modifying data query
 
 ..
 
-   **Important**
-
-   1. Case header customization currently support responsive design.
-      Refer to `this
-      part <#customization-case-widget-.responsivelayout>`__
-      for more detail.
-
-   2. Case header's buttons cannot be modified (they stay where they
-      are)
+  .. important:: 
+     1. Case header customization currently support responsive design.
+        Refer to :ref:`this
+        part <customization-case-widget-responsive-layout>`
+        for more detail.
+   
+     2. Case header's buttons cannot be modified (they stay where they
+        are)
 
 .. _customization-case-widget-how-to-override-ui:
 
@@ -38,8 +37,8 @@ Refer to ``PortalExamples`` project for examples
    required library.
 
 2. To customize case widget, you must customize Portal Home first. Refer
-   to `Customize Portal
-   home <#axonivyportal.customization.portalhome>`__ to set new home
+   to :ref:`Customize Portal
+   home <customization-portal-home>` to set new home
    page.
 
 3. Copy the ``PortalStart`` process from ``PortalTemplate`` to your
@@ -51,34 +50,24 @@ Refer to ``PortalExamples`` project for examples
 
    -  Introduce a new HTMLDialog which uses template
       ``/layouts/PortalCasesTemplate.xhtml`` (refer to
-      `Responsiveness <#axonivyportal.components.layouttemplates.reponsiveness>`__
+      :ref:`Responsiveness <components-layout-templates-reponsiveness>`
       to override responsiveness). You can take a look at
       ``PortalCases.xhtml`` to see how to customize it.
 
-         **Tip**
-
-         Highly recommend to copy the ``PortalCases`` HTMLDialog in
+        .. tip:: Highly recommend to copy the ``PortalCases`` HTMLDialog in
          PortalTemplate and change the copied one's view.
 
-   -  Use Axon.ivy Override to override the
-      OpenPortalCases
-      callable. The original implementation of this callable is calling
-      PortalCases
-      , change it to call the customized Page introduced in the step
-      above. The signature of this callable is
-      useView(CaseView)
-      and customized page must receive this
-      CaseView
-      instance, put in the dialog's
-      Data
-      with the exact name
-      caseView
-      .
+   -  Use Axon.ivy Override to override the ``OpenPortalCases`` callable. The
+      original implementation of this callable is
+      calling ``PortalCases``, change it to call the customized Page introduced in
+      the step above. The signature of this callable is ``useView(CaseView)`` and
+      customized page must receive this ``CaseView`` instance, put in the dialog's
+      ``Data`` with the exact name ``caseView`` .
 
-5. After previous steps, you can override `CaseHeader and
-   CaseListHeader <#customization-case-widget-.howtooverideui.caseheader>`__
+5. After previous steps, you can override :ref:`CaseHeader and
+   CaseListHeader <customization-case-widget-how-to-override-ui-case-header>`
    and
-   `CaseFilter <#customization-case-widget-.howtooverideui.casefilter>`__
+   :ref:`CaseFilter <customization-case-widget-how-to-override-case-filter>`
 
 .. _customization-case-widget-how-to-override-ui-case-header:
 
@@ -90,12 +79,16 @@ Refer to the ``caseListHeader`` and ``caseHeader`` sections in
 new columns, you should override CaseLazyDataModel to make the sort
 function of these columns work:
 
+|case-list|
+
 -  Introduce a java class extends CaseLazyDataModel
 
 -  Override the ``extendSort`` method and extend the sort function for
    the added columns (see the method's Javadoc comments)
 
 -  Default caseList supports user to config display/hide column
+
+|case-columns-configuration|
 
    -  In case you have new columns, override method
       ``getDefaultColumns`` of the extended class from CaseLazyDataModel
@@ -119,8 +112,10 @@ function of these columns work:
 
       For example: Show custom field ``customer name`` which stored in
       ``case.customVarCharField1``
-
-      ``<ic:ch.ivy.addon.portalkit.component.cases.column.CaseCustomField id="case-customer-name-component" panelGroupId="customVarCharField1-column-case-header-panel" componentId="customVarCharField1-column-case-header-text" column="customVarCharField1" dataModel="#{caseView.dataModel}" labelValue="#{case.customVarCharField1}" />``
+    
+    .. code-block:: html
+    
+       <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCustomField id="case-customer-name-component" panelGroupId="customVarCharField1-column-case-header-panel" componentId="customVarCharField1-column-case-header-text" column="customVarCharField1" dataModel="#{caseView.dataModel}" labelValue="#{case.customVarCharField1}" />
 
 -  Use Axon.ivy Override to override the ``InitializeCaseDataModel``
    callable and initialize data model by your customized one.
@@ -146,9 +141,7 @@ Case filter
    container contains your filters, you can reuse default filters, refer
    to ``DefaultCaseFilterContainer.java``
 
-      **Tip**
-
-      StateFilter is added as default to container. If you don't need
+    .. tip:: StateFilter is added as default to container. If you don't need
       it, use this code in constructor: ``filters.remove(stateFilter);``
 
 -  Introduce a java class extends CaseLazyDataModel. Override the
@@ -175,9 +168,7 @@ Case filter
    can change this by setting the ui:param ``filterGroupId`` in
    ``PortalCases.xhtml`` to a new Long value.
 
-      **Tip**
-
-      If you have multiple case lists in your project, you may want to
+    .. tip:: If you have multiple case lists in your project, you may want to
       set ``filterGroupId`` to an unique identifier for each of your
       ``PortalCases.xhtml`` across your projects
 
@@ -198,7 +189,7 @@ case list after navigating to case list from your page:
 
 -  Refer to CaseView, CaseSearchCriteria to build your CaseView
 
-::
+.. code-block:: java
 
    CaseLazyDataModel dataModel = new CaseLazyDataModel();
    dataModel.getCriteria().setCustomCaseQuery(YOUR_CASE_QUERY); // Set your CaseQuery
@@ -220,14 +211,12 @@ You can refer to ``PortalExamples`` project for examples
 1. Add responsiveStyleClass param (in case you're using Portal
    component), or styleClass (in case you're using Primefaces or JSF
    component) with the same responsive css class for both caseListHeader
-   and caseHeader. You can find responsive class in `this
-   part. <#axonivyportal.customization.responsivecss>`__
+   and caseHeader. You can find responsive class in :ref:`this
+   part. <customization-responsive-css>`
 
    |responsive-case-list-customization|
 
-      **Tip**
-
-      Hint: ``CaseCustomField`` component has default
+    .. tip:: Hint: ``CaseCustomField`` component has default
       responsiveStyleClass is ``u-hidden-sm-down``
 
 2. Responsiveness could be broken when you anchor left menu. In this
@@ -237,13 +226,11 @@ You can refer to ``PortalExamples`` project for examples
 
    |responsive-case-list-hide-column|
 
-      **Tip**
-
-      Hint: The smallest browser width you can anchor the left menu is
-      1025. So you could reduce width of browser to 1025 to test and
-      decide which columns need to be hidden.
+      .. tip:: Hint: The smallest browser width you can anchor the left menu is
+          1025. So you could reduce width of browser to 1025 to test and decide which columns need to be hidden.
 
 .. |case-filter| image:: images/case-widget/case-filter.png
-.. |responsive-case-list-customization| image:: images/case-widget/responsive-case-list-customization.png
+.. |case-columns-configuration| image:: images/case-widget/case-columns-configuration.png
+.. |case-list| image:: images/case-widget/case-list.png
 .. |responsive-case-list-hide-column| image:: images/case-widget/responsive-case-list-hide-column.png
-
+.. |responsive-case-list-customization| image:: images/case-widget/responsive-case-list-customization.png

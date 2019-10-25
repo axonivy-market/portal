@@ -63,6 +63,8 @@ By default, when the server has any error such as : ``HTTP 404``,
 ``HTTP 500``, or exception while page's loading, AxonIvyEngine will show
 an default error page. E.g.:
 
+|default-ivy-error|
+
 You can find content of this page is the file located on
 ``${AxonIvyEngineFolder}/webapp/ivy/ivy-error-page.xhtml``, but the
 error page is not user friendly, too much technical information that
@@ -80,7 +82,7 @@ designer).
    .. important:: 
       Read README.txt
 
-`PortalErrorPageConfiguration.zip <documents/ErrorHandling/PortalErrorPageConfiguration.zip>`__
+:download:`PortalErrorPageConfiguration.zip <documents/error-handling/portal-error-page-configuration.zip>` 
 
 .. _components-error-handling-nonajax-error-handling-result:
 
@@ -91,9 +93,16 @@ HTTP 404 Page Not Found
 
 Example testing URL: 404
 
+|404|
+
 HTTP 500 Error
 
 Example testing URL: 500
 
+|500|
+
 .. |portal-ajax-error-handler| image:: images/error-handling/portal-ajax-error-handler.png
+.. |default-ivy-error| image:: images/error-handling/default-ivy-error.png
+.. |404| image:: images/error-handling/404.png
+.. |500| image:: images/error-handling/500.png
 
