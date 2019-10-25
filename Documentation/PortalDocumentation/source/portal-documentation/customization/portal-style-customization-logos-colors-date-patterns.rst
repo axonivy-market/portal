@@ -104,7 +104,7 @@ you in customizing styles of Portal. There are 4 files: ``theme.scss``
    -  Do not change ``font-family`` property values.
 
    -  Limitation: the task priority color customization hasn't changed
-      the task priority colors in statistic.
+      the task priority colors in statistic. If you want to custom color of statistic, please refer to :ref:`Override Statistic color <override-Statistic-colors>`
 
 There is additional button type allows developer to configure its color
 and shape. Use it when you need different button types in your own
