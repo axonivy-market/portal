@@ -1,5 +1,5 @@
 [Ivy]
-169BDE2F368D6EC4 3.28 #module
+169BDE2F368D6EC4 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ss0 Showcases Big #zClass
 Ss0 B #cInfo
@@ -223,7 +223,6 @@ Ss0 f21 @|EndIcon #fIcon
 Ss0 f25 actionTable 'out=in;
 ' #txt
 Ss0 f25 actionCode 'import org.apache.commons.lang3.StringUtils;
-import ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate.TestTaskTemplateData;
 
 in.actuaStepIndex = ivy.session.getAttribute("taskConfigExampleActualStepIndex") as Integer;
 in.processChainDirection = ivy.session.getAttribute("taskConfigExampleProcessChainDirection") as String;
@@ -245,7 +244,7 @@ Ss0 f25 136 458 144 44 -67 -8 #rect
 Ss0 f25 @|StepIcon #fIcon
 Ss0 f26 expr out #txt
 Ss0 f26 95 480 136 480 #arcP
-Ss0 f23 dialogId ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate #txt
+Ss0 f23 dialogId ch.ivyteam.ivy.project.portal.examples.CustomTaskTemplate #txt
 Ss0 f23 startMethod start(ch.ivyteam.ivy.project.portal.examples.showcase.Data) #txt
 Ss0 f23 requestActionDecl '<ch.ivyteam.ivy.project.portal.examples.showcase.Data data> param;' #txt
 Ss0 f23 requestMappingAction 'param.data=in;

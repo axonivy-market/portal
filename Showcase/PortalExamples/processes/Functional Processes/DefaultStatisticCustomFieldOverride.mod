@@ -1,5 +1,5 @@
 [Ivy]
-16A914CEF46EA5B8 3.28 #module
+16A914CEF46EA5B8 7.5.0 #module
 >Proto >Proto Collection #zClass
 Dd0 DefaultStatisticCustomField Big #zClass
 Dd0 B #cInfo
@@ -19,8 +19,7 @@ Dd0 @PushWFArc f2 '' #zField
 Dd0 @InfoButton f5 '' #zField
 >Proto Dd0 Dd0 DefaultStatisticCustomField #zField
 Dd0 f0 inParamDecl '<> param;' #txt
-Dd0 f0 outParamDecl '<java.util.List<java.lang.String> customFields> result;
-' #txt
+Dd0 f0 outParamDecl '<java.util.List<String> customFields> result;' #txt
 Dd0 f0 outParamTable 'result.customFields=in.customFields;
 ' #txt
 Dd0 f0 callSignature createDefaultStatisticCustomFields() #txt

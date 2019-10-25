@@ -1,7 +1,7 @@
 [Ivy]
-16C8374336423894 3.28 #module
+16C8374336423894 7.5.0 #module
 >Proto >Proto Collection #zClass
-Ts0 TestTaskTemplateProcess Big #zClass
+Ts0 CustomTaskTemplateProcess Big #zClass
 Ts0 RD #cInfo
 Ts0 #process
 Ts0 @TextInP .type .type #zField
@@ -29,7 +29,7 @@ Ts0 @UdMethod f18 '' #zField
 Ts0 @PushWFArc f22 '' #zField
 Ts0 @UdProcessEnd f19 '' #zField
 Ts0 @PushWFArc f20 '' #zField
->Proto Ts0 Ts0 TestTaskTemplateProcess #zField
+>Proto Ts0 Ts0 CustomTaskTemplateProcess #zField
 Ts0 f0 guid 16C8374337A6693D #txt
 Ts0 f0 method start(ch.ivyteam.ivy.project.portal.examples.showcase.Data) #txt
 Ts0 f0 inParameterDecl '<ch.ivyteam.ivy.project.portal.examples.showcase.Data data> param;' #txt
@@ -70,7 +70,7 @@ Ts0 f5 expr out #txt
 Ts0 f5 109 160 211 160 #arcP
 Ts0 f6 actionTable 'out=in;
 ' #txt
-Ts0 f6 actionCode 'import ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate.TestTaskTemplateData;
+Ts0 f6 actionCode 'import ch.ivyteam.ivy.project.portal.examples.CustomTaskTemplate.CustomTaskTemplateData;
 
 in.steps.add("Start");
 in.steps.add("Create request process testing");
@@ -173,7 +173,7 @@ Ts0 f19 379 371 26 26 0 12 #rect
 Ts0 f19 @|UdProcessEndIcon #fIcon
 Ts0 f20 expr out #txt
 Ts0 f20 288 384 379 384 #arcP
->Proto Ts0 .type ch.ivyteam.ivy.project.portal.examples.TestTaskTemplate.TestTaskTemplateData #txt
+>Proto Ts0 .type ch.ivyteam.ivy.project.portal.examples.CustomTaskTemplate.CustomTaskTemplateData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
 >Proto Ts0 '' #fIcon

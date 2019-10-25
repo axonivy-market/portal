@@ -1,5 +1,5 @@
 [Ivy]
-16854B53D2D387A2 3.28 #module
+16854B53D2D387A2 7.5.0 #module
 >Proto >Proto Collection #zClass
 By0 BuildTaskQuery Big #zClass
 By0 B #cInfo
@@ -22,8 +22,7 @@ By0 @StartSub f7 '' #zField
 By0 @PushWFArc f8 '' #zField
 >Proto By0 By0 BuildTaskQuery #zField
 By0 f0 inParamDecl '<> param;' #txt
-By0 f0 outParamDecl '<ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> result;
-' #txt
+By0 f0 outParamDecl '<ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> result;' #txt
 By0 f0 outParamTable 'result.taskQuery=in.#taskQuery;
 ' #txt
 By0 f0 callSignature buildTaskQuery() #txt
@@ -65,7 +64,7 @@ By0 f2 actionTable 'out=in;
 By0 f2 actionCode 'import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 if (in.isQueryForHomePage) { // in home page
-	in.taskQuery = TaskQuery.create().where().activatorUserId().isNotNull();
+	//in.taskQuery = TaskQuery.create().where().activatorUserId().isNotNull();
 }' #txt
 By0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -81,11 +80,10 @@ By0 f3 107 64 232 64 #arcP
 By0 f4 expr out #txt
 By0 f4 344 64 469 64 #arcP
 By0 f6 548 140 288 86 #arcP
-By0 f7 inParamDecl '<java.lang.Boolean isQueryForHomePage> param;' #txt
+By0 f7 inParamDecl '<Boolean isQueryForHomePage> param;' #txt
 By0 f7 inParamTable 'out.isQueryForHomePage=param.isQueryForHomePage;
 ' #txt
-By0 f7 outParamDecl '<ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> result;
-' #txt
+By0 f7 outParamDecl '<ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> result;' #txt
 By0 f7 outParamTable 'result.taskQuery=in.#taskQuery;
 ' #txt
 By0 f7 callSignature buildTaskQuery(Boolean) #txt

@@ -13,6 +13,7 @@
 	<xi:include href="DefaultUserProcess.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
     <xi:include href="DefaultChart.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
     <xi:include href="DefaultCustomField.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    <xi:include href="DefaultChartColor.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 	<xi:include href="ChangePassword.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 	<xi:include href="Logout.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
 	<xi:include href="ExpressEndPage.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
