@@ -214,6 +214,35 @@ $bodyColumnTogglerLabelColor: $black;
 $portalFontFamily: "Roboto";
 $iconFontFamily: "FontAwesome";
 
-/*---------------------------------Font family----------------------------------------*/
-$currentLineVerticalStepTitleFontWeight: bold;
+/*---------------------------------Font weight----------------------------------------*/
+$menuListWidgetHeaderFontWeight: 600;
+
+/* Task Detail */
 $taskDetailHeaderFontWeight: bold;
+$taskDetailSectionTitleFontWeight: bold;
+
+/*Task Template */
+$taskTemplateTitleFontWeight: bold;
+$outputLabelTaskTemplateTitleFontWeight: 400;
+
+/* Case Detail */
+$caseDetailNameInputFontWeight: bold;
+$additionalCaseDetailLinkFontWeight: 400;
+$detailsDocumentAddLinkFontWeight: 400;
+$caseDetailHeaderFontWeight: bold;
+$historyButtonContainerFontWeight: bold;
+
+/* Case Item */
+$caseItemActionStepsFontWeight: bold;
+
+/* Process widget */
+$selectedProcessNavItemFontWeight: bold;
+$processStartListItemNameFontWeight: 400;
+
+/* Process Chain */
+$currentLineVerticalStepTitleFontWeight: bold;
+$currentCircleHorizontalStepTitleFontWeight: bold;
+$currentCircleVerticalStepTitleFontWeight: bold;
+
+/* Admin Settings */
+$usernameShowEnvironmentInfoFontWeight: bold; 
