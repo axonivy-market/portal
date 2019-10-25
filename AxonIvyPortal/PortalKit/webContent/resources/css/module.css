@@ -606,7 +606,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .case-detail-name-input {
   width: calc(100% - 85px);
   margin-right: 5px !important;
-  font-weight: bold !important;
 }
 
 .case-detail-related-table .case-related-task-case-running {
@@ -630,11 +629,11 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   padding-top: 0 !important;
 }
 
-a.case-details-document-add-link, a.task-details-document-add-link,
+a.case-details-document-add-link,
+a.task-details-document-add-link,
 span.case-details-document-add-link,
 span.task-details-document-add-link {
   float: right;
-  font-weight: 400;
 }
 
 .case-details-document-add-link-icon, .task-details-document-add-link-icon {
@@ -819,19 +818,9 @@ span.task-details-document-add-link {
   outline: transparent;
 }
 
-.case-header-action-cell .action-item .ui-button .ui-button-text,
-.case-header-action-cell .action-item .ui-button .ui-button-icon-right.ui-icon.ui-icon-triangle-1-s:before {
-  font-weight: bold;
-}
-
 .case-header-action-cell .action-icon {
   display: block;
   font-size: 1.5rem;
-}
-
-.case-info-content {
-  margin: .4em 0;
-  font-weight: bold;
 }
 
 .case-header-action-cell .case-command:not(:last-child) {
@@ -929,7 +918,6 @@ span.task-details-document-add-link {
 }
 
 .case-detail-header {
-  font-weight: bold;
   line-height: 38px;
   display: flex;
   float: left;
@@ -962,11 +950,10 @@ span.task-details-document-add-link {
   flex: 0 0 auto;
 }
 
-.case-detail-section-title, .case-history-button-container , .task-history-button-container {
+.case-detail-section-title, .case-history-button-container {
   display: inline-block !important;
   align-content: start;
   padding: 0 !important;
-  font-weight: bold;
 }
 
 .case-detail-second-content-container {
@@ -1137,10 +1124,6 @@ span.task-details-document-add-link {
   padding: 0 30px;
 }
 
-.process-widget .process-nav .process-nav-item.selected {
-  font-weight: bold;
-}
-
 .process-widget .process-nav .process-nav-item.selected:before {
   content: "";
   display: table;
@@ -1218,11 +1201,6 @@ span.task-details-document-add-link {
 .compact-processes-container .process-start-list-item-name {
   padding-left: 0 !important;
   width: calc(100% - 55px) !important;
-}
-
-.process-start-list-item:hover .process-start-list-item-name,
-.process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-name {
-  font-weight: 400;
 }
 
 .process-start-list-item-action {
@@ -2154,7 +2132,6 @@ _:-ms-input-placeholder, :root .case-details > * {
 }
 
 .additional-case-details-link {
-  font-weight: 400;
   margin-left: 10px;
   display: inline-block;
 }
@@ -2458,10 +2435,6 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   width: 100%;
 }
 
-.circle-process-chain .circle-horizontal-process-step.current .circle-horizontal-step-title {
-  font-weight: bold;
-}
-
 /** CIRCLE VERTICAL */
 .circle-process-chain.vertical-process-chain {
   position: relative;
@@ -2506,10 +2479,6 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   display: flex;
   width: calc(100% - 50px);
   text-align: left;
-}
-
-.circle-process-chain .circle-vertical-process-step.current .circle-vertical-step-title {
-  font-weight: bold;
 }
 
 /** LINE HORIZONTAL*/
@@ -4409,7 +4378,6 @@ _:-ms-fullscreen, :root .case-related-command-link {
   display: inline-block !important;
   align-content: start;
   padding: 0 !important;
-  font-weight: bold;
   position: relative;
 }
 
@@ -4478,10 +4446,6 @@ _:-ms-fullscreen, :root .case-related-command-link {
 }
 .task-actions-menu .empty-side-steps {
   min-height: 40px;
-}
-
-.ui-menu .ui-menu-list li.ui-widget-header h3 {
-  font-weight: 600 !important;
 }
 
 @media screen and (max-width: 40em) {
