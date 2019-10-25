@@ -25,11 +25,13 @@
               <div class="ui-g-12 u-no-padding-top express-align-bottom-group">
                 <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
 
-                <h:panelGroup styleClass="ui-g-5 ui-lg-5 ui-md-6 md-inputfield align-bottom-child-item">
-                  <p:inputText id="input-field-label" required="true" value="#{data.createInputFieldTab.label}"
-                    maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" styleClass="express-workflow-input"
-                    requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
-                  <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}" for="input-field-label" />
+                <h:panelGroup styleClass="ui-g-5 ui-lg-5 ui-md-6 align-bottom-child-item">
+                  <div class="md-inputfield">
+                    <p:inputText id="input-field-label" required="true" value="#{data.createInputFieldTab.label}"
+                      maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" styleClass="express-workflow-input"
+                      requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
+                    <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}" for="input-field-label" />
+                  </div>
                 </h:panelGroup>
 
                 <h:panelGroup styleClass="ui-g-5 ui-lg-5 ui-md-6 u-no-padding-top align-bottom-child-item">
@@ -79,11 +81,13 @@
               <div class="ui-g-12 u-no-padding-top express-align-bottom-group">
                 <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
 
-                <h:panelGroup styleClass="ui-g-5 ui-lg-5 ui-md-6 md-inputfield align-bottom-child-item">
-                  <p:inputText id="input-area-label" required="true" styleClass="express-workflow-input"
-                    requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
-                    value="#{data.createInputAreaTab.label}" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" />
-                  <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}" for="input-area-label" />
+                <h:panelGroup styleClass="ui-g-5 ui-lg-5 ui-md-6 align-bottom-child-item">
+                  <div class="md-inputfield">
+                    <p:inputText id="input-area-label" required="true" styleClass="express-workflow-input"
+                      requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
+                      value="#{data.createInputAreaTab.label}" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" />
+                    <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}" for="input-area-label" />
+                  </div>
                 </h:panelGroup>
 
                 <h:panelGroup styleClass="ui-g-5 ui-lg-5 ui-md-6 align-bottom-child-item">
@@ -128,12 +132,14 @@
             <div class="ui-g-12 u-no-padding-top express-align-bottom-group">
               <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
 
-              <div class="ui-g-5 ui-lg-5 ui-md-6 md-inputfield align-bottom-child-item">
-                <p:inputText id="many-checkbox-label" required="true"
-                  requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
-                  value="#{data.createManyCheckboxTab.label}" styleClass="express-workflow-input"
-                  maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}"/>
-                <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}" for="many-checkbox-label" />
+              <div class="ui-g-5 ui-lg-5 ui-md-6 align-bottom-child-item">
+                <div class="md-inputfield">
+                  <p:inputText id="many-checkbox-label" required="true"
+                    requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
+                    value="#{data.createManyCheckboxTab.label}" styleClass="express-workflow-input"
+                    maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" />
+                  <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}" for="many-checkbox-label" />
+                </div>
               </div>
 
               <div class="ui-g-5 ui-lg-5 ui-md-6 align-bottom-child-item">
@@ -216,11 +222,13 @@
           <div id="create-one-radio-grid" class="ui-g alignLabelTop">
             <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
 
-            <div class="ui-g-5 ui-lg-5 ui-md-6 md-inputfield MarTop20">
-              <p:inputText id="one-radio-label" required="true" styleClass="express-workflow-input"
-                requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}  #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
-                value="#{data.createOneRadioTab.label}" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" />
-              <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}" for="one-radio-label" />
+            <div class="ui-g-5 ui-lg-5 ui-md-6 MarTop20">
+              <div class="md-inputfield">
+                <p:inputText id="one-radio-label" required="true" styleClass="express-workflow-input"
+                  requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}  #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
+                  value="#{data.createOneRadioTab.label}" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" />
+                <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}" for="one-radio-label" />
+              </div>
             </div>
 
             <div class="ui-g-5 ui-lg-5 ui-md-6">
@@ -276,11 +284,13 @@
             <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
 
             <div class="ui-g-7 ui-sm-12 u-padding-0 express-align-bottom-group">
-              <h:panelGroup styleClass="ui-g-8 md-inputfield align-bottom-child-item">
-                <p:inputText id="file-upload-label" required="true" styleClass="express-workflow-input"
-                  requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
-                  value="#{data.createFileUploadTab.label}" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" />
-                <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}" for="file-upload-label" />
+              <h:panelGroup styleClass="ui-g-8 align-bottom-child-item">
+                <div class="md-inputfield">
+                  <p:inputText id="file-upload-label" required="true" styleClass="express-workflow-input"
+                    requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
+                    value="#{data.createFileUploadTab.label}" maxlength="#{ivy.cms.co('/Dialogs/general/MaxLabelLenght')}" />
+                  <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}" for="file-upload-label" />
+                </div>
               </h:panelGroup>
 
               <h:panelGroup styleClass="ui-g-4 align-bottom-child-item">
