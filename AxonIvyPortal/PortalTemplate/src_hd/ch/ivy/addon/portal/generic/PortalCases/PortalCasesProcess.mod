@@ -18,17 +18,16 @@ Ps0 @PushWFArc f3 '' #zField
 Ps0 f1 373 53 22 22 14 0 #rect
 Ps0 f1 @|UdProcessEndIcon #fIcon
 Ps0 f2 guid 1573372FDA37BBD6 #txt
-Ps0 f2 method useViewWithStateMenu(ch.ivy.addon.portal.generic.view.CaseView,String) #txt
-Ps0 f2 inParameterDecl '<ch.ivy.addon.portal.generic.view.CaseView caseView,String menuState> param;' #txt
+Ps0 f2 method useView(CaseView) #txt
+Ps0 f2 inParameterDecl '<ch.ivy.addon.portal.generic.view.CaseView caseView> param;' #txt
 Ps0 f2 inParameterMapAction 'out.caseView=param.caseView;
-out.menuState=param.menuState;
 ' #txt
 Ps0 f2 outParameterDecl '<> result;' #txt
 Ps0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>useViewWithStateMenu(CaseView,String)</name>
-        <nameStyle>37,5,7
+        <name>useView(CaseView)</name>
+        <nameStyle>17,5
 </nameStyle>
     </language>
 </elementInfo>

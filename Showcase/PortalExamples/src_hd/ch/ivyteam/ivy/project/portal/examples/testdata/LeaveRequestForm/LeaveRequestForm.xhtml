@@ -13,37 +13,50 @@
     <ui:param name="task" value="#{ivy.task}" />
     <ui:param name="isNotRequiredLogin" value="false" />
     <ui:define name="taskForm">
-      <h:form id="leave-request">
+      <h:form id="leave-request" styleClass="ui-g">
         <p:focus></p:focus>
-        <h:panelGrid columns="3" columnClasses="TexAlRight,">
-          <p:outputLabel for="fullname" value="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/Employee')}" />
-          <p:inputText id="fullname" required="true" requiredMessage="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/IsRequired')}" />
+        <h:panelGrid columns="2" columnClasses="TexAlLeft ui-g-6, ui-g-6" styleClass="ui-g-4 ui-sm-12 ui-fluid">
+          <h:panelGroup class="md-inputfield MarTop10">
+            <p:inputText id="fullname" required="true"
+              requiredMessage="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/IsRequired')}" />
+            <p:outputLabel for="fullname" value="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/Employee')}" />
+          </h:panelGroup>
           <p:message id="fullname-msg" for="fullname" />
 
-          <p:outputLabel for="from" value="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/From')}" />
-          <p:calendar id="from" value="" locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.datePattern}"  
-          	required="true" requiredMessage="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/IsRequired')}">
-            <f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" />
-          </p:calendar>
-          <p:message id="from-msg" for="from" />
-
-          <p:outputLabel for="to" value="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/To')}" />
-          <p:calendar id="to" value="" locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.datePattern}"  
-          	required="true" requiredMessage="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/IsRequired')}">
-            <f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" />
-          </p:calendar>
-          <p:message id="to-msg" for="to" />
-
-          <p:outputLabel for="substitute"
-            value="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/Representation')}" />
-          <p:inputText id="substitute" required="true" requiredMessage="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/IsRequired')}" />
+          <h:panelGroup class="md-inputfield MarTop20">
+            <p:inputText id="substitute" required="true"
+              requiredMessage="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/IsRequired')}" />
+            <p:outputLabel for="substitute"
+              value="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/Representation')}" />
+          </h:panelGroup>
           <p:message id="substitute-msg" for="substitute" />
+
+          <h:panelGrid columns="1" class="ui-fluid">
+            <p:outputLabel for="from" value="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/From')}" />
+            <h:panelGrid columns="2">
+              <p:calendar id="from" value="" locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.datePattern}" required="true"
+                requiredMessage="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/IsRequired')}">
+                <f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" />
+              </p:calendar>
+              <p:message id="from-msg" for="from" />
+            </h:panelGrid>
+          </h:panelGrid>
+          <p:spacer />
+
+          <h:panelGrid columns="1" class="ui-fluid">
+            <p:outputLabel for="to" value="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/To')}" />
+            <h:panelGrid columns="2">
+              <p:calendar id="to" value="" locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.datePattern}" required="true"
+                requiredMessage="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/IsRequired')}">
+                <f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" />
+              </p:calendar>
+              <p:message id="to-msg" for="to" />
+            </h:panelGrid>
+          </h:panelGrid>
+          <p:spacer />
+
         </h:panelGrid>
       </h:form>
-    </ui:define>
-
-    <ui:define name="leftButtons">
-      
     </ui:define>
 
     <ui:define name="rightButtons">

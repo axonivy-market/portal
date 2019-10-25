@@ -7,12 +7,14 @@
 	xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
 	<ui:composition template="/layouts/DefaultHomePageTemplate.xhtml">
-        <ui:param name="isNotRequiredLogin" value="false" />
+      <ui:param name="dataModel" value="#{logic.getDataModel()}" />
+      <ui:param name="statisticChartList" value="#{logic.getStatisticCharts()}" />
 <!--         Define pageTitle -->
-		<ui:define name="pageTitle">Example home page</ui:define>
-		<ui:define name="customWidget">
-			<!--         Insert your customWidget here -->
-		</ui:define>
+      <ui:define name="pageTitle">Example home page</ui:define>
+      <ui:define name="customWidget">
+<!--         Insert your customWidget here -->
+        This is customized content
+      </ui:define>
     
 	</ui:composition>
 </h:body>
