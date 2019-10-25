@@ -98,7 +98,7 @@ public class CaseTreeUtils {
     return checkboxTreeNode;
   }
   
-  private static CaseNode buildCaseNodeFrom(String name, String category) {
+  public static CaseNode buildCaseNodeFrom(String name, String category) {
     CaseNode nodeData = new CaseNode();
     nodeData.setValue(name);
     nodeData.setCategory(category);
@@ -107,7 +107,7 @@ public class CaseTreeUtils {
     return nodeData;
   }
   
-  private static CheckboxTreeNode buildRoot() {
+  public static CheckboxTreeNode buildRoot() {
     CaseNode nodeData = new CaseNode();
     nodeData.setValue(StringUtils.EMPTY);
     nodeData.setCategory(StringUtils.EMPTY);

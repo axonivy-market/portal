@@ -24,7 +24,7 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
   public void testShowUploadDeleteDocumentWhenHasDocumentOfInvolvedCaseWritePemission() {
     createCaseAndUploadDocumentByUser(TestAccount.DEMO_USER);
     
-    Assert.assertTrue(caseDetailsPage.isUploadDocumentButtonPresented());
+    Assert.assertTrue(caseDetailsPage.isAddDocumentLinkDisplayed());
     Assert.assertTrue(caseDetailsPage.isDeleteDocumentButtonPresented());
   }
   
@@ -36,26 +36,24 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
     casePage = homePage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("SupportTicket");
     
-    Assert.assertFalse(caseDetailsPage.isUploadDocumentButtonPresented());
+    Assert.assertFalse(caseDetailsPage.isAddDocumentLinkDisplayed());
     Assert.assertFalse(caseDetailsPage.isDeleteDocumentButtonPresented());
   }
 
   @Test
   public void testSettingHideUploadDeleteDocumentForDoneCase() {
     createCaseAndUploadDocumentByUser(TestAccount.ADMIN_USER);
-    
-    taskWidgetPage = caseDetailsPage.openTasksOfCasePage(0);
-    taskWidgetPage.filterTasksInExpendedModeBy("SupportTicket");
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.startTaskWithoutUI(0);
-
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     adminSettingsPage = homePage.openAdminSettings();
     adminSettingsPage.setHideUploadDocumentForDoneCase();
 
     casePage = homePage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("SupportTicket");
     
-    Assert.assertFalse(caseDetailsPage.isUploadDocumentButtonPresented());
+    Assert.assertFalse(caseDetailsPage.isAddDocumentLinkDisplayed());
     Assert.assertFalse(caseDetailsPage.isDeleteDocumentButtonPresented());
   }
   
@@ -66,7 +64,7 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
 
   private void uploadDocumentToTestingCaseByUser() {
     grantDocumentOfInvolvedCaseWritePemissionToCurrentUser();
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     casePage = homePage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("SupportTicket");
     caseDetailsPage.uploadDocumentWithoutError(getAbsolutePathToTestFile("test-no-files-no-js.pdf"));
@@ -75,7 +73,7 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
   private void createTestingCaseContainOneTaskByUser(TestAccount user) {
     navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
     initHomePage(user);
-    navigateToUrl(createTestingCaseContainOneTask);
+    redirectToRelativeLink(createTestingCaseContainOneTask);
   }
 
   private void initHomePage(TestAccount account) {

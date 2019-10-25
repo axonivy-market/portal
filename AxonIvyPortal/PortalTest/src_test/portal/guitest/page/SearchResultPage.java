@@ -12,7 +12,7 @@ public class SearchResultPage extends TemplatePage {
 
 	@Override
 	protected String getLoadedLocator() {
-		return "id('global-search-form-in-page:global-search-data')";
+		return "id('search-results-tabview')";
 	}
 
 	public void openTaskTab() {

@@ -829,14 +829,6 @@ span.task-details-document-add-link {
   font-size: 1.5rem;
 }
 
-.case-state {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0px 20px;
-  font-size: 1.2rem;
-}
-
 .case-info-content {
   margin: .4em 0;
   font-weight: bold;
@@ -897,11 +889,10 @@ span.task-details-document-add-link {
   max-width: 220px; 
   width: auto !important;
   padding: 0 !important;
-  font-size: 1.4rem;
 }
 
 .action-steps-panel .case-action-separator,
-.side-steps-panel hr.u-separator {
+.options-panel hr.u-separator {
   width: 100%;
   margin: 0;
   border-collapse: unset;
@@ -1584,6 +1575,11 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 /* END NEED TO BE REFACTORED */
 
 /********************************** TASK WIDGET **********************************/
+.dashboard-task-widget-container {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
 .widget-header.task-widget-header {
   margin-bottom: 0;
 }
@@ -1869,8 +1865,8 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   cursor: pointer;
 }
 
-.side-steps-panel .action-icon,
-.side-steps-panel .side-step-item-label {
+.options-panel .option-action-icon,
+.options-panel .option-item-label {
   display: inline-block;
   float: left;
 }
@@ -1881,11 +1877,11 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   right: -10px;
 }
 
-.side-steps-panel .action-icon {
+.options-panel .option-action-icon {
   margin-right: 5px;
 }
 
-.side-steps-panel .side-step-item-label {
+.options-panel .option-item-label {
   margin-top: 2px;
 }
 
@@ -1906,7 +1902,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   font-size: 1.2rem;
 }
 
-.side-steps-panel {
+.options-panel {
   width: 200px;
   border-top: solid 1px rgba(43, 59, 93, 0.2);
   border-radius: 5px;
@@ -1915,31 +1911,31 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   padding: 0 !important;
 }
 
-.side-steps-panel.expiry-chart-context-menu {
+.options-panel.expiry-chart-context-menu {
   border: none;
   width: 120px;
 }
 
-.side-steps-panel.expiry-chart-context-menu .side-step-item {
+.options-panel.expiry-chart-context-menu .option-item {
   box-sizing: border-box;
   width: 100% !important;
 }
 
-.side-steps-panel.expiry-chart-context-menu .ui-overlaypanel-content{
+.options-panel.expiry-chart-context-menu .ui-overlaypanel-content{
   width: 120px !important;
 }
 
-.side-steps-panel.expiry-chart-context-menu a{
+.options-panel.expiry-chart-context-menu a{
   text-align: left;
   width: 80px;
 }
 
-.side-steps-panel.ui-overlaypanel .ui-overlaypanel-content {
+.options-panel.ui-overlaypanel .ui-overlaypanel-content {
   padding: 0 !important;
   display: grid;
 }
 
-.side-steps-panel .side-step-item {
+.options-panel .option-item {
   clear: both;
   float: left;
   padding: 10px 18px 10px 20px;
@@ -1949,7 +1945,8 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   box-sizing: content-box;
 }
 
-.side-steps-panel .ui-state-disabled.side-step-item {
+
+.options-panel .ui-state-disabled.option-item {
   display: inline-block;
   opacity: 0.5;
   text-decoration: none;
@@ -3155,7 +3152,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   text-align: left;
   float: left;
   overflow: hidden;
-  font-size: 1.6rem;
   margin-top: 2px;
 }
 
@@ -3269,12 +3265,10 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 .edit-statistic-container .chart-list .chart-container .label,
 .chart-filter-header-text {
-  font-size: 1.8rem !important;
   text-align: left;
 }
 
 .edit-statistic-container .chart-list .chart-container .add-link {
-  font-size: 1.3rem;
   text-align: right;
 }
 
@@ -3284,10 +3278,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   margin-top: 5px;
   width: 50%;
   float: left;
-}
-
-.edit-statistic-container .chart-list .chart-container .add-link:before {
-  font-size: 1.4rem;
 }
 
 .edit-statistic-container td:not(.align-bottom) {
@@ -3439,7 +3429,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 .dashboard-chart-panel .chart-name {
-  font-size: 2rem;
   margin-top: 8px !important;
   margin-bottom: 0;
   display: flex;
@@ -4199,10 +4188,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   margin-top: 2px;
 }
 
-.ui-columntoggler[id$='task-table-toggler'] .ui-columntoggler-item label {
-  font-size: 1.2rem;
-}
-
 .ui-columntoggler[id$='task-table-toggler'] .ui-columntoggler-close {
   display: none;
 }
@@ -4358,7 +4343,6 @@ _:-ms-fullscreen, :root .case-related-command-link {
 }
 
 .task-action-item .ui-commandlink.ui-state-disabled {
-  font-size: 1.4rem !important;
   margin: auto;
   font-weight: bold;
 }

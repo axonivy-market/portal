@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.CheckboxTreeNode;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -40,7 +39,7 @@ public class StatisticCaseCategoryFilter implements Serializable {
   public StatisticCaseCategoryFilter() {
     CheckboxTreeNode caseCategoryTree = CaseTreeUtils.buildCaseCategoryCheckboxTreeRoot();
     if (caseCategoryTree != null && caseCategoryTree.getChildCount() > 0) {
-      root = buildRoot();
+      root = CaseTreeUtils.buildRoot();
       CheckboxTreeNode checkboxTreeNode = buildCaseCategoryCheckBoxTreeNode(root,
           Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll"),
           Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll"));
@@ -57,34 +56,13 @@ public class StatisticCaseCategoryFilter implements Serializable {
     }
   }
 
-  private static CheckboxTreeNode buildRoot() {
-    CaseNode nodeData = new CaseNode();
-    nodeData.setValue(StringUtils.EMPTY);
-    nodeData.setCategory(StringUtils.EMPTY);
-    nodeData.setRootNodeAllCase(true);
-    nodeData.setFirstCategoryNode(true);
-    CheckboxTreeNode checkboxTreeNode = new CheckboxTreeNode(StringUtils.EMPTY, nodeData, null);
-    checkboxTreeNode.setExpanded(true);
-    checkboxTreeNode.setSelected(false);
-    return checkboxTreeNode;
-  }
-
   private static CheckboxTreeNode buildCaseCategoryCheckBoxTreeNode(CheckboxTreeNode parentNode, String newNodeName,
       String category) {
-    CaseNode nodeData = buildCaseNodeFrom(newNodeName, category);
+    CaseNode nodeData = CaseTreeUtils.buildCaseNodeFrom(newNodeName, category);
     CheckboxTreeNode checkboxTreeNode = new CheckboxTreeNode("default", nodeData, parentNode);
     checkboxTreeNode.setExpanded(true);
     checkboxTreeNode.setSelected(false);
     return checkboxTreeNode;
-  }
-
-  private static CaseNode buildCaseNodeFrom(String name, String category) {
-    CaseNode nodeData = new CaseNode();
-    nodeData.setValue(name);
-    nodeData.setCategory(category);
-    nodeData.setRootNodeAllCase(false);
-    nodeData.setFirstCategoryNode(false);
-    return nodeData;
   }
 
   public CaseQuery buildQuery() {
