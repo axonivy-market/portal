@@ -9,7 +9,7 @@ import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 public class ExpressReviewPage extends TaskTemplatePage {
   public void finish() {
-    click(By.id("form:acknowledged"));
+    clickByCssSelector("button[id$='acknowledged']");
   }
 
   public String getApprovalResult() {

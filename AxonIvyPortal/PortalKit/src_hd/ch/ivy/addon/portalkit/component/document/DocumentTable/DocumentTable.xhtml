@@ -27,7 +27,7 @@
   <cc:attribute name="updatedComponentAfterDeleted" />
   
   <cc:attribute name="selectedType" />
-  <cc:attribute name="typeSelectionItems" required="true" shortDescription="Use #{masterDataBean.documentTypes} if there are no custom Document Type" />
+  <cc:attribute name="typeSelectionItems" shortDescription="Use #{masterDataBean.documentTypes} if there are no custom Document Type" />
 </cc:interface>
 
 <cc:implementation>
@@ -77,7 +77,7 @@
       </p:column>
     </p:dataTable>
     <div class="upload-container">
-      <h:panelGroup rendered="#{cc.attrs.typeColumnRendered}">
+      <h:panelGroup rendered="#{cc.attrs.typeColumnRendered}" styleClass="MarTop10">
           <p:outputLabel for="type-selection" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/type')}: " styleClass="u-mar-right-5" />
           <p:selectOneMenu id="type-selection" value="#{data.typeSelection}" converter="pojoConverter" styleClass="u-mar-right-5">
             <p:ajax global="false" />
@@ -92,7 +92,8 @@
           invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}" 
           label="#{not empty cc.attrs.uploadText ? cc.attrs.uploadText : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/upload')}"
           cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          onstart="#{logic.setFileLimit(cc.attrs.fileLimit)}" sizeLimit="#{masterDataBean.fileUploadSizeLimit}">
+          onstart="#{logic.setFileLimit(cc.attrs.fileLimit)}" sizeLimit="#{masterDataBean.fileUploadSizeLimit}"
+          styleClass="ui-g-12 u-padding-0">
         </p:fileUpload>
       </h:panelGroup>
     </div>

@@ -36,7 +36,6 @@ Cs0 @PushWFArc f23 '' #zField
 Cs0 @CallSub f24 '' #zField
 Cs0 @GridStep f26 '' #zField
 Cs0 @PushWFArc f27 '' #zField
-Cs0 @PushWFArc f8 '' #zField
 Cs0 @UdEvent f28 '' #zField
 Cs0 @GridStep f31 '' #zField
 Cs0 @PushWFArc f32 '' #zField
@@ -48,7 +47,6 @@ Cs0 @PushWFArc f38 '' #zField
 Cs0 @PushWFArc f33 '' #zField
 Cs0 @PushWFArc f39 '' #zField
 Cs0 @PushWFArc f25 '' #zField
-Cs0 @PushWFArc f43 '' #zField
 Cs0 @UdEvent f29 '' #zField
 Cs0 @UdProcessEnd f37 '' #zField
 Cs0 @GridStep f41 '' #zField
@@ -57,6 +55,10 @@ Cs0 @PushWFArc f40 '' #zField
 Cs0 @GridStep f44 '' #zField
 Cs0 @PushWFArc f45 '' #zField
 Cs0 @PushWFArc f6 '' #zField
+Cs0 @CallSub f46 '' #zField
+Cs0 @PushWFArc f47 '' #zField
+Cs0 @PushWFArc f48 '' #zField
+Cs0 @PushWFArc f8 '' #zField
 >Proto Cs0 Cs0 StatisticWidgetProcess #zField
 Cs0 f0 guid 16034D800DC77D9C #txt
 Cs0 f0 method start(java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>) #txt
@@ -123,7 +125,7 @@ Cs0 f4 81 355 26 26 -75 15 #rect
 Cs0 f4 @|UdMethodIcon #fIcon
 Cs0 f5 723 355 26 26 0 12 #rect
 Cs0 f5 @|UdProcessEndIcon #fIcon
-Cs0 f7 595 51 26 26 0 12 #rect
+Cs0 f7 811 51 26 26 0 12 #rect
 Cs0 f7 @|UdProcessEndIcon #fIcon
 Cs0 f10 251 419 26 26 0 12 #rect
 Cs0 f10 @|UdProcessEndIcon #fIcon
@@ -240,7 +242,7 @@ Cs0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f24 211 42 112 44 -34 -8 #rect
+Cs0 f24 416 42 112 44 -34 -8 #rect
 Cs0 f24 @|CallSubIcon #fIcon
 Cs0 f26 actionTable 'out=in;
 ' #txt
@@ -252,12 +254,10 @@ Cs0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f26 379 42 112 44 -41 -8 #rect
+Cs0 f26 592 42 112 44 -41 -8 #rect
 Cs0 f26 @|StepIcon #fIcon
 Cs0 f27 expr out #txt
-Cs0 f27 323 64 379 64 #arcP
-Cs0 f8 expr out #txt
-Cs0 f8 107 64 211 64 #arcP
+Cs0 f27 528 64 592 64 #arcP
 Cs0 f28 guid 163AF4A8A1BFD729 #txt
 Cs0 f28 actionTable 'out=in;
 ' #txt
@@ -287,10 +287,10 @@ Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f31 202 122 128 44 -58 -8 #rect
+Cs0 f31 196 120 120 48 -58 -8 #rect
 Cs0 f31 @|StepIcon #fIcon
 Cs0 f32 expr out #txt
-Cs0 f32 107 144 202 144 #arcP
+Cs0 f32 107 144 196 144 #arcP
 Cs0 f30 actionTable 'out=in;
 ' #txt
 Cs0 f30 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPermission;
@@ -348,9 +348,7 @@ Cs0 f39 632 304 736 355 #arcP
 Cs0 f39 1 736 304 #addKink
 Cs0 f39 0 0.7579963419912229 0 0 #arcLabel
 Cs0 f25 expr out #txt
-Cs0 f25 491 64 595 64 #arcP
-Cs0 f43 expr out #txt
-Cs0 f43 266 122 267 86 #arcP
+Cs0 f25 704 64 811 64 #arcP
 Cs0 f29 guid 16411B8894BC5C90 #txt
 Cs0 f29 actionTable 'out=in;
 ' #txt
@@ -416,6 +414,29 @@ Cs0 f45 0 0.4748858447488584 0 12 #arcLabel
 Cs0 f6 expr out #txt
 Cs0 f6 560 368 723 368 #arcP
 Cs0 f6 0 0.4748858447488584 0 12 #arcLabel
+Cs0 f46 processCall 'Functional Processes/DefaultChartColors:defaultChartColors()' #txt
+Cs0 f46 requestActionDecl '<> param;' #txt
+Cs0 f46 responseMappingAction 'out=in;
+out.chartColors=result.chartColors;
+' #txt
+Cs0 f46 responseActionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
+
+StatisticService service = new StatisticService();
+service.setStatisticsColors(result.chartColors);' #txt
+Cs0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>DefaultChartColors</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f46 200 42 112 44 -53 -8 #rect
+Cs0 f46 @|CallSubIcon #fIcon
+Cs0 f47 expr out #txt
+Cs0 f47 107 64 200 64 #arcP
+Cs0 f48 expr out #txt
+Cs0 f48 256 120 256 86 #arcP
+Cs0 f8 312 64 416 64 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -434,8 +455,6 @@ Cs0 f21 mainOut f23 tail #connect
 Cs0 f23 head f22 mainIn #connect
 Cs0 f24 mainOut f27 tail #connect
 Cs0 f27 head f26 mainIn #connect
-Cs0 f0 mainOut f8 tail #connect
-Cs0 f8 head f24 mainIn #connect
 Cs0 f28 mainOut f32 tail #connect
 Cs0 f32 head f31 mainIn #connect
 Cs0 f4 mainOut f35 tail #connect
@@ -447,8 +466,6 @@ Cs0 f30 mainOut f39 tail #connect
 Cs0 f39 head f5 mainIn #connect
 Cs0 f26 mainOut f25 tail #connect
 Cs0 f25 head f7 mainIn #connect
-Cs0 f31 mainOut f43 tail #connect
-Cs0 f43 head f24 mainIn #connect
 Cs0 f29 mainOut f42 tail #connect
 Cs0 f42 head f41 mainIn #connect
 Cs0 f41 mainOut f40 tail #connect
@@ -458,3 +475,9 @@ Cs0 f45 head f44 mainIn #connect
 Cs0 f34 out f38 tail #connect
 Cs0 f44 mainOut f6 tail #connect
 Cs0 f6 head f5 mainIn #connect
+Cs0 f0 mainOut f47 tail #connect
+Cs0 f47 head f46 mainIn #connect
+Cs0 f31 mainOut f48 tail #connect
+Cs0 f48 head f46 mainIn #connect
+Cs0 f46 mainOut f8 tail #connect
+Cs0 f8 head f24 mainIn #connect

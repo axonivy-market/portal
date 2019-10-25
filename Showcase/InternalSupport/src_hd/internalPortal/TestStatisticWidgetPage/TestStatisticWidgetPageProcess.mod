@@ -1,5 +1,5 @@
 [Ivy]
-16150F8167BC0EF5 3.28 #module
+16150F8167BC0EF5 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TestStatisticWidgetPageProcess Big #zClass
 Ts0 RD #cInfo
@@ -60,11 +60,8 @@ Ts0 f2 453 54 36 24 -49 14 #rect
 Ts0 f2 @|StepIcon #fIcon
 Ts0 f0 guid 16150F9B6D41C56F #txt
 Ts0 f0 method start() #txt
-Ts0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ts0 f0 outParameterDecl '<> result;
-' #txt
+Ts0 f0 inParameterDecl '<> param;' #txt
+Ts0 f0 outParameterDecl '<> result;' #txt
 Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -77,8 +74,7 @@ Ts0 f0 @|UdInitIcon #fIcon
 Ts0 f1 569 55 22 22 14 0 #rect
 Ts0 f1 @|UdProcessEndIcon #fIcon
 Ts0 f8 processCall 'Functional Processes/BuildTaskQuery:buildTaskQuery()' #txt
-Ts0 f8 requestActionDecl '<> param;
-' #txt
+Ts0 f8 requestActionDecl '<> param;' #txt
 Ts0 f8 responseActionDecl 'internalPortal.TestStatisticWidgetPage.TestStatisticWidgetPageData out;
 ' #txt
 Ts0 f8 responseMappingAction 'out=in;

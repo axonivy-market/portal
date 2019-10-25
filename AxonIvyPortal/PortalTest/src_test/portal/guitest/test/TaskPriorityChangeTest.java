@@ -7,6 +7,7 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
+import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class TaskPriorityChangeTest extends BaseTest {
@@ -33,9 +34,9 @@ public class TaskPriorityChangeTest extends BaseTest {
 		String priorityStringValue = "NORMAL"; 
 		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
 		taskWidgetPage.expand();
-		taskWidgetPage.openTaskDetails(firstTask);
-		taskWidgetPage.changePriorityOfTask(firstTask, priorityIntValue);
-		assertTrue(priorityStringValue.equals(taskWidgetPage.getPriorityOfTaskAt(0)));
+		TaskDetailsPage taskDetailsPage = taskWidgetPage.openTaskDetails(firstTask);
+		taskDetailsPage.changePriorityOfTask(priorityIntValue);
+		assertTrue(priorityStringValue.equals(taskDetailsPage.getPriorityOfTask()));
 	}
 	
 	@Test
