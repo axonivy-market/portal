@@ -20,7 +20,7 @@
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/filter')}" styleClass="chart-filter-header-text"/>
       <p:commandButton id="apply-filter-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/applyFilter')}"
         styleClass="apply-filters-btn" process="statistic-filter-accordion-panel" actionListener="#{cc.attrs.updateListener}"
-        oncomplete="clearChartModels(); updateChartModels();" />
+        oncomplete="clearChartModels(); updateChartModels();" global="true"/>
     </div>
 
     <p:accordionPanel id="statistic-filter-accordion-panel" styleClass="statistic-filter-accordion-panel ui-g-12 ui-fluid" multiple="true" activeIndex="0,1,2,3">
