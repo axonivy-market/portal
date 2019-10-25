@@ -16,6 +16,7 @@ Customization
    default-user-process
    default-chart
    default-statistic-custom-field
+   default-chart-colors
    change-password-process
    logout-process
    express-end-page
