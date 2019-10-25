@@ -28,7 +28,10 @@
           </ui:insert>
         </h:panelGroup>
         <h:panelGroup layout="block" rendered="#{displayTaskWidget}"
-          styleClass="ui-g-6 ui-lg-6 ui-md-8 ui-sm-12 ui-no-padding compact-task-widget #{not displayProcessWidget or not displayStatisticWidget ? 'ui-g-9 ui-lg-9 ui-md-8' : ''} #{not displayProcessWidget and not displayStatisticWidget ? 'ui-g-12 ui-lg-12 ui-md-12' : ''}">
+          styleClass="ui-g-6 ui-lg-6 ui-md-8 ui-sm-12 dashboard-task-widget-container
+              #{dataModel.compactMode ? 'compact-task-widget' : ''}
+              #{not displayProcessWidget or not displayStatisticWidget ? 'ui-g-9 ui-lg-9 ui-md-8' : ''}
+              #{not displayProcessWidget and not displayStatisticWidget ? 'ui-g-12 ui-lg-12 ui-md-12' : ''}">
           <ui:insert name="taskWidget">
             <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" dataModel="#{dataModel}"
               title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}" currentPortalPage="HOME_PAGE"
