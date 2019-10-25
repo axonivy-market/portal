@@ -20,10 +20,8 @@ Each TaskItemDetails contains
 
 |task-standard|
 
-   **Important**
-
-   Task Data and Description box always display, we cannot override the
-   content or hidden/show (they stay where they are)
+   .. important:: Task Data and Description box always display, we cannot override the
+      content or hidden/show (they stay where they are)
 
 .. _customization-task-item-details-how-to-overide-ui:
 
@@ -36,8 +34,8 @@ Refer to ``PortalExamples`` project for examples.
    required library.
 
 2. To customize task item detail, you must customize Portal Home first.
-   Refer to `Customize Portal
-   home <#axonivyportal.customization.portalhome>`__ to set new home
+   Refer to :ref:`Customize Portal
+   home <customization-portal-home>` to set new home
    page.
 
 3. Copy the ``PortalStart`` process from ``PortalTemplate`` to your
@@ -51,37 +49,25 @@ Refer to ``PortalExamples`` project for examples.
       ``/layouts/PortalTaskDetailsTemplate.xhtml``. You can take a look
       at ``PortalTaskDetails.xhtml`` to see how to customize it.
 
-         **Tip**
+         .. tip:: Highly recommend to copy the ``PortalTaskDetails`` HTMLDialog
+               in PortalTemplate. Remove ``ui:remove`` and change the copied
+               one's view.
 
-         Highly recommend to copy the ``PortalTaskDetails`` HTMLDialog
-         in PortalTemplate. Remove ``ui:remove`` and change the copied
-         one's view.
-
-   -  Use Axon.ivy Override to override the
-      OpenPortalTaskDetail
-      callable. The original implementation of this callable is calling
-      PortalTaskDetails
-      , change it to call the customized Page introduced in the step
-      above. The signature of this callable is
-      call(ITask)
-      and customized page must receive this
-      ITask
-      instance, put in the dialog's
-      Data
-      with the exact name
-      taskData
-      .
+   -  Use Axon.ivy Override to override the ``OpenPortalTaskDetail``  callable. The original implementation of this
+      callable is calling  ``PortalTaskDetails`` , change it to call the customized
+      Page introduced in the step above. The signature of this callable is ``call(ITask)``  and customized page must receive this  ``ITask``  instance, put in
+      the dialog's  ``Data``  with the exact name  ``taskData``  .
 
 5. After previous steps, you can override Task item details UI elements
    as shown/hidden element by keywords:
 
    To show/hide, please using ``showItemDetailsHeader``,
    ``showItemDetailsNotes``, ``showItemDetailDocuments`` code. For more
-   details, please refer to `Show/Hide
-   components <#customization-task-item-details-howtooverideui.showhiddenui>`__.
+   details, please refer to :ref:`Show/Hide
+   components <customization-task-item-details-how-to-overide-ui-show-hidden-ui>`.
 
-   And to add a new elements, please refer to `Add new Custom
-   panel <#customization-task-item-details-howtooverideui.custombody>`__
+   And to add a new elements, please refer to  :ref:`Add new Custom
+   panel <customization-task-item-details-how-to-overide-ui-custom-body>`
    code
 
 .. _customization-task-item-details-how-to-overide-ui-show-hidden-ui:
@@ -128,7 +114,7 @@ Refer to the ``taskItemDetailCustomPanel*`` section in
 -  Add your custom code into that tag
 
 -  Finally, your custom panel will be displayed inside of
-   `TaskItemDetails <#customization-task-item-details->`__
+   :ref:`TaskItemDetails <customization-task-item-details>`
    page
 
 -  Below is example code for override custom panel box of task details
