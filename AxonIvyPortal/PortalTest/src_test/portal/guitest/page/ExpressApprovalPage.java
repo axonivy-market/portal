@@ -3,8 +3,11 @@ package portal.guitest.page;
 import org.openqa.selenium.By;
 
 public class ExpressApprovalPage extends TaskTemplatePage {
+  public void ok() {
+    clickByCssSelector("button[id$='ok-btn']");
+  }
   public void approve() {
-    click(By.id("form:approve-btn"));
+    clickByCssSelector("button[id$='approve-btn']");
   }
 
   public void reject() {
@@ -12,6 +15,6 @@ public class ExpressApprovalPage extends TaskTemplatePage {
   }
   
   public void comment(String comment) {
-    findElementByCssSelector("textarea[id*='comment']").sendKeys(comment);
+    findElementByCssSelector("textarea[id$='comment']").sendKeys(comment);
   }
 }
