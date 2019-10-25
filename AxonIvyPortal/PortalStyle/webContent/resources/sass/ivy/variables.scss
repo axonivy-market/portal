@@ -66,6 +66,7 @@ $menuItemHoverBackgroundColor: rgba(0, 0, 0, 0.15);
 /* Font Size */
 $largeFontSize: 1.4rem; // font size for header,title, groups, menu
 $smallFontSize: 1.2rem; // font size for text, label, input
+$selectCheckboxMenuIconFontSize: 1.8rem;
 
 /* Table color */
 $dataTableRowBackgroundColorEven: rgba(255, 255, 255, 1);
@@ -168,5 +169,8 @@ $menuListWidgetHeaderColor: rgba(0, 0, 0, 0.7);
 
 /*---------------------------------Font family----------------------------------------*/
 $portalFontFamily: "Roboto";
-$fieldSetNoBorderTogglerFontFamily: "FontAwesome";
 $iconFontFamily: "FontAwesome";
+
+/*---------------------------------Font family----------------------------------------*/
+$currentLineVerticalStepTitleFontWeight: bold;
+$taskDetailHeaderFontWeight: bold;
