@@ -71,15 +71,15 @@
                         <p:ajax event="itemSelect" listener="#{logic.onSelectDrilldownTaskByExpiry}" global="false" />
                       </p:barChart>
 
-                      <p:overlayPanel styleClass="context-menu-#{chartStatus.index} expiry-chart-context-menu side-steps-panel"
+                      <p:overlayPanel styleClass="context-menu-#{chartStatus.index} expiry-chart-context-menu options-panel"
                         widgetVar="context-menu-#{chartStatus.index}"
                         rendered="#{statisticDashboardBean.isTaskByExpiry(chart) and !statisticDashboardBean.isTaskByExpiryHour(chart)}"
                         onShow="updateDrillDownPanelPosition(this);">
-                        <p:commandLink id="expiry-chart-drill-down" styleClass="js-expiry-chart-drill-down side-step-item"
+                        <p:commandLink id="expiry-chart-drill-down" styleClass="js-expiry-chart-drill-down option-item"
                           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/contextMenuDrilldown')}"
                           action="#{cc.attrs.drillDownExpiryChartListener}" actionListener="#{logic.drilldownTaskByExpiry}"
                           update="@([id$='create-chart-header']) #{p:component('widget-container')}" />
-                        <p:commandLink id="expiry-chart-task-list" styleClass="js-expiry-chart-task-list side-step-item"
+                        <p:commandLink id="expiry-chart-task-list" styleClass="js-expiry-chart-task-list option-item"
                           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/contextMenuToTaskList')}"
                           actionListener="#{logic.toTaskByExpiryTaskList}" />
                       </p:overlayPanel>
