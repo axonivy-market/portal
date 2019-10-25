@@ -21,6 +21,8 @@ The default home page of Portal has three built-in widgets in order:
 not fit your needs, you can replace it by your own one. We decided that
 based on screen size, widget may become hidden, not smaller.
 
+|home-page-template|
+
 .. _customization-portal-home-basic-usage:
 
 Basic usage
@@ -35,15 +37,13 @@ Following these steps to have your own Portal Home:
 
    Your custom home page should look like below:
 
-   ``<ui:composition template="/layouts/DefaultHomePageTemplate.xhtml" ... >``
-
-   ``<ui:define name="customWidget">``
-
-   ``...``
-
-   ``</ui:define>``
-
-   ``</ui:composition>``
+   .. code-block:: html
+   
+      <ui:composition template="/layouts/DefaultHomePageTemplate.xhtml">
+      <ui:define name="customWidget">
+      ...
+      </ui:define>
+      </ui:composition>
 
 2. *In case of single Portal:* Create a new process start for the new
    home page. Now you will use this process start as the entry point of
@@ -52,14 +52,13 @@ Following these steps to have your own Portal Home:
    the portal home url to the new one. e.g:
    HOMEPAGE_URL=http://localhost:8081/ivy/pro/designer/CustomizePortalHome/157454FCA39C3844/start.ivp**
 
-   *In case of multi Portal:* refer to `Setup multi
-   portals <#axonivyportal.settings.adminsettings>`__ to setup.
+   |set-home-page-url|
+
+   *In case of multi Portal:* refer to :ref:`Setup multi portals <settings-admin-settings>` to setup.
 
 ..
 
-   **Note**
-
-   Currently, responsive custom home page is not supported.
+   .. note:: Currently, responsive custom home page is not supported.
 
 .. _customization-portal-home-advanced-usage:
 
@@ -79,15 +78,14 @@ The template has three parameters: ``displayProcessWidget``,
 default widgets. Their default values are true, you can set them to
 boolean values (true/false) to display or hide them as you need.
 
-``<ui:composition template="/layouts/DefaultHomePageTemplate.xhtml" ... >``
+.. code-block:: html
 
-``<ui:param name="displayTaskWidget" value="false" />``
+   <ui:composition template="/layouts/DefaultHomePageTemplate.xhtml">
+   <ui:param name="displayTaskWidget" value="false" />
+   </ui:composition>
+..
 
-``</ui:composition>``
-
-   **Tip**
-
-   Task widget now is hidden.
+   .. tip:: Task widget now is hidden.
 
 .. _customization-portal-home-advanced-usage-customize-the-default-widget-sections:
 
@@ -97,29 +95,20 @@ Customize the default widget's sections
 The template has the placeholders to redefine the default widgets'
 sections.
 
-``<ui:composition template="/layouts/DefaultHomePageTemplate.xhtml" ... >``
+.. code-block:: html
 
-``<ui:define name="statisticWidget">``
-
-``<div class="js-dashboard-main-content-3rd-col dashboard-main-content-3rd-col layout-col">``
-
-``<h:panelGroup layout="block" styleClass="js-statistic-widget" id="statistic-widget-container">``
-
-``<!-- KEEP THE STATISTIC WIDGET -->``
-
-``<ic:ch.ivy.addon.portalkit.component.StatisticWidget id="statistics-widget" compactMode="true" tasks="#{tasks}" ... >``
-
-``<!-- ADD THE WEATHER WIDGET BELOW STATISTIC WIDGET -->``
-
-``<ic:my.namespace.WeatherWidget />``
-
-``</h:panelGroup>``
-
-``</div>``
-
-``</ui:define>``
-
-``</ui:composition>``
+   <ui:composition template="/layouts/DefaultHomePageTemplate.xhtml">
+   <ui:define name="statisticWidget">
+   <div class="js-dashboard-main-content-3rd-col dashboard-main-content-3rd-col layout-col">
+   <h:panelGroup layout="block" styleClass="js-statistic-widget" id="statistic-widget-container">
+   <!-- KEEP THE STATISTIC WIDGET -->
+   <ic:ch.ivy.addon.portalkit.component.StatisticWidget id="statistics-widget" compactMode="true" tasks="#{tasks}"> 
+   <!-- ADD THE WEATHER WIDGET BELOW STATISTIC WIDGET -->
+   <ic:my.namespace.WeatherWidget />
+   </h:panelGroup>
+   </div>
+   </ui:define>
+   </ui:composition>
 
 .. _customization-portal-home-advanced-usage-add-your-own-widgets:
 
@@ -130,19 +119,16 @@ The template has a placeholder to add your own widgets. Your own
 widgets' default positions are next to statistic widget, you can change
 them by setting the default widgets' positions.
 
-``<ui:composition template="/layouts/DefaultHomePageTemplate.xhtml" ... >``
+.. code-block:: html
 
-``<ui:define name="customWidget">``
+   <ui:composition template="/layouts/DefaultHomePageTemplate.xhtml"  >
+   <ui:define name="customWidget">
+   <ic:my.namespace.ComponentName  />
+   </ui:define>
+   </ui:composition>
+..
 
-``<ic:my.namespace.ComponentName ... />``
-
-``</ui:define>``
-
-``</ui:composition>``
-
-   **Tip**
-
-   This custom widget will show below the 3 default widget
+   .. tip:: This custom widget will show below the 3 default widget
 
 .. _customization-portal-home-advanced-usage-change-the-pages-title:
 
@@ -152,11 +138,11 @@ Change the page's title
 The default page title is Cockpit. Apply the following code to change
 it:
 
-``<ui:composition template="/layouts/DefaultHomePageTemplate.xhtml" ... >``
+.. code-block:: html
 
-``<ui:define name="pageTitle">YOUR PAGE'S TITLE</ui:define>``
-
-``</ui:composition>``
+   <ui:composition template="/layouts/DefaultHomePageTemplate.xhtml" >
+   <ui:define name="pageTitle">YOUR PAGE'S TITLE</ui:define>
+   </ui:composition>
 
 
 .. |home-page-template| image:: images/portal-home/home-page-template.png

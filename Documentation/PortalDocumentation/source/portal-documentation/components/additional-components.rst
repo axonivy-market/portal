@@ -40,7 +40,9 @@ subprocess will set the id to the additional property
 
 Include the process history component into your page:
 
-``<ic:ch.ivy.addon.portal.component.ProcessHistory businessEntityId="resourceA247" >``
+.. code-block:: html
+
+		<ic:ch.ivy.addon.portal.component.ProcessHistory businessEntityId="resourceA247" >
 
 The value of the attribute ``businessEntityId`` must match the id input
 into the subprocess in the first step.
@@ -54,15 +56,13 @@ to configure the scroll bar of the list.
 
       If you use this component in a dialog, you must run this script
       ``processHistory.setup();`` when the dialog is shown. For example:
-      ``<p:dialog widgetVar="process-history-dialog"``
-      ``id="process-history-dialog" width="800" height="500"``
-      ``header="Process history of Resource A247"``
-      ``onShow="processHistory.setup();">``
-      ``<ic:ch.ivy.addon.portal.component.ProcessHistory``
-      ``businessEntityId="resourceA247"``
-      ``chunkSize="6" scrollHeight="400" />``
-      ``</p:dialog>``
+..
 
+	.. code-block:: html
+
+			<p:dialog widgetVar="process-history-dialog" id="process-history-dialog" width="800" height="500" header="Process history of Resource A247" onShow="processHistory.setup();">
+			<ic:ch.ivy.addon.portal.component.ProcessHistory businessEntityId="resourceA247" chunkSize="6" scrollHeight="400" />
+			</p:dialog>
 ..
 
    .. important:: 
@@ -109,11 +109,11 @@ this component directly when open Statistic widget. If you want to use
 this component, you only have to redirect to Task Analysis component
 with following code:
 
-``import javax.faces.context.FacesContext;``
+.. code-block:: java
 
-``String taskAnalysisUrl = ivy.html.startref("Start Processes/TaskAnalysis/start.ivp");``
-
-``FacesContext.getCurrentInstance().getExternalContext().redirect(taskAnalysisUrl);``
+		import javax.faces.context.FacesContext;
+		String taskAnalysisUrl = ivy.html.startref("Start Processes/TaskAnalysis/start.ivp");
+		FacesContext.getCurrentInstance().getExternalContext().redirect(taskAnalysisUrl);
 
 .. _components-additional-component-process-chain:
 
@@ -147,11 +147,11 @@ Process Chain component can be integrated in any widget by including
 this component into a page. In order to use this component in a page,
 include this component to this page with following code:
 
-``<ic:ch.ivy.addon.portalkit.singleapp.process.ProcessChain id="process-chain-circle-horizontal"``
+.. code-block:: html
 
-``componentId="component-circle-horizontal" shape="CIRCLE" direction="HORIZONTAL"``
-
-``isShowAllSteps="FALSE" actualStepIndex="#{data.actualCurrentIndex}" steps="#{data.steps}" />``
+		<ic:ch.ivy.addon.portalkit.singleapp.process.ProcessChain id="process-chain-circle-horizontal"
+		componentId="component-circle-horizontal" shape="CIRCLE" direction="HORIZONTAL"
+		isShowAllSteps="FALSE" actualStepIndex="#{data.actualCurrentIndex}" steps="#{data.steps}" />
 
 1. Must to set value for ``actualStepIndex`` parameter. This is current
    step index.
