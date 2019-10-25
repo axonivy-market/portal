@@ -112,7 +112,8 @@ public class PortalExpressTest extends BaseTest {
 		// if we have radio button or checkbox, remember multiply with number of options
 		// Example: we have 1 checkbox with 2 options, 1 radio with 3 options. Total we
 		// have 5 inputs
-		Assert.assertEquals(14, formDefinition.countNumberOfElementsInPreviewDialog());
+		// plus 1 hidden input
+		Assert.assertEquals(15, formDefinition.countNumberOfElementsInPreviewDialog());
 		Assert.assertNotNull(formDefinition.findElementByXpath("//label[text()='Data Provider Item 1']"));
 		Assert.assertNotNull(formDefinition.findElementByXpath("//label[text()='Data Provider Item 2']"));
 		Assert.assertNotNull(formDefinition.findElementByXpath("//label[text()='Data Provider Item 3']"));
@@ -368,6 +369,7 @@ public class PortalExpressTest extends BaseTest {
 		formDefinition.createTextInputField("Input Text", INPUT_TEXT_TYPE_INDEX, false);
 		formDefinition.moveAllElementToDragAndDrogPanel();
 		formDefinition.nextStep();
+		formDefinition.inputMailRecipient("wawa@axonivy.io");
 		formDefinition.inputMailSubject("Information for task 2");
 		formDefinition.inputMailContent("Task is finished");
 		formDefinition.nextStep();

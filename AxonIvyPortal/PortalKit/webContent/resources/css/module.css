@@ -1841,6 +1841,11 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 /* END NEED TO BE REFACTORED */
 
 /********************************** TASK WIDGET **********************************/
+.dashboard-task-widget-container {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
 .widget-header.task-widget-header {
   margin-bottom: 0;
 }

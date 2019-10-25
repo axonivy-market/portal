@@ -77,7 +77,7 @@
       </p:column>
     </p:dataTable>
     <div class="upload-container">
-      <h:panelGroup rendered="#{cc.attrs.typeColumnRendered}">
+      <h:panelGroup rendered="#{cc.attrs.typeColumnRendered}" styleClass="MarTop10">
           <p:outputLabel for="type-selection" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/type')}: " styleClass="u-mar-right-5" />
           <p:selectOneMenu id="type-selection" value="#{data.typeSelection}" converter="pojoConverter" styleClass="u-mar-right-5">
             <p:ajax global="false" />
