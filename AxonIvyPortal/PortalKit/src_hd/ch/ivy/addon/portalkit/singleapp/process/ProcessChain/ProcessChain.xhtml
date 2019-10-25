@@ -53,7 +53,6 @@
         <c:set var="isDisplayedStep" value="#{isFirstStep or isLastStep or isCurrentStep or isNextCurrentStep or isPreCurrentStep}" />
         <c:set var="processStepTypeCssClass" value="#{isCurrentStep ? 'current' :  isVisitedStep ? 'visited' : 'waiting'}" />
 
-
         <c:if test="#{isShapeCircle}">
           <h:panelGroup layout="block" id="step-info-#{counter.index}" rendered="#{isShowAllSteps or isDisplayedStep}"
             styleClass="ui-sm-hidden ui-md-hidden #{isDirectionHorizontal ? 'circle-horizontal-process-step' : 'circle-vertical-process-step'} #{isHideNextSteps and !isShowAllSteps ? 'hide-steps' : ''} #{processStepTypeCssClass}">
@@ -128,7 +127,6 @@
         <h:panelGroup id="step-after" layout="block" rendered="#{!isHideRightSteps}" styleClass="line-horizontal-process-step hide-right-steps" />
       </c:if>
 
-      <p:tooltip for="step-info-mobile-#{currentIndex}" value="#{stepName}" trackMouse="true" />
     </h:panelGroup>
   </h:panelGroup>
 

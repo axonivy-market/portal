@@ -21,7 +21,7 @@
         </div>
         <h:panelGroup layout="block" styleClass="case-details-document-add ui-g-7 u-padding-0">
           <p:commandLink id="add-document-command" styleClass="case-details-document-add-link"
-            rendered="#{!data.isHideUploadDocumentForDoneCase and caseActionBean.canWriteDocument(case)}"
+            rendered="#{!(case.state eq 'DONE' and data.isHideUploadDocumentForDoneCase) and caseActionBean.canWriteDocument(case)}"
             actionListener="#{data.setICase(case)}" oncomplete="PF('document-upload-dialog-#{case.id}').show()">
             <span class="fa fa-plus-circle case-details-document-add-link-icon" />
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}" />

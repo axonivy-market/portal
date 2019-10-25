@@ -51,10 +51,8 @@ Ts0 f0 @|StartRequestIcon #fIcon
 Ts0 f1 617 49 30 30 0 15 #rect
 Ts0 f1 @|EndIcon #fIcon
 Ts0 f5 dialogId ch.ivy.addon.portal.generic.TaskAnalysis #txt
-Ts0 f5 startMethod start(String) #txt
-Ts0 f5 requestActionDecl '<String menuState> param;' #txt
-Ts0 f5 requestMappingAction 'param.menuState=ch.ivy.addon.portalkit.util.MenuUtils.getMenuState();
-' #txt
+Ts0 f5 startMethod start() #txt
+Ts0 f5 requestActionDecl '<> param;' #txt
 Ts0 f5 responseActionDecl 'ch.ivy.addon.portal.generic.TaskAnalysisData out;
 ' #txt
 Ts0 f5 responseMappingAction 'out=in;

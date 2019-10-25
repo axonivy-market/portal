@@ -9,7 +9,6 @@
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="taskView" value="#{data.taskView}" />
     <ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
-    <ui:param name="menuState" value="#{data.menuState}" />
     <ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}</ui:define>
 
     <ui:define name="simplePageContent">
