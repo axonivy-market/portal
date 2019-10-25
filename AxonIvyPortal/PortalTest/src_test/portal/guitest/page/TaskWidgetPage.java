@@ -91,18 +91,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
 	public TaskTemplatePage startTask(int index) {
-		WebElement taskListElement = findElementById(taskWidgetId + ":task-list-scroller");
-		if (taskListElement.getAttribute(CLASS).contains("compact-mode")) {
-			String cssSelector = ID_CONTAIN + index + TASK_ITEM;
-			refreshAndWaitElement(cssSelector);
-			waitForElementPresent(By.cssSelector(cssSelector), true);
-			findElementByCssSelector(cssSelector).click();
-		} else {
-			String cssSelector = ID_END + index + TASK_ITEM_TASK_INFO;
-			refreshAndWaitElement(cssSelector);
-			waitForElementPresent(By.cssSelector(cssSelector), true);
-			findElementByCssSelector(cssSelector).click();
-		}
+	  startTaskWithoutUI(index);
 		waitForElementPresent(By.id(TASK_ACTION), true);
 		return new TaskTemplatePage();
 	}
@@ -516,9 +505,15 @@ public class TaskWidgetPage extends TemplatePage {
   public void startTaskWithoutUI(int index) {
     WebElement taskListElement = findElementById(taskWidgetId + ":task-list-scroller");
     if (taskListElement.getAttribute(CLASS).contains("compact-mode")) {
-      findElementByCssSelector(ID_CONTAIN + index + TASK_ITEM).click();
+      String cssSelector = ID_CONTAIN + index + TASK_ITEM;
+      refreshAndWaitElement(cssSelector);
+      waitForElementPresent(By.cssSelector(cssSelector), true);
+      findElementByCssSelector(cssSelector).click();
     } else {
-      findElementByCssSelector(ID_END + index + TASK_ITEM_TASK_INFO).click();
+      String cssSelector = ID_END + index + TASK_ITEM_TASK_INFO;
+      refreshAndWaitElement(cssSelector);
+      waitForElementPresent(By.cssSelector(cssSelector), true);
+      findElementByCssSelector(cssSelector).click();
     }
   }
 
