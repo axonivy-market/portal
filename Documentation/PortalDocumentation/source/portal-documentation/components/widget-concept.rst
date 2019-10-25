@@ -44,6 +44,7 @@ pattern.
 Furthermore, to have a clean architecture and avoid a lot of headaches
 going forward, we suggest that you should separate your widget into
 layers like below:
+.. code-block:: language
 
 -  Entities
 
@@ -80,8 +81,8 @@ layers like below:
    are detail. We keep these thing on the outside where they can do
    little harm.
 
-   .. tip:: 
-   
+   .. tip::
+
       There's no rule that says you must always have just the four layers
       above. However, you should always apply that the source code
       dependencies point from mechanisms to policies:
@@ -162,46 +163,52 @@ Portal comes with some useful widgets:
    Below is the sample how the task widget being use in the default
    template:
 
-   ``<ui:define name="taskWidget">``
-   ``<ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" tasks="#{logic.getTasksOfSessionUser()}" ... />``
-   ``</ui:define>``
+   .. code-block:: html
+      :linenos:
+      :emphasize-lines: 2
+
+       <ui:define name="taskWidget">``
+       <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" tasks="#{logic.getTasksOfSessionUser()}" ... />
+       </ui:define>
 
 2. Process widget
 
    Below is the sample how the process widget being use in the default
    template:
 
-   ``<ui:define name="processWidget">``
+   .. code-block:: html
+      :linenos:
+      :emphasize-lines: 2
 
-   ``<ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-widget" compactMode="true" ... .>``
-   
-   ``</ui:define>``
+      <ui:define name="processWidget">
+      <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-widget" compactMode="true" ... .>
+      </ui:define>
 
 3. Statistic widget
 
-   Below is the sample how the statistic widget being use in the default
-   template:
+   Below is the sample how the statistic widget being use in the default template:
 
-   ``<ui:define name="statisticWidget">``
+   .. code-block:: html
+         :linenos:
+         :emphasize-lines: 2,4
 
-   ``<ic:ch.ivy.addon.portalkit.component.StatisticWidget id="statistics-widget" compactMode="true" ... >``
-
-   ``...``
-
-   ``</ic:ch.ivy.addon.portalkit.component.StatisticWidget>``
-
-   ``</ui:define>``
+         <ui:define name="statisticWidget">``
+         <ic:ch.ivy.addon.portalkit.component.StatisticWidget id="statistics-widget" compactMode="true" ... >``
+         ...
+         </ic:ch.ivy.addon.portalkit.component.StatisticWidget>
+         </ui:define>
 
 Portal setup these widget with the default settings for you, but you can
 always re-define them in order to match with your needs. Moreover, if
 you want to turn off a built-in widget, you can simply leave its
 ui:define container empty like this:
 
-``<ui:define name="taskWidget">``
+.. code-block:: html
 
-``<!-- leave it empty -->``
+      <ui:define name="taskWidget">
+      <!-- leave it empty -->
+      </ui:define>
 
-``</ui:define>``
 
 .. _components-widget-concept-predefined-styles:
 
@@ -211,49 +218,30 @@ Predefined styles
 There are separate common styles are predefined to ensure every Portal
 widget has a consistent structure and appearance:
 
-``<div class="widget">``
+.. code-block:: html
 
-``<div class="widget-header">``
-
-``<ul class="widget-header-menu">``
-
-``<li class="widget-header-menu-item">...</li>``
-
-``<li class="widget-header-menu-item">...</li>``
-
-``<li class="widget-header-menu-item">...</li>``
-
-``...``
-
-``</ul>``
-
-``...``
-
-``</div>``
-
-``<div class="widget-content">``
-
-``<div class="widget-content-list">``
-
-``<div class="widget-content-list-item">...</div>``
-
-``<div class="widget-content-list-item">...</div>``
-
-``<div class="widget-content-list-item">...</div>``
-
-``...``
-
-``</div>``
-
-``</div>``
-
-``<div class="widdget-footer">``
-
-``...``
-
-``</div>``
-
-``</div>``
+    <div class="widget">
+    <div class="widget-header">
+    <ul class="widget-header-menu">
+    <li class="widget-header-menu-item">...</li>
+    <li class="widget-header-menu-item">...</li>
+    <li class="widget-header-menu-item">...</li>
+    ...
+    </ul>
+    ...
+    </div>
+    <div class="widget-content">
+    <div class="widget-content-list">
+    <div class="widget-content-list-item">...</div>
+    <div class="widget-content-list-item">...</div>
+    <div class="widget-content-list-item">...</div>
+    ...
+    </div>
+    </div>
+    <div class="widdget-footer">
+    ...
+    </div>
+    </div>
 
 .. _components-widget-concept-flow:
 
@@ -269,25 +257,23 @@ The general flow for developing a widget for portal is as follows:
 
    The following code fragment defines an example Html Dialog component:
 
-   ``<cc:interface componentType="IvyComponent">``
+ .. code-block:: html
+ 	 
+    	<cc:interface componentType="IvyComponent">	
+    	<cc:attribute name="caption" />
+    	</cc:interface>
+    	<cc:implementation>
+    	...
+    	</cc:implementation>
+ ..
 
-   ``<cc:attribute name="caption" />``
+ A component could be inserted with the ic tag.
 
-   ``</cc:interface>``
-
-   ``<cc:implementation>``
-
-   ``...``
-
-   ``</cc:implementation>``
-
-   A component could be inserted with the ic tag.
-
-   ``<ic:my.namespace.ComponentName ... />``
-
-   For more information, see the Html Dialog Component section in
-   Axon.ivy Designer - Help: **Designer Guide > User Interface > User
-   Dialogs > Html Dialogs**
+ ``<ic:my.namespace.ComponentName ... />`` 
+ 
+ For more information, see the Html Dialog Component section in
+ Axon.ivy Designer - Help: **Designer Guide > User Interface > User
+ Dialogs > Html Dialogs**
 
 3. If you are writing a widget, which manipulates task, case,...
    consider using Portal built-in services.
@@ -314,19 +300,16 @@ follows:
    a place holder for your own widgets. Your custom home page should
    look like below:
 
-   ``<ui:composition template="/layouts/DefaultHomePageTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"``
+	 .. code-block:: html
 
-   ``xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"``
-
-   ``xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component">``
-
-   ``<ui:define name="customWidget">``
-
-   ``...``
-
-   ``</ui:define>``
-
-   ``</ui:composition>``
+	 		<ui:composition template="/layouts/DefaultHomePageTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+			xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+			xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component">
+			<ui:define name="customWidget">
+			...
+			</ui:define>
+			</ui:composition>
+..
 
 2. Create a new process start for the new home page. Now you will use
    this process start as the entry point of your portal instead of the
@@ -337,16 +320,15 @@ follows:
 3. In your new home page, place your widget inside the customWidget
    section.
 
-   ``<ui:define name="customWidget">``
+	.. code-block:: html
 
-   ``<ic:my.namespace.ComponentName ... />``
-
-   ``...``
-
-   ``</ui:define>``
-
+		 <ui:define name="customWidget">
+		 <ic:my.namespace.ComponentName ... />
+		 ...
+		 </ui:define>
+..
 For more details, visit
-`#axonivyportal.customization.portalhome <#axonivyportal.customization.portalhome>`__.
+:ref:`Portal home <customization-portal-home>`.
 
 .. _components-widget-concept-exception-handling:
 
