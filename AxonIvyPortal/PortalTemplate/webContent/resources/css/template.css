@@ -72,25 +72,10 @@
 	padding: 0 0 0 20px !important;
 	height: 36px !important;
 	line-height: 36px;
-	font-family: 'Roboto';
-	font-style: normal;
-	font-weight: 400;
 	color: rgba(0, 0, 0, 0.6) !important;
 }
 
-#user-setting-container .server-information {
-	padding: 0 0 0 20px !important;
-	height: 36px !important;
-	line-height: 36px;
-	font-family: 'Roboto';
-	font-style: normal;
-	font-weight: 400;
-}
-
 #user-setting-container li a:hover {
-	font-family: 'Roboto';
-	font-style: normal;
-	font-weight: 400;
 	color: rgba(0, 0, 0, 1) !important;
 }
 
@@ -115,10 +100,6 @@
 	overflow-x: visible !important;
 	overflow-y: visible !important;
 	height: 100%;
-}
-
-.fa:before {
-	font-family: 'FontAwesome' !important;
 }
 
 .ui-outputlabel .ui-outputlabel-rfi {
@@ -151,7 +132,6 @@
   margin-bottom: 20px !important;
 }
 .task-template-title {
-	font-style: normal;
 	font-weight: bold;
 	display: flex;
 	align-items: center;

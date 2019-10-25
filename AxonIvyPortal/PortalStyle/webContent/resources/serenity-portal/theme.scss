@@ -584,14 +584,17 @@ img[id*='additonalTaskUserAvatar'] {
     background: repeating-linear-gradient(180deg, #E0E0E0, #E0E0E0 10px, $bodyBackgroundColor 10px, $bodyBackgroundColor 20px);
 }
 
-.current .cicrle-step-container, .visited .cicrle-step-container {
-    color: $circleStepNumberColor;
+.line-process-chain .line-horizontal-process-step.waiting .line-horizontal-step-container,
+.line-process-chain .line-vertical-process-step.waiting .line-vertical-step-container {
+  background-color: $lineWaitingStepBackgroundColor;
 }
 
-.task #mobile-menu .mobile-task-menu-item,
-.process #mobile-menu .mobile-process-menu-item {
-    border-bottom-width: 2px;
-    border-bottom-color: $primaryColor;
+.line-process-chain .line-vertical-process-step.current .line-vertical-step-title {
+  font-weight: $currentLineVerticalStepTitleFontWeight;
+}
+
+.current .cicrle-step-container, .visited .cicrle-step-container {
+    color: $circleStepNumberColor;
 }
 
 /*Style for checkbox ------------------------------------------------------------------------------------------------*/
@@ -892,7 +895,7 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
 }
 
 .task-detail-header, .analysis-task-widget, .statistic-widget-container {
-  .ui-button.ui-widget.task-details-back-btn , .ui-button.ui-widget.back-button{
+  .ui-button.ui-widget.task-details-back-btn, .ui-button.ui-widget.back-button{
     background-color: transparent;
     box-shadow: none;
     
@@ -900,6 +903,10 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
       background-color: rgba(0,0,0,0.05) !important;
     }
   }
+}
+
+.task-detail-header {
+  font-weight: $taskDetailHeaderFontWeight;
 }
 
 /*Style For Advance Filter --------------------------------------------------------------------------------------*/
@@ -974,7 +981,7 @@ li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectabl
 .fieldset-no-border .ui-fieldset-toggler:before {
   font-size: $largeFontSize;
   color: $fieldSetToggerColor !important;
-  font-family: $fieldSetNoBorderTogglerFontFamily;
+  font-family: $iconFontFamily;
 }
 
 /*Font size for START FILTER WIDGET --------------------------------------------------------------------------------------*/
@@ -1004,10 +1011,6 @@ li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectabl
   font-family: $portalFontFamily;
 }
 
-.widget-header-filter-input.ui-inputfield {
-  font-family: $portalFontFamily;
-}
-
 .widget-header-main-menu a.ui-widget.ui-commandlink, .widget-header-main-menu span.ui-widget.ui-commandlink.ui-state-disabled,
 .widget-sort-menu span.ui-widget.ui-commandlink.ui-state-disabled {
   font-size: $smallFontSize;
@@ -1033,11 +1036,13 @@ li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectabl
 .case-widget-container .ui-widget.ui-button.advanced-filter-command:after,
 .filter-selection-form a.filter-name.ui-commandlink:after {
   color: $black;
+  font-family: $iconFontFamily;
 }
 
 .task-widget .ui-widget.ui-button.advanced-filter-command.error-filter:before, 
 .case-widget-container .ui-widget.ui-button.advanced-filter-command.error-filter:before {
   color: red;
+  font-family: $iconFontFamily;
 }
 
 /*Font size for START CASE ITEM --------------------------------------------------------------------------------------*/
@@ -1072,19 +1077,12 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   font-size: $largeFontSize;
 }
 
-.case-header-name-desc-cell .case-header-name-cell {
-  font-family: $portalFontFamily;
-}
-
 /*Font size for Case Detail --------------------------------------------------------------------------------------*/
 .case-detail-header {
   font-size: $largeFontSize;
 }
 
-.case-details-data-2nd-column {
-  font-family: $portalFontFamily;
-}
-.process-empty-container,
+.process-empty-container ,
 .process-start-list-item-action,
 .process-start-list-item-name {
   font-size: $smallFontSize;
@@ -1113,8 +1111,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 }
 
 .task-name-input,
-.case-details-data-1st-column,
-.case-details-data-2nd-column > * {
+.case-details-data-1st-column {
   font-size: $largeFontSize !important;
 }
 
@@ -1137,21 +1134,15 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   font-family: $portalFontFamily;
   color: $chartInfoHeaderColor;
 }
-
-
 .not-display-result-tab-view {
   font-size: $smallFontSize;
 }
 
 .side-steps-panel .side-step-item {
   font-size: $largeFontSize;
-  font-family: $portalFontFamily;
   color: $sideStepItemColor !important;
 }
 
-.side-steps-container .side-step-item {
-  font-family: $portalFontFamily;
-}
 /** Task Template * --------------------------------------*/
 .task-template-title {
   font-size: $largeFontSize;
@@ -1180,7 +1171,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   font-size: $smallFontSize;
 }
 
-#user-setting-container .server-information,
 #user-setting-container li a {
   font-size: $largeFontSize;
 }
@@ -1190,6 +1180,9 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   font-size: $largeFontSize !important;
 }
 
+.fa:before {
+	font-family: $iconFontFamily !important;
+}
 /**=====================================END FONT SIZE==================================================**/
 /**==========================================COLOR =============================================**/
 body .ui-state-active, body .ui-state-highlight {
@@ -1241,8 +1234,16 @@ body .ui-state-active, body .ui-state-highlight {
 body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-close.ui-state-hover {
   background: $white !important;
 }
-.ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-filter-container .ui-icon-search, .ui-picklist .ui-picklist-filter-container .ui-icon, .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon {
+.ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-filter-container .ui-icon-search,
+.ui-picklist .ui-picklist-filter-container .ui-icon,
+.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon {
   color: grey;
+}
+
+.ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-filter-container .ui-icon:before,
+.ui-picklist .ui-picklist-filter-container .ui-icon:before {
+ font-family: $iconFontFamily;
+ font-size: $selectCheckboxMenuIconFontSize;
 }
 
 /* AutoComplete----------------------------- */
@@ -1437,10 +1438,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   color: $taskListDescriptionCellColor;
 }
 
-.task-start-list .name-cell {
-  font-family: $portalFontFamily;
-}
-
 .task-odd-row.full-mode {
   background-color: $taskOddRowBackgroundColor;
 }
@@ -1477,12 +1474,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 .additional-case-details-link {
   color: $caseAdditionalDetailLinkColor !important;
-}
-
-/** Process chain----------------------------*/
-.line-process-chain .line-horizontal-process-step.waiting .line-horizontal-step-container,
-.line-process-chain .line-vertical-process-step.waiting .line-vertical-step-container {
-  background-color: $lineWaitingStepBackgroundColor;
 }
 
 /* Admin Setting--------------------------*/

@@ -116,13 +116,15 @@ body .ui-selectonemenu-panel .ui-selectonemenu-item.ui-state-focus {
 body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-close.ui-state-hover {
   border-radius: 50%;
 }
-.ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-filter-container .ui-icon-search, .ui-picklist .ui-picklist-filter-container .ui-icon, .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon {
+.ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-filter-container .ui-icon-search,
+.ui-picklist .ui-picklist-filter-container .ui-icon,
+.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon {
 	background: transparent;
     overflow: visible;
     text-indent: 5px;
 }
-.ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-filter-container .ui-icon:before, .ui-picklist .ui-picklist-filter-container .ui-icon:before {
-    font: normal normal normal 18px/1 FontAwesome;
+.ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-filter-container .ui-icon:before,
+.ui-picklist .ui-picklist-filter-container .ui-icon:before {
     -webkit-font-smoothing: antialiased;
     content: "\f002";
     position: absolute;
@@ -251,15 +253,11 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .widget-header-filter-input.ui-inputfield {
   background-color: transparent;
-  font-style: normal;
-  font-weight: 400;
   width: 100%;
 }
 
 .widget-header-filter-input.ui-inputfield.ui-state-hover, .widget-header-filter-input.ui-inputfield.ui-state-focus {
   background-color: transparent;
-  font-style: normal;
-  font-weight: 400;
 }
 
 .widget-content a:hover {
@@ -315,11 +313,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 /********************** END SUBMENU ITEM ***********************/
 
 /********************** START CASE BOX ***********************/
-.grid-item-header {
-  font-style: normal;
-  font-weight: 400;
-}
-
 .grid-item-content-list-item {
   display: flex;
   align-items: center;
@@ -473,7 +466,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .filter-selection-form a.filter-name.ui-commandlink:after {
   content: "\f0d7";
   display: inline-block;
-  font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
@@ -481,11 +473,10 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   margin-left: 5px;
 }
 
-.task-widget .ui-widget.ui-button.advanced-filter-command.error-filter:before, 
+.task-widget .ui-widget.ui-button.advanced-filter-command.error-filter:before,
 .case-widget-container .ui-widget.ui-button.advanced-filter-command.error-filter:before {
   content: "\f06a";
   display: inline-block;
-  font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
@@ -639,7 +630,9 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   padding-top: 0 !important;
 }
 
-a.case-details-document-add-link, a.task-details-document-add-link, span.case-details-document-add-link, span.task-details-document-add-link {
+a.case-details-document-add-link, a.task-details-document-add-link,
+span.case-details-document-add-link,
+span.task-details-document-add-link {
   float: right;
   font-weight: 400;
 }
@@ -756,8 +749,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-style: normal;
-  font-weight: 400;
 }
 
 .case-header-name-cell .ui-inplace-content {
@@ -933,8 +924,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
     padding: 10px;
     margin: 0;
     width: 160px;
-    font-style: normal;
-    font-weight: 400;
     line-height: 1.4rem;
     box-sizing: content-box;
     text-align: left;
@@ -1188,8 +1177,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.8);
   -moz-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.8);
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.8);
-  font-style: normal;
-  font-weight: 400;
 }
 
 .process-start-list-item:before, .process-start-list-item:after {
@@ -1831,8 +1818,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .task-start-list .name-cell {
-  font-style: normal;
-  font-weight: 400;
   display: block;
   padding-bottom: 2px;
 }
@@ -1960,8 +1945,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   padding: 10px 18px 10px 20px;
   margin: 0;
   width: 160px;
-  font-style: normal;
-  font-weight: 400;
   line-height: 1.2rem;
   box-sizing: content-box;
 }
@@ -2102,25 +2085,6 @@ _:-ms-input-placeholder, :root .case-details > * {
   text-align: left;
   width: 120px;
   line-height: 2.2rem;
-}
-
-.case-details-data-2nd-column {
-  text-align: left;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 2.0rem;
-  max-width: calc(100% - 150px);
-}
-
-.case-details-data-2nd-column > * {
-  display: inline-block;
-}
-.case-details-data-2nd-column > *:not(.case-details-priority):not(form):not(div) {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  width: 100%;
-  display: block;
 }
 
 .related-task-content {
@@ -2670,10 +2634,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   margin: 9px 0px 0px 0px;
 }
 
-.line-process-chain .line-vertical-process-step.current .line-vertical-step-title {
-  font-weight: bold;
-}
-
 .line-process-chain .line-vertical-process-step .line-vertical-step-container {
   height: 99%;
   width: 10px;
@@ -2874,11 +2834,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 /********************************** ABSENCES AND DEPUTY **********************************/
-.substituted-user-text {
-  font-style: normal;
-  font-weight: 400;
-}
-
 .absences-view-command-buttons {
   float: right;
 }
@@ -3327,14 +3282,12 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .edit-statistic-container .chart-list .chart-container .add-link {
   display: block;
   margin-top: 5px;
-  font-style: normal;
   width: 50%;
   float: left;
 }
 
 .edit-statistic-container .chart-list .chart-container .add-link:before {
   font-size: 1.4rem;
-  font: normal normal normal 14px/1 FontAwesome;
 }
 
 .edit-statistic-container td:not(.align-bottom) {
@@ -3516,7 +3469,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 .chart-info-header {
   display: block;
-  font-style: normal;
   font-weight: bold;
   margin-top: 20px;
   margin-bottom: 10px;
@@ -4295,7 +4247,6 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 
 .case-related-command-link {
   margin: auto !important;
-  font-weight: 400;
   display: inline-block;
 }
 

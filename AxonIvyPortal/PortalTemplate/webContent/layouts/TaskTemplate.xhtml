@@ -80,7 +80,7 @@
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}" />
 
                 <c:forEach var="sidestep" items="#{taskTemplateBean.sideStepList}" varStatus="taskStatus">
-                  <p:menuitem id="side-step-item-#{taskStatus.index}" styleClass="side-step-item"
+                  <p:menuitem id="side-step-item-#{taskStatus.index}"
                     value="#{sidestep.getName()}" global="false"
                     actionListener="#{taskTemplateBean.setSelectedSideStep(sidestep)}"
                     oncomplete="PF('sidestep-task-reset-confirmation-dialog').show()" />
