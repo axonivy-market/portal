@@ -37,7 +37,6 @@ public class ShowRelatedTasksTest extends BaseTest {
     navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
     LoginPage loginPage = new LoginPage(TestAccount.TEST_RELATED_TASKS_USER);
     loginPage.login();
-    caseHistoryPage = new NoteHistoryPage();
     denyReadAllPermissionFromCurrentUser();
   }
   
