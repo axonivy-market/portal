@@ -64,7 +64,7 @@ By0 f2 actionTable 'out=in;
 By0 f2 actionCode 'import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 if (in.isQueryForHomePage) { // in home page
-	in.taskQuery = TaskQuery.create().where().activatorUserId().isNotNull();
+	//in.taskQuery = TaskQuery.create().where().activatorUserId().isNotNull();
 }' #txt
 By0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
