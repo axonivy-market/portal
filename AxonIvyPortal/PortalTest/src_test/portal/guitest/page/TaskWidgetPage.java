@@ -503,9 +503,15 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void startTaskWithoutUI(int index) {
+    waitTaskAppearThenClick(index);
+    waitAjaxIndicatorDisappear();
+    new HomePage();
+  }
+
+  private void waitTaskAppearThenClick(int index) {
     WebElement taskListElement = findElementById(taskWidgetId + ":task-list-scroller");
     if (taskListElement.getAttribute(CLASS).contains("compact-mode")) {
-      String cssSelector = ID_CONTAIN + index + TASK_ITEM;
+      String cssSelector = String.format("a[id$='%d\\:task-item\\:compact-task-start-link']", index) ;
       refreshAndWaitElement(cssSelector);
       waitForElementPresent(By.cssSelector(cssSelector), true);
       findElementByCssSelector(cssSelector).click();
