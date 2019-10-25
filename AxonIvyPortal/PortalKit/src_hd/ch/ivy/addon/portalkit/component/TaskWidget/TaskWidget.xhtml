@@ -151,7 +151,7 @@
                       valueChangeListener="#{data.dataModel.onFilterChange}" value="#{data.dataModel.selectedFilters}"
                       converter="pojoConverter">
                       <p:ajax
-                        update="#{cc.clientId}:filter-selection-container #{cc.clientId}:advanced-filter-container #{cc.clientId}:task-view-container"
+                        update="#{cc.clientId}:filter-selection-container @(.advanced-filter-component) #{cc.clientId}:task-view-container"
                         global="false" oncomplete="taskWidget.setupScrollbar();" />
                       <f:selectItems value="#{data.dataModel.filters}" var="filter" itemLabel="#{filter.label()}"
                         itemValue="#{filter}" />
@@ -299,13 +299,19 @@
   </p:confirmDialog>
 
   <script type="text/javascript">
-    var taskWidget = new TaskWidget();
-    function toggleShowTaskList() {
-       $('[id $= "task-widget-sub-header"]').toggleClass("ui-sm-hidden").toggleClass("ui-md-hidden");
-       $('[id $= "task-view"]').toggleClass("ui-sm-hidden").toggleClass("ui-md-hidden");
-       $('[id $= "toggle-tasks-link"]').toggleClass("fa-plus").toggleClass("fa-minus");
-     }
-  </script>
+      var taskWidget = new TaskWidget();
+      function toggleShowTaskList() {
+        $('[id $= "task-widget-sub-header"]').toggleClass("ui-sm-hidden").toggleClass("ui-md-hidden");
+        $('[id $= "task-view"]').toggleClass("ui-sm-hidden").toggleClass("ui-md-hidden");
+        $('[id $= "toggle-tasks-link"]').toggleClass("fa-plus").toggleClass("fa-minus");
+      }
+
+      $(function() {
+        var simpleScreen = new TaskListScreenHandler();
+        var responsiveToolkit = ResponsiveToolkit(simpleScreen);
+        Portal.init(responsiveToolkit);
+      });
+    </script>
   <h:form>
     <p:remoteCommand name="updateTaskCount" update="#{cc.clientId}:task-widget-title" global="false" process="@none" />
   </h:form>

@@ -19,6 +19,7 @@ import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
+import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class CaseWidgetTest extends BaseTest {
@@ -89,9 +90,9 @@ public class CaseWidgetTest extends BaseTest {
     mainMenuPage = homePage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
     caseDetailsPage = casePage.openDetailsOfCaseHasName(LEAVE_REQUEST_CASE_NAME);
-    int numberOfTasks = caseDetailsPage.countRelatedTasks();
-    TaskWidgetPage taskOfCasePage = caseDetailsPage.openTasksOfCasePage(0);
-    assertEquals(numberOfTasks + 1, taskOfCasePage.countTasks());// Add first system task
+    assertEquals(3, caseDetailsPage.countRelatedTasks());
+    TaskDetailsPage taskDetailsPage = caseDetailsPage.openTasksOfCasePage(0);
+    assertEquals("Task Details", taskDetailsPage.getPageTitle());
   }
   
   @Test

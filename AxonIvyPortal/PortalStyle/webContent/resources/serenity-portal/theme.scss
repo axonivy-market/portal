@@ -34,6 +34,14 @@
     background-color: $thirdHeaderBarColor;
 }
 
+body .md-inputfield .ui-calendar.ui-trigger-calendar ~ label {
+	top: 10px;
+}
+
+body .md-inputfield .ui-calendar.ui-trigger-calendar.md-inputwrapper-focus ~ label, body .md-inputfield .ui-calendar.ui-trigger-calendar.md-inputwrapper-filled ~ label {
+	top: -10px;
+}
+
 /*Style For Background --------------------------------------------------------------------------------------*/
 body {
     background: $bodyBackgroundColor;
@@ -286,13 +294,15 @@ body .ui-panelgrid tbody tr.ui-widget-content {
 }
 
 /*Style For Statistic Widget -----------------------------------------------------------------------------*/
-.statistic-carousel .ui-carousel-header {
-    background-color: $primaryColor;
+.statistic-carousel .ui-carousel-header,
+.chart-list-container .filter-container .ui-accordion-header.ui-state-default {
+    background-color: $statisticPanelHeader;
+    border-color: $statisticPanelHeaderBorder;
 }
 
 .statistic-carousel .ui-carousel-header .ui-carousel-next-button:hover,
 .statistic-carousel .ui-carousel-header .ui-carousel-prev-button:hover {
-    background-color: rgba($primaryColor, 0.2) !important;
+    color: rgba($statisticPanelHeaderText, 1) !important;;
 }
 
 .dashboard-chart-panel .ui-panel-titlebar {
@@ -301,6 +311,12 @@ body .ui-panelgrid tbody tr.ui-widget-content {
 
 .statistic-selection .add-link:hover {
     color: $primaryColor !important;
+}
+
+.statistic-carousel .ui-carousel-header-title .chart-name,
+.statistic-carousel .ui-carousel-header .ui-carousel-button.ui-icon,
+.statistic-carousel .ui-carousel .ui-carousel-header .ui-carousel-header-title .chart-info {
+  color: $statisticPanelHeaderText;
 }
 
 /*Style For Buttons --------------------------------------------------------------------------------------*/
@@ -601,10 +617,6 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 }
 
 /*Style For Input field --------------------------------------------------------------------------------------*/
-.ui-outputlabel {
-    font-size: $inputLabelText !important;
-}
-
 .ui-widget-content.ui-tabs-panel {
     padding: 7px !important;
 }
@@ -637,6 +649,10 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
     right: 0;
 }
 
+body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span.md-inputwrapper-filled ~ label {
+    color: $primaryColor;
+}
+
 /*Style For Accordion header --------------------------------------------------------------------------------------*/
 .ui-accordion {
     .ui-accordion-header {
@@ -661,6 +677,52 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
   .ui-growl-title {
     padding: 10px 0px 0px 0px !important;
   }
+}
+
+/*Style For Tabs --------------------------------------------------------------------------------------*/
+.ui-tabs.ui-widget.ui-widget-content {
+	> .ui-tabs-nav {
+		> li {
+			border-style: solid;
+			border-width: 0 0 0 0;
+		}
+	}
+	&.ui-tabs-top {
+		> .ui-tabs-nav {
+			> li {
+				&.ui-state-active {
+					border-width: 0 0 2px 0;
+				}
+			}
+		}
+	}
+	&.ui-tabs-bottom {
+		> .ui-tabs-nav {
+			> li {
+				&.ui-state-active {
+					border-width: 2px 0 0 0;
+				}
+			}
+		}
+	}
+	&.ui-tabs-left {
+		> .ui-tabs-nav {
+			> li {
+				&.ui-state-active {
+					border-width: 0 2px 0 0;
+				}
+			}
+		}
+	}
+	&.ui-tabs-right {
+		> .ui-tabs-nav {
+			> li {
+				&.ui-state-active {
+					border-width: 0 0 0 2px;
+				}
+			}
+		}
+	}
 }
 
 /*Style For Panel --------------------------------------------------------------------------------------*/
@@ -824,7 +886,7 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 	}
 }
 
-.task-detail-header, .analysis-task-widget {
+.task-detail-header, .analysis-task-widget, .statistic-widget-container {
 	.ui-button.ui-widget.task-details-back-btn , .ui-button.ui-widget.back-button{
 		background-color: transparent;
 		box-shadow: none;
@@ -844,20 +906,50 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 	}
 }
 
-.task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content,
-.case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content {
-	.ui-overlaypanel-filter-content {
-		.ui-calendar.ui-trigger-calendar {
-			position: relative;
+body .ui-picklist .ui-picklist-filter-container .ui-icon {
+	top: unset;
+	bottom: 5px;
+	right: 7px;
+}
+
+/*Style For Tree node - Override standard Serenity ------------------------------------------------------------*/
+.ui-tree-container .ui-treenode-content {
+	.ui-treenode-label.ui-state-highlight {
+		background-color: transparent !important;
+	}
+	.ui-treenode-label.ui-treenode-outline {
+		outline: 0 solid transparent !important;
+	}
+	.ui-chkbox.ui-widget.ui-selection {
+		.ui-chkbox-icon.ui-icon.ui-icon-check, .ui-chkbox-icon.ui-icon.ui-icon-minus {
+			color: $primaryLightestColor !important;
 		}
 	}
-	
-	.ui-calendar.ui-trigger-calendar.ui-inputfield.hasDatepicker {
-		width: calc(100% - 6px);
+}
+
+li.ui-treenode.ui-treenode-selected .ui-chkbox.ui-widget.ui-selection {
+	.ui-chkbox-box.ui-widget.ui-state-default {
+		&:before {
+			animation: rippleOn 400ms forwards ease-out;
+			height: 0.3rem;
+		}
 	}
-	.ui-datepicker-trigger.ui-button.ui-button-icon-only {
-		position: absolute;
-		right: 0;
-		top: 0;
+}
+
+.ui-treenode.ui-treenode-parent.ui-treenode-selected,
+.ui-treenode.ui-treenode-parent.ui-treenode-hasselected span.ui-treenode-content.ui-tree-selectable:first-child div.ui-chkbox.ui-widget.ui-selection,
+li.ui-treenode.ui-treenode-selected .ui-chkbox.ui-widget.ui-selection,
+li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectable:first-child .ui-chkbox.ui-widget.ui-selection,
+li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectable:first-child .ui-chkbox.ui-widget.ui-selection {
+	div.ui-chkbox-box.ui-widget.ui-state-default {
+		border-color: $primaryColor;
+		background-color: $primaryColor;
+	}
+}
+
+li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectable:first-child {
+	.ui-chkbox.ui-widget.ui-selection .ui-chkbox-box.ui-widget.ui-state-default {
+		border-color: $checkboxBorderColor !important;
+		background-color: transparent !important;
 	}
 }
