@@ -11,7 +11,7 @@
     <ui:define name="simplePageContent">
       <c:set var="isShowResultTabView" value="#{compactProcessWidgetBean.displayShowAllProcessesLink or taskWidgetBean.showFullTaskList or caseWidgetBean.showFullCaseList}"></c:set>
       <h:form id="global-search-form-in-page">
-        <div id="global-search-container-in-page" class="global-search js-global-search">
+        <div id="global-search-container-in-page" class="global-search ui-lg-hidden ui-xl-hidden js-global-search">
           <h:panelGroup styleClass="md-inputfield">
             <p:inputText id="global-search-data" styleClass="global-search-input js-filter-process-widget-list-item" value="#{dataModel.keyword}"
               onkeypress="if (event.keyCode == 13) { portalGlobalSearchInPage(); return false; }">
@@ -135,6 +135,10 @@
         </p:tabView>
       </div>
       <script>
+       $(function(){
+          $('#global-search-component\\:global-search-data').val($('.js-filter-process-widget-list-item').val());
+        });
+      
         function onTabShow() {
           var $selectedTab = $("#search-results-tabview").find(".ui-tabs-panel").filter(function() {return $(this).css('display') == 'block'});
           var isSelectTaskTab = $selectedTab.find('.js-process-list-container').length != 0;
@@ -163,7 +167,6 @@
             Portal.init(responsiveToolkit);
             return;
           }
-
         }
       </script>
     </ui:define>

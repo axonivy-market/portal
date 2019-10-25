@@ -4,8 +4,6 @@ statisticChartList java.util.List<ch.ivy.addon.portalkit.statistics.StatisticCha
 statisticChartList PERSISTENT #fieldModifier
 involvedApplications List<String> #field
 involvedApplications PERSISTENT #fieldModifier
-menuState String #field
-menuState PERSISTENT #fieldModifier
 taskQuery ch.ivyteam.ivy.workflow.query.TaskQuery #field
 taskQuery 'Customized TaskQuery' #fieldComment
 taskQuery PERSISTENT #fieldModifier

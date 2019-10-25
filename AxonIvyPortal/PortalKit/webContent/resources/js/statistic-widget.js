@@ -46,7 +46,12 @@ function taskByExpiryChartClickEvent(event, activeElement) {
     } else {
       $expiryChartDrillDown.show();
     }
-    var chartId = $(event.path[0]).attr('id');
+    var chartId = '';
+    if (event.path) {
+      chartId = $(event.path[0]).attr('id');
+    } else {
+      chartId = $(event.target.parentNode).attr('id');
+    }
     var indexOfChart = chartId.lastIndexOf(":");
     var widgetVar = 'context-menu-' + chartId.substring(indexOfChart - 1, indexOfChart);
     PF(widgetVar).show();
