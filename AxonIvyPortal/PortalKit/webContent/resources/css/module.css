@@ -1098,7 +1098,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 }
 
 .action-steps-panel .case-action-separator,
-.side-steps-panel hr.u-separator {
+.options-panel hr.u-separator {
   width: 100%;
   margin: 0;
   border-collapse: unset;
@@ -2168,8 +2168,8 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   cursor: pointer;
 }
 
-.side-steps-panel .action-icon,
-.side-steps-panel .side-step-item-label {
+.options-panel .option-action-icon,
+.options-panel .option-item-label {
   display: inline-block;
   float: left;
 }
@@ -2180,11 +2180,11 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   right: -10px;
 }
 
-.side-steps-panel .action-icon {
+.options-panel .option-action-icon {
   margin-right: 5px;
 }
 
-.side-steps-panel .side-step-item-label {
+.options-panel .option-item-label {
   margin-top: 2px;
 }
 
@@ -2205,7 +2205,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   font-size: 1.2rem;
 }
 
-.side-steps-panel {
+.options-panel {
   background-color: #FFFFFF;
   width: 200px;
   border-top: solid 1px rgba(43, 59, 93, 0.2);
@@ -2215,32 +2215,32 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   padding: 0 !important;
 }
 
-.side-steps-panel.expiry-chart-context-menu {
+.options-panel.expiry-chart-context-menu {
   border: none;
   width: 120px;
 }
 
-.side-steps-panel.expiry-chart-context-menu .side-step-item {
+.options-panel.expiry-chart-context-menu .option-item {
   box-sizing: border-box;
   width: 100% !important;
 }
 
-.side-steps-panel.expiry-chart-context-menu .ui-overlaypanel-content{
+.options-panel.expiry-chart-context-menu .ui-overlaypanel-content{
   width: 120px !important;
 }
 
-.side-steps-panel.expiry-chart-context-menu a{
+.options-panel.expiry-chart-context-menu a{
   text-align: left;
   width: 80px;
 }
 
-.side-steps-panel.ui-overlaypanel .ui-overlaypanel-content {
+.options-panel.ui-overlaypanel .ui-overlaypanel-content {
   padding: 0 !important;
   background-color: #FFFFFF;
   display: grid;
 }
 
-.side-steps-panel .side-step-item {
+.options-panel .option-item {
   clear: both;
   float: left;
   padding: 10px 18px 10px 20px;
@@ -2255,12 +2255,12 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   box-sizing: content-box;
 }
 
-.side-steps-panel .side-step-item:hover:not(.ui-state-disabled) {
+.options-panel .option-item:hover:not(.ui-state-disabled) {
   color: rgba(0, 0, 0, 1) !important;
   background-color: #f5f5f5;
 }
 
-.side-steps-panel .ui-state-disabled.side-step-item {
+.options-panel .ui-state-disabled.option-item {
   display: inline-block;
   opacity: 0.5;
   text-decoration: none;
