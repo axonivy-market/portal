@@ -32,7 +32,7 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test // obsolete testShowHideTaskDetailOnExpandedMode update by testShowTaskDetailAndBackFromTaskDetail
-  public void testShowTaskDetailAndBackFromTaskDetail() { // SERENITY_PASSED
+  public void testShowTaskDetailAndBackFromTaskDetail() {
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
@@ -46,7 +46,7 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testTasksInPortalHomePageUpdatedAfterExpandToFullMode() { // SERENITY_PASSED
+  public void testTasksInPortalHomePageUpdatedAfterExpandToFullMode() {
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
@@ -58,7 +58,7 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testOpenRelatedCaseOfTask() { // SERENITY_PASSED
+  public void testOpenRelatedCaseOfTask() {
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
@@ -73,7 +73,7 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testReserveTask() { // SERENITY_PASSED
+  public void testReserveTask() {
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
@@ -89,7 +89,7 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testChangeTaskDeadline() { // SERENITY_PASSED
+  public void testChangeTaskDeadline() {
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
     int firstTask = 0;
@@ -106,7 +106,7 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testStartButtonStatus() { // SERENITY_PASSED
+  public void testStartButtonStatus() {
     LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
     loginPage.login();
     HomePage homePage = new HomePage();
@@ -119,7 +119,7 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testDisplayDelegateButton() { // SERENITY_PASSED
+  public void testDisplayDelegateButton() {
     LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
     loginPage.login();
     redirectToRelativeLink(GRANT_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL);
@@ -132,7 +132,7 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testDisplayTaskAndCaseCategory() { // SERENITY_PASSED
+  public void testDisplayTaskAndCaseCategory() {
     LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
     loginPage.login();
     HomePage homePage = new HomePage();
@@ -144,7 +144,7 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testShowTaskCount() {  // SERENITY_PASSED
+  public void testShowTaskCount() { 
     LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
     loginPage.login();
     HomePage homePage = new HomePage();

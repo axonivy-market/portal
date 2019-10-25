@@ -27,7 +27,7 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
   // Extend sort fields, include 1 text field and 1 date time field
   @Override
   public void extendSort(TaskQuery taskQuery) {
-    if ("customVarcharField5".equalsIgnoreCase(criteria.getSortField())) {
+    if ("customVarCharField5".equalsIgnoreCase(criteria.getSortField())) {
       if (criteria.isSortDescending()) {
         taskQuery.orderBy().customField().stringField(CUSTOM_VARCHAR_FIELD5).descending();
       } else {
@@ -44,7 +44,7 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
   
   @Override
   protected List<String> getDefaultColumns() {
-    return Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME", "EXPIRY_TIME", "customVarcharField5", "customTimestampField1");
+    return Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME", "EXPIRY_TIME", "customVarCharField5", "customTimestampField1");
   }
   
   @Override

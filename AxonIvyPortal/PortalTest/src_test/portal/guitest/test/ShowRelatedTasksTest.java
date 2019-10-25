@@ -7,6 +7,9 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.TimeoutException;
 
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
+
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TaskState;
 import portal.guitest.common.TestAccount;
@@ -16,10 +19,8 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.NoteHistoryPage;
+import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
-
-import com.jayway.awaitility.Awaitility;
-import com.jayway.awaitility.Duration;
 
 public class ShowRelatedTasksTest extends BaseTest {
   
@@ -36,7 +37,6 @@ public class ShowRelatedTasksTest extends BaseTest {
     navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
     LoginPage loginPage = new LoginPage(TestAccount.TEST_RELATED_TASKS_USER);
     loginPage.login();
-    caseHistoryPage = new NoteHistoryPage();
     denyReadAllPermissionFromCurrentUser();
   }
   
@@ -102,17 +102,8 @@ public class ShowRelatedTasksTest extends BaseTest {
   public void testShowRelatedTasksWhenClickingRelatedTask() {
     grantTaskReadOwnCaseTaskPermissionsToCurrentUser();
     openCaseDetail();
-    TaskWidgetPage taskWidgetPage = detailsPage.openTasksOfCasePage(0);
-    int numberOfTasks = taskWidgetPage.countTasks();
-    assertTrue(numberOfTasks == 4);
-    boolean hasDoneTask = false;
-    for (int i = 0; i < numberOfTasks; i++) {
-      if (taskWidgetPage.getTaskState(i).equals(TaskState.DONE)) {
-        hasDoneTask = true;
-        break;
-      }
-    }
-    assertTrue(hasDoneTask);
+    TaskDetailsPage taskDetailsPage = detailsPage.openTasksOfCasePage(0);
+    assertEquals("Task Details", taskDetailsPage.getPageTitle());
   }
   
   @Test
