@@ -453,7 +453,7 @@ TaskTriggered.PRI=2
 TaskTriggered.ROL=SYSTEM
 TaskTriggered.TYPE=0' #txt
 Ae0 f43 caseData 'businessCase.attach=false
-customFields.STRING.CustomVarCharField1="CustomVarcharField1" + param.count
+customFields.STRING.CustomVarCharField1="CustomVarCharField1" + param.count
 customFields.TIMESTAMP.CustomTimestampField1=new DateTime()' #txt
 Ae0 f43 showInStartList 1 #txt
 Ae0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

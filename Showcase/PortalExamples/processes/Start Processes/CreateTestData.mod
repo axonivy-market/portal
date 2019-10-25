@@ -61,7 +61,7 @@ Cs0 f0 triggerEnabled false #txt
 Cs0 f0 callSignature createTasksForTaskListCustomization() #txt
 Cs0 f0 persist false #txt
 Cs0 f0 startName 'Create Tasks For Task List Customization' #txt
-Cs0 f0 startDescription 'Create 3 tasks, each task has customVarcharField5 and customTimestampField1' #txt
+Cs0 f0 startDescription 'Create 3 tasks, each task has customVarCharField5 and customTimestampField1' #txt
 Cs0 f0 taskData 'TaskTriggered.EXPRI=2
 TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
@@ -74,8 +74,6 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>createTasksForTaskListCustomization.ivp</name>
-        <nameStyle>39,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -171,14 +169,14 @@ Cs0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <name>HOW TO RUN THIS EXAMPLE:
 
 Run createTasksForTaskListCustomization.ivp process
-This process will create 3 tasks, each task has filled customVarcharField5 and customTimestampField1,
+This process will create 3 tasks, each task has filled customVarCharField5 and customTimestampField1,
  we will use these fields as custom fields in Task Widget.</name>
-        <nameStyle>238,7
+        <nameStyle>238,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f13 632 66 592 92 -286 -40 #rect
+Cs0 f13 632 66 592 92 -288 -40 #rect
 Cs0 f13 @|IBIcon #fIcon
 Cs0 f9 outLink createCasesForCaseListCustomization.ivp #txt
 Cs0 f9 inParamDecl '<> param;' #txt
@@ -276,7 +274,7 @@ TaskTriggered.TYPE=0' #txt
 Cs0 f43 caseData 'businessCase.attach=false
 case.description=TestCase Description <%\=param.count%>
 case.name=TestCase Name <%\=param.count%>
-customFields.STRING.CustomVarcharField1="CustomVarcharField1" + param.count
+customFields.STRING.CustomVarCharField1="CustomVarCharField1" + param.count
 customFields.TIMESTAMP.CustomTimestampField1=new DateTime()' #txt
 Cs0 f43 showInStartList 1 #txt
 Cs0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
