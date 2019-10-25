@@ -596,12 +596,20 @@ img[id*='additonalTaskUserAvatar'] {
     border-color: $processChainMenuColor;
 }
 
+.circle-process-chain .circle-vertical-process-step.current .circle-vertical-step-title {
+  font-weight: $currentCircleVerticalStepTitleFontWeight;
+}
+
 .circle-process-chain .circle-vertical-process-step.waiting .circle-vertical-step-container {
     border: solid 2px $processChainMenuColor;
 }
 
 .circle-process-chain .circle-vertical-process-step .circle-vertical-step-container {
     background-color: $processChainMenuColor;
+}
+
+.circle-process-chain .circle-horizontal-process-step.current .circle-horizontal-step-title {
+  font-weight: $currentCircleHorizontalStepTitleFontWeight;
 }
 
 .line-process-chain .line-horizontal-process-step .line-horizontal-step-container {
@@ -893,6 +901,7 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
 
 .case-detail-header {
   font-size: $largeFontSize;
+  font-weight: $caseDetailHeaderFontWeight;
 }
 
 .case-details-data-2nd-column {
@@ -958,6 +967,10 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
 
 .task-detail-header {
   font-weight: $taskDetailHeaderFontWeight;
+}
+
+.task-detail-section-title {
+  font-weight: $taskDetailSectionTitleFontWeight;
 }
 
 /*Style For Advance Filter --------------------------------------------------------------------------------------*/
@@ -1105,16 +1118,23 @@ li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectabl
   color: $caseListUnsortHeaderColor;
 }
 
-a.case-details-document-add-link, a.task-details-document-add-link, span.case-details-document-add-link, span.task-details-document-add-link {
+a.case-details-document-add-link,
+a.task-details-document-add-link,
+span.case-details-document-add-link,
+span.task-details-document-add-link {
   font-size: $largeFontSize ;
+  font-weight: $detailsDocumentAddLinkFontWeight;
 }
 
 .case-detail-name-input {
   font-size: $largeFontSize !important;
+  font-weight: $caseDetailNameInputFontWeight !important;
 }
 
-.case-detail-section-title, .case-history-button-container , .task-history-button-container {
+.case-detail-section-title, .case-history-button-container,
+.task-history-button-container {
   font-size: $largeFontSize ;
+  font-weight: $historyButtonContainerFontWeight;
 }
 
 .case-header-action-cell .action-item .ui-button.ui-widget.ui-state-hover .ui-button-text,
@@ -1199,10 +1219,12 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 /** Style for Task Template * --------------------------------------*/
 .task-template-title {
   font-size: $largeFontSize;
+  font-weight: $taskTemplateTitleFontWeight;
 }
 
 .ui-outputlabel.task-template-title {
   font-size: $largeFontSize !important;
+  font-weight: $outputLabelTaskTemplateTitleFontWeight;
 }
 
 .message .message-header {
@@ -1367,6 +1389,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .case-header-action-cell .action-item .ui-button .ui-button-text,
 .case-header-action-cell .action-item .ui-button .ui-button-icon-right.ui-icon.ui-icon-triangle-1-s:before {
   color: $caseItemActionStepsItemColor !important;
+  font-weight: $caseItemActionStepsFontWeight;
 }
 
 /*Process --------------------------------------*/
@@ -1383,6 +1406,10 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   color: $processNavigatorItemColor !important;
 }
 
+.process-widget .process-nav .process-nav-item.selected {
+  font-weight: $selectedProcessNavItemFontWeight;
+}
+
 .process-widget .process-nav .process-nav-item.disabled {
   color: $processNavigatorItemDisabledColor !important;
 }
@@ -1397,6 +1424,11 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover {
   background: $processStartListItemHoverBackgroundColor;
   font-family: $portalFontFamily;
+}
+
+.process-start-list-item:hover .process-start-list-item-name,
+.process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-name {
+  font-weight: $processStartListItemNameFontWeight;
 }
 
 .process-start-list-item .open-icon,
@@ -1507,6 +1539,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 .additional-case-details-link {
   color: $caseAdditionalDetailLinkColor !important;
+  font-weight: $additionalCaseDetailLinkFontWeight;
 }
 
 /* Admin Setting--------------------------*/
@@ -1521,6 +1554,10 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 #user-setting-container li a:hover {
   color: $userSettingContainerLinkHoverColor !important;
+}
+
+.user-name-show-environment-info {
+  font-weight: $usernameShowEnvironmentInfoFontWeight;
 }
 
 /* Absences and Debuty -------------------------*/
@@ -1602,6 +1639,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 .ui-menu .ui-menu-list li.ui-widget-header h3 {
   color: $menuListWidgetHeaderColor;
+  font-weight: $menuListWidgetHeaderFontWeight !important;
 }
 
 /*Style for Message -------------------------*/
@@ -1609,7 +1647,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 .message .message-container {
   font-size: $largeFontSize;
 }
-
 
 /*Style for Global Search--------------------*/
 .global-search-input {

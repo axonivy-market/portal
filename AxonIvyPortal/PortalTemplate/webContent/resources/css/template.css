@@ -83,7 +83,6 @@
 
 .user-name-show-environment-info {
 	height: 18px;
-	font-weight: bold;
 }
 
 /*
@@ -124,14 +123,9 @@
   margin-bottom: 20px !important;
 }
 .task-template-title {
-	font-weight: bold;
 	display: flex;
 	align-items: center;
 	margin-top: 5px;
-}
-
-.ui-outputlabel.task-template-title {
-	font-weight: 400;
 }
 
 .task-template-title-icon {
