@@ -36,9 +36,8 @@ public class TaskDetailsPage extends TemplatePage {
         String.format("task-detail-template:general-information:priority-form:priority-select-menu_%d", priorityValue));
     waitForElementDisplayed(prioritySelectElement, true);
     prioritySelectElement.click();
-    findElementByCssSelector(
-        "#task-detail-template\\:general-information\\:priority-form\\:edit-priority-inplace_editor .ui-inplace-save")
-            .click();
+    clickByCssSelector(
+        "#task-detail-template\\:general-information\\:priority-form\\:edit-priority-inplace_editor .ui-inplace-save");
     waitAjaxIndicatorDisappear();
   }
 
@@ -47,13 +46,13 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void changeNameOfTask(String name) {
-    findElementByCssSelector("span[id$='task-name-inplace_display']").click();
+    clickByCssSelector("span[id$='task-name-inplace_display']");
     WebElement taskNameInput = findElementByCssSelector("input[id$='task-name-input']");
     waitForElementDisplayed(taskNameInput, true);
     taskNameInput.clear();
     taskNameInput.sendKeys(name);
-    findElementByCssSelector(
-        "#task-detail-template\\:task-detail-title-form\\:task-name-inplace_editor .ui-inplace-save").click();
+    clickByCssSelector(
+        "#task-detail-template\\:task-detail-title-form\\:task-name-inplace_editor .ui-inplace-save");
     waitAjaxIndicatorDisappear();
   }
 
