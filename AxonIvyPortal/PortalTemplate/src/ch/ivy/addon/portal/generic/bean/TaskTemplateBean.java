@@ -7,6 +7,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -108,8 +109,8 @@ public class TaskTemplateBean implements Serializable{
     sideSteps.sort((s1, s2) -> s1.getName().compareTo(s2.getName()));
   }
 
-  public List<IStage> getStagesBaseOnCurrentStage(String caseId) {
-    if(StringUtils.isBlank(caseId)) {
+  public List<IStage> getStagesBaseOnCurrentStage(String caseId, List<String> stepsProcess) {
+    if(StringUtils.isBlank(caseId) || CollectionUtils.isNotEmpty(stepsProcess)) {
       return Collections.emptyList();
     }
     ICase wfCase = Ivy.wf().findCase(Long.parseLong(caseId));
