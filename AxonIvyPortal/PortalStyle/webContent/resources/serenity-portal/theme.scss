@@ -34,14 +34,6 @@
     background-color: $thirdHeaderBarColor;
 }
 
-body .md-inputfield .ui-calendar.ui-trigger-calendar ~ label {
-	top: 10px;
-}
-
-body .md-inputfield .ui-calendar.ui-trigger-calendar.md-inputwrapper-focus ~ label, body .md-inputfield .ui-calendar.ui-trigger-calendar.md-inputwrapper-filled ~ label {
-	top: -10px;
-}
-
 /*Style For Background --------------------------------------------------------------------------------------*/
 body {
     background: $bodyBackgroundColor;
@@ -900,7 +892,7 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
 /*Style For Advance Filter --------------------------------------------------------------------------------------*/
 
 .ui-datepicker .ui-timepicker-div dl dd {
-	margin-top: 25px !important;
+	margin-top: 30px !important;
 	.ui-slider.ui-slider-horizontal.ui-widget.ui-widget-content {
 		margin-right: 10px;
 	}
