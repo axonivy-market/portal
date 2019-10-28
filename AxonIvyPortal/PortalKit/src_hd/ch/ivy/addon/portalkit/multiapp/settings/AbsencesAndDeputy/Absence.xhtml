@@ -13,7 +13,7 @@
           value="#{data.selectedUser}"
           var="user" itemValue="#{user}" itemLabel="#{user.displayName}"
           converter="pojoConverter"
-          disabled="#{uneditedUserName eq 'false'}" required="true"
+          disabled="#{uneditedUserName ne 'false'}" required="true"
           cache="true" maxResults="100"
           requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/userNameRequired')}"
           moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
