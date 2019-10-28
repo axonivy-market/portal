@@ -80,7 +80,7 @@
         </f:facet>
 
         <p:tree id="task-category-filter-tree" value="#{filter.caseCategories.root}" var="node" selectionMode="checkbox"
-          filterBy="#{node}" filterMatchMode="contains" styleClass="statistic-case-category-tree" selection="#{filter.caseCategories.categories}" >
+          filterBy="#{node}" filterMatchMode="contains" styleClass="statistic-case-category-tree" selection="#{filter.caseCategories.categories}">
           <p:treeNode>
             <h:outputText value="#{node.value}" />
           </p:treeNode>

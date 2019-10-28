@@ -3774,7 +3774,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 .statistic-filter-container {
-  height: 18rem;
+  height: 20rem;
   padding: 0 !important;
 }
 
@@ -4545,6 +4545,10 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   height: 26rem;
   width: 100%;
   overflow: auto !important;
+}
+
+.statistic-case-category-tree .ui-tree-filter-container .ui-icon.ui-icon-search {
+  top: 0 !important;
 }
 
 .statistic-filter-accordion-panel .item-label {
