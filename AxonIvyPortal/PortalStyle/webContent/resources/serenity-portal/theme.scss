@@ -927,15 +927,6 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
 	}
 }
 
-li.ui-treenode.ui-treenode-selected .ui-chkbox.ui-widget.ui-selection {
-	.ui-chkbox-box.ui-widget.ui-state-default {
-		&:before {
-			animation: rippleOn 400ms forwards ease-out;
-			height: 0.3rem;
-		}
-	}
-}
-
 .ui-treenode.ui-treenode-parent.ui-treenode-selected,
 .ui-treenode.ui-treenode-parent.ui-treenode-hasselected span.ui-treenode-content.ui-tree-selectable:first-child div.ui-chkbox.ui-widget.ui-selection,
 li.ui-treenode.ui-treenode-selected .ui-chkbox.ui-widget.ui-selection,

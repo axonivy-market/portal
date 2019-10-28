@@ -352,7 +352,7 @@ public class StatisticChartQueryUtils {
     caseQuery.where().and(generateCaseQueryForCaseState(filter, isElapsedStatistic));
     
     // Filter by case category
-    if (!filter.getIsAllCategoriesSelected()) {
+    if (!filter.getIsAllCategoriesSelected() && isCaseCategoriesNotEmpty(filter)) {
       caseQuery.where().and(generateCaseQueryForCaseCategory(filter));
     }
     
@@ -360,6 +360,11 @@ public class StatisticChartQueryUtils {
     generateCaseQueryForCustomField(filter, caseQuery);
     
     return caseQuery;
+  }
+
+  private static boolean isCaseCategoriesNotEmpty(StatisticFilter filter) {
+    return (filter.getSelectedCaseCategories() != null && !filter.getSelectedCaseCategories().isEmpty())
+        || (filter.getCaseCategories().getCategories() != null && filter.getCaseCategories().getCategories().length > 0);
   }
 
   private static CaseQuery generateCaseQueryForCaseCategory(StatisticFilter filter) {
@@ -377,17 +382,16 @@ public class StatisticChartQueryUtils {
 
   private static void buildCaseCategoryQuery(CaseQuery subCaseQueryForSelectedCaseCategories, StatisticFilter filter) {
     StatisticCaseCategoryFilter caseCategories = filter.getCaseCategories();
-    if (caseCategories != null && caseCategories.getRoot() != null) {
-      ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery filterQuery = subCaseQueryForSelectedCaseCategories.where();
+    if (caseCategories != null && caseCategories.getCategories() != null) {
       CheckboxTreeNode[] categories = caseCategories.getCategories();
       for (CheckboxTreeNode node : caseCategories.getCategories()) {
         if (node.getParent() != null && !Arrays.asList(categories).contains(node.getParent())) {
           String category = ((CaseNode) node.getData()).getCategory();
           if (node.isLeaf()) {
-            filterQuery.or().category().isEqualIgnoreCase(category);
+            subCaseQueryForSelectedCaseCategories.where().and().category().isNotEqualIgnoreCase(category);
           } else {
-            filterQuery.or().category().isEqualIgnoreCase(category);
-            filterQuery.or().category().isLikeIgnoreCase(String.format("%s%%", category + CaseTreeUtils.DELIMITER));
+            subCaseQueryForSelectedCaseCategories.where().and().category().isNotEqualIgnoreCase(category);
+            subCaseQueryForSelectedCaseCategories.where().and().category().isNotLikeIgnoreCase(String.format("%s%%", category + CaseTreeUtils.DELIMITER));
           }
         }
       }
