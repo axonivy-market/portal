@@ -1588,7 +1588,8 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 }
 
 .search-results-tabview .process-widget .process-group {
-  width: calc(100% - 20px)  !important;
+  width: 100% !important;
+  padding-right: 0;
 }
 
 .process-widget .favorite-process-title {
@@ -3190,6 +3191,22 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .global-setting-table .ui-datatable-scrollable-header table tr th span.ui-column-title {
   display: block;
   height: 40px;
+}
+
+.settings-table-key-column {
+  width: 17%;
+}
+
+.settings-table-default-value-column {
+  width: 10%;
+}
+
+.settings-table-current-value-column {
+  width: 10%;
+}
+
+.settings-table-action-buttons {
+  width: 100px;
 }
 
 .global-setting-table .setting-key {
