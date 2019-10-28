@@ -91,7 +91,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
 	public TaskTemplatePage startTask(int index) {
-	  startTaskWithoutUI(index);
+	  waitTaskAppearThenClick(index);
 		waitForElementPresent(By.id(TASK_ACTION), true);
 		return new TaskTemplatePage();
 	}
@@ -504,7 +504,6 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void startTaskWithoutUI(int index) {
     waitTaskAppearThenClick(index);
-    waitAjaxIndicatorDisappear();
     new HomePage();
   }
 
@@ -521,6 +520,7 @@ public class TaskWidgetPage extends TemplatePage {
       waitForElementPresent(By.cssSelector(cssSelector), true);
       findElementByCssSelector(cssSelector).click();
     }
+    waitAjaxIndicatorDisappear();
   }
 
   public int getTaskCount() {
