@@ -515,7 +515,6 @@ public class TaskWidgetPage extends TemplatePage {
       refreshAndWaitElement(cssSelector);
       clickByCssSelector(cssSelector);
     }
-    waitAjaxIndicatorDisappear();
   }
 
   public int getTaskCount() {
