@@ -284,6 +284,7 @@ How to use default homepage template
 
 Create a new HTML User Dialog and then use ``ui:composition`` to define
 template.
+
   .. code-block:: html
 
       <ui:composition template="/layouts/DefaultHomePageTemplate.xhtml">
