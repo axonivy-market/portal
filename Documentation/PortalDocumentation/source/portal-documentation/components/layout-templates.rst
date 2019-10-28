@@ -148,6 +148,7 @@ How to use template TaskTemplate.xhtml
   
      <ui:param name="task" value="#{ivy.task}" />
 
+..
 
     |task-name-template|
 
@@ -158,6 +159,7 @@ How to use template TaskTemplate.xhtml
   
      <ui:param name="caseId" value="#{ivy.case.id}" />
 
+..
 
     |task-template-case-info|
 4.  Set data to ``actualStepIndex`` and ``steps`` variables which are
@@ -168,15 +170,19 @@ How to use template TaskTemplate.xhtml
      <ui:param name="actualStepIndex" value="#{data.actualStepIndex}" />
      <ui:param name="steps" value="#{data.steps}" />
 
+..
 
     |task-template-process-chain|
 5.  Set data to ``processChainDirection`` variable to set direction for
     for ProcessChain component in template. There are two values:
     "HORIZONTAL" and "VERTICAL". Direction of ProcessChain component is
     "HORIZONTAL" by default.
+
   .. code-block:: html
   
      <ui:param name="processChainDirection" value="VERTICAL" />
+
+..
 
 6.  Set data to ``processChainShape`` variable to set shape for for
     ProcessChain component in template. There are two values: "CIRCLE"
@@ -186,6 +192,7 @@ How to use template TaskTemplate.xhtml
     
      <ui:param name="processChainShape" value="LINE" />
      
+..
 
     |process-chain-shape|
 7.  Inserts contents for ``taskName``, ``errorsZone``, ``infoZone``. It
@@ -273,7 +280,9 @@ Create a new HTML User Dialog and then use ``ui:composition`` to define
 template.
   .. code-block:: html
 
-     <ui:composition template="/layouts/DefaultHomePageTemplate.xhtml">
+      <ui:composition template="/layouts/DefaultHomePageTemplate.xhtml">
+
+..    
 
 .. _components-layout-templates-task-list-template:
 
