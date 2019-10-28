@@ -298,6 +298,9 @@ Ds0 f33 actionTable 'out=in;
 Ds0 f33 actionCode '
 in.createManyCheckboxTab.id = in.createManyCheckboxTab.label + new DateTime();
 if (!in.selectedDataProvider.libraryId.isEmpty()) {
+  in.createManyCheckboxTab.options.clear();
+  in.createManyCheckboxTab.optionsStr.clear();
+
 	in.createManyCheckboxTab.addOption(in.selectedDataProvider.libraryId);
 	in.createManyCheckboxTab.addOption(in.selectedDataProvider.signature);
 }

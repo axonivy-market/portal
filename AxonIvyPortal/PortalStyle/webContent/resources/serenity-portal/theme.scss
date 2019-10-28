@@ -936,3 +936,11 @@ li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectabl
 		background-color: transparent !important;
 	}
 }
+
+/*Style For SelectCheckBox - Override standard Serenity ------------------------------------------------------------*/
+.ui-chkbox .ui-widget.ui-chkbox-box.ui-state-active:before {
+	left: 0.5em !important;
+	top: 0.5em !important;
+	height: 0.18rem !important;
+	width: 0.2rem !important;
+}
