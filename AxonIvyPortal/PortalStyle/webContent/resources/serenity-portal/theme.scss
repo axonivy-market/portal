@@ -3,6 +3,11 @@
 @import '../sass/ivy/customization';
 @import '../sass/theme/_theme';
 
+
+html {
+  font-size: $defaultFontSize;
+}
+
 /*Style For Logos --------------------------------------------------------------------------------------*/
 .portal-home-logo {
     height: $homeLogoHeight !important;
@@ -587,6 +592,16 @@ img[id*='additonalTaskUserAvatar'] {
     float: left;
 }
 
+.express-work-flow .express-input-switch-selection,
+.ui-inputswitch.ui-widget.ui-widget-content.express-input-switch-selection.ui-inputswitch-checked {
+  background-color: $expressInputSwitchSelectionBackgroundColor;
+}
+
+.express-input-switch-selection .ui-inputswitch.ui-inputswitch-checked .ui-inputswitch-handle, 
+.express-input-switch-selection .ui-inputswitch-handle.ui-state-default {
+  background-color: $expressInputSwitchHandleBackgroundColor !important;
+}
+
 /*Style for stages breadcrumb --------------------------------------------------------------------------------------*/
 .stages-chain .current i {
     color: $primaryColor;
@@ -1114,6 +1129,7 @@ li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectabl
 
 .widget-sort-menu.full-mode a.ui-widget.ui-commandlink { 
   color : $taskWidgetSortMenuLinkColor !important;
+  font-size: $largeFontSize;
 }
 
 .widget-sort-menu a.ui-widget.ui-commandlink.is-selected {
@@ -1412,10 +1428,19 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   font-weight: $caseItemActionStepsFontWeight;
 }
 
+.case-state-in-progress {
+  color: $caseStateInProgressColor;
+}
+
+.case-state-done {
+  color: $caseStateDoneColor;
+}
+
 /*Process --------------------------------------*/
 .expand-collapse-btns .express-expand-collapse-btn {
   color: $expressExpandCollapseButtonColor !important;
   background-color: $expressExpandCollapseButtonBackgroundColor;
+  font-size: $smallFontSize;
 }
 
 .expand-collapse-btns a.express-expand-collapse-btn:hover {
@@ -1424,6 +1449,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .process-widget .process-nav .process-nav-item { 
   color: $processNavigatorItemColor !important;
+  font-size: $largeFontSize;
 }
 
 .process-widget .process-nav .process-nav-item.selected {
@@ -1597,6 +1623,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 .select-awesome-icon-button {
   color: $linkChangeAwesomeIconColor !important;
   font-weight: $selectAwesomeIconButtonFontWeight;
+  font-size: $smallFontSize;
 }
 
 .ui-widget-content a {
@@ -1660,8 +1687,8 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 .action-button.task-action-item .ui-button-icon-left.ui-icon {
   color: $taskActionItemLeftIconColor !important;
 }
-
-.task-actions-menu .ui-slidemenu-backward.ui-widget-header { 
+ 
+.task-actions-menu .ui-slidemenu-backward.ui-widget-header {
   background-color: $taskActionItemWidgetHeaderColor;
   color: $primaryTextColor;
 }
