@@ -76,7 +76,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   private TaskDetailsPage clickOnTaskEntryInFullMode(int index, boolean isDetailsShown) {
-    findElementByCssSelector("div[id$='" + index + "\\:task-item\\:task-info']").click();
+    clickByCssSelector("div[id$='" + index + "\\:task-item\\:task-info']");
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     return taskDetailsPage;
   }
@@ -160,8 +160,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void sideStepMenuOnMoreButton(int taskId) {
     String moreButton = String.format("button[id$='%d\\:task-item\\:task-action\\:additional-options\\:task-side-steps-menu'] span.fa-ellipsis-v", taskId);
-    waitForElementDisplayed(By.cssSelector(moreButton), true);
-    findElementByCssSelector(moreButton).click();;
+    clickByCssSelector(moreButton);
     waitAjaxIndicatorDisappear();
     waitForElementDisplayed(By.cssSelector("div[id$='side-steps-panel'].ui-overlay-visible a[id$='adhoc-side-step-item']"), true);
   }
@@ -249,12 +248,12 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void changeDescriptionOfTask(String description) {
-    findElementByCssSelector("span[id$='task-desription-inplace_display']").click();
+    clickByCssSelector("span[id$='task-desription-inplace_display']");
     WebElement taskNameInput = findElementByCssSelector("textarea[id$='task-description-input']");
     waitForElementDisplayed(taskNameInput, true);
     taskNameInput.clear();
     taskNameInput.sendKeys(description);
-    findElementByCssSelector("span[id$='task-desription-inplace_editor']  .ui-inplace-save").click();
+    clickByCssSelector("span[id$='task-desription-inplace_editor']  .ui-inplace-save");
     waitAjaxIndicatorDisappear();
   }
 
@@ -316,7 +315,7 @@ public class TaskWidgetPage extends TemplatePage {
     sideStepMenuOnMoreButton(index);
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
         .until(() -> findElementByCssSelector("a[id$='task-delegate-command']").isDisplayed());
-    findElementByCssSelector("a[id$='task-delegate-command']").click();
+    clickByCssSelector("a[id$='task-delegate-command']");
   }
 
   public boolean isDelegateTypeSelectAvailable() {
@@ -335,8 +334,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public AdhocPage addAdhoc(int taskIndex) {
-    WebElement moreAction = findElementByCssSelector(ID_END + taskIndex + ":task-item:task-side-steps-menu']");
-    moreAction.click();
+    clickByCssSelector(ID_END + taskIndex + ":task-item:task-side-steps-menu']");
     waitAjaxIndicatorDisappear();
 
     WebDriverWait wait = new WebDriverWait(getDriver(), 10);
@@ -374,8 +372,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void openAdvancedFilter(String filterName, String filterIdName) {
-    waitForElementDisplayed(By.cssSelector("button[id$='filter-add-action']"), true);
-    findElementByCssSelector("button[id$='filter-add-action']").click();
+    clickByCssSelector("button[id$='filter-add-action']");
     WebElement filterSelectionElement = findElementById(taskWidgetId + ":filter-add-form:filter-selection");
     List<WebElement> elements = findChildElementsByTagName(filterSelectionElement, "LABEL");
     for (WebElement element : elements) {
@@ -484,7 +481,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void startAndCancelTask() {
-    findElementByCssSelector("*[id$='0:task-item:task-info']").click();
+    clickByCssSelector("*[id$='0:task-item:task-info']");
     waitForElementDisplayed(By.id(TASK_ACTION), true);
     click(findElementByClassName("portal-cancel-button"));
   }
@@ -512,13 +509,11 @@ public class TaskWidgetPage extends TemplatePage {
     if (taskListElement.getAttribute(CLASS).contains("compact-mode")) {
       String cssSelector = String.format("a[id$='%d\\:task-item\\:compact-task-start-link']", index) ;
       refreshAndWaitElement(cssSelector);
-      waitForElementPresent(By.cssSelector(cssSelector), true);
-      findElementByCssSelector(cssSelector).click();
+      clickByCssSelector(cssSelector);
     } else {
       String cssSelector = ID_END + index + TASK_ITEM_TASK_INFO;
       refreshAndWaitElement(cssSelector);
-      waitForElementPresent(By.cssSelector(cssSelector), true);
-      findElementByCssSelector(cssSelector).click();
+      clickByCssSelector(cssSelector);
     }
     waitAjaxIndicatorDisappear();
   }
