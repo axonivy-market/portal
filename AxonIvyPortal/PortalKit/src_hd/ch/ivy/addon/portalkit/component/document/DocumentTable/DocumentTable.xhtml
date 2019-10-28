@@ -59,11 +59,11 @@
         <h:outputText id="type" value="#{document.type.toString()}" />
       </p:column>
       <cc:insertChildren />
-      <p:column styleClass="u-text-align-center" rendered="#{cc.attrs.functionColumnRendered}"
+      <p:column styleClass="u-text-align-center express-action-button-icon-only" rendered="#{cc.attrs.functionColumnRendered}"
         headerText="#{ivy.cms.co('/Dialogs/components/CaseDocument/FileFunctions')}">
         <p:commandLink id="document-download" styleClass="fa #{cc.attrs.downloadIcon} #{cc.attrs.downloadStyleClass}"
           immediate="true" ajax="false" process="@none" title="#{cc.attrs.downloadTitle}"
-          value="#{cc.attrs.downloadText}" rendered="#{cc.attrs.downloadRendered}">
+          rendered="#{cc.attrs.downloadRendered}">
           <p:fileDownload value="#{logic.download(document)}" />
         </p:commandLink>
 
@@ -72,7 +72,7 @@
         <p:commandLink id="document-delete" styleClass="fa fa-trash-o"
           actionListener="#{data.setSelectedDocument(document)}" rendered="#{cc.attrs.deleteRendered}"
           update="#{cc.attrs.updatedComponentAfterDeleted}" immediate="true" title="#{cc.attrs.deleteTitle}"
-          value="#{cc.attrs.deleteText}" oncomplete="PF('document-delete-dialog').show()">
+          oncomplete="PF('document-delete-dialog').show()">
         </p:commandLink>
       </p:column>
     </p:dataTable>
