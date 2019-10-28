@@ -217,9 +217,15 @@ $iconFontFamily: "FontAwesome";
 /*---------------------------------Font weight----------------------------------------*/
 $menuListWidgetHeaderFontWeight: 600;
 
+/* Task Action Item */
+$taskActionItemLabelFontWeight: normal;
+
 /* Task Detail */
 $taskDetailHeaderFontWeight: bold;
 $taskDetailSectionTitleFontWeight: bold;
+$taskStartInfoHeaderFontWeight: bold;
+$taskStartInfoTaskId: normal;
+$taskNameInputFontWeight: bold;
 
 /*Task Template */
 $taskTemplateTitleFontWeight: bold;
@@ -240,9 +246,21 @@ $selectedProcessNavItemFontWeight: bold;
 $processStartListItemNameFontWeight: 400;
 
 /* Process Chain */
+$currentLineHorizontalStepTitleFontWeight: bold;
 $currentLineVerticalStepTitleFontWeight: bold;
 $currentCircleHorizontalStepTitleFontWeight: bold;
 $currentCircleVerticalStepTitleFontWeight: bold;
 
 /* Admin Settings */
-$usernameShowEnvironmentInfoFontWeight: bold; 
+$usernameShowEnvironmentInfoFontWeight: bold;
+
+/* Awesome Icon Selection */
+$selectAwesomeIconButtonFontWeight: bold;
+
+/* Statistic Widget */
+$dashboardChartPanelChartNameFontWeight: 400;
+$chartInfoHeaderFontWeight: bold;
+$chartInfoLabelFontWeight: bold;
+
+/* Filter selection form*/
+$userDefinedFilterContainerHoverFontWeight: bold;
