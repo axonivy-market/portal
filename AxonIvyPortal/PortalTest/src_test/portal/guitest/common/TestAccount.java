@@ -16,7 +16,7 @@ public enum TestAccount {
 
 	TEST_RELATED_TASKS_USER("test_related_tasks_user", "+d3m0++", "test_related_tasks_user"),
   
-  CASE_OWNER_USER("dummy", "+d3m0++", "dummy");
+  CASE_OWNER_USER("caseOwnerUser", "caseOwnerUser", "caseOwnerUser");
 
 	private String username;
 	private String password;
