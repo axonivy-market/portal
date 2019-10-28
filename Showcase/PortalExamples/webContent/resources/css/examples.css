@@ -149,17 +149,18 @@
 }
 
 .process-chain-test-form {
-	heigh: 500px
+	heigh: 500px;
+	padding: 0.5em 1em;
 }
 
 .process-chain-test,
 .process-chain-test-button {
-	height: 200px;
+	height: 150px;
 }
 
 .process-chain-test-vertical,
 .process-chain-test-vertical-line {
-	height: 700px !important;
+	height: 500px !important;
 	float: left;
 }
 
