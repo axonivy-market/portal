@@ -52,8 +52,17 @@ var MainMenu = {
   init : function(responsiveToolkit) {
     this.highlightMenuItem();
     this.responsiveToolkit = responsiveToolkit;
+    this.$mainMenuToggle = $('.sidebar-anchor');
+    this.bindEvents();
   },
   
+  bindEvents : function() {
+    var $this = this;
+    this.$mainMenuToggle.on('click', function(e) {
+      $this.responsiveToolkit.updateLayoutWithAnimation();
+    });
+  },
+
   highlightMenuItem : function() {
     var firstLevelMenu = MainMenu.getMenuBasedOnPageUrl();
     var parentActiveMenuId = MainMenu.getFirstParentMenuActive();
