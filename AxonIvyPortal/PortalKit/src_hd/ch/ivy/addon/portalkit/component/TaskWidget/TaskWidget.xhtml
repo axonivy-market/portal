@@ -75,17 +75,17 @@
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/publicFilter')}" />
                   </div>
                   <ui:repeat var="taskFilterData" value="#{data.taskPublicFilters}">
-                    <h:panelGroup layout="block" styleClass="user-definied-filter-container">
-                      <p:commandLink id="user-definied-filter" styleClass="user-definied-filter"
+                    <h:panelGroup layout="block" styleClass="user-defined-filter-container">
+                      <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
                         value="#{taskFilterData.filterName}" global="false"
                         actionListener="#{logic.applyFilter(taskFilterData)}"
                         update="#{cc.clientId}:advanced-filter-container #{cc.clientId}:task-widget-header #{cc.clientId}:filter-add-form #{cc.clientId}:filter-selection-container #{cc.clientId}:task-view-container"
                         oncomplete="taskWidget.setupScrollbar();" />
-                      <p:tooltip id="user-definied-filter-tooltip" for="user-definied-filter"
+                      <p:tooltip id="user-defined-filter-tooltip" for="user-defined-filter"
                         value="#{taskFilterData.filterName}" trackMouse="true" />
-                      <p:commandLink id="delete-user-definied-filter-command"
+                      <p:commandLink id="delete-user-defined-filter-command"
                         rendered="#{taskWidgetBean.isDeleteFilterEnabledFor(taskFilterData)}"
-                        styleClass="fa fa-times-circle delete-user-definied-filter-command"
+                        styleClass="fa fa-times-circle delete-user-defined-filter-command"
                         actionListener="#{logic.setFilterToBeDeleted(taskFilterData)}"
                         oncomplete="PF('delete-filter-confirmation-dialog').show();"/>
                     </h:panelGroup>
@@ -99,17 +99,17 @@
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/privateFilter')}" />
                   </div>
                   <ui:repeat var="taskFilterData" value="#{data.taskPrivateFilters}">
-                    <h:panelGroup layout="block" styleClass="user-definied-filter-container">
-                      <p:commandLink id="user-definied-filter" styleClass="user-definied-filter"
+                    <h:panelGroup layout="block" styleClass="user-defined-filter-container">
+                      <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
                         value="#{taskFilterData.filterName}" global="false"
                         actionListener="#{logic.applyFilter(taskFilterData)}"
                         update="#{cc.clientId}:advanced-filter-container #{cc.clientId}:task-widget-header #{cc.clientId}:filter-add-form #{cc.clientId}:filter-selection-container #{cc.clientId}:task-view-container"
                         oncomplete="taskWidget.setupScrollbar();" />
-                      <p:tooltip id="user-definied-filter-tooltip" for="user-definied-filter"
+                      <p:tooltip id="user-defined-filter-tooltip" for="user-defined-filter"
                         value="#{taskFilterData.filterName}" trackMouse="true" />
-                      <p:commandLink id="delete-user-definied-filter-command"
+                      <p:commandLink id="delete-user-defined-filter-command"
                         rendered="#{taskWidgetBean.isDeleteFilterEnabledFor(taskFilterData)}"
-                        styleClass="fa fa-times-circle delete-user-definied-filter-command"
+                        styleClass="fa fa-times-circle delete-user-defined-filter-command"
                         actionListener="#{logic.setFilterToBeDeleted(taskFilterData)}"
                         oncomplete="PF('delete-filter-confirmation-dialog').show();" />
                     </h:panelGroup>

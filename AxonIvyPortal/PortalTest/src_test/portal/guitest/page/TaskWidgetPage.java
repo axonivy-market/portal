@@ -249,12 +249,12 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void changeDescriptionOfTask(String description) {
-    findElementByCssSelector("span[id$='task-desription-inplace_display']").click();
+    findElementByCssSelector("span[id$='task-description-inplace_display']").click();
     WebElement taskNameInput = findElementByCssSelector("textarea[id$='task-description-input']");
     waitForElementDisplayed(taskNameInput, true);
     taskNameInput.clear();
     taskNameInput.sendKeys(description);
-    findElementByCssSelector("span[id$='task-desription-inplace_editor']  .ui-inplace-save").click();
+    findElementByCssSelector("span[id$='task-description-inplace_editor']  .ui-inplace-save").click();
     waitAjaxIndicatorDisappear();
   }
 
@@ -466,7 +466,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public String getFilterName() {
     click(findElementById(taskWidgetId + ":filter-selection-form:filter-name"));
-    WebElement descriptionInput = findElementByCssSelector(".user-definied-filter-container");
+    WebElement descriptionInput = findElementByCssSelector(".user-defined-filter-container");
 
     return descriptionInput.getText();
   }
