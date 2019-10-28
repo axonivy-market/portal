@@ -20,15 +20,12 @@ Create an override which overrides sub process
 ``createDefaultUserProcess()`` in Portal Kit. This sub process return a
 list of user processes. Follow instruction to create default processes.
 
-   **Tip**
+|default-user-processes|
+|default-user-processes|
 
-   We provide the method to generate link from UserFriendlyRequestPath
-   in
-   ProcessStartCollector
-   class:
-   findStartableLinkByUserFriendlyRequestPath(String requestPath)
-   . This method will return startable link if user has permission to
-   start the process, otherwise return emtpy string.
+.. tip:: We provide the method to generate link from UserFriendlyRequestPath
+   in  ``ProcessStartCollector``  class: ``findStartableLinkByUserFriendlyRequestPath(String requestPath)``  . This method
+   will return startable link if user has permission to start the process, otherwise return emtpy string.
 
 .. |default-process-return| image:: images/default-user-process/default-process-return.png
 .. |default-user-processes| image:: images/default-user-process/default-user-processes.png
