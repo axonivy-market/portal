@@ -3182,6 +3182,22 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   height: 40px;
 }
 
+.settings-table-key-column {
+  width: 17%;
+}
+
+.settings-table-default-value-column {
+  width: 10%;
+}
+
+.settings-table-current-value-column {
+  width: 10%;
+}
+
+.settings-table-action-buttons {
+  width: 100px;
+}
+
 .global-setting-table .setting-key {
   display: inline-block;
   word-break: break-all;
