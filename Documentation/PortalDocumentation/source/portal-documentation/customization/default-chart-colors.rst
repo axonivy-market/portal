@@ -1,7 +1,7 @@
 .. _customization-default-chart-colors:
 
 Default chart color
-************
+*******************
 
 .. _customization-default-chart-colors-introduction:
 

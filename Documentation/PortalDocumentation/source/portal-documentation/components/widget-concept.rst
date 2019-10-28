@@ -164,24 +164,21 @@ Portal comes with some useful widgets:
    template:
 
    .. code-block:: html
-      :linenos:
-      :emphasize-lines: 2
 
-       <ui:define name="taskWidget">``
-       <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" tasks="#{logic.getTasksOfSessionUser()}" ... />
+       <ui:define name="taskWidget">
+       <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" tasks="#{logic.getTasksOfSessionUser()}" />
        </ui:define>
 
+..
 2. Process widget
 
    Below is the sample how the process widget being use in the default
    template:
 
    .. code-block:: html
-      :linenos:
-      :emphasize-lines: 2
 
       <ui:define name="processWidget">
-      <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-widget" compactMode="true" ... .>
+      <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-widget" compactMode="true" >
       </ui:define>
 
 3. Statistic widget
@@ -189,11 +186,9 @@ Portal comes with some useful widgets:
    Below is the sample how the statistic widget being use in the default template:
 
    .. code-block:: html
-         :linenos:
-         :emphasize-lines: 2,4
 
-         <ui:define name="statisticWidget">``
-         <ic:ch.ivy.addon.portalkit.component.StatisticWidget id="statistics-widget" compactMode="true" ... >``
+         <ui:define name="statisticWidget">
+         <ic:ch.ivy.addon.portalkit.component.StatisticWidget id="statistics-widget" compactMode="true" >
          ...
          </ic:ch.ivy.addon.portalkit.component.StatisticWidget>
          </ui:define>
@@ -309,6 +304,7 @@ follows:
 			...
 			</ui:define>
 			</ui:composition>
+
 ..
 
 2. Create a new process start for the new home page. Now you will use
@@ -323,9 +319,10 @@ follows:
 	.. code-block:: html
 
 		 <ui:define name="customWidget">
-		 <ic:my.namespace.ComponentName ... />
+		 <ic:my.namespace.ComponentName  />
 		 ...
 		 </ui:define>
+
 ..
 For more details, visit
 :ref:`Portal home <customization-portal-home>`.

@@ -932,6 +932,7 @@ Migrate 6.4 or 6.5 to 6.6
    to  ``useOverrideBody`` 
 -  If you customize  ``TaskLazyDataModel`` , remove that customized class and customize as
    :ref:`How to override task widget's data query. <customization-task-widget-how-to-override-data-query>` . 
+
 Migrate 6.4 to 6.5
 ------------------
 
