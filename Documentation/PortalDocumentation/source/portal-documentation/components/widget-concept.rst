@@ -169,7 +169,7 @@ Portal comes with some useful widgets:
        <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-widget" tasks="#{logic.getTasksOfSessionUser()}" />
        </ui:define>
 
-..
+
 2. Process widget
 
    Below is the sample how the process widget being use in the default
@@ -323,7 +323,7 @@ follows:
 		 ...
 		 </ui:define>
 
-..
+
 For more details, visit
 :ref:`Portal home <customization-portal-home>`.
 

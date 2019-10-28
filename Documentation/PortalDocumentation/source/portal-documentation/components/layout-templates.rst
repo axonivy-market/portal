@@ -155,6 +155,7 @@ How to use template TaskTemplate.xhtml
 3.  Set ``caseId`` value so that the ``Case information tab`` is
     available to users where they can see info of case, documents,
     related tasks and history. It is mandatory.
+
   .. code-block:: html
   
      <ui:param name="caseId" value="#{ivy.case.id}" />
@@ -162,6 +163,9 @@ How to use template TaskTemplate.xhtml
 ..
 
     |task-template-case-info|
+
+..
+
 4.  Set data to ``actualStepIndex`` and ``steps`` variables which are
     used for ProcessChain component in template. It is mandatory.
 
@@ -173,6 +177,7 @@ How to use template TaskTemplate.xhtml
 ..
 
     |task-template-process-chain|
+
 5.  Set data to ``processChainDirection`` variable to set direction for
     for ProcessChain component in template. There are two values:
     "HORIZONTAL" and "VERTICAL". Direction of ProcessChain component is
@@ -195,6 +200,7 @@ How to use template TaskTemplate.xhtml
 ..
 
     |process-chain-shape|
+
 7.  Inserts contents for ``taskName``, ``errorsZone``, ``infoZone``. It
     is optional.
 
