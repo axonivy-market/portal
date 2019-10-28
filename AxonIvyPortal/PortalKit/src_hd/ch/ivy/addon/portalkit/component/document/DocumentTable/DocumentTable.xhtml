@@ -41,7 +41,7 @@
 
     <cc:renderFacet name="componentHeader" />
 
-    <p:messages id="document-messages" />
+    <p:messages id="document-messages" for="document-messages" />
     <p:dataTable id="document-table" value="#{data.documents}" var="document"
       emptyMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/NoFiles')}" styleClass="MarTop5"
       widgetVar="fileTableVar">
