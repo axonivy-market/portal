@@ -38,6 +38,6 @@ public class CaseOwnerTest extends BaseTest {
     homePage = new HomePage();
     mainMenuPage = homePage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
-    assertTrue(casePage.isCaseDisplayed("CaseOwner role is owner"));
+    assertTrue(casePage.isCaseDisplayed("Test role is owner"));
   }
 }
