@@ -218,13 +218,12 @@ $expressInputSwitchSelectionBackgroundColor: #c7d426;
 $expressInputSwitchHandleBackgroundColor: $white;
 
 
-/*---------------------------------Font family----------------------------------------*/
+/*---------------------------------Font family and Font style----------------------------------------*/
 $portalFontFamily: "Roboto";
 $iconFontFamily: "FontAwesome";
-
-/*---------------------------------Font weight----------------------------------------*/
 $menuListWidgetHeaderFontWeight: 600;
 
+/*---------------------------------Font weight----------------------------------------*/
 /* Task Action Item */
 $taskActionItemLabelFontWeight: normal;
 
@@ -232,7 +231,7 @@ $taskActionItemLabelFontWeight: normal;
 $taskDetailHeaderFontWeight: bold;
 $taskDetailSectionTitleFontWeight: bold;
 $taskStartInfoHeaderFontWeight: bold;
-$taskStartInfoTaskId: normal;
+$taskStartInfoTaskIdFontWeight: normal;
 $taskNameInputFontWeight: bold;
 
 /*Task Template */
