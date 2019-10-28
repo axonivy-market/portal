@@ -14,16 +14,14 @@
   <ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter id="#{cc.attrs.componentId}"
     taskFilter="#{cc.attrs.filter}" selectedFilters="#{cc.attrs.selectedFilters}" resultContainerUpdated="#{cc.attrs.resultContainerUpdated}"
     dismissableOverlayPanel="false" dataModel="#{cc.attrs.dataModel}">
-    <h:panelGrid columns="3">
+    <h:panelGrid columns="2" cellpadding="5" styleClass="ui-fluid">
       <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}"
         for="from-created-calendar" />
-      <p:spacer width="5" />
       <p:calendar id="from-created-calendar" value="#{cc.attrs.filter.fromCreationDate}"
         pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" locale="#{localeBean.locale}" 
         converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
 
       <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" for="to-created-calendar" />
-      <p:spacer width="5" />
       <p:calendar id="to-created-calendar" value="#{cc.attrs.filter.toCreationDate}"
         pattern="#{dateTimePatternBean.configuredPattern}" showOn="button" locale="#{localeBean.locale}"
         converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
