@@ -1604,7 +1604,7 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
   overflow-x: hidden;
 }
 
-.filter-selection-form .filter-name-overlay-panel .user-definied-filter-container {
+.filter-selection-form .filter-name-overlay-panel .user-defined-filter-container {
   display: flex;
   width: 16rem;
   flex-flow: row;
@@ -1627,10 +1627,7 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
    padding: 10px 0 10px 6px;
 }
 
-.filter-selection-form .filter-name-overlay-panel .user-definied-filter-container:hover .ui-commandlink {
-  font-weight: bold;
-}
-.filter-selection-form .filter-name-overlay-panel .user-definied-filter-container .user-definied-filter {
+.filter-selection-form .filter-name-overlay-panel .user-defined-filter-container .user-defined-filter {
   flex: 1 0 80%;
   position: relative;
   text-align: left;
@@ -1642,7 +1639,7 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
   line-height: 1.5;
 }
 
-.filter-selection-form .filter-name-overlay-panel .user-definied-filter-container .delete-user-definied-filter-command {
+.filter-selection-form .filter-name-overlay-panel .user-defined-filter-container .delete-user-defined-filter-command {
   font-size: 1.4rem;
   text-align: right;
   display: none;
@@ -1650,7 +1647,7 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
   margin-right: 10px;
 }
 
-.filter-selection-form .filter-name-overlay-panel .user-definied-filter-container:hover .delete-user-definied-filter-command {
+.filter-selection-form .filter-name-overlay-panel .user-defined-filter-container:hover .delete-user-defined-filter-command {
   display: inline;
 }
 
@@ -1737,7 +1734,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .task-start-info-header {
-  font-weight: bold;
   display: flex;
 }
 
@@ -1760,7 +1756,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 .task-start-info-task-id {
   margin-left: 5px;
   flex: 0 0 auto;
-  font-weight: normal;
 }
 
 .task-start-info-task-description, .task-start-info-task-name {
@@ -1979,7 +1974,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .task-name-input {
   width : calc(100% - 155px);
-  font-weight: bold !important;
 }
 
 #task-description .scroll-panel.OvAuto li {
@@ -2008,7 +2002,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   text-align: center;
   line-height: 2.5px;
   display: block;
-  font-size: 1.4rem;
 }
 
 .task-details-document-download-icon {
@@ -2533,10 +2526,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   vertical-align: auto;
 }
 
-.line-process-chain .line-horizontal-process-step.current .line-horizontal-step-title {
-  font-weight: bold;
-}
-
 .line-process-chain .line-horizontal-process-step .line-horizontal-step-container {
   height: 10px;
   width: 99%;
@@ -3049,8 +3038,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .select-awesome-icon-button {
   margin-left: 10px;
   text-decoration: underline !important;
-  font-weight: bold;
-  font-size: 1.3rem !important;
 }
 
 /********************************** STATISTIC WIDGET **********************************/
@@ -3253,32 +3240,9 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   vertical-align: top;
 }
 
-.statistic-filter-main-container {
-  padding: 0;
-  padding: 0 1rem;
-  border: none;
-  border-left: solid 1px #E0E0E0;
-  border-radius: 0;
-}
-
-.statistic-filter-main-container legend {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-  font-weight: bold;
-}
-
-.statistic-filter-main-container .no-data-message {
-  display: block;
-  margin-top: 1rem;
-}
-
 .chart-filter-info-icon {
   padding-right: 5px;
   float: right;
-}
-
-.statistic-filter-main-container .item-label {
-  margin-right: 1rem;
 }
 
 .statistic-filter-container {
@@ -3345,7 +3309,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 .dashboard-chart-panel .chart-name-container {
-  font-weight: bold !important;
   white-space: nowrap; 
   overflow: hidden;
   text-overflow: ellipsis;
@@ -3427,7 +3390,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 .chart-info-header {
   display: block;
-  font-weight: bold;
   margin-top: 20px;
   margin-bottom: 10px;
   width: 100%;
@@ -3446,10 +3408,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .chart-info-container,
 .chart-info-container.ui-panelgrid tbody tr td {
   vertical-align: top;
-}
-
-.chart-info-container label {
-  font-weight: bold !important;
 }
 
 .chart-info-container .label-column {
@@ -3914,22 +3872,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   float: left;
 }
 
-.statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
-  background: none;
-  width: 20rem;
-  padding: 8px 0 !important;
-}
-
-.statistic-filter-main-container .ui-calendar .ui-inputfield.hasDatepicker {
-  transition: none !important;
-  width: 20rem;
-}
-
-.statistic-filter-main-container .period-time-selection {
-  margin-bottom: 10px;
-  display: block;
-}
-
 .custom-field-panel-header-container {
   padding: 0 10px;
 }
@@ -3963,15 +3905,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   vertical-align: middle !important;
 }
 
-/* Medium screen */
-@media ( min-width : 1366px) and (max-width: 1919px) {
-  .statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
-    background: none;
-    width: 20rem;
-    padding: 8px 0 !important;
-  }
-}
-
 /* Small screen */
 @media ( max-width : 1365px) {
   .chart-list-container .filter-container {
@@ -3983,11 +3916,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   .edit-statistic-container {
     padding-right: 23.5rem !important;
   }
-  .statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
-    background: none;
-    width: 21rem;
-    padding: 8px 0 !important;
-  }
+
   .filter-container .ui-inputfield.hasDatepicker {
     width: 15.5rem !important;
   }
@@ -4276,7 +4205,6 @@ _:-ms-fullscreen, :root .case-related-command-link {
 
 /*  =================== TASK DETAIL PAGE ========================= */
 .task-detail-header {
-  font-weight: bold;
   line-height: 38px;
   display: flex;
   width: 100% !important;
@@ -4311,11 +4239,6 @@ _:-ms-fullscreen, :root .case-related-command-link {
   flex-grow: 0;
 }
 
-.task-action-item .ui-commandlink.ui-state-disabled {
-  margin: auto;
-  font-weight: bold;
-}
-
 .task-action-item {
   margin: auto;
 }
@@ -4326,7 +4249,6 @@ _:-ms-fullscreen, :root .case-related-command-link {
 
 .task-action-item .task-action-item-label {
   margin-left: 5px;
-  font-weight: normal;
 }
 
 .action-button.task-action-item {
@@ -4381,7 +4303,7 @@ _:-ms-fullscreen, :root .case-related-command-link {
   position: relative;
 }
 
-.task-desription-inplace .ui-button.ui-widget.ui-button-icon-only.ui-inplace-save {
+.task-description-inplace .ui-button.ui-widget.ui-button-icon-only.ui-inplace-save {
   margin-right: 5px;
   margin-top: 3px;
 }

@@ -254,7 +254,7 @@ body .ui-panelgrid tbody tr.ui-widget-content {
 
 /*Style For Task Widget ----------------------------------------------------------------------------------*/
 .filter-selection-form .filter-name:hover,
-.filter-selection-form .filter-name-overlay-panel .user-definied-filter-container .delete-user-definied-filter-command:hover {
+.filter-selection-form .filter-name-overlay-panel .user-defined-filter-container .delete-user-defined-filter-command:hover {
     color: $primaryColor !important;
 }
 
@@ -330,6 +330,7 @@ body .ui-panelgrid tbody tr.ui-widget-content {
 
 .dashboard-chart-panel .chart-name {
   font-size: $dashboardChartNameFontSize;
+  font-weight: $dashboardChartPanelChartNameFontWeight;
 }
 
 .edit-statistic-container .chart-list .chart-container .label,
@@ -346,6 +347,18 @@ body .ui-panelgrid tbody tr.ui-widget-content {
 .ui-columntoggler[id$='task-table-toggler'] .ui-columntoggler-item label {
     font-size: $smallFontSize;
 }
+
+.chart-info-header {
+  font-size: $largeFontSize;
+  font-family: $portalFontFamily;
+  color: $chartInfoHeaderColor;
+  font-weight: $chartInfoHeaderFontWeight;
+}
+
+.chart-info-container label {
+  font-weight: $chartInfoLabelFontWeight;
+}
+
 /*Style For Buttons --------------------------------------------------------------------------------------*/
 .ui-widget.ui-button.ui-state-hover:not(.ui-spinner-button),
 .ui-widget.ui-buttonset .ui-state-hover,
@@ -614,6 +627,10 @@ img[id*='additonalTaskUserAvatar'] {
 
 .line-process-chain .line-horizontal-process-step .line-horizontal-step-container {
     background-color: $processChainMenuColor;
+}
+
+.line-process-chain .line-horizontal-process-step.current .line-horizontal-step-title {
+  font-weight: $currentLineHorizontalStepTitleFontWeight;
 }
 
 .line-process-chain .line-horizontal-process-step.hide-left-steps {
@@ -941,7 +958,7 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
   }
 }
 
-.task-desription-inplace, .edit-priority-inplace, .task-name-inplace, .expiry-edit-inplace{
+.task-description-inplace, .edit-priority-inplace, .task-name-inplace, .expiry-edit-inplace{
   .ui-inplace-display.ui-state-highlight {
       background-color: $textboxBgColor;
       color: $primaryTextColor;
@@ -963,6 +980,11 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
       background-color: rgba(0,0,0,0.05) !important;
     }
   }
+}
+
+.task-name-input {
+  font-size: $largeFontSize !important;
+  font-weight: $taskNameInputFontWeight;
 }
 
 .task-detail-header {
@@ -1168,9 +1190,13 @@ span.task-details-document-add-link {
 .filter-selection-form label,
 .filter-selection-form a.ui-commandlink,
 .filter-selection-form a.ui-commandlink:hover,
-.filter-selection-form .filter-name-overlay-panel .user-definied-filter-container .ui-commandlink,
+.filter-selection-form .filter-name-overlay-panel .user-defined-filter-container .ui-commandlink,
 .filter-name-overlay-panel .filter-type-label {
   font-size: $largeFontSize;
+}
+
+.filter-selection-form .filter-name-overlay-panel .user-defined-filter-container:hover .ui-commandlink {
+  font-weight: $userDefinedFilterContainerHoverFontWeight;
 }
 
 .task-start-info-header,
@@ -1182,7 +1208,6 @@ span.task-details-document-add-link {
   font-size: $smallFontSize;
 }
 
-.task-name-input,
 .case-details-data-1st-column {
   font-size: $largeFontSize !important;
 }
@@ -1201,11 +1226,6 @@ span.task-details-document-add-link {
   font-size: $largeFontSize;
 }
 
-.chart-info-header {
-  font-size: $largeFontSize;
-  font-family: $portalFontFamily;
-  color: $chartInfoHeaderColor;
-}
 .not-display-result-tab-view {
   font-size: $smallFontSize;
 }
@@ -1479,7 +1499,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   background-color: $taskWidgetOverlayPanelContentBackgroundColor;
 }
 
-.filter-selection-form .filter-name-overlay-panel .user-definied-filter-container:hover {
+.filter-selection-form .filter-name-overlay-panel .user-defined-filter-container:hover {
   background-color: $taskFilterSelectionFormHoverBackgroundColor;
 }
 
@@ -1497,6 +1517,14 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 .task-start-info-header, .task-start-info-content, .task-start-info-footer {
   color: $compactTaskStartInfoColor;
+}
+
+.task-start-info-header {
+  font-weight: $taskStartInfoHeaderFontWeight;
+}
+
+.task-start-info-task-id {
+  font-weight: $taskStartInfoTaskId;
 }
 
 .task-start-list .description-cell {
@@ -1568,6 +1596,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 /*Awesome Icon Selection--------------------------*/
 .select-awesome-icon-button {
   color: $linkChangeAwesomeIconColor !important;
+  font-weight: $selectAwesomeIconButtonFontWeight;
 }
 
 .ui-widget-content a {
@@ -1622,7 +1651,11 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 .task-action-item .ui-commandlink.ui-state-disabled {
   color: $taskActionItemDisabledStateColor;
   font-size: $largeFontSize !important;
- }
+}
+ 
+.task-action-item .task-action-item-label {
+  font-weight: $taskActionItemLabelFontWeight;
+}
  
 .action-button.task-action-item .ui-button-icon-left.ui-icon {
   color: $taskActionItemLeftIconColor !important;
