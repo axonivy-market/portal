@@ -67,6 +67,7 @@ $statisticPanelHeaderText: rgba(0,0,0,0.8);
 $menuItemHoverBackgroundColor: rgba(0, 0, 0, 0.15);
 
 /* Font Size */
+$defaultFontSize: 10px;
 $largeFontSize: 1.4rem; // font size for header,title, groups, menu
 $smallFontSize: 1.2rem; // font size for text, label, input
 $selectCheckboxMenuIconFontSize: 1.8rem;
@@ -111,6 +112,8 @@ $caseItemActionDetailColor: rgba(0,0,0,0.5);
 $caseItemActionStepsItemHoverBackgroundColor: #E8E9EF;
 $caseItemActionStepsItemColor: rgba(0, 0, 0, 0.5);
 $caseActionStepsContentsBackgroundColor: $white;
+$caseStateInProgressColor: rgba(7,140,255,1);
+$caseStateDoneColor: rgba(78,180,28,1);
 
 /* Process */
 $expressExpandCollapseButtonColor: $primaryTextColor;
@@ -210,6 +213,11 @@ $bodySateActiveColor: $black;
 $autoCompleteHoverColor: $black;
 $bodyColumnTogglerLabelColor: $black;
  
+ /* Express */
+$expressInputSwitchSelectionBackgroundColor: #c7d426;
+$expressInputSwitchHandleBackgroundColor: $white;
+
+
 /*---------------------------------Font family----------------------------------------*/
 $portalFontFamily: "Roboto";
 $iconFontFamily: "FontAwesome";
