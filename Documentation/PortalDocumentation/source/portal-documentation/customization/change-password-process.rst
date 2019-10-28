@@ -23,7 +23,13 @@ unique in your application. It must return an enums
 ``ChangePasswordStatus`` and the ``message`` showing to user (you can
 override this process in PortalKit):
 
+|change-password-process|
+
+|change-password-input|
+
+|change-password-output|
+
 .. |change-password-input| image:: images/change-password/change-password-input.png
-.. |change-password-ounput| image:: images/change-password/change-password-output.png
+.. |change-password-output| image:: images/change-password/change-password-output.png
 .. |change-password-process| image:: images/change-password/change-password-process.png
 

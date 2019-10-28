@@ -50,7 +50,7 @@ Server configuration
 Specify applications used in Portal
 -----------------------------------
 
-.. _installation-basic-installation-specifyservers-general-concept:
+.. _installation-basic-installation-specify-servers-general-concept:
 
 General concept
 ~~~~~~~~~~~~~~~
