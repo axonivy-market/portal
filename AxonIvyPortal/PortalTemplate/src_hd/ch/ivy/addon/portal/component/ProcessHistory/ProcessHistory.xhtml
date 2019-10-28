@@ -23,39 +23,40 @@
 		</ui:include>
 		<ui:include src="ColumnHeader.xhtml">
 			<ui:param name="id" value="id-column-header" />
-			<ui:param name="styleClass" value="process-history-list-header-default" />
+			<ui:param name="styleClass" value="process-history-list-header-default u-hidden-sm-down" />
 			<ui:param name="sortedField" value="ID" />
 			<ui:param name="sortable" value="true" />
 			<ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" />
 		</ui:include>
 		<ui:include src="ColumnHeader.xhtml">
 			<ui:param name="id" value="pm-column-header" />
-			<ui:param name="styleClass" value="process-history-list-header-default process-history-list-width-120" />
+			<ui:param name="styleClass" value="process-history-list-header-default process-history-list-width-120 u-hidden-sm-down" />
 			<ui:param name="sortedField" value="PROCESS_NAME" />
 			<ui:param name="sortable" value="true" />
 			<ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}" />
 		</ui:include>
 		<ui:include src="ColumnHeader.xhtml">
 			<ui:param name="id" value="created-date-column-header" />
-			<ui:param name="styleClass" value="process-history-list-header-default" />
+			<ui:param name="styleClass" value="process-history-list-header-default u-hidden-sm-down" />
 			<ui:param name="sortedField" value="CREATION_TIME" />
 			<ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}" />
 			<ui:param name="sortable" value="true" />
 		</ui:include>
 		<ui:include src="ColumnHeader.xhtml">
 			<ui:param name="id" value="creator-column-header" />
-			<ui:param name="styleClass" value="process-history-list-header-default process-history-list-width-120" />
+			<ui:param name="styleClass" value="process-history-list-header-default process-history-list-width-120 js-hidden-when-expand-menu u-hidden-md-down" />
 			<ui:param name="sortedField" value="CREATOR" />
 			<ui:param name="sortable" value="true" />
 			<ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" />
 		</ui:include>
 		<ui:include src="ColumnHeader.xhtml">
 			<ui:param name="id" value="state-column-header" />
-			<ui:param name="styleClass" value="process-history-list-header-default" />
+			<ui:param name="styleClass" value="process-history-list-header-default u-hidden-sm-down" />
 			<ui:param name="sortedField" value="STATE" />
 			<ui:param name="sortable" value="true" />
 			<ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" />
 		</ui:include>
+
 	</h:panelGroup>
 	<h:panelGroup id="process-history-list" layout="block" styleClass="process-history-list">
 		<f:event type="preRenderComponent" listener="#{processHistoryBean.initData(cc.attrs.businessEntityId)}" />
@@ -65,21 +66,25 @@
 			<ic:ch.ivy.addon.portalkit.component.CaseItem case="#{case}" id="case-item" enableCaseAction="false"
 				itemStyleClass="#{rowIndex % 2 == 0 ? 'case-even-row' : 'case-odd-row'}">
 				<f:facet name="caseHeader">
-					<h:panelGroup class="case-header-name-desc-cell u-truncate-text">
+					<h:panelGroup class="case-header-name-desc-cell u-truncate-text" layout="block">
 						<ic:ch.ivy.addon.portalkit.component.cases.column.CaseName case="#{case}" 
 							dataModel="#{processHistoryBean.dataModel}" 
 							initialActive="#{case.id eq caseView.getAutoSelectCaseId().id()}" />
 					</h:panelGroup>
 					<ic:ch.ivy.addon.portalkit.component.cases.column.CaseId case="#{case}" dataModel="#{processHistoryBean.dataModel}"
-						styleClass="process-history process-history-list process-history-list-cell-default" />
+						styleClass="process-history process-history-list process-history-list-cell-default"
+						responsiveStyleClass="u-hidden-sm-down"/>
 					<h:outputText value="#{case.processName}"
-						styleClass="process-history process-history-list process-history-list-cell-default process-history-list-width-120" />
+						styleClass="process-history process-history-list process-history-list-cell-default process-history-list-width-120 u-hidden-sm-down" />
 					<ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-creation-time-cell" value="#{case.startTimestamp}"
-						styleClass="process-history process-history-list process-history-list-cell-default" />
+						styleClass="process-history process-history-list process-history-list-cell-default"
+						responsiveStyleClass="u-hidden-sm-down"/>
 					<ic:ch.ivy.addon.portalkit.component.cases.column.CaseCreator case="#{case}" dataModel="#{processHistoryBean.dataModel}"
+						responsiveStyleClass="js-hidden-when-expand-menu u-hidden-md-down"
 						styleClass="process-history process-history-list process-history-list-cell-default process-history-list-width-120" />
 					<ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="#{case}" dataModel="#{processHistoryBean.dataModel}"
-						stateStyleClass="process-history process-history-list process-history-list-cell-default" />
+						stateStyleClass="process-history process-history-list process-history-list-cell-default"
+						responsiveStyleClass="u-hidden-sm-down"/>
 				</f:facet>
 			</ic:ch.ivy.addon.portalkit.component.CaseItem>
 		</p:dataScroller>
@@ -90,8 +95,18 @@
 	</h:panelGroup>
 	<h:outputScript name="process-history.js" library="js" />
 	<script type="text/javascript">
-    var caseWidget = new CaseWidget();
-    caseWidget.hideListIfEmptyCase(#{processHistoryBean.dataModel.rowCount eq 0});
-  </script>
+		var caseWidget = new CaseWidget();
+		caseWidget.hideListIfEmptyCase(#{processHistoryBean.dataModel.rowCount eq 0});
+	</script>
+
+	<!-- Responsive Case list -->
+	<h:outputScript name="case-widget.js" library="js" />
+	<script type="text/javascript">
+		$(function() {
+			var simpleScreen = new CaseListScreenHandler();
+			var responsiveToolkit = ResponsiveToolkit(simpleScreen);
+			Portal.init(responsiveToolkit);
+		});
+	</script>
 </cc:implementation>
 </html>
