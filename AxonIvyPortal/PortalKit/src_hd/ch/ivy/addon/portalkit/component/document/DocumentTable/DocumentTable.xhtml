@@ -41,8 +41,7 @@
 
     <cc:renderFacet name="componentHeader" />
 
-    <p:message id="document-messages" for="document-upload">
-    </p:message>
+    <p:messages id="document-messages" for="document-messages" />
     <p:dataTable id="document-table" value="#{data.documents}" var="document"
       emptyMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/NoFiles')}" styleClass="MarTop5"
       widgetVar="fileTableVar">
@@ -89,7 +88,7 @@
       <h:panelGroup rendered="#{cc.attrs.uploadRendered}">
         <p:fileUpload id="document-upload" mode="advanced" auto="true" dragDropSupport="true"
           fileUploadListener="#{logic.upload}"
-          update="document-table document-messages #{cc.attrs.updatedComponentAfterUploaded} #{cc.clientId}"
+          update="document-table document-messages #{cc.attrs.updatedComponentAfterUploaded}"
           invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}" 
           label="#{not empty cc.attrs.uploadText ? cc.attrs.uploadText : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/upload')}"
           cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"

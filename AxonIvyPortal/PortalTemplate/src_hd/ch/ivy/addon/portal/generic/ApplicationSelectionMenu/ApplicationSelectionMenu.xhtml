@@ -75,7 +75,7 @@
 
                   <p:menuitem id="menu-item-#{menuItemStatus.index}-sub-menu-item-#{subMenuItemStatus.index}" 
                     rendered="#{isThirdPartyApp and isIvyLink}" actionListener="#{logic.onClickSubMenuItem}" value="#{subMenuItem.label}"
-                    icon="#{subMenuItem.icon}" iconPos="right" styleClass="submenu" update="main-menu" process="main-menu"
+                    icon="#{subMenuItem.icon}" iconPos="right" styleClass="submenu #{subMenuItem.menuKind}" update="main-menu" process="main-menu"
                     containerStyleClass="submenu-container #{firstSubItem} #{lastSubItem}" global="false">
                     <f:attribute name="selectedSubMenuItem" value="#{subMenuItem}" />
                   </p:menuitem>
