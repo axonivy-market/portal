@@ -1,7 +1,6 @@
 package portal.guitest.page;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 public class AddAbsencePage extends TemplatePage {
 
@@ -21,8 +20,7 @@ public class AddAbsencePage extends TemplatePage {
   }
 
   private void proceed(String selector) {
-    WebElement proceedElement = findElementByCssSelector(selector);
-    proceedElement.click();
+    clickByCssSelector(selector);
     waitAjaxIndicatorDisappear();
   }
 
