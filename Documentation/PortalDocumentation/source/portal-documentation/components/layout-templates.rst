@@ -140,7 +140,7 @@ How to use template TaskTemplate.xhtml
   
      <ui:composition template="/layouts/TaskTemplate.xhtml">
 
-..
+
 2.  Set ``task`` value so that the ``taskName`` is available to users
     where they can see the task name of request. It is mandatory.
 
@@ -148,7 +148,6 @@ How to use template TaskTemplate.xhtml
   
      <ui:param name="task" value="#{ivy.task}" />
 
-..
 
     |task-name-template|
 
@@ -159,7 +158,6 @@ How to use template TaskTemplate.xhtml
   
      <ui:param name="caseId" value="#{ivy.case.id}" />
 
-..
 
     |task-template-case-info|
 4.  Set data to ``actualStepIndex`` and ``steps`` variables which are
@@ -170,7 +168,6 @@ How to use template TaskTemplate.xhtml
      <ui:param name="actualStepIndex" value="#{data.actualStepIndex}" />
      <ui:param name="steps" value="#{data.steps}" />
 
-..
 
     |task-template-process-chain|
 5.  Set data to ``processChainDirection`` variable to set direction for
@@ -181,7 +178,6 @@ How to use template TaskTemplate.xhtml
   
      <ui:param name="processChainDirection" value="VERTICAL" />
 
-..
 6.  Set data to ``processChainShape`` variable to set shape for for
     ProcessChain component in template. There are two values: "CIRCLE"
     and "LINE". Shape of ProcessChain component is "CIRCLE" by default.
@@ -190,7 +186,6 @@ How to use template TaskTemplate.xhtml
     
      <ui:param name="processChainShape" value="LINE" />
      
-..
 
     |process-chain-shape|
 7.  Inserts contents for ``taskName``, ``errorsZone``, ``infoZone``. It
@@ -202,7 +197,6 @@ How to use template TaskTemplate.xhtml
         <ui:define name="errorsZone">...</ui:define>
         <ui:define name="infoZone">...</ui:define>
 
-..
 8.  Inserts some new tabs, refers some segment of code as below. If your
     application has multiple tabs, use it and turn off request form by
     set ``showTaskFormTab`` to false.
@@ -219,7 +213,7 @@ How to use template TaskTemplate.xhtml
         </p:tab>
         </ui:define>
 
-..
+
 9.  Overwrite contents of default tab. Use it when your application need
     only 1 tab.
 
@@ -232,7 +226,7 @@ How to use template TaskTemplate.xhtml
        </h:form>
        </ui:define>
 
-..
+
 10. Set visible/invisible for default tab case information. Set
     following variables as ``true`` if you want to visible and vice
     versa.
@@ -241,7 +235,7 @@ How to use template TaskTemplate.xhtml
     
        <ui:param name="showCaseStatusInfoTab" value="true" />
 
-..
+
 11. Inserts left buttons and right buttons which stay at the bottom of
     the page. It is optional. You can use it to define your action
     button. Consider using ``partialSubmit`` to submit your data im
