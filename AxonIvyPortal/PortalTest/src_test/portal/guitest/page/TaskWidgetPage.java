@@ -163,7 +163,7 @@ public class TaskWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector(moreButton), true);
     findElementByCssSelector(moreButton).click();;
     waitAjaxIndicatorDisappear();
-    waitForElementDisplayed(By.cssSelector("a[id$='adhoc-side-step-item']"), true);
+    waitForElementDisplayed(By.cssSelector("div[id$='side-steps-panel'].ui-overlay-visible a[id$='adhoc-side-step-item']"), true);
   }
 
   public boolean isMoreButtonDisplayed(int taskId) {
