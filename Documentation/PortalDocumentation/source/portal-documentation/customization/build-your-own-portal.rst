@@ -18,6 +18,7 @@ Build your own portal using Portal kit
       ``DefaultHomePageTemplate``.
 
          .. tip:: Find more information about templates at :ref:`Layout templates <components-layout-templates>` .
+
       ..
 
         .. important:: Portal uses some template files in the folder
@@ -58,6 +59,7 @@ Build your own portal using Portal kit
  .. code-block:: html
 
     <ic:ch.ivy.addon.portalkit.feature.WarnOnClosingBrowserTab confirmMessage="You may lose your work in progress. Do you want to continue?" />
+    
 ..
 
    Depending on browser, content of ``confirmMessage`` and names of
