@@ -25,20 +25,22 @@ Customization
    |customization-additional-case-details-page|
 
 2. Store the URL of start process in
-   "CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE" additional property of
-   case. You could use ``SetAdditonalCaseDetailPage.mod`` callable
-   process, and input the friendly URL of process as parameter.
+   "CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE" additional property of case. You
+   could use ``SetAdditonalCaseDetailPage.mod`` callable process, and input the
+   friendly URL of process as parameter.
 
    |set-additonal-case-detail-page-callable-process|
 
 ..
 
-   **Tip**
+   .. tip:: If you want to redirect user to external link, simply store that
+      external link to "CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE"
+      additional property of case.
 
-   If you want to redirect user to external link, simply store that
-   external link to "CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE"
-   additional property of case.
+|store-external-url-in-case|
 
 .. |customization-additional-case-details-page| image:: images/additional-case-details-page/customization-additional-case-details-page.png
 .. |set-additonal-case-detail-page-callable-process| image:: images/additional-case-details-page/set-additonal-case-detail-page-callable-process.png
+.. |store-external-url-in-case| image:: images/additional-case-details-page/store-external-url-in-case.png
+
 

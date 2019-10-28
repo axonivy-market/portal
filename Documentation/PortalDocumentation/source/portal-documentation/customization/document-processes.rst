@@ -24,8 +24,8 @@ Customization
    project. This process is new home page and administrator should
    register this link by global
 
-3. Refer to `Customize Portal
-   home <#customization-portalhome>`__ to set new home
+3. Refer to :ref:`Customize Portal
+   home <customization-portal-home>` to set new home
    page.
 
 4. Override 4 ``Document sub processes`` described in table below to
@@ -40,7 +40,10 @@ Customization
    |                                   | convert them into                 |
    |                                   | List<ch.ivy.addon.portalkit.ivyda |
    |                                   | ta.bo.IvyDocument>                |
-   |                                   | Mandatory fields are: - id - name |
+   |                                   | Mandatory fields are:             |
+   |                                   |                                   |
+   |                                   | - id                              |
+   |                                   | - name                            |
    |                                   | - contentType                     |
    +-----------------------------------+-----------------------------------+
    | UploadDocument                    | Override this sub process to      |
