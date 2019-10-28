@@ -553,14 +553,6 @@ img[id*='additonalTaskUserAvatar'] {
 }
 
 /*Style for express --------------------------------------------------------------------------------------*/
-.express-start-process-panel .process-list .icon-placeholder .fa {
-    color: $primaryColor;
-}
-
-.express-start-process-panel .process-list .icon-placeholder .fa:hover {
-    color: rgba($primaryColor, 0.6) !important;
-}
-
 .process-start-list-item .process-start-list-item-action .express-workflow:hover {
     color: $primaryColor !important;
 }
@@ -1106,9 +1098,6 @@ li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectabl
 
 .widget-header-filter-input.ui-inputfield.ui-state-hover, 
 .widget-header-filter-input.ui-inputfield.ui-state-focus,
-.mod-expanded-mode .widget-header-filter-input.ui-inputfield,
-.mod-expanded-mode .widget-header-filter-input.ui-inputfield.ui-state-hover, 
-.mod-expanded-mode .widget-header-filter-input.ui-inputfield.ui-state-focus,
 .grid-item-header {
   font-size: $largeFontSize;
   font-family: $portalFontFamily;
@@ -1514,7 +1503,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 /* Task Widget --------------------------------**/
-
 .filter-selection-form label,
 .filter-selection-form a.ui-commandlink,
 .filter-selection-form a.ui-commandlink:hover {
@@ -1550,7 +1538,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 }
 
 .task-start-info-task-id {
-  font-weight: $taskStartInfoTaskId;
+  font-weight: $taskStartInfoTaskIdFontWeight;
 }
 
 .task-start-list .description-cell {

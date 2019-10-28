@@ -34,7 +34,7 @@
               value="#{cc.attrs.title} (#{data.dataModel.rowCount})" />
           </h:panelGroup>
         </div>
-        <h:panelGroup styleClass="widget-header-content-filter mod-expanded-mode ui-g-4 ui-sm-8" id="expanded-mode-filter-view">
+        <h:panelGroup styleClass="widget-header-content-filter ui-g-4 ui-sm-8" id="expanded-mode-filter-view">
           <h:form id="case-basic-filter-form" onsubmit="return false;">
             <ic:ch.ivy.addon.portalkit.component.Filter id="case-filter-component" keywordStoresIn="#{data.dataModel.criteria.keyword}"
               updateComponent="#{cc.clientId}:case-list" icon="fa fa-filter simple-filter-icon"
