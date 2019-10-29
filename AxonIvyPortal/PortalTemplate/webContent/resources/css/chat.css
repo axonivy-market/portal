@@ -216,10 +216,6 @@
 
 .message-chat-header-name {
   color: white !important;
-  font-weight: 600;
-}
-
-.message-chat-header-name {
   font-size: 1.4rem;
   margin-right: 10px;
   flex: 1 0 90%;
@@ -228,7 +224,6 @@
 .show-participants-link {
   display: none;
   color: white !important;
-  font-weight: bold;
   flex: 0 0 auto;
   margin-top: -10px;
 }
@@ -377,7 +372,6 @@ _:-ms-fullscreen, :root .my-message .chat-meta .tooltip {
 .role-name,
 .participants-list-header {
     color: #000000;
-    font-weight: bold;
     margin: 10px 0;
     display: block;
     font-size: 1.4rem;
