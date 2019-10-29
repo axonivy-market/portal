@@ -10,7 +10,7 @@
 
 <cc:implementation>
   <h:outputText id="#{cc.attrs.componentId}" value="#{cc.attrs.value}"
-    styleClass="datetime-cell js-datetime-cell case-header-default-cell #{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass}">
+    styleClass="datetime-cell case-header-default-cell #{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass}">
     <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
   </h:outputText>
 </cc:implementation>
