@@ -8,7 +8,7 @@
 <ui:composition>
   <h:panelGroup id="process-widget-action" styleClass="process-widget-action u-hidden-md-down" layout="block" rendered="#{compactProcessWidgetBean.displayShowAllProcessesLink}">
     <h:form id="user-process-action-form" rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled}"
-      styleClass="js-compact-mode-element process-button-position process-action-button process-widget-action-form">
+      styleClass="process-button-position process-action-button process-widget-action-form">
       <h:panelGroup layout="block" rendered="#{not compactProcessWidgetBean.editMode}">
         <p:commandLink id="show-adding-dialog-commmand" rendered="#{compactProcessWidgetBean.displayShowAllProcessesLink}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addNewProcess')}"

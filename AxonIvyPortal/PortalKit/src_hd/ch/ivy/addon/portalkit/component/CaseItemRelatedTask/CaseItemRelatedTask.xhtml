@@ -13,7 +13,7 @@
   <h:outputScript library="js" name="case-related-task.js" />
   <f:event listener="#{logic.initData(cc.attrs.case)}" type="preRenderComponent" />
 
-  <div id="#{cc.clientId}" class="case-details-item js-case-details-item js-related-task-column #{cc.attrs.styleClass}">
+  <div id="#{cc.clientId}" class="case-details-item #{cc.attrs.styleClass}">
     <div class="case-detail-section-title">
       <i class="fa fa-tasks" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/relatedTasksAndCases')}
     </div>
