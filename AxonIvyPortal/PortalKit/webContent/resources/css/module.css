@@ -3580,10 +3580,27 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   flex-direction: row;
 }
 
+.statistic-widget.creation-mode {
+  margin-top: 0.5em !important;
+}
+
+.statistic-loading-message,
 .statistic-widget-empty-message {
   margin: auto;
-  margin-top: 20px;
   text-align: center;
+  width: 100%;
+  min-height: 200px;
+}
+
+.statistic-widget-empty-message .statistic-empty-message {
+  padding: 8rem 1rem;
+}
+
+.statistic-loading-message {
+  min-height: 32rem !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .statistic-carousel {
@@ -3614,15 +3631,13 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 .statistic-carousel.ui-carousel .ui-carousel-header .ui-carousel-header-title .chart-info {
   font-size: 1.5rem;
-  margin-right: 5px;
   float: left;
-  margin-top: 3px;
   width: 20px;
   height: 20px;
 }
 
+.statistic-widget-empty-message .statistic-empty-header,
 .statistic-carousel .ui-carousel-header-title .chart-name {
-  width: calc(100% - 28px);
   max-width: 88%;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -3631,6 +3646,10 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   overflow: hidden;
   font-size: 1.6rem;
   margin-top: 2px;
+}
+
+.statistic-carousel.card .ui-carousel-header.ui-widget-header {
+  margin: 0.5em 0.4em !important;
 }
 
 .statistic-carousel .statistic-chart {
@@ -3658,8 +3677,24 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 /* Small screen */
 @media screen and (max-width: 64.062em) {
+  .statistic-chart {
+    margin: auto;
+  }
+
+  .edit-statistic-container {
+    width: 78rem;
+  }
+  
+  .statistic-details-dialog {
+    width: 500px;
+  }
+
   .ui-carousel .ui-carousel-header .ui-carousel-header-title {
     max-width: 70% !important;
+  }
+
+  .statistic-loading-message {
+    min-height: 30rem !important;
   }
 }
 
@@ -3667,6 +3702,19 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 @media screen and (min-width: 64.063em) and (max-width: 90.062em) {
   .ui-carousel .ui-carousel-header .ui-carousel-header-title {
     max-width: 72% !important;
+  }
+  .statistic-loading-message {
+    min-height: 30rem !important;
+  }
+}
+
+/* Large screen */
+@media screen and (min-width: 90.063em) {
+  .edit-statistic-container .chart-list {
+    width: 85%;
+  }
+  .statistic-details-dialog {
+    width: 500px;
   }
 }
 
@@ -3701,10 +3749,16 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 .statistic-carousel-content {
   position: relative;
+  float: left;
+  width: 100%;
 }
 
 .statistic-actions-panel {
   margin-top: 15px;
+}
+
+.statistic-actions-panel.creation-mode {
+  margin-top: 2px !important;
 }
 
 .statistic-selection {
@@ -3801,7 +3855,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 .statistic-filter-container {
-  height: 20rem;
+  height: 18rem;
   padding: 0 !important;
 }
 
@@ -3810,22 +3864,8 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   max-height: 18rem;
 }
 
-/* Small screen */
-@media screen and (max-width: 64.062em) {
-  .statistic-chart {
-    margin: auto;
-  }
-
-  .edit-statistic-container {
-    width: 78rem;
-  }
-}
-
-/* Large screen */
-@media screen and (min-width: 90.063em) {
-  .edit-statistic-container .chart-list {
-    width: 85%;
-  }
+.statistic-details-dialog {
+  width: 80vw;
 }
 
 .statistic-dashboard-container {
@@ -3865,22 +3905,17 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 .dashboard-chart-panel .chart-name-container {
   font-weight: bold !important;
-  white-space: nowrap; 
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: inline;
-  min-width: 0;
-  flex: 1 0 100%;
-}
-
-.dashboard-chart-panel .chart-name-container {
-  flex: 1 0 50%;
+  display: inline-block;
   padding: 0;
+  float: left;
+  width: calc(100% - 80px);
 }
 
 .dashboard-chart-panel .chart-actions-container {
+  width: 80px;
+  float: right;
   text-align: right;
-  margin-top: 5px;
+  margin-top: 12px;
 }
 
 .dashboard-chart-panel .chart-actions-container .chart-action {
@@ -3899,11 +3934,9 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .dashboard-chart-panel .chart-info {
   font-size: 1.5rem;
   margin-right: 10px;
-}
-
-.dashboard-chart-panel .chart-info {
   align-self: baseline;
-  margin-left: 5px;
+  margin-top: 0.5em;
+  margin-left: 3px;
 }
 
 .dashboard-chart-panel .card,
@@ -3923,7 +3956,12 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   font-size: 2rem;
   margin-top: 8px !important;
   margin-bottom: 0;
-  display: flex;
+  display: inline-block;
+  max-width: calc(100% - 30px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  float: left;
 }
 
 .add-statistic-panel {
@@ -3988,6 +4026,14 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   max-height: 11rem;
   width: 100%;
   overflow: auto;
+}
+
+.statistic-filter-tooltip {
+  max-width: 40rem;
+}
+
+.statistic-filter-custom-title {
+  max-width: calc(100% - 40px);
 }
 
 /********************************** END STATISTIC WIDGET **********************************/
@@ -4644,13 +4690,13 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 /* Small screen */
 @media ( max-width : 1365px) {
   .chart-list-container .filter-container {
-    width: 23.5rem !important;
+    width: 25rem !important;
   }
   .statistic-case-category-tree .ui-tree-container {
     max-width: 17.5rem;
   }
   .edit-statistic-container {
-    padding-right: 23.5rem !important;
+    padding-right: 25rem !important;
   }
   .statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
     background: none;

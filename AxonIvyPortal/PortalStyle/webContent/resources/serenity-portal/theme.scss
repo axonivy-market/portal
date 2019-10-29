@@ -286,8 +286,7 @@ body .ui-panelgrid tbody tr.ui-widget-content {
 }
 
 /*Style For Statistic Widget -----------------------------------------------------------------------------*/
-.statistic-carousel .ui-carousel-header,
-.chart-list-container .filter-container .ui-accordion-header.ui-state-default {
+.statistic-carousel .ui-carousel-header {
     background-color: $statisticPanelHeader;
     border-color: $statisticPanelHeaderBorder;
 }
