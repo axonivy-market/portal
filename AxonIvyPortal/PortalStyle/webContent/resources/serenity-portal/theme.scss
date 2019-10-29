@@ -8,6 +8,13 @@ html {
   font-size: $defaultFontSize;
 }
 
+body {
+  font-family: $defaultFontFamily;
+  font-style: $defaultFontStyle;
+  font-weight: $defaultFontWeight;
+  background: $bodyBackgroundColor;
+}
+
 /*Style For Logos --------------------------------------------------------------------------------------*/
 .portal-home-logo {
     height: $homeLogoHeight !important;
@@ -46,12 +53,6 @@ body .md-inputfield .ui-calendar.ui-trigger-calendar ~ label {
 body .md-inputfield .ui-calendar.ui-trigger-calendar.md-inputwrapper-focus ~ label, body .md-inputfield .ui-calendar.ui-trigger-calendar.md-inputwrapper-filled ~ label {
   top: -10px;
 }
-
-/*Style For Background --------------------------------------------------------------------------------------*/
-body {
-    background: $bodyBackgroundColor;
-}
-
 
 /*Style For Main menu (Left Sidebar)------------------------------------------------------------------------ */
 .left-sidebar-color {
