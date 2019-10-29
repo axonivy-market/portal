@@ -214,9 +214,20 @@ $autoCompleteHoverColor: $black;
 $bodyColumnTogglerLabelColor: $black;
  
  /* Express */
-$expressInputSwitchSelectionBackgroundColor: #c7d426;
+$expressInputSwitchSelectionBackgroundColor: $accentColor;
 $expressInputSwitchHandleBackgroundColor: $white;
-
+$expressShowDefaultIconColor: $black;
+$taskResponsibleLabelStateErrorColor: #e62a10;
+$deleteAssigneeButtonColor: rgba(0, 0, 0, 0.7);
+$definedTaskButtonBackgroundColor: $white;
+$formElementsPanelHoverDropSectionBackgroundColor: #edffd3;
+$reviewContentTitleColor: $black;
+$formElementsCheckboxFieldsColor: $primaryTextColor;
+$definedTaskLabelBackgroundColor: $accentColor;
+$definedTaskButtonContainerBackgroundColor: $white;
+$formElementsPanelHoverDropSectionLabelColor: $primaryTextColor;
+$taskResponsibleLinkColor: $black;
+$selectManyCheckboxLabelColor: #757575;
 
 /*---------------------------------Font family and Font style----------------------------------------*/
 $portalFontFamily: "Roboto";
