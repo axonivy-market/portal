@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>at.aws.ivy</groupId>
   <artifactId>portalKit</artifactId>
-  <version>7.3.170.4</version>
+  <version>7.3.170.6</version>
   <packaging>iar</packaging>
   <distributionManagement>
     <repository>
