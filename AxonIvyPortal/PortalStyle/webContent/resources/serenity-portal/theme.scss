@@ -562,10 +562,6 @@ img[id*='additonalTaskUserAvatar'] {
     opacity: 1;
 }
 
-.ui-widget.ui-button.defined-task-button {
-    border: solid 2px $primaryColor;
-}
-
 .ui-widget.ui-button.defined-task-button.active,
 .ui-widget.ui-button.defined-task-button.visited {
     border: solid 2px $primaryColor;
@@ -582,16 +578,6 @@ img[id*='additonalTaskUserAvatar'] {
 
 .Fleft {
     float: left;
-}
-
-.express-work-flow .express-input-switch-selection,
-.ui-inputswitch.ui-widget.ui-widget-content.express-input-switch-selection.ui-inputswitch-checked {
-  background-color: $expressInputSwitchSelectionBackgroundColor;
-}
-
-.express-input-switch-selection .ui-inputswitch.ui-inputswitch-checked .ui-inputswitch-handle, 
-.express-input-switch-selection .ui-inputswitch-handle.ui-state-default {
-  background-color: $expressInputSwitchHandleBackgroundColor !important;
 }
 
 /*Style for stages breadcrumb --------------------------------------------------------------------------------------*/
@@ -1718,3 +1704,77 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 .message .message-header {
   color: $errorMessageHeaderColor;
 }
+
+/*====================EXPRESS=============================**/
+.ui-widget.ui-button.defined-task-button {
+  border: solid 2px $primaryColor;
+  background-color: $definedTaskButtonBackgroundColor;
+}
+
+.express-work-flow .express-input-switch-selection,
+.ui-inputswitch.ui-widget.ui-widget-content.express-input-switch-selection.ui-inputswitch-checked {
+  background-color: $expressInputSwitchSelectionBackgroundColor;
+}
+
+.express-input-switch-selection .ui-inputswitch.ui-inputswitch-checked .ui-inputswitch-handle, 
+.express-input-switch-selection .ui-inputswitch-handle.ui-state-default {
+  background-color: $expressInputSwitchHandleBackgroundColor !important;
+}
+
+.show-default-ui-icon {
+  color: $expressShowDefaultIconColor;
+}
+
+.task-responsible-label.ui-state-error {
+  color: $taskResponsibleLabelStateErrorColor;
+}
+
+.assignee-selection-panel .delete-assignee {
+  color: $deleteAssigneeButtonColor !important;
+}
+
+.selected-formelements-panel.hover-drop-section {
+  background-color: $formElementsPanelHoverDropSectionBackgroundColor;
+}
+
+.review-content-title {
+  color: $reviewContentTitleColor;
+}
+
+.express-table-no-header .ui-datatable-header.ui-widget-header.ui-corner-top {
+  color: $formElementsCheckboxFieldsColor;
+}
+
+.defined-task-label {
+  background: $definedTaskLabelBackgroundColor;
+} 
+
+.defined-task-label label {
+  font-size: $smallFontSize;
+}
+
+.defined-task-button-container .ui-state-hover ~ span.defined-task-label,
+.defined-task-button-container .active ~ span.defined-task-label,
+.defined-task-button-container .visited ~ span.defined-task-label {
+  background: $definedTaskButtonContainerBackgroundColor;
+}
+
+.form-definition-table .ui-state-highlight,
+.form-definition-table .hover-drop-section {
+  color: $formElementsPanelHoverDropSectionLabelColor;
+}
+
+.task-responsible-link {
+   font-size: $largeFontSize;
+}
+
+.task-responsible-link:after {
+  color: $taskResponsibleLinkColor;
+}
+
+.ui-selectmanycheckbox label,
+.ui-selectmanycheckbox label.ui-state-disabled {
+  font-size: $largeFontSize;
+  color: $selectManyCheckboxLabelColor;
+}
+/*=================END EXPRESS=============================**/
