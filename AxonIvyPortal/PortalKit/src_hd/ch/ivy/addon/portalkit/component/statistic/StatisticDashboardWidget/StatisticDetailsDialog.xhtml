@@ -5,9 +5,9 @@
 
 <h:body>
   
-  <p:dialog id="#{chartDetailDialogId}" widgetVar="#{chartDetailDialogId}"
+  <p:dialog id="#{chartDetailDialogId}" widgetVar="#{chartDetailDialogId}" appendTo="@(body)"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartInfo/chartDetailsHeader')}" modal="true" closable="true" closeOnEscape="true"
-    dynamic="true" width="500" resizable="false">
+    dynamic="true" styleClass="statistic-details-dialog" resizable="false" fitViewport="true">
     <ic:ch.ivy.addon.portalkit.component.statistic.ChartInformationDialog selectedStatisticChart="#{data.selectedStatisticChart}" />
     <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer">
       <p:commandButton type="button" styleClass="portal-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
