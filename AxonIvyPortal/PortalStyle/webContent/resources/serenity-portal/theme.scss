@@ -1770,11 +1770,37 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 .task-responsible-link:after {
   color: $taskResponsibleLinkColor;
+  font-family: $iconFontFamily;
 }
 
 .ui-selectmanycheckbox label,
 .ui-selectmanycheckbox label.ui-state-disabled {
   font-size: $largeFontSize;
   color: $selectManyCheckboxLabelColor;
+}
+
+.express-work-flow label.switch-active {
+  font-weight: $expressWorkflowActiveSwitchLabelFontWeight !important;
+}
+
+.review-content-title {
+  font-weight: $expressReviewContentTitleFontWeight;
+}
+
+.finished-task-label {
+  font-weight: $expressFinishedTaskLabelFontWeight;
+}
+
+.ui-widget.ui-button.defined-task-button.active {
+  font-weight: $expressActiveDefinedTaskButtonFontWeight;
+}
+
+.ui-widget.ui-dialog .ui-dialog-content {
+  font-size: $largeFontSize;
+}
+
+.ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-moretext.ui-state-highlight,
+.ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-moretext.ui-state-highlight td {
+ background-color: $autocompleteMoreTextStateHighlightBackgroundColor;
 }
 /*=================END EXPRESS=============================**/
