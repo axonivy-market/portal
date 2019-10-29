@@ -1805,3 +1805,17 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
  background-color: $autocompleteMoreTextStateHighlightBackgroundColor;
 }
 /*=================END EXPRESS=============================**/
+
+/* Chat*/
+.show-participants-link {
+  font-weight: $showParticipantsLinkFontWeight;
+}
+
+.role-name,
+.participants-list-header {
+  font-weight: $participantsListHeaderFontWeight;
+}
+
+.message-chat-header-name {
+  font-weight: $messageChatHeaderNameFontWeight;
+}
