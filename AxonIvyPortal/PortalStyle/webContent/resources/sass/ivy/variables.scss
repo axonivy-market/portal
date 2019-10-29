@@ -228,13 +228,15 @@ $definedTaskButtonContainerBackgroundColor: $white;
 $formElementsPanelHoverDropSectionLabelColor: $primaryTextColor;
 $taskResponsibleLinkColor: $black;
 $selectManyCheckboxLabelColor: #757575;
+$autocompleteMoreTextStateHighlightBackgroundColor: white;
 
 /*---------------------------------Font family and Font style----------------------------------------*/
 $portalFontFamily: "Roboto";
 $iconFontFamily: "FontAwesome";
-$menuListWidgetHeaderFontWeight: 600;
 
 /*---------------------------------Font weight----------------------------------------*/
+$menuListWidgetHeaderFontWeight: 600;
+
 /* Task Action Item */
 $taskActionItemLabelFontWeight: normal;
 
@@ -282,3 +284,9 @@ $chartInfoLabelFontWeight: bold;
 
 /* Filter selection form*/
 $userDefinedFilterContainerHoverFontWeight: bold;
+
+/* Express */
+$expressWorkflowActiveSwitchLabelFontWeight: 700;
+$expressReviewContentTitleFontWeight: 700;
+$expressFinishedTaskLabelFontWeight: 700;
+$expressActiveDefinedTaskButtonFontWeight: bold;
