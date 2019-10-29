@@ -46,9 +46,6 @@
   margin: auto 8px;
 }
 
-.express-work-flow label.switch-active {
-  font-weight: 700 !important;
-}
 
 .show-default-ui-icon {
   font-size: 1.5rem;
@@ -59,59 +56,6 @@
 	border: none;
 	text-align: left;
 	width: 100%;
-}
-
-.dynamic-task-panel-grid td:not (.dynamic-task-title-col ) {
-	border: none !important;
-}
-
-.dynamic-task-title-col {
-	border: none !important;
-	border-bottom: solid #dfdfdf !important;
-}
-
-.dynamic-task-panel-grid .ui-panelgrid-cell:not (.dynamic-task-title-col
-	) .ui-inputfield.ui-inputtext {
-	width: 30rem;
-}
-
-.dynamic-task-panel-grid .ui-panelgrid-cell:not (.dynamic-task-title-col
-	) .ui-selectonemenu {
-	width: 24.3rem;
-}
-
-.dynamic-task-panel-grid .ui-panelgrid-cell:not (.dynamic-task-title-col
-	) .ui-outputlabel {
-	margin-right: 50px;
-}
-
-.dynamic-task-panel-grid .merged-col .ui-widget.ui-spinner {
-	margin-right: 13.1rem;
-}
-
-@media ( max-width : 1365px) {
-	.dynamic-task-panel-grid .ui-panelgrid-cell:not (.dynamic-task-title-col
-		) .ui-inputfield.ui-inputtext {
-		width: 16rem;
-	}
-	.dynamic-task-panel-grid .ui-panelgrid-cell:not (.dynamic-task-title-col
-		) .ui-selectonemenu {
-		width: 10rem;
-		min-width: 10rem !important;
-	}
-	.dynamic-task-panel-grid .ui-panelgrid-cell:not (.dynamic-task-title-col
-		) .ui-outputlabel {
-		margin-right: 20px;
-	}
-	.dynamic-task-panel-grid .merged-col {
-		width: 100%;
-	}
-	.dynamic-task-panel-grid .merged-col .ui-inputfield.ui-spinner-input {
-		width: 16.2rem;
-	}
-	.dynamic-task-panel-grid .merged-col .ui-widget.ui-spinner {
-		margin-right: 0;
-	}
 }
 
 .dynamic-task-action-container {
@@ -133,7 +77,6 @@
 
 .ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-moretext.ui-state-highlight,
 .ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-moretext.ui-state-highlight td {
-	background-color: white !important;
 	cursor: default;
 }
 
@@ -246,12 +189,7 @@
 	text-overflow: ellipsis;
 }
 
-.defined-task-button-container:first-child .ui-widget.ui-button.defined-task-button:before {
-	width: 0;
-}
-
 .ui-widget.ui-button.defined-task-button.active {
-	font-weight: bold;
 	opacity: .8 !important;
 }
 
@@ -455,7 +393,6 @@ td.email-attachment-text {
 
 /* REVIEW FORM */
 .review-content-title {
-  font-weight: 700;
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
   margin-bottom: 10px;
   width: calc(100% - 28px);
@@ -472,7 +409,6 @@ td.email-attachment-text {
 .finished-task-label {
   margin-left: 16px;
   margin-bottom: 1em;
-  font-weight: 700;
 }
 
 .finished-task-fieldset legend {
@@ -734,10 +670,6 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
 	text-align: left !important;
 }
 
-.ui-widget.ui-dialog .ui-dialog-content {
-	font-size: 1.4rem;
-}
-
 /*end of info button popup*/
 .pe-dynaform-cell .ui-datalist-item {
 	margin-top: -5px !important;
@@ -813,8 +745,7 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
 }
 
 .task-responsible-link:after {
-  font-family: 'FontAwesome' !important;
-  content: " \f044";
+  content: "\f044";
   margin-left: 5px;
 }
 
