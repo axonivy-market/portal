@@ -241,8 +241,8 @@
       onclick="PF('destroy-case-dialog').hide();" type="button" styleClass="portal-cancel-button" />
   </p:confirmDialog>
 
-  <h:form>
-    <p:remoteCommand name="updateCaseCount" update="#{cc.clientId}:case-widget-title" global="false" process="@none" />
+  <h:form id="update-case-count-rc-form">
+    <p:remoteCommand id="update-case-count-remote-cmd" name="updateCaseCount" update="#{cc.clientId}:case-widget-title" global="false" process="@none" />
   </h:form>
 </cc:implementation>
 </html>
