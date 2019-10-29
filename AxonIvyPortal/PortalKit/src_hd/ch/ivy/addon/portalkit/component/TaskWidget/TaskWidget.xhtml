@@ -312,8 +312,8 @@
         Portal.init(responsiveToolkit);
       });
     </script>
-  <h:form>
-    <p:remoteCommand name="updateTaskCount" update="#{cc.clientId}:task-widget-title" global="false" process="@none" />
+  <h:form id="update-task-count-rc-form">
+    <p:remoteCommand id="update-task-count-remote-cmd" name="updateTaskCount" update="#{cc.clientId}:task-widget-title" global="false" process="@none" />
   </h:form>
 </cc:implementation>
 </html>
