@@ -3661,12 +3661,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   font-size: 16px;
 }
 
-.stages-chain .stage-icon {
-  width: 30px;
-  height: 30px;
-  font-size: 28px;
-}
-
 .stages-chain .process-flow {
   width: 45px;
   height: 50px;
@@ -4396,4 +4390,8 @@ span.ui-inputnumber.ui-widget.ui-state-error {
 
 .case-note-history-container {
   padding-bottom: 20px;
+}
+
+.filter-add-panel .ui-scrollpanel {
+  overflow: hidden !important;
 }
