@@ -5,15 +5,15 @@
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
 
 <ui:composition>
-  <div id="absence-panel-grid" class="ui-g absence-panel-grid">
+  <div id="absence-panel-grid" class="ui-fluid ui-g absence-panel-grid">
     <h:panelGroup layout="block" styleClass="ui-g-12" rendered="#{data.isSupervisor}">
       <div class="md-inputfield">
-        <p:autoComplete scrollHeight="200" dropdown="true" id="username" size="35" 
+        <p:autoComplete scrollHeight="200" dropdown="true" id="username" 
           completeMethod="#{logic.autoCompleteForUser}"
           value="#{data.selectedUser}"
           var="user" itemValue="#{user}" itemLabel="#{user.displayName}"
           converter="pojoConverter"
-          disabled="#{uneditedUserName eq 'false'}" required="true"
+          disabled="#{uneditedUserName ne 'false'}" required="true"
           cache="true" maxResults="100"
           requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/userNameRequired')}"
           moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
@@ -26,7 +26,7 @@
       </div>
     </h:panelGroup>
     
-    <div class="ui-g-6 ui-sm-12">
+    <div class="ui-g-5 ui-sm-12">
       <div class="md-inputfield">
         <p:calendar id="absence-start-date" value="#{data.selectedAbsence.from}" locale="#{localeBean.locale}"
           showOn="button"
@@ -39,7 +39,8 @@
         <h:outputLabel for="absence-start-date" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/from')}:" />
       </div>
     </div>
-    <div class="ui-g-6 ui-sm-12">
+    <div class="ui-g-2 ui-sm-hidden" />
+    <div class="ui-g-5 ui-sm-12">
       <div class="md-inputfield">
         <p:calendar id="absence-end-date" value="#{data.selectedAbsence.until}" showOn="button" locale="#{localeBean.locale}"
           converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}"

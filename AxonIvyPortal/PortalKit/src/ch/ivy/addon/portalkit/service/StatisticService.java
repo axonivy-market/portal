@@ -1014,7 +1014,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       Entry<String, Number> chartDataEntry = iterator.next();
       float floatValueOfChartData = chartDataEntry.getValue().floatValue()/3600;
 
-        chartDataEntry.setValue(floatValueOfChartData);
+      chartDataEntry.setValue(floatValueOfChartData);
     }
 
     return new HashMap<>(caseCategoryToElapsedTime);

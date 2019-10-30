@@ -62,8 +62,8 @@ $circleStepNumberColor: #212121;
 $menuItemHoverBackgroundColor: rgba(0, 0, 0, 0.15);
 
 /* Statistic chart panel header color */
-$statisticPanelHeader: rgba(0, 0, 0, 0.05);
-$statisticPanelHeaderBorder: #E2E2E2;
+$statisticPanelHeader: #FFFFFF;
+$statisticPanelHeaderBorder: #FFFFFF;
 $statisticPanelHeaderText: rgba(0,0,0,0.8);
 $menuItemHoverBackgroundColor: rgba(0, 0, 0, 0.15);
 
@@ -145,6 +145,7 @@ $taskWidgetSortMenuLinkColor: rgba(0,0,0,0.6);
 $taskWidgetSortMenuLinkIsSelectedColor: rgba(0,0,0,1);
 $taskWidgetOverlayPanelContentBackgroundColor: $white;
 $taskWidgetLinkColor: $black;
+$taskActionHoverBackgroundColor: #F5F5F5;
 
 /* Case Detail*/
 $caseRelatedTaskColor: $primaryTextColor;

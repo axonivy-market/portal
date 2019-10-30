@@ -61,10 +61,12 @@
             </c:if>
             <h:panelGroup layout="block" id="step-count-container-#{counter.index}"
               styleClass="#{isDirectionHorizontal ? 'circle-horizontal-step-container' : 'circle-vertical-step-container'} cicrle-step-container">
-              <span>#{counter.index + 1}</span>
+              <div class="step-number-container">
+                <h:outputText value="#{counter.index + 1}" />
+              </div>
             </h:panelGroup>
             <c:if test="#{!isDirectionHorizontal}">
-              <span class="circle-vertical-step-title">${stepName}</span>
+              <h:outputText styleClass="circle-vertical-step-title" value="${stepName}" />
             </c:if>
           </h:panelGroup>
         </c:if>
@@ -99,7 +101,8 @@
       </c:forEach>
     </h:panelGroup>
 
-    <h:panelGroup styleClass="ui-lg-hidden ui-xl-hidden process-chain-mobile-container" rendered="#{cc.attrs.steps ne null and not empty cc.attrs.steps}">
+    <h:panelGroup styleClass="ui-lg-hidden ui-xl-hidden process-chain-mobile-container" 
+      rendered="#{not empty cc.attrs.steps}">
       <c:set var="currentIndex" value="#{cc.attrs.actualStepIndex}" />
       <c:set var="stepSize" value="#{cc.attrs.steps.size()}" />
       <c:set var="stepName" value="#{cc.attrs.steps.get(currentIndex)}" />
@@ -111,7 +114,9 @@
           <h:outputText value="${stepName}" styleClass="circle-horizontal-step-title ui-sm-hidden" />
           <h:panelGroup layout="block" id="step-count-mobile-container-#{currentIndex}"
             styleClass="circle-horizontal-step-container #{isHideLeftSteps ? '':'left-steps'} #{isHideRightSteps ? '':'right-steps'} cicrle-step-container">
-            <span>#{currentIndex}</span>
+            <div class="step-number-container">
+              <h:outputText value="#{currentIndex}" />
+            </div>
           </h:panelGroup>
         </h:panelGroup>
       </c:if>
