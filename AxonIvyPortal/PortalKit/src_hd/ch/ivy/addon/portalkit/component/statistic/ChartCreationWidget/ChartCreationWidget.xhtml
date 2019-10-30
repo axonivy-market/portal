@@ -163,12 +163,15 @@
     <c:if test="#{data == null or data.isAllowedToCreateChart}">
       <h:form id="add-statistic-form">
 
-        <p:message id="chart-name-input-message" for="chart-name-input" />
-        <h:panelGroup styleClass="md-inputfield add-statistic-panel ui-fluid">
-
-          <p:inputText id="chart-name-input" value="#{data.chartName}" required="true" />
-          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" for="chart-name-input" />
-        </h:panelGroup>
+        <h:panelGrid columns="1" styleClass="ui-g-12">
+          <p:messages for="chart-name-input">
+            <p:autoUpdate />
+          </p:messages>
+          <h:panelGroup styleClass="md-inputfield add-statistic-panel ui-fluid">
+            <p:inputText id="chart-name-input" value="#{data.chartName}" required="true" />
+            <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" for="chart-name-input" />
+          </h:panelGroup>
+        </h:panelGrid>
 
         <h:panelGroup layout="block" class="u-dialog-footer ui-dialog-footer">
           <p:commandButton id="chart-save-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" process="add-statistic-form"
