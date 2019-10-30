@@ -1,9 +1,17 @@
 package portal.guitest.test;
 
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertTrue;
+
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
@@ -11,10 +19,6 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.ProcessWidgetPage.AddNewProcessDialog;
-
-import com.jayway.awaitility.Awaitility;
-import com.jayway.awaitility.Duration;
-
 public class ProcessWidgetTest extends BaseTest {
 
   private static final String CLEAN_ALL_FAVORITE_PROCESSES = "(For autotest) Clean all favorite processes";
@@ -53,7 +57,7 @@ public class ProcessWidgetTest extends BaseTest {
     assertTrue(processWidget.isCompactMode());
     processWidget.expand();
     assertTrue(processWidget.isExpandedMode());
-    assertNotEquals(processWidget.getProcess(CASE_MAP_LEAVES), null);
+    assertNotNull(processWidget.getProcess(CASE_MAP_LEAVES));
   }
 
   @Test
@@ -162,7 +166,7 @@ public class ProcessWidgetTest extends BaseTest {
     AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
     addNewProcessDialog.selectIvyProcessByName(CLEAN_ALL_FAVORITE_PROCESSES);
     addNewProcessDialog.submitForm();
-    assertNotEquals(processWidget.getProcess(CLEAN_ALL_FAVORITE_PROCESSES), null);
+    assertNotNull(processWidget.getProcess(CLEAN_ALL_FAVORITE_PROCESSES));
   }
 
   @Test
@@ -179,7 +183,7 @@ public class ProcessWidgetTest extends BaseTest {
     AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
     addNewProcessDialog.selectIvyProcessByName(CASE_MAP_LEAVES);
     addNewProcessDialog.submitForm();
-    assertNotEquals(processWidget.getProcess(CASE_MAP_LEAVES), null);
+    assertNotNull(processWidget.getProcess(CASE_MAP_LEAVES));
   }
 
   @Test
