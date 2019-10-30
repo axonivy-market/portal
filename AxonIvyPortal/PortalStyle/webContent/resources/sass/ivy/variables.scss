@@ -45,6 +45,7 @@ $taskStateSystemColor: rgba(0,0,0,0.4);
 $actionButtonColor: $primaryColor;
 $cancelButtonBackgroundColor: #D3D3D3;
 $actionButtonBorderRadius:0px;
+$actionButtonHoverBackgroundColor: rgba(0, 0, 0, 0.05);
 
 /*Color and border radius of context button, 
 it only affects when button has attribute styleClass="context-button"*/
@@ -55,7 +56,8 @@ $contextButtonBorderRadius:$actionButtonBorderRadius;
 $announcementBackgroundColor: #ffff80;
 $announcementBorderColor: $red;
 
-/*Circle process chain number step color*/
+/*Process chain */
+$lineWaitingStepBackgroundColor: #E0E0E0;
 $circleStepNumberColor: #212121;
 
 /* Menu color */
@@ -67,16 +69,6 @@ $statisticPanelHeaderBorder: #FFFFFF;
 $statisticPanelHeaderText: rgba(0,0,0,0.8);
 $menuItemHoverBackgroundColor: rgba(0, 0, 0, 0.15);
 
-/* Font Size */
-$defaultFontSize: 10px;
-$largeFontSize: 1.4rem; // font size for header,title, groups, menu
-$smallFontSize: 1.2rem; // font size for text, label, input
-$selectCheckboxMenuIconFontSize: 1.8rem;
-$chartNameFontSize: 1.6rem;
-$dashboardChartNameFontSize: 2rem;
-$chartFilterHeaderFontSize: 1.8rem;
-$chartContainerAddLinkFontSize: 1.3rem;
-
 /* Table color */
 $dataTableRowBackgroundColorEven: rgba(255, 255, 255, 1);
 $dataTableRowBackgroundColorOdd: rgba(247, 247, 247, 1);
@@ -86,13 +78,14 @@ $dataTableRowHeaderBgColor: rgba(236,236,236,1);
 /* Fieldset */
 $fieldSetTogglerColor: $primaryTextColor;
 $fieldSetLegendHoverColor: $white; 
+$fieldSetTogglerBackgroundColor: #eee;
 
 $widgetHeaderMainMenuColor: rgba(0,0,0,0.4);
 
-/* Submenu Item*/
+/* Submenu Item */
 $subMenuItemBackgroundColor: rgba(255, 255, 255, 0.6);
 
-/* Filter Widget**/
+/* Filter Widget */
 $filterWidgetInputColor: rgba(0,0,0,0.5);
 $advancedFilterWidgetBackgroundColor: rgba(0,0,0,0.04);
 $advancedFilterRemoveIconColor: rgba(0,0,0,0.3);
@@ -152,33 +145,38 @@ $caseRelatedTaskColor: $primaryTextColor;
 $caseRelatedTaskHoverColor: rgba(0,0,0,0.6);
 $caseAdditionalDetailLinkColor: rgba(0,0,0,0.5);
 $caseNoteShowMoreLinkColor: rgba(0, 0, 0, 0.5);
+$caseDetailCornerTopBackgroundColor: rgba(0,0,0,0.05);
+$caseDetailPaginatorColor: $primaryTextColor; 
+$caseDetailPaginatorBackgroundColor: rgba(0,0,0,0.05);
 
-/*Process chain */
-$lineWaitingStepBackgroundColor: #E0E0E0;
-
+/* Task Detail */
+$taskDetailCornerTopBackgroundColor: rgba(0,0,0,0.05);
+$taskDetailPaginatorColor: $primaryTextColor; 
+$taskDetailPaginatorBackgroundColor: rgba(0,0,0,0.05);
 
 /* Admin Setting */
 $adminSettingNoPermissionMessageColor: #E53935;
 $userSettingContainerLinkColor: rgba(0, 0, 0, 0.6);
 $userSettingContainerLinkHoverColor: rgba(0, 0, 0, 1);
+$emailSettingWidgetHeader: $black;
 
 /* Absences and Debuty */
 $substitutedUserTextColor: #757575;
 
-/*Awesome Icon Selection */
+/* Awesome Icon Selection */
 $linkChangeAwesomeIconColor: rgba(0, 0, 0, 1);
 $contentLinkChangeAwesomeIconColor: #337ab7;
 
-/*Chart */
+/* Chart */
 $chartFilterInfoIconColor: rgba(0, 0, 0, 0.75);
 $chartInfoHeaderColor: #656565;
 
-/*Start Notification */
+/* Start Notification */
 $notificationContentBackgroundColor: rgb(230, 113, 99);
 $notificationContentActionColor: $white;
 $notificationContentActionHoverBackgroundColor: $black;
 
-/*Login */
+/* Login */
 $loginPanelHeaderBackgroundColor: #F0F0F0;
 
 /* Stages breadcrumb */
@@ -202,7 +200,7 @@ $errorContainerColor: #546E7A;
 $errorMessageBackgroundColor: $white;
 $errorMessageHeaderColor: #E67163;
 
-/*SelectCheckbox */
+/* SelectCheckbox */
 $selectCheckBoxCloseHoverColor: $white;
  
 /* Command Link*/
@@ -231,6 +229,46 @@ $formElementsPanelHoverDropSectionLabelColor: $primaryTextColor;
 $taskResponsibleLinkColor: $black;
 $selectManyCheckboxLabelColor: #757575;
 $autocompleteMoreTextStateHighlightBackgroundColor: white;
+
+/* Chat */
+$chatPanelBackgroundColor: $black;
+$noGroupChatColor: $white;
+$contactCardHoverBackgroundColor: $grey;
+$contactCardIconColor: #b2b2b2;
+$contactCardBackgroundColor: $white;
+$contactCardIconUnreadMessageColor: $white;
+$contactCardIconUnreadMessageBackgroundColor: #FF6D6E;
+$contactCardNameColor: $white;
+$contactCardStatusBackgroundColor: #64D864;
+$contactNotificationColor: $white;
+$contactNotificationBackgroundColor: $red;
+$messageListBackgroundColor: $white;
+$messageListHeaderBackgroundColor: #838383;
+$messageListHeaderCloseIconHoverBackgroundColor: #9b9b9b;
+$messageListHeaderCloseIconBackgroundColor: #b2b2b2;
+$chatMessageBackgroundColor: #F3F6F9;
+$chatMyMessageBackgroundColor: #DEF4FD;
+$messageChatHeaderNameColor: $white;
+$showParticipantsLinkColor: $white;
+$chatFormBackgroundColor: #F5F5F5;
+$notificationBadgeBackgroundColor: rgb(255, 109, 110);
+$notificationBadgeColor: $white;
+$chatContactTypeHeaderColor: $white;
+$chatTooltipColor: $white;
+$chatTooltipBackgroundColor: $black;
+$participantsListHeaderColor: $black;
+
+/*---------------------------------Font size----------------------------------------*/
+$defaultFontSize: 10px;
+$largeFontSize: 1.4rem; // font size for header,title, groups, menu
+$smallFontSize: 1.2rem; // font size for text, label, input
+$selectCheckboxMenuIconFontSize: 1.8rem;
+$chartNameFontSize: 1.6rem;
+$dashboardChartNameFontSize: 2rem;
+$chartFilterHeaderFontSize: 1.8rem;
+$chartContainerAddLinkFontSize: 1.3rem;
+$chatContactTypeHeaderFontSize: 1.8rem;
+$bodyDialogTitleFontSize: 1.9rem;
 
 /*---------------------------------Font family and Font style----------------------------------------*/
 $defaultFontFamily: "Roboto";
@@ -302,30 +340,3 @@ $participantsListHeaderFontWeight: bold;
 $messageChatHeaderNameFontWeight: 600;
 $userDefinedFilterContainerHoverFontWeight: bold;
 
-$chatContactTypeHeaderFontSize: 1.8rem;
-$chatPanelBackgroundColor: $black;
-$noGroupChatColor: $white;
-$contactCardHoverBackgroundColor: $grey;
-$contactCardIconColor: #b2b2b2;
-$contactCardBackgroundColor: $white;
-$contactCardIconUnreadMessageColor: $white;
-$contactCardIconUnreadMessageBackgroundColor: #FF6D6E;
-$contactCardNameColor: $white;
-$contactCardStatusBackgroundColor: #64D864;
-$contactNotificationColor: $white;
-$contactNotificationBackgroundColor: $red;
-$messageListBackgroundColor: $white;
-$messageListHeaderBackgroundColor: #838383;
-$messageListHeaderCloseIconHoverBackgroundColor: #9b9b9b;
-$messageListHeaderCloseIconBackgroundColor: #b2b2b2;
-$chatMessageBackgroundColor: #F3F6F9;
-$chatMyMessageBackgroundColor: #DEF4FD;
-$messageChatHeaderNameColor: $white;
-$showParticipantsLinkColor: $white;
-$chatFormBackgroundColor: #F5F5F5;
-$notificationBadgeBackgroundColor: rgb(255, 109, 110);
-$notificationBadgeColor: $white;
-$chatContactTypeHeaderColor: $white;
-$chatTooltipColor: $white;
-$chatTooltipBackgroundColor: $black;
-$participantsListHeaderColor: $black;
