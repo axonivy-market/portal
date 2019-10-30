@@ -22,7 +22,7 @@ import portal.guitest.common.UrlHelpers;
 
 public abstract class TemplatePage extends AbstractPage {
 
-  private static final String TEMPLATE_PAGE_LOCATOR = "id('user-menu-required-login:logo')";
+  private static final String TEMPLATE_PAGE_LOCATOR = "id('global-search-component:global-search-data')";
   public static final String CLASS_PROPERTY = "class";
   protected static final String ENGINE_URL_LOCAL = "http://localhost:8081/ivy";
 
@@ -240,7 +240,7 @@ public abstract class TemplatePage extends AbstractPage {
     if (isMainMenuOpen()) {
       click(By.cssSelector("a[id$='toggle-menu']"));
       click(By.id("top-menu"));
-      waitForPageLoaded(2);
+      waitForElementDisplayed(By.cssSelector("a[id$='logo-small']"), true);
     }
   }
 

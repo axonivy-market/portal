@@ -43,7 +43,8 @@ public class MenuTest extends BaseTest {
     dashboardPage.waitForPageLoaded();
 
     dashboardPage.closeMainMenu();
-    homePage = dashboardPage.goToHomePage();
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    homePage = new HomePage();
     assertFalse(homePage.isMainMenuOpen());
   }
 }

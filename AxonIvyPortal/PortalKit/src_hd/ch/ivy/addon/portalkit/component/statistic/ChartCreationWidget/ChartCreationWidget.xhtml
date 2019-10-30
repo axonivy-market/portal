@@ -13,31 +13,27 @@
     <p:remoteCommand id="init-filter-command" name="initFilter" autoRun="true" update="statistic-filter" global="false"
       action="#{statisticChartCreationBean.updateFilters(data.statisticFilter, data.oldStatisticFilter)}" oncomplete="updateChartModels();" />
 
-    <!-- updateChartModels function will update charts by the schedule such as updateTaskByPriorityModel(), updateCaseByStateModel(), updateTaskByExpiryModel(), updateElapsedTimeByCaseCategory(), updateCaseByFinishedTaskModel() and updateCaseByFinishedTimeModel()
-         Then call updateChartList() to update Creation form by updateCaseByFinishedTimeModel() itself.
-         Note: If we update any specific chart, please call updateChartList() after complete.
+    <!-- updateChartModels function will update charts by the schedule such as updateTaskByPriorityModel(), updateCaseByStateModel(),
+         updateTaskByExpiryModel(), updateElapsedTimeByCaseCategory(), updateCaseByFinishedTaskModel() and updateCaseByFinishedTimeModel()
     -->
     <p:remoteCommand id="update-chart-models-command" name="updateChartModels" global="false" process="@this"
       oncomplete="updateTaskByPriorityModel(); updateCaseByStateModel(); updateTaskByExpiryModel(); updateElapsedTimeByCaseCategory(); updateCaseByFinishedTaskModel(); updateCaseByFinishedTimeModel();" />
     <!-- For clean up data of charts inside Creation form -->
     <p:remoteCommand id="clear-chart-models-command" name="clearChartModels" global="false" process="@this"
-      action="#{statisticChartCreationBean.clearChartModels()}" />
+      action="#{statisticChartCreationBean.clearChartModels()}" update="chart-list" />
 
     <p:remoteCommand id="update-task-by-priority-model-command" name="updateTaskByPriorityModel" process="@this"
-      action="#{statisticChartCreationBean.updateTaskByPriorityModel(data.statisticFilter)}" global="false" />
+      action="#{statisticChartCreationBean.updateTaskByPriorityModel(data.statisticFilter)}" global="false" update="task-by-priority-chart"/>
     <p:remoteCommand id="update-case-by-state-model-command" name="updateCaseByStateModel" process="@this"
-      action="#{statisticChartCreationBean.updateCaseByStateModel(data.statisticFilter)}" global="false" />
+      action="#{statisticChartCreationBean.updateCaseByStateModel(data.statisticFilter)}" global="false" update="case-by-state-chart"/>
     <p:remoteCommand id="update-task-by-expiry-model-command" name="updateTaskByExpiryModel" process="@this"
-      action="#{statisticChartCreationBean.updateTaskByExpiryModel(data.statisticFilter)}" global="false" />
+      action="#{statisticChartCreationBean.updateTaskByExpiryModel(data.statisticFilter)}" global="false" update="task-by-expiry-chart"/>
     <p:remoteCommand id="update-elapsed-time-by-case-category-command" name="updateElapsedTimeByCaseCategory" process="@this"
-      action="#{statisticChartCreationBean.updateElapsedTimeByCaseCategory(data.statisticFilter)}" global="false" />
+      action="#{statisticChartCreationBean.updateElapsedTimeByCaseCategory(data.statisticFilter)}" global="false" update="elapsed-time-by-case-category" />
     <p:remoteCommand id="update-case-by-finished-task-model-command" name="updateCaseByFinishedTaskModel" process="@this"
-      action="#{statisticChartCreationBean.updateCaseByFinishedTaskModel(data.statisticFilter)}" global="false" />
+      action="#{statisticChartCreationBean.updateCaseByFinishedTaskModel(data.statisticFilter)}" global="false" update="case-by-finished-task-chart" />
     <p:remoteCommand id="update-case-by-finished-time-model-command" name="updateCaseByFinishedTimeModel" process="@this"
-      action="#{statisticChartCreationBean.updateCaseByFinishedTimeModel(data.statisticFilter)}" global="false" oncomplete="updateChartList();" />
-
-    <!-- updateChartList will update  chart-list panel, needed if we want to show data of chart after updated data -->
-    <p:remoteCommand name="updateChartList" update="chart-list" />
+      action="#{statisticChartCreationBean.updateCaseByFinishedTimeModel(data.statisticFilter)}" global="false" update="case-by-finished-time-chart"/>
 
     <p:growl globalOnly="true" showDetail="true" showSummary="true">
       <p:autoUpdate />
@@ -46,9 +42,8 @@
     <h:panelGroup id="edit-statistic-container" styleClass="edit-statistic-container ui-g-12 u-padding-0">
       <h:panelGroup id="chart-list" layout="block" styleClass="chart-list ui-g">
         <c:set var="taskByPriorityModel" value="#{statisticChartCreationBean.taskByPriorityModel}" />
-        <h:panelGroup id="task-by-priority-chart" layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12"
-          rendered="#{taskByPriorityModel ne null}">
-          <div class="card ui-g-12 chart-container ">
+        <h:panelGroup id="task-by-priority-chart" layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12">
+          <div class="card ui-g-12 chart-container">
             <div class="ui-g-12">
               <p:outputLabel id="task-by-priority-label" styleClass="label"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}" />
@@ -58,15 +53,14 @@
                   listener="#{logic.updateBeforeAddTaskByPriority}" oncomplete="PF('add-chart-dialog').show();" />
               </p:commandLink>
             </div>
-            <div class="ui-g-12">
+            <h:panelGroup styleClass="ui-g-12" layout="block">
               <p:donutChart model="#{taskByPriorityModel}" styleClass="statistic-chart" style="width: 100%; height: 300px;" />
-            </div>
+            </h:panelGroup>
           </div>
         </h:panelGroup>
 
         <c:set var="caseByStateModel" value="#{statisticChartCreationBean.caseByStateModel}" />
-        <h:panelGroup id="case-by-state-chart" layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12"
-          rendered="#{caseByStateModel ne null}">
+        <h:panelGroup id="case-by-state-chart" layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12">
           <div class="card ui-g-12 chart-container">
             <div class="ui-g-12">
               <p:outputLabel id="case-by-state-label" styleClass="label"
@@ -77,15 +71,14 @@
                   listener="#{logic.updateBeforeAddCaseByState}" oncomplete="PF('add-chart-dialog').show();" />
               </p:commandLink>
             </div>
-            <div class="ui-g-12">
+            <h:panelGroup styleClass="ui-g-12" layout="block">
               <p:donutChart model="#{caseByStateModel}" styleClass="statistic-chart" style="width: 100%; height: 300px;" />
-            </div>
+            </h:panelGroup>
           </div>
         </h:panelGroup>
 
         <c:set var="taskByExpiryModel" value="#{statisticChartCreationBean.taskByExpiryModel}" />
-        <h:panelGroup id="task-by-expiry-chart" layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12"
-          rendered="#{taskByExpiryModel ne null}">
+        <h:panelGroup id="task-by-expiry-chart" layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12">
           <div class="card ui-g-12 chart-container">
             <div class="ui-g-12">
               <p:outputLabel id="task-by-expiry-label" styleClass="label"
@@ -96,15 +89,14 @@
                   listener="#{logic.updateBeforeAddTaskByExpiry}" oncomplete="PF('add-chart-dialog').show();" />
               </p:commandLink>
             </div>
-            <div class="ui-g-12">
+            <h:panelGroup styleClass="ui-g-12" layout="block">
               <p:barChart model="#{taskByExpiryModel}" styleClass="statistic-chart" style="width: 100%; height: 320px;" />
-            </div>
+            </h:panelGroup>
           </div>
         </h:panelGroup>
 
         <c:set var="elapsedTimeModel" value="#{statisticChartCreationBean.elapsedTimeModel}" />
-        <h:panelGroup id="elapsed-time-by-case-category" layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12"
-          rendered="#{elapsedTimeModel ne null}">
+        <h:panelGroup id="elapsed-time-by-case-category" layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12">
           <div class="card ui-g-12 chart-container">
             <div class="ui-g-12">
               <p:outputLabel id="elapsed-time-by-case-category-label" styleClass="label"
@@ -115,15 +107,14 @@
                   listener="#{logic.updateBeforeAddElapsedTime}" oncomplete="PF('add-chart-dialog').show();" />
               </p:commandLink>
             </div>
-            <div class="ui-g-12">
+            <h:panelGroup styleClass="ui-g-12" layout="block">
               <p:barChart model="#{elapsedTimeModel}" styleClass="statistic-chart" style="width: 100%; height: 340px;" />
-            </div>
+            </h:panelGroup>
           </div>
         </h:panelGroup>
 
         <c:set var="caseByFinishedTaskModel" value="#{statisticChartCreationBean.caseByFinishedTaskModel}" />
-        <h:panelGroup id="case-by-finished-task-chart" layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12"
-          rendered="#{caseByFinishedTaskModel ne null}">
+        <h:panelGroup id="case-by-finished-task-chart" layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12">
           <div class="card ui-g-12 chart-container">
             <div class="ui-g-12">
               <p:outputLabel id="case-by-finished-task-label" styleClass="label"
@@ -134,15 +125,14 @@
                   listener="#{logic.updateBeforeAddCaseByFinishedTask}" oncomplete="PF('add-chart-dialog').show();" />
               </p:commandLink>
             </div>
-            <div class="ui-g-12">
+            <h:panelGroup styleClass="ui-g-12" layout="block">
               <p:donutChart model="#{caseByFinishedTaskModel}" styleClass="statistic-chart" style="width: 100%; height: 300px;" />
-            </div>
+            </h:panelGroup>
           </div>
         </h:panelGroup>
 
         <c:set var="caseByFinishedTimeModel" value="#{statisticChartCreationBean.caseByFinishedTimeModel}" />
-        <h:panelGroup id="case-by-finished-time-chart" layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12"
-          rendered="#{caseByFinishedTimeModel ne null}">
+        <h:panelGroup id="case-by-finished-time-chart" layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12">
           <div class="card ui-g-12 chart-container">
             <div class="ui-g-12">
               <p:outputLabel id="case-by-finished-time-label" styleClass="label"
@@ -153,9 +143,9 @@
                   listener="#{logic.updateBeforeAddCaseByFinishedTime}" oncomplete="PF('add-chart-dialog').show();" />
               </p:commandLink>
             </div>
-            <div class="ui-g-12">
+            <h:panelGroup styleClass="ui-g-12" layout="block">
               <p:donutChart model="#{caseByFinishedTimeModel}" styleClass="statistic-chart" style="width: 100%; height: 300px;" />
-            </div>
+            </h:panelGroup>
           </div>
         </h:panelGroup>
       </h:panelGroup>
@@ -169,7 +159,7 @@
 
   <p:dialog id="add-chart-dialog" widgetVar="add-chart-dialog" styleClass="add-chart-dialog"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/addChartDialogHeader')}" modal="true" closeOnEscape="true" width="auto"
-    resizable="false">
+    resizable="false" appendTo="@(body)">
     <c:if test="#{data == null or data.isAllowedToCreateChart}">
       <h:form id="add-statistic-form">
 
