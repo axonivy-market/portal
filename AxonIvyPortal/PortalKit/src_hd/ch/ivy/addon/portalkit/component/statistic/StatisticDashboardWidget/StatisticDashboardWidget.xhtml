@@ -122,17 +122,8 @@
     </h:panelGroup>
 
     <!-- Statistics Chart for home page -->
-    <ui:include src="StatisticCarousel.xhtml" />
-
-    <h:panelGroup id="statistic-widget-empty-state" styleClass="card statistic-widget-empty-message #{!cc.attrs.compactMode ? 'not-compact-mode': ''}"
-      layout="block" rendered="#{!data.hasStatistic and !cc.attrs.isDrilldownElapsedTime}">
-      <h:panelGroup layout="block" rendered="#{empty cc.facets.emptyDataPlace}" styleClass="ui-g">
-        <h:outputText styleClass="ui-g-12 statistic-empty-header"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/statisticCarousel')}" />
-        <h:outputText escape="false" styleClass="ui-g-12 statistic-empty-message"
-          value="#{data.isFinishLoadCharts ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/emptystate/defaultEmptyMessages') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/loadingCharts')}" />
-      </h:panelGroup>
-      <cc:renderFacet name="emptyDataPlace" />
+    <h:panelGroup id="statistic-carousel-container">
+      <ui:include src="StatisticCarousel.xhtml" />
     </h:panelGroup>
 
     <h:panelGroup id="elapsed-time-details" layout="block" rendered="#{cc.attrs.isDrilldownElapsedTime}" styleClass="statistic-dashboard-expand-mode">
@@ -142,8 +133,9 @@
   </h:panelGroup>
 
   <h:form id="statistic-form" styleClass="u-hidden">
-    <p:remoteCommand id="init-chart-command" name="initCharts" autoRun="true" update="@([id$='statistic-container'])"
+    <p:remoteCommand id="init-chart-command" name="initCharts" autoRun="true" update="@([id$='statistic-carousel-container'])"
       rendered="#{cc.attrs.compactMode}" action="#{logic.initializeCompactMode}" async="true" />
+    <p:remoteCommand name="updateStatisticCarousel" update="@([id$='statistic-carousel-container'])" global="false"/>
   </h:form>
 
   <p:confirmDialog id="delete-confirmation-dialog"

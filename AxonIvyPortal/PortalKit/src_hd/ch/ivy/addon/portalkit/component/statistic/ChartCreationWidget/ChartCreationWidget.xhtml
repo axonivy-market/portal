@@ -53,12 +53,8 @@
                   listener="#{logic.updateBeforeAddTaskByPriority}" oncomplete="PF('add-chart-dialog').show();" />
               </p:commandLink>
             </div>
-            <h:panelGroup styleClass="ui-g-12" layout="block" rendered="#{taskByPriorityModel ne null}">
+            <h:panelGroup styleClass="ui-g-12" layout="block">
               <p:donutChart model="#{taskByPriorityModel}" styleClass="statistic-chart" style="width: 100%; height: 300px;" />
-            </h:panelGroup>
-            <h:panelGroup styleClass="ui-g-12 statistic-loading-message" layout="block" rendered="#{taskByPriorityModel eq null}">
-              <h:outputText escape="false" 
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/loadingCharts')}" />
             </h:panelGroup>
           </div>
         </h:panelGroup>
@@ -75,12 +71,8 @@
                   listener="#{logic.updateBeforeAddCaseByState}" oncomplete="PF('add-chart-dialog').show();" />
               </p:commandLink>
             </div>
-            <h:panelGroup styleClass="ui-g-12" rendered="#{caseByStateModel ne null}" layout="block">
+            <h:panelGroup styleClass="ui-g-12" layout="block">
               <p:donutChart model="#{caseByStateModel}" styleClass="statistic-chart" style="width: 100%; height: 300px;" />
-            </h:panelGroup>
-            <h:panelGroup styleClass="ui-g-12 statistic-loading-message" layout="block" rendered="#{caseByStateModel eq null}">
-              <h:outputText escape="false" 
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/loadingCharts')}" />
             </h:panelGroup>
           </div>
         </h:panelGroup>
@@ -97,12 +89,8 @@
                   listener="#{logic.updateBeforeAddTaskByExpiry}" oncomplete="PF('add-chart-dialog').show();" />
               </p:commandLink>
             </div>
-            <h:panelGroup styleClass="ui-g-12" layout="block" rendered="#{taskByExpiryModel ne null}">
+            <h:panelGroup styleClass="ui-g-12" layout="block">
               <p:barChart model="#{taskByExpiryModel}" styleClass="statistic-chart" style="width: 100%; height: 320px;" />
-            </h:panelGroup>
-            <h:panelGroup styleClass="ui-g-12 statistic-loading-message" layout="block" rendered="#{taskByExpiryModel eq null}">
-              <h:outputText escape="false" 
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/loadingCharts')}" />
             </h:panelGroup>
           </div>
         </h:panelGroup>
@@ -119,12 +107,8 @@
                   listener="#{logic.updateBeforeAddElapsedTime}" oncomplete="PF('add-chart-dialog').show();" />
               </p:commandLink>
             </div>
-            <h:panelGroup styleClass="ui-g-12" layout="block" rendered="#{elapsedTimeModel ne null}">
+            <h:panelGroup styleClass="ui-g-12" layout="block">
               <p:barChart model="#{elapsedTimeModel}" styleClass="statistic-chart" style="width: 100%; height: 340px;" />
-            </h:panelGroup>
-            <h:panelGroup styleClass="ui-g-12 statistic-loading-message" layout="block" rendered="#{elapsedTimeModel eq null}">
-              <h:outputText escape="false" 
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/loadingCharts')}" />
             </h:panelGroup>
           </div>
         </h:panelGroup>
@@ -141,12 +125,8 @@
                   listener="#{logic.updateBeforeAddCaseByFinishedTask}" oncomplete="PF('add-chart-dialog').show();" />
               </p:commandLink>
             </div>
-            <h:panelGroup styleClass="ui-g-12" layout="block" rendered="#{caseByFinishedTaskModel ne null}">
+            <h:panelGroup styleClass="ui-g-12" layout="block">
               <p:donutChart model="#{caseByFinishedTaskModel}" styleClass="statistic-chart" style="width: 100%; height: 300px;" />
-            </h:panelGroup>
-            <h:panelGroup styleClass="ui-g-12 statistic-loading-message" layout="block" rendered="#{caseByFinishedTaskModel eq null}">
-              <h:outputText escape="false" 
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/loadingCharts')}" />
             </h:panelGroup>
           </div>
         </h:panelGroup>
@@ -163,12 +143,8 @@
                   listener="#{logic.updateBeforeAddCaseByFinishedTime}" oncomplete="PF('add-chart-dialog').show();" />
               </p:commandLink>
             </div>
-            <h:panelGroup styleClass="ui-g-12" layout="block" rendered="#{caseByFinishedTimeModel ne null}">
+            <h:panelGroup styleClass="ui-g-12" layout="block">
               <p:donutChart model="#{caseByFinishedTimeModel}" styleClass="statistic-chart" style="width: 100%; height: 300px;" />
-            </h:panelGroup>
-            <h:panelGroup class="ui-g-12 statistic-loading-message" layout="block" rendered="#{caseByFinishedTimeModel eq null}">
-              <h:outputText escape="false" 
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/loadingCharts')}" />
             </h:panelGroup>
           </div>
         </h:panelGroup>
