@@ -41,96 +41,21 @@
 /* Express switch button */
 .express-work-flow .express-input-switch-selection,
 .ui-inputswitch.ui-widget.ui-widget-content.express-input-switch-selection.ui-inputswitch-checked {
-  background-color: #c7d426;
   border-color: #DCF91F;
   top: 3px;
   margin: auto 8px;
 }
 
-.express-input-switch-selection .ui-inputswitch.ui-inputswitch-checked .ui-inputswitch-handle, .express-input-switch-selection .ui-inputswitch-handle.ui-state-default {
-  background-color: #ffffff !important;
-} 
-
-.express-work-flow label.switch-active {
-  font-weight: 700 !important;
-}
 
 .show-default-ui-icon {
-  color: black !important;
   font-size: 1.5rem;
   margin-left: 4px;
-}
-
-.task-panel-container {
-	text-align: center;
-	vertical-align: middle;
-}
-
-.task-responsible-label.ui-state-error {
-  color: #e62a10 !important;
 }
 
 .dynamic-task-panel-grid {
 	border: none;
 	text-align: left;
 	width: 100%;
-}
-
-.dynamic-task-panel-grid td:not (.dynamic-task-title-col ) {
-	border: none !important;
-}
-
-.dynamic-task-title-col {
-	border: none !important;
-	border-bottom: solid #dfdfdf !important;
-}
-
-.dynamic-task-arrow {
-	padding-top: 15px !important;
-}
-
-.dynamic-task-panel-grid .ui-panelgrid-cell:not (.dynamic-task-title-col
-	) .ui-inputfield.ui-inputtext {
-	width: 30rem;
-}
-
-.dynamic-task-panel-grid .ui-panelgrid-cell:not (.dynamic-task-title-col
-	) .ui-selectonemenu {
-	width: 24.3rem;
-}
-
-.dynamic-task-panel-grid .ui-panelgrid-cell:not (.dynamic-task-title-col
-	) .ui-outputlabel {
-	margin-right: 50px;
-}
-
-.dynamic-task-panel-grid .merged-col .ui-widget.ui-spinner {
-	margin-right: 13.1rem;
-}
-
-@media ( max-width : 1365px) {
-	.dynamic-task-panel-grid .ui-panelgrid-cell:not (.dynamic-task-title-col
-		) .ui-inputfield.ui-inputtext {
-		width: 16rem;
-	}
-	.dynamic-task-panel-grid .ui-panelgrid-cell:not (.dynamic-task-title-col
-		) .ui-selectonemenu {
-		width: 10rem;
-		min-width: 10rem !important;
-	}
-	.dynamic-task-panel-grid .ui-panelgrid-cell:not (.dynamic-task-title-col
-		) .ui-outputlabel {
-		margin-right: 20px;
-	}
-	.dynamic-task-panel-grid .merged-col {
-		width: 100%;
-	}
-	.dynamic-task-panel-grid .merged-col .ui-inputfield.ui-spinner-input {
-		width: 16.2rem;
-	}
-	.dynamic-task-panel-grid .merged-col .ui-widget.ui-spinner {
-		margin-right: 0;
-	}
 }
 
 .dynamic-task-action-container {
@@ -150,54 +75,8 @@
 	text-align: right;
 }
 
-.applicant-field-container {
-	width: 100%;
-	border: none;
-}
-
-.applicant-label-field-col {
-	border: none !important;
-}
-
-.applicant-field-col {
-	border: none !important;
-}
-
-.applicant-field-input {
-	width: 85%;
-}
-
-.applicant-selection-container {
-	border: none;
-	border-bottom: solid #dfdfdf;
-}
-
-.user-list-form {
-	width: 500px;
-}
-
-.user-selection {
-	min-width: 500px;
-	margin-bottom: 60px;
-}
-
-.user-selection {
-	min-width: 500px;
-	margin-bottom: 60px;
-}
-
-.user-selection .ui-autocomplete-input {
-	min-width: 470px;
-}
-
-.select-responsible-icon-column {
-	width: 16px;
-	text-align: right;
-}
-
 .ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-moretext.ui-state-highlight,
 .ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-moretext.ui-state-highlight td {
-	background-color: white !important;
 	cursor: default;
 }
 
@@ -205,24 +84,9 @@
 	vertical-align: middle;
 }
 
-
-.create-input-field-panel-grid-row {
-	height: 20px;
-}
-
-.create-input-field-panel-grid-action-row {
-	height: 70px;
-}
-
-.create-input-field-panel-grid-action-btn {
-	text-align: right;
-	border: none !important;
-}
-
 .placement-form-element-remove-btn {
   padding-right: 8px;
   float: right;
-  background-color: #d3d3d3 !important;
 }
 
 .no-border {
@@ -231,16 +95,6 @@
 
 .vertical-align-middle {
 	vertical-align: middle;
-}
-
-.create-input-field-panel-grid-column {
-	width: 50%;
-	border: none !important;
-	vertical-align: top;
-}
-
-.form-element-input-field-type {
-	width: 75%;
 }
 
 .form-definition-calendar {
@@ -253,30 +107,9 @@
 	border: solid 0px !important;
 }
 
-.form-definition-option-box-fields {
-	width: 15%;
-	border: none !important;
-	vertical-align: top;
-	padding-top: 10px !important;
-}
-
 /* DEFAULT TEMPLATE DIALOG */
 .default-template-dyna-form {
 	padding: 20px;
-}
-
-.default-dynamic-task-panel-grid .dynamic-task-arrow {
-	width: 5.5rem;
-}
-
-.default-dynamic-task-panel-grid .dynamic-task-resopsible {
-	text-align: left !important;
-	padding-left: 10% !important;
-}
-
-.default-dynamic-task-panel-grid .dynamic-task-resopsible .ui-outputlabel {
-	width: 16rem;
-	display: inline-block;
 }
 
 /* SELECT RESPONSIBLE DIALOG */
@@ -323,7 +156,6 @@
 
 .assignee-selection-panel .delete-assignee {
 	font-size: 1.4rem;
-	color: rgba(0, 0, 0, 0.7) !important;
 	padding-right: 5px;
 }
 
@@ -346,7 +178,6 @@
 .ui-widget.ui-button.defined-task-button {
 	width: 18rem;
 	height: 5rem !important;
-	background-color: #ffffff;
 	vertical-align: top;
 	padding: 0 4px 0 7px;
 }
@@ -358,12 +189,7 @@
 	text-overflow: ellipsis;
 }
 
-.defined-task-button-container:first-child .ui-widget.ui-button.defined-task-button:before {
-	width: 0;
-}
-
 .ui-widget.ui-button.defined-task-button.active {
-	font-weight: bold;
 	opacity: .8 !important;
 }
 
@@ -454,10 +280,6 @@
   margin-bottom: 15px;
 }
 
-.create-element-button {
-	margin-bottom: 20px;
-}
-
 .ui-draggable:hover {
 	cursor: all-scroll;
 }
@@ -472,7 +294,6 @@
 
 .selected-formelements-panel.hover-drop-section {
 	border: dashed #699924;
-	background-color: #edffd3 !important;
 }
 
 .selected-form-elements-header .ui-datagrid-content.ui-widget-content,
@@ -487,11 +308,6 @@
 	border: solid 4px rgba(117, 117, 117, 0.5);
 	border-collapse: separate;
 	height: 100%;
-}
-
-.form-definition-table .ui-state-highlight,
-.form-definition-table .hover-drop-section {
-  color: #212121 !important;
 }
 
 .form-definition-table td.ui-panelgrid-cell {
@@ -529,6 +345,7 @@
 /* EMAIL */
 .express-action-button-icon-only {
   width: 110px;
+  text-align: center;
 }
 
 .email-attachment .ui-fileupload-buttonbar.ui-widget-header.ui-corner-top {
@@ -576,10 +393,8 @@ td.email-attachment-text {
 
 /* REVIEW FORM */
 .review-content-title {
-  font-weight: 700;
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
   margin-bottom: 10px;
-  color: black;
   width: calc(100% - 28px);
   padding-bottom: 6px;
   margin-left: 14px;
@@ -594,7 +409,6 @@ td.email-attachment-text {
 .finished-task-label {
   margin-left: 16px;
   margin-bottom: 1em;
-  font-weight: 700;
 }
 
 .finished-task-fieldset legend {
@@ -624,7 +438,6 @@ td.email-attachment-text {
 } 
 
 .express-table-no-header .ui-datatable-header.ui-widget-header.ui-corner-top {
-  color: #212121;
   padding: 0;
   background-color: transparent;
   border-color: #d8d8d8;
@@ -662,7 +475,6 @@ td.email-attachment-text {
   position: absolute;
   left: 6px;
   top: 14px;
-  background: #c7d426;
   z-index: 2;
   width: 20px;
   height: 20px;
@@ -671,15 +483,8 @@ td.email-attachment-text {
 }
 
 .defined-task-label label {
-  font-size: 1.2rem;
   margin-top: 1px;
   display: block;
-}
-
-.defined-task-button-container .ui-state-hover ~ span.defined-task-label,
-.defined-task-button-container .active ~ span.defined-task-label,
-.defined-task-button-container .visited ~ span.defined-task-label {
-  background: white;
 }
 
 .defined-task-container div {
@@ -699,7 +504,22 @@ td.email-attachment-text {
 
 /* APPROVAL FORM */
 .applicant-field-container {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  border: none;
+}
+
+.applicant-label-field-col {
+  border: none !important;
+}
+
+.applicant-field-col {
+  border: none !important;
+}
+
+.applicant-selection-container {
+  border: none;
+  border-bottom: solid #dfdfdf;
 }
 
 .approval-comment {
@@ -845,10 +665,6 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
 	text-align: left !important;
 }
 
-.ui-widget.ui-dialog .ui-dialog-content {
-	font-size: 1.4rem;
-}
-
 /*end of info button popup*/
 .pe-dynaform-cell .ui-datalist-item {
 	margin-top: -5px !important;
@@ -906,8 +722,6 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
 }
 
 .ui-selectmanycheckbox label, .ui-selectmanycheckbox label.ui-state-disabled {
-	font-size: 1.4rem;
-	color: #757575;
 	opacity: 1;
 }
 
@@ -925,15 +739,9 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
   right: 5px;
 }
 
-.task-responsible-link {
-  font-size: 14px;
-}
-
 .task-responsible-link:after {
-  font-family: 'FontAwesome' !important;
-  content: " \f044";
+  content: "\f044";
   margin-left: 5px;
-  color: black;
 }
 
 /* User task form */
@@ -949,10 +757,6 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.express-action-button-icon-only {
-  text-align: center;
 }
 
 /* Adjust style on mobile */
@@ -976,100 +780,8 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
   }
 }
 
-/* css for IE 11 */
-_:-ms-fullscreen, :root .express-process-type,
-_:-ms-fullscreen, :root .express-user-interface {
-	margin-top: 0px !important;
-}
-
-_:-ms-fullscreen, :root .user-interface-panel.ui-panelgrid tbody tr td,
-_:-ms-fullscreen, :root .express-process-owner {
-	padding-top: 0px !important;
- }
- 
-_:-ms-fullscreen, :root .express-user-option {
- 	padding-top: 12px !important;
- }
- 
-_:-ms-fullscreen, :root .express-process-name ,
-_:-ms-fullscreen, :root .express-process-description,
-_:-ms-fullscreen, :root .express-default-task-name,
-_:-ms-fullscreen, :root .express-task-description,
-_:-ms-fullscreen, :root .express-task-name,
-_:-ms-fullscreen, :root .express-input-area,
-_:-ms-fullscreen, :root .express-input-rows,
-_:-ms-fullscreen, :root .express-input-field-required,
-_:-ms-fullscreen, :root .express-input-area-required,
-_:-ms-fullscreen, :root .express-task-type .ui-selectonemenu label.ui-selectonemenu-label,
-_:-ms-fullscreen, :root .express-input-type .ui-selectonemenu label.ui-selectonemenu-label,
-_:-ms-fullscreen, :root .express-data-provider .ui-selectonemenu label.ui-selectonemenu-label {
-  padding-top: 6px !important;
-}
-
-_:-ms-fullscreen, :root .express-task-type .ui-selectonemenu .ui-selectonemenu-trigger .ui-icon,
-_:-ms-fullscreen, :root .express-input-type .ui-selectonemenu .ui-selectonemenu-trigger .ui-icon,
-_:-ms-fullscreen, :root .express-data-provider .ui-selectonemenu .ui-selectonemenu-trigger .ui-icon{
-  margin-top: 9px !important;
-}
-_:-ms-fullscreen, :root .express-input-label-container,
-_:-ms-fullscreen, :root .express-input-type {
-  padding-top: 0.5em !important;
-}
-/* end css for IE 11 */
-.express-process-type,
-.express-user-interface {
-  margin-top: 4px !important;
-}
-
-.user-interface-panel.ui-panelgrid tbody tr td {
-  padding-bottom: 0px !important;
-}
-
-.express-task-type .ui-selectonemenu label.ui-selectonemenu-label,
-.express-task-description,
-.express-task-name,
-.express-input-area,
-.express-input-rows,
-.express-upload-file-no-rows,
-.express-process-owner,
-.express-process-name,
-.express-process-description,
-.express-default-task-name {
+.express-process-owner {
   padding-top: 0px !important;
-}
-
-.express-task-type .ui-selectonemenu .ui-selectonemenu-trigger .ui-icon {
-  margin-top: 3px !important;
-}
-.express-input-label-container {
-  padding-top: 1px !important;
-}
-
-.express-input-type .ui-selectonemenu label.ui-selectonemenu-label,
-.express-data-provider .ui-selectonemenu label.ui-selectonemenu-label  {
-  padding-top: 2px !important;
-}
-
-.express-input-type {
-  padding-top: 5px !important;
-}
-.express-data-provider {
-  padding-top: 6px !important;
-}
-.express-input-type .ui-selectonemenu .ui-selectonemenu-trigger .ui-icon,
-.express-data-provider .ui-selectonemenu .ui-selectonemenu-trigger .ui-icon {
-  margin-top: 6px !important;
-}
-
- @media (min-width : 1366px) {
-  .express-label-right-align {
-    float: right;
-    text-align: right;
-  }
-
-  .express-email-label-right-align {
-    text-align: right;
-  }
 }
 
 body .ui-fieldset .ui-fieldset-legend .ui-fieldset-toggler {
