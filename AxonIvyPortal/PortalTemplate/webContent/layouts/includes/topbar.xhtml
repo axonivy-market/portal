@@ -31,7 +31,7 @@
             <span class="TexAlLeft DispBlock user-name-show-environment-info">#{userMenuBean.userName}</span>
       	</a>
      	 <a href="#" jsf:rendered="#{not userMenuBean.showServerInformation}" id="user-settings-menu"> <span
-          class="user-name js-user-name">#{userMenuBean.userName}</span>
+          class="user-name">#{userMenuBean.userName}</span>
       	</a>
         <ul id="user-setting-container">
           <li><p:commandLink id="adminui-menu-item" resetValues="true" rendered="#{permissionBean.hasAdminPermission()}"
