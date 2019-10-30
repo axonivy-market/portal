@@ -305,8 +305,7 @@ body .ui-panelgrid tbody tr.ui-widget-content {
 }
 
 /*Style For Statistic Widget -----------------------------------------------------------------------------*/
-.statistic-carousel .ui-carousel-header,
-.chart-list-container .filter-container .ui-accordion-header.ui-state-default {
+.statistic-carousel .ui-carousel-header {
     background-color: $statisticPanelHeader;
     border-color: $statisticPanelHeaderBorder;
 }
@@ -992,10 +991,10 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
 /*Style For Advance Filter --------------------------------------------------------------------------------------*/
 
 .ui-datepicker .ui-timepicker-div dl dd {
-  margin-top: 25px !important;
-  .ui-slider.ui-slider-horizontal.ui-widget.ui-widget-content {
-    margin-right: 10px;
-  }
+	margin-top: 30px !important;
+	.ui-slider.ui-slider-horizontal.ui-widget.ui-widget-content {
+		margin-right: 10px;
+	}
 }
 
 body .ui-picklist .ui-picklist-filter-container .ui-icon {
@@ -1019,14 +1018,6 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
   }
 }
 
-li.ui-treenode.ui-treenode-selected .ui-chkbox.ui-widget.ui-selection {
-  .ui-chkbox-box.ui-widget.ui-state-default {
-    &:before {
-      animation: rippleOn 400ms forwards ease-out;
-      height: 0.3rem;
-    }
-  }
-}
 
 .ui-treenode.ui-treenode-parent.ui-treenode-selected,
 .ui-treenode.ui-treenode-parent.ui-treenode-hasselected span.ui-treenode-content.ui-tree-selectable:first-child div.ui-chkbox.ui-widget.ui-selection,
@@ -1776,7 +1767,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 .ui-selectmanycheckbox label,
 .ui-selectmanycheckbox label.ui-state-disabled {
-  font-size: $largeFontSize;
   color: $selectManyCheckboxLabelColor;
 }
 
@@ -1911,4 +1901,8 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 ul.participants-list li {
   font-size: $largeFontSize;
+}
+
+.options-panel .option-item:hover {
+  background-color: $taskActionHoverBackgroundColor;
 }

@@ -17,7 +17,7 @@
 <cc:implementation>
   <p:commandButton id="#{cc.attrs.actionLinkId}" onstart="event.stopPropagation();" global="false" disabled="#{cc.attrs.case.state eq 'DONE'}"
     actionListener="#{sideStepBean.getSideSteps(cc.attrs.taskId, cc.attrs.case.id, cc.attrs.isAdhocExcluded)}" styleClass="#{cc.attrs.actionLinkStyleClass} #{cc.attrs.taskId} action-button"
-    oncomplete="PF('#{cc.attrs.panelWidgetVar}').loadContents();" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="fa fa-angle-down"
+    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="fa fa-angle-down"
     iconPos="right" />
 
   <p:overlayPanel id="action-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}" for="#{cc.attrs.actionLinkId}" my="left top" at="left bottom" appendTo="@(body)" styleClass="action-steps-panel"

@@ -35,7 +35,7 @@
                   direction="#{processChainDirection eq 'VERTICAL' ? 'VERTICAL' : 'HORIZONTAL'}" isShowAllSteps="false"
                   actualStepIndex="#{actualStepIndex}" steps="#{steps}"
                   currentIndex="#{taskTemplateBean.getIndexOfCurrentStage(caseId)}"
-                  stages="#{taskTemplateBean.getStagesBaseOnCurrentStage(caseId)}" />
+                  stages="#{taskTemplateBean.getStagesBaseOnCurrentStage(caseId,steps)}" />
               </ui:insert>
             </h:panelGroup>
           </div>
