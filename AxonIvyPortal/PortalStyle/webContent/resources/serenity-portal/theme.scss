@@ -183,7 +183,7 @@ body {
 
             .ui-dialog-title {
                 padding-left: 2px;
-                font-size: 19px;
+                font-size: $bodyDialogTitleFontSize;
             }
         }
     }
@@ -214,7 +214,7 @@ body .ui-messages .ui-messages-error-icon,
 }
 
 .application-email-setting .ui-widget-header{
-    color: black !important;
+    color: $emailSettingWidgetHeader !important;
 }
 
 /*Style For Process Widget --------------------------------------------------------------------------------*/
@@ -227,7 +227,7 @@ body .ui-messages .ui-messages-error-icon,
 }
 
 .process-group.ui-fieldset .ui-fieldset-legend {
-    font-size: 1.4rem;
+    font-size: $largeFontSize;
     color: $primaryColor;
     padding: 14px 10px 10px 0 !important;
     margin-left: -1px;
@@ -246,7 +246,7 @@ body .ui-messages .ui-messages-error-icon,
 
         .ui-fieldset-toggler {
             padding: 0px !important;
-            background-color: #eee !important;
+            background-color: $fieldSetTogglerBackgroundColor !important;
             color: $black !important;
             width: 20px;
             height: 20px;
@@ -428,7 +428,7 @@ body .ui-buttonset .ui-state-active {
 }
 
 .portal-cancel-button.ui-widget.ui-button, .ui-inplace-cancel.ui-widget.ui-button, .ui-fileupload-cancel.ui-widget.ui-button {
-    background-color: #d3d3d3 !important;
+    background-color: $cancelButtonBackgroundColor !important;
 }
 
 body .ui-dialog .ui-dialog-footer .ui-button {
@@ -817,12 +817,12 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
   
   &:not(.ui-state-disabled) {
     &:focus, &:hover  {
-      background-color: rgba(0, 0, 0, 0.05) !important;
+      background-color: $actionButtonHoverBackgroundColor !important;
       border: 1px solid rgba(0, 0, 0, 0.05);
     }
   }
   &.ui-state-hover {
-    background-color: rgba(0, 0, 0, 0.05) !important;
+    background-color: $actionButtonHoverBackgroundColor !important;
     border: 1px solid rgba(0, 0, 0, 0.05);
   }
   .ui-button-text.ui-c, .ui-button-icon-right.ui-icon.ui-c {
@@ -838,18 +838,18 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
 
 .case-detail-body .case-details-item {
   .ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top {
-    background-color: rgba(0,0,0,0.05);
+      background-color: $caseDetailCornerTopBackgroundColor;
       border-color: #d8d8d8;
       padding: 2px 10px;
   }
   
   .ui-paginator a, .ui-paginator-current {
-    color: #212121 !important;
+    color: $caseDetailPaginatorColor !important;
   }
   
   .ui-paginator a.ui-paginator-page, .ui-paginator a.ui-paginator-page, a.ui-paginator-first, a.ui-paginator-prev, a.ui-paginator-next, a.ui-paginator-last {
     &.ui-state-hover, &.ui-state-active {
-        background-color: rgba(0,0,0,0.05);
+        background-color: $caseDetailPaginatorBackgroundColor;
       }
   }
   
@@ -926,18 +926,18 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
 
 .task-item-body .task-details-item-note, .task-item-body .task-details-item-document {
   .ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top {
-    background-color: rgba(0,0,0,0.05);
+    background-color: $taskDetailCornerTopBackgroundColor;
       border-color: #d8d8d8;
       padding: 2px 10px;
   }
   
   .ui-paginator a, .ui-paginator-current {
-    color: #212121 !important;
+    color: $taskDetailPaginatorColor !important;
   }
   
   .ui-paginator a.ui-paginator-page, .ui-paginator a.ui-paginator-page, a.ui-paginator-first, a.ui-paginator-prev, a.ui-paginator-next, a.ui-paginator-last {
     &.ui-state-hover, &.ui-state-active {
-        background-color: rgba(0,0,0,0.05);
+        background-color: $taskDetailPaginatorBackgroundColor;
       }
   }
   
@@ -1905,4 +1905,10 @@ ul.participants-list li {
 
 .options-panel .option-item:hover {
   background-color: $taskActionHoverBackgroundColor;
+}
+
+.process-widget-action .name-sort-command,
+.editing-switch-command,
+.show-adding-dialog-commmand {
+  font-size:  $smallFontSize;
 }
