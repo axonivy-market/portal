@@ -8,14 +8,14 @@
 <ui:composition>
   <h:panelGroup id="process-widget-action" styleClass="process-widget-action u-hidden-md-down" layout="block" rendered="#{compactProcessWidgetBean.displayShowAllProcessesLink}">
     <h:form id="user-process-action-form" rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled}"
-      styleClass="js-compact-mode-element process-button-position process-action-button process-widget-action-form">
+      styleClass="process-button-position process-action-button process-widget-action-form">
       <h:panelGroup layout="block" rendered="#{not compactProcessWidgetBean.editMode}">
         <p:commandLink id="show-adding-dialog-commmand" rendered="#{compactProcessWidgetBean.displayShowAllProcessesLink}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addNewProcess')}"
-          actionListener="#{compactProcessWidgetBean.addNewUserProcess(cc.clientId)}" styleClass="ui-sm-hidden ui-md-hidden"
+          actionListener="#{compactProcessWidgetBean.addNewUserProcess(cc.clientId)}" styleClass="ui-sm-hidden ui-md-hidden show-adding-dialog-commmand"
           update="#{cc.clientId}:add-new-process-dialog" oncomplete="PF('add-new-process-dialog').show()" />
         <p:spacer width="10" styleClass="ui-sm-hidden ui-md-hidden" />
-        <p:commandLink id="editing-switch-command" styleClass="ui-sm-hidden ui-md-hidden"
+        <p:commandLink id="editing-switch-command" styleClass="ui-sm-hidden ui-md-hidden editing-switch-command"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editProcesses')}"
           actionListener="#{compactProcessWidgetBean.switchEditMode}"
           rendered="#{not empty compactProcessWidgetBean.userProcesses}"

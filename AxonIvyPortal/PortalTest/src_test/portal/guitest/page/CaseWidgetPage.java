@@ -179,7 +179,7 @@ public class CaseWidgetPage extends TemplatePage {
 
   public Object getFilterName() {
     click(findElementById(caseWidgetId + ":filter-selection-form:filter-name"));
-    WebElement descriptionInput = findElementByCssSelector(".user-definied-filter-container");
+    WebElement descriptionInput = findElementByCssSelector(".user-defined-filter-container");
 
     return descriptionInput.getText();
   }
