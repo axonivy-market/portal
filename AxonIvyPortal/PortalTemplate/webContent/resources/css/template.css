@@ -272,20 +272,18 @@
 }
 
 .process-history-list-header-default {
-	flex: 0 0 100px;
 	text-align: center;
-    padding-left: 5px;
-    padding-right: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
 }
 
 .process-history.process-history-list.process-history-list-cell-default {
-	flex: 0 0 100px;
-    text-align: center;
-    padding-left: 5px;
-    padding-right: 5px;
-    white-space: nowrap;
-  	overflow: hidden;
-  	text-overflow: ellipsis;
+	text-align: center;
+	padding-left: 5px;
+	padding-right: 5px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .process-history.process-history-list.process-history-list-cell-default.process-history-list-width-120,
@@ -294,7 +292,6 @@
 }
 
 .process-history-list-name-header {
-	flex: 1;
 	padding-left: 10px;
 }
 

@@ -6,7 +6,6 @@
   xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 
   <!-- TOPBAR START -->
-  <h:outputScript name="global-search.js" library="js" target="head" />
   <h:outputScript name="responsive-toolkit.js" library="js" target="head"/>
   <div class="TexAlCenter logo-container">
 
@@ -66,7 +65,7 @@
           <li><ic:ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting id="logout-setting" isWorkingOnATask="#{isWorkingOnATask}" /></li>
         </ul></li>
 
-      <li class="ui-sm-hidden ui-md-hidden"><h:form prependId="false" rendered="#{showGlobalSearch}">
+      <li class="ui-sm-hidden ui-md-hidden"><h:form id="global-search-form" prependId="false" rendered="#{showGlobalSearch}">
           <ic:ch.ivy.addon.portal.generic.GlobalSearch id="global-search-component" />
         </h:form></li>
     </ul>

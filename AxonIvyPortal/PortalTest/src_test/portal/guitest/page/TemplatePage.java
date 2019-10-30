@@ -240,7 +240,7 @@ public abstract class TemplatePage extends AbstractPage {
     if (isMainMenuOpen()) {
       click(By.cssSelector("a[id$='toggle-menu']"));
       click(By.id("top-menu"));
-      waitForPageLoaded(2);
+      waitForElementDisplayed(By.cssSelector("a[id$='logo-small']"), true);
     }
   }
 
