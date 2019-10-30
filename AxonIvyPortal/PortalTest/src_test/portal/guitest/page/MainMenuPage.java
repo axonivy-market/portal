@@ -136,8 +136,7 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public CaseWidgetPage selectCaseMenu() {
-    findElementByCssSelector("li.submenu-container:nth-child(4) > a.ripplelink.submenu").click();
-    waitAjaxIndicatorDisappear();
+    clickByCssSelector("li.submenu-container:nth-child(4) > a.ripplelink.submenu");
     return new CaseWidgetPage();
   }
 
