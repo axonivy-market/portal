@@ -53,4 +53,4 @@ function CaseListScreenHandler() {
     var caseListToolKit = CaseListToolKit();
     caseListToolKit.responsive();
   }
-}
+};
