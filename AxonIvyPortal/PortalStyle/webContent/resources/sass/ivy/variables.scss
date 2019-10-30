@@ -22,18 +22,18 @@ $processChainMenuColor: $primaryColor;
 $loginLogoHeight: 50px;
 $homeLogoHeight: 42px;
 
-/*3 colors of header bar*/
+/* 3 colors of header bar */
 $firstHeaderBarColor: $primaryColor;
 $secondHeaderBarColor: $primaryColor;
 $thirdHeaderBarColor: $primaryColor;
 
-/*task priority color*/
+/* Task priority color */
 $taskPriorityLowColor: #D4D4D4;
 $taskPriorityNormalColor: #96DC82;
 $taskPriorityHighColor: #FFC0C0;
 $taskPriorityExceptionColor: #FF5A5A;
 
-/*task state color*/
+/* Task state color */
 $taskStateOpenColor: #078CFF;
 $taskStateInProgressColor: #4EB41C;
 $taskStateDoneColor: #4EB41C;
@@ -41,22 +41,22 @@ $taskStateZombieDestroyedColor: #FF6464;
 $taskStateReservedColor: rgba(0,0,0,0.4);
 $taskStateSystemColor: rgba(0,0,0,0.4);
 
-/*Color and border radius of Portal button e.g Add, Close, New, Save, OK ..*/
+/* Color and border radius of Portal button e.g Add, Close, New, Save, OK .. */
 $actionButtonColor: $primaryColor;
 $cancelButtonBackgroundColor: #D3D3D3;
 $actionButtonBorderRadius:0px;
 $actionButtonHoverBackgroundColor: rgba(0, 0, 0, 0.05);
 
-/*Color and border radius of context button, 
-it only affects when button has attribute styleClass="context-button"*/
+/* Color and border radius of context button, 
+it only affects when button has attribute styleClass="context-button" */
 $contextButtonColor: #7C7C7C;
 $contextButtonBorderRadius:$actionButtonBorderRadius;
 
-/*Announcement panel color*/
+/* Announcement panel color */
 $announcementBackgroundColor: #ffff80;
 $announcementBorderColor: $red;
 
-/*Process chain */
+/* Process chain */
 $lineWaitingStepBackgroundColor: #E0E0E0;
 $circleStepNumberColor: #212121;
 
@@ -92,7 +92,7 @@ $advancedFilterRemoveIconColor: rgba(0,0,0,0.3);
 $advancedFilterErrorColor: $red;
 $widgetHeaderFilterColor: $black;
 
-/*Case Item*/
+/* Case Item */
 $caseListUnsortHeaderColor: rgba(0,0,0,0.5);
 $historyNodeColor: $primaryTextColor;
 $historyNodeHoverColor: rgba(0,0,0,0.6);
@@ -140,7 +140,7 @@ $taskWidgetOverlayPanelContentBackgroundColor: $white;
 $taskWidgetLinkColor: $black;
 $taskActionHoverBackgroundColor: #F5F5F5;
 
-/* Case Detail*/
+/* Case Detail */
 $caseRelatedTaskColor: $primaryTextColor;
 $caseRelatedTaskHoverColor: rgba(0,0,0,0.6);
 $caseAdditionalDetailLinkColor: rgba(0,0,0,0.5);
@@ -184,7 +184,7 @@ $stagesChainVisitedColor: #555555;
 $stagesChainWaitingColor: #cccccc;
 $stagesChainProcessFlowVisibleBackgroundColor: #cccccc;
 
-/* Task Action Item*/
+/* Task Action Item */
 $taskActionItemDisabledStateColor: rgba(0,0,0,0.5);
 $taskActionItemLeftIconColor: rgba(0,0,0,0.5);
 $taskActionItemWidgetHeaderColor: $white;
@@ -203,7 +203,7 @@ $errorMessageHeaderColor: #E67163;
 /* SelectCheckbox */
 $selectCheckBoxCloseHoverColor: $white;
  
-/* Command Link*/
+/* Command Link */
 $commandLinkColor: rgba(0, 0, 0, 0.5);
 $commandLinkHoverColor: rgba(0, 0, 0, 0.6);
 $commandLinkActiveColor: rgba(0, 0, 0, 0.8);
@@ -276,6 +276,7 @@ $portalFontFamily: "Roboto";
 $iconFontFamily: "FontAwesome";
 
 $defaultFontStyle: normal;
+
 /*---------------------------------Font weight----------------------------------------*/
 $defaultFontWeight: 400;
 $menuListWidgetHeaderFontWeight: 600;
@@ -290,7 +291,7 @@ $taskStartInfoHeaderFontWeight: bold;
 $taskStartInfoTaskIdFontWeight: normal;
 $taskNameInputFontWeight: bold;
 
-/*Task Template */
+/* Task Template */
 $taskTemplateTitleFontWeight: bold;
 $outputLabelTaskTemplateTitleFontWeight: 400;
 
@@ -339,4 +340,3 @@ $showParticipantsLinkFontWeight: bold;
 $participantsListHeaderFontWeight: bold;
 $messageChatHeaderNameFontWeight: 600;
 $userDefinedFilterContainerHoverFontWeight: bold;
-
