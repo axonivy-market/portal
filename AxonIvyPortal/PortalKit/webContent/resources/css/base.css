@@ -29,16 +29,6 @@
  *
  */
  
-html {
-  font-size: 10px;
-}
-body {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 10px;
-} 
- 
 /* Add action icon delegate, reserve, open, reset for task widget*/
 @font-face {
   font-family: "true-minimalistic-icons";
