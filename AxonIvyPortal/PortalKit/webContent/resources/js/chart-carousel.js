@@ -1,24 +1,29 @@
 // Override Carousel Header of Primeface
 $(document).ready(function() {
+  var statisticContainer = $('.js-statistic-widget-container.compact-mode');
+  var statisticCarousel = statisticContainer.find('.statistic-carousel');
+  if (statisticCarousel.length == 0) {
+    return;
+  }
+
   // initialization parameter
   var index = 0;
   var nextEvent = 0;
   // Get EffectDuration of Carousel. If not define, use default value as 500
-  var effectDuration = parseInt($('[id$="0:carousel-effect-duration"]').text());
+  var effectDuration = parseInt(statisticCarousel.find('[id$="0:carousel-effect-duration"]').text());
   if (isNaN(effectDuration) || effectDuration < 0) {
     effectDuration = 500;
   }
 
-  validateTitleLength(index);
-  
-  var statisticContainer = $('.js-statistic-widget-container.compact-mode');
-  var nextNav = statisticContainer.find('.ui-carousel-next-button');
-  var prevNav = statisticContainer.find('.ui-carousel-prev-button');
-  var headerTitle = $('.ui-carousel-header-title');
+  validateTitleLength(index, statisticCarousel);
+
+  var nextNav = statisticCarousel.find('.ui-carousel-next-button');
+  var prevNav = statisticCarousel.find('.ui-carousel-prev-button');
+  var headerTitle = statisticCarousel.find('.ui-carousel-header-title');
   // Set default chart header titles
-  var itemsContainer = $('.ui-carousel-items');
-  var charSize = $('.ui-carousel-viewport').children(".ui-carousel-items").children("li").length;
-  headerTitle.append($('[id$="0:chart-name-container"]').clone());
+  var itemsContainer = statisticCarousel.find('.ui-carousel-items');
+  var charSize = statisticCarousel.find('.ui-carousel-viewport').children(".ui-carousel-items").children("li").length;
+  headerTitle.append(statisticCarousel.find('[id$="0:chart-name-container"]').clone());
 
   // On click event of Carousel-nav
   // * Select current chart header
@@ -35,7 +40,7 @@ $(document).ready(function() {
           index = 0;
         }
 
-        updateHeaderTitle(index);
+        updateHeaderTitle(index, statisticCarousel);
         nextEvent = 0;
       }, effectDuration);
     }
@@ -54,7 +59,7 @@ $(document).ready(function() {
           index -= 1;
         }
 
-        updateHeaderTitle(index);
+        updateHeaderTitle(index, statisticCarousel);
         nextEvent = 0;
       }, effectDuration);
     }
@@ -68,15 +73,15 @@ $(document).ready(function() {
     return false;
   });
 
-  function updateHeaderTitle(curentIndex) {
-    validateTitleLength(index);
+  function updateHeaderTitle(curentIndex, statisticCarousel) {
+    validateTitleLength(index, statisticCarousel);
     var dir = headerTitle.get(0).innerHTML = "";
-    headerTitle.append($('[id$="' + curentIndex + ':chart-name-container"]').clone());
+    headerTitle.append(statisticCarousel.find('[id$="' + curentIndex + ':chart-name-container"]').clone());
   }
   
-  function validateTitleLength(index) {
+  function validateTitleLength(index, statisticCarousel) {
     var maxTitleSize = 30;
-    var titleHeader = $('[id$="' + index + ':chart-name"]');
+    var titleHeader = statisticCarousel.find('[id$="' + index + ':chart-name"]');
     var activeTitle = titleHeader.text();
     var titleLength = activeTitle.length;
     
@@ -90,3 +95,4 @@ $(document).ready(function() {
   }
 
 });
+
