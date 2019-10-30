@@ -26,7 +26,7 @@
         alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
     </p:commandLink>
 
-    <p:commandLink id="toggle-menu" styleClass="sidebar-anchor" global="false" />
+    <p:commandLink id="toggle-menu" styleClass="sidebar-anchor" global="false" oncomplete="updateStatisticCarousel();" />
   </div>
 
   <!-- APPLICATION MENU -->
@@ -34,7 +34,7 @@
     <div id="#{cc.clientId}" class="nano-content sidebar-scroll-content">
       <div class="layout-menu-container">
         <div class="ui-xl-hidden ui-lg-hidden mobile-global-search-container">
-          <h:form prependId="false" rendered="#{cc.attrs.showGlobalSearch}">
+          <h:form id="global-search-component-mobile-form" prependId="false" rendered="#{cc.attrs.showGlobalSearch}">
             <ic:ch.ivy.addon.portal.generic.GlobalSearchLeftMenu id="global-search-component-mobile" />
           </h:form>
         </div>
@@ -75,7 +75,7 @@
 
                   <p:menuitem id="menu-item-#{menuItemStatus.index}-sub-menu-item-#{subMenuItemStatus.index}" 
                     rendered="#{isThirdPartyApp and isIvyLink}" actionListener="#{logic.onClickSubMenuItem}" value="#{subMenuItem.label}"
-                    icon="#{subMenuItem.icon}" iconPos="right" styleClass="submenu" update="main-menu" process="main-menu"
+                    icon="#{subMenuItem.icon}" iconPos="right" styleClass="submenu #{subMenuItem.menuKind}" update="main-menu" process="main-menu"
                     containerStyleClass="submenu-container #{firstSubItem} #{lastSubItem}" global="false">
                     <f:attribute name="selectedSubMenuItem" value="#{subMenuItem}" />
                   </p:menuitem>

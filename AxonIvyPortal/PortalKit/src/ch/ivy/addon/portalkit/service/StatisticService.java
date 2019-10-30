@@ -122,10 +122,11 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class StatisticService extends BusinessDataService<StatisticChart> {
-  
+
   private static final String CHART_LEGEND_POSITION_LEFT = "left";
   private static final String CHART_LEGEND_POSITION_BOTTOM = "bottom";
   private static StatisticColors statisticColors;
+  private String LOADING_MESSAGE = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/loadingCharts");
 
   @Override
   public Class<StatisticChart> getType() {
@@ -1014,7 +1015,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       Entry<String, Number> chartDataEntry = iterator.next();
       float floatValueOfChartData = chartDataEntry.getValue().floatValue()/3600;
 
-        chartDataEntry.setValue(floatValueOfChartData);
+      chartDataEntry.setValue(floatValueOfChartData);
     }
 
     return new HashMap<>(caseCategoryToElapsedTime);
@@ -1101,6 +1102,37 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     if (chartColor.isPresent()) {
       statisticColors = (StatisticColors) chartColor.get();
     }
+  }
+
+  /**
+   * Create a BarChart's placeholder for Statistic chart when data is collection from DB
+   * @return BarChartModel
+   * 
+   */
+  public BarChartModel createBarChartPlaceholder() {
+    BarChartModel model = new BarChartModel();
+    ChartData data = new ChartData();
+    BarChartDataSet dataSet = new BarChartDataSet();
+    dataSet.setData(new ArrayList<>());
+    dataSet.setLabel(LOADING_MESSAGE);
+    data.addChartDataSet(dataSet);
+    model.setData(data);
+    return model;
+  }
+
+  /**
+   * Create a DonutChart's placeholder for Statistic chart when data is collection from DB
+   * @return DonutChartModel
+   * 
+   */
+  public DonutChartModel createDonutChartPlaceholder() {
+    DonutChartModel model = new DonutChartModel();
+    Title title = new Title();
+    title.setDisplay(true);
+    title.setText(LOADING_MESSAGE);
+    model.setOptions(new DonutChartOptions());
+    model.getOptions().setTitle(title);
+    return model;
   }
 
   private DonutChartModel buildChartModelForCaseFinishedTime(StatisticChart statisticChart) {
