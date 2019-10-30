@@ -221,7 +221,7 @@ public class TaskWidgetPage extends TemplatePage {
   public void changeExpiryOfTaskAt(String dateStringLiteral) {
     click(findElementById("task-detail-template:general-information:expiry-form:edit-inplace_display"));
     waitForElementDisplayed(By.id("task-detail-template:general-information:expiry-form:expiry-calendar"), true);
-    WebElement taskExpiryInlineEdit = findElementById("task-detail-template:general-information:expiry-form:expiry-calendar");
+    WebElement taskExpiryInlineEdit = findElementById("task-detail-template:general-information:expiry-form:expiry-calendar_input");
     taskExpiryInlineEdit.sendKeys(dateStringLiteral);
 
     WebElement editor = findElementById("task-detail-template:general-information:expiry-form:edit-inplace_editor");
