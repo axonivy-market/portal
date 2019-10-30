@@ -10,8 +10,7 @@ import ch.xpertline.base.client.Browser;
 public class UserTaskWithMailFormPage extends TaskTemplatePage {
 
   public void selectEmailTab() {
-    waitForElementDisplayed(By.cssSelector("a[href*='mail-tab']"), true);
-    findElementByCssSelector("a[href*='mail-tab']").click();
+    clickByCssSelector("a[href*='mail-tab']");
     ensureNoBackgroundRequest();
   }
   public void inputData(String recipient, String subject, String content) {
