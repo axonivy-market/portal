@@ -51,6 +51,11 @@ Ca0 @GridStep f31 '' #zField
 Ca0 @EndTask f32 '' #zField
 Ca0 @PushWFArc f33 '' #zField
 Ca0 @PushWFArc f34 '' #zField
+Ca0 @EndTask f35 '' #zField
+Ca0 @GridStep f36 '' #zField
+Ca0 @StartRequest f37 '' #zField
+Ca0 @PushWFArc f38 '' #zField
+Ca0 @PushWFArc f39 '' #zField
 >Proto Ca0 Ca0 CleanData #zField
 Ca0 f0 outLink cleanCompletedCases.ivp #txt
 Ca0 f0 inParamDecl '<> param;' #txt
@@ -405,6 +410,60 @@ Ca0 f33 expr out #txt
 Ca0 f33 1224 111 1224 170 #arcP
 Ca0 f34 expr out #txt
 Ca0 f34 1224 214 1224 273 #arcP
+Ca0 f35 51 547 26 26 14 0 #rect
+Ca0 f35 @|EndIcon #fIcon
+Ca0 f36 actionTable 'out=in;
+' #txt
+Ca0 f36 actionCode 'import ch.ivy.addon.portalkit.test.util.BusinessDataUtils;
+import ch.ivy.addon.portalkit.test.util.CaseUtils;
+import ch.ivy.addon.portalkit.service.UserProcessService;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.test.util.SecurityUtils;
+
+CaseUtils.deleteAllCases();
+BusinessDataUtils.clearAllBusinessData();
+ivy.datacache.getAppCache().invalidate();
+
+UserProcessService userProcess =new UserProcessService();
+userProcess.deleteAll(userProcess.findAll());
+
+SecurityUtils.updatePermissionsOfTestUsers();
+
+GlobalSettingService globalSettingService = new GlobalSettingService();
+globalSettingService.deleteAll(globalSettingService.findAll());
+
+' #txt
+Ca0 f36 security system #txt
+Ca0 f36 46 460 36 24 20 -2 #rect
+Ca0 f36 @|StepIcon #fIcon
+Ca0 f37 outLink cleanData.ivp #txt
+Ca0 f37 inParamDecl '<> param;' #txt
+Ca0 f37 requestEnabled true #txt
+Ca0 f37 triggerEnabled false #txt
+Ca0 f37 callSignature cleanData() #txt
+Ca0 f37 persist false #txt
+Ca0 f37 startName 'Clean data' #txt
+Ca0 f37 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Ca0 f37 showInStartList 1 #txt
+Ca0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>cleanData.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Ca0 f37 @C|.responsibility Everybody #txt
+Ca0 f37 51 355 26 26 -57 -34 #rect
+Ca0 f37 @|StartRequestIcon #fIcon
+Ca0 f38 expr out #txt
+Ca0 f38 64 381 64 460 #arcP
+Ca0 f39 expr out #txt
+Ca0 f39 64 484 64 547 #arcP
 >Proto Ca0 .type portalKit_test.Data #txt
 >Proto Ca0 .processKind NORMAL #txt
 >Proto Ca0 0 0 32 24 18 0 #rect
@@ -441,3 +500,7 @@ Ca0 f30 mainOut f33 tail #connect
 Ca0 f33 head f31 mainIn #connect
 Ca0 f31 mainOut f34 tail #connect
 Ca0 f34 head f32 mainIn #connect
+Ca0 f37 mainOut f38 tail #connect
+Ca0 f38 head f36 mainIn #connect
+Ca0 f36 mainOut f39 tail #connect
+Ca0 f39 head f35 mainIn #connect
