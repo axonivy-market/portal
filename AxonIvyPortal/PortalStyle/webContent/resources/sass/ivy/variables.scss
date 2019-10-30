@@ -13,6 +13,7 @@ $greyLineColor: #d8d8d8;
 $red: #FF0000;
 $white: #FFFFFF;
 $black:#000000;
+$grey: #808080;
 
 $bodyBackgroundColor: #FFFFFF;
 $menuColor: #F0F0F0;
@@ -294,7 +295,36 @@ $expressReviewContentTitleFontWeight: 700;
 $expressFinishedTaskLabelFontWeight: 700;
 $expressActiveDefinedTaskButtonFontWeight: bold;
 
-/* Chat*/
+/* Portal Chat */
 $showParticipantsLinkFontWeight: bold;
 $participantsListHeaderFontWeight: bold;
 $messageChatHeaderNameFontWeight: 600;
+$userDefinedFilterContainerHoverFontWeight: bold;
+
+$chatContactTypeHeaderFontSize: 1.8rem;
+$chatPanelBackgroundColor: $black;
+$noGroupChatColor: $white;
+$contactCardHoverBackgroundColor: $grey;
+$contactCardIconColor: #b2b2b2;
+$contactCardBackgroundColor: $white;
+$contactCardIconUnreadMessageColor: $white;
+$contactCardIconUnreadMessageBackgroundColor: #FF6D6E;
+$contactCardNameColor: $white;
+$contactCardStatusBackgroundColor: #64D864;
+$contactNotificationColor: $white;
+$contactNotificationBackgroundColor: $red;
+$messageListBackgroundColor: $white;
+$messageListHeaderBackgroundColor: #838383;
+$messageListHeaderCloseIconHoverBackgroundColor: #9b9b9b;
+$messageListHeaderCloseIconBackgroundColor: #b2b2b2;
+$chatMessageBackgroundColor: #F3F6F9;
+$chatMyMessageBackgroundColor: #DEF4FD;
+$messageChatHeaderNameColor: $white;
+$showParticipantsLinkColor: $white;
+$chatFormBackgroundColor: #F5F5F5;
+$notificationBadgeBackgroundColor: rgb(255, 109, 110);
+$notificationBadgeColor: $white;
+$chatContactTypeHeaderColor: $white;
+$chatTooltipColor: $white;
+$chatTooltipBackgroundColor: $black;
+$participantsListHeaderColor: $black;
