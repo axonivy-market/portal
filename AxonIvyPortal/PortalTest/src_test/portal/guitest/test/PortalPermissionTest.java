@@ -45,6 +45,7 @@ public class PortalPermissionTest extends BaseTest{
     Assert.assertFalse(homePage.isShowAllChartsLinkDisplayed());
     
     grantAccessFullListPermissions();
+    homePage = new HomePage();
     Assert.assertTrue(mainMenuPage.isProcessesDisplayed());
     Assert.assertTrue(mainMenuPage.isTasksDisplayed());
     Assert.assertTrue(mainMenuPage.isCasesDisplayed());
