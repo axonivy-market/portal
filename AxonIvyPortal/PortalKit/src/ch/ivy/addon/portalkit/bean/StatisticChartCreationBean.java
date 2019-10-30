@@ -44,16 +44,30 @@ public class StatisticChartCreationBean implements Serializable {
   private DonutChartModel caseByFinishedTaskModel;
   private BarChartModel taskByExpiryModel;
   private BarChartModel elapsedTimeModel;
-  StatisticService statisticService = new StatisticService();
+  private StatisticService statisticService;
   private Map<String, List<String>> customFieldFilters = new HashMap<>();
 
   public static final int CASE_CATEGORIES_TYPE = 0;
-  
+
   @PostConstruct
   public void init() {
+    statisticService = new StatisticService();
     statisticService.fetchStatisticColor();
+    initStatisticChart();
   }
-  
+
+  /**
+   * Create a StatisticChart's placeholder when the data is collecting.
+   */
+  private void initStatisticChart() {
+    taskByPriorityModel = statisticService.createDonutChartPlaceholder();
+    caseByStateModel = statisticService.createDonutChartPlaceholder();
+    caseByFinishedTimeModel = statisticService.createDonutChartPlaceholder();
+    caseByFinishedTaskModel = statisticService.createDonutChartPlaceholder();
+    taskByExpiryModel = statisticService.createBarChartPlaceholder();
+    elapsedTimeModel = statisticService.createBarChartPlaceholder();
+  }
+
   /**
    * Update filters
    * 
@@ -72,12 +86,7 @@ public class StatisticChartCreationBean implements Serializable {
   }
 
   public void clearChartModels() {
-    taskByPriorityModel = null;
-    caseByStateModel = null;
-    caseByFinishedTimeModel = null;
-    caseByFinishedTaskModel = null;
-    taskByExpiryModel = null;
-    elapsedTimeModel = null;
+    initStatisticChart();
   }
   
   private void setOldFiltersToCurrentValues(StatisticFilter filter, StatisticFilter oldFilter) {
