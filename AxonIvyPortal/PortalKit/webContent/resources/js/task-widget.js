@@ -5,6 +5,7 @@ function TaskWidget() {
     setupHeader : function() {
       var taskListToolKit = TaskListToolKit();
       taskListToolKit.setupHeader();
+      updateLayoutAfterConfigColumn();
     },
 
     setupScrollbar : function() {
@@ -49,6 +50,17 @@ function TaskWidget() {
     toggleTaskFilter: function(toggler) {
       $('.js-filter-container').toggleClass('u-hidden-md-down');
     },
+
+    updateLayoutAfterConfigColumn : function() {
+      debugger;
+      var taskSortMenu = $('.js-task-widget-sort-menu');
+      var taskWidget = $('#task-widget');
+
+      taskWidget.removeClass('hide-priority-column');
+      if (!$(taskSortMenu.children('a').get(0)).hasClass('js-priority-column-header')) {
+        taskWidget.addClass('hide-priority-column');
+      }
+    }
   }
 }
 
@@ -89,7 +101,7 @@ function TaskListToolKit() {
     showHideColumnWhenMenuToggle: function() {
       var $layout = $('.js-layout-wrapper');
       var $mainMenu = $('.js-left-sidebar');
-      var remainingWidth = $('body').width() - $mainMenu.outerWidth() - 75;//exclude padding and scroll bar
+      var remainingWidth = $('body').width() - $mainMenu.outerWidth() - 85;//exclude padding and scroll bar
       var $hiddenColumns = $('.js-hidden-when-expand-menu');
       if (remainingWidth < 1024 && $layout.hasClass('layout-wrapper-static')) {
         hideColumnWhenExpandMenu($hiddenColumns);
@@ -99,8 +111,8 @@ function TaskListToolKit() {
     },
     
     responsive : function() {
-        this.setupScrollbar();
-        this.setupHeader();
+      this.setupScrollbar();
+      this.setupHeader();
     }
   }
 };
