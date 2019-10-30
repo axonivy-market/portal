@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
-import ch.xpertline.base.client.Browser;
+import vn.wawa.guitest.base.client.Browser;
 
 
 public class UserTaskWithMailFormPage extends TaskTemplatePage {
