@@ -6,12 +6,12 @@ import java.net.URLEncoder;
 import org.junit.Before;
 import org.junit.Rule;
 
-import portal.guitest.page.HomePage;
+import com.thoughtworks.selenium.SeleneseTestBase;
+
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.xpertline.base.client.Browser;
 import ch.xpertline.base.enums.BrowserType;
-
-import com.thoughtworks.selenium.SeleneseTestBase;
+import portal.guitest.page.HomePage;
 
 /**
  * A base test that other tests extend it. It will test on browser IE by default. It provides feature to take screenshot
@@ -64,10 +64,7 @@ public class BaseTest extends SeleneseTestBase {
   @Before
   public void setup() {
     browser = Browser.getBrowser();
-    destroyAllTasksCases();
-    cleanAllFavoriteProcesses();
-    updatePermissionOfTestUsers();
-    cleanUpGlobalVariables();
+    launchBrowserAndGotoRelativeLink("portalKitTestHelper/1511A66AF619A768/cleanData.ivp");
   }
 
   public void launchBrowserAndGotoRelativeLink(String relativeProcessStartLink) {

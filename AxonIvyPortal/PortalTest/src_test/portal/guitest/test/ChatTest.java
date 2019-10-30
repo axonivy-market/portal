@@ -3,6 +3,7 @@ package portal.guitest.test;
 import java.util.Arrays;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import portal.guitest.bean.ExpressResponsible;
@@ -15,6 +16,7 @@ import portal.guitest.page.LoginPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 
+@Ignore
 public class ChatTest extends BaseTest {
 	private AdminSettingsPage adminSettingsPage;
 	private static final String CHAT_MESSAGE_USER_DEMO = "Hi i'm demo user";

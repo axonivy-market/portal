@@ -46,7 +46,6 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.startTaskWithoutUI(0);
-
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     adminSettingsPage = homePage.openAdminSettings();
     adminSettingsPage.setHideUploadDocumentForDoneCase();

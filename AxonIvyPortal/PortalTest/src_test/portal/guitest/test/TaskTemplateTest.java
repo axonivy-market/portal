@@ -85,7 +85,7 @@ public class TaskTemplateTest extends BaseTest {
   }
   
   @Test
-  public void testLeaveWorkingTaskByClickingOnLogo() { // TODO FEATURE BROKEN
+  public void testLeaveWorkingTaskByClickingOnLogo() {
     TaskTemplatePage taskTemplatePage = startATask();
     taskTemplatePage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
@@ -96,7 +96,7 @@ public class TaskTemplateTest extends BaseTest {
   }
   
   @Test
-  public void testReserveWorkingTaskByClickingOnLogo() {// TODO FEATURE BROKEN
+  public void testReserveWorkingTaskByClickingOnLogo() {
     TaskTemplatePage taskTemplatePage = startATask();
     taskTemplatePage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();

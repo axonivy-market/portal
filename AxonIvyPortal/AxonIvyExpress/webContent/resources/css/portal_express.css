@@ -727,13 +727,12 @@ td.email-attachment-text {
 	width: 98%;
 }
 
-.pe-dynaform-cell[colspan="2"] .ui-spinner .ui-spinner-input {
-  width: calc(100% - 35px);
+.ui-spinner .ui-spinner-input {
+  width: 100%;
 }
 
-.preview-dialog .pe-dynaform-cell[colspan="4"]>.ui-spinner,
-.preview-dialog .pe-dynaform-cell[colspan="4"]>.ui-spinner>.ui-spinner-input {
-	width: auto;
+.preview-dialog .pe-dynaform-cell[colspan="4"]>.ui-spinner {
+	width: 50%;
 }
 
 .preview-dialog .ui-widget.ui-datatable {
@@ -764,10 +763,6 @@ td.email-attachment-text {
 
 .pe-dynaform-grid tr>td.pe-dynaform-cell[colspan="2"]:last-child {
   padding-left: 2em;
-}
-
-.pe-dynaform-grid .pe-dynaform-cell .md-inputfield label {
-  left: 0 !important;
 }
 
 .preview-dialog .pe-dynaform-cell[colspan="2"]:not(.pe-dynaform-label) table,
