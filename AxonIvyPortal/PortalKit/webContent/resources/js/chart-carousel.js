@@ -2,13 +2,17 @@
 $(document).ready(function() {
   var statisticContainer = $('.js-statistic-widget-container.compact-mode');
   var statisticCarousel = statisticContainer.find('.statistic-carousel');
-  if (statisticCarousel.length == 0) {
+  var charSize = statisticCarousel.find('.ui-carousel-viewport').children(".ui-carousel-items").children("li").length;
+  if (statisticCarousel.length == 0 || charSize == 0) {
     return;
   }
 
   // initialization parameter
+  var nextNav = statisticCarousel.find('.ui-carousel-next-button');
+  var prevNav = statisticCarousel.find('.ui-carousel-prev-button');
   var index = 0;
   var nextEvent = 0;
+
   // Get EffectDuration of Carousel. If not define, use default value as 500
   var effectDuration = parseInt(statisticCarousel.find('[id$="0:carousel-effect-duration"]').text());
   if (isNaN(effectDuration) || effectDuration < 0) {
@@ -17,18 +21,14 @@ $(document).ready(function() {
 
   validateTitleLength(index, statisticCarousel);
 
-  var nextNav = statisticCarousel.find('.ui-carousel-next-button');
-  var prevNav = statisticCarousel.find('.ui-carousel-prev-button');
-  var headerTitle = statisticCarousel.find('.ui-carousel-header-title');
   // Set default chart header titles
-  var itemsContainer = statisticCarousel.find('.ui-carousel-items');
-  var charSize = statisticCarousel.find('.ui-carousel-viewport').children(".ui-carousel-items").children("li").length;
-  headerTitle.append(statisticCarousel.find('[id$="0:chart-name-container"]').clone());
+  var headerTitle = statisticCarousel.find('.ui-carousel-header-title');
+  var itemsContainer = statisticCarousel.find('.ui-carousel-items .statistic-carousel-item')[index];
+  headerTitle.append($(itemsContainer).find('[id$="chart-name-container"]').clone());
 
   // On click event of Carousel-nav
   // * Select current chart header
   // * Copy to Carousel header
-
   nextNav.click(function(event) {
 
     if (nextEvent == 0) {
