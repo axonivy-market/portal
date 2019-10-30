@@ -1706,7 +1706,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   color: $errorMessageHeaderColor;
 }
 
-/*====================EXPRESS=============================**/
+/* Express */
 .ui-widget.ui-button.defined-task-button {
   border: solid 2px $primaryColor;
   background-color: $definedTaskButtonBackgroundColor;
@@ -1796,26 +1796,119 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   font-weight: $expressActiveDefinedTaskButtonFontWeight;
 }
 
-.ui-widget.ui-dialog .ui-dialog-content {
-  font-size: $largeFontSize;
-}
-
 .ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-moretext.ui-state-highlight,
 .ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-moretext.ui-state-highlight td {
  background-color: $autocompleteMoreTextStateHighlightBackgroundColor;
 }
-/*=================END EXPRESS=============================**/
 
 /* Chat*/
 .show-participants-link {
   font-weight: $showParticipantsLinkFontWeight;
 }
 
-.role-name,
-.participants-list-header {
-  font-weight: $participantsListHeaderFontWeight;
+.chat-panel {
+  background: $chatPanelBackgroundColor;
+}
+
+.no-group-chat {
+  color: $noGroupChatColor;
+  font-size: $largeFontSize;
+}
+
+.contact-card:hover, .contact-card.active {
+  background: $contactCardHoverBackgroundColor;
+}
+
+.contact-card-icon {
+  color: $contactCardIconColor;
+  background: $contactCardBackgroundColor;
+}
+
+.contact-card-icon[unread-message]:after {
+  background: $contactCardIconUnreadMessageBackgroundColor;
+  color: $contactCardIconUnreadMessageColor;
+}
+
+.contact-card-name {
+  color: $contactCardNameColor;
+  font-size: $largeFontSize;
+}
+
+.contact-card-status {
+  background: $contactCardStatusBackgroundColor;
+}
+
+.contact-notification {
+  color: $contactNotificationColor;
+  background-color: $contactNotificationBackgroundColor;
+}
+
+.contact-card-status.is-offline {
+  background: $contactCardIconColor;
+}
+
+.message-list {
+  background: $messageListBackgroundColor;
+}
+
+.message-list-header {
+  background: $messageListHeaderBackgroundColor;
+}
+
+.message-list-header-close:hover:before, .message-list-header-close:hover:after {
+  background: $messageListHeaderCloseIconBackgroundColor;
+}
+
+.message-list-header-close:before, .message-list-header-close:after {
+  background: $messageListHeaderCloseIconBackgroundColor;
+}
+
+.chat-message-list .chat-message {
+  font-size: $largeFontSize;
+  background: $chatMessageBackgroundColor;
+}
+
+.chat-message-list .my-message .chat-message {
+  background: $chatMyMessageBackgroundColor;
 }
 
 .message-chat-header-name {
   font-weight: $messageChatHeaderNameFontWeight;
+  color: $messageChatHeaderNameColor;
+  font-size: $largeFontSize;
+}
+
+.show-participants-link,
+.show-participants-link:hover {
+  color: $showParticipantsLinkColor !important;
+}
+
+.chat-send-form {
+  background: $chatFormBackgroundColor;
+}
+
+.notification-badge[data-badge]:after {
+  background-color: $notificationBadgeBackgroundColor;
+  color: $notificationBadgeColor;
+}
+
+.chat-contact-type-header {
+  color: $chatContactTypeHeaderColor;
+  font-size: $chatContactTypeHeaderFontSize;
+}
+
+.chat-meta .tooltip {
+  color: $chatTooltipColor;
+  background-color: $chatTooltipBackgroundColor;
+}
+
+.role-name,
+.participants-list-header {
+  color: $participantsListHeaderColor;
+  font-size:  $largeFontSize;
+  font-weight: $participantsListHeaderFontWeight;
+}
+
+ul.participants-list li {
+  font-size: $largeFontSize;
 }
