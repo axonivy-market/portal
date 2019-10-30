@@ -1,5 +1,8 @@
 package portal.guitest.test;
 
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,7 +12,6 @@ import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
-
 public class CaseFilterTest extends BaseTest {
   @Override
   @Before

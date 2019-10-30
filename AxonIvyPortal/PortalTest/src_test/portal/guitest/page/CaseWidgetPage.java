@@ -6,10 +6,11 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
+
+import portal.guitest.common.Sleeper;
 
 public class CaseWidgetPage extends TemplatePage {
 
@@ -164,16 +165,16 @@ public class CaseWidgetPage extends TemplatePage {
         findElementByCssSelector("input[id$='description-filter:filter-input-form:description']");
     enterKeys(descriptionInput, text);
     click(By.cssSelector("button[id$='description-filter:filter-input-form:update-command']"));
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
   }
 
   public void saveFilter(String filterName) {
     click(By.id(caseWidgetId + ":filter-save-action"));
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
     WebElement filterNameInput = findElementById(caseWidgetId + ":filter-save-form:save-filter-set-name-input");
     enterKeys(filterNameInput, filterName);
     click(findElementById(caseWidgetId + ":filter-save-form:filter-save-command"));
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
   }
 
   public Object getFilterName() {

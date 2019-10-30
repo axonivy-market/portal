@@ -4,7 +4,8 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
+
+import portal.guitest.common.Sleeper;
 
 public class MainMenuPage extends TemplatePage {
 
@@ -66,7 +67,7 @@ public class MainMenuPage extends TemplatePage {
     for (WebElement item : taskCategoryMenuItems) {
       if (item.getText().equalsIgnoreCase(category)) {
         click(item);
-        Sleeper.sleepTight(5000);
+        Sleeper.sleep(5000);
         return new TaskWidgetPage();
       }
     }
@@ -83,7 +84,7 @@ public class MainMenuPage extends TemplatePage {
         findElementByCssSelector(getCategoryTogglerCssSelector(path)).click();
       }
     }
-    Sleeper.sleepTight(1000);
+    Sleeper.sleep(1000);
   }
 
   public boolean isTaskCategoryPathExpandedAndHighlighted(String firstCategory, String... categories) {

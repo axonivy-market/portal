@@ -3,6 +3,7 @@ package portal.guitest.page;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -11,14 +12,14 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.google.common.base.Predicate;
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
-import ch.xpertline.base.pages.AbstractPage;
 import portal.guitest.common.UrlHelpers;
+import vn.wawa.guitest.base.page.AbstractPage;
 
 public abstract class TemplatePage extends AbstractPage {
 
@@ -69,7 +70,7 @@ public abstract class TemplatePage extends AbstractPage {
   protected void ensureNoBackgroundRequest(int minMilliSeconds, int timeOutInSeconds) {
     WebDriverWait wait = new WebDriverWait(getDriver(), timeOutInSeconds, 200);
     final long startTime = System.currentTimeMillis();
-    Predicate<WebDriver> myPredicate = webDriver -> {
+    Function<WebDriver, Boolean> myFunction = webDriver -> {
       if (System.currentTimeMillis() - startTime < minMilliSeconds) {
         return false;
       }
@@ -81,7 +82,7 @@ public abstract class TemplatePage extends AbstractPage {
       return false;
     };
     try {
-      wait.until(myPredicate);
+      wait.until(myFunction);
     } catch (WebDriverException e) {
       System.out.println("Error when ensuring not background request");
       e.printStackTrace();
@@ -317,4 +318,5 @@ public abstract class TemplatePage extends AbstractPage {
     waitForElementDisplayed(By.cssSelector(cssSelector), true);
     findElementByCssSelector(cssSelector).click();
   }
+  
 }
