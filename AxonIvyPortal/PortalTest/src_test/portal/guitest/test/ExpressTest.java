@@ -1,5 +1,7 @@
 package portal.guitest.test;
 
+import static junit.framework.Assert.assertEquals;
+
 import java.util.Arrays;
 
 import org.junit.Assert;

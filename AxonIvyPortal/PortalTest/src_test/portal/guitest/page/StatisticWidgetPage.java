@@ -2,9 +2,8 @@ package portal.guitest.page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import portal.guitest.common.Sleeper;
 
 public class StatisticWidgetPage extends TemplatePage {
   private WebElement statisticWidget;
@@ -18,11 +17,9 @@ public class StatisticWidgetPage extends TemplatePage {
   public static final String CASE_BY_FINISHED_TIME_CHART_NAME = "Case by finished time chart";
 
   public StatisticWidgetPage() {
-    WebDriverWait wait = new WebDriverWait(driver, DEFAULT_TIMEOUT);
-    Sleeper.sleepTight(1000);
+    Sleeper.sleep(1000);
     waitForPageLoaded();
     waitForElementDisplayed(By.id("statistics-widget"), true);
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("statistics-widget")));
     statisticWidget = findElementById("statistics-widget");
   }
 

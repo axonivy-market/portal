@@ -1,15 +1,18 @@
 package portal.guitest.test;
 
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
+
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.DefaultExpresTaskPage;
 import portal.guitest.page.ExpressApprovalPage;
@@ -82,7 +85,7 @@ public class PortalExpressTest extends BaseTest {
 		formDefinition.createUploadComponent("Upload");
 		formDefinition.moveAllElementToDragAndDrogPanel();
 		formDefinition.executeWorkflow();
-		Sleeper.sleepTight(2000);
+		Sleeper.sleep(2000);
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		Assert.assertTrue(expressTaskPage.isDocumentTableVisible());
 		Assert.assertTrue(expressTaskPage.isDocumentUploadButtonVisible());
@@ -158,7 +161,7 @@ public class PortalExpressTest extends BaseTest {
 		formDefinition.createTextInputField("Input Text", INPUT_TEXT_TYPE_INDEX, false);
 		formDefinition.moveAllElementToDragAndDrogPanel();
 		formDefinition.executeWorkflow();
-		Sleeper.sleepTight(2000);
+		Sleeper.sleep(2000);
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		expressTaskPage.finish();
 		HomePage home = new HomePage();
@@ -421,7 +424,7 @@ public class PortalExpressTest extends BaseTest {
 
 	protected String executeReview(String taskName) {
 		taskWidgetPage = new TaskWidgetPage();
-		Sleeper.sleepTight(2000);
+		Sleeper.sleep(2000);
 		taskWidgetPage.filterTasksBy(taskName);
 		taskWidgetPage.startTask(0);
 		ExpressReviewPage reviewPage = new ExpressReviewPage();
@@ -441,7 +444,7 @@ public class PortalExpressTest extends BaseTest {
 
 	protected void executeUserTask(String taskName) {
 		taskWidgetPage = new TaskWidgetPage();
-		Sleeper.sleepTight(2000);
+		Sleeper.sleep(2000);
 		taskWidgetPage.filterTasksBy(taskName);
 		taskWidgetPage.startTask(0);
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();

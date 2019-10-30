@@ -1,15 +1,21 @@
 package portal.guitest.test;
 
-import static portal.guitest.page.StatisticWidgetPage.*;
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
+import static portal.guitest.page.StatisticWidgetPage.CASE_BY_FINISHED_TASK_CHART_NAME;
+import static portal.guitest.page.StatisticWidgetPage.CASE_BY_FINISHED_TIME_CHART_NAME;
+import static portal.guitest.page.StatisticWidgetPage.CASE_BY_STATE_CHART_NAME;
+import static portal.guitest.page.StatisticWidgetPage.ELAPSED_TIME_CHART_NAME;
+import static portal.guitest.page.StatisticWidgetPage.TASK_BY_EXPIRY_CHART_NAME;
+import static portal.guitest.page.StatisticWidgetPage.TASK_BY_PRIORITY_CHART_NAME;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
@@ -41,7 +47,7 @@ public class StatisticWidgetTest extends BaseTest {
     grantPermissionToCreateChart();
     mainMenuPage = homePage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     assertTrue(statisticWidgetPage.isFullMode());
   }
@@ -52,7 +58,7 @@ public class StatisticWidgetTest extends BaseTest {
     redirectToRelativeLink(denyPortalPermissionsURL);
     mainMenuPage = homePage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
-    Sleeper.sleepTight(40000);
+    Sleeper.sleep(40000);
     assertEquals(false, statisticWidgetPage.hasCreateChartsLink());
     String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp";
     redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
@@ -63,11 +69,10 @@ public class StatisticWidgetTest extends BaseTest {
     grantPermissionToCreateChart();
     mainMenuPage = homePage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
-    WebDriverWait wait = new WebDriverWait(statisticWidgetPage.getDriver(), 30);
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("statistics-widget:widget-container")));
+    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     statisticWidgetPage.switchCreateMode();
     
-    Sleeper.sleepTight(20000);
+    Sleeper.sleep(20000);
     statisticWidgetPage.createTaskByPriorityChart();
     statisticWidgetPage.createTaskByExpiryChart();
     statisticWidgetPage.createCaseByStateChart();
