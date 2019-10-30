@@ -8,9 +8,12 @@ $accentColor:#c7d426;
 $accentDarkColor: #97AE04;
 $accentLightColor: #DCF91F;
 $accentTextColor: #ECFC82;
-$dataTableRowBgColorEven: rgba(255, 255, 255, 1);
 $headerPadding: 14px 1em;
 $greyLineColor: #d8d8d8;
+$red: #FF0000;
+$white: #FFFFFF;
+$black:#000000;
+$grey: #808080;
 
 $bodyBackgroundColor: #FFFFFF;
 $menuColor: #F0F0F0;
@@ -19,18 +22,18 @@ $processChainMenuColor: $primaryColor;
 $loginLogoHeight: 50px;
 $homeLogoHeight: 42px;
 
-/*3 colors of header bar*/
+/* 3 colors of header bar */
 $firstHeaderBarColor: $primaryColor;
 $secondHeaderBarColor: $primaryColor;
 $thirdHeaderBarColor: $primaryColor;
 
-/*task priority color*/
+/* Task priority color */
 $taskPriorityLowColor: #D4D4D4;
 $taskPriorityNormalColor: #96DC82;
 $taskPriorityHighColor: #FFC0C0;
 $taskPriorityExceptionColor: #FF5A5A;
 
-/*task state color*/
+/* Task state color */
 $taskStateOpenColor: #078CFF;
 $taskStateInProgressColor: #4EB41C;
 $taskStateDoneColor: #4EB41C;
@@ -38,21 +41,23 @@ $taskStateZombieDestroyedColor: #FF6464;
 $taskStateReservedColor: rgba(0,0,0,0.4);
 $taskStateSystemColor: rgba(0,0,0,0.4);
 
-/*Color and border radius of Portal button e.g Add, Close, New, Save, OK ..*/
+/* Color and border radius of Portal button e.g Add, Close, New, Save, OK .. */
 $actionButtonColor: $primaryColor;
 $cancelButtonBackgroundColor: #D3D3D3;
 $actionButtonBorderRadius:0px;
+$actionButtonHoverBackgroundColor: rgba(0, 0, 0, 0.05);
 
-/*Color and border radius of context button, 
-it only affects when button has attribute styleClass="context-button"*/
+/* Color and border radius of context button, 
+it only affects when button has attribute styleClass="context-button" */
 $contextButtonColor: #7C7C7C;
 $contextButtonBorderRadius:$actionButtonBorderRadius;
 
-/*Announcement panel color*/
+/* Announcement panel color */
 $announcementBackgroundColor: #ffff80;
-$announcementBorderColor: red;
+$announcementBorderColor: $red;
 
-/*Circle process chain number step color*/
+/* Process chain */
+$lineWaitingStepBackgroundColor: #E0E0E0;
 $circleStepNumberColor: #212121;
 
 /* Menu color */
@@ -62,3 +67,276 @@ $menuItemHoverBackgroundColor: rgba(0, 0, 0, 0.15);
 $statisticPanelHeader: #FFFFFF;
 $statisticPanelHeaderBorder: #FFFFFF;
 $statisticPanelHeaderText: rgba(0,0,0,0.8);
+$menuItemHoverBackgroundColor: rgba(0, 0, 0, 0.15);
+
+/* Table color */
+$dataTableRowBackgroundColorEven: rgba(255, 255, 255, 1);
+$dataTableRowBackgroundColorOdd: rgba(247, 247, 247, 1);
+$dataTableRowHeaderColor: rgba(0, 0, 0, 1);
+$dataTableRowHeaderBgColor: rgba(236,236,236,1);
+
+/* Fieldset */
+$fieldSetTogglerColor: $primaryTextColor;
+$fieldSetLegendHoverColor: $white; 
+$fieldSetTogglerBackgroundColor: #eee;
+
+$widgetHeaderMainMenuColor: rgba(0,0,0,0.4);
+
+/* Submenu Item */
+$subMenuItemBackgroundColor: rgba(255, 255, 255, 0.6);
+
+/* Filter Widget */
+$filterWidgetInputColor: rgba(0,0,0,0.5);
+$advancedFilterWidgetBackgroundColor: rgba(0,0,0,0.04);
+$advancedFilterRemoveIconColor: rgba(0,0,0,0.3);
+$advancedFilterErrorColor: $red;
+$widgetHeaderFilterColor: $black;
+
+/* Case Item */
+$caseListUnsortHeaderColor: rgba(0,0,0,0.5);
+$historyNodeColor: $primaryTextColor;
+$historyNodeHoverColor: rgba(0,0,0,0.6);
+$caseTaskDocumentNameColor: $primaryTextColor;
+$caseListItemBackgroundColor: rgba(255, 255, 255, 0.2);
+$caseListItemHoverBackgroundColor: #E8E9EF;
+$caseListItemOddRowBackgroundColor: rgba(0,0,0,0.04);
+$caseWidgetColumnHeaderIsSelectedColor: rgba(0,0,0,1);
+$caseItemDescriptionColor: rgba(0,0,0,0.4);
+$caseItemActionDetailColor: rgba(0,0,0,0.5);
+$caseItemActionStepsItemHoverBackgroundColor: #E8E9EF;
+$caseItemActionStepsItemColor: rgba(0, 0, 0, 0.5);
+$caseActionStepsContentsBackgroundColor: $white;
+$caseStateInProgressColor: rgba(7,140,255,1);
+$caseStateDoneColor: rgba(78,180,28,1);
+
+/* Process */
+$expressExpandCollapseButtonColor: $primaryTextColor;
+$expressExpandCollapseButtonBackgroundColor: rgba(0, 0, 0, 0.10);
+$expressExpandCollapseButtonHoverBackgroundColor: rgba(0, 0, 0, 0.20);
+$processNavigatorItemColor: rgba(0,0,0,1);
+$processNavigatorItemDisabledColor: rgba(0,0,0,0.3);
+$processStartListItemBackgroundColor: rgba(0, 0, 0, 0.05);
+$processStartListItemHoverBackgroundColor: rgba(255, 255, 255, 1);
+$processStartListItemOpenIconColor: rgba(0,0,0,0.5);
+$processHistoryColumnHeaderIsSelectedColor: rgba(0, 0, 0, 1);
+$processHistoryMessageLabelColor: $black;
+$processStartListItemColor: $black;
+
+/* Task Widget */
+$taskFilterSelectionFormHoverBackgroundColor: #f5f5f5;
+$taskFilterTypeLabelColor: rgba(0,0,0,0.6);
+$compactTaskStartListItemBackgroundColor: rgba(0, 0, 0, 0.05);
+$compactTaskStartListItemHoverBackgroundColor: #E8E9EF;
+$compactTaskStartInfoColor: rgba(0,0,0,1);
+$taskListDescriptionCellColor: rgba(0,0,0,0.4);
+$taskOddRowBackgroundColor: rgba(0,0,0,0.04);
+$sideStepItemColor: rgba(0, 0, 0, 0.5);
+$sideStepItemHoverColor: rgba(0, 0, 0, 1);
+$sideStepItemHoverBackgroundColor: #f5f5f5;
+$taskWidgetSortMenuColor: rgba(0,0,0,0.5);
+$taskWidgetSortMenuLinkColor: rgba(0,0,0,0.6);
+$taskWidgetSortMenuLinkIsSelectedColor: rgba(0,0,0,1);
+$taskWidgetOverlayPanelContentBackgroundColor: $white;
+$taskWidgetLinkColor: $black;
+$taskActionHoverBackgroundColor: #F5F5F5;
+
+/* Case Detail */
+$caseRelatedTaskColor: $primaryTextColor;
+$caseRelatedTaskHoverColor: rgba(0,0,0,0.6);
+$caseAdditionalDetailLinkColor: rgba(0,0,0,0.5);
+$caseNoteShowMoreLinkColor: rgba(0, 0, 0, 0.5);
+$caseDetailCornerTopBackgroundColor: rgba(0,0,0,0.05);
+$caseDetailPaginatorColor: $primaryTextColor; 
+$caseDetailPaginatorBackgroundColor: rgba(0,0,0,0.05);
+
+/* Task Detail */
+$taskDetailCornerTopBackgroundColor: rgba(0,0,0,0.05);
+$taskDetailPaginatorColor: $primaryTextColor; 
+$taskDetailPaginatorBackgroundColor: rgba(0,0,0,0.05);
+
+/* Admin Setting */
+$adminSettingNoPermissionMessageColor: #E53935;
+$userSettingContainerLinkColor: rgba(0, 0, 0, 0.6);
+$userSettingContainerLinkHoverColor: rgba(0, 0, 0, 1);
+$emailSettingWidgetHeader: $black;
+
+/* Absences and Debuty */
+$substitutedUserTextColor: #757575;
+
+/* Awesome Icon Selection */
+$linkChangeAwesomeIconColor: rgba(0, 0, 0, 1);
+$contentLinkChangeAwesomeIconColor: #337ab7;
+
+/* Chart */
+$chartFilterInfoIconColor: rgba(0, 0, 0, 0.75);
+$chartInfoHeaderColor: #656565;
+
+/* Start Notification */
+$notificationContentBackgroundColor: rgb(230, 113, 99);
+$notificationContentActionColor: $white;
+$notificationContentActionHoverBackgroundColor: $black;
+
+/* Login */
+$loginPanelHeaderBackgroundColor: #F0F0F0;
+
+/* Stages breadcrumb */
+$stagesChainVisitedColor: #555555;
+$stagesChainWaitingColor: #cccccc;
+$stagesChainProcessFlowVisibleBackgroundColor: #cccccc;
+
+/* Task Action Item */
+$taskActionItemDisabledStateColor: rgba(0,0,0,0.5);
+$taskActionItemLeftIconColor: rgba(0,0,0,0.5);
+$taskActionItemWidgetHeaderColor: $white;
+
+/* Task Template */
+$menuListWidgetHeaderColor: rgba(0, 0, 0, 0.7);
+
+/* Asterik Icon */
+$asterikIconColor: #f03369;
+
+/* Error Page */
+$errorContainerColor: #546E7A;
+$errorMessageBackgroundColor: $white;
+$errorMessageHeaderColor: #E67163;
+
+/* SelectCheckbox */
+$selectCheckBoxCloseHoverColor: $white;
+ 
+/* Command Link */
+$commandLinkColor: rgba(0, 0, 0, 0.5);
+$commandLinkHoverColor: rgba(0, 0, 0, 0.6);
+$commandLinkActiveColor: rgba(0, 0, 0, 0.8);
+$commandLinkDisableColor: rgba(0, 0, 0, 0.2);
+
+$bodySateActiveColor: $black;
+$autoCompleteHoverColor: $black;
+$bodyColumnTogglerLabelColor: $black;
+ 
+ /* Express */
+$expressInputSwitchSelectionBackgroundColor: $accentColor;
+$expressInputSwitchHandleBackgroundColor: $white;
+$expressShowDefaultIconColor: $black;
+$taskResponsibleLabelStateErrorColor: #e62a10;
+$deleteAssigneeButtonColor: rgba(0, 0, 0, 0.7);
+$definedTaskButtonBackgroundColor: $white;
+$formElementsPanelHoverDropSectionBackgroundColor: #edffd3;
+$reviewContentTitleColor: $black;
+$formElementsCheckboxFieldsColor: $primaryTextColor;
+$definedTaskLabelBackgroundColor: $accentColor;
+$definedTaskButtonContainerBackgroundColor: $white;
+$formElementsPanelHoverDropSectionLabelColor: $primaryTextColor;
+$taskResponsibleLinkColor: $black;
+$selectManyCheckboxLabelColor: #757575;
+$autocompleteMoreTextStateHighlightBackgroundColor: white;
+
+/* Chat */
+$chatPanelBackgroundColor: $black;
+$noGroupChatColor: $white;
+$contactCardHoverBackgroundColor: $grey;
+$contactCardIconColor: #b2b2b2;
+$contactCardBackgroundColor: $white;
+$contactCardIconUnreadMessageColor: $white;
+$contactCardIconUnreadMessageBackgroundColor: #FF6D6E;
+$contactCardNameColor: $white;
+$contactCardStatusBackgroundColor: #64D864;
+$contactNotificationColor: $white;
+$contactNotificationBackgroundColor: $red;
+$messageListBackgroundColor: $white;
+$messageListHeaderBackgroundColor: #838383;
+$messageListHeaderCloseIconHoverBackgroundColor: #9b9b9b;
+$messageListHeaderCloseIconBackgroundColor: #b2b2b2;
+$chatMessageBackgroundColor: #F3F6F9;
+$chatMyMessageBackgroundColor: #DEF4FD;
+$messageChatHeaderNameColor: $white;
+$showParticipantsLinkColor: $white;
+$chatFormBackgroundColor: #F5F5F5;
+$notificationBadgeBackgroundColor: rgb(255, 109, 110);
+$notificationBadgeColor: $white;
+$chatContactTypeHeaderColor: $white;
+$chatTooltipColor: $white;
+$chatTooltipBackgroundColor: $black;
+$participantsListHeaderColor: $black;
+
+/*---------------------------------Font size----------------------------------------*/
+$defaultFontSize: 10px;
+$largeFontSize: 1.4rem; // font size for header,title, groups, menu
+$smallFontSize: 1.2rem; // font size for text, label, input
+$selectCheckboxMenuIconFontSize: 1.8rem;
+$chartNameFontSize: 1.6rem;
+$dashboardChartNameFontSize: 2rem;
+$chartFilterHeaderFontSize: 1.8rem;
+$chartContainerAddLinkFontSize: 1.3rem;
+$chatContactTypeHeaderFontSize: 1.8rem;
+$bodyDialogTitleFontSize: 1.9rem;
+
+/*---------------------------------Font family and Font style----------------------------------------*/
+$defaultFontFamily: "Roboto";
+$portalFontFamily: "Roboto";
+$iconFontFamily: "FontAwesome";
+
+$defaultFontStyle: normal;
+
+/*---------------------------------Font weight----------------------------------------*/
+$defaultFontWeight: 400;
+$menuListWidgetHeaderFontWeight: 600;
+
+/* Task Action Item */
+$taskActionItemLabelFontWeight: normal;
+
+/* Task Detail */
+$taskDetailHeaderFontWeight: bold;
+$taskDetailSectionTitleFontWeight: bold;
+$taskStartInfoHeaderFontWeight: bold;
+$taskStartInfoTaskIdFontWeight: normal;
+$taskNameInputFontWeight: bold;
+
+/* Task Template */
+$taskTemplateTitleFontWeight: bold;
+$outputLabelTaskTemplateTitleFontWeight: 400;
+
+/* Case Detail */
+$caseDetailNameInputFontWeight: bold;
+$additionalCaseDetailLinkFontWeight: 400;
+$detailsDocumentAddLinkFontWeight: 400;
+$caseDetailHeaderFontWeight: bold;
+$historyButtonContainerFontWeight: bold;
+
+/* Case Item */
+$caseItemActionStepsFontWeight: bold;
+
+/* Process widget */
+$selectedProcessNavItemFontWeight: bold;
+$processStartListItemNameFontWeight: 400;
+
+/* Process Chain */
+$currentLineHorizontalStepTitleFontWeight: bold;
+$currentLineVerticalStepTitleFontWeight: bold;
+$currentCircleHorizontalStepTitleFontWeight: bold;
+$currentCircleVerticalStepTitleFontWeight: bold;
+
+/* Admin Settings */
+$usernameShowEnvironmentInfoFontWeight: bold;
+
+/* Awesome Icon Selection */
+$selectAwesomeIconButtonFontWeight: bold;
+
+/* Statistic Widget */
+$dashboardChartPanelChartNameFontWeight: 400;
+$chartInfoHeaderFontWeight: bold;
+$chartInfoLabelFontWeight: bold;
+
+/* Filter selection form*/
+$userDefinedFilterContainerHoverFontWeight: bold;
+
+/* Express */
+$expressWorkflowActiveSwitchLabelFontWeight: 700;
+$expressReviewContentTitleFontWeight: 700;
+$expressFinishedTaskLabelFontWeight: 700;
+$expressActiveDefinedTaskButtonFontWeight: bold;
+
+/* Portal Chat */
+$showParticipantsLinkFontWeight: bold;
+$participantsListHeaderFontWeight: bold;
+$messageChatHeaderNameFontWeight: 600;
+$userDefinedFilterContainerHoverFontWeight: bold;
