@@ -25,15 +25,15 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public void addNewNote(String content) {
-    findElementByCssSelector("a[id$='add-note-command']").click();
+    clickByCssSelector("a[id$='add-note-command']");
     waitForElementDisplayed(By.cssSelector("div[id$='add-note-dialog']"), true);
     findElementByCssSelector("textarea[id$='note-content']").sendKeys(content);
-    findElementByCssSelector("button[id$='save-add-note-command']").click();
+    clickByCssSelector("button[id$='save-add-note-command']");
     waitAjaxIndicatorDisappear();
   }
 
   public void openDocumentUploadingDialog() {
-    findElementByCssSelector("a[id$='add-document-command']").click();
+    clickByCssSelector("a[id$='add-document-command']");
     waitForElementDisplayed(By.cssSelector("a[id$='add-document-command']"), true);
   }
 
@@ -53,8 +53,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public TaskDetailsPage openATaskInCaseDetails(String taskCssSelector) {
-    WebElement task = findElementByCssSelector(taskCssSelector);
-    task.click();
+    clickByCssSelector(taskCssSelector);
     return new TaskDetailsPage();
   }
 
@@ -96,21 +95,18 @@ public class TaskTemplatePage extends TemplatePage {
   }
   
   public void clickAdhocCreationButton() {
-    findElementByCssSelector("#task-actions").click();
-    waitForElementDisplayed(By.cssSelector("a[id$='start-adhoc']"), true);
-    findElementByCssSelector("a[id$='start-adhoc']").click();
+    clickByCssSelector("#task-actions");
+    clickByCssSelector("a[id$='start-adhoc']");
     waitAjaxIndicatorDisappear();
   }
   
   public void clickAdhocOkButton() {
-    String adhocButtonCssSelection = "button[id$='start-adhoc-ok-button']";
-    findElementByCssSelector(adhocButtonCssSelection).click();
+    clickByCssSelector("button[id$='start-adhoc-ok-button']");
     waitAjaxIndicatorDisappear();
   }
   
   public void clickAdhocCancelButton() {
-    String adhocButtonCssSelection = "button[id$='start-adhoc-cancel-button']";
-    findElementByCssSelector(adhocButtonCssSelection).click();
+   clickByCssSelector("button[id$='start-adhoc-cancel-button']");
     waitAjaxIndicatorDisappear();
   }
   
@@ -125,9 +121,9 @@ public class TaskTemplatePage extends TemplatePage {
   }
   
   public void clickShowAdhocHistoryBtn() {
-    findElementByCssSelector("#task-actions").click();
+    clickByCssSelector("#task-actions");
     waitForElementDisplayed(By.cssSelector("a[id$='show-adhoc-history']"), true);
-    findElementByCssSelector("a[id$='show-adhoc-history']").click();
+    clickByCssSelector("a[id$='show-adhoc-history']");
     waitAjaxIndicatorDisappear();
   }
 
@@ -142,7 +138,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
   
   public void closeAdhocHistoryDialog() {
-    findElementByCssSelector("button[id$='close-adhoc-dialog-button']").click();
+    clickByCssSelector("button[id$='close-adhoc-dialog-button']");
     waitAjaxIndicatorDisappear();
   }
   
@@ -153,13 +149,13 @@ public class TaskTemplatePage extends TemplatePage {
 
   public void clickSubmitButton() {
     String submitButton = "button[id$='command-form:button-submit']";
-    findElementByCssSelector(submitButton).click();
+    clickByCssSelector(submitButton);
     waitAjaxIndicatorDisappear();
   }
   
   public void clickChatGroup() {
     String chatGroup = "a[id$='chat-group']";
-    findElementByCssSelector(chatGroup).click();
+    clickByCssSelector(chatGroup);
     waitAjaxIndicatorDisappear();
   }
   

@@ -34,15 +34,13 @@
                   <div class="card card-w-title ui-g-12">
                     <!-- Chart Header -->
                     <h:panelGroup styleClass="statistics-header-container ui-g-12 u-padding-0">
-                      <h:panelGroup id="chart-name-container" styleClass="chart-name-container ui-g-8" layout="block">
-                        <h1 id="chart-name" class="chart-name">
-                          #{chart.name}
-                          <p:commandLink rendered="#{!(empty chart.filter)}" styleClass="fa fa-info-circle chart-info"
+                      <h:panelGroup id="chart-name-container" styleClass="chart-name-container" layout="block">
+                        <h1 id="chart-name" class="chart-name">#{chart.name}</h1>
+                        <p:commandLink rendered="#{!(empty chart.filter)}" styleClass="fa fa-info-circle chart-info"
                             actionListener="#{logic.selectChart(chart)}" update="chart-details-dialog" oncomplete="PF('chart-details-dialog').show();" />
-                        </h1>
                       </h:panelGroup>
 
-                      <h:panelGroup layout="block" styleClass="chart-actions-container ui-g-4" rendered="#{!cc.attrs.isDrilldownExpiryChart}">
+                      <h:panelGroup layout="block" styleClass="chart-actions-container" rendered="#{!cc.attrs.isDrilldownExpiryChart}">
                         <p:commandLink styleClass="fa fa-arrow-left chart-action ui-sm-hidden" actionListener="#{logic.moveLeft(chart)}"
                           update="@([id$='statistic-container'])" rendered="#{chartStatus.index != 0}" />
                         <p:commandLink styleClass="fa fa-arrow-right chart-action ui-sm-hidden" actionListener="#{logic.moveRight(chart)}"
@@ -57,7 +55,7 @@
                     <!-- Chart Content -->
                     <div class="ui-g-12 u-padding-0">
                       <p:donutChart id="task-by-priority-chart" model="#{chart.donutChartModel}"
-                        rendered="#{statisticDashboardBean.isTaskByPriority(chart)}" style="width: 100%; height:320px;"
+                        rendered="#{statisticDashboardBean.isTaskByPriority(chart)}" style="width: 100%; height:340px;"
                         styleClass="statistic-chart">
                         <f:attribute name="selectedChartId" value="#{chart.id}" />
                         <p:ajax event="itemSelect" listener="#{logic.drilldownTaskByPriority}" />
@@ -85,26 +83,26 @@
                       </p:overlayPanel>
 
                       <p:barChart styleClass="statistic-chart" model="#{chart.barChartModel}"
-                        rendered="#{statisticDashboardBean.isElapsedTimeByCaseCategory(chart)}" style="width: 100%; height: 320px;">
+                        rendered="#{statisticDashboardBean.isElapsedTimeByCaseCategory(chart)}" style="width: 100%; height: 340px;">
                         <f:attribute name="selectedChartId" value="#{chart.id}" />
                         <p:ajax listener="#{cc.attrs.drilldownListener}" update="@([id$='create-chart-header'])" />
                         <p:ajax event="itemSelect" listener="#{logic.drilldownElapsedTime}" update="#{p:component('widget-container')}" />
                       </p:barChart>
 
                       <p:donutChart styleClass="statistic-chart" model="#{chart.donutChartModel}"
-                        rendered="#{statisticDashboardBean.isCaseByState(chart)}" style="width: 100%; height: 320px;">
+                        rendered="#{statisticDashboardBean.isCaseByState(chart)}" style="width: 100%; height: 340px;">
                         <f:attribute name="selectedChartId" value="#{chart.id}" />
                         <p:ajax event="itemSelect" listener="#{logic.drilldownCaseByState}" />
                       </p:donutChart>
 
                       <p:donutChart styleClass="statistic-chart" model="#{chart.donutChartModel}"
-                        rendered="#{statisticDashboardBean.isCaseByFinishedTask(chart)}" style="width: 100%; height: 320px;">
+                        rendered="#{statisticDashboardBean.isCaseByFinishedTask(chart)}" style="width: 100%; height: 340px;">
                         <f:attribute name="selectedChartId" value="#{chart.id}" />
                         <p:ajax event="itemSelect" listener="#{logic.drilldownCaseByState}" />
                       </p:donutChart>
 
                       <p:donutChart styleClass="statistic-chart" model="#{chart.donutChartModel}"
-                        rendered="#{statisticDashboardBean.isCaseByFinishedTime(chart)}" style="width: 100%; height: 320px;">
+                        rendered="#{statisticDashboardBean.isCaseByFinishedTime(chart)}" style="width: 100%; height: 340px;">
                         <f:attribute name="selectedChartId" value="#{chart.id}" />
                         <p:ajax event="itemSelect" listener="#{logic.drilldownCaseByState}" />
                       </p:donutChart>
@@ -114,7 +112,7 @@
                 </h:panelGroup>
               </div>
 
-              <ui:include src="ChartDetailsDialog.xhtml">
+              <ui:include src="StatisticDetailsDialog.xhtml">
                 <ui:param name="chartDetailDialogId" value="chart-details-dialog" />
               </ui:include>
             </ui:repeat>
@@ -124,12 +122,14 @@
     </h:panelGroup>
 
     <!-- Statistics Chart for home page -->
-    <ui:include src="CarouselChart.xhtml" />
+    <ui:include src="StatisticCarousel.xhtml" />
 
-    <h:panelGroup id="statistic-widget-empty-state" styleClass="statistic-widget-empty-message #{!cc.attrs.compactMode ? 'not-compact-mode': ''}"
+    <h:panelGroup id="statistic-widget-empty-state" styleClass="card statistic-widget-empty-message #{!cc.attrs.compactMode ? 'not-compact-mode': ''}"
       layout="block" rendered="#{!data.hasStatistic and !cc.attrs.isDrilldownElapsedTime}">
-      <h:panelGroup layout="block" rendered="#{empty cc.facets.emptyDataPlace}">
-        <p:outputLabel escape="false"
+      <h:panelGroup layout="block" rendered="#{empty cc.facets.emptyDataPlace}" styleClass="ui-g">
+        <h:outputText styleClass="ui-g-12 statistic-empty-header"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/statisticCarousel')}" />
+        <h:outputText escape="false" styleClass="ui-g-12 statistic-empty-message"
           value="#{data.isFinishLoadCharts ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/emptystate/defaultEmptyMessages') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/loadingCharts')}" />
       </h:panelGroup>
       <cc:renderFacet name="emptyDataPlace" />
