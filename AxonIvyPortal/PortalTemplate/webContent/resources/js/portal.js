@@ -60,6 +60,11 @@ var MainMenu = {
     var $this = this;
     this.$mainMenuToggle.on('click', function(e) {
       $this.responsiveToolkit.updateLayoutWithAnimation();
+
+      var statisticContainer = $('.js-statistic-widget-container.compact-mode');
+      if (statisticContainer.length > 0) {
+        updateStatisticCarousel();
+      }
     });
   },
 
