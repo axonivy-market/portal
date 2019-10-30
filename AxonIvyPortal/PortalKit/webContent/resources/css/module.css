@@ -247,6 +247,11 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
+.hide-priority-column .widget-sort-menu.full-mode,
+.hide-priority-column .full-mode.task-start-list-item {
+  padding-left: 10px;
+}
+
 .widget-sort-menu.full-mode a.ui-widget.ui-commandlink .sort-icon {
   margin-left: 2px;
 }
