@@ -24,18 +24,18 @@
       </div>
     </h:panelGroup>
 
-    <h:panelGroup id="create-chart-header" layout="block" rendered="#{!cc.attrs.compactMode}" styleClass="statistic-actions-panel ui-g">
+    <h:panelGroup id="create-chart-header" layout="block" rendered="#{!cc.attrs.compactMode}" styleClass="statistic-actions-panel ui-g #{data.createMode ? 'creation-mode':''}">
       <h:panelGroup layout="block" rendered="#{!data.createMode}" styleClass="ui-g-12 u-padding-0">
         <p:commandLink id="create-chart-link" actionListener="#{logic.switchCreateMode}" update="widget-container create-chart-header"
-          rendered="#{!data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart and data.canCreateNewCharts}">
+          rendered="#{!data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart and data.canCreateNewCharts}" styleClass="u-hidden-md-down">
           <i class="fa fa-plus" />
           <p:spacer width="3px" />
           <h:outputText id="create-chart-link-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/addChart')}" />
+          <p:spacer width="10px" />
         </p:commandLink>
         <p:commandLink id="restore-default-chart-link" onclick="PF('restore-confirmation-dialog').show();"
           rendered="#{!data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart 
           and data.hasDefaultChart and data.canCreateNewCharts}">
-          <p:spacer width="10px" />
           <i class="fa fa-refresh" />
           <p:spacer width="3px" />
           <h:outputText id="restore-default-chart-link-label"
@@ -56,14 +56,14 @@
       </h:panelGroup>
       <h:panelGroup layout="block" rendered="#{data.createMode}">
         <div class="ui-g-12 u-padding-0">
-          <p:commandButton id="back-from-chart-creation" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/backToDashboard')}" styleClass="back-button Fright"
-            icon="fa fa-reply" actionListener="#{logic.switchCreateMode}" update="widget-container create-chart-header" />
+          <p:commandButton id="back-from-chart-creation" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" styleClass="back-button Fright"
+            icon="fa fa-reply" actionListener="#{logic.switchCreateMode}" update="widget-container create-chart-header" oncomplete="clearChartModels();" />
         </div>
       </h:panelGroup>
     </h:panelGroup>
 
     <h:panelGroup id="widget-container" layout="block"
-      styleClass="ui-g statistic-widget js-statistic-widget-container #{data.compactMode? 'compact-mode': ''}">
+      styleClass="ui-g statistic-widget js-statistic-widget-container #{data.compactMode? 'compact-mode': ''} #{data.createMode ? 'creation-mode':''}">
 
       <h:panelGroup id="statistic-dashboard-container" layout="block"
         styleClass="ui-g-12 u-padding-0 statistic-dashboard-container #{data.isDrilldownElapsedTime ? 'elapsed-time-detail-container-width' : 'statistic-dashboard-container-width'}"
