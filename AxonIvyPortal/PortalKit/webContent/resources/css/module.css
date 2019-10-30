@@ -3032,10 +3032,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   flex-direction: row;
 }
 
-.statistic-widget.creation-mode {
-  margin-top: 0.5em !important;
-}
-
 .statistic-widget-empty-message {
   margin: auto;
   text-align: center;
@@ -3204,6 +3200,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 .statistic-actions-panel {
   margin-top: 15px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .statistic-actions-panel.creation-mode {
