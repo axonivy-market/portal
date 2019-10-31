@@ -16,7 +16,7 @@ pipeline {
   stages {    
     stage('build') {
       steps {        
-        dir ('Documentation/PortalUserGuide') {
+        dir ('Documentation') {
             script {
                 def version = 'dev'
                 docker.image('maven:3.6.2-jdk-11-slim').inside {
@@ -32,7 +32,7 @@ pipeline {
                     maven cmd: "clean ${phase}"
                 }
             }
-            archiveArtifacts 'build/html/**/*, target/*.zip'
+            archiveArtifacts '*/build/html/**/*, */target/*.zip'
             recordIssues tools: [sphinxBuild()], unstableTotalAll: 1
         }
       }
