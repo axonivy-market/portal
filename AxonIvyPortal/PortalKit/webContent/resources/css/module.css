@@ -353,7 +353,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   background-image: none !important;
   text-indent: 2px !important;
   bottom: 8px;
-  top: unset;
+  top: auto;
 }
 
 .filter-category-checkbox-tree .ui-icon.ui-icon-search:before {
