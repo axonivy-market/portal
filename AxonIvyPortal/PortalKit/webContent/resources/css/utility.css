@@ -3,10 +3,10 @@
  * Things like clear fixes, vertical alignment, and text truncation.
  * Denote these classes by prefixing them with .u-.
  *
- * All the utils should be in a single file. There shouldn�t be any need to overwrite them in components or mixins.
+ * All the utils should be in a single file. There should not be any need to overwrite them in components or mixins.
  *
  * You should really only need a few utilities. 
- * We don�t need something like .u-float-left { float: left; } where including float: left; in the component is just as easy
+ * We do not need something like .u-float-left { float: left; } where including float: left; in the component is just as easy
  * and more visible.
  */
 .u-truncate-text {
