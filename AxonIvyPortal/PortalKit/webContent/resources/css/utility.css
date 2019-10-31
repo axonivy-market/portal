@@ -168,6 +168,10 @@
   padding-top: 0 !important;
 }
 
+.u-no-padding-bottom {
+  padding-bottom: 0 !important;
+}
+
 .u-no-padding-left {
   padding-left: 0 !important;
 }

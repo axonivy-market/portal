@@ -606,10 +606,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   margin-right: 5px !important;
 }
 
-.case-detail-related-table .case-related-task-case-running {
-  margin-bottom: 8px;
-}
-
 .history-fullname {
   margin-left: 5px;
 }
@@ -1420,10 +1416,6 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
   width: auto;
   height: auto;
   margin: 0;
-}
-
-.express-assignee-autocomplete .ui-autocomplete-input {
-	padding-right: 20px !important;
 }
 
 /********************************** END PROCESSES **********************************/

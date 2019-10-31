@@ -24,9 +24,8 @@
 }
 
 .process-property-container {
-  width: calc(100% - 16px);
+  width: 100%;
   margin: auto;
-  padding-left: 8px;
   float: left;
 }
 
@@ -787,4 +786,8 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
 body .ui-fieldset .ui-fieldset-legend .ui-fieldset-toggler {
   width: 20px !important;
   height: 20px !important;
+}
+
+.express-assignee-autocomplete .ui-autocomplete-input {
+  padding-right: 20px !important;
 }
