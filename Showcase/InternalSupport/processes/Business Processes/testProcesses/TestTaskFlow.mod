@@ -1640,6 +1640,7 @@ TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
 Tt0 f5 caseData 'case.description=Leave Request Description
 case.name=Leave Request
+customFields.NUMBER.Number\ field=1000000
 customFields.STRING.CustomVarCharField1="Leave Request CustomVarCharField1"
 customFields.STRING.CustomVarCharField2="Leave Request CustomVarCharField2"
 customFields.STRING.CustomVarCharField3="Leave Request CustomVarCharField3"
@@ -1647,7 +1648,8 @@ customFields.STRING.CustomVarCharField4="Leave Request CustomVarCharField4"
 customFields.STRING.ProcessCategoryCode="pubRequested"
 customFields.STRING.ProcessCategoryName="Publication Requested"
 customFields.STRING.ProcessCode="pubRequested"
-customFields.STRING.ProcessName="Publication Requested"' #txt
+customFields.STRING.ProcessName="Publication Requested"
+customFields.TIMESTAMP.Today=new java.util.Date()' #txt
 Tt0 f5 showInStartList 1 #txt
 Tt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
