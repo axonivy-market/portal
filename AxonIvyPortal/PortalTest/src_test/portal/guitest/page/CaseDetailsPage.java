@@ -13,7 +13,8 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
+
+import portal.guitest.common.Sleeper;
 
 public class CaseDetailsPage extends TemplatePage {
   private static final String DOCUMENT_COMPONENT_ID = "div[id='case-item-details:document']";
@@ -204,11 +205,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   private void onChangeDescriptionInput(String newDescription) {
-    try {
-      Thread.sleep(2000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
+    Sleeper.sleep(2000);
    // WebElement caseDescriptionInput = findElementById("case-item-details:description:case-description-form:case-description-output");
     WebElement caseDescriptionInput = findElementByCssSelector("textarea[id='case-item-details:description:case-description-form:case-description-input']");
     waitForElementDisplayed(caseDescriptionInput, true);
@@ -296,9 +293,9 @@ public class CaseDetailsPage extends TemplatePage {
     }
     // currently haven't found solution to check when the file upload finish, we have to wait
     if (isIntegrationTestRun()) {
-      Sleeper.sleepTight(10000);
+      Sleeper.sleep(10000);
     } else {
-      Sleeper.sleepTight(5000);
+      Sleeper.sleep(5000);
     }
   }
 

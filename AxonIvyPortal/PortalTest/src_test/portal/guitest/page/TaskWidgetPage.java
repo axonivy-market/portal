@@ -9,13 +9,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.TaskState;
 
 public class TaskWidgetPage extends TemplatePage {
@@ -124,7 +122,7 @@ public class TaskWidgetPage extends TemplatePage {
     WebElement keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR);
     keywordFilter.clear();
     keywordFilter.sendKeys(keyword);
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
     waitAjaxIndicatorDisappear();
   }
 
@@ -133,7 +131,7 @@ public class TaskWidgetPage extends TemplatePage {
     WebElement keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR_EXPANDED_MODE);
     keywordFilter.clear();
     keywordFilter.sendKeys(keyword);
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
     waitAjaxIndicatorDisappear();
   }
 
@@ -223,7 +221,7 @@ public class TaskWidgetPage extends TemplatePage {
   public void changeExpiryOfTaskAt(String dateStringLiteral) {
     click(findElementById("task-detail-template:general-information:expiry-form:edit-inplace_display"));
     waitForElementDisplayed(By.id("task-detail-template:general-information:expiry-form:expiry-calendar"), true);
-    WebElement taskExpiryInlineEdit = findElementById("task-detail-template:general-information:expiry-form:expiry-calendar");
+    WebElement taskExpiryInlineEdit = findElementById("task-detail-template:general-information:expiry-form:expiry-calendar_input");
     taskExpiryInlineEdit.sendKeys(dateStringLiteral);
 
     WebElement editor = findElementById("task-detail-template:general-information:expiry-form:edit-inplace_editor");
@@ -248,12 +246,12 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void changeDescriptionOfTask(String description) {
-    clickByCssSelector("span[id$='task-desription-inplace_display']");
+    clickByCssSelector("span[id$='task-description-output']");
     WebElement taskNameInput = findElementByCssSelector("textarea[id$='task-description-input']");
     waitForElementDisplayed(taskNameInput, true);
     taskNameInput.clear();
     taskNameInput.sendKeys(description);
-    clickByCssSelector("span[id$='task-desription-inplace_editor']  .ui-inplace-save");
+    clickByCssSelector("span[id$='task-description-inplace_editor']  .ui-inplace-save");
     waitAjaxIndicatorDisappear();
   }
 
@@ -337,14 +335,10 @@ public class TaskWidgetPage extends TemplatePage {
     clickByCssSelector(ID_END + taskIndex + ":task-item:task-side-steps-menu']");
     waitAjaxIndicatorDisappear();
 
-    WebDriverWait wait = new WebDriverWait(getDriver(), 10);
-    WebElement adhocMenuItem = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a.side-step-item")));
-
     try {
-      adhocMenuItem.click();
+      clickByCssSelector("a.side-step-item");
     } catch (Exception e) {
-      adhocMenuItem = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a.side-step-item")));
-      adhocMenuItem.click();
+      clickByCssSelector("a.side-step-item");
     }
     waitForElementPresent(By.id(TASK_ACTION), true);
     return new AdhocPage();
@@ -413,7 +407,7 @@ public class TaskWidgetPage extends TemplatePage {
         findElementByCssSelector("input[id$='description-filter:filter-input-form:description']");
     enterKeys(descriptionInput, text);
     click(By.cssSelector("button[id$='description-filter:filter-input-form:update-command']"));
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
   }
 
   public void filterByCustomerName(String text) {
@@ -423,7 +417,7 @@ public class TaskWidgetPage extends TemplatePage {
         findElementByCssSelector("input[id$='customer-name-filter:filter-input-form:customVarChar5']");
     enterKeys(customerNameInput, text);
     click(By.cssSelector("button[id$='" + taskWidgetId + ":customer-name-filter:filter-input-form:update-command']"));
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
   }
   
   public void openStateFilterOverlayPanel() {
@@ -449,21 +443,21 @@ public class TaskWidgetPage extends TemplatePage {
       }
     }
     click(By.cssSelector("button[id$='state-filter:filter-input-form:update-command']"));
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
   }
 
   public void saveFilter(String filterName) {
     click(By.id(taskWidgetId + ":filter-save-action"));
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
     WebElement filterNameInput = findElementById(taskWidgetId + ":filter-save-form:save-filter-set-name-input");
     enterKeys(filterNameInput, filterName);
     click(findElementById(taskWidgetId + ":filter-save-form:filter-save-command"));
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
   }
 
   public String getFilterName() {
     click(findElementById(taskWidgetId + ":filter-selection-form:filter-name"));
-    WebElement descriptionInput = findElementByCssSelector(".user-definied-filter-container");
+    WebElement descriptionInput = findElementByCssSelector(".user-defined-filter-container");
 
     return descriptionInput.getText();
   }
@@ -515,7 +509,6 @@ public class TaskWidgetPage extends TemplatePage {
       refreshAndWaitElement(cssSelector);
       clickByCssSelector(cssSelector);
     }
-    waitAjaxIndicatorDisappear();
   }
 
   public int getTaskCount() {

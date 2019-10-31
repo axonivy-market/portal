@@ -28,13 +28,13 @@
   <div id="#{cc.clientId}" class="widget case-widget-container ui-g">
     <h:panelGroup rendered="#{!cc.attrs.hideWidgetHeader}">
       <h:panelGroup id="case-widget-header" styleClass="widget-header ui-g-12 ui-g" layout="block">
-        <div class="case-widget-top-header js-widget-header ui-g-8 ui-sm-4">
+        <div class="case-widget-top-header ui-g-8 ui-sm-4">
           <h:panelGroup id="case-widget-title">
             <h:outputText styleClass="case-widget-top-header-main-title"
               value="#{cc.attrs.title} (#{data.dataModel.rowCount})" />
           </h:panelGroup>
         </div>
-        <h:panelGroup styleClass="widget-header-content-filter mod-expanded-mode ui-g-4 ui-sm-8" id="expanded-mode-filter-view">
+        <h:panelGroup styleClass="widget-header-content-filter ui-g-4 ui-sm-8" id="expanded-mode-filter-view">
           <h:form id="case-basic-filter-form" onsubmit="return false;">
             <ic:ch.ivy.addon.portalkit.component.Filter id="case-filter-component" keywordStoresIn="#{data.dataModel.criteria.keyword}"
               updateComponent="#{cc.clientId}:case-list" icon="fa fa-filter simple-filter-icon"
@@ -62,17 +62,17 @@
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/publicFilter')}" />
                   </div>
                   <ui:repeat var="filterData" value="#{data.publicFilters}">
-                    <h:panelGroup layout="block" styleClass="user-definied-filter-container">
-                      <p:commandLink id="user-definied-filter" styleClass="user-definied-filter"
+                    <h:panelGroup layout="block" styleClass="user-defined-filter-container">
+                      <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
                         value="#{filterData.filterName}" global="false"
                         actionListener="#{logic.applyFilter(filterData)}"
                         update="#{cc.clientId}:filter-selection-container #{cc.clientId}:advanced-filter-container #{cc.clientId}:case-widget-header #{cc.clientId}:case-list #{cc.clientId}:filter-add-form"
                         oncomplete="caseWidget.setUpScrollbar();caseWidget.setupHeader();" />
-                      <p:tooltip id="user-definied-filter-tooltip" for="user-definied-filter"
+                      <p:tooltip id="user-defined-filter-tooltip" for="user-defined-filter"
                         value="#{filterData.filterName}" trackMouse="true" />
-                      <p:commandLink id="delete-user-definied-filter-command"
+                      <p:commandLink id="delete-user-defined-filter-command"
                         rendered="#{caseWidgetBean.isDeleteFilterEnabledFor(filterData)}"
-                        styleClass="fa fa-times-circle delete-user-definied-filter-command"
+                        styleClass="fa fa-times-circle delete-user-defined-filter-command"
                         actionListener="#{data.setFilterDataToBeDeleted(filterData)}"
                         oncomplete="PF('delete-filter-confirmation-dialog').show();" />
                     </h:panelGroup>
@@ -86,17 +86,17 @@
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/privateFilter')}" />
                   </div>
                   <ui:repeat var="filterData" value="#{data.privateFilters}">
-                    <h:panelGroup layout="block" styleClass="user-definied-filter-container">
-                      <p:commandLink id="user-definied-filter" styleClass="user-definied-filter"
+                    <h:panelGroup layout="block" styleClass="user-defined-filter-container">
+                      <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
                         value="#{filterData.filterName}" global="false"
                         actionListener="#{logic.applyFilter(filterData)}"
                         update="#{cc.clientId}:filter-selection-container #{cc.clientId}:advanced-filter-container #{cc.clientId}:case-widget-header #{cc.clientId}:case-list #{cc.clientId}:filter-add-form"
                         oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader();" />
-                      <p:tooltip id="user-definied-filter-tooltip" for="user-definied-filter"
+                      <p:tooltip id="user-defined-filter-tooltip" for="user-defined-filter"
                         value="#{filterData.filterName}" trackMouse="true" />
-                      <p:commandLink id="delete-user-definied-filter-command"
+                      <p:commandLink id="delete-user-defined-filter-command"
                         rendered="#{caseWidgetBean.isDeleteFilterEnabledFor(filterData)}"
-                        styleClass="fa fa-times-circle delete-user-definied-filter-command"
+                        styleClass="fa fa-times-circle delete-user-defined-filter-command"
                         actionListener="#{logic.setFilterToBeDeleted(filterData)}"
                         oncomplete="PF('delete-filter-confirmation-dialog').show();" />
                     </h:panelGroup>
@@ -241,8 +241,8 @@
       onclick="PF('destroy-case-dialog').hide();" type="button" styleClass="portal-cancel-button" />
   </p:confirmDialog>
 
-  <h:form>
-    <p:remoteCommand name="updateCaseCount" update="#{cc.clientId}:case-widget-title" global="false" process="@none" />
+  <h:form id="update-case-count-rc-form">
+    <p:remoteCommand id="update-case-count-remote-cmd" name="updateCaseCount" update="#{cc.clientId}:case-widget-title" global="false" process="@none" />
   </h:form>
 </cc:implementation>
 </html>

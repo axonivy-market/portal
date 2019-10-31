@@ -30,7 +30,7 @@
         <f:facet name="title">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/timePeriod')}" />
           <p:outputLabel id="time-period-filter-info" styleClass="chart-filter-info-icon"><span class="fa fa-info-circle filter-info"/></p:outputLabel>
-          <p:tooltip for="time-period-filter-info">
+          <p:tooltip for="time-period-filter-info" styleClass="statistic-filter-tooltip">
             #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')},
             #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory')},
             #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTime')} <br/>
@@ -71,7 +71,7 @@
         <f:facet name="title">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/caseCategoriesLabel')}" />
           <p:outputLabel id="case-category-filter-info" styleClass="chart-filter-info-icon"><span class="fa fa-info-circle filter-info"/></p:outputLabel>
-          <p:tooltip for="case-category-filter-info">
+          <p:tooltip for="case-category-filter-info" styleClass="statistic-filter-tooltip">
             #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')},
             #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory')},
             #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTime')} <br/>
@@ -93,7 +93,7 @@
         <f:facet name="title">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/rolesLabel')}" />
           <p:outputLabel id="role-filter-info" styleClass="chart-filter-info-icon"><span class="fa fa-info-circle filter-info"/></p:outputLabel>
-          <p:tooltip for="role-filter-info">
+          <p:tooltip for="role-filter-info" styleClass="statistic-filter-tooltip">
             #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')},
             #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}<br/>
             #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/description")}: #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/roleFilterDescription")}
@@ -120,7 +120,7 @@
         <f:facet name="title">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/workflowStatesLabel')}" />
           <p:outputLabel id="case-state-filter-info" styleClass="chart-filter-info-icon"><span class="fa fa-info-circle filter-info"/></p:outputLabel>
-          <p:tooltip for="case-state-filter-info">
+          <p:tooltip for="case-state-filter-info" styleClass="statistic-filter-tooltip">
             #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')},
             #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory')},
             #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTime')} <br/>
@@ -148,7 +148,7 @@
         <f:facet name="title">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/taskPrioritiesLabel')}" />
           <p:outputLabel id="task-priority-filter-info" styleClass="chart-filter-info-icon"><span class="fa fa-info-circle filter-info"/></p:outputLabel>
-          <p:tooltip for="task-priority-filter-info">
+          <p:tooltip for="task-priority-filter-info" styleClass="statistic-filter-tooltip">
             #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')},
             #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}<br/>
             #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/description")}: #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/taskPriorityFilterDescription")}
@@ -172,11 +172,11 @@
       <c:forEach items="#{cc.attrs.customFields}" var="tabVar" varStatus="status">
         <p:tab title="#{tabVar}" id="custom-field-filter-#{status.index}">
           <f:facet name="title">
-            <h:outputText value="#{tabVar}" />
+            <h:outputText value="#{tabVar}" styleClass="statistic-filter-custom-title"/>
             <p:outputLabel id="case-custom-#{status.index}" styleClass="chart-filter-info-icon">
               <span class="fa fa-info-circle filter-info" />
             </p:outputLabel>
-            <p:tooltip for="case-custom-#{status.index}">
+            <p:tooltip for="case-custom-#{status.index}" styleClass="statistic-filter-tooltip">
                #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')},
                #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory')},
                #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTime')}
