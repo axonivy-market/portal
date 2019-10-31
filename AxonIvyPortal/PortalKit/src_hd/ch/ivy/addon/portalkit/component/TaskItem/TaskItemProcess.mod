@@ -38,12 +38,9 @@ Ts0 @PushWFArc f101 '' #zField
 Ts0 @PushWFArc f67 '' #zField
 Ts0 @PushWFArc f100 '' #zField
 Ts0 @Alternative f99 '' #zField
-Ts0 @PushWFArc f78 '' #zField
-Ts0 @GridStep f47 '' #zField
 Ts0 @PushWFArc f95 '' #zField
 Ts0 @UdMethod f76 '' #zField
 Ts0 @PushWFArc f73 '' #zField
-Ts0 @PushWFArc f50 '' #zField
 Ts0 @GridStep f49 '' #zField
 Ts0 @PushWFArc f81 '' #zField
 Ts0 @UdMethod f97 '' #zField
@@ -67,10 +64,11 @@ Ts0 @UdInit f0 '' #zField
 Ts0 @UdMethod f6 '' #zField
 Ts0 @CallSub f7 '' #zField
 Ts0 @PushWFArc f8 '' #zField
+Ts0 @PushWFArc f9 '' #zField
 >Proto Ts0 Ts0 TaskItemProcess #zField
 Ts0 f94 339 883 26 26 0 12 #rect
 Ts0 f94 @|UdProcessEndIcon #fIcon
-Ts0 f46 1043 299 26 26 0 12 #rect
+Ts0 f46 915 299 26 26 0 12 #rect
 Ts0 f46 @|UdProcessEndIcon #fIcon
 Ts0 f79 336 488 32 32 0 16 #rect
 Ts0 f79 @|AlternativeIcon #fIcon
@@ -267,29 +265,6 @@ Ts0 f100 352 326 352 392 #arcP
 Ts0 f100 0 0.6038825846613081 0 0 #arcLabel
 Ts0 f99 336 392 32 32 0 16 #rect
 Ts0 f99 @|AlternativeIcon #fIcon
-Ts0 f78 expr out #txt
-Ts0 f78 984 312 1043 312 #arcP
-Ts0 f47 actionTable 'out=in;
-' #txt
-Ts0 f47 actionCode 'import ch.ivyteam.ivy.request.RequestUriFactory;
-import java.net.URI;
-import ch.ivyteam.ivy.server.ServerFactory;
-import ch.ivyteam.ivy.application.IApplicationConfigurationManager;
-import javax.faces.context.FacesContext;
-
-IApplicationConfigurationManager appConfig = ServerFactory.getServer().getApplicationConfigurationManager();
-URI taskUri = RequestUriFactory.createTaskStartUri(appConfig, in.task);
-FacesContext.getCurrentInstance().getExternalContext().redirect(taskUri.toString());' #txt
-Ts0 f47 security system #txt
-Ts0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Open task</name>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f47 872 290 112 44 -28 -8 #rect
-Ts0 f47 @|StepIcon #fIcon
 Ts0 f95 expr out #txt
 Ts0 f95 109 992 339 992 #arcP
 Ts0 f76 guid 15F8F5A744248DE3 #txt
@@ -314,9 +289,7 @@ Ts0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ts0 f76 83 979 26 26 -52 12 #rect
 Ts0 f76 @|UdMethodIcon #fIcon
 Ts0 f73 expr out #txt
-Ts0 f73 704 312 728 312 #arcP
-Ts0 f50 expr out #txt
-Ts0 f50 840 312 872 312 #arcP
+Ts0 f73 704 312 744 312 #arcP
 Ts0 f49 actionTable 'out=in;
 ' #txt
 Ts0 f49 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPage;
@@ -324,21 +297,35 @@ import ch.ivy.addon.portalkit.enums.NavigationHistory;
 import ch.ivy.addon.portalkit.dto.TaskEndInfo;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import javax.faces.context.FacesContext;
+
+GlobalSettingService service = new GlobalSettingService();
+boolean enabledStartInIFrame = Boolean.parseBoolean(service.findGlobalSettingValue(GlobalVariable.START_IN_IFRAME.toString()));
 
 TaskEndInfo taskEndInfo = new TaskEndInfo();
 taskEndInfo.setDataModel(in.dataModel);
 taskEndInfo.setPortalPage(PortalPage.valueOf(in.currentPortalPage));
+taskEndInfo.setIsInIFrame(enabledStartInIFrame);
 
-String taskDataModelSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(in.task.getId());
-SecurityServiceUtils.setSessionAttribute(taskDataModelSessionAttributeKey, taskEndInfo);' #txt
+String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(in.task.getId());
+SecurityServiceUtils.setSessionAttribute(taskEndInfoSessionAttributeKey, taskEndInfo);
+
+String taskStart = ivy.html.taskStartRef(in.task);
+if (enabledStartInIFrame) {
+	taskStart = ivy.html.taskStartInFrameRef(in.task);
+}
+FacesContext.getCurrentInstance().getExternalContext().redirect(taskStart);' #txt
 Ts0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Store task end info</name>
+        <name>Store task end info&#13;
+Start task</name>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f49 728 290 112 44 -51 -8 #rect
+Ts0 f49 744 290 128 44 -44 -16 #rect
 Ts0 f49 @|StepIcon #fIcon
 Ts0 f81 expr out #txt
 Ts0 f81 109 504 160 504 #arcP
@@ -530,6 +517,7 @@ Ts0 f7 264 778 144 44 -64 -8 #rect
 Ts0 f7 @|CallSubIcon #fIcon
 Ts0 f8 expr out #txt
 Ts0 f8 109 800 264 800 #arcP
+Ts0 f9 872 312 915 312 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -560,10 +548,6 @@ Ts0 f35 mainOut f65 tail #connect
 Ts0 f65 head f56 mainIn #connect
 Ts0 f66 mainOut f71 tail #connect
 Ts0 f71 head f68 mainIn #connect
-Ts0 f49 mainOut f50 tail #connect
-Ts0 f50 head f47 mainIn #connect
-Ts0 f47 mainOut f78 tail #connect
-Ts0 f78 head f46 mainIn #connect
 Ts0 f56 mainOut f55 tail #connect
 Ts0 f55 head f54 mainIn #connect
 Ts0 f54 mainOut f73 tail #connect
@@ -582,3 +566,5 @@ Ts0 f79 out f101 tail #connect
 Ts0 f101 head f99 in #connect
 Ts0 f6 mainOut f8 tail #connect
 Ts0 f8 head f7 mainIn #connect
+Ts0 f49 mainOut f9 tail #connect
+Ts0 f9 head f46 mainIn #connect

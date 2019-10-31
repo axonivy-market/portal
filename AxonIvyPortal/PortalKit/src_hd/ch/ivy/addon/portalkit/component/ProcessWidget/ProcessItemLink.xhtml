@@ -7,7 +7,7 @@
 
 <ui:composition>
   <p:commandLink id="process-item" actionListener="#{processWidgetBean.startProcess(processLink)}"
-  styleClass="process-item">
+    styleClass="process-item">
     <ui:include src="ProcessItem.xhtml">
       <ui:param name="processName" value="#{processName}" />
       <ui:param name="processType" value="process-item" />

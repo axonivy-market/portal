@@ -5111,6 +5111,9 @@ _:-ms-fullscreen, :root .case-related-command-link {
 /*  =================== END TASK DETAIL PAGE ========================= */
 
 /*  =================== TASK TEMPLATE PAGE ========================= */
+.task-title {
+  flex: 1;
+}
 .task-template-content .task-actions-button:focus {
   outline: transparent;
 }
