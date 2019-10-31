@@ -1,0 +1,5 @@
+co: name={startInIFrame} description={} changed={2019-10-29 07:43:08 CET} changedby={dhtlong} visualorder={0} guid={16E163FEEE02DB4A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16E163FEF0EA880E} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-10-29 07:41:59 CET} validto={} changed={2019-10-29 07:43:08 CET} changedby={dhtlong} properties={} id={}
+val: guid={16E163FEF15CBA88} datatype={} isdefault={false} langid={es} description={} validfrom={2019-10-29 07:41:59 CET} validto={} changed={2019-10-29 07:43:08 CET} changedby={dhtlong} properties={} id={}
+val: guid={16E163FEF09E0611} datatype={} isdefault={true} langid={en} description={} validfrom={2019-10-29 07:41:59 CET} validto={} changed={2019-10-29 07:43:08 CET} changedby={dhtlong} properties={} id={}
+val: guid={16E163FEF01814A8} datatype={} isdefault={false} langid={de} description={} validfrom={2019-10-29 07:41:59 CET} validto={} changed={2019-10-29 07:43:08 CET} changedby={dhtlong} properties={} id={}
