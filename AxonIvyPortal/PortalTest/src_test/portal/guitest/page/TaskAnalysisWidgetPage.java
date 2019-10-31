@@ -4,7 +4,8 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
+
+import portal.guitest.common.Sleeper;
 
 
 public class TaskAnalysisWidgetPage extends TemplatePage {
@@ -169,7 +170,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
     waitForElementDisplayed(By.id("task-widget:filter-save-form:save-filter-set-name-input"), true);
     enterKeys(findElementById("task-widget:filter-save-form:save-filter-set-name-input"), filterSetName);
-    Sleeper.sleepTight(1000);
+    Sleeper.sleep(1000);
 
     WebElement filterVisibilityContainer = findElementById("task-widget:filter-save-form:save-filter-type-radio");
     if (isPersonalFilter) {
@@ -192,6 +193,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
       filterContainer = findElementById("task-widget:filter-selection-form:public-filters");
     }
     filterContainer.findElement(By.linkText(filterSetName)).click();
-    Sleeper.sleepTight(1000);
+    Sleeper.sleep(1000);
   }
 }

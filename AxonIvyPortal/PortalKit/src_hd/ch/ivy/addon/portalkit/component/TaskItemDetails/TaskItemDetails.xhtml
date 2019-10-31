@@ -15,7 +15,7 @@
   <c:set var="task" value="#{data.task}" />
 
   <h:panelGroup id="task-detail-container" rendered="#{cc.attrs.showItemDetailsHeader}" styleClass="ui-g-12 u-truncate-text">
-    <h:form id="task-detail-title-form" onsubmit="return false;" styleClass="name-cell task-detail-header">
+    <h:form id="task-detail-title-form" onsubmit="return false;" styleClass="task-detail-header">
       <h:panelGroup id="#{cc.attrs.nameId}-edit-form" styleClass="task-name-edit u-truncate-text">
         <h:outputText value="#{ivy.cms.co('/Labels/Task')}: " />
         <p:inplace id="#{cc.attrs.nameId}-inplace" editor="true" disabled="#{!taskActionBean.canChangeName(task)}"

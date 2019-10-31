@@ -12,64 +12,25 @@
     <ui:define name="simplePageContent">
       <div class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/additionalCaseDetailsTitle')}</div>
       <div class="Separator" />
-      <h:panelGrid id="additional-case-details-data-grid" styleClass="additional-case-details-data-grid" columns="2"
-        columnClasses="additional-case-details-data-1st-column, additional-case-details-data-2nd-column">
-        <h:outputText value="Custom Varchar Field 1" />
-        <h:outputText id="custom-varchar-field-1" value="#{data.selectedCase.customFields().stringField('CustomVarCharField1').getOrNull()}" />
-        <h:outputText value="Custom Varchar Field 2" />
-        <h:outputText id="custom-varchar-field-2" value="#{data.selectedCase.customFields().stringField('CustomVarCharField2').getOrNull()}" />
-        <h:outputText value="Custom Varchar Field 3" />
-        <h:outputText id="custom-varchar-field-3" value="#{data.selectedCase.customFields().stringField('CustomVarCharField3').getOrNull()}" />
-        <h:outputText value="Custom Varchar Field 4" />
-        <h:outputText id="custom-varchar-field-4" value="#{data.selectedCase.customFields().stringField('CustomVarCharField4').getOrNull()}" />
-        <h:outputText value="Custom Varchar Field 5" />
-        <h:outputText id="custom-varchar-field-5" value="#{data.selectedCase.customFields().stringField('CustomVarCharField5').getOrNull()}" />
-        <h:panelGroup />
-        <h:panelGroup />
-        <h:outputText value="Custom Decimal Field 1" />
-        <h:outputText id="custom-decimal-field-1" value="#{caseWidgetBean.isNaN(data.selectedCase.customFields().numberField('CustomDecimalField1').getOrNull()) ? '' : data.selectedCase.customFields().numberField('CustomDecimalField1').getOrNull()}" >
-          <f:convertNumber type="number" integerOnly="true" pattern="#,##0.00"></f:convertNumber>
-        </h:outputText>
-        <h:outputText value="Custom Decimal Field 2" />
-        <h:outputText id="custom-decimal-field-2" value="#{caseWidgetBean.isNaN(data.selectedCase.customFields().numberField('CustomDecimalField2').getOrNull()) ? '' : data.selectedCase.customFields().numberField('CustomDecimalField2').getOrNull()}" >
-          <f:convertNumber type="number" integerOnly="true" pattern="#,##0.00"></f:convertNumber>
-        </h:outputText>
-        <h:outputText value="Custom Decimal Field 3" />
-        <h:outputText id="custom-decimal-field-3" value="#{caseWidgetBean.isNaN(data.selectedCase.customFields().numberField('CustomDecimalField3').getOrNull()) ? '' : data.selectedCase.customFields().numberField('CustomDecimalField3').getOrNull()}" >
-          <f:convertNumber type="number" integerOnly="true" pattern="#,##0.00"></f:convertNumber>
-        </h:outputText>
-        <h:outputText value="Custom Decimal Field 4" />
-        <h:outputText id="custom-decimal-field-4" value="#{caseWidgetBean.isNaN(data.selectedCase.customFields().numberField('CustomDecimalField4').getOrNull()) ? '' : data.selectedCase.customFields().numberField('CustomDecimalField4').getOrNull()}" >
-          <f:convertNumber type="number" integerOnly="true" pattern="#,##0.00"></f:convertNumber>
-        </h:outputText>
-        <h:outputText value="Custom Decimal Field 5" />
-        <h:outputText id="custom-decimal-field-5" value="#{caseWidgetBean.isNaN(data.selectedCase.customFields().numberField('CustomDecimalField5').getOrNull()) ? '' : data.selectedCase.customFields().numberField('CustomDecimalField5').getOrNull()}" >
-          <f:convertNumber type="number" integerOnly="true" pattern="#,##0.00"></f:convertNumber>
-        </h:outputText>
-        <h:panelGroup />
-        <h:panelGroup />
-        <h:outputText value="Custom Timestamp Field 1" />
-        <h:outputText id="custom-timestamp-field-1" value="#{data.selectedCase.customFields().timestampField('CustomTimestampField1').getOrNull()}">
-          <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
-        </h:outputText>
-        <h:outputText value="Custom Timestamp Field 2" />
-        <h:outputText id="custom-timestamp-field-2" value="#{data.selectedCase.customFields().timestampField('CustomTimestampField2').getOrNull()}">
-          <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
-        </h:outputText>
-        <h:outputText value="Custom Timestamp Field 3" />
-        <h:outputText id="custom-timestamp-field-3" value="#{data.selectedCase.customFields().timestampField('CustomTimestampField3').getOrNull()}">
-          <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
-        </h:outputText>
-        <h:outputText value="Custom Timestamp Field 4" />
-        <h:outputText id="custom-timestamp-field-4" value="#{data.selectedCase.customFields().timestampField('CustomTimestampField4').getOrNull()}">
-          <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
-        </h:outputText>
-        <h:outputText value="Custom Timestamp Field 5" />
-        <h:outputText id="custom-timestamp-field-5" value="#{data.selectedCase.customFields().timestampField('CustomTimestampField5').getOrNull()}">
-          <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
-        </h:outputText>
-
-      </h:panelGrid>
+      <p:dataTable 
+        id="addtional-case-detail-table" 
+        value="#{data.selectedCase.customFields().all()}" 
+        var="item"
+        styleClass="" 
+        reflow="true">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}">
+          <h:outputText value="#{item.name()}" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/value')}">
+          <h:outputText value="#{item.getOrNull()}" rendered="#{item.type() eq 'NUMBER'}">
+            <f:convertNumber type="number" integerOnly="true" pattern="#,##0.00" />
+          </h:outputText>
+          <h:outputText value="#{item.getOrNull()}" rendered="#{item.type() eq 'TIMESTAMP'}">
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+          </h:outputText>
+          <h:outputText value="#{item.getOrNull()}" rendered="#{item.type() ne 'TIMESTAMP' and item.type() ne 'NUMBER'}" />
+        </p:column>
+      </p:dataTable>
     </ui:define>
   </ui:composition>
 </h:body>

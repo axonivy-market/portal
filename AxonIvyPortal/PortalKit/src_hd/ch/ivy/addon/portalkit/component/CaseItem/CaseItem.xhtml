@@ -26,8 +26,8 @@
     
      <cc:renderFacet name="caseHeader" />
 
-     <h:form styleClass="case-header-action-cell">
-        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}" styleClass="action-item"
+     <h:form id="case-item-action-form" styleClass="case-header-action-cell">
+        <p:commandLink id="case-item-open-detail-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}" styleClass="action-item"
           actionListener="#{logic.openDetails(case)}" disabled="#{alwaysShowDetails}" />
         <h:panelGroup styleClass="u-hidden-md-down" rendered="#{cc.attrs.enableCaseAction}">
           <ic:ch.ivy.addon.portalkit.component.ActionStep id="action-step-component" actionLinkId="action-steps-menu"
