@@ -8,8 +8,6 @@ import org.openqa.selenium.WebElement;
 
 public class TaskDetailsPage extends TemplatePage {
 
-  private WebElement taskDetailsItem;
-
   @Override
   protected String getLoadedLocator() {
     return "id('task-detail-template:task-detail-container')";

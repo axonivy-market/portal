@@ -6,10 +6,11 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
+
+import portal.guitest.common.Sleeper;
 
 public class CaseWidgetPage extends TemplatePage {
 
@@ -93,8 +94,7 @@ public class CaseWidgetPage extends TemplatePage {
     List<WebElement> caseItems = findListElementsByCssSelector(CASE_ITEM_LIST_SELECTOR);
     for (WebElement caseItem : caseItems) {
       if (caseItem.findElement(By.cssSelector(CASE_NAME_CSS_SELECTOR)).getText().equals(caseName)) {
-        caseItem.findElement(By.cssSelector("a[id*='case-item']")).click();
-        waitAjaxIndicatorDisappear();
+        clickByCssSelector("a[id*='case-item']");
         CaseDetailsPage detailsPage = new CaseDetailsPage();
         return detailsPage;
       }
@@ -165,21 +165,21 @@ public class CaseWidgetPage extends TemplatePage {
         findElementByCssSelector("input[id$='description-filter:filter-input-form:description']");
     enterKeys(descriptionInput, text);
     click(By.cssSelector("button[id$='description-filter:filter-input-form:update-command']"));
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
   }
 
   public void saveFilter(String filterName) {
     click(By.id(caseWidgetId + ":filter-save-action"));
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
     WebElement filterNameInput = findElementById(caseWidgetId + ":filter-save-form:save-filter-set-name-input");
     enterKeys(filterNameInput, filterName);
     click(findElementById(caseWidgetId + ":filter-save-form:filter-save-command"));
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
   }
 
   public Object getFilterName() {
     click(findElementById(caseWidgetId + ":filter-selection-form:filter-name"));
-    WebElement descriptionInput = findElementByCssSelector(".user-definied-filter-container");
+    WebElement descriptionInput = findElementByCssSelector(".user-defined-filter-container");
 
     return descriptionInput.getText();
   }

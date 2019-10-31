@@ -1,11 +1,18 @@
 package portal.guitest.test;
 
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.jayway.awaitility.Awaitility;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.DateTimePattern;
@@ -115,7 +122,7 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage.filterTasksInExpendedModeBy("Annual Leave Request");
     Assert.assertFalse(taskWidgetPage.isTaskStartEnabled(0));
     taskWidgetPage.filterTasksInExpendedModeBy("Sick Leave Request");
-    Assert.assertTrue(taskWidgetPage.isTaskStartEnabled(0));
+    Awaitility.waitAtMost(5, TimeUnit.SECONDS).until(() -> taskWidgetPage.isTaskStartEnabled(0));
   }
 
   @Test
