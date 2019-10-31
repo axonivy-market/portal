@@ -234,10 +234,8 @@ body .ui-messages .ui-messages-error-icon,
 .ui-fieldset {
     .ui-fieldset-legend {
         color: $black !important;
-        line-height: 0.3rem;
 
         .ui-fieldset-toggler {
-            padding: 0px !important;
             background-color: $fieldSetTogglerBackgroundColor !important;
             color: $black !important;
             width: 20px;

@@ -4318,11 +4318,6 @@ span.ui-inputnumber.ui-widget.ui-state-error {
 }
 
 /*====================FIX FOR SERENITY 2.0 STYLE========================*/
-.process-widget .ui-fieldset .ui-fieldset-legend .ui-fieldset-toggler {
-  width: 20px !important;
-  height: 20px !important;
-}
-
 .case-note-history-container {
   padding-bottom: 20px;
 }
