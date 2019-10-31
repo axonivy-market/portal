@@ -102,7 +102,7 @@ public class CaseWidgetTest extends BaseTest {
   @Test
   public void testOpenAdditionalCaseDetailsPage() throws Exception {
     openAdditionalCaseDetailsPage(createTestingCaseUrlForDefaultAdditionalCaseDetails, LEAVE_REQUEST_DEFAULT_CASE_DETAILS_PAGE_CASE_NAME);
-    validateAdditionalCaseDetailsPage(17, "CustomVarCharField 1");
+    validateAdditionalCaseDetailsPage(15, "CustomVarCharField 1");
   }
   
   @Test
