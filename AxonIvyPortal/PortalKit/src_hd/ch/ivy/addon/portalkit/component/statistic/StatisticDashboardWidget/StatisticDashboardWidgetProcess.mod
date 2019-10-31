@@ -759,7 +759,7 @@ if (in.statisticChartList.size() != 0) {
 } else {
 	in.hasStatistic = false;
 	if (CollectionUtils.isNotEmpty(in.chartsPlaceholder)) {
-		in.chartsPlaceholder.get(in.chartsPlaceholder.size() - 1).name = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/emptystate/defaultEmptyMessages");
+		in.chartsPlaceholder.get(in.chartsPlaceholder.size() - 1).donutChartModel.options.title.text = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/emptystate/defaultEmptyMessages");
 	}
 }
 
@@ -777,7 +777,8 @@ Ss0 f67 expr out #txt
 Ss0 f67 1000 160 1099 160 #arcP
 Ss0 f68 actionTable 'out=in;
 ' #txt
-Ss0 f68 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticChart;
+Ss0 f68 actionCode 'import org.apache.commons.lang3.StringUtils;
+import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.service.StatisticService;
 
 // Create a placeholder chart when data is collection
