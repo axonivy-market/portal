@@ -16,7 +16,7 @@
 }
 
 .global-search-input {
-    width: 300px !important;
+    padding: 6px 24px 6px 6px !important;
 }
 
 .mobile-global-search-container .global-search-input {

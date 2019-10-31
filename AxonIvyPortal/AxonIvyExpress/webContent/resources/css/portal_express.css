@@ -784,11 +784,6 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
   padding-top: 0px !important;
 }
 
-body .ui-fieldset .ui-fieldset-legend .ui-fieldset-toggler {
-  width: 20px !important;
-  height: 20px !important;
-}
-
 .express-assignee-autocomplete .ui-autocomplete-input {
   padding-right: 20px !important;
 }
