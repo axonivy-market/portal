@@ -246,12 +246,12 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void changeDescriptionOfTask(String description) {
-    clickByCssSelector("span[id$='task-desription-inplace_display']");
+    clickByCssSelector("span[id$='task-description-output']");
     WebElement taskNameInput = findElementByCssSelector("textarea[id$='task-description-input']");
     waitForElementDisplayed(taskNameInput, true);
     taskNameInput.clear();
     taskNameInput.sendKeys(description);
-    clickByCssSelector("span[id$='task-desription-inplace_editor']  .ui-inplace-save");
+    clickByCssSelector("span[id$='task-description-inplace_editor']  .ui-inplace-save");
     waitAjaxIndicatorDisappear();
   }
 
