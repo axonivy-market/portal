@@ -29,6 +29,7 @@
   float: left;
 }
 
+.form-element-input-checkbox-table,
 .express-workflow-input {
   width: 91% !important;
 }
