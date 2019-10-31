@@ -32,8 +32,7 @@ public class GlobalGrowlTest extends BaseTest {
     
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-    taskTemplatePage.clickSubmitButton();
-    HomePage homePage = new HomePage();
+    HomePage homePage = taskTemplatePage.clickSubmitButton();
     assertEquals("Task is done successfully", homePage.getGlobalGrowlMessage());
   }
   
@@ -48,8 +47,7 @@ public class GlobalGrowlTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.inputFields("Employee", "1.1.2019", "1.1.2019", "Representation");
-    taskTemplatePage.clickSubmitButton();
-    HomePage homePage = new HomePage();
+    HomePage homePage = taskTemplatePage.clickSubmitButton();
     assertEquals("Task left successfully", homePage.getGlobalGrowlMessage());
   }
 }
