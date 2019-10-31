@@ -335,8 +335,11 @@
 
 .chat-delete-assignee {
   float: right;
-}/* SERENITY SIDE BAR */
+}
 
+.chat-assignee-selection-panel .ui-selectoneradio.ui-widget td {
+  padding-right: 15px;
+}
 
 /* SERENITY TOP BAR */
 .layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu > li {
