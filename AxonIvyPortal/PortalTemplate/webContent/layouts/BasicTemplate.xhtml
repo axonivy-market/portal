@@ -47,6 +47,7 @@
     <h:outputStylesheet library="serenity-portal" name="theme.css" />
   </f:facet>
   
+  <c:set var="isNotRequiredLogin" value="#{isNotRequiredLogin == null ? false : isNotRequiredLogin}" />
   <c:choose>
     <c:when test="#{ivy.wf.securityContext.currentSession.sessionUserUnknown and !isNotRequiredLogin}">
       <ui:insert name="login">
