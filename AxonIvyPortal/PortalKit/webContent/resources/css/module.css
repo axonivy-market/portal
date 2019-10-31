@@ -643,16 +643,10 @@ span.task-details-document-add-link {
   padding-bottom: 10px;
 }
 
-.case-history-name, .task-note-name {
-  width: 150px;
-  line-height: 2rem;
-}
-
 .case-history-date, .case-document-author,
 .task-history-date, .task-document-author {
   width: 20%;
   text-align: center !important;
-  line-height: 2rem;
 }
 
 .case-document-author {
@@ -2027,10 +2021,6 @@ _:-ms-input-placeholder, :root .case-details > * {
 .case-detail-no-related-task-case {
   height: 203px;
   align-items: baseline;
-}
-
-.history-note {
-  line-height: 2rem;
 }
 
 .case-view-note-dialog .ui-dialog-content.ui-widget-content {
