@@ -13,7 +13,7 @@
 
   <f:attribute name="primefaces.THEME" value="none" />
   
-  <title><ui:insert name="pageTitle">Axon.Ivy Portal</ui:insert></title>
+  <title><ui:insert name="pageTitle">Axon.ivy Portal</ui:insert></title>
   <ui:fragment rendered="#{resource['ivy-webcontent:layouts/images/favicon.png'] != null}">
     <link rel="shortcut icon" href="#{resource['ivy-webcontent:layouts/images/favicon.png']}" type="image/png" />
   </ui:fragment>
@@ -47,7 +47,6 @@
     <h:outputStylesheet library="serenity-portal" name="theme.css" />
   </f:facet>
   
-<!--   <c:set var="isNotRequiredLogin" value="#{isNotRequiredLogin == null ? false : isNotRequiredLogin}" /> -->
   <c:choose>
     <c:when test="#{ivy.wf.securityContext.currentSession.sessionUserUnknown and !isNotRequiredLogin}">
       <ui:insert name="login">
