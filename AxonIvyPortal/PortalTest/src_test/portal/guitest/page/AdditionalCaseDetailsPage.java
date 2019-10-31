@@ -5,10 +5,10 @@ import org.openqa.selenium.WebElement;
 
 public class AdditionalCaseDetailsPage extends TemplatePage {
   
-  private static final String TABLE_ROWS_PATH = "table[id*='additional-case-details-data-grid'] tbody>tr";
+  private static final String TABLE_ROWS_PATH = "div[id$='addtional-case-detail-table'] tbody>tr";
   
   public int countFields() {
-      waitForElementDisplayed(By.cssSelector("table[id*='additional-case-details-data-grid']"), true);
+      waitForElementDisplayed(By.cssSelector("div[id$='addtional-case-detail-table']"), true);
       return driver.findElements(By.cssSelector(TABLE_ROWS_PATH)).size();
   }
   
