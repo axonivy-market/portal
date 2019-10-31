@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 import portal.guitest.bean.ExpressResponsible;
+import portal.guitest.common.Sleeper;
 
 public class ExpressProcessPage extends TemplatePage {
 
@@ -38,7 +38,7 @@ public class ExpressProcessPage extends TemplatePage {
 	public void createTask(int taskIndex, int typeIndex, String taskName, String taskDescription,
 			List<ExpressResponsible> responsibles) {
 		chooseTaskType(taskIndex, typeIndex);
-		Sleeper.sleepTight(1000);
+		Sleeper.sleep(1000);
 		waitAjaxIndicatorDisappear();
 		if (typeIndex != 2) { // 2 is INFORMATION_EMAIL_INDEX
 			type(By.id(String.format("form:defined-tasks-list:%d:task-name", taskIndex)), taskName);
@@ -118,7 +118,7 @@ public class ExpressProcessPage extends TemplatePage {
 		waitForElementDisplayed(By.id("delete-all-defined-tasks-warning"), true);
 		click(By.id("delete-all-defined-tasks-warning-ok"));
 		waitAjaxIndicatorDisappear();
-		Sleeper.sleepTight(2000);
+		Sleeper.sleep(2000);
 	}
 
 	public String getProcessName() {

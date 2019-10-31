@@ -23,7 +23,7 @@
   <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
   <h:outputScript name="task-widget.js" library="js" />
 
-  <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} js-task-widget analysis-task-widget">
+  <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass}">
         <h:panelGroup id="filter-selection-container" layout="block" styleClass="filter-selection-container">
           <h:form id="filter-selection-form" class="filter-selection-form">
             <p:outputPanel id="filter-selection-panel" styleClass="task-analysis-filter-selection-panel"
@@ -39,16 +39,16 @@
                     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/publicFilter')}" />
                   </div>
                   <ui:repeat var="taskFilterData" value="#{data.taskPublicFilters}">
-                    <h:panelGroup layout="block" styleClass="user-definied-filter-container">
-                      <p:commandLink id="user-definied-filter" styleClass="user-definied-filter"
+                    <h:panelGroup layout="block" styleClass="user-defined-filter-container">
+                      <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
                         value="#{taskFilterData.filterName}" global="false" actionListener="#{logic.applyFilter(taskFilterData)}"
                         update="#{cc.clientId}:task-filters-container #{cc.clientId}:filter-selection-container #{cc.clientId}:statistic-result-list
                                               #{cc.clientId}:case-filters-container #{cc.clientId}:case-filter-add-container" />
-                      <p:tooltip id="user-definied-filter-tooltip" for="user-definied-filter" value="#{taskFilterData.filterName}"
+                      <p:tooltip id="user-defined-filter-tooltip" for="user-defined-filter" value="#{taskFilterData.filterName}"
                         trackMouse="true" />
-                      <p:commandLink id="delete-user-definied-filter-command"
+                      <p:commandLink id="delete-user-defined-filter-command"
                         rendered="#{taskAnalysisWidgetBean.isDeleteFilterEnabledFor(taskFilterData)}"
-                        styleClass="fa fa-times-circle delete-user-definied-filter-command"
+                        styleClass="fa fa-times-circle delete-user-defined-filter-command"
                         actionListener="#{logic.setFilterToBeDeleted(taskFilterData)}"
                         oncomplete="PF('delete-filter-confirmation-dialog').show();" />
                     </h:panelGroup>
@@ -61,16 +61,16 @@
                     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/privateFilter')}" />
                   </div>
                   <ui:repeat var="taskFilterData" value="#{data.taskPrivateFilters}">
-                    <h:panelGroup layout="block" styleClass="user-definied-filter-container">
-                      <p:commandLink id="user-definied-filter" styleClass="user-definied-filter"
+                    <h:panelGroup layout="block" styleClass="user-defined-filter-container">
+                      <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
                         value="#{taskFilterData.filterName}" global="false" actionListener="#{logic.applyFilter(taskFilterData)}"
                         update="#{cc.clientId}:task-filters-container #{cc.clientId}:filter-selection-container #{cc.clientId}:statistic-result-list
                                               #{cc.clientId}:case-filters-container #{cc.clientId}:case-filter-add-container" />
-                      <p:tooltip id="user-definied-filter-tooltip" for="user-definied-filter" value="#{taskFilterData.filterName}"
+                      <p:tooltip id="user-defined-filter-tooltip" for="user-defined-filter" value="#{taskFilterData.filterName}"
                         trackMouse="true" />
-                      <p:commandLink id="delete-user-definied-filter-command"
+                      <p:commandLink id="delete-user-defined-filter-command"
                         rendered="#{taskAnalysisWidgetBean.isDeleteFilterEnabledFor(taskFilterData)}"
-                        styleClass="fa fa-times-circle delete-user-definied-filter-command"
+                        styleClass="fa fa-times-circle delete-user-defined-filter-command"
                         actionListener="#{logic.setFilterToBeDeleted(taskFilterData)}"
                         oncomplete="PF('delete-filter-confirmation-dialog').show();" />
                     </h:panelGroup>

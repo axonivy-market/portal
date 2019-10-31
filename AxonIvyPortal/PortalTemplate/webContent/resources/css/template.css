@@ -16,8 +16,7 @@
 }
 
 .global-search-input {
-    font-size: 1.4rem !important;
-    width: 300px !important;
+    padding: 6px 24px 6px 6px !important;
 }
 
 .mobile-global-search-container .global-search-input {
@@ -68,28 +67,9 @@
 	padding: 0 0 0 20px !important;
 	height: 36px !important;
 	line-height: 36px;
-	font-family: 'Roboto';
-	font-style: normal;
-	font-weight: 400;
-	font-size: 1.4rem;
-	color: rgba(0, 0, 0, 0.6) !important;
-}
-
-#user-setting-container .server-information {
-	padding: 0 0 0 20px !important;
-	height: 36px !important;
-	line-height: 36px;
-	font-family: 'Roboto';
-	font-style: normal;
-	font-weight: 400;
-	font-size: 1.4rem;
 }
 
 #user-setting-container li a:hover {
-	font-family: 'Roboto';
-	font-style: normal;
-	font-weight: 400;
-	color: rgba(0, 0, 0, 1) !important;
 }
 
 .show-environment-info-link {
@@ -103,7 +83,6 @@
 
 .user-name-show-environment-info {
 	height: 18px;
-	font-weight: bold;
 }
 
 /*
@@ -115,13 +94,8 @@
 	height: 100%;
 }
 
-.fa:before {
-	font-family: 'FontAwesome' !important;
-}
-
 .ui-outputlabel .ui-outputlabel-rfi {
 	margin-left: 0.2em;
-	color: #f03369;
 }
 
 .ui-dialog .ui-dialog-content .ui-icon-alert {
@@ -150,17 +124,9 @@
   position: relative;
 }
 .task-template-title {
-	font-style: normal;
-	font-weight: bold;
-	font-size: 1.6rem;
 	display: flex;
 	align-items: center;
 	margin-top: 5px;
-}
-
-.ui-outputlabel.task-template-title {
-	font-weight: 400;
-	font-size: 1.6rem !important;
 }
 
 .task-template-title-icon {
@@ -194,18 +160,14 @@
 	margin-right: auto;
 	padding-top: 10%;
 	text-align: center;
-	color: #546E7A;
 }
 
 .message {
-	background-color: white;
 	padding: 20px;
 }
 
 .message .message-header {
 	margin: 16px 0px;
-	font-size: 2rem;
-	color: #E67163;
 }
 
 .message .message-separator {
@@ -214,12 +176,7 @@
 }
 
 .message .message-container {
-	font-size: 1.4em;
 	margin: 16px 0px;
-}
-
-.message .message-container .message-detail {
-	font-size: 1.2rem;
 }
 
 .message .message-container .message-detail:hover {
@@ -278,7 +235,6 @@
 }
 
 .note-show-more-link {
-	color: rgba(0, 0, 0, 0.5) !important;
 	margin-left: 5px;
 }
 
@@ -313,10 +269,6 @@
 	margin-bottom: 1px;
 }
 
-.process-history-column-header .is-selected {
-	color: rgba(0, 0, 0, 1) !important;
-}
-
 .process-history-list .ui-datascroller {
 	border: none;
 	border-radius: 0;
@@ -349,11 +301,6 @@
 
 .process-history-list-name-header {
 	padding-left: 10px;
-}
-
-.process-history-empty-message .ui-outputlabel {
-	font-size: 1.2rem;
-	color: black;
 }
 
 .search-results-tabview {
@@ -396,17 +343,17 @@
 
 .chat-delete-assignee {
   float: right;
-}/* SERENITY SIDE BAR */
+}
 
+.chat-assignee-selection-panel .ui-selectoneradio.ui-widget td {
+  padding-right: 15px;
+}
 
 /* SERENITY TOP BAR */
 .layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu > li {
 	line-height: 2;
 }
 
-.topbar-menu li .ui-commandlink {
-	font-size: 1.4rem;
-}
 /* END SERENITY TOP BAR */
 /* SERENITY MAIN LAYOUT */
 .layout-wrapper {
