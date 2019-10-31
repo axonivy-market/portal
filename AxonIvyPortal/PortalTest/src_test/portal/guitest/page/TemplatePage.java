@@ -271,7 +271,6 @@ public abstract class TemplatePage extends AbstractPage {
   public TaskWidgetPage openTaskList() {
     openMainMenu();
     findElementByCssSelector("li.submenu-container:nth-child(3) > a.ripplelink.submenu").click();
-    waitAjaxIndicatorDisappear();
     return new TaskWidgetPage();
   }
 

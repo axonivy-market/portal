@@ -44,21 +44,6 @@
         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
         currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/author')}"
-          sortBy="#{history.involvedFullname}" styleClass="case-history-name u-truncate-text ui-sm-hidden">
-          <h:outputText value="#{empty history.involvedFullname ? history.involvedUsername:history.involvedFullname}"
-            styleClass="history-fullname">
-            <i class="fa fa-check-circle" jsf:id="done-task"
-              jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'DONE'}" />
-            <i class="fa fa-exclamation-circle" jsf:id="destroyed-task"
-              jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'DESTROYED'}" />
-            <i class="fa fa-exclamation-circle" jsf:id="zombie-task"
-              jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'ZOMBIE'}" />
-            <i class="fa fa-exclamation-circle" jsf:id="created-task"
-              jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'CREATED'}" />
-            <i class="fa fa-pencil-square-o" jsf:rendered="#{history.type eq 'NOTE'}" />
-          </h:outputText>
-        </p:column>
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}"
           styleClass="u-truncate-text history-note ui-sm-12">
@@ -72,6 +57,22 @@
                 oncomplete="PF('view-note-dialog').show()" actionListener="#{data.setFullNote(history.content)}"
                 update="@widgetVar(view-note-dialog)" styleClass="u-truncate-text" />
             </h:panelGroup>
+          </h:outputText>
+        </p:column>
+
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/author')}"
+          sortBy="#{history.involvedFullname}" styleClass="case-document-author u-truncate-text ui-sm-hidden">
+          <h:outputText value="#{empty history.involvedFullname ? history.involvedUsername:history.involvedFullname}"
+            styleClass="history-fullname">
+            <i class="fa fa-check-circle" jsf:id="done-task"
+              jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'DONE'}" />
+            <i class="fa fa-exclamation-circle" jsf:id="destroyed-task"
+              jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'DESTROYED'}" />
+            <i class="fa fa-exclamation-circle" jsf:id="zombie-task"
+              jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'ZOMBIE'}" />
+            <i class="fa fa-exclamation-circle" jsf:id="created-task"
+              jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'CREATED'}" />
+            <i class="fa fa-pencil-square-o" jsf:rendered="#{history.type eq 'NOTE'}" />
           </h:outputText>
         </p:column>
 
