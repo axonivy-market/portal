@@ -23,12 +23,12 @@ public class AnnouncementPage extends TemplatePage {
   }
 
   public void publish() {
-    click(By.id("adminui:adminTabView:publish-announcement"));
+    clickByCssSelector("button[id$='publish-announcement']");
     waitForElementDisplayed(By.cssSelector("div[id$='messages'] span[class$='summary']"), true);
   }
 
   public void dePublish() {
-    click(By.id("adminui:adminTabView:delete-announcement"));
+    clickByCssSelector("button[id$='delete-announcement']");
     waitForElementDisplayed(By.cssSelector("div[id$='messages'] span[class$='summary']"), true);
   }
 

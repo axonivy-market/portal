@@ -147,10 +147,10 @@ public class TaskTemplatePage extends TemplatePage {
     return findDisplayedElementBySelector(adhocCreationMessageCSSSelector).getText();
   }
 
-  public void clickSubmitButton() {
+  public HomePage clickSubmitButton() {
     String submitButton = "button[id$='command-form:button-submit']";
     clickByCssSelector(submitButton);
-    waitAjaxIndicatorDisappear();
+    return new HomePage();
   }
   
   public void clickChatGroup() {

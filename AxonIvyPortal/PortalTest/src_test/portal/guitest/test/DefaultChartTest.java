@@ -1,12 +1,14 @@
 package portal.guitest.test;
 
+import static junit.framework.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
@@ -37,7 +39,7 @@ public class DefaultChartTest extends BaseTest {
     grantPermissionToCreateChart();
     MainMenuPage mainMenuPage = new MainMenuPage();
     StatisticWidgetPage statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
-    Sleeper.sleepTight(20000);
+    Sleeper.sleep(20000);
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     
     assertEquals(DEFAULT_NAME_1, statisticWidgetPage.getChartName(0));
@@ -50,13 +52,13 @@ public class DefaultChartTest extends BaseTest {
     grantPermissionToCreateChart();
     MainMenuPage mainMenuPage = new MainMenuPage();
     StatisticWidgetPage statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
-    Sleeper.sleepTight(10000);
+    Sleeper.sleep(10000);
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     statisticWidgetPage.switchCreateMode();
-    Sleeper.sleepTight(5000);
+    Sleeper.sleep(5000);
     createCaseByFinishedTask(statisticWidgetPage);
     statisticWidgetPage.backToDashboard();
-    Sleeper.sleepTight(5000);
+    Sleeper.sleep(5000);
     statisticWidgetPage.restoreDefaultCharts();
 
     WebElement taskByExpiryChartName3 = null ;
