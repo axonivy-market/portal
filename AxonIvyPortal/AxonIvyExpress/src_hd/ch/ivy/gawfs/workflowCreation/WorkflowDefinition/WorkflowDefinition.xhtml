@@ -23,7 +23,7 @@
         <p:fieldset id="process-setting-fieldset" legend="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processdetails')}"
           toggleable="true" styleClass="MarTop5 express-fieldset fieldset-no-border">
 
-          <h:panelGroup styleClass="ui-g-12 card">
+          <h:panelGroup styleClass="ui-g-12 card u-padding-0">
             <h:panelGroup id="process-setting-grid" styleClass="process-property-container u-no-padding-top">
               <div class="ui-fluid">
                 <div class="ui-g alignLabelTop">
@@ -56,12 +56,12 @@
                     </h:panelGroup>
                   </div>
 
-                  <div class="ui-g-12 u-padding-0">
+                  <div class="ui-g-12 u-padding-0 MarTop10">
                     <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
 
                     <!-- PROCESS TYPE -->
-                    <div class="ui-g-5 ui-lg-5 ui-md-6 ui-sm-12 u-no-padding-top u-no-padding-left">
-                      <div class="ui-g-12">
+                    <div class="ui-g-5 ui-lg-5 ui-md-6 ui-sm-12 u-no-padding-left">
+                      <div class="ui-g-12 u-no-padding-bottom">
                         <h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processtype')}"
                           styleClass="express-title-header" />
                       </div>
@@ -78,9 +78,9 @@
                       </div>
                     </div>
 
-                    <div class="ui-g-5 ui-lg-5 ui-md-6 ui-sm-12 u-no-padding-top u-no-padding-left">
+                    <div class="ui-g-5 ui-lg-5 ui-md-6 ui-sm-12 u-no-padding-left">
                       <!-- UI SETTING -->
-                      <div class="ui-g-12">
+                      <div class="ui-g-12 u-no-padding-bottom">
                         <h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/UserInterface')}"
                           styleClass="express-title-header" />
                       </div>
@@ -111,7 +111,7 @@
                     <!-- PROCESS OWNER -->
                     <h:panelGroup id="process-owner-container" styleClass="ui-g-5 ui-lg-5 ui-md-6 ui-sm-12 u-no-padding-top u-no-padding-left">
                       <h:panelGroup id="process-owner-content" layout="block" styleClass="ui-g" rendered="#{data.isDisplayProcessOwner}">
-                        <div class="ui-g-12">
+                        <div class="ui-g-12 u-no-padding-bottom">
                           <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ProcessOwner')}"
                             for="process-owner-responsible" styleClass="express-title-header task-responsible-label" />
                         </div>
@@ -140,7 +140,7 @@
               legend="#{ivy.cms.co('/Dialogs/workflowCreation/processStep')} #{gtask.position}">
               <h:panelGroup styleClass="ui-g-12 card u-padding-0">
 
-                <p:panel id="task-panel-container" styleClass="u-no-border u-no-padding-top">
+                <h:panelGroup id="task-panel-container" styleClass="u-no-padding-top" layout="block">
 
                   <!-- FOR SELF CREATE TEMPLATE -->
                   <h:panelGroup id="dynamic-task-panel-grid" styleClass="dynamic-task-panel-grid u-no-padding-top" layout="block"
@@ -176,11 +176,11 @@
 
                         </h:panelGroup>
 
-                        <h:panelGroup styleClass="ui-g-12 u-padding-0">
+                        <h:panelGroup styleClass="ui-g-12 u-padding-0 MarTop10">
                           <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
                           <!-- TASK TYPE -->
                           <div class="ui-g-5 ui-lg-5 ui-md-6 u-padding-0">
-                            <div class="ui-g-12">
+                            <div class="ui-g-12 u-no-padding-bottom">
                               <p:outputLabel id="task-type-label" for="task-type"
                                 value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/TaskType')}" styleClass="express-title-header" />
                             </div>
@@ -198,7 +198,7 @@
 
                           <div class="ui-g-5 ui-lg-5 ui-md-6 u-padding-0">
                             <!--  RESPONSIBLE -->
-                            <h:panelGroup layout="block" styleClass="ui-g-12" rendered="#{gtask.taskType ne 'EMAIL'}">
+                            <h:panelGroup layout="block" styleClass="ui-g-12 u-no-padding-bottom" rendered="#{gtask.taskType ne 'EMAIL'}">
                               <p:outputLabel for="task-responsible"
                                 value="#{data.data.processType == 'REPEAT' and gtask.position eq 1? ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart'):ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:"
                                 styleClass="express-title-header task-responsible-label" />
@@ -260,7 +260,7 @@
 
                         <h:panelGroup styleClass="ui-g-5 ui-lg-5 ui-md-6 u-no-padding-left u-no-padding-top">
                           <!-- RESPONSIBLE -->
-                          <div class="ui-g-12 u-no-padding-top">
+                          <div class="ui-g-12 u-no-padding-bottom">
                             <p:outputLabel rendered="#{gtask.position >= 1}" for="default-task-responsible"
                               value="#{data.data.processType == 'REPEAT' and gtask.position eq 1? ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart'):ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}:" />
                           </div>
@@ -293,11 +293,10 @@
                           </div>
                         </h:panelGroup>
 
-
                       </div>
                     </div>
                   </h:panelGroup>
-                </p:panel>
+                </h:panelGroup>
 
                 <p:panelGrid id="dynamic-task-action-container-#{gtask.position}" styleClass="dynamic-task-action-container"
                   rendered="#{data.data.definedTasks.size() == gtask.position}">

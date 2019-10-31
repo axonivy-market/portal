@@ -41,14 +41,10 @@ var CaseRelatedTask = {
     var scrollHeightTask = 0;
     if (this.relatedTaskSize > this.maxItems) {
       scrollHeightTask = this.taskScrollHeight + this.spaceToExpandTasksList;
-
-      if (this.technicalCaseSize < this.maxItems) {
-        scrollHeightTask = scrollHeightTask + this.taskHeight;
-      }
     } else {
         scrollHeightTask = this.relatedTaskSize * this.taskHeight;
-        scrollHeightTask = scrollHeightTask + this.paddingBottom;
     }
+    scrollHeightTask = scrollHeightTask + this.paddingBottom;
 
     var taskList = $('[id$="case-item-details:related-tasks:tasks"]');
     var taskListBody = taskList.find('.ui-datascroller-content.ui-widget-content.ui-corner-all');
@@ -63,14 +59,10 @@ var CaseRelatedTask = {
     var scrollHeightCases = 0;
     if (this.technicalCaseSize > this.maxItems) {
       scrollHeightCases = this.caseScrollHeight + this.spaceToExpandCasesList;
-
-      if (this.relatedTaskSize < this.maxItems) {
-        scrollHeightCases = scrollHeightCases + this.caseHeight;
-      }
     } else {
         scrollHeightCases = this.technicalCaseSize * this.caseHeight;
-        scrollHeightCases = scrollHeightCases + this.paddingBottom;
     }
+    scrollHeightCases = scrollHeightCases + this.paddingBottom;
 
     var caseList = $('[id$="case-item-details:related-tasks:cases"]');
     var caseListBody = caseList.find('.ui-datascroller-content.ui-widget-content.ui-corner-all');
