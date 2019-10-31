@@ -373,10 +373,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   }
 }
 
-.compact-task-widget .task-widget-header {
-  margin-top: 1px;
-}
-
 .compact-task-widget .task-widget-header .toggle-task-link {
   position: absolute;
   right: 0;
@@ -3032,17 +3028,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   flex-direction: row;
 }
 
-.statistic-widget-empty-message {
-  margin: auto;
-  text-align: center;
-  width: 100%;
-  min-height: 200px;
-}
-
-.statistic-widget-empty-message .statistic-empty-message {
-  padding: 8rem 1rem;
-}
-
 .statistic-carousel {
   margin: auto;
   position: relative;
@@ -3080,7 +3065,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   height: 20px;
 }
 
-.statistic-widget-empty-message .statistic-empty-header,
 .statistic-carousel .ui-carousel-header-title .chart-name {
   max-width: 88%;
   white-space: nowrap;
