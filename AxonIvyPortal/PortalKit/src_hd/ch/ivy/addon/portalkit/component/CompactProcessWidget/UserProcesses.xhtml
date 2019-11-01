@@ -7,13 +7,13 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <ui:composition>
-  <div jsf:rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled and compactProcessWidgetBean.displayShowAllProcessesLink}" class="favorite-process-title ui-g-12">
+  <div jsf:rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled and compactProcessWidgetBean.displayShowAllProcessesLink}" class="favorite-process-title">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/favoriteProcesses')}" />
   </div>
 
+  <ui:include src="UserProcessAction.xhtml" />
 
 <h:panelGroup id="user-process-container" layout="block" styleClass="ui-g-12">
-  <ui:include src="UserProcessAction.xhtml" />
 
   <h:panelGroup id="process-list" layout="block" styleClass="compact-processes-container widget-content">
     <h:panelGroup styleClass="process-empty-container" layout="block"

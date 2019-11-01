@@ -11,7 +11,6 @@ import org.openqa.selenium.By;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
 import portal.guitest.page.SelfServicePage;
 import portal.guitest.page.SelfServiceTaskPage;
 import portal.guitest.page.TaskWidgetPage;
@@ -31,9 +30,7 @@ public class SelfServiceTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     redirectToRelativeLink(selfServiceProcessUrl);
   }
 

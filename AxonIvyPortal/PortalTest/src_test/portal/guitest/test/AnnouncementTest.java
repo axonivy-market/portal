@@ -12,16 +12,14 @@ import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.AnnouncementPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LanguagePage;
-import portal.guitest.page.LoginPage;
 
 public class AnnouncementTest extends BaseTest {
   @Override
   @Before
   public void setup() {
     super.setup();
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
-    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
-    loginPage.login();
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    login(TestAccount.ADMIN_USER);
     resetLanguageOfCurrentUser();
   }
 

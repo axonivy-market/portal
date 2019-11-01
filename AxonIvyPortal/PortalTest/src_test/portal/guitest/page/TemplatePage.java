@@ -12,7 +12,6 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.jayway.awaitility.Awaitility;
@@ -317,5 +316,15 @@ public abstract class TemplatePage extends AbstractPage {
     waitForElementDisplayed(By.cssSelector(cssSelector), true);
     findElementByCssSelector(cssSelector).click();
   }
-  
+
+  protected void refreshAndWaitElement(String cssSelector) {
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> {
+      if (findListElementsByCssSelector(cssSelector).isEmpty()) {
+        refresh();
+        return false;
+      } else {
+        return true;
+      }
+    });
+  }  
 }

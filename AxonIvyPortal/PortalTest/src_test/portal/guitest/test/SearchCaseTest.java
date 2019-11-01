@@ -7,9 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
-import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
 import portal.guitest.page.SearchResultPage;
 import portal.guitest.page.TemplatePage.GlobalSearch;
 
@@ -21,13 +19,10 @@ public class SearchCaseTest extends BaseTest {
   @Override
   public void setup() {
     super.setup();
-    navigateToUrl(createTestingTasksUrl);
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
-    navigateToUrl("internalSupport/14B2FC03D2E87141/CreateTaskWithSpecialCharacter.ivp");
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
-
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
+    redirectToRelativeLink(createTestingTasksUrl);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink("internalSupport/14B2FC03D2E87141/CreateTaskWithSpecialCharacter.ivp");
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     homePage = new HomePage();
   }
 
@@ -47,7 +42,7 @@ public class SearchCaseTest extends BaseTest {
     GlobalSearch globalSearch = homePage.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
 
-    String caseName = "Österreich Resource with ID 1212";
+    String caseName = "ï¿½sterreich Resource with ID 1212";
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(caseName);
     searchResultPage.openCaseTab();
     assertEquals(caseName, searchResultPage.getCaseResult(0));

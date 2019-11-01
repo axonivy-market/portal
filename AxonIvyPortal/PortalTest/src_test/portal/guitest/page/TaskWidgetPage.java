@@ -94,17 +94,6 @@ public class TaskWidgetPage extends TemplatePage {
 		return new TaskTemplatePage();
 	}
 
-	private void refreshAndWaitElement(String cssSelector) {
-		Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> {
-			if (findListElementsByCssSelector(cssSelector).isEmpty()) {
-				refresh();
-				return false;
-			} else {
-				return true;
-			}
-		});
-	}
-
   public boolean isTaskDelegateOptionDisable(int index) {
     sideStepMenuOnMoreButton(index);
     waitForElementDisplayed(By.id(taskWidgetId + ":task-list-scroller:" + index + ":task-item:task-action:additional-options:task-delegate-command"), true);

@@ -9,7 +9,6 @@ import org.junit.Test;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class CustomTaskDelegateTest extends BaseTest {
@@ -24,8 +23,7 @@ public class CustomTaskDelegateTest extends BaseTest {
 
   @Test
   public void testCustomTaskDelegateOnlyToGroup() {
-    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
-    loginPage.login();
+    login(TestAccount.ADMIN_USER);
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
 
@@ -41,8 +39,7 @@ public class CustomTaskDelegateTest extends BaseTest {
 
   @Test
   public void testCustomTaskDelegateOnlyToUser() {
-    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
-    loginPage.login();
+    login(TestAccount.ADMIN_USER);
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
 
@@ -54,9 +51,6 @@ public class CustomTaskDelegateTest extends BaseTest {
 
   @Test
   public void testCustomTaskDelegateNoDelegateOption() {
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
-    
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
 

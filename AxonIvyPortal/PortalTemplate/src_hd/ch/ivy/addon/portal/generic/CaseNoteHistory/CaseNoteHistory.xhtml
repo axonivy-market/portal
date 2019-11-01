@@ -7,7 +7,7 @@
     <ui:param name="isNotRequiredLogin" value="false" />
     <ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/caseHistoryPageTitle')}</ui:define>
     <ui:define name="simplePageContent">
-      <h:form id="form" onkeypress="if (event.keyCode == 13) { return false; }" styleClass="case-note-history-container">
+      <h:form id="form" onkeypress="if (event.keyCode == 13) { return false; }" styleClass="note-history-container">
         <p:panelGrid columns="2" styleClass="u-no-border" layout="grid" columnClasses="ui-grid-col-2, ui-grid-col-10">
           <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}"/>
           <p:outputLabel id="case-name" value="#{data.ivyCase.name}"/>
@@ -48,29 +48,30 @@
         </p:dataTable>
         
         <p:dataTable id="notes-table" widgetVar="notesTable" var="history" sortBy="#{history.timestamp}"
-          sortOrder="DESCENDING" value="#{data.histories}" filteredValue="#{data.filteredHistories}">
-          <p:column width="15%" sortBy="#{userFormatBean.format(history.involvedFullname, history.involvedUsername)}" 
-            filterBy="#{userFormatBean.format(history.involvedFullname, history.involvedUsername)}"
-            filterMatchMode="contains">
-            <f:facet name="header">
-              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" />
-            </f:facet>
-            <h:outputText value="#{userFormatBean.format(history.involvedFullname, history.involvedUsername)}" />
-          </p:column>
-          <p:column width="20%" sortBy="#{history.timestamp}" >
-            <f:facet name="header">
-              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/timestamp')}" />
-            </f:facet>
-            <h:outputText value="#{history.timestamp}">
-              <f:convertDateTime pattern="#{ivy.cms.co('/patterns/dateTimePattern')}" />
-            </h:outputText>
-          </p:column>
+          sortOrder="DESCENDING" value="#{data.histories}" filteredValue="#{data.filteredHistories}"
+          emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
           <p:column sortBy="#{caseTaskNoteHistoryBean.getCaseNoteContent(history)}"
             filterBy="#{caseTaskNoteHistoryBean.getCaseNoteContent(history)}" filterMatchMode="contains">
             <f:facet name="header">
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}" />
             </f:facet>
             <h:outputText value="#{caseTaskNoteHistoryBean.getCaseNoteContent(history)}" />
+          </p:column>
+          <p:column width="15%" sortBy="#{userFormatBean.format(history.involvedFullname, history.involvedUsername)}" 
+            filterBy="#{userFormatBean.format(history.involvedFullname, history.involvedUsername)}"
+            filterMatchMode="contains">
+            <f:facet name="header">
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}" />
+            </f:facet>
+            <h:outputText value="#{userFormatBean.format(history.involvedFullname, history.involvedUsername)}" />
+          </p:column>
+          <p:column width="20%" sortBy="#{history.timestamp}" styleClass="column-header-top-alignment">
+            <f:facet name="header">
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}" />
+            </f:facet>
+            <h:outputText value="#{history.timestamp}">
+              <f:convertDateTime pattern="#{ivy.cms.co('/patterns/dateTimePattern')}" />
+            </h:outputText>
           </p:column>
         </p:dataTable>
         
