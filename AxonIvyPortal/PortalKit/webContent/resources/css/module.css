@@ -2233,6 +2233,9 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 }
 
 @media screen and (max-width: 40em) {
+  .process-chain-container.horizontal-process-chain-container {
+    order: 2;
+  }
   .process-chain-container.vertical-process-chain-container {
     display: none !important;
   }
@@ -3490,6 +3493,12 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 .login-body .login-panel .login-panel-content {
   padding: 20px 100px;
+}
+
+@media (max-width: 640px) {
+  .login-body .login-panel .login-panel-content {
+      padding: 50px 25px;
+  }
 }
 
 /* --------------------------- */
