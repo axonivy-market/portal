@@ -13,10 +13,9 @@
       <div class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/additionalCaseDetailsTitle')}</div>
       <div class="Separator" />
       <p:dataTable 
-        id="addtional-case-detail-table" 
+        id="additional-case-detail-table" 
         value="#{data.selectedCase.customFields().all()}" 
         var="item"
-        styleClass="" 
         reflow="true">
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}">
           <h:outputText id="name" value="#{item.name()}" />
