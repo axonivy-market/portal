@@ -246,7 +246,7 @@
     </h:panelGroup>
   </div>
 
-  <p:dialog id="save-filter-set-dialog" widgetVar="save-filter-set-dialog" appendTo="@(body)"
+  <p:dialog id="save-filter-set-dialog" widgetVar="save-filter-set-dialog" appendTo="@(body)" rendered="#{!data.dataModel.compactMode}"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" resizable="false" width="575"
     modal="true" closeOnEscape="true" styleClass="save-filter-set-dialog">
     <p:ajax event="close" listener="#{logic.clearSaveFilterDialog}" resetValues="true" />
@@ -286,7 +286,7 @@
     </h:form>
   </p:dialog>
 
-  <p:confirmDialog id="delete-filter-confirmation-dialog"
+  <p:confirmDialog id="delete-filter-confirmation-dialog" rendered="#{!data.dataModel.compactMode}"
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterDeletionConfirmation')}"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
     widgetVar="delete-filter-confirmation-dialog" appendTo="@(body)" severity="alert">
