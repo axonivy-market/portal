@@ -20,7 +20,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public List<String> getTaskNoteAuthors() {
-    List<WebElement> noteAuthorElements = findListElementsByCssSelector("td.task-note-name");
+    List<WebElement> noteAuthorElements = findListElementsByCssSelector("td.task-document-author");
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }
 
