@@ -229,6 +229,10 @@
 	margin-top: 10px;
 }
 
+.note-history-container {
+  padding-bottom: 20px;
+}
+
 .note-show-more-link-icon {
 	margin-left: 5px;
 	margin-right: 5px;
