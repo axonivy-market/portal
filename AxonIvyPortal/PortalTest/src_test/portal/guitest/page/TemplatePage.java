@@ -32,7 +32,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   protected long getTimeOutForLocator() {
-    return 10L;
+    return 100L;
   }
 
   protected void waitForLocatorDisplayed(String locator) {
@@ -259,11 +259,10 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public class GlobalSearch {
-    private static final String GLOBAL_SEARCH_DATA_ELEMENT_ID = "global-search-component:global-search-data";
     private WebElement searchWebElement;
 
     public GlobalSearch() {
-      searchWebElement = findElementByCssSelector("#global-search-container-in-page span']");
+      searchWebElement = findElementByCssSelector("#global-search-component\\:global-search-data");
     }
 
     public boolean isDisplayed() {
@@ -271,7 +270,7 @@ public abstract class TemplatePage extends AbstractPage {
     }
 
     private WebElement getSearchInputData() {
-      return findChildElementById(searchWebElement, GLOBAL_SEARCH_DATA_ELEMENT_ID);
+      return searchWebElement;
     }
 
     public SearchResultPage inputSearchKeyword(String keyword) {
