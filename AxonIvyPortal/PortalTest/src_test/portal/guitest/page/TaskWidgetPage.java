@@ -431,11 +431,11 @@ public class TaskWidgetPage extends TemplatePage {
     WebElement taskListElement = findElementById(taskWidgetId + ":task-list-scroller");
     if (taskListElement.getAttribute(CLASS).contains("compact-mode")) {
       String cssSelector = String.format("a[id$='%d\\:task-item\\:compact-task-start-link']", index) ;
-      refreshAndWaitElement(cssSelector);
+      refreshAndWaitElement(cssSelector, true);
       clickByCssSelector(cssSelector);
     } else {
       String cssSelector = ID_END + index + TASK_ITEM_TASK_INFO;
-      refreshAndWaitElement(cssSelector);
+      refreshAndWaitElement(cssSelector, true);
       clickByCssSelector(cssSelector);
     }
   }
