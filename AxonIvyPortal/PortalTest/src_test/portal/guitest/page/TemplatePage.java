@@ -5,6 +5,8 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
+import javax.print.attribute.standard.Fidelity;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -30,7 +32,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   protected long getTimeOutForLocator() {
-    return 100L;
+    return 10L;
   }
 
   protected void waitForLocatorDisplayed(String locator) {
@@ -261,8 +263,7 @@ public abstract class TemplatePage extends AbstractPage {
     private WebElement searchWebElement;
 
     public GlobalSearch() {
-      final String SELECT_PARENT_NODE_XPATH = "..";
-      searchWebElement = findElementById(GLOBAL_SEARCH_DATA_ELEMENT_ID).findElement(By.xpath(SELECT_PARENT_NODE_XPATH));
+      searchWebElement = findElementByCssSelector("#global-search-container-in-page span']");
     }
 
     public boolean isDisplayed() {
