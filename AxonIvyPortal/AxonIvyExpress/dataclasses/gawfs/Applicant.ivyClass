@@ -2,6 +2,7 @@ Applicant #class
 gawfs #namespace
 email String #field
 fullname String #field
+fullname PERSISTENT #fieldModifier
 user ch.ivyteam.ivy.security.IUser #field
 username String #field
 username PERSISTENT #fieldModifier
