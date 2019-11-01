@@ -18,6 +18,7 @@ public class DefaultChartTest extends BaseTest {
 
   private static final String CREATE_TESTING_TASK_FOR_CUSTOMIZATION_URL 
     = "portalExamples/162511D2577DBA88/createTasksForTaskListCustomization.ivp";
+  private static final String DEFAULT_NAME = "Tasks by Priority";
   private static final String DEFAULT_NAME_1 = "My default chart 1";
   private static final String DEFAULT_NAME_2 = "My default chart 2";
   private static final String RESTORE_DEFAULT = "Restore default";
@@ -28,8 +29,8 @@ public class DefaultChartTest extends BaseTest {
   public void setup() {
     super.setup();
     redirectToRelativeLink(CREATE_TESTING_TASK_FOR_CUSTOMIZATION_URL);
-    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
   }
 
   @Test
@@ -40,8 +41,9 @@ public class DefaultChartTest extends BaseTest {
     Sleeper.sleep(20000);
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     
-    assertEquals(DEFAULT_NAME_1, statisticWidgetPage.getChartName(0));
-    assertEquals(DEFAULT_NAME_2, statisticWidgetPage.getChartName(1));
+    assertEquals(DEFAULT_NAME, statisticWidgetPage.getChartName(0));
+    assertEquals(DEFAULT_NAME_1, statisticWidgetPage.getChartName(1));
+    assertEquals(DEFAULT_NAME_2, statisticWidgetPage.getChartName(2));
     assertEquals(RESTORE_DEFAULT, statisticWidgetPage.getRestoreDefaultButtonName());
   }
   
