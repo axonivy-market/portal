@@ -15,10 +15,9 @@ public class PasswordChangeTest extends BaseTest {
 
   @Test
   public void passwordChangeTest() {
-    navigateToUrl("portalKitTestHelper/153CACC26D0D4C3D/createTestUser.ivp");
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
-    LoginPage loginPage = new LoginPage(TestAccount.TEST_CHANGE_PASSWORD_USER);
-    loginPage.login();
+    redirectToRelativeLink("portalKitTestHelper/153CACC26D0D4C3D/createTestUser.ivp");
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    login(TestAccount.TEST_CHANGE_PASSWORD_USER);
     HomePage homePage = new HomePage();
 
     String newPassword = "abc";
@@ -35,12 +34,12 @@ public class PasswordChangeTest extends BaseTest {
     changePasswordPage.changePassword(TestAccount.TEST_CHANGE_PASSWORD_USER.getPassword(), newPassword);
     if (!SystemProperties.isInServerMode()) {
       launchBrowserAndLogoutInDesigner();
-      navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
+      redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     } else {
       launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     }
-    loginPage = new LoginPage(TestAccount.TEST_CHANGE_PASSWORD_USER);
-    loginPage.login(TestAccount.TEST_CHANGE_PASSWORD_USER.getUsername(), newPassword);
+    new LoginPage(TestAccount.TEST_CHANGE_PASSWORD_USER).login(TestAccount.TEST_CHANGE_PASSWORD_USER.getUsername(),
+        newPassword);
 
     assertTrue(homePage.isDisplayed());
   }

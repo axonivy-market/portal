@@ -20,7 +20,6 @@ import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.NoteHistoryPage;
 import portal.guitest.page.TaskDetailsPage;
@@ -36,11 +35,10 @@ public class ShowRelatedTasksTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
-    navigateToUrl("portalKitTestHelper/153CACC26D0D4C3D/createRelatedTasksTestUser.ivp");
-    navigateToUrl(createTestingTasksUrl);
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
-    LoginPage loginPage = new LoginPage(TestAccount.TEST_RELATED_TASKS_USER);
-    loginPage.login();
+    redirectToRelativeLink("portalKitTestHelper/153CACC26D0D4C3D/createRelatedTasksTestUser.ivp");
+    redirectToRelativeLink(createTestingTasksUrl);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    login(TestAccount.TEST_RELATED_TASKS_USER);
     denyReadAllPermissionFromCurrentUser();
   }
   

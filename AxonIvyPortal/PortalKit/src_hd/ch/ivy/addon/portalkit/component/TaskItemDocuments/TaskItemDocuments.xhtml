@@ -52,13 +52,13 @@
             </h:panelGroup>
           </p:column>
 
-          <p:column id="document-author" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/author')}"
+          <p:column id="document-author" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}"
             styleClass="task-document-author u-truncate-text ui-sm-hidden"
             sortBy="#{empty document.creation.user.fullName ? document.creation.user.name:document.creation.user.fullName}">
             <h:outputText value="#{empty document.creation.user.fullName ? document.creation.user.name:document.creation.user.fullName}" />
           </p:column>
 
-          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/date')}" styleClass="task-history-date u-truncate-text ui-sm-hidden"
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}" styleClass="task-history-date u-truncate-text ui-sm-hidden"
             sortBy="#{document.creation.timestamp}">
             <h:outputText value="#{document.creation.timestamp}">
               <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />

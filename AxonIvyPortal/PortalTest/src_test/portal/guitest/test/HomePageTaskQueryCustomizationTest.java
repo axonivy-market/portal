@@ -6,9 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
-import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class HomePageTaskQueryCustomizationTest extends BaseTest {
@@ -23,8 +21,6 @@ public class HomePageTaskQueryCustomizationTest extends BaseTest {
 
   @Test
   public void testShowHideTaskDetailOnExpandedMode() {
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     assertEquals(1, taskWidgetPage.countTasks());
   }
