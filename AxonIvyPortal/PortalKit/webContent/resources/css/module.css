@@ -238,6 +238,11 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   border-bottom: none;
 }
 
+.widget-sort-menu:not(.full-mode),
+.compact-task-widget .filter-view {
+  padding-top: 0 !important;
+}
+
 .widget-sort-menu.full-mode {
   flex: 1 0 100%;
   display: flex;
@@ -1041,6 +1046,16 @@ span.task-details-document-add-link {
   width: 1.6rem;
 }
 
+body .process-widget .ui-fieldset .ui-fieldset-legend .ui-fieldset-toggler {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+}
+
+body .process-widget .ui-fieldset .ui-fieldset-legend {
+  line-height: 0.3rem;
+}
+
 .expand-collapse-btns {
   float: left;
 }
@@ -1054,7 +1069,7 @@ span.task-details-document-add-link {
 
 .process-widget-action {
   display: inline-block;
-  width: 100%;
+  padding-left: 9px;
 }
 
 .process-widget-action-form {
@@ -1299,7 +1314,8 @@ span.task-details-document-add-link {
 
 .process-widget .default-process-title {
   display: inline-block;
-  width: 100%;
+  padding-right: 20px;
+  padding-left: 9px;
 }
 
 .process-widget .user-default-process-list {
@@ -1434,8 +1450,15 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
   padding-right: 15px;
 }
 
+/* Mobile screen */
+@media (max-width: 640px) {
+  .task-delegate-dialog {
+    width: 300px !important;
+  }
+}
+
 /* Small screen */
-@media (max-width: 1365px) {
+@media (min-width: 641px) and (max-width: 1365px) {
   .task-delegate-dialog {
     width: 40% !important;
   }
@@ -4377,6 +4400,16 @@ a.ui-widget:focus {
   text-decoration: none;
   outline: none;
 }
+
+.favorite-process-title {
+  display: inline-block;
+  padding-right: 20px;
+  padding-left: 9px;
+}
+
+.all-processes-container {
+  padding-top: 15px !important; 
+}}
 
 /**************DATA TABLE START*******************/
 .column-header-top-alignment {

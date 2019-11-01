@@ -37,6 +37,7 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public void startProcess(String processName) {
+    refreshAndWaitElement("span[id$='process-name-process-item']");
     WebElement processItemElement = getProcess(processName);
     click(processItemElement);
   }
