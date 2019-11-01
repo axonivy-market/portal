@@ -60,7 +60,7 @@
           </h:outputText>
         </p:column>
 
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/author')}"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}"
           sortBy="#{history.involvedFullname}" styleClass="case-document-author u-truncate-text ui-sm-hidden">
           <h:outputText value="#{empty history.involvedFullname ? history.involvedUsername:history.involvedFullname}"
             styleClass="history-fullname">
@@ -76,7 +76,7 @@
           </h:outputText>
         </p:column>
 
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/date')}"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}"
           sortBy="#{history.timestamp}" styleClass="case-history-date u-truncate-text ui-sm-hidden">
           <h:outputText value="#{history.timestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
