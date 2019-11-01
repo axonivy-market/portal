@@ -68,9 +68,9 @@ public class NoteHistoryExporter {
 
   private List<String> generateHeaders() {
     List<String> headers = new ArrayList<>();
-    headers.add(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/name"));
-    headers.add(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/timestamp"));
     headers.add(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent"));
+    headers.add(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/author"));
+    headers.add(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/creationDate"));
     return headers;
   }
 
@@ -78,9 +78,9 @@ public class NoteHistoryExporter {
     List<List<Object>> rows = new ArrayList<>();
     for (INote taskNote : taskNoteHistory) {
       List<Object> row = new ArrayList<>();
+      row.add(taskNote.getMessage());
       row.add(taskNote.getWritter().getDisplayName());
       row.add(formatDate(taskNote.getCreationTimestamp()));
-      row.add(taskNote.getMessage());
       rows.add(row);
     }
     return rows;
@@ -110,9 +110,9 @@ public class NoteHistoryExporter {
     List<List<Object>> rows = new ArrayList<>();
     for (History caseNote : caseNoteHistory) {
       List<Object> row = new ArrayList<>();
+      row.add(caseNote.getContent());
       row.add(caseNote.getInvolvedFullname());
       row.add(formatDate(caseNote.getTimestamp()));
-      row.add(caseNote.getContent());
       rows.add(row);
     }
     return rows;

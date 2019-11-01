@@ -11,7 +11,6 @@ import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
@@ -31,17 +30,14 @@ public class HideSystemNoteTest extends BaseTest {
 
   @Test
   public void testAdminCanSeeSystemNoteInCaseDetail() {
-    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
-    loginPage.login();
-
+    login(TestAccount.ADMIN_USER);
     List<String> caseNoteAuthors = getCaseNoteAuthors();
     Assert.assertTrue(caseNoteAuthors.contains(SYSTEM_USER_NAME));
   }
 
   @Test
   public void testAdminCanSeeSystemNoteInTaskDetail() {
-    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
-    loginPage.login();
+    login(TestAccount.ADMIN_USER);
 
     List<String> taskNoteAuthors = getTaskNoteAuthors();
     Assert.assertTrue(taskNoteAuthors.contains(SYSTEM_USER_NAME));
@@ -49,18 +45,12 @@ public class HideSystemNoteTest extends BaseTest {
 
   @Test
   public void testUserCanNotSeeSystemNoteInCaseDetail() {
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
-
     List<String> caseNoteAuthors = getCaseNoteAuthors();
     Assert.assertFalse(caseNoteAuthors.contains(SYSTEM_USER_NAME));
   }
 
   @Test
   public void testUserCanNotSeeSystemNoteInTaskDetail() {
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
-
     List<String> taskNoteAuthors = getTaskNoteAuthors();
     Assert.assertFalse(taskNoteAuthors.contains(SYSTEM_USER_NAME));
   }

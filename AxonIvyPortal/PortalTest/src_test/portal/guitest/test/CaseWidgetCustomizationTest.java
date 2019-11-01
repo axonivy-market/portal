@@ -11,7 +11,6 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
 
 public class CaseWidgetCustomizationTest extends BaseTest {
@@ -29,8 +28,7 @@ public class CaseWidgetCustomizationTest extends BaseTest {
 		super.setup();
 		redirectToRelativeLink(CREATE_CASES_FOR_CASE_LIST_CUSTOMIZATION);
 		redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
-		LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
-		loginPage.login();
+		login(TestAccount.ADMIN_USER);
 	}
 	
 	@Test
