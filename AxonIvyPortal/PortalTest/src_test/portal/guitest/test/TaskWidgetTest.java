@@ -20,7 +20,6 @@ import portal.guitest.common.TaskState;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class TaskWidgetTest extends BaseTest {
@@ -40,8 +39,6 @@ public class TaskWidgetTest extends BaseTest {
 
   @Test // obsolete testShowHideTaskDetailOnExpandedMode update by testShowTaskDetailAndBackFromTaskDetail
   public void testShowTaskDetailAndBackFromTaskDetail() {
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
 
     taskWidgetPage.expand();
@@ -54,8 +51,6 @@ public class TaskWidgetTest extends BaseTest {
 
   @Test
   public void testTasksInPortalHomePageUpdatedAfterExpandToFullMode() {
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     assertEquals(3, taskWidgetPage.countTasks());
 
@@ -66,8 +61,6 @@ public class TaskWidgetTest extends BaseTest {
 
   @Test
   public void testOpenRelatedCaseOfTask() {
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
     taskWidgetPage.openTaskDetails(0);
@@ -81,8 +74,6 @@ public class TaskWidgetTest extends BaseTest {
 
   @Test
   public void testReserveTask() {
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
     taskWidgetPage.sideStepMenuOnMoreButton(0);
@@ -97,8 +88,6 @@ public class TaskWidgetTest extends BaseTest {
 
   @Test
   public void testChangeTaskDeadline() {
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
     int firstTask = 0;
     LocalDateTime tomorrow = LocalDateTime.now().plusDays(1);
     String tomorrowStringLiteral = tomorrow.format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
@@ -114,8 +103,7 @@ public class TaskWidgetTest extends BaseTest {
 
   @Test
   public void testStartButtonStatus() {
-    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
-    loginPage.login();
+    login(TestAccount.ADMIN_USER);
     HomePage homePage = new HomePage();
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     taskWidgetPage.expand();
@@ -127,8 +115,7 @@ public class TaskWidgetTest extends BaseTest {
 
   @Test
   public void testDisplayDelegateButton() {
-    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
-    loginPage.login();
+    login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(GRANT_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL);
     HomePage homePage = new HomePage();
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
@@ -140,8 +127,7 @@ public class TaskWidgetTest extends BaseTest {
 
   @Test
   public void testDisplayTaskAndCaseCategory() {
-    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
-    loginPage.login();
+    login(TestAccount.ADMIN_USER);
     HomePage homePage = new HomePage();
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     taskWidgetPage.openTaskList();
@@ -152,8 +138,6 @@ public class TaskWidgetTest extends BaseTest {
 
   @Test
   public void testShowTaskCount() { 
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
     HomePage homePage = new HomePage();
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     Assert.assertEquals("In Dashboard, Task Count != 3", 3, taskWidgetPage.getTaskCount());

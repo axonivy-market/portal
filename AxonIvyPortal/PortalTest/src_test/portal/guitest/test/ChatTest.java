@@ -14,7 +14,6 @@ import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.ChatPage;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 
@@ -31,7 +30,7 @@ public class ChatTest extends BaseTest {
 	@Before
 	public void setup() {
 		super.setup();
-		navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
+		redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
 	}
 
 	@Test
@@ -136,11 +135,10 @@ public class ChatTest extends BaseTest {
 	}
 
 	private ChatPage createChatGroupWithPredifinedGroup(boolean isPredifinedGroup, TestAccount creatorChatGroup) {
-
 		if (isPredifinedGroup) {
-			navigateToUrl(createTestingTasksUrl);
+			redirectToRelativeLink(createTestingTasksUrl);
 		} else {
-			navigateToUrl(createTestingCaseUrlForDefaultAdditionalCaseDetails);
+			redirectToRelativeLink(createTestingCaseUrlForDefaultAdditionalCaseDetails);
 		}
 		redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
 		login(creatorChatGroup);
@@ -161,14 +159,14 @@ public class ChatTest extends BaseTest {
 	}
 
 	private ChatPage enableChatGroup() {
-		new LoginPage(TestAccount.ADMIN_USER).login();
+	  login(TestAccount.ADMIN_USER);
 		adminSettingsPage = new HomePage().openAdminSettings();
 		adminSettingsPage.setChatGroup();
 		return new ChatPage();
 	}
 
 	private ChatPage enableChatPrivate() {
-		new LoginPage(TestAccount.ADMIN_USER).login();
+	  login(TestAccount.ADMIN_USER);
 		adminSettingsPage = new HomePage().openAdminSettings();
 		adminSettingsPage.setChatPrivate();
 		new HomePage().getChat();

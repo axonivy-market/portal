@@ -9,7 +9,6 @@ import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class UploadDeleteDocumentVisibilityTest extends BaseTest {
@@ -71,14 +70,13 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
   }
 
   private void createTestingCaseContainOneTaskByUser(TestAccount user) {
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     initHomePage(user);
     redirectToRelativeLink(createTestingCaseContainOneTask);
   }
 
   private void initHomePage(TestAccount account) {
-    LoginPage loginPage = new LoginPage(account);
-    loginPage.login();
+    login(account);
     homePage = new HomePage();
   }
 

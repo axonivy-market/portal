@@ -14,9 +14,7 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
-import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
 import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.ProcessWidgetPage.AddNewProcessDialog;
 public class ProcessWidgetTest extends BaseTest {
@@ -32,11 +30,7 @@ public class ProcessWidgetTest extends BaseTest {
   public void setup() {
     super.setup();
 
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
-
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
-
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     homePage = new HomePage();
   }
 
