@@ -49,13 +49,13 @@
         </p:column>
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/author')}" sortBy="#{note.creationTimestamp}"
-          styleClass="case-document-author u-truncate-text ui-sm-hidden">
+          styleClass="task-document-author u-truncate-text ui-sm-hidden">
           <i class="fa fa-pencil-square-o" />
           <p:spacer width="5" />
           <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText username="#{note.writterName}" fullname="#{note.writter.fullName}" />
         </p:column>
 
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/date')}" sortBy="#{note.creationTimestamp}"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}" sortBy="#{note.creationTimestamp}"
           styleClass="task-history-date u-truncate-text ui-sm-hidden">
           <h:outputText value="#{note.creationTimestamp.time}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />

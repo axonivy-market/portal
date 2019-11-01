@@ -21,7 +21,6 @@ import portal.guitest.page.AdditionalCaseDetailsPage;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
@@ -44,13 +43,13 @@ public class CaseWidgetTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
-    navigateToUrl(createTestingTasksUrl);
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(createTestingTasksUrl);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
 
   @Test
   public void testHideCase() {
-    navigateToUrl(hideCaseUrl);
+    redirectToRelativeLink(hideCaseUrl);
     initHomePage(TestAccount.ADMIN_USER);
     
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
@@ -133,7 +132,7 @@ public class CaseWidgetTest extends BaseTest {
   }
   
   private void openAdditionalCaseDetailsPage(String initDataUrl, String caseName){
-    navigateToUrl(initDataUrl);
+    redirectToRelativeLink(initDataUrl);
     initHomePage(TestAccount.ADMIN_USER);
     mainMenuPage = homePage.openMainMenu();
     additionalCaseDetailsPage = new AdditionalCaseDetailsPage();
@@ -157,8 +156,7 @@ public class CaseWidgetTest extends BaseTest {
   }
 
   private void initHomePage(TestAccount account) {
-    LoginPage loginPage = new LoginPage(account);
-    loginPage.login();
+    login(account);
     homePage = new HomePage();
   }
   

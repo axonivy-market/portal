@@ -6,11 +6,9 @@ import org.junit.Test;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import portal.guitest.common.BaseTest;
-import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
@@ -25,9 +23,7 @@ public class PortalPermissionTest extends BaseTest{
   @Before
   public void setup() {
     super.setup();
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     grantAccessFullListPermissions();
     homePage = new HomePage();
   }
