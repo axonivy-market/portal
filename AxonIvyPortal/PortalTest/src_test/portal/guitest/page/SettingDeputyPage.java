@@ -1,7 +1,6 @@
 package portal.guitest.page;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 public class SettingDeputyPage extends TemplatePage {
 
@@ -17,8 +16,7 @@ public class SettingDeputyPage extends TemplatePage {
   }
 
   private void proceed(String selector) {
-    WebElement proceedElement = findElementByCssSelector(selector);
-    proceedElement.click();
+    clickByCssSelector(selector);
     waitAjaxIndicatorDisappear();
   }
 
