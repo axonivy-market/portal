@@ -116,8 +116,8 @@ public class TaskFilterTest extends BaseTest {
   
   @Test
   public void testShowUnassignedTaskToPersonHaveTaskReadAllPermission() {
-    redirectToRelativeLink(createUnassignedTaskUrl);
     login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(createUnassignedTaskUrl);
     MainMenuPage mainMenuPage = new MainMenuPage();
     TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
     assertEquals(6, taskWidgetPage.countTasks());
