@@ -2018,7 +2018,7 @@ _:-ms-input-placeholder, :root .case-details > * {
 .case-details-data-1st-column {
   padding-right: 10px;
   text-align: left;
-  width: 120px;
+  width: 135px;
   line-height: 2.2rem;
 }
 
@@ -2070,7 +2070,7 @@ _:-ms-input-placeholder, :root .case-details > * {
 }
 
 .case-description-2nd-column {
-  width: calc(100% - 135px);
+  width: calc(100% - 145px);
   height: 130px;
   margin-left: 3px;
   overflow-y: auto;
