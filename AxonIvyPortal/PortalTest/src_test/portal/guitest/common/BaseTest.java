@@ -20,7 +20,7 @@ public class BaseTest {
   private Browser browser;
 
   private String designerLogoutUrl = "http://localhost:8081/ivy/wf/logout.jsp";
-  public final static String LOGIN_URL_PATTERN = "portalKitTestHelper/1636734E13CEC872/login.ivp?username=%s&password=%s";
+  private final static String LOGIN_URL_PATTERN = "portalKitTestHelper/1636734E13CEC872/login.ivp?username=%s&password=%s";
   private BrowserType browserType = BrowserType.IE;
   private String ieDriverPath = getInternetExprorerDriverPath();
 
@@ -104,18 +104,8 @@ public class BaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
   }
   
-  public void grantAllPermissionsToCurrentUser() {
-    String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantAllPermissionsToCurrentUser.ivp";
-    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
-  }
-  
   public void grantTaskReadAllPermissionsToCurrentUser() {
     String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantTaskReadAllPermissionsToCurrentUser.ivp";
-    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
-  }
-  
-  public void grantCaseReadAllPermissionsToCurrentUser() {
-    String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantCaseReadAllPermissionsToCurrentUser.ivp";
     redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
   }
   

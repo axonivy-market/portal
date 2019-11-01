@@ -8,7 +8,6 @@ import java.util.function.Function;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -24,7 +23,7 @@ public abstract class TemplatePage extends AbstractPage {
 
   private static final String TEMPLATE_PAGE_LOCATOR = "id('global-search-component:global-search-data')";
   public static final String CLASS_PROPERTY = "class";
-  protected static final String ENGINE_URL_LOCAL = "http://localhost:8081/ivy";
+  private static final String ENGINE_URL_LOCAL = "http://localhost:8081/ivy";
 
   public TemplatePage() {
     waitForLocatorDisplayed(getLoadedLocator());
@@ -66,7 +65,7 @@ public abstract class TemplatePage extends AbstractPage {
     ensureNoBackgroundRequest(500, 30);
   }
 
-  protected void ensureNoBackgroundRequest(int minMilliSeconds, int timeOutInSeconds) {
+  private void ensureNoBackgroundRequest(int minMilliSeconds, int timeOutInSeconds) {
     WebDriverWait wait = new WebDriverWait(getDriver(), timeOutInSeconds, 200);
     final long startTime = System.currentTimeMillis();
     Function<WebDriver, Boolean> myFunction = webDriver -> {
@@ -122,33 +121,11 @@ public abstract class TemplatePage extends AbstractPage {
     return driver.getWindowHandles().size();
   }
 
-  public HomePage goToHomePage() {
-    clickOnLogo();
-    boolean hasLeaveButton = false;
-    try {
-      hasLeaveButton = getDriver().findElements(By.id("task-leave-warning-component:leave-button")).size() > 0;
-    } catch (NoSuchElementException e) {
-      // This should not happen, but at least it happens when running preintegration test on ivy 7
-    }
-
-    if (hasLeaveButton) {
-      WebElement leaveButton = findElementById("task-leave-warning-component:leave-button");
-      leaveButton.click();
-    }
-
-    waitForPageLoaded();
-    return new HomePage();
-  }
-
   public void switchLastBrowserTab() {
     String oldTab = driver.getWindowHandle();
     ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
     tabs.remove(oldTab);
     driver.switchTo().window(tabs.get(0));
-  }
-
-  public void navigateBack() {
-    driver.navigate().back();
   }
 
   public AdminSettingsPage openAdminSettings() {
@@ -223,12 +200,6 @@ public abstract class TemplatePage extends AbstractPage {
     waitAjaxIndicatorDisappear();
   }
 
-  public WebElement findDisplayedElementById(String id) {
-    waitForElementDisplayed(By.id(id), true);
-    WebElement element = findElementById(id);
-    return element;
-  }
-
   public WebElement findDisplayedElementBySelector(String selector) {
     waitForElementDisplayed(By.cssSelector(selector), true);
     WebElement element = findElementByCssSelector(selector);
@@ -298,11 +269,7 @@ public abstract class TemplatePage extends AbstractPage {
       return searchWebElement.isDisplayed();
     }
 
-    public WebElement getSearch() {
-      return searchWebElement;
-    }
-
-    public WebElement getSearchInputData() {
+    private WebElement getSearchInputData() {
       return findChildElementById(searchWebElement, GLOBAL_SEARCH_DATA_ELEMENT_ID);
     }
 
