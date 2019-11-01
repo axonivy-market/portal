@@ -18,12 +18,12 @@ public class CustomTaskDelegateTest extends BaseTest {
   public void setup() {
     super.setup();
     createTestingTasks();
-    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
   }
 
   @Test
   public void testCustomTaskDelegateOnlyToGroup() {
     login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
 
@@ -40,6 +40,7 @@ public class CustomTaskDelegateTest extends BaseTest {
   @Test
   public void testCustomTaskDelegateOnlyToUser() {
     login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
 
@@ -51,6 +52,7 @@ public class CustomTaskDelegateTest extends BaseTest {
 
   @Test
   public void testCustomTaskDelegateNoDelegateOption() {
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
 
