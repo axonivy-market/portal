@@ -1,7 +1,6 @@
 package portal.guitest.page;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 public class AdditionalCaseDetailsPage extends TemplatePage {
   
@@ -13,7 +12,6 @@ public class AdditionalCaseDetailsPage extends TemplatePage {
   }
   
   public String getAdditionalFieldContentOfFirstRow() {
-      WebElement firstRow = driver.findElements(By.cssSelector(TABLE_ROWS_PATH)).get(0);
-      return firstRow.findElement(By.id("custom-varchar-field-1")).getText();
+      return findElementByCssSelector("#addtional-case-detail-table\\:0\\:value").getText();
   }
 }
