@@ -284,9 +284,10 @@ public abstract class TemplatePage extends AbstractPage {
     findElementByCssSelector(cssSelector).click();
   }
 
-  protected void refreshAndWaitElement(String cssSelector) {
+  protected void refreshAndWaitElement(String cssSelector, boolean isDisplayed) {
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> {
-      if (findListElementsByCssSelector(cssSelector).isEmpty()) {
+      if ((findListElementsByCssSelector(cssSelector).isEmpty() && isDisplayed)
+          || (findListElementsByCssSelector(cssSelector).isEmpty() && !isDisplayed)) {
         refresh();
         return false;
       } else {
