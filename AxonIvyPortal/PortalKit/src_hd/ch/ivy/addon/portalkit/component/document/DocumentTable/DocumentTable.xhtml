@@ -10,6 +10,7 @@
   <cc:attribute name="uploadRendered" default="true" />
   <cc:attribute name="downloadRendered" default="true" />
   <cc:attribute name="deleteRendered" default="true" />
+  <cc:attribute name="messageRendered" default="true" />
   
   <cc:attribute name="fileLimit" type="Integer" shortDescription="Number of files are in the given ICase" default="-1" />
   <cc:attribute name="uploadText" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/upload')}" />
@@ -41,7 +42,7 @@
 
     <cc:renderFacet name="componentHeader" />
 
-    <p:messages id="document-messages" for="document-messages" />
+    <p:messages id="document-messages" for="document-messages" rendered="#{cc.attrs.messageRendered}" />
     <p:dataTable id="document-table" value="#{data.documents}" var="document"
       emptyMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/NoFiles')}" styleClass="MarTop5"
       widgetVar="fileTableVar">
