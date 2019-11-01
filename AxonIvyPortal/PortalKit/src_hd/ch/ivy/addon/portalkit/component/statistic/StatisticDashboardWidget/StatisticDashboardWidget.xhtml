@@ -138,7 +138,7 @@
     <p:remoteCommand name="updateStatisticCarousel" update="@([id$='statistic-carousel-container'])" global="false"/>
   </h:form>
 
-  <p:confirmDialog id="delete-confirmation-dialog"
+  <p:confirmDialog id="delete-confirmation-dialog" rendered="#{!cc.attrs.compactMode}"
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/chartDeletionConfirmation')}"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" widgetVar="delete-confirmation-dialog" appendTo="@(body)"
     severity="alert">
