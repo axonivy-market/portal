@@ -12,27 +12,12 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
 
   private static final String WIDGET_ID = "task-widget";
 
-  private String taskAnalysisWidgetId;
-
   public TaskAnalysisWidgetPage() {
-    this(WIDGET_ID);
-  }
-  
-  public TaskAnalysisWidgetPage(String taskAnalysisWidgetId) {
-    this.setTaskAnalysisWidgetId(taskAnalysisWidgetId);
   }
   
   @Override
   protected String getLoadedLocator() {
     return "//*[contains(@id,'" + WIDGET_ID + ":statistic-result-list')]";
-  }
-
-  public String getTaskAnalysisWidgetId() {
-    return taskAnalysisWidgetId;
-  }
-
-  public void setTaskAnalysisWidgetId(String taskAnalysisWidgetId) {
-    this.taskAnalysisWidgetId = taskAnalysisWidgetId;
   }
 
   public StatisticWidgetPage navigateToStatisticPage() {
@@ -51,13 +36,13 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     return findElementById(togglerId);
   }
 
-  public WebElement findTaskFilterButton() {
+  private WebElement findTaskFilterButton() {
     String taskFilterButtonId = "task-widget:task-filter-add-action";
     waitForElementDisplayed(By.id(taskFilterButtonId), true);
     return findElementById(taskFilterButtonId);
   }
 
-  public WebElement findCaseFilterButton() {
+  private WebElement findCaseFilterButton() {
     String caseFilterButtonId = "task-widget:case-filter-add-action";
     waitForElementDisplayed(By.id(caseFilterButtonId), true);
     return findElementById(caseFilterButtonId);

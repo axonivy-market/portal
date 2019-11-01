@@ -22,7 +22,6 @@ public class CaseWidgetPage extends TemplatePage {
   private static final String SELECT_ITEM_XPATH =
       "//*[@id=\"case-widget:case-columns-configuration:select-columns-form:columns-checkbox\"]/tbody/tr[%s]/td/div/div[2]";
   private static final String APPLY_BUTTON_CSS_SELECTOR = "button[id$='select-columns-form:update-command']";
-  private static final String CANCEL_BUTTON_CSS_SELECTOR = "button[id$='cancel-command']";
   private static final String DEFAULT_COLUMNS_XPATH =
       "//*[@id=\"case-widget:case-columns-configuration:select-columns-form:default-columns\"]/div[2]";
 
@@ -47,11 +46,6 @@ public class CaseWidgetPage extends TemplatePage {
   public WebElement selectCaseItem(int index) {
     String caseItemId = String.format(caseWidgetId + ":case-list-scroller:%s:case-item", index);
     return findElementById(caseItemId);
-  }
-
-  public boolean isCaseItemSelected(int index) {
-    return findElementById(caseWidgetId + ":case-list-scroller:" + index + ":case-item").getAttribute("class")
-        .contains("case-list-item-expanded");
   }
 
   private WebElement getDestroyButtonOfCaseItem(WebElement caseItem) {
@@ -188,15 +182,6 @@ public class CaseWidgetPage extends TemplatePage {
     return isElementPresent(By.id(caseWidgetId + ":filter-selection-form:filter-selection-panel"));
   }
 
-  public int countCategoryRoots() {
-    List<WebElement> taskElements = findListElementsByCssSelector("span[class*='js-second-level-menu']");
-    return taskElements.size();
-  }
-
-  public void toggleCategoryMenu() {
-    click(findElementByClassName("second-level-menu-header"));
-  }
-
   public boolean isEmpty() {
     return isElementDisplayed(By.id("search-results-tabview:case-results:case-empty-message"));
   }
@@ -238,11 +223,6 @@ public class CaseWidgetPage extends TemplatePage {
     WebElement applyButton = findDisplayedElementBySelector(APPLY_BUTTON_CSS_SELECTOR);
     applyButton.click();
     waitAjaxIndicatorDisappear();
-  }
-
-  public void clickCancelButton() {
-    WebElement applyButton = findElementByCssSelector(CANCEL_BUTTON_CSS_SELECTOR);
-    applyButton.click();
   }
 
 }

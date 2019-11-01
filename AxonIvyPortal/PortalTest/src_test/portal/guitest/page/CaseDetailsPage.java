@@ -35,10 +35,6 @@ public class CaseDetailsPage extends TemplatePage {
     return "id('case-item-details:case-detail-title-form:case-detail-name')";
   }
 
-  public CaseDetailsPage(WebElement caseItem) {
-    this.caseItem = caseItem;
-  }
-
   public CaseDetailsPage() {
     this.caseItem = findElementByCssSelector("#main-area-panel");
   }
@@ -55,10 +51,6 @@ public class CaseDetailsPage extends TemplatePage {
   public int countRelatedTasks() {
     return caseItem.findElement(By.cssSelector("div[id$='related-tasks']"))
         .findElements(By.cssSelector("a[id$='task-name']")).size();
-  }
-
-  public int countTechnicalCases() {
-    return caseItem.findElements(By.cssSelector("div[id$=':technicalCase']")).size();
   }
 
   public void addNote(String content) {
@@ -219,7 +211,7 @@ public class CaseDetailsPage extends TemplatePage {
     caseDescriptionInplace.click();
   }
 
-  public void onClickDescriptionEditIcon() {
+  private void onClickDescriptionEditIcon() {
     try {
       WebElement caseIcons = caseItem.findElement(By.cssSelector(CASE_ICONS_CONTAINER_COMPONENT_CSS_SELECTOR));
       WebElement descriptionIcon = caseIcons.findElement(By.cssSelector("a[class*='fa fa-clipboard']"));
@@ -233,18 +225,6 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void onClickHistoryIcon() {
     findElementById("case-item-details:case-histories:add-note-command").click();
-  }
-
-  public void onClickDocumentIcon() {
-    try {
-      WebElement caseIcons = caseItem.findElement(By.cssSelector(CASE_ICONS_CONTAINER_COMPONENT_CSS_SELECTOR));
-      WebElement documentIcon = caseIcons.findElement(By.cssSelector("a[class*='fa fa-file']"));
-      if (documentIcon != null) {
-        documentIcon.click();
-      }
-    } catch (Exception e) {
-      return;
-    }
   }
 
   public TaskWidgetPage clickShowAllTasks() {

@@ -29,7 +29,7 @@ public class ExpressProcessPage extends TemplatePage {
 		type(By.id("form:process-description"), processDescription);
 	}
 
-	public void selectCheckbox(String forAttribute) {
+	private void selectCheckbox(String forAttribute) {
 		WebElement checkboxLabel = findElementByXpath(String.format("//label[@for='%s']", forAttribute));
 		checkboxLabel.click();
 		waitAjaxIndicatorDisappear();
