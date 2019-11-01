@@ -649,7 +649,7 @@ span.task-details-document-add-link {
   text-align: center !important;
 }
 
-.case-document-author {
+.case-document-author, .task-document-author {
   text-align: left !important;
 }
 
@@ -2921,20 +2921,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 /********************************** END EMAIL SETTING DIALOG **********************************/
 
-/********************************** CASE NOTE **********************************/
-.case-note-view-container {
-  width: 300px;
-  height: 250px;
-}
-
-.case-note-message {
-  white-space: pre-wrap;
-}
-.case-note-history-form {
-  margin-top: 20px;
-}
-/********************************** END CASE NOTE **********************************/
-
 /********************************** PROCESS STARTS **********************************/
 .process-start-container {
   float: left;
@@ -4321,10 +4307,6 @@ span.ui-inputnumber.ui-widget.ui-state-error {
 }
 
 /*====================FIX FOR SERENITY 2.0 STYLE========================*/
-.case-note-history-container {
-  padding-bottom: 20px;
-}
-
 .filter-add-panel .ui-scrollpanel {
   overflow: hidden !important;
 }
@@ -4395,3 +4377,9 @@ a.ui-widget:focus {
   text-decoration: none;
   outline: none;
 }
+
+/**************DATA TABLE START*******************/
+.column-header-top-alignment {
+  vertical-align: baseline;
+}
+/**************DATA TABLE END*******************/
