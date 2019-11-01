@@ -33,7 +33,7 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public void startProcess(String processName) {
-    refreshAndWaitElement("span[id$='process-name-process-item']");
+    refreshAndWaitElement(".js-no-found-processes.u-display-none", false);
     WebElement processItemElement = getProcess(processName);
     click(processItemElement);
   }
