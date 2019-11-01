@@ -72,7 +72,7 @@ public class StatisticWidgetPage extends TemplatePage {
   }
 
   public void restoreDefaultCharts() {
-    findElementByCssSelector("span[id$='restore-default-chart-link-label']").click();
+    clickByCssSelector("span[id$='restore-default-chart-link-label']");
     waitAjaxIndicatorDisappear();
     waitForElementDisplayed(By.id("statistics-widget:restore-confirmation-dialog"), true, 30);
     WebElement okButton = findElementById("statistics-widget:confirm-restore");

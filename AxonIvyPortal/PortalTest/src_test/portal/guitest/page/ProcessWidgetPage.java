@@ -205,7 +205,7 @@ public class ProcessWidgetPage extends TemplatePage {
       findElementByClassName("ui-autocomplete-dropdown").click();
       String processSelector = "tr[data-item-label='" + ivyProcessName + "']";
       waitForElementDisplayed(By.cssSelector(processSelector), true);
-      findElementByCssSelector(processSelector).click();
+      clickByCssSelector(processSelector);
       waitAjaxIndicatorDisappear();
     }
 
@@ -217,9 +217,8 @@ public class ProcessWidgetPage extends TemplatePage {
     }
     
     public void clickChangeIconButton() {
-      WebElement changeButton = findElementByCssSelector("a[class*='select-awesome-icon-button']");
       waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
-      changeButton.click();
+      clickByCssSelector("a[class*='select-awesome-icon-button']");
     }
     
     public void inputSearchedIconName(String keyword) {
