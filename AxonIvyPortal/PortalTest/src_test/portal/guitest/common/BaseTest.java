@@ -63,9 +63,9 @@ public class BaseTest {
   public void setup() {
     browser = Browser.getBrowser();
     launchBrowserAndGotoRelativeLink("portalKitTestHelper/1511A66AF619A768/cleanData.ivp");
-    if (!SystemProperties.isInServerMode()) {
-      logoutDesigner();
-    }
+//    if (!SystemProperties.isInServerMode()) {
+//      logoutDesigner();
+//    }
   }
 
   public void launchBrowserAndGotoRelativeLink(String relativeProcessStartLink) {
@@ -92,35 +92,12 @@ public class BaseTest {
     }
   }
 
-  protected void navigateToUrl(String relativeProcessStartUrl) {
-//    if (SystemProperties.isInServerMode()) {
-      redirectToRelativeLink(relativeProcessStartUrl);
-//    } else {
-//      logoutDesigner();
-//      redirectToRelativeLink(relativeProcessStartUrl);
-//    }
-  }
-
-  private void logoutDesigner() {
+  protected void logoutDesigner() {
     try {
       browser.goHome(designerLogoutUrl);
     } catch (Exception e) {
       throw new PortalGUITestException(e);
     }
-  }
-
-  private void destroyAllTasksCases() {
-    String destroyAllTaskCaseURL = "portalKitTestHelper/1511A66AF619A768/cleanupCases.ivp";
-    launchBrowserAndGotoRelativeLink(destroyAllTaskCaseURL);
-  }
-
-  private void cleanAllFavoriteProcesses() {
-    String cleanAllFavoriteProcessesURL = "portalKitTestHelper/1511A66AF619A768/CleanFavoriteProcess.ivp";
-    navigateToUrl(cleanAllFavoriteProcessesURL);
-  }
-
-  private void updatePermissionOfTestUsers() {
-    redirectToRelativeLink("portalKitTestHelper/14DE09882B540AD5/updatePermissionsOfTestUsers.ivp");
   }
 
   public void createTestingTasks() {

@@ -55,6 +55,8 @@ Ca0 @EndTask f35 '' #zField
 Ca0 @GridStep f36 '' #zField
 Ca0 @StartRequest f37 '' #zField
 Ca0 @PushWFArc f38 '' #zField
+Ca0 @GridStep f40 '' #zField
+Ca0 @PushWFArc f41 '' #zField
 Ca0 @PushWFArc f39 '' #zField
 >Proto Ca0 Ca0 CleanData #zField
 Ca0 f0 outLink cleanCompletedCases.ivp #txt
@@ -434,7 +436,14 @@ globalSettingService.deleteAll(globalSettingService.findAll());
 
 ' #txt
 Ca0 f36 security system #txt
-Ca0 f36 46 460 36 24 20 -2 #rect
+Ca0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>clean data</name>
+    </language>
+</elementInfo>
+' #txt
+Ca0 f36 46 404 36 24 20 -2 #rect
 Ca0 f36 @|StepIcon #fIcon
 Ca0 f37 outLink cleanData.ivp #txt
 Ca0 f37 inParamDecl '<> param;' #txt
@@ -461,9 +470,43 @@ Ca0 f37 @C|.responsibility Everybody #txt
 Ca0 f37 51 355 26 26 -57 -34 #rect
 Ca0 f37 @|StartRequestIcon #fIcon
 Ca0 f38 expr out #txt
-Ca0 f38 64 381 64 460 #arcP
-Ca0 f39 expr out #txt
-Ca0 f39 64 484 64 547 #arcP
+Ca0 f38 64 381 64 404 #arcP
+Ca0 f40 actionTable 'out=in;
+' #txt
+Ca0 f40 actionCode 'import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
+import ch.ivyteam.ivy.security.IUser;
+import java.util.Locale;
+ivy.session.loginSessionUser("demo", "demo");
+//set language from user settings or application details
+IUser sessionUser = ivy.session.getSessionUser();
+
+if (sessionUser.getEMailLanguage() != null &&
+		sessionUser.getEMailLanguage() instanceof Locale) {
+	Locale l = ivy.session.getSessionUser().getEMailLanguage();
+	ivy.session.setContentLocale(l);
+	ivy.session.setFormattingLocale(l);
+} else {
+	// Application Default
+	Locale default = ivy.request.getApplication().getDefaultEMailLanguage();
+	String language = default.getLanguage();
+	String country = default.getCountry();
+	Locale l = new Locale(language, country, "APPLICATION_DEFAULT");
+	ivy.session.setContentLocale(l);
+	ivy.session.setFormattingLocale(l);
+}' #txt
+Ca0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>login</name>
+    </language>
+</elementInfo>
+' #txt
+Ca0 f40 8 466 112 44 -13 -8 #rect
+Ca0 f40 @|StepIcon #fIcon
+Ca0 f41 expr out #txt
+Ca0 f41 64 428 64 466 #arcP
+Ca0 f39 64 510 64 547 #arcP
 >Proto Ca0 .type portalKit_test.Data #txt
 >Proto Ca0 .processKind NORMAL #txt
 >Proto Ca0 0 0 32 24 18 0 #rect
@@ -502,5 +545,7 @@ Ca0 f31 mainOut f34 tail #connect
 Ca0 f34 head f32 mainIn #connect
 Ca0 f37 mainOut f38 tail #connect
 Ca0 f38 head f36 mainIn #connect
-Ca0 f36 mainOut f39 tail #connect
+Ca0 f36 mainOut f41 tail #connect
+Ca0 f41 head f40 mainIn #connect
+Ca0 f40 mainOut f39 tail #connect
 Ca0 f39 head f35 mainIn #connect
