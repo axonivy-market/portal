@@ -35,7 +35,7 @@
     <p:remoteCommand id="update-case-by-finished-time-model-command" name="updateCaseByFinishedTimeModel" process="@this"
       action="#{statisticChartCreationBean.updateCaseByFinishedTimeModel(data.statisticFilter)}" global="false" update="case-by-finished-time-chart"/>
 
-    <p:growl globalOnly="true" showDetail="true" showSummary="true">
+    <p:growl globalOnly="true" showDetail="true" showSummary="true" for="chart-creation-growl">
       <p:autoUpdate />
     </p:growl>
 
