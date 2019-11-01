@@ -1225,10 +1225,10 @@ As0 f115 expr out #txt
 As0 f115 352 352 400 352 #arcP
 As0 f124 actionTable 'out=in;
 ' #txt
-As0 f124 actionCode 'import org.primefaces.context.RequestContext;
+As0 f124 actionCode 'import org.primefaces.PrimeFaces;
 
 in.isLoadDeputy = true;
-RequestContext.getCurrentInstance().execute("PF(''addNewAbsence'').initPosition();");' #txt
+PrimeFaces.current().executeScript("PF(''addNewAbsence'').initPosition();");' #txt
 As0 f124 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1271,9 +1271,9 @@ As0 f29 656 352 728 352 #arcP
 As0 f29 0 0.4642857142857143 0 -12 #arcLabel
 As0 f69 actionTable 'out=in;
 ' #txt
-As0 f69 actionCode 'import org.primefaces.context.RequestContext;
+As0 f69 actionCode 'import org.primefaces.PrimeFaces;
 
-RequestContext.getCurrentInstance().execute("PF(''addNewAbsence'').hide()");
+PrimeFaces.current().executeScript("PF(''addNewAbsence'').hide()");
 
 out.isLoadDeputy = false;
 out.isAbsenceBeingCreated = false;

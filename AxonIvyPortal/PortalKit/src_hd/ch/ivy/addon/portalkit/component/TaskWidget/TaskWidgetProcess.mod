@@ -380,17 +380,16 @@ Ts0 f65 172 842 144 44 -69 -8 #rect
 Ts0 f65 @|StepIcon #fIcon
 Ts0 f56 actionTable 'out=in;
 ' #txt
-Ts0 f56 actionCode 'import ch.ivy.addon.portalkit.util.Dates;
+Ts0 f56 actionCode 'import org.primefaces.PrimeFaces;
+import ch.ivy.addon.portalkit.util.Dates;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import org.primefaces.context.RequestContext;
 
 if (in.numberOfNewTask > 0){
-	RequestContext requesContext = RequestContext.getCurrentInstance();
 	FacesContext facesContext = FacesContext.getCurrentInstance();
 	String notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/newTaskNotification");
 	facesContext.addMessage("portal-global-growl", new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
-	requesContext.update("portal-global-growl");        
+	PrimeFaces.current().ajax().update("portal-global-growl");        
 }' #txt
 Ts0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -405,14 +404,13 @@ Ts0 f56 584 842 112 44 -46 -8 #rect
 Ts0 f56 @|StepIcon #fIcon
 Ts0 f59 actionTable 'out=in;
 ' #txt
-Ts0 f59 actionCode 'import javax.faces.context.FacesContext;
-import org.primefaces.context.RequestContext;
+Ts0 f59 actionCode 'import org.primefaces.PrimeFaces;
+import javax.faces.context.FacesContext;
 	
-RequestContext requesContext = RequestContext.getCurrentInstance();
-
+PrimeFaces faces = PrimeFaces.current();
 if(in.scrollPosition == 0 && in.expandedTaskId < 1) {	
-	requesContext.update("task-widget:task-view-container");
-	requesContext.execute("taskWidget.setupScrollbar()");
+	faces.ajax().update("task-widget:task-view-container");
+	faces.executeScript("taskWidget.setupScrollbar()");
 }' #txt
 Ts0 f59 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

@@ -207,14 +207,13 @@ Ts0 f80 160 482 128 44 -56 -8 #rect
 Ts0 f80 @|StepIcon #fIcon
 Ts0 f66 actionTable 'out=in;
 ' #txt
-Ts0 f66 actionCode 'import ch.ivyteam.ivy.security.IUser;
+Ts0 f66 actionCode 'import org.primefaces.PrimeFaces;
+import ch.ivyteam.ivy.security.IUser;
 import org.apache.commons.lang3.StringUtils;
 import ch.ivyteam.ivy.workflow.TaskState;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
-import org.primefaces.context.RequestContext;
 
-RequestContext requesContext = RequestContext.getCurrentInstance();
 FacesContext facesContext = FacesContext.getCurrentInstance();
 
 String notification;
@@ -233,7 +232,7 @@ if(in.task.getState() == TaskState.DONE){
 
 facesContext.validationFailed();
 facesContext.addMessage("portal-global-growl-message", new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
-requesContext.update("portal-global-growl");  
+PrimeFaces.current().ajax().update("portal-global-growl");  
 ' #txt
 Ts0 f66 security system #txt
 Ts0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
