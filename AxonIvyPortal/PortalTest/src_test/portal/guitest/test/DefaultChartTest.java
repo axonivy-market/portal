@@ -71,17 +71,14 @@ public class DefaultChartTest extends BaseTest {
   }
   
   private void createCaseByFinishedTask(StatisticWidgetPage statisticWidgetPage) {
-    statisticWidgetPage.waitForElementDisplayed(By.cssSelector("a[id$='create-case-by-finished-task-link']"), true, 30);
-    statisticWidgetPage.findElementByCssSelector("a[id$='create-case-by-finished-task-link']").click();
+    statisticWidgetPage.clickByCssSelector("a[id$='create-case-by-finished-task-link']");
     statisticWidgetPage.waitAjaxIndicatorDisappear();
 
     statisticWidgetPage.waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), true, 30);
     WebElement chartNameInput = statisticWidgetPage.findElementByCssSelector("input[id$='chart-name-input']");
-    WebElement createChartButton
-      = statisticWidgetPage.findElementByCssSelector("button[id$='chart-save-command']");
 
     chartNameInput.sendKeys("User chart");
-    createChartButton.click();
+    statisticWidgetPage.clickByCssSelector("button[id$='chart-save-command']");
     statisticWidgetPage.waitAjaxIndicatorDisappear();
   }
   

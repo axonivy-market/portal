@@ -16,8 +16,7 @@ public class AdhocPage extends TaskTemplatePage {
   }
 
   public void addTask() {
-    WebElement taskCommand = findElementByCssSelector("*[id$='" + ":add-task']");
-    taskCommand.click();
+    clickByCssSelector("*[id$='" + ":add-task']");
   }
 
   public void addComment(String comment) {
@@ -26,14 +25,12 @@ public class AdhocPage extends TaskTemplatePage {
   }
 
   public TaskWidgetPage startWorkflow() {
-    WebElement command = findElementByCssSelector("*[id$='" + ":start-workflow']");
-    command.click();
+    clickByCssSelector("*[id$='" + ":start-workflow']");
     return new TaskWidgetPage();
   }
 
   public TaskWidgetPage send() {
-    WebElement command = findElementByCssSelector("*[id$='" + ":send']");
-    command.click();
+    clickByCssSelector("*[id$='" + ":send']");
     return new TaskWidgetPage();
   }
 

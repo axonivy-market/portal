@@ -34,18 +34,18 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public ProcessWidgetPage selectProcessesMenu() {
-    findElementByCssSelector("li.submenu-container:nth-child(2) > a.ripplelink.submenu").click();
+    clickByCssSelector("li.submenu-container:nth-child(2) > a.ripplelink.submenu");
     waitForProcessesPageAfterSelectProcessesCategory();
     return new ProcessWidgetPage();
   }
 
   public TaskWidgetPage selectTaskMenu() {
-    findElementByCssSelector("li.submenu-container:nth-child(3) > a.ripplelink.submenu").click();
+    clickByCssSelector("li.submenu-container:nth-child(3) > a.ripplelink.submenu");
     return new TaskWidgetPage();
   }
 
   public StatisticWidgetPage selectStatisticDashboard() {
-    findElementByCssSelector("li.submenu-container:nth-child(5) > a.ripplelink.submenu").click();
+    clickByCssSelector("li.submenu-container:nth-child(5) > a.ripplelink.submenu");
     ensureNoBackgroundRequest();
     waitForPageLoaded();
     return new StatisticWidgetPage();

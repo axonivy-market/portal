@@ -49,14 +49,14 @@ public class CaseWidgetPage extends TemplatePage {
   }
 
   private WebElement getDestroyButtonOfCaseItem(WebElement caseItem) {
-    caseItem.findElement(By.cssSelector("button[id$='action-steps-menu']")).click();
+    clickByCssSelector("button[id$='action-steps-menu']");
     waitForElementDisplayed(By.cssSelector("a[id$='destroy-case']"), true);
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> findElementByCssSelector("a[id$='destroy-case']").isDisplayed());
     return findElementByCssSelector("a[id$='destroy-case']");
   }
 
   private WebElement getMoreActionsPanel(WebElement caseItem) {
-    caseItem.findElement(By.cssSelector("button[id$='action-steps-menu']")).click();
+    clickByCssSelector("button[id$='action-steps-menu']");
     waitForElementDisplayed(By.cssSelector("div[id$='action-steps-panel']"), true);
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> findElementByCssSelector("div[id$='action-steps-panel']").isDisplayed());
     return findElementByCssSelector("div[id$='action-steps-panel']");
@@ -204,8 +204,7 @@ public class CaseWidgetPage extends TemplatePage {
   }
 
   public void clickColumnsButton() {
-    WebElement columnsButton = findElementByCssSelector(COLUMNS_BUTTON_CSS_SELECTOR);
-    columnsButton.click();
+    clickByCssSelector(COLUMNS_BUTTON_CSS_SELECTOR);
   }
 
   public void clickColumnCheckbox(int columnIndex) {
@@ -220,8 +219,7 @@ public class CaseWidgetPage extends TemplatePage {
   }
 
   public void clickApplyButton() {
-    WebElement applyButton = findDisplayedElementBySelector(APPLY_BUTTON_CSS_SELECTOR);
-    applyButton.click();
+    clickByCssSelector(APPLY_BUTTON_CSS_SELECTOR);
     waitAjaxIndicatorDisappear();
   }
 
