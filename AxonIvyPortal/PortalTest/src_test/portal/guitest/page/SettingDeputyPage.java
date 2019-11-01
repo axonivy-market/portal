@@ -10,11 +10,6 @@ public class SettingDeputyPage extends TemplatePage {
   protected String getLoadedLocator() {
     return "id('absence-settings:edit-deputy-dialog_title')";
   }
-  
-  public void proceedWhenCreatingAbsence() {
-    String selector = "button[id*='save-substitutes']";
-    proceed(selector);
-  }
 
   public void proceedWhenSettingDeputy() {
     String selector = "button[id*='save-deputy']";

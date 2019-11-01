@@ -6,9 +6,6 @@ import org.openqa.selenium.WebElement;
 import portal.guitest.common.Sleeper;
 
 public class StatisticWidgetPage extends TemplatePage {
-  private WebElement statisticWidget;
-  private final static String TASK_MENU_ID = "main-menu-container:main-menu-form:main-menu-container_node_1";
-
   public static final String TASK_BY_PRIORITY_CHART_NAME = "Task by priority chart";
   public static final String CASE_BY_STATE_CHART_NAME = "Case by state chart";
   public static final String TASK_BY_EXPIRY_CHART_NAME = "Task by expiry chart";
@@ -20,7 +17,6 @@ public class StatisticWidgetPage extends TemplatePage {
     Sleeper.sleep(1000);
     waitForPageLoaded();
     waitForElementDisplayed(By.id("statistics-widget"), true);
-    statisticWidget = findElementById("statistics-widget");
   }
 
   @Override
@@ -32,19 +28,6 @@ public class StatisticWidgetPage extends TemplatePage {
   @Override
   protected long getTimeOutForLocator() {
     return 300L;
-  }
-
-  public WebElement getStatisticWidget() {
-    return statisticWidget;
-  }
-
-  public boolean isTaskMenuOpen() {
-    return isElementDisplayed(By.id(TASK_MENU_ID + "_0"));
-  }
-
-  public void switchMode() {
-    WebElement switchLink = findElementById("statistics-widget:statistic-link:statistic-link");
-    switchLink.click();
   }
 
   public void switchCreateMode() {
@@ -66,7 +49,7 @@ public class StatisticWidgetPage extends TemplatePage {
     return new TaskAnalysisWidgetPage();
   }
 
-  public boolean isCompactMode() {
+  private boolean isCompactMode() {
     waitForPageLoaded();
     waitForElementDisplayed(By.id("statistics-widget:widget-container"), true, DEFAULT_TIMEOUT);
     WebElement statisticContainer = findElementById("statistics-widget:widget-container");
@@ -76,18 +59,8 @@ public class StatisticWidgetPage extends TemplatePage {
   public boolean isFullMode() {
     return !isCompactMode();
   }
-
-  public boolean isCreateMode() {
-    waitForElementDisplayed(By.id("statistics-widget:chart-list-container"), true, DEFAULT_TIMEOUT);
-    return isElementPresent(By.id("statistics-widget:chart-list-container"));
-  }
-  
   public boolean hasCreateChartsLink(){
     return isElementPresent(By.id("statistics-widget:create-chart-link-label"));
-  }
-
-  public boolean hasTaskAnalysisLink() {
-    return isElementPresent(By.id("statistics-widget:task-analysis-page-navigation-link"));
   }
 
   public String getChartName(int chartIndex) {

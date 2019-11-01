@@ -136,7 +136,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		}
 	}
 
-	public void moveFormElementToPanel(int index, String position) {
+	private void moveFormElementToPanel(int index, String position) {
 		WebElement formElement = findElementById(String.format("form:available-form-elements:%d:pnl_content", index));
 		// If elements is FileUpload, move to footer
 		if (formElementIsFileUpload(formElement)) {
@@ -176,10 +176,6 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 
 	public int countNumberOfSteps() {
 		return driver.findElements(By.xpath("//div[@id='defined-task-container']//button")).size();
-	}
-
-	public void saveWorkflow() {
-		click(By.id("save-button"));
 	}
 
 	public void finishWorkflow() {

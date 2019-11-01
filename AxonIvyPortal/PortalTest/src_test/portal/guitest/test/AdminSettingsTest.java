@@ -1,10 +1,8 @@
 package portal.guitest.test;
 
-import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
@@ -31,25 +29,4 @@ public class AdminSettingsTest extends BaseTest {
     assertFalse("Admin Settings menu item is displayed", homePage.isAdminSettingsMenuItemPresent());
   }
   
-  @Test
-  @Ignore
-  public void shouldChangeColor() {
-    String expectedMainColor = "abcdef";
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    login(TestAccount.ADMIN_USER);
-    HomePage homePage = new HomePage();
-    String originalMainColor = homePage.getMainColor();
-    AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
-    adminSettingsPage.openDesignTab();
-    adminSettingsPage.chooseMainColor(expectedMainColor);
-    homePage = adminSettingsPage.applyNewColor();
-    
-    
-    assertEquals(expectedMainColor, homePage.getMainColor());
-    
-    adminSettingsPage = homePage.openAdminSettings();
-    adminSettingsPage.openDesignTab();
-    adminSettingsPage.chooseMainColor(originalMainColor);
-    adminSettingsPage.applyNewColor();
-  }
 }
