@@ -260,6 +260,7 @@ $participantsListHeaderColor: $black;
 
 /*---------------------------------Font size----------------------------------------*/
 $defaultFontSize: 10px;
+$defaultBodyFontSize: 14px;
 $largeFontSize: 1.4rem; // font size for header,title, groups, menu
 $smallFontSize: 1.2rem; // font size for text, label, input
 $selectCheckboxMenuIconFontSize: 1.8rem;
@@ -271,9 +272,17 @@ $chatContactTypeHeaderFontSize: 1.8rem;
 $bodyDialogTitleFontSize: 1.9rem;
 
 /*---------------------------------Font family and Font style----------------------------------------*/
-$defaultFontFamily: "Roboto";
 $portalFontFamily: "Roboto";
 $iconFontFamily: "FontAwesome";
+
+$dataIconFontFamily: "true-minimalistic-icons";
+$dataIconFontStyle: normal;
+$dataIconFontWeight: normal;
+$dataIconFontVariant: normal;
+$trueMinimalisticIconFontFamily: "true-minimalistic-icons";
+$trueMinimalisticIconFontStyle: normal;
+$trueMinimalisticIconFontWeight: normal;
+$trueMinimalisticIconFontVariant: normal;
 
 $defaultFontStyle: normal;
 
