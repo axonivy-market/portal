@@ -311,8 +311,7 @@ Ss0 f29 expr out #txt
 Ss0 f29 400 1024 499 1024 #arcP
 Ss0 f30 actionTable 'out=in;
 ' #txt
-Ss0 f30 actionCode 'import org.primefaces.context.RequestContext;
-import ch.ivy.addon.portalkit.statistics.StatisticChart;
+Ss0 f30 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.service.StatisticService;
 
 StatisticService service = new StatisticService();
