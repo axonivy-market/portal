@@ -130,7 +130,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void clickViewNote() {
-    findElementByCssSelector(LATEST_HISTORY_LIST_CSS_SELECTOR).click();
+    clickByCssSelector(LATEST_HISTORY_LIST_CSS_SELECTOR);
     waitAjaxIndicatorDisappear();
     WebElement noteDialog = getViewNoteDialog();
     waitForElementDisplayed(noteDialog, true);
@@ -150,12 +150,12 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void changeCaseName(String newCaseName) {
-    findElementByCssSelector("span[id$='case-name-edit-inplace_display']").click();
+    clickByCssSelector("span[id$='case-name-edit-inplace_display']");
     WebElement taskNameInput = findElementByCssSelector("input[id$='case-detail-name-input']");
     waitForElementDisplayed(taskNameInput, true);
     taskNameInput.clear();
     taskNameInput.sendKeys(newCaseName);
-    findElementByCssSelector("#case-item-details\\:case-detail-title-form\\:case-name-edit-inplace_editor .ui-inplace-save").click();
+    clickByCssSelector("#case-item-details\\:case-detail-title-form\\:case-name-edit-inplace_editor .ui-inplace-save");
     waitAjaxIndicatorDisappear();
   }
 
@@ -249,7 +249,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   private void openAddDocumentDialogAndUploadDocument(int index, String pathToFile) {
-    findElementByCssSelector("a[id$='add-document-command']").click();
+    clickByCssSelector("a[id$='add-document-command']");
     waitForElementDisplayed(By.cssSelector("span[id$='document-upload-dialog_title']"), true);
     try {
       click(By.className("ui-fileupload-choose"));

@@ -196,7 +196,7 @@ public abstract class TemplatePage extends AbstractPage {
 
   public void clickOnLogo() {
     openMainMenu();
-    findElementByCssSelector("a[id$='logo']").click();
+    clickByCssSelector("a[id$='logo']");
     waitAjaxIndicatorDisappear();
   }
 
@@ -240,7 +240,7 @@ public abstract class TemplatePage extends AbstractPage {
 
   public TaskWidgetPage openTaskList() {
     openMainMenu();
-    findElementByCssSelector("li.submenu-container:nth-child(3) > a.ripplelink.submenu").click();
+    clickByCssSelector("li.submenu-container:nth-child(3) > a.ripplelink.submenu");
     return new TaskWidgetPage();
   }
 
