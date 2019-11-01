@@ -27,8 +27,8 @@ public class CaseWidgetCustomizationTest extends BaseTest {
 	public void setup() {
 		super.setup();
 		redirectToRelativeLink(CREATE_CASES_FOR_CASE_LIST_CUSTOMIZATION);
-		redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
 		login(TestAccount.ADMIN_USER);
+		redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
 	}
 	
 	@Test

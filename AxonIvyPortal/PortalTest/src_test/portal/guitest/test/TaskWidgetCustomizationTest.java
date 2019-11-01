@@ -24,8 +24,8 @@ public class TaskWidgetCustomizationTest extends BaseTest {
   public void setup() {
     super.setup();
     redirectToRelativeLink(CREATE_TESTING_TASK_FOR_CUSTOMIZATION_URL);
-    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
   }
 
   @Test
