@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public class TaskTemplatePage extends TemplatePage {
 
-  String ADHOC_HISTORY_TABLE_CSS_SELECTOR = "div[id*='adhoc-task-history-table'] table>tbody>tr";
+  private static final String ADHOC_HISTORY_TABLE_CSS_SELECTOR = "div[id*='adhoc-task-history-table'] table>tbody>tr";
 
   @Override
   protected String getLoadedLocator() {
@@ -52,7 +52,7 @@ public class TaskTemplatePage extends TemplatePage {
     return openATaskInCaseDetails(firstFinishedTaskCssSelector);
   }
 
-  public TaskDetailsPage openATaskInCaseDetails(String taskCssSelector) {
+  private TaskDetailsPage openATaskInCaseDetails(String taskCssSelector) {
     clickByCssSelector(taskCssSelector);
     return new TaskDetailsPage();
   }
@@ -104,12 +104,6 @@ public class TaskTemplatePage extends TemplatePage {
     clickByCssSelector("button[id$='start-adhoc-ok-button']");
     waitAjaxIndicatorDisappear();
   }
-  
-  public void clickAdhocCancelButton() {
-   clickByCssSelector("button[id$='start-adhoc-cancel-button']");
-    waitAjaxIndicatorDisappear();
-  }
-  
   
   public boolean isShowAdhocHistoryBtnNotExist() {
     String adhocHistoryBtnCSSSelection = "a[id$='show-adhoc-history']";

@@ -32,10 +32,6 @@ public class ProcessWidgetPage extends TemplatePage {
     return "//*[contains(@id,'process-list')]";
   }
 
-  public WebElement getProcessWidget() {
-    return processWidget;
-  }
-
   public void startProcess(String processName) {
     refreshAndWaitElement("span[id$='process-name-process-item']");
     WebElement processItemElement = getProcess(processName);
@@ -80,14 +76,6 @@ public class ProcessWidgetPage extends TemplatePage {
     return name;
   }
 
-  public WebElement getEmptyMessageLink() {
-    return findElementById(processWidgetId + ":add-new-process-message");
-  }
-
-  public WebElement getNewProcessDialog() {
-    return findElementById(processWidgetId + ":add-new-process-dialog");
-  }
-
   public void clickEditSwitchLink() {
     waitForElementDisplayed(By.cssSelector("[id$='editing-switch-command']"), true, DEFAULT_TIMEOUT);
     click(findElementByCssSelector("[id$='editing-switch-command']"));
@@ -98,10 +86,6 @@ public class ProcessWidgetPage extends TemplatePage {
     WebElement deleteProcessLink = findChildElementByCssSelector(processWidget, "[id$='save-process-command']");
     click(deleteProcessLink);
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
-  }
-
-  public boolean isEmptyFavoriteProcesses() {
-    return isElementPresent(By.id(processWidgetId + ":empty-process-message"));
   }
 
   public AddNewProcessDialog openNewProcessDialog() {
@@ -166,16 +150,11 @@ public class ProcessWidgetPage extends TemplatePage {
     switchModeButton.click();
   }
 
-  public void collapse() {
-    loadSwitchModeButton();
-    switchModeButton.click();
-  }
-
-  public void loadSwitchModeButton() {
+  private void loadSwitchModeButton() {
     switchModeButton = findElementById(processWidgetId + ":process-link:process-link-label");
   }
 
-  public void loadLiveSearchTextField() {
+  private void loadLiveSearchTextField() {
     liveSearchTextField = findElementById(processWidgetId + ":process-search:non-ajax-keyword-filter");
   }
   

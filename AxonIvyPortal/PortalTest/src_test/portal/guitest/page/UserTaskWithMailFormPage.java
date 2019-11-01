@@ -19,15 +19,15 @@ public class UserTaskWithMailFormPage extends TaskTemplatePage {
     inputContent(content);
   }
 
-  public void inputRecipient(String recipient) {
+  private void inputRecipient(String recipient) {
     findElementById("mail-form:information-email:email-recipients").sendKeys(recipient);
   }
 
-  public void inputSubject(String content) {
+  private void inputSubject(String content) {
     findElementById("mail-form:information-email:email-subject").sendKeys(content);
   }
 
-  public void inputContent(String content) {
+  private void inputContent(String content) {
     WebDriver driver = Browser.getBrowser().getDriver();
     JavascriptExecutor jse = (JavascriptExecutor) driver;
     jse.executeScript("document.querySelector(\"input[name='mail-form:information-email:email-content_input'\").value='"
