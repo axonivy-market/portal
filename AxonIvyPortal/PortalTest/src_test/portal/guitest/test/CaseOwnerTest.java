@@ -21,9 +21,8 @@ public class CaseOwnerTest extends BaseTest {
 
   @Test
   public void testUserIsOwner() {
-    navigateToUrl(USER_IS_OWNER_URL);
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
-    login(TestAccount.DEMO_USER);
+    redirectToRelativeLink(USER_IS_OWNER_URL);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     
     homePage = new HomePage();
     mainMenuPage = homePage.openMainMenu();
@@ -33,8 +32,8 @@ public class CaseOwnerTest extends BaseTest {
 
   @Test
   public void testRoleIsOwner() {
-    navigateToUrl(ROLE_IS_OWNER_URL);
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(ROLE_IS_OWNER_URL);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     login(TestAccount.CASE_OWNER_USER);
     
     homePage = new HomePage();
