@@ -238,6 +238,11 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   border-bottom: none;
 }
 
+.widget-sort-menu:not(.full-mode),
+.compact-task-widget .filter-view {
+  padding-top: 0 !important;
+}
+
 .widget-sort-menu.full-mode {
   flex: 1 0 100%;
   display: flex;
@@ -1039,6 +1044,16 @@ span.task-details-document-add-link {
   margin-right: 4px;
   height: 1.6rem;
   width: 1.6rem;
+}
+
+body .process-widget .ui-fieldset .ui-fieldset-legend .ui-fieldset-toggler {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+}
+
+body .process-widget .ui-fieldset .ui-fieldset-legend {
+  line-height: 0.3rem;
 }
 
 .expand-collapse-btns {
