@@ -9,7 +9,6 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
 
 public class ClientSideTimeoutTest extends BaseTest {
   
@@ -33,7 +32,7 @@ public class ClientSideTimeoutTest extends BaseTest {
   }
   
   private AdminSettingsPage setupClientSideTimeout2Minutes() {
-    new LoginPage(TestAccount.ADMIN_USER).login();
+    login(TestAccount.ADMIN_USER);
     HomePage homePage = new HomePage();
     AdminSettingsPage adminSettingPage = homePage.openAdminSettings();
     adminSettingPage.setClientSideTimeout("2");

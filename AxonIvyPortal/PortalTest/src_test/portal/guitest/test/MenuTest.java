@@ -7,9 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
-import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.StatisticWidgetPage;
 import portal.guitest.page.TaskWidgetPage;
@@ -20,15 +18,12 @@ public class MenuTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
-    navigateToUrl(createTestingTasksUrl);
+    redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
 
   @Test
   public void testKeepOpenStateWhenNavigateToAnotherPage() {
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
-
     HomePage homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     TaskWidgetPage taskWidgetPage = mainMenuPage.selectTaskMenu();
@@ -37,9 +32,6 @@ public class MenuTest extends BaseTest {
 
   @Test
   public void testKeepClosedStateWhenNavigateToAnotherPage() {
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
-
     HomePage homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     StatisticWidgetPage dashboardPage = mainMenuPage.selectStatisticDashboard();

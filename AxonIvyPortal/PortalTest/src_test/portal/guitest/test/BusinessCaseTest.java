@@ -11,7 +11,6 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.SearchResultPage;
 import portal.guitest.page.TaskWidgetPage;
@@ -26,14 +25,12 @@ public class BusinessCaseTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
-    navigateToUrl(businessCaseUrl);
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(businessCaseUrl);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
 
   @Test
   public void testOnlyDisplayBusinessCaseOnCaseList() {
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
 
     HomePage homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
@@ -44,8 +41,7 @@ public class BusinessCaseTest extends BaseTest {
   
   @Test
   public void testOnlyDisplayBusinessCaseOnCaseListWithAdmin() {
-    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
-    loginPage.login();
+    login(TestAccount.ADMIN_USER);
 
     HomePage homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
@@ -56,9 +52,6 @@ public class BusinessCaseTest extends BaseTest {
   
   @Test
   public void testOnlyDisplayBusinessCaseOnGlobalSearch() {
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
-
     HomePage homePage = new HomePage();
     GlobalSearch globalSearch = homePage.getGlobalSearch();
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(BUSINESS_CASE_NAME);
@@ -69,9 +62,6 @@ public class BusinessCaseTest extends BaseTest {
   
   @Test
   public void testTaskOfTechnicalCaseDisplayBusinessCaseOnTaskDetails() {
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
-
     int firstTask = 0;
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
