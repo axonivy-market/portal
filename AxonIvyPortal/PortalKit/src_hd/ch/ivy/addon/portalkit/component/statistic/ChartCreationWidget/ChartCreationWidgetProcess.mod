@@ -111,7 +111,7 @@ if (service.checkStatisticChartNameExisted(ivy.session.getSessionUser().getId(),
 	String growlTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/chartCreationSuccessTitle");
 	String growlDetail = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/chartCreationSuccessDetailMsg", Arrays.asList(out.chartName));
 	FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_INFO, growlTitle, growlDetail);
-	FacesContext.getCurrentInstance().addMessage(null, message);
+	FacesContext.getCurrentInstance().addMessage("chart-creation-growl", message);
 	
 }' #txt
 Cs0 f35 outParameterDecl '<> result;' #txt

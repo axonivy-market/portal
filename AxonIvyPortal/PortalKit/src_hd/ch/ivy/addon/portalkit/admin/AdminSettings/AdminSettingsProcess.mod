@@ -1480,7 +1480,7 @@ in.filteredSettingList = in.settingList;
 
 in.announcements = AnnouncementService.getInstance().getAnnouncements();
 in.isAnnouncementActivated = AnnouncementService.getInstance().isAnnouncementActivated();
-FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, 
+FacesContext.getCurrentInstance().addMessage("adminui:adminTabView:announcement-table", new FacesMessage(FacesMessage.SEVERITY_INFO, 
 	ivy.cms.co(in.isAnnouncementActivated ? "/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsEnabled"
 	: "/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsDisabled"), null));
 ' #txt
