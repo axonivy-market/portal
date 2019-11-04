@@ -127,10 +127,10 @@ public class ProcessWidgetTest extends BaseTest {
     addNewProcessDialog.selectIvyProcessByName(CLEAN_ALL_FAVORITE_PROCESSES);
     addNewProcessDialog.submitForm();
     processWidget.clickEditSwitchLink();
-    processWidget.moveFavoriteProcess(3, 1);
+    processWidget.moveFavoriteProcess(1, 3);
     processWidget.clickSaveProcess();
-    assertEquals(CLEAN_ALL_FAVORITE_PROCESSES, processWidget.getProcessNameFromFavoriteProcessList(0));
-    assertEquals(CASE_MAP_LEAVES, processWidget.getProcessNameFromFavoriteProcessList(2));
+    assertEquals(CASE_MAP_LEAVES, processWidget.getProcessNameFromFavoriteProcessList(0));
+    assertEquals(CLEAN_ALL_FAVORITE_PROCESSES, processWidget.getProcessNameFromFavoriteProcessList(1));
     processName = "AGoogle";
     processLink = "google.com";
     createExternalTestProcess(processName, processLink);
