@@ -259,22 +259,19 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public class GlobalSearch {
-    private WebElement searchWebElement;
 
-    public GlobalSearch() {
-      searchWebElement = findElementByCssSelector("#global-search-component\\:global-search-data");
+    public GlobalSearch() {}
+
+    private WebElement getSearchInput() {
+      return findElementByCssSelector("#global-search-component\\:global-search-data");
     }
 
     public boolean isDisplayed() {
-      return searchWebElement.isDisplayed();
-    }
-
-    private WebElement getSearchInputData() {
-      return searchWebElement;
+      return getSearchInput().isDisplayed();
     }
 
     public SearchResultPage inputSearchKeyword(String keyword) {
-      type(getSearchInputData(), keyword + Keys.ENTER);
+      type(getSearchInput(), keyword + Keys.ENTER);
       return new SearchResultPage();
     }
   }
