@@ -14,9 +14,6 @@ Ps0 @TextInP .responsibility .responsibility #zField
 Ps0 @UdInit f0 '' #zField
 Ps0 @UdProcessEnd f1 '' #zField
 Ps0 @PushWFArc f2 '' #zField
-Ps0 @UdMethod f3 '' #zField
-Ps0 @UserDialog f4 '' #zField
-Ps0 @PushWFArc f5 '' #zField
 Ps0 @UdInit f6 '' #zField
 Ps0 @UdProcessEnd f7 '' #zField
 Ps0 @PushWFArc f8 '' #zField
@@ -49,36 +46,6 @@ Ps0 f1 333 85 22 22 14 0 #rect
 Ps0 f1 @|UdProcessEndIcon #fIcon
 Ps0 f2 expr out #txt
 Ps0 f2 75 96 333 96 #arcP
-Ps0 f3 guid 163B050731AD1F6C #txt
-Ps0 f3 method openDetails(ch.ivyteam.ivy.project.portal.examples.Employee) #txt
-Ps0 f3 inParameterDecl '<ch.ivyteam.ivy.project.portal.examples.Employee employee> param;' #txt
-Ps0 f3 inParameterMapAction 'out.emp=param.employee;
-' #txt
-Ps0 f3 outParameterDecl '<> result;' #txt
-Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>openDetails(Employee)</name>
-        <nameStyle>21,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ps0 f3 51 275 26 26 -65 15 #rect
-Ps0 f3 @|UdMethodIcon #fIcon
-Ps0 f4 dialogId ch.ivyteam.ivy.project.portal.examples.customization.EmployeeInfoPage #txt
-Ps0 f4 startMethod start(ch.ivyteam.ivy.project.portal.examples.Employee) #txt
-Ps0 f4 requestActionDecl '<ch.ivyteam.ivy.project.portal.examples.Employee employeeInfo> param;' #txt
-Ps0 f4 requestMappingAction 'param.employeeInfo=in.emp;
-' #txt
-Ps0 f4 responseActionDecl 'ch.ivyteam.ivy.project.portal.examples.customization.CustomizedSearchResults.CustomizedSearchResultsData out;
-' #txt
-Ps0 f4 responseMappingAction 'out=in;
-' #txt
-Ps0 f4 152 266 112 44 0 -8 #rect
-Ps0 f4 @|UserDialogIcon #fIcon
-Ps0 f5 expr out #txt
-Ps0 f5 77 288 152 288 #arcP
 Ps0 f6 guid 163B5B169EAD48FF #txt
 Ps0 f6 method start(ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel,Number) #txt
 Ps0 f6 inParameterDecl '<ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel searchResultsDataModel,Number activeTabIndex> param;' #txt
@@ -107,7 +74,5 @@ Ps0 f8 78 192 340 192 #arcP
 >Proto Ps0 '' #fIcon
 Ps0 f0 mainOut f2 tail #connect
 Ps0 f2 head f1 mainIn #connect
-Ps0 f3 mainOut f5 tail #connect
-Ps0 f5 head f4 mainIn #connect
 Ps0 f6 mainOut f8 tail #connect
 Ps0 f8 head f7 mainIn #connect

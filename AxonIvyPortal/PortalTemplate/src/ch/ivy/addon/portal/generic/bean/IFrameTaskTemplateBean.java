@@ -17,12 +17,11 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.SecurityManagerFactory;
-import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 
 @ManagedBean
 @ViewScoped
-public class IFrameTaskTemplateBean implements Serializable {
+public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements Serializable {
   
   private static final long serialVersionUID = 1L;
   
@@ -33,7 +32,6 @@ public class IFrameTaskTemplateBean implements Serializable {
   private static final String CURRENT_PROCESS_STEP_PARAM = "currentProcessStep";
   
   private ITask task;
-  private ICase iCase;
   private int currentProcessStep;
   private List<String> processSteps;
   private String processChainDirection;
@@ -56,9 +54,6 @@ public class IFrameTaskTemplateBean implements Serializable {
     if (StringUtils.isNotBlank(taskId)) {
       SecurityManagerFactory.getSecurityManager()
           .executeAsSystem(() -> task = Ivy.wf().findTask(Long.parseLong(requestParamMap.get(TASK_ID_PARAM))));
-      if (task != null) {
-        iCase = task.getCase();
-      }
       currentProcessStep = Optional.ofNullable(requestParamMap.get(CURRENT_PROCESS_STEP_PARAM))
           .filter(str -> str.matches("-?\\d+"))
           .map(Integer::parseInt)
@@ -81,14 +76,6 @@ public class IFrameTaskTemplateBean implements Serializable {
 
   public void setTask(ITask task) {
     this.task = task;
-  }
-
-  public ICase getCase() {
-    return iCase;
-  }
-
-  public void setCase(ICase iCase) {
-    this.iCase = iCase;
   }
 
   public int getCurrentProcessStep() {
