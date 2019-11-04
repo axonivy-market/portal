@@ -1,5 +1,5 @@
 [Ivy]
-16C0334AA0031ACF 3.28 #module
+16C0334AA0031ACF 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ts0 Tasks Big #zClass
 Ts0 B #cInfo
@@ -39,11 +39,7 @@ Ts0 @PushWFArc f23 '' #zField
 Ts0 @PushWFArc f24 '' #zField
 >Proto Ts0 Ts0 Tasks #zField
 Ts0 f0 outLink start.ivp #txt
-Ts0 f0 type internaltest.Data #txt
 Ts0 f0 inParamDecl '<> param;' #txt
-Ts0 f0 actionDecl 'internaltest.Data out;
-' #txt
-Ts0 f0 guid 16C0334AB6C14DDD #txt
 Ts0 f0 requestEnabled true #txt
 Ts0 f0 triggerEnabled false #txt
 Ts0 f0 callSignature start() #txt
@@ -61,16 +57,11 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ts0 f0 @C|.responsibility Everybody #txt
 Ts0 f0 81 49 30 30 -21 17 #rect
 Ts0 f0 @|StartRequestIcon #fIcon
-Ts0 f1 type internaltest.Data #txt
 Ts0 f1 337 49 30 30 0 15 #rect
 Ts0 f1 @|EndIcon #fIcon
-Ts0 f3 actionDecl 'internaltest.Data out;
-' #txt
 Ts0 f3 actionTable 'out=in1;
 ' #txt
-Ts0 f3 outTypes "internaltest.Data","internaltest.Data","internaltest.Data","internaltest.Data","internaltest.Data","internaltest.Data","internaltest.Data","internaltest.Data","internaltest.Data","internaltest.Data","internaltest.Data" #txt
 Ts0 f3 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp","TaskD.ivp","TaskE.ivp","TaskF.ivp","TaskG.ivp","TaskH.ivp","TaskI.ivp","TaskJ.ivp","TaskK.ivp" #txt
-Ts0 f3 type internaltest.Data #txt
 Ts0 f3 template "" #txt
 Ts0 f3 208 48 32 32 0 16 #rect
 Ts0 f3 @|TaskSwitchIcon #fIcon
@@ -80,37 +71,27 @@ Ts0 f4 111 64 208 64 #arcP
 Ts0 f2 expr data #txt
 Ts0 f2 outCond ivp=="TaskA.ivp" #txt
 Ts0 f2 240 64 337 64 #arcP
-Ts0 f5 type internaltest.Data #txt
 Ts0 f5 337 145 30 30 0 15 #rect
 Ts0 f5 @|EndIcon #fIcon
 Ts0 f6 expr data #txt
 Ts0 f6 outCond ivp=="TaskB.ivp" #txt
 Ts0 f6 233 71 340 151 #arcP
-Ts0 f7 type internaltest.Data #txt
 Ts0 f7 337 241 30 30 0 15 #rect
 Ts0 f7 @|EndIcon #fIcon
-Ts0 f8 type internaltest.Data #txt
 Ts0 f8 337 337 30 30 0 15 #rect
 Ts0 f8 @|EndIcon #fIcon
-Ts0 f9 type internaltest.Data #txt
 Ts0 f9 337 433 30 30 0 15 #rect
 Ts0 f9 @|EndIcon #fIcon
-Ts0 f10 type internaltest.Data #txt
 Ts0 f10 337 529 30 30 0 15 #rect
 Ts0 f10 @|EndIcon #fIcon
-Ts0 f11 type internaltest.Data #txt
 Ts0 f11 337 593 30 30 0 15 #rect
 Ts0 f11 @|EndIcon #fIcon
-Ts0 f12 type internaltest.Data #txt
 Ts0 f12 145 465 30 30 0 15 #rect
 Ts0 f12 @|EndIcon #fIcon
-Ts0 f13 type internaltest.Data #txt
 Ts0 f13 49 369 30 30 0 15 #rect
 Ts0 f13 @|EndIcon #fIcon
-Ts0 f14 type internaltest.Data #txt
 Ts0 f14 113 417 30 30 0 15 #rect
 Ts0 f14 @|EndIcon #fIcon
-Ts0 f15 type internaltest.Data #txt
 Ts0 f15 65 273 30 30 0 15 #rect
 Ts0 f15 @|EndIcon #fIcon
 Ts0 f16 expr data #txt

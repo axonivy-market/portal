@@ -1,5 +1,8 @@
 package portal.guitest.test;
 
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +14,6 @@ import org.openqa.selenium.WebElement;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LanguagePage;
-import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.StatisticWidgetPage;
 import portal.guitest.page.TaskAnalysisWidgetPage;
@@ -30,16 +31,10 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     createTestingTasks();
     createTestData();
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
-    loginPage.login();
+    login(TestAccount.ADMIN_USER);
     grantPermissionOfPortal();
-
+    resetLanguageOfCurrentUser();
     homePage = new HomePage();
-
-    LanguagePage languagePage = homePage.openLanguagePage();
-    languagePage.selectLanguage(1);
-    languagePage.save();
-
     mainMenuPage = homePage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     statisticWidgetPage.waitForPageLoaded();

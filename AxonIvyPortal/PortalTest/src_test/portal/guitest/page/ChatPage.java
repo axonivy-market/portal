@@ -93,13 +93,13 @@ public class ChatPage extends TemplatePage {
 		return GetUserParticipantsList() + "," + GetRolesParticipantsList();
 	}
 
-	public String GetUserParticipantsList() {
+	private String GetUserParticipantsList() {
 		waitForElementDisplayed(By.cssSelector("ul[id='user-participants-list'] li"), true);
 		return findListElementsByCssSelector("ul[id='user-participants-list'] li").stream().map(WebElement::getText)
 				.collect(Collectors.joining(","));
 	}
 
-	public String GetRolesParticipantsList() {
+	private String GetRolesParticipantsList() {
 		waitForElementDisplayed(By.cssSelector("ul[id='roles-participants-list'] li ul li"), true);
 		return findListElementsByCssSelector("ul[id='roles-participants-list'] li ul li").stream().map(WebElement::getText)
 				.collect(Collectors.joining(","));

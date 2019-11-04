@@ -1,5 +1,9 @@
 package portal.guitest.test;
 
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
+
 import java.time.LocalDate;
 
 import org.junit.Before;
@@ -10,7 +14,6 @@ import portal.guitest.common.TestAccount;
 import portal.guitest.page.AbsencePage;
 import portal.guitest.page.AddAbsencePage;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
 import portal.guitest.page.NewAbsencePage;
 import portal.guitest.page.SettingDeputyPage;
 
@@ -22,14 +25,13 @@ public class AbsenceTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
-    navigateToUrl("portalKitTestHelper/1511A66AF619A768/cleanAbsences.ivp");
+    redirectToRelativeLink("portalKitTestHelper/1511A66AF619A768/cleanAbsences.ivp");
 
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
 
   @Test
-  public void whenLoginAsNormalUserThenManageAbsencesOfThatUser() { // SERENITY_PASSED
-    new LoginPage(TestAccount.DEMO_USER).login();
+  public void whenLoginAsNormalUserThenManageAbsencesOfThatUser() {
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel");
     createAbsenceForCurrentUser(TODAY, TODAY, "For party");
@@ -43,8 +45,8 @@ public class AbsenceTest extends BaseTest {
   }
 
   @Test
-  public void whenLoginAsAdminUserThenManageAbsencesOfAllUsers() { // SERENITY_PASSED
-    new LoginPage(TestAccount.ADMIN_USER).login();
+  public void whenLoginAsAdminUserThenManageAbsencesOfAllUsers() {
+    login(TestAccount.ADMIN_USER);
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(TODAY, TODAY, "For party");
     String demoUserName = TestAccount.DEMO_USER.getFullName();
@@ -61,10 +63,9 @@ public class AbsenceTest extends BaseTest {
   }
 
   @Test
-  public void displayMessageWhenInputOverlappingAbsence() { // SERENITY_PASSED
+  public void displayMessageWhenInputOverlappingAbsence() {
     LocalDate chosenDay = LocalDate.now();
     LocalDate theNextDayOfChosenDay = chosenDay.plusDays(1);
-    new LoginPage(TestAccount.DEMO_USER).login();
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(chosenDay, theNextDayOfChosenDay, "Just day off");
     assertEquals(1, absencePage.countAbsences());

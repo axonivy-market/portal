@@ -1,5 +1,5 @@
 [Ivy]
-162511D2577DBA88 3.28 #module
+162511D2577DBA88 7.5.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CreateTestData Big #zClass
 Cs0 B #cInfo
@@ -61,7 +61,7 @@ Cs0 f0 triggerEnabled false #txt
 Cs0 f0 callSignature createTasksForTaskListCustomization() #txt
 Cs0 f0 persist false #txt
 Cs0 f0 startName 'Create Tasks For Task List Customization' #txt
-Cs0 f0 startDescription 'Create 3 tasks, each task has customVarcharField5 and customTimestampField1' #txt
+Cs0 f0 startDescription 'Create 3 tasks, each task has customVarCharField5 and customTimestampField1' #txt
 Cs0 f0 taskData 'TaskTriggered.EXPRI=2
 TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
@@ -74,8 +74,6 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>createTasksForTaskListCustomization.ivp</name>
-        <nameStyle>39,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -171,14 +169,14 @@ Cs0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <name>HOW TO RUN THIS EXAMPLE:
 
 Run createTasksForTaskListCustomization.ivp process
-This process will create 3 tasks, each task has filled customVarcharField5 and customTimestampField1,
+This process will create 3 tasks, each task has filled customVarCharField5 and customTimestampField1,
  we will use these fields as custom fields in Task Widget.</name>
-        <nameStyle>238,7
+        <nameStyle>238,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f13 632 66 592 92 -286 -40 #rect
+Cs0 f13 632 66 592 92 -288 -40 #rect
 Cs0 f13 @|IBIcon #fIcon
 Cs0 f9 outLink createCasesForCaseListCustomization.ivp #txt
 Cs0 f9 inParamDecl '<> param;' #txt
@@ -216,8 +214,7 @@ Cs0 f9 @|StartRequestIcon #fIcon
 Cs0 f46 700 239 32 32 0 16 #rect
 Cs0 f46 @|AlternativeIcon #fIcon
 Cs0 f45 processCall 'Start Processes/CreateTestData:startACase(Integer)' #txt
-Cs0 f45 requestActionDecl '<java.lang.Integer count> param;
-' #txt
+Cs0 f45 requestActionDecl '<Integer count> param;' #txt
 Cs0 f45 requestMappingAction 'param.count=in.count;
 ' #txt
 Cs0 f45 responseActionDecl 'ch.ivyteam.ivy.project.portal.examples.Data out;
@@ -261,7 +258,7 @@ Cs0 f42 228 255 372 255 #arcP
 Cs0 f10 expr out #txt
 Cs0 f10 110 255 196 255 #arcP
 Cs0 f43 outLink startACase.ivp #txt
-Cs0 f43 inParamDecl '<java.lang.Integer count> param;' #txt
+Cs0 f43 inParamDecl '<Integer count> param;' #txt
 Cs0 f43 inParamTable 'out.count=param.count;
 ' #txt
 Cs0 f43 requestEnabled false #txt
@@ -277,7 +274,7 @@ TaskTriggered.TYPE=0' #txt
 Cs0 f43 caseData 'businessCase.attach=false
 case.description=TestCase Description <%\=param.count%>
 case.name=TestCase Name <%\=param.count%>
-customFields.STRING.CustomVarCharField1="CustomVarcharField1" + param.count
+customFields.STRING.CustomVarCharField1="CustomVarCharField1" + param.count
 customFields.TIMESTAMP.CustomTimestampField1=new DateTime()' #txt
 Cs0 f43 showInStartList 1 #txt
 Cs0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -307,7 +304,8 @@ if(in.count % 3 == 0){
 	a = "CaseGroup/Group3/TestCase" + in.count;
 	in.category = "TaskGroup/Group3/TestCase" + in.count;
 }
-ivy.case.setCategoryPath(a);' #txt
+ivy.case.setCategoryPath(a);
+' #txt
 Cs0 f58 164 362 112 44 0 -8 #rect
 Cs0 f58 @|StepIcon #fIcon
 Cs0 f47 actionTable 'out=in1;

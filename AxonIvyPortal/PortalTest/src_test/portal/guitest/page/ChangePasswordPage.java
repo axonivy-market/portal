@@ -19,19 +19,19 @@ public class ChangePasswordPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
   
-  public void inputCurrentPassword(String currentPassword) {
+  private void inputCurrentPassword(String currentPassword) {
     inputField("change-password-form:password-setting:current-password", currentPassword);
   }
   
-  public void inputNewPassword(String newPassword) {
+  private void inputNewPassword(String newPassword) {
     inputField("change-password-form:password-setting:new-password", newPassword);
   }
   
-  public void inputConfirmNewPassword(String newPassword) {
+  private void inputConfirmNewPassword(String newPassword) {
     inputField("change-password-form:password-setting:confirm-new-password", newPassword);
   }
   
-  public void inputField(String inputId, String value) {
+  private void inputField(String inputId, String value) {
     WebElement inputField = findElementById(inputId);
     inputField.sendKeys(value);
   }

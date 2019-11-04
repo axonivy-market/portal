@@ -1,8 +1,5 @@
 package portal.guitest.page;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
 public class AddAbsencePage extends TemplatePage {
 
   @Override
@@ -15,18 +12,9 @@ public class AddAbsencePage extends TemplatePage {
     proceed(selector);
   }
 
-  public void proceedWhenSettingDeputy() {
-    String selector = "button[id*='save-deputy']";
-    proceed(selector);
-  }
-
   private void proceed(String selector) {
-    WebElement proceedElement = findElementByCssSelector(selector);
-    proceedElement.click();
+    clickByCssSelector(selector);
     waitAjaxIndicatorDisappear();
   }
 
-  public boolean isSubstitutedUserInputElementDisplayed() {
-    return isElementPresent(By.cssSelector("input[id*='substituted-user']"));
-  }
 }

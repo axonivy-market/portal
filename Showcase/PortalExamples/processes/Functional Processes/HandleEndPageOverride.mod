@@ -1,5 +1,5 @@
 [Ivy]
-165801CAE71C2982 3.28 #module
+165801CAE71C2982 7.5.0 #module
 >Proto >Proto Collection #zClass
 He0 HandleEndPageOverride Big #zClass
 He0 B #cInfo
@@ -19,8 +19,7 @@ He0 @PushWFArc f2 '' #zField
 He0 @InfoButton f5 '' #zField
 >Proto He0 He0 HandleEndPageOverride #zField
 He0 f0 inParamDecl '<> param;' #txt
-He0 f0 outParamDecl '<java.lang.String callbackUrl> result;
-' #txt
+He0 f0 outParamDecl '<String callbackUrl> result;' #txt
 He0 f0 outParamTable 'result.callbackUrl=in.callbackUrl;
 ' #txt
 He0 f0 callSignature handleEndPage() #txt
