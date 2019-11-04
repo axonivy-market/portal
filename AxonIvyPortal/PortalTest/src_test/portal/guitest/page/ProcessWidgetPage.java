@@ -32,12 +32,16 @@ public class ProcessWidgetPage extends TemplatePage {
     return "//*[contains(@id,'process-list')]";
   }
 
-  public void startProcess(String processName) {
+  public void waitAndStartProcess(String processName) {
     refreshAndWaitElement(".js-no-found-processes.u-display-none", false);
+    startProcess(processName);
+  }
+
+  public void startProcess(String processName) {
     WebElement processItemElement = getProcess(processName);
     click(processItemElement);
   }
-
+  
   public WebElement getProcess(String processName) {
     WebElement processListElement = findElementById(processWidgetId + ":process-list");
     WebElement processItemElement = null;
