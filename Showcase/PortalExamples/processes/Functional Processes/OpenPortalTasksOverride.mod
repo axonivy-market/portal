@@ -1,5 +1,5 @@
 [Ivy]
-1624D072528F8B85 3.28 #module
+1624D072528F8B85 7.5.0 #module
 >Proto >Proto Collection #zClass
 Os0 OpenPortalTasks Big #zClass
 Os0 B #cInfo
@@ -20,8 +20,7 @@ Os0 @PushWFArc f7 '' #zField
 Os0 f0 inParamDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;' #txt
 Os0 f0 inParamTable 'out.taskView=param.taskView;
 ' #txt
-Os0 f0 outParamDecl '<> result;
-' #txt
+Os0 f0 outParamDecl '<> result;' #txt
 Os0 f0 callSignature useView(ch.ivy.addon.portal.generic.view.TaskView) #txt
 Os0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -35,10 +34,9 @@ Os0 f0 @|StartSubIcon #fIcon
 Os0 f1 83 259 26 26 14 0 #rect
 Os0 f1 @|EndSubIcon #fIcon
 Os0 f3 dialogId ch.ivyteam.ivy.project.portal.examples.component.customize.TaskWidget #txt
-Os0 f3 startMethod useTaskViewWithMenuState(ch.ivy.addon.portal.generic.view.TaskView,String) #txt
-Os0 f3 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView, String menuState> param;' #txt
+Os0 f3 startMethod useTaskView(TaskView) #txt
+Os0 f3 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;' #txt
 Os0 f3 requestMappingAction 'param.taskView=in.taskView;
-param.menuState=ch.ivy.addon.portalkit.util.MenuUtils.getMenuState();
 ' #txt
 Os0 f3 responseActionDecl '_ch.ivyteam.ivy.project.portal.examples.OpenPortalTasksOverrideData out;
 ' #txt

@@ -1,5 +1,7 @@
 package portal.guitest.test;
 
+import static junit.framework.Assert.assertEquals;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -8,12 +10,9 @@ import org.junit.Test;
 
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
-import portal.guitest.common.TestAccount;
 import portal.guitest.page.DefaultExpresTaskPage;
-import portal.guitest.page.ExpressApprovalPage;
 import portal.guitest.page.ExpressProcessPage;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.WorkingTaskDialogPage;
@@ -23,17 +22,13 @@ public class AdhocExpressTest extends BaseTest {
   private TaskWidgetPage taskWidgetPage;
   private TaskTemplatePage taskTemplatePage;
   private DefaultExpresTaskPage defaultExpressTaskPage;
-  private ExpressApprovalPage expressApprovalPage;
-  private HomePage homePage;
 
   @Override
   @Before
   public void setup() {
     super.setup();
-    navigateToUrl(createTestingTasksUrl);
+    redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
   }
 
   @Test
@@ -74,7 +69,7 @@ public class AdhocExpressTest extends BaseTest {
     defaultExpressTaskPage.finishDefaultTask();
     
     //approval task of adhoc
-    homePage = new HomePage();
+    new HomePage();
     taskWidgetPage.filterTasksBy(defaultTaskName2);
     assertEquals(1, taskWidgetPage.countTasks());
     taskWidgetPage.startTask(0);
@@ -83,7 +78,7 @@ public class AdhocExpressTest extends BaseTest {
     defaultExpressTaskPage.finishDefaultTask();
     
     //check if task Maternity task
-    homePage = new HomePage();
+    new HomePage();
     taskWidgetPage.filterTasksBy(taskNamePrefix);
     assertEquals(1, taskWidgetPage.countTasks());
     taskWidgetPage.startTask(0);

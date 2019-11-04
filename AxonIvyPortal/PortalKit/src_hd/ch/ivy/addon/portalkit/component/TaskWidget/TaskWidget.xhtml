@@ -28,7 +28,7 @@
     value="#{empty cc.attrs.noTaskFoundMessage ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/noTask') : cc.attrs.noTaskFoundMessage}" />
   <h:outputScript name="task-widget.js" library="js" />
 
-  <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} js-task-widget ui-g">
+  <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} ui-g">
     <h:panelGroup rendered="#{!cc.attrs.hideWidgetHeader}">
       <h:panelGroup id="task-widget-header" styleClass="widget-header task-widget-header js-task-widget-header ui-g-12 ui-g"
         layout="block">
@@ -40,7 +40,7 @@
                 value="#{cc.attrs.title} (#{data.dataModel.rowCount})" global="false" oncomplete="toggleShowTaskList();" />
           </h:panelGroup>
 
-          <h:panelGroup styleClass="widget-header-main-menu js-widget-header-menu"
+          <h:panelGroup styleClass="widget-header-main-menu"
             rendered="#{data.dataModel.compactMode and showHeaderToolbar and taskWidgetBean.showFullTaskList}">
             <cc:renderFacet name="headerToolbar" />
           </h:panelGroup>
@@ -75,17 +75,17 @@
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/publicFilter')}" />
                   </div>
                   <ui:repeat var="taskFilterData" value="#{data.taskPublicFilters}">
-                    <h:panelGroup layout="block" styleClass="user-definied-filter-container">
-                      <p:commandLink id="user-definied-filter" styleClass="user-definied-filter"
+                    <h:panelGroup layout="block" styleClass="user-defined-filter-container">
+                      <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
                         value="#{taskFilterData.filterName}" global="false"
                         actionListener="#{logic.applyFilter(taskFilterData)}"
                         update="#{cc.clientId}:advanced-filter-container #{cc.clientId}:task-widget-header #{cc.clientId}:filter-add-form #{cc.clientId}:filter-selection-container #{cc.clientId}:task-view-container"
                         oncomplete="taskWidget.setupScrollbar();" />
-                      <p:tooltip id="user-definied-filter-tooltip" for="user-definied-filter"
+                      <p:tooltip id="user-defined-filter-tooltip" for="user-defined-filter"
                         value="#{taskFilterData.filterName}" trackMouse="true" />
-                      <p:commandLink id="delete-user-definied-filter-command"
+                      <p:commandLink id="delete-user-defined-filter-command"
                         rendered="#{taskWidgetBean.isDeleteFilterEnabledFor(taskFilterData)}"
-                        styleClass="fa fa-times-circle delete-user-definied-filter-command"
+                        styleClass="fa fa-times-circle delete-user-defined-filter-command"
                         actionListener="#{logic.setFilterToBeDeleted(taskFilterData)}"
                         oncomplete="PF('delete-filter-confirmation-dialog').show();"/>
                     </h:panelGroup>
@@ -99,17 +99,17 @@
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/privateFilter')}" />
                   </div>
                   <ui:repeat var="taskFilterData" value="#{data.taskPrivateFilters}">
-                    <h:panelGroup layout="block" styleClass="user-definied-filter-container">
-                      <p:commandLink id="user-definied-filter" styleClass="user-definied-filter"
+                    <h:panelGroup layout="block" styleClass="user-defined-filter-container">
+                      <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
                         value="#{taskFilterData.filterName}" global="false"
                         actionListener="#{logic.applyFilter(taskFilterData)}"
                         update="#{cc.clientId}:advanced-filter-container #{cc.clientId}:task-widget-header #{cc.clientId}:filter-add-form #{cc.clientId}:filter-selection-container #{cc.clientId}:task-view-container"
                         oncomplete="taskWidget.setupScrollbar();" />
-                      <p:tooltip id="user-definied-filter-tooltip" for="user-definied-filter"
+                      <p:tooltip id="user-defined-filter-tooltip" for="user-defined-filter"
                         value="#{taskFilterData.filterName}" trackMouse="true" />
-                      <p:commandLink id="delete-user-definied-filter-command"
+                      <p:commandLink id="delete-user-defined-filter-command"
                         rendered="#{taskWidgetBean.isDeleteFilterEnabledFor(taskFilterData)}"
-                        styleClass="fa fa-times-circle delete-user-definied-filter-command"
+                        styleClass="fa fa-times-circle delete-user-defined-filter-command"
                         actionListener="#{logic.setFilterToBeDeleted(taskFilterData)}"
                         oncomplete="PF('delete-filter-confirmation-dialog').show();" />
                     </h:panelGroup>
@@ -151,7 +151,7 @@
                       valueChangeListener="#{data.dataModel.onFilterChange}" value="#{data.dataModel.selectedFilters}"
                       converter="pojoConverter">
                       <p:ajax
-                        update="#{cc.clientId}:filter-selection-container #{cc.clientId}:advanced-filter-container #{cc.clientId}:task-view-container"
+                        update="#{cc.clientId}:filter-selection-container @(.advanced-filter-component) #{cc.clientId}:task-view-container"
                         global="false" oncomplete="taskWidget.setupScrollbar();" />
                       <f:selectItems value="#{data.dataModel.filters}" var="filter" itemLabel="#{filter.label()}"
                         itemValue="#{filter}" />
@@ -196,7 +196,7 @@
         </h:panelGroup>
       </h:panelGroup>
 
-      <h:panelGroup id="filter-view" layout="block" styleClass="ui-g-9 ui-sm-7" rendered="#{data.dataModel.compactMode}">
+      <h:panelGroup id="filter-view" layout="block" styleClass="ui-g-9 ui-sm-7 filter-view" rendered="#{data.dataModel.compactMode}">
         <h:form id="filter-form" onsubmit="return false;"
           styleClass="widget-header-content-filter Fright"
           rendered="#{!cc.attrs.hideTaskFilter and data.dataModel.compactMode}">
@@ -246,7 +246,7 @@
     </h:panelGroup>
   </div>
 
-  <p:dialog id="save-filter-set-dialog" widgetVar="save-filter-set-dialog" appendTo="@(body)"
+  <p:dialog id="save-filter-set-dialog" widgetVar="save-filter-set-dialog" appendTo="@(body)" rendered="#{!data.dataModel.compactMode}"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" resizable="false" width="575"
     modal="true" closeOnEscape="true" styleClass="save-filter-set-dialog">
     <p:ajax event="close" listener="#{logic.clearSaveFilterDialog}" resetValues="true" />
@@ -286,7 +286,7 @@
     </h:form>
   </p:dialog>
 
-  <p:confirmDialog id="delete-filter-confirmation-dialog"
+  <p:confirmDialog id="delete-filter-confirmation-dialog" rendered="#{!data.dataModel.compactMode}"
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterDeletionConfirmation')}"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
     widgetVar="delete-filter-confirmation-dialog" appendTo="@(body)" severity="alert">
@@ -299,15 +299,21 @@
   </p:confirmDialog>
 
   <script type="text/javascript">
-    var taskWidget = new TaskWidget();
-    function toggleShowTaskList() {
-       $('[id $= "task-widget-sub-header"]').toggleClass("ui-sm-hidden").toggleClass("ui-md-hidden");
-       $('[id $= "task-view"]').toggleClass("ui-sm-hidden").toggleClass("ui-md-hidden");
-       $('[id $= "toggle-tasks-link"]').toggleClass("fa-plus").toggleClass("fa-minus");
-     }
-  </script>
-  <h:form>
-    <p:remoteCommand name="updateTaskCount" update="#{cc.clientId}:task-widget-title" global="false" process="@none" />
+      var taskWidget = new TaskWidget();
+      function toggleShowTaskList() {
+        $('[id $= "task-widget-sub-header"]').toggleClass("ui-sm-hidden").toggleClass("ui-md-hidden");
+        $('[id $= "task-view"]').toggleClass("ui-sm-hidden").toggleClass("ui-md-hidden");
+        $('[id $= "toggle-tasks-link"]').toggleClass("fa-plus").toggleClass("fa-minus");
+      }
+
+      $(function() {
+        var simpleScreen = new TaskListScreenHandler();
+        var responsiveToolkit = ResponsiveToolkit(simpleScreen);
+        Portal.init(responsiveToolkit);
+      });
+    </script>
+  <h:form id="update-task-count-rc-form">
+    <p:remoteCommand id="update-task-count-remote-cmd" name="updateTaskCount" update="#{cc.clientId}:task-widget-title" global="false" process="@none" />
   </h:form>
 </cc:implementation>
 </html>

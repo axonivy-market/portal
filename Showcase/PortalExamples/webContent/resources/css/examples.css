@@ -70,13 +70,33 @@
 	text-align: center;
 }
 
+.login-container {
+	height: 100%;
+	margin: 0;
+}
+
+.customized-login-bg {
+	background-image: url("#{resource['ivy-webcontent:images/login/Login-HD.jpg']}");
+	filter: blur(4px);
+	-webkit-filter: blur(4px);
+	height: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
 .customized-login {
-	position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background: #c7d426;
+	background-color: transparent;
+	color: white;
+	font-weight: bold;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 2;
+	width: 80%;
+	padding: 20px;
+	text-align: center;
 }
 
 .customized-login-form {
@@ -89,11 +109,34 @@
 	border-radius: 20px;
 	text-align: center;
 	padding: 30px 20px;
-	font-size: 10px;
+	box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 6px 10px 0 rgba(0, 0, 0, 0.14);
+}
+
+.customized-login-form .title {
+	margin: 0;
+	font-size: 2rem;
+	color: #212121;
+}
+
+.customized-login-form .input.ui-inputfield {
+	margin: 18px auto 0;
+	padding: 0 !important;
+	text-align: center;
+	display: block;
+	width: 70%;
+	background: transparent;
+	font-size: 1.8rem;
+}
+
+.customized-login-form .login-command {
+	font-size: 1.4rem;
+	color: black !important;
+	text-decoration: none !important;
+	outline: none !important;
 }
 
 .customized-login-form .ui-messages.ui-messages-noicon ul {
-	margin: 0px 45px 0 0;
+	margin: 0;
 }
 
 .customized-login-form .ui-messages-error {
@@ -101,5 +144,30 @@
 	margin: 10px 0 0;
 	padding: 0 !important;
 	color: red !important;
-	font-size: 1.2rem;
+	background: transparent !important;
+	text-align: center;
 }
+
+.process-chain-test-form {
+	padding: 0.5em 1em;
+}
+
+.process-chain-test,
+.process-chain-test-button {
+	height: 150px;
+}
+
+.process-chain-test-vertical,
+.process-chain-test-vertical-line {
+	height: 500px !important;
+	float: left;
+}
+
+.process-chain-test-vertical {
+	width: 200px;
+}
+.process-chain-test-button,
+.process-chain-test-vertical-line {
+	width: 600px !important;
+}
+

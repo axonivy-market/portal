@@ -1,0 +1,5 @@
+co: name={statisticCarousel} description={} changed={2019-10-29 05:10:22 CET} changedby={nqhoan} visualorder={0} guid={16E15B4B0E11B7D0} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16E15B520F0AE81F} datatype={} isdefault={false} langid={de} description={} validfrom={2019-10-29 05:10:09 CET} validto={} changed={2019-10-29 05:10:22 CET} changedby={nqhoan} properties={} id={}
+val: guid={16E15B4B0E55C7CC} datatype={} isdefault={true} langid={en} description={} validfrom={2019-10-29 05:09:53 CET} validto={} changed={2019-10-29 05:09:53 CET} changedby={nqhoan} properties={} id={}
+val: guid={16E15B5218C89D53} datatype={} isdefault={false} langid={es} description={} validfrom={2019-10-29 05:10:17 CET} validto={} changed={2019-10-29 05:10:22 CET} changedby={nqhoan} properties={} id={}
+val: guid={16E15B521B78E71A} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-10-29 05:10:03 CET} validto={} changed={2019-10-29 05:10:22 CET} changedby={nqhoan} properties={} id={}

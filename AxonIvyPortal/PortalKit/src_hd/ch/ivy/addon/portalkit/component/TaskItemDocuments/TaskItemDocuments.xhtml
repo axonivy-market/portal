@@ -15,7 +15,7 @@
   <p:growl id="task-document-global-messages" />
 
   <div id="#{cc.clientId}" class="task-details-item-document ui-g">
-    <h:form prependId="false">
+    <h:form id="task-document-form" prependId="false" styleClass="ui-g-12 u-padding-0">
       <div class="task-detail-section-title ui-g-12">
         <div class="ui-g-6 u-truncate-text u-padding-0">
           <i class="fa fa-file" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/documents')}
@@ -32,7 +32,7 @@
       <div class="Separator ui-g-12 u-padding-0" />
 
       <div class="ui-g-12 u-padding-0">
-        <p:dataTable id="task-details-documents" var="document" value="#{data.documents}" paginator="true" paginatorAlwaysVisible="false" pageLinks="3"
+        <p:dataTable id="task-details-documents" var="document" rendered="#{not empty data.documents}" value="#{data.documents}" paginator="true" paginatorAlwaysVisible="false" pageLinks="3"
           rows="5" paginatorPosition="top" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
           paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
           currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
@@ -52,19 +52,22 @@
             </h:panelGroup>
           </p:column>
 
-          <p:column id="document-author" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/author')}"
-            styleClass="task-document-author u-truncate-text"
+          <p:column id="document-author" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}"
+            styleClass="task-document-author u-truncate-text ui-sm-hidden"
             sortBy="#{empty document.creation.user.fullName ? document.creation.user.name:document.creation.user.fullName}">
             <h:outputText value="#{empty document.creation.user.fullName ? document.creation.user.name:document.creation.user.fullName}" />
           </p:column>
 
-          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/date')}" styleClass="task-history-date u-truncate-text"
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}" styleClass="task-history-date u-truncate-text ui-sm-hidden"
             sortBy="#{document.creation.timestamp}">
             <h:outputText value="#{document.creation.timestamp}">
               <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
             </h:outputText>
           </p:column>
         </p:dataTable>
+        <h:outputText styleClass="no-documents-message ui-g-12"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noDocuments')}"
+        rendered="#{empty data.documents}" />
       </div>
     </h:form>
   </div>
@@ -79,7 +82,7 @@
         dragDropSupport="true" oncomplete="documentTruncation.truncate();" label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
         auto="true" multiple="true" sizeLimit="#{masterDataBean.fileUploadSizeLimit}"
         invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
-        update="upload-messages #{p:component('task-details-documents')} #{cc.attrs.componentToUpdate}" />
+        update="upload-messages #{p:component('task-document-form')} #{cc.attrs.componentToUpdate}" />
     </h:form>
     <f:facet name="footer">
       <p:commandButton id="document-upload-close-command" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
@@ -94,7 +97,7 @@
     styleClass="document-deletion-dialog">
     <h:panelGroup layout="block" styleClass="document-deletion-command-buttons">
       <p:commandButton id="document-deletion-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" process="@this"
-        update="#{p:component('task-details-documents')} #{cc.attrs.componentToUpdate} #{p:component('task-document-global-messages')}"
+        update="#{p:component('task-document-form')} #{cc.attrs.componentToUpdate} #{p:component('task-document-global-messages')}"
         actionListener="#{logic.deleteDocument}" oncomplete="PF('document-deletion-dialog').hide(); documentTruncation.truncate();" />
       <p:commandButton id="document-deletion-cancellation-command" styleClass="portal-cancel-button"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" process="@this" onsuccess="PF('document-deletion-dialog').hide()" />

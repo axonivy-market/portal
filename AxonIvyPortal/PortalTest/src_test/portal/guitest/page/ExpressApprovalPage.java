@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 
 public class ExpressApprovalPage extends TaskTemplatePage {
   public void approve() {
-    click(By.id("form:approve-btn"));
+    clickByCssSelector("button[id$='approve-btn']");
   }
 
   public void reject() {
@@ -12,6 +12,6 @@ public class ExpressApprovalPage extends TaskTemplatePage {
   }
   
   public void comment(String comment) {
-    findElementByCssSelector("textarea[id*='comment']").sendKeys(comment);
+    findElementByCssSelector("textarea[id$='comment']").sendKeys(comment);
   }
 }

@@ -1,12 +1,14 @@
 package portal.guitest.test;
 
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class CustomTaskDelegateTest extends BaseTest {
@@ -16,13 +18,12 @@ public class CustomTaskDelegateTest extends BaseTest {
   public void setup() {
     super.setup();
     createTestingTasks();
-    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
   }
 
   @Test
   public void testCustomTaskDelegateOnlyToGroup() {
-    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
-    loginPage.login();
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
 
@@ -38,8 +39,8 @@ public class CustomTaskDelegateTest extends BaseTest {
 
   @Test
   public void testCustomTaskDelegateOnlyToUser() {
-    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
-    loginPage.login();
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
 
@@ -51,9 +52,7 @@ public class CustomTaskDelegateTest extends BaseTest {
 
   @Test
   public void testCustomTaskDelegateNoDelegateOption() {
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
-    
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
 

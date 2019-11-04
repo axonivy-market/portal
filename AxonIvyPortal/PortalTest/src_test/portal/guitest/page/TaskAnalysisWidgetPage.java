@@ -4,34 +4,20 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
+
+import portal.guitest.common.Sleeper;
 
 
 public class TaskAnalysisWidgetPage extends TemplatePage {
 
   private static final String WIDGET_ID = "task-widget";
 
-  private String taskAnalysisWidgetId;
-
   public TaskAnalysisWidgetPage() {
-    this(WIDGET_ID);
-  }
-  
-  public TaskAnalysisWidgetPage(String taskAnalysisWidgetId) {
-    this.setTaskAnalysisWidgetId(taskAnalysisWidgetId);
   }
   
   @Override
   protected String getLoadedLocator() {
     return "//*[contains(@id,'" + WIDGET_ID + ":statistic-result-list')]";
-  }
-
-  public String getTaskAnalysisWidgetId() {
-    return taskAnalysisWidgetId;
-  }
-
-  public void setTaskAnalysisWidgetId(String taskAnalysisWidgetId) {
-    this.taskAnalysisWidgetId = taskAnalysisWidgetId;
   }
 
   public StatisticWidgetPage navigateToStatisticPage() {
@@ -50,13 +36,13 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     return findElementById(togglerId);
   }
 
-  public WebElement findTaskFilterButton() {
+  private WebElement findTaskFilterButton() {
     String taskFilterButtonId = "task-widget:task-filter-add-action";
     waitForElementDisplayed(By.id(taskFilterButtonId), true);
     return findElementById(taskFilterButtonId);
   }
 
-  public WebElement findCaseFilterButton() {
+  private WebElement findCaseFilterButton() {
     String caseFilterButtonId = "task-widget:case-filter-add-action";
     waitForElementDisplayed(By.id(caseFilterButtonId), true);
     return findElementById(caseFilterButtonId);
@@ -169,7 +155,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
     waitForElementDisplayed(By.id("task-widget:filter-save-form:save-filter-set-name-input"), true);
     enterKeys(findElementById("task-widget:filter-save-form:save-filter-set-name-input"), filterSetName);
-    Sleeper.sleepTight(1000);
+    Sleeper.sleep(1000);
 
     WebElement filterVisibilityContainer = findElementById("task-widget:filter-save-form:save-filter-type-radio");
     if (isPersonalFilter) {
@@ -192,6 +178,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
       filterContainer = findElementById("task-widget:filter-selection-form:public-filters");
     }
     filterContainer.findElement(By.linkText(filterSetName)).click();
-    Sleeper.sleepTight(1000);
+    Sleeper.sleep(1000);
   }
 }

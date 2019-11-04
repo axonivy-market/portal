@@ -16,13 +16,23 @@ pipeline {
   stages {    
     stage('build') {
       steps {        
-        dir ('Documentation/PortalUserGuide') {
+        dir ('Documentation') {
             script {
-                docker.image('axonivy/build-container:read-the-docs-1.1').inside {
-                    sh "make -C /doc-build html BASEDIR='${env.WORKSPACE}/Documentation/PortalUserGuide'"
+                def version = 'dev'
+                docker.image('maven:3.6.2-jdk-11-slim').inside {
+                    version = getCurrentVersion()
+                }
+
+                docker.image('axonivy/build-container:read-the-docs-1.2').inside {
+                    sh "make -C /doc-build html BASEDIR='${env.WORKSPACE}/Documentation/PortalUserGuide' VERSION=${version}"
+                }
+
+                docker.image('maven:3.6.2-jdk-11-slim').inside {
+                    def phase = env.BRANCH_NAME == 'master' ? 'deploy' : 'install'
+                    maven cmd: "clean ${phase}"
                 }
             }
-            archiveArtifacts 'build/html/**/*'
+            archiveArtifacts '*/build/html/**/*, */target/*.zip'
             recordIssues tools: [sphinxBuild()], unstableTotalAll: 1
         }
       }
@@ -30,3 +40,12 @@ pipeline {
   }
 }
 
+def getCurrentVersion() {
+  def cmd = "mvn help:evaluate -Dexpression=revision -q -DforceStdout"
+	def value = sh (script: cmd, returnStdout: true)
+	echo "version is $value"
+	if (value == "null object or invalid expression") {
+	  throw new Exception("could not evaluate maven revision property");
+	}
+	return value
+}
