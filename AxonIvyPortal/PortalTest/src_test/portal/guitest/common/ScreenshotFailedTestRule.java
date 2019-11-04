@@ -25,6 +25,7 @@ public class ScreenshotFailedTestRule implements MethodRule {
         try {
           statement.evaluate();
         } catch (Throwable t) {
+          t.printStackTrace();
           captureScreenshot(frameworkMethod.getName());
           throw t;
         } finally {
