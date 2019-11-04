@@ -143,12 +143,6 @@
           <p:column headerText="Country" sortBy="#{emp.country}" filterBy="#{emp.country}">
             <h:outputText value="#{emp.country}" />
           </p:column>
-          <p:column headerText="Details" style="text-align: center">
-            <p:commandLink id="detail-action" actionListener="#{logic.openDetails(emp)}" process="@this"
-              title="#{ivy.cms.co('/Labels/Details')}">
-              <i class="fa fa-search fa-lg" />
-            </p:commandLink>
-          </p:column>
         </p:dataTable>
       </p:tab>
     </ui:define>
