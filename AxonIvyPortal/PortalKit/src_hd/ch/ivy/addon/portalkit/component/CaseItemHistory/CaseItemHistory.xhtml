@@ -55,7 +55,7 @@
             <h:panelGroup layout="block" rendered="#{history.type eq 'NOTE'}">
               <p:commandLink value="#{history.content}" rendered="#{history.type eq 'NOTE'}" id="note-link"
                 oncomplete="PF('view-note-dialog').show()" actionListener="#{data.setFullNote(history.content)}"
-                update="@widgetVar(view-note-dialog)" styleClass="u-truncate-text" />
+                update="@widgetVar(view-note-dialog)" styleClass="u-truncate-text content-link-history" />
             </h:panelGroup>
           </h:outputText>
         </p:column>
