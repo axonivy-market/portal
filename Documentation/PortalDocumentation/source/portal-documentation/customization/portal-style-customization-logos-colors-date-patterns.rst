@@ -38,7 +38,9 @@ You can customize in:
    - ``font-faces.scss``: to replace default font url-s by your font url-s and add/change other font styles to customize the Portal's font styles.
 
    - ``customization.scss``: to change styles of Portal. E.g. Portal's component styles.
-.. tip:: For ``font-size``, Portal uses ``rem``. 
+
+.. tip::
+   For ``font-size``, Portal uses ``rem``. 
    Font size of all elements are calculated based on font-size of ``html`` element. 
 
 .. important::
