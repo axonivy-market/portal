@@ -19,15 +19,15 @@
             </f:facet>
             <h:outputText value="#{note.message}" />
           </p:column>
-          
+
           <p:column width="15%" sortBy="#{note.writter.fullName}" filterBy="#{note.writter.fullName}"
             filterMatchMode="contains">
             <f:facet name="header">
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}" />
             </f:facet>
-            <h:outputText value="#{note.writter.fullName}" />
+            <h:outputText value="#{userFormatBean.format(note.writter.fullName, note.writter.name)}" />
           </p:column>
-          
+
           <p:column width="20%" sortBy="#{note.creationTimestamp.time}" styleClass="column-header-top-alignment">
             <f:facet name="header">
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}" />

@@ -25,7 +25,7 @@
       </h:form>
     </h:panelGroup>
 
-    <h:panelGroup id="default-user-processes-container" styleClass="compact-processes-container ui-g-12" layout="block">
+    <h:panelGroup id="default-user-processes-container" styleClass="compact-default-processes-container" layout="block">
       <ui:repeat varStatus="status" var="process" value="#{compactProcessWidgetBean.defaultUserProcesses}">
         <c:set var="isExternalProcess"
           value="#{!(fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}" />

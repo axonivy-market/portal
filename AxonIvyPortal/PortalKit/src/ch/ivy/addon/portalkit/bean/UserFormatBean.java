@@ -16,7 +16,7 @@ public class UserFormatBean implements Serializable {
 
   public String format(String fullName, String username) {
     if (StringUtils.isBlank(username)) {
-      return StringUtils.EMPTY;
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
     }
       
     if (StringUtils.isBlank(fullName)) {
