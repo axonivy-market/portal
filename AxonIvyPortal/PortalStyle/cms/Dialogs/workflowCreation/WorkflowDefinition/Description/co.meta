@@ -1,5 +1,5 @@
-co: name={Description} description={} changed={2019-09-09 08:28:42 CEST} changedby={nqhoan} visualorder={0} guid={16D13AF6439E9287} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={16D13AF64E332664} datatype={} isdefault={true} langid={en} description={} validfrom={2016-11-25 05:43:39 CET} validto={} changed={2019-09-09 08:28:23 CEST} changedby={nqhoan} properties={} id={}
-val: guid={16D13AF64F455BFB} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-10 03:58:31 CEST} validto={} changed={2019-09-09 08:28:42 CEST} changedby={nqhoan} properties={} id={}
-val: guid={16D13AF64AA90BBD} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:28 CET} validto={} changed={2019-09-09 08:28:42 CEST} changedby={nqhoan} properties={} id={}
-val: guid={16D13AF64EA37FD6} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 09:00:41 CEST} validto={} changed={2019-09-09 08:28:42 CEST} changedby={nqhoan} properties={} id={}
+co: name={Description} description={} changed={2019-10-18 13:07:17 CEST} changedby={ttthai} visualorder={0} guid={16D13AF6439E9287} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16D13AF64E332664} datatype={} isdefault={true} langid={en} description={} validfrom={2019-10-18 13:07:17 CEST} validto={} changed={2019-10-18 13:07:17 CEST} changedby={ttthai} properties={} id={}
+val: guid={16D13AF64F455BFB} datatype={} isdefault={false} langid={de} description={} validfrom={2019-10-18 13:07:17 CEST} validto={} changed={2019-10-18 13:07:17 CEST} changedby={ttthai} properties={} id={}
+val: guid={16D13AF64AA90BBD} datatype={} isdefault={false} langid={es} description={} validfrom={2019-10-18 13:07:17 CEST} validto={} changed={2019-10-18 13:07:17 CEST} changedby={ttthai} properties={} id={}
+val: guid={16D13AF64EA37FD6} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-10-18 13:07:17 CEST} validto={} changed={2019-10-18 13:07:17 CEST} changedby={ttthai} properties={} id={}

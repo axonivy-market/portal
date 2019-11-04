@@ -50,10 +50,8 @@ Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ps0 f6 83 131 26 26 -37 15 #rect
 Ps0 f6 @|UdEventIcon #fIcon
 Ps0 f33 dialogId ch.ivy.addon.portal.generic.Processes #txt
-Ps0 f33 startMethod start(String) #txt
-Ps0 f33 requestActionDecl '<String menuState> param;' #txt
-Ps0 f33 requestMappingAction 'param.menuState=ch.ivy.addon.portalkit.util.MenuUtils.getMenuState();
-' #txt
+Ps0 f33 startMethod start() #txt
+Ps0 f33 requestActionDecl '<> param;' #txt
 Ps0 f33 responseActionDecl 'ch.ivy.addon.portal.generic.ProcessNavigator.ProcessNavigatorData out;
 ' #txt
 Ps0 f33 responseMappingAction 'out=in;

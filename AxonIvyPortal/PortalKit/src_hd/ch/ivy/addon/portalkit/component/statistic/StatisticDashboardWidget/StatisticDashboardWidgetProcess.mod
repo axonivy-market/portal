@@ -11,13 +11,9 @@ Ss0 @MessageFlowInP-0n messageIn messageIn #zField
 Ss0 @MessageFlowOutP-0n messageOut messageOut #zField
 Ss0 @TextInP .xml .xml #zField
 Ss0 @TextInP .responsibility .responsibility #zField
-Ss0 @UdEvent f3 '' #zField
-Ss0 @UdExitEnd f4 '' #zField
-Ss0 @PushWFArc f5 '' #zField
 Ss0 @GridStep f8 '' #zField
 Ss0 @UdInit f11 '' #zField
 Ss0 @UdProcessEnd f14 '' #zField
-Ss0 @PushWFArc f0 '' #zField
 Ss0 @UdMethod f1 '' #zField
 Ss0 @UdProcessEnd f2 '' #zField
 Ss0 @UdMethod f13 '' #zField
@@ -77,25 +73,12 @@ Ss0 @PushWFArc f62 '' #zField
 Ss0 @UdMethod f63 '' #zField
 Ss0 @UdProcessEnd f64 '' #zField
 Ss0 @GridStep f65 '' #zField
-Ss0 @PushWFArc f66 '' #zField
 Ss0 @PushWFArc f67 '' #zField
+Ss0 @GridStep f68 '' #zField
+Ss0 @PushWFArc f3 '' #zField
+Ss0 @PushWFArc f4 '' #zField
+Ss0 @PushWFArc f0 '' #zField
 >Proto Ss0 Ss0 StatisticDashboardWidgetProcess #zField
-Ss0 f3 guid 1600AC95D5A96D44 #txt
-Ss0 f3 actionTable 'out=in;
-' #txt
-Ss0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>close</name>
-    </language>
-</elementInfo>
-' #txt
-Ss0 f3 371 51 26 26 -15 12 #rect
-Ss0 f3 @|UdEventIcon #fIcon
-Ss0 f4 499 51 26 26 0 12 #rect
-Ss0 f4 @|UdExitEndIcon #fIcon
-Ss0 f5 expr out #txt
-Ss0 f5 397 64 499 64 #arcP
 Ss0 f8 actionTable 'out=in;
 ' #txt
 Ss0 f8 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
@@ -130,10 +113,8 @@ Ss0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ss0 f11 115 51 26 26 -16 15 #rect
 Ss0 f11 @|UdInitIcon #fIcon
-Ss0 f14 243 51 26 26 0 12 #rect
+Ss0 f14 403 51 26 26 0 12 #rect
 Ss0 f14 @|UdProcessEndIcon #fIcon
-Ss0 f0 expr out #txt
-Ss0 f0 141 64 243 64 #arcP
 Ss0 f1 guid 1604F3D5F5A87086 #txt
 Ss0 f1 method initialize(java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>,Boolean,Boolean,Boolean) #txt
 Ss0 f1 inParameterDecl '<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> statisticChartList,Boolean showTaskListImmediately,Boolean isBackFromDrilldown,Boolean isCompactMode> param;' #txt
@@ -330,8 +311,7 @@ Ss0 f29 expr out #txt
 Ss0 f29 400 1024 499 1024 #arcP
 Ss0 f30 actionTable 'out=in;
 ' #txt
-Ss0 f30 actionCode 'import org.primefaces.context.RequestContext;
-import ch.ivy.addon.portalkit.statistics.StatisticChart;
+Ss0 f30 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.service.StatisticService;
 
 StatisticService service = new StatisticService();
@@ -342,7 +322,6 @@ if (in.isBackFromDrilldown) {
 
 if (in.statisticChartList.size() != 0) {
 	in.hasStatistic = true;
-	RequestContext.getCurrentInstance().execute("bindCursorChangeEvent()");
 	if(in.selectedItemOfDrilldown.isEmpty()){
 		service.generateChartModelForStatisticCharts(in.statisticChartList);
 	}else{
@@ -356,6 +335,7 @@ if (in.statisticChartList.size() != 0) {
 	in.hasStatistic = false;
 }
 in.isFinishLoadCharts = true;' #txt
+Ss0 f30 security system #txt
 Ss0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -760,13 +740,14 @@ Ss0 f63 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f63 627 147 26 26 -66 15 #rect
+Ss0 f63 643 147 26 26 -66 15 #rect
 Ss0 f63 @|UdMethodIcon #fIcon
 Ss0 f64 1099 147 26 26 0 12 #rect
 Ss0 f64 @|UdProcessEndIcon #fIcon
 Ss0 f65 actionTable 'out=in;
 ' #txt
-Ss0 f65 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticChart;
+Ss0 f65 actionCode 'import org.apache.commons.collections.CollectionUtils;
+import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.service.StatisticService;
 
 if (in.statisticChartList.size() != 0) {
@@ -776,6 +757,9 @@ if (in.statisticChartList.size() != 0) {
 	in.hasStatistic = true;
 } else {
 	in.hasStatistic = false;
+	if (CollectionUtils.isNotEmpty(in.chartsPlaceholder)) {
+		in.chartsPlaceholder.get(in.chartsPlaceholder.size() - 1).donutChartModel.options.title.text = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/emptystate/defaultEmptyMessages");
+	}
 }
 
 in.isFinishLoadCharts = true;' #txt
@@ -786,20 +770,40 @@ Ss0 f65 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f65 824 138 144 44 -63 -8 #rect
+Ss0 f65 856 138 144 44 -63 -8 #rect
 Ss0 f65 @|StepIcon #fIcon
-Ss0 f66 expr out #txt
-Ss0 f66 653 160 824 160 #arcP
 Ss0 f67 expr out #txt
-Ss0 f67 968 160 1099 160 #arcP
+Ss0 f67 1000 160 1099 160 #arcP
+Ss0 f68 actionTable 'out=in;
+' #txt
+Ss0 f68 actionCode 'import org.apache.commons.lang3.StringUtils;
+import ch.ivy.addon.portalkit.statistics.StatisticChart;
+import ch.ivy.addon.portalkit.service.StatisticService;
+
+// Create a placeholder chart when data is collection
+// Then replace it by StatisticChart list
+StatisticService statisticService = new StatisticService();
+StatisticChart chart = new StatisticChart();
+chart.name = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/statisticCarousel");
+chart.setDonutChartModel(statisticService.createDonutChartPlaceholder());
+
+in.chartsPlaceholder.add(chart);' #txt
+Ss0 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>init statistic</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f68 200 42 112 44 -30 -8 #rect
+Ss0 f68 @|StepIcon #fIcon
+Ss0 f3 669 160 856 160 #arcP
+Ss0 f4 141 64 200 64 #arcP
+Ss0 f0 312 64 403 64 #arcP
 >Proto Ss0 .type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 >Proto Ss0 .processKind HTML_DIALOG #txt
 >Proto Ss0 -8 -8 16 16 16 26 #rect
 >Proto Ss0 '' #fIcon
-Ss0 f3 mainOut f5 tail #connect
-Ss0 f5 head f4 mainIn #connect
-Ss0 f11 mainOut f0 tail #connect
-Ss0 f0 head f14 mainIn #connect
 Ss0 f19 mainOut f20 tail #connect
 Ss0 f20 head f18 mainIn #connect
 Ss0 f13 mainOut f21 tail #connect
@@ -850,7 +854,11 @@ Ss0 f60 out f31 tail #connect
 Ss0 f31 head f30 mainIn #connect
 Ss0 f60 out f62 tail #connect
 Ss0 f62 head f2 mainIn #connect
-Ss0 f63 mainOut f66 tail #connect
-Ss0 f66 head f65 mainIn #connect
 Ss0 f65 mainOut f67 tail #connect
 Ss0 f67 head f64 mainIn #connect
+Ss0 f63 mainOut f3 tail #connect
+Ss0 f3 head f65 mainIn #connect
+Ss0 f11 mainOut f4 tail #connect
+Ss0 f4 head f68 mainIn #connect
+Ss0 f68 mainOut f0 tail #connect
+Ss0 f0 head f14 mainIn #connect

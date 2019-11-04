@@ -10,17 +10,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
   </f:facet>
+
+  <f:attribute name="primefaces.THEME" value="none" />
   
-  <f:attribute name="primefaces.THEME" value="serenity-ivy" />
-  
-  <title><ui:insert name="pageTitle">Axon.Ivy Portal</ui:insert></title>
+  <title><ui:insert name="pageTitle">Axon.ivy Portal</ui:insert></title>
   <ui:fragment rendered="#{resource['ivy-webcontent:layouts/images/favicon.png'] != null}">
     <link rel="shortcut icon" href="#{resource['ivy-webcontent:layouts/images/favicon.png']}" type="image/png" />
   </ui:fragment>
 
-  <h:outputStylesheet library="css" name="base.css" />
-  <h:outputStylesheet library="css" name="state.css" />
-  <h:outputStylesheet library="css" name="layout.css" />
   <h:outputStylesheet library="css" name="utility.css" />
 
   <h:outputStylesheet name="css/nanoscroller.css" library="serenity-layout" />
@@ -29,14 +26,13 @@
 
   <h:outputStylesheet library="css" name="template.css" />
   <h:outputStylesheet library="css" name="module.css" />
-
+ 
   <h:outputScript name="js/nanoscroller.js" library="serenity-layout" />
   <h:outputScript name="js/ripple.js" library="serenity-layout" />
   <script src="#{resource['ivy-webcontent:layouts/js/cookie-helper.js']}" />
   <script src="#{resource['ivy-webcontent:layouts/js/primefaces-calendar-en-us.js']}" />
   <script src="#{resource['ivy-webcontent:resources/serenity-layout/js/layout.js']}" />
   
-  <h:outputScript name="viewport.js" library="js"  />
   <h:outputScript name="responsive-toolkit.js" library="js" />
   <h:outputScript name="main.js" library="js" />
   <h:outputScript name="portal-components.js" library="js" />
@@ -46,7 +42,7 @@
 
 <h:body>
   <f:facet name="last">
-    <h:outputStylesheet library="primefaces-serenity-ivy" name="theme.css" />
+    <h:outputStylesheet library="serenity-portal" name="theme.css" />
   </f:facet>
   
   <c:set var="isNotRequiredLogin" value="#{isNotRequiredLogin == null ? false : isNotRequiredLogin}" />
@@ -65,7 +61,7 @@
       <f:event type="preRenderView"
         listener="#{facesContext.externalContext.response.setHeader('Cache-Control', 'no-cache, no-store')}" />
 
-      <div class="layout-wrapper #{guestPreferences.orientationRTL ? 'layout-rtl' : ''}">
+      <div class="layout-wrapper js-layout-wrapper #{guestPreferences.orientationRTL ? 'layout-rtl' : ''}">
         <ui:fragment>
            <div class="layout-sidebar #{guestPreferences.darkMenu ? 'layout-sidebar-dark' : ''} #{currentPage} left-sidebar-color js-left-sidebar" id="left-menu">
               <c:choose>

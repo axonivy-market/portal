@@ -7,9 +7,7 @@
   <!-- In this HTML dialog, we override task list header, task header, task filter, and task body -->
 
   <ui:composition template="/layouts/PortalTasksTemplate.xhtml">
-    <ui:param name="menuState" value="#{data.menuState}" />
     <ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
-    <ui:param name="isNotRequiredLogin" value="false" />
     <ui:param name="useOverrideListHeader" value="true" />
     <ui:param name="useOverrideHeader" value="true" />
     <ui:param name="useOverrideFilter" value="true" />
@@ -18,10 +16,10 @@
     <ui:define name="taskListHeader">
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskListHeader dataModel="#{taskView.dataModel}" />
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
-        styleClass="state-column-header TexAlCenter" componentId="task-custom" sortField="customVarcharField5"
-        value="#{ivy.cms.co('/DefaultColumns/customVarcharField5')}" responsiveStyleClass="u-hidden-lg-down" />
+        styleClass="TexAlCenter" componentId="task-custom" sortField="customVarCharField5"
+        value="#{ivy.cms.co('/DefaultColumns/customVarCharField5')}" responsiveStyleClass="u-hidden-lg-down" />
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
-        styleClass="state-column-header TexAlCenter" componentId="task-custom" sortField="customTimestampField1"
+        styleClass="TexAlCenter" componentId="task-custom" sortField="customTimestampField1"
         value="#{ivy.cms.co('/DefaultColumns/customTimestampField1')}"
         responsiveStyleClass="u-hidden-lg-down js-hidden-when-expand-menu" />
     </ui:define>

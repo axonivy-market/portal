@@ -264,7 +264,6 @@ As0 f35 actionTable 'out=in;
 ' #txt
 As0 f35 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.enums.ApplicationType;
-import org.primefaces.context.RequestContext;
 
 in.selectedApp = new Application();
 if (in.applicationList.size() > 0) {
@@ -348,7 +347,6 @@ As0 f54 actionCode 'import ch.ivy.addon.portalkit.enums.ApplicationType;
 import ch.ivy.addon.portalkit.util.DisplayNameAdaptor;
 import java.util.Locale;
 import ch.ivy.addon.portalkit.util.Locales;
-import org.primefaces.context.RequestContext;
 
 in.isAddMode = false;
 in.dialogTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/editApplication");
@@ -399,8 +397,8 @@ As0 f59 0 0.5000000000000001 0 0 #arcLabel
 As0 f61 guid 14B76C9713AD988C #txt
 As0 f61 method onTabChange(org.primefaces.event.TabChangeEvent) #txt
 As0 f61 inParameterDecl '<org.primefaces.event.TabChangeEvent tabEvent> param;' #txt
-As0 f61 inActionCode 'import ch.ivy.addon.portalkit.service.AnnouncementService;
-import org.primefaces.context.RequestContext;
+As0 f61 inActionCode 'import org.primefaces.PrimeFaces;
+import ch.ivy.addon.portalkit.service.AnnouncementService;
 import org.primefaces.component.tabview.TabView;
 import org.primefaces.event.TabChangeEvent;
 
@@ -409,7 +407,7 @@ TabView tabView = tabChangeEvent.getComponent() as TabView;
 out.tabIndexActive = tabView.getChildren().indexOf(tabChangeEvent.getTab());
 if (out.tabIndexActive == 1) {
 	out.settingTabOpened = true;
-	RequestContext.getCurrentInstance().execute("PF(''settingTable'').filter()");
+	PrimeFaces.current().executeScript("PF(''settingTable'').filter()");
 }
 ' #txt
 As0 f61 outParameterDecl '<> result;' #txt
@@ -448,7 +446,6 @@ As0 f72 actionTable 'out=in;
 As0 f72 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;
 import java.util.Arrays;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import org.primefaces.context.RequestContext;
 
 in.isAddMode = false;
 in.dialogTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/editSetting");
@@ -553,7 +550,6 @@ As0 f117 actionTable 'out=in;
 ' #txt
 As0 f117 actionCode 'import ch.ivy.addon.portalkit.enums.ApplicationType;
 import javax.faces.application.FacesMessage;
-import org.primefaces.context.RequestContext;
 import org.primefaces.component.inputtext.InputText;
 import javax.faces.context.FacesContext;
 
@@ -1484,7 +1480,7 @@ in.filteredSettingList = in.settingList;
 
 in.announcements = AnnouncementService.getInstance().getAnnouncements();
 in.isAnnouncementActivated = AnnouncementService.getInstance().isAnnouncementActivated();
-FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, 
+FacesContext.getCurrentInstance().addMessage("adminui:adminTabView:announcement-table", new FacesMessage(FacesMessage.SEVERITY_INFO, 
 	ivy.cms.co(in.isAnnouncementActivated ? "/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsEnabled"
 	: "/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsDisabled"), null));
 ' #txt
@@ -1505,10 +1501,10 @@ As0 f97 expr out #txt
 As0 f97 1400 1638 1400 1691 #arcP
 As0 f55 actionTable 'out=in;
 ' #txt
-As0 f55 actionCode 'import org.primefaces.context.RequestContext;
+As0 f55 actionCode 'import org.primefaces.PrimeFaces;
 
 if (in.settingTabOpened) {
-	RequestContext.getCurrentInstance().execute("PF(''settingTable'').clearFilters()");
+	PrimeFaces.current().executeScript("PF(''settingTable'').clearFilters()");
 }' #txt
 As0 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

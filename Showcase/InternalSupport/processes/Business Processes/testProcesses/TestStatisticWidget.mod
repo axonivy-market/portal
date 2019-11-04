@@ -1,5 +1,5 @@
 [Ivy]
-16150F67EE2A7F31 3.28 #module
+16150F67EE2A7F31 7.5.0 #module
 >Proto >Proto Collection #zClass
 Tt0 TestStatisticWidget Big #zClass
 Tt0 B #cInfo
