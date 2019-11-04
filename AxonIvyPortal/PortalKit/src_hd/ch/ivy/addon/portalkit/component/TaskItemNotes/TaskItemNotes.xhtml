@@ -44,7 +44,7 @@
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}" styleClass="u-truncate-text history-note">
           <span class="task-note truncate-note"> <p:commandLink id="note-message" value="#{note.message}" oncomplete="PF('#{cc.clientId}:view-note-dialog').show()"
-              actionListener="#{data.setFullNote(note.message)}" update="@widgetVar(#{cc.clientId}:view-note-dialog)" />
+              actionListener="#{data.setFullNote(note.message)}" update="@widgetVar(#{cc.clientId}:view-note-dialog)" styleClass="content-link-history"/>
           </span>
         </p:column>
 
