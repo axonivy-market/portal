@@ -1361,6 +1361,10 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   color: $caseTaskDocumentNameColor !important;
 }
 
+:-ms-input-placeholder, :root .case-detail-body .history-note a {
+  display: inline !important;
+}
+
 /* Case item*/
 .case-list-item {
   background-color: $caseListItemBackgroundColor;
