@@ -251,14 +251,14 @@
 }
 
 /* Form elements responsive */
-@media ( max-width : 1024px) {
+@media (max-width: 1024px) {
   .available-formelements-field,
   .form-elements-container .form-elements-1st-column, .form-elements-container .form-elements-2nd-column {
     padding: 8px !important;
   }
 }
 
-@media ( max-width : 1366px) {
+@media (max-width: 1366px) {
   .form-elements-container .form-elements-2nd-column {
     padding-left: 0 !important;
     word-break: break-all;
@@ -622,7 +622,6 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
 /*fix checkbox menu*/
 .ui-selectonemenu .ui-selectonemenu-trigger, .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger {
 	padding: 0px 12px !important;
-	background-color: @body-background-color;
 	border-bottom: none !important;
 }
 
@@ -645,7 +644,7 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
 /*end of fix all input elements same height*/
 
 /*center main content */
-@media ( min-width : 1920px) {
+@media (min-width: 1920px) {
   .layout-wrapper .layout-main .layout-content {
     margin-left: 15%;
     padding-right: 15% !important;
@@ -670,7 +669,7 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
 	margin-top: -5px !important;
 }
 
-.process-property-container .ui-panelgrid-cell:not (.process-property-input-col) {
+.process-property-container .ui-panelgrid-cell:not(.process-property-input-col) {
 	padding: 0 !important;
 }
 
