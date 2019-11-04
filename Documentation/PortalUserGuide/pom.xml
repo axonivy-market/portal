@@ -5,7 +5,7 @@
 		<groupId>ch.ivyteam.ivy.project.portal</groupId>
 		<artifactId>doc-config</artifactId>
 		<version>${revision}</version>
-		<relativePath>../</relativePath>
+		<relativePath>../maven</relativePath>
 	</parent>
 
 	<artifactId>portal-user-guide</artifactId>

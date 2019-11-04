@@ -1,25 +1,26 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>doc-product</artifactId>
-	<packaging>pom</packaging>
 
 	<parent>
-		<groupId>ch.ivyteam.ivy</groupId>
-		<artifactId>ch.ivyteam.ivy.build.config</artifactId>
-		<version>7.4.0-SNAPSHOT</version>
-		<relativePath>../development/ch.ivyteam.ivy.build.maven/config</relativePath>
+		<groupId>ch.ivyteam.ivy.project.portal</groupId>
+		<artifactId>doc-config</artifactId>
+		<version>${revision}</version>
+		<relativePath>../maven</relativePath>
 	</parent>
 
-    <build>
-		<plugins>		
+	<artifactId>portal-developer-guide</artifactId>
+	<packaging>pom</packaging>
+	<name>Portal Developer Guide</name>
+
+	<build>
+		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>3.1.1</version>
 				<executions>
 					<execution>
-						<phase>install</phase>
+						<phase>package</phase>
 						<goals>
 							<goal>single</goal>
 						</goals>
@@ -31,8 +32,8 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>			
+			</plugin>
 		</plugins>
 	</build>
 
-</project> 
+</project>
