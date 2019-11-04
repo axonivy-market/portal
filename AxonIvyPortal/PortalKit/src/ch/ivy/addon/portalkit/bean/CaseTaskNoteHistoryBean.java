@@ -75,11 +75,11 @@ public class CaseTaskNoteHistoryBean implements Serializable {
     
     public StreamedContent getExportedFileOfTaskNoteHistory(List<INote> taskNoteHistory, String fileName) {
       NoteHistoryExporter exporter = new NoteHistoryExporter();
-      return exporter.getStreamedContentOfTaskNoteHistory(taskNoteHistory, fileName + ".xls");
+      return exporter.getStreamedContentOfTaskNoteHistory(taskNoteHistory, fileName + ".xlsx");
     }
 
     public StreamedContent getStreamedContentOfCaseNoteHistory(List<History> caseNoteHistory, ICase iCase, String fileName) {
       NoteHistoryExporter exporter = new NoteHistoryExporter();
-      return exporter.getStreamedContentOfCaseNoteHistory(caseNoteHistory, iCase, fileName + ".xls");
+      return exporter.getStreamedContentOfCaseNoteHistory(caseNoteHistory, iCase, fileName + ".xlsx");
     }
 }
