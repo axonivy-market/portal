@@ -32,7 +32,7 @@ public class SearchResultPage extends TemplatePage {
 
 	public void startProcess(String name) {
 		ProcessWidgetPage processWidgetPage = new ProcessWidgetPage("search-results-tabview:process-results");
-		processWidgetPage.startProcess(name);
+		processWidgetPage.waitAndStartProcess(name);
 	}
 
 	public String getProcessResult(String name) {
