@@ -4068,6 +4068,10 @@ _:-ms-fullscreen, :root .case-related-command-link {
   display: inline !important;
 }
 
+_:-ms-fullscreen, :root .content-link-history {
+  display: inline !important;
+}
+
 /* override on Firefox */
 @-moz-document url-prefix() {
   .case-related-command-link {
