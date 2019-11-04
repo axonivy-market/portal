@@ -9,7 +9,7 @@
 <cc:implementation>
   <div id="global-search-container-in-page" class="search-item">
   <h:panelGroup styleClass="md-inputfield mobile-global-search-container">
-    <p:inputText id="global-search-data" styleClass="global-search-input js-global-search-input" value="#{data.keyword}"
+    <p:inputText id="global-search-data" styleClass="global-search-input" value="#{data.keyword}"
       onkeypress="if (event.keyCode == 13) { portalGlobalSearch(); return false; }">
     </p:inputText>
     <p:outputLabel for="global-search-data" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/search')}" />

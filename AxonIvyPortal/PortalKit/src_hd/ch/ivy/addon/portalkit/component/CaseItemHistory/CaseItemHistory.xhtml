@@ -44,9 +44,25 @@
         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
         currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/author')}"
-          sortBy="#{history.involvedFullname}" styleClass="case-history-name u-truncate-text ui-sm-hidden">
-          <h:outputText value="#{empty history.involvedFullname ? history.involvedUsername:history.involvedFullname}"
+
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}"
+          styleClass="u-truncate-text history-note ui-sm-12">
+          <h:outputText>
+            <p:link id="show-task-note-link"
+              value="#{empty history.content ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noTaskName') : history.content}"
+              target="_blank" href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case)}"
+              rendered="#{history.type eq 'TASK'}" styleClass="task-note-link u-truncate-text" />
+            <h:panelGroup layout="block" rendered="#{history.type eq 'NOTE'}">
+              <p:commandLink value="#{history.content}" rendered="#{history.type eq 'NOTE'}" id="note-link"
+                oncomplete="PF('view-note-dialog').show()" actionListener="#{data.setFullNote(history.content)}"
+                update="@widgetVar(view-note-dialog)" styleClass="u-truncate-text" />
+            </h:panelGroup>
+          </h:outputText>
+        </p:column>
+
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}"
+          sortBy="#{history.involvedFullname}" styleClass="case-document-author u-truncate-text ui-sm-hidden">
+          <h:outputText value="#{userFormatBean.format(history.involvedFullname, history.involvedUsername)}"
             styleClass="history-fullname">
             <i class="fa fa-check-circle" jsf:id="done-task"
               jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'DONE'}" />
@@ -60,22 +76,7 @@
           </h:outputText>
         </p:column>
 
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}"
-          styleClass="u-truncate-text history-note ui-sm-12">
-          <h:outputText>
-            <p:link id="show-task-note-link"
-              value="#{empty history.content ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noTaskName') : history.content}"
-              target="_blank" href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case)}"
-              rendered="#{history.type eq 'TASK'}" styleClass="task-note-link u-truncate-text" />
-            <h:panelGroup layout="block" rendered="#{history.type eq 'NOTE'}">
-              <p:commandLink value="#{history.content}" rendered="#{history.type eq 'NOTE'}"
-                oncomplete="PF('view-note-dialog').show()" actionListener="#{data.setFullNote(history.content)}"
-                update="@widgetVar(view-note-dialog)" styleClass="u-truncate-text" />
-            </h:panelGroup>
-          </h:outputText>
-        </p:column>
-
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/date')}"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}"
           sortBy="#{history.timestamp}" styleClass="case-history-date u-truncate-text ui-sm-hidden">
           <h:outputText value="#{history.timestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
@@ -84,7 +85,7 @@
       </p:dataTable>
 
       <h:outputText styleClass="no-documents-message ui-g-12"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noHistories')}"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noHistories')}"
         rendered="#{empty data.histories}" />
     </div>
   </div>

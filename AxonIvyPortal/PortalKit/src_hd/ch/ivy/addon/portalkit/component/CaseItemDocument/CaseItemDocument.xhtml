@@ -57,7 +57,7 @@
           </p:column>
 
           <p:column id="document-author"
-            headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/author')}"
+            headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}"
             styleClass="case-document-author u-truncate-text ui-sm-hidden"
             sortBy="#{empty document.creation.user.fullName ? document.creation.user.name:document.creation.user.fullName}">
             <h:outputText
@@ -65,7 +65,7 @@
           </p:column>
 
           <p:column id="document-creation"
-            headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/date')}"
+            headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}"
             styleClass="case-history-date u-truncate-text ui-sm-hidden" sortBy="#{document.creation.timestamp}">
             <h:outputText value="#{document.creation.timestamp}">
               <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
@@ -75,7 +75,7 @@
         </p:dataTable>
 
         <h:outputText styleClass="no-documents-message ui-g-12"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDocuments')}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noDocuments')}"
           rendered="#{empty data.documents}" />
       </div>
     </h:form>

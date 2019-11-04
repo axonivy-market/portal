@@ -106,15 +106,15 @@
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" scrollable="true"
           scrollHeight="240" reflow="true">
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/key')}"
-            filterBy="#{setting.key}" filterMatchMode="contains" width="17%">
+            filterBy="#{setting.key}" filterMatchMode="contains" styleClass="settings-table-key-column">
             <h:outputText value="#{setting.key}" styleClass="setting-key" />
           </p:column>
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/defaultValue')}"
-            filterBy="#{setting.defaultValue}" filterMatchMode="contains" width="10%">
+            filterBy="#{setting.defaultValue}" filterMatchMode="contains" styleClass="settings-table-default-value-column">
             <h:outputText value="#{setting.defaultValue}" />
           </p:column>
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/currentValue')}"
-            filterBy="#{setting.value}" filterMatchMode="contains" width="10%">
+            filterBy="#{setting.value}" filterMatchMode="contains" styleClass="settings-table-current-value-column">
             <h:outputText value="#{setting.value}" />
           </p:column>
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/note')}"
@@ -123,7 +123,7 @@
           </p:column>
           <p:column id="settings-table-action-buttons"
             headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-            styleClass="TexAlCenter settings-table-action-buttons" width="105">
+            styleClass="TexAlCenter settings-table-action-buttons">
             <p:commandLink styleClass="action-column-icon-button" id="edit" oncomplete="PF('settingDialog').show()"
               actionListener="#{logic.editSetting(setting)}" process="@this"
               title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
@@ -142,6 +142,7 @@
     </p:tab>
     <p:tab id="announcement-tab"
       title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/tabTitle')}">
+      <p:messages id="announcement-information-messages" for="adminui:adminTabView:announcement-table" />
       <p:messages id="announcement-validation-messages" />
       <h:form prependId="false" id="announcement-form">
 
@@ -150,11 +151,11 @@
           <p:commandButton id="publish-announcement" process="@form" disabled="#{data.isAnnouncementActivated}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/enable')}"
             actionListener="#{logic.publishAnnouncement()}"
-            update="#{cc.clientId}:adminTabView:announcement-table #{cc.clientId}:adminTabView:announcement-validation-messages #{cc.clientId}:adminTabView:action-group" />
+            update="#{cc.clientId}:adminTabView:announcement-table #{cc.clientId}:adminTabView:announcement-validation-messages #{cc.clientId}:adminTabView:announcement-information-messages #{cc.clientId}:adminTabView:action-group" />
           <p:spacer width="5px" />
           <p:commandButton id="delete-announcement" process="@form" actionListener="#{logic.depublishAnnouncement()}"
             disabled="#{not data.isAnnouncementActivated}"
-            update="#{cc.clientId}:adminTabView:announcement-validation-messages  #{cc.clientId}:adminTabView:action-group"
+            update="#{cc.clientId}:adminTabView:announcement-validation-messages #{cc.clientId}:adminTabView:announcement-information-messages #{cc.clientId}:adminTabView:action-group"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/disable')}">
           </p:commandButton>
         </h:panelGroup>

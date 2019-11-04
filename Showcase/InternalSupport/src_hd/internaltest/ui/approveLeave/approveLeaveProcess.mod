@@ -1,5 +1,5 @@
 [Ivy]
-1475D5F3DD0B29B3 3.28 #module
+1475D5F3DD0B29B3 7.5.0 #module
 >Proto >Proto Collection #zClass
 as0 approveLeaveProcess Big #zClass
 as0 RD #cInfo
@@ -22,9 +22,7 @@ as0 @PushWFArc f5 '' #zField
 >Proto as0 as0 approveLeaveProcess #zField
 as0 f0 guid 1475D5F3DF47BD15 #txt
 as0 f0 method start(String,Date,Date,Boolean,String,internalPortal.ProcessStatus) #txt
-as0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.String Mitarbeiter,ch.ivyteam.ivy.scripting.objects.Date Von,ch.ivyteam.ivy.scripting.objects.Date Bis,java.lang.Boolean beantragt,java.lang.String Vertretung,internalPortal.ProcessStatus processStatus> param = methodEvent.getInputArguments();
-' #txt
+as0 f0 inParameterDecl '<String Mitarbeiter,Date Von,Date Bis,Boolean beantragt,String Vertretung,internalPortal.ProcessStatus processStatus> param;' #txt
 as0 f0 inParameterMapAction 'out.actualStepIndex=param.processStatus.actualStepIndex;
 out.beantragt=param.beantragt;
 out.Bis=param.Bis;
@@ -33,8 +31,7 @@ out.steps=param.processStatus.steps;
 out.Vertretung=param.Vertretung;
 out.Von=param.Von;
 ' #txt
-as0 f0 outParameterDecl '<java.lang.String Mitarbeiter,java.lang.Boolean genehmigt,java.lang.String Ablehnungsgrund,internalPortal.ProcessStatus processStatus> result;
-' #txt
+as0 f0 outParameterDecl '<String Mitarbeiter,Boolean genehmigt,String Ablehnungsgrund,internalPortal.ProcessStatus processStatus> result;' #txt
 as0 f0 outParameterMapAction 'result.Mitarbeiter=in.Mitarbeiter;
 result.genehmigt=in.genehmigt;
 result.Ablehnungsgrund=in.Ablehnungsgrund;

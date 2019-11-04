@@ -1,5 +1,5 @@
 [Ivy]
-15C1FA307D3E1AB1 3.28 #module
+15C1FA307D3E1AB1 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ds0 DrillDownChartsProcess Big #zClass
 Ds0 RD #cInfo
@@ -22,11 +22,8 @@ Ds0 @PushWFArc f9 '' #zField
 >Proto Ds0 Ds0 DrillDownChartsProcess #zField
 Ds0 f0 guid 15C1FA307E9AFFBE #txt
 Ds0 f0 method start() #txt
-Ds0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Ds0 f0 outParameterDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> result;
-' #txt
+Ds0 f0 inParameterDecl '<> param;' #txt
+Ds0 f0 outParameterDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> result;' #txt
 Ds0 f0 outParameterMapAction 'result.taskView=in.taskView;
 ' #txt
 Ds0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -46,13 +43,10 @@ Ds0 f2 expr out #txt
 Ds0 f2 109 64 211 64 #arcP
 Ds0 f3 guid 15C1FC4805AB2CA0 #txt
 Ds0 f3 method itemSelect(org.primefaces.event.ItemSelectEvent) #txt
-Ds0 f3 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<org.primefaces.event.ItemSelectEvent event> param = methodEvent.getInputArguments();
-' #txt
+Ds0 f3 inParameterDecl '<org.primefaces.event.ItemSelectEvent event> param;' #txt
 Ds0 f3 inParameterMapAction 'out.event=param.event;
 ' #txt
-Ds0 f3 outParameterDecl '<> result;
-' #txt
+Ds0 f3 outParameterDecl '<> result;' #txt
 Ds0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
