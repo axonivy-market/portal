@@ -62,7 +62,7 @@
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}"
           sortBy="#{history.involvedFullname}" styleClass="case-document-author u-truncate-text ui-sm-hidden">
-          <h:outputText value="#{empty history.involvedFullname ? history.involvedUsername:history.involvedFullname}"
+          <h:outputText value="#{userFormatBean.format(history.involvedFullname, history.involvedUsername)}"
             styleClass="history-fullname">
             <i class="fa fa-check-circle" jsf:id="done-task"
               jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'DONE'}" />
