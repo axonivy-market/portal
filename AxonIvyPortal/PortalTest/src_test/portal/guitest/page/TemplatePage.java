@@ -5,8 +5,6 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
-import javax.print.attribute.standard.Fidelity;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -260,10 +258,14 @@ public abstract class TemplatePage extends AbstractPage {
 
   public class GlobalSearch {
 
-    public GlobalSearch() {}
+    private static final String GLOBAL_SEARCH_INPUT_SELECTOR = "#global-search-component\\:global-search-data";
+
+    public GlobalSearch() {
+    }
 
     private WebElement getSearchInput() {
-      return findElementByCssSelector("#global-search-component\\:global-search-data");
+      waitForElementDisplayed(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR), true);
+      return findElementByCssSelector(GLOBAL_SEARCH_INPUT_SELECTOR);
     }
 
     public boolean isDisplayed() {
