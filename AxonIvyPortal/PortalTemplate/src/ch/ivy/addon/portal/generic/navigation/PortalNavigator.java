@@ -19,6 +19,7 @@ import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.support.UrlDetector;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.RequestUriFactory;
@@ -31,7 +32,6 @@ public final class PortalNavigator {
   private static final String PORTAL_TASK = "Start Processes/PortalStart/startPortalTask.ivp";
   private static final String PORTAL_CASE = "Start Processes/PortalStart/startPortalCase.ivp";
   private static final String PORTAL_STATISTIC = "Start Processes/PortalStart/startPortalStatistic.ivp";
-  private static final String PORTAL_CASE_ITEM_DETAILS = "Start Processes/PortalStart/startPortalCaseDetails.ivp";
   private static final String SLASH = "/";
 
   public String getPortalStartUrl() throws MalformedURLException {
@@ -134,7 +134,7 @@ public final class PortalNavigator {
   }
   
   private String getDefaultEndPage() {
-    return Ivy.html().startRef(Ivy.wf().getStandardProcessImplementation(StandardProcessType.DefaultEndPage).getUserFriendlyRequestPath());
+    return IvyExecutor.executeAsSystem(() -> Ivy.html().startRef(Ivy.wf().getStandardProcessImplementation(StandardProcessType.DefaultEndPage).getUserFriendlyRequestPath()));
   }
 
   public void navigateToPortalProcess() {
