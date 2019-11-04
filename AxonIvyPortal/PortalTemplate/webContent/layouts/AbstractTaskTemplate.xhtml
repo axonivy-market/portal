@@ -6,28 +6,7 @@
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
-    <!-- This template is abstract, use TaskTemplate.xhtml for no IFrame, use your own template for IFrame -->
-    <!-- TabView is removed, if you want to design UI with TabView, do it yourself in taskForm template area -->
-    <!-- REMOVED PARAMS: showTaskFormTab, dynamicTabs -->
-    <!-- DEPRECATED template areas: leftButtons, rightButtons -->
-    <!-- <ui:insert name="process_chain_area">...</ui:insert> is changed to processChainArea -->
-    <!-- <ui:insert name="caseStatusTab">...</ui:insert> is changed to caseDetails -->
-    
-    <!-- AVAILABLE PARAMS in this template: -->
-    <!-- task (required): working task -->
-    <!-- actualStepIndex: current process step -->
-    <!-- steps: list of process steps -->
-    <!-- processChainDirection: VERTICAL or HORIZONTAL (default) -->
-    <!-- processChainShape: LINE or CIRCLE (default) -->
-    <!-- isWorkingOnATask: working on a task in order to display warning if leave page, default: true -->
-    <!-- announcementInvisible: display announcement written by administrator, default: true -->
-    
-    <!-- AVAILABLE TEMPLATE AREA (ui:insert): -->
-    <!-- breadCrumb, taskName, errorsZone, infoZone, taskForm, leftButtons (DEPRECATED), rightButtons (DEPRECATED), caseDetails, javascript-->
-    <!-- other areas: refer to BasicTemplate.xhtml -->
-    
     <ui:param name="isWorkingOnATask" value="true" />
-    <ui:param name="announcementInvisible" value="true" />
 
     <ui:define name="simplePageContent">
       <p:growl id="task-template-growl" />
@@ -170,7 +149,7 @@
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/noCaseId')}"
               rendered="#{caseWidgetBean.isHiddenCase(case)}" />
             <h:panelGroup id="case-details-panel" layout="block" rendered="#{!caseWidgetBean.isHiddenCase(case)}"
-              styleClass="js-case-default-widget-container case-default-widget-container js-simple-container js-for-search-result case-details">
+              styleClass="case-default-widget-container case-details">
               <div class="ui-g">
                 <div class="ui-g-12 u-padding-0">
                   <ic:ch.ivy.addon.portalkit.component.CaseItemDetails case="#{case}" showItemBackButton="false" />
