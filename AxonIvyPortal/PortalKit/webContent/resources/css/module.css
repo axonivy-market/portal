@@ -1191,7 +1191,8 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   padding-left: 15px;
 }
 
-.compact-processes-container .process-start-list-item-name {
+.compact-processes-container .process-start-list-item-name,
+.compact-default-processes-container .process-start-list-item-name {
   padding-left: 0 !important;
   width: calc(100% - 55px) !important;
 }
@@ -1363,32 +1364,33 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   padding-right: 5px;
 }
 
-.compact-processes-container {
+.compact-processes-container,
+.compact-default-processes-container {
   overflow-y: auto;
 }
 
-.compact-processes-container .process-start-list-item {
+.compact-processes-container .process-start-list-item,
+.compact-default-processes-container .process-start-list-item {
   margin: 2px 3px 5px 2px;
-}
-
-/* Fix for screen Full HD */
-@media  screen and (min-device-height: 1024px) {
-  .compact-processes-container {
-    max-height: 275px;
-  }
 }
 
 @media  screen and (min-width: 1024px) {
   .compact-processes-container {
-    max-height: 275px;
+    max-height: 277px;
+  }
+  
+  .compact-default-processes-container {
+    max-height: 292px;
+    padding-right: 0px;
   }
 }
 
-@media  screen and (max-height: 1023px) {
-  .compact-processes-container {
+ @media  screen and (max-width: 1023px) {
+  .compact-processes-container,
+  .compact-default-processes-container {
     max-height: 165px;
   }
-}
+} 
 
 .process-start-list-item-action>div.express-process-logo {
   opacity: 0.3;
