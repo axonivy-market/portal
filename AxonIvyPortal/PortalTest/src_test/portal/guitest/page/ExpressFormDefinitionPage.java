@@ -180,6 +180,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 
 	public void finishWorkflow() {
 		click(By.id("finish-button"));
+		new HomePage();
 	}
 
 	public void executeWorkflow() {
