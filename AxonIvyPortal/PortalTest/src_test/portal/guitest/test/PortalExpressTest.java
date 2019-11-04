@@ -25,6 +25,7 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.SearchResultPage;
+import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.TemplatePage.GlobalSearch;
 import portal.guitest.page.UserTaskWithMailFormPage;
@@ -452,6 +453,7 @@ public class PortalExpressTest extends BaseTest {
 		GlobalSearch globalSearch = homePage.getGlobalSearch();
 		SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(processName);
 		searchResultPage.startProcess(processName);
+		new TaskTemplatePage();
 	}
 
 	protected void executeApproval(String comment) {

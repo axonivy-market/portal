@@ -21,10 +21,10 @@
           <h:outputText id="name" value="#{item.name()}" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/value')}">
-          <h:outputText id="value" value="#{item.getOrNull()}" rendered="#{item.type() eq 'NUMBER'}">
+          <h:outputText id="number-value" value="#{item.getOrNull()}" rendered="#{item.type() eq 'NUMBER'}">
             <f:convertNumber type="number" integerOnly="true" pattern="#,##0.00" />
           </h:outputText>
-          <h:outputText id="value" value="#{item.getOrNull()}" rendered="#{item.type() eq 'TIMESTAMP'}">
+          <h:outputText id="timestamp-value" value="#{item.getOrNull()}" rendered="#{item.type() eq 'TIMESTAMP'}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
           </h:outputText>
           <h:outputText id="value" value="#{item.getOrNull()}" rendered="#{item.type() ne 'TIMESTAMP' and item.type() ne 'NUMBER'}" />
