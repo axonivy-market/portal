@@ -1735,8 +1735,13 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .task-start-info {
   flex: 1;
+  padding-left: 5px;
   padding-right: 10px;
   min-width: 105px;
+}
+
+.task-start-info-header-full-mode {
+  padding-left: 7px;
 }
 
 .task-start-list .default-task-cell {
