@@ -1927,3 +1927,9 @@ ul.participants-list li {
 .show-adding-dialog-commmand {
   font-size:  $smallFontSize;
 }
+
+@media (max-width: 1024px) {
+  .ui-fileupload-files .ui-fileupload-row > div {
+    display: block !important;
+  }
+}
