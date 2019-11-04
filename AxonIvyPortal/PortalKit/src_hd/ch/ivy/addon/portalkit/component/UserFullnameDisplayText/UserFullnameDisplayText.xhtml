@@ -12,7 +12,7 @@
 
 <cc:implementation>
   <h:outputText id="#{cc.attrs.textId}" styleClass="#{cc.attrs.styleClass}"
-    value="#{empty cc.attrs.username ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable') : userFormatBean.format(cc.attrs.fullname, cc.attrs.username)}" />
+    value="#{userFormatBean.format(cc.attrs.fullname, cc.attrs.username)}" />
   <p:tooltip rendered="#{not empty cc.attrs.username}" for="#{cc.attrs.textId}"
     value="#{userFormatBean.formatWithTip(cc.attrs.fullname, cc.attrs.username)}" trackMouse="true" />
 </cc:implementation>
