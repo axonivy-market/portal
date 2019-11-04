@@ -35,7 +35,7 @@
                   direction="#{processChainDirection eq 'VERTICAL' ? 'VERTICAL' : 'HORIZONTAL'}" isShowAllSteps="false"
                   actualStepIndex="#{actualStepIndex}" steps="#{steps}"
                   currentIndex="#{taskTemplateBean.getIndexOfCurrentStage(caseId)}"
-                  stages="#{taskTemplateBean.getStagesBaseOnCurrentStage(caseId)}" />
+                  stages="#{taskTemplateBean.getStagesBaseOnCurrentStage(caseId,steps)}" />
               </ui:insert>
             </h:panelGroup>
           </div>
@@ -80,7 +80,7 @@
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}" />
 
                 <c:forEach var="sidestep" items="#{taskTemplateBean.sideStepList}" varStatus="taskStatus">
-                  <p:menuitem id="side-step-item-#{taskStatus.index}" styleClass="side-step-item"
+                  <p:menuitem id="side-step-item-#{taskStatus.index}"
                     value="#{sidestep.getName()}" global="false"
                     actionListener="#{taskTemplateBean.setSelectedSideStep(sidestep)}"
                     oncomplete="PF('sidestep-task-reset-confirmation-dialog').show()" />
@@ -108,7 +108,7 @@
                   <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/noCaseId')}"
                     rendered="#{case ne null and caseWidgetBean.isHiddenCase(case)}" />
                   <h:panelGroup id="case-details-panel" layout="block" rendered="#{case ne null and !caseWidgetBean.isHiddenCase(case)}"
-                    styleClass="js-case-default-widget-container case-default-widget-container js-simple-container js-for-search-result case-details">
+                    styleClass="js-case-default-widget-container case-default-widget-container">
                     <!-- CASE DETAIS -->
                     <div class="ui-g">
                       <div class="ui-g-12 u-padding-0">

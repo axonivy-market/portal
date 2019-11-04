@@ -16,19 +16,15 @@
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateTaskHeaderLabel')}" />
           <h:panelGroup id="activator-panel" layout="block" styleClass="delegate-dialog-activator-panel"
             rendered="#{not empty data.rolesToDelegate or not empty data.usersToDelegate}">
-            <p:row>
-              <p:column>
-                <div class="delegate-type-container">
-                  <p:selectOneRadio id="activator-type-select" value="#{data.isUserDelegated}">
-                    <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/toUser')}" itemValue="true"
-                      itemDisabled="#{empty data.usersToDelegate}" />
-                    <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/toGroup')}" itemValue="false"
-                      itemDisabled="#{empty data.rolesToDelegate}" />
-                    <p:ajax event="change" listener="#{logic.changeAssignType}" update="activator-panel task-delegate-form" />
-                  </p:selectOneRadio>
-                </div>
-              </p:column>
-            </p:row>
+              <div class="delegate-type-container">
+                <p:selectOneRadio id="activator-type-select" value="#{data.isUserDelegated}">
+                  <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/toUser')}" itemValue="true"
+                    itemDisabled="#{empty data.usersToDelegate}" />
+                  <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/toGroup')}" itemValue="false"
+                    itemDisabled="#{empty data.rolesToDelegate}" />
+                  <p:ajax event="change" listener="#{logic.changeAssignType}" update="activator-panel task-delegate-form" />
+                </p:selectOneRadio>
+              </div>
           </h:panelGroup>
 
           <h:panelGroup id="select-delegate-panel" layout="block" styleClass="select-delegate-panel">

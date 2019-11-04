@@ -1,8 +1,7 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
-  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
-  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:jsf="http://xmlns.jcp.org/jsf">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="caseCategory" required="true" />
@@ -10,20 +9,19 @@
 </cc:interface>
 
 <cc:implementation>
-  <f:event listener="#{elapsedTimeDetailsBean.initialize(cc.attrs.caseCategory, cc.attrs.statisticChart)}"
-    type="preRenderComponent" />
+  <f:event listener="#{elapsedTimeDetailsBean.initialize(cc.attrs.caseCategory, cc.attrs.statisticChart)}" type="preRenderComponent" />
   <f:event listener="#{logic.initialize(cc.attrs.caseCategory)}" type="preRenderComponent" />
   <h:panelGroup id="elapsed-time-details-category" layout="block" styleClass="elapsed-time-result-list MarTop10">
     <h:form id="elapsed-time-detail-form" styleClass="elapsed-time-detail-form">
-    
+
       <p:commandButton id="export-button" ajax="false" styleClass="export-excel Fright"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}">
         <p:dataExporter type="xls" target="case-table" fileName="#{elapsedTimeDetailsBean.getExcelFileName()}" />
       </p:commandButton>
 
-      <p:dataTable id="case-table" widgetVar="case-table" var="elapsedTimeDetail" value="#{data.dataModel}" sortBy="ID" sortField="ID" 
-        rowKey="#{elapsedTimeDetail.getId()}" sortMode="single" lazy="true" scrollable="true" liveScroll="true" rows="20"
-        scrollRows="20" styleClass="case-table">
+      <p:dataTable id="case-table" widgetVar="case-table" var="elapsedTimeDetail" value="#{data.dataModel}" sortBy="ID" sortField="ID"
+        rowKey="#{elapsedTimeDetail.getId()}" sortMode="single" lazy="true" scrollable="true" liveScroll="true" rows="20" scrollRows="20"
+        styleClass="case-table">
 
         <p:ajax event="sort" update="case-table" onstart="liveScroll()" />
 
@@ -32,8 +30,8 @@
           <h:outputText value="#{elapsedTimeDetail.getId()}" />
         </p:column>
 
-        <p:column id="case-name" styleClass="case-name"
-          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseName')}" sortable="false">
+        <p:column id="case-name" styleClass="case-name" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseName')}"
+          sortable="false">
           <h:outputText value="#{elapsedTimeDetail.getName()}" />
         </p:column>
 
@@ -42,7 +40,7 @@
           <h:outputText value="#{elapsedTimeDetail.getCreatorUserName()}" />
         </p:column>
 
-        <p:column id="case-created" styleClass="case-created" 
+        <p:column id="case-created" styleClass="case-created"
           headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}" sortBy="false">
           <h:outputText value="#{elapsedTimeDetail.getStartTimestamp()}">
             <f:convertDateTime pattern="#{ivy.cms.co('/patterns/dateTimePattern')}" />
@@ -57,31 +55,31 @@
         </p:column>
 
         <p:column id="case-elapsed-time" styleClass="case-elapsed-time" sortable="true" field="ELAPSED_TIME" sortBy="#{ELAPSED_TIME}"
-          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTime')}"  >
+          headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTime')}">
           <h:outputText value="#{elapsedTimeDetailsBean.calculateElapsedTime(elapsedTimeDetail.getBusinessRuntime().toNumber())}" />
         </p:column>
       </p:dataTable>
     </h:form>
-     <script type="text/javascript">
-      $(document).ready(function(){
-        setTimeout(function(){initializeScrollbar();}, 100);
-      });
-    
-    function liveScroll(){
-      PF('case-table').scrollOffset=0;    
-        PF('case-table').scrollBody.scrollTop(1);   
-        PF('case-table').allLoadedLiveScroll = false; 
-    }
-    
-      function initializeScrollbar() {
-        var $caseTable = $("[id$='elapsed-time-chart-details:elapsed-time-detail-form:case-table']");
-        var resultTableBody = $caseTable.find(".ui-datatable-scrollable-body").get(0);
-
-        if (resultTableBody.scrollHeight > resultTableBody.clientHeight) {
-          var scrollbarWidth = resultTableBody.offsetWidth - resultTableBody.clientWidth
-          $caseTable.find(".ui-datatable-scrollable-header").css("width", "calc(100% - " + scrollbarWidth + "px)" );
+    <script type="text/javascript">
+        $(document).ready(function(){
+          setTimeout(function(){initializeScrollbar();}, 100);
+        });
+      
+        function liveScroll(){
+          PF('case-table').scrollOffset=0;    
+            PF('case-table').scrollBody.scrollTop(1);   
+            PF('case-table').allLoadedLiveScroll = false; 
         }
-      };
+        
+        function initializeScrollbar() {
+          var $caseTable = $("[id$='elapsed-time-chart-details:elapsed-time-detail-form:case-table']");
+          var resultTableBody = $caseTable.find(".ui-datatable-scrollable-body").get(0);
+  
+          if (resultTableBody.scrollHeight > resultTableBody.clientHeight) {
+            var scrollbarWidth = resultTableBody.offsetWidth - resultTableBody.clientWidth
+            $caseTable.find(".ui-datatable-scrollable-header").css("width", "calc(100% - " + scrollbarWidth + "px)" );
+          }
+        };
     </script>
   </h:panelGroup>
 </cc:implementation>

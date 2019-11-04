@@ -21,10 +21,8 @@ Ts0 @PushWFArc f7 '' #zField
 Ts0 @PushWFArc f2 '' #zField
 >Proto Ts0 Ts0 TaskAnalysisProcess #zField
 Ts0 f0 guid 163DD37A3BC5BFD2 #txt
-Ts0 f0 method start(String) #txt
-Ts0 f0 inParameterDecl '<String menuState> param;' #txt
-Ts0 f0 inParameterMapAction 'out.menuState=param.menuState;
-' #txt
+Ts0 f0 method start() #txt
+Ts0 f0 inParameterDecl '<> param;' #txt
 Ts0 f0 outParameterDecl '<> result;' #txt
 Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -60,8 +58,7 @@ Ts0 f6 actionTable 'out=in;
 Ts0 f6 actionCode 'import ch.ivy.addon.portal.generic.view.TaskAnalysisView;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel;
-	
-in.menuState = ch.ivy.addon.portalkit.util.MenuUtils.getMenuState();
+
 TaskAnalysisLazyDataModel dataModel = new TaskAnalysisLazyDataModel();
 dataModel.getCriteria().setNewQueryCreated(true);
 dataModel.setAdminQuery(true);

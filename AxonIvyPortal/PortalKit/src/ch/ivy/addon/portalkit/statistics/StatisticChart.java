@@ -1,12 +1,12 @@
 package ch.ivy.addon.portalkit.statistics;
 
-import org.primefaces.model.chart.BarChartModel;
-import org.primefaces.model.chart.DonutChartModel;
-import org.primefaces.model.chart.PieChartModel;
 
-import ch.ivy.addon.portalkit.enums.StatisticChartType;
+import org.primefaces.model.charts.bar.BarChartModel;
+import org.primefaces.model.charts.donut.DonutChartModel;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import ch.ivy.addon.portalkit.enums.StatisticChartType;
 
 public class StatisticChart {
   private String id;
@@ -22,8 +22,6 @@ public class StatisticChart {
   private DonutChartModel donutChartModel;
   @JsonIgnore
   private BarChartModel barChartModel;
-  @JsonIgnore
-  private PieChartModel pieChartModel;
 
   public String getId() {
     return id;
@@ -79,14 +77,6 @@ public class StatisticChart {
 
   public void setBarChartModel(BarChartModel barChartModel) {
     this.barChartModel = barChartModel;
-  }
-
-  public PieChartModel getPieChartModel() {
-    return pieChartModel;
-  }
-
-  public void setPieChartModel(PieChartModel pieChartModel) {
-    this.pieChartModel = pieChartModel;
   }
 
   public StatisticFilter getFilter() {

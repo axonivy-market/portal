@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -22,10 +23,14 @@ public class TaskStateFilter extends TaskFilter {
   private List<TaskState> selectedFilteredStatesAtBeginning;
 
   /**
-   * Initialize the values of filteredStates: SUSPENDED, RESUMED, PARKED.
+   * Initialize the values of filteredStates: SUSPENDED, RESUMED, PARKED, DONE
    */
   public TaskStateFilter() {
-    this.filteredStates = Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE);
+    this.filteredStates = new ArrayList<>();
+    this.filteredStates.addAll(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE));
+    if(PermissionUtils.checkReadAllTasksPermission()) {
+      this.filteredStates.add(TaskState.UNASSIGNED);
+    }
     this.selectedFilteredStatesAtBeginning = new ArrayList<>(filteredStates);
     this.selectedFilteredStates = new ArrayList<>();
   }
@@ -37,9 +42,6 @@ public class TaskStateFilter extends TaskFilter {
 
   @Override
   public String value() {
-    if (isAllStatesSelected() && filteredStates.size() == 1) {
-      return userFriendlyState(selectedFilteredStates.get(0));
-    }
     if (CollectionUtils.isEmpty(selectedFilteredStates) || isAllStatesSelected()) {
       return ALL;
     }
@@ -56,6 +58,8 @@ public class TaskStateFilter extends TaskFilter {
 
   private boolean isAllStatesSelected() {
     return filteredStates.equals(selectedFilteredStates)
+        //In case only one state is selected and the current user doesn't have that state (happen with UNASSIGNED state)
+        || (selectedFilteredStates.size() == 1 && !filteredStates.contains(selectedFilteredStates.get(0)))
     // In case the filter is a saved filter from a user who can filter more task state
         || (filteredStates.size() < selectedFilteredStates.size() && selectedFilteredStates.containsAll(filteredStates));
   }

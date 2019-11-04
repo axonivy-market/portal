@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 import portal.guitest.bean.ExpressResponsible;
+import portal.guitest.common.Sleeper;
 
 public class ExpressProcessPage extends TemplatePage {
 
@@ -17,24 +17,19 @@ public class ExpressProcessPage extends TemplatePage {
 
 	public void fillProcessProperties(boolean isAdhocWF, boolean isCreateOwn, String processName,
 			String processDescription) {
-		if (isAdhocWF) {
-			selectCheckbox("form:process-type:0");
-		} else {
-			selectCheckbox("form:process-type:1");
+		if (!isAdhocWF) {
+		  click(By.cssSelector("div[id='form:process-type']"));
 		}
-
-		if (isCreateOwn) {
-			selectCheckbox("form:own-option");
-		} else {
-			selectCheckbox("form:default-option");
-			agreeToDeleteAllDefineTasks();
-		}
-
+		
+    if (!isCreateOwn) {
+      click(By.cssSelector("div[id='form:user-interface-type']"));
+      agreeToDeleteAllDefineTasks();
+    } 
 		type(By.id("form:process-name"), processName);
-		type(By.id("form:processdescription"), processDescription);
+		type(By.id("form:process-description"), processDescription);
 	}
 
-	public void selectCheckbox(String forAttribute) {
+	private void selectCheckbox(String forAttribute) {
 		WebElement checkboxLabel = findElementByXpath(String.format("//label[@for='%s']", forAttribute));
 		checkboxLabel.click();
 		waitAjaxIndicatorDisappear();
@@ -43,7 +38,7 @@ public class ExpressProcessPage extends TemplatePage {
 	public void createTask(int taskIndex, int typeIndex, String taskName, String taskDescription,
 			List<ExpressResponsible> responsibles) {
 		chooseTaskType(taskIndex, typeIndex);
-		Sleeper.sleepTight(1000);
+		Sleeper.sleep(1000);
 		waitAjaxIndicatorDisappear();
 		if (typeIndex != 2) { // 2 is INFORMATION_EMAIL_INDEX
 			type(By.id(String.format("form:defined-tasks-list:%d:task-name", taskIndex)), taskName);
@@ -123,7 +118,7 @@ public class ExpressProcessPage extends TemplatePage {
 		waitForElementDisplayed(By.id("delete-all-defined-tasks-warning"), true);
 		click(By.id("delete-all-defined-tasks-warning-ok"));
 		waitAjaxIndicatorDisappear();
-		Sleeper.sleepTight(2000);
+		Sleeper.sleep(2000);
 	}
 
 	public String getProcessName() {

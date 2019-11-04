@@ -28,10 +28,8 @@ Cs0 @UdMethod f7 '' #zField
 Cs0 @PushWFArc f25 '' #zField
 Cs0 @PushWFArc f4 '' #zField
 Cs0 @UdEvent f5 '' #zField
-Cs0 @GridStep f6 '' #zField
-Cs0 @PushWFArc f8 '' #zField
 Cs0 @CallSub f9 '' #zField
-Cs0 @PushWFArc f12 '' #zField
+Cs0 @PushWFArc f6 '' #zField
 >Proto Cs0 Cs0 CaseItemHistoryProcess #zField
 Cs0 f0 guid 167E9D3052E4370B #txt
 Cs0 f0 method start() #txt
@@ -183,22 +181,6 @@ Cs0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f5 83 371 26 26 -47 15 #rect
 Cs0 f5 @|UdEventIcon #fIcon
-Cs0 f6 actionTable 'out=in;
-' #txt
-Cs0 f6 actionCode 'import ch.ivy.addon.portalkit.util.MenuUtils;
-
-MenuUtils.clearMenuState();' #txt
-Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Clear menu state</name>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f6 168 362 112 44 -47 -8 #rect
-Cs0 f6 @|StepIcon #fIcon
-Cs0 f8 expr out #txt
-Cs0 f8 109 384 168 384 #arcP
 Cs0 f9 processCall 'Functional Processes/Navigator:viewTask(Long,ch.ivy.addon.portalkit.dto.GlobalCaseId,String)' #txt
 Cs0 f9 requestActionDecl '<Long taskId,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId,String caseName> param;' #txt
 Cs0 f9 requestMappingAction 'param.taskId=in.taskId;
@@ -216,10 +198,9 @@ Cs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f9 320 362 128 44 -60 -8 #rect
+Cs0 f9 168 362 128 44 -60 -8 #rect
 Cs0 f9 @|CallSubIcon #fIcon
-Cs0 f12 expr out #txt
-Cs0 f12 280 384 320 384 #arcP
+Cs0 f6 109 384 168 384 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -238,7 +219,5 @@ Cs0 f7 mainOut f25 tail #connect
 Cs0 f25 head f3 mainIn #connect
 Cs0 f3 mainOut f4 tail #connect
 Cs0 f4 head f26 mainIn #connect
-Cs0 f5 mainOut f8 tail #connect
-Cs0 f8 head f6 mainIn #connect
-Cs0 f6 mainOut f12 tail #connect
-Cs0 f12 head f9 mainIn #connect
+Cs0 f5 mainOut f6 tail #connect
+Cs0 f6 head f9 mainIn #connect

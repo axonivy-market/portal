@@ -13,7 +13,8 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
+
+import portal.guitest.common.Sleeper;
 
 public class CaseDetailsPage extends TemplatePage {
   private static final String DOCUMENT_COMPONENT_ID = "div[id='case-item-details:document']";
@@ -27,10 +28,6 @@ public class CaseDetailsPage extends TemplatePage {
   private static final String ADDITIONAL_CASE_DETAILS_URL_CSS_SELECTOR = "a[id$='additional-case-details-link']";
   private static final String AUTHOR_USER_CSS_SELECTOR = "span[class='history-fullname']";
   private static final String VIEW_NOTE_DIALOG_ID = "case-item-details:case-histories:view-note-dialog";
-  private static final String UPLOAD_DOCUMENT_BUTTON_ID =
-      "case-widget:case-list-scroller:0:case-item:case-body:document:add-document-command";
-  private static final String DELETE_DOCUMENT_BUTTON_ID =
-      "case-widget:case-list-scroller:0:case-item:case-body:document:document-list:0:delete-file";
   private WebElement caseItem;
 
   @Override
@@ -38,12 +35,7 @@ public class CaseDetailsPage extends TemplatePage {
     return "id('case-item-details:case-detail-title-form:case-detail-name')";
   }
 
-  public CaseDetailsPage(WebElement caseItem) {
-    this.caseItem = caseItem;
-  }
-
   public CaseDetailsPage() {
-    // TODO Auto-generated constructor stub
     this.caseItem = findElementByCssSelector("#main-area-panel");
   }
 
@@ -59,10 +51,6 @@ public class CaseDetailsPage extends TemplatePage {
   public int countRelatedTasks() {
     return caseItem.findElement(By.cssSelector("div[id$='related-tasks']"))
         .findElements(By.cssSelector("a[id$='task-name']")).size();
-  }
-
-  public int countTechnicalCases() {
-    return caseItem.findElements(By.cssSelector("div[id$=':technicalCase']")).size();
   }
 
   public void addNote(String content) {
@@ -125,9 +113,9 @@ public class CaseDetailsPage extends TemplatePage {
     return documentComponent;
   }
 
-  public TaskWidgetPage openTasksOfCasePage(int index) {
+  public TaskDetailsPage openTasksOfCasePage(int index) {
     click(By.cssSelector("a[id$='tasks:" + index + ":task-name']"));
-    return new TaskWidgetPage();
+    return new TaskDetailsPage();
   }
 
   public String openDoneTask(int index) {
@@ -142,7 +130,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void clickViewNote() {
-    findElementByCssSelector(LATEST_HISTORY_LIST_CSS_SELECTOR).click();
+    clickByCssSelector(LATEST_HISTORY_LIST_CSS_SELECTOR);
     waitAjaxIndicatorDisappear();
     WebElement noteDialog = getViewNoteDialog();
     waitForElementDisplayed(noteDialog, true);
@@ -153,9 +141,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public List<String> getCaseNoteAuthors() {
-    WebElement caseHistoriesDiv = findElementById(HISTORY_COMPONENT_ID);
-    List<WebElement> noteAuthorElements =
-        caseHistoriesDiv.findElements(By.cssSelector("span[id$=user-full-name\\:user]"));
+    List<WebElement> noteAuthorElements = findListElementsByCssSelector(".fa-pencil-square-o + span.history-fullname");
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }
 
@@ -163,25 +149,26 @@ public class CaseDetailsPage extends TemplatePage {
     return findElementById(VIEW_NOTE_DIALOG_ID);
   }
 
-  public void changeCaseName(String newCaseName, int caseIndex) {
-    onClickNameInplace(caseIndex);
-    onChangeNameInput(newCaseName, caseIndex);
-    onSubmitNameInplaceEditor(caseIndex);
-    waitForPageLoaded();
+  public void changeCaseName(String newCaseName) {
+    clickByCssSelector("span[id$='case-name-edit-inplace_display']");
+    WebElement taskNameInput = findElementByCssSelector("input[id$='case-detail-name-input']");
+    waitForElementDisplayed(taskNameInput, true);
+    taskNameInput.clear();
+    taskNameInput.sendKeys(newCaseName);
+    clickByCssSelector("#case-item-details\\:case-detail-title-form\\:case-name-edit-inplace_editor .ui-inplace-save");
+    waitAjaxIndicatorDisappear();
   }
 
-  public void changeCaseDescription(String newDescription, int caseIndex) {
+  public void changeCaseDescription(String newDescription) {
     onClickDescriptionEditIcon();
-    onClickDescriptionInplace(caseIndex);
-    onChangeDescriptionInput(newDescription, caseIndex);
-    onSubmitDescriptionInplaceEditor(caseIndex);
+    onClickDescriptionInplace();
+    onChangeDescriptionInput(newDescription);
+    onSubmitDescriptionInplaceEditor();
     waitForPageLoaded();
   }
 
-  public String getNameOfCaseAt(int caseIndex) {
-    WebElement taskName = findElementById(String.format(
-        "case-widget:case-list-scroller:%d:case-item:case-name-component:case-name-form:case-name-edit-inplace_display",
-        caseIndex));
+  public String getNameOfCaseAt() {
+    WebElement taskName = findElementByCssSelector("span[id$='case-name-edit-inplace_display']");
     waitForElementDisplayed(taskName, true);
     return taskName.getText();
   }
@@ -191,9 +178,8 @@ public class CaseDetailsPage extends TemplatePage {
         "case-widget:case-list-scroller:%d:case-item:case-name-component:case-name-form:case-name-input", caseIndex)));
   }
 
-  public String getDescriptionOfCaseAt(int caseIndex) {
-    WebElement caseDescription = findElementById(
-        String.format("case-widget:case-list-scroller:%d:case-item:case-name-component:description-cell", caseIndex));
+  public String getDescriptionOfCaseAt() {
+    WebElement caseDescription = findElementById("case-item-details:description:case-description-form:case-description-output");
     waitForElementDisplayed(caseDescription, true);
     return caseDescription.getText();
   }
@@ -203,39 +189,29 @@ public class CaseDetailsPage extends TemplatePage {
         .id(String.format("case-widget:case-list-scroller:%d:case-item:case-body:case-description-input", caseIndex)));
   }
 
-  private void onSubmitDescriptionInplaceEditor(int caseIndex) {
-    WebElement editor = findElementById(String.format(
-        "case-widget:case-list-scroller:%d:case-item:case-body:description:case-description-form:case-description-inplace_editor",
-        caseIndex));
+  private void onSubmitDescriptionInplaceEditor() {
+    WebElement editor = findElementById("case-item-details:description:case-description-form:case-description-inplace_editor");
     WebElement saveButton = findChildElementByClassName(editor, "ui-inplace-save");
     saveButton.click();
     waitAjaxIndicatorDisappear();
   }
 
-  private void onChangeDescriptionInput(String newDescription, int caseIndex) {
-    try {
-      Thread.sleep(2000);
-    } catch (InterruptedException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-    WebElement caseDescriptionInput = findElementById(String.format(
-        "case-widget:case-list-scroller:%d:case-item:case-body:description:case-description-form:case-description-input",
-        caseIndex));
+  private void onChangeDescriptionInput(String newDescription) {
+    Sleeper.sleep(2000);
+   // WebElement caseDescriptionInput = findElementById("case-item-details:description:case-description-form:case-description-output");
+    WebElement caseDescriptionInput = findElementByCssSelector("textarea[id='case-item-details:description:case-description-form:case-description-input']");
     waitForElementDisplayed(caseDescriptionInput, true);
     caseDescriptionInput.clear();
     caseDescriptionInput.sendKeys(newDescription);
   }
 
-  private void onClickDescriptionInplace(int caseIndex) {
-    WebElement caseDescriptionInplace = findElementById(String.format(
-        "case-widget:case-list-scroller:%d:case-item:case-body:description:case-description-form:case-description-inplace_display",
-        caseIndex));
+  private void onClickDescriptionInplace() {
+    WebElement caseDescriptionInplace = findElementById("case-item-details:description:case-description-form:case-description-output");
     waitForElementDisplayed(caseDescriptionInplace, true);
     caseDescriptionInplace.click();
   }
 
-  public void onClickDescriptionEditIcon() {
+  private void onClickDescriptionEditIcon() {
     try {
       WebElement caseIcons = caseItem.findElement(By.cssSelector(CASE_ICONS_CONTAINER_COMPONENT_CSS_SELECTOR));
       WebElement descriptionIcon = caseIcons.findElement(By.cssSelector("a[class*='fa fa-clipboard']"));
@@ -251,80 +227,30 @@ public class CaseDetailsPage extends TemplatePage {
     findElementById("case-item-details:case-histories:add-note-command").click();
   }
 
-  public void onClickDocumentIcon() {
-    try {
-      WebElement caseIcons = caseItem.findElement(By.cssSelector(CASE_ICONS_CONTAINER_COMPONENT_CSS_SELECTOR));
-      WebElement documentIcon = caseIcons.findElement(By.cssSelector("a[class*='fa fa-file']"));
-      if (documentIcon != null) {
-        documentIcon.click();
-      }
-    } catch (Exception e) {
-      return;
-    }
-  }
-
-  private void onSubmitNameInplaceEditor(int caseIndex) {
-    WebElement editor = findElementById(String.format(
-        "case-widget:case-list-scroller:%d:case-item:case-name-component:case-name-form:case-name-edit-inplace_editor",
-        caseIndex));
-    WebElement saveButton = findChildElementByClassName(editor, "ui-inplace-save");
-    saveButton.click();
-    waitAjaxIndicatorDisappear();
-  }
-
-  private void onChangeNameInput(String newCaseName, int caseIndex) {
-    String caseNameInputId = String.format(
-        "case-widget:case-list-scroller:%d:case-item:case-name-component:case-name-form:case-name-input", caseIndex);
-    WebElement caseNameInput = findElementById(caseNameInputId);
-    waitForElementDisplayed(caseNameInput, true);
-    caseNameInput.clear();
-    caseNameInput.sendKeys(newCaseName);
-  }
-
-  private void onClickNameInplace(int caseIndex) {
-    String caseNameInplaceId = String.format(
-        "case-widget:case-list-scroller:%d:case-item:case-name-component:case-name-form:case-name-edit-inplace_display",
-        caseIndex);
-    WebElement caseNameInplace = findElementById(caseNameInplaceId);
-    caseNameInplace.click();
-  }
-
   public TaskWidgetPage clickShowAllTasks() {
-    caseItem.findElement(By.cssSelector("a[id$='show-all-tasks']")).click();
+    caseItem.findElement(By.cssSelector("a[id$='show-more-related-tasks']")).click();
     return new TaskWidgetPage();
   }
 
   public void uploadDocumentWithoutError(String pathToFile) {
     openAddDocumentDialogAndUploadDocument(0, pathToFile);
-    click(By.id(String
-        .format("case-widget:case-list-scroller:%d:case-item:case-body:document:document-upload-close-command", 0)));
+    click(By.cssSelector("button[id$='case-item-details:document:document-upload-close-command']"));
   }
 
   public String uploadDocumentWithError(String pathToFile) {
     openAddDocumentDialogAndUploadDocument(0, pathToFile);
-    WebElement errorMsg = findElementByXpath(String.format(
-        "//*[@id='case-widget:case-list-scroller:%d:case-item:case-body:document:document-upload-form:upload-messages']/div/ul/li/span",
-        0));
+    WebElement errorMsg = findElementByCssSelector("div[id$='upload-messages']");
     String returnMsg = StringUtils.EMPTY;
     if (errorMsg.isDisplayed()) {
       returnMsg = errorMsg.getText();
     }
-    click(By.id(String
-        .format("case-widget:case-list-scroller:%d:case-item:case-body:document:document-upload-close-command", 0)));
+    click(By.cssSelector("button[id$='document-upload-close-command']"));
     return returnMsg;
   }
 
   private void openAddDocumentDialogAndUploadDocument(int index, String pathToFile) {
-    try {
-      click(By.id(
-          String.format("case-widget:case-list-scroller:%d:case-item:case-body:document:add-document-command", index)));
-    } catch (UnhandledAlertException e) {
-      Alert alert = driver.switchTo().alert();
-      alert.accept();
-    }
-    String uploadDialogId =
-        String.format("case-widget:case-list-scroller:%d:case-item:case-body:document:document-upload-dialog", index);
-    waitForElementDisplayed(By.id(uploadDialogId), true);
+    clickByCssSelector("a[id$='add-document-command']");
+    waitForElementDisplayed(By.cssSelector("span[id$='document-upload-dialog_title']"), true);
     try {
       click(By.className("ui-fileupload-choose"));
     } catch (UnhandledAlertException e) {
@@ -347,18 +273,14 @@ public class CaseDetailsPage extends TemplatePage {
     }
     // currently haven't found solution to check when the file upload finish, we have to wait
     if (isIntegrationTestRun()) {
-      Sleeper.sleepTight(10000);
+      Sleeper.sleep(10000);
     } else {
-      Sleeper.sleepTight(5000);
+      Sleeper.sleep(5000);
     }
   }
 
-  public boolean isUploadDocumentButtonPresented() {
-    return caseItem.findElements(By.id(UPLOAD_DOCUMENT_BUTTON_ID)).size() > 0;
-  }
-
   public boolean isDeleteDocumentButtonPresented() {
-    return caseItem.findElements(By.id(DELETE_DOCUMENT_BUTTON_ID)).size() > 0;
+    return isElementDisplayed(By.cssSelector("a[id$='delete-file']"));
   }
 
   public String getCaseName() {
@@ -366,4 +288,29 @@ public class CaseDetailsPage extends TemplatePage {
         findElementByCssSelector("#case-item-details\\:case-detail-title-form\\:case-name-edit-inplace_display");
     return selectedCaseNameElement.getText();
   }
+  public boolean isAddNoteButtonDisplayed() {
+    return isElementDisplayedById("case-item-details:case-histories:add-note-command");
+  }
+
+  public boolean isShowMoreNoteButtonDisplayed() {
+    return isElementDisplayedById("case-item-details:case-histories:show-more-note-link");
+  }
+
+  public boolean isShowDetailsDisplayed() {
+    return isElementDisplayedById("case-item-details:show-additional-case-details-link");
+  }
+
+  public boolean isShowAllTasksDisplayed() {
+    return isElementDisplayedById("case-item-details:related-tasks:show-more-related-tasks");
+  }
+
+  public boolean isAddDocumentLinkDisplayed() {
+    return isElementDisplayedById("case-item-details:document:add-document-command");
+  }
+  
+  public int countNumberOfDocument() {
+    return findListElementsByCssSelector("a[id$='download']").size();
+  }
+  
+
 }
