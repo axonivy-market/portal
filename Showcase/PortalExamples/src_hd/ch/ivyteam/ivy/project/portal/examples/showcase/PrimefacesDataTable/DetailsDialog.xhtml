@@ -26,7 +26,7 @@
 			<p:toolbar style="border:none">
 			<f:facet name="right">
 				<p:commandButton value="Save" actionListener="#{logic.save}"
-					update=":form:theTable detailForm" oncomplete="validateToHide(args, PF('detailDialog'));" id="dialogSaveButton"/>
+					update="#{p:component('theTable')} detailForm" oncomplete="validateToHide(args, PF('detailDialog'));" id="dialogSaveButton"/>
 				
 				<p:commandButton value="Cancel" process="@this" oncomplete="PF('detailDialog').hide();" styleClass="portal-cancel-button">
 					<p:resetInput target="detailForm"></p:resetInput>
