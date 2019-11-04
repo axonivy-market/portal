@@ -1317,7 +1317,6 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 .process-widget .default-process-title {
   display: inline-block;
   padding-right: 20px;
-  padding-left: 9px;
 }
 
 .process-widget .user-default-process-list {
@@ -4405,7 +4404,6 @@ a.ui-widget:focus {
 .favorite-process-title {
   display: inline-block;
   padding-right: 20px;
-  padding-left: 9px;
 }
 
 .all-processes-container {
