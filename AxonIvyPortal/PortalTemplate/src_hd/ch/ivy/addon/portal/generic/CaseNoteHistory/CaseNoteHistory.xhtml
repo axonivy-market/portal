@@ -8,50 +8,38 @@
     <ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/caseHistoryPageTitle')}</ui:define>
     <ui:define name="simplePageContent">
       <h:form id="form" onkeypress="if (event.keyCode == 13) { return false; }" styleClass="note-history-container">
-        <p:panelGrid columns="2" styleClass="u-no-border" layout="grid" columnClasses="ui-grid-col-2, ui-grid-col-10">
-          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}"/>
-          <p:outputLabel id="case-name" value="#{data.ivyCase.name}"/>
-          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}"/>
-          <p:outputLabel id="case-id" value="#{data.ivyCase.id}"/>
-          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}"/>
-          <p:outputLabel id="case-creator" value="#{data.ivyCase.creatorUser.fullName}"/>
-          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}"/>
-          <p:outputLabel id="case-state" value="#{caseBean.getState(data.ivyCase)}"/>
-        </p:panelGrid>
-        <br/>
-        
-        <p:dataTable id="case-info" var="case" value="#{data.ivyCase}" styleClass="hide">
-          <p:column width="40%" >
-            <f:facet name="header">
-              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" />
-            </f:facet>
+        <div class="ui-g">
+          <div class="ui-g-2 ui-sm-3">
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" />
+          </div>
+          <div class="ui-g-10 ui-sm-9">
             <h:outputText value="#{data.ivyCase.name}" />
-          </p:column>
-          <p:column width="20%" >
-            <f:facet name="header">
-              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" />
-            </f:facet>
+          </div>
+          <div class="ui-g-2 ui-sm-3">
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" />
+          </div>
+          <div class="ui-g-10 ui-sm-9">
             <h:outputText value="#{data.ivyCase.id}" />
-          </p:column>
-          <p:column width="20%">
-            <f:facet name="header">
-              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" />
-            </f:facet>
+          </div>
+          <div class="ui-g-2 ui-sm-3">
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" />
+          </div>
+          <div class="ui-g-10 ui-sm-9">
             <h:outputText value="#{data.ivyCase.creatorUser.fullName}" />
-          </p:column>
-          <p:column>
-            <f:facet name="header">
-              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" />
-            </f:facet>
+          </div>
+          <div class="ui-g-2 ui-sm-3">
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" />
+          </div>
+          <div class="ui-g-10 ui-sm-9">
             <h:outputText value="#{caseBean.getState(data.ivyCase)}" />
-          </p:column>
-        </p:dataTable>
+          </div>
+        </div>
         
         <p:dataTable id="notes-table" widgetVar="notesTable" var="history" sortBy="#{history.timestamp}"
           sortOrder="DESCENDING" value="#{data.histories}" filteredValue="#{data.filteredHistories}"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
           <p:column sortBy="#{caseTaskNoteHistoryBean.getCaseNoteContent(history)}"
-            filterBy="#{caseTaskNoteHistoryBean.getCaseNoteContent(history)}" filterMatchMode="contains">
+            filterBy="#{caseTaskNoteHistoryBean.getCaseNoteContent(history)}" filterMatchMode="contains" styleClass="u-truncate-text history-note ui-sm-12">
             <f:facet name="header">
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}" />
             </f:facet>
