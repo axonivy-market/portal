@@ -16,7 +16,7 @@
 
       <p:commandButton id="export-button" ajax="false" styleClass="export-excel Fright"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}">
-        <p:dataExporter type="xls" target="case-table" fileName="#{elapsedTimeDetailsBean.getExcelFileName()}" />
+        <p:dataExporter type="xlsx" target="case-table" fileName="#{elapsedTimeDetailsBean.getExcelFileName()}" />
       </p:commandButton>
 
       <p:dataTable id="case-table" widgetVar="case-table" var="elapsedTimeDetail" value="#{data.dataModel}" sortBy="ID" sortField="ID"
@@ -37,7 +37,7 @@
 
         <p:column id="case-creator" styleClass="case-creator"
           headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" sortable="false">
-          <h:outputText value="#{elapsedTimeDetail.getCreatorUserName()}" />
+          <h:outputText value="#{userFormatBean.format(elapsedTimeDetail.getCreatorUser().getFullName(), elapsedTimeDetail.getCreatorUserName())}" />
         </p:column>
 
         <p:column id="case-created" styleClass="case-created"
