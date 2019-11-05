@@ -103,8 +103,7 @@ topbar, if your page using layout of ``PortalTemplate`` .
 
 ..
 
-.. tip:: To be able to open Admin Settings dialog, user needs to have role
-      AXONIVY_PORTAL_ADMIN .
+.. tip:: To be able to open Admin Settings dialog, user needs to have role AXONIVY_PORTAL_ADMIN.
 
 Add a new application
 
