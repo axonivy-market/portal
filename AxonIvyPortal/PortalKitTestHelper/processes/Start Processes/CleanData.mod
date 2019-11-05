@@ -46,6 +46,18 @@ Ca0 @EndTask f26 '' #zField
 Ca0 @GridStep f28 '' #zField
 Ca0 @PushWFArc f29 '' #zField
 Ca0 @PushWFArc f27 '' #zField
+Ca0 @StartRequest f30 '' #zField
+Ca0 @GridStep f31 '' #zField
+Ca0 @EndTask f32 '' #zField
+Ca0 @PushWFArc f33 '' #zField
+Ca0 @PushWFArc f34 '' #zField
+Ca0 @EndTask f35 '' #zField
+Ca0 @GridStep f36 '' #zField
+Ca0 @StartRequest f37 '' #zField
+Ca0 @PushWFArc f38 '' #zField
+Ca0 @GridStep f40 '' #zField
+Ca0 @PushWFArc f41 '' #zField
+Ca0 @PushWFArc f39 '' #zField
 >Proto Ca0 Ca0 CleanData #zField
 Ca0 f0 outLink cleanCompletedCases.ivp #txt
 Ca0 f0 inParamDecl '<> param;' #txt
@@ -360,6 +372,141 @@ Ca0 f29 expr out #txt
 Ca0 f29 1056 111 1056 170 #arcP
 Ca0 f27 expr out #txt
 Ca0 f27 1056 214 1056 273 #arcP
+Ca0 f30 outLink resetLanguageOfCurrentUser.ivp #txt
+Ca0 f30 inParamDecl '<> param;' #txt
+Ca0 f30 requestEnabled true #txt
+Ca0 f30 triggerEnabled false #txt
+Ca0 f30 callSignature resetLanguageOfCurrentUser() #txt
+Ca0 f30 persist false #txt
+Ca0 f30 startName 'Reset language of current user' #txt
+Ca0 f30 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Ca0 f30 caseData businessCase.attach=true #txt
+Ca0 f30 showInStartList 1 #txt
+Ca0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>resetLanguageOfCurrentUser</name>
+    </language>
+</elementInfo>
+' #txt
+Ca0 f30 @C|.responsibility Everybody #txt
+Ca0 f30 1209 81 30 30 -65 -38 #rect
+Ca0 f30 @|StartRequestIcon #fIcon
+Ca0 f31 actionTable 'out=in;
+' #txt
+Ca0 f31 actionCode 'import java.util.Locale;
+
+Locale default = ivy.request.getApplication().getDefaultEMailLanguage();
+ivy.session.getSessionUser().setEMailLanguage(default);
+' #txt
+Ca0 f31 1168 170 112 44 0 -8 #rect
+Ca0 f31 @|StepIcon #fIcon
+Ca0 f32 1209 273 30 30 0 15 #rect
+Ca0 f32 @|EndIcon #fIcon
+Ca0 f33 expr out #txt
+Ca0 f33 1224 111 1224 170 #arcP
+Ca0 f34 expr out #txt
+Ca0 f34 1224 214 1224 273 #arcP
+Ca0 f35 51 547 26 26 14 0 #rect
+Ca0 f35 @|EndIcon #fIcon
+Ca0 f36 actionTable 'out=in;
+' #txt
+Ca0 f36 actionCode 'import ch.ivy.addon.portalkit.test.util.BusinessDataUtils;
+import ch.ivy.addon.portalkit.test.util.CaseUtils;
+import ch.ivy.addon.portalkit.service.UserProcessService;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.test.util.SecurityUtils;
+
+CaseUtils.deleteAllCases();
+BusinessDataUtils.clearAllBusinessData();
+ivy.datacache.getAppCache().invalidate();
+
+UserProcessService userProcess =new UserProcessService();
+userProcess.deleteAll(userProcess.findAll());
+
+SecurityUtils.updatePermissionsOfTestUsers();
+
+GlobalSettingService globalSettingService = new GlobalSettingService();
+globalSettingService.deleteAll(globalSettingService.findAll());
+
+' #txt
+Ca0 f36 security system #txt
+Ca0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>clean data</name>
+    </language>
+</elementInfo>
+' #txt
+Ca0 f36 46 404 36 24 20 -2 #rect
+Ca0 f36 @|StepIcon #fIcon
+Ca0 f37 outLink cleanData.ivp #txt
+Ca0 f37 inParamDecl '<> param;' #txt
+Ca0 f37 requestEnabled true #txt
+Ca0 f37 triggerEnabled false #txt
+Ca0 f37 callSignature cleanData() #txt
+Ca0 f37 persist false #txt
+Ca0 f37 startName 'Clean data' #txt
+Ca0 f37 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Ca0 f37 showInStartList 1 #txt
+Ca0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>cleanData.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Ca0 f37 @C|.responsibility Everybody #txt
+Ca0 f37 51 355 26 26 -57 -34 #rect
+Ca0 f37 @|StartRequestIcon #fIcon
+Ca0 f38 expr out #txt
+Ca0 f38 64 381 64 404 #arcP
+Ca0 f40 actionTable 'out=in;
+' #txt
+Ca0 f40 actionCode 'import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
+import ch.ivyteam.ivy.security.IUser;
+import java.util.Locale;
+ivy.session.loginSessionUser("demo", "demo");
+//set language from user settings or application details
+IUser sessionUser = ivy.session.getSessionUser();
+
+if (sessionUser.getEMailLanguage() != null &&
+		sessionUser.getEMailLanguage() instanceof Locale) {
+	Locale l = ivy.session.getSessionUser().getEMailLanguage();
+	ivy.session.setContentLocale(l);
+	ivy.session.setFormattingLocale(l);
+} else {
+	// Application Default
+	Locale default = ivy.request.getApplication().getDefaultEMailLanguage();
+	String language = default.getLanguage();
+	String country = default.getCountry();
+	Locale l = new Locale(language, country, "APPLICATION_DEFAULT");
+	ivy.session.setContentLocale(l);
+	ivy.session.setFormattingLocale(l);
+}' #txt
+Ca0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>login</name>
+    </language>
+</elementInfo>
+' #txt
+Ca0 f40 8 466 112 44 -13 -8 #rect
+Ca0 f40 @|StepIcon #fIcon
+Ca0 f41 expr out #txt
+Ca0 f41 64 428 64 466 #arcP
+Ca0 f39 64 510 64 547 #arcP
 >Proto Ca0 .type portalKit_test.Data #txt
 >Proto Ca0 .processKind NORMAL #txt
 >Proto Ca0 0 0 32 24 18 0 #rect
@@ -392,3 +539,13 @@ Ca0 f25 mainOut f29 tail #connect
 Ca0 f29 head f28 mainIn #connect
 Ca0 f28 mainOut f27 tail #connect
 Ca0 f27 head f26 mainIn #connect
+Ca0 f30 mainOut f33 tail #connect
+Ca0 f33 head f31 mainIn #connect
+Ca0 f31 mainOut f34 tail #connect
+Ca0 f34 head f32 mainIn #connect
+Ca0 f37 mainOut f38 tail #connect
+Ca0 f38 head f36 mainIn #connect
+Ca0 f36 mainOut f41 tail #connect
+Ca0 f41 head f40 mainIn #connect
+Ca0 f40 mainOut f39 tail #connect
+Ca0 f39 head f35 mainIn #connect

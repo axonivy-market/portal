@@ -33,7 +33,7 @@
 
         <p:fieldset id="dynaform-fieldset" toggleable="true" legend="#{ivy.cms.co('/Dialogs/WorkflowExecution/UserTaskForm/Formular')}"
           styleClass="express-fieldset fieldset-no-border MarTop10 ui-fluid">
-          <p:messages id="messages-dynaform" showDetail="false" closable="true" globalOnly="true">
+          <p:messages id="messages-dynaform" showDetail="false" closable="true">
             <p:autoUpdate />
           </p:messages>
           <div class="card ui-g-12 user-task-dyna-container">
@@ -82,6 +82,7 @@
 
               <pe:dynaFormControl type="FileUpload" for="fileUpload">
                 <ic:ch.ivy.addon.portalkit.component.document.DocumentTable id="fileUploadComponent" typeColumnRendered="false"
+                  messageRendered="false"
                   fileLimit="#{dynaData.intSetting}" />
               </pe:dynaFormControl>
 

@@ -4,7 +4,6 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:body>
   <ui:composition template="/layouts/PortalTasksTemplate.xhtml">
-    <ui:param name="menuState" value="#{data.menuState}" />
     <ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
     <ui:param name="useOverrideListHeader" value="true" />
     <ui:param name="useOverrideHeader" value="true" />
@@ -44,11 +43,11 @@
         sortField="#{masterDataBean.taskSortFieldExpiryTime}" />
 
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
-        componentId="customer-name-header" sortField="customVarcharField5" value="Customer name"
+        componentId="customer-name-header" sortField="customVarCharField5" value="Customer name"
         styleClass="state-column-header TexAlCenter" />
 
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
-        componentId="customer-type-header" sortField="customVarcharField1" value="Customer type"
+        componentId="customer-type-header" sortField="customVarCharField1" value="Customer type"
         styleClass="state-column-header TexAlCenter" />
     </ui:define>
 
@@ -65,11 +64,9 @@
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskId value="#{task.getId()}" dataModel="#{taskView.dataModel}" />
 
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate componentId="creation-time"
-        value="#{task.startTimestamp}" styleClass="#{taskView.dataModel.isAutoHideColumns()?'js-create-cell':''}"
-        rendered="#{taskView.dataModel.isSelectedColumn('CREATION_TIME')}" />
+        value="#{task.startTimestamp}" rendered="#{taskView.dataModel.isSelectedColumn('CREATION_TIME')}" />
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate componentId="expiry-time"
-        value="#{task.expiryTimestamp}" styleClass="#{taskView.dataModel.isAutoHideColumns()?'js-expiry-cell':''}"
-        rendered="#{taskView.dataModel.isSelectedColumn('EXPIRY_TIME')}" />
+        value="#{task.expiryTimestamp}" rendered="#{taskView.dataModel.isSelectedColumn('EXPIRY_TIME')}" />
 
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskCustomField id="customer-name-component" componentId="customer-name" column="customVarCharField5" dataModel="#{taskView.dataModel}"
         labelValue="#{task.customFields().stringField('CustomVarCharField5').getOrNull()}" />

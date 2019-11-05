@@ -3,35 +3,34 @@ package portal.guitest.page;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.google.common.base.Predicate;
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
-import ch.xpertline.base.pages.AbstractPage;
 import portal.guitest.common.UrlHelpers;
+import vn.wawa.guitest.base.page.AbstractPage;
 
 public abstract class TemplatePage extends AbstractPage {
 
-  private static final String TEMPLATE_PAGE_LOCATOR = "id('logo')";
+  private static final String TEMPLATE_PAGE_LOCATOR = "id('global-search-component:global-search-data')";
   public static final String CLASS_PROPERTY = "class";
-  protected static final String ENGINE_URL_LOCAL = "http://localhost:8081/ivy";
+  private static final String ENGINE_URL_LOCAL = "http://localhost:8081/ivy";
 
   public TemplatePage() {
     waitForLocatorDisplayed(getLoadedLocator());
   }
 
   protected long getTimeOutForLocator() {
-    return 100L;
+    return 10L;
   }
 
   protected void waitForLocatorDisplayed(String locator) {
@@ -66,10 +65,10 @@ public abstract class TemplatePage extends AbstractPage {
     ensureNoBackgroundRequest(500, 30);
   }
 
-  protected void ensureNoBackgroundRequest(int minMilliSeconds, int timeOutInSeconds) {
+  private void ensureNoBackgroundRequest(int minMilliSeconds, int timeOutInSeconds) {
     WebDriverWait wait = new WebDriverWait(getDriver(), timeOutInSeconds, 200);
     final long startTime = System.currentTimeMillis();
-    Predicate<WebDriver> myPredicate = webDriver -> {
+    Function<WebDriver, Boolean> myFunction = webDriver -> {
       if (System.currentTimeMillis() - startTime < minMilliSeconds) {
         return false;
       }
@@ -81,7 +80,7 @@ public abstract class TemplatePage extends AbstractPage {
       return false;
     };
     try {
-      wait.until(myPredicate);
+      wait.until(myFunction);
     } catch (WebDriverException e) {
       System.out.println("Error when ensuring not background request");
       e.printStackTrace();
@@ -122,33 +121,11 @@ public abstract class TemplatePage extends AbstractPage {
     return driver.getWindowHandles().size();
   }
 
-  public HomePage goToHomePage() {
-    clickOnLogo();
-    boolean hasLeaveButton = false;
-    try {
-      hasLeaveButton = getDriver().findElements(By.id("task-leave-warning-component:leave-button")).size() > 0;
-    } catch (NoSuchElementException e) {
-      // This should not happen, but at least it happens when running preintegration test on ivy 7
-    }
-
-    if (hasLeaveButton) {
-      WebElement leaveButton = findElementById("task-leave-warning-component:leave-button");
-      leaveButton.click();
-    }
-
-    waitForPageLoaded();
-    return new HomePage();
-  }
-
   public void switchLastBrowserTab() {
     String oldTab = driver.getWindowHandle();
     ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
     tabs.remove(oldTab);
     driver.switchTo().window(tabs.get(0));
-  }
-
-  public void navigateBack() {
-    driver.navigate().back();
   }
 
   public AdminSettingsPage openAdminSettings() {
@@ -196,9 +173,20 @@ public abstract class TemplatePage extends AbstractPage {
       return false;
     }
   }
+  
+  
+
+  @Override
+  public <T> boolean isElementDisplayed(T locator) {
+    try {
+      return super.isElementDisplayed(locator);
+    } catch (Exception e) {
+      return false;
+    }
+  }
 
   public MainMenuPage openMainMenu() {
-    WebElement mainMenuToggle = findDisplayedElementBySelector("#left-menu");
+    WebElement mainMenuToggle = findDisplayedElementByCssSelector("#left-menu");
     if (!isMainMenuOpen()) {
       click(mainMenuToggle);
       click(By.xpath("//a[@id='user-menu-required-login:toggle-menu']"));
@@ -207,28 +195,23 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public void clickOnLogo() {
-    findElementByCssSelector("a[id$='logo']").click();
+    openMainMenu();
+    clickByCssSelector("a[id$='logo']");
     waitAjaxIndicatorDisappear();
   }
 
-  public WebElement findDisplayedElementById(String id) {
-    waitForElementDisplayed(By.id(id), true);
-    WebElement element = findElementById(id);
-    return element;
-  }
-
-  public WebElement findDisplayedElementBySelector(String selector) {
+  public WebElement findDisplayedElementByCssSelector(String selector) {
     waitForElementDisplayed(By.cssSelector(selector), true);
     WebElement element = findElementByCssSelector(selector);
     return element;
   }
 
   public void closeMainMenu() {
-    WebElement mainMenuToggle = findDisplayedElementBySelector("#left-menu");
+    findDisplayedElementByCssSelector("#left-menu");
     if (isMainMenuOpen()) {
       click(By.cssSelector("a[id$='toggle-menu']"));
       click(By.id("top-menu"));
-      waitForPageLoaded(2);
+      waitForElementDisplayed(By.cssSelector("a[id$='logo-small']"), true);
     }
   }
 
@@ -251,23 +234,18 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public boolean isMainMenuOpen() {
-    WebElement mainMenu = findDisplayedElementBySelector(".layout-wrapper");
+    WebElement mainMenu = findDisplayedElementByCssSelector(".layout-wrapper");
     return mainMenu.getAttribute(CLASS_PROPERTY).indexOf("static") > 0;
   }
 
   public TaskWidgetPage openTaskList() {
     openMainMenu();
-    findElementByCssSelector("li.submenu-container:nth-child(3) > a.ripplelink.submenu").click();
-    waitAjaxIndicatorDisappear();
+    clickByCssSelector("li.submenu-container:nth-child(3) > a.ripplelink.submenu");
     return new TaskWidgetPage();
   }
 
   public CaseWidgetPage openCaseList() {
-    openMainMenu();
-    WebElement caseListToggle = findListElementsByCssSelector("a.left-sidebar-sub-menu-item").get(2);
-    caseListToggle.click();
-    waitForElementPresent(By.cssSelector("div.js-case-default-widget-container"), true);
-    return new CaseWidgetPage();
+    return openMainMenu().selectCaseMenu();
   }
 
   public String getGlobalGrowlMessage() {
@@ -279,29 +257,41 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public class GlobalSearch {
-    private static final String GLOBAL_SEARCH_DATA_ELEMENT_ID = "global-search-component:global-search-data";
-    private WebElement searchWebElement;
+
+    private static final String GLOBAL_SEARCH_INPUT_SELECTOR = "#global-search-component\\:global-search-data";
 
     public GlobalSearch() {
-      final String SELECT_PARENT_NODE_XPATH = "..";
-      searchWebElement = findElementById(GLOBAL_SEARCH_DATA_ELEMENT_ID).findElement(By.xpath(SELECT_PARENT_NODE_XPATH));
+    }
+
+    private WebElement getSearchInput() {
+      waitForElementDisplayed(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR), true);
+      return findElementByCssSelector(GLOBAL_SEARCH_INPUT_SELECTOR);
     }
 
     public boolean isDisplayed() {
-      return searchWebElement.isDisplayed();
-    }
-
-    public WebElement getSearch() {
-      return searchWebElement;
-    }
-
-    public WebElement getSearchInputData() {
-      return findChildElementById(searchWebElement, GLOBAL_SEARCH_DATA_ELEMENT_ID);
+      return getSearchInput().isDisplayed();
     }
 
     public SearchResultPage inputSearchKeyword(String keyword) {
-      type(getSearchInputData(), keyword + Keys.ENTER);
+      type(getSearchInput(), keyword + Keys.ENTER);
       return new SearchResultPage();
     }
   }
+  
+  public void clickByCssSelector(String cssSelector) {
+    waitForElementDisplayed(By.cssSelector(cssSelector), true);
+    findElementByCssSelector(cssSelector).click();
+  }
+
+  protected void refreshAndWaitElement(String cssSelector, boolean isDisplayed) {
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> {
+      if ((findListElementsByCssSelector(cssSelector).isEmpty() && isDisplayed)
+          || (findListElementsByCssSelector(cssSelector).isEmpty() && !isDisplayed)) {
+        refresh();
+        return false;
+      } else {
+        return true;
+      }
+    });
+  }  
 }

@@ -1,0 +1,4 @@
+TaskTemplateIFrameData #class
+ch.ivy.addon.portal.generic.iframe.TaskTemplateIFrame #namespace
+url String #field
+url PERSISTENT #fieldModifier

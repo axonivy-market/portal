@@ -6,11 +6,11 @@ import org.junit.Test;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import portal.guitest.common.BaseTest;
-import portal.guitest.common.TestAccount;
+import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
+import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class PortalPermissionTest extends BaseTest{
@@ -23,9 +23,7 @@ public class PortalPermissionTest extends BaseTest{
   @Before
   public void setup() {
     super.setup();
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     grantAccessFullListPermissions();
     homePage = new HomePage();
   }
@@ -43,6 +41,7 @@ public class PortalPermissionTest extends BaseTest{
     Assert.assertFalse(homePage.isShowAllChartsLinkDisplayed());
     
     grantAccessFullListPermissions();
+    homePage = new HomePage();
     Assert.assertTrue(mainMenuPage.isProcessesDisplayed());
     Assert.assertTrue(mainMenuPage.isTasksDisplayed());
     Assert.assertTrue(mainMenuPage.isCasesDisplayed());
@@ -58,17 +57,15 @@ public class PortalPermissionTest extends BaseTest{
     createTestingTasks();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.openTaskList();
-    Assert.assertFalse(taskWidgetPage.isTaskResetDisplayed());
-    Assert.assertFalse(taskWidgetPage.isTaskDelegateDisplayed());
-    Assert.assertFalse(taskWidgetPage.isTaskReserverDisplayed());
-    Assert.assertFalse(taskWidgetPage.isTaskAdditionalOptionsDisplayed());
+    Assert.assertFalse(taskWidgetPage.isMoreButtonDisplayed(0));
     
     grantTaskActionsPermissions();
     taskWidgetPage.openTaskList();
+    taskWidgetPage.sideStepMenuOnMoreButton(0);
     Assert.assertTrue(taskWidgetPage.isTaskResetDisplayed());
     Assert.assertTrue(taskWidgetPage.isTaskDelegateDisplayed());
     Assert.assertTrue(taskWidgetPage.isTaskReserverDisplayed());
-    Assert.assertTrue(taskWidgetPage.isTaskAdditionalOptionsDisplayed());
+    Assert.assertTrue(taskWidgetPage.isAdhocSideStepDisplayed());
   }
   
   @Test
@@ -78,28 +75,28 @@ public class PortalPermissionTest extends BaseTest{
     denyDocumentOfInvolvedCaseWritePemissionFromCurrentUser();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
-    caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
-    Assert.assertFalse(caseWidgetPage.isAddNoteButtonDisplayed());
-    Assert.assertFalse(caseWidgetPage.isShowMoreNoteButtonDisplayed());
-    Assert.assertFalse(caseWidgetPage.isAddDocumentLinkDisplayed());
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
+    Assert.assertFalse(caseDetailsPage.isAddNoteButtonDisplayed());
+    Assert.assertFalse(caseDetailsPage.isShowMoreNoteButtonDisplayed());
+    Assert.assertFalse(caseDetailsPage.isAddDocumentLinkDisplayed());
     TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
-    taskWidgetPage.openTaskDetails(0);
-    Assert.assertFalse(taskWidgetPage.isAddNoteButtonDisplayed());
-    Assert.assertFalse(taskWidgetPage.isShowMoreNoteButtonDisplayed());
-    Assert.assertFalse(taskWidgetPage.isAddDocumentLinkDisplayed());
+    TaskDetailsPage taskDetailsPage = taskWidgetPage.openTaskDetails(0);
+    Assert.assertFalse(taskDetailsPage.isAddNoteButtonDisplayed());
+    Assert.assertFalse(taskDetailsPage.isShowMoreNoteButtonDisplayed());
+    Assert.assertFalse(taskDetailsPage.isAddDocumentLinkDisplayed());
     
     grantShowHideNotePermissions();
     grantDocumentOfInvolvedCaseWritePemissionToCurrentUser();
     mainMenuPage.openCaseList();
-    caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
-    Assert.assertTrue(caseWidgetPage.isAddNoteButtonDisplayed());
-    Assert.assertTrue(caseWidgetPage.isShowMoreNoteButtonDisplayed());
-    Assert.assertTrue(caseWidgetPage.isAddDocumentLinkDisplayed());
+    caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
+    Assert.assertTrue(caseDetailsPage.isAddNoteButtonDisplayed());
+    Assert.assertTrue(caseDetailsPage.isShowMoreNoteButtonDisplayed());
+    Assert.assertTrue(caseDetailsPage.isAddDocumentLinkDisplayed());
     mainMenuPage.openTaskList();
-    taskWidgetPage.openTaskDetails(0);
-    Assert.assertTrue(taskWidgetPage.isAddNoteButtonDisplayed());
-    Assert.assertTrue(taskWidgetPage.isShowMoreNoteButtonDisplayed());
-    Assert.assertTrue(taskWidgetPage.isAddDocumentLinkDisplayed());
+    taskDetailsPage = taskWidgetPage.openTaskDetails(0);
+    Assert.assertTrue(taskDetailsPage.isAddNoteButtonDisplayed());
+    Assert.assertTrue(taskDetailsPage.isShowMoreNoteButtonDisplayed());
+    Assert.assertTrue(taskDetailsPage.isAddDocumentLinkDisplayed());
   }
   
   @Test
@@ -108,15 +105,15 @@ public class PortalPermissionTest extends BaseTest{
     denyCasePermissions();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
-    caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
-    Assert.assertFalse(caseWidgetPage.isShowDetailsDisplayed());
-    Assert.assertFalse(caseWidgetPage.isShowAllTasksDisplayed());
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
+    Assert.assertFalse(caseDetailsPage.isShowDetailsDisplayed());
+    Assert.assertFalse(caseDetailsPage.isShowAllTasksDisplayed());
     
     grantCasePermissions();
     mainMenuPage.openCaseList();
-    caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
-    Assert.assertTrue(caseWidgetPage.isShowDetailsDisplayed());
-    Assert.assertTrue(caseWidgetPage.isShowAllTasksDisplayed());
+    caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
+    Assert.assertTrue(caseDetailsPage.isShowDetailsDisplayed());
+    Assert.assertTrue(caseDetailsPage.isShowAllTasksDisplayed());
   }
   
   private void grantAccessFullListPermissions() {

@@ -1,5 +1,5 @@
 [Ivy]
-1657E93190721001 3.28 #module
+1657E93190721001 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ds0 DefaultUserProcess Big #zClass
 Ds0 B #cInfo
@@ -19,8 +19,7 @@ Ds0 @PushWFArc f2 '' #zField
 Ds0 @InfoButton f5 '' #zField
 >Proto Ds0 Ds0 DefaultUserProcess #zField
 Ds0 f0 inParamDecl '<> param;' #txt
-Ds0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.persistence.domain.UserProcess> defaultUserProcesses> result;
-' #txt
+Ds0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.persistence.domain.UserProcess> defaultUserProcesses> result;' #txt
 Ds0 f0 outParamTable 'result.defaultUserProcesses=in.defaultUserProcesses;
 ' #txt
 Ds0 f0 callSignature createDefaultUserProcesses() #txt

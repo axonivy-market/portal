@@ -23,39 +23,39 @@
 
   <p:commandButton id="#{cc.attrs.actionLinkId}" onstart="event.stopPropagation();" global="false" disabled="#{cc.attrs.isDisabled}"
     actionListener="#{sideStepBean.getSideSteps(task.getId(), task.case.getId(), cc.attrs.isAdhocExcluded)}" styleClass="action-button task-action-item #{cc.attrs.buttonStyleClass}"
-    oncomplete="PF('#{cc.attrs.panelWidgetVar}').loadContents();" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" icon="fa fa-ellipsis-v"
-    iconPos="left" />
+    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" icon="fa fa-ellipsis-v"
+    iconPos="left" update="side-steps-panel" />
 
   <p:overlayPanel id="side-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}" for="#{cc.attrs.actionLinkId}" my="left top" at="left bottom" appendTo="@(body)"
-    styleClass="side-steps-panel" dynamic="true" rendered="#{!cc.attrs.isDisabled}">
+    styleClass="options-panel" dynamic="true" rendered="#{!cc.attrs.isDisabled}">
 
     <p:commandLink id="task-reset-command" onstart="event.stopPropagation();" rendered="#{taskActionBean.showResetTask}" disabled="#{!taskActionBean.canReset(task)}"
-      styleClass="side-step-item" actionListener="#{logic.resetTask(task)}" update="@parent #{cc.attrs.componentToUpdate}">
-      <span class="action-icon tmi-box-arrow-left" />
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" styleClass="side-step-item-label" />
+      styleClass="option-item" actionListener="#{logic.resetTask(task)}" update="@parent #{cc.attrs.componentToUpdate}">
+      <span class="option-action-icon tmi-box-arrow-left" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" styleClass="option-item-label" />
     </p:commandLink>
 
-    <p:commandLink id="task-delegate-command" disabled="#{!taskActionBean.canDelegate(task)}" rendered="#{taskActionBean.showDelegateTask}" styleClass="side-step-item"
+    <p:commandLink id="task-delegate-command" disabled="#{!taskActionBean.canDelegate(task)}" rendered="#{taskActionBean.showDelegateTask}" styleClass="option-item"
       actionListener="#{logic.initDataToDelegate(task)}" onstart="event.stopPropagation();" oncomplete="PF('task-delegate-dialog-#{rowIndex}').show()"
       update="@parent #{cc.attrs.componentToUpdate} @widgetVar(task-delegate-dialog-#{rowIndex}) ">
-      <span class="action-icon tmi-box-arrow-right" />
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}" styleClass="side-step-item-label" />
+      <span class="option-action-icon tmi-box-arrow-right" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}" styleClass="option-item-label" />
     </p:commandLink>
 
     <p:commandLink id="task-reserve-command" disabled="#{!taskActionBean.canPark(task)}" rendered="#{taskActionBean.showReserveTask}" onstart="event.stopPropagation();"
-      styleClass="side-step-item" actionListener="#{logic.parkTask(task)}" update="@parent #{cc.attrs.componentToUpdate}">
-      <span class="action-icon tmi-box-arrow-toinside" />
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}" styleClass="side-step-item-label" />
+      styleClass="option-item" actionListener="#{logic.parkTask(task)}" update="@parent #{cc.attrs.componentToUpdate}">
+      <span class="option-action-icon tmi-box-arrow-toinside" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}" styleClass="option-item-label" />
     </p:commandLink>
     <p:separator styleClass="u-separator" />
 
     <p:commandLink rendered="#{empty sideStepBean.currentSideSteps}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}"
-      styleClass="side-step-item" />
+      styleClass="option-item" />
     <ui:repeat var="sideStep" value="#{sideStepBean.currentSideSteps}">
-      <p:commandLink id="adhoc-side-step-item" styleClass="side-step-item" value="#{sideStep.name}" global="false" rendered="#{sideStep.isAdhoc()}"
+      <p:commandLink id="adhoc-side-step-item" styleClass="option-item" value="#{sideStep.name}" global="false" rendered="#{sideStep.isAdhoc()}"
         actionListener="#{sideStepBean.startAdhoc(sideStep, task.getId())}" process="@this" />
 
-      <p:commandLink id="side-step-item" styleClass="side-step-item" value="#{sideStep.name}" global="false" rendered="#{not sideStep.isAdhoc()}"
+      <p:commandLink id="option-item" styleClass="option-item" value="#{sideStep.name}" global="false" rendered="#{not sideStep.isAdhoc()}"
         actionListener="#{sideStepBean.startSideStep(sideStep)}" process="@this" />
     </ui:repeat>
   </p:overlayPanel>

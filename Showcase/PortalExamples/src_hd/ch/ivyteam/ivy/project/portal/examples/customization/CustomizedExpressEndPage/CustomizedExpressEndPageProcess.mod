@@ -1,5 +1,5 @@
 [Ivy]
-165A2AC3324437D1 3.28 #module
+165A2AC3324437D1 7.5.0 #module
 >Proto >Proto Collection #zClass
 Es0 CustomizedExpressEndPageProcess Big #zClass
 Es0 RD #cInfo
@@ -20,11 +20,8 @@ Es0 @PushWFArc f5 '' #zField
 >Proto Es0 Es0 CustomizedExpressEndPageProcess #zField
 Es0 f0 guid 1600BE1A79A59456 #txt
 Es0 f0 method start() #txt
-Es0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<> param = methodEvent.getInputArguments();
-' #txt
-Es0 f0 outParameterDecl '<> result;
-' #txt
+Es0 f0 inParameterDecl '<> param;' #txt
+Es0 f0 outParameterDecl '<> result;' #txt
 Es0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
