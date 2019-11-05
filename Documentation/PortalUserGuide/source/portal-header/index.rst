@@ -252,4 +252,4 @@ a tab is provided, giving you the results of your search.
    Contact your administrator for   
    more information.                
 
-.. include:: ../includes/common-icon.rst  
+.. include:: ../includes/_common-icon.rst  

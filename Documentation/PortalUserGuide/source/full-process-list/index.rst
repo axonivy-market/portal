@@ -51,4 +51,4 @@ List`.
    regular basis we highly recommend configuring them on your personal
    dashboard. See :ref:`howto-add-a-process-as-a-user-favorite` for an instruction.
 
-.. include:: ../includes/common-icon.rst
+.. include:: ../includes/_common-icon.rst
