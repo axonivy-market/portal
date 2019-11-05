@@ -216,7 +216,7 @@ You can refer to ``PortalExamples`` project for examples
 
    |responsive-case-list-customization|
 
-    .. tip:: Hint: ``CaseCustomField`` component has default
+    .. tip:: ``CaseCustomField`` component has default
       responsiveStyleClass is ``u-hidden-sm-down``
 
 2. Responsiveness could be broken when you anchor left menu. In this
@@ -226,7 +226,7 @@ You can refer to ``PortalExamples`` project for examples
 
    |responsive-case-list-hide-column|
 
-      .. tip:: Hint: The smallest browser width you can anchor the left menu is
+      .. tip:: The smallest browser width you can anchor the left menu is
           1025. So you could reduce width of browser to 1025 to test and decide which columns need to be hidden.
 
 .. |case-filter| image:: images/case-widget/case-filter.png
