@@ -4410,10 +4410,6 @@ a.ui-widget:focus {
   padding-right: 20px;
 }
 
-.all-processes-container {
-  padding-top: 15px !important; 
-}
-
 /**************DATA TABLE START*******************/
 .column-header-top-alignment {
   vertical-align: baseline;
