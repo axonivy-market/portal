@@ -9,34 +9,34 @@
 <ui:composition>
   <h:panelGroup id="user-default-process-list" layout="block" styleClass="user-default-process-list"
     rendered="#{not empty compactProcessWidgetBean.defaultUserProcesses}">
-    <div class="default-process-title ui-g-12" jsf:rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled}">
+    <div class="default-process-title" jsf:rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled}">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/defaultProcesses')}" />
     </div>
     
-    <h:panelGroup id="default-process-container" layout="block" styleClass="ui-g-12">
-	    <h:panelGroup id="default-process-widget-action" styleClass="process-widget-action"
-	      rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled}">
-	      <h:form styleClass="process-button-position process-action-button process-widget-action-form">
-	        <h:panelGroup layout="block">
-	          <p:commandLink id="default-process-name-sort-command" styleClass="name-sort-command"
-	            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/sortByName')}"
-	            actionListener="#{compactProcessWidgetBean.sortUserProcessList(compactProcessWidgetBean.defaultUserProcesses)}"
-	            update="#{cc.clientId}:user-default-process-list" />
-	        </h:panelGroup>
-	      </h:form>
-	    </h:panelGroup>
-      <h:panelGroup id="default-user-processes-container" styleClass="compact-processes-container" layout="block">
-        <ui:repeat varStatus="status" var="process" value="#{compactProcessWidgetBean.defaultUserProcesses}">
-          <c:set var="isExternalProcess"
-            value="#{!(fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}" />
-          <h:form id="process-item-form" styleClass="process-start-list-item" rendered="#{!compactProcessWidgetBean.editMode}">
-            <ui:include src="ProcessItemLink.xhtml">
-              <ui:param name="processLink" value="#{process.link}"></ui:param>
-              <ui:param name="isExternalProcess" value="isExternalProcess" />
-            </ui:include>
-          </h:form>
-        </ui:repeat>
-      </h:panelGroup>
+    <h:panelGroup id="default-process-widget-action" styleClass="process-widget-action"
+      rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled}">
+      <h:form styleClass="process-button-position process-action-button process-widget-action-form">
+        <h:panelGroup layout="block">
+          <p:commandLink id="default-process-name-sort-command" styleClass="name-sort-command"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/sortByName')}"
+            actionListener="#{compactProcessWidgetBean.sortUserProcessList(compactProcessWidgetBean.defaultUserProcesses)}"
+            update="#{cc.clientId}:user-default-process-list" />
+        </h:panelGroup>
+      </h:form>
+    </h:panelGroup>
+
+    <h:panelGroup id="default-user-processes-container" styleClass="compact-default-processes-container" layout="block">
+      <ui:repeat varStatus="status" var="process" value="#{compactProcessWidgetBean.defaultUserProcesses}">
+        <c:set var="isExternalProcess"
+          value="#{!(fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}" />
+        <h:form id="process-item-form" styleClass="process-start-list-item"
+          rendered="#{!compactProcessWidgetBean.editMode}">
+          <ui:include src="ProcessItemLink.xhtml">
+            <ui:param name="processLink" value="#{process.link}"></ui:param>
+            <ui:param name="isExternalProcess" value="isExternalProcess" />
+          </ui:include>
+        </h:form>
+      </ui:repeat>
     </h:panelGroup>
   </h:panelGroup>
 </ui:composition>

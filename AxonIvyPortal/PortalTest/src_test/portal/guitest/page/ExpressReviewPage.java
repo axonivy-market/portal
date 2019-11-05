@@ -3,9 +3,9 @@ package portal.guitest.page;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
+
+import portal.guitest.common.Sleeper;
 
 public class ExpressReviewPage extends TaskTemplatePage {
   public void finish() {
@@ -17,7 +17,7 @@ public class ExpressReviewPage extends TaskTemplatePage {
     for (WebElement elem : openFieldSetButtons) {
       elem.click();
     }
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
     return findListElementsByCssSelector("div[id*='approval-result'] td").stream().map(WebElement::getText)
         .collect(Collectors.joining(","));
   }

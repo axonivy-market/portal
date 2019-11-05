@@ -19,19 +19,19 @@ import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.support.UrlDetector;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.server.ServerFactory;
+import ch.ivyteam.ivy.workflow.StandardProcessType;
 
 public final class PortalNavigator {
   private static final String PORTAL_PROCESS_START_NAME = "Start Processes/PortalStart/PortalStart.ivp";
-  private static final String PORTAL_END_PAGE = "Start Processes/PortalStart/DefaultEndPage.ivp";
   private static final String PORTAL_PROCESS = "Start Processes/PortalStart/startPortalProcess.ivp";
   private static final String PORTAL_TASK = "Start Processes/PortalStart/startPortalTask.ivp";
   private static final String PORTAL_CASE = "Start Processes/PortalStart/startPortalCase.ivp";
   private static final String PORTAL_STATISTIC = "Start Processes/PortalStart/startPortalStatistic.ivp";
-  private static final String PORTAL_CASE_ITEM_DETAILS = "Start Processes/PortalStart/startPortalCaseDetails.ivp";
   private static final String SLASH = "/";
 
   public String getPortalStartUrl() throws MalformedURLException {
@@ -84,7 +84,7 @@ public final class PortalNavigator {
     if (StringUtils.isNotEmpty(homePageURL)) {
       return homePageURL;
     }
-    return Ivy.html().startref(PORTAL_PROCESS_START_NAME);
+    return Ivy.html().startRef(PORTAL_PROCESS_START_NAME);
   }
   
   public String getSubMenuItemUrlOfCurrentApplication(MenuKind menuKind) {
@@ -116,21 +116,25 @@ public final class PortalNavigator {
       }
       return serverUrl + customizePortalFriendlyRequestPath;
     }
-    return Ivy.html().startref(subMenuUrl);
+    return Ivy.html().startRef(subMenuUrl);
   }
 
+  public void navigateToPortalEndPage(Long taskId) {
+    String customizePortalEndPage = getDefaultEndPage(); 
+    redirect(customizePortalEndPage + "?endedTaskId=" + taskId);
+  }
+  
   /**
    * Navigates to PortalEndPage without finishing a task, e.g. clicking on Cancel button then back to previous page: task list or task details or global search
    */
   public void navigateToPortalEndPage() {
-    String customizePortalEndPage = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("DefaultEndPage.ivp"); 
-    String param = "?endedTaskId=" + Ivy.wfTask().getId();
-    if (StringUtils.isNotEmpty(customizePortalEndPage)) {
-      navigate(customizePortalEndPage, param);
-    } else {
-      navigate(PORTAL_END_PAGE, param);
-    }
+    String defaultEndPage = getDefaultEndPage(); 
+    redirect(defaultEndPage + "?endedTaskId=" + Ivy.wfTask().getId());
     Ivy.session().setAttribute(SessionAttribute.IS_TASK_NOT_FINISHED.toString(), true);
+  }
+  
+  private String getDefaultEndPage() {
+    return IvyExecutor.executeAsSystem(() -> Ivy.html().startRef(Ivy.wf().getStandardProcessImplementation(StandardProcessType.DefaultEndPage).getUserFriendlyRequestPath()));
   }
 
   public void navigateToPortalProcess() {

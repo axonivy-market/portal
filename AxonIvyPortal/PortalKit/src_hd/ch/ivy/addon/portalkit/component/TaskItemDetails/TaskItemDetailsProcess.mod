@@ -27,7 +27,6 @@ Cs0 @GridStep f45 '' #zField
 Cs0 @UdProcessEnd f15 '' #zField
 Cs0 @PushWFArc f16 '' #zField
 Cs0 @Alternative f77 '' #zField
-Cs0 @GridStep f19 '' #zField
 Cs0 @UdProcessEnd f68 '' #zField
 Cs0 @GridStep f56 '' #zField
 Cs0 @GridStep f54 '' #zField
@@ -40,9 +39,7 @@ Cs0 @PushWFArc f57 '' #zField
 Cs0 @PushWFArc f67 '' #zField
 Cs0 @PushWFArc f100 '' #zField
 Cs0 @PushWFArc f55 '' #zField
-Cs0 @PushWFArc f50 '' #zField
 Cs0 @PushWFArc f20 '' #zField
-Cs0 @PushWFArc f17 '' #zField
 Cs0 @UdMethod f30 '' #zField
 Cs0 @GridStep f35 '' #zField
 Cs0 @PushWFArc f64 '' #zField
@@ -55,6 +52,7 @@ Cs0 @PushWFArc f92 '' #zField
 Cs0 @PushWFArc f87 '' #zField
 Cs0 @PushWFArc f81 '' #zField
 Cs0 @PushWFArc f4 '' #zField
+Cs0 @PushWFArc f5 '' #zField
 >Proto Cs0 Cs0 TaskItemDetailsProcess #zField
 Cs0 f0 guid 16BBB5787F4A8092 #txt
 Cs0 f0 method start(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage) #txt
@@ -161,33 +159,12 @@ Cs0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f45 160 458 128 44 -56 -8 #rect
 Cs0 f45 @|StepIcon #fIcon
-Cs0 f15 1011 467 26 26 0 12 #rect
+Cs0 f15 883 467 26 26 0 12 #rect
 Cs0 f15 @|UdProcessEndIcon #fIcon
 Cs0 f16 expr out #txt
 Cs0 f16 109 480 160 480 #arcP
 Cs0 f77 338 466 28 28 14 0 #rect
 Cs0 f77 @|AlternativeIcon #fIcon
-Cs0 f19 actionTable 'out=in;
-' #txt
-Cs0 f19 actionCode 'import ch.ivyteam.ivy.request.RequestUriFactory;
-import java.net.URI;
-import ch.ivyteam.ivy.server.ServerFactory;
-import ch.ivyteam.ivy.application.IApplicationConfigurationManager;
-import javax.faces.context.FacesContext;
-
-IApplicationConfigurationManager appConfig = ServerFactory.getServer().getApplicationConfigurationManager();
-URI taskUri = RequestUriFactory.createTaskStartUri(appConfig, in.task);
-FacesContext.getCurrentInstance().getExternalContext().redirect(taskUri.toString());' #txt
-Cs0 f19 security system #txt
-Cs0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Open task</name>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f19 872 458 112 44 -28 -8 #rect
-Cs0 f19 @|StepIcon #fIcon
 Cs0 f68 595 563 26 26 0 12 #rect
 Cs0 f68 @|UdProcessEndIcon #fIcon
 Cs0 f56 actionTable 'out=in;
@@ -234,16 +211,14 @@ Cs0 f54 560 458 128 44 -61 -8 #rect
 Cs0 f54 @|StepIcon #fIcon
 Cs0 f66 actionTable 'out=in;
 ' #txt
-Cs0 f66 actionCode 'import ch.ivyteam.ivy.security.IUser;
+Cs0 f66 actionCode 'import org.primefaces.PrimeFaces;
+import ch.ivyteam.ivy.security.IUser;
 import org.apache.commons.lang3.StringUtils;
 import ch.ivyteam.ivy.workflow.TaskState;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
-import org.primefaces.context.RequestContext;
 
-RequestContext requesContext = RequestContext.getCurrentInstance();
 FacesContext facesContext = FacesContext.getCurrentInstance();
-
 String notification;
 if(in.task.getState() == TaskState.DONE){
 	notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/taskDone", [in.task.getName()]);
@@ -260,7 +235,7 @@ if(in.task.getState() == TaskState.DONE){
 
 facesContext.validationFailed();
 facesContext.addMessage("portal-global-growl", new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
-requesContext.update("portal-global-growl");  
+PrimeFaces.current().ajax().update("portal-global-growl");  
 ' #txt
 Cs0 f66 security system #txt
 Cs0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -274,33 +249,48 @@ Cs0 f66 424 554 112 44 -35 -8 #rect
 Cs0 f66 @|StepIcon #fIcon
 Cs0 f49 actionTable 'out=in;
 ' #txt
-Cs0 f49 actionCode 'import ch.ivy.addon.portalkit.enums.NavigationHistory;
+Cs0 f49 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPage;
+import ch.ivy.addon.portalkit.enums.NavigationHistory;
 import ch.ivy.addon.portalkit.dto.TaskEndInfo;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import javax.faces.context.FacesContext;
+
+GlobalSettingService service = new GlobalSettingService();
+boolean enabledStartInIFrame = Boolean.parseBoolean(service.findGlobalSettingValue(GlobalVariable.START_IN_IFRAME.toString()));
 
 TaskEndInfo taskEndInfo = new TaskEndInfo();
 taskEndInfo.setDataModel(in.dataModel);
 taskEndInfo.setPortalPage(in.portalPage);
 taskEndInfo.setIsStartedInTaskDetails(true);
+taskEndInfo.setIsInIFrame(enabledStartInIFrame);
 
-String taskDataModelSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(in.task.getId());
-SecurityServiceUtils.setSessionAttribute(taskDataModelSessionAttributeKey, taskEndInfo);' #txt
+String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(in.task.getId());
+SecurityServiceUtils.setSessionAttribute(taskEndInfoSessionAttributeKey, taskEndInfo);
+
+String taskStart = ivy.html.taskStartRef(in.task);
+if (enabledStartInIFrame) {
+	taskStart = ivy.html.taskStartInFrameRef(in.task);
+}
+FacesContext.getCurrentInstance().getExternalContext().redirect(taskStart);' #txt
 Cs0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Store task end info</name>
+        <name>Store task end info&#13;
+Start task</name>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f49 728 458 112 44 -51 -8 #rect
+Cs0 f49 720 458 128 44 -44 -16 #rect
 Cs0 f49 @|StepIcon #fIcon
 Cs0 f99 336 560 32 32 0 16 #rect
 Cs0 f99 @|AlternativeIcon #fIcon
 Cs0 f71 expr out #txt
 Cs0 f71 536 576 595 576 #arcP
 Cs0 f73 expr out #txt
-Cs0 f73 688 480 728 480 #arcP
+Cs0 f73 688 480 720 480 #arcP
 Cs0 f57 expr in #txt
 Cs0 f57 outCond in.canUserResumeTask #txt
 Cs0 f57 366 480 408 480 #arcP
@@ -312,12 +302,8 @@ Cs0 f100 352 494 352 560 #arcP
 Cs0 f100 0 0.6038825846613081 0 0 #arcLabel
 Cs0 f55 expr out #txt
 Cs0 f55 520 480 560 480 #arcP
-Cs0 f50 expr out #txt
-Cs0 f50 840 480 872 480 #arcP
 Cs0 f20 expr out #txt
 Cs0 f20 288 480 338 480 #arcP
-Cs0 f17 expr out #txt
-Cs0 f17 984 480 1011 480 #arcP
 Cs0 f30 guid 16D4E180956E8D83 #txt
 Cs0 f30 method resetAndOpenTask() #txt
 Cs0 f30 inParameterDecl '<> param;' #txt
@@ -397,6 +383,7 @@ Cs0 f81 expr out #txt
 Cs0 f81 109 672 160 672 #arcP
 Cs0 f4 expr in #txt
 Cs0 f4 352 656 352 592 #arcP
+Cs0 f5 848 480 883 480 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.TaskItemDetails.TaskItemDetailsData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -415,8 +402,6 @@ Cs0 f77 out f57 tail #connect
 Cs0 f57 head f56 mainIn #connect
 Cs0 f66 mainOut f71 tail #connect
 Cs0 f71 head f68 mainIn #connect
-Cs0 f49 mainOut f50 tail #connect
-Cs0 f50 head f19 mainIn #connect
 Cs0 f56 mainOut f55 tail #connect
 Cs0 f55 head f54 mainIn #connect
 Cs0 f54 mainOut f73 tail #connect
@@ -427,8 +412,6 @@ Cs0 f99 out f67 tail #connect
 Cs0 f67 head f66 mainIn #connect
 Cs0 f45 mainOut f20 tail #connect
 Cs0 f20 head f77 in #connect
-Cs0 f19 mainOut f17 tail #connect
-Cs0 f17 head f15 mainIn #connect
 Cs0 f30 mainOut f64 tail #connect
 Cs0 f64 head f35 mainIn #connect
 Cs0 f35 mainOut f3 tail #connect
@@ -441,3 +424,5 @@ Cs0 f79 out f92 tail #connect
 Cs0 f92 head f98 mainIn #connect
 Cs0 f79 out f4 tail #connect
 Cs0 f4 head f99 in #connect
+Cs0 f49 mainOut f5 tail #connect
+Cs0 f5 head f15 mainIn #connect
