@@ -10,29 +10,28 @@
 		<ui:param name="isNotRequiredLogin" value="false" />
 		<ui:define name="title">Investment Request Case Detail Page</ui:define>
 		<ui:define name="simplePageContent">
-			<p:panelGrid columns="2" id="additional-case-details-data-grid">
-			    <f:facet name="header">
-			        <h:outputText value="Investment Request Custom Fields"/>
-			    </f:facet>
-			 
-			    <h:outputText value="Company name (CustomVarCharField1)" />
-			    <h:outputText id="custom-varchar-field-1" value="#{data.ivyCase.customFields().stringField('CustomVarCharField1').getOrNull()}" />
-			 
-			    <h:outputText value="Request Type (CustomVarCharField2)" />
-			    <h:outputText value="#{data.ivyCase.customFields().stringField('CustomVarCharField2').getOrNull()}" />
-			 
-			    <h:outputText value="Min number (CustomDecimalField1)" />
-			    <h:outputText value="#{data.ivyCase.customFields().numberField('CustomDecimalField1').getOrNull()}" />
-			    
-			    <h:outputText value="Max number (CustomDecimalField1)" />
-			    <h:outputText value="#{data.ivyCase.customFields().numberField('CustomDecimalField2').getOrNull()}" />
-			    
-			    <h:outputText value="Start date (CustomTimestampField1)" />
-			    <h:outputText value="#{data.ivyCase.customFields().timestampField('CustomTimestamplField1').getOrNull()}" />
-			    
-			    <h:outputText value="Expiry date(CustomTimestampField2)" />
-			    <h:outputText value="#{data.ivyCase.customFields().timestampField('CustomTimestamplField2').getOrNull()}" />
-			</p:panelGrid>		
+          <p:dataTable 
+            id="additional-case-detail-table" 
+            value="#{data.ivyCase.customFields().all()}" 
+            var="item"
+            reflow="true">
+            <f:facet name="header">
+		        <h:outputText value="Investment Request Custom Fields"/>
+		    </f:facet>
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}">
+              <h:outputText id="name" value="#{item.name()}" />
+            </p:column>
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/value')}">
+              <h:outputText id="value" value="#{item.getOrNull()}" rendered="#{item.type() eq 'NUMBER'}">
+                <f:convertNumber type="number" integerOnly="true" pattern="#,##0.00" />
+              </h:outputText>
+              <h:outputText id="value" value="#{item.getOrNull()}" rendered="#{item.type() eq 'TIMESTAMP'}">
+                <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+              </h:outputText>
+              <h:outputText id="value" value="#{item.getOrNull()}" rendered="#{item.type() ne 'TIMESTAMP' and item.type() ne 'NUMBER'}" />
+            </p:column>
+          </p:dataTable>
+			
 		</ui:define>
 	</ui:composition>
 </h:body>

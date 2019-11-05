@@ -4,7 +4,6 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -45,7 +44,7 @@ public class CaseWidgetBeanTest {
   @PrepareForTest({CaseWidgetBean.class, CaseUtils.class, PermissionUtils.class, FacesContext.class})
   public void testGetAdditionalCaseDetailsPageUri() throws Exception {
     PowerMockito.mockStatic(CaseUtils.class);
-    ICase iCase = mockCustomFieldForCaseDetailsPage(StringUtils.EMPTY);
+    mockCustomFieldForCaseDetailsPage(StringUtils.EMPTY);
     PowerMockito.when(CaseUtils.getProcessStartUriWithCaseParameters(ArgumentMatchers.any(ICase.class), ArgumentMatchers.anyString())).thenReturn(DEFAULT_ADDITIONAL_CASE_DETAILS_PAGE);
     
     PowerMockito.mockStatic(FacesContext.class);
@@ -59,7 +58,7 @@ public class CaseWidgetBeanTest {
   @Test
   @PrepareForTest({CaseWidgetBean.class, PermissionUtils.class, FacesContext.class})
   public void testGetAdditionalCaseDetailsPageUriWithCustomization() throws Exception {
-    ICase iCase = mockCustomFieldForCaseDetailsPage(CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE);
+    mockCustomFieldForCaseDetailsPage(CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE);
     PowerMockito.mockStatic(FacesContext.class);
 
     PowerMockito.when(FacesContext.getCurrentInstance()).thenReturn(facesContext);

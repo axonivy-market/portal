@@ -8,141 +8,142 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
-import ch.xpertline.base.client.Browser;
+import portal.guitest.common.Sleeper;
+import vn.wawa.guitest.base.client.Browser;
 
 public class ExpressFormDefinitionPage extends TemplatePage {
 
 	private static final int TIME_OUT = 60;
-	private static final String LEFT_POSITION = "LeftPanel";
-	private static final String RIGHT_POSITION = "RightPanel";
-	private static final String HEADER_POSITION = "Header";
-	private static final String FOOTER_POSITION = "Footer";
+	private static final String LEFT_POSITION = "leftpanel";
+	private static final String RIGHT_POSITION = "rightpanel";
+	private static final String HEADER_POSITION = "header";
+	private static final String FOOTER_POSITION = "footer";
 	private static final String[] POSITIONS = {LEFT_POSITION, RIGHT_POSITION, HEADER_POSITION, FOOTER_POSITION};
 
 	@Override
 	protected String getLoadedLocator() {
-		return "id('form:createTabsField')";
+		return "id('form:create-tabs')";
 	}
 
 	public void createTextInputField(String label, int inputFieldTypeIndex, boolean isRequired) {
-		click(By.xpath("//*[@id='form:createTabs']/ul/li[1]"));
-		waitForElementDisplayed(By.id("form:createTabs:createInputFieldTab"), true, TIME_OUT);
-		type(By.id("form:createTabs:InputFieldLabel"), label);
+		click(By.xpath("//*[@id='form:create-tabs']/ul/li[1]"));
+		waitForElementDisplayed(By.id("form:create-tabs:create-input-field-tab"), true, TIME_OUT);
+		type(By.id("form:create-tabs:input-field-label"), label);
 		chooseInputFieldType(inputFieldTypeIndex);
 		if (isRequired) {
-			click(By.xpath("//label[@for='form:createTabs:InputFieldRequired_input']"));
+			click(By.cssSelector("div[id='form:create-tabs:input-field-required']"));
 		}
-		click(By.id("form:createTabs:add-input-text-btn"));
+		click(By.id("form:create-tabs:add-input-text-btn"));
 		waitAjaxIndicatorDisappear();
 		ensureNoBackgroundRequest();
 	}
 
 	public void createTextAreaField(String label, boolean isRequired) {
-		click(By.xpath("//*[@id='form:createTabs']/ul/li[2]"));
+		click(By.xpath("//*[@id='form:create-tabs']/ul/li[2]"));
 		ensureNoBackgroundRequest();
-		Sleeper.sleepTight(3000);
-		waitForElementDisplayed(By.id("form:createTabs:createInputAreaTab"), true, TIME_OUT);
-		type(By.id("form:createTabs:InputAreaLabel"), label);
+		Sleeper.sleep(3000);
+		waitForElementDisplayed(By.id("form:create-tabs:create-input-area-tab"), true, TIME_OUT);
+		type(By.id("form:create-tabs:input-area-label"), label);
 		if (isRequired) {
-			click(By.xpath("//label[@for='form:createTabs:InputAreaRequired_input']"));
+			click(By.cssSelector("div[id='form:create-tabs:input-area-required']"));
 		}
-		click(By.id("form:createTabs:add-text-area-btn"));
+		click(By.id("form:create-tabs:add-text-area-btn"));
 		waitAjaxIndicatorDisappear();
 		ensureNoBackgroundRequest();
 	}
 
 	public void createCheckboxField(String label, int numberOfSelection) {
-		click(By.xpath("//*[@id='form:createTabs']/ul/li[3]"));
+		click(By.xpath("//*[@id='form:create-tabs']/ul/li[3]"));
 		ensureNoBackgroundRequest();
-		Sleeper.sleepTight(3000);
-		waitForElementDisplayed(By.id("form:createTabs:createManyCheckboxTab"), true, TIME_OUT);
-		type(By.id("form:createTabs:ManyCheckboxLabel"), label);
+		Sleeper.sleep(3000);
+		waitForElementDisplayed(By.id("form:create-tabs:many-checkbox-options"), true, TIME_OUT);
+		type(By.id("form:create-tabs:many-checkbox-label"), label);
 		addCheckboxOptions(numberOfSelection);
-		Sleeper.sleepTight(1000);
-		click(By.id("form:createTabs:add-checkbox-btn"));
+		Sleeper.sleep(1000);
+		click(By.id("form:create-tabs:add-checkbox-btn"));
 		waitAjaxIndicatorDisappear();
 		ensureNoBackgroundRequest();
 	}
 
 	public void createCheckboxFieldWithDataProvider(String label) {
-		click(By.xpath("//*[@id='form:createTabs']/ul/li[3]"));
+		click(By.xpath("//*[@id='form:create-tabs']/ul/li[3]"));
 		ensureNoBackgroundRequest();
-		Sleeper.sleepTight(3000);
-		waitForElementDisplayed(By.id("form:createTabs:createManyCheckboxTab"), true, TIME_OUT);
-		click(By.id("form:createTabs:DataProvider_label"));
-		Sleeper.sleepTight(1000);
+		Sleeper.sleep(3000);
+		waitForElementDisplayed(By.id("form:create-tabs:create-many-checkbox-tab"), true, TIME_OUT);
+		click(By.id("form:create-tabs:DataProvider_label"));
+		Sleeper.sleep(1000);
 		click(By.xpath("//*[@data-label='TestDataProviderForPortalExpress']"));
-		type(By.id("form:createTabs:ManyCheckboxLabel"), label);
-		Sleeper.sleepTight(1000);
-		click(By.id("form:createTabs:add-checkbox-btn"));
+		waitForElementDisplayed(By.id("form:create-tabs:many-checkbox-label"), true, TIME_OUT);
+		type(By.id("form:create-tabs:many-checkbox-label"), label);
+		Sleeper.sleep(1000);
+		click(By.id("form:create-tabs:add-checkbox-btn"));
 		waitAjaxIndicatorDisappear();
 		ensureNoBackgroundRequest();
 	}
 
 	public void createRadioButtonField(String label, int numberOfOption) {
-		click(By.xpath("//*[@id='form:createTabs']/ul/li[4]"));
+		click(By.xpath("//*[@id='form:create-tabs']/ul/li[4]"));
 		ensureNoBackgroundRequest();
-		Sleeper.sleepTight(3000);
-		waitForElementDisplayed(By.id("form:createTabs:OneRadioLabel"), true, TIME_OUT);
-		type(By.id("form:createTabs:OneRadioLabel"), label);
-		Sleeper.sleepTight(2000);
+		Sleeper.sleep(3000);
+		waitForElementDisplayed(By.id("form:create-tabs:one-radio-label"), true, TIME_OUT);
+		type(By.id("form:create-tabs:one-radio-label"), label);
+		Sleeper.sleep(2000);
 		addRadioOptions(numberOfOption);
-		click(By.id("form:createTabs:add-radio-btn"));
+		click(By.id("form:create-tabs:add-radio-btn"));
 		waitAjaxIndicatorDisappear();
 		ensureNoBackgroundRequest();
 	}
 
 	public void createUploadComponent(String label) {
-		click(By.xpath("//*[@id='form:createTabs']/ul/li[5]"));
+		click(By.xpath("//*[@id='form:create-tabs']/ul/li[5]"));
 		ensureNoBackgroundRequest();
-		Sleeper.sleepTight(3000);
-		waitForElementDisplayed(By.id("form:createTabs:createFileUploadTab"), true, TIME_OUT);
-		type(By.id("form:createTabs:FileUploadLabel"), label);
-		click(By.id("form:createTabs:add-upload-file-btn"));
+		Sleeper.sleep(3000);
+		waitForElementDisplayed(By.id("form:create-tabs:create-file-upload-tab"), true, TIME_OUT);
+		type(By.id("form:create-tabs:file-upload-label"), label);
+		click(By.id("form:create-tabs:add-upload-file-btn"));
 		waitAjaxIndicatorDisappear();
 		ensureNoBackgroundRequest();
 	}
 
 	private void addRadioOptions(int numberOfOptions) {
 		for (int i = 1; i <= numberOfOptions; i++) {
-			click(By.id("form:createTabs:OneRadioOptions:add-radio-option-btn"));
+			click(By.id("form:create-tabs:one-radio-options:add-radio-option-btn"));
 			waitAjaxIndicatorDisappear();
-			type(By.xpath(String.format("//*[@id='form:createTabs:OneRadioOptions_data']/tr[%d]/td/input", i)), "Radio " + i);
+			type(By.xpath(String.format("//*[@id='form:create-tabs:one-radio-options_data']/tr[%d]/td/input", i)), "Radio " + i);
 		}
 	}
 
 	private void addCheckboxOptions(int numberOfSelection) {
 		for (int i = 1; i <= numberOfSelection; i++) {
-			click(By.id("form:createTabs:ManyCheckboxOptions:add-checkbox-option-btn"));
+			click(By.id("form:create-tabs:many-checkbox-options:add-checkbox-option-btn"));
 			waitAjaxIndicatorDisappear();
-			type(By.xpath(String.format("//*[@id='form:createTabs:ManyCheckboxOptions_data']/tr[%d]/td/input", i)),
+			type(By.xpath(String.format("//*[@id='form:create-tabs:many-checkbox-options_data']/tr[%d]/td/input", i)),
 					"Option " + i);
 		}
 	}
 
 	private void chooseInputFieldType(int inputTypeIndex) {
-		click(By.id("form:createTabs:InputFieldType_label"));
-		waitForElementDisplayed(By.id("form:createTabs:InputFieldType_panel"), true);
-		click(By.id(String.format("form:createTabs:InputFieldType_%d", inputTypeIndex)));
+		click(By.id("form:create-tabs:input-field-type_label"));
+		waitForElementDisplayed(By.id("form:create-tabs:input-field-type_panel"), true);
+		click(By.id(String.format("form:create-tabs:input-field-type_%d", inputTypeIndex)));
 	}
 
 	public void moveAllElementToDragAndDrogPanel() {
-		int size = driver.findElements(By.xpath("//div[@id='form:availableFormelements_content']/table/tbody/tr")).size();
+		int size = driver.findElements(By.xpath("//div[@id='form:available-form-elements_content']/table/tbody/tr")).size();
 		for (int i = size - 1; i >= 0; i--) {
 			moveFormElementToPanel(i, getRandomPosition());
 		}
 	}
 
-	public void moveFormElementToPanel(int index, String position) {
-		WebElement formElement = findElementById(String.format("form:availableFormelements:%d:pnl_content", index));
+	private void moveFormElementToPanel(int index, String position) {
+		WebElement formElement = findElementById(String.format("form:available-form-elements:%d:pnl_content", index));
 		// If elements is FileUpload, move to footer
 		if (formElementIsFileUpload(formElement)) {
 			position = FOOTER_POSITION;
 		}
-		waitForElementDisplayed(By.id(String.format("form:selectedFormelements%sPanel", position)), true);
-		WebElement panel = findElementById(String.format("form:selectedFormelements%sPanel", position));
+		waitForElementDisplayed(By.id(String.format("form:selected-form-elements-%s-panel", position)), true);
+		WebElement panel = findElementById(String.format("form:selected-form-elements-%s-panel", position));
 		Actions builder = new Actions(driver);
 		Action moveProcessSequence =
 				builder.clickAndHold(formElement).moveByOffset(-1, -1).moveToElement(panel).release(formElement).build();
@@ -166,8 +167,8 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		WebElement previewDialog = findElementById("form:preview-dialog");
 		// if we have radio button or checkbox, remember multiply with number of options
 		// Example: we have 1 checkbox with 2 options, 1 radio with 3 options. Total we have 5 inputs
-		int numberOfInput = previewDialog.findElements(By.xpath("//table[@id='form:dynaForm']//input")).size();
-		int numberOfTextArea = previewDialog.findElements(By.xpath("//table[@id='form:dynaForm']//textarea")).size();
+		int numberOfInput = previewDialog.findElements(By.xpath("//table[@id='form:dyna-form']//input")).size();
+		int numberOfTextArea = previewDialog.findElements(By.xpath("//table[@id='form:dyna-form']//textarea")).size();
 		int numberOfUploadFile =
 				previewDialog.findElements(By.xpath("//div[contains(@id,'fileUploadComponent:document-table')]")).size();
 		return numberOfInput + numberOfTextArea + numberOfUploadFile;
@@ -177,12 +178,9 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		return driver.findElements(By.xpath("//div[@id='defined-task-container']//button")).size();
 	}
 
-	public void saveWorkflow() {
-		click(By.id("save-button"));
-	}
-
 	public void finishWorkflow() {
 		click(By.id("finish-button"));
+		new HomePage();
 	}
 
 	public void executeWorkflow() {
@@ -195,8 +193,12 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		ensureNoBackgroundRequest();
 	}
 
+	public void inputMailRecipient(String content) {
+		findElementById("form:information-email:email-recipients").sendKeys(content);
+	}
+
 	public void inputMailSubject(String content) {
-		findElementById("form:information-email:email-subject").sendKeys(content);
+	  findElementById("form:information-email:email-subject").sendKeys(content);
 	}
 
 	public void inputMailContent(String content) {

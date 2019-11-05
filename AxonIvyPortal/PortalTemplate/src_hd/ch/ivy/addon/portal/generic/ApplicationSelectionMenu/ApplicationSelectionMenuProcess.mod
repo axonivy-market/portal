@@ -124,9 +124,9 @@ As0 f81 1171 275 26 26 0 12 #rect
 As0 f81 @|UdProcessEndIcon #fIcon
 As0 f83 actionTable 'out=in;
 ' #txt
-As0 f83 actionCode 'import org.primefaces.context.RequestContext;
+As0 f83 actionCode 'import org.primefaces.PrimeFaces;
 
-RequestContext.getCurrentInstance().execute("PF(''task-losing-confirmation-dialog'').show()");' #txt
+PrimeFaces.current().executeScript("PF(''task-losing-confirmation-dialog'').show()");' #txt
 As0 f83 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

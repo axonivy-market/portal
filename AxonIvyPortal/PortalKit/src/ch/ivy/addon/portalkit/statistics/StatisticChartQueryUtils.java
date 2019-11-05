@@ -25,10 +25,13 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.event.ItemSelectEvent;
+import org.primefaces.model.CheckboxTreeNode;
 
+import ch.ivy.addon.portalkit.bo.CaseNode;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
 import ch.ivy.addon.portalkit.service.StatisticService;
+import ch.ivy.addon.portalkit.util.CaseTreeUtils;
 import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivy.addon.portalkit.util.RoleUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -37,11 +40,9 @@ import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
-import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
-
 
 public class StatisticChartQueryUtils {
 
@@ -351,7 +352,7 @@ public class StatisticChartQueryUtils {
     caseQuery.where().and(generateCaseQueryForCaseState(filter, isElapsedStatistic));
     
     // Filter by case category
-    if (!filter.getIsAllCategoriesSelected()) {
+    if (!filter.getIsAllCategoriesSelected() && isCaseCategoriesNotEmpty(filter)) {
       caseQuery.where().and(generateCaseQueryForCaseCategory(filter));
     }
     
@@ -361,19 +362,40 @@ public class StatisticChartQueryUtils {
     return caseQuery;
   }
 
+  private static boolean isCaseCategoriesNotEmpty(StatisticFilter filter) {
+    return (filter.getSelectedCaseCategories() != null && !filter.getSelectedCaseCategories().isEmpty())
+        || (filter.getCaseCategories().getCategories() != null && filter.getCaseCategories().getCategories().length > 0);
+  }
+
   private static CaseQuery generateCaseQueryForCaseCategory(StatisticFilter filter) {
     CaseQuery subCaseQueryForSelectedCaseCategories = CaseQuery.create();
     List<String> selectedCaseCategories =
         Optional.ofNullable(filter.getSelectedCaseCategories()).orElse(new ArrayList<>());
     if (selectedCaseCategories.isEmpty()) {
-      List<CategoryTree> caseCategories = filter.getCaseCategories();
-      if (caseCategories != null && !caseCategories.isEmpty()) {
-        caseCategories.stream().map(CategoryTree::getRawPath).forEach(category -> subCaseQueryForSelectedCaseCategories.where().and().category().isNotEqual(category));
-      }
+      buildCaseCategoryQuery(subCaseQueryForSelectedCaseCategories, filter);
     } else {
-      selectedCaseCategories.forEach(category -> subCaseQueryForSelectedCaseCategories.where().or().category().isEqual(category));
+      selectedCaseCategories
+          .forEach(category -> subCaseQueryForSelectedCaseCategories.where().or().category().isEqual(category));
     }
     return subCaseQueryForSelectedCaseCategories;
+  }
+
+  private static void buildCaseCategoryQuery(CaseQuery subCaseQueryForSelectedCaseCategories, StatisticFilter filter) {
+    StatisticCaseCategoryFilter caseCategories = filter.getCaseCategories();
+    if (caseCategories != null && caseCategories.getCategories() != null) {
+      CheckboxTreeNode[] categories = caseCategories.getCategories();
+      for (CheckboxTreeNode node : caseCategories.getCategories()) {
+        if (node.getParent() != null && !Arrays.asList(categories).contains(node.getParent())) {
+          String category = ((CaseNode) node.getData()).getCategory();
+          if (node.isLeaf()) {
+            subCaseQueryForSelectedCaseCategories.where().and().category().isNotEqualIgnoreCase(category);
+          } else {
+            subCaseQueryForSelectedCaseCategories.where().and().category().isNotEqualIgnoreCase(category);
+            subCaseQueryForSelectedCaseCategories.where().and().category().isNotLikeIgnoreCase(String.format("%s%%", category + CaseTreeUtils.DELIMITER));
+          }
+        }
+      }
+    }
   }
 
   private static CaseQuery generateCaseQueryForCaseState(StatisticFilter filter, boolean forElapsedStatistic) {

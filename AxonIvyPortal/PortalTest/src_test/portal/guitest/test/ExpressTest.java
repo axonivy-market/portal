@@ -1,5 +1,7 @@
 package portal.guitest.test;
 
+import static junit.framework.Assert.assertEquals;
+
 import java.util.Arrays;
 
 import org.junit.Assert;
@@ -16,7 +18,6 @@ import portal.guitest.page.ExpressProcessPage;
 import portal.guitest.page.ExpressReviewPage;
 import portal.guitest.page.ExpressTaskPage;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
 import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.TaskWidgetPage;
 
@@ -35,10 +36,7 @@ public class ExpressTest extends BaseTest{
   @Before
   public void setup() {
     super.setup();
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
-    
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     homePage = new HomePage();
   }
 

@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import portal.guitest.common.TestAccount;
-import ch.xpertline.base.pages.AbstractPage;
+import vn.wawa.guitest.base.page.AbstractPage;
 
 public class LoginPage extends AbstractPage {
   private static final long LOGIN_TIMEOUT = 60;
