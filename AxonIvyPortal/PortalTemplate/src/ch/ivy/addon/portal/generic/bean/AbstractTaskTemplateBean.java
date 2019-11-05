@@ -25,6 +25,8 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
   protected List<IStartableSideStep> sideStepList;
   protected IStartableSideStep selectedSideStep;
   protected List<AdhocHistory> adhocHistories;
+  // This property is for attribute "visible" of a dialog. Attribute "visible" of a dialog requires a property of a bean. 
+  protected Boolean isFirstTimeOpenOriginalAdhocTask;
 
   public List<IStartableSideStep> getSideStepList() {
     return sideStepList;
@@ -72,16 +74,14 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
     if (task == null) {
       return false;
     }
-    
+    if (isFirstTimeOpenOriginalAdhocTask == null) {
+      isFirstTimeOpenOriginalAdhocTask = AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString().equals(task.customFields().stringField(AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString()).getOrNull());
+    }
     return AdditionalProperty.ORIGINAL_ADHOC_EXPRESS_TASK.toString().equals(task.customFields().stringField(AdditionalProperty.ORIGINAL_ADHOC_EXPRESS_TASK.toString()).getOrNull());
   }
   
-  public boolean getIsFirstTimeOpenOriginalAdhocTask(ITask task) {
-    if (task == null) {
-      return false;
-    }
-    
-    return AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString().equals(task.customFields().stringField(AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString()).getOrNull());
+  public boolean getIsFirstTimeOpenOriginalAdhocTask() {
+    return isFirstTimeOpenOriginalAdhocTask;
   }
   
   public void onCloseAdhocTaskHistoryDialog(ITask task) {
