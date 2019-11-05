@@ -593,6 +593,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .case-detail-name-prefix {
   flex:0 0 auto;
   margin-right: 5px;
+  align-self: center;
 }
 
 .case-detail-name-inplace-edit {
@@ -902,7 +903,6 @@ span.task-details-document-add-link {
 }
 
 .case-detail-header {
-  line-height: 38px;
   display: flex;
   float: left;
   flex: 1;
@@ -910,15 +910,19 @@ span.task-details-document-add-link {
 }
 
 .case-details-back-btn, .task-details-back-btn {
-  float: right;
-  margin-top: 5px;
-  max-width: 110px;
+  flex: 0 0 110px;
+  text-align: right;
 }
 
 .case-detail-title-header-container {
-  float: left;
   padding: 0 !important;
   display: flex;
+  line-height: 38px;
+}
+
+.case-details-back-btn, .task-details-back-btn,
+.case-detail-title-header-container .case-detail-header {
+  align-self: center;
 }
 
 .case-detail-section-title-container {
@@ -3165,11 +3169,16 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 .statistic-actions-panel {
   margin-top: 15px;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
-.statistic-actions-panel.creation-mode {
-  margin-top: 2px !important;
+.task-analysic-action {
+  flex: 0 0 100px;
+  align-self: flex-end;
+}
+
+.case-detail-title-header-container, .task-detail-header,
+.task-analysic-action, .statistic-actions-panel {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .statistic-selection {
@@ -3883,10 +3892,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 
 /*********** CASE AND TASK STATISTIC PAGE ***********/
-.analysis-task-widget .widget-header-main-title {
-  position: relative;
-}
-
 .analysis-task-widget .filter-buttons-container .ui-button {
   margin-right: 10px;
 }
@@ -3895,8 +3900,8 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   display: block !important;
 }
 
-.task-analysis-page-navigation-link {
-  float: right;
+.analysis-task-widget .widget-header-main {
+  height: 35px !important;
 }
 
 .task-analysis-filter-selection-panel {
@@ -4408,10 +4413,6 @@ a.ui-widget:focus {
 .favorite-process-title {
   display: inline-block;
   padding-right: 20px;
-}
-
-.all-processes-container {
-  padding-top: 15px !important; 
 }
 
 /**************DATA TABLE START*******************/
