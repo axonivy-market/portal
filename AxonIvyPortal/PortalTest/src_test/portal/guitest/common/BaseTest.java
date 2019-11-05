@@ -166,7 +166,7 @@ public class BaseTest {
       redirectToRelativeLink(String.format(LOGIN_URL_PATTERN, username, password));
 
       AtomicBoolean isLoginSuccess = new AtomicBoolean(false);
-      Awaitility.await().atMost(new Duration(30, TimeUnit.SECONDS)).untilTrue(isLoginSuccess);
+      Awaitility.await().atMost(new Duration(30, TimeUnit.SECONDS)).until(() -> isLoginSuccess.get());
       try {
         redirectToRelativeLink(String.format(LOGIN_URL_PATTERN, username, password));
         new HomePage() {
