@@ -226,7 +226,7 @@ public class ProcessWidgetPage extends TemplatePage {
     }
     
     public void inputSearchedIconName(String keyword) {
-      WebElement searchIconNameField = findDisplayedElementBySelector(SEARCH_ICON_NAME_CSS_SELECTOR);
+      WebElement searchIconNameField = findDisplayedElementByCssSelector(SEARCH_ICON_NAME_CSS_SELECTOR);
       searchIconNameField.sendKeys(keyword);
       waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
     }
@@ -238,7 +238,7 @@ public class ProcessWidgetPage extends TemplatePage {
     }
     
     public boolean isDefaultIcon() {
-    	WebElement element = findDisplayedElementBySelector(DEFAULT_ICON_CSS_SELECTOR);
+    	WebElement element = findDisplayedElementByCssSelector(DEFAULT_ICON_CSS_SELECTOR);
     	return element.getAttribute("class").contains(AwesomeIcon.DEFAULT_ICON);
     }
   }
