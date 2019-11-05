@@ -2,9 +2,14 @@ package portal.guitest.common;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.junit.Before;
 import org.junit.Rule;
+
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import portal.guitest.page.HomePage;
@@ -159,12 +164,24 @@ public class BaseTest {
       username = URLEncoder.encode(testAccount.getUsername(), "UTF-8");
       password = URLEncoder.encode(testAccount.getPassword(), "UTF-8");
       redirectToRelativeLink(String.format(LOGIN_URL_PATTERN, username, password));
-      redirectToRelativeLink(String.format(LOGIN_URL_PATTERN, username, password));
-      redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+
+      AtomicBoolean isLoginSuccess = new AtomicBoolean(false);
+      Awaitility.await().atMost(new Duration(30, TimeUnit.SECONDS)).untilTrue(isLoginSuccess);
+      try {
+        redirectToRelativeLink(String.format(LOGIN_URL_PATTERN, username, password));
+        new HomePage() {
+          @Override
+          protected long getTimeOutForLocator() {
+            return 7L;
+          }
+        };
+        isLoginSuccess.set(true);
+      } catch (Exception e) {
+        System.out.println("*****Login unsuccessfully. Try again if not timeout.");
+      }
     } catch (UnsupportedEncodingException e) {
       throw new PortalGUITestException(e);
     }
-    
   }
   
 }
