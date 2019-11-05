@@ -5,11 +5,11 @@ Portal User Guide
    :maxdepth: 2
    :caption: Portal User Guide
 
-    axon-ivy-portal/index
-    dashboard/index
-    portal-header/index
-    full-process-list/index
-    full-task-list/index
-    full-case-list/index
-    full-statistic-list/index
-    axon-ivy-express/index
+   portal-user-guide/axon-ivy-portal/index
+   portal-user-guide/dashboard/index
+   portal-user-guide/portal-header/index
+   portal-user-guide/full-process-list/index
+   portal-user-guide/full-task-list/index
+   portal-user-guide/full-case-list/index
+   portal-user-guide/full-statistic-list/index
+   portal-user-guide/axon-ivy-express/index
