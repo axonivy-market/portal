@@ -299,5 +299,5 @@ If you require more or different charts, you need to create them first.
 Chapter :ref:`howto-create-chart` explains in detail how to create new
 charts.
 
-.. include:: ../includes/common-icon.rst
+.. include:: ../includes/_common-icon.rst
    
