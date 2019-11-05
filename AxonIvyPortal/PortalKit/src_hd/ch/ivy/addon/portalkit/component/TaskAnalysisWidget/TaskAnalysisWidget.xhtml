@@ -23,8 +23,25 @@
   <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
   <h:outputScript name="task-widget.js" library="js" />
 
-  <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass}">
-        <h:panelGroup id="filter-selection-container" layout="block" styleClass="filter-selection-container">
+  <div id="#{cc.clientId}" class="widget task-widget analysis-task-widget #{cc.attrs.styleClass} ui-g-12">
+    <h:panelGroup id="header" layout="block" styleClass="widget-header">
+      <div class="widget-header-main">
+        <h:outputText styleClass="widget-header-main-title" 
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskAnalysis')}" />
+      </div>
+
+      <h:panelGroup layout="block" styleClass="task-analysic-action ui-g">
+        <h:panelGroup layout="block" styleClass="ui-g-12 u-padding-0">
+          <p:commandLink id="back-button" actionListener="#{logic.redirectToStatisticPage}" styleClass="Fright">
+            <i class="fa fa-reply-all" />
+            <p:spacer width="3px" />
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
+          </p:commandLink>
+        </h:panelGroup>
+      </h:panelGroup>
+    </h:panelGroup>
+
+    <h:panelGroup id="filter-selection-container" layout="block" styleClass="filter-selection-container">
           <h:form id="filter-selection-form" class="filter-selection-form">
             <p:outputPanel id="filter-selection-panel" styleClass="task-analysis-filter-selection-panel"
               rendered="#{(not empty data.taskPrivateFilters or not empty data.taskPublicFilters)}">
@@ -80,8 +97,7 @@
             </p:outputPanel>
           </h:form>
         </h:panelGroup>
-    <p:commandButton id="back-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" icon="fa fa-reply-all" iconPos="left"
-      styleClass="back-button Fright MarTop50" actionListener="#{logic.redirectToStatisticPage}"/>
+
     <!-- TASK FILTERS -->
         <p:fieldset id="task-filters-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskFilter')}" toggleable="false" styleClass="filter-fieldset MarTop20">
           <h:panelGroup id="task-filters-container" layout="block" styleClass="advanced-filter-container">
