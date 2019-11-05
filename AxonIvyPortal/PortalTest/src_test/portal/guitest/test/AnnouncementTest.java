@@ -1,5 +1,8 @@
 package portal.guitest.test;
 
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,22 +12,15 @@ import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.AnnouncementPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LanguagePage;
-import portal.guitest.page.LoginPage;
 
 public class AnnouncementTest extends BaseTest {
   @Override
   @Before
   public void setup() {
     super.setup();
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
-    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
-    loginPage.login();
-    HomePage homePage = new HomePage();
-    assertTrue("Admin Settings menu item is  displayed", homePage.isAdminSettingsMenuItemPresent());
-    LanguagePage languagePage = homePage.openLanguagePage();
-
-    languagePage.selectLanguage(1);
-    languagePage.save();
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    login(TestAccount.ADMIN_USER);
+    resetLanguageOfCurrentUser();
   }
 
   @Test

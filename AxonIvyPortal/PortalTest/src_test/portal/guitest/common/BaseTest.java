@@ -2,27 +2,30 @@ package portal.guitest.common;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.junit.Before;
 import org.junit.Rule;
 
-import portal.guitest.page.HomePage;
-import ch.ivy.addon.portalkit.enums.PortalPermission;
-import ch.xpertline.base.client.Browser;
-import ch.xpertline.base.enums.BrowserType;
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
 
-import com.thoughtworks.selenium.SeleneseTestBase;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
+import portal.guitest.page.HomePage;
+import vn.wawa.guitest.base.client.Browser;
+import vn.wawa.guitest.base.enums.BrowserType;
 
 /**
  * A base test that other tests extend it. It will test on browser IE by default. It provides feature to take screenshot
  * of failed tests and utility methods.
  *
  */
-public class BaseTest extends SeleneseTestBase {
+public class BaseTest {
   private Browser browser;
 
   private String designerLogoutUrl = "http://localhost:8081/ivy/wf/logout.jsp";
-  public final static String LOGIN_URL_PATTERN = "portalKitTestHelper/1636734E13CEC872/login.ivp?username=%s&password=%s";
+  private final static String LOGIN_URL_PATTERN = "portalKitTestHelper/1636734E13CEC872/login.ivp?username=%s&password=%s";
   private BrowserType browserType = BrowserType.IE;
   private String ieDriverPath = getInternetExprorerDriverPath();
 
@@ -56,6 +59,7 @@ public class BaseTest extends SeleneseTestBase {
   protected String createTestingCaseUrlForCustomizationAdditionalCaseDetails = "portalExamples/1624D1F5CBEA5332/createInvestmentRequest.ivp";
   protected String createTestingCaseUrlForDefaultAdditionalCaseDetails = "internalSupport/14B2FC03D2E87141/DefaultAdditionalCaseDetails.ivp";
   protected String createTestingCaseContainOneTask = "internalSupport/14B2FC03D2E87141/CreateSupportTicket.ivp";
+  protected String createUnassignedTaskUrl = "internalSupport/14B2FC03D2E87141/createUnassignedTask.ivp";
 
   @Rule
   public ScreenshotFailedTestRule screenshotTestRule = new ScreenshotFailedTestRule();
@@ -63,10 +67,10 @@ public class BaseTest extends SeleneseTestBase {
   @Before
   public void setup() {
     browser = Browser.getBrowser();
-    destroyAllTasksCases();
-    cleanAllFavoriteProcesses();
-    updatePermissionOfTestUsers();
-    cleanUpGlobalVariables();
+    launchBrowserAndGotoRelativeLink("portalKitTestHelper/1511A66AF619A768/cleanData.ivp");
+//    if (!SystemProperties.isInServerMode()) {
+//      logoutDesigner();
+//    }
   }
 
   public void launchBrowserAndGotoRelativeLink(String relativeProcessStartLink) {
@@ -93,16 +97,7 @@ public class BaseTest extends SeleneseTestBase {
     }
   }
 
-  protected void navigateToUrl(String relativeProcessStartUrl) {
-    if (SystemProperties.isInServerMode()) {
-      redirectToRelativeLink(relativeProcessStartUrl);
-    } else {
-      logoutDesigner();
-      redirectToRelativeLink(relativeProcessStartUrl);
-    }
-  }
-
-  private void logoutDesigner() {
+  protected void logoutDesigner() {
     try {
       browser.goHome(designerLogoutUrl);
     } catch (Exception e) {
@@ -110,36 +105,12 @@ public class BaseTest extends SeleneseTestBase {
     }
   }
 
-  private void destroyAllTasksCases() {
-    String destroyAllTaskCaseURL = "portalKitTestHelper/1511A66AF619A768/cleanupCases.ivp";
-    launchBrowserAndGotoRelativeLink(destroyAllTaskCaseURL);
-  }
-
-  private void cleanAllFavoriteProcesses() {
-    String cleanAllFavoriteProcessesURL = "portalKitTestHelper/1511A66AF619A768/CleanFavoriteProcess.ivp";
-    navigateToUrl(cleanAllFavoriteProcessesURL);
-  }
-
-  private void updatePermissionOfTestUsers() {
-    redirectToRelativeLink("portalKitTestHelper/14DE09882B540AD5/updatePermissionsOfTestUsers.ivp");
-  }
-
   public void createTestingTasks() {
     redirectToRelativeLink(createTestingTasksUrl);
   }
   
-  public void grantAllPermissionsToCurrentUser() {
-    String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantAllPermissionsToCurrentUser.ivp";
-    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
-  }
-  
   public void grantTaskReadAllPermissionsToCurrentUser() {
     String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantTaskReadAllPermissionsToCurrentUser.ivp";
-    redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
-  }
-  
-  public void grantCaseReadAllPermissionsToCurrentUser() {
-    String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantCaseReadAllPermissionsToCurrentUser.ivp";
     redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
   }
   
@@ -178,6 +149,10 @@ public class BaseTest extends SeleneseTestBase {
     redirectToRelativeLink(cleanUpURL);
   }
   
+  public void resetLanguageOfCurrentUser(){
+    redirectToRelativeLink("portalKitTestHelper/1511A66AF619A768/resetLanguageOfCurrentUser.ivp");
+  }
+  
   public void refreshPage(){
     browser.getDriver().navigate().refresh();
   }
@@ -189,12 +164,24 @@ public class BaseTest extends SeleneseTestBase {
       username = URLEncoder.encode(testAccount.getUsername(), "UTF-8");
       password = URLEncoder.encode(testAccount.getPassword(), "UTF-8");
       redirectToRelativeLink(String.format(LOGIN_URL_PATTERN, username, password));
-      redirectToRelativeLink(String.format(LOGIN_URL_PATTERN, username, password));
-      redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+
+      AtomicBoolean isLoginSuccess = new AtomicBoolean(false);
+      Awaitility.await().atMost(new Duration(30, TimeUnit.SECONDS)).until(() -> isLoginSuccess.get());
+      try {
+        redirectToRelativeLink(String.format(LOGIN_URL_PATTERN, username, password));
+        new HomePage() {
+          @Override
+          protected long getTimeOutForLocator() {
+            return 7L;
+          }
+        };
+        isLoginSuccess.set(true);
+      } catch (Exception e) {
+        System.out.println("*****Login unsuccessfully. Try again if not timeout.");
+      }
     } catch (UnsupportedEncodingException e) {
       throw new PortalGUITestException(e);
     }
-    
   }
   
 }

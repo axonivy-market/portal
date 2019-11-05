@@ -10,6 +10,7 @@ public class TaskEndInfo {
   private NavigationHistory navigationHistory;
   private PortalPage portalPage;
   private Boolean isStartedInTaskDetails;
+  private Boolean isInIFrame;
 
   public TaskLazyDataModel getDataModel() {
     return dataModel;
@@ -41,5 +42,13 @@ public class TaskEndInfo {
 
   public void setIsStartedInTaskDetails(Boolean isStartedInTaskDetails) {
     this.isStartedInTaskDetails = isStartedInTaskDetails;
+  }
+  
+  public Boolean getIsInIFrame() {
+    return isInIFrame;
+  }
+  
+  public void setIsInIFrame(Boolean isInIFrame) {
+    this.isInIFrame = isInIFrame;
   }
 }

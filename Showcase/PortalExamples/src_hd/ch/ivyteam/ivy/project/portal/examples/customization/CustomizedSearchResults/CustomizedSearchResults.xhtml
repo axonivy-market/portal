@@ -14,8 +14,8 @@
     <ui:define name="taskListHeader">
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskListHeader dataModel="#{dataModel.taskDataModel}" />
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{dataModel.taskDataModel}"
-        styleClass="state-column-header TexAlCenter" componentId="task-custom" sortField="customVarcharField5"
-        value="#{ivy.cms.co('/DefaultColumns/customVarcharField5')}" responsiveStyleClass="u-hidden-lg-down" />
+        styleClass="state-column-header TexAlCenter" componentId="task-custom" sortField="customVarCharField5"
+        value="#{ivy.cms.co('/DefaultColumns/customVarCharField5')}" responsiveStyleClass="u-hidden-lg-down" />
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{dataModel.taskDataModel}"
         styleClass="state-column-header TexAlCenter" componentId="task-custom" sortField="customTimestampField1"
         value="#{ivy.cms.co('/DefaultColumns/customTimestampField1')}"
@@ -91,7 +91,7 @@
       <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader
         id="customVarCharField1-column-case-list-header" styleClass="TexAlCenter customized-case-header-column"
         responsiveStyleClass="js-hidden-when-expand-menu u-hidden-lg-down" sortedField="customVarCharField1"
-        sortable="true" value="#{ivy.cms.co('/DefaultColumns/caseList/customVarcharField1')}"
+        sortable="true" value="#{ivy.cms.co('/DefaultColumns/caseList/customVarCharField1')}"
         dataModel="#{dataModel.caseDataModel}" />
       <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader
         id="customTimestampField1-column-case-list-header" styleClass="TexAlCenter customized-case-header-column"
@@ -142,12 +142,6 @@
           </p:column>
           <p:column headerText="Country" sortBy="#{emp.country}" filterBy="#{emp.country}">
             <h:outputText value="#{emp.country}" />
-          </p:column>
-          <p:column headerText="Details" style="text-align: center">
-            <p:commandLink id="detail-action" actionListener="#{logic.openDetails(emp)}" process="@this"
-              title="#{ivy.cms.co('/Labels/Details')}">
-              <i class="fa fa-search fa-lg" />
-            </p:commandLink>
           </p:column>
         </p:dataTable>
       </p:tab>

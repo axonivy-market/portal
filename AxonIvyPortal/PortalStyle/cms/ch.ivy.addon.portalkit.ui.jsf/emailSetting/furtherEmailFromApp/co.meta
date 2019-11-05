@@ -1,5 +1,5 @@
-co: name={furtherEmailFromApp} description={} changed={2019-09-03 06:18:55 CEST} changedby={ntminh01} visualorder={0} guid={15F713A730254D6D} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={168DA54BF6B897E7} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:33 CET} validto={} changed={2019-09-03 06:18:55 CEST} changedby={ntminh01} properties={} id={}
+co: name={furtherEmailFromApp} description={} changed={2019-10-18 13:07:19 CEST} changedby={ttthai} visualorder={0} guid={15F713A730254D6D} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={168DA54BF6B897E7} datatype={} isdefault={false} langid={es} description={} validfrom={2019-10-18 13:07:19 CEST} validto={} changed={2019-10-18 13:07:19 CEST} changedby={ttthai} properties={} id={}
 val: guid={15F713A730E5D255} datatype={} isdefault={true} langid={en} description={} validfrom={2016-12-21 15:21:02 CET} validto={} changed={2019-09-03 06:18:42 CEST} changedby={ntminh01} properties={} id={}
-val: guid={15F713A730472CA5} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:21:01 CET} validto={} changed={2019-09-03 06:18:55 CEST} changedby={ntminh01} properties={} id={}
-val: guid={15F713A7309B0B8A} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:05 CEST} validto={} changed={2019-09-03 06:18:48 CEST} changedby={ntminh01} properties={} id={}
+val: guid={15F713A730472CA5} datatype={} isdefault={false} langid={de} description={} validfrom={2019-10-18 13:07:19 CEST} validto={} changed={2019-10-18 13:07:19 CEST} changedby={ttthai} properties={} id={}
+val: guid={15F713A7309B0B8A} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-10-18 13:07:19 CEST} validto={} changed={2019-10-18 13:07:19 CEST} changedby={ttthai} properties={} id={}
