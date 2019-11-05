@@ -172,7 +172,7 @@ Pt0 f7 680 154 30 30 -43 17 #rect
 Pt0 f7 @|TaskSwitchSimpleIcon #fIcon
 Pt0 f19 actionTable 'out=in;
 ' #txt
-Pt0 f19 actionCode 'ivy.case.setProcess("Alpha Company", "Alpha Company");' #txt
+Pt0 f19 actionCode 'ivy.case.setCategoryPath("Alpha Company");' #txt
 Pt0 f19 security system #txt
 Pt0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -278,7 +278,7 @@ Pt0 f18 769 449 30 30 0 15 #rect
 Pt0 f18 @|EndIcon #fIcon
 Pt0 f23 actionTable 'out=in;
 ' #txt
-Pt0 f23 actionCode 'ivy.case.setProcess("Beta Company", "Beta Company");' #txt
+Pt0 f23 actionCode 'ivy.case.setCategoryPath("Beta Company");' #txt
 Pt0 f23 security system #txt
 Pt0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
