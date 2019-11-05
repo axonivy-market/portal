@@ -4,12 +4,7 @@ import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-import ch.xpertline.base.client.Browser;
 
 public class AdminSettingsPage extends TemplatePage {
 
@@ -34,32 +29,6 @@ public class AdminSettingsPage extends TemplatePage {
 		settingTabLink.click();
 		waitForElementPresent(By.id("adminui:adminTabView:settingForm"), true);
 		waitAjaxIndicatorDisappear();
-	}
-
-	public void openDesignTab() {
-		WebElement settingTabLink = findElementByXpath("//a[@href='#adminui:adminTabView:designTab']");
-		settingTabLink.click();
-		waitForElementPresent(By.id("adminui:adminTabView:logo-color-form"), true);
-	}
-
-	public void chooseMainColor(String color) {
-		click(By.id("adminui:adminTabView:logo-color-form:main-color-chooser_button"));
-		waitForElementDisplayed(By.className("ui-colorpicker-container"), true);
-
-		WebDriver driver = Browser.getBrowser().getDriver();
-		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		jse.executeScript("document.querySelector('div.ui-colorpicker_hex > input').value='" + color + "';");
-		jse.executeScript("document.getElementById('adminui:adminTabView:logo-color-form:main-color-chooser_input').value='"
-				+ color + "';");
-	}
-
-	public String getMainColor() {
-		return findElementById("adminui:adminTabView:logo-color-form:main-color-chooser_input").getText();
-	}
-
-	public HomePage applyNewColor() {
-		click(By.id("adminui:adminTabView:logo-color-form:apply-button"));
-		return new HomePage();
 	}
 
 	private void editGlobalVariable(String variableName, String variableValue, boolean isBooleanType) {
@@ -98,13 +67,6 @@ public class AdminSettingsPage extends TemplatePage {
 		saveButton.click();
 	}
 
-  
-  public void closeConfirmationDialog() {
-  	waitForElementDisplayed(By.id("adminui:resetConfirmationDialog"),true,3);
-    WebElement okButton=findElementById("adminui:resetConfirmationDialog");
-    okButton.sendKeys(Keys.ENTER);
-    waitAjaxIndicatorDisappear();
-  }
 	public void closeAdminSettingDialog() {
 		WebElement closeButton = findElementById("close-button");
 		closeButton.click();
@@ -114,15 +76,6 @@ public class AdminSettingsPage extends TemplatePage {
 	public void closeInformConfigDialog() {
 		WebElement closeButton = findElementById("close-dialog-button");
 		closeButton.click();
-	}
-
-	public void restoreAllToDefaults() {
-		openSettingTab();
-		WebElement restoreButton = findElementById("adminui:adminTabView:restore-all-to-default-button");
-		restoreButton.click();
-		closeConfirmationDialog();
-		closeAdminSettingDialog();
-		closeInformConfigDialog();
 	}
 
 	public void setClientSideTimeout(String timeout) {

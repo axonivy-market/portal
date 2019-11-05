@@ -1,0 +1,3 @@
+DefaultChartColorsOverrideData #class
+_ch.ivyteam.ivy.project.portal.examples #namespace
+chartColors ch.ivy.addon.portalkit.statistics.StatisticColors #field

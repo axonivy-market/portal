@@ -1,24 +1,28 @@
 package portal.guitest.test;
 
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
+
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdditionalCaseDetailsPage;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
+import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class CaseWidgetTest extends BaseTest {
@@ -39,20 +43,20 @@ public class CaseWidgetTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
-    navigateToUrl(createTestingTasksUrl);
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(createTestingTasksUrl);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
 
   @Test
   public void testHideCase() {
-    navigateToUrl(hideCaseUrl);
+    redirectToRelativeLink(hideCaseUrl);
     initHomePage(TestAccount.ADMIN_USER);
     
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksBy("Report and hide case");
     taskWidgetPage.startTaskWithoutUI(0);
     homePage = new HomePage();
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
     
     mainMenuPage = homePage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
@@ -89,21 +93,21 @@ public class CaseWidgetTest extends BaseTest {
     mainMenuPage = homePage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
     caseDetailsPage = casePage.openDetailsOfCaseHasName(LEAVE_REQUEST_CASE_NAME);
-    int numberOfTasks = caseDetailsPage.countRelatedTasks();
-    TaskWidgetPage taskOfCasePage = caseDetailsPage.openTasksOfCasePage(0);
-    assertEquals(numberOfTasks + 1, taskOfCasePage.countTasks());// Add first system task
+    assertEquals(3, caseDetailsPage.countRelatedTasks());
+    TaskDetailsPage taskDetailsPage = caseDetailsPage.openTasksOfCasePage(0);
+    assertEquals("Task Details", taskDetailsPage.getPageTitle());
   }
   
   @Test
   public void testOpenAdditionalCaseDetailsPage() throws Exception {
     openAdditionalCaseDetailsPage(createTestingCaseUrlForDefaultAdditionalCaseDetails, LEAVE_REQUEST_DEFAULT_CASE_DETAILS_PAGE_CASE_NAME);
-    validateAdditionalCaseDetailsPage(17, "CustomVarCharField 1");
+    validateAdditionalCaseDetailsPage(15, "CustomVarCharField 1");
   }
   
   @Test
   public void testOpenCustomizationAdditionalCaseDetailsPage() throws Exception {
     openAdditionalCaseDetailsPage(createTestingCaseUrlForCustomizationAdditionalCaseDetails, INVESTMENT_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME);
-    validateAdditionalCaseDetailsPage(6, "Apartment A");
+    validateAdditionalCaseDetailsPage(7, "Apartment A");
   }
   
   @Test
@@ -128,7 +132,7 @@ public class CaseWidgetTest extends BaseTest {
   }
   
   private void openAdditionalCaseDetailsPage(String initDataUrl, String caseName){
-    navigateToUrl(initDataUrl);
+    redirectToRelativeLink(initDataUrl);
     initHomePage(TestAccount.ADMIN_USER);
     mainMenuPage = homePage.openMainMenu();
     additionalCaseDetailsPage = new AdditionalCaseDetailsPage();
@@ -152,8 +156,7 @@ public class CaseWidgetTest extends BaseTest {
   }
 
   private void initHomePage(TestAccount account) {
-    LoginPage loginPage = new LoginPage(account);
-    loginPage.login();
+    login(account);
     homePage = new HomePage();
   }
   

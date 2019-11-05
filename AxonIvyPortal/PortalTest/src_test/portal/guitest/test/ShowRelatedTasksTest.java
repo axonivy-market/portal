@@ -1,5 +1,9 @@
 package portal.guitest.test;
 
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
+
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
@@ -7,19 +11,19 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.TimeoutException;
 
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
+
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TaskState;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.NoteHistoryPage;
+import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
-
-import com.jayway.awaitility.Awaitility;
-import com.jayway.awaitility.Duration;
 
 public class ShowRelatedTasksTest extends BaseTest {
   
@@ -31,12 +35,10 @@ public class ShowRelatedTasksTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
-    navigateToUrl("portalKitTestHelper/153CACC26D0D4C3D/createRelatedTasksTestUser.ivp");
-    navigateToUrl(createTestingTasksUrl);
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
-    LoginPage loginPage = new LoginPage(TestAccount.TEST_RELATED_TASKS_USER);
-    loginPage.login();
-    caseHistoryPage = new NoteHistoryPage();
+    redirectToRelativeLink("portalKitTestHelper/153CACC26D0D4C3D/createRelatedTasksTestUser.ivp");
+    redirectToRelativeLink(createTestingTasksUrl);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    login(TestAccount.TEST_RELATED_TASKS_USER);
     denyReadAllPermissionFromCurrentUser();
   }
   
@@ -102,17 +104,8 @@ public class ShowRelatedTasksTest extends BaseTest {
   public void testShowRelatedTasksWhenClickingRelatedTask() {
     grantTaskReadOwnCaseTaskPermissionsToCurrentUser();
     openCaseDetail();
-    TaskWidgetPage taskWidgetPage = detailsPage.openTasksOfCasePage(0);
-    int numberOfTasks = taskWidgetPage.countTasks();
-    assertTrue(numberOfTasks == 4);
-    boolean hasDoneTask = false;
-    for (int i = 0; i < numberOfTasks; i++) {
-      if (taskWidgetPage.getTaskState(i).equals(TaskState.DONE)) {
-        hasDoneTask = true;
-        break;
-      }
-    }
-    assertTrue(hasDoneTask);
+    TaskDetailsPage taskDetailsPage = detailsPage.openTasksOfCasePage(0);
+    assertEquals("Task Details", taskDetailsPage.getPageTitle());
   }
   
   @Test

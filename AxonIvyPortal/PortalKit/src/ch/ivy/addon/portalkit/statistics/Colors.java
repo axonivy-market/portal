@@ -1,18 +1,14 @@
 package ch.ivy.addon.portalkit.statistics;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.lang3.StringUtils;
 
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class Colors {
-  private static final String COMMA = ",";
 
-  private static final String EXCEPTION_PRIORITY_COLOR = "ff5a5a";
-  private static final String HIGH_PRIORITY_COLOR = "ffc0c0";
-  private static final String NORMAL_PRIORITY_COLOR = "96dc82";
-  private static final String LOW_PRIORITY_COLOR = "d4d4d4";
+  public static final String SEMICOLON = ";";
 
   private static final String EXCEPTION_PRIORITY_KEY =
       "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/exception";
@@ -21,68 +17,75 @@ public class Colors {
       "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/normal";
   private static final String LOW_PRIORITY_KEY = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/low";
 
-  private static final String CREATED_CASE_COLOR = "96dc82";
-  private static final String RUNNING_CASE_COLOR = "4bb2c5";
-  private static final String DONE_CASE_COLOR = "eaa228";
-  private static final String FAILED_CASE_COLOR = "c5b47f";
-
   private static final String CREATED_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/caseState/CREATED";
   private static final String RUNNING_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/caseState/RUNNING";
   private static final String DONE_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/caseState/DONE";
   private static final String FAILED_CASE_KEY = "/ch.ivy.addon.portalkit.ui.jsf/caseState/FAILED";
+  public static final String PRIORITY_COLOR = "PRIORITY_COLOR";
+  public static final String STATE_COLOR = "STATE_COLOR";
 
   private Colors() {}
 
-  public static String getPriorityColors(Map<String, Number> chartData) {
+  /**
+   * get color for Task's priority chart
+   * Build with correct order: EXCEPTION, HIGH, NORMAL, LOW
+   * @param chartData
+   * @param colors
+   * @return list of colors
+   */
+  public static List<String> getPriorityColors(Map<String, Number> chartData, StatisticColors colors) {
     Number exceptionPriorities = chartData.get(Ivy.cms().co(EXCEPTION_PRIORITY_KEY));
     Number highPriorities = chartData.get(Ivy.cms().co(HIGH_PRIORITY_KEY));
     Number normalPriorities = chartData.get(Ivy.cms().co(NORMAL_PRIORITY_KEY));
     Number lowPriorities = chartData.get(Ivy.cms().co(LOW_PRIORITY_KEY));
 
-    String seriesColors = StringUtils.EMPTY;
+    List<String> seriesColors = new ArrayList<>();
     if (existData(exceptionPriorities)) {
-      seriesColors += EXCEPTION_PRIORITY_COLOR + COMMA;
+      seriesColors.add(colors.getTaskExceptionPriority());
     }
     if (existData(highPriorities)) {
-      seriesColors += HIGH_PRIORITY_COLOR + COMMA;
+      seriesColors.add(colors.getTaskHighPriority());
     }
     if (existData(normalPriorities)) {
-      seriesColors += NORMAL_PRIORITY_COLOR + COMMA;
+      seriesColors.add(colors.getTaskNormalPriority());
     }
     if (existData(lowPriorities)) {
-      seriesColors += LOW_PRIORITY_COLOR;
+      seriesColors.add(colors.getTaskLowPriority());
     }
-    if (seriesColors.endsWith(COMMA)) {
-      seriesColors = seriesColors.substring(0, seriesColors.length() - 1);
-    }
+
     return seriesColors;
   }
 
-  public static String getCaseStateColors(Map<String, Number> chartData) {
-    Number exceptionPriorities = chartData.get(Ivy.cms().co(CREATED_CASE_KEY));
-    Number highPriorities = chartData.get(Ivy.cms().co(RUNNING_CASE_KEY));
-    Number normalPriorities = chartData.get(Ivy.cms().co(DONE_CASE_KEY));
-    Number lowPriorities = chartData.get(Ivy.cms().co(FAILED_CASE_KEY));
+  /**
+   * get color for Case's state chart
+   * Build with correct order: CREATED, RUNNING, DONE, FAILED
+   * @param chartData
+   * @param colors
+   * @return list of colors
+   */
+  public static List<String> getCaseStateColors(Map<String, Number> chartData, StatisticColors colors) {
+    Number createdCases = chartData.get(Ivy.cms().co(CREATED_CASE_KEY));
+    Number runningCases = chartData.get(Ivy.cms().co(RUNNING_CASE_KEY));
+    Number doneCases = chartData.get(Ivy.cms().co(DONE_CASE_KEY));
+    Number failedCases = chartData.get(Ivy.cms().co(FAILED_CASE_KEY));
 
-    String seriesColors = StringUtils.EMPTY;
-    if (existData(exceptionPriorities)) {
-      seriesColors += CREATED_CASE_COLOR + COMMA;
+    List<String> seriesColors = new ArrayList<>();
+    if (existData(createdCases)) {
+      seriesColors.add(colors.getCreatedCase());
     }
-    if (existData(highPriorities)) {
-      seriesColors += RUNNING_CASE_COLOR + COMMA;
+    if (existData(runningCases)) {
+      seriesColors.add(colors.getRunningCase());
     }
-    if (existData(normalPriorities)) {
-      seriesColors += DONE_CASE_COLOR + COMMA;
+    if (existData(doneCases)) {
+      seriesColors.add(colors.getDoneCase());
     }
-    if (existData(lowPriorities)) {
-      seriesColors += FAILED_CASE_COLOR;
+    if (existData(failedCases)) {
+      seriesColors.add(colors.getFailedCase());
     }
-    if (seriesColors.endsWith(COMMA)) {
-      seriesColors = seriesColors.substring(0, seriesColors.length() - 1);
-    }
+
     return seriesColors;
   }
-
+  
   private static boolean existData(Number data) {
     return data != null && data.intValue() > 0;
   }

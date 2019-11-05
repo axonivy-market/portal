@@ -1,5 +1,5 @@
 [Ivy]
-1657EA461CE412A1 3.28 #module
+1657EA461CE412A1 7.5.0 #module
 >Proto >Proto Collection #zClass
 Le0 LogoutPage Big #zClass
 Le0 B #cInfo
@@ -19,8 +19,7 @@ Le0 @PushWFArc f6 '' #zField
 Le0 @PushWFArc f2 '' #zField
 >Proto Le0 Le0 LogoutPage #zField
 Le0 f0 inParamDecl '<> param;' #txt
-Le0 f0 outParamDecl '<java.lang.String logoutPage> result;
-' #txt
+Le0 f0 outParamDecl '<String logoutPage> result;' #txt
 Le0 f0 outParamTable 'result.logoutPage=in.logoutPage;
 ' #txt
 Le0 f0 callSignature getLogoutPage() #txt

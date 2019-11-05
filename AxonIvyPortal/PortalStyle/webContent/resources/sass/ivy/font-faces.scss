@@ -49,3 +49,16 @@
        url("\#{resource['serenity-layout:fonts/MaterialIcons-Regular.woff']}") format('woff'),
        url("\#{resource['serenity-layout:fonts/MaterialIcons-Regular.ttf']}") format('truetype');
 }
+
+@font-face {
+  font-family: "true-minimalistic-icons";
+  src:url("\#{resource['true-minimalistic-icons:true-minimalistic-icons.eot']}");
+  src:url("\#{resource['true-minimalistic-icons:true-minimalistic-icons.eot']}?#iefix") format("embedded-opentype"),
+    url("\#{resource['true-minimalistic-icons:true-minimalistic-icons.woff']}") format("woff"),
+    url("\#{resource['true-minimalistic-icons:true-minimalistic-icons.ttf']}") format("truetype"),
+    url("\#{resource['true-minimalistic-icons:true-minimalistic-icons.svg']}#true-minimalistic-icons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+

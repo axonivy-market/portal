@@ -58,11 +58,11 @@ Ss0 f4 307 179 26 26 0 12 #rect
 Ss0 f4 @|UdProcessEndIcon #fIcon
 Ss0 f5 actionTable 'out=in;
 ' #txt
-Ss0 f5 actionCode 'import org.primefaces.context.RequestContext;
+Ss0 f5 actionCode 'import org.primefaces.PrimeFaces;
 import javax.faces.context.FacesContext;
 
 if (!FacesContext.getCurrentInstance().isValidationFailed()) {
-	RequestContext.getCurrentInstance().update(in.taskContainerId);
+	PrimeFaces.current().ajax().update(in.taskContainerId);
 }' #txt
 Ss0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

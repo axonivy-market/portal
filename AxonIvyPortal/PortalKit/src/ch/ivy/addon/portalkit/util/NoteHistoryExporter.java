@@ -14,6 +14,7 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 import ch.ivy.addon.portalkit.bean.CaseBean;
+import ch.ivy.addon.portalkit.bean.UserFormatBean;
 import ch.ivy.addon.portalkit.bo.ExcelExportSheet;
 import ch.ivy.addon.portalkit.bo.History;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -21,6 +22,7 @@ import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
 
 public class NoteHistoryExporter {
+  private UserFormatBean userFormatBean;
 
   public StreamedContent getStreamedContentOfTaskNoteHistory(List<INote> taskNoteHistory, String fileName) {
     List<List<Object>> rows = generateDataForTaskNoteHistory(taskNoteHistory);
@@ -42,17 +44,17 @@ public class NoteHistoryExporter {
 
   public StreamedContent getStreamedContentOfCaseNoteHistory(List<History> caseNoteHistory, ICase iCase, String fileName) {
     List<List<Object>> caseNoteRows = generateDataForCaseNoteHistory(caseNoteHistory);
-    List<List<Object>>  generateDataForCaseInfo = generateDataForCaseInfo(iCase);
+    List<List<Object>> generateDataForCaseInfo = generateDataForCaseInfo(iCase);
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
     try {
-      //first sheet for note history
+      // first sheet for note history
       ExcelExportSheet caseNoteHistorySheet = new ExcelExportSheet();
       caseNoteHistorySheet.setHeaders(generateHeaders());
       caseNoteHistorySheet.setRows(caseNoteRows);
       caseNoteHistorySheet.setSheetName("notes-table");
-      
-      //second sheet for case info
+
+      // second sheet for case info
       ExcelExportSheet caseInfoSheet = new ExcelExportSheet();
       caseInfoSheet.setHeaders(generateHeaderForCaseInfo());
       caseInfoSheet.setRows(generateDataForCaseInfo);
@@ -68,9 +70,9 @@ public class NoteHistoryExporter {
 
   private List<String> generateHeaders() {
     List<String> headers = new ArrayList<>();
-    headers.add(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/name"));
-    headers.add(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/timestamp"));
     headers.add(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent"));
+    headers.add(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/author"));
+    headers.add(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/creationDate"));
     return headers;
   }
 
@@ -78,9 +80,9 @@ public class NoteHistoryExporter {
     List<List<Object>> rows = new ArrayList<>();
     for (INote taskNote : taskNoteHistory) {
       List<Object> row = new ArrayList<>();
+      row.add(taskNote.getMessage());
       row.add(taskNote.getWritter().getDisplayName());
       row.add(formatDate(taskNote.getCreationTimestamp()));
-      row.add(taskNote.getMessage());
       rows.add(row);
     }
     return rows;
@@ -100,27 +102,29 @@ public class NoteHistoryExporter {
     List<Object> row = new ArrayList<>();
     row.add(iCase.getName());
     row.add(iCase.getId());
-    row.add(iCase.getCreatorUser().getDisplayName());
+    row.add(iCase.getCreatorUser() != null
+        ? userFormatBean.format(iCase.getCreatorUser().getDisplayName(), iCase.getCreatorUser().getName())
+        : Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable"));
     row.add(new CaseBean().getState(iCase));
     rows.add(row);
     return rows;
   }
 
   private List<List<Object>> generateDataForCaseNoteHistory(List<History> caseNoteHistory) {
+    userFormatBean = new UserFormatBean();
     List<List<Object>> rows = new ArrayList<>();
     for (History caseNote : caseNoteHistory) {
       List<Object> row = new ArrayList<>();
-      row.add(caseNote.getInvolvedFullname());
-      row.add(formatDate(caseNote.getTimestamp()));
       row.add(caseNote.getContent());
+      row.add(userFormatBean.format(caseNote.getInvolvedFullname(), caseNote.getInvolvedUsername()));
+      row.add(formatDate(caseNote.getTimestamp()));
       rows.add(row);
     }
     return rows;
   }
-  
+
   private String formatDate(Date datetime) {
-    String pattern =
-        Ivy.cms().findContentObjectValue("/patterns/dateTimePattern", Locale.ENGLISH).getContentAsString();
+    String pattern = Ivy.cms().findContentObjectValue("/patterns/dateTimePattern", Locale.ENGLISH).getContentAsString();
     return new SimpleDateFormat(pattern).format(datetime);
   }
 

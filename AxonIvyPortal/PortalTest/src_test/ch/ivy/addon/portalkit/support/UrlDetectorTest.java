@@ -7,6 +7,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -14,7 +15,6 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import ch.ivyteam.ivy.environment.Ivy;
-import org.junit.Assert;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(Ivy.class)

@@ -10,6 +10,7 @@
   <cc:attribute name="uploadRendered" default="true" />
   <cc:attribute name="downloadRendered" default="true" />
   <cc:attribute name="deleteRendered" default="true" />
+  <cc:attribute name="messageRendered" default="true" />
   
   <cc:attribute name="fileLimit" type="Integer" shortDescription="Number of files are in the given ICase" default="-1" />
   <cc:attribute name="uploadText" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/upload')}" />
@@ -27,7 +28,7 @@
   <cc:attribute name="updatedComponentAfterDeleted" />
   
   <cc:attribute name="selectedType" />
-  <cc:attribute name="typeSelectionItems" required="true" shortDescription="Use #{masterDataBean.documentTypes} if there are no custom Document Type" />
+  <cc:attribute name="typeSelectionItems" shortDescription="Use #{masterDataBean.documentTypes} if there are no custom Document Type" />
 </cc:interface>
 
 <cc:implementation>
@@ -41,7 +42,7 @@
 
     <cc:renderFacet name="componentHeader" />
 
-    <p:messages id="document-messages" />
+    <p:messages id="document-messages" for="document-messages" rendered="#{cc.attrs.messageRendered}" />
     <p:dataTable id="document-table" value="#{data.documents}" var="document"
       emptyMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/NoFiles')}" styleClass="MarTop5"
       widgetVar="fileTableVar">
@@ -59,11 +60,11 @@
         <h:outputText id="type" value="#{document.type.toString()}" />
       </p:column>
       <cc:insertChildren />
-      <p:column styleClass="u-text-align-center" rendered="#{cc.attrs.functionColumnRendered}"
+      <p:column styleClass="u-text-align-center express-action-button-icon-only" rendered="#{cc.attrs.functionColumnRendered}"
         headerText="#{ivy.cms.co('/Dialogs/components/CaseDocument/FileFunctions')}">
         <p:commandLink id="document-download" styleClass="fa #{cc.attrs.downloadIcon} #{cc.attrs.downloadStyleClass}"
           immediate="true" ajax="false" process="@none" title="#{cc.attrs.downloadTitle}"
-          value="#{cc.attrs.downloadText}" rendered="#{cc.attrs.downloadRendered}">
+          rendered="#{cc.attrs.downloadRendered}">
           <p:fileDownload value="#{logic.download(document)}" />
         </p:commandLink>
 
@@ -72,12 +73,12 @@
         <p:commandLink id="document-delete" styleClass="fa fa-trash-o"
           actionListener="#{data.setSelectedDocument(document)}" rendered="#{cc.attrs.deleteRendered}"
           update="#{cc.attrs.updatedComponentAfterDeleted}" immediate="true" title="#{cc.attrs.deleteTitle}"
-          value="#{cc.attrs.deleteText}" oncomplete="PF('document-delete-dialog').show()">
+          oncomplete="PF('document-delete-dialog').show()">
         </p:commandLink>
       </p:column>
     </p:dataTable>
     <div class="upload-container">
-      <h:panelGroup rendered="#{cc.attrs.typeColumnRendered}">
+      <h:panelGroup rendered="#{cc.attrs.typeColumnRendered}" styleClass="MarTop10">
           <p:outputLabel for="type-selection" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/type')}: " styleClass="u-mar-right-5" />
           <p:selectOneMenu id="type-selection" value="#{data.typeSelection}" converter="pojoConverter" styleClass="u-mar-right-5">
             <p:ajax global="false" />
@@ -92,7 +93,8 @@
           invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}" 
           label="#{not empty cc.attrs.uploadText ? cc.attrs.uploadText : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/upload')}"
           cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          onstart="#{logic.setFileLimit(cc.attrs.fileLimit)}" sizeLimit="#{masterDataBean.fileUploadSizeLimit}">
+          onstart="#{logic.setFileLimit(cc.attrs.fileLimit)}" sizeLimit="#{masterDataBean.fileUploadSizeLimit}"
+          styleClass="ui-g-12 u-padding-0">
         </p:fileUpload>
       </h:panelGroup>
     </div>

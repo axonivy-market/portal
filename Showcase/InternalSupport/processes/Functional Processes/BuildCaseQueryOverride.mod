@@ -1,5 +1,5 @@
 [Ivy]
-1685475D840E6170 3.28 #module
+1685475D840E6170 7.5.0 #module
 >Proto >Proto Collection #zClass
 By0 BuildCaseQuery Big #zClass
 By0 B #cInfo
@@ -20,8 +20,7 @@ By0 @PushWFArc f4 '' #zField
 By0 @AnnotationArc f6 '' #zField
 >Proto By0 By0 BuildCaseQuery #zField
 By0 f0 inParamDecl '<> param;' #txt
-By0 f0 outParamDecl '<ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> result;
-' #txt
+By0 f0 outParamDecl '<ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> result;' #txt
 By0 f0 outParamTable 'result.caseQuery=in.#caseQuery;
 ' #txt
 By0 f0 callSignature buildCaseQuery() #txt
