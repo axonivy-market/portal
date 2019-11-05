@@ -44,13 +44,15 @@
           </p:inplace>
         </h:panelGroup>
 
-        <p:commandButton rendered="#{showItemBackButton}" id="back-to-cases" onclick="backToPrevPage();"
-          styleClass="case-details-back-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
-          icon="fa fa-reply-all" iconPos="left" type="button" />
+        <p:commandLink id="back-to-cases" rendered="#{showItemBackButton}" onclick="backToPrevPage();" styleClass="case-details-back-btn">
+          <i class="fa fa-reply-all" />
+          <p:spacer width="3px"/>
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"/>
+        </p:commandLink>
         <p:remoteCommand name="backToCasesList" actionListener="#{caseBean.backToCasesList()}" />
       </h:form>
     </h:panelGroup>
-    <div class="Separator MarTop0" />
+
     <div class="case-detail-body ui-g-12 u-padding-0">
       <div class="ui-g">
         <!-- Custom panel at top section -->
