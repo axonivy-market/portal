@@ -7,9 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
-import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
 
@@ -24,10 +22,6 @@ public class DateTimeDisplayTest extends BaseTest {
     super.setup();
     createTestingTasks();
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
-
     homePage = new HomePage();
   }
 

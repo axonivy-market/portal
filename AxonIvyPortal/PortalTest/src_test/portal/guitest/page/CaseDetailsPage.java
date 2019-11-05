@@ -13,7 +13,8 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
+
+import portal.guitest.common.Sleeper;
 
 public class CaseDetailsPage extends TemplatePage {
   private static final String DOCUMENT_COMPONENT_ID = "div[id='case-item-details:document']";
@@ -34,10 +35,6 @@ public class CaseDetailsPage extends TemplatePage {
     return "id('case-item-details:case-detail-title-form:case-detail-name')";
   }
 
-  public CaseDetailsPage(WebElement caseItem) {
-    this.caseItem = caseItem;
-  }
-
   public CaseDetailsPage() {
     this.caseItem = findElementByCssSelector("#main-area-panel");
   }
@@ -54,10 +51,6 @@ public class CaseDetailsPage extends TemplatePage {
   public int countRelatedTasks() {
     return caseItem.findElement(By.cssSelector("div[id$='related-tasks']"))
         .findElements(By.cssSelector("a[id$='task-name']")).size();
-  }
-
-  public int countTechnicalCases() {
-    return caseItem.findElements(By.cssSelector("div[id$=':technicalCase']")).size();
   }
 
   public void addNote(String content) {
@@ -137,7 +130,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void clickViewNote() {
-    findElementByCssSelector(LATEST_HISTORY_LIST_CSS_SELECTOR).click();
+    clickByCssSelector(LATEST_HISTORY_LIST_CSS_SELECTOR);
     waitAjaxIndicatorDisappear();
     WebElement noteDialog = getViewNoteDialog();
     waitForElementDisplayed(noteDialog, true);
@@ -157,12 +150,12 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void changeCaseName(String newCaseName) {
-    findElementByCssSelector("span[id$='case-name-edit-inplace_display']").click();
+    clickByCssSelector("span[id$='case-name-edit-inplace_display']");
     WebElement taskNameInput = findElementByCssSelector("input[id$='case-detail-name-input']");
     waitForElementDisplayed(taskNameInput, true);
     taskNameInput.clear();
     taskNameInput.sendKeys(newCaseName);
-    findElementByCssSelector("#case-item-details\\:case-detail-title-form\\:case-name-edit-inplace_editor .ui-inplace-save").click();
+    clickByCssSelector("#case-item-details\\:case-detail-title-form\\:case-name-edit-inplace_editor .ui-inplace-save");
     waitAjaxIndicatorDisappear();
   }
 
@@ -204,11 +197,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   private void onChangeDescriptionInput(String newDescription) {
-    try {
-      Thread.sleep(2000);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
+    Sleeper.sleep(2000);
    // WebElement caseDescriptionInput = findElementById("case-item-details:description:case-description-form:case-description-output");
     WebElement caseDescriptionInput = findElementByCssSelector("textarea[id='case-item-details:description:case-description-form:case-description-input']");
     waitForElementDisplayed(caseDescriptionInput, true);
@@ -222,7 +211,7 @@ public class CaseDetailsPage extends TemplatePage {
     caseDescriptionInplace.click();
   }
 
-  public void onClickDescriptionEditIcon() {
+  private void onClickDescriptionEditIcon() {
     try {
       WebElement caseIcons = caseItem.findElement(By.cssSelector(CASE_ICONS_CONTAINER_COMPONENT_CSS_SELECTOR));
       WebElement descriptionIcon = caseIcons.findElement(By.cssSelector("a[class*='fa fa-clipboard']"));
@@ -236,18 +225,6 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void onClickHistoryIcon() {
     findElementById("case-item-details:case-histories:add-note-command").click();
-  }
-
-  public void onClickDocumentIcon() {
-    try {
-      WebElement caseIcons = caseItem.findElement(By.cssSelector(CASE_ICONS_CONTAINER_COMPONENT_CSS_SELECTOR));
-      WebElement documentIcon = caseIcons.findElement(By.cssSelector("a[class*='fa fa-file']"));
-      if (documentIcon != null) {
-        documentIcon.click();
-      }
-    } catch (Exception e) {
-      return;
-    }
   }
 
   public TaskWidgetPage clickShowAllTasks() {
@@ -272,7 +249,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   private void openAddDocumentDialogAndUploadDocument(int index, String pathToFile) {
-    findElementByCssSelector("a[id$='add-document-command']").click();
+    clickByCssSelector("a[id$='add-document-command']");
     waitForElementDisplayed(By.cssSelector("span[id$='document-upload-dialog_title']"), true);
     try {
       click(By.className("ui-fileupload-choose"));
@@ -296,9 +273,9 @@ public class CaseDetailsPage extends TemplatePage {
     }
     // currently haven't found solution to check when the file upload finish, we have to wait
     if (isIntegrationTestRun()) {
-      Sleeper.sleepTight(10000);
+      Sleeper.sleep(10000);
     } else {
-      Sleeper.sleepTight(5000);
+      Sleeper.sleep(5000);
     }
   }
 

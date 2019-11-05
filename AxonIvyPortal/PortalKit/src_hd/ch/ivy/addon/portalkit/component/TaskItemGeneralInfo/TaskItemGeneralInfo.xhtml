@@ -72,7 +72,7 @@
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" />
       </div>
       <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4">
-        <h:panelGroup id="task-detail-state" styleClass="state-cell js-state-cell default-task-cell">
+        <h:panelGroup id="task-detail-state" styleClass="state-cell default-task-cell">
           <h:panelGroup id="task-detail-state-open" rendered="#{state == 'SUSPENDED' or state == 'UNASSIGNED'}" styleClass="fa fa-play-circle task-state-open " />
           <h:panelGroup id="task-detail-state-in-progress" rendered="#{state == 'RESUMED' or state == 'CREATED'}" styleClass="fa fa-play-circle task-state-in-progress" />
           <h:panelGroup id="task-detail-state-done" rendered="#{state == 'DONE'}" styleClass="fa fa-check-circle task-state-done " />

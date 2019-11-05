@@ -13,8 +13,8 @@ public class LanguagePage extends TemplatePage {
 
 	public void selectLanguage(int newLanguage) {
 	   waitForElementDisplayed(By.cssSelector("div[id$='selection'] div.ui-selectonemenu-trigger"), true);
-	   findElementByCssSelector("div[id$='selection'] div.ui-selectonemenu-trigger").click();
-	   findElementByCssSelector("li[id$='selection_"+newLanguage+"']").click(); 
+	   clickByCssSelector("div[id$='selection'] div.ui-selectonemenu-trigger");
+	   clickByCssSelector("li[id$='selection_"+newLanguage+"']"); 
 	}
   public void save() {
     WebElement save = findElementById("language-settings-form:language-settings:save-settings");

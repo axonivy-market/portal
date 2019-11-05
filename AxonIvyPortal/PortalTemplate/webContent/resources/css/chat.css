@@ -1,6 +1,5 @@
 /********************************** CHAT **********************************/
 .chat-panel {
-  background: #607D8B;
   position: fixed;
   top: 0;
   right: -900px;
@@ -38,11 +37,6 @@
   max-height: 100vh;
 }
 
-.no-group-chat {
-  color: white;
-  font-size: 1.4rem;
-}
-
 .contact-card {
   padding: 5px 10px;
   display: flex;
@@ -70,9 +64,7 @@
   flex: 0 0 40px;
   height: 40px;
   border-radius: 50%;
-  background: white;
   font-size: 25px;
-  color: #b2b2b2;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -88,20 +80,16 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #FF6D6E;
   position: absolute;
   top: -5px;
   right: -5px;
   text-align: center;
   font-size: .5em;
-  color: white;
 }
 
 .contact-card-name {
   margin: 16px;
   flex-grow: 1;
-  color: white;
-  font-size: 1.4rem;
   text-align: left !important;
 }
 
@@ -112,7 +100,6 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #64D864;
   transition: background-color .3s;
   position: absolute;
   bottom: 0;
@@ -120,8 +107,6 @@
 }
 
 .contact-notification {
-  color: #FFFFFF;
-  background-color: red;
   width: 1.3rem;
   min-width: 1.3rem;
   height: 1.3rem;
@@ -129,14 +114,9 @@
   text-align: center;
 }
 
-.contact-card-status.is-offline {
-  background: #b2b2b2;
-}
-
 .message-list {
   width: 600px;
   height: 100%;
-  background: white;
 }
 
 .message-list-form {
@@ -180,12 +160,7 @@
   top: 11px;
   left: 5px;
   border-radius: 30%;
-  background: #b2b2b2;
   transition: background-color .65s;
-}
-
-.message-list-header-close:hover:before, .message-list-header-close:hover:after {
-  background: #9b9b9b;
 }
 
 .message-list-content {
@@ -203,8 +178,6 @@
 
 .chat-message-list .chat-message {
   cursor: default;
-  font-size: 1.4rem;
-  background: #F3F6F9;
   padding: 15px;
   border-radius: 10px;
   margin: 0;
@@ -219,7 +192,6 @@
 }
 
 .chat-message-list .my-message .chat-message {
-  background: #DEF4FD;
   border-bottom-right-radius: 0px;
   border-top-left-radius: 10px;
   text-align: left;
@@ -239,8 +211,6 @@
 
 .show-participants-link {
   display: none;
-  color: white !important;
-  font-weight: bold;
   flex: 0 0 auto;
   margin-top: -10px;
 }
@@ -250,7 +220,6 @@
 }
 
 .show-participants-link:hover {
-  color: white !important;
   text-decoration: underline;
 }
 
@@ -317,8 +286,6 @@
   height: 1.3rem;
   text-align: center;
   font-size: 0.7em;
-  background-color: rgb(255, 109, 110);
-  color: white;
 }
 
 .notification-badge:after, .notification-badge[data-badge='']:after {
@@ -333,8 +300,6 @@
 
 .chat-contact-type-header {
   padding: 20px 10px 5px 10px;
-  color: white;
-  font-size: 1.8rem;
 }
 
 .contact-card-name.group-chat-card {
@@ -363,8 +328,6 @@
 .chat-meta .tooltip {
   visibility: hidden;
   width: 120px;
-  background-color: black;
-  color: #fff;
   text-align: center;
   border-radius: 3px;
   padding: 5px 0;
@@ -391,19 +354,12 @@ _:-ms-fullscreen, :root .my-message .chat-meta .tooltip {
 
 .role-name,
 .participants-list-header {
-    color: #000000;
-    font-weight: bold;
     margin: 10px 0;
     display: block;
-    font-size: 1.4rem;
 }
 
 ul.roles-participants-list {
     padding-left: 0 !important; 
-}
-
-ul.participants-list li {
-    font-size: 1.4rem;
 }
 
 ul.users-in-role {

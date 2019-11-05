@@ -8,8 +8,6 @@ import org.openqa.selenium.WebElement;
 
 public class TaskDetailsPage extends TemplatePage {
 
-  private WebElement taskDetailsItem;
-
   @Override
   protected String getLoadedLocator() {
     return "id('task-detail-template:task-detail-container')";
@@ -22,7 +20,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public List<String> getTaskNoteAuthors() {
-    List<WebElement> noteAuthorElements = findListElementsByCssSelector("td.task-note-name");
+    List<WebElement> noteAuthorElements = findListElementsByCssSelector("td.task-document-author");
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }
 

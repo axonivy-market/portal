@@ -50,24 +50,9 @@ input::-ms-clear {
   display: none;
 }
 
-body .ui-state-active, body .ui-state-highlight {
-	color: black !important;
-}
 /* =================== TABLE ====================== */
 .ui-datatable .ui-column-filter.ui-widget {
   width: 100%;
-}
-
-.ui-datatable table tbody tr.ui-datatable-even {
-  background-color: rgba(255, 255, 255, 1) !important;
-}
-
-.ui-datatable table tbody tr.ui-datatable-odd {
-  background-color: rgba(247, 247, 247, 1);
-}
-
-.ui-datatable table tbody tr.ui-datatable-odd td {
-  background-color: rgba(247, 247, 247, 1);
 }
 
 .ui-treetable table {
@@ -77,8 +62,6 @@ body .ui-state-active, body .ui-state-highlight {
 }
 
 .ui-treetable table thead tr th {
-  color: rgba(0,0,0,1) !important;
-  background-color: rgba(236,236,236,1) !important;
   border: none;
   padding-left: 10px;
   padding-right: 10px;
@@ -98,19 +81,10 @@ body .ui-state-active, body .ui-state-highlight {
 .ui-treetable table tbody tr td:not(:last-child) {
     border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
-
-.ui-treetable-data tr:nth-child(odd) {
-  background-color: rgba(255, 255, 255, 1);
-}
-
-.ui-treetable-data tr:nth-child(even) {
-  background-color: rgba(247, 247, 247, 1);
-}
 /* =================== END TABLE ====================== */
 
 /* =================== DIALOG ====================== */
 .ui-widget.ui-dialog .ui-dialog-content {
-  font-size: 14px;
   padding: 1rem 2rem 2rem;
 }
 .ui-dialog-footer.u-dialog-footer.u-email-dialog-footer {
@@ -120,21 +94,8 @@ body .ui-state-active, body .ui-state-highlight {
 /* =================== END DIALOG ====================== */
 
 /* =================== LINK ====================== */
-.ui-commandlink {
-  color: rgba(0,0,0,0.5) !important;
-}
-
-.ui-commandlink:hover {
-  color: rgba(0,0,0,0.6) !important;
-}
-
-.ui-commandlink:active {
-  color: rgba(0,0,0,0.8) !important;
-}
 
 .ui-commandlink.ui-state-disabled {
-  font-size: 1.4rem;
-  color: rgba(0,0,0,0.2) !important;
   opacity: 1;
 } 
 
@@ -153,17 +114,17 @@ body .ui-selectonemenu-panel .ui-selectonemenu-item.ui-state-focus {
 }
 
 body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-close.ui-state-hover {
-  background: white !important;
   border-radius: 50%;
 }
-.ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-filter-container .ui-icon-search, .ui-picklist .ui-picklist-filter-container .ui-icon, .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon {
+.ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-filter-container .ui-icon-search,
+.ui-picklist .ui-picklist-filter-container .ui-icon,
+.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon {
 	background: transparent;
     overflow: visible;
     text-indent: 5px;
-    color: grey;
 }
-.ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-filter-container .ui-icon:before, .ui-picklist .ui-picklist-filter-container .ui-icon:before {
-    font: normal normal normal 18px/1 FontAwesome;
+.ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-filter-container .ui-icon:before,
+.ui-picklist .ui-picklist-filter-container .ui-icon:before {
     -webkit-font-smoothing: antialiased;
     content: "\f002";
     position: absolute;
@@ -178,11 +139,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   transition: background-color 0.3s ease 0s;
 }
 
-.ui-autocomplete-panel .ui-autocomplete-items.ui-autocomplete-table tr:hover {
-  background: #E8E8E8;
-  color: #000;
-}
-
 .ui-autocomplete-panel .ui-autocomplete-items.ui-autocomplete-table td {
   padding: 6px 10px;
 }
@@ -194,18 +150,12 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 /* =================== FIELDSET ====================== */
 .ui-fieldset-legend {
-  background-color: #fff;
-  color: #000;
   padding: 0 10px !important;
 }
 
 
 .ui-fieldset-toggler:hover {
 	background-color: transparent !important;
-}
-
-.ui-fieldset-legend.ui-state-hover {
-    background-color: #ffffff;
 }
 
 .fieldset-no-border {
@@ -223,9 +173,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .fieldset-no-border .ui-fieldset-toggler:before {
-    font-family: 'FontAwesome';
-    font-size: 1.4rem;
-    color: #212121 !important;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -269,7 +216,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .widget-header-main-title {
-  font-size: 1.4rem;
   position: absolute;
   bottom: 1px;
   left: 0;
@@ -283,27 +229,23 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .widget-header-main-menu {
-  color: rgba(0,0,0,0.4);
   position: absolute;
   bottom: 1px;
   right: 0;
-}
-
-.widget-header-main-menu a.ui-widget.ui-commandlink, .widget-header-main-menu span.ui-widget.ui-commandlink.ui-state-disabled,
-.widget-sort-menu span.ui-widget.ui-commandlink.ui-state-disabled {
-  font-size: 1.2rem;
 }
 
 .widget-header-main-menu a:hover {
   border-bottom: none;
 }
 
-.widget-sort-menu {
-  color: rgba(0,0,0,0.5);
+.widget-sort-menu:not(.full-mode),
+.compact-task-widget .filter-view {
+  padding-top: 0 !important;
 }
 
 .widget-sort-menu.full-mode {
   flex: 1 0 100%;
+  height: 45px;
   display: flex;
   align-items: flex-end;
   line-height: normal;
@@ -311,34 +253,17 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
-.widget-sort-menu.full-mode a.ui-widget.ui-commandlink {
-  color: rgba(0,0,0,0.6) !important;
-}
-
 .widget-sort-menu.full-mode a.ui-widget.ui-commandlink .sort-icon {
   margin-left: 2px;
 }
 
-.widget-sort-menu a.ui-widget.ui-commandlink.is-selected {
-  color: rgba(0,0,0,1) !important;
-}
-
 .widget-header-filter-input.ui-inputfield {
   background-color: transparent;
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  color: black;
-  font-size: 1.4rem;
   width: 100%;
 }
 
 .widget-header-filter-input.ui-inputfield.ui-state-hover, .widget-header-filter-input.ui-inputfield.ui-state-focus {
   background-color: transparent;
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 1.4rem;
 }
 
 .widget-content a:hover {
@@ -377,7 +302,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 /********************** START SUBMENU ITEM ***********************/
 .submenu-container {
-	background-color: rgba(255, 255, 255, 0.6);
     box-shadow: none;
     margin: auto 10px;
     padding-right: 0 !important;
@@ -395,13 +319,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 /********************** END SUBMENU ITEM ***********************/
 
 /********************** START CASE BOX ***********************/
-.grid-item-header {
-  font-size: 1.6rem;
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-}
-
 .grid-item-content-list-item {
   display: flex;
   align-items: center;
@@ -415,12 +332,10 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .filter-widget-input {
-  font-size: 1.4rem;
   flex-grow: 1;
 }
 
 .filter-widget .filter-widget-input {
-  color: rgba(0,0,0,0.5);
   padding: 6px 0 6px 6px !important;
 }
 
@@ -436,10 +351,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   overflow: auto !important;
 }
 
-.filter-category-checkbox-tree.ui-tree .ui-treenode .ui-treenode-label {
-  font-size: 1.2rem;
-}
-
 .filter-category-checkbox-tree .ui-tree-filter.ui-inputfield {
   box-shadow: inset 0 -1px 0px 0px rgba(0, 0, 0, 0.3);
 }
@@ -448,11 +359,10 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   background-image: none !important;
   text-indent: 2px !important;
   bottom: 8px;
-  top: unset;
+  top: auto;
 }
 
 .filter-category-checkbox-tree .ui-icon.ui-icon-search:before {
-  font-family: 'FontAwesome' !important;
   content: "\f002";
 }
 
@@ -467,10 +377,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   .compact-task-widget {
     order: 1;
   }
-}
-
-.compact-task-widget .task-widget-header {
-  margin-top: 1px;
 }
 
 .compact-task-widget .task-widget-header .toggle-task-link {
@@ -516,7 +422,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   display: inline-block;
   margin-right: 10px;
   border: solid transparent 1px;
-  font-size: 1.2rem;
   position: relative;
   cursor: pointer;
   height: 30px;
@@ -526,7 +431,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .case-widget-container .advanced-filter:hover,
 .task-widget .filter-selection-container:hover,
 .case-widget-container .filter-selection-container:hover {
-  background-color: rgba(0,0,0,0.04);
   border-color: #d5d5d5;
   border-radius: 5px;
 }
@@ -564,35 +468,22 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .filter-selection-form a.filter-name.ui-commandlink:after {
   content: "\f0d7";
   display: inline-block;
-  font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin-left: 5px;
-  color: black;
 }
 
-.task-widget .ui-widget.ui-button.advanced-filter-command.error-filter:before, 
+.task-widget .ui-widget.ui-button.advanced-filter-command.error-filter:before,
 .case-widget-container .ui-widget.ui-button.advanced-filter-command.error-filter:before {
   content: "\f06a";
   display: inline-block;
-  font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: red;
   margin-right: 5px;
-}
-
-.task-widget .error-filter-input,
-.case-widget-container .error-filter-input {
-  position: absolute;
-  font-size: 1.8rem;
-  right: 23px;
-  top: 9px;
-  color: red;
 }
 
 .task-widget .advanced-filter .ui-button-text-only .ui-button-text,
@@ -615,12 +506,12 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   font-size: 1.8rem;
   right: 5px;
   top: 7px;
-  color: rgba(0,0,0,0.3) !important;
 }
 
-.task-widget .ui-overlaypanel.advanced-filter-panel, .task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content,
-.case-widget-container .ui-overlaypanel.advanced-filter-panel, .case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content {
-  background-color: white;
+.task-widget .ui-overlaypanel.advanced-filter-panel,
+.task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content,
+.case-widget-container .ui-overlaypanel.advanced-filter-panel,
+.case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content {
   padding: 0 !important;
 }
 
@@ -648,7 +539,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .task-widget .ui-overlaypanel.filter-add-panel .ui-overlaypanel-content,
 .case-widget-container .ui-overlaypanel.filter-add-panel .ui-overlaypanel-content {
-  background-color: white;
   min-width: 140px;
   padding: 10px !important;
 }
@@ -660,7 +550,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   border-radius: 0;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
-  font-size: 1.2rem;
+
   max-height: 75vh;
 }
 
@@ -695,11 +585,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   box-sizing: border-box;
 }
 
-.case-list-unsortable-header-cell {
-  font-size: 1.2rem;
-  color: rgba(0,0,0,0.5) !important;
-}
-
 .case-details {
   display: table;
   vertical-align: middle;
@@ -708,6 +593,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .case-detail-name-prefix {
   flex:0 0 auto;
   margin-right: 5px;
+  align-self: center;
 }
 
 .case-detail-name-inplace-edit {
@@ -725,30 +611,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .case-detail-name-input {
   width: calc(100% - 85px);
   margin-right: 5px !important;
-  font-weight: bold !important;
-  font-size: 1.6rem !important;
-}
-
-.case-details-related-tasks {
-  display: table-cell;
-  width: 30%;
-  padding: 30px;
-  vertical-align: top;
-  font-size: 1.2rem;
-  border-right: 1px solid #e0e0e0;
-}
-
-.case-detail-related-table .case-related-task-case-running {
-  margin-bottom: 8px;
-}
-
-.case-details-history {
-  display: table-cell;
-  width: 30%;
-  padding: 20px;
-  vertical-align: top;
-  font-size: 1.2rem;
-  border-right: 1px solid #e0e0e0;
 }
 
 .history-fullname {
@@ -768,10 +630,11 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   padding-top: 0 !important;
 }
 
-a.case-details-document-add-link, a.task-details-document-add-link, span.case-details-document-add-link, span.task-details-document-add-link {
-  font-size: 1.4rem;
+a.case-details-document-add-link,
+a.task-details-document-add-link,
+span.case-details-document-add-link,
+span.task-details-document-add-link {
   float: right;
-  font-weight: 400;
 }
 
 .case-details-document-add-link-icon, .task-details-document-add-link-icon {
@@ -787,31 +650,13 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   padding-bottom: 10px;
 }
 
-.history-note a {
-  color: #212121 !important;
-}
-
-.history-note .task-note-link {
-  color: #212121 !important;
-}
-
-.history-note .task-note-link:hover {
-  color: rgba(0,0,0,0.6) !important;
-}
-
-.case-history-name, .task-note-name {
-  width: 150px;
-  line-height: 2rem;
-}
-
 .case-history-date, .case-document-author,
 .task-history-date, .task-document-author {
   width: 20%;
   text-align: center !important;
-  line-height: 2rem;
 }
 
-.case-document-author {
+.case-document-author, .task-document-author {
   text-align: left !important;
 }
 
@@ -825,22 +670,12 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   position: relative;
 }
 
-.case-document-name a , .task-document-name a {
-  color: #212121 !important;
-}
-
 .case-document-download, .task-document-download {
   position: absolute;
   top: 2px;
   right: 4px;
 }
 
-.show-addition-case-container {
-  align-content: start;
-  display: inline-block !important;
-  overflow-x: auto;
-  height: calc(100% - 45px);
-}
 .document-deletion-dialog .ui-dialog-buttonpane.ui-dialog-footer.ui-widget-content {
   padding: 6px;
 }
@@ -849,7 +684,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   margin-left: 0;
 }
 
-/********************************** CASE ITEM SIMIlAR TO TASK ITEM CLASSES **********************************/
+/********************************** CASE ITEM SIMILAR TO TASK ITEM CLASSES **********************************/
 .case-widget-container .case-widget-top-header {
   position: relative;
   height: 38px;
@@ -857,7 +692,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 }
 
 .case-widget-top-header-main-title {
-  font-size: 1.4rem;
   position: absolute;
   bottom: 1px;
   left: 2px;
@@ -873,23 +707,9 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   margin-top: 11px;
 }
 
-.case-list-item {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
 .case-list-item:hover {
-  background: #E8E9EF;
   z-index: 1;
 }
-
-.case-list-item.case-odd-row {
-  background-color: rgba(0,0,0,0.04);
-}
-
-.case-list-item.case-odd-row:hover {
-  background: #E8E9EF;
-}
-
 
 .case-widget-container .widget-column-header,
 .case-default-widget-container .widget-column-header {
@@ -901,10 +721,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
-.case-widget-container .widget-column-header .is-selected {
-  color: rgba(0,0,0,1) !important;
-}
-
 .case-widget-container .sort-icon {
   margin-left: 2px;
 }
@@ -914,7 +730,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   height: 65px;
   align-items: center;
   position: relative;
-  font-size: 1.4rem;
 }
 
 .case-header-name-desc-cell .case-header-name-cell {
@@ -922,9 +737,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
 }
 
 .case-header-name-cell .ui-inplace-content {
@@ -932,7 +744,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 }
 
 .case-header-name-desc-cell .case-header-desc-cell {
-  color: rgba(0,0,0,0.4);
   display: block;
   white-space: nowrap;
   overflow: hidden;
@@ -988,7 +799,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 .case-header-action-cell .action-item {
   margin: auto;
   padding: 5px 10px;
-  color: rgba(0,0,0,0.5);
 }
 
 .case-header-action-cell .action-item .ui-button {
@@ -997,43 +807,9 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   outline: transparent;
 }
 
-.case-header-action-cell .action-item .ui-button.ui-widget.ui-state-hover .ui-button-text,
-.case-header-action-cell .action-item .ui-button.ui-widget.ui-state-hover .ui-button-icon-left.ui-icon.ui-icon-triangle-1-s:before,
-.case-header-action-cell .action-item .ui-button.ui-widget.ui-state-focus .ui-button-text,
-.case-header-action-cell .action-item .ui-button.ui-widget.ui-state-focus .ui-button-icon-left.ui-icon.ui-icon-triangle-1-s:before {
-  color: #212121 !important;
-}
-
-.case-header-action-cell .action-item .ui-button .ui-button-text,
-.case-header-action-cell .action-item .ui-button .ui-button-icon-right.ui-icon.ui-icon-triangle-1-s:before {
-  color: rgb(0, 0, 0, 0.5) !important;
-  font-weight: bold;
-}
-
 .case-header-action-cell .action-icon {
   display: block;
   font-size: 1.5rem;
-}
-
-.case-state {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0px 20px;
-  font-size: 1.2rem;
-}
-
-.case-info-header {
-  font-size: 1.2rem;
-}
-
-.case-info-content {
-  margin: .4em 0;
-  font-weight: bold;
-}
-
-.case-info-footer {
-  font-size: 1.2rem;
 }
 
 .case-header-action-cell .case-command:not(:last-child) {
@@ -1080,9 +856,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 .case-description-input {
   width: 75%;
 }
-.js-description-column .ui-inplace .ui-inplace-display {
-  color: rgba(0,0,0,0.5) !important;
-}
 
 .case-name-input {
   flex: 1 0 70%;
@@ -1094,7 +867,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   max-width: 220px; 
   width: auto !important;
   padding: 0 !important;
-  font-size: 1.4rem;
 }
 
 .action-steps-panel .case-action-separator,
@@ -1108,7 +880,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 .action-steps-panel .ui-overlaypanel-content {
     padding: 0 !important;
     width: 180px;
-    background-color: #FFFFFF;
     display: grid;
 }
 
@@ -1122,31 +893,16 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
     padding: 10px;
     margin: 0;
     width: 160px;
-    color: rgba(0, 0, 0, 0.5) !important;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
     line-height: 1.4rem;
     box-sizing: content-box;
     text-align: left;
-}
-
-.action-steps-panel .action-step-item:hover {
-  background-color: #E8E9EF;
 }
 
 .ui-fieldset-content table {
   width: 100%;
 }
 
-.case-document-container {
-  padding-top: 0 !important;
-}
-
 .case-detail-header {
-  font-size: 1.6rem;
-  font-weight: bold;
-  line-height: 38px;
   display: flex;
   float: left;
   flex: 1;
@@ -1154,15 +910,19 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 }
 
 .case-details-back-btn, .task-details-back-btn {
-  float: right;
-  margin-top: 5px;
-  max-width: 110px;
+  flex: 0 0 110px;
+  text-align: right;
 }
 
 .case-detail-title-header-container {
-  float: left;
   padding: 0 !important;
   display: flex;
+  line-height: 38px;
+}
+
+.case-details-back-btn, .task-details-back-btn,
+.case-detail-title-header-container .case-detail-header {
+  align-self: center;
 }
 
 .case-detail-section-title-container {
@@ -1178,12 +938,10 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   flex: 0 0 auto;
 }
 
-.case-detail-section-title, .case-history-button-container , .task-history-button-container {
-  font-size: 1.6rem;
+.case-detail-section-title, .case-history-button-container {
   display: inline-block !important;
   align-content: start;
   padding: 0 !important;
-  font-weight: bold;
 }
 
 .case-detail-second-content-container {
@@ -1293,26 +1051,30 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   width: 1.6rem;
 }
 
+body .process-widget .ui-fieldset .ui-fieldset-legend .ui-fieldset-toggler {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+}
+
+body .process-widget .ui-fieldset .ui-fieldset-legend {
+  line-height: 0.3rem;
+}
+
 .expand-collapse-btns {
   float: left;
 }
 
 .expand-collapse-btns .express-expand-collapse-btn {
-  background-color: rgba(0, 0, 0, 0.10);
   padding: 4px 8px;
   border-radius: 15px;
-  color: #212121 !important;
   float: left;
   margin-right: 5px;
 }
 
-.expand-collapse-btns a.express-expand-collapse-btn:hover {
-  background-color: rgba(0, 0, 0, 0.20);
-}
-
 .process-widget-action {
   display: inline-block;
-  width: 100%;
+  padding-left: 9px;
 }
 
 .process-widget-action-form {
@@ -1327,10 +1089,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 
 .process-widget-action .name-sort-command {
   white-space: nowrap;
-}
-
-.process-empty-container {
-  font-size: 1.2rem;
 }
 
 .process-start-list, .process-in-search {
@@ -1362,11 +1120,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 
 .process-widget .process-nav .process-nav-item {
   padding: 0 30px;
-  color: rgba(0,0,0,1) !important;
-}
-
-.process-widget .process-nav .process-nav-item.selected {
-  font-weight: bold;
 }
 
 .process-widget .process-nav .process-nav-item.selected:before {
@@ -1382,32 +1135,20 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 .process-widget .process-nav .process-nav-item.disabled {
   pointer-events: none;
   cursor: default;
-  color: rgba(0,0,0,0.3) !important;
 }
 
 .process-start-list-item {
   height: 50px;
-  background: rgba(0, 0, 0, 0.05);
   border-radius: 5px;
-  color: black;
   display: flex;
   position: relative;
 }
 
 .process-start-list-item:hover,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover {
-  background: rgba(255, 255, 255, 1);
   -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.8);
   -moz-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.8);
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.8);
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-}
-
-.process-start-list-item.highlighted-item {
-  background-color: #fff;
-  color: #546e7a;
 }
 
 .process-start-list-item:before, .process-start-list-item:after {
@@ -1448,7 +1189,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 }
 
 .process-start-list-item-name {
-  font-size: 1.2rem;
   overflow: hidden;
   display: inline-flex;
   width: calc(100% - 75px);
@@ -1456,20 +1196,15 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   padding-left: 15px;
 }
 
-.compact-processes-container .process-start-list-item-name {
+.compact-processes-container .process-start-list-item-name,
+.compact-default-processes-container .process-start-list-item-name {
   padding-left: 0 !important;
   width: calc(100% - 55px) !important;
-}
-
-.process-start-list-item:hover .process-start-list-item-name,
-.process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-name {
-  font-weight: 400;
 }
 
 .process-start-list-item-action {
   display: inline-flex;
   align-items: center;
-  font-size: 1.2rem;
   flex: 1 0 20px;
 }
 
@@ -1479,7 +1214,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 
 .compact-process-widget .toggle-processes-link,
 .compact-toggle-tasks-link {
-  font-size: 1.4rem !important;
   position: absolute;
   bottom: 2px;
 }
@@ -1488,14 +1222,12 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 .compact-toggle-tasks-link.fa-plus:before {
   padding-right: 4px;
   font-size: 1.4rem !important;
-  font-family: 'FontAwesome' !important;
   content: '\f067';
 }
 .compact-process-widget .toggle-processes-link.fa-minus:before,
 .compact-toggle-tasks-link.fa-minus:before {
   padding-right: 4px;
   font-size: 1.4rem !important;
-  font-family: 'FontAwesome' !important;
   content: '\f068';
 }
 
@@ -1537,14 +1269,9 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 
 .process-start-list-item .open-icon {
   position: absolute;
-  color: rgba(0,0,0,0.5) !important;
   bottom: 27%;
   right: 15px;
   padding-top: 5px;
-}
-
-.process-start-list-item .express-icon.open-icon {
-  color: rgba(0,0,0,0.5) !important;
 }
 
 .process-start-list-item .process-start-list-item-action .process-description {
@@ -1559,7 +1286,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item .ui-commandlink,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item .ui-link {
   display: inline-flex !important;
-  color: black !important;
 }
 
 .process-start-list-item .ui-commandlink.process-item {
@@ -1592,14 +1318,9 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   padding-right: 0;
 }
 
-.process-widget .favorite-process-title {
-  font-size: 1.4rem;
-}
-
 .process-widget .default-process-title {
-  font-size: 1.4rem;
   display: inline-block;
-  width: 100%;
+  padding-right: 20px;
 }
 
 .process-widget .user-default-process-list {
@@ -1622,10 +1343,8 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   height: 50px;
   margin-bottom: 5px !important;
   padding: 0px !important;
-  background: rgba(0, 0, 0, 0.05);
   background-image: none;
   border-radius: 5px;
-  color: black;
   display: flex;
   position: relative;
   align-items: center;
@@ -1633,14 +1352,6 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover {
   cursor: move;	
-}
-
-.process-widget .order-list-items.ui-orderlist .ui-orderlist-list table tr td {
-  color: black !important;
-}
-
-.process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item.ui-state-hover tr td{
-  color: black !important;
 }
 
 .process-widget .ui-orderlist .ui-orderlist-list table {
@@ -1657,32 +1368,33 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
   padding-right: 5px;
 }
 
-.compact-processes-container {
+.compact-processes-container,
+.compact-default-processes-container {
   overflow-y: auto;
 }
 
-.compact-processes-container .process-start-list-item {
+.compact-processes-container .process-start-list-item,
+.compact-default-processes-container .process-start-list-item {
   margin: 2px 3px 5px 2px;
-}
-
-/* Fix for screen Full HD */
-@media  screen and (min-device-height: 1024px) {
-  .compact-processes-container {
-    max-height: 275px;
-  }
 }
 
 @media  screen and (min-width: 1024px) {
   .compact-processes-container {
-    max-height: 275px;
+    max-height: 277px;
+  }
+  
+  .compact-default-processes-container {
+    max-height: 292px;
+    padding-right: 0px;
   }
 }
 
-@media  screen and (max-height: 1023px) {
-  .compact-processes-container {
+ @media  screen and (max-width: 1023px) {
+  .compact-processes-container,
+  .compact-default-processes-container {
     max-height: 165px;
   }
-}
+} 
 
 .process-start-list-item-action>div.express-process-logo {
   opacity: 0.3;
@@ -1701,7 +1413,7 @@ a.case-details-document-add-link, a.task-details-document-add-link, span.case-de
 .express-process-logo {
   background-color: transparent !important;
   background-size: 100%;
-  background-image: url(#{resource['ivy-webcontent:images/expressLogo/icon_express_process_120x120.png']});
+  background-image: url("#{resource['ivy-webcontent:images/expressLogo/icon_express_process_120x120.png']}");
 }
 
 .express-process-logo .ui-panel-content {
@@ -1723,7 +1435,7 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 }
 
 /********************************** END PROCESSES **********************************/
-
+/******************START DELEGATE DIALOG********************/
 .ui-autocomplete-panel .ui-autocomplete-table.ui-autocomplete-items {
   box-sizing: border-box;
 }
@@ -1732,44 +1444,36 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
   margin-top: 5px;
 }
 
-.delegate-dialog-activator-panel .delegate-type-container {
-  display: inline-block;
-  vertical-align: bottom;
-}
-
-.delegate-dialog-type-selection {
-  margin-right: 10px;
-}
-
 .select-delegate-panel {
   margin: 5px 0 20px 0;
-  width: 100%;
 }
 
 .select-delegate-panel .ui-autocomplete, .select-delegate-panel .ui-autocomplete .ui-autocomplete-input {
   width: 100%;
 }
 
+.delegate-type-container .ui-selectoneradio.ui-widget td {
+  padding-right: 15px;
+}
+
+/* Mobile screen */
+@media (max-width: 640px) {
+  .task-delegate-dialog {
+    width: 300px !important;
+  }
+}
+
 /* Small screen */
-@media (max-width: 1365px) {
+@media (min-width: 641px) and (max-width: 1365px) {
   .task-delegate-dialog {
     width: 40% !important;
   }
-  .select-delegate-panel .ui-selectonemenu {
-    min-width: 84%;
-  }
-
-  .select-delegate-panel .ui-autocomplete .ui-autocomplete-input {
-    min-width: 93%;
-  }
 }
+
 /* Medium screen */
 @media (min-width: 1366px) and (max-width: 1919px) {
   .task-delegate-dialog {
     width: 35% !important;
-  }
-  .select-delegate-panel .ui-selectonemenu {
-    width: 87%;
   }
 }
 /* Large screen */
@@ -1777,10 +1481,9 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
   .task-delegate-dialog {
     width: 25% !important;
   }
-  .select-delegate-panel .ui-selectonemenu {
-    width: 87%;
-  }
 }
+
+/******************END DELEGATE DIALOG********************/
 
 /* NEED TO BE REFACTORED */
 .new-process-dialog {
@@ -1851,18 +1554,6 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
   margin-bottom: 0;
 }
 
-.widget-header.task-widget-header .widget-header-main.mod-expanded-mode {
-  display: flex;
-  width: 100%;
-  flex-flow: row wrap;
-  align-items: flex-end;
-}
-
-.widget-header.task-widget-header .widget-header-main.mod-expanded-mode .task-widget-header-content-title {
-  flex: 1 0 65%;
-  position: relative;
-}
-
 .task-widget .sort-task-menu {
   width: 100%;
   margin-top: 8px;
@@ -1882,66 +1573,34 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
   padding: 0 !important;
 }
 
-.filter-selection-form label,
-.filter-selection-form a.ui-commandlink,
-.filter-selection-form a.ui-commandlink:hover {
-  font-size: 1.4rem;
-  color: #000000 !important;
-}
-
-.filter-selection-form a.ui-commandlink:hover {
-  color: #000000 !important;
-}
-
 .filter-selection-form label {
   margin-right: 5px;
 }
 
 .filter-selection-form .filter-name-overlay-panel .ui-overlaypanel-content {
   padding: 15px 0 !important;
-  background-color: white;
   max-height: 70vh;
   overflow-y: auto;
   overflow-x: hidden;
 }
 
-.filter-selection-form .filter-name-overlay-panel .user-definied-filter-container {
+.filter-selection-form .filter-name-overlay-panel .user-defined-filter-container {
   display: flex;
   width: 16rem;
   flex-flow: row;
   align-items: center;
 }
 
-.filter-selection-form .filter-name-overlay-panel .user-definied-filter-container:hover {
-  background-color: #f5f5f5;
-}
-
-.filter-selection-form .filter-name-overlay-panel .user-definied-filter-container .ui-commandlink {
-  font-size: 1.4rem;
-}
-
-/* Small screen */
-@media (max-width: 1365px) {
-  .widget-header.task-widget-header .widget-header-main.mod-expanded-mode .task-widget-header-content-title {
-    overflow: hidden;
-  }
-}
-
 .filter-name-overlay-panel .filter-separator.ui-separator{
   border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
-.filter-name-overlay-panel .filter-type-label {
-   font-size: 1.4rem; 
+.filter-name-overlay-panel .filter-type-label { 
    text-align: left; 
    padding: 10px 0 10px 6px;
-   color: rgba(0,0,0,0.6);
 }
 
-.filter-selection-form .filter-name-overlay-panel .user-definied-filter-container:hover .ui-commandlink {
-  font-weight: bold;
-}
-.filter-selection-form .filter-name-overlay-panel .user-definied-filter-container .user-definied-filter {
+.filter-selection-form .filter-name-overlay-panel .user-defined-filter-container .user-defined-filter {
   flex: 1 0 80%;
   position: relative;
   text-align: left;
@@ -1953,7 +1612,7 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
   line-height: 1.5;
 }
 
-.filter-selection-form .filter-name-overlay-panel .user-definied-filter-container .delete-user-definied-filter-command {
+.filter-selection-form .filter-name-overlay-panel .user-defined-filter-container .delete-user-defined-filter-command {
   font-size: 1.4rem;
   text-align: right;
   display: none;
@@ -1961,7 +1620,7 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
   margin-right: 10px;
 }
 
-.filter-selection-form .filter-name-overlay-panel .user-definied-filter-container:hover .delete-user-definied-filter-command {
+.filter-selection-form .filter-name-overlay-panel .user-defined-filter-container:hover .delete-user-defined-filter-command {
   display: inline;
 }
 
@@ -2014,7 +1673,6 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 }
 
 a.compact-task-start-link .task-start-list-item {
-  background-color: rgba(0, 0, 0, 0.05);
   border-radius: 5px;
   margin-bottom: 5px;
   height: 75px;
@@ -2028,7 +1686,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link .task-start-list-item {
 }
 
 a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.full-mode:hover {
-  background: #E8E9EF;
   z-index: 1;
 }
 
@@ -2050,13 +1707,10 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .task-start-info-header {
-  font-size: 1.4rem;
-  font-weight: bold;
   display: flex;
 }
 
 .task-start-info-header, .task-start-info-content, .task-start-info-footer {
-  color: rgba(0,0,0,1);
   width: 100%;
 }
 
@@ -2068,10 +1722,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   margin: .4rem 0;
 }
 
-.task-start-info-footer, .task-start-info-content {
-  font-size: 1.2rem;
-}
-
 .task-start-info-task-name {
   flex: 0 1 auto;
 }
@@ -2079,7 +1729,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 .task-start-info-task-id {
   margin-left: 5px;
   flex: 0 0 auto;
-  font-weight: normal;
 }
 
 .task-start-info-task-description, .task-start-info-task-name {
@@ -2092,8 +1741,13 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .task-start-info {
   flex: 1;
+  padding-left: 5px;
   padding-right: 10px;
   min-width: 105px;
+}
+
+.task-start-info-header-full-mode {
+  padding-left: 7px;
 }
 
 .task-start-list .default-task-cell {
@@ -2111,16 +1765,11 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .task-start-list .name-cell {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 1.4rem;
   display: block;
   padding-bottom: 2px;
 }
 
 .task-start-list .description-cell {
-  color: rgba(0,0,0,0.4);
   display: block;
 }
 
@@ -2152,7 +1801,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .task-odd-row.full-mode {
-  background-color: rgba(0,0,0,0.04);
   position: relative;
 }
 
@@ -2165,7 +1813,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   height: 65px;
   align-items: center;
   position: relative;
-  font-size: 1.4rem;
   cursor: pointer;
 }
 
@@ -2207,11 +1854,10 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .options-panel {
-  background-color: #FFFFFF;
   width: 200px;
   border-top: solid 1px rgba(43, 59, 93, 0.2);
   border-radius: 5px;
-  webkit-box-shadow: 0px 2px 4px 0px rgba(43, 59, 93, 0.6) !important;
+  -webkit-box-shadow: 0px 2px 4px 0px rgba(43, 59, 93, 0.6) !important;
   box-shadow: 0px 2px 4px 0px rgba(43, 59, 93, 0.6) !important;
   padding: 0 !important;
 }
@@ -2237,7 +1883,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .options-panel.ui-overlaypanel .ui-overlaypanel-content {
   padding: 0 !important;
-  background-color: #FFFFFF;
   display: grid;
 }
 
@@ -2247,19 +1892,10 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   padding: 10px 18px 10px 20px;
   margin: 0;
   width: 160px;
-  color: rgba(0, 0, 0, 0.5) !important;
-  font-size: 1.4rem;
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
   line-height: 1.2rem;
   box-sizing: content-box;
 }
 
-.options-panel .option-item:hover:not(.ui-state-disabled) {
-  color: rgba(0, 0, 0, 1) !important;
-  background-color: #f5f5f5;
-}
 
 .options-panel .ui-state-disabled.option-item {
   display: inline-block;
@@ -2267,18 +1903,14 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   text-decoration: none;
 }
 
-.mod-expanded-mode .widget-header-filter-input.ui-inputfield {
-  font-size: 1.4rem;
-}
-
-.mod-expanded-mode .widget-header-filter-input.ui-inputfield.ui-state-hover, .mod-expanded-mode .widget-header-filter-input.ui-inputfield.ui-state-focus {
-  font-size: 1.4rem;
-}
-
 /** Handle case list, task list for mobile screen, under 576px**/
 @media (max-width: 575px) {
   .task-start-list .priority-cell {
     padding: 0 15px !important;
+  }
+  
+  .widget-sort-menu.full-mode {
+    height: 35px;
   }
   
   .task-widget .ui-widget.ui-button.advanced-filter-command, 
@@ -2324,20 +1956,12 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .task-name-input {
   width : calc(100% - 155px);
-  font-weight: bold !important;
-  font-size: 1.6rem !important;
 }
 
 #task-description .scroll-panel.OvAuto li {
   list-style-type: inherit;
 }
-#task-description .ui-inplace-display.ui-state-highlight {
-  color: rgba(0,0,0,0.6);
-  background-color: #f7f7f7;
-  padding: inherit;
-  border: inherit!important;
-  border-radius: inherit;
-}
+
 .note-separator {
   border-bottom: solid 1px rgba(0,0,0,0.1);
   width: 100%;
@@ -2356,34 +1980,10 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   padding: 15px;
 }
 
-.document-even-row {
-  background-color: rgba(230,230,230,1);
-  padding: 0 15px;
-  height: 35px;
-}
-
-.document-odd-row {
-  background-color: rgba(255,255,255,0.8);
-  padding: 0 15px;
-  height: 35px;
-}
-
-.document-even-row a.ui-widget.ui-commandlink, .document-odd-row a.ui-widget.ui-commandlink {
-  line-height: 34px;
-  display: inline-block;
-  font-size: 1.2rem;
-}
-
 .no-documents-message {
   text-align: center;
   line-height: 2.5px;
   display: block;
-  font-size: 1.4rem;
-}
-
-.document-even-row a.download-command, .document-odd-row a.download-command {
-  width: 90%;
-  color: rgba(0,0,0,1) !important;
 }
 
 .task-details-document-download-icon {
@@ -2397,16 +1997,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   right: -2px;
 }
 
-.responsive-handle-button {
-  display: block;
-  margin-bottom: 15px;
-  font-size: 18px;
-  color: rgba(0,0,0,0.5) !important;
-}
-
-.responsive-handle-button.is-selected {
-  color: rgba(0,0,0,1) !important;
-}
 /********************************** END TASK DETAIL **********************************/
 
 /********************************** CASE DETAIL **********************************/
@@ -2443,30 +2033,8 @@ _:-ms-input-placeholder, :root .case-details > * {
 .case-details-data-1st-column {
   padding-right: 10px;
   text-align: left;
-  width: 120px;
-  font-size: 1.4rem;
+  width: 135px;
   line-height: 2.2rem;
-}
-
-.case-details-data-2nd-column {
-  text-align: left;
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  line-height: 2.0rem;
-  max-width: calc(100% - 150px);
-}
-
-.case-details-data-2nd-column > * {
-  display: inline-block;
-  font-size: 1.4rem !important;
-}
-.case-details-data-2nd-column > *:not(.case-details-priority):not(form):not(div) {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  width: 100%;
-  display: block;
 }
 
 .related-task-content {
@@ -2478,14 +2046,9 @@ _:-ms-input-placeholder, :root .case-details > * {
 
 .related-task-content .related-task {
   width: calc(100% - 20px);
-  color: #212121 !important;
   word-break: break-all;
   height: 2.2rem;
   overflow: hidden;
-}
-
-.related-task-content .related-task:hover {
-  color: rgba(0,0,0,0.6) !important;
 }
 
 /* override Primefaces style */
@@ -2496,14 +2059,6 @@ _:-ms-input-placeholder, :root .case-details > * {
 .case-detail-no-related-task-case {
   height: 203px;
   align-items: baseline;
-}
-
-.history-author, .history-note > * {
-  font-size: 1.4rem;
-}
-
-.history-note {
-  line-height: 2rem;
 }
 
 .case-view-note-dialog .ui-dialog-content.ui-widget-content {
@@ -2530,7 +2085,7 @@ _:-ms-input-placeholder, :root .case-details > * {
 }
 
 .case-description-2nd-column {
-  width: calc(100% - 135px);
+  width: calc(100% - 145px);
   height: 130px;
   margin-left: 3px;
   overflow-y: auto;
@@ -2548,9 +2103,6 @@ _:-ms-input-placeholder, :root .case-details > * {
 }
 
 .additional-case-details-link {
-  color: rgba(0,0,0,0.5) !important;
-  font-size: 1.4rem;
-  font-weight: 400;
   margin-left: 10px;
   display: inline-block;
 }
@@ -2563,10 +2115,6 @@ _:-ms-fullscreen, :root .additional-case-details-link {
   .additional-case-details-link {
     display: inline !important;
   }
-}
-
-.additional-case-details-link:hover {
-  color: rgba(0,0,0,0.6) !important;
 }
 
 .case-detail-description-input.ui-inputfield.ui-inputtextarea.ui-widget {
@@ -2582,7 +2130,6 @@ _:-ms-fullscreen, :root .additional-case-details-link {
 .case-related-running {
   position: relative;
   line-height: 2.5rem;
-  color: #212121;
   border: 1px solid #d8d8d8;
   padding: 5px 10px !important;
 }
@@ -2701,6 +2248,9 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 }
 
 @media screen and (max-width: 40em) {
+  .process-chain-container.horizontal-process-chain-container {
+    order: 2;
+  }
   .process-chain-container.vertical-process-chain-container {
     display: none !important;
   }
@@ -2811,10 +2361,6 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 .circle-process-chain .circle-vertical-process-step {
   width: 14rem;
   font-size: 1.2rem;
-}
-
-.circle-process-chain .circle-horizontal-process-step,
-.circle-process-chain .circle-vertical-process-step {
   display: inline-block;
   margin: -2px;
   text-align: center;
@@ -2863,10 +2409,6 @@ _:-ms-fullscreen, :root .circle-horizontal-process-step:not(:last-child) .circle
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 100%;
-}
-
-.circle-process-chain .circle-horizontal-process-step.current .circle-horizontal-step-title {
-  font-weight: bold;
 }
 
 /** CIRCLE VERTICAL */
@@ -2923,10 +2465,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   text-align: left;
 }
 
-.circle-process-chain .circle-vertical-process-step.current .circle-vertical-step-title {
-  font-weight: bold;
-}
-
 /** LINE HORIZONTAL*/
 @media screen and (max-width: 40em) {
   .line-process-chain .line-horizontal-process-step .line-horizontal-step-container {
@@ -2954,7 +2492,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   width: 13rem;
   display: inline-block;
   text-align: center;
-  font-size: 1.2rem;
   vertical-align: bottom !important;
 }
 
@@ -2965,27 +2502,11 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   vertical-align: bottom !important;
 }
 
-_:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step.hide-left-steps {
-  vertical-align: auto;
-}
-
 .line-process-chain .line-horizontal-process-step.hide-right-steps {
   width: 5rem;
   height: 1rem;
   vertical-align: bottom;
   margin: 0px 0px 0px 10px;
-}
-
-_:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step.hide-right-steps {
-  vertical-align: auto;
-}
-
-.line-process-chain .line-horizontal-process-step.waiting .line-horizontal-step-container {
-  background-color: #E0E0E0;
-}
-
-.line-process-chain .line-horizontal-process-step.current .line-horizontal-step-title {
-  font-weight: bold;
 }
 
 .line-process-chain .line-horizontal-process-step .line-horizontal-step-container {
@@ -3049,14 +2570,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   width: 10px;
   height: 40px;
   margin: 9px 0px 0px 0px;
-}
-
-.line-process-chain .line-vertical-process-step.waiting .line-vertical-step-container {
-  background-color: #E0E0E0;
-}
-
-.line-process-chain .line-vertical-process-step.current .line-vertical-step-title {
-  font-weight: bold;
 }
 
 .line-process-chain .line-vertical-process-step .line-vertical-step-container {
@@ -3147,10 +2660,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   }
 }
 
-.admin-settings-no-permission-message {
-  color: #E53935;
-}
-
 .application-table-type-column.td {
   text-align: left !important;
 }
@@ -3224,7 +2733,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 .announcement-message {
-  font-size: 1.4rem;
   border-radius: 5px;
   padding: 2px 10px;
   margin-top: 1px;
@@ -3256,10 +2764,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   width: 100% !important;
 }
 
-.select-awesome-icon-button {
-  font-size: 1.3rem !important;
-}
-
 .application-name-language {
   width: 400px;
   height: 300px;
@@ -3284,14 +2788,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 /********************************** ABSENCES AND DEPUTY **********************************/
-.substituted-user-text {
-  font-size: 1.4rem;
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  color: #757575;
-}
-
 .absences-view-command-buttons {
   float: right;
 }
@@ -3377,10 +2873,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   outline: none;
 }
 
-.delete-absence-confirmation-dialog .confirm-action:hover {
-  background-color: #c7d426 !important;
-}
-
 /********************************** LANGUAGE SETTING DIALOG **********************************/
 @media (max-width: 1365px) {
   .language-setting-dialog {
@@ -3416,7 +2908,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   
   .applications-email-setting-form {
     height: 260px;
-    overflow: none !important;
   }
   
   .applications-email-setting-dialog .ui-dialog .ui-dialog-content{
@@ -3471,20 +2962,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 /********************************** END EMAIL SETTING DIALOG **********************************/
 
-/********************************** CASE NOTE **********************************/
-.case-note-view-container {
-  width: 300px;
-  height: 250px;
-}
-
-.case-note-message {
-  white-space: pre-wrap;
-}
-.case-note-history-form {
-  margin-top: 20px;
-}
-/********************************** END CASE NOTE **********************************/
-
 /********************************** PROCESS STARTS **********************************/
 .process-start-container {
   float: left;
@@ -3496,44 +2973,10 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   width: 95%;
 }
 
-.process-starts-link {
-  font-size: 8pt;
-}
-
 .process-starts-icon {
   font-size: 11pt;
 }
 /********************************** END PROCESS START **********************************/
-
-/********************************** STATISTIC AVERAGE **********************************/
-.statistic-average-case-chart {
-  height: 600px;
-  width: 100%;
-}
-
-.statistic-average-button-container {
-  margin: 0px 52px;
-}
-/********************************** END STATISTIC AVERAGE **********************************/
-
-/********************************** STATISTIC DETAILS **********************************/
-.statistic-details-description {
-  margin-left: 5px;
-}
-
-.statistic-details-case-general-information {
-  margin: 30px 0px 20px 50px;
-}
-
-.statistic-details-task-chart {
-  height: 500px;
-  width: 100%;
-}
-
-.statistic-details-button-container {
-  margin: 0px 52px;
-}
-/********************************** END STATISTIC DETAILS **********************************/
 
 /********************************** TASK INFORMATION **********************************/
 .task-icon {
@@ -3549,16 +2992,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .select-awesome-icon-button {
   margin-left: 10px;
   text-decoration: underline !important;
-  color: rgba(0, 0, 0, 1) !important;
-  font-weight: bold;
-}
-
-.select-awesome-icon-button:hover {
-  color: rgba(0, 0, 0, 1) !important;
-}
-
-.ui-widget-content a {
-  color: #337ab7;
 }
 
 /********************************** STATISTIC WIDGET **********************************/
@@ -3578,21 +3011,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   margin-top: 20px;
   justify-content: space-around;
   flex-direction: row;
-}
-
-.statistic-widget.creation-mode {
-  margin-top: 0.5em !important;
-}
-
-.statistic-widget-empty-message {
-  margin: auto;
-  text-align: center;
-  width: 100%;
-  min-height: 200px;
-}
-
-.statistic-widget-empty-message .statistic-empty-message {
-  padding: 8rem 1rem;
 }
 
 .statistic-carousel {
@@ -3632,7 +3050,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   height: 20px;
 }
 
-.statistic-widget-empty-message .statistic-empty-header,
 .statistic-carousel .ui-carousel-header-title .chart-name {
   max-width: 88%;
   white-space: nowrap;
@@ -3640,7 +3057,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   text-align: left;
   float: left;
   overflow: hidden;
-  font-size: 1.6rem;
   margin-top: 2px;
 }
 
@@ -3755,8 +3171,14 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   margin-top: 15px;
 }
 
-.statistic-actions-panel.creation-mode {
-  margin-top: 2px !important;
+.task-analysic-action {
+  flex: 0 0 100px;
+  align-self: flex-end;
+}
+
+.case-detail-title-header-container, .task-detail-header,
+.task-analysic-action, .statistic-actions-panel {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .statistic-selection {
@@ -3795,12 +3217,10 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 .edit-statistic-container .chart-list .chart-container .label,
 .chart-filter-header-text {
-  font-size: 1.8rem !important;
   text-align: left;
 }
 
 .edit-statistic-container .chart-list .chart-container .add-link {
-  font-size: 1.3rem;
   text-align: right;
 }
 
@@ -3808,48 +3228,17 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .edit-statistic-container .chart-list .chart-container .add-link {
   display: block;
   margin-top: 5px;
-  font-family: 'Roboto';
-  font-style: normal;
   width: 50%;
   float: left;
-}
-
-.edit-statistic-container .chart-list .chart-container .add-link:before {
-  font-size: 1.4rem;
-  font: normal normal normal 14px/1 FontAwesome;
 }
 
 .edit-statistic-container td:not(.align-bottom) {
   vertical-align: top;
 }
 
-.statistic-filter-main-container {
-  padding: 0;
-  padding: 0 1rem;
-  border: none;
-  border-left: solid 1px #E0E0E0;
-  border-radius: 0;
-}
-
-.statistic-filter-main-container legend {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-  font-weight: bold;
-}
-
-.statistic-filter-main-container .no-data-message {
-  display: block;
-  margin-top: 1rem;
-}
-
 .chart-filter-info-icon {
   padding-right: 5px;
   float: right;
-  color: rgba(0, 0, 0, 0.75) !important;
-}
-
-.statistic-filter-main-container .item-label {
-  margin-right: 1rem;
 }
 
 .statistic-filter-container {
@@ -3902,7 +3291,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 .dashboard-chart-panel .chart-name-container {
-  font-weight: bold !important;
   display: inline-block;
   padding: 0;
   float: left;
@@ -3951,7 +3339,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 .dashboard-chart-panel .chart-name {
-  font-size: 2rem;
   margin-top: 8px !important;
   margin-bottom: 0;
   display: inline-block;
@@ -3986,12 +3373,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 .chart-info-header {
   display: block;
-  color: #656565;
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 1.6rem;
-  font-weight: bold;
   margin-top: 20px;
   margin-bottom: 10px;
   width: 100%;
@@ -4010,10 +3391,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .chart-info-container,
 .chart-info-container.ui-panelgrid tbody tr td {
   vertical-align: top;
-}
-
-.chart-info-container label {
-  font-weight: bold !important;
 }
 
 .chart-info-container .label-column {
@@ -4036,7 +3413,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 /********************************** END STATISTIC WIDGET **********************************/
 
-/********************************** START NOTIFICATION **********************************/
+/********************************** START NOTIFICATION - ERROR PANEL **********************************/
 .notification-container {
   position: fixed;
   top: 60px;
@@ -4047,7 +3424,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 
 .notification {
   display: flex;
-  flex: row;
+  flex-flow: row;
   margin-top: -60px;
   animation: show-notification 15s;
 }
@@ -4058,14 +3435,12 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   flex-grow: 1;
   width: 430px;
   height: 60px;
-  background: rgb(230, 113, 99);
   font-size: 1.2rem;
   display: flex;
 }
 
 .notification-content-message {
   flex-grow: 1;
-  color: white;
   padding-left: 10px;
   display: flex;
   align-items: center;
@@ -4078,7 +3453,6 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 .notification-content-action-more-details {
-  color: white;
   transition: color .65s;
 }
 
@@ -4095,20 +3469,16 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   border-radius: 15px;
 }
 
-.notification-content-action-close:before, .notification-content-action-close:after {
+.notification-content-action-close:before,
+.notification-content-action-close:after {
   content: '';
   display: block;
   width: 12px;
   height: 2px;
-  background: white;
   position: absolute;
   top: 14px;
   left: 9px;
   transition: background-color .65s;
-}
-
-.notification-content-action-close:hover:before, .notification-content-action-close:hover:after {
-  background: black;
 }
 
 .notification-content-action-close:before {
@@ -4118,7 +3488,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 .notification-content-action-close:after {
   transform: rotate(135deg);
 }
-/********************************** END NOTIFICATION **********************************/
+/********************************** END NOTIFICATION - ERROR PANEL**********************************/
 
 /********************************** START EXCEPTION DIALOG **********************************/
 .exception-handler-stacktrace {
@@ -4136,61 +3506,19 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
 }
 
 /********************************** END EXCEPTION DIALOG **********************************/
-/*  ----------MAIN MENU---------- */
-.main-menu-container.ui-treetable {
-  border: none;
-}
-
-.main-menu-container>table>thead {
-  display: none;
-}
-
-.main-menu-container.ui-treetable table tbody tr td {
-  border: none;
-  font-size: 16px;
-  padding: 18px 16px;
-}
-
-.main-menu-container.ui-treetable table tbody tr td span.fa:before {
-  font-size: 18px;
-  margin-right: 8px;
-}
-
-.main-menu-container.ui-treetable .ui-treetable-toggler {
-  float: right;
-  margin-top: -5px;
-  margin-right: 0;
-}
-
-.main-menu-container.ui-treetable .ui-icon {
-  width: 25px;
-  height: 25px;
-}
-
-.main-menu-container.ui-treetable .ui-icon {
-  background-size: 70%;
-}
-
-.main-menu-container.ui-treetable .ui-icon:hover {
-  border-radius: 50px;
-  background-color: #fff;
-}
-
-.main-menu-container.ui-treetable .ui-treetable-indent:first-child {
-  margin-right: 20px;
-}
-
 /* =================== LOGIN ====================== */
 .login-body .login-panel {
   height: auto;
 }
 
-.login-body .login-panel .login-panel-header {
-  background-color: #F0F0F0;
-}
-
 .login-body .login-panel .login-panel-content {
   padding: 20px 100px;
+}
+
+@media (max-width: 640px) {
+  .login-body .login-panel .login-panel-content {
+      padding: 50px 25px;
+  }
 }
 
 /* --------------------------- */
@@ -4201,7 +3529,7 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   height: 65px;
 }
 
-@media ( max-width : 1365px) {
+@media (max-width: 1365px) {
   .logo-container{
     width: calc(100% - 140px);
     min-width: 880px;
@@ -4231,78 +3559,11 @@ _:-ms-input-placeholder, :root .line-process-chain .line-horizontal-process-step
   overflow: auto;
 }
 
-.ui-widget.ui-datepicker-trigger.ui-button.ui-state-hover, .ui-widget.ui-autocomplete-dropdown.ui-button.ui-state-hover, .ui-widget.ui-datepicker-trigger.ui-button.ui-state-focus, .ui-widget.ui-autocomplete-dropdown.ui-button.ui-state-focus {
+.ui-widget.ui-datepicker-trigger.ui-button.ui-state-hover,
+.ui-widget.ui-autocomplete-dropdown.ui-button.ui-state-hover,
+.ui-widget.ui-datepicker-trigger.ui-button.ui-state-focus,
+.ui-widget.ui-autocomplete-dropdown.ui-button.ui-state-focus {
   background-color: transparent !important;
-} 
-
-.task-action-link {
-  font-size: 1.2rem;
-  display: block;
-  float: left;
-  line-height: 1.8rem;
-  padding: 10px;
-}
-
-.task-action-link .task-action-link-label {
-  font-size: 1.4rem;
-  margin-left: 5px;
-}
-
-.task-action-link .task-action-link-icon {
-  font-size: 1.6rem;
-}
-
-.task-action-link:hover {
-  color: #337ab7 !important;
-}
-
-.task-action-link.ui-state-disabled,
-.task-action-link.ui-state-disabled.ui-state-hover {
-  color: rgba(0,0,0,0.2) !important;
-}
-
-.side-steps-container {
-  background-color: #FFFFFF;
-  width: 200px;
-  border-top: solid 1px rgba(43, 59, 93, 0.2);
-  border-radius: 5px;
-  webkit-box-shadow: 0px 2px 4px 0px rgba(43, 59, 93, 0.6) !important;
-  box-shadow: 0px 2px 4px 0px rgba(43, 59, 93, 0.6) !important;
-}
-
-.side-steps-container .ui-overlaypanel-content {
-  background-color: #FFFFFF;
-  display: grid;
-  padding: 0 !important;
-  width: 150px;
-}
-
-.side-steps-container .side-step-item {
-  clear: both;
-  float: left;
-  padding: 5px 20px;
-  margin: 0;
-  width: 160px;
-  color: rgba(0, 0, 0, 0.5) !important;
-  font-size: 1.4rem;
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  line-height: 36px;
-  box-sizing: content-box;
-}
-
-.side-steps-container .side-step-item:hover {
-  color: rgba(0, 0, 0, 1) !important;
-  background-color: #f5f5f5;
-}
-
-.side-steps-container .side-step-item:first-child {
-  margin-top: 10px;
-}
-
-.side-steps-container .side-step-item:last-child {
-  margin-bottom: 10px;
 }
 
 .ui-fileupload-content .ui-progressbar {
@@ -4353,56 +3614,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   top: auto !important;
 }
 
-/*Style for express ----------------------------------------------*/
-.express-panel {
-  width: 60%;
-  vertical-align: top;
-  border: none !important;
-}
-
-.express-panel .create-process-button {
-  margin-bottom: 20px;
-  margin-right: 10px;
-  float: right;
-}
-
-.express-start-process-panel,
-.express-start-process-panel .process-list {
-  border: none;
-}
-
-.express-start-process-panel .process-list .separator {
-  border-right: 2px solid #f5f5f5 !important
-}
-
-.express-start-process-panel .process-list .icon-placeholder {
-  text-align: middle;
-  width: 35px;
-  border: none;
-}
-
-.express-start-process-panel .process-list .icon-placeholder .fa {
-  font-size:14px !important;
-}
-
-.express-panel .workflow-data-grid {
-  border: none;
-  width: 100%;
-}
-
-.express-panel .workflow-data-grid .ui-datagrid-content-empty {
-  margin-top: 60px;
-  height: 30px;
-  border: solid 1px;
-  text-align: center;
-  line-height: 2;
-  border-radius: 4px;
-}
-
-.express-assignee-autocomplete .ui-autocomplete-input {
-	padding-right: 20px !important;
-}
-
 /*Style for Stages breadcrumb-------------------------------------*/
 .stages-chain {
   position: relative;
@@ -4425,20 +3636,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   font-size: 16px;
 }
 
-.stages-chain .stage-icon {
-  width: 30px;
-  height: 30px;
-  font-size: 28px;
-}
-
-.stages-chain .visited i {
-  color: #555555;
-}
-
-.stages-chain .waiting i {
-  color: #cccccc;
-}
-
 .stages-chain .process-flow {
   width: 45px;
   height: 50px;
@@ -4459,7 +3656,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
     width: 100%;
     height: 2px; 
     margin: 0 auto;
-    background: #cccccc;
 }
 
 .stages-chain .process-flow .flow-txt .none { 
@@ -4498,17 +3694,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   .change-password-dialog {
     top: 400px !important;
   }
-}
-
-.widget-header-main.mod-expanded-mode .task-widget-header-content-title {
-  padding-bottom: 4px;
-}
-
-.create-express-workflow-container {
-  display: block;
-  width: 100%;
-  text-align: right;
-  margin-top: 10px;
 }
 
 .preview-users-datatable {
@@ -4556,7 +3741,8 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 
 /*********** Styles for ui-inplace ***********/
-.ui-inplace .ui-inplace-editor .ui-button.ui-inplace-save .ui-icon-check, .ui-inplace .ui-inplace-editor .ui-button.ui-inplace-cancel .ui-icon-close {
+.ui-inplace .ui-inplace-editor .ui-button.ui-inplace-save .ui-icon-check,
+.ui-inplace .ui-inplace-editor .ui-button.ui-inplace-cancel .ui-icon-close {
   font-size: inherit;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
@@ -4566,12 +3752,10 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 
 .ui-inplace .ui-inplace-editor .ui-button.ui-inplace-save .ui-icon-check:before {
-  font-family: 'FontAwesome' !important;
   content: '\f00c';
 }
 
 .ui-inplace .ui-inplace-editor .ui-button.ui-inplace-cancel .ui-icon-close:before {
-  font-family: 'FontAwesome' !important;
   content: '\f00d';
 }
 
@@ -4627,22 +3811,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   float: left;
 }
 
-.statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
-  background: none;
-  width: 20rem;
-  padding: 8px 0 !important;
-}
-
-.statistic-filter-main-container .ui-calendar .ui-inputfield.hasDatepicker {
-  transition: none !important;
-  width: 20rem;
-}
-
-.statistic-filter-main-container .period-time-selection {
-  margin-bottom: 10px;
-  display: block;
-}
-
 .custom-field-panel-header-container {
   padding: 0 10px;
 }
@@ -4676,17 +3844,8 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   vertical-align: middle !important;
 }
 
-/* Medium screen */
-@media ( min-width : 1366px) and (max-width: 1919px) {
-  .statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
-    background: none;
-    width: 20rem;
-    padding: 8px 0 !important;
-  }
-}
-
 /* Small screen */
-@media ( max-width : 1365px) {
+@media (max-width: 1365px) {
   .chart-list-container .filter-container {
     width: 25rem !important;
   }
@@ -4696,11 +3855,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   .edit-statistic-container {
     padding-right: 25rem !important;
   }
-  .statistic-filter-main-container .ui-inputfield.ui-widget.ui-state-disabled {
-    background: none;
-    width: 21rem;
-    padding: 8px 0 !important;
-  }
+
   .filter-container .ui-inputfield.hasDatepicker {
     width: 15.5rem !important;
   }
@@ -4718,7 +3873,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   padding-left: 30px !important;
 }
 
-@media ( max-width : 1080px) {
+@media (max-width : 1080px) {
   .confirm-save-setting-button, .cancel-save-setting-button {
     min-width: 125px !important;
   }
@@ -4737,10 +3892,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 
 /*********** CASE AND TASK STATISTIC PAGE ***********/
-.analysis-task-widget .widget-header-main-title {
-  position: relative;
-}
-
 .analysis-task-widget .filter-buttons-container .ui-button {
   margin-right: 10px;
 }
@@ -4749,8 +3900,8 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   display: block !important;
 }
 
-.task-analysis-page-navigation-link {
-  float: right;
+.analysis-task-widget .widget-header-main {
+  height: 35px !important;
 }
 
 .task-analysis-filter-selection-panel {
@@ -4870,16 +4021,8 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   margin-top: 2px;
 }
 
-.ui-columntoggler[id$='task-table-toggler'] .ui-columntoggler-item label {
-  font-size: 1.2rem;
-}
-
 .ui-columntoggler[id$='task-table-toggler'] .ui-columntoggler-close {
   display: none;
-}
-
-.ui-columntoggler label {
-	color: #000;
 }
 
 .ui-panel .ui-panel-titlebar {
@@ -4912,7 +4055,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 .not-display-result-tab-view {
   display: block;
   margin: 12px 0;
-  font-size: 1.2rem;	
 }
 
 /* =================== RESPONSIVE GRID ====================== */
@@ -4923,12 +4065,15 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 
 .case-related-command-link {
   margin: auto !important;
-  font-weight: 400;
   display: inline-block;
 }
 
 /* override on IE */
 _:-ms-fullscreen, :root .case-related-command-link {
+  display: inline !important;
+}
+
+_:-ms-fullscreen, :root .content-link-history {
   display: inline !important;
 }
 
@@ -4999,8 +4144,6 @@ _:-ms-fullscreen, :root .case-related-command-link {
 
 /*  =================== TASK DETAIL PAGE ========================= */
 .task-detail-header {
-  font-size: 1.6rem;
-  font-weight: bold;
   line-height: 38px;
   display: flex;
   width: 100% !important;
@@ -5013,9 +4156,7 @@ _:-ms-fullscreen, :root .case-related-command-link {
 .task-note-component{
   height: 350px;
   width: 100%;
-  margin 0;
-  margin-bottom : 10px
-  
+  margin-bottom : 10px;
 }
 
  .task-document-component{
@@ -5035,15 +4176,7 @@ _:-ms-fullscreen, :root .case-related-command-link {
   flex-grow: 0;
 }
 
-.task-action-item .ui-commandlink.ui-state-disabled {
-  font-size: 1.4rem !important;
-  margin: auto;
-  font-weight: bold;
-  color: rgba(0,0,0,0.5);
-}
-
 .task-action-item {
-  font-size: 1.4rem !important;
   margin: auto;
 }
 
@@ -5053,7 +4186,6 @@ _:-ms-fullscreen, :root .case-related-command-link {
 
 .task-action-item .task-action-item-label {
   margin-left: 5px;
-  font-weight: normal;
 }
 
 .action-button.task-action-item {
@@ -5065,7 +4197,6 @@ _:-ms-fullscreen, :root .case-related-command-link {
 .action-button.task-action-item .ui-button-icon-left.ui-icon {
   margin-top: -9px;
   left: 0;
-  color: rgba(0,0,0,0.5) !important;
 }
 
 .action-button.task-action-item .ui-button-text {
@@ -5103,15 +4234,13 @@ _:-ms-fullscreen, :root .case-related-command-link {
 }
 
 .task-detail-section-title, .task-history-button-container {
-  font-size: 1.6rem;
   display: inline-block !important;
   align-content: start;
   padding: 0 !important;
-  font-weight: bold;
   position: relative;
 }
 
-.task-desription-inplace .ui-button.ui-widget.ui-button-icon-only.ui-inplace-save {
+.task-description-inplace .ui-button.ui-widget.ui-button-icon-only.ui-inplace-save {
   margin-right: 5px;
   margin-top: 3px;
 }
@@ -5165,12 +4294,13 @@ _:-ms-fullscreen, :root .case-related-command-link {
 /*  =================== END TASK DETAIL PAGE ========================= */
 
 /*  =================== TASK TEMPLATE PAGE ========================= */
+.task-title {
+  flex: 1;
+}
 .task-template-content .task-actions-button:focus {
   outline: transparent;
 }
 .task-actions-menu .ui-slidemenu-backward.ui-widget-header {
-  background-color: white;
-  color: #212121;
   border: none;
   padding: 6px;
   line-height: 2rem;
@@ -5178,14 +4308,6 @@ _:-ms-fullscreen, :root .case-related-command-link {
 }
 .task-actions-menu .empty-side-steps {
   min-height: 40px;
-}
-.task-actions-menu .ui-slidemenu-backward.ui-widget-header .ui-icon.ui-icon-triangle-1-w {
-  color: #212121;
-}
-
-.ui-menu .ui-menu-list li.ui-widget-header h3 {
-  font-weight: 600 !important;
-  color: rgba(0, 0, 0, 0.7);
 }
 
 @media screen and (max-width: 40em) {
@@ -5237,12 +4359,64 @@ span.ui-inputnumber.ui-widget.ui-state-error {
 }
 
 /*====================FIX FOR SERENITY 2.0 STYLE========================*/
-
-.process-widget .ui-fieldset .ui-fieldset-legend .ui-fieldset-toggler {
-  width: 20px !important;
-  height: 20px !important;
+.filter-add-panel .ui-scrollpanel {
+  overflow: hidden !important;
 }
 
-.case-note-history-container {
-  padding-bottom: 20px;
+/* Refactor from base.css*/
+[data-icon]:before {
+  content: attr(data-icon);
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+[class^="tmi-"]:before,
+[class*=" tmi-"]:before {
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.tmi-box-arrow-left:before {
+  content: "\e03c";
+}
+.tmi-box-arrow-right:before {
+  content: "\e03d";
+}
+.tmi-box-arrow-toinside:before {
+  content: "\e03e";
+}
+.tmi-chevorn-right:before {
+  content: "\44";
+}
+
+.tmi-ellipsis-h:before,
+.tmi-ellipsis-v:before {
+  content: "\e00f";
+}
+
+.tmi-ellipsis-v {
+  -ms-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+a.ui-widget:focus {
+  text-decoration: none;
+  outline: none;
+}
+
+.favorite-process-title {
+  display: inline-block;
+  padding-right: 20px;
+}
+
+/**************DATA TABLE START*******************/
+.column-header-top-alignment {
+  vertical-align: baseline;
+}
+/**************DATA TABLE END*******************/

@@ -10,9 +10,8 @@ import org.junit.runners.model.Statement;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
-import ch.xpertline.base.client.Browser;
+import vn.wawa.guitest.base.client.Browser;
 
 public class ScreenshotFailedTestRule implements MethodRule {
   private static final String SCREENSHOT_FOLDER = "target" + File.separator + "test" + File.separator + "screenshot"
@@ -26,6 +25,7 @@ public class ScreenshotFailedTestRule implements MethodRule {
         try {
           statement.evaluate();
         } catch (Throwable t) {
+          t.printStackTrace();
           captureScreenshot(frameworkMethod.getName());
           throw t;
         } finally {
@@ -33,7 +33,7 @@ public class ScreenshotFailedTestRule implements MethodRule {
             Browser.getBrowser().shutdown();
           } catch (Exception e) {
             captureScreenshot(frameworkMethod.getName() + "-shutdown-error");
-            Sleeper.sleepTight(5000);
+            Sleeper.sleep(5000);
             Browser.getBrowser().shutdown();
           }
         }

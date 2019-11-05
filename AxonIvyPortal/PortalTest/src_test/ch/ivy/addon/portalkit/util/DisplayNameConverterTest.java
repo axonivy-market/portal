@@ -6,8 +6,6 @@ import java.util.Locale;
 
 import org.junit.Test;
 
-import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
-
 public class DisplayNameConverterTest {
   
   @Test

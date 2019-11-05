@@ -299,7 +299,7 @@ import ch.ivyteam.ivy.workflow.StandardProcessType;
 String defaultEndPage = ivy.wf.getStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES);
 
 if (StringUtils.isBlank(defaultEndPage)) {
-	ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES, PortalLibrary.PORTAL_TEMPLATE.getValue());
+	ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES, "ch.ivyteam.ivy.project.portal:portalExamples");
 }' #txt
 Pt0 f20 security system #txt
 Pt0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

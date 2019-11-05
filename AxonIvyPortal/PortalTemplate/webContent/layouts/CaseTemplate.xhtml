@@ -55,7 +55,7 @@
             <ui:insert name="caseStatusTab">
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/noCaseId')}" rendered="#{case ne null and caseWidgetBean.isHiddenCase(case)}" />
               <h:form id="case-details-form" prependId="false" rendered="#{case ne null and !caseWidgetBean.isHiddenCase(case)}">
-                <div class="js-case-default-widget-container case-default-widget-container js-simple-container js-for-search-result case-details">
+                <div class="js-case-default-widget-container case-default-widget-container">
                   <!-- HEADER -->
                   <h:panelGroup id="widget-column-header" class="widget-column-header js-case-widget-column-header">
                     <h:panelGroup styleClass="case-list-unsortable-header-cell case-list-name-desc-header-cell">
