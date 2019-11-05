@@ -20,7 +20,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   private String taskWidgetId;
   private static final String UI_INPLACE_SAVE = "ui-inplace-save";
-  private static final String TASK_ACTION = "task-actions";
+  private static final String TASK_ACTION = "horizontal-task-actions";
   private static final String CLASS = "class";
   private static final String ID_END = "*[id$='";
   private static final String TASK_ITEM_TASK_INFO = ":task-item:task-info']";
