@@ -274,4 +274,4 @@ HowTo: Export a case history
 
    Export case history
 
-.. include:: ../includes/common-icon.rst
+.. include:: ../includes/_common-icon.rst
