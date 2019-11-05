@@ -1,5 +1,5 @@
 [Ivy]
-15B1EA24CCF377E8 3.28 #module
+15B1EA24CCF377E8 7.5.0 #module
 >Proto >Proto Collection #zClass
 Be0 BusinessCases Big #zClass
 Be0 B #cInfo
@@ -173,8 +173,7 @@ Be0 f11 @C|.responsibility Everybody #txt
 Be0 f11 435 83 26 26 14 0 #rect
 Be0 f11 @|StartRequestIcon #fIcon
 Be0 f13 processCall 'Business Processes/testProcesses/BusinessCases:takeOrder()' #txt
-Be0 f13 requestActionDecl '<> param;
-' #txt
+Be0 f13 requestActionDecl '<> param;' #txt
 Be0 f13 responseActionDecl 'internaltest.Data out;
 ' #txt
 Be0 f13 responseMappingAction 'out=in;
@@ -286,8 +285,7 @@ Be0 f15 type internaltest.Data #txt
 Be0 f15 var in1 #txt
 Be0 f15 448 204 448 274 #arcP
 Be0 f16 processCall 'Business Processes/testProcesses/BusinessCases:pack()' #txt
-Be0 f16 requestActionDecl '<> param;
-' #txt
+Be0 f16 requestActionDecl '<> param;' #txt
 Be0 f16 responseActionDecl 'internaltest.Data out;
 ' #txt
 Be0 f16 responseMappingAction 'out=in;

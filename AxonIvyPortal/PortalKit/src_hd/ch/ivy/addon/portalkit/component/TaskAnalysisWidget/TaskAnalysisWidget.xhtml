@@ -23,8 +23,25 @@
   <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
   <h:outputScript name="task-widget.js" library="js" />
 
-  <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} js-task-widget analysis-task-widget">
-        <h:panelGroup id="filter-selection-container" layout="block" styleClass="filter-selection-container">
+  <div id="#{cc.clientId}" class="widget task-widget analysis-task-widget #{cc.attrs.styleClass} ui-g-12">
+    <h:panelGroup id="header" layout="block" styleClass="widget-header">
+      <div class="widget-header-main">
+        <h:outputText styleClass="widget-header-main-title" 
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskAnalysis')}" />
+      </div>
+
+      <h:panelGroup layout="block" styleClass="task-analysic-action ui-g">
+        <h:panelGroup layout="block" styleClass="ui-g-12 u-padding-0">
+          <p:commandLink id="back-button" actionListener="#{logic.redirectToStatisticPage}" styleClass="Fright">
+            <i class="fa fa-reply-all" />
+            <p:spacer width="3px" />
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
+          </p:commandLink>
+        </h:panelGroup>
+      </h:panelGroup>
+    </h:panelGroup>
+
+    <h:panelGroup id="filter-selection-container" layout="block" styleClass="filter-selection-container">
           <h:form id="filter-selection-form" class="filter-selection-form">
             <p:outputPanel id="filter-selection-panel" styleClass="task-analysis-filter-selection-panel"
               rendered="#{(not empty data.taskPrivateFilters or not empty data.taskPublicFilters)}">
@@ -39,16 +56,16 @@
                     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/publicFilter')}" />
                   </div>
                   <ui:repeat var="taskFilterData" value="#{data.taskPublicFilters}">
-                    <h:panelGroup layout="block" styleClass="user-definied-filter-container">
-                      <p:commandLink id="user-definied-filter" styleClass="user-definied-filter"
+                    <h:panelGroup layout="block" styleClass="user-defined-filter-container">
+                      <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
                         value="#{taskFilterData.filterName}" global="false" actionListener="#{logic.applyFilter(taskFilterData)}"
                         update="#{cc.clientId}:task-filters-container #{cc.clientId}:filter-selection-container #{cc.clientId}:statistic-result-list
                                               #{cc.clientId}:case-filters-container #{cc.clientId}:case-filter-add-container" />
-                      <p:tooltip id="user-definied-filter-tooltip" for="user-definied-filter" value="#{taskFilterData.filterName}"
+                      <p:tooltip id="user-defined-filter-tooltip" for="user-defined-filter" value="#{taskFilterData.filterName}"
                         trackMouse="true" />
-                      <p:commandLink id="delete-user-definied-filter-command"
+                      <p:commandLink id="delete-user-defined-filter-command"
                         rendered="#{taskAnalysisWidgetBean.isDeleteFilterEnabledFor(taskFilterData)}"
-                        styleClass="fa fa-times-circle delete-user-definied-filter-command"
+                        styleClass="fa fa-times-circle delete-user-defined-filter-command"
                         actionListener="#{logic.setFilterToBeDeleted(taskFilterData)}"
                         oncomplete="PF('delete-filter-confirmation-dialog').show();" />
                     </h:panelGroup>
@@ -61,16 +78,16 @@
                     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/privateFilter')}" />
                   </div>
                   <ui:repeat var="taskFilterData" value="#{data.taskPrivateFilters}">
-                    <h:panelGroup layout="block" styleClass="user-definied-filter-container">
-                      <p:commandLink id="user-definied-filter" styleClass="user-definied-filter"
+                    <h:panelGroup layout="block" styleClass="user-defined-filter-container">
+                      <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
                         value="#{taskFilterData.filterName}" global="false" actionListener="#{logic.applyFilter(taskFilterData)}"
                         update="#{cc.clientId}:task-filters-container #{cc.clientId}:filter-selection-container #{cc.clientId}:statistic-result-list
                                               #{cc.clientId}:case-filters-container #{cc.clientId}:case-filter-add-container" />
-                      <p:tooltip id="user-definied-filter-tooltip" for="user-definied-filter" value="#{taskFilterData.filterName}"
+                      <p:tooltip id="user-defined-filter-tooltip" for="user-defined-filter" value="#{taskFilterData.filterName}"
                         trackMouse="true" />
-                      <p:commandLink id="delete-user-definied-filter-command"
+                      <p:commandLink id="delete-user-defined-filter-command"
                         rendered="#{taskAnalysisWidgetBean.isDeleteFilterEnabledFor(taskFilterData)}"
-                        styleClass="fa fa-times-circle delete-user-definied-filter-command"
+                        styleClass="fa fa-times-circle delete-user-defined-filter-command"
                         actionListener="#{logic.setFilterToBeDeleted(taskFilterData)}"
                         oncomplete="PF('delete-filter-confirmation-dialog').show();" />
                     </h:panelGroup>
@@ -80,8 +97,7 @@
             </p:outputPanel>
           </h:form>
         </h:panelGroup>
-    <p:commandButton id="back-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" icon="fa fa-reply-all" iconPos="left"
-      styleClass="back-button Fright MarTop50" actionListener="#{logic.redirectToStatisticPage}"/>
+
     <!-- TASK FILTERS -->
         <p:fieldset id="task-filters-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskFilter')}" toggleable="false" styleClass="filter-fieldset MarTop20">
           <h:panelGroup id="task-filters-container" layout="block" styleClass="advanced-filter-container">

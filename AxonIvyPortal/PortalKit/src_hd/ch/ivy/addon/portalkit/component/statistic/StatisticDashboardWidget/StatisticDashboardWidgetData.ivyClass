@@ -34,3 +34,5 @@ isFinishLoadCharts Boolean #field
 isFinishLoadCharts PERSISTENT #fieldModifier
 isCompactMode Boolean #field
 isCompactMode PERSISTENT #fieldModifier
+chartsPlaceholder java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> #field
+chartsPlaceholder PERSISTENT #fieldModifier

@@ -4,14 +4,14 @@
 <h:body>
   <h:outputScript library="js" name="express-dyna-form.js" />
 
+  <p:messages id="dnd-message" showDetail="false" closable="true" for="available-form-elements">
+    <p:autoUpdate />
+  </p:messages>
   <p:panelGrid id="form-elements-container" styleClass="form-elements-container card ui-g-12 u-no-padding-top" layout="grid" columns="2"
     columnClasses="form-elements-1st-column, form-elements-2nd-column">
 
     <p:fieldset id="available-formelements-field" styleClass="available-formelements-field"
       legend="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/FieldSetAvailableFormelements')}">
-      <p:messages id="dnd-message" showDetail="false" closable="true" for="available-form-elements">
-        <p:autoUpdate />
-      </p:messages>
 
       <p:dataGrid id="available-form-elements" var="formelement" styleClass="available-form-elements"
         emptyMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoFormelementsAvailable')}"
@@ -99,7 +99,7 @@
         <p:row styleClass="TexAlCenter form-definition-border-color">
           <p:column colspan="1" id="selected-form-elements-left-panel-fieldset" styleClass="ui-g-6 TexAlCenter form-definition-border-color">
 
-            <p:outputPanel id="selected-formelements-leftpanel-panel" styleClass="selected-formelements-panel left-section">
+            <p:outputPanel id="selected-form-elements-leftpanel-panel" styleClass="selected-formelements-panel left-section">
 
               <p:outputPanel rendered="#{empty data.dragAndDropController.selectedFormelementsLeftPanel}">
                 <br />
@@ -138,16 +138,16 @@
                 </p:panel>
               </p:dataGrid>
 
-              <p:droppable for="selected-formelements-leftpanel-panel" tolerance="pointer" activeStyleClass="ui-state-highlight"
+              <p:droppable for="selected-form-elements-leftpanel-panel" tolerance="pointer" activeStyleClass="ui-state-highlight"
                 hoverStyleClass="hover-drop-section" datasource="form:available-form-elements" onDrop="handleDrop">
                 <p:ajax listener="#{data.dragAndDropController.onFieldDropLeftPanel}"
-                  update="form:selected-formelements-leftpanel-panel form:available-form-elements form:dyna-form" />
+                  update="form:selected-form-elements-leftpanel-panel form:available-form-elements form:dyna-form" />
               </p:droppable>
             </p:outputPanel>
           </p:column>
 
           <p:column colspan="1" id="selected-formelements-rightpanel-fieldset" styleClass="TexAlCenter ui-g-6">
-            <p:outputPanel id="selected-formelements-rightpanel-panel" styleClass="selected-formelements-panel right-section">
+            <p:outputPanel id="selected-form-elements-rightpanel-panel" styleClass="selected-formelements-panel right-section">
               <p:outputPanel rendered="#{empty data.dragAndDropController.selectedFormelementsRightPanel}">
                 <br />
                 <h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/RightColumn')}" styleClass="Fs24" />
@@ -186,11 +186,11 @@
                 </p:panel>
               </p:dataGrid>
 
-              <p:droppable for="selected-formelements-rightpanel-panel" tolerance="pointer" activeStyleClass="ui-state-highlight"
+              <p:droppable for="selected-form-elements-rightpanel-panel" tolerance="pointer" activeStyleClass="ui-state-highlight"
                 hoverStyleClass="hover-drop-section" datasource="form:available-form-elements" onDrop="handleDrop">
 
                 <p:ajax listener="#{data.dragAndDropController.onFieldDropRightPanel}"
-                  update="form:selected-formelements-rightpanel-panel form:available-form-elements form:dyna-form" />
+                  update="form:selected-form-elements-rightpanel-panel form:available-form-elements form:dyna-form" />
               </p:droppable>
             </p:outputPanel>
           </p:column>
@@ -198,7 +198,7 @@
 
         <p:row id="selected-formelements-footer-fieldset" styleClass="TexAlCenter form-definition-border-color">
           <p:column colspan="2">
-            <p:outputPanel id="selected-formelements-footer-panel" styleClass="selected-formelements-panel footer-section">
+            <p:outputPanel id="selected-form-elements-footer-panel" styleClass="selected-formelements-panel footer-section">
 
               <p:outputPanel rendered="#{empty data.dragAndDropController.selectedFormelementsFooter}">
                 <br />
@@ -237,11 +237,11 @@
                 </p:panel>
               </p:dataGrid>
 
-              <p:droppable for="selected-formelements-footer-panel" tolerance="pointer" activeStyleClass="ui-state-highlight"
+              <p:droppable for="selected-form-elements-footer-panel" tolerance="pointer" activeStyleClass="ui-state-highlight"
                 hoverStyleClass="hover-drop-section" datasource="form:available-form-elements" onDrop="handleDrop">
 
                 <p:ajax listener="#{data.dragAndDropController.onFieldDropFooter}"
-                  update="form:selected-formelements-footer-panel form:available-form-elements form:dyna-form" />
+                  update="form:selected-form-elements-footer-panel form:available-form-elements form:dyna-form" />
               </p:droppable>
 
             </p:outputPanel>

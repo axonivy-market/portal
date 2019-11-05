@@ -36,7 +36,7 @@
           </div>
           <div class="ui-g-12">
             <h:panelGroup styleClass="md-inputfield">
-              <p:password id="password" autocomplete="off" value="#{data.password}" required="true" />
+              <p:password id="password" autocomplete="off" value="#{data.password}" required="true" onchange="clearPlaceholder()" />
               <p:outputLabel for="password" indicateRequired="false">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/password')}</p:outputLabel>
               <p:message for="password" id="password-message" />
             </h:panelGroup>
@@ -49,5 +49,18 @@
       </h:form>
     </div>
   </div>
+  <script type="text/javascript">
+    $(function() {
+      $('[id $= "login-form:password"]').on('change', function(e){
+        if($(e.target).val() != '') {
+          $(e.target).addClass('ui-state-filled');
+        }
+      });
+    });
+
+    function clearPlaceholder() {
+      $('[id $= "login-form:password"]').addClass('ui-state-filled');
+    }
+  </script>
 </cc:implementation>
 </html>

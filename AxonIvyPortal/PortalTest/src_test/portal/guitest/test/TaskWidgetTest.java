@@ -1,11 +1,18 @@
 package portal.guitest.test;
 
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.jayway.awaitility.Awaitility;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.DateTimePattern;
@@ -13,7 +20,6 @@ import portal.guitest.common.TaskState;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class TaskWidgetTest extends BaseTest {
@@ -32,9 +38,7 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test // obsolete testShowHideTaskDetailOnExpandedMode update by testShowTaskDetailAndBackFromTaskDetail
-  public void testShowTaskDetailAndBackFromTaskDetail() { // SERENITY_PASSED
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
+  public void testShowTaskDetailAndBackFromTaskDetail() {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
 
     taskWidgetPage.expand();
@@ -46,9 +50,7 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testTasksInPortalHomePageUpdatedAfterExpandToFullMode() { // SERENITY_PASSED
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
+  public void testTasksInPortalHomePageUpdatedAfterExpandToFullMode() {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     assertEquals(3, taskWidgetPage.countTasks());
 
@@ -58,9 +60,7 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testOpenRelatedCaseOfTask() { // SERENITY_PASSED
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
+  public void testOpenRelatedCaseOfTask() {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
     taskWidgetPage.openTaskDetails(0);
@@ -73,9 +73,7 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testReserveTask() { // SERENITY_PASSED
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
+  public void testReserveTask() {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
     taskWidgetPage.sideStepMenuOnMoreButton(0);
@@ -89,9 +87,7 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testChangeTaskDeadline() { // SERENITY_PASSED
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
+  public void testChangeTaskDeadline() {
     int firstTask = 0;
     LocalDateTime tomorrow = LocalDateTime.now().plusDays(1);
     String tomorrowStringLiteral = tomorrow.format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
@@ -106,22 +102,20 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testStartButtonStatus() { // SERENITY_PASSED
-    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
-    loginPage.login();
+  public void testStartButtonStatus() {
+    login(TestAccount.ADMIN_USER);
     HomePage homePage = new HomePage();
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     taskWidgetPage.expand();
     taskWidgetPage.filterTasksInExpendedModeBy("Annual Leave Request");
     Assert.assertFalse(taskWidgetPage.isTaskStartEnabled(0));
     taskWidgetPage.filterTasksInExpendedModeBy("Sick Leave Request");
-    Assert.assertTrue(taskWidgetPage.isTaskStartEnabled(0));
+    Awaitility.waitAtMost(5, TimeUnit.SECONDS).until(() -> taskWidgetPage.isTaskStartEnabled(0));
   }
 
   @Test
-  public void testDisplayDelegateButton() { // SERENITY_PASSED
-    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
-    loginPage.login();
+  public void testDisplayDelegateButton() {
+    login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(GRANT_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL);
     HomePage homePage = new HomePage();
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
@@ -132,9 +126,8 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testDisplayTaskAndCaseCategory() { // SERENITY_PASSED
-    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
-    loginPage.login();
+  public void testDisplayTaskAndCaseCategory() {
+    login(TestAccount.ADMIN_USER);
     HomePage homePage = new HomePage();
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     taskWidgetPage.openTaskList();
@@ -144,9 +137,7 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testShowTaskCount() {  // SERENITY_PASSED
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
+  public void testShowTaskCount() { 
     HomePage homePage = new HomePage();
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     Assert.assertEquals("In Dashboard, Task Count != 3", 3, taskWidgetPage.getTaskCount());

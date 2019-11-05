@@ -1,5 +1,8 @@
 package portal.guitest.test;
 
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
+
 import org.apache.commons.lang.StringUtils;
 import org.junit.After;
 import org.junit.Before;
@@ -11,7 +14,6 @@ import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
 
 public class CaseDetailsTest extends BaseTest {
@@ -22,10 +24,9 @@ public class CaseDetailsTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
-    navigateToUrl(createTestingTasksUrl);
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
-    LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-    loginPage.login();
+    redirectToRelativeLink(createTestingTasksUrl);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    login(TestAccount.DEMO_USER);
 
     HomePage homePage = new HomePage();
     grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
@@ -35,12 +36,12 @@ public class CaseDetailsTest extends BaseTest {
   }
 
   @Test
-  public void testDisplayCaseProperties() { // SERENITY_PASSED
+  public void testDisplayCaseProperties() {
     assertTrue(StringUtils.equalsIgnoreCase("LeaveRequest", detailsPage.getCaseCategory()));
   }
 
   @Test
-  public void testAddCaseNote() { // SERENITY_PASSED
+  public void testAddCaseNote() {
     detailsPage.onClickHistoryIcon();
     assertEquals(1, detailsPage.getNumberOfHistory());
     detailsPage.addNote("Consider the remaining annual leaves before the approval");
@@ -49,7 +50,7 @@ public class CaseDetailsTest extends BaseTest {
   }
 
   @Test
-  public void testShowCaseDetail() { // SERENITY_PASSED
+  public void testShowCaseDetail() {
     assertTrue(detailsPage.isGeneralInformationComponentPresented());
     assertTrue(detailsPage.isRelatedTasksComponentPresented());
     assertTrue(detailsPage.isHistoryComponentPresented());
@@ -57,13 +58,13 @@ public class CaseDetailsTest extends BaseTest {
   }
 
   @Test
-  public void testHistoryAuthorIsUserFullName() { // SERENITY_PASSED
+  public void testHistoryAuthorIsUserFullName() {
     detailsPage.addNote("Sample case note");
     assertEquals(TestAccount.DEMO_USER.getFullName(), detailsPage.getHistoryAuthor());
   }
 
   @Test
-  public void testOpenViewNoteDialog() { // SERENITY_PASSED
+  public void testOpenViewNoteDialog() {
     detailsPage.addNote("Consider the remaining annual leaves before the approval");
     detailsPage.clickViewNote();
     assertTrue(detailsPage.isViewNoteDialogPresented());

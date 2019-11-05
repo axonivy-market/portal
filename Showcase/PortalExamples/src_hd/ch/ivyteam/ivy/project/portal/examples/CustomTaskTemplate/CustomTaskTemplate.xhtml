@@ -1,0 +1,165 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+  <ui:composition template="/layouts/TaskTemplate.xhtml">
+
+    <ui:define name="pageTitle">Customized TaskTemplate</ui:define>
+
+    <ui:param name="caseId" value="#{ivy.case.id}" />
+    <ui:param name="task" value="#{ivy.task}" />
+    <ui:param name="actualStepIndex" value="#{data.actualStepIndex - 1}" />
+    <ui:param name="steps" value="#{data.steps}" />
+    <ui:param name="processChainShape" value="#{data.processChainShape}" />
+    <ui:param name="processChainDirection" value="#{data.processChainDirection}" />
+
+    <ui:remove>
+      <ui:param name="showTaskFormTab" value="false" />
+      <ui:param name="showCaseStatusInfoTab" value="true" />
+      <ui:define name="taskName">...</ui:define>
+
+      <ui:define name="errorsZone">...</ui:define>
+
+      <ui:define name="infoZone">...</ui:define>
+
+    </ui:remove>
+
+    <ui:define name="breadCrumb"></ui:define>
+
+    <ui:define name="taskForm">
+
+      <h:form id="form">
+        <h:panelGrid columnClasses="MarRight10">
+          <f:facet name="header">
+            <p:messages></p:messages>
+          </f:facet>
+
+          <h:panelGroup styleClass="md-inputfield MarTop20">
+            <p:inputText id="dataGdprRequestAddress" value="#{data.data.gdprRequest.address}"></p:inputText>
+            <p:outputLabel for="dataGdprRequestAddress" value="Address" />
+          </h:panelGroup>
+
+          <h:panelGroup styleClass="md-inputfield MarTop20">
+            <p:inputText id="dataGdprRequestAppliacationUserName" value="#{data.data.gdprRequest.appliacationUserName}"></p:inputText>
+            <p:outputLabel for="dataGdprRequestAppliacationUserName" value="Appliacation User Name" />
+          </h:panelGroup>
+
+          <h:panelGroup styleClass="md-inputfield MarTop20">
+            <p:inputText id="dataGdprRequestCity" value="#{data.data.gdprRequest.city}"></p:inputText>
+            <p:outputLabel for="dataGdprRequestCity" value="City" />
+          </h:panelGroup>
+
+          <h:panelGroup styleClass="md-inputfield MarTop20">
+            <p:inputText id="dataGdprRequestEmailAddress" value="#{data.data.gdprRequest.emailAddress}"></p:inputText>
+            <p:outputLabel for="dataGdprRequestEmailAddress" value="Email Address" />
+          </h:panelGroup>
+
+          <h:panelGroup styleClass="md-inputfield MarTop20">
+            <p:inputText id="dataGdprRequestId" value="#{data.data.gdprRequest.id}"></p:inputText>
+            <p:outputLabel for="dataGdprRequestId" value="Id" />
+          </h:panelGroup>
+
+          <h:panelGroup styleClass="md-inputfield MarTop20">
+            <p:inputText id="dataGdprRequestIdentificationNumer" value="#{data.data.gdprRequest.identificationNumer}"></p:inputText>
+            <p:outputLabel for="dataGdprRequestIdentificationNumer" value="Identification Numer" />
+          </h:panelGroup>
+
+          <h:panelGroup styleClass="md-inputfield MarTop20">
+            <p:inputText id="dataGdprRequestName" value="#{data.data.gdprRequest.name}"></p:inputText>
+            <p:outputLabel for="dataGdprRequestName" value="Name" />
+          </h:panelGroup>
+
+          <h:panelGroup styleClass="md-inputfield MarTop20">
+            <p:inputText id="dataGdprRequestRequestReason" value="#{data.data.gdprRequest.requestReason}"></p:inputText>
+            <p:outputLabel for="dataGdprRequestRequestReason" value="Request Reason" />
+          </h:panelGroup>
+
+          <h:panelGroup styleClass="md-inputfield MarTop20">
+            <p:inputText id="dataGdprRequestReviewedBy" value="#{data.data.gdprRequest.reviewedBy}"></p:inputText>
+            <p:outputLabel for="dataGdprRequestReviewedBy" value="Reviewed By" />
+          </h:panelGroup>
+
+          <h:panelGroup styleClass="md-inputfield MarTop20">
+            <p:inputText id="dataGdprRequestSurname" value="#{data.data.gdprRequest.surname}"></p:inputText>
+            <p:outputLabel for="dataGdprRequestSurname" value="Surname" />
+          </h:panelGroup>
+          <br />
+        </h:panelGrid>
+      </h:form>
+
+    </ui:define>
+
+    <ui:define name="dynamicTabs">
+
+      <p:tab title="My first tab">
+        <h:panelGroup styleClass="md-inputfield MarTop20">
+          <p:inputText id="first-name" value="#{data.firstname}" />
+          <p:outputLabel value="first name" for="first-name" />
+        </h:panelGroup>
+      </p:tab>
+
+      <p:tab title="My second tab">
+        <h:panelGroup styleClass="md-inputfield MarTop20">
+          <p:inputText id="last-name" value="#{data.lastname}" />
+          <p:outputLabel value="last name" />
+        </h:panelGroup>
+      </p:tab>
+
+      <p:tab title="My third tab">
+        <h:panelGroup styleClass="md-inputfield MarTop20">
+          <p:inputText id="last-name2" value="#{data.lastname}" />
+          <p:outputLabel value="last name" />
+        </h:panelGroup>
+      </p:tab>
+
+      <p:tab title="Customization tab">
+        <h:form id="custom-form" styleClass="MarTop20 ui-g">
+          <h:panelGroup styleClass="ui-g-12 ui-fluid">
+            <h:panelGrid styleClass="ui-g-6 ui-sm-12" columns="1">
+              <p:outputLabel value="Actual step" />
+              <h:panelGroup>
+	            <p:spinner id="actual-step" value="#{data.actualStepIndex}" min="1" max="#{data.steps.size()}" />
+              </h:panelGroup>
+
+              <p:outputLabel value="Process Chain Direction" for="processChainDirection" styleClass="ui-g-12"/>
+              <p:selectOneMenu id="processChainDirection" value="#{data.processChainDirection}">
+                <f:selectItem itemLabel="VERTICAL" itemValue="VERTICAL" />
+                <f:selectItem itemLabel="HORIZONTAL" itemValue="HORIZONTAL" />
+              </p:selectOneMenu>
+
+              <p:outputLabel value="Process Chain Shape" for="processChainShape" styleClass="ui-g-12"/>
+              <p:selectOneMenu id="processChainShape" value="#{data.processChainShape}">
+                <f:selectItem itemLabel="LINE" itemValue="LINE" />
+                <f:selectItem itemLabel="CIRCLE" itemValue="CIRCLE" />
+              </p:selectOneMenu>
+            </h:panelGrid>
+
+          </h:panelGroup>
+
+          <h:panelGroup styleClass="ui-g-12">
+            <h:panelGroup styleClass="ui-g-6 ui-sm-12 TexAlRight">
+              <p:commandButton value="Save and reload" icon="fa fa-play" actionListener="#{logic.saveToSession()}"
+                process="@(custom-form)" oncomplete="reloadPage();"/>
+              <p:remoteCommand name="reloadPage" actionListener="#{logic.reload()}" />
+            </h:panelGroup>
+          </h:panelGroup>
+        </h:form>
+      </p:tab>
+
+    </ui:define>
+
+    <ui:define name="leftButtons">
+
+      <p:commandButton value="Test left Button" actionListener="#{logic.close}" partialSubmit="true" />
+
+    </ui:define>
+
+    <ui:define name="rightButtons">
+
+      <p:commandButton value="Test Right button" actionListener="#{logic.close}" immediate="true" />
+
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

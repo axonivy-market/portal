@@ -6,7 +6,6 @@
   xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 
   <!-- TOPBAR START -->
-  <h:outputScript name="global-search.js" library="js" target="head" />
   <h:outputScript name="responsive-toolkit.js" library="js" target="head"/>
   <div class="TexAlCenter logo-container">
 
@@ -26,13 +25,13 @@
         </p:commandLink></li>
 
       <li class="setting-container" >
-      	<a href="#" jsf:rendered="#{userMenuBean.showServerInformation}">
+      	<a href="#" jsf:rendered="#{userMenuBean.showServerInformation}" class="show-environment-info-link">
       		<span jsf:id="server-infor" class="TexAlLeft DispBlock show-environment-info"> Host: #{serverInformationBean.host}
             Env:#{serverInformationBean.environment} </span>
             <span class="TexAlLeft DispBlock user-name-show-environment-info">#{userMenuBean.userName}</span>
       	</a>
      	 <a href="#" jsf:rendered="#{not userMenuBean.showServerInformation}" id="user-settings-menu"> <span
-          class="user-name js-user-name">#{userMenuBean.userName}</span>
+          class="user-name">#{userMenuBean.userName}</span>
       	</a>
         <ul id="user-setting-container">
           <li><p:commandLink id="adminui-menu-item" resetValues="true" rendered="#{permissionBean.hasAdminPermission()}"
@@ -66,7 +65,7 @@
           <li><ic:ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting id="logout-setting" isWorkingOnATask="#{isWorkingOnATask}" /></li>
         </ul></li>
 
-      <li class="ui-sm-hidden ui-md-hidden"><h:form prependId="false" rendered="#{showGlobalSearch}">
+      <li class="ui-sm-hidden ui-md-hidden"><h:form id="global-search-form" prependId="false" rendered="#{showGlobalSearch}">
           <ic:ch.ivy.addon.portal.generic.GlobalSearch id="global-search-component" />
         </h:form></li>
     </ul>

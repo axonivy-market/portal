@@ -11,7 +11,7 @@
     <ui:define name="simplePageContent">
       <c:set var="isShowResultTabView" value="#{compactProcessWidgetBean.displayShowAllProcessesLink or taskWidgetBean.showFullTaskList or caseWidgetBean.showFullCaseList}"></c:set>
       <h:form id="global-search-form-in-page">
-        <div id="global-search-container-in-page" class="global-search js-global-search">
+        <div id="global-search-container-in-page" class="global-search ui-lg-hidden ui-xl-hidden js-global-search">
           <h:panelGroup styleClass="md-inputfield">
             <p:inputText id="global-search-data" styleClass="global-search-input js-filter-process-widget-list-item" value="#{dataModel.keyword}"
               onkeypress="if (event.keyCode == 13) { portalGlobalSearchInPage(); return false; }">
@@ -40,7 +40,7 @@
           
           <p:tab id="task-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}" titleStyleClass="task-tab-title"
             rendered="#{taskWidgetBean.showFullTaskList}">
-            <div class="task-list-container js-task-list-container js-for-search-result MarTop20">
+            <div class="task-list-container js-task-list-container js-for-search-result">
               <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-results" listHeaderStyleClass="task-in-search"
                 keyword="#{dataModel.taskDataModel.criteria.keyword}" hideTaskFilter="true" currentPortalPage="SEARCH_RESULTS"
                 dataModel="#{dataModel.taskDataModel}" hideWidgetHeader="true" compactMode="false">
@@ -92,7 +92,7 @@
           
           <p:tab id="case-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}" titleStyleClass="case-tab-title"
             rendered="#{caseWidgetBean.showFullCaseList}">
-            <div class="js-case-default-widget-container case-default-widget-container js-simple-container js-for-search-result">
+            <div class="js-case-default-widget-container case-default-widget-container js-for-search-result">
               <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-results" hideWidgetHeader="true"
                 dataModel="#{dataModel.caseDataModel}" hideCaseFilter="true" listHeaderStyleClass="case-in-search">
                 <f:facet name="caseListHeader">
@@ -135,6 +135,10 @@
         </p:tabView>
       </div>
       <script>
+       $(function(){
+          $('#global-search-component\\:global-search-data').val($('.js-filter-process-widget-list-item').val());
+        });
+      
         function onTabShow() {
           var $selectedTab = $("#search-results-tabview").find(".ui-tabs-panel").filter(function() {return $(this).css('display') == 'block'});
           var isSelectTaskTab = $selectedTab.find('.js-process-list-container').length != 0;
@@ -163,7 +167,6 @@
             Portal.init(responsiveToolkit);
             return;
           }
-
         }
       </script>
     </ui:define>

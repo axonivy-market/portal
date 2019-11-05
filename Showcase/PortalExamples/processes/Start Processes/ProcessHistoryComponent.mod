@@ -1,5 +1,5 @@
 [Ivy]
-1624C1C79661758C 3.28 #module
+1624C1C79661758C 7.5.0 #module
 >Proto >Proto Collection #zClass
 Pt0 ProcessHistoryComponent Big #zClass
 Pt0 B #cInfo
@@ -99,8 +99,7 @@ Pt0 f4 159 64 368 64 #arcP
 Pt0 f2 expr out #txt
 Pt0 f2 560 64 617 64 #arcP
 Pt0 f5 processCall 'Functional Processes/SetBusinessEntityId:call(String)' #txt
-Pt0 f5 requestActionDecl '<java.lang.String businessEntityId> param;
-' #txt
+Pt0 f5 requestActionDecl '<String businessEntityId> param;' #txt
 Pt0 f5 requestMappingAction 'param.businessEntityId="alpha";
 ' #txt
 Pt0 f5 responseActionDecl 'ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData out;
@@ -173,7 +172,7 @@ Pt0 f7 680 154 30 30 -43 17 #rect
 Pt0 f7 @|TaskSwitchSimpleIcon #fIcon
 Pt0 f19 actionTable 'out=in;
 ' #txt
-Pt0 f19 actionCode 'ivy.case.setProcess("Alpha Company", "Alpha Company");' #txt
+Pt0 f19 actionCode 'ivy.case.setCategoryPath("Alpha Company");' #txt
 Pt0 f19 security system #txt
 Pt0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -279,7 +278,7 @@ Pt0 f18 769 449 30 30 0 15 #rect
 Pt0 f18 @|EndIcon #fIcon
 Pt0 f23 actionTable 'out=in;
 ' #txt
-Pt0 f23 actionCode 'ivy.case.setProcess("Beta Company", "Beta Company");' #txt
+Pt0 f23 actionCode 'ivy.case.setCategoryPath("Beta Company");' #txt
 Pt0 f23 security system #txt
 Pt0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -294,8 +293,7 @@ Pt0 f23 @|StepIcon #fIcon
 Pt0 f25 expr out #txt
 Pt0 f25 159 464 248 464 #arcP
 Pt0 f21 processCall 'Functional Processes/SetBusinessEntityId:call(String)' #txt
-Pt0 f21 requestActionDecl '<java.lang.String businessEntityId> param;
-' #txt
+Pt0 f21 requestActionDecl '<String businessEntityId> param;' #txt
 Pt0 f21 requestMappingAction 'param.businessEntityId="beta";
 ' #txt
 Pt0 f21 responseActionDecl 'ch.ivyteam.ivy.project.portal.examples.component.ProcessHistoryComponentData out;

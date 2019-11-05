@@ -13,8 +13,7 @@ public class AbsencePage extends TemplatePage {
   public NewAbsencePage openNewAbsenceDialog() {
     String selector = "button[id*='add-absence']";
     waitForElementDisplayed(By.cssSelector(selector), true);
-    WebElement addAbsenceButton = findElementByCssSelector(selector);
-    addAbsenceButton.click();
+    clickByCssSelector(selector);
     waitAjaxIndicatorDisappear();
     return new NewAbsencePage();
   }
@@ -28,13 +27,13 @@ public class AbsencePage extends TemplatePage {
     WebElement checkBox = findElementByCssSelector("input[id*='show-absence-in-the-past']");
     boolean checkBoxSelected = checkBox.isSelected();
     if (checkBoxSelected != shown) {
-      findElementByCssSelector("div[id*='show-absence-in-the-past'] div.ui-chkbox-box").click();
+      clickByCssSelector("div[id*='show-absence-in-the-past'] div.ui-chkbox-box");
       waitAjaxIndicatorDisappear();
     }
   }
 
   public SettingDeputyPage openDeputyDialog() {
-    findElementByCssSelector("button[id*='edit-deputy']").click();
+    clickByCssSelector("button[id*='edit-deputy']");
     waitAjaxIndicatorDisappear();
     return new SettingDeputyPage();
   }

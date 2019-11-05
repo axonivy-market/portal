@@ -36,33 +36,36 @@
 
     <div class="Separator" />
 
-    <div class="ui-g-12 u-padding-0">
-      <p:dataTable value="#{data.notes}" var="note" id="task-note-table" paginator="true" pageLinks="3" rows="5" paginatorPosition="top"
+    <h:panelGroup id="task-history-content-container" styleClass="ui-g-12 u-padding-0">
+      <p:dataTable value="#{data.notes}" var="note" id="task-note-table" paginator="true" pageLinks="3" rows="5" paginatorPosition="top" rendered="#{not empty data.notes}"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" paginatorAlwaysVisible="false"
         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
         currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
+
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}" styleClass="u-truncate-text history-note">
+          <span class="task-note truncate-note"> <p:commandLink id="note-message" value="#{note.message}" oncomplete="PF('#{cc.clientId}:view-note-dialog').show()"
+              actionListener="#{data.setFullNote(note.message)}" update="@widgetVar(#{cc.clientId}:view-note-dialog)" styleClass="content-link-history"/>
+          </span>
+        </p:column>
+
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/author')}" sortBy="#{note.creationTimestamp}"
-          styleClass="task-note-name u-truncate-text">
+          styleClass="task-document-author u-truncate-text ui-sm-hidden">
           <i class="fa fa-pencil-square-o" />
           <p:spacer width="5" />
           <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText username="#{note.writterName}" fullname="#{note.writter.fullName}" />
         </p:column>
 
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}" styleClass="u-truncate-text history-note">
-          <span class="task-note truncate-note"> <p:commandLink id="note-message" value="#{note.message}" oncomplete="PF('#{cc.clientId}:view-note-dialog').show()"
-              actionListener="#{data.setFullNote(note.message)}" update="@widgetVar(#{cc.clientId}:view-note-dialog)" />
-          </span>
-        </p:column>
-
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/date')}" sortBy="#{note.creationTimestamp}"
-          styleClass="task-history-date u-truncate-text">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}" sortBy="#{note.creationTimestamp}"
+          styleClass="task-history-date u-truncate-text ui-sm-hidden">
           <h:outputText value="#{note.creationTimestamp.time}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
           </h:outputText>
         </p:column>
       </p:dataTable>
-    </div>
-
+       <h:outputText styleClass="no-documents-message ui-g-12"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noHistories')}"
+        rendered="#{empty data.notes}" />
+    </h:panelGroup>
   </div>
 
   <p:dialog id="view-note-dialog" widgetVar="#{cc.clientId}:view-note-dialog" closeOnEscape="true" styleClass="task-note-dialog"
@@ -87,7 +90,7 @@
 
       <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer">
         <p:commandButton styleClass="add-new-note-save-command" id="save-add-note-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-          process="task-detail-note-content" update="task-detail-note-content task-detail-create-note-msg #{p:component('task-note-table')}"
+          process="task-detail-note-content" update="task-detail-note-content task-detail-create-note-msg #{cc.clientId}:task-history-content-container"
           actionListener="#{logic.createNote()}" oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('#{cc.clientId}:addNewNoteDialog').hide();}" />
         <p:commandButton id="cancel-add-note-command" actionListener="#{data.setNoteContent('')}" global="false"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this" styleClass="portal-cancel-button"

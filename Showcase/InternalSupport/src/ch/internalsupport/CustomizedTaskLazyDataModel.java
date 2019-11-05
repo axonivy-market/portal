@@ -25,13 +25,13 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
 
   @Override
   public void extendSort(TaskQuery taskQuery) {
-    if ("customVarcharField5".equalsIgnoreCase(criteria.getSortField())) {
+    if ("customVarCharField5".equalsIgnoreCase(criteria.getSortField())) {
       if (criteria.isSortDescending()) {
         taskQuery.orderBy().customField().stringField(CUSTOM_VARCHAR_FIELD5).descending();
       } else {
         taskQuery.orderBy().customField().stringField(CUSTOM_VARCHAR_FIELD5);
       }
-    } else if ("customVarcharField1".equalsIgnoreCase(criteria.getSortField())) {
+    } else if ("customVarCharField1".equalsIgnoreCase(criteria.getSortField())) {
       if (criteria.isSortDescending()) {
         taskQuery.orderBy().customField().stringField(CUSTOM_VARCHAR_FIELD1).descending();
       } else {
@@ -42,7 +42,7 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
 
   @Override
   protected List<String> getDefaultColumns() {
-    return Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME", "EXPIRY_TIME", "customVarcharField5", "customVarcharField1");
+    return Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME", "EXPIRY_TIME", "customVarCharField5", "customVarCharField1");
   }
   
   @Override

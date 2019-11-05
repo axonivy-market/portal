@@ -50,7 +50,6 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SEPTEMBE
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SIXTHWEEK_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.SUNDAY_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.TASK_CMS;
-import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.TASK_DATATIP_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.TASK_QUERY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.THIRDWEEK_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.THIS_MONTH_EXPIRY_KEY;
@@ -81,20 +80,30 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
-import org.primefaces.component.chart.Chart;
+import org.primefaces.component.barchart.BarChart;
+import org.primefaces.component.donutchart.DonutChart;
 import org.primefaces.event.ItemSelectEvent;
-import org.primefaces.model.chart.Axis;
-import org.primefaces.model.chart.AxisType;
-import org.primefaces.model.chart.BarChartModel;
-import org.primefaces.model.chart.ChartSeries;
-import org.primefaces.model.chart.DonutChartModel;
-import org.primefaces.model.chart.LegendPlacement;
-import org.primefaces.model.chart.PieChartModel;
+import org.primefaces.model.charts.ChartData;
+import org.primefaces.model.charts.axes.cartesian.CartesianAxes;
+import org.primefaces.model.charts.axes.cartesian.CartesianScaleLabel;
+import org.primefaces.model.charts.axes.cartesian.CartesianScales;
+import org.primefaces.model.charts.axes.cartesian.linear.CartesianLinearAxes;
+import org.primefaces.model.charts.axes.cartesian.linear.CartesianLinearTicks;
+import org.primefaces.model.charts.bar.BarChartDataSet;
+import org.primefaces.model.charts.bar.BarChartModel;
+import org.primefaces.model.charts.bar.BarChartOptions;
+import org.primefaces.model.charts.donut.DonutChartDataSet;
+import org.primefaces.model.charts.donut.DonutChartModel;
+import org.primefaces.model.charts.donut.DonutChartOptions;
+import org.primefaces.model.charts.optionconfig.legend.Legend;
+import org.primefaces.model.charts.optionconfig.legend.LegendLabel;
+import org.primefaces.model.charts.optionconfig.title.Title;
 
 import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
 import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
 import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
 import ch.ivy.addon.portalkit.bo.PriorityStatistic;
+import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
@@ -103,6 +112,7 @@ import ch.ivy.addon.portalkit.statistics.Colors;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
 import ch.ivy.addon.portalkit.statistics.StatisticChartTimeUtils;
+import ch.ivy.addon.portalkit.statistics.StatisticColors;
 import ch.ivy.addon.portalkit.statistics.StatisticFilter;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.business.data.store.search.Filter;
@@ -112,6 +122,11 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class StatisticService extends BusinessDataService<StatisticChart> {
+
+  private static final String CHART_LEGEND_POSITION_LEFT = "left";
+  private static final String CHART_LEGEND_POSITION_BOTTOM = "bottom";
+  private static StatisticColors statisticColors;
+  private String LOADING_MESSAGE = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/loadingCharts");
 
   @Override
   public Class<StatisticChart> getType() {
@@ -616,6 +631,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
   /**
    * generate data for "Case by State" chart
+   * Build with correct order: CREATED, RUNNING, DONE, FAILED
    * 
    * @param caseStateStatistic statistic data
    * @return generated data
@@ -627,16 +643,16 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       chartData.put(Ivy.cms().co(CREATED_CASE_KEY), caseStateStatistic.getCreated());
     }
 
+    if (caseStateStatistic.getRunning() > 0) {
+      chartData.put(Ivy.cms().co(RUNNING_CASE_KEY), caseStateStatistic.getRunning());
+    }
+    
     if (caseStateStatistic.getDone() > 0) {
       chartData.put(Ivy.cms().co(DONE_CASE_KEY), caseStateStatistic.getDone());
     }
 
     if (caseStateStatistic.getFailed() > 0) {
       chartData.put(Ivy.cms().co(FAILED_CASE_KEY), caseStateStatistic.getFailed());
-    }
-
-    if (caseStateStatistic.getRunning() > 0) {
-      chartData.put(Ivy.cms().co(RUNNING_CASE_KEY), caseStateStatistic.getRunning());
     }
 
     return chartData;
@@ -684,11 +700,12 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     if (filter.getIsAllCaseStatesSelected() || filter.getIsAllCategoriesSelected()) {
       StatisticFilter newFilter = ObjectUtils.clone(filter);
       if (filter.getIsAllCategoriesSelected()) {
-        newFilter.setSelectedCaseCategories(new ArrayList<>());
+          newFilter.setSelectedCaseCategories(new ArrayList<>());
       }
       if (filter.getIsAllRolesSelected()) {
         newFilter.setSelectedRoles(new ArrayList<>());
       }
+
       statisticChart.setFilter(newFilter);
     } else {
       statisticChart.setFilter(filter);
@@ -697,18 +714,28 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     return findById(info.getId());
   }
 
-  private DonutChartModel createDonutChartModel(Map<String, Number> chartData, String extender) {
+  private DonutChartModel createDonutChartModel(Map<String, Number> chartData) {
     DonutChartModel model = new DonutChartModel();
-    model.addCircle(chartData);
-    model.setLegendPosition("s");
-    model.setShowDataLabels(true);
-    model.setExtender(extender);
-    model.setShadow(false);
-    model.setDataFormat("percent");
-    model.setSliceMargin(3);
-    model.setLegendRows(1);
-    model.setLegendPlacement(LegendPlacement.OUTSIDEGRID);
+    ChartData data = new ChartData();
+    DonutChartOptions options = new DonutChartOptions();
+    data.setLabels(chartData.keySet().stream().collect(Collectors.toList()));
+    options.setLegend(buildChartLegend(CHART_LEGEND_POSITION_LEFT, true));
+
+    model.setData(data);
+    model.setOptions(options);
+    model.setExtender("donutExtender");
+
     return model;
+  }
+
+  private Legend buildChartLegend(String legendPosition, boolean isDisplay) {
+    Legend legend = new Legend();
+    legend.setPosition(legendPosition);
+    legend.setDisplay(isDisplay);
+    LegendLabel labels = new LegendLabel();
+    labels.setFontColor(statisticColors.getLegendColor());
+    legend.setLabels(labels);
+    return legend;
   }
 
   /**
@@ -726,15 +753,46 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       chartData.put(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/tasks"), 0);
     }
 
-    DonutChartModel model = createDonutChartModel(chartData, "chartExtender");
-    if (!isEmptyData) {
-      model.setSeriesColors(Colors.getPriorityColors(chartData));
-    }
+    DonutChartModel model = createDonutChartModel(chartData);
+    DonutChartDataSet dataSet = createDonutChartDataSet(Colors.PRIORITY_COLOR, chartData, isEmptyData);
+    model.getData().addChartDataSet(dataSet);
+
     if (isSetDefaultName) {
-      model.setTitle(Ivy.cms().co(StatisticChartType.TASK_BY_PRIORITY.getCmsUri()));
+      Title title = generateChartTitle(StatisticChartType.TASK_BY_PRIORITY);
+      model.getOptions().setTitle(title);
     }
 
     return model;
+  }
+
+  private Title generateChartTitle(StatisticChartType chartType) {
+    Title title = new Title();
+    title.setDisplay(true);
+    title.setText(Ivy.cms().co(chartType.getCmsUri()));
+    return title;
+  }
+
+  private DonutChartDataSet createDonutChartDataSet(String priorityColor, Map<String, Number> chartData,
+      boolean isEmptyData) {
+    DonutChartDataSet dataSet = new DonutChartDataSet();
+    dataSet.setData(chartData.values().stream().collect(Collectors.toList()));
+    if (!isEmptyData) {
+      if (priorityColor == Colors.PRIORITY_COLOR) {
+        dataSet.setBackgroundColor(Colors.getPriorityColors(chartData, statisticColors));
+      } else {
+        dataSet.setBackgroundColor(Colors.getCaseStateColors(chartData, statisticColors));
+      }
+    }
+    return dataSet;
+  }
+
+  /**
+   * set StatisticColors to session cache
+   * @param statisticColors
+   */
+  public void setStatisticsColors(StatisticColors statisticColors) {
+    IvyCacheService.newInstance().setSessionCache(IvyCacheIdentifier.STATISTIC_COLOR,
+        IvyCacheIdentifier.STATISTIC_COLOR, statisticColors);
   }
 
   /**
@@ -749,36 +807,137 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    */
   public BarChartModel generateTaskByExpiryModel(ExpiryStatistic statisticData, boolean isSetDefaultName,
       String selectedValue, String previousSelectedMonth, String previousSelectedWeek) {
-    Map<Object, Number> chartData =
-        generateDataForTaskByExpiryOverviewChart(statisticData, selectedValue, previousSelectedMonth,
-            previousSelectedWeek);
+    Map<Object, Number> chartData = generateDataForTaskByExpiryOverviewChart(statisticData, selectedValue,
+        previousSelectedMonth, previousSelectedWeek);
+
     BarChartModel model = new BarChartModel();
-    ChartSeries chartSeries = new ChartSeries();
+    ChartData data = new ChartData();
+    BarChartDataSet dataSet = new BarChartDataSet();
+    BarChartOptions options = new BarChartOptions();
+    CartesianScales scales = new CartesianScales();
+
+    options.setLegend(buildChartLegend(CHART_LEGEND_POSITION_BOTTOM, false));
 
     if (chartData.size() != 0) {
+      buildBarChartDataSet(chartData, data, dataSet);
+      buildExpiryColorBySelectedValue(selectedValue, dataSet);
 
-      chartSeries.setData(chartData);
-      model.setExtender("barChartExtender");
-      model.setShadow(false);
-
-      Axis xAxis = model.getAxis(AxisType.X);
       String label = Ivy.cms().co(EXPIRY_PERIOD_CMS);
       if (selectDayOfWeek(selectedValue)) {
         label = label + " " + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/hour");
       }
-      xAxis.setLabel(label);
-
-      Axis yAxis = model.getAxis(AxisType.Y);
-      yAxis.setLabel(Ivy.cms().co(TASK_CMS));
-
-      String datatipFormat = StringUtils.join("%2$.0f ", Ivy.cms().co(TASK_DATATIP_CMS));
-      model.setDatatipFormat(datatipFormat);
+      scales.addXAxesData(createLinearAxes(CHART_LEGEND_POSITION_LEFT, label));
+      scales.addYAxesData(createLinearAxes(CHART_LEGEND_POSITION_BOTTOM, Ivy.cms().co(TASK_CMS)));
     }
+    data.addChartDataSet(dataSet);
+
     if (isSetDefaultName) {
-      model.setTitle(Ivy.cms().co(StatisticChartType.TASK_BY_EXPIRY.getCmsUri()));
+      options.setTitle(generateChartTitle(StatisticChartType.TASK_BY_EXPIRY));
     }
-    model.addSeries(chartSeries);
+    options.setScales(scales);
+    model.setData(data);
+    model.setOptions(options);
+    model.setExtender("taskByExpiryChartExtender");
+
     return model;
+  }
+
+  private void buildBarChartDataSet(Map<Object, Number> chartData, ChartData data, BarChartDataSet dataSet) {
+    dataSet.setData(chartData.values().stream().collect(Collectors.toList()));
+    data.setLabels(chartData.keySet().stream().collect(Collectors.toList()));
+  }
+
+  private BarChartDataSet buildExpiryColorBySelectedValue(String selectedValue, BarChartDataSet dataSet) {
+    List<String> bgColor = new ArrayList<>();
+    String today = Ivy.cms().co(TODAY_EXPIRY_KEY);
+    String week = Ivy.cms().co(THIS_WEEK_EXPIRY_KEY);
+    String month = Ivy.cms().co(THIS_MONTH_EXPIRY_KEY);
+    String year = Ivy.cms().co(THIS_YEAR_EXPIRY_KEY);
+
+    if (selectedValue.equalsIgnoreCase(today)) {
+      // Build column color by hours
+      bgColor.add(statisticColors.getTaskExpiriedTodayBefore8Color());
+      bgColor.add(statisticColors.getTaskExpiriedToday8Color());
+      bgColor.add(statisticColors.getTaskExpiriedToday9Color());
+      bgColor.add(statisticColors.getTaskExpiriedToday10Color());
+      bgColor.add(statisticColors.getTaskExpiriedToday11Color());
+      bgColor.add(statisticColors.getTaskExpiriedToday8Color());
+      bgColor.add(statisticColors.getTaskExpiriedToday9Color());
+      bgColor.add(statisticColors.getTaskExpiriedToday10Color());
+      bgColor.add(statisticColors.getTaskExpiriedToday11Color());
+      bgColor.add(statisticColors.getTaskExpiriedToday12Color());
+      bgColor.add(statisticColors.getTaskExpiriedToday13Color());
+      bgColor.add(statisticColors.getTaskExpiriedToday14Color());
+      bgColor.add(statisticColors.getTaskExpiriedToday15Color());
+      bgColor.add(statisticColors.getTaskExpiriedToday16Color());
+      bgColor.add(statisticColors.getTaskExpiriedToday17Color());
+      bgColor.add(statisticColors.getTaskExpiriedTodayAfter18Color());
+    } else if (selectedValue.equalsIgnoreCase(week)) {
+      // Build column color by weekdays
+      bgColor.add(statisticColors.getTaskExpiriedMonColor());
+      bgColor.add(statisticColors.getTaskExpiriedTueColor());
+      bgColor.add(statisticColors.getTaskExpiriedWedColor());
+      bgColor.add(statisticColors.getTaskExpiriedThuColor());
+      bgColor.add(statisticColors.getTaskExpiriedFriColor());
+      bgColor.add(statisticColors.getTaskExpiriedSatColor());
+      bgColor.add(statisticColors.getTaskExpiriedSunColor());
+    } else if (selectedValue.equalsIgnoreCase(month)) {
+      // Build column color by week of the month
+      bgColor.add(statisticColors.getTaskExpiriedFirstWeekColor());
+      bgColor.add(statisticColors.getTaskExpiriedSecondWeekColor());
+      bgColor.add(statisticColors.getTaskExpiriedThirdWeekColor());
+      bgColor.add(statisticColors.getTaskExpiriedFourthWeekColor());
+      bgColor.add(statisticColors.getTaskExpiriedFifthWeekColor());
+    } else if (selectedValue.equalsIgnoreCase(year)) {
+      // Build column color by the month of the year
+      bgColor.add(statisticColors.getTaskExpiriedJanColor());
+      bgColor.add(statisticColors.getTaskExpiriedFebColor());
+      bgColor.add(statisticColors.getTaskExpiriedMarColor());
+      bgColor.add(statisticColors.getTaskExpiriedAprColor());
+      bgColor.add(statisticColors.getTaskExpiriedMayColor());
+      bgColor.add(statisticColors.getTaskExpiriedJuneColor());
+      bgColor.add(statisticColors.getTaskExpiriedJulyColor());
+      bgColor.add(statisticColors.getTaskExpiriedAugColor());
+      bgColor.add(statisticColors.getTaskExpiriedSeptColor());
+      bgColor.add(statisticColors.getTaskExpiriedOctColor());
+      bgColor.add(statisticColors.getTaskExpiriedNovColor());
+      bgColor.add(statisticColors.getTaskExpiriedDecColor());
+    } else {
+      // Build default column color
+      bgColor.add(statisticColors.getTaskExpiriedColor());
+      bgColor.add(statisticColors.getTaskExpiriedTodayColor());
+      bgColor.add(statisticColors.getTaskExpiriedThisWeekColor());
+      bgColor.add(statisticColors.getTaskExpiriedThisMonthColor());
+      bgColor.add(statisticColors.getTaskExpiriedThisYearColor());
+
+      List<String> borderColor = new ArrayList<>();
+      borderColor.add(StatisticColors.DEFAULT_TASK_EXPIRIED_BORDER);
+      borderColor.add(StatisticColors.DEFAULT_TASK_TODAY_BORDER);
+      borderColor.add(StatisticColors.DEFAULT_TASK_WEEK_BORDER);
+      borderColor.add(StatisticColors.DEFAULT_TASK_MONTH_BORDER);
+      borderColor.add(StatisticColors.DEFAULT_TASK_YEAR_BORDER);
+      dataSet.setBorderColor(borderColor);
+    }
+
+    dataSet.setBackgroundColor(bgColor);
+    dataSet.setBorderWidth(1);
+    return dataSet;
+  }
+
+  private CartesianLinearAxes createLinearAxes(String position, String axesLabel) {
+    CartesianLinearAxes newAxesData = new CartesianLinearAxes();
+    newAxesData.setPosition(position);
+    CartesianLinearTicks ticks = new CartesianLinearTicks();
+    ticks.setBeginAtZero(true);
+    newAxesData.setTicks(ticks);
+
+    CartesianScaleLabel scaleLabel = new CartesianScaleLabel();
+    scaleLabel.setDisplay(true);
+    scaleLabel.setLabelString(axesLabel);
+
+    newAxesData.setScaleLabel(scaleLabel);
+
+    return newAxesData;
   }
 
   /**
@@ -798,20 +957,12 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       chartData.put(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/cases"), 0);
     }
 
-    DonutChartModel model = createDonutChartModel(chartData, "chartExtender");
-    if (!isEmptyData) {
-      model.setSeriesColors(Colors.getCaseStateColors(chartData));
-    }
+    DonutChartModel model = createDonutChartModel(chartData);
+    DonutChartDataSet dataSet = createDonutChartDataSet(Colors.STATE_COLOR, chartData, isEmptyData);
+    model.getData().addChartDataSet(dataSet);
     if (isSetDefaultName) {
-      if (chartType == StatisticChartType.CASES_BY_STATE) {
-        model.setTitle(Ivy.cms().co(StatisticChartType.CASES_BY_STATE.getCmsUri()));
-      } else if (chartType == StatisticChartType.CASES_BY_FINISHED_TASK) {
-        model.setTitle(Ivy.cms().co(StatisticChartType.CASES_BY_FINISHED_TASK.getCmsUri()));
-      } else if (chartType == StatisticChartType.CASES_BY_FINISHED_TIME) {
-        model.setTitle(Ivy.cms().co(StatisticChartType.CASES_BY_FINISHED_TIME.getCmsUri()));
-      }
+      model.getOptions().setTitle(generateChartTitle(chartType));
     }
-
     return model;
   }
 
@@ -826,27 +977,30 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     Map<String, Number> chartData = getElapsedTimeChartData(statisticData);
 
     BarChartModel model = new BarChartModel();
-    ChartSeries chartSeries = new ChartSeries();
-
+    ChartData data = new ChartData();
+    BarChartDataSet dataSet = new BarChartDataSet();
+    BarChartOptions options = new BarChartOptions();
+    CartesianScales scales = new CartesianScales();
     if (chartData.size() != 0) {
-      if(chartData.size() == 1) {
-        model.setBarWidth(80);
-      }
-      model.setBarMargin(1);
-      chartSeries.setData(new HashMap<>(chartData));
-      model.setExtender("elapsedTimeBarChartExtender");
-      model.setShadow(false);
+      buildBarChartDataSet(new HashMap<>(chartData), data, dataSet);
 
-      Axis xAxis = model.getAxis(AxisType.X);
-      xAxis.setLabel(Ivy.cms().co(CASE_CATEGORIES_CMS));
-
-      Axis yAxis = model.getAxis(AxisType.Y);
-      yAxis.setLabel(Ivy.cms().co(ELAPSED_TIME_DETAIL_CHART_NAME_CMS));
+      dataSet.setBackgroundColor(statisticColors.getElapsedTime());
+      dataSet.setBorderColor(statisticColors.getElapsedTime());
+      
+      scales.addXAxesData(createLinearAxes(CHART_LEGEND_POSITION_LEFT, Ivy.cms().co(CASE_CATEGORIES_CMS)));
+      scales.addYAxesData(createLinearAxes(CHART_LEGEND_POSITION_BOTTOM, Ivy.cms().co(ELAPSED_TIME_DETAIL_CHART_NAME_CMS)));
     }
+    
+    data.addChartDataSet(dataSet);
     if (isSetDefaultName) {
-      model.setTitle(Ivy.cms().co(StatisticChartType.ELAPSED_TIME_BY_CASE_CATEGORY.getCmsUri()));
+      options.setTitle(generateChartTitle(StatisticChartType.ELAPSED_TIME_BY_CASE_CATEGORY));
     }
-    model.addSeries(chartSeries);
+    options.setScales(scales);
+    options.setLegend(buildChartLegend(CHART_LEGEND_POSITION_BOTTOM, false));
+
+    model.setData(data);
+    model.setOptions(options);
+    model.setExtender("elapsedTimeChartExtender");
     return model;
   }
 
@@ -854,14 +1008,14 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     Map<String, Number> caseCategoryToElapsedTime = generateDataForElapsedTimeChart(statisticData);
 
     if (caseCategoryToElapsedTime.isEmpty()) {
-      caseCategoryToElapsedTime.put("", 0);
+      caseCategoryToElapsedTime.put(StringUtils.EMPTY, 0);
     }
 
     for (Iterator<Entry<String, Number>> iterator = caseCategoryToElapsedTime.entrySet().iterator(); iterator.hasNext();) {
       Entry<String, Number> chartDataEntry = iterator.next();
       float floatValueOfChartData = chartDataEntry.getValue().floatValue()/3600;
 
-        chartDataEntry.setValue(floatValueOfChartData);
+      chartDataEntry.setValue(floatValueOfChartData);
     }
 
     return new HashMap<>(caseCategoryToElapsedTime);
@@ -876,9 +1030,17 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
 
   public boolean isTaskByExpiryHour(StatisticChart statisticChart) {
+    String taskScaleLabel = StringUtils.EMPTY;
+
+    List<CartesianAxes> scales = Optional.ofNullable(statisticChart.getBarChartModel()).map(BarChartModel::getOptions)
+        .map(BarChartOptions::getScales).map(CartesianScales::getXAxes).orElse(new ArrayList<>());
+    if (!scales.isEmpty()) {
+      taskScaleLabel = Optional.ofNullable(scales.get(0)).map(CartesianAxes::getScaleLabel)
+          .map(CartesianScaleLabel::getLabelString).orElse(StringUtils.EMPTY);
+    }
+
     return statisticChart.getType() == StatisticChartType.TASK_BY_EXPIRY
-        && statisticChart.getBarChartModel().getAxis(AxisType.X).getLabel()
-            .contains(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/hour"));
+        && taskScaleLabel.contains(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/hour"));
   }
 
   public boolean isCaseByState(StatisticChart statisticChart) {
@@ -903,6 +1065,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    */
   public void generateChartModelForStatisticCharts(List<StatisticChart> statisticChartList) {
     for (StatisticChart statisticChart : statisticChartList) {
+      fetchStatisticColor();
       switch (statisticChart.getType()) {
         case TASK_BY_PRIORITY:
           statisticChart.setDonutChartModel(buildChartModelForTaskPriority(statisticChart));
@@ -927,6 +1090,49 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
           break;
       }
     }
+  }
+
+  /**
+   * 
+   * Fetch Statistic Color from DEFAULT_CHART_COLORS_PROCESS, and store it to session
+   */
+  public void fetchStatisticColor() {
+    Optional<Object> chartColor = IvyCacheService.newInstance().getSessionCacheValue(IvyCacheIdentifier.STATISTIC_COLOR,
+        IvyCacheIdentifier.STATISTIC_COLOR);
+    if (chartColor.isPresent()) {
+      statisticColors = (StatisticColors) chartColor.get();
+    }
+  }
+
+  /**
+   * Create a BarChart's placeholder for Statistic chart when data is collection from DB
+   * @return BarChartModel
+   * 
+   */
+  public BarChartModel createBarChartPlaceholder() {
+    BarChartModel model = new BarChartModel();
+    ChartData data = new ChartData();
+    BarChartDataSet dataSet = new BarChartDataSet();
+    dataSet.setData(new ArrayList<>());
+    dataSet.setLabel(LOADING_MESSAGE);
+    data.addChartDataSet(dataSet);
+    model.setData(data);
+    return model;
+  }
+
+  /**
+   * Create a DonutChart's placeholder for Statistic chart when data is collection from DB
+   * @return DonutChartModel
+   * 
+   */
+  public DonutChartModel createDonutChartPlaceholder() {
+    DonutChartModel model = new DonutChartModel();
+    Title title = new Title();
+    title.setDisplay(true);
+    title.setText(LOADING_MESSAGE);
+    model.setOptions(new DonutChartOptions());
+    model.getOptions().setTitle(title);
+    return model;
   }
 
   private DonutChartModel buildChartModelForCaseFinishedTime(StatisticChart statisticChart) {
@@ -1056,36 +1262,27 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     return newStatisticChart;
   }
 
+  @SuppressWarnings("unchecked")
   public static String getSelectedValueOfDonutChart(ItemSelectEvent event) {
     try {
-      DonutChartModel model = (DonutChartModel) ((Chart) event.getSource()).getModel();
+      List<String> labels = (List<String>) ((DonutChart) event.getSource()).getModel().getData().getLabels();
       int index = event.getItemIndex();
-      return model.getData().get(0).keySet().toArray()[index].toString();
+      return labels.get(index);
     } catch (Exception e) {
       Ivy.log().error(e);
-      return "";
+      return StringUtils.EMPTY;
     }
   }
 
+  @SuppressWarnings("unchecked")
   public static String getSelectedValueOfBarChart(ItemSelectEvent event) {
     try {
-      BarChartModel model = (BarChartModel) ((Chart) event.getSource()).getModel();
+      List<String> labels = (List<String>) ((BarChart) event.getSource()).getModel().getData().getLabels();
       int index = event.getItemIndex();
-      return model.getSeries().get(0).getData().keySet().toArray()[index].toString();
+      return labels.get(index);
     } catch (Exception e) {
       Ivy.log().error(e);
-      return "";
-    }
-  }
-
-  public static String getSelectedValueOfPieChart(ItemSelectEvent event) {
-    try {
-      PieChartModel model = (PieChartModel) ((Chart) event.getSource()).getModel();
-      int index = event.getItemIndex();
-      return model.getData().keySet().toArray()[index].toString();
-    } catch (Exception e) {
-      Ivy.log().error(e);
-      return "";
+      return StringUtils.EMPTY;
     }
   }
 

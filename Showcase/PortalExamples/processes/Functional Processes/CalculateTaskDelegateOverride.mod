@@ -1,5 +1,5 @@
 [Ivy]
-16ADE4B013B466A6 3.28 #module
+16ADE4B013B466A6 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ce0 CalculateTaskDelegate Big #zClass
 Ce0 B #cInfo
@@ -25,8 +25,7 @@ out.roles=param.roles;
 out.task=param.task;
 out.users=param.users;
 ' #txt
-Ce0 f0 outParamDecl '<java.util.List<ch.ivyteam.ivy.security.IUser> users,java.util.List<ch.ivyteam.ivy.security.IRole> roles> result;
-' #txt
+Ce0 f0 outParamDecl '<java.util.List<ch.ivyteam.ivy.security.IUser> users,java.util.List<ch.ivyteam.ivy.security.IRole> roles> result;' #txt
 Ce0 f0 outParamTable 'result.users=in.users;
 result.roles=in.roles;
 ' #txt
