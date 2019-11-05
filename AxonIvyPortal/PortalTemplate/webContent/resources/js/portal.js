@@ -60,6 +60,11 @@ var MainMenu = {
     var $this = this;
     this.$mainMenuToggle.on('click', function(e) {
       $this.responsiveToolkit.updateLayoutWithAnimation();
+
+      var statisticContainer = $('.js-statistic-widget-container.compact-mode');
+      if (statisticContainer.length > 0) {
+        updateStatisticCarousel();
+      }
     });
   },
 
@@ -107,6 +112,11 @@ var MainMenu = {
 }
 
 function handleError(xhr, renderDetail){
+  //From PF 7.0 with new jQuery version, when we call ajax by remote command then navigate when remote command still executing, this request HTML status is abort
+  //This make general exception dialog display frequently
+  if (xhr.statusText === 'abort') {
+    return;
+  }
   if (renderDetail){
     document.getElementById('ajax-indicator:show-more').onclick = function (){
       document.getElementById('ajax-indicator:error-code').innerHTML = xhr.status;

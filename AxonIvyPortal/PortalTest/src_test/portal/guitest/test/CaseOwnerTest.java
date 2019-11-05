@@ -1,5 +1,8 @@
 package portal.guitest.test;
 
+import static junit.framework.Assert.assertTrue;
+
+import org.junit.Ignore;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
@@ -8,6 +11,7 @@ import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
 
+@Ignore //After case owner feature is enable, do not ignore this test
 public class CaseOwnerTest extends BaseTest {
 
   private static final String USER_IS_OWNER_URL = "internalSupport/16A68510A341BE6E/userIsOwner.ivp";
@@ -19,9 +23,8 @@ public class CaseOwnerTest extends BaseTest {
 
   @Test
   public void testUserIsOwner() {
-    navigateToUrl(USER_IS_OWNER_URL);
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
-    login(TestAccount.DEMO_USER);
+    redirectToRelativeLink(USER_IS_OWNER_URL);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     
     homePage = new HomePage();
     mainMenuPage = homePage.openMainMenu();
@@ -31,8 +34,8 @@ public class CaseOwnerTest extends BaseTest {
 
   @Test
   public void testRoleIsOwner() {
-    navigateToUrl(ROLE_IS_OWNER_URL);
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(ROLE_IS_OWNER_URL);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     login(TestAccount.CASE_OWNER_USER);
     
     homePage = new HomePage();

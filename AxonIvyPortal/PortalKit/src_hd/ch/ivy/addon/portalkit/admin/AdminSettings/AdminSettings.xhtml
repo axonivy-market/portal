@@ -142,6 +142,7 @@
     </p:tab>
     <p:tab id="announcement-tab"
       title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/tabTitle')}">
+      <p:messages id="announcement-information-messages" for="adminui:adminTabView:announcement-table" />
       <p:messages id="announcement-validation-messages" />
       <h:form prependId="false" id="announcement-form">
 
@@ -150,11 +151,11 @@
           <p:commandButton id="publish-announcement" process="@form" disabled="#{data.isAnnouncementActivated}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/enable')}"
             actionListener="#{logic.publishAnnouncement()}"
-            update="#{cc.clientId}:adminTabView:announcement-table #{cc.clientId}:adminTabView:announcement-validation-messages #{cc.clientId}:adminTabView:action-group" />
+            update="#{cc.clientId}:adminTabView:announcement-table #{cc.clientId}:adminTabView:announcement-validation-messages #{cc.clientId}:adminTabView:announcement-information-messages #{cc.clientId}:adminTabView:action-group" />
           <p:spacer width="5px" />
           <p:commandButton id="delete-announcement" process="@form" actionListener="#{logic.depublishAnnouncement()}"
             disabled="#{not data.isAnnouncementActivated}"
-            update="#{cc.clientId}:adminTabView:announcement-validation-messages  #{cc.clientId}:adminTabView:action-group"
+            update="#{cc.clientId}:adminTabView:announcement-validation-messages #{cc.clientId}:adminTabView:announcement-information-messages #{cc.clientId}:adminTabView:action-group"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/disable')}">
           </p:commandButton>
         </h:panelGroup>

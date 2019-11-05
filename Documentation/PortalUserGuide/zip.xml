@@ -13,7 +13,6 @@
             <directory>build/html</directory>
             <outputDirectory>.</outputDirectory>
             <excludes>
-            	<exclude>_raw_sources/**</exclude>
             	<exclude>_sources/.doctrees/**</exclude>
             </excludes>
         </fileSet>

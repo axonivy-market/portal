@@ -48,30 +48,11 @@ Tt0 @EndTask f48 '' #zField
 Tt0 @TkArc f49 '' #zField
 Tt0 @PushWFArc f50 '' #zField
 Tt0 @PushWFArc f51 '' #zField
-Tt0 @StartRequest f52 '' #zField
-Tt0 @EndTask f53 '' #zField
-Tt0 @EndTask f54 '' #zField
-Tt0 @TaskSwitch f55 '' #zField
-Tt0 @TkArc f56 '' #zField
-Tt0 @PushWFArc f57 '' #zField
-Tt0 @PushWFArc f58 '' #zField
 Tt0 @StartRequest f66 '' #zField
 Tt0 @EndTask f67 '' #zField
 Tt0 @UserDialog f69 '' #zField
 Tt0 @PushWFArc f70 '' #zField
 Tt0 @PushWFArc f68 '' #zField
-Tt0 @StartRequest f71 '' #zField
-Tt0 @UserDialog f72 '' #zField
-Tt0 @UserDialog f73 '' #zField
-Tt0 @EndTask f74 '' #zField
-Tt0 @TaskSwitch f75 '' #zField
-Tt0 @UserDialog f76 '' #zField
-Tt0 @PushWFArc f77 '' #zField
-Tt0 @PushWFArc f78 '' #zField
-Tt0 @PushWFArc f79 '' #zField
-Tt0 @PushWFArc f80 '' #zField
-Tt0 @PushWFArc f81 '' #zField
-Tt0 @PushWFArc f82 '' #zField
 Tt0 @UserDialog f86 '' #zField
 Tt0 @UserDialog f87 '' #zField
 Tt0 @EndTask f89 '' #zField
@@ -101,21 +82,6 @@ Tt0 @TkArc f102 '' #zField
 Tt0 @UserDialog f106 '' #zField
 Tt0 @PushWFArc f111 '' #zField
 Tt0 @PushWFArc f114 '' #zField
-Tt0 @UserDialog f115 '' #zField
-Tt0 @UserDialog f116 '' #zField
-Tt0 @StartRequest f117 '' #zField
-Tt0 @EndTask f118 '' #zField
-Tt0 @GridStep f119 '' #zField
-Tt0 @UserDialog f120 '' #zField
-Tt0 @TaskSwitch f121 '' #zField
-Tt0 @PushWFArc f122 '' #zField
-Tt0 @PushWFArc f123 '' #zField
-Tt0 @PushWFArc f124 '' #zField
-Tt0 @PushWFArc f125 '' #zField
-Tt0 @PushWFArc f126 '' #zField
-Tt0 @PushWFArc f127 '' #zField
-Tt0 @PushWFArc f128 '' #zField
-Tt0 @TkArc f129 '' #zField
 Tt0 @StartRequest f130 '' #zField
 Tt0 @EndTask f131 '' #zField
 Tt0 @UserTask f132 '' #zField
@@ -126,9 +92,6 @@ Tt0 @TaskSwitchSimple f136 '' #zField
 Tt0 @EndTask f137 '' #zField
 Tt0 @TkArc f138 '' #zField
 Tt0 @PushWFArc f139 '' #zField
-Tt0 @CallSub f83 '' #zField
-Tt0 @PushWFArc f84 '' #zField
-Tt0 @TkArc f85 '' #zField
 Tt0 @StartRequest f140 '' #zField
 Tt0 @TaskSwitchSimple f141 '' #zField
 Tt0 @TkArc f142 '' #zField
@@ -177,11 +140,6 @@ Tt0 @StartRequest f59 '' #zField
 Tt0 @PushWFArc f63 '' #zField
 Tt0 @TkArc f61 '' #zField
 Tt0 @UserTask f60 '' #zField
-Tt0 @StartRequest f181 '' #zField
-Tt0 @EndTask f182 '' #zField
-Tt0 @UserDialog f183 '' #zField
-Tt0 @PushWFArc f184 '' #zField
-Tt0 @PushWFArc f185 '' #zField
 Tt0 @UserDialog f9 '' #zField
 Tt0 @UserDialog f11 '' #zField
 Tt0 @StartRequest f5 '' #zField
@@ -667,84 +625,6 @@ Tt0 f51 outCond ivp=="TaskB.ivp" #txt
 Tt0 f51 206 576 248 691 #arcP
 Tt0 f51 1 248 576 #addKink
 Tt0 f51 1 0.2720598431815405 0 0 #arcLabel
-Tt0 f52 outLink CreateOldCategoriedRequest.ivp #txt
-Tt0 f52 inParamDecl '<> param;' #txt
-Tt0 f52 requestEnabled true #txt
-Tt0 f52 triggerEnabled false #txt
-Tt0 f52 callSignature CreateOldCategoriedRequest() #txt
-Tt0 f52 persist false #txt
-Tt0 f52 startName 'Create Old Categoried Request' #txt
-Tt0 f52 taskData 'TaskTriggered.EXPRI=2
-TaskTriggered.EXROL=Everybody
-TaskTriggered.EXTYPE=0
-TaskTriggered.PRI=2
-TaskTriggered.ROL=Everybody
-TaskTriggered.TYPE=0' #txt
-Tt0 f52 caseData businessCase.attach=true #txt
-Tt0 f52 showInStartList 1 #txt
-Tt0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>CreateOldCategoriedRequest.ivp</name>
-        <nameStyle>30,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Tt0 f52 @C|.responsibility Everybody #txt
-Tt0 f52 179 803 26 26 14 0 #rect
-Tt0 f52 @|StartRequestIcon #fIcon
-Tt0 f53 115 979 26 26 14 0 #rect
-Tt0 f53 @|EndIcon #fIcon
-Tt0 f54 243 979 26 26 14 0 #rect
-Tt0 f54 @|EndIcon #fIcon
-Tt0 f55 actionTable 'out=in1;
-' #txt
-Tt0 f55 outLinks "TaskA.ivp","TaskB.ivp" #txt
-Tt0 f55 taskData 'TaskA.EXPRI=2
-TaskA.EXROL=Everybody
-TaskA.EXTYPE=0
-TaskA.NAM=Request Change CPU
-TaskA.PRI=2
-TaskA.ROL="demo"
-TaskA.SKIP_TASK_LIST=false
-TaskA.TYPE=3
-TaskA.customFields.STRING.CustomVarCharField5="ICT Support/Request/Change Hardware"
-TaskB.EXPRI=2
-TaskB.EXROL=Everybody
-TaskB.EXTYPE=0
-TaskB.NAM=Request install new software
-TaskB.PRI=2
-TaskB.ROL=Everybody
-TaskB.SKIP_TASK_LIST=false
-TaskB.TYPE=0
-TaskB.customFields.STRING.CustomVarCharField5="ICT Support/Request/Install Software"' #txt
-Tt0 f55 template "" #txt
-Tt0 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Create old categoried requests</name>
-        <nameStyle>30,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Tt0 f55 178 850 28 28 14 0 #rect
-Tt0 f55 @|TaskSwitchIcon #fIcon
-Tt0 f56 expr out #txt
-Tt0 f56 type internaltest.Data #txt
-Tt0 f56 var in1 #txt
-Tt0 f56 192 829 192 850 #arcP
-Tt0 f57 expr data #txt
-Tt0 f57 outCond ivp=="TaskA.ivp" #txt
-Tt0 f57 178 864 128 979 #arcP
-Tt0 f57 1 128 864 #addKink
-Tt0 f57 1 0.1567553612281148 0 0 #arcLabel
-Tt0 f58 expr data #txt
-Tt0 f58 outCond ivp=="TaskB.ivp" #txt
-Tt0 f58 206 864 256 979 #arcP
-Tt0 f58 1 256 864 #addKink
-Tt0 f58 1 0.1571087239093166 0 0 #arcLabel
 Tt0 f66 outLink testPortalCustomErrorHandler.ivp #txt
 Tt0 f66 inParamDecl '<> param;' #txt
 Tt0 f66 requestEnabled true #txt
@@ -784,193 +664,6 @@ Tt0 f70 expr out #txt
 Tt0 f70 752 519 752 560 #arcP
 Tt0 f68 expr out #txt
 Tt0 f68 752 608 752 649 #arcP
-Tt0 f71 outLink CustomizationAdditionalCaseDetails.ivp #txt
-Tt0 f71 inParamDecl '<> param;' #txt
-Tt0 f71 requestEnabled true #txt
-Tt0 f71 triggerEnabled false #txt
-Tt0 f71 callSignature CustomizationAdditionalCaseDetails() #txt
-Tt0 f71 persist false #txt
-Tt0 f71 startName 'Customization Additional Case Details' #txt
-Tt0 f71 taskData 'TaskTriggered.EXPRI=2
-TaskTriggered.EXROL=Everybody
-TaskTriggered.EXTYPE=0
-TaskTriggered.PRI=2
-TaskTriggered.ROL=Everybody
-TaskTriggered.TYPE=0' #txt
-Tt0 f71 caseData 'businessCase.attach=true
-case.description=Leave Request Description for Customization Additional Case Details
-case.name=Leave Request for Customization Additional Case Details
-customFields.NUMBER.CustomDecimalField1=111
-customFields.NUMBER.CustomDecimalField2=222
-customFields.NUMBER.CustomDecimalField3=333
-customFields.NUMBER.CustomDecimalField4=444
-customFields.NUMBER.CustomDecimalField5=555
-customFields.STRING.CustomVarCharField1="CustomizationAdditionalCaseDetails CustomVarCharField1"
-customFields.STRING.CustomVarCharField2="CustomizationAdditionalCaseDetails CustomVarCharField2"
-customFields.STRING.CustomVarCharField3="CustomizationAdditionalCaseDetails CustomVarCharField3"
-customFields.STRING.CustomVarCharField4="CustomizationAdditionalCaseDetails CustomVarCharField4"
-customFields.STRING.CustomVarCharField5="CustomizationAdditionalCaseDetails CustomVarCharField5"
-customFields.STRING.ProcessCategoryCode="pubRequested"
-customFields.STRING.ProcessCategoryName="Publication Requested"
-customFields.STRING.ProcessCode="pubRequested"
-customFields.STRING.ProcessName="Publication Requested"
-customFields.TIMESTAMP.CustomTimestampField1=new DateTime(2018, 1, 1, 1, 1, 1)
-customFields.TIMESTAMP.CustomTimestampField2=new DateTime(2018, 2, 2, 2, 2 ,2)
-customFields.TIMESTAMP.CustomTimestampField3=new DateTime(2018, 3, 3, 3, 3, 3)
-customFields.TIMESTAMP.CustomTimestampField4=new DateTime(2018, 4, 4, 4, 4, 4)
-customFields.TIMESTAMP.CustomTimestampField5=new DateTime(2018, 5, 5, 5, 5, 5)' #txt
-Tt0 f71 showInStartList 1 #txt
-Tt0 f71 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>CustomizationAdditionalCaseDetails.ivp</name>
-        <nameStyle>38,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Tt0 f71 @C|.responsibility Everybody #txt
-Tt0 f71 1059 488 26 26 14 0 #rect
-Tt0 f71 @|StartRequestIcon #fIcon
-Tt0 f72 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
-Tt0 f72 startMethod start() #txt
-Tt0 f72 requestActionDecl '<> param;' #txt
-Tt0 f72 responseActionDecl 'internaltest.Data out;
-' #txt
-Tt0 f72 responseMappingAction 'out=in;
-' #txt
-Tt0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Show 
-Task Form</name>
-        <nameStyle>15,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Tt0 f72 1190 676 36 24 20 -2 #rect
-Tt0 f72 @|UserDialogIcon #fIcon
-Tt0 f73 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
-Tt0 f73 startMethod start() #txt
-Tt0 f73 requestActionDecl '<> param;' #txt
-Tt0 f73 responseActionDecl 'internaltest.Data out;
-' #txt
-Tt0 f73 responseMappingAction 'out=in;
-' #txt
-Tt0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Show 
-Task Form</name>
-        <nameStyle>15,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Tt0 f73 1054 676 36 24 20 -2 #rect
-Tt0 f73 @|UserDialogIcon #fIcon
-Tt0 f74 1059 739 26 26 14 0 #rect
-Tt0 f74 @|EndIcon #fIcon
-Tt0 f75 actionTable 'out=in1;
-' #txt
-Tt0 f75 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp" #txt
-Tt0 f75 caseData 'case.category=CustomizationCaseDetailsPage
-case.name=Leave Request Customization Case Details Page' #txt
-Tt0 f75 taskData 'TaskA.CATEGORY=AnnualLeave
-TaskA.DESC=Annual Leave Request Description
-TaskA.EXP=new Duration("3H")
-TaskA.EXPRI=2
-TaskA.EXROL=Everybody
-TaskA.EXTYPE=0
-TaskA.NAM=Annual Leave Request Custom Case Details Page
-TaskA.PRI=2
-TaskA.ROL="demo"
-TaskA.SKIP_TASK_LIST=false
-TaskA.TYPE=3
-TaskA.customFields.STRING.CustomVarCharField1="Exterior"
-TaskA.customFields.STRING.CustomVarCharField5="Long Do"
-TaskB.CATEGORY=OtherLeave/SickLeave/Long
-TaskB.DESC=Sick Leave Request Description
-TaskB.EXP=new Duration("1D")
-TaskB.EXPRI=2
-TaskB.EXROL=Everybody
-TaskB.EXTYPE=0
-TaskB.NAM=Sick Leave Request Custom Case Details Page
-TaskB.PRI=1
-TaskB.ROL=Everybody
-TaskB.SKIP_TASK_LIST=false
-TaskB.TYPE=0
-TaskB.customFields.STRING.CustomVarCharField1="Interior"
-TaskB.customFields.STRING.CustomVarCharField5="Tung Le"
-TaskC.CATEGORY=OtherLeave/Maternity
-TaskC.DESC=Maternity Leave Request Description
-TaskC.EXP=new Duration("2D")
-TaskC.EXPRI=2
-TaskC.EXROL=Everybody
-TaskC.EXTYPE=0
-TaskC.NAM=Maternity Leave Request Custom Case Details Page
-TaskC.PRI=3
-TaskC.ROL=Everybody
-TaskC.SKIP_TASK_LIST=false
-TaskC.TYPE=0
-TaskC.customFields.STRING.CustomVarCharField1="Interior"
-TaskC.customFields.STRING.CustomVarCharField5="Anh Nguyen"' #txt
-Tt0 f75 template "" #txt
-Tt0 f75 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Create tasks</name>
-        <nameStyle>12,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Tt0 f75 1058 618 28 28 9 -21 #rect
-Tt0 f75 @|TaskSwitchIcon #fIcon
-Tt0 f76 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
-Tt0 f76 startMethod start() #txt
-Tt0 f76 requestActionDecl '<> param;' #txt
-Tt0 f76 responseActionDecl 'internaltest.Data out;
-' #txt
-Tt0 f76 responseMappingAction 'out=in;
-' #txt
-Tt0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Show 
-Task Form</name>
-        <nameStyle>6,7
-9,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Tt0 f76 926 676 36 24 20 -2 #rect
-Tt0 f76 @|UserDialogIcon #fIcon
-Tt0 f77 expr out #txt
-Tt0 f77 1072 700 1072 739 #arcP
-Tt0 f78 expr data #txt
-Tt0 f78 outCond ivp=="TaskA.ivp" #txt
-Tt0 f78 1058 632 944 676 #arcP
-Tt0 f78 1 944 632 #addKink
-Tt0 f78 0 0.8879104383411323 0 0 #arcLabel
-Tt0 f79 expr data #txt
-Tt0 f79 outCond ivp=="TaskB.ivp" #txt
-Tt0 f79 1072 646 1072 676 #arcP
-Tt0 f80 expr out #txt
-Tt0 f80 944 700 1059 752 #arcP
-Tt0 f80 1 944 752 #addKink
-Tt0 f80 1 0.040404381211362396 0 0 #arcLabel
-Tt0 f81 expr data #txt
-Tt0 f81 outCond ivp=="TaskC.ivp" #txt
-Tt0 f81 1086 632 1208 676 #arcP
-Tt0 f81 1 1208 632 #addKink
-Tt0 f81 0 0.8643692094953389 0 0 #arcLabel
-Tt0 f82 expr out #txt
-Tt0 f82 1208 700 1085 752 #arcP
-Tt0 f82 1 1208 752 #addKink
-Tt0 f82 1 0.07231812892046431 0 0 #arcLabel
 Tt0 f86 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Tt0 f86 startMethod start() #txt
 Tt0 f86 requestActionDecl '<> param;' #txt
@@ -988,7 +681,7 @@ Task Form</name>
     </language>
 </elementInfo>
 ' #txt
-Tt0 f86 1472 672 36 24 20 -2 #rect
+Tt0 f86 992 672 36 24 20 -2 #rect
 Tt0 f86 @|UserDialogIcon #fIcon
 Tt0 f87 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Tt0 f87 startMethod start() #txt
@@ -1007,9 +700,9 @@ Task Form</name>
     </language>
 </elementInfo>
 ' #txt
-Tt0 f87 1608 672 36 24 20 -2 #rect
+Tt0 f87 1128 672 36 24 20 -2 #rect
 Tt0 f87 @|UserDialogIcon #fIcon
-Tt0 f89 1477 735 26 26 14 0 #rect
+Tt0 f89 997 735 26 26 14 0 #rect
 Tt0 f89 @|EndIcon #fIcon
 Tt0 f90 actionTable 'out=in1;
 ' #txt
@@ -1064,7 +757,7 @@ Tt0 f90 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Tt0 f90 1476 614 28 28 9 -21 #rect
+Tt0 f90 996 614 28 28 9 -21 #rect
 Tt0 f90 @|TaskSwitchIcon #fIcon
 Tt0 f91 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Tt0 f91 startMethod start() #txt
@@ -1084,7 +777,7 @@ Task Form</name>
     </language>
 </elementInfo>
 ' #txt
-Tt0 f91 1344 672 36 24 20 -2 #rect
+Tt0 f91 864 672 36 24 20 -2 #rect
 Tt0 f91 @|UserDialogIcon #fIcon
 Tt0 f92 outLink DefaultAdditionalCaseDetails.ivp #txt
 Tt0 f92 inParamDecl '<> param;' #txt
@@ -1128,35 +821,35 @@ Tt0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Tt0 f92 @C|.responsibility Everybody #txt
-Tt0 f92 1477 484 26 26 14 0 #rect
+Tt0 f92 997 484 26 26 14 0 #rect
 Tt0 f92 @|StartRequestIcon #fIcon
 Tt0 f94 expr data #txt
 Tt0 f94 outCond ivp=="TaskB.ivp" #txt
-Tt0 f94 1490 642 1490 672 #arcP
+Tt0 f94 1010 642 1010 672 #arcP
 Tt0 f95 expr data #txt
 Tt0 f95 outCond ivp=="TaskC.ivp" #txt
-Tt0 f95 1504 628 1626 672 #arcP
-Tt0 f95 1 1626 628 #addKink
+Tt0 f95 1024 628 1146 672 #arcP
+Tt0 f95 1 1146 628 #addKink
 Tt0 f95 0 0.8643692094953389 0 0 #arcLabel
 Tt0 f96 expr out #txt
-Tt0 f96 1490 696 1490 735 #arcP
+Tt0 f96 1010 696 1010 735 #arcP
 Tt0 f97 expr out #txt
-Tt0 f97 1626 696 1503 748 #arcP
-Tt0 f97 1 1626 748 #addKink
+Tt0 f97 1146 696 1023 748 #arcP
+Tt0 f97 1 1146 748 #addKink
 Tt0 f97 1 0.07231812892046431 0 0 #arcLabel
 Tt0 f98 expr out #txt
-Tt0 f98 1362 696 1477 748 #arcP
-Tt0 f98 1 1362 748 #addKink
+Tt0 f98 882 696 997 748 #arcP
+Tt0 f98 1 882 748 #addKink
 Tt0 f98 1 0.040404381211362396 0 0 #arcLabel
 Tt0 f99 expr data #txt
 Tt0 f99 outCond ivp=="TaskA.ivp" #txt
-Tt0 f99 1476 628 1362 672 #arcP
-Tt0 f99 1 1362 628 #addKink
+Tt0 f99 996 628 882 672 #arcP
+Tt0 f99 1 882 628 #addKink
 Tt0 f99 0 0.8879104383411323 0 0 #arcLabel
 Tt0 f88 expr out #txt
 Tt0 f88 type internaltest.Data #txt
 Tt0 f88 var in1 #txt
-Tt0 f88 1490 510 1490 614 #arcP
+Tt0 f88 1010 510 1010 614 #arcP
 Tt0 f93 actionTable 'out=in1;
 ' #txt
 Tt0 f93 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp","TaskD.ivp" #txt
@@ -1219,7 +912,7 @@ Tt0 f93 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Tt0 f93 617 929 28 28 9 -21 #rect
+Tt0 f93 177 889 28 28 9 -21 #rect
 Tt0 f93 @|TaskSwitchIcon #fIcon
 Tt0 f100 outLink TestCaseListPermissions.ivp #txt
 Tt0 f100 inParamDecl '<> param;' #txt
@@ -1267,7 +960,7 @@ Tt0 f100 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Tt0 f100 @C|.responsibility Everybody #txt
-Tt0 f100 618 799 26 26 14 0 #rect
+Tt0 f100 178 759 26 26 14 0 #rect
 Tt0 f100 @|StartRequestIcon #fIcon
 Tt0 f101 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Tt0 f101 startMethod start() #txt
@@ -1286,7 +979,7 @@ Task Form</name>
     </language>
 </elementInfo>
 ' #txt
-Tt0 f101 749 987 36 24 20 -2 #rect
+Tt0 f101 309 947 36 24 20 -2 #rect
 Tt0 f101 @|UserDialogIcon #fIcon
 Tt0 f103 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Tt0 f103 startMethod start() #txt
@@ -1306,7 +999,7 @@ Task Form</name>
     </language>
 </elementInfo>
 ' #txt
-Tt0 f103 485 987 36 24 20 -2 #rect
+Tt0 f103 45 947 36 24 20 -2 #rect
 Tt0 f103 @|UserDialogIcon #fIcon
 Tt0 f104 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Tt0 f104 startMethod start() #txt
@@ -1325,37 +1018,37 @@ Task Form</name>
     </language>
 </elementInfo>
 ' #txt
-Tt0 f104 613 987 36 24 20 -2 #rect
+Tt0 f104 173 947 36 24 20 -2 #rect
 Tt0 f104 @|UserDialogIcon #fIcon
-Tt0 f105 618 1050 26 26 14 0 #rect
+Tt0 f105 178 1010 26 26 14 0 #rect
 Tt0 f105 @|EndIcon #fIcon
 Tt0 f107 expr out #txt
-Tt0 f107 503 1011 618 1063 #arcP
-Tt0 f107 1 503 1063 #addKink
+Tt0 f107 63 971 178 1023 #arcP
+Tt0 f107 1 63 1023 #addKink
 Tt0 f107 1 0.040404381211362396 0 0 #arcLabel
 Tt0 f108 expr data #txt
 Tt0 f108 outCond ivp=="TaskB.ivp" #txt
-Tt0 f108 631 957 631 987 #arcP
+Tt0 f108 191 917 191 947 #arcP
 Tt0 f109 expr out #txt
-Tt0 f109 767 1011 644 1063 #arcP
-Tt0 f109 1 767 1063 #addKink
+Tt0 f109 327 971 204 1023 #arcP
+Tt0 f109 1 327 1023 #addKink
 Tt0 f109 1 0.07231812892046431 0 0 #arcLabel
 Tt0 f110 expr data #txt
 Tt0 f110 outCond ivp=="TaskC.ivp" #txt
-Tt0 f110 645 943 767 987 #arcP
-Tt0 f110 1 767 943 #addKink
+Tt0 f110 205 903 327 947 #arcP
+Tt0 f110 1 327 903 #addKink
 Tt0 f110 0 0.8643692094953389 0 0 #arcLabel
 Tt0 f112 expr out #txt
-Tt0 f112 631 1011 631 1050 #arcP
+Tt0 f112 191 971 191 1010 #arcP
 Tt0 f113 expr data #txt
 Tt0 f113 outCond ivp=="TaskA.ivp" #txt
-Tt0 f113 617 943 503 987 #arcP
-Tt0 f113 1 503 943 #addKink
+Tt0 f113 177 903 63 947 #arcP
+Tt0 f113 1 63 903 #addKink
 Tt0 f113 0 0.8879104383411323 0 0 #arcLabel
 Tt0 f102 expr out #txt
 Tt0 f102 type internaltest.Data #txt
 Tt0 f102 var in1 #txt
-Tt0 f102 631 825 631 929 #arcP
+Tt0 f102 191 785 191 889 #arcP
 Tt0 f106 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Tt0 f106 startMethod start() #txt
 Tt0 f106 requestActionDecl '<> param;' #txt
@@ -1374,225 +1067,17 @@ Task Form</name>
     </language>
 </elementInfo>
 ' #txt
-Tt0 f106 878 987 36 24 20 -2 #rect
+Tt0 f106 438 947 36 24 20 -2 #rect
 Tt0 f106 @|UserDialogIcon #fIcon
 Tt0 f111 expr data #txt
 Tt0 f111 outCond ivp=="TaskD.ivp" #txt
-Tt0 f111 645 943 896 987 #arcP
-Tt0 f111 1 896 943 #addKink
+Tt0 f111 205 903 456 947 #arcP
+Tt0 f111 1 456 903 #addKink
 Tt0 f111 0 0.6165429083795134 0 0 #arcLabel
 Tt0 f114 expr out #txt
-Tt0 f114 896 1011 643 1063 #arcP
-Tt0 f114 1 896 1064 #addKink
+Tt0 f114 456 971 204 1023 #arcP
+Tt0 f114 1 456 1023 #addKink
 Tt0 f114 1 0.36673298908246516 0 0 #arcLabel
-Tt0 f115 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
-Tt0 f115 startMethod start() #txt
-Tt0 f115 requestActionDecl '<> param;' #txt
-Tt0 f115 responseActionDecl 'internaltest.Data out;
-' #txt
-Tt0 f115 responseMappingAction 'out=in;
-' #txt
-Tt0 f115 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Show 
-Task Form</name>
-        <nameStyle>15,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Tt0 f115 2016 663 36 24 20 -2 #rect
-Tt0 f115 @|UserDialogIcon #fIcon
-Tt0 f116 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
-Tt0 f116 startMethod start() #txt
-Tt0 f116 requestActionDecl '<> param;' #txt
-Tt0 f116 responseActionDecl 'internaltest.Data out;
-' #txt
-Tt0 f116 responseMappingAction 'out=in;
-' #txt
-Tt0 f116 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Show 
-Task Form</name>
-        <nameStyle>6,7
-9,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Tt0 f116 1728 671 36 24 20 -2 #rect
-Tt0 f116 @|UserDialogIcon #fIcon
-Tt0 f117 outLink CustomizationAdditionalCaseDetailsByUrl.ivp #txt
-Tt0 f117 inParamDecl '<> param;' #txt
-Tt0 f117 requestEnabled true #txt
-Tt0 f117 triggerEnabled false #txt
-Tt0 f117 callSignature CustomizationAdditionalCaseDetailsByUrl() #txt
-Tt0 f117 persist false #txt
-Tt0 f117 startName 'Customization Additional Case Details By Url' #txt
-Tt0 f117 taskData 'TaskTriggered.EXPRI=2
-TaskTriggered.EXROL=Everybody
-TaskTriggered.EXTYPE=0
-TaskTriggered.PRI=2
-TaskTriggered.ROL=Everybody
-TaskTriggered.TYPE=0' #txt
-Tt0 f117 caseData 'businessCase.attach=true
-case.description=Leave Request Description for Customization Additional Case Details
-case.name=Customization Additional Case Details By Url
-customFields.NUMBER.CustomDecimalField1=111
-customFields.NUMBER.CustomDecimalField2=222
-customFields.NUMBER.CustomDecimalField3=333
-customFields.NUMBER.CustomDecimalField4=444
-customFields.NUMBER.CustomDecimalField5=555
-customFields.STRING.CustomVarCharField1="CustomizationAdditionalCaseDetails CustomVarCharField1"
-customFields.STRING.CustomVarCharField2="CustomizationAdditionalCaseDetails CustomVarCharField2"
-customFields.STRING.CustomVarCharField3="CustomizationAdditionalCaseDetails CustomVarCharField3"
-customFields.STRING.CustomVarCharField4="CustomizationAdditionalCaseDetails CustomVarCharField4"
-customFields.STRING.CustomVarCharField5="CustomizationAdditionalCaseDetails CustomVarCharField5"
-customFields.STRING.ProcessCategoryCode="pubRequested"
-customFields.STRING.ProcessCategoryName="Publication Requested"
-customFields.STRING.ProcessCode="pubRequested"
-customFields.STRING.ProcessName="Publication Requested"
-customFields.TIMESTAMP.CustomTimestampField1=new DateTime(2018, 1, 1, 1, 1, 1)
-customFields.TIMESTAMP.CustomTimestampField2=new DateTime(2018, 2, 2, 2, 2 ,2)
-customFields.TIMESTAMP.CustomTimestampField3=new DateTime(2018, 3, 3, 3, 3, 3)
-customFields.TIMESTAMP.CustomTimestampField4=new DateTime(2018, 4, 4, 4, 4, 4)
-customFields.TIMESTAMP.CustomTimestampField5=new DateTime(2018, 5, 5, 5, 5, 5)' #txt
-Tt0 f117 showInStartList 1 #txt
-Tt0 f117 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>CustomizationAdditionalCaseDetailsByUrl.ivp</name>
-        <nameStyle>43,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Tt0 f117 @C|.responsibility Everybody #txt
-Tt0 f117 1877 459 26 26 14 0 #rect
-Tt0 f117 @|StartRequestIcon #fIcon
-Tt0 f118 1877 726 26 26 14 0 #rect
-Tt0 f118 @|EndIcon #fIcon
-Tt0 f119 actionTable 'out=in;
-' #txt
-Tt0 f119 actionCode 'import ch.ivy.addon.portalkit.enums.AdditionalProperty;
-
-ivy.case.customFields().textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).set("https://my.axonactive.vn.local/home_page.php");' #txt
-Tt0 f119 security system #txt
-Tt0 f119 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>set customization flag</name>
-    </language>
-</elementInfo>
-' #txt
-Tt0 f119 1826 506 128 44 -59 -8 #rect
-Tt0 f119 @|StepIcon #fIcon
-Tt0 f120 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
-Tt0 f120 startMethod start() #txt
-Tt0 f120 requestActionDecl '<> param;' #txt
-Tt0 f120 responseActionDecl 'internaltest.Data out;
-' #txt
-Tt0 f120 responseMappingAction 'out=in;
-' #txt
-Tt0 f120 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Show 
-Task Form</name>
-        <nameStyle>15,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Tt0 f120 1872 663 36 24 20 -2 #rect
-Tt0 f120 @|UserDialogIcon #fIcon
-Tt0 f121 actionTable 'out=in1;
-' #txt
-Tt0 f121 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp" #txt
-Tt0 f121 caseData 'case.category=CustomizationCaseDetailsPage
-case.name=Leave Request Customization Case Details Page' #txt
-Tt0 f121 taskData 'TaskA.CATEGORY=AnnualLeave
-TaskA.DESC=Annual Leave Request Description
-TaskA.EXP=new Duration("3H")
-TaskA.EXPRI=2
-TaskA.EXROL=Everybody
-TaskA.EXTYPE=0
-TaskA.NAM=Annual Leave Request Custom Case Details Page
-TaskA.PRI=2
-TaskA.ROL="demo"
-TaskA.SKIP_TASK_LIST=false
-TaskA.TYPE=3
-TaskA.customFields.STRING.CustomVarCharField1="Exterior"
-TaskA.customFields.STRING.CustomVarCharField5="Long Do"
-TaskB.CATEGORY=OtherLeave/SickLeave/Long
-TaskB.DESC=Sick Leave Request Description
-TaskB.EXP=new Duration("1D")
-TaskB.EXPRI=2
-TaskB.EXROL=Everybody
-TaskB.EXTYPE=0
-TaskB.NAM=Sick Leave Request Custom Case Details Page
-TaskB.PRI=1
-TaskB.ROL=Everybody
-TaskB.SKIP_TASK_LIST=false
-TaskB.TYPE=0
-TaskB.customFields.STRING.CustomVarCharField1="Interior"
-TaskB.customFields.STRING.CustomVarCharField5="Tung Le"
-TaskC.CATEGORY=OtherLeave/Maternity
-TaskC.DESC=Maternity Leave Request Description
-TaskC.EXP=new Duration("2D")
-TaskC.EXPRI=2
-TaskC.EXROL=Everybody
-TaskC.EXTYPE=0
-TaskC.NAM=Maternity Leave Request Custom Case Details Page
-TaskC.PRI=3
-TaskC.ROL=Everybody
-TaskC.SKIP_TASK_LIST=false
-TaskC.TYPE=0
-TaskC.customFields.STRING.CustomVarCharField1="Interior"
-TaskC.customFields.STRING.CustomVarCharField5="Anh Nguyen"' #txt
-Tt0 f121 template "" #txt
-Tt0 f121 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Create tasks</name>
-        <nameStyle>12,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Tt0 f121 1876 581 28 28 9 -21 #rect
-Tt0 f121 @|TaskSwitchIcon #fIcon
-Tt0 f122 expr data #txt
-Tt0 f122 outCond ivp=="TaskC.ivp" #txt
-Tt0 f122 1904 595 2034 663 #arcP
-Tt0 f122 1 2034 595 #addKink
-Tt0 f122 1 0.015843310940434247 0 0 #arcLabel
-Tt0 f123 expr out #txt
-Tt0 f123 1746 695 1877 739 #arcP
-Tt0 f123 1 1746 739 #addKink
-Tt0 f123 0 0.962903360393454 0 0 #arcLabel
-Tt0 f124 expr data #txt
-Tt0 f124 outCond ivp=="TaskA.ivp" #txt
-Tt0 f124 1876 595 1746 671 #arcP
-Tt0 f124 1 1746 595 #addKink
-Tt0 f124 1 0.09971586452509461 0 0 #arcLabel
-Tt0 f125 expr out #txt
-Tt0 f125 2034 687 1903 739 #arcP
-Tt0 f125 1 2034 739 #addKink
-Tt0 f125 1 0.07231812892046431 0 0 #arcLabel
-Tt0 f126 expr out #txt
-Tt0 f126 1890 687 1890 726 #arcP
-Tt0 f127 expr data #txt
-Tt0 f127 outCond ivp=="TaskB.ivp" #txt
-Tt0 f127 1890 609 1890 663 #arcP
-Tt0 f128 expr out #txt
-Tt0 f128 1890 485 1890 506 #arcP
-Tt0 f129 expr out #txt
-Tt0 f129 type internaltest.Data #txt
-Tt0 f129 var in1 #txt
-Tt0 f129 1890 550 1890 581 #arcP
 Tt0 f130 outLink SaleDepartment.ivp #txt
 Tt0 f130 inParamDecl '<> param;' #txt
 Tt0 f130 requestEnabled true #txt
@@ -1618,9 +1103,9 @@ Tt0 f130 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Tt0 f130 @C|.responsibility Everybody #txt
-Tt0 f130 1137 801 30 30 -54 17 #rect
+Tt0 f130 609 801 30 30 -54 17 #rect
 Tt0 f130 @|StartRequestIcon #fIcon
-Tt0 f131 1137 1009 30 30 0 15 #rect
+Tt0 f131 609 1009 30 30 0 15 #rect
 Tt0 f131 @|EndIcon #fIcon
 Tt0 f132 dialogId internaltest.ui.SaleDepartment #txt
 Tt0 f132 startMethod start() #txt
@@ -1637,15 +1122,15 @@ TaskA.PRI=2
 TaskA.ROL=Everybody
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
-Tt0 f132 1096 906 112 44 0 -8 #rect
+Tt0 f132 568 906 112 44 0 -8 #rect
 Tt0 f132 @|UserTaskIcon #fIcon
 Tt0 f133 expr out #txt
 Tt0 f133 type internaltest.Data #txt
 Tt0 f133 var in1 #txt
-Tt0 f133 1152 831 1152 906 #arcP
+Tt0 f133 624 831 624 906 #arcP
 Tt0 f134 expr data #txt
 Tt0 f134 outCond ivp=="TaskA.ivp" #txt
-Tt0 f134 1152 950 1152 1009 #arcP
+Tt0 f134 624 950 624 1009 #arcP
 Tt0 f135 outLink createUnassignedTask.ivp #txt
 Tt0 f135 inParamDecl '<> param;' #txt
 Tt0 f135 requestEnabled true #txt
@@ -1694,29 +1179,6 @@ Tt0 f138 208 1151 208 1233 #arcP
 Tt0 f139 expr data #txt
 Tt0 f139 outCond ivp=="TaskA.ivp" #txt
 Tt0 f139 208 1263 208 1329 #arcP
-Tt0 f83 processCall 'Functional Processes/SetAdditonalCaseDetailPage:call(String)' #txt
-Tt0 f83 requestActionDecl '<String linkToAddtionalCaseDetailPage> param;' #txt
-Tt0 f83 requestMappingAction 'param.linkToAddtionalCaseDetailPage="Start Processes/AdditionalCaseDetails/showAdditionalCaseDetails.ivp";
-' #txt
-Tt0 f83 responseActionDecl 'internaltest.Data out;
-' #txt
-Tt0 f83 responseMappingAction 'out=in;
-' #txt
-Tt0 f83 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>SetAdditonalCaseDetailPage</name>
-    </language>
-</elementInfo>
-' #txt
-Tt0 f83 984 538 176 44 -80 -8 #rect
-Tt0 f83 @|CallSubIcon #fIcon
-Tt0 f84 expr out #txt
-Tt0 f84 1072 514 1072 538 #arcP
-Tt0 f85 expr out #txt
-Tt0 f85 type internaltest.Data #txt
-Tt0 f85 var in1 #txt
-Tt0 f85 1072 582 1072 618 #arcP
 Tt0 f140 outLink ProcessWithSkipTaskListTask.ivp #txt
 Tt0 f140 inParamDecl '<> param;' #txt
 Tt0 f140 requestEnabled true #txt
@@ -1964,9 +1426,9 @@ Tt0 f168 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Tt0 f168 @C|.responsibility Everybody #txt
-Tt0 f168 1368 904 32 32 -77 17 #rect
+Tt0 f168 840 904 32 32 -77 17 #rect
 Tt0 f168 @|StartRequestIcon #fIcon
-Tt0 f169 2217 905 30 30 0 15 #rect
+Tt0 f169 1689 905 30 30 0 15 #rect
 Tt0 f169 @|EndIcon #fIcon
 Tt0 f170 actionTable 'out=in;
 ' #txt
@@ -1978,7 +1440,7 @@ Tt0 f170 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Tt0 f170 1584 892 112 56 -53 -8 #rect
+Tt0 f170 1056 892 112 56 -53 -8 #rect
 Tt0 f170 @|StepIcon #fIcon
 Tt0 f171 actionTable 'out=in1;
 ' #txt
@@ -1992,7 +1454,7 @@ TaskA.ROL=Everybody
 TaskA.SKIP_TASK_LIST=true
 TaskA.TYPE=0' #txt
 Tt0 f171 template "" #txt
-Tt0 f171 1800 904 32 32 0 16 #rect
+Tt0 f171 1272 904 32 32 0 16 #rect
 Tt0 f171 @|TaskSwitchSimpleIcon #fIcon
 Tt0 f172 actionTable 'out=in1;
 ' #txt
@@ -2006,19 +1468,19 @@ TaskA.ROL=SYSTEM
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
 Tt0 f172 template "" #txt
-Tt0 f172 1512 904 32 32 0 16 #rect
+Tt0 f172 984 904 32 32 0 16 #rect
 Tt0 f172 @|TaskSwitchSimpleIcon #fIcon
 Tt0 f174 expr out #txt
 Tt0 f174 type internaltest.Data #txt
 Tt0 f174 var in1 #txt
-Tt0 f174 1400 920 1512 920 #arcP
+Tt0 f174 872 920 984 920 #arcP
 Tt0 f175 expr out #txt
 Tt0 f175 type internaltest.Data #txt
 Tt0 f175 var in1 #txt
-Tt0 f175 1696 920 1800 920 #arcP
+Tt0 f175 1168 920 1272 920 #arcP
 Tt0 f176 expr data #txt
 Tt0 f176 outCond ivp=="TaskA.ivp" #txt
-Tt0 f176 1544 920 1584 920 #arcP
+Tt0 f176 1016 920 1056 920 #arcP
 Tt0 f177 actionTable 'out=in;
 ' #txt
 Tt0 f177 actionCode 'ivy.case.createNote(ivy.session, "User note");' #txt
@@ -2029,11 +1491,11 @@ Tt0 f177 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Tt0 f177 1888 896 112 48 -46 -8 #rect
+Tt0 f177 1360 896 112 48 -46 -8 #rect
 Tt0 f177 @|StepIcon #fIcon
 Tt0 f178 expr data #txt
 Tt0 f178 outCond ivp=="TaskA.ivp" #txt
-Tt0 f178 1832 920 1888 920 #arcP
+Tt0 f178 1304 920 1360 920 #arcP
 Tt0 f179 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Tt0 f179 startMethod start() #txt
 Tt0 f179 requestActionDecl '<> param;' #txt
@@ -2041,12 +1503,12 @@ Tt0 f179 responseActionDecl 'internaltest.Data out;
 ' #txt
 Tt0 f179 responseMappingAction 'out=in;
 ' #txt
-Tt0 f179 2048 898 112 44 0 -8 #rect
+Tt0 f179 1520 898 112 44 0 -8 #rect
 Tt0 f179 @|UserDialogIcon #fIcon
 Tt0 f180 expr out #txt
-Tt0 f180 2000 920 2048 920 #arcP
+Tt0 f180 1472 920 1520 920 #arcP
 Tt0 f173 expr out #txt
-Tt0 f173 2160 920 2217 920 #arcP
+Tt0 f173 1632 920 1689 920 #arcP
 Tt0 f64 actionTable 'out=in;
 ' #txt
 Tt0 f64 actionCode 'ivy.case.getBusinessCase().setName("Leave Request Case Map");' #txt
@@ -2124,40 +1586,6 @@ Tt0 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Tt0 f60 480 642 128 44 -58 -8 #rect
 Tt0 f60 @|UserTaskIcon #fIcon
-Tt0 f181 outLink start2.ivp #txt
-Tt0 f181 inParamDecl '<> param;' #txt
-Tt0 f181 requestEnabled true #txt
-Tt0 f181 triggerEnabled false #txt
-Tt0 f181 callSignature ResponsiveUI() #txt
-Tt0 f181 persist false #txt
-Tt0 f181 startName ResponsiveUI #txt
-Tt0 f181 caseData businessCase.attach=true #txt
-Tt0 f181 showInStartList 1 #txt
-Tt0 f181 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>ResponsiveUI.ivp</name>
-    </language>
-</elementInfo>
-' #txt
-Tt0 f181 @C|.responsibility Everybody #txt
-Tt0 f181 113 1425 30 30 -24 17 #rect
-Tt0 f181 @|StartRequestIcon #fIcon
-Tt0 f182 497 1425 30 30 0 15 #rect
-Tt0 f182 @|EndIcon #fIcon
-Tt0 f183 dialogId internaltest.ResponsiveUI #txt
-Tt0 f183 startMethod start() #txt
-Tt0 f183 requestActionDecl '<> param;' #txt
-Tt0 f183 responseActionDecl 'internaltest.Data out;
-' #txt
-Tt0 f183 responseMappingAction 'out=in;
-' #txt
-Tt0 f183 280 1418 112 44 0 -8 #rect
-Tt0 f183 @|UserDialogIcon #fIcon
-Tt0 f184 expr out #txt
-Tt0 f184 143 1440 280 1440 #arcP
-Tt0 f185 expr out #txt
-Tt0 f185 392 1440 497 1440 #arcP
 Tt0 f9 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
 Tt0 f9 startMethod start() #txt
 Tt0 f9 requestActionDecl '<> param;' #txt
@@ -2212,6 +1640,7 @@ TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
 Tt0 f5 caseData 'case.description=Leave Request Description
 case.name=Leave Request
+customFields.NUMBER.Number\ field=1000000
 customFields.STRING.CustomVarCharField1="Leave Request CustomVarCharField1"
 customFields.STRING.CustomVarCharField2="Leave Request CustomVarCharField2"
 customFields.STRING.CustomVarCharField3="Leave Request CustomVarCharField3"
@@ -2219,7 +1648,8 @@ customFields.STRING.CustomVarCharField4="Leave Request CustomVarCharField4"
 customFields.STRING.ProcessCategoryCode="pubRequested"
 customFields.STRING.ProcessCategoryName="Publication Requested"
 customFields.STRING.ProcessCode="pubRequested"
-customFields.STRING.ProcessName="Publication Requested"' #txt
+customFields.STRING.ProcessName="Publication Requested"
+customFields.TIMESTAMP.Today=new java.util.Date()' #txt
 Tt0 f5 showInStartList 1 #txt
 Tt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -2407,12 +1837,6 @@ Tt0 f32 out f50 tail #connect
 Tt0 f50 head f47 mainIn #connect
 Tt0 f32 out f51 tail #connect
 Tt0 f51 head f48 mainIn #connect
-Tt0 f52 mainOut f56 tail #connect
-Tt0 f56 head f55 in #connect
-Tt0 f55 out f57 tail #connect
-Tt0 f57 head f53 mainIn #connect
-Tt0 f55 out f58 tail #connect
-Tt0 f58 head f54 mainIn #connect
 Tt0 f60 out f63 tail #connect
 Tt0 f63 head f62 mainIn #connect
 Tt0 f59 mainOut f65 tail #connect
@@ -2423,18 +1847,6 @@ Tt0 f66 mainOut f70 tail #connect
 Tt0 f70 head f69 mainIn #connect
 Tt0 f69 mainOut f68 tail #connect
 Tt0 f68 head f67 mainIn #connect
-Tt0 f75 out f78 tail #connect
-Tt0 f78 head f76 mainIn #connect
-Tt0 f75 out f79 tail #connect
-Tt0 f79 head f73 mainIn #connect
-Tt0 f75 out f81 tail #connect
-Tt0 f81 head f72 mainIn #connect
-Tt0 f73 mainOut f77 tail #connect
-Tt0 f77 head f74 mainIn #connect
-Tt0 f76 mainOut f80 tail #connect
-Tt0 f80 head f74 mainIn #connect
-Tt0 f72 mainOut f82 tail #connect
-Tt0 f82 head f74 mainIn #connect
 Tt0 f90 out f99 tail #connect
 Tt0 f99 head f91 mainIn #connect
 Tt0 f90 out f94 tail #connect
@@ -2467,22 +1879,6 @@ Tt0 f93 out f111 tail #connect
 Tt0 f111 head f106 mainIn #connect
 Tt0 f106 mainOut f114 tail #connect
 Tt0 f114 head f105 mainIn #connect
-Tt0 f121 out f124 tail #connect
-Tt0 f124 head f116 mainIn #connect
-Tt0 f121 out f127 tail #connect
-Tt0 f127 head f120 mainIn #connect
-Tt0 f121 out f122 tail #connect
-Tt0 f122 head f115 mainIn #connect
-Tt0 f120 mainOut f126 tail #connect
-Tt0 f126 head f118 mainIn #connect
-Tt0 f116 mainOut f123 tail #connect
-Tt0 f123 head f118 mainIn #connect
-Tt0 f115 mainOut f125 tail #connect
-Tt0 f125 head f118 mainIn #connect
-Tt0 f117 mainOut f128 tail #connect
-Tt0 f128 head f119 mainIn #connect
-Tt0 f119 mainOut f129 tail #connect
-Tt0 f129 head f121 in #connect
 Tt0 f130 mainOut f133 tail #connect
 Tt0 f133 head f132 in #connect
 Tt0 f132 out f134 tail #connect
@@ -2491,10 +1887,6 @@ Tt0 f135 mainOut f138 tail #connect
 Tt0 f138 head f136 in #connect
 Tt0 f136 out f139 tail #connect
 Tt0 f139 head f137 mainIn #connect
-Tt0 f71 mainOut f84 tail #connect
-Tt0 f84 head f83 mainIn #connect
-Tt0 f83 mainOut f85 tail #connect
-Tt0 f85 head f75 in #connect
 Tt0 f140 mainOut f142 tail #connect
 Tt0 f142 head f141 in #connect
 Tt0 f141 out f152 tail #connect
@@ -2535,7 +1927,3 @@ Tt0 f177 mainOut f180 tail #connect
 Tt0 f180 head f179 mainIn #connect
 Tt0 f179 mainOut f173 tail #connect
 Tt0 f173 head f169 mainIn #connect
-Tt0 f181 mainOut f184 tail #connect
-Tt0 f184 head f183 mainIn #connect
-Tt0 f183 mainOut f185 tail #connect
-Tt0 f185 head f182 mainIn #connect

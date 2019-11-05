@@ -61,7 +61,7 @@
 
           <h:panelGroup styleClass="create-form-toolbar">
             <p:commandButton id="add-input-text-btn" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
-              actionListener="#{logic.createInputField()}" icon="fa fa-arrow-down" resetValues="true"
+              actionListener="#{logic.createInputField()}" icon="fa fa-arrow-down"
               update="form:available-form-elements form:create-tabs" process="form:create-tabs:create-input-field-tab" />
           </h:panelGroup>
         </p:tab>
@@ -113,7 +113,7 @@
 
           <h:panelGroup styleClass="create-form-toolbar">
             <p:commandButton id="add-text-area-btn" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
-              actionListener="#{logic.createInputTextArea}" icon="fa fa-arrow-down" resetValues="true"
+              actionListener="#{logic.createInputTextArea}" icon="fa fa-arrow-down"
               update="form:available-form-elements form:create-tabs" process="form:create-tabs:create-input-area-tab" />
           </h:panelGroup>
         </p:tab>
@@ -163,9 +163,10 @@
                 rendered="#{data.selectedDataProvider.name eq ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoDataProvider')}">
 
                 <h:panelGroup id="value-checkbox-container" styleClass="form-definition-option-container">
-                  <p:dataTable id="many-checkbox-options" var="option"
+
+                  <p:dataTable id="many-checkbox-options" var="option" rowIndexVar="rowIndex"
                     rendered="#{data.selectedDataProvider.name eq ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoDataProvider')}"
-                    value="#{data.createManyCheckboxTab.options}" styleClass="express-table-no-header"
+                    value="#{data.createManyCheckboxTab.options}" styleClass="express-table-no-header form-element-input-checkbox-table"
                     emptyMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoCheckboxFieldYet')}">
 
                     <f:facet name="header">
@@ -183,16 +184,15 @@
                     </f:facet>
 
                     <p:column styleClass="vertical-align-middle">
+                      <p:messages id="input-checkbox-msg" for="input-checkbox-name"/>
                       <p:inputText value="#{option.value}" styleClass="express-workflow-table-input" required="true"
                         requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputCheckbox')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
                         placeholder="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputCheckbox')}"
-                        maxlength="#{ivy.cms.co('/Dialogs/general/maxOptionsLength')}" />
+                        maxlength="#{ivy.cms.co('/Dialogs/general/maxOptionsLength')}" id="input-checkbox-name" />
 
                       <p:commandButton icon="fa fa-trash-o fa-2x" title="" styleClass="placement-form-element-remove-btn"
                         actionListener="#{data.createManyCheckboxTab.deleteOption(option)}" process="form:create-tabs:many-checkbox-options"
-                        update="form:create-tabs:many-checkbox-options" immediate="true">
-
-                      </p:commandButton>
+                        update="form:create-tabs:many-checkbox-options" immediate="true" />
                     </p:column>
                   </p:dataTable>
                 </h:panelGroup>
@@ -202,9 +202,9 @@
 
           <h:panelGroup styleClass="create-form-toolbar">
             <p:commandButton id="add-checkbox-btn" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
-              actionListener="#{logic.createManyCheckbox}" icon="fa fa-arrow-down" resetValues="true"
-              update="form:available-form-elements form:create-tabs form:create-tabs:many-checkbox-options"
-              process="form:create-tabs:create-many-checkbox-tab form:create-tabs:many-checkbox-options" />
+              actionListener="#{logic.createManyCheckbox}" icon="fa fa-arrow-down"
+              update="form:create-tabs:many-checkbox-options form:available-form-elements form:create-tabs"
+              process="form:create-tabs:many-checkbox-options form:create-tabs:create-many-checkbox-tab" />
           </h:panelGroup>
         </p:tab>
 
@@ -249,7 +249,8 @@
                 </f:facet>
 
                 <p:column>
-                  <p:inputText value="#{option.value}" styleClass="express-workflow-table-input"
+                  <p:messages for="form-element-input-options" />
+                  <p:inputText value="#{option.value}" styleClass="express-workflow-table-input" id="form-element-input-options"
                     requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputOptions')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
                     placeholder="Option" required="true" maxlength="#{ivy.cms.co('/Dialogs/general/maxOptionsLength')}" />
 
@@ -265,7 +266,7 @@
 
           <h:panelGroup styleClass="create-form-toolbar">
             <p:commandButton id="add-radio-btn" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
-              actionListener="#{logic.createOneRadio}" icon="fa fa-arrow-down" resetValues="true"
+              actionListener="#{logic.createOneRadio}" icon="fa fa-arrow-down"
               update="form:available-form-elements form:create-tabs" process="form:create-tabs:create-one-radio-tab" />
           </h:panelGroup>
         </p:tab>
@@ -319,7 +320,7 @@
 
           <h:panelGroup styleClass="create-form-toolbar">
             <p:commandButton id="add-upload-file-btn" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
-              actionListener="#{logic.createFileUpload}" icon="fa fa-arrow-down" resetValues="true"
+              actionListener="#{logic.createFileUpload}" icon="fa fa-arrow-down"
               update="form:available-form-elements form:create-tabs" process="form:create-tabs:create-file-upload-tab" />
           </h:panelGroup>
         </p:tab>

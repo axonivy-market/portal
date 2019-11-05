@@ -16,7 +16,7 @@
   <c:set var="case" value="#{cc.attrs.case}" />
   
   <h:panelGroup rendered="#{cc.attrs.dataModel.isSelectedColumn('NAME')}">
-    <h:outputText id="#{cc.attrs.caseNameId}" styleClass="case-header-name-cell js-name-cell #{cc.attrs.nameStyleClass} #{cc.attrs.responsiveStyleClass}"
+    <h:outputText id="#{cc.attrs.caseNameId}" styleClass="case-header-name-cell #{cc.attrs.nameStyleClass} #{cc.attrs.responsiveStyleClass}"
       value="#{empty case.getName() ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CasesNameIsNot') : case.name}" />
     <h:outputText id="#{cc.attrs.caseDescriptionId}" styleClass="case-header-desc-cell" escape="false" value="#{caseWidgetBean.sanitizeHTML(case.description)}" />  </h:panelGroup>
 </cc:implementation>
