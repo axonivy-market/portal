@@ -30,7 +30,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   protected long getTimeOutForLocator() {
-    return 100L;
+    return 10L;
   }
 
   protected void waitForLocatorDisplayed(String locator) {
@@ -186,7 +186,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public MainMenuPage openMainMenu() {
-    WebElement mainMenuToggle = findDisplayedElementBySelector("#left-menu");
+    WebElement mainMenuToggle = findDisplayedElementByCssSelector("#left-menu");
     if (!isMainMenuOpen()) {
       click(mainMenuToggle);
       click(By.xpath("//a[@id='user-menu-required-login:toggle-menu']"));
@@ -200,14 +200,14 @@ public abstract class TemplatePage extends AbstractPage {
     waitAjaxIndicatorDisappear();
   }
 
-  public WebElement findDisplayedElementBySelector(String selector) {
+  public WebElement findDisplayedElementByCssSelector(String selector) {
     waitForElementDisplayed(By.cssSelector(selector), true);
     WebElement element = findElementByCssSelector(selector);
     return element;
   }
 
   public void closeMainMenu() {
-    findDisplayedElementBySelector("#left-menu");
+    findDisplayedElementByCssSelector("#left-menu");
     if (isMainMenuOpen()) {
       click(By.cssSelector("a[id$='toggle-menu']"));
       click(By.id("top-menu"));
@@ -234,7 +234,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public boolean isMainMenuOpen() {
-    WebElement mainMenu = findDisplayedElementBySelector(".layout-wrapper");
+    WebElement mainMenu = findDisplayedElementByCssSelector(".layout-wrapper");
     return mainMenu.getAttribute(CLASS_PROPERTY).indexOf("static") > 0;
   }
 
