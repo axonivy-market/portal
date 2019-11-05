@@ -87,7 +87,7 @@ Cs0 f9 actionTable 'out=in1;
 out.relatedTasks=in1.relatedTasks;
 out.technicalCases=in2.technicalCases;
 out.totalRelatedCases=in2.totalRelatedCases;
-out.totalRelatedTasts=in1.totalRelatedTasts;
+out.totalRelatedTasks=in1.totalRelatedTasks;
 ' #txt
 Cs0 f9 632 176 32 32 0 16 #rect
 Cs0 f9 @|JoinIcon #fIcon
@@ -97,7 +97,10 @@ Cs0 f12 expr out #txt
 Cs0 f12 109 192 176 192 #arcP
 Cs0 f14 actionTable 'out=in;
 ' #txt
-Cs0 f14 actionCode 'import ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig;
+Cs0 f14 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
+import ch.ivyteam.ivy.security.ISession;
+import ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig;
 import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -106,16 +109,29 @@ import ch.ivyteam.ivy.workflow.ITask;
 in.relatedTasks.clear();
 
 int count = 1;
-in.totalRelatedTasts = 0;
+in.totalRelatedTasks = 0;
 boolean excludeHiddenTasks = Boolean.parseBoolean(ivy.var.get(HiddenTasksCasesConfig.PORTAL_HIDDEN_TASK_CASE_EXCLUDED));
+ISession session = ServiceUtilities.findUserWorkflowSession(ivy.session.getSessionUserName(), in.iCase.getApplication());
+boolean ableToSeeAllRelatedTaskOfCase = PermissionUtils.checkReadAllTasksPermission() || PermissionUtils.checkTaskReadOwnCaseTasksPermission();
 for (ITask task : in.iCase.getTasks()) {
 	if ((task.getState() == TaskState.SUSPENDED || task.getState() == TaskState.RESUMED || task.getState() == TaskState.UNASSIGNED || task.getState() == TaskState.PARKED)
 				&& (excludeHiddenTasks ? StringUtils.isEmpty(task.customFields().stringField(AdditionalProperty.HIDE.toString()).getOrNull()) : true)) {
-		in.totalRelatedTasts++;
-		if (count <= 21) {//get only 21 tasks
-				in.relatedTasks.add(task);
+		if(ableToSeeAllRelatedTaskOfCase) {
+			in.totalRelatedTasks++;
+			if (count <= 21) {//get only 21 tasks
+					in.relatedTasks.add(task);
+			}
+			count++;
 		}
-		count++;
+		else {
+			if(task.canUserResumeTask(session).wasSuccessful()) {
+				in.totalRelatedTasks++;
+				if (count <= 21) {//get only 21 tasks
+						in.relatedTasks.add(task);
+				}
+				count++;
+			}
+		}
 	}
 }
 ' #txt
