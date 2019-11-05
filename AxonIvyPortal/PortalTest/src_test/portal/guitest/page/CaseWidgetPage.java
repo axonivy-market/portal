@@ -6,10 +6,11 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
+
+import portal.guitest.common.Sleeper;
 
 public class CaseWidgetPage extends TemplatePage {
 
@@ -21,7 +22,6 @@ public class CaseWidgetPage extends TemplatePage {
   private static final String SELECT_ITEM_XPATH =
       "//*[@id=\"case-widget:case-columns-configuration:select-columns-form:columns-checkbox\"]/tbody/tr[%s]/td/div/div[2]";
   private static final String APPLY_BUTTON_CSS_SELECTOR = "button[id$='select-columns-form:update-command']";
-  private static final String CANCEL_BUTTON_CSS_SELECTOR = "button[id$='cancel-command']";
   private static final String DEFAULT_COLUMNS_XPATH =
       "//*[@id=\"case-widget:case-columns-configuration:select-columns-form:default-columns\"]/div[2]";
 
@@ -48,20 +48,15 @@ public class CaseWidgetPage extends TemplatePage {
     return findElementById(caseItemId);
   }
 
-  public boolean isCaseItemSelected(int index) {
-    return findElementById(caseWidgetId + ":case-list-scroller:" + index + ":case-item").getAttribute("class")
-        .contains("case-list-item-expanded");
-  }
-
   private WebElement getDestroyButtonOfCaseItem(WebElement caseItem) {
-    caseItem.findElement(By.cssSelector("button[id$='action-steps-menu']")).click();
+    clickByCssSelector("button[id$='action-steps-menu']");
     waitForElementDisplayed(By.cssSelector("a[id$='destroy-case']"), true);
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> findElementByCssSelector("a[id$='destroy-case']").isDisplayed());
     return findElementByCssSelector("a[id$='destroy-case']");
   }
 
   private WebElement getMoreActionsPanel(WebElement caseItem) {
-    caseItem.findElement(By.cssSelector("button[id$='action-steps-menu']")).click();
+    clickByCssSelector("button[id$='action-steps-menu']");
     waitForElementDisplayed(By.cssSelector("div[id$='action-steps-panel']"), true);
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> findElementByCssSelector("div[id$='action-steps-panel']").isDisplayed());
     return findElementByCssSelector("div[id$='action-steps-panel']");
@@ -164,36 +159,27 @@ public class CaseWidgetPage extends TemplatePage {
         findElementByCssSelector("input[id$='description-filter:filter-input-form:description']");
     enterKeys(descriptionInput, text);
     click(By.cssSelector("button[id$='description-filter:filter-input-form:update-command']"));
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
   }
 
   public void saveFilter(String filterName) {
     click(By.id(caseWidgetId + ":filter-save-action"));
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
     WebElement filterNameInput = findElementById(caseWidgetId + ":filter-save-form:save-filter-set-name-input");
     enterKeys(filterNameInput, filterName);
     click(findElementById(caseWidgetId + ":filter-save-form:filter-save-command"));
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
   }
 
   public Object getFilterName() {
     click(findElementById(caseWidgetId + ":filter-selection-form:filter-name"));
-    WebElement descriptionInput = findElementByCssSelector(".user-definied-filter-container");
+    WebElement descriptionInput = findElementByCssSelector(".user-defined-filter-container");
 
     return descriptionInput.getText();
   }
 
   public boolean isFilterSelectionVisible() {
     return isElementPresent(By.id(caseWidgetId + ":filter-selection-form:filter-selection-panel"));
-  }
-
-  public int countCategoryRoots() {
-    List<WebElement> taskElements = findListElementsByCssSelector("span[class*='js-second-level-menu']");
-    return taskElements.size();
-  }
-
-  public void toggleCategoryMenu() {
-    click(findElementByClassName("second-level-menu-header"));
   }
 
   public boolean isEmpty() {
@@ -218,8 +204,7 @@ public class CaseWidgetPage extends TemplatePage {
   }
 
   public void clickColumnsButton() {
-    WebElement columnsButton = findElementByCssSelector(COLUMNS_BUTTON_CSS_SELECTOR);
-    columnsButton.click();
+    clickByCssSelector(COLUMNS_BUTTON_CSS_SELECTOR);
   }
 
   public void clickColumnCheckbox(int columnIndex) {
@@ -234,14 +219,8 @@ public class CaseWidgetPage extends TemplatePage {
   }
 
   public void clickApplyButton() {
-    WebElement applyButton = findDisplayedElementBySelector(APPLY_BUTTON_CSS_SELECTOR);
-    applyButton.click();
+    clickByCssSelector(APPLY_BUTTON_CSS_SELECTOR);
     waitAjaxIndicatorDisappear();
-  }
-
-  public void clickCancelButton() {
-    WebElement applyButton = findElementByCssSelector(CANCEL_BUTTON_CSS_SELECTOR);
-    applyButton.click();
   }
 
 }

@@ -56,11 +56,11 @@ As0 f3 83 147 26 26 -77 15 #rect
 As0 f3 @|UdMethodIcon #fIcon
 As0 f4 actionTable 'out=in;
 ' #txt
-As0 f4 actionCode 'import org.primefaces.context.RequestContext;
+As0 f4 actionCode 'import org.primefaces.PrimeFaces;
 import javax.faces.context.FacesContext;
 
 if (!FacesContext.getCurrentInstance().isValidationFailed()) {
-	RequestContext.getCurrentInstance().update(in.caseContainerId);
+	PrimeFaces.current().ajax().update(in.caseContainerId);
 }' #txt
 As0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

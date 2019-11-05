@@ -3,9 +3,6 @@ package portal.guitest.page;
 import org.openqa.selenium.By;
 
 public class ExpressApprovalPage extends TaskTemplatePage {
-  public void ok() {
-    clickByCssSelector("button[id$='ok-btn']");
-  }
   public void approve() {
     clickByCssSelector("button[id$='approve-btn']");
   }

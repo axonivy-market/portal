@@ -66,9 +66,9 @@
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskId value="#{task.getId()}" />
 
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate componentId="creation-time"
-        value="#{task.startTimestamp}" styleClass="js-create-cell" />
+        value="#{task.startTimestamp}" />
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate componentId="expiry-time"
-        value="#{task.expiryTimestamp}" styleClass="js-expiry-cell" />
+        value="#{task.expiryTimestamp}" />
 
       <h:outputText id="customer-name" styleClass="TexAlCenter" style="flex: 0 0 150px;"
         value="#{task.customFields().stringField('CustomVarCharField5').getOrNull()}" />
