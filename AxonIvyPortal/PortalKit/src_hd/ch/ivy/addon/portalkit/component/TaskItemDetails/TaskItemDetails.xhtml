@@ -29,11 +29,17 @@
           <f:passThroughAttribute name="onclick" value="if('#{taskActionBean.canChangeName(task)}'=='true') {event.stopPropagation()}" />
         </p:inplace>
       </h:panelGroup>
-      
-      <p:commandButton id="back-to-previous-page" onclick="window.history.back();" type="button" styleClass="task-details-back-btn"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" icon="fa fa-reply-all" iconPos="left" rendered="#{cc.attrs.isFromTaskList}" />
-      <p:commandButton id="back-to-tasks-list" actionListener="#{taskActionBean.backToTaskList(task)}" styleClass="task-details-back-btn"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" icon="fa fa-reply-all" iconPos="left" rendered="#{!cc.attrs.isFromTaskList}" />
+
+      <p:commandLink id="back-to-previous-page" onclick="window.history.back();" styleClass="task-details-back-btn" rendered="#{cc.attrs.isFromTaskList}">
+        <i class="fa fa-reply-all" />
+        <p:spacer width="3px" />
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
+      </p:commandLink>
+      <p:commandLink id="back-to-tasks-list" actionListener="#{taskActionBean.backToTaskList(task)}" styleClass="task-details-back-btn" rendered="#{!cc.attrs.isFromTaskList}">
+        <i class="fa fa-reply-all" />
+        <p:spacer width="3px" />
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
+      </p:commandLink>
     </h:form>
   </h:panelGroup>
 
