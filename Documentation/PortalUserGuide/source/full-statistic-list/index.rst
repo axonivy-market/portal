@@ -182,4 +182,4 @@ HowTo: Create chart
 
 .. centered:: Chart filter criterias
 
-.. include:: ../includes/common-icon.rst
+.. include:: ../includes/_common-icon.rst
