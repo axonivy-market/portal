@@ -1,0 +1,5 @@
+co: name={createNewStatistic} description={} changed={2019-10-31 10:46:45 CET} changedby={nqhoan} visualorder={0} guid={16E2135574DB48EB} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16E2135D3239E750} datatype={} isdefault={false} langid={es} description={} validfrom={2019-10-31 10:46:40 CET} validto={} changed={2019-10-31 10:46:45 CET} changedby={nqhoan} properties={} id={}
+val: guid={16E2135575623606} datatype={} isdefault={true} langid={en} description={} validfrom={2019-10-31 10:46:14 CET} validto={} changed={2019-10-31 10:46:14 CET} changedby={nqhoan} properties={} id={}
+val: guid={16E2135D26F1147B} datatype={} isdefault={false} langid={de} description={} validfrom={2019-10-31 10:46:33 CET} validto={} changed={2019-10-31 10:46:45 CET} changedby={nqhoan} properties={} id={}
+val: guid={16E2135D357CF06C} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-10-31 10:46:25 CET} validto={} changed={2019-10-31 10:46:45 CET} changedby={nqhoan} properties={} id={}

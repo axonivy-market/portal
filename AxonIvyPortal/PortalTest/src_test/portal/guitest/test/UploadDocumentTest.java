@@ -1,5 +1,7 @@
 package portal.guitest.test;
 
+import static junit.framework.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,7 +11,6 @@ import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
 
 public class UploadDocumentTest extends BaseTest{
   
@@ -23,7 +24,7 @@ public class UploadDocumentTest extends BaseTest{
   public void setup() {
     super.setup();
     createTestingTasks();
-    navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
   
   @Test
@@ -81,8 +82,7 @@ public class UploadDocumentTest extends BaseTest{
   }
   
   private void initHomePage(TestAccount account) {
-    LoginPage loginPage = new LoginPage(account);
-    loginPage.login();
+    login(account);
     homePage = new HomePage();
   }
   

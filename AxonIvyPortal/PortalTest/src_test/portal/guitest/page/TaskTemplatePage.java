@@ -6,21 +6,19 @@ import org.openqa.selenium.WebElement;
 
 public class TaskTemplatePage extends TemplatePage {
 
-  String ADHOC_HISTORY_TABLE_CSS_SELECTOR = "div[id*='adhoc-task-history-table'] table>tbody>tr";
+  private static final String ADHOC_HISTORY_TABLE_CSS_SELECTOR = "div[id*='adhoc-task-history-table'] table>tbody>tr";
 
   @Override
   protected String getLoadedLocator() {
-    return "id('task-actions')";
+    return "id('horizontal-task-actions')";
   }
 
   public void openStatusTab() {
-    String statusTabXpath = "//a[@href='#status-tab']";
-    waitForElementDisplayed(By.xpath(statusTabXpath), true);
-    click(findElementByXpath(statusTabXpath));
+    clickByCssSelector("#horizontal-case-info");
   }
 
   public boolean containsCaseDetails() {
-    WebElement caseDetails = findElementByCssSelector("div[id$='case-details-panel']");
+    WebElement caseDetails = findDisplayedElementByCssSelector("div[id$='case-details-panel']");
     return caseDetails.isDisplayed();
   }
 
@@ -52,7 +50,7 @@ public class TaskTemplatePage extends TemplatePage {
     return openATaskInCaseDetails(firstFinishedTaskCssSelector);
   }
 
-  public TaskDetailsPage openATaskInCaseDetails(String taskCssSelector) {
+  private TaskDetailsPage openATaskInCaseDetails(String taskCssSelector) {
     clickByCssSelector(taskCssSelector);
     return new TaskDetailsPage();
   }
@@ -95,7 +93,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
   
   public void clickAdhocCreationButton() {
-    clickByCssSelector("#task-actions");
+    clickByCssSelector("#horizontal-task-actions");
     clickByCssSelector("a[id$='start-adhoc']");
     waitAjaxIndicatorDisappear();
   }
@@ -104,12 +102,6 @@ public class TaskTemplatePage extends TemplatePage {
     clickByCssSelector("button[id$='start-adhoc-ok-button']");
     waitAjaxIndicatorDisappear();
   }
-  
-  public void clickAdhocCancelButton() {
-   clickByCssSelector("button[id$='start-adhoc-cancel-button']");
-    waitAjaxIndicatorDisappear();
-  }
-  
   
   public boolean isShowAdhocHistoryBtnNotExist() {
     String adhocHistoryBtnCSSSelection = "a[id$='show-adhoc-history']";
@@ -121,7 +113,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
   
   public void clickShowAdhocHistoryBtn() {
-    clickByCssSelector("#task-actions");
+    clickByCssSelector("#horizontal-task-actions");
     waitForElementDisplayed(By.cssSelector("a[id$='show-adhoc-history']"), true);
     clickByCssSelector("a[id$='show-adhoc-history']");
     waitAjaxIndicatorDisappear();
@@ -144,13 +136,13 @@ public class TaskTemplatePage extends TemplatePage {
   
   public String getAdhocCreationMessage() {
     String adhocCreationMessageCSSSelector = "span[id$='adhoc-creation-message']";
-    return findDisplayedElementBySelector(adhocCreationMessageCSSSelector).getText();
+    return findDisplayedElementByCssSelector(adhocCreationMessageCSSSelector).getText();
   }
 
-  public void clickSubmitButton() {
+  public HomePage clickSubmitButton() {
     String submitButton = "button[id$='command-form:button-submit']";
     clickByCssSelector(submitButton);
-    waitAjaxIndicatorDisappear();
+    return new HomePage();
   }
   
   public void clickChatGroup() {

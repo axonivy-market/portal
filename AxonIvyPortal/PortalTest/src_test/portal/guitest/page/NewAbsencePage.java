@@ -36,7 +36,7 @@ public class NewAbsencePage extends TemplatePage {
       waitAjaxIndicatorDisappear();
       String itemSelector = "li[data-item-label*='" + username + "'].ui-state-highlight";
       waitForElementDisplayed(By.cssSelector(itemSelector), true);
-      findElementByCssSelector(itemSelector).click();
+      clickByCssSelector(itemSelector);
       waitAjaxIndicatorDisappear();
     }
     inputDate(absenceFrom, "input[id*='absence-start-date']");
@@ -64,8 +64,7 @@ public class NewAbsencePage extends TemplatePage {
   }
 
   public AddAbsencePage proceed() {
-    WebElement proceedElement = findElementByCssSelector("button[id*='next-to-deputy']");
-    proceedElement.click();
+    clickByCssSelector("button[id*='next-to-deputy']");
     return new AddAbsencePage();
   }
 

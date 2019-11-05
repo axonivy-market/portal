@@ -32,17 +32,12 @@ public class SearchResultPage extends TemplatePage {
 
 	public void startProcess(String name) {
 		ProcessWidgetPage processWidgetPage = new ProcessWidgetPage("search-results-tabview:process-results");
-		processWidgetPage.startProcess(name);
+		processWidgetPage.waitAndStartProcess(name);
 	}
 
 	public String getProcessResult(String name) {
 		ProcessWidgetPage processWidgetPage = new ProcessWidgetPage("search-results-tabview:process-results");
 		return processWidgetPage.getProcess(name).getText();
-	}
-
-	public boolean isProcessResultEmpty() {
-		ProcessWidgetPage processWidgetPage = new ProcessWidgetPage("search-results-tabview:process-results");
-		return processWidgetPage.isProcessEmpty();
 	}
 
 	public String getTaskResult(int index) {
@@ -68,11 +63,6 @@ public class SearchResultPage extends TemplatePage {
 	public int countNumberOfEmployee() {
 		WebElement employeeSearchResult = findElementById("search-results-tabview:employee-table");
 		return employeeSearchResult.findElements(By.cssSelector("tr.ui-widget-content")).size();
-	}
-
-	public void openEmployeeDetail(int index) {
-		click(By.id(String.format("search-results-tabview:employee-table:%d:detail-action", index)));
-		waitAjaxIndicatorDisappear();
 	}
 
 	public boolean isProcessGroupDisplay(String group) {

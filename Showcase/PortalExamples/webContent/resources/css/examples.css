@@ -76,7 +76,7 @@
 }
 
 .customized-login-bg {
-	background-image: url(#{resource['ivy-webcontent:images/login/Login-HD.jpg']});
+	background-image: url("#{resource['ivy-webcontent:images/login/Login-HD.jpg']}");
 	filter: blur(4px);
 	-webkit-filter: blur(4px);
 	height: 100%;
@@ -149,7 +149,6 @@
 }
 
 .process-chain-test-form {
-	heigh: 500px;
 	padding: 0.5em 1em;
 }
 

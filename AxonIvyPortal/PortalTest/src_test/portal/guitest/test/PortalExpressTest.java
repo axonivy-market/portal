@@ -1,15 +1,18 @@
 package portal.guitest.test;
 
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
+
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.DefaultExpresTaskPage;
 import portal.guitest.page.ExpressApprovalPage;
@@ -19,10 +22,10 @@ import portal.guitest.page.ExpressProcessPage;
 import portal.guitest.page.ExpressReviewPage;
 import portal.guitest.page.ExpressTaskPage;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.SearchResultPage;
+import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.TemplatePage.GlobalSearch;
 import portal.guitest.page.UserTaskWithMailFormPage;
@@ -49,9 +52,7 @@ public class PortalExpressTest extends BaseTest {
 	@Before
 	public void setup() {
 		super.setup();
-		navigateToUrl(HomePage.PORTAL_HOME_PAGE_URL);
-		LoginPage loginPage = new LoginPage(TestAccount.DEMO_USER);
-		loginPage.login();
+		redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
 		redirectToRelativeLink("portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp");
 		homePage = new HomePage();
 	}
@@ -82,7 +83,7 @@ public class PortalExpressTest extends BaseTest {
 		formDefinition.createUploadComponent("Upload");
 		formDefinition.moveAllElementToDragAndDrogPanel();
 		formDefinition.executeWorkflow();
-		Sleeper.sleepTight(2000);
+		Sleeper.sleep(2000);
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		Assert.assertTrue(expressTaskPage.isDocumentTableVisible());
 		Assert.assertTrue(expressTaskPage.isDocumentUploadButtonVisible());
@@ -158,7 +159,7 @@ public class PortalExpressTest extends BaseTest {
 		formDefinition.createTextInputField("Input Text", INPUT_TEXT_TYPE_INDEX, false);
 		formDefinition.moveAllElementToDragAndDrogPanel();
 		formDefinition.executeWorkflow();
-		Sleeper.sleepTight(2000);
+		Sleeper.sleep(2000);
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		expressTaskPage.finish();
 		HomePage home = new HomePage();
@@ -233,7 +234,6 @@ public class PortalExpressTest extends BaseTest {
 	@Test
 	public void testUserCreatorCanViewEditDeleteProcess() {
 		createAdministratedWorkflow("Test approval", Arrays.asList(responsible1, groupHr), false);
-		login(TestAccount.DEMO_USER);
 		GlobalSearch globalSearch = homePage.getGlobalSearch();
 		SearchResultPage searchResultPage = globalSearch.inputSearchKeyword("Test approval");
 
@@ -421,7 +421,7 @@ public class PortalExpressTest extends BaseTest {
 
 	protected String executeReview(String taskName) {
 		taskWidgetPage = new TaskWidgetPage();
-		Sleeper.sleepTight(2000);
+		Sleeper.sleep(2000);
 		taskWidgetPage.filterTasksBy(taskName);
 		taskWidgetPage.startTask(0);
 		ExpressReviewPage reviewPage = new ExpressReviewPage();
@@ -441,7 +441,7 @@ public class PortalExpressTest extends BaseTest {
 
 	protected void executeUserTask(String taskName) {
 		taskWidgetPage = new TaskWidgetPage();
-		Sleeper.sleepTight(2000);
+		Sleeper.sleep(2000);
 		taskWidgetPage.filterTasksBy(taskName);
 		taskWidgetPage.startTask(0);
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
@@ -453,6 +453,7 @@ public class PortalExpressTest extends BaseTest {
 		GlobalSearch globalSearch = homePage.getGlobalSearch();
 		SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(processName);
 		searchResultPage.startProcess(processName);
+		new TaskTemplatePage();
 	}
 
 	protected void executeApproval(String comment) {
