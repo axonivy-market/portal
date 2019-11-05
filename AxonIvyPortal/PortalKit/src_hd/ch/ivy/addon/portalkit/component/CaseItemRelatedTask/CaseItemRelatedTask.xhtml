@@ -29,7 +29,7 @@
 
     <div class="ui-g-12 u-padding-0 case-detail-related-table">
       <h:panelGroup rendered="#{not empty data.relatedTasks}" styleClass="ui-g-12 u-padding-0 case-related-running">
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')} (#{data.totalRelatedTasts})" styleClass="Fleft" />
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')} (#{data.totalRelatedTasks})" styleClass="Fleft" />
         <h:panelGroup id="more-related-tasks" layout="block" styleClass="Fright show-more-technical-cases-container u-truncate-text">
           <p:commandLink id="show-more-related-tasks" actionListener="#{logic.openPortalTasks}" styleClass="case-related-command-link" rendered="#{caseWidgetBean.showAllTasksOfCase}">
             <span class="fa fa-external-link-square note-show-more-link-icon" />
