@@ -28,7 +28,7 @@ $homeLogoHeight: 42px;
 
 /* Default Portal styles */
 $defaultFontSize: 10px;
-$defaultBodyFontSize: 14px;
+$defaultBodyFontSize: 1.4rem;
 $largeFontSize: 1.4rem; // font size for header,title, groups, menu
 $smallFontSize: 1.2rem; // font size for text, label, input
 $portalFontFamily: "Roboto";
@@ -281,7 +281,6 @@ $emailFileUploadCornerTopBackgroundColor: transparent;
 $expressTableNoHeaderBorder: $grey3;
 $expressTableNoHeaderBackgroundColor: transparent;
 $selectCheckboxMenuTriggerBackgroundColor: $white;
-$selectCheckboxMenuTriggerBorder: #b0bec5;
 $expressExpandCollapseButtonColor: $primaryTextColor;
 $processExpressLogoBackgroundColor: transparent;
 $expressWorkflowActiveSwitchLabelFontWeight: 700;
