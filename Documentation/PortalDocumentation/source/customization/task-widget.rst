@@ -253,7 +253,7 @@ You can refer to ``PortalExamples`` project for examples
 
    |responsive-task-list-customization|
 
-    .. tip:: Hint: ``TaskCustomField`` component has default
+    .. tip:: ``TaskCustomField`` component has default
       responsiveStyleClass is ``u-hidden-sm-down``
 
 2. Responsiveness could be broken when you anchor left menu. In this
@@ -263,7 +263,7 @@ You can refer to ``PortalExamples`` project for examples
 
    |responsive-task-list-hide-column|
 
-  .. tip:: Hint: The smallest browser width you can anchor the left menu is
+  .. tip:: The smallest browser width you can anchor the left menu is
       1025. So you could reduce width of browser to 1025 to test and
       decide which columns need to be hidden.
 

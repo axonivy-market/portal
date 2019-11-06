@@ -66,21 +66,9 @@ input::-ms-clear {
   padding-left: 10px;
   padding-right: 10px;
   height: 25px;
-  border-bottom: 1px solid rgba(244, 244, 244 ,1);
   text-align: left;
 }
 
-.ui-treetable table thead tr th:not(:last-child) {
-  border-right: 1px solid rgba(0, 0, 0, 0.2);
-}
-
-.ui-treetable table tbody tr:not(:last-child) td {
-    border-bottom: 1px solid white;
-}
-
-.ui-treetable table tbody tr td:not(:last-child) {
-    border-right: 1px solid rgba(0, 0, 0, 0.2);
-}
 /* =================== END TABLE ====================== */
 
 /* =================== DIALOG ====================== */
@@ -119,7 +107,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-filter-container .ui-icon-search,
 .ui-picklist .ui-picklist-filter-container .ui-icon,
 .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon {
-	background: transparent;
     overflow: visible;
     text-indent: 5px;
 }
@@ -153,15 +140,9 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   padding: 0 10px !important;
 }
 
-
-.ui-fieldset-toggler:hover {
-	background-color: transparent !important;
-}
-
 .fieldset-no-border {
   border: none !important;
   padding: .6em 0;
-  background-color: transparent !important;
 }
 
 .fieldset-no-border .ui-fieldset-toggler.ui-icon-minusthick:before {
@@ -188,8 +169,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .widget-header-main {
   flex: 1 0 50%;
   position: relative;
-  height: 50px;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
+  height: 20px;
 }
 
 /* Small screen */
@@ -201,7 +181,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .widget-tasklist-header {
   position: relative;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
   height: 38px;
 }
 
@@ -250,7 +229,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   align-items: flex-end;
   line-height: normal;
   padding-bottom: 10px;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .widget-sort-menu.full-mode a.ui-widget.ui-commandlink .sort-icon {
@@ -258,12 +236,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .widget-header-filter-input.ui-inputfield {
-  background-color: transparent;
   width: 100%;
-}
-
-.widget-header-filter-input.ui-inputfield.ui-state-hover, .widget-header-filter-input.ui-inputfield.ui-state-focus {
-  background-color: transparent;
 }
 
 .widget-content a:hover {
@@ -276,12 +249,9 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 /********************** START MENU ITEM ***********************/
-.layout-wrapper .layout-sidebar .layout-menu>li>a.current-application {
-	border-bottom: 1px solid transparent;
-}
+
 
 .layout-wrapper .layout-sidebar .layout-menu>li:not(.active-menuitem)>a.current-application {
-	border-bottom-color: rgba(0,0,0,0.15) !important;
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
 }
@@ -294,8 +264,8 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .last-sub-item {
-	border-bottom-right-radius: 10px !important;
-    border-bottom-left-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+  border-bottom-left-radius: 10px !important;
 }
 
 /********************** END MENU ITEM ***********************/
@@ -307,12 +277,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
     padding-right: 0 !important;
 }
 
-.submenu-container.active-menuitem a:hover {
-	background-color: transparent !important;	
-}
-
 .submenu-container a {
-	background-color: transparent !important;
     box-shadow: none !important;
 }
 
@@ -349,10 +314,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .filter-category-checkbox-tree .ui-tree-container {
   height: 300px;
   overflow: auto !important;
-}
-
-.filter-category-checkbox-tree .ui-tree-filter.ui-inputfield {
-  box-shadow: inset 0 -1px 0px 0px rgba(0, 0, 0, 0.3);
 }
 
 .filter-category-checkbox-tree .ui-icon.ui-icon-search {
@@ -417,11 +378,10 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   margin-right: 10px;
 }
 
-.task-widget .advanced-filter, .case-widget .advanced-filter,
+.task-widget .advanced-filter,
 .case-widget-container .advanced-filter, .case-widget .advanced-filter {
   display: inline-block;
   margin-right: 10px;
-  border: solid transparent 1px;
   position: relative;
   cursor: pointer;
   height: 30px;
@@ -431,7 +391,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .case-widget-container .advanced-filter:hover,
 .task-widget .filter-selection-container:hover,
 .case-widget-container .filter-selection-container:hover {
-  border-color: #d5d5d5;
   border-radius: 5px;
 }
 
@@ -440,7 +399,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   display: inline-block;
   height: 30px;
   line-height: 30px;
-  background: none;
   min-width: 0;
   padding: 0 25px 0 5px !important;
   overflow: hidden;
@@ -453,13 +411,11 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .task-widget .filter-selection-container,
-.case-widget-container .filter-selection-container{
+.case-widget-container .filter-selection-container {
   display: inline-block;
   height: 30px;
   line-height: 30px;
-  background: none;
   min-width: 0;
-  border: solid transparent 1px;
   padding-left: 5px;
 }
 
@@ -492,15 +448,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   display: inline;
 }
 
-.task-widget .ui-widget.ui-button.advanced-filter-command.ui-state-hover,
-.task-widget .ui-widget.ui-button.advanced-filter-command.ui-state-active,
-.task-widget .ui-widget.ui-button.advanced-filter-command.ui-state-focus,
-.case-widget-container .ui-widget.ui-button.advanced-filter-command.ui-state-hover,
-.case-widget-container .ui-widget.ui-button.advanced-filter-command.ui-state-active,
-.case-widget-container .ui-widget.ui-button.advanced-filter-command.ui-state-focus {
-  background: none !important;
-}
-
 .advanced-filter-icon {
   position: absolute;
   font-size: 1.8rem;
@@ -523,7 +470,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer,
 .case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer {
   padding: 10px;
-  border-top: solid 1px #eaeaea;
   text-align: right;
 }
 
@@ -688,7 +634,6 @@ span.task-details-document-add-link {
 .case-widget-container .case-widget-top-header {
   position: relative;
   height: 38px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .case-widget-top-header-main-title {
@@ -718,7 +663,7 @@ span.task-details-document-add-link {
   align-items: flex-end;
   line-height: normal;
   padding-bottom: 10px;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
+  height: 45px;
 }
 
 .case-widget-container .sort-icon {
@@ -754,7 +699,6 @@ span.task-details-document-add-link {
 .case-list .ui-datascroller .ui-datascroller-content {
   border: none;
   border-radius: 0;
-  background-color: transparent;
 }
 
 
@@ -785,7 +729,6 @@ span.task-details-document-add-link {
 .case-header-action-cell, .task-header-action-cell {
   flex: 0 0 auto;
   text-align: right;
-  border-left: solid 1px rgba(0, 0, 0, 0.4);
   margin: auto;
   padding: 0 10px;
 }
@@ -802,9 +745,7 @@ span.task-details-document-add-link {
 }
 
 .case-header-action-cell .action-item .ui-button {
-  background: transparent;
   box-shadow: none;
-  outline: transparent;
 }
 
 .case-header-action-cell .action-icon {
@@ -874,7 +815,6 @@ span.task-details-document-add-link {
   width: 100%;
   margin: 0;
   border-collapse: unset;
-  border: 0.8px solid rgba(0, 0, 0, 0.15);
 }
 
 .action-steps-panel .ui-overlaypanel-content {
@@ -1029,7 +969,6 @@ span.task-details-document-add-link {
 
 .process-header .process-header-title-container {
   padding: 6px 6px 6px 0;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .process-header .widget-header-sub .filter-widget {
@@ -1042,13 +981,14 @@ span.task-details-document-add-link {
 }
 
 .process-header .create-express-link a:hover i {
-  opacity: 0.6;
+  opacity: 1;
 }
 
 .process-header .create-express-workflow-icon {
   margin-right: 4px;
   height: 1.6rem;
   width: 1.6rem;
+  opacity: 0.6;
 }
 
 body .process-widget .ui-fieldset .ui-fieldset-legend .ui-fieldset-toggler {
@@ -1115,7 +1055,6 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   position: absolute !important;
   right: 0;
   height: auto;
-  border-left: 1px solid rgba(0,0,0,0.1);
 }
 
 .process-widget .process-nav .process-nav-item {
@@ -1126,7 +1065,6 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   content: "";
   display: table;
   position: absolute;
-  border-left: 3px solid #c7d426;
   height: 3rem;
   left: -2px;
   transform: translateY(-20%);
@@ -1142,13 +1080,6 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   border-radius: 5px;
   display: flex;
   position: relative;
-}
-
-.process-start-list-item:hover,
-.process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover {
-  -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.8);
-  -moz-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.8);
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.8);
 }
 
 .process-start-list-item:before, .process-start-list-item:after {
@@ -1411,7 +1342,6 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 
 .process-header .create-express-workflow-icon,
 .express-process-logo {
-  background-color: transparent !important;
   background-size: 100%;
   background-image: url("#{resource['ivy-webcontent:images/expressLogo/icon_express_process_120x120.png']}");
 }
@@ -1591,10 +1521,6 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
   align-items: center;
 }
 
-.filter-name-overlay-panel .filter-separator.ui-separator{
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-}
-
 .filter-name-overlay-panel .filter-type-label { 
    text-align: left; 
    padding: 10px 0 10px 6px;
@@ -1657,7 +1583,6 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 .task-view-container .ui-datascroller .ui-datascroller-content {
   border: none;
   border-radius: 0;
-  background-color: transparent;
 }
 
 .task-view-container .compact-mode.ui-datascroller .ui-datascroller-item {
@@ -1841,7 +1766,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .document-upload {
-  border: 2px dashed #cccccc;
   border-radius: 8px;
   padding: 5px;
 }
@@ -1855,10 +1779,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .options-panel {
   width: 200px;
-  border-top: solid 1px rgba(43, 59, 93, 0.2);
   border-radius: 5px;
-  -webkit-box-shadow: 0px 2px 4px 0px rgba(43, 59, 93, 0.6) !important;
-  box-shadow: 0px 2px 4px 0px rgba(43, 59, 93, 0.6) !important;
   padding: 0 !important;
 }
 
@@ -1909,7 +1830,8 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
     padding: 0 15px !important;
   }
   
-  .widget-sort-menu.full-mode {
+  .widget-sort-menu.full-mode,
+  .case-widget-container .widget-column-header {
     height: 35px;
   }
   
@@ -1960,15 +1882,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 #task-description .scroll-panel.OvAuto li {
   list-style-type: inherit;
-}
-
-.note-separator {
-  border-bottom: solid 1px rgba(0,0,0,0.1);
-  width: 100%;
-  overflow: hidden;
-  height: 0px;
-  margin: 12px 0;
-  clear: both;
 }
 
 .task-details-note-add-link-icon {
@@ -2039,7 +1952,6 @@ _:-ms-input-placeholder, :root .case-details > * {
 
 .related-task-content {
   border-collapse: collapse;
-  border: 1px solid #d8d8d8;
   line-height: 2.2rem;
   border-bottom: none;
 }
@@ -2130,7 +2042,6 @@ _:-ms-fullscreen, :root .additional-case-details-link {
 .case-related-running {
   position: relative;
   line-height: 2.5rem;
-  border: 1px solid #d8d8d8;
   padding: 5px 10px !important;
 }
 
@@ -2205,11 +2116,6 @@ _:-ms-fullscreen, :root .additional-case-details-link {
   display: inline-flex;
   width: 35px;
   height: 35px;
-  border: solid 1px transparent;
-}
-
-.icon-selection-dialog-selecting-icon:hover {
-  border: solid 1px black;
 }
 
 .icon-selection-dialog-selecting-icon .fa {
@@ -2280,9 +2186,6 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   .circle-process-chain .circle-horizontal-step-title {
     margin-bottom: 2px !important;
   }
-  .circle-horizontal-step-container:not(.right-steps) .step-number-container:after {
-    border-top-color: #c7d426 !important;
-  }
   .circle-horizontal-step-container .step-number-container:after, .circle-horizontal-step-container .step-number-container:before {
     display: inline-block;
     content: "";
@@ -2293,14 +2196,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
     transform: translate(2rem, 0.5rem);
     border-top-style: dashed;
   }
-  .circle-horizontal-step-container:not(.last-step) .step-number-container:after {
-    border-top: 3px dashed #E0E0E0;
-  }
-  .circle-horizontal-step-container.last-step .step-number-container:after {
-    border-top: 3px dashed #c7d426 !important;
-  }
   .circle-horizontal-step-container .step-number-container:before {
-    border-top: 3px solid #c7d426;
     transform: translate(-4rem, -0.6rem);
     border-top-style: dashed;
   }
@@ -2343,14 +2239,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
     transform: translate(2rem, 0.5rem);
     border-top-style: dashed;
   }
-  .circle-horizontal-step-container:not(.last-step) .step-number-container:after {
-    border-top: 3px dashed #E0E0E0;
-  }
-  .circle-horizontal-step-container.last-step .step-number-container:after {
-    border-top: 3px dashed #c7d426 !important;
-  }
   .circle-horizontal-step-container .step-number-container:before {
-    border-top: 3px solid #c7d426;
     transform: translate(-4rem, -0.8rem);
     border-top-style: dashed;
   }
@@ -2370,7 +2259,6 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   position: absolute;
   top: 1.45rem;
   content: "";
-  border-top: 0.3rem solid #E0E0E0;
   width: 88px;
   margin: 0 10px;
   transform: translate(1rem, 0);
@@ -2385,16 +2273,11 @@ _:-ms-fullscreen, :root .circle-horizontal-process-step:not(:last-child) .circle
   border-top-style: dashed;
 }
 
-.circle-process-chain .circle-horizontal-process-step.waiting .circle-horizontal-step-container {
-  background-color: transparent;
-}
-
 .circle-process-chain .circle-horizontal-process-step .circle-horizontal-step-container,
 .circle-process-chain .circle-vertical-process-step .circle-vertical-step-container {
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 50%;
-  border: solid 2px transparent;
   margin: auto;
   display: flex;
   align-items: center;
@@ -2436,7 +2319,6 @@ _:-ms-fullscreen, :root .circle-horizontal-process-step:not(:last-child) .circle
   position: absolute;
   display: block;
   content: "";
-  border-left: 3px solid #E0E0E0;
   height: 5rem;
   top: 4rem;
 }
@@ -2447,10 +2329,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 .circle-process-chain .circle-vertical-process-step.hide-steps:not(:last-child) .circle-vertical-step-container .step-number-container:after {
   border-left-style: dashed;
-}
-
-.circle-process-chain .circle-vertical-process-step.waiting .circle-vertical-step-container {
-  background-color: transparent;
 }
 
 .circle-process-chain .circle-vertical-process-step .circle-vertical-step-container {
@@ -2779,8 +2657,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 .next-to-deputy, .new-app, .ui-dialog-footer button {
   min-width: 120px;
   margin-bottom : 6px ;
- -webkit-box-shadow: 0 1px 2.5px 0 rgba(0,0,0,0.26), 0 1px 5px 0 rgba(0,0,0,0.16) !important;
-  box-shadow: 0 1px 2.5px 0 rgba(0,0,0,0.26), 0 1px 5px 0 rgba(0,0,0,0.16) !important;
 }
 
  .selection-app-type {
@@ -2973,9 +2849,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   width: 95%;
 }
 
-.process-starts-icon {
-  font-size: 11pt;
-}
 /********************************** END PROCESS START **********************************/
 
 /********************************** TASK INFORMATION **********************************/
@@ -3075,7 +2948,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 .ui-carousel-item .ui-dialog-content .ui-panelgrid,
 .ui-carousel-item .ui-dialog-content .ui-panelgrid tbody tr .ui-panelgrid-cell  {
-  border: solid 1px #E0E0E0 !important;
   text-align: left;
 }
 
@@ -3329,9 +3201,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 .edit-statistic-container .card,
 .statistic-widget.compact-mode .statistic-carousel.card {
   padding: 16px;
-  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2),
-              0 2px 4px 0 rgba(0, 0, 0, 0.14),
-              0 4px 2px -1px rgba(0, 0, 0, 0.12);
 }
 
 .statistic-widget.compact-mode .statistic-carousel.card {
@@ -3559,13 +3428,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   overflow: auto;
 }
 
-.ui-widget.ui-datepicker-trigger.ui-button.ui-state-hover,
-.ui-widget.ui-autocomplete-dropdown.ui-button.ui-state-hover,
-.ui-widget.ui-datepicker-trigger.ui-button.ui-state-focus,
-.ui-widget.ui-autocomplete-dropdown.ui-button.ui-state-focus {
-  background-color: transparent !important;
-}
-
 .ui-fileupload-content .ui-progressbar {
 	top: 0px !important;
 }
@@ -3722,7 +3584,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 
 .config-checkbox-container {
-  border-bottom: 1px solid black;
   margin: 3px 2px;
   padding-bottom: 2px;
 }
@@ -3747,7 +3608,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: none repeat scroll 0 0 transparent !important;
   text-indent: 0 !important;
 }
 
@@ -3778,7 +3638,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 
 .statistic-filter-accordion-panel .ui-accordion-content {
-  border: solid 1px #E0E0E0 !important;
   overflow-y: hidden !important;
 }
 
@@ -4086,7 +3945,6 @@ _:-ms-fullscreen, :root .content-link-history {
 /* ================= END RESPONSIVE GRID ==================== */
 .task-widget .filter-container .filter-selection-container-group,
 .case-widget-container .filter-container .filter-selection-container-group {
-    border-right: solid 1px rgba(0,0,0,0.5);
     display: inline-block;
     margin-right: 5px;
 }
@@ -4178,10 +4036,6 @@ _:-ms-fullscreen, :root .content-link-history {
 
 .task-action-item {
   margin: auto;
-}
-
-.task-action-item:hover {
-  background-color: transparent !important;
 }
 
 .task-action-item .task-action-item-label {
@@ -4297,9 +4151,7 @@ _:-ms-fullscreen, :root .content-link-history {
 .task-title {
   flex: 1;
 }
-.task-template-content .task-actions-button:focus {
-  outline: transparent;
-}
+
 .task-actions-menu .ui-slidemenu-backward.ui-widget-header {
   border: none;
   padding: 6px;
@@ -4311,9 +4163,6 @@ _:-ms-fullscreen, :root .content-link-history {
 }
 
 @media screen and (max-width: 40em) {
-    .history-note {
-        border-left: 1px solid #d8d8d8 !important;
-    }
     .ui-fileupload-buttonbar .ui-button {
         padding: 0 14px 0 28px !important;
     }
