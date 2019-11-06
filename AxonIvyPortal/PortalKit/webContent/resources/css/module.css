@@ -1472,7 +1472,6 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 }
 
 /* END NEED TO BE REFACTORED */
-$black
 
 /********************************** TASK WIDGET **********************************/
 .dashboard-task-widget-container {
@@ -2848,9 +2847,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   width: 95%;
 }
 
-.process-starts-icon {
-  font-size: 11pt;
-}
 /********************************** END PROCESS START **********************************/
 
 /********************************** TASK INFORMATION **********************************/
