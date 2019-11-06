@@ -15,7 +15,7 @@
 </cc:interface>
 
 <cc:implementation>
-  <p:commandButton id="#{cc.attrs.actionLinkId}" onstart="event.stopPropagation();" global="false" disabled="#{cc.attrs.case.state eq 'DONE'}"
+  <p:commandButton id="#{cc.attrs.actionLinkId}" onstart="event.stopPropagation();" global="false"
     actionListener="#{sideStepBean.getSideSteps(cc.attrs.taskId, cc.attrs.case.id, cc.attrs.isAdhocExcluded)}" styleClass="#{cc.attrs.actionLinkStyleClass} #{cc.attrs.taskId} action-button"
     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="fa fa-angle-down"
     iconPos="right" />
