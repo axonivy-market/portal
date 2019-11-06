@@ -61,6 +61,8 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.TUESDAY_
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.USER_ID;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.WEDNESDAY_CMS;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -1014,8 +1016,8 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     for (Iterator<Entry<String, Number>> iterator = caseCategoryToElapsedTime.entrySet().iterator(); iterator.hasNext();) {
       Entry<String, Number> chartDataEntry = iterator.next();
       float floatValueOfChartData = chartDataEntry.getValue().floatValue()/3600;
-
-      chartDataEntry.setValue(floatValueOfChartData);
+      BigDecimal roundElapsedTime = new BigDecimal(floatValueOfChartData).setScale(2, RoundingMode.HALF_UP);
+      chartDataEntry.setValue(roundElapsedTime);
     }
 
     return new HashMap<>(caseCategoryToElapsedTime);
@@ -1105,7 +1107,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
 
   /**
-   * Create a BarChart's placeholder for Statistic chart when data is collection from DB
+   * Create a BarChart's placeholder when Statistic chart is loading
    * @return BarChartModel
    * 
    */
@@ -1121,7 +1123,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
 
   /**
-   * Create a DonutChart's placeholder for Statistic chart when data is collection from DB
+   * Create a DonutChart's placeholder when Statistic chart is loading
    * @return DonutChartModel
    * 
    */
