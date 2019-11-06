@@ -45,7 +45,4 @@ public enum PortalPermission {
     }
     return permission;
   }
-
-  
-
 }
