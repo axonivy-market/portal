@@ -41,6 +41,7 @@ import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.businesscase.IBusinessCase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
@@ -65,16 +66,11 @@ public class ChatAssigneeBean implements Serializable {
   private String groupChatExistMessage;
   private GroupChat existedGroupChat;
   private boolean isShowCreateGroupChatDialog;
+  private ITask task;
 
   @PostConstruct
   public void init() {
     selectedAssignees.add(Ivy.session().getSessionUser());
-    handleConfiguredRoleList();
-
-    if (isShowCreateGroupChatDialog) {
-      populateAvailableRoles();
-      populateAvailableUsers();
-    }
   }
 
   public void handleConfiguredRoleList() {
@@ -204,13 +200,19 @@ public class ChatAssigneeBean implements Serializable {
 
   private CaseQuery queryCaseHasGroupChat() {
     CaseQuery caseQuery = CaseQuery.create();
-    caseQuery.where().caseId().isEqual(Ivy.wfCase().getBusinessCase().getId()).and().customField()
+    caseQuery.where().caseId().isEqual(task.getCase().getBusinessCase().getId()).and().customField()
         .stringField(AdditionalProperty.PORTAL_GROUP_CHAT_INFO.toString()).isNotNull();
     return caseQuery;
   }
 
-  public void createGroupChatForConfiguredRoleList() {
-    if (!isShowCreateGroupChatDialog && !doesGroupChatExist) {
+  public void createGroupChatForConfiguredRoleList(ITask task) {
+    this.task = task;
+    handleConfiguredRoleList();
+
+    if (isShowCreateGroupChatDialog) {
+      populateAvailableRoles();
+      populateAvailableUsers();
+    } else if (!doesGroupChatExist) {
       createGroupChat();
     } else {
       PrimeFaces.current().executeScript("PF('chat-assignee-dialog').show()");
@@ -222,7 +224,7 @@ public class ChatAssigneeBean implements Serializable {
       return;
     }
 
-    ICase iCase = Ivy.wfCase().ensureBusinessCase();
+    ICase iCase = task.getCase().ensureBusinessCase();
     GroupChat group = initGroupChat(iCase);
     FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, Ivy.cms()
         .co("/ch.ivy.addon.portalkit.ui.jsf/chat/processChatIsCreated", Arrays.asList(getGroupChatName(group))), null);
@@ -271,7 +273,7 @@ public class ChatAssigneeBean implements Serializable {
   }
 
   private CreateGroupChatStatus saveGroupChat(GroupChat group, boolean isUpdate) throws JsonProcessingException {
-    IBusinessCase iCase = Ivy.wfCase().getBusinessCase();
+    IBusinessCase iCase = task.getCase().getBusinessCase();
     String portalGroupChatInfo = iCase.customFields().stringField(AdditionalProperty.PORTAL_GROUP_CHAT_INFO.toString())
         .get().orElse(StringUtils.EMPTY);
     if (StringUtils.isBlank(portalGroupChatInfo) || isUpdate) {
@@ -290,7 +292,7 @@ public class ChatAssigneeBean implements Serializable {
     GroupChat group = new GroupChat();
     group.setCaseId(iCase.getId());
     group.setCaseName(iCase.getName());
-    group.setApplicationName(Ivy.wf().getApplication().getName());
+    group.setApplicationName(task.getApplication().getName());
     group.setCreator(Ivy.session().getSessionUserName());
     group.setAssignees(selectedAssignees);
     Map<String, Object> response = IvyAdapterService.startSubProcess("getGroupChatParams()", null,
@@ -324,7 +326,7 @@ public class ChatAssigneeBean implements Serializable {
   @SuppressWarnings("unchecked")
   private List<ISecurityMember> getConfiguredRoles() {
     Map<String, Object> params = new HashMap<>();
-    params.put("task", Ivy.wfTask());
+    params.put("task", task);
     Map<String, Object> response = IvyAdapterService.startSubProcess(CONFIGURED_ROLES_SUB_PROCESS, params,
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
     List<IRole> roles = (List<IRole>) response.get("roles");
@@ -332,11 +334,15 @@ public class ChatAssigneeBean implements Serializable {
   }
 
   private void populateAvailableUsers() {
-    availableUsers = ServiceUtilities.findAllUsersExceptCurrentUser(Ivy.wf().getApplication());
+    if (CollectionUtils.isEmpty(availableUsers)) {
+      availableUsers = ServiceUtilities.findAllUsersExceptCurrentUser(task.getApplication());
+    }
   }
 
   private void populateAvailableRoles() {
-    availableRoles = ServiceUtilities.findAllRoles(Ivy.wf().getApplication());
+    if (CollectionUtils.isEmpty(availableRoles)) {
+      availableRoles = ServiceUtilities.findAllRoles(task.getApplication());
+    }
   }
 
   public boolean getIsAssignToUser() {
