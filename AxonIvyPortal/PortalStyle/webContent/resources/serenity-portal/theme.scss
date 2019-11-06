@@ -2404,7 +2404,6 @@ body .ui-icon {
   font-size: 2rem !important;
 }
 
-
 body .ui-accordion .ui-accordion-header {
   font-size: $largeFontSize !important;
 }
@@ -2413,3 +2412,14 @@ body .ui-datepicker .ui-datepicker-header .ui-datepicker-next,
 body .ui-datepicker .ui-datepicker-header .ui-datepicker-prev {
   font-size: 2rem !important;
 }
+
+body .ui-widget, body .ui-widget .ui-widget,
+body .ui-selectonemenu .ui-selectonemenu-label.ui-inputfield {
+  font-family: $portalFontFamily;
+}
+
+input {
+  font-family: $portalFontFamily;
+}
+
+
