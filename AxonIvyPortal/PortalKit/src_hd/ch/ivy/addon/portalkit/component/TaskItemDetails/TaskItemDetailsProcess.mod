@@ -198,7 +198,7 @@ Cs0 f54 actionTable 'out=in;
 ' #txt
 Cs0 f54 actionCode 'import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 
-in.task.setAdditionalProperty(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString(), in.callbackUrl);' #txt
+in.task.customFields().textField(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString()).set(in.callbackUrl);' #txt
 Cs0 f54 security system #txt
 Cs0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
