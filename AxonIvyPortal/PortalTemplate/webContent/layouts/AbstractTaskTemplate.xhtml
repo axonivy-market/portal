@@ -11,7 +11,7 @@
     <ui:define name="simplePageContent">
       <p:growl id="task-template-growl" />
   
-      <div class="task-template-container ui-g-12 u-padding-0">
+      <div class="task-template-container ui-g-12 u-padding-0 #{taskTemplateContainerStyleClass}">
         <c:set var="case" value="#{task.getCase().getBusinessCase()}" scope="request" />
         <c:set var="isSideStepDisabled" value="#{!abstractTaskTemplateBean.checkSideStepsEnabled(case)}" scope="request" />
         <ui:insert name="breadCrumb" />
@@ -33,7 +33,7 @@
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="ui-icon-menu" />
             </h:panelGroup>
             
-            <h:form id="vertical-task-action-form">
+            <h:form id="vertical-task-action-form" rendered="#{processChainDirection eq 'VERTICAL'}">
               <p:menu id="vertical-task-action-menu" overlay="true" trigger="vertical-task-actions" my="right top" at="right bottom"
                 styleClass="action-steps-panel task-actions-menu">
                 <p:menuitem id="show-adhoc-history" rendered="#{abstractTaskTemplateBean.hasAdhocTasks(task)}"
@@ -99,8 +99,8 @@
                   title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHocTooltip')}"
                   icon="fa fa-random fa-2x" oncomplete="PF('adhoc-task-reset-confirmation-dialog').show()" />
     
-                <p:menuitem id="chat-group" icon="fa fa-comments fa-2x" action="#{chatAssigneeBean.createGroupChatForConfiguredRoleList}"
-                  rendered="#{chatRendererBean.isGroupChatRendered and !(ivy.task.state eq 'CREATED')}"
+                <p:menuitem id="chat-group" icon="fa fa-comments fa-2x" action="#{chatAssigneeBean.createGroupChatForConfiguredRoleList(task)}"
+                  rendered="#{chatRendererBean.isGroupChatRendered and !(task.state eq 'CREATED')}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/createProcessChat')}" update="chat-assignee-dialog" />
     
                 <p:separator

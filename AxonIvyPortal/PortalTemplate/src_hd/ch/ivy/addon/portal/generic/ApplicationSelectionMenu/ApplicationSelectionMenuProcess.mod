@@ -35,14 +35,10 @@ As0 @PushWFArc f2 '' #zField
 As0 @GridStep f14 '' #zField
 As0 @PushWFArc f13 '' #zField
 As0 @PushWFArc f16 '' #zField
-As0 @UdEvent f18 '' #zField
-As0 @UdEvent f19 '' #zField
-As0 @PushWFArc f20 '' #zField
 As0 @GridStep f10 '' #zField
 As0 @PushWFArc f11 '' #zField
 As0 @GridStep f15 '' #zField
 As0 @PushWFArc f22 '' #zField
-As0 @PushWFArc f12 '' #zField
 As0 @UdProcessEnd f34 '' #zField
 As0 @GridStep f17 '' #zField
 As0 @PushWFArc f27 '' #zField
@@ -64,6 +60,10 @@ As0 @PushWFArc f26 '' #zField
 As0 @UdProcessEnd f9 '' #zField
 As0 @PushWFArc f38 '' #zField
 As0 @PushWFArc f29 '' #zField
+As0 @UdMethod f3 '' #zField
+As0 @PushWFArc f8 '' #zField
+As0 @UdMethod f12 '' #zField
+As0 @PushWFArc f18 '' #zField
 >Proto As0 As0 ApplicationSelectionMenuProcess #zField
 As0 f67 actionTable 'out=in;
 ' #txt
@@ -158,7 +158,7 @@ As0 f91 actionTable 'out=in;
 ' #txt
 As0 f91 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
 
-TaskUtils.parkTask(ivy.task);' #txt
+TaskUtils.parkTask(in.#workingTask != null ? in.workingTask : ivy.task);' #txt
 As0 f91 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -286,7 +286,7 @@ As0 f14 actionTable 'out=in;
 ' #txt
 As0 f14 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
 
-TaskUtils.resetTask(ivy.task);
+TaskUtils.resetTask(in.#workingTask != null ? in.workingTask : ivy.task);
 ' #txt
 As0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -304,36 +304,6 @@ As0 f13 1 704 192 #addKink
 As0 f13 1 0.302020000020303 0 0 #arcLabel
 As0 f16 expr in #txt
 As0 f16 864 206 864 368 #arcP
-As0 f18 guid 163FD88EDB522F75 #txt
-As0 f18 actionTable 'out=in;
-' #txt
-As0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>leave</name>
-        <nameStyle>5,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f18 691 19 26 26 21 -1 #rect
-As0 f18 @|UdEventIcon #fIcon
-As0 f19 guid 163FD891A0AB1B03 #txt
-As0 f19 actionTable 'out=in;
-' #txt
-As0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>reserveTask</name>
-        <nameStyle>11,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f19 851 19 26 26 21 -4 #rect
-As0 f19 @|UdEventIcon #fIcon
-As0 f20 expr out #txt
-As0 f20 864 45 864 92 #arcP
 As0 f10 actionTable 'out=in;
 ' #txt
 As0 f10 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -373,8 +343,6 @@ As0 f22 outCond 'in.#selectedSubMenuItem.#menuKind == ch.ivy.addon.portalkit.enu
 As0 f22 875 389 1024 512 #arcP
 As0 f22 1 1024 448 #addKink
 As0 f22 0 0.6303319079715384 0 0 #arcLabel
-As0 f12 expr out #txt
-As0 f12 704 45 704 92 #arcP
 As0 f34 851 691 26 26 0 12 #rect
 As0 f34 @|UdProcessEndIcon #fIcon
 As0 f17 actionTable 'out=in;
@@ -495,6 +463,38 @@ As0 f38 168 432 168 507 #arcP
 As0 f29 expr out1 #txt
 As0 f29 168 272 168 384 #arcP
 As0 f29 0 0.18808549022839285 0 0 #arcLabel
+As0 f3 guid 16E3A96DE4048374 #txt
+As0 f3 method leave(ITask) #txt
+As0 f3 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask workingTask> param;' #txt
+As0 f3 inParameterMapAction 'out.workingTask=param.#workingTask;
+' #txt
+As0 f3 outParameterDecl '<> result;' #txt
+As0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>leave(ITask)</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f3 691 19 26 26 5 11 #rect
+As0 f3 @|UdMethodIcon #fIcon
+As0 f8 704 45 704 92 #arcP
+As0 f12 guid 16E3A985548930F5 #txt
+As0 f12 method reserveTask(ITask) #txt
+As0 f12 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask workingTask> param;' #txt
+As0 f12 inParameterMapAction 'out.workingTask=param.workingTask;
+' #txt
+As0 f12 outParameterDecl '<> result;' #txt
+As0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>reserveTask(ITask)</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f12 851 19 26 26 5 14 #rect
+As0 f12 @|UdMethodIcon #fIcon
+As0 f18 864 45 864 92 #arcP
 >Proto As0 .type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -538,14 +538,10 @@ As0 f14 mainOut f13 tail #connect
 As0 f13 head f98 in #connect
 As0 f98 out f16 tail #connect
 As0 f16 head f70 in #connect
-As0 f19 mainOut f20 tail #connect
-As0 f20 head f91 mainIn #connect
 As0 f70 out f11 tail #connect
 As0 f11 head f10 mainIn #connect
 As0 f70 out f22 tail #connect
 As0 f22 head f15 mainIn #connect
-As0 f18 mainOut f12 tail #connect
-As0 f12 head f14 mainIn #connect
 As0 f70 out f27 tail #connect
 As0 f27 head f17 mainIn #connect
 As0 f70 out f110 tail #connect
@@ -575,3 +571,7 @@ As0 f25 mainOut f38 tail #connect
 As0 f38 head f9 mainIn #connect
 As0 f5 out f29 tail #connect
 As0 f29 head f25 mainIn #connect
+As0 f3 mainOut f8 tail #connect
+As0 f8 head f14 mainIn #connect
+As0 f12 mainOut f18 tail #connect
+As0 f18 head f91 mainIn #connect
