@@ -16,6 +16,7 @@
         id="additional-case-detail-table" 
         value="#{data.selectedCase.customFields().all()}" 
         var="item"
+        emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
         reflow="true">
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}">
           <h:outputText id="name" value="#{item.name()}" />
