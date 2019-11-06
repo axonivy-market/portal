@@ -1,7 +1,7 @@
 {
   "uuid" : "764871e4-cf70-401f-83fb-9e99fa897fc4",
   "id" : "case_map_leave",
-  "name" : "Case Map Leave",
+  "name" : "Case Map: Leave Request",
   "description" : "Case Map Leave sample project to demo casemap, sidesteps, stages breadcrumb",
   "stages" : [ {
     "id" : "request_leave",
@@ -9,8 +9,8 @@
     "icon" : "css:fa fa-address-card-o",
     "processes" : [ {
       "id" : "employee_leave_request",
-      "name" : "Employee leave request",
-      "processToExecute" : "ch.ivyteam.ivy.project.portal:internalSupport:14B2FC03D2E87141/leaveRequest.ivp"
+      "name" : "New Leave Request",
+      "processToExecute" : "ch.ivyteam.ivy.project.portal:internalSupport:16E3F9428CFA3D20/newLeaveRequest.ivp"
     } ],
     "sidesteps" : [ {
       "id" : "submit_leave_reason",
