@@ -17,15 +17,16 @@ Lt0 @GridStep f3 '' #zField
 Lt0 @PushWFArc f2 '' #zField
 Lt0 @PushWFArc f4 '' #zField
 >Proto Lt0 Lt0 Logout #zField
-Lt0 f0 inParamDecl '<Boolean isTaskReserve> param;' #txt
+Lt0 f0 inParamDecl '<Boolean isTaskReserve,ch.ivyteam.ivy.workflow.ITask task> param;' #txt
 Lt0 f0 inParamTable 'out.isTaskReserve=param.isTaskReserve;
+out.task=param.task;
 ' #txt
 Lt0 f0 outParamDecl '<> result;' #txt
-Lt0 f0 callSignature call(Boolean) #txt
+Lt0 f0 callSignature call(Boolean,ITask) #txt
 Lt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>call(Boolean)</name>
+        <name>call(Boolean,ITask)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -38,7 +39,7 @@ Lt0 f3 actionTable 'out=in;
 Lt0 f3 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 if (in.isTaskReserve) {
-	ivy.session.parkTask(ivy.task);
+	ivy.session.parkTask(in.#task != null ? in.task : ivy.task);
 }
 ivy.session.logoutSessionUser();
 
