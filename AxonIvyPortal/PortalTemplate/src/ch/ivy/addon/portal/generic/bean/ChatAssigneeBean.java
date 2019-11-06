@@ -71,6 +71,7 @@ public class ChatAssigneeBean implements Serializable {
   @PostConstruct
   public void init() {
     selectedAssignees.add(Ivy.session().getSessionUser());
+    task = Ivy.wfTask();
   }
 
   public void handleConfiguredRoleList() {
