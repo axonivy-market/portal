@@ -251,4 +251,4 @@ Define an information email
 
    Express Workflow email editor
 
-.. include:: ../includes/common-icon.rst
+.. include:: ../includes/_common-icon.rst

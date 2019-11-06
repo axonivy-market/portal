@@ -82,7 +82,7 @@ public class CaseService implements ICaseService {
   
   private static CaseQuery queryForUsers(String involvedUsername, List<String> apps) {
     CaseQuery caseQuery = CaseQuery.create();
-    apps.forEach(app -> caseQuery.where().or().userIsInvolved(involvedUsername, app));
+    apps.forEach(app -> caseQuery.where().or().userIsInvolved(involvedUsername, app).or().isOwner("#" + involvedUsername, app));
     return caseQuery;
   }
   
