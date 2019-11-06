@@ -25,6 +25,15 @@ $processChainMenuColor: $primaryColor;
 $loginLogoHeight: 50px;
 $homeLogoHeight: 42px;
 
+/* Default Portal styles */
+$defaultFontSize: 10px;
+$defaultBodyFontSize: 14px;
+$largeFontSize: 1.4rem; // font size for header,title, groups, menu
+$smallFontSize: 1.2rem; // font size for text, label, input
+$portalFontFamily: "Roboto";
+$defaultFontStyle: normal;
+$defaultFontWeight: 400;
+
 /* 3 colors of header bar */
 $firstHeaderBarColor: $primaryColor;
 $secondHeaderBarColor: $primaryColor;
@@ -52,29 +61,6 @@ it only affects when button has attribute styleClass="context-button" */
 $contextButtonColor: #7c7c7c;
 $contextButtonBorderRadius: $actionButtonBorderRadius;
 
-/* Announcement panel color */
-$announcementBackgroundColor: #ffff80;
-$announcementBorderColor: $red;
-
-/* Process chain */
-$lineWaitingStepBackgroundColor: $greyBorder;
-$circleStepNumberColor: $primaryTextColor;
-$circleHorizontalStepNumberContainerBorderTopColor: $primaryColor;
-$circleHorizontalStepNumberContainerBorderTop: $greyBorder;
-$circleHorizontalLastStepNumberContainerBorderTop: $primaryColor;
-$circleHorizontalWaitingStepNumberContainerBackgroundColor: $transparent;
-$circleStepContainerBorder: $transparent;
-$circleVerticalStepNumberContainerBorder: $greyBorder;
-$circleVerticalStepContainerBackgroundColor: $transparent;
-
-
-/* Statistic chart  color */
-$statisticPanelHeader: $white;
-$statisticPanelHeaderBorder: $white;
-$carouselItemPanelGridBorder: $greyBorder;
-$statisticActionPanelBorder: $borderColor;
-$statisticFilterAccordionPanelBorder: $greyBorder;
-
 /* Table color */
 $dataTableRowBackgroundColorEven: $white;
 $dataTableRowBackgroundColorOdd: rgba(247, 247, 247, 1);
@@ -89,14 +75,49 @@ $fieldSetLegendHoverColor: $white;
 $fieldSetTogglerBackgroundColor: #eee;
 $fieldSetNoBorderColor: $transparent;
 
+/* Widget header */
 $widgetHeaderMainBorderBottomColor: $borderColor;
 $widgetTaskListHeaderBorderBottomColor: $borderColor;
 $widgetSortMenuBorderBottomColor: $borderColor;
 $widgetHeaderInputFieldBackgroundColor: $transparent;
 $widgetHeaderInputHoverBackgroundColor: $transparent;
 
+/* Announcement panel color */
+$announcementBackgroundColor: #ffff80;
+$announcementBorderColor: $red;
+
+/* Process chain */
+$lineWaitingStepBackgroundColor: $greyBorder;
+$circleStepNumberColor: $primaryTextColor;
+$circleHorizontalStepNumberContainerBorderTopColor: $primaryColor;
+$circleHorizontalStepNumberContainerBorderTop: $greyBorder;
+$circleHorizontalLastStepNumberContainerBorderTop: $primaryColor;
+$circleHorizontalWaitingStepNumberContainerBackgroundColor: $transparent;
+$circleStepContainerBorder: $transparent;
+$circleVerticalStepNumberContainerBorder: $greyBorder;
+$circleVerticalStepContainerBackgroundColor: $transparent;
+$currentLineHorizontalStepTitleFontWeight: bold;
+$currentLineVerticalStepTitleFontWeight: bold;
+$currentCircleHorizontalStepTitleFontWeight: bold;
+$currentCircleVerticalStepTitleFontWeight: bold;
+
+/* Statistic widget */
+$statisticPanelHeader: $white;
+$statisticPanelHeaderBorder: $white;
+$carouselItemPanelGridBorder: $greyBorder;
+$statisticActionPanelBorder: $borderColor;
+$statisticFilterAccordionPanelBorder: $greyBorder;
+$dashboardChartPanelChartNameFontWeight: 400;
+$chartInfoHeaderFontWeight: bold;
+$chartInfoLabelFontWeight: bold;
+$chartInfoHeaderColor: #656565;
+$chartNameFontSize: 1.6rem;
+$chartFilterHeaderFontSize: 1.8rem;
+$chartContainerAddLinkFontSize: 1.3rem;
+$dashboardChartNameFontSize: 2rem;
+
 /* Start Menu Item */
-$menuItemCurrenntApplicationBorderBottomColor: $transparent;
+$menuItemCurrentApplicationBorderBottomColor: $transparent;
 
 /* Submenu Item */
 $subMenuItemLinkHoverBackgroundColor: $transparent;
@@ -113,6 +134,32 @@ $widgetAdvancedFilterOverlayPanelFooter: #eaeaea;
 $widgetAdvancedFilterCommandBackgroundColor: none;
 $widgetAdvancedFilterBackgroundColor: none;
 
+/* Process */
+$processNavigatorItemColor: $black;
+$processStartListItemHoverBackgroundColor: $white;
+$processHistoryColumnHeaderIsSelectedColor: $black;
+$processHistoryMessageLabelColor: $black;
+$processStartListItemColor: $black;
+$processHeaderTitleContainerBorderBottom: $borderColor;
+$processNavigatorBorder: $borderColor;
+$processNavigatorItemSelectedBorder: $primaryColor;
+$processHistoryColumnHeaderBorder: $borderColor;
+$processHistoryListDataScrollerBackgroundColor: $transparent;
+$selectedProcessNavItemFontWeight: bold;
+$processStartListItemNameFontWeight: 400;
+
+/* Case Detail */
+$caseRelatedTaskColor: $primaryTextColor;
+$caseDetailPaginatorColor: $primaryTextColor;
+$caseRelatedTaskContentBorder: $greyLineColor;
+$caseDocumentUploadBorder: #cccccc;
+$userDefinedFilterContainerHoverFontWeight: bold;
+$caseDetailNameInputFontWeight: bold;
+$additionalCaseDetailLinkFontWeight: 400;
+$detailsDocumentAddLinkFontWeight: 400;
+$caseDetailHeaderFontWeight: bold;
+$historyButtonContainerFontWeight: bold;
+
 /* Case Item */
 $historyNodeColor: $primaryTextColor;
 $historyNoteBorder: $greyLineColor;
@@ -127,21 +174,7 @@ $caseWidgetTopHeaderBorderBottom: $borderColor;
 $caseWidgetColumnHeaderBorderBottom: $borderColor;
 $caseListDataScrollerContentBackgroundColor: $transparent;
 $caseHeaderActionCellButtonBackgroundColor: $transparent;
-
-
-/* Process */
-$expressExpandCollapseButtonColor: $primaryTextColor;
-$processNavigatorItemColor: $black;
-$processStartListItemHoverBackgroundColor: $white;
-$processHistoryColumnHeaderIsSelectedColor: $black;
-$processHistoryMessageLabelColor: $black;
-$processStartListItemColor: $black;
-$processHeaderTitleContainerBorderBottom: $borderColor;
-$processNavigatorBorder: $borderColor;
-$processNavigatorItemSelectedBorder: $primaryColor;
-$processExpressLogoBackgroundColor: $transparent;
-$processHistoryColumnHeaderBorder: $borderColor;
-$processHistoryListDataScrollerBackgroundColor: $transparent;
+$caseItemActionStepsFontWeight: bold;
 
 /* Task Widget */
 $taskFilterSelectionFormHoverBackgroundColor: #f5f5f5;
@@ -158,15 +191,23 @@ $taskViewContainerDataScrollerContentBackgroundColor: $transparent;
 $taskOptionPanelBoxShadow: rgba(43, 59, 93, 0.6);
 $taskOptionPanelBorderTop: rgba(43, 59, 93, 0.2);
 
-/* Case Detail */
-$caseRelatedTaskColor: $primaryTextColor;
-$caseDetailPaginatorColor: $primaryTextColor;
-$caseRelatedTaskContentBorder: $greyLineColor;
-$caseDocumentUploadBorder: #cccccc;
-
 /* Task Detail */
 $taskDetailPaginatorColor: $primaryTextColor; 
 $taskDetailActionItemHoverBackgroundColor: $transparent;
+$taskDetailHeaderFontWeight: bold;
+$taskDetailSectionTitleFontWeight: bold;
+$taskStartInfoHeaderFontWeight: bold;
+$taskStartInfoTaskIdFontWeight: normal;
+$taskNameInputFontWeight: bold;
+
+/* Task Action Item */
+$taskActionItemWidgetHeaderColor: $white;
+$taskActionItemLabelFontWeight: normal;
+
+/* Task Template */
+$taskTemplateActionButtonFocus: $transparent;
+$taskTemplateTitleFontWeight: bold;
+$outputLabelTaskTemplateTitleFontWeight: 400;
 
 /* Admin Setting */
 $adminSettingNoPermissionMessageColor: #e53935;
@@ -174,6 +215,7 @@ $userSettingContainerLinkHoverColor: $black;
 $userSettingContainerActiveMenuBorder: rgba(43, 59, 93, 0.2);
 $userSettingContainerBoxShadow: rgba(43, 59, 93, 0.6);
 $emailSettingWidgetHeader: $black;
+$usernameShowEnvironmentInfoFontWeight: bold;
 
 /* Absences and Debuty */
 $substitutedUserTextColor: #757575;
@@ -181,9 +223,7 @@ $substitutedUserTextColor: #757575;
 /* Awesome Icon Selection */
 $linkChangeAwesomeIconColor: $black;
 $contentLinkChangeAwesomeIconColor: #337ab7;
-
-/* Chart */
-$chartInfoHeaderColor: #656565;
+$selectAwesomeIconButtonFontWeight: bold;
 
 /* Start Notification */
 $notificationContentBackgroundColor: rgb(230, 113, 99);
@@ -198,12 +238,6 @@ $stagesChainVisitedColor: #555555;
 $stagesChainWaitingColor: #cccccc;
 $stagesChainProcessFlowVisibleBackgroundColor: #cccccc;
 
-/* Task Action Item */
-$taskActionItemWidgetHeaderColor: $white;
-
-/* Task Template */
-$taskTemplateActionButtonFocus: $transparent;
-
 /* Asterik Icon */
 $asterikIconColor: #f03369;
 
@@ -215,8 +249,8 @@ $errorMessageHeaderColor: #e67163;
 /* SelectCheckbox */
 $selectCheckBoxCloseHoverColor: $white;
 $configCheckboxContainerBorder: $black;
+$selectCheckboxMenuIconFontSize: 1.8rem;
  
-
 $bodySateActiveColor: $black;
 $autoCompleteHoverColor: $black;
 $bodyColumnTogglerLabelColor: $black;
@@ -249,6 +283,12 @@ $expressTableNoHeaderBorder: $greyLineColor;
 $expressTableNoHeaderBackgroundColor: $transparent;
 $selectCheckboxMenuTriggerBackgroundColor: $white;
 $selectCheckboxMenuTriggerBorder: #b0bec5;
+$expressExpandCollapseButtonColor: $primaryTextColor;
+$processExpressLogoBackgroundColor: $transparent;
+$expressWorkflowActiveSwitchLabelFontWeight: 700;
+$expressReviewContentTitleFontWeight: 700;
+$expressFinishedTaskLabelFontWeight: 700;
+$expressActiveDefinedTaskButtonFontWeight: bold;
 
 /* Chat */
 $chatPanelBackgroundColor: $black;
@@ -281,32 +321,19 @@ $participantsListHeaderColor: $black;
 $chatSendFormButtonBackgroundColor: $transparent;
 $messageListContentSendInputBackgroundColor: $transparent;
 $chatUserInRoleBorder: $greyBorder;
+$showParticipantsLinkFontWeight: bold;
+$participantsListHeaderFontWeight: bold;
+$messageChatHeaderNameFontWeight: 600;
+$chatContactTypeHeaderFontSize: 1.8rem;
 
 /* Icon */
+$iconFontFamily: "FontAwesome";
 $checkboxMenuIconBackgroundColor: $transparent;
 $fieldsetToggerHoverBackgroundColor: $transparent;
 $iconSelectionDialogBorder: $transparent;
 $iconSelectionDialogBorderHover: $black;
 $autoCompleteDropdownFocusBackgroundColor: $transparent;
 $uiInplaceBackgroundColor: $transparent;
-
-/*---------------------------------Font size----------------------------------------*/
-$defaultFontSize: 10px;
-$defaultBodyFontSize: 14px;
-$largeFontSize: 1.4rem; // font size for header,title, groups, menu
-$smallFontSize: 1.2rem; // font size for text, label, input
-$selectCheckboxMenuIconFontSize: 1.8rem;
-$chartNameFontSize: 1.6rem;
-$dashboardChartNameFontSize: 2rem;
-$chartFilterHeaderFontSize: 1.8rem;
-$chartContainerAddLinkFontSize: 1.3rem;
-$chatContactTypeHeaderFontSize: 1.8rem;
-$bodyDialogTitleFontSize: 1.9rem;
-
-/*---------------------------------Font family and Font style----------------------------------------*/
-$portalFontFamily: "Roboto";
-$iconFontFamily: "FontAwesome";
-
 $dataIconFontFamily: "true-minimalistic-icons";
 $dataIconFontStyle: normal;
 $dataIconFontWeight: normal;
@@ -316,68 +343,6 @@ $trueMinimalisticIconFontStyle: normal;
 $trueMinimalisticIconFontWeight: normal;
 $trueMinimalisticIconFontVariant: normal;
 
-$defaultFontStyle: normal;
-
-/*---------------------------------Font weight----------------------------------------*/
-$defaultFontWeight: 400;
+/* Others */
+$bodyDialogTitleFontSize: 1.9rem;
 $menuListWidgetHeaderFontWeight: 600;
-
-/* Task Action Item */
-$taskActionItemLabelFontWeight: normal;
-
-/* Task Detail */
-$taskDetailHeaderFontWeight: bold;
-$taskDetailSectionTitleFontWeight: bold;
-$taskStartInfoHeaderFontWeight: bold;
-$taskStartInfoTaskIdFontWeight: normal;
-$taskNameInputFontWeight: bold;
-
-/* Task Template */
-$taskTemplateTitleFontWeight: bold;
-$outputLabelTaskTemplateTitleFontWeight: 400;
-
-/* Case Detail */
-$caseDetailNameInputFontWeight: bold;
-$additionalCaseDetailLinkFontWeight: 400;
-$detailsDocumentAddLinkFontWeight: 400;
-$caseDetailHeaderFontWeight: bold;
-$historyButtonContainerFontWeight: bold;
-
-/* Case Item */
-$caseItemActionStepsFontWeight: bold;
-
-/* Process widget */
-$selectedProcessNavItemFontWeight: bold;
-$processStartListItemNameFontWeight: 400;
-
-/* Process Chain */
-$currentLineHorizontalStepTitleFontWeight: bold;
-$currentLineVerticalStepTitleFontWeight: bold;
-$currentCircleHorizontalStepTitleFontWeight: bold;
-$currentCircleVerticalStepTitleFontWeight: bold;
-
-/* Admin Settings */
-$usernameShowEnvironmentInfoFontWeight: bold;
-
-/* Awesome Icon Selection */
-$selectAwesomeIconButtonFontWeight: bold;
-
-/* Statistic Widget */
-$dashboardChartPanelChartNameFontWeight: 400;
-$chartInfoHeaderFontWeight: bold;
-$chartInfoLabelFontWeight: bold;
-
-/* Filter selection form*/
-$userDefinedFilterContainerHoverFontWeight: bold;
-
-/* Express */
-$expressWorkflowActiveSwitchLabelFontWeight: 700;
-$expressReviewContentTitleFontWeight: 700;
-$expressFinishedTaskLabelFontWeight: 700;
-$expressActiveDefinedTaskButtonFontWeight: bold;
-
-/* Portal Chat */
-$showParticipantsLinkFontWeight: bold;
-$participantsListHeaderFontWeight: bold;
-$messageChatHeaderNameFontWeight: 600;
-$userDefinedFilterContainerHoverFontWeight: bold;
