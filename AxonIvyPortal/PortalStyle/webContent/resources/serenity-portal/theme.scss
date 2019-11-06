@@ -1439,7 +1439,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 /* Style for Start Menu Item-----------------------------*/
 .layout-wrapper .layout-sidebar .layout-menu>li>a.current-application {
-  border-bottom: 1px solid $menuItemCurrenntApplicationBorderBottomColor;
+  border-bottom: 1px solid $menuItemCurrentApplicationBorderBottomColor;
 }
 
 .layout-wrapper .layout-sidebar .layout-menu>li:not(.active-menuitem)>a.current-application {
