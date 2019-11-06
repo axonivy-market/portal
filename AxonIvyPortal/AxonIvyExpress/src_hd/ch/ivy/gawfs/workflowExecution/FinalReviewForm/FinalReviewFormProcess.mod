@@ -85,7 +85,7 @@ import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 
 ivy.task.reset();
-ivy.task.customFields().textField(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString()).set(StringUtils.EMPTY);
+ivy.task.customFields().stringField(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString()).set(StringUtils.EMPTY);
 PortalNavigator navigator = new PortalNavigator();
 navigator.navigateToPortalEndPage();' #txt
 Fs0 f17 security system #txt
