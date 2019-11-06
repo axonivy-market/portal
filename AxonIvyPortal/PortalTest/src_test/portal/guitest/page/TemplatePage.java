@@ -16,6 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
+import portal.guitest.common.SystemProperties;
 import portal.guitest.common.UrlHelpers;
 import vn.wawa.guitest.base.page.AbstractPage;
 
@@ -30,7 +31,11 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   protected long getTimeOutForLocator() {
-    return 10L;
+    if (!SystemProperties.isInServerMode()) {
+      return 10L;
+    } else {
+      return 100L;
+    }
   }
 
   protected void waitForLocatorDisplayed(String locator) {

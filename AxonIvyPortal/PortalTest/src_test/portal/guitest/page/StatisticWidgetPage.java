@@ -35,7 +35,7 @@ public class StatisticWidgetPage extends TemplatePage {
   }
 
   public void backToDashboard() {
-    clickByCssSelector("button[id$='back-from-chart-creation']");
+    clickByCssSelector("a[id$='back-from-chart-creation']");
   }
   
   public TaskAnalysisWidgetPage navigateToTaskAnalysisPage() {
