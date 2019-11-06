@@ -41,7 +41,6 @@
 /* Express switch button */
 .express-work-flow .express-input-switch-selection,
 .ui-inputswitch.ui-widget.ui-widget-content.express-input-switch-selection.ui-inputswitch-checked {
-  border-color: #DCF91F;
   top: 3px;
   margin: auto 8px;
 }
@@ -241,11 +240,6 @@
   margin-right: -5px;
 }
 
-.available-elements-action-btn button {
-  background-color: transparent !important;
-  box-shadow: none !important;
-}
-
 .no-padding-bottom {
   padding-bottom: 0 !important;
 }
@@ -288,14 +282,6 @@
 	margin-bottom: 20px;
 }
 
-.selected-formelements-panel {
-	border: solid 3px #656565;
-}
-
-.selected-formelements-panel.hover-drop-section {
-	border: dashed #699924;
-}
-
 .selected-form-elements-header .ui-datagrid-content.ui-widget-content,
 .selected-form-elements-left-panel .ui-datagrid-content.ui-widget-content,
 .selected-form-elements-right-panel .ui-datagrid-content.ui-widget-content,
@@ -305,7 +291,6 @@
 }
 
 .form-definition-table {
-	border: solid 4px rgba(117, 117, 117, 0.5);
 	border-collapse: separate;
 	height: 100%;
 }
@@ -324,7 +309,6 @@
 }
 
 .form-definition-table .selected-formelements-panel {
-	border: dashed 2px #E0E0E0;
 	border-radius: 5px;
 	height: 100%;
 }
@@ -332,10 +316,6 @@
 .form-definition-table .selected-formelements-panel.right-section .ui-outputpanel,
 .form-definition-table .selected-formelements-panel.left-section .ui-outputpanel {
 	height: 100%;
-}
-
-.form-definition-table .selected-formelements-panel .ui-datagrid {
-	background: transparent;
 }
 
 .form-create-tabs .ui-tabs-nav.ui-widget-header.ui-corner-all {
@@ -350,7 +330,6 @@
 
 .email-attachment .ui-fileupload-buttonbar.ui-widget-header.ui-corner-top {
   float: right;
-  background-color: transparent;
   border: none;
   margin-top: -6px;
   padding: 0 !important;
@@ -393,7 +372,6 @@ td.email-attachment-text {
 
 /* REVIEW FORM */
 .review-content-title {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
   margin-bottom: 10px;
   width: calc(100% - 28px);
   padding-bottom: 6px;
@@ -439,8 +417,6 @@ td.email-attachment-text {
 
 .express-table-no-header .ui-datatable-header.ui-widget-header.ui-corner-top {
   padding: 0;
-  background-color: transparent;
-  border-color: #d8d8d8;
 }
 
 .express-table-header-title {
@@ -515,11 +491,6 @@ td.email-attachment-text {
 
 .applicant-field-col {
   border: none !important;
-}
-
-.applicant-selection-container {
-  border: none;
-  border-bottom: solid #dfdfdf;
 }
 
 .approval-comment {
@@ -626,10 +597,8 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
 }
 
 .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger,
-	.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger.ui-state-hover {
+.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger.ui-state-hover {
 	padding: 0 12px !important;
-	background-color: #fff;
-	border-bottom: 1px solid #B0BEC5 !important;
 }
 
 .ui-fluid .ui-selectcheckboxmenu-trigger {
