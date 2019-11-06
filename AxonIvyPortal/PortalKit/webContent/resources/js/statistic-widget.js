@@ -81,7 +81,8 @@ function elapsedTimeChartExtender() {
     },
     tooltips: {
       enabled: true,
-      mode: 'label',
+      mode: 'index',
+      intersect: false,
       callbacks: {
         title: function(tooltipItems, data) {
           var idx = tooltipItems[0].index;
@@ -89,6 +90,10 @@ function elapsedTimeChartExtender() {
         }
       }
     },
+    hover: {
+      mode: 'index',
+      intersect: false
+   },
     plugins: {
       datalabels: {
         color: function(context) {

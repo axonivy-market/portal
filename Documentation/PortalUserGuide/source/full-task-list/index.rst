@@ -265,4 +265,4 @@ HowTo: Export a task history
 
    HowTo export note details
 
-.. include:: ../includes/common-icon.rst
+.. include:: ../includes/_common-icon.rst

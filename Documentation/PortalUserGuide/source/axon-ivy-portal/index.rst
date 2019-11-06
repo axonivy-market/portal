@@ -76,6 +76,6 @@ point. In detail these are:
    
    Toggle portal menu
 
-.. include:: ../includes/common-icon.rst
+.. include:: ../includes/_common-icon.rst
 
    

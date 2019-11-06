@@ -12,8 +12,12 @@ var Portal = {
         responsiveToolkit.updateLayoutWithoutAnimation();
       }, 250);
     });
-
-    responsiveToolkit.updateLayoutWithoutAnimation();
+    
+    //Add very small timeout when page ready, fix responsive problem for IE 11
+    setTimeout(function() {
+      responsiveToolkit.updateLayoutWithoutAnimation();
+    }, 1);
+    
     this.updateLayoutContent();
   },
   

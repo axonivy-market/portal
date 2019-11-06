@@ -64,15 +64,13 @@ Portal has 2 different configurations:
       Each Portal application must include portalKit, portalTemplate and portalStyle modules.
 
    .. important::
-
-      -  In multi applications mode, if you need overall dashboard, create
-         the standard Portal application with the Portal modules.
+      In multi applications mode, if you need overall dashboard, create
+      the standard Portal application with the Portal modules.
 
 Manually configure applications
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Refer :ref:`settings-admin-settings-setup-multi-portals` 
-.
+Refer :ref:`settings-admin-settings-setup-multi-portals`.
 
    .. important::
 
@@ -170,6 +168,9 @@ Substitute
 
 Personal task permission
 ~~~~~~~~~~~~~~~~~~~~~~~~
+-  ADD NOTE
+
+   Refer to :ref:`Display add note button<display-add-note-button>`.
 
 -  DELEGATE
 
@@ -177,172 +178,129 @@ Personal task permission
    ``TaskWriteActivatorOwnTasks`` (This permission belongs to Portal
    permission group and it is not assigned to role Everybody by
    default). User can delegate all the tasks he see in his task list if
-   he has permission ``IPermission.TASK_WRITE_ACTIVATOR`` .
+   he has permission ``IPermission.TASK_WRITE_ACTIVATOR``.
 
       .. important::
 
-         Task state cannot be one of the following:
+         Task state cannot be one of the following values:
          DONE, DESTROYED, RESUMED, FAILED.
 
    This function will be hidden if session user does not have permission
-   ``PortalPermission.TASK_DISPLAY_DELEGATE_ACTION`` .
-
--  ADD NOTE
-
-   No permission requires.
-
-      .. important::
-
-         Task state cannot be one of the following:
-         DONE, DESTROYED, RESUMED, FAILED .
+   ``PortalPermission.TASK_DISPLAY_DELEGATE_ACTION``.
 
 -  RESET
 
    This function will be enabled if session user has permission
    ``IPermission.TASK_RESET_OWN_WORKING_TASK`` or
-   ``IPermission.TASK_RESET`` .
+   ``IPermission.TASK_RESET``.
 
       .. important::
 
-         Task state has to be one of following:
-         RESUMED
-         ,
-         PARKED
-         .
+         Task state has to be one of following values: RESUMED, PARKED.
 
    This function will be hidden if session user does not have permission
-   ``PortalPermission.TASK_DISPLAY_RESET_ACTION`` .
+   ``PortalPermission.TASK_DISPLAY_RESET_ACTION``.
 
 -  RESERVE
 
    This function will be enabled if session user has permission
-   ``IPermission.TASK_PARK_OWN_WORKING_TASK`` .
+   ``IPermission.TASK_PARK_OWN_WORKING_TASK``.
 
       .. important::
 
-         Task state has to be
-         RESUMED
-         .
+         Task state has to be one of following values: RESUMED, SUSPENDED.
 
    This function will be hidden if session user does not have permission
-   ``PortalPermission.TASK_DISPLAY_RESERVE_ACTION`` .
+   ``PortalPermission.TASK_DISPLAY_RESERVE_ACTION``.
 
 -  CHANGE TASK NAME
 
    This function will be enabled if session user has
-   ``IPermission.TASK_WRITE_NAME`` .
+   ``IPermission.TASK_WRITE_NAME``.
 
       .. important::
 
-         Task state cannot be one of following values:
-         DONE
-         ,
-         DESTROYED
-         ,
-         FAILED
-         .
+         Task state cannot be one of following values: 
+         DONE, DESTROYED, FAILED.
 
 -  CHANGE TASK DESCRIPTION
 
    This function will be enabled if session user has
-   ``IPermission.TASK_WRITE_DESCRIPTION`` .
+   ``IPermission.TASK_WRITE_DESCRIPTION``.
 
       .. important::
 
          Task state cannot be one of following values:
-         DONE
-         ,
-         DESTROYED
-         ,
-         FAILED
-         .
+         DONE, DESTROYED, FAILED.
 
 -  CHANGE DEADLINE
 
    This function will be enabled if session user has
-   ``IPermission.TASK_WRITE_EXPIRY_TIMESTAMP`` .
+   ``IPermission.TASK_WRITE_EXPIRY_TIMESTAMP``.
 
       .. important::
 
          Task state cannot be one of following values:
-         DONE
-         ,
-         DESTROYED
-         ,
-         FAILED
-         .
+         DONE, DESTROYED, FAILED.
 
 -  CHANGE PRIORITY
 
    This function will be disabled if session user does not have
-   ``IPermission.TASK_WRITE_ORIGINAL_PRIORITY`` .
+   ``IPermission.TASK_WRITE_ORIGINAL_PRIORITY``.
 
       .. important::
 
-         Task state cannot be one of following:
-         DONE
-         ,
-         DESTROYED
-         ,
-         FAILED
-         .
+         Task state cannot be one of following values:
+         DONE, DESTROYED, FAILED.
 
 -  DISPLAY ADDITIONAL OPTIONS
 
    This function will be hidden if session user does not have permission
-   ``PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS`` .
+   ``PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS``.
 
 Personal case permission
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 -  ADD NOTE
 
-   Add note function will be enabled if case state is ``RUNNING`` .
+   Refer to :ref:`Display add note button<display-add-note-button>`.
 
 -  DELETE CASE
 
    Delete case function will be enabled if session user has
-   ``IPermission.CASE_DESTROY`` .
+   ``IPermission.CASE_DESTROY``.
 
       .. important::
 
-         Case state has to be
-         RUNNING
-         .
+         Case state has to be RUNNING.
 
 -  CHANGE CASE NAME
 
    Delete case function will be enabled if session user has
-   ``IPermission.CASE_WRITE_NAME`` .
+   ``IPermission.CASE_WRITE_NAME``.
 
       .. important::
 
-         Case state cannot to be:
-         DESTROYED
-         .
+         Case state cannot be DONE, DESTROYED.
 
 -  CHANGE CASE DESCRIPTION
 
    Delete case function will be enabled if session user has
-   ``IPermission.CASE_WRITE_DESCRIPTION`` .
+   ``IPermission.CASE_WRITE_DESCRIPTION``.
 
       .. important::
 
-         Case state cannot to be:
-         DESTROYED
-         .
+         Case state cannot be DESTROYED.
 
 -  SEE RELATED TASKS OF CASE
 
    Session user can see all related tasks of case if he has
    ``IPermission.TASK_READ_OWN_CASE_TASKS`` or
-   ``IPermission.TASK_READ_ALL`` .
+   ``IPermission.TASK_READ_ALL``.
 
       .. important::
 
-         Case state cannot to be:
-         DESTROYED
-         .
+         Case state cannot be DESTROYED.
 
    Link to show all tasks of case will be hidden if session user does
    not have permission ``PortalPermission.SHOW_ALL_TASKS_OF_CASE`` .
@@ -350,8 +308,8 @@ Personal case permission
 -  DISPLAY SHOW DETAILS LINK
 
    This link will be hidden if session user does not have permission
-   ``PortalPermission.SHOW_CASE_DETAILS`` . This permission is not
-   assigned to role Everybody by default.
+   ``PortalPermission.SHOW_CASE_DETAILS``.
+   This permission is not assigned to role Everybody by default.
 
 Upload/delete document permission
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -394,34 +352,35 @@ Portal general permission
 
    User cannot see "Processes" on the left menu and link "Show all
    processes" (on Dashboard) if he does not have permission
-   ``PortalPermission.ACCESS_FULL_PROCESS_LIST`` .
+   ``PortalPermission.ACCESS_FULL_PROCESS_LIST``.
 
 -  ACCESS TO FULL TASK LIST
 
    User cannot see "Tasks" on the left menu and link "Show full task
    list" (on Dashboard) if he does not have permission
-   ``PortalPermission.ACCESS_FULL_TASK_LIST`` .
+   ``PortalPermission.ACCESS_FULL_TASK_LIST``.
 
 -  ACCESS TO FULL CASE LIST
 
    User cannot see "Cases" on the left menu if he does not have
-   permission ``PortalPermission.ACCESS_FULL_CASE_LIST`` .
+   permission ``PortalPermission.ACCESS_FULL_CASE_LIST``.
 
 -  ACCESS TO FULL STATISTIC LIST
 
    User cannot see "Statistics" on the left menu and link "Show all
    charts" (on Dashboard) if he does not have permission
-   ``PortalPermission.ACCESS_FULL_STATISTICS_LIST`` .
+   ``PortalPermission.ACCESS_FULL_STATISTICS_LIST``.
 
+   .. _display-add-note-button:
 -  DISPLAY ADD NOTE BUTTON
 
-   This button will be hidden if session user does not have permission
-   ``PortalPermission.TASK_CASE_ADD_NOTE`` .
+   "Add note" button will be hidden in Task/Case detail if session user does not have permission
+   ``PortalPermission.TASK_CASE_ADD_NOTE``.
 
 -  DISPLAY SHOW MORE NOTE BUTTON
 
    This button will be hidden if session user does not have permission
-   ``PortalPermission.TASK_CASE_SHOW_MORE_NOTE`` .
+   ``PortalPermission.TASK_CASE_SHOW_MORE_NOTE``.
 
 Administrator permission can see all tasks/cases in the application
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -625,20 +584,17 @@ Please follow the below steps to migrate
 
    -  On the ``taskItemDetailCustomPanelBottom`` section.
 
-      This section will be shown on the bottom of the
-      ``TaskItemDetails`` component. You can change the width of this
-      panel as your requirement, we recommend to use ``ui-g-*`` class of
-      ``Primeface`` to define size of the width for the box can display
-      flexibility.
+      This section will be shown on the bottom of the ``TaskItemDetails``
+      component. You can change the width of this panel as your requirement,
+      we recommend to use ``ui-g-*`` class of ``Primeface`` to define size of 
+      the width for the box can display flexibility.
 
-   -  After deciding where we will push the custom code to
-      ``TaskItemDetails``.
+   -  After deciding where we will push the custom code to ``TaskItemDetails``.
 
       Move your customized code for Custom box section from old
       ``taskBody`` to under that sections.
 
-      Finally, your customization will be shown in the
-      ``TaskItemDetails``.
+      Finally, your customization will be shown in the ``TaskItemDetails``.
 
    -  For example:
 
@@ -1018,12 +974,10 @@ Changes in 8.0
 --------------
 
 -  Upgraded to Serenity's theme, refer to :ref:`Migration
-   Notes <installation-migration-notes-8-0-0>` for more
-   details
+   Notes <installation-migration-notes-8-0-0>` for more details.
 
 -  Remove ``caseBody`` inside CaseWidget, refer to :ref:`Migration
-   Notes <installation-migration-notes-8-0-0-case-body>`
-   for more details
+   Notes <installation-migration-notes-8-0-0-case-body>` for more details.
 
 -  Introduce new actions button on :ref:`CaseWidget's
    header <customization-case-widget-how-to-override-ui-case-header>`.
@@ -1034,8 +988,7 @@ Changes in 8.0
    for the customization.
 
 -  Remove ``taskBody`` inside TaskWidget, refer to :ref:`Migration
-   Notes <installation-migration-notes-8-0-0-task-body>`
-   for more details
+   Notes <installation-migration-notes-8-0-0-task-body>` for more details.
 
 -  Introduce two new actions button on :ref:`TaskWidget's
    header <customization-task-widget-how-to-overide-ui-task-header>`.
@@ -1046,12 +999,10 @@ Changes in 8.0
    for the customization.
 
 -  Task list customization now support responsiveness. refer to :ref:`this
-   part <customization-task-widget-responsive-layout>`
-   for more detail.
+   part <customization-task-widget-responsive-layout>` for more details.
 
 -  Case list customization now support responsiveness. refer to  :ref:`this
-   part <customization-case-widget-responsive-layout>`
-   for more detail.
+   part <customization-case-widget-responsive-layout>` for more details.
 
 Changes in 7.4
 --------------
@@ -1074,11 +1025,9 @@ Changes in 7.3
 --------------
 
 -  Remove PortalConnector, query data via Ivy API directly to increase
-   performance, refer to Migration Notes
+   performance, refer to Migration Notes.
 
--  Provide the mobile pages. The default page is task list, refer to
-   :ref:`??? <installation>`
-   for the customization.
+-  Provide the mobile pages. The default page is task list.
 
 -  Provide more permissions to show/hide menu, button and link in
    Portal, refer to `Permission settings`_
@@ -1105,18 +1054,16 @@ Changes in 7.2
    process.
 
 -  Check permission when upload/delete document. User needs permission
-   ``IPermission.DOCUMENT_WRITE`` or
-   ``IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE`` to upload/delete
-   document.
+   ``IPermission.DOCUMENT_WRITE`` or ``IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE``
+   to upload/delete document.
 
 -  Support disable upload/delete document when a case is done. This
    function can be configured by ``HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE``
    setting.
 
--  Support configure upload file extension whitelist. Only file
-   extensions appear in this list are allowed to upload to Portal. This
-   function can be configured by ``UPLOAD_DOCUMENT_WHITELIST_EXTENSION``
-   setting.
+-  Support configure upload file extension whitelist. Only file extensions
+   appear in this list are allowed to upload to Portal. This function
+   can be configured by ``UPLOAD_DOCUMENT_WHITELIST_EXTENSION`` setting.
 
 -  Support script checking function for upload file. You can
    enable/disable this function by configuring
@@ -1154,7 +1101,7 @@ Changes in 7.0 (Jakobshorn)
 -  More search criteria for user in Task list are added and allowed to
    customize.
 
--  Task delegate customization is supported
+-  Task delegate customization is supported.
 
 -  The same task list is displayed before and after a task. Set default
    end page to another project to remove this feature.
@@ -1182,7 +1129,7 @@ Changes in 6.6 (Jakobshorn)
 
 -  Hide technical roles (the HIDE property is set), so that they are not
    displayed anywhere (e.g. delegate, absence mgmt). The default hidden
-   role is AXONIVY_PORTAL_ADMIN
+   role is AXONIVY_PORTAL_ADMIN.
 
 Changes in 6.0 (Säntis)
 -----------------------
