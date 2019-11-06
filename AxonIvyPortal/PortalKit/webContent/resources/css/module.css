@@ -1014,7 +1014,6 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 
 .process-widget-action {
   display: inline-block;
-  padding-left: 9px;
 }
 
 .process-widget-action-form {
@@ -1251,6 +1250,7 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 
 .process-widget .default-process-title {
   display: inline-block;
+  padding-left: 2px;
   padding-right: 20px;
 }
 
@@ -4261,6 +4261,7 @@ a.ui-widget:focus {
 
 .favorite-process-title {
   display: inline-block;
+  padding-left: 2px;
   padding-right: 20px;
 }
 
