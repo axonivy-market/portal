@@ -2355,15 +2355,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   .line-process-chain .line-horizontal-process-step.hide-left-steps {
     width: 4rem !important;
   }
-  .line-process-chain .line-horizontal-process-step.hide-left-steps.waiting {
-    background: repeating-linear-gradient(90deg, #E0E0E0, #E0E0E0 10px, #fff 10px, #fff 20px);
-  }
-}
-
-@media screen and (min-width: 40.063em) and (max-width: 64.062em) {
-  .line-process-chain .line-horizontal-process-step.hide-left-steps.waiting {
-    background: repeating-linear-gradient(90deg, #E0E0E0, #E0E0E0 10px, #fff 10px, #fff 20px);
-  }
 }
 
 .line-process-chain .line-horizontal-process-step {

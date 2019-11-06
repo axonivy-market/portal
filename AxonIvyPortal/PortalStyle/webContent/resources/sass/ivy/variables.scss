@@ -1,25 +1,26 @@
 /* Theme Colors */
+$red: #ff0000;
+$white: #fff;
+$black: #000000;
+$grey1: #808080;
+$grey2: #e0e0e0;
+$grey3: #d8d8d8;
+$grey4: #f0f0f0;
+
 $primaryColor: #c7d426;
 $primaryDarkColor: #97ae04;
 $primaryLightColor: #dcf91f;
-$primaryLightestColor: #ffffff;
+$primaryLightestColor: $white;
 $primaryTextColor: #212121;
 $accentColor: $primaryColor;
 $accentDarkColor: $primaryDarkColor;
 $accentLightColor: $primaryLightColor;
 $accentTextColor: #ecfc82;
 $headerPadding: 14px 1em;
-$greyLineColor: #d8d8d8;
-$red: #ff0000;
-$white: #ffffff;
-$black: #000000;
-$grey: #808080;
-$transparent : transparent;
-$borderColor: rgba($black, 0.1);
-$greyBorder: #e0e0e0;
 
+$borderColor: rgba($black, 0.1);
 $bodyBackgroundColor: $white;
-$menuColor: #f0f0f0;
+
 $processChainMenuColor: $primaryColor;
 
 $loginLogoHeight: 50px;
@@ -73,29 +74,29 @@ $dataTableCellBorderColor: $white;
 $fieldSetTogglerColor: $primaryTextColor;
 $fieldSetLegendHoverColor: $white; 
 $fieldSetTogglerBackgroundColor: #eee;
-$fieldSetNoBorderColor: $transparent;
+$fieldSetNoBorderColor: transparent;
 
 /* Widget header */
 $widgetHeaderMainBorderBottomColor: $borderColor;
 $widgetTaskListHeaderBorderBottomColor: $borderColor;
 $widgetSortMenuBorderBottomColor: $borderColor;
-$widgetHeaderInputFieldBackgroundColor: $transparent;
-$widgetHeaderInputHoverBackgroundColor: $transparent;
+$widgetHeaderInputFieldBackgroundColor: transparent;
+$widgetHeaderInputHoverBackgroundColor: transparent;
 
 /* Announcement panel color */
 $announcementBackgroundColor: #ffff80;
 $announcementBorderColor: $red;
 
 /* Process chain */
-$lineWaitingStepBackgroundColor: $greyBorder;
+$lineWaitingStepBackgroundColor: $grey2;
 $circleStepNumberColor: $primaryTextColor;
 $circleHorizontalStepNumberContainerBorderTopColor: $primaryColor;
-$circleHorizontalStepNumberContainerBorderTop: $greyBorder;
+$circleHorizontalStepNumberContainerBorderTop: $grey2;
 $circleHorizontalLastStepNumberContainerBorderTop: $primaryColor;
-$circleHorizontalWaitingStepNumberContainerBackgroundColor: $transparent;
-$circleStepContainerBorder: $transparent;
-$circleVerticalStepNumberContainerBorder: $greyBorder;
-$circleVerticalStepContainerBackgroundColor: $transparent;
+$circleHorizontalWaitingStepNumberContainerBackgroundColor: transparent;
+$circleStepContainerBorder: transparent;
+$circleVerticalStepNumberContainerBorder: $grey2;
+$circleVerticalStepContainerBackgroundColor: transparent;
 $currentLineHorizontalStepTitleFontWeight: bold;
 $currentLineVerticalStepTitleFontWeight: bold;
 $currentCircleHorizontalStepTitleFontWeight: bold;
@@ -104,31 +105,30 @@ $currentCircleVerticalStepTitleFontWeight: bold;
 /* Statistic widget */
 $statisticPanelHeader: $white;
 $statisticPanelHeaderBorder: $white;
-$carouselItemPanelGridBorder: $greyBorder;
+$carouselItemPanelGridBorder: $grey2;
 $statisticActionPanelBorder: $borderColor;
-$statisticFilterAccordionPanelBorder: $greyBorder;
+$statisticFilterAccordionPanelBorder: $grey2;
 $dashboardChartPanelChartNameFontWeight: 400;
 $chartInfoHeaderFontWeight: bold;
 $chartInfoLabelFontWeight: bold;
-$chartInfoHeaderColor: #656565;
 $chartNameFontSize: 1.6rem;
 $chartFilterHeaderFontSize: 1.8rem;
 $chartContainerAddLinkFontSize: 1.3rem;
 $dashboardChartNameFontSize: 2rem;
 
 /* Start Menu Item */
-$menuItemCurrentApplicationBorderBottomColor: $transparent;
+$menuItemCurrentApplicationBorderBottomColor: transparent;
 
 /* Submenu Item */
-$subMenuItemLinkHoverBackgroundColor: $transparent;
-$subMenuItemLinkBackgroundColor: $transparent;
+$subMenuItemLinkHoverBackgroundColor: transparent;
+$subMenuItemLinkBackgroundColor: transparent;
 
 /* Filter Widget */
 $advancedFilterErrorColor: $red;
 $widgetHeaderFilterColor: $black;
-$widgetAdvancedFilterBorder: $transparent;
-$widgetAdvancedFilterHoverBorder: #d5d5d5;
-$widgetFilterSelectionContainerBorder: $transparent;
+$widgetAdvancedFilterBorder: transparent;
+$widgetAdvancedFilterHoverBorder: $grey3;
+$widgetFilterSelectionContainerBorder: transparent;
 $widgetAdvancedFilterCommandStateFocusBackgroundColor: none;
 $widgetAdvancedFilterOverlayPanelFooter: #eaeaea;
 $widgetAdvancedFilterCommandBackgroundColor: none;
@@ -144,14 +144,14 @@ $processHeaderTitleContainerBorderBottom: $borderColor;
 $processNavigatorBorder: $borderColor;
 $processNavigatorItemSelectedBorder: $primaryColor;
 $processHistoryColumnHeaderBorder: $borderColor;
-$processHistoryListDataScrollerBackgroundColor: $transparent;
+$processHistoryListDataScrollerBackgroundColor: transparent;
 $selectedProcessNavItemFontWeight: bold;
 $processStartListItemNameFontWeight: 400;
 
 /* Case Detail */
 $caseRelatedTaskColor: $primaryTextColor;
 $caseDetailPaginatorColor: $primaryTextColor;
-$caseRelatedTaskContentBorder: $greyLineColor;
+$caseRelatedTaskContentBorder: $grey3;
 $caseDocumentUploadBorder: #cccccc;
 $userDefinedFilterContainerHoverFontWeight: bold;
 $caseDetailNameInputFontWeight: bold;
@@ -162,7 +162,7 @@ $historyButtonContainerFontWeight: bold;
 
 /* Case Item */
 $historyNodeColor: $primaryTextColor;
-$historyNoteBorder: $greyLineColor;
+$historyNoteBorder: $grey3;
 $caseTaskDocumentNameColor: $primaryTextColor;
 $caseListItemHoverBackgroundColor: #e8e9ef;
 $caseWidgetColumnHeaderIsSelectedColor: $black;
@@ -172,8 +172,8 @@ $caseStateInProgressColor: rgba(7, 140, 255, 1);
 $caseStateDoneColor: rgba(78, 180, 28, 1);
 $caseWidgetTopHeaderBorderBottom: $borderColor;
 $caseWidgetColumnHeaderBorderBottom: $borderColor;
-$caseListDataScrollerContentBackgroundColor: $transparent;
-$caseHeaderActionCellButtonBackgroundColor: $transparent;
+$caseListDataScrollerContentBackgroundColor: transparent;
+$caseHeaderActionCellButtonBackgroundColor: transparent;
 $caseItemActionStepsFontWeight: bold;
 
 /* Task Widget */
@@ -187,13 +187,13 @@ $taskWidgetOverlayPanelContentBackgroundColor: $white;
 $taskWidgetLinkColor: $black;
 $taskActionHoverBackgroundColor: #f5f5f5;
 $taskFilterSeparatorBorderBottom: $borderColor;
-$taskViewContainerDataScrollerContentBackgroundColor: $transparent;
+$taskViewContainerDataScrollerContentBackgroundColor: transparent;
 $taskOptionPanelBoxShadow: rgba(43, 59, 93, 0.6);
 $taskOptionPanelBorderTop: rgba(43, 59, 93, 0.2);
 
 /* Task Detail */
 $taskDetailPaginatorColor: $primaryTextColor; 
-$taskDetailActionItemHoverBackgroundColor: $transparent;
+$taskDetailActionItemHoverBackgroundColor: transparent;
 $taskDetailHeaderFontWeight: bold;
 $taskDetailSectionTitleFontWeight: bold;
 $taskStartInfoHeaderFontWeight: bold;
@@ -205,7 +205,7 @@ $taskActionItemWidgetHeaderColor: $white;
 $taskActionItemLabelFontWeight: normal;
 
 /* Task Template */
-$taskTemplateActionButtonFocus: $transparent;
+$taskTemplateActionButtonFocus: transparent;
 $taskTemplateTitleFontWeight: bold;
 $outputLabelTaskTemplateTitleFontWeight: 400;
 
@@ -218,7 +218,7 @@ $emailSettingWidgetHeader: $black;
 $usernameShowEnvironmentInfoFontWeight: bold;
 
 /* Absences and Debuty */
-$substitutedUserTextColor: #757575;
+$substitutedUserTextColor: $grey1;
 
 /* Awesome Icon Selection */
 $linkChangeAwesomeIconColor: $black;
@@ -268,23 +268,22 @@ $definedTaskLabelBackgroundColor: $accentColor;
 $definedTaskButtonContainerBackgroundColor: $white;
 $formElementsPanelHoverDropSectionLabelColor: $primaryTextColor;
 $taskResponsibleLinkColor: $black;
-$selectManyCheckboxLabelColor: #757575;
+$selectManyCheckboxLabelColor: $grey1;
 $autocompleteMoreTextStateHighlightBackgroundColor: white;
 $expressInputSwitchSelectionBorder: #dcf91f;
-$expressAvailableElementsActionButtonBackgroundColor: $transparent;
+$expressAvailableElementsActionButtonBackgroundColor: transparent;
 $expressAvailableElementsActionButtonShadow: none;
-$expressSelectedFormelementsPanelBorder: #656565;
 $formElementsPanelHoverDropSectionBorder: #699924;
 $formDefinitionTableBorder: rgba(117, 117, 117, 0.5);
-$formDefinitionTableSelectedPanelBorder: $greyBorder;
-$formDefinitionTableSelectedPanelBackgroundColor: $transparent;
-$emailFileUploadCornerTopBackgroundColor: $transparent;
-$expressTableNoHeaderBorder: $greyLineColor;
-$expressTableNoHeaderBackgroundColor: $transparent;
+$formDefinitionTableSelectedPanelBorder: $grey2;
+$formDefinitionTableSelectedPanelBackgroundColor: transparent;
+$emailFileUploadCornerTopBackgroundColor: transparent;
+$expressTableNoHeaderBorder: $grey3;
+$expressTableNoHeaderBackgroundColor: transparent;
 $selectCheckboxMenuTriggerBackgroundColor: $white;
 $selectCheckboxMenuTriggerBorder: #b0bec5;
 $expressExpandCollapseButtonColor: $primaryTextColor;
-$processExpressLogoBackgroundColor: $transparent;
+$processExpressLogoBackgroundColor: transparent;
 $expressWorkflowActiveSwitchLabelFontWeight: 700;
 $expressReviewContentTitleFontWeight: 700;
 $expressFinishedTaskLabelFontWeight: 700;
@@ -293,7 +292,7 @@ $expressActiveDefinedTaskButtonFontWeight: bold;
 /* Chat */
 $chatPanelBackgroundColor: $black;
 $noGroupChatColor: $white;
-$contactCardHoverBackgroundColor: $grey;
+$contactCardHoverBackgroundColor: $grey1;
 $contactCardIconColor: #b2b2b2;
 $contactCardBackgroundColor: $white;
 $contactCardIconUnreadMessageColor: $white;
@@ -303,10 +302,10 @@ $contactCardStatusBackgroundColor: #64d864;
 $contactNotificationColor: $white;
 $contactNotificationBackgroundColor: $red;
 $messageListBackgroundColor: $white;
-$messageListHeaderBackgroundColor: #838383;
+$messageListHeaderBackgroundColor: $grey1;
 $messageListHeaderCloseIconHoverBackgroundColor: #9b9b9b;
 $messageListHeaderCloseIconBackgroundColor: #b2b2b2;
-$messageSeparatorBorder: $greyBorder;
+$messageSeparatorBorder: $grey2;
 $chatMessageBackgroundColor: #f3f6f9;
 $chatMyMessageBackgroundColor: #def4fd;
 $messageChatHeaderNameColor: $white;
@@ -318,9 +317,9 @@ $chatContactTypeHeaderColor: $white;
 $chatTooltipColor: $white;
 $chatTooltipBackgroundColor: $black;
 $participantsListHeaderColor: $black;
-$chatSendFormButtonBackgroundColor: $transparent;
-$messageListContentSendInputBackgroundColor: $transparent;
-$chatUserInRoleBorder: $greyBorder;
+$chatSendFormButtonBackgroundColor: transparent;
+$messageListContentSendInputBackgroundColor: transparent;
+$chatUserInRoleBorder: $grey2;
 $showParticipantsLinkFontWeight: bold;
 $participantsListHeaderFontWeight: bold;
 $messageChatHeaderNameFontWeight: 600;
@@ -328,12 +327,12 @@ $chatContactTypeHeaderFontSize: 1.8rem;
 
 /* Icon */
 $iconFontFamily: "FontAwesome";
-$checkboxMenuIconBackgroundColor: $transparent;
-$fieldsetToggerHoverBackgroundColor: $transparent;
-$iconSelectionDialogBorder: $transparent;
+$checkboxMenuIconBackgroundColor: transparent;
+$fieldsetToggerHoverBackgroundColor: transparent;
+$iconSelectionDialogBorder: transparent;
 $iconSelectionDialogBorderHover: $black;
-$autoCompleteDropdownFocusBackgroundColor: $transparent;
-$uiInplaceBackgroundColor: $transparent;
+$autoCompleteDropdownFocusBackgroundColor: transparent;
+$uiInplaceBackgroundColor: transparent;
 $dataIconFontFamily: "true-minimalistic-icons";
 $dataIconFontStyle: normal;
 $dataIconFontWeight: normal;
