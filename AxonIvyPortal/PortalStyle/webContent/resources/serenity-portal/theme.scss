@@ -64,7 +64,7 @@ body {
 
 /*Style For Main menu (Left Sidebar)------------------------------------------------------------------------ */
 .left-sidebar-color {
-    background-color: $menuColor;
+    background-color: $grey4;
 }
 
 .layout-wrapper .layout-sidebar .layout-menu>li.active-menuitem>a {
@@ -82,11 +82,11 @@ body {
 }
 
 .layout-wrapper .layout-sidebar {
-    background-color: $menuColor;
+    background-color: $grey4;
 }
 
 .layout-wrapper .layout-sidebar .sidebar-logo {
-    background-color: $menuColor;
+    background-color: $grey4;
 }
 
 .layout-wrapper .layout-sidebar .sidebar-logo .sidebar-anchor {
@@ -186,7 +186,7 @@ body {
 body {
     .ui-dialog {
         .ui-dialog-titlebar {
-            border-bottom: 1px solid $greyLineColor;
+            border-bottom: 1px solid $grey3;
             padding: 8px 20px !important;
 
             .ui-dialog-title {
@@ -521,7 +521,7 @@ body .ui-dialog .ui-dialog-footer .ui-button {
                 }
 
                 &:first-child {
-                    border-left: 1px solid $greyLineColor !important;
+                    border-left: 1px solid $grey3 !important;
                 }
             }
         }
@@ -753,8 +753,8 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 /*Style For Mobile --------------------------------------------------------------------------------------*/
 .task #mobile-menu .mobile-task-menu-item,
 .process #mobile-menu .mobile-process-menu-item {
-    border-bottom: solid 3px $menuColor;
-    color: $menuColor !important;
+    border-bottom: solid 3px $grey4;
+    color: $grey4 !important;
 }
 
 /*Style For Input field --------------------------------------------------------------------------------------*/
@@ -1421,7 +1421,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-filter-container .ui-icon-search,
 .ui-picklist .ui-picklist-filter-container .ui-icon,
 .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon {
-  color: grey;
+  color: $grey1;
   background: $checkboxMenuIconBackgroundColor;
 }
 
@@ -2003,10 +2003,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 .available-elements-action-btn button {
   background-color: $expressAvailableElementsActionButtonBackgroundColor !important;
   box-shadow: $expressAvailableElementsActionButtonShadow !important;
-}
-
-.selected-formelements-panel {
-  border: solid 3px $expressSelectedFormelementsPanelBorder;
 }
 
 .show-default-ui-icon {
