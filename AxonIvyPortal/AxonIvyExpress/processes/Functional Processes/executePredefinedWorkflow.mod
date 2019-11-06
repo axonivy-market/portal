@@ -1337,7 +1337,7 @@ import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 
 Map x =  IvyAdapterService.startSubProcess("handleEndPage()", null, Arrays.asList(PortalLibrary.AXON_EXPRESS.getValue()));
 String callbackUrl = x.get("callbackUrl") as String;
-ivy.task.customFields().textField(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString()).set(callbackUrl);
+ivy.task.customFields().stringField(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString()).set(callbackUrl);
 
 ' #txt
 Bk7 f28 security system #txt
