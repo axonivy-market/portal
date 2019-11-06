@@ -169,7 +169,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .widget-header-main {
   flex: 1 0 50%;
   position: relative;
-  height: 50px;
+  height: 20px;
 }
 
 /* Small screen */
@@ -663,6 +663,7 @@ span.task-details-document-add-link {
   align-items: flex-end;
   line-height: normal;
   padding-bottom: 10px;
+  height: 45px;
 }
 
 .case-widget-container .sort-icon {
@@ -1829,7 +1830,8 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
     padding: 0 15px !important;
   }
   
-  .widget-sort-menu.full-mode {
+  .widget-sort-menu.full-mode,
+  .case-widget-container .widget-column-header {
     height: 35px;
   }
   
