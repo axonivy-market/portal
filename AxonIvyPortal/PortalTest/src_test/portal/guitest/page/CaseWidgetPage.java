@@ -38,8 +38,8 @@ public class CaseWidgetPage extends TemplatePage {
     return CASE_PAGE_LOCATION;
   }
 
-  public int countSideStepItems(int index) {
-    WebElement actionsPanel = getMoreActionsPanel(findElementById(String.format("case-widget:case-list-scroller:%d:case-item", index)));
+  public int countSideStepItems() {
+    WebElement actionsPanel = getMoreActionsPanel();
     return actionsPanel.findElements(By.cssSelector("a[id$='side-step-item']")).size();
   }
 
@@ -48,28 +48,28 @@ public class CaseWidgetPage extends TemplatePage {
     return findElementById(caseItemId);
   }
 
-  private WebElement getDestroyButtonOfCaseItem(WebElement caseItem) {
+  private WebElement getDestroyButtonOfCaseItem() {
     clickByCssSelector("button[id$='action-steps-menu']");
     waitForElementDisplayed(By.cssSelector("a[id$='destroy-case']"), true);
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> findElementByCssSelector("a[id$='destroy-case']").isDisplayed());
     return findElementByCssSelector("a[id$='destroy-case']");
   }
 
-  private WebElement getMoreActionsPanel(WebElement caseItem) {
+  private WebElement getMoreActionsPanel() {
     clickByCssSelector("button[id$='action-steps-menu']");
     waitForElementDisplayed(By.cssSelector("div[id$='action-steps-panel']"), true);
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> findElementByCssSelector("div[id$='action-steps-panel']").isDisplayed());
     return findElementByCssSelector("div[id$='action-steps-panel']");
   }
   
-  public void clickDestroyButton(WebElement caseItem) {
-    WebElement destroyButton = getDestroyButtonOfCaseItem(caseItem);
+  public void clickDestroyButton() {
+    WebElement destroyButton = getDestroyButtonOfCaseItem();
     destroyButton.click();
   }
 
-  public boolean isDestroyButtonVisible(WebElement caseItem) {
+  public boolean isDestroyButtonVisible() {
     try {
-      getDestroyButtonOfCaseItem(caseItem);
+      getDestroyButtonOfCaseItem();
       return true;
     } catch (Exception ex) {
       return false;
