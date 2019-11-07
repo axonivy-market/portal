@@ -202,6 +202,7 @@ body .ui-messages .ui-messages-error-icon,
 .ui-messages-warn-icon,
 .ui-messages-fatal-icon {
     margin-top: 2px !important;
+    font-size: 2.4rem !important;
 }
 
 /*Style Email Setting --------------------------------------------------------------------------------*/
@@ -320,6 +321,10 @@ body .ui-panelgrid tbody tr.ui-widget-content {
 
 .task-priority-exception {
     color: $taskPriorityExceptionColor;
+}
+
+.in-progress-task-checkbox .ui-chkbox-label {
+  color: $grey1;
 }
 
 /*Style For Statistic Widget -----------------------------------------------------------------------------*/
@@ -1139,8 +1144,8 @@ li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectabl
 }
 
 /*Style for Dialog --------------------------------------------------------------------------------------*/
-.ui-widget.ui-dialog .ui-dialog-content {
-  font-size: $largeFontSize;
+body .ui-widget.ui-dialog .ui-dialog-content {
+  font-size: $largeFontSize !important;
 }
 
 .ui-commandlink.ui-state-disabled {
@@ -2395,6 +2400,20 @@ body .ui-icon {
 
 body .ui-accordion .ui-accordion-header {
   font-size: $largeFontSize !important;
+}
+
+body .md-inputfield .ui-message.ui-message-error {
+  font-size: 1.1rem;
+}
+
+body .md-inputfield .ui-message.ui-message-error .ui-message-error-icon {
+  font-size: 1.3rem;
+}
+
+@media (max-width: 640px) {
+  .ui-datatable-reflow .ui-reflow-dropdown {
+    font-size: $largeFontSize !important;
+  }
 }
 
 body .ui-datepicker .ui-datepicker-header .ui-datepicker-next,
