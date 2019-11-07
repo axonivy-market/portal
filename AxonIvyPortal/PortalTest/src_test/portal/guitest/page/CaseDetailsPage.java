@@ -233,12 +233,12 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void uploadDocumentWithoutError(String pathToFile) {
-    openAddDocumentDialogAndUploadDocument(0, pathToFile);
+    openAddDocumentDialogAndUploadDocument(pathToFile);
     click(By.cssSelector("button[id$='case-item-details:document:document-upload-close-command']"));
   }
 
   public String uploadDocumentWithError(String pathToFile) {
-    openAddDocumentDialogAndUploadDocument(0, pathToFile);
+    openAddDocumentDialogAndUploadDocument(pathToFile);
     WebElement errorMsg = findElementByCssSelector("div[id$='upload-messages']");
     String returnMsg = StringUtils.EMPTY;
     if (errorMsg.isDisplayed()) {
@@ -248,7 +248,7 @@ public class CaseDetailsPage extends TemplatePage {
     return returnMsg;
   }
 
-  private void openAddDocumentDialogAndUploadDocument(int index, String pathToFile) {
+  private void openAddDocumentDialogAndUploadDocument(String pathToFile) {
     clickByCssSelector("a[id$='add-document-command']");
     waitForElementDisplayed(By.cssSelector("span[id$='document-upload-dialog_title']"), true);
     try {

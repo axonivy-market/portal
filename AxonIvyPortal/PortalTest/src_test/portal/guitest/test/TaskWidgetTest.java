@@ -98,7 +98,7 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage.waitAjaxIndicatorDisappear();
     taskWidgetPage.changeExpiryOfTaskAt(tomorrowStringLiteral);
     taskWidgetPage.waitAjaxIndicatorDisappear();
-    assertEquals(tomorrowStringLiteral, taskWidgetPage.getExpiryOfTaskAt(firstTask));
+    assertEquals(tomorrowStringLiteral, taskWidgetPage.getExpiryOfTaskAt());
   }
 
   @Test
