@@ -294,7 +294,7 @@ Ae0 f32 showInStartList 1 #txt
 Ae0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>RequestForm()</name>
+        <name>RequestForm</name>
     </language>
 </elementInfo>
 ' #txt

@@ -25,7 +25,7 @@
       </p:commandLink>
 
       <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" actionLinkId="task-side-steps-menu"
-        panelWidgetVar="task-side-steps-panel-#{rowIndex}" isAdhocExcluded="false" rendered="#{taskActionBean.showAdditionalOptions}" task="#{task}"
+        panelWidgetVar="task-side-steps-panel-#{rowIndex}" isAdhocExcluded="false" renderedAdditionalAction="#{taskActionBean.showAdditionalOptions}" task="#{task}"
         isDisabled="#{!taskActionBean.isNotDone(task)}" dataModel="#{dataModel}" componentToUpdate="#{p:component('task-start')}" buttonStyleClass="u-hidden-md-down"
         rowIndex="#{rowIndex}" />
     </div>

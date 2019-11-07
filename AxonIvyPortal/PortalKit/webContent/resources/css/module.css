@@ -169,7 +169,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .widget-header-main {
   flex: 1 0 50%;
   position: relative;
-  height: 50px;
+  height: 20px;
 }
 
 /* Small screen */
@@ -308,7 +308,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   position: absolute;
   top: 35%;
   right: 5px;
-  font-size: 1.4rem;
 }
 
 .filter-category-checkbox-tree .ui-tree-container {
@@ -450,7 +449,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .advanced-filter-icon {
   position: absolute;
-  font-size: 1.8rem;
   right: 5px;
   top: 7px;
 }
@@ -663,6 +661,7 @@ span.task-details-document-add-link {
   align-items: flex-end;
   line-height: normal;
   padding-bottom: 10px;
+  height: 45px;
 }
 
 .case-widget-container .sort-icon {
@@ -747,11 +746,6 @@ span.task-details-document-add-link {
   box-shadow: none;
 }
 
-.case-header-action-cell .action-icon {
-  display: block;
-  font-size: 1.5rem;
-}
-
 .case-header-action-cell .case-command:not(:last-child) {
   margin-right: 10px;
 }
@@ -823,7 +817,7 @@ span.task-details-document-add-link {
 }
 
 .action-steps-panel .action-icon {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
 .action-steps-panel .action-step-item {
@@ -1013,7 +1007,6 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 
 .process-widget-action {
   display: inline-block;
-  padding-left: 9px;
 }
 
 .process-widget-action-form {
@@ -1091,7 +1084,6 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 }
 
 .process-start-list-item-icon {
-  font-size: 2rem;
   opacity: 0.3;
   display: flex;
   align-items: center;
@@ -1151,13 +1143,11 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 .compact-process-widget .toggle-processes-link.fa-plus:before,
 .compact-toggle-tasks-link.fa-plus:before {
   padding-right: 4px;
-  font-size: 1.4rem !important;
   content: '\f067';
 }
 .compact-process-widget .toggle-processes-link.fa-minus:before,
 .compact-toggle-tasks-link.fa-minus:before {
   padding-right: 4px;
-  font-size: 1.4rem !important;
   content: '\f068';
 }
 
@@ -1183,7 +1173,6 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 .process-item-action-container {
   display: inline-flex;
   align-items: center;
-  font-size: 1.4rem;
   position: absolute;
   vertical-align: middle;
   height: 100%;
@@ -1206,7 +1195,6 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 
 .process-start-list-item .process-start-list-item-action .process-description {
   display: inline-block;
-  font-size: 1.5rem;
   padding: 0 5px;
   float: left;
 }
@@ -1219,7 +1207,6 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 }
 
 .process-start-list-item .ui-commandlink.process-item {
-  font-size: 1.5rem;
   margin: 0 5px;
 }
 
@@ -1250,6 +1237,7 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 
 .process-widget .default-process-title {
   display: inline-block;
+  padding-left: 2px;
   padding-right: 20px;
 }
 
@@ -1472,7 +1460,6 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 }
 
 /* END NEED TO BE REFACTORED */
-$black
 
 /********************************** TASK WIDGET **********************************/
 .dashboard-task-widget-container {
@@ -1539,7 +1526,6 @@ $black
 }
 
 .filter-selection-form .filter-name-overlay-panel .user-defined-filter-container .delete-user-defined-filter-command {
-  font-size: 1.4rem;
   text-align: right;
   display: none;
   flex: 1 0 auto;
@@ -1627,7 +1613,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .action-icon.icon-compact-mode {
-  font-size: 1.2rem;
   margin-right: 20px;
 }
 
@@ -1682,7 +1667,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .task-start-list .priority-cell {
   padding: 0 22px;
-  font-size: 1.4rem;
 }
 
 .no-task-message, .case-widget-empty-message {
@@ -1706,10 +1690,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.task-start-list .state-cell {
-  font-size: 1.4rem;
 }
 
 .task-start-list .action-cell {
@@ -1774,7 +1754,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   height: 230px;
   padding-right: 10px;
   padding-top: 5px;
-  font-size: 1.2rem;
 }
 
 .options-panel {
@@ -1830,7 +1809,8 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
     padding: 0 15px !important;
   }
   
-  .widget-sort-menu.full-mode {
+  .widget-sort-menu.full-mode,
+  .case-widget-container .widget-column-header {
     height: 35px;
   }
   
@@ -2119,7 +2099,6 @@ _:-ms-fullscreen, :root .additional-case-details-link {
 
 .icon-selection-dialog-selecting-icon .fa {
   margin: auto;
-  font-size: 2rem;
 }
 
 _:-ms-input-placeholder, :root .icon-selection-dialog-selecting-icon .fa {
@@ -2248,7 +2227,6 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 .circle-process-chain .circle-horizontal-process-step,
 .circle-process-chain .circle-vertical-process-step {
   width: 14rem;
-  font-size: 1.2rem;
   display: inline-block;
   margin: -2px;
   text-align: center;
@@ -2354,15 +2332,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   .line-process-chain .line-horizontal-process-step.hide-left-steps {
     width: 4rem !important;
   }
-  .line-process-chain .line-horizontal-process-step.hide-left-steps.waiting {
-    background: repeating-linear-gradient(90deg, #E0E0E0, #E0E0E0 10px, #fff 10px, #fff 20px);
-  }
-}
-
-@media screen and (min-width: 40.063em) and (max-width: 64.062em) {
-  .line-process-chain .line-horizontal-process-step.hide-left-steps.waiting {
-    background: repeating-linear-gradient(90deg, #E0E0E0, #E0E0E0 10px, #fff 10px, #fff 20px);
-  }
 }
 
 .line-process-chain .line-horizontal-process-step {
@@ -2434,7 +2403,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   width: 7rem;
   height: 120px;
   text-align: center;
-  font-size: 1.2rem;
 }
 
 .line-process-chain .line-vertical-process-step.hide-left-steps {
@@ -2820,7 +2788,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .applications-email-setting-dialog .ui-dialog-content.ui-widget-content {
-  font-size: 1.4rem;
   padding: 1rem 2rem;
 }
 
@@ -2848,9 +2815,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   width: 95%;
 }
 
-.process-starts-icon {
-  font-size: 11pt;
-}
 /********************************** END PROCESS START **********************************/
 
 /********************************** TASK INFORMATION **********************************/
@@ -2919,7 +2883,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .statistic-carousel.ui-carousel .ui-carousel-header .ui-carousel-header-title .chart-info {
-  font-size: 1.5rem;
   float: left;
   width: 20px;
   height: 20px;
@@ -3183,7 +3146,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .dashboard-chart-panel .chart-actions-container .chart-action {
-  font-size: 1.5rem;
   margin: 4px;
 }
 
@@ -3192,7 +3154,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .dashboard-chart-panel .chart-info {
-  font-size: 1.5rem;
   margin-right: 10px;
   align-self: baseline;
   margin-top: 0.5em;
@@ -3306,7 +3267,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   flex-grow: 1;
   width: 430px;
   height: 60px;
-  font-size: 1.2rem;
   display: flex;
 }
 
@@ -3494,10 +3454,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   display: inline-block;
   margin: 0px;
   text-align: center;
-}
-
-.stages-chain .process-step i{
-  font-size: 16px;
 }
 
 .stages-chain .process-flow {
@@ -3811,7 +3767,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 
 .mobile-filter-icon span {
-  font-size: 1.4rem !important;
   height: 18px !important;
   top: 58% !important;
 }
@@ -4263,6 +4218,7 @@ a.ui-widget:focus {
 
 .favorite-process-title {
   display: inline-block;
+  padding-left: 2px;
   padding-right: 20px;
 }
 

@@ -8,31 +8,32 @@
   <cc:attribute name="widgetVar" default="task-losing-confirmation-dialog" />
   <cc:attribute name="leaveActionListener" required="true" />
   <cc:attribute name="reserveActionListener" required="true" />
+  <cc:attribute name="taskState" required="true" />
 </cc:interface>
 <cc:implementation>
-    <p:confirmDialog id="#{cc.attrs.componentId}" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
-      widgetVar="#{cc.attrs.widgetVar}" appendTo="@(body)" closeOnEscape="true">
-      <h:form prependId="false">
-        <h:panelGroup styleClass="Fs14">
-          <p:commandButton id="leave-button" actionListener="#{cc.attrs.leaveActionListener}" process="@this" update="@none"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leave')}"
-            styleClass="ui-confirmdialog-yes u-mar-right-5" />
-          <p:commandButton id="reserve-task-button" actionListener="#{cc.attrs.reserveActionListener}" process="@this"
-            update="@none" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}"
-            styleClass="ui-confirmdialog-yes u-mar-right-5" rendered="#{ivy.task.state != 'CREATED'}" />
-          <p:tooltip for="reserve-task-button" trackMouse="true" rendered="#{ivy.task.state != 'CREATED'}"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leaveAndReserve')}" />
-          <p:commandButton onclick="PF('#{cc.attrs.widgetVar}').hide()"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button"
-            styleClass="ui-confirmdialog-no portal-cancel-button" />
-        </h:panelGroup>
-      </h:form>
-      <f:facet name="message">
-        <h:outputText escape="false" styleClass="ui-confirm-dialog-message" rendered="#{ivy.task.state != 'CREATED'}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resetParkTaskBeforeLeave')}" />
-        <h:outputText escape="false" styleClass="ui-confirm-dialog-message" rendered="#{ivy.task.state == 'CREATED'}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/createdTaskLeave')}" />
-      </f:facet>
-    </p:confirmDialog>
+  <p:confirmDialog id="#{cc.attrs.componentId}" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
+    widgetVar="#{cc.attrs.widgetVar}" appendTo="@(body)" closeOnEscape="true">
+    <h:form prependId="false">
+      <h:panelGroup styleClass="Fs14">
+        <p:commandButton id="leave-button" actionListener="#{cc.attrs.leaveActionListener}" process="@this" update="@none"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leave')}"
+          styleClass="ui-confirmdialog-yes u-mar-right-5" />
+        <p:commandButton id="reserve-task-button" actionListener="#{cc.attrs.reserveActionListener}" process="@this"
+          update="@none" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}"
+          styleClass="ui-confirmdialog-yes u-mar-right-5" rendered="#{cc.attrs.taskState != 'CREATED'}" />
+        <p:tooltip for="reserve-task-button" trackMouse="true" rendered="#{cc.attrs.taskState != 'CREATED'}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leaveAndReserve')}" />
+        <p:commandButton onclick="PF('#{cc.attrs.widgetVar}').hide()"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button"
+          styleClass="ui-confirmdialog-no portal-cancel-button" />
+      </h:panelGroup>
+    </h:form>
+    <f:facet name="message">
+      <h:outputText escape="false" styleClass="ui-confirm-dialog-message" rendered="#{cc.attrs.taskState != 'CREATED'}"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resetParkTaskBeforeLeave')}" />
+      <h:outputText escape="false" styleClass="ui-confirm-dialog-message" rendered="#{cc.attrs.taskState == 'CREATED'}"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/createdTaskLeave')}" />
+    </f:facet>
+  </p:confirmDialog>
 </cc:implementation>
 </html>
