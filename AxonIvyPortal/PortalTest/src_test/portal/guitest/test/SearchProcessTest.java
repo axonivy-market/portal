@@ -41,7 +41,7 @@ public class SearchProcessTest extends BaseTest {
   
   @Test
   public void testFindCaseMapByName() {
-    String caseMapName = "Case Map Leave";
+    String caseMapName = "Case Map: Leave Request";
     GlobalSearch globalSearch = homePage.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
 
