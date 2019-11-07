@@ -453,7 +453,7 @@ public class PortalExpressTest extends BaseTest {
 		GlobalSearch globalSearch = homePage.getGlobalSearch();
 		SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(processName);
 		searchResultPage.startProcess(processName);
-		new TaskTemplatePage();
+		new TaskTemplatePage().isDisplayed();
 	}
 
 	protected void executeApproval(String comment) {
