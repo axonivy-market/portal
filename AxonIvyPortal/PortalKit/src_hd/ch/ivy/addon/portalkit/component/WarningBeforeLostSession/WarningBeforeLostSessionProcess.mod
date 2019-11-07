@@ -60,13 +60,15 @@ Ws0 f4 @|UdExitEndIcon #fIcon
 Ws0 f5 expr out #txt
 Ws0 f5 109 160 211 160 #arcP
 Ws0 f6 guid 15F8F475530B4DA3 #txt
-Ws0 f6 method logout() #txt
-Ws0 f6 inParameterDecl '<> param;' #txt
+Ws0 f6 method logout(ITask) #txt
+Ws0 f6 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task> param;' #txt
+Ws0 f6 inParameterMapAction 'out.task=param.task;
+' #txt
 Ws0 f6 outParameterDecl '<> result;' #txt
 Ws0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>logout()</name>
+        <name>logout(ITask)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -74,9 +76,10 @@ Ws0 f6 83 243 26 26 -21 15 #rect
 Ws0 f6 @|UdMethodIcon #fIcon
 Ws0 f7 347 243 26 26 0 12 #rect
 Ws0 f7 @|UdProcessEndIcon #fIcon
-Ws0 f9 processCall 'Functional Processes/Logout:call(Boolean)' #txt
-Ws0 f9 requestActionDecl '<Boolean isTaskReserve> param;' #txt
+Ws0 f9 processCall 'Functional Processes/Logout:call(Boolean,ITask)' #txt
+Ws0 f9 requestActionDecl '<Boolean isTaskReserve,ch.ivyteam.ivy.workflow.ITask task> param;' #txt
 Ws0 f9 requestMappingAction 'param.isTaskReserve=false;
+param.task=in.task;
 ' #txt
 Ws0 f9 responseActionDecl 'ch.ivy.addon.portalkit.component.WarningBeforeLostSession.WarningBeforeLostSessionData out;
 ' #txt

@@ -34,6 +34,7 @@ import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.system.ISystemProperty;
+import ch.ivyteam.ivy.workflow.ITask;
 
 @ManagedBean
 @ViewScoped
@@ -127,13 +128,13 @@ public class UserMenuBean implements Serializable {
     }
   }
 
-  public void resetTaskAndNavigateToHomePage() throws IOException {
-    TaskUtils.resetTask(Ivy.wfTask());
+  public void resetTaskAndNavigateToHomePage(ITask task) throws IOException {
+    TaskUtils.resetTask(task != null ? task : Ivy.wfTask());
     navigateToHomePage();
   }
 
-  public void reserveTaskAndNavigateToHomePage() throws IOException {
-    TaskUtils.parkTask(Ivy.wfTask());
+  public void reserveTaskAndNavigateToHomePage(ITask task) throws IOException {
+    TaskUtils.parkTask(task != null ? task : Ivy.wfTask());
     navigateToHomePage();
   }
   

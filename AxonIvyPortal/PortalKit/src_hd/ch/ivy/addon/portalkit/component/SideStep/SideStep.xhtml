@@ -14,6 +14,7 @@
   <cc:attribute name="componentToUpdate" default="" />
   <cc:attribute name="rowIndex" default="0" />
   <cc:attribute name="buttonStyleClass" />
+  <cc:attribute name="renderedAdditionalAction" shortDescription="Control display adhoc and side steps" />
 </cc:interface>
 
 <cc:implementation>
@@ -47,17 +48,19 @@
       <span class="option-action-icon tmi-box-arrow-toinside" />
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}" styleClass="option-item-label" />
     </p:commandLink>
-    <p:separator styleClass="u-separator" />
-
-    <p:commandLink rendered="#{empty sideStepBean.currentSideSteps}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}"
-      styleClass="option-item" />
-    <ui:repeat var="sideStep" value="#{sideStepBean.currentSideSteps}">
-      <p:commandLink id="adhoc-side-step-item" styleClass="option-item" value="#{sideStep.name}" global="false" rendered="#{sideStep.isAdhoc()}"
-        actionListener="#{sideStepBean.startAdhoc(sideStep, task.getId())}" process="@this" />
-
-      <p:commandLink id="option-item" styleClass="option-item" value="#{sideStep.name}" global="false" rendered="#{not sideStep.isAdhoc()}"
-        actionListener="#{sideStepBean.startSideStep(sideStep)}" process="@this" />
-    </ui:repeat>
+    
+    <h:panelGroup id="task-additional-actions" layout="block" rendered="#{cc.attrs.renderedAdditionalAction}">
+      <p:separator styleClass="u-separator" />
+      <p:commandLink rendered="#{empty sideStepBean.currentSideSteps}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}"
+        styleClass="option-item" />
+      <ui:repeat var="sideStep" value="#{sideStepBean.currentSideSteps}">
+        <p:commandLink id="adhoc-side-step-item" styleClass="option-item" value="#{sideStep.name}" global="false" rendered="#{sideStep.isAdhoc()}"
+          actionListener="#{sideStepBean.startAdhoc(sideStep, task.getId())}" process="@this" />
+  
+        <p:commandLink id="option-item" styleClass="option-item" value="#{sideStep.name}" global="false" rendered="#{not sideStep.isAdhoc()}"
+          actionListener="#{sideStepBean.startSideStep(sideStep)}" process="@this" />
+      </ui:repeat>
+    </h:panelGroup>
   </p:overlayPanel>
 
   <ui:include src="TaskDelegateDialog.xhtml">
