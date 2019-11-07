@@ -59,7 +59,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public TaskDetailsPage openTaskDetails(int index) {
-    clickOnTaskEntryInFullMode(index, true);
+    clickOnTaskEntryInFullMode(index);
     return new TaskDetailsPage();
   }
 
@@ -71,7 +71,7 @@ public class TaskWidgetPage extends TemplatePage {
     click(driver.findElement(By.cssSelector("a[id$='show-more-note-link']")));
   }
 
-  private TaskDetailsPage clickOnTaskEntryInFullMode(int index, boolean isDetailsShown) {
+  private TaskDetailsPage clickOnTaskEntryInFullMode(int index) {
     clickByCssSelector("div[id$='" + index + "\\:task-item\\:task-info']");
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     return taskDetailsPage;
@@ -197,7 +197,7 @@ public class TaskWidgetPage extends TemplatePage {
     saveButton.click();
   }
 
-  public String getExpiryOfTaskAt(int index) {
+  public String getExpiryOfTaskAt() {
     waitForElementDisplayed(By.id("task-detail-template:general-information:expiry-form:edit-inplace_display"), true);
     WebElement taskExpiry = findElementById("task-detail-template:general-information:expiry-form:edit-inplace_display");
     return taskExpiry.getText();
@@ -424,7 +424,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void startTaskWithoutUI(int index) {
     waitTaskAppearThenClick(index);
-    new HomePage();
+    new HomePage().isDisplayed();
   }
 
   private void waitTaskAppearThenClick(int index) {
