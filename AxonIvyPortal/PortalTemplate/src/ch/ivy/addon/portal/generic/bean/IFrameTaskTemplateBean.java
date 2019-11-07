@@ -30,14 +30,12 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private static final String PROCESS_CHAIN_DIRECTION_PARAM = "processChainDirection";
   private static final String PROCESS_STEPS_PARAM = "processSteps";
   private static final String CURRENT_PROCESS_STEP_PARAM = "currentProcessStep";
-  private static final String ANNOUNCEMENT_INVISIBLE_PARAM = "announcementInvisible";
   
   private ITask task;
   private int currentProcessStep;
   private List<String> processSteps;
   private String processChainDirection;
   private String processChainShape;
-  private boolean announcementInvisible;
 
   public void navigateToEndPage() throws MalformedURLException {
     Map<String, String> requestParamMap = getRequestParameterMap();
@@ -64,10 +62,6 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
       processChainDirection = Optional.ofNullable(requestParamMap.get(PROCESS_CHAIN_DIRECTION_PARAM)).orElse(StringUtils.EMPTY);
       processChainShape = Optional.ofNullable(requestParamMap.get(PROCESS_CHAIN_SHAPE_PARAM)).map(Object::toString).orElse(StringUtils.EMPTY);
     }
-    announcementInvisible = Optional.ofNullable(requestParamMap.get(ANNOUNCEMENT_INVISIBLE_PARAM))
-        .map(Object::toString)
-        .map(Boolean::valueOf)
-        .orElse(true);
   }
 
   private Map<String, String> getRequestParameterMap() {
@@ -114,13 +108,5 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
 
   public void setProcessChainShape(String processChainShape) {
     this.processChainShape = processChainShape;
-  }
-
-  public boolean getAnnouncementInvisible() {
-    return announcementInvisible;
-  }
-
-  public void setAnnouncementInvisible(boolean announcementInvisible) {
-    this.announcementInvisible = announcementInvisible;
   }
 }

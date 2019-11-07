@@ -35,6 +35,7 @@ public class TaskActionBean {
   private boolean isShowResetTask;
   private boolean isShowReserveTask;
   private boolean isShowDelegateTask;
+  //This variable control display of side step and create adhoc
   private boolean isShowAdditionalOptions;
   private static final String OPEN_TASK_ITEM_DETAILS = "Start Processes/PortalStart/startPortalTaskDetail.ivp";
   private static final String OPEN_TASK_LIST = "Start Processes/PortalStart/restorePortalTaskList.ivp";

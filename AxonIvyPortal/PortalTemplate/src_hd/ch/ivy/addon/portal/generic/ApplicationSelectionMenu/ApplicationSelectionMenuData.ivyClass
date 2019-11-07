@@ -18,3 +18,5 @@ selectedSubMenuItem ch.addon.portal.generic.menu.SubMenuItem #field
 selectedSubMenuItem PERSISTENT #fieldModifier
 menuModel org.primefaces.model.menu.MenuModel #field
 menuModel PERSISTENT #fieldModifier
+workingTask ch.ivyteam.ivy.workflow.ITask #field
+workingTask PERSISTENT #fieldModifier

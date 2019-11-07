@@ -3,7 +3,7 @@ function loadIframe() {
   var iframe = document.getElementById('iFrame');
   var window = iframe.contentWindow;
   $(iframe).on('load', function() {
-    buildHeader([{
+    getDataFromIFrame([{
       name : 'taskId',
       value : window.taskId
     }, {
@@ -18,7 +18,15 @@ function loadIframe() {
     }, {
       name : 'processChainShape',
       value : window.processChainShape
+    }, {
+      name : 'announcementInvisible',
+      value : window.announcementInvisible
     }]);
+    
+    if (!window.announcementInvisible) {
+      $('#announcement-container').removeClass('u-hidden');
+    }
+    $('.task-template-container').removeClass('u-hidden');
   });
 }
 

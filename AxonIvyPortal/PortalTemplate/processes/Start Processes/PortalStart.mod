@@ -297,7 +297,8 @@ Pt0 f10 51 436 26 26 -46 17 #rect
 Pt0 f10 @|StartRequestIcon #fIcon
 Pt0 f11 actionTable 'out=in;
 ' #txt
-Pt0 f11 actionCode 'import ch.ivy.addon.portalkit.service.StickyTaskListService;
+Pt0 f11 actionCode 'import ch.ivyteam.ivy.workflow.custom.field.ICustomField;
+import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.enums.PortalPage;
@@ -312,7 +313,7 @@ String callbackUrl;
 if  (#task is initialized) {
 	isTaskStarted = task.getStartProcessData() is initialized;
 	if(#taskWithTaskEndInfo is initialized) {
-		callbackUrl = taskWithTaskEndInfo.customFields().textField(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString()).get().orElse("") as String;
+		callbackUrl = taskWithTaskEndInfo.customFields().stringField(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString()).getOrDefault("");
 	}
 }
 
