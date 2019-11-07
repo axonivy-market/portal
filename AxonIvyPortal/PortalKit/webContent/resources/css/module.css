@@ -367,6 +367,10 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   margin-left: .1rem; 
 }
 
+.in-progress-task-checkbox .ui-chkbox-label {
+  margin-left: 7px !important;
+}
+
 .task-widget .advanced-filter-container .additional-filter-container, 
 .case-widget-container .advanced-filter-container .additional-filter-container {
   display: flex;
