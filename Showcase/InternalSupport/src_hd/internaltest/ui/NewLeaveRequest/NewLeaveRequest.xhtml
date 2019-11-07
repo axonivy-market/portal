@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<ui:composition template="/layouts/TaskTemplate.xhtml">
+		<ui:define name="pageTitle">New Leave Request</ui:define>
+		<ui:define name="taskForm">
+
+			<h3>
+				This is sample page for leave request, just proceed
+			</h3>
+
+			<div class="ui-g">
+				<h:form id="form">
+					<div class="ui-g-12">
+						<h:outputText value="This is sample page for leave request, just proceed"/>
+					</div>
+					<div class="ui-g-12 ui-md-9 ui-lg-6">
+
+						<br />
+						<div class="ui-g-12">
+							<p:commandButton actionListener="#{logic.close}" value="Proceed" update="form" icon="ui-icon-check" />
+						</div>
+					</div>
+				</h:form>
+
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

@@ -105,7 +105,7 @@ import javax.faces.application.FacesMessage;
 String displayMessageAfterFinishTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.toString());
 boolean displayMessageAfterFinishTask = StringUtils.isNotBlank(displayMessageAfterFinishTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishTaskVariable) : true;
 if (displayMessageAfterFinishTask) {
-	Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();;
+	Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 	if (!flash.containsKey("overridePortalGrowl")) {
 		FacesMessage message = new FacesMessage(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskLeftSuccessful"));
 		FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
