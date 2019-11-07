@@ -14,7 +14,7 @@
       <c:set var="displayStatisticWidget"
         value="#{(not empty displayStatisticWidget ? displayStatisticWidget : true) and not statisticBean.hiddenStatisticWidget}" />
 
-      <h:panelGroup layout="block" styleClass="ui-g">
+      <h:panelGroup layout="block" styleClass="ui-g home-page-container">
         <h:panelGroup layout="block" class="ui-g-3 ui-lg-3 ui-md-4 ui-sm-12 compact-process-widget" rendered="#{displayProcessWidget}">
           <ui:insert name="processWidget">
               <ic:ch.ivy.addon.portalkit.component.CompactProcessWidget id="process-widget"
