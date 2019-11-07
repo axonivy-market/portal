@@ -135,7 +135,7 @@ public class TaskWidgetPage extends TemplatePage {
   public void sideStepMenuOnMoreButton(int taskId) {
     String moreButton = String.format("button[id$='%d\\:task-item\\:task-action\\:additional-options\\:task-side-steps-menu'] span.fa-ellipsis-v", taskId);
     clickByCssSelector(moreButton);
-    waitAjaxIndicatorDisappear();
+    ensureNoBackgroundRequest();
     waitForElementDisplayed(By.cssSelector("div[id$='side-steps-panel'].ui-overlay-visible a[id$='adhoc-side-step-item']"), true);
   }
 
