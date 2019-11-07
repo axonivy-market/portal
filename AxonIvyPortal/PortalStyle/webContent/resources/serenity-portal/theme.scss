@@ -202,6 +202,7 @@ body .ui-messages .ui-messages-error-icon,
 .ui-messages-warn-icon,
 .ui-messages-fatal-icon {
     margin-top: 2px !important;
+    font-size: 2.4rem !important;
 }
 
 /*Style Email Setting --------------------------------------------------------------------------------*/
@@ -322,6 +323,10 @@ body .ui-panelgrid tbody tr.ui-widget-content {
     color: $taskPriorityExceptionColor;
 }
 
+.in-progress-task-checkbox .ui-chkbox-label {
+  color: $grey1;
+}
+
 /*Style For Statistic Widget -----------------------------------------------------------------------------*/
 .statistic-carousel .ui-carousel-header {
     background-color: $statisticPanelHeader;
@@ -359,12 +364,10 @@ body .ui-panelgrid tbody tr.ui-widget-content {
 .edit-statistic-container .chart-list .chart-container .label,
 .chart-filter-header-text {
   font-size: $chartFilterHeaderFontSize;
-  font-family: $portalFontFamily;
 }
 
 .edit-statistic-container .chart-list .chart-container .add-link {
   font-size: $chartContainerAddLinkFontSize;
-  font-family: $portalFontFamily;
 }
 
 .ui-columntoggler[id$='task-table-toggler'] .ui-columntoggler-item label {
@@ -373,7 +376,6 @@ body .ui-panelgrid tbody tr.ui-widget-content {
 
 .chart-info-header {
   font-size: $largeFontSize;
-  font-family: $portalFontFamily;
   font-weight: $chartInfoHeaderFontWeight;
 }
 
@@ -1009,10 +1011,6 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
   font-weight: $caseDetailHeaderFontWeight;
 }
 
-.case-details-data-2nd-column {
-  font-family: $portalFontFamily;
-}
-
 .note-show-more-link {
   color: rgba($black, 0.5) !important;
 }
@@ -1146,8 +1144,8 @@ li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectabl
 }
 
 /*Style for Dialog --------------------------------------------------------------------------------------*/
-.ui-widget.ui-dialog .ui-dialog-content {
-  font-size: $largeFontSize;
+body .ui-widget.ui-dialog .ui-dialog-content {
+  font-size: $largeFontSize !important;
 }
 
 .ui-commandlink.ui-state-disabled {
@@ -1203,13 +1201,11 @@ li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectabl
 .widget-header-filter-input.ui-inputfield.ui-state-hover, 
 .widget-header-filter-input.ui-inputfield.ui-state-focus {
   font-size: $largeFontSize;
-  font-family: $portalFontFamily;
   background-color: $widgetHeaderInputHoverBackgroundColor; 
 }
 
 .grid-item-header {
   font-size: $largeFontSize;
-  font-family: $portalFontFamily;
 }
 .widget-header-main-menu a.ui-widget.ui-commandlink, .widget-header-main-menu span.ui-widget.ui-commandlink.ui-state-disabled,
 .widget-sort-menu span.ui-widget.ui-commandlink.ui-state-disabled {
@@ -1605,7 +1601,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .action-steps-panel .action-step-item {
-  font-family: $portalFontFamily;
   color: rgba($black, 0.5) !important;
 }
 
@@ -1686,7 +1681,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .process-start-list-item:hover,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover {
   background: $processStartListItemHoverBackgroundColor;
-  font-family: $portalFontFamily;
   -webkit-box-shadow: 0 0 4px 0 rgba($black, 0.8);
   -moz-box-shadow: 0 0 4px 0 rgba($black, 0.8);
   box-shadow: 0 0 4px 0 rgba($black, 0.8);
@@ -2408,18 +2402,28 @@ body .ui-accordion .ui-accordion-header {
   font-size: $largeFontSize !important;
 }
 
+body .md-inputfield .ui-message.ui-message-error {
+  font-size: 1.1rem;
+}
+
+body .md-inputfield .ui-message.ui-message-error .ui-message-error-icon {
+  font-size: 1.3rem;
+}
+
+@media (max-width: 640px) {
+  .ui-datatable-reflow .ui-reflow-dropdown {
+    font-size: $largeFontSize !important;
+  }
+}
+
 body .ui-datepicker .ui-datepicker-header .ui-datepicker-next,
 body .ui-datepicker .ui-datepicker-header .ui-datepicker-prev {
   font-size: 2rem !important;
 }
 
-body .ui-widget, body .ui-widget .ui-widget,
+/* Override font-family of theme*/
+input, body .ui-widget, body .ui-widget .ui-widget,
 body .ui-selectonemenu .ui-selectonemenu-label.ui-inputfield {
   font-family: $portalFontFamily;
 }
-
-input {
-  font-family: $portalFontFamily;
-}
-
 
