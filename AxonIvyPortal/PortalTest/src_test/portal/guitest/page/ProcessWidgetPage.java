@@ -1,6 +1,7 @@
 package portal.guitest.page;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
@@ -8,6 +9,9 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
 
 import ch.ivy.addon.portalkit.masterdata.AwesomeIcon;
 
@@ -33,7 +37,15 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public void waitAndStartProcess(String processName) {
-    refreshAndWaitElement(".js-no-found-processes.u-display-none", false);
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> {
+      if (findListElementsByCssSelector(".js-no-found-processes.u-display-none").get(0).isDisplayed()) {
+        refresh();
+        return false;
+      } else {
+        return true;
+      }
+    });    
+
     startProcess(processName);
   }
 
