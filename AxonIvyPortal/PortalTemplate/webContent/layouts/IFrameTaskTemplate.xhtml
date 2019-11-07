@@ -12,15 +12,13 @@
     <!-- processSteps: list of process steps -->
     <!-- processChainDirection: VERTICAL or HORIZONTAL (default) -->
     <!-- processChainShape: LINE or CIRCLE (default) -->
-    <!-- announcementInvisible: display announcement written by administrator, default: true -->
-    <!-- PASS PARAMS TO THIS TEMPLATE VIA JAVASCRIPT: -->
+    <!-- PASS PARAMS TO THIS TEMPLATE VIA JAVASCRIPT IN YOUR HTML DIALOG: -->
     <!-- <script> -->
     <!--   window.taskId = #{ivy.task.id}; -->
     <!--   window.processSteps = ["Create Investment Request", "Approve Investment Request"]; -->
     <!--   window.currentProcessStep = 0; -->
     <!--   window.processChainDirection = "VERTICAL"; -->
     <!--   window.processChainShape = "LINE"; -->
-    <!--   window.announcementInvisible = false; -->
     <!-- </script> -->
 
     <ui:param name="task" value="#{iFrameTaskTemplateBean.task}" />
@@ -30,13 +28,15 @@
     <ui:param name="steps" value="#{iFrameTaskTemplateBean.processSteps}" />
     <ui:param name="processChainDirection" value="#{iFrameTaskTemplateBean.processChainDirection}" />
     <ui:param name="processChainShape" value="#{iFrameTaskTemplateBean.processChainShape}" />
-    <ui:param name="announcementInvisible" value="#{iFrameTaskTemplateBean.announcementInvisible}" />
+    <ui:param name="announcementContainerStyleClass" value="u-hidden" />
+    <ui:param name="taskTemplateContainerStyleClass" value="u-hidden" />
 
     <ui:define name="taskForm">
       <h:form>
         <p:remoteCommand name="redirectToEndPageCommand" actionListener="#{iFrameTaskTemplateBean.navigateToEndPage()}" />
-        <p:remoteCommand name="buildHeader" actionListener="#{iFrameTaskTemplateBean.buildHeader()}"
-          update="@([id$='header-container'])" oncomplete="resizeIFrame();updateContentContainerClass()" global="false" />
+        <p:remoteCommand name="getDataFromIFrame" actionListener="#{iFrameTaskTemplateBean.getDataFromIFrame()}"
+          update="@([id$='header-container']) @([id$='task-leave-warning-dialog']) @([id$='task-leave-warning-component'])" 
+          oncomplete="resizeIFrame();updateContentContainerClass()" global="false" />
       </h:form>
 
       <iframe id="iFrame" src="#{url}" class="task-frame" onload="checkUrl(this)" />

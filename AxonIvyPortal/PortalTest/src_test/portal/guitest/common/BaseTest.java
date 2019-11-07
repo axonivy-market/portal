@@ -68,9 +68,6 @@ public class BaseTest {
   public void setup() {
     browser = Browser.getBrowser();
     launchBrowserAndGotoRelativeLink("portalKitTestHelper/1511A66AF619A768/cleanData.ivp");
-//    if (!SystemProperties.isInServerMode()) {
-//      logoutDesigner();
-//    }
   }
 
   public void launchBrowserAndGotoRelativeLink(String relativeProcessStartLink) {
@@ -163,22 +160,25 @@ public class BaseTest {
     try {
       username = URLEncoder.encode(testAccount.getUsername(), "UTF-8");
       password = URLEncoder.encode(testAccount.getPassword(), "UTF-8");
-      redirectToRelativeLink(String.format(LOGIN_URL_PATTERN, username, password));
 
       AtomicBoolean isLoginSuccess = new AtomicBoolean(false);
-      Awaitility.await().atMost(new Duration(30, TimeUnit.SECONDS)).until(() -> isLoginSuccess.get());
-      try {
-        redirectToRelativeLink(String.format(LOGIN_URL_PATTERN, username, password));
-        new HomePage() {
-          @Override
-          protected long getTimeOutForLocator() {
-            return 7L;
-          }
-        };
-        isLoginSuccess.set(true);
-      } catch (Exception e) {
-        System.out.println("*****Login unsuccessfully. Try again if not timeout.");
-      }
+      Awaitility.await().atMost(new Duration(30, TimeUnit.SECONDS)).until(() -> {
+        try {
+          redirectToRelativeLink(String.format(LOGIN_URL_PATTERN, username, password));
+          new HomePage() {
+            @Override
+            protected long getTimeOutForLocator() {
+              return 7L;
+            }
+          };
+          isLoginSuccess.set(true);
+        } catch (Exception e) {
+          System.out.println("*****Login unsuccessfully. Try again if not timeout.");
+        }
+        return isLoginSuccess.get();
+
+      });
+
     } catch (UnsupportedEncodingException e) {
       throw new PortalGUITestException(e);
     }

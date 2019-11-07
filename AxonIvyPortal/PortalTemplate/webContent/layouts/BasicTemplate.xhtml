@@ -66,10 +66,12 @@
            <div class="layout-sidebar #{guestPreferences.darkMenu ? 'layout-sidebar-dark' : ''} #{currentPage} left-sidebar-color js-left-sidebar" id="left-menu">
               <c:choose>
                 <c:when test="#{isNotRequiredLogin}">
-                  <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu startMethod="StartNotRequiredLogin" id="user-menu-without-login" isWorkingOnATask="#{isWorkingOnATask}" showGlobalSearch="#{empty portalValidationBean.errorMessages}" />
+                  <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu startMethod="StartNotRequiredLogin" id="user-menu-without-login" isWorkingOnATask="#{isWorkingOnATask}" 
+                    showGlobalSearch="#{empty portalValidationBean.errorMessages}" task="#{task}" />
                 </c:when>
                 <c:otherwise>
-                  <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu id="user-menu-required-login" isWorkingOnATask="#{isWorkingOnATask}" showGlobalSearch="#{empty portalValidationBean.errorMessages}" />
+                  <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu id="user-menu-required-login" isWorkingOnATask="#{isWorkingOnATask}" 
+                    showGlobalSearch="#{empty portalValidationBean.errorMessages}" task="#{task}" />
                 </c:otherwise>
               </c:choose>
           </div>
@@ -83,6 +85,7 @@
               </a>
               <div class="layout-topbar-menu-wrapper">
                 <ui:include src="/layouts/includes/topbar.xhtml">
+                  <ui:param name="task" value="#{task}" />
                   <ui:param name="isWorkingOnATask" value="#{isWorkingOnATask}" />
                   <ui:param name="isNotRequiredLogin" value="#{isNotRequiredLogin}" />
                   <ui:param name="hasMainMenu" value="#{empty hasMainMenu ? true : hasMainMenu}" />
@@ -101,7 +104,7 @@
             <!-- If showMainArea indicator is true, the layout content will be rendered by the schedule loading of JS file-->
             <!-- Otherwise, the layout content will be rendered by once DOM is pasted already -->
             <div class="layout-content container #{showMainArea eq true ? '' : 'u-invisibility'}" id="main-area-panel">
-              <h:panelGroup layout="block" rendered="#{userMenuBean.isAnnouncementActivated() and announcementInvisible ne 'true'}" styleClass="announcement-message-container #{announcementContainerStyleClass}">
+              <h:panelGroup id="announcement-container" layout="block" rendered="#{userMenuBean.isAnnouncementActivated() and announcementInvisible ne 'true'}" styleClass="announcement-message-container #{announcementContainerStyleClass}">
                 <h:panelGroup layout="block" styleClass="announcement-message js-announcement-message announcement-message-customizable">
                   <h:outputText value="#{userMenuBean.getAnnouncement()}" />
                 </h:panelGroup>
@@ -130,7 +133,7 @@
         </div>
 
         <ic:ch.ivy.addon.portalkit.component.WarningBeforeLostSession id="warning-before-lost-session"
-          clientSideTimeOut="#{userMenuBean.clientSideTimeout}" />
+          clientSideTimeOut="#{userMenuBean.clientSideTimeout}" task="#{task}" />
       </div>
     </c:otherwise>
   </c:choose>
