@@ -20,7 +20,7 @@ import portal.guitest.page.ProcessWidgetPage.AddNewProcessDialog;
 public class ProcessWidgetTest extends BaseTest {
 
   private static final String CLEAN_ALL_FAVORITE_PROCESSES = "(For autotest) Clean all favorite processes";
-  private static final String CASE_MAP_LEAVES = "Case Map Leave";
+  private static final String CASE_MAP_LEAVES = "Case Map: Leave Request";
 
   private HomePage homePage;
   ProcessWidgetPage processWidget;
