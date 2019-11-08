@@ -133,6 +133,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void sideStepMenuOnMoreButton(int taskId) {
+    Sleeper.sleep(1000);
     String moreButton = String.format("button[id$='%d\\:task-item\\:task-action\\:additional-options\\:task-side-steps-menu'] span.fa-ellipsis-v", taskId);
     clickByCssSelector(moreButton);
     ensureNoBackgroundRequest();
