@@ -25,7 +25,7 @@ Ajax error handling
 .. _components-error-handling-ajax-error-handling-introduction:
 
 Introduction
-~~~~~~~~~~~~
+------------
 
 By default, Portal handles all exceptions from ajax requests.
 
@@ -45,7 +45,7 @@ property ``Errors.ShowDetailsToEndUser``.
 .. _components-error-handling-ajax-error-handling-result:
 
 Result
-~~~~~~
+------
 
 |portal-ajax-error-handler|
 
@@ -57,7 +57,7 @@ Non-ajax error handling
 .. _components-error-handling-nonajax-error-handling-introduction:
 
 Introduction
-~~~~~~~~~~~~
+------------
 
 By default, when the server has any error such as : ``HTTP 404``,
 ``HTTP 500``, or exception while page's loading, AxonIvyEngine will show
@@ -74,7 +74,7 @@ alternative solution to make this page nicer.
 .. _components-error-handling-nonajax-error-handling-howtoconfigure:
 
 How to configure
-~~~~~~~~~~~~~~~~
+----------------
 
 Download the zip file below to configure on your own engine (or
 designer).
@@ -87,7 +87,7 @@ designer).
 .. _components-error-handling-nonajax-error-handling-result:
 
 Result
-~~~~~~
+------
 
 HTTP 404 Page Not Found
 

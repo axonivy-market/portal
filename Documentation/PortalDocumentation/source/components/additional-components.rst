@@ -11,7 +11,7 @@ Process history
 .. _components-additional-component-process-history-introduction:
 
 Introduction
-~~~~~~~~~~~~
+------------
 
 This component is a lazy loading list which displays all business cases
 of a business entity in your application. You can include this component
@@ -28,7 +28,7 @@ In a dialog
 .. _components-additional-component-process-history-how-to-use:
 
 How to use
-~~~~~~~~~~
+----------
 
 First you need to link the cases to the business entity. Call the
 subprocess ``SetBusinessEntityId`` in the process which need to be
@@ -85,7 +85,7 @@ Task Analysis
 .. _components-additional-component-task-analysis-introduction:
 
 Introduction
-~~~~~~~~~~~~
+------------
 
 Task Analysis component of Portal provides features for users to analyze
 not only tasks but also cases. These features are:
@@ -104,7 +104,7 @@ not only tasks but also cases. These features are:
 .. _components-additional-component-task-analysis-how-to-use:
 
 How to use
-~~~~~~~~~~
+----------
 
 Task Analysis component is integrated into Statistic widget. You can use
 this component directly when open Statistic widget. If you want to use
@@ -125,7 +125,7 @@ Process Chain
 .. _components-additional-component-process-chain-introduction:
 
 Introduction
-~~~~~~~~~~~~
+------------
 
 Process Chain component of Portal provides features for users to know
 status of all steps in a process: the step's working, these steps are
@@ -143,7 +143,7 @@ done, these steps is not done. These features are:
 .. _components-additional-component-process-chain-how-to-use:
 
 How to use
-~~~~~~~~~~
+----------
 
 Process Chain component can be integrated in any widget by including
 this component into a page. In order to use this component in a page,
@@ -178,7 +178,7 @@ Global growl
 .. _components-additional-component-global-growl-introduction:
 
 Introduction
-~~~~~~~~~~~~
+------------
 
 This component is a global growl introduced in BasicTemplate, you can
 use it to display your messages in Portal.
@@ -190,7 +190,7 @@ use it to display your messages in Portal.
 .. _components-additional-component-global-growl-growl-after-finish-task:
 
 Display growl after finish task
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------
 
 After a task is finished, growl message appears as default via the
 ``DISPLAY_MESSAGE_AFTER_FINISH_TASK`` Portal variable.
@@ -230,7 +230,7 @@ Document table
 .. _components-additional-component-document-table-introduction:
 
 Introduction
-~~~~~~~~~~~~
+------------
 
 This component is case document table with the features: upload,
 download and delete.
