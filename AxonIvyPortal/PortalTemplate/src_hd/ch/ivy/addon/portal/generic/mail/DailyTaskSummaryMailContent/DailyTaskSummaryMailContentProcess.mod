@@ -19,6 +19,11 @@ Ds0 @PushWFArc f8 '' #zField
 Ds0 @GridStep f9 '' #zField
 Ds0 @PushWFArc f10 '' #zField
 Ds0 @PushWFArc f2 '' #zField
+Ds0 @UdMethod f11 '' #zField
+Ds0 @UdProcessEnd f12 '' #zField
+Ds0 @GridStep f14 '' #zField
+Ds0 @PushWFArc f15 '' #zField
+Ds0 @PushWFArc f13 '' #zField
 >Proto Ds0 Ds0 DailyTaskSummaryMailContentProcess #zField
 Ds0 f0 guid 16E441174A545BB2 #txt
 Ds0 f0 method start(List<ITask>) #txt
@@ -98,6 +103,44 @@ Ds0 f9 168 42 112 44 -20 -8 #rect
 Ds0 f9 @|StepIcon #fIcon
 Ds0 f10 109 64 168 64 #arcP
 Ds0 f2 280 64 339 64 #arcP
+Ds0 f11 guid 16E4A49C4D24B8BE #txt
+Ds0 f11 method taskStart(ITask) #txt
+Ds0 f11 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task> param;' #txt
+Ds0 f11 inParameterMapAction 'out.task=param.task;
+' #txt
+Ds0 f11 outParameterDecl '<String taskStart> result;' #txt
+Ds0 f11 outParameterMapAction 'result.taskStart=in.taskStart;
+' #txt
+Ds0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>taskStart(ITask)</name>
+    </language>
+</elementInfo>
+' #txt
+Ds0 f11 83 339 26 26 -23 15 #rect
+Ds0 f11 @|UdMethodIcon #fIcon
+Ds0 f12 339 339 26 26 0 12 #rect
+Ds0 f12 @|UdProcessEndIcon #fIcon
+Ds0 f14 actionTable 'out=in;
+' #txt
+Ds0 f14 actionCode 'import ch.ivyteam.ivy.request.RequestUriFactory;
+
+out.taskStart = RequestUriFactory.createExternalServerUri().resolve(RequestUriFactory.createTaskStartUri(in.task)).toASCIIString();
+if (in.startInIFrame) {
+	out.taskStart += "&embedInFrame";
+}' #txt
+Ds0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Build task start</name>
+    </language>
+</elementInfo>
+' #txt
+Ds0 f14 168 330 112 44 -38 -8 #rect
+Ds0 f14 @|StepIcon #fIcon
+Ds0 f15 109 352 168 352 #arcP
+Ds0 f13 280 352 339 352 #arcP
 >Proto Ds0 .type ch.ivy.addon.portal.generic.mail.DailyTaskSummaryMailContent.DailyTaskSummaryMailContentData #txt
 >Proto Ds0 .processKind HTML_DIALOG #txt
 >Proto Ds0 -8 -8 16 16 16 26 #rect
@@ -110,3 +153,7 @@ Ds0 f0 mainOut f10 tail #connect
 Ds0 f10 head f9 mainIn #connect
 Ds0 f9 mainOut f2 tail #connect
 Ds0 f2 head f1 mainIn #connect
+Ds0 f11 mainOut f15 tail #connect
+Ds0 f15 head f14 mainIn #connect
+Ds0 f14 mainOut f13 tail #connect
+Ds0 f13 head f12 mainIn #connect
