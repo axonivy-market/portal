@@ -79,11 +79,14 @@ Ds0 f7 @|UdProcessEndIcon #fIcon
 Ds0 f8 109 256 211 256 #arcP
 Ds0 f9 actionTable 'out=in;
 ' #txt
-Ds0 f9 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
+Ds0 f9 actionCode 'import org.primefaces.model.DefaultStreamedContent;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
 GlobalSettingService service = new GlobalSettingService();
-out.startInIFrame = Boolean.parseBoolean(service.findGlobalSettingValue(GlobalVariable.START_IN_IFRAME.toString()));' #txt
+out.startInIFrame = Boolean.parseBoolean(service.findGlobalSettingValue(GlobalVariable.START_IN_IFRAME.toString()));
+
+out.logo = new DefaultStreamedContent(ivy.cms.findContentObjectValue("/images/logo/CorporateLogo", ivy.cms.defaultLanguage).getContentAsBinaryStream(), "image/png");' #txt
 Ds0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

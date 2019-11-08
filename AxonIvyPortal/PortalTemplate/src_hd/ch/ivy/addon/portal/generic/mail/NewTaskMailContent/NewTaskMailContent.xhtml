@@ -8,7 +8,7 @@
 </h:head>
 <body>
   <div>
-    <h:graphicImage value="#{resource['ivy-cms:images/logo/CorporateLogo']}"
+    <p:graphicImage value="#{data.logo}" stream="false" 
       alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" height="42" />
   </div>
   <br /> #{ivy.cms.co('/ch.ivy.addon.portal.generic/TaskMail/newTaskIntro')}

@@ -7,3 +7,5 @@ taskStart String #field
 taskStart PERSISTENT #fieldModifier
 taskState String #field
 taskState PERSISTENT #fieldModifier
+logo org.primefaces.model.StreamedContent #field
+logo PERSISTENT #fieldModifier
