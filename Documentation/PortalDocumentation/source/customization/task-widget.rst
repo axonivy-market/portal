@@ -70,7 +70,7 @@ Refer to ``PortalExamples`` project for examples
 .. _customization-task-widget-how-to-overide-ui-task-header:
 
 Task List Header and Task header
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------
 
 Refer to the ``taskListHeader`` and ``taskHeader`` sections in
 ``PortalTasks.xhtml`` of PortalTemplate. In case your task widget has
@@ -125,7 +125,7 @@ function of these columns work:
 .. _customization-task-widget-how-to-overide-ui-task-filter:
 
 Task filter
-~~~~~~~~~~~
+-----------
 
 -  Refer to the ``taskFilter`` section in ``PortalTasks.xhtml`` of
    PortalTemplate.
