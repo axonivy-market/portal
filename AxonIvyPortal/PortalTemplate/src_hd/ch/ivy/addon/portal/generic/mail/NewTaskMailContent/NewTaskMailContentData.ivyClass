@@ -1,5 +1,7 @@
 NewTaskMailContentData #class
 ch.ivy.addon.portal.generic.mail.NewTaskMailContent #namespace
+logo org.primefaces.model.StreamedContent #field
+logo PERSISTENT #fieldModifier
 task ch.ivyteam.ivy.workflow.ITask #field
 taskPriority String #field
 taskPriority PERSISTENT #fieldModifier
@@ -7,5 +9,3 @@ taskStart String #field
 taskStart PERSISTENT #fieldModifier
 taskState String #field
 taskState PERSISTENT #fieldModifier
-logo org.primefaces.model.StreamedContent #field
-logo PERSISTENT #fieldModifier
