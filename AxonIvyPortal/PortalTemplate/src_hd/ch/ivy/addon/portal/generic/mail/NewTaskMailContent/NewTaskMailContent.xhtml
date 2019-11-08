@@ -8,54 +8,69 @@
 </h:head>
 <body>
   <div>
-    <p:graphicImage styleClass="portal-home-logo" value="#{resource['ivy-cms:images/logo/CorporateLogo']}"
+    <h:graphicImage value="#{resource['ivy-cms:images/logo/CorporateLogo']}"
       alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" height="42" />
   </div>
   <br /> #{ivy.cms.co('/ch.ivy.addon.portal.generic/TaskMail/newTaskIntro')}
-  <br />
+  <br /> <br />
   <h:form>
     <table>
       <tr>
         <td style="font-weight: bold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}</td>
+        <td width="10"></td>
         <td>#{data.task.name}</td>
       </tr>
       <tr>
         <td style="font-weight: bold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}</td>
+        <td width="10"></td>
         <td>#{data.task.description}</td>
       </tr>
       <tr>
         <td style="font-weight: bold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}</td>
+        <td width="10"></td>
         <td>
-          <i class="fa #{data.task.activator == null ? '' : task.activator.isUser() ? 'fa-user' : 'fa-users'}" /> 
-          #{data.task.activator.displayName}
+          <h:graphicImage 
+            name="#{data.task.getActivator() != null and task.getActivator().isUser() ? 'resources/images/user.gif' : 'resources/images/role.gif'}" /> 
+            #{data.task.activator.displayName}
         </td>
       </tr>
       <tr>
         <td style="font-weight: bold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/PRIORITY')}</td>
-        <td>#{data.taskPriority}</td>
+        <td width="10"></td>
+        <td>
+          <h:graphicImage name="resources/images/priority/#{data.task.priority.intValue()}.gif" /> #{data.taskPriority}
+        </td>
       </tr>
       <tr>
         <td style="font-weight: bold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}</td>
-        <td>#{data.taskState}</td>
+        <td width="10"></td>
+        <td>
+          <h:graphicImage name="resources/images/state/#{data.task.state.intValue()}.gif" /> #{data.taskState}
+        </td>
       </tr>
       <tr>
         <td style="font-weight: bold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CREATION_TIME')}</td>
+        <td width="10"></td>
         <td><h:outputText value="#{data.task.startTimestamp}">
             <f:convertDateTime type="both" dateStyle="short" timeStyle="short" />
           </h:outputText></td>
       </tr>
       <tr>
         <td style="font-weight: bold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}</td>
+        <td width="10"></td>
         <td><h:outputText value="#{data.task.expiryTimestamp}">
             <f:convertDateTime type="both" dateStyle="short" timeStyle="short" />
           </h:outputText></td>
       </tr>
       <tr>
         <td />
-        <td><h:outputLink value="#{data.taskStart}">
-            <i class="fa fa-play-circle" style="margin-right: 5px" />
+        <td width="10"></td>
+        <td>
+          <h:outputLink value="#{data.taskStart}">
+            <h:graphicImage name="resources/images/start.gif" /> 
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/TaskMail/taskResume')}" />
-          </h:outputLink></td>
+          </h:outputLink>
+        </td>
       </tr>
     </table>
   </h:form>
