@@ -68,7 +68,7 @@ public class SideStepTest extends BaseTest {
     HomePage homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
-    int sideSteps = casePage.countSideStepItems(0);
+    int sideSteps = casePage.countSideStepItems();
     assertEquals(2, sideSteps);
   }
 }

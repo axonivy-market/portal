@@ -131,7 +131,7 @@ import org.apache.commons.lang3.StringUtils;
 String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader", Arrays.asList("#" + in.caseId.toString(), in.caseName));
 
 in.taskDataModel.setCaseId(in.caseId.id());
-in.taskDataModel.setSortField(TaskSortField.PRIORITY.toString(), false);
+in.taskDataModel.setSortField(TaskSortField.ID.toString(), true);
 in.taskDataModel.getCriteria().setKeyword(StringUtils.EMPTY);
 in.taskDataModel.setQueryByBusinessCaseId(in.caseId.isBusinessCase());
 in.taskDataModel.setCaseName(in.caseName);
