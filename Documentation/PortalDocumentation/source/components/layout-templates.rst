@@ -47,7 +47,7 @@ template for your process.
 .. _components-layout-templates-basic-template-how-to-use-basic-template:
 
 How to use Basic template
-~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------
 
 1. Create a new HTML User Dialog and then use ``ui:composition`` to
    define the template inside and reuse the default responsiveness
@@ -80,7 +80,7 @@ navigation, the second for displaying corresponding content.
 .. _components-layout-templates-two-column-template-how-to-use-two-columntemplate:
 
 How to use Two column template
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------
 
 1. Create a HTML User Dialog, define template in ``ui:composition`` and
    insert content of second column and third column using ``ui:define``.
@@ -131,7 +131,7 @@ to be filled with your custom content:
 .. _components-layout-templates-task-template-how-to-use-task-template:
 
 How to use template TaskTemplate.xhtml
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------
 
 1.  Create a new HTML User Dialog and then use ``ui:composition`` to
     define template which you use inside.
@@ -280,7 +280,7 @@ details including basic and advanced customization, refer to
 .. _components-layout-templates-default-homepage-template-how-to-use-default-homepage-template:
 
 How to use default homepage template
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------------
 
 Create a new HTML User Dialog and then use ``ui:composition`` to define
 template.
@@ -304,7 +304,7 @@ and their details.
 .. _components-layout-templates-task-list-template-how-to-use-task-list-template:
 
 How to use task list template
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------
 
 1. Create a new HTML User Dialog and then use ``ui:composition`` to
    define template.
@@ -346,7 +346,7 @@ and their details.
 .. _components-layout-templates-case-list-template-how-to-use-case-list-template:
 
 How to use case list template
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------
 
 1. Create a new HTML User Dialog and then use ``ui:composition`` to
    define template.
@@ -381,7 +381,7 @@ provide functionality to access page without login by adding the
 .. _components-layout-templates-handle-required-login-in-templates-how-to-handle-required-login-in-template:
 
 How to handle required login in template
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------
 
 1. Create a new **HTML User Dialog** and then use ``ui:param`` to define
    the template inside
