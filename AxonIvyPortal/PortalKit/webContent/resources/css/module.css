@@ -181,7 +181,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .widget-tasklist-header {
   position: relative;
-  height: 38px;
+  height: 36px;
 }
 
 .widget-header-content-filter {
@@ -194,10 +194,15 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   align-self: flex-end;
 }
 
+
 .widget-header-main-title {
   position: absolute;
-  bottom: 1px;
+  bottom: 7px;
   left: 0;
+}
+
+.home-page-container .widget-header-main-title {
+    bottom: 1px;
 }
 
 /* Small screen */
@@ -301,7 +306,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .filter-widget .filter-widget-input {
-  padding: 6px 0 6px 6px !important;
+  padding: 6px 0 3px 6px !important;
 }
 
 .filter-widget-icon  {
@@ -365,6 +370,10 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .case-widget-container .in-progress-task-checkbox {
   padding-left: 2.4px;
   margin-left: .1rem; 
+}
+
+.in-progress-task-checkbox .ui-chkbox-label {
+  margin-left: 7px !important;
 }
 
 .task-widget .advanced-filter-container .additional-filter-container, 
@@ -631,7 +640,7 @@ span.task-details-document-add-link {
 /********************************** CASE ITEM SIMILAR TO TASK ITEM CLASSES **********************************/
 .case-widget-container .case-widget-top-header {
   position: relative;
-  height: 38px;
+  height: 36px;
 }
 
 .case-widget-top-header-main-title {
@@ -961,7 +970,7 @@ span.task-details-document-add-link {
 }
 
 .process-header .process-header-title-container {
-  padding: 6px 6px 6px 0;
+  padding: 6px 6px 2px 0;
 }
 
 .process-header .widget-header-sub .filter-widget {
@@ -3740,6 +3749,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   }
   .widget-header-content-filter {
     padding-right: 0 !important;
+    padding-top: 3px;
   }
   .filter-container {
     padding: 0.5em !important;

@@ -1,5 +1,6 @@
 package portal.guitest.test;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,6 +27,15 @@ public class PortalPermissionTest extends BaseTest{
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     grantAccessFullListPermissions();
     homePage = new HomePage();
+  }
+  
+  @After
+  public void tearDown() {
+    grantTaskActionsPermissions();
+    grantAccessFullListPermissions();
+    grantShowHideNotePermissions();
+    grantDocumentOfInvolvedCaseWritePemissionToCurrentUser();
+    grantCasePermissions();
   }
   
   @Test

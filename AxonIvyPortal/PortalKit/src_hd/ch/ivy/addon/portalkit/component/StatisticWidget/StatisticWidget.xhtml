@@ -55,15 +55,15 @@
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
           </p:commandLink>
           <h:outputText rendered="#{data.canAnalyzeTask and !data.isDrilldownElapsedTime 
-            and !data.isDrilldownExpiryChart and data.canCreateNewCharts and data.canAnalyzeTask}">
+            and !data.isDrilldownExpiryChart and data.canCreateNewCharts}">
           	<p:spacer width="10px" />
           	|
           	<p:spacer width="10px" />
           </h:outputText> 
 
           <p:commandLink id="task-analysis-page-navigation-link" actionListener="#{logic.navigateToTaskAnalysisPage}"
-            rendered="#{data.canAnalyzeTask and !data.isDrilldownElapsedTime}" styleClass="task-analysis-page-navigation-link">
-            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/navigationLink')}" />
+            rendered="#{data.canAnalyzeTask and !data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart}" styleClass="task-analysis-page-navigation-link">
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskAnalysis')}" />
           </p:commandLink>
         </h:panelGroup>
         <h:panelGroup layout="block" rendered="#{data.createMode}">

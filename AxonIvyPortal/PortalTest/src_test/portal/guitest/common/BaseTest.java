@@ -170,7 +170,7 @@ public class BaseTest {
             protected long getTimeOutForLocator() {
               return 7L;
             }
-          };
+          }.isDisplayed();
           isLoginSuccess.set(true);
         } catch (Exception e) {
           System.out.println("*****Login unsuccessfully. Try again if not timeout.");
