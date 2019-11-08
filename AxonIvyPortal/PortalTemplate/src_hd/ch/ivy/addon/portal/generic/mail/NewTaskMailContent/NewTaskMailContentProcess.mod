@@ -36,7 +36,8 @@ Ns0 f1 339 51 26 26 0 12 #rect
 Ns0 f1 @|UdProcessEndIcon #fIcon
 Ns0 f3 actionTable 'out=in;
 ' #txt
-Ns0 f3 actionCode 'import org.primefaces.model.DefaultStreamedContent;
+Ns0 f3 actionCode 'import ch.ivyteam.ivy.request.RequestUriFactory;
+import org.primefaces.model.DefaultStreamedContent;
 import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
@@ -47,9 +48,9 @@ out.taskState = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskState/" + in.task
 GlobalSettingService service = new GlobalSettingService();
 boolean enabledStartInIFrame = Boolean.parseBoolean(service.findGlobalSettingValue(GlobalVariable.START_IN_IFRAME.toString()));
 
-out.taskStart = ivy.html.taskStartRef(in.task);
+out.taskStart = RequestUriFactory.createExternalServerUri().resolve(RequestUriFactory.createTaskStartUri(in.task)).toASCIIString();
 if (enabledStartInIFrame) {
-	out.taskStart = ivy.html.taskStartInFrameRef(in.task);
+	out.taskStart += "&embedInFrame";
 }
 
 out.logo = new DefaultStreamedContent(ivy.cms.findContentObjectValue("/images/logo/CorporateLogo", ivy.cms.defaultLanguage).getContentAsBinaryStream(), "image/png");

@@ -1,10 +1,12 @@
 DailyTaskSummaryMailContentData #class
 ch.ivy.addon.portal.generic.mail.DailyTaskSummaryMailContent #namespace
-tasks java.util.List<ch.ivyteam.ivy.workflow.ITask> #field
-tasks PERSISTENT #fieldModifier
-task ch.ivyteam.ivy.workflow.ITask #field
-task PERSISTENT #fieldModifier
-startInIFrame Boolean #field
-startInIFrame PERSISTENT #fieldModifier
 logo org.primefaces.model.DefaultStreamedContent #field
 logo PERSISTENT #fieldModifier
+startInIFrame Boolean #field
+startInIFrame PERSISTENT #fieldModifier
+task ch.ivyteam.ivy.workflow.ITask #field
+task PERSISTENT #fieldModifier
+tasks java.util.List<ch.ivyteam.ivy.workflow.ITask> #field
+tasks PERSISTENT #fieldModifier
+taskStart String #field
+taskStart PERSISTENT #fieldModifier
