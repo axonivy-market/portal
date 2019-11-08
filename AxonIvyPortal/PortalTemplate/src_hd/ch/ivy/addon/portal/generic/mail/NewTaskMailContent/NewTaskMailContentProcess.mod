@@ -36,7 +36,8 @@ Ns0 f1 339 51 26 26 0 12 #rect
 Ns0 f1 @|UdProcessEndIcon #fIcon
 Ns0 f3 actionTable 'out=in;
 ' #txt
-Ns0 f3 actionCode 'import org.apache.commons.lang3.StringUtils;
+Ns0 f3 actionCode 'import org.primefaces.model.DefaultStreamedContent;
+import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
@@ -49,7 +50,10 @@ boolean enabledStartInIFrame = Boolean.parseBoolean(service.findGlobalSettingVal
 out.taskStart = ivy.html.taskStartRef(in.task);
 if (enabledStartInIFrame) {
 	out.taskStart = ivy.html.taskStartInFrameRef(in.task);
-}' #txt
+}
+
+out.logo = new DefaultStreamedContent(ivy.cms.findContentObjectValue("/images/logo/CorporateLogo", ivy.cms.defaultLanguage).getContentAsBinaryStream(), "image/png");
+' #txt
 Ns0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

@@ -7,11 +7,11 @@
 </h:head>
 <body>
   <div>
-    <p:graphicImage styleClass="portal-home-logo" value="#{resource['ivy-cms:images/logo/CorporateLogo']}"
+    <p:graphicImage value="#{data.logo}" stream="false" 
       alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" height="42" />
   </div>
-  <br /> #{ivy.cms.co('/labels/workflow/TaskMail/dailyTaskSummaryIntro')}
-  <br />
+  <br /> #{ivy.cms.co('/ch.ivy.addon.portal.generic/TaskMail/dailyTaskSummaryIntro')}
+  <br /> <br />
   <h:form>
     <p:dataTable var="task" value="#{data.tasks}"
       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" rowIndexVar="row"

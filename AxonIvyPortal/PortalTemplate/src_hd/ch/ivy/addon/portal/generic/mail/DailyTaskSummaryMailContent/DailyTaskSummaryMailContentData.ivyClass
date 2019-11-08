@@ -6,3 +6,5 @@ task ch.ivyteam.ivy.workflow.ITask #field
 task PERSISTENT #fieldModifier
 startInIFrame Boolean #field
 startInIFrame PERSISTENT #fieldModifier
+logo org.primefaces.model.DefaultStreamedContent #field
+logo PERSISTENT #fieldModifier
