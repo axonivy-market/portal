@@ -30,7 +30,7 @@ a menu is shown allowing you to configure the portal to your personal
 needs. These features are described in the following sections below.
 
 Absences
-~~~~~~~~
+--------
 
 The menu entry **Absences** provides you with an absence management
 component. Here you can enter your absences and define delegates for
@@ -104,7 +104,7 @@ HowTo: Set deputies
    HowTo set absence deputies
 
 Email settings
-~~~~~~~~~~~~~~
+--------------
 
 The menu entry **Email settings** allows you to configure your
 preferences related to standard email notifications send by the Axon.ivy
@@ -143,7 +143,7 @@ The :guilabel:`Email settings` dialog provides you with the following configurat
    Axon.ivy Portal email notifications settings
 
 Language Settings
-~~~~~~~~~~~~~~~~~
+-----------------
 
 The menu entry **Language settings** allows you to specify your
 preferred application language. The setting will affect all Axon.ivy
@@ -180,7 +180,7 @@ Portal:
    Axon.ivy Portal language settings
 
 Change Password
-~~~~~~~~~~~~~~~
+---------------
 
 The menu entry **Change password** allows you to set a new password.
 
@@ -192,7 +192,7 @@ The menu entry **Change password** allows you to set a new password.
    Axon.ivy Portal password change dialog
 
 Info
-~~~~
+----
 
 The menu entry **Info** provides you with detailed information about the
 Axon.ivy Engine, the Axon.ivy Portal and your companies application. You
@@ -206,7 +206,7 @@ might be asked for this information in case you issue a support request.
    Axon.ivy Portal version information
 
 Logout
-~~~~~~
+------
 
 The menu entry **Logout** will terminate your session in the Axon.ivy
 Portal. You’ll be routed back to the login page of the Axon.ivy
