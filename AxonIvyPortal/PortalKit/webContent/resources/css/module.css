@@ -181,7 +181,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .widget-tasklist-header {
   position: relative;
-  height: 38px;
+  height: 36px;
 }
 
 .widget-header-content-filter {
@@ -194,10 +194,15 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   align-self: flex-end;
 }
 
+
 .widget-header-main-title {
   position: absolute;
-  bottom: 1px;
+  bottom: 7px;
   left: 0;
+}
+
+.home-page-container .widget-header-main-title {
+    bottom: 1px;
 }
 
 /* Small screen */
@@ -301,7 +306,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .filter-widget .filter-widget-input {
-  padding: 6px 0 6px 6px !important;
+  padding: 6px 0 3px 6px !important;
 }
 
 .filter-widget-icon  {
@@ -350,6 +355,9 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   .compact-process-widget .widget-header-main {
     height: 30px !important;
   }
+  .task-widget .sort-task-menu {
+  	margin-top: 8px !important;
+  }
 }
 
 .task-widget-sub-header {
@@ -393,7 +401,8 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .task-widget .advanced-filter:hover, 
 .case-widget-container .advanced-filter:hover,
 .task-widget .filter-selection-container:hover,
-.case-widget-container .filter-selection-container:hover {
+.case-widget-container .filter-selection-container:hover,
+.analysis-task-widget .task-analysis-filter-selection-container:hover {
   border-radius: 5px;
 }
 
@@ -420,6 +429,13 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   line-height: 30px;
   min-width: 0;
   padding-left: 5px;
+}
+
+.analysis-task-widget .filter-selection-container {
+  height: auto !important;
+  min-width: 0;
+  padding-left: 5px;
+  margin-top: 5px;
 }
 
 .task-widget .ui-widget.ui-button.advanced-filter-command:after, 
@@ -635,7 +651,7 @@ span.task-details-document-add-link {
 /********************************** CASE ITEM SIMILAR TO TASK ITEM CLASSES **********************************/
 .case-widget-container .case-widget-top-header {
   position: relative;
-  height: 38px;
+  height: 36px;
 }
 
 .case-widget-top-header-main-title {
@@ -965,7 +981,7 @@ span.task-details-document-add-link {
 }
 
 .process-header .process-header-title-container {
-  padding: 6px 6px 6px 0;
+  padding: 6px 6px 2px 0;
 }
 
 .process-header .widget-header-sub .filter-widget {
@@ -1477,7 +1493,7 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 
 .task-widget .sort-task-menu {
   width: 100%;
-  margin-top: 8px;
+  margin-top: 5px;
 }
 
 .task-widget .filter-add-container {
@@ -3744,6 +3760,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   }
   .widget-header-content-filter {
     padding-right: 0 !important;
+    padding-top: 3px;
   }
   .filter-container {
     padding: 0.5em !important;

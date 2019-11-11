@@ -3,6 +3,7 @@ Portal User Guide
 
 .. toctree::
    :maxdepth: 2
+   :caption: Portal User Guide
 
    axon-ivy-portal/index
    dashboard/index
