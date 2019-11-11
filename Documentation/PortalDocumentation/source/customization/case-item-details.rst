@@ -78,7 +78,7 @@ Refer to ``PortalExamples`` project for examples.
 .. _customization-case-item-details-how-to-override-ui-show-hidden-ui:
 
 Show/Hide components by keywords
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------
 
 Refer to the ``ui`` tag list in ``PortalCaseDetails.xhtml`` of
 PortalTemplate. In case, we want to show/hide any elements on
@@ -107,7 +107,7 @@ List valid parameters:
 .. _customization-case-item-details-how-to-overide-ui-custom-body:
 
 Add new Custom panel
-~~~~~~~~~~~~~~~~~~~~
+--------------------
 
 Refer to the ``caseItemDetailCustom*`` section in
 ``PortalCaseDetails.xhtml`` of PortalTemplate.
