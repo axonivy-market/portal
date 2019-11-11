@@ -16,16 +16,6 @@
         hideTaskFilter="#{taskView.hideTaskFilter}" dataModel="#{taskView.dataModel}" filterGroupId="#{filterGroupId}"
         showHeaderToolbar="#{taskView.showHeaderToolbar}" selectedTaskId="#{taskView.taskId}"
         noTaskFoundMessage="#{taskView.noTaskFoundMessage}" hideWidgetHeader="#{hideWidgetHeader}" chunkSize="#{taskView.chunkSize}">
-          <f:facet name="title">
-            <h:form rendered="#{taskView.canLinkBackCaseDetail()}" prependId="false">
-            #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader')} 
-            <h:commandLink value="##{taskView.dataModel.criteria.caseId}" styleClass="ui-link"
-                actionListener="#{navigatorBean.navigateToCaseDetail(dataModel.caseName, dataModel.criteria.caseId)}" />
-            #{taskView.dataModel.caseName}
-          </h:form>
-            <h:outputText rendered="#{!taskView.canLinkBackCaseDetail()}"
-              value="#{taskView.pageTitle == '' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks') : taskView.pageTitle}" />
-          </f:facet>
   
           <f:facet name="taskListHeader">
           </f:facet>
