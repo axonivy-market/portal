@@ -71,7 +71,7 @@ Axon.ivy Portal. Please refer to :ref:`full-process-list` for more detail detail
 .. _howto-add-a-process-as-a-user-favorite:
 
 HowTo: Add a process as a user favorite
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------------
 
 1. Select the link **Add new process** which you find next to the
    heading **User Favorites**.
@@ -106,7 +106,7 @@ HowTo: Add a process as a user favorite
    favourites so far. You cannot add a process multiple time.
 
 HowTo: Delete a process as a user favorite
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------------------
 
 1. Select the link **Edit processes** next to the heading **User
    Favorites**.
@@ -130,7 +130,7 @@ HowTo: Delete a process as a user favorite
    HowTo delete process favorites
 
 HowTo: Reorder user favorites
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------
 
 There are two ways to order the processes in your :guilabel:`User Favorites`.
 
@@ -166,7 +166,7 @@ There are two ways to order the processes in your :guilabel:`User Favorites`.
    HowTo order process favorites individually
 
 HowTo: Add an external link as user favorite
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------
 
 1. Select the link **Add new process** which you find next to the
    heading **User Favorites**.

@@ -236,7 +236,7 @@ HowTo: Create an Express Workflow
 35. Use the button |arrow-right-icon| **Next** to define the next process step
 
 Define an information email
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------
 
    For the information email, the user sees an Email client UI, where
    several information related to the process can be added. Furthermore,

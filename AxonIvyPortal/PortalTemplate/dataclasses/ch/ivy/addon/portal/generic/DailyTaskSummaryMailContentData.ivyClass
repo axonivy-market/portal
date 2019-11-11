@@ -1,0 +1,4 @@
+DailyTaskSummaryMailContentData #class
+ch.ivy.addon.portal.generic #namespace
+user ch.ivyteam.ivy.security.IUser #field
+tasks java.util.List<ch.ivyteam.ivy.workflow.ITask> #field

@@ -288,15 +288,15 @@ public abstract class TemplatePage extends AbstractPage {
     findElementByCssSelector(cssSelector).click();
   }
 
-  protected void refreshAndWaitElement(String cssSelector, boolean isDisplayed) {
+  protected void refreshAndWaitElement(String cssSelector) {
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> {
-      if ((findListElementsByCssSelector(cssSelector).isEmpty() && isDisplayed)
-          || (findListElementsByCssSelector(cssSelector).isEmpty() && !isDisplayed)) {
+      if ((findListElementsByCssSelector(cssSelector).isEmpty())) {
         refresh();
         return false;
       } else {
         return true;
       }
     });
-  }  
+  }
+ 
 }

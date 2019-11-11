@@ -591,16 +591,6 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
 }
 
 /*fix checkbox menu*/
-.ui-selectonemenu .ui-selectonemenu-trigger, .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger {
-	padding: 0px 12px !important;
-	border-bottom: none !important;
-}
-
-.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger,
-.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger.ui-state-hover {
-	padding: 0 12px !important;
-}
-
 .ui-fluid .ui-selectcheckboxmenu-trigger {
 	height: 37px !important;
 }
