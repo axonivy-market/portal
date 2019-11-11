@@ -772,6 +772,13 @@ function View(uri) {
 
     if (isEdge || isFireFox || isIE11) {
       isRenderedAtTheEnd ? $messageList.append(cloneTemplate) : $messageList.prepend(cloneTemplate);
+
+      if (!$(cloneTemplate).hasClass("my-message") && isFireFox) {
+        var $chatMessages = $(".js-chat-panel.active").find(".js-message-list").find(".chat-message");
+        $messageList.animate({
+          scrollTop: $messageList.scrollTop() + $chatMessages.last().offset().top
+        }, 0);
+      }
     } else {
       isRenderedAtTheEnd ? $messageList.prepend(cloneTemplate) : $messageList.append(cloneTemplate);
     }
@@ -801,6 +808,7 @@ function View(uri) {
   this.renderChatMessagePanelUIWhenOpen = function () {
     $("#chat-panel").toggleClass("active");
     $(".js-top-menu").toggleClass("mod-chat-active");
+    $(".js-chat-contact-panel").toggleClass("active");
   };
 
   this.renderNotifications = function (unreadCounter) {
@@ -898,7 +906,8 @@ function View(uri) {
         $(this).toggleClass("loaded");
 
         if (!$(".js-chat-message-container").hasClass("active")) {
-          $(".js-chat-message-container").addClass("active");
+          $(".js-chat-message-container").toggleClass("active");
+          $(".js-chat-contact-panel").toggleClass("hidden-chat-contact");
         }
       }
 
@@ -930,7 +939,8 @@ function View(uri) {
         $(this).toggleClass("loaded");
 
         if (!$(".js-chat-message-container").hasClass("active")) {
-          $(".js-chat-message-container").addClass("active");
+          $(".js-chat-message-container").toggleClass("active");
+          $(".js-chat-contact-panel").toggleClass("hidden-chat-contact");
         }
       }
 
@@ -958,16 +968,17 @@ function View(uri) {
 
   function closeChatMessagePanel() {
     $("#chat-panel").removeClass("message-displayed");
+    $(".js-chat-contact-panel").removeClass("hidden-chat-contact");
     $(".js-top-menu").removeClass("mod-chat-message-displayed");
     $(".js-show-chat-message").removeClass("active loaded");
     $(".js-show-group-chat-message").removeClass("active loaded");
     $(".js-chat-message-container").removeClass("active");
   }
 
-  this.closeChatPanel = function() {
-      closeChatMessagePanel();
-      this.renderChatMessagePanelUIWhenOpen();
-  }
+  this.closeChatPanel = function () {
+    closeChatMessagePanel();
+    this.renderChatMessagePanelUIWhenOpen();
+  };
 
   function updateExistingGroups() {
     var groupContainer = document.getElementsByClassName("js-group-chat-container")[0];
@@ -1065,4 +1076,18 @@ function View(uri) {
       }
     });
   };
+
+  $(window).resize(function () {
+    updateMessageListForIE11();
+    scrollToLastedMessage();
+  });
+
+  function scrollToLastedMessage() {
+    var margin = $('.message-list-content').get(0).offsetHeight - $(".js-message-list").get(0).scrollHeight - 235;
+
+    if (margin < 0) {
+      var messagePanel = document.getElementById("chat-message-list");
+      messagePanel.scrollTop = messagePanel.scrollHeight;
+    }
+  }
 }
