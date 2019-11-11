@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
+<h:head>
+  <title>#{ivy.cms.co('/ch.ivy.addon.portal.generic/TaskMail/dailyTaskSummaryTitle')}</title>
+</h:head>
+<body>
+  <div>
+    <p:graphicImage value="#{data.logo}" stream="false" 
+      alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" height="42" />
+  </div>
+  <br /> #{ivy.cms.co('/ch.ivy.addon.portal.generic/TaskMail/dailyTaskSummaryIntro')}
+  <br /> <br />
+  <h:form>
+    <p:dataTable var="task" value="#{data.tasks}"
+      emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" rowIndexVar="row"
+      sortOrder="DESCENDING">
+      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/PRIORITY')}" style="width:80px;">
+        #{logic.taskPriority(task)}
+      </p:column>
+      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}">
+        #{task.name}
+      </p:column>
+      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}" style="width:200px;">
+        <i class="fa #{task.activator == null ? '' : task.activator.isUser() ? 'fa-user' : 'fa-users'}" /> 
+        #{task.activator.displayName}
+      </p:column>
+      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" style="width:150px;">
+        #{logic.taskState(task)}
+      </p:column>
+      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CREATION_TIME')}" style="width:100px; text-align: center;">
+        <h:outputText value="#{task.startTimestamp}">
+          <f:convertDateTime type="both" dateStyle="short" timeStyle="short" />
+        </h:outputText>
+      </p:column>
+      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" style="width:100px; text-align: center;">
+        <h:outputText value="#{task.expiryTimestamp}">
+          <f:convertDateTime type="both" dateStyle="short" timeStyle="short" />
+        </h:outputText>
+      </p:column>
+      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portal.generic/TaskMail/taskResume')}" style="width:100px; text-align: center;">
+        <h:outputLink value="#{logic.taskStart(task)}">
+          <i class="fa fa-play-circle" />
+        </h:outputLink>
+      </p:column>
+    </p:dataTable>
+  </h:form>
+</body>
+</html>
