@@ -53,7 +53,7 @@ Specify applications used in Portal
 .. _installation-basic-installation-specify-servers-general-concept:
 
 General concept
-~~~~~~~~~~~~~~~
+---------------
 
 Portal has 2 different configurations:
 
@@ -68,7 +68,7 @@ Portal has 2 different configurations:
       the standard Portal application with the Portal modules.
 
 Manually configure applications
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------
 
 Refer :ref:`settings-admin-settings-setup-multi-portals`.
 
@@ -123,7 +123,7 @@ Permission settings
 -------------------
 
 Absences
-~~~~~~~~
+--------
 
 -  READ
 
@@ -152,7 +152,7 @@ Absences
    ``IPermission.USER_READ_ABSENCES``.
 
 Substitute
-~~~~~~~~~~
+----------
 
 -  CREATE OWN SUBSTITUTE
 
@@ -167,7 +167,7 @@ Substitute
    ``IPermission.USER_READ_SUBSTITUTES``.
 
 Personal task permission
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 -  ADD NOTE
 
    Refer to :ref:`Display add note button<display-add-note-button>`.
@@ -259,7 +259,7 @@ Personal task permission
    ``PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS``.
 
 Personal case permission
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 -  ADD NOTE
 
@@ -312,14 +312,14 @@ Personal case permission
    This permission is not assigned to role Everybody by default.
 
 Upload/delete document permission
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------
 
 Upload/delete document function will be enabled if session user has
 ``IPermission.DOCUMENT_WRITE`` or
 ``IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE``.
 
 Express Workflow permission
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------
 
 -  CREATE EXPRESS WORKFLOW
 
@@ -328,7 +328,7 @@ Express Workflow permission
    to Portal permission group, assigned to role Everybody by default).
 
 Statistics permission
-~~~~~~~~~~~~~~~~~~~~~
+---------------------
 
 -  ADD DASHBOARD CHART
 
@@ -346,7 +346,7 @@ Statistics permission
    by default).
 
 Portal general permission
-~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------
 
 -  ACCESS TO FULL PROCESS LIST
 
@@ -383,7 +383,7 @@ Portal general permission
    ``PortalPermission.TASK_CASE_SHOW_MORE_NOTE``.
 
 Administrator permission can see all tasks/cases in the application
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------------------------------------
 
 Normal users can only see their tasks/cases they can work on.
 
@@ -393,7 +393,7 @@ Permissions needed: ``IPermission.TASK_READ_ALL`` ,
 ``IPermission.CASE_READ_ALL`` .
 
 Administrator permission can interact with all workflows in the application
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------------------------------------------------
 
 Normal users can updates and deletes workflows which created by him and
 can interact with workflow's task which assigned to him.
@@ -480,7 +480,7 @@ How to migrate
       migrated properly.
 
 In designer
-~~~~~~~~~~~
+-----------
 
 1. Replace all Portal projects
 2. Update PortalTemplate dependency of customer project in pom.xml.
@@ -506,7 +506,7 @@ In designer
          your own unsupported customization.
 
 In engine
-~~~~~~~~~
+---------
 
 1. Convert database schema if needed.
 2. If your ivy version is before 7.3.0 : deactivate standard Portal
@@ -521,7 +521,7 @@ Migrate to 8.0.0
 ----------------
 
 How to convert `LESS <http://lesscss.org>`__ to `SASS <https://sass-lang.com/>`__ languages
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------------------------------------------------------------
 
 From Portal version 8.0.0, we use the Serenity theme as the default
 style for project. So, if your project is using ``LESS`` languages for
@@ -559,7 +559,7 @@ https://www.npmjs.com/package/less2sass.
 .. _installation-migration-notes-8-0-0-task-body:
 
 How to migrate TaskBody to  :ref:`customization-task-item-details` component
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------------------------------------
 
 On Portal version 8.0.0, we removed ``taskBody`` in TaskWidget. Instead
 of that, we will use TaskItemDetails component to show task information
@@ -616,7 +616,7 @@ Please follow the below steps to migrate
 .. _installation-migration-notes-8-0-0-case-body:
 
 How to migrate CaseBody to :ref:`customization-case-item-details`  component
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------------------------------------
 
 On Portal version 8.0.0, we removed ``caseBody`` in CaseWidget. Instead
 of that, we are using CaseItemDetails component for showing case
@@ -721,7 +721,7 @@ be adjusted. Check this list below
    Processes/PasswordService:changePassword(String,String)``  .
 
 Migrate hidden task and case to 7.3.0
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------
 
 Portal 7.0.10 has option to store hidden information in custom field of
 task and case instead of additional property for better performance.
@@ -860,7 +860,7 @@ for customizations, adapt the changes:
 -  PortalHome: The ``taskView`` parameter is added to the start method.
 
 SQL conversion
-~~~~~~~~~~~~~~
+--------------
 
 From Portal ``7.0`` , we use standard axon.ivy Task Category field to
 store task category.
@@ -905,7 +905,7 @@ Migrate 6.x (x < 4) to 6.4 (Jakobshorn)
 ---------------------------------------
 
 Portal appearance
-~~~~~~~~~~~~~~~~~
+-----------------
 
 Portal ``6.4`` are redesigned. Therefore many components look different
 from the previous version like menu, task list, case list ... . Portal
@@ -946,7 +946,7 @@ Migrate 5.0 (Rothorn) to 6.0 (Säntis)
 -------------------------------------
 
 Database conversion
-~~~~~~~~~~~~~~~~~~~
+-------------------
 
 If you are using Portal ``5.0`` , you have to manual configure all
 settings (create servers, applications, variables) again since Portal
@@ -955,7 +955,7 @@ are stored in Ivy system database. If you are using Portal ``6.0`` , you
 don't need to convert database.
 
 Portal appearance
-~~~~~~~~~~~~~~~~~
+-----------------
 
 Portal now doesn't use `Modena <http://primefaces.org/eos/modena>`__
 theme, it's a big difference to previous ``6.0`` . Therefore many things
