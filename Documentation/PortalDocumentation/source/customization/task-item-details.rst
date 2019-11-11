@@ -73,7 +73,7 @@ Refer to ``PortalExamples`` project for examples.
 .. _customization-task-item-details-how-to-overide-ui-show-hidden-ui:
 
 Show/Hide components by keywords
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------
 
 Refer to the ``ui`` tag list in ``PortalTaskDetails.xhtml`` of
 PortalTemplate. In case, we want to show/hide any elements on
@@ -96,7 +96,7 @@ List valid parameters:
 .. _customization-task-item-details-how-to-overide-ui-custom-body:
 
 Add new Custom panel
-~~~~~~~~~~~~~~~~~~~~
+--------------------
 
 Refer to the ``taskItemDetailCustomPanel*`` section in
 ``PortalTaskDetails.xhtml`` of PortalTemplate.

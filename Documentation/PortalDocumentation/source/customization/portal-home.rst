@@ -71,7 +71,7 @@ customizations.
 .. _customization-portal-home-advanced-usage-display-hide-the-default-widgets:
 
 Display/hide the default widgets
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------
 
 The template has three parameters: ``displayProcessWidget``,
 ``displayTaskWidget``, ``displayStatisticWidget`` to display or hide the
@@ -90,7 +90,7 @@ boolean values (true/false) to display or hide them as you need.
 .. _customization-portal-home-advanced-usage-customize-the-default-widget-sections:
 
 Customize the default widget's sections
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------------
 
 The template has the placeholders to redefine the default widgets'
 sections.
@@ -113,7 +113,7 @@ sections.
 .. _customization-portal-home-advanced-usage-add-your-own-widgets:
 
 Add your own widgets
-~~~~~~~~~~~~~~~~~~~~
+--------------------
 
 The template has a placeholder to add your own widgets. Your own
 widgets' default positions are next to statistic widget, you can change
@@ -133,7 +133,7 @@ them by setting the default widgets' positions.
 .. _customization-portal-home-advanced-usage-change-the-pages-title:
 
 Change the page's title
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
 The default page title is Cockpit. Apply the following code to change
 it:
