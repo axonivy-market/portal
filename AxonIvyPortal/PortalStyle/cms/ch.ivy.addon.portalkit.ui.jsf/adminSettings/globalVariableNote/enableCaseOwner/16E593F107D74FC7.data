@@ -1,0 +1,1 @@
+TODO Set to true to enable filtering case owner when cases are queried. This setting affects all case queries, e.g. for case list, global search, statistic.
