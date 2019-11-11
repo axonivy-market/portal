@@ -15,6 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.bo.CaseStateStatistic;
 import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
 import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataErrorType;
 import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
@@ -22,6 +23,7 @@ import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.ICaseService;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
@@ -80,12 +82,20 @@ public class CaseService implements ICaseService {
     return Ivy.wf().getGlobalContext().getCaseQueryExecutor().getCount(query);
   }
   
-  private static CaseQuery queryForUsers(String involvedUsername, List<String> apps) {
+  private CaseQuery queryForUsers(String involvedUsername, List<String> apps) {
     CaseQuery caseQuery = CaseQuery.create();
-    apps.forEach(app -> caseQuery.where().or().userIsInvolved(involvedUsername, app));
+    if (isCaseOwnerEnabled()) {
+      apps.forEach(app -> caseQuery.where().or().userIsInvolved(involvedUsername, app).or().isOwner("#" + involvedUsername, app));
+    } else {
+      apps.forEach(app -> caseQuery.where().or().userIsInvolved(involvedUsername, app));
+    }
     return caseQuery;
   }
-  
+
+  private boolean isCaseOwnerEnabled() {
+    return Boolean.parseBoolean(new GlobalSettingService().findGlobalSettingValue(GlobalVariable.ENABLE_CASE_OWNER.toString()));
+  }
+
   private CaseQuery queryForApplications(List<String> apps) {
     CaseQuery caseQuery = CaseQuery.create();
     apps.forEach(app -> {
