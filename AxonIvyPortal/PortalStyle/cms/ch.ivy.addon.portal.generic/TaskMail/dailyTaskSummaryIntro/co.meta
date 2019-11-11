@@ -1,0 +1,5 @@
+co: name={dailyTaskSummaryIntro} description={} changed={2019-11-08 04:46:23 CET} changedby={dhtlong} visualorder={0} guid={16E491DA408C53C6} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16E491DA415E824B} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-11-08 04:45:09 CET} validto={} changed={2019-11-08 04:46:22 CET} changedby={dhtlong} properties={} id={}
+val: guid={16E491DA40BC07B5} datatype={} isdefault={false} langid={de} description={} validfrom={2019-11-08 04:45:09 CET} validto={} changed={2019-11-08 04:46:22 CET} changedby={dhtlong} properties={} id={}
+val: guid={16E491DA410BCA47} datatype={} isdefault={true} langid={en} description={} validfrom={2019-11-08 04:45:09 CET} validto={} changed={2019-11-08 04:46:23 CET} changedby={dhtlong} properties={} id={}
+val: guid={16E491DA419328D6} datatype={} isdefault={false} langid={es} description={} validfrom={2019-11-08 04:45:09 CET} validto={} changed={2019-11-08 04:46:22 CET} changedby={dhtlong} properties={} id={}

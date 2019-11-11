@@ -72,7 +72,7 @@ Refer to ``PortalExamples`` project for examples
 .. _customization-case-widget-how-to-override-ui-case-header:
 
 Case List Header and Case Header
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------
 
 Refer to the ``caseListHeader`` and ``caseHeader`` sections in
 ``PortalCases.xhtml`` of PortalTemplate. In case your case widget has
@@ -127,7 +127,7 @@ function of these columns work:
 .. _customization-case-widget-how-to-override-case-filter:
 
 Case filter
-~~~~~~~~~~~
+-----------
 
 -  Refer to the ``caseFilter`` section in ``PortalCases.xhtml`` of
    PortalTemplate.
