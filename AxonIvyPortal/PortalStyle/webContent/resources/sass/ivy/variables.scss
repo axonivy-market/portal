@@ -289,7 +289,7 @@ $expressFinishedTaskLabelFontWeight: 700;
 $expressActiveDefinedTaskButtonFontWeight: bold;
 
 /* Chat */
-$chatPanelBackgroundColor: $black;
+$chatPanelBackgroundColor: $grey1;
 $noGroupChatColor: $white;
 $contactCardHoverBackgroundColor: $grey1;
 $contactCardIconColor: #b2b2b2;
@@ -300,16 +300,16 @@ $contactCardNameColor: $white;
 $contactCardStatusBackgroundColor: #64d864;
 $contactNotificationColor: $white;
 $contactNotificationBackgroundColor: $red;
-$messageListBackgroundColor: $white;
+$messageListBackgroundColor: #f5f5f5;
 $messageListHeaderBackgroundColor: $grey1;
 $messageListHeaderCloseIconHoverBackgroundColor: #9b9b9b;
 $messageListHeaderCloseIconBackgroundColor: #b2b2b2;
-$messageSeparatorBorder: $grey2;
 $chatMessageBackgroundColor: #f3f6f9;
-$chatMyMessageBackgroundColor: #def4fd;
+$chatMessageBackgroundColor: $accentColor;
+$chatMyMessageBackgroundColor: #DEF4FD;
 $messageChatHeaderNameColor: $white;
 $showParticipantsLinkColor: $white;
-$chatFormBackgroundColor: #f5f5f5;
+$chatFormBackgroundColor: $white;
 $notificationBadgeBackgroundColor: rgb(255, 109, 110);
 $notificationBadgeColor: $white;
 $chatContactTypeHeaderColor: $white;
@@ -322,7 +322,13 @@ $chatUserInRoleBorder: $grey2;
 $showParticipantsLinkFontWeight: bold;
 $participantsListHeaderFontWeight: bold;
 $messageChatHeaderNameFontWeight: 600;
-$chatContactTypeHeaderFontSize: 1.8rem;
+$chatContactTypeHeaderFontSize: 2rem;
+$closeChatFontSize: 1.6rem;
+$contactCardIconFontSize: 2.5rem;
+$contactCardIconAfterFs: 0.7rem;
+$notificationBadgeFontSize: 1rem;
+$chatBoxShadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 4px 5px 0 rgba(0, 0, 0, 0.14);
+$chatContactsBoxShadow: 3px 0 6px rgba(0, 0, 0, 0.3);
 
 /* Icon */
 $iconFontFamily: "FontAwesome";
