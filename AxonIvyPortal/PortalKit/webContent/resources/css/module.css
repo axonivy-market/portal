@@ -355,6 +355,9 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   .compact-process-widget .widget-header-main {
     height: 30px !important;
   }
+  .task-widget .sort-task-menu {
+  	margin-top: 8px !important;
+  }
 }
 
 .task-widget-sub-header {
@@ -398,7 +401,8 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .task-widget .advanced-filter:hover, 
 .case-widget-container .advanced-filter:hover,
 .task-widget .filter-selection-container:hover,
-.case-widget-container .filter-selection-container:hover {
+.case-widget-container .filter-selection-container:hover,
+.analysis-task-widget .task-analysis-filter-selection-container:hover {
   border-radius: 5px;
 }
 
@@ -425,6 +429,13 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   line-height: 30px;
   min-width: 0;
   padding-left: 5px;
+}
+
+.analysis-task-widget .filter-selection-container {
+  height: auto !important;
+  min-width: 0;
+  padding-left: 5px;
+  margin-top: 5px;
 }
 
 .task-widget .ui-widget.ui-button.advanced-filter-command:after, 
@@ -1482,7 +1493,7 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 
 .task-widget .sort-task-menu {
   width: 100%;
-  margin-top: 8px;
+  margin-top: 5px;
 }
 
 .task-widget .filter-add-container {
