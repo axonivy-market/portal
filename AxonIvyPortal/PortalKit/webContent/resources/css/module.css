@@ -917,6 +917,13 @@ span.task-details-document-add-link {
 .case-history-button-container, .task-history-button-container{
   text-align: right;
 }
+
+.case-detail-body,
+.task-item-body-container {
+  padding-bottom: 60px !important;
+  margin-bottom: 60px !important; 
+}
+
 /********************************** END CASE ITEM **********************************/
 
 /********************************** START PROCESSES **********************************/
