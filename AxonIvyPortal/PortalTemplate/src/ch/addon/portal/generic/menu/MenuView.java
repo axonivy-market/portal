@@ -35,7 +35,7 @@ public class MenuView {
   public final static String THIRD_PARTY = "isThirdPartyApp";
   public final static String ACTIVE_MENU = "active-menuitem";
   public final static String APP_NAME = "appName";
-  public final static String DASHBOARD = "/ch.ivy.addon.portal.generic/CustomLinkGenerator/dashboard";
+  public final static String DASHBOARD = "/ch.ivy.addon.portalkit.ui.jsf/common/dashboard";
 
   private List<Button> menuItems;
   private List<SubMenuItem> subMenuItems;
