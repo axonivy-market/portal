@@ -2019,9 +2019,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   font-size: $largeFontSize;
 }
 
-.message .message-separator {
-  border-bottom: 1px solid $messageSeparatorBorder;
-}
 
 .message .message-footer .ui-button {
   font-size: $smallFontSize;
@@ -2171,10 +2168,11 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 }
 
 /* Chat*/
-.show-participants-link {
-  font-weight: $showParticipantsLinkFontWeight;
+.notification-badge i.fa.fa-comment {
+  font-size: $bodyDialogTitleFontSize !important;
 }
 
+.contact-card:hover .contact-card-icon, .contact-card.active .contact-card-icon,
 .chat-panel {
   background: $chatPanelBackgroundColor;
 }
@@ -2184,18 +2182,32 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   font-size: $largeFontSize;
 }
 
-.contact-card:hover, .contact-card.active {
-  background: $contactCardHoverBackgroundColor;
+.contact-card:hover {
+  background: rgba($contactCardBackgroundColor, 0.85);
+
+  .contact-card-name {
+    color: $black;
+  }
+}
+
+.contact-card.active {
+  background: $contactCardBackgroundColor;
+
+  .contact-card-name {
+    color: $black;
+  }
 }
 
 .contact-card-icon {
   color: $contactCardIconColor;
+  font-size: $contactCardIconFontSize;
   background: $contactCardBackgroundColor;
 }
 
 .contact-card-icon[unread-message]:after {
   background: $contactCardIconUnreadMessageBackgroundColor;
   color: $contactCardIconUnreadMessageColor;
+  font-size: $contactCardIconAfterFs;
 }
 
 .contact-card-name {
@@ -2218,18 +2230,21 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 .message-list {
   background: $messageListBackgroundColor;
+  box-shadow: $chatBoxShadow;
 }
 
 .message-list-header {
   background: $messageListHeaderBackgroundColor;
+  box-shadow: $chatBoxShadow;
 }
 
-.message-list-header-close:hover:before, .message-list-header-close:hover:after {
-  background: $messageListHeaderCloseIconBackgroundColor;
+.show-participants-link,
+.message-list-header-close {
+  color: $messageListHeaderCloseIconBackgroundColor !important;
 }
 
-.message-list-header-close:before, .message-list-header-close:after {
-  background: $messageListHeaderCloseIconBackgroundColor;
+.message-list-header-close {
+  font-size: $chatContactTypeHeaderFontSize;
 }
 
 .chat-message-list .chat-message {
@@ -2244,10 +2259,9 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 .message-chat-header-name {
   font-weight: $messageChatHeaderNameFontWeight;
   color: $messageChatHeaderNameColor;
-  font-size: $largeFontSize;
+  font-size: $chatContactTypeHeaderFontSize;
 }
 
-.show-participants-link,
 .show-participants-link:hover {
   color: $showParticipantsLinkColor !important;
 }
@@ -2259,6 +2273,13 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 .notification-badge[data-badge]:after {
   background-color: $notificationBadgeBackgroundColor;
   color: $notificationBadgeColor;
+  font-size: $notificationBadgeFontSize;
+}
+
+.chat-contact {
+  -webkit-box-shadow: $chatContactsBoxShadow;
+  -moz-box-shadow: $chatContactsBoxShadow;
+  box-shadow: $chatContactsBoxShadow;
 }
 
 .chat-contact-type-header {
@@ -2273,6 +2294,10 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 .chat-send-form .ui-widget.ui-button {
   background: $chatSendFormButtonBackgroundColor;
+  
+  .ui-icon {
+    font-size: $chatContactTypeHeaderFontSize !important;
+  } 
 }
 
 .message-list-content-send-input {
@@ -2293,6 +2318,18 @@ ul.users-in-role {
 ul.participants-list li {
   font-size: $largeFontSize;
 }
+
+.close-chat {
+  button {
+    .ui-button-icon-left.ui-icon {
+      font-size: $closeChatFontSize !important;
+    }
+    &.ui-button.ui-button-icon-only {
+      background: $white;
+    }
+  }
+}
+/* Ends Chat */
 
 .options-panel .option-item:hover {
   background-color: $taskActionHoverBackgroundColor;
