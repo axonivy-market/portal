@@ -1,0 +1,16 @@
+Investment #class
+ch.ivyteam.ivy.project.portal.examples #namespace
+id String #field
+id PERSISTENT #fieldModifier
+company ch.ivyteam.ivy.project.portal.examples.Company #field
+company PERSISTENT #fieldModifier
+investedMoney String #field
+investedMoney PERSISTENT #fieldModifier
+note String #field
+note PERSISTENT #fieldModifier
+startDate java.util.Date #field
+startDate PERSISTENT #fieldModifier
+profit String #field
+profit PERSISTENT #fieldModifier
+profitPercentage String #field
+profitPercentage PERSISTENT #fieldModifier
