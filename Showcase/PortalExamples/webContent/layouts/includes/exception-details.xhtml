@@ -1,0 +1,108 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions"
+  
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+  <ui:fragment rendered="#{!errorPage.showDetails}">
+    <h:outputText value="An unexpected error has occured:"/>
+  </ui:fragment>
+
+  <h1 class="bg-warning">
+    <h:outputText value="#{errorPage.message}" />
+  </h1>
+
+  <ui:fragment rendered="#{errorPage.isIvyException()}">
+    <h4 class="list-group-item-heading" style="margin-top: 20px">Error id</h4>
+    <p>#{errorPage.exceptionId}</p>
+  </ui:fragment>
+
+  <ui:fragment rendered="#{errorPage.showDetails}">
+    <h3 class="page-header">
+      <h:outputText value="#{errorPage.error.errorCode}" />
+      <span style="font-size: 0.8em"> 
+        <h:outputText rendered="#{errorPage.error.message!=errorPage.error.errorCode}" value=" #{errorPage.error.message}"/>
+      </span>
+    </h3>
+    <ui:fragment rendered="#{!errorPage.error.attributeNames.isEmpty()}">
+      <h4 class="list-group-item-heading">Attributes</h4>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped" style="font-size: 1.0em">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ui:repeat value="#{errorPage.error.attributeNames}" var="attributeName">
+              <tr>
+                <td><h:outputText value="#{attributeName}" /></td>
+                <td style="width: 100%"><h:outputText value="#{errorPage.error.getAttribute(attributeName)}" /></td>
+              </tr>
+            </ui:repeat>
+          </tbody>
+        </table>
+      </div>
+    </ui:fragment>
+    <h4 class="list-group-item-heading">Thrown by</h4>
+    <p style="margin-bottom: 0;">Process:
+      <h:outputText value="#{errorPage.path}" />
+      <br /> Element:
+      <h:outputText value="#{errorPage.error.processElement}" />
+    </p>
+    <br />
+
+    <ui:fragment rendered="#{!errorPage.error.processCallStack.isEmpty()}">
+      <h4 class="list-group-item-heading">Process call stack</h4>
+      <!-- Don't move me: I'm a PRE!!! -->
+      <pre><code><ui:repeat value="#{errorPage.error.processCallStack}" var="caller">#{caller.callerElement}</ui:repeat></code></pre>
+      <br />
+    </ui:fragment>
+    <ui:fragment rendered="#{!errorPage.causedBy.isEmpty()}">
+      <h4 class="list-group-item-heading">Technical cause</h4>
+      <ui:repeat value="#{errorPage.causedBy}" var="causedBy"><pre><code>#{causedBy.class.simpleName}: #{causedBy.message.trim()}</code></pre></ui:repeat>
+      <br />
+    </ui:fragment>
+
+    <h4 class="list-group-item-heading">Request Uri</h4>
+    <p>#{errorPage.getRequestUri()}</p>
+    <br />
+    <h4 class="list-group-item-heading">Servlet</h4>
+    <p>#{errorPage.getServletName()}</p>
+    <br />
+
+    <h4 class="list-group-item-heading">Application</h4>
+    <p>#{errorPage.applicationName}</p>
+    <br />
+
+    <ui:fragment rendered="#{!errorPage.threadLocalValues.isEmpty()}">
+      <h4 class="list-group-item-heading">Thread local values</h4>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped" style="font-size: 0.9em">
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ui:repeat value="#{errorPage.threadLocalValues}" var="threadLocal">
+              <tr>
+                <td><h:outputText value="#{threadLocal.key}" /></td>
+                <td style="width: 100%"><h:outputText value="#{threadLocal.value}" /></td>
+              </tr>
+            </ui:repeat>
+          </tbody>
+        </table>
+      </div>
+    </ui:fragment>
+    <br />
+
+    <h4 class="list-group-item-heading">Stack-Trace</h4>
+    <pre><code>#{errorPage.getStackTrace()}</code></pre>
+  </ui:fragment>
+</html>

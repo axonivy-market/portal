@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+  <title><ui:insert name="title">Ivy Html Dialog</ui:insert></title>
+  <link rel="shortcut icon"
+    href="#{resource['ivy-webcontent:layouts/images/ivy_favicon_48.png']}" />
+
+  <!-- You can also load bootstrap from an external CDN: https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css -->
+  <h:outputStylesheet name="layouts/styles/bootstrap-modified-for-jsf.css" />
+  <h:outputStylesheet name="layouts/styles/bootstrap-reset.css" />
+  <h:outputStylesheet name="layouts/styles/ivy-common-6.css" />
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.js"></script>
+  <![endif]-->
+</h:head>
+<h:body>
+  <div id="content">
+    <ui:insert name="content">
+    	default content
+    </ui:insert>
+  </div>
+  
+  <ui:insert name="exception">
+    <ui:include src="/layouts/includes/exception.xhtml" />
+  </ui:insert>
+</h:body>
+</html>
