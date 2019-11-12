@@ -11,7 +11,7 @@ $primaryColor: #c7d426;
 $primaryDarkColor: #97ae04;
 $primaryLightColor: #dcf91f;
 $primaryLightestColor: $white;
-$primaryTextColor: #212121;
+$primaryTextColor: $black;
 $accentColor: $primaryColor;
 $accentDarkColor: $primaryDarkColor;
 $accentLightColor: $primaryLightColor;
@@ -51,6 +51,8 @@ $taskPriorityExceptionColor: #ff5a5a;
 $taskStateOpenColor: #078cff;
 $taskStateInProgressColor: #4eb41c;
 $taskStateDoneColor: #4eb41c;
+$taskStateReservedColor: rgba(black, 0.4);
+$taskStateSystemColor: rgba(black, 0.4);
 $taskStateZombieDestroyedColor: #ff6464;
 
 /* Color and border radius of Portal button e.g Add, Close, New, Save, OK .. */
@@ -116,6 +118,8 @@ $chartNameFontSize: 1.6rem;
 $chartFilterHeaderFontSize: 1.8rem;
 $chartContainerAddLinkFontSize: 1.3rem;
 $dashboardChartNameFontSize: 2rem;
+$statisticCarouselHeaderButtonHoverColor: $black;
+$statisticCarouselHeaderColor: rgba($black, 0.8);
 
 /* Start Menu Item */
 $menuItemCurrentApplicationBorderBottomColor: transparent;
@@ -268,7 +272,6 @@ $formElementsCheckboxFieldsColor: $primaryTextColor;
 $definedTaskLabelBackgroundColor: $accentColor;
 $definedTaskButtonContainerBackgroundColor: $white;
 $formElementsPanelHoverDropSectionLabelColor: $primaryTextColor;
-$taskResponsibleLinkColor: $black;
 $selectManyCheckboxLabelColor: $grey1;
 $autocompleteMoreTextStateHighlightBackgroundColor: white;
 $expressInputSwitchSelectionBorder: #dcf91f;
@@ -345,3 +348,15 @@ $trueMinimalisticIconFontVariant: normal;
 /* Others */
 $bodyDialogTitleFontSize: 1.9rem;
 $menuListWidgetHeaderFontWeight: 600;
+
+/*Override theme styles*/
+$sidebarMenuListItemLinkTextColor: $primaryTextColor;
+$sidebarMenuListItemIconColor: $primaryTextColor;
+$sidebarMenuListItemLinkHoverTextColor: $primaryTextColor;
+$sidebarMenuListItemHoverIconColor: $primaryTextColor;
+$sidebarMenuListItemLinkHoverBackgroundColor: rgba($black, 0.15);
+
+$uiFiedsetLegendTextColor: $primaryTextColor;
+$uiDialogTitleBarTextColor: $primaryTextColor;
+$uiInputFieldTextColor: $primaryTextColor;
+$uiFieldSetTogglerColor: $black;
