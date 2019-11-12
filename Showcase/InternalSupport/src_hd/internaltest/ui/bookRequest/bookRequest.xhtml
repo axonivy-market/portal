@@ -7,12 +7,8 @@
 	xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
 	<ui:composition template="/layouts/TaskTemplate.xhtml">
-		<ui:param name="businessMainContactFolderId" value="#{ivy.case.businessMainContactFolderId}"/>
-		<ui:param name="caseId" value="#{ivy.case.getBusinessCase().getId()}"/>
 		<ui:param name="actualStepIndex" value="#{data.actualStepIndex}"/>
 		<ui:param name="steps" value="#{data.steps}"/>
-		<ui:param name="homeLink" value="#{ivy.html.startref('Start Processes/InternalSupportPortalHome/start.ivp')}"/>
-		<ui:param name="isNotRequiredLogin" value="false" />
 		<ui:define name="title">bookRequest</ui:define>
 		<ui:define name="taskName">
 			<span class="fa fa-wordpress"/><h:outputText value="#{ivy.task.name} #(#{ivy.task.getId()})" ></h:outputText>
@@ -22,12 +18,6 @@
 				<p:messages></p:messages>
 			</h:form>						
 		</ui:define>
-		
-		<ui:define name="documentIframe">			
-			 	<iframe id="iframeCenter" src="https://www.eonenergy.com/" width="100%"  
-                        height="500" >  
-            	</iframe>              
-		</ui:define>   
 		
 		<ui:define name="taskForm">
 		<h:form id="form">
