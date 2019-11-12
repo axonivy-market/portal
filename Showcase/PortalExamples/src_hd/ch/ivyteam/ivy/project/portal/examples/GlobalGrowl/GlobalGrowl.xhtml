@@ -5,7 +5,7 @@
   <ui:composition template="/layouts/TaskTemplate.xhtml">
     <ui:param name="caseId" value="#{ivy.case.getBusinessCase().getId()}" />
     <ui:param name="task" value="#{ivy.task}" />
-    <ui:define name="taskForm">
+    <ui:define name="content">
       <h:form id="request">
         <p:focus></p:focus>
         <h:panelGroup styleClass="md-inputfield MarTop20">
