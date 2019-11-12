@@ -2674,6 +2674,9 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   width: 100%;
 }
 
+.application-name-column {
+  width: 50%;
+}
 /********************************** ABSENCES AND DEPUTY **********************************/
 .absences-view-command-buttons {
   float: right;
@@ -2695,6 +2698,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 .absences-table-action-column {
   text-align: center;
+  width: 130px;
 }
 
 .absence-panel-grid {
@@ -2718,11 +2722,12 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .deputy-data-section {
-  width: 900px;
+  width: 100%;
 }
 
 .substitute-container {
   height: 350px;
+  width: 900px;
   overflow: auto;
 }
 
@@ -2743,6 +2748,14 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 .substitute-comment input {
   width: calc(100% - 20px);
+}
+.application-language-header {
+  width: 20%;
+}
+
+_:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
+  display: inline-block !important;
+  padding-bottom: 0px !important;
 }
 
 /* Override Primefaces table style */
