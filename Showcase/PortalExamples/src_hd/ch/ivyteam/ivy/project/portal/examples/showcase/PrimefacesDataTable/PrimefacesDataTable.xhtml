@@ -4,11 +4,11 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pm="http://primefaces.org/mobile">
 <h:body>
   <ui:composition template="/layouts/TaskTemplate.xhtml">
-    <ui:define name="pageTitle">Datatable</ui:define>
+    <ui:define name="title">Datatable</ui:define>
     <ui:param name="caseId" value="#{ivy.case.id}" />
     <ui:param name="task" value="#{ivy.task}" />
 
-    <ui:define name="taskForm">
+    <ui:define name="title">
       <h:form id="form">
       <p:tabView>
         <p:tab title="Demo">
