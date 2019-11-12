@@ -5,7 +5,7 @@
 <h:body>
   <ui:composition template="/layouts/TaskTemplate.xhtml">
 
-    <ui:define name="pageTitle">Customized TaskTemplate</ui:define>
+    <ui:define name="title">Customized TaskTemplate</ui:define>
 
     <ui:param name="actualStepIndex" value="#{data.actualStepIndex - 1}" />
     <ui:param name="steps" value="#{data.steps}" />
@@ -18,7 +18,7 @@
 
     <ui:define name="breadCrumb"></ui:define>
 
-    <ui:define name="taskForm">
+    <ui:define name="content">
 
       <h:form id="form">
         <p:tabView>
