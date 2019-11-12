@@ -843,7 +843,6 @@ span.task-details-document-add-link {
 
 .action-steps-panel .ui-overlaypanel-content {
     padding: 0 !important;
-    width: 180px;
     display: grid;
 }
 
@@ -1795,7 +1794,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .options-panel {
-  width: 200px;
   border-radius: 5px;
   padding: 0 !important;
 }
