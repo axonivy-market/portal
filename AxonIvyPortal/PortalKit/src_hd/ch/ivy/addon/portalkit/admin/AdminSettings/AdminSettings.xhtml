@@ -46,14 +46,14 @@
             <p:ajax event="rowReorder" listener="#{logic.onApplicationReorder}" update="applicationTable" />
 
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/type')}"
-              styleClass="application-table-type-column" width="20%">
+              styleClass="application-table-type-column">
               <h:outputText rendered="#{not empty app.serverId}"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationtype/ivyApplication')}" />
               <h:outputText rendered="#{empty app.serverId}"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationtype/thirdPartyApplication')}" />
             </p:column>
 
-            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" width="60%">
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}">
               <h:outputText value="#{logic.getAppNameInCurrentLocale(app)}" />
             </p:column>
 
@@ -163,7 +163,7 @@
           widgetVar="announcement-table" reflow="true"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" scrollable="true"
           scrollHeight="215" sortBy="#{announcement.language}">
-          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/language')}" width="80">
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/language')}" styleClass="application-language-header">
             <p:outputLabel for="announcement-input" value="#{announcement.getLanguageDisplayName()}" />
           </p:column>
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcement')}">
@@ -440,7 +440,7 @@
     <p:dataTable value="#{data.ivyApplications}" var="app" scrollable="true"
       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
       styleClass="application-selection-container">
-      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationName')}" styleClass="u-truncate-text" width="50%">
+      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationName')}" styleClass="u-truncate-text application-name-column">
         <h:outputText value="#{app.name}" />
       </p:column>
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/active')}">
