@@ -14,6 +14,7 @@ body {
   font-weight: $defaultFontWeight;
   background: $bodyBackgroundColor;
   font-size: $defaultBodyFontSize;
+  color: $primaryTextColor;
 }
 
 [data-icon]:before {
@@ -76,7 +77,8 @@ body {
 .layout-wrapper .layout-sidebar .layout-menu .submenu-container {
   padding: 4px 0;
   a:hover {
-    background-color: rgba($black, 0.15) !important;
+    background-color: $sidebarMenuListItemLinkHoverBackgroundColor !important;
+    color: $sidebarMenuListItemLinkHoverTextColor;
     border-radius: 0 !important;
   }
 }
@@ -110,9 +112,6 @@ body {
   }
 }
 
-.submenu-container.active-menuitem a:not(:hover) i, .submenu-container.active-menuitem a:not(:hover) {
-  color: $accentColor !important;
-}
 
 /*Style for Top bar -------------------------------------------------------------------------------------- */
 .layout-wrapper .layout-main .layout-topbar {
@@ -245,7 +244,6 @@ body .ui-messages .ui-messages-error-icon,
 
 .process-group.ui-fieldset .ui-fieldset-legend {
     font-size: $largeFontSize;
-    color: $primaryColor;
     padding: 14px 10px 10px 0 !important;
     margin-left: -1px;
 }
@@ -258,11 +256,11 @@ body .ui-messages .ui-messages-error-icon,
 
 .ui-fieldset {
     .ui-fieldset-legend {
-        color: $black !important;
+        color: $uiFiedsetLegendTextColor !important;
 
         .ui-fieldset-toggler {
             background-color: $fieldSetTogglerBackgroundColor !important;
-            color: $black !important;
+            color: $uiFieldSetTogglerColor !important;
             width: 20px;
             height: 20px;
         }
@@ -300,11 +298,11 @@ body .ui-panelgrid tbody tr.ui-widget-content {
 }
 
 .task-state-reserved {
-    color: rgba($black, 0.4);
+    color: $taskStateReservedColor;
 }
 
 .task-state-system {
-    color: rgba($black, 0.4);
+    color: $taskStateSystemColor;
 }
 
 .task-priority-low {
@@ -335,7 +333,7 @@ body .ui-panelgrid tbody tr.ui-widget-content {
 
 .statistic-carousel .ui-carousel-header .ui-carousel-next-button:hover,
 .statistic-carousel .ui-carousel-header .ui-carousel-prev-button:hover {
-    color: rgba($black, 1) !important;;
+    color: $statisticCarouselHeaderButtonHoverColor !important;
 }
 
 .dashboard-chart-panel .ui-panel-titlebar {
@@ -347,12 +345,13 @@ body .ui-panelgrid tbody tr.ui-widget-content {
 }
 
 .statistic-carousel .ui-carousel-header .ui-carousel-button.ui-icon,
-.statistic-carousel .ui-carousel .ui-carousel-header .ui-carousel-header-title .chart-info {
-  color: rgba($black, 0.8);
+.statistic-carousel .ui-carousel-header .ui-carousel-header-title .chart-info,
+.dashboard-chart-panel .chart-info {
+  color: $statisticCarouselHeaderColor !important;
 }
 
 .statistic-carousel .ui-carousel-header-title .chart-name {
-  color: rgba($black, 0.8);
+  color: $statisticCarouselHeaderColor;
   font-size: $chartNameFontSize;
 }
 
@@ -404,7 +403,7 @@ body .ui-panelgrid tbody tr.ui-widget-content {
   border: solid 1px $statisticFilterAccordionPanelBorder !important;
 }
 
-.statistic-carousel.ui-carousel .ui-carousel-header .ui-carousel-header-title .chart-info,
+.statistic-carousel .ui-carousel-header .ui-carousel-header-title .chart-info,
 .dashboard-chart-panel .chart-actions-container .chart-action,
 .dashboard-chart-panel .chart-info {
   font-size: 1.5rem;
@@ -1502,6 +1501,11 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   background-color: $subMenuItemLinkBackgroundColor !important;
 }
 
+.submenu-container.active-menuitem a:not(:hover) i,
+.submenu-container.active-menuitem a:not(:hover) {
+  color: $accentColor !important;
+}
+
 /* Style for Filter Widget -----------------------------**/
 .widget-header-main-menu {
   color: rgba($black, 0.4);
@@ -1705,12 +1709,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-name {
   font-weight: $processStartListItemNameFontWeight;
 }
-
-.process-start-list-item .open-icon,
-.process-start-list-item .express-icon.open-icon {
-  color: rgba($black, 0.5);
-}
-
 .process-history-list .ui-widget-content {
   border: none !important;
 }
@@ -1941,9 +1939,8 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   color: $contentLinkChangeAwesomeIconColor
 }
 
-.chart-filter-info-icon,
-.fa.filter-info {
-  color: rgba($black, 0.75);
+.chart-filter-info-icon {
+  opacity: 0.75;
   font-size: $largeFontSize !important;
 }
 
@@ -2154,7 +2151,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 }
 
 .task-responsible-link:after {
-  color: $taskResponsibleLinkColor;
   font-family: $iconFontFamily;
 }
 
@@ -2361,11 +2357,6 @@ ul.participants-list li {
 .global-search-icon {
   font-size: $largeFontSize;
 }
-
-.layout-wrapper .layout-sidebar .layout-menu li > a i {
-  font-size: 1.8rem;
-}
-
 /* Override theme*/
 
 .ui-dialog .ui-dialog-content .ui-icon-alert {
@@ -2374,6 +2365,7 @@ ul.participants-list li {
 
 body .ui-inputfield {
   font-size: $largeFontSize;
+  color: $uiInputFieldTextColor;
 }
 
 body .ui-datatable.ui-datatable-scrollable thead tr th {
@@ -2436,7 +2428,7 @@ body .ui-datepicker .ui-datepicker-header .ui-datepicker-prev {
   font-size: 2rem !important;
 }
 
-/* Override font-family of theme*/
+/* Override font-family of theme */
 input, body .ui-widget, body .ui-widget .ui-widget,
 body .ui-selectonemenu .ui-selectonemenu-label.ui-inputfield {
   font-family: $portalFontFamily;
@@ -2446,4 +2438,21 @@ body .ui-selectonemenu .ui-selectonemenu-label.ui-inputfield {
     vertical-align: middle;
     width: auto !important;
     max-width: 100%;
+}
+/* Temp overriding */
+.layout-wrapper .layout-sidebar .layout-menu li > a {
+  color: $sidebarMenuListItemLinkTextColor;
+}
+
+.layout-wrapper .layout-sidebar .layout-menu li > a i {
+  font-size: 1.8rem;
+  color: $sidebarMenuListItemIconColor;
+}
+
+.layout-wrapper .layout-sidebar .layout-menu li > a:hover i {
+  color: $sidebarMenuListItemHoverIconColor;
+}
+
+body .ui-dialog .ui-dialog-titlebar {
+  color: $uiDialogTitleBarTextColor;
 }
