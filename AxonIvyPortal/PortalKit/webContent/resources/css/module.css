@@ -747,8 +747,19 @@ span.task-details-document-add-link {
 .case-header-action-cell, .task-header-action-cell {
   flex: 0 0 auto;
   text-align: right;
-  margin: auto;
   padding: 0 10px;
+}
+
+.action-container,
+.action-container a.task-action-item,
+.action-container span.task-action-item {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.action-container a.task-action-item .icon-compact-mode,
+.action-container span.task-action-item .icon-compact-mode {
+  margin-top: 3px;
 }
 
 @media (max-width: 991px) {
@@ -1959,7 +1970,7 @@ _:-ms-input-placeholder, :root .case-details > * {
 .related-task-content {
   border-collapse: collapse;
   line-height: 2.2rem;
-  border-bottom: none;
+  border-bottom: none !important;
 }
 
 .related-task-content .related-task {
@@ -1967,6 +1978,14 @@ _:-ms-input-placeholder, :root .case-details > * {
   word-break: break-all;
   height: 2.2rem;
   overflow: hidden;
+}
+
+.case-related-task-table {
+  margin-bottom: 8px !important;
+}
+
+.case-related-task-case-running .ui-datascroller-loader {
+  padding: 0px 10px !important;
 }
 
 /* override Primefaces style */
@@ -3788,6 +3807,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .mobile-filter-icon {
   position: absolute !important;
+  bottom: 5px;
   right: 0;
   height: 25px !important;
   width: 25px !important;

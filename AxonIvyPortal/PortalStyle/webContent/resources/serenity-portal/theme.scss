@@ -481,6 +481,15 @@ body .ui-dialog .ui-dialog-footer .ui-button {
     background-color: $primaryColor;
 }
 
+.ui-inplace-content .ui-inplace-editor {
+    .ui-button.ui-button-icon-only {
+        .ui-icon {
+           font-family: "FontAwesome" !important;
+           font-size: $inplaceEditIconFontSize !important;
+           margin-top: -9px !important;
+        }
+    }
+}
 
 /*Style for table --------------------------------------------------------------------------------------*/
 .ui-datatable table tbody tr.ui-datatable-selectable.ui-state-highlight td {
