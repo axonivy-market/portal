@@ -7,19 +7,8 @@
 	xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
 	<ui:composition template="/layouts/TaskTemplate.xhtml">
-		<ui:param name="businessMainContactFolderId"
-			value="#{ivy.case.businessMainContactFolderId}" />
-		<ui:param name="caseId" value="#{ivy.case.getBusinessCase().getId()}" />
 		<ui:param name="actualStepIndex" value="#{data.actualStepIndex}" />
 		<ui:param name="steps" value="#{data.steps}" />
-		<ui:param name="homeLink"
-			value="#{ivy.html.startref('Start Processes/InternalSupportPortalHome/start.ivp')}" />
-		<!-- Hide default tabs -->
-		<ui:param name="showCaseStatusInfoTab" value="false" />
-		<ui:param name="showHistoryTab" value="false" />
-		<ui:param name="showDocumentTab" value="false" />
-		<ui:param name="isNotRequiredLogin" value="false" />
-
 		<ui:define name="login">
 			<ic:internaltest.ui.CustomLogin />
 		</ui:define>
@@ -33,11 +22,6 @@
 			<h:form id="messageForm">
 				<p:messages></p:messages>
 			</h:form>
-		</ui:define>
-
-		<ui:define name="documentIframe">
-			<iframe id="iframeCenter" src="https://www.eonenergy.com/"
-				width="100%" height="500"> </iframe>
 		</ui:define>
 
 		<ui:define name="taskForm">
