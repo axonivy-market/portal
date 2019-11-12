@@ -2427,3 +2427,8 @@ body .ui-selectonemenu .ui-selectonemenu-label.ui-inputfield {
   font-family: $portalFontFamily;
 }
 
+.login-body .login-panel .login-panel-header img {
+    vertical-align: middle;
+    width: auto !important;
+    max-width: 100%;
+}
