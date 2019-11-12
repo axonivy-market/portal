@@ -484,7 +484,7 @@ body .ui-dialog .ui-dialog-footer .ui-button {
 .ui-inplace-content .ui-inplace-editor {
     .ui-button.ui-button-icon-only {
         .ui-icon {
-           font-family: "FontAwesome" !important;
+           font-family: $iconFontFamily !important;
            font-size: $inplaceEditIconFontSize !important;
            margin-top: -9px !important;
         }
@@ -945,7 +945,7 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
 .case-detail-body .case-details-item {
   .ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top {
       background-color: rgba($black, 0.05);
-      border-color: #d8d8d8;
+      border-color: $caseRelatedTaskContentBorder;
       padding: 2px 10px;
   }
   
@@ -978,6 +978,7 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
   .ui-datascroller-content.ui-widget-content.ui-corner-all {
     padding: 0;
     border: none;
+    border-right-color: $caseRelatedTaskContentBorder !important;
   }
   
   .case-related-task-case-running ul li:first-child {
@@ -988,7 +989,7 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
 
   .case-related-task-case-running ul li:last-child {
     .related-task-content {
-      border-bottom: 1px solid #d8d8d8 !important;
+      border-bottom: 1px solid $caseRelatedTaskContentBorder !important;
     }
   }
 }
@@ -1010,7 +1011,7 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
     flex: 0 0 auto;
     
     &.ui-state-hover {
-      background-color: rgba(0, 0, 0, 0.05) !important;
+      background-color: rgba($black, 0.05) !important;
     }
   }
 }
