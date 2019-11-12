@@ -2788,7 +2788,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 @media screen and (max-width: 40em) {
   .applications-email-setting-dialog {
     min-width: 300px !important;
-    height: 345px !important;
+    height: 365px !important;
     margin-left: 10px;
     margin-right: 10px;
   }
@@ -2880,6 +2880,10 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 /********************************** STATISTIC WIDGET **********************************/
 .statistic-widget-container:not(.statistic-widget-compact-mode-container) {
   padding: 0.5em;
+}
+
+.statistic-widget-container:not(.statistic-widget-compact-mode-container) .widget-header .widget-header-main {
+  flex-basis: 200px !important;
 }
 
 .statistic-widget-container:not(.statistic-widget-compact-mode-container) .widget-header-main {
@@ -2988,6 +2992,13 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   .statistic-carousel .statistic-carousel-item {
     max-height: 25rem;
   }
+
+  .statistic-widget-container:not(.statistic-widget-compact-mode-container) .widget-header .widget-header-main {
+    flex-basis: 100px !important;
+  }
+  .statistic-actions-panel {
+    flex-basis: calc(100% - 100px) !important;
+  }
 }
 
 /* Medium screen */
@@ -3049,12 +3060,17 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .statistic-actions-panel {
-  margin-top: 15px;
+  margin-top: 10px;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: calc(100% - 200px);
+  text-align: right;
 }
 
 .task-analysic-action {
   flex: 0 0 100px;
   align-self: flex-end;
+  padding-bottom: 6px;
 }
 
 .case-detail-title-header-container, .task-detail-header,
