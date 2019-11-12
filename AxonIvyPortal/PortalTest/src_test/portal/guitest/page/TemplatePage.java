@@ -299,10 +299,4 @@ public abstract class TemplatePage extends AbstractPage {
     });
   }
  
-  protected void waitPageReady() {
-    new WebDriverWait(driver, 5).until(
-        webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
-  }
-
-
 }
