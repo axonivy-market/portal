@@ -1,0 +1,8 @@
+Company #class
+ch.ivyteam.ivy.project.portal.examples #namespace
+id String #field
+id PERSISTENT #fieldModifier
+name String #field
+name PERSISTENT #fieldModifier
+description String #field
+description PERSISTENT #fieldModifier
