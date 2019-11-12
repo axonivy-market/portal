@@ -569,8 +569,8 @@ if(in.isAdhocProcess){
 		originalTask.customFields().stringField(AdditionalProperty.ORIGINAL_ADHOC_EXPRESS_TASK.toString()).set(AdditionalProperty.ORIGINAL_ADHOC_EXPRESS_TASK.toString());
 		originalTask.customFields().stringField(AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString()).set(AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString());
 	}
-	ICase bussinessCase = originalTask.getCase().ensureBusinessCase();
-	AdhocUtils.attachToBusinessCase(ivy.case, bussinessCase.getId());
+	ICase businessCase = originalTask.getCase().ensureBusinessCase();
+	AdhocUtils.attachToBusinessCase(ivy.case, businessCase.getId());
 }' #txt
 ew0 f54 security system #txt
 ew0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
