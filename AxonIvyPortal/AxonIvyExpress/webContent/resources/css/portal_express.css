@@ -196,10 +196,6 @@
 	opacity: .8 !important;
 }
 
-.text-editor-send-email {
-	margin-bottom: 10px;
-}
-
 .form-elements-container {
 	margin: 0 0 16px;
 	border: none !important;
@@ -354,6 +350,14 @@ td.email-attachment-text {
 
 .express-email-container {
   padding: 0.5em;
+}
+
+.express-email-container > div.ui-g > div {
+  margin-top: 10px;
+}
+
+.express-email-container label.ui-state-error {
+  color: #e62a10;
 }
 
 .email-attachment:before {

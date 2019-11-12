@@ -31,7 +31,7 @@
     <ui:param name="announcementContainerStyleClass" value="u-hidden" />
     <ui:param name="taskTemplateContainerStyleClass" value="u-hidden" />
 
-    <ui:define name="taskForm">
+    <ui:define name="content">
       <h:form>
         <p:remoteCommand name="redirectToEndPageCommand" actionListener="#{iFrameTaskTemplateBean.navigateToEndPage()}" />
         <p:remoteCommand name="getDataFromIFrame" actionListener="#{iFrameTaskTemplateBean.getDataFromIFrame()}"
