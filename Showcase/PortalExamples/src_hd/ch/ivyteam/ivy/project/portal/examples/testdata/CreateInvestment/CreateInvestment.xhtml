@@ -1,0 +1,73 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" >
+<h:body>
+  <ui:composition template="/layouts/basic.xhtml">
+    <ui:define name="title">Create Investment</ui:define>
+    <ui:define name="content">
+      <h:form id="form">
+        <div class="ui-g">
+          <div class="ui-g-2">
+            <h:outputLabel id="id-label" for="id" value="Investment ID" />
+          </div>
+          <div class="ui-g-4">
+            <h:outputText id="id" value="#{data.selectedInvestment.id}" />
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-g-2">
+            <h:outputLabel id="invested-amount-label" for="invested-amount" value="Invested amount" />
+          </div>
+          <div class="ui-g-4">
+            <h:inputText id="invested-amount" value="#{data.selectedInvestment.investedMoney}" required="true"
+              requiredMessage="Amount is required" />
+            <p:message for="invested-amount" />
+          </div>
+          <div class="ui-g-2">
+            <h:outputLabel id="start-date-label" for="start-date" value="Start date" />
+          </div>
+          <div class="ui-g-4">
+            <p:calendar id="start-date" value="#{data.selectedInvestment.startDate}" />
+          </div>
+        </div>
+        <p:fieldset legend="Company Information" toggleable="true" style="margin-top: 20px;">
+          <div class="ui-g">
+            <div class="u-g-2">
+              <h:outputLabel id="company-id-label" for="company-id" value="Company ID" />
+            </div>
+            <div class="ui-g-4">
+              <h:outputText id="company-id" value="#{data.selectedInvestment.company.id}" />
+            </div>
+            <div class="u-g-2">
+              <h:outputLabel id="company-name-label" for="company-name" value="Company Name" />
+            </div>
+            <div class="ui-g-4">
+              <p:inputText id="company-name" value="#{data.selectedInvestment.company.name}" />
+            </div>
+          </div>
+          <div class="ui-g">
+            <div class="u-g-2">
+              <h:outputLabel id="company-desc-label" for="company-desc" value="Description" />
+            </div>
+            <div class="ui-g-10">
+              <p:inputText id="company-desc" value="#{data.selectedInvestment.company.description}" style="width: 100%" />
+            </div>
+          </div>
+        </p:fieldset>
+        <div style="width: 100%; margin-bottom: 100px;">
+          <p:commandButton id="save-btn" value="Save" update="@(form)" actionListener="#{logic.close}"
+            style="float: right; margin-top: 20px;" />
+        </div>
+      </h:form>
+      <script>
+        window.taskId = #{ivy.task.id};
+        window.processSteps = ["Create Investment Request", "Approve Investment Request"];
+        window.currentProcessStep = 0;
+        window.processChainDirection = "VERTICAL";
+        window.processChainShape = "LINE";
+      </script>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>
