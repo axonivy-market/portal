@@ -9,7 +9,7 @@
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="taskView" value="#{data.taskView}" />
     <ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
-    <ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}</ui:define>
+    <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}</ui:define>
 
     <ui:define name="simplePageContent">
       <ic:ch.ivy.addon.portalkit.component.TaskAnalysisWidget id="task-widget" keyword="#{taskView.dataModel.criteria.keyword}"
