@@ -16,15 +16,10 @@
 			<h:outputText value="#{ivy.task.name} #(#{ivy.task.getId()})"></h:outputText>
 		</ui:define>
 
-		<ui:define name="errorsZone">
-			<h:form id="messageForm">
-				<p:messages></p:messages>
-			</h:form>
-		</ui:define>
-
 		<ui:define name="content">
 			<h3>Cancel Approval Request</h3>
 			<h:form prependId="false" id="myForm">
+				<p:messages></p:messages>
 				<h:panelGrid columns="2">
 					<p:outputLabel for="cancelReason"
 						value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/cancelReason')}" />
@@ -37,13 +32,6 @@
 	      		</h:panelGroup>
 			</h:form>
 		</ui:define>
-		<ui:define name="leftButtons">
-			
-		</ui:define>
-
-		<ui:define name="rightButtons">
-		</ui:define>
-
 	</ui:composition>
 </h:body>
 </html>
