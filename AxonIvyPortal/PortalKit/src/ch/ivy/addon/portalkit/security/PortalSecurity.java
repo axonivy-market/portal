@@ -72,7 +72,7 @@ public enum PortalSecurity {
     ISecurityContext securityContext = portalApplication.getSecurityContext();
     boolean isIvySecurity = securityContext.getExternalSecuritySystemName()
         .equals(ISecurityConstants.IVY_ENGINE_SECURITY_SYSTEM_PROVIDER_NAME);
-    if (EngineMode.is(EngineMode.DEMO) && isIvySecurity) {
+    if ((EngineMode.is(EngineMode.DEMO) || EngineMode.isEmbeddedInDesigner()) && isIvySecurity) {
       IUser adminUser = securityContext.findUser(Username.ADMIN);
       if (adminUser != null) {
         for (IPermission permission : Permissions.ADMIN_USER_ADDITIONAL) {

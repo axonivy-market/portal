@@ -10,7 +10,7 @@
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/newAbsence')}">
 
     <h:form id="new-absence-form" styleClass="ui-g-12">
-      <p:messages widgetVar="growl" showDetail="true" closable="true" id="absence-messages" escape="false"/>
+      <p:messages widgetVar="growl" showDetail="true" closable="true" id="absence-messages" escape="false" styleClass="new-absence-messages"/>
       <h:panelGroup id="input-adsence-data-section" layout="block" rendered="#{not data.isLoadDeputy}">
         <ui:include src="Absence.xhtml">
           <ui:param name="updateComponent" value="next-to-deputy absence-messages" />
@@ -19,10 +19,9 @@
       </h:panelGroup>
 
       <h:panelGroup layout="block" rendered="#{data.isLoadDeputy}" id="input-deputy-data-section"
-        styleClass="OvAuto deputy-data-section">
+        styleClass="deputy-data-section">
         <ui:include src="Deputy.xhtml" />
       </h:panelGroup>
-
       <h:panelGroup layout="block" styleClass="u-dialog-footer ui-dialog-footer">
         <p:commandButton id="next-to-deputy"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}"

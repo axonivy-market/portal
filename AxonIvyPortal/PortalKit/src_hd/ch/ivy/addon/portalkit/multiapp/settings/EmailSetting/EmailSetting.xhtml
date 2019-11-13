@@ -58,13 +58,21 @@
             <p:outputLabel id="daily-summary-text" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/dailySummary')}" for="daily-summary"
               rendered="#{data.settingForAllApp}" />
             <p:inputSwitch id="daily-summary" value="#{data.enableDailySummary}" rendered="#{data.settingForAllApp}">
-              <p:ajax event="change" update=":#{p:component('all-applications-email-setting')}" oncomplete="changeWidthDailySummaryPanel()"/>
+              <p:ajax event="change" update="multi-app-daily-summary-checkbox-selection-container" oncomplete="changeWidthDailySummaryPanel()"/>
             </p:inputSwitch>
           </h:panelGrid>
-          <p:selectCheckboxMenu id="multi-app-daily-summary" value="#{data.generalEmailSetting.emailSendDailyTaskSummary}"
-            rendered="#{data.enableDailySummary}" label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/day')}" styleClass="daily-summary-checkbox">
-            <f:selectItems value="#{data.dailySummaryList}" var="day" itemLabel="#{day.getLocalizedName(ivy.session.getContentLocale())}" itemValue="#{day}" />
-          </p:selectCheckboxMenu>
+
+          <h:panelGroup id="multi-app-daily-summary-checkbox-selection-container" layout="block">
+            <p:selectCheckboxMenu id="multi-app-daily-summary" value="#{data.generalEmailSetting.emailSendDailyTaskSummary}" 
+              onShow="changeWidthDailySummaryPanel();" onHide="updateMultiAppDailySummaryMail();" 
+              rendered="#{data.enableDailySummary}" 
+              label="#{empty data.generalEmailSetting.emailSendDailyTaskSummary ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/day'):ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/selectedDay',[data.generalEmailSetting.emailSendDailyTaskSummary.size()])}"
+              styleClass="daily-summary-checkbox">
+              <f:selectItems value="#{data.dailySummaryList}" var="day" itemLabel="#{day.getLocalizedName(ivy.session.getContentLocale())}" itemValue="#{day}" />
+            </p:selectCheckboxMenu>
+            <p:remoteCommand name="updateMultiAppDailySummaryMail" update="multi-app-daily-summary-checkbox-selection-container" global="false" />
+          </h:panelGroup>
+
         </p:panel>
         <!--  SETTING FOR DYNAMIC APPLICATIONS -->
 
@@ -83,13 +91,19 @@
                 <!--  DAILY SUMMARY -->
                 <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/dailySummary')}" for="daily-summary" />
                 <p:inputSwitch id="daily-summary" value="#{appSetting.enableDailySummary}">
-                   <p:ajax event="change" update=":#{p:component('application-email-setting')}" listener="#{logic.updateDailyList}" oncomplete="changeWidthDailySummaryPanel()"/>
+                   <p:ajax event="change" update="daily-summary-checkbox-selection-container" listener="#{logic.updateDailyList}" oncomplete="changeWidthDailySummaryPanel()"/>
                 </p:inputSwitch>
               </h:panelGrid>
-              <p:selectCheckboxMenu id="daily-summary-checkbox" value="#{appSetting.emailSendDailyTaskSummary}" label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/day')}"
-                styleClass="daily-summary-checkbox" rendered="#{appSetting.enableDailySummary}">
-                <f:selectItems value="#{data.dailySummaryList}"  var="day" itemLabel="#{day.getLocalizedName(ivy.session.getContentLocale())}" itemValue="#{day}"/>
-              </p:selectCheckboxMenu>
+
+              <h:panelGroup id="daily-summary-checkbox-selection-container" layout="block">
+                <p:selectCheckboxMenu id="daily-summary-checkbox" value="#{appSetting.emailSendDailyTaskSummary}" 
+                  onShow="changeWidthDailySummaryPanel();" onHide="updateDailySummaryMail();" 
+                  label="#{empty appSetting.emailSendDailyTaskSummary ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/day'):ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/selectedDay', [appSetting.emailSendDailyTaskSummary.size()])}"
+                  styleClass="daily-summary-checkbox" rendered="#{appSetting.enableDailySummary}" panelStyleClass="width:100%">
+                  <f:selectItems value="#{data.dailySummaryList}"  var="day" itemLabel="#{day.getLocalizedName(ivy.session.getContentLocale())}" itemValue="#{day}"/>
+                </p:selectCheckboxMenu>
+                <p:remoteCommand name="updateDailySummaryMail" update="daily-summary-checkbox-selection-container" global="false" />
+              </h:panelGroup>
             </p:panel>
             <br />
           </ui:repeat>

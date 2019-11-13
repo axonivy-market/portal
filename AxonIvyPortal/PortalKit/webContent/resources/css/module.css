@@ -2674,6 +2674,9 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   width: 100%;
 }
 
+.application-name-column {
+  width: 50%;
+}
 /********************************** ABSENCES AND DEPUTY **********************************/
 .absences-view-command-buttons {
   float: right;
@@ -2695,6 +2698,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 .absences-table-action-column {
   text-align: center;
+  width: 130px;
 }
 
 .absence-panel-grid {
@@ -2718,11 +2722,12 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .deputy-data-section {
-  width: 900px;
+  width: 100%;
 }
 
 .substitute-container {
   height: 350px;
+  width: 900px;
   overflow: auto;
 }
 
@@ -2743,6 +2748,14 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 .substitute-comment input {
   width: calc(100% - 20px);
+}
+.application-language-header {
+  width: 20%;
+}
+
+_:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
+  display: inline-block !important;
+  padding-bottom: 0px !important;
 }
 
 /* Override Primefaces table style */
@@ -2788,7 +2801,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 @media screen and (max-width: 40em) {
   .applications-email-setting-dialog {
     min-width: 300px !important;
-    height: 345px !important;
+    height: 365px !important;
     margin-left: 10px;
     margin-right: 10px;
   }
@@ -2880,6 +2893,10 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 /********************************** STATISTIC WIDGET **********************************/
 .statistic-widget-container:not(.statistic-widget-compact-mode-container) {
   padding: 0.5em;
+}
+
+.statistic-widget-container:not(.statistic-widget-compact-mode-container) .widget-header .widget-header-main {
+  flex-basis: 200px !important;
 }
 
 .statistic-widget-container:not(.statistic-widget-compact-mode-container) .widget-header-main {
@@ -2988,6 +3005,13 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   .statistic-carousel .statistic-carousel-item {
     max-height: 25rem;
   }
+
+  .statistic-widget-container:not(.statistic-widget-compact-mode-container) .widget-header .widget-header-main {
+    flex-basis: 100px !important;
+  }
+  .statistic-actions-panel {
+    flex-basis: calc(100% - 100px) !important;
+  }
 }
 
 /* Medium screen */
@@ -3049,12 +3073,17 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .statistic-actions-panel {
-  margin-top: 15px;
+  margin-top: 10px;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: calc(100% - 200px);
+  text-align: right;
 }
 
 .task-analysic-action {
   flex: 0 0 100px;
   align-self: flex-end;
+  padding-bottom: 6px;
 }
 
 .case-detail-title-header-container, .task-detail-header,
