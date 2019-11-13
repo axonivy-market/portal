@@ -121,7 +121,7 @@ public class TaskAnalysisExporter {
       case TASK_DESCRIPTION:
         return task.getDescription();
       case TASK_ACTIVATOR:
-        if (task.getActivatorName() == null) {
+        if (task.getActivator() == null) {
           return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
         }
         return userFormatBean.formatWithTip(task.getActivator().getDisplayName(), task.getActivatorName());
