@@ -158,7 +158,7 @@
     <h:panelGroup id="case-view" layout="block" class="ui-g-12 u-no-padding-left">
       <h:panelGroup id="case-list" layout="block" styleClass="case-list">
         <p:dataScroller id="case-list-scroller" value="#{data.dataModel}" var="case" chunkSize="#{cc.attrs.chunkSize}"
-          lazy="true" mode="inline" rowIndexVar="rowIndex" styleClass="js-case-list">
+          lazy="true" mode="inline" rowIndexVar="rowIndex" virtualScroll="true" styleClass="js-case-list">
           <ic:ch.ivy.addon.portalkit.component.CaseItem case="#{case}" id="case-item"
             onDestroyComplete="PF('destroy-case-dialog').show()" rowIndex="#{rowIndex}"
             itemStyleClass="#{rowIndex % 2 == 0 ? 'case-even-row' : 'case-odd-row'}">
