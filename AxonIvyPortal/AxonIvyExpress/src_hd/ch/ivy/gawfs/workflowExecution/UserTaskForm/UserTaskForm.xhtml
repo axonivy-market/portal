@@ -7,25 +7,19 @@
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
   <ui:composition template="/layouts/TaskTemplate.xhtml">
-    <ui:param name="caseId" value="#{ivy.case.id}" />
-    <ui:param name="task" value="#{ivy.task}" />
     <ui:param name="steps" value="#{data.executePredefinedWorkflowData.steps}" />
     <ui:param name="actualStepIndex" value="#{data.executePredefinedWorkflowData.actualStepIndex}" />
-    <ui:param name="isNotRequiredLogin" value="false" />
     <ui:param name="isShowStartAdhocButton" value="#{not data.executePredefinedWorkflowData.isAdhocProcess}" />
     <ui:param name="processChainShape" value="LINE" />
     <ui:define name="title" />
-
-    <ui:define name="errorsZone">
-      <p:messages id="error-messages" showDetail="false" closable="true" globalOnly="true">
-        <p:autoUpdate />
-      </p:messages>
-    </ui:define>
 
     <ui:define name="content">
       <h:outputScript library="js" name="express-dyna-form.js" />
 
       <h:form id="form" styleClass="user-task-form">
+        <p:messages id="error-messages" showDetail="false" closable="true" globalOnly="true">
+          <p:autoUpdate />
+        </p:messages>
         <h:panelGroup id="finished-user-tasks-container" layout="block" rendered="#{not empty data.executePredefinedWorkflowData.finishedTasks}">
           <ic:ch.ivy.gawfs.component.FinishedUserTasksForm id="finished-tasks-component"
             finishedTasks="#{data.executePredefinedWorkflowData.finishedTasks}" />
