@@ -218,7 +218,8 @@
       <h:panelGroup id="task-view-container" layout="block" styleClass="task-view-container">
         <p:dataScroller id="task-list-scroller" 
           value="#{data.dataModel}" 
-          var="task" 
+          var="task"
+          virtualScroll="true" 
           chunkSize="#{cc.attrs.chunkSize}"
           lazy="true" 
           mode="inline" 

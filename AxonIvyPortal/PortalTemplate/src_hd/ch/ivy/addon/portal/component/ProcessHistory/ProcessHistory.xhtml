@@ -60,7 +60,7 @@
 	</h:panelGroup>
 	<h:panelGroup id="process-history-list" layout="block" styleClass="process-history-list">
 		<f:event type="preRenderComponent" listener="#{processHistoryBean.initData(cc.attrs.businessEntityId)}" />
-		<p:dataScroller id="case-list-scroller" value="#{processHistoryBean.dataModel}" var="case"
+		<p:dataScroller id="case-list-scroller" value="#{processHistoryBean.dataModel}" var="case" virtualScroll="true"
 			scrollHeight="#{cc.attrs.scrollHeight}" chunkSize="#{cc.attrs.chunkSize}" lazy="true" mode="inline"
 			rowIndexVar="rowIndex" styleClass="js-case-list" buffer="70" widgetVar="process-history-scroller">
 			<ic:ch.ivy.addon.portalkit.component.CaseItem case="#{case}" id="case-item" enableCaseAction="false"
