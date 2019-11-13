@@ -118,7 +118,8 @@ $chartNameFontSize: 1.6rem;
 $chartFilterHeaderFontSize: 1.8rem;
 $chartContainerAddLinkFontSize: 1.3rem;
 $dashboardChartNameFontSize: 2rem;
-$statisticCarouselHeaderButtonHoverColor: $black;
+$statisticCarouselHeaderButtonHoverColor: rgba($black, 0.8);
+$statisticCarouselHeaderButtonColor: rgba($black, 0.5);
 $statisticCarouselHeaderColor: rgba($black, 0.8);
 
 /* Start Menu Item */
@@ -168,6 +169,9 @@ $historyButtonContainerFontWeight: bold;
 /* Case Item */
 $historyNodeColor: $primaryTextColor;
 $historyNoteBorder: $grey3;
+$linkTextColor: rgba($black, 0.5) !important; /* should be set grey as style guide */
+$additionalCaseDetailLinkColor: $linkTextColor;
+$noteShowMoreLinkColor: $linkTextColor;
 $caseTaskDocumentNameColor: $primaryTextColor;
 $caseListItemHoverBackgroundColor: #e8e9ef;
 $caseWidgetColumnHeaderIsSelectedColor: $black;
