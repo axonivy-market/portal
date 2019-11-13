@@ -46,7 +46,7 @@
           <h:panelGroup layout="block"
             styleClass="task-template-content #{processChainDirection eq 'VERTICAL' ? 'vertical-process-chain' : ''} #{processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
 
-            <div class="task-template-tasks-command">
+            <div class="task-template-tasks-command" style="z-index: 1; position: absolute; top: 4px; right: 10px;">
               <p:commandButton id="task-actions" type="button" title="Task actions" icon="ui-icon-menu"
                 styleClass="task-actions-button" />
             </div>
