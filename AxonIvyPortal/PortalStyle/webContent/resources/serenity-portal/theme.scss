@@ -331,9 +331,13 @@ body .ui-panelgrid tbody tr.ui-widget-content {
     border-color: $statisticPanelHeaderBorder;
 }
 
+.statistic-carousel .ui-carousel-header .ui-carousel-button.ui-icon {
+  color: $statisticCarouselHeaderButtonColor !important;
+}
+
 .statistic-carousel .ui-carousel-header .ui-carousel-next-button:hover,
 .statistic-carousel .ui-carousel-header .ui-carousel-prev-button:hover {
-    color: $statisticCarouselHeaderButtonHoverColor !important;
+  color: $statisticCarouselHeaderButtonHoverColor !important;
 }
 
 .dashboard-chart-panel .ui-panel-titlebar {
@@ -344,10 +348,17 @@ body .ui-panelgrid tbody tr.ui-widget-content {
     color: $primaryColor !important;
 }
 
-.statistic-carousel .ui-carousel-header .ui-carousel-button.ui-icon,
 .statistic-carousel .ui-carousel-header .ui-carousel-header-title .chart-info,
+.dashboard-chart-panel .chart-actions-container .chart-action,
 .dashboard-chart-panel .chart-info {
-  color: $statisticCarouselHeaderColor !important;
+  color: $statisticCarouselHeaderButtonColor !important;
+  font-size: 1.5rem;
+}
+
+.statistic-carousel .ui-carousel-header .ui-carousel-header-title .chart-info:hover,
+.dashboard-chart-panel .chart-info:hover,
+.dashboard-chart-panel .chart-actions-container .chart-action:hover {
+  color: $statisticCarouselHeaderButtonHoverColor !important;
 }
 
 .statistic-carousel .ui-carousel-header-title .chart-name {
@@ -356,6 +367,7 @@ body .ui-panelgrid tbody tr.ui-widget-content {
 }
 
 .dashboard-chart-panel .chart-name {
+  color: $statisticCarouselHeaderColor;
   font-size: $dashboardChartNameFontSize;
   font-weight: $dashboardChartPanelChartNameFontWeight;
 }
@@ -394,19 +406,13 @@ body .ui-panelgrid tbody tr.ui-widget-content {
 .dashboard-chart-panel .card,
 .edit-statistic-container .card,
 .statistic-widget.compact-mode .statistic-carousel.card {
-  box-shadow: 0 2px 6px 0 rgba($black, 0.2),
-              0 2px 4px 0 rgba($black, 0.14),
-              0 4px 2px -1px rgba($black, 0.12);
+  box-shadow: 0 2px 6px 0 rgba(black, 0.2),
+              0 2px 4px 0 rgba(black, 0.14),
+              0 4px 2px -1px rgba(black, 0.12);
 }
 
 .statistic-filter-accordion-panel .ui-accordion-content {
   border: solid 1px $statisticFilterAccordionPanelBorder !important;
-}
-
-.statistic-carousel .ui-carousel-header .ui-carousel-header-title .chart-info,
-.dashboard-chart-panel .chart-actions-container .chart-action,
-.dashboard-chart-panel .chart-info {
-  font-size: 1.5rem;
 }
 
 /*Style For Buttons --------------------------------------------------------------------------------------*/
@@ -939,11 +945,11 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
    background-color: transparent !important;
 }
 
-/*Style For Case Detail --------------------------------------------------------------------------------------*/
+/*Style For Case Detail --------------------------------------------------------------------------------------*
 
 .case-detail-body .case-details-item {
   .ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top {
-      background-color: rgba($black, 0.05);
+      background-color: rgba(green, 0.05);
       border-color: $caseRelatedTaskContentBorder;
       padding: 2px 10px;
   }
@@ -1021,7 +1027,31 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
 }
 
 .note-show-more-link {
-  color: rgba($black, 0.5) !important;
+  color: $noteShowMoreLinkColor !important;
+}
+
+.related-task-content .related-task,
+.case-related-running {
+  color: $caseRelatedTaskColor !important;
+}
+
+.related-task-content .related-task:hover,
+.additional-case-details-link:hover {
+  color: rgba($black, 0.6) !important;
+}
+
+.additional-case-details-link {
+  color: $additionalCaseDetailLinkColor !important;
+  font-weight: $additionalCaseDetailLinkFontWeight;
+}
+
+.related-task-content,
+.case-related-running {
+  border: 1px solid $caseRelatedTaskContentBorder;
+}
+
+.case-details-note-add-link-icon {
+  font-size: $largeFontSize;
 }
 
 /*Style For Task Detail --------------------------------------------------------------------------------------*/
@@ -1862,31 +1892,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 .side-steps-panel .side-step-item:hover:not(.ui-state-disabled) {
   color: $sideStepItemHoverColor !important;
   background-color: $sideStepItemHoverBackgroundColor;
-}
-
-/*Case detail-----------------------------*/
-.related-task-content .related-task,
-.case-related-running {
-  color: $caseRelatedTaskColor !important;
-}
-
-.related-task-content .related-task:hover,
-.additional-case-details-link:hover {
-  color: rgba($black, 0.6) !important;
-}
-
-.additional-case-details-link {
-  color: rgba($black, 0.5) !important;
-  font-weight: $additionalCaseDetailLinkFontWeight;
-}
-
-.related-task-content,
-.case-related-running {
-  border: 1px solid $caseRelatedTaskContentBorder;
-}
-
-.case-details-note-add-link-icon {
-  font-size: $largeFontSize;
 }
 
 /* Admin Setting--------------------------*/
