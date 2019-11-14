@@ -498,30 +498,33 @@ body .ui-dialog .ui-dialog-footer .ui-button {
 
 /*Style for table --------------------------------------------------------------------------------------*/
 .ui-datatable table tbody tr.ui-datatable-selectable.ui-state-highlight td {
-    background-color: rgba(red($primaryColor), green($primaryColor), blue($primaryColor), 0.6);
+    background-color: $highlightedTdDataTableBackgroundColor;
 }
 
 .ui-datatable table tbody tr.ui-datatable-selectable.ui-state-hover td {
-    background-color: rgba(red($primaryColor), green($primaryColor), blue($primaryColor), 0.25);
+    background-color: $hoveredTdDataTableBackGroundColor;
 }
 
 .ui-treetable table tbody .ui-state-highlight td {
-    background-color: rgba(red($primaryColor), green($primaryColor), blue($primaryColor), 0.6) !important;
+    background-color: $highlightedTdTreeTableBackgroundColor !important;
 }
 
 .ui-treetable table tbody .ui-state-hover td {
-    background-color: rgba(red($primaryColor), green($primaryColor), blue($primaryColor), 0.25) !important;
+    background-color: $hoveredTdTreeTableBackGroundColor !important;
 }
 
 .ui-datatable table thead tr td:not(:last-child),
 .ui-datatable table tbody tr td:not(:last-child) {
-    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    border-right: 1px solid $rightBorderInsideDataTable;
 }
 
 .ui-datatable {
     thead {
         tr {
             th {
+            	border-top: 1px solid $topBorderOutsideDataTableColor;
+				border-bottom: 1px solid $bottomBorderHeaderDataTableColor;
+	
                 .ui-column-title {
                     color: $primaryTextColor;
                 }
@@ -531,11 +534,19 @@ body .ui-dialog .ui-dialog-footer .ui-button {
                 }
 
                 &:not(:last-child) {
-                    border-right: 1px solid rgba(0, 0, 0, 0.2);
+                    border-right: 1px solid $rightBorderInsideDataTable;
                 }
 
                 &:not(:first-child) {
-                    border-left: 1px solid transparent;
+                    border-left: 1px solid $leftBorderInsideDataTable;
+                }
+                
+                &:first-child {
+                    border-left: 1px solid $leftBorderOutsideDataTableColor !important;
+                }
+                
+                &:last-child {
+                    border-right: 1px solid $rightBorderOutsideDataTableColor !important;
                 }
             }
         }
@@ -550,12 +561,19 @@ body .ui-dialog .ui-dialog-footer .ui-button {
     tbody {
         tr {
             td {
+            	border-top: 1px solid $topBorderBodyDataTableColor !important;
+            	border-bottom: 1px solid $bottomBorderOutsideDataTableColor !important;
+                
                 .ui-inputfield {
-                    color: $primaryTextColor !important;
+                    color: $uiInputFieldTdTextColor;
                 }
 
                 &:first-child {
-                    border-left: 1px solid $grey3 !important;
+                    border-left: 1px solid $leftBorderOutsideDataTableColor;
+                }
+                
+                &:last-child {
+                    border-right: 1px solid $rightBorderOutsideDataTableColor;
                 }
             }
         }
@@ -580,6 +598,15 @@ body .ui-dialog .ui-dialog-footer .ui-button {
     }
 }
 
+.express-many-checkbox-options.ui-datatable tbody tr td {
+	border-top: 1px solid $topBorderBodyExpressManyCheckboxTableColor !important;
+}
+
+body .ui-datatable thead th.ui-state-active,
+body .ui-datatable thead th.ui-state-highlight {
+  border-top-color: $topBorderOutsideDataTableColor !important;
+}
+
 .ui-state-default.ui-sortable-column {
     outline: transparent;
 }
@@ -596,7 +623,8 @@ body .ui-dialog .ui-dialog-footer .ui-button {
 .ui-treetable table thead tr th {
   color: $dataTableRowHeaderColor;
   background-color: $dataTableRowHeaderBgColor !important;
-  border-bottom: 1px solid $dataTableHeaderBorderColor;
+  border-bottom: 1px solid $topBorderOutsideTreeTableColor;
+  border-top: 1px solid $bottomBorderOutsideTreeTableColor;
 }
 
 .ui-treetable-data tr:nth-child(odd) {
@@ -607,20 +635,18 @@ body .ui-dialog .ui-dialog-footer .ui-button {
   background-color: $dataTableRowBackgroundColorOdd;
 }
 
-.ui-treetable table thead tr th:not(:last-child) {
-  border-right: 1px solid rgba($black, 0.2);
+.ui-treetable table thead tr th {
+  border-right: 1px solid $rightBorderOutsideTreeTableColor !important;
 }
 
-.ui-treetable table tbody tr td:not(:last-child) {
-    border-right: 1px solid rgba($black, 0.2);
+.ui-treetable table tbody tr td {
+    border-right: 1px solid $rightBorderInsideTreeTableColor;
+    border-bottom: 1px solid $bottomBoderBodyTreeTableColor !important;
 }
 
-.ui-treetable table tbody tr:not(:last-child) td {
-    border-bottom: 1px solid white;
-}
-
-.ui-treetable table tbody tr:not(:last-child) td {
-    border-bottom: 1px solid $dataTableCellBorderColor;
+.ui-treetable table tbody tr td:first-child,
+.ui-treetable thead th:first-child {
+  border-left: 1px solid $leftBorderOutsideTreeTableColor !important;
 }
 
 /*Style for self service --------------------------------------------------------------------------------------*/
@@ -939,115 +965,6 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
 
 .ui-button.ui-widget.action-button.ui-state-hover {
    background-color: transparent !important;
-}
-
-/*Style For Case Detail --------------------------------------------------------------------------------------*
-
-.case-detail-body .case-details-item {
-  .ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top {
-      background-color: rgba(green, 0.05);
-      border-color: $caseRelatedTaskContentBorder;
-      padding: 2px 10px;
-  }
-  
-  .ui-paginator a, .ui-paginator-current {
-    color: $caseDetailPaginatorColor !important;
-  }
-  
-  .ui-paginator a.ui-paginator-page, .ui-paginator a.ui-paginator-page, a.ui-paginator-first, a.ui-paginator-prev, a.ui-paginator-next, a.ui-paginator-last {
-    &.ui-state-hover, &.ui-state-active {
-        background-color: rgba($black, 0.05);
-      }
-  }
-  
-  .case-description-form .ui-inplace-display.ui-state-highlight {
-    background-color: $textboxBgColor;
-    color: $primaryTextColor;
-    border: 1px solid $textboxBgColor;
-    border-radius: $borderRadius;
-  }
-  
-  .ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top {
-    padding-left: 0;
-    padding-right: 0;
-    
-    .ui-paginator-current {
-      margin-left: 0;
-    }
-  }
-  
-  .ui-datascroller-content.ui-widget-content.ui-corner-all {
-    padding: 0;
-    border: none;
-    border-right-color: $caseRelatedTaskContentBorder !important;
-  }
-  
-  .case-related-task-case-running ul li:first-child {
-    .related-task-content {
-      border-top: none !important;
-    }
-  }
-
-  .case-related-task-case-running ul li:last-child {
-    .related-task-content {
-      border-bottom: 1px solid $caseRelatedTaskContentBorder !important;
-    }
-  }
-}
-
-.case-detail-name-inplace-edit {
-  .ui-inplace-display.ui-state-highlight {
-    background-color: $textboxBgColor;
-    color: $primaryTextColor;
-    padding: 3px;
-    border: 1px solid $textboxBgColor;
-    border-radius: $borderRadius;
-  }
-}
-
-.case-detail-title-header-container {
-  .ui-button.ui-widget.case-details-back-btn {
-    background-color: transparent;
-    box-shadow: none;
-    flex: 0 0 auto;
-    
-    &.ui-state-hover {
-      background-color: rgba($black, 0.05) !important;
-    }
-  }
-}
-
-.case-detail-header {
-  font-size: $largeFontSize;
-  font-weight: $caseDetailHeaderFontWeight;
-}
-
-.note-show-more-link {
-  color: $noteShowMoreLinkColor !important;
-}
-
-.related-task-content .related-task,
-.case-related-running {
-  color: $caseRelatedTaskColor !important;
-}
-
-.related-task-content .related-task:hover,
-.additional-case-details-link:hover {
-  color: rgba($black, 0.6) !important;
-}
-
-.additional-case-details-link {
-  color: $additionalCaseDetailLinkColor !important;
-  font-weight: $additionalCaseDetailLinkFontWeight;
-}
-
-.related-task-content,
-.case-related-running {
-  border: 1px solid $caseRelatedTaskContentBorder;
-}
-
-.case-details-note-add-link-icon {
-  font-size: $largeFontSize;
 }
 
 /*Style For Task Detail --------------------------------------------------------------------------------------*/
@@ -1403,6 +1320,113 @@ span.task-details-document-add-link {
 
 .document-upload {
   border: 2px dashed $caseDocumentUploadBorder;
+}
+
+.case-detail-body .case-details-item {
+  .ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top {
+      background-color: rgba(black, 0.05);
+      border-color: $caseRelatedTaskContentBorder;
+      padding: 2px 10px;
+  }
+  
+  .ui-paginator a, .ui-paginator-current {
+    color: $caseDetailPaginatorColor !important;
+  }
+  
+  .ui-paginator a.ui-paginator-page, .ui-paginator a.ui-paginator-page, a.ui-paginator-first, a.ui-paginator-prev, a.ui-paginator-next, a.ui-paginator-last {
+    &.ui-state-hover, &.ui-state-active {
+        background-color: rgba($black, 0.05);
+      }
+  }
+  
+  .case-description-form .ui-inplace-display.ui-state-highlight {
+    background-color: $textboxBgColor;
+    color: $primaryTextColor;
+    border: 1px solid $textboxBgColor;
+    border-radius: $borderRadius;
+  }
+  
+  .ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top {
+    padding-left: 0;
+    padding-right: 0;
+    
+    .ui-paginator-current {
+      margin-left: 0;
+    }
+  }
+  
+  .ui-datascroller-content.ui-widget-content.ui-corner-all {
+    padding: 0;
+    border: none;
+    border-right-color: $caseRelatedTaskContentBorder !important;
+  }
+  
+  .case-related-task-case-running ul li:first-child {
+    .related-task-content {
+      border-top: none !important;
+    }
+  }
+
+  .case-related-task-case-running ul li:last-child {
+    .related-task-content {
+      border-bottom: 1px solid $caseRelatedTaskContentBorder !important;
+    }
+  }
+}
+
+.case-detail-name-inplace-edit {
+  .ui-inplace-display.ui-state-highlight {
+    background-color: $textboxBgColor;
+    color: $primaryTextColor;
+    padding: 3px;
+    border: 1px solid $textboxBgColor;
+    border-radius: $borderRadius;
+  }
+}
+
+.case-detail-title-header-container {
+  .ui-button.ui-widget.case-details-back-btn {
+    background-color: transparent;
+    box-shadow: none;
+    flex: 0 0 auto;
+    
+    &.ui-state-hover {
+      background-color: rgba($black, 0.05) !important;
+    }
+  }
+}
+
+.case-detail-header {
+  font-size: $largeFontSize;
+  font-weight: $caseDetailHeaderFontWeight;
+}
+
+.note-show-more-link {
+  color: $noteShowMoreLinkColor !important;
+}
+
+.related-task-content .related-task,
+.case-related-running {
+  color: $caseRelatedTaskColor !important;
+}
+
+.related-task-content .related-task:hover,
+.additional-case-details-link:hover {
+  color: rgba($black, 0.6) !important;
+}
+
+.additional-case-details-link {
+  color: $additionalCaseDetailLinkColor !important;
+  font-weight: $additionalCaseDetailLinkFontWeight;
+}
+
+.related-task-content,
+.case-related-running {
+  border: 1px solid $caseRelatedTaskContentBorder;
+}
+
+.case-details-note-add-link-icon {
+  font-size: $largeFontSize;
 }
 
 /**Style for Absences and Debuty  --------------------------------------*/
