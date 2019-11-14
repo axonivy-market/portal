@@ -16,6 +16,8 @@ Ie0 @PushWFArc f2 '' #zField
 >Proto Ie0 Ie0 IFrame #zField
 Ie0 f0 outLink DefaultFramePage.ivp #txt
 Ie0 f0 inParamDecl '<String relativeUrl,Number runningTaskId> param;' #txt
+Ie0 f0 inParamTable 'out.taskId=param.runningTaskId;
+' #txt
 Ie0 f0 actionCode 'import ch.ivyteam.ivy.bpm.error.BpmError;
 if (param.relativeUrl.startsWith("/ivy/")) {
   out.url = param.relativeUrl;
@@ -40,9 +42,10 @@ Ie0 f0 @|StartRequestIcon #fIcon
 Ie0 f1 369 49 30 30 0 15 #rect
 Ie0 f1 @|EndIcon #fIcon
 Ie0 f3 dialogId ch.ivy.addon.portal.generic.iframe.TaskTemplateIFrame #txt
-Ie0 f3 startMethod start(String) #txt
-Ie0 f3 requestActionDecl '<String url> param;' #txt
+Ie0 f3 startMethod start(String,Number) #txt
+Ie0 f3 requestActionDecl '<String url,Number taskId> param;' #txt
 Ie0 f3 requestMappingAction 'param.url=in.url;
+param.taskId=in.taskId;
 ' #txt
 Ie0 f3 responseMappingAction 'out=in;
 ' #txt
