@@ -51,10 +51,6 @@ input::-ms-clear {
 }
 
 /* =================== TABLE ====================== */
-.ui-datatable .ui-column-filter.ui-widget {
-  width: 100%;
-}
-
 .ui-treetable table {
   border-collapse: separate !important;
   border: none;
@@ -3623,10 +3619,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .config-columns-panel.ui-overlay-hidden {
   display: none;
-}
-
-.project-version-table.ui-datatable table thead tr th {
-  padding: 5px 10px;
 }
 
 .project-version-container {
