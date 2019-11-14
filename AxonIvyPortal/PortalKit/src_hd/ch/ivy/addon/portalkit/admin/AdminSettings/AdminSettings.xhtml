@@ -58,7 +58,7 @@
             </p:column>
 
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-              styleClass="TexAlCenter settings-table-action-buttons" width="105">
+              styleClass="TexAlCenter settings-table-action-buttons">
               <p:commandLink id="edit" oncomplete="PF('appDialog').show()" styleClass="action-column-icon-button"
                 actionListener="#{logic.editApplication(app)}" process="@this"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
@@ -159,7 +159,7 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/disable')}">
           </p:commandButton>
         </h:panelGroup>
-        <p:dataTable id="announcement-table" styleClass="admin-table" value="#{data.announcements}" var="announcement"
+        <p:dataTable id="announcement-table" styleClass="admin-table announcement-table" value="#{data.announcements}" var="announcement"
           widgetVar="announcement-table" reflow="true"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" scrollable="true"
           scrollHeight="215" sortBy="#{announcement.language}">
