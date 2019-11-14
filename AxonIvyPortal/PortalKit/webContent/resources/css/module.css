@@ -375,10 +375,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   margin-left: .1rem; 
 }
 
-.in-progress-task-checkbox .ui-chkbox-label {
-  margin-left: 7px !important;
-}
-
 .task-widget .advanced-filter-container .additional-filter-container, 
 .case-widget-container .advanced-filter-container .additional-filter-container {
   display: flex;
@@ -2592,6 +2588,10 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   height: 40px;
 }
 
+.global-setting-table,
+.announcement-table {
+  width: 100%;
+}
 .settings-table-key-column {
   width: 17%;
 }
@@ -2605,7 +2605,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .settings-table-action-buttons {
-  width: 100px;
+  width: 140px !important;
 }
 
 .global-setting-table .setting-key {
@@ -2678,6 +2678,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 .application-name-column {
   width: 50%;
 }
+
 /********************************** ABSENCES AND DEPUTY **********************************/
 .absences-view-command-buttons {
   float: right;
@@ -3947,6 +3948,12 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 .not-display-result-tab-view {
   display: block;
   margin: 12px 0;
+}
+
+@media screen and (min-width: 64.063em) {
+  .search-item {
+    width: 400px;
+  }
 }
 
 /* =================== RESPONSIVE GRID ====================== */

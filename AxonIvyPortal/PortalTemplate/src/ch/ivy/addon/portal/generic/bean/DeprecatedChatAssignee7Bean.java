@@ -44,10 +44,13 @@ import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.businesscase.IBusinessCase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
+/**
+ * Used in DeprecatedTaskTemplate7.xhml for Portal version 7 
+ */
 @ManagedBean
 @ViewScoped
 @Deprecated
-public class DeprecatedChatAssigneeBean implements Serializable {
+public class DeprecatedChatAssignee7Bean implements Serializable {
 
   private static final String TASK_TEMPLATE_GROWL_ID = "task-template-growl";
   private static final String CHAT_ASSIGNEE_ERROR_MESSAGE_ID = "chat-assignee-selection-form:error-message";
