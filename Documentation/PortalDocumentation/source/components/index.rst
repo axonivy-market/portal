@@ -4,7 +4,6 @@ Components
 .. toctree::
    :maxdepth: 2
 
-   widget-concept
    layout-templates
    portal-chat
    error-handling

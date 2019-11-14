@@ -1,6 +1,6 @@
 {
+  /HTML_DIALOG *
   /PROCESS {
-    /Functional-Processes.CustomPortalConfig "Functional Processes/CustomPortalConfigOverride"
     /Functional-Processes.BuildCaseQuery "Functional Processes/BuildCaseQueryOverride"
   }
 }

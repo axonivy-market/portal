@@ -22,10 +22,13 @@ import ch.ivyteam.ivy.casemap.runtime.model.IStartableSideStep;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 
+/**
+ * Used in DeprecatedTaskTemplate7.xhml for Portal version 7 
+ */
 @ManagedBean
 @ViewScoped
 @Deprecated
-public class DeprecatedTaskTemplateBean implements Serializable{
+public class DeprecatedTaskTemplate7Bean implements Serializable{
   private static final long serialVersionUID = 1L;
 
   private List<IStartableSideStep> sideStepList;
