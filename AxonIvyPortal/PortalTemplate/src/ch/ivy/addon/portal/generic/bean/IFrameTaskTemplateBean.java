@@ -16,7 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 
-@ManagedBean
+@ManagedBean(name = "iFrameTaskTemplateBean")
 @ViewScoped
 public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements Serializable {
   
