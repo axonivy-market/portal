@@ -17,11 +17,13 @@ there are 7 templates that can be used directly.
 
 3. Task template
 
-4. Task list template
+4. IFrame Task template
 
-5. Case list template
+5. Task list template
 
-6. Default homepage template
+6. Case list template
+
+7. Default homepage template
 
 These templates have the same header, which is a menu of applications
 that you configure in Administration page. Since version 8.0, Portal
@@ -58,7 +60,7 @@ How to use Basic template
    .. code-block:: html
    
       <ui:composition template="/layouts/BasicTemplate.xhtml">
-      <ui:define name="pageTitle">Sample Page</ui:define>
+      <ui:define name="title">Sample Page</ui:define>
       <ui:define name="simplePageContent">
       This is sample content.
       </ui:define>
@@ -90,7 +92,7 @@ How to use Two column template
      :emphasize-lines: 4,7
 
      <ui:composition template="/layouts/TwoColumnTemplate.xhtml">
-     <ui:define name="pageTitle">Sample Page</ui:define>
+     <ui:define name="title">Sample Page</ui:define>
      <ui:define name="navigationRegion">
      Navigation Region
      </ui:define>
@@ -112,21 +114,13 @@ Task template is used for displaying task functionality and related
 information to support completing the task. There are a lot of regions
 to be filled with your custom content:
 
--  Request name
+-  Header name (task name)
 
 -  Process chain
 
--  Errors
+-  Content
 
--  Information
-
--  Dynamic tabs
-
--  Request form
-
--  Case information tab
-
--  Buttons at footer
+-  Case Details
 
 .. _components-layout-templates-task-template-how-to-use-task-template:
 
@@ -141,130 +135,38 @@ How to use template TaskTemplate.xhtml
      <ui:composition template="/layouts/TaskTemplate.xhtml">
 
 
-2.  Set ``task`` value so that the ``taskName`` is available to users
-    where they can see the task name of request. It is mandatory.
+2.  Refer to ``TaskTemplate.xhtml`` for params and template areas.
 
-  .. code-block:: html
-  
-     <ui:param name="task" value="#{ivy.task}" />
+|task-name-template|
 
-..
+.. _components-layout-templates-iframe-task-template:
 
-    |task-name-template|
+IFrame Task template
+-------------
 
-3.  Set ``caseId`` value so that the ``Case information tab`` is
-    available to users where they can see info of case, documents,
-    related tasks and history. It is mandatory.
+Task template is used for displaying task functionality and related
+information to support completing the task, but the content is your HTML dialog embedded in IFrame. There are a lot of regions
+to be filled with your custom content:
 
-  .. code-block:: html
-  
-     <ui:param name="caseId" value="#{ivy.case.id}" />
+-  Header name (task name)
 
-..
+-  Process chain
 
-    |task-template-case-info|
+-  Content
 
-..
+-  Case Details
 
-4.  Set data to ``actualStepIndex`` and ``steps`` variables which are
-    used for ProcessChain component in template. It is mandatory.
+.. _components-layout-templates-iframe-task-template-how-to-use:
 
-  .. code-block:: html
-  
-     <ui:param name="actualStepIndex" value="#{data.actualStepIndex}" />
-     <ui:param name="steps" value="#{data.steps}" />
+How to use template IFrameTaskTemplate.xhtml
+--------------------------------------
 
-..
+1.  Create a new HTML User Dialog independent from Portal.
 
-    |task-template-process-chain|
+2.  Refer to ``IFrameTaskTemplate.xhtml`` for params.
 
-5.  Set data to ``processChainDirection`` variable to set direction for
-    for ProcessChain component in template. There are two values:
-    "HORIZONTAL" and "VERTICAL". Direction of ProcessChain component is
-    "HORIZONTAL" by default.
-
-  .. code-block:: html
-  
-     <ui:param name="processChainDirection" value="VERTICAL" />
-
-..
-
-6.  Set data to ``processChainShape`` variable to set shape for for
-    ProcessChain component in template. There are two values: "CIRCLE"
-    and "LINE". Shape of ProcessChain component is "CIRCLE" by default.
-
-    .. code-block:: html
-    
-     <ui:param name="processChainShape" value="LINE" />
-     
-..
-
-    |process-chain-shape|
-
-7.  Inserts contents for ``taskName``, ``errorsZone``, ``infoZone``. It
-    is optional.
-
-    .. code-block:: html
-    
-        <ui:define name="taskName">...</ui:define>
-        <ui:define name="errorsZone">...</ui:define>
-        <ui:define name="infoZone">...</ui:define>
-
-8.  Inserts some new tabs, refers some segment of code as below. If your
-    application has multiple tabs, use it and turn off request form by
-    set ``showTaskFormTab`` to false.
-
-    .. code-block:: html
-    
-        <ui:param name="showTaskFormTab" value="false" />
-        <ui:define name="dynamicTabs">
-        <p:tab title="My first tab">
-        <p:inputText id="first-name" value="#{data.firstname}"/>
-        </p:tab>
-        <p:tab title="My second tab">
-        <p:inputText id="last-name" value="#{data.lastname}"/>
-        </p:tab>
-        </ui:define>
-
-
-9.  Overwrite contents of default tab. Use it when your application need
-    only 1 tab.
-
-    .. code-block:: html
-    
-       <ui:define name="taskForm">
-       <h:form>
-       <p:outputLabel name="myCustomLabel" />
-       ...
-       </h:form>
-       </ui:define>
-
-
-10. Set visible/invisible for default tab case information. Set
-    following variables as ``true`` if you want to visible and vice
-    versa.
-
-    .. code-block:: html
-    
-       <ui:param name="showCaseStatusInfoTab" value="true" />
-
-
-11. Inserts left buttons and right buttons which stay at the bottom of
-    the page. It is optional. You can use it to define your action
-    button. Consider using ``partialSubmit`` to submit your data im
-    tabs.
-
-    .. code-block:: html
-    
-        <ui:define name="leftButtons">
-        <p:commandButton value="Save" actionListener="#{logic.save}" partialSubmit="true" 
-        process="first-name last-name" update="first-name last-name" />
-        </ui:define>
-        <ui:define name="rightButtons">
-        <p:commandButton value="Cancel" actionListener="#{logic.cancel}" immediate="true" />
-        </ui:define>
-
-..        
+3.  In case you want to create your own IFrameTaskTemplate, as customizing Ivy Standard Processes, 
+implement a process with a predefined process start signature in your ivy project: ``DefaultFramePage(String relativeUrl, Number runningTaskId)``
 
 .. _components-layout-templates-default-homepage-template:
 
@@ -323,14 +225,12 @@ How to use task list template
   .. code-block:: java
 
       import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
-      import ch.ivy.addon.portalkit.bo.MainMenuNode;
       import ch.ivy.addon.portal.generic.view.TaskView;
       TaskLazyDataModel dataModel = new TaskLazyDataModel();
       dataModel.setAdminQuery(true);
       dataModel.setSortField(ch.ivy.addon.portalkit.enums.TaskSortField.PRIORITY.toString(), true);
-      MainMenuNode category = new MainMenuNode();
       category.setValue("My Task List");
-      out.taskView = TaskView.create().dataModel(dataModel).pageTitle("My Task List").hideTaskFilter(true).category(category)
+      out.taskView = TaskView.create().dataModel(dataModel).pageTitle("My Task List").hideTaskFilter(true)
       .showHeaderToolbar(false).createNewTaskView();
 
 .. _components-layout-templates-case-list-template:

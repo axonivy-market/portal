@@ -1,3 +1,4 @@
 IFrameData #class
 ch.ivy.addon.portal.generic #namespace
 url String #field
+taskId Number #field
