@@ -7,21 +7,20 @@
 <h:body>
   <ui:composition template="/layouts/AbstractTaskTemplate.xhtml">
     <!-- AVAILABLE PARAMS in this template: -->
-    <!-- taskId (required): working task id -->
     <!-- currentProcessStep: current process step -->
     <!-- processSteps: list of process steps -->
     <!-- processChainDirection: VERTICAL or HORIZONTAL (default) -->
     <!-- processChainShape: LINE or CIRCLE (default) -->
+    <!-- announcementInvisible: false or true (default) -->
     <!-- PASS PARAMS TO THIS TEMPLATE VIA JAVASCRIPT IN YOUR HTML DIALOG: -->
     <!-- <script> -->
-    <!--   window.taskId = #{ivy.task.id}; -->
     <!--   window.processSteps = ["Create Investment Request", "Approve Investment Request"]; -->
     <!--   window.currentProcessStep = 0; -->
     <!--   window.processChainDirection = "VERTICAL"; -->
     <!--   window.processChainShape = "LINE"; -->
+    <!--   window.announcementInvisible = false -->
     <!-- </script> -->
 
-    <ui:param name="task" value="#{iFrameTaskTemplateBean.task}" />
     <ui:param name="contentContainerStyleClass" value="task-frame-container" />
     <ui:param name="abstractTaskTemplateBean" value="#{iFrameTaskTemplateBean}" />
     <ui:param name="actualStepIndex" value="#{iFrameTaskTemplateBean.currentProcessStep}" />
