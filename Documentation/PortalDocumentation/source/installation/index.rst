@@ -27,7 +27,7 @@ Basic installation
 Project modules
 ---------------
 
-The application consists of 5 process modules. For detailed information
+The application consists of 4 process modules. For detailed information
 of each module, refer to :ref:`architecture` .
 
 -  PortalStyle
@@ -45,7 +45,7 @@ deployment <http://developer.axonivy.com/doc/latest/EngineGuideHtml/administrati
 Server configuration
 --------------------
 
--  The minimum required engine version is ``6.0.0.49863``
+-  The minimum required engine version is ``8.0.0.x``
 
 Specify applications used in Portal
 -----------------------------------
@@ -556,6 +556,14 @@ https://www.npmjs.com/package/less2sass.
 
 -  Run ``mvn libsass:compile`` to compile your ``scss`` to ``css`` file.
 
+.. _installation-migration-notes-8-0-0-task-template:
+
+How to migrate TaskTemplate
+----------------------------------------------------------------------------
+
+There are some changes in TaskTemplate. If you want to keep the old one, in your places using it, change to ``DeprecatedTaskTemplate7.xhtml``.
+If you want to use the new one, refer to ``TaskTemplate.xhtml`` for parameters and template areas.
+
 .. _installation-migration-notes-8-0-0-task-body:
 
 How to migrate TaskBody to  :ref:`customization-task-item-details` component
@@ -975,7 +983,12 @@ Changes in 8.0
 
 -  Upgraded to Serenity's theme, refer to :ref:`Migration
    Notes <installation-migration-notes-8-0-0>` for more details.
+   
+-  Support to start a task in IFrame. Administrator can active/deactive it via Portal settings.
 
+-  Refactor ``TaskTemplate.xhtml``, refer to :ref:`Migration
+   Notes <installation-migration-notes-8-0-0-task-template>` for more details.
+   
 -  Remove ``caseBody`` inside CaseWidget, refer to :ref:`Migration
    Notes <installation-migration-notes-8-0-0-case-body>` for more details.
 

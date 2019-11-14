@@ -15,9 +15,6 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.SecurityManagerFactory;
-import ch.ivyteam.ivy.workflow.ITask;
 
 @ManagedBean
 @ViewScoped
@@ -31,7 +28,6 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private static final String PROCESS_STEPS_PARAM = "processSteps";
   private static final String CURRENT_PROCESS_STEP_PARAM = "currentProcessStep";
   
-  private ITask task;
   private int currentProcessStep;
   private List<String> processSteps;
   private String processChainDirection;
@@ -49,33 +45,19 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
 
   public void getDataFromIFrame() throws Exception {
     Map<String, String> requestParamMap = getRequestParameterMap();
-
-    String taskId = requestParamMap.get(TASK_ID_PARAM);
-    if (StringUtils.isNotBlank(taskId)) {
-      SecurityManagerFactory.getSecurityManager()
-          .executeAsSystem(() -> task = Ivy.wf().findTask(Long.parseLong(requestParamMap.get(TASK_ID_PARAM))));
-      currentProcessStep = Optional.ofNullable(requestParamMap.get(CURRENT_PROCESS_STEP_PARAM))
-          .filter(str -> str.matches("-?\\d+"))
-          .map(Integer::parseInt)
-          .orElse(0);
-      processSteps = StringUtils.isNotBlank(requestParamMap.get(PROCESS_STEPS_PARAM)) ? Arrays.asList(requestParamMap.get(PROCESS_STEPS_PARAM).split(",")) : new ArrayList<>();
-      processChainDirection = Optional.ofNullable(requestParamMap.get(PROCESS_CHAIN_DIRECTION_PARAM)).orElse(StringUtils.EMPTY);
-      processChainShape = Optional.ofNullable(requestParamMap.get(PROCESS_CHAIN_SHAPE_PARAM)).map(Object::toString).orElse(StringUtils.EMPTY);
-    }
+    currentProcessStep = Optional.ofNullable(requestParamMap.get(CURRENT_PROCESS_STEP_PARAM))
+        .filter(str -> str.matches("-?\\d+"))
+        .map(Integer::parseInt)
+        .orElse(0);
+    processSteps = StringUtils.isNotBlank(requestParamMap.get(PROCESS_STEPS_PARAM)) ? Arrays.asList(requestParamMap.get(PROCESS_STEPS_PARAM).split(",")) : new ArrayList<>();
+    processChainDirection = Optional.ofNullable(requestParamMap.get(PROCESS_CHAIN_DIRECTION_PARAM)).orElse(StringUtils.EMPTY);
+    processChainShape = Optional.ofNullable(requestParamMap.get(PROCESS_CHAIN_SHAPE_PARAM)).map(Object::toString).orElse(StringUtils.EMPTY);
   }
 
   private Map<String, String> getRequestParameterMap() {
     Map<String, String> requestParamMap =
         FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
     return requestParamMap;
-  }
-
-  public ITask getTask() {
-    return task;
-  }
-
-  public void setTask(ITask task) {
-    this.task = task;
   }
 
   public int getCurrentProcessStep() {
