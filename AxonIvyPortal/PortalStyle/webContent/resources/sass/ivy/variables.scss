@@ -65,14 +65,6 @@ it only affects when button has attribute styleClass="context-button" */
 $contextButtonColor: #7c7c7c;
 $contextButtonBorderRadius: $actionButtonBorderRadius;
 
-/* Table color */
-$dataTableRowBackgroundColorEven: $white;
-$dataTableRowBackgroundColorOdd: rgba(247, 247, 247, 1);
-$dataTableRowHeaderColor: $black;
-$dataTableRowHeaderBgColor: rgba(236, 236, 236, 1);
-$dataTableHeaderBorderColor: rgba(244, 244, 244, 1);
-$dataTableCellBorderColor: $white;
-
 /* Fieldset */
 $fieldSetTogglerColor: $primaryTextColor;
 $fieldSetLegendHoverColor: $white; 
@@ -349,16 +341,50 @@ $trueMinimalisticIconFontStyle: normal;
 $trueMinimalisticIconFontWeight: normal;
 $trueMinimalisticIconFontVariant: normal;
 
-/* Others */
-$bodyDialogTitleFontSize: 1.9rem;
-$menuListWidgetHeaderFontWeight: 600;
-
 /*Override theme styles*/
 $sidebarMenuListItemLinkTextColor: $primaryTextColor;
 $sidebarMenuListItemIconColor: $primaryTextColor;
 $sidebarMenuListItemLinkHoverTextColor: $primaryTextColor;
 $sidebarMenuListItemHoverIconColor: $primaryTextColor;
 $sidebarMenuListItemLinkHoverBackgroundColor: rgba($black, 0.15);
+
+
+/*Table */
+$dataTableRowBackgroundColorEven: $white;
+$dataTableRowBackgroundColorOdd: rgba(247, 247, 247, 1);
+$dataTableRowHeaderColor: $black;
+$dataTableRowHeaderBgColor: rgba(236, 236, 236, 1);
+$highlightedTdDataTableBackgroundColor: $primaryColor;
+$hoveredTdDataTableBackGroundColor: $primaryColor;
+$highlightedTdTreeTableBackgroundColor: rgba($primaryColor, 0.6);
+$hoveredTdTreeTableBackGroundColor: rgba($primaryColor, 0.25);
+$tableBorderColor: rgba(black, 0.2);
+$rightBorderInsideDataTable: $tableBorderColor;
+$leftBorderInsideDataTable: transparent;
+$topBorderOutsideDataTableColor: $tableBorderColor;
+$leftBorderOutsideDataTableColor: $tableBorderColor;
+$rightBorderOutsideDataTableColor: $tableBorderColor;
+$bottomBorderOutsideDataTableColor: $tableBorderColor;
+$bottomBorderHeaderDataTableColor: $tableBorderColor;
+$topBorderBodyDataTableColor: transparent;
+$topBorderBodyExpressManyCheckboxTableColor: $tableBorderColor;
+
+$treeTableBorderColor: rgba(black, 0.5);
+$topBorderOutsideTreeTableColor: $treeTableBorderColor;
+$bottomBorderOutsideTreeTableColor: $treeTableBorderColor;
+$rightBorderOutsideTreeTableColor: $treeTableBorderColor;
+$rightBorderInsideTreeTableColor: $treeTableBorderColor;
+$bottomBoderBodyTreeTableColor: $treeTableBorderColor;
+$leftBorderOutsideTreeTableColor: $treeTableBorderColor;
+
+$headerBorderColor: rgba(black, 0.2);
+
+$uiWidgetHeaderColor: rgba(black, 0.2);
+$uiInputFieldTdTextColor: $primaryTextColor;
+
+/* Others */
+$bodyDialogTitleFontSize: 1.9rem;
+$menuListWidgetHeaderFontWeight: 600;
 
 $uiFiedsetLegendTextColor: $primaryTextColor;
 $uiDialogTitleBarTextColor: $primaryTextColor;
