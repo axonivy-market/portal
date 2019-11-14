@@ -112,18 +112,18 @@ int count = 1;
 in.totalRelatedTasks = 0;
 boolean excludeHiddenTasks = Boolean.parseBoolean(ivy.var.get(HiddenTasksCasesConfig.PORTAL_HIDDEN_TASK_CASE_EXCLUDED));
 ISession session = ServiceUtilities.findUserWorkflowSession(ivy.session.getSessionUserName(), in.iCase.getApplication());
-boolean ableToSeeAllRelatedTaskOfCase = PermissionUtils.checkReadAllTasksPermission() || PermissionUtils.checkTaskReadOwnCaseTasksPermission();
+boolean isOwner = in.iCase.#owner != null ? in.iCase.getOwner().isMember(ivy.session, true) : false;
+boolean ableToSeeAllRelatedTaskOfCase = PermissionUtils.checkReadAllTasksPermission() || PermissionUtils.checkTaskReadOwnCaseTasksPermission() || isOwner;
 for (ITask task : in.iCase.getTasks()) {
 	if ((task.getState() == TaskState.SUSPENDED || task.getState() == TaskState.RESUMED || task.getState() == TaskState.UNASSIGNED || task.getState() == TaskState.PARKED)
 				&& (excludeHiddenTasks ? StringUtils.isEmpty(task.customFields().stringField(AdditionalProperty.HIDE.toString()).getOrNull()) : true)) {
-		if(ableToSeeAllRelatedTaskOfCase) {
+		if (ableToSeeAllRelatedTaskOfCase) {
 			in.totalRelatedTasks++;
 			if (count <= 21) {//get only 21 tasks
 					in.relatedTasks.add(task);
 			}
 			count++;
-		}
-		else {
+		} else {
 			if(task.canUserResumeTask(session).wasSuccessful()) {
 				in.totalRelatedTasks++;
 				if (count <= 21) {//get only 21 tasks
