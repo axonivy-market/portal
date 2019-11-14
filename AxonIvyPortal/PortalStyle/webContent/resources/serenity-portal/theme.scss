@@ -770,10 +770,6 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
     color: $primaryLightestColor !important;
 }
 
-.ui-chkbox-label {
-    width: auto;
-    margin: 0px 0px 0px 12px !important;
-}
 .ui-chkbox.ui-widget {
   margin-top: 2px;
   margin-bottom: 2px;
@@ -2423,6 +2419,14 @@ body .md-inputfield .ui-message.ui-message-error {
 
 body .md-inputfield .ui-message.ui-message-error .ui-message-error-icon {
   font-size: 1.3rem;
+}
+
+body .ui-messages ul {
+  display: block;
+}
+
+.ui-messages-info-summary {
+  margin-left: 0px;
 }
 
 @media (max-width: 640px) {
