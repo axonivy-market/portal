@@ -2,7 +2,6 @@ package ch.ivy.addon.portal.generic.view;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.addon.portalkit.bo.MainMenuNode;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -20,9 +19,6 @@ public class TaskView {
     private boolean showHeaderToolbar = Boolean.TRUE;
     private String noTaskFoundMessage = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/noTask");
     private boolean compactMode = Boolean.TRUE;
-    private boolean displayTaskCategory = Boolean.TRUE;
-
-    private MainMenuNode category;
 
     public Builder pageTitle(String pageTitle) {
       this.pageTitle = pageTitle;
@@ -54,11 +50,6 @@ public class TaskView {
       return this;
     }
 
-    public Builder category(MainMenuNode category) {
-      this.category = category;
-      return this;
-    }
-
     public Builder hideTaskFilter(boolean hideTaskFilter) {
       this.hideTaskFilter = hideTaskFilter;
       return this;
@@ -69,11 +60,6 @@ public class TaskView {
       return this;
     }
     
-    public Builder displayTaskCategory(boolean displayTaskCategory) {
-      this.displayTaskCategory = displayTaskCategory;
-      return this;
-    }
-
     public Builder noTaskFoundMessage(String noTaskFoundMessage) {
       this.noTaskFoundMessage = noTaskFoundMessage;
       return this;
@@ -95,26 +81,22 @@ public class TaskView {
   private final long taskId;
   private final String caseName;
   private final boolean canLinkBackCaseDetail;
-  private final MainMenuNode category;
   private final boolean hideTaskFilter;
   private final boolean showHeaderToolbar;
   private final String noTaskFoundMessage;
   private final boolean compactMode;
-  private boolean displayTaskCategory;
 
   private TaskView(Builder builder) {
     pageTitle = builder.pageTitle;
     dataModel = builder.dataModel;
     keyword = builder.keyword;
     taskId = builder.taskId;
-    category = builder.category;
     canLinkBackCaseDetail = builder.canLinkBackCaseDetail;
     caseName = builder.caseName;
     hideTaskFilter = builder.hideTaskFilter;
     showHeaderToolbar = builder.showHeaderToolbar;
     noTaskFoundMessage = builder.noTaskFoundMessage;
     compactMode = builder.compactMode;
-    displayTaskCategory = builder.displayTaskCategory;
   }
 
   public String getNoTaskFoundMessage() {
@@ -149,10 +131,6 @@ public class TaskView {
     return canLinkBackCaseDetail;
   }
 
-  public MainMenuNode getCategory() {
-    return category;
-  }
-
   public String getCaseName() {
     return caseName;
   }
@@ -168,9 +146,4 @@ public class TaskView {
   public boolean isCompactMode() {
     return compactMode;
   }
-
-  public boolean isDisplayTaskCategory() {
-    return displayTaskCategory;
-  }
-  
 }
