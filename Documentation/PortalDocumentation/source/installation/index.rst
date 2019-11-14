@@ -984,7 +984,9 @@ Changes in 8.0
 -  Upgraded to Serenity's theme, refer to :ref:`Migration
    Notes <installation-migration-notes-8-0-0>` for more details.
    
--  Support to start a task in IFrame. Administrator can active/deactive it via Portal settings.
+-  Support to see case if user is an owner. Administrator can activate/deactivate it via the ``ENABLE_CASE_OWNER`` Portal settings, default is false.
+   
+-  Support to start a task in IFrame. Administrator can activate/deactivate it via the ``START_IN_IFRAME`` Portal settings, default is false.
 
 -  Refactor ``TaskTemplate.xhtml``, refer to :ref:`Migration
    Notes <installation-migration-notes-8-0-0-task-template>` for more details.
