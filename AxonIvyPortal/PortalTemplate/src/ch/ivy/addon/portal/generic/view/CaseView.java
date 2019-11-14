@@ -12,7 +12,6 @@ public class CaseView {
     private GlobalCaseId autoSelectCaseId = GlobalCaseId.createDefaultInstance();
     private String title = "";
     private boolean hideCaseFilter = false;
-    private boolean displayCaseCategory = true;
 
     public Builder dataModel(CaseLazyDataModel dataModel) {
       this.dataModel = dataModel;
