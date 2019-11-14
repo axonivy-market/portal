@@ -15,9 +15,17 @@
         <h:panelGrid id="general-info" columns="2" columnClasses="case-details-data-1st-column" rowClasses="case-details-row-space" styleClass="case-general-info">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" />
           <h:outputText value="#{case.id}" />
+          
+          <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseOwner')}" />
+          <h:panelGroup rendered="#{not empty case.getOwner()}">
+            <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText id="case-owner-full-name" rendered="#{case.getOwner().isUser()}"
+              fullname="#{not empty case.getOwner() ? case.getOwner().getFullName() : ''}" username="#{case.ownerName}" />
+            <h:outputText value="#{case.getOwner().getDisplayName()}" rendered="#{not case.getOwner().isUser()}" />
+          </h:panelGroup>
 
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" />
-          <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText id="case-creator-full-name" fullname="#{case.getCreatorUser().getFullName()}" username="#{case.creatorUserName}" />
+          <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText id="case-creator-full-name" 
+            fullname="#{case.getCreatorUser().getFullName()}" username="#{case.creatorUserName}" />
 
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}" />
           <h:outputText id="case-start-time" value="#{case.startTimestamp}">

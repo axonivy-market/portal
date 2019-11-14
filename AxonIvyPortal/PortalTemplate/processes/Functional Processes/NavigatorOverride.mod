@@ -144,7 +144,6 @@ in.taskView = TaskView.create()
 											.taskId(in.taskId)
 											.pageTitle(pageTitle)
 											.showHeaderToolbar(false)
-											.displayTaskCategory(PermissionUtils.checkAccessFullTaskListPermission())
 											.dataModel(in.taskDataModel).createNewTaskView();								
 											' #txt
 Nr0 f14 security system #txt
@@ -225,7 +224,6 @@ in.taskView = TaskView
 								.create()
 								.pageTitle(pageTitle)
 								.showHeaderToolbar(false)
-								.displayTaskCategory(PermissionUtils.checkAccessFullTaskListPermission())
 								.dataModel(in.taskDataModel)
 								.createNewTaskView();' #txt
 Nr0 f20 security system #txt
@@ -320,7 +318,6 @@ in.caseDataModel.setNotKeepFilter(true);
 
 in.caseView = CaseView.create()
 								.dataModel(in.caseDataModel)
-								.displayCaseCategory(PermissionUtils.checkAccessFullCaseListPermission())
 								.withTitle(pageTitle)
 								.buildNewView();' #txt
 Nr0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
