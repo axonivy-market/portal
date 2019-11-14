@@ -23,7 +23,6 @@ Pt0 @UserDialog f53 '' #zField
 Pt0 @StartRequest f76 '' #zField
 Pt0 @CallSub f37 '' #zField
 Pt0 @GridStep f93 '' #zField
-Pt0 @Alternative f15 '' #zField
 Pt0 @InfoButton f83 '' #zField
 Pt0 @Alternative f4 '' #zField
 Pt0 @GridStep f11 '' #zField
@@ -80,7 +79,6 @@ Pt0 @PushWFArc f95 '' #zField
 Pt0 @PushWFArc f118 '' #zField
 Pt0 @PushWFArc f1 '' #zField
 Pt0 @PushWFArc f5 '' #zField
-Pt0 @PushWFArc f79 '' #zField
 Pt0 @PushWFArc f108 '' #zField
 Pt0 @PushWFArc f49 '' #zField
 Pt0 @PushWFArc f98 '' #zField
@@ -90,19 +88,15 @@ Pt0 @PushWFArc f61 '' #zField
 Pt0 @PushWFArc f54 '' #zField
 Pt0 @PushWFArc f109 '' #zField
 Pt0 @PushWFArc f50 '' #zField
-Pt0 @PushWFArc f81 '' #zField
 Pt0 @PushWFArc f26 '' #zField
 Pt0 @PushWFArc f34 '' #zField
-Pt0 @PushWFArc f82 '' #zField
 Pt0 @PushWFArc f56 '' #zField
 Pt0 @PushWFArc f107 '' #zField
 Pt0 @PushWFArc f46 '' #zField
 Pt0 @PushWFArc f42 '' #zField
 Pt0 @PushWFArc f47 '' #zField
-Pt0 @PushWFArc f85 '' #zField
 Pt0 @PushWFArc f65 '' #zField
 Pt0 @PushWFArc f33 '' #zField
-Pt0 @PushWFArc f80 '' #zField
 Pt0 @PushWFArc f32 '' #zField
 Pt0 @PushWFArc f67 '' #zField
 Pt0 @PushWFArc f44 '' #zField
@@ -110,6 +104,10 @@ Pt0 @PushWFArc f48 '' #zField
 Pt0 @PushWFArc f8 '' #zField
 Pt0 @PushWFArc f40 '' #zField
 Pt0 @PushWFArc f27 '' #zField
+Pt0 @PushWFArc f86 '' #zField
+Pt0 @PushWFArc f80 '' #zField
+Pt0 @PushWFArc f81 '' #zField
+Pt0 @PushWFArc f15 '' #zField
 >Proto Pt0 Pt0 ExamplePortalStart #zField
 Pt0 f19 actionTable 'out=in;
 ' #txt
@@ -373,8 +371,6 @@ to Portal</name>
 ' #txt
 Pt0 f93 344 362 144 44 -53 -16 #rect
 Pt0 f93 @|StepIcon #fIcon
-Pt0 f15 464 272 32 32 0 16 #rect
-Pt0 f15 @|AlternativeIcon #fIcon
 Pt0 f83 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -390,7 +386,8 @@ Pt0 f4 576 176 32 32 0 16 #rect
 Pt0 f4 @|AlternativeIcon #fIcon
 Pt0 f11 actionTable 'out=in;
 ' #txt
-Pt0 f11 actionCode 'import ch.ivyteam.ivy.workflow.custom.field.ICustomField;
+Pt0 f11 actionCode 'import ch.ivy.addon.portalkit.dto.TaskEndInfo;
+import ch.ivyteam.ivy.workflow.custom.field.ICustomField;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
@@ -407,6 +404,13 @@ if  (#task is initialized) {
 	isTaskStarted = task.getStartProcessData() is initialized;
 	if(#taskWithTaskEndInfo is initialized) {
 		callbackUrl = taskWithTaskEndInfo.customFields().stringField(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString()).getOrDefault("");
+		String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(taskWithTaskEndInfo.getId());
+		TaskEndInfo taskEndInfo = SecurityServiceUtils.getSessionAttribute(taskEndInfoSessionAttributeKey) as TaskEndInfo;
+		in.isInIFrame = taskEndInfo.isInIFrame;
+		if (in.isInIFrame) {
+			taskEndInfo.setIsInIFrame(false);
+			SecurityServiceUtils.setSessionAttribute(taskEndInfoSessionAttributeKey, taskEndInfo);
+		}
 	}
 }
 
@@ -414,7 +418,8 @@ if (isTaskStarted && StringUtils.isNotBlank(callbackUrl)) {
 	out.callbackUrl = callbackUrl + "?endedTaskId=" + taskWithTaskEndInfo.getId();
 } else {
 	out.portalPage = PortalPage.HOME_PAGE;
-}' #txt
+}
+' #txt
 Pt0 f11 security system #txt
 Pt0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -619,14 +624,8 @@ TaskEndInfo taskEndInfo = SecurityServiceUtils.getSessionAttribute(taskEndInfoSe
 in.dataModel = taskEndInfo.dataModel;
 in.isTaskStartedInDetails = taskEndInfo.isStartedInTaskDetails;
 in.portalPage = taskEndInfo.portalPage;
-in.isInIFrame = taskEndInfo.isInIFrame;
 
-if (in.isInIFrame) {
-	taskEndInfo.setIsInIFrame(false);
-	SecurityServiceUtils.setSessionAttribute(taskEndInfoSessionAttributeKey, taskEndInfo);
-} else {
-	SecurityServiceUtils.removeSessionAttribute(taskEndInfoSessionAttributeKey);
-}' #txt
+SecurityServiceUtils.removeSessionAttribute(taskEndInfoSessionAttributeKey);' #txt
 Pt0 f2 security system #txt
 Pt0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -821,7 +820,7 @@ Pt0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f7 704 266 128 44 -55 -8 #rect
+Pt0 f7 720 458 128 44 -55 -8 #rect
 Pt0 f7 @|UserDialogIcon #fIcon
 Pt0 f63 outLink startPortalTask.ivp #txt
 Pt0 f63 inParamDecl '<> param;' #txt
@@ -1182,8 +1181,6 @@ Pt0 f1 expr out #txt
 Pt0 f1 111 288 184 288 #arcP
 Pt0 f5 expr out #txt
 Pt0 f5 488 192 576 192 #arcP
-Pt0 f79 expr in #txt
-Pt0 f79 592 465 592 208 #arcP
 Pt0 f108 expr out #txt
 Pt0 f108 111 1056 192 1056 #arcP
 Pt0 f49 expr out #txt
@@ -1203,14 +1200,10 @@ Pt0 f109 expr out #txt
 Pt0 f109 488 1056 753 1056 #arcP
 Pt0 f50 expr out #txt
 Pt0 f50 304 481 576 481 #arcP
-Pt0 f81 expr out #txt
-Pt0 f81 312 288 464 288 #arcP
-Pt0 f81 0 0.49687471886202816 0 0 #arcLabel
 Pt0 f26 expr out #txt
 Pt0 f26 1608 376 1688 376 #arcP
 Pt0 f34 expr in #txt
 Pt0 f34 1168 192 1200 192 #arcP
-Pt0 f82 496 288 704 288 #arcP
 Pt0 f56 expr in #txt
 Pt0 f56 outCond 'java.util.Objects.equals(ch.ivy.addon.portalkit.enums.PortalPage.ERROR_PAGE, in.#portalPage) ' #txt
 Pt0 f56 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1236,23 +1229,9 @@ Pt0 f47 expr out #txt
 Pt0 f47 488 384 587 470 #arcP
 Pt0 f47 1 544 384 #addKink
 Pt0 f47 0 0.9638478923705887 0 0 #arcLabel
-Pt0 f85 expr in #txt
-Pt0 f85 outCond !in.isInIFrame #txt
-Pt0 f85 489 281 583 199 #arcP
 Pt0 f65 expr out #txt
 Pt0 f65 644 768 757 768 #arcP
 Pt0 f33 111 960 192 960 #arcP
-Pt0 f80 expr in #txt
-Pt0 f80 outCond 'org.apache.commons.lang3.StringUtils.isNotBlank(in.#callbackUrl)' #txt
-Pt0 f80 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>YES</name>
-    </language>
-</elementInfo>
-' #txt
-Pt0 f80 592 497 592 554 #arcP
-Pt0 f80 0 0.40350877192982454 -20 0 #arcLabel
 Pt0 f32 expr in #txt
 Pt0 f32 outCond 'java.util.Objects.equals(ch.ivy.addon.portalkit.enums.PortalPage.CASE_DETAIL_FROM_TASK, in.#portalPage)' #txt
 Pt0 f32 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1279,6 +1258,17 @@ Pt0 f40 expr in #txt
 Pt0 f40 1232 192 1266 192 #arcP
 Pt0 f27 expr in #txt
 Pt0 f27 608 192 656 192 #arcP
+Pt0 f86 expr out #txt
+Pt0 f86 312 288 579 195 #arcP
+Pt0 f86 0 0.49687471886202816 0 0 #arcLabel
+Pt0 f80 expr in #txt
+Pt0 f80 outCond in.isInIFrame #txt
+Pt0 f80 608 481 720 480 #arcP
+Pt0 f81 expr in #txt
+Pt0 f81 outCond 'org.apache.commons.lang3.StringUtils.isNotBlank(in.#callbackUrl)' #txt
+Pt0 f81 592 497 592 554 #arcP
+Pt0 f15 expr in #txt
+Pt0 f15 592 465 592 208 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1365,13 +1355,11 @@ Pt0 f21 out f56 tail #connect
 Pt0 f56 head f74 mainIn #connect
 Pt0 f21 out f75 tail #connect
 Pt0 f75 head f52 mainIn #connect
+Pt0 f2 mainOut f86 tail #connect
+Pt0 f86 head f4 in #connect
 Pt0 f30 out f80 tail #connect
-Pt0 f80 head f53 mainIn #connect
-Pt0 f30 out f79 tail #connect
-Pt0 f79 head f4 in #connect
-Pt0 f2 mainOut f81 tail #connect
-Pt0 f81 head f15 in #connect
-Pt0 f15 out f85 tail #connect
-Pt0 f85 head f4 in #connect
-Pt0 f15 out f82 tail #connect
-Pt0 f82 head f7 mainIn #connect
+Pt0 f80 head f7 mainIn #connect
+Pt0 f30 out f81 tail #connect
+Pt0 f81 head f53 mainIn #connect
+Pt0 f30 out f15 tail #connect
+Pt0 f15 head f4 in #connect
