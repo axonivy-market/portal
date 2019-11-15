@@ -219,11 +219,11 @@ Cs0 f4 responseMappingAction 'out=in;
 Cs0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Navigate to task detail</name>
+        <name>Navigate to task list</name>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f4 320 362 128 44 -60 -8 #rect
+Cs0 f4 328 362 112 44 -50 -8 #rect
 Cs0 f4 @|CallSubIcon #fIcon
 Cs0 f22 guid 1682B96F9503687C #txt
 Cs0 f22 actionTable 'out=in;
@@ -358,7 +358,7 @@ Cs0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f30 83 475 26 26 -72 20 #rect
 Cs0 f30 @|UdEventIcon #fIcon
 Cs0 f32 109 488 312 488 #arcP
-Cs0 f2 109 384 320 384 #arcP
+Cs0 f2 109 384 328 384 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect

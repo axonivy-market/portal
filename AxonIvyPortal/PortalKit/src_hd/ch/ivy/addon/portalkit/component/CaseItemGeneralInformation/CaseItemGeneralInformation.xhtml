@@ -22,6 +22,8 @@
               fullname="#{not empty case.getOwner() ? case.getOwner().getFullName() : ''}" username="#{case.ownerName}" />
             <h:outputText value="#{case.getOwner().getDisplayName()}" rendered="#{not case.getOwner().isUser()}" />
           </h:panelGroup>
+          <!-- Second column for panelGrid in case of no owner -->
+          <h:panelGroup rendered="#{empty case.getOwner()}" /> 
 
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" />
           <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText id="case-creator-full-name" 
