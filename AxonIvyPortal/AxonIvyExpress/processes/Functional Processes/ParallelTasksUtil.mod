@@ -29,9 +29,11 @@ Pl0 @EndSub f32 '' #zField
 Pl0 @Alternative f34 '' #zField
 Pl0 @StartSub f35 '' #zField
 Pl0 @EndTask f36 '' #zField
-Pl0 @PushWFArc f37 '' #zField
-Pl0 @PushWFArc f39 '' #zField
+Pl0 @GridStep f4 '' #zField
+Pl0 @PushWFArc f5 '' #zField
 Pl0 @PushWFArc f3 '' #zField
+Pl0 @PushWFArc f6 '' #zField
+Pl0 @PushWFArc f7 '' #zField
 >Proto Pl0 Pl0 ParallelTasksUtil #zField
 Pl0 f1 129 321 30 30 0 15 #rect
 Pl0 f1 @|EndSubIcon #fIcon
@@ -139,7 +141,7 @@ Pl0 f10 @|EndIcon #fIcon
 Pl0 f11 expr in #txt
 Pl0 f11 outCond 'in.counter >= in.numberOfTasks' #txt
 Pl0 f11 130 144 63 144 #arcP
-Pl0 f32 516 231 26 26 14 0 #rect
+Pl0 f32 515 291 26 26 14 0 #rect
 Pl0 f32 @|EndSubIcon #fIcon
 Pl0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -150,7 +152,7 @@ Pl0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pl0 f34 515 166 28 28 -45 -42 #rect
+Pl0 f34 514 226 28 28 -45 -42 #rect
 Pl0 f34 @|AlternativeIcon #fIcon
 Pl0 f35 inParamDecl '<> param;' #txt
 Pl0 f35 outParamDecl '<> result;' #txt
@@ -164,23 +166,27 @@ Pl0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pl0 f35 516 55 26 26 14 0 #rect
 Pl0 f35 @|StartSubIcon #fIcon
-Pl0 f36 626 165 30 30 16 0 #rect
+Pl0 f36 625 225 30 30 16 0 #rect
 Pl0 f36 @|EndIcon #fIcon
-Pl0 f37 expr in #txt
-Pl0 f37 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+Pl0 f4 actionTable 'out=in;
+' #txt
+Pl0 f4 actionCode 'out.numberOfTasks = ivy.case.getActiveTasks().size();' #txt
+Pl0 f4 security system #txt
+Pl0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>no</name>
-        <nameStyle>2,7
-</nameStyle>
+        <name>Get number of active tasks</name>
     </language>
 </elementInfo>
 ' #txt
-Pl0 f37 529 194 529 231 #arcP
-Pl0 f37 0 0.5135135135135135 -11 0 #arcLabel
-Pl0 f39 expr in #txt
-Pl0 f39 outCond 'ivy.case.getActiveTasks().size() > 1' #txt
-Pl0 f39 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+Pl0 f4 456 122 144 44 -69 -8 #rect
+Pl0 f4 @|StepIcon #fIcon
+Pl0 f5 expr out #txt
+Pl0 f5 528 80 528 122 #arcP
+Pl0 f3 528 166 528 226 #arcP
+Pl0 f6 expr in #txt
+Pl0 f6 outCond 'in.numberOfTasks > 1' #txt
+Pl0 f6 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>yes</name>
@@ -189,10 +195,18 @@ Pl0 f39 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pl0 f39 543 180 626 180 #arcP
-Pl0 f39 0 0.43373493975903615 0 9 #arcLabel
-Pl0 f3 expr out #txt
-Pl0 f3 529 81 529 166 #arcP
+Pl0 f6 542 240 625 240 #arcP
+Pl0 f7 expr in #txt
+Pl0 f7 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>no</name>
+        <nameStyle>2,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pl0 f7 528 254 528 291 #arcP
 >Proto Pl0 .type gawfs.ParallelTasksUtilData #txt
 >Proto Pl0 .processKind CALLABLE_SUB #txt
 >Proto Pl0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -228,9 +242,11 @@ Pl0 f0 head f12 in #connect
 Pl0 f12 out f11 tail #connect
 Pl0 f11 head f10 mainIn #connect
 Pl0 f12 out f16 tail #connect
-Pl0 f37 head f32 mainIn #connect
-Pl0 f34 out f39 tail #connect
-Pl0 f39 head f36 mainIn #connect
-Pl0 f34 out f37 tail #connect
-Pl0 f35 mainOut f3 tail #connect
+Pl0 f35 mainOut f5 tail #connect
+Pl0 f5 head f4 mainIn #connect
+Pl0 f4 mainOut f3 tail #connect
 Pl0 f3 head f34 in #connect
+Pl0 f34 out f6 tail #connect
+Pl0 f6 head f36 mainIn #connect
+Pl0 f34 out f7 tail #connect
+Pl0 f7 head f32 mainIn #connect
