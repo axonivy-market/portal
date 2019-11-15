@@ -68,7 +68,7 @@ Ie0 f12 requestEnabled true #txt
 Ie0 f12 triggerEnabled false #txt
 Ie0 f12 callSignature CreateInvestment() #txt
 Ie0 f12 persist false #txt
-Ie0 f12 startName 'Create Investment' #txt
+Ie0 f12 startName 'Create Investment (used for IFrameTaskTemplate)' #txt
 Ie0 f12 caseData 'businessCase.attach=true
 case.name=Investment Creation' #txt
 Ie0 f12 showInStartList 1 #txt
