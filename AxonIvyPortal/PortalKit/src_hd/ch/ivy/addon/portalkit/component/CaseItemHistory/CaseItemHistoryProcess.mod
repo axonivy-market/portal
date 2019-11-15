@@ -27,9 +27,6 @@ Cs0 @GridStep f3 '' #zField
 Cs0 @UdMethod f7 '' #zField
 Cs0 @PushWFArc f25 '' #zField
 Cs0 @PushWFArc f4 '' #zField
-Cs0 @UdEvent f5 '' #zField
-Cs0 @CallSub f9 '' #zField
-Cs0 @PushWFArc f6 '' #zField
 >Proto Cs0 Cs0 CaseItemHistoryProcess #zField
 Cs0 f0 guid 167E9D3052E4370B #txt
 Cs0 f0 method start() #txt
@@ -166,41 +163,6 @@ Cs0 f4 expr out #txt
 Cs0 f4 280 288 552 214 #arcP
 Cs0 f4 1 552 288 #addKink
 Cs0 f4 0 0.6911145968878323 0 0 #arcLabel
-Cs0 f5 guid 1682B7BF6685CB59 #txt
-Cs0 f5 actionTable 'out=in;
-' #txt
-Cs0 f5 actionCode 'import org.primefaces.component.commandlink.CommandLink;
-CommandLink commandLink = event.getSource() as CommandLink;
-in.taskId = commandLink.getAttributes().get("taskId") as Long;' #txt
-Cs0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>openPortalTasks</name>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f5 83 371 26 26 -47 15 #rect
-Cs0 f5 @|UdEventIcon #fIcon
-Cs0 f9 processCall 'Functional Processes/Navigator:viewTask(Long,ch.ivy.addon.portalkit.dto.GlobalCaseId,String)' #txt
-Cs0 f9 requestActionDecl '<Long taskId,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId,String caseName> param;' #txt
-Cs0 f9 requestMappingAction 'param.taskId=in.taskId;
-param.caseId=ch.ivy.addon.portalkit.dto.GlobalCaseId.caseId(in.iCase.getId()).isBusinessCase(in.iCase.isBusinessCase()).build();
-param.caseName=in.iCase.getName();
-' #txt
-Cs0 f9 responseActionDecl 'ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData out;
-' #txt
-Cs0 f9 responseMappingAction 'out=in;
-' #txt
-Cs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Navigate to task detail</name>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f9 168 362 128 44 -60 -8 #rect
-Cs0 f9 @|CallSubIcon #fIcon
-Cs0 f6 109 384 168 384 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -219,5 +181,3 @@ Cs0 f7 mainOut f25 tail #connect
 Cs0 f25 head f3 mainIn #connect
 Cs0 f3 mainOut f4 tail #connect
 Cs0 f4 head f26 mainIn #connect
-Cs0 f5 mainOut f6 tail #connect
-Cs0 f6 head f9 mainIn #connect
