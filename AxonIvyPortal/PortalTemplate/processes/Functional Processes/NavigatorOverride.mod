@@ -137,7 +137,7 @@ in.taskDataModel.getCriteria().setKeyword(StringUtils.EMPTY);
 in.taskDataModel.setQueryByBusinessCaseId(in.caseId.isBusinessCase());
 in.taskDataModel.setCaseName(in.caseName);
 ICase iCase = ivy.wf.findCase(in.caseId.id());
-boolean isOwner = iCase != null ? iCase.getOwner().isMember(ivy.session, true) : false;
+boolean isOwner = iCase != null && iCase.getOwner() != null ? iCase.getOwner().isMember(ivy.session, true) : false;
 in.taskDataModel.setAdminQuery(PermissionUtils.checkReadAllTasksPermission() || PermissionUtils.checkTaskReadOwnCaseTasksPermission() || isOwner);
 in.taskDataModel.setInvolvedUsername(ivy.session.getSessionUserName());
 in.taskDataModel.setRelatedTaskDisplayed(true);
