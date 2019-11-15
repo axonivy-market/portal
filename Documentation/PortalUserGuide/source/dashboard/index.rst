@@ -4,16 +4,11 @@ Dashboard
 *********
 
 The Axon.ivy Portal :guilabel:`Dashboard` is the first page you encounter after
-successful login. You can always get back to the dashboard using the |dash-board-icon|
+successful login. You can always get back to the dashboard using the 
 **Dashboard** link in the Axon.ivy Portal menu. Alternatively, you can click on
 the Axon.ivy logo in the header.
 
-.. figure:: images/dash-board.png
-   :width: 6.49606in
-   :height: 3.28346in
-   :align: center
-
-   Dashboard
+|dash-board|
 
 The dashboard itself is separated in 3 sections:
 
@@ -29,30 +24,17 @@ The dashboard itself is separated in 3 sections:
       section provide you with basic information on the performance of your
       cases and tasks. This section is described in detail in `Statistics`_.
 
-.. figure:: images/dash-board-sections.png
-   :width: 6.49606in
-   :height: 3.28346in
-   :align: center
-
-   Dashboard sections
-
 Process Favorites
 -----------------
 
-The process favorites you find under the heading :guilabel:`Processes` on the
+The  **Process favorites** you find under the heading :guilabel:`Processes` on the
 left side of your dashboard. They provide you with a quick and easy access to
 the processes you need most in your daily work. Therefore, the process favorites
 are a key feature to enhance your Axon.ivy Portal experience and increase your
 efficiency. To make full use of this feature the Axon.ivy Portal offers you an
-easy way to configure the process favorites to your personal needs. This is
-described later in this chapter. 
+easy way to configure the process favorites to your personal needs. 
 
-.. figure:: images/process-favorites.png
-   :width: 6.49606in
-   :height: 3.28346in
-   :align: center
-   
-   Process favorites
+|process-favorites|
 
 When you have a look at the process favorites you see two areas:
 
@@ -66,7 +48,7 @@ When you have a look at the process favorites you see two areas:
 
 Furthermore, next to the heading you find a link :guilabel:`Show all processes`.
 This quick link routes you the **Full Process List** page of the
-Axon.ivy Portal. Please refer to :ref:`full-process-list` for more detail detailed information.
+Axon.ivy Portal. Please refer to :ref:`full-process-list` for more detail information.
 
 .. _howto-add-a-process-as-a-user-favorite:
 
@@ -91,12 +73,7 @@ HowTo: Add a process as a user favorite
 
 7. Confirm your configuration with the button **Add**.
 
-.. figure:: images/how-to-add-process-favorite.png
-   :width: 6.49606in
-   :height: 3.28346in   
-   :align: center
-
-   HowTo add process favorite
+|how-to-add-process-favorite|
 
 .. hint:: 
    The list of processes in the dropdown menu shows only the processes which are
@@ -117,33 +94,26 @@ HowTo: Delete a process as a user favorite
 3. Confirm the removal with the link **Save** next to the heading **User
    Favorites**.
 
-.. figure:: images/how-to-delete-process-favorites-1.png
-   :width: 6.49606in
-   :height: 3.28346in   
-   :align: center
+|how-to-delete-process-favorites-1|
 
-.. figure:: images/how-to-delete-process-favorites-2.png
-   :width: 6.49606in
-   :height: 3.28346in   
-   :align: center
-
-   HowTo delete process favorites
+|how-to-delete-process-favorites-2|
 
 HowTo: Reorder user favorites
 -----------------------------
 
 There are two ways to order the processes in your :guilabel:`User Favorites`.
 
-1. To order your processes and external links in an alphabetical order
+I. Sort by name 
+^^^^^^^^^^^^^^^
+
+   To order your processes and external links in an alphabetical order
    you can use the link **Sort by name** next to the heading **User
    Favorites**.
 
-.. figure:: images/how-to-order-process-favorites-by-name.png
-   :width: 6.49606in
-   :height: 3.28346in   
-   :align: center
-   
-   HowTo order process favorites by name
+|how-to-order-process-favorites-by-name|
+
+II. Edit processes
+^^^^^^^^^^^^^^^^^^
 
 1. To order your processes in an individual order, select the link
    **Edit processes** next to the heading **User Favorites**.
@@ -153,17 +123,12 @@ There are two ways to order the processes in your :guilabel:`User Favorites`.
 3. Confirm the reorder with the link **Save** next to the heading **User
    Favorites**.
 
-.. figure:: images/how-to-order-process-favorites-individually-1.png
-   :width: 6.49606in
-   :height: 3.28346in   
-   :align: center
+|how-to-order-process-favorites-individually-1|
 
-.. figure:: images/how-to-order-process-favorites-individually-2.png
-   :width: 6.49606in
-   :height: 3.28346in   
-   :align: center   
 
-   HowTo order process favorites individually
+|how-to-order-process-favorites-individually-2|
+
+
 
 HowTo: Add an external link as user favorite
 --------------------------------------------
@@ -186,12 +151,8 @@ HowTo: Add an external link as user favorite
 
 7. Confirm your configuration with the button **Add**.
 
-.. figure:: images/how-to-add-external-link-as-process-favorite.png
-   :width: 6.49606in
-   :height: 3.28346in   
-   :align: center
+|how-to-add-external-link-as-process-favorite|
 
-   HowTo add external link as process favorite
 
 Personal Tasks
 --------------
@@ -202,12 +163,9 @@ roles you hold within the application. Therefore, this section is key in
 understanding your workload within the application. You may pick up any task
 from the task list and start working on it.
 
-.. figure:: images/personal-tasks.png
-   :width: 6.49606in
-   :height: 3.28346in   
-   :align: center
+|personal-tasks|
+
    
-   Personal Tasks
 
 At first glance, you see the number of tasks right next to the heading
 :guilabel:`Tasks`. Further to the right you find the link **Show full task
@@ -218,22 +176,13 @@ detailed information.
 Right below the heading :guilabel:`Task` you find the following features which
 support you in finding the correct tasks:
 
-1. With the link Sort by priority you can sort the task list from the
-   highest to the lowest priority.
-
-2. With the link Sort by expiry time you can sort the task list
-   according to the time left until the task expires.
-
-3. On the right side of the Tasks section you find a search box. The
-   Axon.ivy Portal searches for your keyword in the task ID, name and
+1. The Axon.ivy Portal searches for your keyword in the task ID, name and
    description of the tasks in your task list.
+2. On the right side of the Tasks section you can find the sort by :guilabel:`Creation Date` :guilabel:`Expiry` :guilabel:`Priority`  
 
-.. figure:: images/personal-tasks-sort-and-search-features.png
-   :width: 6.49606in
-   :height: 3.28346in   
-   :align: center
+|personal-tasks-sort-and-search-features|
+
   
-   Personal tasks sort and search features
 
 Each task in your task list has an own entry. The entry provides you
 with key information about the task allowing you an easy identification.
@@ -245,19 +194,15 @@ The following information can be found in the task entries:
 
 3. The :guilabel:`Task ID` 
 
-4. The ::guilabel:`Creation Date`
+4. The :guilabel:`Creation Date`
 
 5. The :guilabel:`Expiry Date` which is the due date until when the task should
    be completed.
 
 6. The :guilabel:`Task Description`
 
-.. figure:: images/personal-tasks-key-information.png
-   :width: 6.49606in
-   :height: 3.28346in   
-   :align: center
+|personal-tasks-key-information|
 
-   Personal tasks key information
 
 Statistics
 ----------
@@ -266,12 +211,8 @@ The statistics you find under the heading :guilabel:`Statistics` on the
 right-hand side of your dashboard. The charts in this section allow you to grasp
 the overall situation at a glance.
 
-.. figure:: images/dashboard-statistics-section.png
-   :width: 6.49606in
-   :height: 3.28346in   
-   :align: center
+|dashboard-statistics-section|
 
-   Dashboard statistics section
 
 Next to the heading you find a link **Show all charts**. This quick link
 routes you the :guilabel:`Statistics` page of the Axon.ivy Portal. Please refer
@@ -281,7 +222,7 @@ Within the green header of the chart, you find two navigation buttons
 (|pre-icon|, |next-icon|) allowing you to toggle between the available
 charts. Each chart then provides you with the following information:
 
-1. The :guilabel:`Chart Title` , helping you to understand the content of the
+1. The :guilabel:`Chart Title`  helping you to understand the content of the
    chart
 
 2. The :guilabel:`Chart` itself, which gives you a graphical representation of
@@ -290,14 +231,24 @@ charts. Each chart then provides you with the following information:
 
 3. The :guilabel:`Legend` explains the different elements of the charts.
 
-.. figure:: images/statistics-key-information.png
-   :align: center
-
-   Statistics key information
+|statistics-key-information|
 
 If you require more or different charts, you need to create them first.
 Chapter :ref:`howto-create-chart` explains in detail how to create new
 charts.
 
 .. include:: ../includes/_common-icon.rst
-   
+.. |dash-board| image:: images/dash-board.png
+.. |process-favorites| image:: images/process-favorites.png
+.. |how-to-add-process-favorite| image:: images/how-to-add-process-favorite.png
+.. |how-to-delete-process-favorites-1| image:: images/how-to-delete-process-favorites-1.png
+.. |how-to-delete-process-favorites-2| image:: images/how-to-delete-process-favorites-2.png
+.. |how-to-order-process-favorites-by-name| image:: images/how-to-order-process-favorites-by-name.png
+.. |how-to-order-process-favorites-individually-1| image:: images/how-to-order-process-favorites-individually-1.png
+.. |how-to-order-process-favorites-individually-2| image:: images/how-to-order-process-favorites-individually-2.png
+.. |how-to-add-external-link-as-process-favorite| image:: images/how-to-add-external-link-as-process-favorite.png
+.. |personal-tasks| image:: images/personal-tasks.png
+.. |personal-tasks-sort-and-search-features| image:: images/personal-tasks-sort-and-search-features.png
+.. |personal-tasks-key-information| image:: images/personal-tasks-key-information.png
+.. |dashboard-statistics-section| image:: images/dashboard-statistics-section.png
+.. |statistics-key-information| image:: images/statistics-key-information.png
