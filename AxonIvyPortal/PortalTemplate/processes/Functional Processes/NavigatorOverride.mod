@@ -117,7 +117,8 @@ Nr0 f13 expr out #txt
 Nr0 f13 64 652 64 700 #arcP
 Nr0 f14 actionTable 'out=in;
 ' #txt
-Nr0 f14 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
+Nr0 f14 actionCode 'import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.enums.PortalPage;
@@ -135,7 +136,9 @@ in.taskDataModel.setSortField(TaskSortField.ID.toString(), true);
 in.taskDataModel.getCriteria().setKeyword(StringUtils.EMPTY);
 in.taskDataModel.setQueryByBusinessCaseId(in.caseId.isBusinessCase());
 in.taskDataModel.setCaseName(in.caseName);
-in.taskDataModel.setAdminQuery(PermissionUtils.checkReadAllTasksPermission() || PermissionUtils.checkTaskReadOwnCaseTasksPermission());
+ICase iCase = ivy.wf.findCase(in.caseId.id());
+boolean isOwner = iCase != null && iCase.getOwner() != null ? iCase.getOwner().isMember(ivy.session, true) : false;
+in.taskDataModel.setAdminQuery(PermissionUtils.checkReadAllTasksPermission() || PermissionUtils.checkTaskReadOwnCaseTasksPermission() || isOwner);
 in.taskDataModel.setInvolvedUsername(ivy.session.getSessionUserName());
 in.taskDataModel.setRelatedTaskDisplayed(true);
 
@@ -144,7 +147,7 @@ in.taskView = TaskView.create()
 											.taskId(in.taskId)
 											.pageTitle(pageTitle)
 											.showHeaderToolbar(false)
-											.dataModel(in.taskDataModel).createNewTaskView();								
+											.dataModel(in.taskDataModel).createNewTaskView();				
 											' #txt
 Nr0 f14 security system #txt
 Nr0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
