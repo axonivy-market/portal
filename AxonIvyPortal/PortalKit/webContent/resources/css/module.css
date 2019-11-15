@@ -395,7 +395,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .task-widget .ui-widget.ui-button.advanced-filter-command, 
 .case-widget-container .ui-widget.ui-button.advanced-filter-command {
   display: inline-block;
-  height: 30px;
   line-height: 30px;
   min-width: 0;
   padding: 0 25px 0 5px !important;
@@ -404,7 +403,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   white-space: nowrap;
   max-width: 400px;
   border: none;
-  border-radius: 4px !important;
   box-shadow: none !important;
 }
 
@@ -414,7 +412,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   height: 30px;
   line-height: 30px;
   min-width: 0;
-  padding-left: 5px;
 }
 
 .analysis-task-widget .filter-selection-container {
@@ -1876,6 +1873,12 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .task-details-data-expiry input[type="text"] {
   width: 145px;
+}
+
+.expiry-edit-inplace {
+  .ui-widget.ui-button {
+    margin-left: 5px !important;
+  }
 }
 
 .task-name-input {
