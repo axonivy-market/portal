@@ -32,13 +32,8 @@ To start your Axon.ivy Portal experience, use the link provided to you by your
 administrator. Following the link, the Axon.ivy Portal will ask for your login
 credentials.
 
-.. figure:: images/login-screen.png
-   :width: 6.49606in
-   :height: 3.26772in
-   :align: center
+|login-screen|
    
-   Login screen
-
 .. Hint:: 
    Depending on your company’s infrastructure, you might be automatically logged in
    by the single-sign-on (SSO). In this case you’ll directly be forwarded to the
@@ -53,29 +48,23 @@ point. In detail these are:
       configure your personal user account. See  :ref:`portal-header`  for
       details.
    
+   |axon-ivy-portal-header|
+
    2. The menu on the left side is always available and gives you access to
       all processes, cases, tasks and other features of the Axon.ivy Portal. You
-      may enlarge or minimise the menu using the |toggle-icon| **Toggle Menu** button
+      may enlarge or minimise the menu using the **Toggle Menu** button
       in the top left corner.
    
+   |axon-ivy-portal-menu|
+
    3. In the center you see your personal dashboard providing you instant
       access to your processes, tasks and performance indicators. See
       :ref:`dashboard` for a detailed introduction.
 
-.. figure:: images/axon-ivy-portal.png
-   :width: 6.49606in
-   :height: 3.2874in
-   :align: center
-
-   Axon.ivy Portal
-
-.. figure:: images/toggle-portal-menu.png
-   :width: 6.49606in
-   :height: 3.2874in
-   :align: center
-   
-   Toggle portal menu
+   |axon-ivy-portal|
 
 .. include:: ../includes/_common-icon.rst
-
-   
+.. |login-screen| image:: images/login-screen.png
+.. |axon-ivy-portal-header| image:: images/axon-ivy-portal-header.png
+.. |axon-ivy-portal-menu| image:: images/axon-ivy-portal-menu.png
+.. |axon-ivy-portal| image:: images/axon-ivy-portal.png
