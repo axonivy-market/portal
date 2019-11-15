@@ -30,7 +30,6 @@
         <p:ajax global="false" event="#{cc.attrs.event}" delay="#{cc.attrs.delay}" listener="#{cc.attrs.listener}" update="#{cc.attrs.updateComponent}" oncomplete="#{cc.attrs.onCompletedCallback}" />
       </p:inputText>
       <p:inputText id="non-ajax-keyword-filter" styleClass="filter-widget-input #{cc.attrs.styleClass}" rendered="#{not cc.attrs.ajax}" onkeyup="#{cc.attrs.listener}" placeholder="#{cc.attrs.placeholder}" />
-      <i class="filter-widget-icon #{cc.attrs.icon}" />
       <p:commandButton id="mobile-filter-icon" styleClass="mobile-filter-icon" icon="fa fa-filter" rendered="#{cc.attrs.iconAsButton}" onclick="#{cc.attrs.onClickIconFilter}" global="false" type="button" />
     </div>
   </cc:implementation>
