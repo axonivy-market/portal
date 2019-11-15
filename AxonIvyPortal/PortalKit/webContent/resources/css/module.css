@@ -309,12 +309,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   padding: 6px 0 3px 6px !important;
 }
 
-.filter-widget-icon  {
-  position: absolute;
-  top: 35%;
-  right: 5px;
-}
-
 .filter-category-checkbox-tree .ui-tree-container {
   height: 300px;
   overflow: auto !important;
@@ -3934,11 +3928,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   margin: 5px 10px 20px 0;
   width: 300px;
 }
-
-.search-icon-name-container .filter-widget-icon {
-  top: 25%;
-  right: 12px;
-} 
 
 .search-icon-input::-ms-clear {
   display: none;
