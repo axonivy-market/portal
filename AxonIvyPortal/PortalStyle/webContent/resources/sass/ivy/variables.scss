@@ -1,17 +1,25 @@
 /* Theme Colors */
 $red: #ff0000;
 $white: #fff;
-$black: #000000;
+$black: red;
+
+/*Grey*/
 $grey1: #808080;
+
 $grey2: #e0e0e0;
 $grey3: #d8d8d8;
 $grey4: #f0f0f0;
+
+/*Consolidate grey*/
+$lightGrey: #f0f0f0; 
+$grey: #9c9d9d;
+$darkGrey: #575656;
 
 $primaryColor: #c7d426;
 $primaryDarkColor: #97ae04;
 $primaryLightColor: #dcf91f;
 $primaryLightestColor: $white;
-$primaryTextColor: $black;
+$primaryTextColor: $red;
 $accentColor: $primaryColor;
 $accentDarkColor: $primaryDarkColor;
 $accentLightColor: $primaryLightColor;
@@ -77,6 +85,7 @@ $widgetTaskListHeaderBorderBottomColor: $borderColor;
 $widgetSortMenuBorderBottomColor: $borderColor;
 $widgetHeaderInputFieldBackgroundColor: transparent;
 $widgetHeaderInputHoverBackgroundColor: transparent;
+$widgetHeaderMainMenuTextColor: rgba($black, 0.4); /* Change to grey */
 
 /* Announcement panel color */
 $announcementBackgroundColor: #ffff80;
@@ -120,6 +129,7 @@ $menuItemCurrentApplicationBorderBottomColor: transparent;
 /* Submenu Item */
 $subMenuItemLinkHoverBackgroundColor: transparent;
 $subMenuItemLinkBackgroundColor: transparent;
+$subMenuBackgroundColor: rgba($white, 0.6);
 
 /* Filter Widget */
 $advancedFilterErrorColor: $red;
@@ -131,6 +141,9 @@ $widgetAdvancedFilterCommandStateFocusBackgroundColor: none;
 $widgetAdvancedFilterOverlayPanelFooter: #eaeaea;
 $widgetAdvancedFilterCommandBackgroundColor: none;
 $widgetAdvancedFilterBackgroundColor: none;
+$filterWidgetInputTextColor: rgba($black, 0.5); /* Change to grey*/
+$widgetAdvancedFilterIconColor: rgba($black, 0.3); /* Change to grey*/
+$widgetAdvancedFilterHoveredBackroundColor: rgba($black, 0.04); /* Change to grey*/
 
 /* Process */
 $processNavigatorItemColor: $black;
@@ -148,6 +161,7 @@ $processStartListItemNameFontWeight: 400;
 
 /* Case Detail */
 $caseRelatedTaskColor: $primaryTextColor;
+$caseRelatedTaskHoveredColor: rgba($black, 0.6);
 $caseDetailPaginatorColor: $primaryTextColor;
 $caseRelatedTaskContentBorder: $grey3;
 $caseDocumentUploadBorder: #cccccc;
@@ -157,32 +171,43 @@ $additionalCaseDetailLinkFontWeight: 400;
 $detailsDocumentAddLinkFontWeight: 400;
 $caseDetailHeaderFontWeight: bold;
 $historyButtonContainerFontWeight: bold;
+$caseDetailPaginatorHeaderCornerTopBackgroundColor: rgba($black, 0.05); /*Change to Grey*/
+$caseDetailPaginatorHoveredButtonBackgroundColor: rgba($black, 0.05); /*Change to Grey*/
+
+/* Case List */
+$caseOddRowBackgroundColor: rgba($black, 0.04);  /* change to grey */
 
 /* Case Item */
-$historyNodeColor: $primaryTextColor;
+$historyNoteColor: $primaryTextColor;
 $historyNoteBorder: $grey3;
-$linkTextColor: rgba($black, 0.5) !important; /* should be set grey as style guide */
+$linkTextColor: rgba($black, 0.5); /* change to grey */
 $additionalCaseDetailLinkColor: $linkTextColor;
 $noteShowMoreLinkColor: $linkTextColor;
+$noteShowMoreLinkHoveredColor: rgba($black, 0.6);  /* change to grey */
 $caseTaskDocumentNameColor: $primaryTextColor;
-$caseListItemHoverBackgroundColor: #e8e9ef;
 $caseWidgetColumnHeaderIsSelectedColor: $black;
 $caseItemActionStepsItemHoverBackgroundColor: #e8e9ef;
 $caseActionStepsContentsBackgroundColor: $white;
+$caseActionSeparatorBorderColor: rgba($black, 0.15); /* Change to grey */
 $caseStateInProgressColor: rgba(7, 140, 255, 1);
 $caseStateDoneColor: rgba(78, 180, 28, 1);
 $caseWidgetTopHeaderBorderBottom: $borderColor;
 $caseWidgetColumnHeaderBorderBottom: $borderColor;
 $caseListDataScrollerContentBackgroundColor: transparent;
 $caseHeaderActionCellButtonBackgroundColor: transparent;
+$caseHeaderActionDetailItem: rgba($black, 0.5);  /* Change to grey */
 $caseItemActionStepsFontWeight: bold;
+$taskNoteLinkHoveredColor: rgba($black, 0.6); /* Change to grey */
+$caseListUnsortableHeaderCellTextColor: $grey; /* should set same variable color with commandlink for sortable column */
+$caseListItemHoverBackgroundColor: #e8e9ef;
+$caseListItemBackgroundColor: rgba($white, 0.2);
+$caseItemDescriptionCell: rgba($black, 0.4);
+$actionStepItemTextColor: rgba($black, 0.5);
 
 /* Task Widget */
 $taskFilterSelectionFormHoverBackgroundColor: #f5f5f5;
 $compactTaskStartListItemHoverBackgroundColor: #e8e9ef;
 $compactTaskStartInfoColor: $black;
-$sideStepItemHoverColor: $black;
-$sideStepItemHoverBackgroundColor: #f5f5f5;
 $taskWidgetSortMenuLinkIsSelectedColor: $black;
 $taskWidgetOverlayPanelContentBackgroundColor: $white;
 $taskWidgetLinkColor: $black;
@@ -191,19 +216,28 @@ $taskFilterSeparatorBorderBottom: $borderColor;
 $taskViewContainerDataScrollerContentBackgroundColor: transparent;
 $taskOptionPanelBoxShadow: rgba(43, 59, 93, 0.6);
 $taskOptionPanelBorderTop: rgba(43, 59, 93, 0.2);
+$taskWidgetSortMenuFullModeTextColor: rgba($black, 0.6); /* Change to grey */
 
 /* Task Detail */
 $taskDetailPaginatorColor: $primaryTextColor; 
+$taskDetailPaginatorHeaderCornerTopBackgroundColor: rgba($black, 0.05); /*Change to Grey*/
+$taskDetailPaginatorHeaderCornerTopBorderColor: $grey3;
+$taskDetailPaginatorHoveredButtonBackgroundColor: rgba($black, 0.05); /*Change to Grey*/
 $taskDetailActionItemHoverBackgroundColor: transparent;
 $taskDetailHeaderFontWeight: bold;
 $taskDetailSectionTitleFontWeight: bold;
 $taskStartInfoHeaderFontWeight: bold;
 $taskStartInfoTaskIdFontWeight: normal;
 $taskNameInputFontWeight: bold;
+$taskHighlightedInplaceFieldBackgroundColor: $grey4;
 
 /* Task Action Item */
 $taskActionItemWidgetHeaderColor: $white;
 $taskActionItemLabelFontWeight: normal;
+
+/* Case and Task Action Item */
+$caseTaskActionButtonHoveredBackgroundColor: rgba($black, 0.05); /*Change to Grey*/
+$caseTaskActionButtonIconColor: rgba($black, 0.5); /*Change to Grey*/
 
 /* Task Template */
 $taskTemplateActionButtonFocus: transparent;
@@ -342,12 +376,15 @@ $trueMinimalisticIconFontWeight: normal;
 $trueMinimalisticIconFontVariant: normal;
 
 /*Override theme styles*/
+
+/*Side bar menu*/
 $sidebarMenuListItemLinkTextColor: $primaryTextColor;
 $sidebarMenuListItemIconColor: $primaryTextColor;
 $sidebarMenuListItemLinkHoverTextColor: $primaryTextColor;
 $sidebarMenuListItemHoverIconColor: $primaryTextColor;
 $sidebarMenuListItemLinkHoverBackgroundColor: rgba($black, 0.15);
-
+$sidebarMenuListActiveIconColor: $primaryTextColor;
+$sidebarMenuInactiveItemCurrentAppBorderBottomColor: rgba($black, 0.15);
 
 /*Table */
 $dataTableRowBackgroundColorEven: $white;
@@ -358,7 +395,7 @@ $highlightedTdDataTableBackgroundColor: $primaryColor;
 $hoveredTdDataTableBackGroundColor: $primaryColor;
 $highlightedTdTreeTableBackgroundColor: rgba($primaryColor, 0.6);
 $hoveredTdTreeTableBackGroundColor: rgba($primaryColor, 0.25);
-$tableBorderColor: rgba(black, 0.2);
+$tableBorderColor: rgba(black, 0.2); /* Change to grey*/
 $rightBorderInsideDataTable: $tableBorderColor;
 $leftBorderInsideDataTable: transparent;
 $topBorderOutsideDataTableColor: $tableBorderColor;
@@ -368,8 +405,9 @@ $bottomBorderOutsideDataTableColor: $tableBorderColor;
 $bottomBorderHeaderDataTableColor: $tableBorderColor;
 $topBorderBodyDataTableColor: transparent;
 $topBorderBodyExpressManyCheckboxTableColor: $tableBorderColor;
-
-$treeTableBorderColor: rgba(black, 0.5);
+$headerBorderColor: $tableBorderColor;
+$uiInputFieldTdTextColor: $primaryTextColor;
+$treeTableBorderColor: rgba(black, 0.2); /* Change to grey*/
 $topBorderOutsideTreeTableColor: $treeTableBorderColor;
 $bottomBorderOutsideTreeTableColor: $treeTableBorderColor;
 $rightBorderOutsideTreeTableColor: $treeTableBorderColor;
@@ -377,10 +415,16 @@ $rightBorderInsideTreeTableColor: $treeTableBorderColor;
 $bottomBoderBodyTreeTableColor: $treeTableBorderColor;
 $leftBorderOutsideTreeTableColor: $treeTableBorderColor;
 
-$headerBorderColor: rgba(black, 0.2);
+/* Link */
+$commandLinkTextColor: rgba($black, 0.5); /*Change to grey*/
+$commandLinkHoveredTextColor: rgba($black, 0.6); /*Change to grey*/
+$commandLinkActiveTextColor: rgba($black, 0.8); /*Change to grey*/
+$commandLinkDisabledTextColor: rgba($black, 0.2);  /*Change to grey*/
 
-$uiWidgetHeaderColor: rgba(black, 0.2);
-$uiInputFieldTdTextColor: $primaryTextColor;
+
+/*Side step*/
+$sideStepItemHoverColor: $black;
+$sideStepItemHoverBackgroundColor: #f5f5f5;
 
 /* Others */
 $bodyDialogTitleFontSize: 1.9rem;

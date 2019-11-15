@@ -101,9 +101,8 @@ body {
     border-color: $primaryColor;
 }
 
-
 .layout-wrapper .layout-sidebar .layout-menu>li.active-menuitem>a i {
-    color: $primaryTextColor;
+    color: $sidebarMenuListActiveIconColor;
 }
 
 .layout-wrapper .layout-sidebar .layout-menu {
@@ -111,7 +110,6 @@ body {
     width : auto;
   }
 }
-
 
 /*Style for Top bar -------------------------------------------------------------------------------------- */
 .layout-wrapper .layout-main .layout-topbar {
@@ -950,30 +948,26 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
   
   &:not(.ui-state-disabled) {
     &:focus, &:hover  {
-      background-color: rgba($black, 0.05) !important;
-      border: 1px solid rgba(0, 0, 0, 0.05);
+      background-color: $caseTaskActionButtonHoveredBackgroundColor !important;
     }
   }
-  &.ui-state-hover {
-    background-color: rgba($black, 0.05) !important;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-  }
+
   .ui-button-text.ui-c, .ui-button-icon-right.ui-icon.ui-c {
-    color: rgba(0, 0, 0, 0.5) !important;
+    color: $caseTaskActionButtonIconColor !important;
   }
 }
 
 .ui-button.ui-widget.action-button.ui-state-hover {
-   background-color: transparent !important;
+   background-color: $caseTaskActionButtonHoveredBackgroundColor !important;
 }
 
 /*Style For Task Detail --------------------------------------------------------------------------------------*/
 
 .task-item-body .task-details-item-note, .task-item-body .task-details-item-document {
   .ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top {
-    background-color: rgba($black, 0.05);
-      border-color: #d8d8d8;
-      padding: 2px 10px;
+    background-color: $taskDetailPaginatorHeaderCornerTopBackgroundColor;
+    border-color: $taskDetailPaginatorHeaderCornerTopBorderColor;
+    padding: 2px 10px;
   }
   
   .ui-paginator a, .ui-paginator-current {
@@ -982,42 +976,15 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
   
   .ui-paginator a.ui-paginator-page, .ui-paginator a.ui-paginator-page, a.ui-paginator-first, a.ui-paginator-prev, a.ui-paginator-next, a.ui-paginator-last {
     &.ui-state-hover, &.ui-state-active {
-        background-color: rgba($black, 0.05);
+        background-color: $taskDetailPaginatorHoveredButtonBackgroundColor;
       }
-  }
-  
-  .ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top {
-    padding-left: 0;
-    padding-right: 0;
-    
-    .ui-paginator-current {
-      margin-left: 0;
-    }
   }
 }
 
 .task-description-inplace, .edit-priority-inplace, .task-name-inplace, .expiry-edit-inplace{
   .ui-inplace-display.ui-state-highlight {
-      background-color: $textboxBgColor;
-      color: $primaryTextColor;
+      background-color: $taskHighlightedInplaceFieldBackgroundColor;
     }
-}
-
-.expiry-edit-inplace {
-  .ui-widget.ui-button {
-    margin-left: 5px !important;
-  }
-}
-
-.task-detail-header, .analysis-task-widget, .statistic-widget-container {
-  .ui-button.ui-widget.task-details-back-btn, .ui-button.ui-widget.back-button{
-    background-color: transparent;
-    box-shadow: none;
-    
-    &.ui-state-hover {
-      background-color: rgba(0, 0, 0, 0.05) !important;
-    }
-  }
 }
 
 .task-name-input {
@@ -1173,12 +1140,8 @@ body .ui-widget.ui-dialog .ui-dialog-content {
   font-size: $largeFontSize ;
 }
 
-.widget-sort-menu {
-  color: rgba($black, 0.5);
-}
-
 .widget-sort-menu.full-mode a.ui-widget.ui-commandlink { 
-  color : rgba($black, 0.6) !important;
+  color : $taskWidgetSortMenuFullModeTextColor !important;
   font-size: $largeFontSize;
 }
 
@@ -1220,8 +1183,8 @@ body .ui-widget.ui-dialog .ui-dialog-content {
 /*Style for Case Item --------------------------------------------------------------------------------------*/
 
 .case-list-unsortable-header-cell {
-  font-size: $smallFontSize;
-  color: rgba($black, 0.5);
+  font-size: $largeFontSize;
+  color: $caseListUnsortableHeaderCellTextColor;
 }
 
 a.case-details-document-add-link,
@@ -1257,7 +1220,7 @@ span.task-details-document-add-link {
 
 .action-steps-panel .case-action-separator,
 .options-panel hr.u-separator {
-  border: 0.8px solid rgba($black, 0.15);
+  border: 0.8px solid $caseActionSeparatorBorderColor;
 }
 
 /*Style for Case Widget-------------------------------------------------------------------------------------*/ 
@@ -1321,7 +1284,7 @@ span.task-details-document-add-link {
 
 .case-detail-body .case-details-item {
   .ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top {
-      background-color: rgba(black, 0.05);
+      background-color: $caseDetailPaginatorHeaderCornerTopBackgroundColor;
       border-color: $caseRelatedTaskContentBorder;
       padding: 2px 10px;
   }
@@ -1332,14 +1295,12 @@ span.task-details-document-add-link {
   
   .ui-paginator a.ui-paginator-page, .ui-paginator a.ui-paginator-page, a.ui-paginator-first, a.ui-paginator-prev, a.ui-paginator-next, a.ui-paginator-last {
     &.ui-state-hover, &.ui-state-active {
-        background-color: rgba($black, 0.05);
+        background-color: $caseDetailPaginatorHoveredButtonBackgroundColor;
       }
   }
   
   .case-description-form .ui-inplace-display.ui-state-highlight {
     background-color: $textboxBgColor;
-    color: $primaryTextColor;
-    border: 1px solid $textboxBgColor;
     border-radius: $borderRadius;
   }
   
@@ -1374,22 +1335,8 @@ span.task-details-document-add-link {
 .case-detail-name-inplace-edit {
   .ui-inplace-display.ui-state-highlight {
     background-color: $textboxBgColor;
-    color: $primaryTextColor;
     padding: 3px;
-    border: 1px solid $textboxBgColor;
     border-radius: $borderRadius;
-  }
-}
-
-.case-detail-title-header-container {
-  .ui-button.ui-widget.case-details-back-btn {
-    background-color: transparent;
-    box-shadow: none;
-    flex: 0 0 auto;
-    
-    &.ui-state-hover {
-      background-color: rgba($black, 0.05) !important;
-    }
   }
 }
 
@@ -1402,14 +1349,17 @@ span.task-details-document-add-link {
   color: $noteShowMoreLinkColor !important;
 }
 
+.note-show-more-link:hover {
+  color: $noteShowMoreLinkHoveredColor !important;
+}
+
 .related-task-content .related-task,
 .case-related-running {
   color: $caseRelatedTaskColor !important;
 }
 
-.related-task-content .related-task:hover,
-.additional-case-details-link:hover {
-  color: rgba($black, 0.6) !important;
+.related-task-content .related-task:hover {
+  color: $caseRelatedTaskHoveredColor !important;
 }
 
 .additional-case-details-link {
@@ -1434,12 +1384,6 @@ span.task-details-document-add-link {
 .not-display-result-tab-view {
   font-size: $smallFontSize;
 }
-
-.side-steps-panel .side-step-item {
-  font-size: $largeFontSize;
-  color: rgba($black, 0.5) !important;
-}
-
 
 /** Style for Task Template * --------------------------------------*/
 .task-template-title {
@@ -1488,19 +1432,19 @@ body .ui-state-active, body .ui-state-highlight {
 
 /* Style for Link -----------------------------------  */
 .ui-commandlink {
-  color: rgba($black, 0.5) !important;
+  color: $commandLinkTextColor !important;
 }
 
 .ui-commandlink:hover {
-  color: rgba($black, 0.6) !important;
+  color: $commandLinkHoveredTextColor !important;
 }
 
 .ui-commandlink:active {
-  color: rgba($black, 0.8) !important;
+  color: $commandLinkActiveTextColor !important;
 }
 
 .ui-commandlink.ui-state-disabled {
-  color: rgba($black, 0.2) !important;
+  color: $commandLinkDisabledTextColor !important;
 }
 
 /* Style for Dropdown----------------------------- */
@@ -1532,12 +1476,12 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .layout-wrapper .layout-sidebar .layout-menu>li:not(.active-menuitem)>a.current-application {
-  border-bottom-color: rgba($black, 0.15) !important;
+  border-bottom-color: $sidebarMenuInactiveItemCurrentAppBorderBottomColor !important;
 }
 
 /* Style for SubMenu Item-----------------------------*/
 .submenu-container {
-  background-color: rgba($white, 0.6);
+  background-color: $subMenuBackgroundColor;
 }
 
 .submenu-container.active-menuitem a:hover {
@@ -1555,18 +1499,18 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 /* Style for Filter Widget -----------------------------**/
 .widget-header-main-menu {
-  color: rgba($black, 0.4);
+  color: $widgetHeaderMainMenuTextColor;
 }
 
 .filter-widget .filter-widget-input {
-  color: rgba($black, 0.5);
+  color: $filterWidgetInputTextColor;
 }
 
 .task-widget .advanced-filter:hover, 
 .case-widget-container .advanced-filter:hover,
 .task-widget .filter-selection-container:hover,
 .case-widget-container .filter-selection-container:hover {
-  background-color: rgba($black, 0.04);
+  background-color: $widgetAdvancedFilterHoveredBackroundColor;
   border-color: $widgetAdvancedFilterHoverBorder;
 }
 
@@ -1591,7 +1535,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .advanced-filter-icon {
-  color: rgba($black, 0.3) !important;
+  color: $widgetAdvancedFilterIconColor !important;
   font-size: 1.8rem;
 }
 
@@ -1610,7 +1554,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 .history-note a,
 .history-note .task-note-link {
-  color: $historyNodeColor !important;
+  color: $historyNoteColor !important;
 }
 
 .history-note {
@@ -1618,10 +1562,10 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .history-note .task-note-link:hover {
-  color: rgba($black, 0.6);
+  color: $taskNoteLinkHoveredColor !important;
 }
 
-.case-document-name a , .task-document-name a {
+.case-document-name a, .task-document-name a {
   color: $caseTaskDocumentNameColor !important;
 }
 
@@ -1631,7 +1575,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 
 /* Case item*/
 .case-list-item {
-  background-color: rgba($white, 0.2);
+  background-color: $caseListItemBackgroundColor;
 }
 
 .case-list-item:hover,
@@ -1639,7 +1583,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   background: $caseListItemHoverBackgroundColor;
 }
 .case-list-item.case-odd-row {
-  background-color: rgba($black, 0.04);
+  background-color: $caseOddRowBackgroundColor;
 }
 
 .case-widget-container .widget-column-header .is-selected {
@@ -1647,11 +1591,11 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .case-header-name-desc-cell .case-header-desc-cell {
-  color: rgba($black, 0.4);
+  color: $caseItemDescriptionCell;
 }
 
 .case-header-action-cell .action-item {
-  color: rgba($black, 0.5) !important;
+  color: $caseHeaderActionDetailItem !important;
 }
 
 .action-steps-panel .ui-overlaypanel-content {
@@ -1667,7 +1611,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .action-steps-panel .action-step-item {
-  color: rgba($black, 0.5) !important;
+  color: $actionStepItemTextColor !important;
 }
 
 .case-header-action-cell .action-item .ui-button .ui-button-text,
@@ -1904,6 +1848,11 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 .ui-inplace .ui-inplace-editor .ui-button.ui-inplace-cancel .ui-icon-close:before {
   font-family: $iconFontFamily;
+}
+
+.side-steps-panel .side-step-item {
+  font-size: $largeFontSize;
+  color: rgba($black, 0.5) !important;
 }
 
 .side-steps-panel .side-step-item:hover:not(.ui-state-disabled) {
