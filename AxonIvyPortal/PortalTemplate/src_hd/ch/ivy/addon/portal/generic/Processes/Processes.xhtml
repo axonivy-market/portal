@@ -7,7 +7,7 @@
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="isNotRequiredLogin" value="false" />
 
-    <ui:define name="pageTitle">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}</ui:define>
+    <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}</ui:define>
     <ui:define name="simplePageContent">
       <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-widget" processListStyleClass="process-start-list" />
     </ui:define>

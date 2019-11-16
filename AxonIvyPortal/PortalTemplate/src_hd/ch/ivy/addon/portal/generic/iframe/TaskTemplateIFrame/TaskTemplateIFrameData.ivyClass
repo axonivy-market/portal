@@ -2,3 +2,7 @@ TaskTemplateIFrameData #class
 ch.ivy.addon.portal.generic.iframe.TaskTemplateIFrame #namespace
 url String #field
 url PERSISTENT #fieldModifier
+task ch.ivyteam.ivy.workflow.ITask #field
+task PERSISTENT #fieldModifier
+taskId Number #field
+taskId PERSISTENT #fieldModifier

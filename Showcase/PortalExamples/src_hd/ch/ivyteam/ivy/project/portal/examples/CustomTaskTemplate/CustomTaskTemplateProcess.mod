@@ -31,7 +31,7 @@ Ts0 @UdProcessEnd f19 '' #zField
 Ts0 @PushWFArc f20 '' #zField
 >Proto Ts0 Ts0 CustomTaskTemplateProcess #zField
 Ts0 f0 guid 16C8374337A6693D #txt
-Ts0 f0 method start(ch.ivyteam.ivy.project.portal.examples.showcase.Data) #txt
+Ts0 f0 method start(Data) #txt
 Ts0 f0 inParameterDecl '<ch.ivyteam.ivy.project.portal.examples.showcase.Data data> param;' #txt
 Ts0 f0 inParameterMapAction 'out.actualStepIndex=param.data.actuaStepIndex + 1;
 out.data=param.data;
