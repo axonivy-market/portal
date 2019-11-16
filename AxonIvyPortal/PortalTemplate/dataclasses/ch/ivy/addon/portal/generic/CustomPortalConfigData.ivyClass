@@ -1,3 +1,0 @@
-CustomPortalConfigData #class
-ch.ivy.addon.portal.generic #namespace
-portalConfig ch.ivy.addon.portal.generic.PortalConfig #field

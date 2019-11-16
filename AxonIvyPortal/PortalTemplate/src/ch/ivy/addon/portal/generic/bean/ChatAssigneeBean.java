@@ -211,8 +211,11 @@ public class ChatAssigneeBean implements Serializable {
     handleConfiguredRoleList();
 
     if (isShowCreateGroupChatDialog) {
-      populateAvailableRoles();
-      populateAvailableUsers();
+      if (CollectionUtils.isEmpty(availableRoles) || CollectionUtils.isEmpty(availableUsers)) {
+        populateAvailableRoles();
+        populateAvailableUsers();
+      }
+      PrimeFaces.current().executeScript("PF('chat-assignee-dialog').show()");
     } else if (!doesGroupChatExist) {
       createGroupChat();
     }

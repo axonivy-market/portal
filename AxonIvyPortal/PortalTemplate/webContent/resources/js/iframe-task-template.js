@@ -4,9 +4,6 @@ function loadIframe() {
   var window = iframe.contentWindow;
   $(iframe).on('load', function() {
     getDataFromIFrame([{
-      name : 'taskId',
-      value : window.taskId
-    }, {
       name : 'currentProcessStep',
       value : window.currentProcessStep
     }, {
@@ -25,6 +22,7 @@ function loadIframe() {
     
     if (!window.announcementInvisible) {
       $('#announcement-container').removeClass('u-hidden');
+      $('.task-template-container').height($('.task-template-container').outerHeight() - 10);
     }
     $('.task-template-container').removeClass('u-hidden');
   });

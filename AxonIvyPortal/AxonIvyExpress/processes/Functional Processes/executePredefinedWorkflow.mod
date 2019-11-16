@@ -48,10 +48,7 @@ ew0 @EndSub f32 '' #zField
 ew0 @Alternative f34 '' #zField
 ew0 @StartSub f35 '' #zField
 ew0 @EndTask f36 '' #zField
-ew0 @PushWFArc f19 '' #zField
-ew0 @PushWFArc f39 '' #zField
 ew0 @TaskSwitch f26 '' #zField
-ew0 @TkArc f20 '' #zField
 ew0 @PushWFArc f21 '' #zField
 ew0 @Alternative f12 '' #zField
 ew0 @PushWFArc f22 '' #zField
@@ -62,6 +59,11 @@ ew0 @PushWFArc f8 '' #zField
 ew0 @GridStep f28 '' #zField
 ew0 @PushWFArc f29 '' #zField
 ew0 @PushWFArc f27 '' #zField
+ew0 @GridStep f31 '' #zField
+ew0 @PushWFArc f33 '' #zField
+ew0 @PushWFArc f19 '' #zField
+ew0 @PushWFArc f37 '' #zField
+ew0 @TkArc f38 '' #zField
 >Proto ew0 ew0 executePredefinedWorkflow #zField
 Bk4 @TextInP .type .type #zField
 Bk4 @TextInP .processKind .processKind #zField
@@ -416,7 +418,7 @@ ew0 f14 354 178 682 178 #arcP
 ew0 f14 1 354 360 #addKink
 ew0 f14 2 682 360 #addKink
 ew0 f14 1 0.5 0 0 #arcLabel
-ew0 f32 513 428 26 26 14 0 #rect
+ew0 f32 627 427 26 26 14 0 #rect
 ew0 f32 @|EndSubIcon #fIcon
 ew0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -427,7 +429,7 @@ ew0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 f34 208 427 28 28 -45 -42 #rect
+ew0 f34 322 426 28 28 -45 -42 #rect
 ew0 f34 @|AlternativeIcon #fIcon
 ew0 f35 inParamDecl '<gawfs.ExecutePredefinedWorkflowData data> param;' #txt
 ew0 f35 inParamTable 'out=param.data;
@@ -445,23 +447,8 @@ ew0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 ew0 f35 65 428 26 26 -75 26 #rect
 ew0 f35 @|StartSubIcon #fIcon
-ew0 f36 207 514 30 30 16 0 #rect
+ew0 f36 321 513 30 30 16 0 #rect
 ew0 f36 @|EndIcon #fIcon
-ew0 f19 expr out #txt
-ew0 f19 91 441 208 441 #arcP
-ew0 f39 expr in #txt
-ew0 f39 outCond 'ivy.case.getActiveTasks().size() > 1' #txt
-ew0 f39 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>yes</name>
-        <nameStyle>3,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-ew0 f39 222 455 222 514 #arcP
-ew0 f39 0 0.3559322033898305 13 0 #arcLabel
 ew0 f26 actionTable 'out=in1;
 ' #txt
 ew0 f26 outLinks "TaskA.ivp" #txt
@@ -483,25 +470,11 @@ ew0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-ew0 f26 336 425 32 32 -33 -39 #rect
+ew0 f26 448 424 32 32 -33 -39 #rect
 ew0 f26 @|TaskSwitchIcon #fIcon
-ew0 f20 expr in #txt
-ew0 f20 type gawfs.ExecutePredefinedWorkflowData #txt
-ew0 f20 var in1 #txt
-ew0 f20 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>no</name>
-        <nameStyle>2,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-ew0 f20 236 441 336 441 #arcP
-ew0 f20 0 0.5135135135135135 0 11 #arcLabel
 ew0 f21 expr data #txt
 ew0 f21 outCond ivp=="TaskA.ivp" #txt
-ew0 f21 368 441 513 441 #arcP
+ew0 f21 480 440 627 440 #arcP
 ew0 f21 0 0.5135135135135135 0 11 #arcLabel
 ew0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -577,6 +550,47 @@ ew0 f27 expr out #txt
 ew0 f27 1000 64 1056 144 #arcP
 ew0 f27 1 1056 64 #addKink
 ew0 f27 1 0.5 0 0 #arcLabel
+ew0 f31 actionTable 'out=in;
+' #txt
+ew0 f31 actionCode 'out.hasActiveTasks = ivy.case.getActiveTasks().size() > 1;' #txt
+ew0 f31 security system #txt
+ew0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>has active tasks?</name>
+    </language>
+</elementInfo>
+' #txt
+ew0 f31 152 418 112 44 -45 -8 #rect
+ew0 f31 @|StepIcon #fIcon
+ew0 f33 expr out #txt
+ew0 f33 90 440 152 440 #arcP
+ew0 f19 264 440 322 440 #arcP
+ew0 f37 expr in #txt
+ew0 f37 outCond in.hasActiveTasks #txt
+ew0 f37 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>yes</name>
+        <nameStyle>3,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ew0 f37 336 454 336 513 #arcP
+ew0 f38 expr in #txt
+ew0 f38 type gawfs.ExecutePredefinedWorkflowData #txt
+ew0 f38 var in1 #txt
+ew0 f38 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>no</name>
+        <nameStyle>2,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+ew0 f38 350 440 448 440 #arcP
 >Proto ew0 .type gawfs.ExecutePredefinedWorkflowData #txt
 >Proto ew0 .processKind CALLABLE_SUB #txt
 >Proto ew0 0 0 32 24 18 0 #rect
@@ -1731,12 +1745,6 @@ ew0 f7 out f15 tail #connect
 ew0 f15 head U20 g0 #connect
 ew0 f7 out f14 tail #connect
 ew0 f14 head f5 in #connect
-ew0 f34 out f39 tail #connect
-ew0 f39 head f36 mainIn #connect
-ew0 f35 mainOut f19 tail #connect
-ew0 f19 head f34 in #connect
-ew0 f34 out f20 tail #connect
-ew0 f20 head f26 in #connect
 ew0 f26 out f21 tail #connect
 ew0 f21 head f32 mainIn #connect
 ew0 f5 out f22 tail #connect
@@ -1752,6 +1760,14 @@ ew0 f29 head f28 mainIn #connect
 ew0 f12 out f8 tail #connect
 ew0 f28 mainOut f27 tail #connect
 ew0 f27 head f23 in #connect
+ew0 f35 mainOut f33 tail #connect
+ew0 f33 head f31 mainIn #connect
+ew0 f31 mainOut f19 tail #connect
+ew0 f19 head f34 in #connect
+ew0 f34 out f37 tail #connect
+ew0 f37 head f36 mainIn #connect
+ew0 f34 out f38 tail #connect
+ew0 f38 head f26 in #connect
 Bk4 f8 head f16 in #connect
 Bk4 f0 out f8 tail #connect
 Bk4 f0 out f1 tail #connect
