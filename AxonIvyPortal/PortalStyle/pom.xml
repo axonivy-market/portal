@@ -11,7 +11,7 @@
     <resources.directory.css>${resources.directory}/serenity-portal/</resources.directory.css>
     <libsass.version>0.2.10-libsass_3.5.3</libsass.version>
     <resources.directory>${project.basedir}/webContent/resources</resources.directory>
-    <build.plugin.version>7.4.1-SNAPSHOT</build.plugin.version>
+    <build.plugin.version>8.0.0</build.plugin.version>
   </properties>
   <build>
     <plugins>

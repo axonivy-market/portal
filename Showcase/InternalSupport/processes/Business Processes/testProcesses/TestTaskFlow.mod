@@ -1214,7 +1214,7 @@ TaskA.EXROL=Everybody
 TaskA.EXTYPE=0
 TaskA.NAM=Planning meeting
 TaskA.PRI=2
-TaskA.ROL=Sales
+TaskA.ROL=Everybody
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
 Tt0 f141 template "" #txt
@@ -1228,31 +1228,31 @@ Tt0 f145 1481 1137 30 30 0 15 #rect
 Tt0 f145 @|EndIcon #fIcon
 Tt0 f147 actionTable 'out=in1;
 ' #txt
-Tt0 f147 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp" #txt
-Tt0 f147 taskData 'TaskA.EXPRI=2
+Tt0 f147 outLinks "TaskB.ivp","TaskA.ivp","TaskC.ivp" #txt
+Tt0 f147 taskData 'TaskB.EXROL=Everybody
+TaskB.TYPE=0
+TaskB.PRI=2
+TaskB.NAM=Estimation meeting
+TaskB.EXPRI=2
+TaskB.EXTYPE=0
+TaskB.SKIP_TASK_LIST=false
+TaskB.ROL=Sales
+TaskA.EXPRI=2
 TaskA.EXROL=Everybody
 TaskA.EXTYPE=0
 TaskA.NAM=Planning meeting 2
 TaskA.PRI=2
-TaskA.ROL=Sales
+TaskA.ROL=Everybody
 TaskA.SKIP_TASK_LIST=true
 TaskA.TYPE=0
-TaskB.EXPRI=2
-TaskB.EXROL=Everybody
-TaskB.EXTYPE=0
-TaskB.NAM=Estimation meeting
-TaskB.PRI=2
-TaskB.ROL=Sales
-TaskB.SKIP_TASK_LIST=false
-TaskB.TYPE=0
-TaskC.EXPRI=2
-TaskC.EXROL=Everybody
-TaskC.EXTYPE=0
-TaskC.NAM=Planning meeting 3
-TaskC.PRI=2
-TaskC.ROL=Sales
 TaskC.SKIP_TASK_LIST=false
-TaskC.TYPE=0' #txt
+TaskC.ROL=Sales
+TaskC.EXPRI=2
+TaskC.NAM=Planning meeting 3
+TaskC.TYPE=0
+TaskC.EXTYPE=0
+TaskC.PRI=2
+TaskC.EXROL=Everybody' #txt
 Tt0 f147 template "" #txt
 Tt0 f147 848 1168 32 32 0 16 #rect
 Tt0 f147 @|TaskSwitchIcon #fIcon
@@ -1264,7 +1264,7 @@ TaskA.EXROL=Everybody
 TaskA.EXTYPE=0
 TaskA.NAM=Estimation meeting 2
 TaskA.PRI=2
-TaskA.ROL=Sales
+TaskA.ROL=Everybody
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
 Tt0 f144 template "" #txt

@@ -1,0 +1,134 @@
+html {
+  overflow-y: scroll;
+}
+
+body {
+  font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: small;
+}
+
+/*! Hack for IE10+11 that the scrollbar not overlays the page */
+@-ms-viewport {
+  width:auto;
+}
+
+.navbar {
+  border: 0;
+  border-radius: 0;
+  margin-bottom: 0;
+  background-color: #ffffff;
+  border-color: #080808;
+}
+
+.container>.navbar-header {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.navbar .navbar-brand {
+  color: #4f4f4f;
+}
+
+.navbar .navbar-nav>li>a {
+  color: #4f4f4f;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+    background-color: #e8e8e8;
+}
+
+.navbar .navbar-text,
+.navbar .navbar-link {
+  color: #4f4f4f;
+  font-size: 12px;
+}
+
+.navbar-collapse {
+  border-top: 0;
+}
+
+.ivy-logo img {
+  height: 46px;
+  z-index: 1;
+  margin: 0;
+  position: relative;
+  margin: 16px 25px 16px 0;
+}
+
+#navbar-ivy-title {
+  z-index: 110;
+  position: absolute;
+  margin-top: 20px;
+  margin-left: 15px;
+}
+
+.navbar-toggle .icon-bar {
+    background-color: #4f4f4f;
+}
+
+.navbar-toggle:hover .icon-bar {
+    background: #AFCA05;
+}
+
+.navbar-header .navbar-toggle:hover {
+    background-color: #f9f9f9;
+    border-color: #f9f9f9;
+}
+
+#navbar-ivy-links {
+  z-index: 100;
+  margin-top: 16px;
+  background-color: #ffffff;
+  font-size: 14px;
+  float: right;
+  text-align: center; 
+  margin-top: 5px;
+  height: 70px;
+}
+
+.navbar .navbar-nav>li>a:focus, .navbar .navbar-nav>li>a:hover {
+  color: #AECA05;
+  background-color: transparent;
+}
+
+.navbar .navbar-nav>.active>a, .navbar .navbar-nav>.active>a:hover, .navbar .navbar-nav>.active>a:focus {
+  background-color: transparent;
+  font-weight: bold;
+  color: #AECA05;
+}
+
+.navbar-toggle {
+  z-index: 120;
+}
+
+.ivy-subnav {
+  margin-bottom: 0px;
+  font-size: 13px;
+}
+
+.ivy-subnav .navbar-inner {
+  background: #eeeeee;
+}
+
+.ivy-subnav .nav-pills li.active,
+.ivy-subnav .nav-pills li.active > a,
+.ivy-subnav .nav-pills li.active > a:hover,
+.ivy-subnav .nav-pills li.active > a:focus {
+  background-color: #afca05;
+  color: #ffffff;
+}
+
+.ivy-subnav .nav-pills li a {
+  border-radius: 0;
+  color: #575656;
+}
+
+footer {
+  color: #9d9d9d;
+  margin-bottom: 20px;
+}
+
+/* Override bootstrap otherwise h:panelGrid tag has no padding */
+td, th {
+  padding: 1px;
+}

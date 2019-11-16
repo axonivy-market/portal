@@ -481,6 +481,15 @@ body .ui-dialog .ui-dialog-footer .ui-button {
     background-color: $primaryColor;
 }
 
+.ui-inplace-content .ui-inplace-editor {
+    .ui-button.ui-button-icon-only {
+        .ui-icon {
+           font-family: $iconFontFamily !important;
+           font-size: $inplaceEditIconFontSize !important;
+           margin-top: -9px !important;
+        }
+    }
+}
 
 /*Style for table --------------------------------------------------------------------------------------*/
 .ui-datatable table tbody tr.ui-datatable-selectable.ui-state-highlight td {
@@ -761,10 +770,6 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
     color: $primaryLightestColor !important;
 }
 
-.ui-chkbox-label {
-    width: auto;
-    margin: 0px 0px 0px 12px !important;
-}
 .ui-chkbox.ui-widget {
   margin-top: 2px;
   margin-bottom: 2px;
@@ -936,7 +941,7 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
 .case-detail-body .case-details-item {
   .ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top {
       background-color: rgba($black, 0.05);
-      border-color: #d8d8d8;
+      border-color: $caseRelatedTaskContentBorder;
       padding: 2px 10px;
   }
   
@@ -969,6 +974,7 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
   .ui-datascroller-content.ui-widget-content.ui-corner-all {
     padding: 0;
     border: none;
+    border-right-color: $caseRelatedTaskContentBorder !important;
   }
   
   .case-related-task-case-running ul li:first-child {
@@ -979,7 +985,7 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
 
   .case-related-task-case-running ul li:last-child {
     .related-task-content {
-      border-bottom: 1px solid #d8d8d8 !important;
+      border-bottom: 1px solid $caseRelatedTaskContentBorder !important;
     }
   }
 }
@@ -1001,7 +1007,7 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
     flex: 0 0 auto;
     
     &.ui-state-hover {
-      background-color: rgba(0, 0, 0, 0.05) !important;
+      background-color: rgba($black, 0.05) !important;
     }
   }
 }
@@ -1139,8 +1145,13 @@ li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectabl
 .ui-chkbox .ui-widget.ui-chkbox-box.ui-state-active:before {
   left: 0.5em !important;
   top: 0.5em !important;
-  height: 0.18rem !important;
-  width: 0.2rem !important;
+  height: 0.14em !important;
+  width: 0.2em !important;
+}
+
+.ui-radiobutton .ui-radiobutton-box.ui-state-active:before {
+  top: 0.6em !important;
+  height: 0.12em !important;
 }
 
 /*Style for Dialog --------------------------------------------------------------------------------------*/
@@ -1260,9 +1271,6 @@ body .ui-widget.ui-dialog .ui-dialog-content {
   border-bottom: 1px solid $widgetSortMenuBorderBottomColor;
 }
 
-.filter-widget-icon {
-  font-size: $largeFontSize;
-}
 /*Style for Case Item --------------------------------------------------------------------------------------*/
 
 .case-list-unsortable-header-cell {
@@ -2447,6 +2455,14 @@ body .md-inputfield .ui-message.ui-message-error .ui-message-error-icon {
   font-size: 1.3rem;
 }
 
+body .ui-messages ul {
+  display: block;
+}
+
+.ui-messages-info-summary {
+  margin-left: 0px;
+}
+
 @media (max-width: 640px) {
   .ui-datatable-reflow .ui-reflow-dropdown {
     font-size: $largeFontSize !important;
@@ -2464,3 +2480,8 @@ body .ui-selectonemenu .ui-selectonemenu-label.ui-inputfield {
   font-family: $portalFontFamily;
 }
 
+.login-body .login-panel .login-panel-header img {
+    vertical-align: middle;
+    width: auto !important;
+    max-width: 100%;
+}

@@ -102,15 +102,13 @@ Pt0 @PushWFArc f29 '' #zField
 Pt0 @PushWFArc f56 '' #zField
 Pt0 @PushWFArc f75 '' #zField
 Pt0 @UserDialog f53 '' #zField
-Pt0 @PushWFArc f80 '' #zField
-Pt0 @PushWFArc f79 '' #zField
-Pt0 @Alternative f15 '' #zField
-Pt0 @PushWFArc f81 '' #zField
-Pt0 @PushWFArc f85 '' #zField
 Pt0 @UserDialog f7 '' #zField
-Pt0 @PushWFArc f82 '' #zField
 Pt0 @InfoButton f83 '' #zField
 Pt0 @AnnotationArc f86 '' #zField
+Pt0 @PushWFArc f88 '' #zField
+Pt0 @PushWFArc f80 '' #zField
+Pt0 @PushWFArc f81 '' #zField
+Pt0 @PushWFArc f15 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Pt0 f0 outLink PortalStart.ivp #txt
 Pt0 f0 inParamDecl '<String parameters,String portalNavigator> param;' #txt
@@ -222,14 +220,8 @@ TaskEndInfo taskEndInfo = SecurityServiceUtils.getSessionAttribute(taskEndInfoSe
 in.dataModel = taskEndInfo.dataModel;
 in.isTaskStartedInDetails = taskEndInfo.isStartedInTaskDetails;
 in.portalPage = taskEndInfo.portalPage;
-in.isInIFrame = taskEndInfo.isInIFrame;
 
-if (in.isInIFrame) {
-	taskEndInfo.setIsInIFrame(false);
-	SecurityServiceUtils.setSessionAttribute(taskEndInfoSessionAttributeKey, taskEndInfo);
-} else {
-	SecurityServiceUtils.removeSessionAttribute(taskEndInfoSessionAttributeKey);
-}' #txt
+SecurityServiceUtils.removeSessionAttribute(taskEndInfoSessionAttributeKey);' #txt
 Pt0 f2 security system #txt
 Pt0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -273,7 +265,7 @@ Pt0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f30 544 433 32 32 13 7 #rect
+Pt0 f30 544 433 32 32 -3 10 #rect
 Pt0 f30 @|AlternativeIcon #fIcon
 Pt0 f10 outLink DefaultEndPage.ivp #txt
 Pt0 f10 inParamDecl '<Number endedTaskId> param;' #txt
@@ -303,7 +295,8 @@ Pt0 f10 51 436 26 26 -46 17 #rect
 Pt0 f10 @|StartRequestIcon #fIcon
 Pt0 f11 actionTable 'out=in;
 ' #txt
-Pt0 f11 actionCode 'import ch.ivyteam.ivy.workflow.custom.field.ICustomField;
+Pt0 f11 actionCode 'import ch.ivy.addon.portalkit.dto.TaskEndInfo;
+import ch.ivyteam.ivy.workflow.custom.field.ICustomField;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
@@ -320,6 +313,13 @@ if  (#task is initialized) {
 	isTaskStarted = task.getStartProcessData() is initialized;
 	if(#taskWithTaskEndInfo is initialized) {
 		callbackUrl = taskWithTaskEndInfo.customFields().stringField(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString()).getOrDefault("");
+		String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(taskWithTaskEndInfo.getId());
+		TaskEndInfo taskEndInfo = SecurityServiceUtils.getSessionAttribute(taskEndInfoSessionAttributeKey) as TaskEndInfo;
+		in.isInIFrame = taskEndInfo.isInIFrame;
+		if (in.isInIFrame) {
+			taskEndInfo.setIsInIFrame(false);
+			SecurityServiceUtils.setSessionAttribute(taskEndInfoSessionAttributeKey, taskEndInfo);
+		}
 	}
 }
 
@@ -327,7 +327,8 @@ if (isTaskStarted && StringUtils.isNotBlank(callbackUrl)) {
 	out.callbackUrl = callbackUrl + "?endedTaskId=" + taskWithTaskEndInfo.getId();
 } else {
 	out.portalPage = PortalPage.HOME_PAGE;
-}' #txt
+}
+' #txt
 Pt0 f11 security system #txt
 Pt0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -925,6 +926,12 @@ String defaultEndPage = ivy.wf.getStandardProcessImplementationLibrary(StandardP
 
 if (StringUtils.isBlank(defaultEndPage)) {
 	ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES, PortalLibrary.PORTAL_TEMPLATE.getValue());
+}
+
+String defaultMailNotification = ivy.wf.getStandardProcessImplementationLibrary(StandardProcessType.MAIL_NOTIFICATION_PROCESS_TYPES);
+
+if (StringUtils.isBlank(defaultMailNotification)) {
+	ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.MAIL_NOTIFICATION_PROCESS_TYPES, PortalLibrary.PORTAL_TEMPLATE.getValue());
 }' #txt
 Pt0 f93 security system #txt
 Pt0 f93 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1227,27 +1234,6 @@ callbackUrl</name>
 ' #txt
 Pt0 f53 504 522 112 44 -30 -16 #rect
 Pt0 f53 @|UserDialogIcon #fIcon
-Pt0 f80 expr in #txt
-Pt0 f80 outCond 'org.apache.commons.lang3.StringUtils.isNotBlank(in.#callbackUrl)' #txt
-Pt0 f80 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>YES</name>
-    </language>
-</elementInfo>
-' #txt
-Pt0 f80 560 465 560 522 #arcP
-Pt0 f80 0 0.40350877192982454 -20 0 #arcLabel
-Pt0 f79 expr in #txt
-Pt0 f79 560 433 560 176 #arcP
-Pt0 f15 432 240 32 32 0 16 #rect
-Pt0 f15 @|AlternativeIcon #fIcon
-Pt0 f81 expr out #txt
-Pt0 f81 280 256 432 256 #arcP
-Pt0 f81 0 0.49687471886202816 0 0 #arcLabel
-Pt0 f85 expr in #txt
-Pt0 f85 outCond !in.isInIFrame #txt
-Pt0 f85 457 249 551 167 #arcP
 Pt0 f7 dialogId ch.ivy.addon.portal.generic.iframe.BlankPageForIFrame #txt
 Pt0 f7 startMethod start() #txt
 Pt0 f7 requestActionDecl '<> param;' #txt
@@ -1260,9 +1246,8 @@ Pt0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f7 672 234 128 44 -55 -8 #rect
+Pt0 f7 712 426 128 44 -55 -8 #rect
 Pt0 f7 @|UserDialogIcon #fIcon
-Pt0 f82 464 256 672 256 #arcP
 Pt0 f83 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1274,7 +1259,19 @@ before the outside page redirects</name>
 ' #txt
 Pt0 f83 656 314 176 60 -85 -24 #rect
 Pt0 f83 @|IBIcon #fIcon
-Pt0 f86 744 314 736 278 #arcP
+Pt0 f86 744 374 776 426 #arcP
+Pt0 f88 expr out #txt
+Pt0 f88 280 256 555 171 #arcP
+Pt0 f88 1 512 256 #addKink
+Pt0 f88 0 0.7096913072412637 0 0 #arcLabel
+Pt0 f80 expr in #txt
+Pt0 f80 outCond in.isInIFrame #txt
+Pt0 f80 576 449 712 448 #arcP
+Pt0 f81 expr in #txt
+Pt0 f81 outCond 'org.apache.commons.lang3.StringUtils.isNotBlank(in.#callbackUrl)' #txt
+Pt0 f81 560 465 560 522 #arcP
+Pt0 f15 expr in #txt
+Pt0 f15 560 433 560 176 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1361,15 +1358,13 @@ Pt0 f21 out f56 tail #connect
 Pt0 f56 head f74 mainIn #connect
 Pt0 f21 out f75 tail #connect
 Pt0 f75 head f52 mainIn #connect
-Pt0 f30 out f80 tail #connect
-Pt0 f80 head f53 mainIn #connect
-Pt0 f30 out f79 tail #connect
-Pt0 f79 head f4 in #connect
-Pt0 f2 mainOut f81 tail #connect
-Pt0 f81 head f15 in #connect
-Pt0 f15 out f85 tail #connect
-Pt0 f85 head f4 in #connect
-Pt0 f15 out f82 tail #connect
-Pt0 f82 head f7 mainIn #connect
 Pt0 f83 ao f86 tail #connect
 Pt0 f86 head f7 @CG|ai #connect
+Pt0 f2 mainOut f88 tail #connect
+Pt0 f88 head f4 in #connect
+Pt0 f30 out f80 tail #connect
+Pt0 f80 head f7 mainIn #connect
+Pt0 f30 out f81 tail #connect
+Pt0 f81 head f53 mainIn #connect
+Pt0 f30 out f15 tail #connect
+Pt0 f15 head f4 in #connect

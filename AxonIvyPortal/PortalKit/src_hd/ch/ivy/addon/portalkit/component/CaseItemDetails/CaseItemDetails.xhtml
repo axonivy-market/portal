@@ -33,7 +33,7 @@
             saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
             cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
             widgetVar="case-detail-name-edit-inplace"
-            label="#{empty case.getName() ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CasesNameIsNot') : case.name}"
+            label="#{empty case.getName() ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable') : case.name}"
             styleClass="case-detail-name-inplace-edit u-truncate-text">
             <p:inputText id="case-detail-name-input" value="#{case.name}" maxlength="200"
               styleClass="case-detail-name-input"

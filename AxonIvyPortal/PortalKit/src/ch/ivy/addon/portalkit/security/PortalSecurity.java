@@ -17,7 +17,7 @@ import ch.ivyteam.ivy.security.ISecurityDescriptor;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
-import ch.ivyteam.licence.SignedLicence;
+import ch.ivyteam.ivy.server.restricted.EngineMode;
 
 public enum PortalSecurity {
   INSTANCE;
@@ -26,7 +26,6 @@ public enum PortalSecurity {
     private static final String ADMIN = "admin";
     private static final String DEMO = "demo";
     private static final String GUEST = "guest";
-    private static final String DEVELOPER = "Developer";
     private Username() {}
   }
   
@@ -73,7 +72,7 @@ public enum PortalSecurity {
     ISecurityContext securityContext = portalApplication.getSecurityContext();
     boolean isIvySecurity = securityContext.getExternalSecuritySystemName()
         .equals(ISecurityConstants.IVY_ENGINE_SECURITY_SYSTEM_PROVIDER_NAME);
-    if (SignedLicence.isDemo() && isIvySecurity) {
+    if ((EngineMode.is(EngineMode.DEMO) || EngineMode.isEmbeddedInDesigner()) && isIvySecurity) {
       IUser adminUser = securityContext.findUser(Username.ADMIN);
       if (adminUser != null) {
         for (IPermission permission : Permissions.ADMIN_USER_ADDITIONAL) {
@@ -97,7 +96,7 @@ public enum PortalSecurity {
         }
       }
 
-      IUser developerUser = securityContext.findUser(Username.DEVELOPER);
+      IUser developerUser = securityContext.findUser(ISecurityConstants.DEVELOPER_USER_NAME);
       if (developerUser != null) {
         grantPermissionsToForSecurityMember(Permissions.DEVELOPER_USER_ADDTIONAL, developerUser);
       }

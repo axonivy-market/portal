@@ -71,7 +71,7 @@
               <h:outputText value="#{absence.comment}" />
             </p:column>
 
-            <p:column styleClass="absences-table-action-column" width="100">
+            <p:column styleClass="absences-table-action-column">
               <p:commandLink id="edit-absence" process="absence-table"
                 styleClass="absences-table-action-column-icon-button" actionListener="#{logic.editAbsence(absence)}"
                 oncomplete="PF('editAbsenceDialog').show()" update="@widgetVar(editAbsenceDialog)"

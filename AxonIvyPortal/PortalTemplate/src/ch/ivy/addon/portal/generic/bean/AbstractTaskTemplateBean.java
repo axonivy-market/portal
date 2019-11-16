@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.primefaces.PrimeFaces;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bo.AdhocHistory;
@@ -25,8 +26,6 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
   protected List<IStartableSideStep> sideStepList;
   protected IStartableSideStep selectedSideStep;
   protected List<AdhocHistory> adhocHistories;
-  // This property is for attribute "visible" of a dialog. Attribute "visible" of a dialog requires a property of a bean. 
-  protected Boolean isFirstTimeOpenOriginalAdhocTask;
 
   public List<IStartableSideStep> getSideStepList() {
     return sideStepList;
@@ -74,14 +73,12 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
     if (task == null) {
       return false;
     }
-    if (isFirstTimeOpenOriginalAdhocTask == null) {
-      isFirstTimeOpenOriginalAdhocTask = AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString().equals(task.customFields().stringField(AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString()).getOrNull());
+    boolean isFirstTimeOpenOriginalAdhocTask = AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString()
+        .equals(task.customFields().stringField(AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString()).getOrNull());
+    if (isFirstTimeOpenOriginalAdhocTask) {
+      PrimeFaces.current().executeScript("PF('adhoc-task-history-dialog').show()");
     }
     return AdditionalProperty.ORIGINAL_ADHOC_EXPRESS_TASK.toString().equals(task.customFields().stringField(AdditionalProperty.ORIGINAL_ADHOC_EXPRESS_TASK.toString()).getOrNull());
-  }
-  
-  public boolean getIsFirstTimeOpenOriginalAdhocTask() {
-    return isFirstTimeOpenOriginalAdhocTask;
   }
   
   public void onCloseAdhocTaskHistoryDialog(ITask task) {
@@ -94,10 +91,10 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
     return hasAdhocHistory ? Ivy.cms().co("/ch.ivy.addon.portal.generic/OpenTaskTemplate/reCreateAdhocWarning") : Ivy.cms().co("/ch.ivy.addon.portal.generic/OpenTaskTemplate/goToAdhocWarning");
   }
   
-  public List<AdhocHistory> getAllAdhocHistories(Long taskId) {
-    if (adhocHistories == null) {
+  public List<AdhocHistory> getAllAdhocHistories(ITask task) {
+    if (adhocHistories == null && task != null) {
       AdhocHistoryService adhocHistoryService = new AdhocHistoryService();
-      adhocHistories = adhocHistoryService.getHistoriesByTaskID(taskId);
+      adhocHistories = adhocHistoryService.getHistoriesByTaskID(task.getId());
       adhocHistories.sort((first, second) -> second.getTimestamp().compareTo(first.getTimestamp()));
     }
     return adhocHistories;
