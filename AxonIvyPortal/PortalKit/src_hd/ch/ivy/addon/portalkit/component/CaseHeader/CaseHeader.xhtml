@@ -17,13 +17,13 @@
 
   <h:panelGroup class="case-header-name-desc-cell u-truncate-text">
     <h:outputText id="case-header-name-cell" styleClass="case-header-name-cell" rendered="#{!expanded or case.state eq 'DONE'}"
-      value="#{empty case.getName() ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CasesNameIsNot') : case.name}"></h:outputText>
+      value="#{empty case.getName() ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable') : case.name}"></h:outputText>
     <span class="case-header-name-cell">
       <h:form id="case-name-form">
       <p:inplace id="case-name-edit-inplace" editor="true" rendered="#{expanded and case.state ne 'DONE'}"
         disabled="#{!caseActionBean.canChangeName(case)}" saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
         cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" widgetVar="case-name-edit-inplace"
-        label="#{empty case.getName() ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CasesNameIsNot') : case.name}">
+        label="#{empty case.getName() ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable') : case.name}">
         <p:inputText id="case-name-input" value="#{case.name}" maxlength="200" styleClass="case-name-input"
           onkeypress="if(event.keyCode == 13) {PF('case-name-edit-inplace').save()}" />
         <p:ajax event="save" update="case-name-form"/>

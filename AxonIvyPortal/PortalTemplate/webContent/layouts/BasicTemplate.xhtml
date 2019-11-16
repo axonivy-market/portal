@@ -13,7 +13,11 @@
 
   <f:attribute name="primefaces.THEME" value="none" />
   
-  <title><ui:insert name="pageTitle">Axon.ivy Portal</ui:insert></title>
+  <title>
+    <ui:insert name="title">
+      <ui:insert name="pageTitle">Axon.ivy Portal</ui:insert><!-- DEPRECATED: please use title instead of pageTitle -->
+    </ui:insert>
+  </title>
   <ui:fragment rendered="#{resource['ivy-webcontent:layouts/images/favicon.png'] != null}">
     <link rel="shortcut icon" href="#{resource['ivy-webcontent:layouts/images/favicon.png']}" type="image/png" />
   </ui:fragment>

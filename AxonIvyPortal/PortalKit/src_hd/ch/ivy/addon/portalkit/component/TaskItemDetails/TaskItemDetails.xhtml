@@ -47,7 +47,7 @@
   <cc:renderFacet name="taskItemDetailCustomPanelTop" />
 
   <div class="task-item-body u-padding-0">
-    <div class="ui-g-12">
+    <div class="ui-g-12 task-item-body-container">
 
       <!-- General & description box -->
       <div class="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12 custom-task-left-component">
@@ -98,6 +98,9 @@
           <ic:ch.ivy.addon.portalkit.component.TaskItemDocuments id="task-documents" task="#{task}" componentToUpdate="#{p:component('task-detail-note-container')}" />
         </h:panelGroup>
       </div>
+
+        <!-- Custom panel -->
+      <cc:renderFacet name="taskItemDetailCustomPanelBottom" />
     </div>
   </div>
 
@@ -117,7 +120,5 @@
   </p:confirmDialog>
 
 
-  <!-- Custom panel -->
-  <cc:renderFacet name="taskItemDetailCustomPanelBottom" />
 </cc:implementation>
 </html>

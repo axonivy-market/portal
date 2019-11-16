@@ -1,0 +1,8 @@
+ApproveData #class
+ch.ivyteam.ivy.project.portal.examples.testdata.Approve #namespace
+selectedInvestment ch.ivyteam.ivy.project.portal.examples.Investment #field
+selectedInvestment PERSISTENT #fieldModifier
+isApproved Boolean #field
+isApproved PERSISTENT #fieldModifier
+note String #field
+note PERSISTENT #fieldModifier
