@@ -4,69 +4,61 @@
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
   <ui:composition template="/layouts/TaskTemplate.xhtml">
-
-    <ui:param name="task" value="#{ivy.task}" />
-    <ui:param name="isNotRequiredLogin" value="false" />
-    <ui:param name="caseId" value="#{ivy.case.getBusinessCase().getId()}" />
-    <ui:param name="showCaseStatusInfoTab" value="true" />
-    <ui:param name="showTaskFormTab" value="false" />
-    <ui:define name="dynamicTabs">
-      <!-- Define your tabs here -->
-      <p:tab title="Employee information">
-        <h:panelGrid columns="2" columnClasses="TexAlLeft ui-g-6, ui-g-6" styleClass="ui-g-4 ui-sm-12 ui-fluid" id="employee-info">
-          <h:panelGroup class="md-inputfield MarTop10">
-            <p:inputText id="first-name" value="#{data.employeeInfo.firstName}" required="true" requiredMessage="This field is required" />
-            <p:outputLabel value="First name" for="first-name" />
-          </h:panelGroup>
-          <p:message id="first-name-msg" for="first-name" />
-
-          <h:panelGroup class="md-inputfield MarTop20">
-            <p:inputText  value="#{data.employeeInfo.lastName}" />
-            <p:outputLabel value="Last name" />
-          </h:panelGroup>
-          <p:spacer />
-
-          <h:panelGrid columns="1">
-            <p:outputLabel value="Birthday" />
-            <p:calendar value="#{data.employeeInfo.birthDay}" />
-          </h:panelGrid>
-          <p:spacer />
-        </h:panelGrid>
-      </p:tab>
-
-      <p:tab title="Company information">
-        <h:panelGrid columns="2" columnClasses="TexAlLeft ui-g-6, ui-g-6" styleClass="ui-g-4 ui-sm-12 ui-fluid" id="company-info">
-          <h:panelGroup class="md-inputfield MarTop10">
-            <p:inputText id="country" value="#{data.employeeInfo.country}" required="true" />
-            <p:outputLabel value="Country" for="country" />
-          </h:panelGroup>
-          <p:message id="country-msg" for="country" />
-
-          <h:panelGroup class="md-inputfield MarTop20">
-            <p:inputText id="city" value="#{data.employeeInfo.city}" />
-            <p:outputLabel value="City" for="city" />
-          </h:panelGroup>
-          <p:spacer />
-
-          <h:panelGroup class="md-inputfield MarTop20">
-            <p:inputText value="#{data.employeeInfo.email}" type="email" id="email" />
-            <p:outputLabel value="Email" />
-          </h:panelGroup>
-          <p:spacer/>
-        </h:panelGrid>
-      </p:tab>
+    <ui:define name="content">
+      <h:form>
+        <p:tabView>
+          <p:tab title="Employee information">
+            <h:panelGrid columns="2" columnClasses="TexAlLeft ui-g-6, ui-g-6" styleClass="ui-g-4 ui-sm-12 ui-fluid" id="employee-info">
+              <h:panelGroup class="md-inputfield MarTop10">
+                <p:inputText id="first-name" value="#{data.employeeInfo.firstName}" required="true" requiredMessage="This field is required" />
+                <p:outputLabel value="First name" for="first-name" />
+              </h:panelGroup>
+              <p:message id="first-name-msg" for="first-name" />
+    
+              <h:panelGroup class="md-inputfield MarTop20">
+                <p:inputText  value="#{data.employeeInfo.lastName}" />
+                <p:outputLabel value="Last name" />
+              </h:panelGroup>
+              <p:spacer />
+    
+              <h:panelGrid columns="1">
+                <p:outputLabel value="Birthday" />
+                <p:calendar value="#{data.employeeInfo.birthDay}" />
+              </h:panelGrid>
+              <p:spacer />
+            </h:panelGrid>
+          </p:tab>
+    
+          <p:tab title="Company information">
+            <h:panelGrid columns="2" columnClasses="TexAlLeft ui-g-6, ui-g-6" styleClass="ui-g-4 ui-sm-12 ui-fluid" id="company-info">
+              <h:panelGroup class="md-inputfield MarTop10">
+                <p:inputText id="country" value="#{data.employeeInfo.country}" required="true" />
+                <p:outputLabel value="Country" for="country" />
+              </h:panelGroup>
+              <p:message id="country-msg" for="country" />
+    
+              <h:panelGroup class="md-inputfield MarTop20">
+                <p:inputText id="city" value="#{data.employeeInfo.city}" />
+                <p:outputLabel value="City" for="city" />
+              </h:panelGroup>
+              <p:spacer />
+    
+              <h:panelGroup class="md-inputfield MarTop20">
+                <p:inputText value="#{data.employeeInfo.email}" type="email" id="email" />
+                <p:outputLabel value="Email" />
+              </h:panelGroup>
+              <p:spacer/>
+            </h:panelGrid>
+          </p:tab>
+        </p:tabView>
+        <h:panelGroup styleClass="MarTop5 DispBlock Fright" id="command-group">
+          <p:commandButton value="Finish" actionListener="#{logic.finish}" id="finish-button"
+            process="@form" update="@form" />
+          <p:spacer width="5"/>
+          <p:commandButton value="Back" actionListener="#{logic.back}" id="back-button" immediate="true" />
+        </h:panelGroup>
+      </h:form>
     </ui:define>
-
-    <ui:define name="rightButtons">
-      <!-- Define action buttons -->
-      <h:panelGroup styleClass="MarTop5 DispBlock" id="command-group">
-        <p:commandButton value="Finish" actionListener="#{logic.finish}" id="finish-button" partialSubmit="true"
-          process="employee-info company-info" update="employee-info company-info" />
-        <p:spacer width="5"/>
-        <p:commandButton value="Back" actionListener="#{logic.back}" id="back-button" immediate="true" />
-      </h:panelGroup>
-    </ui:define>
-
   </ui:composition>
 </h:body>
 </html>

@@ -83,7 +83,6 @@ public class ExpressProcessPage extends TemplatePage {
 
 	public void executeDirectly() {
 		click(By.id("form:save"));
-		waitAjaxIndicatorDisappear();
 	}
 
 	public void fillProcessOwners(List<ExpressResponsible> responsibles) {

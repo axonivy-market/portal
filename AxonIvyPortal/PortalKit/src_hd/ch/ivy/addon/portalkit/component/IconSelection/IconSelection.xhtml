@@ -32,7 +32,6 @@
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/iconselection/iconSelectionDialogHeader')}" dynamic="true" height="40vh" resizable="false" fitViewport="true" responsive="true" >
     <div class="search-icon-name-container">
 	    <p:inputText id="search-icon-name-field" onkeyup="searchIconByName(this)" placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/iconselection/seachIconByNamePlaceHolder')}" styleClass="search-icon-input Fright"></p:inputText>
-	    <i class="filter-widget-icon fa fa-filter" />
     </div>
     <h:form>
       <ui:repeat var="icon" value="#{masterDataBean.awesomeIcons}" >
