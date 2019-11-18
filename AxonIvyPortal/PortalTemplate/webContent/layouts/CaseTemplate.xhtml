@@ -15,7 +15,7 @@
     <ui:define name="simplePageContent">
       <c:set var="case" value="#{caseWidgetBean.findCase(caseId)}" scope="request" />
       <div>
-        <div class="Fleft Wid50 Fs20 foreground-text-color MarTop10">
+        <div class="Fleft Wid50 foreground-text-color MarTop10">
           <ui:insert name="caseName">
             <h:panelGroup rendered="#{case ne null}" styleClass="task-template-title">
               <span class="fa fa-check-square-o case-template-title-icon"></span>
