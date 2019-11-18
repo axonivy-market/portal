@@ -36,18 +36,15 @@ Ns0 f1 339 51 26 26 0 12 #rect
 Ns0 f1 @|UdProcessEndIcon #fIcon
 Ns0 f3 actionTable 'out=in;
 ' #txt
-Ns0 f3 actionCode 'import ch.ivyteam.ivy.request.RequestUriFactory;
+Ns0 f3 actionCode 'import ch.ivy.addon.portalkit.service.IvyAdapterService;
+import ch.ivyteam.ivy.request.RequestUriFactory;
 import org.primefaces.model.DefaultStreamedContent;
 import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
 out.taskPriority = StringUtils.capitalize(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/" + in.task.getPriority()).toLowerCase());
 out.taskState = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskState/" + in.task.getState());
 
-GlobalSettingService service = new GlobalSettingService();
-boolean enabledStartInIFrame = Boolean.parseBoolean(service.findGlobalSettingValue(GlobalVariable.START_IN_IFRAME.toString()));
-
+boolean enabledStartInIFrame = IvyAdapterService.getTaskEmbedInIFrameCustomField(in.task);
 out.taskStart = RequestUriFactory.createExternalServerUri().resolve(RequestUriFactory.createTaskStartUri(in.task)).toASCIIString();
 if (enabledStartInIFrame) {
 	out.taskStart += "&embedInFrame";
