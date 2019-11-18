@@ -306,7 +306,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .filter-widget .filter-widget-input {
-  padding: 6px 0 3px 6px !important;
+  padding: 6px 0 4px 6px !important;
 }
 
 .filter-category-checkbox-tree .ui-tree-container {
@@ -350,7 +350,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
     height: 30px !important;
   }
   .task-widget .sort-task-menu {
-  	margin-top: 8px !important;
+  	margin-top: 9px !important;
   }
 }
 
@@ -1500,7 +1500,7 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 
 .task-widget .sort-task-menu {
   width: 100%;
-  margin-top: 5px;
+  margin-top: 6px;
 }
 
 .task-widget .filter-add-container {

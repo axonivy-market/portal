@@ -1,10 +1,8 @@
 {
+  /HTML_DIALOG *
   /PROCESS {
-    /Functional-Processes.CustomPortalStandardCaseDetailsConfig "Functional Processes/CustomPortalStandardCaseDetailsConfigOverride"
     /Functional-Processes.DeleteDocument "Functional Processes/DeleteDocumentOverride"
     /Functional-Processes.GetDocumentList "Functional Processes/GetDocumentListOverride"
-    /Functional-Processes.CustomPortalConfig "Functional Processes/CustomPortalConfigOverride"
-    /Functional-Processes.CustomPortalListsConfig "Functional Processes/CustomPortalListsConfigOverride"
     /Functional-Processes.UploadDocument "Functional Processes/UploadDocumentOverride"
   }
 }
