@@ -35,4 +35,8 @@ public class StickyTaskListService {
   private boolean isTaskWithTaskEndInfo(String taskEndInfoSessionAttributeKey) {
     return SecurityServiceUtils.getSessionAttribute(taskEndInfoSessionAttributeKey) != null;
   }
+  
+  public String getIFrameSessionAttributeKey(Long taskId) {
+    return SessionAttribute.TASK_FINISHED_IN_IFRAME + taskId.toString();
+  }
 }
