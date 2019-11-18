@@ -155,14 +155,6 @@ ew0 f7 @|UserDialogIcon #fIcon
 ew0 f9 actionTable 'out=in;
 ' #txt
 ew0 f9 actionCode 'import ch.ivy.gawfs.ExpressProcessUtils;
-import ch.ivy.gawfs.Helper;
-import ch.ivy.addon.portalkit.bo.ExpressProcess;
-import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
-import ch.ivy.addon.portalkit.bo.ExpressTaskDefinition;
-import ch.ivy.addon.portalkit.bo.ExpressFormElement;
-import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
-import gawfs.TaskDef;
-import ch.ivy.gawfs.Formelement;
 
 //save workflowdescription
 ExpressProcessUtils utils = new ExpressProcessUtils();
