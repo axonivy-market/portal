@@ -106,6 +106,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
     overflow: visible;
     text-indent: 5px;
 }
+
 .ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-filter-container .ui-icon:before,
 .ui-picklist .ui-picklist-filter-container .ui-icon:before {
     -webkit-font-smoothing: antialiased;
@@ -2659,7 +2660,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   padding: 0 !important;
 }
 
-.next-to-deputy, .new-app, .ui-dialog-footer button {
+.new-app, .ui-dialog-footer button {
   min-width: 120px;
   margin-bottom : 6px ;
 }
@@ -4294,3 +4295,12 @@ a.ui-widget:focus {
   vertical-align: baseline;
 }
 /**************DATA TABLE END*******************/
+
+
+/************** Override *******************/
+body .ui-picklist .ui-picklist-filter-container .ui-icon {
+  top: auto;
+  bottom: 5px;
+  right: 7px;
+}
+/**************Override END*******************/
