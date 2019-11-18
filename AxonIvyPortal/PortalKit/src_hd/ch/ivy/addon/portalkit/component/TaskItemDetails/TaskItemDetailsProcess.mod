@@ -263,11 +263,12 @@ TaskEndInfo taskEndInfo = new TaskEndInfo();
 taskEndInfo.setDataModel(in.dataModel);
 taskEndInfo.setPortalPage(in.portalPage);
 taskEndInfo.setIsStartedInTaskDetails(true);
-taskEndInfo.setIsInIFrame(enabledStartInIFrame);
 
 String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(in.task.getId());
 SecurityServiceUtils.setSessionAttribute(taskEndInfoSessionAttributeKey, taskEndInfo);
 
+// Put the "embedInIFrame" param to the task start link to open it in the DefaultFramePage process
+// Then this process will open task in IFrame or not based on its "embedInIFrame" String custom field
 FacesContext.getCurrentInstance().getExternalContext().redirect(ivy.html.taskStartInFrameRef(in.task));' #txt
 Cs0 f49 security system #txt
 Cs0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
