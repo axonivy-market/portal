@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
+import ch.ivy.addon.portalkit.constant.CustomFields;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
@@ -15,6 +16,7 @@ import ch.ivyteam.ivy.process.call.SubProcessSearchFilter.Builder;
 import ch.ivyteam.ivy.security.ISecurityManager;
 import ch.ivyteam.ivy.security.SecurityManagerFactory;
 import ch.ivyteam.ivy.service.ServiceException;
+import ch.ivyteam.ivy.workflow.ITask;
 
 /**
  * This class is to implement method to get information of Ivy
@@ -161,5 +163,9 @@ public class IvyAdapterService {
         throw new ServiceException(message, e);
       }
     }
+  }
+  
+  public static boolean getTaskEmbedInIFrameCustomField(ITask task) {
+    return Boolean.parseBoolean(task.customFields().stringField(CustomFields.EMBED_IN_FRAME).getOrDefault("false"));
   }
 }

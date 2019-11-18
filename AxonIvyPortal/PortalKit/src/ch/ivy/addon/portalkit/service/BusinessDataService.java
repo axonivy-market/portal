@@ -6,7 +6,11 @@ import ch.ivyteam.ivy.business.data.store.BusinessDataRepository;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public abstract class BusinessDataService<T> {
-
+  
+  public static final int LIMIT_10 = 10;
+  public static final int LIMIT_20 = 20;
+  public static final int LIMIT_100 = 100;
+  
   public T findById(String id) {
     return repo().find(id, getType());
   }

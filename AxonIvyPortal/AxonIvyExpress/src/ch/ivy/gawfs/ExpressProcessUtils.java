@@ -455,8 +455,7 @@ public class ExpressProcessUtils {
    * @return true if process name was used, false if process name is available
    */
   public boolean isProcessNameDuplicated(String processName) {
-    List<ExpressProcess> expressProcesses = ExpressServiceRegistry.getProcessService().findExpressProcessByName(processName);
-    return CollectionUtils.isNotEmpty(expressProcesses);
+    return ExpressServiceRegistry.getProcessService().findExpressProcessByName(processName) != null;
   }
 
   public List<ExternalDataProvider> findDataProviders() {
