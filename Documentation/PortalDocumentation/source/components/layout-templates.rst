@@ -142,7 +142,7 @@ How to use template TaskTemplate.xhtml
 .. _components-layout-templates-iframe-task-template:
 
 IFrame Task template
--------------
+--------------------
 
 Task template is used for displaying task functionality and related
 information to support completing the task, but the content is your HTML dialog embedded in IFrame. There are a lot of regions
@@ -159,7 +159,7 @@ to be filled with your custom content:
 .. _components-layout-templates-iframe-task-template-how-to-use:
 
 How to start a process/task in IFrameTaskTemplate.xhtml
---------------------------------------
+-------------------------------------------------------
 
 1.  In Task custom field, set the ``embedInIFrame`` String custom field to "true".
 
