@@ -35,9 +35,7 @@ in the Axon.ivy Portal menu or the quick link **Show all processes** in
 your dashboard.
 
 .. figure:: images/navigate-to-axon-ivy-express.png
-   :width: 6.49606in
-   :height: 3.28346in
-   :align: center
+
 
    Navigate to Axon.ivy Express
 
@@ -47,9 +45,7 @@ you find the process category :guilabel:`Express Workflows` with a list of
 already defined processes.
 
 .. figure:: images/start-link-for-axon-ivy-express.png
-   :width: 6.49606in
-   :height: 1.75197in
-   :align: center
+
    
    Start Link for Axon.ivy Express
 
@@ -84,9 +80,6 @@ HowTo: Create an Express Workflow
    process.
 
 .. figure:: images/express-workflow-process-properties.png
-   :width: 6.49606in
-   :height: 2.56693in
-   :align: center
 
    Express Workflow process properties
 
@@ -117,9 +110,7 @@ HowTo: Create an Express Workflow
 16. End the configuration of your process steps with the button **Next**
 
 .. figure:: images/define-express-workflow-process-steps.png
-   :width: 6.49606in
-   :height: 3.28346in
-   :align: center
+
 
    Define Express Workflow process steps
 
@@ -176,9 +167,7 @@ HowTo: Create an Express Workflow
 28. Use the button |arrow-right-icon| **Next** to define the next process step
 
 .. figure:: images/express-workflow-dialog-editor.png
-   :width: 6.49606in
-   :height: 3.28346in
-   :align: center
+
 
    Express Workflow dialog editor
 
@@ -245,9 +234,7 @@ Define an information email
 
 
 .. figure:: images/express-workflow-email-editor.png
-   :width: 6.49606in
-   :height: 3.28346in
-   :align: center
+
 
    Express Workflow email editor
 

@@ -8,7 +8,7 @@ successful login. You can always get back to the dashboard using the
 **Dashboard** link in the Axon.ivy Portal menu. Alternatively, you can click on
 the Axon.ivy logo in the header.
 
-|dash-board|
+.. figure:: images/dash-board.png
 
 The dashboard itself is separated in 3 sections:
 
@@ -34,7 +34,7 @@ are a key feature to enhance your Axon.ivy Portal experience and increase your
 efficiency. To make full use of this feature the Axon.ivy Portal offers you an
 easy way to configure the process favorites to your personal needs. 
 
-|process-favorites|
+.. figure:: images/process-favorites.png
 
 When you have a look at the process favorites you see two areas:
 
@@ -73,7 +73,7 @@ HowTo: Add a process as a user favorite
 
 7. Confirm your configuration with the button **Add**.
 
-|how-to-add-process-favorite|
+.. figure:: images/how-to-add-process-favorite.png
 
 .. hint:: 
    The list of processes in the dropdown menu shows only the processes which are
@@ -94,9 +94,9 @@ HowTo: Delete a process as a user favorite
 3. Confirm the removal with the link **Save** next to the heading **User
    Favorites**.
 
-|how-to-delete-process-favorites-1|
+.. figure:: images/how-to-delete-process-favorites-1.png
 
-|how-to-delete-process-favorites-2|
+.. figure:: images/how-to-delete-process-favorites-2.png
 
 HowTo: Reorder user favorites
 -----------------------------
@@ -110,7 +110,7 @@ I. Sort by name
    you can use the link **Sort by name** next to the heading **User
    Favorites**.
 
-|how-to-order-process-favorites-by-name|
+.. figure:: images/how-to-order-process-favorites-by-name.png
 
 II. Edit processes
 ^^^^^^^^^^^^^^^^^^
@@ -123,10 +123,10 @@ II. Edit processes
 3. Confirm the reorder with the link **Save** next to the heading **User
    Favorites**.
 
-|how-to-order-process-favorites-individually-1|
+.. figure:: images/how-to-order-process-favorites-individually-1.png
 
 
-|how-to-order-process-favorites-individually-2|
+.. figure:: images/how-to-order-process-favorites-individually-2.png
 
 
 
@@ -151,7 +151,7 @@ HowTo: Add an external link as user favorite
 
 7. Confirm your configuration with the button **Add**.
 
-|how-to-add-external-link-as-process-favorite|
+.. figure:: images/how-to-add-external-link-as-process-favorite.png
 
 
 Personal Tasks
@@ -163,7 +163,7 @@ roles you hold within the application. Therefore, this section is key in
 understanding your workload within the application. You may pick up any task
 from the task list and start working on it.
 
-|personal-tasks|
+.. figure:: images/personal-tasks.png
 
    
 
@@ -180,7 +180,7 @@ support you in finding the correct tasks:
    description of the tasks in your task list.
 2. On the right side of the Tasks section you can find the sort by :guilabel:`Creation Date` :guilabel:`Expiry` :guilabel:`Priority`  
 
-|personal-tasks-sort-and-search-features|
+.. figure:: images/personal-tasks-sort-and-search-features.png
 
   
 
@@ -201,7 +201,7 @@ The following information can be found in the task entries:
 
 6. The :guilabel:`Task Description`
 
-|personal-tasks-key-information|
+.. figure:: images/personal-tasks-key-information.png
 
 
 Statistics
@@ -211,7 +211,7 @@ The statistics you find under the heading :guilabel:`Statistics` on the
 right-hand side of your dashboard. The charts in this section allow you to grasp
 the overall situation at a glance.
 
-|dashboard-statistics-section|
+.. figure:: images/dashboard-statistics-section.png
 
 
 Next to the heading you find a link **Show all charts**. This quick link
@@ -231,24 +231,10 @@ charts. Each chart then provides you with the following information:
 
 3. The :guilabel:`Legend` explains the different elements of the charts.
 
-|statistics-key-information|
+.. figure:: images/statistics-key-information.png
 
 If you require more or different charts, you need to create them first.
 Chapter :ref:`howto-create-chart` explains in detail how to create new
 charts.
 
 .. include:: ../includes/_common-icon.rst
-.. |dash-board| image:: images/dash-board.png
-.. |process-favorites| image:: images/process-favorites.png
-.. |how-to-add-process-favorite| image:: images/how-to-add-process-favorite.png
-.. |how-to-delete-process-favorites-1| image:: images/how-to-delete-process-favorites-1.png
-.. |how-to-delete-process-favorites-2| image:: images/how-to-delete-process-favorites-2.png
-.. |how-to-order-process-favorites-by-name| image:: images/how-to-order-process-favorites-by-name.png
-.. |how-to-order-process-favorites-individually-1| image:: images/how-to-order-process-favorites-individually-1.png
-.. |how-to-order-process-favorites-individually-2| image:: images/how-to-order-process-favorites-individually-2.png
-.. |how-to-add-external-link-as-process-favorite| image:: images/how-to-add-external-link-as-process-favorite.png
-.. |personal-tasks| image:: images/personal-tasks.png
-.. |personal-tasks-sort-and-search-features| image:: images/personal-tasks-sort-and-search-features.png
-.. |personal-tasks-key-information| image:: images/personal-tasks-key-information.png
-.. |dashboard-statistics-section| image:: images/dashboard-statistics-section.png
-.. |statistics-key-information| image:: images/statistics-key-information.png
