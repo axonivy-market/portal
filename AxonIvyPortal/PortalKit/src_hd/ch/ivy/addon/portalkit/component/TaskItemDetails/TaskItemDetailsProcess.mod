@@ -249,17 +249,15 @@ Cs0 f66 424 554 112 44 -35 -8 #rect
 Cs0 f66 @|StepIcon #fIcon
 Cs0 f49 actionTable 'out=in;
 ' #txt
-Cs0 f49 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPage;
+Cs0 f49 actionCode 'import ch.ivy.addon.portalkit.service.IvyAdapterService;
+import ch.ivy.addon.portalkit.enums.PortalPage;
 import ch.ivy.addon.portalkit.enums.NavigationHistory;
 import ch.ivy.addon.portalkit.dto.TaskEndInfo;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import javax.faces.context.FacesContext;
 
-GlobalSettingService service = new GlobalSettingService();
-boolean enabledStartInIFrame = Boolean.parseBoolean(service.findGlobalSettingValue(GlobalVariable.START_IN_IFRAME.toString()));
+boolean enabledStartInIFrame = IvyAdapterService.getTaskEmbedInIFrameCustomField(in.task);
 
 TaskEndInfo taskEndInfo = new TaskEndInfo();
 taskEndInfo.setDataModel(in.dataModel);
@@ -270,11 +268,7 @@ taskEndInfo.setIsInIFrame(enabledStartInIFrame);
 String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(in.task.getId());
 SecurityServiceUtils.setSessionAttribute(taskEndInfoSessionAttributeKey, taskEndInfo);
 
-String taskStart = ivy.html.taskStartRef(in.task);
-if (enabledStartInIFrame) {
-	taskStart = ivy.html.taskStartInFrameRef(in.task);
-}
-FacesContext.getCurrentInstance().getExternalContext().redirect(taskStart);' #txt
+FacesContext.getCurrentInstance().getExternalContext().redirect(ivy.html.taskStartInFrameRef(in.task));' #txt
 Cs0 f49 security system #txt
 Cs0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
