@@ -164,7 +164,10 @@ public class ProcessWidgetBean implements Serializable {
   }
 
   public void startProcess(String link) throws IOException {
-    FacesContext.getCurrentInstance().getExternalContext().redirect(link + "?embedInFrame");
+    link += link.contains("?") ? "&" : "?";
+    // Put the "embedInIFrame" param to the task start link to open it in the DefaultFramePage process
+    // Then this process will open task in IFrame or not based on its "embedInIFrame" String custom field
+    FacesContext.getCurrentInstance().getExternalContext().redirect(link + "embedInFrame");
   }
   
   public Process getDeletedExpressProcess() {

@@ -347,16 +347,17 @@ Pt0 f93 actionCode 'import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import org.apache.commons.lang3.StringUtils;
 import ch.ivyteam.ivy.workflow.StandardProcessType;
 
-String defaultEndPage = ivy.wf.getStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES);
+// This is just an example to test in designer, don''t need to change it in code. Administrator should change it officially in Engine Cockpit
+String library = "ch.ivyteam.ivy.project.portal:portalExamples";
 
+String defaultEndPage = ivy.wf.getStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES);
 if (StringUtils.isBlank(defaultEndPage)) {
-	ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES, "ch.ivyteam.ivy.project.portal:portalExamples");
+	ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES, library);
 }
 
 String defaultMailNotification = ivy.wf.getStandardProcessImplementationLibrary(StandardProcessType.MAIL_NOTIFICATION_PROCESS_TYPES);
-
 if (StringUtils.isBlank(defaultMailNotification)) {
-	ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.MAIL_NOTIFICATION_PROCESS_TYPES, "ch.ivyteam.ivy.project.portal:portalExamples");
+	ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.MAIL_NOTIFICATION_PROCESS_TYPES, library);
 }' #txt
 Pt0 f93 security system #txt
 Pt0 f93 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -404,13 +405,15 @@ if  (#task is initialized) {
 	isTaskStarted = task.getStartProcessData() is initialized;
 	if(#taskWithTaskEndInfo is initialized) {
 		callbackUrl = taskWithTaskEndInfo.customFields().stringField(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString()).getOrDefault("");
-		String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(taskWithTaskEndInfo.getId());
-		TaskEndInfo taskEndInfo = SecurityServiceUtils.getSessionAttribute(taskEndInfoSessionAttributeKey) as TaskEndInfo;
-		in.isInIFrame = taskEndInfo.isInIFrame;
-		if (in.isInIFrame) {
-			taskEndInfo.setIsInIFrame(false);
-			SecurityServiceUtils.setSessionAttribute(taskEndInfoSessionAttributeKey, taskEndInfo);
-		}
+	}
+	
+	// If task is finished in IFrame, DefaultEndPage will run twice, first is for the task in IFrame, second is in Portal
+	// To prevent nested Portal (Portal in IFrame), first time will open a blank page in IFrame
+	// Second time will redirect as usual.
+	String iframeAttr = StickyTaskListService.service().getIFrameSessionAttributeKey(task.getId());
+	in.isInIFrame = SecurityServiceUtils.getSessionAttribute(iframeAttr) as Boolean;
+	if (in.isInIFrame) {
+		SecurityServiceUtils.removeSessionAttribute(iframeAttr);
 	}
 }
 
@@ -1035,16 +1038,17 @@ Pt0 f20 actionCode 'import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import org.apache.commons.lang3.StringUtils;
 import ch.ivyteam.ivy.workflow.StandardProcessType;
 
-String defaultEndPage = ivy.wf.getStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES);
+// This is just an example to test in designer, don''t need to change it in code. Administrator should change it officially in Engine Cockpit
+String library = "ch.ivyteam.ivy.project.portal:portalExamples";
 
+String defaultEndPage = ivy.wf.getStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES);
 if (StringUtils.isBlank(defaultEndPage)) {
-	ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES, "ch.ivyteam.ivy.project.portal:portalExamples");
+	ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES, library);
 }
 
 String defaultMailNotification = ivy.wf.getStandardProcessImplementationLibrary(StandardProcessType.MAIL_NOTIFICATION_PROCESS_TYPES);
-
 if (StringUtils.isBlank(defaultMailNotification)) {
-	ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.MAIL_NOTIFICATION_PROCESS_TYPES, "ch.ivyteam.ivy.project.portal:portalExamples");
+	ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.MAIL_NOTIFICATION_PROCESS_TYPES, library);
 }' #txt
 Pt0 f20 security system #txt
 Pt0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1259,8 +1263,9 @@ Pt0 f40 1232 192 1266 192 #arcP
 Pt0 f27 expr in #txt
 Pt0 f27 608 192 656 192 #arcP
 Pt0 f86 expr out #txt
-Pt0 f86 312 288 579 195 #arcP
-Pt0 f86 0 0.49687471886202816 0 0 #arcLabel
+Pt0 f86 312 288 583 199 #arcP
+Pt0 f86 1 480 288 #addKink
+Pt0 f86 0 0.8986061424959046 0 0 #arcLabel
 Pt0 f80 expr in #txt
 Pt0 f80 outCond in.isInIFrame #txt
 Pt0 f80 608 481 720 480 #arcP
