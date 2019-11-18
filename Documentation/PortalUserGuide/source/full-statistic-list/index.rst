@@ -7,7 +7,7 @@ One way to consume statistics is through your personal dashboard (see
 :ref:`dashboard`). If you need a deeper insight in what is going on, the
 :guilabel:`Full Statistics` page provides you with the perfect toolset. You can
 consume statistics and charts here at one glance and have the chance to setup
-your own statistics. You can reach the page by using the |statistics-icon|
+your own statistics. You can reach the page by using the 
 **Statistics** link in the Axon.ivy Portal menu or by using the **Show all
 charts** quick link in the statistics section of your dashboard.
 
@@ -17,9 +17,6 @@ charts** quick link in the statistics section of your dashboard.
    considered separately.                      
 
 .. figure:: images/navigate-to-full-statistics-page.png
-   :width: 6.49606in
-   :height: 3.53543in
-   :align: center
 
    Navigate to Full Statistics page
 
@@ -31,7 +28,7 @@ created. Each chart provides you with the following features:
 2. An |info-icon| **Info** button, providing you with the configuration of
    the chart
 
-3. Arrow buttons (|arrow-right-icon|, |arrow-down-icon|, |arrow-left-icon|, |arrow-up-icon|) depending
+3. Arrow buttons (|arrow-right-icon|, |arrow-left-icon|) depending
    on the position of the chart to allow you rearrangement according to
    your personal needs
 
@@ -43,11 +40,6 @@ created. Each chart provides you with the following features:
 6. The legend, explaining the part of the charts
 
 .. figure:: images/full-statistics-page.png
-   :width: 6.49606in
-   :height: 3.28346in
-   :align: center
-   
-   Full statistics page
 
 .. _howto-create-chart:
 
@@ -71,9 +63,6 @@ HowTo: Create chart
 8. Create the chart with the button **OK**
 
 .. figure:: images/charts-configuration-page.png
-   :width: 6.49606in
-   :height: 3.28346in
-   :align: center
 
    Charts configuration page
 

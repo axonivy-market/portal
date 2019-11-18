@@ -32,7 +32,7 @@ To start your Axon.ivy Portal experience, use the link provided to you by your
 administrator. Following the link, the Axon.ivy Portal will ask for your login
 credentials.
 
-|login-screen|
+.. figure:: images/login-screen.png
    
 .. Hint:: 
    Depending on your company’s infrastructure, you might be automatically logged in
@@ -43,28 +43,25 @@ After successful login, you’ll see the Axon.ivy Portal Homepage and your
 personal dashboard. All your activities can be managed from this central entry
 point. In detail these are:
    
-   1. The Axon.ivy Portal header on the top is always visible and provides
-      you with a global search, key information about the portal and options to
-      configure your personal user account. See  :ref:`portal-header`  for
-      details.
+1. The Axon.ivy Portal header on the top is always visible and provides
+   you with a global search, key information about the portal and options to
+   configure your personal user account. See  :ref:`portal-header`  for
+   details.
    
-   |axon-ivy-portal-header|
+.. figure:: images/axon-ivy-portal-header.png
 
-   2. The menu on the left side is always available and gives you access to
-      all processes, cases, tasks and other features of the Axon.ivy Portal. You
-      may enlarge or minimise the menu using the **Toggle Menu** button
-      in the top left corner.
+2. The menu on the left side is always available and gives you access to
+   all processes, cases, tasks and other features of the Axon.ivy Portal. You
+   may enlarge or minimise the menu using the **Toggle Menu** button
+   in the top left corner.
    
-   |axon-ivy-portal-menu|
+.. figure:: images/toggle-portal-menu.png
 
-   3. In the center you see your personal dashboard providing you instant
-      access to your processes, tasks and performance indicators. See
-      :ref:`dashboard` for a detailed introduction.
+3. In the center you see your personal dashboard providing you instant
+   access to your processes, tasks and performance indicators. See
+   :ref:`dashboard` for a detailed introduction.
 
-   |axon-ivy-portal|
+.. figure:: images/axon-ivy-portal.png
 
 .. include:: ../includes/_common-icon.rst
-.. |login-screen| image:: images/login-screen.png
-.. |axon-ivy-portal-header| image:: images/axon-ivy-portal-header.png
-.. |axon-ivy-portal-menu| image:: images/axon-ivy-portal-menu.png
-.. |axon-ivy-portal| image:: images/axon-ivy-portal.png
+
