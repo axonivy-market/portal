@@ -158,14 +158,16 @@ to be filled with your custom content:
 
 .. _components-layout-templates-iframe-task-template-how-to-use:
 
-How to use template IFrameTaskTemplate.xhtml
+How to start a process/task in IFrameTaskTemplate.xhtml
 --------------------------------------
 
-1.  Create a new HTML User Dialog independent from Portal.
+1.  In Task custom field, set the ``embedInIFrame`` String custom field to "true".
 
-2.  Refer to ``IFrameTaskTemplate.xhtml`` for params.
+2.  In this task, open a HTML User Dialog independent from Portal.
 
-3.  In case you want to create your own IFrameTaskTemplate, as customizing Ivy Standard Processes, 
+3.  Refer to ``IFrameTaskTemplate.xhtml`` for params.
+
+4.  In case you want to create your own IFrameTaskTemplate, as customizing Ivy Standard Processes, 
 implement a process with a predefined process start signature in your ivy project: ``DefaultFramePage(String relativeUrl, Number runningTaskId)``
 
 .. _components-layout-templates-default-homepage-template:
