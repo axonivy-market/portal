@@ -20,7 +20,7 @@
 }
 
 .ui-commandlink.ui-state-disabled {
-  color: $commandLinkDisabledTextColor !important;
+  color: grba($commandLinkDisabledTextColor,1) !important;
   font-size: $largeFontSize;
 }
 
