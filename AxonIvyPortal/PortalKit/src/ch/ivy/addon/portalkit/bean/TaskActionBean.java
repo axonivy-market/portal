@@ -62,7 +62,13 @@ public class TaskActionBean {
   }
 
   public boolean canDelegate(ITask task) {
-    if (!isNotDone(task)) {
+    if (task == null) {
+      return false;
+    }
+    
+    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.DONE, TaskState.FAILED, TaskState.DESTROYED);
+   
+    if (taskStates.contains(task.getState())) {
       return false;
     }
 

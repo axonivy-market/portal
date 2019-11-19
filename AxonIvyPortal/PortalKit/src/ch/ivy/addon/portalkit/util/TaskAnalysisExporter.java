@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
@@ -100,7 +101,7 @@ public class TaskAnalysisExporter {
   private String getColumnValue(TaskAndCaseAnalysisColumn column, ITask task) { 
     switch (column) {
       case CASE_NAME:
-        return task.getCase().getName();
+        return StringUtils.isEmpty(task.getCase().getName()) ? Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable") : task.getCase().getName();
       case CASE_DESCRIPTION:
         return task.getCase().getDescription();
       case CASE_ID:
@@ -112,7 +113,7 @@ public class TaskAnalysisExporter {
       case CASE_STATE:
         return task.getCase().getState().toString();
       case TASK_NAME:
-        return task.getName();
+        return StringUtils.isEmpty(task.getName()) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable") : task.getName();
       case TASK_ID:
         return String.valueOf(task.getId());
       case TASK_CATEGORY:
@@ -120,7 +121,7 @@ public class TaskAnalysisExporter {
       case TASK_DESCRIPTION:
         return task.getDescription();
       case TASK_ACTIVATOR:
-        if (task.getActivatorName() == null) {
+        if (task.getActivator() == null) {
           return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
         }
         return userFormatBean.formatWithTip(task.getActivator().getDisplayName(), task.getActivatorName());

@@ -5,7 +5,7 @@
 <h:body>
 	<ui:composition template="/layouts/BasicTemplate.xhtml">
 		<ui:param name="isNotRequiredLogin" value="false" />
-		<ui:define name="pageTitle">Beta Company Process History</ui:define>
+		<ui:define name="title">Beta Company Process History</ui:define>
 		<ui:define name="simplePageContent">
 			<h1>Process history of Beta Company</h1>
 			<p:commandButton id="process-history-dialog-button" value="Open process history dialog" process="@this" oncomplete="PF('process-history-dialog').show()"

@@ -3,22 +3,16 @@
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
   <ui:composition template="/layouts/TaskTemplate.xhtml">
-    <ui:param name="caseId" value="#{ivy.case.id}" />
-    <ui:param name="task" value="#{ivy.task}" />
     <ui:param name="steps" value="#{data.data.steps}" />
     <ui:param name="actualStepIndex" value="1" />
     <ui:param name="isShowStartAdhocButton" value="false" />
-    <ui:param name="isNotRequiredLogin" value="false" />
     <ui:param name="processChainShape" value="LINE" />
 
     <ui:define name="title">#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/PageTitle')} #{ivy.case.name}</ui:define>
 
-    <ui:define name="errorsZone">
-      <p:messages id="error-messages" showDetail="false" closable="true" />
-    </ui:define>
-
-    <ui:define name="taskForm">
+    <ui:define name="content">
       <h:form id="form" styleClass="express-work-flow">
+        <p:messages id="error-messages" showDetail="false" closable="true" />
 
         <p:fieldset id="process-setting-fieldset" legend="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processdetails')}"
           toggleable="true" styleClass="MarTop5 express-fieldset fieldset-no-border">
@@ -304,14 +298,14 @@
                     <p:column styleClass="dynamic-task-left-action">
                       <p:commandButton id="add-step-button" icon="fa fa-plus" immediate="true"
                         value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AddProcessStep')}" actionListener="#{logic.addProcessStep}"
-                        process="form" update="#{p:component('defined-tasks-list-container')} error-messages">
+                        process="form" update="#{p:component('defined-tasks-list-container')} #{p:component('error-messages')}">
                       </p:commandButton>
                     </p:column>
 
                     <p:column styleClass="dynamic-task-right-action">
                       <p:commandButton id="remove-step-button" icon="fa fa-minus" immediate="true" rendered="#{data.data.definedTasks.size()>1}"
                         value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/DeleteProcessStep')}"
-                        actionListener="#{logic.deleteProcessStep}" process="form" update="#{p:component('defined-tasks-list-container')} error-messages">
+                        actionListener="#{logic.deleteProcessStep}" process="form" update="#{p:component('defined-tasks-list-container')} #{p:component('error-messages')}">
                       </p:commandButton>
                     </p:column>
                   </p:row>
@@ -323,7 +317,7 @@
 
         <p:outputPanel styleClass="TexAlRight">
           <h:panelGroup id="express-button-container">
-            <p:commandButton id="save" actionListener="#{logic.close}" update="form error-messages"
+            <p:commandButton id="save" actionListener="#{logic.close}" update="form"
               icon="fa #{data.data.isUseDefaultUI ? 'fa-check' : 'fa-arrow-right'}"
               value="#{data.data.isUseDefaultUI ? (data.data.processType eq 'AD_HOC' ? ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflow') :
                ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/SaveWorkflow')) : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}">

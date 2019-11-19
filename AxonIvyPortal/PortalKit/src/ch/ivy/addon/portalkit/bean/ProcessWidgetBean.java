@@ -23,12 +23,10 @@ import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.IvyProcess;
 import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
 import ch.ivy.addon.portalkit.bo.Process;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -166,12 +164,10 @@ public class ProcessWidgetBean implements Serializable {
   }
 
   public void startProcess(String link) throws IOException {
-    GlobalSettingService service = new GlobalSettingService();
-    boolean enabledStartInIFrame = Boolean.parseBoolean(service.findGlobalSettingValue(GlobalVariable.START_IN_IFRAME.toString()));
-    if (enabledStartInIFrame) {
-      link += "?embedInFrame";
-    }
-    FacesContext.getCurrentInstance().getExternalContext().redirect(link);
+    link += link.contains("?") ? "&" : "?";
+    // Put the "embedInIFrame" param to the task start link to open it in the DefaultFramePage process
+    // Then this process will open task in IFrame or not based on its "embedInIFrame" String custom field
+    FacesContext.getCurrentInstance().getExternalContext().redirect(link + "embedInFrame");
   }
   
   public Process getDeletedExpressProcess() {
