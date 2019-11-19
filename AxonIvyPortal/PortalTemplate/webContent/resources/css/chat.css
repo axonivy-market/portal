@@ -1,10 +1,59 @@
 /********************************** CHAT **********************************/
+/* Responsive for Chat */
+@media screen and (max-width: 40em) {
+  .hidden-chat-contact {
+    width: 0 !important;
+    transition: width .3s;
+    display: none !important;
+  }
+  .message-list.active,
+  .chat-panel.active.message-displayed {
+    width: 80vw !important;
+    min-width: auto !important;
+  }
+  .chat-contact.active:not(.hidden-chat-contact),
+  .chat-panel.active {
+    width: 65vw !important;
+    max-width: 300px;
+  }
+  .notification-badge i.fa.fa-comment {
+    margin-right: 2px !important;
+  }
+  .chat-message-list {
+    padding: 5px 15px !important;
+  }
+  .participants-list-dialog {
+    width: 80vw !important;
+  }
+}
+
+@media screen and (min-width: 40.063em) and (max-width: 64.062em) {
+  .chat-contact.active,
+  .chat-panel.active {
+    width: 25vw !important;
+    min-width: 200px;
+  }
+  .message-list.active {
+    width: calc(100% - 25vw) !important;
+    min-width: calc(100% - 200px);
+  }
+  .chat-panel.active.message-displayed {
+    width: 70vw !important;
+  }
+}
+
+/* Ends Responsive for Chat */
+
 .chat-panel {
   position: fixed;
   top: 0;
-  right: -900px;
+  right: 0;
   bottom: 0;
-  transition: right .3s;
+  width: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: all .3s;
+  -ms-transition: all 0s;
   display: flex;
   align-items: stretch;
   /* set it in front of top-layout */
@@ -12,15 +61,27 @@
 }
 
 .chat-panel.active {
-  right: -600px;
+  visibility: visible;
+  opacity: 1;
+  width: 300px;
 }
 
 .chat-panel.active.message-displayed {
-  right: 0;
+  width: 50vw;
+  max-width: 900px;
 }
 
 .chat-contact {
+  display: none;
   width: 300px;
+  position: relative;
+  z-index: 999;
+  text-align: left;
+  min-width: 200px;
+}
+
+.chat-contact.active {
+  display: block;
 }
 
 .chat-contact-content-filter>input[type="text"] {
@@ -33,11 +94,12 @@
 }
 
 .contact-card {
-  padding: 5px 10px;
+  padding: 8px;
   display: flex;
   align-items: center;
   cursor: pointer;
-  transition: background-color 1s;
+  margin: 2px 10px;
+  border-radius: 3px;
 }
 
 .contact-card.is-offline {
@@ -48,7 +110,6 @@
   flex: 0 0 40px;
   height: 40px;
   border-radius: 50%;
-  font-size: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -68,12 +129,23 @@
   top: -5px;
   right: -5px;
   text-align: center;
-  font-size: .5em;
 }
 
 .contact-card-name {
-  margin: 16px;
+  margin: auto 0 auto 10px;
   flex-grow: 1;
+  text-align: left !important;
+  overflow: hidden;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.contact-card-name span {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .contact-card-status {
@@ -98,8 +170,14 @@
 }
 
 .message-list {
-  width: 600px;
+  display: none;
+  width: calc(100% - 300px);
   height: 100%;
+}
+
+.message-list.active {
+  z-index: 1000;
+  display: block;
 }
 
 .message-list-form {
@@ -112,35 +190,15 @@
   align-items: center;
   padding: 0 10px;
   flex-wrap: wrap;
+  position: relative;
 }
 
 .message-list-header-close {
   position: relative;
   cursor: pointer;
   width: 20px;
-  height: 20px;
   border-radius: 50%;
-}
-
-.message-list-header-close:before {
-  transform: rotate(45deg);
-}
-
-.message-list-header-close:after {
-  transform: rotate(135deg);
-}
-
-.message-list-header-close:before, .message-list-header-close:after {
-  content: '';
-  width: 14px;
-  height: 4px;
-  display: block;
-  /* set its position center */
-  position: absolute;
-  top: 11px;
-  left: 5px;
-  border-radius: 30%;
-  transition: background-color .65s;
+  flex: 0 0 20px;
 }
 
 .message-list-content {
@@ -151,6 +209,7 @@
   height: calc(100% - 235px);
   padding: 0 30px;
   overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column-reverse;
 }
@@ -177,14 +236,11 @@
   float: right;
 }
 
-.message-list-content-send {
-  height: 150px !important;
-}
-
 .message-chat-header-name {
-  font-size: 1.4rem;
   margin-right: 10px;
-  flex: 1 0 90%;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: calc(100% - 30px);
 }
 
 .show-participants-link {
@@ -202,22 +258,24 @@
 }
 
 .chat-send-form {
-  height: 100%;
+  height: 150px;
   margin: 15px;
   border-radius: 7px;
   margin-bottom: 20px;
   position: relative;
 }
 
+.chat-send-form textarea {
+  background-image: none !important;
+}
+
 .chat-send-form .ui-widget.ui-button {
   position: absolute;
   top: 10px;
   right: 10px;
-  border-radius: 50% !important;
 }
 
 .chat-send-form .ui-widget.ui-button .ui-icon {
-  font-size: 2rem !important;
   width: 22px;
   height: 22px;
   margin-top: -10px;
@@ -225,12 +283,10 @@
 }
 
 .message-list-content-send-input {
-  width: calc(100% - 65px);
-  border: none !important;
-  /* override Primefaces/Modena rules */
-  height: calc(100% - 20px) !important;
-  padding: 0 !important;
-  margin: 10px 9px;
+  width: 100%;
+  height: 100%;
+  padding: 10px !important;
+  padding-right: 50px !important;
   overflow-y: auto;
 }
 
@@ -243,8 +299,6 @@
 /*Need to add "data-badge" attribute to element*/
 .notification-badge i.fa.fa-comment {
   position: relative;
-  line-height: 30px;
-  font-size: 2rem !important;
   margin-right: 15px;
 }
 
@@ -257,7 +311,6 @@
   width: 1.3rem;
   height: 1.3rem;
   text-align: center;
-  font-size: 0.7em;
 }
 
 .notification-badge:after, .notification-badge[data-badge='']:after {
@@ -269,9 +322,12 @@
   right: 0;
 }
 
-
 .chat-contact-type-header {
   padding: 20px 10px 5px 10px;
+  display: inline-block;
+  overflow: hidden;
+  min-height: 60px;
+  width: calc(100% - 60px);
 }
 
 .contact-card-name.group-chat-card {
@@ -318,6 +374,10 @@ _:-ms-fullscreen, :root .my-message .chat-meta .tooltip {
 
 .chat-meta:hover .tooltip {
   visibility: visible;
+}
+
+.participants-list-dialog {
+  width: 400px !important;
 }
 
 .role-name,
@@ -413,6 +473,17 @@ _:-ms-fullscreen, :root .chat-message {
 }
 /* END */
 .close-chat {
-  margin-left: 10px;
-  margin-top: 10px;
+  position: absolute;
+  top: 18px;
+  right: 18px;
+}
+
+.close-chat .ui-button.ui-button-icon-only {
+  width: 25px;
+  height: 27px;
+}
+
+.close-chat .ui-button.ui-button-icon-only .ui-icon {
+  margin-left: -9px;
+  margin-top: -8px;
 }
