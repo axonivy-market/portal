@@ -1,0 +1,8 @@
+DeprecatedTaskTemplateDialogData #class
+ch.ivyteam.ivy.project.portal.examples.testdata.DeprecatedTaskTemplateDialog #namespace
+data ch.ivyteam.ivy.project.portal.examples.showcase.Data #field
+data PERSISTENT #fieldModifier
+persons org.primefaces.model.DualListModel #field
+persons PERSISTENT #fieldModifier
+cities java.util.List<String> #field
+cities PERSISTENT #fieldModifier
