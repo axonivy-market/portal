@@ -134,6 +134,10 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void sideStepMenuOnMoreButton(int taskId) {
     String moreButton = String.format("button[id$='%d\\:task-item\\:task-action\\:additional-options\\:task-side-steps-menu'] span.fa-ellipsis-v", taskId);
+    waitForElementDisplayed(By.cssSelector(moreButton), true);
+    // Unstable step, after go to task list, click immediately to More button, Portal opens task detail.
+    // could be related to Javascript running when loading page. Try to wait page ready before clicking More button. 
+    Sleeper.sleep(2);
     clickByCssSelector(moreButton);
     ensureNoBackgroundRequest();
     waitForElementDisplayed(By.cssSelector("div[id$='side-steps-panel'].ui-overlay-visible a[id$='adhoc-side-step-item']"), true);

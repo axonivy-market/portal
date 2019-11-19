@@ -21,7 +21,7 @@
         <p:ajax event="sort" update="task-table" onstart="liveScroll()" />
         <p:column id="case-name" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseName')}" sortable="false" width="200"
           visible="#{taskAnalysisWidgetBean.columns['CASE_NAME']}" exportable="#{taskAnalysisWidgetBean.columns['CASE_NAME']}">
-          <h:outputText value="#{task.case.name}" />
+          <h:outputText value="#{empty task.case.name? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable') : task.case.name}" />
         </p:column>
 
         <p:column id="case-description" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseDescription')}" sortable="false" width="250"

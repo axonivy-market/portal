@@ -45,8 +45,8 @@
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
         currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
 
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}"
-          styleClass="u-truncate-text history-note ui-sm-12">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}" field="CONTENT"
+          sortBy="#{history.content}" styleClass="u-truncate-text history-note ui-sm-12">
           <h:outputText>
             <p:link id="show-task-note-link"
               value="#{empty history.content ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noTaskName') : history.content}"

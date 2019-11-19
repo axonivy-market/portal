@@ -39,7 +39,7 @@
         </h:panelGroup>
       </h:panelGroup>
 
-      <div class="ui-g-12 u-padding-0">
+      <div class="ui-g-12 u-padding-0 case-related-task-table">
         <p:dataScroller id="tasks" rendered="#{not empty data.relatedTasks}"
           value="#{data.relatedTasks.size() gt 20 ? caseWidgetBean.getFirst20Items(data.relatedTasks) : data.relatedTasks}" mode="inline"
           chunkSize="10" var="task" styleClass="case-related-task-case-running">
