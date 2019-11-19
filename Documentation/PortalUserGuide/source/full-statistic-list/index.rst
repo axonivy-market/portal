@@ -18,15 +18,17 @@ charts** quick link in the statistics section of your dashboard.
 
 .. figure:: images/navigate-to-full-statistics-page.png
 
-   Navigate to Full Statistics page
-
 On the :guilabel:`Full Statistics` page you see all charts that were previously
 created. Each chart provides you with the following features:
+
+.. figure:: images/full-statistics-page-chart-detail.png
 
 1. The heading of the chart
 
 2. An |info-icon| **Info** button, providing you with the configuration of
    the chart
+
+.. figure:: images/full-statistics-page-chart-info-detail.png
 
 3. Arrow buttons (|arrow-right-icon|, |arrow-left-icon|) depending
    on the position of the chart to allow you rearrangement according to
@@ -38,8 +40,6 @@ created. Each chart provides you with the following features:
    down to the task level.
 
 6. The legend, explaining the part of the charts
-
-.. figure:: images/full-statistics-page.png
 
 .. _howto-create-chart:
 
@@ -64,7 +64,9 @@ HowTo: Create chart
 
 .. figure:: images/charts-configuration-page.png
 
-   Charts configuration page
+**Available charts**
+
+.. figure:: images/full-statistics-page.png
 
 +-----------------------+-----------------------+-----------------------+
 | Name                  | Type                  | Description           |
@@ -99,9 +101,9 @@ HowTo: Create chart
 |                       |                       | categories.           |
 +-----------------------+-----------------------+-----------------------+
 | Elapsed time of done  | Bar chart             | Displays the relative |
-| cases. (Planned       |                       | elapsed time of all   |
-| change for Version    |                       | done cases belonging  |
-| 8.0)                  |                       | to a user or a role   |
+| cases.                |                       | elapsed time of all   |
+|                       |                       | done cases belonging  |
+|                       |                       | to a user or a role   |
 |                       |                       | categorized by their  |
 |                       |                       | Case Category. The    |
 |                       |                       | values are shown in   |
@@ -122,15 +124,15 @@ HowTo: Create chart
 |                       |                       | percentages.          |
 +-----------------------+-----------------------+-----------------------+
 | Done cases in time    | Pie chart             | Displays all cases    |
-| period (Planned       |                       | belonging to a user   |
-| change for Version    |                       | or a role, which were |
-| 8.0)                  |                       | done during the       |
+| period                |                       | belonging to a user   |
+|                       |                       | or a role, which were |
+|                       |                       | done during the       |
 |                       |                       | selected time period. |
 |                       |                       | The values are shown  |
 |                       |                       | in percentages.       |
 +-----------------------+-----------------------+-----------------------+
 
-.. centered:: Available charts
+
 
 +-----------------------------------+-----------------------------------+
 | Filter                            | Description                       |
