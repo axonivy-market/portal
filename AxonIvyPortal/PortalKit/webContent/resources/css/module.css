@@ -3997,6 +3997,19 @@ _:-ms-fullscreen, :root .content-link-history {
 }
 /* ===================== END ADHOC ======================= */
 
+/* =================== ADD CHAT ============================= */
+.chat-assignee-dialog {
+  width: 600px !important;
+}
+
+@media screen and (max-width: 40.063em) {
+  .chat-assignee-dialog {
+    width: 80vw !important;
+  }
+}
+
+/* =================== END ADD CHAT ============================= */
+
 /* ======================= MESSAGES ========================= */
 .ui-messages-info-icon,
 .ui-messages-warn-icon,
