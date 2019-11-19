@@ -100,7 +100,7 @@
                   icon="fa fa-random fa-2x" oncomplete="PF('adhoc-task-reset-confirmation-dialog').show()" />
     
                 <p:menuitem id="chat-group" icon="fa fa-comments fa-2x" action="#{chatAssigneeBean.createGroupChatForConfiguredRoleList(task)}"
-                  rendered="#{chatRendererBean.isGroupChatRendered and !(task.state eq 'CREATED')}"
+                  rendered="#{chatRendererBean.isGroupChatRendered and !(task.state eq 'CREATED')}" oncomplete="PF('chat-assignee-dialog').show()"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/createProcessChat')}" update="chat-assignee-dialog" />
     
                 <p:separator
@@ -144,7 +144,7 @@
         </p:dialog>
       
         <p:dialog id="chat-assignee-dialog" resizable="false"
-          header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/chatAssigneeDialogHeader')}" width="600"
+          header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/chatAssigneeDialogHeader')}" styleClass="chat-assignee-dialog"
           rendered="#{chatRendererBean.isGroupChatRendered}" widgetVar="chat-assignee-dialog" appendTo="@(body)" modal="true"
           dynamic="true">
           <h:panelGroup id="chat-group-join-container" rendered="#{chatAssigneeBean.doesGroupChatExist()}">
