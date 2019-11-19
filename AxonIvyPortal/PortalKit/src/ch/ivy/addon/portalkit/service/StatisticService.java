@@ -118,6 +118,7 @@ import ch.ivy.addon.portalkit.statistics.StatisticColors;
 import ch.ivy.addon.portalkit.statistics.StatisticFilter;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.business.data.store.search.Filter;
+import ch.ivyteam.ivy.business.data.store.search.Result;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -145,8 +146,12 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     List<StatisticChart> result = new ArrayList<>();
     try {
       Filter<StatisticChart> statisticChartQuery = repo().search(getType()).numberField(USER_ID).isEqualTo(userId);
-      result = statisticChartQuery.orderBy().textField(NAME).ascending().execute().getAll();
-      result = result.stream().sorted(Comparator.comparing(StatisticChart::getPosition)).collect(Collectors.toList());
+      Result<StatisticChart> queryResult = statisticChartQuery.execute();
+      long totalCount = queryResult.totalCount();
+      if(totalCount > LIMIT_10) {
+        queryResult = statisticChartQuery.limit(Math.toIntExact(totalCount)).execute();
+      }
+      result = queryResult.getAll().stream().sorted(Comparator.comparing(StatisticChart::getPosition)).collect(Collectors.toList());
       return result;
     } catch (Exception e) {
       Ivy.log().error(e);
@@ -178,7 +183,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   public long countStatisticChartsByUserId(long userId) {
     try {
       Filter<StatisticChart> statisticChartQuery = repo().search(getType()).numberField(USER_ID).isEqualTo(userId);
-      return statisticChartQuery.orderBy().textField(NAME).ascending().execute().count();
+      return statisticChartQuery.orderBy().textField(NAME).ascending().execute().totalCount();
     } catch (Exception e) {
       Ivy.log().error(e);
       return -1;
@@ -1295,8 +1300,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
 
   public void removeStatisticChartsByUserId(long userId) {
-    List<StatisticChart> result =
-        repo().search(getType()).numberField(USER_ID).isEqualTo(userId).execute().getAll();
+    List<StatisticChart> result = findStatisticChartsByUserId(userId);
     result.stream().forEach(item -> repo().delete(item));
   }
 
