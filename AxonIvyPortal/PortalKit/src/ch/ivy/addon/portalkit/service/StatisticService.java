@@ -765,16 +765,16 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     model.getData().addChartDataSet(dataSet);
 
     if (isSetDefaultName) {
-      Title title = generateChartTitle(StatisticChartType.TASK_BY_PRIORITY);
+      Title title = generateChartTitle(StatisticChartType.TASK_BY_PRIORITY, false);
       model.getOptions().setTitle(title);
     }
 
     return model;
   }
 
-  private Title generateChartTitle(StatisticChartType chartType) {
+  private Title generateChartTitle(StatisticChartType chartType, boolean isDisplayed) {
     Title title = new Title();
-    title.setDisplay(true);
+    title.setDisplay(isDisplayed);
     title.setText(Ivy.cms().co(chartType.getCmsUri()));
     return title;
   }
@@ -839,7 +839,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     data.addChartDataSet(dataSet);
 
     if (isSetDefaultName) {
-      options.setTitle(generateChartTitle(StatisticChartType.TASK_BY_EXPIRY));
+      options.setTitle(generateChartTitle(StatisticChartType.TASK_BY_EXPIRY, false));
     }
     options.setScales(scales);
     model.setData(data);
@@ -968,7 +968,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     DonutChartDataSet dataSet = createDonutChartDataSet(Colors.STATE_COLOR, chartData, isEmptyData);
     model.getData().addChartDataSet(dataSet);
     if (isSetDefaultName) {
-      model.getOptions().setTitle(generateChartTitle(chartType));
+      model.getOptions().setTitle(generateChartTitle(chartType, false));
     }
     return model;
   }
@@ -1000,7 +1000,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     
     data.addChartDataSet(dataSet);
     if (isSetDefaultName) {
-      options.setTitle(generateChartTitle(StatisticChartType.ELAPSED_TIME_BY_CASE_CATEGORY));
+      options.setTitle(generateChartTitle(StatisticChartType.ELAPSED_TIME_BY_CASE_CATEGORY, false));
     }
     options.setScales(scales);
     options.setLegend(buildChartLegend(CHART_LEGEND_POSITION_BOTTOM, false));
