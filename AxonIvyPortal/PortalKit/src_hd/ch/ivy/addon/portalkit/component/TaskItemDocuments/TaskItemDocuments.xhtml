@@ -39,10 +39,10 @@
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}" sortBy="#{document.name}"
             styleClass="u-truncate-text">
             <h:panelGroup layout="block" rendered="#{document ne null}" styleClass="task-document-name">
-              <p:commandLink ajax="false" id="download" styleClass="download-command js-download-command task-document-name-text u-truncate-text">
+              <p:commandLink ajax="false" id="download" styleClass="download-command task-document-name-text u-truncate-text">
                 <p:fileDownload value="#{logic.downloadDocument(document)}" />
                 <span class="fa fa-file-pdf-o task-details-document-download-icon" />
-                <h:outputText value="#{document.name}" styleClass="js-document-name" />
+                <h:outputText value="#{document.name}" />
               </p:commandLink>
               <p:commandLink id="delete-file" actionListener="#{data.setDocument(document)}"
                 rendered="#{data.businessCase.state ne 'DONE' and data.isShowUploadDocumentButton and taskActionBean.canWriteDocument(data.task)}"
@@ -79,7 +79,7 @@
       <p:messages id="upload-messages" />
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addDocumentHelpText')}" />
       <p:fileUpload styleClass="document-upload" id="document-upload-panel" fileUploadListener="#{logic.uploadDocument}" mode="advanced"
-        dragDropSupport="true" oncomplete="documentTruncation.truncate();" label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
+        dragDropSupport="true" label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
         auto="true" multiple="true" sizeLimit="#{masterDataBean.fileUploadSizeLimit}"
         invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
         update="upload-messages #{p:component('task-document-form')} #{cc.attrs.componentToUpdate}" />
@@ -98,12 +98,11 @@
     <h:panelGroup layout="block" styleClass="document-deletion-command-buttons">
       <p:commandButton id="document-deletion-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" process="@this"
         update="#{p:component('task-document-form')} #{cc.attrs.componentToUpdate} #{p:component('task-document-global-messages')}"
-        actionListener="#{logic.deleteDocument}" oncomplete="PF('document-deletion-dialog').hide(); documentTruncation.truncate();" />
+        actionListener="#{logic.deleteDocument}" oncomplete="PF('document-deletion-dialog').hide();" />
       <p:commandButton id="document-deletion-cancellation-command" styleClass="portal-cancel-button"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" process="@this" onsuccess="PF('document-deletion-dialog').hide()" />
     </h:panelGroup>
   </p:confirmDialog>
 
-  <h:outputScript library="js" name="document-truncation.js" />
 </cc:implementation>
 </html>
