@@ -192,10 +192,13 @@ applicationNames.add(IApplication.PORTAL_APPLICATION_NAME);
 for (String applicationName : applicationNames) {
 	//invalidate cache
 	DataCache.invalidateUsersCache(applicationName);
-	//insert entries to cache again
-	DataCache.cacheAllUsers(applicationName, in.users);
-	DataCache.cacheUsersRepo(applicationName, repo);
-}' #txt
+}
+
+//insert entries to current app cache
+String applicationName = ivy.wf.getApplication().getName();
+DataCache.cacheAllUsers(applicationName, in.users);
+DataCache.cacheUsersRepo(applicationName, repo);
+' #txt
 tt0 f10 security system #txt
 tt0 f10 type ch.ivyteam.wf.processes.SynchronizeApplicationUserData #txt
 tt0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

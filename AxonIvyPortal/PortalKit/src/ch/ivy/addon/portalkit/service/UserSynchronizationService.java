@@ -11,7 +11,6 @@ import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.persistence.domain.Server;
 import ch.ivy.addon.portalkit.persistence.domain.User;
 import ch.ivy.addon.portalkit.support.DataCache;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class UserSynchronizationService {
@@ -76,19 +75,24 @@ public class UserSynchronizationService {
       }
     });
     if (CollectionUtils.isNotEmpty(users)){
-      userService.saveAll(users);
-      users.addAll(DataCache.getAllUsersFromCache());
-      Repo<Long, User> repo = userDao.buildRepoIndexedByUserName(users);
-      CollectionUtils.emptyIfNull(apps).forEach(app -> {
-        refreshUserAppCache(app.getName(), users, repo);
-      });
-      refreshUserAppCache(IApplication.PORTAL_APPLICATION_NAME, users, repo);
+      List<User> cachedUsers = DataCache.getAllUsersFromCache();
+      //Reload users from database to to check whether user is saved or not
+      DataCache.invalidateUsersCache(Ivy.wf().getApplication().getName());
+      List<User> usersLoadedFromDB = userService.findByUserName(username); // cache & find
+      boolean userExists = CollectionUtils.emptyIfNull(usersLoadedFromDB).stream()
+              .filter(userchk -> userchk.getApplicationName().equals(Ivy.wf().getApplication().getName())
+                      && userchk.getServerId() != -1L)
+              .findAny().isPresent();
+      if (!userExists) {
+        userService.saveAll(users);
+        users.addAll(cachedUsers);
+        Repo<Long, User> repo = userDao.buildRepoIndexedByUserName(users);
+        refreshUserAppCache(Ivy.wf().getApplication().getName(), users, repo);
+      }
     }
   }
 
   private static void refreshUserAppCache(String appName, List<User> users, Repo<Long, User> repo) {
-    DataCache.invalidateUsersCache(appName);
-    //insert entries to cache again
     DataCache.cacheAllUsers(appName, users);
     DataCache.cacheUsersRepo(appName, repo);
   }
