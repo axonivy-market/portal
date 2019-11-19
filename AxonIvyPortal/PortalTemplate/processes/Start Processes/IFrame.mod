@@ -72,6 +72,7 @@ ITask task = ivy.wf.findTask(in.taskId);
 if (task != null) {
 	out.embedInIFrame = IvyAdapterService.getTaskEmbedInIFrameCustomField(task);
 }' #txt
+Ie0 f5 security system #txt
 Ie0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -118,6 +119,7 @@ import ch.ivy.addon.portalkit.service.StickyTaskListService;
 
 String iframeAttr = StickyTaskListService.service().getIFrameSessionAttributeKey(in.taskId);
 SecurityServiceUtils.setSessionAttribute(iframeAttr, true);' #txt
+Ie0 f2 security system #txt
 Ie0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

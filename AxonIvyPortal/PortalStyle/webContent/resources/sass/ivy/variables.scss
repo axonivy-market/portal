@@ -46,6 +46,7 @@ $defaultFontSize: 10px;
 $defaultBodyFontSize: 1.4rem;
 $largeFontSize: 1.4rem; // font size for header,title, groups, menu
 $smallFontSize: 1.2rem; // font size for text, label, input
+$headerFontSize: 2rem; // dialog header, chat header, chart header
 $portalFontFamily: "Roboto";
 $defaultFontStyle: normal;
 $defaultFontWeight: 400;
@@ -128,10 +129,10 @@ $statisticFilterAccordionPanelBorder: $grey2;
 $dashboardChartPanelChartNameFontWeight: 400;
 $chartInfoHeaderFontWeight: bold;
 $chartInfoLabelFontWeight: bold;
-$chartNameFontSize: 1.6rem;
-$chartFilterHeaderFontSize: 1.8rem;
-$chartContainerAddLinkFontSize: 1.3rem;
-$dashboardChartNameFontSize: 2rem;
+$chartNameFontSize: $largeFontSize;
+$chartFilterHeaderFontSize: $headerFontSize;
+$chartContainerAddLinkFontSize: $smallFontSize;
+$dashboardChartNameFontSize: $headerFontSize;
 $statisticCarouselHeaderButtonHoverColor: rgba($black, 0.8);
 $statisticCarouselHeaderButtonColor: rgba($black, 0.5);
 $statisticCarouselHeaderColor: rgba($black, 0.8);
@@ -356,28 +357,30 @@ $expressAssigneeIconColor: rgba($black, 0.7); /* Consider to change to grey */
 $expressReviewContentTitleBorderColor: rgba($black, 0.25); /* Consider to change to grey */
 
 /* Chat */
-$chatPanelBackgroundColor: $black;
+$chatPanelBackgroundColor: $grey1;
 $noGroupChatColor: $white;
 $contactCardHoverBackgroundColor: $grey1;
-$contactCardIconColor: #b2b2b2;
+$contactCardIconColor: $grey1;
+$contactCardIconOfflineColor: $grey3;
 $contactCardBackgroundColor: $white;
 $contactCardIconUnreadMessageColor: $white;
 $contactCardIconUnreadMessageBackgroundColor: #ff6d6e;
-$contactCardNameColor: $white;
 $contactCardStatusBackgroundColor: #64d864;
+$contactCardNameColor: $white;
 $contactNotificationColor: $white;
 $contactNotificationBackgroundColor: $red;
-$messageListBackgroundColor: $white;
+$contactCardName: $black; 
+$messageListBackgroundColor: $grey4;
 $messageListHeaderBackgroundColor: $grey1;
-$messageListHeaderCloseIconHoverBackgroundColor: #9b9b9b;
-$messageListHeaderCloseIconBackgroundColor: #b2b2b2;
-$messageSeparatorBorder: $grey2;
-$chatMessageBackgroundColor: #f3f6f9;
-$chatMyMessageBackgroundColor: #def4fd;
+$messageListHeaderCloseIconHoverBackgroundColor: $grey1;
+$messageListHeaderCloseIconBackgroundColor: $grey3;
+$chatMessageBackgroundColor: $grey4;
+$chatMessageBackgroundColor: $accentColor;
+$chatMyMessageBackgroundColor: $primaryDarkColor;
 $messageChatHeaderNameColor: $white;
 $showParticipantsLinkColor: $white;
-$chatFormBackgroundColor: #f5f5f5;
-$notificationBadgeBackgroundColor: rgb(255, 109, 110);
+$chatFormBackgroundColor: $white;
+$notificationBadgeBackgroundColor: #ff6d6e;
 $notificationBadgeColor: $white;
 $chatContactTypeHeaderColor: $white;
 $chatTooltipColor: $white;
@@ -388,8 +391,15 @@ $messageListContentSendInputBackgroundColor: transparent;
 $chatUserInRoleBorder: $grey2;
 $showParticipantsLinkFontWeight: bold;
 $participantsListHeaderFontWeight: bold;
-$messageChatHeaderNameFontWeight: 600;
-$chatContactTypeHeaderFontSize: 1.8rem;
+$messageChatHeaderNameFontWeight: bold;
+$chatContactTypeHeaderFontSize: $headerFontSize;
+$closeChatFontSize: $largeFontSize;
+$contactCardIconFontSize: $headerFontSize;
+$contactCardIconAfterFontsize: $smallFontSize;
+$notificationBadgeFontSize: $smallFontSize;
+$notificationBadgeIconFontSize: $headerFontSize;
+$chatBoxShadow: 0 2px 4px 0 rgba($black, 0.2), 0 1px 10px 0 rgba($black, 0.12), 0 4px 5px 0 rgba($black, 0.14);
+$chatContactsBoxShadow: 3px 0 6px rgba($black, 0.3);
 
 /* Icon */
 $iconFontFamily: "FontAwesome";
