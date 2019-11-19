@@ -1,1 +1,172 @@
 /* Add your customizations of theme here */
+
+/* Calendar */
+.ui-datepicker .ui-datepicker-buttonpane button {
+    border-radius: $actionButtonBorderRadius;
+    background-color: $primaryColor;
+}
+
+/* Command link */
+.ui-commandlink {
+  color: $commandLinkTextColor !important;
+}
+
+.ui-commandlink:hover {
+  color: $commandLinkHoveredTextColor !important;
+}
+
+.ui-commandlink:active {
+  color: $commandLinkActiveTextColor !important;
+}
+
+.ui-commandlink.ui-state-disabled {
+  color: $commandLinkDisabledTextColor !important;
+  font-size: $largeFontSize;
+}
+
+/* Data table */
+.ui-datatable table tbody tr td span {
+  color: $dataTableRowSpanColor !important;
+}
+
+.ui-datatable table tbody tr.ui-datatable-selectable.ui-state-highlight td {
+    background-color: $highlightedTdDataTableBackgroundColor;
+}
+
+.ui-datatable table tbody tr.ui-datatable-selectable.ui-state-hover td {
+    background-color: $hoveredTdDataTableBackGroundColor;
+}
+
+.ui-datatable table thead tr td:not(:last-child),
+.ui-datatable table tbody tr td:not(:last-child) {
+    border-right: 1px solid $rightBorderInsideDataTable;
+}
+
+.ui-datatable {
+    thead {
+        tr {
+            th {
+            	border-top: 1px solid $topBorderOutsideDataTableColor;
+				border-bottom: 1px solid $bottomBorderHeaderDataTableColor;
+	
+                .ui-column-title {
+                    color: $primaryTextColor;
+                }
+
+                .ui-sortable-column-icon.ui-icon {
+                    color: $primaryTextColor;
+                }
+
+                &:not(:last-child) {
+                    border-right: 1px solid $rightBorderInsideDataTable;
+                }
+
+                &:not(:first-child) {
+                    border-left: 1px solid $leftBorderInsideDataTable;
+                }
+                
+                &:first-child {
+                    border-left: 1px solid $leftBorderOutsideDataTableColor !important;
+                }
+                
+                &:last-child {
+                    border-right: 1px solid $rightBorderOutsideDataTableColor !important;
+                }
+            }
+        }
+
+        .ui-inputfield.ui-inputtext.ui-widget.ui-state-default.ui-corner-all {
+            &.ui-column-filter {
+                background-image: linear-gradient(to bottom, $primaryColor, $primaryColor), linear-gradient(to bottom, $inputBorderColor, $inputBorderColor);
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            td {
+            	border-top: 1px solid $topBorderBodyDataTableColor !important;
+            	border-bottom: 1px solid $bottomBorderOutsideDataTableColor !important;
+                
+                .ui-inputfield {
+                    color: $uiInputFieldTdTextColor;
+                }
+
+                &:first-child {
+                    border-left: 1px solid $leftBorderOutsideDataTableColor;
+                }
+                
+                &:last-child {
+                    border-right: 1px solid $rightBorderOutsideDataTableColor;
+                }
+            }
+        }
+
+        tr.ui-datatable-even {    
+            .ui-editable-column.ui-state-highlight.ui-cell-editing {
+                background-color: transparent;
+            }
+        }
+    }
+
+    .ui-datatable-scrollable-body {
+        outline: transparent;
+    }
+
+    .ui-paginator-rpp-options {
+        vertical-align: middle;
+    }
+
+    .ui-inputfield.ui-widget.ui-state-default.ui-corner-all.hasDatepicker {
+        background-image: linear-gradient(to bottom, $primaryColor, $primaryColor), linear-gradient(to bottom, $inputBorderColor, $inputBorderColor) !important;
+    }
+}
+
+/* Fieldset */
+.ui-fieldset-content table {
+  width: 100%;
+}
+
+.ui-fieldset-legend {
+  padding: 0 10px !important;
+}
+
+.ui-fieldset-legend.ui-state-hover {
+  background-color: $fieldSetLegendHoverColor;
+}
+
+.ui-fieldset-toggler:hover {
+  background-color: $fieldsetToggerHoverBackgroundColor !important;
+}
+
+.ui-fieldset {
+    .ui-fieldset-legend {
+        color: $uiFiedsetLegendTextColor !important;
+
+        .ui-fieldset-toggler {
+            background-color: $fieldSetTogglerBackgroundColor !important;
+            color: $uiFieldSetTogglerColor !important;
+            width: 20px;
+            height: 20px;
+        }
+    }
+}
+
+/* Layout*/
+.layout-wrapper .layout-sidebar .layout-menu li > a {
+  color: $sidebarMenuListItemLinkTextColor;
+}
+
+.layout-wrapper .layout-sidebar .layout-menu li > a i {
+  font-size: 1.8rem;
+  color: $sidebarMenuListItemIconColor;
+}
+
+.layout-wrapper .layout-sidebar .layout-menu li > a:hover i {
+  color: $sidebarMenuListItemHoverIconColor;
+}
+
+/* */
+body .ui-selectonelistbox .ui-selectlistbox-item.ui-state-hover {
+  color: $hoveredItemSelectOneListBoxTextColor;
+}
