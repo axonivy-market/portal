@@ -77,14 +77,6 @@ input::-ms-clear {
 
 /* =================== END DIALOG ====================== */
 
-/* =================== LINK ====================== */
-
-.ui-commandlink.ui-state-disabled {
-  opacity: 1;
-} 
-
-/* =================== END LINK ====================== */
-
 /* =================== INPLACE EDITOR ===================== */
 .ui-inplace-editor {
   display: inline-block;
@@ -1011,7 +1003,7 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   float: left;
 }
 
-.expand-collapse-btns .express-expand-collapse-btn {
+.expand-collapse-btns .expand-collapse-btn {
   padding: 4px 8px;
   border-radius: 15px;
   float: left;
