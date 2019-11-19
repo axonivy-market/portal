@@ -23,7 +23,8 @@
         #{task.name}
       </p:column>
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}" style="width:200px;">
-        <i class="fa #{task.activator == null ? '' : task.activator.isUser() ? 'fa-user' : 'fa-users'}" /> 
+        <h:graphicImage 
+            name="#{data.task.getActivator() != null and task.getActivator().isUser() ? 'resources/images/user.gif' : 'resources/images/role.gif'}" />
         #{task.activator.displayName}
       </p:column>
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" style="width:150px;">
@@ -41,7 +42,7 @@
       </p:column>
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portal.generic/TaskMail/taskResume')}" style="width:100px; text-align: center;">
         <h:outputLink value="#{logic.taskStart(task)}">
-          <i class="fa fa-play-circle" />
+          <h:graphicImage name="resources/images/start.gif" /> 
         </h:outputLink>
       </p:column>
     </p:dataTable>
