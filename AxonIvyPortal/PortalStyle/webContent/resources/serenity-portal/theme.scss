@@ -308,7 +308,7 @@ body .ui-panelgrid tbody tr.ui-widget-content {
 
 /*Style For Statistic Widget -----------------------------------------------------------------------------*/
 .statistic-carousel .ui-carousel-header {
-    background-color: $statisticPanelHeader;
+    background-color: $statisticPanelHeader !important;
     border-color: $statisticPanelHeaderBorder;
 }
 
@@ -554,10 +554,6 @@ body .ui-dialog .ui-dialog-footer .ui-button {
 
 .ui-widget.ui-button.defined-task-button.ui-state-hover {
     background-color: $primaryColor !important;
-}
-
-.Fleft {
-    float: left;
 }
 
 /*Style for stages breadcrumb --------------------------------------------------------------------------------------*/
@@ -820,7 +816,7 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
   
   &:not(.ui-state-disabled) {
     &:focus, &:hover  {
-      background-color: $caseTaskActionButtonHoveredBackgroundColor !important;
+
     }
   }
 
@@ -994,7 +990,6 @@ body .ui-widget.ui-dialog .ui-dialog-content {
 }
 
 .widget-sort-menu.full-mode a.ui-widget.ui-commandlink { 
-  color : $taskWidgetSortMenuFullModeTextColor !important;
   font-size: $largeFontSize;
 }
 
@@ -1031,49 +1026,6 @@ body .ui-widget.ui-dialog .ui-dialog-content {
 
 .widget-sort-menu.full-mode {
   border-bottom: 1px solid $widgetSortMenuBorderBottomColor;
-}
-
-/*Style for Case Item --------------------------------------------------------------------------------------*/
-
-.case-list-unsortable-header-cell {
-  font-size: $largeFontSize;
-  color: $caseListUnsortableHeaderCellTextColor;
-}
-
-a.case-details-document-add-link,
-a.task-details-document-add-link,
-span.case-details-document-add-link,
-span.task-details-document-add-link {
-  font-size: $largeFontSize ;
-  font-weight: $detailsDocumentAddLinkFontWeight;
-}
-
-.case-detail-name-input {
-  font-size: $largeFontSize !important;
-  font-weight: $caseDetailNameInputFontWeight !important;
-}
-
-.case-detail-section-title, .case-history-button-container,
-.task-history-button-container {
-  font-size: $largeFontSize ;
-  font-weight: $historyButtonContainerFontWeight;
-}
-
-.case-header-action-cell .action-item .ui-button.ui-widget.ui-state-hover .ui-button-text,
-.case-header-action-cell .action-item .ui-button.ui-widget.ui-state-hover .ui-button-icon-left.ui-icon.ui-icon-triangle-1-s:before,
-.case-header-action-cell .action-item .ui-button.ui-widget.ui-state-focus .ui-button-text,
-.case-header-action-cell .action-item .ui-button.ui-widget.ui-state-focus .ui-button-icon-left.ui-icon.ui-icon-triangle-1-s:before {
-   color: $primaryTextColor !important; 
-}
-
-.case-header-action-cell .action-item .ui-button {
-  background: $caseHeaderActionCellButtonBackgroundColor;
-  outline: $caseHeaderActionCellButtonBackgroundColor;
-}
-
-.action-steps-panel .case-action-separator,
-.options-panel hr.u-separator {
-  border: 0.8px solid $caseActionSeparatorBorderColor;
 }
 
 /*Style for Case Widget-------------------------------------------------------------------------------------*/ 
@@ -1329,6 +1281,11 @@ body .ui-picklist li.ui-picklist-item.ui-state-hover {
   background-color: $subMenuItemLinkBackgroundColor !important;
 }
 
+
+.layout-wrapper .layout-sidebar .layout-menu .submenu-container a:hover {
+  background-color: $subMenuItemLinkHoveredBackgroundColor !important;
+}
+
 .submenu-container.active-menuitem a:not(:hover) i,
 .submenu-container.active-menuitem a:not(:hover) {
   color: $accentColor !important;
@@ -1406,14 +1363,53 @@ body .ui-picklist li.ui-picklist-item.ui-state-hover {
   display: inline !important;
 }
 
-/* Case item*/
+/*Style for Case Item --------------------------------------------------------------------------------------*/
+.case-list-unsortable-header-cell {
+  font-size: $largeFontSize;
+  color: $caseListUnsortableHeaderCellTextColor;
+}
+
+a.case-details-document-add-link,
+a.task-details-document-add-link,
+span.case-details-document-add-link,
+span.task-details-document-add-link {
+  font-size: $largeFontSize ;
+  font-weight: $detailsDocumentAddLinkFontWeight;
+}
+
+.case-detail-name-input {
+  font-size: $largeFontSize !important;
+  font-weight: $caseDetailNameInputFontWeight !important;
+}
+
+.case-detail-section-title, .case-history-button-container,
+.task-history-button-container {
+  font-size: $largeFontSize ;
+  font-weight: $historyButtonContainerFontWeight;
+}
+
+.case-header-action-cell .action-item .ui-button.ui-widget.ui-state-hover .ui-button-text,
+.case-header-action-cell .action-item .ui-button.ui-widget.ui-state-hover .ui-button-icon-left.ui-icon.ui-icon-triangle-1-s:before,
+.case-header-action-cell .action-item .ui-button.ui-widget.ui-state-focus .ui-button-text,
+.case-header-action-cell .action-item .ui-button.ui-widget.ui-state-focus .ui-button-icon-left.ui-icon.ui-icon-triangle-1-s:before {
+   color: $primaryTextColor !important; 
+}
+
+.case-header-action-cell .action-item .ui-button {
+  background: $caseHeaderActionCellButtonBackgroundColor;
+  outline: $caseHeaderActionCellButtonBackgroundColor;
+}
+
+.action-steps-panel .case-action-separator,
+.options-panel hr.u-separator {
+  border: 0.8px solid $caseActionSeparatorBorderColor;
+}
 .case-list-item {
   background-color: $caseListItemBackgroundColor;
 }
 
-.case-list-item:hover,
-.case-list-item.case-odd-row:hover {
-  background: $caseListItemHoverBackgroundColor;
+.case-list-item:hover {
+  background-color: $caseListItemHoverBackgroundColor !important;
 }
 .case-list-item.case-odd-row {
   background-color: $caseOddRowBackgroundColor;
@@ -1425,10 +1421,6 @@ body .ui-picklist li.ui-picklist-item.ui-state-hover {
 
 .case-header-name-desc-cell .case-header-desc-cell {
   color: $caseItemDescriptionCell;
-}
-
-.case-header-action-cell .action-item {
-  color: $caseHeaderActionDetailItem !important;
 }
 
 .action-steps-panel .ui-overlaypanel-content {
@@ -1478,14 +1470,14 @@ body .ui-picklist li.ui-picklist-item.ui-state-hover {
 }
 
 /*Process --------------------------------------*/
-.expand-collapse-btns .express-expand-collapse-btn {
-  color: $expressExpandCollapseButtonColor !important;
-  background-color: $expressCollapseButtonBackgroundColor;
+.expand-collapse-btns .expand-collapse-btn {
+  color: $expandCollapseButtonColor !important;
+  background-color: $collapseButtonBackgroundColor;
   font-size: $smallFontSize;
 }
 
-.expand-collapse-btns a.express-expand-collapse-btn:hover {
-  background-color: $expressCollapseButtonHoveredBackgroundColor;
+.expand-collapse-btns a.expand-collapse-btn:hover {
+  background-color: $collapseButtonHoveredBackgroundColor;
 }
 
 .process-widget .process-nav .process-nav-item { 
@@ -1511,7 +1503,7 @@ body .ui-picklist li.ui-picklist-item.ui-state-hover {
 
 .process-start-list-item,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item {
-  background: $processOrderListItemBackgroundColor;
+  background-color: $processOrderListItemBackgroundColor;
   color: $processStartListItemColor;
 }
 
