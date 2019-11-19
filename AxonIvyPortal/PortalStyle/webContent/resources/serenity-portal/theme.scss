@@ -2177,11 +2177,15 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 /* Chat*/
 .notification-badge i.fa.fa-comment {
-  font-size: $bodyDialogTitleFontSize !important;
+  font-size: $notificationBadgeIconFontSize !important;
 }
 
-.contact-card:hover .contact-card-icon, .contact-card.active .contact-card-icon,
 .chat-panel {
+  background: $chatPanelBackgroundColor;
+}
+
+.contact-card:hover .contact-card-icon, .contact-card.active .contact-card-icon {
+  color: $contactCardBackgroundColor;
   background: $chatPanelBackgroundColor;
 }
 
@@ -2194,7 +2198,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   background: rgba($contactCardBackgroundColor, 0.85);
 
   .contact-card-name {
-    color: $black;
+    color: $contactCardName;
   }
 }
 
@@ -2202,7 +2206,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   background: $contactCardBackgroundColor;
 
   .contact-card-name {
-    color: $black;
+    color: $contactCardName;
   }
 }
 
@@ -2215,7 +2219,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 .contact-card-icon[unread-message]:after {
   background: $contactCardIconUnreadMessageBackgroundColor;
   color: $contactCardIconUnreadMessageColor;
-  font-size: $contactCardIconAfterFs;
+  font-size: $contactCardIconAfterFontsize;
 }
 
 .contact-card-name {
@@ -2233,7 +2237,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 }
 
 .contact-card-status.is-offline {
-  background: $contactCardIconColor;
+  background: $contactCardIconOfflineColor;
 }
 
 .message-list {
