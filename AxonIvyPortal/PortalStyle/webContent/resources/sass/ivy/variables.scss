@@ -17,12 +17,17 @@ $lightGrey: #d9dada;
 $mediumGrey: #9c9d9d;
 $darkGrey: #575656;
 
-$primaryColor: #c7d426;
-$primaryDarkColor: #97ae04;
-$primaryLightColor: #dcf91f;
+/* Consolidate green*/
+
+$primaryGreen: red;
+$primaryLightGreen: #d7e52c;
+
+$primaryColor: $primaryGreen;
+$primaryDarkColor: #97ae04;  /*Change to lightgrey*/
+$primaryLightColor: $primaryLightGreen;
 $primaryLightestColor: $white;
 $primaryTextColor: $black;
-$accentColor: $primaryColor;
+$accentColor: $primaryGreen;
 $accentDarkColor: $primaryDarkColor;
 $accentLightColor: $primaryLightColor;
 $accentTextColor: #ecfc82;
@@ -31,7 +36,7 @@ $headerPadding: 14px 1em;
 $borderColor: rgba($black, 0.1);
 $bodyBackgroundColor: $white;
 
-$processChainMenuColor: $primaryColor;
+$processChainMenuColor: $primaryGreen;
 
 $loginLogoHeight: 50px;
 $homeLogoHeight: 42px;
@@ -47,9 +52,9 @@ $defaultFontWeight: 400;
 $inplaceEditIconFontSize: 1.8rem;
 
 /* 3 colors of header bar */
-$firstHeaderBarColor: $primaryColor;
-$secondHeaderBarColor: $primaryColor;
-$thirdHeaderBarColor: $primaryColor;
+$firstHeaderBarColor: $primaryGreen;
+$secondHeaderBarColor: $primaryGreen;
+$thirdHeaderBarColor: $primaryGreen;
 
 /* Task priority color */
 $taskPriorityLowColor: #d4d4d4;
@@ -66,7 +71,7 @@ $taskStateSystemColor: rgba(black, 0.4);
 $taskStateZombieDestroyedColor: #ff6464;
 
 /* Color and border radius of Portal button e.g Add, Close, New, Save, OK .. */
-$actionButtonColor: $primaryColor;
+$actionButtonColor: $primaryGreen;
 $cancelButtonBackgroundColor: #d3d3d3;
 $actionButtonBorderRadius: 0px;
 
@@ -102,9 +107,9 @@ $announcementBorderColor: $red;
 /* Process chain */
 $lineWaitingStepBackgroundColor: $grey2;
 $circleStepNumberColor: $primaryTextColor;
-$circleHorizontalStepNumberContainerBorderTopColor: $primaryColor;
+$circleHorizontalStepNumberContainerBorderTopColor: $primaryGreen;
 $circleHorizontalStepNumberContainerBorderTop: $grey2;
-$circleHorizontalLastStepNumberContainerBorderTop: $primaryColor;
+$circleHorizontalLastStepNumberContainerBorderTop: $primaryGreen;
 $circleHorizontalWaitingStepNumberContainerBackgroundColor: transparent;
 $circleStepContainerBorder: transparent;
 $circleVerticalStepNumberContainerBorder: $grey2;
@@ -165,7 +170,7 @@ $processHistoryMessageLabelColor: $black;
 $processStartListItemColor: $primaryTextColor;
 $processHeaderTitleContainerBorderBottom: $borderColor;
 $processNavigatorBorder: $borderColor;
-$processNavigatorItemSelectedBorder: $primaryColor;
+$processNavigatorItemSelectedBorder: $primaryGreen;
 $processHistoryColumnHeaderBorder: $borderColor;
 $processHistoryListDataScrollerBackgroundColor: transparent;
 $processOrderListItemBackgroundColor: $paleGrey;
@@ -320,7 +325,7 @@ $expressInputSwitchHandleBackgroundColor: $white;
 $expressShowDefaultIconColor: $black;
 $taskResponsibleLabelStateErrorColor: #e62a10;
 $definedTaskButtonBackgroundColor: $white;
-$formElementsPanelHoverDropSectionBackgroundColor: #edffd3;
+$formElementsPanelHoverDropSectionBackgroundColor: $primaryLightGreen;
 $reviewContentTitleColor: $black;
 $formElementsCheckboxFieldsColor: $primaryTextColor;
 $definedTaskLabelBackgroundColor: $accentColor;
@@ -328,7 +333,7 @@ $definedTaskButtonContainerBackgroundColor: $white;
 $formElementsPanelHoverDropSectionLabelColor: $primaryTextColor;
 $selectManyCheckboxLabelColor: $grey1;
 $autocompleteMoreTextStateHighlightBackgroundColor: white;
-$expressInputSwitchSelectionBorder: #dcf91f;
+$expressInputSwitchSelectionBorder: $primaryGreen;
 $expressAvailableElementsActionButtonBackgroundColor: transparent;
 $expressAvailableElementsActionButtonShadow: none;
 $formElementsPanelHoverDropSectionBorder: #699924;
@@ -420,10 +425,10 @@ $dataTableRowBackgroundColorOdd: rgba(247, 247, 247, 1);
 $dataTableRowHeaderColor: $black;
 $dataTableRowHeaderBgColor: rgba(236, 236, 236, 1);
 $dataTableRowSpanColor: $primaryTextColor;
-$highlightedTdDataTableBackgroundColor: $primaryColor;
-$hoveredTdDataTableBackGroundColor: $primaryColor;
-$highlightedTdTreeTableBackgroundColor: rgba($primaryColor, 0.6);
-$hoveredTdTreeTableBackGroundColor: rgba($primaryColor, 0.25);
+$highlightedTdDataTableBackgroundColor: $primaryGreen;
+$hoveredTdDataTableBackGroundColor: $primaryGreen;
+$highlightedTdTreeTableBackgroundColor: rgba($primaryGreen, 0.6);
+$hoveredTdTreeTableBackGroundColor: rgba($primaryGreen, 0.25);
 $tableBorderColor: rgba(black, 0.2); /* Change to grey*/
 $rightBorderInsideDataTable: $tableBorderColor;
 $leftBorderInsideDataTable: transparent;

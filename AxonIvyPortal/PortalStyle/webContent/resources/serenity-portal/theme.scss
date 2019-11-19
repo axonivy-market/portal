@@ -2225,3 +2225,28 @@ body .ui-selectonemenu-panel .ui-selectonemenu-item.ui-state-hover {
 body .ui-dialog .ui-dialog-titlebar {
   color: $uiDialogTitleBarTextColor;
 }
+
+/* Override span color in table */
+.ui-datatable table tbody tr td span {
+  color: $dataTableRowSpanColor !important;
+}
+
+body .ui-selectonelistbox .ui-selectlistbox-item.ui-state-hover {
+  color: $hoveredItemSelectOneListBoxTextColor;
+}
+
+/*** Override green */
+body .ui-selectonemenu-panel .ui-state-highlight,
+body .ui-autocomplete-panel .ui-state-highlight {
+  background-color: $primaryLightGreen !important;
+}
+
+/* Change header to grey */
+body .ui-widget-header {
+  background-color: $paleGrey !important;
+  border: 1px solid $lightGrey;
+}
+
+body .ui-inputswitch.ui-inputswitch-checked .ui-inputswitch-handle {
+  background-color: $white;
+}
