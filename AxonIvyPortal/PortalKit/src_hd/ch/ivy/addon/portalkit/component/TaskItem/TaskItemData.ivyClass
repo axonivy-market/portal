@@ -21,8 +21,6 @@ delegateComment PERSISTENT #fieldModifier
 callbackUrl String #field
 callbackUrl 'Portal Task List url is used to be back after finish task' #fieldComment
 callbackUrl PERSISTENT #fieldModifier
-isShowTaskButtonLabels Boolean #field
-isShowTaskButtonLabels PERSISTENT #fieldModifier
 queryAutoComplete String #field
 queryAutoComplete PERSISTENT #fieldModifier
 dataModel ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel #field
