@@ -10,11 +10,6 @@ Axon.ivy Portal menu or the quick link **Show all processes** in your
 dashboard.
 
 .. figure:: images/navigate-to-full-process-list.png
-   :width: 6.49606in
-   :height: 3.28346in 
-   :align: center
-
-   Navigate to Full Process List
 
 On the :guilabel:`Full Process List` page, you see a list of all processes. They
 are sorted alphabetically and grouped by their initial character. An
@@ -22,12 +17,6 @@ exception are the :guilabel:`Express Workflows` which are grouped under an own
 category Express Workflows. Express workflows are described in detail in :ref:`axon-ivy-express`.
 
 .. figure:: images/portal-full-process-list-page.png
-   :width: 6.49606in
-   :height: 3.28346in 
-   :align: center
-   
-   Axon.ivy Portal Full Process List page
-
 
 If you’re looking for a specific process, you may use the |search-icon|
 **Search** feature which is located on the right-hand side next to the
