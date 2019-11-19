@@ -306,13 +306,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 }
 
 .filter-widget .filter-widget-input {
-  padding: 6px 0 3px 6px !important;
-}
-
-.filter-widget-icon  {
-  position: absolute;
-  top: 35%;
-  right: 5px;
+  padding: 6px 0 4px 6px !important;
 }
 
 .filter-category-checkbox-tree .ui-tree-container {
@@ -355,6 +349,9 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   .compact-process-widget .widget-header-main {
     height: 30px !important;
   }
+  .task-widget .sort-task-menu {
+  	margin-top: 9px !important;
+  }
 }
 
 .task-widget-sub-header {
@@ -370,10 +367,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .case-widget-container .in-progress-task-checkbox {
   padding-left: 2.4px;
   margin-left: .1rem; 
-}
-
-.in-progress-task-checkbox .ui-chkbox-label {
-  margin-left: 7px !important;
 }
 
 .task-widget .advanced-filter-container .additional-filter-container, 
@@ -398,7 +391,8 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .task-widget .advanced-filter:hover, 
 .case-widget-container .advanced-filter:hover,
 .task-widget .filter-selection-container:hover,
-.case-widget-container .filter-selection-container:hover {
+.case-widget-container .filter-selection-container:hover,
+.analysis-task-widget .task-analysis-filter-selection-container:hover {
   border-radius: 5px;
 }
 
@@ -425,6 +419,13 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
   line-height: 30px;
   min-width: 0;
   padding-left: 5px;
+}
+
+.analysis-task-widget .filter-selection-container {
+  height: auto !important;
+  min-width: 0;
+  padding-left: 5px;
+  margin-top: 5px;
 }
 
 .task-widget .ui-widget.ui-button.advanced-filter-command:after, 
@@ -736,8 +737,19 @@ span.task-details-document-add-link {
 .case-header-action-cell, .task-header-action-cell {
   flex: 0 0 auto;
   text-align: right;
-  margin: auto;
   padding: 0 10px;
+}
+
+.action-container,
+.action-container a.task-action-item,
+.action-container span.task-action-item {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.action-container a.task-action-item .icon-compact-mode,
+.action-container span.task-action-item .icon-compact-mode {
+  margin-top: 3px;
 }
 
 @media (max-width: 991px) {
@@ -821,7 +833,6 @@ span.task-details-document-add-link {
 
 .action-steps-panel .ui-overlaypanel-content {
     padding: 0 !important;
-    width: 180px;
     display: grid;
 }
 
@@ -906,6 +917,13 @@ span.task-details-document-add-link {
 .case-history-button-container, .task-history-button-container{
   text-align: right;
 }
+
+.case-detail-body,
+.task-item-body-container {
+  padding-bottom: 60px !important;
+  margin-bottom: 60px !important; 
+}
+
 /********************************** END CASE ITEM **********************************/
 
 /********************************** START PROCESSES **********************************/
@@ -1482,7 +1500,7 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 
 .task-widget .sort-task-menu {
   width: 100%;
-  margin-top: 8px;
+  margin-top: 6px;
 }
 
 .task-widget .filter-add-container {
@@ -1766,7 +1784,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .options-panel {
-  width: 200px;
   border-radius: 5px;
   padding: 0 !important;
 }
@@ -1941,7 +1958,7 @@ _:-ms-input-placeholder, :root .case-details > * {
 .related-task-content {
   border-collapse: collapse;
   line-height: 2.2rem;
-  border-bottom: none;
+  border-bottom: none !important;
 }
 
 .related-task-content .related-task {
@@ -1949,6 +1966,14 @@ _:-ms-input-placeholder, :root .case-details > * {
   word-break: break-all;
   height: 2.2rem;
   overflow: hidden;
+}
+
+.case-related-task-table {
+  margin-bottom: 8px !important;
+}
+
+.case-related-task-case-running .ui-datascroller-loader {
+  padding: 0px 10px !important;
 }
 
 /* override Primefaces style */
@@ -2556,6 +2581,10 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   height: 40px;
 }
 
+.global-setting-table,
+.announcement-table {
+  width: 100%;
+}
 .settings-table-key-column {
   width: 17%;
 }
@@ -2569,7 +2598,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .settings-table-action-buttons {
-  width: 100px;
+  width: 140px !important;
 }
 
 .global-setting-table .setting-key {
@@ -2639,6 +2668,10 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   width: 100%;
 }
 
+.application-name-column {
+  width: 50%;
+}
+
 /********************************** ABSENCES AND DEPUTY **********************************/
 .absences-view-command-buttons {
   float: right;
@@ -2660,6 +2693,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 .absences-table-action-column {
   text-align: center;
+  width: 130px;
 }
 
 .absence-panel-grid {
@@ -2683,11 +2717,12 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .deputy-data-section {
-  width: 900px;
+  width: 100%;
 }
 
 .substitute-container {
   height: 350px;
+  width: 900px;
   overflow: auto;
 }
 
@@ -2708,6 +2743,14 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 .substitute-comment input {
   width: calc(100% - 20px);
+}
+.application-language-header {
+  width: 20%;
+}
+
+_:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
+  display: inline-block !important;
+  padding-bottom: 0px !important;
 }
 
 /* Override Primefaces table style */
@@ -2753,7 +2796,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 @media screen and (max-width: 40em) {
   .applications-email-setting-dialog {
     min-width: 300px !important;
-    height: 345px !important;
+    height: 365px !important;
     margin-left: 10px;
     margin-right: 10px;
   }
@@ -2845,6 +2888,10 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 /********************************** STATISTIC WIDGET **********************************/
 .statistic-widget-container:not(.statistic-widget-compact-mode-container) {
   padding: 0.5em;
+}
+
+.statistic-widget-container:not(.statistic-widget-compact-mode-container) .widget-header .widget-header-main {
+  flex-basis: 200px !important;
 }
 
 .statistic-widget-container:not(.statistic-widget-compact-mode-container) .widget-header-main {
@@ -3014,12 +3061,17 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .statistic-actions-panel {
-  margin-top: 15px;
+  margin-top: 10px;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: calc(100% - 200px);
+  text-align: right;
 }
 
 .task-analysic-action {
   flex: 0 0 100px;
   align-self: flex-end;
+  padding-bottom: 6px;
 }
 
 .case-detail-title-header-container, .task-detail-header,
@@ -3770,6 +3822,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .mobile-filter-icon {
   position: absolute !important;
+  bottom: 5px;
   right: 0;
   height: 25px !important;
   width: 25px !important;
@@ -3869,11 +3922,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   width: 300px;
 }
 
-.search-icon-name-container .filter-widget-icon {
-  top: 25%;
-  right: 12px;
-} 
-
 .search-icon-input::-ms-clear {
   display: none;
 }
@@ -3881,6 +3929,12 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 .not-display-result-tab-view {
   display: block;
   margin: 12px 0;
+}
+
+@media screen and (min-width: 64.063em) {
+  .search-item {
+    width: 400px;
+  }
 }
 
 /* =================== RESPONSIVE GRID ====================== */

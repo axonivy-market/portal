@@ -46,8 +46,6 @@ Ts0 @PushWFArc f81 '' #zField
 Ts0 @UdMethod f97 '' #zField
 Ts0 @PushWFArc f71 '' #zField
 Ts0 @UdProcessEnd f68 '' #zField
-Ts0 @PushWFArc f32 '' #zField
-Ts0 @GridStep f2 '' #zField
 Ts0 @PushWFArc f21 '' #zField
 Ts0 @PushWFArc f5 '' #zField
 Ts0 @GridStep f4 '' #zField
@@ -59,12 +57,12 @@ Ts0 @GridStep f35 '' #zField
 Ts0 @PushWFArc f60 '' #zField
 Ts0 @PushWFArc f58 '' #zField
 Ts0 @GridStep f45 '' #zField
-Ts0 @PushWFArc f31 '' #zField
 Ts0 @UdInit f0 '' #zField
 Ts0 @UdMethod f6 '' #zField
 Ts0 @CallSub f7 '' #zField
 Ts0 @PushWFArc f8 '' #zField
 Ts0 @PushWFArc f9 '' #zField
+Ts0 @PushWFArc f2 '' #zField
 >Proto Ts0 Ts0 TaskItemProcess #zField
 Ts0 f94 339 883 26 26 0 12 #rect
 Ts0 f94 @|UdProcessEndIcon #fIcon
@@ -291,31 +289,27 @@ Ts0 f73 expr out #txt
 Ts0 f73 704 312 744 312 #arcP
 Ts0 f49 actionTable 'out=in;
 ' #txt
-Ts0 f49 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPage;
+Ts0 f49 actionCode 'import ch.ivy.addon.portalkit.service.IvyAdapterService;
+import ch.ivy.addon.portalkit.enums.PortalPage;
 import ch.ivy.addon.portalkit.enums.NavigationHistory;
 import ch.ivy.addon.portalkit.dto.TaskEndInfo;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import javax.faces.context.FacesContext;
 
-GlobalSettingService service = new GlobalSettingService();
-boolean enabledStartInIFrame = Boolean.parseBoolean(service.findGlobalSettingValue(GlobalVariable.START_IN_IFRAME.toString()));
+boolean enabledStartInIFrame = IvyAdapterService.getTaskEmbedInIFrameCustomField(in.task);
 
 TaskEndInfo taskEndInfo = new TaskEndInfo();
 taskEndInfo.setDataModel(in.dataModel);
 taskEndInfo.setPortalPage(PortalPage.valueOf(in.currentPortalPage));
-taskEndInfo.setIsInIFrame(enabledStartInIFrame);
 
 String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(in.task.getId());
 SecurityServiceUtils.setSessionAttribute(taskEndInfoSessionAttributeKey, taskEndInfo);
 
-String taskStart = ivy.html.taskStartRef(in.task);
-if (enabledStartInIFrame) {
-	taskStart = ivy.html.taskStartInFrameRef(in.task);
-}
-FacesContext.getCurrentInstance().getExternalContext().redirect(taskStart);' #txt
+// Put the "embedInIFrame" param to the task start link to open it in the DefaultFramePage process
+// Then this process will open task in IFrame or not based on its "embedInIFrame" String custom field
+FacesContext.getCurrentInstance().getExternalContext().redirect(ivy.html.taskStartInFrameRef(in.task));' #txt
+Ts0 f49 security system #txt
 Ts0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -348,36 +342,6 @@ Ts0 f71 expr out #txt
 Ts0 f71 536 408 595 408 #arcP
 Ts0 f68 595 395 26 26 0 12 #rect
 Ts0 f68 @|UdProcessEndIcon #fIcon
-Ts0 f32 expr out #txt
-Ts0 f32 280 96 339 96 #arcP
-Ts0 f2 actionTable 'out=in;
-' #txt
-Ts0 f2 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPermission;
-import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
-
-GlobalSettingService service = new GlobalSettingService();
-String isShowTaskButtonLabels =  service.findGlobalSettingValue(GlobalVariable.SHOW_TASK_BUTTON_LABELS.toString());
-
-if(isShowTaskButtonLabels != null && !isShowTaskButtonLabels.isEmpty()){
-	in.isShowTaskButtonLabels = Boolean.parseBoolean(isShowTaskButtonLabels);
-} else{
-	in.isShowTaskButtonLabels = false;	
-}
-
-' #txt
-Ts0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Init show/hide&#xD;
-button label&#xD;
-More actions</name>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f2 168 66 112 60 -38 -24 #rect
-Ts0 f2 @|StepIcon #fIcon
 Ts0 f21 expr out #txt
 Ts0 f21 109 696 152 696 #arcP
 Ts0 f5 expr out #txt
@@ -461,8 +425,6 @@ Ts0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ts0 f45 160 290 128 44 -56 -8 #rect
 Ts0 f45 @|StepIcon #fIcon
-Ts0 f31 expr out #txt
-Ts0 f31 109 96 168 96 #arcP
 Ts0 f0 guid 16816B3D5FE7A2CB #txt
 Ts0 f0 method start(String) #txt
 Ts0 f0 inParameterDecl '<String currentPortalPage> param;' #txt
@@ -517,6 +479,7 @@ Ts0 f7 @|CallSubIcon #fIcon
 Ts0 f8 expr out #txt
 Ts0 f8 109 800 264 800 #arcP
 Ts0 f9 872 312 915 312 #arcP
+Ts0 f2 109 96 339 96 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -529,10 +492,6 @@ Ts0 f76 mainOut f95 tail #connect
 Ts0 f95 head f70 mainIn #connect
 Ts0 f108 mainOut f110 tail #connect
 Ts0 f110 head f109 mainIn #connect
-Ts0 f0 mainOut f31 tail #connect
-Ts0 f31 head f2 mainIn #connect
-Ts0 f2 mainOut f32 tail #connect
-Ts0 f32 head f1 mainIn #connect
 Ts0 f4 mainOut f5 tail #connect
 Ts0 f5 head f3 mainIn #connect
 Ts0 f36 mainOut f21 tail #connect
@@ -567,3 +526,5 @@ Ts0 f6 mainOut f8 tail #connect
 Ts0 f8 head f7 mainIn #connect
 Ts0 f49 mainOut f9 tail #connect
 Ts0 f9 head f46 mainIn #connect
+Ts0 f0 mainOut f2 tail #connect
+Ts0 f2 head f1 mainIn #connect

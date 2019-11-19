@@ -68,11 +68,6 @@ public class TaskCategoryFilter extends TaskFilter {
     root.setSelected(false);
   }
 
-  @Override
-  public boolean defaultFilter() {
-    return true;
- }
-
   public CheckboxTreeNode[] getCategories() {
     return categories;
   }

@@ -19,4 +19,6 @@ public class CustomFields {
   public static final String CUSTOM_TIMESTAMP_FIELD3 = "CustomTimestampField3";
   public static final String CUSTOM_TIMESTAMP_FIELD4 = "CustomTimestampField4";
   public static final String CUSTOM_TIMESTAMP_FIELD5 = "CustomTimestampField5";
+  
+  public static final String EMBED_IN_FRAME ="embedInFrame";
 }

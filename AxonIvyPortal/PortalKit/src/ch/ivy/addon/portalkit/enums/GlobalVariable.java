@@ -12,7 +12,6 @@ public enum GlobalVariable {
 
   HIDE_LOGOUT_BUTTON(Boolean.FALSE.toString(), "hideLogoutButtonNote"),
   SHOW_ENVIRONMENT_INFO(Boolean.FALSE.toString(), "showEnvironmentInfoNote"),
-  SHOW_TASK_BUTTON_LABELS(Boolean.FALSE.toString(), "showTaskButtonLabelsNote"),
   HIDE_CHANGE_PASSWORD_BUTTON(Boolean.FALSE.toString(), "hideChangePasswordButtonNote"), 
   HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE(Boolean.FALSE.toString(), "hideUploadDocumentForDoneCaseNote"),
   ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT(Boolean.FALSE.toString(), "enableScriptCheckingForUploadedDocumentNote"),
@@ -30,7 +29,7 @@ public enum GlobalVariable {
   ENABLE_GROUP_CHAT(Boolean.FALSE.toString(), "enableGroupChat"),
   ENABLE_PRIVATE_CHAT(Boolean.FALSE.toString(), "enablePrivateChat"),
   CHAT_RESPONSE_TIMEOUT("chatResponseTimeout"),
-  START_IN_IFRAME(Boolean.FALSE.toString(), "startInIFrame");
+  ENABLE_CASE_OWNER(Boolean.FALSE.toString(), "enableCaseOwner");
 
   private String defaultValue;
   private String noteCMS;
@@ -56,10 +55,10 @@ public enum GlobalVariable {
   }
 
   public static List<GlobalVariable> getBooleanType() {
-    return Arrays.asList(HIDE_LOGOUT_BUTTON, SHOW_ENVIRONMENT_INFO, SHOW_TASK_BUTTON_LABELS, HIDE_CHANGE_PASSWORD_BUTTON,
+    return Arrays.asList(HIDE_LOGOUT_BUTTON, SHOW_ENVIRONMENT_INFO, HIDE_CHANGE_PASSWORD_BUTTON,
             HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE, ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT, HIDE_TIME, EXPRESS_END_PAGE, HIDE_SYSTEM_TASKS_FROM_HISTORY, 
             HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR, ENABLE_USER_FAVORITES, HIDE_STATISTIC_WIDGET, DISPLAY_MESSAGE_AFTER_FINISH_TASK, ENABLE_GROUP_CHAT, ENABLE_PRIVATE_CHAT,
-            START_IN_IFRAME);
+            ENABLE_CASE_OWNER);
   }
 
   public static List<GlobalVariable> getNumberType() {

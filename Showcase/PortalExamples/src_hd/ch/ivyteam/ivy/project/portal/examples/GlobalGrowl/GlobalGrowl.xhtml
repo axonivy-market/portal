@@ -3,23 +3,15 @@
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
   <ui:composition template="/layouts/TaskTemplate.xhtml">
-    <ui:param name="caseId" value="#{ivy.case.getBusinessCase().getId()}" />
-    <ui:param name="task" value="#{ivy.task}" />
-    <ui:define name="taskForm">
+    <ui:define name="content">
       <h:form id="request">
         <p:focus></p:focus>
         <h:panelGroup styleClass="md-inputfield MarTop20">
           <p:inputText id="fullname" />
           <p:outputLabel for="fullname" value="Employee" />
         </h:panelGroup>
-      </h:form>
-    </ui:define>
-
-    <ui:define name="rightButtons">
-      <h:form id="command-form">
         <h:panelGroup styleClass="MarTop5 DispBlock" id="command-group">
-          <p:commandButton value="Send" icon="fa fa-send-o" partialSubmit="true" id="button-submit" actionListener="#{logic.close}" process=":request"
-            update=":request" />
+          <p:commandButton value="Send" icon="fa fa-send-o" id="button-submit" actionListener="#{logic.close}" process="@none" />
         </h:panelGroup>
       </h:form>
     </ui:define>

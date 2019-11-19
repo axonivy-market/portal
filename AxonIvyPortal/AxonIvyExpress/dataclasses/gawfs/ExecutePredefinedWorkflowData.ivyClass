@@ -34,3 +34,4 @@ originalTaskId Long #field
 originalTaskId PERSISTENT #fieldModifier
 doesCreatorHaveTask Boolean #field
 doesCreatorHaveTask PERSISTENT #fieldModifier
+hasActiveTasks Boolean #field

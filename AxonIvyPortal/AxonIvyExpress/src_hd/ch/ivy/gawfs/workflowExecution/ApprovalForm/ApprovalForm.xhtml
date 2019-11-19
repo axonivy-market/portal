@@ -8,16 +8,13 @@
 <h:body>
 
   <ui:composition template="/layouts/TaskTemplate.xhtml">
-    <ui:param name="caseId" value="#{ivy.case.id}" />
-    <ui:param name="task" value="#{ivy.task}" />
     <ui:param name="steps" value="#{data.steps}" />
     <ui:param name="actualStepIndex" value="#{data.actualStepIndex}" />
-    <ui:param name="isNotRequiredLogin" value="false" />
     <ui:param name="isShowStartAdhocButton" value="#{not data.isAdhocProcess}" />
     <ui:param name="processChainShape" value="LINE" />
 
     <ui:define name="title"></ui:define>
-    <ui:define name="taskForm">
+    <ui:define name="content">
 
       <h:form id="form" styleClass="ui-g">
         <ic:ch.ivy.gawfs.component.FinishedUserTasksForm id="finished-tasks-component" finishedTasks="#{data.finishedTasks}" />

@@ -1,4 +1,5 @@
 {
+  /HTML_DIALOG *
   /PROCESS {
     /Functional-Processes.DefaultChart "Functional Processes/DefaultChartOverride"
     /Functional-Processes.CalculateTaskDelegate "Functional Processes/CalculateTaskDelegateOverride"
@@ -8,7 +9,6 @@
     /Functional-Processes.GetGroupChatParams "Functional Processes/GetGroupChatParamsOverride"
     /Functional-Processes.OpenPortalSearch "Functional Processes/OpenPortalSearchOverride"
     /Functional-Processes.UploadDocument "Functional Processes/UploadDocumentOverride"
-    /Functional-Processes.BuildTaskJsonQuery "Functional Processes/BuildTaskJsonQueryOverride"
     /Functional-Processes.DownloadDocument "Functional Processes/DownloadDocumentOverride"
     /Functional-Processes.SetGroupChatName "Functional Processes/SetGroupChatNameOverride"
     /Functional-Processes.InitializeCaseDataModel "Functional Processes/InitializeCaseDataModelOverride"

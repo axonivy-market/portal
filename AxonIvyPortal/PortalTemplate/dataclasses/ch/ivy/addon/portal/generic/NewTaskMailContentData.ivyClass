@@ -1,0 +1,4 @@
+NewTaskMailContentData #class
+ch.ivy.addon.portal.generic #namespace
+task ch.ivyteam.ivy.workflow.ITask #field
+user ch.ivyteam.ivy.security.IUser #field
