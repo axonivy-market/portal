@@ -1,10 +1,11 @@
+// For calculating the height of Datascroller table in CaseItem details
 var isShowScrollBar = false;
 var maxItems = 3;
 
-var taskHeight = 0;
-var caseHeight = 0;
-var taskScrollHeight = 0;
-var caseScrollHeight = 0;
+var taskItemHeight = 0;
+var caseItemHeight = 0;
+var tasksPanel = 0;
+var casesPanel = 0;
 
 var relatedTaskSize = 0;
 var technicalCaseSize = 0;
@@ -18,18 +19,18 @@ var CaseRelatedTask = {
     technicalCaseSize = technicalCase || 0;
     isShowScrollBar = relatedTaskSize + technicalCaseSize > 6 ? true:false;
 
-    taskHeight = this.getHeightOfRelatedTaskRow();
-    caseHeight = this.getHeightOfTechnicalRow();
+    taskItemHeight = this.getHeightOfRelatedTaskRow();
+    caseItemHeight = this.getHeightOfTechnicalRow();
     
-    taskScrollHeight = taskHeight*maxItems;
-    caseScrollHeight = caseHeight*maxItems;
+    tasksPanel = taskItemHeight*maxItems;
+    casesPanel = caseItemHeight*maxItems;
 
     if (technicalCaseSize < maxItems) {
-      spaceToExpandTasksList = caseScrollHeight - (technicalCaseSize*caseHeight);
+      spaceToExpandTasksList = casesPanel - (technicalCaseSize*caseItemHeight);
     }
 
     if (relatedTaskSize < maxItems) {
-      spaceToExpandCasesList = taskScrollHeight - (relatedTaskSize*taskHeight);
+      spaceToExpandCasesList = tasksPanel - (relatedTaskSize*taskItemHeight);
     }
   },
 
@@ -38,6 +39,7 @@ var CaseRelatedTask = {
     this.scrollBarForTechnicalCase();
   },
 
+  // For related-task table
   scrollBarForTasks : function() {
     if (relatedTaskSize == 0) {
       return;
@@ -45,42 +47,43 @@ var CaseRelatedTask = {
 
     var taskList = $('[id$="case-item-details:related-tasks:tasks"]');
     var taskListBody = taskList.find('.ui-datascroller-content.ui-widget-content.ui-corner-all');
-    var scrollHeightTask = 0;
+    var scrollHeightForTasks = 0;
     if (relatedTaskSize > maxItems) {
-      scrollHeightTask = taskScrollHeight + spaceToExpandTasksList;
+      scrollHeightForTasks = tasksPanel + spaceToExpandTasksList;
       if (isShowScrollBar) {
         taskListBody.css("border-right", ".1em solid");
       } else {
-        scrollHeightCases += 8;
+        scrollHeightForTasks += 8;
       }
     } else {
         // If data is equal maxItem, need to add padding of Table's DataScroller
-        scrollHeightTask = relatedTaskSize * taskHeight + 8;
+        scrollHeightForTasks = relatedTaskSize * taskItemHeight + 8;
     }
 
-    taskListBody.css("height", scrollHeightTask);
+    taskListBody.css("height", scrollHeightForTasks);
   },
 
+  // For TechnicalCases table
   scrollBarForTechnicalCase : function() {
-    if (this.technicalCaseSize == 0) {
+    if (technicalCaseSize == 0) {
       return;
     }
     var caseList = $('[id$="case-item-details:related-tasks:cases"]');
     var caseListBody = caseList.find('.ui-datascroller-content.ui-widget-content.ui-corner-all');
-    var scrollHeightCases = 0;
+    var scrollHeightForCases = 0;
     if (technicalCaseSize > maxItems) {
-      scrollHeightCases = caseScrollHeight + spaceToExpandCasesList;
+      scrollHeightForCases = casesPanel + spaceToExpandCasesList;
       if (isShowScrollBar) {
         caseListBody.css("border-right", ".1em solid");
       } else {
-        scrollHeightCases += 8;
+        scrollHeightForCases += 8;
       }
     } else {
         // If data is equal maxItem, need to add padding of Table's DataScroller
-        scrollHeightCases = technicalCaseSize * caseHeight + 8;
+        scrollHeightForCases = technicalCaseSize * caseItemHeight + 8;
     }
 
-    caseListBody.css("height", scrollHeightCases);
+    caseListBody.css("height", scrollHeightForCases);
   },
 
   getHeightOfRelatedTaskRow : function() {
