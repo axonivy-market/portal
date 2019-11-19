@@ -32,11 +32,11 @@ are disabled by default.
    Click on group chat icon, the dialog will appear to choose members of
    group chat. Members could be users or roles.
 
-	 |chat-group-assignee|
+   |chat-group-assignee|
 
-		.. tip:: Group chat supports some customizations, refer to
-        	   :ref:`Group chat customization <customization-group-chat>`
-        	   for more details.
+   .. tip:: Group chat supports some customizations, refer to
+        	   :ref:`Group chat customization <customization-group-chat>` for
+        	   more details.
 
 3. If browsers access Portal through a reverse proxy Nginx, set Global
    setting **CHAT_RESPONSE_TIMEOUT** a number less than Nginx timeout to
