@@ -121,25 +121,9 @@
           </h:panelGroup>
         </h:panelGroup>
         
-        <ui:insert name="errorsZone" />
-        <ui:insert name="infoZone" />
-        <h:panelGroup id="content-container" layout="block" styleClass="task-template-content #{contentContainerStyleClass}">
-          <ui:insert name="taskForm" />
-          
-          <!-- DEPRECATED -->
-          <div
-            class="task-template-button #{processChainDirection eq 'VERTICAL' ? 'vertical-process-chain' : ''} #{processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
-          <div class="Fleft">
-            <ui:insert name="leftButtons">
-              <!-- Left Buttons -->
-            </ui:insert>
-          </div>
-          <div class="Fright">
-            <ui:insert name="rightButtons">
-              <!-- Right Buttons -->
-            </ui:insert>
-          </div>
-        </div>
+        <h:panelGroup id="content-container" layout="block" 
+          styleClass="task-template-content #{contentContainerStyleClass} #{processChainDirection eq 'VERTICAL' ? 'vertical-process-chain' : ''} #{processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
+          <ui:insert name="content" />
         </h:panelGroup>
 
         <p:dialog id="case-info-dialog" resizable="false" fitViewport="true"
@@ -224,7 +208,7 @@
         </p:dialog>
         
         <p:dialog id="adhoc-task-history-dialog" resizable="false"
-          visible="#{abstractTaskTemplateBean.isFirstTimeOpenOriginalAdhocTask}" styleClass="adhoc-task-history-dialog"
+          styleClass="adhoc-task-history-dialog"
           header="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/resultFromAdhocProcess')}"
           widgetVar="adhoc-task-history-dialog" appendTo="@(body)" modal="true" dynamic="true">
           <p:ajax event="close" listener="#{abstractTaskTemplateBean.onCloseAdhocTaskHistoryDialog(task)}" />
@@ -232,7 +216,7 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/noteOfResultFromAdhocProcess')}" />
           <br />
           <p:spacer height="20"></p:spacer>
-          <p:dataTable id="adhoc-task-history-table" value="#{abstractTaskTemplateBean.getAllAdhocHistories(task.id)}" var="history">
+          <p:dataTable id="adhoc-task-history-table" value="#{abstractTaskTemplateBean.getAllAdhocHistories(task)}" var="history">
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/timestamp')}">
               <h:outputText value="#{history.timestamp}">
                 <f:convertDateTime pattern="#{ivy.cms.co('/patterns/dateTimePattern')}" />
@@ -255,7 +239,7 @@
             </h:form>
           </f:facet>
         </p:dialog>
-  
+        
         <ic:ch.ivy.addon.portalkit.feature.WarnOnClosingBrowserTab
           confirmMessage="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/browserTabClosingWarning')}" />
       </div>

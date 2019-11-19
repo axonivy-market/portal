@@ -297,5 +297,6 @@ public abstract class TemplatePage extends AbstractPage {
         return true;
       }
     });
-  }  
+  }
+ 
 }

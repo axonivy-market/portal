@@ -1,0 +1,4 @@
+IFrameExampleData #class
+ch.ivyteam.ivy.project.portal.examples #namespace
+investment ch.ivyteam.ivy.project.portal.examples.Investment #field
+investment PERSISTENT #fieldModifier

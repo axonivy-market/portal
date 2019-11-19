@@ -1,4 +1,0 @@
-CustomApplications #class
-ch.ivy.addon.portal.generic #namespace
-url String #field
-appName String #field

@@ -5,7 +5,7 @@
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
   	<ui:param name="isNotRequiredLogin" value="false" />
-    <ui:define name="pageTitle">Drill Down Charts</ui:define>
+    <ui:define name="title">Drill Down Charts</ui:define>
     <ui:define name="simplePageContent">
       <p:chart type="bar" model="#{chartView.barModel}">
         <p:ajax event="itemSelect" listener="#{logic.itemSelect}" />

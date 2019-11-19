@@ -13,14 +13,7 @@
 <cc:implementation>
   <h:panelGroup id="#{cc.attrs.componentId}" styleClass="priority-cell #{cc.attrs.priorityStyleClass} #{cc.attrs.responsiveStyleClass}"
   	rendered="#{cc.attrs.dataModel.compactMode or cc.attrs.dataModel.isSelectedColumn('PRIORITY')}" >
-    <h:panelGroup rendered="#{cc.attrs.priority == 'LOW'}"
-      styleClass="fa fa-circle task-priority-low #{cc.attrs.priorityIconStyleClass}" />
-    <h:panelGroup rendered="#{cc.attrs.priority == 'NORMAL'}"
-      styleClass="fa fa-circle task-priority-normal #{cc.attrs.priorityIconStyleClass}" />
-    <h:panelGroup rendered="#{cc.attrs.priority == 'HIGH'}"
-      styleClass="fa fa-circle task-priority-high #{cc.attrs.priorityIconStyleClass}" />
-    <h:panelGroup rendered="#{cc.attrs.priority == 'EXCEPTION'}"
-      styleClass="fa fa-circle task-priority-exception #{cc.attrs.priorityIconStyleClass}" />
+    <h:panelGroup styleClass="fa fa-circle task-priority-#{cc.attrs.priority.toString().toLowerCase()} #{cc.attrs.priorityIconStyleClass}" />
   </h:panelGroup>
 </cc:implementation>
 </html>

@@ -155,14 +155,6 @@ ew0 f7 @|UserDialogIcon #fIcon
 ew0 f9 actionTable 'out=in;
 ' #txt
 ew0 f9 actionCode 'import ch.ivy.gawfs.ExpressProcessUtils;
-import ch.ivy.gawfs.Helper;
-import ch.ivy.addon.portalkit.bo.ExpressProcess;
-import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
-import ch.ivy.addon.portalkit.bo.ExpressTaskDefinition;
-import ch.ivy.addon.portalkit.bo.ExpressFormElement;
-import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
-import gawfs.TaskDef;
-import ch.ivy.gawfs.Formelement;
 
 //save workflowdescription
 ExpressProcessUtils utils = new ExpressProcessUtils();
@@ -569,8 +561,8 @@ if(in.isAdhocProcess){
 		originalTask.customFields().stringField(AdditionalProperty.ORIGINAL_ADHOC_EXPRESS_TASK.toString()).set(AdditionalProperty.ORIGINAL_ADHOC_EXPRESS_TASK.toString());
 		originalTask.customFields().stringField(AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString()).set(AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString());
 	}
-	ICase bussinessCase = originalTask.getCase().getBusinessCase();
-	AdhocUtils.attachToBusinessCase(ivy.case, bussinessCase.getId());
+	ICase businessCase = originalTask.getCase().ensureBusinessCase();
+	AdhocUtils.attachToBusinessCase(ivy.case, businessCase.getId());
 }' #txt
 ew0 f54 security system #txt
 ew0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
