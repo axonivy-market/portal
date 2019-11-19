@@ -11,8 +11,10 @@ $grey3: #d8d8d8;
 $grey4: #f0f0f0;
 
 /*Consolidate grey*/
+$basicGrey: f9fafa;
+$paleGrey: #f4f5f5;
 $lightGrey: #d9dada; 
-$grey: #9c9d9d;
+$mediumGrey: #9c9d9d;
 $darkGrey: #575656;
 
 $primaryColor: #c7d426;
@@ -74,7 +76,7 @@ $contextButtonColor: #7c7c7c;
 $contextButtonBorderRadius: $actionButtonBorderRadius;
 
 /* Link */
-$commandLinkTextColor: $grey;
+$commandLinkTextColor: $mediumGrey;
 $commandLinkHoveredTextColor: $darkGrey;
 $commandLinkActiveTextColor: rgba($black, 0.8); /*Change to grey*/
 $commandLinkDisabledTextColor: rgba($black, 0.2);  /*Change to grey*/
