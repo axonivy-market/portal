@@ -3000,13 +3000,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   .statistic-carousel .statistic-carousel-item {
     max-height: 25rem;
   }
-
-  .statistic-widget-container:not(.statistic-widget-compact-mode-container) .widget-header .widget-header-main {
-    flex-basis: 100px !important;
-  }
-  .statistic-actions-panel {
-    flex-basis: calc(100% - 100px) !important;
-  }
 }
 
 /* Medium screen */
@@ -4003,6 +3996,19 @@ _:-ms-fullscreen, :root .content-link-history {
     width: 35vw;
 }
 /* ===================== END ADHOC ======================= */
+
+/* =================== ADD CHAT ============================= */
+.chat-assignee-dialog {
+  width: 600px !important;
+}
+
+@media screen and (max-width: 40.063em) {
+  .chat-assignee-dialog {
+    width: 80vw !important;
+  }
+}
+
+/* =================== END ADD CHAT ============================= */
 
 /* ======================= MESSAGES ========================= */
 .ui-messages-info-icon,

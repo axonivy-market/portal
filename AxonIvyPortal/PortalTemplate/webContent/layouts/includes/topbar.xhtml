@@ -21,10 +21,12 @@
 
   <ui:insert name="menu-bar">
     <ul id="top-menu" class="topbar-menu animated js-top-menu">
-      <li jsf:rendered="#{chatRendererBean.isChatRendered}"><p:commandLink id="toggle-chat-panel-command" global="false"
-          styleClass="notification-badge mod-chat-menu js-toggle-chat-panel">
+      <li jsf:rendered="#{chatRendererBean.isChatRendered}">
+        <p:commandLink id="toggle-chat-panel-command" global="false"
+          styleClass="notification-badge mod-chat-menu">
           <i class="fa fa-comment" />
-        </p:commandLink></li>
+        </p:commandLink>
+      </li>
 
       <li class="setting-container" >
       	<a href="#" jsf:rendered="#{userMenuBean.showServerInformation}" class="show-environment-info-link">

@@ -320,12 +320,11 @@
 	list-style-type: circle;
 }
 /******** CHAT ********/
-.ui-autocomplete.chat-user-selection, .ui-autocomplete.chat-role-selection {
+.ui-autocomplete.chat-user-selection,
+.ui-autocomplete.chat-role-selection,
+.ui-autocomplete-input.chat-user-selection-input,
+.ui-autocomplete-input.chat-role-selection-input {
   width: 100%;
-}
-
-.ui-autocomplete-input.chat-user-selection-input, .ui-autocomplete-input.chat-role-selection-input {
-  width: calc(100% - 25px);
 }
 
 .chat-add-assignee-button-grid, .chat-action-container {
