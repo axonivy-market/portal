@@ -168,12 +168,13 @@ $processNavigatorBorder: $borderColor;
 $processNavigatorItemSelectedBorder: $primaryColor;
 $processHistoryColumnHeaderBorder: $borderColor;
 $processHistoryListDataScrollerBackgroundColor: transparent;
-$processOrderListItemBackgroundColor: #f4f5f5;
+$processOrderListItemBackgroundColor: $paleGrey;
 $selectedProcessNavItemFontWeight: bold;
 $processStartListItemNameFontWeight: 400;
 $processNavItemDisableColor: rgba($black, 0.3);
 $processOrderItemHoverBoxShadowColor: black;
 
+$hoveredProcessStartListItemIConColor: $primaryColor;
 /* Case Detail */
 $caseRelatedTaskColor: $primaryTextColor;
 $caseRelatedTaskHoveredColor: rgba($black, 0.6);
@@ -214,7 +215,7 @@ $caseHeaderActionDetailItem: rgba($black, 0.5);  /* Change to grey */
 $headerActionActionLeftBorderColor: rgba($black, 0.4); /* Consider color */
 $caseItemActionStepsFontWeight: bold;
 $taskNoteLinkHoveredColor: rgba($black, 0.6); /* Change to grey */
-$caseListUnsortableHeaderCellTextColor: $grey; /* should set same variable color with commandlink for sortable column */
+$caseListUnsortableHeaderCellTextColor: $mediumGrey; /* should set same variable color with commandlink for sortable column */
 $caseListItemHoverBackgroundColor: #e8e9ef;
 $caseListItemBackgroundColor: rgba($white, 0.2);
 $caseItemDescriptionCell: rgba($black, 0.4);
@@ -226,8 +227,8 @@ $caseTaskActionButtonIconColor: rgba($black, 0.5); /*Change to Grey*/
 
 /* Task Widget */
 $taskFilterSelectionFormHoverBackgroundColor: #f5f5f5;
-$compactTaskStartListItemHoverBackgroundColor: #e8e9ef;
-$compactTaskStartLinkItemBackgroundColor: rgba($black, 0.05); /* Consider change to grey */
+$compactTaskStartListItemHoverBackgroundColor: rgba($lightGrey, 0.5);
+$compactTaskStartLinkItemBackgroundColor: $paleGrey;
 $compactTaskStartInfoColor: $primaryTextColor;
 $taskWidgetSortMenuLinkIsSelectedColor: $black;
 $taskWidgetOverlayPanelContentBackgroundColor: $white;
@@ -240,7 +241,7 @@ $taskOptionPanelBoxShadow: rgba(43, 59, 93, 0.6);
 $taskOptionPanelBorderTop: rgba(43, 59, 93, 0.2);
 $taskWidgetSortMenuFullModeTextColor: rgba($black, 0.6); /* Change to grey */
 $taskStartListDescriptionCell: rgba($black, 0.4);
-$taskOddRowFullModeBackgroundColor: rgba($black, 0.04);
+$taskOddRowFullModeBackgroundColor: $paleGrey;
 
 /* Task Detail */
 $taskDetailPaginatorColor: $primaryTextColor; 
