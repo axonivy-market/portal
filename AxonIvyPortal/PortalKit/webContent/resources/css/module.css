@@ -133,10 +133,6 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 /* =================== END AUTOCOMPLETE ====================== */
 
 /* =================== FIELDSET ====================== */
-.ui-fieldset-legend {
-  padding: 0 10px !important;
-}
-
 .fieldset-no-border {
   border: none !important;
   padding: .6em 0;
@@ -843,10 +839,6 @@ span.task-details-document-add-link {
     line-height: 1.4rem;
     box-sizing: content-box;
     text-align: left;
-}
-
-.ui-fieldset-content table {
-  width: 100%;
 }
 
 .case-detail-header {
