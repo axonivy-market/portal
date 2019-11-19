@@ -17,6 +17,7 @@ import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.filter.AbstractFilter;
 import ch.ivy.addon.portalkit.filter.AbstractFilterData;
 import ch.ivyteam.ivy.business.data.store.search.Filter;
+import ch.ivyteam.ivy.business.data.store.search.Result;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 
@@ -24,7 +25,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public abstract class AbstractFilterService<T extends AbstractFilterData<?>> extends BusinessDataService<T> {
 
-  private static final int MAX_NUMBER_OF_FILTERS_TO_LOAD = 1000;
   private static final String FILTER_NAME = "filterName";
   private static final String USER_ID = "userId";
   private static final String FILTER_GROUP_ID = "filterGroupId";
@@ -35,8 +35,12 @@ public abstract class AbstractFilterService<T extends AbstractFilterData<?>> ext
       Filter<T> publicFilterQuery =
           repo().search(getType()).textField(FILTER_TYPE).isEqualToIgnoringCase(ALL_USERS.name()).and()
               .numberField(FILTER_GROUP_ID).isEqualTo(filterGroupId);
-      return publicFilterQuery.orderBy().textField(FILTER_NAME).ascending().limit(MAX_NUMBER_OF_FILTERS_TO_LOAD)
-          .execute().getAll();
+      Result<T> queryResult = publicFilterQuery.orderBy().textField(FILTER_NAME).ascending().limit(LIMIT_20).execute();
+      long totalCount = queryResult.totalCount();
+      if(totalCount > LIMIT_20) {
+        queryResult = publicFilterQuery.orderBy().textField(FILTER_NAME).ascending().limit(Math.toIntExact(totalCount)).execute();
+      }
+      return queryResult.getAll();
     } catch (Exception e) {
       Ivy.log().error(e);
       return new ArrayList<>();
@@ -49,8 +53,12 @@ public abstract class AbstractFilterService<T extends AbstractFilterData<?>> ext
           repo().search(getType()).numberField(USER_ID).isEqualTo(Ivy.session().getSessionUser().getId()).and()
               .textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name()).and().numberField(FILTER_GROUP_ID)
               .isEqualTo(filterGroupId);
-      return privateFilterQuery.orderBy().textField(FILTER_NAME).ascending().limit(MAX_NUMBER_OF_FILTERS_TO_LOAD)
-          .execute().getAll();
+      Result<T> queryResult = privateFilterQuery.orderBy().textField(FILTER_NAME).ascending().limit(LIMIT_20).execute();
+      long totalCount = queryResult.totalCount();
+      if(totalCount > LIMIT_20) {
+        queryResult = privateFilterQuery.orderBy().textField(FILTER_NAME).ascending().limit(Math.toIntExact(totalCount)).execute();
+      }
+      return queryResult.getAll();
     } catch (Exception e) {
       Ivy.log().error(e);
       return new ArrayList<>();
@@ -77,10 +85,10 @@ public abstract class AbstractFilterService<T extends AbstractFilterData<?>> ext
     if (FilterType.ONLY_ME == type) {
       return repo().search(getType()).numberField(USER_ID).isEqualTo(Ivy.session().getSessionUser().getId()).and()
           .textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name()).and().textField(FILTER_NAME)
-          .isEqualToIgnoringCase(name).and().numberField(FILTER_GROUP_ID).isEqualTo(filterGroupId).execute().count() > 0;
+          .isEqualToIgnoringCase(name).and().numberField(FILTER_GROUP_ID).isEqualTo(filterGroupId).limit(1).execute().count() > 0;
     } else {
       return repo().search(getType()).textField(FILTER_NAME).isEqualToIgnoringCase(name).and().textField(FILTER_TYPE)
-          .isEqualToIgnoringCase(ALL_USERS.name()).and().numberField(FILTER_GROUP_ID).isEqualTo(filterGroupId)
+          .isEqualToIgnoringCase(ALL_USERS.name()).and().numberField(FILTER_GROUP_ID).isEqualTo(filterGroupId).limit(1)
           .execute().count() > 0;
     }
   }
