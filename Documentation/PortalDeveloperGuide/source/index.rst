@@ -5,7 +5,7 @@ Portal Document
 
 .. toctree::
    :maxdepth: 2
-   :caption: Portal Document
+   :caption: Portal Developer Guide
    
    introduction/index
    architecture/index
