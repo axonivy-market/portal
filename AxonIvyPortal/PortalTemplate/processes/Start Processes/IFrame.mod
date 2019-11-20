@@ -65,22 +65,30 @@ Ie0 f3 576 42 128 44 -55 -8 #rect
 Ie0 f3 @|UserDialogIcon #fIcon
 Ie0 f5 actionTable 'out=in;
 ' #txt
-Ie0 f5 actionCode 'import ch.ivy.addon.portalkit.service.IvyAdapterService;
+Ie0 f5 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivyteam.ivy.workflow.ITask;
 
+// There are two levels: custom field in task, if false, check Portal global setting
 ITask task = ivy.wf.findTask(in.taskId);
 if (task != null) {
 	out.embedInIFrame = IvyAdapterService.getTaskEmbedInIFrameCustomField(task);
+}
+
+if (!out.embedInIFrame) {
+	GlobalSettingService service = new GlobalSettingService();
+	out.embedInIFrame = Boolean.parseBoolean(service.findGlobalSettingValue(GlobalVariable.EMBEDED_IN_IFRAME.toString()));
 }' #txt
 Ie0 f5 security system #txt
 Ie0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>get embedInIFrame field</name>
+        <name>get embedInIFrame setting</name>
     </language>
 </elementInfo>
 ' #txt
-Ie0 f5 152 42 144 44 -62 -8 #rect
+Ie0 f5 152 42 144 44 -69 -8 #rect
 Ie0 f5 @|StepIcon #fIcon
 Ie0 f6 111 64 152 64 #arcP
 Ie0 f7 336 48 32 32 0 16 #rect
