@@ -397,14 +397,11 @@ body .ui-panelgrid tbody tr.ui-widget-content {
 }
 
 /*Style For Buttons --------------------------------------------------------------------------------------*/
+
 .ui-widget.ui-button.ui-state-hover:not(.ui-spinner-button),
 .ui-widget.ui-buttonset .ui-state-hover,
 body .ui-buttonset .ui-state-active {
-    background-color: rgba($actionButtonColor, 0.6) !important;
-}
-
-.ui-widget.ui-button.ui-state-focus {
-    background-color: rgba($actionButtonColor, 0.8);
+    background-color: $primaryLightGreen !important;
 }
 
 .portal-cancel-button.ui-widget.ui-button,
@@ -493,14 +490,6 @@ body .ui-dialog .ui-dialog-footer .ui-button {
 .ui-datatable table tbody tr.ui-datatable-odd,
 .ui-datatable table tbody tr.ui-datatable-odd td {
   background-color: $dataTableRowBackgroundColorOdd;
-}
-
-.ui-treetable table tbody .ui-state-highlight td {
-    background-color: $highlightedTdTreeTableBackgroundColor !important;
-}
-
-.ui-treetable table tbody .ui-state-hover td {
-    background-color: $hoveredTdTreeTableBackGroundColor !important;
 }
 
 .ui-treetable table thead tr th {
@@ -1860,7 +1849,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 .selected-formelements-panel.hover-drop-section {
   background-color: $formElementsPanelHoverDropSectionBackgroundColor;
-  border: dashed $formElementsPanelHoverDropSectionBorder;
 }
 
 .review-content-title {
@@ -2268,18 +2256,30 @@ body .ui-selectonelistbox .ui-selectlistbox-item.ui-state-hover {
   color: $hoveredItemSelectOneListBoxTextColor;
 }
 
+/* Change header to grey */
+body .ui-widget-header {
+  background-color: $paleGrey !important;
+  border: 1px solid $paleGrey;
+}
+
 /*** Override green */
 body .ui-selectonemenu-panel .ui-state-highlight,
 body .ui-autocomplete-panel .ui-state-highlight {
   background-color: $primaryLightGreen !important;
 }
 
-/* Change header to grey */
-body .ui-widget-header {
-  background-color: $paleGrey !important;
-  border: 1px solid $lightGrey;
-}
-
 body .ui-inputswitch.ui-inputswitch-checked .ui-inputswitch-handle {
   background-color: $white;
+}
+
+.ui-datepicker .ui-datepicker-title {
+  color: $uiDataPickerTitleColor;
+}
+
+.ui-datepicker .ui-datepicker-header {
+  border-color: $uiDataPickerTitleBorderColor !important;
+}
+
+.ui-datepicker thead tr {
+  background-color: $uiDataPickerHeaderColor !important;
 }
