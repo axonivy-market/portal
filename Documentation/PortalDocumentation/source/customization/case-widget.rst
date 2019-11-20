@@ -18,13 +18,9 @@ CaseWidget contains 2 parts:
 ..
 
   .. important:: 
-     1. Case header customization currently support responsive design.
-        Refer to :ref:`this
-        part <customization-case-widget-responsive-layout>`
-        for more detail.
+      - Case header customization currently support responsive design. Refer to :ref:`this part <customization-case-widget-responsive-layout>` for more detail.
    
-     2. Case header's buttons cannot be modified (they stay where they
-        are)
+      - Case header's buttons cannot be modified (they stay where they are)
 
 .. _customization-case-widget-how-to-override-ui:
 
@@ -54,7 +50,7 @@ Refer to ``PortalExamples`` project for examples
       to override responsiveness). You can take a look at
       ``PortalCases.xhtml`` to see how to customize it.
 
-        .. tip:: Highly recommend to copy the ``PortalCases`` HTMLDialog in
+      .. tip:: Highly recommend to copy the ``PortalCases`` HTMLDialog in
          PortalTemplate and change the copied one's view.
 
    -  Use Axon.ivy Override to override the ``OpenPortalCases`` callable. The
@@ -88,7 +84,7 @@ function of these columns work:
 
 -  Default caseList supports user to config display/hide column
 
-|case-columns-configuration|
+   |case-columns-configuration|
 
    -  In case you have new columns, override method
       ``getDefaultColumns`` of the extended class from CaseLazyDataModel
@@ -141,7 +137,7 @@ Case filter
    container contains your filters, you can reuse default filters, refer
    to ``DefaultCaseFilterContainer.java``
 
-    .. tip:: StateFilter is added as default to container. If you don't need
+   .. tip:: StateFilter is added as default to container. If you don't need
       it, use this code in constructor: ``filters.remove(stateFilter);``
 
 -  Introduce a java class extends CaseLazyDataModel. Override the
@@ -168,7 +164,7 @@ Case filter
    can change this by setting the ui:param ``filterGroupId`` in
    ``PortalCases.xhtml`` to a new Long value.
 
-    .. tip:: If you have multiple case lists in your project, you may want to
+   .. tip:: If you have multiple case lists in your project, you may want to
       set ``filterGroupId`` to an unique identifier for each of your
       ``PortalCases.xhtml`` across your projects
 
@@ -189,13 +185,13 @@ case list after navigating to case list from your page:
 
 -  Refer to CaseView, CaseSearchCriteria to build your CaseView
 
-.. code-block:: java
+   .. code-block:: java
 
-   CaseLazyDataModel dataModel = new CaseLazyDataModel();
-   dataModel.getCriteria().setCustomCaseQuery(YOUR_CASE_QUERY); // Set your CaseQuery
-   dataModel.getCriteria().setAdminQuery(true); // Display the cases of all users
-   out.caseView = CaseView.create().dataModel(dataModel)
-   .withTitle("My Cases").buildNewView();
+      CaseLazyDataModel dataModel = new CaseLazyDataModel();
+      dataModel.getCriteria().setCustomCaseQuery(YOUR_CASE_QUERY); // Set your CaseQuery
+      dataModel.getCriteria().setAdminQuery(true); // Display the cases of all users
+      out.caseView = CaseView.create().dataModel(dataModel)
+      .withTitle("My Cases").buildNewView();
                
 
 .. _customization-case-widget-responsive-layout:
@@ -216,7 +212,7 @@ You can refer to ``PortalExamples`` project for examples
 
    |responsive-case-list-customization|
 
-    .. tip:: ``CaseCustomField`` component has default
+   .. tip:: ``CaseCustomField`` component has default
       responsiveStyleClass is ``u-hidden-sm-down``
 
 2. Responsiveness could be broken when you anchor left menu. In this
@@ -226,7 +222,7 @@ You can refer to ``PortalExamples`` project for examples
 
    |responsive-case-list-hide-column|
 
-      .. tip:: The smallest browser width you can anchor the left menu is
+   .. tip:: The smallest browser width you can anchor the left menu is
           1025. So you could reduce width of browser to 1025 to test and decide which columns need to be hidden.
 
 .. |case-filter| image:: images/case-widget/case-filter.png
