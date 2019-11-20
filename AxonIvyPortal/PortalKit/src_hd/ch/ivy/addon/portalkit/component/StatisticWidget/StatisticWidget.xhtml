@@ -15,7 +15,7 @@
   <f:event listener="#{logic.setCompactMode(cc.attrs.compactMode)}" type="preRenderComponent" />
   <div id="#{cc.clientId}" class="widget statistic-widget-container #{!cc.attrs.compactMode ? '':'statistic-widget-compact-mode-container'}">
     <h:panelGroup id="header" layout="block" styleClass="widget-header">
-      <div class="widget-header-main">
+      <div class="widget-header-main #{data.createMode ? 'creation-mode':''}">
         <h:outputText styleClass="widget-header-main-title" rendered="#{!data.createMode}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/statistics')}" />
         <h:outputText styleClass="widget-header-main-title" rendered="#{data.createMode}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/createNewStatistic')}" />
         <h:panelGroup id="statistic-widget-header" layout="block" rendered="#{data.isDisplayShowAllChartLink and cc.attrs.compactMode}"
@@ -56,9 +56,9 @@
           </p:commandLink>
           <h:outputText rendered="#{data.canAnalyzeTask and !data.isDrilldownElapsedTime 
             and !data.isDrilldownExpiryChart and data.canCreateNewCharts}" styleClass="u-hidden-md-down">
-          	<p:spacer width="10px" />
-          	|
-          	<p:spacer width="10px" />
+          	<p:spacer width="10px" styleClass="u-hidden-md-down"/>
+          	<h:outputText value="|" styleClass="u-hidden-md-down"/>
+          	<p:spacer width="10px" styleClass="u-hidden-md-down"/>
           </h:outputText> 
 
           <p:commandLink id="task-analysis-page-navigation-link" actionListener="#{logic.navigateToTaskAnalysisPage}"
