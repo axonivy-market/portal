@@ -41,8 +41,6 @@ Follow these steps to customize the global search page:
 7. Override the ``OpenPortalSearch`` callable process and change the
    HTML dialog to your customized one.
 
-..
-
    .. tip:: Refer to the example in the PortalExamples project:
 
       - CustomizedSearchResultsDataModel.java
