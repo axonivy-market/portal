@@ -30,7 +30,7 @@ public enum GlobalVariable {
   ENABLE_PRIVATE_CHAT(Boolean.FALSE.toString(), "enablePrivateChat"),
   CHAT_RESPONSE_TIMEOUT("chatResponseTimeout"),
   ENABLE_CASE_OWNER(Boolean.FALSE.toString(), "enableCaseOwner"),
-  EMBEDED_IN_IFRAME(Boolean.FALSE.toString(), "embedInIFrame");
+  EMBEDED_IN_IFRAME(Boolean.TRUE.toString(), "embedInIFrame");
 
   private String defaultValue;
   private String noteCMS;
