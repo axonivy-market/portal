@@ -5,7 +5,7 @@ Settings
 
 .. _settings-the-first-section:
 
-User Settings provide options for configuring Portal applications:
+User Settings provides options for configuring Portal applications:
 
 -  :ref:`Admin settings <settings-admin-settings>`
 
@@ -25,7 +25,7 @@ Admin settings
 User needs to have role ``AXONIVY_PORTAL_ADMIN`` to see this menu item,
 it is used to configure Portal configuration, see different Portal
 configurations in
-:ref:`General concept <installation-basic-installation-specify-servers-general-concept>`
+:ref:`Portal mode <installation-basic-portal-mode>`
 
 Global settings
 ---------------
