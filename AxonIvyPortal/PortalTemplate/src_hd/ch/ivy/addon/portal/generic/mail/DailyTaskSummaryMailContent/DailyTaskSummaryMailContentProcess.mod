@@ -119,14 +119,9 @@ Ds0 f12 339 339 26 26 0 12 #rect
 Ds0 f12 @|UdProcessEndIcon #fIcon
 Ds0 f14 actionTable 'out=in;
 ' #txt
-Ds0 f14 actionCode 'import ch.ivy.addon.portalkit.service.IvyAdapterService;
-import ch.ivyteam.ivy.request.RequestUriFactory;
+Ds0 f14 actionCode 'import ch.ivyteam.ivy.request.RequestUriFactory;
 
-out.taskStart = RequestUriFactory.createExternalServerUri().resolve(RequestUriFactory.createTaskStartUri(in.task)).toASCIIString();
-boolean enabledStartInIFrame = IvyAdapterService.getTaskEmbedInIFrameCustomField(in.task);
-if (enabledStartInIFrame) {
-	out.taskStart += "&embedInFrame";
-}' #txt
+out.taskStart = RequestUriFactory.createExternalServerUri().resolve(RequestUriFactory.createTaskStartUri(in.task)).toASCIIString() + "&embedInFrame";' #txt
 Ds0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

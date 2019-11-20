@@ -19,11 +19,6 @@ link in the Axon.ivy Portal menu.
 
 
 .. figure:: images/navigate-to-full-task-list-page.png
-   :width: 6.49606in
-   :height: 3.28346in 
-   :align: center
-
-   Navigate to Full Task List page
 
 On the top of the **Full Task List** page you see next to the heading
 **Tasks** in brackets the overall number of tasks shown to you. Further
@@ -49,51 +44,39 @@ For each task the following key information is shown in the list:
 7. Status
 
 .. figure:: images/task-key-information.png
-   :width: 6.49606in
-   :height: 3.28346in 
-   :align: center
 
-   Task key information
-
-Furthermore, at the end of each column you find a set of key features in
+Furthermore, at the end of each row you find a side step menu of key features in
 handling tasks:
 
 1. Reset Task
 
 2. Delegate Task
 
-3. Open Task
+3. Reverse
 
-4. Further actions
+4. Add Ad-hoc Task
 
 Finally, you have the possibility to access the full set of the task
-data by using the |down-icon| **Show Details** button in the center of
-each task column. You may hide them again using the |up-icon| **Hide
-Details** button accordingly.
+data by clicking on the row containing the task Name and Description.
 
-The task details are separated in 4 different sections:
+The task details are separated in 3 different sections:
 
-1. On the left-hand side you find again the task description. In this
-   format you can, however, see the whole description if it is longer.
-
-2. On the center-left, you find various metadata concerning the task and
+1. Data and description, you find various metadata concerning the task and
    the respective case it is related to.
 
-3. On the center-right, you find an area for documents that were
-   attached to the case. These documents once attached to the case are
+.. figure:: images/detailed-task-information-data-description.png
+
+2. Note, you may add additional notes which is described below
+
+.. figure:: images/detailed-task-information-note.png
+
+3. Document, these documents once attached to the case are
    available on all tasks. You may add or delete documents which his
    described in the HowTo’s below.
 
-4. On the right-hand side you find a notes area. The Axon.ivy Portal
-   adds notes here when a task – for example – is delegated. You may add
-   additional notes which is described below.
+.. figure:: images/detailed-task-information-documents.png
 
 .. figure:: images/detailed-task-information.png
-   :width: 6.49606in
-   :height: 3.28346in 
-   :align: center
-
-   Detailed task information
 
 HowTo: Use existing filter
 --------------------------
@@ -133,11 +116,6 @@ HowTo: Create new filter
 9. Save the filter by clicking the button **Ok**.
 
 .. figure:: images/how-to-create-task-filter.png
-   :width: 6.49606in
-   :height: 1.59449in
-   :align: center
-
-   HowTo create task filter
 
 +-----------------------------------+-----------------------------------+
 | Criteria                          | Description                       |
@@ -194,11 +172,6 @@ HowTo: Attach a document to the case
 5. Click the button **Close** to add the attachment
 
 .. figure:: images/how-to-upload-document.png
-   :width: 6.49606in
-   :height: 3.28346in
-   :align: center
-   
-   HowTo upload document
 
 HowTo: Remove an attachment from the case
 -----------------------------------------
@@ -213,11 +186,6 @@ HowTo: Remove an attachment from the case
 4. Confirm the deletion with the button **Yes**
 
 .. figure:: images/how-to-delete-document.png
-   :width: 6.49606in
-   :height: 3.28346in
-   :align: center
-
-   HowTo delete a document
 
 HowTo: Add a note to a task
 ---------------------------
@@ -233,11 +201,6 @@ HowTo: Add a note to a task
 5. Confirm your note by clicking the button :guilabel:`Save`
 
 .. figure:: images/how-to-add-note.png
-   :width: 6.49606in
-   :height: 3.28346in
-   :align: center
-
-   HowTo add a note
 
 HowTo: Export a task history
 ----------------------------
@@ -246,23 +209,13 @@ HowTo: Export a task history
 
 2. Click on the |show-more-icon| **Show more** link below the notes section
 
+.. figure:: images/how-to-show-note-details.png
+
 3. A new page with the task history is opened
 
 4. You may export the history by clicking on the button **Export to
    Excel**
 
-.. figure:: images/how-to-show-note-details.png
-   :width: 6.49606in
-   :height: 2.3937in
-   :align: center
-
-   HowTo show note details
-
 .. figure:: images/how-to-export-note-details.png
-   :width: 6.49606in
-   :height: 1.41339in  
-   :align: center
-
-   HowTo export note details
 
 .. include:: ../includes/_common-icon.rst

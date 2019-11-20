@@ -33,12 +33,7 @@ administrator. Following the link, the Axon.ivy Portal will ask for your login
 credentials.
 
 .. figure:: images/login-screen.png
-   :width: 6.49606in
-   :height: 3.26772in
-   :align: center
    
-   Login screen
-
 .. Hint:: 
    Depending on your company’s infrastructure, you might be automatically logged in
    by the single-sign-on (SSO). In this case you’ll directly be forwarded to the
@@ -48,34 +43,25 @@ After successful login, you’ll see the Axon.ivy Portal Homepage and your
 personal dashboard. All your activities can be managed from this central entry
 point. In detail these are:
    
-   1. The Axon.ivy Portal header on the top is always visible and provides
-      you with a global search, key information about the portal and options to
-      configure your personal user account. See  :ref:`portal-header`  for
-      details.
+1. The Axon.ivy Portal header on the top is always visible and provides
+   you with a global search, key information about the portal and options to
+   configure your personal user account. See  :ref:`portal-header`  for
+   details.
    
-   2. The menu on the left side is always available and gives you access to
-      all processes, cases, tasks and other features of the Axon.ivy Portal. You
-      may enlarge or minimise the menu using the |toggle-icon| **Toggle Menu** button
-      in the top left corner.
+.. figure:: images/axon-ivy-portal-header.png
+
+2. The menu on the left side is always available and gives you access to
+   all processes, cases, tasks and other features of the Axon.ivy Portal. You
+   may enlarge or minimise the menu using the **Toggle Menu** button
+   in the top left corner.
    
-   3. In the center you see your personal dashboard providing you instant
-      access to your processes, tasks and performance indicators. See
-      :ref:`dashboard` for a detailed introduction.
+.. figure:: images/toggle-portal-menu.png
+
+3. In the center you see your personal dashboard providing you instant
+   access to your processes, tasks and performance indicators. See
+   :ref:`dashboard` for a detailed introduction.
 
 .. figure:: images/axon-ivy-portal.png
-   :width: 6.49606in
-   :height: 3.2874in
-   :align: center
-
-   Axon.ivy Portal
-
-.. figure:: images/toggle-portal-menu.png
-   :width: 6.49606in
-   :height: 3.2874in
-   :align: center
-   
-   Toggle portal menu
 
 .. include:: ../includes/_common-icon.rst
 
-   

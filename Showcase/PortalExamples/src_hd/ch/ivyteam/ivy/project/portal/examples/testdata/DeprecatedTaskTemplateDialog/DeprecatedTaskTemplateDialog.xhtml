@@ -1,0 +1,349 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+  <ui:composition template="/layouts/DeprecatedTaskTemplate7.xhtml">
+    <ui:define name="title">Showcase</ui:define>
+    <ui:param name="caseId" value="#{ivy.case.id}" />
+    <ui:param name="task" value="#{ivy.task}" />
+    <ui:define name="taskForm">
+      <ui:define name="taskName" />
+      <h:form id="form">
+        <div class="ui-fluid">
+          <f:facet name="header">
+            <p:messages></p:messages>
+          </f:facet>
+
+          <p:outputLabel styleClass="task-template-title" style="margin-left:26px">Demo Primefaces Elements</p:outputLabel>
+          <div class="ui-g MarTop10">
+            <div class="ui-g-12 ui-md-3 ui-lg-2">
+              <p:outputLabel for="input" value="Input" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-3">
+              <p:inputText id="input" required="true" />
+            </div>
+            <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
+            <div class="ui-g-12 ui-md-3 ui-lg-2">
+              <p:outputLabel for="input2" value="More Input" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-3">
+              <p:inputText id="input2" />
+            </div>
+          </div>
+
+          <div class="ui-g">
+            <div class="ui-g-12 ui-md-3 ui-lg-2">
+              <p:outputLabel for="calendar" value="Calendar" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-3">
+              <p:calendar id="calendar" pattern="dd/MM/yyyy" />
+            </div>
+            <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
+            <div class="ui-g-12 ui-md-3 ui-lg-2">
+              <p:outputLabel id="countryLabel" for="inputx" value="Enter Country: " />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-3">
+              <p:inputText id="inputx" required="true" />
+            </div>
+          </div>
+
+          <div class="ui-g">
+            <div class="ui-g-12 ui-md-3 ui-lg-2">
+              <p:outputLabel for="comment-area" value="Comment" styleClass="alignTop" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-8">
+              <p:inputTextarea id="comment-area" />
+            </div>
+          </div>
+
+          <p:fieldset legend="More options" styleClass="MarTop10" toggleable="true" collapsed="false">
+            <div class="ui-g">
+              <div class="ui-g-12 ui-md-3 ui-lg-2">
+                <p:outputLabel for="console" value="Basic:" />
+              </div>
+              <div class="ui-g-12 ui-md-9 ui-lg-3">
+                <p:selectOneMenu id="console" value="#{selectOneMenuView.console}">
+                  <f:selectItem itemLabel="Select One" itemValue="" />
+                  <f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
+                  <f:selectItem itemLabel="PS4" itemValue="PS4" />
+                  <f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+                </p:selectOneMenu>
+              </div>
+              <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
+              <div class="ui-g-12 ui-md-3 ui-lg-2">
+                <p:outputLabel for="spinner" value="Spinner" />
+              </div>
+              <div class="ui-g-12 ui-md-9 ui-lg-3">
+                <p:spinner id="spinner" />
+              </div>
+            </div>
+
+            <div class="ui-g">
+              <div class="ui-g-12 ui-md-3 ui-lg-2">
+                <p:outputLabel for="radio" value="Radio" />
+              </div>
+              <div class="ui-g-12 ui-md-9 ui-lg-6">
+                <p:panelGrid columns="6" styleClass="ui-panelgrid-blank">
+                  <p:selectOneRadio id="radio" value="#{radioView.console}" layout="grid" columns="3">
+                    <f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
+                    <f:selectItem itemLabel="PS4" itemValue="PS4" />
+                    <f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+                    <f:selectItem itemLabel="Xbox Two" itemValue="Xbox One" />
+                    <f:selectItem itemLabel="PS4 Pro" itemValue="PS4" />
+                    <f:selectItem itemLabel="Switch" itemValue="Wii U" />
+                  </p:selectOneRadio>
+                </p:panelGrid>
+              </div>
+            </div>
+
+            <div class="ui-g">
+              <div class="ui-g-12 ui-md-3 ui-lg-2">
+                <p:outputLabel for="radio" value="Checkbox" />
+              </div>
+              <div class="ui-g-12 ui-md-9 ui-lg-6">
+                <p:panelGrid columns="3" styleClass="ui-panelgrid-blank">
+                  <p:selectBooleanCheckbox itemLabel="Xbox One" value="Xbox One" />
+                  <p:selectBooleanCheckbox itemLabel="PS4" value="PS4" />
+                  <p:selectBooleanCheckbox itemLabel="Wii U" value="Wii U" />
+                  <p:selectBooleanCheckbox itemLabel="Xbox Two" value="Xbox Two" />
+                  <p:selectBooleanCheckbox itemLabel="PS4 Pro" value="PS4 Pro" />
+                  <p:selectBooleanCheckbox itemLabel="Switch" value="Switch" />
+                </p:panelGrid>
+              </div>
+            </div>
+          </p:fieldset>
+
+          <div class="ui-g">
+            <div class="ui-g-12 ui-md-3 ui-lg-2">
+              <p:outputLabel for="inputy" value="One Line Input" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-3">
+              <p:inputText id="inputy" />
+            </div>
+            <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
+            <div class="ui-g-12 ui-md-3 ui-lg-2">
+              <p:outputLabel for="text-area" value="Textarea" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-3">
+              <p:inputTextarea id="text-area" />
+            </div>
+          </div>
+
+          <div class="ui-g">
+            <div class="ui-g-12 ui-md-3 ui-lg-2">
+              <p:outputLabel for="calendarSecond" value="Calendar" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-3">
+              <p:calendar id="calendarSecond" pattern="dd/MM/yyyy" />
+            </div>
+            <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
+            <div class="ui-g-12 ui-md-3 ui-lg-2">
+              <p:outputLabel for="inputz" value="AutoComplete" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-3">
+              <p:inputText id="inputz" />
+            </div>
+          </div>
+
+          <div class="ui-g">
+            <div class="ui-g-12 ui-md-3 ui-lg-2">
+              <p:outputLabel for="mask" value="Mask" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-3">
+              <p:inputMask id="mask" mask="99/99/9999" />
+            </div>
+            <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
+            <div class="ui-g-12 ui-md-3 ui-lg-2">
+              <p:outputLabel for="pwd" value="Password" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-3">
+              <p:password id="pwd" />
+            </div>
+          </div>
+
+          <div class="ui-g">
+            <div class="ui-g-12 ui-md-3 ui-lg-2">
+              <p:outputLabel for="keyboard" value="Keyboard" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-3">
+              <p:keyboard id="keyboard" />
+            </div>
+            <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
+            <div class="ui-g-12 ui-md-3 ui-lg-2">
+              <p:outputLabel for="onemenu" value="OneMenu" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-3">
+              <p:selectOneMenu id="onemenu">
+                <f:selectItem itemLabel="Select One" itemValue="" />
+                <f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
+                <f:selectItem itemLabel="PS4" itemValue="PS4" />
+                <f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+              </p:selectOneMenu>
+            </div>
+          </div>
+
+          <div class="ui-g">
+            <div class="ui-g-12 ui-md-3 ui-lg-2">
+              <p:outputLabel for="slider" value="Slider" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-3">
+              <p:outputPanel>
+                <p:inputText id="slider" />
+                <p:slider for="slider" />
+              </p:outputPanel>
+            </div>
+          </div>
+
+          <div class="ui-g">
+            <div class="ui-g-12 ui-md-3 ui-lg-2">
+              <p:outputLabel for="chkmenu" value="CheckboxMenu" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-3">
+              <p:selectCheckboxMenu id="chkmenu" label="Cities">
+                <f:selectItems value="#{data.cities}" />
+              </p:selectCheckboxMenu>
+            </div>
+            <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
+            <div class="ui-g-12 ui-md-3 ui-lg-2">
+              <p:outputLabel for="dialog" value="Dialog" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-3">
+              <p:commandButton id="dialog" value="Show" icon="fa fa-eye" type="button" onclick="PF('dlg').show()" />
+            </div>
+          </div>
+          <div class="ui-g">
+            <div class="ui-g-12 ui-md-3 ui-lg-2">
+              <p:outputLabel id="listboxLabel" for="listbox" value="Listbox" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-3">
+              <p:selectOneListbox id="listbox">
+                <f:selectItem itemLabel="Sentinel" itemValue="Sentinel" />
+                <f:selectItem itemLabel="Spark" itemValue="Spark" />
+                <f:selectItem itemLabel="Ronin" itemValue="Ronin" />
+                <f:selectItem itemLabel="Rio" itemValue="Rio" />
+                <f:selectItem itemLabel="Primus" itemValue="Primus" />
+              </p:selectOneListbox>
+            </div>
+            <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
+            <div class="ui-g-12 ui-md-3 ui-lg-2">
+              <div class="ui-g-12 ui-md-12 ui-lg-12">
+                <p:outputLabel id="booleanBtnLabel" for="booleanBtn" value="Boolean Button" />
+              </div>
+              <div class="ui-g-12 ui-md-12 ui-lg-12">
+                <p:outputLabel id="manyBtnLabel" for="manyBtn" value="Many Button" />
+              </div>
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-3">
+              <div class="ui-g-12 ui-md-12 ui-lg-12">
+                <p:selectBooleanButton id="booleanBtn" onLabel="Yes" offLabel="No" onIcon="fa fa-check"
+                  offIcon="fa fa-close" />
+              </div>
+
+              <div class="ui-g-12 ui-md-12 ui-lg-12">
+                <p:selectOneButton id="manyBtn">
+                  <f:selectItem itemLabel="Sentinel" itemValue="Sentinel" />
+                  <f:selectItem itemLabel="Spark" itemValue="Spark" />
+                  <f:selectItem itemLabel="Ronin" itemValue="Ronin" />
+                </p:selectOneButton>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div class="ui-g MarTop10">
+            <div class="ui-g-12 ui-md-12 ui-lg-5">
+              <p:outputLabel id="accordionPanelLabel" for="accordionPanel" value="Accordion Panel" styleClass="MarBot10" />
+              <p:accordionPanel id="accordionPanel">
+                <p:tab title="Show Tree Components">
+                  <div class="ui-g">
+                    <div class="ui-g-3 ui-md-12">
+                      <p:outputLabel id="treeLabel" for="tree" value="Tree" />
+                    </div>
+                    <div class="ui-g-9 ui-md-12">
+                      <p:tree id="tree" value="#{treeBasicView.root}" var="node">
+                        <p:treeNode>
+                          <h:outputText value="#{node}" />
+                        </p:treeNode>
+                      </p:tree>
+                    </div>
+                  </div>
+                </p:tab>
+                <p:tab title="Show Empty">
+                </p:tab>
+              </p:accordionPanel>
+            </div>
+            <div class="ui-g-12 ui-md-0 ui-lg-1"></div>
+            <div class="ui-g-12 ui-md-12 ui-lg-5">
+              <p:outputLabel id="tabViewLabel" for="tabView" value="Tab View" styleClass="MarBot10" />
+              <p:tabView id="tabView" activeIndex="2">
+                <p:tab title="Godfather Part I">
+                  <h:panelGrid cellpadding="10">
+                    <h:outputText
+                      value="The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding. 
+							                    His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
+							                    Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect, 
+							                    but given to ruthless violence whenever anything stands against the good of the family." />
+                  </h:panelGrid>
+                </p:tab>
+                <p:tab title="Godfather Part II">
+                  <h:panelGrid cellpadding="10">
+                    <h:outputText
+                      value="Francis Ford Coppola's legendary continuation and sequel to his landmark 1972 film, The_Godfather, parallels the young Vito Corleone's rise with his son Michael's spiritual fall, deepening The_Godfather's depiction of the dark side of the American dream. 
+							                In the early 1900s, the child Vito flees his Sicilian village for America after the local Mafia kills his family. Vito struggles to make a living, legally or illegally, for his wife and growing brood in Little Italy, 
+							                killing the local Black Hand Fanucci after he demands his customary cut of the tyro's business. With Fanucci gone, Vito's communal stature grows." />
+                  </h:panelGrid>
+                </p:tab>
+                <p:tab title="Godfather Part III">
+                  <h:panelGrid cellpadding="10">
+                    <h:outputText
+                      value="After a break of more than 15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family. 
+							                    Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate." />
+                  </h:panelGrid>
+                </p:tab>
+              </p:tabView>
+            </div>
+          </div>
+          <p:panel id="basic" header="Basic Picklist" toggleable="true" styleClass="MarTop10">
+            <p:panelGrid columns="1" styleClass="ui-panelgrid-blank">
+              <p:pickList id="pickList" value="#{data.persons}" var="person" effect="slide"
+                itemLabel="#{person.name} #{person.firstname}" itemValue="#{person}" showSourceControls="true"
+                showTargetControls="true" showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains"
+                converter="ivy.ListItem">
+
+                <f:facet name="sourceCaption">Available</f:facet>
+                <f:facet name="targetCaption">Selected</f:facet>
+
+                <p:column>
+                  <b>#{person.name}</b> #{person.firstname}
+                </p:column>
+              </p:pickList>
+              <br />
+              <p:panelGrid columns="2" id="resultPanel" styleClass="ui-panelgrid-blank">
+              </p:panelGrid>
+            </p:panelGrid>
+          </p:panel>
+          <p:dialog header="Login" widgetVar="dlg" resizable="false" responsive="true">
+            <p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank"
+              columnClasses="ui-grid-col-4,ui-grid-col-8">
+              <h:outputLabel for="username" value="Username:" />
+              <p:inputText id="username" />
+
+              <h:outputLabel for="password" value="Password:" />
+              <p:password id="password" />
+
+              <f:facet name="footer">
+                <p:commandButton value="Login" type="button" onclick="PF('dlg').hide()" />
+              </f:facet>
+            </p:panelGrid>
+          </p:dialog>
+        </div>
+
+      </h:form>
+    </ui:define>
+    <ui:define name="rightButtons">
+      <p:commandButton actionListener="#{logic.close}" value="Proceed" update="form" icon="fa fa-check" />
+      <p:commandButton actionListener="#{logic.close}" value="Cancel" update="form" icon="fa fa-close" />
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>
