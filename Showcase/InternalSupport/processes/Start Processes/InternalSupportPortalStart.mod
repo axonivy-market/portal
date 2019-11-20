@@ -257,7 +257,7 @@ need to be initialized?</name>
 ' #txt
 Pt0 f41 776 144 32 32 -59 18 #rect
 Pt0 f41 @|AlternativeIcon #fIcon
-Pt0 f33 dialogId ch.ivy.addon.portal.generic.PortalTaskListCallback #txt
+Pt0 f33 dialogId ch.ivy.addon.portal.generic.PortalUrlCallback #txt
 Pt0 f33 startMethod start(String) #txt
 Pt0 f33 requestActionDecl '<String callbackUrl> param;' #txt
 Pt0 f33 requestMappingAction 'param.callbackUrl=in.callbackUrl;

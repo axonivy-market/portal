@@ -163,7 +163,12 @@ public class ProcessWidgetBean implements Serializable {
         && PermissionUtils.hasPortalPermission(PortalPermission.EXPRESS_CREATE_WORKFLOW);
   }
 
-  public void startProcess(String link) throws IOException {
+  public void startProcess(String link, boolean isExpress) throws IOException {
+    if (isExpress) {
+      FacesContext.getCurrentInstance().getExternalContext().redirect(link);
+      return;
+    }
+    
     link += link.contains("?") ? "&" : "?";
     // Put the "embedInIFrame" param to the task start link to open it in the DefaultFramePage process
     // Then this process will open task in IFrame or not based on its "embedInIFrame" String custom field
