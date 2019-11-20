@@ -6,6 +6,16 @@
     background-color: $primaryColor;
 }
 
+/* Checkbox */
+body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
+    color: $primaryLightestColor !important;
+}
+
+.ui-chkbox.ui-widget {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
 /* Command link */
 .ui-commandlink {
   color: $commandLinkTextColor !important;
@@ -122,6 +132,60 @@
     }
 }
 
+.ui-datatable table tbody tr.ui-datatable-even {
+  background-color: $dataTableRowBackgroundColorEven;
+}
+
+.ui-datatable table tbody tr.ui-datatable-odd,
+.ui-datatable table tbody tr.ui-datatable-odd td {
+  background-color: $dataTableRowBackgroundColorOdd;
+}
+
+/* Tree table */
+.ui-treetable table thead tr th {
+  color: $dataTableRowHeaderColor;
+  background-color: $dataTableRowHeaderBgColor !important;
+  border-bottom: 1px solid $topBorderOutsideTreeTableColor;
+  border-top: 1px solid $bottomBorderOutsideTreeTableColor;
+}
+
+.ui-treetable-data tr:nth-child(odd) {
+  background-color: $dataTableRowBackgroundColorEven;
+}
+
+.ui-treetable-data tr:nth-child(even) {
+  background-color: $dataTableRowBackgroundColorOdd;
+}
+
+.ui-treetable table thead tr th {
+  border-right: 1px solid $rightBorderOutsideTreeTableColor !important;
+}
+
+.ui-treetable table tbody tr td {
+    border-right: 1px solid $rightBorderInsideTreeTableColor;
+    border-bottom: 1px solid $bottomBoderBodyTreeTableColor !important;
+}
+
+.ui-treetable table tbody tr td:first-child,
+.ui-treetable thead th:first-child {
+  border-left: 1px solid $leftBorderOutsideTreeTableColor !important;
+}
+
+/* Dialog */
+body {
+    .ui-dialog {
+        .ui-dialog-titlebar {
+            border-bottom: 1px solid $lightGrey;
+            padding: 8px 20px !important;
+
+            .ui-dialog-title {
+                padding-left: 2px;
+                font-size: $bodyDialogTitleFontSize;
+            }
+        }
+    }
+}
+
 /* Fieldset */
 .ui-fieldset-content table {
   width: 100%;
@@ -152,7 +216,7 @@
     }
 }
 
-/* Layout*/
+/* Layout sidebar*/
 .layout-wrapper .layout-sidebar .layout-menu li > a {
   color: $sidebarMenuListItemLinkTextColor;
 }
@@ -164,6 +228,76 @@
 
 .layout-wrapper .layout-sidebar .layout-menu li > a:hover i {
   color: $sidebarMenuListItemHoverIconColor;
+}
+
+.layout-wrapper .layout-sidebar .layout-menu>li.active-menuitem>a {
+    background-color: $primaryLightestColor;
+    color: $primaryTextColor;
+    @include multi-shadow(0 4px 10px 0 rgba(0, 0, 0, 0.14), 0 5px 5px -5px rgba(60, 72, 88, 0.3), 0 5px 5px -5px rgba(60, 72, 88, 0.1));
+}
+
+.layout-wrapper .layout-sidebar {
+    background-color: $paleGrey;
+}
+
+.layout-wrapper .layout-sidebar .layout-menu>li.active-menuitem>a i {
+    color: $sidebarMenuListActiveIconColor;
+}
+
+.layout-wrapper .layout-sidebar .layout-menu {
+  li {
+    width : auto;
+  }
+}
+
+/*Layout topbar*/
+.layout-wrapper .layout-main .layout-topbar .menu-btn i {
+      font-size: 2.4rem;
+}
+
+.layout-wrapper .layout-main .layout-topbar {
+    background: $primaryLightestColor;
+    box-shadow: none;
+    padding-bottom: 0;
+    height: 60px;
+}
+
+.layout-wrapper .layout-main .layout-content {
+    padding: 60px 30px 0 30px;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+@media  screen and (max-height: 500px) {
+  .layout-wrapper .layout-main .layout-content {
+    height: 80vh !important;
+  }
+}
+
+@media screen and (max-width: 40em) {
+    .layout-wrapper .layout-main .layout-content {
+        padding: 60px 0 0 0;
+    }
+}
+
+@media (max-width: 1365px) {
+    .layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu {
+        display: inline;
+    }
+}
+
+.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu > li > ul {
+    top: 54px !important;
+    border-top: 3px solid $primaryColor !important;
+}
+
+.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu > li > ul:before {
+    border-bottom: 15px solid $primaryColor !important;
+}
+
+/* Panel grid*/
+body .ui-panelgrid tbody tr.ui-widget-content {
+    border: none !important;
 }
 
 /* */
