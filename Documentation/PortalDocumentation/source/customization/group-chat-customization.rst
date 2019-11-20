@@ -31,12 +31,12 @@ Customize group chat name
 2. Override ``SetGroupChatName`` process to customize group chat name,
    follow its note to change group chat name.
 
-|customize-group-chat-name|
+   |customize-group-chat-name|
 
 3. If you have parameters which are not available in GroupChat.java,
    override ``GetGroupChatParams`` callable process and follow its note.
 
-|customize-group-chat-name-params|
+   |customize-group-chat-name-params|
 
 .. _customization-group-chat-customize-predefined-roles:
 

@@ -17,14 +17,10 @@ contains 2 parts:
 
 ..
 
-.. important:: 
-               1. Task header customization currently support responsive design.
-                  Refer to :ref:`this
-                  part <customization-task-widget-responsive-layout>`
-                  for more detail.
-               
-               2. Task header's buttons cannot be modified (they stay where they
-                  are)
+.. important::
+   - Task header customization currently support responsive design. Refer to :ref:`this part <customization-task-widget-responsive-layout>` for more detail.
+                  
+   - Task header's buttons cannot be modified (they stay where they are)
 
 .. _customization-task-widget-how-to-overide-ui:
 
@@ -79,28 +75,28 @@ function of these columns work:
 
 |task-list|
 
--  Introduce a java class extends TaskLazyDataModel
+*  Introduce a java class extends TaskLazyDataModel
 
--  Override the ``extendSort`` method and extend the sort function for
+*  Override the ``extendSort`` method and extend the sort function for
    the added columns (see the method's Javadoc comments)
 
--  Default taskList supports user to config display/hide column
+*  Default taskList supports user to config display/hide column
 
-|task-columns-configuration|
+   |task-columns-configuration|
 
-   -  In case you have new columns, override method
+   *  In case you have new columns, override method
       ``getDefaultColumns`` of the extended class from TaskLazyDataModel
       to display checkboxes in Config columns panel and display/hide
       sortFields (see the methods' Javadoc comments)
 
-   -  To add cms for checkboxes's label, add new entries to folder
+   *  To add cms for checkboxes's label, add new entries to folder
       ``/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/`` in
       ``PortalStyle`` or override method ``getColumnLabel``\ (see the
       methods' Javadoc comments)
 
-   -  In ``taskListHeader`` section, use ``TaskColumnHeader`` component
+   *  In ``taskListHeader`` section, use ``TaskColumnHeader`` component
 
-   -  In ``taskHeader`` section, use ``TaskCustomField`` component for
+   *  In ``taskHeader`` section, use ``TaskCustomField`` component for
       each additional columns. This component will handle display/hide
       new columns on task list.
 
@@ -115,10 +111,10 @@ function of these columns work:
       
          <ic:ch.ivy.addon.portalkit.component.task.column.TaskCustomField id="customer-name-component" componentId="customer-name" column="customVarCharField5" dataModel="#{taskView.dataModel}" labelValue="#{task.customVarCharField5}" />
 
--  Use Axon.ivy Override to override the ``InitializeTaskDataModel``
+*  Use Axon.ivy Override to override the ``InitializeTaskDataModel``
    callable and initialize data model by your customized one.
 
--  In your customized portal tasks HTMLDialog, the customized data model
+*  In your customized portal tasks HTMLDialog, the customized data model
    should be passed as a parameter to components (refer to
    ``PortalTasks.xhtml``).
 
@@ -139,7 +135,7 @@ Task filter
    container contains your filters, you can reuse default filters, refer
    to ``DefaultTaskFilterContainer.java``
 
-      .. tip:: StateFilter is added as default to container. If you don't need
+   .. tip:: StateFilter is added as default to container. If you don't need
                it, use this code in constructor: ``filters.remove(stateFilter);``
 
 -  Introduce a java class extends TaskLazyDataModel. Override the
@@ -166,7 +162,7 @@ Task filter
    can change this by setting the ui:param ``filterGroupId`` in
    ``PortalTasks.xhtml`` to a new Long value.
 
-      .. tip:: If you have multiple case lists in your project, you may want to
+   .. tip:: If you have multiple case lists in your project, you may want to
                set ``filterGroupId`` to an unique identifier for each of your
                ``PortalTasks.xhtml across your projects``
 
@@ -184,8 +180,11 @@ How to override task widget's data query
    isQueryForHomePage
    in
    BuildTaskQuery
-   callable process to specify the query for Home page task list, e.g.
-   ::
+   callable process to specify the query for Home page task list
+   
+   *E.g:*
+   
+   .. code-block:: html
 
       if (in.isQueryForHomePage) { // in home page
           in.taskQuery = TaskQuery.create().where().activatorUserId().isNotNull();
@@ -201,15 +200,15 @@ How to override task widget's data query
 
    -  Refer to TaskView, TaskSearchCriteria to build your TaskView
 
-   ::
+      .. code-block:: html
 
-      TaskLazyDataModel dataModel = new TaskLazyDataModel();
-      // Set your TaskQuery
-      dataModel.getCriteria().setCustomTaskQuery(YOUR_TASK_QUERY); 
-      // Display the tasks of all users
-      dataModel.getCriteria().setAdminQuery(true); 
-      out.taskView = TaskView.create().dataModel(dataModel)
-      .showHeaderToolbar(false).createNewTaskView();
+         TaskLazyDataModel dataModel = new TaskLazyDataModel();
+         // Set your TaskQuery
+         dataModel.getCriteria().setCustomTaskQuery(YOUR_TASK_QUERY); 
+         // Display the tasks of all users
+         dataModel.getCriteria().setAdminQuery(true); 
+         out.taskView = TaskView.create().dataModel(dataModel)
+         .showHeaderToolbar(false).createNewTaskView();
 
 .. _customization-task-widget-custom-task-delegate:
 
@@ -253,7 +252,7 @@ You can refer to ``PortalExamples`` project for examples
 
    |responsive-task-list-customization|
 
-    .. tip:: ``TaskCustomField`` component has default
+   .. tip:: ``TaskCustomField`` component has default
       responsiveStyleClass is ``u-hidden-sm-down``
 
 2. Responsiveness could be broken when you anchor left menu. In this

@@ -15,13 +15,13 @@ Each TaskItemDetails contains
 
 -  showItemDetailDocuments
 
--  TaskItemDetail custom panel: taskItemDetailCustomPanelTop ,
+-  TaskItemDetail custom panel: taskItemDetailCustomPanelTop,
    taskItemDetailCustomPanelBottom
 
-|task-standard|
+   |task-standard|
 
    .. important:: Task Data and Description box always display, we cannot override the
-      content or hidden/show (they stay where they are)
+            content or hidden/show (they stay where they are)
 
 .. _customization-task-item-details-how-to-overide-ui:
 
@@ -49,7 +49,7 @@ Refer to ``PortalExamples`` project for examples.
       ``/layouts/PortalTaskDetailsTemplate.xhtml``. You can take a look
       at ``PortalTaskDetails.xhtml`` to see how to customize it.
 
-         .. tip:: Highly recommend to copy the ``PortalTaskDetails`` HTMLDialog
+      .. tip:: Highly recommend to copy the ``PortalTaskDetails`` HTMLDialog
                in PortalTemplate. Remove ``ui:remove`` and change the copied
                one's view.
 
