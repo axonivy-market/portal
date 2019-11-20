@@ -186,7 +186,7 @@ $caseRelatedTaskHoveredColor: $mediumGrey;
 $caseDetailPaginatorColor: $primaryTextColor;
 $caseRelatedTaskContentBorder: $lightGrey;
 $caseDocumentUploadBorder:  $lightGrey;
-$userDefinedFilterContainerHoverFontWeight: bold;
+$userDefinedFilterContainerHoverFontWeight: normal;
 $caseDetailNameInputFontWeight: bold;
 $additionalCaseDetailLinkFontWeight: 400;
 $detailsDocumentAddLinkFontWeight: 400;
@@ -206,7 +206,8 @@ $noteShowMoreLinkColor: $commandLinkTextColor;
 $noteShowMoreLinkHoveredColor: $commandLinkHoveredTextColor;
 $caseTaskDocumentNameColor: $primaryTextColor;
 $caseWidgetColumnHeaderIsSelectedColor: $primaryTextColor;
-$caseItemActionStepsItemHoverBackgroundColor: #e8e9ef;
+$caseItemActionStepsItemHoverBackgroundColor: $paleGrey;
+$caseItemActionStepsItemHoverTextColor: $commandLinkHoveredTextColor;
 $caseActionStepsContentsBackgroundColor: $white;
 $caseActionSeparatorBorderColor: rgba($mediumGrey, 0.5);
 $caseStateInProgressColor: rgba(7, 140, 255, 1);
@@ -225,18 +226,19 @@ $caseItemDescriptionCell: $mediumGrey;
 
 /* Case and Task Action Item */
 $caseTaskActionButtonHoveredBackgroundColor: transparent;
-$caseTaskActionButtonIconColor: $mediumGrey;
+$caseTaskActionButtonColor: $commandLinkTextColor;
 
 /* Task Widget */
 $taskFilterSelectionFormHoverBackgroundColor: $paleGrey;
 $compactTaskStartListItemHoverBackgroundColor: rgba($lightGrey, 0.5);
 $compactTaskStartLinkItemBackgroundColor: $paleGrey;
 $compactTaskStartInfoColor: $primaryTextColor;
+$compactTaskStartInfoIconColor: rgba($compactTaskStartInfoColor, 0.5);
 $taskWidgetSortMenuLinkIsSelectedColor: $primaryTextColor;
 $taskWidgetOverlayPanelContentBackgroundColor: $white;
 $taskWidgetLinkColor: $primaryTextColor;
 $taskActionHoverBackgroundColor: $paleGrey;
-$taskActionLeftIconColor: $caseTaskActionButtonIconColor;
+$taskActionLeftIconColor: $caseTaskActionButtonColor;
 $taskFilterSeparatorBorderBottom: $borderColor;
 $taskViewContainerDataScrollerContentBackgroundColor: transparent;
 $taskStartListDescriptionCell: $mediumGrey;
@@ -279,7 +281,7 @@ $substitutedUserTextColor: $primaryTextColor;
 $dialogFooterButtonBoxShadowColor: black;
 
 /* Awesome Icon Selection */
-$linkChangeAwesomeIconColor: $black;
+$linkChangeAwesomeIconColor: $primaryTextColor;
 $contentLinkChangeAwesomeIconColor: #337ab7;
 $selectAwesomeIconButtonFontWeight: bold;
 
@@ -306,7 +308,7 @@ $errorMessageHeaderColor: #e67163;
 
 /* SelectCheckbox */
 $selectCheckBoxCloseHoverColor: $white;
-$configCheckboxContainerBorder: $black;
+$configCheckboxContainerBorder: $lightGrey;
 $selectCheckboxMenuIconFontSize: 1.8rem;
  
 $bodyStateActiveColor: $primaryTextColor;
@@ -315,7 +317,7 @@ $autoCompleteHoverColor: $primaryTextColor;
  /* Express */
 $expressInputSwitchSelectionBackgroundColor: $accentColor;
 $expressInputSwitchHandleBackgroundColor: $white;
-$expressShowDefaultIconColor: $black;
+
 $taskResponsibleLabelStateErrorColor: #e62a10;
 $definedTaskButtonBackgroundColor: $white;
 $formElementsPanelHoverDropSectionBackgroundColor: $primaryLightGreen;
@@ -343,7 +345,7 @@ $expressFinishedTaskLabelFontWeight: 700;
 $expressActiveDefinedTaskButtonFontWeight: bold;
 $collapseButtonBackgroundColor: $paleGrey;
 $collapseButtonHoveredBackgroundColor: $lightGrey ;
-$expressAssigneeIconColor: $black;
+$expressAssigneeIconColor: $primaryTextColor;
 $expressReviewContentTitleBorderColor: rgba($mediumGrey, 0.5);
 
 /* Chat */
