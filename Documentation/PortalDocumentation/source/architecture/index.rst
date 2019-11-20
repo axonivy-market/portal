@@ -11,7 +11,7 @@ Architecture
       only used internally in Portal. Don't use them because they can be
       changed in next versions.
 
-Currently Portal system contains the following modules:
+Currently Portal system contains the following modules: PortalStyle, PortalKit, PortalTemplate, AxonIvyExpress. AxonIvyExpress is the only optional module, other modules are mandatory.
 
 |process-module-structure|
 
@@ -33,15 +33,14 @@ Portal style
 ============
 
 Contains definition of styles that can be overridden/customized later.
-As now Portal supports user to customize various colors of the layout
+Portal supports users to customize various colors of the layout
 such as: background color, text color, border color, button color,
-focus/hover color. In the current version you have to change each color
-one by one. There are no common color definitions.
+focus/hover color by providing a lot of variables.
 
-   .. note:: 
+.. note:: 
 
       This module is prepared for process developers to override and keep
-      customer styles by editing CSS file, CMS's style.
+      customer styles by editing SCSS files.
 
 .. _architecture-portal-template:
 
@@ -61,7 +60,7 @@ Axon.ivy Express
 ================
 
 The idea is that user can create his own process and can manage it
-easily, it gives user more flexibility when working with Portal.
+easily, it gives users more flexibility when working with Portal.
 
 This project is an extended project from PortalTemplate. It provides:
 
