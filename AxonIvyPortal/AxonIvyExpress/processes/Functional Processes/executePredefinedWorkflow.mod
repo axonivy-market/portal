@@ -1238,12 +1238,14 @@ Bk5 f8 192 98 144 44 -68 -8 #rect
 Bk5 f8 @|StepIcon #fIcon
 Bk5 f11 actionTable 'out=in;
 ' #txt
-Bk5 f11 actionCode 'ivy.task.setName(ivy.cms.co("/Dialogs/Tasks/ProcessLoaded/TaskName"));
+Bk5 f11 actionCode 'import ch.ivy.addon.portalkit.constant.CustomFields;
+ivy.task.setName(ivy.cms.co("/Dialogs/Tasks/ProcessLoaded/TaskName"));
 ivy.task.setDescription(ivy.cms.co("/Dialogs/Tasks/ProcessLoaded/TaskName"));
 
 ivy.case.setName(in.workflowName);
 ivy.case.setDescription(in.workflowDescription);
-ivy.case.setCategoryPath("ExpressWorkflow/" + in.workflowName);' #txt
+ivy.case.setCategoryPath("ExpressWorkflow/" + in.workflowName);
+ivy.case.customFields().stringField(CustomFields.IS_EXPRESS_PROCESS).set("true");' #txt
 Bk5 f11 security system #txt
 Bk5 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
