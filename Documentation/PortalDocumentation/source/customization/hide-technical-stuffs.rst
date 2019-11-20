@@ -13,7 +13,7 @@ by default.
 To mark a role as a technical role, set the **HIDE** property with any
 value to the role.
 
-   .. tip:: Use the utility method of Portal to set property:
+.. tip:: Use the utility method of Portal to set property:
       ch.ivy.addon.portalkit.util.RoleUtils.setProperty([YOUR_ROLE],
       ch.ivy.addon.portalkit.util.HIDE, [ANY_VALUE])
 
@@ -23,7 +23,7 @@ Hide technical tasks
 A technical task is the task which is not displayed in any task lists of
 Portal.
 
-   .. tip:: Use the utility methods of Portal:
+.. tip:: Use the utility methods of Portal:
       
       -  Set task as technical:
          ch.ivy.addon.portalkit.util.TaskUtils.setHidePropertyToHideInPortal(ITask)
@@ -42,7 +42,7 @@ should be hide as well.
 To mark a case as a technical case, make sure Ivy global variable
 ``PortalHiddenTaskCaseExcluded`` is set to true. Follow tip
 
-   .. tip:: Use the utility methods of Portal:
+.. tip:: Use the utility methods of Portal:
 
       -  Set case as technical:
          ch.ivy.addon.portalkit.util.CaseUtils.setHidePropertyToHideInPortal(ICase)
