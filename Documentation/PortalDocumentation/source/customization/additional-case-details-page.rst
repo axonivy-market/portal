@@ -31,13 +31,11 @@ Customization
 
    |set-additonal-case-detail-page-callable-process|
 
-..
-
    .. tip:: If you want to redirect user to external link, simply store that
       external link to "CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE"
       additional property of case.
 
-|store-external-url-in-case|
+   |store-external-url-in-case|
 
 .. |customization-additional-case-details-page| image:: images/additional-case-details-page/customization-additional-case-details-page.png
 .. |set-additonal-case-detail-page-callable-process| image:: images/additional-case-details-page/set-additonal-case-detail-page-callable-process.png

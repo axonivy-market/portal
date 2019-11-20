@@ -45,12 +45,18 @@ Following these steps to have your own Portal Home:
       </ui:define>
       </ui:composition>
 
-2. *In case of single Portal:* Create a new process start for the new
+2. In case of single Portal: Create a new process start for the new
    home page. Now you will use this process start as the entry point of
    your portal instead of the default one. **To let portal know about
    your new portal home, you have to go to the portal settings and set
-   the portal home url to the new one. e.g:
-   HOMEPAGE_URL=http://localhost:8081/ivy/pro/designer/CustomizePortalHome/157454FCA39C3844/start.ivp**
+   the portal home url to the new one.**
+   
+   *E.g:*
+   
+   .. code-block:: html
+
+      HOMEPAGE_URL=http://localhost:8081/ivy/pro/designer/CustomizePortalHome/157454FCA39C3844/start.ivp
+   ..
 
    |set-home-page-url|
 
@@ -80,12 +86,13 @@ boolean values (true/false) to display or hide them as you need.
 
 .. code-block:: html
 
-   <ui:composition template="/layouts/DefaultHomePageTemplate.xhtml">
-   <ui:param name="displayTaskWidget" value="false" />
-   </ui:composition>
+      <ui:composition template="/layouts/DefaultHomePageTemplate.xhtml">
+      <ui:param name="displayTaskWidget" value="false" />
+      </ui:composition>
 ..
 
-   .. tip:: Task widget now is hidden.
+.. note:: Task widget now is hidden.
+
 
 .. _customization-portal-home-advanced-usage-customize-the-default-widget-sections:
 
@@ -128,7 +135,7 @@ them by setting the default widgets' positions.
    </ui:composition>
 ..
 
-   .. tip:: This custom widget will show below the 3 default widget
+.. note:: This custom widget will show below the 3 default widget
 
 .. _customization-portal-home-advanced-usage-change-the-pages-title:
 
