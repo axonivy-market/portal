@@ -18,18 +18,22 @@ $mediumGrey: #9c9d9d;
 $darkGrey: #575656;
 
 /* Consolidate green*/
+
 $primaryGreen: #c7d426;
 $primaryLightGreen: #d7e52c;
+$caseTaskStateDoneOrResumeGreen: #4eb41c;
+$taskPriorityNormalGreen: #96dc82;
 
 $primaryColor: $primaryGreen;
-$primaryDarkColor: #97ae04;  /*Change to lightgrey*/
+$primaryDarkColor: $primaryGreen;
 $primaryLightColor: $primaryLightGreen;
+
 $primaryLightestColor: $white;
 $primaryTextColor: $black;
 $accentColor: $primaryGreen;
 $accentDarkColor: $primaryDarkColor;
 $accentLightColor: $primaryLightColor;
-$accentTextColor: #ecfc82;
+$accentTextColor: $primaryLightGreen;
 $headerPadding: 14px 1em;
 
 $borderColor: rgba($black, 0.1);
@@ -58,20 +62,19 @@ $thirdHeaderBarColor: $primaryGreen;
 
 /* Task priority color */
 $taskPriorityLowColor: #d4d4d4;
-$taskPriorityNormalColor: #96dc82;
+$taskPriorityNormalColor: $taskPriorityNormalGreen;
 $taskPriorityHighColor: #ffc0c0;
 $taskPriorityExceptionColor: #ff5a5a;
 
 /* Task state color */
 $taskStateOpenColor: #078cff;
-$taskStateInProgressColor: #4eb41c;
-$taskStateDoneColor: #4eb41c;
+$taskStateInProgressColor: $caseTaskStateDoneOrResumeGreen;
+$taskStateDoneColor: $caseTaskStateDoneOrResumeGreen;
 $taskStateReservedColor: rgba(black, 0.4);
 $taskStateSystemColor: rgba(black, 0.4);
 $taskStateZombieDestroyedColor: #ff6464;
 
 /* Color and border radius of Portal button e.g Add, Close, New, Save, OK .. */
-$actionButtonColor: $primaryGreen;
 $cancelButtonBackgroundColor: #d3d3d3;
 $actionButtonBorderRadius: 0px;
 
@@ -212,7 +215,7 @@ $caseItemActionStepsItemHoverBackgroundColor: #e8e9ef;
 $caseActionStepsContentsBackgroundColor: $white;
 $caseActionSeparatorBorderColor: rgba($black, 0.15); /* Change to grey */
 $caseStateInProgressColor: rgba(7, 140, 255, 1);
-$caseStateDoneColor: rgba(78, 180, 28, 1);
+$caseStateDoneColor: $caseTaskStateDoneOrResumeGreen;
 $caseWidgetTopHeaderBorderBottom: $borderColor;
 $caseWidgetColumnHeaderBorderBottom: $borderColor;
 $caseListDataScrollerContentBackgroundColor: transparent;
@@ -335,7 +338,6 @@ $autocompleteMoreTextStateHighlightBackgroundColor: white;
 $expressInputSwitchSelectionBorder: $primaryGreen;
 $expressAvailableElementsActionButtonBackgroundColor: transparent;
 $expressAvailableElementsActionButtonShadow: none;
-$formElementsPanelHoverDropSectionBorder: #699924;
 $formDefinitionTableBorder: rgba(117, 117, 117, 0.5);
 $formDefinitionTableSelectedPanelBorder: $grey2;
 $formDefinitionTableSelectedPanelBackgroundColor: transparent;
@@ -363,7 +365,7 @@ $contactCardIconOfflineColor: $grey3;
 $contactCardBackgroundColor: $white;
 $contactCardIconUnreadMessageColor: $white;
 $contactCardIconUnreadMessageBackgroundColor: #ff6d6e;
-$contactCardStatusBackgroundColor: #64d864;
+$contactCardStatusBackgroundColor: #4eb41c;
 $contactCardNameColor: $white;
 $contactNotificationColor: $white;
 $contactNotificationBackgroundColor: $red;
@@ -374,7 +376,7 @@ $messageListHeaderCloseIconHoverBackgroundColor: $grey1;
 $messageListHeaderCloseIconBackgroundColor: $grey3;
 $chatMessageBackgroundColor: $grey4;
 $chatMessageBackgroundColor: $accentColor;
-$chatMyMessageBackgroundColor: $primaryDarkColor;
+$chatMyMessageBackgroundColor: $primaryLightGreen;
 $messageChatHeaderNameColor: $white;
 $showParticipantsLinkColor: $white;
 $chatFormBackgroundColor: $white;
@@ -435,8 +437,6 @@ $dataTableRowHeaderBgColor: rgba(236, 236, 236, 1);
 $dataTableRowSpanColor: $primaryTextColor;
 $highlightedTdDataTableBackgroundColor: $primaryGreen;
 $hoveredTdDataTableBackGroundColor: $primaryGreen;
-$highlightedTdTreeTableBackgroundColor: rgba($primaryGreen, 0.6);
-$hoveredTdTreeTableBackGroundColor: rgba($primaryGreen, 0.25);
 $tableBorderColor: rgba(black, 0.2); /* Change to grey*/
 $rightBorderInsideDataTable: $tableBorderColor;
 $leftBorderInsideDataTable: transparent;
@@ -471,3 +471,6 @@ $uiFiedsetLegendTextColor: $primaryTextColor;
 $uiDialogTitleBarTextColor: $primaryTextColor;
 $uiInputFieldTextColor: $primaryTextColor;
 $uiFieldSetTogglerColor: $black;
+$uiDataPickerTitleColor: $black;
+$uiDataPickerHeaderColor: $paleGrey;
+$uiDataPickerTitleBorderColor: $paleGrey;
