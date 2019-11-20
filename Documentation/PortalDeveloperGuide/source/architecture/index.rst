@@ -5,8 +5,7 @@ Architecture
 
 .. _architecture-portal-process-modules-structure:
 
-   .. important:: 
-
+.. important:: 
       The css styles, java methods, etc., which are not documented, are
       only used internally in Portal. Don't use them because they can be
       changed in next versions.
@@ -17,7 +16,7 @@ Currently Portal system contains the following modules: PortalStyle, PortalKit, 
 
 .. _architecture-portalkit:
 
-Portal kit
+PortalKit
 ==========
 
 Contains set of UI components. This module contains set of JSF Ivy
@@ -29,7 +28,7 @@ that is used to configure Portal.
 
 .. _architecture-portal-style:
 
-Portal style
+PortalStyle
 ============
 
 Contains definition of styles that can be overridden/customized later.
@@ -44,7 +43,7 @@ focus/hover color by providing a lot of variables.
 
 .. _architecture-portal-template:
 
-Portal template
+PortalTemplate
 ===============
 
 Provides default portal's templates and pages. This module contains
@@ -56,7 +55,7 @@ advised to depend on this module to use Portal easily.
 
 .. _architecture-axonivy-express:
 
-Axon.ivy Express
+AxonIvyExpress
 ================
 
 The idea is that user can create his own process and can manage it
