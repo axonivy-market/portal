@@ -36,20 +36,13 @@ Ns0 f1 339 51 26 26 0 12 #rect
 Ns0 f1 @|UdProcessEndIcon #fIcon
 Ns0 f3 actionTable 'out=in;
 ' #txt
-Ns0 f3 actionCode 'import ch.ivy.addon.portalkit.service.IvyAdapterService;
-import ch.ivyteam.ivy.request.RequestUriFactory;
+Ns0 f3 actionCode 'import ch.ivyteam.ivy.request.RequestUriFactory;
 import org.primefaces.model.DefaultStreamedContent;
 import org.apache.commons.lang3.StringUtils;
 
 out.taskPriority = StringUtils.capitalize(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskPriority/" + in.task.getPriority()).toLowerCase());
 out.taskState = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskState/" + in.task.getState());
-
-boolean enabledStartInIFrame = IvyAdapterService.getTaskEmbedInIFrameCustomField(in.task);
-out.taskStart = RequestUriFactory.createExternalServerUri().resolve(RequestUriFactory.createTaskStartUri(in.task)).toASCIIString();
-if (enabledStartInIFrame) {
-	out.taskStart += "&embedInFrame";
-}
-
+out.taskStart = RequestUriFactory.createExternalServerUri().resolve(RequestUriFactory.createTaskStartUri(in.task)).toASCIIString() + "&embedInFrame";
 out.logo = new DefaultStreamedContent(ivy.cms.findContentObjectValue("/images/logo/CorporateLogo", ivy.cms.defaultLanguage).getContentAsBinaryStream(), "image/png");
 ' #txt
 Ns0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
