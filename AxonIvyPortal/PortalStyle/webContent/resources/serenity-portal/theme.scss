@@ -35,6 +35,11 @@ body {
 /*Style For Logos --------------------------------------------------------------------------------------*/
 .portal-home-logo {
     height: $homeLogoHeight !important;
+    width: calc(100% - 72px);
+}
+
+.layout-sidebar .sidebar-logo .portal-home-logo-small img {
+    width: 42px !important;
 }
 
 .login-body .login-panel .login-panel-header img {
@@ -649,7 +654,7 @@ body .ui-dialog .ui-dialog-footer .ui-button {
 }
 
 .circle-horizontal-process-step:not(:last-child) .circle-horizontal-step-container .step-number-container:after {
-  border-top: 0.3rem solid $circleHorizontalStepNumberContainerBorderTop;
+  border-top: 3px solid $circleHorizontalStepNumberContainerBorderTop;
 }
 
 .circle-process-chain .circle-horizontal-process-step,
@@ -822,7 +827,7 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
 
 .task-item-body .task-details-item-note, .task-item-body .task-details-item-document {
   .ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top {
-    background-color: $taskDetailPaginatorHeaderCornerTopBackgroundColor;
+    background-color: $taskDetailPaginatorHeaderCornerTopBackgroundColor !important;
     border-color: $taskDetailPaginatorHeaderCornerTopBorderColor;
     padding: 2px 10px;
   }
@@ -1281,10 +1286,6 @@ body .ui-picklist li.ui-picklist-item.ui-state-hover {
 }
 
 /* Style for Filter Widget -----------------------------**/
-.widget-header-main-menu {
-  color: $widgetHeaderMainMenuTextColor;
-}
-
 .task-widget .advanced-filter:hover, 
 .case-widget-container .advanced-filter:hover,
 .task-widget .filter-selection-container:hover,
@@ -1327,12 +1328,7 @@ body .ui-picklist li.ui-picklist-item.ui-state-hover {
   background-color: $taskWidgetOverlayPanelContentBackgroundColor;
 }
 
-.filter-category-checkbox-tree .ui-tree-filter.ui-inputfield {
-  box-shadow: inset 0 -1px 0px 0px $categoryInputFieldBoxShadowColor;
-}
-
-.history-note a,
-.history-note .task-note-link {
+.history-note a, .history-note .task-note-link {
   color: $historyNoteColor !important;
 }
 
@@ -1422,10 +1418,6 @@ span.task-details-document-add-link {
 
 .action-steps-panel .action-step-item:hover {
   background-color: $caseItemActionStepsItemHoverBackgroundColor;
-}
-
-.action-steps-panel .action-step-item {
-  color: $actionStepItemTextColor !important;
 }
 
 .case-state-in-progress {
@@ -1753,10 +1745,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   background: $stagesChainProcessFlowVisibleBackgroundColor;
 }
 
-.ui-columntoggler label {
-  color: $bodyColumnTogglerLabelColor;
-}
-
 .stages-chain .process-step i{
   font-size: 1.6rem;
 }
@@ -1765,7 +1753,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 .task-action-item .task-action-item-label {
   font-weight: $taskActionItemLabelFontWeight;
 }
- 
+
 .action-button.task-action-item .ui-button-icon-left.ui-icon {
   color: $taskActionLeftIconColor !important;
 }
@@ -1852,7 +1840,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 }
 
 .review-content-title {
-  color: $reviewContentTitleColor;
   font-weight: $expressReviewContentTitleFontWeight;
   border-bottom: 1px solid $expressReviewContentTitleBorderColor;
 }
@@ -1904,11 +1891,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 .task-responsible-link:after {
   font-family: $iconFontFamily;
-}
-
-.ui-selectmanycheckbox label,
-.ui-selectmanycheckbox label.ui-state-disabled {
-  color: $selectManyCheckboxLabelColor;
 }
 
 .express-work-flow label.switch-active {

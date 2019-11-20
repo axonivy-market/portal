@@ -1,4 +1,0 @@
-PortalTaskListCallbackData #class
-ch.ivy.addon.portal.generic.PortalTaskListCallback #namespace
-callbackUrl String #field
-callbackUrl PERSISTENT #fieldModifier
