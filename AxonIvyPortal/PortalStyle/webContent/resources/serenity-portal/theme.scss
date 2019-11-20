@@ -64,7 +64,7 @@ body {
 
 /*Style For Main menu (Left Sidebar)------------------------------------------------------------------------ */
 .left-sidebar-color {
-    background-color: $grey4;
+    background-color: $paleGrey;
 }
 
 .layout-wrapper .layout-sidebar .layout-menu>li.active-menuitem>a {
@@ -83,11 +83,11 @@ body {
 }
 
 .layout-wrapper .layout-sidebar {
-    background-color: $grey4;
+    background-color: $paleGrey;
 }
 
 .layout-wrapper .layout-sidebar .sidebar-logo {
-    background-color: $grey4;
+    background-color: $paleGrey;
 }
 
 .layout-wrapper .layout-sidebar .sidebar-logo .sidebar-anchor {
@@ -182,7 +182,7 @@ body {
 body {
     .ui-dialog {
         .ui-dialog-titlebar {
-            border-bottom: 1px solid $grey3;
+            border-bottom: 1px solid $lightGrey;
             padding: 8px 20px !important;
 
             .ui-dialog-title {
@@ -308,7 +308,7 @@ body .ui-panelgrid tbody tr.ui-widget-content {
 }
 
 .in-progress-task-checkbox .ui-chkbox-label {
-  color: $grey1;
+  color: $primaryTextColor;
 }
 
 /*Style For Statistic Widget -----------------------------------------------------------------------------*/
@@ -380,11 +380,6 @@ body .ui-panelgrid tbody tr.ui-widget-content {
   font-weight: $chartInfoLabelFontWeight;
 }
 
-.ui-carousel-item .ui-dialog-content .ui-panelgrid,
-.ui-carousel-item .ui-dialog-content .ui-panelgrid tbody tr .ui-panelgrid-cell  {
-  border: solid 1px $carouselItemPanelGridBorder !important;
-}
-
 .statistic-actions-panel {
   border-bottom: 1px solid $statisticActionPanelBorder;
 }
@@ -412,7 +407,7 @@ body .ui-buttonset .ui-state-active {
 .portal-cancel-button.ui-widget.ui-button,
 .ui-inplace-cancel.ui-widget.ui-button,
 .ui-fileupload-cancel.ui-widget.ui-button {
-    background-color: rgba($cancelButtonBackgroundColor, 1) !important;
+    background-color: $cancelButtonBackgroundColor !important;
 }
 
 .portal-cancel-button.ui-widget.ui-button.ui-state-hover,
@@ -430,15 +425,12 @@ body .ui-buttonset .ui-state-active {
 
 .ui-widget.ui-button.context-button {
     border-radius: $contextButtonBorderRadius !important;
-    background-color: rgba($contextButtonColor, 0.5);
+    background-color: $contextButtonBackgroundColor !important;
 }
 
-.ui-widget.ui-button.context-button.ui-state-hover {
-    background-color: rgba($contextButtonColor, 0.6) !important;
-}
-
+.ui-widget.ui-button.context-button.ui-state-hover,
 .ui-widget.ui-button.context-button.ui-state-focus {
-    background-color: rgba($contextButtonColor, 0.8) !important;
+    background-color: $contextButtonStateHoverOrFocusBackgroundColor;
 }
 
 .ui-widget.ui-button {
@@ -459,10 +451,6 @@ body .ui-buttonset .ui-state-active {
     .ui-autocomplete-dropdown {
         min-width: 18px !important;
     }
-}
-
-.portal-cancel-button.ui-widget.ui-button, .ui-inplace-cancel.ui-widget.ui-button, .ui-fileupload-cancel.ui-widget.ui-button {
-    background-color: $cancelButtonBackgroundColor !important;
 }
 
 body .ui-dialog .ui-dialog-footer .ui-button {
@@ -1227,7 +1215,7 @@ body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckb
 .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-filter-container .ui-icon-search,
 .ui-picklist .ui-picklist-filter-container .ui-icon,
 .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon {
-  color: $grey1;
+  color: $darkGrey;
   background: $checkboxMenuIconBackgroundColor;
 }
 
@@ -1607,12 +1595,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 .task-view-container .ui-datascroller,
 .task-view-container .ui-datascroller .ui-datascroller-content {
   background-color: $taskViewContainerDataScrollerContentBackgroundColor;
-}
-
-.options-panel {
-  border-top: solid 1px $taskOptionPanelBorderTop;
-  -webkit-box-shadow: 0px 2px 4px 0px $taskOptionPanelBoxShadow !important;
-  box-shadow: 0px 2px 4px 0px $taskOptionPanelBoxShadow !important;
 }
 
 .task-widget .filter-container .filter-selection-container-group,
