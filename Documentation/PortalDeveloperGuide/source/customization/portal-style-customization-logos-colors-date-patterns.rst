@@ -12,7 +12,15 @@ You can change logo and login logo by modifying default logo in
 PortalStyle project.
 
 -  Modify cms entry ``PortalStyle/images/logo/CorporateLogo.png`` to
-   update homepage logo.
+   update homepage logo when menu is expanded.
+
+   .. tip:: We recommend you to use an image with width size is 168 pixel to fit the left menu size when it's expanded
+   
+
+-  Modify cms entry ``PortalStyle/images/logo/SmallCorporateLogo.png`` to
+   update homepage logo when menu is collapsed.
+
+   .. tip:: We recommend you to use an image with width size is 42 pixel to fit the left menu size when it's collapsed
 
 -  Modify cms entry ``PortalStyle/images/logo/loginLogo.png`` to update
    login logo.
