@@ -71,14 +71,10 @@ import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivyteam.ivy.workflow.ITask;
 
 // There are two levels: custom field in task, if false, check Portal global setting
+GlobalSettingService service = new GlobalSettingService();
 ITask task = ivy.wf.findTask(in.taskId);
 if (task != null) {
-	out.embedInIFrame = IvyAdapterService.getTaskEmbedInIFrameCustomField(task);
-}
-
-if (!out.embedInIFrame) {
-	GlobalSettingService service = new GlobalSettingService();
-	out.embedInIFrame = Boolean.parseBoolean(service.findGlobalSettingValue(GlobalVariable.EMBEDED_IN_IFRAME.toString()));
+	out.embedInIFrame = Boolean.parseBoolean(service.findGlobalSettingValue(GlobalVariable.EMBEDED_IN_IFRAME.toString())) || IvyAdapterService.getTaskEmbedInIFrameCustomField(task);
 }' #txt
 Ie0 f5 security system #txt
 Ie0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
