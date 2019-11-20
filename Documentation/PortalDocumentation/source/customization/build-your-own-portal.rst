@@ -17,11 +17,11 @@ Build your own portal using Portal kit
       want to keep the look of default homepage, then choose
       ``DefaultHomePageTemplate``.
 
-         .. tip:: Find more information about templates at :ref:`Layout templates <components-layout-templates>` .
+      .. tip:: Find more information about templates at :ref:`Layout templates <components-layout-templates>` .
 
       ..
 
-        .. important:: Portal uses some template files in the folder
+      .. warning:: Portal uses some template files in the folder
                        ``"webContent/layouts"`` 
                        in Portal Template project. Do not create files with the same
                        path and name in your project as they can override the Portal
@@ -37,7 +37,7 @@ Build your own portal using Portal kit
 
       |custom-portal-home|
 
-         .. tip:: Your new homepage is the default portal homepage. You can
+      .. tip:: Your new homepage is the default portal homepage. You can
                   customize it. Reference at :ref:`Portal home <customization-portal-home>` .
 
 3. Set category for tasks
@@ -67,7 +67,7 @@ Build your own portal using Portal kit
 
    |warn-on-closing-browser-tab|
 
-      .. tip:: 
+   .. tip:: 
 
                Normally, when using this component, actions that user invoked
                outside Portal area like closing tab/browser, refreshing page,
