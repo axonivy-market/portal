@@ -8,10 +8,9 @@ Portal Document
    :caption: Portal Document
    
    introduction/index
-   installation/index
    architecture/index
+   installation/index
    components/index
    customization/index
    settings/index
    troubleshooting/index
-   

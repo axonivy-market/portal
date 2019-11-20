@@ -36,7 +36,7 @@ available when user click on show details button.
 Stacktrace on error messages can be showed/hid depend on ivy system
 property ``Errors.ShowDetailsToEndUser``.
 
-   .. note:: 
+.. note:: 
 
       This feature is only available if using the portal default template:
       BasicTemplate
