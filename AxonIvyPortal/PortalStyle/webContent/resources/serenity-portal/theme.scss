@@ -756,7 +756,7 @@ img[id*='additonalTaskUserAvatar'] {
 }
 
 .circle-horizontal-process-step:not(:last-child) .circle-horizontal-step-container .step-number-container:after {
-  border-top: 0.3rem solid $circleHorizontalStepNumberContainerBorderTop;
+  border-top: 3px solid $circleHorizontalStepNumberContainerBorderTop;
 }
 
 .circle-process-chain .circle-horizontal-process-step,
