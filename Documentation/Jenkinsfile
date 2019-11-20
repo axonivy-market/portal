@@ -25,7 +25,7 @@ pipeline {
 
                 docker.image('axonivy/build-container:read-the-docs-1.2').inside {
                     sh "make -C /doc-build html BASEDIR='${env.WORKSPACE}/Documentation/PortalUserGuide' VERSION=${version}"
-                    sh "make -C /doc-build html BASEDIR='${env.WORKSPACE}/Documentation/PortalDocumentation' VERSION=${version}"                    
+                    sh "make -C /doc-build html BASEDIR='${env.WORKSPACE}/Documentation/PortalDeveloperGuide' VERSION=${version}"                    
                 }
 
                 docker.image('maven:3.6.2-jdk-11-slim').inside {
