@@ -108,7 +108,7 @@
           </ui:insert>
         </div>
       </div>
-      <h:outputScript library="js" name="document-truncation.js" />
+
       <script type="text/javascript">
         $(document).ready(function(){
           setTimeout(function(){onTabShow();}, 1 );
@@ -135,10 +135,6 @@
           var simpleSmallScreen = new SimpleSmallScreen();
           var responsiveToolkit = ResponsiveToolkit(simpleLargeScreen, simpleMediumScreen, simpleSmallScreen);
           Portal.init(responsiveToolkit, true);
-        }
-
-        function onStatusTabShow() {
-          documentTruncation.truncate();
         }
 
         </script>

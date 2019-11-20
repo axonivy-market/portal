@@ -16,11 +16,6 @@ header you find two very useful features:
    `Global Search`_.
 
 .. figure:: images/portal-header.png
-   :width: 6.49606in
-   :height: 0.79134in  
-   :align: center
-
-   Portal header
 
 User Settings in the Axon.ivy Portal
 ------------------------------------
@@ -43,11 +38,6 @@ tasks assigned to you or one of the roles you hold.
    you’re absent one of your role members is still able to pick up the task.
 
 .. figure:: images/portal-absences.png
-   :width: 6.49606in
-   :height: 3.28346in 
-   :align: center
-
-   Axon.ivy Portal absences
 
 The dialog shows you all current and upcoming absences. You may show also past
 absences by activating the option **Show absences in the past**. Furthermore,
@@ -73,11 +63,6 @@ HowTo: Add absence
    Set deputies`_).
 
 .. figure:: images/how-to-add-an-absence.png
-   :width: 6.49606in
-   :height: 3.28346in 
-   :align: center
-
-   HowTo add an absence
 
 HowTo: Set deputies
 ^^^^^^^^^^^^^^^^^^^
@@ -97,11 +82,6 @@ HowTo: Set deputies
 6. Confirm your deputies with the button **OK**.
 
 .. figure:: images/how-to-set-absence-deputies.png
-   :width: 6.49606in
-   :height: 3.28346in 
-   :align: center
-
-   HowTo set absence deputies
 
 Email settings
 --------------
@@ -136,11 +116,6 @@ The :guilabel:`Email settings` dialog provides you with the following configurat
 
 
 .. figure:: images/axon-ivy-portal-email-notifications-settings.png
-   :width: 6.49606in
-   :height: 3.28346in 
-   :align: center
-
-   Axon.ivy Portal email notifications settings
 
 Language Settings
 -----------------
@@ -173,11 +148,6 @@ Portal:
    still be shown in English.       
 
 .. figure:: images/portal-language-settings.png
-   :width: 6.49606in
-   :height: 3.28346in 
-   :align: center
-
-   Axon.ivy Portal language settings
 
 Change Password
 ---------------
@@ -185,11 +155,6 @@ Change Password
 The menu entry **Change password** allows you to set a new password.
 
 .. figure:: images/portal-password-change-dialog.png
-   :width: 6.49606in
-   :height: 3.28346in 
-   :align: center
-
-   Axon.ivy Portal password change dialog
 
 Info
 ----
@@ -199,11 +164,6 @@ Axon.ivy Engine, the Axon.ivy Portal and your companies application. You
 might be asked for this information in case you issue a support request.
 
 .. figure:: images/portal-version-information.png
-   :width: 6.49606in
-   :height: 3.28346in 
-   :align: center
-
-   Axon.ivy Portal version information
 
 Logout
 ------
@@ -236,11 +196,6 @@ will route you to the :guilabel:`Global Search Results` page. For each category
 a tab is provided, giving you the results of your search.
 
 .. figure:: images/portal-global-search-result-page.png
-   :width: 6.49606in
-   :height: 3.28346in 
-   :align: center
-
-   Axon.ivy Portal global search result page
 
 .. hint:: 
    Your company’s application may   
