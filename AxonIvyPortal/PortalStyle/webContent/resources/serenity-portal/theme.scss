@@ -34,6 +34,11 @@ body {
 /*Style For Logos --------------------------------------------------------------------------------------*/
 .portal-home-logo {
     height: $homeLogoHeight !important;
+    width: calc(100% - 72px);
+}
+
+.layout-sidebar .sidebar-logo .portal-home-logo-small img {
+    width: 42px !important;
 }
 
 .login-body .login-panel .login-panel-header img {
