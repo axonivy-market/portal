@@ -20,7 +20,7 @@ Each CaseItemDetails contains
 -  CaseItemDetail custom panel: caseItemDetailCustomTop,
    caseItemDetailCustomMiddle, caseItemDetailCustomBottom
 
-|case-standard|
+   |case-standard|
 
    .. important:: "Data and Description" panel always displays, we cannot override its
                  content or hide/show this panel.
@@ -51,7 +51,7 @@ Refer to ``PortalExamples`` project for examples.
       ``/layouts/PortalCaseDetailsTemplate.xhtml``. You can take a look
       at ``PortalCaseDetails.xhtml`` to see how to customize it.
 
-         .. tip:: Highly recommend to copy the ``PortalCaseDetails`` HTMLDialog
+      .. tip:: Highly recommend to copy the ``PortalCaseDetails`` HTMLDialog
             in PortalTemplate. Remove ``ui:remove`` and change the copied
             one's view.
 
@@ -67,7 +67,7 @@ Refer to ``PortalExamples`` project for examples.
 
    To show/hide, please using ``showItemDetailsHeader``,
    ``showItemDetailRelated``, ``showItemDetailsHistories``,
-   ``showItemDetailDocuments`` code. For more details, please refer to
+   ``showItemDetailDocuments`` and ``showItemBackButton`` code. For more details, please refer to
    :ref:`Show/Hide
    components <customization-case-item-details-how-to-override-ui-show-hidden-ui>`.
 
@@ -80,7 +80,7 @@ Refer to ``PortalExamples`` project for examples.
 Show/Hide components by keywords
 --------------------------------
 
-Refer to the ``ui`` tag list in ``PortalCaseDetails.xhtml`` of
+Refer to the ``ui:param`` tag list in ``PortalCaseDetails.xhtml`` of
 PortalTemplate. In case, we want to show/hide any elements on
 CaseItemDetails, we should override value of ``ui:param``
 
@@ -91,7 +91,7 @@ List valid parameters:
    To show/hide Case header, by default it's true. You should set as
    false in case we set alwaysShowDetails for CaseItem.
 
--  ``ui:param name="showItemDetailsHistories" value="true">``
+-  ``ui:param name="showItemDetailsHistories" value="true"``
 
    To show/hide Case Histories component, by default it's true.
 
@@ -103,6 +103,10 @@ List valid parameters:
 
    To show/hide Case Related Tasks/Cases component, by default it's
    true.
+
+-  ``ui:param name="showItemBackButton" value="true"``
+
+   To show/hide Back button, by default it's true.
 
 .. _customization-case-item-details-how-to-overide-ui-custom-body:
 

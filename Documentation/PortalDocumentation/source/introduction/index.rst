@@ -3,17 +3,8 @@
 Introduction
 ************
 
-.. _introduction-mainfeatures:
-
-Main features
--------------
-
--  Repository of reusable components
-
--  Fast integration of process applications to the portal
-
--  Provide customers and other system vendors the flexibility to build
-   their own portals, but reuse portal components of Ivy
+Portal Developer Guide provides information to setup, configure, customize 
+Portal so that it could fit customer's needs.
 
 .. _introduction-new-and-note-worthy:
 
