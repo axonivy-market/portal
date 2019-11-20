@@ -4,7 +4,7 @@ Introduction
 ************
 
 Portal Developer Guide provides information to setup, configure, customize 
-Portal so that it could fit customer's needs.
+Portal so that it could fit customer needs.
 
 .. _introduction-new-and-note-worthy:
 
