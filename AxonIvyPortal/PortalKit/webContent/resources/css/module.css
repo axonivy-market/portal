@@ -2171,14 +2171,14 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   }
   .circle-process-chain .circle-horizontal-process-step {
     width: auto !important;
-    margin-top: 0.5rem !important;
+    margin-top: 5px !important;
   }
   .circle-process-chain .circle-horizontal-process-step:last-child .circle-horizontal-step-container {
     line-height: 0.4 !important;
   }
   .circle-process-chain .circle-horizontal-process-step .circle-horizontal-step-container {
-    width: 2rem !important;
-    height: 2rem !important;
+    width: 20px !important;
+    height: 20px !important;
   }
   .circle-process-chain .circle-horizontal-step-title {
     margin-bottom: 2px !important;
@@ -2186,32 +2186,36 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   .circle-horizontal-step-container .step-number-container:after, .circle-horizontal-step-container .step-number-container:before {
     display: inline-block;
     content: "";
-    width: 2rem;
+    width: 20px;
     margin: 0 10px;
   }
+  _:-ms-fullscreen, :root .circle-horizontal-step-container .step-number-container:after, .circle-horizontal-step-container .step-number-container:before {
+    margin: 0;
+    margin-left: -3px;
+  }
   .circle-horizontal-step-container .step-number-container:after {
-    transform: translate(2rem, 0.5rem);
+    transform: translate(30px, -6px);
     border-top-style: dashed;
   }
   .circle-horizontal-step-container .step-number-container:before {
-    transform: translate(-4rem, -0.6rem);
+    transform: translate(-30px, 4px);
     border-top-style: dashed;
+  }
+  _:-ms-fullscreen, :root .circle-horizontal-step-container .step-number-container:before {
+    transform: translate(-30px, 5px);
   }
 }
 
 @media screen and (min-width: 40.063em) and (max-width: 64.062em) {
   .circle-process-chain .circle-horizontal-process-step .circle-horizontal-step-container {
-    width: 2rem !important;
-    height: 2rem !important;
+    width: 20px !important;
+    height: 20px !important;
   }
   .circle-process-chain .circle-horizontal-step-title {
     margin-bottom: 2px !important;
   }
   .circle-horizontal-process-step.left-steps {
     padding-right: 5px;
-  }
-  .circle-horizontal-step-container.left-steps:not(.right-steps) {
-    margin-right: 0 !important;
   }
   .circle-horizontal-step-container .step-number-container:after,
   .circle-horizontal-step-container.right-steps .step-number-container:after,
@@ -2220,24 +2224,24 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
     position: absolute;
     display: inline-block;
     content: "";
-    width: 2rem;
+    width: 20px;
   }
   .circle-horizontal-step-container .step-number-container:after,
   .circle-horizontal-step-container.right-steps .step-number-container:after {
-    top: 0.7rem;
+    top: 7px;
   }
   .circle-horizontal-step-container.left-steps .step-number-container:before {
-    top: 1.5rem;
+    top: 15px;
   }
   .circle-horizontal-step-container:not(.right-steps) .step-number-container:after {
     width: 0 !important;
   }
   .circle-horizontal-step-container .step-number-container:before {
-    transform: translate(2rem, 0.5rem);
+    transform: translate(20px, 5px);
     border-top-style: dashed;
   }
   .circle-horizontal-step-container .step-number-container:before {
-    transform: translate(-4rem, -0.8rem);
+    transform: translate(-40px, -8px);
     border-top-style: dashed;
   }
 }
@@ -2245,7 +2249,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 /* CIRCLE HONRIZONTAL***/
 .circle-process-chain .circle-horizontal-process-step,
 .circle-process-chain .circle-vertical-process-step {
-  width: 14rem;
+  width: 140px;
   display: inline-block;
   margin: -2px;
   text-align: center;
@@ -2253,11 +2257,11 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 
 .circle-horizontal-process-step:not(:last-child) .circle-horizontal-step-container .step-number-container:after {
   position: absolute;
-  top: 1.45rem;
+  top: 15px;
   content: "";
   width: 88px;
   margin: 0 10px;
-  transform: translate(1rem, 0);
+  transform: translate(10px, 0);
 }
 
 _:-ms-fullscreen, :root .circle-horizontal-process-step:not(:last-child) .circle-horizontal-step-container .step-number-container:after {
@@ -2271,8 +2275,8 @@ _:-ms-fullscreen, :root .circle-horizontal-process-step:not(:last-child) .circle
 
 .circle-process-chain .circle-horizontal-process-step .circle-horizontal-step-container,
 .circle-process-chain .circle-vertical-process-step .circle-vertical-step-container {
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   margin: auto;
   display: flex;
@@ -2315,8 +2319,8 @@ _:-ms-fullscreen, :root .circle-horizontal-process-step:not(:last-child) .circle
   position: absolute;
   display: block;
   content: "";
-  height: 5rem;
-  top: 4rem;
+  height: 50px;
+  top: 40px;
 }
 
 _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(:last-child) .circle-vertical-step-container .step-number-container:after {
@@ -2349,29 +2353,27 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
     margin-bottom: 2px !important;
   }
   .line-process-chain .line-horizontal-process-step.hide-left-steps {
-    width: 4rem !important;
+    width: 50px !important;
   }
 }
 
 .line-process-chain .line-horizontal-process-step {
-  width: 13rem;
+  width: 130px;
   display: inline-block;
   text-align: center;
   vertical-align: bottom !important;
 }
 
+.line-process-chain .line-horizontal-process-step.hide-right-steps,
 .line-process-chain .line-horizontal-process-step.hide-left-steps {
-  width: 5rem;
-  height: 1rem;
+  width: 50px;
+  height: 10px;
   margin: 0 10px;
   vertical-align: bottom !important;
 }
 
 .line-process-chain .line-horizontal-process-step.hide-right-steps {
-  width: 5rem;
-  height: 1rem;
-  vertical-align: bottom;
-  margin: 0px 0px 0px 10px;
+  margin: 0px 0px 0px 10px !important;
 }
 
 .line-process-chain .line-horizontal-process-step .line-horizontal-step-container {
@@ -2388,38 +2390,38 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 /** LINE VERTICAL*/
 .vertical-process-chain-container {
 	display: inline-block;
-	width: 14rem;
+	width: 140px;
 	float: left;
 }
 
 .vertical-process-chain-container.vertical-chain-shape-line {
-  width: 7rem;
+  width: 70px;
 }
 
 .task-template-content.vertical-process-chain, .task-template-button.vertical-process-chain {
 	display: inline-block;
-	width: calc(100% - 14rem);
+	width: calc(100% - 140px);
 }
 
 .task-template-content.vertical-process-chain.vertical-chain-shape-line,
 .task-template-button.vertical-process-chain.vertical-chain-shape-line {
-  width: calc(100% - 7rem);
+  width: calc(100% - 70px);
 }
 
 .task-name-vertical-process-chain {
-	margin-left: 14rem;
-	margin-top: 1rem;
+	margin-left: 140px;
+	margin-top: 10px;
 }
 
 .task-name-vertical-process-chain.vertical-chain-shape-line {
-  margin-left: 7rem;
+  margin-left: 70px;
 }
 
 .line-process-chain.vertical-process-chain {
   float: left;
 }
 .line-process-chain .line-vertical-process-step {
-  width: 7rem;
+  width: 70px;
   height: 120px;
   text-align: center;
 }

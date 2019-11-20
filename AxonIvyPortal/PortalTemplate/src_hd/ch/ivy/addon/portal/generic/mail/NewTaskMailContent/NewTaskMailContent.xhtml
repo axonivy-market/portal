@@ -30,7 +30,7 @@
         <td width="10"></td>
         <td>
           <h:graphicImage 
-            name="#{data.task.getActivator() != null and task.getActivator().isUser() ? 'resources/images/user.gif' : 'resources/images/role.gif'}" /> 
+            name="#{data.task.getActivator() != null and data.task.getActivator().isUser() ? 'resources/images/user.gif' : 'resources/images/role.gif'}" /> 
             #{data.task.activator.displayName}
         </td>
       </tr>

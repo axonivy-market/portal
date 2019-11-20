@@ -36,7 +36,7 @@ $accentLightColor: $primaryLightColor;
 $accentTextColor: $primaryLightGreen;
 $headerPadding: 14px 1em;
 
-$borderColor: rgba($black, 0.1);
+$borderColor: $lightGrey;
 $bodyBackgroundColor: $white;
 
 $processChainMenuColor: $primaryGreen;
@@ -101,7 +101,6 @@ $widgetTaskListHeaderBorderBottomColor: $borderColor;
 $widgetSortMenuBorderBottomColor: $borderColor;
 $widgetHeaderInputFieldBackgroundColor: transparent;
 $widgetHeaderInputHoverBackgroundColor: transparent;
-$widgetHeaderMainMenuTextColor: rgba($black, 0.4); /* Change to grey */
 
 /* Announcement panel color */
 $announcementBackgroundColor: #ffff80;
@@ -151,7 +150,7 @@ $subMenuItemLinkHoveredBackgroundColor: $lightGrey;
 
 /* Filter Widget */
 $advancedFilterErrorColor: $red;
-$widgetHeaderFilterColor: $black;
+$widgetHeaderFilterColor: $primaryTextColor;
 $widgetAdvancedFilterBorder: transparent;
 $widgetAdvancedFilterHoverBorder: $grey3;
 $widgetFilterSelectionContainerBorder: transparent;
@@ -159,15 +158,13 @@ $widgetAdvancedFilterCommandStateFocusBackgroundColor: none;
 $widgetAdvancedFilterOverlayPanelFooter: #eaeaea;
 $widgetAdvancedFilterCommandBackgroundColor: none;
 $widgetAdvancedFilterBackgroundColor: none;
-$filterWidgetInputTextColor: rgba($black, 0.5); /* Change to grey*/
-$widgetAdvancedFilterIconColor: rgba($black, 0.3); /* Change to grey*/
-$widgetAdvancedFilterHoveredBackroundColor: rgba($black, 0.04); /* Change to grey*/
-$filterNameLabelColor: rgba($black, 0.6); /* Change to grey*/
-$filterSelectionContainerGroupBorderColor: rgba($black, 0.5); /* Change to grey*/
-$categoryInputFieldBoxShadowColor: rgba(black, 0.3); /* Change to grey*/
+$widgetAdvancedFilterIconColor: rgba($mediumGrey, 0.5); 
+$widgetAdvancedFilterHoveredBackroundColor: $paleGrey;
+$filterNameLabelColor: $mediumGrey;
+$filterSelectionContainerGroupBorderColor: $mediumGrey;
 
 /* Process */
-$processNavigatorItemColor: $black;
+$processNavigatorItemColor: $primaryTextColor;
 $processStartListItemHoverBackgroundColor: $white;
 $processHistoryColumnHeaderIsSelectedColor: $black;
 $processHistoryMessageLabelColor: $black;
@@ -180,13 +177,13 @@ $processHistoryListDataScrollerBackgroundColor: transparent;
 $processOrderListItemBackgroundColor: $paleGrey;
 $selectedProcessNavItemFontWeight: bold;
 $processStartListItemNameFontWeight: 400;
-$processNavItemDisableColor: rgba($black, 0.3);
+$processNavItemDisableColor: rgba($primaryTextColor, 0.3);
 $processOrderItemHoverBoxShadowColor: black;
 
 $hoveredProcessStartListItemIConColor: $primaryColor;
 /* Case Detail */
 $caseRelatedTaskColor: $primaryTextColor;
-$caseRelatedTaskHoveredColor: rgba($black, 0.6);
+$caseRelatedTaskHoveredColor: $mediumGrey;
 $caseDetailPaginatorColor: $primaryTextColor;
 $caseRelatedTaskContentBorder: $grey3;
 $caseDocumentUploadBorder: #cccccc;
@@ -196,8 +193,8 @@ $additionalCaseDetailLinkFontWeight: 400;
 $detailsDocumentAddLinkFontWeight: 400;
 $caseDetailHeaderFontWeight: bold;
 $historyButtonContainerFontWeight: bold;
-$caseDetailPaginatorHeaderCornerTopBackgroundColor: rgba($black, 0.05); /*Change to Grey*/
-$caseDetailPaginatorHoveredButtonBackgroundColor: rgba($black, 0.05); /*Change to Grey*/
+$caseDetailPaginatorHeaderCornerTopBackgroundColor: rgba($lightGrey,0.5);
+$caseDetailPaginatorHoveredButtonBackgroundColor: rgba($lightGrey,0.5);
 
 /* Case List */
 $caseOddRowBackgroundColor: $paleGrey;
@@ -205,29 +202,27 @@ $caseOddRowBackgroundColor: $paleGrey;
 /* Case Item */
 $historyNoteColor: $primaryTextColor;
 $historyNoteBorder: $grey3;
-$linkTextColor: rgba($black, 0.5); /* change to grey */
-$additionalCaseDetailLinkColor: $linkTextColor;
-$noteShowMoreLinkColor: $linkTextColor;
-$noteShowMoreLinkHoveredColor: rgba($black, 0.6);  /* change to grey */
+$additionalCaseDetailLinkColor: $commandLinkTextColor;
+$noteShowMoreLinkColor: $commandLinkTextColor;
+$noteShowMoreLinkHoveredColor: $commandLinkHoveredTextColor;
 $caseTaskDocumentNameColor: $primaryTextColor;
-$caseWidgetColumnHeaderIsSelectedColor: $black;
+$caseWidgetColumnHeaderIsSelectedColor: $primaryTextColor;
 $caseItemActionStepsItemHoverBackgroundColor: #e8e9ef;
 $caseActionStepsContentsBackgroundColor: $white;
-$caseActionSeparatorBorderColor: rgba($black, 0.15); /* Change to grey */
+$caseActionSeparatorBorderColor: rgba($mediumGrey, 0.5);
 $caseStateInProgressColor: rgba(7, 140, 255, 1);
 $caseStateDoneColor: $caseTaskStateDoneOrResumeGreen;
 $caseWidgetTopHeaderBorderBottom: $borderColor;
 $caseWidgetColumnHeaderBorderBottom: $borderColor;
 $caseListDataScrollerContentBackgroundColor: transparent;
 $caseHeaderActionCellButtonBackgroundColor: transparent;
-$headerActionActionLeftBorderColor: rgba($black, 0.4); /* Consider to grey */
+$headerActionActionLeftBorderColor: $mediumGrey;
 $caseItemActionStepsFontWeight: bold;
-$taskNoteLinkHoveredColor: rgba($black, 0.6); /* Change to grey */
-$caseListUnsortableHeaderCellTextColor: $mediumGrey; /* should set same variable color with commandlink for sortable column */
-$caseListItemHoverBackgroundColor: rgba($lightGrey,0.5);
+$taskNoteLinkHoveredColor: $mediumGrey;
+$caseListUnsortableHeaderCellTextColor: $mediumGrey;
+$caseListItemHoverBackgroundColor: rgba($lightGrey, 0.5);
 $caseListItemBackgroundColor: rgba($white, 0.2);
 $caseItemDescriptionCell: $mediumGrey;
-$actionStepItemTextColor: rgba($black, 0.5);
 
 /* Case and Task Action Item */
 $caseTaskActionButtonHoveredBackgroundColor: transparent;
@@ -238,9 +233,9 @@ $taskFilterSelectionFormHoverBackgroundColor: #f5f5f5;
 $compactTaskStartListItemHoverBackgroundColor: rgba($lightGrey, 0.5);
 $compactTaskStartLinkItemBackgroundColor: $paleGrey;
 $compactTaskStartInfoColor: $primaryTextColor;
-$taskWidgetSortMenuLinkIsSelectedColor: $black;
+$taskWidgetSortMenuLinkIsSelectedColor: $primaryTextColor;
 $taskWidgetOverlayPanelContentBackgroundColor: $white;
-$taskWidgetLinkColor: $black;
+$taskWidgetLinkColor: $primaryTextColor;
 $taskActionHoverBackgroundColor: #f5f5f5;
 $taskActionLeftIconColor: $caseTaskActionButtonIconColor;
 $taskFilterSeparatorBorderBottom: $borderColor;
@@ -252,9 +247,9 @@ $taskOddRowFullModeBackgroundColor: $paleGrey;
 
 /* Task Detail */
 $taskDetailPaginatorColor: $primaryTextColor; 
-$taskDetailPaginatorHeaderCornerTopBackgroundColor: rgba($black, 0.05); /*Change to Grey*/
 $taskDetailPaginatorHeaderCornerTopBorderColor: $grey3;
-$taskDetailPaginatorHoveredButtonBackgroundColor: rgba($black, 0.05); /*Change to Grey*/
+$taskDetailPaginatorHeaderCornerTopBackgroundColor: rgba($lightGrey, 0.5);
+$taskDetailPaginatorHoveredButtonBackgroundColor: rgba($lightGrey, 0.5);
 $taskDetailActionItemHoverBackgroundColor: transparent;
 $taskDetailHeaderFontWeight: bold;
 $taskDetailSectionTitleFontWeight: bold;
@@ -278,7 +273,7 @@ $userSettingContainerLinkHoverColor: $commandLinkHoveredTextColor;
 $userSettingContainerLinkColor: $commandLinkTextColor;
 $userSettingContainerActiveMenuBorder: rgba(43, 59, 93, 0.2);
 $userSettingContainerBoxShadow: rgba(43, 59, 93, 0.6);
-$emailSettingWidgetHeader: $black;
+$emailSettingWidgetHeader: $primaryTextColor;
 $usernameShowEnvironmentInfoFontWeight: bold;
 
 
@@ -319,7 +314,6 @@ $selectCheckboxMenuIconFontSize: 1.8rem;
  
 $bodyStateActiveColor: $primaryTextColor;
 $autoCompleteHoverColor: $primaryTextColor;
-$bodyColumnTogglerLabelColor: $black;
  
  /* Express */
 $expressInputSwitchSelectionBackgroundColor: $accentColor;
@@ -328,12 +322,10 @@ $expressShowDefaultIconColor: $black;
 $taskResponsibleLabelStateErrorColor: #e62a10;
 $definedTaskButtonBackgroundColor: $white;
 $formElementsPanelHoverDropSectionBackgroundColor: $primaryLightGreen;
-$reviewContentTitleColor: $black;
 $formElementsCheckboxFieldsColor: $primaryTextColor;
 $definedTaskLabelBackgroundColor: $accentColor;
 $definedTaskButtonContainerBackgroundColor: $white;
 $formElementsPanelHoverDropSectionLabelColor: $primaryTextColor;
-$selectManyCheckboxLabelColor: $grey1;
 $autocompleteMoreTextStateHighlightBackgroundColor: white;
 $expressInputSwitchSelectionBorder: $primaryGreen;
 $expressAvailableElementsActionButtonBackgroundColor: transparent;
@@ -353,8 +345,8 @@ $expressFinishedTaskLabelFontWeight: 700;
 $expressActiveDefinedTaskButtonFontWeight: bold;
 $collapseButtonBackgroundColor: $paleGrey;
 $collapseButtonHoveredBackgroundColor: $lightGrey ;
-$expressAssigneeIconColor: rgba($black, 0.7); /* Consider to change to grey */
-$expressReviewContentTitleBorderColor: rgba($black, 0.25); /* Consider to change to grey */
+$expressAssigneeIconColor: $black;
+$expressReviewContentTitleBorderColor: rgba($mediumGrey, 0.5);
 
 /* Chat */
 $chatPanelBackgroundColor: $grey1;
@@ -425,19 +417,19 @@ $sidebarMenuListItemLinkTextColor: $primaryTextColor;
 $sidebarMenuListItemIconColor: $primaryTextColor;
 $sidebarMenuListItemLinkHoverTextColor: $primaryTextColor;
 $sidebarMenuListItemHoverIconColor: $primaryTextColor;
-$sidebarMenuListItemLinkHoverBackgroundColor: rgba($black, 0.15);
+$sidebarMenuListItemLinkHoverBackgroundColor: rgba($mediumGrey, 0.5);
 $sidebarMenuListActiveIconColor: $primaryTextColor;
-$sidebarMenuInactiveItemCurrentAppBorderBottomColor: rgba($black, 0.15);
+$sidebarMenuInactiveItemCurrentAppBorderBottomColor: rgba($mediumGrey, 0.5);
 
 /*Table */
 $dataTableRowBackgroundColorEven: $white;
 $dataTableRowBackgroundColorOdd: rgba(247, 247, 247, 1);
-$dataTableRowHeaderColor: $black;
+$dataTableRowHeaderColor: $primaryTextColor;
 $dataTableRowHeaderBgColor: rgba(236, 236, 236, 1);
 $dataTableRowSpanColor: $primaryTextColor;
 $highlightedTdDataTableBackgroundColor: $primaryGreen;
 $hoveredTdDataTableBackGroundColor: $primaryGreen;
-$tableBorderColor: rgba(black, 0.2); /* Change to grey*/
+$tableBorderColor: rgba($mediumGrey, 0.5);
 $rightBorderInsideDataTable: $tableBorderColor;
 $leftBorderInsideDataTable: transparent;
 $topBorderOutsideDataTableColor: $tableBorderColor;
@@ -449,7 +441,7 @@ $topBorderBodyDataTableColor: transparent;
 $topBorderBodyExpressManyCheckboxTableColor: $tableBorderColor;
 $headerBorderColor: $tableBorderColor;
 $uiInputFieldTdTextColor: $primaryTextColor;
-$treeTableBorderColor: rgba(black, 0.2); /* Change to grey*/
+$treeTableBorderColor: rgba($mediumGrey, 0.5);
 $topBorderOutsideTreeTableColor: $treeTableBorderColor;
 $bottomBorderOutsideTreeTableColor: $treeTableBorderColor;
 $rightBorderOutsideTreeTableColor: $treeTableBorderColor;
@@ -471,6 +463,6 @@ $uiFiedsetLegendTextColor: $primaryTextColor;
 $uiDialogTitleBarTextColor: $primaryTextColor;
 $uiInputFieldTextColor: $primaryTextColor;
 $uiFieldSetTogglerColor: $black;
-$uiDataPickerTitleColor: $black;
+$uiDataPickerTitleColor: $primaryTextColor;
 $uiDataPickerHeaderColor: $paleGrey;
 $uiDataPickerTitleBorderColor: $paleGrey;

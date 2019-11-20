@@ -13,7 +13,7 @@
 
     <modules>
         <module>PortalUserGuide</module>
-        <module>PortalDocumentation</module>
+        <module>PortalDeveloperGuide</module>
     </modules>
 
     <build>
