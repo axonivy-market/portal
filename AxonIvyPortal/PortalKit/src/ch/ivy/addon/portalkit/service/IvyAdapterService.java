@@ -165,7 +165,9 @@ public class IvyAdapterService {
     }
   }
   
-  public static boolean getTaskEmbedInIFrameCustomField(ITask task) {
-    return Boolean.parseBoolean(task.customFields().stringField(CustomFields.EMBED_IN_FRAME).getOrDefault("false"));
+  public static Boolean getTaskEmbedInIFrameCustomField(ITask task) {
+    String embedInIFrame = task.customFields().stringField(CustomFields.EMBED_IN_FRAME).getOrNull();
+    return embedInIFrame != null ? Boolean.valueOf(embedInIFrame) : null;
   }
+
 }
