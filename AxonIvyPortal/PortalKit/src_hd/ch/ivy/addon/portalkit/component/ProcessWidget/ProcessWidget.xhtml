@@ -28,7 +28,7 @@
                 <h:form id="axon-express-form">
                   <h:panelGroup styleClass="create-express-link" layout="block" rendered="#{processWidgetBean.canCreateExpessWorkflow()}">
                     <p:commandLink id="create-express-workflow" value="#{processWidgetBean.createExpressWorkflowProcessStart.name}"
-                      actionListener="#{processWidgetBean.startProcess(processWidgetBean.getCreateExpessWorkflowLink())}">
+                      actionListener="#{processWidgetBean.startProcess(processWidgetBean.getCreateExpessWorkflowLink(), true)}">
                       <i class="create-express-workflow-icon Fleft" />
                     </p:commandLink>
                   </h:panelGroup>
