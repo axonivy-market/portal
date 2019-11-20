@@ -25,13 +25,13 @@ PortalStyle project.
 Change Portal styles
 --------------------
 
-Portal applies `SASS <https://sass-lang.com/>`__ framework to support
-you in customizing styles of Portal. They are ``theme.scss`` 
-(in ``PortalStyle/webContent/resources/serenity-portal``)
-, ``variables.scss`` (in 
-``PortalStyle/webContent/resources/sass/ivy``).
+Portal applies |sass_framework| framework to support
+you in customizing styles of Portal. They are ``theme.scss`` and ``variables.scss``.
 
-.. caution:: Please do not modify directly on these files because they can be changed by new Portal version for upgrade.
+   - ``theme.scss`` in ``PortalStyle/webContent/resources/serenity-portal``
+   - ``variables.scss`` in ``PortalStyle/webContent/resources/sass/ivy``
+
+   .. caution:: Please do not modify directly on these files because they can be changed by new Portal version for upgrade.
 
 You can customize in:
 
@@ -39,14 +39,15 @@ You can customize in:
 
    - ``customization.scss``: to change styles of Portal. E.g. Portal's component styles.
 
-.. tip::
-   For ``font-size``, Portal uses ``rem``. 
-   Font size of all elements are calculated based on font-size of ``html`` element. 
+   .. tip::
+      For ``font-size``, Portal uses ``rem``. 
+      Font size of all elements are calculated based on font-size of ``html`` element. 
 
-.. important::
-   - Do not change ``font-family`` property values.
-   - Limitation: the task priority color customization hasn't changed the task priority colors in statistic.
-     If you want to custom color of statistic, please refer to :ref:`Override Statistic color <override-Statistic-colors>`
+   .. warning::
+      - Do not change ``font-family`` property values.
+      - Limitation: the task priority color customization hasn't changed the task priority colors in statistic.
+
+      If you want to custom color of statistic, please refer to :ref:`Override Statistic color <override-Statistic-colors>`
 
 After you finish your customization, compile these above scss files to
 build the css file named ``theme.css`` and put it at
@@ -62,3 +63,7 @@ Change date time pattern
 You can change date pattern by modifying CMS in PortalStyle project:
 ``PortalStyle/patterns/datePattern`` and
 ``PortalStyle/patterns/dateTimePattern`` .
+
+.. |sass_framework| raw:: html
+
+   <a href="https://sass-lang.com/" target="_blank">SASS</a>
