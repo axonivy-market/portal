@@ -3,23 +3,15 @@
 Installation
 ************
 
-Release installation
-====================
-
-**Installation** 
-
 The installation section describes all the steps, that are necessary to
-install and setup the Process Application.
+install and setup Portal.
 
 If you install the application for the first time than it's important to start
 with the `Basic installation`_ . It describes all the initial steps, that must
 be done for the first installation.
 
-**Release Installation** 
-
 If the application is already installed and initial prepared, than refer
-to the Release Installation Steps, that are provided, here you will only
-find those steps, that are necessary to install this release.
+to `Migration notes`_ to migrate the application.
 
 Basic installation
 ==================
@@ -42,30 +34,22 @@ The project deployment of Ivy project are described in `project
 deployment <http://developer.axonivy.com/doc/latest/EngineGuideHtml/administration.html#administration-deployment>`__
 .
 
-Server configuration
---------------------
+.. _installation-basic-portal-mode:
 
--  The minimum required engine version is ``8.0.0.x``
-
-Specify applications used in Portal
------------------------------------
-
-.. _installation-basic-installation-specify-servers-general-concept:
-
-General concept
+Portal mode
 ---------------
 
-Portal has 2 different configurations:
+Portal has 2 different modes:
 
-   -  **Single mode**  : The working application must include portalKit,
-      portalTemplate and portalStyle modules.
+   -  **Single mode**  : One Portal application on one engine. It must include PortalKit,
+      PortalTemplate and PortalStyle modules.
 
    -  **Multi applications mode** : Multiple Portal applications on one engine.
-      Each Portal application must include portalKit, portalTemplate and portalStyle modules.
+      Each Portal application must include PortalKit, PortalTemplate and PortalStyle modules.
 
    .. important::
       In multi applications mode, if you need overall dashboard, create
-      the standard Portal application with the Portal modules.
+      an application named **Portal** with the Portal modules.
 
 Manually configure applications
 -------------------------------
@@ -74,9 +58,8 @@ Refer :ref:`settings-admin-settings-setup-multi-portals`.
 
    .. important::
 
-      The engine, installed in the demo mode, automatically deploys the
-      Portal application with default users. You need to deploy it in
-      production mode.
+      The engine which is started in the demo mode (without license), automatically deploys the
+      Portal application with default users. In production mode (with license), you need to deploy Portal manually.
 
 Default user credentials in demo mode
 -------------------------------------
@@ -123,7 +106,7 @@ Permission settings
 -------------------
 
 Absences
---------
+^^^^^^^^
 
 -  READ
 
@@ -152,7 +135,7 @@ Absences
    ``IPermission.USER_READ_ABSENCES``.
 
 Substitute
-----------
+^^^^^^^^^^
 
 -  CREATE OWN SUBSTITUTE
 
@@ -167,7 +150,7 @@ Substitute
    ``IPermission.USER_READ_SUBSTITUTES``.
 
 Personal task permission
-------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^
 -  ADD NOTE
 
    Refer to :ref:`Display add note button<display-add-note-button>`.
@@ -259,7 +242,7 @@ Personal task permission
    ``PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS``.
 
 Personal case permission
-------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 -  ADD NOTE
 
@@ -312,14 +295,14 @@ Personal case permission
    This permission is not assigned to role Everybody by default.
 
 Upload/delete document permission
----------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Upload/delete document function will be enabled if session user has
 ``IPermission.DOCUMENT_WRITE`` or
 ``IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE``.
 
 Express Workflow permission
----------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 -  CREATE EXPRESS WORKFLOW
 
@@ -328,7 +311,7 @@ Express Workflow permission
    to Portal permission group, assigned to role Everybody by default).
 
 Statistics permission
----------------------
+^^^^^^^^^^^^^^^^^^^^^
 
 -  ADD DASHBOARD CHART
 
@@ -346,7 +329,7 @@ Statistics permission
    by default).
 
 Portal general permission
--------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 -  ACCESS TO FULL PROCESS LIST
 
@@ -383,7 +366,7 @@ Portal general permission
    ``PortalPermission.TASK_CASE_SHOW_MORE_NOTE``.
 
 Administrator permission can see all tasks/cases in the application
--------------------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Normal users can only see their tasks/cases they can work on.
 
@@ -393,7 +376,7 @@ Permissions needed: ``IPermission.TASK_READ_ALL`` ,
 ``IPermission.CASE_READ_ALL`` .
 
 Administrator permission can interact with all workflows in the application
----------------------------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Normal users can updates and deletes workflows which created by him and
 can interact with workflow's task which assigned to him.
@@ -451,8 +434,8 @@ Global variables
 Look and feel
 -------------
 
-Portal doesn't use `Modena <http://www.primefaces.org/eos/modena/>`__
-theme from version 6.3.
+Portal uses `Serenity <https://www.primefaces.org/layouts/serenity>`__
+theme from version 8.0.0.
 
 -  Yes/Ok buttons on the left, No/Cancel buttons on the right
 
