@@ -797,7 +797,7 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
   border: 1px solid transparent !important;
 
   .ui-button-text.ui-c, .ui-button-icon-right.ui-icon.ui-c {
-    color: $caseTaskActionButtonIconColor !important;
+    color: $caseTaskActionButtonColor !important;
   }
 }
 
@@ -1400,6 +1400,7 @@ span.task-details-document-add-link {
 
 .action-steps-panel .action-step-item:hover {
   background-color: $caseItemActionStepsItemHoverBackgroundColor;
+  color: $caseItemActionStepsItemHoverTextColor !important;
 }
 
 .case-state-in-progress {
@@ -1602,9 +1603,9 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   border-right: solid 1px $filterSelectionContainerGroupBorderColor;
 }
 
-#task-description .scroll-panel,
-.action-icon.icon-compact-mode {
+#task-description .scroll-panel, .action-icon.icon-compact-mode {
   font-size: $smallFontSize;
+  color: $compactTaskStartInfoIconColor;
 }
 
 .task-start-list .priority-cell,
@@ -1797,10 +1798,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 .available-elements-action-btn button {
   background-color: $expressAvailableElementsActionButtonBackgroundColor !important;
   box-shadow: $expressAvailableElementsActionButtonShadow !important;
-}
-
-.show-default-ui-icon {
-  color: $expressShowDefaultIconColor;
 }
 
 .task-responsible-label.ui-state-error {
