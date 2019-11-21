@@ -1,6 +1,27 @@
 /* Add your customizations of theme here */
 
 /* Generic */
+html {
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 100%;
+  border: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+body {
+  overflow: hidden;
+  width: auto;
+  height: auto;
+  margin: 0px;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+ 
 body .ui-state-active, body .ui-state-highlight {
   color: $bodyStateActiveColor !important;
 }
@@ -15,7 +36,25 @@ body .ui-widget-header {
   border: 1px solid $paleGrey;
 }
 
+_:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlink {
+	display: inline-block;
+}
+
 /* Login page */
+.login-body .login-panel {
+  height: auto;
+}
+
+.login-body .login-panel .login-panel-content {
+  padding: 20px 100px;
+}
+
+@media (max-width: 640px) {
+  .login-body .login-panel .login-panel-content {
+      padding: 50px 25px;
+  }
+}
+
 .login-body .login-panel .login-panel-header {
   background-color: $loginPanelHeaderBackgroundColor;
 }
@@ -47,9 +86,49 @@ body .ui-menu .ui-menu-list li.ui-menuitem .ui-menuitem-link .ui-menuitem-icon {
   font-size: 1.8rem;
 }
 
-
 body .ui-icon {
   font-size: 2rem !important;
+}
+
+[data-icon]:before {
+  content: attr(data-icon);
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+[class^="tmi-"]:before,
+[class*=" tmi-"]:before {
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.tmi-box-arrow-left:before {
+  content: "\e03c";
+}
+.tmi-box-arrow-right:before {
+  content: "\e03d";
+}
+.tmi-box-arrow-toinside:before {
+  content: "\e03e";
+}
+.tmi-chevorn-right:before {
+  content: "\44";
+}
+
+.tmi-ellipsis-h:before,
+.tmi-ellipsis-v:before {
+  content: "\e00f";
+}
+
+.tmi-ellipsis-v {
+  -ms-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 
 /* Calendar */
@@ -119,6 +198,11 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 .ui-commandlink.ui-state-disabled {
   color: grba($commandLinkDisabledTextColor,1) !important;
   font-size: $largeFontSize;
+}
+
+a.ui-widget:focus {
+  text-decoration: none;
+  outline: none;
 }
 
 /* Data table */
@@ -247,11 +331,23 @@ body .ui-datatable.ui-datatable-scrollable thead tr th {
 }
 
 /* Tree table */
+.ui-treetable table {
+  border-collapse: separate !important;
+  border: none;
+  border-spacing: 0;
+}
+
 .ui-treetable table thead tr th {
+  border: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 25px;
+  text-align: left;
   color: $dataTableRowHeaderColor;
   background-color: $dataTableRowHeaderBgColor !important;
   border-bottom: 1px solid $topBorderOutsideTreeTableColor;
   border-top: 1px solid $bottomBorderOutsideTreeTableColor;
+  border-right: 1px solid $rightBorderOutsideTreeTableColor !important;
 }
 
 .ui-treetable-data tr:nth-child(odd) {
@@ -260,10 +356,6 @@ body .ui-datatable.ui-datatable-scrollable thead tr th {
 
 .ui-treetable-data tr:nth-child(even) {
   background-color: $dataTableRowBackgroundColorOdd;
-}
-
-.ui-treetable table thead tr th {
-  border-right: 1px solid $rightBorderOutsideTreeTableColor !important;
 }
 
 .ui-treetable table tbody tr td {
@@ -313,28 +405,32 @@ li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectabl
 /* Dialog */
 body {
     .ui-dialog {
+        padding: 0 !important;
+
         .ui-dialog-titlebar {
             border-bottom: 1px solid $lightGrey;
             padding: 8px 20px !important;
+            color: $uiDialogTitleBarTextColor;
 
             .ui-dialog-title {
                 padding-left: 2px;
                 font-size: $bodyDialogTitleFontSize;
             }
+
+            .ui-dialog-content {
+                font-size: $largeFontSize !important;
+                padding: 1rem 2rem 2rem;
+            }
         }
     }
-}
-
-body .ui-widget.ui-dialog .ui-dialog-content {
-  font-size: $largeFontSize !important;
 }
 
 .icon-selection-dialog-selecting-icon .fa {
   font-size: 2rem;
 }
 
-body .ui-dialog .ui-dialog-titlebar {
-  color: $uiDialogTitleBarTextColor;
+.ui-dialog-footer.u-dialog-footer.u-email-dialog-footer {
+  margin-top: 35px !important;
 }
 
 /* Fieldset */
@@ -471,6 +567,14 @@ body .ui-dialog .ui-dialog-titlebar {
   z-index: 997 !important;
 }
 
+.topbar-container {
+  position: relative;
+  padding-top: 15px;
+  z-index: 100;
+  height: 65px;
+}
+
+
 .layout-wrapper .layout-main .layout-topbar .menu-btn i {
       font-size: 2.4rem;
 }
@@ -528,6 +632,11 @@ body .ui-panelgrid tbody tr.ui-widget-content {
     padding: 8px !important;
 }
 
+.ui-panel .ui-panel-titlebar {
+	padding: .3em .3em .3em .5em !important;
+	margin-top: -.15em;
+}
+
 /* Select one list box */
 body .ui-selectonelistbox .ui-selectlistbox-item.ui-state-hover {
   color: $hoveredItemSelectOneListBoxTextColor;
@@ -540,6 +649,9 @@ body .ui-messages .ui-messages-error-icon,
 .ui-messages-fatal-icon {
     margin-top: 2px !important;
     font-size: 2.4rem !important;
+    width: 35px !important;
+	height: 35px !important;
+	top: -7px !important;
 }
 
 .ui-growl-item .ui-growl-message {
@@ -615,16 +727,6 @@ body .ui-dialog .ui-dialog-footer .ui-button {
     background-color: $primaryColor;
 }
 
-.ui-inplace-content .ui-inplace-editor {
-    .ui-button.ui-button-icon-only {
-        .ui-icon {
-           font-family: $iconFontFamily !important;
-           font-size: $inplaceEditIconFontSize !important;
-           margin-top: -9px !important;
-        }
-    }
-}
-
 .ui-widget.ui-datepicker-trigger.ui-button.ui-state-hover,
 .ui-widget.ui-autocomplete-dropdown.ui-button.ui-state-hover,
 .ui-widget.ui-datepicker-trigger.ui-button.ui-state-focus,
@@ -632,12 +734,11 @@ body .ui-dialog .ui-dialog-footer .ui-button {
   background-color: $autoCompleteDropdownFocusBackgroundColor !important;
 }
 
-.ui-inplace .ui-inplace-editor .ui-button.ui-inplace-save .ui-icon-check,
-.ui-inplace .ui-inplace-editor .ui-button.ui-inplace-cancel .ui-icon-close {
-  background: none repeat scroll 0 0 $uiInplaceBackgroundColor !important;
+/* Inputs */
+input::-ms-clear {
+  display: none;
 }
 
-/* Inputs */
 .ui-widget-content.ui-tabs-panel {
     padding: 7px !important;
 }
@@ -659,11 +760,15 @@ body .ui-selectonemenu-panel .ui-selectonemenu-item.ui-state-hover {
   color: $hoveredItemSelectOneMenuTextColor;
 }
 
+body .ui-selectonemenu-panel .ui-selectonemenu-item.ui-state-hover,
+body .ui-selectonemenu-panel .ui-selectonemenu-item.ui-state-focus {
+  outline: none;
+}
+
 body .ui-selectonemenu-panel .ui-state-highlight,
 body .ui-autocomplete-panel .ui-state-highlight {
   background-color: $primaryLightGreen !important;
 }
-
 body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span.md-inputwrapper-filled ~ label {
     color: $primaryColor;
 }
@@ -682,21 +787,31 @@ body .md-inputfield input:focus ~ label{
   font-size: $smallFontSize !important;
 }
 
+span.ui-inputnumber.ui-widget.ui-state-error {
+	border: 0 !important;
+}
+
 /* Select Checkbox Menu & Picklist */
 body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-close.ui-state-hover {
   background: $selectCheckBoxCloseHoverColor !important;
+  border-radius: 50%;
 }
 .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-filter-container .ui-icon-search,
 .ui-picklist .ui-picklist-filter-container .ui-icon,
 .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon {
   color: $darkGrey;
   background: $checkboxMenuIconBackgroundColor;
+  overflow: visible;
+  text-indent: 5px;
 }
 
 .ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-filter-container .ui-icon:before,
 .ui-picklist .ui-picklist-filter-container .ui-icon:before {
- font-family: $iconFontFamily;
- font-size: $selectCheckboxMenuIconFontSize;
+  font-family: $iconFontFamily;
+  font-size: $selectCheckboxMenuIconFontSize;
+  -webkit-font-smoothing: antialiased;
+  content: "\f002";
+  position: absolute;
 }
 
 .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger,
@@ -708,10 +823,30 @@ body .ui-picklist li.ui-picklist-item.ui-state-hover {
   color: $hoveredPicklistItemTextColor;
 }
 
+body .ui-picklist .ui-picklist-filter-container .ui-icon {
+  top: auto;
+  bottom: 5px;
+  right: 7px;
+}
+
 /* Auto complete */
 .ui-autocomplete-panel .ui-autocomplete-items.ui-autocomplete-table tr:hover {
   background: $hoverBgColor;
   color: $autoCompleteHoverColor;
+}
+
+.ui-autocomplete-panel .ui-autocomplete-items.ui-autocomplete-table tr,
+.ui-autocomplete-panel .ui-autocomplete-items.ui-autocomplete-table td {
+  border: none;
+  transition: background-color 0.3s ease 0s;
+}
+
+.ui-autocomplete-panel .ui-autocomplete-items.ui-autocomplete-table td {
+  padding: 6px 10px;
+}
+
+.ui-autocomplete-input.ui-autocomplete-dd-input {
+  padding-right: 3.4rem !important;
 }
 
 .ui-autocomplete {
@@ -724,12 +859,38 @@ body .ui-picklist li.ui-picklist-item.ui-state-hover {
 }
 
 /* Inplace input */
+.ui-inplace-editor {
+  display: inline-block;
+}
+
 .ui-inplace .ui-inplace-editor .ui-button.ui-inplace-save .ui-icon-check:before {
   font-family: $iconFontFamily;
+  content: '\f00c';
 }
 
 .ui-inplace .ui-inplace-editor .ui-button.ui-inplace-cancel .ui-icon-close:before {
   font-family: $iconFontFamily;
+  content: '\f00d';
+}
+
+.ui-inplace-content .ui-inplace-editor {
+    .ui-button.ui-button-icon-only {
+        .ui-icon {
+           font-family: $iconFontFamily !important;
+           font-size: $inplaceEditIconFontSize !important;
+           margin-top: -9px !important;
+        }
+    }
+}
+
+.ui-inplace .ui-inplace-editor .ui-button.ui-inplace-save .ui-icon-check,
+.ui-inplace .ui-inplace-editor .ui-button.ui-inplace-cancel .ui-icon-close {
+  background: none repeat scroll 0 0 $uiInplaceBackgroundColor !important;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-indent: 0 !important;
 }
 
 /* Accordion */
@@ -760,13 +921,49 @@ body .ui-accordion .ui-accordion-header {
 }
 
 /* File upload */
+.ui-fileupload-content .ui-progressbar {
+	top: 0px !important;
+}
+
+.ui-fileupload-preview {
+	vertical-align: middle;
+}
+
 @media (max-width: 1024px) {
   .ui-fileupload-files .ui-fileupload-row > div {
     display: block !important;
   }
 }
 
+@media screen and (max-width: 40em) {
+  .ui-fileupload-buttonbar .ui-button {
+    padding: 0 14px 0 28px !important;
+  }
+}
+
+.ui-widget.ui-fileupload {
+	margin-top: 5px;
+}
+.ui-fileupload-buttonbar {
+	-webkit-transform: translateY(30%);
+	-moz-transform: translateY(30%);
+	-o-transform: translateY(30%);
+	transform: translateY(30%);
+}
+
+.uploading-file-message .ui-fileupload-messages {
+	text-align: left;
+}
+
 /* Input switch */
 body .ui-inputswitch.ui-inputswitch-checked .ui-inputswitch-handle {
   background-color: $white;
+}
+
+/* Tooltip */
+.ui-tooltip {
+  padding: 0px !important;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
