@@ -2896,6 +2896,10 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   flex-basis: 200px !important;
 }
 
+.statistic-widget-container:not(.statistic-widget-compact-mode-container) .widget-header .widget-header-main:not(.creation-mode) {
+  flex-basis: 100px !important;
+}
+
 .statistic-widget-container:not(.statistic-widget-compact-mode-container) .widget-header-main {
   height: 35px !important;
 }
@@ -3070,15 +3074,14 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   text-align: right;
 }
 
+.statistic-actions-panel:not(.creation-mode) {
+  flex-basis: calc(100% - 100px);
+}
+
 .task-analysic-action {
   flex: 0 0 100px;
   align-self: flex-end;
   padding-bottom: 6px;
-}
-
-.case-detail-title-header-container, .task-detail-header,
-.task-analysic-action, .statistic-actions-panel {
-  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .statistic-selection {
