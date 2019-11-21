@@ -354,40 +354,42 @@ Cs0 f11 326 508 36 24 20 -2 #rect
 Cs0 f11 @|UserDialogIcon #fIcon
 Cs0 f12 actionTable 'out=in1;
 ' #txt
-Cs0 f12 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp" #txt
+Cs0 f12 outLinks "TaskB.ivp","TaskA.ivp","TaskC.ivp" #txt
 Cs0 f12 caseData 'case.category=LeaveRequest
 case.name=Leave Request
 customFields.NUMBER.CustomDecimalField2=36' #txt
-Cs0 f12 taskData 'TaskB.PRI=1
-TaskB.EXROL=Everybody
-TaskB.CATEGORY=OtherLeave/SickLeave/Long
-TaskB.EXP=new Duration("1D")
-TaskB.SKIP_TASK_LIST=false
-TaskB.NAM=Sick Leave Request
-TaskB.ROL=Everybody
-TaskB.EXTYPE=0
-TaskB.customFields.STRING.CustomVarCharField5="Tung Le"
+Cs0 f12 taskData 'TaskB.CATEGORY=OtherLeave/SickLeave/Long
 TaskB.DESC=Sick Leave Request Description
-TaskB.TYPE=0
-TaskB.customFields.STRING.CustomVarCharField1="Interior"
-TaskB.customFields.TIMESTAMP.CustomTimestampField1=new DateTime()
+TaskB.EXP=new Duration("1D")
 TaskB.EXPRI=2
+TaskB.EXROL=Everybody
+TaskB.EXTYPE=0
+TaskB.NAM=Sick Leave Request
+TaskB.PRI=1
+TaskB.ROL=Everybody
+TaskB.SKIP_TASK_LIST=false
+TaskB.TYPE=0
 TaskB.customFields.NUMBER.CustomDecimalField2=14
-TaskA.customFields.STRING.CustomVarCharField1="Exterior"
+TaskB.customFields.STRING.CustomVarCharField1="Interior"
+TaskB.customFields.STRING.CustomVarCharField5="Tung Le"
+TaskB.customFields.STRING.embedInFrame="false"
+TaskB.customFields.TIMESTAMP.CustomTimestampField1=new DateTime()
 TaskA.CATEGORY=AnnualLeave
-TaskA.customFields.NUMBER.CustomDecimalField2=7
-TaskA.PRI=2
 TaskA.DESC=Annual Leave Request Description
-TaskA.TYPE=3
-TaskA.EXPRI=2
 TaskA.EXP=new Duration("3H")
-TaskA.NAM=Annual Leave Request
-TaskA.SKIP_TASK_LIST=false
-TaskA.ROL="demo"
-TaskA.customFields.TIMESTAMP.CustomTimestampField1=new DateTime()
+TaskA.EXPRI=2
 TaskA.EXROL=Everybody
-TaskA.customFields.STRING.CustomVarCharField5="Long Do"
 TaskA.EXTYPE=0
+TaskA.NAM=Annual Leave Request
+TaskA.PRI=2
+TaskA.ROL="demo"
+TaskA.SKIP_TASK_LIST=false
+TaskA.TYPE=3
+TaskA.customFields.NUMBER.CustomDecimalField2=7
+TaskA.customFields.STRING.CustomVarCharField1="Exterior"
+TaskA.customFields.STRING.CustomVarCharField5="Long Do"
+TaskA.customFields.STRING.embedInFrame="false"
+TaskA.customFields.TIMESTAMP.CustomTimestampField1=new DateTime()
 TaskC.CATEGORY=OtherLeave/Maternity
 TaskC.DESC=Maternity Leave Request Description
 TaskC.EXP=new Duration("2D")
@@ -402,6 +404,7 @@ TaskC.TYPE=0
 TaskC.customFields.NUMBER.CustomDecimalField2=13
 TaskC.customFields.STRING.CustomVarCharField1="Interior"
 TaskC.customFields.STRING.CustomVarCharField5="Anh Nguyen"
+TaskC.customFields.STRING.embedInFrame="false"
 TaskC.customFields.TIMESTAMP.CustomTimestampField1=new DateTime()' #txt
 Cs0 f12 template "" #txt
 Cs0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
