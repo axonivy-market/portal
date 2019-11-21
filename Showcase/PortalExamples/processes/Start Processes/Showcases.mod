@@ -50,7 +50,8 @@ Ss0 f0 callSignature ApplicationShowcase() #txt
 Ss0 f0 persist false #txt
 Ss0 f0 startName 'Showcase Application' #txt
 Ss0 f0 startDescription 'Showcase Application' #txt
-Ss0 f0 taskData 'TaskTriggered.NAM=Start Application Showcase' #txt
+Ss0 f0 taskData 'TaskTriggered.NAM=Start Application Showcase
+TaskTriggered.customFields.STRING.embedInFrame="false"' #txt
 Ss0 f0 caseData 'businessCase.attach=true
 case.name=Application Showcase' #txt
 Ss0 f0 showInStartList 1 #txt
@@ -91,7 +92,8 @@ Ss0 f6 callSignature DataTableShowcase() #txt
 Ss0 f6 persist false #txt
 Ss0 f6 startName 'Showcase Data Table' #txt
 Ss0 f6 startDescription 'Showcase Data Table' #txt
-Ss0 f6 taskData 'TaskTriggered.NAM=Start DataTable Showcase' #txt
+Ss0 f6 taskData 'TaskTriggered.NAM=Start DataTable Showcase
+TaskTriggered.customFields.STRING.embedInFrame="false"' #txt
 Ss0 f6 caseData 'businessCase.attach=true
 case.name=DataTable Showcase' #txt
 Ss0 f6 showInStartList 1 #txt
@@ -135,7 +137,8 @@ Ss0 f11 callSignature CustomizedUIShowcase() #txt
 Ss0 f11 persist false #txt
 Ss0 f11 startName 'Showcase Customized UI' #txt
 Ss0 f11 startDescription 'Showcase Customized UI' #txt
-Ss0 f11 taskData 'TaskTriggered.NAM=Start Customized UI' #txt
+Ss0 f11 taskData 'TaskTriggered.NAM=Start Customized UI
+TaskTriggered.customFields.STRING.embedInFrame="false"' #txt
 Ss0 f11 caseData 'businessCase.attach=true
 case.name=Start Customized UI' #txt
 Ss0 f11 showInStartList 1 #txt
@@ -163,7 +166,8 @@ Ss0 f15 callSignature PrimefacesElements() #txt
 Ss0 f15 persist false #txt
 Ss0 f15 startName 'Showcase Primefaces Elements' #txt
 Ss0 f15 startDescription 'Showcase Primefaces Elements' #txt
-Ss0 f15 taskData 'TaskTriggered.NAM=Start Primefaces Elements' #txt
+Ss0 f15 taskData 'TaskTriggered.NAM=Start Primefaces Elements
+TaskTriggered.customFields.STRING.embedInFrame="false"' #txt
 Ss0 f15 caseData 'businessCase.attach=true
 case.name=Primefaces Elements Showcase' #txt
 Ss0 f15 showInStartList 1 #txt
@@ -202,7 +206,8 @@ Ss0 f20 startName 'Customization for TaskTemplate' #txt
 Ss0 f20 startDescription 'Show example for how to use TaskTemplate' #txt
 Ss0 f20 taskData 'TaskTriggered.CATEGORY=Tasktemplate
 TaskTriggered.DESC=Test Tasktemplate task
-TaskTriggered.NAM=Test Tasktemplate task' #txt
+TaskTriggered.NAM=Test Tasktemplate task
+TaskTriggered.customFields.STRING.embedInFrame="false"' #txt
 Ss0 f20 caseData 'businessCase.attach=true
 case.category=Test
 case.description=Testing
