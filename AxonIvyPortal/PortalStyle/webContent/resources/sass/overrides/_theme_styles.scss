@@ -1,9 +1,82 @@
 /* Add your customizations of theme here */
 
+/* Generic */
+body .ui-state-active, body .ui-state-highlight {
+  color: $bodyStateActiveColor !important;
+}
+
+input, body .ui-widget, body .ui-widget .ui-widget,
+body .ui-selectonemenu .ui-selectonemenu-label.ui-inputfield {
+  font-family: $portalFontFamily;
+}
+
+body .ui-widget-header {
+  background-color: $paleGrey !important;
+  border: 1px solid $paleGrey;
+}
+
+/* Login page */
+.login-body .login-panel .login-panel-header {
+  background-color: $loginPanelHeaderBackgroundColor;
+}
+
+.login-body .login-panel .login-panel-content h1 {
+  font-size: 1.6rem;
+}
+
+.login-body .login-panel .login-panel-header img {
+    vertical-align: middle;
+    width: auto !important;
+    max-width: 100%;
+}
+
+/* Icon */
+.fa:before {
+	font-family: $iconFontFamily !important;
+}
+
+.ui-outputlabel .ui-outputlabel-rfi {
+  color: $asterikIconColor;
+}
+
+.ui-dialog .ui-dialog-content .ui-icon-alert {
+  font-size: 2rem;
+}
+
+body .ui-menu .ui-menu-list li.ui-menuitem .ui-menuitem-link .ui-menuitem-icon {
+  font-size: 1.8rem;
+}
+
+
+body .ui-icon {
+  font-size: 2rem !important;
+}
+
 /* Calendar */
 .ui-datepicker .ui-datepicker-buttonpane button {
     border-radius: $actionButtonBorderRadius;
     background-color: $primaryColor;
+}
+
+body .ui-datepicker .ui-timepicker-div .ui_tpicker_time input {
+  font-size: $smallFontSize;
+}
+
+body .ui-datepicker .ui-datepicker-header .ui-datepicker-next,
+body .ui-datepicker .ui-datepicker-header .ui-datepicker-prev {
+  font-size: 2rem !important;
+}
+
+.ui-datepicker .ui-datepicker-title {
+  color: $uiDataPickerTitleColor;
+}
+
+.ui-datepicker .ui-datepicker-header {
+  border-color: $uiDataPickerTitleBorderColor !important;
+}
+
+.ui-datepicker thead tr {
+  background-color: $uiDataPickerHeaderColor !important;
 }
 
 /* Checkbox */
@@ -14,6 +87,20 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 .ui-chkbox.ui-widget {
   margin-top: 2px;
   margin-bottom: 2px;
+}
+
+.ui-chkbox .ui-widget.ui-chkbox-box.ui-state-active:before {
+  left: 0.5em !important;
+  top: 0.5em !important;
+  height: 0.14em !important;
+  width: 0.2em !important;
+}
+
+
+/* Radio button */
+.ui-radiobutton .ui-radiobutton-box.ui-state-active:before {
+  top: 0.6em !important;
+  height: 0.12em !important;
 }
 
 /* Command link */
@@ -132,6 +219,10 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
     }
 }
 
+.ui-datatable table tbody tr td span {
+  color: $dataTableRowSpanColor !important;
+}
+
 .ui-datatable table tbody tr.ui-datatable-even {
   background-color: $dataTableRowBackgroundColorEven;
 }
@@ -139,6 +230,20 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 .ui-datatable table tbody tr.ui-datatable-odd,
 .ui-datatable table tbody tr.ui-datatable-odd td {
   background-color: $dataTableRowBackgroundColorOdd;
+}
+
+.ui-state-default.ui-sortable-column {
+    outline: transparent;
+}
+
+body .ui-datatable.ui-datatable-scrollable thead tr th {
+  font-size: $largeFontSize;
+}
+
+@media (max-width: 640px) {
+  .ui-datatable-reflow .ui-reflow-dropdown {
+    font-size: $largeFontSize !important;
+  }
 }
 
 /* Tree table */
@@ -171,6 +276,40 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
   border-left: 1px solid $leftBorderOutsideTreeTableColor !important;
 }
 
+/* Tree node */
+.ui-tree-container .ui-treenode-content {
+  .ui-treenode-label.ui-state-highlight {
+    background-color: transparent !important;
+  }
+  .ui-treenode-label.ui-treenode-outline {
+    outline: 0 solid transparent !important;
+  }
+  .ui-chkbox.ui-widget.ui-selection {
+    .ui-chkbox-icon.ui-icon.ui-icon-check, .ui-chkbox-icon.ui-icon.ui-icon-minus {
+      color: $primaryLightestColor !important;
+    }
+  }
+}
+
+
+.ui-treenode.ui-treenode-parent.ui-treenode-selected,
+.ui-treenode.ui-treenode-parent.ui-treenode-hasselected span.ui-treenode-content.ui-tree-selectable:first-child div.ui-chkbox.ui-widget.ui-selection,
+li.ui-treenode.ui-treenode-selected .ui-chkbox.ui-widget.ui-selection,
+li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectable:first-child .ui-chkbox.ui-widget.ui-selection,
+li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectable:first-child .ui-chkbox.ui-widget.ui-selection {
+  div.ui-chkbox-box.ui-widget.ui-state-default {
+    border-color: $primaryColor;
+    background-color: $primaryColor;
+  }
+}
+
+li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectable:first-child {
+  .ui-chkbox.ui-widget.ui-selection .ui-chkbox-box.ui-widget.ui-state-default {
+    border-color: $checkboxBorderColor !important;
+    background-color: transparent !important;
+  }
+}
+
 /* Dialog */
 body {
     .ui-dialog {
@@ -184,6 +323,18 @@ body {
             }
         }
     }
+}
+
+body .ui-widget.ui-dialog .ui-dialog-content {
+  font-size: $largeFontSize !important;
+}
+
+.icon-selection-dialog-selecting-icon .fa {
+  font-size: 2rem;
+}
+
+body .ui-dialog .ui-dialog-titlebar {
+  color: $uiDialogTitleBarTextColor;
 }
 
 /* Fieldset */
@@ -216,7 +367,58 @@ body {
     }
 }
 
+/* Tab */
+.ui-tabs.ui-widget.ui-widget-content {
+  > .ui-tabs-nav {
+    > li {
+      border-style: solid;
+      border-width: 0 0 0 0;
+    }
+  }
+  &.ui-tabs-top {
+    > .ui-tabs-nav {
+      > li {
+        &.ui-state-active {
+          border-width: 0 0 2px 0;
+        }
+      }
+    }
+  }
+  &.ui-tabs-bottom {
+    > .ui-tabs-nav {
+      > li {
+        &.ui-state-active {
+          border-width: 2px 0 0 0;
+        }
+      }
+    }
+  }
+  &.ui-tabs-left {
+    > .ui-tabs-nav {
+      > li {
+        &.ui-state-active {
+          border-width: 0 2px 0 0;
+        }
+      }
+    }
+  }
+  &.ui-tabs-right {
+    > .ui-tabs-nav {
+      > li {
+        &.ui-state-active {
+          border-width: 0 0 0 2px;
+        }
+      }
+    }
+  }
+}
+
 /* Layout sidebar*/
+.layout-wrapper .layout-sidebar,
+.layout-main-mask {
+  z-index: 1000 !important;
+}
+
 .layout-wrapper .layout-sidebar .layout-menu li > a {
   color: $sidebarMenuListItemLinkTextColor;
 }
@@ -250,7 +452,25 @@ body {
   }
 }
 
+.layout-wrapper .layout-sidebar .sidebar-logo {
+    background-color: $paleGrey;
+}
+
+.layout-wrapper .layout-sidebar .sidebar-logo .sidebar-anchor {
+    border-color: $white;
+    background-color: $primaryColor;
+}
+
+.layout-wrapper-static .layout-sidebar .sidebar-logo .sidebar-anchor {
+    background-color: $primaryColor;
+    border-color: $primaryColor;
+}
+
 /*Layout topbar*/
+.layout-wrapper .layout-topbar {
+  z-index: 997 !important;
+}
+
 .layout-wrapper .layout-main .layout-topbar .menu-btn i {
       font-size: 2.4rem;
 }
@@ -266,6 +486,10 @@ body {
     padding: 60px 30px 0 30px;
     height: 100vh;
     overflow-x: hidden;
+}
+
+.topbar-menu li .ui-commandlink {
+  font-size: $largeFontSize;
 }
 
 @media  screen and (max-height: 500px) {
@@ -295,12 +519,254 @@ body {
     border-bottom: 15px solid $primaryColor !important;
 }
 
-/* Panel grid*/
+/* Panels */
 body .ui-panelgrid tbody tr.ui-widget-content {
     border: none !important;
 }
 
-/* */
+.ui-panel .ui-panel-content {
+    padding: 8px !important;
+}
+
+/* Select one list box */
 body .ui-selectonelistbox .ui-selectlistbox-item.ui-state-hover {
   color: $hoveredItemSelectOneListBoxTextColor;
+}
+
+/* Messages */
+body .ui-messages .ui-messages-error-icon,
+.ui-messages-info-icon,
+.ui-messages-warn-icon,
+.ui-messages-fatal-icon {
+    margin-top: 2px !important;
+    font-size: 2.4rem !important;
+}
+
+.ui-growl-item .ui-growl-message {
+  .ui-growl-title {
+    padding: 10px 0px 0px 0px !important;
+  }
+}
+
+.message .message-header {
+  font-size: $largeFontSize;
+}
+
+.message .message-container .message-detail {
+  font-size: $smallFontSize;
+}
+
+.message .message-container {
+  font-size: $largeFontSize;
+}
+
+.message .message-footer .ui-button {
+  font-size: $smallFontSize;
+}
+
+body .md-inputfield .ui-message.ui-message-error {
+  font-size: 1.1rem;
+}
+
+body .md-inputfield .ui-message.ui-message-error .ui-message-error-icon {
+  font-size: 1.3rem;
+}
+
+body .ui-messages ul {
+  display: block;
+}
+
+.ui-messages-info-summary {
+  margin-left: 0px;
+}
+
+/* Buttons */
+body .ui-button .ui-button-text {
+  font-size: $largeFontSize;
+}
+
+.ui-widget.ui-button.ui-state-hover:not(.ui-spinner-button),
+.ui-widget.ui-buttonset .ui-state-hover,
+body .ui-buttonset .ui-state-active {
+    background-color: $primaryLightGreen !important;
+}
+
+.ui-widget.ui-button {
+    .ui-button-text {
+        color: $primaryTextColor !important;
+    }
+
+    .ui-icon {
+        color: $primaryTextColor !important;
+    }
+
+    ui-button-icon-left.ui-icon {
+        color: $primaryTextColor !important;
+    }
+}
+
+.ui-autocomplete {
+    .ui-autocomplete-dropdown {
+        min-width: 18px !important;
+    }
+}
+
+body .ui-dialog .ui-dialog-footer .ui-button {
+    background-color: $primaryColor;
+}
+
+.ui-inplace-content .ui-inplace-editor {
+    .ui-button.ui-button-icon-only {
+        .ui-icon {
+           font-family: $iconFontFamily !important;
+           font-size: $inplaceEditIconFontSize !important;
+           margin-top: -9px !important;
+        }
+    }
+}
+
+.ui-widget.ui-datepicker-trigger.ui-button.ui-state-hover,
+.ui-widget.ui-autocomplete-dropdown.ui-button.ui-state-hover,
+.ui-widget.ui-datepicker-trigger.ui-button.ui-state-focus,
+.ui-widget.ui-autocomplete-dropdown.ui-button.ui-state-focus {
+  background-color: $autoCompleteDropdownFocusBackgroundColor !important;
+}
+
+.ui-inplace .ui-inplace-editor .ui-button.ui-inplace-save .ui-icon-check,
+.ui-inplace .ui-inplace-editor .ui-button.ui-inplace-cancel .ui-icon-close {
+  background: none repeat scroll 0 0 $uiInplaceBackgroundColor !important;
+}
+
+/* Inputs */
+.ui-widget-content.ui-tabs-panel {
+    padding: 7px !important;
+}
+
+.ui-selectonemenu {
+  .ui-selectonemenu-trigger {
+    .ui-icon.ui-icon-triangle-1-s {
+        margin-top: 5px;
+      }
+    }
+}
+
+.ui-selectonemenu-trigger .ui-icon.ui-icon-triangle-1-s {
+  position: absolute;
+    right: 0;
+}
+
+body .ui-selectonemenu-panel .ui-selectonemenu-item.ui-state-hover {
+  color: $hoveredItemSelectOneMenuTextColor;
+}
+
+body .ui-selectonemenu-panel .ui-state-highlight,
+body .ui-autocomplete-panel .ui-state-highlight {
+  background-color: $primaryLightGreen !important;
+}
+
+body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span.md-inputwrapper-filled ~ label {
+    color: $primaryColor;
+}
+
+body .ui-inputfield {
+  font-size: $largeFontSize;
+  color: $uiInputFieldTextColor;
+}
+
+body .md-inputfield label:not(.ui-selectonemenu-label) {
+  font-size: $largeFontSize !important;
+}
+
+body .md-inputfield input.ui-state-filled ~ label,
+body .md-inputfield input:focus ~ label{
+  font-size: $smallFontSize !important;
+}
+
+/* Select Checkbox Menu & Picklist */
+body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-close.ui-state-hover {
+  background: $selectCheckBoxCloseHoverColor !important;
+}
+.ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-filter-container .ui-icon-search,
+.ui-picklist .ui-picklist-filter-container .ui-icon,
+.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon {
+  color: $darkGrey;
+  background: $checkboxMenuIconBackgroundColor;
+}
+
+.ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-filter-container .ui-icon:before,
+.ui-picklist .ui-picklist-filter-container .ui-icon:before {
+ font-family: $iconFontFamily;
+ font-size: $selectCheckboxMenuIconFontSize;
+}
+
+.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger,
+.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger.ui-state-hover {
+  background-color: $selectCheckboxMenuTriggerBackgroundColor;
+}
+
+body .ui-picklist li.ui-picklist-item.ui-state-hover {
+  color: $hoveredPicklistItemTextColor;
+}
+
+/* Auto complete */
+.ui-autocomplete-panel .ui-autocomplete-items.ui-autocomplete-table tr:hover {
+  background: $hoverBgColor;
+  color: $autoCompleteHoverColor;
+}
+
+.ui-autocomplete {
+  .ui-autocomplete-dropdown {
+    
+    &.ui-button.ui-button-icon-only {
+          top: 5px;
+        }
+    }
+}
+
+/* Inplace input */
+.ui-inplace .ui-inplace-editor .ui-button.ui-inplace-save .ui-icon-check:before {
+  font-family: $iconFontFamily;
+}
+
+.ui-inplace .ui-inplace-editor .ui-button.ui-inplace-cancel .ui-icon-close:before {
+  font-family: $iconFontFamily;
+}
+
+/* Accordion */
+.ui-accordion {
+    .ui-accordion-header {
+
+        &.ui-state-active,
+        .ui-icon-triangle-1-e,
+        .ui-icon-triangle-1-s {
+            color: $primaryTextColor !important;
+        }
+    }
+}
+
+body .ui-accordion .ui-accordion-header {
+  font-size: $largeFontSize !important;
+}
+
+/* Spinner */
+.ui-spinner {
+    .ui-spinner-input {
+        padding-right: 30px !important;
+    }
+
+    .ui-spinner-button {
+        min-width: auto;
+    }
+}
+
+/* File upload */
+@media (max-width: 1024px) {
+  .ui-fileupload-files .ui-fileupload-row > div {
+    display: block !important;
+  }
+}
+
+/* Input switch */
+body .ui-inputswitch.ui-inputswitch-checked .ui-inputswitch-handle {
+  background-color: $white;
 }
