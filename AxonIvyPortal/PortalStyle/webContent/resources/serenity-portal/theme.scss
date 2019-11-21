@@ -393,10 +393,6 @@ body .ui-panelgrid tbody tr.ui-widget-content {
   border: solid 1px $carouselItemPanelGridBorder !important;
 }
 
-.statistic-actions-panel {
-  border-bottom: 1px solid $statisticActionPanelBorder;
-}
-
 .dashboard-chart-panel .card,
 .edit-statistic-container .card,
 .statistic-widget.compact-mode .statistic-carousel.card {
@@ -413,6 +409,16 @@ body .ui-panelgrid tbody tr.ui-widget-content {
 .dashboard-chart-panel .chart-actions-container .chart-action,
 .dashboard-chart-panel .chart-info {
   font-size: 1.5rem;
+}
+
+.statistic-widget-container, .widget.analysis-task-widget {
+  .widget-header-main {
+    border-bottom: none !important;
+  }
+
+  .widget-header {
+    border-bottom: 1px solid rgba($black, 0.1);
+  }
 }
 
 /*Style For Buttons --------------------------------------------------------------------------------------*/
@@ -1024,6 +1030,10 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
 
 .note-show-more-link {
   color: rgba($black, 0.5) !important;
+}
+
+.case-detail-title-header-container, .task-detail-header {
+  border-bottom: 1px solid rgba($black, 0.1);
 }
 
 /*Style For Task Detail --------------------------------------------------------------------------------------*/
@@ -1870,6 +1880,11 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   color: $caseRelatedTaskColor !important;
 }
 
+.no-running-task-case {
+  border-top: none !important;
+  margin-bottom: 10px;
+}
+
 .related-task-content .related-task:hover,
 .additional-case-details-link:hover {
   color: rgba($black, 0.6) !important;
@@ -1881,7 +1896,8 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 }
 
 .related-task-content,
-.case-related-running {
+.case-related-running,
+.no-running-task-case {
   border: 1px solid $caseRelatedTaskContentBorder;
 }
 
