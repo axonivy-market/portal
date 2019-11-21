@@ -1,0 +1,5 @@
+co: name={noRunningTask} description={} changed={2019-11-20 12:35:58 CET} changedby={nqhoan} visualorder={0} guid={16E88975C9C4AB11} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16E88975CA5FF392} datatype={} isdefault={true} langid={en} description={} validfrom={2019-11-20 12:34:11 CET} validto={} changed={2019-11-20 12:34:11 CET} changedby={nqhoan} properties={} id={}
+val: guid={16E8898FF11DC76D} datatype={} isdefault={false} langid={es} description={} validfrom={2019-11-20 12:35:43 CET} validto={} changed={2019-11-20 12:35:58 CET} changedby={nqhoan} properties={} id={}
+val: guid={16E8898FE9C29C00} datatype={} isdefault={false} langid={de} description={} validfrom={2019-11-20 12:35:42 CET} validto={} changed={2019-11-20 12:35:58 CET} changedby={nqhoan} properties={} id={}
+val: guid={16E8898FF4AECB06} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-11-20 12:35:39 CET} validto={} changed={2019-11-20 12:35:58 CET} changedby={nqhoan} properties={} id={}
