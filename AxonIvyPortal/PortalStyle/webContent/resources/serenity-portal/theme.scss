@@ -76,20 +76,6 @@ body {
   }
 }
 
-.layout-wrapper .layout-sidebar .sidebar-logo {
-    background-color: $paleGrey;
-}
-
-.layout-wrapper .layout-sidebar .sidebar-logo .sidebar-anchor {
-    border-color: $white;
-    background-color: $primaryColor;
-}
-
-.layout-wrapper-static .layout-sidebar .sidebar-logo .sidebar-anchor {
-    background-color: $primaryColor;
-    border-color: $primaryColor;
-}
-
 /*Style for Top bar -------------------------------------------------------------------------------------- */
 @media (max-width: 1365px) {
     .app-dialog {
@@ -113,19 +99,6 @@ body {
     .task-template-container {
         padding: 0 10px !important;
     }
-}
-
-.topbar-menu li .ui-commandlink {
-  font-size: $largeFontSize;
-}
-
-/*Style for Admin Setting -------------------------------------------------------------------------------------- */
-body .ui-messages .ui-messages-error-icon,
-.ui-messages-info-icon,
-.ui-messages-warn-icon,
-.ui-messages-fatal-icon {
-    margin-top: 2px !important;
-    font-size: 2.4rem !important;
 }
 
 /*Style Email Setting --------------------------------------------------------------------------------*/
@@ -318,12 +291,6 @@ body .ui-messages .ui-messages-error-icon,
 }
 
 /*Style For Buttons --------------------------------------------------------------------------------------*/
-.ui-widget.ui-button.ui-state-hover:not(.ui-spinner-button),
-.ui-widget.ui-buttonset .ui-state-hover,
-body .ui-buttonset .ui-state-active {
-    background-color: $primaryLightGreen !important;
-}
-
 .portal-cancel-button.ui-widget.ui-button,
 .ui-inplace-cancel.ui-widget.ui-button,
 .ui-fileupload-cancel.ui-widget.ui-button {
@@ -353,47 +320,9 @@ body .ui-buttonset .ui-state-active {
     background-color: $contextButtonStateHoverOrFocusBackgroundColor;
 }
 
-.ui-widget.ui-button {
-    .ui-button-text {
-        color: $primaryTextColor !important;
-    }
-
-    .ui-icon {
-        color: $primaryTextColor !important;
-    }
-
-    ui-button-icon-left.ui-icon {
-        color: $primaryTextColor !important;
-    }
-}
-
-.ui-autocomplete {
-    .ui-autocomplete-dropdown {
-        min-width: 18px !important;
-    }
-}
-
-body .ui-dialog .ui-dialog-footer .ui-button {
-    background-color: $primaryColor;
-}
-
-.ui-inplace-content .ui-inplace-editor {
-    .ui-button.ui-button-icon-only {
-        .ui-icon {
-           font-family: $iconFontFamily !important;
-           font-size: $inplaceEditIconFontSize !important;
-           margin-top: -9px !important;
-        }
-    }
-}
-
 /*Style for table --------------------------------------------------------------------------------------*/
 .express-many-checkbox-options.ui-datatable tbody tr td {
 	border-top: 1px solid $topBorderBodyExpressManyCheckboxTableColor !important;
-}
-
-.ui-state-default.ui-sortable-column {
-    outline: transparent;
 }
 
 /*Style for express --------------------------------------------------------------------------------------*/
@@ -539,130 +468,6 @@ body .ui-dialog .ui-dialog-footer .ui-button {
     border: 2px solid $announcementBorderColor;
 }
 
-/*Style For Input field --------------------------------------------------------------------------------------*/
-.ui-widget-content.ui-tabs-panel {
-    padding: 7px !important;
-}
-
-.ui-spinner {
-    .ui-spinner-input {
-        padding-right: 30px !important;
-    }
-}
-
-.ui-selectonemenu {
-  .ui-selectonemenu-trigger {
-    .ui-icon.ui-icon-triangle-1-s {
-        margin-top: 5px;
-      }
-    }
-}
-
-.ui-autocomplete {
-  .ui-autocomplete-dropdown {
-    
-    &.ui-button.ui-button-icon-only {
-          top: 5px;
-        }
-    }
-}
-
-.ui-selectonemenu-trigger .ui-icon.ui-icon-triangle-1-s {
-  position: absolute;
-    right: 0;
-}
-
-body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span.md-inputwrapper-filled ~ label {
-    color: $primaryColor;
-}
-
-/*Style For Accordion header --------------------------------------------------------------------------------------*/
-.ui-accordion {
-    .ui-accordion-header {
-
-        &.ui-state-active,
-        .ui-icon-triangle-1-e,
-        .ui-icon-triangle-1-s {
-            color: $primaryTextColor !important;
-        }
-    }
-}
-
-/*Style For Spinner input --------------------------------------------------------------------------------------*/
-.ui-spinner {
-    .ui-spinner-button {
-        min-width: auto;
-    }
-}
-
-/*Style For Growl message --------------------------------------------------------------------------------------*/
-.ui-growl-item .ui-growl-message {
-  .ui-growl-title {
-    padding: 10px 0px 0px 0px !important;
-  }
-}
-
-/*Style For Tabs --------------------------------------------------------------------------------------*/
-.ui-tabs.ui-widget.ui-widget-content {
-  > .ui-tabs-nav {
-    > li {
-      border-style: solid;
-      border-width: 0 0 0 0;
-    }
-  }
-  &.ui-tabs-top {
-    > .ui-tabs-nav {
-      > li {
-        &.ui-state-active {
-          border-width: 0 0 2px 0;
-        }
-      }
-    }
-  }
-  &.ui-tabs-bottom {
-    > .ui-tabs-nav {
-      > li {
-        &.ui-state-active {
-          border-width: 2px 0 0 0;
-        }
-      }
-    }
-  }
-  &.ui-tabs-left {
-    > .ui-tabs-nav {
-      > li {
-        &.ui-state-active {
-          border-width: 0 2px 0 0;
-        }
-      }
-    }
-  }
-  &.ui-tabs-right {
-    > .ui-tabs-nav {
-      > li {
-        &.ui-state-active {
-          border-width: 0 0 0 2px;
-        }
-      }
-    }
-  }
-}
-
-/*Style For Panel --------------------------------------------------------------------------------------*/
-.ui-panel .ui-panel-content {
-    padding: 8px !important;
-}
-
-/*Style for Top/Side bar - override z-index */ 
-.layout-wrapper {
-  .layout-sidebar, .layout-main-mask {
-    z-index: 1000 !important;
-  }
-  .layout-topbar {
-    z-index: 997 !important;
-  }
-}
-
 .action-button {
   box-shadow: none !important;
   background-color: transparent !important;
@@ -727,63 +532,6 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
 	.ui-slider.ui-slider-horizontal.ui-widget.ui-widget-content {
 		margin-right: 10px;
 	}
-}
-
-/*Style For Tree node - Override standard Serenity ------------------------------------------------------------*/
-.ui-tree-container .ui-treenode-content {
-  .ui-treenode-label.ui-state-highlight {
-    background-color: transparent !important;
-  }
-  .ui-treenode-label.ui-treenode-outline {
-    outline: 0 solid transparent !important;
-  }
-  .ui-chkbox.ui-widget.ui-selection {
-    .ui-chkbox-icon.ui-icon.ui-icon-check, .ui-chkbox-icon.ui-icon.ui-icon-minus {
-      color: $primaryLightestColor !important;
-    }
-  }
-}
-
-
-.ui-treenode.ui-treenode-parent.ui-treenode-selected,
-.ui-treenode.ui-treenode-parent.ui-treenode-hasselected span.ui-treenode-content.ui-tree-selectable:first-child div.ui-chkbox.ui-widget.ui-selection,
-li.ui-treenode.ui-treenode-selected .ui-chkbox.ui-widget.ui-selection,
-li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectable:first-child .ui-chkbox.ui-widget.ui-selection,
-li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectable:first-child .ui-chkbox.ui-widget.ui-selection {
-  div.ui-chkbox-box.ui-widget.ui-state-default {
-    border-color: $primaryColor;
-    background-color: $primaryColor;
-  }
-}
-
-li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectable:first-child {
-  .ui-chkbox.ui-widget.ui-selection .ui-chkbox-box.ui-widget.ui-state-default {
-    border-color: $checkboxBorderColor !important;
-    background-color: transparent !important;
-  }
-}
-
-
-/*Style For SelectCheckBox - Override standard Serenity ------------------------------------------------------------*/
-.ui-chkbox .ui-widget.ui-chkbox-box.ui-state-active:before {
-  left: 0.5em !important;
-  top: 0.5em !important;
-  height: 0.14em !important;
-  width: 0.2em !important;
-}
-
-.ui-radiobutton .ui-radiobutton-box.ui-state-active:before {
-  top: 0.6em !important;
-  height: 0.12em !important;
-}
-
-/*Style for Dialog --------------------------------------------------------------------------------------*/
-body .ui-widget.ui-dialog .ui-dialog-content {
-  font-size: $largeFontSize !important;
-}
-
-.icon-selection-dialog-selecting-icon .fa {
-  font-size: 2rem;
 }
 
 /*Style for Fieldset --------------------------------------------------------------------------------------*/
@@ -1049,10 +797,6 @@ body .ui-widget.ui-dialog .ui-dialog-content {
   font-weight: $outputLabelTaskTemplateTitleFontWeight;
 }
 
-.message .message-header {
-  font-size: $largeFontSize;
-}
-.message .message-container .message-detail,
 .process-history-empty-message .ui-outputlabel {
   font-size: $smallFontSize;
 }
@@ -1069,42 +813,6 @@ body .ui-widget.ui-dialog .ui-dialog-content {
 .compact-process-widget .toggle-processes-link,
 .compact-toggle-tasks-link {
   font-size: $largeFontSize !important;
-}
-
-.fa:before {
-	font-family: $iconFontFamily !important;
-}
-
-body .ui-state-active, body .ui-state-highlight {
-  color: $bodyStateActiveColor !important;
-}
-
-
-/* Style for Dropdown----------------------------- */
-body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-close.ui-state-hover {
-  background: $selectCheckBoxCloseHoverColor !important;
-}
-.ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-filter-container .ui-icon-search,
-.ui-picklist .ui-picklist-filter-container .ui-icon,
-.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon {
-  color: $darkGrey;
-  background: $checkboxMenuIconBackgroundColor;
-}
-
-.ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-filter-container .ui-icon:before,
-.ui-picklist .ui-picklist-filter-container .ui-icon:before {
- font-family: $iconFontFamily;
- font-size: $selectCheckboxMenuIconFontSize;
-}
-
-body .ui-picklist li.ui-picklist-item.ui-state-hover {
-  color: $hoveredPicklistItemTextColor;
-}
-
-/* AutoComplete----------------------------- */
-.ui-autocomplete-panel .ui-autocomplete-items.ui-autocomplete-table tr:hover {
-  background: $hoverBgColor;
-  color: $autoCompleteHoverColor;
 }
 
 /* Style for Start Menu Item-----------------------------*/
@@ -1485,15 +1193,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   font-size: $largeFontSize;
 }
 
-/*********** Styles for ui-inplace ***********/
-.ui-inplace .ui-inplace-editor .ui-button.ui-inplace-save .ui-icon-check:before {
-  font-family: $iconFontFamily;
-}
-
-.ui-inplace .ui-inplace-editor .ui-button.ui-inplace-cancel .ui-icon-close:before {
-  font-family: $iconFontFamily;
-}
-
 /* Admin Setting--------------------------*/
 .admin-settings-no-permission-message {
   color: $adminSettingNoPermissionMessageColor;
@@ -1576,11 +1275,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   background: $notificationContentActionHoverBackgroundColor;
 }
 
-/* Login--------------------------*/
-.login-body .login-panel .login-panel-header {
-  background-color: $loginPanelHeaderBackgroundColor;
-}
-
 /* Stages breadcrumb -------------------*/
 .stages-chain .visited i {
   color: $stagesChainVisitedColor;
@@ -1617,24 +1311,13 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 }
 
 /*Style for Message -------------------------*/
-.no-documents-message,
-.message .message-container {
+.no-documents-message {
   font-size: $largeFontSize;
-}
-
-
-.message .message-footer .ui-button {
-  font-size: $smallFontSize;
 }
 
 /*Style for Global Search--------------------*/
 .global-search-input {
   font-size: $largeFontSize;
-}
-
-/* Style for Asterik Icon */
-.ui-outputlabel .ui-outputlabel-rfi {
-  color: $asterikIconColor;
 }
 
 /*Style for Error Page*/ 
@@ -1933,31 +1616,8 @@ ul.participants-list li {
   font-size:  $smallFontSize;
 }
 
-@media (max-width: 1024px) {
-  .ui-fileupload-files .ui-fileupload-row > div {
-    display: block !important;
-  }
-}
-
-.ui-widget.ui-datepicker-trigger.ui-button.ui-state-hover,
-.ui-widget.ui-autocomplete-dropdown.ui-button.ui-state-hover,
-.ui-widget.ui-datepicker-trigger.ui-button.ui-state-focus,
-.ui-widget.ui-autocomplete-dropdown.ui-button.ui-state-focus {
-  background-color: $autoCompleteDropdownFocusBackgroundColor !important;
-}
-
 .config-checkbox-container {
   border-bottom: 1px solid $configCheckboxContainerBorder;
-}
-
-.ui-inplace .ui-inplace-editor .ui-button.ui-inplace-save .ui-icon-check,
-.ui-inplace .ui-inplace-editor .ui-button.ui-inplace-cancel .ui-icon-close {
-  background: none repeat scroll 0 0 $uiInplaceBackgroundColor !important;
-}
-
-.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger,
-.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger.ui-state-hover {
-  background-color: $selectCheckboxMenuTriggerBackgroundColor;
 }
 
 .mobile-filter-icon span {
@@ -1976,137 +1636,6 @@ ul.participants-list li {
   font-size: $largeFontSize;
 }
 
-/* Override theme*/
-.ui-dialog .ui-dialog-content .ui-icon-alert {
-  font-size: 2rem;
-}
-
-body .ui-inputfield {
-  font-size: $largeFontSize;
-  color: $uiInputFieldTextColor;
-}
-
-body .ui-datatable.ui-datatable-scrollable thead tr th {
-  font-size: $largeFontSize;
-}
-
-body .ui-button .ui-button-text {
-  font-size: $largeFontSize;
-}
-
-body .ui-datepicker .ui-timepicker-div .ui_tpicker_time input {
-  font-size: $smallFontSize;
-}
-
 .action-button .ui-button-icon-right.ui-icon.ui-c {
   font-size: 2rem !important;
-}
-
-body .ui-menu .ui-menu-list li.ui-menuitem .ui-menuitem-link .ui-menuitem-icon {
-  font-size: 1.8rem;
-}
-
-body .md-inputfield label:not(.ui-selectonemenu-label) {
-  font-size: $largeFontSize !important;
-}
-
-body .md-inputfield input.ui-state-filled ~ label,
-body .md-inputfield input:focus ~ label{
-  font-size: $smallFontSize !important;
-}
-
-.login-body .login-panel .login-panel-content h1 {
-  font-size: 1.6rem;
-}
-
-body .ui-icon {
-  font-size: 2rem !important;
-}
-
-body .ui-accordion .ui-accordion-header {
-  font-size: $largeFontSize !important;
-}
-
-body .md-inputfield .ui-message.ui-message-error {
-  font-size: 1.1rem;
-}
-
-body .md-inputfield .ui-message.ui-message-error .ui-message-error-icon {
-  font-size: 1.3rem;
-}
-
-body .ui-messages ul {
-  display: block;
-}
-
-.ui-messages-info-summary {
-  margin-left: 0px;
-}
-
-@media (max-width: 640px) {
-  .ui-datatable-reflow .ui-reflow-dropdown {
-    font-size: $largeFontSize !important;
-  }
-}
-
-body .ui-datepicker .ui-datepicker-header .ui-datepicker-next,
-body .ui-datepicker .ui-datepicker-header .ui-datepicker-prev {
-  font-size: 2rem !important;
-}
-
-/* Override font-family of theme */
-input, body .ui-widget, body .ui-widget .ui-widget,
-body .ui-selectonemenu .ui-selectonemenu-label.ui-inputfield {
-  font-family: $portalFontFamily;
-}
-
-body .ui-selectonemenu-panel .ui-selectonemenu-item.ui-state-hover {
-  color: $hoveredItemSelectOneMenuTextColor;
-}
-
-.login-body .login-panel .login-panel-header img {
-    vertical-align: middle;
-    width: auto !important;
-    max-width: 100%;
-}
-
-body .ui-dialog .ui-dialog-titlebar {
-  color: $uiDialogTitleBarTextColor;
-}
-
-/* Override span color in table */
-.ui-datatable table tbody tr td span {
-  color: $dataTableRowSpanColor !important;
-}
-
-body .ui-selectonelistbox .ui-selectlistbox-item.ui-state-hover {
-  color: $hoveredItemSelectOneListBoxTextColor;
-}
-
-/* Change header to grey */
-body .ui-widget-header {
-  background-color: $paleGrey !important;
-  border: 1px solid $paleGrey;
-}
-
-/*** Override green */
-body .ui-selectonemenu-panel .ui-state-highlight,
-body .ui-autocomplete-panel .ui-state-highlight {
-  background-color: $primaryLightGreen !important;
-}
-
-body .ui-inputswitch.ui-inputswitch-checked .ui-inputswitch-handle {
-  background-color: $white;
-}
-
-.ui-datepicker .ui-datepicker-title {
-  color: $uiDataPickerTitleColor;
-}
-
-.ui-datepicker .ui-datepicker-header {
-  border-color: $uiDataPickerTitleBorderColor !important;
-}
-
-.ui-datepicker thead tr {
-  background-color: $uiDataPickerHeaderColor !important;
 }
