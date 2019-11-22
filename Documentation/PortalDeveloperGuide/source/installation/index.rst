@@ -165,7 +165,7 @@ Migrate to 8.0.0
 ----------------
 
 How to convert `LESS <http://lesscss.org>`__ to `SASS <https://sass-lang.com/>`__ languages
--------------------------------------------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 From Portal version 8.0.0, we use the Serenity theme as the default
 style for project. So, if your project is using ``LESS`` languages for
@@ -203,7 +203,7 @@ https://www.npmjs.com/package/less2sass.
 .. _installation-migration-notes-8-0-0-task-template:
 
 How to migrate TaskTemplate
-----------------------------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 There are some changes in TaskTemplate. If you want to keep the old one, in your places using it, change to ``DeprecatedTaskTemplate7.xhtml``.
 If you want to use the new one, refer to ``TaskTemplate.xhtml`` for parameters and template areas.
@@ -211,7 +211,7 @@ If you want to use the new one, refer to ``TaskTemplate.xhtml`` for parameters a
 .. _installation-migration-notes-8-0-0-task-body:
 
 How to migrate TaskBody to  :ref:`customization-task-item-details` component
-----------------------------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 On Portal version 8.0.0, we removed ``taskBody`` in TaskWidget. Instead
 of that, we will use TaskItemDetails component to show task information
@@ -268,7 +268,7 @@ Please follow the below steps to migrate
 .. _installation-migration-notes-8-0-0-case-body:
 
 How to migrate CaseBody to :ref:`customization-case-item-details`  component
-----------------------------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 On Portal version 8.0.0, we removed ``caseBody`` in CaseWidget. Instead
 of that, we are using CaseItemDetails component for showing case
@@ -510,7 +510,7 @@ for customizations, adapt the changes:
 -  PortalHome: The ``taskView`` parameter is added to the start method.
 
 SQL conversion
---------------
+^^^^^^^^^^^^^^
 
 From Portal ``7.0`` , we use standard axon.ivy Task Category field to
 store task category.
@@ -555,7 +555,7 @@ Migrate 6.x (x < 4) to 6.4 (Jakobshorn)
 ---------------------------------------
 
 Portal appearance
------------------
+^^^^^^^^^^^^^^^^^
 
 Portal ``6.4`` are redesigned. Therefore many components look different
 from the previous version like menu, task list, case list ... . Portal
@@ -596,7 +596,7 @@ Migrate 5.0 (Rothorn) to 6.0 (Säntis)
 -------------------------------------
 
 Database conversion
--------------------
+^^^^^^^^^^^^^^^^^^^
 
 If you are using Portal ``5.0`` , you have to manual configure all
 settings (create servers, applications, variables) again since Portal
@@ -605,7 +605,7 @@ are stored in Ivy system database. If you are using Portal ``6.0`` , you
 don't need to convert database.
 
 Portal appearance
------------------
+^^^^^^^^^^^^^^^^^
 
 Portal now doesn't use `Modena <http://primefaces.org/eos/modena>`__
 theme, it's a big difference to previous ``6.0`` . Therefore many things
