@@ -739,6 +739,10 @@
   font-weight: $additionalCaseDetailLinkFontWeight;
 }
 
+.additional-case-details-link:hover {
+  color: $additionalCaseDetailLinkHoveredColor !important;
+}
+
 .related-task-content,
 .case-related-running {
   border: 1px solid $caseRelatedTaskContentBorder;
@@ -1271,7 +1275,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 .action-button.task-action-item .ui-button-icon-left.ui-icon {
   color: $taskActionLeftIconColor !important;
 }
- 
+
 .task-actions-menu .ui-slidemenu-backward.ui-widget-header {
   background-color: $taskActionItemWidgetHeaderColor;
   color: $primaryTextColor;
