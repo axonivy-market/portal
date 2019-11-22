@@ -28,7 +28,7 @@ public class ChatPage extends TemplatePage {
 	}
 
 	public boolean isChatGroupDisplayed(String groupChatID) {
-		return findElementByXpath("//div[contains(text(),'"+groupChatID+"')]").isDisplayed();
+		return findElementByXpath("//span[contains(text(),'"+groupChatID+"')]").isDisplayed();
 	}
 	
 	public void selectChatUser(String name) {
@@ -36,13 +36,13 @@ public class ChatPage extends TemplatePage {
 	}
 
 	public void selectChatGroup() {
-		waitForElementDisplayed(By.xpath("//div[contains(text(),'Group chat of')]"), true);
-		findElementByXpath("//div[contains(text(),'Group chat of')]").click();
+		waitForElementDisplayed(By.xpath("//span[contains(text(),'Group chat of')]"), true);
+		findElementByXpath("//span[contains(text(),'Group chat of')]").click();
 	}
 
 	public void sendMessage(String chatMessage) {
-		waitForElementEnabled(By.id("message-input-field"), true, DEFAULT_TIMEOUT);
-		WebElement input = findElementById("message-input-field");
+		waitForElementEnabled(By.id("chat-form:message-input-field"), true, DEFAULT_TIMEOUT);
+		WebElement input = findElementById("chat-form:message-input-field");
 		input.sendKeys(chatMessage);
 		input.sendKeys(Keys.ENTER);
 	}
@@ -94,20 +94,20 @@ public class ChatPage extends TemplatePage {
 	}
 
 	private String GetUserParticipantsList() {
-		waitForElementDisplayed(By.cssSelector("ul[id='user-participants-list'] li"), true);
+	  waitForElementDisplayed(By.id("participants-list-dialog"), true);
 		return findListElementsByCssSelector("ul[id='user-participants-list'] li").stream().map(WebElement::getText)
 				.collect(Collectors.joining(","));
 	}
 
 	private String GetRolesParticipantsList() {
-		waitForElementDisplayed(By.cssSelector("ul[id='roles-participants-list'] li ul li"), true);
+	  waitForElementDisplayed(By.id("participants-list-dialog"), true);
 		return findListElementsByCssSelector("ul[id='roles-participants-list'] li ul li").stream().map(WebElement::getText)
 				.collect(Collectors.joining(","));
 	}
 	
 	public void closeModalParticipants() {
-		waitForElementDisplayed(By.cssSelector("button[class$='ui-confirmdialog-no']"), true);
-		click(By.cssSelector("button[class$='ui-confirmdialog-no']"));
+		waitForElementDisplayed(By.xpath("//div[@id='participants-list-dialog']//span[contains(text(),'Close')]"), true);
+		click(By.xpath("//div[@id='participants-list-dialog']//span[contains(text(),'Close')]"));
 	}
 
 	public void closeChatMessageList() {
