@@ -452,6 +452,7 @@ Ts0 f37 actionTable 'out=in;
 Ts0 f37 actionCode 'import ch.ivy.addon.portalkit.util.TaskAnalysisExporter;
 TaskAnalysisExporter exporter = new TaskAnalysisExporter(in.columnsVisibility);
 in.exportedFile = exporter.getStreamedContent(in.collectedTasksForExporting);' #txt
+Ts0 f37 security system #txt
 Ts0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
