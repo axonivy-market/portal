@@ -38,11 +38,6 @@ body .ui-selectonemenu .ui-selectonemenu-label.ui-inputfield {
   font-family: $portalFontFamily;
 }
 
-body .ui-widget-header {
-  background-color: $paleGrey !important;
-  border: 1px solid $paleGrey;
-}
-
 _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlink {
 	display: inline-block;
 }
@@ -171,6 +166,7 @@ body .ui-datepicker .ui-datepicker-header .ui-datepicker-prev {
 
 .ui-datepicker .ui-datepicker-header {
   border-color: $uiDataPickerTitleBorderColor !important;
+  background-color: $uiDataPickerTitleBackgroundColor !important;
 }
 
 .ui-datepicker thead tr {
@@ -926,6 +922,7 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
 
 body .ui-accordion .ui-accordion-header {
   font-size: $largeFontSize !important;
+  background-color: $uiAccordionHeaderBackgroundColor !important;
 }
 
 /* Spinner */
@@ -963,6 +960,7 @@ body .ui-accordion .ui-accordion-header {
 .ui-widget.ui-fileupload {
 	margin-top: 5px;
 }
+
 .ui-fileupload-buttonbar {
 	-webkit-transform: translateY(30%);
 	-moz-transform: translateY(30%);
@@ -972,6 +970,11 @@ body .ui-accordion .ui-accordion-header {
 
 .uploading-file-message .ui-fileupload-messages {
 	text-align: left;
+}
+
+body .ui-fileupload .ui-fileupload-buttonbar {
+  background-color: $uiFileuploadButtonbarBackgroundColor !important;
+  border: 1px solid $uiFileuploadButtonbarBorder;
 }
 
 /* Input switch */

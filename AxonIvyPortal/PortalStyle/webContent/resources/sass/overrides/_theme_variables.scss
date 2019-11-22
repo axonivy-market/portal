@@ -2,7 +2,6 @@
 
 /* Consolidate green*/
 $caseTaskStateDoneOrResumeGreen: #4eb41c;
-$taskPriorityNormalGreen: #96dc82;
 
 $headerPadding: 14px 1em;
 
@@ -32,7 +31,7 @@ $thirdHeaderBarColor: $primaryColor;
 
 /* Task priority color */
 $taskPriorityLowColor: #d4d4d4;
-$taskPriorityNormalColor: $taskPriorityNormalGreen;
+$taskPriorityNormalColor: #96dc82;
 $taskPriorityHighColor: #ffc0c0;
 $taskPriorityExceptionColor: #ff5a5a;
 
@@ -437,3 +436,7 @@ $uiFieldSetTogglerColor: $black;
 $uiDataPickerTitleColor: $primaryTextColor;
 $uiDataPickerHeaderColor: $paleGrey;
 $uiDataPickerTitleBorderColor: $paleGrey;
+$uiDataPickerTitleBackgroundColor: $paleGrey;
+$uiAccordionHeaderBackgroundColor: $lightGrey;
+$uiFileuploadButtonbarBackgroundColor: $paleGrey;
+$uiFileuploadButtonbarBorder: $lightGrey;
