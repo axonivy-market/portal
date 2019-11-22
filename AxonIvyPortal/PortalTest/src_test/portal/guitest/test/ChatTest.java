@@ -5,7 +5,6 @@ import static junit.framework.Assert.assertTrue;
 import java.util.Arrays;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import portal.guitest.bean.ExpressResponsible;
@@ -17,7 +16,6 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 
-@Ignore
 public class ChatTest extends BaseTest {
 	private AdminSettingsPage adminSettingsPage;
 	private static final String CHAT_MESSAGE_USER_DEMO = "Hi i'm demo user";
@@ -121,7 +119,6 @@ public class ChatTest extends BaseTest {
 		assertTrue("Chat message admin", chatPage.getAllMessagesChatLog().contains(CHAT_MESSAGE_USER_ADMIN));
 
 		login(TestAccount.DEMO_USER);
-		assertTrue(chatPage.isNotificationBadgeChat());
 		assertTrue(new HomePage().getChat().isNotificationContactChat());
 	}
 
@@ -146,6 +143,7 @@ public class ChatTest extends BaseTest {
 		// Create chat group via task
 		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
 		TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
+    taskTemplatePage.clickTaskActionMenu();
 		taskTemplatePage.clickChatGroup();
 		return chatPage;
 	}
@@ -154,6 +152,7 @@ public class ChatTest extends BaseTest {
 		login(userJoined);
 		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
 		TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
+		taskTemplatePage.clickTaskActionMenu();
 		taskTemplatePage.clickChatGroup();
 		taskTemplatePage.joinProcessChatAlreadyCreated();
 	}
