@@ -648,8 +648,7 @@ body .ui-panelgrid tbody tr.ui-widget-content {
 }
 
 .ui-panel .ui-panel-titlebar {
-	padding: .3em .3em .3em .5em !important;
-	margin-top: -.15em;
+  padding: .3em .3em .3em .5em !important;
 }
 
 /* Select one list box */
@@ -958,23 +957,21 @@ body .ui-accordion .ui-accordion-header {
 }
 
 .ui-widget.ui-fileupload {
-	margin-top: 5px;
-}
-
-.ui-fileupload-buttonbar {
-	-webkit-transform: translateY(30%);
-	-moz-transform: translateY(30%);
-	-o-transform: translateY(30%);
-	transform: translateY(30%);
+  margin-top: 5px;
+  padding: 1em;
 }
 
 .uploading-file-message .ui-fileupload-messages {
-	text-align: left;
+  text-align: left;
 }
 
 body .ui-fileupload .ui-fileupload-buttonbar {
   background-color: $uiFileuploadButtonbarBackgroundColor !important;
   border: 1px solid $uiFileuploadButtonbarBorder;
+}
+
+.user-task-dyna-container .upload-container {
+  margin-top: 10px;
 }
 
 /* Input switch */
