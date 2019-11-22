@@ -211,7 +211,7 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 }
 
 .ui-commandlink.ui-state-disabled {
-  color: grba($commandLinkDisabledTextColor,1) !important;
+  color: rgba($commandLinkDisabledTextColor,1) !important;
   font-size: $largeFontSize;
 }
 
