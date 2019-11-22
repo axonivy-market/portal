@@ -68,7 +68,7 @@ How to use Basic template
 
 2. See the result after using Basic template for example:
 
-|basic-template|
+  |basic-template|
 
 .. _components-layout-templates-two-column-template:
 
@@ -103,7 +103,7 @@ How to use Two column template
 
 2. See the result after using Two column template for example:
 
-|two-column-template|
+  |two-column-template|
 
 .. _components-layout-templates-task-template:
 
@@ -137,7 +137,7 @@ How to use template TaskTemplate.xhtml
 
 2.  Refer to ``TaskTemplate.xhtml`` for params and template areas.
 
-|task-name-template|
+  |task-name-template|
 
 .. _components-layout-templates-iframe-task-template:
 
@@ -168,7 +168,7 @@ How to start a process/task in IFrameTaskTemplate.xhtml
 3.  Refer to ``IFrameTaskTemplate.xhtml`` for params.
 
 4.  In case you want to create your own IFrameTaskTemplate, as customizing Ivy Standard Processes, 
-implement a process with a predefined process start signature in your ivy project: ``DefaultFramePage(String relativeUrl, Number runningTaskId)``
+    implement a process with a predefined process start signature in your ivy project: ``DefaultFramePage(String relativeUrl, Number runningTaskId)``
 
 .. _components-layout-templates-default-homepage-template:
 
@@ -189,7 +189,7 @@ How to use default homepage template
 Create a new HTML User Dialog and then use ``ui:composition`` to define
 template.
 
-  .. code-block:: html
+.. code-block:: html
 
       <ui:composition template="/layouts/DefaultHomePageTemplate.xhtml">
 
@@ -328,7 +328,7 @@ footer section to override:
 
 E.g. Initialize ``ResponsiveToolkit`` for TaskList page.
 
-  .. code-block:: html
+.. code-block:: html
   
       <ui:define name="footer">
       <script type="text/javascript">

@@ -82,6 +82,9 @@ Setup multi portals
          Admin. Configure 1 server then configure applications: App1,
          App2, App3...
 
+Open Admin Settings
+"""""""""""""""""""
+
 Open ``Admin Settings`` by selecting the item in ``UserMenu`` on the
 topbar, if your page using layout of ``PortalTemplate`` .
 
@@ -96,6 +99,7 @@ topbar, if your page using layout of ``PortalTemplate`` .
 .. tip:: To be able to open Admin Settings dialog, user needs to have role AXONIVY_PORTAL_ADMIN.
 
 Add a new application
+"""""""""""""""""""""
 
 Choose ``Application`` tab on ``Admin Settings`` dialog and click on
 ``New`` button to add new application. Here you can choose application
