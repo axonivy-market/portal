@@ -26,87 +26,12 @@
  * }
  *
  */
- html {
-  overflow-x: auto;
-  overflow-y: hidden;
-  height: 100%;
-  border: none;
-  padding: 0px;
-  margin: 0px;
- }
- body {
-  overflow: hidden;
-  width: auto;
-  height: auto;
-  margin: 0px;
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
- }
-
-input::-ms-clear {
-  display: none;
-}
-
-/* =================== TABLE ====================== */
-.ui-treetable table {
-  border-collapse: separate !important;
-  border: none;
-  border-spacing: 0;
-}
-
-.ui-treetable table thead tr th {
-  border: none;
-  padding-left: 10px;
-  padding-right: 10px;
-  height: 25px;
-  text-align: left;
-}
-
-/* =================== END TABLE ====================== */
-
-/* =================== DIALOG ====================== */
-.ui-widget.ui-dialog .ui-dialog-content {
-  padding: 1rem 2rem 2rem;
-}
-.ui-dialog-footer.u-dialog-footer.u-email-dialog-footer {
-  margin-top: 35px !important;
-}
-
-/* =================== END DIALOG ====================== */
 
 /* =================== INPLACE EDITOR ===================== */
 .ui-inplace-editor {
   display: inline-block;
 }
 /* =================== END INPLACE EDITOR ================= */
-
-/* =================== DROPDOWN =========================== */
-body .ui-selectonemenu-panel .ui-selectonemenu-item.ui-state-hover,
-body .ui-selectonemenu-panel .ui-selectonemenu-item.ui-state-focus {
-  outline: none;
-}
-
-body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-close.ui-state-hover {
-  border-radius: 50%;
-}
-.ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-filter-container .ui-icon-search,
-.ui-picklist .ui-picklist-filter-container .ui-icon,
-.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon {
-    overflow: visible;
-    text-indent: 5px;
-}
-
-.ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-filter-container .ui-icon:before,
-.ui-picklist .ui-picklist-filter-container .ui-icon:before {
-    -webkit-font-smoothing: antialiased;
-    content: "\f002";
-    position: absolute;
-}
-
-/* =================== END DROPDOWN ====================== */
 
 /* =================== AUTOCOMPLETE ====================== */
 .ui-autocomplete-panel .ui-autocomplete-items.ui-autocomplete-table tr,
@@ -3383,30 +3308,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   text-align: right;
   padding: 10px;
 }
-
 /********************************** END EXCEPTION DIALOG **********************************/
-/* =================== LOGIN ====================== */
-.login-body .login-panel {
-  height: auto;
-}
-
-.login-body .login-panel .login-panel-content {
-  padding: 20px 100px;
-}
-
-@media (max-width: 640px) {
-  .login-body .login-panel .login-panel-content {
-      padding: 50px 25px;
-  }
-}
-
-/* --------------------------- */
-.topbar-container {
-  position: relative;
-  padding-top: 15px;
-  z-index: 100;
-  height: 65px;
-}
 
 @media (max-width: 1365px) {
   .logo-container{
@@ -3887,11 +3789,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   display: none;
 }
 
-.ui-panel .ui-panel-titlebar {
-	padding: .3em .3em .3em .5em !important;
-	margin-top: -.15em;
-}
-
 /*********** SEARCH ICON ***********/
 .search-icon-name-container {
   width: 100%;
@@ -3921,11 +3818,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 
 /* =================== RESPONSIVE GRID ====================== */
-
-_:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlink {
-	display: inline-block;
-}
-
 .case-related-command-link {
   margin: auto !important;
   display: inline-block;
@@ -3994,14 +3886,6 @@ _:-ms-fullscreen, :root .content-link-history {
 /* =================== END ADD CHAT ============================= */
 
 /* ======================= MESSAGES ========================= */
-.ui-messages-info-icon,
-.ui-messages-warn-icon,
-.ui-messages-error-icon,
-.ui-messages-fatal-icon {
-	width: 35px !important;
-	height: 35px !important;
-	top: -7px !important;
-}
 .ui-widget.ui-fileupload {
 	margin-top: 5px;
 }
@@ -4207,11 +4091,7 @@ _:-ms-fullscreen, :root .content-link-history {
     }
 }
 /*  =================== END TASK TEMPLATE PAGE ========================= */
-/*====================FIX FOR PRIMEFACES 7 STYLE========================*/
-span.ui-inputnumber.ui-widget.ui-state-error {
-	border: 0 !important;
-}
-/*====================END FIX FOR PRIMEFACES 7 STYLE========================*/
+
 .upload-container {
   display: -webkit-box;
   display: -moz-box;
@@ -4227,53 +4107,6 @@ span.ui-inputnumber.ui-widget.ui-state-error {
 /*====================FIX FOR SERENITY 2.0 STYLE========================*/
 .filter-add-panel .ui-scrollpanel {
   overflow: hidden !important;
-}
-
-/* Refactor from base.css*/
-[data-icon]:before {
-  content: attr(data-icon);
-  text-transform: none !important;
-  speak: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-[class^="tmi-"]:before,
-[class*=" tmi-"]:before {
-  text-transform: none !important;
-  speak: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.tmi-box-arrow-left:before {
-  content: "\e03c";
-}
-.tmi-box-arrow-right:before {
-  content: "\e03d";
-}
-.tmi-box-arrow-toinside:before {
-  content: "\e03e";
-}
-.tmi-chevorn-right:before {
-  content: "\44";
-}
-
-.tmi-ellipsis-h:before,
-.tmi-ellipsis-v:before {
-  content: "\e00f";
-}
-
-.tmi-ellipsis-v {
-  -ms-transform: rotate(90deg);
-  -webkit-transform: rotate(90deg);
-  transform: rotate(90deg);
-}
-
-a.ui-widget:focus {
-  text-decoration: none;
-  outline: none;
 }
 
 .favorite-process-title {
