@@ -58,7 +58,8 @@ TaskA.NAM=Navigate back example
 TaskA.PRI=2
 TaskA.ROL=Everybody
 TaskA.SKIP_TASK_LIST=false
-TaskA.TYPE=0' #txt
+TaskA.TYPE=0
+TaskA.customFields.STRING.embedInFrame="false"' #txt
 Cn0 f3 template "" #txt
 Cn0 f3 337 49 30 30 0 16 #rect
 Cn0 f3 @|TaskSwitchSimpleIcon #fIcon

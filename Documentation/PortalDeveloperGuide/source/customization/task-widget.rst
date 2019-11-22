@@ -271,7 +271,6 @@ You can refer to ``PortalExamples`` project for examples
 .. |responsive-task-list-customization| image:: images/task-widget/responsive-task-list-customization.png
 .. |responsive-task-list-hide-column| image:: images/task-widget/responsive-task-list-hide-column.png
 .. |task-columns-configuration| image:: images/task-widget/task-columns-configuration.png
-.. |task-details-responsiveness| image:: images/task-widget/task-details-responsiveness.png
 .. |task-list| image:: images/task-widget/task-list.png
 .. |task-sort-override| image:: images/task-widget/task-sort-override.png
 

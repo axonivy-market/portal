@@ -245,10 +245,6 @@
   font-weight: $chartInfoLabelFontWeight;
 }
 
-.statistic-actions-panel {
-  border-bottom: 1px solid $statisticActionPanelBorder;
-}
-
 .dashboard-chart-panel .card,
 .edit-statistic-container .card,
 .statistic-widget.compact-mode .statistic-carousel.card {
@@ -259,6 +255,16 @@
 
 .statistic-filter-accordion-panel .ui-accordion-content {
   border: solid 1px $statisticFilterAccordionPanelBorder !important;
+}
+
+.statistic-widget-container, .widget.analysis-task-widget {
+  .widget-header-main {
+    border-bottom: none !important;
+  }
+
+  .widget-header {
+    border-bottom: 1px solid rgba($black, 0.1);
+  }
 }
 
 /*Style For Buttons --------------------------------------------------------------------------------------*/
@@ -451,6 +457,10 @@
 
 .ui-button.ui-widget.action-button.ui-state-hover {
    background-color: $caseTaskActionButtonHoveredBackgroundColor !important;
+}
+
+.case-detail-title-header-container, .task-detail-header {
+  border-bottom: 1px solid rgba($black, 0.1);
 }
 
 /*Style For Task Detail --------------------------------------------------------------------------------------*/
