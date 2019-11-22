@@ -918,8 +918,9 @@ span.task-details-document-add-link {
   text-align: right;
 }
 
-.case-detail-body,
-.task-item-body-container {
+
+.layout-content.container .case-detail-body,
+.layout-content.container .task-item-body-container {
   padding-bottom: 60px !important;
   margin-bottom: 60px !important; 
 }
