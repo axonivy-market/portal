@@ -8,6 +8,7 @@ html {
   border: none;
   padding: 0px;
   margin: 0px;
+  font-size: $defaultFontSize;
 }
 
 body {
@@ -20,6 +21,12 @@ body {
   bottom: 0px;
   left: 0px;
   right: 0px;
+  font-family: $portalFontFamily;
+  font-style: $defaultFontStyle;
+  font-weight: $defaultFontWeight;
+  background: $bodyBackgroundColor;
+  font-size: $defaultBodyFontSize;
+  color: $primaryTextColor;
 }
  
 body .ui-state-active, body .ui-state-highlight {
@@ -91,6 +98,13 @@ body .ui-icon {
 }
 
 [data-icon]:before {
+  font-family: $dataIconFontFamily !important;
+  font-style: $dataIconFontStyle !important;
+  font-weight: $dataIconFontWeight !important;
+  font-variant: $dataIconFontVariant !important;
+}
+
+[data-icon]:before {
   content: attr(data-icon);
   text-transform: none !important;
   speak: none;
@@ -98,8 +112,13 @@ body .ui-icon {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 [class^="tmi-"]:before,
 [class*=" tmi-"]:before {
+  font-family: $trueMinimalisticIconFontFamily !important;
+  font-style: $trueMinimalisticIconFontStyle !important;
+  font-weight: $trueMinimalisticIconFontWeight !important;
+  font-variant: $trueMinimalisticIconFontVariant !important;
   text-transform: none !important;
   speak: none;
   line-height: 1;
