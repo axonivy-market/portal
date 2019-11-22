@@ -3,35 +3,6 @@
 @import '../sass/ivy/customization';
 @import '../sass/theme/_theme';
 
-
-html {
-  font-size: $defaultFontSize;
-}
-
-body {
-  font-family: $portalFontFamily;
-  font-style: $defaultFontStyle;
-  font-weight: $defaultFontWeight;
-  background: $bodyBackgroundColor;
-  font-size: $defaultBodyFontSize;
-  color: $primaryTextColor;
-}
-
-[data-icon]:before {
-  font-family: $dataIconFontFamily !important;
-  font-style: $dataIconFontStyle !important;
-  font-weight: $dataIconFontWeight !important;
-  font-variant: $dataIconFontVariant !important;
-}
-
-[class^="tmi-"]:before,
-[class*=" tmi-"]:before {
-  font-family: $trueMinimalisticIconFontFamily !important;
-  font-style: $trueMinimalisticIconFontStyle !important;
-  font-weight: $trueMinimalisticIconFontWeight !important;
-  font-variant: $trueMinimalisticIconFontVariant !important;
-}
-
 /*Style For Logos --------------------------------------------------------------------------------------*/
 .portal-home-logo {
     height: $homeLogoHeight !important;
