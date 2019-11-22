@@ -62,9 +62,6 @@ Following these steps to have your own Portal Home:
 
    *In case of multi Portal:* refer to :ref:`Setup multi portals <settings-admin-settings>` to setup.
 
-..
-
-   .. note:: Currently, responsive custom home page is not supported.
 
 .. _customization-portal-home-advanced-usage:
 

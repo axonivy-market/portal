@@ -145,6 +145,11 @@ public class TaskTemplatePage extends TemplatePage {
     return new HomePage();
   }
   
+  public void clickTaskActionMenu() {
+	    String taskAction = "button[id$='horizontal-task-actions']";
+	    clickByCssSelector(taskAction);
+}
+  
   public void clickChatGroup() {
     String chatGroup = "a[id$='chat-group']";
     clickByCssSelector(chatGroup);

@@ -14,7 +14,7 @@ New and Noteworthy
 .. _introduction-new-and-note-worthy-portal-group-chat:
 
 Portal Group Chat
------------------
+^^^^^^^^^^^^^^^^^
 
 |portal-group-chat|
 
@@ -33,7 +33,7 @@ Portal Group Chat
 .. _introduction-new-and-note-worthy-data-provider-express:
 
 Data Provider for Express
--------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 |data-provider-express|
 
@@ -45,7 +45,7 @@ Data Provider for Express
 .. _introduction-new-and-note-worthy-announcement-portal:
 
 Announcements in Portal
------------------------
+^^^^^^^^^^^^^^^^^^^^^^^
 
 |announcement-portal|
 
@@ -57,7 +57,7 @@ Announcements in Portal
 .. _introduction-new-and-note-worthy-further-improvement:
 
 Further Improvements
---------------------
+^^^^^^^^^^^^^^^^^^^^
 
 -  Enhance Filter Selection in Task and Case List
 
