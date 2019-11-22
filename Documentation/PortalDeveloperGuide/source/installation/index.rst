@@ -202,11 +202,22 @@ https://www.npmjs.com/package/less2sass.
 
 .. _installation-migration-notes-8-0-0-task-template:
 
+
+
 How to migrate TaskTemplate
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 There are some changes in TaskTemplate. If you want to keep the old one, in your places using it, change to ``DeprecatedTaskTemplate7.xhtml``.
 If you want to use the new one, refer to ``TaskTemplate.xhtml`` for parameters and template areas.
+
+.. _installation-migration-notes-8-0-0-basic-template:
+
+
+How to migrate BasicTemplate
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+There are some changes in BasicTemplate. In the past, if you overwritten BasicTemplate ``footer`` section and copied responsive js in old BasicTemplate,
+please copy the latest js in ``footer`` section of BasicTemplate.
 
 .. _installation-migration-notes-8-0-0-task-body:
 
