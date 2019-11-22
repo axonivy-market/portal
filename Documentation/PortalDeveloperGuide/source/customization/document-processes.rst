@@ -31,7 +31,7 @@ Customization
 4. Override 4 ``Document sub processes`` described in table below to
    customize document functions.
 
-.. table:: Document sub processes
+.. table::
 
    +-----------------------------------+-----------------------------------+
    | Sub process                       | Description                       |
