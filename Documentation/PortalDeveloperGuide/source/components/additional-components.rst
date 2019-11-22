@@ -60,7 +60,7 @@ to configure the scroll bar of the list.
 .. code-block:: html
 
 			<p:dialog widgetVar="process-history-dialog" id="process-history-dialog" width="800" height="500" header="Process history of Resource A247" onShow="processHistory.setup();">
-			<ic:ch.ivy.addon.portal.component.ProcessHistory businessEntityId="resourceA247" chunkSize="6" scrollHeight="400" />
+			  <ic:ch.ivy.addon.portal.component.ProcessHistory businessEntityId="resourceA247" chunkSize="6" scrollHeight="400" />
 			</p:dialog>
 
 .. important:: 
@@ -174,19 +174,21 @@ Global growl
 .. _components-additional-component-global-growl-introduction:
 
 Introduction
-------------
+^^^^^^^^^^^^
 
 This component is a global growl introduced in BasicTemplate, you can
 use it to display your messages in Portal.
 
-|global-growl|
+.. code-block:: html
+
+    <p:growl id="portal-global-growl" widgetVar="portal-global-growl" for="portal-global-growl-message" />
 
 |example-global-growl|
 
 .. _components-additional-component-global-growl-growl-after-finish-task:
 
 Display growl after finish task
--------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 After a task is finished, growl message appears as default via the
 ``DISPLAY_MESSAGE_AFTER_FINISH_TASK`` Portal variable.
@@ -223,11 +225,6 @@ It's enough if you want to turn it off. To override the message, add
 Document table
 --------------
 
-.. _components-additional-component-document-table-introduction:
-
-Introduction
-------------
-
 This component is case document table with the features: upload,
 download and delete.
 
@@ -244,7 +241,6 @@ project
 .. |set-business-entity-id-sub-process| image:: images/additional-component/set-business-entity-id-sub-process.png
 .. |task-analysis| image:: images/additional-component/task-analysis.png
 .. |process-chain| image:: images/additional-component/process-chain.png
-.. |global-growl| image:: images/additional-component/global-growl.png
 .. |example-global-growl| image:: images/additional-component/example-global-growl.png
 .. |document-table| image:: images/additional-component/document-table.png
 
