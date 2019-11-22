@@ -10,6 +10,7 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.SearchResultPage;
 import portal.guitest.page.TaskTemplatePage;
+import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.TemplatePage.GlobalSearch;
 
 public class SearchProcessTest extends BaseTest {
@@ -29,14 +30,14 @@ public class SearchProcessTest extends BaseTest {
     GlobalSearch globalSearch = homePage.getGlobalSearch();
     assertTrue(globalSearch.isDisplayed());
 
-    String processName = "Employee Leave Request";
+    String processName = "Appraisal";
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(processName);
     assertEquals(processName, searchResultPage.getProcessResult(processName));
-    assertTrue(searchResultPage.isProcessGroupDisplay("E"));
+    assertTrue(searchResultPage.isProcessGroupDisplay("A"));
     
     searchResultPage.startProcess(processName);
-    TaskTemplatePage taskPage = new TaskTemplatePage();
-    assertTrue(taskPage.getPageUrl().contains("ProcessLeaves2"));
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    assertTrue(taskWidgetPage.getNameOfTaskAt(0).contains("Request form"));
   }
   
   @Test
