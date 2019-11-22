@@ -309,7 +309,7 @@ public class TaskWidgetPage extends TemplatePage {
    * @return task name
    */
   public String getNameOfTaskAt(int index) {
-    WebElement name = findElementByCssSelector(ID_END + index + ":task-item:task-name-component:task-name']");
+    WebElement name = findElementByCssSelector(ID_END + index + ":task-item:task-start-item-view:task-start-task-name']");
     return name.getText();
   }
 

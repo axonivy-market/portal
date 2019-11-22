@@ -67,7 +67,10 @@ public class PortalPermissionTest extends BaseTest{
     createTestingTasks();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.openTaskList();
-    Assert.assertFalse(taskWidgetPage.isMoreButtonDisplayed(0));
+    Assert.assertFalse(taskWidgetPage.isTaskResetDisplayed());
+    Assert.assertFalse(taskWidgetPage.isTaskDelegateDisplayed());
+    Assert.assertFalse(taskWidgetPage.isTaskReserverDisplayed());
+    Assert.assertFalse(taskWidgetPage.isAdhocSideStepDisplayed());
     
     grantTaskActionsPermissions();
     taskWidgetPage.openTaskList();
