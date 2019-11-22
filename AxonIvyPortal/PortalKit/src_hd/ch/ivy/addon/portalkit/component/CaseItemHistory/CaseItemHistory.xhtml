@@ -20,7 +20,7 @@
       <div class="case-history-button-container ui-g-8 ui-sm-12 u-padding-0">
         <h:panelGroup layout="block" styleClass="case-details-note-add">
           <p:link id="show-more-note-link" disabled="#{empty data.histories}"
-            styleClass="case-details-document-add-link note-show-more-link ui-commandlink" target="_blank"
+            styleClass="case-details-document-add-link note-show-more-link" target="_blank"
             href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case)}"
             rendered="#{caseTaskNoteHistoryBean.showMoreNote}">
             <span class="fa fa-external-link-square note-show-more-link-icon" />

@@ -1,357 +1,468 @@
+/* Defined colors */
+$red: #ff0000 !default;
+$white: #fff !default;
+$black: #000 !default;
+
+$grey1: #808080 !default;
+$grey2: #e0e0e0 !default;
+$grey3: #d8d8d8 !default;
+$grey4: #f0f0f0 !default;
+
+/*Consolidate grey*/
+$basicGrey: #f9fafa !default;
+$paleGrey: #f4f5f5 !default;
+$lightGrey: #d9dada !default; 
+$mediumGrey: #9c9d9d !default;
+$darkGrey: #575656 !default;
+
+/*Consolidate green*/
+$primaryGreen: #c7d426 !default;
+$primaryLightGreen: #d7e52c !default;
+
 /* Theme Colors */
-$red: #ff0000;
-$white: #fff;
-$black: #000000;
-$grey1: #808080;
-$grey2: #e0e0e0;
-$grey3: #d8d8d8;
-$grey4: #f0f0f0;
+$primaryColor: $primaryGreen !default;
+$primaryDarkColor: $primaryGreen !default;
+$primaryLightColor: $primaryLightGreen !default;
+$primaryLightestColor: $white !default;
+$primaryTextColor: $black !default;
+$accentColor: $primaryGreen !default;
+$accentDarkColor: $primaryDarkColor !default;
+$accentLightColor: $primaryLightColor !default;
+$accentTextColor: $primaryLightGreen !default;
 
-$primaryColor: #c7d426;
-$primaryDarkColor: #97ae04;
-$primaryLightColor: #dcf91f;
-$primaryLightestColor: $white;
-$primaryTextColor: #212121;
-$accentColor: $primaryColor;
-$accentDarkColor: $primaryDarkColor;
-$accentLightColor: $primaryLightColor;
-$accentTextColor: #ecfc82;
-$headerPadding: 14px 1em;
-
-$borderColor: rgba($black, 0.1);
-$bodyBackgroundColor: $white;
-
-$processChainMenuColor: $primaryColor;
-
-$loginLogoHeight: 50px;
-$homeLogoHeight: 42px;
+/* Consolidate green*/
+$caseTaskStateDoneOrResumeGreen: #4eb41c !default;
+$borderColor: $lightGrey !default;
+$bodyBackgroundColor: $white !default;
+$processChainMenuColor: $primaryColor !default;
 
 /* Default Portal styles */
-$defaultFontSize: 10px;
-$defaultBodyFontSize: 1.4rem;
-$largeFontSize: 1.4rem; // font size for header,title, groups, menu
-$smallFontSize: 1.2rem; // font size for text, label, input
-$headerFontSize: 2rem; // dialog header, chat header, chart header
-$portalFontFamily: "Roboto";
-$defaultFontStyle: normal;
-$defaultFontWeight: 400;
-$inplaceEditIconFontSize: 1.8rem;
+$defaultFontSize: 10px !default;
+$defaultBodyFontSize: 1.4rem !default;
+$largeFontSize: 1.4rem !default; // font size for header,title, groups, menu
+$smallFontSize: 1.2rem !default; // font size for text, label, input
+$headerFontSize: 2rem !default; // dialog header, chat header, chart header
+$portalFontFamily: "Roboto" !default;
+$defaultFontStyle: normal !default;
+$defaultFontWeight: 400 !default;
+$inplaceEditIconFontSize: 1.8rem !default;
+$loginLogoHeight: 50px !default;
+$homeLogoHeight: 42px !default;
 
 /* 3 colors of header bar */
-$firstHeaderBarColor: $primaryColor;
-$secondHeaderBarColor: $primaryColor;
-$thirdHeaderBarColor: $primaryColor;
+$firstHeaderBarColor: $primaryColor !default;
+$secondHeaderBarColor: $primaryColor !default;
+$thirdHeaderBarColor: $primaryColor !default;
 
 /* Task priority color */
-$taskPriorityLowColor: #d4d4d4;
-$taskPriorityNormalColor: #96dc82;
-$taskPriorityHighColor: #ffc0c0;
-$taskPriorityExceptionColor: #ff5a5a;
+$taskPriorityLowColor: #d4d4d4 !default;
+$taskPriorityNormalColor: #96dc82 !default;
+$taskPriorityHighColor: #ffc0c0 !default;
+$taskPriorityExceptionColor: #ff5a5a !default;
 
 /* Task state color */
-$taskStateOpenColor: #078cff;
-$taskStateInProgressColor: #4eb41c;
-$taskStateDoneColor: #4eb41c;
-$taskStateZombieDestroyedColor: #ff6464;
+$taskStateOpenColor: #078cff !default;
+$taskStateInProgressColor: $caseTaskStateDoneOrResumeGreen !default;
+$taskStateDoneColor: $caseTaskStateDoneOrResumeGreen !default;
+$taskStateReservedColor: rgba(black, 0.4) !default;
+$taskStateSystemColor: rgba(black, 0.4) !default;
+$taskStateZombieDestroyedColor: #ff6464 !default;
 
 /* Color and border radius of Portal button e.g Add, Close, New, Save, OK .. */
-$actionButtonColor: $primaryColor;
-$cancelButtonBackgroundColor: #d3d3d3;
-$actionButtonBorderRadius: 0px;
+$cancelButtonBackgroundColor: $lightGrey !default;
+$actionButtonBorderRadius: 0px !default;
 
 /* Color and border radius of context button, 
 it only affects when button has attribute styleClass="context-button" */
-$contextButtonColor: #7c7c7c;
-$contextButtonBorderRadius: $actionButtonBorderRadius;
+$contextButtonBorderRadius: $actionButtonBorderRadius !default;
+$contextButtonBackgroundColor: $lightGrey !default;
+$contextButtonStateHoverOrFocusBackgroundColor: $mediumGrey !default;
 
-/* Table color */
-$dataTableRowBackgroundColorEven: $white;
-$dataTableRowBackgroundColorOdd: rgba(247, 247, 247, 1);
-$dataTableRowHeaderColor: $black;
-$dataTableRowHeaderBgColor: rgba(236, 236, 236, 1);
-$dataTableHeaderBorderColor: rgba(244, 244, 244, 1);
-$dataTableCellBorderColor: $white;
+/* Link */
+$commandLinkTextColor: $mediumGrey !default;
+$commandLinkHoveredTextColor: $darkGrey !default;
+$commandLinkActiveTextColor: $darkGrey !default;
+$commandLinkDisabledTextColor: $lightGrey !default;
 
 /* Fieldset */
-$fieldSetTogglerColor: $primaryTextColor;
-$fieldSetLegendHoverColor: $white; 
-$fieldSetTogglerBackgroundColor: #eee;
-$fieldSetNoBorderColor: transparent;
+$fieldSetTogglerColor: $primaryTextColor !default;
+$fieldSetLegendHoverColor: $white !default; 
+$fieldSetTogglerBackgroundColor: $paleGrey !default;
+$fieldSetNoBorderColor: transparent !default;
 
 /* Widget header */
-$widgetHeaderMainBorderBottomColor: $borderColor;
-$widgetTaskListHeaderBorderBottomColor: $borderColor;
-$widgetSortMenuBorderBottomColor: $borderColor;
-$widgetHeaderInputFieldBackgroundColor: transparent;
-$widgetHeaderInputHoverBackgroundColor: transparent;
+$widgetHeaderMainBorderBottomColor: $borderColor !default;
+$widgetTaskListHeaderBorderBottomColor: $borderColor !default;
+$widgetSortMenuBorderBottomColor: $borderColor !default;
+$widgetHeaderInputFieldBackgroundColor: transparent !default;
+$widgetHeaderInputHoverBackgroundColor: transparent !default;
 
 /* Announcement panel color */
-$announcementBackgroundColor: #ffff80;
-$announcementBorderColor: $red;
+$announcementBackgroundColor: #ffff80 !default;
+$announcementBorderColor: $red !default;
 
 /* Process chain */
-$lineWaitingStepBackgroundColor: $grey2;
-$circleStepNumberColor: $primaryTextColor;
-$circleHorizontalStepNumberContainerBorderTopColor: $primaryColor;
-$circleHorizontalStepNumberContainerBorderTop: $grey2;
-$circleHorizontalLastStepNumberContainerBorderTop: $primaryColor;
-$circleHorizontalWaitingStepNumberContainerBackgroundColor: transparent;
-$circleStepContainerBorder: transparent;
-$circleVerticalStepNumberContainerBorder: $grey2;
-$circleVerticalStepContainerBackgroundColor: transparent;
-$currentLineHorizontalStepTitleFontWeight: bold;
-$currentLineVerticalStepTitleFontWeight: bold;
-$currentCircleHorizontalStepTitleFontWeight: bold;
-$currentCircleVerticalStepTitleFontWeight: bold;
+$lineWaitingStepBackgroundColor: $lightGrey !default;
+$circleStepNumberColor: $primaryTextColor !default;
+$circleHorizontalStepNumberContainerBorderTopColor: $primaryColor !default;
+$circleHorizontalStepNumberContainerBorderTop: $lightGrey !default;
+$circleHorizontalLastStepNumberContainerBorderTop: $primaryColor !default;
+$circleHorizontalWaitingStepNumberContainerBackgroundColor: transparent !default;
+$circleStepContainerBorder: transparent !default;
+$circleVerticalStepNumberContainerBorder: $lightGrey !default;
+$circleVerticalStepContainerBackgroundColor: transparent !default;
+$currentLineHorizontalStepTitleFontWeight: bold !default;
+$currentLineVerticalStepTitleFontWeight: bold !default;
+$currentCircleHorizontalStepTitleFontWeight: bold !default;
+$currentCircleVerticalStepTitleFontWeight: bold !default;
 
 /* Statistic widget */
-$statisticPanelHeader: $white;
-$statisticPanelHeaderBorder: $white;
-$carouselItemPanelGridBorder: $grey2;
-$statisticActionPanelBorder: $borderColor;
-$statisticFilterAccordionPanelBorder: $grey2;
-$dashboardChartPanelChartNameFontWeight: 400;
-$chartInfoHeaderFontWeight: bold;
-$chartInfoLabelFontWeight: bold;
-$chartNameFontSize: $largeFontSize;
-$chartFilterHeaderFontSize: $headerFontSize;
-$chartContainerAddLinkFontSize: $smallFontSize;
-$dashboardChartNameFontSize: $headerFontSize;
+$statisticPanelHeader: $white !default;
+$statisticPanelHeaderBorder: $white !default;
+$statisticActionPanelBorder: $borderColor !default;
+$statisticFilterAccordionPanelBorder: $lightGrey !default;
+$dashboardChartPanelChartNameFontWeight: 400 !default;
+$chartInfoHeaderFontWeight: bold !default;
+$chartInfoLabelFontWeight: bold !default;
+$chartNameFontSize: $largeFontSize !default;
+$chartFilterHeaderFontSize: $headerFontSize !default;
+$chartContainerAddLinkFontSize: $smallFontSize !default;
+$dashboardChartNameFontSize: $headerFontSize !default;
+$statisticCarouselHeaderButtonHoverColor: $commandLinkHoveredTextColor !default;
+$statisticCarouselHeaderButtonColor: $commandLinkTextColor !default;
+$statisticCarouselHeaderColor: $darkGrey !default;
+$statisticCarouselCardBoxShadowColor: black !default;
 
 /* Start Menu Item */
-$menuItemCurrentApplicationBorderBottomColor: transparent;
+$menuItemCurrentApplicationBorderBottomColor: transparent !default;
 
 /* Submenu Item */
-$subMenuItemLinkHoverBackgroundColor: transparent;
-$subMenuItemLinkBackgroundColor: transparent;
+$subMenuItemLinkHoverBackgroundColor: transparent !default;
+$subMenuItemLinkBackgroundColor: transparent !default;
+$subMenuBackgroundColor: rgba($white, 0.6) !default;
+$subMenuItemLinkHoveredBackgroundColor: $lightGrey !default;
 
 /* Filter Widget */
-$advancedFilterErrorColor: $red;
-$widgetHeaderFilterColor: $black;
-$widgetAdvancedFilterBorder: transparent;
-$widgetAdvancedFilterHoverBorder: $grey3;
-$widgetFilterSelectionContainerBorder: transparent;
-$widgetAdvancedFilterCommandStateFocusBackgroundColor: none;
-$widgetAdvancedFilterOverlayPanelFooter: #eaeaea;
-$widgetAdvancedFilterCommandBackgroundColor: none;
-$widgetAdvancedFilterBackgroundColor: none;
+$advancedFilterErrorColor: $red !default;
+$widgetHeaderFilterColor: $primaryTextColor !default;
+$widgetAdvancedFilterBorder: transparent !default;
+$widgetAdvancedFilterHoverBorder: $lightGrey !default;
+$widgetFilterSelectionContainerBorder: transparent !default;
+$widgetAdvancedFilterCommandStateFocusBackgroundColor: none !default;
+$widgetAdvancedFilterOverlayPanelFooter: $lightGrey !default;
+$widgetAdvancedFilterCommandBackgroundColor: none !default;
+$widgetAdvancedFilterBackgroundColor: none !default;
+$widgetAdvancedFilterIconColor: rgba($mediumGrey, 0.5) !default; 
+$widgetAdvancedFilterHoveredBackroundColor: $paleGrey !default;
+$filterNameLabelColor: $mediumGrey !default;
+$filterSelectionContainerGroupBorderColor: $mediumGrey !default;
 
 /* Process */
-$processNavigatorItemColor: $black;
-$processStartListItemHoverBackgroundColor: $white;
-$processHistoryColumnHeaderIsSelectedColor: $black;
-$processHistoryMessageLabelColor: $black;
-$processStartListItemColor: $black;
-$processHeaderTitleContainerBorderBottom: $borderColor;
-$processNavigatorBorder: $borderColor;
-$processNavigatorItemSelectedBorder: $primaryColor;
-$processHistoryColumnHeaderBorder: $borderColor;
-$processHistoryListDataScrollerBackgroundColor: transparent;
-$selectedProcessNavItemFontWeight: bold;
-$processStartListItemNameFontWeight: 400;
+$processNavigatorItemColor: $primaryTextColor !default;
+$processStartListItemHoverBackgroundColor: $white !default;
+$processHistoryColumnHeaderIsSelectedColor: $black !default;
+$processHistoryMessageLabelColor: $black !default;
+$processStartListItemColor: $primaryTextColor !default;
+$processHeaderTitleContainerBorderBottom: $borderColor !default;
+$processNavigatorBorder: $borderColor !default;
+$processNavigatorItemSelectedBorder: $primaryColor !default;
+$processHistoryColumnHeaderBorder: $borderColor !default;
+$processHistoryListDataScrollerBackgroundColor: transparent !default;
+$processOrderListItemBackgroundColor: $paleGrey !default;
+$selectedProcessNavItemFontWeight: bold !default;
+$processStartListItemNameFontWeight: 400 !default;
+$processNavItemDisableColor: rgba($primaryTextColor, 0.3) !default;
+$processOrderItemHoverBoxShadowColor: black !default;
+$hoveredProcessStartListItemIConColor: $primaryColor !default;
 
 /* Case Detail */
-$caseRelatedTaskColor: $primaryTextColor;
-$caseDetailPaginatorColor: $primaryTextColor;
-$caseRelatedTaskContentBorder: $grey3;
-$caseDocumentUploadBorder: #cccccc;
-$userDefinedFilterContainerHoverFontWeight: bold;
-$caseDetailNameInputFontWeight: bold;
-$additionalCaseDetailLinkFontWeight: 400;
-$detailsDocumentAddLinkFontWeight: 400;
-$caseDetailHeaderFontWeight: bold;
-$historyButtonContainerFontWeight: bold;
+$caseRelatedTaskColor: $primaryTextColor !default;
+$caseRelatedTaskHoveredColor: $commandLinkHoveredTextColor !default;
+$caseDetailPaginatorColor: $primaryTextColor !default;
+$caseRelatedTaskContentBorder: $lightGrey !default;
+$caseDocumentUploadBorder:  $lightGrey !default;
+$userDefinedFilterContainerHoverFontWeight: normal !default;
+$caseDetailNameInputFontWeight: bold !default;
+$additionalCaseDetailLinkFontWeight: 400 !default;
+$detailsDocumentAddLinkFontWeight: 400 !default;
+$caseDetailHeaderFontWeight: bold !default;
+$historyButtonContainerFontWeight: bold !default;
+$caseDetailPaginatorHeaderCornerTopBackgroundColor: rgba($lightGrey,0.5) !default;
+$caseDetailPaginatorHoveredButtonBackgroundColor: rgba($lightGrey,0.5) !default;
+
+/* Case List */
+$caseOddRowBackgroundColor: $paleGrey !default;
 
 /* Case Item */
-$historyNodeColor: $primaryTextColor;
-$historyNoteBorder: $grey3;
-$caseTaskDocumentNameColor: $primaryTextColor;
-$caseListItemHoverBackgroundColor: #e8e9ef;
-$caseWidgetColumnHeaderIsSelectedColor: $black;
-$caseItemActionStepsItemHoverBackgroundColor: #e8e9ef;
-$caseActionStepsContentsBackgroundColor: $white;
-$caseStateInProgressColor: rgba(7, 140, 255, 1);
-$caseStateDoneColor: rgba(78, 180, 28, 1);
-$caseWidgetTopHeaderBorderBottom: $borderColor;
-$caseWidgetColumnHeaderBorderBottom: $borderColor;
-$caseListDataScrollerContentBackgroundColor: transparent;
-$caseHeaderActionCellButtonBackgroundColor: transparent;
-$caseItemActionStepsFontWeight: bold;
+$historyNoteColor: $primaryTextColor !default;
+$historyNoteBorder: $lightGrey !default;
+$additionalCaseDetailLinkColor: $commandLinkTextColor !default;
+$additionalCaseDetailLinkHoveredColor: $commandLinkHoveredTextColor !default;
+$noteShowMoreLinkColor: $commandLinkTextColor !default;
+$noteShowMoreLinkHoveredColor: $commandLinkHoveredTextColor !default;
+$caseTaskDocumentNameColor: $primaryTextColor !default;
+$caseWidgetColumnHeaderIsSelectedColor: $primaryTextColor !default;
+$caseItemActionStepsItemHoverBackgroundColor: $paleGrey !default;
+$caseItemActionStepsItemHoverTextColor: $commandLinkHoveredTextColor !default;
+$caseActionStepsContentsBackgroundColor: $white !default;
+$caseActionSeparatorBorderColor: rgba($mediumGrey, 0.5) !default;
+$caseStateInProgressColor: rgba(7, 140, 255, 1) !default;
+$caseStateDoneColor: $caseTaskStateDoneOrResumeGreen !default;
+$caseWidgetTopHeaderBorderBottom: $borderColor !default;
+$caseWidgetColumnHeaderBorderBottom: $borderColor !default;
+$caseListDataScrollerContentBackgroundColor: transparent !default;
+$caseHeaderActionCellButtonBackgroundColor: transparent !default;
+$headerActionActionLeftBorderColor: $mediumGrey !default;
+$caseItemActionStepsFontWeight: bold !default;
+$taskNoteLinkHoveredColor: $commandLinkHoveredTextColor !default;
+$caseListUnsortableHeaderCellTextColor: $mediumGrey !default;
+$caseListItemHoverBackgroundColor: rgba($lightGrey, 0.5) !default;
+$caseListItemBackgroundColor: rgba($white, 0.2) !default;
+$caseItemDescriptionCell: $mediumGrey !default;
+
+/* Case and Task Action Item */
+$caseTaskActionButtonHoveredBackgroundColor: transparent !default;
+$caseTaskActionButtonColor: $commandLinkTextColor !default;
 
 /* Task Widget */
-$taskFilterSelectionFormHoverBackgroundColor: #f5f5f5;
-$compactTaskStartListItemHoverBackgroundColor: #e8e9ef;
-$compactTaskStartInfoColor: $black;
-$sideStepItemHoverColor: $black;
-$sideStepItemHoverBackgroundColor: #f5f5f5;
-$taskWidgetSortMenuLinkIsSelectedColor: $black;
-$taskWidgetOverlayPanelContentBackgroundColor: $white;
-$taskWidgetLinkColor: $black;
-$taskActionHoverBackgroundColor: #f5f5f5;
-$taskFilterSeparatorBorderBottom: $borderColor;
-$taskViewContainerDataScrollerContentBackgroundColor: transparent;
-$taskOptionPanelBoxShadow: rgba(43, 59, 93, 0.6);
-$taskOptionPanelBorderTop: rgba(43, 59, 93, 0.2);
+$taskFilterSelectionFormHoverBackgroundColor: $paleGrey !default;
+$compactTaskStartListItemHoverBackgroundColor: rgba($lightGrey, 0.5) !default;
+$compactTaskStartLinkItemBackgroundColor: $paleGrey !default;
+$compactTaskStartInfoColor: $primaryTextColor !default;
+$compactTaskStartInfoIconColor: rgba($compactTaskStartInfoColor, 0.5) !default;
+$taskWidgetSortMenuLinkIsSelectedColor: $primaryTextColor !default;
+$taskWidgetOverlayPanelContentBackgroundColor: $white !default;
+$taskWidgetLinkColor: $primaryTextColor !default;
+$taskActionHoverBackgroundColor: $paleGrey !default;
+$taskActionLeftIconColor: $caseTaskActionButtonColor !default;
+$taskFilterSeparatorBorderBottom: $borderColor !default;
+$taskViewContainerDataScrollerContentBackgroundColor: transparent !default;
+$taskStartListDescriptionCell: $mediumGrey !default;
+$taskOddRowFullModeBackgroundColor: $paleGrey !default;
 
 /* Task Detail */
-$taskDetailPaginatorColor: $primaryTextColor; 
-$taskDetailActionItemHoverBackgroundColor: transparent;
-$taskDetailHeaderFontWeight: bold;
-$taskDetailSectionTitleFontWeight: bold;
-$taskStartInfoHeaderFontWeight: bold;
-$taskStartInfoTaskIdFontWeight: normal;
-$taskNameInputFontWeight: bold;
+$taskDetailPaginatorColor: $primaryTextColor !default; 
+$taskDetailPaginatorHeaderCornerTopBorderColor: $lightGrey !default;
+$taskDetailPaginatorHeaderCornerTopBackgroundColor: rgba($lightGrey, 0.5) !default;
+$taskDetailPaginatorHoveredButtonBackgroundColor: rgba($lightGrey, 0.5) !default;
+$taskDetailActionItemHoverBackgroundColor: transparent !default;
+$taskDetailHeaderFontWeight: bold !default;
+$taskDetailSectionTitleFontWeight: bold !default;
+$taskStartInfoHeaderFontWeight: bold !default;
+$taskStartInfoTaskIdFontWeight: normal !default;
+$taskNameInputFontWeight: bold !default;
+$taskHighlightedInplaceFieldBackgroundColor: $paleGrey !default;
 
 /* Task Action Item */
-$taskActionItemWidgetHeaderColor: $white;
-$taskActionItemLabelFontWeight: normal;
+$taskActionItemWidgetHeaderColor: $white !default;
+$taskActionItemLabelFontWeight: normal !default;
 
 /* Task Template */
-$taskTemplateActionButtonFocus: transparent;
-$taskTemplateTitleFontWeight: bold;
-$outputLabelTaskTemplateTitleFontWeight: 400;
+$taskTemplateActionButtonFocus: transparent !default;
+$taskTemplateTitleFontWeight: bold !default;
+$outputLabelTaskTemplateTitleFontWeight: 400 !default;
 
 /* Admin Setting */
-$adminSettingNoPermissionMessageColor: #e53935;
-$userSettingContainerLinkHoverColor: $black;
-$userSettingContainerActiveMenuBorder: rgba(43, 59, 93, 0.2);
-$userSettingContainerBoxShadow: rgba(43, 59, 93, 0.6);
-$emailSettingWidgetHeader: $black;
-$usernameShowEnvironmentInfoFontWeight: bold;
+$adminSettingNoPermissionMessageColor: #e53935 !default;
+$userSettingContainerLinkHoverColor: $commandLinkHoveredTextColor !default;
+$userSettingContainerLinkColor: $commandLinkTextColor !default;
+$userSettingContainerActiveMenuBorder: rgba(43, 59, 93, 0.2) !default;
+$userSettingContainerBoxShadow: rgba(43, 59, 93, 0.6) !default;
+$emailSettingWidgetHeader: $primaryTextColor !default;
+$usernameShowEnvironmentInfoFontWeight: bold !default;
 
-/* Absences and Debuty */
-$substitutedUserTextColor: $grey1;
+
+/* Absences and Deputy */
+$substitutedUserTextColor: $primaryTextColor !default;
+$dialogFooterButtonBoxShadowColor: black !default;
 
 /* Awesome Icon Selection */
-$linkChangeAwesomeIconColor: $black;
-$contentLinkChangeAwesomeIconColor: #337ab7;
-$selectAwesomeIconButtonFontWeight: bold;
+$linkChangeAwesomeIconColor: $primaryTextColor !default;
+$contentLinkChangeAwesomeIconColor: #337ab7 !default;
+$selectAwesomeIconButtonFontWeight: bold !default;
 
 /* Start Notification */
-$notificationContentBackgroundColor: rgb(230, 113, 99);
-$notificationContentActionColor: $white;
-$notificationContentActionHoverBackgroundColor: $black;
+$notificationContentBackgroundColor: rgb(230, 113, 99) !default;
+$notificationContentActionColor: $white !default;
+$notificationContentActionHoverBackgroundColor: $black !default;
 
 /* Login */
-$loginPanelHeaderBackgroundColor: #f0f0f0;
+$loginPanelHeaderBackgroundColor: $paleGrey !default;
 
 /* Stages breadcrumb */
-$stagesChainVisitedColor: #555555;
-$stagesChainWaitingColor: #cccccc;
-$stagesChainProcessFlowVisibleBackgroundColor: #cccccc;
+$stagesChainVisitedColor: $darkGrey !default;
+$stagesChainWaitingColor: $lightGrey !default;
+$stagesChainProcessFlowVisibleBackgroundColor: $lightGrey !default;
 
 /* Asterik Icon */
-$asterikIconColor: #f03369;
+$asterikIconColor: #f03369 !default;
 
 /* Error Page */
-$errorContainerColor: #546e7a;
-$errorMessageBackgroundColor: $white;
-$errorMessageHeaderColor: #e67163;
+$errorContainerColor: #546e7a !default;
+$errorMessageBackgroundColor: $white !default;
+$errorMessageHeaderColor: #e67163 !default;
 
 /* SelectCheckbox */
-$selectCheckBoxCloseHoverColor: $white;
-$configCheckboxContainerBorder: $black;
-$selectCheckboxMenuIconFontSize: 1.8rem;
+$selectCheckBoxCloseHoverColor: $white !default;
+$configCheckboxContainerBorder: $lightGrey !default;
+$selectCheckboxMenuIconFontSize: 1.8rem !default;
  
-$bodySateActiveColor: $black;
-$autoCompleteHoverColor: $black;
-$bodyColumnTogglerLabelColor: $black;
+$bodyStateActiveColor: $primaryTextColor !default;
+$autoCompleteHoverColor: $primaryTextColor !default;
  
  /* Express */
-$expressInputSwitchSelectionBackgroundColor: $accentColor;
-$expressInputSwitchHandleBackgroundColor: $white;
-$expressShowDefaultIconColor: $black;
-$taskResponsibleLabelStateErrorColor: #e62a10;
-$definedTaskButtonBackgroundColor: $white;
-$formElementsPanelHoverDropSectionBackgroundColor: #edffd3;
-$reviewContentTitleColor: $black;
-$formElementsCheckboxFieldsColor: $primaryTextColor;
-$definedTaskLabelBackgroundColor: $accentColor;
-$definedTaskButtonContainerBackgroundColor: $white;
-$formElementsPanelHoverDropSectionLabelColor: $primaryTextColor;
-$taskResponsibleLinkColor: $black;
-$selectManyCheckboxLabelColor: $grey1;
-$autocompleteMoreTextStateHighlightBackgroundColor: white;
-$expressInputSwitchSelectionBorder: #dcf91f;
-$expressAvailableElementsActionButtonBackgroundColor: transparent;
-$expressAvailableElementsActionButtonShadow: none;
-$formElementsPanelHoverDropSectionBorder: #699924;
-$formDefinitionTableBorder: rgba(117, 117, 117, 0.5);
-$formDefinitionTableSelectedPanelBorder: $grey2;
-$formDefinitionTableSelectedPanelBackgroundColor: transparent;
-$emailFileUploadCornerTopBackgroundColor: transparent;
-$expressTableNoHeaderBorder: $grey3;
-$expressTableNoHeaderBackgroundColor: transparent;
-$selectCheckboxMenuTriggerBackgroundColor: $white;
-$expressExpandCollapseButtonColor: $primaryTextColor;
-$processExpressLogoBackgroundColor: transparent;
-$expressWorkflowActiveSwitchLabelFontWeight: 700;
-$expressReviewContentTitleFontWeight: 700;
-$expressFinishedTaskLabelFontWeight: 700;
-$expressActiveDefinedTaskButtonFontWeight: bold;
+$expressInputSwitchSelectionBackgroundColor: $accentColor !default;
+$expressInputSwitchHandleBackgroundColor: $white !default;
+
+$taskResponsibleLabelStateErrorColor: #e62a10 !default;
+$definedTaskButtonBackgroundColor: $white !default;
+$formElementsPanelHoverDropSectionBackgroundColor: $primaryLightColor !default;
+$formElementsCheckboxFieldsColor: $primaryTextColor !default;
+$definedTaskLabelBackgroundColor: $accentColor !default;
+$definedTaskButtonContainerBackgroundColor: $white !default;
+$formElementsPanelHoverDropSectionLabelColor: $primaryTextColor !default;
+$selectManyCheckboxLabelColor: $primaryTextColor !default;
+$autocompleteMoreTextStateHighlightBackgroundColor: white !default;
+$expressInputSwitchSelectionBorder: $primaryColor !default;
+$expressAvailableElementsActionButtonBackgroundColor: transparent !default;
+$expressAvailableElementsActionButtonShadow: none !default;
+$formDefinitionTableBorder: $lightGrey !default;
+$formDefinitionTableSelectedPanelBorder: $lightGrey !default;
+$formDefinitionTableSelectedPanelBackgroundColor: transparent !default;
+$emailFileUploadCornerTopBackgroundColor: transparent !default;
+$expressTableNoHeaderBorder: $lightGrey !default;
+$expressTableNoHeaderBackgroundColor: transparent !default;
+$selectCheckboxMenuTriggerBackgroundColor: $white !default;
+$expandCollapseButtonColor: $primaryTextColor !default;
+$processExpressLogoBackgroundColor: transparent !default;
+$expressWorkflowActiveSwitchLabelFontWeight: 700 !default;
+$expressReviewContentTitleFontWeight: 700 !default;
+$expressFinishedTaskLabelFontWeight: 700 !default;
+$expressActiveDefinedTaskButtonFontWeight: bold !default;
+$collapseButtonBackgroundColor: $paleGrey !default;
+$collapseButtonHoveredBackgroundColor: $lightGrey  !default;
+$expressAssigneeIconColor: $primaryTextColor !default;
+$expressReviewContentTitleBorderColor: rgba($mediumGrey, 0.5) !default;
 
 /* Chat */
-$chatPanelBackgroundColor: $grey1;
-$noGroupChatColor: $white;
-$contactCardHoverBackgroundColor: $grey1;
-$contactCardIconColor: $grey1;
-$contactCardIconOfflineColor: $grey3;
-$contactCardBackgroundColor: $white;
-$contactCardIconUnreadMessageColor: $white;
-$contactCardIconUnreadMessageBackgroundColor: #ff6d6e;
-$contactCardNameColor: $white;
-$contactCardStatusBackgroundColor: #64d864;
-$contactNotificationColor: $white;
-$contactNotificationBackgroundColor: $red;
-$contactCardName: $black; 
-$messageListBackgroundColor: $grey4;
-$messageListHeaderBackgroundColor: $grey1;
-$messageListHeaderCloseIconHoverBackgroundColor: $grey1;
-$messageListHeaderCloseIconBackgroundColor: $grey3;
-$chatMessageBackgroundColor: $grey4;
-$chatMessageBackgroundColor: $accentColor;
-$chatMyMessageBackgroundColor: #DEF4FD;
-$messageChatHeaderNameColor: $white;
-$showParticipantsLinkColor: $white;
-$chatFormBackgroundColor: $white;
-$notificationBadgeBackgroundColor: #ff6d6e;
-$notificationBadgeColor: $white;
-$chatContactTypeHeaderColor: $white;
-$chatTooltipColor: $white;
-$chatTooltipBackgroundColor: $black;
-$participantsListHeaderColor: $black;
-$chatSendFormButtonBackgroundColor: transparent;
-$messageListContentSendInputBackgroundColor: transparent;
-$chatUserInRoleBorder: $grey2;
-$showParticipantsLinkFontWeight: bold;
-$participantsListHeaderFontWeight: bold;
-$messageChatHeaderNameFontWeight: bold;
-$chatContactTypeHeaderFontSize: $headerFontSize;
-$closeChatFontSize: $largeFontSize;
-$contactCardIconFontSize: $headerFontSize;
-$contactCardIconAfterFontsize: $smallFontSize;
-$notificationBadgeFontSize: $smallFontSize;
-$notificationBadgeIconFontSize: $headerFontSize;
-$chatBoxShadow: 0 2px 4px 0 rgba($black, 0.2), 0 1px 10px 0 rgba($black, 0.12), 0 4px 5px 0 rgba($black, 0.14);
-$chatContactsBoxShadow: 3px 0 6px rgba($black, 0.3);
+$chatPanelBackgroundColor: $darkGrey !default;
+$noGroupChatColor: $white !default;
+$contactCardHoverBackgroundColor: $darkGrey !default;
+$contactCardIconColor: $darkGrey !default;
+$contactCardIconOfflineColor: $lightGrey !default;
+$contactCardBackgroundColor: $white !default;
+$contactCardIconUnreadMessageColor: $white !default;
+$contactCardIconUnreadMessageBackgroundColor: #ff6d6e !default;
+$contactCardStatusBackgroundColor: #4eb41c !default;
+$contactCardNameColor: $white !default;
+$contactNotificationColor: $white !default;
+$contactNotificationBackgroundColor: $red !default;
+$contactCardName: $black !default; 
+$messageListBackgroundColor: $paleGrey !default;
+$messageListHeaderBackgroundColor: $darkGrey !default;
+$messageListHeaderCloseIconHoverBackgroundColor: $darkGrey !default;
+$messageListHeaderCloseIconBackgroundColor: $lightGrey !default;
+$chatMessageBackgroundColor: $paleGrey !default;
+$chatMessageBackgroundColor: $accentColor !default;
+$chatMyMessageBackgroundColor: $primaryLightColor !default;
+$messageChatHeaderNameColor: $white !default;
+$showParticipantsLinkColor: $white !default;
+$chatFormBackgroundColor: $white !default;
+$notificationBadgeBackgroundColor: #ff6d6e !default;
+$notificationBadgeColor: $white !default;
+$chatContactTypeHeaderColor: $white !default;
+$chatTooltipColor: $white !default;
+$chatTooltipBackgroundColor: $black !default;
+$participantsListHeaderColor: $black !default;
+$chatSendFormButtonBackgroundColor: transparent !default;
+$messageListContentSendInputBackgroundColor: transparent !default;
+$chatUserInRoleBorder: $lightGrey !default;
+$showParticipantsLinkFontWeight: bold !default;
+$participantsListHeaderFontWeight: bold !default;
+$messageChatHeaderNameFontWeight: bold !default;
+$chatContactTypeHeaderFontSize: $headerFontSize !default;
+$closeChatFontSize: $largeFontSize !default;
+$contactCardIconFontSize: $headerFontSize !default;
+$contactCardIconAfterFontsize: $smallFontSize !default;
+$notificationBadgeFontSize: $smallFontSize !default;
+$notificationBadgeIconFontSize: $headerFontSize !default;
+$chatBoxShadow: 0 2px 4px 0 rgba($black, 0.2), 0 1px 10px 0 rgba($black, 0.12), 0 4px 5px 0 rgba($black, 0.14) !default;
+$chatContactsBoxShadow: 3px 0 6px rgba($black, 0.3) !default;
 
 /* Icon */
-$iconFontFamily: "FontAwesome";
-$checkboxMenuIconBackgroundColor: transparent;
-$fieldsetToggerHoverBackgroundColor: transparent;
-$iconSelectionDialogBorder: transparent;
-$iconSelectionDialogBorderHover: $black;
-$autoCompleteDropdownFocusBackgroundColor: transparent;
-$uiInplaceBackgroundColor: transparent;
-$dataIconFontFamily: "true-minimalistic-icons";
-$dataIconFontStyle: normal;
-$dataIconFontWeight: normal;
-$dataIconFontVariant: normal;
-$trueMinimalisticIconFontFamily: "true-minimalistic-icons";
-$trueMinimalisticIconFontStyle: normal;
-$trueMinimalisticIconFontWeight: normal;
-$trueMinimalisticIconFontVariant: normal;
+$iconFontFamily: "FontAwesome" !default;
+$checkboxMenuIconBackgroundColor: transparent !default;
+$fieldsetToggerHoverBackgroundColor: transparent !default;
+$iconSelectionDialogBorder: transparent !default;
+$iconSelectionDialogBorderHover: $black !default;
+$autoCompleteDropdownFocusBackgroundColor: transparent !default;
+$uiInplaceBackgroundColor: transparent !default;
+$dataIconFontFamily: "true-minimalistic-icons" !default;
+$dataIconFontStyle: normal !default;
+$dataIconFontWeight: normal !default;
+$dataIconFontVariant: normal !default;
+$trueMinimalisticIconFontFamily: "true-minimalistic-icons" !default;
+$trueMinimalisticIconFontStyle: normal !default;
+$trueMinimalisticIconFontWeight: normal !default;
+$trueMinimalisticIconFontVariant: normal !default;
+
+/*Override theme styles*/
+
+/*Side bar menu*/
+$sidebarMenuListItemLinkTextColor: $primaryTextColor !default;
+$sidebarMenuListItemIconColor: $primaryTextColor !default;
+$sidebarMenuListItemLinkHoverTextColor: $primaryTextColor !default;
+$sidebarMenuListItemHoverIconColor: $primaryTextColor !default;
+$sidebarMenuListItemLinkHoverBackgroundColor: rgba($mediumGrey, 0.5) !default;
+$sidebarMenuListActiveIconColor: $primaryTextColor !default;
+$sidebarMenuInactiveItemCurrentAppBorderBottomColor: rgba($mediumGrey, 0.5) !default;
+
+/*Table */
+$dataTableRowBackgroundColorEven: $white !default;
+$dataTableRowBackgroundColorOdd: $paleGrey !default;
+$dataTableRowHeaderColor: $primaryTextColor !default;
+$dataTableRowHeaderBgColor: rgba($lightGrey, 0.5) !default;
+$dataTableRowSpanColor: $primaryTextColor !default;
+$highlightedTdDataTableBackgroundColor: $primaryColor !default;
+$hoveredTdDataTableBackGroundColor: $primaryColor !default;
+$tableBorderColor: rgba($mediumGrey, 0.5) !default;
+$rightBorderInsideDataTable: $tableBorderColor !default;
+$leftBorderInsideDataTable: transparent !default;
+$topBorderOutsideDataTableColor: $tableBorderColor !default;
+$leftBorderOutsideDataTableColor: $tableBorderColor !default;
+$rightBorderOutsideDataTableColor: $tableBorderColor !default;
+$bottomBorderOutsideDataTableColor: $tableBorderColor !default;
+$bottomBorderHeaderDataTableColor: $tableBorderColor !default;
+$topBorderBodyDataTableColor: transparent !default;
+$topBorderBodyExpressManyCheckboxTableColor: $tableBorderColor !default;
+$headerBorderColor: $tableBorderColor !default;
+$uiInputFieldTdTextColor: $primaryTextColor !default;
+$treeTableBorderColor: rgba($mediumGrey, 0.5) !default;
+$topBorderOutsideTreeTableColor: $treeTableBorderColor !default;
+$bottomBorderOutsideTreeTableColor: $treeTableBorderColor !default;
+$rightBorderOutsideTreeTableColor: $treeTableBorderColor !default;
+$rightBorderInsideTreeTableColor: $treeTableBorderColor !default;
+$bottomBoderBodyTreeTableColor: $treeTableBorderColor !default;
+$leftBorderOutsideTreeTableColor: $treeTableBorderColor !default;
+
+/*Side step*/
+$sideStepItemHoverColor: $black !default;
+$sideStepItemHoverBackgroundColor: $paleGrey !default;
 
 /* Others */
-$bodyDialogTitleFontSize: 1.9rem;
-$menuListWidgetHeaderFontWeight: 600;
+$bodyDialogTitleFontSize: 1.9rem !default;
+$hoveredItemSelectOneMenuTextColor: $primaryTextColor !default;
+$hoveredItemSelectOneListBoxTextColor: $primaryTextColor !default;
+$hoveredPicklistItemTextColor: $primaryTextColor !default;
+
+$uiFiedsetLegendTextColor: $primaryTextColor !default;
+$uiDialogTitleBarTextColor: $primaryTextColor !default;
+$uiInputFieldTextColor: $primaryTextColor !default;
+$uiFieldSetTogglerColor: $black !default;
+$uiDataPickerTitleColor: $primaryTextColor !default;
+$uiDataPickerHeaderColor: $paleGrey !default;
+$uiDataPickerTitleBorderColor: $paleGrey !default;
+$uiDataPickerTitleBackgroundColor: $paleGrey !default;
+$uiAccordionHeaderBackgroundColor: $lightGrey !default;
+$uiFileuploadButtonbarBackgroundColor: $paleGrey !default;
+$uiFileuploadButtonbarBorder: $lightGrey !default;
