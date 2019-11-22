@@ -45,7 +45,8 @@ Gl0 f1 @|EndIcon #fIcon
 Gl0 f3 actionTable 'out=in1;
 ' #txt
 Gl0 f3 outLinks "TaskA.ivp" #txt
-Gl0 f3 taskData 'TaskA.NAM=Global Growl' #txt
+Gl0 f3 taskData 'TaskA.NAM=Global Growl
+TaskA.customFields.STRING.embedInFrame="false"' #txt
 Gl0 f3 template "" #txt
 Gl0 f3 208 48 32 32 0 16 #rect
 Gl0 f3 @|TaskSwitchIcon #fIcon

@@ -1,7 +1,7 @@
 .. _portal-document:
 
-Portal Document
-***************
+Portal Developer Guide
+**********************
 
 .. toctree::
    :maxdepth: 2
@@ -10,7 +10,7 @@ Portal Document
    introduction/index
    architecture/index
    installation/index
+   settings/index
    components/index
    customization/index
-   settings/index
    troubleshooting/index

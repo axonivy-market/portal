@@ -89,7 +89,7 @@
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addDocumentHelpText')}" />
       <p:fileUpload styleClass="document-upload" id="document-upload-panel" fileUploadListener="#{logic.uploadDocument}"
         mode="advanced" dragDropSupport="true" multiple="true"
-        update="#{cc.clientId}:document-upload-form:upload-messages #{cc.attrs.componentToUpdate} #{p:component('case-document-form')}"
+        update="#{cc.clientId}:document-upload-form:upload-messages #{cc.attrs.componentToUpdate} #{cc.clientId}:case-document-form"
         label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" auto="true"
         invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
         sizeLimit="#{masterDataBean.fileUploadSizeLimit}" />
@@ -107,10 +107,10 @@
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmForDelete')}"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" appendTo="@(body)" severity="alert"
     styleClass="document-deletion-dialog">
-    <h:panelGroup layout="block">
-      <p:commandButton id="document-deletion-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
+     <h:panelGroup layout="block">
+     <p:commandButton id="document-deletion-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
         process="@this"
-        update="#{cc.attrs.componentToUpdate} #{p:component('case-document-global-messages')} #{p:component('case-document-form')}"
+        update="#{cc.attrs.componentToUpdate} #{cc.clientId}:case-document-global-messages #{cc.clientId}:case-document-form"
         actionListener="#{logic.deleteDocument}"
         oncomplete="PF('document-deletion-dialog-#{case.id}').hide();" />
       <p:commandButton id="document-deletion-cancellation-command" styleClass="portal-cancel-button"

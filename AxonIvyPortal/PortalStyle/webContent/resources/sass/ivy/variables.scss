@@ -128,8 +128,8 @@ $chartNameFontSize: $largeFontSize !default;
 $chartFilterHeaderFontSize: $headerFontSize !default;
 $chartContainerAddLinkFontSize: $smallFontSize !default;
 $dashboardChartNameFontSize: $headerFontSize !default;
-$statisticCarouselHeaderButtonHoverColor: $darkGrey !default;
-$statisticCarouselHeaderButtonColor: $mediumGrey !default;
+$statisticCarouselHeaderButtonHoverColor: $commandLinkHoveredTextColor !default;
+$statisticCarouselHeaderButtonColor: $commandLinkTextColor !default;
 $statisticCarouselHeaderColor: $darkGrey !default;
 $statisticCarouselCardBoxShadowColor: black !default;
 
@@ -173,11 +173,11 @@ $selectedProcessNavItemFontWeight: bold !default;
 $processStartListItemNameFontWeight: 400 !default;
 $processNavItemDisableColor: rgba($primaryTextColor, 0.3) !default;
 $processOrderItemHoverBoxShadowColor: black !default;
-
 $hoveredProcessStartListItemIConColor: $primaryColor !default;
+
 /* Case Detail */
 $caseRelatedTaskColor: $primaryTextColor !default;
-$caseRelatedTaskHoveredColor: $mediumGrey !default;
+$caseRelatedTaskHoveredColor: $commandLinkHoveredTextColor !default;
 $caseDetailPaginatorColor: $primaryTextColor !default;
 $caseRelatedTaskContentBorder: $lightGrey !default;
 $caseDocumentUploadBorder:  $lightGrey !default;
@@ -214,7 +214,7 @@ $caseListDataScrollerContentBackgroundColor: transparent !default;
 $caseHeaderActionCellButtonBackgroundColor: transparent !default;
 $headerActionActionLeftBorderColor: $mediumGrey !default;
 $caseItemActionStepsFontWeight: bold !default;
-$taskNoteLinkHoveredColor: $mediumGrey !default;
+$taskNoteLinkHoveredColor: $commandLinkHoveredTextColor !default;
 $caseListUnsortableHeaderCellTextColor: $mediumGrey !default;
 $caseListItemHoverBackgroundColor: rgba($lightGrey, 0.5) !default;
 $caseListItemBackgroundColor: rgba($white, 0.2) !default;
