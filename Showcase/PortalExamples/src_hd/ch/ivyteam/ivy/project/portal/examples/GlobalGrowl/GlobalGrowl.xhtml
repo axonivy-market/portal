@@ -11,7 +11,7 @@
           <p:outputLabel for="fullname" value="Employee" />
         </h:panelGroup>
         <h:panelGroup styleClass="MarTop5 DispBlock" id="command-group">
-          <p:commandButton value="Send" icon="fa fa-send-o" id="button-submit" actionListener="#{logic.close}" process="@none" />
+          <p:commandButton value="Send" icon="fa fa-send-o" id="button-submit" actionListener="#{logic.close}" process="@this" />
         </h:panelGroup>
       </h:form>
     </ui:define>
