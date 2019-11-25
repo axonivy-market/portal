@@ -1,61 +1,57 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>ch.ivyteam.ivy.project.portal</groupId>
-    <artifactId>portal-app</artifactId>
-	<version>8.0.0.0-SNAPSHOT</version>
-	<packaging>pom</packaging>
-
-    <dependencies>
-        <dependency>
-            <groupId>ch.ivyteam.ivy.project.portal</groupId>
-            <artifactId>portalStyle</artifactId>
-            <version>8.0.0.0-SNAPSHOT</version>
-            <type>iar</type>
-        </dependency>
-
-        <dependency>
-            <groupId>ch.ivyteam.ivy.project.portal</groupId>
-            <artifactId>portalKit</artifactId>
-            <version>8.0.0.0-SNAPSHOT</version>
-            <type>iar</type>
-        </dependency>
-
-        <dependency>
-            <groupId>ch.ivyteam.ivy.project.portal</groupId>
-            <artifactId>portalTemplate</artifactId>
-            <version>8.0.0.0-SNAPSHOT</version>
-            <type>iar</type>
-        </dependency>
-
-		<dependency>
-			<groupId>ch.ivyteam.ivy.project.portal</groupId>
-            <artifactId>axonIvyExpress</artifactId>
-			<version>8.0.0.0-SNAPSHOT</version>
-			<type>iar</type>
-		</dependency>
-
-    </dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>3.1.0</version>
-				<configuration>
-					<descriptors>
-						<descriptor>assembly.xml</descriptor>
-					</descriptors>
-					<appendAssemblyId>false</appendAssemblyId>
-				</configuration>
-				<executions>
-					<execution>
-						<id>create.app</id>
-						<goals><goal>single</goal></goals>
-						<phase>generate-resources</phase>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>ch.ivyteam.ivy.project.portal</groupId>
+  <artifactId>portal-app</artifactId>
+  <version>8.0.183.0</version>
+  <packaging>pom</packaging>
+  <dependencies>
+    <dependency>
+      <groupId>ch.ivyteam.ivy.project.portal</groupId>
+      <artifactId>portalStyle</artifactId>
+      <version>8.0.183.0</version>
+      <type>iar</type>
+    </dependency>
+    <dependency>
+      <groupId>ch.ivyteam.ivy.project.portal</groupId>
+      <artifactId>portalKit</artifactId>
+      <version>8.0.183.0</version>
+      <type>iar</type>
+    </dependency>
+    <dependency>
+      <groupId>ch.ivyteam.ivy.project.portal</groupId>
+      <artifactId>portalTemplate</artifactId>
+      <version>8.0.183.0</version>
+      <type>iar</type>
+    </dependency>
+    <dependency>
+      <groupId>ch.ivyteam.ivy.project.portal</groupId>
+      <artifactId>axonIvyExpress</artifactId>
+      <version>8.0.183.0</version>
+      <type>iar</type>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.1.0</version>
+        <configuration>
+          <descriptors>
+            <descriptor>assembly.xml</descriptor>
+          </descriptors>
+          <appendAssemblyId>false</appendAssemblyId>
+        </configuration>
+        <executions>
+          <execution>
+            <id>create.app</id>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <phase>generate-resources</phase>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 </project>
