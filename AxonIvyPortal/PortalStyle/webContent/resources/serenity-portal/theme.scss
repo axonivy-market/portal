@@ -1224,8 +1224,8 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   font-size: $smallFontSize;
 }
 
-.ui-widget-content a {
-  color: $contentLinkChangeAwesomeIconColor
+.ui-widget-content a.icon-selection-dialog-selecting-icon {
+  color: $contentLinkChangeAwesomeIconColor;
 }
 
 .chart-filter-info-icon {
