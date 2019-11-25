@@ -140,7 +140,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public HomePage clickSubmitButton() {
-    String submitButton = "button[id$='command-form:button-submit']";
+    String submitButton = "button[id$='button-submit']";
     clickByCssSelector(submitButton);
     return new HomePage();
   }
