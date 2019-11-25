@@ -164,13 +164,16 @@ In engine
 Migrate to 8.0.0
 ----------------
 
-How to convert `LESS <http://lesscss.org>`__ to `SASS <https://sass-lang.com/>`__ languages
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 From Portal version 8.0.0, we use the Serenity theme as the default
-style for project. So, if your project is using ``LESS`` languages for
-customizing style, we should do one more step as convert them to a new
-format as ``SASS``. Otherwise, please ignore this step
+style for project. If your project is using ``LESS`` languages for
+customizing style, you should convert them to a new format as ``SASS``. 
+
+How to convert `LESS <http://lesscss.org>`__ to `SASS <https://sass-lang.com/>`__ languages
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If ``customization.less`` file is used for customizing Portal colors with variables and not 
+using other ``LESS`` syntax, you do not need to convert by tool, just change file type from ``*.less``
+to ``*.scss`` manually and jump to :ref:`Put scss files to specific folder <put-scss-files-to-specific-folder>` step.
 
 Please follow below step to do automation step convert your less file by
 plugin ``less2sass.``
@@ -192,11 +195,74 @@ https://www.npmjs.com/package/less2sass.
 
    |less-2-sass|
 
--  After run above command, you also see a new
+   After run above command, you also see a new
    \*.scss file is created into same folder.
    ``C:\Projects\Portal\axonivyportal\AxonIvyPortal\PortalStyle\webContent\resources\less\customization.scss``
 
-   Copy ``*.scss`` files to new folder as ``..\webContent\resources\sass\ivy``
+.. _put-scss-files-to-specific-folder:
+
+-   Put ``*.scss`` files to new folder as ``..\webContent\resources\sass\ivy``
+-  Update customized variables manually:
+
+   .. table:: 
+
+   +-----------------------------------------+-----------------------------------------+
+   | Old version                             | New version                             |
+   +=========================================+=========================================+
+   | @body-background-color                  | $bodyBackgroundColor                    |
+   +-----------------------------------------+-----------------------------------------+
+   | @announcement-background-color          | $announcementBackgroundColor            |
+   +-----------------------------------------+-----------------------------------------+
+   | @announcement-border-color              | $announcementBorderColor                |
+   +-----------------------------------------+-----------------------------------------+
+   | @action-button-border-radius            | $actionButtonBorderRadius               |
+   +-----------------------------------------+-----------------------------------------+
+   | @action-button-color                    | $primaryColor (default from theme)      |
+   +-----------------------------------------+-----------------------------------------+
+   | @cancel-button-background-color         | $cancelButtonBackgroundColor            |
+   +-----------------------------------------+-----------------------------------------+
+   | @context-button-color                   | $contextButtonBackgroundColor           |
+   +-----------------------------------------+-----------------------------------------+
+   | @context-button-border-radius           | $contextButtonBorderRadius              |
+   +-----------------------------------------+-----------------------------------------+
+   | @first-header-bar-color                 | $firstHeaderBarColor                    |
+   +-----------------------------------------+-----------------------------------------+
+   | @second-header-bar-color                | $secondHeaderBarColor                   |
+   +-----------------------------------------+-----------------------------------------+
+   | @third-header-bar-color                 | $thirdHeaderBarColor                    |
+   +-----------------------------------------+-----------------------------------------+
+   | @login-logo-height                      | $loginLogoHeight                        |
+   +-----------------------------------------+-----------------------------------------+
+   | @home-logo-height                       | $homeLogoHeight                         |
+   +-----------------------------------------+-----------------------------------------+
+   | @task-priority-low-color                | $taskPriorityLowColor                   |
+   +-----------------------------------------+-----------------------------------------+
+   | @task-priority-normal-color             | $taskPriorityNormalColor                |
+   +-----------------------------------------+-----------------------------------------+
+   | @task-priority-high-color               | $taskPriorityHighColor                  |
+   +-----------------------------------------+-----------------------------------------+
+   | @task-priority-exception-color          | $taskPriorityExceptionColor             |
+   +-----------------------------------------+-----------------------------------------+
+   | @task-state-open-color                  | $taskStateOpenColor                     |
+   +-----------------------------------------+-----------------------------------------+
+   | @task-state-in-progress-color           | $taskStateInProgressColor               |
+   +-----------------------------------------+-----------------------------------------+
+   | @task-state-done-color                  | $taskStateDoneColor                     |
+   +-----------------------------------------+-----------------------------------------+
+   | @task-state-zombie-destroyed-color      | $taskStateZombieDestroyedColor          |
+   +-----------------------------------------+-----------------------------------------+
+   | @task-state-reserved-color              | $taskStateReservedColor                 |
+   +-----------------------------------------+-----------------------------------------+
+   | @task-state-system-color                | $taskStateSystemColor                   |
+   +-----------------------------------------+-----------------------------------------+
+   | @process-chain-menu-color               | $processChainMenuColor                  |
+   +-----------------------------------------+-----------------------------------------+
+   | @menu-color                             | Removed                                 |
+   +-----------------------------------------+-----------------------------------------+
+   | @sidebar-opacity-transition-duration    | Removed                                 |
+   +-----------------------------------------+-----------------------------------------+
+   | @sidebar-dimension-transition-duration  | Removed                                 |
+   +-----------------------------------------+-----------------------------------------+
 
 -  Run ``mvn libsass:compile`` to compile your ``scss`` to ``css`` file.
 
