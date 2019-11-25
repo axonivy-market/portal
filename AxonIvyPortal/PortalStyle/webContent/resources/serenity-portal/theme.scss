@@ -591,6 +591,10 @@
   border-bottom: 1px solid $widgetSortMenuBorderBottomColor;
 }
 
+.task-widget .action-container .ui-commandlink.ui-state-disabled {
+  color: $mediumGrey !important;
+}
+
 /*Style for Case Widget-------------------------------------------------------------------------------------*/ 
 .case-widget-top-header-main-title, .case-header-container {
   font-size: $largeFontSize;
