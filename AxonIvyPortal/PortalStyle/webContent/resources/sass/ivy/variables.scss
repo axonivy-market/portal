@@ -25,10 +25,10 @@ $primaryDarkColor: $primaryGreen !default;
 $primaryLightColor: $primaryLightGreen !default;
 $primaryLightestColor: $white !default;
 $primaryTextColor: $black !default;
-$accentColor: $primaryGreen !default;
+$accentColor: $primaryColor !default;
 $accentDarkColor: $primaryDarkColor !default;
 $accentLightColor: $primaryLightColor !default;
-$accentTextColor: $primaryLightGreen !default;
+$accentTextColor: $primaryTextColor !default;
 
 /* Consolidate green*/
 $caseTaskStateDoneOrResumeGreen: #4eb41c !default;
@@ -464,5 +464,5 @@ $uiDataPickerHeaderColor: $paleGrey !default;
 $uiDataPickerTitleBorderColor: $paleGrey !default;
 $uiDataPickerTitleBackgroundColor: $paleGrey !default;
 $uiAccordionHeaderBackgroundColor: $lightGrey !default;
-$uiFileuploadButtonbarBackgroundColor: $paleGrey !default;
+$uiFileuploadButtonbarBackgroundColor: $lightGrey !default;
 $uiFileuploadButtonbarBorder: $lightGrey !default;
