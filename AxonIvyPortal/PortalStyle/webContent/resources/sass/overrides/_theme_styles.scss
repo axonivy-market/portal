@@ -238,6 +238,10 @@ a.ui-widget:focus {
     border-right: 1px solid $rightBorderInsideDataTable;
 }
 
+.ui-datatable-scrollable-theadclone {
+    display: none;
+}
+
 .ui-datatable {
     thead {
         tr {
@@ -714,7 +718,7 @@ body .ui-button .ui-button-text {
 .ui-widget.ui-button.ui-state-hover:not(.ui-spinner-button),
 .ui-widget.ui-buttonset .ui-state-hover,
 body .ui-buttonset .ui-state-active {
-    background-color: $primaryLightGreen !important;
+    background-color: $primaryLightColor !important;
 }
 
 .ui-widget.ui-button {
@@ -753,10 +757,6 @@ input::-ms-clear {
   display: none;
 }
 
-.ui-widget-content.ui-tabs-panel {
-    padding: 7px !important;
-}
-
 .ui-selectonemenu {
   .ui-selectonemenu-trigger {
     .ui-icon.ui-icon-triangle-1-s {
@@ -781,7 +781,7 @@ body .ui-selectonemenu-panel .ui-selectonemenu-item.ui-state-focus {
 
 body .ui-selectonemenu-panel .ui-state-highlight,
 body .ui-autocomplete-panel .ui-state-highlight {
-  background-color: $primaryLightGreen !important;
+  background-color: $primaryLightColor !important;
 }
 body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span.md-inputwrapper-filled ~ label {
     color: $primaryColor;
@@ -967,7 +967,7 @@ body .ui-accordion .ui-accordion-header {
 
 body .ui-fileupload .ui-fileupload-buttonbar {
   background-color: $uiFileuploadButtonbarBackgroundColor !important;
-  border: 1px solid $uiFileuploadButtonbarBorder;
+  border: 1px solid $uiFileuploadButtonbarBackgroundColor;
 }
 
 .user-task-dyna-container .upload-container {
