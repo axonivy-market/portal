@@ -24,7 +24,8 @@ Dt0 f0 triggerEnabled false #txt
 Dt0 f0 callSignature start() #txt
 Dt0 f0 persist false #txt
 Dt0 f0 startName 'Document Table Usage' #txt
-Dt0 f0 caseData businessCase.attach=true #txt
+Dt0 f0 caseData 'businessCase.attach=true
+customFields.STRING.embedInFrame="false"' #txt
 Dt0 f0 showInStartList 1 #txt
 Dt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
