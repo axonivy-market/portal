@@ -30,8 +30,10 @@ TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
-TaskTriggered.TYPE=0' #txt
-Ee0 f0 caseData businessCase.attach=true #txt
+TaskTriggered.TYPE=0
+TaskTriggered.customFields.STRING.embedInFrame="false"' #txt
+Ee0 f0 caseData 'businessCase.attach=true
+customFields.STRING.embedInFrame="false"' #txt
 Ee0 f0 showInStartList 0 #txt
 Ee0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

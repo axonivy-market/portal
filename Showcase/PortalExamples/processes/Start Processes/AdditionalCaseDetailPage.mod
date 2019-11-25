@@ -122,7 +122,8 @@ TaskTriggered.EXTYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
-Ae0 f7 caseData businessCase.attach=true #txt
+Ae0 f7 caseData 'businessCase.attach=true
+customFields.STRING.embedInFrame="false"' #txt
 Ae0 f7 showInStartList 0 #txt
 Ae0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

@@ -249,15 +249,12 @@ Cs0 f66 424 554 112 44 -35 -8 #rect
 Cs0 f66 @|StepIcon #fIcon
 Cs0 f49 actionTable 'out=in;
 ' #txt
-Cs0 f49 actionCode 'import ch.ivy.addon.portalkit.service.IvyAdapterService;
-import ch.ivy.addon.portalkit.enums.PortalPage;
+Cs0 f49 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPage;
 import ch.ivy.addon.portalkit.enums.NavigationHistory;
 import ch.ivy.addon.portalkit.dto.TaskEndInfo;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import javax.faces.context.FacesContext;
-
-boolean enabledStartInIFrame = IvyAdapterService.getTaskEmbedInIFrameCustomField(in.task);
 
 TaskEndInfo taskEndInfo = new TaskEndInfo();
 taskEndInfo.setDataModel(in.dataModel);
