@@ -204,7 +204,7 @@ https://www.npmjs.com/package/less2sass.
 -   Put ``*.scss`` files to new folder as ``..\webContent\resources\sass\ivy``
 -  Update customized variables manually:
 
-   .. table:: 
+.. table:: 
 
    +-----------------------------------------+-----------------------------------------+
    | Old version                             | New version                             |
@@ -263,6 +263,8 @@ https://www.npmjs.com/package/less2sass.
    +-----------------------------------------+-----------------------------------------+
    | @sidebar-dimension-transition-duration  | Removed                                 |
    +-----------------------------------------+-----------------------------------------+
+
+..
 
 -  Run ``mvn libsass:compile`` to compile your ``scss`` to ``css`` file.
 
