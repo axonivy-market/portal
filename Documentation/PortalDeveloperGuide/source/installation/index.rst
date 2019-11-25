@@ -214,7 +214,7 @@ If you want to use the new one, refer to ``TaskTemplate.xhtml`` for parameters a
 
 
 How to migrate BasicTemplate
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 There are some changes in BasicTemplate. In the past, if you overwritten BasicTemplate ``footer`` section and copied responsive js in old BasicTemplate,
 please copy the latest js in ``footer`` section of BasicTemplate.
