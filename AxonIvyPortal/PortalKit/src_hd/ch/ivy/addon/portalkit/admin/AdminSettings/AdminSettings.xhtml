@@ -267,6 +267,16 @@
               </h:panelGroup>
             </div>
           </h:panelGroup>
+          <!-- Embed in IFrame -->
+          <h:panelGroup id="embedInIFrame" styleClass="ui-g" layout="block"
+            rendered="#{data.type == 'IVY_APPLICATION'}">
+            <div class="ui-g-12">
+              <h:panelGroup styleClass="admin-application md-inputfield">
+                <p:selectBooleanCheckbox id="embedInIFrameChkbox" value="#{data.selectedApp.embedInFrame}" 
+                  itemLabel="Start a process/task in IFrame mode" />
+              </h:panelGroup>
+            </div>
+          </h:panelGroup>
 
           <!--           3rd application view -->
           <h:panelGroup id="applicationDisplayName3rd" styleClass="ui-g" layout="block"

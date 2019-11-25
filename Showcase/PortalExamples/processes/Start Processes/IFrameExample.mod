@@ -31,11 +31,13 @@ Ie0 f20 actionTable 'out=in1;
 ' #txt
 Ie0 f20 outLinks "TaskB.ivp","TaskA.ivp","TaskD.ivp","TaskC.ivp" #txt
 Ie0 f20 taskData 'TaskB.NAM=Serenity Task Template
+TaskB.customFields.STRING.embedInFrame="false"
 TaskA.NAM=Approve Investment (Task in IFrame)
 TaskA.customFields.STRING.embedInFrame="true"
 TaskD.NAM=Deprecated Modena Task Template
 TaskD.customFields.STRING.embedInFrame="true"
-TaskC.NAM=Deprecated Task Template' #txt
+TaskC.NAM=Deprecated Task Template
+TaskC.customFields.STRING.embedInFrame="false"' #txt
 Ie0 f20 template "" #txt
 Ie0 f20 368 80 32 32 0 16 #rect
 Ie0 f20 @|TaskSwitchIcon #fIcon
@@ -82,10 +84,10 @@ Ie0 f12 requestEnabled true #txt
 Ie0 f12 triggerEnabled false #txt
 Ie0 f12 callSignature CreateInvestment() #txt
 Ie0 f12 persist false #txt
-Ie0 f12 startName 'Create Investment (used for IFrameTaskTemplate)' #txt
+Ie0 f12 startName 'Create Investment (IFrame + Task custom fields)' #txt
 Ie0 f12 taskData TaskTriggered.customFields.STRING.embedInFrame="true" #txt
 Ie0 f12 caseData 'businessCase.attach=true
-case.name=Investment Creation' #txt
+case.name=Investment Creation (IFrame + Task custom fields)' #txt
 Ie0 f12 showInStartList 1 #txt
 Ie0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

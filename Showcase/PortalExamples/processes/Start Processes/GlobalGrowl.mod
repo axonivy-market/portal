@@ -28,7 +28,8 @@ Gl0 f0 persist false #txt
 Gl0 f0 startName 'Global Growl' #txt
 Gl0 f0 taskData 'TaskTriggered.NAM=Start\: Global Growl' #txt
 Gl0 f0 caseData 'businessCase.attach=true
-case.name=Global Growl' #txt
+case.name=Global Growl
+customFields.STRING.embedInFrame="false"' #txt
 Gl0 f0 showInStartList 1 #txt
 Gl0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
