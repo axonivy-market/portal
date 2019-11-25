@@ -33,7 +33,8 @@ TaskTriggered.EXTYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
-Cn0 f0 caseData businessCase.attach=true #txt
+Cn0 f0 caseData 'businessCase.attach=true
+customFields.STRING.embedInFrame="false"' #txt
 Cn0 f0 showInStartList 1 #txt
 Cn0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

@@ -1,21 +1,30 @@
 package ch.ivy.addon.portalkit.service;
 
+import java.util.Optional;
+
 import ch.ivy.addon.portalkit.constant.CustomFields;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 
 public class IFrameService {
 
+  /**
+   * @param taskId
+   * @return
+   */
   public static boolean embedInFrame(Long taskId) {
-    GlobalSettingService service = new GlobalSettingService();
     ITask task = Ivy.wf().findTask(taskId);
-    if (task != null) {
-      boolean isExpress = Boolean.parseBoolean(task.getCase().customFields().stringField(CustomFields.IS_EXPRESS_PROCESS).getOrDefault("false"));
-      Boolean isIFrameCustomField = IvyAdapterService.getTaskEmbedInIFrameCustomField(task);
-      // There are two levels: custom field in task, if not set, check Portal global setting
-      return isExpress ? false : isIFrameCustomField != null ? isIFrameCustomField : Boolean.parseBoolean(service.findGlobalSettingValue(GlobalVariable.EMBEDED_IN_IFRAME.toString()));
+    if (task == null) {
+      return true;
     }
-    return false;
+    boolean isExpress = Boolean
+        .parseBoolean(task.getCase().customFields().stringField(CustomFields.IS_EXPRESS_PROCESS).getOrDefault("false"));
+    Boolean isIFrameCustomField = IvyAdapterService.getEmbedInIFrameCustomField(task);
+    RegisteredApplicationService service = new RegisteredApplicationService();
+    return isExpress ? false
+        : isIFrameCustomField != null ? isIFrameCustomField
+            : Optional.ofNullable(service.findByName(task.getApplication().getName())).orElse(new Application())
+                .isEmbedInFrame();
   }
 }

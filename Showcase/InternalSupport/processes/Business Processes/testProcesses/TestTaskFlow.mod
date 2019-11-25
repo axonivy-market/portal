@@ -433,7 +433,8 @@ customFields.STRING.CustomVarCharField4="Leave Request CustomVarCharField4"
 customFields.STRING.ProcessCategoryCode="pubRequested"
 customFields.STRING.ProcessCategoryName="Publication Requested"
 customFields.STRING.ProcessCode="pubRequested"
-customFields.STRING.ProcessName="Publication Requested"' #txt
+customFields.STRING.ProcessName="Publication Requested"
+customFields.STRING.embedInFrame="false"' #txt
 Tt0 f29 showInStartList 1 #txt
 Tt0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -637,7 +638,8 @@ TaskTriggered.EXTYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
-Tt0 f66 caseData businessCase.attach=true #txt
+Tt0 f66 caseData 'businessCase.attach=true
+customFields.STRING.embedInFrame="false"' #txt
 Tt0 f66 showInStartList 1 #txt
 Tt0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -807,6 +809,7 @@ customFields.STRING.ProcessCategoryCode="pubRequested"
 customFields.STRING.ProcessCategoryName="Publication Requested"
 customFields.STRING.ProcessCode="pubRequested"
 customFields.STRING.ProcessName="Publication Requested"
+customFields.STRING.embedInFrame="false"
 customFields.TIMESTAMP.CustomTimestampField2=new DateTime(2018, 2, 2, 2, 2 ,2)
 customFields.TIMESTAMP.CustomTimestampField3=new DateTime(2018, 3, 3, 3, 3, 3)
 customFields.TIMESTAMP.CustomTimestampField5=new DateTime(2018, 5, 5, 5, 5, 5)' #txt
@@ -821,7 +824,7 @@ Tt0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Tt0 f92 @C|.responsibility Everybody #txt
-Tt0 f92 997 484 26 26 14 0 #rect
+Tt0 f92 997 500 26 26 14 0 #rect
 Tt0 f92 @|StartRequestIcon #fIcon
 Tt0 f94 expr data #txt
 Tt0 f94 outCond ivp=="TaskB.ivp" #txt
@@ -849,7 +852,7 @@ Tt0 f99 0 0.8879104383411323 0 0 #arcLabel
 Tt0 f88 expr out #txt
 Tt0 f88 type internaltest.Data #txt
 Tt0 f88 var in1 #txt
-Tt0 f88 1010 510 1010 614 #arcP
+Tt0 f88 1010 526 1010 614 #arcP
 Tt0 f93 actionTable 'out=in1;
 ' #txt
 Tt0 f93 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp","TaskD.ivp" #txt
@@ -944,6 +947,7 @@ customFields.STRING.ProcessCategoryCode="pubRequested"
 customFields.STRING.ProcessCategoryName="Publication Requested"
 customFields.STRING.ProcessCode="pubRequested"
 customFields.STRING.ProcessName="Publication Requested"
+customFields.STRING.embedInFrame="false"
 customFields.TIMESTAMP.CustomTimestampField1=new DateTime(2018, 1, 1, 1, 1, 1)
 customFields.TIMESTAMP.CustomTimestampField2=new DateTime(2018, 2, 2, 2, 2 ,2)
 customFields.TIMESTAMP.CustomTimestampField3=new DateTime(2018, 3, 3, 3, 3, 3)
@@ -1092,7 +1096,8 @@ TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
 Tt0 f130 caseData 'businessCase.attach=true
 case.description=Sale Information
-case.name=Sale Information' #txt
+case.name=Sale Information
+customFields.STRING.embedInFrame="false"' #txt
 Tt0 f130 showInStartList 1 #txt
 Tt0 f130 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1192,7 +1197,8 @@ TaskTriggered.EXTYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
-Tt0 f140 caseData businessCase.attach=true #txt
+Tt0 f140 caseData 'businessCase.attach=true
+customFields.STRING.embedInFrame="false"' #txt
 Tt0 f140 showInStartList 1 #txt
 Tt0 f140 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1416,7 +1422,8 @@ TaskTriggered.EXTYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
-Tt0 f168 caseData businessCase.attach=true #txt
+Tt0 f168 caseData 'businessCase.attach=true
+customFields.STRING.embedInFrame="false"' #txt
 Tt0 f168 showInStartList 1 #txt
 Tt0 f168 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

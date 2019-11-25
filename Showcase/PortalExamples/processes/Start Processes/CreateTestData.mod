@@ -440,7 +440,8 @@ customFields.STRING.CustomVarCharField4="Leave Request CustomVarCharField4"
 customFields.STRING.ProcessCategoryCode="pubRequested"
 customFields.STRING.ProcessCategoryName="Publication Requested"
 customFields.STRING.ProcessCode="pubRequested"
-customFields.STRING.ProcessName="Publication Requested"' #txt
+customFields.STRING.ProcessName="Publication Requested"
+customFields.STRING.embedInFrame="false"' #txt
 Cs0 f14 showInStartList 1 #txt
 Cs0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
