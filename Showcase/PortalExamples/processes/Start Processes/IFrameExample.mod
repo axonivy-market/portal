@@ -26,6 +26,11 @@ Ie0 @UserDialog f5 '' #zField
 Ie0 @PushWFArc f6 '' #zField
 Ie0 @PushWFArc f7 '' #zField
 Ie0 @PushWFArc f8 '' #zField
+Ie0 @StartRequest f9 '' #zField
+Ie0 @UserDialog f10 '' #zField
+Ie0 @PushWFArc f11 '' #zField
+Ie0 @EndTask f16 '' #zField
+Ie0 @PushWFArc f17 '' #zField
 >Proto Ie0 Ie0 IFrameExample #zField
 Ie0 f20 actionTable 'out=in1;
 ' #txt
@@ -204,6 +209,44 @@ Ie0 f7 1 0.4084507035380983 0 0 #arcLabel
 Ie0 f8 664 384 768 111 #arcP
 Ie0 f8 1 768 384 #addKink
 Ie0 f8 1 0.30952380952380953 0 0 #arcLabel
+Ie0 f9 outLink start.ivp #txt
+Ie0 f9 inParamDecl '<> param;' #txt
+Ie0 f9 requestEnabled true #txt
+Ie0 f9 triggerEnabled false #txt
+Ie0 f9 callSignature start() #txt
+Ie0 f9 startName 'Test IFrame based on app configuration' #txt
+Ie0 f9 caseData businessCase.attach=true #txt
+Ie0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>start.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Ie0 f9 @C|.responsibility Everybody #txt
+Ie0 f9 81 465 30 30 -20 17 #rect
+Ie0 f9 @|StartRequestIcon #fIcon
+Ie0 f10 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.CreateInvestment #txt
+Ie0 f10 startMethod start() #txt
+Ie0 f10 requestActionDecl '<> param;' #txt
+Ie0 f10 responseActionDecl 'investment.manae.Data out;
+' #txt
+Ie0 f10 responseMappingAction 'out=in;
+out.investment=result.investment;
+' #txt
+Ie0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Create Investment</name>
+    </language>
+</elementInfo>
+' #txt
+Ie0 f10 192 458 112 44 -50 -8 #rect
+Ie0 f10 @|UserDialogIcon #fIcon
+Ie0 f11 111 480 192 480 #arcP
+Ie0 f16 369 465 30 30 0 15 #rect
+Ie0 f16 @|EndIcon #fIcon
+Ie0 f17 304 480 369 480 #arcP
 >Proto Ie0 .type ch.ivyteam.ivy.project.portal.examples.IFrameExampleData #txt
 >Proto Ie0 .processKind NORMAL #txt
 >Proto Ie0 0 0 32 24 18 0 #rect
@@ -228,3 +271,7 @@ Ie0 f3 mainOut f7 tail #connect
 Ie0 f7 head f13 mainIn #connect
 Ie0 f5 mainOut f8 tail #connect
 Ie0 f8 head f13 mainIn #connect
+Ie0 f9 mainOut f11 tail #connect
+Ie0 f11 head f10 mainIn #connect
+Ie0 f10 mainOut f17 tail #connect
+Ie0 f17 head f16 mainIn #connect
