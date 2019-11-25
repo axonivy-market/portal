@@ -1173,8 +1173,8 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   padding-right: 20px;
 }
 
-.process-widget .user-default-process-list {
-  margin-top: 8px;
+.process-widget .user-process-container {
+  margin-bottom: 8px;
 }
 
 .process-widget .order-list-items.ui-orderlist {
