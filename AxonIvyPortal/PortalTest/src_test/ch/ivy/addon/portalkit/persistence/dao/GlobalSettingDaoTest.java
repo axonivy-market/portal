@@ -33,6 +33,7 @@ public class GlobalSettingDaoTest {
     List<GlobalSetting> globalSettings = Arrays.asList(globalSetting);
 
     PowerMockito.when(globalSettingDao.findAll()).thenReturn(globalSettings);
+    PowerMockito.when(globalSettingDao.findGlobalSetting(globalSettingName)).thenReturn(globalSetting);
     PowerMockito.when(globalSettingDao.findGlobalSettingValue(globalSettingName)).thenCallRealMethod();
 
     String actualGlobalSettingValue = globalSettingDao.findGlobalSettingValue(globalSettingName);
