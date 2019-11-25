@@ -9,7 +9,6 @@ import org.junit.Test;
 import portal.guitest.common.BaseTest;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.SearchResultPage;
-import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.TemplatePage.GlobalSearch;
 
@@ -37,7 +36,7 @@ public class SearchProcessTest extends BaseTest {
     
     searchResultPage.startProcess(processName);
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    assertTrue(taskWidgetPage.getNameOfTaskAt(0).contains("Request form"));
+    assertTrue(taskWidgetPage.getNameOfTaskInCompactListAt(0).contains("Request form"));
   }
   
   @Test
