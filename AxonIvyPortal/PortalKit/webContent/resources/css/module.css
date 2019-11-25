@@ -642,7 +642,6 @@ span.task-details-document-add-link {
 }
 
 .case-header-action-cell, .task-header-action-cell {
-  flex: 0 0 auto;
   text-align: right;
   padding: 0 10px;
 }
@@ -1641,16 +1640,27 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   position: relative;
 }
 
+.task-start-list-item.full-mode {
+  display: flex;
+}
+
 .task-start-list-item.full-mode .task-start-link:hover:before {
   opacity: .6;
 }
 
 .task-start-list-item.full-mode .task-start-link {
   display: flex;
+  flex: 1;
   height: 65px;
   align-items: center;
   position: relative;
   cursor: pointer;
+  overflow: hidden;
+}
+
+.task-start-list-item.full-mode .task-item-header-actions {
+  flex: 0 0 auto;
+  align-self: center;
 }
 
 .options-panel .option-action-icon,

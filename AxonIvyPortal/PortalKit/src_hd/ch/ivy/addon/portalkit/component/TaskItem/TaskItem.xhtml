@@ -35,14 +35,14 @@
     <h:panelGroup id="task-info" styleClass="task-start-link js-task-start-link" layout="block">
       <p:ajax event="click" listener="#{logic.openDetails(task,dataModel)}" onstart="#{cc.attrs.onTaskStartCallback}" />
       <cc:renderFacet name="taskHeader" />
-
+    </h:panelGroup>
+    <h:panelGroup styleClass="task-item-header-actions">
       <f:subview id="task-action">
         <ui:include src="TaskAction.xhtml">
           <ui:param name="dataModel" value="#{dataModel}" />
         </ui:include>
       </f:subview>
     </h:panelGroup>
-
   </h:panelGroup>
 
   <p:confirmDialog id="reset-task-dialog-#{rowIndex}" appendTo="@(body)" widgetVar="reset-task-dialog-#{rowIndex}"
