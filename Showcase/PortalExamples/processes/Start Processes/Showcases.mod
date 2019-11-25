@@ -53,7 +53,8 @@ Ss0 f0 startDescription 'Showcase Application' #txt
 Ss0 f0 taskData 'TaskTriggered.NAM=Start Application Showcase
 TaskTriggered.customFields.STRING.embedInFrame="false"' #txt
 Ss0 f0 caseData 'businessCase.attach=true
-case.name=Application Showcase' #txt
+case.name=Application Showcase
+customFields.STRING.embedInFrame="false"' #txt
 Ss0 f0 showInStartList 1 #txt
 Ss0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -95,7 +96,8 @@ Ss0 f6 startDescription 'Showcase Data Table' #txt
 Ss0 f6 taskData 'TaskTriggered.NAM=Start DataTable Showcase
 TaskTriggered.customFields.STRING.embedInFrame="false"' #txt
 Ss0 f6 caseData 'businessCase.attach=true
-case.name=DataTable Showcase' #txt
+case.name=DataTable Showcase
+customFields.STRING.embedInFrame="false"' #txt
 Ss0 f6 showInStartList 1 #txt
 Ss0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -140,7 +142,8 @@ Ss0 f11 startDescription 'Showcase Customized UI' #txt
 Ss0 f11 taskData 'TaskTriggered.NAM=Start Customized UI
 TaskTriggered.customFields.STRING.embedInFrame="false"' #txt
 Ss0 f11 caseData 'businessCase.attach=true
-case.name=Start Customized UI' #txt
+case.name=Start Customized UI
+customFields.STRING.embedInFrame="false"' #txt
 Ss0 f11 showInStartList 1 #txt
 Ss0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -169,7 +172,8 @@ Ss0 f15 startDescription 'Showcase Primefaces Elements' #txt
 Ss0 f15 taskData 'TaskTriggered.NAM=Start Primefaces Elements
 TaskTriggered.customFields.STRING.embedInFrame="false"' #txt
 Ss0 f15 caseData 'businessCase.attach=true
-case.name=Primefaces Elements Showcase' #txt
+case.name=Primefaces Elements Showcase
+customFields.STRING.embedInFrame="false"' #txt
 Ss0 f15 showInStartList 1 #txt
 Ss0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -211,7 +215,8 @@ TaskTriggered.customFields.STRING.embedInFrame="false"' #txt
 Ss0 f20 caseData 'businessCase.attach=true
 case.category=Test
 case.description=Testing
-case.name=Case testing' #txt
+case.name=Case testing
+customFields.STRING.embedInFrame="false"' #txt
 Ss0 f20 showInStartList 1 #txt
 Ss0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
