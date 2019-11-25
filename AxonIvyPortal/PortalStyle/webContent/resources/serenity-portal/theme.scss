@@ -107,7 +107,7 @@
 }
 
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-icon {
-    color: $primaryColor;
+    color: $hoveredUserProcessStartListItemIconColor;
 }
 
 .process-group.ui-fieldset .ui-fieldset-legend {
@@ -119,13 +119,12 @@
 .process-widget .process-group .ui-fieldset-toggler {
     background-image: none !important;
     text-indent: 0;
-    color: $primaryColor !important;
 }
 
 /*Style For Task Widget ----------------------------------------------------------------------------------*/
 .filter-selection-form .filter-name:hover,
 .filter-selection-form .filter-name-overlay-panel .user-defined-filter-container .delete-user-defined-filter-command:hover {
-    color: $primaryColor !important;
+    color: $taskFilterDeleteUserDefinedIconHoverColor !important;
 }
 
 .filter-selection-form .filter-name-overlay-panel .user-defined-filter-container .delete-user-defined-filter-command {
@@ -173,7 +172,7 @@
 }
 
 .in-progress-task-checkbox .ui-chkbox-label {
-  color: $primaryTextColor;
+  color: $taskInProgressCheckboxLabelColor;
 }
 
 /*Style For Statistic Widget -----------------------------------------------------------------------------*/
@@ -189,14 +188,6 @@
 .statistic-carousel .ui-carousel-header .ui-carousel-next-button:hover,
 .statistic-carousel .ui-carousel-header .ui-carousel-prev-button:hover {
   color: $statisticCarouselHeaderButtonHoverColor !important;
-}
-
-.dashboard-chart-panel .ui-panel-titlebar {
-    background-color: $primaryColor;
-}
-
-.statistic-selection .add-link:hover {
-    color: $primaryColor !important;
 }
 
 .statistic-carousel .ui-carousel-header .ui-carousel-header-title .chart-info,
@@ -304,31 +295,26 @@
 
 /*Style for express --------------------------------------------------------------------------------------*/
 .process-start-list-item .process-start-list-item-action .express-workflow:hover {
-    color: $primaryColor !important;
-}
-
-.process-start-list-item.express-workflow .process-start-list-item-icon {
-    color: $primaryColor !important;
-    opacity: 1;
+    color: $hoveredProcessStartListItemIConColor !important;
 }
 
 .ui-widget.ui-button.defined-task-button.active,
 .ui-widget.ui-button.defined-task-button.visited {
-    border: solid 2px $primaryColor;
-    background-color: $primaryColor !important;
+    border: solid 2px $definedTaskButtonActivedBorderColor;
+    background-color: $definedTaskButtonActivedOrHoveredBackgroundColor !important;
 }
 
 .ui-widget.ui-button.defined-task-button.active:before {
-    border-color: $primaryColor;
+    border-color: $definedTaskButtonActivedBorderColor;
 }
 
 .ui-widget.ui-button.defined-task-button.ui-state-hover {
-    background-color: $primaryColor !important;
+    background-color: $definedTaskButtonActivedOrHoveredBackgroundColor !important;
 }
 
 /*Style for stages breadcrumb --------------------------------------------------------------------------------------*/
 .stages-chain .current i {
-    color: $primaryColor;
+    color: $stagesChainCurrentIconColor;
 }
 
 /*Style for stages process chain -----------------------------------------------------------------------------------*/
@@ -1224,8 +1210,8 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   font-size: $smallFontSize;
 }
 
-.ui-widget-content a {
-  color: $contentLinkChangeAwesomeIconColor
+.ui-widget-content a.icon-selection-dialog-selecting-icon {
+  color: $contentLinkChangeAwesomeIconColor;
 }
 
 .chart-filter-info-icon {
@@ -1320,7 +1306,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 /* Express */
 .ui-widget.ui-button.defined-task-button {
-  border: solid 2px $primaryColor;
+  border: solid 2px $definedTaskButtonBorderColor;
   background-color: $definedTaskButtonBackgroundColor;
 }
 
