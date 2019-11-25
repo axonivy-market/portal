@@ -137,7 +137,7 @@ public class TaskWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector(moreButton), true);
     // Unstable step, after go to task list, click immediately to More button, Portal opens task detail.
     // could be related to Javascript running when loading page. Try to wait page ready before clicking More button. 
-    Sleeper.sleep(2);
+    Sleeper.sleep(2000);
     clickByCssSelector(moreButton);
     ensureNoBackgroundRequest();
     waitForElementDisplayed(By.cssSelector("div[id$='side-steps-panel'].ui-overlay-visible a[id$='adhoc-side-step-item']"), true);
@@ -309,6 +309,16 @@ public class TaskWidgetPage extends TemplatePage {
    * @return task name
    */
   public String getNameOfTaskAt(int index) {
+    WebElement name = findElementByCssSelector(ID_END + index + ":task-item:task-name-component:task-name']");
+    return name.getText();
+  }
+  
+  /**
+   * Get name from task item in task scroller at specific index in compact list (homepage)
+   * @param index
+   * @return task name
+   */
+  public String getNameOfTaskInCompactListAt(int index) {
     WebElement name = findElementByCssSelector(ID_END + index + ":task-item:task-start-item-view:task-start-task-name']");
     return name.getText();
   }
