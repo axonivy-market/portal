@@ -20,20 +20,21 @@ public class UserTaskWithMailFormPage extends TaskTemplatePage {
   }
 
   private void inputRecipient(String recipient) {
-    findElementById("mail-form:information-email:email-recipients").sendKeys(recipient);
+    findElementById("task-form:task-view:information-email:email-recipients").sendKeys(recipient);
   }
 
   private void inputSubject(String content) {
-    findElementById("mail-form:information-email:email-subject").sendKeys(content);
+    findElementById("task-form:task-view:information-email:email-subject").sendKeys(content);
   }
 
   private void inputContent(String content) {
     WebDriver driver = Browser.getBrowser().getDriver();
     JavascriptExecutor jse = (JavascriptExecutor) driver;
-    jse.executeScript("document.querySelector(\"input[name='mail-form:information-email:email-content_input'\").value='"
+    jse.executeScript("document.querySelector(\"input[name='task-form:task-view:information-email:email-content_input'\").value='"
         + content + "';");
   }
   public void finish() {
-    click(By.id("mail-form:email-ok-btn"));
+    click(By.id("task-form:ok-btn"));
+    waitAjaxIndicatorDisappear();
   }
 }
