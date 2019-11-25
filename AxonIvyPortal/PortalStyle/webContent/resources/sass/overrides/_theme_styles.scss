@@ -238,10 +238,6 @@ a.ui-widget:focus {
     border-right: 1px solid $rightBorderInsideDataTable;
 }
 
-.ui-datatable-scrollable-theadclone {
-    display: none;
-}
-
 .ui-datatable {
     thead {
         tr {
@@ -311,6 +307,7 @@ a.ui-widget:focus {
 
     .ui-datatable-scrollable-body {
         outline: transparent;
+        margin-top: -2px;
     }
 
     .ui-paginator-rpp-options {
