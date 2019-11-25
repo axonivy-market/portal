@@ -715,7 +715,7 @@ body .ui-button .ui-button-text {
 .ui-widget.ui-button.ui-state-hover:not(.ui-spinner-button),
 .ui-widget.ui-buttonset .ui-state-hover,
 body .ui-buttonset .ui-state-active {
-    background-color: $primaryLightColor !important;
+    background-color: $uiButtonHoverBackgroundColor !important;
 }
 
 .ui-widget.ui-button {
@@ -778,7 +778,7 @@ body .ui-selectonemenu-panel .ui-selectonemenu-item.ui-state-focus {
 
 body .ui-selectonemenu-panel .ui-state-highlight,
 body .ui-autocomplete-panel .ui-state-highlight {
-  background-color: $primaryLightColor !important;
+  background-color: $uiPanelStateHighlightBackgroundColor !important;
 }
 body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span.md-inputwrapper-filled ~ label {
     color: $primaryColor;

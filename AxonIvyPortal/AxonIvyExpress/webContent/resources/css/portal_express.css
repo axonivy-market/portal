@@ -18,6 +18,10 @@
   margin-top: 1.5rem;
 }
 
+.express-work-flow .ui-widget.ui-messages {
+  margin-bottom: 20px;
+}
+
 /* Override fieldset style for express */
 .express-fieldset {
   width: auto !important;
