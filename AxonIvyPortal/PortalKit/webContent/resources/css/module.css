@@ -1169,7 +1169,6 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 
 .process-widget .default-process-title {
   display: inline-block;
-  padding-left: 2px;
   padding-right: 20px;
 }
 
@@ -1179,7 +1178,6 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 
 .process-widget .order-list-items.ui-orderlist {
   border: none;
-  
 }
 
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list {
@@ -4089,7 +4087,6 @@ _:-ms-fullscreen, :root .content-link-history {
 
 .favorite-process-title {
   display: inline-block;
-  padding-left: 2px;
   padding-right: 20px;
 }
 
