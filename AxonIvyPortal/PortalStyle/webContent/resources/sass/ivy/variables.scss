@@ -3,11 +3,6 @@ $red: #ff0000 !default;
 $white: #fff !default;
 $black: #000 !default;
 
-$grey1: #808080 !default;
-$grey2: #e0e0e0 !default;
-$grey3: #d8d8d8 !default;
-$grey4: #f0f0f0 !default;
-
 /*Consolidate grey*/
 $basicGrey: #f9fafa !default;
 $paleGrey: #f4f5f5 !default;
@@ -15,9 +10,10 @@ $lightGrey: #d9dada !default;
 $mediumGrey: #9c9d9d !default;
 $darkGrey: #575656 !default;
 
-/*Consolidate green*/
+/* Consolidate green */
 $primaryGreen: #c7d426 !default;
 $primaryLightGreen: #d7e52c !default;
+$caseTaskStateDoneOrResumeGreen: #4eb41c !default;
 
 /* Theme Colors */
 $primaryColor: $primaryGreen !default;
@@ -29,12 +25,6 @@ $accentColor: $primaryColor !default;
 $accentDarkColor: $primaryDarkColor !default;
 $accentLightColor: $primaryLightColor !default;
 $accentTextColor: $primaryTextColor !default;
-
-/* Consolidate green*/
-$caseTaskStateDoneOrResumeGreen: #4eb41c !default;
-$borderColor: $lightGrey !default;
-$bodyBackgroundColor: $white !default;
-$processChainMenuColor: $primaryColor !default;
 
 /* Default Portal styles */
 $defaultFontSize: 10px !default;
@@ -48,6 +38,8 @@ $defaultFontWeight: 400 !default;
 $inplaceEditIconFontSize: 1.8rem !default;
 $loginLogoHeight: 50px !default;
 $homeLogoHeight: 42px !default;
+$borderColor: $lightGrey !default;
+$bodyBackgroundColor: $white !default;
 
 /* 3 colors of header bar */
 $firstHeaderBarColor: $primaryColor !default;
@@ -102,6 +94,7 @@ $announcementBackgroundColor: #ffff80 !default;
 $announcementBorderColor: $red !default;
 
 /* Process chain */
+$processChainMenuColor: $primaryColor !default;
 $lineWaitingStepBackgroundColor: $lightGrey !default;
 $circleStepNumberColor: $primaryTextColor !default;
 $circleHorizontalStepNumberContainerBorderTopColor: $primaryColor !default;
@@ -111,6 +104,7 @@ $circleHorizontalWaitingStepNumberContainerBackgroundColor: transparent !default
 $circleStepContainerBorder: transparent !default;
 $circleVerticalStepNumberContainerBorder: $lightGrey !default;
 $circleVerticalStepContainerBackgroundColor: transparent !default;
+$stagesChainCurrentIconColor: $primaryColor;
 $currentLineHorizontalStepTitleFontWeight: bold !default;
 $currentLineVerticalStepTitleFontWeight: bold !default;
 $currentCircleHorizontalStepTitleFontWeight: bold !default;
@@ -174,6 +168,7 @@ $processStartListItemNameFontWeight: 400 !default;
 $processNavItemDisableColor: rgba($primaryTextColor, 0.3) !default;
 $processOrderItemHoverBoxShadowColor: black !default;
 $hoveredProcessStartListItemIConColor: $primaryColor !default;
+$hoveredUserProcessStartListItemIconColor: $primaryColor;
 
 /* Case Detail */
 $caseRelatedTaskColor: $primaryTextColor !default;
@@ -239,6 +234,9 @@ $taskFilterSeparatorBorderBottom: $borderColor !default;
 $taskViewContainerDataScrollerContentBackgroundColor: transparent !default;
 $taskStartListDescriptionCell: $mediumGrey !default;
 $taskOddRowFullModeBackgroundColor: $paleGrey !default;
+$taskInProgressCheckboxLabelColor: $primaryTextColor;
+$taskFilterDeleteUserDefinedIconHoverColor: $primaryColor;
+
 
 /* Task Detail */
 $taskDetailPaginatorColor: $primaryTextColor !default; 
@@ -320,6 +318,10 @@ $formElementsPanelHoverDropSectionBackgroundColor: $primaryLightColor !default;
 $formElementsCheckboxFieldsColor: $primaryTextColor !default;
 $definedTaskLabelBackgroundColor: $accentColor !default;
 $definedTaskButtonContainerBackgroundColor: $white !default;
+$definedTaskButtonActivedOrHoveredBackgroundColor: $primaryColor !default;
+$definedTaskButtonActivedBorderColor: $primaryColor !default;
+$definedTaskButtonBorderColor: $primaryColor !default;
+
 $formElementsPanelHoverDropSectionLabelColor: $primaryTextColor !default;
 $selectManyCheckboxLabelColor: $primaryTextColor !default;
 $autocompleteMoreTextStateHighlightBackgroundColor: white !default;
@@ -466,3 +468,5 @@ $uiDataPickerTitleBackgroundColor: $paleGrey !default;
 $uiAccordionHeaderBackgroundColor: $lightGrey !default;
 $uiFileuploadButtonbarBackgroundColor: $lightGrey !default;
 $uiFileuploadButtonbarBorder: $lightGrey !default;
+$uiButtonHoverBackgroundColor: $primaryLightColor; 
+$uiPanelStateHighlightBackgroundColor: $primaryLightColor;
