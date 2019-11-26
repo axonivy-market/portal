@@ -708,22 +708,9 @@ Tt0 f89 997 735 26 26 14 0 #rect
 Tt0 f89 @|EndIcon #fIcon
 Tt0 f90 actionTable 'out=in1;
 ' #txt
-Tt0 f90 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp" #txt
+Tt0 f90 outLinks "TaskB.ivp","TaskA.ivp","TaskC.ivp" #txt
 Tt0 f90 caseData case.category=DefaultAdditionalCaseDetailsPage #txt
-Tt0 f90 taskData 'TaskA.CATEGORY=AnnualLeave
-TaskA.DESC=Annual Leave Request Description
-TaskA.EXP=new Duration("3H")
-TaskA.EXPRI=2
-TaskA.EXROL=Everybody
-TaskA.EXTYPE=0
-TaskA.NAM=Annual Leave Request Default Case Details Page
-TaskA.PRI=2
-TaskA.ROL="demo"
-TaskA.SKIP_TASK_LIST=false
-TaskA.TYPE=3
-TaskA.customFields.STRING.CustomVarCharField1="Exterior"
-TaskA.customFields.STRING.CustomVarCharField5="Long Do"
-TaskB.CATEGORY=OtherLeave/SickLeave/Long
+Tt0 f90 taskData 'TaskB.CATEGORY=OtherLeave/SickLeave/Long
 TaskB.DESC=Sick Leave Request Description
 TaskB.EXP=new Duration("1D")
 TaskB.EXPRI=2
@@ -736,6 +723,21 @@ TaskB.SKIP_TASK_LIST=false
 TaskB.TYPE=0
 TaskB.customFields.STRING.CustomVarCharField1="Interior"
 TaskB.customFields.STRING.CustomVarCharField5="Tung Le"
+TaskB.customFields.STRING.embedInFrame="false"
+TaskA.EXPRI=2
+TaskA.PRI=2
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.ROL="demo"
+TaskA.TYPE=3
+TaskA.EXP=new Duration("3H")
+TaskA.CATEGORY=AnnualLeave
+TaskA.customFields.STRING.CustomVarCharField5="Long Do"
+TaskA.NAM=Annual Leave Request Default Case Details Page
+TaskA.SKIP_TASK_LIST=false
+TaskA.customFields.STRING.CustomVarCharField1="Exterior"
+TaskA.DESC=Annual Leave Request Description
+TaskA.customFields.STRING.embedInFrame="false"
 TaskC.CATEGORY=OtherLeave/Maternity
 TaskC.DESC=Maternity Leave Request Description
 TaskC.EXP=new Duration("2D")
@@ -748,7 +750,8 @@ TaskC.ROL=Everybody
 TaskC.SKIP_TASK_LIST=false
 TaskC.TYPE=0
 TaskC.customFields.STRING.CustomVarCharField1="Interior"
-TaskC.customFields.STRING.CustomVarCharField5="Anh Nguyen"' #txt
+TaskC.customFields.STRING.CustomVarCharField5="Anh Nguyen"
+TaskC.customFields.STRING.embedInFrame="false"' #txt
 Tt0 f90 template "" #txt
 Tt0 f90 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -809,7 +812,6 @@ customFields.STRING.ProcessCategoryCode="pubRequested"
 customFields.STRING.ProcessCategoryName="Publication Requested"
 customFields.STRING.ProcessCode="pubRequested"
 customFields.STRING.ProcessName="Publication Requested"
-customFields.STRING.embedInFrame="false"
 customFields.TIMESTAMP.CustomTimestampField2=new DateTime(2018, 2, 2, 2, 2 ,2)
 customFields.TIMESTAMP.CustomTimestampField3=new DateTime(2018, 3, 3, 3, 3, 3)
 customFields.TIMESTAMP.CustomTimestampField5=new DateTime(2018, 5, 5, 5, 5, 5)' #txt
