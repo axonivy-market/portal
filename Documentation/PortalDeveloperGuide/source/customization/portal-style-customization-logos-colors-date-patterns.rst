@@ -14,13 +14,13 @@ PortalStyle project.
 -  Modify cms entry ``PortalStyle/images/logo/CorporateLogo.png`` to
    update homepage logo when menu is expanded.
 
-   .. tip:: We recommend you to use an image with width size is 168 pixel to fit the left menu size when it's expanded
+.. tip:: We recommend you to use an image with width size is 168 pixel to fit the left menu size when it's expanded
    
 
 -  Modify cms entry ``PortalStyle/images/logo/SmallCorporateLogo.png`` to
    update homepage logo when menu is collapsed.
 
-   .. tip:: We recommend you to use an image with width size is 42 pixel to fit the left menu size when it's collapsed
+.. tip:: We recommend you to use an image with width size is 42 pixel to fit the left menu size when it's collapsed
 
 -  Modify cms entry ``PortalStyle/images/logo/loginLogo.png`` to update
    login logo.
@@ -36,26 +36,28 @@ Change Portal styles
 Portal applies |sass_framework| framework to support
 you in customizing styles of Portal. They are ``theme.scss`` and ``variables.scss``.
 
-   - ``theme.scss`` in ``PortalStyle/webContent/resources/serenity-portal``
-   - ``variables.scss`` in ``PortalStyle/webContent/resources/sass/ivy``
+- ``theme.scss`` in ``PortalStyle/webContent/resources/serenity-portal``
 
-   .. caution:: Please do not modify directly on these files because they can be changed by new Portal version for upgrade.
+- ``variables.scss`` in ``PortalStyle/webContent/resources/sass/ivy``
+
+.. caution:: Please do not modify directly on these files because they can be changed by new Portal version for upgrade.
 
 You can customize in:
 
-   - ``font-faces.scss``: to replace default font url-s by your font url-s and add/change other font styles to customize the Portal's font styles.
+- ``font-faces.scss``: to replace default font url-s by your font url-s and add/change other font styles to customize the Portal's font styles.
 
-   - ``customization.scss``: to change styles of Portal. E.g. Portal's component styles.
+- ``customization.scss``: to change styles of Portal. E.g. Portal's component styles.
 
-   .. tip::
-      For ``font-size``, Portal uses ``rem``. 
-      Font size of all elements are calculated based on font-size of ``html`` element. 
+.. tip::
+   For ``font-size``, Portal uses ``rem``. 
+   Font size of all elements are calculated based on font-size of ``html`` element. 
 
-   .. warning::
-      - Do not change ``font-family`` property values.
-      - Limitation: the task priority color customization hasn't changed the task priority colors in statistic.
+.. warning::
+   - Do not change ``font-family`` property values.
 
-      If you want to custom color of statistic, please refer to :ref:`Override Statistic color <override-Statistic-colors>`
+   - Limitation: the task priority color customization hasn't changed the task priority colors in statistic.
+
+   If you want to custom color of statistic, please refer to :ref:`Override Statistic color <override-Statistic-colors>`
 
 After you finish your customization, compile these above scss files to
 build the css file named ``theme.css`` and put it at
