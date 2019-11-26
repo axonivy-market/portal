@@ -6,7 +6,6 @@
 /* WORKFLOW DEFINITION */
 .express-align-bottom-group {
   display: flex !important;
-  height: 5.5em;
 }
 
 .express-align-bottom-group .align-bottom-child-item {
@@ -467,7 +466,7 @@ td.email-attachment-text {
 }
 
 .defined-task-label label {
-  margin-top: 1px;
+  margin-top: 3px;
   display: block;
 }
 

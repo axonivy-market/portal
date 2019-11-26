@@ -14,8 +14,8 @@ Ee0 @TextInP .responsibility .responsibility #zField
 Ee0 @StartRequest f0 '' #zField
 Ee0 @EndTask f1 '' #zField
 Ee0 @UserDialog f3 '' #zField
-Ee0 @PushWFArc f4 '' #zField
 Ee0 @PushWFArc f2 '' #zField
+Ee0 @PushWFArc f4 '' #zField
 >Proto Ee0 Ee0 EndPage #zField
 Ee0 f0 outLink start.ivp #txt
 Ee0 f0 inParamDecl '<> param;' #txt
@@ -63,10 +63,10 @@ Ee0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ee0 f3 168 42 112 44 -48 -8 #rect
 Ee0 f3 @|UserDialogIcon #fIcon
-Ee0 f4 expr out #txt
-Ee0 f4 111 64 168 64 #arcP
 Ee0 f2 expr out #txt
 Ee0 f2 280 64 337 64 #arcP
+Ee0 f4 expr out #txt
+Ee0 f4 111 64 168 64 #arcP
 >Proto Ee0 .type ch.ivy.addon.express.generic.HandleEndPageData #txt
 >Proto Ee0 .processKind NORMAL #txt
 >Proto Ee0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
