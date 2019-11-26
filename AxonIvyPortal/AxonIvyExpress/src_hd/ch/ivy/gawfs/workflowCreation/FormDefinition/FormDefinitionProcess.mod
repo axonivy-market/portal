@@ -240,7 +240,8 @@ Ds0 f21 0 0.8169815478141365 0 0 #arcLabel
 Ds0 f11 actionTable 'out=in;
 out.activeTab=0;
 ' #txt
-Ds0 f11 actionCode 'import gawfs.ExternalDataProvider;
+Ds0 f11 actionCode 'import org.apache.commons.collections4.CollectionUtils;
+import gawfs.ExternalDataProvider;
 import ch.ivy.gawfs.ExpressProcessUtils;
 import ch.ivy.addon.portalkit.bo.ExpressUserEmail;
 import ch.ivy.gawfs.enums.TaskType;
@@ -275,8 +276,12 @@ in.displayNextBtn = expressUtils.displayNextButton(in.data.definedTasks, in.acti
 
 in.selectedDataProvider = new ExternalDataProvider();
 in.selectedDataProvider.name = ivy.cms.co("/Dialogs/workflowCreation/FormDefinition/NoDataProvider");
-in.dataProviders.add(in.selectedDataProvider);
-in.dataProviders.addAll(expressUtils.findDataProviders());' #txt
+
+List<ExternalDataProvider> foundDataProviders = expressUtils.findDataProviders();
+if (CollectionUtils.isNotEmpty(foundDataProviders)) {
+  in.dataProviders.add(in.selectedDataProvider);
+  in.dataProviders.addAll(foundDataProviders);
+}' #txt
 Ds0 f11 security system #txt
 Ds0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
