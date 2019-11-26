@@ -1,13 +1,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
   xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://java.sun.com/jsp/jstl/core">
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://java.sun.com/jsp/jstl/core"
+  xmlns:jsf="http://xmlns.jcp.org/jsf">
 <h:body>
 
   <p:fieldset id="create-tabs-field" legend="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/FieldSetFormelements')}" toggleable="true"
     styleClass="ui-g express-fieldset fieldset-no-border u-padding-0 create-tabs-field">
     <div class="card ui-g-12">
       <p:tabView id="create-tabs" styleClass="form-create-tabs" activeIndex="#{data.activeTab}" dynamic="false">
-        <p:ajax event="tabChange" resetValues="true" global="false" update="create-tabs" />
+        <p:ajax event="tabChange" resetValues="true" update="create-tabs" />
 
         <!-- INPUT FIELD TAB -->
         <p:tab title="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputField')}" id="create-input-field-tab">
@@ -128,11 +129,11 @@
             <p:graphicImage library="ivy-cms" name="/Layouts/Icons/ManyCheckbox" width="65" styleClass="form-definition-item-icon" />
           </f:facet>
 
-          <h:panelGroup id="create-many-checkbox" styleClass="ui-g alignLabelTop">
-            <div class="ui-g-12 u-no-padding-top express-align-bottom-group">
+          <h:panelGroup id="create-many-checkbox" layout="block" styleClass="ui-g alignLabelTop">
+            <div class="ui-g u-no-padding-top express-align-bottom-group">
               <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
 
-              <div class="ui-g-5 ui-lg-5 ui-md-6 align-bottom-child-item">
+              <div class="ui-g-5 ui-lg-5 ui-md-6 #{empty data.dataProviders ? 'MarTop20' : 'align-bottom-child-item'}">
                 <div class="md-inputfield">
                   <p:inputText id="many-checkbox-label" required="true"
                     requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ElementLabel')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
@@ -142,11 +143,9 @@
                 </div>
               </div>
 
-              <div class="ui-g-5 ui-lg-5 ui-md-6 align-bottom-child-item">
-                <div class="ui-g-12">
-                  <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/DataProvider')}" for="DataProvider" />
-                </div>
+              <div class="ui-g-5 ui-lg-5 ui-md-6" jsf:rendered="#{not empty data.dataProviders}">
                 <div class="ui-g-12 u-no-padding-top no-padding-bottom">
+                  <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/DataProvider')}" for="DataProvider" />
                   <p:selectOneMenu id="DataProvider" converter="pojoConverter" value="#{data.selectedDataProvider}"
                     styleClass="express-workflow-input">
                     <f:selectItems value="#{data.dataProviders}" var="provider" itemLabel="#{provider.name}" itemValue="#{provider}" />
@@ -154,10 +153,9 @@
                   </p:selectOneMenu>
                 </div>
               </div>
-            </div>
 
-            <div class="ui-g-12 u-padding-0">
-              <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
+               <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" jsf:rendered="#{not empty data.dataProviders}" />
+               <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" jsf:rendered="#{not empty data.dataProviders}" />
 
               <h:panelGroup id="value-checkbox-label" styleClass="ui-g-5 ui-lg-5 ui-md-6"
                 rendered="#{data.selectedDataProvider.name eq ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoDataProvider')}">

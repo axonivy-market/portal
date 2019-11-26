@@ -16,7 +16,7 @@
   <h:panelGroup id="email-container" styleClass="express-email-container">
     <div class="ui-g card">
       <div class="ui-g-12 md-inputfield">
-        <p:inputText id="email-recipients" styleClass="ui-g-12" value="#{email.recipients}" required="true"
+        <p:inputText id="email-recipients" styleClass="ui-g-12" value="#{email.recipients}" required="#{param['skipValidator'] == null}"
           requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
         <p:outputLabel for="email-recipients" styleClass="ui-g-12"
           value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailAddress')}" />
@@ -30,7 +30,7 @@
       </div>
 
       <div class="ui-g-12 md-inputfield">
-        <p:inputText id="email-subject" styleClass="ui-g-12" value="#{email.subject}" required="true"
+        <p:inputText id="email-subject" styleClass="ui-g-12" value="#{email.subject}" required="#{param['skipValidator'] == null}"
           requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
         <p:outputLabel for="email-subject" styleClass="ui-g-12" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/Subject')}" />
         <p:message for="email-subject" />
@@ -39,7 +39,7 @@
       <div class="ui-g-12">
         <p:outputLabel for="email-content" styleClass="ui-g-12" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailText')}: " />
         <div class="md-inputfield">
-          <p:textEditor id="email-content" styleClass="ui-g-12 text-editor-send-email" height="300" value="#{email.content}" required="true"
+          <p:textEditor id="email-content" styleClass="ui-g-12 text-editor-send-email" height="300" value="#{email.content}" required="#{param['skipValidator'] == null}"
             requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
             <f:facet name="toolbar">
               <span class="ql-formats">

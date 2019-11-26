@@ -1396,7 +1396,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 }
 
 .email-attachment .ui-fileupload-buttonbar.ui-widget-header.ui-corner-top {
-  background-color: $emailFileUploadCornerTopBackgroundColor;
+  background-color: $emailFileUploadCornerTopBackgroundColor !important;
 }
 
 .task-responsible-link {
