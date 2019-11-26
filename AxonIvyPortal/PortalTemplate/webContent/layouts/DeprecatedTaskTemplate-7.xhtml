@@ -97,8 +97,10 @@
               <p:tab id="request-tab"
                 title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/requestTabTitle')}"
                 rendered="#{showTaskFormTab == null ? true : showTaskFormTab}">
-                <ui:insert name="taskForm">
-                  <!-- Task Form -->
+                <ui:insert name="content">
+                  <ui:insert name="taskForm">
+                    <!-- Task Form -->
+                  </ui:insert>
                 </ui:insert>
               </p:tab>
 
