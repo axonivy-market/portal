@@ -36,11 +36,51 @@ Change Portal styles
 Portal applies |sass_framework| framework to support
 you in customizing styles of Portal. They are ``theme.scss`` and ``variables.scss``.
 
-- ``theme.scss`` in ``PortalStyle/webContent/resources/serenity-portal``
+   - ``theme.scss`` in ``PortalStyle/webContent/resources/serenity-portal``
+   - ``variables.scss`` in ``PortalStyle/webContent/resources/sass/ivy``
 
-- ``variables.scss`` in ``PortalStyle/webContent/resources/sass/ivy``
+   .. caution:: Please do not modify directly on these files because they can be changed by new Portal version for upgrade.
 
-.. caution:: Please do not modify directly on these files because they can be changed by new Portal version for upgrade.
+   Below is the list of some Portal elements which are using primary colors of Serenity theme:
+
+.. table::
+
+   +-----------------------+-----------------------------+----------------------------------------------------------------+
+   | Variable              | Default value               | Description                                                    |
+   +=======================+=============================+================================================================+
+   | $primaryColor         | $primaryGreen: #c7d426      | - Background color of button (except Cancel button)            |
+   |                       |                             | - Background color of Titlebar panel/selectcheckboxmenu header |
+   |                       |                             | - Background color of selected checkbox/radio button           |
+   |                       |                             | - Background color of process chain (except waiting state)     |
+   |                       |                             | - Background color of hovered row in datatable                 |
+   |                       |                             | - Portal header bar                                            |
+   |                       |                             | - Label and bottom border of active input field                |
+   |                       |                             | - Sidebar anchor                                               |
+   |                       |                             | - Text color of active tab                                     |
+   +-----------------------+-----------------------------+----------------------------------------------------------------+
+   | $primaryDarkColor     | $primaryGreen: #c7d426      | - Background color of toolbar                                  |
+   |                       |                             | - Background color of datatable pagination                     |
+   |                       |                             |   (except table in Case/Task detail)                           |
+   +-----------------------+-----------------------------+----------------------------------------------------------------+
+   | $primaryLightColor    | $primaryLightGreen: #d7e52c | - Background color of hovered button                           |
+   +-----------------------+-----------------------------+----------------------------------------------------------------+
+   | $primaryLightestColor | white                       | - Active checkbox icon                                         |
+   |                       |                             | - Background color of active menu item                         |
+   |                       |                             | - Topbar background color                                      |
+   +-----------------------+-----------------------------+----------------------------------------------------------------+
+   | $primaryTextColor     | black                       | - For almost text in Portal (except some specific styles       |
+   |                       |                             |   like Case/Task Description in Case/Task list)                |
+   +-----------------------+-----------------------------+----------------------------------------------------------------+
+   | $accentColor          | $primaryColor               | - Active submenuitem of sidebar                                |
+   |                       |                             | - Background color of active cell (table header)               |
+   |                       |                             | - Background color of fileupload button                        |
+   |                       |                             | - Background color of active page in datatable                 |
+   |                       |                             |   (except table in Case/Task detail)                           |
+   |                       |                             | - Background color of selected date (datepicker),              |
+   |                       |                             |   selected item (selectlistbox-item)                           |
+   |                       |                             | - Bottom border of active tab                                  |
+   |                       |                             | - Border color of datepicker-today                             |
+   +-----------------------+-----------------------------+----------------------------------------------------------------+
 
 You can customize in:
 
