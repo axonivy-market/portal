@@ -1,4 +1,5 @@
-co: name={case} description={} changed={2019-02-20 07:56:20 CET} changedby={dhtlong} visualorder={0} guid={16909AEFB582641D} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={case} description={} changed={2019-11-26 04:57:24 CET} changedby={mnhnam} visualorder={0} guid={16909AEFB582641D} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={16909AEFB5CF8874} datatype={} isdefault={false} langid={de} description={} validfrom={2019-02-20 07:54:16 CET} validto={} changed={2019-02-20 07:56:20 CET} changedby={dhtlong} properties={} id={}
 val: guid={16909AEFB6B4436D} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-02-20 07:54:16 CET} validto={} changed={2019-02-20 07:55:45 CET} changedby={dhtlong} properties={} id={}
+val: guid={16EA5DB51558B5C5} datatype={} isdefault={false} langid={es} description={} validfrom={2019-11-26 04:57:24 CET} validto={} changed={2019-11-26 04:57:24 CET} changedby={mnhnam} properties={} id={}
 val: guid={16909AEFB63A412C} datatype={} isdefault={true} langid={en} description={} validfrom={2019-02-20 07:54:16 CET} validto={} changed={2019-02-20 07:54:16 CET} changedby={dhtlong} properties={} id={}
