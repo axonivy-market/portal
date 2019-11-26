@@ -13,15 +13,19 @@ Gt0 @TextInP .xml .xml #zField
 Gt0 @TextInP .responsibility .responsibility #zField
 Gt0 @StartRequest f0 '' #zField
 Gt0 @CallSub f3 '' #zField
-Gt0 @PushWFArc f4 '' #zField
 Gt0 @StartRequest f6 '' #zField
 Gt0 @CallSub f12 '' #zField
-Gt0 @PushWFArc f8 '' #zField
 Gt0 @Alternative f10 '' #zField
 Gt0 @PushWFArc f16 '' #zField
 Gt0 @PushWFArc f2 '' #zField
 Gt0 @EndTask f17 '' #zField
 Gt0 @PushWFArc f1 '' #zField
+Gt0 @GridStep f5 '' #zField
+Gt0 @PushWFArc f7 '' #zField
+Gt0 @PushWFArc f4 '' #zField
+Gt0 @GridStep f9 '' #zField
+Gt0 @PushWFArc f11 '' #zField
+Gt0 @PushWFArc f8 '' #zField
 >Proto Gt0 Gt0 GenericPredefinedWorkflowStart #zField
 Gt0 f0 outLink GenericPredefinedProcessStart.ivp #txt
 Gt0 f0 inParamDecl '<Integer actualStepIndex,String workflowID> param;' #txt
@@ -73,10 +77,8 @@ Gt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Gt0 f3 200 42 160 44 -76 -8 #rect
+Gt0 f3 408 42 160 44 -76 -8 #rect
 Gt0 f3 @|CallSubIcon #fIcon
-Gt0 f4 expr out #txt
-Gt0 f4 111 64 200 64 #arcP
 Gt0 f6 outLink GenericEditProcessStart.ivp #txt
 Gt0 f6 inParamDecl '<String workflowID> param;' #txt
 Gt0 f6 inParamTable 'out.workflowID=param.workflowID;
@@ -129,34 +131,69 @@ Gt0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Gt0 f12 208 136 160 48 -10 -8 #rect
+Gt0 f12 416 136 160 48 -10 -8 #rect
 Gt0 f12 @|CallSubIcon #fIcon
-Gt0 f8 expr out #txt
-Gt0 f8 111 160 208 160 #arcP
-Gt0 f10 400 144 32 32 0 16 #rect
+Gt0 f10 608 144 32 32 0 16 #rect
 Gt0 f10 @|AlternativeIcon #fIcon
 Gt0 f16 expr out #txt
-Gt0 f16 360 64 416 144 #arcP
-Gt0 f16 1 416 64 #addKink
+Gt0 f16 568 64 624 144 #arcP
+Gt0 f16 1 624 64 #addKink
 Gt0 f16 0 0.7371524785058673 0 0 #arcLabel
 Gt0 f2 expr out #txt
-Gt0 f2 368 160 400 160 #arcP
+Gt0 f2 576 160 608 160 #arcP
 Gt0 f2 0 0.477567298105683 0 0 #arcLabel
-Gt0 f17 497 145 30 30 0 15 #rect
+Gt0 f17 705 145 30 30 0 15 #rect
 Gt0 f17 @|EndIcon #fIcon
 Gt0 f1 expr in #txt
-Gt0 f1 432 160 497 160 #arcP
+Gt0 f1 640 160 705 160 #arcP
+Gt0 f5 actionTable 'out=in;
+' #txt
+Gt0 f5 actionCode 'import ch.ivy.addon.portalkit.constant.CustomFields;
+ivy.case.customFields().stringField(CustomFields.IS_EXPRESS_PROCESS).set("true");' #txt
+Gt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Set Task/Case field</name>
+    </language>
+</elementInfo>
+' #txt
+Gt0 f5 224 42 112 44 -53 -8 #rect
+Gt0 f5 @|StepIcon #fIcon
+Gt0 f7 expr out #txt
+Gt0 f7 111 64 224 64 #arcP
+Gt0 f4 336 64 408 64 #arcP
+Gt0 f4 0 0.5448213204118716 0 0 #arcLabel
+Gt0 f9 actionTable 'out=in;
+' #txt
+Gt0 f9 actionCode 'import ch.ivy.addon.portalkit.constant.CustomFields;
+ivy.case.customFields().stringField(CustomFields.IS_EXPRESS_PROCESS).set("true");' #txt
+Gt0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Set Task/Case field</name>
+    </language>
+</elementInfo>
+' #txt
+Gt0 f9 224 138 112 44 -53 -8 #rect
+Gt0 f9 @|StepIcon #fIcon
+Gt0 f11 expr out #txt
+Gt0 f11 111 160 224 160 #arcP
+Gt0 f8 336 160 416 160 #arcP
 >Proto Gt0 .type gawfs.GenericPredefinedWorkflowStartData #txt
 >Proto Gt0 .processKind NORMAL #txt
 >Proto Gt0 0 0 32 24 18 0 #rect
 >Proto Gt0 @|BIcon #fIcon
-Gt0 f0 mainOut f4 tail #connect
-Gt0 f4 head f3 mainIn #connect
-Gt0 f6 mainOut f8 tail #connect
-Gt0 f8 head f12 mainIn #connect
 Gt0 f3 mainOut f16 tail #connect
 Gt0 f16 head f10 in #connect
 Gt0 f12 mainOut f2 tail #connect
 Gt0 f2 head f10 in #connect
 Gt0 f10 out f1 tail #connect
 Gt0 f1 head f17 mainIn #connect
+Gt0 f0 mainOut f7 tail #connect
+Gt0 f7 head f5 mainIn #connect
+Gt0 f5 mainOut f4 tail #connect
+Gt0 f4 head f3 mainIn #connect
+Gt0 f6 mainOut f11 tail #connect
+Gt0 f11 head f9 mainIn #connect
+Gt0 f9 mainOut f8 tail #connect
+Gt0 f8 head f12 mainIn #connect
