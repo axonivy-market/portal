@@ -807,7 +807,7 @@
 
 /* Style for SubMenu Item-----------------------------*/
 .submenu-container {
-  background-color: $subMenuBackgroundColor;
+  background-color: $submenuBgColor;
 }
 
 .submenu-container.active-menuitem a:hover {
@@ -932,6 +932,7 @@ span.task-details-document-add-link {
 .options-panel hr.u-separator {
   border: 0.8px solid $caseActionSeparatorBorderColor;
 }
+
 .case-list-item {
   background-color: $caseListItemBackgroundColor;
 }
@@ -1299,6 +1300,10 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 /*Style for Global Search--------------------*/
 .global-search-input {
   font-size: $largeFontSize;
+}
+
+:-ms-input-placeholder {
+ color: $mediumGrey !important;
 }
 
 /*Style for Error Page*/ 

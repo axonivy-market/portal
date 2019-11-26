@@ -74,7 +74,7 @@ $contextButtonStateHoverOrFocusBackgroundColor: $mediumGrey !default;
 $commandLinkTextColor: $mediumGrey !default;
 $commandLinkHoveredTextColor: $darkGrey !default;
 $commandLinkActiveTextColor: $darkGrey !default;
-$commandLinkDisabledTextColor: $lightGrey !default;
+$commandLinkDisabledTextColor: $mediumGrey !default;
 
 /* Fieldset */
 $fieldSetTogglerColor: $primaryTextColor !default;
@@ -133,7 +133,7 @@ $menuItemCurrentApplicationBorderBottomColor: transparent !default;
 /* Submenu Item */
 $subMenuItemLinkHoverBackgroundColor: transparent !default;
 $subMenuItemLinkBackgroundColor: transparent !default;
-$subMenuBackgroundColor: rgba($white, 0.6) !default;
+$submenuBgColor: rgba($white, 0.6) !default;
 $subMenuItemLinkHoveredBackgroundColor: $lightGrey !default;
 
 /* Filter Widget */
@@ -237,7 +237,6 @@ $taskOddRowFullModeBackgroundColor: $paleGrey !default;
 $taskInProgressCheckboxLabelColor: $primaryTextColor;
 $taskFilterDeleteUserDefinedIconHoverColor: $primaryColor;
 
-
 /* Task Detail */
 $taskDetailPaginatorColor: $primaryTextColor !default; 
 $taskDetailPaginatorHeaderCornerTopBorderColor: $lightGrey !default;
@@ -268,7 +267,6 @@ $userSettingContainerActiveMenuBorder: rgba(43, 59, 93, 0.2) !default;
 $userSettingContainerBoxShadow: rgba(43, 59, 93, 0.6) !default;
 $emailSettingWidgetHeader: $primaryTextColor !default;
 $usernameShowEnvironmentInfoFontWeight: bold !default;
-
 
 /* Absences and Deputy */
 $substitutedUserTextColor: $primaryTextColor !default;
@@ -304,9 +302,6 @@ $errorMessageHeaderColor: #e67163 !default;
 $selectCheckBoxCloseHoverColor: $white !default;
 $configCheckboxContainerBorder: $lightGrey !default;
 $selectCheckboxMenuIconFontSize: 1.8rem !default;
- 
-$bodyStateActiveColor: $primaryTextColor !default;
-$autoCompleteHoverColor: $primaryTextColor !default;
  
  /* Express */
 $expressInputSwitchSelectionBackgroundColor: $accentColor !default;
@@ -407,9 +402,8 @@ $trueMinimalisticIconFontStyle: normal !default;
 $trueMinimalisticIconFontWeight: normal !default;
 $trueMinimalisticIconFontVariant: normal !default;
 
-/*Override theme styles*/
-
 /*Side bar menu*/
+$sidebarBgColor: $paleGrey !default;
 $sidebarMenuListItemLinkTextColor: $primaryTextColor !default;
 $sidebarMenuListItemIconColor: $primaryTextColor !default;
 $sidebarMenuListItemLinkHoverTextColor: $primaryTextColor !default;
@@ -455,6 +449,8 @@ $bodyDialogTitleFontSize: 1.9rem !default;
 $hoveredItemSelectOneMenuTextColor: $primaryTextColor !default;
 $hoveredItemSelectOneListBoxTextColor: $primaryTextColor !default;
 $hoveredPicklistItemTextColor: $primaryTextColor !default;
+$bodyStateActiveColor: $primaryTextColor !default;
+$autoCompleteHoverColor: $primaryTextColor !default;
 
 $uiFiedsetLegendTextColor: $primaryTextColor !default;
 $uiDialogTitleBarTextColor: $primaryTextColor !default;
@@ -464,8 +460,7 @@ $uiDataPickerTitleColor: $primaryTextColor !default;
 $uiDataPickerHeaderColor: $paleGrey !default;
 $uiDataPickerTitleBorderColor: $paleGrey !default;
 $uiDataPickerTitleBackgroundColor: $paleGrey !default;
-$uiAccordionHeaderBackgroundColor: $lightGrey !default;
 $uiFileuploadButtonbarBackgroundColor: $lightGrey !default;
 $uiFileuploadButtonbarBorder: $lightGrey !default;
-$uiButtonHoverBackgroundColor: $primaryLightColor; 
-$uiPanelStateHighlightBackgroundColor: $primaryLightColor;
+$uiButtonHoverBackgroundColor: $primaryLightColor !default;
+$uiPanelStateHighlightBackgroundColor: $primaryLightColor !default;
