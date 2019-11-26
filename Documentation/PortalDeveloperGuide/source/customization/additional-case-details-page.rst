@@ -9,7 +9,7 @@ Introduction
 ------------
 
 The additional case details page shows all custom fields of a case by
-clicking on "Show details" link in case details.
+clicking on "Show business details" link in case details.
 
 You can customize this page for each case by providing a relative URL to
 case.
@@ -25,7 +25,7 @@ Customization
    |customization-additional-case-details-page|
 
 2. Store the URL of start process in
-   "CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE" additional property of case. You
+   "CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE" custom fields of case. You
    could use ``SetAdditonalCaseDetailPage.mod`` callable process, and input the
    friendly URL of process as parameter.
 
@@ -33,12 +33,15 @@ Customization
 
    .. tip:: If you want to redirect user to external link, simply store that
       external link to "CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE"
-      additional property of case.
+      custom fields of case.
 
-   |store-external-url-in-case|
+   For example: redirect user to Google search.
+
+   .. code-block:: java
+
+      ivy.case.customFields().textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).set(https://www.google.com/);
+
+   ..
 
 .. |customization-additional-case-details-page| image:: images/additional-case-details-page/customization-additional-case-details-page.png
 .. |set-additonal-case-detail-page-callable-process| image:: images/additional-case-details-page/set-additonal-case-detail-page-callable-process.png
-.. |store-external-url-in-case| image:: images/additional-case-details-page/store-external-url-in-case.png
-
-
