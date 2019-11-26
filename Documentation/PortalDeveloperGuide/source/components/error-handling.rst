@@ -79,8 +79,7 @@ How to configure
 Download the zip file below to configure on your own engine (or
 designer).
 
-   .. important:: 
-      Read README.txt
+.. important:: Read README.txt
 
 :download:`PortalErrorPageConfiguration.zip <documents/error-handling/portal-error-page-configuration.zip>` 
 
