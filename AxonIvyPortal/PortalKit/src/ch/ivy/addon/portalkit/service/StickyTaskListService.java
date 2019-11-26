@@ -20,7 +20,7 @@ public class StickyTaskListService {
   }
 
   public ITask getPreviousTaskWithTaskEndInfo(ITask task) {
-    if (Objects.isNull(task) || isTaskWithTaskEndInfo(getTaskEndInfoSessionAttributeKey(task.getId()))) {
+    if (Objects.isNull(task) || isTaskWithTaskEndInfo(getTaskEndInfoSessionAttributeKey(task.getId())) || task.getStartSwitchEvent() == null) {
       return task;
     }
     for (ITask previousTask : task.getStartSwitchEvent().getEndedTasks()) {
