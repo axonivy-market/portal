@@ -547,7 +547,7 @@ body {
 }
 
 .layout-wrapper .layout-sidebar {
-    background-color: $paleGrey;
+    background-color: $sidebarBgColor;
 }
 
 .layout-wrapper .layout-sidebar .layout-menu>li.active-menuitem>a i {
@@ -706,6 +706,7 @@ body .ui-messages ul {
 /* Buttons */
 body .ui-button .ui-button-text {
   font-size: $largeFontSize;
+  color: $buttonTextColor;
 }
 
 .ui-widget.ui-button.ui-state-hover:not(.ui-spinner-button),
@@ -716,7 +717,7 @@ body .ui-buttonset .ui-state-active {
 
 .ui-widget.ui-button {
     .ui-button-text {
-        color: $primaryTextColor !important;
+        color: $buttonTextColor !important;
     }
 
     .ui-icon {
@@ -760,7 +761,7 @@ input::-ms-clear {
 
 .ui-selectonemenu-trigger .ui-icon.ui-icon-triangle-1-s {
   position: absolute;
-    right: 0;
+  right: 0;
 }
 
 body .ui-selectonemenu-panel .ui-selectonemenu-item.ui-state-hover {
@@ -914,7 +915,7 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
 
 body .ui-accordion .ui-accordion-header {
   font-size: $largeFontSize !important;
-  background-color: $uiAccordionHeaderBackgroundColor !important;
+  background-color: $accordionHeaderBgColor !important;
 }
 
 /* Spinner */
