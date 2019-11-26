@@ -221,7 +221,7 @@ a.ui-widget:focus {
 }
 
 /* Data table */
-.ui-datatable table tbody tr td span {
+.ui-datatable:not(.express-table-no-header) table tbody tr td span {
   color: $dataTableRowSpanColor !important;
 }
 
@@ -317,10 +317,6 @@ a.ui-widget:focus {
     .ui-inputfield.ui-widget.ui-state-default.ui-corner-all.hasDatepicker {
         background-image: linear-gradient(to bottom, $primaryColor, $primaryColor), linear-gradient(to bottom, $inputBorderColor, $inputBorderColor) !important;
     }
-}
-
-.ui-datatable table tbody tr td span {
-  color: $dataTableRowSpanColor !important;
 }
 
 .ui-datatable table tbody tr.ui-datatable-even {
