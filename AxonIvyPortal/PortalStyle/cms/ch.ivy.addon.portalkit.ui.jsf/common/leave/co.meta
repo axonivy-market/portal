@@ -1,5 +1,5 @@
-co: name={leave} description={} changed={2019-02-11 03:13:32 CET} changedby={ntminh01} visualorder={0} guid={15F713A6A9F82FF1} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={leave} description={} changed={2019-11-26 04:57:24 CET} changedby={mnhnam} visualorder={0} guid={15F713A6A9F82FF1} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={15F713A6AA14D19C} datatype={} isdefault={true} langid={en} description={} validfrom={2017-08-04 11:55:41 CEST} validto={} changed={2017-10-31 07:59:34 CET} changedby={chnam} properties={} id={}
 val: guid={15F713A6AA62F484} datatype={} isdefault={false} langid={de} description={} validfrom={2017-08-04 11:55:41 CEST} validto={} changed={2017-10-31 07:59:34 CET} changedby={chnam} properties={} id={}
 val: guid={15F713A6AAA54D95} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-04 11:55:41 CEST} validto={} changed={2017-10-31 07:59:34 CET} changedby={chnam} properties={} id={}
-val: guid={168DA54BBF243D47} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:32 CET} validto={} changed={2019-02-11 03:13:32 CET} changedby={ntminh01} properties={} id={}
+val: guid={168DA54BBF243D47} datatype={} isdefault={false} langid={es} description={} validfrom={2019-11-26 04:57:24 CET} validto={} changed={2019-11-26 04:57:24 CET} changedby={mnhnam} properties={} id={}

@@ -1,5 +1,5 @@
-co: name={resetParkTaskBeforeLeave} description={} changed={2019-11-12 09:12:59 CET} changedby={ldnam} visualorder={0} guid={16458C9D3F1B3FB7} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={resetParkTaskBeforeLeave} description={} changed={2019-11-26 04:57:28 CET} changedby={mnhnam} visualorder={0} guid={16458C9D3F1B3FB7} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={16458CAD92F88975} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-08-27 11:51:12 CEST} validto={} changed={2018-08-27 11:51:12 CEST} changedby={chnam} properties={} id={}
 val: guid={16458CAD89ED251F} datatype={} isdefault={false} langid={de} description={} validfrom={2018-07-02 04:20:06 CEST} validto={} changed={2019-11-12 09:12:59 CET} changedby={ldnam} properties={} id={}
-val: guid={16E5E9F9EE8C3D67} datatype={} isdefault={false} langid={es} description={} validfrom={2019-11-12 08:59:04 CET} validto={} changed={2019-11-12 08:59:09 CET} changedby={ldnam} properties={} id={}
+val: guid={16E5E9F9EE8C3D67} datatype={} isdefault={false} langid={es} description={} validfrom={2019-11-26 04:57:28 CET} validto={} changed={2019-11-26 04:57:28 CET} changedby={mnhnam} properties={} id={}
 val: guid={16458C9D3F46A725} datatype={} isdefault={true} langid={en} description={} validfrom={2018-07-02 04:19:39 CEST} validto={} changed={2018-07-02 04:20:46 CEST} changedby={chnam} properties={} id={}
