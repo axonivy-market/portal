@@ -28,7 +28,7 @@
                 styleClass="defined-task-button #{status.index == data.activeTaskIndex ? 'active' : ''}"
                 disabled="#{(status.index == data.activeTaskIndex) || (definedTask.taskType == 'APPROVAL')}"
                 actionListener="#{logic.moveToTask(status.index)}" update="form defined-task-container buttons-container"
-                process="form:selected-formelements-field form:information-email:email-container">
+                process="form:information-email:email-container">
                 <p:resetInput target="form:create-tabs" />
               </p:commandButton>
 
@@ -75,24 +75,26 @@
 
         <p:commandButton id="save-button" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/SaveWorkflow')}" icon="fa fa-save"
           partialSubmit="true" update="form:selected-formelements-field"
-          process="form:selected-formelements-field form:information-email:email-container" actionListener="#{logic.save}"
-          rendered="#{data.data.processType eq 'REPEAT' and !data.data.editFlag}" />
+          process="form:information-email:email-container" actionListener="#{logic.save}"
+          rendered="#{data.data.processType eq 'REPEAT' and !data.data.editFlag}">
+          <f:param name="skipValidator" value="true"/>
+        </p:commandButton>
         <p:spacer width="5" rendered="#{data.data.processType eq 'REPEAT' and !data.data.editFlag}" />
 
         <p:commandButton id="finish-button" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/FinishWorkflow')}" icon="fa fa-check"
-          partialSubmit="true" update="form:selected-formelements-field error-growl"
-          process="form:selected-formelements-field form:information-email:email-container" actionListener="#{logic.finish}"
+          partialSubmit="true" update="form:selected-formelements-field error-growl form:information-email:email-container"
+          process="form:information-email:email-container" actionListener="#{logic.finish}"
           rendered="#{data.data.processType eq 'REPEAT'}" />
         <p:spacer width="5" rendered="#{data.data.processType eq 'REPEAT'}" />
 
         <p:commandButton id="execute-button" icon="fa fa-check" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflow')}"
           rendered="#{(data.data.processType eq 'AD_HOC')}" partialSubmit="true" update="form error-growl"
-          process="form:selected-formelements-field form:information-email:email-container" actionListener="#{logic.directExecution}" />
+          process="form:information-email:email-container" actionListener="#{logic.directExecution}" />
         <p:spacer width="5" rendered="#{(data.data.processType eq 'AD_HOC')}" />
 
         <p:commandButton id="next-button" icon="fa fa-arrow-right" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}"
           rendered="#{data.displayNextBtn}" partialSubmit="true" update="form defined-task-container buttons-container"
-          process="form:selected-formelements-field form:information-email:email-container" actionListener="#{logic.moveNextTask}" />
+          process="form:information-email:email-container" actionListener="#{logic.moveNextTask}" />
         <p:spacer width="5" rendered="#{data.displayNextBtn}" />
 
         <p:commandButton id="cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" icon="fa fa-times"
