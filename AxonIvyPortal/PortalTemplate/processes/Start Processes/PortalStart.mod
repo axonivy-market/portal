@@ -315,8 +315,9 @@ if  (#task is initialized) {
 	// To prevent nested Portal (Portal in IFrame), first time will open a blank page in IFrame
 	// Second time will redirect as usual.
 	String iframeAttr = StickyTaskListService.service().getIFrameSessionAttributeKey(task.getId());
-	in.isInIFrame = SecurityServiceUtils.getSessionAttribute(iframeAttr) as boolean;
-	if (in.isInIFrame) {
+	boolean isCancelInFrame = SecurityServiceUtils.getSessionAttribute(SessionAttribute.IS_TASK_NOT_FINISHED.toString()).toBoolean();
+	in.isInIFrame = SecurityServiceUtils.getSessionAttribute(iframeAttr).toBoolean() && !isCancelInFrame;
+	if (in.isInIFrame || isCancelInFrame) {
 		SecurityServiceUtils.removeSessionAttribute(iframeAttr);
 	}
 }

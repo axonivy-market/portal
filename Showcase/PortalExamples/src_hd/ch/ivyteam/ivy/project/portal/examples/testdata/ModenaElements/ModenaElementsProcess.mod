@@ -16,6 +16,9 @@ Ms0 @PushWFArc f5 '' #zField
 Ms0 @GridStep f6 '' #zField
 Ms0 @PushWFArc f7 '' #zField
 Ms0 @PushWFArc f2 '' #zField
+Ms0 @UdEvent f8 '' #zField
+Ms0 @GridStep f9 '' #zField
+Ms0 @PushWFArc f10 '' #zField
 >Proto Ms0 Ms0 ModenaElementsProcess #zField
 Ms0 f0 guid 16E81ED1A1CDA754 #txt
 Ms0 f0 method start() #txt
@@ -104,6 +107,26 @@ Ms0 f6 184 42 112 44 -8 -8 #rect
 Ms0 f6 @|StepIcon #fIcon
 Ms0 f7 109 64 184 64 #arcP
 Ms0 f2 296 64 403 64 #arcP
+Ms0 f8 guid 16EA73AFC2B378BC #txt
+Ms0 f8 actionTable 'out=in;
+' #txt
+Ms0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>cancel</name>
+    </language>
+</elementInfo>
+' #txt
+Ms0 f8 83 243 26 26 -14 15 #rect
+Ms0 f8 @|UdEventIcon #fIcon
+Ms0 f9 actionTable 'out=in;
+' #txt
+Ms0 f9 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+PortalNavigator navigator =new PortalNavigator();
+navigator.navigateToPortalEndPageInFrame();' #txt
+Ms0 f9 168 234 112 44 0 -8 #rect
+Ms0 f9 @|StepIcon #fIcon
+Ms0 f10 109 256 168 256 #arcP
 >Proto Ms0 .type ch.ivyteam.ivy.project.portal.examples.testdata.ModenaElements.ModenaElementsData #txt
 >Proto Ms0 .processKind HTML_DIALOG #txt
 >Proto Ms0 -8 -8 16 16 16 26 #rect
@@ -114,3 +137,5 @@ Ms0 f0 mainOut f7 tail #connect
 Ms0 f7 head f6 mainIn #connect
 Ms0 f6 mainOut f2 tail #connect
 Ms0 f2 head f1 mainIn #connect
+Ms0 f8 mainOut f10 tail #connect
+Ms0 f10 head f9 mainIn #connect

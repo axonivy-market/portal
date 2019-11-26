@@ -32,17 +32,17 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private List<String> processSteps;
   private String processChainDirection;
   private String processChainShape;
+  private PortalNavigator navigator = new PortalNavigator();
 
   public void navigateToEndPage() throws MalformedURLException {
     Map<String, String> requestParamMap = getRequestParameterMap();
     String taskId = requestParamMap.get(TASK_ID_PARAM);
     
     if (StringUtils.isNotBlank(taskId)) {
-      PortalNavigator navigator = new PortalNavigator();
       navigator.navigateToPortalEndPage(Long.parseLong(taskId));
     }
   }
-
+  
   public void getDataFromIFrame() throws Exception {
     Map<String, String> requestParamMap = getRequestParameterMap();
     currentProcessStep = Optional.ofNullable(requestParamMap.get(CURRENT_PROCESS_STEP_PARAM))
