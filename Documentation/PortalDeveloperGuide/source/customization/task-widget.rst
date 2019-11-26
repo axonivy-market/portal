@@ -172,19 +172,15 @@ How to override task widget's data query
 ----------------------------------------
 
 -  Override the
-   BuildTaskQuery
-   callable process of PortalKit and build your own query to effect the
-   data of task widget, task categories and statistic widget.
+   BuildTaskQuery callable process of PortalKit and build your own query to
+   effect the data of task widget, task categories and statistic widget.
 -  If you want to apply a query for only Home page task list, not for
-   Full mode task list, use attribute
-   isQueryForHomePage
-   in
-   BuildTaskQuery
+   Full mode task list, use attribute isQueryForHomePage in BuildTaskQuery
    callable process to specify the query for Home page task list
    
    *E.g:*
    
-   .. code-block:: html
+   .. code-block:: java
 
       if (in.isQueryForHomePage) { // in home page
           in.taskQuery = TaskQuery.create().where().activatorUserId().isNotNull();
@@ -200,15 +196,15 @@ How to override task widget's data query
 
    -  Refer to TaskView, TaskSearchCriteria to build your TaskView
 
-      .. code-block:: html
+   .. code-block:: java
 
-         TaskLazyDataModel dataModel = new TaskLazyDataModel();
-         // Set your TaskQuery
-         dataModel.getCriteria().setCustomTaskQuery(YOUR_TASK_QUERY); 
-         // Display the tasks of all users
-         dataModel.getCriteria().setAdminQuery(true); 
-         out.taskView = TaskView.create().dataModel(dataModel)
-         .showHeaderToolbar(false).createNewTaskView();
+      TaskLazyDataModel dataModel = new TaskLazyDataModel();
+      // Set your TaskQuery
+      dataModel.getCriteria().setCustomTaskQuery(YOUR_TASK_QUERY); 
+      // Display the tasks of all users
+      dataModel.getCriteria().setAdminQuery(true); 
+      out.taskView = TaskView.create().dataModel(dataModel)
+      .showHeaderToolbar(false).createNewTaskView();
 
 .. _customization-task-widget-custom-task-delegate:
 
