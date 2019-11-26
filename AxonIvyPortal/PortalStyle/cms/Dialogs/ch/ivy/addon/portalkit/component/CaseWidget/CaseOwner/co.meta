@@ -1,5 +1,5 @@
-co: name={CaseOwner} description={} changed={2019-11-14 10:33:26 CET} changedby={dhtlong} visualorder={0} guid={16E691CFCFB290E7} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={16E691CFD1FC8C5C} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-11-14 09:52:17 CET} validto={} changed={2019-11-14 10:33:26 CET} changedby={dhtlong} properties={} id={}
-val: guid={16E691CFD088E571} datatype={} isdefault={false} langid={de} description={} validfrom={2019-11-14 09:52:17 CET} validto={} changed={2019-11-14 10:33:25 CET} changedby={dhtlong} properties={} id={}
-val: guid={16E691CFD292EFCB} datatype={} isdefault={false} langid={es} description={} validfrom={2019-11-14 09:52:17 CET} validto={} changed={2019-11-14 10:33:26 CET} changedby={dhtlong} properties={} id={}
-val: guid={16E691CFD15AB89C} datatype={} isdefault={true} langid={en} description={} validfrom={2019-11-14 09:52:17 CET} validto={} changed={2019-11-14 09:52:17 CET} changedby={dhtlong} properties={} id={}
+co: name={CaseOwner} description={} changed={2019-11-26 04:57:21 CET} changedby={mnhnam} visualorder={0} guid={16E691CFCFB290E7} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16E691CFD1FC8C5C} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-11-26 04:57:21 CET} validto={} changed={2019-11-26 04:57:21 CET} changedby={mnhnam} properties={} id={}
+val: guid={16E691CFD088E571} datatype={} isdefault={false} langid={de} description={} validfrom={2019-11-26 04:57:21 CET} validto={} changed={2019-11-26 04:57:21 CET} changedby={mnhnam} properties={} id={}
+val: guid={16E691CFD292EFCB} datatype={} isdefault={false} langid={es} description={} validfrom={2019-11-26 04:57:21 CET} validto={} changed={2019-11-26 04:57:21 CET} changedby={mnhnam} properties={} id={}
+val: guid={16E691CFD15AB89C} datatype={} isdefault={true} langid={en} description={} validfrom={2019-11-26 04:57:21 CET} validto={} changed={2019-11-26 04:57:21 CET} changedby={mnhnam} properties={} id={}

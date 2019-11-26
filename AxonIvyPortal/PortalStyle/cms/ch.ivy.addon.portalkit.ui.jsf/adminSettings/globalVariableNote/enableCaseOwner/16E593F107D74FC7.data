@@ -1,1 +1,1 @@
-TODO Set to true to enable filtering case owner when cases are queried. This setting affects all case queries, e.g. for case list, global search, statistic.
+Cambiar a "true" para también mostrar los casos en los que usted es el responsable del caso en su lista de casos. 

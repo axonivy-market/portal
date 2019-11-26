@@ -1,4 +1,5 @@
-co: name={taskPriorityFilterDescription} description={} changed={2018-08-27 11:51:11 CEST} changedby={chnam} visualorder={0} guid={163AB716B31D9F7C} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={taskPriorityFilterDescription} description={} changed={2019-11-26 04:57:26 CET} changedby={mnhnam} visualorder={0} guid={163AB716B31D9F7C} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16EA5DB5B188E159} datatype={} isdefault={false} langid={es} description={} validfrom={2019-11-26 04:57:26 CET} validto={} changed={2019-11-26 04:57:26 CET} changedby={mnhnam} properties={} id={}
 val: guid={163DE9E2B7CD7959} datatype={} isdefault={false} langid={de} description={} validfrom={2018-06-08 10:58:15 CEST} validto={} changed={2018-06-21 03:40:23 CEST} changedby={ldnam} properties={} id={}
 val: guid={163AB716B34821B5} datatype={} isdefault={true} langid={en} description={} validfrom={2018-05-29 12:28:47 CEST} validto={} changed={2018-06-21 03:40:23 CEST} changedby={ldnam} properties={} id={}
 val: guid={163DE9E19894B24B} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-08-27 11:51:11 CEST} validto={} changed={2018-08-27 11:51:11 CEST} changedby={chnam} properties={} id={}

@@ -1,4 +1,5 @@
-co: name={exportedTasksCasesFileName} description={} changed={2018-08-27 11:51:11 CEST} changedby={chnam} visualorder={0} guid={1641C1224C595999} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={exportedTasksCasesFileName} description={} changed={2019-11-26 04:57:25 CET} changedby={mnhnam} visualorder={0} guid={1641C1224C595999} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={164201D8E67739DE} datatype={} isdefault={false} langid={de} description={} validfrom={2018-07-18 10:55:37 CEST} validto={} changed={2018-07-18 10:55:37 CEST} changedby={ldnam} properties={} id={}
 val: guid={1641C1224C9DFBAB} datatype={} isdefault={true} langid={en} description={} validfrom={2018-06-20 09:21:48 CEST} validto={} changed={2018-07-06 13:32:33 CEST} changedby={lttung} properties={} id={}
 val: guid={164201D9161727F7} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-08-27 11:51:11 CEST} validto={} changed={2018-08-27 11:51:11 CEST} changedby={chnam} properties={} id={}
+val: guid={16EA5DB54E489DA8} datatype={} isdefault={false} langid={es} description={} validfrom={2019-11-26 04:57:25 CET} validto={} changed={2019-11-26 04:57:25 CET} changedby={mnhnam} properties={} id={}
