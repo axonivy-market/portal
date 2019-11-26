@@ -744,8 +744,14 @@
 }
 
 .related-task-content,
-.case-related-running {
+.case-related-running,
+.no-running-task-case {
   border: 1px solid $caseRelatedTaskContentBorder;
+}
+
+.no-running-task-case {
+  border-top: none !important;
+  margin-bottom: 10px;
 }
 
 .case-details-note-add-link-icon {
