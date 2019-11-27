@@ -182,7 +182,7 @@ The **less2sass** converter is pretty good and maintained
 https://www.npmjs.com/package/less2sass.
 
 -  Install
-   NoteJS on your system (can get by this page  https://nodejs.org/en/download). Once installed, restart your
+   NodeJS on your system (can get by this page  https://nodejs.org/en/download). Once installed, restart your
    system as well.
 -  Open Cmd command line and run command:
    npm install -g less2sass
