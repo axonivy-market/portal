@@ -220,6 +220,9 @@
           <br />
           <p:spacer height="20"></p:spacer>
           <p:dataTable id="adhoc-task-history-table" value="#{abstractTaskTemplateBean.getAllAdhocHistories(task)}" var="history">
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}">
+              <h:outputText value="#{abstractTaskTemplateBean.getUserByUsername(history.authorUsername)}" />
+            </p:column>
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/timestamp')}">
               <h:outputText value="#{history.timestamp}">
                 <f:convertDateTime pattern="#{ivy.cms.co('/patterns/dateTimePattern')}" />

@@ -14,13 +14,13 @@ PortalStyle project.
 -  Modify cms entry ``PortalStyle/images/logo/CorporateLogo.png`` to
    update homepage logo when menu is expanded.
 
-.. tip:: We recommend you to use an image with width size is 168 pixel to fit the left menu size when it's expanded
+   .. tip:: We recommend you to use an image with width size is 168 pixel to fit the left menu size when it's expanded
    
 
 -  Modify cms entry ``PortalStyle/images/logo/SmallCorporateLogo.png`` to
    update homepage logo when menu is collapsed.
 
-.. tip:: We recommend you to use an image with width size is 42 pixel to fit the left menu size when it's collapsed
+   .. tip:: We recommend you to use an image with width size is 42 pixel to fit the left menu size when it's collapsed
 
 -  Modify cms entry ``PortalStyle/images/logo/loginLogo.png`` to update
    login logo.
@@ -28,7 +28,7 @@ PortalStyle project.
 -  Override the variables: ``$loginLogoHeight``, ``$homeLogoHeight`` in
    ``variables.scss`` to scale your logos.
 
-.. _customization-portal-logos-and-colors-change-portal-background:
+   .. _customization-portal-logos-and-colors-change-portal-background:
 
 Change Portal styles
 --------------------
@@ -39,9 +39,11 @@ you in customizing styles of Portal. They are ``theme.scss`` and ``variables.scs
    - ``theme.scss`` in ``PortalStyle/webContent/resources/serenity-portal``
    - ``variables.scss`` in ``PortalStyle/webContent/resources/sass/ivy``
 
-   .. caution:: Please do not modify directly on these files because they can be changed by new Portal version for upgrade.
+.. caution:: Please do not modify directly on these files because they can be changed by new Portal version for upgrade.
 
-   Below is the list of some Portal elements which are using primary colors of Serenity theme:
+..
+
+Below is the list of some Portal elements which are using primary colors of Serenity theme:
 
 .. table::
 
@@ -65,19 +67,16 @@ you in customizing styles of Portal. They are ``theme.scss`` and ``variables.scs
    | $primaryLightColor    | $primaryLightGreen: #d7e52c | - Background color of hovered button                           |
    +-----------------------+-----------------------------+----------------------------------------------------------------+
    | $primaryLightestColor | white                       | - Active checkbox icon                                         |
-   |                       |                             | - Background color of active menu item                         |
+   |                       |                             | - Background color of active sidebar menu item                 |
    |                       |                             | - Topbar background color                                      |
    +-----------------------+-----------------------------+----------------------------------------------------------------+
-   | $primaryTextColor     | black                       | - For almost text in Portal (except some specific styles       |
+   | $primaryTextColor     | black                       | - For almost texts in Portal (except some specific styles      |
    |                       |                             |   like Case/Task Description in Case/Task list)                |
    +-----------------------+-----------------------------+----------------------------------------------------------------+
    | $accentColor          | $primaryColor               | - Active submenuitem of sidebar                                |
-   |                       |                             | - Background color of active cell (table header)               |
-   |                       |                             | - Background color of fileupload button                        |
-   |                       |                             | - Background color of active page in datatable                 |
+   |                       |                             | - Background color of active items (form elements)             |
+   |                       |                             | - Background color of active page number in datatable          |
    |                       |                             |   (except table in Case/Task detail)                           |
-   |                       |                             | - Background color of selected date (datepicker),              |
-   |                       |                             |   selected item (selectlistbox-item)                           |
    |                       |                             | - Bottom border of active tab                                  |
    |                       |                             | - Border color of datepicker-today                             |
    +-----------------------+-----------------------------+----------------------------------------------------------------+
