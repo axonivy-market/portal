@@ -36,7 +36,32 @@ Follow these steps to customize the global search page:
 
 6. Define the ``custom-search`` section to add your customized tabs:
 
-   |customized-search-results|
+   .. code-block:: html
+   
+    <ui:composition template="/layouts/SearchResultsTemplate.xhtml">
+        <ui:define name="custom-search">
+        <p:tab title="Employees">
+            <p:dataTable id="employee-table" value="#{data.dataModel.employees}" var="emp" sortBy="#{emp.firstName}">
+            <p:column headerText="First Name" sortBy="#{emp.firstName}" filterBy="#{emp.firstName}">
+                <h:outputText value="#{emp.firstName}" />
+            </p:column>
+            <p:column headerText="Last Name" sortBy="#{emp.lastName}" filterBy="#{emp.lastName}">
+                <h:outputText value="#{emp.lastName}" />
+            </p:column>
+            <p:column headerText="Country" sortBy="#{emp.country}" filterBy="#{emp.country}">
+                <h:outputText value="#{emp.country}" />
+            </p:column>
+            </p:dataTable>
+        </p:tab>
+        </ui:define>
+
+        <ui:define name="css">
+        <h:outputStylesheet library="css" name="examples.css" />
+        </ui:define>
+    </ui:composition>
+  
+   ..
+   
 
 7. Override the ``OpenPortalSearch`` callable process and change the
    HTML dialog to your customized one.
@@ -49,5 +74,5 @@ Follow these steps to customize the global search page:
 
 .. |global-search-result| image:: images/global-search-result/global-search-result.png
 .. |customized-data-model-cast| image:: images/global-search-result/customized-data-model-cast.png
-.. |customized-search-results| image:: images/global-search-result/customized-search-results.png
+
 
