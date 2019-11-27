@@ -6,9 +6,14 @@
   xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
   <ui:composition template="/layouts/restricted/AbstractTaskTemplate.xhtml">
+    <!-- DESCRIPTION: 
+    <!-- This template is used for displaying task functionality and related information to support completing the task.
+    <!-- Serenity theme is included -->
+    
     <!-- MIGRATION NOTES: -->
-    <!-- If you migrate Portal since previous versions and use the taskForm template area to define the content inside the Request tab, -->
-    <!-- tabview is removed and this taskForm template area is DEPRECATED, use content instead, design your tabview if needed -->
+    <!-- If you migrate Portal since previous versions and use <ui:define name="taskForm" /> to define the content inside the Request tab, -->
+    <!-- TabView is removed and <ui:define name="taskForm" /> is DEPRECATED, use <ui:define name="content" /> instead
+    <!-- <ui:define name="dynamicTabs" /> is removed, design your TabView if needed -->
     
     <!-- AVAILABLE PARAMS in this template: -->
     <!-- actualStepIndex: current process step -->
