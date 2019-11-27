@@ -39,7 +39,7 @@ body .ui-selectonemenu .ui-selectonemenu-label.ui-inputfield {
 }
 
 _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlink {
-	display: inline-block;
+  display: inline-block;
 }
 
 /* Login page */
@@ -73,7 +73,7 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 
 /* Icon */
 .fa:before {
-	font-family: $iconFontFamily !important;
+  font-family: $iconFontFamily !important;
 }
 
 .ui-outputlabel .ui-outputlabel-rfi {
@@ -242,9 +242,8 @@ a.ui-widget:focus {
     thead {
         tr {
             th {
-            	border-top: 1px solid $topBorderOutsideDataTableColor;
-				border-bottom: 1px solid $bottomBorderHeaderDataTableColor;
-	
+              border-top: 1px solid $topBorderOutsideDataTableColor;
+              border-bottom: 1px solid $bottomBorderHeaderDataTableColor;
                 .ui-column-title {
                     color: $primaryTextColor;
                 }
@@ -281,8 +280,8 @@ a.ui-widget:focus {
     tbody {
         tr {
             td {
-            	border-top: 1px solid $topBorderBodyDataTableColor !important;
-            	border-bottom: 1px solid $bottomBorderOutsideDataTableColor !important;
+              border-top: 1px solid $topBorderBodyDataTableColor !important;
+              border-bottom: 1px solid $bottomBorderOutsideDataTableColor !important;
                 
                 .ui-inputfield {
                     color: $uiInputFieldTdTextColor;
@@ -661,8 +660,8 @@ body .ui-messages .ui-messages-error-icon,
     margin-top: 2px !important;
     font-size: 2.4rem !important;
     width: 35px !important;
-	height: 35px !important;
-	top: -7px !important;
+    height: 35px !important;
+    top: -7px !important;
 }
 
 .ui-growl-item .ui-growl-message {
@@ -792,7 +791,7 @@ body .md-inputfield input:focus ~ label{
 }
 
 span.ui-inputnumber.ui-widget.ui-state-error {
-	border: 0 !important;
+  border: 0 !important;
 }
 
 /* Select Checkbox Menu & Picklist */
@@ -931,11 +930,11 @@ body .ui-accordion .ui-accordion-header.ui-state-active {
 
 /* File upload */
 .ui-fileupload-content .ui-progressbar {
-	top: 0px !important;
+  top: 0px !important;
 }
 
 .ui-fileupload-preview {
-	vertical-align: middle;
+  vertical-align: middle;
 }
 
 @media (max-width: 1024px) {
