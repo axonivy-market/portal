@@ -146,7 +146,7 @@
 }
 
 .u-invisibility {
-  visibility:hidden;
+  visibility: hidden;
 }
 
 .u-mar-right-5 {
@@ -156,6 +156,7 @@
 .u-mar-right-20 {
   margin-right: 20px !important;
 }
+
 .u-padding-0 {
   padding: 0 !important;
 }
@@ -177,35 +178,40 @@
 * Some style is removed after migrated to Serenity - need re-define
 */
 .MarRight10 {
-    margin-right: 10px;
+  margin-right: 10px;
 }
+
 .MarTop20 {
-    margin-top: 20px;
+  margin-top: 20px;
 }
+
 .Fleft {
-	float: left;
+  float: left;
 }
+
 .Fright {
-	float: right;
+  float: right;
 }
+
 .Separator {
-	border-bottom: solid 1px #E0E0E0;
-    width: 100%;
-    overflow: hidden;
-    height: 0px;
-    margin: 10px 0px;
-    clear: both;
-}
-.TexAlRight { 
-	text-align:right !important;
+  border-bottom: solid 1px #E0E0E0;
+  width: 100%;
+  overflow: hidden;
+  height: 0px;
+  margin: 10px 0px;
+  clear: both;
 }
 
-.TexAlLeft { 
-	text-align: left !important;
+.TexAlRight {
+  text-align: right !important;
 }
 
-.TexAlCenter { 
-	text-align: center !important;
+.TexAlLeft {
+  text-align: left !important;
+}
+
+.TexAlCenter {
+  text-align: center !important;
 }
 
 .MarTop0 {
@@ -228,92 +234,88 @@
   display: none !important;
 }
 /* For Serenity theme - End */
-
-
 .ui-hidden {
-    display: none !important;
+  display: none !important;
 }
 
 @media screen and (max-width: 40em) {
-    .ui-sm-hidden {
-        display: none !important;
-    }
+  .ui-sm-hidden {
+    display: none !important;
+  }
 }
 
 @media screen and (min-width: 40.063em) and (max-width: 64.062em) {
-    .ui-md-hidden {
-        display: none !important;
-    }
+  .ui-md-hidden {
+    display: none !important;
+  }
 }
 
 @media screen and (min-width: 64.063em) and (max-width: 90.062em) {
-    .ui-lg-hidden {
-        display: none !important;
-    }
+  .ui-lg-hidden {
+    display: none !important;
+  }
 }
 
 @media screen and (min-width: 90.063em) {
-    .ui-xl-hidden {
-        display: none !important;
-    }
+  .ui-xl-hidden {
+    display: none !important;
+  }
 }
 
 .ui-vertical-align-sub {
-    vertical-align: sub;
+  vertical-align: sub;
 }
 
 .ui-line-height-2 {
-    line-height: 2;
+  line-height: 2;
 }
 
-
-@media (max-width: 575px) {
+@media ( max-width : 575px) {
   .u-hidden-xs-down {
     display: none !important;
   }
-  
   .u-visibility-hidden-xs-down {
     visibility: hidden;
   }
 }
 
-@media (min-width: 576px) {
+@media ( min-width : 576px) {
   .u-hidden-sm-up {
     display: none !important;
   }
 }
 
-@media (max-width: 767px) {
+@media ( max-width : 767px) {
   .u-hidden-sm-down {
     display: none !important;
   }
 }
 
-@media (min-width: 768px) {
+@media ( min-width : 768px) {
   .u-hidden-md-up {
     display: none !important;
   }
 }
 
-@media (max-width: 991px) {
+@media ( max-width : 991px) {
   .u-hidden-md-down {
     display: none !important;
   }
 }
 
-@media (min-width: 992px) {
+@media ( min-width : 992px) {
   .u-hidden-lg-up {
     display: none !important;
   }
 }
 
-@media (max-width: 1199px) {
+@media ( max-width : 1199px) {
   .u-hidden-lg-down {
     display: none !important;
   }
 }
 
-@media (min-width: 1200px) {
+@media ( min-width : 1200px) {
   .u-hidden-xl-up {
     display: none !important;
   }
@@ -324,5 +326,5 @@
 }
 
 .Fleft {
-    float: left;
+  float: left;
 }
