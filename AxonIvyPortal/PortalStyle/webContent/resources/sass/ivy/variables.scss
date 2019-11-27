@@ -41,6 +41,7 @@ $homeLogoHeight: 42px !default;
 $borderColor: $lightGrey !default;
 $bodyBackgroundColor: $white !default;
 $accordionHeaderActiveBackgroundColor: $lightGrey !default;
+$accordionHeaderBackgroundColor: $lightGrey !default;
 
 /* 3 colors of header bar */
 $firstHeaderBarColor: $primaryColor !default;
@@ -64,6 +65,7 @@ $taskStateZombieDestroyedColor: #ff6464 !default;
 /* Color and border radius of Portal button e.g Add, Close, New, Save, OK .. */
 $cancelButtonBackgroundColor: $lightGrey !default;
 $actionButtonBorderRadius: 0px !default;
+$textButtonColor: $black !default;
 
 /* Color and border radius of context button, 
 it only affects when button has attribute styleClass="context-button" */
@@ -463,3 +465,10 @@ $uiDataPickerTitleBackgroundColor: $paleGrey !default;
 $uiFileuploadButtonbarBackgroundColor: $lightGrey !default;
 $uiFileuploadButtonbarBorder: $lightGrey !default;
 $uiButtonHoverBackgroundColor: $primaryLightColor !default;
+$menuItemLinkColor: $primaryTextColor !default;
+$menuItemLinkHoverBackgroundColor: $paleGrey !default;
+$actionStepTextColor: $commandLinkTextColor !default;
+$actionStepHoverTextColor: $commandLinkHoverTextColor !default;
+$actionStepDisabledTextColor: $commandLinkDisabledTextColor !default;
+$placeHolderTextColor: $mediumGrey !default;
+$textTabDefaultColor: $mediumGrey !default;
