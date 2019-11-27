@@ -13,19 +13,20 @@ there are 7 templates that can be used directly.
 
 1. :ref:`Basic template <components-layout-templates-basic-template>`
 
-2. :ref:`Two column template <components-layout-templates-two-column-template>`
+2. :ref:`Task template <components-layout-templates-task-template>`
 
-3. :ref:`Task template <components-layout-templates-task-template>`
+3. :ref:`Task template 8 <components-layout-templates-task-template-8>`
 
-4. :ref:`Task list template <components-layout-templates-task-list-template>`
+4. :ref:`Deprecated task template 7 <components-layout-templates-deprecated-task-template-7>`
 
-5. :ref:`Case list template <components-layout-templates-case-list-template>`
+5. :ref:`Two column template <components-layout-templates-two-column-template>`
 
-6. :ref:`Default homepage template <components-layout-templates-default-homepage-template>`
+6. :ref:`Task list template <components-layout-templates-task-list-template>`
 
-7. :ref:`Deprecated task template 7 <components-layout-templates-deprecated-task-template-7>`
+7. :ref:`Case list template <components-layout-templates-case-list-template>`
 
-8. :ref:`Task template 8 <components-layout-templates-task-template-8>`
+8. :ref:`Default homepage template <components-layout-templates-default-homepage-template>`
+
 
 These templates have the same header, which is a menu of applications
 that you configure in Administration page. Since version 8.0, Portal
@@ -72,6 +73,103 @@ How to use Basic template
 
   |basic-template|
 
+.. _components-layout-templates-task-template:
+
+Task template
+-------------
+
+Task template is used for displaying task functionality and related
+information to support completing the task. There are a lot of regions
+to be filled with your custom content:
+
+-  Header name (task name)
+
+-  Process chain
+
+-  Content
+
+-  Case Details
+
+This template is dedicated for iFrame and Modena theme, so all Modena styles need to be provided in your project.
+
+.. _components-layout-templates-task-template-how-to-use-task-template:
+
+How to use template TaskTemplate.xhtml
+--------------------------------------
+
+1.  Create a new HTML User Dialog and then use ``ui:composition`` to
+    define template which you use inside.
+
+  .. code-block:: html
+  
+     <ui:composition template="/layouts/TaskTemplate.xhtml">
+
+
+2.  Refer to ``TaskTemplate.xhtml`` for params and template areas.
+
+  |task-name-template|
+
+In case your project has navigation button like e.g Cancel, if you need this button to navigate 
+
+-  To home page: call ``navigateToPortalHome()`` from class ``PortalNavigatorInFrame`` in ``PortalTemplate``.
+-  To previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrame`` in ``PortalTemplate``.
+
+.. _components-layout-templates-task-template-8:
+
+TaskTemplate-8
+-------------------------
+
+Task template 8 is new template with Serenity theme introduced since Portal 8. In this template there is no tab view, you have to define it. This template doesn't use iFrame.
+
+.. _components-layout-templates-default-homepage-template-how-to-use-task-template-8:
+
+How to use TaskTemplate-8
+------------------------------------
+
+Create a new HTML User Dialog and then use ``ui:composition`` to define
+template.
+
+.. code-block:: html
+
+      <ui:composition template="/layouts/TaskTemplate-8.xhtml">
+
+..    
+
+This template doesn't use iFrame. You need to set case custom string field ``embedInFrame`` to ``false`` or configure no iFrame multi applications.
+
+In case your project has navigation button like e.g Cancel, if you need this button to navigate 
+
+-  To home page: call ``navigateToPortalHome()`` from class ``PortalNavigatorInFrame`` in ``PortalTemplate``.
+-  To previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrame`` in ``PortalTemplate``.
+
+.. _components-layout-templates-deprecated-task-template-7:
+
+DeprecatedTaskTemplate-7
+-------------------------
+
+Deprecated task template 7 is old task template with Serenity theme. If your Project want to apply new theme, but Keep the tab view (e.g. Case Information), then you can change to this template. This template doesn’t use iFrame.
+
+.. _components-layout-templates-default-homepage-template-how-to-use-deprecated-task-template-7:
+
+How to use DeprecatedTaskTemplate-7
+------------------------------------
+
+Create a new HTML User Dialog and then use ``ui:composition`` to define
+template.
+
+.. code-block:: html
+
+      <ui:composition template="/layouts/DeprecatedTaskTemplate-7.xhtml">
+
+..    
+
+This template doesn't use iFrame. You need to set case custom string field ``embedInFrame`` to ``false`` or configure no iFrame multi applications.
+
+In case your project has navigation button like e.g Cancel, if you need this button to navigate 
+
+-  To home page: call ``navigateToPortalHome()`` from class ``PortalNavigator`` in ``PortalTemplate``.
+-  To previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigator`` in ``PortalTemplate``.
+
 .. _components-layout-templates-two-column-template:
 
 Two column template
@@ -106,47 +204,6 @@ How to use Two column template
 2. See the result after using Two column template for example:
 
   |two-column-template|
-
-.. _components-layout-templates-task-template:
-
-Task template
--------------
-
-Task template is used for displaying task functionality and related
-information to support completing the task. There are a lot of regions
-to be filled with your custom content:
-
--  Header name (task name)
-
--  Process chain
-
--  Content
-
--  Case Details
-
-This template uses iFrame, so all Modena css styles need to be provided in your project since Portal now use Serenity.
-
-.. _components-layout-templates-task-template-how-to-use-task-template:
-
-How to use template TaskTemplate.xhtml
---------------------------------------
-
-1.  Create a new HTML User Dialog and then use ``ui:composition`` to
-    define template which you use inside.
-
-  .. code-block:: html
-  
-     <ui:composition template="/layouts/TaskTemplate.xhtml">
-
-
-2.  Refer to ``TaskTemplate.xhtml`` for params and template areas.
-
-  |task-name-template|
-
-In case your project has navigation button like e.g Cancel, if you need this button to navigate 
-
--  To home page: call ``navigateToPortalHome()`` from class ``PortalNavigatorInFrame`` in ``PortalTemplate``.
--  To previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrame`` in ``PortalTemplate``.
 
 .. _components-layout-templates-task-list-template:
 
@@ -278,62 +335,6 @@ template.
       <ui:composition template="/layouts/DefaultHomePageTemplate.xhtml">
 
 ..    
-
-.. _components-layout-templates-deprecated-task-template-7:
-
-DeprecatedTaskTemplate-7
--------------------------
-
-Deprecated task template 7 is old task template with Serenity theme. If your project want to apply new theme, you can change to this template. This template doesn’t use iFrame.
-
-.. _components-layout-templates-default-homepage-template-how-to-use-deprecated-task-template-7:
-
-How to use DeprecatedTaskTemplate-7
-------------------------------------
-
-Create a new HTML User Dialog and then use ``ui:composition`` to define
-template.
-
-.. code-block:: html
-
-      <ui:composition template="/layouts/DeprecatedTaskTemplate-7.xhtml">
-
-..    
-
-This template doesn't use iFrame. You need to set case custom string field ``embedInFrame`` to ``false`` or configure no iFrame multi applications.
-
-In case your project has navigation button like e.g Cancel, if you need this button to navigate 
-
--  To home page: call ``navigateToPortalHome()`` from class ``PortalNavigator`` in ``PortalTemplate``.
--  To previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigator`` in ``PortalTemplate``.
-
-.. _components-layout-templates-task-template-8:
-
-TaskTemplate-8
--------------------------
-
-Task template 8 is new template with Serenity theme introduced since Portal 8. In this template there is no tab view, you have to define it. This template doesn't use iFrame.
-
-.. _components-layout-templates-default-homepage-template-how-to-use-task-template-8:
-
-How to use TaskTemplate-8
-------------------------------------
-
-Create a new HTML User Dialog and then use ``ui:composition`` to define
-template.
-
-.. code-block:: html
-
-      <ui:composition template="/layouts/TaskTemplate-8.xhtml">
-
-..    
-
-This template doesn't use iFrame. You need to set case custom string field ``embedInFrame`` to ``false`` or configure no iFrame multi applications.
-
-In case your project has navigation button like e.g Cancel, if you need this button to navigate 
-
--  To home page: call ``navigateToPortalHome()`` from class ``PortalNavigatorInFrame`` in ``PortalTemplate``.
--  To previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrame`` in ``PortalTemplate``.
 
 .. _components-layout-templates-reponsiveness:
 
