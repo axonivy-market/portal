@@ -278,9 +278,9 @@ How to migrate TaskTemplate
 Since Portal 8, we introduce iFrame so that customer project can be loaded inside iFrame. It can reduce side affect between customer project and Portal as well as migrate effort in future.
 We now have 3 task templates 
 
-- ``TaskTemplate.xhtml``, if you keep using TaskTemplate, it will keep your modena theme as before. For detail refer to :ref:`Task template <components-layout-templates-task-template>`
-- ``DeprecatedTaskTemplate-7.xhtml``, change your template to DeprecatedTaskTemplate-7, it keeps your template with new Serenity theme and tab view. For detail refer to :ref:`Deprecated task template 7 <components-layout-templates-deprecated-task-template-7>`
-- ``TaskTemplate-8.xhtml``, change your template to TaskTemplate-8, it's similar to DeprecatedTaskTemplate-7, it has new Serenity theme and no tab view. For detail refer to :ref:`Task template 8 <components-layout-templates-task-template-8>`
+- ``TaskTemplate.xhtml``, if you keep using TaskTemplate, customer project will be loaded in iFrame and keep Modena theme as before. For detail refer to :ref:`Task template <components-layout-templates-task-template>`.
+- ``DeprecatedTaskTemplate-7.xhtml``, change your template to DeprecatedTaskTemplate-7, it will keep your old template(include tab view) with new Serenity theme. For detail refer to :ref:`Deprecated task template 7 <components-layout-templates-deprecated-task-template-7>`.
+- ``TaskTemplate-8.xhtml``, change your template to TaskTemplate-8, it will have new Serenity theme and no tab view predefined. For detail refer to :ref:`Task template 8 <components-layout-templates-task-template-8>`.
 
 .. _installation-migration-notes-8-0-0-basic-template:
 
@@ -744,6 +744,8 @@ Changes in 8.0
 
 -  Case list customization now support responsiveness. refer to  :ref:`this
    part <customization-case-widget-responsive-layout>` for more details.
+
+-  Start link ivp can not start outside Portal.
 
 Changes in 7.4
 --------------

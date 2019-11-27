@@ -126,7 +126,7 @@ to be filled with your custom content:
 
 -  Case Details
 
-This template uses iFrame, so all Modena css styles need to be provided in customer project since Portal now use Serenity.
+This template uses iFrame, so all Modena css styles need to be provided in your project since Portal now use Serenity.
 
 .. _components-layout-templates-task-template-how-to-use-task-template:
 
@@ -144,6 +144,11 @@ How to use template TaskTemplate.xhtml
 2.  Refer to ``TaskTemplate.xhtml`` for params and template areas.
 
   |task-name-template|
+
+In case your project has navigation button like e.g Cancel, if you need this button to navigate 
+
+-  To home page: call ``navigateToPortalHome()`` from class ``PortalNavigatorInFrame`` in ``PortalTemplate``.
+-  To previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrame`` in ``PortalTemplate``.
 
 .. _components-layout-templates-iframe-task-template:
 
@@ -167,7 +172,7 @@ to be filled with your custom content:
 How to start a process/task in IFrameTaskTemplate.xhtml
 -------------------------------------------------------
 
-1.  In Task custom field, set the ``embedInIFrame`` String custom field to "true".
+1.  In Task custom field, set the ``embedInFrame`` String custom field to "true".
 
 2.  In this task, open a HTML User Dialog independent from Portal.
 
@@ -312,7 +317,7 @@ template.
 DeprecatedTaskTemplate-7
 -------------------------
 
-Deprecated task template 7 is multi tab view template with Serenity theme. If you project is using multi tab template, you can change to this template. 
+Deprecated task template 7 is old task template with Serenity theme. If your project want to apply new theme, you can change to this template. 
 
 .. _components-layout-templates-default-homepage-template-how-to-use-deprecated-task-template-7:
 
@@ -328,14 +333,24 @@ template.
 
 ..    
 
-There is also case / task custom field called ``embedInFrame``, by default this value has value ``true`` and customer project will be loaded inside iFrame.
+By default, this template will use iFrame. If you don't want to use it at case / task level. Set case / task custom string field ``embedInFrame`` to ``false``.
+
+In case your project use iFrame and need to navigate 
+
+-  To home page: call ``navigateToPortalHome()`` from class ``PortalNavigatorInFrame`` in ``PortalTemplate``.
+-  To previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrame`` in ``PortalTemplate``.
+
+And if your project doesn't use iFrame
+
+-  To home page: call ``navigateToPortalHome()`` from class ``PortalNavigator`` in ``PortalTemplate``.
+-  To previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigator`` in ``PortalTemplate``.
 
 .. _components-layout-templates-task-template-8:
 
 TaskTemplate-8
 -------------------------
 
-Task template 8 is new template with Serenity theme introduced since Portal 8. In this template there is no tab view, customer has to define it.
+Task template 8 is new template with Serenity theme introduced since Portal 8. In this template there is no tab view, you has to define it.
 
 .. _components-layout-templates-default-homepage-template-how-to-use-task-template-8:
 
@@ -351,7 +366,17 @@ template.
 
 ..    
 
-There is also case / task custom field called ``embedInFrame``, by default this value has value ``true`` and customer project will be loaded inside iFrame.
+By default, this template will use iFrame. If you don't want to use it at case / task level. Set case / task custom string field ``embedInFrame`` to ``false``.
+
+In case your project use iFrame and need to navigate 
+
+-  To home page: call ``navigateToPortalHome()`` from class ``PortalNavigatorInFrame`` in ``PortalTemplate``.
+-  To previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrame`` in ``PortalTemplate``.
+
+And if your project doesn't use iFrame
+
+-  To home page: call ``navigateToPortalHome()`` from class ``PortalNavigator`` in ``PortalTemplate``.
+-  To previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigator`` in ``PortalTemplate``.
 
 .. _components-layout-templates-reponsiveness:
 
