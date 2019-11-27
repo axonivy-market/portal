@@ -108,7 +108,7 @@
   border-bottom: none;
 }
 
-.widget-sort-menu:not (.full-mode ), .compact-task-widget .filter-view {
+.widget-sort-menu:not(.full-mode), .compact-task-widget .filter-view {
   padding-top: 0 !important;
 }
 
@@ -139,7 +139,7 @@
 }
 
 /********************** START MENU ITEM ***********************/
-.layout-wrapper .layout-sidebar .layout-menu>li:not (.active-menuitem )>a.current-application {
+.layout-wrapper .layout-sidebar .layout-menu>li:not(.active-menuitem)>a.current-application {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
@@ -227,7 +227,7 @@
   bottom: 1px;
 }
 
-@media ( max-width : 991px) {
+@media ( max-width: 991px) {
   .compact-task-widget .widget-header-main, .compact-process-widget .widget-header-main {
     height: 30px !important;
   }
@@ -614,7 +614,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   margin-top: 3px;
 }
 
-@media ( max-width : 991px) {
+@media (max-width: 991px) {
   .case-header-action-cell, .task-header-action-cell {
     border-left: none;
   }
@@ -1045,7 +1045,7 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   cursor: pointer;
 }
 
-@media ( max-width : 991px) {
+@media (max-width: 991px) {
   .process-start-list-item-action .express-workflow.process-item {
     display: none !important;
   }
@@ -1247,27 +1247,27 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
 }
 
 /* Mobile screen */
-@media ( max-width : 640px) {
+@media (max-width: 640px) {
   .task-delegate-dialog {
     width: 300px !important;
   }
 }
 
 /* Small screen */
-@media ( min-width : 641px) and (max-width: 1365px) {
+@media (min-width: 641px) and (max-width: 1365px) {
   .task-delegate-dialog {
     width: 40% !important;
   }
 }
 
 /* Medium screen */
-@media ( min-width : 1366px) and (max-width: 1919px) {
+@media (min-width: 1366px) and (max-width: 1919px) {
   .task-delegate-dialog {
     width: 35% !important;
   }
 }
 /* Large screen */
-@media ( min-width : 1920px) {
+@media (min-width: 1920px) {
   .task-delegate-dialog {
     width: 25% !important;
   }
@@ -1684,7 +1684,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 /** Handle case list, task list for mobile screen, under 576px**/
-@media ( max-width : 575px) {
+@media (max-width: 575px) {
   .task-start-list .priority-cell {
     padding: 0 15px !important;
   }
@@ -2103,7 +2103,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   .circle-horizontal-step-container.left-steps .step-number-container:before {
     top: 15px;
   }
-  .circle-horizontal-step-container:not (.right-steps ) .step-number-container:after {
+  .circle-horizontal-step-container:not(.right-steps) .step-number-container:after {
     width: 0 !important;
   }
   .circle-horizontal-step-container .step-number-container:before {
@@ -2124,7 +2124,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   text-align: center;
 }
 
-.circle-horizontal-process-step:not (:last-child ) .circle-horizontal-step-container .step-number-container:after {
+.circle-horizontal-process-step:not(:last-child) .circle-horizontal-step-container .step-number-container:after {
   position: absolute;
   top: 15px;
   content: "";
@@ -2632,14 +2632,14 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 /********************************** LANGUAGE SETTING DIALOG **********************************/
-@media ( max-width : 1365px) {
+@media (max-width: 1365px) {
   .language-setting-dialog {
     overflow: auto !important;
     top: 35% !important;
   }
 }
 
-@media ( min-width : 1366px) and (max-width: 1919px) {
+@media (min-width: 1366px) and (max-width: 1919px) {
   .language-setting-dialog {
     top: 300px !important;
     overflow: auto !important;
@@ -3246,7 +3246,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   padding: 10px;
 }
 /********************************** END EXCEPTION DIALOG **********************************/
-@media ( max-width : 1365px) {
+@media (max-width: 1365px) {
   .logo-container {
     width: calc(100% - 140px);
     min-width: 880px;
@@ -3264,7 +3264,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 /* Small screen */
-@media ( max-width : 1024px) {
+@media (max-width: 1024px) {
   .color-header {
     margin-left: -25px;
     margin-right: -25px;
@@ -3396,7 +3396,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   width: 100%;
 }
 
-@media ( min-width : 1366px) and (max-width: 1919px) {
+@media (min-width: 1366px) and (max-width: 1919px) {
   .change-password-dialog {
     top: 400px !important;
   }
@@ -3544,7 +3544,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 
 /* Small screen */
-@media ( max-width : 1365px) {
+@media (max-width: 1365px) {
   .chart-list-container .filter-container {
     width: 25rem !important;
   }
@@ -3571,7 +3571,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   padding-left: 30px !important;
 }
 
-@media ( max-width : 1080px) {
+@media (max-width: 1080px) {
   .confirm-save-setting-button, .cancel-save-setting-button {
     min-width: 125px !important;
   }
@@ -3615,7 +3615,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 
 /* Display icon filter on mobile as a button */
-@media ( max-width : 991px) {
+@media (max-width: 991px) {
   .simple-filter-icon {
     display: none !important;
   }
@@ -3634,7 +3634,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   }
 }
 
-@media ( min-width : 992px) {
+@media (min-width: 992px) {
   .mobile-filter-icon {
     display: none !important;
   }
@@ -3768,11 +3768,10 @@ _:-ms-fullscreen, :root .content-link-history {
 }
 
 /* override on Firefox */
-@
--moz-document url-prefix () { .case-related-command-link {
-  display: inline !important;
-}
-
+@-moz-document url-prefix () {
+  .case-related-command-link {
+    display: inline !important;
+  }
 }
 /* ================= END RESPONSIVE GRID ==================== */
 .task-widget .filter-container .filter-selection-container-group, .case-widget-container .filter-container .filter-selection-container-group
@@ -3897,13 +3896,13 @@ _:-ms-fullscreen, :root .content-link-history {
   }
 }
 
-@media screen and (max-width: 1900px ) {
+@media screen and (max-width: 1900px) {
   .task-detail-description {
     height: 150px;
   }
 }
 
-@media screen and (max-width: 700px ) {
+@media screen and (max-width: 700px) {
   .task-detail-description {
     height: 110px;
   }
