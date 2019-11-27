@@ -14,13 +14,13 @@ PortalStyle project.
 -  Modify cms entry ``PortalStyle/images/logo/CorporateLogo.png`` to
    update homepage logo when menu is expanded.
 
-.. tip:: We recommend you to use an image with width size is 168 pixel to fit the left menu size when it's expanded
+   .. tip:: We recommend you to use an image with width size is 168 pixel to fit the left menu size when it's expanded
    
 
 -  Modify cms entry ``PortalStyle/images/logo/SmallCorporateLogo.png`` to
    update homepage logo when menu is collapsed.
 
-.. tip:: We recommend you to use an image with width size is 42 pixel to fit the left menu size when it's collapsed
+   .. tip:: We recommend you to use an image with width size is 42 pixel to fit the left menu size when it's collapsed
 
 -  Modify cms entry ``PortalStyle/images/logo/loginLogo.png`` to update
    login logo.
@@ -28,7 +28,7 @@ PortalStyle project.
 -  Override the variables: ``$loginLogoHeight``, ``$homeLogoHeight`` in
    ``variables.scss`` to scale your logos.
 
-.. _customization-portal-logos-and-colors-change-portal-background:
+   .. _customization-portal-logos-and-colors-change-portal-background:
 
 Change Portal styles
 --------------------
@@ -39,9 +39,11 @@ you in customizing styles of Portal. They are ``theme.scss`` and ``variables.scs
    - ``theme.scss`` in ``PortalStyle/webContent/resources/serenity-portal``
    - ``variables.scss`` in ``PortalStyle/webContent/resources/sass/ivy``
 
-   .. caution:: Please do not modify directly on these files because they can be changed by new Portal version for upgrade.
+.. caution:: Please do not modify directly on these files because they can be changed by new Portal version for upgrade.
 
-   Below is the list of some Portal elements which are using primary colors of Serenity theme:
+..
+
+Below is the list of some Portal elements which are using primary colors of Serenity theme:
 
 .. table::
 
