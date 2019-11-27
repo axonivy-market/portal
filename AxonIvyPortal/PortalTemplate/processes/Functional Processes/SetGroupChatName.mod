@@ -58,11 +58,11 @@ Se0 f2 288 64 337 64 #arcP
 Se0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Default case name is: "Case-{caseId}"
+        <name>Default case name is: "Case--{caseId} {caseName}"
 
 Parameters can be passed through the bracket: {parameter}
 They are available in GroupChat.java and you can add more by overriding the GetGroupChatParams callable process</name>
-        <nameStyle>208
+        <nameStyle>220,5
 </nameStyle>
     </language>
 </elementInfo>
