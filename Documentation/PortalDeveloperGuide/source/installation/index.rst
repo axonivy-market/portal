@@ -275,8 +275,12 @@ https://www.npmjs.com/package/less2sass.
 How to migrate TaskTemplate
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-There are some changes in TaskTemplate. If you want to keep the old one, in your places using it, change to ``DeprecatedTaskTemplate7.xhtml``.
-If you want to use the new one, refer to ``TaskTemplate.xhtml`` for parameters and template areas.
+Since Portal 8, we introduce iFrame so that customer project can be loaded inside iFrame. It can reduce side affect between customer project and Portal as well as migrate effort in future.
+We now have 3 task templates 
+
+- ``TaskTemplate.xhtml``, if you keep using TaskTemplate, it will keep your modena theme as before. For detail refer to :ref:`Task template <components-layout-templates-task-template>`
+- ``DeprecatedTaskTemplate-7.xhtml``, change your template to DeprecatedTaskTemplate-7, it keeps your template with new Serenity theme and tab view. For detail refer to :ref:`Deprecated task template 7 <components-layout-templates-deprecated-task-template-7>`
+- ``TaskTemplate-8.xhtml``, change your template to TaskTemplate-8, it's similar to DeprecatedTaskTemplate-7, it has new Serenity theme and no tab view. For detail refer to :ref:`Task template 8 <components-layout-templates-task-template-8>`
 
 .. _installation-migration-notes-8-0-0-basic-template:
 

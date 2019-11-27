@@ -11,19 +11,23 @@ Templates for development
 Your Portal Project is dependent on PortalTemplate project, in which
 there are 7 templates that can be used directly.
 
-1. Basic template
+1. :ref:`Basic template <components-layout-templates-basic-template>`
 
-2. Two column template
+2. :ref:`Two column template <components-layout-templates-two-column-template>`
 
-3. Task template
+3. :ref:`Task template <components-layout-templates-task-template>`
 
-4. IFrame Task template
+4. :ref:`IFrame Task template <components-layout-templates-iframe-task-template>`
 
-5. Task list template
+5. :ref:`Task list template <components-layout-templates-task-list-template>`
 
-6. Case list template
+6. :ref:`Case list template <components-layout-templates-case-list-template>`
 
-7. Default homepage template
+7. :ref:`Default homepage template <components-layout-templates-default-homepage-template>`
+
+8. :ref:`Deprecated task template 7 <components-layout-templates-deprecated-task-template-7>`
+
+9. :ref:`Task template 8 <components-layout-templates-task-template-8>`
 
 These templates have the same header, which is a menu of applications
 that you configure in Administration page. Since version 8.0, Portal
@@ -122,6 +126,8 @@ to be filled with your custom content:
 
 -  Case Details
 
+This template uses iFrame, so all Modena css styles need to be provided in customer project since Portal now use Serenity.
+
 .. _components-layout-templates-task-template-how-to-use-task-template:
 
 How to use template TaskTemplate.xhtml
@@ -169,31 +175,6 @@ How to start a process/task in IFrameTaskTemplate.xhtml
 
 4.  In case you want to create your own IFrameTaskTemplate, as customizing Ivy Standard Processes, 
     implement a process with a predefined process start signature in your ivy project: ``DefaultFramePage(String relativeUrl, Number runningTaskId)``
-
-.. _components-layout-templates-default-homepage-template:
-
-Default homepage template
--------------------------
-
-Default homepage template is used to create pages that have the look as
-default homepage of Portal. Besides, users can customize it by disabling
-default widgets, add new widgets, change position of widgets. For more
-details including basic and advanced customization, refer to
-:ref:`Portal home <customization-portal-home>`
-
-.. _components-layout-templates-default-homepage-template-how-to-use-default-homepage-template:
-
-How to use default homepage template
-------------------------------------
-
-Create a new HTML User Dialog and then use ``ui:composition`` to define
-template.
-
-.. code-block:: html
-
-      <ui:composition template="/layouts/DefaultHomePageTemplate.xhtml">
-
-..    
 
 .. _components-layout-templates-task-list-template:
 
@@ -299,6 +280,78 @@ How to handle required login in template
 
 2. Result after using template for example (All user settings and
    application menus will not visible).
+
+
+.. _components-layout-templates-default-homepage-template:
+
+Default homepage template
+-------------------------
+
+Default homepage template is used to create pages that have the look as
+default homepage of Portal. Besides, users can customize it by disabling
+default widgets, add new widgets, change position of widgets. For more
+details including basic and advanced customization, refer to
+:ref:`Portal home <customization-portal-home>`
+
+.. _components-layout-templates-default-homepage-template-how-to-use-default-homepage-template:
+
+How to use default homepage template
+------------------------------------
+
+Create a new HTML User Dialog and then use ``ui:composition`` to define
+template.
+
+.. code-block:: html
+
+      <ui:composition template="/layouts/DefaultHomePageTemplate.xhtml">
+
+..    
+
+.. _components-layout-templates-deprecated-task-template-7:
+
+DeprecatedTaskTemplate-7
+-------------------------
+
+Deprecated task template 7 is multi tab view template with Serenity theme. If you project is using multi tab template, you can change to this template. 
+
+.. _components-layout-templates-default-homepage-template-how-to-use-deprecated-task-template-7:
+
+How to use DeprecatedTaskTemplate-7
+------------------------------------
+
+Create a new HTML User Dialog and then use ``ui:composition`` to define
+template.
+
+.. code-block:: html
+
+      <ui:composition template="/layouts/DeprecatedTaskTemplate-7.xhtml">
+
+..    
+
+There is also case / task custom field called ``embedInFrame``, by default this value has value ``true`` and customer project will be loaded inside iFrame.
+
+.. _components-layout-templates-task-template-8:
+
+TaskTemplate-8
+-------------------------
+
+Task template 8 is new template with Serenity theme introduced since Portal 8. In this template there is no tab view, customer has to define it.
+
+.. _components-layout-templates-default-homepage-template-how-to-use-task-template-8:
+
+How to use TaskTemplate-8
+------------------------------------
+
+Create a new HTML User Dialog and then use ``ui:composition`` to define
+template.
+
+.. code-block:: html
+
+      <ui:composition template="/layouts/TaskTemplate-8.xhtml">
+
+..    
+
+There is also case / task custom field called ``embedInFrame``, by default this value has value ``true`` and customer project will be loaded inside iFrame.
 
 .. _components-layout-templates-reponsiveness:
 
