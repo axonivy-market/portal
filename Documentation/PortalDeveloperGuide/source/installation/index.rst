@@ -167,7 +167,7 @@ Migrate to 8.0.0
 
 From Portal version 8.0.0, we use the Serenity theme as the default
 style for project. If your project is using ``LESS`` languages for
-customizing style, you should convert them to a new format as ``SASS``. 
+customizing style, you have to convert them to new format ``SASS``. 
 
 How to convert `LESS <http://lesscss.org>`__ to `SASS <https://sass-lang.com/>`__ languages
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

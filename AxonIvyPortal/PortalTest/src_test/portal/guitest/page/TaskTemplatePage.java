@@ -108,6 +108,11 @@ public class TaskTemplatePage extends TemplatePage {
     return driver.findElements(By.cssSelector(adhocHistoryBtnCSSSelection)).isEmpty();
   }
   
+  public boolean isAdhocHistoryDialogExistWhenOpenTaskFirstTime() {
+    waitAjaxIndicatorDisappear();
+    return findElementByCssSelector("div[id$='adhoc-task-history-dialog']").isDisplayed();
+  }
+  
   public boolean isAdhocHistoryDialogExist() {
     return findElementByCssSelector("div[id$='adhoc-task-history-dialog']").isDisplayed();
   }
@@ -121,12 +126,12 @@ public class TaskTemplatePage extends TemplatePage {
 
   public String getTaskNameOfAdhocHistoryRow(int index) {
     WebElement row = driver.findElements(By.cssSelector(ADHOC_HISTORY_TABLE_CSS_SELECTOR)).get(index);
-    return row.findElements(By.xpath("td")).get(1).getText();
+    return row.findElements(By.xpath("td")).get(2).getText();
   }
   
   public String getCommentOfAdhocHistoryRow(int index) {
     WebElement row = driver.findElements(By.cssSelector(ADHOC_HISTORY_TABLE_CSS_SELECTOR)).get(index);
-    return row.findElements(By.xpath("td")).get(2).getText();
+    return row.findElements(By.xpath("td")).get(3).getText();
   }
   
   public void closeAdhocHistoryDialog() {
