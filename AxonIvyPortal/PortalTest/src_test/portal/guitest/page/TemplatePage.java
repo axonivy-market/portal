@@ -98,7 +98,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public void waitAjaxIndicatorDisappear() {
-    WebElement ajaxIndicatorStartState = findElementById("ajax-indicator:ajax-indicator_start");
+    WebElement ajaxIndicatorStartState = findElementById("ajax-indicator:ajax-indicator-ajax-indicator_start");
     boolean displayed = false;
     try {
       displayed = ajaxIndicatorStartState.isDisplayed();
