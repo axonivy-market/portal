@@ -33,6 +33,7 @@ public class AdhocUtils {
     adhocHistory.setContent(content);
     adhocHistory.setTaskName(Ivy.wfTask().getName());
     adhocHistory.setTimestamp(Ivy.wfTask().getStartTimestamp());
+    adhocHistory.setAuthorUsername(Ivy.wfTask().getWorkerUserName());
     AdhocHistoryService adhocHistoryService = new AdhocHistoryService();
     adhocHistoryService.save(adhocHistory);
   }
