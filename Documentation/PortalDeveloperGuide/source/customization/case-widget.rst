@@ -17,7 +17,7 @@ CaseWidget contains 2 parts:
 
 ..
 
-  .. important:: 
+.. important:: 
       - Case header customization currently support responsive design. Refer to :ref:`this part <customization-case-widget-responsive-layout>` for more detail.
    
       - Case header's buttons cannot be modified (they stay where they are)
