@@ -121,9 +121,9 @@ Ms0 f8 83 243 26 26 -14 15 #rect
 Ms0 f8 @|UdEventIcon #fIcon
 Ms0 f9 actionTable 'out=in;
 ' #txt
-Ms0 f9 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-PortalNavigator navigator =new PortalNavigator();
-navigator.navigateToPortalEndPageInFrame();' #txt
+Ms0 f9 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigatorInFrame;
+PortalNavigatorInFrame navigator = new PortalNavigatorInFrame();
+navigator.navigateToPortalEndPage();' #txt
 Ms0 f9 168 234 112 44 0 -8 #rect
 Ms0 f9 @|StepIcon #fIcon
 Ms0 f10 109 256 168 256 #arcP

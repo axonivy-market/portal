@@ -25,8 +25,9 @@ Ie0 f0 outLink DefaultFramePage.ivp #txt
 Ie0 f0 inParamDecl '<String relativeUrl,Number runningTaskId> param;' #txt
 Ie0 f0 inParamTable 'out.taskId=param.runningTaskId;
 ' #txt
-Ie0 f0 actionCode 'import ch.ivyteam.ivy.bpm.error.BpmError;
-if (param.relativeUrl.startsWith("/ivy/")) {
+Ie0 f0 actionCode 'import ch.ivyteam.ivy.request.RequestUriFactory;
+import ch.ivyteam.ivy.bpm.error.BpmError;
+if (param.relativeUrl.startsWith("/" + RequestUriFactory.getIvyContextName() + "/")) {
   out.url = param.relativeUrl;
 } else {
   BpmError.create("frame:unsupported:url").withMessage("only relative urls are supported (security reasons)").throwError();
