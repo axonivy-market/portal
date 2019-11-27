@@ -1840,6 +1840,7 @@ _:-ms-input-placeholder, :root .case-details > * {
   width: 170px;
   line-height: 2.2rem;
 }
+
 .case-description-2nd-column {
   width: calc(100% - 175px);
   height: 130px;
@@ -1857,13 +1858,6 @@ _:-ms-input-placeholder, :root .case-details > * {
   line-height: 2.2rem;
   overflow: hidden;
   word-break: break-all;
-}
-
-.case-details-data-1st-column {
-  padding-right: 10px;
-  text-align: left;
-  width: 135px;
-  line-height: 2.2rem;
 }
 
 .related-task-content {
@@ -1918,16 +1912,6 @@ _:-ms-input-placeholder, :root .case-details > * {
 
 .case-description-column {
   margin: 4px auto auto 3px;
-}
-
-.case-description-2nd-column {
-  width: calc(100% - 145px);
-  height: 130px;
-  margin-left: 3px;
-  overflow-y: auto;
-  overflow-x: hidden; 
-  word-break: break-all;
-  margin-top: 0.2em;
 }
 
 .case-description-2nd-column .ui-inputfield.ui-inputtextarea.ui-widget.case-detail-description-input {
