@@ -420,6 +420,7 @@ td.email-attachment-text {
 
 .express-table-no-header .ui-datatable-header.ui-widget-header.ui-corner-top {
   padding: 0;
+  width: calc(100% - 1px);
 }
 
 .express-table-header-title {
