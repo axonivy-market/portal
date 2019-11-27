@@ -65,19 +65,16 @@ you in customizing styles of Portal. They are ``theme.scss`` and ``variables.scs
    | $primaryLightColor    | $primaryLightGreen: #d7e52c | - Background color of hovered button                           |
    +-----------------------+-----------------------------+----------------------------------------------------------------+
    | $primaryLightestColor | white                       | - Active checkbox icon                                         |
-   |                       |                             | - Background color of active menu item                         |
+   |                       |                             | - Background color of active sidebar menu item                 |
    |                       |                             | - Topbar background color                                      |
    +-----------------------+-----------------------------+----------------------------------------------------------------+
-   | $primaryTextColor     | black                       | - For almost text in Portal (except some specific styles       |
+   | $primaryTextColor     | black                       | - For almost texts in Portal (except some specific styles      |
    |                       |                             |   like Case/Task Description in Case/Task list)                |
    +-----------------------+-----------------------------+----------------------------------------------------------------+
    | $accentColor          | $primaryColor               | - Active submenuitem of sidebar                                |
-   |                       |                             | - Background color of active cell (table header)               |
-   |                       |                             | - Background color of fileupload button                        |
-   |                       |                             | - Background color of active page in datatable                 |
+   |                       |                             | - Background color of active items (form elements)             |
+   |                       |                             | - Background color of active page number in datatable          |
    |                       |                             |   (except table in Case/Task detail)                           |
-   |                       |                             | - Background color of selected date (datepicker),              |
-   |                       |                             |   selected item (selectlistbox-item)                           |
    |                       |                             | - Bottom border of active tab                                  |
    |                       |                             | - Border color of datepicker-today                             |
    +-----------------------+-----------------------------+----------------------------------------------------------------+
