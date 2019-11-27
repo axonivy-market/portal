@@ -917,7 +917,7 @@ Bk1 f72 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk1 f72 696 208 736 128 #arcP
+Bk1 f72 696 208 768 128 #arcP
 Bk1 f72 1 696 128 #addKink
 Bk1 f72 1 0.075 0 -9 #arcLabel
 Bk1 f6 processCall 'Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)' #txt
@@ -1049,17 +1049,16 @@ Bk1 f68 security system #txt
 Bk1 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Remove session attribute&#xD;
-and find task by id</name>
+        <name>find task by id</name>
     </language>
 </elementInfo>
 ' #txt
-Bk1 f68 736 106 176 44 -67 -16 #rect
+Bk1 f68 768 106 112 44 -35 -8 #rect
 Bk1 f68 @|StepIcon #fIcon
 Bk1 f40 expr in #txt
 Bk1 f40 712 224 746 224 #arcP
 Bk1 f42 expr out #txt
-Bk1 f42 912 128 928 128 #arcP
+Bk1 f42 880 128 928 128 #arcP
 Bk1 f42 0 0.075 0 -9 #arcLabel
 Bk1 f36 dialogId ch.ivy.addon.portal.generic.PortalHome #txt
 Bk1 f36 startMethod start(ch.ivy.addon.portal.generic.view.TaskView) #txt
