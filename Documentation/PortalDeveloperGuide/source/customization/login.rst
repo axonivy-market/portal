@@ -8,7 +8,7 @@ Login page
 
 |login-default|
 
-To replace default login page, extends existing templates with
+To replace default login page, extend existing templates with
 ``ui:define name="login"`` to define your new login component like below
 
 .. code-block:: html

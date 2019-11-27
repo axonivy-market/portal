@@ -50,9 +50,9 @@ Limitation of current Portal chat
 1. Do not support multiple tabs. For each browser, user is able to open
    1 Portal tab if he enables Portal chat.
 
-2. Do not support multiple applications. User is able to chat with other
-   users in current application, cannot chat with users in other
-   application.
+2. Portal Chat does not support cross application Chat. That means user is able
+   to Chat with other users in current application, but he cannot Chat with users
+   in other application.
 
 .. |chat| image:: images/portal-chat/chat.png
 .. |chat-group-assignee| image:: images/portal-chat/chat-group-assignee.png
