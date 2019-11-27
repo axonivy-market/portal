@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -12,11 +13,14 @@ import ch.ivy.addon.portalkit.bo.AdhocHistory;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.service.AdhocHistoryService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.casemap.runtime.ICaseMapService;
 import ch.ivyteam.ivy.casemap.runtime.model.ICaseMap;
 import ch.ivyteam.ivy.casemap.runtime.model.IStage;
 import ch.ivyteam.ivy.casemap.runtime.model.IStartableSideStep;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 
@@ -98,6 +102,17 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
       adhocHistories.sort((first, second) -> second.getTimestamp().compareTo(first.getTimestamp()));
     }
     return adhocHistories;
+  }
+
+  public static String getUserByUsername(String username) {
+    if (StringUtils.isBlank(username)) {
+      return "";
+    }
+
+    return IvyExecutor.executeAsSystem(() -> {
+      IUser user = Ivy.wf().getSecurityContext().findUser(username);
+      return user == null ? "" : UserUtils.getFullName(user);
+    });
   }
 
   public boolean checkSideStepsEnabled(ICase iCase) {

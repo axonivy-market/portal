@@ -27,28 +27,6 @@
  *
  */
 
-/* =================== INPLACE EDITOR ===================== */
-.ui-inplace-editor {
-  display: inline-block;
-}
-/* =================== END INPLACE EDITOR ================= */
-
-/* =================== AUTOCOMPLETE ====================== */
-.ui-autocomplete-panel .ui-autocomplete-items.ui-autocomplete-table tr,
-.ui-autocomplete-panel .ui-autocomplete-items.ui-autocomplete-table td {
-  border: none;
-  transition: background-color 0.3s ease 0s;
-}
-
-.ui-autocomplete-panel .ui-autocomplete-items.ui-autocomplete-table td {
-  padding: 6px 10px;
-}
-
-.ui-autocomplete-input.ui-autocomplete-dd-input {
-  padding-right: 3.4rem !important;
-}
-/* =================== END AUTOCOMPLETE ====================== */
-
 /* =================== FIELDSET ====================== */
 .fieldset-no-border {
   border: none !important;
@@ -164,8 +142,6 @@
 }
 
 /********************** START MENU ITEM ***********************/
-
-
 .layout-wrapper .layout-sidebar .layout-menu>li:not(.active-menuitem)>a.current-application {
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
@@ -1858,6 +1834,23 @@ _:-ms-input-placeholder, :root .case-details > * {
   float: left;
 }
 
+.case-details-data-1st-column {
+  padding-right: 10px;
+  text-align: left;
+  width: 170px;
+  line-height: 2.2rem;
+}
+
+.case-description-2nd-column {
+  width: calc(100% - 175px);
+  height: 130px;
+  margin-left: 2px;
+  overflow-y: auto;
+  overflow-x: hidden; 
+  word-break: break-all;
+  margin-top: 0.2em;
+}
+
 .case-details-row-space td:not(.case-details-data-1st-column) {
   display: inline-block;
   width: 100%;
@@ -1865,13 +1858,6 @@ _:-ms-input-placeholder, :root .case-details > * {
   line-height: 2.2rem;
   overflow: hidden;
   word-break: break-all;
-}
-
-.case-details-data-1st-column {
-  padding-right: 10px;
-  text-align: left;
-  width: 135px;
-  line-height: 2.2rem;
 }
 
 .related-task-content {
@@ -1926,16 +1912,6 @@ _:-ms-input-placeholder, :root .case-details > * {
 
 .case-description-column {
   margin: 4px auto auto 3px;
-}
-
-.case-description-2nd-column {
-  width: calc(100% - 145px);
-  height: 130px;
-  margin-left: 3px;
-  overflow-y: auto;
-  overflow-x: hidden; 
-  word-break: break-all;
-  margin-top: 0.2em;
 }
 
 .case-description-2nd-column .ui-inputfield.ui-inputtextarea.ui-widget.case-detail-description-input {
@@ -2967,11 +2943,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 .statistic-carousel .ui-carousel-header .ui-carousel-dropdown,
 .statistic-carousel .ui-carousel-header .ui-carousel-mobiledropdown {
   display: none;
-}
-
-.statistic-carousel .ui-carousel-header .ui-carousel-next-button,
-.statistic-carousel .ui-carousel-header .ui-carousel-prev-button {
-  margin-top: 2px;
 }
 
 .statistic-carousel.one-statistic .ui-carousel-header .ui-carousel-next-button,

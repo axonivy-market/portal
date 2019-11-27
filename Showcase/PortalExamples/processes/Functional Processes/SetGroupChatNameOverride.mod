@@ -38,7 +38,7 @@ Se0 f0 @|StartSubIcon #fIcon
 Se0 f1 337 49 30 30 0 15 #rect
 Se0 f1 @|EndSubIcon #fIcon
 Se0 f3 actionTable 'out=in;
-out.name="Group chat of: {groupChatCreator} - {caseId}";
+out.name=ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/case") + "-{caseId} {caseName}" + " {groupChatCreator}";
 ' #txt
 Se0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

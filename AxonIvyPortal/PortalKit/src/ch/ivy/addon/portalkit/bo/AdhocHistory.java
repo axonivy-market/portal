@@ -8,6 +8,7 @@ public class AdhocHistory {
   private String content;
   private Date timestamp;
   private String taskName;
+  private String authorUsername;
   
   public long getOriginalTaskId() {
     return originalTaskId;
@@ -41,4 +42,11 @@ public class AdhocHistory {
     this.taskName = taskName;
   }
 
+  public String getAuthorUsername() {
+    return authorUsername;
+  }
+
+  public void setAuthorUsername(String authorUsername) {
+    this.authorUsername = authorUsername;
+  }
 }

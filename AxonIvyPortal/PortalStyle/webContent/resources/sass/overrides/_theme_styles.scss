@@ -203,7 +203,7 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 }
 
 .ui-commandlink:hover {
-  color: $commandLinkHoveredTextColor !important;
+  color: $commandLinkHoverTextColor !important;
 }
 
 .ui-commandlink:active {
@@ -773,10 +773,6 @@ body .ui-selectonemenu-panel .ui-selectonemenu-item.ui-state-focus {
   outline: none;
 }
 
-body .ui-selectonemenu-panel .ui-state-highlight,
-body .ui-autocomplete-panel .ui-state-highlight {
-  background-color: $uiPanelStateHighlightBackgroundColor !important;
-}
 body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span.md-inputwrapper-filled ~ label {
     color: $primaryColor;
 }
@@ -916,6 +912,10 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
 body .ui-accordion .ui-accordion-header {
   font-size: $largeFontSize !important;
   background-color: $accordionHeaderBgColor !important;
+}
+
+body .ui-accordion .ui-accordion-header.ui-state-active {
+  background-color: $accordionHeaderActiveBackgroundColor !important;
 }
 
 /* Spinner */

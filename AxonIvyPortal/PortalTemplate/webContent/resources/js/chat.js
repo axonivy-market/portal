@@ -371,6 +371,7 @@ function View(uri)
               }
             })
             cloneGroup.getElementsByClassName("js-group-card-name")[0].innerText = groupChatName;
+            cloneGroup.getElementsByClassName("js-group-card-name")[0].title = groupChatName;
             groupChatContainer.appendChild(cloneGroup);
           }
         });
@@ -851,3 +852,4 @@ function View(uri)
         }
     } 
 }
+
