@@ -84,6 +84,14 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
   font-size: 2rem;
 }
 
+body .ui-menu .ui-menu-list li.ui-menuitem .ui-menuitem-link {
+  color: $menuItemLinkColor !important;
+}
+
+body .ui-menu .ui-menu-list li.ui-menuitem .ui-menuitem-link:hover {
+  background-color: $menuItemLinkHoverBackgroundColor !important;
+}
+
 body .ui-menu .ui-menu-list li.ui-menuitem .ui-menuitem-link .ui-menuitem-icon {
   font-size: 1.8rem;
 }
@@ -520,6 +528,10 @@ body {
   }
 }
 
+body .ui-tabs .ui-tabs-nav>li.ui-state-default:not(.ui-state-active) a {
+  color: $textTabDefaultColor;
+}
+
 /* Layout sidebar*/
 .layout-wrapper .layout-sidebar,
 .layout-main-mask {
@@ -705,7 +717,7 @@ body .ui-messages ul {
 /* Buttons */
 body .ui-button .ui-button-text {
   font-size: $largeFontSize;
-  color: $buttonTextColor;
+  color: $textButtonColor;
 }
 
 .ui-widget.ui-button.ui-state-hover:not(.ui-spinner-button),
@@ -716,7 +728,7 @@ body .ui-buttonset .ui-state-active {
 
 .ui-widget.ui-button {
     .ui-button-text {
-        color: $buttonTextColor !important;
+        color: $textButtonColor !important;
     }
 
     .ui-icon {
@@ -910,7 +922,7 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
 
 body .ui-accordion .ui-accordion-header {
   font-size: $largeFontSize !important;
-  background-color: $accordionHeaderBgColor !important;
+  background-color: $accordionHeaderBackgroundColor !important;
 }
 
 body .ui-accordion .ui-accordion-header.ui-state-active {
@@ -978,4 +990,13 @@ body .ui-inputswitch.ui-inputswitch-checked .ui-inputswitch-handle {
   border-top-right-radius: 5px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+
+/* Placeholder */
+:-ms-input-placeholder {
+  color: $placeHolderTextColor !important;
+}
+
+::placeholder {
+  color: $placeHolderTextColor;
 }
