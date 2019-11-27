@@ -31,31 +31,31 @@ Customization
 4. Override 4 ``Document sub processes`` described in table below to
    customize document functions.
 
-.. table::
+   .. table::
 
-   +-----------------------------------+-----------------------------------+
-   | Sub process                       | Description                       |
-   +===================================+===================================+
-   | GetDocumentList                   | After get document list from DMS, |
-   |                                   | convert them into                 |
-   |                                   | List<ch.ivy.addon.portalkit.ivyda |
-   |                                   | ta.bo.IvyDocument>                |
-   |                                   | Mandatory fields are:             |
-   |                                   |                                   |
-   |                                   | - id                              |
-   |                                   | - name                            |
-   |                                   | - contentType                     |
-   +-----------------------------------+-----------------------------------+
-   | UploadDocument                    | Override this sub process to      |
-   |                                   | upload your file. This sub        |
-   |                                   | process also contains some        |
-   |                                   | validations, so if you override   |
-   |                                   | it, you have to implement         |
-   |                                   | validation by your own.           |
-   +-----------------------------------+-----------------------------------+
-   | DownloadDocument                  | Override this subprocess to       |
-   |                                   | download file from DMS.           |
-   +-----------------------------------+-----------------------------------+
-   | DeleteDocument                    | Override this sub process to      |
-   |                                   | delete file in DMS                |
-   +-----------------------------------+-----------------------------------+
+    +-----------------------------------+-----------------------------------+
+    | Sub process                       | Description                       |
+    +===================================+===================================+
+    | GetDocumentList                   | After get document list from DMS, |
+    |                                   | convert them into                 |
+    |                                   | List<ch.ivy.addon.portalkit.ivyda |
+    |                                   | ta.bo.IvyDocument>                |
+    |                                   | Mandatory fields are:             |
+    |                                   |                                   |
+    |                                   | - id                              |
+    |                                   | - name                            |
+    |                                   | - contentType                     |
+    +-----------------------------------+-----------------------------------+
+    | UploadDocument                    | Override this sub process to      |
+    |                                   | upload your file. This sub        |
+    |                                   | process also contains some        |
+    |                                   | validations, so if you override   |
+    |                                   | it, you have to implement         |
+    |                                   | validation by your own.           |
+    +-----------------------------------+-----------------------------------+
+    | DownloadDocument                  | Override this subprocess to       |
+    |                                   | download file from DMS.           |
+    +-----------------------------------+-----------------------------------+
+    | DeleteDocument                    | Override this sub process to      |
+    |                                   | delete file in DMS                |
+    +-----------------------------------+-----------------------------------+
