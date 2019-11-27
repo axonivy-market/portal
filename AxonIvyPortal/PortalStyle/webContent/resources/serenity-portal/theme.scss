@@ -290,7 +290,7 @@
 
 /*Style for table --------------------------------------------------------------------------------------*/
 .express-many-checkbox-options.ui-datatable tbody tr td {
-	border-top: 1px solid $topBorderBodyExpressManyCheckboxTableColor !important;
+  border-top: 1px solid $topBorderBodyExpressManyCheckboxTableColor !important;
 }
 
 /*Style for express --------------------------------------------------------------------------------------*/
@@ -493,12 +493,11 @@
 }
 
 /*Style For Advance Filter --------------------------------------------------------------------------------------*/
-
 .ui-datepicker .ui-timepicker-div dl dd {
-	margin-top: 30px !important;
-	.ui-slider.ui-slider-horizontal.ui-widget.ui-widget-content {
-		margin-right: 10px;
-	}
+  margin-top: 30px !important;
+  .ui-slider.ui-slider-horizontal.ui-widget.ui-widget-content {
+    margin-right: 10px;
+  }
 }
 
 /*Style for Fieldset --------------------------------------------------------------------------------------*/
