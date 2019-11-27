@@ -21,7 +21,6 @@ public class AdhocExpressTest extends BaseTest {
 
   private TaskWidgetPage taskWidgetPage;
   private TaskTemplatePage taskTemplatePage;
-  private DefaultExpresTaskPage defaultExpressTaskPage;
 
   @Override
   @Before
@@ -64,7 +63,7 @@ public class AdhocExpressTest extends BaseTest {
     expressPage.executeDirectly();
     
     //first task of adhoc
-    defaultExpressTaskPage = new DefaultExpresTaskPage();
+    DefaultExpresTaskPage defaultExpressTaskPage = new DefaultExpresTaskPage();
     defaultExpressTaskPage.enterTextToDefaultTask(defaultTaskComment1);
     defaultExpressTaskPage.finishDefaultTask();
     
@@ -84,7 +83,7 @@ public class AdhocExpressTest extends BaseTest {
     taskWidgetPage.startTask(0);
     
     //check adhoc history
-    assertEquals(true, taskTemplatePage.isAdhocHistoryDialogExist());
+    assertEquals(true, taskTemplatePage.isAdhocHistoryDialogExistWhenOpenTaskFirstTime());
     assertEquals(defaultTaskName2, taskTemplatePage.getTaskNameOfAdhocHistoryRow(0));
     assertEquals(defaultTaskComment2, taskTemplatePage.getCommentOfAdhocHistoryRow(0));
     assertEquals(defaultTaskName1, taskTemplatePage.getTaskNameOfAdhocHistoryRow(1));
