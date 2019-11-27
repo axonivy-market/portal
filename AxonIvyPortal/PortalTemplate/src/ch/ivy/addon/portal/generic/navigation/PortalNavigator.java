@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.PrimeFaces;
 import org.primefaces.extensions.util.json.GsonConverter;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
@@ -133,16 +132,6 @@ public final class PortalNavigator {
     String defaultEndPage = getDefaultEndPage(); 
     redirect(defaultEndPage + "?endedTaskId=" + Ivy.wfTask().getId());
     Ivy.session().setAttribute(SessionAttribute.IS_TASK_NOT_FINISHED.toString(), true);
-  }
-  
-  /**
-   * Navigates to PortalEndPage without finishing a task, e.g. clicking on Cancel button then back to previous page: task list or task details or global search
-   * NOTES: is only used for the task started in Portal IFrame
-   */
-  public void navigateToPortalEndPageInFrame() {
-    Ivy.session().setAttribute(SessionAttribute.IS_TASK_NOT_FINISHED.toString(), true);
-    String statement = "parent.redirectToEndPageCommand([{name: 'taskId', value: " + Ivy.wfTask().getId() + "}]);";
-    PrimeFaces.current().executeScript(statement);
   }
   
   private String getDefaultEndPage() {

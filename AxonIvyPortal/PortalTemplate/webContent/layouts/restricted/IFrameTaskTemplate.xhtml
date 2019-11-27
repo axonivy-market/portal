@@ -6,6 +6,9 @@
   xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
   <ui:composition template="/layouts/restricted/AbstractTaskTemplate.xhtml">
+    <!-- THIS TEMPLATE IS ONLY USED BY PORTAL. DON'T USE IT. -->
+    <!-- Read document or the following comments to know how to pass the params in your HTML dialog to Portal area outside IFrame. -->
+    
     <!-- AVAILABLE PARAMS in this template: -->
     <!-- currentProcessStep: current process step -->
     <!-- processSteps: list of process steps -->
@@ -32,7 +35,9 @@
 
     <ui:define name="content">
       <h:form>
+        <p:remoteCommand name="redirectToHomePageCommand" actionListener="#{iFrameTaskTemplateBean.navigateToHomePage()}" />
         <p:remoteCommand name="redirectToEndPageCommand" actionListener="#{iFrameTaskTemplateBean.navigateToEndPage()}" />
+        <p:remoteCommand name="redirectToUrlCommand" actionListener="#{iFrameTaskTemplateBean.navigateToUrl()}" />
         <p:remoteCommand name="getDataFromIFrame" actionListener="#{iFrameTaskTemplateBean.getDataFromIFrame()}"
           update="@([id$='header-container']) @([id$='task-leave-warning-dialog']) @([id$='task-leave-warning-component'])" 
           oncomplete="resizeIFrame();updateContentContainerClass()" global="false" />

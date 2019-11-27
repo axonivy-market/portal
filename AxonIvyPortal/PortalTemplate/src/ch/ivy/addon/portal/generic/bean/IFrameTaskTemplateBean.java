@@ -1,5 +1,6 @@
 package ch.ivy.addon.portal.generic.bean;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -10,11 +11,15 @@ import java.util.Optional;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.request.OpenRedirectVulnerabilityUtil;
 
 @ManagedBean(name = "iFrameTaskTemplateBean")
 @ViewScoped
@@ -23,6 +28,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private static final long serialVersionUID = 1L;
   
   private static final String TASK_ID_PARAM = "taskId";
+  private static final String URL_PARAM = "url";
   private static final String PROCESS_CHAIN_SHAPE_PARAM = "processChainShape";
   private static final String PROCESS_CHAIN_DIRECTION_PARAM = "processChainDirection";
   private static final String PROCESS_STEPS_PARAM = "processSteps";
@@ -34,12 +40,30 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private String processChainShape;
   private PortalNavigator navigator = new PortalNavigator();
 
+  public void navigateToHomePage() throws MalformedURLException {
+    navigator.navigateToPortalHome();
+  }
+  
   public void navigateToEndPage() throws MalformedURLException {
     Map<String, String> requestParamMap = getRequestParameterMap();
     String taskId = requestParamMap.get(TASK_ID_PARAM);
     
     if (StringUtils.isNotBlank(taskId)) {
       navigator.navigateToPortalEndPage(Long.parseLong(taskId));
+    }
+  }
+  
+  public void navigateToUrl() throws IOException {
+    Map<String, String> requestParamMap = getRequestParameterMap();
+    String url = requestParamMap.get(URL_PARAM);
+    HttpServletRequest request = null;
+    ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+    if (context != null){
+      request = (HttpServletRequest) context.getRequest();
+    }
+    
+    if (StringUtils.isNotBlank(url) && OpenRedirectVulnerabilityUtil.isValid(url, request)) {
+      FacesContext.getCurrentInstance().getExternalContext().redirect(url);
     }
   }
   

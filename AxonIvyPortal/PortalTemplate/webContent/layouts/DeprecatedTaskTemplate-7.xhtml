@@ -6,7 +6,14 @@
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
-    <!-- Deprecated: Use TaskTemplate.xhtml instead. -->
+    <!-- DEPRECATED: Use TaskTemplate-8.xhtml instead. -->
+    
+    <!-- DESCRIPTION: 
+    <!-- This template is used for displaying task functionality and related information to support completing the task.
+    <!-- It still contains TabView since previous Portal version, and Serenity theme is included -->
+    
+    <!-- HOW TO USE: -->
+    <!-- Is used in non-frame mode. Use it if you migrate Portal from 7.x and want to keep TabView with Serenity theme -->
     <ui:param name="isWorkingOnATask" value="true" />
     <ui:param name="announcementInvisible" value="true" />
 
