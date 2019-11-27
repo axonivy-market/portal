@@ -32,8 +32,7 @@
   float: left;
 }
 
-.form-element-input-checkbox-table,
-.express-workflow-input {
+.form-element-input-checkbox-table, .express-workflow-input {
   width: 91% !important;
 }
 
@@ -48,42 +47,41 @@
   margin: auto 8px;
 }
 
-
 .show-default-ui-icon {
   font-size: 1.5rem;
   margin-left: 4px;
 }
 
 .dynamic-task-panel-grid {
-	border: none;
-	text-align: left;
-	width: 100%;
+  border: none;
+  text-align: left;
+  width: 100%;
 }
 
 .dynamic-task-action-container {
-	border: none !important;
-	text-align: left;
-	width: 100%;
+  border: none !important;
+  text-align: left;
+  width: 100%;
 }
 
 .dynamic-task-left-action {
-	border: none !important;
-	text-align: left;
-	width: 50%;
+  border: none !important;
+  text-align: left;
+  width: 50%;
 }
 
 .dynamic-task-right-action {
-	border: none !important;
-	text-align: right;
+  border: none !important;
+  text-align: right;
 }
 
 .ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-moretext.ui-state-highlight,
 .ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-moretext.ui-state-highlight td {
-	cursor: default;
+  cursor: default;
 }
 
 .form-definition-item-icon {
-	vertical-align: middle;
+  vertical-align: middle;
 }
 
 .placement-form-element-remove-btn {
@@ -92,117 +90,117 @@
 }
 
 .no-border {
-	border: none !important;
+  border: none !important;
 }
 
 .vertical-align-middle {
-	vertical-align: middle;
+  vertical-align: middle;
 }
 
 .form-definition-calendar {
-	width: 128px;
+  width: 128px;
 }
 
 .form-definition-option-container {
-	width: 35%;
-	padding: 0px !important;
-	border: solid 0px !important;
+  width: 35%;
+  padding: 0px !important;
+  border: solid 0px !important;
 }
 
 /* DEFAULT TEMPLATE DIALOG */
 .default-template-dyna-form {
-	padding: 20px;
+  padding: 20px;
 }
 
 /* SELECT RESPONSIBLE DIALOG */
 .assignee-selection-panel {
-	width: 100%;
+  width: 100%;
 }
 
 .assignee-selection-panel, .assignee-selection-panel tbody tr td {
-	border: none !important;
+  border: none !important;
 }
 
 .assignee-selection-panel .select-assignee .ui-autocomplete {
-	width: 100%;
+  width: 100%;
 }
 
 .assignee-selection-panel .select-assignee .ui-autocomplete-input {
-	width: 100%;
+  width: 100%;
 }
 
 .assignee-selection-panel .add-assignee-button {
-	float: right;
-	margin-top: 15px;
+  float: right;
+  margin-top: 15px;
 }
 
 .assignee-selection-panel .selected-assignee-panel {
-	padding: .6em 0 !important;
-	cursor: default;
+  padding: .6em 0 !important;
+  cursor: default;
 }
 
 .assignee-selection-panel .selected-assignee-panel .ui-fieldset-legend {
-	margin-left: 1em;
+  margin-left: 1em;
 }
 
 .assignee-selection-panel .selected-assignee-panel .assignee-selection {
-	width: 100%;
-	border: none !important;
-	margin: 0;
+  width: 100%;
+  border: none !important;
+  margin: 0;
 }
 
 .selected-assignee-panel .ui-fieldset-content {
-	max-height: 35vh;
-	overflow-y: auto;
+  max-height: 35vh;
+  overflow-y: auto;
 }
 
 .assignee-selection-panel .delete-assignee {
-	font-size: 1.4rem;
-	padding-right: 5px;
+  font-size: 1.4rem;
+  padding-right: 5px;
 }
 
 .assignee-selection-panel .assignee-name-col {
-	width: 90%;
-	padding-left: 0 !important;
+  width: 90%;
+  padding-left: 0 !important;
 }
 
 .assignee-selection-panel .assignee-type-col .fa {
-	text-align: center;
-	width: 3rem;
-	font-size: 1.8rem;
+  text-align: center;
+  width: 3rem;
+  font-size: 1.8rem;
 }
 
 .assignee-selection-panel .save-assignee-button {
-	margin-top: 10px;
+  margin-top: 10px;
 }
 
 /* FORM DEFINITION */
 .ui-widget.ui-button.defined-task-button {
-	width: 18rem;
-	height: 5rem !important;
-	vertical-align: top;
-	padding: 0 4px 0 7px;
+  width: 18rem;
+  height: 5rem !important;
+  vertical-align: top;
+  padding: 0 4px 0 7px;
 }
 
 .ui-widget.ui-button.defined-task-button span {
-	padding: 0 20px !important;
-	white-space: pre;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  padding: 0 20px !important;
+  white-space: pre;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .ui-widget.ui-button.defined-task-button.active {
-	opacity: .8 !important;
+  opacity: .8 !important;
 }
 
 .ui-widget.ui-button.defined-task-button.visited {
-	opacity: .8 !important;
+  opacity: .8 !important;
 }
 
 .form-elements-container {
-	margin: 0 0 16px;
-	border: none !important;
-	padding: 0;
+  margin: 0 0 16px;
+  border: none !important;
+  padding: 0;
 }
 
 .form-elements-container .form-elements-1st-column {
@@ -213,9 +211,9 @@
   width: 75%;
   padding-left: 0 !important;
 }
-  
+
 .form-elements-container .available-form-elements .ui-panelgrid-cell {
-	padding: 0 !important;
+  padding: 0 !important;
 }
 
 .form-elements-container .ui-panelgrid-content.ui-widget-content.ui-grid.ui-grid-responsive {
@@ -244,14 +242,14 @@
 }
 
 /* Form elements responsive */
-@media (max-width: 1024px) {
-  .available-formelements-field,
-  .form-elements-container .form-elements-1st-column, .form-elements-container .form-elements-2nd-column {
+@media ( max-width : 1024px) {
+  .available-formelements-field, .form-elements-container .form-elements-1st-column, .form-elements-container .form-elements-2nd-column
+    {
     padding: 8px !important;
   }
 }
 
-@media (max-width: 1366px) {
+@media ( max-width : 1366px) {
   .form-elements-container .form-elements-2nd-column {
     padding-left: 0 !important;
     word-break: break-all;
@@ -265,8 +263,8 @@
 }
 
 .available-formelements-field {
-	height: 100%;
-	box-sizing: border-box;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .show-preview-button {
@@ -274,47 +272,46 @@
 }
 
 .ui-draggable:hover {
-	cursor: all-scroll;
+  cursor: all-scroll;
 }
 
 .express-form-buttons-container {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
-.selected-form-elements-header .ui-datagrid-content.ui-widget-content,
-.selected-form-elements-left-panel .ui-datagrid-content.ui-widget-content,
-.selected-form-elements-right-panel .ui-datagrid-content.ui-widget-content,
-.selected-form-elements-footer .ui-datagrid-content.ui-widget-content {
+.selected-form-elements-header .ui-datagrid-content.ui-widget-content, .selected-form-elements-left-panel .ui-datagrid-content.ui-widget-content,
+  .selected-form-elements-right-panel .ui-datagrid-content.ui-widget-content, .selected-form-elements-footer .ui-datagrid-content.ui-widget-content
+  {
   padding: 0 !important;
   border: none !important;
 }
 
 .form-definition-table {
-	border-collapse: separate;
-	height: 100%;
+  border-collapse: separate;
+  height: 100%;
 }
 
 .form-definition-table td.ui-panelgrid-cell {
-	padding: 10px;
-	height: 100%;
+  padding: 10px;
+  height: 100%;
 }
 
 .form-definition-table tr:first-child td.ui-panelgrid-cell {
-	padding-bottom: 0;
+  padding-bottom: 0;
 }
 
 .form-definition-table tr:last-child td.ui-panelgrid-cell {
-	padding-top: 0;
+  padding-top: 0;
 }
 
 .form-definition-table .selected-formelements-panel {
-	border-radius: 5px;
-	height: 100%;
+  border-radius: 5px;
+  height: 100%;
 }
 
-.form-definition-table .selected-formelements-panel.right-section .ui-outputpanel,
-.form-definition-table .selected-formelements-panel.left-section .ui-outputpanel {
-	height: 100%;
+.form-definition-table .selected-formelements-panel.right-section .ui-outputpanel, .form-definition-table .selected-formelements-panel.left-section .ui-outputpanel
+  {
+  height: 100%;
 }
 
 .form-create-tabs .ui-tabs-nav.ui-widget-header.ui-corner-all {
@@ -355,7 +352,7 @@ td.email-attachment-text {
   padding: 0.5em;
 }
 
-.express-email-container > div.ui-g > div {
+.express-email-container>div.ui-g>div {
   margin-top: 10px;
 }
 
@@ -364,7 +361,7 @@ td.email-attachment-text {
 }
 
 .email-attachment:before {
-	padding-right: 10px;
+  padding-right: 10px;
 }
 
 .email-attachment-upload-btn {
@@ -397,15 +394,15 @@ td.email-attachment-text {
 }
 
 .finished-task-fieldset legend {
-	padding: 10px !important;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	max-width: 25rem;
+  padding: 10px !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 25rem;
 }
 
 .finished-task-fieldset .pe-dynaform-grid {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .dyna-form-dl-div .ui-datalist-content.ui-widget-content {
@@ -417,10 +414,9 @@ td.email-attachment-text {
 }
 
 /* UI Element - Many checkbox */
-
 .express-table-no-header thead {
   display: none !important;
-} 
+}
 
 .express-table-no-header .ui-datatable-header.ui-widget-header.ui-corner-top {
   padding: 0;
@@ -506,23 +502,22 @@ td.email-attachment-text {
 }
 
 .default-template-text-area {
-	overflow: auto;
-	resize: none;
+  overflow: auto;
+  resize: none;
 }
-  
+
 .preview-dialog {
   max-width: 1200px;
 }
 
-.preview-dialog .pe-dynaform-cell[colspan]>.form-definition-calendar>input.hasDatepicker,
-.preview-dialog .pe-dynaform-cell[colspan] input.ui-inputtext {
-	width: 100%;
+.preview-dialog .pe-dynaform-cell[colspan]>.form-definition-calendar>input.hasDatepicker, .preview-dialog .pe-dynaform-cell[colspan] input.ui-inputtext
+  {
+  width: 100%;
 }
 
-.preview-dialog .pe-dynaform-cell input.ui-inputtext,
-.preview-dialog .pe-dynaform-cell[colspan="2"] input.ui-inputtext,
-.preview-dialog .pe-dynaform-cell>.form-definition-calendar>input.hasDatepicker {
-	width: 98%;
+.preview-dialog .pe-dynaform-cell input.ui-inputtext, .preview-dialog .pe-dynaform-cell[colspan="2"] input.ui-inputtext,
+  .preview-dialog .pe-dynaform-cell>.form-definition-calendar>input.hasDatepicker {
+  width: 98%;
 }
 
 .ui-spinner .ui-spinner-input {
@@ -530,28 +525,28 @@ td.email-attachment-text {
 }
 
 .preview-dialog .pe-dynaform-cell[colspan="4"]>.ui-spinner {
-	width: 50%;
+  width: 50%;
 }
 
 .preview-dialog .ui-widget.ui-datatable {
-	border: none;
-	width: 100%;
+  border: none;
+  width: 100%;
 }
 
 .preview-dialog .pe-dynaform-cell>.ui-spinner {
-	width: 98%;
-} 
+  width: 98%;
+}
 
 .preview-dialog .preview-dyna-container {
-	padding: 1em 2em;
-	margin: 0;
-	margin-bottom: 10px;
-	max-height: 500px;
-	overflow-y: auto;
+  padding: 1em 2em;
+  margin: 0;
+  margin-bottom: 10px;
+  max-height: 500px;
+  overflow-y: auto;
 }
 
 /* Override dynaform cell */
-.pe-dynaform-cell[colspan="2"]:not(.pe-dynaform-label) {
+.pe-dynaform-cell[colspan="2"]:not (.pe-dynaform-label ) {
   height: 2.5rem !important;
 }
 
@@ -563,14 +558,13 @@ td.email-attachment-text {
   padding-left: 2em;
 }
 
-.preview-dialog .pe-dynaform-cell[colspan="2"]:not(.pe-dynaform-label) table,
-.preview-dialog .pe-dynaform-cell[colspan="2"]:not(.pe-dynaform-label) table {
+.preview-dialog .pe-dynaform-cell[colspan="2"]:not (.pe-dynaform-label ) table, .preview-dialog .pe-dynaform-cell[colspan="2"]:not
+  (.pe-dynaform-label ) table {
   line-height: initial !important;
 }
 
-.ui-selectmanycheckbox.ui-widget td:first-child,
-.ui-selectoneradio.ui-widget td:first-child {
-	min-width: 165px;
+.ui-selectmanycheckbox.ui-widget td:first-child, .ui-selectoneradio.ui-widget td:first-child {
+  min-width: 165px;
 }
 
 .approval-comment-container {
@@ -599,18 +593,18 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
 
 /*fix checkbox menu*/
 .ui-fluid .ui-selectcheckboxmenu-trigger {
-	height: 37px !important;
+  height: 37px !important;
 }
 
 /*fix all input elements same height*/
 .ui-g label {
-	display: inline-block !important;
+  display: inline-block !important;
 }
 
 /*end of fix all input elements same height*/
 
 /*center main content */
-@media (min-width: 1920px) {
+@media ( min-width : 1920px) {
   .layout-wrapper .layout-main .layout-content {
     margin-left: 15%;
     padding-right: 15% !important;
@@ -625,53 +619,51 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
 /*end of center main content */
 /*info button popup*/
 .pe-dynaform-label {
-	padding-top: 7px;
-	padding-left: 0;
-	text-align: left !important;
+  padding-top: 7px;
+  padding-left: 0;
+  text-align: left !important;
 }
 
 /*end of info button popup*/
 .pe-dynaform-cell .ui-datalist-item {
-	margin-top: -5px !important;
+  margin-top: -5px !important;
 }
 
-.process-property-container .ui-panelgrid-cell:not(.process-property-input-col) {
-	padding: 0 !important;
+.process-property-container .ui-panelgrid-cell:not (.process-property-input-col ) {
+  padding: 0 !important;
 }
 
-.pe-dynaform-cell[colspan="4"]>input,
-.pe-dynaform-cell[colspan="4"]>select {
-	width: 99%;
+.pe-dynaform-cell[colspan="4"]>input, .pe-dynaform-cell[colspan="4"]>select {
+  width: 99%;
 }
 
 .ui-datalist {
-	border: none;
+  border: none;
 }
 
 .pe-dynaform-grid {
-	width: 100%;
+  width: 100%;
 }
 
 .preview-dialog .pe-dynaform-cell[colspan="4"]>input.ui-inputtext {
-	width: 98%;
+  width: 98%;
 }
 
 .pe-dynaform-cell[colspan="4"]>textarea {
-	width: 100%;
+  width: 100%;
 }
 
 .preview-dialog .pe-dynaform-cell>input.ui-inputtext {
-	width: 96%;
+  width: 96%;
 }
 
-.preview-dialog .pe-dynaform-cell[colspan="2"] .ui-inputfield.ui-inputtextarea,
-	.ui-inputfield.ui-inputtextarea {
-	width: 98%;
-	white-space: pre;
+.preview-dialog .pe-dynaform-cell[colspan="2"] .ui-inputfield.ui-inputtextarea, .ui-inputfield.ui-inputtextarea {
+  width: 98%;
+  white-space: pre;
 }
 
 .pe-dynaform-cell input {
-	width: 98%;
+  width: 98%;
 }
 
 .Fs24 {
@@ -679,23 +671,23 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
 }
 
 .pe-dynaform-cell {
-	vertical-align: top;
+  vertical-align: top;
 }
 
 .ui-radiobutton {
-	margin: 2px 10px 0px 0px !important;
+  margin: 2px 10px 0px 0px !important;
 }
 
 .ui-selectmanycheckbox label, .ui-selectmanycheckbox label.ui-state-disabled {
-	opacity: 1;
+  opacity: 1;
 }
 
 .alignLabelTop {
-	display: initial;
+  display: initial;
 }
 
 .marginTop6 {
-	margin-top:6px;
+  margin-top: 6px;
 }
 
 .create-form-toolbar {
@@ -729,14 +721,12 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
   fieldset.express-fieldset {
     padding: 5px !important;
   }
-
   .email-attachment .ui-fileupload-content.ui-widget-content.ui-corner-bottom {
     display: none !important;
   }
   .finished-task-label {
     margin-left: 7px !important;
   }
-
   .approval-comment-container {
     margin: auto 7px !important;
   }
