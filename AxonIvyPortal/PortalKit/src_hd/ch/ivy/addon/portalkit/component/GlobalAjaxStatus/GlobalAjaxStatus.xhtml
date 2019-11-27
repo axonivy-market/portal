@@ -14,7 +14,7 @@
 <cc:implementation>
   <c:set var="renderDetail" value="#{userMenuBean.errorDetailToEndUser}" />
   <h:outputStylesheet library="css" name="module.css" />
-  <p:ajaxStatus id="#{cc.id}" widgetVar="#{cc.attrs.widgetVar}" onerror="handleError(PrimeFaces.ajax.Queue.xhrs[0], #{renderDetail})">
+  <p:ajaxStatus id="#{cc.clientId}:#{cc.id}" widgetVar="#{cc.attrs.widgetVar}" onerror="handleError(PrimeFaces.ajax.Queue.xhrs[0], #{renderDetail})">
     <f:facet name="start">
       <div class="ajax-status ajax-status-position ajax-status-color #{cc.attrs.styleClass}" >
         <span> <i class="#{cc.attrs.waitingIcon} fa-3x fa-spin" />
@@ -22,7 +22,7 @@
       </div>
     </f:facet>
   </p:ajaxStatus>
-  <p:dialog id="error-ajax-dialog" widgetVar="error-ajax-dialog" closable="true" onShow="debugger;" closeOnEscape="true"
+  <p:dialog id="#{cc.clientId}:error-ajax-dialog" widgetVar="error-ajax-dialog" closable="true" onShow="debugger;" closeOnEscape="true"
     modal="true" resizable="false" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/errorAjaxMessage')}" />
     <p:spacer width="20px" />
@@ -31,7 +31,7 @@
     
   </p:dialog>
   
-  <p:dialog id="detail-error-dialog" widgetVar="detail-error-dialog" closable="true" width="80%" closeOnEscape="true"
+  <p:dialog id="#{cc.clientId}:detail-error-dialog" widgetVar="detail-error-dialog" closable="true" width="80%" closeOnEscape="true"
     modal="true" resizable="false" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/errorXhr')}" rendered="#{renderDetail}">
     <div class="ui-g-2">
       <h:outputText value="Status code"/>
