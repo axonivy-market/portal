@@ -959,6 +959,18 @@ span.task-details-document-add-link {
   font-size: $largeFontSize;
 }
 
+.action-steps-panel.ui-menu .ui-menu-list li.ui-menuitem .ui-menuitem-link {
+  color: $actionStepTextColor !important;
+}
+
+.action-steps-panel.ui-menu .ui-menu-list li.ui-menuitem .ui-menuitem-link:hover {
+  color: $actionStepHoverTextColor !important;
+}
+
+.action-steps-panel.ui-menu .ui-menu-list li.ui-menuitem .ui-menuitem-link.ui-state-disabled {
+  color: $actionStepDisabledTextColor !important;
+}
+
 .action-steps-panel .action-step-item:hover {
   background-color: $caseItemActionStepsItemHoverBackgroundColor;
   color: $caseItemActionStepsItemHoverTextColor !important;
@@ -1299,10 +1311,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 /*Style for Global Search--------------------*/
 .global-search-input {
   font-size: $largeFontSize;
-}
-
-:-ms-input-placeholder {
- color: $mediumGrey !important;
 }
 
 /*Style for Error Page*/ 
