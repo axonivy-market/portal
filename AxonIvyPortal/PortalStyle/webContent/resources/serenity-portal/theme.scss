@@ -301,7 +301,7 @@
 .ui-widget.ui-button.defined-task-button.active,
 .ui-widget.ui-button.defined-task-button.visited {
     border: solid 2px $definedTaskButtonActivedBorderColor;
-    background-color: $definedTaskButtonActivedOrHoveredBackgroundColor !important;
+    background-color: $definedTaskButtonActivedOrHoverBackgroundColor !important;
 }
 
 .ui-widget.ui-button.defined-task-button.active:before {
@@ -309,7 +309,7 @@
 }
 
 .ui-widget.ui-button.defined-task-button.ui-state-hover {
-    background-color: $definedTaskButtonActivedOrHoveredBackgroundColor !important;
+    background-color: $definedTaskButtonActivedOrHoverBackgroundColor !important;
 }
 
 /*Style for stages breadcrumb --------------------------------------------------------------------------------------*/
@@ -442,7 +442,7 @@
 }
 
 .ui-button.ui-widget.action-button.ui-state-hover {
-   background-color: $caseTaskActionButtonHoveredBackgroundColor !important;
+   background-color: $caseTaskActionButtonHoverBackgroundColor !important;
 }
 
 .case-detail-title-header-container, .task-detail-header {
@@ -667,7 +667,7 @@
   
   .ui-paginator a.ui-paginator-page, .ui-paginator a.ui-paginator-page, a.ui-paginator-first, a.ui-paginator-prev, a.ui-paginator-next, a.ui-paginator-last {
     &.ui-state-hover, &.ui-state-active {
-        background-color: $caseDetailPaginatorHoveredButtonBackgroundColor;
+        background-color: $caseDetailPaginatorHoverButtonBackgroundColor;
       }
   }
   
@@ -722,7 +722,7 @@
 }
 
 .note-show-more-link:hover {
-  color: $noteShowMoreLinkHoveredColor !important;
+  color: $noteShowMoreLinkHoverColor !important;
 }
 
 .related-task-content .related-task,
@@ -731,7 +731,7 @@
 }
 
 .related-task-content .related-task:hover {
-  color: $caseRelatedTaskHoveredColor !important;
+  color: $caseRelatedTaskHoverColor !important;
 }
 
 .additional-case-details-link {
@@ -740,7 +740,7 @@
 }
 
 .additional-case-details-link:hover {
-  color: $additionalCaseDetailLinkHoveredColor !important;
+  color: $additionalCaseDetailLinkHoverColor !important;
 }
 
 .related-task-content,
@@ -820,7 +820,7 @@
 
 
 .layout-wrapper .layout-sidebar .layout-menu .submenu-container a:hover {
-  background-color: $subMenuItemLinkHoveredBackgroundColor !important;
+  background-color: $subMenuItemLinkHoverBackgroundColor !important;
 }
 
 .submenu-container.active-menuitem a:not(:hover) i,
@@ -833,7 +833,7 @@
 .case-widget-container .advanced-filter:hover,
 .task-widget .filter-selection-container:hover,
 .case-widget-container .filter-selection-container:hover {
-  background-color: $widgetAdvancedFilterHoveredBackroundColor;
+  background-color: $widgetAdvancedFilterHoverBackroundColor;
   border-color: $widgetAdvancedFilterHoverBorder;
 }
 
@@ -880,7 +880,7 @@
 }
 
 .history-note .task-note-link:hover {
-  color: $taskNoteLinkHoveredColor !important;
+  color: $taskNoteLinkHoverColor !important;
 }
 
 .case-document-name a, .task-document-name a {
@@ -1003,7 +1003,7 @@ span.task-details-document-add-link {
 }
 
 .expand-collapse-btns a.expand-collapse-btn:hover {
-  background-color: $collapseButtonHoveredBackgroundColor;
+  background-color: $collapseButtonHoverBackgroundColor;
 }
 
 .process-widget .process-nav .process-nav-item { 
