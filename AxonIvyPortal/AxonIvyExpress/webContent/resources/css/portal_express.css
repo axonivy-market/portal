@@ -242,14 +242,14 @@
 }
 
 /* Form elements responsive */
-@media ( max-width : 1024px) {
+@media (max-width: 1024px) {
   .available-formelements-field, .form-elements-container .form-elements-1st-column, .form-elements-container .form-elements-2nd-column
     {
     padding: 8px !important;
   }
 }
 
-@media ( max-width : 1366px) {
+@media (max-width: 1366px) {
   .form-elements-container .form-elements-2nd-column {
     padding-left: 0 !important;
     word-break: break-all;
@@ -547,7 +547,7 @@ td.email-attachment-text {
 }
 
 /* Override dynaform cell */
-.pe-dynaform-cell[colspan="2"]:not (.pe-dynaform-label ) {
+.pe-dynaform-cell[colspan="2"]:not(.pe-dynaform-label) {
   height: 2.5rem !important;
 }
 
@@ -559,8 +559,8 @@ td.email-attachment-text {
   padding-left: 2em;
 }
 
-.preview-dialog .pe-dynaform-cell[colspan="2"]:not (.pe-dynaform-label ) table, .preview-dialog .pe-dynaform-cell[colspan="2"]:not
-  (.pe-dynaform-label ) table {
+.preview-dialog .pe-dynaform-cell[colspan="2"]:not(.pe-dynaform-label) table,
+.preview-dialog .pe-dynaform-cell[colspan="2"]:not(.pe-dynaform-label) table {
   line-height: initial !important;
 }
 
@@ -605,7 +605,7 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
 /*end of fix all input elements same height*/
 
 /*center main content */
-@media ( min-width : 1920px) {
+@media (min-width: 1920px) {
   .layout-wrapper .layout-main .layout-content {
     margin-left: 15%;
     padding-right: 15% !important;
@@ -630,7 +630,7 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
   margin-top: -5px !important;
 }
 
-.process-property-container .ui-panelgrid-cell:not (.process-property-input-col ) {
+.process-property-container .ui-panelgrid-cell:not(.process-property-input-col) {
   padding: 0 !important;
 }
 
