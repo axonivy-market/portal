@@ -17,17 +17,15 @@ there are 7 templates that can be used directly.
 
 3. :ref:`Task template <components-layout-templates-task-template>`
 
-4. :ref:`IFrame Task template <components-layout-templates-iframe-task-template>`
+4. :ref:`Task list template <components-layout-templates-task-list-template>`
 
-5. :ref:`Task list template <components-layout-templates-task-list-template>`
+5. :ref:`Case list template <components-layout-templates-case-list-template>`
 
-6. :ref:`Case list template <components-layout-templates-case-list-template>`
+6. :ref:`Default homepage template <components-layout-templates-default-homepage-template>`
 
-7. :ref:`Default homepage template <components-layout-templates-default-homepage-template>`
+7. :ref:`Deprecated task template 7 <components-layout-templates-deprecated-task-template-7>`
 
-8. :ref:`Deprecated task template 7 <components-layout-templates-deprecated-task-template-7>`
-
-9. :ref:`Task template 8 <components-layout-templates-task-template-8>`
+8. :ref:`Task template 8 <components-layout-templates-task-template-8>`
 
 These templates have the same header, which is a menu of applications
 that you configure in Administration page. Since version 8.0, Portal
@@ -149,37 +147,6 @@ In case your project has navigation button like e.g Cancel, if you need this but
 
 -  To home page: call ``navigateToPortalHome()`` from class ``PortalNavigatorInFrame`` in ``PortalTemplate``.
 -  To previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrame`` in ``PortalTemplate``.
-
-.. _components-layout-templates-iframe-task-template:
-
-IFrame Task template
---------------------
-
-Task template is used for displaying task functionality and related
-information to support completing the task, but the content is your HTML dialog embedded in IFrame. There are a lot of regions
-to be filled with your custom content:
-
--  Header name (task name)
-
--  Process chain
-
--  Content
-
--  Case Details
-
-.. _components-layout-templates-iframe-task-template-how-to-use:
-
-How to start a process/task in IFrameTaskTemplate.xhtml
--------------------------------------------------------
-
-1.  In Task custom field, set the ``embedInFrame`` String custom field to "true".
-
-2.  In this task, open a HTML User Dialog independent from Portal.
-
-3.  Refer to ``IFrameTaskTemplate.xhtml`` for params.
-
-4.  In case you want to create your own IFrameTaskTemplate, as customizing Ivy Standard Processes, 
-    implement a process with a predefined process start signature in your ivy project: ``DefaultFramePage(String relativeUrl, Number runningTaskId)``
 
 .. _components-layout-templates-task-list-template:
 
@@ -317,7 +284,7 @@ template.
 DeprecatedTaskTemplate-7
 -------------------------
 
-Deprecated task template 7 is old task template with Serenity theme. If your project want to apply new theme, you can change to this template. 
+Deprecated task template 7 is old task template with Serenity theme. If your project want to apply new theme, you can change to this template. This template doesn’t use iFrame.
 
 .. _components-layout-templates-default-homepage-template-how-to-use-deprecated-task-template-7:
 
@@ -333,14 +300,9 @@ template.
 
 ..    
 
-By default, this template will use iFrame. If you don't want to use it at case / task level. Set case / task custom string field ``embedInFrame`` to ``false``.
+This template doesn't use iFrame. You need to set case custom string field ``embedInFrame`` to ``false`` or configure no iFrame multi applications.
 
-In case your project use iFrame and need to navigate 
-
--  To home page: call ``navigateToPortalHome()`` from class ``PortalNavigatorInFrame`` in ``PortalTemplate``.
--  To previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrame`` in ``PortalTemplate``.
-
-And if your project doesn't use iFrame
+In case your project has navigation button like e.g Cancel, if you need this button to navigate 
 
 -  To home page: call ``navigateToPortalHome()`` from class ``PortalNavigator`` in ``PortalTemplate``.
 -  To previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigator`` in ``PortalTemplate``.
@@ -350,7 +312,7 @@ And if your project doesn't use iFrame
 TaskTemplate-8
 -------------------------
 
-Task template 8 is new template with Serenity theme introduced since Portal 8. In this template there is no tab view, you has to define it.
+Task template 8 is new template with Serenity theme introduced since Portal 8. In this template there is no tab view, you have to define it. This template doesn't use iFrame.
 
 .. _components-layout-templates-default-homepage-template-how-to-use-task-template-8:
 
@@ -366,17 +328,12 @@ template.
 
 ..    
 
-By default, this template will use iFrame. If you don't want to use it at case / task level. Set case / task custom string field ``embedInFrame`` to ``false``.
+This template doesn't use iFrame. You need to set case custom string field ``embedInFrame`` to ``false`` or configure no iFrame multi applications.
 
-In case your project use iFrame and need to navigate 
+In case your project has navigation button like e.g Cancel, if you need this button to navigate 
 
 -  To home page: call ``navigateToPortalHome()`` from class ``PortalNavigatorInFrame`` in ``PortalTemplate``.
 -  To previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrame`` in ``PortalTemplate``.
-
-And if your project doesn't use iFrame
-
--  To home page: call ``navigateToPortalHome()`` from class ``PortalNavigator`` in ``PortalTemplate``.
--  To previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigator`` in ``PortalTemplate``.
 
 .. _components-layout-templates-reponsiveness:
 
