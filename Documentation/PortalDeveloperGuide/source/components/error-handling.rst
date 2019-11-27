@@ -3,10 +3,10 @@
 Error handling
 ==============
 
-In this section, we introduce 2 kinds of errors, when and how to handle
+In this section, we introduce 2 kind of errors, when and how to handle
 them in Portal.
 
--  Ajax error : this kind of errors occur during a JSF ajax requests,
+-  Ajax error : this kind of errors occur during a JSF ajax request,
    for example when the user clicks on the show full mode button to tell
    the task widget switches to full mode, without handling the end user
    would not get any form of feedback if the action was successfully
@@ -30,8 +30,8 @@ Introduction
 By default, Portal handles all exceptions from ajax requests.
 
 When an exception occurs, Portal will show an error notification with
-the exception type and message to end user. The exception details is
-available when user click on show details button.
+the exception type and message to end user. The exception details are
+available when user clicks on show details button.
 
 Stacktrace on error messages can be showed/hid depend on ivy system
 property ``Errors.ShowDetailsToEndUser``.
