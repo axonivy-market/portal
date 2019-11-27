@@ -653,8 +653,10 @@ TaskEndInfo taskEndInfo = SecurityServiceUtils.getSessionAttribute(taskEndInfoSe
 in.dataModel = taskEndInfo.dataModel;
 in.isTaskStartedInDetails = taskEndInfo.isStartedInTaskDetails;
 in.portalPage = taskEndInfo.portalPage;
+in.isTaskFinished = !SecurityServiceUtils.getSessionAttribute(ch.ivy.addon.portalkit.enums.SessionAttribute.IS_TASK_NOT_FINISHED.toString()).toBoolean();
 
-SecurityServiceUtils.removeSessionAttribute(taskEndInfoSessionAttributeKey);' #txt
+SecurityServiceUtils.removeSessionAttribute(taskEndInfoSessionAttributeKey);
+SecurityServiceUtils.removeSessionAttribute(ch.ivy.addon.portalkit.enums.SessionAttribute.IS_TASK_NOT_FINISHED.toString());' #txt
 Pt0 f2 security system #txt
 Pt0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -904,7 +906,7 @@ Bk0 f39 expr out #txt
 Bk0 f39 1096 512 1188 512 #arcP
 Bk0 f39 0 0.7418894103244236 0 0 #arcLabel
 Bk0 f72 expr in #txt
-Bk0 f72 outCond 'in.isTaskStartedInDetails && ivy.session.getAttribute(ch.ivy.addon.portalkit.enums.SessionAttribute.IS_TASK_NOT_FINISHED.toString()) as Boolean' #txt
+Bk0 f72 outCond 'in.isTaskStartedInDetails && !in.isTaskFinished' #txt
 Bk0 f72 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -912,7 +914,7 @@ Bk0 f72 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk0 f72 696 208 736 128 #arcP
+Bk0 f72 696 208 768 128 #arcP
 Bk0 f72 1 696 128 #addKink
 Bk0 f72 1 0.075 0 -9 #arcLabel
 Bk0 f6 processCall 'Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)' #txt
@@ -1039,23 +1041,21 @@ Bk0 f44 expr out #txt
 Bk0 f44 552 224 616 224 #arcP
 Bk0 f68 actionTable 'out=in;
 ' #txt
-Bk0 f68 actionCode 'ivy.session.removeAttribute(ch.ivy.addon.portalkit.enums.SessionAttribute.IS_TASK_NOT_FINISHED.toString());
-out.taskSelected = ivy.wf.findTask(in.endedTaskId);' #txt
+Bk0 f68 actionCode 'out.taskSelected = ivy.wf.findTask(in.endedTaskId);' #txt
 Bk0 f68 security system #txt
 Bk0 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Remove session attribute&#xD;
-and find task by id</name>
+        <name>Find task by id</name>
     </language>
 </elementInfo>
 ' #txt
-Bk0 f68 736 106 176 44 -67 -16 #rect
+Bk0 f68 768 106 112 44 -37 -8 #rect
 Bk0 f68 @|StepIcon #fIcon
 Bk0 f40 expr in #txt
 Bk0 f40 712 224 746 224 #arcP
 Bk0 f42 expr out #txt
-Bk0 f42 912 128 928 128 #arcP
+Bk0 f42 880 128 928 128 #arcP
 Bk0 f42 0 0.075 0 -9 #arcLabel
 Bk0 f36 dialogId ch.ivyteam.ivy.project.portal.examples.PortalHome #txt
 Bk0 f36 startMethod start(ch.ivy.addon.portal.generic.view.TaskView) #txt

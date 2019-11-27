@@ -230,8 +230,10 @@ TaskEndInfo taskEndInfo = SecurityServiceUtils.getSessionAttribute(taskEndInfoSe
 in.dataModel = taskEndInfo.dataModel;
 in.isTaskStartedInDetails = taskEndInfo.isStartedInTaskDetails;
 in.portalPage = taskEndInfo.portalPage;
+in.isTaskFinished = !SecurityServiceUtils.getSessionAttribute(ch.ivy.addon.portalkit.enums.SessionAttribute.IS_TASK_NOT_FINISHED.toString()).toBoolean();
 
-SecurityServiceUtils.removeSessionAttribute(taskEndInfoSessionAttributeKey);' #txt
+SecurityServiceUtils.removeSessionAttribute(taskEndInfoSessionAttributeKey);
+SecurityServiceUtils.removeSessionAttribute(ch.ivy.addon.portalkit.enums.SessionAttribute.IS_TASK_NOT_FINISHED.toString());' #txt
 Pt0 f2 security system #txt
 Pt0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -907,7 +909,7 @@ Bk1 f39 expr out #txt
 Bk1 f39 1096 512 1188 512 #arcP
 Bk1 f39 0 0.7418894103244236 0 0 #arcLabel
 Bk1 f72 expr in #txt
-Bk1 f72 outCond 'in.isTaskStartedInDetails && ivy.session.getAttribute(ch.ivy.addon.portalkit.enums.SessionAttribute.IS_TASK_NOT_FINISHED.toString()) as Boolean' #txt
+Bk1 f72 outCond 'in.isTaskStartedInDetails && !in.isTaskFinished' #txt
 Bk1 f72 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1042,8 +1044,7 @@ Bk1 f44 expr out #txt
 Bk1 f44 552 224 616 224 #arcP
 Bk1 f68 actionTable 'out=in;
 ' #txt
-Bk1 f68 actionCode 'ivy.session.removeAttribute(ch.ivy.addon.portalkit.enums.SessionAttribute.IS_TASK_NOT_FINISHED.toString());
-out.taskSelected = ivy.wf.findTask(in.endedTaskId);' #txt
+Bk1 f68 actionCode 'out.taskSelected = ivy.wf.findTask(in.endedTaskId);' #txt
 Bk1 f68 security system #txt
 Bk1 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
