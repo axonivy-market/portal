@@ -1,104 +1,99 @@
 /*Uses for customize serenity layout in Portal Template*/
-
 #logo>img {
-	margin: 5px 0 0 0px;
+  margin: 5px 0 0 0px;
 }
 
 .global-search-icon {
-    position: absolute;
-    top: 25%;
-    right: 5px;
+  position: absolute;
+  top: 25%;
+  right: 5px;
 }
 
 .mobile-global-search-container {
-    margin: 0 9px;
+  margin: 0 9px;
 }
 
 .global-search-input {
-    padding: 6px 24px 6px 6px !important;
+  padding: 6px 24px 6px 6px !important;
 }
 
 .mobile-global-search-container .global-search-input {
-    width: 100% !important;
+  width: 100% !important;
 }
 
 .global-search {
-	margin-top: 20px;
-    margin-right: 10px;
-    position: relative;
-    display: inline-block;
+  margin-top: 20px;
+  margin-right: 10px;
+  position: relative;
+  display: inline-block;
 }
 
 @media screen and (max-width: 64.062em) {
   .mobile-global-search-container {
     margin-top: 20px;
   }
-  .global-search,
-  .search-results-tabview-container {
+  .global-search, .search-results-tabview-container {
     padding: 0 10px 0 10px;
   }
-  
   .portal-home-logo-small {
     display: none;
   }
 }
 
 #user-setting-container li:first-child {
-	margin-top: 15px;
+  margin-top: 15px;
 }
 
 #user-setting-container li:last-child {
-	margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 #user-setting-container li a {
-	padding: 0 0 0 20px !important;
-	height: 36px !important;
-	line-height: 36px;
+  padding: 0 0 0 20px !important;
+  height: 36px !important;
+  line-height: 36px;
 }
 
 .show-environment-info-link {
-	top: -5px;
+  top: -5px;
 }
 
 .show-environment-info {
-	height: 16px;
+  height: 16px;
 }
 
 .user-name-show-environment-info {
-	height: 18px;
+  height: 18px;
 }
 
-/*
-	Overide default state of ui-layout-container in Internet Explorer
-*/
+/* Override default state of ui-layout-container in Internet Explorer */
 .ui-layout-container {
-	overflow-x: visible !important;
-	overflow-y: visible !important;
-	height: 100%;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+  height: 100%;
 }
 
 .ui-outputlabel .ui-outputlabel-rfi {
-	margin-left: 0.2em;
+  margin-left: 0.2em;
 }
 
 .ui-dialog .ui-dialog-content .ui-icon-alert {
-	margin-top: 0;
+  margin-top: 0;
 }
 /*Case Template*/
 .case-template-title-icon {
-	margin-right: 5px;
+  margin-right: 5px;
 }
 
 .case-template-content {
-	margin-top: 30px;
+  margin-top: 30px;
 }
 
 .case-template-add-note-command {
-	z-index: 1;
-	position: absolute;
-	margin-top: 10px;
-	margin-left: calc(98% - 65px);
+  z-index: 1;
+  position: absolute;
+  margin-top: 10px;
+  margin-left: calc(98% - 65px);
 }
 
 /*Task template*/
@@ -107,20 +102,21 @@
   margin-bottom: 20px !important;
   position: relative;
 }
+
 .task-template-title {
-	display: flex;
-	align-items: center;
-	margin-top: 5px;
-	flex: 1 0 auto;
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  flex: 1 0 auto;
 }
 
 .task-template-title-icon {
-	margin-right: 5px;
+  margin-right: 5px;
 }
 
 .task-template-content {
-	margin: 10px auto;
-	position: relative;
+  margin: 10px auto;
+  position: relative;
 }
 
 .task-template-tasks-command {
@@ -146,63 +142,63 @@
 
 /*ERROR PAGE*/
 .error-container {
-	width: 33.3%;
-	margin-left: auto;
-	margin-right: auto;
-	padding-top: 10%;
-	text-align: center;
+  width: 33.3%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 10%;
+  text-align: center;
 }
 
 .message {
-	padding: 20px;
+  padding: 20px;
 }
 
 .message .message-header {
-	margin: 16px 0px;
+  margin: 16px 0px;
 }
 
 .message .message-separator {
-	border: 0;
+  border: 0;
 }
 
 .message .message-container {
-	margin: 16px 0px;
+  margin: 16px 0px;
 }
 
 .message .message-container .message-detail:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 .message .message-footer {
-	margin-top: 10px;
+  margin-top: 10px;
 }
 
 /* APPLICATION MENU */
-.layout-sidebar.layout-sidebar-active .sidebar-logo .portal-home-logo-small,
-.layout-wrapper.layout-wrapper-static .layout-sidebar .sidebar-logo .portal-home-logo-small {
-	display: none;
-	-moz-transition: visibility 0.2s;
-	-o-transition: visibility 0.2s;
-	-webkit-transition: visibility 0.2s;
-	transition: visibility 0.2s;
+.layout-sidebar.layout-sidebar-active .sidebar-logo .portal-home-logo-small, .layout-wrapper.layout-wrapper-static .layout-sidebar .sidebar-logo .portal-home-logo-small
+  {
+  display: none;
+  -moz-transition: visibility 0.2s;
+  -o-transition: visibility 0.2s;
+  -webkit-transition: visibility 0.2s;
+  transition: visibility 0.2s;
 }
 
 .layout-sidebar .sidebar-logo .portal-home-logo-small img {
-	display: block;
-	position: absolute;
-	top: 0;
-	right: 0;
-	transform: translate(-25%,30%);
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(-25%, 30%);
 }
 
-.layout-wrapper .layout-sidebar .layout-menu > li > a.submenu {
-	padding-left: 25px;
+.layout-wrapper .layout-sidebar .layout-menu>li>a.submenu {
+  padding-left: 25px;
 }
 
-.layout-wrapper .layout-sidebar .layout-menu li > a i {
-	height: 18px;
-	width: 18px;
-	top: 56%;
+.layout-wrapper .layout-sidebar .layout-menu li>a i {
+  height: 18px;
+  width: 18px;
+  top: 56%;
 }
 
 .task-template-title-horizontal-container {
@@ -220,83 +216,82 @@
 }
 
 .note-show-more-link-icon {
-	margin-left: 5px;
-	margin-right: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .note-show-more-link {
-	margin-left: 5px;
+  margin-left: 5px;
 }
 
 .additional-case-details-data-grid {
-	margin-left: 15px;
+  margin-left: 15px;
 }
 
 .additional-case-details-data-1st-column {
-	padding-right: 10px;
-	text-align: left;
-	word-break: normal;
-	white-space: nowrap;
+  padding-right: 10px;
+  text-align: left;
+  word-break: normal;
+  white-space: nowrap;
 }
 
 .additional-case-details-data-2nd-column {
-	text-align: left;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden;
-	max-width: 400px;
+  text-align: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 400px;
 }
 
 .process-history-column-header {
-	flex: 1 0 100%;
-	height: 60px;
-	display: flex;
-	align-items: flex-end;
-	line-height: normal;
-	margin: 0;
-	padding: 0 2px 10px 2px;
-	margin-bottom: 1px;
+  flex: 1 0 100%;
+  height: 60px;
+  display: flex;
+  align-items: flex-end;
+  line-height: normal;
+  margin: 0;
+  padding: 0 2px 10px 2px;
+  margin-bottom: 1px;
 }
 
 .process-history-list .ui-datascroller {
-	border: none;
-	border-radius: 0;
+  border: none;
+  border-radius: 0;
 }
 
 .process-history-list .ui-datascroller .ui-datascroller-content {
-	padding: 2px;
+  padding: 2px;
 }
 
 .process-history-list-header-default {
-	text-align: center;
-	padding-left: 5px;
-	padding-right: 5px;
+  text-align: center;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .process-history.process-history-list.process-history-list-cell-default {
-	text-align: center;
-	padding-left: 5px;
-	padding-right: 5px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  text-align: center;
+  padding-left: 5px;
+  padding-right: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .process-history.process-history-list.process-history-list-cell-default.process-history-list-width-120,
-.process-history-list-header-default.process-history-list-width-120 {
-	flex: 0 0 120px;
+  .process-history-list-header-default.process-history-list-width-120 {
+  flex: 0 0 120px;
 }
 
 .process-history-list-name-header {
-	padding-left: 10px;
+  padding-left: 10px;
 }
 
 .search-results-tabview {
   margin-top: 10px;
 }
 
-.case-template-content .case-details,
-.task-template-content .case-details {
+.case-template-content .case-details, .task-template-content .case-details {
   margin: 0 !important;
 }
 
@@ -314,18 +309,16 @@
 }
 
 .ui-confirm-dialog-message li {
-	list-style-type: circle;
+  list-style-type: circle;
 }
 /******** CHAT ********/
-.ui-autocomplete.chat-user-selection,
-.ui-autocomplete.chat-role-selection,
-.ui-autocomplete-input.chat-user-selection-input,
-.ui-autocomplete-input.chat-role-selection-input {
+.ui-autocomplete.chat-user-selection, .ui-autocomplete.chat-role-selection, .ui-autocomplete-input.chat-user-selection-input,
+  .ui-autocomplete-input.chat-role-selection-input {
   width: 100%;
 }
 
 .chat-add-assignee-button-grid, .chat-action-container {
- text-align: right; 
+  text-align: right;
 }
 
 .chat-delete-assignee {
@@ -337,8 +330,8 @@
 }
 
 /* SERENITY TOP BAR */
-.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu > li {
-	line-height: 2;
+.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu>li {
+  line-height: 2;
 }
 
 /* END SERENITY TOP BAR */
@@ -349,10 +342,10 @@
 
 .layout-wrapper .layout-main {
   height: 100%;
-}/* END SERENITY MAIN LAYOUT */
+} /* END SERENITY MAIN LAYOUT */
 /* =================== FRAME ========================= */
 .request-frame {
-	width: 100%;
-	border: 0;
+  width: 100%;
+  border: 0;
 }
 /* =================== END FRAME ========================= */
