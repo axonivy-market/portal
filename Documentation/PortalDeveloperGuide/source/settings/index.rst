@@ -195,6 +195,9 @@ Role configuration
 Permission settings
 ===================
 
+Permissions can be configured in Cockpit. In the security area,
+you will find all these permission in the Group "PortalPermissions"
+
 Absences
 --------
 
