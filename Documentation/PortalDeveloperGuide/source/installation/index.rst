@@ -282,6 +282,8 @@ We now have 3 task templates
 - ``DeprecatedTaskTemplate-7.xhtml``, change your template to DeprecatedTaskTemplate-7, it will keep your old template(include tab view) with new Serenity theme. For detail refer to :ref:`Deprecated task template 7 <components-layout-templates-deprecated-task-template-7>`.
 - ``TaskTemplate-8.xhtml``, change your template to TaskTemplate-8, it will have new Serenity theme and no tab view predefined. For detail refer to :ref:`Task template 8 <components-layout-templates-task-template-8>`.
 
+If your project has tag ``<ui:insert name="content">``, rename ``content`` to something else. This specific name may cause error since text ``content`` is already used in Portal template.
+
 .. _installation-migration-notes-8-0-0-basic-template:
 
 
