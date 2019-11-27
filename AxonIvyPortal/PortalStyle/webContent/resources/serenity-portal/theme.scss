@@ -512,7 +512,10 @@
 }
 
 /*Style for start Filter Widget--------------------------------------------------------------------------------------*/
- 
+.filter-category-checkbox-tree {
+  width: auto;
+}
+
 .filter-category-checkbox-tree.ui-tree .ui-treenode .ui-treenode-label,
 .task-widget .advanced-filter, .case-widget .advanced-filter,
 .case-widget-container .advanced-filter {
