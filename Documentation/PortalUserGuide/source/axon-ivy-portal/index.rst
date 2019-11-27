@@ -55,7 +55,7 @@ point. In detail these are:
    may enlarge or minimise the menu using the **Toggle Menu** button
    in the top left corner.
    
-.. figure:: images/toggle-portal-menu.png
+.. figure:: images/axon-ivy-portal-menu.png
 
 3. In the center you see your personal dashboard providing you instant
    access to your processes, tasks and performance indicators. See
