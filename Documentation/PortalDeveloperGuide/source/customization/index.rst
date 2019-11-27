@@ -1,10 +1,10 @@
 Customization
 *************
 
-We know our customer need individually and want to maximixe customer lifetime
-value. So portal provide a easy way to customize feature, user interface, user
-experiences ... Evenmore portal example project is a showcase with detail step
-to customize the thing meet the customer satisfaction listed bellow.
+We know our customers need individually and want to maximize customer lifetime
+value. So portal provides an easy way to customize features, user interface, user
+experiences ... The even more portal example project is a showcase with a detailed step
+to customize the thing to meet the customer satisfaction listed bellow.
 
 .. toctree::
    :maxdepth: 1
