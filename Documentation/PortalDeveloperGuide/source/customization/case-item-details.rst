@@ -20,9 +20,9 @@ Each CaseItemDetails contains
 -  CaseItemDetail custom panel: caseItemDetailCustomTop,
    caseItemDetailCustomMiddle, caseItemDetailCustomBottom
 
-   |case-standard|
+|case-standard|
 
-   .. important:: "Data and Description" panel always displays, we cannot override its
+.. important:: "Data and Description" panel always displays, we cannot override its
                  content or hide/show this panel.
    
 .. _customization-case-item-details-how-to-override-ui:
@@ -137,7 +137,88 @@ Refer to the ``caseItemDetailCustom*`` section in
 
 -  Below is example code for override custom panel box of case details
 
-   |custom-panel-example-code|
+   .. code-block:: html
+      
+      <ui:composition template="/layouts/PortalCaseDetailsTemplate.xhtml">
+      <ui:param name="caseInfo" value="#{data.caseInfo}" />
+      <ui:param name="isShowBackButton" value="#{data.isShowBackButton}" />
+      <ui:define name="title">#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseDetail/CaseDetailTitle')}</ui:define>
+
+      <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+      !!!!!!!!!!!!!!!!!!!!!! TO SHOW /HIDDEN ANY SECTIONS OF CASE DETAILS, YOU CAN TURN TRUE/FALSE FOR BELOW PARAMETERS !!!!!!!!!!!!!!!!!
+      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+      <!-- To show the header of case details. By default it's true -->
+      <ui:param name="showItemDetailsHeader" value="true" />
+      <!-- To show the Histories component inside Case details body. By default it's true -->
+      <ui:param name="showItemDetailsHistories" value="true" />
+      <!-- To show the Documents component inside Case details body. By default, it's true -->
+      <ui:param name="showItemDetailDocuments" value="true" />
+      <!-- To show the RelatedTask component inside Case details. By default, it's true -->
+      <ui:param name="showItemDetailRelated" value="true" />
+
+      <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+      !!!!!!!!!!! TO ADD YOUR CUSTOMIZATION CODE ON THE CASE DETAILS PAGE, WE PROVIDE 3 SECTIONS AS BELOW HELP YOU CAN DO IT !!!!!!!!!!!!
+      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+      <!-- Add a content as a Custom panel for Case Detail on top section -->
+      <ui:define name="caseItemDetailCustomTop">
+            <h:panelGroup styleClass="ui-g-12" layout="block">
+            <div class="card card-w-title case-detail-card">
+            <div class="case-detail-section-title u-truncate-text">
+                  <h:outputText value="This is custom panel on top section" />
+            </div>
+            <div class="Separator" />
+
+            <div class="custom-task-details-panel-top">
+                  <h1>This is custom content on top</h1>
+                  <p>Custom height to auto</p>
+                  <p>Custom font size to 1.6rem</p>
+            </div>
+            </div>
+            </h:panelGroup>
+      </ui:define>
+
+      <!-- Add a content as a Custom panel for Case Detail on middle section, below the General & description box -->
+      <ui:define name="caseItemDetailCustomMiddle">
+            <h:panelGroup styleClass="ui-g-12" layout="block">
+            <div class="card card-w-title case-detail-card">
+            <div class="case-detail-section-title u-truncate-text">
+                  <h:outputText value="This is custom panel on middle section" />
+            </div>
+            <div class="Separator" />
+
+            <div class="custom-task-details-panel-middle">
+                  <h1>This is custom content on middle</h1>
+                  <p>Custom height to auto</p>
+                  <p>Custom font size to 1.6rem</p>
+            </div>
+            </div>
+            </h:panelGroup>
+      </ui:define>
+
+      <!-- Add a content as a Custom panel for Case Detail on bottom section -->
+      <ui:define name="caseItemDetailCustomBottom">
+            <h:panelGroup styleClass="ui-g-12" layout="block">
+            <div class="card card-w-title case-detail-card">
+            <div class="case-detail-section-title u-truncate-text">
+                  <h:outputText value="This is custom panel on bottom section" />
+            </div>
+            <div class="Separator" />
+
+            <div class="custom-task-details-panel">
+                  <h1>This is custom content on bottom</h1>
+                  <p>Custom height to auto</p>
+                  <p>Custom font size to 1.6rem</p>
+            </div>
+            </div>
+            </h:panelGroup>
+      </ui:define>
+
+      <ui:define name="css">
+            <h:outputStylesheet library="css" name="examples.css" />
+      </ui:define>
+      </ui:composition>
+
+   ..
 
 -  After applied above code to your custom page, custom panels will be
    displayed as below
@@ -153,7 +234,6 @@ Refer to the ``caseItemDetailCustom*`` section in
    |case-customized-fit|
 
 .. |case-standard| image:: images/case-item-details/case-standard.png
-.. |custom-panel-example-code| image:: images/case-item-details/custom-panel-example-code.png
 .. |case-customized| image:: images/case-item-details/case-customized.png
 .. |case-customized-fit| image:: images/case-item-details/case-customized-fit.png
 
