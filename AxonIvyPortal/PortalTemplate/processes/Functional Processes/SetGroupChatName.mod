@@ -38,7 +38,7 @@ Se0 f0 @|StartSubIcon #fIcon
 Se0 f1 337 49 30 30 0 15 #rect
 Se0 f1 @|EndSubIcon #fIcon
 Se0 f3 actionTable 'out=in;
-out.name=ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/case") + "-{caseId}";
+out.name=ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/case") + "-{caseId}" + " {caseName}";
 ' #txt
 Se0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -58,11 +58,11 @@ Se0 f2 288 64 337 64 #arcP
 Se0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Default case name is: "Case-{caseId}"
+        <name>Default case name is: "Case--{caseId} {caseName}"
 
 Parameters can be passed through the bracket: {parameter}
 They are available in GroupChat.java and you can add more by overriding the GetGroupChatParams callable process</name>
-        <nameStyle>208
+        <nameStyle>220,5
 </nameStyle>
     </language>
 </elementInfo>
