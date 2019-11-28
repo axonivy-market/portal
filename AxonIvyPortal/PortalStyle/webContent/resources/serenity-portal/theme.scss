@@ -1306,6 +1306,22 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   color: $primaryTextColor;
 }
 
+.task-actions-menu ul li a {
+  &:hover {
+    span {
+      color: $actionStepHoverTextColor !important;
+    }
+  }
+
+  span {
+    color: $actionStepTextColor !important;
+  }
+
+  &.ui-state-disabled {
+    color: $actionStepDisabledTextColor !important;
+  }
+}
+
 /*Style for Message -------------------------*/
 .no-documents-message {
   font-size: $largeFontSize;
