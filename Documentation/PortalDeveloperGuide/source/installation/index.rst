@@ -324,11 +324,78 @@ Please follow the steps to migrate
 
       Old taskBody
 
-      |old-task-body|
+      .. code-block:: html
+
+         <ui:define name="taskBody">
+         <!-- Reuse some components -->
+            <ic:ch.ivy.addon.portalkit.component.TaskItemDescription id="task-description" task="#{task}"
+               descriptionComponentToUpdate="#{p:component('task-description')}" />
+            <ic:ch.ivy.addon.portalkit.component.TaskItemGeneralInfo id="task-general-info" task="#{task}"
+               priorityComponentToUpdate="#{p:component('task-priority')}"
+               componentToUpdate="#{p:component('task-details-notes')}" />
+            <ic:ch.ivy.addon.portalkit.component.TaskItemNotes id="task-notes" task="#{task}" />
+         
+         <!-- Add new panel -->
+            <div class="task-details-item custom-task-details-panel">
+               <p>Custom panel</p>
+            </div>
+         </ui:define>
+      ..
 
       TaskItemDetail content
 
-      |custom-task-item-details|
+      .. code-block:: html
+
+         <!-- In this HTML dialog, we override task list header, task header, task filter, and task body -->
+            <!-- To show/hidden any sections of Task detail, you can turn true/false for below parameters -->
+            <!-- To show the Header component inside Task details body. By default it's true -->
+            <ui:param name="showItemDetailsHeader" value="true" />
+            <!-- To show the Notes component inside Task details body. By default it's true -->
+            <ui:param name="showItemDetailsNotes" value="true" />
+            <!-- To show the Documents component inside Task details body. By default, it's true -->
+            <ui:param name="showItemDetailDocuments" value="true" />
+            
+            <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+            !!!!!!!!!!! TO ADD YOUR CUSTOMIZATION CODE ON THE TASK DETAILS PAGE, WE PROVIDE 2 SECTIONS AS BELOW HELP YOU CAN DO IT !!!!!!!!!!!!
+            !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+            <!-- Add a content as a Custom panel for Task Detail on top section -->
+
+               <!-- Add a content as Custom panel for Task Detail on top -->
+            <ui:define name="taskItemDetailCustomPanelTop">
+               <h:panelGroup styleClass="ui-g-12 ui-sm-12 custom-task-panel">
+               <div class="card card-w-title ">
+                  <div class="task-detail-section-title u-truncate-text">
+                     <h:outputText value="This is custom panel on top section" />
+                  </div>
+                  <div class="Separator" />
+
+                  <div class="custom-task-details-panel-top">
+                     <h1>This is custom content on top</h1>
+                     <p>Custom height to auto</p>
+                     <p>Custom font size to 1.6rem</p>
+                  </div>
+               </div>
+               </h:panelGroup>
+            </ui:define>
+
+               <!-- Add content as Custom panel for Task Detail on bottom-->
+            <ui:define name="taskItemDetailCustomPanelBottom">
+               <h:panelGroup styleClass="ui-g-12 ui-sm-12 custom-task-panel">
+               <div class="card card-w-title #{cc.attrs.customPanelStyleClass}">
+                  <div class="task-detail-section-title u-truncate-text">
+                     <h:outputText value="This is custom panel bottom section" />
+                  </div>
+                  <div class="Separator" />
+
+                  <div class="custom-task-details-panel">
+                     <h1>This is custom content bottom</h1>
+                     <p>Custom height to auto</p>
+                     <p>Custom font size to 1.6rem</p>
+                  </div>
+               </div>
+               </h:panelGroup>
+            </ui:define>
+      ..
 
 -  In case we need to hide Notes, Documents, we can refer to
    :ref:`Show/hide component on Task Item Details
@@ -388,11 +455,107 @@ Please follow below check list to migrate
 
       Old caseBody
 
-      |case-body|
+      .. code-block:: html
+
+         <ui:define name="caseBody">
+            <ic:ch.ivy.addon.portalkit.component.CaseItemGeneralInformation id="general-information" case="#{case}" />
+            <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="related-tasks" case="#{case}" />
+            <ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="history" case="#{case}" />
+            <ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}" componentToUpdate="#{p:component('history')}" />
+            <ic:ch.ivy.addon.portalkit.component.CaseItemDescription id="description" case="#{case}" descriptionComponentToUpdate="#{p:component('description-cell')}" />
+            <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer styleClass="hidden-lg">
+               <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton icon="fa fa-share-alt js-related-task-column-responsive-button" displayedSelectors="['.js-related-task-column']"
+                  hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
+               <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton icon="fa fa-align-left js-history-column-responsive-button" displayedSelectors="['.js-history-column']"
+                  hiddenSelectorsInMediumScreen="['.case-details .replaced']" hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
+               <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton icon="fa fa-file js-document-column-responsive-button" displayedSelectors="['.js-document-column']"
+                  hiddenSelectorsInLargeScreen="['.case-details .replaced']" hiddenSelectorsInMediumScreen="['.case-details .replaced']" hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
+               <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton icon="fa fa-clipboard js-description-column-responsive-button" displayedSelectors="['.js-description-column']"
+                  hiddenSelectorsInMediumScreen="['.case-details .replaced']" hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
+               <h:outputScript library="js" name="case-detail-default-responsiveness.js" />
+            </ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer>
+
+            <!-- Add new panel -->
+            <div class="task-details-item custom-task-details-panel">
+               <p>Custom panel</p>
+            </div>
+         </ui:define>
+         
+      ..
 
       CaseItemDetail content
 
-      |case-item-details|
+      .. code-block:: html
+            
+         <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+         !!!!!!!!!!!!!!!!!!!!!! TO SHOW /HIDDEN ANY SECTIONS OF CASE DETAILS, YOU CAN TURN TRUE/FALSE FOR BELOW PARAMETERS !!!!!!!!!!!!!!!!!
+         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+         <!-- To show the header of case details. By default it's true -->
+         <ui:param name="showItemDetailsHeader" value="true" />
+         <!-- To show the Histories component inside Case details body. By default it's true -->
+         <ui:param name="showItemDetailsHistories" value="true" />
+         <!-- To show the Documents component inside Case details body. By default, it's true -->
+         <ui:param name="showItemDetailDocuments" value="true" />
+         <!-- To show the RelatedTask component inside Case details. By default, it's true -->
+         <ui:param name="showItemDetailRelated" value="true" />
+
+         <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+         !!!!!!!!!!! TO ADD YOUR CUSTOMIZATION CODE ON THE CASE DETAILS PAGE, WE PROVIDE 3 SECTIONS AS BELOW HELP YOU CAN DO IT !!!!!!!!!!!!
+         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+         <!-- Add a content as a Custom panel for Case Detail on top section -->
+         <ui:define name="caseItemDetailCustomTop">
+            <h:panelGroup styleClass="ui-g-12" layout="block">
+            <div class="card card-w-title case-detail-card">
+               <div class="case-detail-section-title u-truncate-text">
+                  <h:outputText value="This is custom panel on top section" />
+               </div>
+               <div class="Separator" />
+
+               <div class="custom-task-details-panel-top">
+                  <h1>This is custom content on top</h1>
+                  <p>Custom height to auto</p>
+                  <p>Custom font size to 1.6rem</p>
+               </div>
+            </div>
+            </h:panelGroup>
+         </ui:define>
+
+         <!-- Add a content as a Custom panel for Case Detail on middle section, below the General & description box -->
+         <ui:define name="caseItemDetailCustomMiddle">
+            <h:panelGroup styleClass="ui-g-12" layout="block">
+            <div class="card card-w-title case-detail-card">
+               <div class="case-detail-section-title u-truncate-text">
+                  <h:outputText value="This is custom panel on middle section" />
+               </div>
+               <div class="Separator" />
+
+               <div class="custom-task-details-panel-middle">
+                  <h1>This is custom content on middle</h1>
+                  <p>Custom height to auto</p>
+                  <p>Custom font size to 1.6rem</p>
+               </div>
+            </div>
+            </h:panelGroup>
+         </ui:define>
+
+         <!-- Add a content as a Custom panel for Case Detail on bottom section -->
+         <ui:define name="caseItemDetailCustomBottom">
+            <h:panelGroup styleClass="ui-g-12" layout="block">
+            <div class="card card-w-title case-detail-card">
+               <div class="case-detail-section-title u-truncate-text">
+                  <h:outputText value="This is custom panel on bottom section" />
+               </div>
+               <div class="Separator" />
+
+               <div class="custom-task-details-panel">
+                  <h1>This is custom content on bottom</h1>
+                  <p>Custom height to auto</p>
+                  <p>Custom font size to 1.6rem</p>
+               </div>
+            </div>
+            </h:panelGroup>
+         </ui:define>
+      ..
 
 -  In case we need to hide Notes, Documents, Related running component,
    we can refer to :ref:`Show/hide component on Case Item Details
@@ -873,9 +1036,5 @@ Changes in 6.0 (Säntis)
    case header.
 
 .. |less-2-sass| image:: images/installation/less-2-sass.png
-.. |case-body| image:: images/installation/case-body.png
-.. |case-item-details| image:: images/installation/case-item-details.png
 .. |copy-start-process| image:: images/installation/copy-start-process.png
-.. |custom-task-item-details| image:: images/installation/custom-task-item-details.png
-.. |old-task-body| image:: images/installation/old-task-body.png
 .. |server-address-settings| image:: images/installation/server-address-settings.png
