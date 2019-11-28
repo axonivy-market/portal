@@ -263,16 +263,20 @@ How to migrate TaskTemplate
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Since Portal 8, we introduce iFrame so that customer project can be loaded inside iFrame. It can reduce side affect between customer project and Portal as well as migrate effort in future.
-We now have 3 task templates 
 
-- ``TaskTemplate.xhtml``, if you keep using TaskTemplate, customer project will be loaded in iFrame and keep Modena theme as before. For detail refer to :ref:`Task template <components-layout-templates-task-template>`.
-- ``DeprecatedTaskTemplate-7.xhtml``, change your template to DeprecatedTaskTemplate-7, it will keep your old template(include tab view) with new Serenity theme. For detail refer to :ref:`Deprecated task template 7 <components-layout-templates-deprecated-task-template-7>`.
-- ``TaskTemplate-8.xhtml``, change your template to TaskTemplate-8, it will have new Serenity theme and no tab view predefined. For detail refer to :ref:`Task template 8 <components-layout-templates-task-template-8>`.
+Portal introduced 4 scenarios for migration, choose suitable one:
+
+|task-template-migration|
+
+- ``TaskTemplate.xhtml``, if you keep using TaskTemplate, your task must be loaded inside iFrame and Modena theme is included. For more details, refer to :ref:`Task template <components-layout-templates-task-template>`.
+
+- ``DeprecatedTaskTemplate-7.xhtml``, change your template to DeprecatedTaskTemplate-7, it will keep your old template UI (including tab view) with Serenity theme. For more details, refer to :ref:`Deprecated task template 7 <components-layout-templates-deprecated-task-template-7>`.
+
+- ``TaskTemplate-8.xhtml``, change your template to TaskTemplate-8, it will include Serenity theme and no tab view predefined. For more details, refer to :ref:`Task template 8 <components-layout-templates-task-template-8>`.
 
 If your project has tag ``<ui:insert name="content">``, rename ``content`` to something else. This specific name may cause error since text ``content`` is already used in Portal template.
 
 .. _installation-migration-notes-8-0-0-basic-template:
-
 
 How to migrate BasicTemplate
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1038,3 +1042,4 @@ Changes in 6.0 (Säntis)
 .. |less-2-sass| image:: images/installation/less-2-sass.png
 .. |copy-start-process| image:: images/installation/copy-start-process.png
 .. |server-address-settings| image:: images/installation/server-address-settings.png
+.. |task-template-migration| image:: images/migration/task-template-migration.png

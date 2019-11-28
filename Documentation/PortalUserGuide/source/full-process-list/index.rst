@@ -5,7 +5,7 @@ Full Process List
 
 The :guilabel:`Full Process List` page gives you an overview on all the
 processes in the application that are accessible to you. You can reach
-the page by either using the |magic-icon| **Processes** link in the
+the page by either using the **Processes** link in the
 Axon.ivy Portal menu or the quick link **Show all processes** in your
 dashboard.
 
