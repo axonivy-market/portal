@@ -11,7 +11,9 @@
     <ui:param name="actualStepIndex" value="#{data.executePredefinedWorkflowData.actualStepIndex}" />
     <ui:param name="isShowStartAdhocButton" value="#{not data.executePredefinedWorkflowData.isAdhocProcess}" />
     <ui:param name="processChainShape" value="LINE" />
-    <ui:define name="title" />
+    <ui:define name="title" >
+      <h:outputText value="#{ivy.case.name} - #{ivy.cms.co('/Dialogs/workflowCreation/TaskType/UserTask')} #{ivy.task.name}" />
+    </ui:define>
 
     <ui:define name="content">
       <h:outputScript library="js" name="express-dyna-form.js" />

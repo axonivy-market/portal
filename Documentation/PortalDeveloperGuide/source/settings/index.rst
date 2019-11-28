@@ -195,8 +195,10 @@ Role configuration
 Permission settings
 ===================
 
-Permissions can be configured in Cockpit. In the security area,
-you will find all these permission in the Group "PortalPermissions"
+Permissions can be configured in `Cockpit
+<http://developer.axonivy.com/doc/latest/engine-guide/tool-reference/engine-cockpit.html#security>`_.
+In the security area, you will find all these permission in the Group
+"PortalPermissions"
 
 Absences
 --------

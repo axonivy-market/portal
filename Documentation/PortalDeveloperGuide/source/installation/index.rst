@@ -3,15 +3,10 @@
 Installation
 ************
 
-The installation section describes all the steps, that are necessary to
-install and setup Portal.
-
-If you install the application for the first time than it's important to start
-with the `Basic installation`_ . It describes all the initial steps, that must
-be done for the first installation.
-
-If the application is already installed and initial prepared, than refer
-to `Migration notes`_ to migrate the application.
+Installation section describes all steps, that are necessary for install and setup Portal.
+If you install your application first time then it’s important to start with Basic installation. It describes all initial steps that must be done for first installation.
+If application is already installed and initial prepared, refer
+to `Migration notes`_ to migrate it.
 
 Basic installation
 ==================
@@ -55,13 +50,16 @@ Installation
 Designer
 ^^^^^^^^
 
-Import Portal modules to Designer. This is Single mode.
+Import Portal modules to Designer.
+
+.. important:: Designer only supports single application mode.
+
 
 Engine without license (demo mode)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The engine automatically deploys the Portal application with default users. You do
-not need to deploy anything. This is Single mode.
+not need to deploy anything (Single mode).
 
 .. table:: 
 
@@ -95,7 +93,7 @@ Create an application and deploy Portal modules.
 
 .. important::
 
-   Only one active application contains Portal modules, no more.
+   Only one active application contains Portal modules.
 
 Multi applications mode
 """""""""""""""""""""""
@@ -115,8 +113,8 @@ How to migrate
 --------------
    
 .. important:: 
-   If you call any Portal API which is not mentioned in document. It
-   could be changed or removed. Re-implement it in your own project.
+   If you call any Portal API which is not mentioned in the document. It could be changed or removed without inform. Don't forget
+   to re-implement the concerning API in your own project.
 
    In order to migrate Portal, you need to migrate Axon.ivy, refer
    `Axon.ivy migration
@@ -132,22 +130,11 @@ In designer
 3. If PortalStyle is customized, copy logo, customization.scss,
    font-faces.scss, customized stuff from old to new PortalStyle, run
    maven to compile CSS.
-4. Follow migration notes.
+4. Follow `Migration notes`_.
 5. If customization needs copying code from Portal, merge changes
-   between 2 version of Portal for copied code.
+   between two versions of Portal for copied code.
 
 ..
-
-.. important::
-   -  Scenario migrating one customer project without customization:
-      Follow guidelines to step 2.
-   -  Scenario migrating one customer project with supported
-      customization: Follow the guidelines.
-   -  Scenario migrating one customer project with (un)supported
-      customization: Follow guidelines for supported customization. If
-      unsupported customization needs copying code from Portal, merge
-      changes between 2 versions of Portal for copied code. Take care
-      your own unsupported customization.
 
 In engine
 ---------
@@ -309,7 +296,7 @@ with more details and responsiveness.
 If you have customized ``taskBody`` of TaskWidget, we need to migrate
 the code of ``taskBody`` to new component as ``TaskItemDetails``
 
-Please follow the below steps to migrate
+Please follow the steps to migrate
 
 -  You can take a look at ``PortalTaskDetails.xhtml`` to see how to use
    and customize ``TaskItemDetails``.
@@ -321,19 +308,19 @@ Please follow the below steps to migrate
       This section will be shown on the top ``TaskItemDetails``
       component. You can change the width of this panel as your
       requirement, we recommend to use ``ui-g-*`` class of ``Primeface``
-      to define size of the width for the box can display flexibility.
+      to define the width for the box and make it flexible.
 
    -  On the ``taskItemDetailCustomPanelBottom`` section.
 
       This section will be shown on the bottom of the ``TaskItemDetails``
       component. You can change the width of this panel as your requirement,
-      we recommend to use ``ui-g-*`` class of ``Primeface`` to define size of 
-      the width for the box can display flexibility.
+      we recommend to use ``ui-g-*`` class of ``Primeface`` to define  
+      the width for the box and make it flexible.
 
    -  After deciding where we will push the custom code to ``TaskItemDetails``.
 
       Move your customized code for Custom box section from old
-      ``taskBody`` to under that sections.
+      ``taskBody`` under these sections.
 
       Finally, your customization will be shown in the ``TaskItemDetails``.
 
@@ -341,17 +328,84 @@ Please follow the below steps to migrate
 
       Old taskBody
 
-      |old-task-body|
+      .. code-block:: html
+
+         <ui:define name="taskBody">
+         <!-- Reuse some components -->
+            <ic:ch.ivy.addon.portalkit.component.TaskItemDescription id="task-description" task="#{task}"
+               descriptionComponentToUpdate="#{p:component('task-description')}" />
+            <ic:ch.ivy.addon.portalkit.component.TaskItemGeneralInfo id="task-general-info" task="#{task}"
+               priorityComponentToUpdate="#{p:component('task-priority')}"
+               componentToUpdate="#{p:component('task-details-notes')}" />
+            <ic:ch.ivy.addon.portalkit.component.TaskItemNotes id="task-notes" task="#{task}" />
+         
+         <!-- Add new panel -->
+            <div class="task-details-item custom-task-details-panel">
+               <p>Custom panel</p>
+            </div>
+         </ui:define>
+      ..
 
       TaskItemDetail content
 
-      |custom-task-item-details|
+      .. code-block:: html
+
+         <!-- In this HTML dialog, we override task list header, task header, task filter, and task body -->
+            <!-- To show/hidden any sections of Task detail, you can turn true/false for below parameters -->
+            <!-- To show the Header component inside Task details body. By default it's true -->
+            <ui:param name="showItemDetailsHeader" value="true" />
+            <!-- To show the Notes component inside Task details body. By default it's true -->
+            <ui:param name="showItemDetailsNotes" value="true" />
+            <!-- To show the Documents component inside Task details body. By default, it's true -->
+            <ui:param name="showItemDetailDocuments" value="true" />
+            
+            <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+            !!!!!!!!!!! TO ADD YOUR CUSTOMIZATION CODE ON THE TASK DETAILS PAGE, WE PROVIDE 2 SECTIONS AS BELOW HELP YOU CAN DO IT !!!!!!!!!!!!
+            !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+            <!-- Add a content as a Custom panel for Task Detail on top section -->
+
+               <!-- Add a content as Custom panel for Task Detail on top -->
+            <ui:define name="taskItemDetailCustomPanelTop">
+               <h:panelGroup styleClass="ui-g-12 ui-sm-12 custom-task-panel">
+               <div class="card card-w-title ">
+                  <div class="task-detail-section-title u-truncate-text">
+                     <h:outputText value="This is custom panel on top section" />
+                  </div>
+                  <div class="Separator" />
+
+                  <div class="custom-task-details-panel-top">
+                     <h1>This is custom content on top</h1>
+                     <p>Custom height to auto</p>
+                     <p>Custom font size to 1.6rem</p>
+                  </div>
+               </div>
+               </h:panelGroup>
+            </ui:define>
+
+               <!-- Add content as Custom panel for Task Detail on bottom-->
+            <ui:define name="taskItemDetailCustomPanelBottom">
+               <h:panelGroup styleClass="ui-g-12 ui-sm-12 custom-task-panel">
+               <div class="card card-w-title #{cc.attrs.customPanelStyleClass}">
+                  <div class="task-detail-section-title u-truncate-text">
+                     <h:outputText value="This is custom panel bottom section" />
+                  </div>
+                  <div class="Separator" />
+
+                  <div class="custom-task-details-panel">
+                     <h1>This is custom content bottom</h1>
+                     <p>Custom height to auto</p>
+                     <p>Custom font size to 1.6rem</p>
+                  </div>
+               </div>
+               </h:panelGroup>
+            </ui:define>
+      ..
 
 -  In case we need to hide Notes, Documents, we can refer to
    :ref:`Show/hide component on Task Item Details
    <customization-task-item-details-how-to-overide-ui-show-hidden-ui>` 
 
--  Additional, if we want to customize more ``TaskItemDetails``
+-  Additionally, if we want to customize more ``TaskItemDetails``
    components, please refer to :ref:`TaskItemDetails component <customization-task-item-details-how-to-overide-ui>` 
 
 .. _installation-migration-notes-8-0-0-case-body:
@@ -376,31 +430,28 @@ Please follow below check list to migrate
    -  On the ``caseItemDetailCustomTop`` section.
 
       This section will be shown on the top of the ``CaseItemDetails``
-      component. You can define the width of this panel as your
-      requirement, we recommend to use ``ui-g-*`` class of ``Primeface``
-      to define size of the width for the box can display flexibility.
+      component. You can define the width of this panel as you like, we recommend to use ``ui-g-*`` class of ``Primeface``
+      to define size the width of the box and make it flexible.
 
    -  On the ``caseItemDetailCustomMiddle`` section.
 
       This section will be shown on the middle of the
       ``CaseItemDetails`` component. You can define the width of this
-      panel as your requirement, we recommend to use ``ui-g-*`` class of
-      ``Primeface`` to define size of the width for the box can display
-      flexibility.
+      panel as you like, we recommend to use ``ui-g-*`` class of
+      ``Primeface`` to define the width of the box and make it flexible.
 
    -  On the ``caseItemDetailCustomBottom`` section.
 
       This section will be shown on the bottom of the
       ``CaseItemDetails`` component. You can define the width of this
-      panel as your requirement, we recommend to use ``ui-g-*`` class of
-      ``Primeface`` to define size of the width for the box can display
-      flexibility.
+      panel as you like, we recommend to use ``ui-g-*`` class of
+      ``Primeface`` to define the width of the box and make it flexible.
 
-   -  After decided where we will push the custom code to
+   -  After deciding where we will push the custom code to
       ``CaseItemDetails``.
 
       Move your customized code for Custom box section from old
-      ``caseBody`` to under that sections.
+      ``caseBody`` to below that sections.
 
       Finally, your customization will be shown in ``CaseItemDetails``.
 
@@ -408,11 +459,107 @@ Please follow below check list to migrate
 
       Old caseBody
 
-      |case-body|
+      .. code-block:: html
+
+         <ui:define name="caseBody">
+            <ic:ch.ivy.addon.portalkit.component.CaseItemGeneralInformation id="general-information" case="#{case}" />
+            <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="related-tasks" case="#{case}" />
+            <ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="history" case="#{case}" />
+            <ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}" componentToUpdate="#{p:component('history')}" />
+            <ic:ch.ivy.addon.portalkit.component.CaseItemDescription id="description" case="#{case}" descriptionComponentToUpdate="#{p:component('description-cell')}" />
+            <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer styleClass="hidden-lg">
+               <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton icon="fa fa-share-alt js-related-task-column-responsive-button" displayedSelectors="['.js-related-task-column']"
+                  hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
+               <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton icon="fa fa-align-left js-history-column-responsive-button" displayedSelectors="['.js-history-column']"
+                  hiddenSelectorsInMediumScreen="['.case-details .replaced']" hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
+               <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton icon="fa fa-file js-document-column-responsive-button" displayedSelectors="['.js-document-column']"
+                  hiddenSelectorsInLargeScreen="['.case-details .replaced']" hiddenSelectorsInMediumScreen="['.case-details .replaced']" hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
+               <ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleButton icon="fa fa-clipboard js-description-column-responsive-button" displayedSelectors="['.js-description-column']"
+                  hiddenSelectorsInMediumScreen="['.case-details .replaced']" hiddenSelectorsInSmallScreen="['.case-details .replaced']" />
+               <h:outputScript library="js" name="case-detail-default-responsiveness.js" />
+            </ic:ch.ivy.addon.portalkit.component.ResponsivenessHandleContainer>
+
+            <!-- Add new panel -->
+            <div class="task-details-item custom-task-details-panel">
+               <p>Custom panel</p>
+            </div>
+         </ui:define>
+         
+      ..
 
       CaseItemDetail content
 
-      |case-item-details|
+      .. code-block:: html
+            
+         <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+         !!!!!!!!!!!!!!!!!!!!!! TO SHOW /HIDDEN ANY SECTIONS OF CASE DETAILS, YOU CAN TURN TRUE/FALSE FOR BELOW PARAMETERS !!!!!!!!!!!!!!!!!
+         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+         <!-- To show the header of case details. By default it's true -->
+         <ui:param name="showItemDetailsHeader" value="true" />
+         <!-- To show the Histories component inside Case details body. By default it's true -->
+         <ui:param name="showItemDetailsHistories" value="true" />
+         <!-- To show the Documents component inside Case details body. By default, it's true -->
+         <ui:param name="showItemDetailDocuments" value="true" />
+         <!-- To show the RelatedTask component inside Case details. By default, it's true -->
+         <ui:param name="showItemDetailRelated" value="true" />
+
+         <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+         !!!!!!!!!!! TO ADD YOUR CUSTOMIZATION CODE ON THE CASE DETAILS PAGE, WE PROVIDE 3 SECTIONS AS BELOW HELP YOU CAN DO IT !!!!!!!!!!!!
+         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+         <!-- Add a content as a Custom panel for Case Detail on top section -->
+         <ui:define name="caseItemDetailCustomTop">
+            <h:panelGroup styleClass="ui-g-12" layout="block">
+            <div class="card card-w-title case-detail-card">
+               <div class="case-detail-section-title u-truncate-text">
+                  <h:outputText value="This is custom panel on top section" />
+               </div>
+               <div class="Separator" />
+
+               <div class="custom-task-details-panel-top">
+                  <h1>This is custom content on top</h1>
+                  <p>Custom height to auto</p>
+                  <p>Custom font size to 1.6rem</p>
+               </div>
+            </div>
+            </h:panelGroup>
+         </ui:define>
+
+         <!-- Add a content as a Custom panel for Case Detail on middle section, below the General & description box -->
+         <ui:define name="caseItemDetailCustomMiddle">
+            <h:panelGroup styleClass="ui-g-12" layout="block">
+            <div class="card card-w-title case-detail-card">
+               <div class="case-detail-section-title u-truncate-text">
+                  <h:outputText value="This is custom panel on middle section" />
+               </div>
+               <div class="Separator" />
+
+               <div class="custom-task-details-panel-middle">
+                  <h1>This is custom content on middle</h1>
+                  <p>Custom height to auto</p>
+                  <p>Custom font size to 1.6rem</p>
+               </div>
+            </div>
+            </h:panelGroup>
+         </ui:define>
+
+         <!-- Add a content as a Custom panel for Case Detail on bottom section -->
+         <ui:define name="caseItemDetailCustomBottom">
+            <h:panelGroup styleClass="ui-g-12" layout="block">
+            <div class="card card-w-title case-detail-card">
+               <div class="case-detail-section-title u-truncate-text">
+                  <h:outputText value="This is custom panel on bottom section" />
+               </div>
+               <div class="Separator" />
+
+               <div class="custom-task-details-panel">
+                  <h1>This is custom content on bottom</h1>
+                  <p>Custom height to auto</p>
+                  <p>Custom font size to 1.6rem</p>
+               </div>
+            </div>
+            </h:panelGroup>
+         </ui:define>
+      ..
 
 -  In case we need to hide Notes, Documents, Related running component,
    we can refer to :ref:`Show/hide component on Case Item Details
@@ -439,11 +586,11 @@ permissions, refer to
 for more detail.
 
 There is a small change when initializing statistic chart, so if you
-override ``DefaultChart.mod``, have a look at its note to see what is
+override ``DefaultChart.mod``, take a look at its note to see what is
 changed.
 
 Portal connector is removed, so there are many things related to it must
-be adjusted. Check this list below
+be adjusted. Check list below
 
 -  All ``Remote*`` classes are removed, replaced by the Ivy classes: ICase, ITask,
    IUser, IApplication, etc..
@@ -464,8 +611,8 @@ be adjusted. Check this list below
 Migrate hidden task and case to 7.3.0
 -------------------------------------
 
-Portal 7.0.10 has option to store hidden information in custom field of
-task and case instead of additional property for better performance.
+Portal 7.0.10 has the option to store hidden information in custom field of
+task and case instead of additional property to improve performance.
 Other versions of Portal store these info in additional property.
 
 If you use hide task/case feature, you need to follow these steps:
@@ -507,9 +654,7 @@ Portal Template to your project and re-apply your customization.
       In case you already have PortalStart process in your project, delete
       all elements in that process and copy everything from PortalStart
       process of Portal Template (to prevent start link id change).
-      ``Do not delete`` PortalStart proccess in your project and copy new
-      again.
-
+      
       Check map param result of callable process after copy to make sure
       it's the same as original process.
       |copy-start-process|
@@ -535,8 +680,6 @@ permission to start the process, this method will return empty string.
       In case you already have PortalStart process in your project, delete
       all elements in that process and copy everything from PortalStart
       process of Portal Template (to prevent start link id change).
-      ``Do not delete`` PortalStart proccess in your project and copy new
-      again.
 
       Check map param result of callable process after copy to make sure
       it's the same as original process.
@@ -625,14 +768,14 @@ Migrate 6.4 or 6.5 to 6.6
 -  Task header is supported to be customized. The
    ``useOverride``  param, which is used to override the task item's body, is changed
    to  ``useOverrideBody`` 
--  If you customize  ``TaskLazyDataModel`` , remove that customized class and customize as
+-  If you customize  ``TaskLazyDataModel`` , remove this customized class and customize as
    :ref:`How to override task widget's data query. <customization-task-widget-how-to-override-data-query>` . 
 
 Migrate 6.4 to 6.5
 ------------------
 
 -  If compilation error "The type org.apache.axis2.databinding.ADBBean
-   cannot be resolved" occurs, refer  `Project compilation classpath <https://developer.axonivy.com/doc/latest/doc/migrationNotes/MigrationNotesDesigner7.0.html#projectClasspath>`_  to fix.
+   cannot be resolved" occurs, use  `Project compilation classpath <https://developer.axonivy.com/doc/latest/doc/migrationNotes/MigrationNotesDesigner7.0.html#projectClasspath>`_  to fix.
 -  The relative link in default user processes starts with ivy context
    path instead of "pro". If there are customized default user proceses, append
    context path at the beginning. E.g. in Portal  ``6.4`` , it is
@@ -667,7 +810,7 @@ Steps to migrate
 
 2. Modify PortalStyle/webContent/resources/less/theme.less, update value
    of @body-background-color for the background color and @menu-color
-   for the menu, button color.
+   for the menu and primary button color.
 
 3. Put custom styles to
    PortalStyle/webContent/resources/less/customization.less.
@@ -897,10 +1040,6 @@ Changes in 6.0 (Säntis)
    case header.
 
 .. |less-2-sass| image:: images/installation/less-2-sass.png
-.. |case-body| image:: images/installation/case-body.png
-.. |case-item-details| image:: images/installation/case-item-details.png
 .. |copy-start-process| image:: images/installation/copy-start-process.png
-.. |custom-task-item-details| image:: images/installation/custom-task-item-details.png
-.. |old-task-body| image:: images/installation/old-task-body.png
 .. |server-address-settings| image:: images/installation/server-address-settings.png
 .. |task-template-migration| image:: images/migration/task-template-migration.png
