@@ -2994,7 +2994,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .statistic-filter-container {
   height: 18rem;
-  padding: 0 !important;
+  padding-top: 15px !important;
 }
 
 .custom-field-panel.statistic-filter-container {
@@ -3461,7 +3461,11 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 /* STYLE FOR STATISTIC FILTER */
 .chart-list-container .filter-container {
-  width: 32rem;
+  width: 33.5rem;
+}
+
+.statistic-filter-container table.ui-selectmanycheckbox.ui-widget label {
+  display: inline !important;
 }
 
 .statistic-case-category-tree .ui-tree-container {

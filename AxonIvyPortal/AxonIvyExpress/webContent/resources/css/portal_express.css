@@ -17,8 +17,8 @@
   margin-top: 1.5rem;
 }
 
-.express-work-flow .ui-widget.ui-messages {
-  margin-bottom: 20px;
+.express-work-flow .express-error-container {
+  border: 0;
 }
 
 /* Override fieldset style for express */
@@ -401,6 +401,10 @@ td.email-attachment-text {
   max-width: 25rem;
 }
 
+.finished-task-fieldset .applicant-info-container {
+  padding: 6px;
+}
+
 .finished-task-fieldset .pe-dynaform-grid {
   margin-bottom: 20px;
 }
@@ -483,12 +487,6 @@ td.email-attachment-text {
 }
 
 /* APPROVAL FORM */
-.applicant-field-container {
-  margin-bottom: 20px;
-  width: 100%;
-  border: none;
-}
-
 .applicant-label-field-col {
   border: none !important;
 }
