@@ -13,13 +13,13 @@ there are 7 templates that can be used directly.
 
 1. :ref:`Basic template <components-layout-templates-basic-template>`
 
-2. :ref:`Task template <components-layout-templates-task-template>`
+2. :ref:`Task template (Deprecated) <components-layout-templates-task-template>`
 
 3. :ref:`Task template 8 <components-layout-templates-task-template-8>`
 
-4. :ref:`Deprecated task template 7 <components-layout-templates-deprecated-task-template-7>`
+4. :ref:`Deprecated task template 7 (Deprecated) <components-layout-templates-deprecated-task-template-7>`
 
-5. :ref:`Two column template <components-layout-templates-two-column-template>`
+5. :ref:`Two column template (Deprecated) <components-layout-templates-two-column-template>`
 
 6. :ref:`Task list template <components-layout-templates-task-list-template>`
 
@@ -52,7 +52,7 @@ template for your process.
 .. _components-layout-templates-basic-template-how-to-use-basic-template:
 
 How to use Basic template
--------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Create a new HTML User Dialog and then use ``ui:composition`` to
    define the template inside and reuse the default responsiveness
@@ -75,84 +75,82 @@ How to use Basic template
 
 .. _components-layout-templates-task-template:
 
-Task template
--------------
+Task template (Deprecated)
+--------------------------
 
 Task template is used for displaying task functionality and related
 information to support completing the task. There are a lot of regions
-to be filled with your custom content:
-
--  Header name (task name)
-
--  Process chain
-
--  Content
-
--  Case Details
+to be filled with your custom content
 
 This template is dedicated for iFrame and Modena theme, so all Modena styles need to be provided in your project.
 
+.. important::
+	This template must be used inside IFrame. Refer to :ref:`IFrame in Portal <iframe>`.
+
 .. _components-layout-templates-task-template-how-to-use-task-template:
 
-How to use template TaskTemplate.xhtml
---------------------------------------
+How to use TaskTemplate
+^^^^^^^^^^^^^^^^^^^^^^^
 
-1.  Create a new HTML User Dialog and then use ``ui:composition`` to
-    define template which you use inside.
+Create a new HTML User Dialog and then use ``ui:composition`` to  define template which you use inside.
 
   .. code-block:: html
   
      <ui:composition template="/layouts/TaskTemplate.xhtml">
 
-
-2.  Refer to ``TaskTemplate.xhtml`` for params and template areas.
-
   |task-name-template|
 
-In case your project has navigation button like e.g Cancel, if you need this button to navigate 
+In case your project has navigation button without finishing a task, e.g Cancel, to 
 
--  To home page: call ``navigateToPortalHome()`` from class ``PortalNavigatorInFrame`` in ``PortalTemplate``.
--  To previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrame`` in ``PortalTemplate``.
+-  Home page: call ``navigateToPortalHome()`` from class ``PortalNavigatorInFrame``.
+-  Previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrame``.
+-  A specific url: call ``navigateToUrl(String url)`` from class ``PortalNavigatorInFrame``.
 
 .. _components-layout-templates-task-template-8:
 
 TaskTemplate-8
--------------------------
+--------------
 
-Task template 8 is new template with Serenity theme introduced since Portal 8. In this template there is no tab view, you have to define it. This template doesn't use iFrame.
+Task template 8 is new template with Serenity theme introduced since Portal 8. 
+There is no TabView, you have to define it if needed.
 
-.. _components-layout-templates-default-homepage-template-how-to-use-task-template-8:
+.. important::
+	This template must not be used inside IFrame. Refer to :ref:`IFrame in Portal <iframe>`.
+
+.. _components-layout-templates-task-template-how-to-use-task-template-8:
 
 How to use TaskTemplate-8
-------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Create a new HTML User Dialog and then use ``ui:composition`` to define
 template.
 
 .. code-block:: html
 
-      <ui:composition template="/layouts/TaskTemplate-8.xhtml">
+  <ui:composition template="/layouts/TaskTemplate-8.xhtml">
 
-..    
+Refer to ``TaskTemplate-8.xhtml`` for params and template areas.
 
-This template doesn't use iFrame. You need to set case custom string field ``embedInFrame`` to ``false`` or configure no iFrame multi applications.
+In case your project has navigation button without finishing a task, e.g Cancel, to 
 
-In case your project has navigation button like e.g Cancel, if you need this button to navigate 
-
--  To home page: call ``navigateToPortalHome()`` from class ``PortalNavigatorInFrame`` in ``PortalTemplate``.
--  To previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrame`` in ``PortalTemplate``.
+-  Home page: call ``navigateToPortalHome()`` from class ``PortalNavigator``.
+-  Previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigator``.
 
 .. _components-layout-templates-deprecated-task-template-7:
 
-DeprecatedTaskTemplate-7
--------------------------
+DeprecatedTaskTemplate-7 (Deprecated)
+-------------------------------------
 
-Deprecated task template 7 is old task template with Serenity theme. If your Project want to apply new theme, but Keep the tab view (e.g. Case Information), then you can change to this template. This template doesn’t use iFrame.
+Deprecated task template 7 is old task template with Serenity theme. If your project wants to apply new theme, 
+but keep the TabView (e.g. Case Information, dynamic tabs), then you can use this template.
 
-.. _components-layout-templates-default-homepage-template-how-to-use-deprecated-task-template-7:
+.. important::
+	This template must not be used inside IFrame. Refer to :ref:`IFrame in Portal <iframe>`.
+
+.. _components-layout-templates-task-template-how-to-use-deprecated-task-template-7:
 
 How to use DeprecatedTaskTemplate-7
-------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Create a new HTML User Dialog and then use ``ui:composition`` to define
 template.
@@ -161,19 +159,15 @@ template.
 
       <ui:composition template="/layouts/DeprecatedTaskTemplate-7.xhtml">
 
-..    
+In case your project has navigation button without finishing a task, e.g Cancel, to 
 
-This template doesn't use iFrame. You need to set case custom string field ``embedInFrame`` to ``false`` or configure no iFrame multi applications.
-
-In case your project has navigation button like e.g Cancel, if you need this button to navigate 
-
--  To home page: call ``navigateToPortalHome()`` from class ``PortalNavigator`` in ``PortalTemplate``.
--  To previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigator`` in ``PortalTemplate``.
+-  Home page: call ``navigateToPortalHome()`` from class ``PortalNavigator``.
+-  Previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigator``.
 
 .. _components-layout-templates-two-column-template:
 
-Two column template
--------------------
+Two column template (Deprecated)
+--------------------------------
 
 Two column template inherits Basic Template. It has 2 columns which user
 can customize their contents. Normally, the first column is for
@@ -182,7 +176,7 @@ navigation, the second for displaying corresponding content.
 .. _components-layout-templates-two-column-template-how-to-use-two-columntemplate:
 
 How to use Two column template
-------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Create a HTML User Dialog, define template in ``ui:composition`` and
    insert content of second column and third column using ``ui:define``.
@@ -218,7 +212,7 @@ and their details.
 .. _components-layout-templates-task-list-template-how-to-use-task-list-template:
 
 How to use task list template
------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Create a new HTML User Dialog and then use ``ui:composition`` to
    define template.
@@ -258,7 +252,7 @@ and their details.
 .. _components-layout-templates-case-list-template-how-to-use-case-list-template:
 
 How to use case list template
------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Create a new HTML User Dialog and then use ``ui:composition`` to
    define template.
@@ -293,7 +287,7 @@ provide functionality to access page without login by adding the
 .. _components-layout-templates-handle-required-login-in-templates-how-to-handle-required-login-in-template:
 
 How to handle required login in template
-----------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Create a new **HTML User Dialog** and then use ``ui:param`` to define
    the template inside
@@ -325,7 +319,7 @@ details including basic and advanced customization, refer to
 .. _components-layout-templates-default-homepage-template-how-to-use-default-homepage-template:
 
 How to use default homepage template
-------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Create a new HTML User Dialog and then use ``ui:composition`` to define
 template.
