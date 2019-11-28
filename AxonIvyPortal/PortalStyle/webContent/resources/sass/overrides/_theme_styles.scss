@@ -165,7 +165,7 @@ body .ui-datepicker .ui-timepicker-div .ui_tpicker_time input {
 
 body .ui-datepicker .ui-datepicker-header .ui-datepicker-next,
 body .ui-datepicker .ui-datepicker-header .ui-datepicker-prev {
-  font-size: 2rem !important;
+  font-size: 2.4rem !important;
 }
 
 .ui-datepicker .ui-datepicker-title {
@@ -665,17 +665,6 @@ body .ui-selectonelistbox .ui-selectlistbox-item.ui-state-hover {
 }
 
 /* Messages */
-body .ui-messages .ui-messages-error-icon,
-.ui-messages-info-icon,
-.ui-messages-warn-icon,
-.ui-messages-fatal-icon {
-    margin-top: 2px !important;
-    font-size: 2.4rem !important;
-    width: 35px !important;
-    height: 35px !important;
-    top: -7px !important;
-}
-
 .ui-growl-item .ui-growl-message {
   .ui-growl-title {
     padding: 10px 0px 0px 0px !important;
@@ -708,10 +697,7 @@ body .md-inputfield .ui-message.ui-message-error .ui-message-error-icon {
 
 body .ui-messages ul {
   display: block;
-}
-
-.ui-messages-info-summary {
-  margin-left: 0px;
+  padding-left: 2em;
 }
 
 /* Buttons */
