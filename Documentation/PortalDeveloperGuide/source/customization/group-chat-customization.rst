@@ -33,10 +33,25 @@ Customize group chat name
 
    |customize-group-chat-name|
 
+   Open ``Set group chat name`` script and change the name variable to *your group chat name*, for example:
+
+   .. code-block:: java
+
+        out.name = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/case") + "-{caseId} {caseName}" + " {groupChatCreator}";
+   ..
+
+
 3. If you have parameters which are not available in GroupChat.java,
    override ``GetGroupChatParams`` callable process and follow its note.
 
    |customize-group-chat-name-params|
+
+   Open ``Set param`` script and add your parameters to the params variable, for example:
+   
+   .. code-block:: java
+   
+        out.params.put("groupChatCreator", ivy.session.getSessionUser().getDisplayName());
+   ..
 
 .. _customization-group-chat-customize-predefined-roles:
 
