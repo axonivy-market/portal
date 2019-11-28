@@ -3,15 +3,10 @@
 Installation
 ************
 
-The installation section describes all the steps, that are necessary to
-install and setup Portal.
-
-If you install the application for the first time than it's important to start
-with the `Basic installation`_ . It describes all the initial steps, that must
-be done for the first installation.
-
-If the application is already installed and initial prepared, than refer
-to `Migration notes`_ to migrate the application.
+Installation section describes all steps, that are necessary for install and setup Portal.
+If you install your application first time then it’s important to start with Basic installation. It describes all initial steps that must be done for first installation.
+If application is already installed and initial prepared, refer
+to `Migration notes`_ to migrate it.
 
 Basic installation
 ==================
@@ -55,13 +50,16 @@ Installation
 Designer
 ^^^^^^^^
 
-Import Portal modules to Designer. This is Single mode.
+Import Portal modules to Designer.
+
+.. important:: Designer only supports single application mode.
+
 
 Engine without license (demo mode)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The engine automatically deploys the Portal application with default users. You do
-not need to deploy anything. This is Single mode.
+not need to deploy anything (Single mode).
 
 .. table:: 
 
@@ -95,7 +93,7 @@ Create an application and deploy Portal modules.
 
 .. important::
 
-   Only one active application contains Portal modules, no more.
+   Only one active application contains Portal modules.
 
 Multi applications mode
 """""""""""""""""""""""
@@ -115,8 +113,8 @@ How to migrate
 --------------
    
 .. important:: 
-   If you call any Portal API which is not mentioned in document. It
-   could be changed or removed. Re-implement it in your own project.
+   If you call any Portal API which is not mentioned in the document. It could be changed or removed without inform. Don't forget
+   to re-implement the concerning API in your own project.
 
    In order to migrate Portal, you need to migrate Axon.ivy, refer
    `Axon.ivy migration
@@ -132,9 +130,9 @@ In designer
 3. If PortalStyle is customized, copy logo, customization.scss,
    font-faces.scss, customized stuff from old to new PortalStyle, run
    maven to compile CSS.
-4. Follow migration notes.
+4. Follow `Migration notes`_.
 5. If customization needs copying code from Portal, merge changes
-   between 2 version of Portal for copied code.
+   between two versions of Portal for copied code.
 
 ..
 
@@ -305,7 +303,7 @@ with more details and responsiveness.
 If you have customized ``taskBody`` of TaskWidget, we need to migrate
 the code of ``taskBody`` to new component as ``TaskItemDetails``
 
-Please follow the below steps to migrate
+Please follow the steps to migrate
 
 -  You can take a look at ``PortalTaskDetails.xhtml`` to see how to use
    and customize ``TaskItemDetails``.
@@ -317,19 +315,19 @@ Please follow the below steps to migrate
       This section will be shown on the top ``TaskItemDetails``
       component. You can change the width of this panel as your
       requirement, we recommend to use ``ui-g-*`` class of ``Primeface``
-      to define size of the width for the box can display flexibility.
+      to define the width for the box and make it flexible.
 
    -  On the ``taskItemDetailCustomPanelBottom`` section.
 
       This section will be shown on the bottom of the ``TaskItemDetails``
       component. You can change the width of this panel as your requirement,
-      we recommend to use ``ui-g-*`` class of ``Primeface`` to define size of 
-      the width for the box can display flexibility.
+      we recommend to use ``ui-g-*`` class of ``Primeface`` to define  
+      the width for the box and make it flexible.
 
    -  After deciding where we will push the custom code to ``TaskItemDetails``.
 
       Move your customized code for Custom box section from old
-      ``taskBody`` to under that sections.
+      ``taskBody`` under these sections.
 
       Finally, your customization will be shown in the ``TaskItemDetails``.
 
@@ -347,7 +345,7 @@ Please follow the below steps to migrate
    :ref:`Show/hide component on Task Item Details
    <customization-task-item-details-how-to-overide-ui-show-hidden-ui>` 
 
--  Additional, if we want to customize more ``TaskItemDetails``
+-  Additionally, if we want to customize more ``TaskItemDetails``
    components, please refer to :ref:`TaskItemDetails component <customization-task-item-details-how-to-overide-ui>` 
 
 .. _installation-migration-notes-8-0-0-case-body:
@@ -372,31 +370,28 @@ Please follow below check list to migrate
    -  On the ``caseItemDetailCustomTop`` section.
 
       This section will be shown on the top of the ``CaseItemDetails``
-      component. You can define the width of this panel as your
-      requirement, we recommend to use ``ui-g-*`` class of ``Primeface``
-      to define size of the width for the box can display flexibility.
+      component. You can define the width of this panel as you like, we recommend to use ``ui-g-*`` class of ``Primeface``
+      to define size the width of the box and make it flexible.
 
    -  On the ``caseItemDetailCustomMiddle`` section.
 
       This section will be shown on the middle of the
       ``CaseItemDetails`` component. You can define the width of this
-      panel as your requirement, we recommend to use ``ui-g-*`` class of
-      ``Primeface`` to define size of the width for the box can display
-      flexibility.
+      panel as you like, we recommend to use ``ui-g-*`` class of
+      ``Primeface`` to define the width of the box and make it flexible.
 
    -  On the ``caseItemDetailCustomBottom`` section.
 
       This section will be shown on the bottom of the
       ``CaseItemDetails`` component. You can define the width of this
-      panel as your requirement, we recommend to use ``ui-g-*`` class of
-      ``Primeface`` to define size of the width for the box can display
-      flexibility.
+      panel as you like, we recommend to use ``ui-g-*`` class of
+      ``Primeface`` to define the width of the box and make it flexible.
 
-   -  After decided where we will push the custom code to
+   -  After deciding where we will push the custom code to
       ``CaseItemDetails``.
 
       Move your customized code for Custom box section from old
-      ``caseBody`` to under that sections.
+      ``caseBody`` to below that sections.
 
       Finally, your customization will be shown in ``CaseItemDetails``.
 
@@ -435,11 +430,11 @@ permissions, refer to
 for more detail.
 
 There is a small change when initializing statistic chart, so if you
-override ``DefaultChart.mod``, have a look at its note to see what is
+override ``DefaultChart.mod``, take a look at its note to see what is
 changed.
 
 Portal connector is removed, so there are many things related to it must
-be adjusted. Check this list below
+be adjusted. Check list below
 
 -  All ``Remote*`` classes are removed, replaced by the Ivy classes: ICase, ITask,
    IUser, IApplication, etc..
@@ -460,8 +455,8 @@ be adjusted. Check this list below
 Migrate hidden task and case to 7.3.0
 -------------------------------------
 
-Portal 7.0.10 has option to store hidden information in custom field of
-task and case instead of additional property for better performance.
+Portal 7.0.10 has the option to store hidden information in custom field of
+task and case instead of additional property to improve performance.
 Other versions of Portal store these info in additional property.
 
 If you use hide task/case feature, you need to follow these steps:
@@ -621,14 +616,14 @@ Migrate 6.4 or 6.5 to 6.6
 -  Task header is supported to be customized. The
    ``useOverride``  param, which is used to override the task item's body, is changed
    to  ``useOverrideBody`` 
--  If you customize  ``TaskLazyDataModel`` , remove that customized class and customize as
+-  If you customize  ``TaskLazyDataModel`` , remove this customized class and customize as
    :ref:`How to override task widget's data query. <customization-task-widget-how-to-override-data-query>` . 
 
 Migrate 6.4 to 6.5
 ------------------
 
 -  If compilation error "The type org.apache.axis2.databinding.ADBBean
-   cannot be resolved" occurs, refer  `Project compilation classpath <https://developer.axonivy.com/doc/latest/doc/migrationNotes/MigrationNotesDesigner7.0.html#projectClasspath>`_  to fix.
+   cannot be resolved" occurs, use  `Project compilation classpath <https://developer.axonivy.com/doc/latest/doc/migrationNotes/MigrationNotesDesigner7.0.html#projectClasspath>`_  to fix.
 -  The relative link in default user processes starts with ivy context
    path instead of "pro". If there are customized default user proceses, append
    context path at the beginning. E.g. in Portal  ``6.4`` , it is
@@ -663,7 +658,7 @@ Steps to migrate
 
 2. Modify PortalStyle/webContent/resources/less/theme.less, update value
    of @body-background-color for the background color and @menu-color
-   for the menu, button color.
+   for the menu and primary button color.
 
 3. Put custom styles to
    PortalStyle/webContent/resources/less/customization.less.
