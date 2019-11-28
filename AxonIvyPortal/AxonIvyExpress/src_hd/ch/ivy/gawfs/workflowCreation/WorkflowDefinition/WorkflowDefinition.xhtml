@@ -12,7 +12,9 @@
 
     <ui:define name="content">
       <h:form id="form" styleClass="express-work-flow">
-        <p:messages id="error-messages" showDetail="false" closable="true" />
+        <h:panelGroup id="error-container" layout="block" styleClass="ui-widget-content express-error-container">
+          <p:messages id="error-messages" showDetail="false" closable="true" />
+        </h:panelGroup>
 
         <p:fieldset id="process-setting-fieldset" legend="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processdetails')}"
           toggleable="true" styleClass="MarTop5 express-fieldset fieldset-no-border">
