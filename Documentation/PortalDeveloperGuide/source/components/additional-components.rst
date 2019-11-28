@@ -83,8 +83,10 @@ Task Analysis
 Introduction
 ------------
 
-Task Analysis component of Portal provides features for users to analyze
-not only tasks but also cases. These features are:
+Task Analysis component of Portal provides features for the user's own permission StatisticAnalyzeTask in PortalTaskPermissions refer to 
+`Security section in
+Cockpit <http://developer.axonivy.com/doc/latest/engine-guide/tool-reference/engine-cockpit.html#security>`_
+to analyze  not only tasks but also cases. These features are:
 
 1. Set of filters for both tasks and cases which allow user to filter
    and to find tasks, cases more better. More, user can create and
