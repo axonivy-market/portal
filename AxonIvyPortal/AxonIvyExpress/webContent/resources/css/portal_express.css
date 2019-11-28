@@ -17,8 +17,8 @@
   margin-top: 1.5rem;
 }
 
-.express-work-flow .ui-widget.ui-messages {
-  margin-bottom: 20px;
+.express-work-flow .express-error-container {
+  border: 0;
 }
 
 /* Override fieldset style for express */
