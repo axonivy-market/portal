@@ -5,8 +5,8 @@ Build your own portal
 
 .. _customization-build-your-own-portal-build-your-own-portal-using-portal-kit:
 
-Build your own portal using Portal kit
---------------------------------------
+Build your own portal using PortalKit
+-------------------------------------
 
 1. Create a new project that depends on ``PortalTemplate``.
 

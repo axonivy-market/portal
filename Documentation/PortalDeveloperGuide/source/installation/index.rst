@@ -34,7 +34,7 @@ deployment <http://developer.axonivy.com/doc/latest/EngineGuideHtml/administrati
 Portal mode
 -----------
 
--  **Single mode**  : One Portal application on one engine. It must include PortalKit,
+-  **Single application mode**  : One Portal application on one engine. It must include PortalKit,
    PortalTemplate and PortalStyle modules.
 
 -  **Multi applications mode** : Multiple Portal applications on one engine.
@@ -59,7 +59,7 @@ Engine without license (demo mode)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The engine automatically deploys the Portal application with default users. You do
-not need to deploy anything (Single mode).
+not need to deploy anything (Single application mode).
 
 .. table:: 
 
@@ -86,8 +86,8 @@ Engine with license (production mode)
 The engine does not deploy anything, you need to deploy and configure Portal application 
 manually.
 
-Single mode
-"""""""""""
+Single application mode
+"""""""""""""""""""""""
 
 Create an application and deploy Portal modules.
 

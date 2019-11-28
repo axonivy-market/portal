@@ -17,7 +17,7 @@ Customization
 -------------
 
 Create an override which overrides sub process
-``createDefaultUserProcess()`` in Portal Kit. This sub process return a
+``createDefaultUserProcess()`` in PortalKit. This sub process return a
 list of user processes. Follow instruction to create default processes.
 
 |default-user-processes|
