@@ -136,17 +136,6 @@ In designer
 
 ..
 
-.. important::
-   -  Scenario migrating one customer project without customization:
-      Follow guidelines to step 2.
-   -  Scenario migrating one customer project with supported
-      customization: Follow the guidelines.
-   -  Scenario migrating one customer project with (un)supported
-      customization: Follow guidelines for supported customization. If
-      unsupported customization needs copying code from Portal, merge
-      changes between 2 versions of Portal for copied code. Take care
-      your own unsupported customization.
-
 In engine
 ---------
 
@@ -498,9 +487,7 @@ Portal Template to your project and re-apply your customization.
       In case you already have PortalStart process in your project, delete
       all elements in that process and copy everything from PortalStart
       process of Portal Template (to prevent start link id change).
-      ``Do not delete`` PortalStart proccess in your project and copy new
-      again.
-
+      
       Check map param result of callable process after copy to make sure
       it's the same as original process.
       |copy-start-process|
@@ -526,8 +513,6 @@ permission to start the process, this method will return empty string.
       In case you already have PortalStart process in your project, delete
       all elements in that process and copy everything from PortalStart
       process of Portal Template (to prevent start link id change).
-      ``Do not delete`` PortalStart proccess in your project and copy new
-      again.
 
       Check map param result of callable process after copy to make sure
       it's the same as original process.
