@@ -21,7 +21,7 @@ Customization
 -------------
 
 Create an override which overrides sub process
-``createDefaultStatisticCustomField()`` in Portal Kit. This sub process
+``createDefaultStatisticCustomField()`` in PortalKit. This sub process
 return a list of custom string fields. Follow instruction to create
 default custom fields.
 
