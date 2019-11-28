@@ -36,39 +36,38 @@ clicking ``Restore All To Defaults`` button
 
 .. _settings-admin-settings-setup-multi-portals:
 
-Setup multi portals
--------------------
+Setup multi Portal applications
+-------------------------------
 
 .. important:: 
    
-   There are 2 ways to configure portals: ``two levels`` and
-   ``single level``
+   There are 2 ways to configure portals:
 
-   -  Two levels portal
+   -  Multi applications with overview
 
       |multi-application-with-portal|
 
       -  Used for related applications which we need an overview of all
          tasks and cases.
 
-      -  Create a new application named Portal. Deploy portal (kit,
+      -  Create a new application named ``Portal``. Deploy portal (kit,
          template ..) to this application.
 
       -  Create new applications: App1, App2, App3... Deploy portal
          (kit, template ..) to new applications.
 
-      -  Configure multi-apps Portal on single server: login by Portal
-         Admin. Configure 1 server then configure applications: App1,
+      -  Configure multi-apps Portal: login by Portal
+         Admin, configure applications: App1,
          App2, App3...
 
-      -  Note that, ``do not`` add Portal application, it is reserved
+      -  Note that, ``do not`` add the application named ``Portal``, it is reserved
          for displaying all tasks/cases... from all configured
          applications.
 
       -  Dashboard menu is only visible when logged-in user exists in
          Portal application.
 
-   -  Single level portal
+   -  Multi applications
 
       |multi-application-without-portal|
 
@@ -76,10 +75,10 @@ Setup multi portals
 
       -  Create new applications: App1, App2, App3... Deploy portal(kit,
          template ..) to new applications. Note: must not create an
-         application named Portal.
+         application named ``Portal``.
 
-      -  Configure multi-apps Portal on single server: login by Portal
-         Admin. Configure 1 server then configure applications: App1,
+      -  Configure multi-apps Portal: login by Portal
+         Admin, configure applications: App1,
          App2, App3...
 
 Open Admin Settings
