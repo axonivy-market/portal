@@ -45,6 +45,7 @@ Follow the steps:
 
 	- use your own template to separate your css styles from Portal
 	- Or use the :ref:`TaskTemplate <components-layout-templates-task-template>` template
+	
 	|iframe-template|
 	
 .. |iframe-template| image:: images/iframe-template.png
