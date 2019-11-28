@@ -72,6 +72,11 @@
     }
 }
 
+.application-info-message .ui-messages-info-detail {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
 /*Style Email Setting --------------------------------------------------------------------------------*/
 @media (min-width: 1024px) and (max-width: 1365px) {
     .applications-email-setting-dialog {
