@@ -441,7 +441,7 @@
   background-color: transparent !important;
   border: 1px solid transparent !important;
 
-  .ui-button-text.ui-c, .ui-button-icon-right.ui-icon.ui-c {
+  .ui-button-text.ui-c, .ui-icon.ui-c {
     color: $caseTaskActionButtonColor !important;
   }
 }
@@ -495,6 +495,25 @@
 
 .task-action-item:hover {
   background-color: $taskDetailActionItemHoverBackgroundColor !important;
+}
+
+.action-button.task-action-item,
+.case-header-container .action-button {
+  &.ui-state-disabled {
+    span {
+      color: $commandLinkDisabledTextColor !important;
+    }
+  }
+  &.ui-state-hover {
+    span {
+      color: $commandLinkHoverTextColor !important;
+    }
+  }
+  &.ui-state-active, &.ui-state-focus {
+    span {
+      color: $commandLinkActiveTextColor !important;
+    }
+  }
 }
 
 /*Style For Advance Filter --------------------------------------------------------------------------------------*/
@@ -596,10 +615,6 @@
 
 .widget-sort-menu.full-mode {
   border-bottom: 1px solid $widgetSortMenuBorderBottomColor;
-}
-
-.task-widget .action-container .ui-commandlink.ui-state-disabled {
-  color: $mediumGrey !important;
 }
 
 /*Style for Case Widget-------------------------------------------------------------------------------------*/ 
@@ -1296,10 +1311,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 /* Task Action Item-----------------------*/
 .task-action-item .task-action-item-label {
   font-weight: $taskActionItemLabelFontWeight;
-}
-
-.action-button.task-action-item .ui-button-icon-left.ui-icon {
-  color: $taskActionLeftIconColor !important;
 }
 
 .task-actions-menu .ui-slidemenu-backward.ui-widget-header {
