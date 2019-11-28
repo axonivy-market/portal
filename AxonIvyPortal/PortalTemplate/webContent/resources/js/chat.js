@@ -375,6 +375,7 @@ function View(uri)
             groupChatContainer.appendChild(cloneGroup);
           }
         });
+        $(document.getElementsByClassName('js-no-group-chat-template')[0]).addClass("u-hidden");
       } else {
         var noGroupChatTemplate = document.getElementsByClassName('js-no-group-chat-template')[0];
         noGroupChatTemplate.classList.remove("u-hidden");
