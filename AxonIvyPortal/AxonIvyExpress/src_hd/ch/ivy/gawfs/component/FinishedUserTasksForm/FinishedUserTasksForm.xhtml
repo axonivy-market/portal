@@ -22,28 +22,20 @@
         <!-- APPLICANT INFO -->
         <p:outputLabel id="applicant-label" value="#{ivy.cms.co('/Dialogs/WorkflowExecution/FinishedTasksForm/Applicant')}"
           styleClass="review-content-title" />
-        <p:panelGrid id="applicant-field-container" styleClass="applicant-field-container">
-          <p:row>
-            <p:column styleClass="applicant-label-field-col">
-              <p:outputLabel value="#{ivy.cms.co('/Dialogs/WorkflowExecution/ApprovalForm/Fullname')}:" for="applicant-fullname" />
-            </p:column>
-          </p:row>
-          <p:row>
-            <p:column styleClass="applicant-field-col">
-              <h:outputText id="applicant-fullname" value="#{wfTask.actualApplicant.displayName} (#{wfTask.actualApplicant.name})" />
-            </p:column>
-          </p:row>
-          <p:row>
-            <p:column styleClass="applicant-label-field-col">
-              <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/eMail')}:" for="applicant-mail" />
-            </p:column>
-          </p:row>
-          <p:row>
-            <p:column styleClass="applicant-field-col">
-              <h:outputText id="applicant-mail" value="#{wfTask.actualApplicant.EMailAddress}" />
-            </p:column>
-          </p:row>
-        </p:panelGrid>
+        <div class="ui-g applicant-info-container">
+          <div class="ui-g-2 ui-sm-4">
+            <p:outputLabel value="#{ivy.cms.co('/Dialogs/WorkflowExecution/ApprovalForm/Fullname')}:" for="applicant-fullname" />
+          </div>
+          <div class="ui-g-10 ui-sm-8">
+            <h:outputText id="applicant-fullname" value="#{wfTask.actualApplicant.displayName} (#{wfTask.actualApplicant.name})" />
+          </div>
+          <div class="ui-g-2 ui-sm-4">
+            <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/eMail')}:" for="applicant-mail" />
+          </div>
+          <div class="ui-g-10 ui-sm-8">
+            <h:outputText id="applicant-mail" value="#{wfTask.actualApplicant.EMailAddress}" />
+          </div>
+        </div>
 
         <!-- USER TASKS -->
         <p:outputLabel id="form-details-label" value="#{ivy.cms.co('/Dialogs/WorkflowExecution/FinishedTasksForm/FormDetails')}"
