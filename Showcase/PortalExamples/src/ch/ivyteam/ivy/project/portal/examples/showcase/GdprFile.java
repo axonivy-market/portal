@@ -1,9 +1,8 @@
 package ch.ivyteam.ivy.project.portal.examples.showcase;
 
 
-import java.io.File;
-
 import ch.ivyteam.ivy.project.portal.examples.showcase.enums.GdprFileType;
+import ch.ivyteam.ivy.scripting.objects.File;
 
 public class GdprFile {
 	private Long fileId;
