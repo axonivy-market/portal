@@ -189,8 +189,6 @@
 						<p:dataTable id="fileTable" value="#{data.gdprRequest.files}"
 							var="file" scrollable="false" selectionMode="single"
 							rowKey="#{file.file.name}" selection="#{data.selectedGdprFile}">
-							<p:ajax event="rowSelect" listener="#{logic.selectPeriod}"
-								update="#{p:component('pdfFileGroup')}" />
 							<p:column headerText="#{ivy.cms.co('/Labels/tableName')}"
 								sortBy="#{file.file.name}" style="width:80%">
 								<h:outputText value="#{file.file.name}"
@@ -200,7 +198,6 @@
 								style="text-align:center;width:10%">
 								<p:commandButton id="showFileButton" ajax="false"
 									actionListener="#{logic.show(file)}"
-									onclick="PrimeFaces.monitorDownload(start, stop);"
 									icon="fa fa-download"
 									title="#{ivy.cms.co('/Dialogs/GdprRequest/Labels/tableDownload')}"
 									immediate="true">
@@ -215,7 +212,6 @@
 									icon="fa fa-trash" immediate="true" />
 							</p:column>
 						</p:dataTable>
-						
 						<p:fileUpload multiple="true" mode="advanced"
 							fileUploadListener="#{logic.handleFileUploader}"
 							update="fileTable" dragDropSupport="true" 
