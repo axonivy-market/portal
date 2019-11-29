@@ -12,6 +12,6 @@ Portal Developer Guide
    installation/index
    settings/index
    components/index
-   customization/index
    iframe/index
+   customization/index
    troubleshooting/index
