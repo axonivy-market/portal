@@ -46,7 +46,7 @@ Refer to ``PortalExamples`` project for examples
 
    -  Introduce a new HTMLDialog which uses template
       ``/layouts/PortalTasksTemplate.xhtml`` (refer to
-      :ref:`Responsiveness <components-layout-templates-reponsiveness>`
+      :ref:`Responsiveness <components-layout-templates-responsiveness>`
       to override responsiveness). You can take a look at
       ``PortalTasks.xhtml`` to see how to customize it.
 
@@ -232,8 +232,8 @@ be delegated to. This can be done following these steps:
 
 .. _customization-task-widget-responsive-layout:
 
-How to make reponsive task list
--------------------------------
+How to make responsive task list
+--------------------------------
 
 If you have customized task list and want it responsive on different
 screen sizes, please follow below steps.
@@ -246,7 +246,55 @@ You can refer to ``PortalExamples`` project for examples
    and taskHeader. You can find responsive class in `this
    part. <#axonivyportal.customization.responsivecss>`__
 
-   |responsive-task-list-customization|
+   .. code-block:: html
+      :emphasize-lines: 6,10,28,39
+
+      <ui:define name="taskListHeader">
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskListHeader dataModel="#{taskView.dataModel}" />
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
+            styleClass="TexAlCenter" componentId="task-custom" sortField="customVarCharField5"
+            value="#{ivy.cms.co('/DefaultColumns/customVarCharField5')}" 
+            responsiveStyleClass="u-hidden-lg-down" />
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
+            styleClass="TexAlCenter" componentId="task-custom" sortField="customTimestampField1"
+            value="#{ivy.cms.co('/DefaultColumns/customTimestampField1')}"
+            responsiveStyleClass="u-hidden-lg-down
+            js-hidden-when-expand-menu" />
+      </ui:define>
+
+      <ui:define name="taskHeader">
+            <!-- Flexbox is applied, so please set your column's width by flex style. The TaskName column takes the remaining width. -->
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority priority="#{task.priority}"
+            dataModel="#{taskView.dataModel}" />
+            <div class="task-start-info">
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskName task="#{task}" dataModel="#{taskView.dataModel}" />
+            </div>
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible dataModel="#{taskView.dataModel}"
+            userName="#{task.getActivatorName()}" fullName="#{task.getActivator().getDisplayName()}"
+            styleClass="activatior-column" />
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskId value="#{task.getId()}" dataModel="#{taskView.dataModel}" />
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate
+            rendered="#{taskView.dataModel.isSelectedColumn('CREATION_TIME')}" componentId="creation-time"
+            value="#{task.startTimestamp}" 
+            responsiveStyleClass="u-hidden-md-down 
+            js-hidden-when-expand-menu" />
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate
+            rendered="#{taskView.dataModel.isSelectedColumn('EXPIRY_TIME')}" componentId="expiry-time"
+            value="#{task.expiryTimestamp}" />
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskState dataModel="#{taskView.dataModel}" state="#{task.state}" />
+
+            <!-- New field -->
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskCustomField id="customer-name-component"
+            componentId="customer-name" column="customVarCharField5" dataModel="#{taskView.dataModel}"
+            labelValue="#{task.customFields().stringField('CustomVarCharField5').getOrNull()}"
+            responsiveStyleClass="u-hidden-lg-down" />
+            <h:outputText id="shipment-date"
+            styleClass="TexAlCenter custom-datetime u-hidden-lg-down js-hidden-when-expand-menu"
+            value="#{task.customFields().timestampField('CustomTimestampField1').getOrNull()}"
+            rendered="#{taskView.dataModel.isSelectedColumn('customTimestampField1')}">
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+            </h:outputText>
+      </ui:define>
 
    .. tip:: ``TaskCustomField`` component has default
       responsiveStyleClass is ``u-hidden-sm-down``
@@ -256,7 +304,55 @@ You can refer to ``PortalExamples`` project for examples
    add ``js-hidden-when-expand-menu`` to responsiveStyleClass or
    styleClass param of taskListHeader and taskHeader.
 
-   |responsive-task-list-hide-column|
+   .. code-block:: html
+      :emphasize-lines: 11,29
+
+      <ui:define name="taskListHeader">
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskListHeader dataModel="#{taskView.dataModel}" />
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
+            styleClass="TexAlCenter" componentId="task-custom" sortField="customVarCharField5"
+            value="#{ivy.cms.co('/DefaultColumns/customVarCharField5')}" 
+            responsiveStyleClass="u-hidden-lg-down" />
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
+            styleClass="TexAlCenter" componentId="task-custom" sortField="customTimestampField1"
+            value="#{ivy.cms.co('/DefaultColumns/customTimestampField1')}"
+            responsiveStyleClass="u-hidden-lg-down
+            js-hidden-when-expand-menu" />
+      </ui:define>
+
+      <ui:define name="taskHeader">
+            <!-- Flexbox is applied, so please set your column's width by flex style. The TaskName column takes the remaining width. -->
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority priority="#{task.priority}"
+            dataModel="#{taskView.dataModel}" />
+            <div class="task-start-info">
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskName task="#{task}" dataModel="#{taskView.dataModel}" />
+            </div>
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible dataModel="#{taskView.dataModel}"
+            userName="#{task.getActivatorName()}" fullName="#{task.getActivator().getDisplayName()}"
+            styleClass="activatior-column" />
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskId value="#{task.getId()}" dataModel="#{taskView.dataModel}" />
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate
+            rendered="#{taskView.dataModel.isSelectedColumn('CREATION_TIME')}" componentId="creation-time"
+            value="#{task.startTimestamp}" 
+            responsiveStyleClass="u-hidden-md-down 
+            js-hidden-when-expand-menu" />
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate
+            rendered="#{taskView.dataModel.isSelectedColumn('EXPIRY_TIME')}" componentId="expiry-time"
+            value="#{task.expiryTimestamp}" />
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskState dataModel="#{taskView.dataModel}" state="#{task.state}" />
+
+            <!-- New field -->
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskCustomField id="customer-name-component"
+            componentId="customer-name" column="customVarCharField5" dataModel="#{taskView.dataModel}"
+            labelValue="#{task.customFields().stringField('CustomVarCharField5').getOrNull()}"
+            responsiveStyleClass="u-hidden-lg-down" />
+            <h:outputText id="shipment-date"
+            styleClass="TexAlCenter custom-datetime u-hidden-lg-down js-hidden-when-expand-menu"
+            value="#{task.customFields().timestampField('CustomTimestampField1').getOrNull()}"
+            rendered="#{taskView.dataModel.isSelectedColumn('customTimestampField1')}">
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+            </h:outputText>
+      </ui:define>
 
   .. tip:: The smallest browser width you can anchor the left menu is
       1025. So you could reduce width of browser to 1025 to test and
@@ -264,8 +360,6 @@ You can refer to ``PortalExamples`` project for examples
 
 .. |task-filter| image:: images/task-widget/task-filter.png
 .. |calculate-task-delegate| image:: images/task-widget/calculate-task-delegate.png
-.. |responsive-task-list-customization| image:: images/task-widget/responsive-task-list-customization.png
-.. |responsive-task-list-hide-column| image:: images/task-widget/responsive-task-list-hide-column.png
 .. |task-columns-configuration| image:: images/task-widget/task-columns-configuration.png
 .. |task-list| image:: images/task-widget/task-list.png
 .. |task-sort-override| image:: images/task-widget/task-sort-override.png
