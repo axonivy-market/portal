@@ -50,10 +50,24 @@ Follow the steps:
 	- use your own template to separate your css styles from Portal
 	- Or use the :ref:`TaskTemplate <components-layout-templates-task-template>` template
 	
-	|iframe-template|
+	.. table:: 
+
+	+----------------------------------------------+------------------------------------------------------+
+	| TaskTemplate.xhtml - Modena ivy theme        | Your own template                                    |
+	+==============================================+======================================================+
+	| Pros:                                        | Pros:                                                |
+	|                                              |                                                      |
+	|  - Keep the old look&feel since Portal 7     |  - Portal and project styles are independent         |
+	|  - Less migration effort                     |  - Less migration effort in future                   |
+	|                                              |                                                      |
+	| Cons:                                        | Cons:                                                |
+	|                                              |                                                      |
+	|  - Modena is out of support by Primefaces    |  - Highest migration effort expected for old projects|
+	|  - Modena was highly customized by Portal    |                                                      |
+	|  - Different look&feel between Portal and UIs|                                                      |
+	+----------------------------------------------+------------------------------------------------------+
 	
 3. To pass some supported params in IFrame such as process steps, refer to ``IFrameTaskTemplate.xhtml``
 
 .. |task-embedInFrame| image:: images/task-embedInFrame.png
 .. |case-embedInFrame| image:: images/case-embedInFrame.png	
-.. |iframe-template| image:: images/iframe-template.png
