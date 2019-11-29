@@ -55,49 +55,49 @@ Portal provides two types of multi applications: ``Multi applications with overv
 
 Multi applications with overview
 """"""""""""""""""""""""""""""""
-   .. important::
+.. important::
 
-      Used for related applications App1, App2, App3... of which we need to see all
-      tasks/cases in one page. Task/Case list of application named ``Portal`` would display all
-      tasks/cases of applications App1, App2, App3...
+   Used for related applications App1, App2, App3... of which we need to see all
+   tasks/cases in one page. Task/Case list of application named ``Portal`` would display all
+   tasks/cases of applications App1, App2, App3...
 
-   |multi-application-with-portal|
+|multi-application-with-portal|
 
 
-   -  Create a new application named ``Portal``. Deploy portal (kit,
-      template ..) to this application.
+-  Create a new application named ``Portal``. Deploy portal (kit,
+   template ..) to this application.
 
-   -  Create new applications: App1, App2, App3... Deploy portal
-      (kit, template ..) to new applications.
+-  Create new applications: App1, App2, App3... Deploy portal
+   (kit, template ..) to new applications.
 
-   -  Configure multi-apps Portal: login by Portal
-      Admin, configure applications: App1,
-      App2, App3...
+-  Configure multi-apps Portal: login by Portal
+   Admin, configure applications: App1,
+   App2, App3...
 
-   -  Note that, ``do not`` add the application named ``Portal``, it is reserved
-      for displaying all tasks/cases... from all configured
-      applications.
+-  Note that, ``do not`` add the application named ``Portal``, it is reserved
+   for displaying all tasks/cases... from all configured
+   applications.
 
-   -  Dashboard menu is only visible when logged-in user exists in
-      Portal application.
+-  Dashboard menu is only visible when logged-in user exists in
+   Portal application.
 
 Multi applications (without overview)
 """""""""""""""""""""""""""""""""""""
-   .. important::
+.. important::
 
-      Used for independent applications App1, App2, App3... of which we ``do not`` need to see all
-      tasks/cases in one page.
+   Used for independent applications App1, App2, App3... of which we ``do not`` need to see all
+   tasks/cases in one page.
 
 
-   |multi-application-without-portal|
+|multi-application-without-portal|
 
-   -  Create new applications: App1, App2, App3... Deploy portal(kit,
-      template ..) to new applications. Note: must not create an
-      application named ``Portal``.
+-  Create new applications: App1, App2, App3... Deploy portal(kit,
+   template ..) to new applications. Note: must not create an
+   application named ``Portal``.
 
-   -  Configure multi-apps Portal: login by Portal
-      Admin, configure applications: App1,
-      App2, App3...
+-  Configure multi-apps Portal: login by Portal
+   Admin, configure applications: App1,
+   App2, App3...
 
 How to add a new application
 """"""""""""""""""""""""""""
