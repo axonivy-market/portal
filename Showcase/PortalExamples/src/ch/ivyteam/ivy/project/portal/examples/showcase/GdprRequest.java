@@ -5,21 +5,13 @@ import java.util.Date;
 import ch.ivyteam.ivy.project.portal.examples.showcase.enums.Completeness;
 import ch.ivyteam.ivy.project.portal.examples.showcase.enums.ProcessState;
 
-//import ch.ivy.gdpr.enums.ProcessState;
-
-
-
-//	Change the name of table -> create class for it \\
 public class GdprRequest {
 	private ProcessState processState;
 	private String id;
 	private Long caseId;
-	private String appliacationUserName;
-	//private ProcessState processState;
+	private String applicationUserName;
 	private Date creationDate;
 	private java.util.List<GdprFile> files;
-	//private Request request;
-	//private Decision decision;
 	private String reviewedBy;
 	private Date dateOfReview;	
 	private String surname;
@@ -29,7 +21,6 @@ public class GdprRequest {
 	private String city;
 	private Integer phoneNumber;
 	private String emailAddress;
-	//private Identification identification;
 	private String requestReason;
 	private String identificationNumer;
 	private Completeness completeness;
@@ -112,8 +103,6 @@ public class GdprRequest {
 		this.emailAddress = emailAddress;
 	}
 
-
-
 	public String getIdentificationNumer() {
 		return identificationNumer;
 	}
@@ -121,7 +110,6 @@ public class GdprRequest {
 	public void setIdentificationNumer(String identificationNumer) {
 		this.identificationNumer = identificationNumer;
 	}
-	
 
 
 	public Long getCaseId() {
@@ -132,14 +120,6 @@ public class GdprRequest {
 		this.caseId = caseId;
 	}
 
-	/*public ProcessState getProcessState() {
-		return processState;
-	}
-
-	public void setProcessState(ProcessState processState) {
-		this.processState = processState;
-	}*/
-
 	public Date getCreationDate() {
 		return creationDate;
 	}
@@ -147,8 +127,6 @@ public class GdprRequest {
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
-
-	
 
 	public String getReviewedBy() {
 		return reviewedBy;
@@ -174,14 +152,12 @@ public class GdprRequest {
 		this.files = files;
 	}
 
-	
-
-	public String getAppliacationUserName() {
-		return appliacationUserName;
+	public String getApplicationUserName() {
+		return applicationUserName;
 	}
 
-	public void setAppliacationUserName(String appliacationUserName) {
-		this.appliacationUserName = appliacationUserName;
+	public void setApplicationUserName(String applicationUserName) {
+		this.applicationUserName = applicationUserName;
 	}
 
 	public String getId() {
