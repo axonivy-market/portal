@@ -15,7 +15,7 @@ In Portal, statistic color is set by ``DefaultCharColor`` sub process. But you c
 Customization
 -------------
 
-Create an override which overrides sub process ``DefaultChartColors`` in Portal Kit. This sub process return a list of default chart colors. Follow instruction to create chart color.
+Create an override which overrides sub process ``DefaultChartColors`` in PortalKit. This sub process return a list of default chart colors. Follow instruction to create chart color.
 
 |default-chart-color|
 
