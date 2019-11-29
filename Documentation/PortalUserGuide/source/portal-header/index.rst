@@ -181,9 +181,9 @@ Portal.
 Global Search
 -------------
 
-   The :guilabel:`Global Search` is a convenient tool for you to look up
-   information in the whole Axon.ivy Portal. You may search for any
-   keyword. By default, the Axon.ivy Portal will search for:
+The Global Search is a convenient tool for you to look up
+information in the whole Axon.ivy Portal. You may search for any
+keyword. By default, the Axon.ivy Portal will search for:
 
 1. Processes
 
