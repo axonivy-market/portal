@@ -44,8 +44,8 @@ public class ChatTest extends BaseTest {
 		ChatPage chatPage3 = createChatGroupWithPredifinedGroup(false, TestAccount.GUEST_USER);
 		chatPage3.addUserToChatGroup(Arrays.asList(chatUser1, chatGroupEveryBody));
 
-		assertTrue(chatPage2.isChatGroupDisplayed("Group chat of: Portal Guest User"));
-		assertTrue(chatPage.isChatGroupDisplayed("Group chat of: Portal Guest User"));
+		assertTrue(chatPage2.isChatGroupDisplayed("Leave Request"));
+		assertTrue(chatPage.isChatGroupDisplayed("Leave Request"));
 	}
 
 	@Test
