@@ -266,7 +266,39 @@ Since Portal 8, we introduce iFrame so that customer project can be loaded insid
 
 Portal introduced 4 scenarios for migration, choose suitable one:
 
-|task-template-migration|
+IFrame mode: 
+
++----------------------------------------------+------------------------------------------------------+
+| TaskTemplate.xhtml - Modena ivy theme        | Your own template                                    |
++==============================================+======================================================+
+| Pros:                                        | Pros:                                                |
+|                                              |                                                      |
+|  - Keep the old look&feel since Portal 7     |  - Portal and project styles are independent         |
+|  - Less migration effort                     |  - Less migration effort in future                   |
+|                                              |                                                      |
+| Cons:                                        | Cons:                                                |
+|                                              |                                                      |
+|  - Modena is out of support by Primefaces    |  - Highest migration effort expected for old projects|
+|  - Modena was highly customized by Portal    |                                                      |
+|  - Different look&feel between Portal and UIs|                                                      |
++----------------------------------------------+------------------------------------------------------+
+
+No-IFrame mode:
+
++------------------------------------------------+-------------------------------------------------------+
+| DeprecatedTaskTemplate-7, Serenity theme       | TaskTemplate-8, Serenity theme                        |
++================================================+=======================================================+
+| Pros:                                          | Pros:                                                 |
+|                                                |                                                       |
+|  - Keep the old structure for UIs (TabView)    |  - Portal and project styles are independent          |
+|  - Use Serenity theme from Portal              |  - Less migration effort in future                    |
+|  - Consistent look&feel with Portal            |  - Less migration effort in future                    |
+|                                                |                                                       |
+| Cons:                                          | Cons:                                                 |
+|                                                |                                                       |
+|  - Template is deprecated (will remove in v9.0 |  - Some migration effort                              |
+|  - Some migration effort                       |                                                       |
++------------------------------------------------+-------------------------------------------------------+
 
 - ``TaskTemplate.xhtml``, if you keep using TaskTemplate, your task must be loaded inside iFrame and Modena theme is included. For more details, refer to :ref:`Task template <components-layout-templates-task-template>`.
 
@@ -1042,4 +1074,3 @@ Changes in 6.0 (Säntis)
 .. |less-2-sass| image:: images/installation/less-2-sass.png
 .. |copy-start-process| image:: images/installation/copy-start-process.png
 .. |server-address-settings| image:: images/installation/server-address-settings.png
-.. |task-template-migration| image:: images/migration/task-template-migration.png
