@@ -78,8 +78,7 @@
             <p:spacer width="5" />
             <p:commandButton id="cancel-command" styleClass="portal-cancel-button" process="@this" global="false"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" update="#{cc.clientId}:filter-open-form @form" resetValues="true"
-              oncomplete="PF('#{widgetVarPanel}').hide(); #{facesContext.validationFailed ? taskFilter.resetValues() : ''};taskWidget.setupScrollbar(); taskWidget.setupHeader();">
-              <f:actionListener binding="#{empty cc.attrs.resultContainerUpdated ? logic.updateTasksByFilter(taskContainerId) : ''}" />
+              oncomplete="PF('#{widgetVarPanel}').hide(); #{facesContext.validationFailed ? taskFilter.resetValues() : ''};">
             </p:commandButton>
           </h:panelGroup>
         </p:overlayPanel>
