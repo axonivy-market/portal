@@ -12,7 +12,7 @@
       <ui:param name="processType" value="external-process-item" />
     </ui:include>
   </p:link>
-  <p:commandLink id="process-item" actionListener="#{compactProcessWidgetBean.startProcess(process.link)}"
+  <p:commandLink id="process-item" actionListener="#{compactProcessWidgetBean.startProcess(process)}"
     styleClass="process-item" rendered="#{not compactProcessWidgetBean.editMode and !isExternalProcess}">
     <ui:include src="ProcessItem.xhtml">
       <ui:param name="processType" value="process-item" />

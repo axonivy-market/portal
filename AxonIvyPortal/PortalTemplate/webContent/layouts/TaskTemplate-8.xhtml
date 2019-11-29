@@ -19,16 +19,19 @@
     <!-- <ui:define name="dynamicTabs" /> is removed, design your TabView if needed -->
     
     <!-- AVAILABLE PARAMS in this template: -->
-    <!-- actualStepIndex: current process step -->
-    <!-- steps: list of process steps -->
-    <!-- processChainDirection: VERTICAL or HORIZONTAL (default) -->
-    <!-- processChainShape: LINE or CIRCLE (default) -->
-    <!-- isWorkingOnATask: working on a task in order to display warning if leave page, default: true -->
-    <!-- announcementInvisible: display announcement written by administrator, default: true -->
-    <!-- isShowStartAdhocButton: display the button to create adhoc, default: PMV Portal Express is deployed -->
+    <!-- <ui:param name="actualStepIndex" value="" /> current process step -->
+    <!-- <ui:param name="steps" value="" /> list of process steps -->
+    <!-- <ui:param name="processChainDirection" value="" /> VERTICAL or HORIZONTAL (default) -->
+    <!-- <ui:param name="processChainShape" value="" /> LINE or CIRCLE (default) -->
+    <!-- <ui:param name="isWorkingOnATask" value="" /> working on a task in order to display warning if leave page, default: true -->
+    <!-- <ui:param name="announcementInvisible" value="" /> display announcement written by administrator, default: true -->
+    <!-- <ui:param name="isShowStartAdhocButton" value="" /> display the button to create adhoc, default: PMV Portal Express is deployed -->
     
     <!-- AVAILABLE TEMPLATE AREA (ui:insert): -->
-    <!-- breadCrumb, taskName, content, javascript-->
+    <!-- <ui:define name="breadCrumb"> -->
+    <!-- <ui:define name="taskName"> -->
+    <!-- <ui:define name="content"> -->
+    <!-- <ui:define name="javascript"> -->
     <!-- other areas: refer to BasicTemplate.xhtml -->
     <ui:param name="task" value="#{ivy.task}" />
     <ui:param name="abstractTaskTemplateBean" value="#{taskTemplateBean}" />
