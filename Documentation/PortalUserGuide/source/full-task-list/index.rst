@@ -86,7 +86,7 @@ HowTo: Use existing filter
    there might be no filters available. In this case, you must create a filter
    first. This is described in detail in HowTo: Create new filter.   
 
-1. Click on the dropdown menu next to the label **Filter:**
+1. Click on the **Save Filter** dropdown menu. 
 
 2. Select the filter you want to use.
 
