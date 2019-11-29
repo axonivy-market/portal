@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -137,8 +138,18 @@ private static final long serialVersionUID = -5889375917550618261L;
     processes.sort((process1, process2) -> StringUtils.compareIgnoreCase(process1.getProcessName(), process2.getProcessName().toLowerCase()));
   }
   
-  public void startProcess(String link) throws IOException {
-    FacesContext.getCurrentInstance().getExternalContext().redirect(link);
+  public void startProcess(UserProcess userProcess) throws IOException {
+    Objects.requireNonNull(userProcess, "User process must not be null");
+    String link = userProcess.getLink();
+    if (userProcess.isExternalLink()) {
+      FacesContext.getCurrentInstance().getExternalContext().redirect(link);
+      return;
+    }
+    
+    link += link.contains("?") ? "&" : "?";
+    // Put the "embedInIFrame" param to the process link to open it in the DefaultFramePage process
+    // Then this process will open task in IFrame or not based on its "embedInIFrame" String custom field
+    FacesContext.getCurrentInstance().getExternalContext().redirect(link + "embedInFrame");
   }
 
   private List<UserProcess> getFilteredExpressWorkflows(String query) {
