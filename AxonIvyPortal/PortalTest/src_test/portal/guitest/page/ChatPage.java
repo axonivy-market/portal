@@ -36,8 +36,8 @@ public class ChatPage extends TemplatePage {
 	}
 
 	public void selectChatGroup() {
-		waitForElementDisplayed(By.xpath("//span[contains(text(),'Group chat of')]"), true);
-		findElementByXpath("//span[contains(text(),'Group chat of')]").click();
+		waitForElementDisplayed(By.xpath("//span[contains(text(),'Leave Request')]"), true);
+		findElementByXpath("//span[contains(text(),'Leave Request')]").click();
 	}
 
 	public void sendMessage(String chatMessage) {
