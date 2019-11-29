@@ -17,6 +17,18 @@ it is used to configure Portal configuration, see different Portal
 configurations in
 :ref:`Portal mode <installation-basic-portal-mode>`
 
+How to open Admin Settings
+--------------------------
+
+Open ``Admin Settings`` by selecting the item in ``UserMenu`` on the
+topbar, if your page using layout of ``PortalTemplate`` .
+
+|multi-portal-open-settings|
+
+.. important:: 
+   If your application does not use templates of PortalTemplate project, you
+   have to create a page and use AdminSettings component inside.
+
 Global settings
 ---------------
 
@@ -36,69 +48,59 @@ clicking ``Restore All To Defaults`` button
 
 .. _settings-admin-settings-setup-multi-portals:
 
-Setup multi Portal applications
+Setup Portal multi applications
 -------------------------------
 
-.. important:: 
-   
-   There are 2 ways to configure portals:
+Portal provides two types of multi applications: ``Multi applications with overview`` and ``Multi applications (without overview)``
 
-   -  Multi applications with overview
+Multi applications with overview
+""""""""""""""""""""""""""""""""
+   .. important::
 
-      |multi-application-with-portal|
+      Used for related applications App1, App2, App3... of which we need to see all
+      tasks/cases in one page. Task/Case list of application named ``Portal`` would display all
+      tasks/cases of applications App1, App2, App3...
 
-      -  Used for related applications which we need an overview of all
-         tasks and cases.
+   |multi-application-with-portal|
 
-      -  Create a new application named ``Portal``. Deploy portal (kit,
-         template ..) to this application.
 
-      -  Create new applications: App1, App2, App3... Deploy portal
-         (kit, template ..) to new applications.
+   -  Create a new application named ``Portal``. Deploy portal (kit,
+      template ..) to this application.
 
-      -  Configure multi-apps Portal: login by Portal
-         Admin, configure applications: App1,
-         App2, App3...
+   -  Create new applications: App1, App2, App3... Deploy portal
+      (kit, template ..) to new applications.
 
-      -  Note that, ``do not`` add the application named ``Portal``, it is reserved
-         for displaying all tasks/cases... from all configured
-         applications.
+   -  Configure multi-apps Portal: login by Portal
+      Admin, configure applications: App1,
+      App2, App3...
 
-      -  Dashboard menu is only visible when logged-in user exists in
-         Portal application.
+   -  Note that, ``do not`` add the application named ``Portal``, it is reserved
+      for displaying all tasks/cases... from all configured
+      applications.
 
-   -  Multi applications
+   -  Dashboard menu is only visible when logged-in user exists in
+      Portal application.
 
-      |multi-application-without-portal|
+Multi applications (without overview)
+"""""""""""""""""""""""""""""""""""""
+   .. important::
 
-      -  Used for independent applications.
+      Used for independent applications App1, App2, App3... of which we ``do not`` need to see all
+      tasks/cases in one page.
 
-      -  Create new applications: App1, App2, App3... Deploy portal(kit,
-         template ..) to new applications. Note: must not create an
-         application named ``Portal``.
 
-      -  Configure multi-apps Portal: login by Portal
-         Admin, configure applications: App1,
-         App2, App3...
+   |multi-application-without-portal|
 
-Open Admin Settings
-"""""""""""""""""""
+   -  Create new applications: App1, App2, App3... Deploy portal(kit,
+      template ..) to new applications. Note: must not create an
+      application named ``Portal``.
 
-Open ``Admin Settings`` by selecting the item in ``UserMenu`` on the
-topbar, if your page using layout of ``PortalTemplate`` .
+   -  Configure multi-apps Portal: login by Portal
+      Admin, configure applications: App1,
+      App2, App3...
 
-|multi-portal-open-settings|
-
-.. important:: 
-   If your application does not use templates of PortalTemplate project, you
-   have to create a page and use AdminSettings component inside.
-
-..
-
-.. tip:: To be able to open Admin Settings dialog, user needs to have role AXONIVY_PORTAL_ADMIN.
-
-Add a new application
-"""""""""""""""""""""
+How to add a new application
+""""""""""""""""""""""""""""
 
 Choose ``Application`` tab on ``Admin Settings`` dialog and click on
 ``New`` button to add new application. Here you can choose application
