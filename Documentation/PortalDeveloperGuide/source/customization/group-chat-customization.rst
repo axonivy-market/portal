@@ -16,7 +16,7 @@ chat name, Confirgured role list for each process.
 Customize group chat header
 ---------------------------
 
-Override group chat title/header via "groupChatHeader" CMS entry.
+Override group chat title/header via ``groupChatHeader`` CMS entry.
 
 |customize-group-chat-header|
 

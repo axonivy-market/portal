@@ -602,7 +602,7 @@ Bk4 g1 @|MOGIcon #fIcon
 Bk4 f6 actionTable 'out=in1;
 ' #txt
 Bk4 f6 outLinks "TaskA.ivp" #txt
-Bk4 f6 taskData 'TaskA.CATEGORY=<%\=in1.workflowName%>/<%\=in1.currentTask.subject%>
+Bk4 f6 taskData 'TaskA.CATEGORY=AdhocExpressTasks
 TaskA.DESC=<%\=in1.currentTask.description%>\n
 TaskA.EXP=new Duration(0,0,in1.currentTask.untilDays,0,0,0)
 TaskA.EXPRI=1
@@ -670,7 +670,7 @@ Bk4 f7 0 0.5055155163921642 0 0 #arcLabel
 Bk4 f16 actionTable 'out=in1;
 ' #txt
 Bk4 f16 outLinks "TaskA.ivp" #txt
-Bk4 f16 taskData 'TaskA.CATEGORY=<%\=in1.workflowName%>/<%\=in1.currentTask.subject%>
+Bk4 f16 taskData 'TaskA.CATEGORY=AdhocExpressTasks
 TaskA.DESC=<%\=in1.currentTask.description%>\n
 TaskA.EXP=new Duration(0,0,in1.currentTask.untilDays,0,0,0)
 TaskA.EXPRI=1
@@ -944,7 +944,7 @@ Bk4 f25 @|StepIcon #fIcon
 Bk4 f29 actionTable 'out=in1;
 ' #txt
 Bk4 f29 outLinks "TaskA.ivp" #txt
-Bk4 f29 taskData 'TaskA.CATEGORY=<%\=in1.workflowName%>/<%\=in1.currentTask.subject%>
+Bk4 f29 taskData 'TaskA.CATEGORY=AdhocExpressTasks
 TaskA.DESC=<%\=in1.currentTask.description%>\n
 TaskA.EXP=new Duration(0,0,in1.currentTask.untilDays,0,0,0)
 TaskA.EXPRI=1
@@ -1244,7 +1244,11 @@ ivy.task.setDescription(ivy.cms.co("/Dialogs/Tasks/ProcessLoaded/TaskName"));
 
 ivy.case.setName(in.workflowName);
 ivy.case.setDescription(in.workflowDescription);
-ivy.case.setCategoryPath("ExpressWorkflow/" + in.workflowName);
+if (in.workflowType == ch.ivy.gawfs.enums.ProcessType.AD_HOC){
+		ivy.case.setCategoryPath("ExpressWorkflow/" + ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/adhoc"));
+	} else {
+		ivy.case.setCategoryPath("ExpressWorkflow/" + in.workflowName);
+	}
 ivy.case.customFields().stringField(CustomFields.IS_EXPRESS_PROCESS).set("true");' #txt
 Bk5 f11 security system #txt
 Bk5 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
