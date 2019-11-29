@@ -60,6 +60,8 @@ As0 f6 @|StepIcon #fIcon
 As0 f9 guid 169C76B36E1DA3A7 #txt
 As0 f9 method delete(ch.ivyteam.ivy.project.portal.examples.showcase.GdprFile) #txt
 As0 f9 inParameterDecl '<ch.ivyteam.ivy.project.portal.examples.showcase.GdprFile file> param;' #txt
+As0 f9 inParameterMapAction 'out.selectedGdprFile=param.file;
+' #txt
 As0 f9 outParameterDecl '<> result;' #txt
 As0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -73,8 +75,8 @@ As0 f9 @|UdMethodIcon #fIcon
 As0 f13 actionTable 'out=in;
 ' #txt
 As0 f13 actionCode 'try{
-	in.gdprRequest.files.removeAt(in.selectedGdprFile.getFileId()-1);
-	in.selectedGdprFile.getFile().delete();
+	in.gdprRequest.files.remove(in.selectedGdprFile);
+	in.selectedGdprFile.getFile().getJavaFile().delete();
 	in.selectedGdprFile= null;
 	in.renderPdfVeiwer = false;
 }
@@ -82,6 +84,7 @@ catch(Exception e){
 	ivy.log.error("File was not deleted, ", e);
 }
 ' #txt
+As0 f13 security system #txt
 As0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -107,14 +110,15 @@ As0 f1 371 51 26 26 0 12 #rect
 As0 f1 @|UdProcessEndIcon #fIcon
 As0 f11 actionTable 'out=in;
 ' #txt
-As0 f11 actionCode 'import javax.faces.application.FacesMessage;
+As0 f11 actionCode 'import org.apache.commons.io.FileUtils;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import org.apache.commons.io.FileUtils;
 
 if(!in.isStrongboxProcess){
 	File f = new File(in.selectedGdprFile.getFile().getName());
-
-	FileUtils.copyFile(in.selectedGdprFile.getFile(), f.getJavaFile());
+	
+	ivy.log.error(in.selectedGdprFile.getFile().getAbsolutePath());
+	FileUtils.copyFile(in.selectedGdprFile.getFile().getJavaFile(), f.getJavaFile());
 
 	in.pdfFilenameUrl = ivy.html.fileref(f);
 
@@ -201,11 +205,11 @@ import java.io.FileOutputStream;
 import ch.ivyteam.io.FileUtil;
 
 GdprFile gdprFile = new GdprFile();
-java.io.File file = new java.io.File(out.uploadEvent.getFile().getFileName());
-java.io.OutputStream outStream = new FileOutputStream(file);
-//FileUtil.copy(out.uploadEvent.getFile().getInputstream(), outStream);
+File iFile = new File(out.uploadEvent.getFile().getFileName(), true);
+iFile.writeBinary(out.uploadEvent.getFile().getContents());
+iFile.createNewFile();
 
-gdprFile.file = file;
+gdprFile.file = iFile;
 gdprFile.isNewAdded = true;
 out.gdprRequest.files.add(gdprFile);
 ' #txt
@@ -258,9 +262,9 @@ ServletContext servletContext = FacesContext.getCurrentInstance().getExternalCon
 try {
 		
 	if(in.#selectedGdprFile != null){ 
-	   	FileInputStream stream = new FileInputStream(in.selectedGdprFile.getFile().getAbsolutePath());
+	   	FileInputStream stream = new FileInputStream(in.selectedGdprFile.getFile().getJavaFile().getAbsolutePath());
 	 	String contentType = servletContext.getMimeType("");
-	  	 in.streamedContent = new DefaultStreamedContent(stream, contentType, in.selectedGdprFile.getFile().getName());
+	  	 in.streamedContent = new DefaultStreamedContent(stream, contentType, in.selectedGdprFile.getFile().getJavaFile().getName());
 	}else{
 		ivy.log.error("File is null");
 	}
@@ -268,6 +272,7 @@ try {
 catch (Exception e){
 	ivy.log.error(e);
 }' #txt
+As0 f12 security system #txt
 As0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -275,7 +280,7 @@ As0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f12 232 354 112 44 -28 -8 #rect
+As0 f12 232 352 112 48 -28 -8 #rect
 As0 f12 @|StepIcon #fIcon
 As0 f21 expr out #txt
 As0 f21 344 376 467 376 #arcP
@@ -286,6 +291,8 @@ As0 f15 109 376 232 376 #arcP
 As0 f8 guid 169C76B36E2BC446 #txt
 As0 f8 method show(ch.ivyteam.ivy.project.portal.examples.showcase.GdprFile) #txt
 As0 f8 inParameterDecl '<ch.ivyteam.ivy.project.portal.examples.showcase.GdprFile file> param;' #txt
+As0 f8 inParameterMapAction 'out.selectedGdprFile=param.file;
+' #txt
 As0 f8 outParameterDecl '<> result;' #txt
 As0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
