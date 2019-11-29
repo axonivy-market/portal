@@ -22,7 +22,7 @@ To replace default login page, extend existing templates with
 
 Additional
 ----------
-To replace the default login background image, simply modify the default image in ``/PortalStyle/webContent/resources/serenity-layout/images/login/login-bg.jpg`` by your image
+To change the default login background image, simply replace the default image in ``/PortalStyle/webContent/resources/serenity-layout/images/login/login-bg.jpg`` by your image
 
 .. |login-default| image:: images/login/login-default.png
 
