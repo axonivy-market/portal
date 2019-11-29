@@ -53,10 +53,6 @@
 	width: 25%;
 }
 
-.debitor-label-container.small {
-	width: 15.5%;
-}
-
 _:-ms-input-placeholder, :root .debitor-label-container.small {
 	width: 16.5%;
 }
@@ -114,11 +110,6 @@ _:-ms-input-placeholder, :root .debitor-label-container.small {
 	font-size: 13px !important;
 }
 
-.calculation-form .ui-widget.ui-button {
-	min-width: 110px;
-	height: 35px;
-}
-
 .calculation-form .ui-button-text-only .ui-button-text {
 	padding: 0 20px !important;
 }
@@ -129,6 +120,13 @@ _:-ms-input-placeholder, :root .debitor-label-container.small {
 	line-height: 2.3;
 }
 
+.calculation-form .header-inputfield.ui-inputfield.ui-inputtext {
+	line-height: 2.3;
+    width: auto;
+	min-width: 20%;
+	max-width: 100%;
+}
+
 _:-ms-input-placeholder, :root .ui-g .ui-outputlabel {
 	line-height: 2;
 	margin-top: 0 !important;
@@ -137,7 +135,6 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel {
 .debitor-details {
 	padding: 10px 20px 20px 20px;
 	border: 1px solid #d6d6d6;
-	border-top: none;
 	background-color: #fff;
 	width: 100%;
 }
@@ -266,6 +263,5 @@ _:-ms-input-placeholder, :root .second-level-tab-menu.fixed {
 
 /* TEXT INPUT AUTO INCREASE WIDTH */
 .calculation-form .ui-inputfield.ui-inputtext {
-	min-width: 50%;
-	max-width: 100%;
+	width: 100%;
 }
