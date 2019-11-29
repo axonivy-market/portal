@@ -34,12 +34,10 @@ created. Each chart provides you with the following features:
    on the position of the chart to allow you rearrangement according to
    your personal needs
 
-4. The chart title
-
-5. The chart itself. It might provide you with a drill down function
+4. The chart itself. It might provide you with a drill down function
    down to the task level.
 
-6. The legend, explaining the part of the charts
+5. The legend, explaining the part of the charts
 
 .. _howto-create-chart:
 

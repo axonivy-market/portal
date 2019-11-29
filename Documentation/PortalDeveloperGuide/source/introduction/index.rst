@@ -39,7 +39,7 @@ Data Provider for Express
 
 -  Developers can prepare several Data Providers for Express
 
--  Citizen Developer can use these libraries as Data Provider in Express
+-  Developers can use these libraries as Data Provider in Express
    Workflow creation
 
 .. _introduction-new-and-note-worthy-announcement-portal:
