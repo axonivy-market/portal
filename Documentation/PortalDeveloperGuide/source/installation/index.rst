@@ -299,7 +299,7 @@ No-IFrame mode:
 |                                                |                                                       |
 |  - Keep the old structure for UIs (TabView)    |  - Portal and project styles are independent          |
 |  - Use Serenity theme from Portal              |  - Less migration effort in future                    |
-|  - Consistent look&feel with Portal            |  - Less migration effort in future                    |
+|  - Consistent look&feel with Portal            |                                                       |
 |                                                |                                                       |
 | Cons:                                          | Cons:                                                 |
 |                                                |                                                       |
