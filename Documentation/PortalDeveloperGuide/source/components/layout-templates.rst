@@ -336,7 +336,7 @@ Responsiveness
 --------------
 
 Since version 8.0, Portal has simplified ResponsiveToolKit and now
-Portal supports various screen solutions, not fit to 3 screen widths as
+Portal supports various screen resolution, not fit 3 screen widths as
 before.
 
 To apply your styles for the specific resolution, you can add your own
