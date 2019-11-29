@@ -18,6 +18,11 @@ To replace default login page, extend existing templates with
     <ic:internaltest.ui.YourOwnLoginComponent />
     </ui:define>
     </ui:composition>
+..
+
+Additional
+----------
+To replace the default login background image, simply modify the default image in ``/PortalStyle/webContent/resources/serenity-layout/images/login/login-bg.jpg`` by your image
 
 .. |login-default| image:: images/login/login-default.png
 
