@@ -31,7 +31,7 @@
 	</p:confirmDialog>
 
   <h:form>
-    <p:remoteCommand id="logout-and-show-dialog" name="logoutAndShowDialog" actionListener="#{logic.logout}"
+    <p:remoteCommand id="logout-and-show-dialog" name="logoutAndShowDialog" actionListener="#{logic.logout(task)}"
       onstart="PF('timeout-warning-dialog').hide()" oncomplete="PF('timeout-dialog').show()" />
   </h:form>
   <script type="text/javascript">
