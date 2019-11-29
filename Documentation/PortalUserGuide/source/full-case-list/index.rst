@@ -85,7 +85,7 @@ HowTo: Use existing filter
    first. This is described in detail in :ref:`howto-create-new-filter-1`.
    
 
-1. Click on the dropdown menu next to the label **Filter:**
+1. Click on the **Save Filter** dropdown menu.
 
 2. Select the filter you want to use.
 
