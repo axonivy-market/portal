@@ -46,7 +46,7 @@ Refer to ``PortalExamples`` project for examples
 
    -  Introduce a new HTMLDialog which uses template
       ``/layouts/PortalCasesTemplate.xhtml`` (refer to
-      :ref:`Responsiveness <components-layout-templates-reponsiveness>`
+      :ref:`Responsiveness <components-layout-templates-responsiveness>`
       to override responsiveness). You can take a look at
       ``PortalCases.xhtml`` to see how to customize it.
 
@@ -196,8 +196,8 @@ case list after navigating to case list from your page:
 
 .. _customization-case-widget-responsive-layout:
 
-How to make reponsive case list
--------------------------------
+How to make responsive case list
+--------------------------------
 
 If you have customized case list and want it responsive on different
 screen sizes, please follow below steps.
@@ -210,7 +210,55 @@ You can refer to ``PortalExamples`` project for examples
    and caseHeader. You can find responsive class in :ref:`this
    part. <customization-responsive-css>`
 
-   |responsive-case-list-customization|
+   .. code-block:: html
+      :emphasize-lines: 4,10,35,40
+
+            <!-- New field -->
+            <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customVarCharField1-column-header"
+            styleClass="TexAlCenter customized-case-header-column"
+            responsiveStyleClass="u-hidden-lg-down
+            js-hidden-when-expand-menu"
+            value="#{ivy.cms.co('/DefaultColumns/caseList/customVarCharField1')}" sortedField="customVarCharField1"
+            sortable="true" dataModel="#{caseView.dataModel}" />
+            <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customTimestampField1-column-header"
+            styleClass="TexAlCenter customized-case-header-column"
+            responsiveStyleClass="u-hidden-lg-down 
+            js-hidden-when-expand-menu "
+            value="#{ivy.cms.co('/DefaultColumns/caseList/customTimestampField1')}" sortedField="customTimestampField1"
+            sortable="true" dataModel="#{caseView.dataModel}" />
+      </ui:define>
+
+      <ui:define name="caseHeader">
+            <div class="case-header-name-desc-cell u-truncate-text">
+            <ic:ch.ivy.addon.portalkit.component.cases.column.CaseName caseNameId="case-header-name-cell"
+            caseDescriptionId="description-cell" case="#{case}" dataModel="#{caseView.getDataModel()}" />
+            </div>
+            <ic:ch.ivy.addon.portalkit.component.cases.column.CaseId componentId="case-id-cell" case="#{case}"
+            dataModel="#{caseView.getDataModel()}" />
+            <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCreator componentId="case-creator-cell" case="#{case}"
+            dataModel="#{caseView.getDataModel()}" />
+            <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-creation-date-cell"
+            rendered="#{caseView.dataModel.isSelectedColumn('CREATION_TIME')}" value="#{case.startTimestamp}" />
+            <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-expiry-date-cell"
+            rendered="#{caseView.dataModel.isSelectedColumn('FINISHED_TIME')}" value="#{case.endTimestamp}"
+            responsiveStyleClass="js-hidden-when-expand-menu u-hidden-md-down" />
+            <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState componentId="case-state-cell" case="#{case}"
+            dataModel="#{caseView.getDataModel()}" />
+
+            <!-- New field -->
+            <h:panelGroup styleClass="customized-case-header-column js-hidden-when-expand-menu 
+            u-hidden-lg-down">
+            <h:outputText value="#{case.customFields().stringField('CustomVarCharField1').getOrNull()}"
+            styleClass="case-header-default-cell customized-case-header-column" />
+            </h:panelGroup>
+            <h:panelGroup styleClass="customized-case-header-column js-hidden-when-expand-menu 
+            u-hidden-lg-down">
+            <h:outputText value="#{case.customFields().timestampField('CustomTimestampField1').getOrNull()}"
+            styleClass="case-header-default-cell">
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+            </h:outputText>
+            </h:panelGroup>
+      </ui:define>
 
    .. tip:: ``CaseCustomField`` component has default
       responsiveStyleClass is ``u-hidden-sm-down``
@@ -220,7 +268,55 @@ You can refer to ``PortalExamples`` project for examples
    add ``js-hidden-when-expand-menu`` to responsiveStyleClass or
    styleClass param of caseListHeader and caseHeader.
 
-   |responsive-case-list-hide-column|
+   .. code-block:: html
+      :emphasize-lines: 5,11,35,40
+
+            <!-- New field -->
+            <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customVarCharField1-column-header"
+            styleClass="TexAlCenter customized-case-header-column"
+            responsiveStyleClass="u-hidden-lg-down
+            js-hidden-when-expand-menu"
+            value="#{ivy.cms.co('/DefaultColumns/caseList/customVarCharField1')}" sortedField="customVarCharField1"
+            sortable="true" dataModel="#{caseView.dataModel}" />
+            <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="customTimestampField1-column-header"
+            styleClass="TexAlCenter customized-case-header-column"
+            responsiveStyleClass="u-hidden-lg-down 
+            js-hidden-when-expand-menu "
+            value="#{ivy.cms.co('/DefaultColumns/caseList/customTimestampField1')}" sortedField="customTimestampField1"
+            sortable="true" dataModel="#{caseView.dataModel}" />
+      </ui:define>
+
+      <ui:define name="caseHeader">
+            <div class="case-header-name-desc-cell u-truncate-text">
+            <ic:ch.ivy.addon.portalkit.component.cases.column.CaseName caseNameId="case-header-name-cell"
+            caseDescriptionId="description-cell" case="#{case}" dataModel="#{caseView.getDataModel()}" />
+            </div>
+            <ic:ch.ivy.addon.portalkit.component.cases.column.CaseId componentId="case-id-cell" case="#{case}"
+            dataModel="#{caseView.getDataModel()}" />
+            <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCreator componentId="case-creator-cell" case="#{case}"
+            dataModel="#{caseView.getDataModel()}" />
+            <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-creation-date-cell"
+            rendered="#{caseView.dataModel.isSelectedColumn('CREATION_TIME')}" value="#{case.startTimestamp}" />
+            <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-expiry-date-cell"
+            rendered="#{caseView.dataModel.isSelectedColumn('FINISHED_TIME')}" value="#{case.endTimestamp}"
+            responsiveStyleClass="js-hidden-when-expand-menu u-hidden-md-down" />
+            <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState componentId="case-state-cell" case="#{case}"
+            dataModel="#{caseView.getDataModel()}" />
+
+            <!-- New field -->
+            <h:panelGroup styleClass="customized-case-header-column u-hidden-lg-down
+            js-hidden-when-expand-menu ">
+            <h:outputText value="#{case.customFields().stringField('CustomVarCharField1').getOrNull()}"
+            styleClass="case-header-default-cell customized-case-header-column" />
+            </h:panelGroup>
+            <h:panelGroup styleClass="customized-case-header-column u-hidden-lg-down 
+            js-hidden-when-expand-menu ">
+            <h:outputText value="#{case.customFields().timestampField('CustomTimestampField1').getOrNull()}"
+            styleClass="case-header-default-cell">
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+            </h:outputText>
+            </h:panelGroup>
+      </ui:define>
 
    .. tip:: The smallest browser width you can anchor the left menu is
           1025. So you could reduce width of browser to 1025 to test and decide which columns need to be hidden.
@@ -228,5 +324,3 @@ You can refer to ``PortalExamples`` project for examples
 .. |case-filter| image:: images/case-widget/case-filter.png
 .. |case-columns-configuration| image:: images/case-widget/case-columns-configuration.png
 .. |case-list| image:: images/case-widget/case-list.png
-.. |responsive-case-list-hide-column| image:: images/case-widget/responsive-case-list-hide-column.png
-.. |responsive-case-list-customization| image:: images/case-widget/responsive-case-list-customization.png
