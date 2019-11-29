@@ -139,13 +139,12 @@ them by setting the default widgets' positions.
 Change the page's title
 -----------------------
 
-The default page title is Cockpit. Apply the following code to change
-it:
+The default page title is Dashboard. Apply the following code to change it:
 
 .. code-block:: html
 
    <ui:composition template="/layouts/DefaultHomePageTemplate.xhtml" >
-   <ui:define name="pageTitle">YOUR PAGE'S TITLE</ui:define>
+   <ui:define name="title">YOUR PAGE'S TITLE</ui:define>
    </ui:composition>
 
 

@@ -130,7 +130,7 @@ In designer
 3. If PortalStyle is customized, copy logo, customization.scss,
    font-faces.scss, customized stuff from old to new PortalStyle, run
    maven to compile CSS.
-4. Follow `Migration notes`_.
+4. Follow detailed migration notes for each version below.
 5. If customization needs copying code from Portal, merge changes
    between two versions of Portal for copied code.
 
@@ -144,7 +144,7 @@ In engine
    application if it's not needed.
 3. Redeploy Portal projects (exclude PortalConnector) and customer
    project.
-4. Follow migration notes to migrate data, if any.
+4. Follow detailed migration notes for each version below.
 
 .. _installation-migration-notes-8-0-0:
 
@@ -172,9 +172,16 @@ https://www.npmjs.com/package/less2sass.
    NodeJS on your system (can get by this page  https://nodejs.org/en/download). Once installed, restart your
    system as well.
 -  Open Cmd command line and run command:
-   npm install -g less2sass
+
+   .. code-block:: bash
+
+      npm install -g less2sass
+
 -  Once installed you can simply run:
-   ``less2sass 'path_to_less_file_or_directory'``
+
+   .. code-block:: bash
+   
+      less2sass 'path_to_less_file_or_directory'
 
    E.g for path_to_less_file_or_directory:
 
