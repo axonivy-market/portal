@@ -14,21 +14,21 @@
 			<h:form id="main-form" styleClass="calculation-form" style="margin-top: 50px;">
 				<div class="ui-g header-section">
 					<div class="ui-g-2 ui-md-3">
-						<p:outputLabel for="trans-number" value="Transaction number" styleClass="MarRight10"/>
+						<p:outputLabel for="trans-number" value="Transaction number" styleClass="MarRight10 "/>
 						<p:inputText id="trans-number"
-							styleClass="ui-corner-all" value="1234567" />
+							styleClass="ui-corner-all header-inputfield" value="1234567" />
 					</div>
-					<div class="ui-g-3 ui-md-3">
+					<div class="ui-g-4">
 						<p:outputLabel for="header-date" value="Date" styleClass="MarRight10"/>
 						<p:calendar id="header-date" value=""
 							pattern="#{dateTimePatternBean.datePattern}" showOn="button"
-							styleClass="ui-corner-all" />
+							styleClass="ui-corner-all header-inputfield" />
 					</div>
 					<div class="ui-g-2 ui-md-3">
 						<p:outputLabel for="last-saved" value="Last saved" styleClass="MarRight10"/>
-						<p:inputText id="last-saved" styleClass="ui-corner-all" value="Daniel 31.12.2018" />
+						<p:inputText id="last-saved" styleClass="ui-corner-all header-inputfield" value="Daniel 31.12.2018" />
 					</div>
-					<div class="ui-g-2 ui-md-3">
+					<div class="ui-g-2 ui-md-2">
 						<p:commandButton id="load-button" value="Load" />
 					</div>
 				</div>
@@ -88,9 +88,10 @@
 											<p:outputLabel for="invoice-code" value="Invoice code" styleClass="MarRight10" escape="true"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="invoice-code" styleClass="ui-corner-all" value="359-9-124-001" />
+											<p:inputText id="invoice-code" styleClass="" value="359-9-124-001" />
 										</div>
 									</div>
+								</div>
 								</div>
 								<div class="ui-g-12 ui-md-12 ui-lg-6">
 									<div class="ui-g">
@@ -98,7 +99,7 @@
 											<p:outputLabel for="address" value="Address" styleClass="MarRight10"/>
 										</div>
 										<div class="Wid74">
-											<p:inputText id="address" styleClass="ui-corner-all" value="4810  Murphy Court, Riverside, CA" />
+											<p:inputText id="address" styleClass="" value="4810  Murphy Court, Riverside, CA" />
 										</div>
 									</div>
 								</div>
@@ -173,9 +174,6 @@
 										</div>
 										<div class="Wid74">
 											<p:dataTable id="table-1" value="#{data.table1}" var="entity" scrollable="true" scrollHeight="152">
-												<p:column headerText="Number" width="70">
-													<h:outputText value="#{entity.number}" />
-												</p:column>
 												<p:column headerText="Customer code" width="90">
 													<h:outputText value="#{entity.code}" />
 												</p:column>
@@ -196,9 +194,6 @@
 										</div>
 										<div class="Wid74">
 											<p:dataTable id="table-2" value="#{data.table2}" var="entity" scrollable="true" scrollHeight="152">
-												<p:column headerText="Number" width="70">
-													<h:outputText value="#{entity.number}" />
-												</p:column>
 												<p:column headerText="Customer code" width="90">
 													<h:outputText value="#{entity.code}" />
 												</p:column>
@@ -220,10 +215,7 @@
 										</div>
 										<div class="Wid74">
 											<p:dataTable id="table-3" value="#{data.table3}" var="entity" scrollable="true" scrollHeight="152">
-												<p:column headerText="Number" width="90">
-													<h:outputText value="#{entity.objectNumber}" />
-												</p:column>
-												<p:column headerText="Object Name" width="100">
+												<p:column headerText="Object Name" width="80">
 													<h:outputText value="#{entity.objectName}" />
 												</p:column>
 												<p:column headerText="Created Date" width="100">
@@ -241,7 +233,7 @@
 									
 								</div>
 								<div class="ui-g-12 ui-md-12 ui-lg-6 MarTop40"></div>
-							</div>
+							
 						</p:fieldset>
 
 						<!-- PANEL 3 -->
@@ -397,19 +389,19 @@
 								</div>
 								<div class="ui-g-12 ui-md-12 ui-lg-6">
 									<div class="ui-g">
-										<div class="debitor-label-container">
+										<div class="debitor-label-container ui-g-3">
 											<p:outputLabel for="additional-2" value="Option 1" styleClass="MarRight10"/>
 										</div>
-										<div class="Wid11">
+										<div class="ui-g-3">
 											<p:selectOneMenu id="additional-2" value="#{data.isNewCustomer}">
 												<f:selectItem itemValue="true" itemLabel="Ja"></f:selectItem>
 												<f:selectItem itemValue="false" itemLabel="Nein"></f:selectItem>
 											</p:selectOneMenu>
 										</div>
-										<div class="debitor-label-container small">
+										<div class="debitor-label-container small ui-g-3">
 											<p:outputLabel for="additional-3" value="Option 2" styleClass="MarRight10"/>
 										</div>
-										<div class="Wid11">
+										<div class="ui-g-3">
 											<p:selectOneMenu id="additional-3" value="#{data.isNewCustomerLetter}">
 												<f:selectItem itemValue="true" itemLabel="Ja"></f:selectItem>
 												<f:selectItem itemValue="false" itemLabel="Nein"></f:selectItem>
