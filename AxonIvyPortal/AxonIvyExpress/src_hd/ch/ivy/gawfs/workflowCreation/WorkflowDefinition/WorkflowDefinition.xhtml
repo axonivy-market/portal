@@ -8,7 +8,9 @@
     <ui:param name="isShowStartAdhocButton" value="false" />
     <ui:param name="processChainShape" value="LINE" />
 
-    <ui:define name="title">#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/PageTitle')} #{ivy.case.name}</ui:define>
+    <ui:define name="title">
+      <h:outputText value="#{ivy.case.name} - #{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/WorkflowPropertiesStep')}" />
+    </ui:define>
 
     <ui:define name="content">
       <h:form id="form" styleClass="express-work-flow">
