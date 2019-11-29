@@ -32,7 +32,7 @@ These templates have the same header, which is a menu of applications
 that you configure in Administration page. Since version 8.0, Portal
 officially supports responsiveness, every templates has its default
 responsiveness, you can refer to
-:ref:`Responsiveness <components-layout-templates-reponsiveness>`
+:ref:`Responsiveness <components-layout-templates-responsiveness>`
 to override it. Besides, there are user settings like: Absences, Email,
 Language Settings and Administration (for admin only). Details about
 user settings can be found in
@@ -58,7 +58,7 @@ How to use Basic template
    define the template inside and reuse the default responsiveness
    behavior. To override it, please use ``pageContent`` instead of
    ``simplePageContent`` and
-   :ref:`Responsiveness <components-layout-templates-reponsiveness>`.
+   :ref:`Responsiveness <components-layout-templates-responsiveness>`.
 
    .. code-block:: html
    
@@ -330,7 +330,7 @@ template.
 
 ..    
 
-.. _components-layout-templates-reponsiveness:
+.. _components-layout-templates-responsiveness:
 
 Responsiveness
 --------------
