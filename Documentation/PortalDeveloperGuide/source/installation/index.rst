@@ -899,8 +899,7 @@ Changes in 8.0
    
 -  Support to see case if user is an owner. Administrator can activate/deactivate it via the ``ENABLE_CASE_OWNER`` Portal settings, default is false.
    
--  Support to start a task in IFrame. Process developer can activate/deactivate it via the ``embedInIFrame`` task custom field, default is deactivated,
-   refer to :ref:` IFrame Task template <components-layout-templates-iframe-task-template>` for more details.
+-  Support to start a task in IFrame, refer to :ref:`IFrame in Portal <iframe>`.
 
 -  Refactor ``TaskTemplate.xhtml``, refer to :ref:`Migration
    Notes <installation-migration-notes-8-0-0-task-template>` for more details.
