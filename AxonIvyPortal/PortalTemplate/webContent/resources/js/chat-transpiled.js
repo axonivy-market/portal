@@ -570,6 +570,7 @@ function View(uri) {
     });
 
     if (groupChats.length > 0) {
+      $('.js-no-group-chat-template').addClass('u-hidden');
       groupChats.forEach(function (groupChat) {
         if (existingGroups.length == 0 || existingGroups.indexOf(groupChat.caseId) == -1) {
           var groupChatName = groupChatFormat;

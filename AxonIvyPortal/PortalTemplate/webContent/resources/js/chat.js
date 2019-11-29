@@ -358,6 +358,7 @@ function View(uri)
       });
       
       if (groupChats.length > 0) {
+      	$('.js-no-group-chat-template').addClass('u-hidden');
         groupChats.forEach(function(groupChat) {
           if (existingGroups.length == 0 || existingGroups.indexOf(groupChat.caseId) == -1) {
             var groupChatName = groupChatFormat;
@@ -375,7 +376,6 @@ function View(uri)
             groupChatContainer.appendChild(cloneGroup);
           }
         });
-        $(document.getElementsByClassName('js-no-group-chat-template')[0]).addClass("u-hidden");
       } else {
         var noGroupChatTemplate = document.getElementsByClassName('js-no-group-chat-template')[0];
         noGroupChatTemplate.classList.remove("u-hidden");
