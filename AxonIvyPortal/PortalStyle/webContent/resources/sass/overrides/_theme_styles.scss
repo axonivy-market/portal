@@ -47,6 +47,15 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
   height: auto;
 }
 
+.login-body {
+  background-image: url("\#{resource['serenity-layout:images/login/login-bg.jpg']}");
+  margin: 0;
+  padding: 0;
+  background-attachment: fixed;
+  background-position: center center !important;
+  z-index: -1;
+}
+
 .login-body .login-panel .login-panel-content {
   padding: 20px 100px;
 }
