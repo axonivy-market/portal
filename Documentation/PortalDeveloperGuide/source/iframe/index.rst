@@ -17,17 +17,21 @@ There are 3 levels:
 
 	- ``true``: start inside IFrame
 	- ``false``: not start inside IFrame
-	- ``not set``: check case level
+	- Don't set to check case level
+	
+	|task-embedInFrame|
 
 - Case level: in Case custom fields, set the ``embedInFrame`` String field to 
 
 	- ``true``: start inside IFrame 
 	- ``false``: not start inside IFrame 
-	- ``not set``: check application level
+	- Don't set to check application level
+	
+	|case-embedInFrame|
 
 - Application level:
 
-	- Portal Administrator could register an application and choose the option that all of the tasks in this application are started inside IFrame
+	- Portal Administrator could :ref:`register an application <settings-admin-settings>` and choose the option that all of the tasks in this application are started inside IFrame
 
 .. important::
 	If there is no configuration, a process/task is started inside IFrame as default.
@@ -48,4 +52,8 @@ Follow the steps:
 	
 	|iframe-template|
 	
+3. To pass some supported params in IFrame such as process steps, refer to ``IFrameTaskTemplate.xhtml``
+
+.. |task-embedInFrame| image:: images/task-embedInFrame.png
+.. |case-embedInFrame| image:: images/case-embedInFrame.png	
 .. |iframe-template| image:: images/iframe-template.png
