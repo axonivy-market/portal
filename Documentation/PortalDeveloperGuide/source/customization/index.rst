@@ -1,10 +1,13 @@
 Customization
 *************
 
-We know our customers need individually and want to maximize customer lifetime
-value. So portal provides an easy way to customize features, user interface, user
-experiences ... The even more portal example project is a showcase with a detailed step
-to customize the thing to meet the customer satisfaction listed bellow.
+Portal provides an easy way to customize features, user interface, user
+experiences... Besides the documentation, you could refer to project ``PortalExamples`` for customization examples. 
+Your could find project ``PortalExamples`` in engine demo mode or import ``Ivy Projects`` in designer.
+
+.. figure:: images/customization/engine-demo-mode.png
+
+.. figure:: images/customization/import-portal-examples.png
 
 .. toctree::
    :maxdepth: 1
