@@ -13,4 +13,5 @@ Portal Developer Guide
    settings/index
    components/index
    customization/index
+   iframe/index
    troubleshooting/index
