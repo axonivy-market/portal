@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.taskfilter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
@@ -111,9 +112,7 @@ public class TaskResponsibleFilter extends TaskFilter {
 
   public void setSelectedResponsible(ISecurityMember selectedResponsible) {
     this.selectedResponsible = selectedResponsible;
-    if (selectedResponsible != null) {
-      this.selectedResponsibleMemberName = selectedResponsible.getMemberName();
-    }
+    this.selectedResponsibleMemberName = Optional.ofNullable(selectedResponsible).map(ISecurityMember::getMemberName).orElse(StringUtils.EMPTY);
   }
 
   public String getSelectedResponsibleMemberName() {
