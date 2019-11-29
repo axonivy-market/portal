@@ -1071,7 +1071,7 @@ Changes in 6.0 (Säntis)
 
 -  Support responsiveness with 3 screen widths: 1920, 1366 and 1024.
    Refer to
-   :ref:`Responsiveness <components-layout-templates-reponsiveness>`
+   :ref:`Responsiveness <components-layout-templates-responsiveness>`
    for more details.
 
 -  Some customizations are not supported in this release: main menu,
