@@ -264,8 +264,6 @@ https://www.npmjs.com/package/less2sass.
 
 .. _installation-migration-notes-8-0-0-task-template:
 
-
-
 How to migrate TaskTemplate
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -273,7 +271,7 @@ Since Portal 8, we introduce :ref:`IFrame <iframe-in-portal>` so that customer p
 
 It's ``highly recommended`` to use this IFrame feature with your own template for new feature availability and prevent migration pain in future. Refer to these steps:
 
-1. Create your own template decoupled from Portal, or use the predefined template, e.g. basic-8
+1. Create a dialog with the frame-8 template in designer, or use your own template to separate your css styles from Portal
 
 2. In HTML dialogs, use this template: adapt ``ui:composition``, ``ui:params``, ``ui:define``, etc.
 

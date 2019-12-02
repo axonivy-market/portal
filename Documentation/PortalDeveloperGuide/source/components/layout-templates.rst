@@ -8,27 +8,32 @@ Layout templates
 Templates for development
 -------------------------
 
-Your Portal Project is dependent on PortalTemplate project, in which
-there are 7 templates that can be used directly.
+Your Portal Project is dependent on PortalTemplate project, in which there are 7 templates that can be used directly without iframes. 
+In addition 3 templates are described to be used with iframes.
+
+Templates without IFrames:
 
 1. :ref:`Basic template <components-layout-templates-basic-template>`
 
-2. :ref:`IFrame Task template <components-layout-templates-iframe-task-template>`
+2. :ref:`Task template 8 <components-layout-templates-task-template-8>`
 
-3. :ref:`Task template (Deprecated) <components-layout-templates-task-template>`
+3. :ref:`Deprecated task template 7 (Deprecated) <components-layout-templates-deprecated-task-template-7>`
 
-4. :ref:`Task template 8 <components-layout-templates-task-template-8>`
+4. :ref:`Two column template (Deprecated) <components-layout-templates-two-column-template>`
 
-5. :ref:`Deprecated task template 7 (Deprecated) <components-layout-templates-deprecated-task-template-7>`
+5. :ref:`Task list template <components-layout-templates-task-list-template>`
 
-6. :ref:`Two column template (Deprecated) <components-layout-templates-two-column-template>`
+6. :ref:`Case list template <components-layout-templates-case-list-template>`
 
-7. :ref:`Task list template <components-layout-templates-task-list-template>`
+7. :ref:`Default homepage template <components-layout-templates-default-homepage-template>`
 
-8. :ref:`Case list template <components-layout-templates-case-list-template>`
+Templates to use with IFrame:
 
-9. :ref:`Default homepage template <components-layout-templates-default-homepage-template>`
+1. :ref:`IFrame Task template <components-layout-templates-iframe-task-template>` (Template used internally by portal to configure iframes)
 
+2. :ref:`Task template (Deprecated) <components-layout-templates-task-template>`
+
+3. :ref:`frame-8 template <components-layout-templates-frame-8-template>` (Provided by core, use Serenity theme)
 
 These templates have the same header, which is a menu of applications
 that you configure in Administration page. Since version 8.0, Portal
