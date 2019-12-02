@@ -2584,7 +2584,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 .substitute-container {
   height: 350px;
-  width: 900px;
+  width: 100%;
   overflow: auto;
 }
 
