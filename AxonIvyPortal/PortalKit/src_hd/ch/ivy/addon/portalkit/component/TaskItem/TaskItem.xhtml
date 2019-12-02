@@ -36,13 +36,13 @@
       <p:ajax event="click" listener="#{logic.openDetails(task,dataModel)}" onstart="#{cc.attrs.onTaskStartCallback}" />
       <cc:renderFacet name="taskHeader" />
     </h:panelGroup>
-    <h:panelGroup styleClass="task-item-header-actions">
+    <div class="task-item-header-actions">
       <f:subview id="task-action">
         <ui:include src="TaskAction.xhtml">
           <ui:param name="dataModel" value="#{dataModel}" />
         </ui:include>
       </f:subview>
-    </h:panelGroup>
+    </div>
   </h:panelGroup>
 
   <p:confirmDialog id="reset-task-dialog-#{rowIndex}" appendTo="@(body)" widgetVar="reset-task-dialog-#{rowIndex}"
@@ -50,14 +50,14 @@
     <f:facet name="message">
       <h:outputText escape="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
     </f:facet>
-    <h:panelGroup>
+    <div>
       <h:form id="reset-task-form">
         <p:commandButton actionListener="#{logic.resetAndOpenTask}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           onstart="#{cc.attrs.onTaskStartCallback}" />
         <p:commandButton onclick="PF('reset-task-dialog-#{rowIndex}').hide()" styleClass="portal-cancel-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button" />
       </h:form>
-    </h:panelGroup>
+    </div>
   </p:confirmDialog>
 
 </cc:implementation>
