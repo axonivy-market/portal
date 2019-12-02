@@ -10,29 +10,29 @@
 <cc:implementation>
   <h:form id="chart-management-form">
     <!-- Init Data for chart - auto run -->
-    <p:remoteCommand id="init-filter-command" name="initFilter" autoRun="true" update="statistic-filter" global="false"
+    <p:remoteCommand id="init-filter-command" name="initFilter" autoRun="true" update="statistic-filter" global="false" immediate="true"
       action="#{statisticChartCreationBean.updateFilters(data.statisticFilter, data.oldStatisticFilter)}" oncomplete="updateChartModels();" />
 
     <!-- updateChartModels function will update charts by the schedule such as updateTaskByPriorityModel(), updateCaseByStateModel(),
          updateTaskByExpiryModel(), updateElapsedTimeByCaseCategory(), updateCaseByFinishedTaskModel() and updateCaseByFinishedTimeModel()
     -->
-    <p:remoteCommand id="update-chart-models-command" name="updateChartModels" global="false" process="@this"
+    <p:remoteCommand id="update-chart-models-command" name="updateChartModels" global="false" process="@this" immediate="true"
       oncomplete="updateTaskByPriorityModel(); updateCaseByStateModel(); updateTaskByExpiryModel(); updateElapsedTimeByCaseCategory(); updateCaseByFinishedTaskModel(); updateCaseByFinishedTimeModel();" />
     <!-- For clean up data of charts inside Creation form -->
-    <p:remoteCommand id="clear-chart-models-command" name="clearChartModels" global="false" process="@this"
+    <p:remoteCommand id="clear-chart-models-command" name="clearChartModels" global="false" process="@this" immediate="true"
       action="#{statisticChartCreationBean.clearChartModels()}" update="chart-list" />
 
-    <p:remoteCommand id="update-task-by-priority-model-command" name="updateTaskByPriorityModel" process="@this"
+    <p:remoteCommand id="update-task-by-priority-model-command" name="updateTaskByPriorityModel" process="@this" immediate="true"
       action="#{statisticChartCreationBean.updateTaskByPriorityModel(data.statisticFilter)}" global="false" update="task-by-priority-chart"/>
-    <p:remoteCommand id="update-case-by-state-model-command" name="updateCaseByStateModel" process="@this"
+    <p:remoteCommand id="update-case-by-state-model-command" name="updateCaseByStateModel" process="@this" immediate="true"
       action="#{statisticChartCreationBean.updateCaseByStateModel(data.statisticFilter)}" global="false" update="case-by-state-chart"/>
-    <p:remoteCommand id="update-task-by-expiry-model-command" name="updateTaskByExpiryModel" process="@this"
+    <p:remoteCommand id="update-task-by-expiry-model-command" name="updateTaskByExpiryModel" process="@this" immediate="true"
       action="#{statisticChartCreationBean.updateTaskByExpiryModel(data.statisticFilter)}" global="false" update="task-by-expiry-chart"/>
-    <p:remoteCommand id="update-elapsed-time-by-case-category-command" name="updateElapsedTimeByCaseCategory" process="@this"
+    <p:remoteCommand id="update-elapsed-time-by-case-category-command" name="updateElapsedTimeByCaseCategory" process="@this" immediate="true"
       action="#{statisticChartCreationBean.updateElapsedTimeByCaseCategory(data.statisticFilter)}" global="false" update="elapsed-time-by-case-category" />
-    <p:remoteCommand id="update-case-by-finished-task-model-command" name="updateCaseByFinishedTaskModel" process="@this"
+    <p:remoteCommand id="update-case-by-finished-task-model-command" name="updateCaseByFinishedTaskModel" process="@this" immediate="true"
       action="#{statisticChartCreationBean.updateCaseByFinishedTaskModel(data.statisticFilter)}" global="false" update="case-by-finished-task-chart" />
-    <p:remoteCommand id="update-case-by-finished-time-model-command" name="updateCaseByFinishedTimeModel" process="@this"
+    <p:remoteCommand id="update-case-by-finished-time-model-command" name="updateCaseByFinishedTimeModel" process="@this" immediate="true"
       action="#{statisticChartCreationBean.updateCaseByFinishedTimeModel(data.statisticFilter)}" global="false" update="case-by-finished-time-chart"/>
 
     <p:growl globalOnly="true" showDetail="true" showSummary="true" for="chart-creation-growl">
