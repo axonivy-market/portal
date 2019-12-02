@@ -173,6 +173,10 @@
   padding-left: 0 !important;
 }
 
+.u-no-padding-right {
+  padding-right: 0 !important;
+}
+
 /* For Serenity theme - Start */
 /*
 * Some style is removed after migrated to Serenity - need re-define
