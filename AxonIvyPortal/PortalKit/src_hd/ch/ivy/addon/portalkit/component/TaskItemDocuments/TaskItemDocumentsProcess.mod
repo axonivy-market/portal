@@ -276,7 +276,7 @@ Ts0 f50 actionTable 'out=in;
 Ts0 f50 actionCode 'import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-FacesContext.getCurrentInstance().addMessage("", new FacesMessage(in.deleteDocumentMessage, "" ));' #txt
+FacesContext.getCurrentInstance().addMessage("task-document-global-messages", new FacesMessage(in.deleteDocumentMessage, "" ));' #txt
 Ts0 f50 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
