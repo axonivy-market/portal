@@ -19,8 +19,6 @@ $(document).ready(function() {
     effectDuration = 500;
   }
 
-  validateTitleLength(index, statisticCarousel);
-
   // Set default chart header titles
   var headerTitle = statisticCarousel.find('.ui-carousel-header-title');
   var itemsContainer = statisticCarousel.find('.ui-carousel-items .statistic-carousel-item')[index];
@@ -74,25 +72,8 @@ $(document).ready(function() {
   });
 
   function updateHeaderTitle(curentIndex, statisticCarousel) {
-    validateTitleLength(index, statisticCarousel);
-    var dir = headerTitle.get(0).innerHTML = "";
+    headerTitle.get(0).innerHTML = "";
     headerTitle.append(statisticCarousel.find('[id$="' + curentIndex + ':chart-name-container"]').clone());
-  }
-  
-  function validateTitleLength(index, statisticCarousel) {
-    var maxTitleSize = 30;
-    var titleHeader = statisticCarousel.find('[id$="' + index + ':chart-name"]');
-    var activeTitle = titleHeader.text();
-    var titleLength = activeTitle.length;
-    
-    if (titleLength > 30) {
-      activeTitle = activeTitle.substring(0, maxTitleSize);
-      
-      if (titleHeader.get(0) !== undefined) {
-        titleHeader.get(0).innerHTML = activeTitle + ' ...';
-      }
-    }
   }
 
 });
-

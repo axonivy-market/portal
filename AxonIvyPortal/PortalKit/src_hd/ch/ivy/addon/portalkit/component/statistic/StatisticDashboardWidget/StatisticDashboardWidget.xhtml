@@ -37,7 +37,7 @@
                       <h:panelGroup id="chart-name-container" styleClass="chart-name-container" layout="block">
                         <h1 id="chart-name" class="chart-name">#{chart.name}</h1>
                         <p:commandLink rendered="#{!(empty chart.filter)}" styleClass="fa fa-info-circle chart-info"
-                            actionListener="#{logic.selectChart(chart)}" update="chart-details-dialog" oncomplete="PF('chart-details-dialog').show();" />
+                            actionListener="#{logic.selectChart(chart)}" update="#{p:component('chart-details-dialog')}" oncomplete="PF('chart-details-dialog').show();" />
                       </h:panelGroup>
 
                       <h:panelGroup layout="block" styleClass="chart-actions-container" rendered="#{!cc.attrs.isDrilldownExpiryChart}">
@@ -111,10 +111,6 @@
 
                 </h:panelGroup>
               </div>
-
-              <ui:include src="StatisticDetailsDialog.xhtml">
-                <ui:param name="chartDetailDialogId" value="chart-details-dialog" />
-              </ui:include>
             </ui:repeat>
           </div>
         </div>
@@ -137,6 +133,17 @@
       rendered="#{cc.attrs.compactMode}" action="#{logic.initializeCompactMode}" async="true" />
     <p:remoteCommand name="updateStatisticCarousel" update="@([id$='statistic-carousel-container'])" global="false"/>
   </h:form>
+
+  <p:dialog id="chart-details-dialog" widgetVar="chart-details-dialog" appendTo="@(body)"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartInfo/chartDetailsHeader')}" modal="true" closable="true" closeOnEscape="true"
+    dynamic="true" styleClass="statistic-details-dialog" resizable="false" fitViewport="true">
+    <ic:ch.ivy.addon.portalkit.component.statistic.ChartInformationDialog selectedStatisticChart="#{data.selectedStatisticChart}" />
+    <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer">
+      <p:commandButton type="button" styleClass="portal-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+        onclick="PF('chart-details-dialog').hide();">
+      </p:commandButton>
+    </h:panelGroup>
+  </p:dialog>
 
   <p:confirmDialog id="delete-confirmation-dialog" rendered="#{!cc.attrs.compactMode}"
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/chartDeletionConfirmation')}"
