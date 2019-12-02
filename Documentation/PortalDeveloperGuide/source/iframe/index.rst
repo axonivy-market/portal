@@ -1,12 +1,15 @@
-.. _iframe:
+.. _iframe-in-portal:
 
 IFrame in Portal
 ****************
 
-Since Portal 8, we introduce new feature that a process/task could be started inside IFrame. It helps separate Portal styles
-and your project's style in order to reduce migration effort.
+Do you want to decouple your project and Portal when start a task to reduce your migration effort?
+If the answer is yes, this chapter will help you.
 
-.. _configuration:
+Since Portal 8, we introduce new feature that a process/task could be started inside IFrame, means that you can feel free to design
+your html dialog independent from Portal, it is rendered inside IFrame in order to reduce migration effort.
+
+.. _iframe-configuration:
 
 How to configure
 ================
@@ -36,7 +39,7 @@ There are 3 levels:
 .. important::
 	If there is no configuration, a process/task is started inside IFrame as default.
 
-.. _usage:
+.. _iframe-usage:
 
 How to use
 ==========
@@ -47,23 +50,23 @@ Follow the steps:
  
 2. In your task, open a HTML User Dialog independent from Portal:
 
-	- use your own template to separate your css styles from Portal
-	- Or use the :ref:`TaskTemplate <components-layout-templates-task-template>` template
+	- use your own template to separate your css styles from Portal (highly recommend)
+	- Or use the :ref:`TaskTemplate <components-layout-templates-task-template>` template (no encouragement - dead path)
 	
-	+----------------------------------------------+------------------------------------------------------+
-	| TaskTemplate.xhtml - Modena ivy theme        | Your own template                                    |
-	+==============================================+======================================================+
-	| Pros:                                        | Pros:                                                |
-	|                                              |                                                      |
-	|  - Keep the old look&feel since Portal 7     |  - Portal and project styles are independent         |
-	|  - Less migration effort                     |  - Less migration effort in future                   |
-	|                                              |                                                      |
-	| Cons:                                        | Cons:                                                |
-	|                                              |                                                      |
-	|  - Modena is out of support by Primefaces    |  - Highest migration effort expected for old projects|
-	|  - Modena was highly customized by Portal    |                                                      |
-	|  - Different look&feel between Portal and UIs|                                                      |
-	+----------------------------------------------+------------------------------------------------------+
+	+------------------------------------------------------+----------------------------------------------+
+	| Your own template                                    | TaskTemplate.xhtml - Modena ivy theme        |
+	+======================================================+==============================================+
+	| Pros:                                                | Pros:                                        |
+	|                                                      |                                              |
+	|  - Portal and project styles are independent         |  - Keep the old look&feel since Portal 7     |
+	|  - Less migration effort in future                   |  - Less migration effort to Portal 8         |
+	|                                                      |                                              |
+	| Cons:                                                | Cons:                                        |
+	|                                                      |                                              |
+	|  - Highest migration effort expected for old projects|  - Modena is out of support by Primefaces    |
+	|                                                      |  - Modena was highly customized by Portal    |
+	|                                                      |  - Different look&feel between Portal and UIs|
+	+------------------------------------------------------+----------------------------------------------+
 	
 3. To pass some supported params in IFrame such as process steps, refer to ``IFrameTaskTemplate.xhtml``
 
