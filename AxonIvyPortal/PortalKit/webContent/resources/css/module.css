@@ -2808,7 +2808,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .statistic-carousel .ui-carousel-header-title .chart-name {
-  max-width: 88%;
+  max-width: calc(98% - 20px);
   white-space: nowrap;
   text-overflow: ellipsis;
   text-align: left;
