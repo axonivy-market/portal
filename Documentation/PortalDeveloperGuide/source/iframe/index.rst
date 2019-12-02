@@ -50,7 +50,7 @@ Follow the steps:
  
 2. In your task, open a HTML User Dialog independent from Portal:
 
-	- use your own template to separate your css styles from Portal (highly recommend)
+	- Create a dialog with the frame-8 template in designer, or use your own template to separate your css styles from Portal (highly recommend)
 	- Or use the :ref:`TaskTemplate <components-layout-templates-task-template>` template (no encouragement - dead path)
 	
 	+------------------------------------------------------+----------------------------------------------+
@@ -68,7 +68,7 @@ Follow the steps:
 	|                                                      |  - Different look&feel between Portal and UIs|
 	+------------------------------------------------------+----------------------------------------------+
 	
-3. To pass some supported params in IFrame such as process steps, refer to ``IFrameTaskTemplate.xhtml``
+3. To pass some supported params in IFrame such as process steps, refer to :ref:`IFrameTaskTemplate <components-layout-templates-iframe-task-template>`
 
 .. |task-embedInFrame| image:: images/task-embedInFrame.png
 .. |case-embedInFrame| image:: images/case-embedInFrame.png	
