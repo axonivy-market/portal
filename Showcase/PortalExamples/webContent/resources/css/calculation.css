@@ -167,6 +167,14 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel {
 	-webkit-filter: invert(100%);
 }
 
+.calculation-form .header-section.fixed {
+	background-color: #fff;
+    position:fixed;
+    top:60px;
+    width:92%;
+    z-index:100;
+}
+
 /* FIRST LEVEL TAB MENU */
 .first-level-tab-menu .ui-tabmenu-nav {
 	display: flex;
@@ -207,8 +215,8 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel {
 .first-level-tab-menu.fixed {
 	display: block;
 	position: fixed;
-	top: 80px;
-	width: 94.45%;
+	top: 95px;
+	width: 92%;
 	margin-top: 0 !important;
 	z-index: 100;
 }
@@ -242,9 +250,9 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel {
 .second-level-tab-menu.fixed {
 	display: block;
 	position: fixed;
-	top: 123px;
-	width: 92.4%;
+	top: 137px;
 	z-index: 100;
+	width: 90%;
 }
 
 _:-ms-input-placeholder, :root .second-level-tab-menu.fixed {
