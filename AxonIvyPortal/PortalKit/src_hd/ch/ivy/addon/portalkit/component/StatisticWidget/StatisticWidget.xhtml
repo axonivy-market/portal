@@ -101,17 +101,16 @@
       </c:if>
 
     </h:panelGroup>
-
-    <p:confirmDialog id="restore-confirmation-dialog" message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/restoreDefaultChart')}"
-      header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/restoreDefaultChartHeader')}" widgetVar="restore-confirmation-dialog"
-      appendTo="@(body)" severity="alert" rendered="#{!cc.attrs.compactMode}">
-      <p:commandButton id="confirm-restore" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" update="widget-container"
-        oncomplete="PF('restore-confirmation-dialog').hide();" actionListener="#{logic.restoreDefault}" />
-      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" onclick="PF('restore-confirmation-dialog').hide();"
-        type="button" styleClass="portal-cancel-button" />
-    </p:confirmDialog>
-
   </div>
+  <p:confirmDialog id="restore-confirmation-dialog" message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/restoreDefaultChart')}"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/restoreDefaultChartHeader')}" widgetVar="restore-confirmation-dialog"
+    appendTo="@(body)" severity="alert" rendered="#{!cc.attrs.compactMode}">
+    <p:commandButton id="confirm-restore" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" update="widget-container"
+      oncomplete="PF('restore-confirmation-dialog').hide();" actionListener="#{logic.restoreDefault}" />
+    <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" onclick="PF('restore-confirmation-dialog').hide();"
+      type="button" styleClass="portal-cancel-button" />
+  </p:confirmDialog>
+
 
 </cc:implementation>
 </html>
