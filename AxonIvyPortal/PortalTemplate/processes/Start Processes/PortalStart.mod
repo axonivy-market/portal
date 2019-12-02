@@ -217,24 +217,23 @@ Pt0 f25 49 241 30 30 -49 15 #rect
 Pt0 f25 @|StartRequestIcon #fIcon
 Pt0 f2 actionTable 'out=in;
 ' #txt
-Pt0 f2 actionCode 'import ch.ivy.addon.portalkit.enums.NavigationHistory;
-import ch.ivyteam.ivy.workflow.ITask;
+Pt0 f2 actionCode 'import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.dto.TaskEndInfo;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
-import ch.ivy.addon.portalkit.enums.PortalPage;
 
 ITask task = ivy.wf.findTask(in.endedTaskId);
 ITask taskWithTaskEndInfo = StickyTaskListService.service().getPreviousTaskWithTaskEndInfo(task);
-String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(taskWithTaskEndInfo.getId());
-TaskEndInfo taskEndInfo = SecurityServiceUtils.getSessionAttribute(taskEndInfoSessionAttributeKey) as TaskEndInfo;
-
-in.dataModel = taskEndInfo.dataModel;
-in.isTaskStartedInDetails = taskEndInfo.isStartedInTaskDetails;
-in.portalPage = taskEndInfo.portalPage;
-in.isTaskFinished = !SecurityServiceUtils.getSessionAttribute(ch.ivy.addon.portalkit.enums.SessionAttribute.IS_TASK_NOT_FINISHED.toString()).toBoolean();
-
-SecurityServiceUtils.removeSessionAttribute(taskEndInfoSessionAttributeKey);' #txt
+if (taskWithTaskEndInfo != null) {
+	String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(taskWithTaskEndInfo.getId());
+	TaskEndInfo taskEndInfo = SecurityServiceUtils.getSessionAttribute(taskEndInfoSessionAttributeKey) as TaskEndInfo;
+	
+	in.dataModel = taskEndInfo.dataModel;
+	in.isTaskStartedInDetails = taskEndInfo.isStartedInTaskDetails;
+	in.portalPage = taskEndInfo.portalPage;
+	SecurityServiceUtils.removeSessionAttribute(taskEndInfoSessionAttributeKey);
+}
+in.isTaskFinished = !SecurityServiceUtils.getSessionAttribute(ch.ivy.addon.portalkit.enums.SessionAttribute.IS_TASK_NOT_FINISHED.toString()).toBoolean();' #txt
 Pt0 f2 security system #txt
 Pt0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

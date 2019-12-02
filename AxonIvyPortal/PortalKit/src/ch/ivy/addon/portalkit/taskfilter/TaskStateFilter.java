@@ -27,7 +27,7 @@ public class TaskStateFilter extends TaskFilter {
    */
   public TaskStateFilter() {
     this.filteredStates = new ArrayList<>();
-    this.filteredStates.addAll(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE));
+    this.filteredStates.addAll(Arrays.asList(TaskState.CREATED, TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE));
     if(PermissionUtils.checkReadAllTasksPermission()) {
       this.filteredStates.add(TaskState.UNASSIGNED);
     }
