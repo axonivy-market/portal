@@ -13,19 +13,21 @@ there are 7 templates that can be used directly.
 
 1. :ref:`Basic template <components-layout-templates-basic-template>`
 
-2. :ref:`Task template (Deprecated) <components-layout-templates-task-template>`
+2. :ref:`IFrame Task template <components-layout-templates-iframe-task-template>`
 
-3. :ref:`Task template 8 <components-layout-templates-task-template-8>`
+3. :ref:`Task template (Deprecated) <components-layout-templates-task-template>`
 
-4. :ref:`Deprecated task template 7 (Deprecated) <components-layout-templates-deprecated-task-template-7>`
+4. :ref:`Task template 8 <components-layout-templates-task-template-8>`
 
-5. :ref:`Two column template (Deprecated) <components-layout-templates-two-column-template>`
+5. :ref:`Deprecated task template 7 (Deprecated) <components-layout-templates-deprecated-task-template-7>`
 
-6. :ref:`Task list template <components-layout-templates-task-list-template>`
+6. :ref:`Two column template (Deprecated) <components-layout-templates-two-column-template>`
 
-7. :ref:`Case list template <components-layout-templates-case-list-template>`
+7. :ref:`Task list template <components-layout-templates-task-list-template>`
 
-8. :ref:`Default homepage template <components-layout-templates-default-homepage-template>`
+8. :ref:`Case list template <components-layout-templates-case-list-template>`
+
+9. :ref:`Default homepage template <components-layout-templates-default-homepage-template>`
 
 
 These templates have the same header, which is a menu of applications
@@ -73,6 +75,17 @@ How to use Basic template
 
   |basic-template|
 
+.. _components-layout-templates-iframe-task-template:
+
+IFrame Task template
+--------------------
+
+IFrame Task template is used for displaying task functionality and related
+information to support completing the task. It renders the task's content inside :ref:`IFrame in Portal <iframe-in-portal>`.
+
+.. warning::
+	Only Portal uses this template, DON'T USE, just refer IFrameTaskTemplate.xhtml in PortalTemplate to see how to use some parameters.
+
 .. _components-layout-templates-task-template:
 
 Task template (Deprecated)
@@ -84,8 +97,11 @@ to be filled with your custom content
 
 This template is dedicated for iFrame and Modena theme, so all Modena styles need to be provided in your project.
 
+.. warning::
+	There should be no encouragement to stay on modena - unless you want to follow a dead path on purpose.
+
 .. important::
-	This template must be used inside IFrame. Refer to :ref:`IFrame in Portal <iframe>`.
+	This template must be used inside IFrame. Refer to :ref:`IFrame in Portal <iframe-in-portal>`.
 
 .. _components-layout-templates-task-template-how-to-use-task-template:
 
@@ -106,6 +122,21 @@ In case your project has navigation button without finishing a task, e.g Cancel,
 -  Previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrame``.
 -  A specific url: call ``navigateToUrl(String url)`` from class ``PortalNavigatorInFrame``.
 
+.. _components-layout-templates-task-template-how-to-migrate-task-template:
+
+How to migrate TaskTemplate
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Your style customization in PortalStyle hasn't effected anymore, you should include it yourself in your HTML dialog
+
++----------------------------------------------+------------------------------------------------------+
+| Pros                                         | Cons                                                 |
++==============================================+======================================================+
+|  - Keep the old look&feel since Portal 7     |  - Modena is out of support by Primefaces            |
+|  - Less migration effort                     |  - Modena was highly customized by Portal            |
+|                                              |  - Different look&feel between Portal and UIs        |
++----------------------------------------------+------------------------------------------------------+
+
 .. _components-layout-templates-task-template-8:
 
 TaskTemplate-8
@@ -114,8 +145,12 @@ TaskTemplate-8
 Task template 8 is new template with Serenity theme introduced since Portal 8. 
 There is no TabView, you have to define it if needed.
 
+.. warning::
+	Portal styles are included, your HTML dialogs are also effected. Therefore, it could spend some migration effort in future.
+	It's highly recommended to use :ref:`IFrame in Portal <iframe-in-portal>`.
+	
 .. important::
-	This template must not be used inside IFrame. Refer to :ref:`IFrame in Portal <iframe>`.
+	This template must not be used inside IFrame.
 
 .. _components-layout-templates-task-template-how-to-use-task-template-8:
 
@@ -136,16 +171,39 @@ In case your project has navigation button without finishing a task, e.g Cancel,
 -  Home page: call ``navigateToPortalHome()`` from class ``PortalNavigator``.
 -  Previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigator``.
 
+How to migrate TaskTemplate-8
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you migrate Portal since previous versions and use ``<ui:define name="taskForm" />`` to define the content inside the Request tab,
+TabView is removed and ``<ui:define name="taskForm" />`` is DEPRECATED, use ``<ui:define name="content" />`` instead.
+
+``<ui:define name="dynamicTabs" />`` is removed, design your TabView if needed.
+
+Refer to ``TaskTemplate-8.xhtml`` for params and template areas.
+
++----------------------------------------+-------------------------------+
+| Pros                                   | Cons                          |
++========================================+===============================+
+| - Use Serenity theme                   | - Some migration effort       |
+| - Usage improvements are considered    |                               |
+| - Consistent look&feel with Portal     |                               |
+| - UI styles are taken over from Portal |                               |
++----------------------------------------+-------------------------------+
+
 .. _components-layout-templates-deprecated-task-template-7:
 
 DeprecatedTaskTemplate-7 (Deprecated)
 -------------------------------------
 
 Deprecated task template 7 is old task template with Serenity theme. If your project wants to apply new theme, 
-but keep the TabView (e.g. Case Information, dynamic tabs), then you can use this template.
+but keep the TabView (e.g. Case Information, dynamic tabs), you can use this template.
 
+.. warning::
+	Portal styles are included, your HTML dialogs are also effected. Therefore, it could spend some migration effort in future.
+	It's highly recommended to use :ref:`IFrame in Portal <iframe-in-portal>`.
+	
 .. important::
-	This template must not be used inside IFrame. Refer to :ref:`IFrame in Portal <iframe>`.
+	This template must not be used inside IFrame.
 
 .. _components-layout-templates-task-template-how-to-use-deprecated-task-template-7:
 
@@ -163,6 +221,20 @@ In case your project has navigation button without finishing a task, e.g Cancel,
 
 -  Home page: call ``navigateToPortalHome()`` from class ``PortalNavigator``.
 -  Previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigator``.
+
+How to migrate DeprecatedTaskTemplate-7
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Adapt the ``ui:composition`` template to this template.
+
++--------------------------------------------+------------------------------------------------+
+| Pros                                       | Cons                                           |
++============================================+================================================+
+| - Keep the old structure for UIs (TabView) | - Template is deprecated (will remove in v9.0  |
+| - Use Serenity theme from Portal           | - Few migration effort                         |
+| - Consistent look&feel with Portal         |                                                |
+| - UI styles are taken over from Portal     |                                                |
++--------------------------------------------+------------------------------------------------+
 
 .. _components-layout-templates-two-column-template:
 
