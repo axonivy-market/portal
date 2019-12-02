@@ -3261,6 +3261,8 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   height: 4px;
   display: flex;
   margin-top: 5px;
+  margin-left: -2%;
+  width: 105%;
 }
 
 /* Small screen */
