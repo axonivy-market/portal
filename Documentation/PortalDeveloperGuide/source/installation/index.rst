@@ -269,51 +269,32 @@ https://www.npmjs.com/package/less2sass.
 How to migrate TaskTemplate
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Since Portal 8, we introduce iFrame so that customer project can be loaded inside iFrame. It can reduce side affect between customer project and Portal as well as migrate effort in future.
+Since Portal 8, we introduce :ref:`IFrame <iframe-in-portal>` so that customer project could be decoupled from Portal in order to reduce migration effort.
 
-Portal introduced 4 scenarios for migration, choose suitable one:
+It's ``highly recommended`` to use this IFrame feature with your own template for new feature availability and prevent migration pain in future. Refer to these steps:
 
-IFrame mode: 
+1. Create your own template decoupled from Portal, or use the predefined template, e.g. basic-8
+
+2. In HTML dialogs, use this template: adapt ``ui:composition``, ``ui:params``, ``ui:define``, etc.
+
+3. A task is started inside IFrame as default, you can configure it, refer to :ref:`here <iframe-configuration>`.
 
 +----------------------------------------------+------------------------------------------------------+
-| TaskTemplate.xhtml - Modena ivy theme        | Your own template                                    |
+| Pros                                         | Cons                                                 |
 +==============================================+======================================================+
-| Pros:                                        | Pros:                                                |
-|                                              |                                                      |
-|  - Keep the old look&feel since Portal 7     |  - Portal and project styles are independent         |
-|  - Less migration effort                     |  - Less migration effort in future                   |
-|                                              |                                                      |
-| Cons:                                        | Cons:                                                |
-|                                              |                                                      |
-|  - Modena is out of support by Primefaces    |  - Highest migration effort expected for old projects|
-|  - Modena was highly customized by Portal    |                                                      |
-|  - Different look&feel between Portal and UIs|                                                      |
+| - Portal and project styles are independent  | - Highest migration effort expected for old projects |
+| - Less migration effort in future            |                                                      |
 +----------------------------------------------+------------------------------------------------------+
 
-No-IFrame mode:
+Besides this migration scenario, you can pick one of these scenarios for less migration effort but it will take more in future, so it's not recommended:
 
-+------------------------------------------------+-------------------------------------------------------+
-| DeprecatedTaskTemplate-7, Serenity theme       | TaskTemplate-8, Serenity theme                        |
-+================================================+=======================================================+
-| Pros:                                          | Pros:                                                 |
-|                                                |                                                       |
-|  - Keep the old structure for UIs (TabView)    |  - Portal and project styles are independent          |
-|  - Use Serenity theme from Portal              |  - Less migration effort in future                    |
-|  - Consistent look&feel with Portal            |                                                       |
-|                                                |                                                       |
-| Cons:                                          | Cons:                                                 |
-|                                                |                                                       |
-|  - Template is deprecated (will remove in v9.0 |  - Some migration effort                              |
-|  - Some migration effort                       |                                                       |
-+------------------------------------------------+-------------------------------------------------------+
+- :ref:`TaskTemplate (Deprecated) <components-layout-templates-task-template>`: include Modena Ivy theme and must be rendered inside :ref:`IFrame <iframe-in-portal>`
 
-- ``TaskTemplate.xhtml``, if you keep using TaskTemplate, your task must be loaded inside iFrame and Modena theme is included. For more details, refer to :ref:`Task template <components-layout-templates-task-template>`.
+- :ref:`TaskTemplate-8 <components-layout-templates-task-template-8>`: include Serenity theme and no tab view predefined
 
-- ``DeprecatedTaskTemplate-7.xhtml``, change your template to DeprecatedTaskTemplate-7, it will keep your old template UI (including tab view) with Serenity theme. For more details, refer to :ref:`Deprecated task template 7 <components-layout-templates-deprecated-task-template-7>`.
+- :ref:`DeprecatedTaskTemplate-7 (Deprecated) <components-layout-templates-deprecated-task-template-7>`: keep your old template UI (including tab view) with Serenity theme
 
-- ``TaskTemplate-8.xhtml``, change your template to TaskTemplate-8, it will include Serenity theme and no tab view predefined. For more details, refer to :ref:`Task template 8 <components-layout-templates-task-template-8>`.
-
-If your project has tag ``<ui:insert name="content">``, rename ``content`` to something else. This specific name may cause error since text ``content`` is already used in Portal template.
+If your project has the ``<ui:insert name="content">`` tag, rename ``content`` to something else. This specific name may cause error since it is already used in Portal template.
 
 .. _installation-migration-notes-8-0-0-basic-template:
 
