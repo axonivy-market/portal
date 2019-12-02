@@ -1667,3 +1667,31 @@ ul.participants-list li {
 .action-button .ui-button-icon-right.ui-icon.ui-c {
   font-size: 2rem !important;
 }
+
+/* Portal's File upload component */
+.upload-container .ui-widget.ui-selectonemenu,
+.upload-container .ui-widget.ui-outputlabel {
+  margin-top: 5px;
+}
+
+.upload-container .ui-widget.ui-fileupload {
+  margin-top: 0;
+  margin-left: 10px;
+}
+
+.upload-container .ui-widget.ui-fileupload .ui-fileupload-buttonbar {
+  padding: 0;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.upload-container .ui-widget.ui-fileupload .ui-fileupload-buttonbar .ui-widget.ui-button {
+  float: right !important;
+  margin-right: 0;
+}
+
+.upload-container .ui-widget.ui-fileupload .ui-fileupload-content {
+  border: none;
+  padding-right: 0;
+  margin-top: 30px;
+}
