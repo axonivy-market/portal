@@ -2,6 +2,7 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.Serializable;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -15,9 +16,16 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 public class StatisticBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public boolean isHiddenStatisticWidget() {
+  private String isHideStatisticWidget;
+
+  @PostConstruct
+  public void init() {
     GlobalSettingService globalSettingService = new GlobalSettingService();
-    String isHideStatisticWidget = globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET.toString());
-	return StringUtils.isNotBlank(isHideStatisticWidget) ? Boolean.parseBoolean(isHideStatisticWidget) : false;
+    isHideStatisticWidget =
+        globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET.toString());
+  }
+
+  public boolean isHiddenStatisticWidget() {
+    return StringUtils.isNotBlank(isHideStatisticWidget) ? Boolean.parseBoolean(isHideStatisticWidget) : false;
   }
 }
