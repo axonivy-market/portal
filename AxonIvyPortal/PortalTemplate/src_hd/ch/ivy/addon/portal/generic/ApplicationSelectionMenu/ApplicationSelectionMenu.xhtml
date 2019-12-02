@@ -46,7 +46,7 @@
 
           <!-- Remote-command will be called when language changed -->
           <p:remoteCommand name="reloadMenuItem" actionListener="#{menuView.init}"
-            oncomplete="if (args &amp;&amp; !args.validationFailed) { window.location.reload();}" />
+            oncomplete="if (args &amp;&amp; !args.validationFailed) { window.location.reload();}" immediate="true" process="@this"/>
 
           <ps:menu id="main-menu" widgetVar="main-menu">
             <!-- Loop menu applications -->
