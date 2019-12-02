@@ -12,7 +12,7 @@
 <cc:implementation>
   <c:set var="task" value="#{cc.attrs.task}" />
   <f:event listener="#{logic.initData(task)}" type="preRenderComponent" />
-  <p:growl id="task-document-global-messages" />
+  <p:growl id="task-document-global-messages" for="task-document-global-messages" />
 
   <div id="#{cc.clientId}" class="task-details-item-document ui-g">
     <h:form id="task-document-form" prependId="false" styleClass="ui-g-12 u-padding-0">
