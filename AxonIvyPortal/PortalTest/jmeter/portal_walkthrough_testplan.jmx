@@ -688,6 +688,13 @@
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">javax.faces.source</stringProp>
                 </elementProp>
+                <elementProp name="javax.faces.partial.execute" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">task-widget:update-task-count-rc-form:update-task-count-remote-cmd</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">javax.faces.partial.execute</stringProp>
+                </elementProp>
                 <elementProp name="javax.faces.partial.render" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
                   <stringProp name="Argument.value">task-widget:task-widget-title</stringProp>
@@ -1336,6 +1343,13 @@
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   <stringProp name="Argument.name">javax.faces.source</stringProp>
+                </elementProp>
+                <elementProp name="javax.faces.partial.execute" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.value">case-widget:update-case-count-rc-form:update-case-count-remote-cmd</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">javax.faces.partial.execute</stringProp>
                 </elementProp>
                 <elementProp name="javax.faces.partial.render" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
