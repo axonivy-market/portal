@@ -225,7 +225,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     criteria.setInvolvedUsername(Ivy.session().getSessionUserName());
     criteria.setQueryForUnassignedTask(false);
     criteria
-        .setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED)));
+        .setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.CREATED, TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED)));
     criteria.setSortField(TaskSortField.ID.toString());
     criteria.setSortDescending(true);
     if (shouldSaveAndLoadSessionFilters()) {
