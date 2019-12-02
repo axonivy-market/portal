@@ -313,7 +313,7 @@
       });
     </script>
   <h:form id="update-task-count-rc-form">
-    <p:remoteCommand id="update-task-count-remote-cmd" name="updateTaskCount" update="#{cc.clientId}:task-widget-title" global="false" process="@none" />
+    <p:remoteCommand id="update-task-count-remote-cmd" name="updateTaskCount" update="#{cc.clientId}:task-widget-title" global="false" process="@this" immediate="true" />
   </h:form>
 </cc:implementation>
 </html>
