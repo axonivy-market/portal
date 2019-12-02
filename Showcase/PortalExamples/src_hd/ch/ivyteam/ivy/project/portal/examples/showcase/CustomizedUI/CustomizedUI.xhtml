@@ -13,12 +13,12 @@
 		<ui:define name="simplePageContent">
 			<h:form id="main-form" styleClass="calculation-form" style="margin-top: 50px;">
 				<div class="ui-g header-section">
-					<div class="ui-g-2 ui-md-3">
+					<div class="ui-g-2 ui-md-4">
 						<p:outputLabel for="trans-number" value="Transaction number" styleClass="MarRight10 "/>
 						<p:inputText id="trans-number"
 							styleClass="ui-corner-all header-inputfield" value="1234567" />
 					</div>
-					<div class="ui-g-4">
+					<div class="ui-g-3">
 						<p:outputLabel for="header-date" value="Date" styleClass="MarRight10"/>
 						<p:calendar id="header-date" value=""
 							pattern="#{dateTimePatternBean.datePattern}" showOn="button"
@@ -32,7 +32,7 @@
 						<p:commandButton id="load-button" value="Load" />
 					</div>
 				</div>
-				<p:tabMenu id="first-level-tab-menu" styleClass="MarTop20 first-level-tab-menu">
+				<p:tabMenu id="first-level-tab-menu" styleClass="MarTop20 first-level-tab-menu" >
 					<p:menuitem value="General Information">
 						<f:param name="i" value="0" />
 					</p:menuitem>
@@ -53,7 +53,7 @@
 					</p:menuitem>
 				</p:tabMenu>
 				<div class="ui-g debitor-details-container">
-					<p:tabMenu id="second-level-tab-menu" styleClass="Wid100 second-level-tab-menu">
+					<p:tabMenu id="second-level-tab-menu" styleClass="second-level-tab-menu">
 						<p:menuitem value="Customer 6232 - Optimus Prime">
 							<f:param name="i" value="0" />
 						</p:menuitem>
@@ -492,8 +492,16 @@
 
 				$("#main-area-panel").scroll(function() {
 					var distanceFromTop = $(this).scrollTop();
+					var $headerSection = $(".header-section");
 					var $firstLevelTabMenu = $("[id$='first-level-tab-menu']");
 					var $secondLevelTabMenu = $("[id$='second-level-tab-menu']");
+					
+					if (distanceFromTop >= $headerSection.height()) {
+						$headerSection.addClass("fixed");
+					} else {
+						$headerSection.removeClass("fixed");
+					}
+					
 					if (distanceFromTop >= $firstLevelTabMenu.height()) {
 						$firstLevelTabMenu.addClass("fixed");
 					} else {
