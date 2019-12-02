@@ -32,7 +32,7 @@
     <h:panelGroup rendered="#{!cc.attrs.hideWidgetHeader}">
       <h:panelGroup id="task-widget-header" styleClass="widget-header task-widget-header js-task-widget-header ui-g-12 ui-g"
         layout="block">
-        <h:panelGroup styleClass="#{data.dataModel.compactMode? 'widget-header-main': 'widget-tasklist-header'} ui-g-8 ui-sm-4" layout="block">
+        <div class="#{data.dataModel.compactMode? 'widget-header-main': 'widget-tasklist-header'} ui-g-8 ui-sm-4">
           <h:panelGroup id="task-widget-title" styleClass="widget-header-main-title task-widget-header-content-title #{data.dataModel.compactMode ? 'compact-mod-title' : ''}">
             <cc:renderFacet name="title" />
             <h:outputText rendered="#{empty cc.facets.title}" value="#{cc.attrs.title} (#{data.dataModel.rowCount})" styleClass="ui-sm-hidden" />
@@ -44,7 +44,7 @@
             rendered="#{data.dataModel.compactMode and showHeaderToolbar and taskWidgetBean.showFullTaskList}">
             <cc:renderFacet name="headerToolbar" />
           </h:panelGroup>
-        </h:panelGroup>
+        </div>
         <h:panelGroup rendered="#{!cc.attrs.hideTaskFilter and !data.dataModel.compactMode}" layout="block"
           styleClass="widget-header-content-filter expanded-mode ui-g-4 ui-sm-8" id="expanded-mode-filter-view">
           <h:form id="expanded-mode-filter-form" onsubmit="return false;">
@@ -63,7 +63,7 @@
         <h:panelGroup id="filter-selection-container" styleClass="filter-selection-container-group"
           rendered="#{(not empty data.taskPrivateFilters or not empty data.taskPublicFilters) and not data.dataModel.compactMode}"> 
           <h:form id="filter-selection-form" class="filter-selection-form filter-selection-container">
-            <p:outputPanel id="filter-selection-panel">
+            <h:panelGroup id="filter-selection-panel">
               <p:commandLink id="filter-name" styleClass="filter-name"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/savedFilters')} #{data.dataModel.selectedTaskFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection') : data.dataModel.selectedTaskFilterData.filterName}"
                 global="false" />
@@ -99,7 +99,7 @@
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/privateFilter')}" />
                   </div>
                   <ui:repeat var="taskFilterData" value="#{data.taskPrivateFilters}">
-                    <h:panelGroup layout="block" styleClass="user-defined-filter-container">
+                    <div class="user-defined-filter-container">
                       <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
                         value="#{taskFilterData.filterName}" global="false"
                         actionListener="#{logic.applyFilter(taskFilterData)}"
@@ -112,16 +112,16 @@
                         styleClass="fa fa-times-circle delete-user-defined-filter-command"
                         actionListener="#{logic.setFilterToBeDeleted(taskFilterData)}"
                         oncomplete="PF('delete-filter-confirmation-dialog').show();" />
-                    </h:panelGroup>
+                    </div>
                   </ui:repeat>
                 </h:panelGroup>
               </p:overlayPanel>
-            </p:outputPanel>
+            </h:panelGroup>
           </h:form>
         </h:panelGroup>
 
         <h:panelGroup id="advanced-filter-container" layout="block" styleClass="advanced-filter-container">
-          <h:panelGroup styleClass="additional-filter-container">
+          <div class="additional-filter-container">
             <f:event listener="#{data.dataModel.initFilters()}" type="preRenderComponent" />
             <cc:renderFacet name="taskFilter" />
             <ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter id="in-progress-filter"
@@ -178,7 +178,7 @@
                 icon="fa fa-save" iconPos="right" update="save-filter-set-dialog" resetValues="true"
                 oncomplete="PF('save-filter-set-dialog').show();" />
             </h:panelGroup>
-          </h:panelGroup>
+          </div>
         </h:panelGroup>
       </h:panelGroup>
     </h:panelGroup>
@@ -234,7 +234,7 @@
             <cc:insertFacet name="taskHeader" />
           </ic:ch.ivy.addon.portalkit.component.TaskItem>
         </p:dataScroller>
-        <p:outputLabel styleClass="no-task-message" value="#{noTaskFoundMessage}"
+        <h:outputText styleClass="no-task-message" value="#{noTaskFoundMessage}"
           rendered="#{data.dataModel.rowCount eq 0}" />
       </h:panelGroup>
       <h:form id="task-polling-form">
