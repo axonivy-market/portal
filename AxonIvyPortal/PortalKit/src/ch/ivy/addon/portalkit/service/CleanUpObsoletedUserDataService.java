@@ -9,11 +9,9 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.bo.CaseColumnsConfiguration;
 import ch.ivy.addon.portalkit.bo.ColumnsConfiguration;
 import ch.ivy.addon.portalkit.bo.TaskColumnsConfiguration;
-import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
-import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IUser;
@@ -38,7 +36,6 @@ public class CleanUpObsoletedUserDataService {
       return;
     }
     cleanUpUserFavouriteProcess();
-    cleanUpUserTaskCaseFilter();
     cleanUpUserTaskColumnsConfigData();
     cleanUpUserCaseColumnsConfigData();
     cleanUpUserStatisticChartData();
@@ -64,27 +61,6 @@ public class CleanUpObsoletedUserDataService {
       Ivy.log().error("Check user belongs to current app failed ", e);
       return false;
     }
-  }
-
-  private void cleanUpUserTaskCaseFilter() {
-    long applicationId = Ivy.request().getApplication().getId();
-    List<Long> userIds = currentUsers.stream().map(IUser::getId).collect(Collectors.toList());
-    AbstractFilterService<TaskFilterData> taskFilterService = new TaskFilterService();
-    List<TaskFilterData> allPrivateTaskFilters = taskFilterService.getAllPrivateFilters();
-   
-    CollectionUtils.emptyIfNull(allPrivateTaskFilters)
-      .stream()
-      .filter(privateTaskFilter -> Ivy.repo().getInfo(privateTaskFilter).getCreatedByAppId() == applicationId && !userIds.contains(privateTaskFilter.getUserId()))
-      .forEach(privateTaskFilter -> taskFilterService.delete(privateTaskFilter.getId()));
-    
-    
-    AbstractFilterService<CaseFilterData> caseFilterService = new CaseFilterService();
-    List<CaseFilterData> allPrivateCaseFilters = caseFilterService.getAllPrivateFilters();
-    
-    CollectionUtils.emptyIfNull(allPrivateCaseFilters)
-      .stream()
-      .filter(privateCaseFilter -> Ivy.repo().getInfo(privateCaseFilter).getCreatedByAppId() == applicationId && !userIds.contains(privateCaseFilter.getUserId()))
-      .forEach(privateCaseFilter -> caseFilterService.delete(privateCaseFilter.getId()));
   }
 
   private void cleanUpUserTaskColumnsConfigData() {
