@@ -416,9 +416,7 @@ ew0 f36 1800 264 1872 264 #arcP
 ew0 f37 actionTable 'out=in1;
 ' #txt
 ew0 f37 outLinks "TaskA.ivp" #txt
-ew0 f37 caseData case.category=CreateExpressWorkflow #txt
-ew0 f37 taskData 'TaskA.CATEGORY=CreateExpressWorkflow
-TaskA.DESC=<%\=ivy.cms.co("/Dialogs/Tasks/SaveWorkflow/TaskName")%>\: <%\=in1.processName%>
+ew0 f37 taskData 'TaskA.DESC=<%\=ivy.cms.co("/Dialogs/Tasks/SaveWorkflow/TaskName")%>\: <%\=in1.processName%>
 TaskA.EXPRI=2
 TaskA.EXROL=Everybody
 TaskA.EXTYPE=0

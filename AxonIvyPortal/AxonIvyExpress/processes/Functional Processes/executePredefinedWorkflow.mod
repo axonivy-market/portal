@@ -1376,14 +1376,14 @@ Bk7 f28 @|StepIcon #fIcon
 Bk7 f7 actionTable 'out=in1;
 ' #txt
 Bk7 f7 outLinks "TaskA.ivp" #txt
-Bk7 f7 taskData 'TaskA.CATEGORY=<%\=in1.workflowName%>/<%\=in1.currentTask.subject%>
-TaskA.DESC=<%\=ivy.cms.co("/Dialogs/Tasks/FinalWorkflowTask/taskDescription", java.util.Arrays.asList(in1.workflowName))%>
+Bk7 f7 taskData 'TaskA.DESC=<%\=ivy.cms.co("/Dialogs/Tasks/FinalWorkflowTask/taskDescription", java.util.Arrays.asList(in1.workflowName))%>
 TaskA.EXPRI=2
 TaskA.EXROL=Everybody
 TaskA.EXTYPE=0
 TaskA.NAM=<%\=in1.workflowName%>\: <%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=CREATOR
+TaskA.SCRIPT=if (in1.workflowType \=\= ch.ivy.gawfs.enums.ProcessType.AD_HOC){\r\n\t\tivy.task.setCategoryPath("AdhocExpressTasks");\r\n\t} else {\r\n\t  ivy.task.setCategoryPath(in1.workflowName + "/" + in1.currentTask.subject);\r\n}
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=0' #txt
 Bk7 f7 template "" #txt
@@ -1523,8 +1523,7 @@ Bk8 f3 0 0.5634285714285714 0 0 #arcLabel
 Bk8 f18 actionTable 'out=in1;
 ' #txt
 Bk8 f18 outLinks "TaskA.ivp" #txt
-Bk8 f18 taskData 'TaskA.CATEGORY=<%\=in1.workflowName%>/<%\=in1.currentTask.subject%>
-TaskA.DESC=<%\=in1.currentTask.description%>
+Bk8 f18 taskData 'TaskA.DESC=<%\=in1.currentTask.description%>
 TaskA.EXP=new Duration(0,0,in1.currentTask.untilDays,0,0,0)
 TaskA.EXPRI=1
 TaskA.EXROL=Everybody
@@ -1532,7 +1531,7 @@ TaskA.EXTYPE=0
 TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=in1.responsible.getMemberName()
-TaskA.SCRIPT=if (in1.originalTaskId \!\= null && in1.originalTaskId > 0) {\r\n  task.customFields().stringField(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString());\r\n}
+TaskA.SCRIPT=if (in1.originalTaskId \!\= null && in1.originalTaskId > 0) {\r\n  task.customFields().stringField(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString());\r\n}\r\nif (in1.workflowType \=\= ch.ivy.gawfs.enums.ProcessType.AD_HOC){\r\n\t\tivy.task.setCategoryPath("AdhocExpressTasks");\r\n\t} else {\r\n\t  ivy.task.setCategoryPath(in1.workflowName + "/" + in1.currentTask.subject);\r\n}
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=2' #txt
 Bk8 f18 template "" #txt
@@ -1550,8 +1549,7 @@ Bk8 f18 @|TaskSwitchSimpleIcon #fIcon
 Bk8 f20 actionTable 'out=in1;
 ' #txt
 Bk8 f20 outLinks "TaskA.ivp" #txt
-Bk8 f20 taskData 'TaskA.CATEGORY=<%\=in1.workflowName%>/<%\=in1.currentTask.subject%>
-TaskA.DESC=<%\=in1.currentTask.description%>
+Bk8 f20 taskData 'TaskA.DESC=<%\=in1.currentTask.description%>
 TaskA.EXP=new Duration(0,0,in1.currentTask.untilDays,0,0,0)
 TaskA.EXPRI=1
 TaskA.EXROL=Everybody
@@ -1559,7 +1557,7 @@ TaskA.EXTYPE=0
 TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=in1.responsible.getMemberName().substring(1)
-TaskA.SCRIPT=if (in1.originalTaskId \!\= null && in1.originalTaskId > 0) {\r\n  task.customFields().stringField(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString());\r\n}
+TaskA.SCRIPT=if (in1.originalTaskId \!\= null && in1.originalTaskId > 0) {\r\n  task.customFields().stringField(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(ch.ivy.addon.portalkit.enums.AdditionalProperty.ADHOC_EXPRESS_TASK.toString());\r\n}\r\nif (in1.workflowType \=\= ch.ivy.gawfs.enums.ProcessType.AD_HOC){\r\n\t\tivy.task.setCategoryPath("AdhocExpressTasks");\r\n\t} else {\r\n\t  ivy.task.setCategoryPath(in1.workflowName + "/" + in1.currentTask.subject);\r\n}
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=3' #txt
 Bk8 f20 template "" #txt

@@ -20,7 +20,7 @@
   </h:panelGroup>
 
   <h:panelGroup layout="block" styleClass="substitute-container">
-    <p:treeTable id="substitute-container" widgetVar="substituteTable" value="#{data.substituteRoot}"
+    <p:treeTable id="substitute-container" widgetVar="substituteTable" value="#{data.substituteRoot}" styleClass="substitute-container-table"
       var="substituteNode" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/role')}"
         styleClass="substitute-role">
