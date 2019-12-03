@@ -518,7 +518,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   bottom: 1px;
   left: 2px;
   overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis;
 }
 
