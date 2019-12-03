@@ -54,10 +54,10 @@ public class TaskFilterTest extends BaseTest {
     assertEquals(3, taskWidgetPage.countTasks());
 
     String stateFilterValue = taskWidgetPage.getFilterValue("state-filter");
-    assertEquals("State: Suspended, In progress, Reserved", stateFilterValue);
+    assertEquals("State: Created, Suspended, In progress, Reserved", stateFilterValue);
     
     taskWidgetPage.openStateFilter();
-    assertEquals("Done", taskWidgetPage.getStateFilterSelection(3));
+    assertEquals("Done", taskWidgetPage.getStateFilterSelection(4));
   }
   
   @Test
@@ -119,13 +119,14 @@ public class TaskFilterTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createUnassignedTaskUrl);
     MainMenuPage mainMenuPage = new MainMenuPage();
+    mainMenuPage.selectCaseMenu();
     TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
     assertEquals(6, taskWidgetPage.countTasks());
     
     taskWidgetPage.openStateFilterOverlayPanel();
-    assertEquals("Suspended,In progress,Reserved,Done,Unassigned", taskWidgetPage.getDisplayStateInStateFilter());
+    assertEquals("Created,Suspended,In progress,Reserved,Done,Unassigned", taskWidgetPage.getDisplayStateInStateFilter());
     
-    taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Suspended","In progress","Reserved","Done"));
+    taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Created","Suspended","In progress","Reserved","Done"));
     assertEquals(1, taskWidgetPage.countTasks());
     assertEquals("OPEN (Unassigned)", taskWidgetPage.getTaskStateTooltip(0));
   }
@@ -134,11 +135,12 @@ public class TaskFilterTest extends BaseTest {
   public void testNotShowUnassignedTaskToPersonNotHaveTaskReadAllPermission() {
     redirectToRelativeLink(createUnassignedTaskUrl);
     MainMenuPage mainMenuPage = new MainMenuPage();
+    mainMenuPage.selectCaseMenu();
     TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
     
     assertEquals(3, taskWidgetPage.countTasks());
     taskWidgetPage.openStateFilterOverlayPanel();
-    assertEquals("Suspended,In progress,Reserved,Done", taskWidgetPage.getDisplayStateInStateFilter());
+    assertEquals("Created,Suspended,In progress,Reserved,Done", taskWidgetPage.getDisplayStateInStateFilter());
     
   }
 }
