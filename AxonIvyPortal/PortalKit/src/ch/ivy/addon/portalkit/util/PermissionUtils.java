@@ -111,10 +111,16 @@ public class PermissionUtils {
   }
 
   private static boolean isSessionUserBelongsToPermissionGroup(String memberName) {
+    if(memberName == null) {
+      return false;
+    }
     ISecurityMember member = Ivy.session().getSecurityContext().findSecurityMember(memberName);
-    boolean isAssignedUser = member.isUser() && Ivy.session().canActAsUser((IUser) member);
-    boolean hasAssignedRole = !member.isUser() && Ivy.session().hasRole((IRole) member, false);
-    return isAssignedUser || hasAssignedRole;
+    if(member != null) {
+      boolean isAssignedUser = member.isUser() && Ivy.session().canActAsUser((IUser) member);
+      boolean hasAssignedRole = !member.isUser() && Ivy.session().hasRole((IRole) member, false);
+      return isAssignedUser || hasAssignedRole;
+    }
+    return false;
   }
 
   public static boolean isSessionUserHasAdminRole() {
