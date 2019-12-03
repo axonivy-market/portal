@@ -195,12 +195,12 @@ Refer to ``TaskTemplate-8.xhtml`` for params and template areas.
 | - UI styles are taken over from Portal |                               |
 +----------------------------------------+-------------------------------+
 
-.. _components-layout-templates-deprecated-task-template-7:
+.. _components-layout-templates-task-template-7:
 
-DeprecatedTaskTemplate-7 (Deprecated)
--------------------------------------
+TaskTemplate-7 (Deprecated)
+---------------------------
 
-Deprecated task template 7 is old task template with Serenity theme. If your project wants to apply new theme, 
+Task template 7 is old task template with Serenity theme. If your project wants to apply new theme, 
 but keep the TabView (e.g. Case Information, dynamic tabs), you can use this template.
 
 .. warning::
@@ -210,25 +210,25 @@ but keep the TabView (e.g. Case Information, dynamic tabs), you can use this tem
 .. important::
 	This template must not be used inside IFrame.
 
-.. _components-layout-templates-task-template-how-to-use-deprecated-task-template-7:
+.. _components-layout-templates-task-template-how-to-use-task-template-7:
 
-How to use DeprecatedTaskTemplate-7
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+How to use TaskTemplate-7
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Create a new HTML User Dialog and then use ``ui:composition`` to define
 template.
 
 .. code-block:: html
 
-      <ui:composition template="/layouts/DeprecatedTaskTemplate-7.xhtml">
+      <ui:composition template="/layouts/TaskTemplate-7.xhtml">
 
 In case your project has navigation button without finishing a task, e.g Cancel, to 
 
 -  Home page: call ``navigateToPortalHome()`` from class ``PortalNavigator``.
 -  Previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigator``.
 
-How to migrate DeprecatedTaskTemplate-7
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+How to migrate TaskTemplate-7
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Adapt the ``ui:composition`` template to this template.
 
