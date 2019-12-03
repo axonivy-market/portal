@@ -3274,6 +3274,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   .color-header {
     margin-left: -25px;
     margin-right: -25px;
+    width: 120%;
   }
 }
 
