@@ -29,6 +29,7 @@ function loadIframe() {
 }
 
 function checkUrl(iFrame) {
+  document.title = iFrame.contentDocument.title;
   var path = iFrame.contentWindow.location.pathname;
   if (path.match("/default/end.xhtml$") || path.match("/default/end.jsp$")) {
     var href = iFrame.contentWindow.location.href;
