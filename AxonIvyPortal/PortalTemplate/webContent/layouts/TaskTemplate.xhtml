@@ -12,6 +12,13 @@
   </f:facet>
 
   <f:attribute name="primefaces.THEME" value="modena-ivy" />
+  
+  <title>
+    <ui:insert name="title">
+      <ui:insert name="pageTitle">Axon.ivy Portal</ui:insert>
+    </ui:insert>
+  </title>
+    
   <script src="#{resource['ivy-webcontent:layouts/js/cookie-helper.js']}" />
   <script src="#{resource['ivy-webcontent:layouts/js/primefaces-calendar-en-us.js']}" />
   <ui:insert name="head" />

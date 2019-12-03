@@ -29,8 +29,8 @@ Ie0 @PushWFArc f8 '' #zField
 Ie0 @StartRequest f9 '' #zField
 Ie0 @UserDialog f10 '' #zField
 Ie0 @PushWFArc f11 '' #zField
-Ie0 @EndTask f16 '' #zField
-Ie0 @PushWFArc f17 '' #zField
+Ie0 @EndRequest f18 '' #zField
+Ie0 @PushWFArc f23 '' #zField
 >Proto Ie0 Ie0 IFrameExample #zField
 Ie0 f20 actionTable 'out=in1;
 ' #txt
@@ -244,9 +244,10 @@ Ie0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ie0 f10 192 458 112 44 -50 -8 #rect
 Ie0 f10 @|UserDialogIcon #fIcon
 Ie0 f11 111 480 192 480 #arcP
-Ie0 f16 369 465 30 30 0 15 #rect
-Ie0 f16 @|EndIcon #fIcon
-Ie0 f17 304 480 369 480 #arcP
+Ie0 f18 template "/EndPage.ivc" #txt
+Ie0 f18 369 465 30 30 0 15 #rect
+Ie0 f18 @|EndRequestIcon #fIcon
+Ie0 f23 304 480 369 480 #arcP
 >Proto Ie0 .type ch.ivyteam.ivy.project.portal.examples.IFrameExampleData #txt
 >Proto Ie0 .processKind NORMAL #txt
 >Proto Ie0 0 0 32 24 18 0 #rect
@@ -273,5 +274,5 @@ Ie0 f5 mainOut f8 tail #connect
 Ie0 f8 head f13 mainIn #connect
 Ie0 f9 mainOut f11 tail #connect
 Ie0 f11 head f10 mainIn #connect
-Ie0 f10 mainOut f17 tail #connect
-Ie0 f17 head f16 mainIn #connect
+Ie0 f10 mainOut f23 tail #connect
+Ie0 f23 head f18 mainIn #connect
