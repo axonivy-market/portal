@@ -290,7 +290,7 @@ Besides this migration scenario, you can pick one of these scenarios for less mi
 
 - :ref:`TaskTemplate-8 <components-layout-templates-task-template-8>`: include Serenity theme and no tab view predefined
 
-- :ref:`DeprecatedTaskTemplate-7 (Deprecated) <components-layout-templates-deprecated-task-template-7>`: keep your old template UI (including tab view) with Serenity theme
+- :ref:`TaskTemplate-7 (Deprecated) <components-layout-templates-task-template-7>`: keep your old template UI (including tab view) with Serenity theme
 
 If your project has the ``<ui:insert name="content">`` tag, rename ``content`` to something else. This specific name may cause error since it is already used in Portal template.
 
