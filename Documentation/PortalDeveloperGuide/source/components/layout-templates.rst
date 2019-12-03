@@ -17,7 +17,7 @@ Templates without IFrames:
 
 2. :ref:`Task template 8 <components-layout-templates-task-template-8>`
 
-3. :ref:`Deprecated task template 7 (Deprecated) <components-layout-templates-deprecated-task-template-7>`
+3. :ref:`Deprecated task template 7 (Deprecated) <components-layout-templates-task-template-7>`
 
 4. :ref:`Two column template (Deprecated) <components-layout-templates-two-column-template>`
 
@@ -33,7 +33,7 @@ Templates to use with IFrame:
 
 2. :ref:`Task template (Deprecated) <components-layout-templates-task-template>`
 
-3. :ref:`frame-8 template <components-layout-templates-frame-8-template>` (Provided by core, use Serenity theme)
+3. frame-8 template (Provided by core, use Serenity theme)
 
 These templates have the same header, which is a menu of applications
 that you configure in Administration page. Since version 8.0, Portal
