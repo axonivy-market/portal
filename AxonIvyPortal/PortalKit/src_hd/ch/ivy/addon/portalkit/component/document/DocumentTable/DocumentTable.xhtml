@@ -78,9 +78,10 @@
       </p:column>
     </p:dataTable>
     <div class="upload-container ui-g">
-      <h:panelGroup layout="block" rendered="#{cc.attrs.typeColumnRendered}" styleClass="MarTop10 ui-g-12 u-no-padding-right">
+      <h:panelGroup layout="block" rendered="#{cc.attrs.typeColumnRendered or cc.attrs.uploadRendered}" styleClass="MarTop10 ui-g-12 u-no-padding-right">
           <p:fileUpload id="document-upload" mode="advanced" auto="true" dragDropSupport="true"
             fileUploadListener="#{logic.upload}"
+            rendered="#{cc.attrs.uploadRendered}"
             update="document-table document-messages #{cc.attrs.updatedComponentAfterUploaded}"
             invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}" 
             label="#{not empty cc.attrs.uploadText ? cc.attrs.uploadText : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/upload')}"
@@ -89,12 +90,12 @@
             styleClass="u-padding-0 Fright">
           </p:fileUpload>
 
-          <p:selectOneMenu id="type-selection" value="#{data.typeSelection}" converter="pojoConverter" styleClass="u-mar-right-5 Fright">
+          <p:selectOneMenu id="type-selection" value="#{data.typeSelection}" rendered="#{cc.attrs.typeColumnRendered}" converter="pojoConverter" styleClass="u-mar-right-5 Fright">
             <p:ajax global="false" />
             <f:selectItems value="#{typeSelectionItems}" var="type" itemLabel="#{type.toString()}"
               itemValue="#{type}" />
           </p:selectOneMenu>
-          <p:outputLabel for="type-selection" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/type')}: " styleClass="u-mar-right-5 Fright" />
+          <p:outputLabel for="type-selection" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/type')}: " styleClass="u-mar-right-5 Fright" rendered="#{cc.attrs.typeColumnRendered}" />
           
       </h:panelGroup>
     </div>
