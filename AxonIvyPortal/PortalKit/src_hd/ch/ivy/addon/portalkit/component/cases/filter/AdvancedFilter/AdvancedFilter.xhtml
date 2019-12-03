@@ -45,7 +45,7 @@
         <p:commandLink id="advanced-filter-remove-command"
           styleClass="fa fa-times-circle advanced-filter-icon #{cc.attrs.removeIconStyleClass}"
           actionListener="#{dataModel.removeFilter(caseFilter)}" global="false"
-          update="@(.advanced-filter-container) @(.filter-add-container) @(.filter-selection-form) @(.case-list)"
+          update="@(.advanced-filter-container) @(.filter-add-container) @(.filter-selection-form)"
           oncomplete="#{empty cc.attrs.resultContainerUpdated ? 'caseWidget.setUpScrollbar();caseWidget.setupHeader()' : ''}">
           <f:actionListener binding="#{cc.attrs.removeListener}" />
         </p:commandLink>
