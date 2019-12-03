@@ -43,6 +43,7 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
 
 public class CaseLazyDataModel extends LazyDataModel<ICase> {
   private static final long serialVersionUID = 1L;
+  private static final String ALL = "All";
 
   protected final List<ICase> data;
 
@@ -105,12 +106,25 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   public void onFilterChange(ValueChangeEvent event) {
     List<CaseFilter> oldSelectedFilters = (List<CaseFilter>) event.getOldValue();
     List<CaseFilter> newSelectedFilters = (List<CaseFilter>) event.getNewValue();
-    List<CaseFilter> toggleFilters =
-        (List<CaseFilter>) CollectionUtils.subtract(newSelectedFilters, oldSelectedFilters);
+    List<CaseFilter> toggleFilters = null;
+    if (newSelectedFilters.size() > oldSelectedFilters.size()) {
+      toggleFilters = (List<CaseFilter>) CollectionUtils.subtract(newSelectedFilters, oldSelectedFilters);
+    } else {
+      toggleFilters = (List<CaseFilter>) CollectionUtils.subtract(oldSelectedFilters, newSelectedFilters);
+    }
+
     if (CollectionUtils.isNotEmpty(toggleFilters)) {
       toggleFilters.get(0).resetValues();
+      reloadViewContainer(toggleFilters.get(0));
     }
     resetFilterData();
+  }
+
+  public void reloadViewContainer(CaseFilter caseFilter) {
+    if (caseFilter.reloadViewContainer() || !caseFilter.value().equalsIgnoreCase(ALL)) {
+      PrimeFaces.current().ajax().update("case-widget:case-list");
+      PrimeFaces.current().executeScript("caseWidget.setUpScrollbar();caseWidget.setupHeader();");
+    }
   }
 
   public void onKeywordChange() {
@@ -124,6 +138,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   }
 
   public void removeFilter(CaseFilter filter) {
+    reloadViewContainer(filter);
     filter.resetValues();
     selectedFilters.remove(filter);
     resetFilterData();

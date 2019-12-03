@@ -109,4 +109,19 @@ public abstract class AbstractFilter<T extends Query<?>> {
     return false;
   }
 
+  /**
+   * <p>
+   * Override this method if need to reload list view container such as case list, task list when adding new filter
+   * </p>
+   * <p>
+   * <b>Example: </b>
+   * When adding new Expiry filter, we don't need to reload page because default value is ALL
+   * When adding new State filter, we need to reload page because default value is based on user's permission
+   * </p>
+   * @return is reload list view container
+   */
+  public boolean reloadViewContainer() {
+    return false;
+  }
+
 }

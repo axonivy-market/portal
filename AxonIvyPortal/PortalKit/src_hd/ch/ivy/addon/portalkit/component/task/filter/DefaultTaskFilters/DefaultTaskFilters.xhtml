@@ -12,18 +12,18 @@
   <c:set var="filterContainer" value="#{cc.attrs.dataModel.filterContainer}" />
   
   <ic:ch.ivy.addon.portalkit.component.task.filter.TaskPriorityFilter filter="#{filterContainer.priorityFilter}"
-    dataModel="#{cc.attrs.dataModel}" />
+    dataModel="#{cc.attrs.dataModel}" resultContainerUpdated="#{false}"/>
   <ic:ch.ivy.addon.portalkit.component.task.filter.TaskStateFilter filter="#{filterContainer.stateFilter}"
-    dataModel="#{cc.attrs.dataModel}" />
+    dataModel="#{cc.attrs.dataModel}" resultContainerUpdated="#{false}"/>
   <ic:ch.ivy.addon.portalkit.component.task.filter.TaskCreationDateFilter
-    filter="#{filterContainer.creationDateFilter}" dataModel="#{cc.attrs.dataModel}" />
+    filter="#{filterContainer.creationDateFilter}" dataModel="#{cc.attrs.dataModel}" resultContainerUpdated="#{false}"/>
   <ic:ch.ivy.addon.portalkit.component.task.filter.TaskExpiredDateFilter filter="#{filterContainer.expiredDateFilter}"
-    dataModel="#{cc.attrs.dataModel}" />
+    dataModel="#{cc.attrs.dataModel}" resultContainerUpdated="#{false}"/>
   <ic:ch.ivy.addon.portalkit.component.task.filter.TaskDescriptionFilter filter="#{filterContainer.descriptionFilter}"
-    dataModel="#{cc.attrs.dataModel}" />
+    dataModel="#{cc.attrs.dataModel}" resultContainerUpdated="#{false}"/>
   <ic:ch.ivy.addon.portalkit.component.task.filter.TaskResponsibleFilter filter="#{filterContainer.responsibleFilter}"
-    dataModel="#{cc.attrs.dataModel}" />
+    dataModel="#{cc.attrs.dataModel}" resultContainerUpdated="#{false}"/>
   <ic:ch.ivy.addon.portalkit.component.task.filter.TaskCategoryFilter filter="#{filterContainer.categoryFilter}"
-    dataModel="#{cc.attrs.dataModel}" />
+    dataModel="#{cc.attrs.dataModel}" resultContainerUpdated="#{false}"/>
 </cc:implementation>
 </html>
