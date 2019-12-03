@@ -35,6 +35,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.system.ISystemProperty;
 import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.TaskState;
 
 @ManagedBean
 @ViewScoped
@@ -120,8 +121,8 @@ public class UserMenuBean implements Serializable {
         .orElse(StringUtils.EMPTY);
   }
 
-  public void navigateToHomePageOrDisplayWorkingTaskWarning(boolean isWorkingOnATask) throws IOException {
-    if (isWorkingOnATask) {
+  public void navigateToHomePageOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
+    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
       PrimeFaces.current().executeScript("PF('logo-task-losing-confirmation-dialog').show()");
     } else {
       navigateToHomePage();
@@ -154,6 +155,7 @@ public class UserMenuBean implements Serializable {
   public boolean isAnnouncementActivated() {
     return AnnouncementService.getInstance().isAnnouncementActivated();
   }
+  
   private void navigateToHomePage() throws IOException {
     getExternalContext().redirect(getHomePageURL());
   }
