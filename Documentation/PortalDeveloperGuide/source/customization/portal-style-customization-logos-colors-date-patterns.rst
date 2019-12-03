@@ -25,6 +25,9 @@ PortalStyle project.
 -  Modify cms entry ``PortalStyle/images/logo/loginLogo.png`` to update
    login logo.
 
+-  Modify cms entry ``PortalStyle/images/logo/faviconLogo.png`` to update
+   favicon logo. Recommended size for favicon: 16x16 or 32x32 pixels.
+
 -  Override the variables: ``$loginLogoHeight``, ``$homeLogoHeight`` in
    ``variables.scss`` to scale your logos.
 
