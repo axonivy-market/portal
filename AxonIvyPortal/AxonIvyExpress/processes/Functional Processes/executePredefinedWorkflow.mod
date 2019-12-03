@@ -1091,8 +1091,7 @@ Bk4 f26 0 0.4523809523809524 25 0 #arcLabel
 Bk4 f43 actionTable 'out=in1;
 ' #txt
 Bk4 f43 outLinks "TaskA.ivp" #txt
-Bk4 f43 taskData 'TaskA.CATEGORY=<%\=in1.workflowName%>/<%\=in1.currentTask.subject%>
-TaskA.DESC=<%\=in1.currentTask.description%>\n
+Bk4 f43 taskData 'TaskA.DESC=<%\=in1.currentTask.description%>\n
 TaskA.EXP=new Duration(0,0,in1.currentTask.untilDays,0,0,0)
 TaskA.EXPRI=1
 TaskA.EXROL=Everybody
@@ -1100,6 +1099,7 @@ TaskA.EXTYPE=0
 TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=SELF
+TaskA.SCRIPT=task.setCategoryPath(in1.workflowName + "/" + in1.currentTask.subject);
 TaskA.SKIP_TASK_LIST=true
 TaskA.TYPE=0' #txt
 Bk4 f43 template "" #txt
