@@ -148,8 +148,10 @@ In engine
 
 .. _installation-migration-notes-8-0-0:
 
-Migrate to 8.0.0
+Migrate from 7.x to 8.0.0
 ----------------
+
+Please following these migration guides.
 
 .. toctree::
    :maxdepth: 2
