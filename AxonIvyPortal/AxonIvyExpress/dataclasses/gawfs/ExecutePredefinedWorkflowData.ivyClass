@@ -28,6 +28,7 @@ workflowID String #field
 workflowName String #field
 workflowName PERSISTENT #fieldModifier
 workflowType ch.ivy.gawfs.enums.ProcessType #field
+workflowType PERSISTENT #fieldModifier
 isAdhocProcess Boolean #field
 isAdhocProcess PERSISTENT #fieldModifier
 originalTaskId Long #field
