@@ -30,8 +30,6 @@ As0 @PushWFArc f114 '' #zField
 As0 @PushWFArc f122 '' #zField
 As0 @PushWFArc f125 '' #zField
 As0 @PushWFArc f129 '' #zField
-As0 @UdEvent f1 '' #zField
-As0 @PushWFArc f2 '' #zField
 As0 @GridStep f14 '' #zField
 As0 @PushWFArc f13 '' #zField
 As0 @PushWFArc f16 '' #zField
@@ -64,6 +62,8 @@ As0 @UdMethod f3 '' #zField
 As0 @PushWFArc f8 '' #zField
 As0 @UdMethod f12 '' #zField
 As0 @PushWFArc f18 '' #zField
+As0 @PushWFArc f2 '' #zField
+As0 @UdEvent f1 '' #zField
 >Proto As0 As0 ApplicationSelectionMenuProcess #zField
 As0 f67 actionTable 'out=in;
 ' #txt
@@ -86,18 +86,17 @@ As0 f67 @|StepIcon #fIcon
 As0 f70 848 368 32 32 0 16 #rect
 As0 f70 @|AlternativeIcon #fIcon
 As0 f72 guid 15FB36E87007F717 #txt
-As0 f72 method openApp(String) #txt
-As0 f72 inParameterDecl '<String appUrl> param;' #txt
+As0 f72 method openApp(String,ch.ivyteam.ivy.workflow.ITask) #txt
+As0 f72 inParameterDecl '<String appUrl,ch.ivyteam.ivy.workflow.ITask task> param;' #txt
 As0 f72 inParameterMapAction 'out.applicationUrl=param.appUrl;
 out.selectedSubMenuItem=null;
+out.workingTask=param.task;
 ' #txt
 As0 f72 outParameterDecl '<> result;' #txt
 As0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>openApp(String)</name>
-        <nameStyle>15,5,7
-</nameStyle>
+        <name>openApp(String,ITask)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -235,7 +234,7 @@ As0 f98 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f98 850 178 28 28 14 0 #rect
 As0 f98 @|AlternativeIcon #fIcon
 As0 f109 expr in #txt
-As0 f109 outCond in.isWorkingOnATask #txt
+As0 f109 outCond 'in.isWorkingOnATask && in.workingTask.getState() != ch.ivyteam.ivy.workflow.TaskState.DONE' #txt
 As0 f109 1024 208 1024 266 #arcP
 As0 f110 expr in #txt
 As0 f110 outCond 'in.#selectedSubMenuItem.#menuKind  == ch.ivy.addon.portalkit.enums.MenuKind.CUSTOM' #txt
@@ -259,29 +258,6 @@ As0 f125 expr in #txt
 As0 f125 1008 192 878 192 #arcP
 As0 f129 expr out #txt
 As0 f129 272 128 272 176 #arcP
-As0 f1 guid 15FB83C392F10C9D #txt
-As0 f1 actionTable 'out=in;
-' #txt
-As0 f1 actionCode 'import org.primefaces.component.menuitem.UIMenuItem;
-import ch.addon.portal.generic.menu.SubMenuItem;
-
-UIMenuItem menu = event.getSource() as UIMenuItem;
-in.selectedSubMenuItem = menu.getAttributes().get("selectedSubMenuItem") as SubMenuItem;' #txt
-As0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>onClickSubMenuItem</name>
-        <nameStyle>18,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f1 1171 19 26 26 16 -3 #rect
-As0 f1 @|UdEventIcon #fIcon
-As0 f2 expr out #txt
-As0 f2 1184 45 1040 192 #arcP
-As0 f2 1 1184 192 #addKink
-As0 f2 1 0.16104556874251277 0 0 #arcLabel
 As0 f14 actionTable 'out=in;
 ' #txt
 As0 f14 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -495,6 +471,31 @@ As0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f12 851 19 26 26 5 14 #rect
 As0 f12 @|UdMethodIcon #fIcon
 As0 f18 864 45 864 92 #arcP
+As0 f2 expr out #txt
+As0 f2 1184 45 1040 192 #arcP
+As0 f2 1 1184 192 #addKink
+As0 f2 1 0.16104556874251277 0 0 #arcLabel
+As0 f1 guid 15FB83C392F10C9D #txt
+As0 f1 actionTable 'out=in;
+' #txt
+As0 f1 actionCode 'import ch.ivyteam.ivy.workflow.ITask;
+import org.primefaces.component.menuitem.UIMenuItem;
+import ch.addon.portal.generic.menu.SubMenuItem;
+
+UIMenuItem menu = event.getSource() as UIMenuItem;
+in.selectedSubMenuItem = menu.getAttributes().get("selectedSubMenuItem") as SubMenuItem;
+in.workingTask = menu.getAttributes().get("task") as ITask;' #txt
+As0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>onClickSubMenuItem</name>
+        <nameStyle>18,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f1 1171 19 26 26 16 -3 #rect
+As0 f1 @|UdEventIcon #fIcon
 >Proto As0 .type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
