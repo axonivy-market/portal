@@ -23,15 +23,13 @@
 </cc:interface>
 
 <cc:implementation>
-
   <h:outputScript name="case-widget.js" library="js" />
   <div id="#{cc.clientId}" class="widget case-widget-container ui-g">
     <h:panelGroup rendered="#{!cc.attrs.hideWidgetHeader}">
       <h:panelGroup id="case-widget-header" styleClass="widget-header ui-g-12 ui-g" layout="block">
         <div class="case-widget-top-header ui-g-8 ui-sm-4">
           <h:panelGroup id="case-widget-title">
-            <h:outputText styleClass="case-widget-top-header-main-title"
-              value="#{cc.attrs.title} (#{data.dataModel.rowCount})" />
+            <span class="case-widget-top-header-main-title">#{cc.attrs.title} (#{data.dataModel.rowCount})</span>
           </h:panelGroup>
         </div>
         <h:panelGroup styleClass="widget-header-content-filter ui-g-4 ui-sm-8" id="expanded-mode-filter-view">
@@ -50,7 +48,7 @@
         <h:panelGroup id="filter-selection-container" styleClass="filter-selection-container-group"
           rendered="#{(not empty data.privateFilters or not empty data.publicFilters)}">
           <h:form id="filter-selection-form" class="filter-selection-form filter-selection-container">
-            <p:outputPanel id="filter-selection-panel">
+            <h:panelGroup id="filter-selection-panel">
               <p:commandLink id="filter-name" styleClass="filter-name"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/savedFilters')} #{data.dataModel.selectedFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection') : data.dataModel.selectedFilterData.filterName}"
                 global="false" />
@@ -58,11 +56,10 @@
                 hideEffect="fade" my="left top" at="left bottom">
                 <h:panelGroup id="private-filters" rendered="#{not empty data.publicFilters}">
                   <div class="filter-type-label">
-                    <h:outputText
-                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/publicFilter')}" />
+                    <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/publicFilter')}</span>
                   </div>
                   <ui:repeat var="filterData" value="#{data.publicFilters}">
-                    <h:panelGroup layout="block" styleClass="user-defined-filter-container">
+                    <div class="user-defined-filter-container">
                       <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
                         value="#{filterData.filterName}" global="false"
                         actionListener="#{logic.applyFilter(filterData)}"
@@ -75,18 +72,17 @@
                         styleClass="fa fa-times-circle delete-user-defined-filter-command"
                         actionListener="#{data.setFilterDataToBeDeleted(filterData)}"
                         oncomplete="PF('delete-filter-confirmation-dialog').show();" />
-                    </h:panelGroup>
+                    </div>
                   </ui:repeat>
                 </h:panelGroup>
                 <p:separator rendered="#{not empty data.publicFilters and not empty data.privateFilters}"
                   styleClass="filter-separator" />
                 <h:panelGroup id="public-filters" rendered="#{not empty data.privateFilters}">
                   <div class="filter-type-label">
-                    <h:outputText
-                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/privateFilter')}" />
+                    <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/privateFilter')}</span>
                   </div>
                   <ui:repeat var="filterData" value="#{data.privateFilters}">
-                    <h:panelGroup layout="block" styleClass="user-defined-filter-container">
+                    <div class="user-defined-filter-container">
                       <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
                         value="#{filterData.filterName}" global="false"
                         actionListener="#{logic.applyFilter(filterData)}"
@@ -99,17 +95,17 @@
                         styleClass="fa fa-times-circle delete-user-defined-filter-command"
                         actionListener="#{logic.setFilterToBeDeleted(filterData)}"
                         oncomplete="PF('delete-filter-confirmation-dialog').show();" />
-                    </h:panelGroup>
+                    </div>
                   </ui:repeat>
                 </h:panelGroup>
               </p:overlayPanel>
-            </p:outputPanel>
+            </h:panelGroup>
           </h:form>
         </h:panelGroup>
 
         <h:panelGroup id="advanced-filter-container" layout="block" styleClass="advanced-filter-container">
           <f:event listener="#{data.dataModel.initFilters()}" type="preRenderComponent" />
-          <h:panelGroup styleClass="additional-filter-container">
+          <div class="additional-filter-container">
             <cc:renderFacet name="caseFilter" />
             
             <!-- Add more filters button -->
@@ -123,8 +119,7 @@
                     <p:selectManyCheckbox id="filter-selection" layout="pageDirection"
                       valueChangeListener="#{data.dataModel.onFilterChange}" value="#{data.dataModel.selectedFilters}"
                       converter="pojoConverter">
-                      <p:ajax update="#{cc.clientId}:filter-selection-container #{cc.clientId}:advanced-filter-container #{cc.clientId}:case-list" global="false"
-                        oncomplete="caseWidget.setUpScrollbar();caseWidget.setupHeader();" />
+                      <p:ajax update="#{cc.clientId}:filter-selection-container #{cc.clientId}:advanced-filter-container" global="false"/>
                       <f:selectItems value="#{data.dataModel.filters}" var="filter" itemLabel="#{filter.label()}"
                         itemValue="#{filter}" />
                     </p:selectManyCheckbox>
@@ -140,7 +135,7 @@
                 icon="fa fa-save" iconPos="right" update="save-filter-set-dialog" resetValues="true"
                 oncomplete="PF('save-filter-set-dialog').show();" />
             </h:panelGroup>
-          </h:panelGroup>
+          </div>
         </h:panelGroup>
         
       </h:panelGroup>
@@ -198,7 +193,7 @@
             itemValue="ALL_USERS" />
         </p:selectOneRadio>
       </h:panelGrid>
-      <h:panelGroup layout="block" class="u-dialog-footer ui-dialog-footer">
+      <div class="u-dialog-footer ui-dialog-footer">
         <p:commandButton id="filter-save-command"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" process="@form"
           oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('save-filter-set-dialog').hide(); updateFilterContainer();}"
@@ -210,7 +205,7 @@
         <p:commandButton type="button" styleClass="portal-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('save-filter-set-dialog').hide();">
         </p:commandButton>
-      </h:panelGroup>
+      </div>
     </h:form>
   </p:dialog>
 
@@ -226,9 +221,6 @@
       onclick="PF('delete-filter-confirmation-dialog').hide();" type="button" styleClass="portal-cancel-button" />
   </p:confirmDialog>
 
-  <script type="text/javascript">
-      var caseWidget = new CaseWidget();
-  </script>
   <p:confirmDialog id="destroy-case-confirmation-dialog"
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/destroyCaseMessage')}" closeOnEscape="true"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" widgetVar="destroy-case-dialog"
@@ -240,6 +232,10 @@
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
       onclick="PF('destroy-case-dialog').hide();" type="button" styleClass="portal-cancel-button" />
   </p:confirmDialog>
+
+  <script type="text/javascript">
+      var caseWidget = new CaseWidget();
+  </script>
 
   <h:form id="update-case-count-rc-form">
     <p:remoteCommand id="update-case-count-remote-cmd" name="updateCaseCount" update="#{cc.clientId}:case-widget-title" global="false" process="@this" immediate="true" />
