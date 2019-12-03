@@ -15,18 +15,13 @@
   <div id="#{cc.clientId}">
     <p:commandLink id="logout-menu-item"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
-      rendered="#{!userMenuBean.hiddenLogout and !cc.attrs.isWorkingOnATask}" actionListener="#{logic.logout(task)}"
-      oncomplete="returnHomePage()" />
-
-    <p:link id="logout-confirmation-menu-item" href="#"
-      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
-      rendered="#{!userMenuBean.hiddenLogout and cc.attrs.isWorkingOnATask}" onclick="PF('logoutConfirmation').show()" />
+      rendered="#{!userMenuBean.hiddenLogout}" actionListener="#{logic.logout(task)}" />
 
     <p:confirmDialog id="logout-confirmation-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" 
       closeOnEscape="true" widgetVar="logoutConfirmation" appendTo="@(body)" rendered="#{cc.attrs.isWorkingOnATask}">
       <h:form prependId="false">
         <h:panelGroup styleClass="Fs14">
-          <p:commandButton actionListener="#{logic.logout(task)}" process="@this"
+          <p:commandButton actionListener="#{logic.logoutInDialog(task)}" process="@this"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
             styleClass="ui-confirmdialog-yes u-mar-right-5" oncomplete="returnHomePage()" />
           <p:commandButton id="reserve-task-button" actionListener="#{logic.reserveTask(task)}" process="@this"
@@ -50,10 +45,10 @@
   </div>
 
   <script>
-      function returnHomePage() {
-        showConfirmDialogBeforeUnload = false;
-        window.open('#{userMenuBean.logoutPage}', '_self');
-      }
-    </script>
+    function returnHomePage() {
+      showConfirmDialogBeforeUnload = false;
+      window.open('#{userMenuBean.logoutPage}', '_self');
+    }
+  </script>
 </cc:implementation>
 </html>
