@@ -149,7 +149,7 @@ In engine
 .. _installation-migration-notes-8-0-0:
 
 Migrate from 7.x to 8.0.0
-----------------
+-------------------------
 
 Please following these migration guides.
 
@@ -456,7 +456,7 @@ Changes in 8.0
 -  Support to start a task in IFrame, refer to :ref:`IFrame in Portal <iframe-in-portal>`.
 
 -  Refactor ``TaskTemplate.xhtml``, refer to :ref:`Migration
-   Notes <installation-migration-notes-8-0-0-task-template>` for more details.
+   Notes <installation-migration-notes-8-0-0-migrate-templates>` for more details.
    
 -  Remove ``caseBody`` inside CaseWidget, refer to :ref:`Migration
    Notes <installation-migration-notes-8-0-0-case-body>` for more details.
