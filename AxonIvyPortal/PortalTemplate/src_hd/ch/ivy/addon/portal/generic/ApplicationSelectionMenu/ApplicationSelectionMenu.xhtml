@@ -19,11 +19,11 @@
 
   <!-- LOGO  -->
   <div class="sidebar-logo">
-    <p:commandLink id="logo" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(cc.attrs.isWorkingOnATask)}">
+    <p:commandLink id="logo" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(cc.attrs.isWorkingOnATask, task)}">
       <p:graphicImage styleClass="portal-home-logo" value="#{resource['ivy-cms:images/logo/CorporateLogo']}" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
     </p:commandLink>
 
-    <p:commandLink id="logo-small" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(cc.attrs.isWorkingOnATask)}" styleClass="portal-home-logo-small">
+    <p:commandLink id="logo-small" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(cc.attrs.isWorkingOnATask, task)}" styleClass="portal-home-logo-small">
       <p:graphicImage styleClass="portal-home-logo portal-home-logo-small" value="#{resource['ivy-cms:images/logo/SmallCorporateLogo']}" 
         alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
     </p:commandLink>
@@ -53,13 +53,13 @@
             <c:forEach var="menuItem" items="#{menuView.menuItems}" varStatus="menuItemStatus">
 
               <p:menuitem id="menu-item-#{menuItemStatus.index}" rendered="#{empty menuItem.getAttributes().get('isThirdPartyApp')}"
-                actionListener="#{logic.openApp(menuItem.href)}" disabled="#{menuItem.disabled}" update="main-menu" process="main-menu"
+                actionListener="#{logic.openApp(menuItem.href, task)}" disabled="#{menuItem.disabled}" update="main-menu" process="main-menu"
                 icon="#{menuItem.icon}" value="#{menuItem.value}" iconPos="right"
                 containerStyleClass="#{menuItem.styleClass}" styleClass="#{menuItem.styleClass eq 'active-menuitem' ? 'current-application':''}" 
                 />
 
               <p:menuitem id="thirdparty-menu-item-#{menuItemStatus.index}" rendered="#{not empty menuItem.getAttributes().get('isThirdPartyApp')}"
-                update="main-menu" process="main-menu" actionListener="#{logic.openApp(menuItem.href)}" ajax="false" target="_blank"
+                update="main-menu" process="main-menu" actionListener="#{logic.openApp(menuItem.href, task)}" ajax="false" target="_blank"
                 onclick="event.stopPropagation(); location.reload();" disabled="#{menuItem.disabled}" icon="#{menuItem.icon}"
                 value="#{menuItem.value}" iconPos="right" containerStyleClass="#{menuItem.styleClass}" />
 
@@ -80,6 +80,7 @@
                     icon="#{subMenuItem.icon}" iconPos="right" styleClass="submenu #{subMenuItem.menuKind}" update="main-menu" process="main-menu"
                     containerStyleClass="submenu-container #{firstSubItem} #{lastSubItem}" global="false">
                     <f:attribute name="selectedSubMenuItem" value="#{subMenuItem}" />
+                    <f:attribute name="task" value="#{task}" />
                   </p:menuitem>
 
                   <p:menuitem id="thirdparty-menu-item-#{menuItemStatus.index}-sub-menu-item-#{subMenuItemStatus.index}"
