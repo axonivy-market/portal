@@ -24,8 +24,7 @@
   </p:ajaxStatus>
   <p:dialog id="#{cc.clientId}-error-ajax-dialog" widgetVar="error-ajax-dialog" closable="true" onShow="debugger;" closeOnEscape="true"
     modal="true" resizable="false" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}">
-    <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/errorAjaxMessage')}" />
-    <p:spacer width="20px" />
+    <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/errorAjaxMessage')}" styleClass="u-mar-right-20" />
     <p:commandLink id="#{cc.clientId}-show-more" rendered="#{renderDetail}" 
        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" styleClass="notification-content-action-more-details" />
     
