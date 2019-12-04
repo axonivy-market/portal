@@ -5233,12 +5233,6 @@ margin-top
 .ui-widget.ui-fileupload {
 	margin-top: 5px;
 }
-.ui-fileupload-buttonbar {
-	-webkit-transform: translateY(30%);
-	-moz-transform: translateY(30%);
-	-o-transform: translateY(30%);
-	transform: translateY(30%);
-}
 
 .ui-messages ul {
   margin-top: 0 !important;
