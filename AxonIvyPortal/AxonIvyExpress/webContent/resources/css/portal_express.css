@@ -296,12 +296,27 @@
   height: 100%;
 }
 
+.form-definition-table tr td.ui-panelgrid-cell {
+  padding: 0 !important;
+  margin: 10px 0 !important;
+}
+
 .form-definition-table tr:first-child td.ui-panelgrid-cell {
-  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 .form-definition-table tr:last-child td.ui-panelgrid-cell {
-  padding-top: 0;
+  margin-top: 0;
+}
+
+.form-definition-table tr:nth-child(2) td.ui-panelgrid-cell:first-child {
+  margin-right: 5px !important;
+  width: calc(50% - 5px);
+}
+
+.form-definition-table tr:nth-child(2) td.ui-panelgrid-cell:last-child {
+  margin-left: 5px !important;
+  width: calc(50% - 5px);
 }
 
 .form-definition-table .selected-formelements-panel {
@@ -309,8 +324,7 @@
   height: 100%;
 }
 
-.form-definition-table .selected-formelements-panel.right-section .ui-outputpanel, .form-definition-table .selected-formelements-panel.left-section .ui-outputpanel
-  {
+.form-definition-table .selected-formelements-panel.right-section .ui-outputpanel, .form-definition-table .selected-formelements-panel.left-section .ui-outputpanel {
   height: 100%;
 }
 
