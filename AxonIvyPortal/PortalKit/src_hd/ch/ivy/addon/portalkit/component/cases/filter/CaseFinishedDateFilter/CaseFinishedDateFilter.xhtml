@@ -14,17 +14,15 @@
   <ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter id="#{cc.attrs.componentId}"
     caseFilter="#{cc.attrs.filter}" selectedFilters="#{cc.attrs.selectedFilters}" resultContainerUpdated="#{cc.attrs.resultContainerUpdated}"
     dismissableOverlayPanel="false" dataModel="#{cc.attrs.dataModel}">
-    <h:panelGrid columns="3">
+    <h:panelGrid columns="2" cellpadding="5" styleClass="ui-fluid">
       <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}"
         for="from-finished-calendar" />
-      <p:spacer width="5" />
       <p:calendar id="from-finished-calendar" value="#{cc.attrs.filter.fromFinishedDate}"
       	locale="#{localeBean.locale}"
         pattern="#{dateTimePatternBean.configuredPattern}" showOn="button"
         converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}" />
 
       <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" for="to-finished-calendar" />
-      <p:spacer width="5" />
       <p:calendar id="to-finished-calendar" value="#{cc.attrs.filter.toFinishedDate}"
       	locale="#{localeBean.locale}"
         pattern="#{dateTimePatternBean.configuredPattern}" showOn="button"
