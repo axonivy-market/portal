@@ -116,7 +116,7 @@
           styleClass="ui-confirmdialog-yes u-mar-right-5" rendered="#{task.state != 'CREATED'}" />
         <p:tooltip for="reserve-task-button" trackMouse="true" rendered="#{task.state != 'CREATED'}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leaveAndReserve')}" />
-        <p:commandButton onclick="PF('task-losing-confirmation-dialog').hide()"
+        <p:commandButton onclick="removeHighlightedMenuItem();PF('task-losing-confirmation-dialog').hide();"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button"
           styleClass="ui-confirmdialog-no portal-cancel-button" />
       </h:panelGroup>
@@ -128,5 +128,10 @@
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskWarning/createdTaskLeave')}" />
     </f:facet>
   </p:confirmDialog>
+  <script type="text/javascript">
+    function removeHighlightedMenuItem() {
+      $(".active-menuitem.submenu-container").removeClass("active-menuitem");
+    }
+  </script>
 </cc:implementation>
 </html>
