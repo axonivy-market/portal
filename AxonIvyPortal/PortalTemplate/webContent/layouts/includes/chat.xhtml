@@ -49,7 +49,7 @@
               rendered="#{chatRendererBean.isPrivateChatRendered}" />
           </div>
           <div class="close-chat">
-            <p:commandButton icon="fa fa-chevron-right" oncomplete="view.closeChatPanel();" />
+            <p:commandButton id="close-chat-button" icon="fa fa-chevron-right" oncomplete="view.closeChatPanel();" process="@(none)" async="true" global="false" />
           </div>
         </div>
         <div class="message-list js-chat-message-container">
@@ -65,7 +65,7 @@
             <div id="chat-message-list" class="chat-message-list js-message-list" />
 
             <h:panelGroup id="chat-send-form-container" layout="block" styleClass="chat-send-form">
-              <p:inputTextarea id="message-input-field" onkeydown="chat.onKeyEvent(event)"
+              <p:inputTextarea id="message-input-field" onkeydown="chat.onKeyEvent(event)" value=" "
                 placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/typeMessage')}" maxlength="2500"
                 styleClass="message-list-content-send-input js-input-message" />
               <p:commandButton icon="fa fa-paper-plane" onclick="chat.sendMessage()"
