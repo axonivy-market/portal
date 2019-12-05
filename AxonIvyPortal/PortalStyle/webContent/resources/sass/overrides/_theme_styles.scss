@@ -709,6 +709,19 @@ body .ui-messages ul {
   padding-left: 2em;
 }
 
+@media screen and (max-width: 64.063em) {
+  .ui-messages-info-summary,
+  .ui-messages-warn-summary,
+  .ui-messages-error-summary,
+  .ui-messages-fatal-summary,
+  .ui-message-info-summary,
+  .ui-message-warn-summary,
+  .ui-message-error-summary,
+  .ui-message-fatal-summary {
+    margin-left: 0px;
+  }
+}
+
 /* Buttons */
 body .ui-button .ui-button-text {
   font-size: $largeFontSize;
