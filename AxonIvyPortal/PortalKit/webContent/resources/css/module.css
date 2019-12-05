@@ -1172,9 +1172,6 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 }
 
 @media screen and (min-width: 1024px) {
-  .compact-processes-container {
-    max-height: 277px;
-  }
   .compact-default-processes-container {
     max-height: 292px;
     padding-right: 0px;
@@ -1182,7 +1179,7 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 }
 
 @media screen and (max-width: 1023px) {
-  .compact-processes-container, .compact-default-processes-container {
+  .compact-default-processes-container {
     max-height: 165px;
   }
 }
