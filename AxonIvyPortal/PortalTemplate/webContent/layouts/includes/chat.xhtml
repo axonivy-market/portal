@@ -65,9 +65,9 @@
             <div id="chat-message-list" class="chat-message-list js-message-list" />
 
             <h:panelGroup id="chat-send-form-container" layout="block" styleClass="chat-send-form">
-              <p:inputTextarea id="message-input-field" onkeydown="chat.onKeyEvent(event)" value=" "
-                placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/typeMessage')}" maxlength="2500"
-                styleClass="message-list-content-send-input js-input-message" />
+              <textarea id="message-input-field" onkeydown="chat.onKeyEvent(event)" placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/typeMessage')}" maxlength="2500"
+                class="message-list-content-send-input js-input-message ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all message-list-content-send-input js-input-message ui-inputtextarea-resizable">
+              </textarea>
               <p:commandButton icon="fa fa-paper-plane" onclick="chat.sendMessage()"
                 styleClass="message-list-content-send-button js-send-chat-message" global="false" type="button" />
             </h:panelGroup>
