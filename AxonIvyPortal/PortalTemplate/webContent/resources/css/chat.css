@@ -388,6 +388,7 @@ _:-ms-fullscreen, :root .my-message .chat-meta .tooltip {
 
 ul.roles-participants-list {
     padding-left: 0 !important; 
+    list-style: none;
 }
 
 ul.users-in-role {
