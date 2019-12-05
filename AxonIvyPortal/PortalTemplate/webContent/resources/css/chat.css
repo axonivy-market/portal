@@ -342,6 +342,7 @@
 .chat-meta {
   cursor: default;
   position: relative;
+  text-align: left;
 }
 
 .my-message .chat-meta {
