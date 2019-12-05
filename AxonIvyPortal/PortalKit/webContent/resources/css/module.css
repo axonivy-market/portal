@@ -3462,10 +3462,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   display: inline !important;
 }
 
-.statistic-case-category-tree .ui-tree-container {
-  max-width: 25.5rem;
-}
-
 .apply-filters-btn {
   float: right;
 }
@@ -3496,6 +3492,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 .statistic-case-category-tree .ui-tree-container {
   height: 26rem;
   width: 100%;
+  max-width: 26.5rem;
   overflow: auto !important;
 }
 
@@ -3547,7 +3544,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
     width: 25rem !important;
   }
   .statistic-case-category-tree .ui-tree-container {
-    max-width: 17.5rem;
+    max-width: 18.5rem;
   }
   .edit-statistic-container {
     padding-right: 25rem !important;
@@ -3625,7 +3622,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
     padding: 0.5em !important;
   }
   .statistic-case-category-tree .ui-tree-container {
-    max-width: 19rem !important;
+    max-width: 19.5rem !important;
   }
   .filter-widget-input.case-filter-component {
     padding-right: 35px !important;

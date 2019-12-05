@@ -332,3 +332,7 @@
 .Fleft {
   float: left;
 }
+
+.FontBold {
+  font-weight: bold;
+}
