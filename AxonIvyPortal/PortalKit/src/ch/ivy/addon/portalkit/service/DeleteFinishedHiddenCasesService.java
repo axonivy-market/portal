@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import ch.ivy.addon.portalkit.persistence.variable.CustomField;
 import ch.ivy.addon.portalkit.persistence.variable.IvyVariable;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -42,8 +43,7 @@ public class DeleteFinishedHiddenCasesService {
 	    int numOfDeletedCases = 0;
 	    for (int i = cases.size()-1; i >= 0; i--) {
 	      ICase iCase = (cases.get(i));
-	      boolean isHiddenCase = ("HIDE").equals(iCase.getAdditionalProperty("HIDE"));
-	      if (isHiddenCase) {
+	      if (isHiddenCase(iCase)) {
 	        try {
 	          Ivy.wf().deleteCompletedCase(iCase);
 	          Ivy.log().info("Case was deleted with id: " + iCase.getId());
@@ -58,4 +58,59 @@ public class DeleteFinishedHiddenCasesService {
 	    Ivy.log().info("***Job for deleting finished hidden cases (deleted " + numOfDeletedCases + " cases) has ended at: " + currentDate);
   }
 
+  private boolean isHiddenCase(ICase iCase) {
+    String hiddenTasksCasesCustomField = Ivy.var().get(IvyVariable.PORTAL_HIDDEN_TASK_CASE_CUSTOM_FIELD);
+    boolean isHiddenCase;
+    switch (hiddenTasksCasesCustomField.toLowerCase()){
+      case CustomField.CUSTOM_VARCHAR_FIELD1: 
+        isHiddenCase = iCase.getCustomVarCharField1() != null;
+        break;
+      case CustomField.CUSTOM_VARCHAR_FIELD2:
+    	isHiddenCase = iCase.getCustomVarCharField2() != null;
+        break;
+      case CustomField.CUSTOM_VARCHAR_FIELD3:
+    	isHiddenCase = iCase.getCustomVarCharField3() != null;
+        break;
+      case CustomField.CUSTOM_VARCHAR_FIELD4:
+    	isHiddenCase = iCase.getCustomVarCharField4() != null;
+        break;
+      case CustomField.CUSTOM_VARCHAR_FIELD5:
+    	isHiddenCase = iCase.getCustomVarCharField5() != null;
+        break;
+      case CustomField.CUSTOM_DECIMAL_FIELD1:
+    	isHiddenCase = iCase.getCustomDecimalField1() != null;
+        break;
+      case CustomField.CUSTOM_DECIMAL_FIELD2:
+    	isHiddenCase = iCase.getCustomDecimalField2() != null;
+        break;
+      case CustomField.CUSTOM_DECIMAL_FIELD3:
+    	isHiddenCase = iCase.getCustomDecimalField3() != null;
+        break;
+      case CustomField.CUSTOM_DECIMAL_FIELD4:
+    	isHiddenCase = iCase.getCustomDecimalField4() != null;
+        break;
+      case CustomField.CUSTOM_DECIMAL_FIELD5:
+    	isHiddenCase = iCase.getCustomDecimalField5() != null;
+        break;
+      case CustomField.CUSTOM_TIMESTAMP_FIELD1:
+    	isHiddenCase = iCase.getCustomTimestampField1() != null;
+        break;
+      case CustomField.CUSTOM_TIMESTAMP_FIELD2:
+    	isHiddenCase = iCase.getCustomTimestampField2() != null;
+        break;
+      case CustomField.CUSTOM_TIMESTAMP_FIELD3:
+    	isHiddenCase = iCase.getCustomTimestampField3() != null;
+        break; 
+      case CustomField.CUSTOM_TIMESTAMP_FIELD4:
+    	isHiddenCase = iCase.getCustomTimestampField4() != null;
+        break;
+      case CustomField.CUSTOM_TIMESTAMP_FIELD5:
+    	isHiddenCase = iCase.getCustomTimestampField5() != null;
+        break;  
+      default:
+        isHiddenCase = iCase.getAdditionalProperty("HIDE") != null;
+        break;
+    }
+    return isHiddenCase;
+  }
 }
