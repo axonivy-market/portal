@@ -107,7 +107,7 @@
           <ui:fragment>
             <!-- If showMainArea indicator is true, the layout content will be rendered by the schedule loading of JS file-->
             <!-- Otherwise, the layout content will be rendered by once DOM is pasted already -->
-            <div class="layout-content container #{showMainArea eq true ? '' : 'u-invisibility'}" id="main-area-panel">
+            <div class="layout-content container #{layoutContentStyleClass} #{showMainArea eq true ? '' : 'u-invisibility'}" id="main-area-panel">
               <h:panelGroup id="announcement-container" layout="block" rendered="#{userMenuBean.isAnnouncementActivated() and announcementInvisible ne 'true'}" styleClass="announcement-message-container #{announcementContainerStyleClass}">
                 <h:panelGroup layout="block" styleClass="announcement-message js-announcement-message announcement-message-customizable">
                   <h:outputText value="#{userMenuBean.getAnnouncement()}" />

@@ -518,7 +518,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   bottom: 1px;
   left: 2px;
   overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis;
 }
 
@@ -1173,9 +1172,6 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 }
 
 @media screen and (min-width: 1024px) {
-  .compact-processes-container {
-    max-height: 277px;
-  }
   .compact-default-processes-container {
     max-height: 292px;
     padding-right: 0px;
@@ -1183,7 +1179,7 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 }
 
 @media screen and (max-width: 1023px) {
-  .compact-processes-container, .compact-default-processes-container {
+  .compact-default-processes-container {
     max-height: 165px;
   }
 }
@@ -2017,7 +2013,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   text-align: right;
 }
 
-@media screen and (max-width: 40em) {
+@media (max-width: 1024px) {
   .process-chain-container.horizontal-process-chain-container {
     order: 2;
   }
@@ -2041,13 +2037,6 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
     width: auto !important;
     margin-top: 5px !important;
   }
-  .circle-process-chain .circle-horizontal-process-step:last-child .circle-horizontal-step-container {
-    line-height: 0.4 !important;
-  }
-  .circle-process-chain .circle-horizontal-process-step .circle-horizontal-step-container {
-    width: 20px !important;
-    height: 20px !important;
-  }
   .circle-process-chain .circle-horizontal-step-title {
     margin-bottom: 2px !important;
   }
@@ -2056,7 +2045,8 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
     display: inline-block;
     content: "";
     width: 20px;
-    margin: 0 10px;
+    line-height: 0;
+    margin-right: -20px;
   }
   _:-ms-fullscreen, :root .circle-horizontal-step-container .step-number-container:after,
     .circle-horizontal-step-container .step-number-container:before {
@@ -2068,19 +2058,16 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
     border-top-style: dashed;
   }
   .circle-horizontal-step-container .step-number-container:before {
-    transform: translate(-30px, 4px);
+    transform: translate(-30px, -2px);
     border-top-style: dashed;
   }
   _:-ms-fullscreen, :root .circle-horizontal-step-container .step-number-container:before {
-    transform: translate(-30px, 5px);
+    margin-left: -18px;
+    -ms-transform: translateX(-150%);
   }
 }
 
-@media screen and (min-width: 40.063em) and (max-width: 64.062em) {
-  .circle-process-chain .circle-horizontal-process-step .circle-horizontal-step-container {
-    width: 20px !important;
-    height: 20px !important;
-  }
+@media (max-width: 1024px) {
   .circle-process-chain .circle-horizontal-step-title {
     margin-bottom: 2px !important;
   }
@@ -2090,7 +2077,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   .circle-horizontal-step-container .step-number-container:after,
   .circle-horizontal-step-container.right-steps .step-number-container:after,
   .circle-horizontal-step-container.left-steps .step-number-container:before {
-    margin: 0 10px;
+    margin: 0;
     position: absolute;
     display: inline-block;
     content: "";
@@ -2098,7 +2085,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   }
   .circle-horizontal-step-container .step-number-container:after,
   .circle-horizontal-step-container.right-steps .step-number-container:after {
-    top: 7px;
+    top: 20px;
   }
   .circle-horizontal-step-container.left-steps .step-number-container:before {
     top: 15px;
@@ -2111,7 +2098,7 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
     border-top-style: dashed;
   }
   .circle-horizontal-step-container .step-number-container:before {
-    transform: translate(-40px, -8px);
+    transform: translate(-49px, -1px);
     border-top-style: dashed;
   }
 }
@@ -3274,6 +3261,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   .color-header {
     margin-left: -25px;
     margin-right: -25px;
+    width: 120%;
   }
 }
 
@@ -3474,10 +3462,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   display: inline !important;
 }
 
-.statistic-case-category-tree .ui-tree-container {
-  max-width: 25.5rem;
-}
-
 .apply-filters-btn {
   float: right;
 }
@@ -3508,6 +3492,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 .statistic-case-category-tree .ui-tree-container {
   height: 26rem;
   width: 100%;
+  max-width: 26.5rem;
   overflow: auto !important;
 }
 
@@ -3559,7 +3544,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
     width: 25rem !important;
   }
   .statistic-case-category-tree .ui-tree-container {
-    max-width: 17.5rem;
+    max-width: 18.5rem;
   }
   .edit-statistic-container {
     padding-right: 25rem !important;
@@ -3637,7 +3622,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
     padding: 0.5em !important;
   }
   .statistic-case-category-tree .ui-tree-container {
-    max-width: 19rem !important;
+    max-width: 19.5rem !important;
   }
   .filter-widget-input.case-filter-component {
     padding-right: 35px !important;

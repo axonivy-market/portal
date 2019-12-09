@@ -1,6 +1,7 @@
 var isEdge = window.navigator.userAgent.indexOf("Edge") > -1;
 var isFireFox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
 var isIE11 = navigator.userAgent.toLowerCase().indexOf("trident") > -1 && navigator.userAgent.toLowerCase().indexOf("rv:11") > -1;
+var isIphone = navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i);
 
 var messages = [];
 var currentIndex;
@@ -575,6 +576,12 @@ function View(uri)
            , 0);
          }
        }, 0);
+      }
+      if (!$(cloneTemplate).hasClass("my-message") && isIphone) {
+    	  var $chatMessages = $(".js-chat-panel.active").find(".js-message-list").find(".chat-message");
+    	  $messageList.animate({
+              scrollTop: $messageList.scrollTop() + $chatMessages.last().offset().top}
+          , 0);
       }
     }
 
