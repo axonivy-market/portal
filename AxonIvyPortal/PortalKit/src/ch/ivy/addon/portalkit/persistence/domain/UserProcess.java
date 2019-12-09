@@ -23,6 +23,13 @@ public class UserProcess extends BusinessEntity {
     this.userName = userName;
     this.link = link;
   }
+  
+  public UserProcess(String processName, String userName, String link, String workflowId) {
+    this.processName = processName;
+    this.userName = userName;
+    this.link = link;
+    this.workflowId = workflowId;
+  }
 
   public String getUserName() {
     return userName;

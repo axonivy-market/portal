@@ -148,8 +148,8 @@ In engine
 
 .. _installation-migration-notes-8-0-0:
 
-Migrate from 7.x to 8.0.0
--------------------------
+Migrate 7.x to 8.0.0
+--------------------
 
 Please following these migration guides.
 
@@ -162,15 +162,15 @@ Please following these migration guides.
    migration-notes/8-0-0/installation-migration-notes-8-0-0-task-body
    migration-notes/8-0-0/installation-migration-notes-8-0-0-case-body
 
-Migrate to 7.4.0
-----------------
+Migrate 7.3.x to 7.4.0
+----------------------
 
 From 7.4.0, CaseTemplate is deprecated and we don't support it anymore.
 If you are using CaseTemplate, please do consider to migrate to
 TaskTemplate manually.
 
-Migrate to 7.3.0
-----------------
+Migrate 7.2.x to 7.3.0
+----------------------
 
 From 7.3.0, Portal supports some permissions to show/hide left menu
 item, if you override ``LoadSubMenuItems`` process and want to use these
@@ -202,7 +202,7 @@ be adjusted. Check list below
    Processes/PasswordService:changePassword(String,String)``  .
 
 Migrate hidden task and case to 7.3.0
--------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Portal 7.0.10 has the option to store hidden information in custom field of
 task and case instead of additional property to improve performance.
@@ -416,26 +416,6 @@ Steps to migrate
 
 6. PortalStyle/webContent/resources/css/theme.css is obsolete, remove
    it.
-
-Migrate 5.0 (Rothorn) to 6.0 (Säntis)
--------------------------------------
-
-Database conversion
-^^^^^^^^^^^^^^^^^^^
-
-If you are using Portal ``5.0`` , you have to manual configure all
-settings (create servers, applications, variables) again since Portal
-now doesn't use external database. All settings on from Portal ``6.0``
-are stored in Ivy system database. If you are using Portal ``6.0`` , you
-don't need to convert database.
-
-Portal appearance
-^^^^^^^^^^^^^^^^^
-
-Portal now doesn't use `Modena <http://primefaces.org/eos/modena>`__
-theme, it's a big difference to previous ``6.0`` . Therefore many things
-in Portal ``5.0`` and ``6.0`` will not look the same in new Portal. Many
-things have been redesigned like menu, task list, case list ...
 
 .. _installation-release-notes:
 

@@ -14,12 +14,14 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
+import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
 @ViewScoped
 public class ChatRendererBean implements Serializable {
 
   private static final long serialVersionUID = 4691697531600235758L;
+  private static final String EXPRESS_CREATION_TASK = "isExpressCreationTask";
   
   private Boolean isGroupChatRendered;
   private Boolean isPrivateChatRendered;
@@ -57,5 +59,9 @@ public class ChatRendererBean implements Serializable {
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
     String groupChatName = response.get("name").toString();
     PrimeFaces.current().executeScript("var groupChatFormat = '" + groupChatName + "'");
+  }
+
+  public boolean isExpressCreationTask() {
+    return Ivy.wfTask().customFields().stringField(EXPRESS_CREATION_TASK).get().isPresent();
   }
 }
