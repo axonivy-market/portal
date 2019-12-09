@@ -203,9 +203,9 @@ var UserFavouritesProcess = {
 
   init : function(favouritesProcess) {
 	favouritesProcessSize = favouritesProcess;
-	if( window.innerWidth < 1024 &&  window.innerWidth > 640 ) {
+	if( window.innerWidth < 1366 &&  window.innerWidth > 640 && window.innerHeight > 640 ) {
 		maxItems = 5;
-	} else if(window.innerWidth <= 640 ) {
+	} else if(window.innerWidth <= 640 | window.innerHeight <= 640 ) {
 		maxItems = 3;
 	}
   },
