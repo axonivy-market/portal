@@ -131,6 +131,12 @@
   }
 }
 
+@media  screen and (max-height: 500px) {
+  .layout-wrapper .layout-main .layout-content.frame-container {
+    height: 100%;
+  }
+}
+
 .task-frame-container {
   height: calc(100vh - 160px);
 }

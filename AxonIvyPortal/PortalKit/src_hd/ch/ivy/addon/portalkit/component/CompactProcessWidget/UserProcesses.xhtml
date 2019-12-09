@@ -179,7 +179,7 @@
         <p:commandButton id="add-process-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
           process="@form" actionListener="#{compactProcessWidgetBean.saveNewUserProcess}"
           update="@form #{p:component('process-list')} #{p:component('process-widget-action')}"
-          oncomplete="if(!args.validationFailed){PF('add-new-process-dialog').hide();}" />
+          oncomplete="UserFavouritesProcess.setUpScrollBar() if(!args.validationFailed){PF('add-new-process-dialog').hide();}" />
         <p:spacer width="5" />
         <p:commandButton id="cancel-adding-process-command" global="false" styleClass="portal-cancel-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@none"
@@ -187,5 +187,12 @@
       </div>
     </h:form>
   </p:dialog>
+  
+  <script type="text/javascript">
+       $(function() {
+          UserFavouritesProcess.init(#{compactProcessWidgetBean.userProcesses.size()});
+          UserFavouritesProcess.setUpScrollBar();
+      });
+  </script>
 </ui:composition>
 </html>
